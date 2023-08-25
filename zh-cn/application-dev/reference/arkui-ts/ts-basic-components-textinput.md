@@ -46,14 +46,14 @@ TextInput(value?:{placeholder?: ResourceStr, text?: ResourceStr, controller?: Te
 | caretStyle<sup>10+</sup> | {<br/>width:&nbsp;[Length](ts-types.md#length)<br/>} | 设置光标风格。                                        |
 | caretPosition<sup>10+</sup> | number | 设置光标位置。 |
 | showUnit<sup>10+</sup>                | [CustomBuilder](ts-types.md#CustomBuilder8)         | 设置控件作为文本框单位。<br/>默认无单位。 |
-| showError<sup>10+</sup> | string&nbsp;\|&nbsp;undefined | 设置错误状态下提示的错误文本或者不显示错误状态。<br/>默认不显示错误状态。 |
+| showError<sup>10+</sup> | string&nbsp;\|&nbsp;undefined | 设置错误状态下提示的错误文本或者不显示错误状态。<br/>默认不显示错误状态。<br/>**说明：** <br/>当参数类型为string并且输入内容不符合定义规范时，提示错误文本。当参数类型为undefined时，不显示错误状态。请参考[示例2](#示例2) |
 | showUnderline<sup>10+</sup> | boolean | 设置是否开启下划线。<br/>默认值：false |
 | passwordIcon<sup>10+</sup> | [PasswordIcon](#passwordicon10对象说明) | 密码输入模式时，设置输入框末尾的图标。<br/>默认为系统提供的密码图标。 |
 | enableKeyboardOnFocus<sup>10+</sup> | boolean | TextInput获焦时，是否绑定输入法<br/>默认值：true。从API version 10开始，获焦默认绑定输入法。 |
 | selectionMenuHidden<sup>10+</sup> | boolean | 设置长按输入框或者右键输入框时，是否弹出文本选择菜单。<br />默认值：false |
 | barState<sup>10+</sup> | [BarState](ts-appendix-enums.md#BarState) | 设置内联输入风格编辑态时滚动条的显示模式。<br/>默认值：BarState.Auto |
 | maxLines<sup>10+</sup> | number | 设置内联输入风格编辑态时文本可显示的最大行数。<br/>默认值：3 |
-| customKeyboard<sup>10+</sup> | [CustomBuilder](ts-types.md#custombuilder8) | 设置自定义键盘。<br/>**说明：**<br/>当设置自定义键盘时，输入框激活后不会打开系统输入法，而是加载指定的自定义组件，针对系统键盘的enterKeyType属性设置将无效。<br/>自定义键盘的高度可以通过自定义组件根节点的height属性设置，宽度不可设置，使用系统默认值。<br/>自定义键盘采用覆盖原始界面的方式呈现，不会对应用原始界面产生压缩或者上提。<br/>自定义键盘无法获取焦点，但是会拦截手势事件。<br/>默认在输入控件失去焦点时，关闭自定义键盘，开发者也可以通过[TextInputController](#textinputcontroller8).[stopEditing](#stopediting10)方法控制键盘关闭。 | 
+| customKeyboard<sup>10+</sup> | [CustomBuilder](ts-types.md#custombuilder8) | 设置自定义键盘。<br/>**说明：**<br/>当设置自定义键盘时，输入框激活后不会打开系统输入法，而是加载指定的自定义组件，针对系统键盘的enterKeyType属性设置将无效。<br/>自定义键盘的高度可以通过自定义组件根节点的height属性设置，宽度不可设置，使用系统默认值。<br/>自定义键盘采用覆盖原始界面的方式呈现，不会对应用原始界面产生压缩或者上提。<br/>自定义键盘无法获取焦点，但是会拦截手势事件。<br/>默认在输入控件失去焦点时，关闭自定义键盘，开发者也可以通过[TextInputController](#textinputcontroller8).[stopEditing](#stopediting10)方法控制键盘关闭。 |
 
 >  **说明：**
 >
@@ -249,17 +249,20 @@ struct TextInputExample {
 ### 示例2
 
 ```ts
-// xxx.ets
 @Entry
 @Component
 struct TextInputExample {
-  @State PassWordSrc1:Resource=$r('app.media.icon')
-  @State PassWordSrc2:Resource=$r('app.media.icon')
+  @State PassWordSrc1: Resource = $r('app.media.onIcon')
+  @State PassWordSrc2: Resource = $r('app.media.offIcon')
+  @State TextError: string = undefined
+  @State Text: string = ''
+  @State NameText: string = 'test'
+
   @Builder itemEnd() {
     Select([{ value: 'KB' },
       { value: 'MB' },
-      { value: 'GB'},
-      { value: 'TB',}])
+      { value: 'GB' },
+      { value: 'TB', }])
       .height("48vp")
       .borderRadius(0)
       .selected(2)
@@ -270,33 +273,52 @@ struct TextInputExample {
       .selectedOptionFont({ size: 20, weight: 400 })
       .optionFont({ size: 20, weight: 400 })
       .backgroundColor(Color.Transparent)
-      .responseRegion({height:"40vp",width:"80%",x:'10%',y:'6vp'})
+      .responseRegion({ height: "40vp", width: "80%", x: '10%', y: '6vp' })
       .onSelect((index: number) => {
         console.info('Select:' + index)
       })
   }
 
   build() {
-    Column() {
+    Column({ space: 20 }) {
       // 自定义密码显示图标
       TextInput({ placeholder: 'user define password icon' })
         .type(InputType.Password)
-        .width(400)
+        .width(380)
         .height(60)
-        .passwordIcon({onIconSrc:this.PassWordSrc1,offIconSrc : this.PassWordSrc2})
+        .passwordIcon({ onIconSrc: this.PassWordSrc1, offIconSrc: this.PassWordSrc2 })
       // 下划线模式
       TextInput({ placeholder: 'underline style' })
         .showUnderline(true)
-        .width(400)
+        .width(380)
         .height(60)
         .showError('Error')
         .showUnit(this.itemEnd.bind(this))
+
+      Text(`用户名：${this.Text}`)
+        .width('95%')
+      TextInput({ placeholder: '请输入用户名', text: this.Text })
+        .showUnderline(true)
+        .width(380)
+        .showError(this.TextError)
+        .onChange((value: string) => {
+          this.Text = value
+        })
+        .onSubmit(() => { // 用户名不正确会清空输入框和用户名并提示错误文本
+          if (this.Text == this.NameText) {
+            this.TextError = undefined
+          } else {
+            this.TextError = '用户名输入错误'
+            this.Text = ''
+          }
+        })
+
     }.width('100%')
   }
 }
 ```
 
-![showUnit](figures/showUnit.png)
+![TextInputError](figures/TextInputError.png)
 
 ### 示例3
 

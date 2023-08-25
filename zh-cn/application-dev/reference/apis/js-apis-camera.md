@@ -44,6 +44,44 @@ getCameraManager(context: Context): CameraManager
 ```js
 let cameraManager = camera.getCameraManager(context);
 ```
+## camera.getModeManager
+
+getModeManager(context: Context): ModeManager
+
+获取模式化管理器实例，同步返回结果。
+
+模式化管理是对于cameraManager功能的增强与扩充，主要用于一些高级功能的管理（如人像模式）。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名     | 类型                                             | 必填 | 说明                           |
+| -------- | ----------------------------------------------- | ---- | ---------------------------- |
+| context  | [Context](js-apis-inner-app-context.md)      | 是   | 应用上下文。                   |
+
+**返回值：**
+
+| 类型                                  | 说明       |
+| --------------------------------------| -----------|
+| [ModeManager](#modemanager)           | 模式化管理器。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](../errorcodes/errorcode-camera.md)
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400101                |  Parameter missing or parameter type incorrect               |
+| 7400201                |  Camera service fatal error.                                  |
+
+**示例：**
+
+```js
+let modeManager = camera.getModeManager(context);
+```
 
 ## CameraStatus
 
@@ -121,6 +159,67 @@ let cameraManager = camera.getCameraManager(context);
 | DEVICE_DISABLED            | 7400108    | 安全原因摄像头被禁用。     |
 | DEVICE_PREEMPTED           | 7400109    | 相机被抢占导致无法使用     |
 | SERVICE_FATAL_ERROR        | 7400201    | 相机服务错误返回。     |
+
+## CameraMode
+
+相机模式。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+| 名称             | 值    | 说明     |
+| ----------------| ----  | ---------|
+| PORTRAIT         | 1    | 人像模式  |
+
+## FilterType
+
+滤镜类型。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+| 名称             | 值    | 说明     |
+| ----------------| ----  | ---------|
+| NONE           | 0      | 原图。     |
+| CLASSIC        | 1      | 经典。     |
+| DAWN           | 2      | 晨光。     |
+| PURE           | 3      | 清纯。     |
+| GREY           | 4      | 灰调。     |
+| NATURAL        | 5      | 自然。     |
+| MORI           | 6      | 森系。     |
+| FAIR           | 7      | 白皙。     |
+| PINK           | 8      | 粉调。     |
+
+
+## PortraitEffect
+
+人像效果类型。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+| 名称             | 值    | 说明     |
+| ----------------| ----  | ---------|
+| OFF             | 0      | 关闭。    |
+| CIRCLES         | 1      | 圆形。    |
+
+## BeautyType
+
+美颜类型。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+| 名称             | 值    | 说明     |
+| ----------------| ----  | ---------|
+| AUTO           | 0      | 自动。     |
+| SKIN_SMOOTH    | 1      | 光滑。     |
+| FACE_SLENDER   | 2      | 瘦脸。     |
+| SKIN_TONE      | 3      | 肤色。     |
 
 ## CameraManager
 
@@ -557,6 +656,27 @@ cameraManager.on('cameraStatus', (err, cameraStatusInfo) => {
 })
 ```
 
+### off('cameraStatus')
+
+off(type: 'cameraStatus', callback?: AsyncCallback\<CameraStatusInfo\>): void
+
+相机设备状态注销回调，通过注销回调函数取消获取相机的状态变化。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名     | 类型            | 必填 | 说明       |
+| -------- | -----------------| ---- | --------- |
+| type     | string           | 是   | 监听事件，固定为'cameraStatus'。cameraManager对象获取成功后可监听。 |
+| callback | AsyncCallback\<[CameraStatusInfo](#camerastatusinfo)\> | 否   | 可选参数，有表明匹配on接口callback。 |                 |
+
+**示例：**
+
+```js
+cameraManager.off('cameraStatus')
+```
+
 ### on('cameraMute')
 
 on(type: 'cameraMute', callback: AsyncCallback\<boolean\>): void
@@ -580,6 +700,33 @@ on(type: 'cameraMute', callback: AsyncCallback\<boolean\>): void
 cameraManager.on('cameraMute', (err, curMuetd) => {
     let isMuted = curMuetd;
 })
+```
+
+### off('cameraMute')
+
+off(type: 'cameraMute', callback?: AsyncCallback\<boolean\>): void
+
+禁用回调，通过注销注册回调函数获取相机禁用状态变化。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名     | 类型             | 必填 | 说明       |
+| -------- | --------------- | ---- | --------- |
+| type     | string          | 是   | 监听事件，固定为'cameraMute'，系统相机摄像头开关，cameraManager对象获取成功后可监听。 |
+| callback | AsyncCallback\<boolean> | 否   | 回调函数，可选参数，有表明匹配on接口callback。               |
+
+**示例：**
+
+```js
+func(err, curMuetd) {
+    let isMuted = curMuetd;
+}
+cameraManager.on('cameraMute', func)
+cameraManager.off('cameraMute', func)
 ```
 
 ### isPrelaunchSupported
@@ -720,6 +867,104 @@ function getDeferredPreviewOutput(context: Context, previewProfile: camera.Profi
   const output: Promise<PreviewOutput> = cameraManager.createDeferredPreviewOutput(previewProfile);
   return output;
 }
+```
+## ModeManager
+
+相机模式化管理器类，使用前需要通过[getModeManager](#cameragetmodemanager)获取相机模式化管理实例。
+
+### getSupportedModes
+
+getSupportedModes(device: CameraDevice): Array\<CameraMode\>
+
+获取指定相机设备支持的模式列表，同步返回结果。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名     | 类型                                                         | 必填 | 说明                 |
+| -------- | -------------------------- | ---- | ------------------- |
+| device | [CameraDevice](#cameradevice)      | 是   |   相机设备实例，通过[getSupportedCameras](#getsupportedcameras)接口获取。  |
+
+**返回值：**
+
+| 类型                                             | 说明                           |
+| ----------------------------------------------- | ---------------------------- |
+|  Array\<[CameraMode](#cameramode)>            | 支持的模式列表。                   |
+
+**示例：**
+
+```js
+let cameraModes = cameraManager.getSupportedModes(cameraDevices[0]);
+
+```
+
+### getSupportedOutputCapability
+
+getSupportedOutputCapability(device:CameraDevice, mode: CameraMode): CameraOutputCapability
+
+获取指定模式下相机设备支持的输出能力，同步返回结果。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名         | 类型                                                            | 必填 | 说明                      |
+| ------------ |--------------------------------------------------------------- | -- | -------------------------- |
+| device       | [CameraDevice](#cameradevice)                              | 是 | 相机设备，通过[getSupportedCameras](#getsupportedcameras)接口获取。   |
+| mode         | [CameraMode](#cameramode)                                  | 是 | 指定模式，通过[getSupportedModes](#getsupportedmodes)接口获取。       |
+
+**返回值：**
+
+| 类型                                             | 说明                           |
+| ----------------------------------------------- | ---------------------------- |
+| [CameraOutputCapability](#cameraoutputcapability)            | 相机输出能力。                   |
+
+**示例：**
+
+```js
+let cameras = cameraManager.getSupportedCameras();
+let cameraDevice = cameras[0];
+let cameraModes = modeManager.getSupportedModes(cameraDevice);
+let mode = cameraModes[0]
+let cameraOutputCapability = modeManager.getSupportedOutputCapability(cameraDevice, mode);
+
+```
+### createCaptureSession
+
+createCaptureSession(mode: CameraMode): CaptureSession
+
+根据当前的模式名，创建指定模式的会话。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名         | 类型                                                            | 必填 | 说明                      |
+| ------------ |--------------------------------------------------------------- | -- | -------------------------- |
+| mode | [CameraMode](#cameramode)                              | 是 | 指定模式，通过[getSupportedModes](#getsupportedmodes)获取。       |
+
+**返回值：**
+
+| 类型                                             | 说明                           |
+| ----------------------------------------------- | ---------------------------- |
+| [CaptureSession](#capturesession)            | 指定模式的会话实例。                   |
+
+**示例：**
+
+```js
+let cameras = cameraManager.getSupportedCameras();
+let cameraDevice = cameras[0];
+let cameraModes = modeManager.getSupportedModes(cameraDevice);
+let mode = cameraModes[0]
+let captureSession = modeManager.createCaptureSession(mode);
+
 ```
 
 ## PrelaunchConfig
@@ -1010,6 +1255,28 @@ on(type: 'error', camera:CameraDevice, callback: ErrorCallback): void
 cameraInput.on('error', cameraDevice, (error) => {
     console.log(`Camera input error code: ${error.code}`);
 })
+```
+
+### off('error')
+
+off(type: 'error', camera:CameraDevice, callback?: ErrorCallback): void
+
+注销监听CameraInput的错误事件。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名     | 类型                              | 必填 | 说明                                          |
+| -------- | -------------------------------- | --- | ------------------------------------------- |
+| type     | string                           | 是   | 监听事件，固定为'error'，CameraInput对象创建成功可监听。相机设备出错情况下可触发该事件并返回结果，比如（设备不可用或者冲突等返回对应错误信息） |
+| cameraDevice   | [CameraDevice](#cameradevice)    | 是   | CameraDevice对象。 |
+| callback | ErrorCallback | 否   | 回调函数，可选，有就是匹配on('error') callback   |
+
+**示例：**
+
+```js
+cameraInput.off('error', cameraDevice)
 ```
 
 ## FlashMode
@@ -2418,6 +2685,246 @@ try {
     console.log(error.code);
 }
 ```
+### getSupportedFilters
+
+getSupportedFilters(): Array\<number>
+
+获取当前支持的滤镜效果列表。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**返回值：**
+
+| 类型        | 说明                          |
+| ---------- | ----------------------------- |
+|  Array\<FilterType\>     | 返回支持的滤镜效果列表。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](../errorcodes/errorcode-camera.md)。
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400103                |  Session not config.                                   |
+
+**示例：**
+
+```js
+let FilterTypes = captureSession.getSupportedFilters();
+```
+### setFilter
+
+setFilter(filter: number): void
+
+设置滤镜效果。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名    | 类型                        | 必填 | 说明                  |
+| -------- | ----------------------------| ---- | ---------------------|
+| filter     | [number](#filtertype) | 是   | 当前用户设置的滤镜类型。  |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](../errorcodes/errorcode-camera.md)。
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400101                |  Parameter missing or parameter type incorrect.        |
+| 7400103                |  Session not config.                                   |
+
+**示例：**
+
+```js
+let FilterTypes = captureSession.getSupportedFilters();
+if (!FilterTypes.empty()) {
+    captureSession.setFilter(FilterTypes[0]);
+}
+```
+
+### getFilter
+
+ getFilter(): number
+
+获取当前已设置的滤镜效果。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**返回值：**
+
+| 类型                     | 说明                         |
+| ----------               | ----------------------------|
+| [number](#filtertype)| 已设置的滤镜效果。可查阅[FilterType](#filtertype)。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](../errorcodes/errorcode-camera.md)。
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400103                |  Session not config.                                   |
+
+**示例：**
+
+```js
+let FilterType = captureSession.getFilter();
+```
+### getSupportedBeautyTypes
+
+getSupportedBeautyTypes(): Array<[BeautyType](#beautytype)>
+
+获取当前支持的美颜效果列表。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**返回值：**
+
+| 类型                | 说明                                                  |
+| ----------          | -----------------------------                         |
+|  Array\<[BeautyType](#beautytype)\>| 返回当前支持的美颜效果列表。                             |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](../errorcodes/errorcode-camera.md)。
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400103                |  Session not config.                                   |
+
+**示例：**
+
+```js
+let FilterTypes = captureSession.getSupportedBeautyTypes();
+```
+### getSupportedBeautyRange
+
+getSupportedBeautyRange(type: BeautyType): Array<number>
+
+获取指定美颜效果的范围值。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名      | 类型                    | 必填 | 说明       |
+| -------- | --------------------------| ---- | ----------|
+| type     | [BeautyType](#beautytype) | 是   | 美颜类型。   |
+
+**返回值：**
+
+| 类型        | 说明                          |
+| ---------- | ----------------------------- |
+|  Array\<number\>     | 当前美颜类型所支持的美颜强度。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](../errorcodes/errorcode-camera.md)。
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400103                |  Session not config.                                   |
+
+**示例：**
+
+```js
+let beautyTypes = captureSession.getSupportedBeautyTypes();
+if (!beautyTypes.empty()) {
+    let nums = captureSession.getSupportedBeautyRange(beautyTypes[0]);
+}
+```
+
+### setBeauty
+
+setBeauty(type: BeautyType, value: number): void
+
+设置美颜类型以及对应的美颜强度
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名      | 类型                    | 必填 | 说明                   |
+| -------- | --------------------------| ---- | --------------------- |
+| type     | [BeautyType](#beautytype) | 是   | 美颜类型               |
+| value    | number                    | 是   | 美颜强度，通过[getSupportedBeautyRange](#getsupportedbeautyrange)接口获取。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](../errorcodes/errorcode-camera.md)。
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400103                |  Session not config.                                   |
+
+**示例：**
+
+```js
+let beautyTypes = captureSession.getSupportedBeautyTypes();
+let beautyLevels;
+if (!beautyTypes.empty()) {
+    beautyLevels = captureSession.getSupportedBeautyRange(beautyTypes[0]);
+}
+if (!beautyTypes.empty() && beautyLevels.empty()) {
+    captureSession.setBeauty(beautyTypes[0], beautyLevels[0]);
+}
+```
+
+### getBeauty
+
+getBeauty(type: BeautyType): number
+
+查询当前已设置的美颜效果对应的美颜强度。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名      | 类型                                              | 必填 | 说明                    |
+| -------- | ------------------------------------------------- | ---- | --------------------- |
+| type     | [BeautyType](#beautytype) | 是   | 美颜类型   |
+
+**返回值：**
+| 参数名      | 类型                                              | 必填 | 说明                    |
+| -------- | ------------------------------------------------- | ---- | --------------------- |
+| value     | number | 是   | 美颜强度  |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](../errorcodes/errorcode-camera.md)。
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400103                |  Session not config.                                   |
+
+**示例：**
+
+```js
+let BeautyTypes = captureSession.getSupportedBeautyTypes();
+let beautyLevels;
+if (!BeautyTypes.empty()) {
+    beautyLevels = captureSession.getSupportedBeautyRange(BeautyTypes[0]);
+}
+if (!BeautyTypes.empty() && beautyLevels.empty()) {
+    captureSession.setBeauty(BeautyTypes[0], beautyLevels[0]);
+}
+let beautyLevel = captureSession.getBeauty(BeautyTypes[0]);
+```
 
 ### on('focusStateChange')
 
@@ -2442,6 +2949,27 @@ captureSession.on('focusStateChange', (err, focusState) => {
 })
 ```
 
+### off('focusStateChange')
+
+off(type: 'focusStateChange', callback?: AsyncCallback\<FocusState\>): void
+
+注销监听相机聚焦的状态变化。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名     | 类型                                      | 必填 | 说明                       |
+| -------- | ----------------------------------------- | ---- | ------------------------ |
+| type     | string                                    | 是   | 监听事件，固定为'focusStateChange'，session 创建成功可监听。|
+| callback | AsyncCallback\<[FocusState](#focusstate)\> | 否   | 回调函数，可选  |
+
+**示例：**
+
+```js
+captureSession.off('focusStateChange')
+```
+
 ### on('error')
 
 on(type: 'error', callback: ErrorCallback): void
@@ -2463,6 +2991,124 @@ on(type: 'error', callback: ErrorCallback): void
 captureSession.on('error', (error) => {
     console.log(`Capture session error code: ${error.code}`);
 })
+```
+
+### off('error')
+
+off(type: 'error', callback?: ErrorCallback): void
+
+监听拍照会话的错误事件，通过注册回调函数获取结果。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名     | 类型                                                          | 必填 | 说明                           |
+| -------- | ----------------------------------------------------------- | ---- | ------------------------------ |
+| type     | string                                                      | 是   | 监听事件，固定为'error'，session创建成功之后可监听该接口。 |
+| callback | ErrorCallback| 否   | 回调函数，可选       |
+
+**示例：**
+
+```js
+captureSession.off('error')
+```
+## PortraitSession
+
+继承自[CaptureSession](#capturesession)，用于设置人像模式的参数。
+
+### getSupportedPortraitEffects
+
+getSupportedPortraitEffects(): Array<[PortraitEffect](#portraiteffect)>
+
+获取支持的人像虚化效果列表。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**返回值：**
+
+| 类型                                             | 说明                           |
+| ----------------------------------------------- | ---------------------------- |
+| Array<[PortraitEffect](#portraiteffect) > | 支持的人像虚化效果列表。               |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](../errorcodes/errorcode-camera.md)。
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400103                |  Session not config.                                   |
+
+**示例：**
+
+```js
+let portraitEffect = PortraitSession.getSupportedPortraitEffects();
+```
+### setPortraitEffect
+
+setPortraitEffect(effect: PortraitEffect): void
+
+设置人像虚化效果。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名         | 类型                                                            | 必填 | 说明                      |
+| ------------ |--------------------------------------------------------------- | -- | -------------------------- |
+| effect | [PortraitEffect](#portraiteffect)                              | 是 | 人像虚化效果，通过[getSupportedPortraitEffects](#getsupportedportraiteffects)接口获取。   |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](../errorcodes/errorcode-camera.md)。
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400103                |  Session not config.                                   |
+
+**示例：**
+
+```js
+let portraitEffects = PortraitSession.getSupportedPortraitEffects();
+if (!portraitEffects.empty()) {
+    PortraitSession.setPortraitEffect(portraitEffects[0]);
+}
+```
+### getPortraitEffect
+
+getPortraitEffect(): PortraitEffect
+
+获取当前设置的人像虚化效果。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**返回值：**
+
+| 类型                                             | 说明                           |
+| ----------------------------------------------- | ---------------------------- |
+| [PortraitEffect](#portraiteffect)               | 当前设置的人像虚化效果。                |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](../errorcodes/errorcode-camera.md)。
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400103                |  Session not config.                                   |
+
+**示例：**
+
+```js
+let portraitEffects = PortraitSession.getSupportedPortraitEffects();
+if (!portraitEffects.empty()) {
+    PortraitSession.setPortraitEffect(portraitEffects[0]);
+}
 ```
 
 ## CameraOutput
@@ -2678,6 +3324,27 @@ previewOutput.on('frameStart', () => {
 })
 ```
 
+### off('frameStart')
+
+off(type: 'frameStart', callback?: AsyncCallback\<void\>): void
+
+注销监听预览帧启动。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名      | 类型                  | 必填 | 说明                                     |
+| -------- | -------------------- | ---- | --------------------------------------- |
+| type     | string               | 是   | 监听事件，固定为'frameStart'，previewOutput创建成功可监听。 |
+| callback | AsyncCallback\<void\> | 否   | 回调函数，可选                     |
+
+**示例：**
+
+```js
+previewOutput.off('frameStart')
+```
+
 ### on('frameEnd')
 
 on(type: 'frameEnd', callback: AsyncCallback\<void\>): void
@@ -2701,6 +3368,27 @@ previewOutput.on('frameEnd', () => {
 })
 ```
 
+### off('frameEnd')
+
+off(type: 'frameEnd', callback?: AsyncCallback\<void\>): void
+
+注销监听预览帧结束。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名      | 类型                  | 必填 | 说明                                  |
+| -------- | -------------------- | ---- | ------------------------------------- |
+| type     | string               | 是   | 监听事件，固定为'frameEnd'，previewOutput创建成功可监听。 |
+| callback | AsyncCallback\<void\> | 否   | 回调函数，可选                |
+
+**示例：**
+
+```js
+previewOutput.off('frameEnd')
+```
+
 ### on('error')
 
 on(type: 'error', callback: ErrorCallback): void
@@ -2722,6 +3410,27 @@ on(type: 'error', callback: ErrorCallback): void
 previewOutput.on('error', (previewOutputError) => {
     console.log(`Preview output error code: ${previewOutputError.code}`);
 })
+```
+
+### off('error')
+
+off(type: 'error', callback?: ErrorCallback): void
+
+注销监听预览输出的错误事件。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名     | 类型         | 必填 | 说明                       |
+| -------- | --------------| ---- | ------------------------ |
+| type     | string        | 是   | 监听事件，固定为'error'，previewOutput创建成功可监听。|
+| callback | ErrorCallback | 否   | 回调函数，可选  |
+
+**示例：**
+
+```js
+previewOutput.off('error')
 ```
 
 ### addDeferredSurface
@@ -3098,6 +3807,27 @@ photoOutput.on('captureStart', (err, captureId) => {
 })
 ```
 
+### off('captureStart')
+
+off(type: 'captureStart', callback?: AsyncCallback\<number\>): void
+
+注销监听拍照开始。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名      | 类型                    | 必填 | 说明                                       |
+| -------- | ---------------------- | ---- | ------------------------------------------ |
+| type     | string                 | 是   | 监听事件，固定为'captureStart'，photoOutput创建成功后可监听 |
+| callback | AsyncCallback\<number\> | 否   | 可选。            |
+
+**示例：**
+
+```js
+photoOutput.off('captureStart')
+```
+
 ### on('frameShutter')
 
 on(type: 'frameShutter', callback: AsyncCallback\<FrameShutterInfo\>): void
@@ -3120,6 +3850,27 @@ photoOutput.on('frameShutter', (err, frameShutterInfo) => {
     console.log(`photo capture end, captureId : ${frameShutterInfo.captureId}`);
     console.log(`Timestamp for frame : ${frameShutterInfo.timestamp}`);
 })
+```
+
+### off('frameShutter')
+
+off(type: 'frameShutter', callback?: AsyncCallback\<FrameShutterInfo\>): void
+
+注销监听拍照帧输出捕获。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名     | 类型      | 必填 | 说明                                  |
+| -------- | ---------- | --- | ------------------------------------ |
+| type     | string     | 是   | 监听事件，固定为'frameShutter'，photoOutput创建成功后可监听。 |
+| callback | AsyncCallback\<[FrameShutterInfo](#frameshutterinfo)\> | 否   | 回调函数，可选。             |
+
+**示例：**
+
+```js
+photoOutput.off('frameShutter')
 ```
 
 ### on('captureEnd')
@@ -3146,6 +3897,27 @@ photoOutput.on('captureEnd', (err, captureEndInfo) => {
 })
 ```
 
+### off('captureEnd')
+
+off(type: 'captureEnd', callback?: AsyncCallback\<CaptureEndInfo\>): void
+
+注销监听拍照结束。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名     | 类型           | 必填 | 说明                                       |
+| -------- | --------------- | ---- | ---------------------------------------- |
+| type     | string          | 是   | 监听事件，固定为'captureEnd'，photoOutput创建成功后可监听。 |
+| callback | AsyncCallback\<[CaptureEndInfo](#captureendinfo)\> | 否   | 回调函数，可选。                  |
+
+**示例：**
+
+```js
+photoOutput.off('captureEnd')
+```
+
 ### on('error')
 
 on(type: 'error', callback: ErrorCallback): void
@@ -3167,6 +3939,27 @@ on(type: 'error', callback: ErrorCallback): void
 photoOutput.on('error', (error) => {
     console.log(`Photo output error code: ${error.code}`);
 })
+```
+
+### off('error')
+
+off(type: 'error', callback?: ErrorCallback): void
+
+注销监听拍照输出发生错误。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名     | 类型         | 必填 | 说明                                 |
+| -------- | ------------- | ---- | ----------------------------------- |
+| type     | string       | 是   | 监听事件，固定为'error'，photoOutput创建成功后可监听。 |
+| callback | ErrorCallback | 否   | 回调函数，可选           |
+
+**示例：**
+
+```js
+photoOutput.off('error')
 ```
 
 ### isQuickThumbnailSupported
@@ -3193,7 +3986,7 @@ isQuickThumbnailSupported(): boolean
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
-| 7400101                |  Parameter missing or parameter type incorrect        |
+| 7400104                |  session is not running        |
 
 **示例：**
 
@@ -3239,7 +4032,7 @@ enableQuickThumbnail(enabled: boolean): void
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
-| 7400101                |  Parameter missing or parameter type incorrect        |
+| 7400104                |  session is not running        |
 
 **示例：**
 
@@ -3281,7 +4074,7 @@ on(type: 'quickThumbnail', callback: AsyncCallback\<image.PixelMap>): void
 | 参数名     | 类型         | 必填 | 说明                                 |
 | -------- | ------------- | ---- | ----------------------------------- |
 | type    | string     | 是   | 监听事件，固定为'quickThumbnail'。 |
-| callback | AsyncCallback\<[image.PixelMap](js-apis-image.md#pixelmap7)> | 回调返回PixelMap。 |
+| callback | AsyncCallback\<[image.PixelMap](js-apis-image.md#pixelmap7)> | 是 | 回调返回PixelMap。 |
 
 **示例：**
 
@@ -3314,6 +4107,57 @@ this.photoOutPut.on('quickThumbnail', (err, pixelmap) => {
     // 显示或保存pixelmap
     this.showOrSavePicture(pixelmap)
 })
+```
+
+### off('quickThumbnail')
+
+off(type: 'quickThumbnail', callback?: AsyncCallback\<image.PixelMap>): void
+
+注销监听快速缩略图输出事件。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名     | 类型         | 必填 | 说明                                 |
+| -------- | ------------- | ---- | ----------------------------------- |
+| type    | string     | 是   | 监听事件，固定为'quickThumbnail'。 |
+| callback | AsyncCallback\<[image.PixelMap](js-apis-image.md#pixelmap7)> | 否 | 可选。 |
+
+**示例：**
+
+```js
+import camera from '@ohos.multimedia.camera'
+
+this.cameraManager = camera.getCameraManager(globalThis.abilityContext);
+let cameras = this.cameraManager.getSupportedCameras()
+// 创建CaptureSession实例
+this.captureSession = await this.cameraManager.createCaptureSession()
+// 开始配置会话
+await this.captureSession.beginConfig()
+// 把CameraInput加入到会话
+this.cameraInput = await this.cameraManager.createCameraInput(cameras[0])
+await this.cameraInput.open()
+await this.captureSession.addInput(this.cameraInput)
+// 把PhotoOutPut加入到会话
+this.photoOutPut = await this.cameraManager.createPhotoOutput(photoProfile, surfaceId)
+await this.captureSession.addOutput(this.photoOutPut)
+boolean isSupported = this.photoOutPut.isQuickThumbnailSupported()
+if (isSupported) {
+    // 使能快速缩略图
+    this.photoOutPut.enableQuickThumbnail(true)
+}
+this.photoOutPut.on('quickThumbnail', (err, pixelmap) => {
+    if (err || pixelmap === undefined) {
+        Logger.error(this.tag, 'photoOutPut on thumbnail failed ')
+        return
+    }
+    // 显示或保存pixelmap
+    this.showOrSavePicture(pixelmap)
+})
+this.photoOutPut.off('quickThumbnail')
 ```
 
 ## FrameShutterInfo
@@ -3549,6 +4393,27 @@ videoOutput.on('frameStart', () => {
 })
 ```
 
+### off('frameStart')
+
+off(type: 'frameStart', callback?: AsyncCallback\<void\>): void
+
+注销监听录像开始。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名      | 类型                  | 必填 | 说明                                       |
+| -------- | -------------------- | ---- | ----------------------------------------- |
+| type     | string               | 是   | 监听事件，固定为'frameStart'，videoOutput创建成功后可监听。 |
+| callback | AsyncCallback\<void\> | 否   | 回调函数，可选                     |
+
+**示例：**
+
+```js
+videoOutput.off('frameStart')
+```
+
 ### on('frameEnd')
 
 on(type: 'frameEnd', callback: AsyncCallback\<void\>): void
@@ -3572,6 +4437,27 @@ videoOutput.on('frameEnd', () => {
 })
 ```
 
+### off('frameEnd')
+
+off(type: 'frameEnd', callback?: AsyncCallback\<void\>): void
+
+注销监听录像结束。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名      | 类型                  | 必填 | 说明                                       |
+| -------- | -------------------- | ---- | ------------------------------------------ |
+| type     | string               | 是   | 监听事件，固定为'frameEnd'，videoOutput创建成功后可监听 。 |
+| callback | AsyncCallback\<void\> | 否   | 回调函数，可选                      |
+
+**示例：**
+
+```js
+videoOutput.off('frameEnd')
+```
+
 ### on('error')
 
 on(type: 'error', callback: ErrorCallback): void
@@ -3593,6 +4479,27 @@ on(type: 'error', callback: ErrorCallback): void
 videoOutput.on('error', (error) => {
     console.log(`Video output error code: ${error.code}`);
 })
+```
+
+### off('error')
+
+off(type: 'error', callback?: ErrorCallback): void
+
+注销监听录像输出发生错误。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名     | 类型       | 必填 | 说明                                    |
+| -------- | ----------- | ---- | -------------------------------------- |
+| type     | string      | 是   | 监听事件，固定为'error'，videoOutput创建成功后可监听。 |
+| callback | ErrorCallback | 否   | 回调函数，可选               |
+
+**示例：**
+
+```js
+videoOutput.off('error')
 ```
 
 ## MetadataOutput
@@ -3740,6 +4647,27 @@ metadataOutput.on('metadataObjectsAvailable', (err, metadataObjectArr) => {
 })
 ```
 
+### off('metadataObjectsAvailable')
+
+off(type: 'metadataObjectsAvailable', callback?: AsyncCallback\<Array\<MetadataObject\>\>): void
+
+注销监听检测到的metadata对象。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名      | 类型         | 必填 | 说明                                  |
+| -------- | -------------- | ---- | ------------------------------------ |
+| type     | string         | 是   | 监听事件，固定为'metadataObjectsAvailable'，metadataOutput创建成功后可监听。 |
+| callback | Callback\<Array\<[MetadataObject](#metadataobject)\>\> | 否   | 回调函数，可选。 |
+
+**示例：**
+
+```js
+metadataOutput.off('metadataObjectsAvailable')
+```
+
 ### on('error')
 
 on(type: 'error', callback: ErrorCallback): void
@@ -3761,6 +4689,27 @@ on(type: 'error', callback: ErrorCallback): void
 metadataOutput.on('error', (metadataOutputError) => {
     console.log(`Metadata output error code: ${metadataOutputError.code}`);
 })
+```
+
+### off('error')
+
+off(type: 'error', callback?: ErrorCallback): void
+
+注销监听metadata流的错误。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名     | 类型         | 必填 | 说明                                     |
+| -------- | ------------- | ---- | --------------------------------------- |
+| type     | string        | 是   | 监听事件，固定为'error'，metadataOutput创建成功后可监听。 |
+| callback | ErrorCallback | 否   | 回调函数，可选           |
+
+**示例：**
+
+```js
+metadataOutput.off('error')
 ```
 
 ## MetadataObjectType

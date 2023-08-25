@@ -70,3 +70,20 @@
 **适配指导**
 
 该接口删除后无法再使用，请适配更新。
+
+## cl.bundlemanager.2 结构体BusinessAbilityInfo文件路径变更，从bundleManager文件夹移动至application文件夹下
+
+结构体BusinessAbilityInfo文件路径变更，从bundleManager文件夹移动至application文件夹下。
+
+
+**变更影响**
+
+二级模块文件路径变更，对开发者无影响。
+
+**关键的接口/组件变更**
+
+结构体BusinessAbilityInfo修改文件路径，由bundleManager/BusinessAbilityInfo修改为application/BusinessAbilityInfo。
+
+**适配指导**
+
+无

@@ -321,42 +321,6 @@ export default class MyAbility extends UIAbility {
 }
 ```
 
-## ApplicationContext.off(type: 'applicationStateChange', callback: AsyncCallback\<void>)<sup>10+</sup>
-
-off(type: 'applicationStateChange', callback: AsyncCallback<**void**>): **void**;
-
-取消当前应用指定的前后台变化的监听。
-
-**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
-
-**参数：**
-
-| 参数名   | 类型                     | 必填 | 说明                             |
-| -------- | ------------------------ | ---- | -------------------------------- |
-| type     | string | 是   | 取消监听事件的类型,必须为'applicationStateChange'。             |
-| callback | AsyncCallback\<void>     | 否   | 删除指定callback对应的注册监听。 |
-
-**示例：**
-
-```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-
-export default class EntryAbility extends UIAbility {
-    onDestroy() {
-        globalThis.applicationStateChangeCallback = {
-            onApplicationForeground() {
-                console.info('applicationStateChangeCallback onApplicationForeground');
-            },
-            onApplicationBackground() {
-                console.info('applicationStateChangeCallback onApplicationBackground');
-            }
-        }
-        let applicationContext = this.context.getApplicationContext();
-        applicationContext.off('applicationStateChange', globalThis.ApplicationStateChangeCallback);
-    }
-}
-```
-
 ## ApplicationContext.off(type: 'applicationStateChange')<sup>10+</sup>
 
 off(type: 'applicationStateChange', callback?: ApplicationStateChangeCallback):  **void**;

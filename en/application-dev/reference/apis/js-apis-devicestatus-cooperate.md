@@ -4,9 +4,9 @@ The **cooperate** module implements screen hopping for two or more networked dev
 
 > **NOTE**
 >
->   - The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> - The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
->  - The APIs provided by this module are system APIs.
+> - The APIs provided by this module are system APIs.
 
 ## Modules to Import
 
@@ -26,7 +26,7 @@ Prepares for screen hopping. This API uses an asynchronous callback to return th
 
 | Name   | Type     | Mandatory | Description   |
 | -------- | ------------------------- | ---- | --------------------------- |
-| callback | AsyncCallback&lt;void&gt;  | Yes|Callback used to return the result.  |
+| callback | AsyncCallback&lt;void&gt;  | Yes|Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.  |
 
 **Example**
 
@@ -56,7 +56,7 @@ Prepares for screen hopping. This API uses a promise to return the result.
 
 | Parameters                | Description                    |
 | ------------------- | ------------------------------- |
-| Promise&lt;void&gt;      | Promise used to return the result.|
+| Promise&lt;void&gt;      | Promise that returns no value.|
 
 
 
@@ -75,7 +75,6 @@ try {
 ```
 
 
-
 ## cooperate.unprepare
 
 unprepare(callback: AsyncCallback&lt;void&gt;): void;
@@ -86,7 +85,7 @@ Cancels the preparation for screen hopping. This API uses an asynchronous callba
 
 | Name  | Type                     | Mandatory| Description                                      |
 | -------- | ------------------------- | ---- | ------------------------------------------ |
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.|
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Example**
 
@@ -104,8 +103,6 @@ try {
 }
 ```
 
-
-
 ## cooperate.unprepare
 
 unprepare(): Promise&lt;void&gt;;
@@ -118,7 +115,7 @@ Cancels the preparation for screen hopping. This API uses a promise to return th
 
 | Parameters               | Description                                         |
 | ------------------- | --------------------------------------------- |
-| Promise&lt;void&gt; | Promise used to return the result.|
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 ```js
 try {
@@ -131,7 +128,6 @@ try {
   console.log(`Keyboard mouse crossing unprepare failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
-
 
 
 ## cooperate.activate
@@ -148,7 +144,7 @@ Starts screen hopping. This API uses an asynchronous callback to return the resu
 | --------             | ---------------------------- | ----  | ----------------------------   |
 | targetNetworkId | string                       |  Yes  | Descriptor of the target device for screen hopping.            |
 | inputDeviceId | number                       |  Yes  | Identifier of the input device for screen hopping.|
-| callback             | AsyncCallback&lt;void&gt; |  Yes   | Callback used to return the result.|
+| callback             | AsyncCallback&lt;void&gt; |  Yes   | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -156,7 +152,7 @@ For details about the error codes, see [Screen Hopping Error Codes](../errorcode
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 20900001 | This error code is reported if the screen hopping status is abnormal when the screen hopping API is called.               |
+| 20900001 | Operation failed.|
 
 **Example**
 
@@ -197,7 +193,7 @@ Starts screen hopping. This API uses a promise to return the result.
 
 | Name                 | Description                            |
 | ---------------------- | ------------------------------- |
-| Promise&lt;void&gt; | Promise used to return the result.    |
+| Promise&lt;void&gt; | Promise that returns no value.    |
 
 **Error codes**
 
@@ -205,7 +201,7 @@ For details about the error codes, see [Screen Hopping Error Codes](../errorcode
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 20900001 | This error code is reported if the screen hopping status is abnormal when the screen hopping API is called.              |
+| 20900001 | Operation failed.   |
 
 **Example**
 
@@ -235,8 +231,8 @@ Stops screen hopping. This API uses an asynchronous callback to return the resul
 
 | Name               | Type                         | Mandatory | Description                           |
 | --------             | ---------------------------- | ----  | ----------------------------   |
-| isUnchained | boolean | Yes| Whether to disable the cross-device link.|
-| callback             | AsyncCallback&lt;void&gt; |  Yes  | Callback used to return the result.      |
+| isUnchained | boolean | Yes| Whether to disable the cross-device link.<br> The value **true** means to disable the cross-device link, and the value **false** means the opposite.|
+| callback     | AsyncCallback&lt;void&gt; |  Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 
 
@@ -268,7 +264,7 @@ Stops screen hopping. This API uses a promise to return the result.
 
 | Name     | Type   | Mandatory| Description              |
 | ----------- | ------- | ---- | ------------------ |
-| isUnchained | boolean | Yes  | Whether to disable the cross-device link.|
+| isUnchained | boolean | Yes  | Whether to disable the cross-device link.<br> The value **true** means to disable the cross-device link, and the value **false** means the opposite.|
 
 
 
@@ -276,7 +272,7 @@ Stops screen hopping. This API uses a promise to return the result.
 
 | Name               | Description                           |
 | --------             | ----------------------------   |
-| Promise&lt;void&gt; |  Promise used to return the result.     |
+| Promise&lt;void&gt; |  Promise that returns no value.     |
 
 
 
@@ -307,7 +303,7 @@ Obtains the screen hopping status of the target device. This API uses an asynchr
 | Name               | Type                         | Mandatory  | Description                           |
 | --------             | ---------                    | ----  | ----------------------------    |
 | networkId | string                       |  Yes   | Descriptor of the target device for screen hopping.            |
-| callback             | AsyncCallback&lt;boolean&gt; |  Yes   | Callback used to return the result.|
+| callback             | AsyncCallback&lt;boolean&gt; |  Yes   | Callback used to return the result. The value **true** indicates that screen hopping is enabled, and the value **false** indicates the opposite.|
 
 **Example**
 
@@ -336,9 +332,9 @@ Obtains the screen hopping status of the target device. This API uses a promise 
 
 **Parameters**
 
-| Name               | Type                         | Mandatory  | Description                           |
-| --------             | ---------                    | ----  | ----------------------------    |
-| networkId | string                       |  Yes   | Descriptor of the target device for screen hopping.           |
+| Name   | Type  | Mandatory  | Description                           |
+| --------   | ---------  | ----  | ----------------------------    |
+| networkId | string     |  Yes   | Descriptor of the target device for screen hopping.           |
 
 
 
@@ -346,7 +342,7 @@ Obtains the screen hopping status of the target device. This API uses a promise 
 
 | Parameters                       | Description                    |
 | -------------------        | ------------------------------- |
-| Promise&lt;boolean&gt; | Promise used to return the result.|
+| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** indicates that screen hopping is enabled, and the value **false** indicates the opposite.|
 
 
 

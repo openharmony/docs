@@ -3,7 +3,7 @@
 
 ## Overview
 
-Defines the predicates.
+Defines the predicates used for RDB stores.
 
 **Since**
 
@@ -45,4 +45,4 @@ Defines the predicates.
 | [in](_r_d_b.md#in) | Pointer to the function used to set a predicates object to match the field with the value within the specified range.|
 | [notIn](_r_d_b.md#notin) | Pointer to the function used to set a predicates object to match the field with the value out of the specified range.|
 | [clear](_r_d_b.md#clear-12) | Pointer to the function used to clear a predicates instance.|
-| [destroyPredicates](_r_d_b.md#destroypredicates) | Destroys an **OH_Predicates** object and reclaims the memory occupied.|
+| [destroy](_r_d_b.md#destroy-24) | Destroys an **OH_Predicates** object and reclaims the memory occupied.|

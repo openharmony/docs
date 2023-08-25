@@ -29,7 +29,7 @@ UDMF针对多对多跨应用数据共享的不同业务场景提供了标准化�
 
 ## 接口说明
 
-以下是UDMF标准化数据通路的相关接口，均为异步接口。异步接口均有callback和Promise两种返回形式，下表均以callback形式为例，更多接口及使用方式请见[统一数据管理框架](../reference/apis/js-apis-data-udmf.md)。
+以下是UDMF标准化数据通路的相关接口，均为异步接口。异步接口均有callback和Promise两种返回形式，下表均以callback形式为例，更多接口及使用方式请见[标准化数据通路](../reference/apis/js-apis-data-unifiedDataChannel.md)和[标准化数据定义与描述](../reference/apis/js-apis-data-uniformTypeDescriptor.md)。
 
 | 接口名称                                                                                    | 描述                                          | 
 |-----------------------------------------------------------------------------------------|---------------------------------------------|
@@ -45,24 +45,25 @@ UDMF针对多对多跨应用数据共享的不同业务场景提供了标准化�
 
 ### 数据提供方
 
-1. 导入`@ohos.data.UDMF`模块。
+1. 导入`@ohos.data.unifiedDataChannel`和`@ohos.data.uniformTypeDescriptor`模块。
 
    ```ts
-   import UDMF from '@ohos.data.UDMF';
+   import unifiedDataChannel from '@ohos.data.unifiedDataChannel';
+   import uniformTypeDescriptor from '@ohos.data.uniformTypeDescriptor';
    ```
 2. 创建一个统一数据对象并插入到UDMF的公共数据通路中。
 
    ```ts
-   let plainText = new UDMF.PlainText();
+   let plainText = new unifiedDataChannel.PlainText();
    plainText.textContent = 'hello world!';
-   let unifiedData = new UDMF.UnifiedData(plainText);
+   let unifiedData = new unifiedDataChannel.UnifiedData(plainText);
    
    // 指定要插入数据的数据通路枚举类型
    let options = {
-       intention: UDMF.Intention.DATA_HUB
+       intention: unifiedDataChannel.Intention.DATA_HUB
    }
    try {
-       UDMF.insertData(options, unifiedData, (err, data) => {
+       unifiedDataChannel.insertData(options, unifiedData, (err, data) => {
            if (err === undefined) {
                console.info(`Succeeded in inserting data. key = ${data}`);
            } else {
@@ -76,9 +77,9 @@ UDMF针对多对多跨应用数据共享的不同业务场景提供了标准化�
 3. 更新上一步骤插入的统一数据对象。
 
    ```ts
-   let plainText = new UDMF.PlainText();
+   let plainText = new unifiedDataChannel.PlainText();
    plainText.textContent = 'How are you!';
-   let unifiedData = new UDMF.UnifiedData(plainText);
+   let unifiedData = new unifiedDataChannel.UnifiedData(plainText);
    
    // 指定要更新的统一数据对象的URI
    let options = {
@@ -86,7 +87,7 @@ UDMF针对多对多跨应用数据共享的不同业务场景提供了标准化�
    };
    
    try {
-       UDMF.updateData(options, unifiedData, (err) => {
+       unifiedDataChannel.updateData(options, unifiedData, (err) => {
            if (err === undefined) {
                console.info('Succeeded in updating data.');
            } else {
@@ -102,18 +103,18 @@ UDMF针对多对多跨应用数据共享的不同业务场景提供了标准化�
    ```ts
    // 指定要删除数据的数据通路枚举类型
    let options = {
-    intention: UDMF.Intention.DATA_HUB
+    intention: unifiedDataChannel.Intention.DATA_HUB
    };
    
    try {
-       UDMF.deleteData(options, (err, data) => {
+       unifiedDataChannel.deleteData(options, (err, data) => {
            if (err === undefined) {
                console.info(`Succeeded in deleting data. size = ${data.length}`);
                for (let i = 0; i < data.length; i++) {
                    let records = data[i].getRecords();
                    for (let j = 0; j < records.length; j++) {
-                       if (records[j].getType() === UDMF.UnifiedDataType.PLAIN_TEXT) {
-                           let text = <UDMF.PlainText>(records[j]);
+                       if (records[j].getType() === uniformTypeDescriptor.UniformDataType.PLAIN_TEXT) {
+                           let text = <unifiedDataChannel.PlainText>(records[j]);
                            console.info(`${i + 1}.${text.textContent}`);
                        }
                    }
@@ -129,28 +130,29 @@ UDMF针对多对多跨应用数据共享的不同业务场景提供了标准化�
    
 ### 数据访问方
 
-1. 导入`@ohos.data.UDMF`模块。
+1. 导入`@ohos.data.unifiedDataChannel`和`@ohos.data.uniformTypeDescriptor`模块。
 
    ```ts
-   import UDMF from '@ohos.data.UDMF';
+   import unifiedDataChannel from '@ohos.data.unifiedDataChannel';
+   import uniformTypeDescriptor from '@ohos.data.uniformTypeDescriptor';
    ```
 2. 查询存储在UDMF公共数据通路中的统一数据对象。
 
    ```ts
    // 指定要查询数据的数据通路枚举类型
    let options = {
-    intention: UDMF.Intention.DATA_HUB
+    intention: unifiedDataChannel.Intention.DATA_HUB
    };
    
    try {
-       UDMF.queryData(options, (err, data) => {
+       unifiedDataChannel.queryData(options, (err, data) => {
            if (err === undefined) {
                console.info(`Succeeded in querying data. size = ${data.length}`);
                for (let i = 0; i < data.length; i++) {
                    let records = data[i].getRecords();
                    for (let j = 0; j < records.length; j++) {
-                       if (records[j].getType() === UDMF.UnifiedDataType.PLAIN_TEXT) {
-                           let text = <UDMF.PlainText>(records[j]);
+                       if (records[j].getType() === uniformTypeDescriptor.UniformDataType.PLAIN_TEXT) {
+                           let text = <unifiedDataChannel.PlainText>(records[j]);
                            console.info(`${i + 1}.${text.textContent}`);
                        }
                    }

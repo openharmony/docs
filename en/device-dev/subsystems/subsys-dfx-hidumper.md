@@ -191,3 +191,9 @@ The procedure is as follows:
     ```
     hidumper -t [timeout]
     ```
+
+19. Run the **hidumper --mem-smaps pid [-v]** command to obtain the detailed memory usage of the specified process.
+     
+    ```
+    hidumper --mem-smaps pid [-v]
+    ```

@@ -53,6 +53,7 @@
       - [共享元素转场](arkts-shared-element-transition.md)
     - [组件动画](arkts-component-animation.md)
     - 动画曲线
+      - [动画曲线概述](arkts-curve-overview.md)
       - [传统曲线](arkts-traditional-curve.md)
       - [弹簧曲线](arkts-spring-curve.md)
     - [动画衔接](arkts-animation-smoothing.md)

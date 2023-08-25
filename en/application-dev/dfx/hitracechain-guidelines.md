@@ -1,6 +1,6 @@
 # Development of Distributed Call Chain Tracing
 
-## Introduction
+## Overview
 
 The hiTraceChain module provides APIs to implement call chain tracing throughout a service process. This can help you quickly obtain the run log for the call chain of a specified service process and locate faults in inter-device, inter-process, or inter-thread communications.
 

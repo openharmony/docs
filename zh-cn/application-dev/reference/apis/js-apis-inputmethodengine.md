@@ -1,6 +1,6 @@
 # @ohos.inputMethodEngine (输入法服务)
 
-本模块面向输入法应用（包括系统输入法应用、三方输入法应用），为输入法应用提供能力，功能包括：创建软键盘窗口、插入/删除字符、选中文本、物理键盘按键事件监听等。
+本模块面向输入法应用（包括系统输入法应用、三方输入法应用），为输入法应用提供能力，包括：创建软键盘窗口、插入/删除字符、选中文本、监听物理键盘按键事件等。
 
 > **说明：**
 >
@@ -56,9 +56,7 @@ import inputMethodEngine from '@ohos.inputMethodEngine';
 
 getInputMethodAbility(): InputMethodAbility
 
-为输入法应用获取输入法应用客户端实例[InputMethodAbility](#inputmethodability)。
-该接口仅限于输入法应用调用。
-输入法应用获取该实例可订阅软键盘显示/隐藏请求事件、创建/销毁输入法应用面板等。
+获取输入法应用客户端实例[InputMethodAbility](#inputmethodability)，仅支持输入法应用调用。<br/>输入法应用获取该实例后，可订阅软键盘显示/隐藏请求事件、创建/销毁输入法面板等。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -78,7 +76,7 @@ let InputMethodAbility = inputMethodEngine.getInputMethodAbility();
 
 getKeyboardDelegate(): KeyboardDelegate
 
-为输入法应用获取客户端编辑事件监听代理实例[KeyboardDelegate](#keyboarddelegate)。输入法应用获取该实例可订阅物理键盘按键事件、选中文本变化事件等。
+获取客户端编辑事件监听代理实例[KeyboardDelegate](#keyboarddelegate)。<br/>输入法应用获取该实例后，可订阅物理键盘按键事件、选中文本变化事件等。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -98,7 +96,7 @@ let KeyboardDelegate = inputMethodEngine.getKeyboardDelegate();
 
 getInputMethodEngine(): InputMethodEngine
 
-为输入法应用获取输入法应用客户端实例[InputMethodEngine](#inputmethodengine-1)。输入法应用获取该实例可订阅软键盘显示/隐藏请求事件等。
+获取输入法应用客户端实例[InputMethodEngine](#inputmethodengine)。<br/>输入法应用获取该实例后，可订阅软键盘显示/隐藏请求事件等。
 
 > **说明：**
 >
@@ -122,7 +120,7 @@ let InputMethodEngine = inputMethodEngine.getInputMethodEngine();
 
 createKeyboardDelegate(): KeyboardDelegate
 
-为输入法应用获取客户端编辑事件监听代理实例[KeyboardDelegate](#keyboarddelegate)。输入法应用获取该实例可订阅物理键盘按键事件、选中文本变化事件等。
+获取客户端编辑事件监听代理实例[KeyboardDelegate](#keyboarddelegate)。输入法应用获取该实例后，可订阅物理键盘按键事件、选中文本变化事件等。
 
 > **说明：**
 >
@@ -144,7 +142,7 @@ let keyboardDelegate = inputMethodEngine.createKeyboardDelegate();
 
 ## InputMethodEngine
 
-下列API示例中都需使用[getInputMethodEngine](#inputmethodenginegetinputmethodenginedeprecated)回调获取到InputMethodEngine实例，再通过此实例调用对应方法。
+下列API均需使用[getInputMethodEngine](#inputmethodenginegetinputmethodenginedeprecated)获取到InputMethodEngine实例后，通过实例调用。
 
 ### on('inputStart')
 
@@ -158,7 +156,7 @@ on(type: 'inputStart', callback: (kbController: KeyboardController, textInputCli
 
 | 参数名   | 类型                            | 必填 | 说明                                                         |
 | -------- | ------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                        | 是   | 设置监听类型。<br/>-&nbsp;type为‘inputStart’时表示订阅输入法绑定。 |
+| type     | string                        | 是   | 设置监听类型，固定取值为'inputStart'。 |
 | callback | (kbController: [KeyboardController](#keyboardcontroller), textInputClient: [TextInputClient](#textinputclient)) => void | 是 | 回调函数，返回订阅输入法的KeyboardController和TextInputClient实例。 |
 
 **示例：**
@@ -182,8 +180,8 @@ off(type: 'inputStart', callback?: (kbController: KeyboardController, textInputC
 
 | 参数名   | 类型                 | 必填 | 说明                     |
 | -------- | -------------------- | ---- | ------------------------ |
-| type | string                                                       | 是   | 设置监听类型。<br/>-&nbsp;type为‘inputStart’时表示订阅输入法绑定。 |
-| callback | (kbController: [KeyboardController](#keyboardcontroller), textInputClient: [TextInputClient](#textinputclient)) => void | 否 | 回调函数，返回取消订阅的KeyboardController和TextInputClient实例。 |
+| type | string                                                       | 是   | 设置监听类型，固定取值为'inputStart'。 |
+| callback | (kbController: [KeyboardController](#keyboardcontroller), textInputClient: [TextInputClient](#textinputclient)) => void | 否 | 取消订阅的回调函数。参数不填写时，取消订阅type对应的所有回调事件。|
 
 **示例：**
 
@@ -197,7 +195,7 @@ inputMethodEngine.getInputMethodEngine().off('inputStart', (kbController, textIn
 
 on(type: 'keyboardShow'|'keyboardHide', callback: () => void): void
 
-订阅输入法事件。使用callback异步回调。
+订阅输入法软键盘显示或隐藏事件。使用callback异步回调。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -205,7 +203,7 @@ on(type: 'keyboardShow'|'keyboardHide', callback: () => void): void
 
 | 参数名   | 类型   | 必填 | 说明                                                         |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
-| type     | string | 是   | 设置监听类型。<br/>-&nbsp;type为'keyboardShow'，表示订阅输入法显示。<br/>-&nbsp;type为'keyboardHide'，表示订阅输入法隐藏。 |
+| type     | string | 是   | 设置监听类型。<br/>-'keyboardShow'表示显示输入法软键盘。<br/>-'keyboardHide'表示隐藏输入法软键盘。 |
 | callback | () => void   | 是   | 回调函数。                                                   |
 
 **示例：**
@@ -223,7 +221,7 @@ inputMethodEngine.getInputMethodEngine().on('keyboardHide', () => {
 
 off(type: 'keyboardShow'|'keyboardHide', callback?: () => void): void
 
-取消订阅输入法事件。使用callback异步回调。
+取消订阅输入法软键盘显示或隐藏事件。使用callback异步回调。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -231,8 +229,8 @@ off(type: 'keyboardShow'|'keyboardHide', callback?: () => void): void
 
 | 参数名   | 类型   | 必填 | 说明                                                         |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
-| type     | string | 是   | 设置监听类型。<br/>-&nbsp;type为'keyboardShow'，表示订阅输入法显示。<br/>-&nbsp;type为'keyboardHide'，表示订阅输入法隐藏。 |
-| callback | () => void   | 否   | 回调函数。 |
+| type     | string | 是   | 要取消监听的输入法软键盘类型。<br/>-'keyboardShow'表示显示输入法软键盘。<br/>-'keyboardHide'表示隐藏输入法软键盘。|
+| callback | () => void   | 否   | 取消订阅的回调函数。参数不填写时，取消订阅type对应的所有回调事件。 |
 
 **示例：**
 
@@ -243,7 +241,7 @@ inputMethodEngine.getInputMethodEngine().off('keyboardHide');
 
 ## InputMethodAbility
 
-下列API示例中都需使用[getInputMethodAbility](#inputmethodenginegetinputmethodability9)回调获取到InputMethodAbility实例，再通过此实例调用对应方法。
+下列API均需使用[getInputMethodAbility](#inputmethodenginegetinputmethodability9)获取到InputMethodAbility实例后，通过实例调用。
 
 ### on('inputStart')<sup>9+</sup>
 
@@ -257,7 +255,7 @@ on(type: 'inputStart', callback: (kbController: KeyboardController, inputClient:
 
 | 参数名   | 类型                            | 必填 | 说明                                                         |
 | -------- | ------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                        | 是   | 设置监听类型。<br/>-&nbsp;type为‘inputStart’时表示订阅输入法绑定。 |
+| type     | string                        | 是   | 设置监听类型，固定取值为'inputStart'。 |
 | callback | (kbController: [KeyboardController](#keyboardcontroller), inputClient: [InputClient](#inputclient9)) => void | 是 | 回调函数，返回输入法操作相关实例。 |
 
 **示例：**
@@ -281,8 +279,8 @@ off(type: 'inputStart', callback?: (kbController: KeyboardController, inputClien
 
 | 参数名   | 类型                 | 必填 | 说明                     |
 | -------- | -------------------- | ---- | ------------------------ |
-| type | string                                                       | 是   | 设置监听类型。<br/>-&nbsp;type为‘inputStart’时表示订阅输入法绑定。 |
-| callback | (kbController: [KeyboardController](#keyboardcontroller), inputClient: [InputClient](#inputclient9)) => void | 否 | 回调函数，返回输入法操作相关实例。 |
+| type | string                                                       | 是   | 设置监听类型，固定取值为'inputStart'。 |
+| callback | (kbController: [KeyboardController](#keyboardcontroller), inputClient: [InputClient](#inputclient9)) => void | 否 | 取消订阅的回调函数。参数不填写时，取消订阅type对应的所有回调事件。|
 
 **示例：**
 
@@ -302,8 +300,8 @@ on(type: 'inputStop', callback: () => void): void
 
 | 参数名   | 类型   | 必填 | 说明                                                         |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
-| type     | string | 是   | 设置监听类型。<br/>-&nbsp;type为‘inputStop’时表示订阅停止输入法应用事件。 |
-| callback | () => void   | 是   | 回调函数。                                                   |
+| type     | string | 是   | 设置监听类型，固定取值为'inputStop'。 |
+| callback | () => void   | 是   | 回调函数。                        |
 
 **示例：**
 
@@ -325,8 +323,8 @@ off(type: 'inputStop', callback: () => void): void
 
 | 参数名   | 类型   | 必填 | 说明                                                         |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
-| type     | string | 是   | 设置监听类型。<br/>-&nbsp;type为‘inputStop’时表示订阅停止输入法应用事件。 |
-| callback | () => void   | 是   | 回调函数。                                                   |
+| type     | string | 是   | 设置监听类型，固定取值为'inputStop'。 |
+| callback | () => void   | 是   | 取消订阅的回调函数。参数不填写时，取消订阅type对应的所有回调事件。        |
 
 **示例：**
 
@@ -348,8 +346,8 @@ on(type: 'setCallingWindow', callback: (wid: number) => void): void
 
 | 参数名   | 类型   | 必填 | 说明                                                         |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
-| type     | string | 是   | 设置监听类型。<br/>-&nbsp;type为‘setCallingWindow’时表示订阅设置调用窗口事件。 |
-| callback | (wid: number) => void | 是   | 回调函数，返回调用方window id。                                            |
+| type     | string | 是   | 设置监听类型，固定取值为'setCallingWindow'。 |
+| callback | (wid: number) => void | 是   | 回调函数，返回调用方窗口的Id。                     |
 
 **示例：**
 
@@ -371,8 +369,8 @@ off(type: 'setCallingWindow', callback: (wid:number) => void): void
 
 | 参数名   | 类型   | 必填 | 说明                                                         |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
-| type     | string | 是   | 设置监听类型。<br/>-&nbsp;type为‘setCallingWindow’时表示订阅设置调用窗口事件。 |
-| callback | (wid:number) => void | 是   | 回调函数，返回调用方window id。                                 |
+| type     | string | 是   | 设置监听类型，固定取值为'setCallingWindow'。|
+| callback | (wid:number) => void | 是   | 取消订阅的回调函数。参数不填写时，取消订阅type对应的所有回调事件。 |
 
 **示例：**
 
@@ -386,7 +384,7 @@ inputMethodEngine.getInputMethodAbility().off('setCallingWindow', (wid) => {
 
 on(type: 'keyboardShow'|'keyboardHide', callback: () => void): void
 
-订阅输入法事件。使用callback异步回调。
+订阅输入法软键盘显示或隐藏事件。使用callback异步回调。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -394,7 +392,7 @@ on(type: 'keyboardShow'|'keyboardHide', callback: () => void): void
 
 | 参数名   | 类型   | 必填 | 说明                                                         |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
-| type     | string | 是   | 设置监听类型。<br/>-&nbsp;type为'keyboardShow'，表示订阅显示键盘事件。<br/>-&nbsp;type为'keyboardHide'，表示订阅隐藏键盘事件。 |
+| type     | string | 是   | 设置监听类型。<br/>- 'keyboardShow'表示显示输入法软键盘。<br/>- 'keyboardHide'表示隐藏输入法软键盘。 |
 | callback | () => void   | 是   | 回调函数。                                                   |
 
 **示例：**
@@ -420,8 +418,8 @@ off(type: 'keyboardShow'|'keyboardHide', callback?: () => void): void
 
 | 参数名   | 类型   | 必填 | 说明                                                         |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
-| type     | string | 是   | 设置监听类型。<br/>-&nbsp;type为'keyboardShow'，表示取消订阅显示键盘事件。<br/>-&nbsp;type为'keyboardHide'，表示取消订阅隐藏键盘事件。 |
-| callback | () => void   | 否   | 回调函数。     |
+| type     | string | 是   | 设置监听类型。<br/>- 'keyboardShow'表示显示键盘。<br/>- 'keyboardHide'表示隐藏键盘。 |
+| callback | () => void   | 否   | 回调函数。 |
 
 **示例：**
 
@@ -446,8 +444,8 @@ on(type: 'setSubtype', callback: (inputMethodSubtype: InputMethodSubtype) => voi
 
 | 参数名    | 类型 | 必填  | 说明 |
 | -------- | --- | ---- | --- |
-| type     | string | 是   | 设置监听类型。<br/>-&nbsp;type为'setSubtype'，表示订阅输入法子类型的设置事件。 |
-| callback | (inputMethodSubtype: [InputMethodSubtype](js-apis-inputmethod-subtype.md)) => void | 是   | 回调函数，返回设置的输入法子类型。                           |
+| type     | string | 是   | 设置监听类型，固定取值为'setSubtype'。 |
+| callback | (inputMethodSubtype: [InputMethodSubtype](js-apis-inputmethod-subtype.md)) => void | 是   | 回调函数，返回设置的输入法子类型。                         |
 
 **示例：**
 
@@ -461,7 +459,7 @@ inputMethodEngine.getInputMethodAbility().on('setSubtype', (inputMethodSubtype) 
 
 off(type: 'setSubtype', callback?: (inputMethodSubtype: InputMethodSubtype) => void): void
 
-取消订阅输入法子类型事件。使用callback异步回调。
+取消订阅输入法软键盘显示或隐藏事件。使用callback异步回调。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -469,8 +467,8 @@ off(type: 'setSubtype', callback?: (inputMethodSubtype: InputMethodSubtype) => v
 
 | 参数名   | 类型  | 必填 | 说明   |
 | ------- | ----- | ---- | ---- |
-| type     | string | 是   | 设置监听类型。<br/>-&nbsp;type为'setSubtype'，表示取消订阅输入法子类型的设置事件。 |
-| callback | (inputMethodSubtype: [InputMethodSubtype](js-apis-inputmethod-subtype.md)) => void | 否   | 回调函数，返回设置的输入法子类型。  |
+| type     | string | 是   | 设置监听类型，固定取值为'setSubtype'。 |
+| callback | (inputMethodSubtype: [InputMethodSubtype](js-apis-inputmethod-subtype.md)) => void | 否   | 取消订阅的回调函数。参数不填写时，取消订阅type对应的所有回调事件。  |
 
 **示例：**
 
@@ -484,9 +482,7 @@ inputMethodEngine.getInputMethodAbility().off('setSubtype', () => {
 
 createPanel(ctx: BaseContext, info: PanelInfo, callback: AsyncCallback\<Panel>): void
 
-创建输入法应用面板。使用callback异步回调。
-
-仅支持输入法应用调用。单个输入法应用仅仅允许创建一个SOFT_KEYBOARD及一个STATUS_BAR类型的面板。
+创建输入法面板，仅支持输入法应用调用。使用callback异步回调。<br>单个输入法应用仅允许创建一个[软键盘类型](#paneltype10)和[状态栏类型](#paneltype10)的面板。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -495,7 +491,7 @@ createPanel(ctx: BaseContext, info: PanelInfo, callback: AsyncCallback\<Panel>):
 | 参数名   | 类型        | 必填 | 说明                     |
 | ------- | ----------- | ---- | ------------------------ |
 | ctx     | [BaseContext](js-apis-inner-application-baseContext.md) | 是   | 当前输入法应用上下文信息。 |
-| info    | [PanelInfo](#panelinfo10)   | 是   | 输入法面板信息。 |
+| info    | [PanelInfo](#panelinfo10)   | 是   | 输入法应用信息。 |
 | callback | AsyncCallback\<[Panel](#panel10)> | 是   | 回调函数。当输入法面板创建成功，返回当前创建的输入法面板对象。  |
 
 **错误码：**
@@ -508,8 +504,8 @@ createPanel(ctx: BaseContext, info: PanelInfo, callback: AsyncCallback\<Panel>):
 
 ```js
 let panelInfo: inputMethodEngine.PanelInfo = {
-  panelType: inputMethodEngine.PanelType.SOFT_KEYBOARD,
-  panelFlag: inputMethodEngine.PanelFlag.FLG_FIXED
+  type: inputMethodEngine.PanelType.SOFT_KEYBOARD,
+  flag: inputMethodEngine.PanelFlag.FLG_FIXED
 }
 try {
   inputMethodEngine.getInputMethodAbility().createPanel(this.context, panelInfo, (err, panel) => {
@@ -528,9 +524,7 @@ try {
 
 createPanel(ctx: BaseContext, info: PanelInfo): Promise\<Panel>
 
-创建输入法应用面板。使用promise异步回调。
-
-仅支持输入法应用调用。单个输入法应用仅仅允许创建一个SOFT_KEYBOARD及一个STATUS_BAR类型的面板。
+创建输入法面板，仅支持输入法应用调用。使用promise异步回调。<br>单个输入法应用仅允许创建一个[软键盘类型](#paneltype10)和[状态栏类型](#paneltype10)的面板。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -556,8 +550,8 @@ createPanel(ctx: BaseContext, info: PanelInfo): Promise\<Panel>
 
 ```js
 let panelInfo: inputMethodEngine.PanelInfo = {
-  panelType: inputMethodEngine.PanelType.SOFT_KEYBOARD,
-  panelFlag: inputMethodEngine.PanelFlag.FLG_FIXED
+  type: inputMethodEngine.PanelType.SOFT_KEYBOARD,
+  flag: inputMethodEngine.PanelFlag.FLG_FIXED
 }
 inputMethodEngine.getInputMethodAbility().createPanel(this.context, panelInfo).then((panel) => {
   console.log('Succeed in creating panel.');
@@ -570,7 +564,7 @@ inputMethodEngine.getInputMethodAbility().createPanel(this.context, panelInfo).t
 
 destroyPanel(panel: Panel, callback: AsyncCallback\<void>): void;
 
-销毁输入法应用面板。使用callback异步回调。
+销毁输入法面板。使用callback异步回调。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -578,15 +572,15 @@ destroyPanel(panel: Panel, callback: AsyncCallback\<void>): void;
 
 | 参数名   | 类型        | 必填 | 说明                     |
 | ------- | ----------- | ---- | ------------------------ |
-| panel     | [Panel](#panel10) | 是   | 要销毁的panel对象。 |
+| panel     | [Panel](#panel10) | 是   | 要销毁的面板对象。 |
 | callback | AsyncCallback\<void> | 是   | 回调函数。当输入法面板销毁成功，err为undefined，否则为错误对象。  |
 
 **示例：**
 
 ```js
 let panelInfo: inputMethodEngine.PanelInfo = {
-  panelType: inputMethodEngine.PanelType.SOFT_KEYBOARD,
-  panelFlag: inputMethodEngine.PanelFlag.FLG_FIXED
+  type: inputMethodEngine.PanelType.SOFT_KEYBOARD,
+  flag: inputMethodEngine.PanelFlag.FLG_FIXED
 }
 try {
   inputMethodEngine.getInputMethodAbility().createPanel(this.context, panelInfo, (err, panel) => {
@@ -618,7 +612,7 @@ try {
 
 destroyPanel(panel: Panel): Promise\<void>;
 
-销毁输入法应用面板。使用promise异步回调。
+销毁输入法面板。使用promise异步回调。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -626,7 +620,7 @@ destroyPanel(panel: Panel): Promise\<void>;
 
 | 参数名   | 类型        | 必填 | 说明                     |
 | ---------| ----------- | ---- | ------------------------ |
-| panel    | [Panel](#panel10)       | 是   | 要销毁的panel对象。      |
+| panel    | [Panel](#panel10)       | 是   | 要销毁的面板对象。      |
 
 **返回值：**
 | 类型    | 说明                                                                 |
@@ -637,8 +631,8 @@ destroyPanel(panel: Panel): Promise\<void>;
 
 ```js
 let panelInfo: inputMethodEngine.PanelInfo = {
-  panelType: inputMethodEngine.PanelType.SOFT_KEYBOARD,
-  panelFlag: inputMethodEngine.PanelFlag.FLG_FIXED
+  type: inputMethodEngine.PanelType.SOFT_KEYBOARD,
+  flag: inputMethodEngine.PanelFlag.FLG_FIXED
 }
 try {
   inputMethodEngine.getInputMethodAbility().createPanel(this.context, panelInfo, (err, panel) => {
@@ -666,13 +660,13 @@ try {
 
 ## KeyboardDelegate
 
-下列API示例中都需使用[getKeyboardDelegate](#inputmethodenginegetkeyboarddelegate9)回调获取到KeyboardDelegate实例，再通过此实例调用对应方法。
+下列API均需使用[getKeyboardDelegate](#inputmethodenginegetkeyboarddelegate9)获取到KeyboardDelegate实例后，通过实例调用。
 
 ### on('keyDown'|'keyUp')
 
 on(type: 'keyDown'|'keyUp', callback: (event: KeyEvent) => boolean): void
 
-订阅硬键盘（即物理键盘）事件。使用callback异步回调。
+订阅硬键盘（即物理键盘）上物理按键的按下或抬起事件。使用callback异步回调。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -680,7 +674,7 @@ on(type: 'keyDown'|'keyUp', callback: (event: KeyEvent) => boolean): void
 
 | 参数名   | 类型                            | 必填 | 说明                                                         |
 | -------- | ------------------------------- | ---- | ------------------------------------------------------------ |
-| type   | string         | 是   | 设置监听类型。<br/>-&nbsp;type为'keyDown'，表示订阅硬键盘按下事件。<br/>-&nbsp;type为'keyUp'，表示订阅硬键盘抬起事件。 |
+| type   | string         | 是   | 设置监听类型。<br/>- 'keyDown'表示键盘按下。<br/>- 'keyUp'表示键盘抬起。 |
 | callback | (event: [KeyEvent](#keyevent)) => boolean | 是 | 回调函数，返回按键信息。 |
 
 **示例：**
@@ -702,7 +696,7 @@ inputMethodEngine.getKeyboardDelegate().on('keyDown', (keyEvent) => {
 
 off(type: 'keyDown'|'keyUp', callback?: (event: KeyEvent) => boolean): void
 
-取消订阅硬键盘（即物理键盘）事件。使用callback异步回调。
+取消订阅硬键盘（即物理键盘）上物理按键的按下或抬起事件。使用callback异步回调。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -710,8 +704,8 @@ off(type: 'keyDown'|'keyUp', callback?: (event: KeyEvent) => boolean): void
 
 | 参数名    | 类型     | 必填  | 说明  |
 | -------- | ------- | ---- | ----- |
-| type     | string  | 是   | 设置监听类型。<br/>-&nbsp;type为'keyDown'，表示取消订阅硬键盘按下事件。<br/>-&nbsp;type为'keyUp'，表示取消订阅硬键盘抬起事件。 |
-| callback | (event: [KeyEvent](#keyevent)) => boolean | 否   | 回调函数，返回按键信息。  |
+| type     | string  | 是   | 设置监听类型。<br/>- 'keyDown'表示键盘按下。<br/>- 'keyUp'表示键盘抬起。 |
+| callback | (event: [KeyEvent](#keyevent)) => boolean | 否   | 取消订阅的回调函数。参数不填写时，取消订阅type对应的所有回调事件。   |
 
 **示例：**
 
@@ -738,8 +732,8 @@ on(type: 'keyEvent', callback: (event: InputKeyEvent) => boolean): void
 
 | 参数名   | 类型     | 必填 | 说明                                                         |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
-| type     | string   | 是   | 设置监听类型。<br/>-&nbsp;type为'keyEvent'，表示订阅硬键盘按键事件。 |
-| callback | function | 是   | 回调函数，入参为按键事件信息，返回值类型为布尔类型。<br/>-&nbsp;入参按键事件信息的数据类型为[InputKeyEvent](js-apis-keyevent.md#KeyEvent)。<br/>-&nbsp;若按键事件被事件订阅者消费，则callback应返回true，否则返回false。 |
+| type     | string   | 是   | 设置监听类型，固定取值为'keyEvent'。 |
+| callback | function | 是   | 回调函数，入参为按键事件信息，返回值类型为布尔类型。<br/>-&nbsp;入参按键事件信息的数据类型为[InputKeyEvent](js-apis-keyevent.md#KeyEvent)。<br/>-&nbsp;若按键事件被事件订阅者消费，则callback应返回true，否则返回false。|
 
 **示例：**
 
@@ -764,8 +758,8 @@ off(type: 'keyEvent', callback?: (event: InputKeyEvent) => boolean): void
 
 | 参数名   | 类型     | 必填 | 说明                                                         |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
-| type     | string   | 是   | 设置监听类型。<br/>-&nbsp;type为'keyEvent'，表示取消订阅硬键盘按键事件。 |
-| callback | function | 否   | 回调函数，入参为按键事件信息，返回值类型为布尔类型。<br/>-&nbsp;入参按键事件信息的数据类型为[InputKeyEvent](js-apis-keyevent.md#KeyEvent)。<br/>-&nbsp;若按键事件被事件订阅者消费，则callback应返回true，否则返回false。<br/>-&nbsp;可选参数，若填写表示不再回调此函数，若不填写则取消注册该事件所有回调函数。 |
+| type     | string   | 是   | 设置监听类型，固定取值为'keyEvent'。 |
+| callback | function | 否   | 取消订阅的回调函数。参数不填写时，取消订阅type对应的所有回调事件。|
 
 **示例：**
 
@@ -789,8 +783,8 @@ on(type: 'cursorContextChange', callback: (x: number, y:number, height:number) =
 
 | 参数名    | 类型  | 必填  | 说明  |
 | -------- | ---- | ---- | ----- |
-| type     | string | 是   | 光标变化事件。<br/>-&nbsp;type为‘cursorContextChange’时，表示订阅光标变化事件。 |
-| callback | (x: number, y: number, height: number) => void | 是   | 回调函数，返回光标信息。<br/>-&nbsp;x为光标上端的的x坐标值。<br/>-&nbsp;y为光标上端的y坐标值。<br/>-&nbsp;height为光标的高度值。 |
+| type     | string | 是   | 光标变化事件，固定取值为'cursorContextChange'。 |
+| callback | (x: number, y: number, height: number) => void | 是   | 回调函数，返回光标信息。<br/>-x为光标上端的的x坐标值，y为光标上端的y坐标值，height为光标的高度值。 |
 
 **示例：**
 
@@ -814,8 +808,8 @@ off(type: 'cursorContextChange', callback?: (x: number, y: number, height: numbe
 
 | 参数名    | 类型  | 必填  | 说明   |
 | -------- | ---- | ---- | ------ |
-| type     | string  | 是   | 光标变化事件。<br/>-&nbsp;type为‘cursorContextChange’时，表示光标变化。 |
-| callback | (x: number, y:number, height:number) => void | 否   | 回调函数，返回光标信息。<br/>-&nbsp;x为光标上端的的x坐标值。<br/>-&nbsp;y为光标上端的y坐标值。<br/>-&nbsp;height为光标的高度值。<br/> |
+| type     | string  | 是   | 光标变化事件，固定取值为'cursorContextChange' |
+| callback | (x: number, y:number, height:number) => void | 否   | 取消订阅的回调函数。参数不填写时，取消订阅type对应的所有回调事件。 |
 
 
   **示例：**
@@ -829,7 +823,7 @@ inputMethodEngine.getKeyboardDelegate().off('cursorContextChange', (x, y, height
 
 on(type: 'selectionChange', callback: (oldBegin: number, oldEnd: number, newBegin: number, newEnd: number) => void): void
 
-订阅文本选择变化事件。使用callback异步回调。
+订阅文本选择范围变化事件。使用callback异步回调。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -837,8 +831,8 @@ on(type: 'selectionChange', callback: (oldBegin: number, oldEnd: number, newBegi
 
 | 参数名    | 类型   | 必填 | 说明   |
 | -------- | ----- | ---- | ---- |
-| type     | string  | 是   | 文本选择变化事件。<br/>-&nbsp;type为‘selectionChange’时，表示选择文本变化。 |
-| callback | (oldBegin: number, oldEnd: number, newBegin: number, newEnd: number) => void | 是   | 回调函数，返回文本选择信息。<br/>-&nbsp;oldBegin为变化之前被选中文本的起始下标。<br/>-&nbsp;oldEnd为变化之前被选中文本的终止下标。<br/>-&nbsp;newBegin为变化之后被选中文本的起始下标。<br/>-&nbsp;newEnd为变化之后被选中文本的终止下标。 |
+| type     | string  | 是   | 文本选择变化事件，固定取值为'selectionChange'。 |
+| callback | (oldBegin: number, oldEnd: number, newBegin: number, newEnd: number) => void | 是   | 回调函数，返回文本选择信息。<br/>- oldBegin为变化前被选中文本的起始下标，oldEnd为变化前被选中文本的终止下标。<br/>- newBegin为变化后被选中文本的起始下标，newEnd为变化后被选中文本的终止下标。|
 
 **示例：**
 
@@ -855,7 +849,7 @@ inputMethodEngine.getKeyboardDelegate().on('selectionChange', (oldBegin, oldEnd,
 
 off(type: 'selectionChange', callback?: (oldBegin: number, oldEnd: number, newBegin: number, newEnd: number) => void): void
 
-取消订阅文本选择变化事件。使用callback异步回调。
+取消订阅文本选择范围变化事件。使用callback异步回调。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -863,8 +857,8 @@ off(type: 'selectionChange', callback?: (oldBegin: number, oldEnd: number, newBe
 
 | 参数名   | 类型  | 必填 | 说明     |
 | -------- | ------- | ---- | ------- |
-| type     | string  | 是   | 文本选择变化事件。<br/>-&nbsp;type为‘selectionChange’时，表示选择文本变化。 |
-| callback | (oldBegin: number, oldEnd: number, newBegin: number, newEnd: number) => void | 否   | 回调函数，返回文本选择信息。<br/>-&nbsp;oldBegin为变化之前被选中文本的起始下标。<br/>-&nbsp;oldEnd为变化之前被选中文本的终止下标。<br/>-&nbsp;newBegin为变化之后被选中文本的起始下标。<br/>-&nbsp;newEnd为变化之后被选中文本的终止下标。<br/> |
+| type     | string  | 是   | 文本选择变化事件，固定取值为'selectionChange'。 |
+| callback | (oldBegin: number, oldEnd: number, newBegin: number, newEnd: number) => void | 否   | 取消订阅的回调函数。参数不填写时，取消订阅type对应的所有回调事件。|
 
 **示例：**
 
@@ -879,7 +873,7 @@ inputMethodEngine.getKeyboardDelegate().off('selectionChange', (oldBegin, oldEnd
 
 on(type: 'textChange', callback: (text: string) => void): void
 
-订阅文本变化事件。使用callback异步回调。
+订阅文本内容变化事件。使用callback异步回调。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -887,7 +881,7 @@ on(type: 'textChange', callback: (text: string) => void): void
 
 | 参数名   | 类型   | 必填 | 说明                                                         |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
-| type     | string | 是   | 文本变化事件。<br/>-&nbsp;type为‘textChange’时，表示订阅文本变化事件。 |
+| type     | string | 是   | 文本变化事件，固定取值为'textChange'。 |
 | callback | (text: string) => void | 是   | 回调函数，返回订阅的文本内容。|
 
 **示例：**
@@ -902,7 +896,7 @@ inputMethodEngine.getKeyboardDelegate().on('textChange', (text) => {
 
 off(type: 'textChange', callback?: (text: string) => void): void
 
-取消订阅文本变化事件。使用callback异步回调。
+取消订阅文本内容变化事件。使用callback异步回调。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -910,8 +904,8 @@ off(type: 'textChange', callback?: (text: string) => void): void
 
 | 参数名   | 类型   | 必填 | 说明                                                         |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
-| type     | string | 是   | 文本变化事件。<br/>-&nbsp;type为‘textChange’时，表示取消订阅文本变化事件。 |
-| callback | (text: string) => void | 否   | 回调函数，返回取消订阅的文本内容。 |
+| type     | string | 是   | 文本变化事件，固定取值为'textChange'。 |
+| callback | (text: string) => void | 否   | 取消订阅的回调函数。参数不填写时，取消订阅type对应的所有回调事件。|
 
 **示例：**
 
@@ -933,8 +927,8 @@ on(type: 'editorAttributeChanged', callback: (attr: EditorAttribute) => void): v
 
 | 参数名   | 类型   | 必填 | 说明                                                         |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
-| type     | string | 是   | 文本变化事件。<br/>-&nbsp;type为‘editorAttributeChanged’时，表示订阅编辑框属性变化事件。 |
-| callback | (attr: EditorAttribute) => void | 是   | 用于接受编辑框属性变化的回调函数。|
+| type     | string | 是   | 文本变化事件，固定取值为'editorAttributeChanged'。 |
+| callback | (attr: EditorAttribute) => void | 是   | 回调函数，返回变化的编辑框属性。|
 
 **示例：**
 
@@ -948,7 +942,7 @@ inputMethodEngine.getKeyboardDelegate().on('editorAttributeChanged', (attr) => {
 
 off(type: 'editorAttributeChanged', callback?: (attr: EditorAttribute) => void): void
 
-取消订阅编辑框属性变化事件。
+取消订阅编辑框属性变化事件。使用callback异步回调。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -956,8 +950,8 @@ off(type: 'editorAttributeChanged', callback?: (attr: EditorAttribute) => void):
 
 | 参数名   | 类型   | 必填 | 说明                                                         |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
-| type     | string | 是   | 文本变化事件。<br/>-&nbsp;type为‘editorAttributeChanged’时，表示取消订阅编辑框属性变化事件。 |
-| callback | (attr: EditorAttribute) => void | 否   | 所要取消订阅的回调处理函数，和on接口参数对应。 |
+| type     | string | 是   | 文本变化事件，固定取值为'editorAttributeChanged'。 |
+| callback | (attr: EditorAttribute) => void | 否   | 所要取消订阅的回调处理函数。参数不填写时，取消订阅type对应的所有回调事件。 |
 
 **示例：**
 
@@ -967,13 +961,13 @@ inputMethodEngine.getKeyboardDelegate().off('editorAttributeChanged');
 
 ## Panel<sup>10+</sup>
 
-下列API示例中都需使用[createPanel](#createpanel10)回调获取到Panel实例，再通过此实例调用对应方法。
+下列API均需使用[createPanel](#createpanel10)获取到Panel实例后，通过实例调用。
 
 ### setUiContent<sup>10+</sup>
 
 setUiContent(path: string, callback: AsyncCallback\<void>): void
 
-为当前面板加载具体页面内容，使用callback异步回调。
+为当前的输入法面板加载具体页面内容，使用callback异步回调。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -981,7 +975,7 @@ setUiContent(path: string, callback: AsyncCallback\<void>): void
 
 | 参数名   | 类型                   | 必填 | 说明     |
 | -------- | ---------------------- | ---- | -------- |
-| path | string | 是   | 设置加载页面的路径。 |
+| path | string | 是   | 具体页面的路径。 |
 | callback | AsyncCallback\<void> | 是   | 回调函数。当面板页面内容加载成功，err为undefined，否则err为错误对象。 |
 
 **示例：**
@@ -1004,7 +998,7 @@ try {
 
 setUiContent(path: string): Promise\<void>
 
-为当前面板加载具体页面内容，使用Promise异步回调。
+为当前的输入法面板加载具体页面内容，使用Promise异步回调。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -1012,7 +1006,7 @@ setUiContent(path: string): Promise\<void>
 
 | 参数名   | 类型                   | 必填 | 说明     |
 | -------- | ---------------------- | ---- | -------- |
-| path | string | 是   | 设置加载页面的路径。 |
+| path | string | 是   |  具体页面的路径。 |
 
 **返回值：**
 
@@ -1039,7 +1033,7 @@ try {
 
 setUiContent(path: string, storage: LocalStorage, callback: AsyncCallback\<void>): void
 
-为当前面板加载与LocalStorage相关联的具体页面内容，使用callback异步回调。
+为当前的输入法面板加载与LocalStorage相关联的具体页面内容，使用callback异步回调。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -1047,8 +1041,8 @@ setUiContent(path: string, storage: LocalStorage, callback: AsyncCallback\<void>
 
 | 参数名   | 类型                   | 必填 | 说明     |
 | -------- | ---------------------- | ---- | -------- |
-| path | string | 是   | 设置加载页面的路径。 |
-| storage | [LocalStorage](../arkui-ts/ts-state-management.md#localstorage9) | 是   | 存储单元，为应用程序范围内的可变状态属性和非可变状态属性提供存储。|
+| path | string | 是   | LocalStorage相关联的具体页面的路径。 |
+| storage | [LocalStorage](../arkui-ts/ts-state-management.md#localstorage9) | 是   | 存储单元，为应用程序范围内的可变和不可变状态属性提供存储。|
 | callback | AsyncCallback\<void> | 是   | 回调函数。当面板页面内容加载成功，err为undefined，否则err为错误对象。 |
 
 **示例：**
@@ -1111,9 +1105,11 @@ try {
 
 resize(width: number, height: number, callback: AsyncCallback\<void>): void
 
-改变当前面板大小，使用callback异步回调。
+改变当前输入法面板的大小，使用callback异步回调。
 
-面板存在大小限制，面板宽度不超出屏幕宽度，面板高度不高于屏幕高度的二分之一。
+> **说明**
+>
+> 面板宽度不超出屏幕宽度，面板高度不高于屏幕高度的0.6倍。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -1145,9 +1141,11 @@ try {
 
 resize(width: number, height: number): Promise\<void>;
 
-改变当前面板大小，使用Promise异步回调。
+改变当前输入法面板的大小，使用Promise异步回调。
 
-面板存在大小限制，面板宽度不超出屏幕宽度，面板高度不高于屏幕高度的二分之一。
+> **说明**
+>
+> 面板宽度不超出屏幕宽度，面板高度不高于屏幕高度的0.6倍。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -1183,9 +1181,7 @@ try {
 
 moveTo(x: number, y: number, callback: AsyncCallback\<void>): void
 
-移动面板位置，使用callback异步回调。
-
-对FLG_FIXED状态的panel不产生实际移动效果。
+移动面板位置，使用callback异步回调。[面板状态](#panelflag10)为固定态时，不产生实际移动效果。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -1193,8 +1189,8 @@ moveTo(x: number, y: number, callback: AsyncCallback\<void>): void
 
 | 参数名   | 类型                   | 必填 | 说明     |
 | -------- | ---------------------- | ---- | -------- |
-| x | number | 是   | 面板在x轴方向移动的值，值为正表示右移，单位为px。|
-| y | number | 是   | 面板在y轴方向移动的值，值为正表示下移，单位为px。|
+| x | number | 是   | x轴方向移动的值，值大于0表示右移，单位为px。|
+| y | number | 是   | y轴方向移动的值，值大于0表示下移，单位为px。|
 | callback | AsyncCallback\<void> | 是   | 回调函数。当面板位置移动成功，err为undefined，否则err为错误对象。 |
 
 **示例：**
@@ -1217,9 +1213,7 @@ try {
 
 moveTo(x: number, y: number): Promise\<void>
 
-移动面板位置。使用promise异步回调。
-
-对FLG_FIXED状态的panel不产生实际移动效果。
+移动面板位置，使用promise异步回调。[面板状态](#panelflag10)为固定态时，不产生实际移动效果。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -1227,8 +1221,8 @@ moveTo(x: number, y: number): Promise\<void>
 
 | 参数名   | 类型                   | 必填 | 说明     |
 | -------- | ---------------------- | ---- | -------- |
-| x | number | 是   | 面板在x轴方向移动的值，值为正表示右移，单位为px。|
-| y | number | 是   | 面板在y轴方向移动的值，值为正表示下移，单位为px。|
+| x | number | 是   |x轴方向移动的值，值大于0表示右移，单位为px。|
+| y | number | 是   |y轴方向移动的值，值大于0表示下移，单位为px。|
 
 **返回值：**
 
@@ -1255,7 +1249,7 @@ try {
 
 show(callback: AsyncCallback\<void>): void
 
-显示当前面板，使用callback异步回调。
+显示当前输入法面板，使用callback异步回调。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -1281,7 +1275,7 @@ panel.show((err) => {
 
 show(): Promise\<void>
 
-显示当前面板，使用promise异步回调。
+显示当前输入法面板，使用promise异步回调。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -1306,7 +1300,7 @@ promise.then(() => {
 
 hide(callback: AsyncCallback\<void>): void
 
-隐藏当前面板，使用callback异步回调。
+隐藏当前输入法面板，使用callback异步回调。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -1332,7 +1326,7 @@ panel.hide((err) => {
 
 hide(): Promise\<void>
 
-隐藏当前面板，使用promise异步回调。
+隐藏当前输入法面板，使用promise异步回调。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -1365,7 +1359,7 @@ on(type: 'show', callback: () => void): void
 
 | 参数名   | 类型                   | 必填 | 说明     |
 | -------- | ---------------------- | ---- | -------- |
-| type | string | 是 | 监听当前面板的状态类型。 <br/>- type为`show`表示显示状态。 |
+| type | string | 是 | 监听当前面板的状态类型，固定取值为'show'。 |
 | callback | () => void | 是   | 回调函数。 |
 
 **示例：**
@@ -1388,7 +1382,7 @@ on(type: 'hide', callback: () => void): void
 
 | 参数名   | 类型                   | 必填 | 说明     |
 | -------- | ---------------------- | ---- | -------- |
-| type | string | 是 | 监听当前面板的状态类型。 <br/>- type为`hide`表示隐藏状态。 |
+| type | string | 是 | 监听当前面板的状态类型，固定取值为'hide'。 |
 | callback | () => void | 是   | 回调函数。 |
 
 **示例：**
@@ -1403,7 +1397,7 @@ panel.on('hide', () => {
 
 off(type: 'show', callback?: () => void): void
 
-取消监听当前面板显示状态，使用callback异步回调。
+取消监听当前输入法面板的隐藏状态，使用callback异步回调。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -1411,8 +1405,8 @@ off(type: 'show', callback?: () => void): void
 
 | 参数名   | 类型                   | 必填 | 说明     |
 | -------- | ---------------------- | ---- | -------- |
-| type | string | 是 | 要取消监听的当前面板状态类型。 <br/>- type为`show`表示显示状态。 |
-| callback | () => void | 否   | 回调函数。 |
+| type | string | 是 | 取消监听当前面板的状态类型，固定取值为'show'。 |
+| callback | () => void | 否   | 取消订阅的回调函数。参数不填写时，取消订阅type对应的所有回调事件。 |
 
 **示例：**
 
@@ -1432,8 +1426,8 @@ off(type: 'hide', callback?: () => void): void
 
 | 参数名   | 类型                   | 必填 | 说明     |
 | -------- | ---------------------- | ---- | -------- |
-| type | string | 是 | 要取消监听的当前面板状态类型。 <br/>- type为`hide`表示隐藏状态。 |
-| callback | () => void | 否   | 回调函数。 |
+| type | string | 是 | 要取消监听的当前面板状态类型，固定取值为'hide'。 |
+| callback | () => void | 否   | 取消订阅的回调函数。参数不填写时，取消订阅type对应的所有回调事件。 |
 
 **示例：**
 
@@ -1445,7 +1439,7 @@ panel.off('hide');
 
 changeFlag(flag: PanelFlag): void
 
-改变面板状态为固定态或者悬浮态。仅对SOFT_KEYBOARD类型生效。
+将输入法应用的面板状态改变为固定态或者悬浮态，仅对[SOFT_KEYBOARD](#paneltype10)生效。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -1453,7 +1447,7 @@ changeFlag(flag: PanelFlag): void
 
 | 参数名   | 类型                   | 必填 | 说明     |
 | -------- | ---------------------- | ---- | -------- |
-| flag | [PanelFlag](#panelflag10) | 是 | 要切换到的面板状态类型。 |
+| flag | [PanelFlag](#panelflag10) | 是 | 目标面板状态类型。 |
 
 **示例：**
 
@@ -1464,7 +1458,7 @@ panel.changeFlag(panelFlag);
 
 ## KeyboardController
 
-下列API示例中都需使用[on('inputStart')](#oninputstart9)回调获取到KeyboardController实例，再通过此实例调用对应方法。
+下列API均需使用[on('inputStart')](#oninputstart9)获取到KeyboardController实例后，通过实例调用。
 
 ### hide<sup>9+</sup>
 
@@ -1592,7 +1586,7 @@ keyboardController.hideKeyboard().then(() => {
 
 ## ExtendAction<sup>10+</sup>
 
-对编辑框中文本的扩展编辑操作类型。
+编辑框中文本的扩展编辑操作类型，如剪切、复制等。
 
 **系统能力**: SystemCapability.MiscServices.InputMethodFramework
 
@@ -1605,7 +1599,7 @@ keyboardController.hideKeyboard().then(() => {
 
 ## Direction<sup>10+</sup>
 
-输入法光标移动方向。
+光标的移动方向。
 
 **系统能力**: SystemCapability.MiscServices.InputMethodFramework
 
@@ -1618,7 +1612,7 @@ keyboardController.hideKeyboard().then(() => {
 
 ## Range<sup>10+</sup>
 
-描述选中文本的范围。
+选中的文本范围。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -1629,17 +1623,17 @@ keyboardController.hideKeyboard().then(() => {
 
 ## Movement<sup>10+</sup>
 
-描述进行选中文本动作时光标移动的方向。
+选中文本时，光标移动的方向
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
 | 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| direction  | [Direction](#direction10) | 是 | 是 | 进行选中文本动作时光标移动的方向。|
+| direction  | [Direction](#direction10) | 是 | 是 | 选中文本时，光标的移动方向。|
 
 ## InputClient<sup>9+</sup>
 
-下列API示例中都需使用[on('inputStart')](#oninputstart9)回调获取到InputClient实例，再通过此实例调用对应方法。
+下列API均需使用[on('inputStart')](#oninputstart9)获取到InputClient实例后，通过实例调用。
 
 ### sendKeyFunction<sup>9+</sup>
 
@@ -1653,7 +1647,7 @@ sendKeyFunction(action:number, callback: AsyncCallback&lt;boolean&gt;): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| action | number | 是 | 功能键键值。<br/>- 当值为0时，表示无效按键；<br/>- 当值为1时，表示确认键（即回车键）。 |
+| action | number | 是 | 功能键键值。<br/>- 当值为0时，表示无效按键。<br/>- 当值为1时，表示确认键（即回车键）。 |
 | callback | AsyncCallback&lt;boolean&gt; | 是 | 回调函数。当功能键发送成功，err为undefined，data为true；否则为错误对象。 |
 
 **错误码：**
@@ -2096,7 +2090,7 @@ insertText(text:string, callback: AsyncCallback&lt;boolean&gt;): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| text | string | 是 | 文本。 |
+| text | string | 是 | 文本内容。 |
 | callback | AsyncCallback&lt;boolean&gt; | 是 | 回调函数。当文本插入成功，err为undefined，data为true；否则为错误对象。 |
 
 **错误码：**
@@ -2560,7 +2554,9 @@ sendExtendAction(action: ExtendAction, callback: AsyncCallback&lt;void&gt;): voi
 
 发送扩展编辑操作。使用callback异步回调。
 
-输入法应用调用该接口向编辑控件（如：输入框）发送扩展编辑操作，编辑控件监听相应事件[on(handleExtendAction)](./js-apis-inputmethod.md#onhandleextendaction10)，从而进一步做出处理。
+> **说明**
+>
+> 输入法应用调用该接口向编辑框发送扩展编辑操作，编辑框监听相应事件[on('handleExtendAction')](./js-apis-inputmethod.md#onhandleextendaction10)，从而进一步做出处理。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -2602,7 +2598,9 @@ sendExtendAction(action: ExtendAction): Promise&lt;void&gt;
 
 发送扩展编辑操作。使用promise异步回调。
 
-输入法应用调用该接口向编辑控件（如：输入框）发送扩展编辑操作，编辑控件监听相应事件[on(handleExtendAction)](./js-apis-inputmethod.md#onhandleextendaction10)，从而进一步做出处理。
+>**说明**
+>
+> 输入法应用调用该接口向编辑框发送扩展编辑操作，编辑框监听相应事件[on('handleExtendAction')](./js-apis-inputmethod.md#onhandleextendaction10)，从而进一步做出处理。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 

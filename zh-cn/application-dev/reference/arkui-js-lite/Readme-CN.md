@@ -4,6 +4,8 @@
   - [文件组织](js-framework-file.md)
   - [js标签配置](js-framework-js-tag.md)
   - [app.js](js-framework-js-file.md)
+  - [生命周期](js-framework-lifecycle.md)
+  - [多语言](js-framework-localization.md)
   - 语法
     - [HML语法参考](js-framework-syntax-hml.md)
     - [CSS语法参考](js-framework-syntax-css.md)

@@ -18,6 +18,7 @@
   - [动画错误码](errorcode-animator.md)
   - [弹窗错误码](errorcode-promptAction.md)
   - [页面路由错误码](errorcode-router.md)
+  - [用户界面外观服务错误码](errorcode-uiappearance.md)
 - 图形图像
   - [色彩管理错误码](errorcode-colorspace-manager.md)
   - [屏幕错误码](errorcode-display.md)
@@ -27,6 +28,7 @@
   - [Media错误码](errorcode-media.md)
   - [媒体会话管理错误码](errorcode-avsession.md)
   - [Camera错误码](errorcode-camera.md)
+  - [Image错误码](errorcode-image.md)
 - 资源管理
   - [I18n错误码](errorcode-i18n.md)
   - [资源管理错误码](errorcode-resource-manager.md)

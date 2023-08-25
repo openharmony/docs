@@ -246,7 +246,7 @@ interpolatingSpring(velocity: number, mass: number, stiffness: number, damping: 
 
 | 类型                           | 说明             |
 | ---------------------------------- | ---------------- |
-|  [ICurve](#icurve)| 曲线的插值对象。 |
+|  [ICurve](#icurve)| 曲线对象。<br>**说明:** 弹性动画曲线为物理曲线，[animation](../arkui-ts/ts-animatorproperty.md)、[animateTo](../arkui-ts/ts-explicit-animation.md)中的duration参数不生效，动画持续时间取决于interpolatingSpring动画曲线参数。时间不能归一，故不能通过该曲线的[interpolate](#interpolate9)函数获得插值。 |
 
 **示例：**
 
@@ -316,7 +316,7 @@ interpolate(fraction:&nbsp;number): number
 
 ```ts
 import Curves from '@ohos.curves'
-let curve = Curves.initCurve(Curve.EaseIn) // 创建一个默认先慢后快插值曲线
+let curveValue = Curves.initCurve(Curve.EaseIn) // 创建一个默认先慢后快插值曲线
 let value: number = curve.interpolate(0.5) // 计算得到时间到一半时的插值
 ```
 

@@ -533,6 +533,41 @@ copyDir(src: string, dest: string, mode?: number, callback: AsyncCallback\<void>
   });
   ```
 
+## fs.dup<sup>10+</sup>
+
+dup(fd: number): File
+
+将文件描述符转化为File。
+
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
+**参数：**
+
+  | 参数名    | 类型     | 必填   | 说明                          |
+  | ------ | ------ | ---- | --------------------------- |
+  | fd | number | 是    | 文件描述符。 |
+
+**返回值：**
+
+  | 类型                  | 说明                           |
+  | ------------------- | ---------------------------- |
+  | [File](#file) | 打开的File对象。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](../errorcodes/errorcode-filemanagement.md#基础文件io错误码)。
+
+**示例：**
+
+  ```js
+  // convert fd to file
+  let fd = 0;  // fd comes from other modules
+  let file = fs.dup(fd);
+  console.info("The name of the file is " + file.name);
+  fs.closeSync(file);
+  ```
+
+
 ## fs.mkdir
 
 mkdir(path: string): Promise&lt;void&gt;
@@ -1851,7 +1886,7 @@ listFile(path: string, options?: {
 
   | 参数名    | 类型     | 必填   | 说明                          |
   | ------ | ------ | ---- | --------------------------- |
-  | recursion | boolean | 否    | 是否递归子目录下文件名，默认为false。 |
+  | recursion | boolean | 否    | 是否递归子目录下文件名，默认为false。当recursion为false时，返回当前目录下满足过滤要求的文件名及文件夹名。当recursion为true时，返回此目录下所有满足过滤要求的文件的相对路径（以/开头）。 |
   | listNum | number | 否    | 列出文件名数量。当设置0时，列出所有文件，默认为0。 |
   | filter | [Filter](#filter) | 否    | 文件过滤选项。当前仅支持后缀名匹配、文件名模糊查询、文件大小过滤、最近修改时间过滤。 |
 
@@ -1911,7 +1946,7 @@ listFile(path: string, options?: {
 
   | 参数名    | 类型     | 必填   | 说明                          |
   | ------ | ------ | ---- | --------------------------- |
-  | recursion | boolean | 否    | 是否递归子目录下文件名，默认为false。 |
+  | recursion | boolean | 否    | 是否递归子目录下文件名，默认为false。当recursion为false时，返回当前目录下满足过滤要求的文件名及文件夹名。当recursion为true时，返回此目录下所有满足过滤要求的文件的相对路径（以/开头）。|
   | listNum | number | 否    | 列出文件名数量。当设置0时，列出所有文件，默认为0。 |
   | filter | [Filter](#filter) | 否    | 文件过滤选项。当前仅支持后缀名匹配、文件名模糊查询、文件大小过滤、最近修改时间过滤。 |
 
@@ -1967,7 +2002,7 @@ listFileSync(path: string, options?: {
 
   | 参数名    | 类型     | 必填   | 说明                          |
   | ------ | ------ | ---- | --------------------------- |
-  | recursion | boolean | 否    | 是否递归子目录下文件名，默认为false。 |
+  | recursion | boolean | 否    | 是否递归子目录下文件名，默认为false。当recursion为false时，返回当前目录下满足过滤要求的文件名及文件夹名。当recursion为true时，返回此目录下所有满足过滤要求的文件的相对路径（以/开头）。 |
   | listNum | number | 否    | 列出文件名数量。当设置0时，列出所有文件，默认为0。 |
   | filter | [Filter](#filter) | 否    | 文件过滤选项。当前仅支持后缀名匹配、文件名模糊查询、文件大小过滤、最近修改时间过滤。 |
 
@@ -3263,6 +3298,8 @@ readSync(buffer: ArrayBuffer, options?: { offset?: number; length?: number; }): 
 | 名称   | 类型   | 可读   | 可写   | 说明      |
 | ---- | ------ | ---- | ---- | ------- |
 | fd | number | 是    | 否    | 打开的文件描述符。 |
+| path<sup>10+</sup> | string | 是    | 否    | 文件路径。 |
+| name<sup>10+</sup> | string | 是    | 否    | 文件名。 |
 
 ### lock
 

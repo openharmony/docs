@@ -2732,7 +2732,7 @@ Obtains the MSISDN of the SIM card in the specified slot. This API uses an async
 
 **System API**: This is a system API.
 
-**Required permission**: ohos.permission.GET_TELEPHONY_STATE
+**Required permission**: ohos.permission.GET_PHONE_NUMBERS
 
 **System capability**: SystemCapability.Telephony.CoreService
 
@@ -2775,7 +2775,7 @@ Obtains the MSISDN of the SIM card in the specified slot. This API uses a promis
 
 **System API**: This is a system API.
 
-**Required permission**: ohos.permission.GET_TELEPHONY_STATE
+**Required permission**: ohos.permission.GET_PHONE_NUMBERS
 
 **System capability**: SystemCapability.Telephony.CoreService
 

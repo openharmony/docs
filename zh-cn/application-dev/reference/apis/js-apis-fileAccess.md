@@ -1,6 +1,6 @@
 # @ohos.file.fileAccess (公共文件访问与管理)
 
-fileAccess模块是基于extension机制实现的一个对公共文件访问和操作的框架。该模块一方面对接各类文件管理服务，如媒体库、外置存储管理服务等，另一方面为系统应用提供一套统一的文件访问管理接口。其中，媒体库服务提供本地设备、分布式设备等公共文件访问服务；外置存储管理服务可以提供共享盘、U盘、SD卡等设备的公共文件访问服务。
+fileAccess模块是基于extension机制实现的一个对公共文件访问和操作的框架。该模块一方面对接各类文件管理服务，如存储管理服务等，另一方面为系统应用提供一套统一的文件访问管理接口。存储管理服务可以管理内置存储部分目录，以及共享盘、U盘、SD卡等设备上的资源。
 
 >**说明：**
 >
@@ -124,10 +124,9 @@ createFileAccessHelper(context: Context, wants: Array&lt;Want&gt;) : FileAccessH
   createFileAccessHelper() {
     let fileAccessHelper = null;
     // wantInfos 从getFileAccessAbilityInfo()获取
-    // 创建只连接媒体库服务的helper对象
     let wantInfos = [
       {
-        "bundleName": "com.ohos.medialibrary.medialibrarydata",
+        "bundleName": "com.ohos.UserFile.ExternalFileManager",
         "abilityName": "FileExtensionAbility",
       },
     ]
@@ -651,10 +650,10 @@ createFile(uri: string, displayName: string) : Promise&lt;string&gt;
 **示例：**
 
   ```js
-  // 以媒体库uri为例
+  // 以内置存储目录为例
   // 示例代码sourceUri表示Download目录，该uri是对应的fileInfo中uri
   // 开发者应根据自己实际获取的uri进行开发
-  let sourceUri = "file://media/file/6";
+  let sourceUri = "file://docs/storage/Users/currentUser/Download";
   let displayName = "file1"
   let fileUri = null;
   try {
@@ -695,10 +694,10 @@ createFile(uri: string, displayName: string, callback: AsyncCallback&lt;string&g
 **示例：**
 
   ```js
-  // 以媒体库uri为例
+  // 以内置存储目录为例
   // 示例代码sourceUri表示Download目录，该uri是对应的fileInfo中uri
   // 开发者应根据自己实际获取的uri进行开发
-  let sourceUri = "file://media/file/6";
+  let sourceUri = "file://docs/storage/Users/currentUser/Download";
   let displayName = "file1"
   try {
     // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
@@ -744,10 +743,10 @@ mkDir(parentUri: string, displayName: string) : Promise&lt;string&gt;
 **示例：**
 
   ```js
-  // 以媒体库uri为例
+  // 以内置存储目录为例
   // 示例代码sourceUri表示Download目录，该uri是对应的fileInfo中uri
   // 开发者应根据自己实际获取的uri进行开发
-  let sourceUri = "file://media/file/6";
+  let sourceUri = "file://docs/storage/Users/currentUser/Download";
   let dirName = "dirTest"
   let dirUri = null;
   try {
@@ -788,10 +787,10 @@ mkDir(parentUri: string, displayName: string, callback: AsyncCallback&lt;string&
 **示例：**
 
   ```js
-  // 以媒体库uri为例
+  // 以内置存储目录为例
   // 示例代码sourceUri表示Download目录，该uri是对应的fileInfo中uri
   // 开发者应根据自己实际获取的uri进行开发
-  let sourceUri = "file://media/file/6";
+  let sourceUri = "file://docs/storage/Users/currentUser/Download";
   let dirName = "dirTest"
   try {
     // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
@@ -837,10 +836,10 @@ openFile(uri: string, flags: OPENFLAGS) : Promise&lt;number&gt;
 **示例：**
 
   ```js
-  // 以媒体库uri为例
+  // 以内置存储目录为例
   // 示例代码targetUri表示Download目录下文件，该uri是对应的fileInfo中uri
   // 开发者应根据自己实际获取的uri进行开发
-  let targetUri  = "file://media/file/100";
+  let targetUri  = "file://docs/storage/Users/currentUser/Download/1.txt";
   try {
     // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
     let fd = await fileAccessHelper.openFile(targetUri, fileAccess.OPENFLAGS.READ);
@@ -874,10 +873,10 @@ openFile(uri: string, flags: OPENFLAGS, callback: AsyncCallback&lt;number&gt;) :
 **示例：**
 
   ```js
-  // 以媒体库uri为例
+  // 以内置存储目录为例
   // 示例代码targetUri表示Download目录下文件，该uri是对应的fileInfo中uri
   // 开发者应根据自己实际获取的uri进行开发
-  let targetUri  = "file://media/file/100";
+  let targetUri  = "file://docs/storage/Users/currentUser/Download/1.txt";
   try {
     // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
     fileAccessHelper.openFile(targetUri, fileAccess.OPENFLAGS.READ, function (err, fd) {
@@ -921,10 +920,10 @@ delete(uri: string) : Promise&lt;number&gt;
 **示例：**
 
   ```js
-  // 以媒体库uri为例
+  // 以内置存储目录为例
   // 示例代码targetUri表示Download目录下文件，该uri是对应的fileInfo中uri
   // 开发者应根据自己实际获取的uri进行开发
-  let targetUri = "file://media/file/100";
+  let targetUri = "file://docs/storage/Users/currentUser/Download/1.txt";
   try {
     // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
     let code = await fileAccessHelper.delete(targetUri);
@@ -959,10 +958,10 @@ delete(uri: string, callback: AsyncCallback&lt;number&gt;) : void
 **示例：**
 
   ```js
-  // 以媒体库uri为例
+  // 以内置存储目录为例
   // 示例代码targetUri表示Download目录下文件，该uri是对应的fileInfo中uri
   // 开发者应根据自己实际获取的uri进行开发
-  let targetUri = "file://media/file/100";
+  let targetUri = "file://docs/storage/Users/currentUser/Download/1.txt";
   try {
     // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
     fileAccessHelper.delete(targetUri, function (err, code) {
@@ -1007,11 +1006,11 @@ move(sourceFile: string, destFile: string) : Promise&lt;string&gt;
 **示例：**
 
   ```js
-  // 以媒体库uri为例
-  // 示例代码sourceFile destFile表示Download目录下文件或文件夹，该uri是对应的fileInfo中uri
+  // 以内置存储目录为例
+  // 示例代码sourceFile destFile表示Download目录下文件和文件夹，该uri是对应的fileInfo中uri
   // 开发者应根据自己实际获取的uri进行开发
-  let sourceFile = "file://media/file/102";
-  let destFile = "file://media/file/101";
+  let sourceFile = "file://docs/storage/Users/currentUser/Download/1.txt";
+  let destFile = "file://docs/storage/Users/currentUser/Download/test";
   try {
     // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
     let fileUri = await fileAccessHelper.move(sourceFile, destFile);
@@ -1046,11 +1045,11 @@ move(sourceFile: string, destFile: string, callback: AsyncCallback&lt;string&gt;
 **示例：**
 
   ```js
-  // 以媒体库uri为例
-  // 示例代码sourceFile destFile表示Download目录下文件或文件夹，该uri是对应的fileInfo中uri
+  // 以内置存储目录为例
+  // 示例代码sourceFile destFile表示Download目录下文件和文件夹，该uri是对应的fileInfo中uri
   // 开发者应根据自己实际获取的uri进行开发
-  let sourceFile = "file://media/file/102";
-  let destFile = "file://media/file/101";
+  let sourceFile = "file://docs/storage/Users/currentUser/Download/1.txt";
+  let destFile = "file://docs/storage/Users/currentUser/Download/test";
   try {
     // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
     fileAccessHelper.move(sourceFile, destFile, function (err, fileUri) {
@@ -1095,10 +1094,10 @@ rename(uri: string, displayName: string) : Promise&lt;string&gt;
 **示例：**
 
   ```js
-  // 以媒体库uri为例
+  // 以内置存储目录为例
   // 示例代码sourceDir表示Download目录下文件，该uri是对应的fileInfo中uri
   // 开发者应根据自己实际获取的uri进行开发
-  let sourceDir = "file://media/file/100";
+  let sourceDir = "file://docs/storage/Users/currentUser/Download/1.txt";
   try {
     // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
     let DestDir = await fileAccessHelper.rename(sourceDir, "testDir");
@@ -1133,10 +1132,10 @@ rename(uri: string, displayName: string, callback: AsyncCallback&lt;string&gt;) 
 **示例：**
 
   ```js
-  // 以媒体库uri为例
+  // 以内置存储目录为例
   // 示例代码sourceDir表示Download目录下文件，该uri是对应的fileInfo中uri
   // 开发者应根据自己实际获取的uri进行开发
-  let sourceDir = "file://media/file/100";
+  let sourceDir = "file://docs/storage/Users/currentUser/Download/1.txt";
   try {
     // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
     fileAccessHelper.rename(sourceDir, "testDir", function (err, DestDir) {
@@ -1180,10 +1179,10 @@ access(sourceFileUri: string) : Promise&lt;boolean&gt;
 **示例：**
 
   ```js
-  // 以媒体库uri为例
+  // 以内置存储目录为例
   // 示例代码sourceDir表示Download目录下文件，该uri是对应的fileInfo中uri
   // 开发者应根据自己实际获取的uri进行开发
-  let sourceDir = "file://media/file/100";
+  let sourceDir = "file://docs/storage/Users/currentUser/Download/1.txt";
   try {
     // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
     let existJudgment = await fileAccessHelper.access(sourceDir);
@@ -1220,10 +1219,10 @@ access(sourceFileUri: string, callback: AsyncCallback&lt;boolean&gt;) : void
 **示例：**
 
   ```js
-  // 以媒体库uri为例
-  // 示例代码sourceDir表示Download目录下文件，该uri是对应的fileInfo中uri
+  // 以内置存储目录为例
+  // 示例代码sourceDir表示Download目录下文件夹，该uri是对应的fileInfo中uri
   // 开发者应根据自己实际获取的uri进行开发
-  let sourceDir = "file://media/file/100";
+  let sourceDir = "file://docs/storage/Users/currentUser/Download/test";
   try {
     // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
     fileAccessHelper.access(sourceDir, function (err, existJudgment) {
@@ -1266,10 +1265,10 @@ getFileInfoFromUri(uri: string) : Promise\<FileInfo>
 **示例：**
 
   ```js
-  // 以媒体库uri为例
+  // 以内置存储目录为例
   // 示例代码sourceUri表示Download目录，该uri是对应的fileInfo中uri
   // 开发者应根据自己实际获取的uri进行开发
-  let sourceUri = "file://media/file/6";
+  let sourceUri = "file://docs/storage/Users/currentUser/Download";
   try {
     // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
     let fileInfo = await fileAccessHelper.getFileInfoFromUri(sourceUri);
@@ -1298,10 +1297,10 @@ getFileInfoFromUri(uri: string, callback: AsyncCallback\<FileInfo>) : void
 **示例：**
 
   ```js
-  // 以媒体库uri为例
+  // 以内置存储目录为例
   // 示例代码sourceUri表示Download目录，该uri是对应的fileInfo中uri
   // 开发者应根据自己实际获取的uri进行开发
-  let sourceUri = "file://media/file/6";
+  let sourceUri = "file://docs/storage/Users/currentUser/Download";
   try {
     // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
     fileAccessHelper.getFileInfoFromUri(sourceUri, function (err, fileInfo) {
@@ -1342,7 +1341,6 @@ getFileInfoFromRelativePath(relativePath: string) : Promise\<FileInfo>
 **示例：**
 
   ```js
-  // 以媒体库relativePath为例
   // 示例代码relativePath表示Download目录，该relativePath是对应的fileInfo中relativePath
   // 开发者应根据自己实际获取的relativePath进行开发
   let relativePath = "Download/";
@@ -1374,7 +1372,6 @@ getFileInfoFromRelativePath(relativePath: string, callback: AsyncCallback\<FileI
 **示例：**
 
   ```js
-  // 以媒体库relativePath为例
   // 示例代码relativePath表示Download目录，该relativePath是对应的fileInfo中relativePath
   // 开发者应根据自己实际获取的relativePath进行开发
   let relativePath = "Download/";
@@ -1418,7 +1415,7 @@ query(uri:string, metaJson: string) : Promise&lt;string&gt;
 **示例：**
 
 ```js
-var imageFileRelativePath = "Download/queryTest/image/01.jpg";
+var imageFileRelativePath = "/storage/Users/currentUser/Download/queryTest/image/01.jpg";
 var jsonStrSingleRelativepath = JSON.stringify({ [fileAccess.FileKey.RELATIVE_PATH]: "" });
 try {
     // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
@@ -1451,7 +1448,7 @@ query(uri:string, metaJson: string, callback: AsyncCallback&lt;string&gt;) : voi
 **示例：**
 
 ```js
-var imageFileRelativePath = "Download/queryTest/image/01.jpg";
+var imageFileRelativePath = "/storage/Users/currentUser/Download/queryTest/image/01.jpg";
 var jsonStrSingleRelativepath = JSON.stringify({ [fileAccess.FileKey.RELATIVE_PATH]: "" });
 try {
     // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
@@ -1482,8 +1479,8 @@ copy(sourceUri: string, destUri: string, force?: boolean) : Promise&lt;Array&lt;
 
 | 参数名    | 类型    | 必填 | 说明                                                         |
 | --------- | ------- | ---- | ------------------------------------------------------------ |
-| sourceUri | string  | 是   | 待拷贝的源文件(夹)的 uri，例如：file://media/file/102  |
-| destUri   | string  | 是   | 目标文件夹的 uri，例如：file://media/file/101          |
+| sourceUri | string  | 是   | 待拷贝的源文件(夹)的 uri，例如：file://docs/storage/Users/currentUser/Download/1.txt  |
+| destUri   | string  | 是   | 目标文件夹的 uri，例如：file://docs/storage/Users/currentUser/Download/test        |
 | force     | boolean | 否   | 含有同名文件时是否强制覆盖文件，force 为 true 时强制覆盖文件，force 为空或 false 时不强制覆盖文件 |
 
 **返回值：**
@@ -1495,11 +1492,11 @@ copy(sourceUri: string, destUri: string, force?: boolean) : Promise&lt;Array&lt;
 **示例 1：force 为空**
 
 ```js
-// 以媒体库uri为例
+// 以内置存储目录为例
 // 示例代码中的sourceFile表示Download目录下的源文件(夹)，destFile表示Download目录下的目标文件夹，该uri对应fileInfo中的uri
 // 开发者应根据自己实际获取的uri进行开发
-let sourceFile = "file://media/file/102";
-let destFile = "file://media/file/101";
+let sourceFile = "file://docs/storage/Users/currentUser/Download/1.txt";
+let destFile = "file://docs/storage/Users/currentUser/Download/test";
 try {
     // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
     let copyResult = await fileAccessHelper.copy(sourceFile, destFile);
@@ -1521,11 +1518,11 @@ try {
 **示例 2：force 为 true**
 
 ```js
-// 以媒体库uri为例
+// 以内置存储目录为例
 // 示例代码中的sourceFile表示Download目录下的源文件(夹)，destFile表示Download目录下的目标文件夹，该uri对应fileInfo中的uri
 // 开发者应根据自己实际获取的uri进行开发
-let sourceFile = "file://media/file/102";
-let destFile = "file://media/file/101";
+let sourceFile = "file://docs/storage/Users/currentUser/Download/1.txt";
+let destFile = "file://docs/storage/Users/currentUser/Download/test";
 try {
     // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
     let copyResult = await fileAccessHelper.copy(sourceFile, destFile, true);
@@ -1558,18 +1555,18 @@ copy(sourceUri: string, destUri: string, callback: AsyncCallback&lt;Array&lt;Cop
 
 | 参数名    | 类型                                             | 必填 | 说明                                                         |
 | --------- | ------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| sourceUri | string                                           | 是   | 待拷贝的源文件(夹)的 uri，例如：file://media/file/102  |
-| destUri   | string                                           | 是   | 目标文件夹的 uri，例如：file://media/file/101          |
+| sourceUri | string                                           | 是   | 待拷贝的源文件(夹)的 uri，例如：file://docs/storage/Users/currentUser/Download/1.txt  |
+| destUri   | string                                           | 是   | 目标文件夹的 uri，例如：file://docs/storage/Users/currentUser/Download/test         |
 | callback  | AsyncCallback&lt;Array&lt;[CopyResult](#copyresult10)&gt;&gt; | 是   | 返回 copyresult 数组，copyResult 为复制操作失败的返回信息，复制成功无返回信息 |
 
 **示例：**
 
 ```js
-// 以媒体库uri为例
+// 以内置存储目录为例
 // 示例代码中的sourceFile表示Download目录下的源文件(夹)，destFile表示Download目录下的目标文件夹，该uri对应fileInfo中的uri
 // 开发者应根据自己实际获取的uri进行开发
-let sourceFile = "file://media/file/102";
-let destFile = "file://media/file/101";
+let sourceFile = "file://docs/storage/Users/currentUser/Download/1.txt";
+let destFile = "file://docs/storage/Users/currentUser/Download/test";
 try {
     // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
     fileAccessHelper.copy(sourceFile, destFile, async (err, copyResult) => {
@@ -1607,19 +1604,19 @@ copy(sourceUri: string, destUri: string, force: boolean, callback: AsyncCallback
 
 | 参数名    | 类型                                             | 必填 | 说明                                                         |
 | --------- | ------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| sourceUri | string                                           | 是   | 待拷贝的源文件(夹)的 uri，例如：file://media/file/102  |
-| destUri   | string                                           | 是   | 目标文件夹的 uri，例如：file://media/file/101          |
+| sourceUri | string                                           | 是   | 待拷贝的源文件(夹)的 uri，例如：file://docs/storage/Users/currentUser/Download/1.txt  |
+| destUri   | string                                           | 是   | 目标文件夹的 uri，例如：file://docs/storage/Users/currentUser/Download/test         |
 | force     | boolean                                          | 是   | 含有同名文件时是否强制覆盖文件，force 为 true 时强制覆盖文件，force 为空或 false 时不强制覆盖文件 |
 | callback  | AsyncCallback&lt;Array&lt;[CopyResult](#copyresult10)&gt;&gt; | 是   | 返回 copyresult 数组，copyResult 为复制操作失败的返回信息，复制成功无返回信息 |
 
 **示例：**
 
 ```js
-// 以媒体库uri为例
+// 以内置存储目录为例
 // 示例代码中的sourceFile表示Download目录下的源文件(夹)，destFile表示Download目录下的目标文件夹，该uri对应fileInfo中的uri
 // 开发者应根据自己实际获取的uri进行开发
-let sourceFile = "file://media/file/102";
-let destFile = "file://media/file/101";
+let sourceFile = "file://docs/storage/Users/currentUser/Download/1.txt";
+let destFile = "file://docs/storage/Users/currentUser/Download/test";
 try {
     // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
     fileAccessHelper.copy(sourceFile, destFile, true, async (err, copyResult) => {
@@ -1640,6 +1637,192 @@ try {
     });
 } catch (error) {
     console.error("copy failed, errCode:" + error.code + ", errMessage:" + error.message);
+}
+```
+
+### registerObserver<sup>10+</sup>
+
+registerObserver(uri: string, notifyForDescendants: boolean, callback: Callback&lt;NotifyMessage&gt;): void
+
+注册指定uri的callback。uri与callback可以为多对多的关系，推荐使用一个callback监听一个uri。
+
+**系统能力**：SystemCapability.FileManagement.UserFileService
+
+**需要权限**：ohos.permission.FILE_ACCESS_MANAGER
+
+**参数：**
+
+| 参数名               | 类型                                              | 必填 | 说明                           |
+| -------------------- | ------------------------------------------------- | ---- | ------------------------------ |
+| uri                  | string                                            | 是   | 文件或目录的uri                |
+| notifyForDescendants | boolean                                           | 是   | 监听目录时，是否监听子文件变化 |
+| callback             | Callback&lt;[NotifyMessage](#notifymessage10)&gt; | 是   | 返回通知信息                   |
+
+**示例1：**
+
+```js
+let DirUri = 'file://docs/storage/Users/currentUser/Documents';
+try {
+  // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
+  let dirUri = await fileAccessHelper.mkDir(DirUri, 'NOTIFY_DIR');
+  // 期待收到uri为'file://docs/storage/Users/currentUser/Documents'，事件类型为NOTIFY_DELETE
+  const callbackDir = (NotifyMessageDir) => {
+    if (NotifyMessageDir != undefined) {
+      console.log('NotifyType: ' + NotifyMessageDir.NotifyType + 'NotifyUri:' +
+      NotifyMessageDir.uris[0]);
+    } else {
+      console.error("NotifyMessageDir is undefined");
+    }
+  }
+  fileAccessHelper.registerObserver(dirUri, true, callbackDir);
+  await fileAccessHelper.delete(dirUri);
+  fileAccessHelper.unregisterObserver(dirUri, callbackDir);
+} catch (error) {
+  console.error("registerObserver failed, errCode:" + error.code + ", errMessage:" + error.message);
+}
+```
+
+**示例2：使用相同uri、notifyForDescendants、callback重复注册**
+
+```js
+let DirUri = 'file://docs/storage/Users/currentUser/Documents';
+try {
+  // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
+  let dirUri = await fileAccessHelper.mkDir(DirUri, 'NOTIFY_DIR');
+  // 期待收到uri为'file://docs/storage/Users/currentUser/Documents'，事件类型为NOTIFY_DELETE
+  const callbackDir = (NotifyMessageDir) => {
+    if (NotifyMessageDir != undefined) {
+      console.log('NotifyType: ' + NotifyMessageDir.NotifyType + 'NotifyUri:' +
+      NotifyMessageDir.uris[0]);
+    } else {
+      console.error("NotifyMessageDir is undefined");
+    }
+  }
+  fileAccessHelper.registerObserver(dirUri, true, callbackDir);
+  // 返回注册成功，仅在log中提示重复注册
+  fileAccessHelper.registerObserver(dirUri, true, callbackDir);
+  await fileAccessHelper.delete(dirUri);
+  sleep(100);
+  fileAccessHelper.unregisterObserver(dirUri, callbackDir);
+} catch (error) {
+  console.error("registerObserver failed, errCode:" + error.code + ", errMessage:" + error.message);
+}
+```
+
+**示例3：使用相同uri、callback及不同notifyForDescendants重复注册会重置notifyForDescendants**
+
+```js
+let DirUri = 'file://docs/storage/Users/currentUser/Documents';
+try {
+  // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
+  let dirUri = await fileAccessHelper.mkDir(DirUri, 'NOTIFY_DIR');
+  // 期待收到uri为'file://docs/storage/Users/currentUser/Documents'，事件类型为NOTIFY_DELETE
+  const callbackDir = (NotifyMessageDir) => {
+    if (NotifyMessageDir != undefined) {
+      console.log('NotifyType: ' + NotifyMessageDir.NotifyType + 'NotifyUri:' +
+      NotifyMessageDir.uris[0]);
+    } else {
+      console.error("NotifyMessageDir is undefined");
+    }
+  }
+  fileAccessHelper.registerObserver(dirUri, true, callbackDir);
+  // 注册成功修改notifyForDescendants为false,不感知子文件的变化
+  fileAccessHelper.registerObserver(dirUri, false, callbackDir);
+  await fileAccessHelper.delete(dirUri);
+  fileAccessHelper.unregisterObserver(dirUri, callbackDir);
+} catch (error) {
+  console.error("registerObserver failed, errCode:" + error.code + ", errMessage:" + error.message);
+}
+```
+
+### unregisterObserver<sup>10+</sup>
+
+ unregisterObserver(uri: string, callback: Callback&lt;NotifyMessage&gt;): void
+
+取消注册指定的uri和callback。
+
+**系统能力**：SystemCapability.FileManagement.UserFileService
+
+**需要权限**：ohos.permission.FILE_ACCESS_MANAGER
+
+**参数：**
+
+| 参数名   | 类型                                              | 必填 | 说明                      |
+| -------- | ------------------------------------------------- | ---- | ------------------------- |
+| uri      | string                                            | 是   | 文件或目录的uri           |
+| callback | Callback&lt;[NotifyMessage](#notifymessage10)&gt; | 是   | 解注册uri下对应的callback |
+
+**示例：**
+
+```js
+let DirUri = 'file://docs/storage/Users/currentUser/Documents';
+try {
+  // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
+  let dirUri = await fileAccessHelper.mkDir(DirUri, 'NOTIFY_DIR');
+  // 期待收到uri为'file://docs/storage/Users/currentUser/Documents'，事件类型为NOTIFY_DELETE
+  const callbackDir = (NotifyMessageDir) => {
+    if (NotifyMessageDir != undefined) {
+      console.log('NotifyType: ' + NotifyMessageDir.NotifyType + 'NotifyUri:' +
+      NotifyMessageDir.uris[0]);
+    } else {
+      console.error("NotifyMessageDir is undefined");
+    }
+  }
+  fileAccessHelper.registerObserver(dirUri, true, callbackDir);
+  await fileAccessHelper.delete(dirUri);
+  fileAccessHelper.unregisterObserver(dirUri, callbackDir);
+} catch (error) {
+  console.error("unregisterObserver failed, errCode:" + error.code + ", errMessage:" + error.message);
+}
+```
+
+### unregisterObserver<sup>10+</sup>
+
+ unregisterObserver(uri: string): void
+
+取消注册指定的uri对应的所有callback。
+
+**系统能力**：SystemCapability.FileManagement.UserFileService
+
+**需要权限**：ohos.permission.FILE_ACCESS_MANAGER
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明            |
+| ------ | ------ | ---- | --------------- |
+| uri    | string | 是   | 文件或目录的uri |
+
+**示例：**
+
+```js
+let DirUri = 'file://docs/storage/Users/currentUser/Documents';
+try {
+  // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
+  let dirUri = await fileAccessHelper.mkDir(DirUri, 'NOTIFY_DIR');
+  // 期待收到uri为'file://docs/storage/Users/currentUser/Documents'，事件类型为NOTIFY_DELETE
+  const callbackDir1 = (NotifyMessageDir) => {
+    if (NotifyMessageDir != undefined) {
+      console.log('NotifyType: ' + NotifyMessageDir.NotifyType + 'NotifyUri:' +
+      NotifyMessageDir.uris[0]);
+    } else {
+      console.error("NotifyMessageDir is undefined");
+    }
+  }
+  const callbackDir2 = (NotifyMessageDir) => {
+    if (NotifyMessageDir != undefined) {
+      console.log('NotifyType: ' + NotifyMessageDir.NotifyType + 'NotifyUri:' +
+      NotifyMessageDir.uris[0]);
+    } else {
+      console.error("NotifyMessageDir is undefined");
+    }
+  }
+  fileAccessHelper.registerObserver(dirUri, true, callbackDir1);
+  fileAccessHelper.registerObserver(dirUri, true, callbackDir2);
+  await fileAccessHelper.delete(dirUri);
+  // 取消注册监听dirUri的所有callback(callbackDir1、callbackDir2)
+  fileAccessHelper.unregisterObserver(dirUri);
+} catch (error) {
+  console.error("unregisterObserver failed, errCode:" + error.code + ", errMessage:" + error.message);
 }
 ```
 
@@ -1687,3 +1870,36 @@ try {
 | DATE_MODIFIED | 'date_modified' | 文件的修改日期，例如1665310670      |
 | RELATIVE_PATH | 'relative_path' | 相对路径，例如Pictures/Screenshots/ |
 | FILE_SIZE     | 'size'          | 文件（夹）大小（单位：字节）        |
+
+## NotifyType<sup>10+</sup>
+
+枚举，通知类型。
+
+**模型约束**：此接口仅可在Stage模型下使用。
+
+**系统能力**：SystemCapability.FileManagement.UserFileService
+
+**需要权限**：ohos.permission.FILE_ACCESS_MANAGER
+
+| 名称              | 值   | 说明                                                         |
+| ----------------- | ---- | ------------------------------------------------------------ |
+| NOTIFY_ADD        | 0    | 表示新增文件                                                 |
+| NOTIFY_DELETE     | 1    | 表示删除文件                                                 |
+| NOTIFY_MOVED_TO   | 2    | 表示移动至该文件（对该目录下子文件或目录执行rename操作，或外部文件或目录执行move操作到本文件） |
+| NOTIFY_MOVED_FROM | 3    | 表示自该文件移出（如子文件或文件夹执行move操作从该文件夹内移出） |
+| NOTIFY_MOVE_SELF  | 4    | 表示本文件被移动（如对文件或文件夹执行rename或move操作）     |
+
+## NotifyMessage<sup>10+</sup>
+
+通知回调函数的值。
+
+**模型约束**：此接口仅可在Stage模型下使用。
+
+**系统能力**：SystemCapability.FileManagement.UserFileService
+
+**需要权限**：ohos.permission.FILE_ACCESS_MANAGER
+
+| 名称 | 类型                        | 可读 | 可写 | 说明                                                      |
+| ---- | --------------------------- | ---- | ---- | --------------------------------------------------------- |
+| type | [NotifyType](#notifytype10) | 是   | 否   | 变更的通知类型                                            |
+| uris | Array&lt;string&gt;         | 是   | 否   | 所变更文件的uri集合，目前仅支持单条通知，后序支持多条通知 |

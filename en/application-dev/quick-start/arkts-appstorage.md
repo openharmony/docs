@@ -23,8 +23,7 @@ Selected state attributes of AppStorage can be synced with different data source
 
 As mentioned above, if you want to establish a binding between AppStorage and a custom component, you'll need the \@StorageProp and \@StorageLink decorators. Use \@StorageProp(key) or \@StorageLink(key) to decorate variables in the component, where **key** identifies the attribute in AppStorage.
 
-When a custom component is initialized, the \@StorageProp(key)/\@StorageLink(key) decorated variable is initialized with the value of the attribute with the given key in AppStorage. Local initialization is mandatory. If an attribute with the given key is missing from AppStorage, it will be added with the stated initializing value. (Whether the attribute with the given key exists in AppStorage depends on the application logic.)
-
+When a custom component is initialized, the \@StorageProp(key)/\@StorageLink(key) decorated variable is initialized with the value of the attribute with the given key in AppStorage. Whether the attribute with the given key exists in AppStorage depends on the application logic. This means that the attribute with the given key may be missing from AppStorage. In light of this, local initialization is mandatory for the \@StorageProp(key)/\@StorageLink(key) decorated variable.
 
 By decorating a variable with \@StorageProp(key), a one-way data synchronization is established with the attribute with the given key in AppStorage. A local change can be made, but it will not be synchronized to AppStorage. An update to the attribute with the given key in AppStorage will overwrite local changes.
 
@@ -193,9 +192,85 @@ struct CompA {
 }
 ```
 
-### Persistent Subscription and Callback
+### Unrecommended: Using @StorageLink to Implement Event Notification
 
-The persistent subscription and callback can help reduce overhead and enhance code readability.
+Compared with the common mechanism for event notification, the two-way synchronization mechanism of @StorageLink and AppStorage is far less cost efficient and therefore not recommended. This is because AppStorage stores UI-related data, and its changes will cause costly UI refresh.
+
+In the following example, any tap event in the **TapImage** component will trigger a change of the **tapIndex** attribute. As @StorageLink establishes a two-way data synchronization with AppStorage, the local change is synchronized to AppStorage. As a result, all visible custom components owning the **tapIndex** attribute bound to AppStorage are notified to refresh the UI.
+
+
+```ts
+// xxx.ets
+class ViewData {
+  title: string;
+  uri: Resource;
+  color: Color = Color.Black;
+
+  constructor(title: string, uri: Resource) {
+    this.title = title;
+    this.uri = uri
+  }
+}
+
+@Entry
+@Component
+struct Gallery2 {
+  dataList: Array<ViewData> = [new ViewData('flower', $r('app.media.icon')), new ViewData('OMG', $r('app.media.icon')), new ViewData('OMG', $r('app.media.icon'))]
+  scroller: Scroller = new Scroller()
+
+  build() {
+    Column() {
+      Grid(this.scroller) {
+        ForEach(this.dataList, (item: ViewData, index?: number) => {
+          GridItem() {
+            TapImage({
+              uri: item.uri,
+              index: index
+            })
+          }.aspectRatio(1)
+
+        }, (item: ViewData, index?: number) => {
+          return JSON.stringify(item) + index;
+        })
+      }.columnsTemplate('1fr 1fr')
+    }
+
+  }
+}
+
+@Component
+export struct TapImage {
+  @StorageLink('tapIndex') @Watch('onTapIndexChange') tapIndex: number = -1;
+  @State tapColor: Color = Color.Black;
+  private index: number;
+  private uri: Resource;
+
+  // Check whether the component is selected.
+  onTapIndexChange() {
+    if (this.tapIndex >= 0 && this.index === this.tapIndex) {
+      console.info(`tapindex: ${this.tapIndex}, index: ${this.index}, red`)
+      this.tapColor = Color.Red;
+    } else {
+      console.info(`tapindex: ${this.tapIndex}, index: ${this.index}, black`)
+      this.tapColor = Color.Black;
+    }
+  }
+
+  build() {
+    Column() {
+      Image(this.uri)
+        .objectFit(ImageFit.Cover)
+        .onClick(() => {
+          this.tapIndex = this.index;
+        })
+        .border({ width: 5, style: BorderStyle.Dotted, color: this.tapColor })
+    }
+
+  }
+}
+```
+
+To implement event notification with less overhead and higher code readability, use **emit** instead, with which you can subscribe to an event and receive event callback.
 
 
 ```ts
@@ -294,10 +369,9 @@ export struct TapImage {
 }
 ```
 
-The following example uses the message mechanism to subscribe to events. Because this mechanism can result in a large number of nodes to listen for and a long implementation time, it is not recommended.
+The preceding notification logic is simple. It can be simplified into a ternary expression as follows:
 
-
-```ts
+```
 // xxx.ets
 class ViewData {
   title: string;
@@ -338,21 +412,10 @@ struct Gallery2 {
 
 @Component
 export struct TapImage {
-  @StorageLink('tapIndex') @Watch('onTapIndexChange') tapIndex: number = -1;
+  @StorageLink('tapIndex') tapIndex: number = -1;
   @State tapColor: Color = Color.Black;
   private index: number;
   private uri: Resource;
-
-  // Check whether the component is selected.
-  onTapIndexChange() {
-    if (this.tapIndex >= 0 && this.index === this.tapIndex) {
-      console.info(`tapindex: ${this.tapIndex}, index: ${this.index}, red`)
-      this.tapColor = Color.Red;
-    } else {
-      console.info(`tapindex: ${this.tapIndex}, index: ${this.index}, black`)
-      this.tapColor = Color.Black;
-    }
-  }
 
   build() {
     Column() {
@@ -361,12 +424,16 @@ export struct TapImage {
         .onClick(() => {
           this.tapIndex = this.index;
         })
-        .border({ width: 5, style: BorderStyle.Dotted, color: this.tapColor })
+        .border({
+          width: 5,
+          style: BorderStyle.Dotted,
+          color: (this.tapIndex >= 0 && this.index === this.tapIndex) ? Color.Red : Color.Black
+        })
     }
-
   }
 }
 ```
+
 
 
 ## Restrictions
@@ -377,5 +444,5 @@ When using AppStorage together with [PersistentStorage](arkts-persiststorage.md)
 
 - A call to **Environment.EnvProp()** after creating the attribute in AppStorage will fail. This is because AppStorage already has an attribute with the same name, and the environment variable will not be written into AppStorage. Therefore, you are advised not to use the preset environment variable name in AppStorage.
 
-- Changes to the variables decorated by state decorators will cause UI re-render. If the changes are for message communication, rather than for UI re-render, the emitter mode is recommended. For the example, see [Persistent Subscription and Callback](#persistent-subscription-and-callback).
+- Changes to the variables decorated by state decorators will cause UI re-render. If the changes are for message communication, rather than for UI re-render, the emitter mode is recommended. For the example, see [Unrecommended: Using @StorageLink to Implement Event Notification](#unrecommended-using-storagelink-to-implement-event-notification).
 <!--no_check-->

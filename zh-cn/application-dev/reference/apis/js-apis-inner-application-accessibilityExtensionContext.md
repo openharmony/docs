@@ -285,7 +285,7 @@ getWindowRootElement(windowId?: number): Promise\<AccessibilityElement>;
 
 | 类型                                  | 说明                     |
 | ----------------------------------- | ---------------------- |
-| Promise&lt;AccessibilityElement&gt; | Promise对象，返回指定屏幕的所有窗口。 |
+| Promise&lt;AccessibilityElement&gt; | Promise对象，返回指定窗口的根节点元素。 |
 
 **错误码：**
 
@@ -355,7 +355,7 @@ try {
 
 getWindowRootElement(windowId: number, callback: AsyncCallback\<AccessibilityElement>): void;
 
-获取指定屏幕中的所有窗口, 使用callback异步回调。
+获取指定窗口的根节点元素, 使用callback异步回调。
 
 **系统能力：**  SystemCapability.BarrierFree.Accessibility.Core
 
@@ -635,7 +635,6 @@ attributeNames\<T extends keyof ElementAttributeValues>(): Promise\<Array\<T>>;
 **示例：**
 
 ```ts
-let rootElement;
 let attributeNames;
 rootElement.attributeNames().then((data) => {
     console.log('get attribute names success');
@@ -661,7 +660,6 @@ attributeNames\<T extends keyof ElementAttributeValues>(callback: AsyncCallback\
 **示例：**
 
 ```ts
-let rootElement;
 let attributeNames;
 rootElement.attributeNames((err, data) => {
     if (err) {
@@ -705,7 +703,6 @@ attributeValue\<T extends keyof ElementAttributeValues>(attributeName: T): Promi
 ```ts
 let attributeName = 'name';
 let attributeValue;
-let rootElement;
 try {
     rootElement.attributeValue(attributeName).then((data) => {
         console.log('get attribute value by name success');
@@ -744,7 +741,6 @@ attributeValue\<T extends keyof ElementAttributeValues>(attributeName: T,
 **示例：**
 
 ```ts
-let rootElement;
 let attributeValue;
 let attributeName = 'name';
 try {
@@ -777,7 +773,6 @@ actionNames(): Promise\<Array\<string>>;
 **示例：**
 
 ```ts
-let rootElement;
 let actionNames;
 rootElement.actionNames().then((data) => {
     console.log('get action names success');
@@ -803,7 +798,6 @@ actionNames(callback: AsyncCallback\<Array\<string>>): void;
 **示例：**
 
 ```ts
-let rootElement;
 let actionNames;
 rootElement.actionNames((err, data) => {
     if (err) {
@@ -846,7 +840,6 @@ performAction(actionName: string, parameters?: object): Promise\<void>;
 **示例：**
 
 ```ts
-let rootElement;
 try {
     rootElement.performAction('action').then((data) => {
         console.info('perform action success');
@@ -883,7 +876,6 @@ performAction(actionName: string, callback: AsyncCallback\<void>): void;
 **示例：**
 
 ```ts
-let rootElement;
 try {
     rootElement.performAction('action', (err, data) => {
         if (err) {
@@ -923,7 +915,6 @@ performAction(actionName: string, parameters: object, callback: AsyncCallback\<v
 **示例：**
 
 ```ts
-let rootElement;
 let actionName = 'action';
 let parameters = {
     'setText': 'test text'
@@ -964,7 +955,6 @@ findElement(type: 'content', condition: string): Promise\<Array\<AccessibilityEl
 **示例：**
 
 ```ts
-let rootElement;
 let type = 'content';
 let condition = 'keyword';
 let elements;
@@ -998,7 +988,6 @@ findElement(type: 'content', condition: string, callback: AsyncCallback\<Array\<
 **示例：**
 
 ```ts
-let rootElement;
 let type = 'content';
 let condition = 'keyword';
 let elements;
@@ -1039,7 +1028,6 @@ findElement(type: 'focusType', condition: FocusType): Promise\<AccessibilityElem
 **示例：**
 
 ```ts
-let rootElement;
 let type = 'focusType';
 let condition = 'normal';
 let element;
@@ -1073,7 +1061,6 @@ findElement(type: 'focusType', condition: FocusType, callback: AsyncCallback\<Ac
 **示例：**
 
 ```ts
-let rootElement;
 let type = 'focusType';
 let condition = 'normal';
 let element;
@@ -1114,7 +1101,6 @@ findElement(type: 'focusDirection', condition: FocusDirection): Promise\<Accessi
 **示例：**
 
 ```ts
-let rootElement;
 let type = 'focusDirection';
 let condition = 'up';
 let element;
@@ -1148,7 +1134,6 @@ findElement(type: 'focusDirection', condition: FocusDirection, callback: AsyncCa
 **示例：**
 
 ```ts
-let rootElement;
 let type = 'focusDirection';
 let condition = 'up';
 let elements;

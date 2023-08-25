@@ -21,7 +21,6 @@ None.
 
 **System capability**: SystemCapability.Driver.ExternalDevice
 
-**System API**: This is a system API and cannot be called by third-party applications.
 
 | Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
@@ -35,8 +34,6 @@ onInit(want: Want): void;
 Called when a DriverExtensionAbility is created to initialize the service logic.
 
 **System capability**: SystemCapability.Driver.ExternalDevice
-
-**System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
 
@@ -63,8 +60,6 @@ Called when this DriverExtensionAbility is destroyed to clear resources.
 
 **System capability**: SystemCapability.Driver.ExternalDevice
 
-**System API**: This is a system API and cannot be called by third-party applications.
-
 **Example**
 
   ```ts
@@ -83,8 +78,6 @@ onConnect(want: Want): rpc.RemoteObject | Promise<rpc.RemoteObject>;
 Called following **onCreate()** when a DriverExtensionAbility is started by calling **connectAbility()**. A **RemoteObject** object is returned for communication between the server and client.
 
 **System capability**: SystemCapability.Driver.ExternalDevice
-
-**System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
 
@@ -106,7 +99,7 @@ Called following **onCreate()** when a DriverExtensionAbility is started by call
       constructor(des) {
           super(des);
       }
-      onRemoteRequest(code, data, reply, option) {
+      onRemoteMessageRequest(code, data, reply, option) {
       }
   }
   class DriverExt extends DriverExtension {
@@ -125,7 +118,7 @@ class StubTest extends rpc.RemoteObject{
     constructor(des) {
         super(des);
     }
-    onRemoteRequest(code, data, reply, option) {
+    onRemoteMessageRequest(code, data, reply, option) {
     }
 }
 async function getDescriptor() {
@@ -148,8 +141,6 @@ onDisconnect(want: Want): void | Promise\<void>;
 Called when a client is disconnected from this DriverExtensionAbility.
 
 **System capability**: SystemCapability.Driver.ExternalDevice
-
-**System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
 
@@ -186,8 +177,6 @@ onDump(params: Array\<string>): Array\<string>;
 Dumps client information.
 
 **System capability**: SystemCapability.Driver.ExternalDevice
-
-**System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
 

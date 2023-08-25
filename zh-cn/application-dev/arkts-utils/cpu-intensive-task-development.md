@@ -78,7 +78,7 @@ struct Index {
 
    ![newWorker](figures/newWorker.png)
 
-2. 在主线程中通过调用[ThreadWorker()](../reference/apis/js-apis-worker.md#threadworker9)方法创建Worker对象，当前线程为宿主线程。
+2. 在主线程中通过调用ThreadWorker的[constructor()](../reference/apis/js-apis-worker.md#constructor9)方法创建Worker对象，当前线程为宿主线程。
    
    ```js
    import worker from '@ohos.worker';
@@ -163,9 +163,9 @@ struct Index {
    }
    ```
 
-6. 在Worker线程中完成任务之后，执行Worker线程销毁操作。根据需要可以在宿主线程中对Worker线程进行销毁，也可以在Worker线程中主动销毁Worker线程。
-   在宿主线程中通过调用[onexit()](../reference/apis/js-apis-worker.md#onexit9)方法定义Worker线程销毁后的处理逻辑。
+6. 在Worker线程中完成任务之后，执行Worker线程销毁操作。销毁线程的方式主要有两种：根据需要可以在宿主线程中对Worker线程进行销毁；也可以在Worker线程中主动销毁Worker线程。
 
+   在宿主线程中通过调用[onexit()](../reference/apis/js-apis-worker.md#onexit9)方法定义Worker线程销毁后的处理逻辑。
    
    ```js
    // Worker线程销毁后，执行onexit回调方法
@@ -174,15 +174,14 @@ struct Index {
    }
    ```
 
-   在宿主线程中通过调用[terminate()](../reference/apis/js-apis-worker.md#terminate9)方法销毁Worker线程，并终止Worker接收消息。
+   方式一：在宿主线程中通过调用[terminate()](../reference/apis/js-apis-worker.md#terminate9)方法销毁Worker线程，并终止Worker接收消息。
 
-   
    ```js
    // 销毁Worker线程
    workerInstance.terminate();
    ```
 
-     在Worker线程中通过调用[close()](../reference/apis/js-apis-worker.md#close9)方法主动销毁Worker线程，并终止Worker接收消息。
+   方式二：在Worker线程中通过调用[close()](../reference/apis/js-apis-worker.md#close9)方法主动销毁Worker线程，并终止Worker接收消息。
    
    ```js
    // 销毁线程

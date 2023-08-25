@@ -32,7 +32,7 @@ Obtains a **CameraManager** instance. This API returns the result synchronously.
 
 **Error codes**
 
-For details about the error codes, see [CameraErrorCode](#cameraerrorcode).
+For details about the error codes, see [Camera Error Codes](../errorcodes/errorcode-camera.md).
 
 | ID        | Error Message       |
 | --------------- | --------------- |
@@ -267,7 +267,7 @@ Creates a **CameraInput** instance with the specified **CameraDevice** object. T
 
 **Error codes**
 
-For details about the error codes, see [CameraErrorCode](#cameraerrorcode).
+For details about the error codes, see [Camera Error Codes](../errorcodes/errorcode-camera.md).
 
 | ID        | Error Message       |
 | --------------- | --------------- |
@@ -311,7 +311,7 @@ Creates a **CameraInput** instance with the specified camera position and type. 
 
 **Error codes**
 
-For details about the error codes, see [CameraErrorCode](#cameraerrorcode).
+For details about the error codes, see [Camera Error Codes](../errorcodes/errorcode-camera.md).
 
 | ID        | Error Message       |
 | --------------- | --------------- |
@@ -355,7 +355,7 @@ Creates a **PreviewOutput** instance. This API returns the result synchronously.
 
 **Error codes**
 
-For details about the error codes, see [CameraErrorCode](#cameraerrorcode).
+For details about the error codes, see [Camera Error Codes](../errorcodes/errorcode-camera.md).
 
 | ID        | Error Message       |
 | --------------- | --------------- |
@@ -397,7 +397,7 @@ Creates a **PhotoOutput** instance. This API returns the result synchronously.
 
 **Error codes**
 
-For details about the error codes, see [CameraErrorCode](#cameraerrorcode).
+For details about the error codes, see [Camera Error Codes](../errorcodes/errorcode-camera.md).
 
 | ID        | Error Message       |
 | --------------- | --------------- |
@@ -439,7 +439,7 @@ Creates a **VideoOutput** instance. This API returns the result synchronously.
 
 **Error codes**
 
-For details about the error codes, see [CameraErrorCode](#cameraerrorcode).
+For details about the error codes, see [Camera Error Codes](../errorcodes/errorcode-camera.md).
 
 | ID        | Error Message       |
 | --------------- | --------------- |
@@ -480,7 +480,7 @@ Creates a **MetadataOutput** instance. This API returns the result synchronously
 
 **Error codes**
 
-For details about the error codes, see [CameraErrorCode](#cameraerrorcode).
+For details about the error codes, see [Camera Error Codes](../errorcodes/errorcode-camera.md).
 
 | ID        | Error Message       |
 | --------------- | --------------- |
@@ -515,7 +515,7 @@ Creates a **CaptureSession** instance. This API returns the result synchronously
 
 **Error codes**
 
-For details about the error codes, see [CameraErrorCode](#cameraerrorcode).
+For details about the error codes, see [Camera Error Codes](../errorcodes/errorcode-camera.md).
 
 | ID        | Error Message       |
 | --------------- | --------------- |
@@ -606,7 +606,7 @@ Checks whether a camera supports prelaunch. This API is called in prior to **set
 
 **Error codes**
 
-For details about the error codes, see [CameraErrorCode](#cameraerrorcode).
+For details about the error codes, see [Camera Error Codes](../errorcodes/errorcode-camera.md).
 
 | ID        | Error Message       |
 | --------------- | --------------- |
@@ -640,7 +640,7 @@ setPrelaunchConfig(prelaunchConfig: PrelaunchConfig): void
 
 **Error codes**
 
-For details about the error codes, see [CameraErrorCode](#cameraerrorcode).
+For details about the error codes, see [Camera Error Codes](../errorcodes/errorcode-camera.md).
 
 | ID        | Error Message       |
 | --------------- | --------------- |
@@ -665,7 +665,7 @@ if(this.cameraManager.isPrelaunchSupported(cameras[0])) {
 
 prelaunch(): void
 
-Prelaunches the camera. This API is called when the camera application is started after a user clicks the system camera icon.
+Prelaunches the camera. This API is called when a user clicks the system camera icon to start the camera application.
 
 **System API**: This is a system API.
 
@@ -706,7 +706,7 @@ Creates a deferred **PreviewOutput** instance and adds it to the data stream ins
 
 **Error codes**
 
-For details about the error codes, see [CameraErrorCode](#cameraerrorcode).
+For details about the error codes, see [Camera Error Codes](../errorcodes/errorcode-camera.md).
 
 | ID        | Error Message       |
 | --------------- | --------------- |
@@ -868,7 +868,7 @@ Opens this camera. This API uses an asynchronous callback to return the result.
 
 **Error codes**
 
-For details about the error codes, see [CameraErrorCode](#cameraerrorcode).
+For details about the error codes, see [Camera Error Codes](../errorcodes/errorcode-camera.md).
 
 | ID        | Error Message       |
 | --------------- | --------------- |
@@ -904,7 +904,7 @@ Opens this camera. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the error codes, see [CameraErrorCode](#cameraerrorcode).
+For details about the error codes, see [Camera Error Codes](../errorcodes/errorcode-camera.md).
 
 | ID        | Error Message       |
 | --------------- | --------------- |
@@ -938,7 +938,7 @@ Closes this camera. This API uses an asynchronous callback to return the result.
 
 **Error codes**
 
-For details about the error codes, see [CameraErrorCode](#cameraerrorcode).
+For details about the error codes, see [Camera Error Codes](../errorcodes/errorcode-camera.md).
 
 | ID        | Error Message       |
 | --------------- | --------------- |
@@ -972,7 +972,7 @@ Closes this camera. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the error codes, see [CameraErrorCode](#cameraerrorcode).
+For details about the error codes, see [Camera Error Codes](../errorcodes/errorcode-camera.md).
 
 | ID        | Error Message       |
 | --------------- | --------------- |
@@ -1096,7 +1096,7 @@ Starts configuration for the session.
 
 **Error codes**
 
-For details about the error codes, see [CameraErrorCode](#cameraerrorcode).
+For details about the error codes, see [Camera Error Codes](../errorcodes/errorcode-camera.md).
 
 | ID        | Error Message       |
 | --------------- | --------------- |
@@ -1129,7 +1129,7 @@ Commits the configuration for this **CaptureSession** instance. This API uses an
 
 **Error codes**
 
-For details about the error codes, see [CameraErrorCode](#cameraerrorcode).
+For details about the error codes, see [Camera Error Codes](../errorcodes/errorcode-camera.md).
 
 | ID        | Error Message       |
 | --------------- | --------------- |
@@ -1164,7 +1164,7 @@ Commits the configuration for this **CaptureSession** instance. This API uses a 
 
 **Error codes**
 
-For details about the error codes, see [CameraErrorCode](#cameraerrorcode).
+For details about the error codes, see [Camera Error Codes](../errorcodes/errorcode-camera.md).
 
 | ID        | Error Message       |
 | --------------- | --------------- |
@@ -1204,7 +1204,7 @@ Adds a [CameraInput](#camerainput) instance to the session.
 
 **Error codes**
 
-For details about the error codes, see [CameraErrorCode](#cameraerrorcode).
+For details about the error codes, see [Camera Error Codes](../errorcodes/errorcode-camera.md).
 
 | ID        | Error Message       |
 | --------------- | --------------- |
@@ -1244,7 +1244,7 @@ Removes a [CameraInput](#camerainput) instance from the session.
 
 **Error codes**
 
-For details about the error codes, see [CameraErrorCode](#cameraerrorcode).
+For details about the error codes, see [Camera Error Codes](../errorcodes/errorcode-camera.md).
 
 | ID        | Error Message       |
 | --------------- | --------------- |
@@ -1284,7 +1284,7 @@ Adds a [CameraOutput](#cameraoutput) instance to the session.
 
 **Error codes**
 
-For details about the error codes, see [CameraErrorCode](#cameraerrorcode).
+For details about the error codes, see [Camera Error Codes](../errorcodes/errorcode-camera.md).
 
 | ID        | Error Message       |
 | --------------- | --------------- |
@@ -1324,7 +1324,7 @@ Removes a [CameraOutput](#cameraoutput) instance from the session.
 
 **Error codes**
 
-For details about the error codes, see [CameraErrorCode](#cameraerrorcode).
+For details about the error codes, see [Camera Error Codes](../errorcodes/errorcode-camera.md).
 
 | ID        | Error Message       |
 | --------------- | --------------- |
@@ -1358,7 +1358,7 @@ Starts this **CaptureSession**. This API uses an asynchronous callback to return
 
 **Error codes**
 
-For details about the error codes, see [CameraErrorCode](#cameraerrorcode).
+For details about the error codes, see [Camera Error Codes](../errorcodes/errorcode-camera.md).
 
 | ID        | Error Message       |
 | --------------- | --------------- |
@@ -1393,7 +1393,7 @@ Starts this **CaptureSession**. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the error codes, see [CameraErrorCode](#cameraerrorcode).
+For details about the error codes, see [Camera Error Codes](../errorcodes/errorcode-camera.md).
 
 | ID        | Error Message       |
 | --------------- | --------------- |
@@ -1426,7 +1426,7 @@ Stops this **CaptureSession**. This API uses an asynchronous callback to return 
 
 **Error codes**
 
-For details about the error codes, see [CameraErrorCode](#cameraerrorcode).
+For details about the error codes, see [Camera Error Codes](../errorcodes/errorcode-camera.md).
 
 | ID        | Error Message       |
 | --------------- | --------------- |
@@ -1460,7 +1460,7 @@ Stops this **CaptureSession**. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the error codes, see [CameraErrorCode](#cameraerrorcode).
+For details about the error codes, see [Camera Error Codes](../errorcodes/errorcode-camera.md).
 
 | ID        | Error Message       |
 | --------------- | --------------- |
@@ -1492,7 +1492,7 @@ Releases this **CaptureSession**. This API uses an asynchronous callback to retu
 
 **Error codes**
 
-For details about the error codes, see [CameraErrorCode](#cameraerrorcode).
+For details about the error codes, see [Camera Error Codes](../errorcodes/errorcode-camera.md).
 
 | ID        | Error Message       |
 | --------------- | --------------- |
@@ -1526,7 +1526,7 @@ Releases this **CaptureSession**. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the error codes, see [CameraErrorCode](#cameraerrorcode).
+For details about the error codes, see [Camera Error Codes](../errorcodes/errorcode-camera.md).
 
 | ID        | Error Message       |
 | --------------- | --------------- |
@@ -1558,7 +1558,7 @@ Checks whether the device has flash. This API uses an asynchronous callback to r
 
 **Error codes**
 
-For details about the error codes, see [CameraErrorCode](#cameraerrorcode).
+For details about the error codes, see [Camera Error Codes](../errorcodes/errorcode-camera.md).
 
 | ID        | Error Message       |
 | --------------- | --------------- |
@@ -1597,7 +1597,7 @@ Checks whether a flash mode is supported.
 
 **Error codes**
 
-For details about the error codes, see [CameraErrorCode](#cameraerrorcode).
+For details about the error codes, see [Camera Error Codes](../errorcodes/errorcode-camera.md).
 
 | ID        | Error Message       |
 | --------------- | --------------- |
@@ -1641,7 +1641,7 @@ Before the setting, do the following checks:
 
 **Error codes**
 
-For details about the error codes, see [CameraErrorCode](#cameraerrorcode).
+For details about the error codes, see [Camera Error Codes](../errorcodes/errorcode-camera.md).
 
 | ID        | Error Message       |
 | --------------- | --------------- |
@@ -1674,7 +1674,7 @@ Obtains the flash mode in use.
 
 **Error codes**
 
-For details about the error codes, see [CameraErrorCode](#cameraerrorcode).
+For details about the error codes, see [Camera Error Codes](../errorcodes/errorcode-camera.md).
 
 | ID        | Error Message       |
 | --------------- | --------------- |
@@ -1713,7 +1713,7 @@ Checks whether an exposure mode is supported.
 
 **Error codes**
 
-For details about the error codes, see [CameraErrorCode](#cameraerrorcode).
+For details about the error codes, see [Camera Error Codes](../errorcodes/errorcode-camera.md).
 
 | ID        | Error Message       |
 | --------------- | --------------- |
@@ -1746,7 +1746,7 @@ Obtains the exposure mode in use.
 
 **Error codes**
 
-For details about the error codes, see [CameraErrorCode](#cameraerrorcode).
+For details about the error codes, see [Camera Error Codes](../errorcodes/errorcode-camera.md).
 
 | ID        | Error Message       |
 | --------------- | --------------- |
@@ -1785,7 +1785,7 @@ Sets an exposure mode for the device.
 
 **Error codes**
 
-For details about the error codes, see [CameraErrorCode](#cameraerrorcode).
+For details about the error codes, see [Camera Error Codes](../errorcodes/errorcode-camera.md).
 
 | ID        | Error Message       |
 | --------------- | --------------- |
@@ -1818,7 +1818,7 @@ Obtains the metering point of the device.
 
 **Error codes**
 
-For details about the error codes, see [CameraErrorCode](#cameraerrorcode).
+For details about the error codes, see [Camera Error Codes](../errorcodes/errorcode-camera.md).
 
 | ID        | Error Message       |
 | --------------- | --------------- |
@@ -1859,7 +1859,7 @@ The coordinate system is based on the horizontal device direction with the devic
 
 **Error codes**
 
-For details about the error codes, see [CameraErrorCode](#cameraerrorcode).
+For details about the error codes, see [Camera Error Codes](../errorcodes/errorcode-camera.md).
 
 | ID        | Error Message       |
 | --------------- | --------------- |
@@ -1893,7 +1893,7 @@ Obtains the exposure compensation values of the device.
 
 **Error codes**
 
-For details about the error codes, see [CameraErrorCode](#cameraerrorcode).
+For details about the error codes, see [Camera Error Codes](../errorcodes/errorcode-camera.md).
 
 | ID        | Error Message       |
 | --------------- | --------------- |
@@ -1928,7 +1928,7 @@ Before the setting, you are advised to use **[getExposureBiasRange](#getexposure
 
 **Error codes**
 
-For details about the error codes, see [CameraErrorCode](#cameraerrorcode).
+For details about the error codes, see [Camera Error Codes](../errorcodes/errorcode-camera.md).
 
 | ID        | Error Message       |
 | --------------- | --------------- |
@@ -1962,7 +1962,7 @@ Obtains the exposure value in use.
 
 **Error codes**
 
-For details about the error codes, see [CameraErrorCode](#cameraerrorcode).
+For details about the error codes, see [Camera Error Codes](../errorcodes/errorcode-camera.md).
 
 | ID        | Error Message       |
 | --------------- | --------------- |
@@ -2001,7 +2001,7 @@ Checks whether a focus mode is supported.
 
 **Error codes**
 
-For details about the error codes, see [CameraErrorCode](#cameraerrorcode).
+For details about the error codes, see [Camera Error Codes](../errorcodes/errorcode-camera.md).
 
 | ID        | Error Message       |
 | --------------- | --------------- |
@@ -2042,7 +2042,7 @@ Before the setting, use **[isFocusModeSupported](#isfocusmodesupported)** to che
 
 **Error codes**
 
-For details about the error codes, see [CameraErrorCode](#cameraerrorcode).
+For details about the error codes, see [Camera Error Codes](../errorcodes/errorcode-camera.md).
 
 | ID        | Error Message       |
 | --------------- | --------------- |
@@ -2075,7 +2075,7 @@ Obtains the focus mode in use.
 
 **Error codes**
 
-For details about the error codes, see [CameraErrorCode](#cameraerrorcode).
+For details about the error codes, see [Camera Error Codes](../errorcodes/errorcode-camera.md).
 
 | ID        | Error Message       |
 | --------------- | --------------- |
@@ -2116,7 +2116,7 @@ The coordinate system is based on the horizontal device direction with the devic
 
 **Error codes**
 
-For details about the error codes, see [CameraErrorCode](#cameraerrorcode).
+For details about the error codes, see [Camera Error Codes](../errorcodes/errorcode-camera.md).
 
 | ID        | Error Message       |
 | --------------- | --------------- |
@@ -2150,7 +2150,7 @@ Obtains the focal point of the device.
 
 **Error codes**
 
-For details about the error codes, see [CameraErrorCode](#cameraerrorcode).
+For details about the error codes, see [Camera Error Codes](../errorcodes/errorcode-camera.md).
 
 | ID        | Error Message       |
 | --------------- | --------------- |
@@ -2183,7 +2183,7 @@ Obtains the focal length of the device.
 
 **Error codes**
 
-For details about the error codes, see [CameraErrorCode](#cameraerrorcode).
+For details about the error codes, see [Camera Error Codes](../errorcodes/errorcode-camera.md).
 
 | ID        | Error Message       |
 | --------------- | --------------- |
@@ -2216,7 +2216,7 @@ Obtains the supported zoom ratio range.
 
 **Error codes**
 
-For details about the error codes, see [CameraErrorCode](#cameraerrorcode).
+For details about the error codes, see [Camera Error Codes](../errorcodes/errorcode-camera.md).
 
 | ID        | Error Message       |
 | --------------- | --------------- |
@@ -2255,7 +2255,7 @@ Sets a zoom ratio, with a maximum precision of two decimal places.
 
 **Error codes**
 
-For details about the error codes, see [CameraErrorCode](#cameraerrorcode).
+For details about the error codes, see [Camera Error Codes](../errorcodes/errorcode-camera.md).
 
 | ID        | Error Message       |
 | --------------- | --------------- |
@@ -2289,7 +2289,7 @@ Obtains the zoom ratio in use.
 
 **Error codes**
 
-For details about the error codes, see [CameraErrorCode](#cameraerrorcode).
+For details about the error codes, see [Camera Error Codes](../errorcodes/errorcode-camera.md).
 
 | ID        | Error Message       |
 | --------------- | --------------- |
@@ -2328,7 +2328,7 @@ Checks whether the specified video stabilization mode is supported.
 
 **Error codes**
 
-For details about the error codes, see [CameraErrorCode](#cameraerrorcode).
+For details about the error codes, see [Camera Error Codes](../errorcodes/errorcode-camera.md).
 
 | ID        | Error Message       |
 | --------------- | --------------- |
@@ -2361,7 +2361,7 @@ Obtains the video stabilization mode in use.
 
 **Error codes**
 
-For details about the error codes, see [CameraErrorCode](#cameraerrorcode).
+For details about the error codes, see [Camera Error Codes](../errorcodes/errorcode-camera.md).
 
 | ID        | Error Message       |
 | --------------- | --------------- |
@@ -2400,7 +2400,7 @@ Sets a video stabilization mode for the device.
 
 **Error codes**
 
-For details about the error codes, see [CameraErrorCode](#cameraerrorcode).
+For details about the error codes, see [Camera Error Codes](../errorcodes/errorcode-camera.md).
 
 | ID        | Error Message       |
 | --------------- | --------------- |
@@ -2487,7 +2487,7 @@ Starts to output preview streams. This API uses an asynchronous callback to retu
 
 **Error codes**
 
-For details about the error codes, see [CameraErrorCode](#cameraerrorcode).
+For details about the error codes, see [Camera Error Codes](../errorcodes/errorcode-camera.md).
 
 | ID        | Error Message       |
 | --------------- | --------------- |
@@ -2521,7 +2521,7 @@ Starts to output preview streams. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the error codes, see [CameraErrorCode](#cameraerrorcode).
+For details about the error codes, see [Camera Error Codes](../errorcodes/errorcode-camera.md).
 
 | ID        | Error Message       |
 | --------------- | --------------- |
@@ -2603,7 +2603,7 @@ Releases output resources. This API uses an asynchronous callback to return the 
 
 **Error codes**
 
-For details about the error codes, see [CameraErrorCode](#cameraerrorcode).
+For details about the error codes, see [Camera Error Codes](../errorcodes/errorcode-camera.md).
 
 | ID        | Error Message       |
 | --------------- | --------------- |
@@ -2637,7 +2637,7 @@ Releases output resources. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the error codes, see [CameraErrorCode](#cameraerrorcode).
+For details about the error codes, see [Camera Error Codes](../errorcodes/errorcode-camera.md).
 
 | ID        | Error Message       |
 | --------------- | --------------- |
@@ -2726,7 +2726,7 @@ previewOutput.on('error', (previewOutputError) => {
 
 addDeferredSurface(surfaceId: string): void
 
-Adds a surface for delayed preview. This API can run after **session.commitConfig()** is used to commit the configuration for a stream and **session.start()** is used to start the stream.
+Adds a surface for delayed preview. This API can run after **session.commitConfig()** or **session.start()** is called.
 
 **System API**: This is a system API.
 
@@ -2740,7 +2740,7 @@ Adds a surface for delayed preview. This API can run after **session.commitConfi
 
 **Error codes**
 
-For details about the error codes, see [CameraErrorCode](#cameraerrorcode).
+For details about the error codes, see [Camera Error Codes](../errorcodes/errorcode-camera.md).
 
 | ID        | Error Message       |
 | --------------- | --------------- |
@@ -2836,7 +2836,7 @@ Captures a photo with the default shooting parameters. This API uses an asynchro
 
 **Error codes**
 
-For details about the error codes, see [CameraErrorCode](#cameraerrorcode).
+For details about the error codes, see [Camera Error Codes](../errorcodes/errorcode-camera.md).
 
 | ID        | Error Message       |
 | --------------- | --------------- |
@@ -2871,7 +2871,7 @@ Captures a photo with the default shooting parameters. This API uses a promise t
 
 **Error codes**
 
-For details about the error codes, see [CameraErrorCode](#cameraerrorcode).
+For details about the error codes, see [Camera Error Codes](../errorcodes/errorcode-camera.md).
 
 | ID        | Error Message       |
 | --------------- | --------------- |
@@ -2905,7 +2905,7 @@ Captures a photo with the specified shooting parameters. This API uses an asynch
 
 **Error codes**
 
-For details about the error codes, see [CameraErrorCode](#cameraerrorcode).
+For details about the error codes, see [Camera Error Codes](../errorcodes/errorcode-camera.md).
 
 | ID        | Error Message       |
 | --------------- | --------------- |
@@ -2958,7 +2958,7 @@ Captures a photo with the specified shooting parameters. This API uses a promise
 
 **Error codes**
 
-For details about the error codes, see [CameraErrorCode](#cameraerrorcode).
+For details about the error codes, see [Camera Error Codes](../errorcodes/errorcode-camera.md).
 
 | ID        | Error Message       |
 | --------------- | --------------- |
@@ -3023,7 +3023,7 @@ Releases output resources. This API uses an asynchronous callback to return the 
 
 **Error codes**
 
-For details about the error codes, see [CameraErrorCode](#cameraerrorcode).
+For details about the error codes, see [Camera Error Codes](../errorcodes/errorcode-camera.md).
 
 | ID        | Error Message       |
 | --------------- | --------------- |
@@ -3057,7 +3057,7 @@ Releases output resources. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the error codes, see [CameraErrorCode](#cameraerrorcode).
+For details about the error codes, see [Camera Error Codes](../errorcodes/errorcode-camera.md).
 
 | ID        | Error Message       |
 | --------------- | --------------- |
@@ -3187,7 +3187,7 @@ This API takes effect after **CaptureSession.addOutput** and **CaptureSession.ad
 
 **Error codes**
 
-For details about the error codes, see [CameraErrorCode](#cameraerrorcode).
+For details about the error codes, see [Camera Error Codes](../errorcodes/errorcode-camera.md).
 
 | ID        | Error Message       |
 | --------------- | --------------- |
@@ -3233,7 +3233,7 @@ This API takes effect after **CaptureSession.addOutput** and **CaptureSession.ad
 
 **Error codes**
 
-For details about the error codes, see [CameraErrorCode](#cameraerrorcode).
+For details about the error codes, see [Camera Error Codes](../errorcodes/errorcode-camera.md).
 
 | ID        | Error Message       |
 | --------------- | --------------- |
@@ -3356,7 +3356,7 @@ Starts video recording. This API uses an asynchronous callback to return the res
 
 **Error codes**
 
-For details about the error codes, see [CameraErrorCode](#cameraerrorcode).
+For details about the error codes, see [Camera Error Codes](../errorcodes/errorcode-camera.md).
 
 | ID        | Error Message       |
 | --------------- | --------------- |
@@ -3391,7 +3391,7 @@ Starts video recording. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the error codes, see [CameraErrorCode](#cameraerrorcode).
+For details about the error codes, see [Camera Error Codes](../errorcodes/errorcode-camera.md).
 
 | ID        | Error Message       |
 | --------------- | --------------- |
@@ -3474,7 +3474,7 @@ Releases output resources. This API uses an asynchronous callback to return the 
 
 **Error codes**
 
-For details about the error codes, see [CameraErrorCode](#cameraerrorcode).
+For details about the error codes, see [Camera Error Codes](../errorcodes/errorcode-camera.md).
 
 | ID        | Error Message       |
 | --------------- | --------------- |
@@ -3508,7 +3508,7 @@ Releases output resources. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the error codes, see [CameraErrorCode](#cameraerrorcode).
+For details about the error codes, see [Camera Error Codes](../errorcodes/errorcode-camera.md).
 
 | ID        | Error Message       |
 | --------------- | --------------- |
@@ -3613,7 +3613,7 @@ Starts to output metadata. This API uses an asynchronous callback to return the 
 
 **Error codes**
 
-For details about the error codes, see [CameraErrorCode](#cameraerrorcode).
+For details about the error codes, see [Camera Error Codes](../errorcodes/errorcode-camera.md).
 
 | ID        | Error Message       |
 | --------------- | --------------- |
@@ -3648,7 +3648,7 @@ Starts to output metadata. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the error codes, see [CameraErrorCode](#cameraerrorcode).
+For details about the error codes, see [Camera Error Codes](../errorcodes/errorcode-camera.md).
 
 | ID        | Error Message       |
 | --------------- | --------------- |

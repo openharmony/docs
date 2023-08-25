@@ -850,7 +850,7 @@ Enumerates mouse pointer styles.
 | MIDDLE_BTN_SOUTH_EAST            | 36   | Scrolling south-east |![MID_Btn_South_East.png](./figures/MID_Btn_South_East.png)|
 | MIDDLE_BTN_SOUTH_WEST            | 37   | Scrolling south-west |![MID_Btn_South_West.png](./figures/MID_Btn_South_West.png)|
 | MIDDLE_BTN_NORTH_SOUTH_WEST_EAST | 38   | Moving as a cone in four directions|![MID_Btn_North_South_West_East.png](./figures/MID_Btn_North_South_West_East.png)|
-| HORIZONTAL_TEXT_CURSOR<sup>10+</sup> | 39 | Horizontal text selection|![Horizontal_Text_Cursor.png](./figures/Horizontal_Text_Cursor.png)|
+| HORIZONTAL_TEXT_CURSOR<sup>10+</sup> | 39 | Horizontal text cursor|![Horizontal_Text_Cursor.png](./figures/Horizontal_Text_Cursor.png)|
 | CURSOR_CROSS<sup>10+</sup> | 40 | Cross cursor|![Cursor_Cross.png](./figures/Cursor_Cross.png)|
 | CURSOR_CIRCLE<sup>10+</sup> | 41 | Circular cursor|![Cursor_Circle.png](./figures/Cursor_Circle.png)|
 
@@ -1724,5 +1724,359 @@ try {
   });
 } catch (error) {
   console.log(`getTouchpadRightClickType failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## pointer.setPointerSize<sup>10+</sup>
+
+setPointerSize(size: number, callback: AsyncCallback&lt;void&gt;): void
+
+Sets the pointer size. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.MultimodalInput.Input.Pointer
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name      | Type                       | Mandatory  | Description                                   |
+| -------- | ------------------------- | ---- | ------------------------------------- |
+| size     | number                    | Yes   | Pointer size. The value ranges from **1** to **7**. The default value is **1**.  |
+| callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
+
+**Example**
+
+```js
+try {
+  pointer.setPointerSize(1, (error) => {
+    if (error) {
+      console.log(`setPointerSize failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+      return;
+    }
+    console.log(`setPointerSize success`);
+  });
+} catch (error) {
+  console.log(`setPointerSize failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## pointer.setPointerSize<sup>10+</sup>
+
+setPointerSize(size: number): Promise&lt;void&gt;
+
+Sets the pointer size. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.MultimodalInput.Input.Pointer
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name   | Type    | Mandatory  | Description                                 |
+| ----- | ------ | ---- | ----------------------------------- |
+| size  | number | Yes   | Pointer size. The value ranges from **1** to **7**. The default value is **1**.|
+
+**Return value**
+
+| Name                 | Description              |
+| ------------------- | ---------------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
+
+**Example**
+
+```js
+try {
+  pointer.setPointerSize(3).then(() => {
+    console.log(`setPointerSize success`);
+  });
+} catch (error) {
+  console.log(`setPointerSize failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## pointer.setPointerSizeSync<sup>10+</sup>
+
+setPointerSizeSync(size: number): void;
+
+Sets the pointer size. This API returns the result synchronously.
+
+**System capability**: SystemCapability.MultimodalInput.Input.Pointer
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name   | Type    | Mandatory  | Description                                 |
+| ----- | ------ | ---- | ----------------------------------- |
+| size  | number | Yes   | Pointer size. The value ranges from **1** to **7**. The default value is **1**.|
+
+**Example**
+
+```js
+try {
+  pointer.setPointerSizeSync(5);
+  console.log(`setPointerSizeSync success`);
+} catch (error) {
+  console.log(`setPointerSizeSync failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## pointer.getPointerSize<sup>10+</sup>
+
+getPointerSize(callback: AsyncCallback&lt;number&gt;): void
+
+Obtains the pointer size. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.MultimodalInput.Input.Pointer
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name      | Type                         | Mandatory  | Description            |
+| -------- | --------------------------- | ---- | -------------- |
+| callback | AsyncCallback&lt;number&gt; | Yes   | Callback used to return the result.|
+
+**Example**
+
+```js
+try {
+  pointer.getPointerSize((error, size) => {
+    console.log(`getPointerSize success, size: ${JSON.stringify(size)}`);
+  });
+} catch (error) {
+  console.log(`getPointerSize failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## pointer.getPointerSize<sup>10+</sup>
+
+getPointerSize(): Promise&lt;number&gt;
+
+Obtains the pointer size. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.MultimodalInput.Input.Pointer
+
+**System API**: This is a system API.
+
+**Return value**
+
+| Name                   | Description                 |
+| --------------------- | ------------------- |
+| Promise&lt;number&gt; | Promise used to return the result.|
+
+**Example**
+
+```js
+try {
+  pointer.getPointerSize().then((size) => {
+    console.log(`getPointerSize success, size: ${JSON.stringify(size)}`);
+  });
+} catch (error) {
+  console.log(`getPointerSize failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## pointer.getPointerSizeSync<sup>10+</sup>
+
+getPointerSizeSync(): number
+
+Obtains the pointer size. This API returns the result synchronously.
+
+**System capability**: SystemCapability.MultimodalInput.Input.Pointer
+
+**System API**: This is a system API.
+
+**Return value**
+
+| Name                   | Description                 |
+| --------------------- | ------------------- |
+| number | Pointer size. |
+
+**Example**
+
+```js
+try {
+  let pointerSize = pointer.getPointerSizeSync();
+  console.log(`getPointerSizeSync success, pointerSize: ${JSON.stringify(pointerSize)}`);
+} catch (error) {
+  console.log(`getPointerSizeSync failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## pointer.setPointerColor<sup>10+</sup>
+
+setPointerColor(color: number, callback: AsyncCallback&lt;void&gt;): void
+
+Sets the pointer color. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.MultimodalInput.Input.Pointer
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name      | Type                       | Mandatory  | Description                                   |
+| -------- | ------------------------- | ---- | ------------------------------------- |
+| color     | number                    | Yes   | Pointer color. The default value is **black** (0x000000).  |
+| callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
+
+**Example**
+
+```js
+try {
+  pointer.setPointerColor(0xF6C800, (error) => {
+    if (error) {
+      console.log(`setPointerColor failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+      return;
+    }
+    console.log(`setPointerColor success`);
+  });
+} catch (error) {
+  console.log(`setPointerColor failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## pointer.setPointerColor<sup>10+</sup>
+
+setPointerColor(color: number): Promise&lt;void&gt;
+
+Sets the pointer color. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.MultimodalInput.Input.Pointer
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name   | Type    | Mandatory  | Description                                 |
+| ----- | ------ | ---- | ----------------------------------- |
+| color  | number | Yes   | Pointer color. The default value is **black** (0x000000).|
+
+**Return value**
+
+| Name                 | Description              |
+| ------------------- | ---------------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
+
+**Example**
+
+```js
+try {
+  pointer.setPointerColor(0xF6C800).then(() => {
+    console.log(`setPointerColor success`);
+  });
+} catch (error) {
+  console.log(`setPointerColor failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## pointer.setPointerColorSync<sup>10+</sup>
+
+setPointerColorSync(color: number): void;
+
+Sets the pointer color. This API returns the result synchronously.
+
+**System capability**: SystemCapability.MultimodalInput.Input.Pointer
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name   | Type    | Mandatory  | Description                                 |
+| ----- | ------ | ---- | ----------------------------------- |
+| color  | number | Yes   | Pointer color. The default value is **black** (0x000000).|
+
+**Example**
+
+```js
+try {
+  pointer.setPointerColorSync(0xF6C800);
+  console.log(`setPointerColorSync success`);
+} catch (error) {
+  console.log(`setPointerColorSync failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## pointer.getPointerColor<sup>10+</sup>
+
+getPointerColor(callback: AsyncCallback&lt;number&gt;): void
+
+Obtains the pointer color. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.MultimodalInput.Input.Pointer
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name      | Type                         | Mandatory  | Description            |
+| -------- | --------------------------- | ---- | -------------- |
+| callback | AsyncCallback&lt;number&gt; | Yes   | Callback used to return the result.|
+
+**Example**
+
+```js
+try {
+  pointer.getPointerColor((error, color) => {
+    console.log(`getPointerColor success, color: ${JSON.stringify(color)}`);
+  });
+} catch (error) {
+  console.log(`getPointerColor failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## pointer.getPointerColor<sup>10+</sup>
+
+getPointerColor(): Promise&lt;number&gt;
+
+Obtains the pointer color. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.MultimodalInput.Input.Pointer
+
+**System API**: This is a system API.
+
+**Return value**
+
+| Name                   | Description                 |
+| --------------------- | ------------------- |
+| Promise&lt;number&gt; | Promise used to return the result.|
+
+**Example**
+
+```js
+try {
+  pointer.getPointerColor().then((color) => {
+    console.log(`getPointerColor success, color: ${JSON.stringify(color)}`);
+  });
+} catch (error) {
+  console.log(`getPointerColor failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## pointer.getPointerColorSync<sup>10+</sup>
+
+getPointerColorSync(): number
+
+Obtains the pointer color. This API returns the result synchronously.
+
+**System capability**: SystemCapability.MultimodalInput.Input.Pointer
+
+**System API**: This is a system API.
+
+**Return value**
+
+| Name                   | Description                 |
+| --------------------- | ------------------- |
+| number | Pointer color.|
+
+**Example**
+
+```js
+try {
+  let pointerColor = pointer.getPointerColorSync();
+  console.log(`getPointerColorSync success, pointerColor: ${JSON.stringify(pointerColor)}`);
+} catch (error) {
+  console.log(`getPointerColorSync failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```

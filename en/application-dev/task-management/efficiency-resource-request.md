@@ -40,6 +40,7 @@ The table below lists the main APIs used for efficient resources. For details ab
 | reason | string | Yes| Reason for requesting the resource.|
 
 **Table 3** Efficiency resource types
+
 | Name| Value| Description|
 | -------- | -------- | -------- |
 | CPU | 1 | CPU resource. Such type of resource prevents an application from being suspended.|
@@ -49,7 +50,8 @@ The table below lists the main APIs used for efficient resources. For details ab
 | BLUETOOTH | 16 | Bluetooth resource. Such type of resource ensures that an application in the suspended state can be woken up by Bluetooth-related events.|
 | GPS | 32 | GPS resource. Such type of resource ensures that an application in the suspended state can be woken up by GPS-related events.|
 | AUDIO | 64 | Audio resource. Such type of resource prevents an application from being suspended when the application has an audio being played.|
-
+| RUNNING_LOCK<sup>10+</sup> | 128 | RUNNING_LOCK resource. Such type of resources prevents locks running in the background from being temporarily released when the application is suspended.|
+| SENSOR<sup>10+</sup> | 256 | Sensor resource. Such type of resources prevents sensor callbacks from being intercepted.|
 
 ## How to Develop
 

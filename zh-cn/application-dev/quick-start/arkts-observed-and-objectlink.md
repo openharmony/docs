@@ -15,7 +15,7 @@
 
 - 被\@Observed装饰的类，可以被观察到属性的变化；
 
-- 子组件中\@ObjectLink装饰器装饰的状态变量用于接收\@Observed装饰的类的实例，和父组件中对应的状态变量建立双向数据绑定。这个实例可以是数组中的被\@Observed装饰的项，或者是class object中是属性，这个属性同样也需要被\@Observed装饰。
+- 子组件中\@ObjectLink装饰器装饰的状态变量用于接收\@Observed装饰的类的实例，和父组件中对应的状态变量建立双向数据绑定。这个实例可以是数组中的被\@Observed装饰的项，或者是class object中的属性，这个属性同样也需要被\@Observed装饰。
 
 - 单独使用\@Observed是没有任何作用的，需要搭配\@ObjectLink或者[\@Prop](arkts-prop.md)使用。
 
@@ -35,7 +35,7 @@
 | ----------------- | ---------------------------------------- |
 | 装饰器参数             | 无                                        |
 | 同步类型              | 不与父组件中的任何类型同步变量。                         |
-| 允许装饰的变量类型         | 必须为被\@Observed装饰的class实例，必须指定类型。<br/>不支持简单类型，可以使用[\@Prop](arkts-prop.md)。<br/>\@ObjectLink的属性是可以改变的，但是变量的分配是不允许的，也就是说这个装饰器装饰变量是只读的，不能被改变。 |
+| 允许装饰的变量类型         | 必须为被\@Observed装饰的class实例，必须指定类型。<br/>不支持简单类型，可以使用[\@Prop](arkts-prop.md)。<br/>支持继承Date或者Array的class实例，示例见[观察变化](#观察变化)。<br/>\@ObjectLink的属性是可以改变的，但是变量的分配是不允许的，也就是说这个装饰器装饰变量是只读的，不能被改变。 |
 | 被装饰变量的初始值         | 不允许。                                     |
 
 \@ObjectLink装饰的数据为可读示例。
@@ -75,7 +75,7 @@ this.objLink= ...
 ## 观察变化和行为表现
 
 
-### 观察的变化
+### 观察变化
 
 \@Observed装饰的类，如果其属性为非简单类型，比如class、Object或者数组，也需要被\@Observed装饰，否则将观察不到其属性的变化。
 
@@ -121,6 +121,67 @@ this.b.a.c = 5
 
 - 如果数据源是数组，则可以观察到数组item的替换，如果数据源是class，可观察到class的属性的变化，示例请参考[对象数组](#对象数组)。
 
+继承Date的class时，可以观察到Date整体的赋值，同时可通过调用Date的接口`setFullYear`, `setMonth`, `setDate`, `setHours`, `setMinutes`, `setSeconds`, `setMilliseconds`, `setTime`, `setUTCFullYear`, `setUTCMonth`, `setUTCDate`, `setUTCHours`, `setUTCMinutes`, `setUTCSeconds`, `setUTCMilliseconds` 更新Date的属性。
+
+```ts
+@Observed
+class DateClass extends Date {
+  constructor(args: any) {
+    super(args)
+  }
+}
+
+@Observed
+class ClassB {
+  public a: DateClass;
+
+  constructor(a: DateClass) {
+    this.a = a;
+  }
+}
+
+@Component
+struct ViewA {
+  label: string = 'date';
+  @ObjectLink a: DateClass;
+
+  build() {
+    Column() {
+      Button(`child increase the day by 1`)
+        .onClick(() => {
+          this.a.setDate(this.a.getDate() + 1);
+        })
+      DatePicker({
+        start: new Date('1970-1-1'),
+        end: new Date('2100-1-1'),
+        selected: this.a
+      })
+    }
+  }
+}
+
+@Entry
+@Component
+struct ViewB {
+  @State b: ClassB = new ClassB(new DateClass('2023-1-1'));
+
+  build() {
+    Column() {
+      ViewA({ label: 'date', a: this.b.a })
+
+      Button(`parent update the new date`)
+        .onClick(() => {
+          this.b.a = new DateClass('2023-07-07');
+        })
+      Button(`ViewB: this.b = new ClassB(new DateClass('2023-08-20'))`)
+        .onClick(() => {
+          this.b = new ClassB(new DateClass('2023-08-20'));
+        })
+    }
+  }
+}
+```
+
 
 ### 框架行为
 
@@ -162,6 +223,26 @@ class ClassB {
     this.a = a;
   }
 }
+
+@Observed
+class ClassD {
+  public c: ClassC;
+
+  constructor(c: ClassC) {
+    this.c = c;
+  }
+}
+
+@Observed
+class ClassC extends ClassA {
+  public k: number;
+
+  constructor(k: number) {
+    // 调用父类方法对k进行处理
+    super(k);
+    this.k = k;
+  }
+}
 ```
 
 
@@ -169,60 +250,64 @@ class ClassB {
 
 ```ts
 @Component
-struct ViewA {
-  label: string = 'ViewA1';
-  @ObjectLink a: ClassA;
+struct ViewC {
+  label: string = 'ViewC1';
+  @ObjectLink c: ClassC;
 
   build() {
     Row() {
-      Button(`ViewA [${this.label}] this.a.c=${this.a.c} +1`)
-        .onClick(() => {
-          this.a.c += 1;
-        })
-    }
+      Column() {
+        Text(`ViewC [${this.label}] this.a.c = ${this.c.c}`)
+          .fontColor('#ffffffff')
+          .backgroundColor('#ff3fc4c4')
+          .height(50)
+          .borderRadius(25)
+        Button(`ViewC: this.c.c add 1`)
+          .backgroundColor('#ff7fcf58')
+          .onClick(() => {
+            this.c.c += 1;
+            console.log('this.c.c:' + this.c.c)
+          })
+      }
+    .width(300)
   }
+}
 }
 
 @Entry
 @Component
 struct ViewB {
   @State b: ClassB = new ClassB(new ClassA(0));
-
+  @State child : ClassD = new ClassD(new ClassC(0));
   build() {
     Column() {
-      ViewA({ label: 'ViewA #1', a: this.b.a })
-      ViewA({ label: 'ViewA #2', a: this.b.a })
-
-      Button(`ViewB: this.b.a.c+= 1`)
+      ViewC({ label: 'ViewC #3', c: this.child.c})
+      Button(`ViewC: this.child.c.c add 10`)
+        .backgroundColor('#ff7fcf58')
         .onClick(() => {
-          this.b.a.c += 1;
-        })
-      Button(`ViewB: this.b.a = new ClassA(0)`)
-        .onClick(() => {
-          this.b.a = new ClassA(0);
-        })
-      Button(`ViewB: this.b = new ClassB(ClassA(0))`)
-        .onClick(() => {
-          this.b = new ClassB(new ClassA(0));
+          this.child.c.c += 10
+          console.log('this.child.c.c:' + this.child.c.c)
         })
     }
   }
 }
 ```
 
+被@Observed装饰的ClassC类，可以观测到继承基类的属性的变化。
+
 
 ViewB中的事件句柄：
 
 
-- this.b.a = new ClassA(0) 和this.b = new ClassB(new ClassA(0))： 对\@State装饰的变量b和其属性的修改。
+- this.child.c = new ClassA(0) 和this.b = new ClassB(new ClassA(0))： 对\@State装饰的变量b和其属性的修改。
 
-- this.b.a.c = ... ：该变化属于第二层的变化，[@State](arkts-state.md#观察变化)无法观察到第二层的变化，但是ClassA被\@Observed装饰，ClassA的属性c的变化可以被\@ObjectLink观察到。
-
-
-ViewA中的事件句柄：
+- this.child.c.c = ... ：该变化属于第二层的变化，[@State](arkts-state.md#观察变化)无法观察到第二层的变化，但是ClassA被\@Observed装饰，ClassA的属性c的变化可以被\@ObjectLink观察到。
 
 
-- this.a.c += 1：对\@ObjectLink变量a的修改，将触发Button组件的刷新。\@ObjectLink和\@Prop不同，\@ObjectLink不拷贝来自父组件的数据源，而是在本地构建了指向其数据源的引用。
+ViewC中的事件句柄：
+
+
+- this.c.c += 1：对\@ObjectLink变量a的修改，将触发Button组件的刷新。\@ObjectLink和\@Prop不同，\@ObjectLink不拷贝来自父组件的数据源，而是在本地构建了指向其数据源的引用。
 
 - \@ObjectLink变量是只读的，this.a = new ClassA(...)是不允许的，因为一旦赋值操作发生，指向数据源的引用将被重置，同步将被打断。
 

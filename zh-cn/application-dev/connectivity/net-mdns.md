@@ -28,9 +28,13 @@ MDNS管理的典型场景有：
 | ohos.net.mdns.DiscoveryService | startSearchingMDNS(): void | 开始搜索局域网内的mDNS服务。 |
 | ohos.net.mdns.DiscoveryService | stopSearchingMDNS(): void | 停止搜索局域网内的mDNS服务。 |
 | ohos.net.mdns.DiscoveryService | on(type: 'discoveryStart', callback: Callback<{serviceInfo: LocalServiceInfo, errorCode?: MdnsError}>): void | 订阅开启监听mDNS服务的通知。 |
+| ohos.net.mdns.DiscoveryService | off(type: 'discoveryStart', callback: Callback<{serviceInfo: LocalServiceInfo, errorCode?: MdnsError}>): void | 取消开启监听mDNS服务的通知。 |
 | ohos.net.mdns.DiscoveryService | on(type: 'discoveryStop', callback: Callback<{serviceInfo: LocalServiceInfo, errorCode?: MdnsError}>): void | 订阅停止监听mDNS服务的通知。 |
+| ohos.net.mdns.DiscoveryService | off(type: 'discoveryStop', callback: Callback<{serviceInfo: LocalServiceInfo, errorCode?: MdnsError}>): void | 取消停止监听mDNS服务的通知。 |
 | ohos.net.mdns.DiscoveryService | on(type: 'serviceFound', callback: Callback\<LocalServiceInfo>): void | 订阅发现mDNS服务的通知。 |
+| ohos.net.mdns.DiscoveryService | off(type: 'serviceFound', callback: Callback\<LocalServiceInfo>): void | 取消发现mDNS服务的通知。 |
 | ohos.net.mdns.DiscoveryService | on(type: 'serviceLost', callback: Callback\<LocalServiceInfo>): void | 订阅移除mDNS服务的通知。 |
+| ohos.net.mdns.DiscoveryService | off(type: 'serviceLost', callback: Callback\<LocalServiceInfo>): void | 取消移除mDNS服务的通知。 |
 
 ## 管理本地服务
 
@@ -98,6 +102,7 @@ mdns.removeLocalService(context, localServiceInfo, function (error, data) {
 4. 订阅mDNS服务发现相关状态变化。
 5. 启动搜索局域网内的mDNS服务。
 6. 停止搜索局域网内的mDNS服务。
+7. 取消订阅的mdns服务。
 
 ```js
 // 从@ohos.net.mdns中导入mdns命名空间
@@ -139,4 +144,18 @@ discoveryService.startSearchingMDNS();
 
 // 停止搜索局域网内的mDNS服务
 discoveryService.stopSearchingMDNS();
+
+// 取消订阅的mdns服务
+discoveryService.off('discoveryStart', (data) => {
+  console.log(JSON.stringify(data));
+});
+discoveryService.off('discoveryStop', (data) => {
+  console.log(JSON.stringify(data));
+});
+discoveryService.off('serviceFound', (data) => {
+  console.log(JSON.stringify(data));
+});
+discoveryService.off('serviceLost', (data) => {
+  console.log(JSON.stringify(data));
+});
 ```

@@ -2520,7 +2520,7 @@ Allows an application to manage the upload sessions.
 
 ## ohos.permission.PREPARE_APP_TERMINATE
 
-Allows an application to perform customized pre-termination actions before being terminated.
+Allows an application to perform customized actions before being terminated.
 
 **Permission level**: normal
 
@@ -2725,6 +2725,18 @@ Allows an application to uninstall applications.
 Allows an application to restore pre-installed applications.
 
 **Permission level**: system_core
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: TRUE
+
+**Start version**: 10
+
+## ohos.permission.GET_DOMAIN_ACCOUNTS
+
+Allows an application to obtain domain account information.
+
+**Permission level**: system_basic
 
 **Authorization mode**: system_grant
 

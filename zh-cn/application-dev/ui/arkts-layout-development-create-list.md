@@ -46,7 +46,7 @@ List除了提供垂直和水平布局能力、超出屏幕时可以滚动的自�
 
 列表的主轴方向是指子组件列的排列方向，也是列表的滚动方向。垂直于主轴的轴称为交叉轴，其方向与主轴方向相互垂直。
 
-如下图所示，垂直列表的主轴是垂直方向，交叉轴是水平方向；水平列表的主轴是水平方向，交叉轴是水平方向。
+如下图所示，垂直列表的主轴是垂直方向，交叉轴是水平方向；水平列表的主轴是水平方向，交叉轴是垂直方向。
 
   **图4** 列表的主轴与交叉轴  
 
@@ -653,8 +653,6 @@ Badge({
 
 3. 监听手指抬起事件，若此时移动达到最大值，则触发数据加载并显示刷新视图，加载完成后将此视图隐藏。
 
-下拉刷新与上拉加载的具体实现可参考Codelab：[新闻数据加载](https://gitee.com/openharmony/codelabs/tree/master/NetworkManagement/NewsDataArkTS)。若开发者希望快速实现此功能，也可使用三方组件[PullToRefresh](https://gitee.com/openharmony-sig/PullToRefresh)。
-
 
 ## 编辑列表
 
@@ -847,3 +845,5 @@ List() {
 - [List组件的使用之商品列表（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/List)
 
 - [List组件的使用之设置项（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/List_HDC)
+
+- [PullToRefresh](https://gitee.com/openharmony-sig/PullToRefresh)

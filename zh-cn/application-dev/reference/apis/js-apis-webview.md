@@ -254,20 +254,20 @@ struct WebComponent {
         .onClick(() => {
           // 使用本侧端口发送消息给HTML5
           try {
-              console.log("In eTS side send true start");
+              console.log("In ArkTS side send true start");
               if (this.nativePort) {
                   this.message.setString("helloFromEts");
                   this.nativePort.postMessageEventExt(this.message);
               }
           }
           catch (error) {
-              console.log("In eTS side send message catch error:" + error.code + ", msg:" + error.message);
+              console.log("In ArkTS side send message catch error:" + error.code + ", msg:" + error.message);
           }
         })
 
       Web({ src: $rawfile('index.html'), controller: this.controller })
       .onPageEnd((e)=>{
-        console.log("In eTS side message onPageEnd init mesaage channel");
+        console.log("In ArkTS side message onPageEnd init mesaage channel");
         // 1. 创建消息端口
         this.ports = this.controller.createWebMessagePorts(true);
         // 2. 发送端口1到HTML5
@@ -276,10 +276,10 @@ struct WebComponent {
         this.nativePort = this.ports[0];
         // 4. 设置回调函数
         this.nativePort.onMessageEventExt((result) => {
-            console.log("In eTS side got message");
+            console.log("In ArkTS side got message");
             try {
                 var type = result.getType();
-                console.log("In eTS side getType:" + type);
+                console.log("In ArkTS side getType:" + type);
                 switch (type) {
                     case web_webview.WebMessageType.STRING: {
                         this.msg1 = "result type:" + typeof (result.getString());
@@ -4317,6 +4317,107 @@ export default class EntryAbility extends UIAbility {
         globalThis.abilityWant = want
         console.log("EntryAbility onCreate done")
     }
+}
+```
+
+### setCustomUserAgent<sup>10+</sup>
+
+setCustomUserAgent(userAgent: string): void
+
+设置自定义用户代理。
+
+**系统能力：**  SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名          | 类型    |  必填  | 说明                                            |
+| ---------------| ------- | ---- | ------------- |
+| userAgent      | string  | 是   | 用户自定义代理信息。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md).
+
+| 错误码ID  | 错误信息                                                      |
+| -------- | ------------------------------------------------------------ |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  @State userAgent: string = 'test'
+
+  build() {
+    Column() {
+      Button('setCustomUserAgent')
+        .onClick(() => {
+          try {
+            this.controller.setCustomUserAgent(this.userAgent);
+          } catch (error) {
+            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### getCustomUserAgent<sup>10+</sup>
+
+getCustomUserAgent(): string
+
+获取自定义用户代理。
+
+**系统能力：**  SystemCapability.Web.Webview.Core
+
+**返回值：**
+
+| 类型   | 说明                      |
+| ------ | ------------------------- |
+| string | 用户自定义代理信息。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md).
+
+| 错误码ID  | 错误信息                                                      |
+| -------- | ------------------------------------------------------------ |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  @State userAgent: string = ''
+
+  build() {
+    Column() {
+      Button('getCustomUserAgent')
+        .onClick(() => {
+          try {
+            this.userAgent = this.controller.getCustomUserAgent();
+            console.log("userAgent: " + this.userAgent);
+          } catch (error) {
+            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
 }
 ```
 

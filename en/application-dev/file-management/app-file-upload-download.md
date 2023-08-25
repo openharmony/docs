@@ -1,6 +1,6 @@
 # Uploading and Downloading an Application File
 
-This topic describes how to upload an application file to a network server and download a network resource file from a network server to a local application directory.
+This topic describes how to enable an application to upload an application file to a network server and download a network resource file from a network server to a local application directory.
 
 ## Uploading an Application File
 
@@ -10,7 +10,7 @@ You can use [ohos.request](../reference/apis/js-apis-request.md) **uploadFile()*
 >
 > Currently, only the files in the **cache/** directories (**cacheDir**) can be uploaded.
 >
-> <br>The **ohos.permission.INTERNET** permission is required for using **ohos.request**. For details about how to apply for a permission, see [Applying for Permissions](../security/accesstoken-guidelines.md).
+> The **ohos.permission.INTERNET** permission is required for using **ohos.request**. For details about how to apply for a permission, see [Applying for Permissions](../security/accesstoken-guidelines.md).
 
 The following example demonstrates how to upload a file in the **cache** directory of an application to a network server.
 
@@ -62,13 +62,13 @@ try {
 
 ## Downloading a Network Resource File to the Application File Directory
 
-You can use [ohos.request](../reference/apis/js-apis-request.md) **downloadFile()** to download network resource files to a local application directory. You can use the ([ohos.file.fs](../reference/apis/js-apis-file-fs.md) APIs to access the downloaded files. For details, see [Accessing Application Files](app-file-access.md). The system service proxy implements the download.
+You can use [ohos.request](../reference/apis/js-apis-request.md) **downloadFile()** to download network resource files to a local application directory. You can use the [ohos.file.fs](../reference/apis/js-apis-file-fs.md) APIs to access the downloaded files in the same way as [accessing application files](app-file-access.md). The system service proxy implements the download.
 
 > **NOTE**
 >
 > Currently, network resource files can be downloaded only to an application file directory.
 >
-> <br>The **ohos.permission.INTERNET** permission is required for using **ohos.request**. For details about how to apply for a permission, see [Applying for Permissions](../security/accesstoken-guidelines.md).
+> The **ohos.permission.INTERNET** permission is required for using **ohos.request**. For details about how to apply for a permission, see [Applying for Permissions](../security/accesstoken-guidelines.md).
 
 The following example demonstrates how to download a network resource file to a local application file directory.
 

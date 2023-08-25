@@ -171,7 +171,7 @@ The following uses a single KV store as an example to describe how to implement 
          return;
        }
        console.info('Succeeded in getting KVStore.');
-       // Perform related data operations.
+       // Before performing related data operations, obtain a KV store instance.
      });
    } catch (e) {
      console.error(`An unexpected error occurred. Code:${e.code},message:${e.message}`);

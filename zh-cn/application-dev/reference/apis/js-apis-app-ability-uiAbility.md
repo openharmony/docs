@@ -6,8 +6,8 @@ UIAbility是包含UI界面的应用组件，提供组件创建、销毁、前后
 - [Callee](#callee)：UIAbility的内部对象，CalleeAbility(被调用者)可以通过Callee与Caller进行通信。
 
 > **说明：**
-> 
-> 本模块首批接口从API version 9 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。  
+>
+> 本模块首批接口从API version 9 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 > 本模块接口仅可在Stage模型下使用。
 
 ## 导入模块
@@ -29,7 +29,7 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 
 ## UIAbility.onCreate
 
-onCreate(want: Want, param: AbilityConstant.LaunchParam): void;
+onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void;
 
 UIAbility创建时回调，执行初始化业务逻辑操作。
 
@@ -46,7 +46,7 @@ UIAbility创建时回调，执行初始化业务逻辑操作。
 
   ```ts
   class MyUIAbility extends UIAbility {
-      onCreate(want, param) {
+      onCreate(want, launchParam) {
           console.log('onCreate, want: ${want.abilityName}');
       }
   }
@@ -68,7 +68,7 @@ onWindowStageCreate(windowStage: window.WindowStage): void
 | windowStage | [window.WindowStage](js-apis-window.md#windowstage9) | 是 | WindowStage相关信息。 |
 
 **示例：**
-    
+
   ```ts
   class MyUIAbility extends UIAbility {
       onWindowStageCreate(windowStage) {
@@ -87,7 +87,7 @@ onWindowStageDestroy(): void
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
 **示例：**
-    
+
   ```ts
   class MyUIAbility extends UIAbility {
       onWindowStageDestroy() {
@@ -112,7 +112,7 @@ onWindowStageRestore(windowStage: window.WindowStage): void
 | windowStage | [window.WindowStage](js-apis-window.md#windowstage9) | 是 | WindowStage相关信息。 |
 
 **示例：**
-    
+
   ```ts
   class MyUIAbility extends UIAbility {
       onWindowStageRestore(windowStage) {
@@ -131,7 +131,7 @@ UIAbility生命周期回调，在销毁时回调，执行资源清理等操作�
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
 **示例：**
-    
+
 
   ```ts
   class MyUIAbility extends UIAbility {
@@ -161,7 +161,7 @@ UIAbility生命周期回调，当应用从后台转到前台时触发。
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
 **示例：**
-    
+
   ```ts
   class MyUIAbility extends UIAbility {
       onForeground() {
@@ -180,7 +180,7 @@ UIAbility生命周期回调，当应用从前台转到后台时触发。
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
 **示例：**
-    
+
   ```ts
   class MyUIAbility extends UIAbility {
       onBackground() {
@@ -211,7 +211,7 @@ onContinue(wantParam: { [key: string]: Object }): AbilityConstant.OnContinueResu
 | [AbilityConstant.OnContinueResult](js-apis-app-ability-abilityConstant.md#abilityconstantoncontinueresult) | 继续的结果。 |
 
 **示例：**
-    
+
   ```ts
   import AbilityConstant from '@ohos.app.ability.AbilityConstant';
   class MyUIAbility extends UIAbility {
@@ -226,7 +226,7 @@ onContinue(wantParam: { [key: string]: Object }): AbilityConstant.OnContinueResu
 
 ## UIAbility.onNewWant
 
-onNewWant(want: Want, launchParams: AbilityConstant.LaunchParam): void;
+onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam): void;
 
 当传入新的Want，ability再次被拉起时会回调执行该方法。
 
@@ -237,15 +237,15 @@ onNewWant(want: Want, launchParams: AbilityConstant.LaunchParam): void;
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-app-ability-want.md) | 是 | Want类型参数，如ability名称，包名等。 |
-| launchParams | [AbilityConstant.LaunchParam](js-apis-app-ability-abilityConstant.md#abilityconstantlaunchparam) | 是 | UIAbility启动的原因、上次异常退出的原因信息。 |
+| launchParam | [AbilityConstant.LaunchParam](js-apis-app-ability-abilityConstant.md#abilityconstantlaunchparam) | 是 | UIAbility启动的原因、上次异常退出的原因信息。 |
 
 **示例：**
-    
+
   ```ts
   class MyUIAbility extends UIAbility {
-      onNewWant(want, launchParams) {
+      onNewWant(want, launchParam) {
           console.log('onNewWant, want: ${want.abilityName}');
-          console.log('onNewWant, launchParams: ${JSON.stringify(launchParams)}');
+          console.log('onNewWant, launchParam: ${JSON.stringify(launchParam)}');
       }
   }
   ```
@@ -265,7 +265,7 @@ onDump(params: Array\<string>): Array\<string>;
 | params | Array\<string> | 是 | 表示命令形式的参数。|
 
 **示例：**
-    
+
   ```ts
   class MyUIAbility extends UIAbility {
       onDump(params) {
@@ -315,7 +315,7 @@ class MyUIAbility extends UIAbility {
 
 onShare(wantParam:{ [key: string]: Object }): void;
 
-ability设置分享数据，ohos.extra.param.key.shareUrl表示服务的在线地址。
+在跨端分享场景下，在UIAbility中设置分享方设备要分享的数据。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -323,10 +323,10 @@ ability设置分享数据，ohos.extra.param.key.shareUrl表示服务的在线�
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| wantParam | {[key:&nbsp;string]:&nbsp;Object} | 是 | want相关参数。 |
+| wantParam | {[key:&nbsp;string]:&nbsp;Object} | 是 | 待分享的数据。 |
 
 **示例：**
-    
+
   ```ts
 import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 class MyUIAbility extends UIAbility {
@@ -419,7 +419,7 @@ call(method: string, data: rpc.Parcelable): Promise&lt;void&gt;;
 以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
 
 **示例：**
-    
+
   ```ts
   class MyMessageAble{ // 自定义的Parcelable数据结构
     name:''
@@ -569,7 +569,7 @@ release(): void;
 以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
 
 **示例：**
-    
+
   ```ts
   let caller;
   export default class MainUIAbility extends UIAbility {
@@ -615,7 +615,7 @@ release(): void;
 | callback | [OnReleaseCallback](#onreleasecallback) | 是 | 返回onRelease回调结果。 |
 
 **示例：**
-    
+
   ```ts
   let caller;
   export default class MainUIAbility extends UIAbility {
@@ -663,7 +663,7 @@ onRemoteStateChange(callback: OnRemoteStateChangeCallback): void;
 以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
 
 **示例：**
-    
+
   ```ts
   import UIAbility from '@ohos.app.ability.UIAbility';
   import window from '@ohos.window';
@@ -717,7 +717,7 @@ on(type: 'release', callback: OnReleaseCallback): void;
 以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
 
 **示例：**
-    
+
   ```ts
   let caller;
   export default class MainUIAbility extends UIAbility {
@@ -764,7 +764,7 @@ off(type: 'release', callback: OnReleaseCallback): void;
 | 401 | If the input parameter is not valid parameter. |
 
 **示例：**
-    
+
   ```ts
   let caller;
   export default class MainUIAbility extends UIAbility {
@@ -806,7 +806,7 @@ off(type: 'release'): void;
 | type | string | 是 | 监听releaseCall事件，固定为'release'。 |
 
 **示例：**
-    
+
   ```ts
   let caller;
   export default class MainUIAbility extends UIAbility {
@@ -823,7 +823,7 @@ off(type: 'release'): void;
             };
             caller.on('release', onReleaseCallBack);
             caller.off('release');
-          } catch (error) {  
+          } catch (error) {
             console.error('Caller.on or Caller.off catch error, error.code: ${error.code}, error.message: ${error.message}');
           }
       }).catch((err) => {
@@ -929,7 +929,7 @@ off(method: string): void;
 
 
 **示例：**
-    
+
   ```ts
   let method = 'call_Function';
   export default class MainUIAbility extends UIAbility {
