@@ -103,7 +103,7 @@ getLauncherAbilityInfo(bundleName: string, userId: number) : Promise<Array\<[Lau
 
 **示例：**
 
-```typescript
+```ts
 import launcherBundleManager from '@ohos.bundle.launcherBundleManager';
 import { BusinessError } from '@ohos.base';
 
@@ -155,7 +155,7 @@ getLauncherAbilityInfoSync(bundleName: string, userId: number) : Array\<[Launche
 
 **示例：**
 
-```typescript
+```ts
 import launcherBundleManager from '@ohos.bundle.launcherBundleManager';
 
 try {
