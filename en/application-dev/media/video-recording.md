@@ -123,11 +123,30 @@ Refer to the sample code below to complete the process of starting, pausing, res
 
 ```ts
 import media from '@ohos.multimedia.media'
+import { BusinessError } from '@ohos.base';
+
 const TAG = 'VideoRecorderDemo:'
+
+class AVProfile {
+  fileFormat: media.ContainerFormatType;
+  videoBitrate: number;
+  videoCodec: media.CodecMimeType;
+  videoFrameWidth: number;
+  videoFrameHeight: number;
+  videoFrameRate: number;
+}
+
+class AVConfig {
+  videoSourceType: media.VideoSourceType;
+  profile: AVProfile;
+  url: string;
+  rotation: number;
+}
+
 export class VideoRecorderDemo {
-  private avRecorder;
-  private videoOutSurfaceId;
-  private avProfile = {
+  private avRecorder: media.AVRecorder;
+  private videoOutSurfaceId: string;
+  private avProfile: AVProfile = {
     fileFormat: media.ContainerFormatType.CFT_MPEG_4, // Video file encapsulation format. Only MP4 is supported.
     videoBitrate : 100000, // Video bit rate.
     videoCodec: media.CodecMimeType.VIDEO_AVC, // Video file encoding format. Both MPEG-4 and AVC are supported.
@@ -135,7 +154,7 @@ export class VideoRecorderDemo {
     videoFrameHeight: 480, // Video frame height.
     videoFrameRate: 30 // Video frame rate.
   }
-  private avConfig = {
+  private avConfig: AVConfig = {
     videoSourceType: media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_YUV, // Video source type. YUV and ES are supported.
     profile : this.avProfile,
     url: 'fd://35', // Create, read, and write a file by referring to the sample code in Application File Access and Management.
@@ -145,11 +164,11 @@ export class VideoRecorderDemo {
   // Set AVRecorder callback functions.
   setAvRecorderCallback() {
     // Callback function for state changes.
-    this.avRecorder.on('stateChange', (state, reason) => {
+    this.avRecorder.on('stateChange', (state: media.AVRecorderState, reason: media.StateChangeReason) => {
       console.info(TAG + 'current state is: ' + state);
     })
     // Callback function for errors.
-    this.avRecorder.on('error', (err) => {
+    this.avRecorder.on('error', (err: BusinessError) => {
       console.error(TAG + 'error ocConstantSourceNode, error message is ' + err);
     })
   }
@@ -182,13 +201,13 @@ export class VideoRecorderDemo {
     // 2. Obtain the file descriptor of the recorded file. The obtained file descriptor is passed in to the URL in avConfig. The implementation is omitted here.
     // 3. Set recording parameters to complete the preparations.
     await this.avRecorder.prepare(this.avConfig);
-    this.videoOutSurfaceId = await this.avRecorder.getInputSurface(); 
+    this.videoOutSurfaceId = await this.avRecorder.getInputSurface();
     // 4. Complete camera-related preparations.
     await this.prepareCamera();
     // 5. Start the camera stream output.
     await this.startCameraOutput();
     // 6. Start recording.
-    await this.videoRecorder.start();
+    await this.avRecorder.start();
   }
 
   // Process of pausing recording.
@@ -210,7 +229,7 @@ export class VideoRecorderDemo {
   async stopRecordingProcess() {
     // 1. Stop recording.
     if (this.avRecorder.state === 'started'
-    || this.avRecorder.state ==='paused') { // stop() can be called only when the AVRecorder is in the started or paused state.
+      || this.avRecorder.state ==='paused') { // stop() can be called only when the AVRecorder is in the started or paused state.
       await this.avRecorder.stop();
       await this.stopCameraOutput();
     }
