@@ -117,10 +117,10 @@ getRemainingDelayTime(requestId: number): Promise&lt;number&gt;
 
 ```js
 let delayInfo = backgroundTaskManager.requestSuspendDelay("test", () => {});
-backgroundTaskManager.getRemainingDelayTime(delayInfo.requestId).then((res:number) => {
-console.log('promise => Operation getRemainingDelayTime succeeded. Data: ' + JSON.stringify(res));
+    backgroundTaskManager.getRemainingDelayTime(delayInfo.requestId).then((res:number) => {
+    console.log('promise => Operation getRemainingDelayTime succeeded. Data: ' + JSON.stringify(res));
 }).catch((err : BusinessError) => {
-console.log('promise => Operation getRemainingDelayTime failed. Cause: ' + err.code);
+    console.log('promise => Operation getRemainingDelayTime failed. Cause: ' + err.code);
 })
 ```
 
@@ -287,7 +287,7 @@ let wantAgentInfo : wantAgent.WantAgentInfo = {
   wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 };
 
-wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj : WantAgent) => {
+wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj: WantAgent) => {
   backgroundTaskManager.startBackgroundRunning(featureAbility.getContext(),
     backgroundTaskManager.BackgroundMode.LOCATION, wantAgentObj).then(() => {
     console.info("Operation startBackgroundRunning succeeded");
