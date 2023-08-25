@@ -1158,7 +1158,7 @@ try {
             console.error(`batchInsert error: code: ${err.code}, message: ${err.message} `);
             return;
         }
-    console.info("batchInsert succeed, data : " + data);
+        console.info("batchInsert succeed, data : " + data);
     });
 } catch (err) {
     console.error(`batchInsert error: code: ${err.code}, message: ${err.message} `);
