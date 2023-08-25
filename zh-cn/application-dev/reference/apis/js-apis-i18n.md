@@ -1123,10 +1123,7 @@ constructor(country: string, options?: PhoneNumberFormatOptions)
 
 **示例：**
   ```ts
-  interface PhoneNumberFormatOptions {
-    type?: string;
-  }
-  let option: PhoneNumberFormatOptions = {type: "E164"};
+  let option: I18n.PhoneNumberFormatOptions = {type: "E164"};
   let phoneNumberFormat: I18n.PhoneNumberFormat = new I18n.PhoneNumberFormat("CN", option);
   ```
 
@@ -2210,12 +2207,8 @@ static unitConvert(fromUnit: UnitInfo, toUnit: UnitInfo, value: number, locale: 
 
 **示例：**
   ```ts
-  interface UnitInfo {
-    unit: string;
-    measureSystem: string;
-  }
-  let fromUnit: UnitInfo = {unit: "cup", measureSystem: "US"};
-  let toUnit: UnitInfo = {unit: "liter", measureSystem: "SI"};
+  let fromUnit: I18n.UnitInfo = {unit: "cup", measureSystem: "US"};
+  let toUnit: I18n.UnitInfo = {unit: "liter", measureSystem: "SI"};
   let res: string = I18n.I18NUtil.unitConvert(fromUnit, toUnit, 1000, "en-US", "long"); // res = 236.588 liters
   ```
 
@@ -2369,16 +2362,10 @@ getLanguageInfoArray(languages: Array&lt;string&gt;, options?: SortOptions): Arr
   ```ts
   import { BusinessError } from '@ohos.base';
   
-  interface SortOptions {
-    locale?: string;
-    isUseLocalName?: boolean;
-    isSuggestedFirst?: boolean;
-  }
-  
   // 当系统语言为zh-Hans，系统地区为CN，系统Locale为zh-Hans-CN时
   let systemLocaleManager: I18n.SystemLocaleManager = new I18n.SystemLocaleManager();
   let languages: string[] = ["zh-Hans", "en-US", "pt", "ar"];
-  let sortOptions: SortOptions = {locale: "zh-Hans-CN", isUseLocalName: true, isSuggestedFirst: true};
+  let sortOptions: I18n.SortOptions = {locale: "zh-Hans-CN", isUseLocalName: true, isSuggestedFirst: true};
   try {
       // 排序后的语言顺序为: [zh-Hans, en-US, pt, ar]
       let sortedLanguages: Array<I18n.LocaleItem> = systemLocaleManager.getLanguageInfoArray(languages, sortOptions);
@@ -2424,16 +2411,10 @@ getRegionInfoArray(regions: Array&lt;string&gt;, options?: SortOptions): Array&l
   ```ts
   import { BusinessError } from '@ohos.base';
   
-  interface SortOptions {
-    locale?: string;
-    isUseLocalName?: boolean;
-    isSuggestedFirst?: boolean;
-  }
-  
   // 当系统语言为zh-Hans，系统地区为CN，系统Locale为zh-Hans-CN时
   let systemLocaleManager: I18n.SystemLocaleManager = new I18n.SystemLocaleManager();
   let regions: string[] = ["CN", "US", "PT", "EG"];
-  let sortOptions: SortOptions = {locale: "zh-Hans-CN", isUseLocalName: false, isSuggestedFirst: true};
+  let sortOptions: I18n.SortOptions = {locale: "zh-Hans-CN", isUseLocalName: false, isSuggestedFirst: true};
   try {
       // 排序后的地区顺序为: [CN, EG, US, PT]
       let sortedRegions: Array<I18n.LocaleItem> = systemLocaleManager.getRegionInfoArray(regions, sortOptions);
