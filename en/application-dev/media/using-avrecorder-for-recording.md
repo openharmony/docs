@@ -62,26 +62,14 @@ Read [AVRecorder](../reference/apis/js-apis-media.md#avrecorder9) for the API re
 
    
    ```ts
-   class AVProfile {
-      audioBitrate: number;
-      audioChannels: number;
-      audioCodec: media.CodecMimeType;
-      audioSampleRate: number;
-      fileFormat: media.ContainerFormatType;
-   }
-   class AVConfig {
-      audioSourceType: media.AudioSourceType;
-      profile: AVProfile;
-      url: string
-   }
-   let avProfile: AVProfile = {
+   let avProfile: media.AVRecorderProfile = {
      audioBitrate: 100000, // Audio bit rate.
      audioChannels: 2, // Number of audio channels.
      audioCodec: media.CodecMimeType.AUDIO_AAC, // Audio encoding format. Currently, only AAC is supported.
      audioSampleRate: 48000, // Audio sampling rate.
      fileFormat: media.ContainerFormatType.CFT_MPEG_4A, // Encapsulation format. Currently, only M4A is supported.
    }
-   let avConfig: AVConfig = {
+   let avConfig: media.AVRecorderConfig = {
      audioSourceType: media.AudioSourceType.AUDIO_SOURCE_TYPE_MIC, // Audio input source. In this example, the microphone is used.
      profile: avProfile,
      url: 'fd://35', // Obtain the file descriptor of the created audio file by referring to the sample code in Application File Access and Management.
@@ -113,29 +101,16 @@ Read [AVRecorder](../reference/apis/js-apis-media.md#avrecorder9) for the API re
 ```ts
 import media from '@ohos.multimedia.media';
 import { BusinessError } from '@ohos.base';
-
-class AVProfile {
-  audioBitrate: number;
-  audioChannels: number;
-  audioCodec: media.CodecMimeType;
-  audioSampleRate: number;
-  fileFormat: media.ContainerFormatType;
-}
-class AVConfig {
-  audioSourceType: media.AudioSourceType;
-  profile: AVProfile;
-  url: string
-}
 export class AudioRecorderDemo {
   private avRecorder: media.AVRecorder;
-  private avProfile: AVProfile = {
+  private avProfile: media.AVRecorderProfile = {
     audioBitrate: 100000, // Audio bit rate.
     audioChannels: 2, // Number of audio channels.
     audioCodec: media.CodecMimeType.AUDIO_AAC, // Audio encoding format. Currently, only AAC is supported.
     audioSampleRate: 48000, // Audio sampling rate.
     fileFormat: media.ContainerFormatType.CFT_MPEG_4A, // Encapsulation format. Currently, only M4A is supported.
   };
-  private avConfig: AVConfig = {
+  private avConfig: media.AVRecorderConfig = {
     audioSourceType: media.AudioSourceType.AUDIO_SOURCE_TYPE_MIC, // Audio input source. In this example, the microphone is used.
     profile: this.avProfile,
     url: 'fd://35', // Create, read, and write a file by referring to the sample code in Application File Access and Management.
