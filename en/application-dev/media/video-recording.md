@@ -138,9 +138,7 @@ Refer to the sample code below to complete the process of starting, pausing, res
 ```ts
 import media from '@ohos.multimedia.media'
 import { BusinessError } from '@ohos.base';
-
 const TAG = 'VideoRecorderDemo:'
-
 class AVProfile {
   fileFormat: media.ContainerFormatType;
   videoBitrate: number;
@@ -149,14 +147,12 @@ class AVProfile {
   videoFrameHeight: number;
   videoFrameRate: number;
 }
-
 class AVConfig {
   videoSourceType: media.VideoSourceType;
   profile: AVProfile;
   url: string;
   rotation: number;
 }
-
 export class VideoRecorderDemo {
   private avRecorder: media.AVRecorder;
   private videoOutSurfaceId: string;
