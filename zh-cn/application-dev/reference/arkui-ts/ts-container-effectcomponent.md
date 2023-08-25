@@ -49,7 +49,7 @@ struct Index {
         EffectComponent() {
           Column() {
 
-            Text("Normal text without blur")
+            Text("Normal text without blur effect")
               .fontSize(30)
               .fontWeight(FontWeight.Bold)
               .borderRadius(20)
@@ -78,3 +78,5 @@ struct Index {
   }
 }
 ```
+
+![zh-cn_image_effectcomponent](figures/zh-cn_image_effectcomponent.png)
