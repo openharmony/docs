@@ -4302,7 +4302,7 @@ auth(challenge: Uint8Array, authType: AuthType, authTrustLevel: AuthTrustLevel, 
   let authTrustLevel = account_osAccount.AuthTrustLevel.ATL1;
   try {
     userAuth.auth(challenge, authType, authTrustLevel, {
-      onResult: function(result,extraInfo){
+      onResult: (result,extraInfo) => {
           console.log('auth result = ' + result);
           console.log('auth extraInfo = ' + JSON.stringify(extraInfo));
       }
@@ -4364,7 +4364,7 @@ authUser(userId: number, challenge: Uint8Array, authType: AuthType, authTrustLev
   let authTrustLevel = account_osAccount.AuthTrustLevel.ATL1;
   try {
     userAuth.authUser(userID, challenge, authType, authTrustLevel, {
-      onResult: function(result,extraInfo){
+      onResult: (result,extraInfo) => {
         console.log('authUser result = ' + result);
         console.log('authUser extraInfo = ' + JSON.stringify(extraInfo));
       }
