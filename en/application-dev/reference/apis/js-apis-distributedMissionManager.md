@@ -1,6 +1,6 @@
 # @ohos.distributedMissionManager (Distributed Mission Management)
 
-The **distributedMissionManager** module implements system mission management across devices. You can use the APIs provided by this module to register or deregister a mission status listener, start or stop synchronizing a remote mission list, and continue a mission on a remote device.
+The **distributedMissionManager** module implements mission management across devices. You can use the APIs provided by this module to register or deregister a mission status listener, start or stop synchronizing a remote mission list, and continue a mission on a remote device by mission ID or bundle name.
 
 > **NOTE**
 >
@@ -13,7 +13,6 @@ The **distributedMissionManager** module implements system mission management ac
 ```js
 import distributedMissionManager from '@ohos.distributedMissionManager'
 ```
-
 
 ## distributedMissionManager.registerMissionListener
 
@@ -30,8 +29,8 @@ Registers a mission status listener. This API uses an asynchronous callback to r
 | Name      | Type                                     | Mandatory  | Description       |
 | --------- | --------------------------------------- | ---- | --------- |
 | parameter | [MissionDeviceInfo](#missiondeviceinfo) | Yes   | Information about the device to listen for.|
-| options   | [MissionCallback](#missioncallback)     | Yes   | Callback to register. |
-| callback  | AsyncCallback&lt;void&gt;               | Yes   | Callback used to return the result.|
+| options   | [MissionCallback](#missioncallback)     | Yes   | Callback to register.|
+| callback  | AsyncCallback&lt;void&gt;               | Yes   | Callback used to return the result. If the listener is registered, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Example**
 
@@ -80,14 +79,14 @@ Registers a mission status listener. This API uses a promise to return the resul
 
 | Name      | Type                                      | Mandatory  | Description      |
 | --------- | ---------------------------------------- | ---- | -------- |
-| parameter | [MissionDeviceInfo](#missiondeviceinfo)  | Yes   | Information about the device to listen for.   |
+| parameter | [MissionDeviceInfo](#missiondeviceinfo)  | Yes   | Information about the device to listen for.  |
 | options   | <a href="#missioncallback">MissionCallback</a> | Yes   | Callback to register.|
 
 **Return value**
 
 | Type                 | Description              |
 | ------------------- | ---------------- |
-| Promise&lt;void&gt; | Promise used to return the result.|
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Example**
 
@@ -123,7 +122,6 @@ Registers a mission status listener. This API uses a promise to return the resul
   }
   ```
 
-
 ## distributedMissionManager.unRegisterMissionListener
 
 unRegisterMissionListener(parameter: MissionDeviceInfo, callback: AsyncCallback&lt;void&gt;): void;
@@ -138,8 +136,8 @@ Deregisters a mission status listener. This API uses an asynchronous callback to
 
 | Name      | Type                                     | Mandatory  | Description       |
 | --------- | --------------------------------------- | ---- | --------- |
-| parameter | [MissionDeviceInfo](#missiondeviceinfo) | Yes   | Information about the device to listen for.    |
-| callback  | AsyncCallback&lt;void&gt;               | Yes   | Callback used to return the result.|
+| parameter | [MissionDeviceInfo](#missiondeviceinfo) | Yes   | Information about the device to listen for.   |
+| callback  | AsyncCallback&lt;void&gt;               | Yes   | Callback used to return the result. If the listener is deregistered, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Example**
 
@@ -158,7 +156,6 @@ Deregisters a mission status listener. This API uses an asynchronous callback to
       console.error('unRegisterMissionListener failed, cause: ' + JSON.stringify(error))
   }
   ```
-
 
 ## distributedMissionManager.unRegisterMissionListener
 
@@ -180,7 +177,7 @@ Deregisters a mission status listener. This API uses a promise to return the res
 
 | Type                 | Description              |
 | ------------------- | ---------------- |
-| Promise&lt;void&gt; | Promise used to return the result.|
+| Promise&lt;void&gt; |Promise that returns no value.|
 
 **Example**
 
@@ -215,7 +212,7 @@ Starts to synchronize the remote mission list. This API uses an asynchronous cal
 | Name      | Type                                   | Mandatory  | Description       |
 | --------- | ------------------------------------- | ---- | --------- |
 | parameter | [MissionParameter](#missionparameter) | Yes   | Parameters required for synchronization.    |
-| callback  | AsyncCallback&lt;void&gt;             | Yes   | Callback used to return the result.|
+| callback  | AsyncCallback&lt;void&gt;             | Yes   | Callback used to return the result. If the synchronization is started, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Example**
 
@@ -257,7 +254,7 @@ Starts to synchronize the remote mission list. This API uses a promise to return
 
 | Type                 | Description              |
 | ------------------- | ---------------- |
-| Promise&lt;void&gt; | Promise used to return the result.|
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Example**
 
@@ -294,7 +291,7 @@ Stops synchronizing the remote mission list. This API uses an asynchronous callb
 | Name      | Type                                     | Mandatory  | Description       |
 | --------- | --------------------------------------- | ---- | --------- |
 | parameter | [MissionDeviceInfo](#missiondeviceinfo) | Yes   | Parameters required for synchronization.    |
-| callback  | AsyncCallback&lt;void&gt;               | Yes   | Callback used to return the result.|
+| callback  | AsyncCallback&lt;void&gt;               | Yes   | Callback used to return the result. If the synchronization is stopped, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Example**
 
@@ -334,7 +331,7 @@ Stops synchronizing the remote mission list. This API uses a promise to return t
 
 | Type                 | Description              |
 | ------------------- | ---------------- |
-| Promise&lt;void&gt; | Promise used to return the result.|
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Example**
 
@@ -358,7 +355,7 @@ Stops synchronizing the remote mission list. This API uses a promise to return t
 
 continueMission(parameter: ContinueDeviceInfo, options: ContinueCallback, callback: AsyncCallback&lt;void&gt;): void;
 
-Continues a mission on a remote device. This API uses an asynchronous callback to return the result.
+Continues a mission on a remote device, with the mission ID specified. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.MANAGE_MISSIONS and ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -370,7 +367,7 @@ Continues a mission on a remote device. This API uses an asynchronous callback t
 | --------- | --------------------------------------- | ---- | ----- |
 | parameter | [ContinueDeviceInfo](js-apis-inner-application-continueDeviceInfo.md) | Yes   | Parameters required for mission continuation.|
 | options | [ContinueCallback](js-apis-inner-application-continueCallback.md) | Yes   | Callback invoked when the mission continuation is complete.|
-| callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result.|
+| callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result. If the mission is continued, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -416,7 +413,7 @@ For details about the error codes, see [Distributed Scheduler Error Codes](../er
 
 continueMission(parameter: ContinueDeviceInfo, options: ContinueCallback): Promise&lt;void&gt;
 
-Continues a mission on a remote device. This API uses a promise to return the result.
+Continues a mission on a remote device, with the mission ID specified. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.MANAGE_MISSIONS and ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -433,7 +430,7 @@ Continues a mission on a remote device. This API uses a promise to return the re
 
 | Type                 | Description              |
 | ------------------- | ---------------- |
-| Promise&lt;void&gt; | Promise used to return the result.|
+| Promise&lt;void&gt; |Promise that returns no value.|
 
 **Error codes**
 
@@ -490,7 +487,7 @@ Continues a mission on a remote device, with the bundle name specified. This API
 | Name      | Type                                     | Mandatory  | Description   |
 | --------- | --------------------------------------- | ---- | ----- |
 | parameter | [ContinueMissionInfo](./js-apis-inner-application-continueMissionInfo.md) | Yes   | Parameters required for mission continuation.|
-| callback | AsyncCallback&lt;void&gt; | Yes   | Callback invoked when the mission continuation is complete.|
+| callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result. If the mission is continued, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -546,7 +543,7 @@ Continues a mission on a remote device, with the bundle name specified. This API
 
 | Type                 | Description              |
 | ------------------- | ---------------- |
-| Promise&lt;void&gt; | Promise used to return the result.|
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
@@ -586,7 +583,7 @@ For details about the error codes, see [Distributed Scheduler Error Codes](../er
 
 on(type: 'continueStateChange',  callback: Callback&lt;{ state: ContinueState, info: ContinuableInfo }&gt;): void
 
-Registers a listener for the mission continuation state of the current application.
+Subscribes to continuation state change events of the current mission.
 
 **Required permissions**: ohos.permission.MANAGE_MISSIONS
 
@@ -596,8 +593,8 @@ Registers a listener for the mission continuation state of the current applicati
 
 | Name      | Type                                      | Mandatory  | Description      |
 | --------- | ---------------------------------------- | ---- | -------- |
-| type | string  | Yes   | Type of the listener. The value is fixed at **'continueStateChange'**.   |
-| callback | Callback&lt;{&nbsp;state:&nbsp;[ContinueState](#continuestate10),&nbsp;info:&nbsp;[ContinuableInfo](./js-apis-inner-application-continuableInfo.md)&nbsp;}&gt; | Yes   | Callback used to return the mission continuation state and information.     |
+| type | string  | Yes   | Event type. The value **'continueStateChange'** indicates the continuation state change event of the current mission.    |
+| callback | Callback&lt;{&nbsp;state:&nbsp;[ContinueState](#continuestate10),&nbsp;info:&nbsp;[ContinuableInfo](./js-apis-inner-application-continuableInfo.md)&nbsp;}&gt; | Yes   | Callback used to return the continuation state and information of the current mission.   |
 
 **Example**
 
@@ -615,7 +612,7 @@ Registers a listener for the mission continuation state of the current applicati
 
 off(type: 'continueStateChange',  callback?: Callback&lt;{ state: ContinueState, info: ContinuableInfo }&gt;): void
 
-Deregisters a listener for the mission continuation state of the current application.
+Unsubscribes from continuation state change events of the current mission.
 
 **Required permissions**: ohos.permission.MANAGE_MISSIONS
 
@@ -625,8 +622,8 @@ Deregisters a listener for the mission continuation state of the current applica
 
 | Name      | Type                                      | Mandatory  | Description      |
 | --------- | ---------------------------------------- | ---- | -------- |
-| type | string  | Yes   | Type of the listener. The value is fixed at **'continueStateChange'**.   |
-| callback | Callback&lt;{&nbsp;state:&nbsp;[ContinueState](#continuestate10),&nbsp;info:&nbsp;[ContinuableInfo](./js-apis-inner-application-continuableInfo.md)&nbsp;}&gt; | No   | Callback used for the listener to be deregistered.     |
+| type | string  | Yes   | Event type. The value **'continueStateChange'** indicates the continuation state change event of the current mission.    |
+| callback | Callback&lt;{&nbsp;state:&nbsp;[ContinueState](#continuestate10),&nbsp;info:&nbsp;[ContinuableInfo](./js-apis-inner-application-continuableInfo.md)&nbsp;}&gt; | No   | Callback used to return the continuation state and information of the current mission.<br>If the callback is unspecified, all subscriptions to the specified event are canceled.   |
 
 **Example**
 
@@ -688,5 +685,5 @@ Enumerates the mission continuation states.
 
 | Name          | Value      | Description                                                        |
 | ------------- | --------- | ------------------------------------------------------------ |
-| ACTIVE        | 0         | Mission continuation is activated for the current application.                             |
-| INACTIVE      | 1         | Mission continuation is not activated for the current application.                           |
+| ACTIVE        | 0         | Continuation is activated for the current mission.                             |
+| INACTIVE      | 1         | Continuation is not activated for the current mission.                           |
