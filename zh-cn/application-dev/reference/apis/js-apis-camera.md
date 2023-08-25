@@ -182,15 +182,15 @@ let modeManager = camera.getModeManager(context);
 
 | 名称             | 值    | 说明     |
 | ----------------| ----  | ---------|
-| NONE           | 0      | 原图,**系统接口：** 此接口为系统接口。     |
-| CLASSIC        | 1      | 经典,**系统接口：** 此接口为系统接口。     |
-| DAWN           | 2      | 晨光,**系统接口：** 此接口为系统接口。     |
-| PURE           | 3      | 清纯,**系统接口：** 此接口为系统接口。     |
-| GREY           | 4      | 灰调,**系统接口：** 此接口为系统接口。     |
-| NATURAL        | 5      | 自然,**系统接口：** 此接口为系统接口。     |
-| MORI           | 6      | 森系,**系统接口：** 此接口为系统接口。     |
-| FAIR           | 7      | 白皙,**系统接口：** 此接口为系统接口。     |
-| PINK           | 8      | 粉调,**系统接口：** 此接口为系统接口。     |
+| NONE           | 0      | 原图。     |
+| CLASSIC        | 1      | 经典。     |
+| DAWN           | 2      | 晨光。     |
+| PURE           | 3      | 清纯。     |
+| GREY           | 4      | 灰调。     |
+| NATURAL        | 5      | 自然。     |
+| MORI           | 6      | 森系。     |
+| FAIR           | 7      | 白皙。     |
+| PINK           | 8      | 粉调。     |
 
 
 ## PortraitEffect
@@ -203,8 +203,8 @@ let modeManager = camera.getModeManager(context);
 
 | 名称             | 值    | 说明     |
 | ----------------| ----  | ---------|
-| OFF             | 0      | 关闭,**系统接口：** 此接口为系统接口。    |
-| CIRCLES         | 1      | 圆形,**系统接口：** 此接口为系统接口。    |
+| OFF             | 0      | 关闭。    |
+| CIRCLES         | 1      | 圆形。    |
 
 ## BeautyType
 
@@ -216,10 +216,10 @@ let modeManager = camera.getModeManager(context);
 
 | 名称             | 值    | 说明     |
 | ----------------| ----  | ---------|
-| AUTO           | 0      | 自动,**系统接口：** 此接口为系统接口。     |
-| SKIN_SMOOTH    | 1      | 光滑,**系统接口：** 此接口为系统接口。     |
-| FACE_SLENDER   | 2      | 瘦脸,**系统接口：** 此接口为系统接口。     |
-| SKIN_TONE      | 3      | 肤色,**系统接口：** 此接口为系统接口。     |
+| AUTO           | 0      | 自动。     |
+| SKIN_SMOOTH    | 1      | 光滑。     |
+| FACE_SLENDER   | 2      | 瘦脸。     |
+| SKIN_TONE      | 3      | 肤色。     |
 
 ## CameraManager
 
