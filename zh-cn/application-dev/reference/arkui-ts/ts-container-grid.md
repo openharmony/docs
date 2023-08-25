@@ -149,17 +149,6 @@ Grid组件根据rowsTemplate、columnsTemplate属性的设置情况，可分为�
 | Scroll | 滚动状态。使用手指拖动List滚动时触发。<br/>**说明：** <br/> 从API version 10开始，拖动滚动条滚动和滚动鼠标滚轮时也会触发。 |
 | Fling  | 惯性滚动状态。快速划动松手后进行惯性滚动和划动到边缘回弹时触发。<br/>**说明：** <br/> 从API version 10开始，由动画控制的滚动都触发。包括快速划动松手后的惯性滚动，划动到边缘回弹的滚动，快速拖动内置滚动条松手后的惯性滚动，使用滚动控制器提供的带动画的方法控制的滚动。 |
 
-ScrollState枚举变更如下。
-
-| 场景            | API version 9及以下 | API version 10开始 |
-| ------------- | ---------------- | ---------------- |
-| 手指拖动滑动        | Scroll           | Scroll           |
-| 惯性滚动          | Fling            | Fling            |
-| 过界回弹          | Fling            | Fling            |
-| 鼠标滚轮滚动        | Idle             | Scroll           |
-| 拖动滚动条         | Idle             | Scroll           |
-| 滚动控制器滚动（带动画）  | Idle             | Fling            |
-| 滚动控制器滚动（不带动画） | Idle             | Idle             |
 ## 示例
 
 ### 示例1
