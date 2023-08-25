@@ -39,38 +39,47 @@ struct Index {
     Stack() {
       Image("pages/test1.png")
         .autoResize(true)
-      Column(){
-        Text("Normal text with backgroundBlurStyle")
-          .fontSize(30)
-          .fontWeight(FontWeight.Bold)
-          .backgroundBlurStyle(BlurStyle.Thin)
-          .borderRadius(30)
+      EffectComponent() {
+        Column({ space: 20 }) {
+          Text("Normal text with backgroundBlurStyle")
+            .textAlign(TextAlign.Center)
+            .fontSize(16)
+            .fontWeight(FontWeight.Medium)
+            .backgroundBlurStyle(BlurStyle.Thin)
+            .borderRadius(16)
+            .width('90%')
+            .height('48')
 
-        EffectComponent() {
-          Column() {
+          Text("Normal text without blur effect")
+            .textAlign(TextAlign.Center)
+            .fontSize(16)
+            .fontWeight(FontWeight.Medium)
+            .border({ width: 1 })
+            .borderRadius(16)
+            .width('90%')
+            .height('48')
 
-            Text("Normal text without blur effect")
-              .fontSize(30)
-              .fontWeight(FontWeight.Bold)
-              .borderRadius(20)
+          Text("Normal text with useeffcet blur 1")
+            .textAlign(TextAlign.Center)
+            .useEffect(true)
+            .fontSize(16)
+            .fontWeight(FontWeight.Medium)
+            .borderRadius(16)
+            .width('90%')
+            .height('48')
 
-            Text("Normal text with useeffcet blur 1")
-              .useEffect(true)
-              .fontSize(30)
-              .fontWeight(FontWeight.Bold)
-              .borderRadius(20)
-
-            Text("Normal text with useeffcet blur 2")
-              .useEffect(true)
-              .fontSize(30)
-              .fontWeight(FontWeight.Bold)
-              .borderRadius(40)
-          }
-          .borderWidth(5)
-          .borderColor(Color.Green)
+          Text("Normal text with useeffcet blur 2")
+            .textAlign(TextAlign.Center)
+            .useEffect(true)
+            .fontSize(16)
+            .fontWeight(FontWeight.Medium)
+            .borderRadius(16)
+            .width('90%')
+            .height('48')
         }
-        .backgroundBlurStyle(BlurStyle.Thin)
+        .width('100%')
       }
+      .backgroundBlurStyle(BlurStyle.Thin)
     }
     .backgroundColor(Color.Black)
     .width('100%')
