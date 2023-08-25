@@ -1,9 +1,9 @@
 # Device Management Changelog
 
 
-## cl.device_manager.1 API Permissions Changed
+## cl.device_manager.1 Change of API Permissions
 
-Permission verification is added for some APIs of device management from OpenHarmony 4.0.8.2. 
+Added permission verification for some APIs of device management from OpenHarmony 4.0.8.2.
 
 **Change Impact**
 
@@ -51,4 +51,4 @@ The apps developed using OpenHarmony 4.0.8.2 or later must have the correspondin
 
 **Adaptation Guide**
 
-Apply for the corresponding permissions for your application before these APIs are called.
+Apply for the required permissions for your application before these APIs are called.
