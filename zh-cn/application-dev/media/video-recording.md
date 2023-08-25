@@ -63,18 +63,18 @@ AVRecorder详细的API说明请参考[AVRecorder API参考](../reference/apis/js
 
    ```ts
    class AVProfile {
-      fileFormat: media.ContainerFormatType;
-      videoBitrate: number;
-      videoCodec: media.CodecMimeType;
-      videoFrameWidth: number;
-      videoFrameHeight: number;
-      videoFrameRate: number;
+     fileFormat: media.ContainerFormatType;
+     videoBitrate: number;
+     videoCodec: media.CodecMimeType;
+     videoFrameWidth: number;
+     videoFrameHeight: number;
+     videoFrameRate: number;
    }
    class AVConfig {
-      videoSourceType: media.VideoSourceType;
-      profile: AVProfile;
-      url: string;
-      rotation: number;
+     videoSourceType: media.VideoSourceType;
+     profile: AVProfile;
+     url: string;
+     rotation: number;
    }
    let avProfile: AVProfile = {
      fileFormat : media.ContainerFormatType.CFT_MPEG_4, // 视频文件封装格式，只支持MP4
@@ -103,9 +103,9 @@ AVRecorder详细的API说明请参考[AVRecorder API参考](../reference/apis/js
      输入源模块通过SurfaceID可以获取到Surface，通过Surface可以将视频数据流传递给AVRecorder，由AVRecorder再进行视频数据的处理。
      
    ```ts
-   avRecorder.getInputSurface().then((surfaceId) => {
+   avRecorder.getInputSurface().then((surfaceId: string) => {
      console.info('avRecorder getInputSurface success')
-   }, (error) => {
+   }, (error: Error) => {
      console.error('avRecorder getInputSurface failed')
    })
    ```
