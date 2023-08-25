@@ -33,10 +33,11 @@ Example: Obtain the image **test.jpg**.
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import photoAccessHelper from '@ohos.file.photoAccessHelper';
 
-let predicates = new dataSharePredicates.DataSharePredicates();
+let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
 predicates.equalTo(photoAccessHelper.PhotoKeys.DISPLAY_NAME, 'test.jpg');
-let fetchOptions = {
+let fetchOptions: photoAccessHelper.FetchOptions = {
   fetchColumns: [],
   predicates: predicates
 };
@@ -45,9 +46,11 @@ let fetchOptions = {
 2. Call **PhotoAccessHelper.getAssets** to obtain image assets.
 
 ```ts
+import photoAccessHelper from '@ohos.file.photoAccessHelper';
+
 try {
-  let fetchResult = await phAccessHelper.getAssets(fetchOptions);
-  let fileAsset = await fetchResult.getFirstObject();
+  let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
+  let fileAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
   console.info('getAssets fileAsset.displayName : ' + fileAsset.displayName);
   fetchResult.close();
 } catch (err) {
@@ -61,10 +64,11 @@ Example: Obtain the image with the file URI **file://media/Photo/1**.
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import photoAccessHelper from '@ohos.file.photoAccessHelper';
 
-let predicates = new dataSharePredicates.DataSharePredicates();
+let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
 predicates.equalTo(photoAccessHelper.PhotoKeys.URI, 'file://media/Photo/1');
-let fetchOptions = {
+let fetchOptions: photoAccessHelper.FetchOptions = {
   fetchColumns: [],
   predicates: predicates
 };
@@ -73,9 +77,11 @@ let fetchOptions = {
 Call **PhotoAccessHelper.getAssets** to obtain image assets.
 
 ```ts
+import photoAccessHelper from '@ohos.file.photoAccessHelper';
+
 try {
-  let fetchResult = await phAccessHelper.getAssets(fetchOptions);
-  let fileAsset = await fetchResult.getFirstObject();
+  let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
+  let fileAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
   console.info('getAssets fileAsset.uri : ' + fileAsset.uri);
   fetchResult.close();
 } catch (err) {
@@ -90,14 +96,15 @@ Example: Obtain the media assets added between 2022-06-01 and 2023-06-01.
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import photoAccessHelper from '@ohos.file.photoAccessHelper';
 
-let predicates = new dataSharePredicates.DataSharePredicates();
+let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
 let startTime = Date.parse(new Date('2022-06-01').toString()) / 1000; // The value of the start time is the number of seconds elapsed since the Epoch time.
 let endTime = Date.parse(new Date('2023-06-01').toString()) / 1000;  // The value of the end time is the number of seconds elapsed since the Epoch time.
-let date_added = photoAccessHelper.PhotoKeys.DATE_ADDED;
+let date_added: photoAccessHelper.PhotoKeys = photoAccessHelper.PhotoKeys.DATE_ADDED;
 predicates.between(date_added, startTime, endTime);
 predicates.orderByDesc(date_added); // Sort the obtained records in descending order.
-let fetchOptions = {
+let fetchOptions: photoAccessHelper.FetchOptions = {
   fetchColumns: [date_added], // The date_added attribute is not a default option and needs to be added.
   predicates: predicates
 };
@@ -106,10 +113,12 @@ let fetchOptions = {
 Call **PhotoAccessHelper.getAssets** to obtain image assets.
 
 ```ts
+import photoAccessHelper from '@ohos.file.photoAccessHelper';
+
 try {
-  let fetchResult = await phAccessHelper.getAssets(fetchOptions);
+  let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
   console.info('getAssets count: ' + fetchResult.getCount());
-  let fileAsset = await fetchResult.getFirstObject();
+  let fileAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
   console.info('getAssets fileAsset.displayName : ' + fileAsset.displayName);
   fetchResult.close();
 } catch (err) {
@@ -142,16 +151,17 @@ Example: Obtain the thumbnail of 720 x 720 of an image.
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import photoAccessHelper from '@ohos.file.photoAccessHelper';
 
-let predicates = new dataSharePredicates.DataSharePredicates();
-let fetchOptions = {
+let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+let fetchOptions: dataSharePredicates.FetchOptions = {
   fetchColumns: [],
   predicates: predicates
 };
 
 try {
-  let fetchResult = await phAccessHelper.getAssets(fetchOptions);
-  let fileAsset = await fetchResult.getFirstObject();
+  let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
+  let fileAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
   console.info('getAssets fileAsset.displayName : ' + fileAsset.displayName);
   let size = { width: 720, height: 720 };
   let pixelMap =  await fileAsset.getThumbnail(size);
@@ -182,9 +192,11 @@ Example: Create an image asset.
 2. Call **createAsset** to create an image asset.
 
 ```ts
+import photoAccessHelper from '@ohos.file.photoAccessHelper';
+
 try {
   let displayName = 'testPhoto' + Date.now() + '.jpg';
-  let createOption = {
+  let createOption: photoAccessHelper.CreateOptions = {
     subType: photoAccessHelper.PhotoSubtype.DEFAULT
   };
 
@@ -220,19 +232,20 @@ Example: Rename the first file in the obtained image assets.
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import photoAccessHelper from '@ohos.file.photoAccessHelper';
 
-let predicates = new dataSharePredicates.DataSharePredicates();
-let fetchOptions = {
+let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+let fetchOptions: dataSharePredicates.FetchOptions = {
   fetchColumns: ['title'],
   predicates: predicates
 };
 let newTitle = 'newTestPhoto';
 
 try {
-  let fetchResult = await phAccessHelper.getAssets(fetchOptions);
-  let fileAsset = await fetchResult.getFirstObject();
-  let title = photoAccessHelper.PhotoKeys.TITLE;
-  let fileAssetTitle = fileAsset.get(title);
+  let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
+  let fileAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+  let title: photoAccessHelper.PhotoKeys = photoAccessHelper.PhotoKeys.TITLE;
+  let fileAssetTitle: photoAccessHelper.MemberType = fileAsset.get(title);
   console.info('getAssets fileAsset.title : ' + fileAssetTitle);
   fileAsset.set(title, newTitle);
   await fileAsset.commitModify();
@@ -264,16 +277,17 @@ Example: Move the first file in the result set to the trash.
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import photoAccessHelper from '@ohos.file.photoAccessHelper';
 
-let predicates = new dataSharePredicates.DataSharePredicates();
-let fetchOptions = {
+let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+let fetchOptions: dataSharePredicates.FetchOptions = {
   fetchColumns: [],
   predicates: predicates
 };
 
 try {
-  let fetchResult = await phAccessHelper.getAssets(fetchOptions);
-  let fileAsset = await fetchResult.getFirstObject();
+  let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
+  let fileAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
   console.info('getAssets fileAsset.uri : ' + fileAsset.uri);
   await phAccessHelper.deleteAssets([fileAsset.uri]);
   fetchResult.close();
