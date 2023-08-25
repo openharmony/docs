@@ -62,21 +62,7 @@ AVRecorder详细的API说明请参考[AVRecorder API参考](../reference/apis/js
    > - 录制输出的url地址（即示例里avConfig中的url），形式为fd://xx (fd number)。需要调用基础文件操作接口（[ohos.file.fs](../reference/apis/js-apis-file-fs.md)）实现应用文件访问能力，获取方式参考[应用文件访问与管理](../file-management/app-file-access.md)。
 
    ```ts
-   class AVProfile {
-     fileFormat: media.ContainerFormatType;
-     videoBitrate: number;
-     videoCodec: media.CodecMimeType;
-     videoFrameWidth: number;
-     videoFrameHeight: number;
-     videoFrameRate: number;
-   }
-   class AVConfig {
-     videoSourceType: media.VideoSourceType;
-     profile: AVProfile;
-     url: string;
-     rotation: number;
-   }
-   let avProfile: AVProfile = {
+   let avProfile: media.AVRecorderProfile = {
      fileFormat : media.ContainerFormatType.CFT_MPEG_4, // 视频文件封装格式，只支持MP4
      videoBitrate : 200000, // 视频比特率
      videoCodec : media.CodecMimeType.VIDEO_AVC, // 视频文件编码格式，支持mpeg4和avc两种格式
@@ -84,7 +70,7 @@ AVRecorder详细的API说明请参考[AVRecorder API参考](../reference/apis/js
      videoFrameHeight : 480, // 视频分辨率的高
      videoFrameRate : 30 // 视频帧率
    }
-   let avConfig: AVConfig = {
+   let avConfig: media.AVRecorderConfig = {
      videoSourceType : media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_YUV, // 视频源类型，支持YUV和ES两种格式
      profile : avProfile,
      url : 'fd://35', // 参考应用文件访问与管理开发示例新建并读写一个文件
@@ -134,25 +120,10 @@ AVRecorder详细的API说明请参考[AVRecorder API参考](../reference/apis/js
 import media from '@ohos.multimedia.media'
 import { BusinessError } from '@ohos.base';
 const TAG = 'VideoRecorderDemo:'
-class AVProfile {
-  fileFormat: media.ContainerFormatType;
-  videoBitrate: number;
-  videoCodec: media.CodecMimeType;
-  videoFrameWidth: number;
-  videoFrameHeight: number;
-  videoFrameRate: number;
-}
-class AVConfig {
-  videoSourceType: media.VideoSourceType;
-  profile: AVProfile;
-  url: string;
-  rotation: number;
-}
-const TAG = 'VideoRecorderDemo:'
 export class VideoRecorderDemo {
   private avRecorder: media.AVRecorder;
   private videoOutSurfaceId: string;
-  private avProfile: AVProfile = {
+  private avProfile: media.AVRecorderProfile = {
     fileFormat : media.ContainerFormatType.CFT_MPEG_4, // 视频文件封装格式，只支持MP4
     videoBitrate : 100000, // 视频比特率
     videoCodec : media.CodecMimeType.VIDEO_AVC, // 视频文件编码格式，支持mpeg4和avc两种格式
@@ -160,7 +131,7 @@ export class VideoRecorderDemo {
     videoFrameHeight : 480, // 视频分辨率的高
     videoFrameRate : 30 // 视频帧率
   }
-  private avConfig: AVConfig = {
+  private avConfig: media.AVRecorderConfig = {
     videoSourceType : media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_YUV, // 视频源类型，支持YUV和ES两种格式
     profile : this.avProfile,
     url : 'fd://35', //  参考应用文件访问与管理开发示例新建并读写一个文件
