@@ -86,7 +86,7 @@ AVRecorder详细的API说明请参考[AVRecorder API参考](../reference/apis/js
    }
    let avConfig: AVConfig = {
      videoSourceType : media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_YUV, // 视频源类型，支持YUV和ES两种格式
-     profile : this.avProfile,
+     profile : avProfile,
      url : 'fd://35', // 参考应用文件访问与管理开发示例新建并读写一个文件
      rotation : 0, // 视频旋转角度，默认为0不旋转，支持的值为0、90、180、270
    }
