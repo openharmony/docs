@@ -213,7 +213,7 @@ export class VideoRecorderDemo {
     // 5.启动相机出流
     await this.startCameraOutput();
     // 6. 启动录制
-    await this.videoRecorder.start();
+    await this.avRecorder.start();
   }
 
   // 暂停录制对应的流程
