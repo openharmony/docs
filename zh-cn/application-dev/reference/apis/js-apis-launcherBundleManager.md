@@ -105,11 +105,13 @@ getLauncherAbilityInfo(bundleName: string, userId: number) : Promise<Array\<[Lau
 
 ```typescript
 import launcherBundleManager from '@ohos.bundle.launcherBundleManager';
+import { BusinessError } from '@ohos.base';
 
 try {
-    launcherBundleManager.getLauncherAbilityInfo("com.example.demo", 100).then(data => {
+    launcherBundleManager.getLauncherAbilityInfo("com.example.demo", 100)
+        .then((data: launcherBundleManager.LauncherAbilityInfo[]) => {
         console.log("data is " + JSON.stringify(data));
-    }).catch (errData => {
+    }).catch ((errData: BusinessError) => {
         console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
     })
 } catch (errData) {
