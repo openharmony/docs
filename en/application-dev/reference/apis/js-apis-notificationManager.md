@@ -10,6 +10,7 @@ The **notificationManager** module provides notification management capabilities
 
 ```ts
 import notificationManager from '@ohos.notificationManager';
+import Base from '@ohos.base';
 ```
 
 ## notificationManager.publish
@@ -45,7 +46,7 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 ```ts
 // publish callback
-function publishCallback(err) {
+function publishCallback(err: Base.BusinessError) {
     if (err) {
         console.error(`publish failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -155,7 +156,7 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 ```ts
 // publish callback
-function publishCallback(err) {
+function publishCallback(err: Base.BusinessError) {
     if (err) {
         console.error(`publish failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -163,7 +164,7 @@ function publishCallback(err) {
     }
 }
 // User ID
-let userId = 1;
+let userId: number = 1;
 // NotificationRequest object
 let notificationRequest: notificationManager.NotificationRequest = {
     id: 1,
@@ -228,7 +229,7 @@ let notificationRequest: notificationManager.NotificationRequest = {
     }
 };
 
-let userId = 1;
+let userId: number = 1;
 
 notificationManager.publish(notificationRequest, userId).then(() => {
 	console.info("publish success");
@@ -267,7 +268,7 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 ```ts
 // cancel callback
-function cancelCallback(err) {
+function cancelCallback(err: Base.BusinessError) {
     if (err) {
         console.error(`cancel failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -341,7 +342,7 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 ```ts
 // cancel callback
-function cancelCallback(err) {
+function cancelCallback(err: Base.BusinessError) {
     if (err) {
         console.error(`cancel failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -379,7 +380,7 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 ```ts
 // cancel callback
-function cancelAllCallback(err) {
+function cancelAllCallback(err: Base.BusinessError) {
     if (err) {
         console.error(`cancelAll failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -449,7 +450,7 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 ```ts
 // addSlot callback
-function addSlotCallBack(err) {
+function addSlotCallBack(err: Base.BusinessError) {
     if (err) {
         console.error(`addSlot failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -457,7 +458,7 @@ function addSlotCallBack(err) {
     }
 }
 // NotificationSlot object
-let notificationSlot = {
+let notificationSlot: notificationManager.NotificationSlot = {
     type: notificationManager.SlotType.SOCIAL_COMMUNICATION
 };
 notificationManager.addSlot(notificationSlot, addSlotCallBack);
@@ -496,7 +497,7 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 ```ts
 // NotificationSlot object
-let notificationSlot = {
+let notificationSlot: notificationManager.NotificationSlot = {
     type: notificationManager.SlotType.SOCIAL_COMMUNICATION
 };
 notificationManager.addSlot(notificationSlot).then(() => {
@@ -534,7 +535,7 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 ```ts
 // addSlot callback
-function addSlotCallBack(err) {
+function addSlotCallBack(err: Base.BusinessError) {
     if (err) {
         console.error(`addSlot failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -611,7 +612,7 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 ```ts
 // addSlots callback
-function addSlotsCallBack(err) {
+function addSlotsCallBack(err: Base.BusinessError) {
     if (err) {
         console.error(`addSlots failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -619,11 +620,11 @@ function addSlotsCallBack(err) {
     }
 }
 // NotificationSlot object
-let notificationSlot = {
+let notificationSlot: notificationManager.NotificationSlot = {
     type: notificationManager.SlotType.SOCIAL_COMMUNICATION
 };
 // NotificationSlotArray object
-let notificationSlotArray = new Array();
+let notificationSlotArray: notificationManager.NotificationSlot[] = new Array();
 notificationSlotArray[0] = notificationSlot;
 
 notificationManager.addSlots(notificationSlotArray, addSlotsCallBack);
@@ -662,11 +663,11 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 ```ts
 // NotificationSlot object
-let notificationSlot = {
+let notificationSlot: notificationManager.NotificationSlot = {
     type: notificationManager.SlotType.SOCIAL_COMMUNICATION
 };
 // NotificationSlotArray object
-let notificationSlotArray = new Array();
+let notificationSlotArray: notificationManager.NotificationSlot[] = new Array();
 notificationSlotArray[0] = notificationSlot;
 
 notificationManager.addSlots(notificationSlotArray).then(() => {
@@ -703,14 +704,14 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 ```ts
 // getSlot callback
-function getSlotCallback(err,data) {
+function getSlotCallback(err: Base.BusinessError, data: notificationManager.NotificationSlot) {
     if (err) {
         console.error(`getSlot failed, code is ${err.code}, message is ${err.message}`);
     } else {
-        console.info("getSlot success");
+        console.info(`getSlot success, data is ${JSON.stringify(data)}`);
     }
 }
-let slotType = notificationManager.SlotType.SOCIAL_COMMUNICATION;
+let slotType: notificationManager.SlotType = notificationManager.SlotType.SOCIAL_COMMUNICATION;
 notificationManager.getSlot(slotType, getSlotCallback);
 ```
 
@@ -747,8 +748,9 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 **Example**
 
 ```ts
-let slotType = notificationManager.SlotType.SOCIAL_COMMUNICATION;
-notificationManager.getSlot(slotType).then((data) => {
+let slotType: notificationManager.SlotType = notificationManager.SlotType.SOCIAL_COMMUNICATION;
+
+notificationManager.getSlot(slotType).then((data: notificationManager.NotificationSlot) => {
 	console.info("getSlot success, data: " + JSON.stringify(data));
 });
 ```
@@ -781,11 +783,11 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 ```ts
 // getSlots callback
-function getSlotsCallback(err,data) {
+function getSlotsCallback(err: Base.BusinessError, data: Array<notificationManager.NotificationSlot>) {
     if (err) {
         console.error(`getSlots failed, code is ${err.code}, message is ${err.message}`);
     } else {
-        console.info("getSlots success");
+        console.info(`getSlots success, data is ${JSON.stringify(data)}`);
     }
 }
 notificationManager.getSlots(getSlotsCallback);
@@ -818,7 +820,7 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 **Example**
 
 ```ts
-notificationManager.getSlots().then((data) => {
+notificationManager.getSlots().then((data: Array<notificationManager.NotificationSlot>) => {
 	console.info("getSlots success, data: " + JSON.stringify(data));
 });
 ```
@@ -852,7 +854,7 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 ```ts
 // removeSlot callback
-function removeSlotCallback(err) {
+function removeSlotCallback(err: Base.BusinessError) {
     if (err) {
         console.error(`removeSlot failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -860,7 +862,7 @@ function removeSlotCallback(err) {
     }
 }
 let slotType = notificationManager.SlotType.SOCIAL_COMMUNICATION;
-notificationManager.removeSlot(slotType,removeSlotCallback);
+notificationManager.removeSlot(slotType, removeSlotCallback);
 ```
 
 ## notificationManager.removeSlot
@@ -890,7 +892,7 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 **Example**
 
 ```ts
-let slotType = notificationManager.SlotType.SOCIAL_COMMUNICATION;
+let slotType: notificationManager.SlotType = notificationManager.SlotType.SOCIAL_COMMUNICATION;
 notificationManager.removeSlot(slotType).then(() => {
 	console.info("removeSlot success");
 });
@@ -923,7 +925,7 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 **Example**
 
 ```ts
-function removeAllCallBack(err) {
+function removeAllCallBack(err: Base.BusinessError) {
     if (err) {
         console.error(`removeAllSlots failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -993,17 +995,17 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 **Example**
 
 ```ts
-function setNotificationEnablenCallback(err) {
+function setNotificationEnableCallback(err: Base.BusinessError) {
     if (err) {
-        console.error(`setNotificationEnablenCallback failed, code is ${err.code}, message is ${err.message}`);
+        console.error(`setNotificationEnableCallback failed, code is ${err.code}, message is ${err.message}`);
     } else {
-        console.info("setNotificationEnablenCallback success");
+        console.info("setNotificationEnableCallback success");
     }
 }
-let bundle = {
+let bundle: notificationManager.BundleOption = {
     bundle: "bundleName1",
 };
-notificationManager.setNotificationEnable(bundle, false, setNotificationEnablenCallback);
+notificationManager.setNotificationEnable(bundle, false, setNotificationEnableCallback);
 ```
 
 ## notificationManager.setNotificationEnable
@@ -1039,7 +1041,7 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 **Example**
 
 ```ts
-let bundle = {
+let bundle: notificationManager.BundleOption = {
     bundle: "bundleName1",
 };
 notificationManager.setNotificationEnable(bundle, false).then(() => {
@@ -1080,16 +1082,18 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 **Example**
 
 ```ts
-function isNotificationEnabledCallback(err, data) {
+function isNotificationEnabledCallback(err: Base.BusinessError, data: boolean) {
     if (err) {
         console.error(`isNotificationEnabled failed, code is ${err.code}, message is ${err.message}`);
     } else {
-        console.info("isNotificationEnabled success");
+        console.info(`isNotificationEnabled success, data is ${JSON.stringify(data)}`);
     }
 }
-let bundle = {
+
+let bundle: notificationManager.BundleOption = {
     bundle: "bundleName1",
 };
+
 notificationManager.isNotificationEnabled(bundle, isNotificationEnabledCallback);
 ```
 
@@ -1131,10 +1135,10 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 **Example**
 
 ```ts
-let bundle = {
+let bundle: notificationManager.BundleOption = {
     bundle: "bundleName1",
 };
-notificationManager.isNotificationEnabled(bundle).then((data) => {
+notificationManager.isNotificationEnabled(bundle).then((data: boolean) => {
 	console.info("isNotificationEnabled success, data: " + JSON.stringify(data));
 });
 ```
@@ -1170,11 +1174,11 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 **Example**
 
 ```ts
-function isNotificationEnabledCallback(err, data) {
+function isNotificationEnabledCallback(err: Base.BusinessError, data: boolean) {
     if (err) {
         console.error(`isNotificationEnabled failed, code is ${err.code}, message is ${err.message}`);
     } else {
-        console.info("isNotificationEnabled success");
+        console.info(`isNotificationEnabled success, data is ${JSON.stringify(data)}`);
     }
 }
 
@@ -1212,7 +1216,7 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 **Example**
 
 ```ts
-notificationManager.isNotificationEnabled().then((data) => {
+notificationManager.isNotificationEnabled().then((data: boolean) => {
 	console.info("isNotificationEnabled success, data: " + JSON.stringify(data));
 });
 ```
@@ -1250,15 +1254,15 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 **Example**
 
 ```ts
-function isNotificationEnabledCallback(err, data) {
+function isNotificationEnabledCallback(err: Base.BusinessError, data: boolean) {
     if (err) {
         console.error(`isNotificationEnabled failed, code is ${err.code}, message is ${err.message}`);
     } else {
-        console.info("isNotificationEnabled success");
+        console.info(`isNotificationEnabled success, data is ${JSON.stringify(data)}`);
     }
 }
 
-let userId = 1;
+let userId: number = 1;
 
 notificationManager.isNotificationEnabled(userId, isNotificationEnabledCallback);
 ```
@@ -1301,9 +1305,9 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 **Example**
 
 ```ts
-let userId = 1;
+let userId: number = 1;
 
-notificationManager.isNotificationEnabled(userId).then((data) => {
+notificationManager.isNotificationEnabled(userId).then((data: boolean) => {
 	console.info("isNotificationEnabled success, data: " + JSON.stringify(data));
 });
 ```
@@ -1342,14 +1346,14 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 **Example**
 
 ```ts
-function displayBadgeCallback(err) {
+function displayBadgeCallback(err: Base.BusinessError) {
     if (err) {
         console.error(`displayBadge failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("displayBadge success");
     }
 }
-let bundle = {
+let bundle: notificationManager.BundleOption = {
     bundle: "bundleName1",
 };
 notificationManager.displayBadge(bundle, false, displayBadgeCallback);
@@ -1388,7 +1392,7 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 **Example**
 
 ```ts
-let bundle = {
+let bundle: notificationManager.BundleOption = {
     bundle: "bundleName1",
 };
 notificationManager.displayBadge(bundle, false).then(() => {
@@ -1413,7 +1417,7 @@ Checks whether the notification badge is enabled for a specified application. Th
 | Name    | Type                 | Mandatory| Description                    |
 | -------- | --------------------- | ---- | ------------------------ |
 | bundle   | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption)          | Yes  | Bundle of the application.              |
-| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<boolean\> | Yes  | Callback used to return the result.|
 
 **Error codes**
 
@@ -1429,14 +1433,14 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 **Example**
 
 ```ts
-function isBadgeDisplayedCallback(err, data) {
+function isBadgeDisplayedCallback(err: Base.BusinessError, data: boolean) {
     if (err) {
         console.error(`isBadgeDisplayed failed, code is ${err.code}, message is ${err.message}`);
     } else {
-        console.info("isBadgeDisplayed success");
+        console.info(`isBadgeDisplayed success, data is ${JSON.stringify(data)}`);
     }
 }
-let bundle = {
+let bundle: notificationManager.BundleOption = {
     bundle: "bundleName1",
 };
 notificationManager.isBadgeDisplayed(bundle, isBadgeDisplayedCallback);
@@ -1480,10 +1484,11 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 **Example**
 
 ```ts
-let bundle = {
+let bundle: notificationManager.BundleOption = {
     bundle: "bundleName1",
 };
-notificationManager.isBadgeDisplayed(bundle).then((data) => {
+
+notificationManager.isBadgeDisplayed(bundle).then((data: boolean) => {
 	console.info("isBadgeDisplayed success, data: " + JSON.stringify(data));
 });
 ```
@@ -1514,7 +1519,8 @@ Sets the notification badge number. This API uses a promise to return the result
 **Example**
 
 ```ts
-let badgeNumber = 10
+let badgeNumber: number = 10
+
 notificationManager.setBadgeNumber(badgeNumber).then(() => {
 	console.info("displayBadge success");
 });
@@ -1549,7 +1555,7 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 **Example**
 
 ```ts
-function setBadgeNumberCallback(err) {
+function setBadgeNumberCallback(err: Base.BusinessError) {
     if (err) {
         console.info(`displayBadge failed code is ${err.code}, message is ${err.message}`);
     } else {
@@ -1557,7 +1563,7 @@ function setBadgeNumberCallback(err) {
     }
 }
 
-let badgeNumber = 10
+let badgeNumber: number = 10
 notificationManager.setBadgeNumber(badgeNumber, setBadgeNumberCallback);
 ```
 
@@ -1595,17 +1601,17 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 **Example**
 
 ```ts
-function setSlotByBundleCallback(err) {
+function setSlotByBundleCallback(err: Base.BusinessError) {
     if (err) {
         console.error(`setSlotByBundle failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("setSlotByBundle success");
     }
 }
-let bundle = {
+let bundle: notificationManager.BundleOption = {
     bundle: "bundleName1",
 };
-let notificationSlot = {
+let notificationSlot: notificationManager.NotificationSlots = {
     type: notificationManager.SlotType.SOCIAL_COMMUNICATION
 };
 notificationManager.setSlotByBundle(bundle, notificationSlot, setSlotByBundleCallback);
@@ -1644,12 +1650,14 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 **Example**
 
 ```ts
-let bundle = {
+let bundle: notificationManager.BundleOption = {
     bundle: "bundleName1",
 };
-let notificationSlot = {
+
+let notificationSlot: notificationManager.NotificationSlot = {
     type: notificationManager.SlotType.SOCIAL_COMMUNICATION
 };
+
 notificationManager.setSlotByBundle(bundle, notificationSlot).then(() => {
 	console.info("setSlotByBundle success");
 });
@@ -1688,14 +1696,14 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 **Example**
 
 ```ts
-function getSlotsByBundleCallback(err, data) {
+function getSlotsByBundleCallback(err: Base.BusinessError, data: Array<notificationManager.NotificationSlot>) {
     if (err) {
         console.error(`getSlotByBundle failed, code is ${err.code}, message is ${err.message}`);
     } else {
-        console.info("getSlotsByBundle success");
+        console.info(`getSlotsByBundle success, data is ${JSON.stringify(data)}`);
     }
 }
-let bundle = {
+let bundle: notificationManager.BundleOption = {
     bundle: "bundleName1",
 };
 notificationManager.getSlotsByBundle(bundle, getSlotsByBundleCallback);
@@ -1739,10 +1747,11 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 **Example**
 
 ```ts
-let bundle = {
+let bundle: notificationManager.BundleOption = {
     bundle: "bundleName1",
 };
-notificationManager.getSlotsByBundle(bundle).then((data) => {
+
+notificationManager.getSlotsByBundle(bundle).then((data: Array<notificationManager.NotificationSlot>) => {
 	console.info("getSlotsByBundle success, data: " + JSON.stringify(data));
 });
 ```
@@ -1780,16 +1789,18 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 **Example**
 
 ```ts
-function getSlotNumByBundleCallback(err, data) {
+function getSlotNumByBundleCallback(err: Base.BusinessError, data: number) {
     if (err) {
         console.error(`getSlotByBundle failed, code is ${err.code}, message is ${err.message}`);
     } else {
-        console.info("getSlotNumByBundle success");
+        console.info(`getSlotNumByBundle success data is ${JSON.stringify(data)}`);
     }
 }
-let bundle = {
+
+let bundle: notificationManager.BundleOption = {
     bundle: "bundleName1",
 };
+
 notificationManager.getSlotNumByBundle(bundle, getSlotNumByBundleCallback);
 ```
 
@@ -1831,10 +1842,11 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 **Example**
 
 ```ts
-let bundle = {
+let bundle: notificationManager.BundleOption = {
     bundle: "bundleName1",
 };
-notificationManager.getSlotNumByBundle(bundle).then((data) => {
+
+notificationManager.getSlotNumByBundle(bundle).then((data: number) => {
 	console.info("getSlotNumByBundle success, data: " + JSON.stringify(data));
 });
 ```
@@ -1869,11 +1881,11 @@ Obtains all active notifications. This API uses an asynchronous callback to retu
 **Example**
 
 ```ts
-function getAllActiveNotificationsCallback(err, data) {
+function getAllActiveNotificationsCallback(err: Base.BusinessError, data: Array<notificationManager.NotificationRequest>) {
     if (err) {
         console.error(`getAllActiveNotifications failed, code is ${err.code}, message is ${err.message}`);
     } else {
-        console.info("getAllActiveNotifications success");
+        console.info(`getAllActiveNotifications success, data is ${JSON.stringify(data)}`);
     }
 }
 
@@ -1911,7 +1923,7 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 **Example**
 
 ```ts
-notificationManager.getAllActiveNotifications().then((data) => {
+notificationManager.getAllActiveNotifications().then((data: Array<notificationManager.NotificationRequest>) => {
 	console.info("getAllActiveNotifications success, data: " + JSON.stringify(data));
 });
 ```
@@ -1943,11 +1955,11 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 **Example**
 
 ```ts
-function getActiveNotificationCountCallback(err, data) {
+function getActiveNotificationCountCallback(err: Base.BusinessError, data: number) {
     if (err) {
         console.error(`getActiveNotificationCount failed, code is ${err.code}, message is ${err.message}`);
     } else {
-        console.info("getActiveNotificationCount success");
+        console.info(`getActiveNotificationCount success, data is ${JSON.stringify(data)}`);
     }
 }
 
@@ -1981,7 +1993,7 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 **Example**
 
 ```ts
-notificationManager.getActiveNotificationCount().then((data) => {
+notificationManager.getActiveNotificationCount().then((data: number) => {
 	console.info("getActiveNotificationCount success, data: " + JSON.stringify(data));
 });
 ```
@@ -2013,7 +2025,7 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 **Example**
 
 ```ts
-function getActiveNotificationsCallback(err, data) {
+function getActiveNotificationsCallback(err: Base.BusinessError, data: Array<notificationManager.NotificationRequest>) {
     if (err) {
         console.error(`getActiveNotifications failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -2051,7 +2063,7 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 **Example**
 
 ```ts
-notificationManager.getActiveNotifications().then((data) => {
+notificationManager.getActiveNotifications().then((data: Array<notificationManager.NotificationRequest>) => {
 	console.info("removeGroupByBundle success, data: " + JSON.stringify(data));
 });
 ```
@@ -2084,7 +2096,7 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 **Example**
 
 ```ts
-function cancelGroupCallback(err) {
+function cancelGroupCallback(err: Base.BusinessError) {
     if (err) {
         console.error(`cancelGroup failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -2092,7 +2104,7 @@ function cancelGroupCallback(err) {
     }
 }
 
-let groupName = "GroupName";
+let groupName: string = "GroupName";
 
 notificationManager.cancelGroup(groupName, cancelGroupCallback);
 ```
@@ -2124,7 +2136,7 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 **Example**
 
 ```ts
-let groupName = "GroupName";
+let groupName: string = "GroupName";
 notificationManager.cancelGroup(groupName).then(() => {
 	console.info("cancelGroup success");
 });
@@ -2164,7 +2176,7 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 **Example**
 
 ```ts
-function removeGroupByBundleCallback(err) {
+function removeGroupByBundleCallback(err: Base.BusinessError) {
     if (err) {
         console.error(`removeGroupByBundle failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -2172,8 +2184,8 @@ function removeGroupByBundleCallback(err) {
     }
 }
 
-let bundleOption = {bundle: "Bundle"};
-let groupName = "GroupName";
+let bundleOption: notificationManager.BundleOption = { bundle: "Bundle" };
+let groupName: string = "GroupName";
 
 notificationManager.removeGroupByBundle(bundleOption, groupName, removeGroupByBundleCallback);
 ```
@@ -2211,8 +2223,9 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 **Example**
 
 ```ts
-let bundleOption = {bundle: "Bundle"};
-let groupName = "GroupName";
+let bundleOption: notificationManager.BundleOption = { bundle: "Bundle" };
+let groupName: string = "GroupName";
+
 notificationManager.removeGroupByBundle(bundleOption, groupName).then(() => {
 	console.info("removeGroupByBundle success");
 });
@@ -2251,7 +2264,7 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 **Example**
 
 ```ts
-function setDoNotDisturbDateCallback(err) {
+function setDoNotDisturbDateCallback(err: notificationManager.BundleOption) {
     if (err) {
         console.error(`setDoNotDisturbDate failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -2259,7 +2272,7 @@ function setDoNotDisturbDateCallback(err) {
     }
 }
 
-let doNotDisturbDate = {
+let doNotDisturbDate: notificationManager.DoNotDisturbDate = {
     type: notificationManager.DoNotDisturbType.TYPE_ONCE,
     begin: new Date(),
     end: new Date(2021, 11, 15, 18, 0)
@@ -2300,7 +2313,7 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 **Example**
 
 ```ts
-let doNotDisturbDate = {
+let doNotDisturbDate: notificationManager.DoNotDisturbDate = {
     type: notificationManager.DoNotDisturbType.TYPE_ONCE,
     begin: new Date(),
     end: new Date(2021, 11, 15, 18, 0)
@@ -2346,7 +2359,7 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 **Example**
 
 ```ts
-function setDoNotDisturbDateCallback(err) {
+function setDoNotDisturbDateCallback(err: Base.BusinessError) {
     if (err) {
         console.error(`setDoNotDisturbDate failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -2354,13 +2367,13 @@ function setDoNotDisturbDateCallback(err) {
     }
 }
 
-let doNotDisturbDate = {
+let doNotDisturbDate: notificationManager.DoNotDisturbDate = {
     type: notificationManager.DoNotDisturbType.TYPE_ONCE,
     begin: new Date(),
     end: new Date(2021, 11, 15, 18, 0)
 };
 
-let userId = 1;
+let userId: number = 1;
 
 notificationManager.setDoNotDisturbDate(doNotDisturbDate, userId, setDoNotDisturbDateCallback);
 ```
@@ -2399,13 +2412,13 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 **Example**
 
 ```ts
-let doNotDisturbDate = {
+let doNotDisturbDate: notificationManager.DoNotDisturbDate = {
     type: notificationManager.DoNotDisturbType.TYPE_ONCE,
     begin: new Date(),
     end: new Date(2021, 11, 15, 18, 0)
 };
 
-let userId = 1;
+let userId: number = 1;
 
 notificationManager.setDoNotDisturbDate(doNotDisturbDate, userId).then(() => {
 	console.info("setDoNotDisturbDate success");
@@ -2445,11 +2458,11 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 **Example**
 
 ```ts
-function getDoNotDisturbDateCallback(err,data) {
+function getDoNotDisturbDateCallback(err: Base.BusinessError, data: notificationManager.DoNotDisturbDate) {
     if (err) {
         console.error(`getDoNotDisturbDate failed, code is ${err.code}, message is ${err.message}`);
     } else {
-        console.info("getDoNotDisturbDate success");
+        console.info(`getDoNotDisturbDate success, data is ${JSON.stringify(data)}`);
     }
 }
 
@@ -2488,7 +2501,7 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 **Example**
 
 ```ts
-notificationManager.getDoNotDisturbDate().then((data) => {
+notificationManager.getDoNotDisturbDate().then((data: notificationManager.DoNotDisturbDate) => {
 	console.info("getDoNotDisturbDate success, data: " + JSON.stringify(data));
 });
 ```
@@ -2528,15 +2541,15 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 **Example**
 
 ```ts
-function getDoNotDisturbDateCallback(err,data) {
+function getDoNotDisturbDateCallback(err: Base.BusinessError, data: notificationManager.DoNotDisturbDate) {
     if (err) {
         console.error(`getDoNotDisturbDate failed, code is ${err.code}, message is ${err.message}`);
     } else {
-        console.info("getDoNotDisturbDate success");
+        console.info(`getDoNotDisturbDate success, data is ${JSON.stringify(data)}`);
     }
 }
 
-let userId = 1;
+let userId: number = 1;
 
 notificationManager.getDoNotDisturbDate(userId, getDoNotDisturbDateCallback);
 ```
@@ -2580,9 +2593,9 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 **Example**
 
 ```ts
-let userId = 1;
+let userId: number = 1;
 
-notificationManager.getDoNotDisturbDate(userId).then((data) => {
+notificationManager.getDoNotDisturbDate(userId).then((data: notificationManager.DoNotDisturbDate) => {
 	console.info("getDoNotDisturbDate success, data: " + JSON.stringify(data));
 });
 ```
@@ -2617,7 +2630,7 @@ Checks whether DND mode is supported. This API uses an asynchronous callback to 
 **Example**
 
 ```ts
-function isSupportDoNotDisturbModeCallback(err,data) {
+function isSupportDoNotDisturbModeCallback(err: Base.BusinessError, data: boolean) {
     if (err) {
         console.error(`isSupportDoNotDisturbMode failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -2659,7 +2672,7 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 **Example**
 
 ```ts
-notificationManager.isSupportDoNotDisturbMode().then((data) => {
+notificationManager.isSupportDoNotDisturbMode().then((data: data) => {
 	console.info("supportDoNotDisturbMode success, data: " + JSON.stringify(data));
 });
 ```
@@ -2692,8 +2705,8 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 **Example**
 
 ```javascript
-let templateName = 'process';
-function isSupportTemplateCallback(err, data) {
+let templateName: string = 'process';
+function isSupportTemplateCallback(err: Base.BusinessError, data: boolean) {
     if (err) {
         console.error(`isSupportTemplate failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -2737,9 +2750,9 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 **Example**
 
 ```javascript
-let templateName = 'process';
+let templateName: string = 'process';
 
-notificationManager.isSupportTemplate(templateName).then((data) => {
+notificationManager.isSupportTemplate(templateName).then((data: boolean) => {
     console.info("isSupportTemplate success, data: " + JSON.stringify(data));
 });
 ```
@@ -2771,7 +2784,7 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 **Example**
 
 ```javascript
-function requestEnableNotificationCallback(err) {
+function requestEnableNotificationCallback(err: Base.BusinessError) {
     if (err) {
         console.error(`requestEnableNotification failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -2843,7 +2856,7 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 **Example**
 
 ```javascript
-function setDistributedEnableCallback(err) {
+function setDistributedEnableCallback(err: Base.BusinessError) {
     if (err) {
         console.error(`setDistributedEnable failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -2851,7 +2864,7 @@ function setDistributedEnableCallback(err) {
     }
 };
 
-let enable = true;
+let enable: boolean = true;
 
 notificationManager.setDistributedEnable(enable, setDistributedEnableCallback);
 ```
@@ -2888,11 +2901,11 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 **Example**
 
 ```javascript
-let enable = true;
+let enable: boolean = true;
 
 notificationManager.setDistributedEnable(enable).then(() => {
-        console.info("setDistributedEnable success");
-    });
+    console.info("setDistributedEnable success");
+});
 ```
 
 
@@ -2924,7 +2937,7 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 **Example**
 
 ```javascript
-function isDistributedEnabledCallback(err, data) {
+function isDistributedEnabledCallback(err: Base.BusinessError, data: boolean) {
     if (err) {
         console.error(`isDistributedEnabled failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -2966,7 +2979,7 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 ```javascript
 notificationManager.isDistributedEnabled()
-    .then((data) => {
+    .then((data: boolean) => {
         console.info("isDistributedEnabled success, data: " + JSON.stringify(data));
     });
 ```
@@ -3007,7 +3020,7 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 **Example**
 
 ```javascript
-function setDistributedEnableByBundleCallback(err) {
+function setDistributedEnableByBundleCallback(err: Base.BusinessError) {
     if (err) {
         console.error(`setDistributedEnableByBundle failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -3015,11 +3028,11 @@ function setDistributedEnableByBundleCallback(err) {
     }
 };
 
-let bundle = {
+let bundle: notificationManager.BundleOption = {
     bundle: "bundleName1",
 };
 
-let enable = true
+let enable: boolean = true
 
 notificationManager.setDistributedEnableByBundle(bundle, enable, setDistributedEnableByBundleCallback);
 ```
@@ -3060,11 +3073,11 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 **Example**
 
 ```javascript
-let bundle = {
+let bundle: notificationManager.BundleOption = {
     bundle: "bundleName1",
 };
 
-let enable = true
+let enable: boolean = true
 
 notificationManager.setDistributedEnableByBundle(bundle, enable).then(() => {
     console.info("setDistributedEnableByBundle success");
@@ -3105,7 +3118,7 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 **Example**
 
 ```javascript
-function isDistributedEnabledByBundleCallback(err, data) {
+function isDistributedEnabledByBundleCallback(err: Base.BusinessError, data: boolean) {
     if (err) {
         console.error(`isDistributedEnabledByBundle failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -3113,7 +3126,7 @@ function isDistributedEnabledByBundleCallback(err, data) {
     }
 };
 
-let bundle = {
+let bundle: notificationManager.BundleOption = {
     bundle: "bundleName1",
 };
 
@@ -3159,11 +3172,11 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 **Example**
 
 ```javascript
-let bundle = {
+let bundle: notificationManager.BundleOption = {
     bundle: "bundleName1",
 };
 
-notificationManager.isDistributedEnabledByBundle(bundle).then((data) => {
+notificationManager.isDistributedEnabledByBundle(bundle).then((data: boolean) => {
     console.info("isDistributedEnabledByBundle success, data: " + JSON.stringify(data));
 });
 ```
@@ -3200,11 +3213,11 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 **Example**
 
 ```javascript
-function getDeviceRemindTypeCallback(err, data) {
+function getDeviceRemindTypeCallback(err: Base.BusinessError, data: notificationManager.DeviceRemindType) {
     if (err) {
         console.error(`getDeviceRemindType failed, code is ${err.code}, message is ${err.message}`);
     } else {
-        console.info("getDeviceRemindType success");
+        console.info(`getDeviceRemindType success, data is ${JSON.stringify(data)}`);
     }
 };
 
@@ -3242,7 +3255,7 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 **Example**
 
 ```javascript
-notificationManager.getDeviceRemindType().then((data) => {
+notificationManager.getDeviceRemindType().then((data: notificationManager.DeviceRemindType) => {
     console.info("getDeviceRemindType success, data: " + JSON.stringify(data));
 });
 ```
@@ -3288,7 +3301,7 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 ```ts
 // publishAsBundle callback
-function callback(err) {
+function callback(err: Base.BusinessError) {
     if (err) {
         console.error(`publishAsBundle failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -3296,11 +3309,11 @@ function callback(err) {
     }
 }
 // Bundle name of the application whose notification function is taken over by the reminder agent
-let representativeBundle = "com.example.demo";
+let representativeBundle: string = "com.example.demo";
 // User ID
-let userId = 100;
+let userId: number = 100;
 // NotificationRequest object
-let request = {
+let request: notificationManager.NotificationRequest = {
     id: 1,
     content: {
         contentType: notificationManager.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
@@ -3355,11 +3368,11 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 ```ts
 // Bundle name of the application whose notification function is taken over by the reminder agent
-let representativeBundle = "com.example.demo";
+let representativeBundle: string = "com.example.demo";
 // User ID
-let userId = 100;
+let userId: number = 100;
 // NotificationRequest object
-let request = {
+let request: notificationManager.NotificationRequest = {
     id: 1,
     content: {
         contentType: notificationManager.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
@@ -3415,7 +3428,7 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 ```ts
 // cancelAsBundle
-function cancelAsBundleCallback(err) {
+function cancelAsBundleCallback(err: Base.BusinessError) {
     if (err) {
         console.error(`cancelAsBundle failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -3423,9 +3436,9 @@ function cancelAsBundleCallback(err) {
     }
 }
 // Bundle name of the application whose notification function is taken over by the reminder agent
-let representativeBundle = "com.example.demo";
+let representativeBundle: string = "com.example.demo";
 // User ID
-let userId = 100;
+let userId: number = 100;
 
 notificationManager.cancelAsBundle(0, representativeBundle, userId, cancelAsBundleCallback);
 ```
@@ -3468,9 +3481,9 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 ```ts
 // Bundle name of the application whose notification function is taken over by the reminder agent
-let representativeBundle = "com.example.demo";
+let representativeBundle: string = "com.example.demo";
 // User ID
-let userId = 100;
+let userId: number = 100;
 
 notificationManager.cancelAsBundle(0, representativeBundle, userId).then(() => {
 	console.info("cancelAsBundle success");
@@ -3513,7 +3526,7 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 ```ts
 // setNotificationEnableSlot
-function setNotificationEnableSlotCallback(err) {
+function setNotificationEnableSlotCallback(err: Base.BusinessError) {
     if (err) {
         console.error(`setNotificationEnableSlot failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -3606,11 +3619,11 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 ```ts
 // isNotificationSlotEnabled
-function getEnableSlotCallback(err, data) {
+function getEnableSlotCallback(err: Base.BusinessError, data: boolean) {
     if (err) {
         console.error(`isNotificationSlotEnabled failed, code is ${err.code}, message is ${err.message}`);
     } else {
-        console.info("isNotificationSlotEnabled success");
+        console.info(`isNotificationSlotEnabled success, data is ${JSON.stringify(data)}`);
     }
 };
 
@@ -3661,7 +3674,7 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 ```ts
 // isNotificationSlotEnabled
 notificationManager.isNotificationSlotEnabled({ bundle: "ohos.samples.notification", },
-    notificationManager.SlotType.SOCIAL_COMMUNICATION).then((data) => {
+    notificationManager.SlotType.SOCIAL_COMMUNICATION).then((data: boolean) => {
     console.info("isNotificationSlotEnabled success, data: " + JSON.stringify(data));
 });
 ```
@@ -3701,10 +3714,10 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 **Example**
 
 ```ts
-let userId = 100;
-let enable = true;
+let userId: number = 100;
+let enable: boolean = true;
 
-function callback(err) {
+function callback(err: Base.BusinessError) {
     if (err) {
         console.error(`setSyncNotificationEnabledWithoutApp failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -3755,13 +3768,11 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 **Example**
 
 ```ts
-let userId = 100;
-let enable = true;
+let userId: number = 100;
+let enable: boolean = true;
 
 notificationManager.setSyncNotificationEnabledWithoutApp(userId, enable).then(() => {
     console.info('setSyncNotificationEnabledWithoutApp success');
-}).catch((err) => {
-    console.error(`setSyncNotificationEnabledWithoutApp failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -3799,9 +3810,9 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 **Example**
 
 ```ts
-let userId = 100;
+let userId: number = 100;
 
-function getSyncNotificationEnabledWithoutAppCallback(err, data) {
+function getSyncNotificationEnabledWithoutAppCallback(err: Base.BusinessError, data: boolean) {
     if (err) {
         console.info('getSyncNotificationEnabledWithoutAppCallback, err:' + err);
     } else {
@@ -3851,11 +3862,10 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 **Example**
 
 ```ts
-let userId = 100;
-notificationManager.getSyncNotificationEnabledWithoutApp(userId).then((data) => {
+let userId: number = 100;
+
+notificationManager.getSyncNotificationEnabledWithoutApp(userId).then((data: boolean) => {
     console.info('getSyncNotificationEnabledWithoutApp, data:' + data);
-}).catch((err) => {
-    console.info('getSyncNotificationEnabledWithoutApp, err:' + err);
 });
 ```
 
@@ -3897,9 +3907,11 @@ try{
 function OnCheckNotification(info : notificationManager.NotificationCheckInfo) {
     console.info(`====>OnCheckNotification info: ${JSON.stringify(info)}`);
     if(info.notificationId == 1){
-        return { code: 1, message: "testMsg1"}
+        let result: notificationManager.NotificationCheckResult =  { code: 1, message: "testMsg1"};
+        return result;
     } else {
-        return { code: 0, message: "testMsg0"}
+        let result: notificationManager.NotificationCheckResult =   { code: 0, message: "testMsg0"};
+        return result;
     }
 }
 ```
