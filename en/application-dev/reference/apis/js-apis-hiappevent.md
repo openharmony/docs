@@ -4,7 +4,7 @@ The **hiAppEvent** module provides the application event logging functions, such
 
 > **NOTE**
 >
-> - The APIs provided by this module are deprecated since API version 9. You are advised to use [`@ohos.hiviewdfx.hiAppEvent`](js-apis-hiviewdfx-hiappevent.md) instead.
+> - The APIs provided by this module are deprecated since API version 9. You are advised to use [`@ohos.hiviewdfx.hiAppEvent`](js-apis-hiviewdfx-hiappevent.md).
 > - The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
@@ -20,7 +20,7 @@ Before using application event logging, you need to understand the requirements 
 
 **Event Name**
 
-An event name is a string that contains a maximum of 48 characters, including digits (0 to 9), letters (a to z), and underscores (\_). It must start with a lowercase letter and cannot end with an underscore (\_).
+An event name is a string that contains a maximum of 48 characters, including digits (0 to 9), letters (a to z), and underscores (\_). It must start with a letter or dollar sign ($) and cannot end with an underscore (_).
 
 **Event Type**
 
@@ -30,8 +30,8 @@ An event type is an enumerated value of [EventType](#eventtype).
 
 An event parameter is an object in key-value pair format, where the key is the parameter name and the value is the parameter value. The requirements are as follows:
 
-- A parameter name is a string that contains a maximum of 16 characters, including digits (0 to 9), letters (a to z), and underscores (\_). It must start with a lowercase letter and cannot end with an underscore (\_).
-- The parameter value can be of the string, number, boolean, or array type.
+- A parameter name is a string that contains a maximum of 16 characters, including digits (0 to 9), letters (a to z), and underscores (\_). It must start with a letter or dollar sign ($) and cannot end with an underscore (_).
+- A parameter value can be of the string, number, boolean, or array type.
 - If the parameter value is a string, its maximum length is 8*1024 characters. If this limit is exceeded, excess characters will be discarded.
 - If the parameter value is a number, the value must be within the range of **Number.MIN_SAFE_INTEGER** to **Number.MAX_SAFE_INTEGER**. Otherwise, uncertain values may be generated.
 - If the parameter value is an array, the elements in the array must be of the same type, which can only be string, number, or boolean. In addition, the number of elements must be less than 100. If this limit is exceeded, excess elements will be discarded.
@@ -156,12 +156,12 @@ Provides the configuration items for application event logging.
 | Name      | Type   | Mandatory| Description                                                        |
 | ---------- | ------- | ---- | ------------------------------------------------------------ |
 | disable    | boolean | No  | Application event logging switch. The value **true** means to disable the application event logging function, and the value **false** means the opposite.|
-| maxStorage | string  | No  | Maximum size of the event file storage directory. The default value is <strong>10M</strong>. If the specified size is exceeded, the oldest event logging files in the directory will be deleted to free up space.|
+| maxStorage | string  | No  | Maximum size of the event file storage directory. The default value is **10M**. If the specified size is exceeded, the oldest event logging files in the directory will be deleted to free up space.|
 
 
 ## EventType
 
-Enumerates event types.
+Enumerates the event types.
 
 **System capability**: SystemCapability.HiviewDFX.HiAppEvent
 

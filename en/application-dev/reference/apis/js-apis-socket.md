@@ -1691,7 +1691,7 @@ listen(address: NetAddress, callback: AsyncCallback\<void\>): void
 
 Binds the IP address and port number. The port number can be specified or randomly allocated by the system. The server listens to and accepts TCP socket connections established over the socket. Multiple threads are used to process client data concurrently. This API uses an asynchronous callback to return the result.
 
-> **NOTE**
+> **NOTE**<br>
 > The server uses this API to perform the **bind**, **listen**, and **accept** operations. If the **bind** operation fails, the system randomly allocates a port number.
 
 **Required permissions**: ohos.permission.INTERNET
@@ -1736,7 +1736,7 @@ listen(address: NetAddress): Promise\<void\>
 
 Binds the IP address and port number. The port number can be specified or randomly allocated by the system. The server listens to and accepts TCP socket connections established over the socket. Multiple threads are used to process client data concurrently. This API uses a promise to return the result.
 
-> **NOTE**
+> **NOTE**<br>
 > The server uses this API to perform the **bind**, **listen**, and **accept** operations. If the **bind** operation fails, the system randomly allocates a port number.
 
 **Required permissions**: ohos.permission.INTERNET
