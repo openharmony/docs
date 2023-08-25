@@ -41,7 +41,7 @@ RelationalStore提供了一套完整的对本地数据库进行管理的机制�
 
 ## 开发步骤
 
-1. 获取OH_Rdb_Store实例，创建数据库文件。示例代码如下所示：
+1. 获取OH_Rdb_Store实例，创建数据库文件。其中dataBaseDir变量为应用沙箱路径，Stage模式下建议使用数据库沙箱路径，可参考[Context](../reference/apis/js-apis-inner-application-context.md)的databaseDir属性。FA模式下，由于没有接口获取数据库沙箱路径，可使用应用程序的文件目录，可参考[Context](../reference/apis/js-apis-inner-app-context.md)的getFilesDir接口。示例代码如下所示：
 
    ```c
    // 创建OH_Rdb_Config对象
