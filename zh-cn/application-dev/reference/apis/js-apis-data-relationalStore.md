@@ -4562,7 +4562,7 @@ goTo(offset:number): boolean
 
   ```js
 
-resultSet.goTo(1);
+  resultSet.goTo(1);
 
   ```
 
@@ -4598,7 +4598,7 @@ goToRow(position: number): boolean
 
   ```js
 
-resultSet.goToRow(5);
+  resultSet.goToRow(5);
 
   ```
 
@@ -4629,7 +4629,7 @@ goToFirstRow(): boolean
 
   ```js
 
-resultSet.goToFirstRow();
+  resultSet.goToFirstRow();
 
   ```
 
@@ -4659,7 +4659,7 @@ goToLastRow(): boolean
 
   ```js
 
-resultSet.goToLastRow();
+  resultSet.goToLastRow();
 
   ```
 
@@ -4689,7 +4689,7 @@ goToNextRow(): boolean
 
   ```js
 
-resultSet.goToNextRow();
+  resultSet.goToNextRow();
 
   ```
 
@@ -4719,7 +4719,7 @@ goToPreviousRow(): boolean
 
   ```js
 
-resultSet.goToPreviousRow();
+  resultSet.goToPreviousRow();
 
   ```
 
