@@ -43,7 +43,7 @@ formObserver.on('formAdd', callback);
 
 ## on('formAdd')
 
- on(type: 'formAdd', bundleName: string, observerCallback: Callback&lt;formInfo.RunningFormInfo&gt;): void
+ on(type: 'formAdd', hostBundleName: string, observerCallback: Callback&lt;formInfo.RunningFormInfo&gt;): void
 
 订阅卡片新增事件。使用callback异步回调，返回指定卡片使用方应用新增卡片的[RunningFormInfo](js-apis-app-form-formInfo.md)。
 
@@ -74,7 +74,7 @@ formObserver.on('formAdd', bundleName, callback);
 
 ## off('formAdd')
 
- off(type: "formAdd", bundleName?: string, observerCallback?: Callback&lt;formInfo.RunningFormInfo&gt;): void
+ off(type: "formAdd", hostBundleName?: string, observerCallback?: Callback&lt;formInfo.RunningFormInfo&gt;): void
 
 取消订阅卡片新增事件。使用callback异步回调，返回当前新增卡片的[RunningFormInfo](js-apis-app-form-formInfo.md)。
 
@@ -138,7 +138,7 @@ formObserver.on('formRemove', callback);
 
 ## on('formRemove')
 
- on(type: 'formRemove', bundleName: string, observerCallback: Callback&lt;formInfo.RunningFormInfo&gt;): void
+ on(type: 'formRemove', hostBundleName: string, observerCallback: Callback&lt;formInfo.RunningFormInfo&gt;): void
 
 订阅卡片删除事件。使用callback异步回调，返回指定卡片使用方应用被删除卡片的[RunningFormInfo](js-apis-app-form-formInfo.md)。
 
@@ -169,7 +169,7 @@ formObserver.on('formRemove', bundleName, callback);
 
 ## off('formRemove')
 
-off(type: "formRemove", bundleName?: string, observerCallback?: Callback&lt;formInfo.RunningFormInfo&gt;): void
+off(type: "formRemove", hostBundleName?: string, observerCallback?: Callback&lt;formInfo.RunningFormInfo&gt;): void
 
 取消订阅卡片删除事件。使用callback异步回调，返回当前删除卡片的[RunningFormInfo](js-apis-app-form-formInfo.md)。
 
@@ -234,7 +234,7 @@ formObserver.on('notifyVisible', callback);
 
 ## on('notifyVisible')
 
- on(type: 'notifyVisible', bundleName: string, observerCallback: Callback&lt;Array&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo.md)&gt;&gt;): void
+ on(type: 'notifyVisible', hostBundleName: string, observerCallback: Callback&lt;Array&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo.md)&gt;&gt;): void
 
 订阅通知卡片可见的事件。
 
@@ -267,7 +267,7 @@ formObserver.on('notifyVisible', bundleName, callback);
 
 ## off('notifyVisible')
 
- off(type: "notifyVisible", bundleName?: string, observerCallback?: Callback&lt;Array&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo.md)&gt;&gt;): void
+ off(type: "notifyVisible", hostBundleName?: string, observerCallback?: Callback&lt;Array&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo.md)&gt;&gt;): void
 
 取消订阅通知卡片可见的事件。
 
@@ -335,7 +335,7 @@ formObserver.on('notifyInvisible', callback);
 
 ## on('notifyInvisible')
 
- on(type: 'notifyInvisible', bundleName: string, observerCallback: Callback&lt;Array&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo.md)&gt;>): void
+ on(type: 'notifyInvisible', hostBundleName: string, observerCallback: Callback&lt;Array&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo.md)&gt;>): void
 
 订阅通知卡片不可见的事件。
 
@@ -367,7 +367,7 @@ formObserver.on('notifyInvisible', bundleName, callback);
 
 ## off('notifyInvisible')
 
- off(type: "notifyInvisible", bundleName?: string, observerCallback?: Callback&lt;Array&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo.md)>&gt;): void
+ off(type: "notifyInvisible", hostBundleName?: string, observerCallback?: Callback&lt;Array&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo.md)>&gt;): void
 
 取消订阅通知卡片不可见事件。
 
