@@ -91,6 +91,34 @@ try {
 }
 ```
 
+## BundleInstaller.getBundleInstallerSync<sup>10+</sup>
+
+getBundleInstallerSync(): BundleInstaller;
+
+获取并返回BundleInstaller对象。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+**返回值：**
+| 类型                                                         | 说明                                 |
+| ------------------------------------------------------------ | ------------------------------------ |
+| [BundleInstaller](js-apis-installer.md#BundleInstaller) | 返回BundleInstaller对象。 |
+
+**示例：**
+
+```ts
+import installer from '@ohos.bundle.installer';
+
+try {
+    installer.getBundleInstallerSync();
+    console.info('getBundleInstallerSync successfully.');
+} catch (error) {
+    console.error('getBundleInstallerSync failed. Cause: ' + error.message);
+}
+```
+
 ## BundleInstaller.install
 install(hapFilePaths: Array&lt;string&gt;, installParam: InstallParam, callback: AsyncCallback&lt;void&gt;): void;
 
