@@ -3785,7 +3785,7 @@ setWindowBrightness(brightness: number, callback: AsyncCallback&lt;void&gt;): vo
 
 | 参数名 | 类型 | 必填 | 说明                                        |
 | ---------- | ------------------------- | -- |-------------------------------------------|
-| brightness | number                    | 是 | 屏幕亮度值。该参数为浮点数，取值范围为[0.0, 1.0]。其取1.0时表示最亮。 |
+| brightness | number                    | 是 | 屏幕亮度值。该参数为浮点数，取值范围为[0.0, 1.0]或-1.0。1.0表示最亮，-1.0表示默认亮度。 |
 | callback   | AsyncCallback&lt;void&gt; | 是 | 回调函数。                                     |
 
 **错误码：**
@@ -3828,7 +3828,7 @@ setWindowBrightness(brightness: number): Promise&lt;void&gt;
 
 | 参数名 | 类型 | 必填 | 说明                                     |
 | ---------- | ------ | -- |----------------------------------------|
-| brightness | number | 是 | 屏幕亮度值。该参数为浮点数，取值范围为[0.0, 1.0]。1.0表示最亮。 |
+| brightness | number | 是 | 屏幕亮度值。该参数为浮点数，取值范围为[0.0, 1.0]或-1.0。1.0表示最亮，-1.0表示默认亮度。 |
 
 **返回值：**
 
@@ -6385,7 +6385,7 @@ setBrightness(brightness: number, callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名     | 类型                      | 必填 | 说明                                    |
 | ---------- | ------------------------- | ---- |---------------------------------------|
-| brightness | number                    | 是   | 屏幕亮度值。该参数为浮点数，取值范围为[0.0, 1.0]。,1表示最亮。 |
+| brightness | number                    | 是   | 屏幕亮度值。该参数为浮点数，取值范围为[0.0, 1.0]或-1.0。1.0表示最亮，-1.0表示默认亮度。 |
 | callback   | AsyncCallback&lt;void&gt; | 是   | 回调函数。                                 |
 
 **示例：**
@@ -6419,7 +6419,7 @@ setBrightness(brightness: number): Promise&lt;void&gt;
 
 | 参数名     | 类型   | 必填 | 说明                                       |
 | ---------- | ------ | ---- |------------------------------------------|
-| brightness | number | 是   | 屏幕亮度值。该参数为浮点数。取值范围为[0.0, 1.0],取1.0时表示最亮。 |
+| brightness | number | 是   | 屏幕亮度值。该参数为浮点数，取值范围为[0.0, 1.0]或-1.0。1.0表示最亮，-1.0表示默认亮度。 |
 
 **返回值：**
 
