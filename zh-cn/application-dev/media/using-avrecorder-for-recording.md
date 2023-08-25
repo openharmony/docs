@@ -61,26 +61,14 @@
 
      
    ```ts
-   class AVProfile {
-      audioBitrate: number;
-      audioChannels: number;
-      audioCodec: media.CodecMimeType;
-      audioSampleRate: number;
-      fileFormat: media.ContainerFormatType;
-   }
-   class AVConfig {
-      audioSourceType: media.AudioSourceType;
-      profile: AVProfile;
-      url: string
-   }
-   let avProfile: AVProfile = {
+   let avProfile: media.AVRecorderProfile = {
      audioBitrate: 100000, // 音频比特率
      audioChannels: 2, // 音频声道数
      audioCodec: media.CodecMimeType.AUDIO_AAC, // 音频编码格式，当前只支持aac
      audioSampleRate: 48000, // 音频采样率
      fileFormat: media.ContainerFormatType.CFT_MPEG_4A, // 封装格式，当前只支持m4a
    }
-   let avConfig: AVConfig = {
+   let avConfig: media.AVRecorderConfig = {
      audioSourceType: media.AudioSourceType.AUDIO_SOURCE_TYPE_MIC, // 音频输入源，这里设置为麦克风
      profile: avProfile,
      url: 'fd://35', // 参考应用文件访问与管理中的开发示例获取创建的音频文件fd填入此处
@@ -113,28 +101,16 @@
 import media from '@ohos.multimedia.media';
 import { BusinessError } from '@ohos.base';
 
-class AVProfile {
-  audioBitrate: number;
-  audioChannels: number;
-  audioCodec: media.CodecMimeType;
-  audioSampleRate: number;
-  fileFormat: media.ContainerFormatType;
-}
-class AVConfig {
-  audioSourceType: media.AudioSourceType;
-  profile: AVProfile;
-  url: string
-}
 export class AudioRecorderDemo {
   private avRecorder: media.AVRecorder;
-  private avProfile: AVProfile = {
+  private avProfile: media.AVRecorderProfile = {
     audioBitrate: 100000, // 音频比特率
     audioChannels: 2, // 音频声道数
     audioCodec: media.CodecMimeType.AUDIO_AAC, // 音频编码格式，当前只支持aac
     audioSampleRate: 48000, // 音频采样率
     fileFormat: media.ContainerFormatType.CFT_MPEG_4A, // 封装格式，当前只支持m4a
   };
-  private avConfig: AVConfig = {
+  private avConfig: media.AVRecorderConfig = {
     audioSourceType: media.AudioSourceType.AUDIO_SOURCE_TYPE_MIC, // 音频输入源，这里设置为麦克风
     profile: this.avProfile,
     url: 'fd://35', // 参考应用文件访问与管理开发示例新建并读写一个文件
