@@ -50,10 +50,13 @@ static getDisplayCountry(country: string, locale: string, sentenceCase?: boolean
 
 **示例：**
   ```js
+  import { BusinessError } from '@ohos.base';
+
   try {
       let displayCountry: string = I18n.System.getDisplayCountry("zh-CN", "en-GB"); // displayCountry = "China"
   } catch (error) {
-      console.error(`call System.getDisplayCountry failed, error code: ${error.code}, message: ${error.message}.`);
+      let err: BusinessError = error as BusinessError;
+      console.error(`call System.getDisplayCountry failed, error code: ${err.code}, message: ${err.message}.`);
   }
   ```
 
@@ -89,10 +92,13 @@ static getDisplayLanguage(language: string, locale: string, sentenceCase?: boole
 
 **示例：**
   ```js
+  import { BusinessError } from '@ohos.base';
+  
   try {
     let displayLanguage: string = I18n.System.getDisplayLanguage("zh", "en-GB"); // displayLanguage = Chinese
   } catch(error) {
-    console.error(`call System.getDisplayLanguage failed, error code: ${error.code}, message: ${error.message}.`);
+    let err: BusinessError = error as BusinessError;
+    console.error(`call System.getDisplayCountry failed, error code: ${err.code}, message: ${err.message}.`);
   }
   ```
 
@@ -120,10 +126,13 @@ static getSystemLanguages(): Array&lt;string&gt;
 
 **示例：**
   ```js
+  import { BusinessError } from '@ohos.base';
+  
   try {
     let systemLanguages: Array<string> = I18n.System.getSystemLanguages(); // [ "en-Latn-US", "zh-Hans" ]
   } catch(error) {
-    console.error(`call System.getSystemLanguages failed, error code: ${error.code}, message: ${error.message}.`);
+    let err: BusinessError = error as BusinessError;
+    console.error(`call System.getDisplayCountry failed, error code: ${err.code}, message: ${err.message}.`);
   }
   ```
 
@@ -157,10 +166,13 @@ static getSystemCountries(language: string): Array&lt;string&gt;
 
 **示例：**
   ```js
+  import { BusinessError } from '@ohos.base';
+  
   try {
     let systemCountries: Array<string> = I18n.System.getSystemCountries('zh'); // systemCountries = [ "ZW", "YT", "YE", ..., "ER", "CN", "DE" ]，共计240个国家或地区
   } catch(error) {
-    console.error(`call System.getSystemCountries failed, error code: ${error.code}, message: ${error.message}.`);
+    let err: BusinessError = error as BusinessError;
+    console.error(`call System.getDisplayCountry failed, error code: ${err.code}, message: ${err.message}.`);
   }
   ```
 
@@ -195,10 +207,13 @@ static isSuggested(language: string, region?: string): boolean
 
 **示例：**
   ```js
+  import { BusinessError } from '@ohos.base';
+  
   try {
     let res: boolean = I18n.System.isSuggested('zh', 'CN');  // res = true
   } catch(error) {
-    console.error(`call System.isSuggested failed, error code: ${error.code}, message: ${error.message}.`);
+    let err: BusinessError = error as BusinessError;
+    console.error(`call System.getDisplayCountry failed, error code: ${err.code}, message: ${err.message}.`);
   }
   ```
 
@@ -226,10 +241,13 @@ static getSystemLanguage(): string
 
 **示例：**
   ```js
+  import { BusinessError } from '@ohos.base';
+  
   try {
     let systemLanguage: string = I18n.System.getSystemLanguage();  // systemLanguage为当前系统语言
   } catch(error) {
-    console.error(`call System.getSystemLanguage failed, error code: ${error.code}, message: ${error.message}.`);
+    let err: BusinessError = error as BusinessError;
+    console.error(`call System.getDisplayCountry failed, error code: ${err.code}, message: ${err.message}.`);
   }
   ```
 
@@ -261,10 +279,13 @@ static setSystemLanguage(language: string): void
 
 **示例：**
   ```js
+  import { BusinessError } from '@ohos.base';
+  
   try {
     I18n.System.setSystemLanguage('zh'); // 设置系统当前语言为 "zh"
   } catch(error) {
-    console.error(`call System.setSystemLanguage failed, error code: ${error.code}, message: ${error.message}.`);
+    let err: BusinessError = error as BusinessError;
+    console.error(`call System.getDisplayCountry failed, error code: ${err.code}, message: ${err.message}.`);
   }
   ```
 
@@ -292,10 +313,13 @@ static getSystemRegion(): string
 
 **示例：**
   ```js
+  import { BusinessError } from '@ohos.base';
+  
   try {
     let systemRegion: string = I18n.System.getSystemRegion(); // 获取系统当前地区设置
   } catch(error) {
-    console.error(`call System.getSystemRegion failed, error code: ${error.code}, message: ${error.message}.`);
+    let err: BusinessError = error as BusinessError;
+    console.error(`call System.getDisplayCountry failed, error code: ${err.code}, message: ${err.message}.`);
   }
   ```
 
@@ -327,10 +351,13 @@ static setSystemRegion(region: string): void
 
 **示例：**
   ```js
+  import { BusinessError } from '@ohos.base';
+  
   try {
     I18n.System.setSystemRegion('CN');  // 设置系统当前地区为 "CN"
   } catch(error) {
-    console.error(`call System.setSystemRegion failed, error code: ${error.code}, message: ${error.message}.`);
+    let err: BusinessError = error as BusinessError;
+    console.error(`call System.getDisplayCountry failed, error code: ${err.code}, message: ${err.message}.`);
   }
   ```
 
@@ -358,10 +385,13 @@ static getSystemLocale(): string
 
 **示例：**
   ```js
+  import { BusinessError } from '@ohos.base';
+  
   try {
     let systemLocale: string = I18n.System.getSystemLocale();  // 获取系统当前Locale
   } catch(error) {
-    console.error(`call System.getSystemLocale failed, error code: ${error.code}, message: ${error.message}.`);
+    let err: BusinessError = error as BusinessError;
+    console.error(`call System.getDisplayCountry failed, error code: ${err.code}, message: ${err.message}.`);
   }
   ```
 
@@ -393,10 +423,13 @@ static setSystemLocale(locale: string): void
 
 **示例：**
   ```js
+  import { BusinessError } from '@ohos.base';
+  
   try {
     I18n.System.setSystemLocale('zh-CN');  // 设置系统当前Locale为 "zh-CN"
   } catch(error) {
-    console.error(`call System.setSystemLocale failed, error code: ${error.code}, message: ${error.message}.`);
+    let err: BusinessError = error as BusinessError;
+    console.error(`call System.getDisplayCountry failed, error code: ${err.code}, message: ${err.message}.`);
   }
   ```
 
@@ -424,10 +457,13 @@ static is24HourClock(): boolean
 
 **示例：**
   ```js
+  import { BusinessError } from '@ohos.base';
+  
   try {
     let is24HourClock: boolean = I18n.System.is24HourClock();  // 系统24小时开关是否开启
   } catch(error) {
-    console.error(`call System.is24HourClock failed, error code: ${error.code}, message: ${error.message}.`);
+    let err: BusinessError = error as BusinessError;
+    console.error(`call System.getDisplayCountry failed, error code: ${err.code}, message: ${err.message}.`);
   }
   ```
 
@@ -459,11 +495,14 @@ static set24HourClock(option: boolean): void
 
 **示例：**
   ```js
+  import { BusinessError } from '@ohos.base';
+  
   // 将系统时间设置为24小时制
   try {
     I18n.System.set24HourClock(true);
   } catch(error) {
-    console.error(`call System.set24HourClock failed, error code: ${error.code}, message: ${error.message}.`);
+    let err: BusinessError = error as BusinessError;
+    console.error(`call System.getDisplayCountry failed, error code: ${err.code}, message: ${err.message}.`);
   }
   ```
 
@@ -496,13 +535,16 @@ static addPreferredLanguage(language: string, index?: number): void
 
 **示例：**
   ```js
+  import { BusinessError } from '@ohos.base';
+  
   // 将语言zh-CN添加到系统偏好语言列表中
   let language = 'zh-CN';
   let index = 0;
   try {
     I18n.System.addPreferredLanguage(language, index); // 将zh-CN添加到系统偏好语言列表的第1位
   } catch(error) {
-    console.error(`call System.addPreferredLanguage failed, error code: ${error.code}, message: ${error.message}.`);
+    let err: BusinessError = error as BusinessError;
+    console.error(`call System.getDisplayCountry failed, error code: ${err.code}, message: ${err.message}.`);
   }
   ```
 
@@ -534,12 +576,15 @@ static removePreferredLanguage(index: number): void
 
 **示例：**
   ```js
+  import { BusinessError } from '@ohos.base';
+  
   // 删除系统偏好语言列表中的第一个偏好语言
   let index: number = 0;
   try {
     I18n.System.removePreferredLanguage(index);
   } catch(error) {
-    console.error(`call System.removePreferredLanguage failed, error code: ${error.code}, message: ${error.message}.`);
+    let err: BusinessError = error as BusinessError;
+    console.error(`call System.getDisplayCountry failed, error code: ${err.code}, message: ${err.message}.`);
   }
   ```
 
@@ -567,10 +612,13 @@ static getPreferredLanguageList(): Array&lt;string&gt;
 
 **示例：**
   ```js
+  import { BusinessError } from '@ohos.base';
+  
   try {
     let preferredLanguageList: Array<string> = I18n.System.getPreferredLanguageList(); // 获取系统当前偏好语言列表
   } catch(error) {
-    console.error(`call System.getPreferredLanguageList failed, error code: ${error.code}, message: ${error.message}.`);
+    let err: BusinessError = error as BusinessError;
+    console.error(`call System.getDisplayCountry failed, error code: ${err.code}, message: ${err.message}.`);
   }
   ```
 
@@ -598,10 +646,13 @@ static getFirstPreferredLanguage(): string
 
 **示例：**
   ```js
+  import { BusinessError } from '@ohos.base';
+  
   try {
     let firstPreferredLanguage: string = I18n.System.getFirstPreferredLanguage();  // 获取系统当前偏好语言列表中的第一个偏好语言
   } catch(error) {
-    console.error(`call System.getFirstPreferredLanguage failed, error code: ${error.code}, message: ${error.message}.`);
+    let err: BusinessError = error as BusinessError;
+    console.error(`call System.getDisplayCountry failed, error code: ${err.code}, message: ${err.message}.`);
   }
   ```
 
@@ -629,10 +680,13 @@ static getAppPreferredLanguage(): string
 
 **示例：**
   ```js
+  import { BusinessError } from '@ohos.base';
+  
   try {
     let appPreferredLanguage: string = I18n.System.getAppPreferredLanguage(); // 获取应用偏好语言
   } catch(error) {
-    console.error(`call System.getAppPreferredLanguage failed, error code: ${error.code}, message: ${error.message}.`);
+    let err: BusinessError = error as BusinessError;
+    console.error(`call System.getDisplayCountry failed, error code: ${err.code}, message: ${err.message}.`);
   }
   ```
 
@@ -664,10 +718,13 @@ static setUsingLocalDigit(flag: boolean): void
 
 **示例：**
   ```ts
+  import { BusinessError } from '@ohos.base';
+  
   try {
     I18n.System.setUsingLocalDigit(true); // 打开本地化数字开关
   } catch(error) {
-    console.error(`call System.setUsingLocalDigit failed, error code: ${error.code}, message: ${error.message}.`);
+    let err: BusinessError = error as BusinessError;
+    console.error(`call System.getDisplayCountry failed, error code: ${err.code}, message: ${err.message}.`);
   }
   ```
 
@@ -695,10 +752,13 @@ static getUsingLocalDigit(): boolean
 
 **示例：**
   ```ts
+  import { BusinessError } from '@ohos.base';
+  
   try {
     let status: boolean = I18n.System.getUsingLocalDigit();  // 判断本地化数字开关是否打开
   } catch(error) {
-    console.error(`call System.getUsingLocalDigit failed, error code: ${error.code}, message: ${error.message}.`);
+    let err: BusinessError = error as BusinessError;
+    console.error(`call System.getDisplayCountry failed, error code: ${err.code}, message: ${err.message}.`);
   }
   ```
 
@@ -2298,6 +2358,8 @@ getLanguageInfoArray(languages: Array&lt;string&gt;, options?: SortOptions): Arr
 
 **示例：**
   ```js
+  import { BusinessError } from '@ohos.base';
+  
   // 当系统语言为zh-Hans，系统地区为CN，系统Locale为zh-Hans-CN时
   let systemLocaleManager: I18n.SystemLocaleManager = new I18n.SystemLocaleManager();
   let languages: string[] = ["zh-Hans", "en-US", "pt", "ar"];
@@ -2306,7 +2368,8 @@ getLanguageInfoArray(languages: Array&lt;string&gt;, options?: SortOptions): Arr
       // 排序后的语言顺序为: [zh-Hans, en-US, pt, ar]
       let sortedLanguages: Array<I18n.LocaleItem> = systemLocaleManager.getLanguageInfoArray(languages, sortOptions);
   } catch(error) {
-      console.error(`call systemLocaleManager.getLanguageInfoArray failed, error code: ${error.code}, message: ${error.message}.`);
+      let err: BusinessError = error as BusinessError;
+      console.error(`call System.getDisplayCountry failed, error code: ${err.code}, message: ${err.message}.`);
   }
   ```
 
@@ -2344,6 +2407,8 @@ getRegionInfoArray(regions: Array&lt;string&gt;, options?: SortOptions): Array&l
 
 **示例：**
   ```js
+  import { BusinessError } from '@ohos.base';
+  
   // 当系统语言为zh-Hans，系统地区为CN，系统Locale为zh-Hans-CN时
   let systemLocaleManager: I18n.SystemLocaleManager = new I18n.SystemLocaleManager();
   let regions: string[] = ["CN", "US", "PT", "EG"];
@@ -2352,7 +2417,8 @@ getRegionInfoArray(regions: Array&lt;string&gt;, options?: SortOptions): Array&l
       // 排序后的地区顺序为: [CN, EG, US, PT]
       let sortedRegions: Array<I18n.LocaleItem> = systemLocaleManager.getRegionInfoArray(regions, sortOptions);
   } catch(error) {
-      console.error(`call systemLocaleManager.getRegionInfoArray failed, error code: ${error.code}, message: ${error.message}.`);
+      let err: BusinessError = error as BusinessError;
+      console.error(`call System.getDisplayCountry failed, error code: ${err.code}, message: ${err.message}.`);
   }
   ```
 
@@ -2374,6 +2440,8 @@ static getTimeZoneCityItemArray(): Array&lt;TimeZoneCityItem&gt;
 
 **示例：**
   ```js
+  import { BusinessError } from '@ohos.base';
+  
   try {
     let timeZoneCityItemArray: Array<I18n.TimeZoneCityItem> = I18n.SystemLocaleManager.getTimeZoneCityItemArray();
     for (let i = 0; i < timeZoneCityItemArray.length; i++) {
@@ -2381,7 +2449,8 @@ static getTimeZoneCityItemArray(): Array&lt;TimeZoneCityItem&gt;
             ", " + timeZoneCityItemArray[i].offset + "\r\n");
     }
   } catch(error) {
-    console.error(`call SystemLocaleManager.getTimeZoneCityItemArray failed, error code: ${error.code}, message: ${error.message}.`);
+    let err: BusinessError = error as BusinessError;
+    console.error(`call System.getDisplayCountry failed, error code: ${err.code}, message: ${err.message}.`);
   }
   ```
 
