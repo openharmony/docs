@@ -24,11 +24,11 @@ AVRecorder详细的API说明请参考[AVRecorder API参考](../reference/apis/js
      
    ```ts
    import media from '@ohos.multimedia.media'
-   let avRecorder
-   media.createAVRecorder().then((recorder) => {
-     avRecorder = recorder
-   }, (error) => {
-     console.error('createAVRecorder failed')
+   let avRecorder: media.AVRecorder;
+   media.createAVRecorder().then((recorder: media.AVRecorder) => {
+      avRecorder = recorder
+   }, (error: Error) => {
+      console.error('createAVRecorder failed')
    })
    ```
 
@@ -40,12 +40,12 @@ AVRecorder详细的API说明请参考[AVRecorder API参考](../reference/apis/js
 
    ```ts
    // 状态上报回调函数
-   avRecorder.on('stateChange', (state, reason) => {
-     console.info('current state is: ' + state);
+   avRecorder.on('stateChange', (state: media.AVRecorderState, reason: media.StateChangeReason) => {
+      console.info('current state is: ' + state);
    })
    // 错误上报回调函数
-   avRecorder.on('error', (err) => {
-     console.error('error happened, error message is ' + err);
+   avRecorder.on('error', (err: BusinessError) => {
+      console.error('error happened, error message is ' + err);
    })
    ```
 
@@ -62,7 +62,21 @@ AVRecorder详细的API说明请参考[AVRecorder API参考](../reference/apis/js
    > - 录制输出的url地址（即示例里avConfig中的url），形式为fd://xx (fd number)。需要调用基础文件操作接口（[ohos.file.fs](../reference/apis/js-apis-file-fs.md)）实现应用文件访问能力，获取方式参考[应用文件访问与管理](../file-management/app-file-access.md)。
 
    ```ts
-   let avProfile = {
+   class AVProfile {
+      fileFormat: media.ContainerFormatType;
+      videoBitrate: number;
+      videoCodec: media.CodecMimeType;
+      videoFrameWidth: number;
+      videoFrameHeight: number;
+      videoFrameRate: number;
+   }
+   class AVConfig {
+      videoSourceType: media.VideoSourceType;
+      profile: AVProfile;
+      url: string;
+      rotation: number;
+   }
+   let avProfile: AVProfile = {
      fileFormat : media.ContainerFormatType.CFT_MPEG_4, // 视频文件封装格式，只支持MP4
      videoBitrate : 200000, // 视频比特率
      videoCodec : media.CodecMimeType.VIDEO_AVC, // 视频文件编码格式，支持mpeg4和avc两种格式
@@ -70,16 +84,16 @@ AVRecorder详细的API说明请参考[AVRecorder API参考](../reference/apis/js
      videoFrameHeight : 480, // 视频分辨率的高
      videoFrameRate : 30 // 视频帧率
    }
-   let avConfig = {
+   let avConfig: AVConfig = {
      videoSourceType : media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_YUV, // 视频源类型，支持YUV和ES两种格式
      profile : this.avProfile,
      url : 'fd://35', // 参考应用文件访问与管理开发示例新建并读写一个文件
      rotation : 0, // 视频旋转角度，默认为0不旋转，支持的值为0、90、180、270
    }
    avRecorder.prepare(avConfig).then(() => {
-     console.info('avRecorder prepare success')
-   }, (error) => {
-     console.error('avRecorder prepare failed')
+      console.info('avRecorder prepare success')
+   }, (error: Error) => {
+      console.error('avRecorder prepare failed')
    })
    ```
 
@@ -118,11 +132,27 @@ AVRecorder详细的API说明请参考[AVRecorder API参考](../reference/apis/js
   
 ```ts
 import media from '@ohos.multimedia.media'
+import { BusinessError } from '@ohos.base';
+const TAG = 'VideoRecorderDemo:'
+class AVProfile {
+  fileFormat: media.ContainerFormatType;
+  videoBitrate: number;
+  videoCodec: media.CodecMimeType;
+  videoFrameWidth: number;
+  videoFrameHeight: number;
+  videoFrameRate: number;
+}
+class AVConfig {
+  videoSourceType: media.VideoSourceType;
+  profile: AVProfile;
+  url: string;
+  rotation: number;
+}
 const TAG = 'VideoRecorderDemo:'
 export class VideoRecorderDemo {
-  private avRecorder;
-  private videoOutSurfaceId;
-  private avProfile = {
+  private avRecorder: media.AVRecorder;
+  private videoOutSurfaceId: string;
+  private avProfile: AVProfile = {
     fileFormat : media.ContainerFormatType.CFT_MPEG_4, // 视频文件封装格式，只支持MP4
     videoBitrate : 100000, // 视频比特率
     videoCodec : media.CodecMimeType.VIDEO_AVC, // 视频文件编码格式，支持mpeg4和avc两种格式
@@ -130,7 +160,7 @@ export class VideoRecorderDemo {
     videoFrameHeight : 480, // 视频分辨率的高
     videoFrameRate : 30 // 视频帧率
   }
-  private avConfig = {
+  private avConfig: AVConfig = {
     videoSourceType : media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_YUV, // 视频源类型，支持YUV和ES两种格式
     profile : this.avProfile,
     url : 'fd://35', //  参考应用文件访问与管理开发示例新建并读写一个文件
@@ -140,11 +170,11 @@ export class VideoRecorderDemo {
   // 注册avRecorder回调函数
   setAvRecorderCallback() {
     // 状态机变化回调函数
-    this.avRecorder.on('stateChange', (state, reason) => {
+    this.avRecorder.on('stateChange', (state: media.AVRecorderState, reason: media.StateChangeReason) => {
       console.info(TAG + 'current state is: ' + state);
     })
     // 错误上报回调函数
-    this.avRecorder.on('error', (err) => {
+    this.avRecorder.on('error', (err: BusinessError) => {
       console.error(TAG + 'error ocConstantSourceNode, error message is ' + err);
     })
   }
