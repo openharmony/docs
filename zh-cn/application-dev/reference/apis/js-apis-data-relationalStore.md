@@ -4550,9 +4550,7 @@ goTo(offset:number): boolean
 **示例：**
 
   ```js
-
   resultSet.goTo(1);
-
   ```
 
 ### goToRow
@@ -4586,9 +4584,7 @@ goToRow(position: number): boolean
 **示例：**
 
   ```js
-
   resultSet.goToRow(5);
-
   ```
 
 ### goToFirstRow
@@ -4617,9 +4613,7 @@ goToFirstRow(): boolean
 **示例：**
 
   ```js
-
   resultSet.goToFirstRow();
-
   ```
 
 ### goToLastRow
@@ -4647,9 +4641,7 @@ goToLastRow(): boolean
 **示例：**
 
   ```js
-
   resultSet.goToLastRow();
-
   ```
 
 ### goToNextRow
@@ -4677,9 +4669,7 @@ goToNextRow(): boolean
 **示例：**
 
   ```js
-
   resultSet.goToNextRow();
-
   ```
 
 ### goToPreviousRow
@@ -4707,9 +4697,7 @@ goToPreviousRow(): boolean
 **示例：**
 
   ```js
-
   resultSet.goToPreviousRow();
-
   ```
 
 ### getBlob
@@ -4962,9 +4950,7 @@ close(): void
 **示例：**
 
   ```js
-
   resultSet.close();
-
   ```
 
 **错误码：**
