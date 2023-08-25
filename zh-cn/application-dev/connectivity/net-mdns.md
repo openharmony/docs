@@ -32,9 +32,9 @@ MDNS管理的典型场景有：
 | ohos.net.mdns.DiscoveryService | on(type: 'discoveryStop', callback: Callback<{serviceInfo: LocalServiceInfo, errorCode?: MdnsError}>): void | 订阅停止监听mDNS服务的通知。 |
 | ohos.net.mdns.DiscoveryService | off(type: 'discoveryStop', callback?: Callback<{ serviceInfo: LocalServiceInfo, errorCode?: MdnsError }>): void | 取消停止监听mDNS服务的通知。 |
 | ohos.net.mdns.DiscoveryService | on(type: 'serviceFound', callback: Callback\<LocalServiceInfo>): void | 订阅发现mDNS服务的通知。 |
-| ohos.net.mdns.DiscoveryService | off(type: 'serviceFound', callback?: Callback<LocalServiceInfo>): void | 取消发现mDNS服务的通知。 |
+| ohos.net.mdns.DiscoveryService | off(type: 'serviceFound', callback?: Callback\<LocalServiceInfo>): void | 取消发现mDNS服务的通知。 |
 | ohos.net.mdns.DiscoveryService | on(type: 'serviceLost', callback: Callback\<LocalServiceInfo>): void | 订阅移除mDNS服务的通知。 |
-| ohos.net.mdns.DiscoveryService | off(type: 'serviceLost', callback?: Callback<LocalServiceInfo>): void | 取消移除mDNS服务的通知。 |
+| ohos.net.mdns.DiscoveryService | off(type: 'serviceLost', callback?: Callback\<LocalServiceInfo>): void | 取消移除mDNS服务的通知。 |
 
 ## 管理本地服务
 
