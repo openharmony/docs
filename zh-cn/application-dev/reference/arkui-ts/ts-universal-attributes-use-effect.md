@@ -10,7 +10,7 @@
 
 | 名称 | 参数类型 | 参数描述 |
 | -------- | -------- | -------- |
-| useEffect | bool | 控制组件是否继承EffectComponent组件的特效属性参数进行特效的合并绘制。<br/>默认值：false|
+| useEffect | bool | 控制组件是否继承EffectComponent组件的特效属性参数，从而合并绘制特效。<br/>useEffect为true时子组件继承EffectComponent组件的特效属性参数。<br/>默认值：false|
 
 ## 示例
 
