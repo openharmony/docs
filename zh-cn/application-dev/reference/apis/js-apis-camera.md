@@ -2859,8 +2859,8 @@ setBeauty(type: BeautyType, value: number): void
 
 | 参数名      | 类型                    | 必填 | 说明                   |
 | -------- | --------------------------| ---- | --------------------- |
-| type     | [BeautyType](#beautytype) | 是   | 美颜类型   |
-| value    | number                  | 是   | 美颜强度，通过[getSupportedBeautyRange](#getSupportedBeautyRange)接口获取。|
+| type     | [BeautyType](#beautytype) | 是   | 美颜类型               |
+| value    | number                    | 是   | 美颜强度，通过[getSupportedBeautyRange](#getsupportedbeautyrange)接口获取。|
 
 **错误码：**
 
