@@ -40,7 +40,7 @@ The standard system capabilities of OpenHarmony 4.0 are continuously improved. A
 
 - RDB store NDK interfaces are provided. These interfaces are used for transaction addition, deletion, modification, and query, data encryption, hierarchical data protection, and backup and restore.
 
-- The system can automatically selects a Bluetooth or Wi-Fi P2P channel for synchronization of key-value and distributed data objects based on the data volume.
+- The system can automatically select a Bluetooth or Wi-Fi P2P channel for synchronization of key-value and distributed data objects based on the data volume.
 
 
 ### DSoftBus
@@ -391,7 +391,7 @@ This version has the following updates to OpenHarmony 4.0 Beta1.
 
 ### API 
 
-For details about the API changes over OpenHarmony 4.0 Beta1, see [API Differences](/api-diff/v4.0-beta2/Readme-EN.md). A few API changes may affect applications developed using API version 9 or earlier. For details about the change impact and adaptation guide, see [Changelogs](changelogs/v4.0-beta2/Readme-EN.md).
+For details about the API changes over OpenHarmony 4.0 Beta1, see [API Differences](https://gitee.com/openharmony/docs/blob/OpenHarmony-4.0-Beta2/en/release-notes/api-diff/v4.0-beta2/Readme-EN.md). A few API changes may affect applications developed using API version 9 or earlier. For details about the change impact and adaptation guide, see [Changelogs](https://gitee.com/openharmony/docs/blob/OpenHarmony-4.0-Beta2/en/release-notes/changelogs/v4.0-beta2/Readme-EN.md).
 
 
 ### Feature Updates

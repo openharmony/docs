@@ -943,6 +943,102 @@ adminManager.unsubscribeManagedEvent(wantTemp, events).then(() => {
 })
 ```
 
+## adminManager.authorizeAdmin<sup>10+</sup>
+
+authorizeAdmin(admin: Want, bundleName: string, callback: AsyncCallback&lt;void&gt;): void
+
+Authorizes the administrator rights to an application through the specified device administrator application. This API uses an asynchronous callback to return the result.
+
+**Required permissions**: ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN
+
+**System capability**: SystemCapability.Customization.EnterpriseDeviceManager
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name  | Type                                 | Mandatory  | Description     |
+| ----- | ----------------------------------- | ---- | ------- |
+| admin | [Want](js-apis-app-ability-want.md) | Yes   | Device administrator application.|
+| bundleName  | string | Yes| Bundle name of the application to be authorized with the administrator rights.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
+
+**Error codes**
+
+For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
+
+| ID| Error Message                                              |
+| ------- | ----------------------------------------------------- |
+| 9200001 | the application is not an administrator of the device. |
+| 9200002 | the administrator application does not have permission to manage the device.          |
+| 9200009 | authorize permission to the application failed.          |
+
+**Example**
+
+```js
+let wantTemp = {
+  bundleName: 'bundleName',
+  abilityName: 'abilityName',
+};
+let bundleName: string = "com.example.application";
+adminManager.authorizeAdmin(wantTemp, bundleName, (err) => {
+  if (err) {
+    console.error(`Failed to authorize permission to the application. Code: ${err.code}, message: ${err.message}`);
+    return;
+  }
+  console.info('Successfully authorized permission to the application');
+});
+```
+
+## adminManager.authorizeAdmin<sup>10+</sup>
+
+authorizeAdmin(admin: Want, bundleName: string): Promise&lt;void&gt;
+
+Authorizes the administrator rights to an application through the specified device administrator application. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN
+
+**System capability**: SystemCapability.Customization.EnterpriseDeviceManager
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name  | Type                                 | Mandatory  | Description     |
+| ----- | ----------------------------------- | ---- | ------- |
+| admin | [Want](js-apis-app-ability-want.md) | Yes   | Device administrator application.|
+| bundleName  | string | Yes| Bundle name of the application to be authorized with the administrator rights.|
+
+**Return value**
+
+| Type  | Description                                 |
+| ----- | ----------------------------------- |
+| Promise&lt;void&gt; | Promise that returns no value. If the operation fails, an error object will be thrown.|
+
+**Error codes**
+
+For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
+
+| ID| Error Message                                              |
+| ------- | ----------------------------------------------------- |
+| 9200001 | the application is not an administrator of the device. |
+| 9200002 | the administrator application does not have permission to manage the device.          |
+| 9200009 | authorize permission to the application failed.          |
+
+**Example**
+
+```js
+let wantTemp = {
+  bundleName: 'bundleName',
+  abilityName: 'abilityName',
+};
+let bundleName: string = "com.example.application";
+adminManager.authorizeAdmin(wantTemp, bundleName).then(() => {
+}).catch((err) => {
+  console.error(`Failed to authorize permission to the application. Code: ${err.code}, message: ${err.message}`);
+})
+```
+
 ## EnterpriseInfo
 
 Represents the enterprise information of a device administrator application.

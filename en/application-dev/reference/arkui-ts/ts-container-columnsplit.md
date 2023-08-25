@@ -1,17 +1,14 @@
 # ColumnSplit
 
-The **\<ColumnSplit>** component lays out child components vertically and inserts a horizontal divider between components.
+The **\<ColumnSplit>** component lays out child components vertically and inserts a horizontal divider between every two child components.
 
 >  **NOTE**
 >
 > This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
-
-
 ## Child Components
 
 Supported
-
 
 ## APIs
 
@@ -20,17 +17,24 @@ ColumnSplit()
 
 ## Attributes
 
-| Name| Type| Description|
-| -------- | -------- | -------- |
-| resizeable | boolean | Whether the divider can be dragged.<br/>Default value: **false** |
+| Name                  | Type                                                             | Description                            |
+|-----------------------|-------------------------------------------------------------------|---------------------------------|
+| resizeable            | boolean                                                           | Whether the divider can be dragged.<br/>Default value: **false**  |
+| divider<sup>10+</sup> | [ColumnSplitDividerStyle](#columnsplitdividerstyle10) \| null | Margin of the divider.<br>- **DividerStyle**: distance between the divider and the child component above or below it.<br>- Default value: **null**, indicating that the top and bottom margins of the divider are 0.|
+
+## ColumnSplitDividerStyle<sup>10+</sup>
+
+| Name       | Type     | Mandatory| Description                      |
+| ----------- | ------------- | ---- |--------------------------|
+| startMargin | [Dimension](ts-types.md#dimension10)       | No  | Distance between the divider and the child component above it.<br>Default value: **0**|
+| endMargin   | [Dimension](ts-types.md#dimension10)       | No  | Distance between the divider and the child component below it.<br>Default value: **0**|
 
 >  **NOTE**
 >
-> Similar to **\<RowSplit>**, the divider of **\<ColumnSplit>** can be dragged to a position that just fully holds a component.
+> Similar to **\<RowSplit>**, the divider of **\<ColumnSplit>** can change the height of the upper and lower child components, but only to the extent that the resultant height falls within the maximum and minimum heights of the child components.
 >
-> Dragging is not supported in the Previewer. Check the drag effect on a real device.
->
-> The universal attributes **clip** and **margin** are not supported.
+> Universal attributes such as **clip** and **margin** are supported. If **clip** is not set, the default value **true** is used.
+
 
 ## Example
 

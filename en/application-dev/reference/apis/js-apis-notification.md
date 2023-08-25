@@ -4,7 +4,7 @@ The **Notification** module provides notification management capabilities, cover
 
 > **NOTE**
 >
-> The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version. This module is deprecated since API version 9.
 >
 > Notification subscription and unsubscription APIs are available only to system applications.
 
@@ -1460,7 +1460,7 @@ Removes a notification for a specified bundle. This API uses an asynchronous cal
 | --------------- |   ----------------------------------| ---- | -------------------- |
 | bundle          | [BundleOption](#bundleoptiondeprecated)       | Yes  | Bundle information of the application.          |
 | notificationKey | [NotificationKey](#notificationkeydeprecated) | Yes  | Notification key.            |
-| reason          | [RemoveReason](#removereason9-deprecated)      | Yes  | Indicates the reason for deleting a notification.        |
+| reason          | [RemoveReason](#removereason-deprecated)      | Yes  | Reason for deleting a notification.        |
 | callback        | AsyncCallback\<void\>               | Yes  | Callback used to return the result.|
 
 **Example**
@@ -1502,7 +1502,7 @@ Removes a notification for a specified bundle. This API uses a promise to return
 | --------------- | --------------- | ---- | ---------- |
 | bundle          | [BundleOption](#bundleoptiondeprecated)    | Yes  | Bundle information of the application.|
 | notificationKey | [NotificationKey](#notificationkeydeprecated) | Yes  | Notification key.  |
-| reason          | [RemoveReason](#removereason9-deprecated) | Yes  | Reason for deleting the notification.        |
+| reason          | [RemoveReason](#removereason-deprecated) | Yes  | Reason for deleting the notification.        |
 
 **Example**
 
@@ -1536,8 +1536,8 @@ Removes a notification for a specified bundle. This API uses an asynchronous cal
 
 | Name    | Type                 | Mandatory| Description                |
 | -------- | --------------------- | ---- | -------------------- |
-| hashCode | string                | Yes  | Unique notification ID. It is the **hashCode** in the [NotificationRequest](#notificationrequest) object of [SubscribeCallbackData](#subscribecallbackdata) of the [onConsume](js-apis-inner-notification-notificationSubscriber.md#onconsume) callback. |
-| reason   | [RemoveReason](#removereason9-deprecated) | Yes  | Indicates the reason for deleting a notification.        |
+| hashCode | string                | Yes  | Unique notification ID. It is the **hashCode** in the [NotificationRequest](#notificationrequest) object of [SubscribeCallbackData](#subscribecallbackdata) of the [onConsume](js-apis-inner-notification-notificationSubscriber.md#onconsume) callback.|
+| reason   | [RemoveReason](#removereason-deprecated) | Yes  | Reason for deleting a notification.        |
 | callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
 
 **Example**
@@ -1573,7 +1573,7 @@ Removes a notification for a specified bundle. This API uses a promise to return
 | Name    | Type      | Mandatory| Description      |
 | -------- | ---------- | ---- | ---------- |
 | hashCode | string | Yes  | Unique notification ID.|
-| reason   | [RemoveReason](#removereason9-deprecated) | Yes  | Reason for deleting the notification.        |
+| reason   | [RemoveReason](#removereason-deprecated) | Yes  | Reason for deleting the notification.        |
 
 **Example**
 
@@ -2872,10 +2872,10 @@ Notification.getDeviceRemindType().then((data) => {
 >
 > This API is supported since API version 7 and deprecated since API version 9. You are advised to use [notificationManager.BundleOption](js-apis-inner-notification-notificationCommonDef.md#bundleoption) instead.
 
-| Name  | Type  | Read-only| Mandatory| Description  |
-| ------ | ------ |---- | --- |  ------ |
-| bundle | string | No | Yes | Bundle information of the application.|
-| uid    | number | No | No | User ID.|
+| Name  | Type  | Mandatory| Description  |
+| ------ | ------ | --- |  ------ |
+| bundle | string | Yes | Bundle information of the application.|
+| uid    | number | No | User ID.|
 
 ## NotificationKey<sup>deprecated</sup>
 
@@ -3059,7 +3059,7 @@ Describes the notification request.
 | classification        | string                                        | Yes | Yes | Notification category.<br>**System API**: This is a system API and cannot be called by third-party applications.                  |
 | groupName<sup>8+</sup>| string                                        | Yes | Yes | Notification group name.                |
 | template<sup>8+</sup> | [NotificationTemplate](#notificationtemplate8) | Yes | Yes | Notification template.                  |
-| isRemoveAllowed<sup>8+</sup> | boolean                                | Yes | No | Whether the notification can be removed.<br>**System API**: This is a system API and cannot be called by third-party applications.                  |
+| isRemoveAllowed<sup>10+</sup> | boolean                                | Yes | No | Whether the notification can be removed.<br>**System API**: This is a system API and cannot be called by third-party applications.                  |
 | source<sup>8+</sup>   | number                                        | Yes | No | Notification source.<br>**System API**: This is a system API and cannot be called by third-party applications.                  |
 | distributedOption<sup>8+</sup>   | [DistributedOptions](#distributedoptions8)                 | Yes | Yes | Distributed notification options.         |
 | deviceId<sup>8+</sup> | string                                        | Yes | No | Device ID of the notification source.<br>**System API**: This is a system API and cannot be called by third-party applications.         |
@@ -3203,7 +3203,7 @@ Provides the notification user input.
 | TYPE_CONTINUOUS      | 1   | Continuous notification.           |
 | TYPE_TIMER           | 2   | Timed notification.           |
 
-## RemoveReason<sup>9+</sup> <sup>deprecated</sup>
+## RemoveReason <sup>deprecated</sup>
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -3211,9 +3211,9 @@ Provides the notification user input.
 
 > **NOTE**
 >
-> This API is supported since API version 9 and deprecated since API version 9. You are advised to use [notificationManager.RemoveReason](js-apis-notificationSubscribe.md#removereason) instead.
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [notificationManager.RemoveReason](js-apis-notificationSubscribe.md#removereason) instead.
 
 | Name                | Value | Description                 |
 | -------------------- | --- | -------------------- |
-| CLICK_REASON_REMOVE<sup>9+</sup>  | 1   | The notification is removed after a click on it.   |
-| CANCEL_REASON_REMOVE<sup>9+</sup> | 2   | The notification is removed by the user.        |
+| CLICK_REASON_REMOVE  | 1   | The notification is removed after a click on it.   |
+| CANCEL_REASON_REMOVE | 2   | The notification is removed by the user.        |

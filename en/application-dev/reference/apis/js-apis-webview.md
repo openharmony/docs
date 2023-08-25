@@ -254,20 +254,20 @@ struct WebComponent {
         .onClick(() => {
           // Use the local port to send messages to HTML5.
           try {
-              console.log("In eTS side send true start");
+              console.log("In ArkTS side send true start");
               if (this.nativePort) {
                   this.message.setString("helloFromEts");
                   this.nativePort.postMessageEventExt(this.message);
               }
           }
           catch (error) {
-              console.log("In eTS side send message catch error:" + error.code + ", msg:" + error.message);
+              console.log("In ArkTS side send message catch error:" + error.code + ", msg:" + error.message);
           }
         })
 
       Web({ src: $rawfile('index.html'), controller: this.controller })
       .onPageEnd((e)=>{
-        console.log("In eTS side message onPageEnd init mesaage channel");
+        console.log("In ArkTS side message onPageEnd init mesaage channel");
         // 1. Create a message port.
         this.ports = this.controller.createWebMessagePorts(true);
         // 2. Send port 1 to HTML5.
@@ -276,10 +276,10 @@ struct WebComponent {
         this.nativePort = this.ports[0];
         // 4. Set the callback.
         this.nativePort.onMessageEventExt((result) => {
-            console.log("In eTS side got message");
+            console.log("In ArkTS side got message");
             try {
                 var type = result.getType();
-                console.log("In eTS side getType:" + type);
+                console.log("In ArkTS side getType:" + type);
                 switch (type) {
                     case web_webview.WebMessageType.STRING: {
                         this.msg1 = "result type:" + typeof (result.getString());
@@ -652,71 +652,71 @@ struct WebComponent {
 There are three methods for loading local resource files:
 
 1. Using $rawfile
-   ```ts
-   // xxx.ets
-   import web_webview from '@ohos.web.webview'
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
 
-   @Entry
-   @Component
-   struct WebComponent {
-     controller: web_webview.WebviewController = new web_webview.WebviewController();
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
 
-     build() {
-       Column() {
-         Button('loadUrl')
-           .onClick(() => {
-             try {
-               // Load a local resource file through $rawfile.
-               this.controller.loadUrl($rawfile('index.html'));
-             } catch (error) {
-               console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
-             }
-           })
-         Web({ src: 'www.example.com', controller: this.controller })
-       }
-     }
-   }
-   ```
+  build() {
+    Column() {
+      Button('loadUrl')
+        .onClick(() => {
+          try {
+            // Load a local resource file through $rawfile.
+            this.controller.loadUrl($rawfile('index.html'));
+          } catch (error) {
+            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
 
 2. Using the resources protocol
-   ```ts
-   // xxx.ets
-   import web_webview from '@ohos.web.webview'
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
 
-   @Entry
-   @Component
-   struct WebComponent {
-     controller: web_webview.WebviewController = new web_webview.WebviewController();
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
 
-     build() {
-       Column() {
-         Button('loadUrl')
-           .onClick(() => {
-             try {
-               // Load a local resource file through the resource protocol.
-               this.controller.loadUrl("resource://rawfile/index.html");
-             } catch (error) {
-               console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
-             }
-           })
-         Web({ src: 'www.example.com', controller: this.controller })
-       }
-     }
-   }
-   ```
+  build() {
+    Column() {
+      Button('loadUrl')
+        .onClick(() => {
+          try {
+            // Load local resource files through the resource protocol.
+            this.controller.loadUrl("resource://rawfile/index.html");
+          } catch (error) {
+            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
 
 3. Using a sandbox path. For details, see the example of loading local resource files in the sandbox in [Web](../arkui-ts/ts-basic-components-web.md#web).
 
-   HTML file to be loaded:
-   ```html
-   <!-- index.html -->
-   <!DOCTYPE html>
-   <html>
-     <body>
-       <p>Hello World</p>
-     </body>
-   </html>
-   ```
+HTML file to be loaded:
+```html
+<!-- index.html -->
+<!DOCTYPE html>
+<html>
+  <body>
+    <p>Hello World</p>
+  </body>
+</html>
+```
 
 ### loadData
 
@@ -4317,6 +4317,107 @@ export default class EntryAbility extends UIAbility {
         globalThis.abilityWant = want
         console.log("EntryAbility onCreate done")
     }
+}
+```
+
+### setCustomUserAgent<sup>10+</sup>
+
+setCustomUserAgent(userAgent: string): void
+
+Set a custom user agent.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Parameters**
+
+| Name         | Type   |  Mandatory | Description                                           |
+| ---------------| ------- | ---- | ------------- |
+| userAgent      | string  | Yes  | Information about the custom user agent.|
+
+**Error codes**
+
+For details about the error codes, see [Webview Error Codes](../errorcodes/errorcode-webview.md).
+
+| ID | Error Message                                                     |
+| -------- | ------------------------------------------------------------ |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
+
+**Example**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  @State userAgent: string = 'test'
+
+  build() {
+    Column() {
+      Button('setCustomUserAgent')
+        .onClick(() => {
+          try {
+            this.controller.setCustomUserAgent(this.userAgent);
+          } catch (error) {
+            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### getCustomUserAgent<sup>10+</sup>
+
+getCustomUserAgent(): string
+
+Obtains a custom user agent.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Return value**
+
+| Type  | Description                     |
+| ------ | ------------------------- |
+| string | Information about the custom user agent.|
+
+**Error codes**
+
+For details about the error codes, see [Webview Error Codes](../errorcodes/errorcode-webview.md).
+
+| ID | Error Message                                                     |
+| -------- | ------------------------------------------------------------ |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
+
+**Example**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  @State userAgent: string = ''
+
+  build() {
+    Column() {
+      Button('getCustomUserAgent')
+        .onClick(() => {
+          try {
+            this.userAgent = this.controller.getCustomUserAgent();
+            console.log("userAgent: " + this.userAgent);
+          } catch (error) {
+            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
 }
 ```
 

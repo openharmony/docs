@@ -4,7 +4,7 @@ The **PromptAction** module provides APIs for creating and showing toasts, dialo
 
 > **NOTE**
 >
-> - The APIs of this module are no longer maintained since API version 8. You are advised to use [`@ohos.prompt`](js-apis-prompt.md) instead.
+> - The APIs of this module are deprecated since API version 8. You are advised to use [@ohos.promptAction](js-apis-promptAction.md) instead.
 >
 >
 > - The initial APIs of this module are supported since API version 3. Newly added APIs will be marked with a superscript to indicate their earliest API version.
