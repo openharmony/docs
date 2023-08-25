@@ -718,6 +718,41 @@ discoveryService.on('discoveryStart', (data) => {
 discoveryService.stopSearchingMDNS();
 ```
 
+### off('discoveryStart')<sup>10+</sup>
+
+off(type: 'discoveryStart', callback?: Callback<{ serviceInfo: LocalServiceInfo, errorCode?: MdnsError }>): void;
+
+Disables listening for **discoveryStart** events.
+
+**System capability**: SystemCapability.Communication.NetManager.MDNS
+
+**Parameters**
+
+| Name       | Type                            | Mandatory| Description                                    |
+|-------------|--------------|-----------|-----------------------------------------------------|
+| type     | string                          | Yes      |Event type. This field has a fixed value of **discoveryStart**.<br>**discoveryStart**: event of starting discovery of mDNS services on the LAN.|
+| callback | Callback<{serviceInfo: [LocalServiceInfo](#localserviceinfo), errorCode?: [MdnsError](#mdnserror)}>                  | Yes       |   Callback used to return the mDNS service and error information.     |
+
+**Example**
+
+```js
+// See mdns.createDiscoveryService.
+let context = globalThis.context;
+let serviceType = "_print._tcp";
+let discoveryService = mdns.createDiscoveryService(context, serviceType);
+discoveryService.startSearchingMDNS();
+
+discoveryService.on('discoveryStart', (data) => {
+  console.log(JSON.stringify(data));
+});
+
+discoveryService.stopSearchingMDNS();
+
+discoveryService.off('discoveryStart', (data) => {
+  console.log(JSON.stringify(data));
+});
+```
+
 ### on('discoveryStop')<sup>10+</sup>
 
 on(type: 'discoveryStop', callback: Callback<{serviceInfo: LocalServiceInfo, errorCode?: MdnsError}>): void
@@ -747,6 +782,41 @@ discoveryService.on('discoveryStop', (data) => {
 });
 
 discoveryService.stopSearchingMDNS();
+```
+
+### off('discoveryStop')<sup>10+</sup>
+
+off(type: 'discoveryStop', callback: Callback<{serviceInfo: LocalServiceInfo, errorCode?: MdnsError}>): void
+
+Disables listening for **discoveryStop** events.
+
+**System capability**: SystemCapability.Communication.NetManager.MDNS
+
+**Parameters**
+
+| Name       | Type                            | Mandatory| Description                                    |
+|-------------|--------------|-----------|-----------------------------------------------------|
+| type     | string                          | Yes      |Event type. This field has a fixed value of **discoveryStop**.<br>**discoveryStop**: event of stopping discovery of mDNS services on the LAN.|
+| callback | Callback<{serviceInfo: [LocalServiceInfo](#localserviceinfo), errorCode?: [MdnsError](#mdnserror)}>                 | Yes       |   Callback used to return the mDNS service and error information.     |
+
+**Example**
+
+```js
+// See mdns.createDiscoveryService.
+let context = globalThis.context;
+let serviceType = "_print._tcp";
+let discoveryService = mdns.createDiscoveryService(context, serviceType);
+discoveryService.startSearchingMDNS();
+
+discoveryService.on('discoveryStop', (data) => {
+  console.log(JSON.stringify(data));
+});
+
+discoveryService.stopSearchingMDNS();
+
+discoveryService.off('discoveryStop', (data) => {
+  console.log(JSON.stringify(data));
+});
 ```
 
 ### on('serviceFound')<sup>10+</sup>
@@ -780,6 +850,41 @@ discoveryService.on('serviceFound', (data) => {
 discoveryService.stopSearchingMDNS();
 ```
 
+### off('serviceFound')<sup>10+</sup>
+
+off(type: 'serviceFound', callback: Callback\<LocalServiceInfo>): void
+
+Disables listening for **serviceFound** events.
+
+**System capability**: SystemCapability.Communication.NetManager.MDNS
+
+**Parameters**
+
+| Name       | Type                            | Mandatory| Description                                    |
+|-------------|--------------|-----------|-----------------------------------------------------|
+| type     | string                          | Yes      |Event type. This field has a fixed value of **serviceFound**.<br>**serviceFound**: event indicating an mDNS service is found.|
+| callback | Callback<[LocalServiceInfo](#localserviceinfo)>                 | Yes       |   mDNS service information.     |
+
+**Example**
+
+```js
+// See mdns.createDiscoveryService.
+let context = globalThis.context;
+let serviceType = "_print._tcp";
+let discoveryService = mdns.createDiscoveryService(context, serviceType);
+discoveryService.startSearchingMDNS();
+
+discoveryService.on('serviceFound', (data) => {
+  console.log(JSON.stringify(data));
+});
+
+discoveryService.stopSearchingMDNS();
+
+discoveryService.off('serviceFound', (data) => {
+  console.log(JSON.stringify(data));
+});
+```
+
 ### on('serviceLost')<sup>10+</sup>
 
 on(type: 'serviceLost', callback: Callback\<LocalServiceInfo>): void
@@ -809,6 +914,41 @@ discoveryService.on('serviceLost', (data) => {
 });
 
 discoveryService.stopSearchingMDNS();
+```
+
+### off('serviceLost')<sup>10+</sup>
+
+off(type: 'serviceLost', callback: Callback\<LocalServiceInfo>): void
+
+Disables listening for **serviceLost** events.
+
+**System capability**: SystemCapability.Communication.NetManager.MDNS
+
+**Parameters**
+
+| Name       | Type                            | Mandatory| Description                                    |
+|-------------|--------------|-----------|-----------------------------------------------------|
+| type     | string                          | Yes      |Event type. This field has a fixed value of **serviceLost**.<br>serviceLost: event indicating that an mDNS service is removed.|
+| callback | Callback<[LocalServiceInfo](#localserviceinfo)>   | Yes       |   mDNS service information.     |
+
+**Example**
+
+```js
+// See mdns.createDiscoveryService.
+let context = globalThis.context;
+let serviceType = "_print._tcp";
+let discoveryService = mdns.createDiscoveryService(context, serviceType);
+discoveryService.startSearchingMDNS();
+
+discoveryService.on('serviceLost', (data) => {
+  console.log(JSON.stringify(data));
+});
+
+discoveryService.stopSearchingMDNS();
+
+discoveryService.off('serviceLost', (data) => {
+  console.log(JSON.stringify(data));
+});
 ```
 
 ## LocalServiceInfo<sup>10+</sup>

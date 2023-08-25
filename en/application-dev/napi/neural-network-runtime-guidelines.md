@@ -1,4 +1,4 @@
-# Connecting the Neural Network Runtime to an AI Inference Framework
+# Development Guide for Connecting the Neural Network Runtime to an AI Inference Framework
 
 ## When to Use
 
@@ -19,7 +19,7 @@ The environment requirements for the Neural Network Runtime are as follows:
 - Development environment: Ubuntu 18.04 or later.
 - Access device: a standard device running OpenHarmony. The built-in hardware accelerator driver has been connected to the Neural Network Runtime through an HDI API.
 
-The Neural Network Runtime is opened to external systems through OpenHarmony Native APIs. Therefore, you need to use the Native development suite of the OpenHarmony to compile Neural Network Runtime applications. 
+The Neural Network Runtime is opened to external systems through OpenHarmony Native APIs. Therefore, you need to use the Native development suite of the OpenHarmony to compile Neural Network Runtime applications.
 
 ### Environment Setup
 
@@ -484,3 +484,8 @@ The development process of the Neural Network Runtime consists of three phases: 
     rm /data/local/tmp/*nncache
     ```
 
+## Samples
+
+The following sample is provided to help you understand how to connect a third-party AI inference framework to the Neural Network Runtime:
+
+- [Development Guide for Connecting TensorFlow Lite to NNRt Delegate](https://gitee.com/openharmony/ai_neural_network_runtime/tree/master/example/deep_learning_framework)
