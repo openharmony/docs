@@ -111,13 +111,19 @@ Grid组件根据rowsTemplate、columnsTemplate属性的设置情况，可分为�
 
 | 名称 | 功能描述 |
 | -------- | -------- |
-| onScrollIndex(event: (first: number) => void) | 当前网格显示的起始位置item发生变化时触发。列表初始化时会触发一次。<br/>- first: 当前显示的网格起始位置的索引值。<br/>Grid显示区域上第一个子组件的索引值有变化就会触发。 |
+| onScrollIndex(event: (first: number, last: number) => void) | 当前网格显示的起始位置/终止位置的item发生变化时触发。网格初始化时会触发一次。<br/>- first: 当前显示的网格起始位置的索引值。<br/>- last: 当前显示的网格终止位置的索引值。<br/>Grid显示区域上第一个子组件/最后一个组件的索引值有变化就会触发。 |
 | onItemDragStart(event: (event: ItemDragInfo, itemIndex: number) => (() => any) \| void) | 开始拖拽网格元素时触发。<br/>- event: 见[ItemDragInfo对象说明](#itemdraginfo对象说明)。<br/>- itemIndex: 被拖拽网格元素索引值。<br/>**说明：** <br/>返回void表示不能拖拽。<br/>手指长按GridItem时触发该事件。<br/>由于拖拽检测也需要长按，且事件处理机制优先触发子组件事件，GridItem上绑定LongPressGesture时无法触发拖拽；如有长按和拖拽同时使用的需求可以使用通用拖拽事件。 |
 | onItemDragEnter(event: (event: ItemDragInfo) => void) | 拖拽进入网格元素范围内时触发。<br/>- event: 见[ItemDragInfo对象说明](#itemdraginfo对象说明)。 |
 | onItemDragMove(event: (event: ItemDragInfo, itemIndex: number, insertIndex: number) => void) | 拖拽在网格元素范围内移动时触发。<br/>- event: 见[ItemDragInfo对象说明](#itemdraginfo对象说明)。<br/>- itemIndex: 拖拽起始位置。<br/>- insertIndex: 拖拽插入位置。 |
 | onItemDragLeave(event: (event: ItemDragInfo, itemIndex: number) => void) | 拖拽离开网格元素时触发。<br/>- event: 见[ItemDragInfo对象说明](#itemdraginfo对象说明)。<br/>- itemIndex: 拖拽离开的网格元素索引值。 |
 | onItemDrop(event: (event: ItemDragInfo, itemIndex: number, insertIndex: number, isSuccess: boolean) => void) | 绑定该事件的网格元素可作为拖拽释放目标，当在网格元素内停止拖拽时触发。<br/>- event: 见[ItemDragInfo对象说明](#itemdraginfo对象说明)。<br/>- itemIndex: 拖拽起始位置。<br/>- insertIndex: 拖拽插入位置。<br/>- isSuccess: 是否成功释放。 |
 | onScrollBarUpdate(event: (index: number, offset: number) => ComputedBarAttribute) | 当前网格显示的起始位置item发生变化时触发，可通过该回调设置滚动条的位置及长度。<br/>- index: 当前显示的网格起始位置的索引值。<br/>- offset: 当前显示的网格起始位置元素相对网格显示起始位置的偏移。<br/>- ComputedBarAttribute: 见[ComputedBarAttribute对象说明](#computedbarattribute对象说明)。  |
+| onScroll(event: (scrollOffset: number, scrollState: ScrollState) => void) | 网格滑动时触发。<br/>- scrollOffset: 每帧滚动的偏移量，Grid的内容向上滚动时偏移量为正，向下滚动时偏移量为负。<br/>- [scrollState](#scrollstate枚举说明): 当前滑动状态。 |
+| onReachStart(event: () => void)          | 网格到达起始位置时触发。<br/>**说明：** <br>Grid初始化时如果initialIndex为0会触发一次，Grid滚动到起始位置时触发一次。Grid边缘效果为弹簧效果时，划动经过起始位置时触发一次，回弹回起始位置时再触发一次。 |
+| onReachEnd(event: () => void)            | 网格到底末尾位置时触发。<br/>**说明：** <br/>Grid边缘效果为弹簧效果时，划动经过末尾位置时触发一次，回弹回末尾位置时再触发一次。 |
+| onScrollFrameBegin(event: (offset: number, state: ScrollState) => { offsetRemain }) | 网格开始滑动时触发，事件参数传入即将发生的滑动量，事件处理函数中可根据应用场景计算实际需要的滑动量并作为事件处理函数的返回值返回，网格将按照返回值的实际滑动量进行滑动。<br/>\- offset：即将发生的滑动量，单位vp。<br/>\- state：当前滑动状态。<br/>- offsetRemain：实际滑动量，单位vp。<br/>触发该事件的条件：手指拖动Grid、Grid惯性划动时每帧开始时触发；Grid超出边缘回弹、使用滚动控制器的滚动不会触发。<br/>**说明：** <br/>当gridDirection的值为Axis.Vertical时，返回垂直方向滑动量，当gridDirection的值为Axis.Horizontal时，返回水平方向滑动量。 |
+| onScrollStart(event: () => void) | 网格滑动开始时触发。手指拖动网格或网格的滚动条触发的滑动开始时，会触发该事件。使用[Scroller](ts-container-scroll.md#scroller)滑动控制器触发的带动画的滑动，动画开始时会触发该事件。 |
+| onScrollStop(event: () => void)          | 网格滑动停止时触发。手拖动网格或网格的滚动条触发的滑动，手离开屏幕并且滑动停止时会触发该事件；使用[Scroller](ts-container-scroll.md#scroller)滑动控制器触发的带动画的滑动，动画停止会触发该事件。 |
 
 ## ItemDragInfo对象说明
 
@@ -133,6 +139,27 @@ Grid组件根据rowsTemplate、columnsTemplate属性的设置情况，可分为�
 | totalOffset | number |  Grid内容相对显示区域的总偏移。    |
 | totalLength   | number |  Grid内容总长度。    |
 
+## ScrollState枚举说明
+
+从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+| 名称     | 描述                                       |
+| ------ | ---------------------------------------- |
+| Idle   | 空闲状态。使用控制器提供的方法控制滚动时触发，拖动滚动条滚动时触发。<br/>**说明：** <br/> 从API version 10开始，调整为滚动状态回归空闲时触发，控制器提供的无动画方法控制滚动时触发。 |
+| Scroll | 滚动状态。使用手指拖动List滚动时触发。<br/>**说明：** <br/> 从API version 10开始，拖动滚动条滚动和滚动鼠标滚轮时也会触发。 |
+| Fling  | 惯性滚动状态。快速划动松手后进行惯性滚动和划动到边缘回弹时触发。<br/>**说明：** <br/> 从API version 10开始，由动画控制的滚动都触发。包括快速划动松手后的惯性滚动，划动到边缘回弹的滚动，快速拖动内置滚动条松手后的惯性滚动，使用滚动控制器提供的带动画的方法控制的滚动。 |
+
+ScrollState枚举变更如下。
+
+| 场景            | API version 9及以下 | API version 10开始 |
+| ------------- | ---------------- | ---------------- |
+| 手指拖动滑动        | Scroll           | Scroll           |
+| 惯性滚动          | Fling            | Fling            |
+| 过界回弹          | Fling            | Fling            |
+| 鼠标滚轮滚动        | Idle             | Scroll           |
+| 拖动滚动条         | Idle             | Scroll           |
+| 滚动控制器滚动（带动画）  | Idle             | Fling            |
+| 滚动控制器滚动（不带动画） | Idle             | Idle             |
 ## 示例
 
 ### 示例1
