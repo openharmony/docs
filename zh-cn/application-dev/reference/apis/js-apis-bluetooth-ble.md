@@ -983,6 +983,66 @@ gattServer.off('connectionStateChange');
 ```
 
 
+### on('BLEMtuChange')
+
+on(type: 'BLEMtuChange', callback: Callback&lt;number&gt;): void
+
+server端订阅MTU状态变化事件。
+
+**需要权限**：ohos.permission.ACCESS_BLUETOOTH
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
+**参数：**
+
+| 参数名      | 类型                                       | 必填   | 说明                                       |
+| -------- | ---------------------------------------- | ---- | ---------------------------------------- |
+| type     | string                                   | 是    | 必须填写"BLEMtuChange"字符串，表示MTU状态变化事件。填写不正确将导致回调无法注册。 |
+| callback | Callback&lt;number&gt; | 是    | 返回MTU字节数的值，通过注册回调函数获取。 |
+
+**示例：**
+
+```js
+try {
+    let gattServer = ble.createGattServer();
+    gattServer.on('BLEMtuChange', (mtu) => {
+      console.info('BLEMtuChange, mtu: ' + mtu);
+    });
+} catch (err) {
+    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+}
+```
+
+
+### off('BLEMtuChange')
+
+off(type: 'BLEMtuChange', callback?: Callback&lt;number&gt;): void
+
+server端取消订阅MTU状态变化事件。
+
+**需要权限**：ohos.permission.ACCESS_BLUETOOTH
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
+**参数：**
+
+| 参数名      | 类型                                       | 必填   | 说明                                       |
+| -------- | ---------------------------------------- | ---- | ---------------------------------------- |
+| type     | string                                   | 是    | 必须填写"BLEMtuChange"字符串，表示MTU状态变化事件。填写不正确将导致回调无法注册。 |
+| callback | Callback&lt;number&gt; | 否    | 返回MTU字节数的值，通过注册回调函数获取。不填该参数则取消订阅该type对应的所有回调。 |
+
+**示例：**
+
+```js
+try {
+    let gattServer = ble.createGattServer();
+    gattServer.off('BLEMtuChange');
+} catch (err) {
+    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+}
+```
+
+
 ## GattClientDevice
 
 client端类，使用client端方法之前需要创建该类的实例进行操作，通过createGattClientDevice(deviceId: string)方法构造此实例。
@@ -2179,7 +2239,7 @@ try {
 
 on(type: 'BLEMtuChange', callback: Callback&lt;number&gt;): void
 
-订阅Mtu状态变化事件。
+client端订阅MTU状态变化事件。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -2189,8 +2249,8 @@ on(type: 'BLEMtuChange', callback: Callback&lt;number&gt;): void
 
 | 参数名      | 类型                                       | 必填   | 说明                                       |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| type     | string                                   | 是    | 填写"BLEMtuChange"字符串，表示Mtu状态变化事件。 |
-| callback | Callback&lt;number&gt; | 是    | 表示Mtu状态，已连接或是断开。 |
+| type     | string                                   | 是    | 必须填写"BLEMtuChange"字符串，表示MTU状态变化事件。填写不正确将导致回调无法注册。 |
+| callback | Callback&lt;number&gt; | 是    | 返回MTU字节数的值，通过注册回调函数获取。 |
 
 **示例：**
 
@@ -2210,7 +2270,7 @@ try {
 
 off(type: 'BLEMtuChange', callback?: Callback&lt;number&gt;): void
 
-取消订阅Mtu状态变化事件。
+client端取消订阅MTU状态变化事件。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -2220,8 +2280,8 @@ off(type: 'BLEMtuChange', callback?: Callback&lt;number&gt;): void
 
 | 参数名      | 类型                                       | 必填   | 说明                                       |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| type     | string                                   | 是    | 填写"BLEMtuChange"字符串，表示Mtu状态变化事件。 |
-| callback | Callback&lt;number&gt; | 否    | 表示取消订阅Mtu状态变化事件。不填该参数则取消订阅该type对应的所有回调。 |
+| type     | string                                   | 是    | 必须填写"BLEMtuChange"字符串，表示MTU状态变化事件。填写不正确将导致回调无法注册。 |
+| callback | Callback&lt;number&gt; | 否    | 返回MTU字节数的值，通过注册回调函数获取。不填该参数则取消订阅该type对应的所有回调。 |
 
 **示例：**
 
