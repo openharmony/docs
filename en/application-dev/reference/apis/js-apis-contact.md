@@ -28,7 +28,7 @@ Adds a contact. This API uses an asynchronous callback to return the result.
 | Name  | Type                       | Mandatory| Description                          |
 | -------- | --------------------------- | ---- | ------------------------------ |
 | contact  | [Contact](#contact)         | Yes  | Contact information.                  |
-| callback | AsyncCallback&lt;number&gt; | Yes  | Callback used to return the contact ID.|
+| callback | AsyncCallback&lt;number&gt; | Yes  | Callback used to return the result, which is a contact ID.|
 
 **Example**
 
@@ -273,7 +273,7 @@ Checks whether the ID of this contact is in the local address book. This API use
 | Name  | Type                        | Mandatory| Description                                                        |
 | -------- | ---------------------------- | ---- | ------------------------------------------------------------ |
 | id       | number                       | Yes  | Contact ID. Each contact corresponds to one ID.                  |
-| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return a boolean value. The value **true** indicates that the contact ID is in the local address book, and the value **false** indicates the opposite.|
+| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result. The value **true** indicates that the contact ID is in the local address book, and the value **false** indicates the opposite.|
 
 **Example**
 
@@ -1694,11 +1694,11 @@ Defines an application that creates the contact.
 
 **System capability**: SystemCapability.Applications.ContactsData
 
-| Name       |   Type  | Readable| Writable| Description      |
-| ----------- | -------- | ---- | ---- | ---------- |
-| bundleName  | string   | Yes  | No  | Bundle name of an application.    |
-| displayName | string   | Yes  | No  | Application name.|
-| holderId    | number   | Yes  | Yes  | Application ID.  |
+| Name       | Type  | Readable| Writable| Description        |
+| ----------- | ------ | ---- | ---- | ------------ |
+| bundleName  | string | Yes  | No  | Bundle name.|
+| displayName | string | Yes  | No  | Application name.  |
+| holderId    | number | Yes  | Yes  | Application ID.    |
 
 
 **Example**
