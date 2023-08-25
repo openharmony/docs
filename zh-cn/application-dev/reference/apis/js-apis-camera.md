@@ -658,7 +658,7 @@ cameraManager.on('cameraStatus', (err, cameraStatusInfo) => {
 
 ### off('cameraStatus')
 
-off(type: 'cameraStatus', callback: AsyncCallback\<CameraStatusInfo\>): void
+off(type: 'cameraStatus', callback?: AsyncCallback\<CameraStatusInfo\>): void
 
 相机设备状态注销回调，通过注销回调函数取消获取相机的状态变化。
 
@@ -704,7 +704,7 @@ cameraManager.on('cameraMute', (err, curMuetd) => {
 
 ### off('cameraMute')
 
-off(type: 'cameraMute', callback: AsyncCallback\<boolean\>): void
+off(type: 'cameraMute', callback?: AsyncCallback\<boolean\>): void
 
 禁用回调，通过注销注册回调函数获取相机禁用状态变化。
 
@@ -886,7 +886,7 @@ getSupportedModes(device: CameraDevice): Array\<CameraMode\>
 
 | 参数名     | 类型                                                         | 必填 | 说明                 |
 | -------- | -------------------------- | ---- | ------------------- |
-| device | \<[CameraDevice](#cameradevice)>       | 是   |   相机设备实例，通过[getSupportedCameras](#getsupportedcameras)接口获取。  |
+| device | [CameraDevice](#cameradevice)      | 是   |   相机设备实例，通过[getSupportedCameras](#getsupportedcameras)接口获取。  |
 
 **返回值：**
 
@@ -1259,7 +1259,7 @@ cameraInput.on('error', cameraDevice, (error) => {
 
 ### off('error')
 
-off(type: 'error', camera:CameraDevice, callback: ErrorCallback): void
+off(type: 'error', camera:CameraDevice, callback?: ErrorCallback): void
 
 注销监听CameraInput的错误事件。
 
@@ -2779,7 +2779,7 @@ let FilterType = captureSession.getFilter();
 ```
 ### getSupportedBeautyTypes
 
-getSupportedBeautyTypes(): Array<BeautyType>
+getSupportedBeautyTypes(): Array<[BeautyType](#beautytype)>
 
 获取当前支持的美颜效果列表。
 
@@ -2791,7 +2791,7 @@ getSupportedBeautyTypes(): Array<BeautyType>
 
 | 类型                | 说明                                                  |
 | ----------          | -----------------------------                         |
-|  Array\<BeautyType\>| 返回当前支持的美颜效果列表。                             |
+|  Array\<[BeautyType](#beautytype)\>| 返回当前支持的美颜效果列表。                             |
 
 **错误码：**
 
@@ -2951,7 +2951,7 @@ captureSession.on('focusStateChange', (err, focusState) => {
 
 ### off('focusStateChange')
 
-off(type: 'focusStateChange', callback: AsyncCallback\<FocusState\>): void
+off(type: 'focusStateChange', callback?: AsyncCallback\<FocusState\>): void
 
 注销监听相机聚焦的状态变化。
 
@@ -2995,7 +2995,7 @@ captureSession.on('error', (error) => {
 
 ### off('error')
 
-off(type: 'error', callback: ErrorCallback): void
+off(type: 'error', callback?: ErrorCallback): void
 
 监听拍照会话的错误事件，通过注册回调函数获取结果。
 
@@ -3019,7 +3019,7 @@ captureSession.off('error')
 
 ### getSupportedPortraitEffects
 
-getSupportedPortraitEffects(): Array<PortraitEffect>
+getSupportedPortraitEffects(): Array<[PortraitEffect](#portraiteffect)>
 
 获取支持的人像虚化效果列表。
 
@@ -3326,7 +3326,7 @@ previewOutput.on('frameStart', () => {
 
 ### off('frameStart')
 
-off(type: 'frameStart', callback: AsyncCallback\<void\>): void
+off(type: 'frameStart', callback?: AsyncCallback\<void\>): void
 
 注销监听预览帧启动。
 
@@ -3370,7 +3370,7 @@ previewOutput.on('frameEnd', () => {
 
 ### off('frameEnd')
 
-off(type: 'frameEnd', callback: AsyncCallback\<void\>): void
+off(type: 'frameEnd', callback?: AsyncCallback\<void\>): void
 
 注销监听预览帧结束。
 
@@ -3414,7 +3414,7 @@ previewOutput.on('error', (previewOutputError) => {
 
 ### off('error')
 
-off(type: 'error', callback: ErrorCallback): void
+off(type: 'error', callback?: ErrorCallback): void
 
 注销监听预览输出的错误事件。
 
@@ -3809,7 +3809,7 @@ photoOutput.on('captureStart', (err, captureId) => {
 
 ### off('captureStart')
 
-off(type: 'captureStart', callback: AsyncCallback\<number\>): void
+off(type: 'captureStart', callback?: AsyncCallback\<number\>): void
 
 注销监听拍照开始。
 
@@ -3854,7 +3854,7 @@ photoOutput.on('frameShutter', (err, frameShutterInfo) => {
 
 ### off('frameShutter')
 
-off(type: 'frameShutter', callback: AsyncCallback\<FrameShutterInfo\>): void
+off(type: 'frameShutter', callback?: AsyncCallback\<FrameShutterInfo\>): void
 
 注销监听拍照帧输出捕获。
 
@@ -3899,7 +3899,7 @@ photoOutput.on('captureEnd', (err, captureEndInfo) => {
 
 ### off('captureEnd')
 
-off(type: 'captureEnd', callback: AsyncCallback\<CaptureEndInfo\>): void
+off(type: 'captureEnd', callback?: AsyncCallback\<CaptureEndInfo\>): void
 
 注销监听拍照结束。
 
@@ -3943,7 +3943,7 @@ photoOutput.on('error', (error) => {
 
 ### off('error')
 
-off(type: 'error', callback: ErrorCallback): void
+off(type: 'error', callback?: ErrorCallback): void
 
 注销监听拍照输出发生错误。
 
@@ -4107,6 +4107,57 @@ this.photoOutPut.on('quickThumbnail', (err, pixelmap) => {
     // 显示或保存pixelmap
     this.showOrSavePicture(pixelmap)
 })
+```
+
+### off('quickThumbnail')
+
+off(type: 'quickThumbnail', callback?: AsyncCallback\<image.PixelMap>): void
+
+注销监听快速缩略图输出事件。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名     | 类型         | 必填 | 说明                                 |
+| -------- | ------------- | ---- | ----------------------------------- |
+| type    | string     | 是   | 监听事件，固定为'quickThumbnail'。 |
+| callback | AsyncCallback\<[image.PixelMap](js-apis-image.md#pixelmap7)> | 否 | 可选。 |
+
+**示例：**
+
+```js
+import camera from '@ohos.multimedia.camera'
+
+this.cameraManager = camera.getCameraManager(globalThis.abilityContext);
+let cameras = this.cameraManager.getSupportedCameras()
+// 创建CaptureSession实例
+this.captureSession = await this.cameraManager.createCaptureSession()
+// 开始配置会话
+await this.captureSession.beginConfig()
+// 把CameraInput加入到会话
+this.cameraInput = await this.cameraManager.createCameraInput(cameras[0])
+await this.cameraInput.open()
+await this.captureSession.addInput(this.cameraInput)
+// 把PhotoOutPut加入到会话
+this.photoOutPut = await this.cameraManager.createPhotoOutput(photoProfile, surfaceId)
+await this.captureSession.addOutput(this.photoOutPut)
+boolean isSupported = this.photoOutPut.isQuickThumbnailSupported()
+if (isSupported) {
+    // 使能快速缩略图
+    this.photoOutPut.enableQuickThumbnail(true)
+}
+this.photoOutPut.on('quickThumbnail', (err, pixelmap) => {
+    if (err || pixelmap === undefined) {
+        Logger.error(this.tag, 'photoOutPut on thumbnail failed ')
+        return
+    }
+    // 显示或保存pixelmap
+    this.showOrSavePicture(pixelmap)
+})
+this.photoOutPut.off('quickThumbnail')
 ```
 
 ## FrameShutterInfo
@@ -4344,7 +4395,7 @@ videoOutput.on('frameStart', () => {
 
 ### off('frameStart')
 
-off(type: 'frameStart', callback: AsyncCallback\<void\>): void
+off(type: 'frameStart', callback?: AsyncCallback\<void\>): void
 
 注销监听录像开始。
 
@@ -4388,7 +4439,7 @@ videoOutput.on('frameEnd', () => {
 
 ### off('frameEnd')
 
-off(type: 'frameEnd', callback: AsyncCallback\<void\>): void
+off(type: 'frameEnd', callback?: AsyncCallback\<void\>): void
 
 注销监听录像结束。
 
@@ -4432,7 +4483,7 @@ videoOutput.on('error', (error) => {
 
 ### off('error')
 
-off(type: 'error', callback: ErrorCallback): void
+off(type: 'error', callback?: ErrorCallback): void
 
 注销监听录像输出发生错误。
 
@@ -4598,7 +4649,7 @@ metadataOutput.on('metadataObjectsAvailable', (err, metadataObjectArr) => {
 
 ### off('metadataObjectsAvailable')
 
-off(type: 'metadataObjectsAvailable', callback: AsyncCallback\<Array\<MetadataObject\>\>): void
+off(type: 'metadataObjectsAvailable', callback?: AsyncCallback\<Array\<MetadataObject\>\>): void
 
 注销监听检测到的metadata对象。
 
@@ -4642,7 +4693,7 @@ metadataOutput.on('error', (metadataOutputError) => {
 
 ### off('error')
 
-off(type: 'error', callback: ErrorCallback): void
+off(type: 'error', callback?: ErrorCallback): void
 
 注销监听metadata流的错误。
 
