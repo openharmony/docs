@@ -89,6 +89,7 @@ module.json5配置文件包含以下标签。
 | [testRunner](#testrunner标签) | 标识当前Module用于支持对测试框架的配置。 | 对象 | 该标签可缺省，缺省值为空。 |
 | [atomicService](#atomicservice标签)| 标识当前应用是原子化服务时，有关原子化服务的相关配置。| 对象 | 该标签可缺省，缺省值为空。  |
 | [dependencies](#dependencies标签)| 标识当前模块运行时依赖的共享库列表。| 对象数组 | 该标签可缺省，缺省值为空。  |
+| libIsolation | 用于区分同应用不同hap下的so文件，以防止so冲突。<br/>-&nbsp;true：当前hap的so会储存在libs目录中以Module名命名的路径下。<br/>-&nbsp;false：当前hap的so会直接储存在libs目录中。 | 布尔值 | 该标签可缺省, 缺省值为false。 |
 
 
 ## deviceTypes标签
