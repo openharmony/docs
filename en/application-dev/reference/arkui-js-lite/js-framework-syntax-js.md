@@ -33,7 +33,7 @@ The ECMAScript 6.0 syntax is supported. Lite wearables only support the followin
 
 
   ```
-  import router from '@system.router';
+  import router from '@ohos.router';
   ```
 
 - Code reference
@@ -51,7 +51,7 @@ The ECMAScript 6.0 syntax is supported. Lite wearables only support the followin
     | Attribute   | Type             | Description                                      |
     | ----- | --------------- | ---------------------------------------- |
     | data  | Object/Function | Data model of the page. If the attribute is of the function type, the return value must be of the object type. The name cannot start with a dollar sign ($) or underscore (_). Do not use reserved words (**for**, **if**, **show**, and **tid**).<br>|
-    | $refs | Object          | DOM elements or child component instances that have registered the **ref** attribute. For an example, see [Obtaining a DOM Element](#obtaining-a-dom-element). |
+    | $refs | Object          | DOM elements or child component instances that have registered the **ref** attribute. For an example, see [Obtaining a DOM Element](#obtaining-a-dom-element).|
 
 
 ## Obtaining a DOM Element
@@ -94,7 +94,7 @@ Use **$refs** to obtain a DOM element.
 ## Lifecycle APIs
 
 - Page lifecycle APIs
-    | Name    | Type      | Parameter  | Return Value | Description    | Triggered When               |
+    | Name       | Type      | Parameter  | Return Value | Description    | Triggered When               |
     | --------- | -------- | ---- | ---- | ------ | ------------------- |
     | onInit    | Function | N/A   | N/A   | Listens for page initialization. | Page initialization is complete. This API is called only once in the page lifecycle.|
     | onReady   | Function | N/A   | N/A   | Listens for page creation.| A page is created. This API is called only once in the page lifecycle.   |
@@ -116,7 +116,7 @@ Use **$refs** to obtain a DOM element.
   - Show background page A on the foreground: onShow()
 
 - Application lifecycle APIs
-    | Name   | Type      | Parameter  | Return Value | Description  | Triggered When     |
+    | Name       | Type      | Parameter  | Return Value | Description  | Triggered When     |
     | --------- | -------- | ---- | ---- | ---- | --------- |
     | onCreate  | Function | N/A   | N/A   | Listens for application creation.| The application is created.|
     | onDestroy | Function | N/A   | N/A   | Listens for application exit.| The application exits.|

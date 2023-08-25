@@ -1,6 +1,6 @@
 # Development of Performance Tracing (ArkTS)
 
-## Introduction
+## Overview
 
 hiTraceMeter provides APIs for system performance tracing. You can call the APIs provided by the hiTraceMeter module in your own service logic to effectively track service processes and check the system performance.
 
@@ -21,7 +21,7 @@ hiTraceMeter provides APIs for system performance tracing. You can call the APIs
 
 ## Available APIs
 
-The performance tracing APIs are provided by the **hiTraceMeter** module. For details, see [API Reference](../reference/apis/js-apis-hitracemeter.md).
+The performance tracing APIs are provided by the **hiTraceMeter** module. For details, see [API Reference]( ../reference/apis/js-apis-hitracemeter.md).
 
 **APIs for performance tracing**
 
@@ -35,60 +35,16 @@ The performance tracing APIs are provided by the **hiTraceMeter** module. For de
 
 In this example, distributed call chain tracing begins when the application startup execution page is loaded and stops when the service usage is completed.
 
-1. Create a JS application project. In the displayed **Project** window, choose **entry** > **src** > **main** > **js** > **default** > **pages** > **index**, and double-click **index.js**. Add the code to implement performance tracing upon page loading. The sample code is as follows:
-
-   ```js
-   import hiTraceMeter from '@ohos.hiTraceMeter'
-
-   export default {
-       data: {
-           title: ""
-       },
-       onInit() {
-           this.title = this.$t('strings.world');
-
-           // Start trace tasks with the same name concurrently.
-           hiTraceMeter.startTrace("business", 1);
-           // Keep the service process running.
-           console.log(`business running`);
-           hiTraceMeter.startTrace("business", 2);  // Start the second trace task with the same name while the first task is still running. The tasks are running concurrently and therefore their taskId must be different.
-           // Keep the service process running.
-           console.log(`business running`);
-           hiTraceMeter.finishTrace("business", 1);
-           // Keep the service process running.
-           console.log(`business running`);
-           hiTraceMeter.finishTrace("business", 2);
-
-           // Start trace tasks with the same name in serial mode.
-           hiTraceMeter.startTrace("business", 1);
-           // Keep the service process running.
-           console.log(`business running`);
-           hiTraceMeter.finishTrace("business", 1);  // End the first trace task.
-           // Keep the service process running.
-           console.log(`business running`);
-           hiTraceMeter.startTrace("business", 1);   // Start the second trace task with the same name in serial mode.
-           // Keep the service process running.
-           console.log(`business running`);
-
-           let traceCount = 3;
-           hiTraceMeter.traceByValue("myTestCount", traceCount);
-           traceCount = 4;
-           hiTraceMeter.traceByValue("myTestCount", traceCount);
-           hiTraceMeter.finishTrace("business", 1);
-       }
-   }
-   ```
-
-2. Create an ArkTs application project. In the displayed **Project** window, choose **entry** > **src** > **main** > **ets** > **pages** > **index**, and double-click **index.js**. Add the code to implement performance tracing upon page loading. For example, if the name of the trace task is **HITRACE\_TAG\_APP**, the sample code is as follows:
-
+1. Create an ArkTS application project. In the displayed **Project** window, choose **entry** > **src** > **main** > **ets** > **pages** > **index**, and double-click **index.js**. Add the code to implement performance tracing upon page loading. For example, if the name of the trace task is **HITRACE\_TAG\_APP**, the sample code is as follows:
+ 
    ```ts
    import hitrace from '@ohos.hiTraceMeter';
-    
+  
    @Entry
    @Component
    struct Index {
      @State message: string = 'Hello World';
-    
+ 
      build() {
        Row() {
          Column() {
@@ -97,7 +53,7 @@ In this example, distributed call chain tracing begins when the application star
              .fontWeight(FontWeight.Bold)
              .onClick(() => {
                this.message = 'Hello ArkUI';
-   
+
                // Start trace tasks with the same name concurrently.
                hitrace.startTrace("HITRACE_TAG_APP", 1001);
                // Keep the service process running.
@@ -107,7 +63,7 @@ In this example, distributed call chain tracing begins when the application star
                hitrace.startTrace("HITRACE_TAG_APP", 1002);
                // Keep the service process running.
                console.log(`HITRACE_TAG_APP running`);
-    
+  
                hitrace.finishTrace("HITRACE_TAG_APP", 1001);
                hitrace.finishTrace("HITRACE_TAG_APP", 1002);
    
@@ -143,7 +99,7 @@ In this example, distributed call chain tracing begins when the application star
    ```
    
 3. Click the run button on the application page. Then, run the following commands in sequence in shell:
-
+ 
    ```shell
    hdc shell
    hitrace --trace_begin app

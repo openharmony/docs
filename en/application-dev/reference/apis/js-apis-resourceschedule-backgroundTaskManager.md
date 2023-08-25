@@ -1,16 +1,9 @@
 # @ohos.resourceschedule.backgroundTaskManager (Background Task Management)
 
-The **BackgroundTaskManager** module provides APIs to manage background tasks.
-
-If a service needs to be continued when the application or service module is running in the background (not visible to users), the application or service module can request a transient task to delay the suspension or a continuous task to prevent the suspension.
-
-If an application has a task that needs to be continued when the application is switched to the background and can be completed within a short period of time, the application can request a transient task. For example, if a user chooses to clear junk files in the **Files** application and exits the application, the application can request a transient task to complete the cleanup.
-
-If an application has a service that can be intuitively perceived by users and needs to run in the background for a long period of time (for example, music playback in the background), the application can request a continuous task.
-
-If a privileged system application needs to use certain system resources (for example, it wants to receive common events when suspended), it can request efficiency resources.
+The **backgroundTaskManager** module provides APIs to request background tasks. You can use the APIs to request transient tasks, continuous tasks, or efficiency resources to prevent the application process from being terminated or suspended when your application is switched to the background.
 
 >  **NOTE**
+> 
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
@@ -24,9 +17,11 @@ import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager'
 
 requestSuspendDelay(reason: string, callback: Callback&lt;void&gt;): DelaySuspendInfo
 
-Requests delayed suspension after the application switches to the background.
+Requests a transient task.
 
-The default duration of delayed suspension is 3 minutes when the battery level is higher than or equal to the broadcast low battery level and 1 minute when the battery level is lower than the broadcast low battery level.
+>  **NOTE**
+> 
+> The maximum duration of a transient task is 3 minutes in normal cases. In the case of a [low battery](js-apis-battery-info.md), the maximum duration is decreased to 1 minute.
 
 **System capability**: SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
 
@@ -34,14 +29,14 @@ The default duration of delayed suspension is 3 minutes when the battery level i
 
 | Name     | Type                  | Mandatory  | Description                            |
 | -------- | -------------------- | ---- | ------------------------------ |
-| reason   | string               | Yes   | Reason for delayed transition to the suspended state.                    |
-| callback | Callback&lt;void&gt; | Yes   | Invoked when a delay is about to time out. Generally, this callback is used to notify the application 6 seconds before the delay times out.|
+| reason   | string               | Yes   | Reason for requesting the transient task.                    |
+| callback | Callback&lt;void&gt; | Yes   | Callback used to notify the application that the transient task is about to time out. Generally, the callback is invoked 6 seconds before the timeout.|
 
 **Return value**
 
 | Type                                   | Description       |
 | ------------------------------------- | --------- |
-| [DelaySuspendInfo](#delaysuspendinfo) | Information about the suspension delay.|
+| [DelaySuspendInfo](#delaysuspendinfo) | Information about the transient task.|
 
 **Error codes**
 
@@ -80,7 +75,7 @@ For details about the error codes, see [backgroundTaskManager Error Codes](../er
 
 getRemainingDelayTime(requestId: number, callback: AsyncCallback&lt;number&gt;): void
 
-Obtains the remaining duration before the application is suspended. This API uses an asynchronous callback to return the result.
+Obtains the remaining time of a transient task. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
 
@@ -88,8 +83,8 @@ Obtains the remaining duration before the application is suspended. This API use
 
 | Name      | Type                         | Mandatory  | Description                                      |
 | --------- | --------------------------- | ---- | ---------------------------------------- |
-| requestId | number                      | Yes   | ID of the suspension delay request.                              |
-| callback  | AsyncCallback&lt;number&gt; | Yes   | Callback used to return the remaining duration before the application is suspended, in milliseconds.|
+| requestId | number                      | Yes   | Request ID of the transient task.                              |
+| callback  | AsyncCallback&lt;number&gt; | Yes   | Callback used to return the remaining time, in milliseconds.|
 
 **Error codes**
 
@@ -129,9 +124,7 @@ For details about the error codes, see [backgroundTaskManager Error Codes](../er
 
 getRemainingDelayTime(requestId: number): Promise&lt;number&gt;
 
-Obtains the remaining duration before the application is suspended. This API uses a promise to return the result.
-
-
+Obtains the remaining time of a transient task. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
 
@@ -139,13 +132,13 @@ Obtains the remaining duration before the application is suspended. This API use
 
 | Name      | Type    | Mandatory  | Description        |
 | --------- | ------ | ---- | ---------- |
-| requestId | number | Yes   | ID of the suspension delay request.|
+| requestId | number | Yes   | Request ID of the transient task.|
 
 **Return value**
 
 | Type                   | Description                                      |
 | --------------------- | ---------------------------------------- |
-| Promise&lt;number&gt; | Promise used to return the remaining duration before the application is suspended, in milliseconds.|
+| Promise&lt;number&gt; | Promise used to return the remaining time, in milliseconds.|
 
 **Error codes**
 
@@ -182,7 +175,7 @@ For details about the error codes, see [backgroundTaskManager Error Codes](../er
 
 cancelSuspendDelay(requestId: number): void
 
-Cancels the suspension delay.
+Cancels a transient task.
 
 **System capability**: SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
 
@@ -190,7 +183,7 @@ Cancels the suspension delay.
 
 | Name      | Type    | Mandatory  | Description        |
 | --------- | ------ | ---- | ---------- |
-| requestId | number | Yes   | ID of the suspension delay request.|
+| requestId | number | Yes   | Request ID of the transient task.|
 
 **Error codes**
 
@@ -218,12 +211,11 @@ For details about the error codes, see [backgroundTaskManager Error Codes](../er
   }
   ```
 
-
 ## backgroundTaskManager.startBackgroundRunning
 
 startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: WantAgent, callback: AsyncCallback&lt;void&gt;): void
 
-Requests a continuous task from the system. This API uses an asynchronous callback to return the result.
+Requests a continuous task. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.KEEP_BACKGROUND_RUNNING
 
@@ -234,9 +226,9 @@ Requests a continuous task from the system. This API uses an asynchronous callba
 | Name      | Type                                | Mandatory  | Description                                      |
 | --------- | ---------------------------------- | ---- | ---------------------------------------- |
 | context   | Context                            | Yes   | Application context.<br>For details about the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](js-apis-inner-application-context.md).|
-| bgMode    | [BackgroundMode](#backgroundmode) | Yes   | Background mode requested.                             |
-| wantAgent | [WantAgent](js-apis-app-ability-wantAgent.md) | Yes   | Notification parameter, which is used to specify the target page that is redirected to when a continuous task notification is clicked.                |
-| callback  | AsyncCallback&lt;void&gt;          | Yes   | Callback used to return the result.                  |
+| bgMode    | [BackgroundMode](#backgroundmode) | Yes   | Continuous task mode.                             |
+| wantAgent | [WantAgent](js-apis-app-ability-wantAgent.md) | Yes   | Notification parameters, which are used to specify the target page that is redirected to when a continuous task notification is clicked.          |
+| callback  | AsyncCallback&lt;void&gt;          | Yes   | Callback used to return the result. If the continuous task is requested, **err** is **undefined**. Otherwise, **err** is an error object.   |
 
 **Error codes**
 
@@ -301,7 +293,7 @@ export default class EntryAbility extends UIAbility {
 
 startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: WantAgent): Promise&lt;void&gt;
 
-Requests a continuous task from the system. This API uses a promise to return the result.
+Requests a continuous task. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.KEEP_BACKGROUND_RUNNING
 
@@ -312,14 +304,14 @@ Requests a continuous task from the system. This API uses a promise to return th
 | Name      | Type                                | Mandatory  | Description                                      |
 | --------- | ---------------------------------- | ---- | ---------------------------------------- |
 | context   | Context                            | Yes   | Application context.<br>For details about the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](js-apis-inner-application-context.md).|
-| bgMode    | [BackgroundMode](#backgroundmode) | Yes   | Background mode requested.                             |
-| wantAgent | [WantAgent](js-apis-app-ability-wantAgent.md) | Yes   | Notification parameter, which is used to specify the target page that is redirected to when a continuous task notification is clicked.                 |
+| bgMode    | [BackgroundMode](#backgroundmode) | Yes   | Continuous task mode.                             |
+| wantAgent | [WantAgent](js-apis-app-ability-wantAgent.md) | Yes   | Notification parameters, which are used to specify the target page that is redirected to when a continuous task notification is clicked.                |
 
 **Return value**
 
 | Type            | Description              |
 | -------------- | ---------------- |
-| Promise\<void> | Promise used to return the result.|
+| Promise\<void> | Promise that returns no value.|
 
 **Error codes**
 
@@ -380,7 +372,7 @@ export default class EntryAbility extends UIAbility {
 
 stopBackgroundRunning(context: Context, callback: AsyncCallback&lt;void&gt;): void
 
-Requests to cancel a continuous task. This API uses an asynchronous callback to return the result.
+Cancels a continuous task. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 
@@ -389,7 +381,7 @@ Requests to cancel a continuous task. This API uses an asynchronous callback to 
 | Name     | Type                       | Mandatory  | Description                                      |
 | -------- | ------------------------- | ---- | ---------------------------------------- |
 | context  | Context                   | Yes   | Application context.<br>For details about the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](js-apis-inner-application-context.md).|
-| callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result.                  |
+| callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result. If the continuous task is canceled, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -434,9 +426,7 @@ export default class EntryAbility extends UIAbility {
 
 stopBackgroundRunning(context: Context): Promise&lt;void&gt;
 
-Requests to cancel a continuous task. This API uses a promise to return the result.
-
-
+Cancels a continuous task. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 
@@ -450,7 +440,7 @@ Requests to cancel a continuous task. This API uses a promise to return the resu
 
 | Type            | Description              |
 | -------------- | ---------------- |
-| Promise\<void> | Promise used to return the result.|
+| Promise\<void> | Promise that returns no value.|
 
 **Error codes**
 
@@ -489,10 +479,9 @@ export default class EntryAbility extends UIAbility {
 
 ## backgroundTaskManager.applyEfficiencyResources
 
-applyEfficiencyResources(request: [EfficiencyResourcesRequest](#efficiencyresourcesrequest)): void
+applyEfficiencyResources(request: EfficiencyResourcesRequest): void
 
-Requests efficiency resources from the system.
-A process and its application can request the same type of resources at the same time, for example, CPU resources. When the application releases the resources, the same type of resources requested by the process are also released.
+Requests efficiency resources.
 
 **System capability**: SystemCapability.ResourceSchedule.BackgroundTaskManager.EfficiencyResourcesApply
 
@@ -502,7 +491,7 @@ A process and its application can request the same type of resources at the same
 
 | Name    | Type     | Mandatory  | Description                                      |
 | ------- | ------- | ---- | ---------------------------------------- |
-| request | [EfficiencyResourcesRequest](#efficiencyresourcesrequest) | Yes   | Necessary information carried in the request, including the resource type and timeout interval. For details, see [EfficiencyResourcesRequest](#efficiencyresourcesrequest).|
+| request | [EfficiencyResourcesRequest](#efficiencyresourcesrequest) | Yes   | Necessary information carried in the request, including the resource type and timeout interval.|
 
 
 **Error codes**
@@ -542,7 +531,7 @@ try {
 
 resetAllEfficiencyResources(): void
 
-Releases all resources that have been requested.
+Releases all efficiency resources.
 
 **System capability**: SystemCapability.ResourceSchedule.BackgroundTaskManager.EfficiencyResourcesApply
 
@@ -574,17 +563,18 @@ try {
 
 ## DelaySuspendInfo
 
-Provides the information about the suspension delay.
+Defines the information about the transient task.
 
 **System capability**: SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
 
 | Name            | Type    | Mandatory  | Description                                      |
 | --------------- | ------ | ---- | ---------------------------------------- |
-| requestId       | number | Yes   | ID of the suspension delay request.                              |
-| actualDelayTime | number | Yes   | Actual suspension delay duration of the application, in milliseconds.<br>The default duration is 180000 when the battery level is higher than or equal to the broadcast low battery level and 60000 when the battery level is lower than the broadcast low battery level.|
-
+| requestId       | number | Yes   | Request ID of the transient task.                              |
+| actualDelayTime | number | Yes   | Actual duration of the transient task that the application requests, in milliseconds.<br>The maximum duration of a transient task is 3 minutes in normal cases. In the case of a [low battery](js-apis-battery-info.md), the maximum duration is decreased to 1 minute.|
 
 ## BackgroundMode
+
+Enumerates the continuous task modes.
 
 **System capability**: SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 
@@ -596,9 +586,9 @@ Provides the information about the suspension delay.
 | LOCATION                | 4    | Positioning and navigation.                 |
 | BLUETOOTH_INTERACTION   | 5    | Bluetooth-related task.                 |
 | MULTI_DEVICE_CONNECTION | 6    | Multi-device connection.                |
-| WIFI_INTERACTION        | 7    | WLAN-related (system API).|
-| VOIP                    | 8    | Audio and video calls (system API). |
-| TASK_KEEPING            | 9    | Computing task (effective only for specific devices).       |
+| WIFI_INTERACTION        | 7    | WLAN-related.<br>**System API**: This is a system API.|
+| VOIP                    | 8    |Audio and video calls.<br>**System API**: This is a system API.|
+| TASK_KEEPING            | 9    | Computing task (for specific devices only).       |
 
 ## EfficiencyResourcesRequest
 
@@ -611,10 +601,10 @@ Describes the parameters for requesting efficiency resources.
 | Name            | Type    | Mandatory  | Description                                      |
 | --------------- | ------ | ---- | ---------------------------------------- |
 | resourceTypes   | number  | Yes   | Type of the resource to request.                              |
-| isApply         | boolean | Yes   | Whether the request is used to apply for resources. The value **true** means that the request is used to apply for resources, and **false** means that the request is used to release resources.         |
+| isApply         | boolean | Yes   | Whether the request is used to apply for resources.<br>The value **true** means that the request is used to apply for resources, and **false** means that the request is used to release resources.|
 | timeOut         | number  | Yes   | Duration for which the resource will be used, in milliseconds.               |
-| isPersist       | boolean | No   | Whether the resource is permanently held. If the value is **true**, **timeOut** is invalid.   |
-| isProcess       | boolean | No   | Whether the request is initiated by a process. The value **true** means that the request is initiated by a process, and **false** means that the request is initiated by an application.         |
+| isPersist       | boolean | No   | Whether the resource is permanently held. The default value is **false**.<br>The value **true** means that the resource is permanently held, and **false** means the resource is held within a given period of time.|
+| isProcess       | boolean | No   | Whether the request is initiated by a process. The default value is **false**.<br>The value **true** means that the request is initiated by a process, and **false** means that the request is initiated by an application.        |
 | reason          | string  | Yes   | Reason for requesting the resource.               |
 
 ## ResourceType
@@ -627,12 +617,12 @@ Enumerates the efficiency resource types.
 
 | Name                    | Value | Description                   |
 | ----------------------- | ---- | --------------------- |
-| CPU                     | 1    | CPU resources, which prevent the application from being suspended.            |
-| COMMON_EVENT            | 2    | Common events are not proxied when the application is suspended.|
-| TIMER                   | 4    | System timers are not proxied when the application is suspended.|
-| WORK_SCHEDULER          | 8    | Work Scheduler uses a loose control policy by default. For details about the constraints on the Work Scheduler usage, see [Constraints](../../task-management/work-scheduler.md#constraints).|
-| BLUETOOTH               | 16   | Bluetooth resources are not proxied when the application is suspended.|
-| GPS                     | 32   | GPS resources are not proxied when the application is suspended.|
-| AUDIO                   | 64   | Audio resources are not proxied when the application is suspended.|
+| CPU                     | 1    | CPU resource. Such type of resource prevents an application from being suspended.            |
+| COMMON_EVENT            | 2    | Common event resource. Such type of resource ensures that an application in the suspended state can receive common events.|
+| TIMER                   | 4    | Timer resource. Such type of resource ensures that an application in the suspended state can be woken up by system timers.|
+| WORK_SCHEDULER          | 8    | Deferred task resource. Such type of resource provides a loose control policy for an application.|
+| BLUETOOTH               | 16   | Bluetooth resource. Such type of resource ensures that an application in the suspended state can be woken up by Bluetooth-related events.|
+| GPS                     | 32   | GPS resource. Such type of resource ensures that an application in the suspended state can be woken up by GPS-related events.|
+| AUDIO                   | 64   | Audio resource. Such type of resource prevents an application from being suspended when the application has an audio being played.|
 | RUNNING_LOCK<sup>10+</sup> | 128 | RUNNING_LOCK resources are not proxied when the application is suspended.|
 | SENSOR<sup>10+</sup> | 256 | Sensor callbacks are not intercepted.|

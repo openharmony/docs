@@ -158,7 +158,7 @@ Obtains the global HTTP proxy configuration of the network. This API uses an asy
 
 | Name  | Type                                   | Mandatory| Description                                                        |
 | -------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback\<[HttpProxy](#httpproxy)> | Yes  | Callback used to return the result. If the global HTTP proxy configuration of the network is obtained successfully, **error** is **undefined** and **data** is the global HTTP proxy configuration. Otherwise, **error** is an error object.|
+| callback | AsyncCallback\<[HttpProxy](#httpproxy10)> | Yes  | Callback used to return the result. If the global HTTP proxy configuration of the network is obtained successfully, **error** is **undefined** and **data** is the global HTTP proxy configuration. Otherwise, **error** is an error object.|
 
 **Error codes**
 
@@ -192,7 +192,7 @@ Obtains the global HTTP proxy configuration of the network. This API uses a prom
 
 | Type                             | Description                                 |
 | --------------------------------- | ------------------------------------- |
-| Promise\<[HttpProxy](#httpproxy)> | Promise used to return the result.|
+| Promise\<[HttpProxy](#httpproxy10)> | Promise used to return the result.|
 
 **Error codes**
 
@@ -229,7 +229,7 @@ Sets the global HTTP proxy configuration of the network. This API uses an asynch
 
 | Name   | Type                   | Mandatory| Description                                                        |
 | --------- | ----------------------- | ---- | ------------------------------------------------------------ |
-| httpProxy | [HttpProxy](#httpproxy) | Yes  | Global HTTP proxy configuration of the network.                                    |
+| httpProxy | [HttpProxy](#httpproxy10) | Yes  | Global HTTP proxy configuration of the network.                                    |
 | callback  | AsyncCallback\<void>    | Yes  | Callback used to return the result. If the global HTTP proxy configuration of the network is set successfully, **error** is **undefined**. Otherwise, **error** is an error object.|
 
 **Error codes**
@@ -274,7 +274,7 @@ Sets the global HTTP proxy configuration of the network. This API uses a promise
 
 | Name   | Type                                                        | Mandatory| Description            |
 | --------- | ------------------------------------------------------------ | ---- | ---------------- |
-| httpProxy | [HttpProxy](#httpproxy)                                      | Yes  | Global HTTP proxy configuration of the network.|
+| httpProxy | [HttpProxy](#httpproxy10)                                      | Yes  | Global HTTP proxy configuration of the network.|
 
 **Return value**
 
@@ -324,7 +324,7 @@ This API uses an asynchronous callback to return the result.
 
 | Name  | Type                                  | Mandatory| Description                                                        |
 | -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback<[HttpProxy](#httpproxy)> | Yes  | Callback used to return the result. If the global HTTP proxy configuration of the network is obtained successfully, **error** is **undefined** and **data** is the global HTTP proxy configuration. Otherwise, **error** is an error object.|
+| callback | AsyncCallback<[HttpProxy](#httpproxy10)> | Yes  | Callback used to return the result. If the global HTTP proxy configuration of the network is obtained successfully, **error** is **undefined** and **data** is the global HTTP proxy configuration. Otherwise, **error** is an error object.|
 
 **Error codes**
 
@@ -347,7 +347,7 @@ connection.getDefaultHttpProxy((error, data) => {
 getDefaultHttpProxy(): Promise\<HttpProxy>;
 
 Obtains the default proxy configuration of the network.
-If the global proxy is set, the global proxy configuration is returned. If [setAppNet](#connectionsetappnet) is used to bind the application to the network specified by [NetHandle](#nethandle), the proxy configuration of this network is returned. In other cases, the HTTP proxy configuration of the default network is returned.
+If the global proxy is set, the global HTTP proxy configuration is returned. If [setAppNet](#connectionsetappnet) is used to bind the application to the network specified by [NetHandle](#nethandle), the HTTP proxy configuration of this network is returned. In other cases, the HTTP proxy configuration of the default network is returned.
 This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Communication.NetManager.Core
@@ -356,7 +356,7 @@ This API uses a promise to return the result.
 
 | Type                            | Description                                     |
 | -------------------------------- | ----------------------------------------- |
-| Promise<[HttpProxy](#httpproxy)> | Promise used to return the result.|
+| Promise<[HttpProxy](#httpproxy10)> | Promise used to return the result.|
 
 **Error codes**
 

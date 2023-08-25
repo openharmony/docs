@@ -2,7 +2,7 @@
 ## Overview
 Low Lever Debugger (LLDB) is a next-generation high-performance debugger.
 
-LLDB is developed based on the [llvm15.0.4](https://github.com/llvm/llvm-project/releases/tag/llvmorg-15.0.4) and supports debugging on the home screen and OpenHarmony devices or simulators.
+LLDB is developed based on [LLVM 15.0.4](https://github.com/llvm/llvm-project/releases/tag/llvmorg-15.0.4) and supports debugging on the home screen and OpenHarmony devices or emulators.
 ## How to Obtain
 Obtain the OpenHarmony SDK from http://ci.openharmony.cn/workbench/cicd/dailybuild.
 
@@ -45,7 +45,7 @@ For example, for Windows, **lldb.exe** is stored in the following path after the
 
 ### Remote Debugging
 
-> **Note: During remote debugging, the LLDB server and LLDB must be used together.**
+> **Note: During remote debugging, lldb-server and lldb must be used together.**
 - Debugging the OHOS device on the Windows platform (Arm architecture)
 - Debugging the OHOS device on the Windows platform (AArch64 architecture)
 - Debugging the simulator on the Windows platform
@@ -99,11 +99,11 @@ For example, for Windows, **lldb.exe** is stored in the following path after the
 ## Functions Provided by LLDB
 - Loading a program to LLDB
 - Setting a breakpoint
-- Setting an observation point
+- Setting a watchpoint
 - Starting or attaching to a program
 - Executing a control program
 - Checking the thread status
 - Checking the stack frame status
 
 ## References
-For details about other functions and commands, see [LLDB Usage Guide](https://gitee.com/openharmony/third_party_llvm-project/blob/master/lldb/README.md)
+For details about other functions and commands, see [LLDB](https://gitee.com/openharmony/third_party_llvm-project/blob/master/lldb/README.md)

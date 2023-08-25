@@ -52,9 +52,9 @@ You are advised to use **HashSet** when you need a set that has only unique elem
 | Adding elements| Use **add(value: T)** to add a value to this container.|
 | Accessing elements| Use **values()** to return an iterator that contains all the values in this container.|
 | Accessing elements| Use **entries()** to return an iterator that contains all the elements in this container.|
-| Accessing elements| Use **forEach(callbackFn: (value?: T, key?: T, set?: HashSet<T>) => void, thisArg?: Object)** to traverse the elements in this container.|
+| Accessing elements| Use **forEach(callbackFn: (value?: T, key?: T, set?: HashSet\<T>) => void, thisArg?: Object)** to traverse the elements in this container.|
 | Accessing elements| Use **\[Symbol.iterator]():IterableIterator&lt;T&gt;** for data access.|
-| Modifying elements| Use **forEach(callbackFn: (value?: T, key?: T, set?: HashSet<T>) => void, thisArg?: Object)** to change a value in this container.|
+| Modifying elements| Use **forEach(callbackFn: (value?: T, key?: T, set?: HashSet\<T>) => void, thisArg?: Object)** to change a value in this container.|
 | Deleting elements| Use **remove(value: T)** to remove a value.|
 | Deleting elements| Use **clear()** to clear this container.|
 
@@ -109,9 +109,9 @@ You are advised to use **TreeSet** when you need to store data in sorted order.
 | Accessing elements| Use **entries()** to return an iterator that contains all the elements in this container.|
 | Accessing elements| Use **getFirstValue()** to obtain the first value in this container.|
 | Accessing elements| Use **getLastValue()** to obtain the last value in this container.|
-| Accessing elements| Use **forEach(callbackFn: (value?: T, key?: T, set?: TreeSet<T>) => void, thisArg?: Object)** to traverse the elements in this container.|
+| Accessing elements| Use **forEach(callbackFn: (value?: T, key?: T, set?: TreeSet\<T>) => void, thisArg?: Object)** to traverse the elements in this container.|
 | Accessing elements| Use **\[Symbol.iterator]():IterableIterator&lt;T&gt;** for data access.|
-| Modifying elements| Use **forEach(callbackFn: (value?: T, key?: T, set?: TreeSet<T>) => void, thisArg?: Object)** to change a value in this container.|
+| Modifying elements| Use **forEach(callbackFn: (value?: T, key?: T, set?: TreeSet\<T>) => void, thisArg?: Object)** to change a value in this container.|
 | Deleting elements| Use **remove(value: T)** to remove a value.|
 | Deleting elements| Use **clear()** to clear this container.|
 
@@ -169,9 +169,9 @@ You are advised to use **LightWeightSet** when you need a set that has only uniq
 | Accessing elements| Use **values()** to return an iterator that contains all the values in this container.|
 | Accessing elements| Use **entries()** to return an iterator that contains all the elements in this container.|
 | Accessing elements| Use **getValueAt(index: number)** to obtain the value of an element at a given position (specified by **index**).|
-| Accessing elements| Use **forEach(callbackFn: (value?: T, key?: T, set?: LightWeightSet<T>) => void, thisArg?: Object)** to traverse the elements in this container.|
+| Accessing elements| Use **forEach(callbackFn: (value?: T, key?: T, set?: LightWeightSet\<T>) => void, thisArg?: Object)** to traverse the elements in this container.|
 | Accessing elements| Use **\[Symbol.iterator]():IterableIterator&lt;T&gt;** for data access.|
-| Modifying elements| Use **forEach(callbackFn: (value?: T, key?: T, set?: LightWeightSet<T>) => void, thisArg?: Object)** to change a value in this container.|
+| Modifying elements| Use **forEach(callbackFn: (value?: T, key?: T, set?: LightWeightSet\<T>) => void, thisArg?: Object)** to change a value in this container.|
 | Deleting elements| Use **remove(key: K)** to remove an element with the specified key.|
 | Deleting elements| Use **removeAt(index: number)** to remove an element at a given position (specified by **index**).|
 | Deleting elements| Use **clear()** to clear this container.|
@@ -197,10 +197,10 @@ You are advised to use PlainArray when you need to store KV pairs whose keys are
 | Accessing elements| Use **getIndexOfValue(value: T)** to obtain the index of the specified value.|
 | Accessing elements| Use **getKeyAt(index: number)** to obtain the key of an element at a given position (specified by **index**).|
 | Accessing elements| Use **getValueAt(index: number)** to obtain the value of an element at a given position (specified by **index**).|
-| Accessing elements| Use **forEach(callbackFn: (value: T, index?: number, PlainArray?: PlainArray<T>) => void, thisArg?: Object)** to traverse the elements in this container.|
+| Accessing elements| Use **forEach(callbackFn: (value: T, index?: number, PlainArray?: PlainArray\<T>) => void, thisArg?: Object)** to traverse the elements in this container.|
 | Accessing elements| Use **\[Symbol.iterator]():IterableIterator&lt;[number, T]&gt;** for data access.|
 | Modifying elements| Use **setValueAt(index:number, value: T)** to change the value of an element at a given position (specified by **index**).|
-| Modifying elements| Use **forEach(callbackFn: (value: T, index?: number, PlainArray?: PlainArray<T>) => void, thisArg?: Object)** to modify an element in this container.|
+| Modifying elements| Use **forEach(callbackFn: (value: T, index?: number, PlainArray?: PlainArray\<T>) => void, thisArg?: Object)** to modify an element in this container.|
 | Deleting elements| Use **remove(key: number)** to remove an element with the specified key.|
 | Deleting elements| Use **removeAt(index: number)** to remove an element at a given position (specified by **index**).|
 | Deleting elements| Use **removeRangeFrom(index: number, size: number)** to remove elements in a specified range.|

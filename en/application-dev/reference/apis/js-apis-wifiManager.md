@@ -15,7 +15,7 @@ import wifiManager from '@ohos.wifiManager';
 
 enableWifi(): void
 
-Enables WLAN.
+Enables WLAN. This API is an asynchronous interface. The **wifiStateChange** callback must be registered and listened for.
 
 **System API**: This is a system API.
 
@@ -47,7 +47,7 @@ For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorco
 
 disableWifi(): void
 
-Disables WLAN.
+Disables WLAN. This API is an asynchronous interface. The **wifiStateChange** callback must be registered and listened for.
 
 **System API**: This is a system API.
 
@@ -583,7 +583,7 @@ Adds network configuration. This API uses a promise to return the result.
 
   | **Type**| **Description**|
   | -------- | -------- |
-| Promise&lt;number&gt; | Promise used to return the ID of the added network configuration. If **-1** is returned, the network configuration fails to be added.|
+  | Promise&lt;number&gt; | Promise used to return the ID of the added network configuration. If **-1** is returned, the network configuration fails to be added.|
 
 **Error codes**
 
@@ -959,7 +959,7 @@ Removes the configuration of a candidate network. This API uses an asynchronous 
   | **Name**| **Type**| **Mandatory**| **Description**|
   | -------- | -------- | -------- | -------- |
   | networkId | number | Yes| ID of the network configuration to remove.|
-| callback | AsyncCallback&lt;void&gt; | Yes| Callback invoked to return the result. If the operation is successful, the value of **err** is **0**. If **err** is not **0**, an error has occurred.|
+  | callback | AsyncCallback&lt;void&gt; | Yes| Callback invoked to return the result. If the operation is successful, the value of **err** is **0**. If **err** is not **0**, an error has occurred.|
 
 **Error codes**
 
@@ -2082,7 +2082,7 @@ Enumerates the Wi-Fi disconnection reasons.
 
 enableHotspot(): void
 
-Enables this hotspot.
+Enables this hotspot. This API is an asynchronous interface. The **hotspotStateChange** callback must be registered and listened for.
 
 **System API**: This is a system API.
 
@@ -2113,7 +2113,7 @@ For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorco
 
 disableHotspot(): void
 
-Disables this hotspot.
+Disables this hotspot. This API is an asynchronous interface. The **hotspotStateChange** callback must be registered and listened for.
 
 **System API**: This is a system API.
 
