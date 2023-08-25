@@ -50,8 +50,8 @@ setDisposedStatus(appId: string, disposedWant: Want): Promise\<void>
 **示例：**
 
 ```ts
-var appId = "com.example.myapplication_xxxxx";
-var want = {bundleName: 'com.example.myapplication'};
+let appId = "com.example.myapplication_xxxxx";
+let want = {bundleName: 'com.example.myapplication'};
 
 try {
     appControl.setDisposedStatus(appId, want)
@@ -96,8 +96,8 @@ setDisposedStatus(appId: string, disposedWant: Want, callback: AsyncCallback\<vo
 **示例：**
 
 ```ts
-var appId = "com.example.myapplication_xxxxx";
-var want = {bundleName: 'com.example.myapplication'};
+let appId = "com.example.myapplication_xxxxx";
+let want = {bundleName: 'com.example.myapplication'};
 
 try {
     appControl.setDisposedStatus(appId, want, (error, data) => {
@@ -190,7 +190,7 @@ getDisposedStatus(appId: string): Promise\<Want>;
 **示例：**
 
 ```ts
-var appId = "com.example.myapplication_xxxxx";
+let appId = "com.example.myapplication_xxxxx";
 
 try {
     appControl.getDisposedStatus(appId)
@@ -234,7 +234,7 @@ getDisposedStatus(appId: string, callback: AsyncCallback\<Want>): void;
 **示例：**
 
 ```ts
-var appId = "com.example.myapplication_xxxxx";
+let appId = "com.example.myapplication_xxxxx";
 
 try {
     appControl.getDisposedStatus(appId, (error, data) => {
@@ -332,7 +332,7 @@ deleteDisposedStatus(appId: string): Promise\<void>
 **示例：**
 
 ```ts
-var appId = "com.example.myapplication_xxxxx";
+let appId = "com.example.myapplication_xxxxx";
 
 try {
     appControl.deleteDisposedStatus(appId)
@@ -376,7 +376,7 @@ deleteDisposedStatus(appId: string, callback: AsyncCallback\<void>) : void
 **示例：**
 
 ```ts
-var appId = "com.example.myapplication_xxxxx";
+let appId = "com.example.myapplication_xxxxx";
 try {
     appControl.deleteDisposedStatus(appId, (error, data) => {
         if (error) {
@@ -439,8 +439,8 @@ appId是应用的唯一标识，由应用Bundle名称和签名信息决定，可
 ```ts
 import bundleManager from '@ohos.bundle.bundleManager';
 
-var bundleName = 'com.example.myapplication';
-var appId;
+let bundleName = 'com.example.myapplication';
+let appId: string;
 try {
     bundleManager.getBundleInfo(bundleName, bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_SIGNATURE_INFO)
         .then((data) => {
