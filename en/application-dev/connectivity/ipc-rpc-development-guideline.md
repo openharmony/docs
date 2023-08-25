@@ -1,6 +1,6 @@
 # IPC & RPC Development Guidelines
 
-## When to Use
+## Overview
 
 IPC/RPC enables a proxy and a stub that run on different processes to communicate with each other, regardless of whether they run on the same or different devices.
 

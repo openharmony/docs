@@ -587,7 +587,8 @@ class EntryAbility extends UIAbility {
 
 | 键类型 | 值类型                   |
 | ------ | ----------------------- |
-| string | [ValueType](#valuetype) |
+| number | 主键的类型可以是number |
+| string | 主键的类型可以是string。 |
 
 ## PRIKeyType<sup>10+</sup> 
 
@@ -802,7 +803,8 @@ inDevices(devices: Array&lt;string&gt;): RdbPredicates
 
 > **说明：**
 >
-> 其中devices通过调用[deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync)方法得到。deviceManager模块的接口均为系统接口，仅系统应用可用。
+> 其中devices通过调用[deviceManager.getAvailableDeviceListSync](js-apis-distributedDeviceManager.md#getavailabledevicelistsync)方法得到。
+数据库同步时调用Sync接口，需要在入参谓词中调用inDevices接口选择设备。如果不调用inDevices接口即默认连接组网内所有的设备。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -821,22 +823,20 @@ inDevices(devices: Array&lt;string&gt;): RdbPredicates
 **示例：**
 
 ```js
-import deviceManager from '@ohos.distributedHardware.deviceManager';
-
+import deviceManager from '@ohos.distributedDeviceManager';
 let dmInstance: deviceManager.DeviceManager = null;
 let deviceIds: Array<string> = [];
-deviceManager.createDeviceManager("com.example.appdatamgrverify", (err, manager) => {
-  if (err) {
-    console.log("create device manager failed, err=" + err);
-    return;
-  }
-  dmInstance = manager;
-  let devices = dmInstance.getTrustedDeviceListSync();
+
+try {
+  dmInstance = deviceManager.createDeviceManager("com.example.appdatamgrverify");
+  let devices = dmInstance.getAvailableDeviceListSync();
   for (let i = 0; i < devices.length; i++) {
-    deviceIds[i] = devices[i].deviceId;
+      deviceIds[i] = devices[i].networkId;
   }
-})
-                                  
+} catch (err) {
+  console.error("createDeviceManager errCode:" + err.code + ",errMessage:" + err.message);
+}
+
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.inDevices(deviceIds);
 ```
@@ -847,6 +847,7 @@ inAllDevices(): RdbPredicates
 
 
 同步分布式数据库时连接到组网内所有的远程设备。
+
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -2850,7 +2851,7 @@ remoteQuery(device: string, table: string, predicates: RdbPredicates, columns: A
 
 > **说明：**
 >
-> 其中device通过调用[deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync)方法得到。deviceManager模块的接口均为系统接口，仅系统应用可用。
+> 其中device通过调用[deviceManager.getAvailableDeviceListSync](js-apis-distributedDeviceManager.md#getavailabledevicelistsync)方法得到。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -2875,19 +2876,17 @@ remoteQuery(device: string, table: string, predicates: RdbPredicates, columns: A
 **示例：**
 
 ```js
-import deviceManager from '@ohos.distributedHardware.deviceManager';
+import deviceManager from '@ohos.distributedDeviceManager';
 let dmInstance: deviceManager.DeviceManager = null;
 let deviceId: string = null;
 
-deviceManager.createDeviceManager("com.example.appdatamgrverify", (err, manager) => {
-  if (err) {
-    console.log("create device manager failed, err=" + err);
-    return;
-  }
-  dmInstance = manager;
-  let devices = dmInstance.getTrustedDeviceListSync();
-  deviceId = devices[0].deviceId;
-})
+try {
+  dmInstance = deviceManager.createDeviceManager("com.example.appdatamgrverify");
+  let devices = dmInstance.getAvailableDeviceListSync();
+  deviceId = devices[0].networkId;
+} catch (err) {
+  console.error("createDeviceManager errCode:" + err.code + ",errMessage:" + err.message);
+}
 
 let predicates = new relationalStore.RdbPredicates('EMPLOYEE');
 predicates.greaterThan("id", 0);
@@ -2917,7 +2916,7 @@ remoteQuery(device: string, table: string, predicates: RdbPredicates, columns: A
 
 > **说明：**
 >
-> 其中device通过调用[deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync)方法得到。deviceManager模块的接口均为系统接口，仅系统应用可用。
+> 其中device通过调用[deviceManager.getAvailableDeviceListSync](js-apis-distributedDeviceManager.md#getavailabledevicelistsync)方法得到。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -2947,19 +2946,17 @@ remoteQuery(device: string, table: string, predicates: RdbPredicates, columns: A
 **示例：**
 
 ```js
-import deviceManager from '@ohos.distributedHardware.deviceManager';
+import deviceManager from '@ohos.distributedDeviceManager';
 let dmInstance: deviceManager.DeviceManager = null;
 let deviceId: string = null;
 
-deviceManager.createDeviceManager("com.example.appdatamgrverify", (err, manager) => {
-    if (err) {
-        console.log("create device manager failed, err=" + err);
-        return;
-    }
-    dmInstance = manager;
-    let devices = dmInstance.getTrustedDeviceListSync();
-    deviceId = devices[0].deviceId;
-})
+try {
+  dmInstance = deviceManager.createDeviceManager("com.example.appdatamgrverify");
+  let devices = dmInstance.getAvailableDeviceListSync();
+  deviceId = devices[0].networkId;
+} catch (err) {
+  console.error("createDeviceManager errCode:" + err.code + ",errMessage:" + err.message);
+}
 
 let predicates = new relationalStore.RdbPredicates('EMPLOYEE');
 predicates.greaterThan("id", 0);
@@ -3821,7 +3818,7 @@ obtainDistributedTableName(device: string, table: string, callback: AsyncCallbac
 
 > **说明：**
 >
-> 其中device通过调用[deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync)方法得到。deviceManager模块的接口均为系统接口，仅系统应用可用。
+> 其中device通过调用[deviceManager.getAvailableDeviceListSync](js-apis-distributedDeviceManager.md#getavailabledevicelistsync)方法得到。
 
 **需要权限：** ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -3846,19 +3843,17 @@ obtainDistributedTableName(device: string, table: string, callback: AsyncCallbac
 **示例：**
 
 ```js
-import deviceManager from '@ohos.distributedHardware.deviceManager';
+import deviceManager from '@ohos.distributedDeviceManager';
 let dmInstance: deviceManager.DeviceManager = null;
 let deviceId: string = null;
 
-deviceManager.createDeviceManager("com.example.appdatamgrverify", (err, manager) => {
-  if (err) {
-    console.log("create device manager failed, err=" + err);
-    return;
-  }
-  dmInstance = manager;
-  let devices = dmInstance.getTrustedDeviceListSync();
-  deviceId = devices[0].deviceId;
-})
+try {
+  dmInstance = deviceManager.createDeviceManager("com.example.appdatamgrverify");
+  let devices = dmInstance.getAvailableDeviceListSync();
+  deviceId = devices[0].networkId;
+} catch (err) {
+  console.error("createDeviceManager errCode:" + err.code + ",errMessage:" + err.message);
+}
 
 store.obtainDistributedTableName(deviceId, "EMPLOYEE", (err, tableName) => {
   if (err) {
@@ -3877,7 +3872,7 @@ store.obtainDistributedTableName(deviceId, "EMPLOYEE", (err, tableName) => {
 
 > **说明：**
 >
-> 其中device通过调用[deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync)方法得到。deviceManager模块的接口均为系统接口，仅系统应用可用。
+> 其中device通过调用[deviceManager.getAvailableDeviceListSync](js-apis-distributedDeviceManager.md#getavailabledevicelistsync)方法得到。
 
 **需要权限：** ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -3907,19 +3902,17 @@ store.obtainDistributedTableName(deviceId, "EMPLOYEE", (err, tableName) => {
 **示例：**
 
 ```js
-import deviceManager from '@ohos.distributedHardware.deviceManager';
+import deviceManager from '@ohos.distributedDeviceManager';
 let dmInstance: deviceManager.DeviceManager = null;
 let deviceId: string = null;
 
-deviceManager.createDeviceManager("com.example.appdatamgrverify", (err, manager) => {
-  if (err) {
-    console.log("create device manager failed, err=" + err);
-    return;
-  }
-  dmInstance = manager;
-  let devices = dmInstance.getTrustedDeviceListSync();
-  deviceId = devices[0].deviceId;
-})
+try {
+  dmInstance = deviceManager.createDeviceManager("com.example.appdatamgrverify");
+  let devices = dmInstance.getAvailableDeviceListSync();
+  deviceId = devices[0].networkId;
+} catch (err) {
+  console.error("createDeviceManager errCode:" + err.code + ",errMessage:" + err.message);
+}
 
 let promise = store.obtainDistributedTableName(deviceId, "EMPLOYEE");
 promise.then((tableName: string) => {
@@ -3958,21 +3951,19 @@ sync(mode: SyncMode, predicates: RdbPredicates, callback: AsyncCallback&lt;Array
 **示例：**
 
 ```js
-import deviceManager from '@ohos.distributedHardware.deviceManager';
+import deviceManager from '@ohos.distributedDeviceManager';
 let dmInstance: deviceManager.DeviceManager = null;
 let deviceIds: Array<string> = [];
 
-deviceManager.createDeviceManager("com.example.appdatamgrverify", (err, manager) => {
-  if (err) {
-    console.log("create device manager failed, err=" + err);
-    return;
-  }
-  dmInstance = manager;
-  let devices = dmInstance.getTrustedDeviceListSync();
+try {
+  dmInstance = deviceManager.createDeviceManager("com.example.appdatamgrverify");
+  let devices = dmInstance.getAvailableDeviceListSync();
   for (let i = 0; i < devices.length; i++) {
-    deviceIds[i] = devices[i].deviceId;
+      deviceIds[i] = devices[i].networkId;
   }
-})
+} catch (err) {
+  console.error("createDeviceManager errCode:" + err.code + ",errMessage:" + err.message);
+}
 
 let predicates = new relationalStore.RdbPredicates('EMPLOYEE');
 predicates.inDevices(deviceIds);
@@ -4022,21 +4013,19 @@ store.sync(relationalStore.SyncMode.SYNC_MODE_PUSH, predicates, (err, result) =>
 **示例：**
 
 ```js
-import deviceManager from '@ohos.distributedHardware.deviceManager';
+import deviceManager from '@ohos.distributedDeviceManager';
 let dmInstance: deviceManager.DeviceManager = null;
 let deviceIds: Array<string> = [];
 
-deviceManager.createDeviceManager("com.example.appdatamgrverify", (err, manager) => {
-  if (err) {
-    console.log("create device manager failed, err=" + err);
-    return;
-  }
-  dmInstance = manager;
-  let devices = dmInstance.getTrustedDeviceListSync();
+try {
+  dmInstance = deviceManager.createDeviceManager("com.example.appdatamgrverify");
+  let devices = dmInstance.getAvailableDeviceListSync();
   for (let i = 0; i < devices.length; i++) {
-    deviceIds[i] = devices[i].deviceId;
+      deviceIds[i] = devices[i].networkId;
   }
-})
+} catch (err) {
+  console.error("createDeviceManager errCode:" + err.code + ",errMessage:" + err.message);
+}
 
 let predicates = new relationalStore.RdbPredicates('EMPLOYEE');
 predicates.inDevices(deviceIds);
@@ -4973,13 +4962,9 @@ close(): void
 **示例：**
 
   ```js
-let predicatesClose = new relationalStore.RdbPredicates("EMPLOYEE");
-let promiseClose = store.query(predicatesClose, ["ID", "NAME", "AGE", "SALARY", "CODES"]);
-promiseClose.then((resultSet: relationalStore.ResultSet) => {
+
   resultSet.close();
-}).catch((err: BusinessError) => {
-  console.error(`resultset close failed, code is ${err.code},message is ${err.message}`);
-});
+
   ```
 
 **错误码：**

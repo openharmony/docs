@@ -64,8 +64,10 @@ createAccount(name: string, callback: AsyncCallback&lt;void&gt;): void;
 **示例：**
 
   ```js
+  import { BusinessError } from '@ohos.base';
+  
   try {
-    appAccountManager.createAccount('WangWu', (err) => { 
+    appAccountManager.createAccount('WangWu', (err: BusinessError) => { 
         console.log('createAccount err: ' + JSON.stringify(err));
     });
   } catch (err) {
@@ -101,13 +103,15 @@ createAccount(name: string, options: CreateAccountOptions, callback: AsyncCallba
 **示例：**
 
   ```js
+  import { BusinessError } from '@ohos.base';
+  
   let options = {
     customData: {
       'age': '10'
     }
   }
   try {
-    appAccountManager.createAccount('LiSi', options, (err) => {
+    appAccountManager.createAccount('LiSi', options, (err: BusinessError) => {
       if (err) {
         console.log('createAccount failed, error: ' + JSON.stringify(err));
       } else {
@@ -152,6 +156,8 @@ createAccount(name: string, options?: CreateAccountOptions): Promise&lt;void&gt;
 **示例：**
 
   ```js
+  import { BusinessError } from '@ohos.base';
+
   let options = {
     customData: {
       'age': '10'
@@ -160,7 +166,7 @@ createAccount(name: string, options?: CreateAccountOptions): Promise&lt;void&gt;
   try {
     appAccountManager.createAccount('LiSi', options).then(() => {
       console.log('createAccount successfully');
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
       console.log('createAccount failed, error: ' + JSON.stringify(err));
     });
   } catch(err) {
@@ -197,12 +203,15 @@ createAccountImplicitly(owner: string, callback: AuthCallback): void
 **示例：**
 
   ```js
-  function onResultCallback(code, result) {
+  import { BusinessError } from '@ohos.base';
+  import Want from '@ohos.app.ability.Want';
+
+  function onResultCallback(code: number, result: account_appAccount.AuthResult) {
     console.log('resultCode: ' + code);
     console.log('result: ' + JSON.stringify(result));
   }
 
-  function onRequestRedirectedCallback(request) {
+  function onRequestRedirectedCallback(request: Want) {
     let wantInfo = {
       deviceId: '',
       bundleName: 'com.example.accountjsdemo',
@@ -211,7 +220,7 @@ createAccountImplicitly(owner: string, callback: AuthCallback): void
     }
     this.context.startAbility(wantInfo).then(() => {
       console.log('startAbility successfully');
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
       console.log('startAbility err: ' + JSON.stringify(err));
     })
   }
@@ -256,12 +265,15 @@ createAccountImplicitly(owner: string, options: CreateAccountImplicitlyOptions, 
 **示例：**
 
   ```js
-  function onResultCallback(code, result) {
+  import { BusinessError } from '@ohos.base';
+  import Want from '@ohos.app.ability.Want';
+
+  function onResultCallback(code: number, result: account_appAccount.AuthResult) {
     console.log('resultCode: ' + code);
     console.log('result: ' + JSON.stringify(result));
   }
 
-  function onRequestRedirectedCallback(request) {
+  function onRequestRedirectedCallback(request: Want) {
     let wantInfo = {
       deviceId: '',
       bundleName: 'com.example.accountjsdemo',
@@ -270,7 +282,7 @@ createAccountImplicitly(owner: string, options: CreateAccountImplicitlyOptions, 
     }
     this.context.startAbility(wantInfo).then(() => {
       console.log('startAbility successfully');
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
       console.log('startAbility err: ' + JSON.stringify(err));
     })
   }
@@ -315,8 +327,10 @@ removeAccount(name: string, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
   ```js
+  import { BusinessError } from '@ohos.base';
+  
   try {
-    appAccountManager.removeAccount('ZhaoLiu', (err) => {
+    appAccountManager.removeAccount('ZhaoLiu', (err: BusinessError) => {
       if (err) {
         console.log('removeAccount failed, error: ' + JSON.stringify(err));
       } else {
@@ -359,10 +373,12 @@ removeAccount(name: string): Promise&lt;void&gt;
 **示例：**
 
   ```js
+  import { BusinessError } from '@ohos.base';
+
   try {
     appAccountManager.removeAccount('Lisi').then(() => {
       console.log('removeAccount successfully');
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
       console.log('removeAccount failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
@@ -399,8 +415,10 @@ setAppAccess(name: string, bundleName: string, isAccessible: boolean, callback: 
 **示例：**
 
   ```js
+  import { BusinessError } from '@ohos.base';
+  
   try {
-    appAccountManager.setAppAccess('ZhangSan', 'com.example.accountjsdemo', true, (err) => {
+    appAccountManager.setAppAccess('ZhangSan', 'com.example.accountjsdemo', true, (err: BusinessError) => {
       if (err) {
         console.log('setAppAccess failed: ' + JSON.stringify(err));
       } else {
@@ -446,10 +464,12 @@ setAppAccess(name: string, bundleName: string, isAccessible: boolean): Promise&l
 **示例：**
 
   ```js
+  import { BusinessError } from '@ohos.base';
+
   try {
     appAccountManager.setAppAccess('ZhangSan', 'com.example.accountjsdemo', true).then(() => {
       console.log('setAppAccess successfully');
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
       console.log('setAppAccess failed: ' + JSON.stringify(err));
     });
   } catch (err) {
@@ -484,14 +504,17 @@ checkAppAccess(name: string, bundleName: string, callback: AsyncCallback&lt;bool
 **示例：**
 
   ```js
+  import { BusinessError } from '@ohos.base';
+  
   try {
-    appAccountManager.checkAppAccess('ZhangSan', 'com.example.accountjsdemo', (err, isAccessible) => {
-      if (err) {
-        console.log('checkAppAccess failed, error: ' + JSON.stringify(err));
-      } else {
-        console.log('checkAppAccess successfully');
-      }
-    });
+    appAccountManager.checkAppAccess('ZhangSan', 'com.example.accountjsdemo',
+      (err: BusinessError, isAccessible: boolean) => {
+        if (err) {
+          console.log('checkAppAccess failed, error: ' + JSON.stringify(err));
+        } else {
+          console.log('checkAppAccess successfully');
+        }
+      });
   } catch (err) {
     console.log('checkAppAccess exception: ' + JSON.stringify(err));
   }
@@ -529,10 +552,12 @@ checkAppAccess(name: string, bundleName: string): Promise&lt;boolean&gt;
 **示例：**
 
   ```js
+  import { BusinessError } from '@ohos.base';
+
   try {
-    appAccountManager.checkAppAccess('ZhangSan', 'com.example.accountjsdemo').then((isAccessible) => {
+    appAccountManager.checkAppAccess('ZhangSan', 'com.example.accountjsdemo').then((isAccessible: boolean) => {
       console.log('checkAppAccess successfully, isAccessible: ' + isAccessible);
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
       console.log('checkAppAccess failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
@@ -569,8 +594,10 @@ setDataSyncEnabled(name: string, isEnabled: boolean, callback: AsyncCallback&lt;
 **示例：**
 
   ```js
+  import { BusinessError } from '@ohos.base';
+  
   try {
-      appAccountManager.setDataSyncEnabled('ZhangSan', true, (err) => { 
+      appAccountManager.setDataSyncEnabled('ZhangSan', true, (err: BusinessError) => { 
           console.log('setDataSyncEnabled err: ' + JSON.stringify(err));
       });
   } catch (err) {
@@ -612,10 +639,12 @@ setDataSyncEnabled(name: string, isEnabled: boolean): Promise&lt;void&gt;
 **示例：**
 
   ```js
+  import { BusinessError } from '@ohos.base';
+
   try {
       appAccountManager .setDataSyncEnabled('ZhangSan', true).then(() => { 
           console.log('setDataSyncEnabled Success');
-      }).catch((err) => {
+      }).catch((err: BusinessError) => {
           console.log('setDataSyncEnabled err: ' + JSON.stringify(err));
       });
   } catch (err) {
@@ -651,8 +680,10 @@ checkDataSyncEnabled(name: string, callback: AsyncCallback&lt;boolean&gt;): void
 **示例：**
 
   ```js
+  import { BusinessError } from '@ohos.base';
+  
   try {
-    appAccountManager.checkDataSyncEnabled('ZhangSan', (err, isEnabled) => {
+    appAccountManager.checkDataSyncEnabled('ZhangSan', (err: BusinessError, isEnabled: boolean) => {
       if (err) {
         console.log('checkDataSyncEnabled failed, err: ' + JSON.stringify(err));
       } else {
@@ -697,10 +728,12 @@ checkDataSyncEnabled(name: string): Promise&lt;boolean&gt;
 **示例：**
 
   ```js
+  import { BusinessError } from '@ohos.base';
+
   try {
-    appAccountManager.checkDataSyncEnabled('ZhangSan').then((isEnabled) => {
+    appAccountManager.checkDataSyncEnabled('ZhangSan').then((isEnabled: boolean) => {
         console.log('checkDataSyncEnabled successfully, isEnabled: ' + isEnabled);
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
       console.log('checkDataSyncEnabled failed, err: ' + JSON.stringify(err));
     });
   } catch (err) {
@@ -736,8 +769,10 @@ setCredential(name: string, credentialType: string, credential: string,callback:
 **示例：**
 
   ```js
+  import { BusinessError } from '@ohos.base';
+  
   try {
-    appAccountManager.setCredential('ZhangSan', 'PIN_SIX', 'xxxxxx', (err) => {
+    appAccountManager.setCredential('ZhangSan', 'PIN_SIX', 'xxxxxx', (err: BusinessError) => {
       if (err) {
         console.log('setCredential failed, error: ' + JSON.stringify(err));
       } else {
@@ -782,10 +817,12 @@ setCredential(name: string, credentialType: string, credential: string): Promise
 **示例：**
 
   ```js
+  import { BusinessError } from '@ohos.base';
+
   try {
     appAccountManager.setCredential('ZhangSan', 'PIN_SIX', 'xxxxxx').then(() => {
       console.log('setCredential successfully');
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
       console.log('setCredential failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
@@ -821,8 +858,10 @@ getCredential(name: string, credentialType: string, callback: AsyncCallback&lt;s
 **示例：**
 
   ```js
+  import { BusinessError } from '@ohos.base';
+  
   try {
-      appAccountManager.getCredential('ZhangSan', 'PIN_SIX', (err, result) => { 
+      appAccountManager.getCredential('ZhangSan', 'PIN_SIX', (err: BusinessError, result: string) => { 
         if (err) {
           console.log('getCredential failed, error: ' + JSON.stringify(err));
         } else {
@@ -867,10 +906,12 @@ getCredential(name: string, credentialType: string): Promise&lt;string&gt;
 **示例：**
 
   ```js
+  import { BusinessError } from '@ohos.base';
+
   try {
-    appAccountManager.getCredential('ZhangSan', 'PIN_SIX').then((credential) => {
+    appAccountManager.getCredential('ZhangSan', 'PIN_SIX').then((credential: string) => {
         console.log('getCredential successfully, credential: ' + credential);
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
         console.log('getCredential failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
@@ -907,8 +948,10 @@ setCustomData(name: string, key: string, value: string, callback: AsyncCallback&
 **示例：**
 
   ```js
+  import { BusinessError } from '@ohos.base';
+  
   try {
-    appAccountManager.setCustomData('ZhangSan', 'age', '12', (err) => {
+    appAccountManager.setCustomData('ZhangSan', 'age', '12', (err: BusinessError) => {
       if (err) {
         console.log('setCustomData failed, error: ' + JSON.stringify(err));
       } else {
@@ -954,10 +997,12 @@ setCustomData(name: string, key: string, value: string): Promise&lt;void&gt;
 **示例：**
 
   ```js
+  import { BusinessError } from '@ohos.base';
+
   try {
     appAccountManager.setCustomData('ZhangSan', 'age', '12').then(() => {
       console.log('setCustomData successfully');
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
       console.log('setCustomData failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
@@ -993,8 +1038,10 @@ getCustomData(name: string, key: string, callback: AsyncCallback&lt;string&gt;):
 **示例：**
 
   ```js
+  import { BusinessError } from '@ohos.base';
+  
   try {
-    appAccountManager.getCustomData('ZhangSan', 'age', (err, data) => {
+    appAccountManager.getCustomData('ZhangSan', 'age', (err: BusinessError, data: string) => {
       if (err) {
         console.log('getCustomData failed, error: ' + err);
       } else {
@@ -1039,10 +1086,12 @@ getCustomData(name: string, key: string): Promise&lt;string&gt;
 **示例：**
 
   ```js
+  import { BusinessError } from '@ohos.base';
+
   try {
-    appAccountManager.getCustomData('ZhangSan', 'age').then((data) => {
+    appAccountManager.getCustomData('ZhangSan', 'age').then((data: string) => {
       console.log('getCustomData successfully, data: ' + data);
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
       console.log('getCustomData failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
@@ -1114,8 +1163,10 @@ getAllAccounts(callback: AsyncCallback&lt;Array&lt;AppAccountInfo&gt;&gt;): void
 **示例：**
 
   ```js
+  import { BusinessError } from '@ohos.base';
+  
   try {
-    appAccountManager.getAllAccounts((err, data) => {
+    appAccountManager.getAllAccounts((err: BusinessError, data: account_appAccount.AppAccountInfo[]) => {
       if (err) {
         console.debug('getAllAccounts failed, error: ' + JSON.stringify(err));
       } else {
@@ -1150,10 +1201,12 @@ getAllAccounts(): Promise&lt;Array&lt;AppAccountInfo&gt;&gt;
 **示例：**
 
   ```js
+  import { BusinessError } from '@ohos.base';
+
   try {
-    appAccountManager.getAllAccounts().then((data) => {
+    appAccountManager.getAllAccounts().then((data: account_appAccount.AppAccountInfo[]) => {
       console.debug('getAllAccounts successfully');
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
       console.debug('getAllAccounts failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
@@ -1187,14 +1240,17 @@ getAccountsByOwner(owner: string, callback: AsyncCallback&lt;Array&lt;AppAccount
 **示例：**
 
   ```js
+  import { BusinessError } from '@ohos.base';
+  
   try {
-    appAccountManager.getAccountsByOwner('com.example.accountjsdemo2', (err, data) => {
-      if (err) {
-        console.debug('getAccountsByOwner failed, error:' + JSON.stringify(err));
-      } else {
-        console.debug('getAccountsByOwner successfully, data:' + JSON.stringify(data));
-      }
-    });
+    appAccountManager.getAccountsByOwner('com.example.accountjsdemo2',
+      (err: BusinessError, data: account_appAccount.AppAccountInfo[]) => {
+        if (err) {
+          console.debug('getAccountsByOwner failed, error:' + JSON.stringify(err));
+        } else {
+          console.debug('getAccountsByOwner successfully, data:' + JSON.stringify(data));
+        }
+      });
   } catch (err) {
     console.debug('getAccountsByOwner exception:' + JSON.stringify(err));
   }
@@ -1231,10 +1287,13 @@ getAccountsByOwner(owner: string): Promise&lt;Array&lt;AppAccountInfo&gt;&gt;
 **示例：**
 
   ```js
+  import { BusinessError } from '@ohos.base';
+
   try {
-    appAccountManager.getAccountsByOwner('com.example.accountjsdemo2').then((data) => {
+    appAccountManager.getAccountsByOwner('com.example.accountjsdemo2').then((
+      data: account_appAccount.AppAccountInfo[]) => {
       console.debug('getAccountsByOwner successfully, data: ' + JSON.stringify(data));
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
       console.debug('getAccountsByOwner failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
@@ -1269,7 +1328,7 @@ on(type: 'accountChange', owners: Array&lt;string&gt;, callback: Callback&lt;Arr
 **示例：**
 
   ```js
-  function changeOnCallback(data){
+  function changeOnCallback(data: account_appAccount.AppAccountInfo[]){
   	console.log('receive change data:' + JSON.stringify(data));
   }
   try{
@@ -1304,7 +1363,7 @@ off(type: 'accountChange', callback?: Callback&lt;Array&lt;AppAccountInfo&gt;&gt
 **示例：**
 
   ```js
-  function changeOnCallback(data) {
+  function changeOnCallback(data: account_appAccount.AppAccountInfo[]) {
   	console.log('receive change data:' + JSON.stringify(data));
   }
   try{
@@ -1351,14 +1410,15 @@ auth(name: string, owner: string, authType: string, callback: AuthCallback): voi
 **示例：**
 
   ```js
+  import { BusinessError } from '@ohos.base';
+  import Want from '@ohos.app.ability.Want';
 
-
-  function onResultCallback(code, authResult) {
+  function onResultCallback(code: number, authResult: account_appAccount.AuthResult) {
     console.log('resultCode: ' + code);
     console.log('authResult: ' + JSON.stringify(authResult));
   }
 
-  function onRequestRedirectedCallback(request) {
+  function onRequestRedirectedCallback(request: Want) {
     let wantInfo = {
       deviceId: '',
       bundleName: 'com.example.accountjsdemo',
@@ -1367,7 +1427,7 @@ auth(name: string, owner: string, authType: string, callback: AuthCallback): voi
     }
     this.context.startAbility(wantInfo).then(() => {
       console.log('startAbility successfully');
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
       console.log('startAbility err: ' + JSON.stringify(err));
     })
   }
@@ -1414,14 +1474,15 @@ auth(name: string, owner: string, authType: string, options: {[key: string]: Obj
 **示例：**
 
   ```js
+  import { BusinessError } from '@ohos.base';
+  import Want from '@ohos.app.ability.Want';
 
-
-  function onResultCallback(code, authResult) {
+  function onResultCallback(code: number, authResult: account_appAccount.AuthResult) {
     console.log('resultCode: ' + code);
     console.log('authResult: ' + JSON.stringify(authResult));
   }
 
-  function onRequestRedirectedCallback(request) {
+  function onRequestRedirectedCallback(request: Want) {
     let wantInfo = {
       deviceId: '',
       bundleName: 'com.example.accountjsdemo',
@@ -1430,7 +1491,7 @@ auth(name: string, owner: string, authType: string, options: {[key: string]: Obj
     }
     this.context.startAbility(wantInfo).then(() => {
       console.log('startAbility successfully');
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
       console.log('startAbility err: ' + JSON.stringify(err));
     })
   }
@@ -1477,14 +1538,17 @@ getAuthToken(name: string, owner: string, authType: string, callback: AsyncCallb
 **示例：**
 
   ```js
+  import { BusinessError } from '@ohos.base';
+  
   try {
-    appAccountManager.getAuthToken('LiSi', 'com.example.accountjsdemo', 'getSocialData', (err, token) => {
-      if (err) {
-        console.log('getAuthToken failed, error: ' + JSON.stringify(err));
-      } else {
-        console.log('getAuthToken successfully, token: ' + token);
-      }
-    });
+    appAccountManager.getAuthToken('LiSi', 'com.example.accountjsdemo', 'getSocialData',
+      (err: BusinessError, token: string) => {
+        if (err) {
+          console.log('getAuthToken failed, error: ' + JSON.stringify(err));
+        } else {
+          console.log('getAuthToken successfully, token: ' + token);
+        }
+      });
   } catch (err) {
       console.log('getAuthToken exception: ' + JSON.stringify(err));
   }
@@ -1524,10 +1588,12 @@ getAuthToken(name: string, owner: string, authType: string): Promise&lt;string&g
 **示例：**
 
   ```js
+  import { BusinessError } from '@ohos.base';
+  
   try {
-    appAccountManager.getAuthToken('LiSi', 'com.example.accountjsdemo', 'getSocialData').then((token) => {
+    appAccountManager.getAuthToken('LiSi', 'com.example.accountjsdemo', 'getSocialData').then((token: string) => {
       console.log('getAuthToken successfully, token: ' + token);
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
       console.log('getAuthToken failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
@@ -1564,8 +1630,10 @@ setAuthToken(name: string, authType: string, token: string, callback: AsyncCallb
 **示例：**
 
   ```js
+  import { BusinessError } from '@ohos.base';
+  
   try {
-    appAccountManager.setAuthToken('LiSi', 'getSocialData', 'xxxx', (err) => {
+    appAccountManager.setAuthToken('LiSi', 'getSocialData', 'xxxx', (err: BusinessError) => {
       if (err) {
         console.log('setAuthToken failed, error: ' + JSON.stringify(err));
       } else {
@@ -1573,7 +1641,7 @@ setAuthToken(name: string, authType: string, token: string, callback: AsyncCallb
       }
     });
   } catch (err) {
-      console.log('setAuthToken exception: ' + JSON.stringify(err));
+    console.log('setAuthToken exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -1611,10 +1679,12 @@ setAuthToken(name: string, authType: string, token: string): Promise&lt;void&gt;
 **示例：**
 
   ```js
+  import { BusinessError } from '@ohos.base';
+  
   try {
     appAccountManager.setAuthToken('LiSi', 'getSocialData', 'xxxx').then(() => {
         console.log('setAuthToken successfully');
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
         console.log('setAuthToken failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
@@ -1652,8 +1722,11 @@ deleteAuthToken(name: string, owner: string, authType: string, token: string, ca
 **示例：**
 
   ```js
+  import { BusinessError } from '@ohos.base';
+  
   try {
-      appAccountManager.deleteAuthToken('LiSi', 'com.example.accountjsdemo', 'getSocialData', 'xxxxx', (err) => {
+    appAccountManager.deleteAuthToken('LiSi', 'com.example.accountjsdemo', 'getSocialData', 'xxxxx',
+      (err: BusinessError) => {
         if (err) {
           console.log('deleteAuthToken failed, error: ' + JSON.stringify(err));
         } else {
@@ -1661,7 +1734,7 @@ deleteAuthToken(name: string, owner: string, authType: string, token: string, ca
         }
       });
   } catch (err) {
-      console.log('deleteAuthToken exception: ' + JSON.stringify(err));
+    console.log('deleteAuthToken exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -1700,10 +1773,12 @@ deleteAuthToken(name: string, owner: string, authType: string, token: string): P
 **示例：**
 
   ```js
+  import { BusinessError } from '@ohos.base';
+  
   try {
     appAccountManager.deleteAuthToken('LiSi', 'com.example.accountjsdemo', 'getSocialData', 'xxxxx').then(() => {
       console.log('deleteAuthToken successfully');
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
       console.log('deleteAuthToken failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
@@ -1743,8 +1818,11 @@ setAuthTokenVisibility(name: string, authType: string, bundleName: string, isVis
 **示例：**
 
   ```js
+  import { BusinessError } from '@ohos.base';
+  
   try {
-      appAccountManager.setAuthTokenVisibility('LiSi', 'getSocialData', 'com.example.accountjsdemo', true, (err) => {
+    appAccountManager.setAuthTokenVisibility('LiSi', 'getSocialData', 'com.example.accountjsdemo', true,
+      (err: BusinessError) => {
         if (err) {
           console.log('setAuthTokenVisibility failed, error: ' + JSON.stringify(err));
         } else {
@@ -1793,10 +1871,12 @@ setAuthTokenVisibility(name: string, authType: string, bundleName: string, isVis
 **示例：**
 
   ```js
+  import { BusinessError } from '@ohos.base';
+  
   try {
     appAccountManager.setAuthTokenVisibility('LiSi', 'getSocialData', 'com.example.accountjsdemo', true).then(() => {
       console.log('setAuthTokenVisibility successfully');
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
       console.log('setAuthTokenVisibility failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
@@ -1833,14 +1913,17 @@ checkAuthTokenVisibility(name: string, authType: string, bundleName: string, cal
 **示例：**
 
   ```js
+  import { BusinessError } from '@ohos.base';
+  
   try {
-    appAccountManager.checkAuthTokenVisibility('LiSi', 'getSocialData', 'com.example.accountjsdemo', (err, isVisible) => {
-      if (err) {
-        console.log('checkAuthTokenVisibility failed, error: ' + JSON.stringify(err));
-      } else {
-        console.log('checkAuthTokenVisibility successfully, isVisible: ' + isVisible);
-      }
-    });
+    appAccountManager.checkAuthTokenVisibility('LiSi', 'getSocialData', 'com.example.accountjsdemo',
+      (err: BusinessError, isVisible: boolean) => {
+        if (err) {
+          console.log('checkAuthTokenVisibility failed, error: ' + JSON.stringify(err));
+        } else {
+          console.log('checkAuthTokenVisibility successfully, isVisible: ' + isVisible);
+        }
+      });
   } catch (err) {
     console.log('checkAuthTokenVisibility exception: ' + JSON.stringify(err));
   }
@@ -1880,10 +1963,13 @@ checkAuthTokenVisibility(name: string, authType: string, bundleName: string): Pr
 **示例：**
 
   ```js
+  import { BusinessError } from '@ohos.base';
+  
   try {
-    appAccountManager.checkAuthTokenVisibility('LiSi', 'getSocialData', 'com.example.accountjsdemo').then((isVisible) => {
+    appAccountManager.checkAuthTokenVisibility('LiSi', 'getSocialData', 'com.example.accountjsdemo').then((
+      isVisible: boolean) => {
       console.log('checkAuthTokenVisibility successfully, isVisible: ' + isVisible);
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
       console.log('checkAuthTokenVisibility failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
@@ -1918,14 +2004,17 @@ getAllAuthTokens(name: string, owner: string, callback: AsyncCallback&lt;Array&l
 **示例：** 
 
   ```js
+  import { BusinessError } from '@ohos.base';
+  
   try {
-    appAccountManager.getAllAuthTokens('LiSi', 'com.example.accountjsdemo', (err, tokenArr) => {
-      if (err) {
-        console.log('getAllAuthTokens failed, error: ' + JSON.stringify(err));
-      } else {
-        console.log('getAllAuthTokens successfully, tokenArr: ' + tokenArr);
-      }
-    });
+    appAccountManager.getAllAuthTokens('LiSi', 'com.example.accountjsdemo',
+      (err: BusinessError, tokenArr: account_appAccount.AuthTokenInfo[]) => {
+        if (err) {
+          console.log('getAllAuthTokens failed, error: ' + JSON.stringify(err));
+        } else {
+          console.log('getAllAuthTokens successfully, tokenArr: ' + tokenArr);
+        }
+      });
   } catch (err) {
     console.log('getAllAuthTokens exception: ' + JSON.stringify(err));
   }
@@ -1963,11 +2052,14 @@ getAllAuthTokens(name: string, owner: string): Promise&lt;Array&lt;AuthTokenInfo
 **示例：**
 
   ```js
+  import { BusinessError } from '@ohos.base';
+  
   try {
-    appAccountManager.getAllAuthTokens('LiSi', 'com.example.accountjsdemo').then((tokenArr) => {
-        console.log('getAllAuthTokens successfully, tokenArr: ' + JSON.stringify(tokenArr));
-    }).catch((err) => {
-        console.log('getAllAuthTokens failed, error: ' + JSON.stringify(err));
+    appAccountManager.getAllAuthTokens('LiSi', 'com.example.accountjsdemo').then((
+      tokenArr: account_appAccount.AuthTokenInfo[]) => {
+      console.log('getAllAuthTokens successfully, tokenArr: ' + JSON.stringify(tokenArr));
+    }).catch((err: BusinessError) => {
+      console.log('getAllAuthTokens failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
     console.log('getAllAuthTokens exception: ' + JSON.stringify(err));
@@ -2002,8 +2094,10 @@ getAuthList(name: string, authType: string, callback: AsyncCallback&lt;Array&lt;
 **示例：**
 
   ```js
+  import { BusinessError } from '@ohos.base';
+  
   try {
-    appAccountManager.getAuthList('LiSi', 'getSocialData', (err, authList) => {
+    appAccountManager.getAuthList('LiSi', 'getSocialData', (err: BusinessError, authList: string[]) => {
       if (err) {
         console.log('getAuthList failed, error: ' + JSON.stringify(err));
       } else {
@@ -2048,10 +2142,12 @@ getAuthList(name: string, authType: string): Promise&lt;Array&lt;string&gt;&gt;
 **示例：**
 
   ```js
+  import { BusinessError } from '@ohos.base';
+  
   try {
-    appAccountManager.getAuthList('LiSi', 'getSocialData').then((authList) => {
+    appAccountManager.getAuthList('LiSi', 'getSocialData').then((authList: string[]) => {
         console.log('getAuthList successfully, authList: ' + authList);
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
         console.log('getAuthList failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
@@ -2085,18 +2181,21 @@ getAuthCallback(sessionId: string, callback: AsyncCallback&lt;AuthCallback&gt;):
 **示例：**
 
   ```js
+  import { BusinessError } from '@ohos.base';
   import UIAbility from '@ohos.app.ability.UIAbility';
+  import Want from '@ohos.app.ability.Want';
+  import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 
   export default class EntryAbility extends UIAbility {
-    onCreate(want, param) {
-      var sessionId = want.parameters[account_appAccount.Constants.KEY_SESSION_ID];
+    onCreate(want: Want, param: AbilityConstant.LaunchParam) {
+      let sessionId = want.parameters[account_appAccount.Constants.KEY_SESSION_ID];
       try {
-        appAccountManager.getAuthCallback(sessionId, (err, callback) => {
+        appAccountManager.getAuthCallback(sessionId, (err: BusinessError, callback: account_appAccount.AuthCallback) => {
           if (err != null) {
               console.log('getAuthCallback err: ' + JSON.stringify(err));
               return;
           }
-          var result = {
+          let result = {
             accountInfo: {
               name: 'Lisi',
               owner: 'com.example.accountjsdemo',
@@ -2146,14 +2245,17 @@ getAuthCallback(sessionId: string): Promise&lt;AuthCallback&gt;
 **示例：**
 
   ```js
+  import { BusinessError } from '@ohos.base';
   import UIAbility from '@ohos.app.ability.UIAbility';
+  import Want from '@ohos.app.ability.Want';
+  import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 
   export default class EntryAbility extends UIAbility {
-    onCreate(want, param) {
-      var sessionId = want.parameters[account_appAccount.Constants.KEY_SESSION_ID];
+    onCreate(want: Want, param: AbilityConstant.LaunchParam) {
+      let sessionId = want.parameters[account_appAccount.Constants.KEY_SESSION_ID];
       try {
-        appAccountManager.getAuthCallback(sessionId).then((callback) => {
-        var result = {
+        appAccountManager.getAuthCallback(sessionId).then((callback: account_appAccount.AuthCallback) => {
+        let result = {
           accountInfo: {
             name: 'Lisi',
             owner: 'com.example.accountjsdemo',
@@ -2164,7 +2266,7 @@ getAuthCallback(sessionId: string): Promise&lt;AuthCallback&gt;
           }
         };
         callback.onResult(0, result);
-        }).catch((err) => {
+        }).catch((err: BusinessError) => {
           console.log('getAuthCallback err: ' + JSON.stringify(err));
         });
       } catch (err) {
@@ -2200,14 +2302,17 @@ queryAuthenticatorInfo(owner: string, callback: AsyncCallback&lt;AuthenticatorIn
 **示例：**
 
   ```js
+  import { BusinessError } from '@ohos.base';
+  
   try {
-    appAccountManager.queryAuthenticatorInfo('com.example.accountjsdemo', (err, info) => {
-      if (err) {
-        console.log('queryAuthenticatorInfo failed, error: ' + JSON.stringify(err));
-      } else {
-        console.log('queryAuthenticatorInfo successfully, info: ' + JSON.stringify(info));
-      }
-    });
+    appAccountManager.queryAuthenticatorInfo('com.example.accountjsdemo',
+      (err: BusinessError, info: account_appAccount.AuthenticatorInfo) => {
+        if (err) {
+          console.log('queryAuthenticatorInfo failed, error: ' + JSON.stringify(err));
+        } else {
+          console.log('queryAuthenticatorInfo successfully, info: ' + JSON.stringify(info));
+        }
+      });
   } catch (err) {
     console.log('queryAuthenticatorInfo exception: ' + JSON.stringify(err));
   }
@@ -2244,11 +2349,14 @@ queryAuthenticatorInfo(owner: string): Promise&lt;AuthenticatorInfo&gt;
 **示例：**
 
   ```js
+  import { BusinessError } from '@ohos.base';
+  
   try {
-    appAccountManager.queryAuthenticatorInfo('com.example.accountjsdemo').then((info) => { 
-        console.log('queryAuthenticatorInfo successfully, info: ' + JSON.stringify(info));
-    }).catch((err) => {
-        console.log('queryAuthenticatorInfo failed, error: ' + JSON.stringify(err));
+    appAccountManager.queryAuthenticatorInfo('com.example.accountjsdemo').then((
+      info: account_appAccount.AuthenticatorInfo) => { 
+      console.log('queryAuthenticatorInfo successfully, info: ' + JSON.stringify(info));
+    }).catch((err: BusinessError) => {
+      console.log('queryAuthenticatorInfo failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
     console.log('queryAuthenticatorInfo exception: ' + JSON.stringify(err));
@@ -2286,15 +2394,18 @@ checkAccountLabels(name: string, owner: string, labels: Array&lt;string&gt;, cal
 **示例：**
 
   ```js
+  import { BusinessError } from '@ohos.base';
+  
   let labels = ['student'];
   try {
-    appAccountManager.checkAccountLabels('zhangsan', 'com.example.accountjsdemo', labels, (err, hasAllLabels) => {
-      if (err) {
-        console.log('checkAccountLabels failed, error: ' + JSON.stringify(err));
-      } else {
-        console.log('checkAccountLabels successfully, hasAllLabels: ' + hasAllLabels);
-      }
-    });
+    appAccountManager.checkAccountLabels('zhangsan', 'com.example.accountjsdemo', labels1,
+      (err: BusinessError, hasAllLabels: boolean) => {
+        if (err) {
+          console.log('checkAccountLabels failed, error: ' + JSON.stringify(err));
+        } else {
+          console.log('checkAccountLabels successfully, hasAllLabels: ' + hasAllLabels);
+        }
+      });
   } catch (err) {
     console.log('checkAccountLabels exception: ' + JSON.stringify(err));
   }
@@ -2336,11 +2447,14 @@ checkAccountLabels(name: string, owner: string, labels: Array&lt;string&gt;): Pr
 **示例：**
 
   ```js
+  import { BusinessError } from '@ohos.base';
+  
   let labels = ['student'];
   try {
-    appAccountManager.checkAccountLabels('zhangsan', 'com.example.accountjsdemo', labels).then((hasAllLabels) => {
+    appAccountManager.checkAccountLabels('zhangsan', 'com.example.accountjsdemo', labels).then((
+      hasAllLabels: boolean) => {
       console.log('checkAccountLabels successfully: ' + hasAllLabels);
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
       console.log('checkAccountLabels failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
@@ -2376,8 +2490,10 @@ deleteCredential(name: string, credentialType: string, callback: AsyncCallback&l
 **示例：**
 
   ```js
+  import { BusinessError } from '@ohos.base';
+  
   try {
-    appAccountManager.deleteCredential('zhangsan', 'PIN_SIX', (err) => {
+    appAccountManager.deleteCredential('zhangsan', 'PIN_SIX', (err: BusinessError) => {
       if (err) {
         console.log('deleteCredential failed, error: ' + JSON.stringify(err));
       } else {
@@ -2422,10 +2538,12 @@ deleteCredential(name: string, credentialType: string): Promise&lt;void&gt;
 **示例：**
 
   ```js
+  import { BusinessError } from '@ohos.base';
+  
   try {
     appAccountManager.deleteCredential('zhangsan', 'PIN_SIX').then(() => {
       console.log('deleteCredential successfully');
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
       console.log('deleteCredential failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
@@ -2460,18 +2578,21 @@ selectAccountsByOptions(options: SelectAccountsOptions, callback: AsyncCallback&
 **示例：**
 
   ```js
+  import { BusinessError } from '@ohos.base';
+  
   let options = {
     allowedOwners: [ 'com.example.accountjsdemo' ],
     requiredLabels: [ 'student' ]
   };
   try {
-    appAccountManager.selectAccountsByOptions(options, (err, accountArr) => {
-      if (err) {
-        console.log('selectAccountsByOptions failed, error: ' + JSON.stringify(err));
-      } else {
-        console.log('selectAccountsByOptions successfully, accountArr: ' + JSON.stringify(accountArr));
-      }
-    });
+    appAccountManager.selectAccountsByOptions(options5,
+      (err: BusinessError, accountArr: account_appAccount.AppAccountInfo[]) => {
+        if (err) {
+          console.log('selectAccountsByOptions failed, error: ' + JSON.stringify(err));
+        } else {
+          console.log('selectAccountsByOptions successfully, accountArr: ' + JSON.stringify(accountArr));
+        }
+      });
   } catch (err) {
     console.log('selectAccountsByOptions exception: ' + JSON.stringify(err));
   }
@@ -2509,13 +2630,15 @@ selectAccountsByOptions(options: SelectAccountsOptions): Promise&lt;Array&lt;App
 **示例：**
 
   ```js
+  import { BusinessError } from '@ohos.base';
+  
   let options = {
     allowedOwners: ['com.example.accountjsdemo']
   };
   try {
-    appAccountManager.selectAccountsByOptions(options).then((accountArr) => {
+    appAccountManager.selectAccountsByOptions(options).then((accountArr: account_appAccount.AppAccountInfo[]) => {
       console.log('selectAccountsByOptions successfully, accountArr: ' + JSON.stringify(accountArr));
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
       console.log('selectAccountsByOptions failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
@@ -2553,13 +2676,15 @@ verifyCredential(name: string, owner: string, callback: AuthCallback): void;
 **示例：**
 
   ```js
+  import Want from '@ohos.app.ability.Want';
+
   try {
       appAccountManager.verifyCredential('zhangsan', 'com.example.accountjsdemo', {
-          onResult: (resultCode, result) => {
+          onResult: (resultCode: number, result: account_appAccount.AuthResult) => {
               console.log('verifyCredential onResult, resultCode: ' + JSON.stringify(resultCode));
               console.log('verifyCredential onResult, result: ' + JSON.stringify(result));
           },
-          onRequestRedirected: (request) => {
+          onRequestRedirected: (request: Want) => {
               console.log('verifyCredential onRequestRedirected, request: ' + JSON.stringify(request));
           }
       });
@@ -2599,17 +2724,19 @@ verifyCredential(name: string, owner: string, options: VerifyCredentialOptions, 
 **示例：**
 
   ```js
+  import Want from '@ohos.app.ability.Want';
+
   let options = {
     credentialType: 'pin',
     credential: '123456'
   };
   try {
     appAccountManager.verifyCredential('zhangsan', 'com.example.accountjsdemo', options, {
-      onResult: (resultCode, result) => {
+      onResult: (resultCode: number, result: account_appAccount.AuthResult) => {
         console.log('verifyCredential onResult, resultCode: ' + JSON.stringify(resultCode));
         console.log('verifyCredential onResult, result: ' + JSON.stringify(result));
       },
-      onRequestRedirected: (request) => {
+      onRequestRedirected: (request: Want) => {
         console.log('verifyCredential onRequestRedirected, request: ' + JSON.stringify(request));
       }
     });
@@ -2646,13 +2773,15 @@ setAuthenticatorProperties(owner: string, callback: AuthCallback): void;
 **示例：**
 
   ```js
+  import Want from '@ohos.app.ability.Want';
+
   try {
     appAccountManager.setAuthenticatorProperties('com.example.accountjsdemo', {
-      onResult: (resultCode, result) => {
+      onResult: (resultCode: number, result: account_appAccount.AuthResult) => {
         console.log('setAuthenticatorProperties onResult, resultCode: ' + JSON.stringify(resultCode));
         console.log('setAuthenticatorProperties onResult, result: ' + JSON.stringify(result));
       },
-      onRequestRedirected: (request) => {
+      onRequestRedirected: (request: Want) => {
         console.log('setAuthenticatorProperties onRequestRedirected, request: ' + JSON.stringify(request));
       }
     });
@@ -2690,16 +2819,18 @@ setAuthenticatorProperties(owner: string, options: SetPropertiesOptions, callbac
 **示例：**
 
   ```js
+  import Want from '@ohos.app.ability.Want';
+
   let options = {
     properties: {'prop1': 'value1'}
   };
   try {
     appAccountManager.setAuthenticatorProperties('com.example.accountjsdemo', options, {
-      onResult: (resultCode, result) => {
+      onResult: (resultCode: number, result: account_appAccount.AuthResult) => {
         console.log('setAuthenticatorProperties onResult, resultCode: ' + JSON.stringify(resultCode));
         console.log('setAuthenticatorProperties onResult, result: ' + JSON.stringify(result));
       },
-      onRequestRedirected: (request) => {
+      onRequestRedirected: (request: Want) => {
         console.log('setAuthenticatorProperties onRequestRedirected, request: ' + JSON.stringify(request));
       }
     });
@@ -2732,7 +2863,9 @@ addAccount(name: string, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
   ```js
-  appAccountManager.addAccount('WangWu', (err) => { 
+  import { BusinessError } from '@ohos.base';
+  
+  appAccountManager.addAccount('WangWu', (err: BusinessError) => { 
       console.log('addAccount err: ' + JSON.stringify(err));
   });
   ```
@@ -2759,7 +2892,9 @@ addAccount(name: string, extraInfo: string, callback: AsyncCallback&lt;void&gt;)
 **示例：**
 
   ```js
-  appAccountManager.addAccount('LiSi', 'token101', (err) => { 
+  import { BusinessError } from '@ohos.base';
+  
+  appAccountManager.addAccount('LiSi', 'token101', (err: BusinessError) => { 
     console.log('addAccount err: ' + JSON.stringify(err));
   });
   ```
@@ -2791,9 +2926,11 @@ addAccount(name: string, extraInfo?: string): Promise&lt;void&gt;
 **示例：**
 
   ```js
+  import { BusinessError } from '@ohos.base';
+  
   appAccountManager.addAccount('LiSi', 'token101').then(()=> { 
     console.log('addAccount Success');
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.log('addAccount err: ' + JSON.stringify(err));
   });
   ```
@@ -2822,14 +2959,15 @@ addAccountImplicitly(owner: string, authType: string, options: {[key: string]: a
 **示例：**
 
   ```js
+  import { BusinessError } from '@ohos.base';
+  import Want from '@ohos.app.ability.Want';
 
-
-  function onResultCallback(code, result) {
+  function onResultCallback(code: number, result: { [key: string]: any }) {
     console.log('resultCode: ' + code);
     console.log('result: ' + JSON.stringify(result));
   }
 
-  function onRequestRedirectedCallback(request) {
+  function onRequestRedirectedCallback(request: Want) {
     let wantInfo = {
       deviceId: '',
       bundleName: 'com.example.accountjsdemo',
@@ -2838,7 +2976,7 @@ addAccountImplicitly(owner: string, authType: string, options: {[key: string]: a
     }
     this.context.startAbility(wantInfo).then(() => {
       console.log('startAbility successfully');
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
       console.log('startAbility err: ' + JSON.stringify(err));
     })
   }
@@ -2871,7 +3009,9 @@ deleteAccount(name: string, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
   ```js
-  appAccountManager.deleteAccount('ZhaoLiu', (err) => { 
+  import { BusinessError } from '@ohos.base';
+  
+  appAccountManager.deleteAccount('ZhaoLiu', (err: BusinessError) => { 
       console.log('deleteAccount err: ' + JSON.stringify(err));
    });
   ```
@@ -2903,9 +3043,11 @@ deleteAccount(name: string): Promise&lt;void&gt;
 **示例：**
 
   ```js
+  import { BusinessError } from '@ohos.base';
+
   appAccountManager.deleteAccount('ZhaoLiu').then(() => { 
         console.log('deleteAccount Success');
-   }).catch((err) => {
+   }).catch((err: BusinessError) => {
       console.log('deleteAccount err: ' + JSON.stringify(err));
   });
   ```
@@ -2932,7 +3074,9 @@ disableAppAccess(name: string, bundleName: string, callback: AsyncCallback&lt;vo
 **示例：**
 
   ```js
-  appAccountManager.disableAppAccess('ZhangSan', 'com.example.accountjsdemo', (err) => { 
+  import { BusinessError } from '@ohos.base';
+
+  appAccountManager.disableAppAccess('ZhangSan', 'com.example.accountjsdemo', (err: BusinessError) => { 
       console.log('disableAppAccess err: ' + JSON.stringify(err));
   });
   ```
@@ -2965,9 +3109,11 @@ disableAppAccess(name: string, bundleName: string): Promise&lt;void&gt;
 **示例：**
 
   ```js
+  import { BusinessError } from '@ohos.base';
+
   appAccountManager.disableAppAccess('ZhangSan', 'com.example.accountjsdemo').then(() => { 
       console.log('disableAppAccess Success');
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
       console.log('disableAppAccess err: ' + JSON.stringify(err));
   });
   ```
@@ -2995,7 +3141,9 @@ enableAppAccess(name: string, bundleName: string, callback: AsyncCallback&lt;voi
 **示例：**
 
   ```js
-  appAccountManager.enableAppAccess('ZhangSan', 'com.example.accountjsdemo', (err) => { 
+  import { BusinessError } from '@ohos.base';
+  
+  appAccountManager.enableAppAccess('ZhangSan', 'com.example.accountjsdemo', (err: BusinessError) => { 
       console.log('enableAppAccess: ' + JSON.stringify(err));
    });
   ```
@@ -3028,9 +3176,11 @@ enableAppAccess(name: string, bundleName: string): Promise&lt;void&gt;
 **示例：**
 
   ```js
+  import { BusinessError } from '@ohos.base';
+  
   appAccountManager.enableAppAccess('ZhangSan', 'com.example.accountjsdemo').then(() => { 
        console.log('enableAppAccess Success');
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
       console.log('enableAppAccess err: ' + JSON.stringify(err));
   });
   ```
@@ -3059,7 +3209,9 @@ checkAppAccountSyncEnable(name: string, callback: AsyncCallback&lt;boolean&gt;):
 **示例：**
 
   ```js
-  appAccountManager.checkAppAccountSyncEnable('ZhangSan', (err, result) => { 
+  import { BusinessError } from '@ohos.base';
+  
+  appAccountManager.checkAppAccountSyncEnable('ZhangSan', (err: BusinessError, result: boolean) => { 
       console.log('checkAppAccountSyncEnable err: ' + JSON.stringify(err));
       console.log('checkAppAccountSyncEnable result: ' + result);
   });
@@ -3094,9 +3246,11 @@ checkAppAccountSyncEnable(name: string): Promise&lt;boolean&gt;
 **示例：**
 
   ```js
-  appAccountManager.checkAppAccountSyncEnable('ZhangSan').then((data) => { 
+  import { BusinessError } from '@ohos.base';
+  
+  appAccountManager.checkAppAccountSyncEnable('ZhangSan').then((data: boolean) => { 
       console.log('checkAppAccountSyncEnable, result: ' + data);
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
       console.log('checkAppAccountSyncEnable err: ' + JSON.stringify(err));
   });
   ```
@@ -3125,7 +3279,9 @@ setAccountCredential(name: string, credentialType: string, credential: string,ca
 **示例：**
 
   ```js
-  appAccountManager.setAccountCredential('ZhangSan', 'credentialType001', 'credential001', (err) => { 
+  import { BusinessError } from '@ohos.base';
+  
+  appAccountManager.setAccountCredential('ZhangSan', 'credentialType001', 'credential001', (err: BusinessError) => { 
       console.log('setAccountCredential err: ' + JSON.stringify(err));
   });
   ```
@@ -3159,9 +3315,11 @@ setAccountCredential(name: string, credentialType: string, credential: string): 
 **示例：**
 
   ```js
+  import { BusinessError } from '@ohos.base';
+  
   appAccountManager.setAccountCredential('ZhangSan', 'credentialType001', 'credential001').then(() => { 
       console.log('setAccountCredential Success');
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
       console.log('setAccountCredential err: ' + JSON.stringify(err));
   });
   ```
@@ -3190,7 +3348,9 @@ setAccountExtraInfo(name: string, extraInfo: string, callback: AsyncCallback&lt;
 **示例：**
 
   ```js
-  appAccountManager.setAccountExtraInfo('ZhangSan', 'Tk002', (err) => { 
+  import { BusinessError } from '@ohos.base';
+  
+  appAccountManager.setAccountExtraInfo('ZhangSan', 'Tk002', (err: BusinessError) => { 
       console.log('setAccountExtraInfo err: ' + JSON.stringify(err));
   });
   ```
@@ -3224,9 +3384,11 @@ setAccountExtraInfo(name: string, extraInfo: string): Promise&lt;void&gt;
 **示例：**
 
   ```js
+  import { BusinessError } from '@ohos.base';
+  
   appAccountManager.setAccountExtraInfo('ZhangSan', 'Tk002').then(() => { 
       console.log('setAccountExtraInfo Success');
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
       console.log('setAccountExtraInfo err: ' + JSON.stringify(err));
   });
   ```
@@ -3256,7 +3418,9 @@ setAppAccountSyncEnable(name: string, isEnable: boolean, callback: AsyncCallback
 **示例：**
 
   ```js
-  appAccountManager.setAppAccountSyncEnable('ZhangSan', true, (err) => { 
+  import { BusinessError } from '@ohos.base';
+  
+  appAccountManager.setAppAccountSyncEnable('ZhangSan', true, (err: BusinessError) => { 
       console.log('setAppAccountSyncEnable err: ' + JSON.stringify(err));
   });
   ```
@@ -3291,9 +3455,11 @@ setAppAccountSyncEnable(name: string, isEnable: boolean): Promise&lt;void&gt;
 **示例：**
 
   ```js
+  import { BusinessError } from '@ohos.base';
+  
   appAccountManager .setAppAccountSyncEnable('ZhangSan', true).then(() => { 
       console.log('setAppAccountSyncEnable Success');
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
       console.log('setAppAccountSyncEnable err: ' + JSON.stringify(err));
   });
   ```
@@ -3323,7 +3489,9 @@ setAssociatedData(name: string, key: string, value: string, callback: AsyncCallb
 **示例：**
 
   ```js
-  appAccountManager.setAssociatedData('ZhangSan', 'k001', 'v001', (err) => { 
+  import { BusinessError } from '@ohos.base';
+  
+  appAccountManager.setAssociatedData('ZhangSan', 'k001', 'v001', (err: BusinessError) => { 
       console.log('setAssociatedData err: ' + JSON.stringify(err));
   });
   ```
@@ -3358,9 +3526,11 @@ setAssociatedData(name: string, key: string, value: string): Promise&lt;void&gt;
 **示例：**
 
   ```js
+  import { BusinessError } from '@ohos.base';
+  
   appAccountManager.setAssociatedData('ZhangSan', 'k001', 'v001').then(() => { 
       console.log('setAssociatedData Success');
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
       console.log('setAssociatedData err: ' + JSON.stringify(err));
   });
   ```
@@ -3388,7 +3558,9 @@ getAllAccessibleAccounts(callback: AsyncCallback&lt;Array&lt;AppAccountInfo&gt;&
 **示例：**
 
   ```js
-  appAccountManager.getAllAccessibleAccounts((err, data)=>{
+  import { BusinessError } from '@ohos.base';
+  
+  appAccountManager.getAllAccessibleAccounts((err: BusinessError, data: account_appAccount.AppAccountInfo[])=>{
   	console.debug('getAllAccessibleAccounts err: ' + JSON.stringify(err));
   	console.debug('getAllAccessibleAccounts data: ' + JSON.stringify(data));
   });
@@ -3417,9 +3589,11 @@ getAllAccessibleAccounts(): Promise&lt;Array&lt;AppAccountInfo&gt;&gt;
 **示例：**
 
   ```js
-  appAccountManager.getAllAccessibleAccounts().then((data) => { 
+  import { BusinessError } from '@ohos.base';
+  
+  appAccountManager.getAllAccessibleAccounts().then((data: account_appAccount.AppAccountInfo[]) => { 
        console.log('getAllAccessibleAccounts: ' + data);
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
       console.log('getAllAccessibleAccounts err: ' + JSON.stringify(err));
   });
   ```
@@ -3448,8 +3622,10 @@ getAllAccounts(owner: string, callback: AsyncCallback&lt;Array&lt;AppAccountInfo
 **示例：**
 
   ```js
+  import { BusinessError } from '@ohos.base';
+  
   const selfBundle = 'com.example.actsgetallaaccounts';
-  appAccountManager.getAllAccounts(selfBundle, (err, data)=>{
+  appAccountManager.getAllAccounts(selfBundle, (err: BusinessError, data: account_appAccount.AppAccountInfo[])=>{
   	console.debug('getAllAccounts err: ' + JSON.stringify(err));
   	console.debug('getAllAccounts data:' + JSON.stringify(data));
   });
@@ -3484,10 +3660,12 @@ getAllAccounts(owner: string): Promise&lt;Array&lt;AppAccountInfo&gt;&gt;
 **示例：**
 
   ```js
+  import { BusinessError } from '@ohos.base';
+  
   const selfBundle = 'com.example.actsgetallaaccounts';
-  appAccountManager.getAllAccounts(selfBundle).then((data) => { 
+  appAccountManager.getAllAccounts(selfBundle).then((data: account_appAccount.AppAccountInfo[]) => { 
        console.log('getAllAccounts: ' + data);
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
       console.log('getAllAccounts err: ' + JSON.stringify(err));
   });
   ```
@@ -3515,7 +3693,9 @@ getAccountCredential(name: string, credentialType: string, callback: AsyncCallba
 **示例：**
 
   ```js
-  appAccountManager.getAccountCredential('ZhangSan', 'credentialType001', (err, result) => { 
+  import { BusinessError } from '@ohos.base';
+  
+  appAccountManager.getAccountCredential('ZhangSan', 'credentialType001', (err: BusinessError, result: string) => { 
       console.log('getAccountCredential err: ' + JSON.stringify(err));
       console.log('getAccountCredential result: ' + result);
   });
@@ -3549,9 +3729,11 @@ getAccountCredential(name: string, credentialType: string): Promise&lt;string&gt
 **示例：**
 
   ```js
-  appAccountManager.getAccountCredential('ZhangSan', 'credentialType001').then((data) => { 
+  import { BusinessError } from '@ohos.base';
+  
+  appAccountManager.getAccountCredential('ZhangSan', 'credentialType001').then((data: string) => { 
       console.log('getAccountCredential, result: ' + data);
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
       console.log('getAccountCredential err: ' + JSON.stringify(err));
   });
   ```
@@ -3578,7 +3760,9 @@ getAccountExtraInfo(name: string, callback: AsyncCallback&lt;string&gt;): void
 **示例：**
 
   ```js
-  appAccountManager.getAccountExtraInfo('ZhangSan', (err, result) => { 
+  import { BusinessError } from '@ohos.base';
+  
+  appAccountManager.getAccountExtraInfo('ZhangSan', (err: BusinessError, result: string) => { 
       console.log('getAccountExtraInfo err: ' + JSON.stringify(err));
       console.log('getAccountExtraInfo result: ' + result);
   });
@@ -3611,9 +3795,11 @@ getAccountExtraInfo(name: string): Promise&lt;string&gt;
 **示例：**
 
   ```js
-  appAccountManager.getAccountExtraInfo('ZhangSan').then((data) => { 
+  import { BusinessError } from '@ohos.base';
+  
+  appAccountManager.getAccountExtraInfo('ZhangSan').then((data: string) => { 
       console.log('getAccountExtraInfo, result: ' + data);
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
       console.log('getAccountExtraInfo err: ' + JSON.stringify(err));
   });
   ```
@@ -3641,7 +3827,9 @@ getAssociatedData(name: string, key: string, callback: AsyncCallback&lt;string&g
 **示例：**
 
   ```js
-  appAccountManager.getAssociatedData('ZhangSan', 'k001', (err, result) => { 
+  import { BusinessError } from '@ohos.base';
+  
+  appAccountManager.getAssociatedData('ZhangSan', 'k001', (err: BusinessError, result: string) => { 
       console.log('getAssociatedData err: ' + JSON.stringify(err));
       console.log('getAssociatedData result: ' + result);
   });
@@ -3675,9 +3863,11 @@ getAssociatedData(name: string, key: string): Promise&lt;string&gt;
 **示例：**
 
   ```js
-  appAccountManager.getAssociatedData('ZhangSan', 'k001').then((data) => { 
+  import { BusinessError } from '@ohos.base';
+  
+  appAccountManager.getAssociatedData('ZhangSan', 'k001').then((data: string) => { 
        console.log('getAssociatedData: ' + data);
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
       console.log('getAssociatedData err: ' + JSON.stringify(err));
   });
   ```
@@ -3705,7 +3895,7 @@ on(type: 'change', owners: Array&lt;string&gt;, callback: Callback&lt;Array&lt;A
 **示例：**
 
   ```js
-  function changeOnCallback(data){
+  function changeOnCallback(data: account_appAccount.AppAccountInfo[]){
   	console.debug('receive change data:' + JSON.stringify(data));
   }
   try{
@@ -3738,9 +3928,9 @@ off(type: 'change', callback?: Callback&lt;Array&lt;AppAccountInfo&gt;&gt;): voi
 **示例：**
 
   ```js
-  function changeOnCallback(data){
+  function changeOnCallback(data: account_appAccount.AppAccountInfo[]){
   	console.debug('receive change data: ' + JSON.stringify(data));
-  	appAccountManager.off('change', function(){
+  	appAccountManager.off('change', () => {
   		console.debug('off finish');
   	})
   }
@@ -3777,12 +3967,15 @@ authenticate(name: string, owner: string, authType: string, options: {[key: stri
 **示例：**
 
   ```js
-  function onResultCallback(code, result) {
+  import { BusinessError } from '@ohos.base';
+  import Want from '@ohos.app.ability.Want';
+
+  function onResultCallback(code: number, result: { [key: string]: Object }) {
       console.log('resultCode: ' + code);
       console.log('result: ' + JSON.stringify(result));
   }
 
-  function onRequestRedirectedCallback(request) {
+  function onRequestRedirectedCallback(request: Want) {
     let wantInfo = {
       deviceId: '',
       bundleName: 'com.example.accountjsdemo',
@@ -3791,7 +3984,7 @@ authenticate(name: string, owner: string, authType: string, options: {[key: stri
     }
     this.context.startAbility(wantInfo).then(() => {
       console.log('startAbility successfully');
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
       console.log('startAbility err: ' + JSON.stringify(err));
     })
   }
@@ -3826,10 +4019,13 @@ getOAuthToken(name: string, owner: string, authType: string, callback: AsyncCall
 **示例：**
 
   ```js
-  appAccountManager.getOAuthToken('LiSi', 'com.example.accountjsdemo', 'getSocialData', (err, data) => {
-       console.log('getOAuthToken err: ' + JSON.stringify(err));
-       console.log('getOAuthToken token: ' + data);
-  });
+  import { BusinessError } from '@ohos.base';
+  
+  appAccountManager.getOAuthToken('LiSi', 'com.example.accountjsdemo', 'getSocialData',
+    (err: BusinessError, data: string) => {
+      console.log('getOAuthToken err: ' + JSON.stringify(err));
+      console.log('getOAuthToken token: ' + data);
+    });
   ```
 
 ### getOAuthToken<sup>(deprecated)</sup>
@@ -3861,9 +4057,11 @@ getOAuthToken(name: string, owner: string, authType: string): Promise&lt;string&
 **示例：**
 
   ```js
-  appAccountManager.getOAuthToken('LiSi', 'com.example.accountjsdemo', 'getSocialData').then((data) => {
+  import { BusinessError } from '@ohos.base';
+  
+  appAccountManager.getOAuthToken('LiSi', 'com.example.accountjsdemo', 'getSocialData').then((data: string) => {
        console.log('getOAuthToken token: ' + data);
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
       console.log('getOAuthToken err: ' + JSON.stringify(err));
   });
   ```
@@ -3892,7 +4090,9 @@ setOAuthToken(name: string, authType: string, token: string, callback: AsyncCall
 **示例：**
 
   ```js
-  appAccountManager.setOAuthToken('LiSi', 'getSocialData', 'xxxx', (err) => {
+  import { BusinessError } from '@ohos.base';
+  
+  appAccountManager.setOAuthToken('LiSi', 'getSocialData', 'xxxx', (err: BusinessError) => {
       console.log('setOAuthToken err: ' + JSON.stringify(err));
   });
   ```
@@ -3926,9 +4126,11 @@ setOAuthToken(name: string, authType: string, token: string): Promise&lt;void&gt
 **示例：**
 
   ```js
+  import { BusinessError } from '@ohos.base';
+  
   appAccountManager.setOAuthToken('LiSi', 'getSocialData', 'xxxx').then(() => {
       console.log('setOAuthToken successfully');
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
       console.log('setOAuthToken err: ' + JSON.stringify(err));
   });
   ```
@@ -3958,9 +4160,12 @@ deleteOAuthToken(name: string, owner: string, authType: string, token: string, c
 **示例：**
 
   ```js
-  appAccountManager.deleteOAuthToken('LiSi', 'com.example.accountjsdemo', 'getSocialData', 'xxxxx', (err) => {
-       console.log('deleteOAuthToken err: ' + JSON.stringify(err));
-  });
+  import { BusinessError } from '@ohos.base';
+  
+  appAccountManager.deleteOAuthToken('LiSi', 'com.example.accountjsdemo', 'getSocialData', 'xxxxx',
+    (err: BusinessError) => {
+      console.log('deleteOAuthToken err: ' + JSON.stringify(err));
+    });
   ```
 
 ### deleteOAuthToken<sup>(deprecated)</sup>
@@ -3993,9 +4198,11 @@ deleteOAuthToken(name: string, owner: string, authType: string, token: string): 
 **示例：**
 
   ```js
+  import { BusinessError } from '@ohos.base';
+  
   appAccountManager.deleteOAuthToken('LiSi', 'com.example.accountjsdemo', 'getSocialData', 'xxxxx').then(() => {
        console.log('deleteOAuthToken successfully');
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
       console.log('deleteOAuthToken err: ' + JSON.stringify(err));
   });
   ```
@@ -4025,9 +4232,12 @@ setOAuthTokenVisibility(name: string, authType: string, bundleName: string, isVi
 **示例：**
 
   ```js
-  appAccountManager.setOAuthTokenVisibility('LiSi', 'getSocialData', 'com.example.accountjsdemo', true, (err) => {
-       console.log('setOAuthTokenVisibility err: ' + JSON.stringify(err));
-  });
+  import { BusinessError } from '@ohos.base';
+  
+  appAccountManager.setOAuthTokenVisibility('LiSi', 'getSocialData', 'com.example.accountjsdemo', true,
+    (err: BusinessError) => {
+      console.log('setOAuthTokenVisibility err: ' + JSON.stringify(err));
+    });
   ```
 
 ### setOAuthTokenVisibility<sup>(deprecated)</sup>
@@ -4060,9 +4270,11 @@ setOAuthTokenVisibility(name: string, authType: string, bundleName: string, isVi
 **示例：**
 
   ```js
+  import { BusinessError } from '@ohos.base';
+  
   appAccountManager.setOAuthTokenVisibility('LiSi', 'getSocialData', 'com.example.accountjsdemo', true).then(() => {
       console.log('setOAuthTokenVisibility successfully');
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
       console.log('setOAuthTokenVisibility err: ' + JSON.stringify(err));
   });
   ```
@@ -4091,10 +4303,13 @@ checkOAuthTokenVisibility(name: string, authType: string, bundleName: string, ca
 **示例：**
 
   ```js
-  appAccountManager.checkOAuthTokenVisibility('LiSi', 'getSocialData', 'com.example.accountjsdemo', (err, data) => {
+  import { BusinessError } from '@ohos.base';
+  
+  appAccountManager.checkOAuthTokenVisibility('LiSi', 'getSocialData', 'com.example.accountjsdemo',
+    (err: BusinessError, data: boolean) => {
       console.log('checkOAuthTokenVisibility err: ' + JSON.stringify(err));
       console.log('checkOAuthTokenVisibility isVisible: ' + data);
-  });
+    });
   ```
 
 ### checkOAuthTokenVisibility<sup>(deprecated)</sup>
@@ -4126,10 +4341,13 @@ checkOAuthTokenVisibility(name: string, authType: string, bundleName: string): P
 **示例：**
 
   ```js
-  appAccountManager.checkOAuthTokenVisibility('LiSi', 'getSocialData', 'com.example.accountjsdemo').then((data) => {
-      console.log('checkOAuthTokenVisibility isVisible: ' + data);
-  }).catch((err) => {
-      console.log('checkOAuthTokenVisibility err: ' + JSON.stringify(err));
+  import { BusinessError } from '@ohos.base';
+  
+  appAccountManager.checkOAuthTokenVisibility('LiSi', 'getSocialData', 'com.example.accountjsdemo').then((
+    data: boolean) => {
+    console.log('checkOAuthTokenVisibility isVisible: ' + data);
+  }).catch((err: BusinessError) => {
+    console.log('checkOAuthTokenVisibility err: ' + JSON.stringify(err));
   });
   ```
 
@@ -4156,10 +4374,13 @@ getAllOAuthTokens(name: string, owner: string, callback: AsyncCallback&lt;Array&
 **示例：** 
 
   ```js
-  appAccountManager.getAllOAuthTokens('LiSi', 'com.example.accountjsdemo', (err, data) => {
+  import { BusinessError } from '@ohos.base';
+  
+  appAccountManager.getAllOAuthTokens('LiSi', 'com.example.accountjsdemo',
+    (err: BusinessError, data: account_appAccount.OAuthTokenInfo[]) => {
       console.log('getAllOAuthTokens err: ' + JSON.stringify(err));
       console.log('getAllOAuthTokens data: ' + JSON.stringify(data));
-  });
+    });
   ```
 
 ### getAllOAuthTokens<sup>(deprecated)</sup>
@@ -4190,10 +4411,13 @@ getAllOAuthTokens(name: string, owner: string): Promise&lt;Array&lt;OAuthTokenIn
 **示例：**
 
   ```js
-  appAccountManager.getAllOAuthTokens('LiSi', 'com.example.accountjsdemo').then((data) => {
-      console.log('getAllOAuthTokens data: ' + JSON.stringify(data));
-  }).catch((err) => {
-      console.log('getAllOAuthTokens err: ' + JSON.stringify(err));
+  import { BusinessError } from '@ohos.base';
+  
+  appAccountManager.getAllOAuthTokens('LiSi', 'com.example.accountjsdemo').then((
+    data: account_appAccount.OAuthTokenInfo[]) => {
+    console.log('getAllOAuthTokens data: ' + JSON.stringify(data));
+  }).catch((err: BusinessError) => {
+    console.log('getAllOAuthTokens err: ' + JSON.stringify(err));
   });
   ```
 
@@ -4220,7 +4444,9 @@ getOAuthList(name: string, authType: string, callback: AsyncCallback&lt;Array&lt
 **示例：**
 
   ```js
-  appAccountManager.getOAuthList('LiSi', 'getSocialData', (err, data) => {
+  import { BusinessError } from '@ohos.base';
+  
+  appAccountManager.getOAuthList('LiSi', 'getSocialData', (err: BusinessError, data: string[]) => {
     console.log('getOAuthList err: ' + JSON.stringify(err));
     console.log('getOAuthList data: ' + JSON.stringify(data));
   });
@@ -4254,9 +4480,11 @@ getOAuthList(name: string, authType: string): Promise&lt;Array&lt;string&gt;&gt;
 **示例：**
 
   ```js
-  appAccountManager.getOAuthList('LiSi', 'getSocialData').then((data) => {
+  import { BusinessError } from '@ohos.base';
+  
+  appAccountManager.getOAuthList('LiSi', 'getSocialData').then((data: string[]) => {
        console.log('getOAuthList data: ' + JSON.stringify(data));
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
       console.log('getOAuthList err: ' + JSON.stringify(err));
   });
   ```
@@ -4283,22 +4511,26 @@ getAuthenticatorCallback(sessionId: string, callback: AsyncCallback&lt;Authentic
 **示例：**
 
   ```js
+  import { BusinessError } from '@ohos.base';
   import UIAbility from '@ohos.app.ability.UIAbility';
+  import Want from '@ohos.app.ability.Want';
+  import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 
   export default class EntryAbility extends UIAbility {
-    onCreate(want, param) {
-      var sessionId = want.parameters[account_appAccount.Constants.KEY_SESSION_ID];
-      appAccountManager.getAuthenticatorCallback(sessionId, (err, callback) => {
-        if (err.code != account_appAccount.ResultCode.SUCCESS) {
-            console.log('getAuthenticatorCallback err: ' + JSON.stringify(err));
-            return;
-        }
-        var result = {[account_appAccount.Constants.KEY_NAME]: 'LiSi',
-                      [account_appAccount.Constants.KEY_OWNER]: 'com.example.accountjsdemo',
-                      [account_appAccount.Constants.KEY_AUTH_TYPE]: 'getSocialData',
-                      [account_appAccount.Constants.KEY_TOKEN]: 'xxxxxx'};
-        callback.onResult(account_appAccount.ResultCode.SUCCESS, result);
-      });
+    onCreate(want: Want, param: AbilityConstant.LaunchParam) {
+      let sessionId = want.parameters[account_appAccount.Constants.KEY_SESSION_ID];
+      appAccountManager.getAuthenticatorCallback(sessionId,
+          (err: BusinessError, callback: account_appAccount.AuthenticatorCallback) => {
+          if (err.code != account_appAccount.ResultCode.SUCCESS) {
+              console.log('getAuthenticatorCallback err: ' + JSON.stringify(err));
+              return;
+          }
+          let result = {[account_appAccount.Constants.KEY_NAME]: 'LiSi',
+                        [account_appAccount.Constants.KEY_OWNER]: 'com.example.accountjsdemo',
+                        [account_appAccount.Constants.KEY_AUTH_TYPE]: 'getSocialData',
+                        [account_appAccount.Constants.KEY_TOKEN]: 'xxxxxx'};
+          callback.onResult(account_appAccount.ResultCode.SUCCESS, result);
+        });
     }
   }
   ```
@@ -4330,18 +4562,22 @@ getAuthenticatorCallback(sessionId: string): Promise&lt;AuthenticatorCallback&gt
 **示例：**
 
   ```js
+  import { BusinessError } from '@ohos.base';
   import UIAbility from '@ohos.app.ability.UIAbility';
+  import Want from '@ohos.app.ability.Want';
+  import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 
   export default class EntryAbility extends UIAbility {
-    onCreate(want, param) {
-      var sessionId = want.parameters[account_appAccount.Constants.KEY_SESSION_ID];
-      appAccountManager.getAuthenticatorCallback(sessionId).then((callback) => {
-        var result = {[account_appAccount.Constants.KEY_NAME]: 'LiSi',
+    onCreate(want: Want, param: AbilityConstant.LaunchParam) {
+      let sessionId = want.parameters[account_appAccount.Constants.KEY_SESSION_ID];
+      appAccountManager.getAuthenticatorCallback(sessionId).then((
+        callback: account_appAccount.AuthenticatorCallback) => {
+        let result = {[account_appAccount.Constants.KEY_NAME]: 'LiSi',
                       [account_appAccount.Constants.KEY_OWNER]: 'com.example.accountjsdemo',
                       [account_appAccount.Constants.KEY_AUTH_TYPE]: 'getSocialData',
                       [account_appAccount.Constants.KEY_TOKEN]: 'xxxxxx'};
         callback.onResult(account_appAccount.ResultCode.SUCCESS, result);
-      }).catch((err) => {
+      }).catch((err: BusinessError) => {
         console.log('getAuthenticatorCallback err: ' + JSON.stringify(err));
       });
     }
@@ -4370,10 +4606,13 @@ getAuthenticatorInfo(owner: string, callback: AsyncCallback&lt;AuthenticatorInfo
 **示例：**
 
   ```js
-  appAccountManager.getAuthenticatorInfo('com.example.accountjsdemo', (err, data) => {
+  import { BusinessError } from '@ohos.base';
+  
+  appAccountManager.getAuthenticatorInfo('com.example.accountjsdemo',
+    (err: BusinessError, data: account_appAccount.AuthenticatorInfo) => {
       console.log('getAuthenticatorInfo err: ' + JSON.stringify(err));
       console.log('getAuthenticatorInfo data: ' + JSON.stringify(data));
-  });
+    });
   ```
 
 ### getAuthenticatorInfo<sup>(deprecated)</sup>
@@ -4403,10 +4642,13 @@ getAuthenticatorInfo(owner: string): Promise&lt;AuthenticatorInfo&gt;
 **示例：**
 
   ```js
-  appAccountManager.getAuthenticatorInfo('com.example.accountjsdemo').then((data) => { 
-       console.log('getAuthenticatorInfo: ' + JSON.stringify(data));
-  }).catch((err) => {
-      console.log('getAuthenticatorInfo err: ' + JSON.stringify(err));
+  import { BusinessError } from '@ohos.base';
+  
+  appAccountManager.getAuthenticatorInfo('com.example.accountjsdemo').then((
+    data: account_appAccount.AuthenticatorInfo) => { 
+    console.log('getAuthenticatorInfo: ' + JSON.stringify(data));
+  }).catch((err: BusinessError) => {
+    console.log('getAuthenticatorInfo err: ' + JSON.stringify(err));
   });
   ```
 
@@ -4608,10 +4850,12 @@ onResult: (code: number, result?: AuthResult) =&gt; void
 **示例：**
 
   ```js
+  import { BusinessError } from '@ohos.base';
+  
   let appAccountManager = account_appAccount.createAppAccountManager();
-  var sessionId = '1234';
-  appAccountManager.getAuthCallback(sessionId).then((callback) => {
-      var result = {
+  let sessionId = '1234';
+  appAccountManager.getAuthCallback(sessionId).then((callback: account_appAccount.AuthCallback) => {
+      let result = {
           accountInfo: {
             name: 'Lisi',
             owner: 'com.example.accountjsdemo',
@@ -4622,7 +4866,7 @@ onResult: (code: number, result?: AuthResult) =&gt; void
           }
       };
       callback.onResult(account_appAccount.ResultCode.SUCCESS, result);
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
       console.log('getAuthCallback err: ' + JSON.stringify(err));
   });
   ```
@@ -4645,15 +4889,17 @@ onRequestRedirected: (request: Want) =&gt; void
 
   ```js
   class MyAuthenticator extends account_appAccount.Authenticator {
-      createAccountImplicitly(options, callback) {
+      createAccountImplicitly(
+        options: account_appAccount.CreateAccountImplicitlyOptions, callback: account_appAccount.AuthCallback) {
           callback.onRequestRedirected({
               bundleName: 'com.example.accountjsdemo',
               abilityName: 'com.example.accountjsdemo.LoginAbility',
           });
       }
 
-      auth(name, authType, options, callback) {
-          var result = {
+      auth(name: string, authType: string,
+        options: { [key: string]: Object }, callback: account_appAccount.AuthCallback) {
+          let result = {
             accountInfo: {
               name: 'Lisi',
               owner: 'com.example.accountjsdemo',
@@ -4679,11 +4925,13 @@ onRequestContinued?: () =&gt; void
 **示例：**
 
   ```js
+  import { BusinessError } from '@ohos.base';
+  
   let appAccountManager = account_appAccount.createAppAccountManager();
-  var sessionId = '1234';
-  appAccountManager.getAuthCallback(sessionId).then((callback) => {
+  let sessionId = '1234';
+  appAccountManager.getAuthCallback(sessionId).then((callback: account_appAccount.AuthCallback) => {
       callback.onRequestContinued();
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
       console.log('getAuthCallback err: ' + JSON.stringify(err));
   });
   ```
@@ -4714,15 +4962,17 @@ onResult: (code: number, result: {[key: string]: any}) =&gt; void
 **示例：**
 
   ```js
+  import { BusinessError } from '@ohos.base';
+  
   let appAccountManager = account_appAccount.createAppAccountManager();
-  var sessionId = '1234';
-  appAccountManager.getAuthenticatorCallback(sessionId).then((callback) => {
-      var result = {[account_appAccount.Constants.KEY_NAME]: 'LiSi',
+  let sessionId = '1234';
+  appAccountManager.getAuthenticatorCallback(sessionId).then((callback: account_appAccount.AuthenticatorCallback) => {
+      let result = {[account_appAccount.Constants.KEY_NAME]: 'LiSi',
                     [account_appAccount.Constants.KEY_OWNER]: 'com.example.accountjsdemo',
                     [account_appAccount.Constants.KEY_AUTH_TYPE]: 'getSocialData',
                     [account_appAccount.Constants.KEY_TOKEN]: 'xxxxxx'};
       callback.onResult(account_appAccount.ResultCode.SUCCESS, result);
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
       console.log('getAuthenticatorCallback err: ' + JSON.stringify(err));
   });
   ```
@@ -4745,15 +4995,17 @@ onRequestRedirected: (request: Want) =&gt; void
 
   ```js
   class MyAuthenticator extends account_appAccount.Authenticator {
-      addAccountImplicitly(authType, callerBundleName, options, callback) {
+      addAccountImplicitly(authType: string, callerBundleName: string,
+        options: { [key: string]: Object }, callback: account_appAccount.AuthenticatorCallback) {
           callback.onRequestRedirected({
               bundleName: 'com.example.accountjsdemo',
               abilityName: 'com.example.accountjsdemo.LoginAbility',
           });
       }
 
-      authenticate(name, authType, callerBundleName, options, callback) {
-          var result = {[account_appAccount.Constants.KEY_NAME]: name,
+      authenticate(name: string, authType: string, callerBundleName: string,
+        options: { [key: string]: Object }, callback: account_appAccount.AuthenticatorCallback) {
+          let result = {[account_appAccount.Constants.KEY_NAME]: name,
                         [account_appAccount.Constants.KEY_AUTH_TYPE]: authType,
                         [account_appAccount.Constants.KEY_TOKEN]: 'xxxxxx'};
           callback.onResult(account_appAccount.ResultCode.SUCCESS, result);
@@ -4772,11 +5024,13 @@ onRequestContinued?: () =&gt; void
 **示例：**
 
   ```js
+  import { BusinessError } from '@ohos.base';
+  
   let appAccountManager = account_appAccount.createAppAccountManager();
-  var sessionId = '1234';
-  appAccountManager.getAuthenticatorCallback(sessionId).then((callback) => {
+  let sessionId = '1234';
+  appAccountManager.getAuthenticatorCallback(sessionId).then((callback: account_appAccount.AuthenticatorCallback) => {
       callback.onRequestContinued();
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
       console.log('getAuthenticatorCallback err: ' + JSON.stringify(err));
   });
   ```
@@ -4934,48 +5188,53 @@ getRemoteObject(): rpc.RemoteObject;
 **示例：**
 
   ```js
+  import rpc from '@ohos.rpc';
+
   class MyAuthenticator extends account_appAccount.Authenticator {
-    addAccountImplicitly(authType, callerBundleName, options, callback) {
-      callback.onRequestRedirected({
-        bundleName: 'com.example.accountjsdemo',
-        abilityName: 'com.example.accountjsdemo.LoginAbility',
-      });
+    addAccountImplicitly(authType: string, callerBundleName: string,
+      options: { [key: string]: Object }, callback: account_appAccount.AuthenticatorCallback) {
+        callback.onRequestRedirected({
+          bundleName: 'com.example.accountjsdemo',
+          abilityName: 'com.example.accountjsdemo.LoginAbility',
+        });
     }
 
-    authenticate(name, authType, callerBundleName, options, callback) {
-      var result = {[account_appAccount.Constants.KEY_NAME]: name,
-                    [account_appAccount.Constants.KEY_AUTH_TYPE]: authType,
-                    [account_appAccount.Constants.KEY_TOKEN]: 'xxxxxx'};
-      callback.onResult(account_appAccount.ResultCode.SUCCESS, result);
+    authenticate(name: string, authType: string, callerBundleName: string,
+      options: { [key: string]: Object }, callback: account_appAccount.AuthenticatorCallback) {
+        let result = {[account_appAccount.Constants.KEY_NAME]: name,
+                      [account_appAccount.Constants.KEY_AUTH_TYPE]: authType,
+                      [account_appAccount.Constants.KEY_TOKEN]: 'xxxxxx'};
+        callback.onResult(account_appAccount.ResultCode.SUCCESS, result);
     }
 
-    verifyCredential(name, options, callback) {
-      callback.onRequestRedirected({
-        bundleName: 'com.example.accountjsdemo',
-        abilityName: 'com.example.accountjsdemo.VerifyAbility',
-        parameters: {
-          name: name
-        }
-      });
+    verifyCredential(name: string,
+      options: account_appAccount.VerifyCredentialOptions, callback: account_appAccount.AuthCallback) {
+        callback.onRequestRedirected({
+          bundleName: 'com.example.accountjsdemo',
+          abilityName: 'com.example.accountjsdemo.VerifyAbility',
+          parameters: {
+            name: name
+          }
+        });
     }
 
-    setProperties(options, callback) {
+    setProperties(options: account_appAccount.SetPropertiesOptions, callback: account_appAccount.AuthCallback) {
       callback.onResult(account_appAccount.ResultCode.SUCCESS, {});
     }
 
-    checkAccountLabels(name, labels, callback) {
-      var result = {[account_appAccount.Constants.KEY_BOOLEAN_RESULT]: false};
+    checkAccountLabels(name: string, labels: string[], callback: account_appAccount.AuthCallback) {
+      let result = {[account_appAccount.Constants.KEY_BOOLEAN_RESULT]: false};
       callback.onResult(account_appAccount.ResultCode.SUCCESS, result);
     }
   
-    checkAccountRemovable(name, callback) {
-      var result = {[account_appAccount.Constants.KEY_BOOLEAN_RESULT]: true};
+    checkAccountRemovable(name: string, callback: account_appAccount.AuthCallback) {
+      let result = {[account_appAccount.Constants.KEY_BOOLEAN_RESULT]: true};
       callback.onResult(account_appAccount.ResultCode.SUCCESS, result);
     }
   }
-  var authenticator = null;
+  let authenticator = null;
   export default {
-    onConnect(want) {
+    onConnect(want): rpc.RemoteObject {
       authenticator = new MyAuthenticator();
       return authenticator.getRemoteObject();
     }

@@ -40,7 +40,7 @@ onPageHide?(): void
 
 ## onBackPress
 
-onBackPress?(): void
+onBackPress?(): void | boolean
 
 当用户点击返回按钮时触发，仅\@Entry装饰的自定义组件生效。
 

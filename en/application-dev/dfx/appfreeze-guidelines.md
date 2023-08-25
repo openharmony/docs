@@ -1,6 +1,6 @@
 # Application Freeze (appfreeze) Log Analysis
 
-## Introduction
+## Overview
 
 Application freeze (appfreeze) means that an application does not respond to user operations (for example, clicking) within a given period of time. OpenHarmony provides a mechanism for detecting appfreeze faults and generates appfreeze logs for fault analysis.
 

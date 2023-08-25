@@ -244,7 +244,7 @@ async function example() {
 
 ## DocumentViewPicker
 
-文件选择器对象，用来支撑选择和保存非媒体文件等用户场景，比如各种格式文档。在使用前，需要先创建DocumentViewPicker实例。
+文件选择器对象，用来支撑选择和保存各种格式文档。在使用前，需要先创建DocumentViewPicker实例。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
@@ -699,7 +699,7 @@ async function example() {
 
 枚举，可选择的媒体文件类型。
 
-**系统能力：** 以下各项对应的系统能力均为 SystemCapability.FileManagement.UserFileService
+**系统能力：** SystemCapability.FileManagement.UserFileService
 
 | 名称  |  值 |  说明 |
 | ----- |  ---- | ---- |
@@ -711,18 +711,18 @@ async function example() {
 
 图库选择选项。
 
-**系统能力：** 以下各项对应的系统能力均为 SystemCapability.FileManagement.UserFileService
+**系统能力：** SystemCapability.FileManagement.UserFileService
 
 | 名称                    | 类型                | 必填 | 说明                          |
 | ----------------------- | ------------------- | ---- | -------------------------------- |
-| MIMEType?              | [PhotoViewMIMETypes](#photoviewmimetypes)   | 否   | 可选择的媒体文件类型，若无此参数，则默认为图片和视频类型 |
-| maxSelectNumber?       | number | 否   | 选择媒体文件数量的最大值(默认值为50，最大值为500)      |
+| MIMEType              | [PhotoViewMIMETypes](#photoviewmimetypes)   | 否   | 可选择的媒体文件类型，若无此参数，则默认为图片和视频类型 |
+| maxSelectNumber       | number | 否   | 选择媒体文件数量的最大值(默认值为50，最大值为500)      |
 
 ## PhotoSelectResult
 
 返回图库选择后的结果集。
 
-**系统能力：** 以下各项对应的系统能力均为 SystemCapability.FileManagement.UserFileService
+**系统能力：** SystemCapability.FileManagement.UserFileService
 
 | 名称                    | 类型                | 可读 | 可写 | 说明                           |
 | ----------------------- | ------------------- | ---- | ---- | ------------------------------ |
@@ -733,27 +733,35 @@ async function example() {
 
 图片或视频的保存选项。
 
-**系统能力：** 以下各项对应的系统能力均为 SystemCapability.FileManagement.UserFileService
+**系统能力：** SystemCapability.FileManagement.UserFileService
 
 | 名称                    | 类型                | 必填 |  说明                           |
 | ----------------------- | ------------------- | ---- | ---------------------------- |
-| newFileNames?              | Array&lt;string&gt;    | 否  | 拉起photoPicker进行保存图片或视频资源的文件名，若无此参数，则默认需要用户自行输入 |
+| newFileNames              | Array&lt;string&gt;    | 否  | 拉起photoPicker进行保存图片或视频资源的文件名，若无此参数，则默认需要用户自行输入 |
 
 ## DocumentSelectOptions
 
-文档选择选项，目前不支持参数配置。
+文档选择选项。
 
 **系统能力：** SystemCapability.FileManagement.UserFileService
+
+| 名称                    | 类型                | 必填 | 说明                          |
+| ----------------------- | ------------------- | ---- | -------------------------------- |
+| maxSelectNumber       | number  | 否   | 选择文件/目录最大个数，上限500，有效值范围1-500      |
+| defaultFilePathUri    | string  | 否   | 指定选择的文件或者目录路径 |
+| fileSuffixFilters     | Array&lt;string&gt; | 否   | 选择文件的后缀类型 |
 
 ## DocumentSaveOptions
 
 文档保存选项。
 
-**系统能力：** 以下各项对应的系统能力均为 SystemCapability.FileManagement.UserFileService
+**系统能力：** SystemCapability.FileManagement.UserFileService
 
 | 名称                    | 类型                | 必填 |  说明                           |
 | ----------------------- | ------------------- | ---- | ---------------------------- |
-| newFileNames?            | Array&lt;string&gt;    | 否   | 拉起documentPicker进行保存的文件名，若无此参数，则默认需要用户自行输入 |
+| newFileNames            | Array&lt;string&gt;    | 否   | 拉起documentPicker进行保存的文件名，若无此参数，则默认需要用户自行输入 |
+| defaultFilePathUri    | string  | 否   | 指定保存的文件或者目录路径 |
+| fileSuffixChoices     | Array&lt;string&gt; | 否   | 保存文件的后缀类型 |
 
 ## AudioSelectOptions
 
@@ -765,8 +773,8 @@ async function example() {
 
 音频的保存选项。
 
-**系统能力：** 以下各项对应的系统能力均为 SystemCapability.FileManagement.UserFileService
+**系统能力：** SystemCapability.FileManagement.UserFileService
 
 | 名称                    | 类型                | 必填 |  说明                           |
 | ----------------------- | ------------------- | ---- | ---------------------------- |
-| newFileNames?              | Array&lt;string&gt;    | 否  | 拉起audioPicker进行保存音频资源的文件名，若无此参数，则默认需要用户自行输入 |
+| newFileNames              | Array&lt;string&gt;    | 否  | 拉起audioPicker进行保存音频资源的文件名，若无此参数，则默认需要用户自行输入 |

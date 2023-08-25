@@ -1,4 +1,4 @@
-# 多端协同（仅对系统应用开放）
+# 多端协同
 
 
 ## 功能描述
@@ -56,29 +56,31 @@
 3. 获取目标设备的设备ID。
 
    ```ts
-   import deviceManager from '@ohos.distributedHardware.deviceManager';
+   import deviceManager from '@ohos.distributedDeviceManager';
    
-   let dmClass;
+   let dmClass: deviceManager.DeviceManager;
    function initDmClass() {
        // 其中createDeviceManager接口为系统API
-       deviceManager.createDeviceManager('ohos.samples.demo', (err, dm) => {
-           if (err) {
-               ...
-               return
-           }
-           dmClass = dm
-       })
+       try{
+           dmClass = deviceManager.createDeviceManager('ohos.samples.demo');
+       } catch(err) {
+           console.error("createDeviceManager errCode:" + err.code + ",errMessage:" + err.message);
+       }
    }
    function getRemoteDeviceId() {
        if (typeof dmClass === 'object' && dmClass !== null) {
-           let list = dmClass.getTrustedDeviceListSync()
+           let list = dmClass.getAvailableDeviceListSync();
            if (typeof (list) === 'undefined' || typeof (list.length) === 'undefined') {
-               console.info('EntryAbility onButtonClick getRemoteDeviceId err: list is null')
+               console.info('getRemoteDeviceId err: list is null');
                return;
            }
-           return list[0].deviceId
+           if (list.length === 0) {
+               console.info("getRemoteDeviceId err: list is empty");
+               return;
+           }
+       	return list[0].networkId;
        } else {
-           console.info('EntryAbility onButtonClick getRemoteDeviceId err: dmClass is null')
+           console.info('getRemoteDeviceId err: dmClass is null');
        }
    }
    ```
@@ -89,8 +91,8 @@
    let want = {
        deviceId: getRemoteDeviceId(), 
        bundleName: 'com.example.myapplication',
-       abilityName: 'FuncAbility',
-       moduleName: 'module1', // moduleName非必选
+       abilityName: 'EntryAbility',
+       moduleName: 'entry', // moduleName非必选
    }
    // context为发起端UIAbility的AbilityContext
    this.context.startAbility(want).then(() => {
@@ -100,7 +102,7 @@
    })
    ```
 
-5. 当设备A发起端应用不需要设备B上的ServiceExtensionAbility时，可调用stopServiceExtensionAbility(../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstopserviceextensionability)接口退出。（该接口不支持UIAbility的退出，UIAbility由用户手动通过任务管理退出）
+5. 当设备A发起端应用不需要设备B上的ServiceExtensionAbility时，可调用[stopServiceExtensionAbility](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstopserviceextensionability)接口退出。（该接口不支持UIAbility的退出，UIAbility由用户手动通过任务管理退出）
 
    ```ts
    let want = {
@@ -216,7 +218,7 @@
 
 2. 同时需要在应用首次启动时弹窗向用户申请授权，使用方式请参见[向用户申请授权](../security/accesstoken-guidelines.md#向用户申请授权)。
 
-3. 如果已有后台服务，请直接进入下一步；如果没有，则[实现一个后台服务](serviceextensionability.md#实现一个后台服务仅对系统应用开放)。
+3. 如果已有后台服务，请直接进入下一步；如果没有，则[实现一个后台服务](serviceextensionability.md#实现一个后台服务（仅对系统应用开放）)。
 
 4. 连接一个后台服务。
    - 实现IAbilityConnection接口。IAbilityConnection提供了以下方法供开发者实现：onConnect()是用来处理连接Service成功的回调，onDisconnect()是用来处理Service异常终止的回调，onFailed()是用来处理连接Service失败的回调。
@@ -471,8 +473,8 @@
       
        ```ts
        const MSG_SEND_METHOD: string = 'CallSendMsg';
-       originMsg: string = '';
-       backMsg: string = '';
+       let originMsg: string = '';
+       let backMsg: string = '';
        async onButtonCallWithResult(originMsg, backMsg) {
            try {
                let msg = new MyParcelable(1, originMsg);

@@ -24,7 +24,7 @@ Persistence of data is a relatively slow operation. Applications should avoid th
 
 The preceding situations may overload the change process of persisted data. As a result, the PersistentStorage implementation may limit the change frequency of persisted attributes.
 
-PersistentStorage is associated with UIContext and can be called to persist data only when [UIContext](../reference/apis/js-apis-arkui-UIContext.md#uicontext) is specified. The context can be identified in [runScopedTask](../reference/apis/js-apis-arkui-UIContext.md#runscopedtask).
+PersistentStorage can be called to persist data only when the [UIContext](../reference/apis/js-apis-arkui-UIContext.md#uicontext), which can be obtained through [runScopedTask](../reference/apis/js-apis-arkui-UIContext.md#runscopedtask), is specified.
 
 ## Application Scenarios
 

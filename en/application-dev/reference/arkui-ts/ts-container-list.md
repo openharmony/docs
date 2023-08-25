@@ -41,7 +41,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 | Name         | Type                                    | Mandatory  | Description                                    |
 | ------------ | ---------------------------------------- | ---- | ---------------------------------------- |
-| space        | number \| string               | No   | Spacing between list items along the main axis.<br>Default value: **0**<br>**NOTE**<br>If the set value is a negative number, the default value will be used.<br>If the value of **space** is less than the width of the list divider, the latter is used as the spacing.|
+| space        | number \| string               | No   | Spacing between list items along the main axis.<br>Default value: **0**<br>**NOTE**<br>If this parameter is set to a negative number or a value greater than or equal to the length of the list content area, the default value is used.<br>If this parameter is set to a value less than the width of the list divider, the width of the list divider is used as the spacing.|
 | initialIndex | number                                   | No   | Item displayed at the beginning of the viewport when the current list is loaded for the first time, that is, the first item to be displayed.<br>Default value: **0**<br>**NOTE**<br>If the set value is a negative number or is greater than the index of the last item in the list, the value is invalid. In this case, the default value will be used.|
 | scroller     | [Scroller](ts-container-scroll.md#scroller) | No   | Scroller, which can be bound to scrollable components.<br>**NOTE**<br>The scroller cannot be bound to other scrollable components.|
 
