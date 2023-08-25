@@ -23,20 +23,18 @@ Before developing applications related to tag read and write, you must declare N
 
                             // Add the nfc tag action.
                             "ohos.nfc.tag.action.TAG_FOUND"
+                        ],
+                        "uris": [
+                            {
+                                "type":"tag-tech/NfcA"
+                            },
+                            {
+                                "type":"tag-tech/IsoDep"
+                            }
+                            // Add other technology if neccessary,
+                            // such as NfcB, NfcF, NfcV, Ndef, MifareClassic, MifareUL, and NdefFormatable.
                         ]
                     }
-                ],
-                "metadata": [
-                    {
-                        "name": "tag-tech",
-                        "value": "NfcA"
-                    },
-                    {
-                        "name": "tag-tech",
-                        "value": "IsoDep"
-                    }
-                    // Add other technologies,
-                    // such as NfcB, NfcF, NfcV, Ndef, MifareClassic, MifareUL, and NdefFormatable.
                 ]
             }
         ],
@@ -49,13 +47,11 @@ Before developing applications related to tag read and write, you must declare N
     }
 }
 ```
-> **CAUTION**<br>
+> **CAUTION**
 >
 > - The **actions** field is mandatory. It must be **ohos.nfc.tag.action.TAG_FOUND** and cannot be changed.
-> - The **name** field under **metadata** is mandatory. It must be **tag-tech** and cannot be changed.
-> - The **value** field under **metadata** is mandatory. It can be **NfcA**, **NfcB**, **NfcF**, **NfcV**, **IsoDep**, **Ndef**, **MifareClassic**, **MifareUL**, **NdefFormatable** or any of their combinations. Incorrect settings of this field will cause a parsing failure.
+> - The **type** field under **uris** must start with **tag-tech/**, followed by NfcA, NfcB, NfcF, NfcV, IsoDep, Ndef, MifareClassic, MifareUL, or NdefFormatable. If there are multiple types, enter them in different lines. Incorrect settings of this field will cause a parsing failure.
 > - The **name** field under **requestPermissions** is mandatory. It must be **ohos.permission.NFC_TAG** and cannot be changed.
-
 ## **Modules to Import**
 
 ```js
@@ -482,6 +478,104 @@ Obtains **TagInfo** from **Want**, which is initialized by the NFC service and c
 | ------------------- | -------------------------------------------- |
 | [TagInfo](#taginfo) | **TagInfo** object obtained.|
 
+## tag.registerForegroundDispatch<sup>10+</sup>
+
+registerForegroundDispatch(elementName: [ElementName](js-apis-bundleManager-elementName.md), discTech: number[], callback: AsyncCallback&lt;[TagInfo](#taginfo)&gt;): void;
+
+Registers listening for the card reading events of an NFC tag foreground application. You can set the supported tag technologies in **discTech**, and obtain the [TagInfo](#taginfo) read in a callback. <br>This API must be used with [tag.unregisterForegroundDispatch](#tagunregisterforegrounddispatch10) in pairs. The registered event listening must be unregistered before the page exits the foreground or the page is destroyed.
+
+**Required permissions**: ohos.permission.NFC_TAG
+
+**System capability**: SystemCapability.Communication.NFC.Tag
+
+**Parameters**
+
+| Name      | Type    | Mandatory| Description                                                   |
+| ------------ | -------- | ---- | ------------------------------------------------------- |
+| elementName   |  [ElementName](js-apis-bundleManager-elementName.md)   | Yes  | Information about the application page. It must contain at least the **bundleName**, **abilityName**, and **moduleName**.         |
+| discTech         |  number[]   | Yes  | Technologies supported by the foreground dispatch system. Each number indicates the constant value of the supported technology. Based on the value of **number**, the system sets tag technologies ([NFC_A](#technology-type-definition), [NFC_B](#technology-type-definition), and [NFC_F](#technology-type-definition), and [NFC_V](#technology-type-definition)) for NFC card read polling and disable card emulation. If the **number** length is 0, both card read polling and card emulation will be disabled.|
+| callback | AsyncCallback&lt;[TagInfo](#taginfo)&gt; | Yes  | Callback invoked to return the card read event in the foreground.|
+
+**Example**
+
+See the example of [tag.unregisterForegroundDispatch](#tagunregisterforegrounddispatch10).
+
+## tag.unregisterForegroundDispatch<sup>10+</sup>
+
+unregisterForegroundDispatch(elementName: [ElementName](js-apis-bundleManager-elementName.md)): void;
+
+Unregisters the listening for card reading events of an NFC tag foreground application. The registered event listening must be unregistered before the page exits the foreground or the page is destroyed.
+
+**Required permissions**: ohos.permission.NFC_TAG
+
+**System capability**: SystemCapability.Communication.NFC.Tag
+
+**Parameters**
+
+| Name      | Type    | Mandatory| Description                                                   |
+| ------------ | -------- | ---- | ------------------------------------------------------- |
+| elementName   |  [ElementName](js-apis-bundleManager-elementName.md)   | Yes  | Information about the application page. It must contain at least the **bundleName**, **abilityName**, and **moduleName**.         |
+
+**Example**
+
+```js
+import UIAbility from '@ohos.app.ability.UIAbility'
+import tag from '@ohos.nfc.tag';
+
+let elementName = null;
+let discTech = [tag.NFC_A, tag.NFC_B]; // replace with the tech(s) that is needed by foreground ability
+
+function foregroundCb(err, taginfo) {
+    if (!err) {
+        console.log("foreground callback: tag found tagInfo = ", JSON.stringify(tagInfo));
+    } else {
+        console.log("foreground callback err: " + err.message);
+        return;
+    }
+    // other Operations of taginfo
+    
+}
+
+export default class MainAbility extends UIAbility {
+    OnCreate(want, launchParam) {
+        console.log("OnCreate");
+        elementName = {
+            bundleName: want.bundleName,
+            abilityName: want.abilityName,
+            moduleName: want.moduleName
+        }
+    }
+
+    onForeground() {
+        console.log("onForeground");
+        try {
+            tag.registerForegroundDispatch(elementName, discTech, foregroundCb);
+        } catch (e) {
+            console.log("registerForegroundDispatch error: " + e.message);
+        }
+    }
+
+    onBackground() {
+        console.log("onBackground");
+        try {
+            tag.unregisterForegroundDispatch(elementName);
+        } catch (e) {
+            console.log("registerForegroundDispatch error: " + e.message);
+        }
+    }
+
+    onWindowStageDestroy() {
+        console.log("onWindowStageDestroy");
+        try {
+            tag.unregisterForegroundDispatch(elementName);
+        } catch (e) {
+            console.log("registerForegroundDispatch error: " + e.message);
+        }
+    }
+
+    // override other lifecycle functions
+}
+```
 
 ## tag.ndef.makeUriRecord<sup>9+</sup>
 
@@ -795,7 +889,7 @@ Enumerates the tag technology types.
 | **Name**                    | **Value**| **Description**                   |
 | ---------------------------- | ------ | --------------------------- |
 | NFC_A                        | 1      | NFC-A (ISO 14443-3A). |
-| NFC_B  | 2 | NFC-B (ISO 14443-3B).|
+| NFC_B                        | 2      | NFC-B (ISO 14443-3B). |
 | ISO_DEP                      | 3      | ISO-DEP (ISO 14443-4).|
 | NFC_F                        | 4      | NFC-F (JIS 6319-4).   |
 | NFC_V                        | 5      | NFC-V (ISO 15693).    |

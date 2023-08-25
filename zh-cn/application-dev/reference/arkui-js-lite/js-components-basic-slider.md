@@ -99,4 +99,4 @@ export default {
 }
 ```
 
-![slider](figures/slider.png)
+![slider](figures/slider-lite.png)

@@ -13,6 +13,8 @@ The **ContinueMissionInfo** module defines the parameters required for initiatin
 import distributedMissionManager from '@ohos.distributedMissionManager';
 ```
 
+## Attributes
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Mission
 
 | Name      | Type  | Readable  | Writable  | Description     |
@@ -20,7 +22,7 @@ import distributedMissionManager from '@ohos.distributedMissionManager';
 | srcDeviceId | string | Yes   | Yes   | ID of the source device.|
 | dstDeviceId | string | Yes   | Yes   | ID of the target device.|
 | bundleName | string | Yes   | Yes   | Name of the bundle to which the mission belongs.|
-| wantParam | {[key: string]: any} | Yes   | Yes   | Extended parameters.|
+| wantParam | {[key: string]: Object} | Yes   | Yes   | Extended parameters.|
 
 **Example**
 

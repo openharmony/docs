@@ -64,6 +64,8 @@
    import Extension from '@ohos.application.DataShareExtensionAbility';
    import rdb from '@ohos.data.relationalStore';
    import dataSharePredicates from '@ohos.data.dataSharePredicates';
+   import relationalStore from '@ohos.data.relationalStore';
+   import Want from '@ohos.app.ability.Want';
    ```
 
 4. 数据提供方的业务实现由开发者自定义。例如可以通过数据库、读写文件或访问网络等各方式实现数据提供方的数据存储。
@@ -75,20 +77,20 @@
    + TBL_NAME
    + ' (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, age INTEGER, isStudent BOOLEAN, Binary BINARY)';
    
-   let rdbStore;
-   let result;
+   let rdbStore: relationalStore.RdbStore;
+   let result: string;
    
    export default class DataShareExtAbility extends Extension {
-     private rdbStore_;
+     private rdbStore_: relationalStore.RdbStore;
    
      // 重写onCreate接口
-     onCreate(want, callback) {
+     onCreate(want: Want, callback: Function) {
        result = this.context.cacheDir + '/datashare.txt';
        // 业务实现使用RDB
        rdb.getRdbStore(this.context, {
          name: DB_NAME,
          securityLevel: rdb.SecurityLevel.S1
-       }, function (err, data) {
+       }, (err, data) => {
          rdbStore = data;
          rdbStore.executeSql(DDL_TBL_CREATE, [], (err) => {
            console.info(`DataShareExtAbility onCreate, executeSql done err:${err}`);
@@ -100,7 +102,7 @@
      }
    
      // 重写query接口
-     query(uri, predicates, columns, callback) {
+     query(uri: string, predicates: dataSharePredicates.DataSharePredicates, columns: Array<string>, callback: Function) {
        if (predicates === null || predicates === undefined) {
          console.info('invalid predicates');
        }
@@ -188,6 +190,8 @@
    import UIAbility from '@ohos.app.ability.UIAbility';
    import dataShare from '@ohos.data.dataShare';
    import dataSharePredicates from '@ohos.data.dataSharePredicates';
+   import { ValuesBucket } from '@ohos.data.ValuesBucket'
+   import window from '@ohos.window';
    ```
 
 2. 定义与数据提供方通信的URI字符串。
@@ -200,11 +204,11 @@
 3. 创建工具接口类对象。
    
    ```js
-   let dsHelper;
-   let abilityContext;
+   let dsHelper: dataShare.DataShareHelper;
+   let abilityContext: Context;
    
    export default class EntryAbility extends UIAbility {
-     onWindowStageCreate(windowStage) {
+     onWindowStageCreate(windowStage: window.WindowStage) {
        abilityContext = this.context;
        dataShare.createDataShareHelper(abilityContext, dseUri, (err, data) => {
          dsHelper = data;
@@ -217,8 +221,19 @@
    
    ```js
    // 构建一条数据
-   let valuesBucket = { 'name': 'ZhangSan', 'age': 21, 'isStudent': false, 'Binary': new Uint8Array([1, 2, 3]) };
-   let updateBucket = { 'name': 'LiSi', 'age': 18, 'isStudent': true, 'Binary': new Uint8Array([1, 2, 3]) };
+   let key1 = 'name';
+   let key2 = 'age';
+   let key3 = 'isStudent';
+   let key4 = 'Binary';
+   let valueName1 = 'ZhangSan';
+   let valueName2 = 'LiSi';
+   let valueAge1 = 21;
+   let valueAge2 = 18;
+   let valueIsStudent1 = false;
+   let valueIsStudent2 = true;
+   let valueBinary = new Uint8Array([1, 2, 3]);
+   let valuesBucket: ValuesBucket = { key1: valueName1, key2: valueAge1, key3: valueIsStudent1, key4: valueBinary };
+   let updateBucket: ValuesBucket = { key1: valueName2, key2: valueAge2, key3: valueIsStudent2, key4: valueBinary };
    let predicates = new dataSharePredicates.DataSharePredicates();
    let valArray = ['*'];
    // 插入一条数据
@@ -243,4 +258,4 @@
 
 针对数据共享开发，有以下相关实例可供参考：
 
-- [`CrossAppDataShare`：系统应用跨应用数据共享（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/DataManagement/CrossAppDataShare)
+- [系统应用跨应用数据共享（ArkTS）（Full SDK）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/DataManagement/CrossAppDataShare)

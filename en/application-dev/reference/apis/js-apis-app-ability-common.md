@@ -12,8 +12,9 @@ The **Common** module provides all level-2 module APIs for developers to export.
 ```ts
 import common from '@ohos.app.ability.common';
 ```
+## Attributes
 
-**System capability**: SystemCapability.Ability.AbilityBase
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 | Name       | Type                | Description                                                        |
 | ----------- | -------------------- | ------------------------------------------------------------ |

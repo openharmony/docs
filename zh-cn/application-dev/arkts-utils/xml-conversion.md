@@ -4,7 +4,7 @@
 将XML文本转换为JavaScript对象可以更轻松地处理和操作数据，并且更适合在JavaScript应用程序中使用。
 
 
-语言基础类库提供ConvertXML类将xml文本转换为JavaScript对象，输入为待转换的XML字符串及转换选项，输出为转换后的JavaScript对象。具体转换选项可见[API参考@ohos.convertxml](../reference/apis/js-apis-convertxml.md)。
+语言基础类库提供ConvertXML类将XML文本转换为JavaScript对象，输入为待转换的XML字符串及转换选项，输出为转换后的JavaScript对象。具体转换选项可见[API参考@ohos.convertxml](../reference/apis/js-apis-convertxml.md)。
 
 
 ## 注意事项

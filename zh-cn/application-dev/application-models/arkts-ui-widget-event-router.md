@@ -1,7 +1,7 @@
 # 使用router事件跳转到指定UIAbility
 
-
 在卡片中使用**postCardAction**接口的router能力，能够快速拉起卡片提供方应用的指定UIAbility，因此UIAbility较多的应用往往会通过卡片提供不同的跳转按钮，实现一键直达的效果。例如相机卡片，卡片上提供拍照、录像等按钮，点击不同按钮将拉起相机应用的不同UIAbility，从而提高用户的体验。
+
 ![WidgerCameraCard](figures/WidgerCameraCard.png)
 
 
@@ -57,7 +57,7 @@
   let selectPage = "";
   let currentWindowStage = null;
   
-  export default class CameraAbility extends UIAbility {
+  export default class EntryAbility extends UIAbility {
     // 如果UIAbility第一次启动，在收到Router事件后会触发onCreate生命周期回调
     onCreate(want, launchParam) {
       // 获取router事件中传递的targetPage参数

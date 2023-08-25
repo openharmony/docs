@@ -29,14 +29,19 @@ For details about the development procedure, see [Buffer Input](#buffer-input) a
 
 Read [VideoEncoder](../reference/native-apis/_video_encoder.md) for the API reference.
 
+The figure below shows the call relationship of video encoding.
+
+![Call relationship of video encoding](figures/video-encode.png)
+
 ### Buffer Input
 
 The following walks you through how to implement the entire video encoding process in buffer input mode. It uses the YUV file input and H.264 encoding format as an example.
+
 Currently, the **VideoEncoder** module supports only data transferring in asynchronous mode.
 
 1. Create an encoder instance.
 
-   You can create an encoder by name or Multipurpose Internet Mail Extensions (MIME) type.
+   You can create an encoder by name or MIME type.
 
     ``` c++
     // To create an encoder by MIME type, call OH_VideoEncoder_CreateByMime. The system creates the most appropriate encoder based on the MIME type.
@@ -58,15 +63,15 @@ Currently, the **VideoEncoder** module supports only data transferring in asynch
 
    Register the **OH_AVCodecAsyncCallback** struct that defines the following callback function pointers:
 
-   - **OnError**, a callback used to report a codec operation error
-   - **OnStreamChanged**, a callback used to report a codec stream change, for example, audio channel change
-   - **OnNeedInputData**, a callback used to report input data required, which means that the encoder is ready for receiving PCM data
-   - **OnNeedOutputData**, a callback used to report output data generated, which means that encoding is complete
+   - **OH_AVCodecOnError**, a callback used to report a codec operation error
+   - **OH_AVCodecOnStreamChanged**, a callback used to report a codec stream change, for example, audio channel change
+   - **OH_AVCodecOnNeedInputData**, a callback used to report input data required, which means that the encoder is ready for receiving PCM data
+   - **OH_AVCodecOnNewOutputData**, a callback used to report output data generated, which means that encoding is complete
 
    You need to process the callback functions to ensure that the encoder runs properly.
 
     ``` c++
-    // Set the OnError callback function.
+    // Implement the OH_AVCodecOnError callback function.
     static void OnError(OH_AVCodec *codec, int32_t errorCode, void *userData)
     {
         (void)codec;
@@ -74,7 +79,7 @@ Currently, the **VideoEncoder** module supports only data transferring in asynch
         (void)userData;
     }
 
-    // Set the OnStreamChanged callback function.
+    // Implement the OH_AVCodecOnStreamChanged callback function.
     static void OnStreamChanged(OH_AVCodec *codec, OH_AVFormat *format, void *userData)
     {
         (void)codec;
@@ -82,7 +87,7 @@ Currently, the **VideoEncoder** module supports only data transferring in asynch
         (void)userData;
     }
 
-    // Set the OnNeedInputData callback function, which is used to send an input frame to the data queue.
+    // Implement the OH_AVCodecOnNeedInputData callback function.
     static void OnNeedInputData(OH_AVCodec *codec, uint32_t index, OH_AVMemory *mem, void *userData)
     {
         (void)userData;
@@ -92,8 +97,8 @@ Currently, the **VideoEncoder** module supports only data transferring in asynch
         // 7. Write the stream to encode.
         // 8. Notify the encoder of EOS.
     }
-    
-    // Set the OnNeedOutputData callback function, which is used to send an encoded frame to the output queue.
+
+    // Implement the OH_AVCodecOnNewOutputData callback function.
     static void OnNeedOutputData(OH_AVCodec *codec, uint32_t index, OH_AVMemory *mem, 
                                  OH_AVCodecBufferAttr *attr, void *userData)
     {
@@ -259,7 +264,7 @@ Currently, the **VideoEncoder** module supports only data transferring in asynch
 
 9. Call **OH_VideoEncoder_FreeOutputData()** to output the encoded frames.
 
-    In the code snippet below, the following parameters are used: 
+    In the code snippet below, the following parameters are used:
     - **index**: index of the data queue, which is passed in by the callback function **OnNeedOutputData**.
     - **attr**: buffer storing the output data, which is passed in by the callback function **OnNeedOutputData**.
     - **mem**: parameter passed in by the callback function **OnNeedOutputData**. You can call **OH_AVMemory_GetAddr** to obtain the pointer to the shared memory address.
@@ -424,9 +429,9 @@ Currently, the **VideoEncoder** module supports only data transferring in asynch
    Currently, the following options must be configured for all supported formats: video frame width, video frame height, and video pixel format.
 
    In the code snippet below, the following data is used:
-    - **DEFAULT_WIDTH**: 320 pixels 
-    - **DEFAULT_HEIGHT**: 240 pixels 
-    - **DEFAULT_PIXELFORMAT**: **VideoPixelFormat::YUV420P** (the pixel format of the YUV file is YUV420P) 
+    - **DEFAULT_WIDTH**: 320 pixels
+    - **DEFAULT_HEIGHT**: 240 pixels
+    - **DEFAULT_PIXELFORMAT**: **VideoPixelFormat::YUV420P** (the pixel format of the YUV file is YUV420P)
 
     ``` c++
     // (Mandatory) Configure the video frame width.
@@ -547,7 +552,7 @@ Currently, the **VideoEncoder** module supports only data transferring in asynch
 
 10. Call **OH_VideoEncoder_FreeOutputData()** to output the encoded frames.
 
-    In the code snippet below, the following parameters are used: 
+    In the code snippet below, the following parameters are used:
     - **index**: index of the data queue, which is passed in by the callback function **OnNeedOutputData**.
     - **attr**: buffer storing the output data, which is passed in by the callback function **OnNeedOutputData**.
     - **mem**: parameter passed in by the callback function **OnNeedOutputData**. You can call **OH_AVMemory_GetAddr** to obtain the pointer to the shared memory address.

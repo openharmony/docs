@@ -44,6 +44,9 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 | columnsGap | Length |Gap between columns.<br>Default value: **0**|
 | rowsGap | Length |Gap between rows.<br> Default value: **0**|
 | layoutDirection | [FlexDirection](ts-appendix-enums.md#flexdirection) |Main axis direction of the layout.<br>Default value: **FlexDirection.Column**|
+| enableScrollInteraction<sup>10+</sup>  |  boolean  |   Whether to support scroll gestures. When this attribute is set to **false**, scrolling by finger or mouse is not supported, but the scrolling controller API is not affected.<br>Default value: **true**     |
+| nestedScroll<sup>10+</sup>                 | [NestedScrollOptions](ts-container-scroll.md#nestedscrolloptions10)         | Nested scrolling options. You can set the nested scrolling mode in the forward and backward directions to implement scrolling linkage with the parent component.|
+| friction<sup>10+</sup> | number \| [Resource](ts-types.md#resource)    | Friction coefficient. It applies only to gestures in the scrolling area, and it affects only indirectly the scroll chaining during the inertial scrolling process.<br>Default value: **0.9** for wearable devices and **0.6** for non-wearable devices<br>**NOTE**<br>A value less than or equal to 0 evaluates to the default value.|
 
 The priority of **layoutDirection** is higher than that of **rowsTemplate** and **columnsTemplate**. Depending on the **layoutDirection** settings, there are three layout modes:
 
@@ -68,8 +71,8 @@ In addition to the [universal events](ts-universal-events-click.md), the followi
 | Name| Description|
 | -------- | -------- |
 | onReachStart(event: () => void) | Triggered when the component reaches the start.|
-| onReachEnd(event: () => void)   | Triggered when the component reaches the end.|
-
+| onReachEnd(event: () => void)   | Triggered when the component reaches the end position.|
+| onScrollFrameBegin<sup>10+</sup>(event: (offset: number, state: ScrollState) => { offsetRemain }) | Triggered when the component starts to scroll. The input parameters indicate the amount by which the component will scroll. The event handler then works out the amount by which the component needs to scroll based on the real-world situation and returns the result.<br>\- **offset**: amount to scroll by, in vp.<br>\- **state**: current scrolling state.<br>- **offsetRemain**: actual amount by which the component scrolls, in vp.<br>This event is triggered when the user starts dragging the component or the component starts inertial scrolling. This event is not triggered when the component rebounds or the scrolling controller is used.|
 
 ## auto-fill
 
@@ -276,6 +279,7 @@ struct WaterflowDemo {
         minHeight: 0,
         maxHeight: '100%'
       })
+      .friction(0.6)
       .columnsGap(10)
       .rowsGap(5)
       .onReachStart(() => {

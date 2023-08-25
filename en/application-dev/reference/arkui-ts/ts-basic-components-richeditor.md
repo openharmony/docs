@@ -1,6 +1,6 @@
 # RichEditor
 
-The \<RichEditor> is a component that supports interactive text editing and mixture of text and imagery.
+The **\<RichEditor>** is a component that supports interactive text editing and mixture of text and imagery.
 
 >  **NOTE**
 >
@@ -26,6 +26,15 @@ RichEditor(value: RichEditorOptions)
 ## Attributes
 
 The [universal attributes](ts-universal-attributes-size.md) are supported.
+
+>  **NOTE**
+>
+> The default value of the **clip** attribute is **true**.
+
+| Name                     | Type                                                    | Description                                                        |
+| ------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| customKeyboard<sup>10+</sup> | [CustomBuilder](ts-types.md#custombuilder8) | Custom keyboard.<br>**NOTE**<br>When a custom keyboard is set, activating the text box opens the specified custom component, instead of the system input method.<br>The custom keyboard's height can be set through the **height** attribute of the custom component's root node, and its width is fixed at the default value.<br>The custom keyboard is displayed on top of the current page, without compressing or raising the page.<br>The custom keyboard cannot obtain the focus, but it blocks gesture events.<br>By default, the custom keyboard is closed when the input component loses the focus.| 
+
 
 ## Events
 
@@ -114,7 +123,7 @@ Provides the image span style information returned by the backend.
 | ------ | -------- | ---- | -------------------------------------- |
 | size | [number, number] | Yes| Width and height of the image.|
 | verticalAlign  | [ImageSpanAlignment](ts-basic-components-imagespan.md#imagespanalignment) | Yes | Vertical alignment mode of the image.|
-| objectFit  | [ImageFit]((ts-basic-components-imagespan.md#imagefit)) | Yes| Scale mode of the image.|
+| objectFit  | [ImageFit](ts-basic-components-imagespan.md#imagefit) | Yes| Scale mode of the image.|
 
 
 ## RichEditorOptions
@@ -158,7 +167,7 @@ Sets the cursor position.
 
 | Name| Type| Mandatory| Description                              |
 | ------ | -------- | ---- | -------------------------------------- |
-| offset | number | Yes| Offset of the cursor.|
+| offset | number | Yes| Offset of the cursor. If the value is out of the text range, the setting fails.|
 
 **Return value**
 
@@ -209,7 +218,7 @@ Adds an image span.
 
 updateSpanStyle(value: RichEditorUpdateTextSpanStyleOptions | RichEditorUpdateImageSpanStyleOptions): void
 
-Updates the text or image span style.
+Updates the text or image span style.<br>If only part of a span is updated, the span is split into multiple spans based on the updated part and the unupdated part.
 
 **Parameters**
 
@@ -265,8 +274,8 @@ Defines the text span style options.
 
 | Name| Type| Mandatory| Description                              |
 | ------ | -------- | ---- | -------------------------------------- |
-| start | number   | No| Start position of the text span whose style needs to be updated. If this parameter is omitted, the value **0** will be used.|
-| end | number | No| End position of the text span whose style needs to be updated. If this parameter is omitted, it indicates the end of the text span.|
+| start | number   | No| Start position of the text span whose style needs to be updated. If this parameter is omitted or set to a negative value, the value **0** will be used.|
+| end | number | No| End position of the text span whose style needs to be updated. If this parameter is omitted or set to a value beyond the text range, it indicates the end of the text span.|
 | textStyle | [RichEditorTextStyle](#richeditortextstyle) | Yes| Text style.|
 
 
@@ -276,8 +285,8 @@ Defines the image span style options.
 
 | Name| Type| Mandatory| Description                              |
 | ------ | -------- | ---- | -------------------------------------- |
-| start | number   | No| Start position of the image span whose style needs to be updated. If this parameter is omitted, the value **0** will be used.|
-| end | number | No| End position of the image span whose style needs to be updated. If this parameter is omitted, it indicates the end of the image span.|
+| start | number   | No| Start position of the image span whose style needs to be updated. If this parameter is omitted or set to a negative value, the value **0** will be used.|
+| end | number | No| End position of the image span whose style needs to be updated. If this parameter is omitted or set to a value beyond the text range, it indicates the end of the image span.|
 | imageStyle | [RichEditorImageSpanStyle](#richeditorimagespanstyle) | Yes| Image style.|
 
 
@@ -296,12 +305,12 @@ Provides the text style information.
 
 | Name| Type| Mandatory| Description                              |
 | ------ | -------- | ---- | -------------------------------------- |
-| fontColor | [ResourceColor](ts-types.md#resourcecolor) | No| Font color.|
-| fontSize | [Length](ts-types.md#length) \| number   | No| Font size.|
-| fontStyle | [FontStyle](ts-appendix-enums.md#fontstyle) | No| Font style.|
-| fontWeight | [FontWeight](ts-appendix-enums.md#fontweight) \| number \| string | No| Font weight.|
-| fontFamily  | [ResourceStr](ts-types.md#resourcestr) \| number \| string | No| Font family. Default value: **'HarmonyOS Sans'**.<br>Currently, only the default font is supported.|
-| decoration  | {<br>type: [TextDecorationType](ts-appendix-enums.md#textdecorationtype),<br>color?: [ResourceColor](ts-types.md#resourcecolor)<br>} \| number \| string | No| Style and color of the text decorative line.|
+| fontColor | [ResourceColor](ts-types.md#resourcecolor) | No| Font color.<br> Default value: **Color.Black**|
+| fontSize | [Length](ts-types.md#length) \| number   | No| Font size.<br>Default value: **16fp**|
+| fontStyle | [FontStyle](ts-appendix-enums.md#fontstyle) | No| Font style.<br>Default value: **FontStyle.Normal**|
+| fontWeight | [FontWeight](ts-appendix-enums.md#fontweight) \| number \| string | No| Font weight.<br>For the number type, the value ranges from 100 to 900, at an interval of 100. A larger value indicates a heavier font weight. The default value is **400**.<br>For the string type, only strings of the number type are supported, for example, **"400"**, **"bold"**, **"bolder"**, **"lighter"**, **"regular"**, and **"medium"**, which correspond to the enumerated values in **FontWeight**.<br>Default value: **FontWeight.Normal**|
+| fontFamily  | [ResourceStr](ts-types.md#resourcestr) \| number \| string | No| Font family. Default value: **'HarmonyOS Sans'**.<br>Currently, only the default font is supported.<br>Default font: **'HarmonyOS Sans'**|
+| decoration  | {<br>type: [TextDecorationType](ts-appendix-enums.md#textdecorationtype),<br>color?: [ResourceColor](ts-types.md#resourcecolor)<br>} | No| Style and color of the text decorative line.<br>Default value: {<br>type: TextDecorationType.None,<br>color: Color.Black<br>}|
 
 
 ## RichEditorImageSpanOptions
@@ -320,8 +329,8 @@ Provides the image span style information.
 | Name| Type| Mandatory| Description                              |
 | ------ | -------- | ---- | -------------------------------------- |
 | size  | [Dimension, Dimension]  | No| Width and height of the image.|
-| verticalAlign  | [ImageSpanAlignment](ts-basic-components-imagespan.md#imagespanalignment) | No  | Vertical alignment mode of the image.|
-| objectFit  | [ImageFit]((ts-basic-components-imagespan.md#imagefit)) | No| Scale mode of the image.|
+| verticalAlign  | [ImageSpanAlignment](ts-basic-components-imagespan.md#imagespanalignment) | No  | Vertical alignment mode of the image.<br>Default value: **ImageSpanAlignment.BASELINE**|
+| objectFit  | [ImageFit](ts-appendix-enums.md#imagefit) | No| Scale mode of the image.<br> Default value: **ImageFit.Cover**|
 
 ## RichEditorRange
 
@@ -329,11 +338,13 @@ Provides the span range information.
 
 | Name| Type| Mandatory| Description                              |
 | ------ | -------- | ---- | -------------------------------------- |
-| start | number   | No| Start position. If this parameter is omitted, the value **0** will be used.|
-| end | number | No| End position. If this parameter is omitted, it indicates the very end.|
+| start | number   | No| Start position. If this parameter is omitted or set to a negative value, the value **0** will be used.|
+| end | number | No| End position of the image span whose style needs to be updated. If this parameter is omitted or set to a value beyond the text range, it indicates the very end.|
 
 
 ## Example
+
+### Example 1
 
 ```ts
 // xxx.ets
@@ -484,3 +495,47 @@ struct Index {
 }
 ```
 ![richeditor](figures/richeditor.gif)
+
+### Example 2
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct RichEditorExample {
+  controller: RichEditorController = new RichEditorController()
+
+  // Create a custom keyboard component.
+  @Builder CustomKeyboardBuilder() {
+    Column() {
+      Grid() {
+        ForEach([1, 2, 3, 4, 5, 6, 7, 8, 9, '*', 0, '#'], (item) => {
+          GridItem() {
+            Button(item + "")
+              .width(110).onClick(() => {
+              this.controller.addTextSpan(item + '', {
+                style:
+                {
+                  fontColor: Color.Orange,
+                  fontSize: 30
+                }
+              })
+            })
+          }
+        })
+      }.maxCount(3).columnsGap(10).rowsGap(10).padding(5)
+    }.backgroundColor(Color.Gray)
+  }
+
+  build() {
+    Column() {
+      RichEditor({ controller: this.controller })
+        // Bind the custom keyboard.
+        .customKeyboard(this.CustomKeyboardBuilder()).margin(10).border({ width: 1 })
+        .height(200)
+    }
+  }
+}
+```
+
+![customKeyboard](figures/richEditorCustomKeyboard.png)

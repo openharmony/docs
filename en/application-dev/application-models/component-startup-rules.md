@@ -26,7 +26,7 @@ In view of this, OpenHarmony formulates a set of component startup rules, as fol
   - If the **exported** field of the target component is **false**, verify the **ohos.permission.START_INVISIBLE_ABILITY** permission.
   - For details, see [Component exported Configuration](../quick-start/module-configuration-file.md#abilities).
 
-- **Before starting a component of a background application, verify the BACKGROUND permission.**
+- **Before starting a UIAbility component of a background application, verify the BACKGROUND permission.**
   - An application is considered as a foreground application only when the application process gains focus or its UIAbility component is running in the foreground.
   - Verify the **ohos.permission.START_ABILITIES_FROM_BACKGROUND** permission.
 
@@ -45,7 +45,9 @@ In view of this, OpenHarmony formulates a set of component startup rules, as fol
 
   The rules for starting components on the same device vary in the following scenarios:
 
-- Starting or connecting to the UIAbility, ServiceExtensionAbility, and DataShareExtensionAbility components
+- Starting the UIAbility component
+
+- Starting the ServiceExtensionAbility and DataShareExtensionAbility components
 
 - Using **startAbilityByCall()** to start the UIAbility component
 
@@ -56,9 +58,10 @@ In view of this, OpenHarmony formulates a set of component startup rules, as fol
 
   The rules for starting components on a different device vary in the following scenarios:
 
-- Starting or connecting to the UIAbility, ServiceExtensionAbility, and DataShareExtensionAbility components
+- Starting the UIAbility component
+
+- Starting the ServiceExtensionAbility and DataShareExtensionAbility components
 
 - Using **startAbilityByCall()** to start the UIAbility component
 
 ![component-startup-rules](figures/component-startup-inter-stage.png)
-

@@ -1771,7 +1771,7 @@ Aborts a key operation. This API uses an asynchronous callback to return the res
 | -------- | --------------------------- | ---- | ------------------------------------------- |
 | handle   | number                      | Yes  | Handle for the **abortSession** operation.                        |
 | options  | [HuksOptions](#huksoptions) | Yes  | Parameter set used for the **abortSession** operation.                      |
-| callback | AsyncCallback\<void>        | Yes  | Callback that returns no value. |
+| callback | AsyncCallback\<void>        | Yes  | Callback invoked to return the **abortSession** operation result.|
 
 **Error codes**
 
@@ -2220,7 +2220,7 @@ Enumerates the key algorithms.
 | HUKS_ALG_HKDF             | 51   | HKDF<br>**System capability**: SystemCapability.Security.Huks.Extension|
 | HUKS_ALG_PBKDF2           | 52   | PBKDF2<br>**System capability**: SystemCapability.Security.Huks.Extension|
 | HUKS_ALG_ECDH             | 100  | ECDH<br>**System capability**: SystemCapability.Security.Huks.Extension|
-| HUKS_ALG_X25519           | 101  | X25519 <br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_ALG_X25519           | 101  | X25519<br>**System capability**: SystemCapability.Security.Huks.Extension|
 | HUKS_ALG_ED25519          | 102  | ED25519<br>**System capability**: SystemCapability.Security.Huks.Extension|
 | HUKS_ALG_DH               | 103  | DH<br>**System capability**: SystemCapability.Security.Huks.Extension|
 | HUKS_ALG_SM2<sup>9+</sup> | 150  | SM2<br>**System capability**: SystemCapability.Security.Huks.Extension|
@@ -2260,8 +2260,8 @@ Enumerates the key storage modes.
 
 | Name                                         | Value  | Description                          |
 | --------------------------------------------  | ---- | ------------------------------ |
-| HUKS_STORAGE_TEMP<sup>(deprecated)</sup>      | 0    | The key is managed locally.<br>**NOTE**: This tag is discarded since API version 10. No substitute is provided because this tag is not used in key management. In key derivation scenarios, use **HUKS_STORAGE_ONLY_USED_IN_HUKS** or **HUKS_STORAGE_KEY_EXPORT_ALLOWED**.<br>**System capability**: SystemCapability.Security.Huks.Core|
-| HUKS_STORAGE_PERSISTENT<sup>(deprecated)</sup>      | 1    | The key is managed by the HUKS service.<br>**NOTE**: This tag is discarded since API version 10. No substitute is provided because this tag is not used in key management. In key derivation scenarios, use **HUKS_STORAGE_ONLY_USED_IN_HUKS** or **HUKS_STORAGE_KEY_EXPORT_ALLOWED**.<br>**System capability**: SystemCapability.Security.Huks.Core|
+| HUKS_STORAGE_TEMP<sup>(deprecated)</sup>      | 0    | The key is managed locally.<br>**NOTE**: This tag is deprecated since API version 10. No substitute is provided because this tag is not used in key management. In key derivation scenarios, use **HUKS_STORAGE_ONLY_USED_IN_HUKS** or **HUKS_STORAGE_KEY_EXPORT_ALLOWED**.<br>**System capability**: SystemCapability.Security.Huks.Core|
+| HUKS_STORAGE_PERSISTENT<sup>(deprecated)</sup>      | 1    | The key is managed by the HUKS service.<br>**NOTE**: This tag is deprecated since API version 10. No substitute is provided because this tag is not used in key management. In key derivation scenarios, use **HUKS_STORAGE_ONLY_USED_IN_HUKS** or **HUKS_STORAGE_KEY_EXPORT_ALLOWED**.<br>**System capability**: SystemCapability.Security.Huks.Core|
 | HUKS_STORAGE_ONLY_USED_IN_HUKS<sup>10+</sup>  | 2    | The key derived from the master key is stored in the HUKS and managed by the HUKS.<br>**System capability**: SystemCapability.Security.Huks.Extension|
 | HUKS_STORAGE_KEY_EXPORT_ALLOWED<sup>10+</sup> | 3    | The key derived from the master key is exported to the service, and not managed by the HUKS.<br>**System capability**: SystemCapability.Security.Huks.Extension|
 
@@ -2427,7 +2427,7 @@ Enumerates the tags used to invoke parameters.
 | HUKS_TAG_ALL_USERS                           | HuksTagType.HUKS_TAG_TYPE_BOOL \| 301      | Reserved.<br>**System capability**: SystemCapability.Security.Huks.Extension|
 | HUKS_TAG_USER_ID                             | HuksTagType.HUKS_TAG_TYPE_UINT \| 302    | ID of the user to which the key belongs.<br>**System capability**: SystemCapability.Security.Huks.Extension|
 | HUKS_TAG_NO_AUTH_REQUIRED                    | HuksTagType.HUKS_TAG_TYPE_BOOL \| 303    | Reserved.<br>**System capability**: SystemCapability.Security.Huks.Extension|
-| HUKS_TAG_USER_AUTH_TYPE                      | HuksTagType.HUKS_TAG_TYPE_UINT \| 304    | User authentication type. For details, see [HuksUserAuthType](#huksuserauthtype9). This parameter must be set together with [HuksAuthAccessType](#huksauthaccesstype9). You can set a maximum of two user authentication types at a time. For example, if **HuksAuthAccessType** is **HKS_SECURE_ACCESS_INVALID_NEW_BIO_ENROLL**, you can set two of **HKS_USER_AUTH_TYPE_FACE**, **HKS_USER_AUTH_TYPE_FINGERPRINT**, and **HKS_USER_AUTH_TYPE_FACE\**.| HKS_USER_AUTH_TYPE_FINGERPRINT   <br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_TAG_USER_AUTH_TYPE                      | HuksTagType.HUKS_TAG_TYPE_UINT \| 304    | User authentication type. For details, see [HuksUserAuthType](#huksuserauthtype9). This parameter must be set together with [HuksAuthAccessType](#huksauthaccesstype9). You can set a maximum of two user authentication types at a time. For example, if **HuksAuthAccessType** is **HKS_SECURE_ACCESS_INVALID_NEW_BIO_ENROLL**, you can set two of **HKS_USER_AUTH_TYPE_FACE**, **HKS_USER_AUTH_TYPE_FINGERPRINT**, and **HKS_USER_AUTH_TYPE_FACE\**.| HKS_USER_AUTH_TYPE_FINGERPRINT<br>**System capability**: SystemCapability.Security.Huks.Extension|
 | HUKS_TAG_AUTH_TIMEOUT                        | HuksTagType.HUKS_TAG_TYPE_UINT \| 305    | Timeout period of an authentication token.<br>**System capability**: SystemCapability.Security.Huks.Extension|
 | HUKS_TAG_AUTH_TOKEN                          | HuksTagType.HUKS_TAG_TYPE_BYTES \| 306   | Used to pass in the authentication token.<br>**System capability**: SystemCapability.Security.Huks.Extension|
 | HUKS_TAG_KEY_AUTH_ACCESS_TYPE<sup>9+</sup> | HuksTagType.HUKS_TAG_TYPE_UINT \| 307 | Access control type. For details, see [HuksAuthAccessType](#huksauthaccesstype9). This parameter must be set together with [HuksUserAuthType](#huksuserauthtype9).<br>**System capability**: SystemCapability.Security.Huks.Extension|
@@ -2483,7 +2483,9 @@ generateKey(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<Huk
 
 Generates a key. This API uses an asynchronous callback to return the result.
 
-> **NOTE**<br>This API is deprecated since API version 9. You are advised to use [huks.generateKeyItem<sup>9+</sup>](#huksgeneratekeyitem9).
+> **NOTE**
+>
+> This API is deprecated since API version 9. You are advised to use [huks.generateKeyItem<sup>9+</sup>](#huksgeneratekeyitem9).
 
 **System capability**: SystemCapability.Security.Huks.Extension
 
@@ -2493,7 +2495,7 @@ Generates a key. This API uses an asynchronous callback to return the result.
 | -------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
 | keyAlias | string                                    | Yes  | Alias of the key.                                                       |
 | options  | [HuksOptions](#huksoptions)               | Yes  | Tags required for generating the key.                                    |
-| callback | AsyncCallback\<[HuksResult](#huksresultdeprecated)> | Yes  | Callback invoked to return the result. If the operation is successful, **HUKS_SUCCESS** is returned; otherwise, an error code defined in **HuksResult** is returned.|
+| callback | AsyncCallback\<[HuksResult](#huksresultdeprecated)> | Yes  | Callback invoked to return the result. If the operation is successful, **HUKS_SUCCESS** is returned. If the operation fails, an error code defined in **HuksResult** is returned.|
 
 **Example**
 
@@ -2535,7 +2537,9 @@ generateKey(keyAlias: string, options: HuksOptions) : Promise\<HuksResult>
 
 Generates a key. This API uses a promise to return the result.
 
-> **NOTE**<br>This API is deprecated since API version 9. You are advised to use [huks.generateKeyItem<sup>9+</sup>](#huksgeneratekeyitem9-1).
+> **NOTE**
+>
+> This API is deprecated since API version 9. You are advised to use [huks.generateKeyItem<sup>9+</sup>](#huksgeneratekeyitem9-1).
 
 **System capability**: SystemCapability.Security.Huks.Extension
 
@@ -2550,7 +2554,7 @@ Generates a key. This API uses a promise to return the result.
 
 | Type                               | Description                                              |
 | ----------------------------------- | -------------------------------------------------- |
-| Promise\<[HuksResult](#huksresultdeprecated)> | Promise used to return the result. If the operation is successful, **HUKS_SUCCESS** is returned; otherwise, an error code is returned.|
+| Promise\<[HuksResult](#huksresultdeprecated)> | Promise used to return the result. If the operation is successful, **HUKS_SUCCESS** is returned. If the operation fails, an error code is returned.|
 
 **Example**
 
@@ -2588,7 +2592,9 @@ deleteKey(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<HuksR
 
 Deletes a key. This API uses an asynchronous callback to return the result.
 
-> **NOTE**<br>This API is deprecated since API version 9. You are advised to use [huks.deleteKeyItem<sup>9+</sup>](#huksdeletekeyitem9).
+> **NOTE**
+>
+> This API is deprecated since API version 9. You are advised to use [huks.deleteKeyItem<sup>9+</sup>](#huksdeletekeyitem9).
 
 **System capability**: SystemCapability.Security.Huks.Extension
 
@@ -2598,7 +2604,7 @@ Deletes a key. This API uses an asynchronous callback to return the result.
 | -------- | ----------------------------------------- | ---- | -------------------------------------------------- |
 | keyAlias | string                                    | Yes  | Key alias passed in when the key was generated.               |
 | options  | [HuksOptions](#huksoptions)               | Yes  | Empty object (leave this parameter empty).                          |
-| callback | AsyncCallback\<[HuksResult](#huksresultdeprecated)> | Yes  | Callback invoked to return the result. If the operation is successful, **HUKS_SUCCESS** is returned; otherwise, an error code is returned.|
+| callback | AsyncCallback\<[HuksResult](#huksresultdeprecated)> | Yes  | Callback invoked to return the result. If the operation is successful, **HUKS_SUCCESS** is returned. If the operation fails, an error code is returned.|
 
 **Example**
 
@@ -2617,7 +2623,9 @@ deleteKey(keyAlias: string, options: HuksOptions) : Promise\<HuksResult>
 
 Deletes a key. This API uses a promise to return the result.
 
-> **NOTE**<br>This API is deprecated since API version 9. You are advised to use [huks.deleteKeyItem<sup>9+</sup>](#huksdeletekeyitem9-1).
+> **NOTE**
+>
+> This API is deprecated since API version 9. You are advised to use [huks.deleteKeyItem<sup>9+</sup>](#huksdeletekeyitem9-1).
 
 **System capability**: SystemCapability.Security.Huks.Extension
 
@@ -2632,7 +2640,7 @@ Deletes a key. This API uses a promise to return the result.
 
 | Type                               | Description                                              |
 | ----------------------------------- | -------------------------------------------------- |
-| Promise\<[HuksResult](#huksresultdeprecated)> | Promise used to return the result. If the operation is successful, **HUKS_SUCCESS** is returned; otherwise, an error code is returned.|
+| Promise\<[HuksResult](#huksresultdeprecated)> | Promise used to return the result. If the operation is successful, **HUKS_SUCCESS** is returned. If the operation fails, an error code is returned.|
 
 **Example**
 
@@ -2651,7 +2659,9 @@ importKey(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<HuksR
 
 Imports a key in plaintext. This API uses an asynchronous callback to return the result.
 
-> **NOTE**<br>This API is deprecated since API version 9. You are advised to use [huks.importKeyItem<sup>9+</sup>](#huksimportkeyitem9).
+> **NOTE**
+>
+> This API is deprecated since API version 9. You are advised to use [huks.importKeyItem<sup>9+</sup>](#huksimportkeyitem9).
 
 **System capability**: SystemCapability.Security.Huks.Extension
 
@@ -2661,7 +2671,7 @@ Imports a key in plaintext. This API uses an asynchronous callback to return the
 | -------- | ------------------------ | ---- | ------------------------------------------------- |
 | keyAlias | string                   | Yes  | Alias of the key.|
 | options  | [HuksOptions](#huksoptions) | Yes  | Tags required for the import and key to import.|
-| callback | AsyncCallback\<[HuksResult](#huksresultdeprecated)> | Yes  | Callback invoked to return the result. If the operation is successful, **HUKS_SUCCESS** is returned; otherwise, an error code is returned.|
+| callback | AsyncCallback\<[HuksResult](#huksresultdeprecated)> | Yes  | Callback invoked to return the result. If the operation is successful, **HUKS_SUCCESS** is returned. If the operation fails, an error code is returned.|
 
 **Example**
 
@@ -2711,7 +2721,9 @@ importKey(keyAlias: string, options: HuksOptions) : Promise\<HuksResult>
 
 Imports a key in plaintext. This API uses a promise to return the result.
 
-> **NOTE**<br>This API is deprecated since API version 9. You are advised to use [huks.importKeyItem<sup>9+</sup>](#huksimportkeyitem9-1).
+> **NOTE**
+>
+> This API is deprecated since API version 9. You are advised to use [huks.importKeyItem<sup>9+</sup>](#huksimportkeyitem9-1).
 
 **System capability**: SystemCapability.Security.Huks.Extension
 
@@ -2726,7 +2738,7 @@ Imports a key in plaintext. This API uses a promise to return the result.
 
 | Type                               | Description                                              |
 | ----------------------------------- | -------------------------------------------------- |
-| Promise\<[HuksResult](#huksresultdeprecated)> | Promise used to return the result. If the operation is successful, **HUKS_SUCCESS** is returned; otherwise, an error code is returned.|
+| Promise\<[HuksResult](#huksresultdeprecated)> | Promise used to return the result. If the operation is successful, **HUKS_SUCCESS** is returned. If the operation fails, an error code is returned.|
 
 **Example**
 
@@ -2778,7 +2790,9 @@ exportKey(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<HuksR
 
 Exports a key. This API uses an asynchronous callback to return the result.
 
-> **NOTE**<br>This API is deprecated since API version 9. You are advised to use [huks.exportKeyItem<sup>9+</sup>](#huksexportkeyitem9).
+> **NOTE**
+>
+> This API is deprecated since API version 9. You are advised to use [huks.exportKeyItem<sup>9+</sup>](#huksexportkeyitem9).
 
 **System capability**: SystemCapability.Security.Huks.Extension
 
@@ -2807,7 +2821,9 @@ exportKey(keyAlias: string, options: HuksOptions) : Promise\<HuksResult>
 
 Exports a key. This API uses a promise to return the result.
 
-> **NOTE**<br>This API is deprecated since API version 9. You are advised to use [huks.exportKeyItem<sup>9+</sup>](#huksexportkeyitem9-1).
+> **NOTE**
+>
+> This API is deprecated since API version 9. You are advised to use [huks.exportKeyItem<sup>9+</sup>](#huksexportkeyitem9-1).
 
 **System capability**: SystemCapability.Security.Huks.Extension
 
@@ -2841,7 +2857,9 @@ getKeyProperties(keyAlias: string, options: HuksOptions, callback: AsyncCallback
 
 Obtains key properties. This API uses an asynchronous callback to return the result.
 
-> **NOTE**<br>This API is deprecated since API version 9. You are advised to use [huks.getKeyItemProperties<sup>9+</sup>](#huksgetkeyitemproperties9).
+> **NOTE**
+>
+> This API is deprecated since API version 9. You are advised to use [huks.getKeyItemProperties<sup>9+</sup>](#huksgetkeyitemproperties9).
 
 **System capability**: SystemCapability.Security.Huks.Extension
 
@@ -2870,7 +2888,9 @@ getKeyProperties(keyAlias: string, options: HuksOptions) : Promise\<HuksResult>
 
 Obtains key properties. This API uses a promise to return the result.
 
-> **NOTE**<br>This API is deprecated since API version 9. You are advised to use [huks.getKeyItemProperties<sup>9+</sup>](#huksgetkeyitemproperties9-1).
+> **NOTE**
+>
+> This API is deprecated since API version 9. You are advised to use [huks.getKeyItemProperties<sup>9+</sup>](#huksgetkeyitemproperties9-1).
 
 **System capability**: SystemCapability.Security.Huks.Extension
 
@@ -2885,7 +2905,7 @@ Obtains key properties. This API uses a promise to return the result.
 
 | Type              | Description                                                        |
 | ------------------ | ------------------------------------------------------------ |
-| Promise\<[HuksResult](#huksoptions)> | Promise used to return the result. If the operation is successful, **errorCode** is **HUKS_SUCCESS** and **properties** contains the parameters required for generating the key. If the operation fails, an error code is returned. |
+| Promise\<[HuksResult](#huksoptions)> | Promise used to return the result. If the operation is successful, **errorCode** is **HUKS_SUCCESS** and **properties** returns the parameters required for generating the key. If the operation fails, an error code is returned.|
 
 **Example**
 
@@ -2904,7 +2924,9 @@ isKeyExist(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<bool
 
 Checks whether a key exists. This API uses an asynchronous callback to return the result.
 
-> **NOTE**<br>This API is deprecated since API version 9. You are advised to use [huks.isKeyItemExist<sup>9+</sup>](#huksiskeyitemexist9).
+> **NOTE**
+>
+> This API is deprecated since API version 9. You are advised to use [huks.isKeyItemExist<sup>9+</sup>](#huksiskeyitemexist9).
 
 **System capability**: SystemCapability.Security.Huks.Extension
 
@@ -2933,7 +2955,9 @@ isKeyExist(keyAlias: string, options: HuksOptions) : Promise\<boolean>
 
 Checks whether a key exists. This API uses a promise to return the result.
 
-> **NOTE**<br>This API is deprecated since API version 9. You are advised to use [huks.isKeyItemExist<sup>9+</sup>](#huksiskeyitemexist9-1).
+> **NOTE**
+>
+> This API is deprecated since API version 9. You are advised to use [huks.isKeyItemExist<sup>9+</sup>](#huksiskeyitemexist9-1).
 
 **System capability**: SystemCapability.Security.Huks.Extension
 
@@ -2967,7 +2991,9 @@ init(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<HuksHandle
 
 Initializes the data for a key operation. This API uses an asynchronous callback to return the result. **huks.init**, **huks.update**, and **huks.finish** must be used together.
 
-> **NOTE**<br>This API is deprecated since API version 9. You are advised to use [huks.initSession<sup>9+</sup>](#huksinitsession9-1).
+> **NOTE**
+>
+> This API is deprecated since API version 9. You are advised to use [huks.initSession<sup>9+</sup>](#huksinitsession9-1).
 
 **System capability**: SystemCapability.Security.Huks.Extension
 
@@ -2985,7 +3011,9 @@ init(keyAlias: string, options: HuksOptions) : Promise\<HuksHandle>
 
 Initializes the data for a key operation. This API uses a promise to return the result. **huks.init**, **huks.update**, and **huks.finish** must be used together.
 
-> **NOTE**<br>This API is deprecated since API version 9. You are advised to use [huks.initSession<sup>9+</sup>](#huksinitsession9-1).
+> **NOTE**
+>
+> This API is deprecated since API version 9. You are advised to use [huks.initSession<sup>9+</sup>](#huksinitsession9-1).
 
 **System capability**: SystemCapability.Security.Huks.Extension
 
@@ -3008,7 +3036,9 @@ update(handle: number, token?: Uint8Array, options: HuksOptions, callback: Async
 
 Updates the key operation by segment. This API uses an asynchronous callback to return the result. **huks.init**, **huks.update**, and **huks.finish** must be used together.
 
-> **NOTE**<br>This API is deprecated since API version 9. You are advised to use [huks.updateSession<sup>9+</sup>](#huksupdatesession9-1).
+> **NOTE**
+>
+> This API is deprecated since API version 9. You are advised to use [huks.updateSession<sup>9+</sup>](#huksupdatesession9-1).
 
 **System capability**: SystemCapability.Security.Huks.Extension
 
@@ -3027,7 +3057,9 @@ update(handle: number, token?: Uint8Array, options: HuksOptions) : Promise\<Huks
 
 Updates the key operation by segment. This API uses a promise to return the result. **huks.init**, **huks.update**, and **huks.finish** must be used together.
 
-> **NOTE**<br>This API is deprecated since API version 9. You are advised to use [huks.updateSession<sup>9+</sup>](#huksupdatesession9-2).
+> **NOTE**
+>
+> This API is deprecated since API version 9. You are advised to use [huks.updateSession<sup>9+</sup>](#huksupdatesession9-2).
 
 **System capability**: SystemCapability.Security.Huks.Extension
 
@@ -3051,7 +3083,9 @@ finish(handle: number, options: HuksOptions, callback: AsyncCallback\<HuksResult
 
 Completes the key operation and releases resources. This API uses an asynchronous callback to return the result. **huks.init**, **huks.update**, and **huks.finish** must be used together.
 
-> **NOTE**<br>This API is deprecated since API version 9. You are advised to use [huks.finishSession<sup>9+</sup>](#huksfinishsession9).
+> **NOTE**
+>
+> This API is deprecated since API version 9. You are advised to use [huks.finishSession<sup>9+</sup>](#huksfinishsession9).
 
 **System capability**: SystemCapability.Security.Huks.Extension
 
@@ -3069,7 +3103,9 @@ finish(handle: number, options: HuksOptions) : Promise\<HuksResult>
 
 Completes the key operation and releases resources. This API uses a promise to return the result. **huks.init**, **huks.update**, and **huks.finish** must be used together.
 
-> **NOTE**<br>This API is deprecated since API version 9. You are advised to use [huks.finishSession<sup>9+</sup>](#huksfinishsession9-1).
+> **NOTE**
+>
+> This API is deprecated since API version 9. You are advised to use [huks.finishSession<sup>9+</sup>](#huksfinishsession9-1).
 
 **System capability**: SystemCapability.Security.Huks.Extension
 
@@ -3092,7 +3128,9 @@ abort(handle: number, options: HuksOptions, callback: AsyncCallback\<HuksResult>
 
 Aborts the use of the key. This API uses an asynchronous callback to return the result.
 
-> **NOTE**<br>This API is deprecated since API version 9. You are advised to use [huks.abortSession<sup>9+</sup>](#huksabortsession9).
+> **NOTE**
+>
+> This API is deprecated since API version 9. You are advised to use [huks.abortSession<sup>9+</sup>](#huksabortsession9).
 
 **System capability**: SystemCapability.Security.Huks.Extension
 
@@ -3203,7 +3241,9 @@ abort(handle: number, options: HuksOptions) : Promise\<HuksResult>;
 
 Aborts the use of the key. This API uses a promise to return the result.
 
-> **NOTE**<br>This API is deprecated since API version 9. You are advised to use [huks.abortSession<sup>9+</sup>](#huksabortsession9-1).
+> **NOTE**
+>
+> This API is deprecated since API version 9. You are advised to use [huks.abortSession<sup>9+</sup>](#huksabortsession9-1).
 
 **System capability**: SystemCapability.Security.Huks.Extension
 
@@ -3324,7 +3364,9 @@ function huksAbort() {
 Defines the HUKS handle structure.
 
 **System capability**: SystemCapability.Security.Huks.Extension
-> **NOTE**<br>This API is deprecated since API version 9. You are advised to use [HuksSessionHandle<sup>9+</sup>](#hukssessionhandle9).
+> **NOTE**
+>
+> This API is deprecated since API version 9. You are advised to use [HuksSessionHandle<sup>9+</sup>](#hukssessionhandle9).
 
 | Name    | Type            | Mandatory| Description    |
 | ---------- | ---------------- | ---- | -------- |
@@ -3338,7 +3380,10 @@ Defines the **HuksResult** structure.
 
 **System capability**: SystemCapability.Security.Huks.Extension
 
-> **NOTE**<br>This API is deprecated since API version 9. You are advised to use [HuksReturnResult<sup>9+</sup>](#huksreturnresult9).
+> **NOTE**
+>
+> - This API is deprecated since API version 9. You are advised to use [HuksReturnResult<sup>9+</sup>](#huksreturnresult9).
+> - For details about the error codes, see [HUKS Error Codes](../errorcodes/errorcode-huks.md).
 
 | Name    | Type                           | Mandatory| Description            |
 | ---------- | ------------------------------- | ---- | ---------------- |
@@ -3347,13 +3392,14 @@ Defines the **HuksResult** structure.
 | properties | Array\<[HuksParam](#huksparam)> | No  | Property information.  |
 | certChains | Array\<string>                  | No  | Certificate chain information.|
 
-
 ## HuksErrorCode<sup>(deprecated)</sup>
 
 Enumerates the error codes.
 
 **System capability**: SystemCapability.Security.Huks.Extension
-> **NOTE**<br>This API is deprecated since API version 9. You are advised to use HuksExceptionErrCode<sup>9+</sup>](#huksexceptionerrcode9).
+> **NOTE**
+>
+> This API is deprecated since API version 9. You are advised to use [HuksExceptionErrCode<sup>9+</sup>](#huksexceptionerrcode9).
 
 | Name                      | Value   | Description|
 | -------------------------- | ----- | ---- |

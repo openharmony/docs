@@ -50,7 +50,7 @@ Creates a **PasteData** object of a custom type.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| mimeType | string | Yes| MIME type of custom data.|
+| mimeType | string | Yes| MIME type of custom data. The value can a predefined MIME type listed in [Constants](#constants), including HTML, WANT, plain text, URI, and pixel map, or a custom MIME type.|
 | value | [ValueType](#valuetype9) | Yes| Content of custom data.|
 
 **Return value**
@@ -59,12 +59,20 @@ Creates a **PasteData** object of a custom type.
 | -------- | -------- |
 | [PasteData](#pastedata) |  **PasteData** object.|
 
-**Example**
+**Example 1**
 
   ```js
   let dataXml = new ArrayBuffer(256);
-let pasteData = pasteboard.createData('app/xml', dataXml);
+  let pasteData = pasteboard.createData('app/xml', dataXml);
   ```
+
+**Example 2**
+
+  ```js
+ let dataText = 'hello';
+ let pasteData = pasteboard.createData(pasteboard.MIMETYPE_TEXT_PLAIN, dataText);
+  ```
+
 
 ## pasteboard.createRecord<sup>9+</sup>
 
@@ -78,7 +86,7 @@ Creates a **PasteDataRecord** object of the custom type.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| mimeType | string | Yes| MIME type of custom data.|
+| mimeType | string | Yes| MIME type of custom data. The value can a predefined MIME type listed in [Constants](#constants), including HTML, WANT, plain text, URI, and pixel map, or a custom MIME type. |
 | value | [ValueType](#valuetype9) | Yes| Content of custom data.|
 
 **Return value**
@@ -87,11 +95,18 @@ Creates a **PasteDataRecord** object of the custom type.
 | -------- | -------- |
 | [PasteDataRecord](#pastedatarecord7) | New **PasteDataRecord** object of the custom type.|
 
-**Example**
+**Example 1**
 
   ```js
 let dataXml = new ArrayBuffer(256);
 let pasteDataRecord = pasteboard.createRecord('app/xml', dataXml);
+  ```
+
+**Example 2**
+
+  ```js
+let dataUri = 'dataability:///com.example.myapplication1/user.txt';
+let record = pasteboard.createRecord(pasteboard.MIMETYPE_TEXT_URI, dataUri);
   ```
 
 ## pasteboard.getSystemPasteboard
@@ -751,27 +766,53 @@ Sets a [PasteDataProperty](#pastedataproperty7) object.
 let pasteData = pasteboard.createData(pasteboard.MIMETYPE_TEXT_HTML, 'application/xml');
 let prop = pasteData.getProperty();
 prop.shareOption = pasteboard.ShareOption.INAPP;
-prop.additions['TestOne'] = 123;
+prop.additions['TestOne'] = {'Test' : 123};
 prop.additions['TestTwo'] = {'Test' : 'additions'};
 prop.tag = 'TestTag';
 pasteData.setProperty(prop);
 ```
 The **localOnly** and **shareOption** attributes of [PasteDataProperty](#pastedataproperty7) are mutually exclusive. The **shareOption** attribute prevails, and its value affect the value of **localOnly**.
 ```js
-prop.shareOption = pasteboard.ShareOption.INAPP;
-prop.localOnly = false;
-pasteData.setProperty(prop);
-pasteData.localOnly //true
-
-prop.shareOption = pasteboard.ShareOption.LOCALDEVICE;
-prop.localOnly = false;
-pasteData.setProperty(prop);
-pasteData.localOnly //true
-
-prop.shareOption = pasteboard.ShareOption.CROSSDEVICE;
-prop.localOnly = true;
-pasteData.setProperty(prop);
-pasteData.localOnly //false
+(async function() {
+    let pasteData = pasteboard.createData(pasteboard.MIMETYPE_TEXT_PLAIN, 'hello');
+    let prop = pasteData.getProperty();
+    prop.shareOption = pasteboard.ShareOption.INAPP;
+    prop.localOnly = false;
+    pasteData.setProperty(prop);    
+    let systemPasteboard = pasteboard.getSystemPasteboard();
+    
+    await systemPasteboard.setData(pasteData).then(async () => {
+        console.info('Succeeded in setting PasteData.');
+        await systemPasteboard.getData().then(pasteData => {
+            let prop = pasteData.getProperty();
+            prop.localOnly //true
+        });
+    });
+    
+    prop.shareOption = pasteboard.ShareOption.LOCALDEVICE;
+    prop.localOnly = false;
+    pasteData.setProperty(prop);
+    
+    await systemPasteboard.setData(pasteData).then(async () => {
+        console.info('Succeeded in setting PasteData.');
+        await systemPasteboard.getData().then(pasteData => {
+            let prop = pasteData.getProperty();
+            prop.localOnly; //true
+        });
+    });
+    
+    prop.shareOption = pasteboard.ShareOption.CROSSDEVICE;
+    prop.localOnly = true;
+    pasteData.setProperty(prop);
+    
+    await systemPasteboard.setData(pasteData).then(async () => {
+        console.info('Succeeded in setting PasteData.');
+        await systemPasteboard.getData().then(pasteData => {
+            let prop = pasteData.getProperty();
+            prop.localOnly; //false
+        });
+    });
+})()
 
 ```
 
@@ -1301,7 +1342,7 @@ For details about the error codes, see [Pasteboard Error Codes](../errorcodes/er
 **Example**
 
 ```js
-let pasteData = pasteboard.createPlainTextData('content');
+let pasteData = pasteboard.createData(pasteboard.MIMETYPE_TEXT_PLAIN, 'content');
 let systemPasteboard = pasteboard.getSystemPasteboard();
 systemPasteboard.setData(pasteData, (err, data) => {
     if (err) {
@@ -1344,7 +1385,7 @@ For details about the error codes, see [Pasteboard Error Codes](../errorcodes/er
 **Example**
 
 ```js
-let pasteData = pasteboard.createPlainTextData('content');
+let pasteData = pasteboard.createData(pasteboard.MIMETYPE_TEXT_PLAIN, 'content');
 let systemPasteboard = pasteboard.getSystemPasteboard();
 systemPasteboard.setData(pasteData).then((data) => {
     console.info('Succeeded in setting PasteData.');

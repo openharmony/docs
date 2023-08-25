@@ -4,7 +4,7 @@
 创建ArkTS卡片，需实现[FormExtensionAbility](../reference/apis/js-apis-app-form-formExtensionAbility.md)生命周期接口。
 
 
-1. 在EntryFormAbility.ts中，导入相关模块。
+1. 在EntryFormAbility.ets中，导入相关模块。
    
    ```ts
    import formInfo from '@ohos.app.form.formInfo';
@@ -13,7 +13,7 @@
    import formProvider from '@ohos.app.form.formProvider';
    ```
 
-2. 在EntryFormAbility.ts中，实现[FormExtensionAbility](../reference/apis/js-apis-app-form-formExtensionAbility.md)生命周期接口，其中在onAddForm的入参want中可以通过[FormParam](../reference/apis/js-apis-app-form-formInfo.md#formparam)取出卡片的相关信息。
+2. 在EntryFormAbility.ets中，实现[FormExtensionAbility](../reference/apis/js-apis-app-form-formExtensionAbility.md)生命周期接口，其中在onAddForm的入参want中可以通过[FormParam](../reference/apis/js-apis-app-form-formInfo.md#formparam)取出卡片的相关信息。
    
    ```typescript
    import formInfo from '@ohos.app.form.formInfo';

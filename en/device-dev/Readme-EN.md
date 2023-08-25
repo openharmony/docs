@@ -34,7 +34,7 @@
     - [Kernel for the Standard System](kernel/kernel-standard-overview.md)
   - [Driver](driver/Readme-EN.md)	
   - [Compilation and Building](subsystems/subsys-build-all.md)
-  - [Distributed Remote Startup](subsystems/subsys-remote-start.md)
+  - [ArkUI](subsystems/subsys-arkui-customize_titlebar.md) 
   - [Graphics](subsystems/subsys-graphics-overview.md)	
   - [Multimedia](subsystems/subsys-multimedia-camera-overview.md)	
   - [Utils](subsystems/subsys-utils-guide.md)
@@ -52,10 +52,8 @@
     - [Mini- and Small-System Devices](guide/device-wlan-led-control.md)	
     - [Standard-System Devices](guide/device-clock-guide.md)
 - Debugging
-  - [Test Case Development](device-test/developer_test.md)	
+  - [Device Test](device-test/Readme-EN.md)	
   - [R&D Tools](subsystems/subsys-toolchain-hdc-guide.md)
-- XTS Certification	
-  - [XTS Test Case Development](device-test/xts.md)	
 - Tools
   - [Docker Environment](get-code/gettools-acquire.md)
   - [IDE](get-code/gettools-ide.md)

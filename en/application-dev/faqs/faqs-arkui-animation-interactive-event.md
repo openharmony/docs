@@ -36,10 +36,11 @@ You can use [attribute animation](../reference/arkui-ts/ts-animatorproperty.md) 
 
 Applicable to: OpenHarmony 3.2 Beta 5 (API version 9)
 
-**Solution** 
+**Solution**
+
+ Use either of the following:
 
 - Add **focusable\(true\)** to the list item to enable it to obtain focus.
-
 - Nest a focusable component, for example, **\<Button>**, at the outer layer of each item.
 
 ## Why is the click event not triggered for the focused component upon the press of the Enter key after keyboard navigation?
@@ -139,6 +140,8 @@ Currently, the menu is displayed when the bound component is clicked or long pre
 
 Applicable to: OpenHarmony 3.2 Beta5 (API version 9)
 
+**Solution**
+
 Set the **focusable** attribute of the **\<TextInput>** component to **false**. In this way, the component is not focusable and therefore will not bring up the keyboard.
 
 ## How do I implement the slide up and slide down effect for page transition?
@@ -191,7 +194,7 @@ struct PageTransition2 {
 
 **Reference**
 
-[Page Transition Animation](../ui/arkts-page-transition-animation.md)
+[Page Transition](../reference/arkui-ts/ts-page-transition-animation.md)
 
 ## How do I configure custom components to slide in and out from the bottom?
 
@@ -199,7 +202,7 @@ Applicable to: OpenHarmony 3.2 Beta5 (API version 9)
 
 **Symptom**
 
-Custom components A and B need to deliver the following effects: When custom component A, displayed at the bottom of the screen by default, is touched, it is hidden, and custom component B slides in from the bottom. When custom component B is touched, it is hidden, and custom component A slides in from the bottom.
+Custom components A and B need to deliver the following effects: When custom component A, displayed at the bottom of the screen by default, is touched, it is hidden, and custom component B slides in from the bottom; when custom component B is touched, it is hidden, and custom component A slides in from the bottom.
 
 **Solution**
 
@@ -266,4 +269,4 @@ struct ComponentChild2 {
 
 **Reference**
 
-[Transition Animation Within the Component](../ui/arkts-transition-animation-within-component.md)
+[Enter/Exit Transition](../ui/arkts-enter-exit-transition.md)

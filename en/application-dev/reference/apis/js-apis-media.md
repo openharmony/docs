@@ -310,19 +310,18 @@ Enumerates the media description keys.
 
 **System capability**: SystemCapability.Multimedia.Media.Core
 
-| Name                         | Value             | Description                                                        |
-| ----------------------------- | --------------- | ------------------------------------------------------------ |
-| MD_KEY_TRACK_INDEX            | 'track_index'   | Track index, which is a number.                      |
-| MD_KEY_TRACK_TYPE             | 'track_type'    | Track type, which is a number. For details, see [MediaType](#mediatype8).|
-| MD_KEY_CODEC_MIME             | 'codec_mime'    | Codec MIME type, which is a string.                |
-| MD_KEY_DURATION               | 'duration'      | Media duration, which is a number, in units of ms.    |
-| MD_KEY_BITRATE                | 'bitrate'       | Bit rate, which is a number, in units of bit/s.   |
-| MD_KEY_WIDTH                  | 'width'         | Video width, which is a number, in units of pixel.    |
-| MD_KEY_HEIGHT                 | 'height'        | Video height, which is a number, in units of pixel.    |
-| MD_KEY_FRAME_RATE             | 'frame_rate'    | Video frame rate, which is a number, in units of 100 fps.|
-| MD_KEY_AUD_CHANNEL_COUNT      | 'channel_count' | Number of audio channels, which is a number.                        |
-| MD_KEY_AUD_SAMPLE_RATE        | 'sample_rate'   | Sampling rate, which is a number, in units of Hz.      |
-| MD_KEY_LANGUAGE<sup>10+</sup> | "language"      | Language, which is a string.                      |
+| Name                    | Value             | Description                                                        |
+| ------------------------ | --------------- | ------------------------------------------------------------ |
+| MD_KEY_TRACK_INDEX       | 'track_index'   | Track index, which is a number.                      |
+| MD_KEY_TRACK_TYPE        | 'track_type'    | Track type, which is a number. For details, see [MediaType](#mediatype8).|
+| MD_KEY_CODEC_MIME        | 'codec_mime'    | Codec MIME type, which is a string.                |
+| MD_KEY_DURATION          | 'duration'      | Media duration, which is a number, in units of ms.    |
+| MD_KEY_BITRATE           | 'bitrate'       | Bit rate, which is a number, in units of bit/s.   |
+| MD_KEY_WIDTH             | 'width'         | Video width, which is a number, in units of pixel.    |
+| MD_KEY_HEIGHT            | 'height'        | Video height, which is a number, in units of pixel.    |
+| MD_KEY_FRAME_RATE        | 'frame_rate'    | Video frame rate, which is a number, in units of 100 fps.|
+| MD_KEY_AUD_CHANNEL_COUNT | 'channel_count' | Number of audio channels, which is a number.                        |
+| MD_KEY_AUD_SAMPLE_RATE   | 'sample_rate'   | Sampling rate, which is a number, in units of Hz.      |
 
 ## BufferingInfoType<sup>8+</sup>
 
@@ -1001,124 +1000,6 @@ for (let i = 0; i < arrayDescription.length; i++) {
 }
 ```
 
-### selectTrack<sup>10+</sup><a name=avplayer_selecttrack></a>
-
-selectTrack(index: number): void
-
-Selects an audio track. This API can be called only when the AVPlayer is in the prepared state. You can listen for the [trackChange event](#trackchange_on) to determine whether the API calling takes effect.
-
-**System capability**: SystemCapability.Multimedia.Media.AVPlayer
-
-**Parameters**
-
-| Name| Type  | Mandatory| Description                                                        |
-| ------ | ------ | ---- | ------------------------------------------------------------ |
-| index  | number | Yes  | Track ID, which can be obtained by calling [getTrackDescription](#avplayer_gettrackdescription).|
-
-**Example**
-
-```js
-let index = 2
-avPlayer.selectTrack(index)
-```
-
-### deselectTrack<sup>10+</sup><a name=avplayer_deselecttrack></a>
-
-deselectTrack(index: number): void
-
-Deselects an audio track. The default audio track will be used after the audio track is deselected. This API can be called only when the AVPlayer is in the prepared state. You can listen for the [trackChange event](#trackchange_on) to determine whether the API calling takes effect.
-
-**System capability**: SystemCapability.Multimedia.Media.AVPlayer
-
-**Parameters**
-
-| Name| Type  | Mandatory| Description                                                        |
-| ------ | ------ | ---- | ------------------------------------------------------------ |
-| index  | number | Yes  | Track ID. You can obtain the ID of the current track by calling [getCurrentTrack](#avplayer_getcurrenttrack).|
-
-**Example**
-
-```js
-let index = 2
-avPlayer.deselectTrack(index)
-```
-
-### getCurrentTrack<sup>10+</sup><a name=avplayer_getcurrenttrack></a>
-
-getCurrentTrack(trackType: MediaType, callback: AsyncCallback\<number>): void
-
-Obtains the ID of the current track. This API uses an asynchronous callback to return the result. It can be called only when the AVPlayer is in the prepared, playing, paused, or completed state.
-
-**System capability**: SystemCapability.Multimedia.Media.AVPlayer
-
-**Parameters**
-
-| Name   | Type                   | Mandatory| Description                                                        |
-| --------- | ----------------------- | ---- | ------------------------------------------------------------ |
-| trackType | [MediaType](#mediatype) | Yes  | Enumerates the media types.                                              |
-| callback  | AsyncCallback\<number>  | Yes  | Callback used to return the current track. If **-1** is returned, no track for the specified media type exists.|
-
-**Error codes**
-
-For details about the error codes, see [Media Error Codes](../errorcodes/errorcode-media.md).
-
-| ID| Error Message                                  |
-| -------- | ------------------------------------------ |
-| 5400102  | Operation not allowed. Return by callback. |
-
-**Example**
-
-```js
-let mediaType = media.MediaType.MEDIA_TYPE_AUD;
-let trackIndex = null;
-
-avPlayer.getCurrentTrack(mediaType, (err, index) => {
-  if (err == null) {
-    console.info('getCurrentTrack success');
-    trackIndex = index;
-  } else {
-    console.error('getCurrentTrack failed and error is ' + err.message);
-  }
-});
-```
-
-### getCurrentTrack<sup>10+</sup>
-
-getCurrentTrack(trackType: MediaType): Promise\<number>
-
-Obtains the ID of the current track. This API uses a promise to return the result. It can be called only when the AVPlayer is in the prepared, playing, paused, or completed state.
-
-**System capability**: SystemCapability.Multimedia.Media.AVPlayer
-
-**Return value**
-
-| Type            | Description                                                        |
-| ---------------- | ------------------------------------------------------------ |
-| trackType        | [MediaType](#mediatype)                                      |
-| Promise\<number>| Promise used to return the current track. If **-1** is returned, no track for the specified media type exists.|
-
-**Error codes**
-
-For details about the error codes, see [Media Error Codes](../errorcodes/errorcode-media.md).
-
-| ID| Error Message                                 |
-| -------- | ----------------------------------------- |
-| 5400102  | Operation not allowed. Return by promise. |
-
-**Example**
-
-```js
-let mediaType = media.MediaType.MEDIA_TYPE_AUD;
-let trackIndex = null;
-
-avPlayer.getCurrentTrack(mediaType).then((index) => {
-  console.info('getCurrentTrack success');
-  trackIndex = index;
-}).catch((err) => {
-  console.error('getCurrentTrack failed and catch error is ' + err.message);
-});
-```
-
 ### seek<sup>9+</sup><a name=avplayer_seek></a>
 
 seek(timeMs: number, mode?:SeekMode): void
@@ -1725,49 +1606,6 @@ Unsubscribes from the audio interruption event.
 avPlayer.off('audioInterrupt')
 ```
 
-### on('trackChange')<sup>10+</sup><a name = trackchange_on></a>
-
-on(type: 'trackChange', callback: (index: number, isSelect: boolean) => void): void;
-
-Subscribes to track changes, which are triggered by calling **selectTrack** or **deselectTrack**.
-
-**System capability**: SystemCapability.Multimedia.Media.AVPlayer
-
-**Parameters**
-
-| Name  | Type    | Mandatory| Description                                                 |
-| -------- | -------- | ---- | ----------------------------------------------------- |
-| type     | string   | Yes  | Event type, which is **'trackChange'** in this case.|
-| callback | function | Yes  | Callback invoked when the event is triggered.                           |
-
-**Example**
-
-```js
-avPlayer.on('trackChange', (index: number, isSelect: boolean) => {
-  console.info('trackChange success, and index is:' + index + ', isSelect is :' + isSelect)
-})
-```
-
-### off('trackChange')<sup>10+</sup><a name = trackchange_off></a>
-
-off(type: 'trackChange'): void
-
-Unsubscribes from track changes
-
-**System capability**: SystemCapability.Multimedia.Media.AVPlayer
-
-**Parameters**
-
-| Name| Type  | Mandatory| Description                                                     |
-| ------ | ------ | ---- | --------------------------------------------------------- |
-| type   | string | Yes  | Event type, which is **'trackChange'** in this case.|
-
-**Example**
-
-```js
-avPlayer.off('trackChange')
-```
-
 ## AVPlayerState<sup>9+</sup><a name = avplayerstate></a>
 
 Enumerates the states of the [AVPlayer](#avplayer9). Your application can proactively obtain the AVPlayer state through the **state** attribute or obtain the reported AVPlayer state by subscribing to the [stateChange](#stateChange_on) event. For details about the rules for state transition, see [Audio Playback](../../media/using-avplayer-for-playback.md).
@@ -1943,7 +1781,7 @@ let AVRecorderConfig = {
   audioSourceType : media.AudioSourceType.AUDIO_SOURCE_TYPE_MIC,
   videoSourceType : media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_YUV,
   profile : AVRecorderProfile,
-  url : 'fd://', // Before passing in an FD to this parameter, the file must be created by the caller and granted with the read and write permissions. Example value: eg.fd://45.
+  url : 'fd://', // Before passing in an FD to this parameter, the file must be created by the caller and granted with the read and write permissions. Example value: fd://45.
   rotation: 0, // The value can be 0, 90, 180, or 270. If any other value is used, prepare() reports an error.
   location : { latitude : 30, longitude : 130 }
 }
@@ -2014,7 +1852,7 @@ let AVRecorderConfig = {
   audioSourceType : media.AudioSourceType.AUDIO_SOURCE_TYPE_MIC,
   videoSourceType : media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_YUV,
   profile : AVRecorderProfile,
-  url : 'fd://',  // Before passing in an FD to this parameter, the file must be created by the caller and granted with the read and write permissions. Example value: eg.fd://45.
+  url : 'fd://',  // Before passing in an FD to this parameter, the file must be created by the caller and granted with the read and write permissions. Example value: fd://45.
   rotation: 0, // The value can be 0, 90, 180, or 270. If any other value is used, prepare() reports an error.
   location : { latitude : 30, longitude : 130 }
 }
@@ -2680,6 +2518,8 @@ Enumerates the AVRecorder states. You can obtain the state through the **state**
 
 Describes the audio and video recording parameters.
 
+The **audioSourceType** and **videoSourceType** parameters are used to distinguish audio-only recording, video-only recording, and audio and video recording. For audio-only recording, set only **audioSourceType**. For video-only recording, set only **videoSourceType**. For audio and video recording, set both **audioSourceType** and **videoSourceType**.
+
 **System capability**: SystemCapability.Multimedia.Media.AVRecorder
 
 | Name           | Type                                    | Mandatory| Description                                                        |
@@ -2690,8 +2530,6 @@ Describes the audio and video recording parameters.
 | url             | string                                   | Yes  | Recording output URL: fd://xx (fd number).<br>![img](figures/en-us_image_url.png)<br>This parameter is mandatory.|
 | rotation        | number                                   | No  | Rotation angle of the recorded video. The value can only be 0 (default), 90, 180, or 270.      |
 | location        | [Location](#location)                    | No  | Geographical location of the recorded video. By default, the geographical location information is not recorded.                    |
-
-The **audioSourceType** and **videoSourceType** parameters are used to distinguish audio-only recording, video-only recording, and audio and video recording. For audio-only recording, set only **audioSourceType**. For video-only recording, set only **videoSourceType**. For audio and video recording, set both **audioSourceType** and **videoSourceType**.
 
 ## AVRecorderProfile<sup>9+</sup>
 
@@ -3517,13 +3355,15 @@ Enumerates the video recording states. You can obtain the state through the **st
 
 Describes the video recording parameters.
 
+The **audioSourceType** and **videoSourceType** parameters are used to distinguish video-only recording from audio and video recording. (For audio-only recording recording, use **[AVRecorder](#avrecorder9)** or **[AudioRecorder](#audiorecorderdeprecated)**.) For video-only recording, set only **videoSourceType**. For audio and video recording, set both **audioSourceType** and **videoSourceType**.
+
 **System capability**: SystemCapability.Multimedia.Media.VideoRecorder
 
 **System API**: This is a system API.
 
 | Name           | Type                                          | Mandatory| Description                                                        |
 | --------------- | ---------------------------------------------- | ---- | ------------------------------------------------------------ |
-| audioSourceType | [AudioSourceType](#audiosourcetype9)           | Yes  | Type of the audio source for video recording.                                      |
+| audioSourceType | [AudioSourceType](#audiosourcetype9)           | No  | Type of the audio source for video recording. This parameter is mandatory for audio recording.                     |
 | videoSourceType | [VideoSourceType](#videosourcetype9)           | Yes  | Type of the video source for video recording.                                      |
 | profile         | [VideoRecorderProfile](#videorecorderprofile9) | Yes  | Video recording profile.                                         |
 | rotation        | number                                         | No  | Rotation angle of the recorded video. The value can only be 0 (default), 90, 180, or 270.      |
@@ -3540,10 +3380,10 @@ Describes the video recording profile.
 
 | Name            | Type                                        | Mandatory| Description            |
 | ---------------- | -------------------------------------------- | ---- | ---------------- |
-| audioBitrate     | number                                       | Yes  | Audio encoding bit rate.|
-| audioChannels    | number                                       | Yes  | Number of audio channels.|
-| audioCodec       | [CodecMimeType](#codecmimetype8)             | Yes  | Audio encoding format.  |
-| audioSampleRate  | number                                       | Yes  | Audio sampling rate.    |
+| audioBitrate     | number                                       | No  | Audio encoding bit rate. This parameter is mandatory for audio recording.|
+| audioChannels    | number                                       | No  | Number of audio channels. This parameter is mandatory for audio recording.|
+| audioCodec       | [CodecMimeType](#codecmimetype8)             | No  | Audio encoding format. This parameter is mandatory for audio recording.  |
+| audioSampleRate  | number                                       | No  | Audio sampling rate. This parameter is mandatory for audio recording.    |
 | fileFormat       | [ContainerFormatType](#containerformattype8) | Yes  | Container format of a file.|
 | videoBitrate     | number                                       | Yes  | Video encoding bit rate.|
 | videoCodec       | [CodecMimeType](#codecmimetype8)             | Yes  | Video encoding format.  |

@@ -31,6 +31,7 @@
     - [开发音频通话功能](audio-call-development.md)
   - [视频播放](video-playback.md)
   - [视频录制](video-recording.md)
+  - [屏幕录制](avscreen-capture.md)
   - 音视频编解码
     - [获取支持的编解码能力](obtain-supported-codecs.md)
     - [音频编码](audio-encoding.md)
@@ -61,7 +62,8 @@
   - 相机最佳实践
     - [拍照实现方案](camera-shooting-case.md)
     - [录像实现方案](camera-recording-case.md)
-    - [性能提升方案（仅对系统应用开放）](camera-preformance-imporvement.md)
+    - [人像模式拍照实现方案](camera-mode.md)
+    - [性能提升方案（仅对系统应用开放）](camera-performance-improvement.md)
 - 图片
   - [图片开发概述](image-overview.md)
   - [图片解码](image-decoding.md)

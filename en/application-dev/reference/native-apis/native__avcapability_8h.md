@@ -37,8 +37,8 @@ The **native_avcapability.h** file declares the native APIs used to query the co
 
 | Name| Description| 
 | -------- | -------- |
-| [OH_BitrateMode](_a_v_capability.md#oh_bitratemode) { **BITRATE_MODE_CBR** = 0, **BITRATE_MODE_VBR** = 1, **BITRATE_MODE_CQ** = 2 } | Enumerates the bit rate modes of an encoder.| 
-| [OH_AVCodecCategory](_a_v_capability.md#oh_avcodeccategory) { **HARDWARE** = 0, **SOFTWARE** } | Enumerates the codec categories.| 
+| [OH_BitrateMode](_a_v_capability.md#oh_bitratemode) {<br>&nbsp;&nbsp;&nbsp;&nbsp;**BITRATE_MODE_CBR** = 0,<br>&nbsp;&nbsp;&nbsp;&nbsp;**BITRATE_MODE_VBR** = 1,<br>&nbsp;&nbsp;&nbsp;&nbsp;**BITRATE_MODE_CQ** = 2<br>} | Enumerates the bit rate modes of an encoder.| 
+| [OH_AVCodecCategory](_a_v_capability.md#oh_avcodeccategory) {<br>&nbsp;&nbsp;&nbsp;&nbsp;**HARDWARE** = 0,<br>&nbsp;&nbsp;&nbsp;&nbsp;**SOFTWARE**<br>} | Enumerates the codec categories.| 
 
 
 ### Functions

@@ -74,7 +74,6 @@ Creates an **AudioRenderer** instance. This API uses an asynchronous callback to
 **Example**
 
 ```js
-import featureAbility from '@ohos.ability.featureAbility';
 import fs from '@ohos.file.fs';
 import audio from '@ohos.multimedia.audio';
 
@@ -129,7 +128,6 @@ Creates an **AudioRenderer** instance. This API uses a promise to return the res
 **Example**
 
 ```js
-import featureAbility from '@ohos.ability.featureAbility';
 import fs from '@ohos.file.fs';
 import audio from '@ohos.multimedia.audio';
 
@@ -534,7 +532,6 @@ Enumerates the audio content types.
 | CONTENT_TYPE_MOVIE                 | 3      | Movie.    |
 | CONTENT_TYPE_SONIFICATION          | 4      | Notification tone.  |
 | CONTENT_TYPE_RINGTONE<sup>8+</sup> | 5      | Ringtone.    |
-| CONTENT_TYPE_ULTRASONIC<sup>10+</sup>| 9      | Ultrasonic.<br>This is a system API.|
 ## StreamUsage
 
 Enumerates the audio stream usage.
@@ -544,13 +541,25 @@ Enumerates the audio stream usage.
 | Name                                     |  Value   | Description      |
 | ------------------------------------------| ------ | ---------- |
 | STREAM_USAGE_UNKNOWN                      | 0      | Unknown usage.|
-| STREAM_USAGE_MEDIA                        | 1      | Used for media.    |
-| STREAM_USAGE_VOICE_COMMUNICATION          | 2      | Used for voice communication.| 
-| STREAM_USAGE_VOICE_ASSISTANT<sup>9+</sup> | 3      | Used for voice assistant.|
-| STREAM_USAGE_ALARM<sup>10+</sup>          | 4      | Used for alarming.    |
-| STREAM_USAGE_NOTIFICATION_RINGTONE        | 6      | Used for notification.|
-| STREAM_USAGE_ACCESSIBILITY<sup>10+</sup>  | 8     | Used for accessibility.  |
-| STREAM_USAGE_SYSTEM<sup>10+</sup>         | 9     | System tone (such as screen lock or keypad tone).<br>This is a system API.|
+| STREAM_USAGE_MEDIA                        | 1      | Media.    |
+| STREAM_USAGE_MUSIC<sup>10+</sup>          | 1      | Music.    |
+| STREAM_USAGE_VOICE_COMMUNICATION          | 2      | Voice communication.| 
+| STREAM_USAGE_VOICE_ASSISTANT<sup>9+</sup> | 3      | Voice assistant.|
+| STREAM_USAGE_ALARM<sup>10+</sup>          | 4      | Alarming.    |
+| STREAM_USAGE_VOICE_MESSAGE<sup>10+</sup>  | 5      | Voice message.|
+| STREAM_USAGE_NOTIFICATION_RINGTONE        | 6      | Notification tone.|
+| STREAM_USAGE_RINGTONE<sup>10+</sup>       | 6      | Ringtone.    |
+| STREAM_USAGE_NOTIFICATION<sup>10+</sup>   | 7      | Notification.    |
+| STREAM_USAGE_ACCESSIBILITY<sup>10+</sup>  | 8      | Accessibility.  |
+| STREAM_USAGE_SYSTEM<sup>10+</sup>         | 9      | System tone (such as screen lock sound effect or key tone).<br>This is a system API.|
+| STREAM_USAGE_MOVIE<sup>10+</sup>          | 10     | Movie or video.|
+| STREAM_USAGE_GAME<sup>10+</sup>           | 11     | Game sound effect. |
+| STREAM_USAGE_AUDIOBOOK<sup>10+</sup>      | 12     | Audiobook. |
+| STREAM_USAGE_NAVIGATION<sup>10+</sup>     | 13     | Navigation.    |
+| STREAM_USAGE_DTMF<sup>10+</sup>           | 14     | Dial tone.<br>This is a system API.|
+| STREAM_USAGE_ENFORCED_TONE<sup>10+</sup>  | 15     | Forcible tone (such as camera shutter sound effect).<br>This is a system API.|
+| STREAM_USAGE_ULTRASONIC<sup>10+</sup>     | 16     | Ultrasonic.<br>This is a system API.|
+
 
 ## InterruptRequestType<sup>9+</sup>
 
@@ -661,7 +670,7 @@ Describes audio renderer information.
 
 | Name         | Type                       | Mandatory | Description            |
 | ------------- | --------------------------- | ---- | ---------------- |
-| content       | [ContentType](#contenttype) | Yes  | Audio content type.      |
+| content       | [ContentType](#contenttype) | No  | Audio content type.<br>This parameter is mandatory in API versions 8 and 9 and optional since API version 10.|
 | usage         | [StreamUsage](#streamusage) | Yes  | Audio stream usage.|
 | rendererFlags | number                      | Yes  | Audio renderer flags.|
 
@@ -682,12 +691,22 @@ Describes the audio interruption result.
 
 Describes audio renderer configurations.
 
-**System capability**: SystemCapability.Multimedia.Audio.Renderer
-
 | Name        | Type                                    | Mandatory | Description            |
 | ------------ | ---------------------------------------- | ---- | ---------------- |
-| streamInfo   | [AudioStreamInfo](#audiostreaminfo8)     | Yes  | Audio stream information.|
-| rendererInfo | [AudioRendererInfo](#audiorendererinfo8) | Yes  | Audio renderer information.|
+| streamInfo   | [AudioStreamInfo](#audiostreaminfo8)     | Yes  | Audio stream information.<br>**System capability**: SystemCapability.Multimedia.Audio.Renderer|
+| rendererInfo | [AudioRendererInfo](#audiorendererinfo8) | Yes  | Audio renderer information.<br>**System capability**: SystemCapability.Multimedia.Audio.Renderer|
+| privacyType<sup>10+</sup> | [AudioPrivacyType](#audioprivacytype) | No| Whether the audio stream can be recorded by other applications. The default value is **0**.<br>**System capability**: SystemCapability.Multimedia.Audio.PlaybackCapture|
+
+## AudioPrivacyType<sup>10+</sup><a name="audioprivacytype"></a>
+
+Enumerates whether an audio stream can be recorded by other applications.
+
+**System capability**: SystemCapability.Multimedia.Audio.PlaybackCapture
+
+| Name                | Value  | Description                            |
+| -------------------- | ---- | -------------------------------- |
+| PRIVACY_TYPE_PUBLIC  | 0    | The audio stream can be recorded by other applications.  |
+| PRIVACY_TYPE_PRIVATE | 1    | The audio stream cannot be recorded by other applications.|
 
 ## InterruptEvent<sup>9+</sup>
 
@@ -779,21 +798,20 @@ Enumerates the device connection statuses.
 
 **System capability**: SystemCapability.Multimedia.Audio.Device
 
-| Name      |  Value    | Description          |
-| :--------- | :----- | :------------- |
-| CONNECT    | 0      | Connected.    |
-| DISCONNECT | 1      | Disconnected.|
+| Name      | Value  | Description          |
+| :--------- | :--- | :------------- |
+| CONNECT    | 0    | Connected.    |
+| DISCONNECT | 1    | Disconnected.|
 
 ## AudioCapturerOptions<sup>8+</sup>
 
 Describes audio capturer configurations.
 
-**System capability**: SystemCapability.Multimedia.Audio.Capturer
-
-| Name        | Type                                   | Mandatory| Description            |
-| ------------ | --------------------------------------- | ---- | ---------------- |
-| streamInfo   | [AudioStreamInfo](#audiostreaminfo8)    | Yes  | Audio stream information.|
-| capturerInfo | [AudioCapturerInfo](#audiocapturerinfo) | Yes  | Audio capturer information.|
+| Name                               | Type                                                     | Mandatory| Description                                                        |
+| ----------------------------------- | --------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| streamInfo                          | [AudioStreamInfo](#audiostreaminfo8)                      | Yes  | Audio stream information.<br>**System capability**: SystemCapability.Multimedia.Audio.Capturer  |
+| capturerInfo                        | [AudioCapturerInfo](#audiocapturerinfo)                   | Yes  | Audio capturer information.<br>**System capability**: SystemCapability.Multimedia.Audio.Capturer       |
+| playbackCaptureConfig<sup>10+</sup> | [AudioPlaybackCaptureConfig](#audioplaybackcaptureconfig) | No  | Configuration of internal audio recording.<br>**System capability**: SystemCapability.Multimedia.Audio.PlaybackCapture|
 
 ## AudioCapturerInfo<sup>8+</sup><a name="audiocapturerinfo"></a>
 
@@ -810,14 +828,38 @@ Describes audio capturer information.
 
 Enumerates the audio source types.
 
-**System capability**: SystemCapability.Multimedia.Audio.Core
-
 | Name                                        |  Value    | Description                  |
 | :------------------------------------------- | :----- | :--------------------- |
-| SOURCE_TYPE_INVALID                          | -1     | Invalid audio source.        |
-| SOURCE_TYPE_MIC                              | 0      | Mic source.           |
-| SOURCE_TYPE_VOICE_RECOGNITION<sup>9+</sup>   | 1      | Voice recognition source.       |
-| SOURCE_TYPE_VOICE_COMMUNICATION              | 7      | Voice communication source.|
+| SOURCE_TYPE_INVALID                          | -1     | Invalid audio source.<br>**System capability**: SystemCapability.Multimedia.Audio.Core |
+| SOURCE_TYPE_MIC                              | 0      | Mic source.<br>**System capability**: SystemCapability.Multimedia.Audio.Core|
+| SOURCE_TYPE_VOICE_RECOGNITION<sup>9+</sup>   | 1      | Voice recognition source.<br>**System capability**: SystemCapability.Multimedia.Audio.Core |
+| SOURCE_TYPE_PLAYBACK_CAPTURE<sup>10+</sup>   | 2 | Internal audio recording source.<br>**System capability**: SystemCapability.Multimedia.Audio.PlaybackCapture|
+| SOURCE_TYPE_WAKEUP <sup>10+</sup>            | 3 | Audio recording source in voice wakeup scenarios.<br>**System capability**: SystemCapability.Multimedia.Audio.Core<br>**Required permissions**: ohos.permission.MANAGE_INTELLIGENT_VOICE <br> This is a system API.|
+| SOURCE_TYPE_VOICE_COMMUNICATION              | 7      | Voice communication source.<br>**System capability**: SystemCapability.Multimedia.Audio.Core|
+
+## AudioPlaybackCaptureConfig<sup>10+</sup><a name="audioplaybackcaptureconfig"></a>
+
+Defines the configuration of internal audio recording.
+
+**System capability**: SystemCapability.Multimedia.Audio.PlaybackCapture 
+
+| Name         | Type                                         | Mandatory| Description                            |
+| ------------- | --------------------------------------------- | ---- | -------------------------------- |
+| filterOptions | [CaptureFilterOptions](#capturefilteroptions) | Yes  | Options for filtering the played audio streams to be recorded.|
+
+## CaptureFilterOptions<sup>10+</sup><a name="capturefilteroptions"></a>
+
+Defines the options for filtering the played audio streams to be recorded.
+
+**Required permissions**: ohos.permission.CAPTURE_VOICE_DOWNLINK_AUDIO
+
+This permission is required when an application wants to record a played audio stream for which **StreamUsage** is set to **SOURCE_TYPE_VOICE_COMMUNICATION**.
+
+**System capability**: SystemCapability.Multimedia.Audio.PlaybackCapture 
+
+| Name  | Type                              | Mandatory| Description                                                        |
+| ------ | ---------------------------------- | ---- | ------------------------------------------------------------ |
+| usages | Array<[StreamUsage](#streamusage)> | Yes  | [StreamUsage](#streamusage) of the audio stream to be recorded. You can specify zero or more stream usages. If the array is empty, the audio stream for which **StreamUsage** is **STREAM_USAGE_MEDIA** is recorded by default.|
 
 ## AudioScene<sup>8+</sup><a name="audioscene"></a>
 
@@ -831,6 +873,17 @@ Enumerates the audio scenes.
 | AUDIO_SCENE_RINGING    | 1      | Ringing audio scene.<br>This is a system API.|
 | AUDIO_SCENE_PHONE_CALL | 2      | Phone call audio scene.<br>This is a system API.|
 | AUDIO_SCENE_VOICE_CHAT | 3      | Voice chat audio scene.                               |
+
+## VolumeAdjustType<sup>10+</sup>
+
+Enumerates the volume adjustment types.
+
+**System capability**: SystemCapability.Multimedia.Audio.Volume
+
+| Name                  |  Value    | Description                                         |
+| :--------------------- | :----- | :-------------------------------------------- |
+| VOLUME_UP              | 0      | Adjusts the volume upwards.<br>This is a system API.  |
+| VOLUME_DOWN            | 1      | Adjusts the volume downwards.<br>This is a system API.  |
 
 ## AudioManager
 
@@ -2013,13 +2066,13 @@ audioManager.isMicrophoneMute().then((value) => {
 });
 ```
 
-### on('volumeChange')<sup>9+</sup>
+### on('volumeChange')<sup>(deprecated)</sup>
 
 on(type: 'volumeChange', callback: Callback\<VolumeEvent>): void
 
 > **NOTE**
 >
-> You are advised to use [on('volumeChange')](#onvolumechange9) in **AudioVolumeManager**.
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [on('volumeChange')](#onvolumechange9) in **AudioVolumeManager**.
 
 Subscribes to system volume change events.
 
@@ -3005,6 +3058,280 @@ audioVolumeGroupManager.on('micStateChange', (micStateChange) => {
 });
 ```
 
+### isVolumeUnadjustable<sup>10+</sup>
+
+isVolumeUnadjustable(): boolean
+
+Checks whether the fixed volume mode is enabled. When the fixed volume mode is enabled, the volume cannot be adjusted. This API returns the result synchronously.
+
+**System capability**: SystemCapability.Multimedia.Audio.Volume
+
+**Return value**
+
+| Type                  | Description                                                  |
+| ---------------------- | ------------------------------------------------------ |
+| boolean            | Returns the status of the fixed volume mode. The value **true** means that the fixed volume mode is enabled, and **false** means the opposite.|
+
+**Example**
+
+```js
+let volumeAdjustSwitch = audioVolumeGroupManager.isVolumeUnadjustable();
+console.info(`Whether it is volume unadjustable: ${volumeAdjustSwitch}.`);
+```
+
+### adjustVolumeByStep<sup>10+</sup>
+
+adjustVolumeByStep(adjustType: VolumeAdjustType, callback: AsyncCallback&lt;void&gt;): void
+
+Adjusts the volume of the stream with the highest priority by step. This API uses an asynchronous callback to return the result.
+
+**Required permissions**: ohos.permission.ACCESS_NOTIFICATION_POLICY
+
+This permission is required only for muting or unmuting the ringer when **volumeType** is set to **AudioVolumeType.RINGTONE**.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Audio.Volume
+
+**Parameters**
+
+| Name    | Type                               | Mandatory| Description                                                    |
+| ---------- | ----------------------------------- | ---- | -------------------------------------------------------- |
+| adjustType | [VolumeAdjustType](#volumeadjusttype10) | Yes  | Volume adjustment type.                                            |
+| callback   | AsyncCallback&lt;void&gt;           | Yes  | Callback used to return the result.                                  |
+
+**Error codes**
+
+For details about the error codes, see [Audio Error Codes](../errorcodes/errorcode-audio.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 6800101 | Invalid parameter error. Return by callback.                     |
+| 6800301 | System error. Return by callback.                                |
+
+**Example**
+
+```js
+audioVolumeGroupManager.adjustVolumeByStep(audio.VolumeAdjustType.VOLUME_UP, (err) => {
+  if (err) {
+    console.error(`Failed to adjust the volume by step. ${err}`);
+    return;
+  } else {
+    console.info('Success to adjust the volume by step.');
+  }
+});
+```
+### adjustVolumeByStep<sup>10+</sup>
+
+adjustVolumeByStep(adjustType: VolumeAdjustType): Promise&lt;void&gt;
+
+Adjusts the volume of the stream with the highest priority by step. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.ACCESS_NOTIFICATION_POLICY
+
+This permission is required only for muting or unmuting the ringer when **volumeType** is set to **AudioVolumeType.RINGTONE**.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Audio.Volume
+
+**Parameters**
+
+| Name    | Type                               | Mandatory| Description                                                    |
+| ---------- | ----------------------------------- | ---- | -------------------------------------------------------- |
+| adjustType | [VolumeAdjustType](#volumeadjusttype10) | Yes  | Volume adjustment type.                                            |
+
+**Return value**
+
+| Type               | Description                         |
+| ------------------- | ----------------------------- |
+| Promise&lt;void&gt; | Promise used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Audio Error Codes](../errorcodes/errorcode-audio.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 6800101 | Invalid parameter error. Return by promise.                     |
+| 6800301 | System error. Return by promise.                                |
+
+**Example**
+
+```js
+audioVolumeGroupManager.adjustVolumeByStep(audio.VolumeAdjustType.VOLUME_UP).then((value) => {
+  console.info('Success to adjust the volume by step.');
+}).catch((error) => {
+  console.error('Fail to adjust the volume by step.');
+});
+```
+
+### adjustSystemVolumeByStep<sup>10+</sup>
+
+adjustSystemVolumeByStep(volumeType: AudioVolumeType, adjustType: VolumeAdjustType, callback: AsyncCallback&lt;void&gt;): void
+
+Adjusts the volume of a stream by step. This API uses an asynchronous callback to return the result.
+
+**Required permissions**: ohos.permission.ACCESS_NOTIFICATION_POLICY
+
+This permission is required only for muting or unmuting the ringer when **volumeType** is set to **AudioVolumeType.RINGTONE**.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Audio.Volume
+
+**Parameters**
+
+| Name    | Type                               | Mandatory| Description                                                    |
+| ---------- | ----------------------------------- | ---- | -------------------------------------------------------- |
+| volumeType | [AudioVolumeType](#audiovolumetype) | Yes  | Audio stream type.                                            |
+| adjustType | [VolumeAdjustType](#volumeadjusttype10) | Yes  | Volume adjustment type.                                      |
+| callback   | AsyncCallback&lt;void&gt;           | Yes  | Callback used to return the result.                                  |
+
+**Error codes**
+
+For details about the error codes, see [Audio Error Codes](../errorcodes/errorcode-audio.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 6800101 | Invalid parameter error. Return by callback.                     |
+| 6800301 | System error. Return by callback.                                |
+
+**Example**
+
+```js
+audioVolumeGroupManager.adjustSystemVolumeByStep(audio.AudioVolumeType.MEDIA, audio.VolumeAdjustType.VOLUME_UP, (err) => {
+  if (err) {
+    console.error(`Failed to adjust the system volume by step ${err}`);
+  } else {
+    console.info('Success to adjust the system volume by step.');
+  }
+});
+```
+### adjustSystemVolumeByStep<sup>10+</sup>
+
+adjustSystemVolumeByStep(volumeType: AudioVolumeType, adjustType: VolumeAdjustType): Promise&lt;void&gt;
+
+Adjusts the volume of a stream by step. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.ACCESS_NOTIFICATION_POLICY
+
+This permission is required only for muting or unmuting the ringer when **volumeType** is set to **AudioVolumeType.RINGTONE**.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Audio.Volume
+
+**Parameters**
+
+| Name    | Type                               | Mandatory| Description                                                    |
+| ---------- | ----------------------------------- | ---- | -------------------------------------------------------- |
+| volumeType | [AudioVolumeType](#audiovolumetype) | Yes  | Audio stream type.                                            |
+| adjustType | [VolumeAdjustType](#volumeadjusttype10) | Yes  | Volume adjustment type.                                            |
+
+**Return value**
+
+| Type               | Description                         |
+| ------------------- | ----------------------------- |
+| Promise&lt;void&gt; | Promise used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Audio Error Codes](../errorcodes/errorcode-audio.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 6800101 | Invalid parameter error. Return by promise.                     |
+| 6800301 | System error. Return by promise.                                |
+
+**Example**
+
+```js
+audioVolumeGroupManager.adjustSystemVolumeByStep(audio.AudioVolumeType.MEDIA, audio.VolumeAdjustType.VOLUME_UP).then((value) => {
+  console.info('Success to adjust the system volume by step.');
+}).catch((error) => {
+  console.error('Fail to adjust the system volume by step.');
+});
+```
+
+### getSystemVolumeInDb<sup>10+</sup>
+
+getSystemVolumeInDb(volumeType: AudioVolumeType, volumeLevel: number, device: DeviceType, callback: AsyncCallback&lt;number&gt;): void
+
+Obtains the volume gain. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Multimedia.Audio.Volume
+
+**Parameters**
+
+| Name    | Type                               | Mandatory| Description                                                    |
+| ---------- | ----------------------------------- | ---- | -------------------------------------------------------- |
+| volumeType | [AudioVolumeType](#audiovolumetype) | Yes  | Audio stream type.                                            |
+| volumeLevel | number                         | Yes  | Volume level.                                              |
+| device     | [DeviceType](#devicetype)           | Yes  | Device type.                                              |
+| callback   | AsyncCallback&lt;number&gt;           | Yes  | Callback used to return the volume gain (in dB).                             |
+
+**Error codes**
+
+For details about the error codes, see [Audio Error Codes](../errorcodes/errorcode-audio.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 6800101 | Invalid parameter error. Return by callback.                     |
+| 6800301 | System error. Return by callback.                                |
+
+**Example**
+
+```js
+audioVolumeGroupManager.getSystemVolumeInDb(audio.AudioVolumeType.MEDIA, 3, audio.DeviceType.SPEAKER, (err, dB) => {
+  if (err) {
+    console.error(`Failed to get the volume DB. ${err}`);
+  } else {
+    console.info(`Success to get the volume DB. ${dB}`);
+  }
+});
+```
+### getSystemVolumeInDb<sup>10+</sup>
+
+getSystemVolumeInDb(volumeType: AudioVolumeType, volumeLevel: number, device: DeviceType): Promise&lt;number&gt;
+
+Obtains the volume gain. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Multimedia.Audio.Volume
+
+**Parameters**
+
+| Name    | Type                               | Mandatory| Description                                                    |
+| ---------- | ----------------------------------- | ---- | -------------------------------------------------------- |
+| volumeType | [AudioVolumeType](#audiovolumetype) | Yes  | Audio stream type.                                            |
+| volumeLevel | number                              | Yes  | Volume level.                                            |
+| device     | [DeviceType](#devicetype)           | Yes  | Device type.                                              |
+
+**Return value**
+
+| Type                 | Description                              |
+| --------------------- | ---------------------------------- |
+| Promise&lt;number&gt; | Promise used to return the volume gain (in dB).|
+
+**Error codes**
+
+For details about the error codes, see [Audio Error Codes](../errorcodes/errorcode-audio.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 6800101 | Invalid parameter error. Return by promise.                     |
+| 6800301 | System error. Return by promise.                                |
+
+**Example**
+
+```js
+audioVolumeGroupManager.getSystemVolumeInDb(audio.AudioVolumeType.MEDIA, 3, audio.DeviceType.SPEAKER).then((value) => {
+  console.info(`Success to get the volume DB. ${value}`);
+}).catch((error) => {
+  console.error(`Fail to adjust the system volume by step. ${error}`);
+});
+```
+
 ## AudioStreamManager<sup>9+</sup>
 
 Implements audio stream management. Before calling any API in **AudioStreamManager**, you must use [getStreamManager](#getstreammanager9) to obtain an **AudioStreamManager** instance.
@@ -3195,7 +3522,7 @@ async function getCurrentAudioCapturerInfoArray(){
 
 ### on('audioRendererChange')<sup>9+</sup>
 
-on(type: "audioRendererChange", callback: Callback&lt;AudioRendererChangeInfoArray&gt;): void
+on(type: 'audioRendererChange', callback: Callback&lt;AudioRendererChangeInfoArray&gt;): void
 
 Subscribes to audio renderer change events.
 
@@ -3245,7 +3572,7 @@ audioStreamManager.on('audioRendererChange',  (AudioRendererChangeInfoArray) => 
 
 ### off('audioRendererChange')<sup>9+</sup>
 
-off(type: "audioRendererChange"): void
+off(type: 'audioRendererChange'): void
 
 Unsubscribes from audio renderer change events.
 
@@ -3274,7 +3601,7 @@ console.info('######### RendererChange Off is called #########');
 
 ### on('audioCapturerChange')<sup>9+</sup>
 
-on(type: "audioCapturerChange", callback: Callback&lt;AudioCapturerChangeInfoArray&gt;): void
+on(type: 'audioCapturerChange', callback: Callback&lt;AudioCapturerChangeInfoArray&gt;): void
 
 Subscribes to audio capturer change events.
 
@@ -3323,7 +3650,7 @@ audioStreamManager.on('audioCapturerChange', (AudioCapturerChangeInfoArray) =>  
 
 ### off('audioCapturerChange')<sup>9+</sup>
 
-off(type: "audioCapturerChange"): void;
+off(type: 'audioCapturerChange'): void;
 
 Unsubscribes from audio capturer change events.
 
@@ -3408,7 +3735,7 @@ audioStreamManager.isActive(audio.AudioVolumeType.MEDIA).then((value) => {
 
 ### getAudioEffectInfoArray<sup>10+</sup>
 
-getAudioEffectInfoArray(content: ContentType, usage: StreamUsage, callback: AsyncCallback&lt;AudioEffectInfoArray&gt;): void
+getAudioEffectInfoArray(usage: StreamUsage, callback: AsyncCallback&lt;AudioEffectInfoArray&gt;): void
 
 Obtains information about the sound effect mode in use. This API uses an asynchronous callback to return the result.
 
@@ -3418,14 +3745,21 @@ Obtains information about the sound effect mode in use. This API uses an asynchr
 
 | Name   | Type                               | Mandatory    | Description                        |
 | -------- | ----------------------------------- | -------- | --------------------------- |
-| content  | [ContentType](#contenttype)                                    | Yes    |  Audio content type.                 |
 | usage    | [StreamUsage](#streamusage)                                    | Yes    |  Audio stream usage.               |
 | callback | AsyncCallback<[AudioEffectInfoArray](#audioeffectinfoarray10)> | Yes    |  Callback used to return the information obtained.|
+
+**Error codes**
+
+For details about the error codes, see [Audio Error Codes](../errorcodes/errorcode-audio.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 6800101 | Invalid parameter error. Return by callback.|
 
 **Example**
 
 ```js
-audioStreamManager.getAudioEffectInfoArray(audio.ContentType.CONTENT_TYPE_MUSIC, audio.StreamUsage.STREAM_USAGE_MEDIA, async (err, audioEffectInfoArray) => {
+audioStreamManager.getAudioEffectInfoArray(audio.StreamUsage.STREAM_USAGE_MEDIA, async (err, audioEffectInfoArray) => {
   console.info('getAudioEffectInfoArray **** Get Callback Called ****');
   if (err) {
     console.error(`getAudioEffectInfoArray :ERROR: ${err}`);
@@ -3438,7 +3772,7 @@ audioStreamManager.getAudioEffectInfoArray(audio.ContentType.CONTENT_TYPE_MUSIC,
 
 ### getAudioEffectInfoArray<sup>10+</sup>
 
-getAudioEffectInfoArray(content: ContentType, usage: StreamUsage): Promise&lt;AudioEffectInfoArray&gt;
+getAudioEffectInfoArray(usage: StreamUsage): Promise&lt;AudioEffectInfoArray&gt;
 
 Obtains information about the sound effect mode in use. This API uses a promise to return the result.
 
@@ -3448,7 +3782,6 @@ Obtains information about the sound effect mode in use. This API uses a promise 
 
 | Name   | Type                               | Mandatory    | Description                        |
 | -------- | ----------------------------------- | -------- | --------------------------- |
-| content  | [ContentType](#contenttype)         | Yes    |  Audio content type.                |
 | usage    | [StreamUsage](#streamusage)         | Yes    |  Audio stream usage.              |
 
 **Return value**
@@ -3457,10 +3790,18 @@ Obtains information about the sound effect mode in use. This API uses a promise 
 | --------------------------------------------------------------------------| --------------------------------------- |
 | Promise<[AudioEffectInfoArray](#audioeffectinfoarray10)>                  | Promise used to return the information obtained.     |
 
+**Error codes**
+
+For details about the error codes, see [Audio Error Codes](../errorcodes/errorcode-audio.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 6800101 | Invalid parameter error. Return by promise. |
+
 **Example**
 
 ```js
-audioStreamManager.getAudioEffectInfoArray(audio.ContentType.CONTENT_TYPE_MUSIC, audio.StreamUsage.STREAM_USAGE_MEDIA).then((audioEffectInfoArray) => {
+audioStreamManager.getAudioEffectInfoArray(audio.StreamUsage.STREAM_USAGE_MEDIA).then((audioEffectInfoArray) => {
   console.info('getAudioEffectInfoArray ######### Get Promise is called ##########');
   console.info(`The effect modes are: ${audioEffectInfoArray}`);
 }).catch((err) => {
@@ -4277,8 +4618,8 @@ Describes an audio device.
 | deviceRole                    | [DeviceRole](#devicerole)  | Yes  | No  | Device role.|
 | deviceType                    | [DeviceType](#devicetype)  | Yes  | No  | Device type.|
 | id<sup>9+</sup>               | number                     | Yes  | No  | Device ID, which is unique. |
-| name<sup>9+</sup>             | string                     | Yes  | No  | Device name.|
-| address<sup>9+</sup>          | string                     | Yes  | No  | Device address.|
+| name<sup>9+</sup>             | string                     | Yes  | No  | Device name.<br>For a Bluetooth device, you must request the **ohos.permission.USE_BLUETOOTH** permission.|
+| address<sup>9+</sup>          | string                     | Yes  | No  | Device address.<br>For a Bluetooth device, you must request the **ohos.permission.USE_BLUETOOTH** permission.|
 | sampleRates<sup>9+</sup>      | Array&lt;number&gt;        | Yes  | No  | Supported sampling rates.|
 | channelCounts<sup>9+</sup>    | Array&lt;number&gt;        | Yes  | No  | Number of channels supported.|
 | channelMasks<sup>9+</sup>     | Array&lt;number&gt;        | Yes  | No  | Supported channel masks.|
@@ -4884,36 +5225,34 @@ let bufferSize;
 audioRenderer.getBufferSize().then((data)=> {
   console.info(`AudioFrameworkRenderLog: getBufferSize: SUCCESS ${data}`);
   bufferSize = data;
-  }).catch((err) => {
-  console.error(`AudioFrameworkRenderLog: getBufferSize: ERROR: ${err}`);
-  });
-console.info(`Buffer size: ${bufferSize}`);
-let context = featureAbility.getContext();
-let path;
-async function getCacheDir(){
-  path = await context.getCacheDir();
-}
-let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
-let file = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
-let currStat = await fs.stat(path);
-let buf = new ArrayBuffer(bufferSize);
-let len = currStat.size % bufferSize == 0 ? Math.floor(currStat.size / bufferSize) : Math.floor(currStat.size / bufferSize + 1);
-for (let i = 0;i < len; i++) {
-    let options = {
-      offset: i * bufferSize,
-      length: bufferSize
-    }
-    let readsize = await fs.read(file.fd, buf, options)
-    let writeSize = await new Promise((resolve,reject)=>{
-      audioRenderer.write(buf,(err,writeSize)=>{
-        if(err){
-          reject(err)
-        }else{
-          resolve(writeSize)
-        }
+  console.info(`Buffer size: ${bufferSize}`);
+  let path = getContext().cacheDir;
+  let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
+  let file = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
+  fs.stat(filePath).then(async (stat) => {
+    let buf = new ArrayBuffer(bufferSize);
+    let len = stat.size % bufferSize == 0 ? Math.floor(stat.size / bufferSize) : Math.floor(stat.size / bufferSize + 1);
+    for (let i = 0;i < len; i++) {
+      let options = {
+        offset: i * bufferSize,
+        length: bufferSize
+      }
+      let readsize = await fs.read(file.fd, buf, options)
+      let writeSize = await new Promise((resolve,reject)=>{
+        audioRenderer.write(buf,(err,writeSize)=>{
+          if(err){
+            reject(err)
+          }else{
+            resolve(writeSize)
+          }
+        })
       })
-    })	  
-}
+    }
+  });
+}).catch((err) => {
+  console.error(`AudioFrameworkRenderLog: getBufferSize: ERROR: ${err}`);
+});
+
 
 ```
 
@@ -4938,32 +5277,29 @@ let bufferSize;
 audioRenderer.getBufferSize().then((data) => {
   console.info(`AudioFrameworkRenderLog: getBufferSize: SUCCESS ${data}`);
   bufferSize = data;
-  }).catch((err) => {
-  console.info(`AudioFrameworkRenderLog: getBufferSize: ERROR: ${err}`);
-  });
-console.info(`BufferSize: ${bufferSize}`);
-let context = featureAbility.getContext();
-let path;
-async function getCacheDir(){
-  path = await context.getCacheDir();
-}
-let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
-let file = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
-let currStat = await fs.stat(path);
-let buf = new ArrayBuffer(bufferSize);
-let len = currStat.size % bufferSize == 0 ? Math.floor(currStat.size / bufferSize) : Math.floor(currStat.size / bufferSize + 1);
-for (let i = 0;i < len; i++) {
-    let options = {
-      offset: i * bufferSize,
-      length: bufferSize
+  console.info(`BufferSize: ${bufferSize}`);
+  let path = getContext().cacheDir;
+  let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
+  let file = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
+  fs.stat(filePath).then(async (stat) => {
+    let buf = new ArrayBuffer(bufferSize);
+    let len = stat.size % bufferSize == 0 ? Math.floor(stat.size / bufferSize) : Math.floor(stat.size / bufferSize + 1);
+    for (let i = 0;i < len; i++) {
+        let options = {
+          offset: i * bufferSize,
+          length: bufferSize
+        }
+        let readsize = await fs.read(file.fd, buf, options)
+        try{
+          let writeSize = await audioRenderer.write(buf);
+        } catch(err) {
+          console.error(`audioRenderer.write err: ${err}`);
+        }
     }
-    let readsize = await fs.read(file.fd, buf, options)
-    try{
-       let writeSize = await audioRenderer.write(buf);
-    } catch(err) {
-       console.error(`audioRenderer.write err: ${err}`);
-    }   
-}
+  });
+}).catch((err) => {
+  console.info(`AudioFrameworkRenderLog: getBufferSize: ERROR: ${err}`);
+});
 ```
 
 ### getAudioTime<sup>8+</sup>
@@ -5276,6 +5612,216 @@ audioRenderer.setVolume(0.5, (err, data)=>{
 });
 ```
 
+### getMinStreamVolume<sup>10+</sup>
+
+getMinStreamVolume(callback: AsyncCallback&lt;number&gt;): void
+
+Obtains the minimum volume of the application from the perspective of an audio stream. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Multimedia.Audio.Renderer
+
+**Parameters**
+
+| Name | Type      | Mandatory  | Description                |
+| ------- | -----------| ------ | ------------------- |
+|callback |AsyncCallback&lt;number&gt; | Yes    |Callback used to return the minimum volume, ranging from 0 to 1.|
+
+**Example**
+
+```js
+audioRenderer.getMinStreamVolume((err, minVolume) => {
+  if (err) {
+    console.error(`getMinStreamVolume error: ${err}`);
+  } else {
+    console.info(`getMinStreamVolume Success! ${minVolume}`);
+  }
+});
+```
+### getMinStreamVolume<sup>10+</sup>
+
+getMinStreamVolume(): Promise&lt;number&gt;
+
+Obtains the minimum volume of the application from the perspective of an audio stream. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Multimedia.Audio.Renderer
+
+**Return value**
+
+| Type               | Description                         |
+| ------------------- | ----------------------------- |
+| Promise&lt;number&gt;| Promise used to return the minimum volume, ranging from 0 to 1.|
+
+**Example**
+
+```js
+audioRenderer.getMinStreamVolume().then((value) => {
+  console.info(`Get min stream volume Success! ${value}`);
+}).catch((err) => {
+  console.error(`Get min stream volume Fail: ${err}`);
+});
+```
+
+### getMaxStreamVolume<sup>10+</sup>
+
+getMaxStreamVolume(callback: AsyncCallback&lt;number&gt;): void
+
+Obtains the maximum volume of the application from the perspective of an audio stream. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Multimedia.Audio.Renderer
+
+**Parameters**
+
+| Name | Type      | Mandatory  | Description                |
+| ------- | -----------| ------ | ------------------- |
+|callback | AsyncCallback&lt;number&gt; | Yes    |Callback used to return the maximum volume, ranging from 0 to 1.|
+
+**Example**
+
+```js
+audioRenderer.getMaxStreamVolume((err, maxVolume) => {
+  if (err) {
+    console.error(`getMaxStreamVolume Fail: ${err}`);
+  } else {
+    console.info(`getMaxStreamVolume Success! ${maxVolume}`);
+  }
+});
+```
+### getMaxStreamVolume<sup>10+</sup>
+
+getMaxStreamVolume(): Promise&lt;number&gt;
+
+Obtains the maximum volume of the application from the perspective of an audio stream. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Multimedia.Audio.Renderer
+
+**Return value**
+
+| Type               | Description                         |
+| ------------------- | ----------------------------- |
+| Promise&lt;number&gt;| Promise used to return the maximum volume, ranging from 0 to 1.|
+
+**Example**
+
+```js
+audioRenderer.getMaxStreamVolume().then((value) => {
+  console.info(`Get max stream volume Success! ${value}`);
+}).catch((err) => {
+  console.error(`Get max stream volume Fail: ${err}`);
+});
+```
+
+### getUnderflowCount<sup>10+</sup>
+
+getUnderflowCount(callback: AsyncCallback&lt;number&gt;): void
+
+Obtains the number of underflow audio frames in the audio stream that is being played. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Multimedia.Audio.Renderer
+
+**Parameters**
+
+| Name | Type      | Mandatory  | Description                |
+| ------- | -----------| ------ | ------------------- |
+|callback | AsyncCallback&lt;number&gt; | Yes    |Callback used to return the number of underflow audio frames.|
+
+**Example**
+
+```js
+audioRenderer.getUnderflowCount((err, underflowCount) => {
+  if (err) {
+    console.error(`getUnderflowCount Fail: ${err}`);
+  } else {
+    console.info(`getUnderflowCount Success! ${underflowCount}`);
+  }
+});
+```
+### getUnderflowCount<sup>10+</sup>
+
+getUnderflowCount(): Promise&lt;number&gt;
+
+Obtains the number of underflow audio frames in the audio stream that is being played. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Multimedia.Audio.Renderer
+
+**Return value**
+
+| Type               | Description                         |
+| ------------------- | ----------------------------- |
+| Promise&lt;number&gt;| Promise used to return the number of underflow audio frames.|
+
+**Example**
+
+```js
+audioRenderer.getUnderflowCount().then((value) => {
+  console.info(`Get underflow count Success! ${value}`);
+}).catch((err) => {
+  console.error(`Get underflow count Fail: ${err}`);
+});
+```
+
+### getCurrentOutputDevices<sup>10+</sup>
+
+getCurrentOutputDevices(callback: AsyncCallback&lt;AudioDeviceDescriptors&gt;): void
+
+Obtains the output device descriptors of the audio streams. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Multimedia.Audio.Device
+
+**Parameters**
+
+| Name | Type      | Mandatory  | Description                |
+| ------- | -----------| ------ | ------------------- |
+|callback | AsyncCallback&lt;AudioDeviceDescriptors&gt; | Yes    |Callback used to return the output device descriptors.|
+
+**Example**
+
+```js
+audioRenderer.getCurrentOutputDevices((err, deviceInfo) => {
+  if (err) {
+    console.error(`getCurrentOutputDevices Fail: ${err}`);
+  } else {
+    console.info(`DeviceInfo id: ${deviceInfo.id}`);
+    console.info(`DeviceInfo type: ${deviceInfo.deviceType}`);
+    console.info(`DeviceInfo role: ${deviceInfo.deviceRole}`);
+    console.info(`DeviceInfo name: ${deviceInfo.name}`);
+    console.info(`DeviceInfo address: ${deviceInfo.address}`);
+    console.info(`DeviceInfo samplerates: ${deviceInfo.sampleRates[0]}`);
+    console.info(`DeviceInfo channelcounts: ${deviceInfo.channelCounts[0]}`);
+    console.info(`DeviceInfo channelmask: ${deviceInfo.channelMasks}`);
+  }
+});
+```
+### getCurrentOutputDevices<sup>10+</sup>
+
+getCurrentOutputDevices(): Promise&lt;AudioDeviceDescriptors&gt;
+
+Obtains the output device descriptors of the audio streams. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Multimedia.Audio.Device
+
+**Return value**
+
+| Type               | Description                         |
+| ------------------- | ----------------------------- |
+| Promise&lt;AudioDeviceDescriptors&gt;| Promise used to return the output device descriptors.|
+
+**Example**
+
+```js
+audioRenderer.getCurrentOutputDevices().then((deviceInfo) => {
+  console.info(`DeviceInfo id: ${deviceInfo.id}`);
+  console.info(`DeviceInfo type: ${deviceInfo.deviceType}`);
+  console.info(`DeviceInfo role: ${deviceInfo.deviceRole}`);
+  console.info(`DeviceInfo name: ${deviceInfo.name}`);
+  console.info(`DeviceInfo address: ${deviceInfo.address}`);
+  console.info(`DeviceInfo samplerates: ${deviceInfo.sampleRates[0]}`);
+  console.info(`DeviceInfo channelcounts: ${deviceInfo.channelCounts[0]}`);
+  console.info(`DeviceInfo channelmask: ${deviceInfo.channelMasks}`);
+}).catch((err) => {
+  console.error(`Get current output devices Fail: ${err}`);
+});
+```
+
 ### on('audioInterrupt')<sup>9+</sup>
 
 on(type: 'audioInterrupt', callback: Callback\<InterruptEvent>): void
@@ -5375,7 +5921,7 @@ async function onAudioInterrupt(){
 
 ### on('markReach')<sup>8+</sup>
 
-on(type: "markReach", frame: number, callback: Callback&lt;number&gt;): void
+on(type: 'markReach', frame: number, callback: Callback&lt;number&gt;): void
 
 Subscribes to mark reached events. When the number of frames rendered reaches the value of the **frame** parameter, a callback is invoked.
 
@@ -5422,7 +5968,7 @@ audioRenderer.off('markReach');
 
 ### on('periodReach') <sup>8+</sup>
 
-on(type: "periodReach", frame: number, callback: Callback&lt;number&gt;): void
+on(type: 'periodReach', frame: number, callback: Callback&lt;number&gt;): void
 
 Subscribes to period reached events. When the number of frames rendered reaches the value of the **frame** parameter, a callback is triggered and the specified value is returned.
 
@@ -5490,6 +6036,71 @@ audioRenderer.on('stateChange', (state) => {
   }
   if (state == 2) {
     console.info('audio renderer state is: STATE_RUNNING');
+  }
+});
+```
+
+### on('outputDeviceChange') <sup>10+</sup>
+
+on(type: 'outputDeviceChange', callback: Callback\<AudioDeviceDescriptors>): void;
+
+Subscribes to audio output device change events.
+
+**System capability**: SystemCapability.Multimedia.Audio.Device
+
+**Parameters**
+
+| Name  | Type                      | Mandatory| Description                                       |
+| :------- | :------------------------- | :--- | :------------------------------------------ |
+| type     | string                     | Yes  | Event type. The value **'outputDeviceChange'** means the audio output device change event, which is triggered when the audio output device changes.|
+| callback | Callback\<[AudioDeviceDescriptors](#audiodevicedescriptors)> | Yes  | Callback used to return the audio output device change.                           |
+
+**Error codes**
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 6800101 | if input parameter value error.              |
+
+**Example**
+
+```js
+audioRenderer.on('outputDeviceChange', (err, deviceChangeInfo) => {
+  if (err) {
+    console.error(`Subscribes output device change event callback Fail: ${err}`);
+  } else {
+    console.info(`Subscribes output device change event callback Success!`);
+  }
+});
+```
+### off('outputDeviceChange') <sup>10+</sup>
+
+off(type: 'outputDeviceChange', callback?: Callback\<AudioDeviceDescriptors>): void;
+
+Unsubscribes from audio output device event changes.
+
+**System capability**: SystemCapability.Multimedia.Audio.Device
+
+**Parameters**
+
+| Name  | Type                      | Mandatory| Description                                       |
+| :------- | :------------------------- | :--- | :------------------------------------------ |
+| type     | string                     | Yes  | Event type. The value **'outputDeviceChange'** means the audio output device change event, which is triggered when the audio output device changes.|
+| callback | Callback\<[AudioDeviceDescriptors](#audiodevicedescriptors)> | No  | Callback used for unsubscription.                           |
+
+**Error codes**
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 6800101 | if input parameter value error.              |
+
+**Example**
+
+```js
+audioRenderer.off('outputDeviceChange', (err,deviceChangeInfo) => {
+  if (err) {
+    console.error(`Unsubscribes output device change event callback Fail: ${err}`);
+  } else {
+    console.info(`Unsubscribes output device change event callback Success!`);
   }
 });
 ```
@@ -6092,10 +6703,38 @@ async function onAudioInterrupt(){
 }
 ```
 
+### off('audioInterrupt')<sup>10+</sup>
+
+off(type: 'audioInterrupt'): void
+
+Unsubscribes from audio interruption events.
+
+**System capability**: SystemCapability.Multimedia.Audio.Interrupt
+
+**Parameters**
+
+| Name  | Type                                        | Mandatory| Description                                                        |
+| -------- | -------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                                       | Yes  | Event type. The value **'audioInterrupt'** means the audio interruption event, which is triggered when audio capturing is interrupted.|
+
+**Error codes**
+
+For details about the error codes, see [Audio Error Codes](../errorcodes/errorcode-audio.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 6800101 | if input parameter value error              |
+
+**Example**
+
+```js
+audioCapturer.off('audioInterrupt');
+```
+
 
 ### on('markReach')<sup>8+</sup>
 
-on(type: "markReach", frame: number, callback: Callback&lt;number&gt;): void
+on(type: 'markReach', frame: number, callback: Callback&lt;number&gt;): void
 
 Subscribes to mark reached events. When the number of frames captured reaches the value of the **frame** parameter, a callback is invoked.
 
@@ -6141,7 +6780,7 @@ audioCapturer.off('markReach');
 
 ### on('periodReach')<sup>8+</sup>
 
-on(type: "periodReach", frame: number, callback: Callback&lt;number&gt;): void
+on(type: 'periodReach', frame: number, callback: Callback&lt;number&gt;): void
 
 Subscribes to period reached events. When the number of frames captured reaches the value of the **frame** parameter, a callback is triggered and the specified value is returned.
 

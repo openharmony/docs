@@ -21,14 +21,14 @@
 
 
 ```ts
-@Builder myBuilderFunction({ ... })
+@Builder MyBuilderFunction({ ... })
 ```
 
 使用方法：
 
 
 ```ts
-this.myBuilderFunction({ ... })
+this.MyBuilderFunction({ ... })
 ```
 
 - 允许在自定义组件内定义一个或多个自定义构建函数，该函数被认为是该组件的私有、特殊类型的成员函数。
@@ -66,7 +66,7 @@ MyGlobalBuilderFunction()
 
 - 参数的类型必须与参数声明的类型一致，不允许undefined、null和返回undefined、null的表达式。
 
-- 在自定义构建函数内部，不允许改变参数值。如果需要改变参数值，且同步回调用点，建议使用[@Link](arkts-link.md)。
+- 在@Builder修饰的函数内部，不允许改变参数值。
 
 - \@Builder内UI语法遵循[UI语法规则](arkts-create-custom-components.md#build函数)。
 

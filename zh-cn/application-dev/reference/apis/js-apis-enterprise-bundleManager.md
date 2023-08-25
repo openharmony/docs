@@ -1546,3 +1546,167 @@ bundleManager.uninstall(wantTemp, 'bundleName', 100, true).then(() => {
   console.error(`Failed to uninstall bundles. Code is ${err.code}, message is ${err.message}`);
 });
 ```
+
+## bundleManager.install
+
+install(admin: Want, hapFilePaths: Array\<string>, callback: AsyncCallback\<void>): void
+
+指定设备管理应用安装指定路径下的应用包。使用callback异步回调。
+
+**需要权限：** ohos.permission.ENTERPRISE_INSTALL_BUNDLE
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**系统API**: 此接口为系统接口。
+
+**参数：**
+
+| 参数名      | 类型                                       | 必填   | 说明                       |
+| -------- | ---------------------------------------- | ---- | ------------------------------- |
+| admin    | [Want](js-apis-app-ability-want.md)     | 是    | 设备管理应用。                  |
+| hapFilePaths     | Array\<string>                           | 是    | 待安装应用包路径数组。 |
+| callback | AsyncCallback&lt;void&gt;       | 是    | 回调函数，当接口调用成功，err为null，否则为错误对象。       |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-enterpriseDeviceManager.md)
+
+| 错误码ID | 错误信息                                                                       |          
+| ------- | ---------------------------------------------------------------------------- |
+| 9200001 | the application is not an administrator of the device.                              |
+| 9200002 | the administrator application does not have permission to manage the device.                                |
+| 9201002 | the application install failed.                                |
+
+**示例：**
+
+```js
+let wantTemp = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
+};
+let hapFilePaths = ['/data/storage/el2/base/haps/entry/testinstall/ExtensionTest.hap']
+
+bundleManager.install(wantTemp, hapFilePaths, (err) => {
+  if (err) {
+    console.error(`Failed to install bundles. Code is ${err.code}, message is ${err.message}`);
+  }
+  console.info('Succeeded in installing bundles');
+});
+```
+
+## bundleManager.install
+
+install(admin: Want, hapFilePaths: Array\<string>, installParam: InstallParam, callback: AsyncCallback\<void>): void
+
+指定设备管理应用安装指定路径下的指定安装参数的应用包,。使用callback异步回调。
+
+**需要权限：** ohos.permission.ENTERPRISE_INSTALL_BUNDLE
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**系统API**: 此接口为系统接口。
+
+**参数：**
+
+| 参数名      | 类型                                       | 必填   | 说明                       |
+| -------- | ---------------------------------------- | ---- | ------------------------------- |
+| admin    | [Want](js-apis-app-ability-want.md)     | 是    | 设备管理应用。                  |
+| hapFilePaths     | Array\<string>                       | 是    | 待安装应用包路径数组。 |
+| installParam     | [InstallParam](#installparam)        | 是    | 应用包安装参数。 |
+| callback | AsyncCallback&lt;void&gt;       | 是    | 回调函数，当接口调用成功，err为null，否则为错误对象。       |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-enterpriseDeviceManager.md)
+
+| 错误码ID | 错误信息                                                                       |          
+| ------- | ---------------------------------------------------------------------------- |
+| 9200001 | the application is not an administrator of the device.                              |
+| 9200002 | the administrator application does not have permission to manage the device.                                |
+| 9201002 | the application install failed.                                |
+
+**示例：**
+
+```js
+let wantTemp = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
+};
+let hapFilePaths = ['/data/storage/el2/base/haps/entry/testinstall/ExtensionTest.hap']
+let installParam = {
+  userId: 100,
+  installFlag: 1,
+};
+
+bundleManager.install(wantTemp, hapFilePaths, installParam, (err) => {
+  if (err) {
+    console.error(`Failed to install bundles. Code is ${err.code}, message is ${err.message}`);
+  }
+  console.info('Succeeded in installing bundles');
+});
+```
+
+## bundleManager.install
+
+install(admin: Want, hapFilePaths: Array\<string>, installParam?: InstallParam): Promise\<void>
+
+指定设备管理应用安装指定路径下的应用包。使用promise异步回调。
+
+**需要权限：** ohos.permission.ENTERPRISE_INSTALL_BUNDLE
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**系统API**: 此接口为系统接口。
+
+**参数：**
+
+| 参数名   | 类型                                  | 必填   | 说明      |
+| ----- | ----------------------------------- | ---- | ------- |
+| admin | [Want](js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
+| hapFilePaths     | Array\<string>                       | 是    | 待安装应用包路径数组。 |
+| installParam     | [InstallParam](#installparam)        | 否    | 应用包安装参数。 |
+
+**返回值：**
+
+| 类型                   | 说明                      |
+| --------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。当包安装失败时，抛出错误对象。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-enterpriseDeviceManager.md)
+
+| 错误码ID | 错误信息                                                                     |          
+| ------- | ---------------------------------------------------------------------------- |
+| 9200001 | the application is not an administrator of the device.                              |
+| 9200002 | the administrator application does not have permission to manage the device.                                          |
+| 9201002 | the application install failed.                                |
+
+**示例：**
+
+```js
+let wantTemp = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
+};
+let hapFilePaths = ['/data/storage/el2/base/haps/entry/testinstall/ExtensionTest.hap']
+
+bundleManager.install(wantTemp, hapFilePaths).then(() => {
+  console.info('Succeeded in installing bundles');
+}).catch((err) => {
+  console.error(`Failed to install bundles. Code is ${err.code}, message is ${err.message}`);
+});
+```
+
+## InstallParam
+
+应用包安装需指定的参数信息。
+
+ **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+ **系统接口：** 此接口为系统接口。
+
+| 名称                        | 类型                           | 必填                         | 说明               |
+| ------------------------------ | ------------------------------ | ------------------ | ------------------ |
+| userId                         | number                         | 否                        | 指示用户id，默认值：调用方所在用户，取值范围：大于等于0。
+| installFlag                    | number                         | 否                        | 安装标志。枚举值：0：应用初次安装，1：应用覆盖安装，2：应用免安装，默认值为应用初次安装。 |

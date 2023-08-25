@@ -100,6 +100,18 @@
 
 **起始版本**：8
 
+## ohos.permission.GET_PHONE_NUMBERS
+
+允许应用读取设备的本机号码。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：10
+
 ## ohos.permission.REQUIRE_FORM
 
 允许应用获取Ability Form。
@@ -776,7 +788,7 @@
 
 ## ohos.permission.MANAGE_MISSIONS
 
-允许用户管理元能力任务栈。
+允许应用管理系统中的任务。
 
 **权限级别**：system_core
 
@@ -860,7 +872,7 @@
 
 ## ohos.permission.SET_ABILITY_CONTROLLER
 
-允许设置ability组件启动和停止控制权。
+允许应用拦截Ability组件启动，主要用于测试调试，比如稳定性金刚测试。
 
 **权限级别**：system_basic
 
@@ -884,7 +896,7 @@
 
 ## ohos.permission.MANAGE_USER_IDM
 
-允许应用使用系统身份凭据管理能力进行口令、人脸、指纹等录入、修改、删除等操作。
+允许录入和管理用户身份认证凭据。
 
 **权限级别**：system_basic
 
@@ -908,7 +920,7 @@
 
 ## ohos.permission.ACCESS_USER_AUTH_INTERNAL
 
-允许应用使用系统身份认证能力进行用户身份认证或身份识别。
+允许调用统一身份认证服务的系统内部接口。
 
 **权限级别**：system_basic
 
@@ -920,7 +932,7 @@
 
 ## ohos.permission.ACCESS_PIN_AUTH
 
-允许应用使用口令输入接口，用于系统应用完成口令输入框绘制场景。
+允许注册口令认证过程获取口令数据的回调。
 
 **权限级别**：system_basic
 
@@ -956,7 +968,7 @@
 
 ## ohos.permission.RUNNING_STATE_OBSERVER
 
-允许应用观察应用状态。
+允许应用监听应用状态。
 
 **权限级别**：system_basic
 
@@ -1656,7 +1668,7 @@
 
 ## ohos.permission.CAMERA
 
-允许应用使用相机拍摄照片和录制视频。
+允许应用使用相机。
 
 **权限级别**：normal
 
@@ -2076,7 +2088,7 @@
 
 ## ohos.permission.ENFORCE_USER_IDM
 
-允许SA无token删除IAM子系统用户信息。
+允许SA无token删除IAM用户信息。
 
 **权限级别**：system_core
 
@@ -2088,7 +2100,7 @@
 
 ## ohos.permission.ACCESS_AUTH_RESPOOL
 
-允许SA注册执行器。
+允许SA注册认证执行器。
 
 **权限级别**：system_core
 
@@ -2675,6 +2687,54 @@
 ## ohos.permission.OBSERVE_FORM_RUNNING
 
 允许应用监听卡片运行状态。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：10
+
+## ohos.permission.MANAGE_DEVICE_AUTH_CRED
+
+允许应用调用设备认证分布式帐号凭据管理应用接口。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：FALSE
+
+**起始版本**：10
+
+## ohos.permission.UNINSTALL_BUNDLE
+
+允许应用卸载应用。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：10
+
+## ohos.permission.RECOVER_BUNDLE
+
+允许应用恢复预置应用。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：10
+
+## ohos.permission.GET_DOMAIN_ACCOUNTS
+
+允许应用查询域帐号信息。
 
 **权限级别**：system_basic
 

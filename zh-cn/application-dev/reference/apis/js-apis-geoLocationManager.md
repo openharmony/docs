@@ -110,11 +110,11 @@ import geoLocationManager from '@ohos.geoLocationManager';
 
 | 名称 | 类型 | 可读|可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| priority | [LocationRequestPriority](#locationrequestpriority) | 是 | 是 | 表示优先级信息。取值范围见[LocationRequestPriority](#locationrequestpriority)的定义。 |
-| scenario | [LocationRequestScenario](#locationrequestscenario) | 是 | 是 | 表示场景信息。取值范围见[LocationRequestScenario](#locationrequestscenario)的定义。 |
-| timeInterval | number | 是 | 是 | 表示上报位置信息的时间间隔，单位是秒。取值范围为大于0。 |
-| distanceInterval | number | 是 | 是 | 表示上报位置信息的距离间隔。单位是米，取值范围为大于0。 |
-| maxAccuracy | number | 是 | 是 | 表示精度信息。仅在精确位置功能场景下有效，模糊位置功能生效场景下该字段无意义。取值范围为大于0。 |
+| priority | [LocationRequestPriority](#locationrequestpriority) | 是 | 是 | 表示优先级信息。当scenario取值为UNSET时，priority参数生效，否则priority参数不生效；当scenario和priority均取值为UNSET时，无法发起定位请求。取值范围见[LocationRequestPriority](#locationrequestpriority)的定义。 |
+| scenario | [LocationRequestScenario](#locationrequestscenario) | 是 | 是 | 表示场景信息。当scenario取值为UNSET时，priority参数生效，否则priority参数不生效；当scenario和priority均取值为UNSET时，无法发起定位请求。取值范围见[LocationRequestScenario](#locationrequestscenario)的定义。 |
+| timeInterval | number | 是 | 是 | 表示上报位置信息的时间间隔，单位是秒。默认值为1，取值范围为大于等于0。 |
+| distanceInterval | number | 是 | 是 | 表示上报位置信息的距离间隔。单位是米，默认值为0，取值范围为大于等于0。 |
+| maxAccuracy | number | 是 | 是 | 表示精度信息，单位是米。仅在精确位置功能场景下有效，模糊位置功能生效场景下该字段无意义。默认值为0，取值范围为大于等于0。 |
 
 
 ## CurrentLocationRequest
@@ -125,9 +125,9 @@ import geoLocationManager from '@ohos.geoLocationManager';
 
 | 名称 | 类型 | 可读|可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| priority | [LocationRequestPriority](#locationrequestpriority) | 是 | 是 | 表示优先级信息。取值范围见[LocationRequestPriority](#locationrequestpriority)的定义。 |
-| scenario | [LocationRequestScenario](#locationrequestscenario) | 是 | 是 | 表示场景信息。取值范围见[LocationRequestScenario](#locationrequestscenario)的定义。 |
-| maxAccuracy | number | 是 | 是| 表示精度信息，单位是米。仅在精确位置功能场景下有效，模糊位置功能生效场景下该字段无意义。取值范围为大于0。 |
+| priority | [LocationRequestPriority](#locationrequestpriority) | 是 | 是 | 表示优先级信息。当scenario取值为UNSET时，priority参数生效，否则priority参数不生效；当scenario和priority均取值为UNSET时，无法发起定位请求。取值范围见[LocationRequestPriority](#locationrequestpriority)的定义。|
+| scenario | [LocationRequestScenario](#locationrequestscenario) | 是 | 是 | 表示场景信息。当scenario取值为UNSET时，priority参数生效，否则priority参数不生效；当scenario和priority均取值为UNSET时，无法发起定位请求。取值范围见[LocationRequestScenario](#locationrequestscenario)的定义。 |
+| maxAccuracy | number | 是 | 是| 表示精度信息，单位是米。仅在精确位置功能场景下有效，模糊位置功能生效场景下该字段无意义。默认值为0，取值范围为大于等于0。 |
 | timeoutMs | number | 是 | 是 | 表示超时时间，单位是毫秒，最小为1000毫秒。取值范围为大于等于1000。 |
 
 
@@ -426,7 +426,7 @@ on(type: 'locationChange', request: LocationRequest, callback: Callback&lt;Locat
 
   ```ts
   import geoLocationManager from '@ohos.geoLocationManager';
-  let requestInfo = {'priority': 0x203, 'scenario': 0x300, 'timeInterval': 0, 'distanceInterval': 0, 'maxAccuracy': 0};
+  let requestInfo = {'priority': geoLocationManager.LocationRequestPriority.FIRST_FIX, 'scenario': geoLocationManager.LocationRequestScenario.UNSET, 'timeInterval': 1, 'distanceInterval': 0, 'maxAccuracy': 0};
   let locationChange = (location) => {
       console.log('locationChanger: data: ' + JSON.stringify(location));
   };
@@ -470,7 +470,7 @@ off(type: 'locationChange', callback?: Callback&lt;Location&gt;): void
 
   ```ts
   import geoLocationManager from '@ohos.geoLocationManager';
-  let requestInfo = {'priority': 0x203, 'scenario': 0x300, 'timeInterval': 0, 'distanceInterval': 0, 'maxAccuracy': 0};
+  let requestInfo = {'priority': geoLocationManager.LocationRequestPriority.FIRST_FIX, 'scenario': geoLocationManager.LocationRequestScenario.UNSET, 'timeInterval': 1, 'distanceInterval': 0, 'maxAccuracy': 0};
   let locationChange = (location) => {
       console.log('locationChanger: data: ' + JSON.stringify(location));
   };
@@ -1134,7 +1134,7 @@ getCurrentLocation(request: CurrentLocationRequest, callback: AsyncCallback&lt;L
 
   ```ts
   import geoLocationManager from '@ohos.geoLocationManager';
-  let requestInfo = {'priority': 0x203, 'scenario': 0x300,'maxAccuracy': 0};
+  let requestInfo = {'priority': geoLocationManager.LocationRequestPriority.FIRST_FIX, 'scenario': geoLocationManager.LocationRequestScenario.UNSET,'maxAccuracy': 0};
   let locationChange = (err, location) => {
       if (err) {
           console.log('locationChanger: err=' + JSON.stringify(err));
@@ -1233,7 +1233,7 @@ getCurrentLocation(request?: CurrentLocationRequest): Promise&lt;Location&gt;
 
   ```ts
   import geoLocationManager from '@ohos.geoLocationManager';
-  let requestInfo = {'priority': 0x203, 'scenario': 0x300,'maxAccuracy': 0};
+  let requestInfo = {'priority': geoLocationManager.LocationRequestPriority.FIRST_FIX, 'scenario': geoLocationManager.LocationRequestScenario.UNSET,'maxAccuracy': 0};
   try {
       geoLocationManager.getCurrentLocation(requestInfo).then((result) => {
           console.log('current location: ' + JSON.stringify(result));

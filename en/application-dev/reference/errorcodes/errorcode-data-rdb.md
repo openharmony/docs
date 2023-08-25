@@ -117,4 +117,77 @@ Data is added, deleted, and modified continuously without closing the read trans
 **Solution**
 
 1. Check for unclosed result sets or transactions.
-2. Closes all result sets or transactions.
+
+2. Close all result sets or transactions.
+
+## 14800050 Failed to Obtain the Subscription Service
+
+**Error Message**
+
+Failed to obtain subscription service.
+
+**Description**
+
+The error code is returned when the subscription service failed to be obtained.
+
+**Possible Causes**
+
+The platform does not support service subscription.
+
+**Solution**
+
+Deploy the subscription service on the platform.
+
+## 14801001 Stage Model Required
+
+**Error Message**
+
+ Only supported in stage mode.
+
+**Description**
+
+This operation can be performed only on the stage model.
+
+**Possible Causes**
+
+The context is not a stage model.
+
+**Solution**
+
+Perform the operation on the stage model.
+
+## 14801002 Invalid dataGroupId in storeConfig
+
+**Error Message**
+
+The data group id is not valid.
+
+**Description**
+
+The **dataGroupId** parameter is invalid.
+
+**Possible Causes**
+
+The **dataGroupId** is not obtained from the AppGallery.
+
+**Solution**
+
+Obtain **dataGroupId** from the AppGallery and pass it to **storeConfig** correctly.
+
+## 14800051 Inconsistent Distributed Table Type
+
+**Error Message**
+
+The type of the distributed table does not match.
+
+**Description**
+
+Different distributed table types are set for the same database table.
+
+**Possible Causes**
+
+The database table is set with different [distributed table types](../apis/js-apis-data-relationalStore.md#distributedtype10).
+
+**Solution**
+
+A database table can be synchronized either between devices or between device and cloud.

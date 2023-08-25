@@ -45,12 +45,15 @@ Among the [universal attributes](ts-universal-attributes-size.md) and [universal
 | selectedBackgroundColor<sup>10+</sup> | [ResourceColor](ts-types.md#resourcecolor) | Background color of the selected text.<br>If the opacity is not set, the color is opaque. For example, **0x80000000** indicates black with 50% opacity.|
 | caretStyle<sup>10+</sup> | {<br>width: [Length](ts-types.md#length)<br>} | Caret style.                                       |
 | caretPosition<sup>10+</sup> | number | Caret position.|
-| showUnit<sup>10+</sup>                |  [CustomBuilder](ts-types.md#CustomBuilder8)         | Unit for content in the component.<br>By default, there is no unit.|
+| showUnit<sup>10+</sup>                | [CustomBuilder](ts-types.md#CustomBuilder8)         | Unit for content in the component.<br>By default, there is no unit.|
 | showError<sup>10+</sup> | string \| undefined | Error text displayed when an error occurs.<br>By default, no error text is displayed.|
 | showUnderline<sup>10+</sup> | boolean | Whether to show an underline.<br>Default value: **false**|
 | passwordIcon<sup>10+</sup> | [PasswordIcon](#passwordicon10) | Password icon to display at the end of the password text box.<br>By default, the system-provided icon is used.|
 | enableKeyboardOnFocus<sup>10+</sup> | boolean | Whether to enable the input method when the component obtains focus.<br>Default value: **true**  |
 | selectionMenuHidden<sup>10+</sup> | boolean | Whether to display the text selection menu when the text box is long-pressed or right-clicked.<br>Default value: **false**|
+| barState<sup>10+</sup> | [BarState](ts-appendix-enums.md#BarState) | Scrollbar state when the inline input style is used.<br>Default value: **BarState.Auto**|
+| maxLines<sup>10+</sup> | number | Maximum number of lines that can be displayed when the inline input style is used.<br>Default value: **3**|
+| customKeyboard<sup>10+</sup> | [CustomBuilder](ts-types.md#custombuilder8) | Custom keyboard.<br>**NOTE**<br>When a custom keyboard is set, activating the text box opens the specified custom component, instead of the system input method, and the **enterKeyType** attribute setting for the system keyboard will not take effect.<br>The custom keyboard's height can be set through the **height** attribute of the custom component's root node, and its width is fixed at the default value.<br>The custom keyboard is displayed on top of the current page, without compressing or raising the page.<br>The custom keyboard cannot obtain the focus, but it blocks gesture events.<br>By default, the custom keyboard is closed when the input component loses the focus. You can also use the [TextInputController](#textinputcontroller8).[stopEditing](#stopediting10) API to close the keyboard.|
 
 >  **NOTE**
 >
@@ -71,7 +74,7 @@ Among the [universal attributes](ts-universal-attributes-size.md) and [universal
 | Name                | Description           |
 | ------------------ | ------------- |
 | Normal   | Normal input mode.<br>The value can contain digits, letters, underscores (_), spaces, and special characters.|
-| Password | Password input mode. The value can contain digits, letters, underscores (_), spaces, and special characters. An eye icon is used to show or hide the password, and the password is hidden behind dots by default.|
+| Password | Password input mode. The value can contain digits, letters, underscores (_), spaces, and special characters. An eye icon is used to show or hide the password, and the password is hidden behind dots by default. The password input mode does not support underlines.|
 | Email    | Email address input mode. The value can contain digits, letters, underscores (_), and at signs (@). Only one at sign (@) is allowed.|
 | Number   | Digit input mode.     |
 | PhoneNumber<sup>9+</sup> | Phone number input mode.<br>The value can contain digits, plus signs (+), hyphens (-), asterisks (*), and number signs (#). The length is not limited.|
@@ -81,7 +84,7 @@ Among the [universal attributes](ts-universal-attributes-size.md) and [universal
 | Name                | Description           |
 | ------------------ | ------------- |
 | Default   | Default style. The caret width is fixed at 1.5 vp, and the caret height is subject to the background height and font size of the selected text.  |
-| Inline    | Inline input style. The background height of the selected text is the same as the height of the text box.     |
+| Inline    | Inline input style. The background height of the selected text is the same as the height of the text box.<br>This style is used in scenarios where editing and non-editing states are obvious, for example, renaming in the file list view.|
 
 ## PasswordIcon<sup>10+</sup>
 
@@ -241,7 +244,7 @@ struct TextInputExample {
 }
 ```
 
-![textInput](figures/textInput.gif)
+![TextInput](figures/TextInput.png)
 
 ### Example 2
 
@@ -294,3 +297,45 @@ struct TextInputExample {
 ```
 
 ![showUnit](figures/showUnit.png)
+
+### Example 3
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct TextInputExample {
+  controller: TextInputController = new TextInputController()
+  @State inputValue: string = ""
+
+  // Create a custom keyboard component.
+  @Builder CustomKeyboardBuilder() {
+    Column() {
+      Button('x').onClick(() => {
+        // Disable the custom keyboard.
+        this.controller.stopEditing()
+      })
+      Grid() {
+        ForEach([1, 2, 3, 4, 5, 6, 7, 8, 9, '*', 0, '#'], (item) => {
+          GridItem() {
+            Button(item + "")
+              .width(110).onClick(() => {
+              this.inputValue += item
+            })
+          }
+        })
+      }.maxCount(3).columnsGap(10).rowsGap(10).padding(5)
+    }.backgroundColor(Color.Gray)
+  }
+
+  build() {
+    Column() {
+      TextInput({ controller: this.controller, text: this.inputValue })
+        // Bind the custom keyboard.
+        .customKeyboard(this.CustomKeyboardBuilder()).margin(10).border({ width: 1 })
+    }
+  }
+}
+```
+
+![customKeyboard](figures/textInputCustomKeyboard.png)

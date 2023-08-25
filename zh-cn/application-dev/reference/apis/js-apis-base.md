@@ -40,7 +40,7 @@ ErrorCallback\<T extends Error = BusinessError> {
 
 通用回调函数，携带错误参数。
 
-回调返回的信息为[BusinessError](https://gitee.com/openharmony/docs/pulls/20172/files#businesserror)类型的信息。
+回调返回的信息为[BusinessError](#businesserror)类型的信息。
 
 **系统能力**：SystemCapability.Base
 
@@ -60,7 +60,7 @@ AsyncCallback\<T, E = void> {
 
 通用回调函数，携带错误参数和异步返回值。
 
-错误参数为[BusinessError](https://gitee.com/openharmony/docs/pulls/20172/files#businesserror)类型的信息。
+错误参数为[BusinessError](#businesserror)类型的信息。
 
 异步返回值的类型由开发者自定义，回调将返回对应类型的信息。
 
@@ -68,7 +68,7 @@ AsyncCallback\<T, E = void> {
 
 | 名称 | 类型                                                         | 必填 | 说明                         |
 | ---- | ------------------------------------------------------------ | ---- | ---------------------------- |
-| err  | [BusinessError](https://gitee.com/openharmony/docs/pulls/20172/files#businesserror) | 是   | 接口调用失败的公共错误信息。 |
+| err  | [BusinessError](#businesserror) | 是   | 接口调用失败的公共错误信息。 |
 | data | T                                                            | 是   | 接口调用时的公共回调信息。   |
 
 ## BusinessError

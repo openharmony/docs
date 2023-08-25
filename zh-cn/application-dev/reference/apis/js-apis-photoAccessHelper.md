@@ -341,7 +341,7 @@ createAsset(displayName: string, options: PhotoCreateOptions): Promise&lt;PhotoA
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 202   | Called by non-system application.         |  
+| 202   | Called by non-system application.         |
 | 401   | if type displayName is not string.         |
 | 14000001   | if type of displayName is invalid.         |
 
@@ -446,7 +446,7 @@ async function example() {
   let photoType = photoAccessHelper.PhotoType.IMAGE;
   let extension = 'jpg';
   phAccessHelper.createAsset(photoType, extension, (err, uri) => {
-    if (photoAsset != undefined) {
+    if (uri != undefined) {
       console.info('createAsset uri' + uri);
       console.info('createAsset successfully');
     } else {
@@ -1077,7 +1077,7 @@ async function example() {
     //file had changed, do something
   }
   // 注册onCallback1监听
-  phAccessHelper.registerChange(photoAsset.uri, false, onCallback1); 
+  phAccessHelper.registerChange(photoAsset.uri, false, onCallback1);
   // 注册onCallback2监听
   phAccessHelper.registerChange(photoAsset.uri, false, onCallback2);
 
@@ -1275,6 +1275,151 @@ async function example() {
 }
 ```
 
+### getPhotoIndex
+
+getPhotoIndex(photoUri: string, albumUri: string, options: FetchOptions, callback: AsyncCallback&lt;number&gt;): void
+
+获取相册中图片或视频的位置，使用callback方式返回结果。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.READ_IMAGEVIDEO
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名   | 类型                      | 必填 | 说明       |
+| -------- | ------------------------- | ---- | ---------- |
+| photoUri | string | 是   | 所查询的图库资源的uri。 |
+| albumUri | string | 是   | 相册uri，可以为空字符串，为空字符串时默认查询全部图库资源。   |
+| options  | [FetchOptions](#fetchoptions)       | 是   |  检索选项，predicates中必须设置一种检索排序方式，不设置或多设置均会导致接口调用异常。      |
+
+**返回值：**
+
+| 类型                                    | 说明              |
+| --------------------------------------- | ----------------- |
+| AsyncCallback&lt;number&gt;| 返回相册中资源的索引。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 401   | if parameter is invalid.         |
+
+**示例：**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
+async function example() {
+  console.info('getPhotoIndexDemo');
+  let predicatesForGetAsset = new dataSharePredicates.DataSharePredicates();
+  let fetchOp = {
+    fetchColumns: [],
+    predicates: predicatesForGetAsset
+  };
+  //Obtain the uri of the album
+  let albumFetchResult = await helper.getAlbums(photoAccessHelper.AlbumType.SYSTEM, photoAccessHelper.AlbumSubtype.FAVORITE, fetchOp);
+  let album = await albumFetchResult.getFirstObject();
+
+   let predicates = new dataSharePredicates.DataSharePredicates();
+  predicates.orderByAsc("add_modified");
+  let fetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
+  let photoFetchResult = await album.getAssets(fetchOptions);
+  let expectIndex = 1;
+  //Obtain the uri of the second file
+  let photoAsset = await photoFetchResult.getObjectByPosition(expectIndex);
+
+  photoAccessHelper.getPhotoIndex(photoAsset.uri, album.albumUri, fetchOptions, (err, index) => {
+    try {
+      if (err == undefined) {
+        console.info(`getPhotoIndex successfully and index is : ${index}`);
+      } else {
+        console.info(`getPhotoIndex failed;`);
+      }
+    } catch (error) {
+      console.info(`getPhotoIndex failed; error: ${error}`);
+    }
+  }
+}
+```
+
+### getPhotoIndex
+
+getPhotoIndex(photoUri: string, albumUri: string, options: FetchOptions): Promise&lt;number&gt;
+
+获取相册中图片或视频的位置，使用Promise方式返回结果。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.READ_IMAGEVIDEO
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名   | 类型                      | 必填 | 说明       |
+| -------- | ------------------------- | ---- | ---------- |
+| photoUri | string | 是   | 所查询的图库资源的uri。 |
+| albumUri | string | 是   | 相册uri，可以为空字符串，为空字符串时默认查询全部图库资源。   |
+| options  | [FetchOptions](#fetchoptions)       | 是   |  检索选项，predicates中必须设置一种检索排序方式，不设置或多设置均会导致接口调用异常。      |
+
+**返回值：**
+
+| 类型                                    | 说明              |
+| --------------------------------------- | ----------------- |
+| Promise&lt;number&gt;| 返回相册中资源的索引。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 401   | if parameter is invalid.         |
+
+**示例：**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
+async function example() {
+  console.info('getPhotoIndexDemo');
+  let predicatesForGetAsset = new dataSharePredicates.DataSharePredicates();
+  let fetchOp = {
+    fetchColumns: [],
+    predicates: predicatesForGetAsset
+  };
+  //Obtain the uri of the album
+  let albumFetchResult = await helper.getAlbums(photoAccessHelper.AlbumType.SYSTEM, photoAccessHelper.AlbumSubtype.FAVORITE, fetchOp);
+  let album = await albumFetchResult.getFirstObject();
+
+  let predicates = new dataSharePredicates.DataSharePredicates();
+  predicates.orderByAsc("add_modified");
+  let fetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
+  let photoFetchResult = await album.getAssets(fetchOptions);
+  let expectIndex = 1;
+  //Obtain the uri of the second file
+  let photoAsset = await photoFetchResult.getObjectByPosition(expectIndex);
+
+  photoAccessHelper.getPhotoIndex(photoAsset.uri, album.albumUri, fetchOptions)
+    .then((index) => {
+        console.info(`getPhotoIndex successfully and index is : ${index}`);
+      }).catch((err) => {
+      console.info(`getPhotoIndex failed; error: ${err}`);
+    })
+}
+```
+
 ### release
 
 release(callback: AsyncCallback&lt;void&gt;): void
@@ -1360,7 +1505,7 @@ async function example() {
 
 | 名称                      | 类型                     | 可读 | 可写 | 说明                                                   |
 | ------------------------- | ------------------------ | ---- | ---- | ------------------------------------------------------ |
-| uri                       | string                   | 是   | 否   | 文件资源uri（如：file://media/image/2）。         |
+| uri                       | string                   | 是   | 否   | 文件资源uri（如：file://media/Photo/1/IMG_datetime_0001/displayName.jpg）。         |
 | photoType   | [PhotoType](#phototype) | 是   | 否   | 媒体文件类型                                               |
 | displayName               | string                   | 是   | 否   | 显示文件名，包含后缀名。                                 |
 
@@ -1539,7 +1684,7 @@ commitModify(): Promise&lt;void&gt;
 | -------- | ---------------------------------------- |
 | 401    | if values to commit is invalid.         |
 
-**示例：**  
+**示例：**
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
@@ -2243,6 +2388,284 @@ async function example() {
 }
 ```
 
+### getExif<sup>10+</sup>
+
+getExif(): Promise&lt;string&gt;
+
+返回jpg格式图片Exif标签组成的json格式的字符串，该方法使用Promise方式返回结果。
+
+**注意**：此接口返回的是exif标签组成的json格式的字符串，完整exif信息由all_exif与photoKeys.USER_COMMENT组成，fetchColumns需要传入这两个字段。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.READ_IMAGEVIDEO
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**返回值：**
+
+| 类型                                    | 说明              |
+| --------------------------------------- | ----------------- |
+| Promise&lt;string&gt; | 返回Exif标签组成的json格式的字符串。 |
+
+**支持Exif标签列表**：
+
+Exif标签的详细信息请参考[image.PropertyKey](js-apis-image.md#propertykey7)。
+
+| 标签key值                                    | 标签说明              |
+| --------------------------------------- | ----------------- |
+| BitsPerSample | 每个像素比特数 |
+| Orientation | 图像方向 |
+| ImageLength | 图像长度 |
+| ImageWidth | 图像宽度 |
+| GPSLatitude | GPS纬度 |
+| GPSLongitude | GPS经度 |
+| GPSLatitudeRef | 经度引用，例如W或E |
+| GPSLongitudeRef | 纬度引用，例如N或S |
+| DateTimeOriginal | 拍摄时间 |
+| ExposureTime | 曝光时间 |
+| SceneType | 场景类型 |
+| ISOSpeedRatings | ISO感光度分值 |
+| FNumber | 光圈F值 |
+| DateTime | 修改时间 |
+| GPSTimeStamp | GPS时间戳 |
+| GPSDateStamp | GPS日期戳 |
+| ImageDescription | 图像描述 |
+| Make | 制造商 |
+| MakeNote | 制造商 |
+| Model | 型号 |
+| PhotoMode | 拍摄模式 |
+| SensitivityType | 感光类型 |
+| StandardOutputSensitivity | 标准输出感光度 |
+| RecommendedExposureIndex | 推荐曝光指数 |
+| ApertureValue | 光圈 |
+| MeteringMode | 测光模式 |
+| LightSource | 光源 |
+| Flash | 闪光灯 |
+| FocalLength | 镜头焦距 |
+| UserComment | 用户注释 |
+| PixelXDimension | 有效图像宽度 |
+| PixelYDimension | 有效图像高度 |
+| WhiteBalance | 白平衡 |
+| FocalLengthIn35mmFilm | 35mm等效焦距 |
+| ExposureBiasValue | 曝光补偿 |
+
+**示例：**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
+async function example() {
+  try {
+    console.info('getExifDemo');
+    let predicates = new dataSharePredicates.DataSharePredicates();
+    let fetchOptions = {
+      fetchColumns: [ 'all_exif',  photoKeys.USER_COMMENT],
+      predicates: predicates
+    };
+    let fetchResult = await phAccessHelper.getAssets(fetchOptions);
+    let fileAsset = await fetchResult.getFirstObject();
+    let exifMessage = await fileAsset.getExif();
+    let userCommentKey = 'UserComment';
+    let userComment = JSON.stringify(JSON.parse(exifMessage), [userCommentKey]);
+    fetchResult.close();
+  } catch (err) {
+    console.error('getExifDemoCallback failed with error: ' + err);
+  }
+}
+```
+
+### getExif<sup>10+</sup>
+
+getExif(callback: AsyncCallback&lt;string&gt;): void
+
+返回jpg格式图片Exif标签组成的json格式的字符串，该方法使用Promise方式返回结果。
+
+**注意**：此接口返回的是exif标签组成的json格式的字符串，完整exif信息由all_exif与photoKeys.USER_COMMENT组成，fetchColumns需要传入这两个字段。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.READ_IMAGEVIDEO
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名   | 类型                      | 必填 | 说明       |
+| -------- | ------------------------- | ---- | ---------- |
+| callback | AsyncCallback&lt;string&gt; | 是   | 返回Exif字段组成的json格式的字符串。 |
+
+**支持Exif标签列表**：
+
+Exif标签的详细信息请参考[image.PropertyKey](js-apis-image.md#propertykey7)。
+
+| 标签key值                                    | 标签说明              |
+| --------------------------------------- | ----------------- |
+| BitsPerSample | 每个像素比特数 |
+| Orientation | 图像方向 |
+| ImageLength | 图像长度 |
+| ImageWidth | 图像宽度 |
+| GPSLatitude | GPS纬度 |
+| GPSLongitude | GPS经度 |
+| GPSLatitudeRef | 经度引用，例如W或E |
+| GPSLongitudeRef | 纬度引用，例如N或S |
+| DateTimeOriginal | 拍摄时间 |
+| ExposureTime | 曝光时间 |
+| SceneType | 场景类型 |
+| ISOSpeedRatings | ISO感光度分值 |
+| FNumber | 光圈F值 |
+| DateTime | 修改时间 |
+| GPSTimeStamp | GPS时间戳 |
+| GPSDateStamp | GPS日期戳 |
+| ImageDescription | 图像描述 |
+| Make | 制造商 |
+| MakeNote | 制造商 |
+| Model | 型号 |
+| PhotoMode | 拍摄模式 |
+| SensitivityType | 感光类型 |
+| StandardOutputSensitivity | 标准输出感光度 |
+| RecommendedExposureIndex | 推荐曝光指数 |
+| ApertureValue | 光圈 |
+| MeteringMode | 测光模式 |
+| LightSource | 光源 |
+| Flash | 闪光灯 |
+| FocalLength | 镜头焦距 |
+| UserComment | 用户注释 |
+| PixelXDimension | 有效图像宽度 |
+| PixelYDimension | 有效图像高度 |
+| WhiteBalance | 白平衡 |
+| FocalLengthIn35mmFilm | 35mm等效焦距 |
+| ExposureBiasValue | 曝光补偿 |
+
+**示例：**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
+async function example() {
+  try {
+    console.info('getExifDemo');
+    let predicates = new dataSharePredicates.DataSharePredicates();
+    let fetchOptions = {
+      fetchColumns: [ 'all_exif',  photoKeys.USER_COMMENT],
+      predicates: predicates
+    };
+    let fetchResult = await phAccessHelper.getAssets(fetchOptions);
+    let fileAsset = await fetchResult.getFirstObject();
+    let userCommentKey = 'UserComment';
+    fileAsset.getExif((err, exifMessage) => {
+      if (exifMessage != undefined) {
+        let userComment = JSON.stringify(JSON.parse(exifMessage), [userCommentKey]);
+      } else {
+        console.error('getExif failed, message = ', err);
+      }
+    });
+    fetchResult.close();
+  } catch (err) {
+    console.error('getExifDemoCallback failed with error: ' + err);
+  }
+}
+```
+
+### setUserComment<sup>10+</sup>
+
+setUserComment(userComment: string): Promise&lt;void&gt;
+
+修改图片或者视频的备注信息，该方法使用Promise来返回结果。
+
+**注意**：此接口只可修改图片或者视频的备注信息。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.WRITE_IMAGEVIDEO
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名   | 类型                      | 必填 | 说明       |
+| -------- | ------------------------- | ---- | ---------- |
+| userComment | string | 是   | 待修改的图片或视频的备注信息，备注信息最长为140字符。 |
+
+**返回值：**
+
+| 类型                                    | 说明              |
+| --------------------------------------- | ----------------- |
+|Promise&lt;void&gt; | Promise对象，返回void。 |
+
+**示例：**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
+async function example() {
+  try {
+    console.info('setUserCommentDemo')
+    let predicates = new dataSharePredicates.DataSharePredicates();
+    let fetchOptions = {
+      fetchColumns: [],
+      predicates: predicates
+    };
+    let fetchResult = await phAccessHelper.getAssets(fetchOptions);
+    let fileAsset = await fetchResult.getFirstObject();
+    let userComment = 'test_set_user_comment';
+    await fileAsset.setUserComment(userComment);
+  } catch (err) {
+    console.error('setUserCommentDemoCallback failed with error: ' + err);
+  }
+}
+```
+
+### setUserComment<sup>10+</sup>
+
+setUserComment(userComment: string, callback: AsyncCallback&lt;void&gt;): void
+
+修改图片或者视频的备注信息，该方法使用callback形式来返回结果。
+
+**注意**：此接口只可修改图片或者视频的备注信息。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.WRITE_IMAGEVIDEO
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名   | 类型                      | 必填 | 说明       |
+| -------- | ------------------------- | ---- | ---------- |
+| userComment | string | 是   | 待修改的图片或视频的备注信息，备注信息最长为140字符。 |
+| callback | AsyncCallback&lt;void&gt; | 是   | callback返回void。 |
+
+**示例：**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
+async function example() {
+  try {
+    console.info('setUserCommentDemo')
+    let predicates = new dataSharePredicates.DataSharePredicates();
+    let fetchOptions = {
+      fetchColumns: [],
+      predicates: predicates
+    };
+    let fetchResult = await phAccessHelper.getAssets(fetchOptions);
+    let fileAsset = await fetchResult.getFirstObject();
+    let userComment = 'test_set_user_comment';
+    fileAsset.setUserComment(userComment, (err) => {
+      if (err === undefined) {
+        console.info('setUserComment successfully');
+      } else {
+        console.error('setUserComment failed with error: ' + err);
+      }
+    });
+  } catch (err) {
+    console.error('setUserCommentDemoCallback failed with error: ' + err);
+  }
+}
+```
+
 ## FetchResult
 
 文件检索结果集。
@@ -2856,10 +3279,10 @@ getAssets(options: FetchOptions, callback: AsyncCallback&lt;FetchResult&lt;Photo
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
 
 async function example() {
-  console.info('albumGetPhotoAssetsDemoCallback');
-
+  console.info('albumGetAssetsDemoCallback');
   let predicates = new dataSharePredicates.DataSharePredicates();
   let albumFetchOptions = {
+    fetchColumns: [],
     predicates: predicates
   };
   let fetchOption = {
@@ -2914,10 +3337,11 @@ getAssets(options: FetchOptions): Promise&lt;FetchResult&lt;PhotoAsset&gt;&gt;;
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
 
 async function example() {
-  console.info('albumGetPhotoAssetsDemoPromise');
+  console.info('albumGetAssetsDemoPromise');
 
   let predicates = new dataSharePredicates.DataSharePredicates();
   let albumFetchOptions = {
+    fetchColumns: [],
     predicates: predicates
   };
   let fetchOption = {
@@ -2967,6 +3391,7 @@ async function example() {
   console.info('albumCommitModifyDemo');
   let predicates = new dataSharePredicates.DataSharePredicates();
   let albumFetchOptions = {
+    fetchColumns: [],
     predicates: predicates
   };
   const albumList = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.USER, photoAccessHelper.AlbumSubtype.USER_GENERIC, albumFetchOptions);
@@ -3015,6 +3440,7 @@ async function example() {
   console.info('albumCommitModifyDemo');
   let predicates = new dataSharePredicates.DataSharePredicates();
   let albumFetchOptions = {
+    fetchColumns: [],
     predicates: predicates
   };
   const albumList = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.USER, photoAccessHelper.AlbumSubtype.USER_GENERIC, albumFetchOptions);
@@ -3496,6 +3922,131 @@ async function example() {
 }
 ```
 
+### setCoverUri
+
+setCoverUri(uri: string, callback: AsyncCallback&lt;void&gt;): void;
+
+设置相册封面，该方法使用callback形式来返回结果。
+
+**注意**：此接口只可修改用户相册封面，不允许修改系统相册封面。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.WRITE_IMAGEVIDEO
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名   | 类型                      | 必填 | 说明       |
+| -------- | ------------------------- | ---- | ---------- |
+| uri | string | 是   | 待设置为相册封面文件的uri。 |
+| callback | AsyncCallback&lt;void&gt; | 是   | callback返回void。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 202   | Called by non-system application.                |
+| 401   | if parameter is invalid.         |
+
+**示例：**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
+async function example() {
+  try {
+    console.info('setCoverUriDemoCallback');
+    let predicates = new dataSharePredicates.DataSharePredicates();
+    let fetchOption = {
+      fetchColumns: [],
+      predicates: predicates
+    };
+    let albumFetchResult = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.USER, photoAccessHelper.AlbumSubtype.USER_GENERIC);
+    let album = await albumFetchResult.getFirstObject();
+    let fetchResult = await album.getAssets(fetchOption);
+    let asset = await fetchResult.getFirstObject();
+    album.setCoverUri(asset.uri, (err) => {
+      if (err === undefined) {
+        console.info('album setCoverUri successfully');
+      } else {
+        console.error('album setCoverUri failed with error: ' + err);
+      }
+    });
+  } catch (err) {
+    console.error('setCoverUriDemoCallback failed with error: ' + err);
+  }
+}
+```
+
+### setCoverUri
+
+setCoverUri(uri: string): Promise&lt;void&gt;;
+
+设置相册封面，该方法使用Promise来返回结果。
+
+**注意**：此接口只可修改用户相册封面，不允许修改系统相册封面。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.WRITE_IMAGEVIDEO
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名   | 类型                      | 必填 | 说明       |
+| -------- | ------------------------- | ---- | ---------- |
+| uri | string | 是   | 待设置为相册封面文件的uri。 |
+
+**返回值：**
+
+| 类型                                    | 说明              |
+| --------------------------------------- | ----------------- |
+|Promise&lt;void&gt; | Promise对象，返回void。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 202   | Called by non-system application.                |
+| 401   | if parameter is invalid.         |
+
+**示例：**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
+async function example() {
+  try {
+    console.info('setCoverUriDemoCallback');
+    let predicates = new dataSharePredicates.DataSharePredicates();
+    let fetchOption = {
+      fetchColumns: [],
+      predicates: predicates
+    };
+    let albumFetchResult = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.USER, photoAccessHelper.AlbumSubtype.USER_GENERIC);
+    let album = await albumFetchResult.getFirstObject();
+    let fetchResult = await album.getAssets(fetchOption);
+    let asset = await fetchResult.getFirstObject();
+    album.setCoverUri(asset.uri, (err) => {
+      if (err === undefined) {
+        console.info('album setCoverUri successfully');
+      } else {
+        console.error('album setCoverUri failed with error: ' + err);
+      }
+    });
+  } catch (err) {
+    console.error('setCoverUriDemoCallback failed with error: ' + err);
+  }
+}
+```
+
 ## MemberType
 
 成员类型。
@@ -3597,6 +4148,8 @@ async function example() {
 | POSITION  | 'position'            | 文件位置类型。**系统接口**：此接口为系统接口。                               |
 | DATE_TRASHED  | 'date_trashed'  | 删除日期（删除文件时间距1970年1月1日的秒数值）。**系统接口**：此接口为系统接口。                 |
 | HIDDEN  | 'hidden'            | 文件的隐藏状态。**系统接口**：此接口为系统接口。                               |
+| CAMERA_SHOT_KEY  | 'camera_shot_key'  | 锁屏相机拍照或录像的标记字段（仅开放给系统相机,其key值由系统相机定义）。**系统接口**：此接口为系统接口。            |
+| USER_COMMENT<sup>10+</sup>  | 'user_comment'            | 用户注释信息。**系统接口**：此接口为系统接口。           |
 
 ## AlbumKeys
 
@@ -3618,6 +4171,7 @@ async function example() {
 | 名称                   | 类型                | 必填 | 说明                                              |
 | ---------------------- | ------------------- | ---- | ------------------------------------------------ |
 | subtype           | [PhotoSubtype](#photosubtype) | 否  | 图片或者视频的子类型。**系统接口**：此接口为系统接口。  |
+| cameraShotKey           | string | 否  | 锁屏相机拍照或录像的标记字段（仅开放给系统相机,其key值由系统相机定义）。**系统接口**：此接口为系统接口。   |
 
 ## CreateOptions
 

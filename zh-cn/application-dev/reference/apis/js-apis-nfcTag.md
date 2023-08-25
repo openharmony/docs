@@ -23,20 +23,18 @@
 
                             // add the nfc tag action
                             "ohos.nfc.tag.action.TAG_FOUND"
+                        ],
+                        "uris": [
+                            {
+                                "type":"tag-tech/NfcA"
+                            },
+                            {
+                                "type":"tag-tech/IsoDep"
+                            }
+                            // Add other technology if neccessary,
+                            // such as: NfcB/NfcF/NfcV/Ndef/MifareClassic/MifareUL/NdefFormatable
                         ]
                     }
-                ],
-                "metadata": [
-                    {
-                        "name": "tag-tech",
-                        "value": "NfcA"
-                    },
-                    {
-                        "name": "tag-tech",
-                        "value": "IsoDep"
-                    }
-                    // add other technology if neccessary,
-                    // such as: NfcB/NfcF/NfcV/Ndef/MifareClassic/MifareUL/NdefFormatable
                 ]
             }
         ],
@@ -51,9 +49,8 @@
 ```
 > **注意：**
 1. 声明"actions"字段的内容填写，必须是"ohos.nfc.tag.action.TAG_FOUND"，不能更改。
-2. 声明技术时"metadata"中的"name"字段的内容填写，必须是"tag-tech"，不能更改。
-3. 声明技术时"metadata"中的"value"字段的内容填写，必须是"NfcA/NfcB/NfcF/NfcV/IsoDep/Ndef/MifareClassic/MifareUL/NdefFormatable"中的一个或多个。填写错误会造成解析失败。
-4. 声明权限时"requestPermissions"中的"name"字段的内容填写，必须是"ohos.permission.NFC_TAG"，不能更改。
+2. 声明技术时"uris"中"type"字段的内容填写，前缀必须是"tag-tech/"，后面接着NfcA/NfcB/NfcF/NfcV/IsoDep/Ndef/MifareClassic/MifareUL/NdefFormatable"中的一个。如果存在多个"type"时，需要分行填写。填写错误会造成解析失败。
+3. 声明权限时"requestPermissions"中的"name"字段的内容填写，必须是"ohos.permission.NFC_TAG"，不能更改。
 
 ## **导入模块**
 
@@ -527,8 +524,16 @@ import tag from '@ohos.nfc.tag';
 
 let elementName = null;
 let discTech = [tag.NFC_A, tag.NFC_B]; // replace with the tech(s) that is needed by foreground ability
-function foregroundCb(tagInfo: any) {
-    console.log("foreground callback: tag found tagInfo = ", JSON.stringify(tagInfo));
+
+function foregroundCb(err, tagInfo) {
+    if (!err) {
+        console.log("foreground callback: tag found tagInfo = ", JSON.stringify(tagInfo));
+    } else {
+        console.log("foreground callback err: " + err.message);
+        return;
+    }
+    // other Operations of taginfo
+    
 }
 
 export default class MainAbility extends UIAbility {
@@ -884,7 +889,7 @@ NFC Tag有多种不同的技术类型，定义常量描述不同的技术类型�
 | **名称**                     | **值** | **说明**                    |
 | ---------------------------- | ------ | --------------------------- |
 | NFC_A                        | 1      | NFC-A (ISO 14443-3A)技术。  |
-| NFC_B                        | 2      | NFC-A (ISO 14443-3B)技术。  |
+| NFC_B                        | 2      | NFC-B (ISO 14443-3B)技术。  |
 | ISO_DEP                      | 3      | ISO-DEP (ISO 14443-4)技术。 |
 | NFC_F                        | 4      | NFC-F (JIS 6319-4)技术。    |
 | NFC_V                        | 5      | NFC-V (ISO 15693)技术。     |

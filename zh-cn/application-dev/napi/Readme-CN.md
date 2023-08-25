@@ -17,3 +17,9 @@
   - [Neural Network Runtime对接AI推理框架开发指导](neural-network-runtime-guidelines.md)
 - 内存管理
   - [Purgeable memory开发指导](purgeable-memory-guidelines.md)
+- 设备管理
+  - [USB DDK开发指导](usb-ddk-guidelines.md)
+
+- 数据管理
+  - [RelationalStore开发指导](native-relational-store-guidelines.md)
+

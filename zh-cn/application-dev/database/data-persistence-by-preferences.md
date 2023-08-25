@@ -68,7 +68,7 @@
              return;
            }
            console.info('Succeeded in getting preferences.');
-           // 进行相关数据操作
+           // 请确保获取到Preferences实例后，再进行相关数据操作
          })
        } catch (err) {
          console.error(`Failed to get preferences. Code:${err.code},message:${err.message}`);
@@ -93,7 +93,7 @@
          return;
        }
        console.info('Succeeded in getting preferences.');
-       // 进行相关数据操作
+       // 请确保获取到Preferences实例后，再进行相关数据操作
      })
    } catch (err) {
      console.error(`Failed to get preferences. Code is ${err.code},message:${err.message}`);
@@ -226,6 +226,18 @@
 
 针对用户首选项开发，有以下相关实例可供参考：
 
-- [`Preferences`：首选项（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/DataManagement/Preferences)
+- [游戏2048（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/Solutions/Game/Game2048)
+
+- [图案密码锁（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/Solutions/Tools/PatternLock)
+
+- [首选项（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/DataManagement/Preferences)
 
 - [首选项（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/Data/Preferences)
+
+- [用户首选项（JS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/Data/PreferenceJS)
+
+- [备忘录（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/Data/NotePadOpenHarmony)
+
+- [应用的首次启动（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/Data/FirstStartDemo)
+
+- [应用内字体大小调节（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/Data/SetAppFontSize)

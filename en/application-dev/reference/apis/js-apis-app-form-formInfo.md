@@ -169,6 +169,8 @@ Defines the information about the widget provider.
 
 **System capability**: SystemCapability.Ability.Form
 
+**System API**: This is a system API and cannot be called by third-party applications.
+
 | Name       | Type                | Readable   | Writable   | Description                                                        |
 | ----------- | -------- | -------- | -------------------- | ------------------------------------------------------------ |
 | bundleName  | string               | Yes   | No    | Name of the bundle to which the widget provider belongs.                  |

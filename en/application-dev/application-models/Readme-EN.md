@@ -21,6 +21,7 @@
       - [EnterpriseAdminExtensionAbility](enterprise-extensionAbility.md)
       - [InputMethodExtensionAbility](inputmethodextentionability.md)
       - [WindowExtensionAbility (for System Applications Only)](windowextensionability.md)
+      - [DriverExtensionAbility](driverextensionability.md)
     - Service Widget Development in Stage Model
       - [Service Widget Overview](service-widget-overview.md)
       - Developing an ArkTS Widget
@@ -43,6 +44,7 @@
           - Widget Data Interaction
             - [Widget Data Interaction Overview](arkts-ui-widget-interaction-overview.md)
             - [Configuring a Widget to Update Periodically](arkts-ui-widget-update-by-time.md)
+            - [Updating Widget Content Through a Proxy](arkts-ui-widget-update-by-proxy.md)
             - [Updating Local and Online Images in the Widget](arkts-ui-widget-image-update.md)
             - [Updating Widget Content by State](arkts-ui-widget-update-by-status.md)
             - [Updating Widget Content by Widget Host (for System Applications Only)](arkts-ui-widget-content-update.md)
@@ -59,10 +61,9 @@
     - [Component Startup Rules (Stage Model)](component-startup-rules.md)
     - Inter-Device Application Component Interaction (Continuation)
       - [Continuation Overview](inter-device-interaction-hop-overview.md)
-      - [Cross-Device Migration (for System Applications Only)](hop-cross-device-migration.md)
+      - [Cross-Device Migration](hop-cross-device-migration.md)
       - [Multi-device Collaboration (for System Applications Only)](hop-multi-device-collaboration.md)
     - [Subscribing to System Environment Variable Changes](subscribe-system-environment-variable-changes.md)
-    - [Setting Atomic Services to Support Sharing](atomic-services-support-sharing.md)
   - Process Model
     - [Process Model Overview](process-model-stage.md)
     - Common Events

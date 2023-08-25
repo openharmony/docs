@@ -404,7 +404,7 @@ Kills a process by bundle name and account ID. This API uses a promise to return
 >
 > The **ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS** permission is not required when **accountId** specifies the current user.
 
-**Required permissions**: ohos.permission.CLEAN_BACKGROUND_PROCESSES and ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+**Required permissions**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS and ohos.permission.CLEAN_BACKGROUND_PROCESSES
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -446,7 +446,7 @@ Kills a process by bundle name and account ID. This API uses an asynchronous cal
 
 **System API**: This is a system API and cannot be called by third-party applications.
 
-**Required permissions**: ohos.permission.CLEAN_BACKGROUND_PROCESSES and ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+**Required permissions**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS and ohos.permission.CLEAN_BACKGROUND_PROCESSES
 
 **Parameters**
 

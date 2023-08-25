@@ -66,6 +66,7 @@
   - [AlphabetIndexer](ts-container-alphabet-indexer.md)
   - [Blank](ts-basic-components-blank.md)
   - [Button](ts-basic-components-button.md)
+  - [CalendarPicker](ts-basic-components-calendarpicker.md)
   - [Checkbox](ts-basic-components-checkbox.md)
   - [CheckboxGroup](ts-basic-components-checkboxgroup.md)
   - [DataPanel](ts-basic-components-datapanel.md)
@@ -111,7 +112,6 @@
   - [Web](ts-basic-components-web.md)
   - [XComponent](ts-basic-components-xcomponent.md)
 - 容器组件
-  - [AbilityComponent](ts-container-ability-component.md)
   - [Badge](ts-container-badge.md)
   - [Column](ts-container-column.md)
   - [ColumnSplit](ts-container-columnsplit.md)
@@ -139,6 +139,7 @@
   - [Swiper](ts-container-swiper.md)
   - [Tabs](ts-container-tabs.md)
   - [TabContent](ts-container-tabcontent.md)
+  - [UIExtensionComponent](ts-container-ui-extension-component.md)
   - [WaterFlow](ts-container-waterflow.md)
 - 媒体组件
   - [Video](ts-media-components-video.md)
@@ -178,6 +179,7 @@
     - [警告弹窗](ts-methods-alert-dialog-box.md)
     - [列表选择弹窗](ts-methods-action-sheet.md)
     - [自定义弹窗](ts-methods-custom-dialog-box.md)
+    - [日历选择器弹窗](ts-methods-calendarpicker-dialog.md)
     - [日期滑动选择器弹窗](ts-methods-datepicker-dialog.md)
     - [时间滑动选择器弹窗](ts-methods-timepicker-dialog.md)
     - [文本滑动选择器弹窗](ts-methods-textpicker-dialog.md)
@@ -189,5 +191,6 @@
 - [类型定义](ts-types.md)
 - 已停止维护的组件
   - [GridContainer](ts-container-gridcontainer.md)
-- 已停止维护的接口 
+  - [AbilityComponent](ts-container-ability-component.md)
+- 已停止维护的接口
   - [点击控制](ts-universal-attributes-click.md)

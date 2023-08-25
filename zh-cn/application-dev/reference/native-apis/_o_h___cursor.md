@@ -36,4 +36,4 @@
 | [getReal](_r_d_b.md#getreal) | 函数指针，以double形式获取当前行中指定列的值。 |
 | [getBlob](_r_d_b.md#getblob) | 函数指针，以字节数组的形式获取当前行中指定列的值。 |
 | [isNull](_r_d_b.md#isnull-12) | 函数指针，检查当前行中指定列的值是否为null。 |
-| [close](_r_d_b.md#close) | 函数指针，关闭结果集。 |
+| [destroy](_r_d_b.md#destroy-14) | 函数指针，关闭结果集。 |

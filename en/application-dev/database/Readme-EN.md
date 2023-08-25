@@ -16,7 +16,11 @@
   - [Database Backup and Restoration](data-backup-and-restore.md)
   - [Database Encryption](data-encryption.md)
   - [Access Control by Device and Data Level](access-control-by-device-and-data-level.md)
-- Cross-Application Data Sharing (for System Applications Only)
-  - [Cross-Application Data Sharing Overview](share-device-data-across-apps-overview.md)
-  - [Sharing Data Using DataShareExtensionAbility](share-data-by-datashareextensionability.md)
-  - [Sharing Data in Silent Access](share-data-by-silent-access.md)
+- Cross-Application Data Sharing
+  - [Data Sharing Overview](data-share-overview.md)
+  - [Unified Data Definition](unified-data-definition.md)
+  - One-to-Many Data Sharing (for System Applications Only)
+    - [Sharing Data Using DataShareExtensionAbility](share-data-by-datashareextensionability.md)
+    - [Silent Access via the DatamgrService](share-data-by-silent-access.md)
+  - Many-to-Many Data Sharing 
+    - [Sharing Data Using Unified Data Channels](unified-data-channels.md)

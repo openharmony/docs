@@ -3,8 +3,9 @@
 证书算法库框架提供证书相关接口。其中，依赖加解密算法库框架的基础算法能力的部分，详细接口说明可参考[cryptoFramework API参考](js-apis-cryptoFramework.md)。
 
 > **说明：**
-> 
-> 本模块首批接口从API version 9开始支持。
+>
+> - 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> - 以下示例代码片段仅适用于JS语言开发。
 
 ## 导入模块
 
@@ -553,11 +554,15 @@ cryptoCert.createX509Cert(encodingBlob, function (error, x509Cert) {
 });
 ```
 
-### getSerialNumber
+### getSerialNumber<sup>(deprecated)</sup>
 
 getSerialNumber() : number
 
 表示获取X509证书序列号。
+
+> **说明：**
+>
+> 从API version 9开始支持，从API version 10开始废弃，建议使用[getCertSerialNumber](#getcertserialnumber10)替代。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -585,6 +590,48 @@ cryptoCert.createX509Cert(encodingBlob, function (error, x509Cert) {
     } else {
         console.log("createX509Cert success");
         let serialNumber = x509Cert.getSerialNumber();
+    }
+});
+```
+
+### getCertSerialNumber<sup>10+</sup>
+
+getCertSerialNumber() : bigint
+
+表示获取X509证书序列号。
+
+**系统能力：** SystemCapability.Security.Cert
+
+**返回值**：
+
+| 类型   | 说明               |
+| ------ | ------------------ |
+| bigint | 表示X509证书序列号 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                                          |
+| -------- | ------------------------------------------------- |
+| 19020002 | runtime error.                                    |
+
+**示例：**
+
+```js
+import cryptoCert from '@ohos.security.cert';
+
+// 证书二进制数据，需业务自行赋值
+let encodingData = null;
+let encodingBlob = {
+    data: encodingData,
+    // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+    encodingFormat: cryptoCert.EncodingFormat.FORMAT_PEM
+};
+cryptoCert.createX509Cert(encodingBlob, function (error, x509Cert) {
+    if (error != null) {
+        console.log("createX509Cert failed, errCode: " + error.code + ", errMsg: " + error.message);
+    } else {
+        console.log("createX509Cert success");
+        let serialNumber = x509Cert.getCertSerialNumber();
     }
 });
 ```

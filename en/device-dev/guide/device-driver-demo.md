@@ -143,7 +143,7 @@ Configure the  **device\_info.hcs**  file and obtain and parse device configurat
 
 2.  \(Optional\) Add configuration parameters.
 
-    The driver may require private configuration information to ensure that the register configuration meets the requirements of different products. If private configuration data is required, you can add a driver configuration file to store some default configuration information about the driver. When loading the driver, the HDF obtains the specified configuration information, saves it in the  **property**  attribute of  **HdfDeviceObject**, and passes it to the driver via  **Bind**  and  **Init**. For details about how to use  **Bind**  and  **Init**, see  [Driver Development](../driver/driver-hdf-development.md). You can create a configuration file and reference it in the  **hdf.hcs**  file of the board-level driver. In this example, configuration parameters are directly added to the existing configuration file  **i2c\_config.hcs**.
+    The driver may require private configuration information to ensure that the register configuration meets the requirements of different products. If private configuration data is required, you can add a driver configuration file to store some default configuration information about the driver. When loading the driver, the HDF obtains the specified configuration information, saves it in the  **property**  attribute of  **HdfDeviceObject**, and passes it to the driver via  **Bind**  and  **Init**. For details about how to use  **Bind**  and  **Init**, see  [Driver Development](../driver/driver-overview-foundation.md). You can create a configuration file and reference it in the  **hdf.hcs**  file of the board-level driver. In this example, configuration parameters are directly added to the existing configuration file  **i2c\_config.hcs**.
 
     The following configuration parameters are added to the  **i2c\_config.hcs**  file:
 
@@ -433,5 +433,4 @@ Initialize the controller hardware, call core-layer APIs to add or delete device
     - For details about the operations using the installation package, see [Building Source Code](../quick-start/quickstart-appendix-hi3516-pkg.md#building-source-code) and [Burning an Image](../quick-start/quickstart-appendix-hi3516-pkg.md#burning-an-image).
     
     - For details about the operations in IDE mode, see [Building Source Code](../quick-start/quickstart-appendix-hi3516-ide.md#building-source-code) and [Burning an Image](../quick-start/quickstart-appendix-hi3516-ide.md#burning-an-image).
-
 

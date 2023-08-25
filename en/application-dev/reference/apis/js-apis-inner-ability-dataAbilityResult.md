@@ -13,6 +13,8 @@ The **DataAbilityResult** module defines the operation result on DataAbilities. 
 import ability from '@ohos.ability.ability';
 ```
 
+## Attributes
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
 | Name      | Type |     Mandatory   |       Description  |

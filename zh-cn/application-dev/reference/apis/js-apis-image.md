@@ -892,6 +892,16 @@ getColorSpace(): colorSpaceManager.ColorSpaceManager
 | ----------------------------------- | ---------------- |
 | [colorSpaceManager.ColorSpaceManager](js-apis-colorSpaceManager.md#colorspacemanager) | 图像广色域信息。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[Image错误码](../errorcodes/errorcode-image.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 62980101| If the image data abnormal              |
+| 62980103| If the image data unsupport              |
+| 62980115| If the image parameter invalid             |
+
 **示例：**
 
 ```js
@@ -914,6 +924,15 @@ setColorSpace(colorSpace: colorSpaceManager.ColorSpaceManager): void
 | 参数名     | 类型                                | 必填 | 说明            |
 | ---------- | ----------------------------------- | ---- | --------------- |
 | colorSpace | [colorSpaceManager.ColorSpaceManager](js-apis-colorSpaceManager.md#colorspacemanager) | 是   | 图像广色域信息。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Image错误码](../errorcodes/errorcode-image.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 62980111| If the operation invalid              |
+| 62980115| If the image parameter invalid             |
 
 **示例：**
 
@@ -941,7 +960,7 @@ marshalling(sequence: rpc.MessageSequence): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见文档底部图片错误码。
+以下错误码的详细介绍请参见[Image错误码](../errorcodes/errorcode-image.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -998,7 +1017,7 @@ unmarshalling(sequence: rpc.MessageSequence): Promise\<PixelMap>
 
 **错误码：**
 
-以下错误码的详细介绍请参见文档底部图片错误码。
+以下错误码的详细介绍请参见[Image错误码](../errorcodes/errorcode-image.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -1700,6 +1719,18 @@ createPixelMapList(options?: DecodingOptions): Promise<Array\<PixelMap>>;
 | -------------------------------- | --------------------- |
 | Promise<Array<[PixelMap](#pixelmap7)>> | 异步返回PixeMap数组。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[Image错误码](../errorcodes/errorcode-image.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 62980096| If the operation invalid              |
+| 62980103| If the image data unsupport             |
+| 62980110| If the image source data error              |
+| 62980111| If the image source data incomplete            |
+| 62980118| If the image plugin create failed             |
+
 **示例：**
 
 ```js
@@ -1728,10 +1759,22 @@ createPixelMapList(callback: AsyncCallback<Array\<PixelMap>>): void
 | -------- | ------------------------------------- | ---- | -------------------------- |
 | callback | AsyncCallback<Array<[PixelMap](#pixelmap7)>> | 是   | 通过回调返回PixelMap数组。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[Image错误码](../errorcodes/errorcode-image.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 62980096| If the operation invalid              |
+| 62980103| If the image data unsupport             |
+| 62980110| If the image source data error              |
+| 62980111| If the image source data incomplete            |
+| 62980118| If the image plugin create failed             |
+
 **示例：**
 
 ```js
-imageSourceApi.createPixelMap( pixelmaplist => {
+imageSourceApi.createPixelMapList( pixelmaplist => {
     console.info('Succeeded in creating pixelmaplist object.');
 })
 ```
@@ -1751,6 +1794,18 @@ createPixelMapList(options: DecodingOptions, callback: AsyncCallback<Array\<Pixe
 | options | [DecodingOptions](#decodingoptions7) | 是 | 解码参数。 |
 | callback | AsyncCallback<Array<[PixelMap](#pixelmap7)>> | 是   | 通过回调返回PixelMap数组。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[Image错误码](../errorcodes/errorcode-image.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 62980096| If the operation invalid              |
+| 62980103| If the image data unsupport             |
+| 62980110| If the image source data error              |
+| 62980111| If the image source data incomplete            |
+| 62980118| If the image plugin create failed             |
+
 **示例：**
 
 ```js
@@ -1762,14 +1817,14 @@ let decodeOpts = {
     desiredPixelFormat: 3,
     index: 0,
 };
-imageSourceApi.createPixelMap(decodeOpts, pixelmaplist => { 
+imageSourceApi.createPixelMapList(decodeOpts, pixelmaplist => { 
     console.log('Succeeded in creating pixelmaplist object.');
 })
 ```
 
-### getDelayTime<sup>10+</sup>
+### getDelayTimeList<sup>10+</sup>
 
-getDelayTime(callback: AsyncCallback<Array\<number>>): void;
+getDelayTimeList(callback: AsyncCallback<Array\<number>>): void;
 
 获取图像延迟时间数组，使用callback形式返回结果。
 
@@ -1781,17 +1836,31 @@ getDelayTime(callback: AsyncCallback<Array\<number>>): void;
 | -------- | -------------------- | ---- | ---------------------------------- |
 | callback | AsyncCallback<Array\<number>> | 是   | 通过回调返回延迟时间数组。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[Image错误码](../errorcodes/errorcode-image.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 62980096| If the operation invalid              |
+| 62980110| If the image source data error              |
+| 62980111| If the image source data incomplete            |
+| 62980113| If the image format unknown            |
+| 62980116| If the image decode failed            |
+| 62980118| If the image plugin create failed             |
+| 62980122| If the image decode head abnormal             |
+
 **示例：**
 
 ```js
-imageSourceApi.getDelayTime( delayTimes => {
+imageSourceApi.getDelayTimeList( delayTimes => {
     console.log('Succeeded in getting delay time.');
 });
 ```
 
-### getDelayTime<sup>10+</sup>
+### getDelayTimeList<sup>10+</sup>
 
-getDelayTime(): Promise<Array\<number>>;
+getDelayTimeList(): Promise<Array\<number>>;
 
 获取图像延迟时间数组，使用Promise形式返回结果。
 
@@ -1803,10 +1872,24 @@ getDelayTime(): Promise<Array\<number>>;
 | -------------- | --------------------------- |
 | Promise<Array\<number>> | Promise实例，异步返回延迟时间数组。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[Image错误码](../errorcodes/errorcode-image.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 62980096| If the operation invalid              |
+| 62980110| If the image source data error              |
+| 62980111| If the image source data incomplete            |
+| 62980113| If the image format unknown            |
+| 62980116| If the image decode failed            |
+| 62980118| If the image plugin create failed             |
+| 62980122| If the image decode head abnormal             |
+
 **示例：**
 
 ```js
-let delayTimes = imageSourceApi.getDelayTime();
+let delayTimes = imageSourceApi.getDelayTimeList();
 ```
 
 ### getFrameCount<sup>10+</sup>
@@ -1822,6 +1905,20 @@ getFrameCount(callback: AsyncCallback\<number>): void;
 | 参数名   | 类型                 | 必填 | 说明                               |
 | -------- | -------------------- | ---- | ---------------------------------- |
 | callback | AsyncCallback\<number> | 是   | 通过回调返回图像帧数。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Image错误码](../errorcodes/errorcode-image.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 62980096| If the operation invalid              |
+| 62980110| If the image source data error              |
+| 62980111| If the image source data incomplete            |
+| 62980113| If the image format unknown            |
+| 62980116| If the image decode failed            |
+| 62980118| If the image plugin create failed             |
+| 62980122| If the image decode head abnormal             |
 
 **示例：**
 
@@ -2423,7 +2520,7 @@ dequeueImage(callback: AsyncCallback\<Image>): void
 ```js
 creator.dequeueImage((err, img) => {
     if (err) {
-        console.info('dequeueImage failded.');
+        console.info('dequeueImage failed.');
     }
     console.info('dequeueImage succeeded.');
 });
@@ -2838,9 +2935,9 @@ PixelMap的初始化选项。
 
 | 名称               | 类型                               | 可读 | 可写 | 说明             |
 | ------------------ | ---------------------------------- | ---- | ---- | ---------------- |
-| sampleSize         | number                             | 是   | 是   | 缩略图采样大小。 |
+| sampleSize         | number                             | 是   | 是   | 缩略图采样大小，当前只能取1。 |
 | rotate             | number                             | 是   | 是   | 旋转角度。       |
-| editable           | boolean                            | 是   | 是   | 是否可编辑。     |
+| editable           | boolean                            | 是   | 是   | 是否可编辑。当取值为false时，图片不可二次编辑，如crop等操作将失败。  |
 | desiredSize        | [Size](#size)                      | 是   | 是   | 期望输出大小。   |
 | desiredRegion      | [Region](#region7)                 | 是   | 是   | 解码区域。       |
 | desiredPixelFormat | [PixelMapFormat](#pixelmapformat7) | 是   | 是   | 解码的像素格式。 |
@@ -2869,7 +2966,7 @@ PixelMap的初始化选项。
 | ------- | ------ | ---- | ---- | --------------------------------------------------- |
 | format  | string | 是   | 是   | 目标格式。</br>当前只支持jpg和webp。 |
 | quality | number | 是   | 是   | JPEG编码中设定输出图片质量的参数，取值范围为1-100。 |
-| bufferSize<sup>9+</sup> | number | 是   | 是   | 用于设置图片大小，默认为10M |
+| bufferSize<sup>9+</sup> | number | 是   | 是   | 用于设置图片大小，默认为10M。 |
 
 ## GetImagePropertyOptions<sup>7+</sup>
 
@@ -2898,34 +2995,34 @@ PixelMap的初始化选项。
 | GPS_LONGITUDE     | "GPSLongitude"          | 图片经度。               |
 | GPS_LATITUDE_REF  | "GPSLatitudeRef"        | 纬度引用，例如N或S。    |
 | GPS_LONGITUDE_REF | "GPSLongitudeRef"       | 经度引用，例如W或E。    |
-| DATE_TIME_ORIGINAL<sup>9+</sup> | "DateTimeOriginal" | 拍摄时间，例如2022:09:06 15:48:00     |
-| EXPOSURE_TIME<sup>9+</sup>      | "ExposureTime"     | 曝光时间，例如1/33 sec.|
-| SCENE_TYPE<sup>9+</sup>         | "SceneType"        | 拍摄场景模式，例如人像、风光、运动、夜景等。     |
-| ISO_SPEED_RATINGS<sup>9+</sup>  | "ISOSpeedRatings"  | ISO感光度，例如400     |
-| F_NUMBER<sup>9+</sup>           | "FNumber"          | 光圈值，例如f/1.8     |
-| DATE_TIME<sup>10+</sup>                  | "DateTime"             | 日期时间               |
-| GPS_TIME_STAMP<sup>10+</sup>             | "GPSTimeStamp"         | GPS时间戳        |
-| GPS_DATE_STAMP<sup>10+</sup>             | "GPSDateStamp"         | GPS日期戳         |
-| IMAGE_DESCRIPTION<sup>10+</sup>          | "ImageDescription"     | 图像信息描述               |
-| MAKE<sup>10+</sup>                       | "Make"                 | 生产商                  |
-| PHOTO_MODE<sup>10+</sup>                 | "PhotoMode "           | 拍照模式              |
-| SENSITIVITY_TYPE<sup>10+</sup>           | "SensitivityType"      | 灵敏度类型             |
-| STANDARD_OUTPUT_SENSITIVITY<sup>10+</sup>           | "StandardOutputSensitivity"          | 标准输出灵敏度    |
-| RECOMMENDED_EXPOSURE_INDEX<sup>10+</sup>            | "RecommendedExposureIndex"          | 推荐曝光指数    |
-| ISO_SPEED<sup>10+</sup>                             | "ISOSpeedRatings"          | ISO速度等级    |
-| APERTURE_VALUE<sup>10+</sup>             | "ApertureValue"            | 光圈值    |
-| EXPOSURE_BIAS_VALUE<sup>10+</sup>        | "ExposureBiasValue"        | 曝光偏差值    |
-| METERING_MODE<sup>10+</sup>              | "MeteringMode"             | 测光模式    |
-| LIGHT_SOURCE<sup>10+</sup>               | "LightSource"              | 光源    |
-| FLASH <sup>10+</sup>                     | "Flash"                    | 闪光灯,记录闪光灯状态    |
-| FOCAL_LENGTH <sup>10+</sup>              | "FocalLength"              | 焦距    |
-| USER_COMMENT <sup>10+</sup>               | "UserComment"              | 用户注释    |
-| PIXEL_X_DIMENSION <sup>10+</sup>          | "PixelXDimension"          | 像素X尺寸    |
-| PIXEL_Y_DIMENSION<sup>10+</sup>           | "PixelYDimension"          | 像素Y尺寸    |
-| WHITE_BALANCE <sup>10+</sup>              | "WhiteBalance"             | 白平衡    |
-| FOCAL_LENGTH_IN_35_MM_FILM <sup>10+</sup> | "FocalLengthIn35mmFilm"    | 焦距35毫米胶片    |
-| CAPTURE_MODE <sup>10+</sup>               | "HwMnoteCaptureMode"       | 捕获模式    |
-| PHYSICAL_APERTURE <sup>10+</sup>          | "HwMnotePhysicalAperture"  | 物理孔径,光圈大小   |
+| DATE_TIME_ORIGINAL<sup>9+</sup> | "DateTimeOriginal" | 拍摄时间，例如2022:09:06 15:48:00。当前为只读属性。     |
+| EXPOSURE_TIME<sup>9+</sup>      | "ExposureTime"     | 曝光时间，例如1/33 sec。当前为只读属性。 |
+| SCENE_TYPE<sup>9+</sup>         | "SceneType"        | 拍摄场景模式，例如人像、风光、运动、夜景等。当前为只读属性。      |
+| ISO_SPEED_RATINGS<sup>9+</sup>  | "ISOSpeedRatings"  | ISO感光度，例如400。当前为只读属性。      |
+| F_NUMBER<sup>9+</sup>           | "FNumber"          | 光圈值，例如f/1.8。当前为只读属性。      |
+| DATE_TIME<sup>10+</sup>                  | "DateTime"             | 日期时间，当前为只读属性。                |
+| GPS_TIME_STAMP<sup>10+</sup>             | "GPSTimeStamp"         | GPS时间戳，当前为只读属性。         |
+| GPS_DATE_STAMP<sup>10+</sup>             | "GPSDateStamp"         | GPS日期戳，当前为只读属性。          |
+| IMAGE_DESCRIPTION<sup>10+</sup>          | "ImageDescription"     | 图像信息描述，当前为只读属性。               |
+| MAKE<sup>10+</sup>                       | "Make"                 | 生产商，当前为只读属性。                  |
+| PHOTO_MODE<sup>10+</sup>                 | "PhotoMode "           | 拍照模式，当前为只读属性。              |
+| SENSITIVITY_TYPE<sup>10+</sup>           | "SensitivityType"      | 灵敏度类型，当前为只读属性。             |
+| STANDARD_OUTPUT_SENSITIVITY<sup>10+</sup>           | "StandardOutputSensitivity"          | 标准输出灵敏度，当前为只读属性。    |
+| RECOMMENDED_EXPOSURE_INDEX<sup>10+</sup>            | "RecommendedExposureIndex"          | 推荐曝光指数，当前为只读属性。    |
+| ISO_SPEED<sup>10+</sup>                             | "ISOSpeedRatings"          | ISO速度等级，当前为只读属性。    |
+| APERTURE_VALUE<sup>10+</sup>             | "ApertureValue"            | 光圈值，当前为只读属性。    |
+| EXPOSURE_BIAS_VALUE<sup>10+</sup>        | "ExposureBiasValue"        | 曝光偏差值，当前为只读属性。    |
+| METERING_MODE<sup>10+</sup>              | "MeteringMode"             | 测光模式，当前为只读属性。    |
+| LIGHT_SOURCE<sup>10+</sup>               | "LightSource"              | 光源，当前为只读属性。    |
+| FLASH <sup>10+</sup>                     | "Flash"                    | 闪光灯,记录闪光灯状态，当前为只读属性。    |
+| FOCAL_LENGTH <sup>10+</sup>              | "FocalLength"              | 焦距，当前为只读属性。    |
+| USER_COMMENT <sup>10+</sup>               | "UserComment"              | 用户注释，当前为只读属性。    |
+| PIXEL_X_DIMENSION <sup>10+</sup>          | "PixelXDimension"          | 像素X尺寸，当前为只读属性。   |
+| PIXEL_Y_DIMENSION<sup>10+</sup>           | "PixelYDimension"          | 像素Y尺寸，当前为只读属性。    |
+| WHITE_BALANCE <sup>10+</sup>              | "WhiteBalance"             | 白平衡，当前为只读属性。    |
+| FOCAL_LENGTH_IN_35_MM_FILM <sup>10+</sup> | "FocalLengthIn35mmFilm"    | 焦距35毫米胶片，当前为只读属性。    |
+| CAPTURE_MODE <sup>10+</sup>               | "HwMnoteCaptureMode"       | 捕获模式，当前为只读属性。    |
+| PHYSICAL_APERTURE <sup>10+</sup>          | "HwMnotePhysicalAperture"  | 物理孔径,光圈大小，当前为只读属性。   |
 
 ## ImageFormat<sup>9+</sup>
 
@@ -2967,7 +3064,7 @@ PixelMap的初始化选项。
 ## 补充说明
 ### SVG标签说明
 
-从API verison 10开始支持SVG标签，使用版本为(SVG) 1.1，当前支持的标签列表有：
+从API version 10开始支持SVG标签，使用版本为(SVG) 1.1，当前支持的标签列表有：
 - a
 - circla
 - clipPath
@@ -3006,45 +3103,3 @@ PixelMap的初始化选项。
 - textPath
 - tspan
 - use
-
-### ResponseCode说明
-
-编译错误返回的响应码。
-
-| 名称                                | 值       | 说明                                                |
-| ----------------------------------- | -------- | --------------------------------------------------- |
-| ERR_MEDIA_INVALID_VALUE             | -1       | 无效大小。                                          |
-| SUCCESS                             | 0        | 操作成功。                                          |
-| ERROR                               | 62980096 | 操作失败。                                          |
-| ERR_IPC                             | 62980097 | ipc错误。                                           |
-| ERR_SHAMEM_NOT_EXIST                | 62980098 | 共享内存错误。                                      |
-| ERR_SHAMEM_DATA_ABNORMAL            | 62980099 | 共享内存错误。                                      |
-| ERR_IMAGE_DECODE_ABNORMAL           | 62980100 | 图像解码错误。                                      |
-| ERR_IMAGE_DATA_ABNORMAL             | 62980101 | 图像输入数据错误。                                  |
-| ERR_IMAGE_MALLOC_ABNORMAL           | 62980102 | 图像malloc错误。                                    |
-| ERR_IMAGE_DATA_UNSUPPORT            | 62980103 | 不支持图像类型。                                    |
-| ERR_IMAGE_INIT_ABNORMAL             | 62980104 | 图像初始化错误。                                    |
-| ERR_IMAGE_GET_DATA_ABNORMAL         | 62980105 | 图像获取数据错误。                                  |
-| ERR_IMAGE_TOO_LARGE                 | 62980106 | 图像数据太大。                                      |
-| ERR_IMAGE_TRANSFORM                 | 62980107 | 图像转换错误。                                      |
-| ERR_IMAGE_COLOR_CONVERT             | 62980108 | 图像颜色转换错误。                                  |
-| ERR_IMAGE_CROP                      | 62980109 | 裁剪错误。                                          |
-| ERR_IMAGE_SOURCE_DATA               | 62980110 | 图像源数据错误。                                    |
-| ERR_IMAGE_SOURCE_DATA_INCOMPLETE    | 62980111 | 图像源数据不完整。                                  |
-| ERR_IMAGE_MISMATCHED_FORMAT         | 62980112 | 图像格式不匹配。                                    |
-| ERR_IMAGE_UNKNOWN_FORMAT            | 62980113 | 图像未知格式。                                      |
-| ERR_IMAGE_SOURCE_UNRESOLVED         | 62980114 | 图像源未解析。                                      |
-| ERR_IMAGE_INVALID_PARAMETER         | 62980115 | 图像无效参数。                                      |
-| ERR_IMAGE_DECODE_FAILED             | 62980116 | 解码失败。                                          |
-| ERR_IMAGE_PLUGIN_REGISTER_FAILED    | 62980117 | 注册插件失败。                                      |
-| ERR_IMAGE_PLUGIN_CREATE_FAILED      | 62980118 | 创建插件失败。                                      |
-| ERR_IMAGE_ENCODE_FAILED             | 62980119 | 图像编码失败。                                      |
-| ERR_IMAGE_ADD_PIXEL_MAP_FAILED      | 62980120 | 图像添加像素映射失败。                              |
-| ERR_IMAGE_HW_DECODE_UNSUPPORT       | 62980121 | 不支持图像硬件解码。                                |
-| ERR_IMAGE_DECODE_HEAD_ABNORMAL      | 62980122 | 图像解码头错误。                                    |
-| ERR_IMAGE_DECODE_EXIF_UNSUPPORT     | 62980123 | 图像解码exif取消支持。                              |
-| ERR_IMAGE_PROPERTY_NOT_EXIST        | 62980124 | 图像属性不存在；错误代码被媒体占用，图像从150开始。 |
-| ERR_IMAGE_READ_PIXELMAP_FAILED      | 62980246 | 读取像素地图失败。                                  |
-| ERR_IMAGE_WRITE_PIXELMAP_FAILED     | 62980247 | 写入像素映射失败。                                  |
-| ERR_IMAGE_PIXELMAP_NOT_ALLOW_MODIFY | 62980248 | pixelmap不允许修改。                                |
-| ERR_IMAGE_CONFIG_FAILED             | 62980259 | 配置错误。                                          |

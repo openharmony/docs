@@ -28,7 +28,7 @@ The **native_avcodec_videoencoder.h** file declares the native APIs used for vid
 
 | Name| Description| 
 | -------- | -------- |
-| [OH_VideoEncodeBitrateMode](_video_encoder.md#oh_videoencodebitratemode) { **CBR** = 0, **VBR** = 1, **CQ** = 2 } | Enumerates the bit rate modes of a video encoder.| 
+| [OH_VideoEncodeBitrateMode](_video_encoder.md#oh_videoencodebitratemode) {<br>&nbsp;&nbsp;&nbsp;&nbsp;**CBR** = 0,<br>&nbsp;&nbsp;&nbsp;&nbsp;**VBR** = 1,<br>&nbsp;&nbsp;&nbsp;&nbsp;**CQ** = 2<br>} | Enumerates the bit rate modes of a video encoder.| 
 
 
 ### Functions

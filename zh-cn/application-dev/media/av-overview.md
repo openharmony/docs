@@ -63,3 +63,11 @@ audio模块下的接口支持PCM编码，包括AudioRenderer、AudioCapturer、T
   小尾数指的是小端模式，即数据的高字节保存在内存的高地址中，而数据的低字节保存在内存的低地址中。这种存储模式将地址的高低和数据的位权有效结合起来，高地址部分权值高，低地址部分权值低。
 
 media模块下的接口支持的音视频格式将在[AVPlayer和AVRecorder](avplayer-avrecorder-overview.md)的介绍中承载。
+
+## 相关实例
+
+针对音视频开发，有以下相关实例可供参考：
+
+- [音视频录制（ArkTS）（Full SDK）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Media/AVRecorder)
+
+- [音频管理（ArkTS）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Media/Audio)

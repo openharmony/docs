@@ -34,7 +34,7 @@ The following describes how to start and run the light module driver on an RK356
 
 ### When to Use
 
-Light control is widely used in daily life. For example, a light is blinking when a mobile phone receives an SMS message or has low battery level, and a light changes its colors based on the device charging status. These actions are implemented by calling the APIs provided by the light driver model.
+Light control is widely used in daily life. For example, a light is blinking when a mobile device receives an SMS message or has low battery level, and a light changes its colors based on the device charging status. These actions are implemented by calling the APIs provided by the light driver model.
 
 ### Available APIs
 

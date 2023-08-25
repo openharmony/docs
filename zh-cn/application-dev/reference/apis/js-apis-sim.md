@@ -2732,7 +2732,7 @@ getSimTelephoneNumber\(slotId: number, callback: AsyncCallback\<string\>\): void
 
 **系统接口：** 此接口为系统接口。
 
-**需要权限**：ohos.permission.GET_TELEPHONY_STATE
+**需要权限**：ohos.permission.GET_PHONE_NUMBERS
 
 **系统能力**：SystemCapability.Telephony.CoreService
 
@@ -2775,7 +2775,7 @@ getSimTelephoneNumber\(slotId: number\): Promise\<string\>
 
 **系统接口：** 此接口为系统接口。
 
-**需要权限**：ohos.permission.GET_TELEPHONY_STATE
+**需要权限**：ohos.permission.GET_PHONE_NUMBERS
 
 **系统能力**：SystemCapability.Telephony.CoreService
 

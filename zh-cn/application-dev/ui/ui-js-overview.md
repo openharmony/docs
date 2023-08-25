@@ -28,11 +28,3 @@
 - **Porting Layer**
 
   适配层主要完成对平台层进行抽象，提供抽象接口，可以对接到系统平台。比如：事件对接、渲染管线对接和系统生命周期对接等。
-
-
-## 相关实例
-
-兼容JS的类Web开发范式的方舟开发框架，有以下相关实例可供参考：
-
-- [`JsComponentCollection`：JS组件集合（JS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/UI/JsComponentCollection/JsComponentCollection)
-

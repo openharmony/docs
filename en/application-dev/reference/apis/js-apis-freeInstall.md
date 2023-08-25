@@ -18,8 +18,8 @@ import freeInstall from '@ohos.bundle.freeInstall';
 
 | Permission                                      | Permission Level    | Description              |
 | ------------------------------------------ | ------------ | ------------------ |
-| ohos.permission.GET_BUNDLE_INFO_PRIVILEGED | system_basic | Permission to query information about all bundles.|
-| ohos.permission.INSTALL_BUNDLE             | system_core  | Permission to install or uninstall bundles.  |
+| ohos.permission.GET_BUNDLE_INFO_PRIVILEGED | system_basic | Permission to query information about all aplications.|
+| ohos.permission.INSTALL_BUNDLE             | system_core  | Permission to install or uninstall other applications except enterprise applications, including enterprise InHouse, mobile device management (MDM), and Normal applications.  |
 
 For details, see [Permission Levels](../../security/accesstoken-overview.md#permission-levels).
 ## UpgradeFlag

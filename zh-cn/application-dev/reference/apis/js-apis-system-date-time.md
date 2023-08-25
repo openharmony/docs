@@ -22,6 +22,8 @@ setTime(time : number, callback : AsyncCallback&lt;void&gt;) : void
 
 **系统能力：** SystemCapability.MiscServices.Time
 
+**需要权限：** ohos.permission.SET_TIME
+
 **参数：**
 
 | 参数名   | 类型            | 必填 | 说明                                       |
@@ -56,6 +58,8 @@ setTime(time : number) : Promise&lt;void&gt;
 **系统接口：** 此接口为系统接口
 
 **系统能力：** SystemCapability.MiscServices.Time
+
+**需要权限：** ohos.permission.SET_TIME
 
 **参数：**
 
@@ -158,7 +162,7 @@ getCurrentTime(isNano?: boolean): Promise&lt;number&gt;
 
 | 参数名 | 类型    | 必填 | 说明                     |
 | ------ | ------- | ---- | ------------------------- |
-| isNano | boolean | 否   | 返回结果是否为纳秒数。<br/>- true：表示返回结果为纳秒数（ns）。 <br/>- false：表示返回结果为毫秒数（ms）。 |
+| isNano | boolean | 否   | 返回结果是否为纳秒数,默认值为false。<br/>- true：表示返回结果为纳秒数（ns）。 <br/>- false：表示返回结果为毫秒数（ms）。 |
 
 **返回值：**
 
@@ -253,7 +257,7 @@ getRealActiveTime(isNano?: boolean): Promise&lt;number&gt;
 
 | 参数名 | 类型    | 必填 | 说明                              |
 | ------ | ------- | ---- | ----------------------------------- |
-| isNano | boolean | 否   | 返回结果是否为纳秒数。<br/>- true：表示返回结果为纳秒数（ns）。 <br/>- false：表示返回结果为毫秒数（ms）。 |
+| isNano | boolean | 否   | 返回结果是否为纳秒数,默认值为false。<br/>- true：表示返回结果为纳秒数（ns）。 <br/>- false：表示返回结果为毫秒数（ms）。 |
 
 **返回值：**
 
@@ -348,7 +352,7 @@ getRealTime(isNano?: boolean): Promise&lt;number&gt;
 
 | 参数名 | 类型    | 必填 | 说明                               |
 | ------ | ------- | ---- | ------------------------------- |
-| isNano | boolean | 否   | 返回结果是否为纳秒数。<br/>- true：表示返回结果为纳秒数（ns）。 <br/>- false：表示返回结果为毫秒数（ms）。 |
+| isNano | boolean | 否   | 返回结果是否为纳秒数,默认值为false。<br/>- true：表示返回结果为纳秒数（ns）。 <br/>- false：表示返回结果为毫秒数（ms）。 |
 
 **返回值：**
 
@@ -379,6 +383,8 @@ setDate(date: Date, callback: AsyncCallback&lt;void&gt;): void
 **系统接口：** 此接口为系统接口
 
 **系统能力：** SystemCapability.MiscServices.Time
+
+**需要权限：** ohos.permission.SET_TIME
 
 **参数：**
 
@@ -413,6 +419,8 @@ setDate(date: Date): Promise&lt;void&gt;
 **系统接口：** 此接口为系统接口
 
 **系统能力：** SystemCapability.MiscServices.Time
+
+**需要权限：** ohos.permission.SET_TIME
 
 **参数：**
 
@@ -509,6 +517,8 @@ setTimezone(timezone: string, callback: AsyncCallback&lt;void&gt;): void
 
 **系统能力：** SystemCapability.MiscServices.Time
 
+**需要权限：** ohos.permission.SET_TIME_ZONE
+
 **参数：**
 
 | 参数名   | 类型              | 必填 | 说明                  |
@@ -541,6 +551,8 @@ setTimezone(timezone: string): Promise&lt;void&gt;
 **系统接口：** 此接口为系统接口
 
 **系统能力：** SystemCapability.MiscServices.Time
+
+**需要权限：** ohos.permission.SET_TIME_ZONE
 
 **参数：**
 

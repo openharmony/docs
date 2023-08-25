@@ -481,113 +481,6 @@ async function example() {
 }
 ```
 
-### getPhotoAlbums
-
-getPhotoAlbums(options: AlbumFetchOptions, callback: AsyncCallback&lt;FetchResult&lt;Album&gt;&gt;): void;
-
-
-Obtains image and video albums. This API uses an asynchronous callback to return the result.
-
-**System capability**: SystemCapability.FileManagement.UserFileManager.Core
-
-**Required permissions**: ohos.permission.READ_IMAGEVIDEO
-
-**Parameters**
-
-| Name  | Type                    | Mandatory| Description                     |
-| -------- | ------------------------ | ---- | ------------------------- |
-| options  | [AlbumFetchOptions](#albumfetchoptions)        | Yes  | Options for fetching the albums.             |
-| callback |  AsyncCallback&lt;[FetchResult](#fetchresult)&lt;[Album](#album)&gt;&gt; | Yes  | Callback invoked to return the image and video albums obtained.|
-
-**Error codes**
-
-For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
-
-| ID| Error Message|
-| -------- | ---------------------------------------- |
-| 13900020   | if type options is not AlbumFetchOptions.         |
-
-**Example**
-
-```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-
-async function example() {
-  console.info('getPhotoAlbumsDemo');
-  let predicates = new dataSharePredicates.DataSharePredicates();
-  let albumFetchOptions = {
-    predicates: predicates
-  };
-
-  mgr.getPhotoAlbums(albumFetchOptions, (err, fetchResult) => {
-    if (fetchResult != undefined) {
-      console.info('albums.count = ' + fetchResult.getCount());
-      fetchResult.getFirstObject((err, album) => {
-        if (album != undefined) {
-          console.info('first album.albumName = ' + album.albumName);
-        } else {
-          console.error('album is undefined, err = ', err);
-        }
-      });
-    } else {
-      console.error('getPhotoAlbums fail, message = ', err);
-    }
-  });
-}
-```
-
-### getPhotoAlbums
-
-getPhotoAlbums(options: AlbumFetchOptions): Promise&lt;FetchResult&lt;Album&gt;&gt;;
-
-Obtains image and video albums. This API uses a promise to return the result.
-
-**System capability**: SystemCapability.FileManagement.UserFileManager.Core
-
-**Required permissions**: ohos.permission.READ_IMAGEVIDEO
-
-**Parameters**
-
-| Name  | Type                    | Mandatory| Description                     |
-| -------- | ------------------------ | ---- | ------------------------- |
-| options  | [AlbumFetchOptions](#albumfetchoptions)        | Yes  | Options for fetching the albums.             |
-
-**Return value**
-
-| Type                       | Description          |
-| --------------------------- | -------------- |
-| Promise&lt;[FetchResult](#fetchresult)&lt;[Album](#album)&gt;&gt; | Promise used to return the image and video albums obtained.|
-
-**Error codes**
-
-For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
-
-| ID| Error Message|
-| -------- | ---------------------------------------- |
-| 13900020   | if type options is not AlbumFetchOptions.         |
-
-**Example**
-
-```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-
-async function example() {
-  console.info('getPhotoAlbumsDemo');
-  let predicates = new dataSharePredicates.DataSharePredicates();
-  let albumFetchOptions = {
-    predicates: predicates
-  };
-  try {
-    let fetchResult = await mgr.getPhotoAlbums(albumFetchOptions);
-    console.info('album.count = ' + fetchResult.getCount());
-    const album = await fetchResult.getFirstObject();
-    console.info('first album.albumName = ' + album.albumName);
-  } catch (err) {
-    console.error('getPhotoAlbums fail, message = ' + err);
-  }
-}
-```
-
 ### createAlbum<sup>10+</sup>
 
 createAlbum(name: string, callback: AsyncCallback&lt;Album&gt;): void;
@@ -935,11 +828,123 @@ async function example() {
 }
 ```
 
+### getPhotoAlbums
+
+getPhotoAlbums(options: AlbumFetchOptions, callback: AsyncCallback&lt;FetchResult&lt;Album&gt;&gt;): void;
+
+Obtains image and video albums. This API uses an asynchronous callback to return the result.
+
+This API will be deprecated. Use [getAlbums<sup>10+</sup>](#getalbums10) instead.
+
+**System capability**: SystemCapability.FileManagement.UserFileManager.Core
+
+**Required permissions**: ohos.permission.READ_IMAGEVIDEO
+
+**Parameters**
+
+| Name  | Type                    | Mandatory| Description                     |
+| -------- | ------------------------ | ---- | ------------------------- |
+| options  | [AlbumFetchOptions](#albumfetchoptions)        | Yes  | Options for fetching the albums.             |
+| callback |  AsyncCallback&lt;[FetchResult](#fetchresult)&lt;[Album](#album)&gt;&gt; | Yes  | Callback invoked to return the image and video albums obtained.|
+
+**Error codes**
+
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 13900020   | if type options is not AlbumFetchOptions.         |
+
+**Example**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
+async function example() {
+  console.info('getPhotoAlbumsDemo');
+  let predicates = new dataSharePredicates.DataSharePredicates();
+  let albumFetchOptions = {
+    predicates: predicates
+  };
+
+  mgr.getPhotoAlbums(albumFetchOptions, (err, fetchResult) => {
+    if (fetchResult != undefined) {
+      console.info('albums.count = ' + fetchResult.getCount());
+      fetchResult.getFirstObject((err, album) => {
+        if (album != undefined) {
+          console.info('first album.albumName = ' + album.albumName);
+        } else {
+          console.error('album is undefined, err = ', err);
+        }
+      });
+    } else {
+      console.error('getPhotoAlbums fail, message = ', err);
+    }
+  });
+}
+```
+
+### getPhotoAlbums
+
+getPhotoAlbums(options: AlbumFetchOptions): Promise&lt;FetchResult&lt;Album&gt;&gt;;
+
+Obtains image and video albums. This API uses a promise to return the result.
+
+This API will be deprecated. Use [getAlbums<sup>10+</sup>](#getalbums10) instead.
+
+**System capability**: SystemCapability.FileManagement.UserFileManager.Core
+
+**Required permissions**: ohos.permission.READ_IMAGEVIDEO
+
+**Parameters**
+
+| Name  | Type                    | Mandatory| Description                     |
+| -------- | ------------------------ | ---- | ------------------------- |
+| options  | [AlbumFetchOptions](#albumfetchoptions)        | Yes  | Options for fetching the albums.             |
+
+**Return value**
+
+| Type                       | Description          |
+| --------------------------- | -------------- |
+| Promise&lt;[FetchResult](#fetchresult)&lt;[Album](#album)&gt;&gt; | Promise used to return the image and video albums obtained.|
+
+**Error codes**
+
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 13900020   | if type options is not AlbumFetchOptions.         |
+
+**Example**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
+async function example() {
+  console.info('getPhotoAlbumsDemo');
+  let predicates = new dataSharePredicates.DataSharePredicates();
+  let albumFetchOptions = {
+    predicates: predicates
+  };
+  try {
+    let fetchResult = await mgr.getPhotoAlbums(albumFetchOptions);
+    console.info('album.count = ' + fetchResult.getCount());
+    const album = await fetchResult.getFirstObject();
+    console.info('first album.albumName = ' + album.albumName);
+  } catch (err) {
+    console.error('getPhotoAlbums fail, message = ' + err);
+  }
+}
+```
+
 ### getPrivateAlbum
 
 getPrivateAlbum(type: PrivateAlbumType, callback: AsyncCallback&lt;FetchResult&lt;PrivateAlbum&gt;&gt;): void;
 
 Obtains the system album. This API uses an asynchronous callback to return the result.
+
+This API will be deprecated. Use [getAlbums<sup>10+</sup>](#getalbums10) instead.
 
 **System capability**: SystemCapability.FileManagement.UserFileManager.Core
 
@@ -981,6 +986,8 @@ async function example() {
 getPrivateAlbum(type: PrivateAlbumType): Promise&lt;FetchResult&lt;PrivateAlbum&gt;&gt;;
 
 Obtains the system album. This API uses a promise to return the result.
+
+This API will be deprecated. Use [getAlbums<sup>10+</sup>](#getalbums10) instead.
 
 **System capability**: SystemCapability.FileManagement.UserFileManager.Core
 
@@ -1252,6 +1259,470 @@ async function example() {
 }
 ```
 
+### getActivePeers
+
+getActivePeers(callback: AsyncCallback&lt;Array&lt;PeerInfo&gt;&gt;): void;
+
+Obtains information about online peer devices. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.FileManagement.UserFileManager.DistributedCore
+
+**Parameters**
+
+| Name  | Type                             | Mandatory| Description        |
+| -------- | --------------------------------- | ---- | ------------ |
+| callback | AsyncCallback&lt;Array&lt;[PeerInfo](#peerinfo)&gt;&gt; | Yes  | Callback invoked to return a list of online peer devices.|
+
+**Example**
+
+```ts
+async function example() {
+  console.info('getActivePeersDemo');
+  mgr.getActivePeers((err, devicesInfo) => {
+    if (devicesInfo != undefined) {
+      console.log('getActivePeers succeed.');
+      for (let i = 0; i < devicesInfo.length; i++) {
+        console.info('get distributed info ' + devicesInfo[i].deviceName + devicesInfo[i].networkId);
+      }
+    } else {
+      console.error('getActivePeers failed. message = ', err);
+    }
+  });
+}
+```
+
+### getActivePeers
+
+getActivePeers(): Promise&lt;Array&lt;PeerInfo&gt;&gt;;
+
+Obtains information about online peer devices. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.FileManagement.UserFileManager.DistributedCore
+
+**Return value**
+
+| Type                       | Description                         |
+| --------------------------- | ----------------------------- |
+| Promise&lt;Array&lt;[PeerInfo](#peerinfo)&gt;&gt; | Promise used to return a list of online peer devices.|
+
+**Example**
+
+```ts
+async function example() {
+  console.info('getActivePeersDemo');
+  try {
+    var devicesInfo = await mgr.getActivePeers();
+  } catch (err) {
+    console.error('getActivePeers failed. message = ', err);
+  }
+  if (devicesInfo != undefined) {
+    console.log('getActivePeers succeed.');
+    for (let i = 0; i < devicesInfo.length; i++) {
+      console.info('get distributed info ' + devicesInfo[i].deviceName + devicesInfo[i].networkId);
+    }
+  } else {
+    console.error('get distributed fail');
+  }
+}
+```
+
+### getAllPeers
+
+getAllPeers(callback: AsyncCallback&lt;Array&lt;PeerInfo&gt;&gt;): void;
+
+Obtains information about all peer devices. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.FileManagement.UserFileManager.DistributedCore
+
+**Parameters**
+
+| Name  | Type                             | Mandatory| Description        |
+| -------- | --------------------------------- | ---- | ------------ |
+| callback | AsyncCallback&lt;Array&lt;[PeerInfo](#peerinfo)&gt;&gt; | Yes  | Callback invoked to return the peer device information obtained.|
+
+**Example**
+
+```ts
+async function example() {
+  console.info('getAllPeersDemo');
+  mgr.getAllPeers((err, devicesInfo) => {
+    if (devicesInfo != undefined) {
+      console.log('getAllPeers succeed.');
+      for (let i = 0; i < devicesInfo.length; i++) {
+        console.info('get distributed info ' + devicesInfo[i].deviceName + devicesInfo[i].networkId);
+      }
+    } else {
+      console.error('getAllPeers failed. message = ', err);
+    }
+  });
+}
+```
+
+### getAllPeers
+
+getAllPeers(): Promise&lt;Array&lt;PeerInfo&gt;&gt;;
+
+Obtains information about all peer devices. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.FileManagement.UserFileManager.DistributedCore
+
+**Return value**
+
+| Type                       | Description                         |
+| --------------------------- | ----------------------------- |
+| Promise&lt;Array&lt;[PeerInfo](#peerinfo)&gt;&gt; | Promise used to return the information obtained.|
+
+**Example**
+
+```ts
+async function example() {
+  console.info('getAllPeersDemo');
+  try {
+    var devicesInfo = await mgr.getAllPeers();
+  } catch (err) {
+    console.error('getAllPeers failed. message = ', err);
+  }
+  if (devicesInfo != undefined) {
+    console.log('getAllPeers succeed.');
+    for (let i = 0; i < devicesInfo.length; i++) {
+      console.info('get distributed info ' + devicesInfo[i].deviceName + devicesInfo[i].networkId);
+    }
+  } else {
+    console.error('get distributed fail');
+  }
+}
+```
+
+### getPhotoIndex<sup>10+</sup>
+
+getPhotoIndex(photoUri: string, albumUri: string, options: FetchOptions, callback: AsyncCallback&lt;number&gt;): void
+
+Obtains the index of an image or video in an album. This API uses an asynchronous callback to return the result.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.READ_IMAGEVIDEO
+
+**System capability**: SystemCapability.FileManagement.UserFileManager.Core
+
+**Parameters**
+
+| Name  | Type                     | Mandatory| Description      |
+| -------- | ------------------------- | ---- | ---------- |
+| photoUri | string | Yes  | URI of the media asset whose index is to be obtained.|
+| albumUri | string | Yes  | Album URI, which can be an empty string. If it is an empty string, all the media assets in the Gallery are obtained by default.  |
+| options  | [FetchOptions](#fetchoptions)       | Yes  |  Fetch options. Only one search condition or sorting mode must be set in **predicates**. If no value is set or multiple search conditions or sorting modes are set, the API cannot be called successfully.     |
+
+**Return value**
+
+| Type                                   | Description             |
+| --------------------------------------- | ----------------- |
+| AsyncCallback&lt;number&gt;| Callback invoked to return the index obtained.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 401   | if parameter is invalid.         |
+
+**Example**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
+async function example() {
+  console.info('getPhotoIndexDemo');
+  let predicatesForGetAsset = new dataSharePredicates.DataSharePredicates();
+  let fetchOp = {
+    fetchColumns: [],
+    predicates: predicatesForGetAsset
+  };
+  //Obtain the uri of the album
+  let albumFetchResult = await mgr.getAlbums(userFileManager.AlbumType.SYSTEM, userFileManager.AlbumSubtype.FAVORITE, fetchOp);
+  let album = await albumFetchResult.getFirstObject();
+
+  let predicates = new dataSharePredicates.DataSharePredicates();
+  predicates.orderByAsc("add_modified");
+  let fetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
+  let photoFetchResult = await album.getPhotoAssets(fetchOptions);
+  let expectIndex = 1;
+  //Obtain the uri of the second file
+  let photoAsset = await photoFetchResult.getPositionObject(expectIndex);
+
+  mgr.getPhotoIndex(photoAsset.uri, album.albumUri, fetchOptions, (err, index) => {
+    try {
+      if (err == undefined) {
+        console.info(`getPhotoIndex successfully and index is : ${index}`);
+      } else {
+        console.info(`getPhotoIndex failed;`);
+      }
+    } catch (error) {
+      console.info(`getPhotoIndex failed; error: ${error}`);
+    }
+  }
+}
+```
+
+### getPhotoIndex<sup>10+</sup>
+
+getPhotoIndex(photoUri: string, albumUri: string, options: FetchOptions): Promise&lt;number&gt;
+
+Obtains the index of an image or video in an album. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.READ_IMAGEVIDEO
+
+**System capability**: SystemCapability.FileManagement.UserFileManager.Core
+
+**Parameters**
+
+| Name  | Type                     | Mandatory| Description      |
+| -------- | ------------------------- | ---- | ---------- |
+| photoUri | string | Yes  | URI of the media asset whose index is to be obtained.|
+| albumUri | string | Yes  | Album URI, which can be an empty string. If it is an empty string, all the media assets in the Gallery are obtained by default.  |
+| options  | [FetchOptions](#fetchoptions)       | Yes  |  Fetch options. Only one search condition or sorting mode must be set in **predicates**. If no value is set or multiple search conditions or sorting modes are set, the API cannot be called successfully.     |
+
+**Return value**
+
+| Type                                   | Description             |
+| --------------------------------------- | ----------------- |
+| Promise&lt;number&gt;| Promise used to return the index obtained.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 401   | if parameter is invalid.         |
+
+**Example**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
+async function example() {
+  console.info('getPhotoIndexDemo');
+  let predicatesForGetAsset = new dataSharePredicates.DataSharePredicates();
+  let fetchOp = {
+    fetchColumns: [],
+    predicates: predicatesForGetAsset
+  };
+  //Obtain the uri of the album
+  let albumFetchResult = await mgr.getAlbums(userFileManager.AlbumType.SYSTEM, userFileManager.AlbumSubtype.FAVORITE, fetchOp);
+  let album = await albumFetchResult.getFirstObject();
+
+  let predicates = new dataSharePredicates.DataSharePredicates();
+  predicates.orderByAsc("add_modified");
+  let fetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
+  let photoFetchResult = await album.getPhotoAssets(fetchOptions);
+  let expectIndex = 1;
+  //Obtain the uri of the second file
+  let photoAsset = await photoFetchResult.getPositionObject(expectIndex);
+
+  mgr.getPhotoIndex(photoAsset.uri, album.albumUri, fetchOptions)
+    .then((index) => {
+        console.info(`getPhotoIndex successfully and index is : ${index}`);
+      }).catch((err) => {
+      console.info(`getPhotoIndex failed; error: ${err}`);
+    })
+}
+```
+
+### release
+
+release(callback: AsyncCallback&lt;void&gt;): void
+
+Releases this **UserFileManager** instance. This API uses an asynchronous callback to return the result.
+Call this API when the APIs in the **UserFileManager** instance are no longer used.
+
+**System capability**: SystemCapability.FileManagement.UserFileManager.Core
+
+**Parameters**
+
+| Name  | Type                     | Mandatory| Description                |
+| -------- | ------------------------- | ---- | -------------------- |
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result.|
+
+**Example**
+
+```ts
+async function example() {
+  console.info('releaseDemo');
+  mgr.release((err) => {
+    if (err != undefined) {
+      console.error('release failed. message = ', err);
+    } else {
+      console.info('release ok.');
+    }
+  });
+}
+```
+
+### release
+
+release(): Promise&lt;void&gt;
+
+Releases this **UserFileManager** instance. This API uses a promise to return the result.
+Call this API when the APIs in the **UserFileManager** instance are no longer used.
+
+**System capability**: SystemCapability.FileManagement.UserFileManager.Core
+
+**Return value**
+
+| Type               | Description                             |
+| ------------------- | --------------------------------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
+
+**Example**
+
+```ts
+async function example() {
+  console.info('releaseDemo');
+  try {
+    await mgr.release();
+    console.info('release ok.');
+  } catch (err) {
+    console.error('release failed. message = ', err);
+  }
+}
+```
+
+### on<sup>10+</sup>
+
+on(uri: string, forSubUri: boolean, callback: Callback&lt;ChangeData&gt;) : void
+
+Registers a listener for the specified URI.
+
+**System capability**: SystemCapability.FileManagement.UserFileManager.Core
+
+**Parameters**
+
+| Name   | Type                                       | Mandatory| Description                                                        |
+| --------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
+| uri       | string                                      | Yes  | URI of the file asset or album, or [DefaultChangeUri](#defaultchangeuri10).|
+| forSubUri | boolean                                     | Yes  | Whether to perform fuzzy listening.<br>If **uri** is the URI of an album, the value **true** means to listen for the changes of the files in the album; the value **false** means to listen for the changes of the album. <br>If **uri** is the URI of a file asset, there is no difference between **true** and **false** for **forSubUri**.<br>If **uri** is **DefaultChangeUri**, **forSubUri** must be set to **true**. If **forSubUri** is **false**, the URI cannot be found and no message can be received.|
+| callback  | Callback&lt;[ChangeData](#changedata10)&gt; | Yes  | Callback invoked to return [ChangeData](#changedata10). <br>**NOTE**: Different callbacks can be registered for a URI. You can use [off<sup>10+</sup>](#off10) to disable the specified callback or all callbacks for the URI.|
+
+**Error codes**
+
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 13900020   | if parameter is invalid.         |
+
+**Example**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
+async function example() {
+  console.info('onDemo');
+  let predicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
+  let fetchResult = await mgr.getPhotoAssets(fetchOptions);
+  let fileAsset = await fetchResult.getFirstObject();
+  if (fileAsset != undefined) {
+    console.info('fileAsset.displayName : ' + fileAsset.displayName);
+  }
+  let onCallback1 = (changeData) => {
+      console.info('onCallback1 success, changData: ' + JSON.stringify(changeData));
+    //file had changed, do something
+  }
+  let onCallback2 = (changeData) => {
+      console.info('onCallback2 success, changData: ' + JSON.stringify(changeData));
+    // File changed. Do something.
+  }
+  // Register onCallback1.
+  mgr.on(fileAsset.uri, false, onCallback1);
+  // Register onCallback2.
+  mgr.on(fileAsset.uri, false, onCallback2);
+
+  fileAsset.favorite(true, (err) => {
+    if (err == undefined) {
+      console.info('favorite successfully');
+    } else {
+      console.error('favorite failed with error:' + err);
+    }
+  });
+}
+```
+
+### off<sup>10+</sup>
+
+ off(uri: string, callback?: Callback&lt;ChangeData&gt;): void
+
+Unregisters the listener for the specified URI. Multiple callbacks can be registered for a URI for listening. You can use this API to unregister the specified callbacks or all callbacks.
+
+**System capability**: SystemCapability.FileManagement.UserFileManager.Core
+
+**Parameters**
+
+| Name  | Type                                       | Mandatory| Description                                                        |
+| -------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
+| uri      | string                                      | Yes  | URI of the file asset or album, or [DefaultChangeUri](#defaultchangeuri10).|
+| callback | Callback&lt;[ChangeData](#changedata10)&gt; | No  | Callback registered by [on<sup>10+</sup>](#on10). If this parameter is not specified, all listener callbacks registered for the URI will be unregistered. <br>**NOTE**: The specified callback will not be invoked.|
+
+**Error codes**
+
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 13900020   | if parameter is invalid.         |
+
+**Example**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
+async function example() {
+  console.info('offDemo');
+  let predicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
+  let fetchResult = await mgr.getPhotoAssets(fetchOptions);
+  let fileAsset = await fetchResult.getFirstObject();
+  if (fileAsset != undefined) {
+    console.info('fileAsset.displayName : ' + fileAsset.displayName);
+  }
+  let onCallback1 = (changeData) => {
+    console.info('onCallback1 on');
+  }
+  let onCallback2 = (changeData) => {
+    console.info('onCallback2 on');
+  }
+  // Register onCallback1.
+  mgr.on(fileAsset.uri, false, onCallback1);
+  // Register onCallback2.
+  mgr.on(fileAsset.uri, false, onCallback2);
+  // Disable the listening of onCallback1.
+  mgr.off(fileAsset.uri, onCallback1);
+  fileAsset.favorite(true, (err) => {
+    if (err == undefined) {
+      console.info('favorite successfully');
+    } else {
+      console.error('favorite failed with error:' + err);
+    }
+  });
+}
+```
+
 ### on
 
 on(type: ChangeEvent, callback: Callback&lt;void&gt;): void
@@ -1348,325 +1819,6 @@ async function example() {
 }
 ```
 
-### getActivePeers
-
-getActivePeers(callback: AsyncCallback&lt;Array&lt;PeerInfo&gt;&gt;): void;
-
-Obtains information about online peer devices. This API uses an asynchronous callback to return the result.
-
-**System capability**: SystemCapability.FileManagement.UserFileManager.DistributedCore
-
-**Parameters**
-
-| Name  | Type                             | Mandatory| Description        |
-| -------- | --------------------------------- | ---- | ------------ |
-| callback | AsyncCallback&lt;Array&lt;[PeerInfo](#peerinfo)&gt;&gt; | Yes  | Callback invoked to return a list of online peer devices.|
-
-**Example**
-
-```ts
-async function example() {
-  console.info('getActivePeersDemo');
-  mgr.getActivePeers((err, devicesInfo) => {
-    if (devicesInfo != undefined) {
-      console.log('getActivePeers succeed.');
-      for (let i = 0; i < devicesInfo.length; i++) {
-        console.info('get distributed info ' + devicesInfo[i].deviceName + devicesInfo[i].networkId);
-      }
-    } else {
-      console.error('getActivePeers failed. message = ', err);
-    }
-  });
-}
-```
-
-### getActivePeers
-
-getActivePeers(): Promise&lt;Array&lt;PeerInfo&gt;&gt;;
-
-Obtains information about online peer devices. This API uses a promise to return the result.
-
-**System capability**: SystemCapability.FileManagement.UserFileManager.DistributedCore
-
-**Return value**
-
-| Type                       | Description                         |
-| --------------------------- | ----------------------------- |
-| Promise&lt;Array&lt;[PeerInfo](#peerinfo)&gt;&gt; | Promise used to return a list of online peer devices.|
-
-**Example**
-
-```ts
-async function example() {
-  console.info('getActivePeersDemo');
-  try {
-    var devicesInfo = await mgr.getActivePeers();
-  } catch (err) {
-    console.error('getActivePeers failed. message = ', err);
-  }
-  if (devicesInfo != undefined) {
-    console.log('getActivePeers succeed.');
-    for (let i = 0; i < devicesInfo.length; i++) {
-      console.info('get distributed info ' + devicesInfo[i].deviceName + devicesInfo[i].networkId);
-    }
-  } else {
-    console.error('get distributed fail');
-  }
-}
-```
-
-### getAllPeers
-
-getAllPeers(callback: AsyncCallback&lt;Array&lt;PeerInfo&gt;&gt;): void;
-
-Obtains information about all peer devices. This API uses an asynchronous callback to return the result.
-
-**System capability**: SystemCapability.FileManagement.UserFileManager.DistributedCore
-
-**Parameters**
-
-| Name  | Type                             | Mandatory| Description        |
-| -------- | --------------------------------- | ---- | ------------ |
-| callback | AsyncCallback&lt;Array&lt;[PeerInfo](#peerinfo)&gt;&gt; | Yes  | Callback invoked to return the information obtained.|
-
-**Example**
-
-```ts
-async function example() {
-  console.info('getAllPeersDemo');
-  mgr.getAllPeers((err, devicesInfo) => {
-    if (devicesInfo != undefined) {
-      console.log('getAllPeers succeed.');
-      for (let i = 0; i < devicesInfo.length; i++) {
-        console.info('get distributed info ' + devicesInfo[i].deviceName + devicesInfo[i].networkId);
-      }
-    } else {
-      console.error('getAllPeers failed. message = ', err);
-    }
-  });
-}
-```
-
-### getAllPeers
-
-getAllPeers(): Promise&lt;Array&lt;PeerInfo&gt;&gt;;
-
-Obtains information about all peer devices. This API uses a promise to return the result.
-
-**System capability**: SystemCapability.FileManagement.UserFileManager.DistributedCore
-
-**Return value**
-
-| Type                       | Description                         |
-| --------------------------- | ----------------------------- |
-| Promise&lt;Array&lt;[PeerInfo](#peerinfo)&gt;&gt; | Promise used to return the information obtained.|
-
-**Example**
-
-```ts
-async function example() {
-  console.info('getAllPeersDemo');
-  try {
-    var devicesInfo = await mgr.getAllPeers();
-  } catch (err) {
-    console.error('getAllPeers failed. message = ', err);
-  }
-  if (devicesInfo != undefined) {
-    console.log('getAllPeers succeed.');
-    for (let i = 0; i < devicesInfo.length; i++) {
-      console.info('get distributed info ' + devicesInfo[i].deviceName + devicesInfo[i].networkId);
-    }
-  } else {
-    console.error('get distributed fail');
-  }
-}
-```
-
-### release
-
-release(callback: AsyncCallback&lt;void&gt;): void
-
-Releases this **UserFileManager** instance. This API uses an asynchronous callback to return the result.
-Call this API when the APIs in the **UserFileManager** instance are no longer used.
-
-**System capability**: SystemCapability.FileManagement.UserFileManager.Core
-
-**Parameters**
-
-| Name  | Type                     | Mandatory| Description                |
-| -------- | ------------------------- | ---- | -------------------- |
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result.|
-
-**Example**
-
-```ts
-async function example() {
-  console.info('releaseDemo');
-  mgr.release((err) => {
-    if (err != undefined) {
-      console.error('release failed. message = ', err);
-    } else {
-      console.info('release ok.');
-    }
-  });
-}
-```
-
-### release
-
-release(): Promise&lt;void&gt;
-
-Releases this **UserFileManager** instance. This API uses a promise to return the result.
-Call this API when the APIs in the **UserFileManager** instance are no longer used.
-
-**System capability**: SystemCapability.FileManagement.UserFileManager.Core
-
-**Return value**
-
-| Type               | Description                             |
-| ------------------- | --------------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value.|
-
-**Example**
-
-```ts
-async function example() {
-  console.info('releaseDemo');
-  try {
-    await mgr.release();
-    console.info('release ok.');
-  } catch (err) {
-    console.error('release failed. message = ', err);
-  }
-}
-```
-
-### on<sup>10+</sup>
-
-on(uri: string, forSubUri: boolean, callback: Callback&lt;ChangeData&gt;) : void
-
-Enables listening for the specified URI. This API uses a callback to return the result.
-
-**System capability**: SystemCapability.FileManagement.UserFileManager.Core
-
-**Parameters**
-
-| Name   | Type                                       | Mandatory| Description                                                        |
-| --------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
-| uri       | string                                      | Yes  | URI of the file asset or album, or [DefaultChangeUri](#defaultchangeuri10).|
-| forSubUri | boolean                                     | Yes  | Whether to perform fuzzy listening.<br>If **uri** is the URI of an album, the value **true** means to listen for the changes of the files in the album; the value **false** means to listen for the changes of the album. <br>If **uri** is the URI of a file asset, there is no difference between **true** and **false** for **forSubUri**.<br>If **uri** is **DefaultChangeUri**, **forSubUri** must be set to **true**. If **forSubUri** is **false**, the URI cannot be found and no message can be received.|
-| callback  | Callback&lt;[ChangeData](#changedata10)&gt; | Yes  | Callback invoked to return [ChangeData](#changedata10). <br>**NOTE**: Different callbacks can be registered for a URI. You can use [off<sup>10+</sup>](#off10) to disable the specified callback or all callbacks for the URI.|
-
-**Error codes**
-
-For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
-
-| ID| Error Message|
-| -------- | ---------------------------------------- |
-| 13900020   | if parameter is invalid.         |
-
-**Example**
-
-```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-
-async function example() {
-  console.info('onDemo');
-  let predicates = new dataSharePredicates.DataSharePredicates();
-  let fetchOptions = {
-    fetchColumns: [],
-    predicates: predicates
-  };
-  let fetchResult = await mgr.getPhotoAssets(fetchOptions);
-  let fileAsset = await fetchResult.getFirstObject();
-  if (fileAsset != undefined) {
-    console.info('fileAsset.displayName : ' + fileAsset.displayName);
-  }
-  let onCallback1 = (changeData) => {
-      console.info('onCallback1 success, changData: ' + JSON.stringify(changeData));
-    //file had changed, do something
-  }
-  let onCallback2 = (changeData) => {
-      console.info('onCallback2 success, changData: ' + JSON.stringify(changeData));
-    // File changed. Do something.
-  }
-  // Register onCallback1.
-  mgr.on(fileAsset.uri, false, onCallback1); 
-  // Register onCallback2.
-  mgr.on(fileAsset.uri, false, onCallback2);
-
-  fileAsset.favorite(true, (err) => {
-    if (err == undefined) {
-      console.info('favorite successfully');
-    } else {
-      console.error('favorite failed with error:' + err);
-    }
-  });
-}
-```
-
-### off<sup>10+</sup>
-
- off(uri: string, callback?: Callback&lt;ChangeData&gt;): void
-
-Disables listening for the specified URI. Multiple callbacks can be registered for a URI for listening. You can use **off()** to disable the listening of the specified callbacks or all callbacks.
-
-**System capability**: SystemCapability.FileManagement.UserFileManager.Core
-
-**Parameters**
-
-| Name  | Type                                       | Mandatory| Description                                                        |
-| -------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
-| uri      | string                                      | Yes  | URI of the file asset or album, or [DefaultChangeUri](#defaultchangeuri10).|
-| callback | Callback&lt;[ChangeData](#changedata10)&gt; | No  | Callback registered by [on<sup>10+</sup>](#on10). If this parameter is not specified, all callbacks registered for the URI will be unregistered. <br>**NOTE**: The specified callback will not be invoked.|
-
-**Error codes**
-
-For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
-
-| ID| Error Message|
-| -------- | ---------------------------------------- |
-| 13900020   | if parameter is invalid.         |
-
-**Example**
-
-```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-
-async function example() {
-  console.info('offDemo');
-  let predicates = new dataSharePredicates.DataSharePredicates();
-  let fetchOptions = {
-    fetchColumns: [],
-    predicates: predicates
-  };
-  let fetchResult = await mgr.getPhotoAssets(fetchOptions);
-  let fileAsset = await fetchResult.getFirstObject();
-  if (fileAsset != undefined) {
-    console.info('fileAsset.displayName : ' + fileAsset.displayName);
-  }
-  let onCallback1 = (changeData) => {
-    console.info('onCallback1 on');
-  }
-  let onCallback2 = (changeData) => {
-    console.info('onCallback2 on');
-  }
-  // Register onCallback1.
-  mgr.on(fileAsset.uri, false, onCallback1);
-  // Register onCallback2.
-  mgr.on(fileAsset.uri, false, onCallback2);
-  // Disable the listening of onCallback1.
-  mgr.off(fileAsset.uri, onCallback1);
-  fileAsset.favorite(true, (err) => {
-    if (err == undefined) {
-      console.info('favorite successfully');
-    } else {
-      console.error('favorite failed with error:' + err);
-    }
-  });
-}
-```
-
 ## FileAsset
 
 Provides APIs for encapsulating file asset attributes.
@@ -1677,7 +1829,7 @@ Provides APIs for encapsulating file asset attributes.
 
 | Name                     | Type                    | Readable| Writable| Description                                                  |
 | ------------------------- | ------------------------ | ---- | ---- | ------------------------------------------------------ |
-| uri                       | string                   | Yes  | No  | File asset URI, for example, **file://media/image/2**.        |
+| uri                       | string                   | Yes  | No  | File asset URI, for example, **file://media/Photo/1/IMG_datetime_0001/displayName.jpg**.        |
 | fileType   | [FileType](#filetype) | Yes  | No  | Type of the file.                                              |
 | displayName               | string                   | Yes  | Yes  | File name, including the file name extension, to display.                                |
 
@@ -1818,7 +1970,7 @@ Commits the modification on the file metadata to the database. This API uses a p
 | ------------------- | ---------- |
 | Promise&lt;void&gt; | Promise that returns no value.|
 
-**Example** 
+**Example**
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
@@ -2340,6 +2492,282 @@ async function example() {
   }).catch((err) => {
     console.error('setHidden failed with error:' + err);
   });
+}
+```
+
+### getExif<sup>10+</sup>
+
+getExif(): Promise&lt;string&gt;
+
+Obtains a JSON string consisting of the exchangeable image file format (EXIF) tags of this JPG image. This API uses a promise to return the result.
+
+**CAUTION**<br>This API returns a JSON string consisting of EXIF tags. The complete EXIF information consists of **all_exif** and **ImageVideoKey.USER_COMMENT**. These two fields must be passed in via **fetchColumns**.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.READ_IMAGEVIDEO
+
+**System capability**: SystemCapability.FileManagement.UserFileManager.Core
+
+**Return value**
+
+| Type                                   | Description             |
+| --------------------------------------- | ----------------- |
+| Promise&lt;string&gt; | Promise used to return the JSON string obtained.|
+
+**Supported EXIF tags**
+
+For details about the EXIF tags, see [image.PropertyKey](js-apis-image.md#propertykey7).
+
+| Key Value                                   | Description             |
+| --------------------------------------- | ----------------- |
+| BitsPerSample | Number of bits per pixel.|
+| Orientation | Image orientation.|
+| ImageLength | Image length.|
+| ImageWidth | Image width.|
+| GPSLatitude | GPS latitude of the image.|
+| GPSLongitude | GPS longitude of the image.|
+| GPSLatitudeRef | Longitude reference, for example, W or E.|
+| GPSLongitudeRef | Latitude reference, for example, N or S.|
+| DateTimeOriginal | Shooting time.|
+| ExposureTime | Exposure time.|
+| SceneType | Shooting scene type.|
+| ISOSpeedRatings | ISO sensitivity or speed.|
+| FNumber | f-number.|
+| DateTime | Date and time when the image was last modified.|
+| GPSTimeStamp | GPS timestamp.|
+| GPSDateStamp | GPS date stamp.|
+| ImageDescription | Image description.|
+| Make | Camera vendor.|
+| Model | Model.|
+| PhotoMode | Photo mode.|
+| SensitivityType | Sensitivity type.|
+| StandardOutputSensitivity | Standard output sensitivity.|
+| RecommendedExposureIndex | Recommended exposure index.|
+| ApertureValue | Aperture value.|
+| MeteringMode | Metering mode.|
+| LightSource | Light source.|
+| Flash | Flash status.|
+| FocalLength | Focal length.|
+| UserComment | User comment.|
+| PixelXDimension | Pixel X dimension.|
+| PixelYDimension | Pixel Y dimension.|
+| WhiteBalance | White balance.|
+| FocalLengthIn35mmFilm | Focal length in 35 mm film.|
+| ExposureBiasValue | Exposure compensation.|
+
+**Example**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
+async function example() {
+  try {
+    console.info('getExifDemo');
+    let predicates = new dataSharePredicates.DataSharePredicates();
+    let fetchOptions = {
+      fetchColumns: [ 'all_exif',  ImageVideoKey.USER_COMMENT],
+      predicates: predicates
+    };
+    let fetchResult = await mgr.getPhotoAssets(fetchOptions);
+    let fileAsset = await fetchResult.getFirstObject();
+    let exifMessage = await fileAsset.getExif();
+    let userCommentKey = 'UserComment';
+    let userComment = JSON.stringify(JSON.parse(exifMessage), [userCommentKey]);
+    fetchResult.close();
+  } catch (err) {
+    console.error('getExifDemoCallback failed with error: ' + err);
+  }
+}
+```
+
+### getExif<sup>10+</sup>
+
+getExif(callback: AsyncCallback&lt;string&gt;): void
+
+Obtains a JSON string consisting of the EXIF tags of this JPG image. This API uses an asynchronous callback to return the result.
+
+**CAUTION**<br>This API returns a JSON string consisting of EXIF tags. The complete EXIF information consists of **all_exif** and **ImageVideoKey.USER_COMMENT**. These two fields must be passed in via **fetchColumns**.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.READ_IMAGEVIDEO
+
+**System capability**: SystemCapability.FileManagement.UserFileManager.Core
+
+**Parameters**
+
+| Name  | Type                     | Mandatory| Description      |
+| -------- | ------------------------- | ---- | ---------- |
+| callback | AsyncCallback&lt;string&gt; | Yes  | Callback invoked to return the JSON string obtained.|
+
+**Supported EXIF tags**
+
+For details about the EXIF tags, see [image.PropertyKey](js-apis-image.md#propertykey7).
+
+| Key Value                                   | Description             |
+| --------------------------------------- | ----------------- |
+| BitsPerSample | Number of bits per pixel.|
+| Orientation | Image orientation.|
+| ImageLength | Image length.|
+| ImageWidth | Image width.|
+| GPSLatitude | GPS latitude of the image.|
+| GPSLongitude | GPS longitude of the image.|
+| GPSLatitudeRef | Longitude reference, for example, W or E.|
+| GPSLongitudeRef | Latitude reference, for example, N or S.|
+| DateTimeOriginal | Shooting time.|
+| ExposureTime | Exposure time.|
+| SceneType | Shooting scene type.|
+| ISOSpeedRatings | ISO sensitivity or speed.|
+| FNumber | f-number.|
+| DateTime | Date and time when the image was last modified.|
+| GPSTimeStamp | GPS timestamp.|
+| GPSDateStamp | GPS date stamp.|
+| ImageDescription | Image description.|
+| Make | Camera vendor.|
+| Model | Model.|
+| PhotoMode | Photo mode.|
+| SensitivityType | Sensitivity type.|
+| StandardOutputSensitivity | Standard output sensitivity.|
+| RecommendedExposureIndex | Recommended exposure index.|
+| ApertureValue | Aperture value.|
+| MeteringMode | Metering mode.|
+| LightSource | Light source.|
+| Flash | Flash status.|
+| FocalLength | Focal length.|
+| UserComment | User comment.|
+| PixelXDimension | Pixel X dimension.|
+| PixelYDimension | Pixel Y dimension.|
+| WhiteBalance | White balance.|
+| FocalLengthIn35mmFilm | Focal length in 35 mm film.|
+| ExposureBiasValue | Exposure compensation.|
+
+**Example**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
+async function example() {
+  try {
+    console.info('getExifDemo');
+    let predicates = new dataSharePredicates.DataSharePredicates();
+    let fetchOptions = {
+      fetchColumns: [ 'all_exif',  ImageVideoKey.USER_COMMENT],
+      predicates: predicates
+    };
+    let fetchResult = await mgr.getPhotoAssets(fetchOptions);
+    let fileAsset = await fetchResult.getFirstObject();
+    let userCommentKey = 'UserComment';
+    fileAsset.getExif((err, exifMessage) => {
+      if (exifMessage != undefined) {
+        let userComment = JSON.stringify(JSON.parse(exifMessage), [userCommentKey]);
+      } else {
+        console.error('getExif failed, message = ', err);
+      }
+    });
+    fetchResult.close();
+  } catch (err) {
+    console.error('getExifDemoCallback failed with error: ' + err);
+  }
+}
+```
+
+### setUserComment<sup>10+</sup>
+
+setUserComment(userComment: string): Promise&lt;void&gt;
+
+Sets user comment information of an image or video. This API uses a promise to return the result.
+
+**NOTE**<br>This API can be used to modify the comment information of only images or videos.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.WRITE_IMAGEVIDEO
+
+**System capability**: SystemCapability.FileManagement.UserFileManager.Core
+
+**Parameters**
+
+| Name  | Type                     | Mandatory| Description      |
+| -------- | ------------------------- | ---- | ---------- |
+| userComment | string | Yes  | User comment information to set, which cannot exceed 140 characters.|
+
+**Return value**
+
+| Type                                   | Description             |
+| --------------------------------------- | ----------------- |
+|Promise&lt;void&gt; | Promise that returns no value.|
+
+**Example**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
+async function example() {
+  try {
+    console.info('setUserCommentDemo')
+    let predicates = new dataSharePredicates.DataSharePredicates();
+    let fetchOptions = {
+      fetchColumns: [],
+      predicates: predicates
+    };
+    let fetchResult = await mgr.getPhotoAssets(fetchOptions);
+    let fileAsset = await fetchResult.getFirstObject();
+    let userComment = 'test_set_user_comment';
+    await fileAsset.setUserComment(userComment);
+  } catch (err) {
+    console.error('setUserCommentDemoCallback failed with error: ' + err);
+  }
+}
+```
+
+### setUserComment<sup>10+</sup>
+
+setUserComment(userComment: string, callback: AsyncCallback&lt;void&gt;): void
+
+Sets user comment information of an image or video. This API uses an asynchronous callback to return the result.
+
+**NOTE**<br>This API can be used to modify the comment information of only images or videos.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.WRITE_IMAGEVIDEO
+
+**System capability**: SystemCapability.FileManagement.UserFileManager.Core
+
+**Parameters**
+
+| Name  | Type                     | Mandatory| Description      |
+| -------- | ------------------------- | ---- | ---------- |
+| userComment | string | Yes  | User comment information to set, which cannot exceed 140 characters.|
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback that returns no value.|
+
+**Example**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
+async function example() {
+  try {
+    console.info('setUserCommentDemo')
+    let predicates = new dataSharePredicates.DataSharePredicates();
+    let fetchOptions = {
+      fetchColumns: [],
+      predicates: predicates
+    };
+    let fetchResult = await mgr.getPhotoAssets(fetchOptions);
+    let fileAsset = await fetchResult.getFirstObject();
+    let userComment = 'test_set_user_comment';
+    fileAsset.setUserComment(userComment, (err) => {
+      if (err === undefined) {
+        console.info('setUserComment successfully');
+      } else {
+        console.error('setUserComment failed with error: ' + err);
+      }
+    });
+  } catch (err) {
+    console.error('setUserCommentDemoCallback failed with error: ' + err);
+  }
 }
 ```
 
@@ -3488,6 +3916,8 @@ async function example() {
 
 Provides APIs for managing the system albums.
 
+This API will be discarded. Use [Album](#album) instead.
+
 ### Attributes
 
 **System capability**: SystemCapability.FileManagement.UserFileManager.Core
@@ -3505,6 +3935,8 @@ Provides APIs for managing the system albums.
 getPhotoAssets(options: FetchOptions, callback: AsyncCallback&lt;FetchResult&lt;FileAsset&gt;&gt;): void;
 
 Obtains image and video assets from a system album. This API uses an asynchronous callback to return the result.
+
+This API will be deprecated. Use [Album.getPhotoAssets](#getphotoassets-2) instead.
 
 **Required permissions**: ohos.permission.READ_IMAGEVIDEO
 
@@ -3557,6 +3989,8 @@ getPhotoAssets(options: FetchOptions): Promise&lt;FetchResult&lt;FileAsset&gt;&g
 
 Obtains image and video assets from a system album. This API uses a promise to return the result.
 
+This API will be deprecated. Use [Album.getPhotoAssets](#getphotoassets-3) instead.
+
 **Required permissions**: ohos.permission.READ_IMAGEVIDEO
 
 **System capability**: SystemCapability.FileManagement.UserFileManager.Core
@@ -3607,6 +4041,8 @@ delete(uri: string, callback: AsyncCallback&lt;void&gt;): void;
 
 Deletes files from a system album.
 
+This API will be deprecated. Use [Album.deletePhotoAssets](#deletephotoassets10) instead.
+
 **Required permissions**: ohos.permission.READ_IMAGEVIDEO, ohos.permission.WRITE_IMAGEVIDEO or ohos.permission.READ_AUDIO, and ohos.permission.WRITE_AUDIO
 
 **System capability**: SystemCapability.FileManagement.UserFileManager.Core
@@ -3651,6 +4087,8 @@ delete(uri: string): Promise&lt;void&gt;;
 
 Deletes files from a system album.
 
+This API will be deprecated. Use [Album.deletePhotoAssets](#deletephotoassets10) instead.
+
 **Required permissions**: ohos.permission.READ_IMAGEVIDEO, ohos.permission.WRITE_IMAGEVIDEO or ohos.permission.READ_AUDIO, and ohos.permission.WRITE_AUDIO
 
 **System capability**: SystemCapability.FileManagement.UserFileManager.Core
@@ -3689,7 +4127,7 @@ async function example() {
   }).catch((err) => {
     console.error('trashAlbum.delete failed, message = ', err);
   });
-}   
+}
 ```
 
 ### recover
@@ -3697,6 +4135,8 @@ async function example() {
 recover(uri: string, callback: AsyncCallback&lt;void&gt;): void;
 
 Recovers files in a system album.
+
+This API will be deprecated. Use [Album.recoverPhotoAssets](#recoverphotoassets10) instead.
 
 **Required permissions**: ohos.permission.READ_IMAGEVIDEO, ohos.permission.WRITE_IMAGEVIDEO or ohos.permission.READ_AUDIO, and ohos.permission.WRITE_AUDIO
 
@@ -3741,6 +4181,8 @@ async function example() {
 recover(uri: string): Promise&lt;void&gt;;
 
 Recovers files in a system album.
+
+This API will be deprecated. Use [Album.recoverPhotoAssets](#recoverphotoassets10) instead.
 
 **Required permissions**: ohos.permission.READ_IMAGEVIDEO, ohos.permission.WRITE_IMAGEVIDEO or ohos.permission.READ_AUDIO, and ohos.permission.WRITE_AUDIO
 
@@ -3890,6 +4332,8 @@ Enumerate the album subtypes.
 
 Enumerates the system album types.
 
+This API will be deprecated. Use [AlbumType](#albumtype10) and [AlbumSubType](#albumsubtype10)  instead.
+
 **System capability**: SystemCapability.FileManagement.UserFileManager.Core
 
 | Name   |  Value|   Description  |
@@ -3938,6 +4382,8 @@ Defines the key information about an image or video file.
 | POSITION<sup>10+</sup>  | position            | File location type.                              |
 | DATE_TRASHED<sup>10+</sup>  | date_trashed  | Date when the file was deleted. The value is the number of seconds between the time when the file is deleted and January 1, 1970.                |
 | HIDDEN<sup>10+</sup>  | hidden            | Whether the file is hidden.                              |
+| CAMERA_SHOT_KEY<sup>10+</sup>    | camera_shot_key           | Key for the Untra Snamshot feature, which allows the camera to take photos or record videos with the screen off. (This parameter is available only for the system camera, and the key value is defined by the system camera.) |
+| USER_COMMENT<sup>10+</sup>  | user_comment            | User comment information.                              |
 
 ## AlbumKey
 
@@ -3962,6 +4408,7 @@ Options for creating an image or video asset.
 | Name                  | Type               | Mandatory| Description                                             |
 | ---------------------- | ------------------- | ---- | ------------------------------------------------ |
 | subType           | [PhotoSubType](#photosubtype10) | No | Subtype of the image or video. |
+| cameraShotKey           | string | No | Key for the Untra Snamshot feature, which allows the camera to take photos or record videos with the screen off. (This parameter is available only for the system camera, and the key value is defined by the system camera.) |
 
 ## FetchOptions
 

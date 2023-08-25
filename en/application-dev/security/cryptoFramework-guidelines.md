@@ -24,6 +24,7 @@ Typical key generation operations involve the following:
 
 The following table describes the APIs used in typical key generation operations. For more information about the APIs, see [Crypto Framework](../reference/apis/js-apis-cryptoFramework.md).
 
+
 |Instance|API|Description|
 |---|---|---|
 |cryptoFramework|createAsyKeyGenerator(algName : string) : AsyKeyGenerator|Creates an **AsyKeyGenerator** instance based on the asymmetric key pair specifications specified by **algName**.|
@@ -54,17 +55,17 @@ import cryptoFramework from '@ohos.security.cryptoFramework';
 
 function generateAsyKey() {
   // Create an AsyKeyGenerator instance.
-  let rsaGenerator = cryptoFramework.createAsyKeyGenerator("RSA1024|PRIMES_2");
+  let rsaGenerator = cryptoFramework.createAsyKeyGenerator('RSA1024|PRIMES_2');
   // Use the key generator to randomly generate an asymmetric key pair.
   let keyGenPromise = rsaGenerator.generateKeyPair();
-  keyGenPromise.then( keyPair => {
+  keyGenPromise.then(keyPair => {
     let pubKey = keyPair.pubKey;
     let priKey = keyPair.priKey;
     // Obtain the binary data of the asymmetric key pair.
     let pkBlob = pubKey.getEncoded();
     let skBlob = priKey.getEncoded();
-    AlertDialog.show({ message : "pk bin data" + pkBlob.data} );
-    AlertDialog.show({ message : "sk bin data" + skBlob.data} );
+    AlertDialog.show({ message: 'pk bin data' + pkBlob.data });
+    AlertDialog.show({ message: 'sk bin data' + skBlob.data });
   })
 }
 ```
@@ -94,8 +95,8 @@ function testGenerateAesKey() {
   let symKeyGenerator = cryptoFramework.createSymKeyGenerator('AES256');
   // Use the key generator to randomly generate a symmetric key.
   let promiseSymKey = symKeyGenerator.generateSymKey();
-  promiseSymKey.then( key => {
-    // Obtain the binary data of the symmetric key and output a 256-bit byte stream.
+  promiseSymKey.then(key => {
+    // Obtain the binary data of the symmetric key and output the 256-bit key in hexadecimal format. The length is 64, that is, 32 bytes.
     let encodedKey = key.getEncoded();
     console.info('key hex:' + uint8ArrayToShowStr(encodedKey.data));
   })
@@ -113,14 +114,15 @@ Generate an RSA asymmetric key pair from the binary data.
 import cryptoFramework from '@ohos.security.cryptoFramework';
 
 function convertAsyKey() {
-  let rsaGenerator = cryptoFramework.createAsyKeyGenerator("RSA1024");
-  let pkval = new Uint8Array([48,129,159,48,13,6,9,42,134,72,134,247,13,1,1,1,5,0,3,129,141,0,48,129,137,2,129,129,0,174,203,113,83,113,3,143,213,194,79,91,9,51,142,87,45,97,65,136,24,166,35,5,179,42,47,212,79,111,74,134,120,73,67,21,19,235,80,46,152,209,133,232,87,192,140,18,206,27,106,106,169,106,46,135,111,118,32,129,27,89,255,183,116,247,38,12,7,238,77,151,167,6,102,153,126,66,28,253,253,216,64,20,138,117,72,15,216,178,37,208,179,63,204,39,94,244,170,48,190,21,11,73,169,156,104,193,3,17,100,28,60,50,92,235,218,57,73,119,19,101,164,192,161,197,106,105,73,2,3,1,0,1]);
-  let pkBlob = {data : pkval};
-  rsaGenerator.convertKey(pkBlob, null, function(err, keyPair) {
-    if (keyPair == null) {
-      AlertDialog.show({message : "Convert keypair fail"});
+  let rsaGenerator = cryptoFramework.createAsyKeyGenerator('RSA1024');
+  let pkVal = new Uint8Array([48, 129, 159, 48, 13, 6, 9, 42, 134, 72, 134, 247, 13, 1, 1, 1, 5, 0, 3, 129, 141, 0, 48, 129, 137, 2, 129, 129, 0, 174, 203, 113, 83, 113, 3, 143, 213, 194, 79, 91, 9, 51, 142, 87, 45, 97, 65, 136, 24, 166, 35, 5, 179, 42, 47, 212, 79, 111, 74, 134, 120, 73, 67, 21, 19, 235, 80, 46, 152, 209, 133, 232, 87, 192, 140, 18, 206, 27, 106, 106, 169, 106, 46, 135, 111, 118, 32, 129, 27, 89, 255, 183, 116, 247, 38, 12, 7, 238, 77, 151, 167, 6, 102, 153, 126, 66, 28, 253, 253, 216, 64, 20, 138, 117, 72, 15, 216, 178, 37, 208, 179, 63, 204, 39, 94, 244, 170, 48, 190, 21, 11, 73, 169, 156, 104, 193, 3, 17, 100, 28, 60, 50, 92, 235, 218, 57, 73, 119, 19, 101, 164, 192, 161, 197, 106, 105, 73, 2, 3, 1, 0, 1]);
+  let pkBlob = { data: pkVal };
+  rsaGenerator.convertKey(pkBlob, null, (err, keyPair) => {
+    if (err) {
+      AlertDialog.show({ message: 'Convert keyPair fail' });
+      return;
     }
-    AlertDialog.show({message : "Convert KeyPair success"});
+    AlertDialog.show({ message: 'Convert keyPair success' });
   })
 }
 ```
@@ -140,17 +142,18 @@ Generate an ECC asymmetric key pair from the binary data.
 import cryptoFramework from '@ohos.security.cryptoFramework';
 
 function convertEccAsyKey() {
-    let pubKeyArray = new Uint8Array([48,89,48,19,6,7,42,134,72,206,61,2,1,6,8,42,134,72,206,61,3,1,7,3,66,0,4,83,96,142,9,86,214,126,106,247,233,92,125,4,128,138,105,246,162,215,71,81,58,202,121,26,105,211,55,130,45,236,143,55,16,248,75,167,160,167,106,2,152,243,44,68,66,0,167,99,92,235,215,159,239,28,106,124,171,34,145,124,174,57,92]);
-    let priKeyArray = new Uint8Array([48,49,2,1,1,4,32,115,56,137,35,207,0,60,191,90,61,136,105,210,16,27,4,171,57,10,61,123,40,189,28,34,207,236,22,45,223,10,189,160,10,6,8,42,134,72,206,61,3,1,7]);
-    let pubKeyBlob = { data: pubKeyArray };
-    let priKeyBlob = { data: priKeyArray };
-    let generator = cryptoFramework.createAsyKeyGenerator("ECC256");
-    generator.convertKey(pubKeyBlob, priKeyBlob, (error, data) => {
-        if (error) {
-            AlertDialog.show({message : "Convert keypair fail"});
-        }
-        AlertDialog.show({message : "Convert KeyPair success"});
-    })
+  let pubKeyArray = new Uint8Array([48, 89, 48, 19, 6, 7, 42, 134, 72, 206, 61, 2, 1, 6, 8, 42, 134, 72, 206, 61, 3, 1, 7, 3, 66, 0, 4, 83, 96, 142, 9, 86, 214, 126, 106, 247, 233, 92, 125, 4, 128, 138, 105, 246, 162, 215, 71, 81, 58, 202, 121, 26, 105, 211, 55, 130, 45, 236, 143, 55, 16, 248, 75, 167, 160, 167, 106, 2, 152, 243, 44, 68, 66, 0, 167, 99, 92, 235, 215, 159, 239, 28, 106, 124, 171, 34, 145, 124, 174, 57, 92]);
+  let priKeyArray = new Uint8Array([48, 49, 2, 1, 1, 4, 32, 115, 56, 137, 35, 207, 0, 60, 191, 90, 61, 136, 105, 210, 16, 27, 4, 171, 57, 10, 61, 123, 40, 189, 28, 34, 207, 236, 22, 45, 223, 10, 189, 160, 10, 6, 8, 42, 134, 72, 206, 61, 3, 1, 7]);
+  let pubKeyBlob = { data: pubKeyArray };
+  let priKeyBlob = { data: priKeyArray };
+  let generator = cryptoFramework.createAsyKeyGenerator('ECC256');
+  generator.convertKey(pubKeyBlob, priKeyBlob, (error, data) => {
+    if (error) {
+      AlertDialog.show({ message: 'Convert keyPair fail' });
+      return;
+    }
+    AlertDialog.show({ message: 'Convert keyPair success' });
+  })
 }
 ```
 
@@ -178,31 +181,132 @@ function genKeyMaterialBlob() {
   let arr = [
     0xba, 0x3d, 0xc2, 0x71, 0x21, 0x1e, 0x30, 0x56,
     0xad, 0x47, 0xfc, 0x5a, 0x46, 0x39, 0xee, 0x7c,
-    0xba, 0x3b, 0xc2, 0x71, 0xab, 0xa0, 0x30, 0x72];    // keyLen = 192 (24 bytes)
+    0xba, 0x3b, 0xc2, 0x71, 0xab, 0xa0, 0x30, 0x72]; // keyLen = 192 (24 bytes)
   let keyMaterial = new Uint8Array(arr);
-  return {data : keyMaterial};
+  return { data: keyMaterial };
 }
 
-function testConvertAesKey() {
+function testConvertSymKey() {
   // Create a SymKeyGenerator instance.
   let symKeyGenerator = cryptoFramework.createSymKeyGenerator('3DES192');
   // Generate a symmetric key based on the specified data.
   let keyMaterialBlob = genKeyMaterialBlob();
   try {
     symKeyGenerator.convertKey(keyMaterialBlob, (error, key) => {
-      if (error) {    // If the service logic fails to be executed, return the error information in the first parameter of the callback.
+      if (error) {// If the service logic fails to be executed, the first parameter of callback returns error information, that is, an exception is thrown asynchronously.
         console.error(`convertKey error, ${error.code}, ${error.message}`);
         return;
       }
       console.info(`key algName: ${key.algName}`);
       console.info(`key format: ${key.format}`);
-      let encodedKey = key.getEncoded();    // Obtain the binary data of the symmetric key and output a 192-bit byte stream.
+      let encodedKey = key.getEncoded(); // Obtain the binary data of the symmetric key and output a 192-bit byte stream in hexadecimal format. The length is 48, that is, 24 bytes.
       console.info('key getEncoded hex: ' + uint8ArrayToShowStr(encodedKey.data));
     })
-  } catch (error) {    // Throw an exception immediately after an error is detected during the parameter check.
+  } catch (error) { // Throw an exception immediately when an error is detected in parameter check.
     console.error(`convertKey failed, ${error.code}, ${error.message}`);
     return;
   }
+}
+```
+
+### Randomly Generating an SM2 Key Pair and Obtaining the Binary Data
+
+> **NOTE**
+>
+> SM2 asymmetric keys can be randomly generated from API version 10.
+
+Randomly generate an asymmetric key pair and obtain its binary data.
+
+1. Create an **AsyKeyGenerator** instance.
+2. Randomly generate an asymmetric key pair using **AsyKeyGenerator**.
+3. Obtain the binary data of the key pair generated.
+
+Example: Randomly generate an SM2 key (256 bits) in promise mode.
+
+```js
+import cryptoFramework from '@ohos.security.cryptoFramework';
+
+function generateAsyKey() {
+  // Create an AsyKeyGenerator instance.
+  let rsaGenerator = cryptoFramework.createAsyKeyGenerator("SM2_256");
+  // Use the key generator to randomly generate an asymmetric key pair.
+  let keyGenPromise = rsaGenerator.generateKeyPair();
+  keyGenPromise.then(keyPair => {
+    let pubKey = keyPair.pubKey;
+    let priKey = keyPair.priKey;
+    // Obtain the binary data of the asymmetric key pair.
+    let pkBlob = pubKey.getEncoded();
+    let skBlob = priKey.getEncoded();
+    AlertDialog.show({ message: "pk bin data" + pkBlob.data });
+    AlertDialog.show({ message: "sk bin data" + skBlob.data });
+  })
+}
+```
+
+### Randomly Generating an SM4 Key and Obtaining the Binary Data
+
+ > **NOTE**
+ >
+ > SM4 keys can be randomly generated from API version 10.
+
+Randomly generate a symmetric key and obtain its binary data.
+
+1. Create a **SymKeyGenerator** instance.
+2. Randomly generate a symmetric key using **SymKeyGenerator**.
+3. Obtain the binary data of the key generated.
+
+Example: Randomly generate an SM4 key (128 bits) in promise mode.
+
+```js
+import cryptoFramework from '@ohos.security.cryptoFramework';
+
+// Output the byte streams in hexadecimal format.
+function uint8ArrayToShowStr(uint8Array) {
+  return Array.prototype.map
+    .call(uint8Array, (x) => ('00' + x.toString(16)).slice(-2))
+    .join('');
+}
+
+function testGenerateSM4Key() {
+  // Create a SymKeyGenerator instance.
+  let symKeyGenerator = cryptoFramework.createSymKeyGenerator("SM4_128");
+  // Use the key generator to randomly generate a symmetric key.
+  let promiseSymKey = symKeyGenerator.generateSymKey();
+  promiseSymKey.then(key => {
+    // Obtain the binary data of the symmetric key and output a 128-bit byte stream in hexadecimal format. The length is 32, that is, 16 bytes.
+    let encodedKey = key.getEncoded();
+    console.info('key hex:' + uint8ArrayToShowStr(encodedKey.data));
+  })
+}
+```
+
+### Converting Binary Data into an SM2 Key Pair
+
+ > **NOTE**
+ >
+ > SM2 key conversion is supported from API version 10.
+
+Generate an SM2 asymmetric key pair from the given binary key data.
+
+1. Obtain the SM2 binary key data and encapsulate it into a **DataBlob** instance.
+2. Call **convertKey()** to convert the binary data (data of the private or public key, or both) into a **KeyPair** instance.
+
+```js
+import cryptoFramework from '@ohos.security.cryptoFramework';
+
+function convertSM2AsyKey() {
+    let pubKeyArray = new Uint8Array([48,89,48,19,6,7,42,134,72,206,61,2,1,6,8,42,129,28,207,85,1,130,45,3,66,0,4,90,3,58,157,190,248,76,7,132,200,151,208,112,230,96,140,90,238,211,155,128,109,248,40,83,214,78,42,104,106,55,148,249,35,61,32,221,135,143,100,45,97,194,176,52,73,136,174,40,70,70,34,103,103,161,99,27,187,13,187,109,244,13,7]);
+    let priKeyArray = new Uint8Array([48,49,2,1,1,4,32,54,41,239,240,63,188,134,113,31,102,149,203,245,89,15,15,47,202,170,60,38,154,28,169,189,100,251,76,112,223,156,159,160,10,6,8,42,129,28,207,85,1,130,45]);
+    let pubKeyBlob = { data: pubKeyArray };
+    let priKeyBlob = { data: priKeyArray };
+    let generator = cryptoFramework.createAsyKeyGenerator("SM2_256");
+    generator.convertKey(pubKeyBlob, priKeyBlob, (error, data) => {
+        if (error) {
+            AlertDialog.show({message : "Convert keypair fail"});
+            return;
+        }
+        AlertDialog.show({message : "Convert KeyPair success"});
+    })
 }
 ```
 
@@ -225,12 +329,12 @@ The following table describes the APIs used in typical key generation operations
 
 |Instance|API|Description|
 |---|---|---|
-|AsyKeyGeneratorBySpec|generateKeyPair(callback: AsyncCallback<KeyPair>): void;|Generates a **KeyPair** instance based on the key parameters. This API uses an asynchronous callback to return the result.|
-|AsyKeyGeneratorBySpec|generateKeyPair(): Promise<KeyPair>;|Generates a **KeyPair** instance based on the key parameters. This API uses a promise to return the result.|
-|AsyKeyGeneratorBySpec|generatePriKey(callback: AsyncCallback<KeyPair>): void;|Generates a **PriKey** instance based on the key parameters. This API uses an asynchronous callback to return the result.|
-|AsyKeyGeneratorBySpec|generatePriKey(): Promise<KeyPair>;|Generates a **PriKey** instance based on the key parameters. This API uses a promise to return the result.|
-|AsyKeyGeneratorBySpec|generatePubKey(callback: AsyncCallback<KeyPair>): void;|Generates a **PubKey** instance based on the key parameters. This API uses an asynchronous callback to return the result.|
-|AsyKeyGeneratorBySpec|generatePubKey(): Promise<KeyPair>;|Generates a **PubKey** instance based on the key parameters. This API uses a promise to return the result.|
+|AsyKeyGeneratorBySpec|generateKeyPair(callback: AsyncCallback\<KeyPair>): void;|Generates a **KeyPair** instance based on the key parameters. This API uses an asynchronous callback to return the result.|
+|AsyKeyGeneratorBySpec|generateKeyPair(): Promise\<KeyPair>;|Generates a **KeyPair** instance based on the key parameters. This API uses a promise to return the result.|
+|AsyKeyGeneratorBySpec|generatePriKey(callback: AsyncCallback\<KeyPair>): void;|Generates a **PriKey** instance based on the key parameters. This API uses an asynchronous callback to return the result.|
+|AsyKeyGeneratorBySpec|generatePriKey(): Promise\<KeyPair>;|Generates a **PriKey** instance based on the key parameters. This API uses a promise to return the result.|
+|AsyKeyGeneratorBySpec|generatePubKey(callback: AsyncCallback\<KeyPair>): void;|Generates a **PubKey** instance based on the key parameters. This API uses an asynchronous callback to return the result.|
+|AsyKeyGeneratorBySpec|generatePubKey(): Promise\<KeyPair>;|Generates a **PubKey** instance based on the key parameters. This API uses a promise to return the result.|
 | PriKey | getAsyKeySpec(itemType: AsyKeySpecItem): bigint \| string \| number;  | Obtains the key specifications of a **PriKey** instance.|
 | PubKey | getAsyKeySpec(itemType: AsyKeySpecItem): bigint \| string \| number;  | Obtains the key specifications of a **PubKey** instance.|
 
@@ -258,24 +362,24 @@ function showBigIntInfo(bnName, bnValue) {
 // Construct the EccCommonSpec struct based on the key specifications. The EccCommonSpec struct defines the common parameters of the ECC private key and public key.
 function genEccCommonSpec() {
   let fieldFp = {
-    fieldType : "Fp",
-    p : BigInt("0xffffffffffffffffffffffffffffffff000000000000000000000001")
+    fieldType: "Fp",
+    p: BigInt("0xffffffffffffffffffffffffffffffff000000000000000000000001")
   }
 
   let G = {
-    x : BigInt("0xb70e0cbd6bb4bf7f321390b94a03c1d356c21122343280d6115c1d21"),
-    y : BigInt("0xbd376388b5f723fb4c22dfe6cd4375a05a07476444d5819985007e34")
+    x: BigInt("0xb70e0cbd6bb4bf7f321390b94a03c1d356c21122343280d6115c1d21"),
+    y: BigInt("0xbd376388b5f723fb4c22dfe6cd4375a05a07476444d5819985007e34")
   }
 
   let eccCommonSpec = {
-    algName : "ECC",
-    specType : cryptoFramework.AsyKeySpecType.COMMON_PARAMS_SPEC,
-    field : fieldFp,
-    a : BigInt("0xfffffffffffffffffffffffffffffffefffffffffffffffffffffffe"),
-    b : BigInt("0xb4050a850c04b3abf54132565044b0b7d7bfd8ba270b39432355ffb4"),
-    g : G,
-    n : BigInt("0xffffffffffffffffffffffffffff16a2e0b8f03e13dd29455c5c2a3d"),
-    h : 1
+    algName: "ECC",
+    specType: cryptoFramework.AsyKeySpecType.COMMON_PARAMS_SPEC,
+    field: fieldFp,
+    a: BigInt("0xfffffffffffffffffffffffffffffffefffffffffffffffffffffffe"),
+    b: BigInt("0xb4050a850c04b3abf54132565044b0b7d7bfd8ba270b39432355ffb4"),
+    g: G,
+    n: BigInt("0xffffffffffffffffffffffffffff16a2e0b8f03e13dd29455c5c2a3d"),
+    h: 1
   }
   return eccCommonSpec;
 }
@@ -285,7 +389,7 @@ function showEccSpecDetailInfo(key, keyType) {
   console.info("show detail of " + keyType + ":");
   try {
     let p = key.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_FP_P_BN);
-    showBigIntInfo("--- p", p); //length is 224, hex : ffffffffffffffffffffffffffffffff000000000000000000000001
+    showBigIntInfo("--- p", p); // length is 224, hex : ffffffffffffffffffffffffffffffff000000000000000000000001
 
     let a = key.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_A_BN);
     showBigIntInfo("--- a", a); // length is 224, hex : fffffffffffffffffffffffffffffffefffffffffffffffffffffffe
@@ -303,7 +407,7 @@ function showEccSpecDetailInfo(key, keyType) {
     showBigIntInfo("--- n", n); // length is 224, hex : ffffffffffffffffffffffffffff16a2e0b8f03e13dd29455c5c2a3d
 
     let h = key.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_H_NUM);
-    console.warn("--- h: " + h); //key h: 1
+    console.warn("--- h: " + h); // key h: 1
 
     let fieldType = key.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_FIELD_TYPE_STR);
     console.warn("--- field type: " + fieldType); // key field type: Fp
@@ -330,20 +434,21 @@ function showEccSpecDetailInfo(key, keyType) {
 }
 
 // Generate an ECC key pair based on the EccCommonSpec instance and obtain the key specifications.
-function testEccUseCommKeySpecGet()
-{
+function testEccUseCommKeySpecGet() {
   try {
     let commKeySpec = genEccCommonSpec(); // Construct the EccCommonSpec object.
     let generatorBySpec = cryptoFramework.createAsyKeyGeneratorBySpec(commKeySpec); // Create an AsyKeyGenerator instance based on the EccCommonSpec object.
     let keyPairPromise = generatorBySpec.generateKeyPair(); // Generate an ECC key pair.
-    keyPairPromise.then( keyPair => {
+    keyPairPromise.then(keyPair => {
       showEccSpecDetailInfo(keyPair.priKey, "priKey"); // Obtain the ECC specifications of the private key.
       showEccSpecDetailInfo(keyPair.pubKey, "pubKey"); // Obtain the ECC specifications of the public key.
     }).catch(error => {
+      // Capture exceptions such as logic errors asynchronously here.
       console.error("generateComm error");
       console.error("error code: " + error.code + ", message is: " + error.message);
     })
-  } catch(error) {
+  } catch (error) {
+    // Capture parameter errors synchronously here.
     console.error("testEccUseCommSpec error");
     console.error("error code: " + error.code + ", message is: " + error.message);
   }
@@ -360,12 +465,15 @@ Generate an RSA public key based on parameters and obtain key specifications.
 
 Example: Generate an RSA public key based on key parameters in callback mode.
 ```js
-import cryptoFramework from '@ohos.security.cryptoFramework';
-
 // Generate RSA public key specifications.
-function genRsaPubKeySpec(nIn : bigint, eIn : bigint) {
-  let rsaCommSpec = { n : nIn, algName : "RSA", specType : cryptoFramework.AsyKeySpecType.COMMON_PARAMS_SPEC };
-  let rsaPubKeySpec = { params: rsaCommSpec, pk : eIn, algName : "RSA", specType : cryptoFramework.AsyKeySpecType.PUBLIC_KEY_SPEC };
+function genRsaPubKeySpec(nIn: bigint, eIn: bigint) {
+  let rsaCommSpec = { n: nIn, algName: "RSA", specType: cryptoFramework.AsyKeySpecType.COMMON_PARAMS_SPEC };
+  let rsaPubKeySpec = {
+    params: rsaCommSpec,
+    pk: eIn,
+    algName: "RSA",
+    specType: cryptoFramework.AsyKeySpecType.PUBLIC_KEY_SPEC
+  };
   return rsaPubKeySpec;
 }
 
@@ -396,7 +504,7 @@ function rsaUsePubKeySpecGetCallback() {
     let nBN = pubKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.RSA_N_BN);
     let eBN = pubKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.RSA_PK_BN);
     if (compareRsaPubKeyBySpec(rsaPubKeySpec, nBN, eBN) != true) {
-      AlertDialog.show({ message : "error pub key big number"} );
+      AlertDialog.show({ message: "error pub key big number" });
     } else {
       console.info("n, e in the pubKey are same as the spec.");
     }
@@ -424,7 +532,6 @@ Important data needs to be encrypted in data storage or transmission for securit
 ### Available APIs
 
 The following table describes the APIs used in the typical encryption and decryption operations. For details about the APIs, see [Crypto Framework](../reference/apis/js-apis-cryptoFramework.md). 
-
 > **NOTE**
 >
 > Due to complexity of cryptographic algorithms, the implementation varies depending on the key specifications and parameters you use, and cannot be enumerated by sample code. Before you start, understand the APIs to ensure correct use of these APIs.
@@ -433,9 +540,9 @@ The following table describes the APIs used in the typical encryption and decryp
 
 |Instance|API|Description|
 |---|---|---|
-|cryptoFramework|createCipher(transformation : string) : Cipher|Creates a **Cipher** instance based on the algorithm specified by **transformation**.|
-|Cipher|init(opMode : CryptoMode, key : Key, params : ParamsSpec, callback : AsyncCallback\<void>) : void|Initializes the **Cipher** instance. This API uses an asynchronous callback to return the result.|
-|Cipher|init(opMode : CryptoMode, key : Key, params : ParamsSpec) : Promise\<void>|Initializes the **Cipher** instance. This API uses a promise to return the result.|
+|cryptoFramework|createCipher(transformation : string) : Cipher|Creates a **Cipher** instance.|
+|Cipher|init(opMode : CryptoMode, key : Key, params : ParamsSpec, callback : AsyncCallback\<void>) : void|Sets a key and initializes the **Cipher** instance. This API uses an asynchronous callback to return the result.|
+|Cipher|init(opMode : CryptoMode, key : Key, params : ParamsSpec) : Promise\<void>|Sets a key and initializes the **Cipher** instance. This API uses a promise to return the result.|
 |Cipher|update(data : DataBlob, callback : AsyncCallback\<DataBlob>) : void|Updates the data for encryption and decryption. This API uses an asynchronous callback to return the result.|
 |Cipher|update(data : DataBlob) : Promise\<DataBlob>|Updates the data for encryption and decryption. This API uses a promise to return the result.|
 |Cipher|doFinal(data : DataBlob, callback : AsyncCallback\<DataBlob>) : void|Finalizes the encryption or decryption. This API uses an asynchronous callback to return the result.|
@@ -461,19 +568,19 @@ var globalKey;
 var globalCipherText;
 
 function genGcmParamsSpec() {
-  let arr = [0, 0, 0, 0 , 0, 0, 0, 0, 0, 0 , 0, 0]; // 12 bytes
+  let arr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]; // 12 bytes
   let dataIv = new Uint8Array(arr);
-  let ivBlob = {data : dataIv};
+  let ivBlob = { data: dataIv };
 
-  arr = [0, 0, 0, 0 , 0, 0, 0, 0]; // 8 bytes
+  arr = [0, 0, 0, 0, 0, 0, 0, 0]; // 8 bytes
   let dataAad = new Uint8Array(arr);
-  let aadBlob = {data : dataAad};
+  let aadBlob = { data: dataAad };
 
-  arr = [0, 0, 0, 0 , 0, 0, 0, 0, 0, 0, 0, 0 , 0, 0, 0, 0]; // 16 bytes
+  arr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]; // 16 bytes
   let dataTag = new Uint8Array(arr);
-  let tagBlob = {data : dataTag};  // The authTag of GCM is obtained by doFinal() in encryption and passed in params of init() in decryption.
+  let tagBlob = { data: dataTag }; // The GCM authTag is obtained by doFinal() in encryption and passed in params of init() in decryption.
 
-  let gcmParamsSpec = {iv : ivBlob, aad : aadBlob, authTag : tagBlob, algName : "GcmParamsSpec"};
+  let gcmParamsSpec = { iv: ivBlob, aad: aadBlob, authTag: tagBlob, algName: "GcmParamsSpec" };
   return gcmParamsSpec;
 }
 
@@ -533,45 +640,45 @@ function testAesGcm() {
     }
     return promiseSymKey;
   }).then(key => {
-      let encodedKey = key.getEncoded();
-      console.info('key hex:' + uint8ArrayToShowStr(encodedKey.data));
-      globalKey = key;
-      return key;
+    let encodedKey = key.getEncoded();
+    console.info('key hex:' + uint8ArrayToShowStr(encodedKey.data));
+    globalKey = key;
+    return key;
   }).then(key => {
-      // Initialize the cipher environment and start encryption.
-      let mode = cryptoFramework.CryptoMode.ENCRYPT_MODE;
-      let promiseInit = globalCipher.init(mode, key, globalGcmParams);    // init
-      return promiseInit;
+    // Initialize the Cipher instance and start encryption.
+    let mode = cryptoFramework.CryptoMode.ENCRYPT_MODE;
+    let promiseInit = globalCipher.init(mode, key, globalGcmParams); // init
+    return promiseInit;
   }).then(() => {
-      let plainText = {data : stringToUint8Array('this is test!')};
-      let promiseUpdate = globalCipher.update(plainText);   // update
-      return promiseUpdate;
+    let plainText = {data : stringToUint8Array('this is test!')};
+    let promiseUpdate = globalCipher.update(plainText); // update
+    return promiseUpdate;
   }).then(updateOutput => {
-      globalCipherText = updateOutput;
-      let promiseFinal = globalCipher.doFinal(null);    // doFinal
-      return promiseFinal;
+    globalCipherText = updateOutput;
+    let promiseFinal = globalCipher.doFinal(null); // doFinal
+    return promiseFinal;
   }).then(authTag => {
-      // In GCM mode, the encrypted authentication information needs to be obtained from the output of doFinal() and passed in globalGcmParams of init() in decryption.
-      globalGcmParams.authTag = authTag;
-      return;
+    // In GCM mode, the encrypted authentication information needs to be obtained from the output of doFinal() and passed in globalGcmParams of init() in decryption.
+    globalGcmParams.authTag = authTag;
+    return;
   }).then(() => {
-      // Initialize the Cipher instance and start decryption.
-      let mode = cryptoFramework.CryptoMode.DECRYPT_MODE;
-      let promiseInit = globalCipher.init(mode, globalKey, globalGcmParams);    // init
-      return promiseInit;
+    // Initialize the Cipher instance and start decryption.
+    let mode = cryptoFramework.CryptoMode.DECRYPT_MODE;
+    let promiseInit = globalCipher.init(mode, globalKey, globalGcmParams); // init
+    return promiseInit;
   }).then(() => {
-      let promiseUpdate = globalCipher.update(globalCipherText);    // update
-      return promiseUpdate;
+    let promiseUpdate = globalCipher.update(globalCipherText); // update
+    return promiseUpdate;
   }).then(updateOutput => {
-      console.info('decrypt plainText: ' + uint8ArrayToString(updateOutput.data));
-      let promiseFinal = globalCipher.doFinal(null);    // doFinal
-      return promiseFinal;
+    console.info('decrypt plainText: ' + uint8ArrayToString(updateOutput.data));
+    let promiseFinal = globalCipher.doFinal(null); // doFinal
+    return promiseFinal;
   }).then(finalOutput => {
-      if (finalOutput == null) {  // Check whether the result is null before using finalOutput.data.
-          console.info('GCM finalOutput is null');
-      }
+    if (finalOutput == null) { // Check whether the result is null before using finalOutput.data.
+      console.info('GCM finalOutput is null');
+    }
   }).catch(error => {
-      console.error(`catch error, ${error.code}, ${error.message}`);
+    console.error(`catch error, ${error.code}, ${error.message}`);
   })
 }
 ```
@@ -583,7 +690,7 @@ Encrypt and decrypt data using a 3DES symmetric key.
 1. Create a **SymKeyGenerator** instance.
 2. Generate a key based on the existing binary data.
 3. Create a **Cipher** instance.
-4. Encrypt or decrypt data using the **Cipher** instance.
+4. Encrypt or decrypt data.
 
 ```js
 import cryptoFramework from '@ohos.security.cryptoFramework';
@@ -665,8 +772,8 @@ function test3DesEcb() {
       // Initialize the Cipher instance and start encryption.
       let mode = cryptoFramework.CryptoMode.ENCRYPT_MODE;
       // init
-      globalCipher.init(mode, key, null, (err, ) => {
-        let plainText = {data : stringToUint8Array('this is test!')};
+      globalCipher.init(mode, key, null, (err,) => {
+        let plainText = { data: stringToUint8Array('this is test!') };
         // update
         globalCipher.update(plainText, (err, updateOutput) => {
           globalCipherText = updateOutput;
@@ -681,19 +788,19 @@ function test3DesEcb() {
               finalOutput = Array.from(finalOutput.data);
               globalCipherText = globalCipherText.concat(finalOutput);
               globalCipherText = new Uint8Array(globalCipherText);
-              globalCipherText = {data : globalCipherText};
+              globalCipherText = { data: globalCipherText };
             }
             // Initialize the Cipher instance and start decryption.
             let mode = cryptoFramework.CryptoMode.DECRYPT_MODE;
             // init
-            globalCipher.init(mode, globalKey, null, (err, ) => {
+            globalCipher.init(mode, globalKey, null, (err,) => {
               // update
               globalCipher.update(globalCipherText, (err, updateOutput) => {
                 console.info('decrypt plainText: ' + uint8ArrayToString(updateOutput.data));
                 // doFinal
                 globalCipher.doFinal(null, (error, finalOutput) => {
-                  if (finalOutput == null) {  // Check whether the result is null before using finalOutput.data.
-                    console.info("decrypt plainText:" + uint8ArrayToString(finalOutput.data));
+                  if (finalOutput != null) { // Check whether the result is null before using finalOutput.data.
+                    console.info('decrypt plainText: ' + uint8ArrayToString(finalOutput.data));
                   }
                 })
               })
@@ -791,72 +898,82 @@ function testAesMultiUpdate() {
       return;
     }
     return promiseSymKey;
-  }).then(key => {
-    let encodedKey = key.getEncoded();
-    console.info('key hex:' + uint8ArrayToShowStr(encodedKey.data));
-    globalKey = key;
-    return key;
-  }).then(key => {
-    // Initialize the cipher environment and start encryption.
-    let mode = cryptoFramework.CryptoMode.ENCRYPT_MODE;
-    let promiseInit = globalCipher.init(mode, key, globalGcmParams);    // init
-    return promiseInit;
-  }).then(async () => {
-    let plainText = "aaaaa.....bbbbb.....ccccc.....ddddd.....eee"; // Assume that the plaintext contains 43 bytes.
-    let messageArr = [];
-    let updateLength = 20; // Pass in 20 bytes by update() each time.
-    globalCipherText = [];
-
-    for (let i = 0; i <= plainText.length; i++) {
-      if ((i % updateLength == 0 || i == plainText.length) && messageArr.length != 0) {
-        let message = new Uint8Array(messageArr);
-        let messageBlob = { data : message };
-        let updateOutput = await globalCipher.update(messageBlob); // Update by segment.
-        // Combine the result of each update() to obtain the ciphertext. In certain cases, the doFinal() results need to be combined, which depends on the cipher block mode
-        // and padding mode you use. In this example, the doFinal() result in GCM mode contains authTag but not ciphertext. Therefore, there is no need to combine the results.
-        globalCipherText = globalCipherText.concat(Array.from(updateOutput.data));
-        messageArr = [];
-      }
-      if (i < plainText.length) {
-        messageArr.push(plainText.charCodeAt(i));
-      }
-    }
-    return;
-  }).then(() => {
-    let promiseFinal = globalCipher.doFinal(null);    // doFinal
-    return promiseFinal;
-  }).then(authTag => {
-    // Obtain the authentication information after encryption.
-    globalGcmParams.authTag = authTag;
-    return;
-  }).then(() => {
-    // Initialize the Cipher instance and start decryption.
-    let mode = cryptoFramework.CryptoMode.DECRYPT_MODE;
-    let promiseInit = globalCipher.init(mode, globalKey, globalGcmParams);    // init
-    return promiseInit;
-  }).then(async () => {
-    let updateLength = 20;
-    let updateTimes = Math.ceil(globalCipherText.length / updateLength);  // Round up to the nearest integer.
-    globalPlainText = "";
-    for (let i = 0; i < updateTimes; i++) {
-      let messageArr = globalCipherText.slice(i * updateLength, (i + 1) * updateLength);
-      let message = new Uint8Array(messageArr);
-      let messageBlob = { data : message };
-      let updateOutput = await globalCipher.update(messageBlob); // Pass in data by segment.
-      globalPlainText += uint8ArrayToString(updateOutput.data);     // Restore the original plaintext.
-    }
-    return;
-  }).then(() => {
-    let promiseFinal = globalCipher.doFinal(null);      // doFinal
-    return promiseFinal;
-  }).then(finalOutput => {
-    if (finalOutput == null) {
-      console.info('GCM finalOutput is null');
-    }
-    console.info(`decrypt output: ${globalPlainText}`);
-  }).catch(error => {
-      console.error(`catch error, ${error.code}, ${error.message}`);
   })
+    .then(key => {
+      let encodedKey = key.getEncoded();
+      console.info('key hex:' + uint8ArrayToShowStr(encodedKey.data));
+      globalKey = key;
+      return key;
+    })
+    .then(key => {
+      // Initialize the Cipher instance and start encryption.
+      let mode = cryptoFramework.CryptoMode.ENCRYPT_MODE;
+      let promiseInit = globalCipher.init(mode, key, globalGcmParams); // init
+      return promiseInit;
+    })
+    .then(async () => {
+      let plainText = "aaaaa.....bbbbb.....ccccc.....ddddd.....eee"; // Assume that the plaintext is of 43 bytes.
+      let messageArr = [];
+      let updateLength = 20; // Pass in 20 bytes by update() each time.
+      globalCipherText = [];
+
+      for (let i = 0; i <= plainText.length; i++) {
+        if ((i % updateLength == 0 || i == plainText.length) && messageArr.length != 0) {
+          let message = new Uint8Array(messageArr);
+          let messageBlob = { data: message };
+          let updateOutput = await globalCipher.update(messageBlob); // Update by segment.
+          // Combine the result of each update() to obtain the ciphertext. In certain cases, the doFinal() results need to be combined, which depends on the cipher block mode
+          // and padding mode you use. In this example, the doFinal() result in GCM mode contains authTag but not ciphertext. Therefore, there is no need to combine the results.
+          globalCipherText = globalCipherText.concat(Array.from(updateOutput.data));
+          messageArr = [];
+        }
+        if (i < plainText.length) {
+          messageArr.push(plainText.charCodeAt(i));
+        }
+      }
+      return;
+    })
+    .then(() => {
+      let promiseFinal = globalCipher.doFinal(null); // doFinal
+      return promiseFinal;
+    })
+    .then(authTag => {
+      // Obtain the authentication information after encryption.
+      globalGcmParams.authTag = authTag;
+      return;
+    })
+    .then(() => {
+      // Initialize the Cipher instance and start decryption.
+      let mode = cryptoFramework.CryptoMode.DECRYPT_MODE;
+      let promiseInit = globalCipher.init(mode, globalKey, globalGcmParams); // init
+      return promiseInit;
+    })
+    .then(async () => {
+      let updateLength = 20;
+      let updateTimes = Math.ceil(globalCipherText.length / updateLength); // Round up to the nearest integer.
+      globalPlainText = "";
+      for (let i = 0; i < updateTimes; i++) {
+        let messageArr = globalCipherText.slice(i * updateLength, (i + 1) * updateLength);
+        let message = new Uint8Array(messageArr);
+        let messageBlob = { data: message };
+        let updateOutput = await globalCipher.update(messageBlob); // Update by segment.
+        globalPlainText += uint8ArrayToString(updateOutput.data); // Restore the original plaintext.
+      }
+      return;
+    })
+    .then(() => {
+      let promiseFinal = globalCipher.doFinal(null); // doFinal
+      return promiseFinal;
+    })
+    .then(finalOutput => {
+      if (finalOutput == null) {
+        console.info('GCM finalOutput is null');
+      }
+      console.info(`decrypt output: ${globalPlainText}`);
+    })
+    .catch(error => {
+      console.error(`catch error, ${error.code}, ${error.message}`);
+    })
 }
 ```
 
@@ -896,7 +1013,7 @@ function encryptMessagePromise() {
     return cipher.init(cryptoFramework.CryptoMode.ENCRYPT_MODE, pubKey, null);
   }).then(() => {
     // doFinal
-    let input = { data : stringToUint8Array(plan) };
+    let input = { data: stringToUint8Array(plan) };
     return cipher.doFinal(input);
   }).then(dataBlob => {
     // Obtain the encrypted data.
@@ -915,7 +1032,7 @@ function encryptMessageCallback() {
     let pubKey = keyPair.pubKey;
     // Initialize the Cipher instance and use the public key to encrypt the data.
     cipher.init(cryptoFramework.CryptoMode.ENCRYPT_MODE, pubKey, null, function (err, data) {
-      let input = {data : stringToUint8Array(plan) };
+      let input = { data: stringToUint8Array(plan) };
       // doFinal
       cipher.doFinal(input, function (err, data) {
         // Obtain the encrypted data.
@@ -937,32 +1054,36 @@ function decryptMessagePromise() {
   let keyGenPromise = rsaGenerator.generateKeyPair();
   let keyPair;
   let cipherDataBlob;
-  let input = { data : stringToUint8Array(plan) };
+  let input = { data: stringToUint8Array(plan) };
   keyGenPromise.then(rsaKeyPair => {
     keyPair = rsaKeyPair;
     // Initialize the Cipher instance and use the public key to encrypt the message.
     return cipher.init(cryptoFramework.CryptoMode.ENCRYPT_MODE, keyPair.pubKey, null);
-  }).then(() => {
-    // Call doFinal() to encrypt data.
-    return cipher.doFinal(input);
-  }).then(dataBlob => {
-    // Obtain the encrypted information and use it as the input parameter for decryption.
-    console.info("EncryptOutPut is " + dataBlob.data);
-    AlertDialog.show({message : "output" + dataBlob.data});
-    cipherDataBlob = dataBlob;
+  })
+    .then(() => {
+      // Call doFinal() to encrypt data.
+      return cipher.doFinal(input);
+    })
+    .then(dataBlob => {
+      // Obtain the encrypted information and use it as the input parameter for decryption.
+      console.info("EncryptOutPut is " + dataBlob.data);
+      AlertDialog.show({ message: "output" + dataBlob.data });
+      cipherDataBlob = dataBlob;
     // Initialize the Cipher instance and use the private key to decrypt the message.
-    return decoder.init(cryptoFramework.CryptoMode.DECRYPT_MODE, keyPair.priKey, null);
-  }).then(() => {
-    // Call doFinal() to decrypt the message.
-    return decoder.doFinal(cipherDataBlob);
-  }).then(decodeData => {
-    // Check whether the decrypted data is consistent with the original data.
-    if (decodeData.data.toString() === input.data.toString()) {
-      AlertDialog.show({message : "decrypt success"});
-      return;
-    }
-    AlertDialog.show({message : "decrypt fail"});
-  });
+      return decoder.init(cryptoFramework.CryptoMode.DECRYPT_MODE, keyPair.priKey, null);
+    })
+    .then(() => {
+      // Call doFinal() to decrypt the message.
+      return decoder.doFinal(cipherDataBlob);
+    })
+    .then(decodeData => {
+      // Check whether the decrypted data is consistent with the original data.
+      if (decodeData.data.toString() === input.data.toString()) {
+        AlertDialog.show({ message: "decrypt success" });
+        return;
+      }
+      AlertDialog.show({ message: "decrypt fail" });
+    });
 }
 
 // Encrypt and decrypt the message in callback mode.
@@ -974,7 +1095,7 @@ function decryptMessageCallback() {
   // Create a Cipher instance for decryption.
   let decoder = cryptoFramework.createCipher("RSA1024|PKCS1");
   let plainText = "this is cipher text";
-  let input = {data : stringToUint8Array(plainText) };
+  let input = { data: stringToUint8Array(plainText) };
   let cipherData;
   let keyPair;
   // Generate an asymmetric key pair using the AsyKeyGenerator instance.
@@ -985,7 +1106,7 @@ function decryptMessageCallback() {
       // Call doFinal() to encrypt the message.
       cipher.doFinal(input, function (err, data) {
         // Obtain the encrypted information and use it as the input parameter for decryption.
-        AlertDialog.show({ message : "EncryptOutPut is " + data.data} );
+        AlertDialog.show({ message: "EncryptOutPut is " + data.data });
         cipherData = data;
         // Initialize the Cipher instance and use the private key to decrypt the message.
         decoder.init(cryptoFramework.CryptoMode.DECRYPT_MODE, keyPair.priKey, null, function (err, data) {
@@ -993,10 +1114,10 @@ function decryptMessageCallback() {
           decoder.doFinal(cipherData, function (err, data) {
             // Check whether the decrypted data is consistent with the original data.
             if (input.data.toString() === data.data.toString()) {
-              AlertDialog.show({ message : "decryption success"} );
+              AlertDialog.show({ message: "decrype success" });
               return;
             }
-            AlertDialog.show({ message : "decryption fail"} );
+            AlertDialog.show({ message: "decrype fail" });
           });
         });
       });
@@ -1124,9 +1245,15 @@ function stringToUint8Array(str) {
 }
 
 // Construct the key parameters of the RSA asymmetric key pair based on the key pair specifications.
-function genRsaKeyPairSpec(nIn : bigint, eIn : bigint, dIn : bigint) {
-  let rsaCommSpec = { n : nIn, algName : "RSA", specType : cryptoFramework.AsyKeySpecType.COMMON_PARAMS_SPEC };
-  let rsaKeyPairSpec = { params: rsaCommSpec, sk : dIn, pk : eIn, algName : "RSA", specType : cryptoFramework.AsyKeySpecType.KEY_PAIR_SPEC };
+function genRsaKeyPairSpec(nIn: bigint, eIn: bigint, dIn: bigint) {
+  let rsaCommSpec = { n: nIn, algName: "RSA", specType: cryptoFramework.AsyKeySpecType.COMMON_PARAMS_SPEC };
+  let rsaKeyPairSpec = {
+    params: rsaCommSpec,
+    sk: dIn,
+    pk: eIn,
+    algName: "RSA",
+    specType: cryptoFramework.AsyKeySpecType.KEY_PAIR_SPEC
+  };
   return rsaKeyPairSpec;
 }
 
@@ -1150,62 +1277,292 @@ function rsaUseSpecDecryptOAEPPromise() {
   let keyPair;
   let cipherDataBlob;
   // Set the pSource, which defines the encoding input P filled by OAEP.
-  let pSource = new Uint8Array([1,2,3,4]);
-  let input = { data : stringToUint8Array(plan) };
+  let pSource = new Uint8Array([1, 2, 3, 4]);
+  let input = { data: stringToUint8Array(plan) };
   // Generate the key pair.
   keyGenPromise.then(rsaKeyPair => {
     keyPair = rsaKeyPair;
     // Initialize the Cipher instance for encryption.
     return cipher.init(cryptoFramework.CryptoMode.ENCRYPT_MODE, keyPair.pubKey, null);
+  })
+    .then(() => {
+      // Set and obtain the cipher specifications after the initialization.
+      cipher.setCipherSpec(cryptoFramework.CipherSpecItem.OAEP_MGF1_PSRC_UINT8ARR, pSource);
+      let retP = cipher.getCipherSpec(cryptoFramework.CipherSpecItem.OAEP_MGF1_PSRC_UINT8ARR);
+      // Check whether the obtained PSource is the same as the PSource set.
+      if (retP.toString() != pSource.toString()) {
+        AlertDialog.show({ message: "error init pSource" + retP });
+      } else {
+        console.info("pSource changed ==" + retP);
+      }
+      // Obtain other OAEP parameters.
+      let md = cipher.getCipherSpec(cryptoFramework.CipherSpecItem.OAEP_MD_NAME_STR);
+      console.info("md == " + md);
+      let mgf = cipher.getCipherSpec(cryptoFramework.CipherSpecItem.OAEP_MGF_NAME_STR);
+      console.info("mgf == " + mgf);
+      let mgf1Md = cipher.getCipherSpec(cryptoFramework.CipherSpecItem.OAEP_MGF1_MD_STR);
+      console.info("mgf1Md == " + mgf1Md);
+      return cipher.doFinal(input);
+    })
+    .then(dataBlob => {
+      console.info("EncryptOutPut is " + dataBlob.data);
+      cipherDataBlob = dataBlob;
+      // The get() and set() operations can be performed before the init() operation of the Cipher object and are equivalent to those after the init() operation. For example, set and get the decoder.
+      decoder.setCipherSpec(cryptoFramework.CipherSpecItem.OAEP_MGF1_PSRC_UINT8ARR, pSource);
+      let retP = decoder.getCipherSpec(cryptoFramework.CipherSpecItem.OAEP_MGF1_PSRC_UINT8ARR);
+      // Check whether the obtained PSource is the same as the PSource set.
+      if (retP.toString() != pSource.toString()) {
+        AlertDialog.show({ message: "error init pSource" + retP });
+      } else {
+        console.info("pSource changed ==" + retP);
+      }
+      // Obtain other OAEP parameters.
+      let md = decoder.getCipherSpec(cryptoFramework.CipherSpecItem.OAEP_MD_NAME_STR);
+      console.info("md == " + md);
+      let mgf = decoder.getCipherSpec(cryptoFramework.CipherSpecItem.OAEP_MGF_NAME_STR);
+      console.info("mgf == " + mgf);
+      let mgf1Md = decoder.getCipherSpec(cryptoFramework.CipherSpecItem.OAEP_MGF1_MD_STR);
+      console.info("mgf1Md == " + mgf1Md);
+      // Initialize the decryption operation.
+      return decoder.init(cryptoFramework.CryptoMode.DECRYPT_MODE, keyPair.priKey, null);
+    })
+    .then(() => {
+      return decoder.doFinal(cipherDataBlob);
+    })
+    .then(decodeData => {
+      // The decryption is successful.
+      if (decodeData.data.toString() === input.data.toString()) {
+        console.info("oaep decrypt success");
+        AlertDialog.show({ message: " oaep decrypt success" });
+      } else {
+        AlertDialog.show({ message: "oeap decrypt fail" });
+      }
+    });
+}
+```
+
+### Encrypting and Decrypting Data Using SM2
+
+> **NOTE**
+>
+> SM2 encryption and decryption are supported from API version 10.
+
+Use an SM2 asymmetric key pair to encrypt and decrypt data.
+
+1. Generate an SM2 key pair. Call **createAsyKeyGenerator()** to create an **AsyKeyGenerator** instance and generate an SM2 asymmetric key pair.
+2. Create a **Cipher** instance.<br>Call **createCipher()** to create a **Cipher** instance, and set the key and encryption/decryption mode.
+3. Encrypt and decrypt data.<br>Call **doFinal()** provided by the **Cipher** instance to encrypt data or decrypt data.
+
+```js
+import cryptoFramework from "@ohos.security.cryptoFramework"
+
+let plan = "This is cipher test.";
+
+// Convert strings in plaintext into byte streams.
+function stringToUint8Array(str) {
+  let arr = [];
+  for (let i = 0, j = str.length; i < j; ++i) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
+
+// Encrypt the message in promise mode.
+function encryptMessagePromise() {
+  // Create an AsyKeyGenerator instance.
+  let sm2Generator = cryptoFramework.createAsyKeyGenerator("SM2_256");
+  // Create a Cipher instance.
+  let cipher = cryptoFramework.createCipher("SM2_256|SM3");
+  // Generate an asymmetric key pair using the AsyKeyGenerator instance.
+  let keyGenPromise = sm2Generator.generateKeyPair();
+  keyGenPromise.then(sm2KeyPair => {
+    let pubKey = sm2KeyPair.pubKey;
+    // Initialize the Cipher instance and use the public key to encrypt the message.
+    return cipher.init(cryptoFramework.CryptoMode.ENCRYPT_MODE, pubKey, null);
   }).then(() => {
-    // Set and obtain the cipher specifications after the initialization.
-    cipher.setCipherSpec(cryptoFramework.CipherSpecItem.OAEP_MGF1_PSRC_UINT8ARR, pSource);
-    let retP = cipher.getCipherSpec(cryptoFramework.CipherSpecItem.OAEP_MGF1_PSRC_UINT8ARR);
-    // Check whether the obtained PSource is the same as the PSource set.
-    if (retP.toString() != pSource.toString()) {
-      AlertDialog.show({message : "error init pSource" + retP});
-    } else {
-      console.info("pSource changed ==" + retP);
-    }
-    // Obtain other OAEP parameters.
-    let md = cipher.getCipherSpec(cryptoFramework.CipherSpecItem.OAEP_MD_NAME_STR);
-    console.info("md == " + md);
-    let mgf = cipher.getCipherSpec(cryptoFramework.CipherSpecItem.OAEP_MGF_NAME_STR);
-    console.info("mgf == " + mgf);
-    let mgf1Md = cipher.getCipherSpec(cryptoFramework.CipherSpecItem.OAEP_MGF1_MD_STR);
-    console.info("mgf1Md == " + mgf1Md);
+    // doFinal
+    let input = { data: stringToUint8Array(plan) };
     return cipher.doFinal(input);
   }).then(dataBlob => {
+    // Obtain the encrypted data.
     console.info("EncryptOutPut is " + dataBlob.data);
-    cipherDataBlob = dataBlob;
-    // The get() and set() operations can be performed before the init() operation of the Cipher object and are equivalent to those after the init() operation. For example, set and get the decoder.
-    decoder.setCipherSpec(cryptoFramework.CipherSpecItem.OAEP_MGF1_PSRC_UINT8ARR, pSource);
-    let retP = decoder.getCipherSpec(cryptoFramework.CipherSpecItem.OAEP_MGF1_PSRC_UINT8ARR);
-    // Check whether the obtained PSource is the same as the PSource set.
-    if (retP.toString() != pSource.toString()) {
-      AlertDialog.show({message : "error init pSource" + retP});
-    } else {
-      console.info("pSource changed ==" + retP);
-    }
-    // Obtain other OAEP parameters.
-    let md = decoder.getCipherSpec(cryptoFramework.CipherSpecItem.OAEP_MD_NAME_STR);
-    console.info("md == " + md);
-    let mgf = decoder.getCipherSpec(cryptoFramework.CipherSpecItem.OAEP_MGF_NAME_STR);
-    console.info("mgf == " + mgf);
-    let mgf1Md = decoder.getCipherSpec(cryptoFramework.CipherSpecItem.OAEP_MGF1_MD_STR);
-    console.info("mgf1Md == " + mgf1Md);
-    // Initialize the decryption operation.
-    return decoder.init(cryptoFramework.CryptoMode.DECRYPT_MODE, keyPair.priKey, null);
-  }).then(() => {
-    return decoder.doFinal(cipherDataBlob);
-  }).then(decodeData => {
-    // The decryption is successful.
-    if (decodeData.data.toString() === input.data.toString()) {
-      console.info("oaep decrypt success");
-      AlertDialog.show({message : " oaep decrypt success"});
-    } else {
-      AlertDialog.show({message : "oeap decrypt fail"});
-    }
+  });
+}
+
+// Encrypt the message in callback mode.
+function encryptMessageCallback() {
+  // Create an AsyKeyGenerator instance.
+  let sm2Generator = cryptoFramework.createAsyKeyGenerator("SM2_256");
+  // Create a Cipher instance.
+  let cipher = cryptoFramework.createCipher("SM2_256|SM3");
+  // Generate an asymmetric key pair using the AsyKeyGenerator instance.
+  sm2Generator.generateKeyPair(function (err, keyPair) {
+    let pubKey = keyPair.pubKey;
+    // Initialize the Cipher instance and use the public key to encrypt the message.
+    cipher.init(cryptoFramework.CryptoMode.ENCRYPT_MODE, pubKey, null, function (err, data) {
+      let input = { data: stringToUint8Array(plan) };
+      // doFinal
+      cipher.doFinal(input, function (err, data) {
+        // Obtain the encrypted data.
+        console.info("EncryptOutPut is " + data.data);
+      })
+    })
+  })
+}
+
+// Encrypt and decrypt data in promise mode.
+function decryptMessagePromise() {
+  // Create an AsyKeyGenerator instance.
+  let sm2Generator = cryptoFramework.createAsyKeyGenerator("SM2_256");
+  // Create a Cipher instance for encryption.
+  let cipher = cryptoFramework.createCipher("SM2_256|SM3");
+  // Create a Cipher instance for decryption.
+  let decoder = cryptoFramework.createCipher("SM2_256|SM3");
+  // Generate an asymmetric key pair using the AsyKeyGenerator instance.
+  let keyGenPromise = sm2Generator.generateKeyPair();
+  let keyPair;
+  let cipherDataBlob;
+  let input = { data: stringToUint8Array(plan) };
+  keyGenPromise.then(rsaKeyPair => {
+    keyPair = rsaKeyPair;
+    // Initialize the Cipher instance and use the public key to encrypt the data.
+    return cipher.init(cryptoFramework.CryptoMode.ENCRYPT_MODE, keyPair.pubKey, null);
+  })
+    .then(() => {
+      // Call doFinal() to encrypt data.
+      return cipher.doFinal(input);
+    })
+    .then(dataBlob => {
+      // Obtain the encrypted information and use it as the input parameter for decryption.
+      console.info("EncryptOutPut is " + dataBlob.data);
+      AlertDialog.show({ message: "output" + dataBlob.data });
+      cipherDataBlob = dataBlob;
+      // Initialize the Cipher instance and use the private key to decrypt the data.
+      return decoder.init(cryptoFramework.CryptoMode.DECRYPT_MODE, keyPair.priKey, null);
+    })
+    .then(() => {
+      // Call doFinal() to decrypt data.
+      return decoder.doFinal(cipherDataBlob);
+    })
+    .then(decodeData => {
+      // Check whether the decrypted data is consistent with the original data.
+      if (decodeData.data.toString() === input.data.toString()) {
+        AlertDialog.show({ message: "decrypt success" });
+        return;
+      }
+      AlertDialog.show({ message: "decrypt fail" });
+    });
+}
+
+// Encrypt and decrypt data in callback mode.
+function decryptMessageCallback() {
+  // Create an AsyKeyGenerator instance.
+  let sm2Generator = cryptoFramework.createAsyKeyGenerator("SM2_256");
+  // Create a Cipher instance for encryption.
+  let cipher = cryptoFramework.createCipher("SM2_256|SM3");
+  // Create a Cipher instance for decryption.
+  let decoder = cryptoFramework.createCipher("SM2_256|SM3");
+  let plainText = "this is cipher text";
+  let input = { data: stringToUint8Array(plainText) };
+  let cipherData;
+  let keyPair;
+  // Generate an asymmetric key pair using the AsyKeyGenerator instance.
+  sm2Generator.generateKeyPair(function (err, newKeyPair) {
+    keyPair = newKeyPair;
+    // Initialize the Cipher instance and use the public key to encrypt the data.
+    cipher.init(cryptoFramework.CryptoMode.ENCRYPT_MODE, keyPair.pubKey, null, function (err, data) {
+      // Call doFinal() to encrypt data.
+      cipher.doFinal(input, function (err, data) {
+        // Obtain the encrypted information and use it as the input parameter for decryption.
+        AlertDialog.show({ message: "EncryptOutPut is " + data.data });
+        cipherData = data;
+        // Initialize the Cipher instance and use the private key to decrypt the data.
+        decoder.init(cryptoFramework.CryptoMode.DECRYPT_MODE, keyPair.priKey, null, function (err, data) {
+          // Call doFinal() to decrypt data.
+          decoder.doFinal(cipherData, function (err, data) {
+            // Check whether the decrypted data is consistent with the original data.
+            if (input.data.toString() === data.data.toString()) {
+              AlertDialog.show({ message: "decrype success" });
+              return;
+            }
+            AlertDialog.show({ message: "decrype fail" });
+          });
+        });
+      });
+    });
+  });
+}
+```
+
+### Encrypting and Decrypting Data Using an SM4 ECB Symmetric Key (Callback)
+
+> **NOTE**
+>
+> SM4 encryption and decryption are supported from API version 10.
+
+Use an SM4 symmetric key to encrypt and decrypt data.
+
+1. Create a **SymKeyGenerator** instance.
+2. Generate a key based on the existing binary data.
+3. Create a **Cipher** instance.
+4. Encrypt or decrypt data.
+
+```js
+import cryptoFramework from '@ohos.security.cryptoFramework';
+
+function stringToUint8Array(str) {
+	let arr = [];
+	for (let i = 0, j = str.length; i < j; ++i) {
+	arr.push(str.charCodeAt(i));
+	}
+	return new Uint8Array(arr);
+}
+
+// Convert byte streams into strings in plaintext.
+function uint8ArrayToString(array) {
+  let arrayString = '';
+  for (let i = 0; i < array.length; i++) {
+    arrayString += String.fromCharCode(array[i]);
+  }
+  return arrayString;
+}
+
+// Use SM4 ECB mode as an example. Callback-based APIs are used.
+function testSM4Ecb() {
+  // Create an AsyKeyGenerator instance.
+  let sm4Generator = cryptoFramework.createSymKeyGenerator('SM4_128');
+  // Create a Cipher instance for encryption.
+  let cipher = cryptoFramework.createCipher("SM4_128|ECB|PKCS7");
+  // Create a Cipher instance for decryption.
+  let decoder = cryptoFramework.createCipher("SM4_128|ECB|PKCS7");
+  let plainText = "this is cipher text";
+  let input = { data: stringToUint8Array(plainText) };
+  let cipherData;
+  let key;
+  // Generate an asymmetric key pair using the AsyKeyGenerator instance.
+  sm4Generator.generateSymKey(function (err, newKey) {
+    key = newKey;
+    // Initialize the Cipher instance and use the public key to encrypt the data.
+    cipher.init(cryptoFramework.CryptoMode.ENCRYPT_MODE, key, null, function (err, data) {
+      // Call doFinal() to encrypt data.
+      cipher.doFinal(input, function (err, data) {
+        // Obtain the encrypted information and use it as the input parameter for decryption.
+        AlertDialog.show({ message: "EncryptOutPut is " + data.data });
+        cipherData = data;
+        // Initialize the Cipher instance and use the private key to decrypt the data.
+        decoder.init(cryptoFramework.CryptoMode.DECRYPT_MODE, key, null, function (err, data) {
+          // Call doFinal() to decrypt data.
+          decoder.doFinal(cipherData, function (err, data) {
+            // Check whether the decrypted data is consistent with the original data.
+            if (input.data.toString() === data.data.toString()) {
+              AlertDialog.show({ message: "decrype success" });
+              return;
+            }
+            AlertDialog.show({ message: "decrype fail" });
+          });
+        });
+      });
+    });
   });
 }
 ```
@@ -1218,6 +1575,7 @@ A digital signature can be used to verify the authenticity of a message. Typical
 1. Use RSA to generate a signature and verify the signature.
 2. Use ECC to generate a signature and verify the signature.
 3. Use RSA to generate a signature and verify the signature. Obtain and set **SignSpecItem** when the PSS padding mode is used.
+4. Use SM2 to generate a signature and verify the signature.
 
 > **NOTE**
 >
@@ -1227,7 +1585,6 @@ A digital signature can be used to verify the authenticity of a message. Typical
 ### Available APIs
 
 The following table describes the APIs used in typical signing and signature verification operations. For more information about the APIs, see [Crypto Framework](../reference/apis/js-apis-cryptoFramework.md).
-
 > **NOTE**
 >
 > Due to complexity of cryptographic algorithms, the implementation varies depending on the specifications and parameters you use, and cannot be enumerated by sample code. Before you start, understand the APIs to ensure correct use of these APIs.
@@ -1261,7 +1618,7 @@ Use RSA to sign data and verify the signature.
 2. Create a **Sign** instance.<br>Call **createSign()** to create a **Sign** instance, initialize the **Sign** instance, and set a private key for signing.
 3. Generate a signature.<br>Call **update()** provided by the **Sign** class to pass in the data for signing and call **sign()** to generate a signature.
 4. Create a **Verify** instance.<br>Call **createVerify()** to create a **Verify** instance, initialize the instance, and set a public key for signature verification.
-5. Verify the signature.<br> Call **update()** provided by the **Verify** class to pass in the signature data and call **verify()** to verify the signature.
+5. Verify the signature.<br>Call **update()** provided by the **Verify** class to pass in the signature data and call **verify()** to verify the signature.
 
 ```js
 import cryptoFramework from "@ohos.security.cryptoFramework"
@@ -1279,14 +1636,14 @@ let globalKeyPair;
 let SignMessageBlob;
 let plan1 = "This is Sign test plan1";
 let plan2 = "This is Sign test plan1";
-let input1 = { data : stringToUint8Array(plan1) };
-let input2 = { data : stringToUint8Array(plan2) };
+let input1 = { data: stringToUint8Array(plan1) };
+let input2 = { data: stringToUint8Array(plan2) };
 
 function signMessagePromise() {
   let rsaGenerator = cryptoFramework.createAsyKeyGenerator("RSA1024|PRIMES_2");
   let signer = cryptoFramework.createSign("RSA1024|PKCS1|SHA256"); // From API version 10, a Sign instance can be created by specifying a string parameter defining the key specifications.
   let keyGenPromise = rsaGenerator.generateKeyPair();
-  keyGenPromise.then( keyPair => {
+  keyGenPromise.then(keyPair => {
     globalKeyPair = keyPair;
     let priKey = globalKeyPair.priKey;
     return signer.init(priKey);
@@ -1300,6 +1657,7 @@ function signMessagePromise() {
   });
 }
 
+// Call verify() after sign() is called.
 function verifyMessagePromise() {
   let verifyer = cryptoFramework.createVerify("RSA1024|PKCS1|SHA256");
   let verifyInitPromise = verifyer.init(globalKeyPair.pubKey);
@@ -1318,9 +1676,9 @@ function signMessageCallback() {
   rsaGenerator.generateKeyPair(function (err, keyPair) {
     globalKeyPair = keyPair;
     let priKey = globalKeyPair.priKey;
-    signer.init(priKey, function (err, data) {
-      signer.update(input1, function (err, data) {
-        signer.sign(input2, function (err, data) {
+    signer.init(priKey, err => {
+      signer.update(input1, err => {
+        signer.sign(input2, (err, data) => {
           SignMessageBlob = data;
           console.info("sign output is " + SignMessageBlob.data);
         });
@@ -1329,11 +1687,12 @@ function signMessageCallback() {
   });
 }
 
+// Call verify() after sign() is called.
 function verifyMessageCallback() {
   let verifyer = cryptoFramework.createVerify("RSA1024|PKCS1|SHA256");
-  verifyer.init(globalKeyPair.pubKey, function (err, data) {
-    verifyer.update(input1, function(err, data) {
-      verifyer.verify(input2, SignMessageBlob, function(err, data) {
+  verifyer.init(globalKeyPair.pubKey, err => {
+    verifyer.update(input1, err => {
+      verifyer.verify(input2, SignMessageBlob, function (err, data) {
         console.info("verify result is " + data);
       });
     });
@@ -1367,14 +1726,14 @@ let globalKeyPair;
 let SignMessageBlob;
 let plan1 = "This is Sign test plan1";
 let plan2 = "This is Sign test plan1";
-let input1 = { data : stringToUint8Array(plan1) };
-let input2 = { data : stringToUint8Array(plan2) };
+let input1 = { data: stringToUint8Array(plan1) };
+let input2 = { data: stringToUint8Array(plan2) };
 
 function signMessagePromise() {
   let eccGenerator = cryptoFramework.createAsyKeyGenerator("ECC256");
   let signer = cryptoFramework.createSign("ECC256|SHA256");
   let keyGenPromise = eccGenerator.generateKeyPair();
-  keyGenPromise.then( keyPair => {
+  keyGenPromise.then(keyPair => {
     globalKeyPair = keyPair;
     let priKey = globalKeyPair.priKey;
     return signer.init(priKey);
@@ -1406,9 +1765,9 @@ function signMessageCallback() {
   eccGenerator.generateKeyPair(function (err, keyPair) {
     globalKeyPair = keyPair;
     let priKey = globalKeyPair.priKey;
-    signer.init(priKey, function (err, data) {
-      signer.update(input1, function (err, data) {
-        signer.sign(input2, function (err, data) {
+    signer.init(priKey, err => {
+      signer.update(input1, err => {
+        signer.sign(input2, (err, data) => {
           SignMessageBlob = data;
           console.info("sign output is " + SignMessageBlob.data);
         });
@@ -1419,9 +1778,9 @@ function signMessageCallback() {
 
 function verifyMessageCallback() {
   let verifyer = cryptoFramework.createVerify("ECC256|SHA256");
-  verifyer.init(globalKeyPair.pubKey, function (err, data) {
-    verifyer.update(input1, function(err, data) {
-      verifyer.verify(input2, SignMessageBlob, function(err, data) {
+  verifyer.init(globalKeyPair.pubKey, err => {
+    verifyer.update(input1, err => {
+      verifyer.verify(input2, SignMessageBlob, function (err, data) {
         console.info("verify result is " + data);
       });
     });
@@ -1437,7 +1796,7 @@ Use RSA to sign data and verify the signature by segment.
 2. Create a **Sign** instance.<br>Call **createSign()** to create a **Sign** instance, initialize the **Sign** instance, and set a private key for signing.
 3. Generate a signature.<br>Call the **update()** provided by the **Sign** class multiple times to pass in data by segment and call **sign()** to generate a signature.
 4. Create a **Verify** instance.<br>Call **createVerify()** to create a **Verify** instance, initialize the instance, and set a public key for signature verification.
-5. Verify the signature.<br>Call the **update()** provided by the **Verify** class multiple times to pass in data by segment and call **verify()** to verify the signature.
+5. Verify the signature.<br>Call the **update()** method provided by the **Verify** class multiple times to pass in data by segment and call **verify()** to verify the signature.
 
 ```js
 import cryptoFramework from "@ohos.security.cryptoFramework"
@@ -1463,11 +1822,11 @@ function signLongMessagePromise() {
   let globalSignData;
   let textSplitLen = 64; // Customized data splitting length.
   let keyGenName = "RSA1024";
-  let cipherAlgName = "RSA1024|PKCS1|SHA256";
+  let signAlgName = "RSA1024|PKCS1|SHA256";
   let globalKeyPair;
   let asyKeyGenerator = cryptoFramework.createAsyKeyGenerator(keyGenName); // Create an AsyKeyGenerator object.
-  let signer = cryptoFramework.createSign(cipherAlgName); //Create a Sign object for signing.
-  let verifier = cryptoFramework.createVerify(cipherAlgName); // Create a Verify object for signature verification.
+  let signer = cryptoFramework.createSign(signAlgName); // Create a Signer instance.
+  let verifier = cryptoFramework.createVerify(signAlgName); // Create a Verifier instance.
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       resolve("testRsaMultiUpdate");
@@ -1490,7 +1849,7 @@ function signLongMessagePromise() {
     console.info(`globalSignOutput len is ${globalSignData.length}, data is: ${globalSignData.toString()}`);
     return verifier.init(globalKeyPair.pubKey);
   }).then(async() => {
-    // Split and decrypt the ciphertext by 128 bytes, and combine the plaintext obtained each time.
+    // If the plaintext is too large, split the plaintext based on the specified length and cyclically call update() to pass in the plaintext.
     for (let i = 0; i < (globalPlainText.length / textSplitLen); i++) {
       let tempData = globalPlainText.slice(i * textSplitLen, (i + 1) * textSplitLen);
       let tempBlob = { data : stringToUint8Array(tempData) };
@@ -1505,7 +1864,7 @@ function signLongMessagePromise() {
 }
 ```
 
-### Using PSS in RSA Signing and Signature Verification 
+### Using PSS in RSA Signing and Signature Verification
 
 Use the PSS padding mode in RSA signing and signature verification in callback mode.
 
@@ -1528,9 +1887,15 @@ function stringToUint8Array(str) {
 }
 
 // Construct the key parameters of the RSA asymmetric key pair based on the key pair specifications.
-function genRsaKeyPairSpec(nIn : bigint, eIn : bigint, dIn : bigint) {
-  let rsaCommSpec = { n : nIn, algName : "RSA", specType : cryptoFramework.AsyKeySpecType.COMMON_PARAMS_SPEC };
-  let rsaKeyPairSpec = { params: rsaCommSpec, sk : dIn, pk : eIn, algName : "RSA", specType : cryptoFramework.AsyKeySpecType.KEY_PAIR_SPEC };
+function genRsaKeyPairSpec(nIn: bigint, eIn: bigint, dIn: bigint) {
+  let rsaCommSpec = { n: nIn, algName: "RSA", specType: cryptoFramework.AsyKeySpecType.COMMON_PARAMS_SPEC };
+  let rsaKeyPairSpec = {
+    params: rsaCommSpec,
+    sk: dIn,
+    pk: eIn,
+    algName: "RSA",
+    specType: cryptoFramework.AsyKeySpecType.KEY_PAIR_SPEC
+  };
   return rsaKeyPairSpec;
 }
 
@@ -1545,8 +1910,8 @@ function genRsa2048KeyPairSpec() {
 function verifyMessageCallbackPSS() {
   let plan1 = "This is Sign test plan1";
   let plan2 = "This is Sign test plan1";
-  let input1 = { data : stringToUint8Array(plan1) };
-  let input2 = { data : stringToUint8Array(plan2) };
+  let input1 = { data: stringToUint8Array(plan1) };
+  let input2 = { data: stringToUint8Array(plan2) };
   let globalKeyPair;
   let signMessageBlob;
   // Obtain the key parameter object of the RSA key pair.
@@ -1558,7 +1923,7 @@ function verifyMessageCallbackPSS() {
   let verifyer = cryptoFramework.createVerify("RSA2048|PSS|SHA256|MGF1_SHA256");
   rsaGeneratorSpec.generateKeyPair(function (err, keyPair) {
     globalKeyPair = keyPair;
-    signer.init(globalKeyPair.priKey, function (err, data) {
+    signer.init(globalKeyPair.priKey, err => {
       // After the initialization, set and obtain the PSS parameters.
       let setN = 32;
       signer.setSignSpec(cryptoFramework.SignSpecItem.PSS_SALT_LEN_NUM, setN);
@@ -1572,11 +1937,11 @@ function verifyMessageCallbackPSS() {
       console.info("mgf == " + mgf);
       let mgf1Md = signer.getSignSpec(cryptoFramework.SignSpecItem.PSS_MGF1_MD_STR);
       console.info("mgf1Md == " + mgf1Md);
-      signer.update(input1, function (err, data) {
+      signer.update(input1, err => {
         signer.sign(input2, function (err, data) {
           // Before signature verification initialization, set and obtain PSS parameters. The functions are the same as those after initialization.
           signMessageBlob = data;
-          AlertDialog.show({message : "res" +  signMessageBlob.data});
+          AlertDialog.show({ message: "res" + signMessageBlob.data });
           let setN = 32;
           verifyer.setVerifySpec(cryptoFramework.SignSpecItem.PSS_SALT_LEN_NUM, setN);
           let saltLen = verifyer.getVerifySpec(cryptoFramework.SignSpecItem.PSS_SALT_LEN_NUM);
@@ -1589,10 +1954,10 @@ function verifyMessageCallbackPSS() {
           console.info("mgf == " + mgf);
           let mgf1Md = verifyer.getVerifySpec(cryptoFramework.SignSpecItem.PSS_MGF1_MD_STR);
           console.info("mgf1Md == " + mgf1Md);
-          verifyer.init(globalKeyPair.pubKey, function (err, data) {
-            verifyer.update(input1, function(err, data) {
-              verifyer.verify(input2, signMessageBlob, function(err, data) {
-                AlertDialog.show({message : "res " + data});
+          verifyer.init(globalKeyPair.pubKey, err => {
+            verifyer.update(input1, err => {
+              verifyer.verify(input2, signMessageBlob, function (err, data) {
+                AlertDialog.show({ message: "res " + data });
               })
             });
           });
@@ -1603,9 +1968,71 @@ function verifyMessageCallbackPSS() {
 }
 ```
 
+### Signing and Signature Verification Using SM2
+
+> **NOTE**
+>
+> SM2 signing and signature verification are supported from API version 10.
+
+Use SM2 to sign data and verify the signature.
+
+1. Generate an SM2 key pair. Call **createAsyKeyGenerator()** to create an **AsyKeyGenerator** instance and generate an SM2 asymmetric key pair.
+2. Create a **Sign** instance.<br>Call **createSign()** to create a **Sign** instance, initialize the **Sign** instance, and set a private key for signing.
+3. Generate a signature.<br>Call **update()** provided by the **Sign** class to pass in the data for signing and call **doFinal()** to generate a signature.
+4. Create a **Verify** instance.<br>Call **createVerify()** to create a **Verify** instance, initialize the instance, and set a public key for signature verification.
+5. Verify the signature.<br>Call **update()** provided by the **Verify** class to pass in the signature data and call **doFinal()** to verify the signature.
+
+```js
+import cryptoFramework from "@ohos.security.cryptoFramework"
+
+// Convert strings in plaintext into byte streams.
+function stringToUint8Array(str) {
+    var arr = [];
+    for (var i = 0, j = str.length; i < j; ++i) {
+      arr.push(str.charCodeAt(i));
+    }
+    var tmpArray = new Uint8Array(arr);
+    return tmpArray;
+}
+
+let plan1 = "This is Sign test plan1";
+let plan2 = "This is Sign test plan2";
+let input1 = { data: stringToUint8Array(plan1) };
+let input2 = { data: stringToUint8Array(plan2) };
+
+function signAndVerify() {
+  let signMessageBlob;
+  let globalKeyPair;
+  let sm2Generator = cryptoFramework.createAsyKeyGenerator("SM2_256");
+  let signer = cryptoFramework.createSign("SM2_256|SM3");
+  sm2Generator.generateKeyPair(function (err, keyPair) {
+    globalKeyPair = keyPair;
+    let priKey = globalKeyPair.priKey;
+    signer.init(priKey, err => {
+      signer.update(input1, err => {
+        signer.sign(input2, function (err, data) {
+          signMessageBlob = data;
+          console.info("sign output is " + signMessageBlob.data);
+          let verifyer = cryptoFramework.createVerify("SM2_256|SM3");
+          verifyer.init(globalKeyPair.pubKey, err => {
+            verifyer.update(input1, err => {
+              verifyer.verify(input2, signMessageBlob, function (err, data) {
+                console.info("verify result is " + data);
+                AlertDialog.show({ message: "verify success" })
+              });
+            });
+          })
+        });
+      });
+    });
+  });
+}
+```
+
 ## Key Agreement
 
 ### When to Use
+
 
 Key agreement allows two parties to establish a shared secret over an insecure channel.
 
@@ -1637,7 +2064,7 @@ function ecdhPromise() {
   let eccGenerator = cryptoFramework.createAsyKeyGenerator("ECC256");
   let eccKeyAgreement = cryptoFramework.createKeyAgreement("ECC256"); // ECC is supported for key agreement from API version 10.
   let keyGenPromise = eccGenerator.generateKeyPair();
-  keyGenPromise.then( keyPair => {
+  keyGenPromise.then(keyPair => {
     globalKeyPair = keyPair;
     return eccKeyAgreement.generateSecret(keyPair.priKey, keyPair.pubKey);
   }).then((secret) => {
@@ -1806,10 +2233,10 @@ async function doLoopMdPromise() {
   for (let i = 0; i <= messageText.length; i++) {
     if ((i % updateLength == 0 || i == messageText.length) && messageArr.length != 0) {
       let message = new Uint8Array(messageArr);
-      let messageBlob = { data : message };
+      let messageBlob = { data: message };
       // Use await to process the update() in the for() loop.
       try {
-        await md.update (messageBlob); // Call update() to process data by segment.
+        await md.update (messageBlob); // Use update() to process data by segment.
       } catch (error) {
         console.error("await update error code: " + error.code + ", message is: " + error.message);
         return;
@@ -1852,11 +2279,11 @@ For details about the APIs, see [Crypto Framework](../reference/apis/js-apis-cry
 | Instance         | API                                                      | Description                                               |
 | --------------- | ------------------------------------------------------------ | --------------------------------------------------- |
 | cryptoFramework | function createMac(algName : string) : Mac;                  | Creates a **Mac** instance.                |
-| Mac             | init(key : SymKey, callback : AsyncCallback\<void>) : void; | Initializes the **Mac** instance. This API uses an asynchronous callback to return the result. |
+| Mac             | init(key : SymKey, callback : AsyncCallback\<void>) : void; | Initializes the **Mac** instance. This API uses an asynchronous callback to return the result.|
 | Mac             | init(key : SymKey) : Promise\<void>;                        | Initializes the **Mac** instance. This API uses a promise to return the result. |
 | Mac             | update(input : DataBlob, callback : AsyncCallback\<void>) : void; | Updates the data for the MAC operation. This API uses an asynchronous callback to return the result.      |
 | Mac             | update(input : DataBlob) : Promise\<void>;                  | Updates the data for the MAC operation. This API uses a promise to return the result.       |
-| Mac             | doFinal(callback : AsyncCallback\<DataBlob>) : void;        | Finalizes the MAC operation to generate a MAC. This API uses an asynchronous callback to return the result.               |
+| Mac             | doFinal(callback : AsyncCallback\<DataBlob>) : void;        | Finalizes the MAC operation to generate a MAC. This API uses an asynchronous callback to return the result.                |
 | Mac             | doFinal() : Promise\<DataBlob>;                             | Finalizes the MAC operation to generate a MAC. This API uses a promise to return the result.                 |
 | Mac             | getMacLength() : number;                                     | Obtains the length of the MAC based on the specified algorithm.              |
 | Mac             | readonly algName : string;                                   | Obtains the digest algorithm.                           |
@@ -1895,7 +2322,7 @@ function doHmacByPromise() {
   console.info("[Promise]: Mac algName is: " + mac.algName);
   let KeyBlob = {
     // 128-bit key
-    data : stringToUint8Array("12345678abcdefgh")
+    data: stringToUint8Array("12345678abcdefgh")
   }
   let symKeyGenerator = cryptoFramework.createSymKeyGenerator("AES128");
   // Convert the binary data into a key.
@@ -1935,7 +2362,7 @@ function doHmacByCallback() {
   console.info("[Promise]: Mac algName is: " + mac.algName);
   let KeyBlob = {
     // 128-bit key
-    data : stringToUint8Array("12345678abcdefgh")
+    data: stringToUint8Array("12345678abcdefgh")
   }
   let symKeyGenerator = cryptoFramework.createSymKeyGenerator("AES128");
   // Convert the binary data into a key.
@@ -1970,7 +2397,7 @@ function doHmacByCallback() {
 
 ### Generating an HMAC by Segment
 
-Generate an HMAC by segment.
+Generate an HMAC by segment. 
 
 1. Use **createMac()** to create a **Mac** instance.
 2. Use **init()** to initialize the **Mac** instance with the symmetric key passed in.
@@ -2018,7 +2445,7 @@ function doLoopHmacPromise() {
     for (let i = 0; i <= messageText.length; i++) {
       if ((i % updateLength == 0 || i == messageText.length) && messageArr.length != 0) {
         let message = new Uint8Array(messageArr);
-        let messageBlob = { data : message };
+        let messageBlob = { data: message };
         // Use await to process the update() in the for() loop.
         try {
           promiseMacUpdate = await mac.update(messageBlob); // Invoke update() multiple times.
@@ -2079,29 +2506,31 @@ For more information about the APIs, see [Crypto Framework](../reference/apis/js
 import cryptoFramework from "@ohos.security.cryptoFramework"
 
 // Generate a random number in promise mode.
-function doRandByPromise(len) {
-  var rand;
+function doRandByPromise() {
+  let rand;
+  let len = 4; // Generate a 4-byte random number.
   try {
     rand = cryptoFramework.createRandom();
   } catch (error) {
     console.error("[Promise]: error code: " + error.code + ", message is: " + error.message);
   }
-  var promiseGenerateRand = rand.generateRandom(len);
+  let promiseGenerateRand = rand.generateRandom(len);
   promiseGenerateRand.then(randData => {
-    console.error("[Promise]: rand result: " + randData.data);
-      try {
-          rand.setSeed(randData);
-      } catch (error) {
-          console.log("setSeed failed, errCode: " + error.code + ", errMsg: " + error.message);
-      }
+    console.info("[Promise]: rand result: " + randData.data);
+    try {
+      rand.setSeed(randData);
+    } catch (error) {
+      console.error("setSeed failed, errCode: " + error.code + ", errMsg: " + error.message);
+    }
   }).catch(error => {
     console.error("[Promise]: error: " + error.message);
   });
 }
 
 // Generate a random number in callback mode.
-function doRandByCallback(len) {
-  var rand;
+function doRandByCallback() {
+  let rand;
+  let len = 4; // Generate a 4-byte random number.
   try {
     rand = cryptoFramework.createRandom();
   } catch (error) {
@@ -2111,19 +2540,20 @@ function doRandByCallback(len) {
     if (err) {
       console.error("[Callback]: err: " + err.code);
     } else {
-      console.error("[Callback]: generate random result: " + randData.data);
+      console.info("[Callback]: generate random result: " + randData.data);
       try {
-          rand.setSeed(randData);
+        rand.setSeed(randData);
       } catch (error) {
-          console.log("setSeed failed, errCode: " + error.code + ", errMsg: " + error.message);
+        console.error("setSeed failed, errCode: " + error.code + ", errMsg: " + error.message);
       }
     }
   });
 }
 
 // Generate a random number synchronously.
-function doRandBySync(len) {
-  var rand;
+function doRandBySync() {
+  let rand;
+  let len = 24; // Generate a 24-byte random number.
   try {
     rand = cryptoFramework.createRandom();
   } catch (error) {

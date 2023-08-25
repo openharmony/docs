@@ -12,9 +12,11 @@
 import common from '@ohos.app.ability.common';
 ```
 
+## Attributes
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-| Name          | Type      | Mandatory  | Description                       |
+|    Name     | Type      | Mandatory  | Description                       |
 | ------------ | -------- | ---- | ------------------------- |
 | onConnect<sup>7+</sup>    | function | Yes   | Callback invoked when a connection is set up.     |
 | onDisconnect<sup>7+</sup> | function | Yes   | Callback invoked when a connection is interrupted.          |

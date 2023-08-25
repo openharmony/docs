@@ -44,14 +44,14 @@ Vector进行增、删、改、查操作的常用API如下：
 | 访问元素 | 通过vec\[index]获取指定index对应的value值，通过指令获取保证访问速度。 |
 | 访问元素 | 通过get(index: number)获取指定index位置对应的元素。 |
 | 访问元素 | 通过getLastElement()获取最后一个元素。 |
-| 访问元素 | 通过getlndexOf(element:T)获取第一个匹配到元素的位置。 |
-| 访问元素 | 通过getLastlndexOf(element:T)获取最后一个匹配到元素的位置。 |
+| 访问元素 | 通过getIndexOf(element:T)获取第一个匹配到元素的位置。 |
+| 访问元素 | 通过getLastIndexOf(element:T)获取最后一个匹配到元素的位置。 |
 | 访问元素 | 通过forEach(callbackFn: (value: T, index?: number, Vector?: Vector&lt;T&gt;) =&gt; void, thisArg?: Object)访问整个Vector的元素。 |
 | 访问元素 | 通过\[Symbol.iterator]():IterableIterator&lt;T&gt;迭代器进行数据访问。 |
 | 修改元素 | 通过vec\[index]=xxx修改指定index位置对应的value值。 |
 | 修改元素 | 通过set(index:number,element:T)修改指定index位置的元素值为element。 |
 | 修改元素 | 通过setLength(newSize:number)设置Vector的长度大小。 |
-| 删除元素 | 通过removeBylndex(index:number)删除index位置对应的value值。 |
+| 删除元素 | 通过removeByIndex(index:number)删除index位置对应的value值。 |
 | 删除元素 | 通过remove(element:T)删除第一个匹配到的元素。 |
 | 删除元素 | 通过removeByRange(fromIndex:number,toIndex:number)删除指定范围内的元素。 |
 
@@ -74,14 +74,14 @@ List和[LinkedList](../reference/apis/js-apis-linkedlist.md)相比，LinkedList�
 | 访问元素 | 通过get(index: number)获取指定index位置对应的元素。 |
 | 访问元素 | 通过getFirst()获取第一个元素。 |
 | 访问元素 | 通过getLast()获取最后一个元素。 |
-| 访问元素 | 通过getlndexOf(element: T)获取第一个匹配到元素的位置。 |
-| 访问元素 | 通过getLastlndexOf(element: T)获取最后一个匹配到元素的位置。 |
+| 访问元素 | 通过getIndexOf(element: T)获取第一个匹配到元素的位置。 |
+| 访问元素 | 通过getLastIndexOf(element: T)获取最后一个匹配到元素的位置。 |
 | 访问元素 | 通过forEach(callbackfn: (value:T, index?: number, list?: List&lt;T&gt;)=&gt; void,thisArg?: Object)访问整个List的元素。 |
 | 访问元素 | 通过\[Symbol.iterator]():IterableIterator&lt;T&gt;迭代器进行数据访问。 |
 | 修改元素 | 通过list\[index] = xxx修改指定index位置对应的value值。 |
 | 修改元素 | 通过set(index:number, element: T)修改指定index位置的元素值为element。 |
 | 修改元素 | 通过replaceAllElements(callbackFn:(value: T,index?: number,list?: List&lt;T&gt;)=&gt;T,thisArg?: Object)对List内元素进行替换操作。 |
-| 删除元素 | 通过removeBylndex(index:number)删除index位置对应的value值。 |
+| 删除元素 | 通过removeByIndex(index:number)删除index位置对应的value值。 |
 | 删除元素 | 通过remove(element:T)删除第一个匹配到的元素。 |
 
 
@@ -105,13 +105,13 @@ LinkedList和[ArrayList](../reference/apis/js-apis-arraylist.md)相比，插入�
 | 访问元素 | 通过get(index: number)获取指定index位置对应的元素。 |
 | 访问元素 | 通过getFirst()获取第一个元素。 |
 | 访问元素 | 通过getLast()获取最后一个元素。 |
-| 访问元素 | 通过getlndexOf(element: T)获取第一个匹配到元素的位置。 |
-| 访问元素 | 通过getLastlndexOf(element: T)获取最后一个匹配到元素的位置。 |
+| 访问元素 | 通过getIndexOf(element: T)获取第一个匹配到元素的位置。 |
+| 访问元素 | 通过getLastIndexOf(element: T)获取最后一个匹配到元素的位置。 |
 | 访问元素 | 通过forEach(callbackFn: (value: T, index?: number, list?: LinkedList&lt;T&gt;) =&gt; void, thisArg?: Object)访问整个LinkedList的元素。 |
 | 访问元素 | 通过\[Symbol.iterator]():IterableIterator&lt;T&gt;迭代器进行数据访问。 |
 | 修改元素 | 通过list\[index]=xxx修改指定index位置对应的value值。 |
 | 修改元素 | 通过set(index: number,element: T)修改指定index位置的元素值为element。 |
-| 删除元素 | 通过removeBylndex(index: number)删除index位置对应的value值。 |
+| 删除元素 | 通过removeByIndex(index: number)删除index位置对应的value值。 |
 | 删除元素 | 通过remove(element: T)删除第一个匹配到的元素。 |
 
 

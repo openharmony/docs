@@ -90,7 +90,7 @@ struct AttrAnimationExample {
 }
 ```
 
-更详细的API文档请参考：https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-animatorproperty.md
+更详细的API文档请参考：[属性动画](../../reference/arkui-ts/ts-animatorproperty.md)。
 
 ## 使用系统提供的显式动效API
 
@@ -139,4 +139,4 @@ struct AnimateToExample {
 }
 ```
 
-更详细的API文档请参考：https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-explicit-animation.md
+更详细的API文档请参考：[显式动画](../../reference/arkui-ts/ts-explicit-animation.md)。

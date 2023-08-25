@@ -50,6 +50,7 @@
       - [\@BuilderParam Decorator: \@Builder Function Reference](quick-start/arkts-builderparam.md)
       - [\@Styles Decorator: Definition of Resusable Styles](quick-start/arkts-style.md)
       - [\@Extend Decorator: Extension of Built-in Components](quick-start/arkts-extend.md)
+      - [\@AnimatableExtend Decorator: Definition of Animatable Attributes](quick-start/arkts-animatable-extend.md)
       - [stateStyles: Polymorphic Style](quick-start/arkts-statestyles.md)
     - State Management
       - [State Management Overview](quick-start/arkts-state-management-overview.md)
@@ -77,6 +78,7 @@
 - Development
   - [Application Models](application-models/Readme-EN.md)
   - [UI Development](ui/Readme-EN.md)
+  - [ArkTS Common Library](arkts-utils/Readme-EN.md)
   - [Web](web/Readme-EN.md)
   - [Notification](notification/Readme-EN.md)
   - [Window Manager](windowmanager/Readme-EN.md)

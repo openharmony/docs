@@ -12,10 +12,6 @@
 
 ## 权限
 
-ohos.permission.GET_BUNDLE_INFO
-
-ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
-
 ohos.permission.REQUIRE_FORM
 
 
@@ -42,7 +38,7 @@ FormComponent(value: {
 
 | 参数名    | 参数类型                        | 必填 | 参数描述                                                                |
 | --------- | ------------------------------- | ---- | ----------------------------------------------------------------------- |
-| id        | number                          | 是   | 卡片标识（新建卡片填0）。                                               |
+| id        | number                          | 是   | 卡片标识（新建卡片填0）。<br/>**说明：**<br>不同使用方不可使用相同id。<br/>同一使用方使用相同id时，显示后添加的卡片。                                        |
 | name      | string                          | 是   | 卡片名称。                                                              |
 | bundle    | string                          | 是   | 目标卡片包名。                                                          |
 | ability   | string                          | 是   | 目标卡片Ability名称。                                                   |

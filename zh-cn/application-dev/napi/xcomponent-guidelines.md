@@ -81,7 +81,7 @@ XComponent({ id: 'xcomponentId1', type: 'surface', libraryname: 'nativerender' }
     // ...
     ```
 
-2. **Napi模块注册**，具体使用请参考[Native API在应用工程中的使用指导](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/napi/napi-guidelines.md)。
+2. **Napi模块注册**，具体使用请参考[Native API在应用工程中的使用指导](napi-guidelines.md)。
 
     ```c++
     // 在napi_init.cpp文件中，Init方法注册接口函数，从而将封装的C++方法传递出来，供JS侧调用
@@ -899,4 +899,4 @@ XComponent({ id: 'xcomponentId1', type: 'surface', libraryname: 'nativerender' }
 
 针对Native XComponent的使用，有以下相关实例可供参考：
 
-- [使用Native XComponent接口绘制图形](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Native/NdkXComponent)
+- [Native XComponent（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Native/NdkXComponent)

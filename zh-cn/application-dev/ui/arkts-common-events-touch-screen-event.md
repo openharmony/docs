@@ -306,3 +306,9 @@ struct TouchExample {
 
 
 ![zh-cn_image_0000001511900468](figures/zh-cn_image_0000001511900468.gif)
+
+## 相关实例
+
+针对触屏事件开发，有以下相关实例可供参考：
+
+- [ArkTS组件集（ArkTS）（Full SDK）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/UI/ArkTsComponentCollection/ComponentCollection)

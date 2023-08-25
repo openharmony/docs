@@ -12,14 +12,13 @@
 ## 导入模块
 
 ```ts
-import performanceMonitor from '@ohos.arkui.performanceMonitor'
+import performanceMonitor from '@ohos.arkui.performanceMonitor';
 ```
 
 
 ## ActionType
 
 用户场景触发模式枚举。
-
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -40,11 +39,12 @@ begin(scene: string, startInputType: ActionType, note?: string): void
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
+
 | 参数名 | 类型 | 必填 | 说明 |
 | -- | -- | -- | -- |
-| scene | string | 是 | 用户场景id |
-| startInputType | [ActionType](#actiontype)| 是 | 用户场景触发模式 |
-| note | string| 否 | 用户场景重要信息 |
+| scene | string | 是 | 用户场景id。 |
+| startInputType | [ActionType](#actiontype)| 是 | 用户场景触发模式。 |
+| note | string| 否 | 用户场景重要信息。 |
 
 **示例：** 
   ```ts
@@ -54,7 +54,7 @@ performanceMonitor.begin("LAUNCHER_APP_LAUNCH_FROM_ICON", performanceMonitor.Act
 
 ## performanceMonitor.end
 
-end(scene: string): void;
+end(scene: string): void
 
 用户场景结束
 
@@ -63,7 +63,7 @@ end(scene: string): void;
 **参数：** 
 | 参数名 | 类型 | 必填 | 说明 |
 | -- | -- | -- | -- |
-| scene | string | 是 | 用户场景id，与begin配对 |
+| scene | string | 是 | 用户场景id，与begin配对。 |
 
 **示例：** 
   ```ts

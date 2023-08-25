@@ -24,9 +24,10 @@
         - [Using Cargo2gn](subsys-build-cargo2gn-guide.md)
       - [FAQs](subsys-build-FAQ.md)
 - [ArkCompiler Development](subsys-arkcompiler-guide.md)
-- [Distributed Remote Startup](subsys-remote-start.md)
-- Graphics
-  - [Graphics Overview](subsys-graphics-overview.md)
+- ArkUI
+    - [Custom Window Title Bar Development](subsys-arkui-customize_titlebar.md)
+- Small-System Graphics
+  - [Overview of Small-System Graphics](subsys-graphics-overview.md)
   - [Common Component Development](subsys-graphics-common-guide.md)
   - [Container Component Development](subsys-graphics-container-guide.md)
   - [Development of Layout Container Components](subsys-graphics-layout-guide.md)

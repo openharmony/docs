@@ -35,9 +35,9 @@ Describes the input method application attributes.
 | id<sup>9+</sup>    | string | Yes| No| Mandatory. Unique ID of the input method.|
 | label<sup>9+</sup>    | string | Yes| No| Optional. External name of the input method.|
 | labelId<sup>10+</sup>    | string | Yes| No| Optional. External ID of the input method.|
-| icon<sup>9+</sup>    | string | Yes| No| Optional. Icon of the input method.|
+| icon<sup>9+</sup>    | string | Yes| No| Optional. Icon of the input method. It can be obtained by using **iconId**. This parameter is reserved.|
 | iconId<sup>9+</sup>    | number | Yes| No| Optional. Icon ID of the input method.|
-| extra<sup>9+</sup>    | object | Yes| Yes| Extra information about the input method.<br>- API version 10 and later: optional<br>- API version 9: mandatory|
+| extra<sup>9+</sup>    | object | Yes| Yes| Extra information about the input method. This parameter is reserved and currently has no specific meaning.<br>- API version 10 and later: optional<br>- API version 9: mandatory|
 | packageName<sup>(deprecated)</sup> | string | Yes| No| Name of the input method package. Mandatory.<br>**NOTE**<br>This API is supported since API version 8 and deprecated since API version 9. You are advised to use **name**.|
 | methodId<sup>(deprecated)</sup> | string | Yes| No| Unique ID of the input method. Mandatory.<br>**NOTE**<br>This API is supported since API version 8 and deprecated since API version 9. You are advised to use **id**.|
 
@@ -154,15 +154,15 @@ Switches to another input method. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-|target |  [InputMethodProperty](#inputmethodproperty8)| Yes| Input method to switch to.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  |target |  [InputMethodProperty](#inputmethodproperty8)| Yes| Input method to switch to.|
 
 **Return value**
 
-| Type                                     | Description                        |
-| ----------------------------------------- | ---------------------------- |
-| Promise\<boolean> | Promise used to return the result. The value **true** means that the switching is successful, and **false** means the opposite.|
+  | Type                                     | Description                        |
+  | ----------------------------------------- | ---------------------------- |
+  | Promise\<boolean> | Promise used to return the result. The value **true** means that the switching is successful, and **false** means the opposite.|
 
 **Error codes**
 
@@ -606,9 +606,12 @@ Describes the configuration of the editor component. When the editor component r
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
-| Name| Type| Readable| Writable| Description|
+| Name| Type| Read-only| Mandatory| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| inputAttribute<sup>10+</sup>  | [InputAttribute](#inputattribute10) | Yes| Yes| Edit box attribute.|
+| inputAttribute<sup>10+</sup>  | [InputAttribute](#inputattribute10) | No| Yes| Edit box attribute.|
+| cursorInfo<sup>10+</sup>  | [CursorInfo](#cursorinfo10) | No| No| Cursor information.|
+| selection<sup>10+</sup>  | [Range](#range10) | No| No| Text selection range.|
+| windowId<sup>10+</sup>  | number | No| No| ID of the window where the editor component is located.|
 
 ## CursorInfo<sup>10+</sup>
 
@@ -1684,7 +1687,7 @@ try {
 
 ### off('insertText')<sup>10+</sup>
 
-off(type: 'insertText'): void
+off(type: 'insertText', callback?: (text: string) => void): void
 
 Disables listening for the text insertion event of the input method.
 
@@ -1692,13 +1695,18 @@ Disables listening for the text insertion event of the input method.
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                                                        |
-| ------ | ------ | ---- | ------------------------------------------------------------ |
-| type   | string | Yes  | Listening type.<br>The value **'insertText'** indicates the text insertion event.|
+| Name  | Type                  | Mandatory| Description                                                        |
+| -------- | ---------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                 | Yes  | Listening type.<br>The value **'insertText'** indicates the text insertion event.|
+| callback | (text: string) => void | No  | Callback used for disable listening, which must be the same as that passed by the **on** API. If this parameter is not specified, all callbacks corresponding to the set event are invoked.|
 
 **Example**
 
 ```js
+let onInsertTextCallback = (text: string) => {
+    console.log(`Succeeded in subscribing insertText: ${text}`);
+};
+inputMethodController.off('insertText', onInsertTextCallback);
 inputMethodController.off('insertText');
 ```
 
@@ -1773,7 +1781,7 @@ try {
 ```
 ### off('deleteLeft')<sup>10+</sup>
 
-off(type: 'deleteLeft'): void
+off(type: 'deleteLeft', callback?: (length: number) => void): void
 
 Disables listening for the backward delete event.
 
@@ -1781,19 +1789,24 @@ Disables listening for the backward delete event.
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                                                        |
-| ------ | ------ | ---- | ------------------------------------------------------------ |
-| type   | string | Yes  | Listening type.<br>The value **'deleteLeft'** indicates the backward delete event.|
+| Name  | Type                    | Mandatory| Description                                                        |
+| -------- | ------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                   | Yes  | Listening type.<br>The value **'deleteLeft'** indicates the backward delete event.|
+| callback | (length: number) => void | No  | Callback used for disable listening, which must be the same as that passed by the **on** API. If this parameter is not specified, all callbacks corresponding to the set event are invoked.|
 
 **Example**
 
 ```js
+let onDeleteLeftCallback = (length: number) => {
+    console.log(`Succeeded in subscribing deleteLeft, length: ${length}`);
+};
+inputMethodController.off('deleteLeft', onDeleteLeftCallback);
 inputMethodController.off('deleteLeft');
 ```
 
 ### off('deleteRight')<sup>10+</sup>
 
-off(type: 'deleteRight'): void
+off(type: 'deleteRight', callback?: (length: number) => void): void
 
 Disables listening for the forward delete event.
 
@@ -1801,19 +1814,24 @@ Disables listening for the forward delete event.
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                                                        |
-| ------ | ------ | ---- | ------------------------------------------------------------ |
-| type   | string | Yes  | Listening type.<br>The value **'deleteRight'** indicates the forward delete event.|
+| Name  | Type                    | Mandatory| Description                                                        |
+| -------- | ------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                   | Yes  | Listening type.<br>The value **'deleteRight'** indicates the forward delete event.|
+| callback | (length: number) => void | No  | Callback used for disable listening, which must be the same as that passed by the **on** API. If this parameter is not specified, all callbacks corresponding to the set event are invoked.|
 
 **Example**
 
 ```js
+let onDeleteRightCallback = (length: number) => {
+    console.log(`Succeeded in subscribing deleteRight, length: ${length}`);
+};
+inputMethodController.off('deleteRight', onDeleteRightCallback);
 inputMethodController.off('deleteRight');
 ```
 
 ### on('sendKeyboardStatus')<sup>10+</sup>
 
-on(type: 'sendKeyboardStatus', callback: (keyBoardStatus: KeyboardStatus) => void): void
+on(type: 'sendKeyboardStatus', callback: (keyboardStatus: KeyboardStatus) => void): void
 
 Enables listening for the keyboard status event of the input method. This API uses an asynchronous callback to return the result.
 
@@ -1824,7 +1842,7 @@ Enables listening for the keyboard status event of the input method. This API us
 | Name  | Type | Mandatory| Description   |
 | -------- | ------ | ---- | ---- |
 | type     | string  | Yes  | Listening type.<br>The value **'sendKeyboardStatus'** indicates the keyboard status event.|
-| callback | (keyBoardStatus: [KeyboardStatus](#keyboardstatus10)) => void | Yes  | Callback used to return the keyboard status.<br>Your application needs to perform operations based on the keyboard state returned in the callback.|
+| callback | (keyboardStatus: [KeyboardStatus](#keyboardstatus10)) => void | Yes  | Callback used to return the keyboard status.<br>Your application needs to perform operations based on the keyboard state returned in the callback.|
 
 **Error codes**
 
@@ -1838,8 +1856,8 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 
 ```js
 try {
-  inputMethodController.on('sendKeyboardStatus', (keyBoardStatus) => {
-    console.log(`Succeeded in subscribing sendKeyboardStatus, keyBoardStatus: ${keyBoardStatus}`);
+  inputMethodController.on('sendKeyboardStatus', (keyboardStatus) => {
+    console.log(`Succeeded in subscribing sendKeyboardStatus, keyboardStatus: ${keyboardStatus}`);
   });
 } catch(err) {
   console.error(`Failed to subscribe sendKeyboardStatus: ${JSON.stringify(err)}`);
@@ -1848,7 +1866,7 @@ try {
 
 ### off('sendKeyboardStatus')<sup>10+</sup>
 
-off(type: 'sendKeyboardStatus'): void
+off(type: 'sendKeyboardStatus', callback?: (keyboardStatus: KeyboardStatus) => void): void
 
 Disables listening for the keyboard status event of the input method.
 
@@ -1856,13 +1874,18 @@ Disables listening for the keyboard status event of the input method.
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                                                        |
-| ------ | ------ | ---- | ------------------------------------------------------------ |
-| type   | string | Yes  | Listening type.<br>The value **'sendKeyboardStatus'** indicates the keyboard status event.|
+| Name  | Type                                                        | Mandatory| Description                                                        |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | Yes  | Listening type.<br>The value **'sendKeyboardStatus'** indicates the keyboard status event.|
+| callback | (keyboardStatus: [KeyboardStatus](#keyboardstatus10)) => void | No  | Callback used for disable listening, which must be the same as that passed by the **on** API. If this parameter is not specified, all callbacks corresponding to the set event are invoked.|
 
 **Example**
 
 ```js
+let onSendKeyboardStatus = (keyboardStatus: KeyboardStatus) => {
+    console.log(`Succeeded in subscribing sendKeyboardStatus, keyboardStatus: ${keyboardStatus}`);
+};
+inputMethodController.off('sendKeyboardStatus', onSendKeyboardStatus);
 inputMethodController.off('sendKeyboardStatus');
 ```
 
@@ -1903,7 +1926,7 @@ try {
 
 ### off('sendFunctionKey')<sup>10+</sup>
 
-off(type: 'sendFunctionKey'): void
+off(type: 'sendFunctionKey', callback?: (functionKey: FunctionKey) => void): void
 
 Disables listening for the function key sending event of the input method.
 
@@ -1911,13 +1934,18 @@ Disables listening for the function key sending event of the input method.
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                                                        |
-| ------ | ------ | ---- | ------------------------------------------------------------ |
-| type   | string | Yes  | Listening type.<br>The value **'sendFunctionKey'** indicates the function key sending event.|
+| Name  | Type                                                | Mandatory| Description                                                        |
+| -------- | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                                               | Yes  | Listening type.<br>The value **'sendFunctionKey'** indicates the function key sending event.|
+| callback | (functionKey: [FunctionKey](#functionkey10)) => void | No  | Callback used for disable listening, which must be the same as that passed by the **on** API. If this parameter is not specified, all callbacks corresponding to the set event are invoked.|
 
 **Example**
 
 ```js
+let onSendFunctionKey = (functionKey: FunctionKey) => {
+    console.log(`Succeeded in subscribing sendFunctionKey, functionKey: ${functionKey.enterKeyType}`);
+};
+inputMethodController.off('sendFunctionKey', onSendFunctionKey);
 inputMethodController.off('sendFunctionKey');
 ```
 
@@ -1958,7 +1986,7 @@ try {
 
 ### off('moveCursor')<sup>10+</sup>
 
-off(type: 'moveCursor'): void
+off(type: 'moveCursor', callback?: (direction: Direction) => void): void
 
 Disables listening for the cursor movement event of the input method.
 
@@ -1969,10 +1997,15 @@ Disables listening for the cursor movement event of the input method.
 | Name | Type   | Mandatory| Description |
 | ------ | ------ | ---- | ---- |
 | type   | string | Yes  | Listening type.<br>The value **'moveCursor'** indicates the cursor movement event.|
+| callback | (direction: [Direction<sup>10+</sup>](#direction10)) => void | No| Callback used for disable listening, which must be the same as that passed by the **on** API. If this parameter is not specified, all callbacks corresponding to the set event are invoked.|
 
 **Example**
 
 ```js
+let onMoveCursorCallback = (direction: Direction) => {
+    console.log(`Succeeded in subscribing moveCursor, direction: ${direction}`);
+};
+inputMethodController.off('moveCursor', onMoveCursorCallback);
 inputMethodController.off('moveCursor');
 ```
 
@@ -2013,7 +2046,7 @@ try {
 
 ### off('handleExtendAction')<sup>10+</sup>
 
-off(type: 'handleExtendAction'): void
+off(type: 'handleExtendAction', callback?: (action: ExtendAction) => void): void
 
 Disables listening for the extended action handling event of the input method.
 
@@ -2024,10 +2057,15 @@ Disables listening for the extended action handling event of the input method.
 | Name| Type  | Mandatory| Description |
 | ------ | ------ | ---- | ------- |
 | type   | string | Yes  | Listening type.<br>The value **'handleExtendAction'** indicates the extended action handling event.|
+| callback | (action: [ExtendAction](#extendaction10)) => void | No| Callback used for disable listening, which must be the same as that passed by the **on** API. If this parameter is not specified, all callbacks corresponding to the set event are invoked.|
 
 **Example**
 
 ```js
+let onHandleExtendActionCallback = (action: ExtendAction) => {
+    console.log(`Succeeded in subscribing handleExtendAction, action: ${action}`);
+};
+inputMethodController.off('handleExtendAction', onHandleExtendActionCallback);
 inputMethodController.off('handleExtendAction');
 ```
 
@@ -2056,7 +2094,7 @@ inputMethodController.on('selectByRange', (range) => {
 
 ### off('selectByRange')<sup>10+</sup>
 
-off(type: 'selectByRange'): void
+off(type: 'selectByRange', callback?:  Callback&lt;Range&gt;): void
 
 Disables listening for the select-by-range event.
 
@@ -2064,13 +2102,18 @@ Disables listening for the select-by-range event.
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                                                        |
-| ------ | ------ | ---- | ------------------------------------------------------------ |
-| type   | string | Yes  | Listening type.<br>The value **'selectByRange'** indicates the select-by-range event.|
+| Name  | Type                             | Mandatory| Description                                                        |
+| -------- | --------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                            | Yes  | Listening type.<br>The value **'selectByRange'** indicates the select-by-range event.|
+| callback | Callback&lt;[Range](#range10)&gt; | No  | Callback used for disable listening, which must be the same as that passed by the **on** API. If this parameter is not specified, all callbacks corresponding to the set event are invoked.|
 
 **Example**
 
 ```js
+let onSelectByRangeCallback = (range: Range) => {
+    console.log(`Succeeded in subscribing selectByRange, range: ${JSON.stringify(range)}`);
+};
+inputMethodController.off('selectByRange', onSelectByRangeCallback);
 inputMethodController.off('selectByRange');
 ```
 
@@ -2099,7 +2142,7 @@ inputMethodController.on('selectByMovement', (movement) => {
 
 ### off('selectByMovement')<sup>10+</sup>
 
-off(type: 'selectByMovement'): void
+off(type: 'selectByMovement', callback?: Callback&lt;Movement&gt;): void
 
 Disables listening for the select-by-cursor-movement event.
 
@@ -2107,13 +2150,18 @@ Disables listening for the select-by-cursor-movement event.
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                                                        |
-| ------ | ------ | ---- | ------------------------------------------------------------ |
-| type   | string | Yes  | Listening type.<br>The value **'selectByMovement'** indicates the select-by-cursor-movement event.|
+| Name  | Type                                | Mandatory| Description                                                        |
+| -------- | ------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                               | Yes  | Listening type.<br>The value **'selectByMovement'** indicates the select-by-cursor-movement event.|
+| callback | Callback&lt;[Movement](#movement10)> | No  | Callback used for disable listening, which must be the same as that passed by the **on** API. If this parameter is not specified, all callbacks corresponding to the set event are invoked.|
 
 **Example**
 
 ```js
+let onSelectByMovementCallback = (movement: Movement) => {
+    console.log(`Succeeded in subscribing selectByMovement, movement.direction: ${movement.direction}`);
+};
+inputMethodController.off('selectByMovement', onSelectByMovementCallback);
 inputMethodController.off('selectByMovement');
 ```
 
@@ -2131,6 +2179,14 @@ Enables listening for the event of obtaining the length of text deleted backward
 | -------- | ----- | ---- | ------ |
 | type     | string  | Yes  | Listening type.<br>The value **'getLeftTextOfCursor'** indicates the event of obtaining the length of text deleted backward.|
 | callback | (length: number) => string | Yes  | Callback used to obtain the text of the specified length deleted backward.<br>In this callback, obtain the text of the specified length on the left of the cursor in the latest state of the edit box and return the text.|
+
+**Error codes**
+
+For details about the error codes, see [Input Method Framework Error Codes](../errorcodes/errorcode-inputmethod-framework.md).
+
+| Error Code ID| Error Message                            |
+| -------- | -------------------------------------- |
+| 12800009 | input method client is detached. |
 
 **Example**
 
@@ -2150,7 +2206,7 @@ try {
 
 off(type: 'getLeftTextOfCursor', callback?: (length: number) => string): void;
 
-Disables listening for the event of obtaining the length of text deleted backward. This API uses an asynchronous callback to return the result.
+Disables listening for the event of obtaining the length of text deleted backward.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
@@ -2190,6 +2246,14 @@ Enables listening for the event of obtaining the length of text deleted forward.
 | type     | string  | Yes  | Listening type.<br>The value **'getRightTextOfCursor'** indicates the event of obtaining the length of text deleted forward.|
 | callback | (length: number) => string | Yes  | Callback used to obtain the text of the specified length deleted forward.<br>In this callback, obtain the text of the specified length on the right of the cursor in the latest state of the edit box and return the text.|
 
+**Error codes**
+
+For details about the error codes, see [Input Method Framework Error Codes](../errorcodes/errorcode-inputmethod-framework.md).
+
+| Error Code ID| Error Message                            |
+| -------- | -------------------------------------- |
+| 12800009 | input method client is detached. |
+
 **Example**
 
 ```js
@@ -2208,7 +2272,7 @@ try {
 
 off(type: 'getRightTextOfCursor', callback?: (length: number) => string): void;
 
-Disables listening for the event of obtaining the length of text deleted forward. This API uses an asynchronous callback to return the result.
+Disables listening for the event of obtaining the length of text deleted forward.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
@@ -2248,6 +2312,14 @@ Enables listening for the event of obtaining the index of text at the cursor. Th
 | type     | string  | Yes  | Listening type.<br>The value **'getTextIndexAtCursor'** indicates the event of obtaining the index of text at the cursor.|
 | callback | () => number | Yes  | Callback used to obtain the index of text at the cursor.<br>In this callback, obtain the index of text at the cursor in the latest state of the edit box and return the index.|
 
+**Error codes**
+
+For details about the error codes, see [Input Method Framework Error Codes](../errorcodes/errorcode-inputmethod-framework.md).
+
+| Error Code ID| Error Message                            |
+| -------- | -------------------------------------- |
+| 12800009 | input method client is detached. |
+
 **Example**
 
 ```js
@@ -2266,7 +2338,7 @@ try {
 
 off(type: 'getTextIndexAtCursor', callback?: () => number): void;
 
-Disables listening for the event of obtaining the index of text at the cursor. This API uses an asynchronous callback to return the result.
+Disables listening for the event of obtaining the index of text at the cursor.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 

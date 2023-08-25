@@ -1,5 +1,7 @@
 # @ohos.router (页面路由)
 
+<!--subsystem：ArkUI-->
+
 本模块提供通过不同的url访问不同的页面，包括跳转到应用内的指定页面、用应用内的某个页面替换当前页面、返回上一页面或指定的页面等。
 
 > **说明**
@@ -11,6 +13,8 @@
 > - 本模块功能依赖UI的执行上下文，不可在UI上下文不明确的地方使用，参见[UIContext](./js-apis-arkui-UIContext.md#uicontext)说明。
 >
 > - 从API version 10开始，可以通过使用[UIContext](./js-apis-arkui-UIContext.md#uicontext)中的[getRouter](./js-apis-arkui-UIContext.md#getrouter)方法获取当前UI上下文关联的[Router](./js-apis-arkui-UIContext.md#router)对象。
+>
+> - 为了实现更好的转场效果，推荐使用[Navigation组件](../../ui/arkts-navigation-navigation.md)和[模态转场](../../ui/arkts-modal-transition.md)。
 
 ## 导入模块
 
@@ -409,7 +413,7 @@ pushNamedRoute(options: NamedRouterOptions): Promise&lt;void&gt;
 | 100003    | if the pages are pushed too much. |
 | 100004    | if the named route is not exist. |
 
-**示例：**
+**示例：** 
 
 ```ts
 try {
@@ -426,6 +430,8 @@ try {
   console.error(`pushNamedRoute failed, code is ${err.code}, message is ${err.message}`);
 }
 ```
+
+详细示例请参考：[UI开发-页面路由](../../ui/arkts-routing.md#命名路由)
 
 ## router.pushNamedRoute<sup>10+</sup>
 
@@ -916,7 +922,7 @@ router.getParams();
 | 名称   | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | url    | string | 是   | 表示目标页面的url，可以用以下两种格式：<br/>-&nbsp;页面绝对路径，由配置文件中pages列表提供，例如：<br/>&nbsp;&nbsp;-&nbsp;pages/index/index<br/>&nbsp;&nbsp;-&nbsp;pages/detail/detail<br/>-&nbsp;特殊值，如果url的值是"/"，则跳转到首页。 |
-| params | object | 否   | 表示路由跳转时要同时传递到目标页面的数据。跳转到目标页面后，使用router.getParams()获取传递的参数，此外，在类web范式中，参数也可以在页面中直接使用，如this.keyValue(keyValue为跳转时params参数中的key值)，如果目标页面中已有该字段，则其值会被传入的字段值覆盖。 |
+| params | object | 否   | 表示路由跳转时要同时传递到目标页面的数据，切换到其他页面时，当前接收的数据失效。跳转到目标页面后，使用router.getParams()获取传递的参数，此外，在类web范式中，参数也可以在页面中直接使用，如this.keyValue(keyValue为跳转时params参数中的key值)，如果目标页面中已有该字段，则其值会被传入的字段值覆盖。<br/>**说明：** <br/>params参数不能传递方法和系统接口返回的对象（例如，媒体接口定义和返回的PixelMap对象）。建议开发者提取系统接口返回的对象中需要被传递的基础类型属性，自行构造object类型对象进行传递。 |
 
 
   > **说明：**

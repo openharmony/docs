@@ -70,8 +70,6 @@ struct ParentComponent {
 
 - [自定义组件通用样式](#自定义组件通用样式)
 
-- [自定义属性方法](#自定义属性方法)
-
 
 ## 自定义组件的基本结构
 
@@ -133,14 +131,14 @@ struct ParentComponent {
   ```
 
 
-- \@Recycle：\@Recycle装饰的自定义组件具备可复用能力
+- \@Reusable：\@Reusable装饰的自定义组件具备可复用能力
 
   > **说明：**
   >
   > 从API version 10开始，该装饰器支持在ArkTS卡片中使用。
 
   ```ts
-  @Recycle
+  @Reusable
   @Component
   struct MyComponent {
   }
@@ -346,69 +344,5 @@ struct MyComponent {
 > **说明：**
 >
 > ArkUI给自定义组件设置样式时，相当于给MyComponent2套了一个不可见的容器组件，而这些样式是设置在容器组件上的，而非直接设置给MyComponent2的Button组件。通过渲染结果我们可以很清楚的看到，背景颜色红色并没有直接生效在Button上，而是生效在Button所处的开发者不可见的容器组件上。
-
-
-## 自定义属性方法
-
-自定义组件不支持提供自定义属性方法，可以借助类似Controller控制器能力，提供自定义接口。
-
-
-```ts
-// 自定义controller
-export class MyComponentController {
-  item: MyComponent = null;
-
-  setItem(item: MyComponent) {
-    this.item = item;
-  }
-
-  changeText(value: string) {
-    this.item.value = value;
-  }
-}
-
-// 自定义组件
-@Component
-export default struct MyComponent {
-  public controller: MyComponentController = null;
-  @State value: string = 'Hello World';
-
-  build() {
-    Column() {
-      Text(this.value)
-        .fontSize(50)
-    }
-  }
-
-  aboutToAppear() {
-    if (this.controller)
-      this.controller.setItem(this); // 绑定controller
-  }
-}
-
-// 使用处逻辑
-@Entry
-@Component
-struct StyleExample {
-  controller = new MyComponentController();
-
-  build() {
-    Column() {
-      MyComponent({ controller: this.controller })
-    }
-    .onClick(() => {
-      this.controller.changeText('Text');
-    })
-  }
-}
-```
-
-在上面的示例中：
-
-1. 通过子组件MyComponent的aboutToAppear方法，把当前的this指针传递给MyComponentController的item成员变量。
-
-2. 在StyleExample父组件中持有controller实例，调用controller的changeText方法，即相当于通过controller持有的MyComponent子组件的this指针，改变MyComponent的状态变量value的值。
-
-通过controller的封装，MyComponent对外暴露了changeText的接口，所有持有controller的实例都可以通过调用changeText接口，改变MyComponent的状态变量value的值。
 
 <!--no_check-->

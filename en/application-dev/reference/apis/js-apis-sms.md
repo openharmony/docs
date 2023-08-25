@@ -135,10 +135,10 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 **Example**
 
 ```js
-let sendCallback = function (err, data) {    
+let sendCallback = function (err, data) {
     console.log(`sendCallback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`); 
 }
-let deliveryCallback = function (err, data) {    
+let deliveryCallback = function (err, data) {
     console.log(`deliveryCallback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`); 
 }
 let slotId = 0;
@@ -195,7 +195,7 @@ let destinationHost = '+861xxxxxxxxxx';
 let serviceCenter = '+861xxxxxxxxxx';
 let destinationPort = 1000;
 let options = {slotId, content, destinationHost, serviceCenter, destinationPort, sendCallback, deliveryCallback};
-sms.sendMessage(options, (err) => {
+sms.sendShortMessage(options, (err) => {
     console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
@@ -1341,7 +1341,7 @@ sms.isImsSmsSupported(slotId, (err, data) => {
 
 isImsSmsSupported\(slotId: number\): Promise\<boolean\>
 
-This API uses an asynchronous callback to return the result. This API uses a promise to return the result.
+Checks whether SMS is supported on IMS. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 

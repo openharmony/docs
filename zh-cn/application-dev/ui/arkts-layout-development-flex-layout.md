@@ -546,7 +546,7 @@ Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center }) { // 容器
   ```ts
   Flex() {
     Text('flexGrow(1)')
-      .flexGrow(2) 
+      .flexGrow(1) 
       .width(100)
       .height(100)
       .backgroundColor(0xF5DEB3)
@@ -597,7 +597,7 @@ Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center }) { // 容器
   ![zh-cn_image_0000001562820813](figures/zh-cn_image_0000001562820813.png)
 
 
-## 相关实例
+## 场景示例
 
 使用弹性布局，可以实现子组件沿水平方向排列，两端对齐，子组件间距平分，竖直方向上子组件居中的效果。
 
@@ -624,3 +624,9 @@ struct FlexExample {
 ```
 
 ![zh-cn_image_0000001511900452](figures/zh-cn_image_0000001511900452.png)
+
+## 相关实例
+
+针对Flex开发，有以下相关实例可供参考：
+
+- [弹性布局（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/FlexLayout)

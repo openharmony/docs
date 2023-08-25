@@ -249,3 +249,9 @@ struct AnimatedShape {
 
 
 ![zh-cn_image_0000001592669598](figures/zh-cn_image_0000001592669598.gif)
+
+## 相关实例
+
+针对自定义属性动画开发，有以下相关实例可供参考：
+
+- [自定义下拉刷新动画（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/AnimateRefresh)

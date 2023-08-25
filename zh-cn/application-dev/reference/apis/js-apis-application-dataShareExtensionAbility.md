@@ -50,17 +50,17 @@ let TBL_NAME = 'TBL00';
 let DDL_TBL_CREATE = 'CREATE TABLE IF NOT EXISTS '
     + TBL_NAME
     + ' (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, age INTEGER, phoneNumber DOUBLE, isStudent BOOLEAN, Binary BINARY)';
-let rdbStore;
+let rdbStore: relationalStore.RdbStore;
 
 export default class DataShareExtAbility extends DataShareExtensionAbility {
-    onCreate(want, callback) {
+    onCreate(want: Want, callback: Function) {
         rdb.getRdbStore(this.context, {
             name: DB_NAME,
             securityLevel: rdb.SecurityLevel.S1
-        }, function (err, data) {
+        }, (err, data) => {
             console.info(`getRdbStore done, data : ${data}`);
             rdbStore = data;
-            rdbStore.executeSql(DDL_TBL_CREATE, [], function (err) {
+            rdbStore.executeSql(DDL_TBL_CREATE, [], (err) => {
                 console.error(`executeSql done, error message : ${err}`);
             });
             if (callback) {
@@ -91,21 +91,22 @@ insert?(uri: string, valueBucket: ValuesBucket, callback: AsyncCallback&lt;numbe
 
 ```ts
 import rdb from '@ohos.data.relationalStore';
+import { ValuesBucket } from '@ohos.data.ValuesBucket'
 
 let DB_NAME = 'DB00.db';
 let TBL_NAME = 'TBL00';
 let DDL_TBL_CREATE = 'CREATE TABLE IF NOT EXISTS '
     + TBL_NAME
     + ' (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, age INTEGER, phoneNumber DOUBLE, isStudent BOOLEAN, Binary BINARY)';
-let rdbStore;
+let rdbStore: relationalStore.RdbStore;
 
 export default class DataShareExtAbility extends DataShareExtensionAbility {
-    insert(uri, valueBucket, callback) {
+    insert(uri: string, valueBucket: ValuesBucket, callback: Function) {
         if (valueBucket === null) {
             console.error('invalid valueBuckets');
             return;
         }
-        rdbStore.insert(TBL_NAME, valueBucket, function (err, ret) {
+        rdbStore.insert(TBL_NAME, valueBucket, (err, ret) => {
             console.info(`callback ret: ${ret}`);
             if (callback !== undefined) {
                 callback(err, ret);
@@ -136,20 +137,22 @@ update?(uri: string, predicates: dataSharePredicates.DataSharePredicates, valueB
 
 ```ts
 import rdb from '@ohos.data.relationalStore';
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { ValuesBucket } from '@ohos.data.ValuesBucket'
 
 let DB_NAME = 'DB00.db';
 let TBL_NAME = 'TBL00';
 let DDL_TBL_CREATE = 'CREATE TABLE IF NOT EXISTS '
     + TBL_NAME
     + ' (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, age INTEGER, phoneNumber DOUBLE, isStudent BOOLEAN, Binary BINARY)';
-let rdbStore;
+let rdbStore: relationalStore.RdbStore;
 
 export default class DataShareExtAbility extends DataShareExtensionAbility {
-    update(uri, predicates, valueBucket, callback) {
+    update(uri: string, predicates: dataSharePredicates.DataSharePredicates, valueBucket: ValuesBucket, callback: Function) {
         if (predicates === null || predicates === undefined) {
             return;
         }
-        rdbStore.update(TBL_NAME, valueBucket, predicates, function (err, ret) {
+        rdbStore.update(TBL_NAME, valueBucket, predicates, (err, ret) => {
             if (callback !== undefined) {
                 callback(err, ret);
             }
@@ -178,20 +181,21 @@ delete?(uri: string, predicates: dataSharePredicates.DataSharePredicates, callba
 
 ```ts
 import rdb from '@ohos.data.relationalStore';
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
 
 let DB_NAME = 'DB00.db';
 let TBL_NAME = 'TBL00';
 let DDL_TBL_CREATE = 'CREATE TABLE IF NOT EXISTS '
     + TBL_NAME
     + ' (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, age INTEGER, phoneNumber DOUBLE, isStudent BOOLEAN, Binary BINARY)';
-let rdbStore;
+let rdbStore: relationalStore.RdbStore;
 
 export default class DataShareExtAbility extends DataShareExtensionAbility {
-    delete(uri, predicates, callback) {
+    delete(uri: string, predicates: dataSharePredicates.DataSharePredicates, callback: Function) {
         if (predicates === null || predicates === undefined) {
             return;
         }
-        rdbStore.delete(TBL_NAME, predicates, function (err, ret) {
+        rdbStore.delete(TBL_NAME, predicates, (err, ret) => {
             if (callback !== undefined) {
                 callback(err, ret);
             }
@@ -221,20 +225,21 @@ query?(uri: string, predicates: dataSharePredicates.DataSharePredicates, columns
 
 ```ts
 import rdb from '@ohos.data.relationalStore';
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
 
 let DB_NAME = 'DB00.db';
 let TBL_NAME = 'TBL00';
 let DDL_TBL_CREATE = 'CREATE TABLE IF NOT EXISTS '
     + TBL_NAME
     + ' (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, age INTEGER, phoneNumber DOUBLE, isStudent BOOLEAN, Binary BINARY)';
-let rdbStore;
+let rdbStore: relationalStore.RdbStore;
 
 export default class DataShareExtAbility extends DataShareExtensionAbility {
-    query(uri, predicates, columns, callback) {
+    query(uri: string, predicates: dataSharePredicates.DataSharePredicates, columns: Array<string>, callback: Function) {
         if (predicates === null || predicates === undefined) {
             return;
         }
-        rdbStore.query(TBL_NAME, predicates, columns, function (err, resultSet) {
+        rdbStore.query(TBL_NAME, predicates, columns, (err, resultSet) => {
             if (resultSet !== undefined) {
                 console.info(`resultSet.rowCount: ${resultSet.rowCount}`);
             }
@@ -266,21 +271,22 @@ batchInsert?(uri: string, valueBuckets: Array&lt;ValuesBucket&gt;, callback: Asy
 
 ```ts
 import rdb from '@ohos.data.relationalStore';
+import { ValuesBucket } from '@ohos.data.ValuesBucket'
 
 let DB_NAME = 'DB00.db';
 let TBL_NAME = 'TBL00';
 let DDL_TBL_CREATE = 'CREATE TABLE IF NOT EXISTS '
     + TBL_NAME
     + ' (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, age INTEGER, phoneNumber DOUBLE, isStudent BOOLEAN, Binary BINARY)';
-let rdbStore;
+let rdbStore: relationalStore.RdbStore;
 
 export default class DataShareExtAbility extends DataShareExtensionAbility {
-  batchInsert(uri, valueBuckets, callback) {
+  batchInsert(uri: string, valueBuckets: Array<ValuesBucket>, callback: Function) {
     if (valueBuckets === null || valueBuckets.length === undefined) {
       console.error('invalid valueBuckets');
       return;
     }
-    rdbStore.batchInsert(TBL_NAME, valueBuckets, function (err, ret) {
+    rdbStore.batchInsert(TBL_NAME, valueBuckets, (err, ret) => {
       if (callback !== undefined) {
         callback(err, ret);
       }
@@ -308,11 +314,17 @@ normalizeUri?(uri: string, callback: AsyncCallback&lt;string&gt;): void
 
 ```ts
 export default class DataShareExtAbility extends DataShareExtensionAbility {
-    normalizeUri(uri, callback) {
-        let err = {'code':0};
-        let ret = `normalize: ${uri}`;
-        callback(err, ret);
-    }
+  normalizeUri(uri: string, callback: Function) {
+    let key = 'code';
+    let value = 0;
+    let err: BusinessError = {
+      code: value,
+      name: key,
+      message: key
+    };
+    let ret: string = `normalize: ${uri}`;
+    callback(err, ret);
+  }
 };
 ```
 
@@ -335,10 +347,16 @@ denormalizeUri?(uri: string, callback: AsyncCallback&lt;string&gt;): void
 
 ```ts
 export default class DataShareExtAbility extends DataShareExtensionAbility {
-    denormalizeUri(uri, callback) {
-        let err = {'code':0};
-        let ret = `denormalize ${uri}`;
-        callback(err, ret);
-    }
+  denormalizeUri(uri: string, callback: Function) {
+    let key = 'code';
+    let value = 0;
+    let err: BusinessError = {
+      code: value,
+      name: key,
+      message: key
+    };
+      let ret = `denormalize ${uri}`;
+      callback(err, ret);
+  }
 };
 ```

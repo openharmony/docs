@@ -16,8 +16,7 @@ There are two roles in **DataShare**:
 
 - Data consumer: accesses the data provided by the provider using [createDataShareHelper()](../reference/apis/js-apis-data-dataShare.md#datasharecreatedatasharehelper).
 
-**Figure 1** Data sharing mechanism
- 
+**Figure 1** Data sharing mechanism 
 ![dataShare](figures/dataShare.jpg)
 
 - The **DataShareExtensionAbility** module, as the data provider, implements services related to data sharing between applications.
@@ -32,7 +31,7 @@ There are two roles in **DataShare**:
 ## How to Develop
 
 
-### Data Provider Application Development (Only for System Applications)
+### Data Provider Application (Only for System Applications)
 
 [DataShareExtensionAbility](../reference/apis/js-apis-application-dataShareExtensionAbility.md) provides the following APIs. You can override these APIs as required.
 
@@ -146,7 +145,7 @@ override the service implementation as required. For example, if the data provid
        "icon": "$media:icon",
        "description": "$string:description_datashareextability",
        "type": "dataShare",
-       "uri": "datashare://com.samples.datasharetest.DataShare",
+       "uri": "datashareproxy://com.samples.datasharetest.DataShare",
        "exported": true,
        "metadata": [{"name": "ohos.extension.dataShare", "resource": "$profile:data_share_config"}]
      }
@@ -155,11 +154,11 @@ override the service implementation as required. For example, if the data provid
    
    **Table 2** Fields in the data_share_config.json file
 
-   | Field| Description                                                    | Mandatory|
-   | ------------ | ------------------------------------------------------------ | --- |
-   | tableConfig       | Label configuration.| Yes|
-   | uri               | Range for which the configuration takes effect. The URI supports the following formats in descending order by priority:<br> 1. *****: indicates all databases and tables.<br> 2. **datashare:///{*bundleName*}/{*moduleName*}/{*storeName*}**: specifies a database.<br> 3. **datashare:///{*bundleName*}/{*moduleName*}/{*storeName*}/{*tableName*}**: specifies a table.<br>If URIs of different formats are configured, only the URI with higher priority takes effect.  | Yes|
-   | crossUserMode     | Whether data is shared by multiple users. The value **1** means to share data between multiple users, and the value **2** means the opposite.               | Yes|
+   | Field         | Description                                    | Mandatory  |
+   | ------------- | ---------------------------------------- | ---- |
+   | tableConfig   | Label configuration.                                   | Yes   |
+   | uri           | Range for which the configuration takes effect. The URI supports the following formats in descending order by priority:<br> - *****: indicates all databases and tables.<br> - **datashareproxy://{bundleName}/{moduleName}/{storeName}**: specifies a database.<br>- **datashareproxy://{bundleName}/{moduleName}/{storeName}/{tableName}**: specifies a table. | Yes   |
+   | crossUserMode | Whether data is shared by multiple users.<br>The value **1** means to share data between multiple users, and the value **2** means the opposite. | Yes   |
 
    **data_share_config.json Example**
 
@@ -170,18 +169,18 @@ override the service implementation as required. For example, if the data provid
       "crossUserMode": 1
     },
     {
-      "uri": "datashare:///com.acts.datasharetest/entry/DB00",
+      "uri": "datashareproxy://com.acts.datasharetest/entry/DB00",
       "crossUserMode": 1
     },
     {
-      "uri": "datashare:///com.acts.datasharetest/entry/DB00/TBL00",
+      "uri": "datashareproxy://com.acts.datasharetest/entry/DB00/TBL00",
       "crossUserMode": 2
     }
    ]
    ```
 
 
-### Data Consumer Application Development
+### Data Consumer Application
 
 1. Import the dependencies.
    
@@ -195,7 +194,7 @@ override the service implementation as required. For example, if the data provid
    
    ```js
    // Different from the URI defined in the module.json5 file, the URI passed in the parameter has an extra slash (/), because there is a DeviceID parameter between the second and the third slash (/).
-   let dseUri = ('datashare:///com.samples.datasharetest.DataShare');
+   let dseUri = ('datashareproxy://com.samples.datasharetest.DataShare');
    ```
 
 3. Create a **DataShareHelper** instance.
@@ -239,3 +238,4 @@ override the service implementation as required. For example, if the data provid
      console.info(`dsHelper delete result:${data}`);
    });
    ```
+

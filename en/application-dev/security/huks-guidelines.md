@@ -1662,7 +1662,7 @@ When a key is generated or imported, [HuksUserAuthType](../reference/apis/js-api
 | HUKS_USER_AUTH_TYPE_FINGERPRINT | 0x0001 | Fingerprint authentication, which can be enabled with facial authentication and PIN authentication at the same time. |
 | HUKS_USER_AUTH_TYPE_FACE        | 0x0002 | Facial authentication, whch can be enabled with fingerprint authentication and PIN authentication at the same time. |
 | HUKS_USER_AUTH_TYPE_PIN         | 0x0004 | PIN authentication, which can be enabled with fingerprint authentication and facial authenticationat the same time. |
-|                                 |        |                                                              |
+
 
 **Table 4** Secure access types
 
@@ -1670,7 +1670,7 @@ When a key is generated or imported, [HuksUserAuthType](../reference/apis/js-api
 | --------------------------------------- | ----- | ------------------------------------------------------------ |
 | HUKS_AUTH_ACCESS_INVALID_CLEAR_PASSWORD | 1     | Invalidates the key after the screen lock password is cleared. |
 | HUKS_AUTH_ACCESS_INVALID_NEW_BIO_ENROLL | 2     | Invalidates the key after a biometric enrollment is added. The user authentication types must include the biometric authentication. |
-|                                         |       |                                                              |
+
 
 **Table 5** Challenge types
 
@@ -1679,7 +1679,7 @@ When a key is generated or imported, [HuksUserAuthType](../reference/apis/js-api
 | HUKS_CHALLENGE_TYPE_NORMAL | 0     | Normal challenge, which requires an independent user authentication for each use of the key. |
 | HUKS_CHALLENGE_TYPE_CUSTOM | 1     | Custom challenge, which supports only one user authentication for multiple keys. |
 | HUKS_CHALLENGE_TYPE_NONE   | 2     | No challenge is required during user authentication.         |
-|                            |       |                                                              |
+
 
 > **NOTICE**
 >

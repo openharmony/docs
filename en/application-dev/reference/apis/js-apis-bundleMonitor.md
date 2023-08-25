@@ -61,7 +61,7 @@ Subscribes to bundle installation, uninstall, and update events.
 
 | Name                      | Type    | Mandatory| Description              |
 | ---------------------------- | -------- | ---- | ------------------ |
-| type| [BundleChangedEvent](js-apis-bundleMonitor.md#BundleChangedEvent)| Yes  | Type of the event to subscribe to.|
+| type| [BundleChangedEvent](js-apis-bundleMonitor.md#bundlechangedevent)| Yes  | Type of the event to subscribe to.|
 | callback | callback\<BundleChangedInfo>| Yes  | Callback used for the subscription.|
 
 **Example**
@@ -94,7 +94,7 @@ Unsubscribes from bundle installation, uninstall, and update events.
 
 | Name                      | Type    | Mandatory| Description                                                      |
 | ---------------------------- | -------- | ---- | ---------------------------------------------------------- |
-| type| [BundleChangedEvent](js-apis-bundleMonitor.md#BundleChangedEvent)| Yes  | Type of the event to unsubscribe from.                                        |
+| type| [BundleChangedEvent](js-apis-bundleMonitor.md#bundlechangedevent)| Yes  | Type of the event to unsubscribe from.                                        |
 | callback | callback\<BundleChangedInfo>| No  | Callback used for the unsubscription. By default, no value is passed, and all callbacks of the current event are unsubscribed from.|
 
 **Example**

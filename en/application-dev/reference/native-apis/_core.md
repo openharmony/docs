@@ -19,9 +19,9 @@ The **Core** module provides the basic backbone capabilities for the media playb
 
 | Name| Description| 
 | -------- | -------- |
-| [native_averrors.h](native__averrors_8h.md) | Declares the error codes used by the media playback framework.<br>File to include: \<multimedia/player_framework/native_averrors.h> | 
-| [native_avformat.h](native__avformat_8h.md) | Declares the format-related functions and enums.<br>File to include: \<multimedia/player_framework/native_avformat.h> | 
-| [native_avmemory.h](native__avmemory_8h.md) | Declares the memory-related functions.<br>File to include: \<multimedia/player_framework/native_avmemory.h> | 
+| [native_averrors.h](native__averrors_8h.md) | Declares the error codes used by the media playback framework.<br>**File to include**: <multimedia/player_framework/native_averrors.h><br>**Library**: libnative_media_core.so| 
+| [native_avformat.h](native__avformat_8h.md) | Declares the format-related functions and enums.<br>**File to include**: <multimedia/player_framework/native_avformat.h><br>**Library**: libnative_media_core.so| 
+| [native_avmemory.h](native__avmemory_8h.md) | Declares the memory-related functions.<br>**File to include**: <multimedia/player_framework/native_avmemory.h><br>**Library**: libnative_media_core.so| 
 
 
 ### Types
@@ -36,8 +36,8 @@ The **Core** module provides the basic backbone capabilities for the media playb
 
 | Name| Description| 
 | -------- | -------- |
-| [OH_AVErrCode](#oh_averrcode) {<br>AV_ERR_OK = 0, AV_ERR_NO_MEMORY = 1, AV_ERR_OPERATE_NOT_PERMIT = 2, AV_ERR_INVALID_VAL = 3,<br>AV_ERR_IO = 4, AV_ERR_TIMEOUT = 5, AV_ERR_UNKNOWN = 6, AV_ERR_SERVICE_DIED = 7,<br>AV_ERR_INVALID_STATE = 8, AV_ERR_UNSUPPORT = 9, AV_ERR_EXTEND_START = 100<br>} | Enumerates the audio and video error codes.| 
-| [OH_AVPixelFormat](#oh_avpixelformat) {<br>AV_PIXEL_FORMAT_YUVI420 = 1, AV_PIXEL_FORMAT_NV12 = 2, AV_PIXEL_FORMAT_NV21 = 3, AV_PIXEL_FORMAT_SURFACE_FORMAT = 4,<br>AV_PIXEL_FORMAT_RGBA = 5<br>} | Enumerates the video pixel formats.| 
+| [OH_AVErrCode](#oh_averrcode) {<br>&nbsp;&nbsp;&nbsp;&nbsp;AV_ERR_OK = 0,<br>&nbsp;&nbsp;&nbsp;&nbsp;AV_ERR_NO_MEMORY = 1,<br>&nbsp;&nbsp;&nbsp;&nbsp;AV_ERR_OPERATE_NOT_PERMIT = 2,<br>&nbsp;&nbsp;&nbsp;&nbsp;AV_ERR_INVALID_VAL = 3,<br>&nbsp;&nbsp;&nbsp;&nbsp;AV_ERR_IO = 4,<br>&nbsp;&nbsp;&nbsp;&nbsp;AV_ERR_TIMEOUT = 5,<br>&nbsp;&nbsp;&nbsp;&nbsp;AV_ERR_UNKNOWN = 6,<br>&nbsp;&nbsp;&nbsp;&nbsp;AV_ERR_SERVICE_DIED = 7,<br>&nbsp;&nbsp;&nbsp;&nbsp;AV_ERR_INVALID_STATE = 8,<br>&nbsp;&nbsp;&nbsp;&nbsp;AV_ERR_UNSUPPORT = 9,<br>&nbsp;&nbsp;&nbsp;&nbsp;AV_ERR_EXTEND_START = 100<br>} | Enumerates the audio and video error codes.| 
+| [OH_AVPixelFormat](#oh_avpixelformat) {<br>&nbsp;&nbsp;&nbsp;&nbsp;AV_PIXEL_FORMAT_YUVI420 = 1,<br>&nbsp;&nbsp;&nbsp;&nbsp;AV_PIXEL_FORMAT_NV12 = 2,<br>&nbsp;&nbsp;&nbsp;&nbsp;AV_PIXEL_FORMAT_NV21 = 3,<br>&nbsp;&nbsp;&nbsp;&nbsp;AV_PIXEL_FORMAT_SURFACE_FORMAT = 4,<br>&nbsp;&nbsp;&nbsp;&nbsp;AV_PIXEL_FORMAT_RGBA = 5<br>} | Enumerates the video pixel formats.| 
 
 
 ### Functions
@@ -75,7 +75,7 @@ The **Core** module provides the basic backbone capabilities for the media playb
 
   
 ```
-typedef enum OH_AVErrCodeOH_AVErrCode
+typedef enum OH_AVErrCode OH_AVErrCode
 ```
 
 **Description**
@@ -93,7 +93,7 @@ Defines an enum that enumerates the audio and video error codes.
 
   
 ```
-typedef enum OH_AVPixelFormatOH_AVPixelFormat
+typedef enum OH_AVPixelFormat OH_AVPixelFormat
 ```
 
 **Description**
@@ -175,7 +175,7 @@ Enumerates the video pixel formats.
 
   
 ```
-bool OH_AVFormat_Copy (struct OH_AVFormat * to, struct OH_AVFormat * from )
+bool OH_AVFormat_Copy (struct OH_AVFormat *to, struct OH_AVFormat *from)
 ```
 
 **Description**
@@ -204,7 +204,7 @@ Returns **true** if the operation is successful; returns **false** otherwise.
 
   
 ```
-struct OH_AVFormat* OH_AVFormat_Create (void )
+struct OH_AVFormat* OH_AVFormat_Create (void)
 ```
 
 **Description**
@@ -226,7 +226,7 @@ Returns the pointer to an **OH_AVFormat** instance.
 
   
 ```
-struct OH_AVFormat* OH_AVFormat_CreateAudioFormat (const char * mimeType, int32_t sampleRate, int32_t channelCount )
+struct OH_AVFormat* OH_AVFormat_CreateAudioFormat (const char *mimeType, int32_t sampleRate, int32_t channelCount)
 ```
 
 **Description**
@@ -256,7 +256,7 @@ Returns the pointer to an **OH_AVFormat** instance.
 
   
 ```
-struct OH_AVFormat* OH_AVFormat_CreateVideoFormat (const char * mimeType, int32_t width, int32_t height )
+struct OH_AVFormat* OH_AVFormat_CreateVideoFormat (const char *mimeType, int32_t width, int32_t height)
 ```
 
 **Description**
@@ -286,7 +286,7 @@ Returns the pointer to an **OH_AVFormat** instance.
 
   
 ```
-void OH_AVFormat_Destroy (struct OH_AVFormat * format)
+void OH_AVFormat_Destroy (struct OH_AVFormat *format)
 ```
 
 **Description**
@@ -310,7 +310,7 @@ Destroys an **OH_AVFormat** instance.
 
   
 ```
-const char* OH_AVFormat_DumpInfo (struct OH_AVFormat * format)
+const char* OH_AVFormat_DumpInfo (struct OH_AVFormat *format)
 ```
 
 **Description**
@@ -338,7 +338,7 @@ Returns the pointer to a collection of strings, each of which consists of a key 
 
   
 ```
-bool OH_AVFormat_GetBuffer (struct OH_AVFormat * format, const char * key, uint8_t ** addr, size_t * size )
+bool OH_AVFormat_GetBuffer (struct OH_AVFormat *format, const char *key, uint8_t **addr, size_t *size)
 ```
 
 **Description**
@@ -369,7 +369,7 @@ Returns **true** if the operation is successful; returns **false** otherwise.
 
   
 ```
-bool OH_AVFormat_GetDoubleValue (struct OH_AVFormat * format, const char * key, double * out )
+bool OH_AVFormat_GetDoubleValue (struct OH_AVFormat *format, const char *key, double *out)
 ```
 
 **Description**
@@ -399,7 +399,7 @@ Returns **true** if the operation is successful; returns **false** otherwise.
 
   
 ```
-bool OH_AVFormat_GetFloatValue (struct OH_AVFormat * format, const char * key, float * out )
+bool OH_AVFormat_GetFloatValue (struct OH_AVFormat *format, const char *key, float *out)
 ```
 
 **Description**
@@ -429,7 +429,7 @@ Returns **true** if the operation is successful; returns **false** otherwise.
 
   
 ```
-bool OH_AVFormat_GetIntValue (struct OH_AVFormat * format, const char * key, int32_t * out )
+bool OH_AVFormat_GetIntValue (struct OH_AVFormat *format, const char *key, int32_t *out)
 ```
 
 **Description**
@@ -455,7 +455,7 @@ Returns **true** if the operation is successful; returns **false** otherwise.
 
   
 ```
-bool OH_AVFormat_GetLongValue (struct OH_AVFormat * format, const char * key, int64_t * out )
+bool OH_AVFormat_GetLongValue (struct OH_AVFormat *format, const char *key, int64_t *out)
 ```
 
 **Description**
@@ -485,7 +485,7 @@ Returns **true** if the operation is successful; returns **false** otherwise.
 
   
 ```
-bool OH_AVFormat_GetStringValue (struct OH_AVFormat * format, const char * key, const char ** out )
+bool OH_AVFormat_GetStringValue (struct OH_AVFormat *format, const char *key, const char **out)
 ```
 
 **Description**
@@ -515,7 +515,7 @@ Returns **true** if the operation is successful; returns **false** otherwise.
 
   
 ```
-bool OH_AVFormat_SetBuffer (struct OH_AVFormat * format, const char * key, const uint8_t * addr, size_t size )
+bool OH_AVFormat_SetBuffer (struct OH_AVFormat *format, const char *key, const uint8_t *addr, size_t size)
 ```
 
 **Description**
@@ -546,7 +546,7 @@ Returns **true** if the operation is successful; returns **false** otherwise.
 
   
 ```
-bool OH_AVFormat_SetDoubleValue (struct OH_AVFormat * format, const char * key, double value )
+bool OH_AVFormat_SetDoubleValue (struct OH_AVFormat *format, const char *key, double value)
 ```
 
 **Description**
@@ -576,7 +576,7 @@ Returns **true** if the operation is successful; returns **false** otherwise.
 
   
 ```
-bool OH_AVFormat_SetFloatValue (struct OH_AVFormat * format, const char * key, float value )
+bool OH_AVFormat_SetFloatValue (struct OH_AVFormat *format, const char *key, float value)
 ```
 
 **Description**
@@ -606,7 +606,7 @@ Returns **true** if the operation is successful; returns **false** otherwise.
 
   
 ```
-bool OH_AVFormat_SetIntValue (struct OH_AVFormat * format, const char * key, int32_t value )
+bool OH_AVFormat_SetIntValue (struct OH_AVFormat *format, const char *key, int32_t value)
 ```
 
 **Description**
@@ -636,7 +636,7 @@ Returns **true** if the operation is successful; returns **false** otherwise.
 
   
 ```
-bool OH_AVFormat_SetLongValue (struct OH_AVFormat * format, const char * key, int64_t value )
+bool OH_AVFormat_SetLongValue (struct OH_AVFormat *format, const char *key, int64_t value)
 ```
 
 **Description**
@@ -666,7 +666,7 @@ Returns **true** if the operation is successful; returns **false** otherwise.
 
   
 ```
-bool OH_AVFormat_SetStringValue (struct OH_AVFormat * format, const char * key, const char * value )
+bool OH_AVFormat_SetStringValue (struct OH_AVFormat *format, const char *key, const char *value)
 ```
 
 **Description**
@@ -724,7 +724,7 @@ Returns the pointer to the **OH_AVMemory** instance created if the operation is 
 
   
 ```
-OH_AVErrCode OH_AVMemory_Destroy (struct OH_AVMemory * mem)
+OH_AVErrCode OH_AVMemory_Destroy (struct OH_AVMemory *mem)
 ```
 
 **Description**
@@ -752,7 +752,7 @@ Returns **AV_ERR_OK** if the operation is successful; returns an error code defi
 
   
 ```
-uint8_t* OH_AVMemory_GetAddr (struct OH_AVMemory * mem)
+uint8_t* OH_AVMemory_GetAddr (struct OH_AVMemory *mem)
 ```
 
 **Description**
@@ -780,7 +780,7 @@ Returns the pointer to the virtual memory address if the memory is valid; return
 
   
 ```
-int32_t OH_AVMemory_GetSize (struct OH_AVMemory * mem)
+int32_t OH_AVMemory_GetSize (struct OH_AVMemory *mem)
 ```
 
 **Description**

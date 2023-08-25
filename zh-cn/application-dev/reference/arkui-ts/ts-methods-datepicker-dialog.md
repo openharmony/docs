@@ -29,9 +29,14 @@ show(options?: DatePickerDialogOptions)
 | disappearTextStyle<sup>10+</sup> | [PickerTextStyle](ts-basic-components-datepicker.md#pickertextstyle10类型说明) | 否 | 设置所有选项中最上和最下两个选项的文本颜色、字号、字体粗细。<br/>默认值：<br/>{<br/>color: '#ff182431',<br/>font: {<br/>size: '14fp', <br/>weight: FontWeight.Regular<br/>}<br/>} |
 | textStyle<sup>10+</sup> | [PickerTextStyle](ts-basic-components-datepicker.md#pickertextstyle10类型说明) | 否 | 设置所有选项中除了最上、最下及选中项以外的文本颜色、字号、字体粗细。<br/>默认值：<br/>{<br/>color: '#ff182431',<br/>font: {<br/>size: '16fp', <br/>weight: FontWeight.Regular<br/>}<br/>} |
 | selectedTextStyle<sup>10+</sup> | [PickerTextStyle](ts-basic-components-datepicker.md#pickertextstyle10类型说明) | 否 | 设置选中项的文本颜色、字号、字体粗细。<br/>默认值：<br/>{<br/>color: '#ff007dff',<br/>font: {<br/>size: '20vp', <br/>weight: FontWeight.Medium<br/>}<br/>} |
-| onAccept | (value: [DatePickerResult](ts-basic-components-datepicker.md#DatePickerResult对象说明)) => void | 否 | 点击弹窗中的“确定”按钮时触发该回调。 |
+| alignment<sup>10+</sup>  | [DialogAlignment](ts-methods-alert-dialog-box.md#dialogalignment枚举说明) | 否   | 弹窗在竖直方向上的对齐方式。<br>默认值：DialogAlignment.Default |
+| offset<sup>10+</sup>     | [Offset](ts-types.md#offset) | 否     | 弹窗相对alignment所在位置的偏移量。<br/>默认值：{&nbsp;dx:&nbsp;0&nbsp;,&nbsp;dy:&nbsp;0&nbsp;} |
+| maskRect<sup>10+</sup>| [Rectangle](ts-methods-alert-dialog-box.md#rectangle10类型说明) | 否     | 弹窗遮蔽层区域，在遮蔽层区域内的事件不透传，在遮蔽层区域外的事件透传。<br/>默认值：{ x: 0, y: 0, width: '100%', height: '100%' } |
+| onAccept<sup>(deprecated)</sup> | (value: [DatePickerResult](ts-basic-components-datepicker.md#DatePickerResult对象说明)) => void | 否 | 点击弹窗中的“确定”按钮时触发该回调。<br />**说明：**<br />从API version 8 开始支持，从 API version 10 开始废弃，建议使用onDateAccept。 |
 | onCancel | () => void | 否 | 点击弹窗中的“取消”按钮时触发该回调。 |
-| onChange | (value: [DatePickerResult](ts-basic-components-datepicker.md#DatePickerResult对象说明)) => void | 否 | 滑动弹窗中的滑动选择器使当前选中项改变时触发该回调。 |
+| onChange<sup>(deprecated)</sup> | (value: [DatePickerResult](ts-basic-components-datepicker.md#DatePickerResult对象说明)) => void | 否 | 滑动弹窗中的滑动选择器使当前选中项改变时触发该回调。<br />**说明：**<br />从API version 8 开始支持，从 API version 10 开始废弃，建议使用onDateChange。 |
+| onDateAccept<sup>10+</sup> | (value:  Date) => void | 否 | 点击弹窗中的“确定”按钮时触发该回调。<br />**说明：**<br />当showTime设置为true时，回调接口返回值value中时和分为选择器选择的时和分。否则，返回值value中时和分为系统时间的时和分。 |
+| onDateChange<sup>10+</sup> | (value:  Date) => void | 否 | 滑动弹窗中的滑动选择器使当前选中项改变时触发该回调。<br />**说明：**<br />当showTime设置为true时，回调接口返回值value中时和分为选择器选择的时和分。否则，返回值value中时和分为系统时间的时和分。 |
 
 **异常情形说明:**
 
@@ -76,16 +81,16 @@ struct DatePickerDialogExample {
             disappearTextStyle: {color: Color.Pink, font: {size: '22fp', weight: FontWeight.Bold}},
             textStyle: {color: '#ff00ff00', font: {size: '18fp', weight: FontWeight.Normal}},
             selectedTextStyle: {color: '#ff182431', font: {size: '14fp', weight: FontWeight.Regular}},
-            onAccept: (value: DatePickerResult) => {
+            onDateAccept: (value: Date) => {
               // 通过Date的setFullYear方法设置按下确定按钮时的日期，这样当弹窗再次弹出时显示选中的是上一次确定的日期
-              this.selectedDate.setFullYear(value.year, value.month, value.day)
-              console.info("DatePickerDialog:onAccept()" + JSON.stringify(value))
+              this.selectedDate = value
+              console.info("DatePickerDialog:onDateAccept()" + value.toString())
             },
             onCancel: () => {
               console.info("DatePickerDialog:onCancel()")
             },
-            onChange: (value: DatePickerResult) => {
-              console.info("DatePickerDialog:onChange()" + JSON.stringify(value))
+            onDateChange: (value: Date) => {
+              console.info("DatePickerDialog:onDateChange()" + value.toString())
             }
           })
         })
@@ -101,15 +106,15 @@ struct DatePickerDialogExample {
             disappearTextStyle: {color: Color.Pink, font: {size: '22fp', weight: FontWeight.Bold}},
             textStyle: {color: '#ff00ff00', font: {size: '18fp', weight: FontWeight.Normal}},
             selectedTextStyle: {color: '#ff182431', font: {size: '14fp', weight: FontWeight.Regular}},
-            onAccept: (value: DatePickerResult) => {
-              this.selectedDate.setFullYear(value.year, value.month, value.day)
-              console.info("DatePickerDialog:onAccept()" + JSON.stringify(value))
+            onDateAccept: (value: Date) => {
+              this.selectedDate = value
+              console.info("DatePickerDialog:onDateAccept()" + value.toString())
             },
             onCancel: () => {
               console.info("DatePickerDialog:onCancel()")
             },
-            onChange: (value: DatePickerResult) => {
-              console.info("DatePickerDialog:onChange()" + JSON.stringify(value))
+            onDateChange: (value: Date) => {
+              console.info("DatePickerDialog:onDateChange()" + value.toString())
             }
           })
         })

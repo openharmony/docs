@@ -27,9 +27,9 @@ Enables WLAN.
 
 **Return value**
 
-  | **Type**| **Description**|
-  | -------- | -------- |
-  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+| **Type**| **Description**|
+| -------- | -------- |
+| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 **Example**
 
@@ -57,9 +57,9 @@ Disables WLAN.
 
 **Return value**
 
-  | **Type**| **Description**|
-  | -------- | -------- |
-  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+| **Type**| **Description**|
+| -------- | -------- |
+| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 **Example**
 
@@ -86,9 +86,9 @@ Checks whether WLAN is enabled.
 
 **Return value**
 
-  | **Type**| **Description**|
-  | -------- | -------- |
-  | boolean | Returns **true** if WLAN is enabled; returns **false** otherwise.|
+| **Type**| **Description**|
+| -------- | -------- |
+| boolean | Returns **true** if WLAN is enabled; returns **false** otherwise.|
 
 **Example**
 
@@ -96,8 +96,8 @@ Checks whether WLAN is enabled.
 import wifi from '@ohos.wifi';
 
 try {
-	let isActivate = wifi.isActivate();
-	console.info("isActivate:" + isActivate);
+	let isWifiActive = wifi.isWifiActive();
+	console.info("isWifiActive:" + isWifiActive);
 }catch(error){
 	console.error("failed:" + JSON.stringify(error));
 }
@@ -115,9 +115,9 @@ Starts a scan for WLAN.
 
 **Return value**
 
-  | **Type**| **Description**|
-  | -------- | -------- |
-  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+| **Type**| **Description**|
+| -------- | -------- |
+| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 **Example**
 
@@ -143,9 +143,9 @@ Obtains the scan result. This API uses a promise to return the result.
 
 **Return value**
 
-  | **Type**| **Description**|
-  | -------- | -------- |
-  | Promise&lt;&nbsp;Array&lt;[WifiScanInfo](#wifiscaninfo)&gt;&nbsp;&gt; | Promise used to return the detected hotspots.|
+| **Type**| **Description**|
+| -------- | -------- |
+| Promise&lt;&nbsp;Array&lt;[WifiScanInfo](#wifiscaninfo)&gt;&nbsp;&gt; | Promise used to return the detected hotspots.|
 
 
 ## wifi.getScanInfos
@@ -160,9 +160,9 @@ Obtains the scan result. This API uses an asynchronous callback to return the re
 
 **Parameters**
 
-  | **Name**| **Type**| **Mandatory**| **Description**|
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;&nbsp;Array&lt;[WifiScanInfo](#wifiscaninfo)&gt;&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **0** and **data** is the detected hotspots. Otherwise, **err** is a non-zero value and **data** is empty.|
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| callback | AsyncCallback&lt;&nbsp;Array&lt;[WifiScanInfo](#wifiscaninfo)&gt;&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **0** and **data** is the detected hotspots. Otherwise, **err** is a non-zero value and **data** is empty.|
 
 **Example**
 
@@ -258,15 +258,15 @@ Adds network configuration. This API uses a promise to return the result.
 
 **Parameters**
 
-  | **Name**| **Type**| **Mandatory**| **Description**|
-  | -------- | -------- | -------- | -------- |
-  | config | [WifiDeviceConfig](#wifideviceconfig) | Yes| WLAN configuration to add.|
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| config | [WifiDeviceConfig](#wifideviceconfig) | Yes| WLAN configuration to add.|
 
 **Return value**
 
-  | **Type**| **Description**|
-  | -------- | -------- |
-  | Promise&lt;number&gt; | Promise used to return the WLAN configuration ID. If **-1** is returned, the network configuration fails to be added.|
+| **Type**| **Description**|
+| -------- | -------- |
+| Promise&lt;number&gt; | Promise used to return the WLAN configuration ID. If **-1** is returned, the network configuration fails to be added.|
 
   **Example**
 
@@ -356,10 +356,10 @@ Adds network configuration. This API uses an asynchronous callback to return the
 
 **Parameters**
 
-  | **Name**| **Type**| **Mandatory**| **Description**|
-  | -------- | -------- | -------- | -------- |
-  | config | [WifiDeviceConfig](#wifideviceconfig) | Yes| WLAN configuration to add.|
-  | callback | AsyncCallback&lt;number&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **0** and **data** is the network configuration ID. If **data** is **-1**, the operation has failed. If **err** is not **0**, an error has occurred.|
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| config | [WifiDeviceConfig](#wifideviceconfig) | Yes| WLAN configuration to add.|
+| callback | AsyncCallback&lt;number&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **0** and **data** is the network configuration ID. If **data** is **-1**, the operation has failed. If **err** is not **0**, an error has occurred.|
 
 **Example**
 
@@ -391,15 +391,15 @@ Adds the configuration of an untrusted network. This API uses a promise to retur
 
 **Parameters**
 
-  | **Name**| **Type**| **Mandatory**| **Description**|
-  | -------- | -------- | -------- | -------- |
-  | config | [WifiDeviceConfig](#wifideviceconfig) | Yes| WLAN configuration to add.|
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| config | [WifiDeviceConfig](#wifideviceconfig) | Yes| WLAN configuration to add.|
 
 **Return value**
 
-  | **Type**| **Description**|
-  | -------- | -------- |
-  | Promise&lt;boolean&gt; | Promise used to return the result. If the operation is successful, **true** is returned; otherwise, **false** is returned.|
+| **Type**| **Description**|
+| -------- | -------- |
+| Promise&lt;boolean&gt; | Promise used to return the result. If the operation is successful, **true** is returned; otherwise, **false** is returned.|
 
 **Example**
 ```js
@@ -431,10 +431,10 @@ Adds the configuration of an untrusted network. This API uses an asynchronous ca
 
 **Parameters**
 
-  | **Name**| **Type**| **Mandatory**| **Description**|
-  | -------- | -------- | -------- | -------- |
-  | config | [WifiDeviceConfig](#wifideviceconfig) | Yes| WLAN configuration to add.|
-  | callback | AsyncCallback&lt;boolean&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **0** and **data** is **true**. If the operation fails, **data** is **false**. If **err** is not **0**, an error has occurred.|
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| config | [WifiDeviceConfig](#wifideviceconfig) | Yes| WLAN configuration to add.|
+| callback | AsyncCallback&lt;boolean&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **0** and **data** is **true**. If the operation fails, **data** is **false**. If **err** is not **0**, an error has occurred.|
 
 **Example**
 ```js
@@ -466,15 +466,15 @@ Removes the configuration of an untrusted network. This API uses a promise to re
 
 **Parameters**
 
-  | **Name**| **Type**| **Mandatory**| **Description**|
-  | -------- | -------- | -------- | -------- |
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
 | config | [WifiDeviceConfig](#wifideviceconfig) | Yes| WLAN configuration to remove.|
 
 **Return value**
 
-  | **Type**| **Description**|
-  | -------- | -------- |
-  | Promise&lt;boolean&gt; | Promise used to return the result. If the operation is successful, **true** is returned; otherwise, **false** is returned.|
+| **Type**| **Description**|
+| -------- | -------- |
+| Promise&lt;boolean&gt; | Promise used to return the result. If the operation is successful, **true** is returned; otherwise, **false** is returned.|
 
 **Example**
 
@@ -504,10 +504,10 @@ Removes the configuration of an untrusted network. This API uses an asynchronous
 
 **Parameters**
 
-  | **Name**| **Type**| **Mandatory**| **Description**|
-  | -------- | -------- | -------- | -------- |
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
 | config | [WifiDeviceConfig](#wifideviceconfig) | Yes| WLAN configuration to remove.|
-  | callback | AsyncCallback&lt;boolean&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **0** and **data** is **true**. If the operation fails, **data** is **false**. If **err** is not **0**, an error has occurred.|
+| callback | AsyncCallback&lt;boolean&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **0** and **data** is **true**. If the operation fails, **data** is **false**. If **err** is not **0**, an error has occurred.|
 
 **Example**
 ```js
@@ -537,15 +537,15 @@ Connects to the specified network.
 
 **Parameters**
 
-  | **Name**| **Type**| **Mandatory**| **Description**|
-  | -------- | -------- | -------- | -------- |
-  | networkId | number | Yes| Network configuration ID.|
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| networkId | number | Yes| Network configuration ID.|
 
 **Return value**
 
-  | **Type**| **Description**|
-  | -------- | -------- |
-  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+| **Type**| **Description**|
+| -------- | -------- |
+| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 **Example**
 
@@ -569,21 +569,21 @@ Connects to the specified network.
 **System API**: This is a system API.
 
 **Required permissions**: ohos.permission.SET_WIFI_INFO, ohos.permission.SET_WIFI_CONFIG, and ohos.permission.MANAGE_WIFI_CONNECTION (available only to system applications)
- 
+
 **System capability**:
   SystemCapability.Communication.WiFi.STA
 
 **Parameters**
 
-  | **Name**| **Type**| **Mandatory**| **Description**|
-  | -------- | -------- | -------- | -------- |
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
 | config | [WifiDeviceConfig](#wifideviceconfig) | Yes| WLAN configuration.|
 
 **Return value**
 
-  | **Type**| **Description**|
-  | -------- | -------- |
-  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+| **Type**| **Description**|
+| -------- | -------- |
+| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 **Example**
 ```js
@@ -617,9 +617,9 @@ Disconnects the network.
 
 **Return value**
 
-  | **Type**| **Description**|
-  | -------- | -------- |
-  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+| **Type**| **Description**|
+| -------- | -------- |
+| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 **Example**
 ```js
@@ -644,16 +644,16 @@ Obtains the WLAN signal level.
 
 **Parameters**
 
-  | **Name**| **Type**| **Mandatory**| **Description**|
-  | -------- | -------- | -------- | -------- |
-  | rssi | number | Yes| RSSI of the hotspot, in dBm.|
-  | band | number | Yes| Frequency band of the WLAN AP.|
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| rssi | number | Yes| RSSI of the hotspot, in dBm.|
+| band | number | Yes| Frequency band of the WLAN AP.|
 
 **Return value**
 
-  | **Type**| **Description**|
-  | -------- | -------- |
-  | number | Signal level obtained. The value range is [0, 4].|
+| **Type**| **Description**|
+| -------- | -------- |
+| number | Signal level obtained. The value range is [0, 4].|
 
 **Example**
 ```js
@@ -682,9 +682,9 @@ Obtains WLAN connection information. This API uses a promise to return the resul
 
 **Return value**
 
-  | Type| Description|
-  | -------- | -------- |
-  | Promise&lt;[WifiLinkedInfo](#wifilinkedinfo)&gt; | Promise used to return the WLAN connection information.|
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;[WifiLinkedInfo](#wifilinkedinfo)&gt; | Promise used to return the WLAN connection information.|
 
 
 ## wifi.getLinkedInfo
@@ -699,9 +699,9 @@ Obtains WLAN connection information. This API uses an asynchronous callback to r
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;[WifiLinkedInfo](#wifilinkedinfo)&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **0** and **data** is the WLAN connection information obtained. If **err** is not **0**, an error has occurred.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| callback | AsyncCallback&lt;[WifiLinkedInfo](#wifilinkedinfo)&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **0** and **data** is the WLAN connection information obtained. If **err** is not **0**, an error has occurred.|
 
 **Example**
 ```js
@@ -802,9 +802,9 @@ Checks whether the WLAN is connected.
 
 **Return value**
 
-  | **Type**| **Description**|
-  | -------- | -------- |
-  | boolean | Returns **true** if the WLAN is connected; returns **false** otherwise.|
+| **Type**| **Description**|
+| -------- | -------- |
+| boolean | Returns **true** if the WLAN is connected; returns **false** otherwise.|
 
 
 ## wifi.getSupportedFeatures<sup>7+</sup>
@@ -821,9 +821,9 @@ Obtains the features supported by this device.
 
 **Return value**
 
-  | **Type**| **Description**|
-  | -------- | -------- |
-  | number | Feature value. |
+| **Type**| **Description**|
+| -------- | -------- |
+| number | Feature value. |
 
 **Feature IDs**
 
@@ -854,15 +854,15 @@ Checks whether the device supports the specified WLAN feature.
 **Parameters**
 
 
-  | **Name**| **Type**| Mandatory| **Description**|
-  | -------- | -------- | -------- | -------- |
-  | featureId | number | Yes| Feature ID.|
+| **Name**| **Type**| Mandatory| **Description**|
+| -------- | -------- | -------- | -------- |
+| featureId | number | Yes| Feature ID.|
 
 **Return value**
 
-  | **Type**| **Description**|
-  | -------- | -------- |
-  | boolean | Returns **true** if the feature is supported; returns **false** otherwise.|
+| **Type**| **Description**|
+| -------- | -------- |
+| boolean | Returns **true** if the feature is supported; returns **false** otherwise.|
 
 **Example**
 ```js
@@ -892,9 +892,9 @@ Obtains the device MAC address.
 
 **Return value**
 
-  | **Type**| **Description**|
-  | -------- | -------- |
-  | string[] | MAC address obtained.|
+| **Type**| **Description**|
+| -------- | -------- |
+| string[] | MAC address obtained.|
 
 **Example**
 ```js
@@ -921,9 +921,9 @@ Obtains IP information.
 
 **Return value**
 
-  | **Type**| **Description**|
-  | -------- | -------- |
-  | [IpInfo](#ipinfo7) | IP information obtained.|
+| **Type**| **Description**|
+| -------- | -------- |
+| [IpInfo](#ipinfo7) | IP information obtained.|
 
 **Example**
 ```js
@@ -966,9 +966,9 @@ Obtains the country code.
 
 **Return value**
 
-  | **Type**| **Description**|
-  | -------- | -------- |
-  | string | Country code obtained.|
+| **Type**| **Description**|
+| -------- | -------- |
+| string | Country code obtained.|
 
 **Example**
 ```js
@@ -996,9 +996,9 @@ Re-associates with the network.
 
 **Return value**
 
-  | **Type**| **Description**|
-  | -------- | -------- |
-  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+| **Type**| **Description**|
+| -------- | -------- |
+| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 **Example**
 ```js
@@ -1025,9 +1025,9 @@ Reconnects to the network.
 
 **Return value**
 
-  | **Type**| **Description**|
-  | -------- | -------- |
-  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+| **Type**| **Description**|
+| -------- | -------- |
+| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 **Example**
 ```js
@@ -1054,9 +1054,9 @@ Obtains network configuration.
 
 **Return value**
 
-  | **Type**| **Description**|
-  | -------- | -------- |
-  | &nbsp;Array&lt;[WifiDeviceConfig](#wifideviceconfig)&gt; | Array of network configuration obtained.|
+| **Type**| **Description**|
+| -------- | -------- |
+| &nbsp;Array&lt;[WifiDeviceConfig](#wifideviceconfig)&gt; | Array of network configuration obtained.|
 
 **Example**
 ```js
@@ -1084,15 +1084,15 @@ Updates network configuration.
 
 **Parameters**
 
-  | **Name**| **Type**| **Mandatory**| **Description**|
-  | -------- | -------- | -------- | -------- |
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
 | config | [WifiDeviceConfig](#wifideviceconfig) | Yes| New WLAN configuration.|
 
 **Return value**
 
-  | **Type**| **Description**|
-  | -------- | -------- |
-  | number | ID of the updated network configuration. The value **-1** indicates that the operation has failed.|
+| **Type**| **Description**|
+| -------- | -------- |
+| number | ID of the updated network configuration. The value **-1** indicates that the operation has failed.|
 
 **Example**
 ```js
@@ -1125,15 +1125,15 @@ Disables network configuration.
 
 **Parameters**
 
-  | **Name**| **Type**| **Mandatory**| **Description**|
-  | -------- | -------- | -------- | -------- |
-  | netId | number | Yes| ID of the network configuration to disable.|
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| netId | number | Yes| ID of the network configuration to disable.|
 
 **Return value**
 
-  | **Type**| **Description**|
-  | -------- | -------- |
-  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+| **Type**| **Description**|
+| -------- | -------- |
+| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 **Example**
 ```js
@@ -1161,9 +1161,9 @@ Removes the configuration of all networks.
 
 **Return value**
 
-  | **Type**| **Description**|
-  | -------- | -------- |
-  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+| **Type**| **Description**|
+| -------- | -------- |
+| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 **Example**
 ```js
@@ -1190,15 +1190,15 @@ Removes the specified network configuration.
 
 **Parameters**
 
-  | **Name**| **Type**| **Mandatory**| **Description**|
-  | -------- | -------- | -------- | -------- |
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
 | id | number | Yes| ID of the network configuration to remove.|
 
 **Return value**
 
-  | **Type**| **Description**|
-  | -------- | -------- |
-  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+| **Type**| **Description**|
+| -------- | -------- |
+| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 **Example**
 ```js
@@ -1226,9 +1226,9 @@ Enables this hotspot.
 
 **Return value**
 
-  | **Type**| **Description**|
-  | -------- | -------- |
-  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+| **Type**| **Description**|
+| -------- | -------- |
+| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 **Example**
 ```js
@@ -1255,9 +1255,9 @@ Disables this hotspot.
 
 **Return value**
 
-  | **Type**| **Description**|
-  | -------- | -------- |
-  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+| **Type**| **Description**|
+| -------- | -------- |
+| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 **Example**
 ```js
@@ -1284,9 +1284,9 @@ Checks whether the hotspot supports dual band.
 
 **Return value**
 
-  | **Type**| **Description**|
-  | -------- | -------- |
-  | boolean | Returns **true** if the feature is supported; returns **false** otherwise.|
+| **Type**| **Description**|
+| -------- | -------- |
+| boolean | Returns **true** if the feature is supported; returns **false** otherwise.|
 
 **Example**
 ```js
@@ -1314,9 +1314,9 @@ Checks whether this hotspot is active.
 
 **Return value**
 
-  | **Type**| **Description**|
-  | -------- | -------- |
-  | boolean | Returns **true** if the hotspot is active; returns **false** otherwise.|
+| **Type**| **Description**|
+| -------- | -------- |
+| boolean | Returns **true** if the hotspot is active; returns **false** otherwise.|
 
 **Example**
 ```js
@@ -1344,15 +1344,15 @@ Sets hotspot configuration.
 
 **Parameters**
 
-  | **Name**| **Type**| **Mandatory**| **Description**|
-  | -------- | -------- | -------- | -------- |
-  | config | [HotspotConfig](#hotspotconfig7) | Yes| Hotspot configuration to set.|
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| config | [HotspotConfig](#hotspotconfig7) | Yes| Hotspot configuration to set.|
 
 **Return value**
 
-  | **Type**| **Description**|
-  | -------- | -------- |
-  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+| **Type**| **Description**|
+| -------- | -------- |
+| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 **Example**
 ```js
@@ -1405,9 +1405,9 @@ obtains hotspot configuration.
 
 **Return value**
 
-  | **Type**| **Description**|
-  | -------- | -------- |
-  | [HotspotConfig](#hotspotconfig7) | Hotspot configuration obtained.|
+| **Type**| **Description**|
+| -------- | -------- |
+| [HotspotConfig](#hotspotconfig7) | Hotspot configuration obtained.|
 
 **Example**
 ```js
@@ -1435,9 +1435,9 @@ Obtains information about the connected stations.
 
 **Return value**
 
-  | **Type**| **Description**|
-  | -------- | -------- |
-  | &nbsp;Array&lt;[StationInfo](#stationinfo7)&gt; | Connected stations obtained.|
+| **Type**| **Description**|
+| -------- | -------- |
+| &nbsp;Array&lt;[StationInfo](#stationinfo7)&gt; | Connected stations obtained.|
 
 **Example**
 ```js
@@ -1478,9 +1478,9 @@ Obtains P2P link information. This API uses a promise to return the result.
 
 **Return value**
 
-  | Type| Description|
-  | -------- | -------- |
-  | Promise&lt;[WifiP2pLinkedInfo](#wifip2plinkedinfo8)&gt; | Promise used to return the P2P link information obtained.|
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;[WifiP2pLinkedInfo](#wifip2plinkedinfo8)&gt; | Promise used to return the P2P link information obtained.|
 
 
 
@@ -1521,9 +1521,9 @@ Obtains P2P link information. This API uses an asynchronous callback to return t
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;[WifiP2pLinkedInfo](#wifip2plinkedinfo8)&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **0** and **data** is the P2P link information. If **err** is not **0**, an error has occurred.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| callback | AsyncCallback&lt;[WifiP2pLinkedInfo](#wifip2plinkedinfo8)&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **0** and **data** is the P2P link information. If **err** is not **0**, an error has occurred.|
 
 **Example**
 ```js
@@ -1554,9 +1554,9 @@ Obtains the current P2P group information. This API uses a promise to return the
 
 **Return value**
 
-  | Type| Description|
-  | -------- | -------- |
-  | Promise&lt;[WifiP2pGroupInfo](#wifip2pgroupinfo8)&gt; | Promise used to return the P2P group information obtained.|
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;[WifiP2pGroupInfo](#wifip2pgroupinfo8)&gt; | Promise used to return the P2P group information obtained.|
 
 
 ## wifi.getCurrentGroup<sup>8+</sup>
@@ -1571,9 +1571,9 @@ Obtains the current P2P group information. This API uses an asynchronous callbac
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;[WifiP2pGroupInfo](#wifip2pgroupinfo8)&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **0** and **data** is the group information obtained. If **err** is not **0**, an error has occurred.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| callback | AsyncCallback&lt;[WifiP2pGroupInfo](#wifip2pgroupinfo8)&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **0** and **data** is the group information obtained. If **err** is not **0**, an error has occurred.|
 
 **Example**
 ```js
@@ -1604,9 +1604,9 @@ Obtains the peer device list in the P2P connection. This API uses a promise to r
 
 **Return value**
 
-  | Type| Description|
-  | -------- | -------- |
-  | Promise&lt;[WifiP2pDevice[]](#wifip2pdevice8)&gt; | Promise used to return the peer device list.|
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;[WifiP2pDevice[]](#wifip2pdevice8)&gt; | Promise used to return the peer device list.|
 
 
 ## wifi.getP2pPeerDevices<sup>8+</sup>
@@ -1621,9 +1621,9 @@ Obtains the peer device list in the P2P connection. This API uses an asynchronou
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;[WifiP2pDevice[]](#wifip2pdevice8)&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **0** and **data** is the peer device list obtained. If **err** is not **0**, an error has occurred.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| callback | AsyncCallback&lt;[WifiP2pDevice[]](#wifip2pdevice8)&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **0** and **data** is the peer device list obtained. If **err** is not **0**, an error has occurred.|
 
 **Example**
 ```js
@@ -1684,15 +1684,15 @@ Creates a P2P group.
 
 **Parameters**
 
-  | **Name**| **Type**| Mandatory| **Description**|
-  | -------- | -------- | -------- | -------- |
-  | config | [WifiP2PConfig](#wifip2pconfig8) | Yes| Group configuration.|
+| **Name**| **Type**| Mandatory| **Description**|
+| -------- | -------- | -------- | -------- |
+| config | [WifiP2PConfig](#wifip2pconfig8) | Yes| Group configuration.|
 
 **Return value**
 
-  | Type| Description|
-  | -------- | -------- |
-  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+| Type| Description|
+| -------- | -------- |
+| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 **Example**
 ```js
@@ -1753,9 +1753,9 @@ Removes this P2P group.
 
 **Return value**
 
-  | Type| Description|
-  | -------- | -------- |
-  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+| Type| Description|
+| -------- | -------- |
+| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 **Example**
 ```js
@@ -1781,15 +1781,15 @@ Sets up a P2P connection.
 **Parameters**
 
 
-  | **Name**| **Type**| Mandatory| **Description**|
-  | -------- | -------- | -------- | -------- |
-  | config | [WifiP2PConfig](#wifip2pconfig8) | Yes| P2P group configuration.|
+| **Name**| **Type**| Mandatory| **Description**|
+| -------- | -------- | -------- | -------- |
+| config | [WifiP2PConfig](#wifip2pconfig8) | Yes| P2P group configuration.|
 
 **Return value**
 
-  | Type| Description|
-  | -------- | -------- |
-  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+| Type| Description|
+| -------- | -------- |
+| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 
 **Example**
@@ -1871,9 +1871,9 @@ Cancels this P2P connection.
 
 **Return value**
 
-  | Type| Description|
-  | -------- | -------- |
-  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+| Type| Description|
+| -------- | -------- |
+| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 **Example**
 ```js
@@ -1898,9 +1898,9 @@ Starts to discover devices.
 
 **Return value**
 
-  | Type| Description|
-  | -------- | -------- |
-  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+| Type| Description|
+| -------- | -------- |
+| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 **Example**
 ```js
@@ -1925,9 +1925,9 @@ Stops discovering devices.
 
 **Return value**
 
-  | Type| Description|
-  | -------- | -------- |
-  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+| Type| Description|
+| -------- | -------- |
+| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 **Example**
 ```js
@@ -1955,15 +1955,15 @@ Deletes a persistent group.
 **Parameters**
 
 
-  | **Name**| **Type**| Mandatory| **Description**|
-  | -------- | -------- | -------- | -------- |
-  | netId | number | Yes| ID of the group to delete.|
+| **Name**| **Type**| Mandatory| **Description**|
+| -------- | -------- | -------- | -------- |
+| netId | number | Yes| ID of the group to delete.|
 
 **Return value**
 
-  | Type| Description|
-  | -------- | -------- |
-  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+| Type| Description|
+| -------- | -------- |
+| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 **Example**
 ```js
@@ -2010,15 +2010,15 @@ Sets the device name.
 
 **Parameters**
 
-  | **Name**| **Type**| **Mandatory**| **Description**|
-  | -------- | -------- | -------- | -------- |
-  | devName | string | Yes| Device name to set.|
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| devName | string | Yes| Device name to set.|
 
 **Return value**
 
-  | **Type**| **Description**|
-  | -------- | -------- |
-  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+| **Type**| **Description**|
+| -------- | -------- |
+| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 **Example**
 ```js
@@ -2044,10 +2044,10 @@ Registers the WLAN state change events.
 
 **Parameters**
 
-  | **Name**| **Type**| **Mandatory**| **Description**|
-  | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Event type. The value is **wifiStateChange**.|
-  | callback | Callback&lt;number&gt; | Yes| Callback invoked to return the WLAN state.|
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| type | string | Yes| Event type. The value is **wifiStateChange**.|
+| callback | Callback&lt;number&gt; | Yes| Callback invoked to return the WLAN state.|
 
 **WLAN states** 
 
@@ -2071,10 +2071,10 @@ Unregisters the WLAN state change events.
 
 **Parameters**
 
-  | **Name**| **Type**| **Mandatory**| **Description**|
-  | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Event type. The value is **wifiStateChange**.|
-  | callback | Callback&lt;number&gt; | No| Callback for the WLAN state. If this parameter is not specified, all callbacks associated with the specified event will be unregistered.|
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| type | string | Yes| Event type. The value is **wifiStateChange**.|
+| callback | Callback&lt;number&gt; | No| Callback for the WLAN state. If this parameter is not specified, all callbacks associated with the specified event will be unregistered.|
 
 **Example**
 ```js
@@ -2104,10 +2104,10 @@ Registers the WLAN connection state change events.
 
 **Parameters**
 
-  | **Name**| **Type**| **Mandatory**| **Description**|
-  | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Event type. The value is **wifiConnectionChange**.|
-  | callback | Callback&lt;number&gt; | Yes| Callback invoked to return the WLAN connection state.|
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| type | string | Yes| Event type. The value is **wifiConnectionChange**.|
+| callback | Callback&lt;number&gt; | Yes| Callback invoked to return the WLAN connection state.|
 
 **WLAN connection states**
 
@@ -2129,10 +2129,10 @@ Unregisters the WLAN connection state change events.
 
 **Parameters**
 
-  | **Name**| **Type**| **Mandatory**| **Description**|
-  | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Event type. The value is **wifiConnectionChange**.|
-  | callback | Callback&lt;number&gt; | No| Callback for the WLAN connection state. If this parameter is not specified, all callbacks associated with the specified event will be unregistered.|
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| type | string | Yes| Event type. The value is **wifiConnectionChange**.|
+| callback | Callback&lt;number&gt; | No| Callback for the WLAN connection state. If this parameter is not specified, all callbacks associated with the specified event will be unregistered.|
 
 **Example**
 ```js
@@ -2161,10 +2161,10 @@ Registers the WLAN scan state change events.
 
 **Parameters**
 
-  | **Name**| **Type**| **Mandatory**| **Description**|
-  | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Event type. The value is **wifiScanStateChange**.|
-  | callback | Callback&lt;number&gt; | Yes| Callback invoked to return the WLAN scan state.|
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| type | string | Yes| Event type. The value is **wifiScanStateChange**.|
+| callback | Callback&lt;number&gt; | Yes| Callback invoked to return the WLAN scan state.|
 
 **WLAN scan states**
 
@@ -2218,10 +2218,10 @@ Registers the RSSI change events.
 
 **Parameters**
 
-  | **Name**| **Type**| **Mandatory**| **Description**|
-  | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Event type. The value is **wifiRssiChange**.|
-  | callback | Callback&lt;number&gt; | Yes| Callback invoked to return the RSSI, in dBm.|
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| type | string | Yes| Event type. The value is **wifiRssiChange**.|
+| callback | Callback&lt;number&gt; | Yes| Callback invoked to return the RSSI, in dBm.|
 
 
 ## wifi.off('wifiRssiChange')<sup>7+</sup>
@@ -2236,9 +2236,9 @@ Unregisters the RSSI change events.
 
 **Parameters**
 
-  | **Name**| **Type**| **Mandatory**| **Description**|
-  | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Event type. The value is **wifiRssiChange**.|
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| type | string | Yes| Event type. The value is **wifiRssiChange**.|
 | callback | Callback&lt;number&gt; | No| Callback for the RSSI. If this parameter is not specified, all callbacks associated with the specified event will be unregistered.|
 
 **Example**
@@ -2254,7 +2254,58 @@ wifi.on("wifiRssiChange", recvWifiRssiChangeFunc);
 
 // Unregister an event.
 wifi.off("wifiRssiChange", recvWifiRssiChangeFunc);
+
 ```
+## wifi.on('streamChange')<sup>7+</sup>
+
+on(type: "streamChange", callback: Callback&lt;number&gt;): void
+
+Registers Wi-Fi stream changes.
+
+**Required permissions**: ohos.permission.MANAGE_WIFI_CONNECTION
+
+**System capability**: SystemCapability.Communication.WiFi.STA
+
+**Parameters**
+
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| type | string | Yes| Event type. The value is **streamChange**. |
+| callback | Callback&lt;number&gt; | Yes| Callback invoked to return the Wi-Fi stream change, which can be any of the following values:<br>- **0**: No change.<br>- **1**: Downward.<br>- **2**: Upward.<br>- **3**: Bidirectional. |
+
+## wifi.off('streamChange')<sup>7+</sup>
+
+off(type: "streamChange", callback: Callback&lt;number&gt;): void
+
+Unregisters Wi-Fi stream changes.
+
+**Required permissions**: ohos.permission.MANAGE_WIFI_CONNECTION
+
+**System capability**: SystemCapability.Communication.WiFi.STA
+
+**Parameters**
+
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| type | string | Yes| Event type. The value is **streamChange**. |
+| callback | Callback&lt;number&gt; | Yes| Callback invoked to return the Wi-Fi stream change, which can be any of the following values:<br>- **0**: No change.<br>- **1**: Downward.<br>- **2**: Upward.<br>- **3**: Bidirectional. |
+
+**Example**
+```js
+import wifi from '@ohos.wifi';
+
+var recvStreamChangeFunc = result => {
+    console.info("Receive stream change event: " + result);
+}
+
+// Register an event.
+wifi.on("streamChange", recvStreamChangeFunc);
+
+// Unregister an event.
+wifi.off("streamChange", recvStreamChangeFunc);
+
+```
+
 ## wifi.on('hotspotStateChange')<sup>7+</sup>
 
 on(type: "hotspotStateChange", callback: Callback&lt;number&gt;): void
@@ -2267,10 +2318,10 @@ Registers the hotspot state change events.
 
 **Parameters**
 
-  | **Name**| **Type**| **Mandatory**| **Description**|
-  | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Event type. The value is **hotspotStateChange**.|
-  | callback | Callback&lt;number&gt; | Yes| Callback invoked to return the hotspot state.|
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| type | string | Yes| Event type. The value is **hotspotStateChange**.|
+| callback | Callback&lt;number&gt; | Yes| Callback invoked to return the hotspot state.|
 
 **Hotspot states**
 
@@ -2308,11 +2359,110 @@ Unregisters the hotspot state change events.
 
 **Parameters**
 
-  | **Name**| **Type**| **Mandatory**| **Description**|
-  | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Event type. The value is **hotspotStateChange**.|
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| type | string | Yes| Event type. The value is **hotspotStateChange**.|
 | callback | Callback&lt;number&gt; | No| Callback for the hotspot state. If this parameter is not specified, all callbacks associated with the specified event will be unregistered.|
 
+## wifi.on('hotspotStaJoin')<sup>7+</sup>
+
+on(type: "hotspotStaJoin", callback: Callback&lt;StationInfo&gt;): void
+
+Registers the connection of an STA to a Wi-Fi hotspot.
+
+**Required permissions**: ohos.permission.MANAGE_WIFI_HOTSPOT
+
+**System capability**: SystemCapability.Communication.WiFi.AP.Core
+
+**Parameters**
+
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| type | string | Yes| Event type. The value is **hotspotStaJoin**. |
+| callback | Callback&lt;StationInfo&gt; | Yes| Callback invoked when an STA is connected to a Wi-Fi hotspot. |
+
+## wifi.off('hotspotStaJoin')<sup>7+</sup>
+
+off(type: "hotspotStaJoin", callback: Callback&lt;StationInfo&gt;): void
+
+Unregisters the connection of an STA to a Wi-Fi hotspot.
+
+**Required permissions**: ohos.permission.MANAGE_WIFI_HOTSPOT
+
+**System capability**: SystemCapability.Communication.WiFi.AP.Core
+
+**Parameters**
+
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| type | string | Yes| Event type. The value is **hotspotStaJoin**. |
+| callback | Callback&lt;StationInfo&gt; | Yes| Callback for the connection of an STA to a Wi-Fi hotspot. |
+
+  **Example**
+```js
+import wifi from '@ohos.wifi';
+
+var recvHotspotStaJoinFunc = result => {
+    console.info("Receive hotspot sta join event: " + result);
+}
+
+// Register an event.
+wifi.on("hotspotStaJoin", recvHotspotStaJoinFunc);
+
+// Unregister an event.
+wifi.off("hotspotStaJoin", recvHotspotStaJoinFunc);
+
+```
+
+## wifi.on('hotspotStaLeave')<sup>7+</sup>
+
+on(type: "hotspotStaLeave", callback: Callback&lt;StationInfo&gt;): void
+
+Registers the disconnection of an STA from a Wi-Fi hotspot.
+
+**Required permissions**: ohos.permission.MANAGE_WIFI_HOTSPOT
+
+**System capability**: SystemCapability.Communication.WiFi.AP.Core
+
+**Parameters**
+
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| type | string | Yes| Event type. The value is **hotspotStaLeave**. |
+| callback | Callback&lt;StationInf]&gt; | Yes| Callback invoked when an STA is disconnected from a Wi-Fi hotspot. |
+
+## wifi.off('hotspotStaLeave')<sup>7+</sup>
+
+off(type: "hotspotStaLeave", callback: Callback&lt;StationInfo&gt;): void
+
+Unregisters the disconnection of an STA from a Wi-Fi hotspot.
+
+**Required permissions**: ohos.permission.MANAGE_WIFI_HOTSPOT
+
+**System capability**: SystemCapability.Communication.WiFi.AP.Core
+
+**Parameters**
+
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| type | string | Yes| Event type. The value is **hotspotStaLeave**. |
+| callback | Callback&lt;StationInf]&gt; | Yes| Callback for the disconnection of an STA from a Wi-Fi hotspot. |
+
+  **Example**
+```js
+import wifi from '@ohos.wifi';
+
+var recvHotspotStaLeaveFunc = result => {
+    console.info("Receive hotspot sta leave event: " + result);
+}
+
+// Register an event.
+wifi.on("hotspotStaLeave", recvHotspotStaLeaveFunc);
+
+// Unregister an event.
+wifi.off("hotspotStaLeave", recvHotspotStaLeaveFunc);
+
+```
 
 ## wifi.on('p2pStateChange')<sup>8+</sup>
 
@@ -2326,10 +2476,10 @@ Registers the P2P state change events.
 
 **Parameters**
 
-  | **Name**| **Type**| **Mandatory**| **Description**|
-  | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Event type. The value is **p2pStateChange**.|
-  | callback | Callback&lt;number&gt; | Yes| Callback invoked to return the P2P state.|
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| type | string | Yes| Event type. The value is **p2pStateChange**.|
+| callback | Callback&lt;number&gt; | Yes| Callback invoked to return the P2P state.|
 
 **P2P states**
 
@@ -2353,9 +2503,9 @@ Unregisters the P2P state change events.
 
 **Parameters**
 
-  | **Name**| **Type**| **Mandatory**| **Description**|
-  | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Event type. The value is **p2pStateChange**.|
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| type | string | Yes| Event type. The value is **p2pStateChange**.|
 | callback | Callback&lt;number&gt; | No| Callback for the P2P state. If this parameter is not specified, all callbacks associated with the specified event will be unregistered.|
 
 **Example**
@@ -2373,7 +2523,7 @@ wifi.on("p2pStateChange", recvP2pStateChangeFunc);
 wifi.off("p2pStateChange", recvP2pStateChangeFunc);
 ```
 
-  ## wifi.on('p2pConnectionChange')<sup>8+</sup>
+## wifi.on('p2pConnectionChange')<sup>8+</sup>
 
 on(type: "p2pConnectionChange", callback: Callback&lt;WifiP2pLinkedInfo&gt;): void
 
@@ -2385,10 +2535,10 @@ Registers the P2P connection state change events.
 
 **Parameters**
 
-  | **Name**| **Type**| **Mandatory**| **Description**|
-  | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Event type. The value is **p2pConnectionChange**.|
-  | callback | Callback&lt;[WifiP2pLinkedInfo](#wifip2plinkedinfo8)&gt; | Yes| Callback invoked to return the P2P connection state.|
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| type | string | Yes| Event type. The value is **p2pConnectionChange**.|
+| callback | Callback&lt;[WifiP2pLinkedInfo](#wifip2plinkedinfo8)&gt; | Yes| Callback invoked to return the P2P connection state.|
 
 
 ## wifi.off('p2pConnectionChange')<sup>8+</sup>
@@ -2403,9 +2553,9 @@ Unregisters the P2P connection state change events.
 
 **Parameters**
 
-  | **Name**| **Type**| **Mandatory**| **Description**|
-  | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Event type. The value is **p2pConnectionChange**.|
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| type | string | Yes| Event type. The value is **p2pConnectionChange**.|
 | callback | Callback&lt;[WifiP2pLinkedInfo](#wifip2plinkedinfo8)&gt; | No| Callback for the P2P connection state. If this parameter is not specified, all callbacks associated with the specified event will be unregistered.|
 
 **Example**
@@ -2435,10 +2585,10 @@ Registers the P2P device state change events.
 
 **Parameters**
 
-  | **Name**| **Type**| **Mandatory**| **Description**|
-  | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Event type. The value is **p2pDeviceChange**.|
-  | callback | Callback&lt;[WifiP2pDevice](#wifip2pdevice8)&gt; | Yes| Callback invoked to return the P2P device state.|
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| type | string | Yes| Event type. The value is **p2pDeviceChange**.|
+| callback | Callback&lt;[WifiP2pDevice](#wifip2pdevice8)&gt; | Yes| Callback invoked to return the P2P device state.|
 
 
 ## wifi.off('p2pDeviceChange')<sup>8+</sup>
@@ -2453,9 +2603,9 @@ Unregisters the P2P device state change events.
 
 **Parameters**
 
-  | **Name**| **Type**| **Mandatory**| **Description**|
-  | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Event type. The value is **p2pDeviceChange**.|
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| type | string | Yes| Event type. The value is **p2pDeviceChange**.|
 | callback | Callback&lt;[WifiP2pDevice](#wifip2pdevice8)&gt; | No| Callback for the P2P device state. If this parameter is not specified, all callbacks associated with the specified event will be unregistered.|
 
 **Example**
@@ -2463,7 +2613,7 @@ Unregisters the P2P device state change events.
 import wifi from '@ohos.wifi';
 
 var recvP2pDeviceChangeFunc = result => {
-    console.info("Receive recv p2p device change event: " + result);
+    console.info("Receive p2p device change event: " + result);
 }
 
 // Register an event.
@@ -2485,9 +2635,9 @@ Registers the P2P peer device state change events.
 
 **Parameters**
 
-  | **Name**| **Type**| **Mandatory**| **Description**|
-  | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Event type. The value is **p2pPeerDeviceChange**.|
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| type | string | Yes| Event type. The value is **p2pPeerDeviceChange**.|
 | callback | Callback&lt;[WifiP2pDevice[]](#wifip2pdevice8)&gt; | Yes| Callback invoked to return the P2P peer device state.|
 
 
@@ -2503,9 +2653,9 @@ Unregisters the P2P peer device state change events.
 
 **Parameters**
 
-  | **Name**| **Type**| **Mandatory**| **Description**|
-  | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Event type. The value is **p2pPeerDeviceChange**.|
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| type | string | Yes| Event type. The value is **p2pPeerDeviceChange**.|
 | callback | Callback&lt;[WifiP2pDevice[]](#wifip2pdevice8)&gt; | No| Callback for the peer device state. If this parameter is not specified, all callbacks associated with the specified event will be unregistered.|
 
 **Example**
@@ -2513,7 +2663,7 @@ Unregisters the P2P peer device state change events.
 import wifi from '@ohos.wifi';
 
 var recvP2pPeerDeviceChangeFunc = result => {
-    console.info("Receive recv p2p peer device change event: " + result);
+    console.info("Receive p2p peer device change event: " + result);
 }
 
 // Register an event.
@@ -2535,10 +2685,10 @@ Registers the P2P persistent group state change events.
 
 **Parameters**
 
-  | **Name**| **Type**| **Mandatory**| **Description**|
-  | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Event type. The value is **p2pPersistentGroupChange**.|
-  | callback | Callback&lt;void&gt; | Yes| Callback invoked to return the P2P persistent group state.|
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| type | string | Yes| Event type. The value is **p2pPersistentGroupChange**.|
+| callback | Callback&lt;void&gt; | Yes| Callback invoked to return the P2P persistent group state.|
 
 
 ## wifi.off('p2pPersistentGroupChange')<sup>8+</sup>
@@ -2553,9 +2703,9 @@ Unregisters the P2P persistent group state change events.
 
 **Parameters**
 
-  | **Name**| **Type**| **Mandatory**| **Description**|
-  | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Event type. The value is **p2pPersistentGroupChange**.|
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| type | string | Yes| Event type. The value is **p2pPersistentGroupChange**.|
 | callback | Callback&lt;void&gt; | No| Callback for the P2P persistent group state. If this parameter is not specified, all callbacks associated with the specified event will be unregistered.|
 
 **Example**
@@ -2563,7 +2713,7 @@ Unregisters the P2P persistent group state change events.
 import wifi from '@ohos.wifi';
 
 var recvP2pPersistentGroupChangeFunc = result => {
-    console.info("Receive recv p2p persistent group change event: " + result);
+    console.info("Receive p2p persistent group change event: " + result);
 }
 
 // Register an event.
@@ -2586,10 +2736,10 @@ Registers the P2P device discovery state change events.
 
 **Parameters**
 
-  | **Name**| **Type**| **Mandatory**| **Description**|
-  | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Event type. The value is **p2pDiscoveryChange**.|
-  | callback | Callback&lt;number&gt; | Yes| Callback invoked to return the P2P device discovery state.|
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| type | string | Yes| Event type. The value is **p2pDiscoveryChange**.|
+| callback | Callback&lt;number&gt; | Yes| Callback invoked to return the P2P device discovery state.|
 
 **P2P discovered device states**
 
@@ -2611,9 +2761,9 @@ Unregisters the P2P device discovery state change events.
 
 **Parameters**
 
-  | **Name**| **Type**| **Mandatory**| **Description**|
-  | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Event type. The value is **p2pDiscoveryChange**.|
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| type | string | Yes| Event type. The value is **p2pDiscoveryChange**.|
 | callback | Callback&lt;number&gt; | No| Callback for the P2P device discovery state. If this parameter is not specified, all callbacks associated with the specified event will be unregistered.|
 
 **Example**
@@ -2621,7 +2771,7 @@ Unregisters the P2P device discovery state change events.
 import wifi from '@ohos.wifi';
 
 var recvP2pDiscoveryChangeFunc = result => {
-    console.info("Receive recv p2p discovery change event: " + result);
+    console.info("Receive p2p discovery change event: " + result);
 }
 
 // Register an event.

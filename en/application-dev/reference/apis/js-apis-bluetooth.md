@@ -5,7 +5,7 @@ The **Bluetooth** module provides classic Bluetooth capabilities and Bluetooth L
 > **NOTE**
 >
 > - The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-> - The APIs provided by this module are no longer maintained since API version 9. You are advised to use [bluetoothManager](js-apis-bluetoothManager.md).
+> - The APIs provided by this module are no longer maintained since API version 9. You are advised to use profile APIs of [@ohos.bluetooth.ble](js-apis-bluetooth-ble.md).
 
 
 
@@ -215,7 +215,7 @@ let result = bluetooth.pairDevice("XX:XX:XX:XX:XX:XX");
 
 getProfileConnState(profileId: ProfileId): ProfileConnectionState
 
-Obtains the connection status of a specified profile.
+Obtains the connection status of the specified profile.
 
 > **NOTE**
 > This API is supported since API version 8 and deprecated since API version 9. You are advised to use [bluetoothManager.getProfileConnectionState](js-apis-bluetoothManager.md#bluetoothmanagergetprofileconnectionstate).
@@ -664,7 +664,7 @@ bluetooth.off('pinRequired', onReceiveEvent);
 
 on(type: "bondStateChange", callback: Callback&lt;BondStateParam&gt;): void
 
-Subscribes to the Bluetooth pairing state change events.
+Subscribes to the Bluetooth pairing state changes.
 
 > **NOTE**<br>
 > This API is supported since API version 8 and deprecated since API version 9. You are advised to use [bluetoothManager.on('bondStateChange')](js-apis-bluetoothManager.md#bluetoothmanageronbondstatechange).
@@ -698,7 +698,7 @@ bluetooth.on('bondStateChange', onReceiveEvent);
 
 off(type: "bondStateChange", callback?: Callback&lt;BondStateParam&gt;): void
 
-Unsubscribes from the Bluetooth pairing state change events.
+Unsubscribes from the Bluetooth pairing state changes.
 
 > **NOTE**<br>
 > This API is supported since API version 8 and deprecated since API version 9. You are advised to use [bluetoothManager.off('bondStateChange')](js-apis-bluetoothManager.md#bluetoothmanageroffbondstatechange).
@@ -733,7 +733,7 @@ bluetooth.off('bondStateChange', onReceiveEvent);
 
 on(type: "stateChange", callback: Callback&lt;BluetoothState&gt;): void
 
-Subscribes to the Bluetooth connection state change events.
+Subscribes to the Bluetooth connection state changes.
 
 > **NOTE**<br>
 > This API is supported since API version 8 and deprecated since API version 9. You are advised to use [bluetoothManager.on('stateChange')](js-apis-bluetoothManager.md#bluetoothmanageronstatechange).
@@ -767,7 +767,7 @@ bluetooth.on('stateChange', onReceiveEvent);
 
 off(type: "stateChange", callback?: Callback&lt;BluetoothState&gt;): void
 
-Unsubscribes from the Bluetooth connection state change events.
+Unsubscribes from the Bluetooth connection state changes.
 
 > **NOTE**<br>
 > This API is supported since API version 8 and deprecated since API version 9. You are advised to use [bluetoothManager.off('stateChange')](js-apis-bluetoothManager.md#bluetoothmanageroffstatechange).
@@ -1145,7 +1145,7 @@ let a2dpSrc = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_A2DP_SOURCE);
 
 ## bluetooth.BLE
 
-### bluetooth.BLE.createGattServer<sup>(deprecated)</sup>
+### createGattServer<sup>(deprecated)</sup>
 
 createGattServer(): GattServer
 
@@ -1169,7 +1169,7 @@ let gattServer = bluetooth.BLE.createGattServer();
 ```
 
 
-### bluetooth.BLE.createGattClientDevice<sup>(deprecated)</sup>
+### createGattClientDevice<sup>(deprecated)</sup>
 
 createGattClientDevice(deviceId: string): GattClientDevice
 
@@ -1199,7 +1199,7 @@ let device = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
 ```
 
 
-### bluetooth.BLE.getConnectedBLEDevices<sup>(deprecated)</sup>
+### getConnectedBLEDevices<sup>(deprecated)</sup>
 
 getConnectedBLEDevices(): Array&lt;string&gt;
 
@@ -1225,7 +1225,7 @@ let result = bluetooth.BLE.getConnectedBLEDevices();
 ```
 
 
-### bluetooth.BLE.startBLEScan<sup>(deprecated)</sup>
+### startBLEScan<sup>(deprecated)</sup>
 
 startBLEScan(filters: Array&lt;ScanFilter&gt;, options?: ScanOptions): void
 
@@ -1271,7 +1271,7 @@ bluetooth.BLE.startBLEScan(
 ```
 
 
-### bluetooth.BLE.stopBLEScan<sup>(deprecated)</sup>
+### stopBLEScan<sup>(deprecated)</sup>
 
 stopBLEScan(): void
 
@@ -1295,7 +1295,7 @@ bluetooth.BLE.stopBLEScan();
 ```
 
 
-### bluetooth.BLE.on('BLEDeviceFind')<sup>(deprecated)</sup>
+### on('BLEDeviceFind')<sup>(deprecated)</sup>
 
 on(type: "BLEDeviceFind", callback: Callback&lt;Array&lt;ScanResult&gt;&gt;): void
 
@@ -1329,7 +1329,7 @@ bluetooth.BLE.on('BLEDeviceFind', onReceiveEvent);
 ```
 
 
-### bluetooth.BLE.off('BLEDeviceFind')<sup>(deprecated)</sup>
+### off('BLEDeviceFind')<sup>(deprecated)</sup>
 
 off(type: "BLEDeviceFind", callback?: Callback&lt;Array&lt;ScanResult&gt;&gt;): void
 
@@ -1502,7 +1502,7 @@ let ret = a2dpSrc.disconnect('XX:XX:XX:XX:XX:XX');
 
 on(type: "connectionStateChange", callback: Callback&lt;[StateChangeParam](#StateChangeParam)&gt;): void
 
-Subscribes to the A2DP connection state change events.
+Subscribes to the A2DP connection state changes.
 
 > **NOTE**<br>
 > This API is supported since API version 8 and deprecated since API version 9. You are advised to use [bluetoothManager.A2dpSourceProfile.on('connectionStateChange')](js-apis-bluetoothManager.md#onconnectionstatechange).
@@ -1535,7 +1535,7 @@ a2dpSrc.on('connectionStateChange', onReceiveEvent);
 
 off(type: "connectionStateChange", callback?: Callback&lt;[StateChangeParam](#StateChangeParam)&gt;): void
 
-Unsubscribes from the A2DP connection state change events.
+Unsubscribes from the A2DP connection state changes.
 
 > **NOTE**<br>
 > This API is supported since API version 8 and deprecated since API version 9. You are advised to use [bluetoothManager.A2dpSourceProfile.off('connectionStateChange')](js-apis-bluetoothManager.md#offconnectionstatechange).
@@ -1673,7 +1673,7 @@ let ret = hfpAg.disconnect('XX:XX:XX:XX:XX:XX');
 
 on(type: "connectionStateChange", callback: Callback&lt;[StateChangeParam](#StateChangeParam)&gt;): void
 
-Subscribes to the HFP connection state change events.
+Subscribes to the HFP connection state changes.
 
 > **NOTE**<br>
 > This API is supported since API version 8 and deprecated since API version 9. You are advised to use [bluetoothManager.HandsFreeAudioGatewayProfile.on('connectionStateChange')](js-apis-bluetoothManager.md#onconnectionstatechange-1).
@@ -1707,7 +1707,7 @@ hfpAg.on('connectionStateChange', onReceiveEvent);
 
 off(type: "connectionStateChange", callback?: Callback&lt;[StateChangeParam](#StateChangeParam)&gt;): void
 
-Unsubscribes from the HFP connection state change events.
+Unsubscribes from the HFP connection state changes.
 
 > **NOTE**<br>
 > This API is supported since API version 8 and deprecated since API version 9. You are advised to use [bluetoothManager.HandsFreeAudioGatewayProfile.off('connectionStateChange')](js-apis-bluetoothManager.md#offconnectionstatechange-1).
@@ -2394,7 +2394,7 @@ gattServer.off("descriptorWrite");
 
 on(type: "connectStateChange", callback: Callback&lt;BLEConnectChangedState&gt;): void
 
-Subscribes to the BLE connection state change events.
+Subscribes to the BLE connection state changes.
 
 > **NOTE**<br>
 > This API is supported since API version 7 and deprecated since API version 9. You are advised to use [bluetoothManager.GattServer.on('connectStateChange')](js-apis-bluetoothManager.md#onconnectstatechange).
@@ -2431,7 +2431,7 @@ gattServer.on("connectStateChange", Connected);
 
 off(type: "connectStateChange", callback?: Callback&lt;BLEConnectChangedState&gt;): void
 
-Unsubscribes from the BLE connection state change events.
+Unsubscribes from the BLE connection state changes.
 
 > **NOTE**<br>
 > This API is supported since API version 7 and deprecated since API version 9. You are advised to use [bluetoothManager.GattServer.off('connectStateChange')](js-apis-bluetoothManager.md#offconnectstatechange).
@@ -2995,7 +2995,7 @@ device.setNotifyCharacteristicChanged(characteristic, false);
 
 on(type: "BLECharacteristicChange", callback: Callback&lt;BLECharacteristic&gt;): void
 
-Subscribes to the BLE characteristic change events. The client can receive a notification from the server only after the **setNotifyCharacteristicChanged** method is called.
+Subscribes to the BLE characteristic changes. The client can receive a notification from the server only after the **setNotifyCharacteristicChanged** method is called.
 
 > **NOTE**<br>
 > This API is supported since API version 7 and deprecated since API version 9. You are advised to use [bluetoothManager.GattClientDevice.on('BLECharacteristicChange')](js-apis-bluetoothManager.md#onblecharacteristicchange).
@@ -3032,7 +3032,7 @@ device.on('BLECharacteristicChange', CharacteristicChange);
 
 off(type: "BLECharacteristicChange", callback?: Callback&lt;BLECharacteristic&gt;): void
 
-Unsubscribes from the BLE characteristic change events.
+Unsubscribes from the BLE characteristic changes.
 
 > **NOTE**<br>
 > This API is supported since API version 7 and deprecated since API version 9. You are advised to use [bluetoothManager.GattClientDevice.off('BLECharacteristicChange')](js-apis-bluetoothManager.md#offblecharacteristicchange).
@@ -3064,7 +3064,7 @@ device.off('BLECharacteristicChange');
 
 on(type: "BLEConnectionStateChange", callback: Callback&lt;BLEConnectChangedState&gt;): void
 
-Subscribes to the BLE connection state change events.
+Subscribes to the BLE connection state changes.
 
 > **NOTE**<br>
 > This API is supported since API version 7 and deprecated since API version 9. You are advised to use [bluetoothManager.GattClientDevice.on('BLEConnectionStateChange')](js-apis-bluetoothManager.md#onbleconnectionstatechange).
@@ -3100,7 +3100,7 @@ device.on('BLEConnectionStateChange', ConnectStateChanged);
 
 off(type: "BLEConnectionStateChange", callback?: Callback&lt;BLEConnectChangedState&gt;): void
 
-Unsubscribes from the BLE connection state change events.
+Unsubscribes from the BLE connection state changes.
 
 > **NOTE**<br>
 > This API is supported since API version 7 and deprecated since API version 9. You are advised to use [bluetoothManager.GattClientDevice.off('BLEConnectionStateChange')](js-apis-bluetoothManager.md#offbleconnectionstatechange).

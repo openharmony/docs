@@ -28,6 +28,7 @@
 
 | 名称 | 描述 |
 | -------- | -------- |
+| [OH_OrderType](_r_d_b.md#oh_ordertype) | 排序方式。 |
 | [OH_Predicates](_r_d_b.md#oh_predicates) | 表示谓词。 |
 
 
@@ -35,4 +36,4 @@
 
 | 名称 | 描述 |
 | -------- | -------- |
-| [OH_OrderType](_r_d_b.md#oh_ordertype)&nbsp;{&nbsp;ASC&nbsp;=&nbsp;0,&nbsp;DESC&nbsp;=&nbsp;1&nbsp;} | 排序方式。 |
+| [OH_OrderType](_r_d_b.md#oh_ordertype) { ASC = 0, DESC = 1 } | 排序方式。 |

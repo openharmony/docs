@@ -6,7 +6,7 @@ OpenHarmony provides two solutions for video playback development:
 
 - <Video\> component: encapsulates basic video playback capabilities. It can be used to play video files after the data source and basic information are set. However, its scalability is poor. This component is provided by ArkUI. For details about how to use this component for video playback development, see [Video Component](../ui/arkts-common-components-video-player.md).
 
-In this topic, you will learn how to use the AVPlayer to develop a video playback service that plays a complete video file. If you want the application to continue playing the video in the background or when the screen is off, you must use the [AVSession](avsession-overview.md) and [continuous task](../task-management/continuous-task-dev-guide.md) to prevent the playback from being forcibly interrupted by the system.
+In this topic, you will learn how to use the AVPlayer to develop a video playback service that plays a complete video file. If you want the application to continue playing the video in the background or when the screen is off, you must use the [AVSession](avsession-overview.md) and [continuous task](../task-management/continuous-task.md) to prevent the playback from being forcibly interrupted by the system.
 
 ## Development Guidelines
 
@@ -46,7 +46,7 @@ Read [AVPlayer](../reference/apis/js-apis-media.md#avplayer9) for the API refere
    >
    > The URL in the code snippet below is for reference only. You need to check the media asset validity and set the URL based on service requirements.
    > 
-   > - If local files are used for playback, ensure that the files are available and the application sandbox path is used for access. For details about how to obtain the application sandbox path, see [Obtaining the Application Development Path](../application-models/application-context-stage.md#obtaining-the-application-development-path). For details about the application sandbox and how to push files to the application sandbox, see [File Management](../file-management/app-sandbox-directory.md).
+   > - If local files are used for playback, ensure that the files are available and the application sandbox path is used for access. For details about how to obtain the application sandbox path, see [Obtaining Application File Paths](../application-models/application-context-stage.md#obtaining-application-file-paths). For details about the application sandbox and how to push files to the application sandbox, see [File Management](../file-management/app-sandbox-directory.md).
    > 
    > - If a network playback path is used, you must request the ohos.permission.INTERNET [permission](../security/accesstoken-guidelines.md).
    > 

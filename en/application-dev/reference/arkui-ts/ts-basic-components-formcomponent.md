@@ -12,10 +12,6 @@ The **FormComponent** is used to display widgets.
 
 ## Required Permissions
 
-ohos.permission.GET_BUNDLE_INFO
-
-ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
-
 ohos.permission.REQUIRE_FORM
 
 
@@ -42,7 +38,7 @@ Creates a **FormComponent** instance to display the provided widget.
 
 | Name   | Type                       | Mandatory| Description                                                               |
 | --------- | ------------------------------- | ---- | ----------------------------------------------------------------------- |
-| id        | number                          | Yes  | Widget ID. Set this parameter to **0** for a new widget.                                              |
+| id        | number                          | Yes  | Widget ID. Set this parameter to **0** for a new widget.<br>**NOTE**<br>Different widget hosts cannot use the same ID.<br>If a widget host uses the same ID for two widgets, the one added later is displayed.                                       |
 | name      | string                          | Yes  | Widget name.                                                             |
 | bundle    | string                          | Yes  | Bundle name of the widget.                                                         |
 | ability   | string                          | Yes  | Ability name of the widget.                                                  |

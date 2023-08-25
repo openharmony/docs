@@ -185,9 +185,9 @@ java -jar app_unpacking_tool.jar --mode <option> --appqf-path <options> --out-pa
 | appName                        | String  | 标识显示在桌面上的ability的label                                                        | NA          |
 | appNameEN                      | String  | 标识显示在桌面上的ability的label                                                        | NA          |
 | releaseType                    | String  | 标识应用运行需要的API目标版本的类型                                                           | NA          |
-| shellVersionCode               | String  | 标识HarmonyOS中的API版本                                                            | NA          |
-| shellVersionName               | String  | 标识HarmonyOS中的API版本名称                                                          | NA          |
-| multiFrameworkBundle           | String  | 标识双框架下app的bundleName                                                          | NA          |
+| shellVersionCode               | String  | 标识应用的API版本号                                                          | NA          |
+| shellVersionName               | String  | 标识应用的API版本名称                                                          | NA          |
+| multiFrameworkBundle           | boolean | 标识应用框架                                                         | NA          |
 | debug                          | boolean | 标识应用是否可调试                                                                     | NA          |
 | icon                           | String  | 标识应用的图标路径                                                                     | NA          |
 | label                          | String  | 标识应用的label                                                                    | NA          |

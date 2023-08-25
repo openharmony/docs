@@ -26,6 +26,13 @@ For details about the APIs, see [native_buffer](../reference/native-apis/_o_h___
 
 The following describes how to use the native APIs provided by **NativeBuffer** to create an **OH_NativeBuffer** instance, obtain memory properties, and map the corresponding ION memory to the process address space.
 
+**Adding Dynamic Link Libraries**
+
+Add the following library to **CMakeLists.txt**:
+```txt
+libnative_buffer.so
+```
+
 **Header File**
 ```c++
 #include <native_buffer/native_buffer.h>
@@ -51,14 +58,14 @@ The following describes how to use the native APIs provided by **NativeBuffer** 
     if (ret != 0) {
         std::cout << "OH_NativeBuffer_Map Failed" << std::endl;
     }
-
-    // Unmap the ION memory from the process address space when it is no longer needed.
+    
+// Unmap the ION memory from the process address space when it is no longer needed.
     ret = OH_NativeBuffer_Unmap(buffer);
     if (ret != 0) {
         std::cout << "OH_NativeBuffer_Unmap Failed" << std::endl;
     }
     ```
-
+    
 3. Obtain the memory properties.
     ```c++
     // Obtain the properties of the OH_NativeBuffer instance.

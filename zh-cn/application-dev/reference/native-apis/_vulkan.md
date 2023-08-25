@@ -28,8 +28,8 @@
 | -------- | -------- |
 | [VkSurfaceCreateInfoOHOS](_vk_surface_create_info_o_h_o_s.md) | 包含创建Vulkan Surface时必要的参数。 |
 | [VkNativeBufferUsageOHOS](_vk_native_buffer_usage_o_h_o_s.md) | 提供OpenHarmony NativeBuffer用途的说明。 |
-| [VkNativeBufferPropertiesOHOS](_vk_native_buffer_properties_o_h_o_s.md) | 包含了NaitveBuffer的属性。 |
-| [VkNativeBufferFormatPropertiesOHOS](_vk_native_buffer_format_properties_o_h_o_s.md) | 包含了NaitveBuffer的一些格式属性。 |
+| [VkNativeBufferPropertiesOHOS](_vk_native_buffer_properties_o_h_o_s.md) | 包含了NativeBuffer的属性。 |
+| [VkNativeBufferFormatPropertiesOHOS](_vk_native_buffer_format_properties_o_h_o_s.md) | 包含了NativeBuffer的一些格式属性。 |
 | [VkImportNativeBufferInfoOHOS](_vk_import_native_buffer_info_o_h_o_s.md) | 包含了OH_NativeBuffer结构体的指针。 |
 | [VkMemoryGetNativeBufferInfoOHOS](_vk_memory_get_native_buffer_info_o_h_o_s.md) | 用于从Vulkan内存中获取OH_NativeBuffer。 |
 | [VkExternalFormatOHOS](_vk_external_format_o_h_o_s.md) | 表示外部定义的格式标识符。 |
@@ -56,8 +56,8 @@
 | [VkSurfaceCreateInfoOHOS](#vksurfacecreateinfoohos) | 包含创建Vulkan Surface时必要的参数。 |
 | VkResult ([VKAPI_PTR *PFN_vkCreateSurfaceOHOS](#pfn_vkcreatesurfaceohos)) (VkInstance instance, const [VkSurfaceCreateInfoOHOS](_vk_surface_create_info_o_h_o_s.md) \*pCreateInfo, const VkAllocationCallbacks \*pAllocator, VkSurfaceKHR \*pSurface) | 创建Vulkan Surface的函数指针定义。 |
 | [VkNativeBufferUsageOHOS](#vknativebufferusageohos) | 提供OpenHarmony NativeBuffer用途的说明。 |
-| [VkNativeBufferPropertiesOHOS](#vknativebufferpropertiesohos) | 包含了NaitveBuffer的属性。 |
-| [VkNativeBufferFormatPropertiesOHOS](#vknativebufferformatpropertiesohos) | 包含了NaitveBuffer的一些格式属性。 |
+| [VkNativeBufferPropertiesOHOS](#vknativebufferpropertiesohos) | 包含了NativeBuffer的属性。 |
+| [VkNativeBufferFormatPropertiesOHOS](#vknativebufferformatpropertiesohos) | 包含了NativeBuffer的一些格式属性。 |
 | [VkImportNativeBufferInfoOHOS](#vkimportnativebufferinfoohos) | 包含了OH_NativeBuffer结构体的指针。 |
 | [VkMemoryGetNativeBufferInfoOHOS](#vkmemorygetnativebufferinfoohos) | 用于从Vulkan内存中获取OH_NativeBuffer。 |
 | [VkExternalFormatOHOS](#vkexternalformatohos) | 表示外部定义的格式标识符。 |
@@ -324,7 +324,7 @@ typedef struct VkNativeBufferFormatPropertiesOHOS VkNativeBufferFormatProperties
 
 **描述:**
 
-包含了NaitveBuffer的一些格式属性。
+包含了NativeBuffer的一些格式属性。
 
 
 ### VkNativeBufferPropertiesOHOS
@@ -336,7 +336,7 @@ typedef struct VkNativeBufferPropertiesOHOS VkNativeBufferPropertiesOHOS
 
 **描述:**
 
-包含了NaitveBuffer的属性。
+包含了NativeBuffer的属性。
 
 
 ### VkNativeBufferUsageOHOS

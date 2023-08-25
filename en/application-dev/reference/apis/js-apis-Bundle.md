@@ -646,7 +646,7 @@ This is a system API.
 ```ts
 let bundleName = "com.example.myapplication";
 
-bundleManager.setApplicationEnabled(bundleName, false).then(()=> {
+bundle.setApplicationEnabled(bundleName, false).then(()=> {
     console.info('setApplicationEnabled successfully.');
 }).catch(err=> {
     console.error('setApplicationEnabled failed.');
@@ -767,7 +767,7 @@ This is a system API.
 
 ```ts
 let permission = "ohos.permission.GET_BUNDLE_INFO";
-bundleManager.getPermissionDef(permission, (err, data) => {
+bundle.getPermissionDef(permission, (err, data) => {
     if (err) {
         console.error('getPermissionDef failed:' + err.message);
     } else {

@@ -30,6 +30,8 @@ Defines **Params** (specifying the action that can be performed) in the Want.
 | CONTENT_TITLE_KEY<sup>10+</sup>       | ohos.extra.param.key.contentTitle  | Action of sharing the content title. |
 | SHARE_ABSTRACT_KEY<sup>10+</sup>      | ohos.extra.param.key.shareAbstract | Action of sharing the abstract. |
 | SHARE_URL_KEY<sup>10+</sup>           | ohos.extra.param.key.shareUrl      | Action of sharing the URL. |
+| SUPPORT_CONTINUE_PAGE_STACK_KEY<sup>10+</sup>    | ohos.extra.param.key.supportContinuePageStack  | Whether to migrate page stack information during cross-device migration. The default value is **true**, indicating that page stack information is automatically migrated.|
+| SUPPORT_CONTINUE_SOURCE_EXIT_KEY<sup>10+</sup>  | ohos.extra.param.key.supportContinueSourceExit      | Whether to exit the application on the source device during cross-device migration. The default value is **true**, indicating that the application on the source device automatically exits.|
 
 
 ## wantConstant.Flags

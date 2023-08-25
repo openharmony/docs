@@ -17,7 +17,7 @@ The HAP provides HAP build functions and supports FA and stage models.
 
 ## How to Develop
 
-### Templates
+### OpenHarmony Templates
 #### ohos_hap
 
 This template declares a HAP target, which generates a HAP that will be packaged into the system image.
@@ -27,8 +27,8 @@ This template declares a HAP target, which generates a HAP that will be packaged
 | hap_profile | Configuration file of the HAP. It is **config.json** for the FA model and **module.json** for the stage model.|
 | raw_assets | Raw assets, which are directly copied to the **assets** directory of the HAP.|
 | resources | Resource files, which are stored in the **assets/entry/resources** directory after build.|
-| js_assets | JS resources, which are stored in the **assets/js/default** directory after built with Ace.|
-| ets_assets | eTS resources, which are stored in the **assets/js/default** directory after built with Ace.|
+| js_assets | JS resources, which are stored in the **assets/js/default** directory after built.|
+| ets_assets | eTS resources, which are stored in the **assets/js/default** directory after built.|
 | deps | Dependencies of the target.|
 | shared_libraries | Native libraries on which the target depends.|
 | hap_name | HAP name, which is optional. By default, it is the target name.|
@@ -55,7 +55,7 @@ Declares the AppScope module of the HAP. The **app_profile** and **sources** var
 | sources | Resources in the AppScope module of the HAP. This variable is used only in the stage model.|
 
 #### ohos_js_assets
-Provides JS or eTS code, which is stored in the **assets/js/default** directory after built with Ace. In the stage model, this template is stored in the **assets/js** or **assets/ets** directory, depending on the programming language.
+Provides JS or eTS code, which is stored in the **assets/js/default** directory after built. In the stage model, this template is stored in the **assets/js** or **assets/ets** directory, depending on the programming language.
 
 | Variable| Description|
 | --------- | ---- |
@@ -84,7 +84,7 @@ Resource files, which are stored in the **assets/entry/resources** directory for
 
 1. Save the developed application example to the **applications/standard/** directory.
 
-2. Configure the GN script **applications/standard/example/BUILD.gn**. <br>The following is an example of the FA model. For details about more **BUILD.gn** configurations, see [GN Script Configuration Example](#gn-script-configuration-example).
+2. Configure the GN script **applications/standard/example/BUILD.gn**.<br>The following is an example of the FA model. For details about more **BUILD.gn** configurations, see [GN Script Configuration Example](#gn-script-configuration-example).
    ```
    import("//build/ohos.gni") # Import ohos.gni.
 
@@ -103,7 +103,7 @@ Resource files, which are stored in the **assets/entry/resources** directory for
    }
    ```
 
-3. Modify the **applications/standard/hap/ohos.build** file. <br>The following is an example:
+3. Modify the **applications/standard/hap/ohos.build** file.<br>The following is an example:
    ```
    {
      "subsystem": "applications",

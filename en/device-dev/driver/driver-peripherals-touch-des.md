@@ -3,11 +3,11 @@
 
 ## Overview
 
-### Function Introduction
+### Functions
 
 The touchscreen driver powers on its integrated circuit (IC), initializes hardware pins, registers interrupts, configures the communication (I2C or SPI) interface, sets input configurations, and downloads and updates firmware.
 
-The touchscreen driver is developed based on the OpenHarmony input driver model, which applies basic APIs of the operating system abstraction layer (OSAL) and platform interface layer on the OpenHarmony Hardware Driver Foundation [(HDF)](../driver/driver-hdf-development.md). Common APIs include the bus communication APIs and OS native APIs (such as memory, lock, thread, and timer APIs). The OSAL and platform APIs shield the differences of underlying hardware. This allows the use of the touchscreen driver across platforms and OSs. In this regard, you can develop the touchscreen driver only once and deploy it on multiple devices.
+The touchscreen driver is developed based on the OpenHarmony input driver model, which applies basic APIs of the operating system abstraction layer (OSAL) and platform interface layer on the OpenHarmony Hardware Driver Foundation [(HDF)](driver-overview-foundation.md). Common APIs include the bus communication APIs and OS native APIs (such as memory, lock, thread, and timer APIs). The OSAL and platform APIs shield the differences of underlying hardware. This allows the use of the touchscreen driver across platforms and OSs. In this regard, you can develop the touchscreen driver only once and deploy it on multiple devices.
 
 ### Working Principles
 
@@ -123,7 +123,7 @@ The load process of the input driver model (for the touchscreen driver) is as fo
 
 The development process of the touchscreen driver is as follows:
 
-1. Configure device information. <br>The input driver is developed based on the HDF. The HDF loads and starts the driver in a unified manner. You need to configure the driver information, such as whether to load the driver and the loading priority, in the configuration file. Then, the HDF starts the registered driver modules one by one. For details about how to configure the driver, see [Driver Development](../driver/driver-hdf-development.md#how-to-develop).
+1. Configure device information. <br>The input driver is developed based on the HDF. The HDF loads and starts the driver in a unified manner. You need to configure the driver information, such as whether to load the driver and the loading priority, in the configuration file. Then, the HDF starts the registered driver modules one by one. For details about the driver configuration, see [HDF Driver Development Process](driver-hdf-manage.md).
 
 2. Configure board-specific information and touchscreen private information.<br>Configure the I/O pin functions. For example, set registers for the I2C pins on the board for the touchscreen to enable I2C communication.
 
@@ -136,7 +136,7 @@ The following example describes how to develop the touchscreen driver for an RK3
 
 1. Configure device information.
 
-   Configure the modules of the input driver model in **vendor/hihope/rk3568/hdf_config/khdf/device_info/device_info.hcs**. For details, see [Driver Development](../driver/driver-hdf-development.md). Then, the HDF loads the modules of the input model in sequence based on the configuration information.
+   Configure the modules of the input driver model in **vendor/hihope/rk3568/hdf_config/khdf/device_info/device_info.hcs**. For details, see [HDF Driver Development Process](driver-hdf-manage.md). The HDF loads modules of the input model in sequence based on the configuration information.
 
    ```c
    input :: host {
@@ -280,7 +280,7 @@ The following example describes how to develop the touchscreen driver for an RK3
    {
        int32_t resX = device->driver->boardCfg->attr.resolutionX;
        int32_t resY = device->driver->boardCfg->attr.resolutionY;
-   
+
        for (int32_t i = 0; i < pointNum; i++) {
            frame->fingers[i].y = (buf[GT_POINT_SIZE * i + GT_X_LOW] & ONE_BYTE_MASK) |
                                  ((buf[GT_POINT_SIZE * i + GT_X_HIGH] & ONE_BYTE_MASK) << ONE_BYTE_OFFSET);
@@ -334,7 +334,7 @@ The following example describes how to develop the touchscreen driver for an RK3
        }
        return HDF_SUCCESS;
    }
-   
+
    static struct TouchChipOps g_sampleChipOps = {
        .Init = ChipInit,
        .Detect = ChipDetect,
@@ -342,7 +342,7 @@ The following example describes how to develop the touchscreen driver for an RK3
        .Suspend = ChipSuspend,
        .DataHandle = ChipDataHandle,
    };
-   
+
    static TouchChipCfg *ChipConfigInstance(struct HdfDeviceObject *device)
    {
        TouchChipCfg *chipCfg = (TouchChipCfg *)OsalMemAlloc(sizeof(TouchChipCfg));
@@ -359,7 +359,7 @@ The following example describes how to develop the touchscreen driver for an RK3
        }
        return chipCfg;
    }
-   
+
    static ChipDevice *ChipDeviceInstance(void)
    {
        ChipDevice *chipDev = (ChipDevice *)OsalMemAlloc(sizeof(ChipDevice));
@@ -370,7 +370,7 @@ The following example describes how to develop the touchscreen driver for an RK3
        (void)memset_s(chipDev, sizeof(ChipDevice), 0, sizeof(ChipDevice));
        return chipDev;
    }
-   
+
    static void FreeChipConfig(TouchChipCfg *config)
    {
        if (config->pwrSeq.pwrOn.buf != NULL) {
@@ -381,7 +381,7 @@ The following example describes how to develop the touchscreen driver for an RK3
        }
        OsalMemFree(config);
    }
-   
+
    static int32_t HdfSampleChipInit(struct HdfDeviceObject *device)
    {
        TouchChipCfg *chipCfg = NULL;
@@ -404,27 +404,27 @@ The following example describes how to develop the touchscreen driver for an RK3
        chipDev->ops = &g_sampleChipOps;
        chipDev->chipName = chipCfg->chipName;
        chipDev->vendorName = chipCfg->vendorName;
-   
+
      /* Register the touchscreen device with the platform driver. */
        if (RegisterChipDevice(chipDev) != HDF_SUCCESS) {
            goto freeDev;
        }
        HDF_LOGI("%s: exit succ, chipName = %s", __func__, chipCfg->chipName);
        return HDF_SUCCESS;
-   
+
    freeDev:
        OsalMemFree(chipDev);
    freeCfg:
        FreeChipConfig(chipCfg);
        return HDF_FAILURE;
    }
-   
+
    struct HdfDriverEntry g_touchSampleChipEntry = {
        .moduleVersion = 1,
        .moduleName = "HDF_TOUCH_SAMPLE",
        .Init = HdfSampleChipInit,
    };
-   
+
    HDF_INIT(g_touchSampleChipEntry);
    ```
 
@@ -506,4 +506,3 @@ The following example describes how to develop the touchscreen driver for an RK3
        return 0;
    }
    ```
-<!--no_check-->

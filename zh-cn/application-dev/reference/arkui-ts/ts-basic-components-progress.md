@@ -70,6 +70,7 @@ Progress(options: {value: number, total?: number, type?: ProgressType})
 | strokeWidth  | [Length](ts-types.md#length) | 否   | 设置进度条宽度（不支持百分比设置）。<br/>默认值：4.0vp                                            |
 | scaleCount   | number                       | 否   | 设置环形进度条总刻度数。<br/>默认值：120                                                        |
 | scaleWidth   | [Length](ts-types.md#length) | 否   | 设置环形进度条刻度粗细（不支持百分比设置），刻度粗细大于进度条宽度时，为系统默认粗细。<br/>默认值：2.0vp |
+| enableSmoothEffect<sup>10+</sup> | boolean | 否 | 进度平滑动效的开关。开启平滑动效后设置进度，进度会从当前值渐变至设定值，否则进度从当前值突变至设定值。<br/>默认值：true |
 
 ## CapsuleStyleOptions<sup>10+</sup>
 | 名称          | 参数类型 | 必填 | 描述 |
@@ -81,6 +82,7 @@ Progress(options: {value: number, total?: number, type?: ProgressType})
 | fontColor | [ResourceColor](ts-types.md#resourcecolor) | 否 | 文本颜色。<br/>默认值：'\#ff182431' |
 | enableScanEffect | boolean | 否 | 扫光效果的开关。<br/>默认值：false |
 | showDefaultPercentage | boolean | 否 | 显示百分比文本的开关，开启后会在进度条上显示当前进度的百分比。设置了content属性时该属性不生效。<br/>默认值：false |
+| enableSmoothEffect | boolean | 否 | 进度平滑动效的开关。开启平滑动效后设置进度，进度会从当前值渐变至设定值，否则进度从当前值突变至设定值。<br/>默认值：true |
 
 ## RingStyleOptions<sup>10+</sup>
 | 名称           | 参数类型                      | 必填 | 描述                                                                                        |
@@ -89,12 +91,15 @@ Progress(options: {value: number, total?: number, type?: ProgressType})
 | shadow        | boolean                      | 否   | 进度条阴影开关。<br/>默认值：false                                                             |
 | status        | [ProgressStatus<sup>10+</sup>](#progressstatus10枚举说明) | 否 | 进度条状态，当设置为LOADING时会开启检查更新动效，此时设置进度值不生效。当从LOADING设置为PROGRESSING，检查更新动效会执行到终点再停止。<br/>默认值： ProgressStatus.PROGRESSING |
 | enableScanEffect | boolean | 否 | 进度条扫光效果的开关。<br/>默认值： false |
+| enableSmoothEffect | boolean | 否 | 进度平滑动效的开关。开启平滑动效后设置进度，进度会从当前值渐变至设定值，否则进度从当前值突变至设定值。<br/>默认值：true |
 
 ## LinearStyleOptions<sup>10+</sup>
 | 名称           | 参数类型                      | 必填 | 描述                                                                                        |
 | ------------- | ---------------------------- | ---- | ------------------------------------------------------------------------------------------ |
 | strokeWidth   | [Length](ts-types.md#length) | 否   | 设置进度条宽度（不支持百分比设置）。<br/>默认值：4.0vp |
+| strokeRadius   | [PX](ts-types.md#px10)    \| [VP](ts-types.md#vp10)    \| [LPX](ts-types.md#lpx10)    \| [Resource](ts-types.md#resource)| 否   | 设置线性进度条圆角半径。<br/>取值范围[0, strokeWidth / 2]。默认值：strokeWidth / 2。 |
 | enableScanEffect | boolean | 否 | 进度条扫光效果的开关。<br/>默认值： false |
+| enableSmoothEffect | boolean | 否 | 进度平滑动效的开关。开启平滑动效后设置进度，进度会从当前值渐变至设定值，否则进度从当前值突变至设定值。<br/>默认值：true |
 
 ## ScaleRingStyleOptions<sup>10+</sup>
 | 名称          | 参数类型                      | 必填 | 描述                                                                                        |
@@ -102,15 +107,18 @@ Progress(options: {value: number, total?: number, type?: ProgressType})
 | strokeWidth  | [Length](ts-types.md#length) | 否   | 设置进度条宽度（不支持百分比设置）。<br/>默认值：4.0vp                                            |
 | scaleCount   | number                       | 否   | 设置环形进度条总刻度数。<br/>默认值：120                                                        |
 | scaleWidth   | [Length](ts-types.md#length) | 否   | 设置环形进度条刻度粗细（不支持百分比设置），刻度粗细大于进度条宽度时，为系统默认粗细。<br/>默认值：2.0vp |
+| enableSmoothEffect | boolean | 否 | 进度平滑动效的开关。开启平滑动效后设置进度，进度会从当前值渐变至设定值，否则进度从当前值突变至设定值。<br/>默认值：true |
 
 ## EclipseStyleOptions<sup>10+</sup>
-暂无参数。
+| 名称          | 参数类型                      | 必填 | 描述                                                                                        |
+| ------------ | ---------------------------- | ---- | ------------------------------------------------------------------------------------------ |
+| enableSmoothEffect | boolean | 否 | 进度平滑动效的开关。开启平滑动效后设置进度，进度会从当前值渐变至设定值，否则进度从当前值突变至设定值。<br/>默认值：true |
 
 ## ProgressStatus<sup>10+</sup>枚举说明
 | 名称                    | 描述             |
 | ----------------------- | ---------------- |
-| LOADING<sup>10+</sup>  | 加载中。 |
-| PROGRESSING<sup>10+</sup>  | 进度更新中。 |
+| LOADING  | 加载中。 |
+| PROGRESSING | 进度更新中。 |
 
 ## 事件
 
@@ -249,3 +257,38 @@ struct ProgressExample {
 }
 ```
 ![capsuleProgressStyleEffect](figures/arkts-capsuleProgressStyleEffect.png)
+
+### 示例5
+进度平滑动效
+```ts
+@Entry
+@Component
+struct Index {
+  @State value: number = 0
+
+  build() {
+    Column({space: 10}) {
+      Text('enableSmoothEffect: true').fontSize(9).fontColor(0xCCCCCC).width('90%').margin(5)
+        .margin({top: 20})
+      Progress({value: this.value, total: 100, type:ProgressType.Linear})
+        .style({strokeWidth: 10, enableSmoothEffect: true})
+
+      Text('enableSmoothEffect: false').fontSize(9).fontColor(0xCCCCCC).width('90%').margin(5)
+      Progress({value: this.value, total: 100, type:ProgressType.Linear})
+        .style({strokeWidth: 10, enableSmoothEffect: false})
+
+      Button('value +10').onClick(() => {
+        this.value += 10
+      })
+        .width(75)
+        .height(15)
+        .fontSize(9)
+    }
+    .width('50%')
+    .height('100%')
+    .margin({left:20})
+  }
+}
+
+```
+![progressSmoothEffect](figures/arkts-progressSmoothEffect.gif)

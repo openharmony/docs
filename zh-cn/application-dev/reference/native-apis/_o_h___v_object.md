@@ -26,4 +26,4 @@
 | [putDouble](_r_d_b.md#putdouble) | 将double类型的单个参数或者数组转换为OH_VObject类型的值。 |
 | [putText](_r_d_b.md#puttext-22) | 将char \*类型的字符数组转换为OH_VObject类型的值。 |
 | [putTexts](_r_d_b.md#puttexts) | 将char \*类型的字符串数组转换为OH_VObject类型的值。 |
-| [destroyValueObject](_r_d_b.md#destroyvalueobject) | 销毁OH_VObject对象，并回收该对象占用的内存。 |
+| [destroy](_r_d_b.md#destroy-44) | 销毁OH_VObject对象，并回收该对象占用的内存。 |

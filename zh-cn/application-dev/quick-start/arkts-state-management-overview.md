@@ -127,3 +127,11 @@ ArkUI提供了多种装饰器，通过使用这些装饰器，状态变量不仅
 
 
 $$运算符：给内置组件提供TS变量的引用，使得TS变量和内置组件的内部状态保持同步。
+
+## 相关实例
+
+针对页面状态管理，有以下相关实例可供参考：
+
+- [状态管理（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/UI/ArkTsComponentCollection/StateManagement)
+
+- [目标管理（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/TargetManagement)

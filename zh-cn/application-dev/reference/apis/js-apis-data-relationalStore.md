@@ -216,6 +216,8 @@ FA模型示例：
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
 
+var store;
+
 // 获取context
 let context = featureAbility.getContext()
 
@@ -233,6 +235,8 @@ Stage模型示例：
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility'
+
+var store;
 
 class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage){
@@ -287,6 +291,8 @@ FA模型示例：
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
 
+var store;
+
 // 获取context
 let context = featureAbility.getContext();
 
@@ -303,6 +309,8 @@ Stage模型示例：
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility'
+
+var store;
 
 class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage){
@@ -353,6 +361,8 @@ FA模型示例：
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
 
+var store;
+
 // 获取context
 let context = featureAbility.getContext()
 const STORE_CONFIG = {
@@ -374,6 +384,8 @@ Stage模型示例：
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility'
+
+var store;
 
 class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage){
@@ -434,6 +446,8 @@ FA模型示例：
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
 
+var store;
+
 // 获取context
 let context = featureAbility.getContext();
 const STORE_CONFIG = {
@@ -454,6 +468,8 @@ Stage模型示例：
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility'
+
+var store;
 
 class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage){
@@ -704,12 +720,12 @@ class EntryAbility extends UIAbility {
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
-| 名称     | 类型   | 必填 | 说明                                     |
-| -------- | ------ | ---- | ---------------------------------------- |
-| total    | number | 是   | 表示数据库表中需要端云同步的总行数。     |
-| success  | number | 是   | 表示数据库表中端云同步成功的行数。       |
-| failed   | number | 是   | 表示数据库表中端云同步失败的行数。       |
-| remained | number | 是   | 表示数据库表中端云同步剩余未执行的行数。 |
+| 名称       | 类型   | 必填 | 说明                                     |
+| ---------- | ------ | ---- | ---------------------------------------- |
+| total      | number | 是   | 表示数据库表中需要端云同步的总行数。     |
+| successful | number | 是   | 表示数据库表中端云同步成功的行数。       |
+| failed     | number | 是   | 表示数据库表中端云同步失败的行数。       |
+| remained   | number | 是   | 表示数据库表中端云同步剩余未执行的行数。 |
 
 ## TableDetails<sup>10+</sup>
 
@@ -782,7 +798,8 @@ inDevices(devices: Array&lt;string&gt;): RdbPredicates
 
 > **说明：**
 >
-> 其中devices通过调用[deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync)方法得到。deviceManager模块的接口均为系统接口，仅系统应用可用。
+> 其中devices通过调用[deviceManager.getAvailableDeviceListSync](js-apis-distributedDeviceManager.md#getavailabledevicelistsync)方法得到。
+数据库同步时调用Sync接口，需要在入参谓词中调用inDevices接口选择设备。如果不调用inDevices接口即默认连接组网内所有的设备。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -801,22 +818,20 @@ inDevices(devices: Array&lt;string&gt;): RdbPredicates
 **示例：**
 
 ```js
-import deviceManager from '@ohos.distributedHardware.deviceManager';
+import deviceManager from '@ohos.distributedDeviceManager';
 let dmInstance = null;
 let deviceIds = [];
 
-deviceManager.createDeviceManager("com.example.appdatamgrverify", (err, manager) => {
-    if (err) {
-        console.log("create device manager failed, err=" + err);
-        return;
-    }
-    dmInstance = manager;
-    let devices = dmInstance.getTrustedDeviceListSync();
-    for (var i = 0; i < devices.length; i++) {
-        deviceIds[i] = devices[i].deviceId;
-    }
-})
-                                  
+try {
+  dmInstance = deviceManager.createDeviceManager("com.example.appdatamgrverify");
+  let devices = dmInstance.getAvailableDeviceListSync();
+  for (var i = 0; i < devices.length; i++) {
+      deviceIds[i] = devices[i].networkId;
+  }
+} catch (err) {
+  console.error("createDeviceManager errCode:" + err.code + ",errMessage:" + err.message);
+}
+
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.inDevices(deviceIds);
 ```
@@ -827,6 +842,7 @@ inAllDevices(): RdbPredicates
 
 
 同步分布式数据库时连接到组网内所有的远程设备。
+
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -2397,6 +2413,53 @@ promise.then((rows) => {
 })
 ```
 
+### query<sup>10+</sup>
+
+query(predicates: RdbPredicates, callback: AsyncCallback&lt;ResultSet&gt;):void
+
+根据指定条件查询数据库中的数据，使用callback异步回调。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**参数：**
+
+| 参数名     | 类型                                                         | 必填 | 说明                                                        |
+| ---------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------------- |
+| predicates | [RdbPredicates](#rdbpredicates)                         | 是   | RdbPredicates的实例对象指定的查询条件。                   |
+| callback   | AsyncCallback&lt;[ResultSet](#resultset)&gt; | 是   | 指定callback回调函数。如果操作成功，则返回ResultSet对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                 |
+| ------------ | ---------------------------- |
+| 14800000     | Inner error.                 |
+
+**示例：**
+
+```js
+let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
+predicates.equalTo("NAME", "Rose");
+store.query(predicates, function (err, resultSet) {
+  if (err) {
+    console.error(`Query failed, code is ${err.code},message is ${err.message}`);
+    return;
+  }
+  console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
+  // resultSet是一个数据集合的游标，默认指向第-1个记录，有效的数据从0开始。
+  while (resultSet.goToNextRow()) {
+    const id = resultSet.getLong(resultSet.getColumnIndex("ID"));
+    const name = resultSet.getString(resultSet.getColumnIndex("NAME"));
+    const age = resultSet.getLong(resultSet.getColumnIndex("AGE"));
+    const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"));
+    console.info(`id=${id}, name=${name}, age=${age}, salary=${salary}`);
+  }
+  // 释放数据集的内存
+  resultSet.close();
+})
+```
+
 ### query
 
 query(predicates: RdbPredicates, columns: Array&lt;string&gt;, callback: AsyncCallback&lt;ResultSet&gt;):void
@@ -2433,7 +2496,7 @@ store.query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"], function (err,
   }
   console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
   // resultSet是一个数据集合的游标，默认指向第-1个记录，有效的数据从0开始。
-  while(resultSet.goToNextRow()) {
+  while (resultSet.goToNextRow()) {
     const id = resultSet.getLong(resultSet.getColumnIndex("ID"));
     const name = resultSet.getString(resultSet.getColumnIndex("NAME"));
     const age = resultSet.getLong(resultSet.getColumnIndex("AGE"));
@@ -2483,7 +2546,7 @@ let promise = store.query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]);
 promise.then((resultSet) => {
   console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
   // resultSet是一个数据集合的游标，默认指向第-1个记录，有效的数据从0开始。
-  while(resultSet.goToNextRow()) {
+  while (resultSet.goToNextRow()) {
     const id = resultSet.getLong(resultSet.getColumnIndex("ID"));
     const name = resultSet.getString(resultSet.getColumnIndex("NAME"));
     const age = resultSet.getLong(resultSet.getColumnIndex("AGE"));
@@ -2496,6 +2559,59 @@ promise.then((resultSet) => {
   console.error(`Query failed, code is ${err.code},message is ${err.message}`);
 })
   ```
+
+### query<sup>10+</sup>
+
+query(table: string, predicates: dataSharePredicates.DataSharePredicates, callback: AsyncCallback&lt;ResultSet&gt;):void
+
+根据指定条件查询数据库中的数据，使用callback异步回调。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**模型约束：** 此接口仅可在Stage模型下可用。
+
+**系统接口：** 此接口为系统接口。
+
+**参数：**
+
+| 参数名     | 类型                                                         | 必填 | 说明                                                        |
+| ---------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------------- |
+| table      | string                                                       | 是   | 指定的目标表名。                                            |
+| predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | 是   | DataSharePredicates的实例对象指定的查询条件。               |
+| callback   | AsyncCallback&lt;[ResultSet](#resultset)&gt; | 是   | 指定callback回调函数。如果操作成功，则返回ResultSet对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                 |
+| ------------ | ---------------------------- |
+| 14800000     | Inner error.                 |
+
+**示例：**
+
+```js
+import dataSharePredicates from '@ohos.data.dataSharePredicates'
+let predicates = new dataSharePredicates.DataSharePredicates();
+predicates.equalTo("NAME", "Rose");
+store.query("EMPLOYEE", predicates, function (err, resultSet) {
+  if (err) {
+    console.error(`Query failed, code is ${err.code},message is ${err.message}`);
+    return;
+  }
+  console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
+  // resultSet是一个数据集合的游标，默认指向第-1个记录，有效的数据从0开始。
+  while (resultSet.goToNextRow()) {
+    const id = resultSet.getLong(resultSet.getColumnIndex("ID"));
+    const name = resultSet.getString(resultSet.getColumnIndex("NAME"));
+    const age = resultSet.getLong(resultSet.getColumnIndex("AGE"));
+    const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"));
+    console.info(`id=${id}, name=${name}, age=${age}, salary=${salary}`);
+  }
+  // 释放数据集的内存
+  resultSet.close();
+})
+```
 
 ### query
 
@@ -2539,7 +2655,7 @@ store.query("EMPLOYEE", predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"], fu
   }
   console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
   // resultSet是一个数据集合的游标，默认指向第-1个记录，有效的数据从0开始。
-  while(resultSet.goToNextRow()) {
+  while (resultSet.goToNextRow()) {
     const id = resultSet.getLong(resultSet.getColumnIndex("ID"));
     const name = resultSet.getString(resultSet.getColumnIndex("NAME"));
     const age = resultSet.getLong(resultSet.getColumnIndex("AGE"));
@@ -2595,7 +2711,7 @@ let promise = store.query("EMPLOYEE", predicates, ["ID", "NAME", "AGE", "SALARY"
 promise.then((resultSet) => {
   console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
   // resultSet是一个数据集合的游标，默认指向第-1个记录，有效的数据从0开始。
-  while(resultSet.goToNextRow()) {
+  while (resultSet.goToNextRow()) {
     const id = resultSet.getLong(resultSet.getColumnIndex("ID"));
     const name = resultSet.getString(resultSet.getColumnIndex("NAME"));
     const age = resultSet.getLong(resultSet.getColumnIndex("AGE"));
@@ -2617,7 +2733,7 @@ remoteQuery(device: string, table: string, predicates: RdbPredicates, columns: A
 
 > **说明：**
 >
-> 其中device通过调用[deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync)方法得到。deviceManager模块的接口均为系统接口，仅系统应用可用。
+> 其中device通过调用[deviceManager.getAvailableDeviceListSync](js-apis-distributedDeviceManager.md#getavailabledevicelistsync)方法得到。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -2642,19 +2758,17 @@ remoteQuery(device: string, table: string, predicates: RdbPredicates, columns: A
 **示例：**
 
 ```js
-import deviceManager from '@ohos.distributedHardware.deviceManager';
+import deviceManager from '@ohos.distributedDeviceManager';
 let dmInstance = null;
 let deviceId = null;
 
-deviceManager.createDeviceManager("com.example.appdatamgrverify", (err, manager) => {
-    if (err) {
-        console.log("create device manager failed, err=" + err);
-        return;
-    }
-    dmInstance = manager;
-    let devices = dmInstance.getTrustedDeviceListSync();
-    deviceId = devices[0].deviceId;
-})
+try {
+  dmInstance = deviceManager.createDeviceManager("com.example.appdatamgrverify");
+  let devices = dmInstance.getAvailableDeviceListSync();
+  deviceId = devices[0].networkId;
+} catch (err) {
+  console.error("createDeviceManager errCode:" + err.code + ",errMessage:" + err.message);
+}
 
 let predicates = new relationalStore.RdbPredicates('EMPLOYEE');
 predicates.greaterThan("id", 0);
@@ -2666,7 +2780,7 @@ store.remoteQuery(deviceId, "EMPLOYEE", predicates, ["ID", "NAME", "AGE", "SALAR
     }
     console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
     // resultSet是一个数据集合的游标，默认指向第-1个记录，有效的数据从0开始。
-    while(resultSet.goToNextRow()) {
+    while (resultSet.goToNextRow()) {
       const id = resultSet.getLong(resultSet.getColumnIndex("ID"));
       const name = resultSet.getString(resultSet.getColumnIndex("NAME"));
       const age = resultSet.getLong(resultSet.getColumnIndex("AGE"));
@@ -2687,7 +2801,7 @@ remoteQuery(device: string, table: string, predicates: RdbPredicates, columns: A
 
 > **说明：**
 >
-> 其中device通过调用[deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync)方法得到。deviceManager模块的接口均为系统接口，仅系统应用可用。
+> 其中device通过调用[deviceManager.getAvailableDeviceListSync](js-apis-distributedDeviceManager.md#getavailabledevicelistsync)方法得到。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -2717,19 +2831,17 @@ remoteQuery(device: string, table: string, predicates: RdbPredicates, columns: A
 **示例：**
 
 ```js
-import deviceManager from '@ohos.distributedHardware.deviceManager';
+import deviceManager from '@ohos.distributedDeviceManager';
 let dmInstance = null;
 let deviceId = null;
 
-deviceManager.createDeviceManager("com.example.appdatamgrverify", (err, manager) => {
-    if (err) {
-        console.log("create device manager failed, err=" + err);
-        return;
-    }
-    dmInstance = manager;
-    let devices = dmInstance.getTrustedDeviceListSync();
-    deviceId = devices[0].deviceId;
-})
+try {
+  dmInstance = deviceManager.createDeviceManager("com.example.appdatamgrverify");
+  let devices = dmInstance.getAvailableDeviceListSync();
+  deviceId = devices[0].networkId;
+} catch (err) {
+  console.error("createDeviceManager errCode:" + err.code + ",errMessage:" + err.message);
+}
 
 let predicates = new relationalStore.RdbPredicates('EMPLOYEE');
 predicates.greaterThan("id", 0);
@@ -2737,7 +2849,7 @@ let promise = store.remoteQuery(deviceId, "EMPLOYEE", predicates, ["ID", "NAME",
 promise.then((resultSet) => {
   console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
   // resultSet是一个数据集合的游标，默认指向第-1个记录，有效的数据从0开始。
-  while(resultSet.goToNextRow()) {
+  while (resultSet.goToNextRow()) {
     const id = resultSet.getLong(resultSet.getColumnIndex("ID"));
     const name = resultSet.getString(resultSet.getColumnIndex("NAME"));
     const age = resultSet.getLong(resultSet.getColumnIndex("AGE"));
@@ -2784,7 +2896,7 @@ store.querySql("SELECT * FROM EMPLOYEE CROSS JOIN BOOK WHERE BOOK.NAME = 'sanguo
   }
   console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
   // resultSet是一个数据集合的游标，默认指向第-1个记录，有效的数据从0开始。
-  while(resultSet.goToNextRow()) {
+  while (resultSet.goToNextRow()) {
     const id = resultSet.getLong(resultSet.getColumnIndex("ID"));
     const name = resultSet.getString(resultSet.getColumnIndex("NAME"));
     const age = resultSet.getLong(resultSet.getColumnIndex("AGE"));
@@ -2830,7 +2942,7 @@ store.querySql("SELECT * FROM EMPLOYEE CROSS JOIN BOOK WHERE BOOK.NAME = ?", ['s
   }
   console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
   // resultSet是一个数据集合的游标，默认指向第-1个记录，有效的数据从0开始。
-  while(resultSet.goToNextRow()) {
+  while (resultSet.goToNextRow()) {
     const id = resultSet.getLong(resultSet.getColumnIndex("ID"));
     const name = resultSet.getString(resultSet.getColumnIndex("NAME"));
     const age = resultSet.getLong(resultSet.getColumnIndex("AGE"));
@@ -2878,7 +2990,7 @@ let promise = store.querySql("SELECT * FROM EMPLOYEE CROSS JOIN BOOK WHERE BOOK.
 promise.then((resultSet) => {
   console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
   // resultSet是一个数据集合的游标，默认指向第-1个记录，有效的数据从0开始。
-  while(resultSet.goToNextRow()) {
+  while (resultSet.goToNextRow()) {
     const id = resultSet.getLong(resultSet.getColumnIndex("ID"));
     const name = resultSet.getString(resultSet.getColumnIndex("NAME"));
     const age = resultSet.getLong(resultSet.getColumnIndex("AGE"));
@@ -3433,7 +3545,48 @@ promise.then(() => {
 
 ### setDistributedTables<sup>10+</sup>
 
-setDistributedTables(tables: Array&lt;string&gt;, type: number, config: DistributedConfig, callback: AsyncCallback&lt;void&gt;): void
+setDistributedTables(tables: Array&lt;string&gt;, type: DistributedType, callback: AsyncCallback&lt;void&gt;): void
+
+设置分布式数据库表，使用callback异步回调。
+
+**需要权限：** ohos.permission.DISTRIBUTED_DATASYNC
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**参数：**
+
+| 参数名   | 类型                                  | 必填 | 说明                         |
+| -------- | ------------------------------------- | ---- | ---------------------------- |
+| tables   | Array&lt;string&gt;                   | 是   | 要设置的分布式数据库表表名。 |
+| type     | [DistributedType](#distributedtype10) | 是   | 表的分布式类型。             |
+| callback | AsyncCallback&lt;void&gt;             | 是   | 指定callback回调函数。       |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息** |
+| ------------ | ------------ |
+| 14800000     | Inner error. |
+| 14800051     |The type of the distributed table does not match.|
+
+**示例：**
+
+```js
+store.setDistributedTables(["EMPLOYEE"], relationalStore.DistributedType.DISTRIBUTED_CLOUD, function (err) {
+  if (err) {
+    console.error(`SetDistributedTables failed, code is ${err.code},message is ${err.message}`);
+    return;
+  }
+  console.info(`SetDistributedTables successfully.`);
+})
+```
+
+### 
+
+### setDistributedTables<sup>10+</sup>
+
+setDistributedTables(tables: Array&lt;string&gt;, type: DistributedType, config: DistributedConfig, callback: AsyncCallback&lt;void&gt;): void
 
 设置分布式数据库表，使用callback异步回调。
 
@@ -3446,16 +3599,25 @@ setDistributedTables(tables: Array&lt;string&gt;, type: number, config: Distribu
 | 参数名      | 类型                                  | 必填  | 说明              |
 | -------- | ----------------------------------- | --- | --------------- |
 | tables   | Array&lt;string&gt;                 | 是   | 要设置的分布式数据库表表名。     |
-| type     | number | 是   | 表的分布式类型。目前支持的入参值为: relationalStore.DistributedType.DISTRIBUTED_DEVICE、relationalStore.DistributedType.DISTRIBUTED_CLOUD。<br> 当type为relationalStore.DistributedType.DISTRIBUTED_DEVICE时，表示表在不同设备之间分布式。<br> 当type为relationalStore.DistributedType.DISTRIBUTED_CLOUD时，表示表在设备和云端之间分布式。 |
+| type     | [DistributedType](#distributedtype10) | 是   | 表的分布式类型。 |
 | config | [DistributedConfig](#distributedconfig10) | 是 | 表的分布式配置信息。 |
 | callback | AsyncCallback&lt;void&gt;           | 是   | 指定callback回调函数。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                                      |
+| ------------ | ------------------------------------------------- |
+| 14800000     | Inner error.                                      |
+| 14800051     | The type of the distributed table does not match. |
 
 **示例：**
 
 ```js
-let config = new relationalStore.DistributedConfig();
-config.autoSync = true;
-store.setDistributedTables(["EMPLOYEE"], relationalStore.DistributedType.DISTRIBUTED_CLOUD, config, function (err) {
+store.setDistributedTables(["EMPLOYEE"], relationalStore.DistributedType.DISTRIBUTED_CLOUD, {
+  autoSync: true
+}, function (err) {
   if (err) {
     console.error(`SetDistributedTables failed, code is ${err.code},message is ${err.message}`);
     return;
@@ -3466,7 +3628,7 @@ store.setDistributedTables(["EMPLOYEE"], relationalStore.DistributedType.DISTRIB
 
 ### setDistributedTables<sup>10+</sup>
 
- setDistributedTables(tables: Array&lt;string>, type?: number, config?: DistributedConfig): Promise&lt;void>
+ setDistributedTables(tables: Array&lt;string>, type?: DistributedType, config?: DistributedConfig): Promise&lt;void>
 
 设置分布式数据库表，使用Promise异步回调。
 
@@ -3478,8 +3640,8 @@ store.setDistributedTables(["EMPLOYEE"], relationalStore.DistributedType.DISTRIB
 
 | 参数名 | 类型                                      | 必填 | 说明                                                         |
 | ------ | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| tables | Array&lt;string&gt;                       | 是   | 要设置的分布式数据库表表名。                                     |
-| type   | number                                    | 否   | 表的分布式类型。默认值是relationalStore.DistributedType.DISTRIBUTED_DEVICE。<br> 目前支持的入参值为: relationalStore.DistributedType.DISTRIBUTED_DEVICE、relationalStore.DistributedType.DISTRIBUTED_CLOUD。<br/> 当type为relationalStore.DistributedType.DISTRIBUTED_DEVICE时，表示表在不同设备之间分布式。<br/> 当type为relationalStore.DistributedType.DISTRIBUTED_CLOUD时，表示表在设备和云端之间分布式。 |
+| tables | Array&lt;string&gt;                       | 是   | 要设置的分布式数据库表表名。                                 |
+| type   | [DistributedType](#distributedtype10)     | 否   | 表的分布式类型。默认值是relationalStore.DistributedType.DISTRIBUTED_DEVICE。 |
 | config | [DistributedConfig](#distributedconfig10) | 否   | 表的分布式配置信息。不传入时默认autoSync为false，即只支持手动同步。 |
 
 **返回值**：
@@ -3488,12 +3650,21 @@ store.setDistributedTables(["EMPLOYEE"], relationalStore.DistributedType.DISTRIB
 | ------------------- | ------------------------- |
 | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                                      |
+| ------------ | ------------------------------------------------- |
+| 14800000     | Inner error.                                      |
+| 14800051     | The type of the distributed table does not match. |
+
 **示例：**
 
 ```js
-let config = new relationalStore.DistributedConfig();
-config.autoSync = true;
-let promise = store.setDistributedTables(["EMPLOYEE"], relationalStore.DistributedType.DISTRIBUTED_CLOUD, config);
+let promise = store.setDistributedTables(["EMPLOYEE"], relationalStore.DistributedType.DISTRIBUTED_CLOUD, {
+  autoSync: true
+});
 promise.then(() => {
   console.info(`SetDistributedTables successfully.`);
 }).catch((err) => {
@@ -3509,7 +3680,7 @@ obtainDistributedTableName(device: string, table: string, callback: AsyncCallbac
 
 > **说明：**
 >
-> 其中device通过调用[deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync)方法得到。deviceManager模块的接口均为系统接口，仅系统应用可用。
+> 其中device通过调用[deviceManager.getAvailableDeviceListSync](js-apis-distributedDeviceManager.md#getavailabledevicelistsync)方法得到。
 
 **需要权限：** ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -3534,19 +3705,17 @@ obtainDistributedTableName(device: string, table: string, callback: AsyncCallbac
 **示例：**
 
 ```js
-import deviceManager from '@ohos.distributedHardware.deviceManager';
+import deviceManager from '@ohos.distributedDeviceManager';
 let dmInstance = null;
 let deviceId = null;
 
-deviceManager.createDeviceManager("com.example.appdatamgrverify", (err, manager) => {
-    if (err) {
-        console.log("create device manager failed, err=" + err);
-        return;
-    }
-    dmInstance = manager;
-    let devices = dmInstance.getTrustedDeviceListSync();
-    deviceId = devices[0].deviceId;
-})
+try {
+  dmInstance = deviceManager.createDeviceManager("com.example.appdatamgrverify");
+  let devices = dmInstance.getAvailableDeviceListSync();
+  deviceId = devices[0].networkId;
+} catch (err) {
+  console.error("createDeviceManager errCode:" + err.code + ",errMessage:" + err.message);
+}
 
 store.obtainDistributedTableName(deviceId, "EMPLOYEE", function (err, tableName) {
     if (err) {
@@ -3565,7 +3734,7 @@ store.obtainDistributedTableName(deviceId, "EMPLOYEE", function (err, tableName)
 
 > **说明：**
 >
-> 其中device通过调用[deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync)方法得到。deviceManager模块的接口均为系统接口，仅系统应用可用。
+> 其中device通过调用[deviceManager.getAvailableDeviceListSync](js-apis-distributedDeviceManager.md#getavailabledevicelistsync)方法得到。
 
 **需要权限：** ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -3595,19 +3764,17 @@ store.obtainDistributedTableName(deviceId, "EMPLOYEE", function (err, tableName)
 **示例：**
 
 ```js
-import deviceManager from '@ohos.distributedHardware.deviceManager';
+import deviceManager from '@ohos.distributedDeviceManager';
 let dmInstance = null;
 let deviceId = null;
 
-deviceManager.createDeviceManager("com.example.appdatamgrverify", (err, manager) => {
-    if (err) {
-        console.log("create device manager failed, err=" + err);
-        return;
-    }
-    dmInstance = manager;
-    let devices = dmInstance.getTrustedDeviceListSync();
-    deviceId = devices[0].deviceId;
-})
+try {
+  dmInstance = deviceManager.createDeviceManager("com.example.appdatamgrverify");
+  let devices = dmInstance.getAvailableDeviceListSync();
+  deviceId = devices[0].networkId;
+} catch (err) {
+  console.error("createDeviceManager errCode:" + err.code + ",errMessage:" + err.message);
+}
 
 let promise = store.obtainDistributedTableName(deviceId, "EMPLOYEE");
 promise.then((tableName) => {
@@ -3646,21 +3813,19 @@ sync(mode: SyncMode, predicates: RdbPredicates, callback: AsyncCallback&lt;Array
 **示例：**
 
 ```js
-import deviceManager from '@ohos.distributedHardware.deviceManager';
+import deviceManager from '@ohos.distributedDeviceManager';
 let dmInstance = null;
 let deviceIds = [];
 
-deviceManager.createDeviceManager("com.example.appdatamgrverify", (err, manager) => {
-    if (err) {
-        console.log("create device manager failed, err=" + err);
-        return;
-    }
-    dmInstance = manager;
-    let devices = dmInstance.getTrustedDeviceListSync();
-    for (var i = 0; i < devices.length; i++) {
-        deviceIds[i] = devices[i].deviceId;
-    }
-})
+try {
+  dmInstance = deviceManager.createDeviceManager("com.example.appdatamgrverify");
+  let devices = dmInstance.getAvailableDeviceListSync();
+  for (var i = 0; i < devices.length; i++) {
+      deviceIds[i] = devices[i].networkId;
+  }
+} catch (err) {
+  console.error("createDeviceManager errCode:" + err.code + ",errMessage:" + err.message);
+}
 
 let predicates = new relationalStore.RdbPredicates('EMPLOYEE');
 predicates.inDevices(deviceIds);
@@ -3710,21 +3875,19 @@ store.sync(relationalStore.SyncMode.SYNC_MODE_PUSH, predicates, function (err, r
 **示例：**
 
 ```js
-import deviceManager from '@ohos.distributedHardware.deviceManager';
+import deviceManager from '@ohos.distributedDeviceManager';
 let dmInstance = null;
 let deviceIds = [];
 
-deviceManager.createDeviceManager("com.example.appdatamgrverify", (err, manager) => {
-    if (err) {
-        console.log("create device manager failed, err=" + err);
-        return;
-    }
-    dmInstance = manager;
-    let devices = dmInstance.getTrustedDeviceListSync();
-    for (var i = 0; i < devices.length; i++) {
-        deviceIds[i] = devices[i].deviceId;
-    }
-})
+try {
+  dmInstance = deviceManager.createDeviceManager("com.example.appdatamgrverify");
+  let devices = dmInstance.getAvailableDeviceListSync();
+  for (var i = 0; i < devices.length; i++) {
+      deviceIds[i] = devices[i].networkId;
+  }
+} catch (err) {
+  console.error("createDeviceManager errCode:" + err.code + ",errMessage:" + err.message);
+}
 
 let predicates = new relationalStore.RdbPredicates('EMPLOYEE');
 predicates.inDevices(deviceIds);
@@ -3760,7 +3923,7 @@ cloudSync(mode: SyncMode, progress: Callback&lt;ProgressDetails&gt;, callback: A
 **示例：**
 
 ```js
-relationalStore.cloudSync(relationalStore.SyncMode.SYNC_MODE_CLOUD_FIRST, function (progressDetails) {
+store.cloudSync(relationalStore.SyncMode.SYNC_MODE_CLOUD_FIRST, function (progressDetails) {
     console.info(`Progess: ${progressDetails}`);
 }, function (err) {
      if (err) {
@@ -3801,7 +3964,7 @@ function progress(progressDetail) {
     console.info(`progress: ${progressDetail}`);
 }
 
-relationalStore.cloudSync(relationalStore.SyncMode.SYNC_MODE_CLOUD_FIRST, progress).then(() => {
+store.cloudSync(relationalStore.SyncMode.SYNC_MODE_CLOUD_FIRST, progress).then(() => {
     console.info('Cloud sync succeeded');
 }).catch((err) => {
     console.error(`cloudSync failed, code is ${err.code},message is ${err.message}`);
@@ -3831,7 +3994,7 @@ cloudSync(mode: SyncMode, tables: string[], progress: Callback&lt;ProgressDetail
 
 ```js
 const tables = ["table1", "table2"];
-relationalStore.cloudSync(relationalStore.SyncMode.SYNC_MODE_CLOUD_FIRST, tables, function (progressDetails) {
+store.cloudSync(relationalStore.SyncMode.SYNC_MODE_CLOUD_FIRST, tables, function (progressDetails) {
     console.info(`Progess: ${progressDetails}`);
 }, function (err) {
      if (err) {
@@ -3874,7 +4037,7 @@ function progress(progressDetail) {
     console.info(`progress: ${progressDetail}`);
 }
 
-relationalStore.cloudSync(relationalStore.SyncMode.SYNC_MODE_CLOUD_FIRST, tables, progress).then(() => {
+store.cloudSync(relationalStore.SyncMode.SYNC_MODE_CLOUD_FIRST, tables, progress).then(() => {
     console.info('Cloud sync succeeded');
 }).catch((err) => {
     console.error(`cloudSync failed, code is ${err.code},message is ${err.message}`);

@@ -19,7 +19,7 @@ The **AVMuxer** module provides functions for audio and video encapsulation.
 
 | Name| Description| 
 | -------- | -------- |
-| [native_avmuxer.h](native__avmuxer_8h.md) | Declares native APIs used for audio and video encapsulation.<br>File to include: &lt;multimedia/native_avmuxer.h&gt;| 
+| [native_avmuxer.h](native__avmuxer_8h.md) | Declares native APIs used for audio and video encapsulation.<br>**File to include**: <multimedia/player_framework/native_avmuxer.h><br>**Library**: libnative_media_avmuxer.so| 
 
 
 ### Functions
@@ -42,7 +42,7 @@ The **AVMuxer** module provides functions for audio and video encapsulation.
 
   
 ```
-OH_AVErrCode OH_AVMuxer_AddTrack (OH_AVMuxer * muxer, int32_t * trackIndex, OH_AVFormat * trackFormat )
+OH_AVErrCode OH_AVMuxer_AddTrack (OH_AVMuxer *muxer, int32_t *trackIndex, OH_AVFormat *trackFormat)
 ```
 
 **Description**
@@ -74,7 +74,7 @@ Returns **AV_ERR_OK** if the operation is successful; returns an error code defi
 
   
 ```
-OH_AVMuxer* OH_AVMuxer_Create (int32_t fd, OH_AVOutputFormat format )
+OH_AVMuxer* OH_AVMuxer_Create (int32_t fd, OH_AVOutputFormat format)
 ```
 
 **Description**
@@ -103,7 +103,7 @@ Returns the pointer to the **OH_AVMuxer** instance created. You must call **OH_A
 
   
 ```
-OH_AVErrCode OH_AVMuxer_Destroy (OH_AVMuxer * muxer)
+OH_AVErrCode OH_AVMuxer_Destroy (OH_AVMuxer *muxer)
 ```
 
 **Description**
@@ -131,7 +131,7 @@ Returns **AV_ERR_OK** if the operation is successful; returns an error code defi
 
   
 ```
-OH_AVErrCode OH_AVMuxer_SetRotation (OH_AVMuxer * muxer, int32_t rotation )
+OH_AVErrCode OH_AVMuxer_SetRotation (OH_AVMuxer *muxer, int32_t rotation)
 ```
 
 **Description**
@@ -162,7 +162,7 @@ Returns **AV_ERR_OK** if the operation is successful; returns an error code defi
 
   
 ```
-OH_AVErrCode OH_AVMuxer_Start (OH_AVMuxer * muxer)
+OH_AVErrCode OH_AVMuxer_Start (OH_AVMuxer *muxer)
 ```
 
 **Description**
@@ -192,7 +192,7 @@ Returns **AV_ERR_OK** if the operation is successful; returns an error code defi
 
   
 ```
-OH_AVErrCode OH_AVMuxer_Stop (OH_AVMuxer * muxer)
+OH_AVErrCode OH_AVMuxer_Stop (OH_AVMuxer *muxer)
 ```
 
 **Description**
@@ -222,7 +222,7 @@ Returns **AV_ERR_OK** if the operation is successful; returns an error code defi
 
   
 ```
-OH_AVErrCode OH_AVMuxer_WriteSample (OH_AVMuxer * muxer, uint32_t trackIndex, OH_AVMemory * sample, OH_AVCodecBufferAttr info )
+OH_AVErrCode OH_AVMuxer_WriteSample (OH_AVMuxer *muxer, uint32_t trackIndex, OH_AVMemory *sample, OH_AVCodecBufferAttr info)
 ```
 
 **Description**

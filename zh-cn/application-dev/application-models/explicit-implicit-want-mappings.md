@@ -18,7 +18,7 @@
 | action | string | 否 | 否 | 系统匹配时将忽略该参数，但仍可作为参数传递给目标应用组件。 |
 | entities | Array&lt;string&gt; | 否 | 否 | 系统匹配时将忽略该参数，但仍可作为参数传递给目标应用组件。 |
 | flags | number | 否 | 否 | 不参与匹配，直接传递给系统处理，一般用来设置运行态信息，例如URI数据授权等。 |
-| parameters | {[key:&nbsp;string]:&nbsp;any} | 否 | 否 | 不参与匹配，应用自定义数据将直接传递给目标应用组件。 |
+| parameters | {[key:&nbsp;string]:&nbsp;Object} | 否 | 否 | 不参与匹配，应用自定义数据将直接传递给目标应用组件。 |
 
 ## 隐式Want匹配原理
 
@@ -35,7 +35,7 @@
 | action      | string                         | 是     | 否   |                                                              |
 | entities    | Array&lt;string&gt;            | 是     | 否   |                                                              |
 | flags       | number                         | 否     | 否   | 不参与匹配，直接传递给系统处理，一般用来设置运行态信息，例如URI数据授权等。 |
-| parameters  | {[key:&nbsp;string]:&nbsp;any} | 否     | 否   | 不参与匹配，应用自定义数据将直接传递给目标应用组件。         |
+| parameters  | {[key:&nbsp;string]:&nbsp;Object} | 否     | 否   | 不参与匹配，应用自定义数据将直接传递给目标应用组件。         |
 
 从隐式Want的定义，可得知：
 

@@ -76,9 +76,9 @@ This JSON file contains two attributes: **MetaData** and **Channels**.
   - **Create**: time when the file was created. This parameter is optional.
   - **Description**: additional information such as the vibration effect and creation information. This parameter is optional.
 - **Channels** provides information about the vibration channel. It is a JSON array that holds information about each channel. It contains two attributes: **Parameters** and **Pattern**.
-- **Parameters** provides parameters related to the channel. Under it, **Index** indicates the channel ID. The value is fixed at **1** for a single channel. This parameter is mandatory.
+  - **Parameters** provides parameters related to the channel. Under it, **Index** indicates the channel ID. The value is fixed at **1** for a single channel. This parameter is mandatory.
   - **Pattern** indicates the vibration sequence. It is a JSON array. Under it, **Event** indicates a vibration event, which can be either of the following types:
-- **transient**: short vibration
+    - **transient**: short vibration
     - **continuous**: long vibration
 
 The table below describes the parameters under **Event**.
@@ -89,7 +89,7 @@ The table below describes the parameters under **Event**.
 | StartTime | Start time of the vibration. This parameter is mandatory.| [0, 1800 000], in ms, without overlapping|
 | Duration | Duration of the vibration. This parameter is valid only when **Type** is **continuous**.| (10, 1600), in ms|
 | Intensity | Intensity of the vibration. This parameter is mandatory.| [0, 100], a relative value that does not represent the actual vibration strength.|
-| Frequency | Frequency of the vibration. This parameter is mandatory.| [0, 100], a relative value that does not represent the actual vibration frequency|
+| Frequency | Frequency of the vibration. This parameter is mandatory.| [0, 100], a relative value that does not represent the actual vibration frequency.|
 
 The following requirements must be met:
 
@@ -221,45 +221,42 @@ The following requirements must be met:
    ```ts
    import vibrator from '@ohos.vibrator';
    
-   const FILE_NAME = "xxx.json";
-   
    // Obtain the file descriptor of the vibration configuration file.
-   let fileDescriptor = undefined;
-   getContext().resourceManager.getRawFd(FILE_NAME).then(value => {
-     fileDescriptor = { fd: value.fd, offset: value.offset, length: value.length };
-     console.info('Succeed in getting resource file descriptor');
-   }).catch(error => {
-     console.error(`Failed to get resource file descriptor. Code: ${error.code}, message: ${error.message}`);
-   });
-   // To use startVibration and stopVibration, you must configure the ohos.permission.VIBRATE permission.
-   try {
-     // Start custom vibration.
-     vibrator.startVibration({
-       type: "file",
-       hapticFd: { fd: fileDescriptor.fd, offset: fileDescriptor.offset, length: fileDescriptor.length }
-     }, {
-       usage: "alarm"
-     }).then(() => {
-       console.info('Succeed in starting vibration');
-     }, (error) => {
-       console.error(`Failed to start vibration. Code: ${error.code}, message: ${error.message}`);
-     });
-     // Stop vibration in all modes.
-     vibrator.stopVibration(function (error) {
-       if (error) {
-         console.error(`Failed to stop vibration. Code: ${error.code}, message: ${error.message}`);
-         return;
-       }
-       console.info('Succeed in stopping vibration');
-     })
-   } catch (error) {
-     console.error(`An unexpected error occurred. Code: ${error.code}, message: ${error.message}`);
+   async function getRawfileFd(fileName) {
+     let rawFd = await globalThis.getContext().resourceManager.getRawFd(fileName);
+     return rawFd;
    }
-   // Close the vibration file.
-   getContext().resourceManager.closeRawFd(FILE_NAME).then(() => {
-     console.info('Succeed in closing resource file descriptor');
-   }).catch(error => {
-     console.error(`Failed to close resource file descriptor. Code: ${error.code}, message: ${error.message}`);
-   });
+   
+   // Close the file descriptor of the vibration configuration file.
+   async function closeRawfileFd(fileName) {
+     await globalThis.getContext().resourceManager.closeRawFd(fileName)
+   }
+   
+   // Play the custom vibration. To use startVibration and stopVibration, you must configure the ohos.permission.VIBRATE permission.
+   async function playCustomHaptic(fileName) {
+     try {
+       let rawFd = await getRawfileFd(fileName);
+       vibrator.startVibration({
+         type: "file",
+         hapticFd: { fd: rawFd.fd, offset: rawFd.offset, length: rawFd.length }
+       }, {
+         usage: "alarm"
+       }).then(() => {
+         console.info('Succeed in starting vibration');
+       }, (error) => {
+         console.error(`Failed to start vibration. Code: ${error.code}, message: ${error.message}`);
+       });
+       vibrator.stopVibration(function (error) {
+         if (error) {
+           console.error(`Failed to stop vibration. Code: ${error.code}, message: ${error.message}`);
+           return;
+         }
+         console.info('Succeed in stopping vibration');
+       })
+       await closeRawfileFd(fileName);
+     } catch (error) {
+       console.error(`An unexpected error occurred. Code: ${error.code}, message: ${error.message}`);
+     }
+   }
    ```
 

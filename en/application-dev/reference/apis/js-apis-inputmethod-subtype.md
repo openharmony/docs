@@ -18,15 +18,15 @@ import InputMethodSubtype from '@ohos.InputMethodSubtype';
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
-| Name| Type| Readable| Writable| Mandatory| Description|
-| -------- | -------- | -------- | -------- | -------- | -------- |
-| label | string | Yes| No| No| Label of the input method subtype.|
-| labelId<sup>10+</sup> | string | Yes| No| No| Label ID of the input method subtype.|
-| name | string | Yes| No| Yes| Bundle name of the input method.|
-| id | string | Yes| No| Yes| ID of the input method subtype.|
-| mode | string | Yes| No| No| Mode of the input method subtype, including **upper** (uppercase) and **lower** (lowercase).|
-| locale | string | Yes| No| Yes| Locale of the input method subtype.|
-| language | string | Yes| No| Yes| Language of the input method subtype.|
-| icon | string | Yes| No| No| Icon of the input method subtype.|
-| iconId | number | Yes| No| No| Icon ID of the input method subtype.|
-| extra | object | Yes| Yes| No| Extra information of the input method subtype.<br>**NOTE**<br>This parameter is optional since API version 10.|
+| Name| Type| Readable| Writable| Description|
+| -------- | -------- | -------- | -------- | -------- |
+| label | string | Yes| No| Optional. Label of the input method subtype.|
+| labelId<sup>10+</sup> | string | Yes| No| Optional. Label ID of the input method subtype.|
+| name | string | Yes| No| Mandatory. Bundle name of the input method.|
+| id | string | Yes| No| Mandatory. ID of the input method subtype.|
+| mode | string | Yes| No| Optional. Mode of the input method subtype, including **upper** (uppercase) and **lower** (lowercase).|
+| locale | string | Yes| No| Mandatory. Locale of the input method subtype.|
+| language | string | Yes| No| Mandatory. Language of the input method subtype.|
+| icon | string | Yes| No| Optional. Icon of the input method subtype. It can be obtained by using **iconId**. This parameter is reserved.|
+| iconId | number | Yes| No| Optional. Icon ID of the input method subtype.|
+| extra | object | Yes| Yes| Optional. Extra information of the input method subtype. This parameter is reserved and currently has no specific meaning.<br>**NOTE**<br>This parameter is optional since API version 10.|

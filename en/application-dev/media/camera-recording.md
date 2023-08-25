@@ -104,7 +104,7 @@ Read [Camera](../reference/apis/js-apis-camera.md) for the API reference.
     
    avRecorder.start().then(() => {
        console.info('avRecorder start success');
-   }
+   });
    ```
 
 5. Stop video recording.
@@ -114,7 +114,7 @@ Read [Camera](../reference/apis/js-apis-camera.md) for the API reference.
    ```ts
    videoRecorder.stop().then(() => {
        console.info('stop success');
-   }
+   });
    
    videoOutput.stop((err) => {
        if (err) {

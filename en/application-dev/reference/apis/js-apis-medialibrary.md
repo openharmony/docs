@@ -3,9 +3,7 @@
 > **NOTE**
 >
 > - The APIs of this module are supported since API version 6. Updates will be marked with a superscript to indicate their earliest API version.
-> - The APIs of this module are deprecated since API version 9 and will be retained until API version 13.
-> - Some APIs are changed as system APIs and can be used only by system applications. Use  [@ohos.filemanagement.userFileManager](js-apis-userFileManager.md) instead.
-> - The APIs for selecting and storing media assets are still open to common applications. Use [@ohos.file.picker](js-apis-file-picker.md) instead.
+> - The APIs of this module are deprecated since API version 9. For details about the substitute APIs, see the API description.
 
 ## Modules to Import
 
@@ -21,6 +19,9 @@ Obtains a **MediaLibrary** instance, which is used to access and modify personal
 
 This API can be used only in the stage model.
 
+> **NOTE**
+> This API is deprecated since API version 9. Use [getPhotoAccessHelper](js-apis-photoAccessHelper.md#photoaccesshelpergetphotoaccesshelper) instead.
+
 **System capability**: SystemCapability.Multimedia.MediaLibrary.Core
 
 **Parameters**
@@ -33,7 +34,7 @@ This API can be used only in the stage model.
 
 | Type                           | Description   |
 | ----------------------------- | :---- |
-| [MediaLibrary](#medialibrary) | **MediaLibrary** instance.|
+| [MediaLibrary](#medialibrary) | **MediaLibrary** instance obtained.|
 
 **Example (from API version 9)**
 
@@ -60,13 +61,16 @@ Obtains a **MediaLibrary** instance, which is used to access and modify personal
 
 This API can be used only in the FA model.
 
+> **NOTE**
+> This API is deprecated since API version 9. There is no substitute API.
+
 **System capability**: SystemCapability.Multimedia.MediaLibrary.Core
 
 **Return value**
 
 | Type                         | Description      |
 | ----------------------------- | :--------- |
-| [MediaLibrary](#medialibrary) | **MediaLibrary** instance.|
+| [MediaLibrary](#medialibrary) | **MediaLibrary** instance obtained.|
 
 **Example**
 
@@ -83,7 +87,9 @@ getFileAssets(options: MediaFetchOptions, callback: AsyncCallback&lt;FetchFileRe
 Obtains file assets (also called files). This API uses an asynchronous callback to return the result.
 
 > **NOTE**
-> From API version 10, the albums represented by physical directories are replaced by logical albums, which allows multiple files in an album and presence of a file in multiple albums. This design, however, makes **parent**, **albumId**, **albumUri**, and **albumName** incompatible. They cannot be used as parameters of **MediaFetchOptions** in **getFileAssets()**. For details, see [changelogs-mediaLibrary.md](../../../release-notes/changelogs/OpenHarmony_4.0.8.2/changelogs-mediaLibrary.md).
+>
+> - This API is deprecated since API version 9. Use [getAssets](js-apis-photoAccessHelper.md#getassets) instead.
+> - From API version 10, the albums represented by physical directories are replaced by logical albums, which allow multiple files in an album and presence of a file in multiple albums. This design, however, makes **parent**, **albumId**, **albumUri**, and **albumName** incompatible. They cannot be used as parameters of **MediaFetchOptions** in **getFileAssets()**. For details, see [changelogs-mediaLibrary.md](../../../release-notes/changelogs/OpenHarmony_4.0.8.2/changelogs-mediaLibrary.md).
 
 **Required permissions**: ohos.permission.READ_MEDIA
 
@@ -154,7 +160,9 @@ getFileAssets(options: MediaFetchOptions): Promise&lt;FetchFileResult&gt;
 Obtains file assets. This API uses a promise to return the result.
 
 > **NOTE**
-> From API version 10, the albums represented by physical directories are replaced by logical albums, which allows multiple files in an album and presence of a file in multiple albums. This design, however, makes **parent**, **albumId**, **albumUri**, and **albumName** incompatible. They cannot be used as parameters of **MediaFetchOptions** in **getFileAssets()**. For details, see [changelogs-mediaLibrary.md](../../../release-notes/changelogs/OpenHarmony_4.0.8.2/changelogs-mediaLibrary.md).
+>
+> - This API is deprecated since API version 9. Use [getAssets](js-apis-photoAccessHelper.md#getassets-1) instead.
+> - From API version 10, the albums represented by physical directories are replaced by logical albums, which allow multiple files in an album and presence of a file in multiple albums. This design, however, makes **parent**, **albumId**, **albumUri**, and **albumName** incompatible. They cannot be used as parameters of **MediaFetchOptions** in **getFileAssets()**. For details, see [changelogs-mediaLibrary.md](../../../release-notes/changelogs/OpenHarmony_4.0.8.2/changelogs-mediaLibrary.md).
 
 **Required permissions**: ohos.permission.READ_MEDIA
 
@@ -225,6 +233,10 @@ on(type: 'deviceChange'&#124;'albumChange'&#124;'imageChange'&#124;'audioChange'
 
 Subscribes to the media library changes. This API uses a callback to return the result.
 
+> **NOTE**
+>
+> This API is deprecated since API version 9. Use [registerChange](js-apis-photoAccessHelper.md#registerchange) instead.
+
 **System capability**: SystemCapability.Multimedia.MediaLibrary.Core
 
 **Parameters**
@@ -247,6 +259,10 @@ media.on('imageChange', () => {
 off(type: 'deviceChange'&#124;'albumChange'&#124;'imageChange'&#124;'audioChange'&#124;'videoChange'&#124;'fileChange'&#124;'remoteFileChange', callback?: Callback&lt;void&gt;): void
 
 Unsubscribes from the media library changes. This API uses a callback to return the result.
+
+> **NOTE**
+>
+> This API is deprecated since API version 9. Use [unRegisterChange](js-apis-photoAccessHelper.md#unregisterchange) instead.
 
 **System capability**: SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -272,7 +288,9 @@ createAsset(mediaType: MediaType, displayName: string, relativePath: string, cal
 Creates a media asset. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
-> From the SDK of API version 10, **relativePath** is no longer associated with an album. After a file is created, the last-level directory of **relativePath** is not displayed. For details, see [changelogs-mediaLibrary.md](../../../release-notes/changelogs/OpenHarmony_4.0.8.2/changelogs-mediaLibrary.md).
+>
+> - This API is deprecated since API version 9. Use [createAsset](js-apis-photoAccessHelper.md#createasset) instead.
+> - From the SDK of API version 10, **relativePath** is no longer associated with an album. After a file is created, the last-level directory of **relativePath** is not displayed. For details, see [changelogs-mediaLibrary.md](../../../release-notes/changelogs/OpenHarmony_4.0.8.2/changelogs-mediaLibrary.md).
 
 **Required permissions**: ohos.permission.READ_MEDIA and ohos.permission.WRITE_MEDIA
 
@@ -312,7 +330,9 @@ createAsset(mediaType: MediaType, displayName: string, relativePath: string): Pr
 Creates a media asset. This API uses a promise to return the result.
 
 > **NOTE**
-> From the SDK of API version 10, **relativePath** is no longer associated with an album. After a file is created, the last-level directory of **relativePath** is not displayed. For details, see [changelogs-mediaLibrary.md](../../../release-notes/changelogs/OpenHarmony_4.0.8.2/changelogs-mediaLibrary.md).
+>
+> - This API is deprecated since API version 9. Use [createAsset](js-apis-photoAccessHelper.md#createasset-1) instead.
+> - From the SDK of API version 10, **relativePath** is no longer associated with an album. After a file is created, the last-level directory of **relativePath** is not displayed. For details, see [changelogs-mediaLibrary.md](../../../release-notes/changelogs/OpenHarmony_4.0.8.2/changelogs-mediaLibrary.md).
 
 **Required permissions**: ohos.permission.READ_MEDIA and ohos.permission.WRITE_MEDIA
 
@@ -353,6 +373,12 @@ async function example() {
 deleteAsset(uri: string): Promise\<void>
 
 Deletes a file asset. This API uses a promise to return the result.
+
+Before calling this API, call [FileAsset.trash](#trash8) to move the file to the trash. Otherwise, the file fails to be deleted.
+
+> **NOTE**
+>
+> This API is deprecated since API version 9. Use [deleteAssets](js-apis-photoAccessHelper.md#deleteassets-3) instead.
 
 **System API**: This is a system API.
 
@@ -403,6 +429,12 @@ deleteAsset(uri: string, callback: AsyncCallback\<void>): void
 
 Deletes a file asset. This API uses an asynchronous callback to return the result.
 
+Before calling this API, call [FileAsset.trash](#trash8) to move the file to the trash. Otherwise, the file fails to be deleted.
+
+> **NOTE**
+>
+> This API is deprecated since API version 9. Use [deleteAssets](js-apis-photoAccessHelper.md#deleteassets-2) instead.
+
 **System API**: This is a system API.
 
 **Required permissions**: ohos.permission.READ_MEDIA and ohos.permission.WRITE_MEDIA
@@ -449,6 +481,10 @@ getPublicDirectory(type: DirectoryType, callback: AsyncCallback&lt;string&gt;): 
 
 Obtains a user directory. This API uses an asynchronous callback to return the result.
 
+> **NOTE**
+>
+> This API is deprecated since API version 9. There is no substitute API.
+
 **System capability**: SystemCapability.Multimedia.MediaLibrary.Core
 
 **Parameters**
@@ -476,6 +512,10 @@ media.getPublicDirectory(DIR_CAMERA, (error, dicResult) => {
 getPublicDirectory(type: DirectoryType): Promise&lt;string&gt;
 
 Obtains a user directory. This API uses a promise to return the result.
+
+> **NOTE**
+>
+> This API is deprecated since API version 9. There is no substitute API.
 
 **System capability**: SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -515,7 +555,9 @@ getAlbums(options: MediaFetchOptions, callback: AsyncCallback&lt;Array&lt;Album&
 Obtains albums. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
-> From the SDK of API version 10, **relativePath** is no longer associated with an album. Therefore, **relativePath** cannot be used as a search criterion in **getAlbums**. Currently, only **Camera** and **ScreenShots** albums are supported. For more details, see [changelogs-mediaLibrary.md](../../../release-notes/changelogs/OpenHarmony_4.0.8.2/changelogs-mediaLibrary.md).
+>
+> - This API is deprecated since API version 9. Use [getAlbums](js-apis-photoAccessHelper.md#getalbums) instead.
+> - From the SDK of API version 10, **relativePath** is no longer associated with an album. Therefore, **relativePath** cannot be used as a search criterion in **getAlbums**. Currently, only **Camera** and **ScreenShots** albums are supported. For more details, see [changelogs-mediaLibrary.md](../../../release-notes/changelogs/OpenHarmony_4.0.8.2/changelogs-mediaLibrary.md).
 
 **Required permissions**: ohos.permission.READ_MEDIA
 
@@ -553,7 +595,9 @@ getAlbums(options: MediaFetchOptions): Promise&lt;Array&lt;Album&gt;&gt;
 Obtains albums. This API uses a promise to return the result.
 
 > **NOTE**
-> From the SDK of API version 10, **relativePath** is no longer associated with an album. Therefore, **relativePath** cannot be used as a search criterion in **getAlbums**. Currently, only **Camera** and **ScreenShots** albums are supported. For more details, see [changelogs-mediaLibrary.md](../../../release-notes/changelogs/OpenHarmony_4.0.8.2/changelogs-mediaLibrary.md).
+>
+> - This API is deprecated since API version 9. Use [getAlbums](js-apis-photoAccessHelper.md#getalbums-2) instead.
+> - From the SDK of API version 10, **relativePath** is no longer associated with an album. Therefore, **relativePath** cannot be used as a search criterion in **getAlbums**. Currently, only **Camera** and **ScreenShots** albums are supported. For more details, see [changelogs-mediaLibrary.md](../../../release-notes/changelogs/OpenHarmony_4.0.8.2/changelogs-mediaLibrary.md).
 
 **Required permissions**: ohos.permission.READ_MEDIA
 
@@ -594,6 +638,10 @@ release(callback: AsyncCallback&lt;void&gt;): void
 Releases this **MediaLibrary** instance.
 Call this API when you no longer need to use the APIs in the **MediaLibrary** instance.
 
+> **NOTE**
+>
+> This API is deprecated since API version 9. Use [release](js-apis-photoAccessHelper.md#release) instead.
+
 **System capability**: SystemCapability.Multimedia.MediaLibrary.Core
 
 **Parameters**
@@ -617,6 +665,9 @@ release(): Promise&lt;void&gt;
 Releases this **MediaLibrary** instance.
 Call this API when you no longer need to use the APIs in the **MediaLibrary** instance.
 
+> **NOTE**
+> This API is deprecated since API version 9. Use [release](js-apis-photoAccessHelper.md#release-1) instead.
+
 **System capability**: SystemCapability.Multimedia.MediaLibrary.Core
 
 **Return value**
@@ -637,7 +688,10 @@ storeMediaAsset(option: MediaAssetOption, callback: AsyncCallback&lt;string&gt;)
 
 Stores a media asset. This API uses an asynchronous callback to return the URI of the media asset.
 
-> **NOTE**<br>This API is supported since API version 6 and can be used only in the FA model.
+> **NOTE**
+>
+> - This API is supported since API version 6 and can be used only in the FA model.
+> - This API is deprecated since API version 9. Use [save](js-apis-file-picker.md#save-1) instead.
 
 **System capability**: SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -672,7 +726,10 @@ storeMediaAsset(option: MediaAssetOption): Promise&lt;string&gt;
 
 Stores a media asset. This API uses a promise to return the URI of the media asset.
 
-> **NOTE**<br>This API is supported since API version 6 and can be used only in the FA model.
+> **NOTE**
+>
+> - This API is supported since API version 6 and can be used only in the FA model.
+> - This API is deprecated since API version 9. Use [save](js-apis-file-picker.md#save) instead.
 
 **System capability**: SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -708,11 +765,12 @@ mediaLibrary.getMediaLibrary().storeMediaAsset(option).then((value) => {
 
 startImagePreview(images: Array&lt;string&gt;, index: number, callback: AsyncCallback&lt;void&gt;): void
 
-Starts image preview, with the first image to preview specified. This API can be used to preview local images whose URIs start with **datashare://** or online images whose URIs start with **https://**. It uses an asynchronous callback to return the result.
+Starts image preview, with the first image to preview specified. This API can be used to preview a local image with the specified index (**file://**) or all online images (**https://**). It uses an asynchronous callback to return the result.
 
 > **NOTE**
-> This API is supported since API version 6 and can be used only in the FA model.
-> You are advised to use the **\<[Image](../arkui-ts/ts-basic-components-image.md)>** component instead.<br>The **\<Image>** component can be used to render and display local and online images.
+>
+> - This API is supported since API version 6 and can be used only in the FA model.
+> - This API is deprecated since API version 9. You are advised to use the **\<[Image](../arkui-ts/ts-basic-components-image.md)>** component instead. <br>The **\<Image>** component can be used to render and display local and online images.
 
 **System capability**: SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -720,7 +778,7 @@ Starts image preview, with the first image to preview specified. This API can be
 
 | Name     | Type                       | Mandatory  | Description                                      |
 | -------- | ------------------------- | ---- | ---------------------------------------- |
-| images   | Array&lt;string&gt;       | Yes   | URIs of the images to preview. The value can start with either **'https://'** or **'datashare://'**.|
+| images   | Array&lt;string&gt;       | Yes   | Images to preview. You can preview a local image (**file://**) or all online images (**https://**).|
 | index    | number                    | Yes   | Index of the first image to preview.                              |
 | callback | AsyncCallback&lt;void&gt; | Yes   | Callback that returns no value.                       |
 
@@ -751,11 +809,12 @@ mediaLibrary.getMediaLibrary().startImagePreview(images, index, (error) => {
 
 startImagePreview(images: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;): void
 
-Starts image preview. This API can be used to preview local images whose URIs start with **datashare://** or online images whose URIs start with **https://**. It uses an asynchronous callback to return the result.
+Starts image preview. This API can be used to preview the first local image (**file://**) or all online images (**https://**). It uses an asynchronous callback to return the result.
 
 > **NOTE**
-> This API is supported since API version 6 and can be used only in the FA model.
-> You are advised to use the **\<[Image](../arkui-ts/ts-basic-components-image.md)>** component instead.<br>The **\<Image>** component can be used to render and display local and online images.
+>
+> - This API is supported since API version 6 and can be used only in the FA model.
+> - This API is deprecated since API version 9. You are advised to use the **\<[Image](../arkui-ts/ts-basic-components-image.md)>** component instead. <br>The **\<Image>** component can be used to render and display local and online images.
 
 **System capability**: SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -763,7 +822,7 @@ Starts image preview. This API can be used to preview local images whose URIs st
 
 | Name     | Type                       | Mandatory  | Description                                      |
 | -------- | ------------------------- | ---- | ---------------------------------------- |
-| images   | Array&lt;string&gt;       | Yes   | URIs of the images to preview. The value can start with either **'https://'** or **'datashare://'**.|
+| images   | Array&lt;string&gt;       | Yes   | Images to preview. You can preview a local image (**file://**) or all online images (**https://**).|
 | callback | AsyncCallback&lt;void&gt; | Yes   | Callback that returns no value.                       |
 
 **Example**
@@ -792,11 +851,12 @@ mediaLibrary.getMediaLibrary().startImagePreview(images, (error) => {
 
 startImagePreview(images: Array&lt;string&gt;, index?: number): Promise&lt;void&gt;
 
-Starts image preview, with the first image to preview specified. This API can be used to preview local images whose URIs start with **datashare://** or online images whose URIs start with **https://**. It uses a promise to return the execution result.
+Starts image preview, with the first image to preview specified. This API can be used to preview a local image with the specified index (**file://**) or all online images (**https://**). It uses a promise to return the execution result.
 
 > **NOTE**
-> This API is supported since API version 6 and can be used only in the FA model.
-> You are advised to use the **\<[Image](../arkui-ts/ts-basic-components-image.md)>** component instead.<br>The **\<Image>** component can be used to render and display local and online images.
+>
+> - This API is supported since API version 6 and can be used only in the FA model.
+> - This API is deprecated since API version 9. You are advised to use the **\<[Image](../arkui-ts/ts-basic-components-image.md)>** component instead. <br>The **\<Image>** component can be used to render and display local and online images.
 
 **System capability**: SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -804,7 +864,7 @@ Starts image preview, with the first image to preview specified. This API can be
 
 | Name   | Type                 | Mandatory  | Description                                      |
 | ------ | ------------------- | ---- | ---------------------------------------- |
-| images | Array&lt;string&gt; | Yes   | URIs of the images to preview. The value can start with either **'https://'** or **'datashare://'**.|
+| images | Array&lt;string&gt; | Yes   | Images to preview. You can preview a local image (**file://**) or all online images (**https://**).|
 | index  | number              | No   | Index of the first image to preview. If this parameter is not specified, the default value **0** is used.                     |
 
 **Return value**
@@ -841,8 +901,9 @@ startMediaSelect(option: MediaSelectOption, callback: AsyncCallback&lt;Array&lt;
 Starts media selection. This API uses an asynchronous callback to return the URIs of the selected media assets.
 
 > **NOTE**
-> This API is supported since API version 6 and can be used only in the FA model.
-> You are advised to use the system app Gallery instead. Gallery is a built-in visual resource access application that provides features such as image and video management and browsing. For details about how to use Gallery, see [OpenHarmony/applications_photos](https://gitee.com/openharmony/applications_photos).
+>
+> - This API is supported since API version 6 and can be used only in the FA model.
+> - This API is deprecated since API version 9. Use [select](js-apis-file-picker.md#select-1) instead.
 
 **System capability**: SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -877,8 +938,9 @@ startMediaSelect(option: MediaSelectOption): Promise&lt;Array&lt;string&gt;&gt;
 Starts media selection. This API uses a promise to return the URIs of the selected media assets.
 
 > **NOTE**
-> This API is supported since API version 6 and can be used only in the FA model.
-> You are advised to use the system app Gallery instead. Gallery is a built-in visual resource access application that provides features such as image and video management and browsing. For details about how to use Gallery, see [OpenHarmony/applications_photos](https://gitee.com/openharmony/applications_photos).
+>
+> - This API is supported since API version 6 and can be used only in the FA model.
+> - This API is deprecated since API version 9. Use [select](js-apis-file-picker.md#select) instead.
 
 **System capability**: SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -915,6 +977,10 @@ getActivePeers(): Promise\<Array\<PeerInfo>>;
 
 Obtains information about online peer devices. This API uses a promise to return the result.
 
+> **NOTE**
+>
+> This API is deprecated since API version 9. There is no substitute API.
+
 **System API**: This is a system API.
 
 **Required permissions**: ohos.permission.READ_MEDIA
@@ -949,6 +1015,10 @@ getActivePeers(callback: AsyncCallback\<Array\<PeerInfo>>): void;
 
 Obtains information about online peer devices. This API uses an asynchronous callback to return the result.
 
+> **NOTE**
+>
+> This API is deprecated since API version 9. There is no substitute API.
+
 **System API**: This is a system API.
 
 **Required permissions**: ohos.permission.READ_MEDIA
@@ -980,6 +1050,10 @@ async function example() {
 getAllPeers(): Promise\<Array\<PeerInfo>>;
 
 Obtains information about all peer devices. This API uses a promise to return the result.
+
+> **NOTE**
+>
+> This API is deprecated since API version 9. There is no substitute API.
 
 **System API**: This is a system API.
 
@@ -1015,6 +1089,10 @@ getAllPeers(callback: AsyncCallback\<Array\<PeerInfo>>): void;
 
 Obtains information about all peer devices. This API uses an asynchronous callback to return the result.
 
+> **NOTE**
+>
+> This API is deprecated since API version 9. There is no substitute API.
+
 **System API**: This is a system API.
 
 **Required permissions**: ohos.permission.READ_MEDIA
@@ -1047,8 +1125,9 @@ Provides APIs for encapsulating file asset attributes.
 
 > **NOTE**
 >
-> 1. The system attempts to parse the file content if the file is an audio or video file. The actual field values will be restored from the passed values during scanning on some devices.
-> 2. Some devices may not support the modification of **orientation**. You are advised to use [ModifyImageProperty](js-apis-image.md#modifyimageproperty9) of the **image** module.
+> - The system attempts to parse the file content if the file is an audio or video file. The actual field values will be restored from the passed values during scanning on some devices.
+> - Some devices may not support the modification of **orientation**. You are advised to use [ModifyImageProperty](js-apis-image.md#modifyimageproperty9) of the **image** module.
+> - This API is deprecated since API version 9. Use [PhotoAsset](js-apis-photoAccessHelper.md#photoasset) instead.
 
 ### Attributes
 
@@ -1083,6 +1162,10 @@ Provides APIs for encapsulating file asset attributes.
 isDirectory(callback: AsyncCallback&lt;boolean&gt;): void
 
 Checks whether this file asset is a directory. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+>
+> This API is deprecated since API version 9. There is no substitute API.
 
 **Required permissions**: ohos.permission.READ_MEDIA
 
@@ -1124,6 +1207,10 @@ isDirectory():Promise&lt;boolean&gt;
 
 Checks whether this file asset is a directory. This API uses a promise to return the result.
 
+> **NOTE**
+>
+> This API is deprecated since API version 9. There is no substitute API.
+
 **Required permissions**: ohos.permission.READ_MEDIA
 
 **System capability**: SystemCapability.Multimedia.MediaLibrary.Core
@@ -1163,7 +1250,9 @@ commitModify(callback: AsyncCallback&lt;void&gt;): void
 Commits the modification on the file metadata to the database. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
-> Since the SDK of API version 10, **audio** does not have the **orientation** attribute. Therefore, the **orientation** attribute of the audio resource cannot be modified by **commitModify()**. For details, see [changelogs-mediaLibrary.md](../../../release-notes/changelogs/OpenHarmony_4.0.8.2/changelogs-mediaLibrary.md).
+>
+> - This API is deprecated since API version 9. Use [commitModify](js-apis-photoAccessHelper.md#commitmodify) instead.
+> - Since the SDK of API version 10, **audio** does not have the **orientation** attribute. Therefore, the **orientation** attribute of the audio resource cannot be modified by **commitModify()**. For details, see [changelogs-mediaLibrary.md](../../../release-notes/changelogs/OpenHarmony_4.0.8.2/changelogs-mediaLibrary.md).
 
 **Required permissions**: ohos.permission.READ_MEDIA and ohos.permission.WRITE_MEDIA
 
@@ -1203,6 +1292,8 @@ commitModify(): Promise&lt;void&gt;
 Commits the modification on the file asset to the database. This API uses a promise to return the result.
 
 > **NOTE**
+>
+> - This API is deprecated since API version 9. Use [commitModify](js-apis-photoAccessHelper.md#commitmodify-1) instead.
 > Since the SDK of API version 10, **audio** does not have the **orientation** attribute. Therefore, the **orientation** attribute of the audio resource cannot be modified by **commitModify()**. For details, see [changelogs-mediaLibrary.md](../../../release-notes/changelogs/OpenHarmony_4.0.8.2/changelogs-mediaLibrary.md).
 
 **Required permissions**: ohos.permission.READ_MEDIA and ohos.permission.WRITE_MEDIA
@@ -1240,7 +1331,12 @@ open(mode: string, callback: AsyncCallback&lt;number&gt;): void
 
 Opens this file asset. This API uses an asynchronous callback to return the result.
 
-**NOTE**<br>If a file is opened in 'w' mode, the returned file descriptor (FD) cannot be used to read the file. However, due to the implementation differences of file systems, some user-mode files opened in 'w' mode can be read by using FD. To perform the read or write operation on a file by using FD, you are advised to open the file in 'rw' mode. The write operations are mutually exclusive. After a write operation is complete, you must call **close** to close the file.
+> **NOTE**
+>
+> - This API is deprecated since API version 9. Use [open](js-apis-photoAccessHelper.md#open) instead.
+>
+> - If a file is opened in 'w' mode, the returned file descriptor (FD) cannot be used to read the file. However, due to the implementation differences of file systems, some user-mode files opened in 'w' mode can be read by using FD. To perform the read or write operation on a file by using FD, you are advised to open the file in 'rw' mode. 
+> - The write operations are mutually exclusive. After a write operation is complete, you must call **close** to close the file.
 
 **Required permissions**: ohos.permission.READ_MEDIA or ohos.permission.WRITE_MEDIA
 
@@ -1277,7 +1373,11 @@ open(mode: string): Promise&lt;number&gt;
 
 Opens this file asset. This API uses a promise to return the result.
 
-**NOTE**<br>If a file is opened in 'w' mode, the returned FD cannot be used to read the file. However, due to the implementation differences of file systems, some user-mode files opened in 'w' mode can be read by using FD. To perform the read or write operation on a file by using FD, you are advised to open the file in 'rw' mode. The write operations are mutually exclusive. After a write operation is complete, you must call **close** to close the file.
+> **NOTE**
+>
+> - This API is deprecated since API version 9. Use [open](js-apis-photoAccessHelper.md#open-1) instead.
+> - If a file is opened in 'w' mode, the returned FD cannot be used to read the file. However, due to the implementation differences of file systems, some user-mode files opened in 'w' mode can be read by using FD. To perform the read or write operation on a file by using FD, you are advised to open the file in 'rw' mode. 
+> - The write operations are mutually exclusive. After a write operation is complete, you must call **close** to close the file.
 
 **Required permissions**: ohos.permission.READ_MEDIA or ohos.permission.WRITE_MEDIA
 
@@ -1316,6 +1416,10 @@ async function example() {
 close(fd: number, callback: AsyncCallback&lt;void&gt;): void
 
 Closes a file. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+>
+> This API is deprecated since API version 9. Use [close](js-apis-photoAccessHelper.md#close) instead.
 
 **Required permissions**: ohos.permission.READ_MEDIA or ohos.permission.WRITE_MEDIA
 
@@ -1362,6 +1466,10 @@ async function example() {
 close(fd: number): Promise&lt;void&gt;
 
 Closes a file. This API uses a promise to return the result.
+
+> **NOTE**
+>
+> This API is deprecated since API version 9. Use [close](js-apis-photoAccessHelper.md#close-1) instead.
 
 **Required permissions**: ohos.permission.READ_MEDIA or ohos.permission.WRITE_MEDIA
 
@@ -1412,6 +1520,10 @@ getThumbnail(callback: AsyncCallback&lt;image.PixelMap&gt;): void
 
 Obtains the thumbnail of this file asset. This API uses an asynchronous callback to return the result.
 
+> **NOTE**
+>
+> This API is deprecated since API version 9. Use [close](js-apis-photoAccessHelper.md#getThumbnail) instead.
+
 **Required permissions**: ohos.permission.READ_MEDIA
 
 **System capability**: SystemCapability.Multimedia.MediaLibrary.Core
@@ -1451,6 +1563,10 @@ async function example() {
 getThumbnail(size: Size, callback: AsyncCallback&lt;image.PixelMap&gt;): void
 
 Obtains the file thumbnail of the given size. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+>
+> This API is deprecated since API version 9. Use [close](js-apis-photoAccessHelper.md#getThumbnail-1) instead.
 
 **Required permissions**: ohos.permission.READ_MEDIA
 
@@ -1493,6 +1609,10 @@ async function example() {
 getThumbnail(size?: Size): Promise&lt;image.PixelMap&gt;
 
 Obtains the file thumbnail of the given size. This API uses a promise to return the result.
+
+> **NOTE**
+>
+> This API is deprecated since API version 9. Use [close](js-apis-photoAccessHelper.md#getThumbnail-2) instead.
 
 **Required permissions**: ohos.permission.READ_MEDIA
 
@@ -1539,6 +1659,10 @@ favorite(isFavorite: boolean, callback: AsyncCallback&lt;void&gt;): void
 
 Favorites or unfavorites this file asset. This API uses an asynchronous callback to return the result.
 
+> **NOTE**
+>
+> This API is deprecated since API version 9. Use [setFavorite](js-apis-photoAccessHelper.md#setfavorite) instead.
+
 **Required permissions**: ohos.permission.READ_MEDIA and ohos.permission.WRITE_MEDIA
 
 **System capability**: SystemCapability.Multimedia.MediaLibrary.Core
@@ -1579,6 +1703,10 @@ async function example() {
 favorite(isFavorite: boolean): Promise&lt;void&gt;
 
 Favorites or unfavorites this file asset. This API uses a promise to return the result.
+
+> **NOTE**
+>
+> This API is deprecated since API version 9. Use [setFavorite](js-apis-photoAccessHelper.md#setfavorite-1) instead.
 
 **Required permissions**: ohos.permission.READ_MEDIA and ohos.permission.WRITE_MEDIA
 
@@ -1624,6 +1752,10 @@ isFavorite(callback: AsyncCallback&lt;boolean&gt;): void
 
 Checks whether this file asset is favorited. This API uses an asynchronous callback to return the result.
 
+> **NOTE**
+>
+> This API is deprecated since API version 9. There is no substitute API.
+
 **Required permissions**: ohos.permission.READ_MEDIA
 
 **System capability**: SystemCapability.Multimedia.MediaLibrary.Core
@@ -1664,6 +1796,10 @@ isFavorite():Promise&lt;boolean&gt;
 
 Checks whether this file asset is favorited. This API uses a promise to return the result.
 
+> **NOTE**
+>
+> This API is deprecated since API version 9. There is no substitute API.
+
 **Required permissions**: ohos.permission.READ_MEDIA
 
 **System capability**: SystemCapability.Multimedia.MediaLibrary.Core
@@ -1703,6 +1839,10 @@ trash(isTrash: boolean, callback: AsyncCallback&lt;void&gt;): void
 Moves this file asset to the trash. This API uses an asynchronous callback to return the result.
 
 Files in the trash are not actually deleted. You can set **isTrash** to **false** to restore the files from the trash.
+
+> **NOTE**
+>
+> This API is deprecated since API version 9. Use [deleteAssets](js-apis-photoAccessHelper.md#deleteAssets) instead.
 
 **Required permissions**: ohos.permission.READ_MEDIA and ohos.permission.WRITE_MEDIA
 
@@ -1746,6 +1886,10 @@ trash(isTrash: boolean): Promise&lt;void&gt;
 Moves this file asset to the trash. This API uses a promise to return the result.
 
 Files in the trash are not actually deleted. You can set **isTrash** to **false** to restore the files from the trash.
+
+> **NOTE**
+>
+> This API is deprecated since API version 9. Use [deleteAssets](js-apis-photoAccessHelper.md#deleteAssets-1) instead.
 
 **Required permissions**: ohos.permission.READ_MEDIA and ohos.permission.WRITE_MEDIA
 
@@ -1791,6 +1935,10 @@ isTrash(callback: AsyncCallback&lt;boolean&gt;): void
 
 Checks whether this file asset is in the trash. This API uses an asynchronous callback to return the result.
 
+> **NOTE**
+>
+> This API is deprecated since API version 9. There is no substitute API.
+
 **Required permissions**: ohos.permission.READ_MEDIA
 
 **System capability**: SystemCapability.Multimedia.MediaLibrary.Core
@@ -1831,6 +1979,10 @@ isTrash():Promise&lt;boolean&gt;
 
 Checks whether this file asset is in the trash. This API uses a promise to return the result.
 
+> **NOTE**
+>
+> This API is deprecated since API version 9. There is no substitute API.
+
 **Required permissions**: ohos.permission.READ_MEDIA
 
 **System capability**: SystemCapability.Multimedia.MediaLibrary.Core
@@ -1867,11 +2019,19 @@ async function example() {
 
 Provides APIs to manage the file retrieval result.
 
+> **NOTE**
+>
+> This API is deprecated since API version 9. Use [FetchResult](js-apis-photoAccessHelper.md#fetchresult) instead.
+
 ### getCount<sup>7+</sup>
 
 getCount(): number
 
 Obtains the total number of files in the result set.
+
+> **NOTE**
+>
+> This API is deprecated since API version 9. Use [getCount](js-apis-photoAccessHelper.md#getcount) instead.
 
 **System capability**: SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -1904,6 +2064,10 @@ async function example() {
 isAfterLast(): boolean
 
 Checks whether the cursor is in the last row of the result set.
+
+> **NOTE**
+>
+> This API is deprecated since API version 9. Use [isAfterLast](js-apis-photoAccessHelper.md#isafterlast) instead.
 
 **System capability**: SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -1945,6 +2109,10 @@ close(): void
 
 Releases and invalidates this **FetchFileResult** instance. After this instance is released, the APIs in this instance cannot be invoked.
 
+> **NOTE**
+>
+> This API is deprecated since API version 9. Use [close](js-apis-photoAccessHelper.md#close) instead.
+
 **System capability**: SystemCapability.Multimedia.MediaLibrary.Core
 
 **Example**
@@ -1968,6 +2136,10 @@ async function example() {
 getFirstObject(callback: AsyncCallback&lt;FileAsset&gt;): void
 
 Obtains the first file asset in the result set. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+>
+> This API is deprecated since API version 9. Use [getFirstObject](js-apis-photoAccessHelper.md#getfirstobject) instead.
 
 **System capability**: SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -2006,6 +2178,10 @@ getFirstObject(): Promise&lt;FileAsset&gt;
 
 Obtains the first file asset in the result set. This API uses a promise to return the result.
 
+> **NOTE**
+>
+> This API is deprecated since API version 9. Use [getFirstObject](js-apis-photoAccessHelper.md#getfirstobject-1) instead.
+
 **System capability**: SystemCapability.Multimedia.MediaLibrary.Core
 
 **Return value**
@@ -2041,7 +2217,10 @@ getNextObject(callback: AsyncCallback&lt;FileAsset&gt;): void
 
 Obtains the next file asset in the result set. This API uses an asynchronous callback to return the result.
 
-> **NOTE**<br>Before using this API, you must use [getFirstObject](#getfirstobject7) to obtain the first file asset and then use [isAfterLast](#isafterlast7) to ensure that the cursor does not point to the last file asset in the result set.
+> **NOTE**
+>
+> - Before using this API, you must use [getFirstObject](#getfirstobject7) to obtain the first file asset and then use [isAfterLast](#isafterlast7) to check that the cursor does not point to the last file asset in the result set.
+> - This API is deprecated since API version 9. Use [getNextObject](js-apis-photoAccessHelper.md#getnextobject) instead.
 
 **System capability**: SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -2085,7 +2264,10 @@ getNextObject(): Promise&lt;FileAsset&gt;
 
 Obtains the next file asset in the result set. This API uses a promise to return the result.
 
-> **NOTE**<br>Before using this API, you must use [getFirstObject](#getfirstobject7) to obtain the first file asset and then use [isAfterLast](#isafterlast7) to ensure that the cursor does not point to the last file asset in the result set.
+> **NOTE**
+>
+> - Before using this API, you must use [getFirstObject](#getfirstobject7) to obtain the first file asset and then use [isAfterLast](#isafterlast7) to check that the cursor does not point to the last file asset in the result set.
+> - This API is deprecated since API version 9. Use [getNextObject](js-apis-photoAccessHelper.md#getnextobject-1) instead.
 
 **System capability**: SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -2126,6 +2308,10 @@ getLastObject(callback: AsyncCallback&lt;FileAsset&gt;): void
 
 Obtains the last file asset in the result set. This API uses an asynchronous callback to return the result.
 
+> **NOTE**
+>
+> This API is deprecated since API version 9. Use [getLastObject](js-apis-photoAccessHelper.md#getlastobject) instead.
+
 **System capability**: SystemCapability.Multimedia.MediaLibrary.Core
 
 **Parameters**
@@ -2163,6 +2349,10 @@ getLastObject(): Promise&lt;FileAsset&gt;
 
 Obtains the last file asset in the result set. This API uses a promise to return the result.
 
+> **NOTE**
+>
+> This API is deprecated since API version 9. Use [getLastObject](js-apis-photoAccessHelper.md#getlastobject-1) instead.
+
 **System capability**: SystemCapability.Multimedia.MediaLibrary.Core
 
 **Return value**
@@ -2197,6 +2387,10 @@ async function example() {
 getPositionObject(index: number, callback: AsyncCallback&lt;FileAsset&gt;): void
 
 Obtains a file asset with the specified index in the result set. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+>
+> This API is deprecated since API version 9. Use [getObjectByPosition](js-apis-photoAccessHelper.md#getobjectbyposition) instead.
 
 **System capability**: SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -2235,6 +2429,10 @@ async function example() {
 getPositionObject(index: number): Promise&lt;FileAsset&gt;
 
 Obtains a file asset with the specified index in the result set. This API uses a promise to return the result.
+
+> **NOTE**
+>
+> This API is deprecated since API version 9. Use [getObjectByPosition](js-apis-photoAccessHelper.md#getobjectbyposition-1) instead.
 
 **System capability**: SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -2277,6 +2475,10 @@ getAllObject(callback: AsyncCallback&lt;Array&lt;FileAsset&gt;&gt;): void
 
 Obtains all the file assets in the result set. This API uses an asynchronous callback to return the result.
 
+> **NOTE**
+>
+> This API is deprecated since API version 9. Use [getAllObjects](js-apis-photoAccessHelper.md#getallobjects) instead.
+
 **System capability**: SystemCapability.Multimedia.MediaLibrary.Core
 
 **Parameters**
@@ -2316,6 +2518,10 @@ getAllObject(): Promise&lt;Array&lt;FileAsset&gt;&gt;
 
 Obtains all the file assets in the result set. This API uses a promise to return the result.
 
+> **NOTE**
+>
+> This API is deprecated since API version 9. Use [getAllObjects](js-apis-photoAccessHelper.md#getallobjects-1) instead.
+
 **System capability**: SystemCapability.Multimedia.MediaLibrary.Core
 
 **Return value**
@@ -2351,6 +2557,10 @@ async function example() {
 
 Provides APIs to manage albums.
 
+> **NOTE**
+>
+> This API is deprecated since API version 9. Use [Album](js-apis-photoAccessHelper.md#album) instead.
+
 ### Attributes
 
 **System capability**: SystemCapability.Multimedia.MediaLibrary.Core
@@ -2370,6 +2580,10 @@ Provides APIs to manage albums.
 commitModify(callback: AsyncCallback&lt;void&gt;): void
 
 Commits the modification on the album attributes to the database.
+
+> **NOTE**
+>
+> This API is deprecated since API version 9. Use [commitModify](js-apis-photoAccessHelper.md#commitmodify-2) instead.
 
 **Required permissions**: ohos.permission.READ_MEDIA and ohos.permission.WRITE_MEDIA
 
@@ -2409,6 +2623,10 @@ commitModify(): Promise&lt;void&gt;
 
 Commits the modification on the album attributes to the database.
 
+> **NOTE**
+>
+> This API is deprecated since API version 9. Use [commitModify](js-apis-photoAccessHelper.md#commitmodify-3) instead.
+
 **Required permissions**: ohos.permission.READ_MEDIA and ohos.permission.WRITE_MEDIA
 
 **System capability**: SystemCapability.Multimedia.MediaLibrary.Core
@@ -2444,6 +2662,10 @@ async function example() {
 getFileAssets(callback: AsyncCallback&lt;FetchFileResult&gt;): void
 
 Obtains the file assets in this album. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+>
+> This API is deprecated since API version 9. Use [getAssets](js-apis-photoAccessHelper.md#getassets) instead.
 
 **Required permissions**: ohos.permission.READ_MEDIA
 
@@ -2484,7 +2706,11 @@ async function example() {
 
 getFileAssets(options: MediaFetchOptions, callback: AsyncCallback&lt;FetchFileResult&gt;): void
 
-Obtains the file assets in this album. This API uses an asynchronous callback to return the result.
+Obtains the file assets in this album based on specified conditions. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+>
+> This API is deprecated since API version 9. Use [getAssets](js-apis-photoAccessHelper.md#getassets) instead.
 
 **Required permissions**: ohos.permission.READ_MEDIA
 
@@ -2530,7 +2756,11 @@ async function example() {
 
  getFileAssets(options?: MediaFetchOptions): Promise&lt;FetchFileResult&gt;
 
-Obtains the file assets in this album. This API uses a promise to return the result.
+Obtains the file assets in this album based on specified conditions. This API uses a promise to return the result.
+
+> **NOTE**
+>
+> This API is deprecated since API version 9. Use [getAssets](js-apis-photoAccessHelper.md#getassets-1) instead.
 
 **Required permissions**: ohos.permission.READ_MEDIA
 
@@ -2579,6 +2809,10 @@ async function example() {
 
 Defines information about a registered device.
 
+> **NOTE**
+>
+> This API is deprecated since API version 9. There is no substitute API.
+
 **System API**: This is a system API.
 
 **System capability**: SystemCapability.Multimedia.MediaLibrary.DistributedCore
@@ -2594,6 +2828,10 @@ Defines information about a registered device.
 
 Enumerates media types.
 
+> **NOTE**
+>
+> This API is deprecated since API version 9. Use [PhotoType](js-apis-photoAccessHelper.md#phototype) instead.
+
 **System capability**: SystemCapability.Multimedia.MediaLibrary.Core
 
 | Name |  Value|  Description|
@@ -2608,7 +2846,9 @@ Enumerates media types.
 Enumerates key file information.
 
 > **NOTE**
-> The **bucket_id** field may change after file rename or movement. Therefore, you must obtain the field again before using it.
+>
+> - The **bucket_id** field may change after file rename or movement. Therefore, you must obtain the field again before using it.
+> - This API is deprecated since API version 9. Use [PhotoKeys](js-apis-photoAccessHelper.md#photokeys) instead.
 
 **System capability**: SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -2638,6 +2878,10 @@ Enumerates key file information.
 
 Enumerates directory types.
 
+> **NOTE**
+>
+> This API is deprecated since API version 9. There is no substitute API.
+
 **System capability**: SystemCapability.Multimedia.MediaLibrary.Core
 
 | Name         | Value|  Description              |
@@ -2652,6 +2896,10 @@ Enumerates directory types.
 ## DeviceType<sup>8+</sup>
 
 Enumerates the device types.
+
+> **NOTE**
+>
+> This API is deprecated since API version 9. There is no substitute API.
 
 **System API**: This is a system API.
 
@@ -2671,13 +2919,17 @@ Enumerates the device types.
 
 Defines the options for fetching media files.
 
+> **NOTE**
+>
+> This API is deprecated since API version 9. Use [FetchOptions](js-apis-photoAccessHelper.md#fetchoptions) instead.
+
 **System capability**: SystemCapability.Multimedia.MediaLibrary.Core
 
 | Name                   | Type               | Readable| Writable| Description                                                        |
 | ----------------------- | ------------------- | ---- | ---- | ------------------------------------------------------------ |
-| selections              | string              | Yes  | Yes  | Conditions for fetching files. The enumerated values in [FileKey](#filekey8) are used as the column names when files are fetched. Example:<br>selections: mediaLibrary.FileKey.MEDIA_TYPE + '= ? OR ' + mediaLibrary.FileKey.MEDIA_TYPE + '= ?', |
+| selections              | string              | Yes  | Yes  | Conditions for fetching files. The enumerated values in [FileKey](#filekey8) are used as the column names when files are fetched. <br/>Example:<br>selections: mediaLibrary.FileKey.MEDIA_TYPE + '= ? OR ' + mediaLibrary.FileKey.MEDIA_TYPE + '= ?', |
 | selectionArgs           | Array&lt;string&gt; | Yes  | Yes  | Values of the conditions specified in **selections**.<br>Example:<br>selectionArgs: [mediaLibrary.MediaType.IMAGE.toString(), mediaLibrary.MediaType.VIDEO.toString()], |
-| order                   | string              | Yes  | Yes  | Sorting mode of the search results, which can be ascending or descending. The enumerated values in [FileKey](#filekey8) are used as the columns for sorting the search results. Example:<br>Ascending: order: mediaLibrary.FileKey.DATE_ADDED + ' ASC'<br>Descending: order: mediaLibrary.FileKey.DATE_ADDED + ' DESC'|
+| order                   | string              | Yes  | Yes  | Sorting mode of the search results, which can be ascending or descending. The enumerated values in [FileKey](#filekey8) are used as the columns for sorting the search results. <br/>Example:<br>Ascending: order: mediaLibrary.FileKey.DATE_ADDED + ' ASC'<br>Descending: order: mediaLibrary.FileKey.DATE_ADDED + ' DESC' |
 | uri<sup>8+</sup>        | string              | Yes  | Yes  | URI of the file.                                                     |
 | networkId<sup>8+</sup>  | string              | Yes  | Yes  | Network ID of the registered device.                                              |
 | extendArgs<sup>8+</sup> | string              | Yes  | Yes  | Extended parameters for fetching the files. Currently, no extended parameters are available.                        |
@@ -2685,6 +2937,10 @@ Defines the options for fetching media files.
 ## Size<sup>8+</sup>
 
 Defines the image size.
+
+> **NOTE**
+>
+> This API is deprecated since API version 9. Use [image.Size](js-apis-image.md#size) instead.
 
 **System capability**: SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -2697,21 +2953,29 @@ Defines the image size.
 
 Defines the media asset option.
 
+> **NOTE**
+>
+> This API is deprecated since API version 9. There is no substitute API.
+
 **System capability**: SystemCapability.Multimedia.MediaLibrary.Core
 
 | Name        | Type  | Readable| Writable| Description                                                        |
 | ------------ | ------ | ---- | ---- | ------------------------------------------------------------ |
 | src          | string | Yes  | Yes  | Application sandbox oath of the local file.                                      |
-| mimeType     | string | Yes  | Yes  | Multipurpose Internet Mail Extensions (MIME) type of the media.<br>The value can be 'image/\*', 'video/\*', 'audio/\*' or 'file\*'.|
-| relativePath | string | Yes  | Yes  | Custom path of media assets, for example, **Pictures/**. If this parameter is unspecified, media assets are stored in the default path.<br> Default path of images: **'Pictures/'**<br> Default path of videos: **'Videos/'**<br> Default path of audios: **'Audios/'**<br> Default path of documents: **'Documents/'**|
+| mimeType     | string | Yes  | Yes  | Multipurpose Internet Mail Extensions (MIME) type of the media.<br>The value can be 'image/\*', 'video/\*', 'audio/\*' or 'file/*'. |
+| relativePath | string | Yes  | Yes  | Customized path of media assets, for example, **Pictures/**. If this parameter is unspecified, the default paths of media assets are as follows:<br> Default path of images: **'Pictures/'**<br> Default path of videos: **'Videos/'**<br> Default path of audio files: **'Audios/'**<br> Default path of documents: **'Documents/'** |
 
 ## MediaSelectOption
 
-Defines media selection option.
+Defines the media selection option.
+
+> **NOTE**
+>
+> This API is deprecated since API version 9. There is no substitute API.
 
 **System capability**: SystemCapability.Multimedia.MediaLibrary.Core
 
 | Name   | Type    | Readable| Writable| Description                  |
 | ----- | ------ | ---- | ---- | -------------------- |
 | type  | 'image' &#124; 'video' &#124; 'media' | Yes   | Yes | Media type, which can be **image**, **media**, or **video**. Currently, only **media** is supported.|
-| count | number | Yes   | Yes | Maximum number of media assets that can be selected. The value starts from 1, which indicates that one media asset can be selected.           |
+| count | number | Yes   | Yes | Maximum number of media assets that can be selected.<br/>The value **1** means to select only one media asset; the value greater than **1** means to select multiple media assets. |

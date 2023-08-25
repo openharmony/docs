@@ -63,9 +63,9 @@ struct DragControllerPage {
               extraParams: ''
             }
             dragController.executeDrag(this.DraggingBuilder.bind(this), dragInfo, (err, {event, extraParams}) => {
-              if (event.getResult() == DragRet.DRAG_SUCCESS) {
+              if (event.getResult() == DragResult.DRAG_SUCCESSFUL) {
                 // ...
-              } else if (event.getResult() == DragRet.DRAG_FAILED) {
+              } else if (event.getResult() == DragResult.DRAG_FAILED) {
                 // ...
               }
             })
@@ -151,9 +151,9 @@ struct DragControllerPage {
 
               dragController.executeDrag(dragItemInfo, dragInfo)
                 .then(({event, extraParams}) => {
-                  if (event.getResult() == DragRet.DRAG_SUCCESS) {
+                  if (event.getResult() == DragResult.DRAG_SUCCESSFUL) {
                     // ...
-                  } else if (event.getResult() == DragRet.DRAG_FAILED) {
+                  } else if (event.getResult() == DragResult.DRAG_FAILED) {
                     // ...
                   }
                 })
@@ -175,7 +175,7 @@ struct DragControllerPage {
 
 发起拖拽所需要的属性和拖拽时携带的信息。
 
-| 名称        | 类型                                                   | 必填 | 描述                                     |
+| 名称        | 类型                                                   | 必填 | 说明                                     |
 | ----------- | ------------------------------------------------------ | ---- | ---------------------------------------- |
 | pointerId   | number                                                 | 是   | 设置启动拖拽时屏幕上触摸点的Id。         |
 | data        | [UDMF.UnifiedData](./js-apis-data-udmf.md#unifieddata) | 否   | 设置拖拽过程中携带的数据。               |

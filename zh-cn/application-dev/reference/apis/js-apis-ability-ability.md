@@ -15,7 +15,14 @@ import ability from '@ohos.ability.ability';
 
 ## 属性
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityBase
+**系统能力**：
+DataAbilityHelper:SystemCapability.Ability.AbilityRuntime.FAModel
+PacMap:SystemCapability.Ability.AbilityRuntime.FAModel
+DataAbilityOperation:SystemCapability.Ability.AbilityRuntime.FAModel
+DataAbilityResult:SystemCapability.Ability.AbilityRuntime.FAModel
+AbilityResult:SystemCapability.Ability.AbilityBase
+ConnectOptions:SystemCapability.Ability.AbilityRuntime.Core
+StartAbilityParameter:SystemCapability.Ability.AbilityRuntime.FAModel
 
 | 名称         | 类型                 | 描述                                                         |
 | ----------- | -------------------- | ------------------------------------------------------------ |

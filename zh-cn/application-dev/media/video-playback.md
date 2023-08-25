@@ -6,7 +6,7 @@
 
 - Video组件：封装了视频播放的基础能力，需要设置数据源以及基础信息即可播放视频，但相对扩展能力较弱。Video组件由ArkUI提供能力，相关指导请参考UI开发文档-[Video组件](../ui/arkts-common-components-video-player.md)。
 
-本开发指导将介绍如何使用AVPlayer开发视频播放功能，以完整地播放一个视频作为示例，实现端到端播放原始媒体资源。如果要实现后台播放或熄屏播放，需要使用[AVSession（媒体会话）](avsession-overview.md)和[申请长时任务](../task-management/continuous-task-dev-guide.md)，避免播放过程中音频模块被系统强制中断。
+本开发指导将介绍如何使用AVPlayer开发视频播放功能，以完整地播放一个视频作为示例，实现端到端播放原始媒体资源。如果要实现后台播放或熄屏播放，需要使用[AVSession（媒体会话）](avsession-overview.md)和[申请长时任务](../task-management/continuous-task.md)，避免播放过程中音频模块被系统强制中断。
 
 ## 开发指导
 
@@ -46,7 +46,7 @@
    >
    > 下面代码示例中的url仅作示意使用，开发者需根据实际情况，确认资源有效性并设置：
    > 
-   > - 如果使用本地资源播放，必须确认资源文件可用，并使用应用沙箱路径访问对应资源，参考[获取应用文件路径](../application-models/application-context-stage.md#获取应用开发路径)。应用沙箱的介绍及如何向应用沙箱推送文件，请参考[文件管理](../file-management/app-sandbox-directory.md)。
+   > - 如果使用本地资源播放，必须确认资源文件可用，并使用应用沙箱路径访问对应资源，参考[获取应用文件路径](../application-models/application-context-stage.md#获取应用文件路径)。应用沙箱的介绍及如何向应用沙箱推送文件，请参考[文件管理](../file-management/app-sandbox-directory.md)。
    > 
    > - 如果使用网络播放路径，需[申请相关权限](../security/accesstoken-guidelines.md)：ohos.permission.INTERNET。
    > 
@@ -73,9 +73,10 @@
 import media from '@ohos.multimedia.media';
 import fs from '@ohos.file.fs';
 import common from '@ohos.app.ability.common';
+import { BusinessError } from '@ohos.base';
 
 export class AVPlayerDemo {
-  private avPlayer;
+  private avPlayer: media.AVPlayer;
   private count: number = 0;
   private surfaceID: string; // surfaceID用于播放画面显示，具体的值需要通过Xcomponent接口获取，相关文档链接见上面Xcomponent创建方法
   private isSeek: boolean = true; // 用于区分模式是否支持seek操作
@@ -84,29 +85,25 @@ export class AVPlayerDemo {
   // 注册avplayer回调函数
   setAVPlayerCallback() {
     // seek操作结果回调函数
-    this.avPlayer.on('seekDone', (seekDoneTime) => {
+    this.avPlayer.on('seekDone', (seekDoneTime: number) => {
       console.info(`AVPlayer seek succeeded, seek time is ${seekDoneTime}`);
     })
     // error回调监听函数,当avPlayer在操作过程中出现错误时调用reset接口触发重置流程
-    this.avPlayer.on('error', (err) => {
+    this.avPlayer.on('error', (err: BusinessError) => {
       console.error(`Invoke avPlayer failed, code is ${err.code}, message is ${err.message}`);
       this.avPlayer.reset(); // 调用reset重置资源，触发idle状态
     })
     // 状态机变化回调函数
-    this.avPlayer.on('stateChange', async (state, reason) => {
+    this.avPlayer.on('stateChange', async (state: string, reason: media.StateChangeReason) => {
       switch (state) {
         case 'idle': // 成功调用reset接口后触发该状态机上报
           console.info('AVPlayer state idle called.');
           this.avPlayer.release(); // 调用release接口销毁实例对象
           break;
         case 'initialized': // avplayer 设置播放源后触发该状态上报
-          console.info('AVPlayerstate initialized called.');
+          console.info('AVPlayer state initialized called.');
           this.avPlayer.surfaceId = this.surfaceID; // 设置显示画面，当播放的资源为纯音频时无需设置
-          this.avPlayer.prepare().then(() => {
-            console.info('AVPlayer prepare succeeded.');
-          }, (err) => {
-            console.error(`Invoke prepare failed, code is ${err.code}, message is ${err.message}`);
-          });
+          this.avPlayer.prepare();
           break;
         case 'prepared': // prepare调用成功后上报该状态机
           console.info('AVPlayer state prepared called.');
@@ -177,9 +174,11 @@ export class AVPlayerDemo {
     // 返回类型为{fd,offset,length},fd为HAP包fd地址，offset为媒体资源偏移量，length为播放长度
     let context = getContext(this) as common.UIAbilityContext;
     let fileDescriptor = await context.resourceManager.getRawFd('H264_AAC.mp4');
+    let avFileDescriptor: media.AVFileDescriptor =
+      { fd: fileDescriptor.fd, offset: fileDescriptor.offset, length: fileDescriptor.length };
     this.isSeek = true; // 支持seek操作
     // 为fdSrc赋值触发initialized状态机上报
-    this.avPlayer.fdSrc = fileDescriptor;
+    this.avPlayer.fdSrc = avFileDescriptor;
   }
 
   // 以下demo为使用fs文件系统打开沙箱地址获取媒体文件地址并通过dataSrc属性进行播放(seek模式)示例
@@ -189,9 +188,9 @@ export class AVPlayerDemo {
     // 创建状态机变化回调函数
     this.setAVPlayerCallback();
     // dataSrc播放模式的的播放源地址，当播放为Seek模式时fileSize为播放文件的具体大小，下面会对fileSize赋值
-    let src = {
+    let src: media.AVDataSrcDescriptor = {
       fileSize: -1,
-      callback: (buf, length, pos) => {
+      callback: (buf: ArrayBuffer, length: number, pos: number) => {
         let num = 0;
         if (buf == undefined || length == undefined || pos == undefined) {
           return -1;
@@ -207,7 +206,7 @@ export class AVPlayerDemo {
     // 通过UIAbilityContext获取沙箱地址filesDir，以Stage模型为例
     let pathDir = context.filesDir;
     let path = pathDir + '/H264_AAC.mp4';
-    await fs.open(path).then((file) => {
+    await fs.open(path).then((file: fs.File) => {
       this.fd = file.fd;
     })
     // 获取播放文件的大小
@@ -224,9 +223,9 @@ export class AVPlayerDemo {
     // 创建状态机变化回调函数
     this.setAVPlayerCallback();
     let context = getContext(this) as common.UIAbilityContext;
-    let src: object = {
+    let src: media.AVDataSrcDescriptor = {
       fileSize: -1,
-      callback: (buf, length, pos) => {
+      callback: (buf: ArrayBuffer, length: number) => {
         let num = 0;
         if (buf == undefined || length == undefined) {
           return -1;
@@ -241,7 +240,7 @@ export class AVPlayerDemo {
     // 通过UIAbilityContext获取沙箱地址filesDir，以Stage模型为例
     let pathDir = context.filesDir;
     let path = pathDir + '/H264_AAC.mp4';
-    await fs.open(path).then((file) => {
+    await fs.open(path).then((file: fs.File) => {
       this.fd = file.fd;
     })
     this.isSeek = false; // 不支持seek操作
@@ -259,3 +258,11 @@ export class AVPlayerDemo {
   }
 }
 ```
+
+## 相关实例
+
+针对视频播放，有以下相关实例可供参考：
+
+- [视频播放（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Media/VideoPlay)
+
+- [视频播放器（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/Media/VideoPlayer)

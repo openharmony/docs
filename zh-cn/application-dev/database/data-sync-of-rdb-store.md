@@ -44,8 +44,6 @@
 
 - 单个数据库最多支持注册8个订阅数据变化的回调。
 
-- 不支持非系统应用调用需要指定设备的分布式能力接口。
-
 
 ## 接口说明
 
@@ -142,32 +140,43 @@
 
    > **说明：**
    >
-   > deviceIds通过调用[devManager.getTrustedDeviceListSync](../reference/apis/js-apis-device-manager.md#gettrusteddevicelistsync)方法得到，deviceManager模块的接口均为系统接口，仅系统应用可用。
+   > deviceIds通过调用[deviceManager.getAvailableDeviceListSync](../reference/apis/js-apis-distributedDeviceManager.md#getavailabledevicelistsync)方法得到。
 
      
    ```js
    // 获取deviceIds
-   import deviceManager from '@ohos.distributedHardware.deviceManager';
-   
-   deviceManager.createDeviceManager("com.example.appdatamgrverify", (err, manager) => {
-     if (err) {
-       console.info(`Failed to create device manager. Code:${err.code},message:${err.message}`);
-       return;
-     }
-     let devices = manager.getTrustedDeviceListSync();
-     let deviceId = devices[0].deviceId;
-   
-     // 构造用于查询分布式表的谓词对象
-     let predicates = new relationalStore.RdbPredicates('EMPLOYEE');
-     // 调用跨设备查询接口，并返回查询结果
-     store.remoteQuery(deviceId, 'EMPLOYEE', predicates, ['ID', 'NAME', 'AGE', 'SALARY', 'CODES'],
-       function (err, resultSet) {
-         if (err) {
-           console.error(`Failed to remoteQuery data. Code:${err.code},message:${err.message}`);
-           return;
-         }
-         console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
+   import deviceManager from '@ohos.distributedDeviceManager';
+   let dmInstance = null;
+   let deviceId = null;
+
+   try {
+    dmInstance = deviceManager.createDeviceManager("com.example.appdatamgrverify");
+    let devices = dmInstance.getAvailableDeviceListSync();
+    deviceId = devices[0].networkId;
+
+    // 构造用于查询分布式表的谓词对象
+    let predicates = new relationalStore.RdbPredicates('EMPLOYEE');
+    // 调用跨设备查询接口，并返回查询结果
+    store.remoteQuery(deviceId, 'EMPLOYEE', predicates, ['ID', 'NAME', 'AGE', 'SALARY', 'CODES'],
+     function (err, resultSet) {
+       if (err) {
+         console.error(`Failed to remoteQuery data. Code:${err.code},message:${err.message}`);
+         return;
        }
-     )
-   })
+        console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
+      }
+    )
+   } catch (err) {
+   console.error("createDeviceManager errCode:" + err.code + ",errMessage:" + err.message);
+   }
    ```
+
+## 相关实例
+
+针对关系型数据库开发，有以下相关实例可供参考：
+
+- [分布式组网认证（ArkTS）（Full SDK）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/DistributedAppDev/DistributedAuthentication)
+
+-[分布式关系型数据库（ArkTS）（Full SDK）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/DistributedAppDev/DistributedRdb)
+
+- [分布式帐号（ArkTS）（Full SDK）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/DistributedAppDev/DistributedAccount)

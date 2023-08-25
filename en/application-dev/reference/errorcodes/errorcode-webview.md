@@ -230,23 +230,23 @@ The related JS database API is not used.
 2. If the JS database API is used, find out the failure cause, for example, check whether **databaseAccess** is enabled.
 
 
-## 17100013 Memory Allocation Failure
+## 17100013 Invalid Number of Sockets During Preconnection
 
 **Error Message**
 
-New failed, out of memeory.
+The number of preconnect sockets is invalid.
 
 **Description**
 
-Memory allocation failed due to insufficient memory.
+This error code is reported when the number of sockets to be preconnected is invalid.
 
 **Possible Causes**
 
-The data to send is too large.
+The number of sockets is less than or equal to 0 or greater than 6.
 
 **Solution**
 
-Check the length of the data to be sent.
+Make sure the specified number of sockets is greater than 0 and less than or equal to 6.
 
 
 ## 17100014 Type and Value Mismatch
@@ -257,7 +257,7 @@ The type does not match with the value of the message.
 
 **Description**
 
-The type and value of the message do not match.
+This error code is reported when the type and value of the message do not match.
 
 **Possible Causes**
 
@@ -266,3 +266,22 @@ The value of the obtained message does not match the type of the message.
 **Solution**
 
 Call the API based on the message type to obtain the message value. For example, if the type is **BOOLEAN**, call the **GetBoolean** API to obtain the Boolean value.
+
+
+## 17100015 Memory Allocation Failure
+
+**Error Message**
+
+New failed, out of memeory.
+
+**Description**
+
+This error code is reported when memory allocation failed due to insufficient memory.
+
+**Possible Causes**
+
+The data to send is too large.
+
+**Solution**
+
+Check the length of the data to be sent.

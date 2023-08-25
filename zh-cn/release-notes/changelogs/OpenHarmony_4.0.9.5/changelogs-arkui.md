@@ -71,3 +71,146 @@ API Version 9: Free模式显示位置
 API Version 10: Free模式显示位置与Full模式显示位置相同
 
 ![Navigation](figures/navigation_title_mode_free_sdk10.png)
+
+## cl.arkui.3 字符串异常值默认变更
+
+**变更影响**
+
+包含数字的非法字符串不会解析为数字部分，而是视为非法值，按照规则设定为默认值
+
+**示例：**
+```ts
+@Entry
+@Component
+struct GridRowExample {
+  @State bgColors: Color[] = [Color.Red, Color.Orange, Color.Yellow, Color.Green, Color.Pink, Color.Grey, Color.Blue, Color.Brown]
+  @State currentBp: string = 'unknown'
+
+  build() {
+    Column() {
+      GridRow({
+        columns: 5,
+        gutter: { x: 5, y: 10 },
+        breakpoints: { value: ["400vp", "600vp", "800vp"],
+          reference: BreakpointsReference.WindowSize },
+        direction: GridRowDirection.Row
+      }) {
+        ForEach(this.bgColors, (color) => {
+          GridCol({ span: { xs: 1, sm: 2, md: 3, lg: 4 } }) {
+            Row().width("100%").height("20vp")
+          }.borderColor(color).borderWidth(2)
+        })
+      }.width("100%").height("100%")
+    }.width("80pv").margin({ left: 10, top: 5, bottom: 5 }).height(200)
+    .border({ color: '#880606', width: 2 })
+  }
+}
+```
+
+API Version 9：上方示例中的GridRow设定width中的"80pv"会等同于width设定字符串"80"
+
+API Version 10: 上方示例中的GridRow的width中的"80pv"会被视为异常值，所以GridRow的width设定为默认值，相当于未设定
+
+## cl.arkui.4 Swiper的loop属性设置非法值时使用默认值true
+
+**变更影响**
+
+Swiper的loop属性设置非法值时原先使用false，现更改为true
+
+API Version 9: loop属性设置非法值时使用false
+
+API Version 10: loop属性设置非法值时使用true
+
+## cl.arkui.5 Swiper的翻页速度阈值由180px/s调整为1200px/s
+
+**变更影响**
+
+需要更快的速度才能满足翻页的条件
+
+## cl.arkui.6 Swiper的isShowBackground属性名称变更为showBackground
+
+**变更影响**
+
+Swiper组件中,是否显示底板的属性名称由isShowBackground变更为showBackground
+
+**示例：**
+
+```ts
+class MyDataSource implements IDataSource {
+  private list: number[] = []
+  private listener: DataChangeListener
+
+  constructor(list: number[]) {
+    this.list = list
+  }
+
+  totalCount(): number {
+    return this.list.length
+  }
+
+  getData(index: number): any {
+    return this.list[index]
+  }
+
+  registerDataChangeListener(listener: DataChangeListener): void {
+    this.listener = listener
+  }
+
+  unregisterDataChangeListener() {
+  }
+}
+
+@Entry
+@Component
+struct SwiperExample {
+  private swiperController: SwiperController = new SwiperController()
+  private data: MyDataSource = new MyDataSource([])
+
+  aboutToAppear(): void {
+    let list = []
+    for (var i = 1; i <= 10; i++) {
+      list.push(i.toString());
+    }
+    this.data = new MyDataSource(list)
+  }
+
+  build() {
+    Column({ space: 5 }) {
+      Swiper(this.swiperController) {
+        LazyForEach(this.data, (item: string) => {
+          Text(item)
+            .width('90%')
+            .height(160)
+            .backgroundColor(0xAFEEEE)
+            .textAlign(TextAlign.Center)
+            .fontSize(30)
+        }, item => item)
+      }
+      .cachedCount(2)
+      .index(1)
+      .autoPlay(true)
+      .indicator(true)
+      .displayArrow({
+        showBackground: true,
+        isSidebarMiddle: true,
+        backgroundSize: 24,
+        backgroundColor: Color.White,
+        arrowSize: 18,
+        arrowColor: Color.Blue
+      }, false)
+
+      Row({ space: 12 }) {
+        Button('showNext')
+          .onClick(() => {
+            this.swiperController.showNext()
+          })
+        Button('showPrevious')
+          .onClick(() => {
+            this.swiperController.showPrevious()
+          })
+      }.margin(5)
+    }.width('100%')
+    .margin({ top: 5 })
+  }
+}
+```

@@ -49,7 +49,7 @@ console.log(view1) //<?xml version="1.0" encoding="utf-8"?>
 
 setAttributes(name: string, value: string): void
 
-Sets an attribute.
+Writes an attribute and its value.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -57,8 +57,8 @@ Sets an attribute.
 
 | Name| Type  | Mandatory| Description           |
 | ------ | ------ | ---- | --------------- |
-| name   | string | Yes  | Key of the attribute.  |
-| value  | string | Yes  | Value of the attribute.|
+| name   | string | Yes  | Attribute to write.  |
+| value  | string | Yes  | Attribute value to write.|
 
 **Example**
 
@@ -114,7 +114,7 @@ console.log(view1) //<d/>
 
 setDeclaration(): void
 
-Sets a declaration.
+Writes an XML file declaration.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -237,7 +237,7 @@ console.log(JSON.stringify(view1)) //<?xml version="1.0" encoding="utf-8"?>\r\n<
 
 setComment(text: string): void
 
-Sets the comment.
+Writes a comment.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -245,7 +245,7 @@ Sets the comment.
 
 | Name| Type  | Mandatory| Description                |
 | ------ | ------ | ---- | -------------------- |
-| text   | string | Yes  | Comment to set.|
+| text   | string | Yes  | Comment to write.|
 
 **Example**
 
@@ -268,7 +268,7 @@ console.log(view1) //<!--Hello, World!-->'
 
 setCDATA(text: string): void
 
-Sets CDATA attributes.
+Writes CDATA data.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -276,7 +276,7 @@ Sets CDATA attributes.
 
 | Name| Type  | Mandatory| Description             |
 | ------ | ------ | ---- | ----------------- |
-| text   | string | Yes  | CDATA attribute to set.|
+| text   | string | Yes  | CDATA data to write.|
 
 **Example**
 
@@ -299,7 +299,7 @@ console.log(view1) //'<![CDATA[root SYSTEM]]>''
 
 setText(text: string): void
 
-Sets **Text**.
+Writes a tag value.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -307,7 +307,7 @@ Sets **Text**.
 
 | Name| Type  | Mandatory| Description            |
 | ------ | ------ | ---- | ---------------- |
-| text   | string | Yes  | Content of the **Text** to set.|
+| text   | string | Yes  | Tag value to write, which is the content of the **text** attribute.|
 
 **Example**
 
@@ -333,7 +333,7 @@ console.log(view1) // '<note importance="high">Happy1</note>'
 
 setDocType(text: string): void
 
-Sets **DocType**.
+Writes a document type.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -341,7 +341,7 @@ Sets **DocType**.
 
 | Name| Type  | Mandatory| Description               |
 | ------ | ------ | ---- | ------------------- |
-| text   | string | Yes  | Content of **DocType** to set.|
+| text   | string | Yes  | Content of **DocType** to write.|
 
 **Example**
 
@@ -473,11 +473,11 @@ Defines the XML parsing options.
 
 | Name                          | Type                                                        | Mandatory| Description                                   |
 | ------------------------------ | ------------------------------------------------------------ | ---- | --------------------------------------- |
-| supportDoctype                 | boolean                                                      | No  | Whether to ignore **Doctype**. The default value is **false**.|
-| ignoreNameSpace                | boolean                                                      | No  | Whether to ignore **Namespace**. The default value is **false**.         |
-| tagValueCallbackFunction       | (name: string, value: string) =&gt; boolean | No  | Callback used to return **tagValue**. The default value is **null**.                 |
-| attributeValueCallbackFunction | (name: string, value: string) =&gt; boolean | No  | Callback used to return **attributeValue**. The default value is **null**.           |
-| tokenValueCallbackFunction     | (eventType: [EventType](#eventtype), value: [ParseInfo](#parseinfo)) =&gt; boolean | No  | Callback used to return **tokenValue**. The default value is **null**.    |
+| supportDoctype                 | boolean                                                      | No  | Whether to ignore the document type. The default value is **false**, indicating that the document type is parsed.|
+| ignoreNameSpace                | boolean                                                      | No  | Whether to ignore the namespace. The default value is **false**, indicating that the namespace is parsed.|
+| tagValueCallbackFunction       | (name: string, value: string) =&gt; boolean | No  | Callback used to return **tagValue** for parsing the tag and tag value. The default value is **null**, indicating that the tag and tag value are not parsed. |
+| attributeValueCallbackFunction | (name: string, value: string) =&gt; boolean | No  | Callback used to return **attributeValue** for parsing the attribute and attribute value. The default value is **null**, indicating that the attribute and attribute value are not parsed.|
+| tokenValueCallbackFunction     | (eventType: [EventType](#eventtype), value: [ParseInfo](#parseinfo)) =&gt; boolean | No  | Callback used to return **tokenValue** for parsing the [EventType](#eventtype) and [ParseInfo](#parseinfo) attributes. The default value is **null**, indicating that the **EventType** and **ParseInfo** attribute are not parsed.|
 
 ## ParseInfo
 
@@ -923,20 +923,20 @@ console.log(str);
 
 ## EventType
 
-Enumerates the events.
+Enumerates the event types.
 
 **System capability**: SystemCapability.Utils.Lang
 
 | Name            | Value  | Description                 |
 | ---------------- | ---- | --------------------- |
-| START_DOCUMENT   | 0    | Indicates a start document event.       |
-| END_DOCUMENT     | 1    | Indicates an end document event.       |
-| START_TAG        | 2    | Indicates a start tag event.       |
-| END_TAG          | 3    | Indicates an end tag event.       |
-| TEXT             | 4    | Indicates a text event.           |
-| CDSECT           | 5    | Indicates a CDATA section event.          |
-| COMMENT          | 6    | Indicates an XML comment event.        |
-| DOCDECL          | 7    | Indicates an XML document type declaration event.|
-| INSTRUCTION      | 8    | Indicates an XML processing instruction event.|
-| ENTITY_REFERENCE | 9    | Indicates an entity reference event.       |
-| WHITESPACE       | 10   | Indicates a whitespace character event.           |
+| START_DOCUMENT   | 0    | Start document event.       |
+| END_DOCUMENT     | 1    | End document event.       |
+| START_TAG        | 2    | Start tag event.       |
+| END_TAG          | 3    | End tag event.       |
+| TEXT             | 4    | Text event.           |
+| CDSECT           | 5    | CDATA section event.          |
+| COMMENT          | 6    | XML comment event.        |
+| DOCDECL          | 7    | XML document type declaration event. |
+| INSTRUCTION      | 8    | XML processing instruction event. |
+| ENTITY_REFERENCE | 9    | Entity reference event.       |
+| WHITESPACE       | 10   | Whitespace character event.           |

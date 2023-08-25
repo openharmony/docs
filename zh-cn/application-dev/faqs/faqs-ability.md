@@ -221,7 +221,7 @@ Failure\[INSTALL\_FAILED\_SIZE\_TOO\_LARGE\] error while deploying hap？
 
 **参考链接**
 
-[cacheDir](../application-models/application-context-stage.md#获取应用开发路径)
+[cacheDir](../application-models/application-context-stage.md#获取应用文件路径)
 
 ## 服务卡片生命周期回调函数在哪个js文件中调用
 
@@ -266,7 +266,7 @@ DevEco Studio默认下载是public-sdk。
 
 **参考链接**
 
-[获取应用开发路径](../application-models/application-context-stage.md#获取应用开发路径)
+[获取应用文件路径](../application-models/application-context-stage.md#获取应用文件路径)
 
 ## terminateSelf方法销毁当前应用之后并没有在后台任务列表中删除
 
@@ -486,7 +486,7 @@ struct AbilityContextTest {
 
 [长时任务权限](../security/permission-list.md#ohospermissionkeep_background_running)
 
-[长时任务开发指导](../task-management/continuous-task-dev-guide.md#基于stage模型)
+[长时任务开发指导](../task-management/continuous-task.md)
 
 ## FA卡片如何进行数据交互
 

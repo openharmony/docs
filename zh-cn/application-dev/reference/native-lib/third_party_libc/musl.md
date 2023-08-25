@@ -35,33 +35,35 @@ libdl：dlopen等动态链接器接口，当前在OpenHarmony中是一个链接�
 4. dlopen支持直接加载zip包中未压缩的文件。
 
 ### 调试能力
-提供了基础的log调试能力，方便开发者需要查看libc库内部异常。维测log的提供动态开关功能，不需要重新编译。在正式发布版本中，不建议使用，会影响运行性能。
+libc提供了动态使能维测log功能（默认关闭），供开发者需要的时候查看libc库异常。使用libc提供的动态使能维测log功能，不需要重新编译libc库，只需设置param属性即可。在正式发布版本中，不建议使能，会影响运行性能。
 
 #### 1. musl.log功能
-设置musl.log.enable属性为true，打开musl的log打印。打印其他日志，需要先打开此开关。
+设置musl.log.enable属性为true，打开musl维测log打印。打印其他日志，需先打开此开关。
 ```
-setparam musl.log.enable true
+param set musl.log.enable true
 ```
 
 #### 2. 加载器log功能
-调试程序引导，dlopen，dlclose等加载器接口，需要打开加载器log。用法如下：
-* 使能全部应用的加载器log，谨慎使用
+加载器是libc中负责程序引导，dlopen，dlclose等动态链接程序，如需要查看动态加载过程异常，可以打开加载器log。用法如下：
+* 使能全部应用的加载器log，log量比较大，请谨慎使用。
 ```
-setparam musl.log.ld.app true
+param set musl.log.ld.app true
 ```
-* 使能指定应用的加载器log，{app_name}需要替换成真实需要打印log的应用名字
+* 使能指定应用的加载器log，{app_name}需要替换成真实需要打印log的应用名字。
 ```
-setparam musl.log.ld.all false
-setparam musl.log.ld.app.{app_name} true
+param set musl.log.ld.all false
+param set musl.log.ld.app.{app_name} true
 ```
-* 打印全部应用除指定名字应用外的加载器日志
+* 打印全部应用除指定名字应用外的加载器日志。
 ```
-setparam musl.log.ld.all true
-setparam musl.log.ld.app.{app_name} false
+param set musl.log.ld.all true
+param set musl.log.ld.app.{app_name} false
 ```
 
-## musl不支持接口列表
+## musl不支持接口列表。
+
 [native api中没有导出的符号列表](musl-peculiar-symbol.md)
+
 [native api由于权限管控可能调用失败的符号列表](musl-permission-control-symbol.md)
 
 

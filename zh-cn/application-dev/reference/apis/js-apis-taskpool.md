@@ -16,301 +16,6 @@
 ```ts
 import taskpool from '@ohos.taskpool';
 ```
-
-## Priority
-
-表示所创建任务（Task）的优先级。
-
-**系统能力：**  SystemCapability.Utils.Lang
-
-| 名称 | 值 | 说明 |
-| -------- | -------- | -------- |
-| HIGH   | 0    | 任务为高优先级。 |
-| MEDIUM | 1 | 任务为中优先级。 |
-| LOW | 2 | 任务为低优先级。 |
-
-**示例：**
-
-```ts
-@Concurrent
-function printArgs(args) {
-    console.log("printArgs: " + args);
-    return args;
-}
-
-let task = new taskpool.Task(printArgs, 100); // 100: test number
-let highCount = 0;
-let mediumCount = 0;
-let lowCount = 0;
-let allCount = 100;
-for (let i = 0; i < allCount; i++) {
-  taskpool.execute(task, taskpool.Priority.LOW).then((res: number) => {
-    lowCount++;
-    console.log("taskpool lowCount is :" + lowCount);
-  }).catch((e) => {
-    console.error("low task error: " + e);
-  })
-  taskpool.execute(task, taskpool.Priority.MEDIUM).then((res: number) => {
-    mediumCount++;
-    console.log("taskpool mediumCount is :" + mediumCount);
-  }).catch((e) => {
-    console.error("medium task error: " + e);
-  })
-  taskpool.execute(task, taskpool.Priority.HIGH).then((res: number) => {
-    highCount++;
-    console.log("taskpool highCount is :" + highCount);
-  }).catch((e) => {
-    console.error("high task error: " + e);
-  })
-}
-```
-
-## Task
-
-表示任务。使用以下方法前，需要先构造Task。
-
-### constructor
-
-constructor(func: Function, ...args: unknown[])
-
-Task的构造函数。
-
-**系统能力：** SystemCapability.Utils.Lang
-
-**参数：**
-
-| 参数名 | 类型      | 必填 | 说明                                                                  |
-| ------ | --------- | ---- | -------------------------------------------------------------------- |
-| func   | Function  | 是   | 任务执行需要传入函数，支持的函数返回值类型请查[序列化支持类型](#序列化支持类型)。   |
-| args   | unknown[] | 否   | 任务执行传入函数的参数，支持的参数类型请查[序列化支持类型](#序列化支持类型)。默认值为undefined。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
-
-| 错误码ID | 错误信息                                 |
-| -------- | --------------------------------------- |
-| 10200014 | The function is not mark as concurrent. |
-
-**示例：**
-
-```ts
-@Concurrent
-function printArgs(args) {
-    console.log("printArgs: " + args);
-    return args;
-}
-
-let task = new taskpool.Task(printArgs, "this is my first Task");
-```
-
-### isCanceled<sup>10+</sup>
-
-static isCanceled(): boolean
-
-检查当前正在运行的任务是否已取消。
-
-**系统能力：** SystemCapability.Utils.Lang
-
-**返回值：**
-
-| 类型    | 说明                                 |
-| ------- | ------------------------------------ |
-| boolean | 如果当前正在运行的任务被取消返回true，未被取消返回false。|
-
-**示例：**
-
-```ts
-@Concurrent
-function inspectStatus(arg) {
-    // do something
-    if (taskpool.Task.isCanceled()) {
-      console.log("task has been canceled.");
-      // do something
-      return arg + 1;
-    }
-    // do something
-    return arg;
-}
-```
-
-> **说明：**<br/>
-> isCanceled方法需要和taskpool.cancel方法搭配使用，如果不调用cancel方法，isCanceled方法默认返回false。
-
-**示例：**
-
-```ts
-@Concurrent
-function inspectStatus(arg) {
-    // 第一时间检查取消并回复
-    if (taskpool.Task.isCanceled()) {
-      console.log("task has been canceled before 2s sleep.");
-      return arg + 2;
-    }
-    // 延时2s
-    let t = Date.now();
-    while (Date.now() - t < 2000) {
-      continue;
-    }
-    // 第二次检查取消并作出响应
-    if (taskpool.Task.isCanceled()) {
-      console.log("task has been canceled after 2s sleep.");
-      return arg + 3;
-    }
-  return arg + 1;
-}
-
-let task = new taskpool.Task(inspectStatus, 100); // 100: test number
-taskpool.execute(task).then((res)=>{
-  console.log("taskpool test result: " + res);
-}).catch((err) => {
-  console.log("taskpool test occur error: " + err);
-});
-// 不调用cancel，isCanceled()默认返回false，task执行的结果为101
-```
-
-### setTransferList<sup>10+</sup>
-
-setTransferList(transfer?: ArrayBuffer[]): void
-
-设置任务的传输列表。
-
-> **说明：**<br/>
-> 此接口可以设置任务池中ArrayBuffer的transfer列表，transfer列表中的ArrayBuffer对象在传输时不会复制buffer内容到工作线程而是转移buffer控制权至工作线程，传输后当前的ArrayBuffer失效。
-
-**系统能力：** SystemCapability.Utils.Lang
-
-**参数：**
-
-| 参数名   | 类型           | 必填 | 说明                                          |
-| -------- | ------------- | ---- | --------------------------------------------- |
-| transfer | ArrayBuffer[] | 否   | 可传输对象是ArrayBuffer的实例对象，默认为空数组。 |
-
-**示例：**
-
-```ts
-let buffer = new ArrayBuffer(8);
-let view = new Uint8Array(buffer);
-let buffer1 = new ArrayBuffer(16);
-let view1 = new Uint8Array(buffer1);
-
-console.info("testTransfer view byteLength: " + view.byteLength);
-console.info("testTransfer view1 byteLength: " + view1.byteLength);
-@Concurrent
-function testTransfer(arg1, arg2) {
-  console.info("testTransfer arg1 byteLength: " + arg1.byteLength);
-  console.info("testTransfer arg2 byteLength: " + arg2.byteLength);
-  return 100;
-}
-let task = new taskpool.Task(testTransfer, view, view1);
-task.setTransferList([view.buffer, view1.buffer]);
-taskpool.execute(task).then((res)=>{
-  console.info("test result: " + res);
-}).catch((e)=>{
-  console.error("test catch: " + e);
-})
-console.info("testTransfer view byteLength: " + view.byteLength);
-console.info("testTransfer view1 byteLength: " + view1.byteLength);
-```
-
-### 属性
-
-**系统能力：** SystemCapability.Utils.Lang
-
-| 名称      | 类型      | 可读 | 可写 | 说明                                                                       |
-| --------- | --------- | ---- | ---- | ------------------------------------------------------------------------- |
-| function  | Function  | 是   | 是   | 创建任务时需要传入的函数，支持的函数返回值类型请查[序列化支持类型](#序列化支持类型)。   |
-| arguments | unknown[] | 是   | 是   | 创建任务传入函数所需的参数，支持的参数类型请查[序列化支持类型](#序列化支持类型)。 |
-
-## TaskGroup<sup>10+</sup>
-表示任务组。使用以下方法前，需要先构造TaskGroup。
-
-### constructor<sup>10+</sup>
-
-constructor()
-
-TaskGroup的构造函数。
-
-**系统能力：** SystemCapability.Utils.Lang
-
-**示例：**
-
-```ts
-let taskGroup = new taskpool.TaskGroup();
-```
-
-### addTask<sup>10+</sup>
-
-addTask(func: Function, ...args: unknown[]): void
-
-将待执行的函数添加到任务组中。
-
-**系统能力：** SystemCapability.Utils.Lang
-
-**参数：**
-
-| 参数名 | 类型      | 必填 | 说明                                                                   |
-| ------ | --------- | ---- | ---------------------------------------------------------------------- |
-| func   | Function  | 是   | 任务执行需要传入函数，支持的函数返回值类型请查[序列化支持类型](#序列化支持类型)。     |
-| args   | unknown[] | 否   | 任务执行函数所需要的参数，支持的参数类型请查[序列化支持类型](#序列化支持类型)。默认值为undefined。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
-
-| 错误码ID | 错误信息                                 |
-| -------- | --------------------------------------- |
-| 10200014 | The function is not mark as concurrent. |
-
-**示例：**
-
-```ts
-@Concurrent
-function printArgs(args) {
-    console.log("printArgs: " + args);
-    return args;
-}
-
-let taskGroup = new taskpool.TaskGroup();
-taskGroup.addTask(printArgs, 100); // 100: test number
-```
-
-### addTask<sup>10+</sup>
-
-addTask(task: Task): void
-
-将创建好的任务添加到任务组中。
-
-**系统能力：** SystemCapability.Utils.Lang
-
-**参数：**
-
-| 参数名   | 类型                  | 必填 | 说明                                       |
-| -------- | --------------------- | ---- | ---------------------------------------- |
-| task     | [Task](#task)         | 是   | 需要添加到任务组中的任务。                  |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
-
-| 错误码ID | 错误信息                                 |
-| -------- | --------------------------------------- |
-| 10200014 | The function is not mark as concurrent. |
-
-**示例：**
-
-```ts
-@Concurrent
-function printArgs(args) {
-    console.log("printArgs: " + args);
-    return args;
-}
-
-let taskGroup = new taskpool.TaskGroup();
-let task = new taskpool.Task(printArgs, 200); // 200: test number
-taskGroup.addTask(task);
-```
-
 ## taskpool.execute
 
 execute(func: Function, ...args: unknown[]): Promise\<unknown>
@@ -587,6 +292,384 @@ setTimeout(()=>{
 }, 1000);
 ```
 
+
+## taskpool.getTaskPoolInfo<sup>10+</sup>
+
+getTaskPoolInfo(): TaskPoolInfo
+
+获取任务池内部信息。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**返回值：**
+
+| 类型                                | 说明                |
+| ----------------------------------- | ------------------ |
+| [TaskPoolInfo](#taskpoolinfo10)   | 任务池的内部信息。   |
+
+**示例：**
+
+```ts
+let taskpoolInfo = taskpool.getTaskPoolInfo();
+```
+
+## Priority
+
+表示所创建任务（Task）的优先级。
+
+**系统能力：**  SystemCapability.Utils.Lang
+
+| 名称 | 值 | 说明 |
+| -------- | -------- | -------- |
+| HIGH   | 0    | 任务为高优先级。 |
+| MEDIUM | 1 | 任务为中优先级。 |
+| LOW | 2 | 任务为低优先级。 |
+
+**示例：**
+
+```ts
+@Concurrent
+function printArgs(args) {
+    console.log("printArgs: " + args);
+    return args;
+}
+
+let task = new taskpool.Task(printArgs, 100); // 100: test number
+let highCount = 0;
+let mediumCount = 0;
+let lowCount = 0;
+let allCount = 100;
+for (let i = 0; i < allCount; i++) {
+  taskpool.execute(task, taskpool.Priority.LOW).then((res: number) => {
+    lowCount++;
+    console.log("taskpool lowCount is :" + lowCount);
+  }).catch((e) => {
+    console.error("low task error: " + e);
+  })
+  taskpool.execute(task, taskpool.Priority.MEDIUM).then((res: number) => {
+    mediumCount++;
+    console.log("taskpool mediumCount is :" + mediumCount);
+  }).catch((e) => {
+    console.error("medium task error: " + e);
+  })
+  taskpool.execute(task, taskpool.Priority.HIGH).then((res: number) => {
+    highCount++;
+    console.log("taskpool highCount is :" + highCount);
+  }).catch((e) => {
+    console.error("high task error: " + e);
+  })
+}
+```
+
+## Task
+
+表示任务。使用[constructor](#constructor)方法构造Task。
+
+### constructor
+
+constructor(func: Function, ...args: unknown[])
+
+Task的构造函数。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名 | 类型      | 必填 | 说明                                                                  |
+| ------ | --------- | ---- | -------------------------------------------------------------------- |
+| func   | Function  | 是   | 任务执行需要传入函数，支持的函数返回值类型请查[序列化支持类型](#序列化支持类型)。   |
+| args   | unknown[] | 否   | 任务执行传入函数的参数，支持的参数类型请查[序列化支持类型](#序列化支持类型)。默认值为undefined。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息                                 |
+| -------- | --------------------------------------- |
+| 10200014 | The function is not mark as concurrent. |
+
+**示例：**
+
+```ts
+@Concurrent
+function printArgs(args) {
+    console.log("printArgs: " + args);
+    return args;
+}
+
+let task = new taskpool.Task(printArgs, "this is my first Task");
+```
+
+### isCanceled<sup>10+</sup>
+
+static isCanceled(): boolean
+
+检查当前正在运行的任务是否已取消。使用该方法前需要先构造Task。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**返回值：**
+
+| 类型    | 说明                                 |
+| ------- | ------------------------------------ |
+| boolean | 如果当前正在运行的任务被取消返回true，未被取消返回false。|
+
+**示例：**
+
+```ts
+@Concurrent
+function inspectStatus(arg) {
+    // do something
+    if (taskpool.Task.isCanceled()) {
+      console.log("task has been canceled.");
+      // do something
+      return arg + 1;
+    }
+    // do something
+    return arg;
+}
+```
+
+> **说明：**<br/>
+> isCanceled方法需要和taskpool.cancel方法搭配使用，如果不调用cancel方法，isCanceled方法默认返回false。
+
+**示例：**
+
+```ts
+@Concurrent
+function inspectStatus(arg) {
+    // 第一时间检查取消并回复
+    if (taskpool.Task.isCanceled()) {
+      console.log("task has been canceled before 2s sleep.");
+      return arg + 2;
+    }
+    // 延时2s
+    let t = Date.now();
+    while (Date.now() - t < 2000) {
+      continue;
+    }
+    // 第二次检查取消并作出响应
+    if (taskpool.Task.isCanceled()) {
+      console.log("task has been canceled after 2s sleep.");
+      return arg + 3;
+    }
+  return arg + 1;
+}
+
+let task = new taskpool.Task(inspectStatus, 100); // 100: test number
+taskpool.execute(task).then((res)=>{
+  console.log("taskpool test result: " + res);
+}).catch((err) => {
+  console.log("taskpool test occur error: " + err);
+});
+// 不调用cancel，isCanceled()默认返回false，task执行的结果为101
+```
+
+### setTransferList<sup>10+</sup>
+
+setTransferList(transfer?: ArrayBuffer[]): void
+
+设置任务的传输列表。使用该方法前需要先构造Task。
+
+> **说明：**<br/>
+> 此接口可以设置任务池中ArrayBuffer的transfer列表，transfer列表中的ArrayBuffer对象在传输时不会复制buffer内容到工作线程而是转移buffer控制权至工作线程，传输后当前的ArrayBuffer失效。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名   | 类型           | 必填 | 说明                                          |
+| -------- | ------------- | ---- | --------------------------------------------- |
+| transfer | ArrayBuffer[] | 否   | 可传输对象是ArrayBuffer的实例对象，默认为空数组。 |
+
+**示例：**
+
+```ts
+let buffer = new ArrayBuffer(8);
+let view = new Uint8Array(buffer);
+let buffer1 = new ArrayBuffer(16);
+let view1 = new Uint8Array(buffer1);
+
+console.info("testTransfer view byteLength: " + view.byteLength);
+console.info("testTransfer view1 byteLength: " + view1.byteLength);
+@Concurrent
+function testTransfer(arg1, arg2) {
+  console.info("testTransfer arg1 byteLength: " + arg1.byteLength);
+  console.info("testTransfer arg2 byteLength: " + arg2.byteLength);
+  return 100;
+}
+let task = new taskpool.Task(testTransfer, view, view1);
+task.setTransferList([view.buffer, view1.buffer]);
+taskpool.execute(task).then((res)=>{
+  console.info("test result: " + res);
+}).catch((e)=>{
+  console.error("test catch: " + e);
+})
+console.info("testTransfer view byteLength: " + view.byteLength);
+console.info("testTransfer view1 byteLength: " + view1.byteLength);
+```
+
+### 属性
+
+**系统能力：** SystemCapability.Utils.Lang
+
+| 名称      | 类型      | 可读 | 可写 | 说明                                                                       |
+| --------- | --------- | ---- | ---- | ------------------------------------------------------------------------- |
+| function  | Function  | 是   | 是   | 创建任务时需要传入的函数，支持的函数返回值类型请查[序列化支持类型](#序列化支持类型)。   |
+| arguments | unknown[] | 是   | 是   | 创建任务传入函数所需的参数，支持的参数类型请查[序列化支持类型](#序列化支持类型)。 |
+
+## TaskGroup<sup>10+</sup>
+
+表示任务组。使用[constructor](#constructor10)方法构造TaskGroup。
+
+### constructor<sup>10+</sup>
+
+constructor()
+
+TaskGroup的构造函数。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**示例：**
+
+```ts
+let taskGroup = new taskpool.TaskGroup();
+```
+
+### addTask<sup>10+</sup>
+
+addTask(func: Function, ...args: unknown[]): void
+
+将待执行的函数添加到任务组中。使用该方法前需要先构造TaskGroup。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名 | 类型      | 必填 | 说明                                                                   |
+| ------ | --------- | ---- | ---------------------------------------------------------------------- |
+| func   | Function  | 是   | 任务执行需要传入函数，支持的函数返回值类型请查[序列化支持类型](#序列化支持类型)。     |
+| args   | unknown[] | 否   | 任务执行函数所需要的参数，支持的参数类型请查[序列化支持类型](#序列化支持类型)。默认值为undefined。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息                                 |
+| -------- | --------------------------------------- |
+| 10200014 | The function is not mark as concurrent. |
+
+**示例：**
+
+```ts
+@Concurrent
+function printArgs(args) {
+    console.log("printArgs: " + args);
+    return args;
+}
+
+let taskGroup = new taskpool.TaskGroup();
+taskGroup.addTask(printArgs, 100); // 100: test number
+```
+
+### addTask<sup>10+</sup>
+
+addTask(task: Task): void
+
+将创建好的任务添加到任务组中。使用该方法前需要先构造TaskGroup。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名   | 类型                  | 必填 | 说明                                       |
+| -------- | --------------------- | ---- | ---------------------------------------- |
+| task     | [Task](#task)         | 是   | 需要添加到任务组中的任务。                  |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息                                 |
+| -------- | --------------------------------------- |
+| 10200014 | The function is not mark as concurrent. |
+
+**示例：**
+
+```ts
+@Concurrent
+function printArgs(args) {
+    console.log("printArgs: " + args);
+    return args;
+}
+
+let taskGroup = new taskpool.TaskGroup();
+let task = new taskpool.Task(printArgs, 200); // 200: test number
+taskGroup.addTask(task);
+```
+
+
+## State<sup>10+</sup>
+
+表示任务（Task）状态的枚举。
+
+**系统能力：**  SystemCapability.Utils.Lang
+
+| 名称      | 值        | 说明          |
+| --------- | -------- | ------------- |
+| WAITING   | 1        | 任务正在等待。 |
+| RUNNING   | 2        | 任务正在执行。 |
+| CANCELED  | 3        | 任务已被取消。 |
+
+
+## TaskInfo<sup>10+</sup>
+
+任务的内部信息。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+### 属性
+
+**系统能力：** SystemCapability.Utils.Lang
+
+| 名称     | 类型                | 可读 | 可写 | 说明                                                           |
+| -------- | ------------------ | ---- | ---- | ------------------------------------------------------------- |
+| taskId   | number             | 是   | 否   | 任务的ID。                                                     |
+| state    | [State](#state10)  | 是   | 否   | 任务的状态。                                                    |
+| duration | number             | 是   | 否   | 任务执行至当前所用的时间，单位为ms。当返回为0时，表示任务未执行；返回为空时，表示没有任务执行  |
+
+## ThreadInfo<sup>10+</sup>
+
+工作线程的内部信息。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+### 属性
+
+**系统能力：** SystemCapability.Utils.Lang
+
+| 名称     | 类型                    | 可读 | 可写 | 说明                                                      |
+| -------- | ---------------------- | ---- | ---- | -------------------------------------------------------- |
+| tid      | number                 | 是   | 否   | 工作线程的标识符。返回为空时，代表没有任务执行。              |
+| taskIds  | number[]               | 是   | 否   | 在当前线程上运行的任务id列表。返回为空时，代表没有任务执行。   |
+| priority | [Priority](#priority)  | 是   | 否   | 当前线程的优先级。返回为空时，代表没有任务执行。              |
+
+## TaskPoolInfo<sup>10+</sup>
+
+任务池的内部信息。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+### 属性
+
+**系统能力：** SystemCapability.Utils.Lang
+
+| 名称          | 类型                              | 可读 | 可写 | 说明                  |
+| ------------- | -------------------------------- | ---- | ---- | -------------------- |
+| threadInfos   | [ThreadInfo[]](#threadinfo10)    | 是   | 否   | 工作线程的内部信息。   |
+| taskInfos     | [TaskInfo[]](#taskinfo10)        | 是   | 否   | 任务的内部信息。       |
+
+
 ## 其他说明
 
 ### 序列化支持类型
@@ -832,4 +915,65 @@ async function taskpoolGroupCancelTest() {
 }
 
 taskpoolGroupCancelTest()
+```
+
+**示例八**
+
+```ts
+// 分别创建执行100个高、中、低优先级的任务，查看其各项信息
+@Concurrent
+function delay() {
+  let start = new Date().getTime();
+  while (new Date().getTime() - start < 500) {
+    continue;
+  }
+}
+
+let highCount = 0;
+let mediumCount = 0;
+let lowCount = 0;
+let allCount = 100;
+for (let i = 0; i < allCount; i++) {
+  let task1 = new taskpool.Task(delay);
+  let task2 = new taskpool.Task(delay);
+  let task3 = new taskpool.Task(delay);
+  taskpool.execute(task1, taskpool.Priority.LOW).then(() => {
+    lowCount++;
+  }).catch((e) => {
+    console.error("low task error: " + e);
+  })
+  taskpool.execute(task2, taskpool.Priority.MEDIUM).then(() => {
+    mediumCount++;
+  }).catch((e) => {
+    console.error("medium task error: " + e);
+  })
+  taskpool.execute(task3, taskpool.Priority.HIGH).then(() => {
+    highCount++;
+  }).catch((e) => {
+    console.error("high task error: " + e);
+  })
+}
+let start = new Date().getTime();
+while (new Date().getTime() - start < 1000) {
+    continue;
+}
+let taskpoolInfo = taskpool.getTaskPoolInfo();
+let tid = 0;
+let taskIds = [];
+let priority = 0;
+let taskId = 0;
+let state = 0;
+let duration = 0;
+for(let threadInfo of taskpoolInfo.threadInfos) {
+  tid = threadInfo.tid;
+  taskIds.length = threadInfo.taskIds.length;
+  priority = threadInfo.priority;
+  console.info("taskpool---tid is:" + tid + ", taskIds is:" + taskIds + ", priority is:" + priority);
+}
+for(let taskInfo of taskpoolInfo.taskInfos) {
+  taskId = taskInfo.taskId;
+  state = taskInfo.state;
+  duration = taskInfo.duration;
+  console.info("taskpool---taskId is:" + taskId + ", state is:" + state + ", duration is:" + duration);
+}
 ```

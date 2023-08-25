@@ -15,21 +15,24 @@ Video software decoding and hardware decoding are different. When a decoder is c
 
 Read [VideoDecoder](../reference/native-apis/_video_decoder.md) for the API reference.
 
+The figure below shows the call relationship of video decoding.
+
+![Call relationship of video decoding](figures/video-decode.png)
+
 1. Create a decoder instance.
 
    You can create a decoder by name or MIME type.
 
    ``` c++
-    // Create a decoder by name.
+    // To create a decoder by name, call OH_AVCapability_GetName to obtain the codec names available and then call OH_VideoDecoder_CreateByName. If your application has special requirements, for example, expecting a decoder that supports a certain resolution, you can call OH_AVCodec_GetCapability to query the capability first.
     OH_AVCapability *capability = OH_AVCodec_GetCapability(OH_AVCODEC_MIMETYPE_VIDEO_AVC, false);
     const char *name = OH_AVCapability_GetName(capability);
-    OH_AVCodec *videoDec = OH_VideoDecoder_CreateByName(name); // name:"OH.Media.Codec.Decoder.Video.AVC"
+    OH_AVCodec *videoDec = OH_VideoDecoder_CreateByName(name);
    ```
    ```c++
     // Create a decoder by MIME type.
-    // Create an H.264 decoder for software/hardware decoding.
+    // Create an H.264 decoder for software/hardware decoding. The system creates the most appropriate decoder if multiple decoders are available.
     OH_AVCodec *videoDec = OH_VideoDecoder_CreateByMime(OH_AVCODEC_MIMETYPE_VIDEO_AVC);
-    // Create a decoder by MIME type.
     // Create an H.265 decoder for hardware decoding.
     OH_AVCodec *videoDec = OH_VideoDecoder_CreateByMime(OH_AVCODEC_MIMETYPE_VIDEO_HEVC);
    ```
@@ -54,30 +57,32 @@ Read [VideoDecoder](../reference/native-apis/_video_decoder.md) for the API refe
 
    Register the **OH_AVCodecAsyncCallback** struct that defines the following callback function pointers:
 
-   - **OnError**, a callback used to report a codec operation error
-   - **OnOutputFormatChanged**, a callback used to report a codec stream change, for example, stream width or height change.
-   - **OnInputBufferAvailable**, a callback used to report input data required, which means that the decoder is ready for receiving data
-   - **OnOutputBufferAvailable**, a callback used to report output data generated, which means that decoding is complete (Note: The **data** parameter in the callback function is empty in surface output mode.)
+   - **OH_AVCodecOnError**, a callback used to report a codec operation error
+   - **OH_AVCodecOnStreamChanged**, a callback used to report a codec stream change, for example, stream width or height change.
+   - **OH_AVCodecOnNeedInputData**, a callback used to report input data required, which means that the decoder is ready for receiving data
+   - **OH_AVCodecOnNewOutputData**, a callback used to report output data generated, which means that decoding is complete (Note: The **data** parameter in the callback function is empty in surface output mode.)
 
    You need to process the callback functions to ensure that the decoder runs properly.
 
    ``` c++
-    // Set the OnError callback function.
+    // Implement the OH_AVCodecOnError callback function.
     static void OnError(OH_AVCodec *codec, int32_t errorCode, void *userData)
     {
         (void)codec;
         (void)errorCode;
         (void)userData;
     }
-    // Set the OnOutputFormatChanged callback function.
-    static void OnOutputFormatChanged(OH_AVCodec *codec, OH_AVFormat *format, void *userData)
+
+    // Implement the OH_AVCodecOnStreamChanged callback function.
+    static void OnStreamChanged(OH_AVCodec *codec, OH_AVFormat *format, void *userData)
     {
         (void)codec;
         (void)format;
         (void)userData;
     }
-    // Set the OnInputBufferAvailable callback function, which is used to obtain the input frame information.
-    static void OnInputBufferAvailable(OH_AVCodec *codec, uint32_t index, OH_AVMemory *data, void *userData)
+
+    // Implement the OH_AVCodecOnNeedInputData callback function.
+    static void OnNeedInputData(OH_AVCodec *codec, uint32_t index, OH_AVMemory *data, void *userData)
     {
         (void)codec;
         VDecSignal *signal_ = static_cast<VDecSignal *>(userData);
@@ -88,8 +93,9 @@ Read [VideoDecoder](../reference/native-apis/_video_decoder.md) for the API refe
         signal_->inBufferQueue_.push(data);
         signal_->inCond_.notify_all();
     }
-    // Set the OnOutputBufferAvailable callback function, which is used to obtain the output frame information.
-    static void OnOutputBufferAvailable(OH_AVCodec *codec, uint32_t index, OH_AVMemory *data, OH_AVCodecBufferAttr *attr,
+
+    // Implement the OH_AVCodecOnNewOutputData callback function.
+    static void OnNeedOutputData(OH_AVCodec *codec, uint32_t index, OH_AVMemory *data, OH_AVCodecBufferAttr *attr,
                                         void *userData)
     {
         (void)codec;
@@ -102,7 +108,7 @@ Read [VideoDecoder](../reference/native-apis/_video_decoder.md) for the API refe
         signal_->attrQueue_.push(*attr);
         signal_->outCond_.notify_all();
     }
-    OH_AVCodecAsyncCallback cb = {&OnError, &OnOutputFormatChanged, &OnInputBufferAvailable, &OnOutputBufferAvailable};
+    OH_AVCodecAsyncCallback cb = {&OnError, &OnStreamChanged, &OnNeedInputData, &OnNeedOutputData};
     // Set the asynchronous callbacks.
     int32_t ret = OH_VideoDecoder_SetCallback(videoDec, cb, signal_);
    ```
@@ -146,7 +152,7 @@ Read [VideoDecoder](../reference/native-apis/_video_decoder.md) for the API refe
    ```  
 
 5. (Optional) Configure the surface parameters of the decoder. This step is required only when the surface is used.
-
+   
    ``` c++
     OH_AVFormat *format = OH_AVFormat_Create();
     // Configure the display rotation angle.
@@ -179,7 +185,7 @@ Read [VideoDecoder](../reference/native-apis/_video_decoder.md) for the API refe
    ``` c++
     // Configure the buffer information.
     OH_AVCodecBufferAttr info;
-    // Call av_packet_alloc to initialize and return a container packet.
+    // Call av_packet_alloc of FFmpeg to initialize and return a container packet.
     AVPacket pkt = av_packet_alloc();
     // Configure the input size, offset, and timestamp of the buffer.
     info.size = pkt->size;
@@ -208,9 +214,9 @@ Read [VideoDecoder](../reference/native-apis/_video_decoder.md) for the API refe
    ```
 
 9. (Optional) Call **OH_VideoDecoder_Flush()** to refresh the decoder.
-
+   
    After **OH_VideoDecoder_Flush()** is called, the decoder remains in the running state, but the current queue is cleared and the buffer storing the decoded data is freed.
-
+    
    To continue decoding, you must call **OH_VideoDecoder_Start()** again.
 
    ``` c++
@@ -225,7 +231,7 @@ Read [VideoDecoder](../reference/native-apis/_video_decoder.md) for the API refe
    ```
 
 10. (Optional) Call **OH_VideoDecoder_Reset()** to reset the decoder.
-
+    
     After **OH_VideoDecoder_Reset()** is called, the decoder returns to the initialized state. To continue decoding, you must call **OH_VideoDecoder_Configure()** and then **OH_VideoDecoder_Start()**.
 
     ``` c++
@@ -240,7 +246,7 @@ Read [VideoDecoder](../reference/native-apis/_video_decoder.md) for the API refe
     ```
 
 11. Call **OH_VideoDecoder_Stop()** to stop the decoder.
-
+    
     ``` c++
      int32_t ret;
      // Stop the decoder.

@@ -34,7 +34,7 @@ The table below describes the APIs used in this guide.
 | X509Cert        | getPublicKey() : cryptoFramework.PubKey                       | Obtains the certificate public key.                              |
 | X509Cert        | checkValidityWithDate(date: string) : void                   | Checks the certificate validity period.                             |
 | X509Cert        | getVersion() : number                                        | Obtains the certificate version.                                |
-| X509Cert        | getSerialNumber() : number                                   | Obtains the certificate serial number.                              |
+| X509Cert | getCertSerialNumber() : bigint<sup>10+</sup> | Obtains the certificate serial number.|
 | X509Cert        | getIssuerName() : DataBlob                                   | Obtains the certificate issuer.                          |
 | X509Cert        | getSubjectName() : DataBlob                                  | Obtains the certificate subject.                            |
 | X509Cert        | getNotBeforeTime() : string                                  | Obtains the time from which the certificate takes effect.                      |
@@ -489,7 +489,7 @@ function certChainValidatorSample() {
         data: encodingData,
         // Number of certificates. It is 2 in this example.
         count: 2,
-        // Certificate format. PEM and DER are supported. In this example, the certificate is in PEM format.
+        // Certificate format. Only PEM and DER are supported. In this example, the certificate is in PEM format.
         encodingFormat: cryptoCert.EncodingFormat.FORMAT_PEM
     };
     

@@ -63,10 +63,10 @@
 ```html
 <!-- xxx.hml -->
 <div class="container">
-  <qrcode value="{{qr_value}}" class="qrCode" style="color: {{qr_color}};background-color: {{qr_bcol}};"></qrcode>
-  <input type="button" onclick="changeColor" class="button">Color</input>
-  <input type="button" onclick="changeBackgroundColor" class="button">BackgroundColor</input>
-  <input type="button" onclick="changeColor" class="button">Value</input>
+    <qrcode value="{{qr_value}}" class="qrCode" style="color: {{qr_col}};background-color: {{qr_bcol}};"></qrcode>
+    <input type="button" onclick="changeColor" class="button">Color</input>
+    <input type="button" onclick="changeBackgroundColor" class="button">BackgroundColor</input>
+    <input type="button" onclick="changeValue" class="button">Value</input>
 </div>
 ```
 
@@ -93,33 +93,33 @@
 ```javascript
 // xxx.js
 export default {
-  data: {
-    qr_col: '#87ceeb',
-    qr_bcol: '#f0ffff',
-    qr_value: 'value'
-  },
-  changeColor() {
-    if (this.qr_col == '#87ceeb') {
-      this.qr_col = '#fa8072';
-    } else {
-      this.qr_col = '#87ceeb';
+    data: {
+        qr_col: '#87ceeb',
+        qr_bcol: '#f0ffff',
+        qr_value: 'value'
+    },
+    changeColor() {
+        if (this.qr_col == '#87ceeb') {
+            this.qr_col = '#fa8072';
+        } else {
+            this.qr_col = '#87ceeb';
+        }
+    },
+    changeBackgroundColor() {
+        if (this.qr_bcol == '#f0ffff') {
+            this.qr_bcol = '#ffffe0';
+        } else {
+            this.qr_bcol = '#f0ffff';
+        }
+    },
+    changeValue() {
+        if (this.qr_value == 'value') {
+            this.qr_value = 'change';
+        } else {
+            this.qr_value = 'value';
+        }
     }
-  },
-  changeBackgroundColor() {
-    if (this.qr_bcol == '#f0ffff') {
-      this.qr_bcol = '#ffffe0';
-    } else {
-      this.qr_bcol = '#f0ffff';
-    }
-  },
-  changeValue() {
-    if (this.qr_value == 'value') {
-      this.qr_value = 'change';
-    } else {
-      this.qr_value = 'value';
-    }
-  }
 }
 ```
 
-![qrcode](figures/qrcode.gif)
+![qrcode](figures/qrcode-lite.gif)

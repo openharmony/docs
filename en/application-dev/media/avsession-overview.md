@@ -4,7 +4,7 @@ The Audio and Video Session (AVSession) service is used to manage the playback b
 
 Audio and video applications access the AVSession service and send application data (for example, a song that is being played and playback state) to it. Through a controller, the user can choose another application or device to continue the playback. If an application does not access the AVSession service, its playback will be forcibly interrupted when it switches to the background.
 
-To implement background playback, you must request a continuous task to prevent the task from being suspended. For details, see [Continuous Task Development](../task-management/continuous-task-dev-guide.md).
+To implement background playback, you must request a continuous task to prevent the task from being suspended. For details, see [Continuous Task](../task-management/continuous-task.md).
 
 ## Basic Concepts
 

@@ -25,13 +25,14 @@ All applications should be developed on top of these frameworks.
 
 Then, equip yourself for developing the key features, with the following guidelines:
 
+- [ArkTS Common Library](arkts-utils/arkts-commonlibrary-overview.md)
 - [Web](web/web-component-overview.md)
 - [Notification](notification/notification-overview.md)
 - [Window Manager](windowmanager/window-overview.md)
 - [WebGL](webgl/webgl-overview.md)
 - [Media](media/media-application-overview.md)
 - [Security](security/userauth-overview.md)
-- [AI](ai/mindspore-lite-js-guidelines.md)
+- [AI](ai/ai-overview.md)
 - [Connectivity](connectivity/ipc-rpc-overview.md)
 - [Telephony Service](telephony/telephony-overview.md)
 - [Data Management](database/data-mgmt-overview.md)

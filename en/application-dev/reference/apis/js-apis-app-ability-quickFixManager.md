@@ -64,20 +64,12 @@ Applies a quick fix patch. This API uses an asynchronous callback to return the 
 
 **Error codes**
 
+If an error occurs during patch installation, the error code and message are returned through the common event [COMMON_EVENT_QUICK_FIX_APPLY_RESULT](commonEvent-definitions.md#common_event_quick_fix_apply_result9).
+
 | ID| Error Message|
 | ------- | -------- |
 | 18500002 | The specified quick fix is invalid. It may not exist or inaccessible. |
 | 18500008 | Internal error. |
-
-If an error occurs during patch installation, the error code and message are returned through the common event [COMMON_EVENT_QUICK_FIX_APPLY_RESULT](commonEvent-definitions.md#common_event_quick_fix_apply_result9). The table below lists the possible error codes and messages.
-
-| ID| Error Message|
-| ------- | -------- |
-| 18500003 | Deploy hqf failed. |
-| 18500004 | Switch hqf failed. |
-| 18500005 | Delete hqf failed. |
-| 18500006 | Load patch failed. |
-| 18500007 | Unload patch failed. |
 
 For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
@@ -128,20 +120,12 @@ Applies a quick fix patch. This API uses a promise to return the result.
 
 **Error codes**
 
+If an error occurs during patch installation, the error code and message are returned through the common event [COMMON_EVENT_QUICK_FIX_APPLY_RESULT](commonEvent-definitions.md#common_event_quick_fix_apply_result9).
+
 | ID| Error Message|
 | ------- | -------- |
 | 18500002 | The specified quick fix is invalid. It may not exist or inaccessible. |
 | 18500008 | Internal error. |
-
-If an error occurs during patch installation, the error code and message are returned through the common event [COMMON_EVENT_QUICK_FIX_APPLY_RESULT](commonEvent-definitions.md#common_event_quick_fix_apply_result9). The table below lists the possible error codes and messages.
-
-| ID| Error Message|
-| ------- | -------- |
-| 18500003 | Deploy hqf failed. |
-| 18500004 | Switch hqf failed. |
-| 18500005 | Delete hqf failed. |
-| 18500006 | Load patch failed. |
-| 18500007 | Unload patch failed. |
 
 For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
@@ -281,13 +265,7 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 | 18500001 | The bundle is not exist or no patch has applied. |
 | 18500009 | The application has a apply quick fix task that is being processed. |
 
-If an error occurs during patch installation, the error code and message are returned through the common event [COMMON_EVENT_QUICK_FIX_REVOKE_RESULT](./common_event/commonEvent-ability.md#common_event_quick_fix_revoke_result10). The table below lists the possible error codes and messages.
-
-| ID| Error Message|
-| ------- | -------- |
-| 18500004 | Switch hqf failed. |
-| 18500005 | Delete hqf failed. |
-| 18500007 | Unload patch failed. |
+If an error occurs during patch installation, the error code and message are returned through the common event [COMMON_EVENT_QUICK_FIX_REVOKE_RESULT](./common_event/commonEvent-ability.md#common_event_quick_fix_revoke_result10).
 
 **Example**
 

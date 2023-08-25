@@ -1,4 +1,4 @@
-# @ohos. deviceStatus.dragInteraction (拖拽)
+# @ohos.deviceStatus.dragInteraction（拖拽）
 
  拖拽功能模块，提供注册和取消拖拽状态监听的能力。 
 
@@ -14,7 +14,7 @@
 import dragInteraction from '@ohos.deviceStatus.dragInteraction'
 ```
 
-## dragInteraction.on
+## dragInteraction.on('drag')
 
 on(type: 'drag', callback: Callback&lt;DragState&gt;): void;
 
@@ -41,7 +41,7 @@ try {
 }
 ```
 
-## dragInteraction.off
+## dragInteraction.off('drag')
 
 off(type: 'drag', callback?: Callback&lt;DragState&gt;): void;
 

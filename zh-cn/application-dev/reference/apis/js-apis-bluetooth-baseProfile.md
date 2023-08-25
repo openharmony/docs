@@ -358,7 +358,7 @@ try {
 
 off(type: 'connectionStateChange', callback?: Callback&lt;[StateChangeParam](#StateChangeParam)&gt;): void
 
-取消订阅a2dp连接状态变化事件。
+取消订阅连接状态变化事件。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 

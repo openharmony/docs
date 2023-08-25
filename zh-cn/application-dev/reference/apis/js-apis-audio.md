@@ -73,7 +73,6 @@ createAudioRenderer(options: AudioRendererOptions, callback: AsyncCallback\<Audi
 **示例：**
 
 ```js
-import featureAbility from '@ohos.ability.featureAbility';
 import fs from '@ohos.file.fs';
 import audio from '@ohos.multimedia.audio';
 
@@ -128,7 +127,6 @@ createAudioRenderer(options: AudioRendererOptions): Promise<AudioRenderer\>
 **示例：**
 
 ```js
-import featureAbility from '@ohos.ability.featureAbility';
 import fs from '@ohos.file.fs';
 import audio from '@ohos.multimedia.audio';
 
@@ -673,7 +671,7 @@ async function createTonePlayerBefore(){
 | ------------- | --------------------------- | ---- | ---------------- |
 | content       | [ContentType](#contenttype) | 否   | 媒体类型。<br>API version 8、9为必填参数，从API version 10开始，变更为可选参数。 |
 | usage         | [StreamUsage](#streamusage) | 是   | 音频流使用类型。 |
-| rendererFlags | number                      | 是   | 音频渲染器标志。 |
+| rendererFlags | number                      | 是   | 音频渲染器标志。<br>0代表普通音频渲染器，1代表低时延音频渲染器。js接口暂不支持低时延音频渲染器。 |
 
 ## InterruptResult<sup>9+</sup>
 
@@ -834,7 +832,8 @@ async function createTonePlayerBefore(){
 | SOURCE_TYPE_INVALID                          | -1     | 无效的音频源。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Core  |
 | SOURCE_TYPE_MIC                              | 0      | Mic音频源。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Core |
 | SOURCE_TYPE_VOICE_RECOGNITION<sup>9+</sup>   | 1      | 语音识别源。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Core  |
-| SOURCE_TYPE_PLAYBACK_CAPTURE<sup>10+</sup> | 2 | 播放音频流（内录）录制音频源。<br/>**系统能力：** SystemCapability.Multimedia.Audio.PlaybackCapture |
+| SOURCE_TYPE_PLAYBACK_CAPTURE<sup>10+</sup>   | 2 | 播放音频流（内录）录制音频源。<br/>**系统能力：** SystemCapability.Multimedia.Audio.PlaybackCapture |
+| SOURCE_TYPE_WAKEUP <sup>10+</sup>            | 3 | 语音唤醒音频流录制音频源。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Core <br/>**需要权限：** ohos.permission.MANAGE_INTELLIGENT_VOICE <br/> 此接口为系统接口|
 | SOURCE_TYPE_VOICE_COMMUNICATION              | 7      | 语音通话场景的音频源。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Core |
 
 ## AudioPlaybackCaptureConfig<sup>10+</sup><a name="audioplaybackcaptureconfig"></a>
@@ -4309,9 +4308,9 @@ async function selectOutputDeviceByFilter(){
 }
 ```
 
-### getPreferOutputDeviceForRendererInfo<sup>10+</sup>
+### getPreferredOutputDeviceForRendererInfo<sup>10+</sup>
 
-getPreferOutputDeviceForRendererInfo(rendererInfo: AudioRendererInfo, callback: AsyncCallback&lt;AudioDeviceDescriptors&gt;): void
+getPreferredOutputDeviceForRendererInfo(rendererInfo: AudioRendererInfo, callback: AsyncCallback&lt;AudioDeviceDescriptors&gt;): void
 
 根据音频信息，返回优先级最高的输出设备，使用callback方式异步返回结果。
 
@@ -4324,6 +4323,15 @@ getPreferOutputDeviceForRendererInfo(rendererInfo: AudioRendererInfo, callback: 
 | rendererInfo                | [AudioRendererInfo](#audiorendererinfo8)                     | 是   | 表示渲染器信息。             |
 | callback                    | AsyncCallback&lt;[AudioDeviceDescriptors](#audiodevicedescriptors)&gt;  | 是   | 回调，返回优先级最高的输出设备信息。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[音频错误码](../errorcodes/errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 6800101 | if input parameter value error. Return by callback.  |
+| 6800301 | System error. Return by callback.                    |
+
 **示例：**
 ```js
 let rendererInfo = {
@@ -4331,8 +4339,8 @@ let rendererInfo = {
     usage : audio.StreamUsage.STREAM_USAGE_MEDIA,
     rendererFlags : 0 }
 
-async function getPreferOutputDevice() {
-  audioRoutingManager.getPreferOutputDeviceForRendererInfo(rendererInfo, (err, desc) => {
+async function getPreferredOutputDevice() {
+  audioRoutingManager.getPreferredOutputDeviceForRendererInfo(rendererInfo, (err, desc) => {
     if (err) {
       console.error(`Result ERROR: ${err}`);
     } else {
@@ -4342,8 +4350,8 @@ async function getPreferOutputDevice() {
 }
 ```
 
-### getPreferOutputDeviceForRendererInfo<sup>10+</sup>
-getPreferOutputDeviceForRendererInfo(rendererInfo: AudioRendererInfo): Promise&lt;AudioDeviceDescriptors&gt;
+### getPreferredOutputDeviceForRendererInfo<sup>10+</sup>
+getPreferredOutputDeviceForRendererInfo(rendererInfo: AudioRendererInfo): Promise&lt;AudioDeviceDescriptors&gt;
 
 根据音频信息，返回优先级最高的输出设备，使用promise方式异步返回结果。
 
@@ -4367,7 +4375,8 @@ getPreferOutputDeviceForRendererInfo(rendererInfo: AudioRendererInfo): Promise&l
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | if input parameter value error              |
+| 6800101 | if input parameter value error. Return by promise.  |
+| 6800301 | System error. Return by promise.                    |
 
 **示例：**
 
@@ -4377,8 +4386,8 @@ let rendererInfo = {
     usage : audio.StreamUsage.STREAM_USAGE_MEDIA,
     rendererFlags : 0 }
 
-async function getPreferOutputDevice() {
-  audioRoutingManager.getPreferOutputDeviceForRendererInfo(rendererInfo).then((desc) => {
+async function getPreferredOutputDevice() {
+  audioRoutingManager.getPreferredOutputDeviceForRendererInfo(rendererInfo).then((desc) => {
     console.info(`device descriptor: ${desc}`);
   }).catch((err) => {
     console.error(`Result ERROR: ${err}`);
@@ -4386,9 +4395,9 @@ async function getPreferOutputDevice() {
 }
 ```
 
-### on('preferOutputDeviceChangeForRendererInfo')<sup>10+</sup>
+### on('preferredOutputDeviceChangeForRendererInfo')<sup>10+</sup>
 
-on(type: 'preferOutputDeviceChangeForRendererInfo', rendererInfo: AudioRendererInfo, callback: Callback<AudioDeviceDescriptors\>): void
+on(type: 'preferredOutputDeviceChangeForRendererInfo', rendererInfo: AudioRendererInfo, callback: Callback<AudioDeviceDescriptors\>): void
 
 订阅最高优先级输出设备变化事件，使用callback获取最高优先级输出设备。
 
@@ -4398,7 +4407,7 @@ on(type: 'preferOutputDeviceChangeForRendererInfo', rendererInfo: AudioRendererI
 
 | 参数名   | 类型                                                 | 必填 | 说明                                       |
 | :------- | :--------------------------------------------------- | :--- | :----------------------------------------- |
-| type     | string                                               | 是   | 订阅的事件的类型。支持事件：'preferOutputDeviceChangeForRendererInfo' |
+| type     | string                                               | 是   | 订阅的事件的类型。支持事件：'preferredOutputDeviceChangeForRendererInfo' |
 | rendererInfo  | [AudioRendererInfo](#audiorendererinfo8)        | 是   | 表示渲染器信息。              |
 | callback | Callback<[AudioDeviceDescriptors](#audiodevicedescriptors)\> | 是   | 获取优先级最高的输出设备信息。                         |
 
@@ -4418,14 +4427,14 @@ let rendererInfo = {
     usage : audio.StreamUsage.STREAM_USAGE_MEDIA,
     rendererFlags : 0 }
 
-audioRoutingManager.on('preferOutputDeviceChangeForRendererInfo', rendererInfo, (desc) => {
+audioRoutingManager.on('preferredOutputDeviceChangeForRendererInfo', rendererInfo, (desc) => {
   console.info(`device descriptor: ${desc}`);
 });
 ```
 
-### off('preferOutputDeviceChangeForRendererInfo')<sup>10+</sup>
+### off('preferredOutputDeviceChangeForRendererInfo')<sup>10+</sup>
 
-off(type: 'preferOutputDeviceChangeForRendererInfo', callback?: Callback<AudioDeviceDescriptors\>): void
+off(type: 'preferredOutputDeviceChangeForRendererInfo', callback?: Callback<AudioDeviceDescriptors\>): void
 
 取消订阅最高优先级输出音频设备变化事件。
 
@@ -4435,7 +4444,7 @@ off(type: 'preferOutputDeviceChangeForRendererInfo', callback?: Callback<AudioDe
 
 | 参数名   | 类型                                                | 必填 | 说明                                       |
 | -------- | --------------------------------------------------- | ---- | ------------------------------------------ |
-| type     | string                                              | 是   | 订阅的事件的类型。支持事件：'preferOutputDeviceChangeForRendererInfo' |
+| type     | string                                              | 是   | 订阅的事件的类型。支持事件：'preferredOutputDeviceChangeForRendererInfo' |
 | callback | Callback<[AudioDeviceDescriptors](#audiodevicedescriptors)> | 否   | 监听方法的回调函数。                         |
 
 **错误码：**
@@ -4449,7 +4458,7 @@ off(type: 'preferOutputDeviceChangeForRendererInfo', callback?: Callback<AudioDe
 **示例：**
 
 ```js
-audioRoutingManager.off('preferOutputDeviceChangeForRendererInfo');
+audioRoutingManager.off('preferredOutputDeviceChangeForRendererInfo');
 ```
 
 ## AudioRendererChangeInfoArray<sup>9+</sup>
@@ -4829,6 +4838,14 @@ setAudioEffectMode(mode: AudioEffectMode, callback: AsyncCallback\<void>): void
 | mode     | [AudioEffectMode](#audioeffectmode10)    | 是   | 音效模式。               |
 | callback | AsyncCallback\<void>                     | 是   | 用于返回执行结果的回调。  |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[音频错误码](../errorcodes/errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ----------------------------------------------|
+| 6800101 | Invalid parameter error. Return by callback.  |
+
 **示例：**
 
 ```js
@@ -4860,6 +4877,14 @@ setAudioEffectMode(mode: AudioEffectMode): Promise\<void>
 | 类型           | 说明                      |
 | -------------- | ------------------------- |
 | Promise\<void> | Promise用于返回执行结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[音频错误码](../errorcodes/errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ---------------------------------------------|
+| 6800101 | Invalid parameter error. Return by promise.  |
 
 **示例：**
 
@@ -5193,36 +5218,32 @@ let bufferSize;
 audioRenderer.getBufferSize().then((data)=> {
   console.info(`AudioFrameworkRenderLog: getBufferSize: SUCCESS ${data}`);
   bufferSize = data;
-  }).catch((err) => {
-  console.error(`AudioFrameworkRenderLog: getBufferSize: ERROR: ${err}`);
-  });
-console.info(`Buffer size: ${bufferSize}`);
-let context = featureAbility.getContext();
-let path;
-async function getCacheDir(){
-  path = await context.getCacheDir();
-}
-let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
-let file = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
-fs.stat(path).then((stat) => {
-  let buf = new ArrayBuffer(bufferSize);
-  let len = stat.size % bufferSize == 0 ? Math.floor(stat.size / bufferSize) : Math.floor(stat.size / bufferSize + 1);
-  for (let i = 0;i < len; i++) {
-    let options = {
-      offset: i * bufferSize,
-      length: bufferSize
-    }
-    let readsize = await fs.read(file.fd, buf, options)
-    let writeSize = await new Promise((resolve,reject)=>{
-      audioRenderer.write(buf,(err,writeSize)=>{
-        if(err){
-          reject(err)
-        }else{
-          resolve(writeSize)
-        }
+  console.info(`Buffer size: ${bufferSize}`);
+  let path = getContext().cacheDir;
+  let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
+  let file = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
+  fs.stat(filePath).then(async (stat) => {
+    let buf = new ArrayBuffer(bufferSize);
+    let len = stat.size % bufferSize == 0 ? Math.floor(stat.size / bufferSize) : Math.floor(stat.size / bufferSize + 1);
+    for (let i = 0;i < len; i++) {
+      let options = {
+        offset: i * bufferSize,
+        length: bufferSize
+      }
+      let readsize = await fs.read(file.fd, buf, options)
+      let writeSize = await new Promise((resolve,reject)=>{
+        audioRenderer.write(buf,(err,writeSize)=>{
+          if(err){
+            reject(err)
+          }else{
+            resolve(writeSize)
+          }
+        })
       })
-    })	  
-  }
+    }
+  });
+}).catch((err) => {
+  console.error(`AudioFrameworkRenderLog: getBufferSize: ERROR: ${err}`);
 });
 
 
@@ -5249,32 +5270,28 @@ let bufferSize;
 audioRenderer.getBufferSize().then((data) => {
   console.info(`AudioFrameworkRenderLog: getBufferSize: SUCCESS ${data}`);
   bufferSize = data;
-  }).catch((err) => {
-  console.info(`AudioFrameworkRenderLog: getBufferSize: ERROR: ${err}`);
+  console.info(`BufferSize: ${bufferSize}`);
+  let path = getContext().cacheDir;
+  let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
+  let file = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
+  fs.stat(filePath).then(async (stat) => {
+    let buf = new ArrayBuffer(bufferSize);
+    let len = stat.size % bufferSize == 0 ? Math.floor(stat.size / bufferSize) : Math.floor(stat.size / bufferSize + 1);
+    for (let i = 0;i < len; i++) {
+        let options = {
+          offset: i * bufferSize,
+          length: bufferSize
+        }
+        let readsize = await fs.read(file.fd, buf, options)
+        try{
+          let writeSize = await audioRenderer.write(buf);
+        } catch(err) {
+          console.error(`audioRenderer.write err: ${err}`);
+        }
+    }
   });
-console.info(`BufferSize: ${bufferSize}`);
-let context = featureAbility.getContext();
-let path;
-async function getCacheDir(){
-  path = await context.getCacheDir();
-}
-let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
-let file = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
-fs.stat(path).then((stat) => {
-  let buf = new ArrayBuffer(bufferSize);
-  let len = stat.size % bufferSize == 0 ? Math.floor(stat.size / bufferSize) : Math.floor(stat.size / bufferSize + 1);
-  for (let i = 0;i < len; i++) {
-      let options = {
-        offset: i * bufferSize,
-        length: bufferSize
-      }
-      let readsize = await fs.read(file.fd, buf, options)
-      try{
-         let writeSize = await audioRenderer.write(buf);
-      } catch(err) {
-         console.error(`audioRenderer.write err: ${err}`);
-      }   
-  }
+}).catch((err) => {
+  console.info(`AudioFrameworkRenderLog: getBufferSize: ERROR: ${err}`);
 });
 ```
 

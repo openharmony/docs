@@ -16,7 +16,7 @@
 import cloudData from '@ohos.data.cloudData';
 ```
 
-##   Action
+##   ClearAction
 
 清除本地下载的云端数据的行为枚举。
 
@@ -347,9 +347,9 @@ try {
 }
 ```
 
-###  clean
+###  clear
 
-static clean(accountId: string, appActions: {[bundleName: string]: Action},  callback: AsyncCallback&lt;void&gt;):void
+static clear(accountId: string, appActions: {[bundleName: string]: ClearAction},  callback: AsyncCallback&lt;void&gt;):void
 
 清除本地下载的云端数据，使用callback异步回调。
 
@@ -361,26 +361,26 @@ static clean(accountId: string, appActions: {[bundleName: string]: Action},  cal
 
 **参数：**
 
-| 参数名     | 类型                                      | 必填 | 说明                             |
-| ---------- | ----------------------------------------- | ---- | -------------------------------- |
-| accountId  | string                                    | 是   | 具体打开的云帐号ID。             |
-| appActions | {[bundleName: string]: [Action](#action)} | 是   | 要清除数据的应用信息及清除规则。 |
-| callback   | AsyncCallback&lt;void&gt;                 | 是   | 回调函数。                       |
+| 参数名     | 类型                                                | 必填 | 说明                             |
+| ---------- | --------------------------------------------------- | ---- | -------------------------------- |
+| accountId  | string                                              | 是   | 具体打开的云帐号ID。             |
+| appActions | {[bundleName: string]: [ClearAction](#clearaction)} | 是   | 要清除数据的应用信息及清除规则。 |
+| callback   | AsyncCallback&lt;void&gt;                           | 是   | 回调函数。                       |
 
 **示例：**
 
 ```js
-let action = cloudData.Action;
+let action = cloudData.ClearAction;
 let account = "test_id";
 let bundleName1 = "test_bundleName1";
 let bundleName2 = "test_bundleName2";
 let appActions = { [bundleName1]: action.CLEAR_CLOUD_INFO, [bundleName2]: action.CLEAR_CLOUD_DATA_AND_INFO };
 try {
-  cloudData.Config.clean(account, appActions, function (err) {
+  cloudData.Config.clear(account, appActions, function (err) {
     if (err === undefined) {
-      console.info('Succeeding in cleaning cloud data');
+      console.info('Succeeding in clearing cloud data');
     } else {
-      console.error(`Failed to clean cloud data. Code: ${err.code}, message: ${err.message}`);
+      console.error(`Failed to clear cloud data. Code: ${err.code}, message: ${err.message}`);
     }
   });
 } catch (error) {
@@ -388,9 +388,9 @@ try {
 }
 ```
 
-### clean
+### clear
 
-static clean(accountId: string, appActions: {[bundleName: string]: Action}): Promise&lt;void&gt;
+static clear(accountId: string, appActions: {[bundleName: string]: ClearAction}): Promise&lt;void&gt;
 
 清除本地下载的云端数据，使用Promise异步回调。
 
@@ -402,10 +402,10 @@ static clean(accountId: string, appActions: {[bundleName: string]: Action}): Pro
 
 **参数：**
 
-| 参数名     | 类型                                      | 必填 | 说明                             |
-| ---------- | ----------------------------------------- | ---- | -------------------------------- |
-| accountId  | string                                    | 是   | 具体打开的云帐号ID。             |
-| appActions | {[bundleName: string]: [Action](#action)} | 是   | 要清除数据的应用信息及清除规则。 |
+| 参数名     | 类型                                                | 必填 | 说明                             |
+| ---------- | --------------------------------------------------- | ---- | -------------------------------- |
+| accountId  | string                                              | 是   | 具体打开的云帐号ID。             |
+| appActions | {[bundleName: string]: [ClearAction](#clearaction)} | 是   | 要清除数据的应用信息及清除规则。 |
 
 **返回值：**
 
@@ -416,16 +416,16 @@ static clean(accountId: string, appActions: {[bundleName: string]: Action}): Pro
 **示例：**
 
 ```js
-let action = cloudData.Action;
+let action = cloudData.ClearAction;
 let account = "test_id";
 let bundleName1 = "test_bundleName1";
 let bundleName2 = "test_bundleName2";
 let appActions = { [bundleName1]: action.CLEAR_CLOUD_INFO, [bundleName2]: action.CLEAR_CLOUD_DATA_AND_INFO };
 try {
-  cloudData.Config.clean(account, appActions).then(() => {
-    console.info('Succeeding in cleaning cloud data');
+  cloudData.Config.clear(account, appActions).then(() => {
+    console.info('Succeeding in clearing cloud data');
   }).catch((err) => {
-    console.error(`Failed to clean cloud data. Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to clear cloud data. Code: ${err.code}, message: ${err.message}`);
   });
 } catch (error) {
   console.error(`An unexpected error occurred. Code: ${error.code}, message: ${error.message}`);

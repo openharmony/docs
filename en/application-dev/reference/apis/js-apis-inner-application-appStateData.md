@@ -12,6 +12,8 @@ The **AppStateData** module defines the application state data, which can be obt
 import appManager from '@ohos.app.ability.appManager';
 ```
 
+## Attributes
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **System API**: This module is marked as @systemapi and not visible to third-party applications.

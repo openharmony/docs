@@ -18,6 +18,15 @@ Vulkan是一套用来做2D和3D渲染的图形应用程序接口，其中创建V
 
 以下步骤说明了如何在OpenHarmony平台创建一个VkSurfaceKHR对象。
 
+**添加动态链接库**
+
+CMakeLists.txt中添加以下lib。
+```txt
+libace_ndk.z.so
+libnative_window.so
+libvulkan.so
+```
+
 **头文件**
 ```c++
 #include <ace/xcomponent/native_interface_xcomponent.h>

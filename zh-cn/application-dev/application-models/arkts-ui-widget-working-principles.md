@@ -17,7 +17,7 @@
   **图2** ArkTS卡片渲染服务运行原理  
 ![WidgetRender](figures/WidgetRender.png)
 
-与JS卡片相比，ArkTS卡片支持在卡片中运行逻辑代码，为确保ArkTS卡片发生问题后不影响卡片使用方应用的使用，ArkTS卡片新增了卡片渲染服务用于运行卡片页面代码widgets.abc，卡片渲染服务由卡片管理服务管理。卡片使用方的每个卡片组件都对应了卡片渲染服务里的一个渲染实例，同一应用提供方的渲染实例运行在同一个虚拟机运行环境中，不同应用提供方的渲染实例运行在不同的虚拟机运行环境中，通过虚拟机运行环境隔离不同应用提供方卡片之间的资源与状态。开发过程中需要注意的是[globalThis](uiability-data-sync-with-ui.md#使用globalthis进行数据同步)对象的使用，相同应用提供方的卡片globalThis对象是同一个，不同应用提供方的卡片globalThis对象是不同的。
+与JS卡片相比，ArkTS卡片支持在卡片中运行逻辑代码，为确保ArkTS卡片发生问题后不影响卡片使用方应用的使用，ArkTS卡片新增了卡片渲染服务用于运行卡片页面代码widgets.abc，卡片渲染服务由卡片管理服务管理。卡片使用方的每个卡片组件都对应了卡片渲染服务里的一个渲染实例，同一应用提供方的渲染实例运行在同一个ArkTS虚拟机运行环境中，不同应用提供方的渲染实例运行在不同的ArkTS虚拟机运行环境中，通过ArkTS虚拟机运行环境隔离不同应用提供方卡片之间的资源与状态。开发过程中需要注意的是[globalThis](uiability-data-sync-with-ui.md#使用globalthis进行数据同步)对象的使用，相同应用提供方的卡片globalThis对象是同一个，不同应用提供方的卡片globalThis对象是不同的。
 
 
 ## ArkTS卡片的优势
@@ -26,7 +26,7 @@
 
 - 统一开发范式，提升开发体验和开发效率。
   
-  OpenHarmony在2022年发布了声明式范式的UI开发框架，而卡片还延续了css/hml/json三段式类Web范式的开发方式，提高了开发者的学习成本，提供ArkTS卡片能力后，统一了卡片和页面的开发范式，页面的布局可以直接复用到卡片布局中，提升开发体验和开发效率。
+  提供ArkTS卡片能力后，统一了卡片和页面的开发范式，页面的布局可以直接复用到卡片布局中，提升开发体验和开发效率。
   
   **图3** 卡片工程结构对比  
   ![WidgetProject](figures/WidgetProject.png)
@@ -60,3 +60,11 @@ ArkTS卡片相较于JS卡片具备了更加丰富的能力，但也增加了使�
 - 暂不支持Hot Reload热重载。
 
 - 暂不支持setTimeOut。
+
+## 相关实例
+
+针对ArkTS卡片开发，有以下相关实例可供参考：
+
+- [Stage模型卡片（ArkTS）(Full SDK)（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/Widget/FormExtAbility)
+
+- [Stage模型卡片JS与C++通信（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/Widget/FormGame)

@@ -2,7 +2,7 @@
 
 > **说明**
 >
-> 本开发指导基于API version 9，OH SDK版本3.2.9及以上，适用于JS语言开发
+> 本开发指导需使用API version 9及以上版本SDK，仅适用于JS语言开发。
 
 ## 使用证书操作
 
@@ -34,7 +34,7 @@
 | X509Cert        | getPublicKey() : cryptoFramework.PubKey                       | 获取证书公钥                               |
 | X509Cert        | checkValidityWithDate(date: string) : void                   | 校验证书有效期                              |
 | X509Cert        | getVersion() : number                                        | 获取证书版本                                 |
-| X509Cert        | getSerialNumber() : number                                   | 获取证书序列号                               |
+| X509Cert | getCertSerialNumber() : bigint<sup>10+</sup> | 获取证书序列号 |
 | X509Cert        | getIssuerName() : DataBlob                                   | 获取证书颁发者名称                           |
 | X509Cert        | getSubjectName() : DataBlob                                  | 获取证书主体名称                             |
 | X509Cert        | getNotBeforeTime() : string                                  | 获取证书有效期起始时间                       |
@@ -573,3 +573,9 @@ function crlEntrySample() {
     });
 }
 ```
+
+## 相关实例
+
+针对证书开发，有以下相关实例可供参考：
+
+- [证书算法库框架（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Security/CertificateFramework)

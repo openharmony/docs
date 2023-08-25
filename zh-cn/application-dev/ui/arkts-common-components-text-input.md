@@ -125,8 +125,6 @@ TextInput()
 
 用于表单的提交，在用户登录/注册页面，用户的登录或注册的输入操作。
 
-
-
 ```ts
 @Entry
 @Component
@@ -148,4 +146,11 @@ struct TextInputSample {
 ```
 
 
-![zh-cn_image_0000001563060653](figures/zh-cn_image_0000001563060653.png)
+![TextInputGIF](figures/TextInputGIF.gif)
+
+
+## 相关实例
+
+针对文本输入开发，有以下相关实例可供参考：
+
+- [简易计算器（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/SimpleCalculator)

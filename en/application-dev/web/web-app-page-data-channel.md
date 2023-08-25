@@ -90,7 +90,14 @@ In the following example, **createWebMessagePorts** is used to create message po
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <title>WebView Message Port Demo</title>
   </head>
-
+  <body>
+      <h1>WebView Message Port Demo</h1>
+      <div>
+          <input type="button" value="SendToEts" onclick="PostMsgToEts(msgFromJS.value);"/><br/>
+          <input id="msgFromJS" type="text" value="send this message from HTML to ets"/><br/>
+      </div>
+      <p class="output">display received message send from ets</p>
+  </body>
   <script>
   var h5Port;
   var output = document.querySelector('.output');
@@ -107,7 +114,7 @@ In the following example, **createWebMessagePorts** is used to create message po
                   msg = msg + result;
                 } else if (typeof(result) === 'object') {
                   if (result instanceof ArrayBuffer) {
-                    console.info(`received arraybuffer from html5, length is:` ${result.byteLength}`);
+                    console.info(`received arraybuffer from html5, length is: ${result.byteLength}`);
                     msg = msg + 'lenght is ' + result.byteLength;
                   } else {
                     console.info('not support');
@@ -130,14 +137,5 @@ In the following example, **createWebMessagePorts** is used to create message po
       }
   }
   </script>
-
-  <body>
-      <h1>WebView Message Port Demo</h1>
-      <div>
-          <input type="button" value="SendToEts" onclick="PostMsgToEts(msgFromJS.value);"/><br/>
-          <input id="msgFromJS" type="text" value="send this message from HTML to ets"/><br/>
-      </div>
-      <p class="output">display received message send from ets</p>
-  </body>
   </html>
   ```

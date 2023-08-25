@@ -135,10 +135,10 @@ sendMessage\(options: SendMessageOptions\): void
 **示例：**
 
 ```js
-let sendCallback = function (err, data) {    
+let sendCallback = function (err, data) {
     console.log(`sendCallback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`); 
 }
-let deliveryCallback = function (err, data) {    
+let deliveryCallback = function (err, data) {
     console.log(`deliveryCallback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`); 
 }
 let slotId = 0;
@@ -195,7 +195,7 @@ let destinationHost = '+861xxxxxxxxxx';
 let serviceCenter = '+861xxxxxxxxxx';
 let destinationPort = 1000;
 let options = {slotId, content, destinationHost, serviceCenter, destinationPort, sendCallback, deliveryCallback};
-sms.sendMessage(options, (err) => {
+sms.sendShortMessage(options, (err) => {
     console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```

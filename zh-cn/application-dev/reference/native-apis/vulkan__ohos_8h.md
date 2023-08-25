@@ -23,8 +23,8 @@
 | -------- | -------- |
 | [VkSurfaceCreateInfoOHOS](_vk_surface_create_info_o_h_o_s.md) | 包含创建Vulkan Surface时必要的参数。 |
 | [VkNativeBufferUsageOHOS](_vk_native_buffer_usage_o_h_o_s.md) | 提供OpenHarmony NativeBuffer用途的说明。 |
-| [VkNativeBufferPropertiesOHOS](_vk_native_buffer_properties_o_h_o_s.md) | 包含了NaitveBuffer的属性。 |
-| [VkNativeBufferFormatPropertiesOHOS](_vk_native_buffer_format_properties_o_h_o_s.md) | 包含了NaitveBuffer的一些格式属性。 |
+| [VkNativeBufferPropertiesOHOS](_vk_native_buffer_properties_o_h_o_s.md) | 包含了NativeBuffer的属性。 |
+| [VkNativeBufferFormatPropertiesOHOS](_vk_native_buffer_format_properties_o_h_o_s.md) | 包含了NativeBuffer的一些格式属性。 |
 | [VkImportNativeBufferInfoOHOS](_vk_import_native_buffer_info_o_h_o_s.md) | 包含了OH_NativeBuffer结构体的指针。 |
 | [VkMemoryGetNativeBufferInfoOHOS](_vk_memory_get_native_buffer_info_o_h_o_s.md) | 用于从Vulkan内存中获取OH_NativeBuffer。 |
 | [VkExternalFormatOHOS](_vk_external_format_o_h_o_s.md) | 表示外部定义的格式标识符。 |
@@ -51,8 +51,8 @@
 | [VkSurfaceCreateInfoOHOS](_vulkan.md#vksurfacecreateinfoohos) | 包含创建Vulkan Surface时必要的参数。 |
 | VkResult ([VKAPI_PTR *PFN_vkCreateSurfaceOHOS](_vulkan.md#pfn_vkcreatesurfaceohos)) (VkInstance instance, const [VkSurfaceCreateInfoOHOS](_vk_surface_create_info_o_h_o_s.md) \*pCreateInfo, const VkAllocationCallbacks \*pAllocator, VkSurfaceKHR \*pSurface) | 创建Vulkan Surface的函数指针定义。 |
 | [VkNativeBufferUsageOHOS](_vulkan.md#vknativebufferusageohos) | 提供OpenHarmony NativeBuffer用途的说明。 |
-| [VkNativeBufferPropertiesOHOS](_vulkan.md#vknativebufferpropertiesohos) | 包含了NaitveBuffer的属性。 |
-| [VkNativeBufferFormatPropertiesOHOS](_vulkan.md#vknativebufferformatpropertiesohos) | 包含了NaitveBuffer的一些格式属性。 |
+| [VkNativeBufferPropertiesOHOS](_vulkan.md#vknativebufferpropertiesohos) | 包含了NativeBuffer的属性。 |
+| [VkNativeBufferFormatPropertiesOHOS](_vulkan.md#vknativebufferformatpropertiesohos) | 包含了NativeBuffer的一些格式属性。 |
 | [VkImportNativeBufferInfoOHOS](_vulkan.md#vkimportnativebufferinfoohos) | 包含了OH_NativeBuffer结构体的指针。 |
 | [VkMemoryGetNativeBufferInfoOHOS](_vulkan.md#vkmemorygetnativebufferinfoohos) | 用于从Vulkan内存中获取OH_NativeBuffer。 |
 | [VkExternalFormatOHOS](_vulkan.md#vkexternalformatohos) | 表示外部定义的格式标识符。 |

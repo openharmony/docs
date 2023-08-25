@@ -22,7 +22,7 @@
 
 ## 分享文件给其他应用
 
-在分享文件给其他应用前，开发者需要先[获取应用文件路径](../application-models/application-context-stage.md#获取应用开发路径)。
+在分享文件给其他应用前，开发者需要先[获取应用文件路径](../application-models/application-context-stage.md#获取应用文件路径)。
 
 1. 获取文件在应用沙箱中的路径，并转换为文件URI。
 

@@ -7,10 +7,14 @@
 **图1** 代理刷新运行原理
 ![UpdateWidgetByProxyPrinciple](figures/UpdateWidgetByProxyPrinciple.png)
 
-如图1，与[ArkTS卡片实现原理图](../application-models/arkts-ui-widget-working-principles.md#实现原理)相比，新增了数据管理服务和数据提供方。
+如图1，与[ArkTS卡片实现原理图](../application-models/arkts-ui-widget-working-principles.md#实现原理)相比，卡片代理刷新原理新增了数据管理服务和数据提供方。
 
 - 数据管理服务：该场景下主要提供了多应用间的数据共享的机制。
 - 数据提供方（仅支持系统应用）：系统应用作为数据提供方，需要开启数据共享能力，同时需要自定义`key + subscriberId`作为共享数据的标识。
+
+> **说明：**
+>
+> 只有系统提供了作为数据提供方的应用，同时提供公开可获得的共享数据标识，才能正常使用该特性。
 
 卡片提供方处理流程（图中蓝色箭头）：
 
@@ -28,11 +32,11 @@
 1. 数据提供方以`key + subscriberId`作为数据的标识，将数据存储到数据库。
 2. 数据管理服务感知到数据库变化，将新的数据发布给当前注册的所有订阅实例。
 3. 卡片管理服务从订阅实例中解析出数据，发送给卡片渲染服务。
-4. 卡片渲染服务运行卡片页面代码widgets.abc，widgets.abc按新数据进行渲染，并将渲染后的数据发送至卡片使用方对应的[卡片组件](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-basic-components-formcomponent.md)。
+4. 卡片渲染服务运行卡片页面代码widgets.abc，widgets.abc按新数据进行渲染，并将渲染后的数据发送至卡片使用方对应的[卡片组件](../reference/arkui-ts/ts-basic-components-formcomponent.md)。
 
 数据提供方提供的共享数据有两种类型：
 
-- 过程数据，不会一直存储，有老化期，普通应用可以订阅。
+- 过程数据，不会一直存储，有老化期，所有应用都可以订阅。
 
 - 持久化数据，仅系统应用可以订阅。
 
@@ -215,3 +219,9 @@
 ## 数据提供方开发步骤
 
 参考[数据管理](../database/share-data-by-silent-access.md)开发指南。
+
+## 相关实例
+
+针对卡片代理开发，有以下相关实例可供参考：
+
+- [应用主动添加数据代理卡片到桌面（ArkTS）（Full SDK）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/Widget/RequestAddForm)

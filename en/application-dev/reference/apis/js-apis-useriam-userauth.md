@@ -19,6 +19,8 @@ Enumerates the window types of the authentication widget.
 
 **System capability**: SystemCapability.UserIAM.UserAuth.Core
 
+**System API**: This is a system API.
+
 | Name      | Value  | Description      |
 | ---------- | ---- | ---------- |
 | DIALOG_BOX | 1    | Dialog box.|
@@ -30,35 +32,35 @@ Defines the user authentication parameters.
 
 **System capability**: SystemCapability.UserIAM.UserAuth.Core
 
-| Name          | Type                              | Mandatory| Description                                  |
-| -------------- | ---------------------------------- | ---- | -------------------------------------- |
-| challenge      | Uint8Array                         | Yes  | Challenge value. The maximum length is 32 bytes. The value can be **null**.|
-| authType       | [UserAuthType](#userauthtype8)[]   | Yes  | Authentication type.                            |
-| authTrustLevel | [AuthTrustLevel](#authtrustlevel8) | Yes  | Authentication trust level.                        |
+| Name          | Type                              | Mandatory| Description                                                  |
+| -------------- | ---------------------------------- | ---- | ------------------------------------------------------ |
+| challenge      | Uint8Array                         | Yes  | Challenge value, which is used to prevent replay attacks. The challenge value can be null and cannot exceed 32 bytes.|
+| authType       | [UserAuthType](#userauthtype8)[]   | Yes  | Authentication type list, which specifies the authentications provided on the user authentication page.|
+| authTrustLevel | [AuthTrustLevel](#authtrustlevel8) | Yes  | Authentication trust level.                                        |
 
 ## WidgetParam<sup>10+</sup>
 
-Defines the parameters of the authentication widget.
+Represents the information presented on the user authentication page.
 
 **System capability**: SystemCapability.UserIAM.UserAuth.Core
 
-| Name                | Type                               | Mandatory| Description                |
-| -------------------- | ----------------------------------- | ---- | -------------------- |
-| title                | string                              | Yes  | Title of the authentication component.      |
-| navigationButtonText | string                              | No  | Description text of the navigation button.|
-| windowModeType       | [WindowModeType](#windowmodetype10) | No  | Type of the window.  |
+| Name                | Type                               | Mandatory| Description                                                        |
+| -------------------- | ----------------------------------- | ---- | ------------------------------------------------------------ |
+| title                | string                              | Yes  | Title of the user authentication page. It cannot exceed 500 characters.                     |
+| navigationButtonText | string                              | No  | Text on the navigation button. It cannot exceed 60 characters.                      |
+| windowMode           | [WindowModeType](#windowmodetype10) | No  | Display format of the user authentication page. The default value is **WindowModeType.DIALOG_BOX**.<br>**System API**: This is a system API.|
 
 ## UserAuthResult<sup>10+</sup>
 
-Defines the user authentication result.
+Defines the user authentication result. If the authentication is successful, the authentication type and information about the token that has passed the authentication are returned.
 
 **System capability**: SystemCapability.UserIAM.UserAuth.Core
 
 | Name    | Type                          | Mandatory| Description                                                        |
 | -------- | ------------------------------ | ---- | ------------------------------------------------------------ |
 | result   | number                         | Yes  | User authentication result. If the operation is successful, **0** is returned. If the operation fails, an error code is returned. For details about the error codes, see [User Authentication Error Codes](../errorcodes/errorcode-useriam.md).|
-| token    | Uint8Array                     | No  | Authentication token information.                                        |
-| authType | [UserAuthType](#userauthtype8) | No  | Authentication type.                                                  |
+| token    | Uint8Array                     | No  | Token that has passed the authentication.                |
+| authType | [UserAuthType](#userauthtype8) | No  | Type of the authentication.                          |
 
 
 ## IAuthCallback<sup>10+</sup>
@@ -75,51 +77,43 @@ Called to return the authentication result.
 
 **Parameters**
 
-| Name| Type                              | Mandatory| Description      |
-| ------ | ---------------------------------- | ---- | ---------- |
-| result | [UserAuthResult](userauthresult10) | Yes  | Authentication result.|
+| Name| Type                               | Mandatory| Description      |
+| ------ | ----------------------------------- | ---- | ---------- |
+| result | [UserAuthResult](#userauthresult10) | Yes  | Authentication result.|
 
 **Example**
 
 ```js
-import userIAM_userAuth from '@ohos.userIAM.userAuth';
+import userAuth from '@ohos.userIAM.userAuth';
 
-AuthParam authParam = {
-    challenge: new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8]);
-    authType: userIAM_userAuth.UserAuthType.PIN;
-    authTrustLevel: userIAM_userAuth.AuthTrustLevel.ATL1;
-}
-WidgetParam widgetParam = {
-    title: "Enter Password";
-    windowMode: userIAM_userAuth.WindowModeType.DIALOG_BOX;
-}
-let userAuthInstance;
+const authParam = {
+    challenge: new Uint8Array([49, 49, 49, 49, 49, 49]),
+    authType: [userAuth.UserAuthType.PIN],
+    authTrustLevel: 10000,
+};
+const widgetParam = {
+	title:'Enter password',
+	navigationButtonText: 'Back',
+    windowMode: userAuth.WindowModeType.DIALOG_BOX,
+};
 try {
-    userAuthInstance = userIAM_userAuth.getUserAuthInstance(authParam, widgetParam);
-    console.info("get userAuth instance success");
-} catch (error) {
-    console.info("get userAuth instance failed, error = " + error);
-}
-
-try {
+    let userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
+    console.log('get userAuth instance success');
     userAuthInstance.on('result', {
-    	callback: onResult(result) {
-            console.log("authV10 result " + result.result);
-            console.log("authV10 token " + result.token);
-            console.log("authV10 authType " + result.authType);
+        onResult (result) {
+            console.log('userAuthInstance callback result = ' + JSON.stringify(result));
         }
-     });
-    console.info("subscribe authentication event success");
+    });
+    console.log('auth on success');
 } catch (error) {
-    console.info("subscribe authentication event failed" + error);
-    //do error
+    console.log('auth catch error: ' + JSON.stringify(error));
 }
 ```
 
 ## UserAuthInstance<sup>10+</sup>
 
 Provides APIs for user authentication. The user authentication widget is supported.
-Before using the APIs, you need to obtain a **UserAuthInstance** instance by using [getUserAuthInstance](#useriam_userauthgetuserauthinstance10).
+Before using the APIs, you need to obtain a **UserAuthInstance** instance by using [getUserAuthInstance](#getuserauthinstance10).
 
 ### on<sup>10+</sup>
 
@@ -131,10 +125,10 @@ Subscribes to the user authentication result.
 
 **Parameters**
 
-| Name  | Type                            | Mandatory| Description                                      |
-| -------- | -------------------------------- | ---- | ------------------------------------------ |
-| type     | 'result'                         | Yes  | Event type to subscribe to. **result** indicates the authentication result.|
-| callback | [IAuthCallback](iauthcallback10) | Yes  | Callback invoked to return the user authentication result.    |
+| Name  | Type                             | Mandatory| Description                                      |
+| -------- | --------------------------------- | ---- | ------------------------------------------ |
+| type     | 'result'                          | Yes  | Event type to subscribe to. **result** indicates the authentication result.|
+| callback | [IAuthCallback](#iauthcallback10) | Yes  | Callback invoked to return the user authentication result.    |
 
 **Error codes**
 
@@ -148,37 +142,29 @@ For details about the error codes, see [User Authentication Error Codes](../erro
 **Example**
 
 ```js
-import userIAM_userAuth from '@ohos.userIAM.userAuth';
+import userAuth from '@ohos.userIAM.userAuth';
 
-AuthParam authParam = {
-    challenge: new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8]);
-    authType: userIAM_userAuth.UserAuthType.PIN;
-    authTrustLevel: userIAM_userAuth.AuthTrustLevel.ATL1;
-}
-WidgetParam widgetParam = {
-    title: "Enter Password";
-    windowMode: userIAM_userAuth.WindowModeType.DIALOG_BOX;
-}
-let userAuthInstance;
+const authParam = {
+    challenge: new Uint8Array([49, 49, 49, 49, 49, 49]),
+    authType: [userAuth.UserAuthType.PIN],
+    authTrustLevel: 10000,
+};
+const widgetParam = {
+	title:'Enter password',
+	navigationButtonText: 'Back',
+    windowMode: userAuth.WindowModeType.DIALOG_BOX,
+};
 try {
-    userAuthInstance = userIAM_userAuth.getUserAuthInstance(authParam, widgetParam);
-    console.info("get userAuth instance success");
-} catch (error) {
-    console.info("get userAuth instance failed, error = " + error);
-}
-
-try {
+    let userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
+    console.log('get userAuth instance success');
     userAuthInstance.on('result', {
-    	callback: onResult(result) {
-            console.log("authV10 result " + result.result);
-            console.log("authV10 token " + result.token);
-            console.log("authV10 authType " + result.authType);
+        onResult (result) {
+            console.log('userAuthInstance callback result = ' + JSON.stringify(result));
         }
-     });
-    console.info("subscribe authentication event success");
+    });
+    console.log('auth on success');
 } catch (error) {
-    console.info("subscribe authentication event failed" + error);
-    //do error
+    console.log('auth catch error: ' + JSON.stringify(error));
 }
 ```
 
@@ -194,10 +180,10 @@ Unsubscribes from the user authentication result.
 
 **Parameters**
 
-| Name  | Type                            | Mandatory| Description                                      |
-| -------- | -------------------------------- | ---- | ------------------------------------------ |
+| Name  | Type                             | Mandatory| Description                                      |
+| -------- | --------------------------------- | ---- | ------------------------------------------ |
 | type     | 'result'                         | Yes  | Event type to unsubscribe from. **result** indicates the authentication result.|
-| callback | [IAuthCallback](iauthcallback10) | No  | Callback for the user authentication result.    |
+| callback | [IAuthCallback](#iauthcallback10) | No  | Callback for the user authentication result.    |
 
 **Error codes**
 
@@ -211,46 +197,29 @@ For details about the error codes, see [User Authentication Error Codes](../erro
 **Example**
 
 ```js
-import userIAM_userAuth from '@ohos.userIAM.userAuth';
+import userAuth from '@ohos.userIAM.userAuth';
 
-AuthParam authParam = {
-    challenge: new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8]);
-    authType: userIAM_userAuth.UserAuthType.PIN;
-    authTrustLevel: userIAM_userAuth.AuthTrustLevel.ATL1;
-}
-WidgetParam widgetParam = {
-    title: "Enter Password";
-    windowMode: userIAM_userAuth.WindowModeType.DIALOG_BOX;
-}
-let userAuthInstance;
+const authParam = {
+    challenge: new Uint8Array([49, 49, 49, 49, 49, 49]),
+    authType: [userAuth.UserAuthType.PIN],
+    authTrustLevel: 10000,
+};
+const widgetParam = {
+	title:'Enter password',
+	navigationButtonText: 'Back',
+    windowMode: userAuth.WindowModeType.DIALOG_BOX,
+};
 try {
-    userAuthInstance = userIAM_userAuth.getUserAuthInstance(authParam, widgetParam);
-    console.info("get userAuth instance success");
-} catch (error) {
-    console.info("get userAuth instance failed, error = " + error);
-}
-
-// Subscribe to the authentication result.
-try {
-    userAuthInstance.on('result', {
-    	callback: onResult(result) {
-            console.log("authV10 result " + result.result);
-            console.log("authV10 token " + result.token);
-            console.log("authV10 authType " + result.authType);
+    let userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
+    console.log('get userAuth instance success');
+	userAuthInstance.off('result', {
+        onResult (result) {
+            console.log('auth off result: ' + JSON.stringify(result));
         }
-     });
-    console.info("subscribe authentication event success");
+    });
+    console.log('auth off success');
 } catch (error) {
-    console.info("subscribe authentication event failed" + error);
-    //do error
-}
-// Unsubscribe from the authentication result.
-try {
-    userAuthInstance.off('result');
-    console.info("cancel subscribe authentication event success");
-} catch (error) {
-    console.info("cancel subscribe authentication event failed" + error);
-    //do error
+    console.log('auth catch error: ' + JSON.stringify(error));
 }
 ```
 
@@ -286,31 +255,25 @@ For details about the error codes, see [User Authentication Error Codes](../erro
 **Example**
 
 ```js
-import userIAM_userAuth from '@ohos.userIAM.userAuth';
+import userAuth from '@ohos.userIAM.userAuth';
 
-AuthParam authParam = {
-    challenge: new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8]);
-    authType: userIAM_userAuth.UserAuthType.PIN;
-    authTrustLevel: userIAM_userAuth.AuthTrustLevel.ATL1;
-}
-WidgetParam widgetParam = {
-    title: "Enter Password";
-    windowMode: userIAM_userAuth.WindowModeType.DIALOG_BOX;
-}
-let userAuthInstance;
+const authParam = {
+    challenge: new Uint8Array([49, 49, 49, 49, 49, 49]),
+    authType: [userAuth.UserAuthType.PIN],
+    authTrustLevel: 10000,
+};
+const widgetParam = {
+	title:'Enter password',
+	navigationButtonText: 'Back',
+    windowMode: userAuth.WindowModeType.DIALOG_BOX,
+};
 try {
-    userAuthInstance = userIAM_userAuth.getUserAuthInstance(authParam, widgetParam);
-    console.info("get userAuth instance success");
-} catch (error) {
-    console.info("get userAuth instance failed, error = " + error);
-}
-
-try {
+    let userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
+    console.log('get userAuth instance success');
     userAuthInstance.start();
-    console.info("userAuthInstanceV10 start auth success");
+    console.log('auth start success');
 } catch (error) {
-    console.info("userAuthInstanceV10 start auth failed, error = " + error);
-    //do error
+    console.log('auth catch error: ' + JSON.stringify(error));
 }
 ```
 
@@ -337,46 +300,29 @@ Cancels this authentication.
 **Example**
 
 ```js
-import userIAM_userAuth from '@ohos.userIAM.userAuth';
+import userAuth from '@ohos.userIAM.userAuth';
 
-AuthParam authParam = {
-    challenge: new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8]);
-    authType: userIAM_userAuth.UserAuthType.PIN;
-    authTrustLevel: userIAM_userAuth.AuthTrustLevel.ATL1;
-}
-WidgetParam widgetParam = {
-    title: "Enter Password";
-    windowMode: userIAM_userAuth.WindowModeType.DIALOG_BOX;
-}
-
-let userAuthInstance;
+const authParam = {
+    challenge: new Uint8Array([49, 49, 49, 49, 49, 49]),
+    authType: [userAuth.UserAuthType.PIN],
+    authTrustLevel: 10000,
+};
+const widgetParam = {
+	title:'Enter password',
+	navigationButtonText: 'Back',
+    windowMode: userAuth.WindowModeType.DIALOG_BOX,
+};
 try {
-    userAuthInstance = userIAM_userAuth.getUserAuthInstance(authParam, widgetParam);
-    console.info("get userAuth instance success");
-} catch (error) {
-    console.info("get userAuth instance failed, error = " + error);
-}
-
-// Start user authentication.
-try {
-    userAuthInstance.start();
-    console.info("userAuthInstanceV10 start auth success");
-} catch (error) {
-    console.info("userAuthInstanceV10 start auth failed, error = " + error);
-    //do error
-}
-
-// Cancel the authentication.
-try {
+    let userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
+    console.log('get userAuth instance success');
     userAuthInstance.cancel();
-    console.info("cancel auth success");
+    console.log('auth cancel success');
 } catch (error) {
-    console.info("cancel auth failed, error = " + error);
-    //do error
+    console.log('auth catch error: ' + JSON.stringify(error));
 }
 ```
 
-## userIAM_userAuth.getUserAuthInstance<sup>10+</sup>
+## getUserAuthInstance<sup>10+</sup>
 
 getUserAuthInstance(authParam: AuthParam, widgetParam: WidgetParam): UserAuthInstance
 
@@ -389,16 +335,16 @@ Obtains a [UserAuthInstance](#userauthinstance10) instance for user authenticati
 
 **Parameters**
 
-| Name     | Type                         | Mandatory| Description                                  |
-| ----------- | ----------------------------- | ---- | -------------------------------------- |
-| authParam   | [AuthParam](authparam10)      | Yes  | Challenge value. The maximum length is 32 bytes. The value can be **null**.|
-| widgetParam | [WidgetParam](#widgetparam10) | Yes  | Authentication type. Only **FACE** is supported.              |
+| Name     | Type                         | Mandatory| Description                      |
+| ----------- | ----------------------------- | ---- | -------------------------- |
+| authParam   | [AuthParam](#authparam10)      | Yes  | User authentication parameters.        |
+| widgetParam | [WidgetParam](#widgetparam10) | Yes  | Parameters on the user authentication page.|
 
 **Return value**
 
-| Type                                   | Description        |
-| --------------------------------------- | ------------ |
-| [UserAuthInstance](#userauthinstance10) | **UserAuthInstance** instance obtained.|
+| Type                                   | Description                      |
+| --------------------------------------- | -------------------------- |
+| [UserAuthInstance](#userauthinstance10) | **UserAuthInstance**  instance that supports UI.|
 
 **Error codes**
 
@@ -414,23 +360,23 @@ For details about the error codes, see [User Authentication Error Codes](../erro
 **Example**
 
 ```js
-import userIAM_userAuth from '@ohos.userIAM.userAuth';
+import userAuth from '@ohos.userIAM.userAuth';
 
-AuthParam authParam = {
-    challenge: new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8]);
-    authType: userIAM_userAuth.UserAuthType.PIN;
-    authTrustLevel: userIAM_userAuth.AuthTrustLevel.ATL1;
-}
-WidgetParam widgetParam = {
-    title: "Enter Password";
-    windowMode: userIAM_userAuth.WindowModeType.DIALOG_BOX;
-}
-
+const authParam = {
+    challenge: new Uint8Array([49, 49, 49, 49, 49, 49]),
+    authType: [userAuth.UserAuthType.PIN],
+    authTrustLevel: 10000,
+};
+const widgetParam = {
+	title:'Enter password',
+	navigationButtonText: 'Back',
+    windowMode: userAuth.WindowModeType.DIALOG_BOX,
+};
 try {
-    let userAuthInstance = userIAM_userAuth.getUserAuthInstance(authParam, widgetParam);
-    console.info("get userAuth instance success");
+    let userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
+    console.log('get userAuth instance success');
 } catch (error) {
-    console.info("get userAuth instance failed, error = " + error);
+    console.log('auth catch error: ' + JSON.stringify(error));
 }
 ```
 
@@ -440,11 +386,13 @@ Defines the type of the user authentication notification.
 
 **System capability**: SystemCapability.UserIAM.UserAuth.Core
 
+**System API**: This is a system API.
+
 | Name         | Value  | Description                |
 | ------------- | ---- | -------------------- |
 | WIDGET_NOTICE | 1    | Notification from the user authentication widget.|
 
-## userIAM_userAuth.sendNotice<sup>10+</sup>
+## sendNotice<sup>10+</sup>
 
 sendNotice(noticeType: NoticeType, eventData: string): void
 
@@ -454,12 +402,14 @@ Sends a notification from the user authentication widget.
 
 **System capability**: SystemCapability.UserIAM.UserAuth.Core
 
+**System API**: This is a system API.
+
 **Parameters**
 
-| Name    | Type                     | Mandatory| Description      |
-| ---------- | ------------------------- | ---- | ---------- |
-| noticeType | [NoticeType](#noticetype) | Yes  | Notification type.|
-| eventData  | string                    | Yes  | Event data.|
+| Name    | Type                       | Mandatory| Description      |
+| ---------- | --------------------------- | ---- | ---------- |
+| noticeType | [NoticeType](#noticetype10) | Yes  | Notification type.|
+| eventData  | string                      | Yes  | Event data.|
 
 **Error codes**
 
@@ -475,10 +425,24 @@ For details about the error codes, see [User Authentication Error Codes](../erro
 **Example**
 
 ```js
-import userIAM_userAuth from '@ohos.userIAM.userAuth';
+import userAuth from '@ohos.userIAM.userAuth';
 
-let noticeType = userIAM_userAuth.NoticeType.WIDGET_NOTICE;
-sendNotice(noticeType, {"eventData" : "EVENT_AUTH_TYPE_READY"});
+try {
+    const eventData = {
+        widgetContextId: 123456,
+        event: 'EVENT_AUTH_TYPE_READY',
+        version: '1',
+        payload: {
+            type: ['pin']
+        },
+    };
+    const jsonEventData = JSON.stringify(eventData);
+    let noticeType = userAuth.NoticeType.WIDGET_NOTICE;
+    userAuth.sendNotice(noticeType, jsonEventData);
+    console.log('sendNotice success');
+} catch (error) {
+    console.log('sendNotice catch error: ' + JSON.stringify(error));
+}
 ```
 
 ## UserAuthWidgetMgr<sup>10+</sup>
@@ -492,6 +456,8 @@ on(type: 'command', callback: IAuthWidgetCallback): void
 Subscribes to commands from the user authentication framework.
 
 **System capability**: SystemCapability.UserIAM.UserAuth.Core
+
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -512,26 +478,20 @@ For details about the error codes, see [User Authentication Error Codes](../erro
 **Example**
 
 ```js
-import userIAM_userAuth from '@ohos.userIAM.userAuth';
+import userAuth from '@ohos.userIAM.userAuth';
 
-let version = 1;
-let userAuthWidgetMgr;
+const userAuthWidgetMgrVersion = 1;
 try {
-    userAuthWidgetMgr = userIAM_userAuth.getUserAuthWidgetMgr(version);
-    console.info("get userAuthWidgetMgr instance success");
-} catch (error) {
-    console.info("get userAuthWidgetMgr instance failed, error = " + error);
-}
-
-try {
+    let userAuthWidgetMgr = userAuth.getUserAuthWidgetMgr(userAuthWidgetMgrVersion);
+    console.log('get userAuthWidgetMgr instance success');
     userAuthWidgetMgr.on('command', {
-    	callback: sendCommand(cmdData) {
-            console.log("The cmdData is " + cmdData);
+    	sendCommand(cmdData) {
+            console.log('The cmdData is ' + cmdData);
         }
      })
-    console.info("subscribe authentication event success");
+    console.log('subscribe authentication event success');
 } catch (error) {
-    console.info("subscribe authentication event failed, error = " + error);
+    console.log('userAuth widgetMgr catch error: ' + JSON.stringify(error));
 }
 ```
 
@@ -542,6 +502,8 @@ off(type: 'command', callback?: IAuthWidgetCallback): void
 Unsubscribes from commands sent from the user authentication framework.
 
 **System capability**: SystemCapability.UserIAM.UserAuth.Core
+
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -562,38 +524,24 @@ For details about the error codes, see [User Authentication Error Codes](../erro
 **Example**
 
 ```js
-import userIAM_userAuth from '@ohos.userIAM.userAuth';
+import userAuth from '@ohos.userIAM.userAuth';
 
-let version = 1;
-let userAuthWidgetMgr;
+const userAuthWidgetMgrVersion = 1;
 try {
-    userAuthWidgetMgr = userIAM_userAuth.getUserAuthWidgetMgr(version);
-    console.info("get userAuthWidgetMgr instance success");
-} catch (error) {
-    console.info("get userAuthWidgetMgr instance failed, error = " + error);
-}
-
-// Subscribe to the commands sent from the user authentication framework.
-try {
-    userAuthWidgetMgr.on('command', {
-    	callback: sendCommand(cmdData) {
-            console.log("The cmdData is " + cmdData);
+    let userAuthWidgetMgr = userAuth.getUserAuthWidgetMgr(userAuthWidgetMgrVersion);
+    console.log('get userAuthWidgetMgr instance success');
+    userAuthWidgetMgr.off('command', {
+    	sendCommand(cmdData) {
+            console.log('The cmdData is ' + cmdData);
         }
      })
-    console.info("subscribe authentication event success");
+    console.log('cancel subscribe authentication event success');
 } catch (error) {
-    console.info("subscribe authentication event failed, error = " + error);
-}
-// Unsubscribe from the commands sent from the user authentication framework.
-try {
-    userAuthWidgetMgr.off('command');
-    console.info("cancel subscribe authentication event success");
-} catch (error) {
-    console.info("cancel subscribe authentication event failed, error = " + error);
+    console.log('userAuth widgetMgr catch error: ' + JSON.stringify(error));
 }
 ```
 
-## userIAM_userAuth.getUserAuthWidgetMgr<sup>10+</sup>
+## getUserAuthWidgetMgr<sup>10+</sup>
 
 getUserAuthWidgetMgr(version: number): UserAuthWidgetMgr
 
@@ -602,7 +550,11 @@ Obtains a **UserAuthWidgetMgr** instance for user authentication.
 > **NOTE**<br>
 > A **UserAuthInstance** instance can be used for an authentication only once.
 
+**Required permissions**: ohos.permission.SUPPORT_USER_AUTH
+
 **System capability**: SystemCapability.UserIAM.UserAuth.Core
+
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -630,14 +582,14 @@ For details about the error codes, see [User Authentication Error Codes](../erro
 **Example**
 
 ```js
-import userIAM_userAuth from '@ohos.userIAM.userAuth';
+import userAuth from '@ohos.userIAM.userAuth';
 
-let version = 1;
+let userAuthWidgetMgrVersion = 1;
 try {
-    let userAuthWidgetMgr = userIAM_userAuth.getUserAuthWidgetMgr(version);
-    console.info("get userAuthWidgetMgr instance success");
+    let userAuthWidgetMgr = userAuth.getUserAuthWidgetMgr(userAuthWidgetMgrVersion);
+    console.log('get userAuthWidgetMgr instance success');   
 } catch (error) {
-    console.info("get userAuthWidgetMgr instance failed, error = " + error);
+    console.log('userAuth widgetMgr catch error: ' + JSON.stringify(error));
 }
 ```
 
@@ -653,6 +605,8 @@ Called to return the command sent from the user authentication framework to the 
 
 **System capability**: SystemCapability.UserIAM.UserAuth.Core
 
+**System API**: This is a system API.
+
 **Parameters**
 
 | Name | Type  | Mandatory| Description                              |
@@ -662,19 +616,20 @@ Called to return the command sent from the user authentication framework to the 
 **Example**
 
 ```js
-import userIAM_userAuth from '@ohos.userIAM.userAuth';
+import userAuth from '@ohos.userIAM.userAuth';
 
-let version = 1;
+const userAuthWidgetMgrVersion = 1;
 try {
-    let userAuthWidgetMgr = userIAM_userAuth.getUserAuthWidgetMgr(version);
+    let userAuthWidgetMgr = userAuth.getUserAuthWidgetMgr(userAuthWidgetMgrVersion);
+    console.log('get userAuthWidgetMgr instance success');
     userAuthWidgetMgr.on('command', {
-    	callback: sendCommand(cmdData) {
-            console.log("The cmdData is " + cmdData);
+    	sendCommand(cmdData) {
+            console.log('The cmdData is ' + cmdData);
         }
      })
-    console.info("subscribe authentication event success");
+    console.log('subscribe authentication event success');
 } catch (error) {
-    console.info("subscribe authentication event failed, error = " + error);
+    console.log('userAuth widgetMgr catch error: ' + JSON.stringify(error));
 }
 ```
 
@@ -1036,7 +991,7 @@ getAuthInstance(challenge : Uint8Array, authType : UserAuthType, authTrustLevel 
 Obtains an **AuthInstance** instance for user authentication.
 
 > **NOTE**<br>
-> This API is supported since API version 9 and deprecated since API version 10. Use [getUserAuthInstance](#useriam_userauthgetuserauthinstance10) instead.
+> This API is supported since API version 9 and deprecated since API version 10. Use [getUserAuthInstance](#getuserauthinstance10) instead.
 
 > **NOTE**<br>
 > An **AuthInstance** instance can be used for an authentication only once.
@@ -1099,7 +1054,7 @@ Checks whether the specified authentication capability is supported.
 
 | Name        | Type                              | Mandatory| Description                      |
 | -------------- | ---------------------------------- | ---- | -------------------------- |
-| authType       | [UserAuthType](#userauthtype8)     | Yes  | Authentication type. Only **FACE** is supported.|
+| authType       | [UserAuthType](#userauthtype8)     | Yes  | Authentication type.|
 | authTrustLevel | [AuthTrustLevel](#authtrustlevel8) | Yes  | Authentication trust level.      |
 
 **Error codes**
@@ -1146,7 +1101,7 @@ Enumerates the authentication result codes.
 | BUSY                    | 12500007      | Indicates the busy state.          |
 | LOCKED                  | 12500009      | The authentication executor is locked.      |
 | NOT_ENROLLED            | 12500010      | The user has not entered the authentication information.|
-| CANCELED_FROM_WIDGET | 12500011 | The authentication is canceled by the user from the user authentication widget. If this error code is returned, the authentication is customized by the application.|
+| CANCELED_FROM_WIDGET<sup>10+</sup> | 12500011 | The authentication is canceled by the user from the user authentication widget. If this error code is returned, the authentication is customized by the application.|
 
 ## UserAuth<sup>(deprecated)</sup>
 

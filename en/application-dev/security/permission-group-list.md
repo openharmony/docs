@@ -4,7 +4,7 @@ Before applying for permissions for your application, understand [permission gro
 
 The following lists the permission groups supported currently. For details about the permissions, see the [Application Permission List](permission-list.md).
 
-## Location Information
+## Location
 
 - ohos.permission.LOCATION_IN_BACKGROUND
 - ohos.permission.LOCATION
@@ -29,7 +29,7 @@ The following lists the permission groups supported currently. For details about
 
 - ohos.permission.ACTIVITY_MOTION
 
-## Body Sensor
+## Body Sensors
 
 - ohos.permission.READ_HEALTH_DATA
 
@@ -37,7 +37,7 @@ The following lists the permission groups supported currently. For details about
 
 - ohos.permission.DISTRIBUTED_DATASYNC
 
-## Telephony
+## Phone
 
 - ohos.permission.ANSWER_CALL
 - ohos.permission.MANAGE_VOICEMAIL
@@ -86,3 +86,7 @@ The following lists the permission groups supported currently. For details about
 ## Installed Bundle List
 
 - ohos.permission.GET_INSTALLED_BUNDLE_LIST
+
+## Bluetooth
+
+- ohos.permission.ACCESS_BLUETOOTH

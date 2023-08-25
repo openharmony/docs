@@ -66,7 +66,7 @@ try {
         if (state == secureElement.ServiceState.DISCONNECTED) {
             console.log("Service state is Disconnected");
         } else {
-            console.log.("Service state is Connected");
+            console.log("Service state is Connected");
         }
     });
 } catch (e) {
@@ -114,7 +114,6 @@ try {
 try {
     nfcOmaReaderList = nfcSEService.getReaders();
     if (nfcOmaReaderList != null && nfcOmaReaderList.length > 0) {
-        nfcOmaReader = this.nfcOmaReaderList[0];
         console.log("get reader successfully");
     } else {
         console.log("get reader failed");
@@ -205,7 +204,6 @@ import secureElement from '@ohos.secureElement';
 
 let nfcSEService = null;
 
-this.result = "version: "
 try {
     // refer to newSEService for this.nfcSEService 
     console.log("version: " + nfcSEService.getVersion());
@@ -263,7 +261,7 @@ isSecureElementPresent(): boolean
 
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
-| 3300101  | Illegal service state exception. |
+| 3300101  | IllegalStateError, service state exception. |
 
 **示例：**
 
@@ -304,8 +302,8 @@ try {
 
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
-| 3300101  | Illegal service state exception. |
-| 3300104  | Secure element IO exception.     |
+| 3300101  | IllegalStateError, service state exception. |
+| 3300104  | IOError, there is a communication problem to the reader or the SE.     |
 
 **示例：**
 
@@ -342,14 +340,14 @@ try {
 
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
-| 3300101  | Illegal service state exception. |
+| 3300101  | IllegalStateError, service state exception. |
 
 **示例：**
 
 ```js
 import secureElement from '@ohos.secureElement';
 
-nfcOmaReader = null;
+let nfcOmaReader = null;
 
 try {
     // refer to SEService.getReaders for this.nfcOmaReader
@@ -415,7 +413,7 @@ getATR(): number[]
 
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
-| 3300101  | Illegal service state exception. |
+| 3300101  | IllegalStateError, service state exception. |
 
 **示例：**
 
@@ -458,7 +456,7 @@ close(): void
 
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
-| 3300101  | Illegal service state exception. |
+| 3300101  | IllegalStateError, service state exception. |
 
 **示例：**
 
@@ -528,7 +526,7 @@ closeChannels(): void
 
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
-| 3300101  | Illegal service state exception. |
+| 3300101  | IllegalStateError, service state exception. |
 
 **示例：**
 
@@ -572,10 +570,10 @@ openBasicChannel(aid: number[]): Promise\<Channel>
 
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
-| 3300101  | Illegal service state exception. |
-| 3300102  | No such element exception.       |
-| 3300103  | Illegal access rule exception.   |
-| 3300104  | Secure element IO exception.     |
+| 3300101  | IllegalStateError, service state exception. |
+| 3300102  | NoSuchElementError, the AID on the SE is not available or cannot be selected.       |
+| 3300103  | SecurityError, the calling application cannot be granted access to this AID or the default applet on this session.   |
+| 3300104  | IOError, there is a communication problem to the reader or the SE.     |
 
 **示例：**
 
@@ -584,10 +582,11 @@ import secureElement from '@ohos.secureElement';
 
 let nfcOmaSession = null;
 let nfcOmaChannel = null;
+let aidArray = [720, 1080];
 
 try {
     // refer to Reader.openSession for this.nfcOmaSession
-    let getPromise = nfcOmaSession.openBasicChannel(this.aidArray);
+    let getPromise = nfcOmaSession.openBasicChannel(aidArray);
     getPromise.then((channel) => {
         nfcOmaChannel = channel;
         console.log("openBasicChannel1 get channel successfully");
@@ -620,10 +619,10 @@ try {
 
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
-| 3300101  | Illegal service state exception. |
-| 3300102  | No such element exception.       |
-| 3300103  | Illegal access rule exception.   |
-| 3300104  | Secure element IO exception.     |
+| 3300101  | IllegalStateError, service state exception. |
+| 3300102  | NoSuchElementError, the AID on the SE is not available or cannot be selected.       |
+| 3300103  | SecurityError, the calling application cannot be granted access to this AID or the default applet on this session.   |
+| 3300104  | IOError, there is a communication problem to the reader or the SE.     |
 
 **示例：**
 
@@ -676,10 +675,10 @@ openBasicChannel(aid: number[], p2: number): Promise\<Channel>
 
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
-| 3300101  | Illegal service state exception. |
-| 3300102  | No such element exception.       |
-| 3300103  | Illegal access rule exception.   |
-| 3300104  | Secure element IO exception.     |
+| 3300101  | IllegalStateError, service state exception. |
+| 3300102  | NoSuchElementError, the AID on the SE is not available or cannot be selected.       |
+| 3300103  | SecurityError, the calling application cannot be granted access to this AID or the default applet on this session.   |
+| 3300104  | IOError, there is a communication problem to the reader or the SE.     |
 
 **示例：**
 
@@ -727,16 +726,15 @@ openBasicChannel(aid: number[], p2:number, callback: AsyncCallback\<Channel>): v
 
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
-| 3300101  | Illegal service state exception. |
-| 3300102  | No such element exception.       |
-| 3300103  | Illegal access rule exception.   |
-| 3300104  | Secure element IO exception.     |
+| 3300101  | IllegalStateError, service state exception. |
+| 3300102  | NoSuchElementError, the AID on the SE is not available or cannot be selected.      |
+| 3300103  | SecurityError, the calling application cannot be granted access to this AID or the default applet on this session.   |
+| 3300104  | IOError, there is a communication problem to the reader or the SE.     |
 
 **示例：**
 
 ```js
 import secureElement from '@ohos.secureElement';
-
 
 let nfcOmaSession = null;
 let nfcOmaChannel = null;
@@ -784,10 +782,10 @@ openLogicalChannel(aid: number[]): Promise\<Channel>
 
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
-| 3300101  | Illegal service state exception. |
-| 3300102  | No such element exception.       |
-| 3300103  | Illegal access rule exception.   |
-| 3300104  | Secure element IO exception.     |
+| 3300101  | IllegalStateError, service state exception. |
+| 3300102  | NoSuchElementError, the AID on the SE is not available or cannot be selected.       |
+| 3300103  | SecurityError, the calling application cannot be granted access to this AID or the default applet on this session.   |
+| 3300104  | IOError, there is a communication problem to the reader or the SE.     |
 
 **示例：**
 
@@ -833,10 +831,10 @@ try {
 
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
-| 3300101  | Illegal service state exception. |
-| 3300102  | No such element exception.       |
-| 3300103  | Illegal access rule exception.   |
-| 3300104  | Secure element IO exception.     |
+| 3300101  | IllegalStateError, service state exception. |
+| 3300102  | NoSuchElementError, the AID on the SE is not available or cannot be selected.      |
+| 3300103  | SecurityError, the calling application cannot be granted access to this AID or the default applet on this session.   |
+| 3300104  | IOError, there is a communication problem to the reader or the SE.    |
 
 **示例：**
 
@@ -889,10 +887,10 @@ P2通常为0x00。设备应允许P2的任何值，并且应允许以下值： 0x
 
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
-| 3300101  | Illegal service state exception. |
-| 3300102  | No such element exception.       |
-| 3300103  | Illegal access rule exception.   |
-| 3300104  | Secure element IO exception.     |
+| 3300101  | IllegalStateError, service state exception. |
+| 3300102  | NoSuchElementError, the AID on the SE is not available or cannot be selected.      |
+| 3300103  | SecurityError, the calling application cannot be granted access to this AID or the default applet on this session.   |
+| 3300104  | IOError, there is a communication problem to the reader or the SE.     |
 
 **示例：**
 
@@ -915,8 +913,9 @@ if (nfcOmaSession) {
         }).catch ((err) => {
             console.log("openLogicChannel3 exception");
         })
-} catch (e) {
-    console.log("openLogicChannel3 exception:" + e.message);
+    } catch (e) {
+        console.log("openLogicChannel3 exception:" + e.message);
+    }
 }
 ```
 
@@ -948,10 +947,10 @@ P2通常为0x00。设备应允许P2的任何值，并且应允许以下值： 0x
 
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
-| 3300101  | Illegal service state exception. |
-| 3300102  | No such element exception.       |
-| 3300103  | Illegal access rule exception.   |
-| 3300104  | Secure element IO exception.     |
+| 3300101  | IllegalStateError, service state exception. |
+| 3300102  | NoSuchElementError, the AID on the SE is not available or cannot be selected.       |
+| 3300103  | SecurityError, the calling application cannot be granted access to this AID or the default applet on this session.   |
+| 3300104  | IOError, there is a communication problem to the reader or the SE.     |
 
 **示例：**
 
@@ -1177,9 +1176,9 @@ transmit(command: number[]): Promise<number[]>
 
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
-| 3300101  | Illegal service state exception. |
-| 3300103  | Illegal access rule exception.   |
-| 3300104  | Secure element IO exception.     |
+| 3300101  | IllegalStateError, service state exception. |
+| 3300103  | SecurityError, the calling application cannot be granted access to this AID or the default applet on this session.   |
+| 3300104  | IOError, there is a communication problem to the reader or the SE.     |
 
 **示例：**
 
@@ -1229,9 +1228,9 @@ transmit(command: number[], callback: AsyncCallback<number[]>): void
 
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
-| 3300101  | Illegal service state exception. |
-| 3300103  | Illegal access rule exception.   |
-| 3300104  | Secure element IO exception.     |
+| 3300101  | IllegalStateError, service state exception. |
+| 3300103  | SecurityError, the calling application cannot be granted access to this AID or the default applet on this session.   |
+| 3300104  | IOError, there is a communication problem to the reader or the SE.     |
 
 **示例：**
 

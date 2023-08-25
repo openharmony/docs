@@ -109,4 +109,4 @@ export default {
 }
 ```
 
-![swiper](figures/swiper.gif)
+![swiper](figures/swiper-lite.gif)

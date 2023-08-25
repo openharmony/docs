@@ -25,6 +25,13 @@ NativeBuffer是`OpenHarmony`提供**共享内存**的模块。开发者可以通
 
 以下步骤描述了在**OpenHarmony**中如何使用`NativeBuffer`提供的Native API接口，创建`OH_NativeBuffer`实例获取内存的属性信息，并把对应的ION内存映射到进程空间。
 
+**添加动态链接库**
+
+CMakeLists.txt中添加以下lib。
+```txt
+libnative_buffer.so
+```
+
 **头文件**
 ```c++
 #include <native_buffer/native_buffer.h>

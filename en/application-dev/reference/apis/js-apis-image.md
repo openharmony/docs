@@ -883,7 +883,7 @@ async function Demo() {
 
 getColorSpace(): colorSpaceManager.ColorSpaceManager
 
-Obtains the color space of this image
+Obtains the color space of this image.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
@@ -923,6 +923,115 @@ import colorSpaceManager from '@ohos.graphics.colorSpaceManager';
 async function Demo() {
     var csm = colorSpaceManager.create(colorSpaceName);
     pixelmap.setColorSpace(csm);
+}
+```
+
+### marshalling<sup>10+</sup>
+
+marshalling(sequence: rpc.MessageSequence): void
+
+Marshals this **PixelMap** object and writes it to a **MessageSequence** object.
+
+**System capability**: SystemCapability.Multimedia.Image.Core
+
+**Parameters**
+
+| Name                | Type                                                 | Mandatory| Description                                    |
+| ---------------------- | ------------------------------------------------------ | ---- | ---------------------------------------- |
+| sequence               | [rpc.MessageSequence](js-apis-rpc.md#messagesequence9)  | Yes  | **MessageSequence** object.                |
+
+**Error codes**
+
+For details about the error codes, see [ResponseCode](#responsecode).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 62980115 | If the input parameter invalid              |
+| 62980097 | If the ipc error              |
+
+**Example**
+
+```js
+import image from '@ohos.multimedia.image'
+import rpc from '@ohos.rpc'
+class MySequence {
+    pixel_map;
+    constructor(pixelmap) {
+        this.pixel_map = pixelmap;
+    }
+    marshalling(messageSequence) {
+        this.pixel_map.marshalling(messageSequence);
+        return true;
+    }
+    async unmarshalling(messageSequence) {
+        await image.unmarshalling(messageSequence).then(async (pixelMap) => {
+            this.pixel_map = pixelMap;
+        })
+        return true;
+    }
+}
+async function Demo() {
+    let parcelable = new MySequence(pixelmap);
+    let data = rpc.MessageSequence.create();
+    data.writeParcelable(parcelable);
+}
+```
+
+### unmarshalling<sup>10+</sup>
+
+unmarshalling(sequence: rpc.MessageSequence): Promise\<PixelMap>
+
+Unmarshals a **MessageSequence** object to obtain a **PixelMap** object.
+
+**System capability**: SystemCapability.Multimedia.Image.Core
+
+**Parameters**
+
+| Name                | Type                                                 | Mandatory| Description                                    |
+| ---------------------- | ----------------------------------------------------- | ---- | ---------------------------------------- |
+| sequence               | [rpc.MessageSequence](js-apis-rpc.md#messagesequence9) | Yes  | **MessageSequence** object that stores the **PixelMap** information.     |
+
+**Return value**
+
+| Type                            | Description                 |
+| -------------------------------- | --------------------- |
+| Promise\<[PixelMap](#pixelmap7)> | Promise used to return the **PixelMap** object.|
+
+**Error codes**
+
+For details about the error codes, see [ResponseCode](#responsecode).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 62980115 | If the input parameter invalid              |
+| 62980097 | If the ipc error              |
+
+**Example**
+
+```js
+import image from '@ohos.multimedia.image'
+import rpc from '@ohos.rpc'
+class MySequence {
+    pixel_map;
+    constructor(pixelmap) {
+        this.pixel_map = pixelmap;
+    }
+    marshalling(messageSequence) {
+        this.pixel_map.marshalling(messageSequence);
+        return true;
+    }
+    async unmarshalling(messageSequence) {
+        await image.unmarshalling(messageSequence).then(async (pixelMap) => {
+            this.pixel_map = pixelMap;
+        })
+        return true;
+    }
+}
+async function Demo() {
+    let pixel_map = undefined;
+    let ret = new MySequence(pixel_map);
+    let data = rpc.MessageSequence.create();
+    await data.readParcelable(ret);
 }
 ```
 
@@ -1590,7 +1699,7 @@ Creates an array of **PixelMap** objects based on image decoding parameters. Thi
 
 | Type                            | Description                 |
 | -------------------------------- | --------------------- |
-| Promise<Array<[PixelMap](#pixelmap7)>> | Promise used to return an array of **PixeMap** objects.|
+| Promise<Array<[PixelMap](#pixelmap7)>> | Promise used to return an array of **PixelMap** objects.|
 
 **Example**
 
@@ -1618,12 +1727,12 @@ Creates an array of **PixelMap** objects based on the default parameters. This A
 
 | Name    | Type                                 | Mandatory| Description                      |
 | -------- | ------------------------------------- | ---- | -------------------------- |
-| callback | AsyncCallback<Array<[PixelMap](#pixelmap7)>> | Yes  | Callback used to return an array of **PixeMap** objects.|
+| callback | AsyncCallback<Array<[PixelMap](#pixelmap7)>> | Yes  | Callback used to return an array of **PixelMap** objects.|
 
 **Example**
 
 ```js
-imageSourceApi.createPixelMap( pixelmaplist => {
+imageSourceApi.createPixelMapList( pixelmaplist => {
     console.info('Succeeded in creating pixelmaplist object.');
 })
 ```
@@ -1641,7 +1750,7 @@ Creates an array of **PixelMap** objects based on image decoding parameters. Thi
 | Name  | Type                | Mandatory| Description                              |
 | -------- | -------------------- | ---- | ---------------------------------- |
 | options | [DecodingOptions](#decodingoptions7) | Yes| Image decoding parameters.|
-| callback | AsyncCallback<Array<[PixelMap](#pixelmap7)>> | Yes  | Callback used to return an array of **PixeMap** objects.|
+| callback | AsyncCallback<Array<[PixelMap](#pixelmap7)>> | Yes  | Callback used to return an array of **PixelMap** objects.|
 
 **Example**
 
@@ -1654,14 +1763,14 @@ let decodeOpts = {
     desiredPixelFormat: 3,
     index: 0,
 };
-imageSourceApi.createPixelMap(decodeOpts, pixelmaplist => { 
+imageSourceApi.createPixelMapList(decodeOpts, pixelmaplist => { 
     console.log('Succeeded in creating pixelmaplist object.');
 })
 ```
 
-### getDelayTime<sup>10+</sup>
+### getDelayTimeList<sup>10+</sup>
 
-getDelayTime(callback: AsyncCallback<Array\<number>>): void;
+getDelayTimeList(callback: AsyncCallback<Array\<number>>): void;
 
 Obtains an array of delay times. This API uses an asynchronous callback to return the result.
 
@@ -1676,14 +1785,14 @@ Obtains an array of delay times. This API uses an asynchronous callback to retur
 **Example**
 
 ```js
-imageSourceApi.getDelayTime( delayTimes => {
+imageSourceApi.getDelayTimeList( delayTimes => {
     console.log('Succeeded in getting delay time.');
 });
 ```
 
-### getDelayTime<sup>10+</sup>
+### getDelayTimeList<sup>10+</sup>
 
-getDelayTime(): Promise<Array\<number>>;
+getDelayTimeList(): Promise<Array\<number>>;
 
 Obtains an array of delay times. This API uses a promise to return the result.
 
@@ -1698,7 +1807,7 @@ Obtains an array of delay times. This API uses a promise to return the result.
 **Example**
 
 ```js
-let delayTimes = imageSourceApi.getDelayTime();
+let delayTimes = imageSourceApi.getDelayTimeList();
 ```
 
 ### getFrameCount<sup>10+</sup>
@@ -2730,9 +2839,9 @@ Defines image decoding options.
 
 | Name              | Type                              | Readable| Writable| Description            |
 | ------------------ | ---------------------------------- | ---- | ---- | ---------------- |
-| sampleSize         | number                             | Yes  | Yes  | Thumbnail sampling size.|
+| sampleSize         | number                             | Yes  | Yes  | Thumbnail sampling size. Currently, this option can only be set to **1**.|
 | rotate             | number                             | Yes  | Yes  | Rotation angle.      |
-| editable           | boolean                            | Yes  | Yes  | Whether the image is editable.    |
+| editable           | boolean                            | Yes  | Yes  | Whether the image is editable. If this option is set to **false**, the image cannot be edited again, and operations such as cropping will fail. |
 | desiredSize        | [Size](#size)                      | Yes  | Yes  | Expected output size.  |
 | desiredRegion      | [Region](#region7)                 | Yes  | Yes  | Region to decode.      |
 | desiredPixelFormat | [PixelMapFormat](#pixelmapformat7) | Yes  | Yes  | Pixel map format for decoding.|
@@ -2790,12 +2899,34 @@ Describes the exchangeable image file format (EXIF) data of an image.
 | GPS_LONGITUDE     | "GPSLongitude"          | Image longitude.              |
 | GPS_LATITUDE_REF  | "GPSLatitudeRef"        | Latitude reference, for example, N or S.   |
 | GPS_LONGITUDE_REF | "GPSLongitudeRef"       | Longitude reference, for example, W or E.   |
-| DATE_TIME_ORIGINAL<sup>9+</sup> | "DateTimeOriginal" | Shooting time, for example, 2022:09:06 15:48:00.    |
-| EXPOSURE_TIME<sup>9+</sup>      | "ExposureTime"     | Exposure time, for example, 1/33 sec.|
-| SCENE_TYPE<sup>9+</sup>         | "SceneType"        | Shooting scene type, for example, portrait, scenery, motion, and night.    |
-| ISO_SPEED_RATINGS<sup>9+</sup>  | "ISOSpeedRatings"  | ISO sensitivity or ISO speed, for example, 400.    |
-| F_NUMBER<sup>9+</sup>           | "FNumber"          | Aperture, for example, f/1.8.    |
-
+| DATE_TIME_ORIGINAL<sup>9+</sup> | "DateTimeOriginal" | Shooting time, for example, 2022:09:06 15:48:00. This attribute is read-only.    |
+| EXPOSURE_TIME<sup>9+</sup>      | "ExposureTime"     | Exposure time, for example, 1/33 sec. Currently, this attribute is read-only.|
+| SCENE_TYPE<sup>9+</sup>         | "SceneType"        | Shooting scene type, for example, portrait, scenery, motion, and night. Currently, this attribute is read-only.     |
+| ISO_SPEED_RATINGS<sup>9+</sup>  | "ISOSpeedRatings"  | ISO sensitivity or ISO speed, for example, 400. Currently, this attribute is read-only.     |
+| F_NUMBER<sup>9+</sup>           | "FNumber"          | Aperture, for example, f/1.8. Currently, this attribute is read-only.     |
+| DATE_TIME<sup>10+</sup>                  | "DateTime"             | Date and time. Currently, this attribute is read-only.               |
+| GPS_TIME_STAMP<sup>10+</sup>             | "GPSTimeStamp"         | GPS timestamp. Currently, this parameter is read-only.        |
+| GPS_DATE_STAMP<sup>10+</sup>             | "GPSDateStamp"         | GPS date stamp. Currently, this attribute is read-only.         |
+| IMAGE_DESCRIPTION<sup>10+</sup>          | "ImageDescription"     | Image description. Currently, this attribute is read-only.              |
+| MAKE<sup>10+</sup>                       | "Make"                 | Vendor. Currently, this attribute is read-only.                 |
+| PHOTO_MODE<sup>10+</sup>                 | "PhotoMode "           | Photo mode. Currently, this attribute is read-only.             |
+| SENSITIVITY_TYPE<sup>10+</sup>           | "SensitivityType"      | Sensitivity type. Currently, this attribute is read-only.            |
+| STANDARD_OUTPUT_SENSITIVITY<sup>10+</sup>           | "StandardOutputSensitivity"          | Standard output sensitivity. Currently, this attribute is read-only.   |
+| RECOMMENDED_EXPOSURE_INDEX<sup>10+</sup>            | "RecommendedExposureIndex"          | Recommended exposure index. Currently, this attribute is read-only.   |
+| ISO_SPEED<sup>10+</sup>                             | "ISOSpeedRatings"          | ISO speed. Currently, this attribute is read-only.   |
+| APERTURE_VALUE<sup>10+</sup>             | "ApertureValue"            | Aperture value. Currently, this attribute is read-only.   |
+| EXPOSURE_BIAS_VALUE<sup>10+</sup>        | "ExposureBiasValue"        | Exposure bias value. Currently, this attribute is read-only.   |
+| METERING_MODE<sup>10+</sup>              | "MeteringMode"             | Metering mode. Currently, this attribute is read-only.   |
+| LIGHT_SOURCE<sup>10+</sup>               | "LightSource"              | Light source. Currently, this attribute is read-only.   |
+| FLASH <sup>10+</sup>                     | "Flash"                    | Flash status. Currently, this attribute is read-only.   |
+| FOCAL_LENGTH <sup>10+</sup>              | "FocalLength"              | Focal length. Currently, this attribute is read-only.   |
+| USER_COMMENT <sup>10+</sup>               | "UserComment"              | User comment. Currently, this attribute is read-only.   |
+| PIXEL_X_DIMENSION <sup>10+</sup>          | "PixelXDimension"          | Pixel X dimension. Currently, this attribute is read-only.  |
+| PIXEL_Y_DIMENSION<sup>10+</sup>           | "PixelYDimension"          | Pixel Y dimension. Currently, this attribute is read-only.   |
+| WHITE_BALANCE <sup>10+</sup>              | "WhiteBalance"             | White balance. Currently, this attribute is read-only.   |
+| FOCAL_LENGTH_IN_35_MM_FILM <sup>10+</sup> | "FocalLengthIn35mmFilm"    | Focal length in 35mm film. Currently, this attribute is read-only.   |
+| CAPTURE_MODE <sup>10+</sup>               | "HwMnoteCaptureMode"       | Capture mode. Currently, this parameter is read-only.   |
+| PHYSICAL_APERTURE <sup>10+</sup>          | "HwMnotePhysicalAperture"  | Physical aperture. Currently, this parameter is read-only.  |
 
 ## ImageFormat<sup>9+</sup>
 

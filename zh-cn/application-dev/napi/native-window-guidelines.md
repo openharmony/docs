@@ -23,6 +23,7 @@ NativeWindow是`OpenHarmony`**本地平台化窗口**，表示图形队列的生
 以下步骤描述了在**OpenHarmony**中如何使用`NativeWindow`提供的Native API接口，申请图形`Buffer`，并将生产图形内容写入图形`Buffer`后，最终提交`Buffer`到图形队列。
 
 **添加动态链接库**
+
 CMakeLists.txt中添加以下lib。
 ```txt
 libace_ndk.z.so

@@ -161,7 +161,7 @@ console.log(`${bool}`);
 
 requestRight(deviceName: string): Promise&lt;boolean&gt;
 
-请求软件包的临时权限以访问设备。使用Promise异步回调。
+请求软件包的临时权限以访问设备。使用Promise异步回调。系统应用默认拥有访问设备权限，无需调用此接口申请。
 
 **系统能力：**  SystemCapability.USB.USBManager
 
@@ -190,7 +190,7 @@ usb.requestRight(devicesName).then((ret) => {
 
 removeRight(deviceName: string): boolean
 
-移除软件包访问设备的权限。
+移除软件包访问设备的权限。系统应用默认拥有访问设备权限，调用此接口不会产生影响。
 
 **系统能力：**  SystemCapability.USB.USBManager
 
@@ -219,7 +219,7 @@ if (usb.removeRight(devicesName)) {
 
 addRight(bundleName: string, deviceName: string): boolean
 
-添加软件包访问设备的权限。
+添加软件包访问设备的权限。系统应用默认拥有访问设备权限，调用此接口不会产生影响。
 
 [requestRight](#usbrequestright)会触发弹框请求用户授权；addRight不会触发弹框，而是直接添加软件包访问设备的权限。
 
@@ -690,7 +690,7 @@ setCurrentFunctions(funcs: FunctionType): Promise\<void\>
 
 以下错误码的详细介绍请参见[USB错误码](../errorcodes/errorcode-usb.md)。
 
-| 错误码ID | 错误码信息                                           |
+| 错误码ID | 错误信息                                           |
 | -------- | ---------------------------------------------------- |
 | 14400002 | Permission denied.The HDC is disabled by the system. |
 

@@ -1,13 +1,8 @@
 # Background Task Management
 
-- Background Task
-  - [Background Task Management Overview](background-task-overview.md)
-  - [Transient Task Development](transient-task-dev-guide.md)
-  - [Continuous Task Development](continuous-task-dev-guide.md)
-  - [Work Scheduler Development](work-scheduler-dev-guide.md)
-  - [WorkSchedulerExtensionAbility Development](workscheduler-extensionability.md)
-  - [Efficiency Resource Request Development](efficiency-resources-apply-dev-guide.md)
-
-- Agent-Powered Reminder
-  - [Agent-Powered Reminder Overview](reminder-agent-overview.md)
-  - [Agent-Powered Reminder Development](reminder-agent-development.md)
+- [Background Task Overview](background-task-overview.md)
+- [Transient Task](transient-task.md)
+- [Continuous Task](continuous-task.md)
+- [Deferred Task](work-scheduler.md)
+- [Agent-powered Reminder](agent-powered-reminder.md)
+- [Requesting Efficiency Resources (for Privileged System Applications Only)](efficiency-resource-request.md)

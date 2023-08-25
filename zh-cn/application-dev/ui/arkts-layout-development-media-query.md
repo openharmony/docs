@@ -3,7 +3,7 @@
 
 ## 概述
 
-[媒体查询](https://docs.openharmony.cn/pages/v3.2Beta/zh-cn/application-dev/reference/apis/js-apis-mediaquery.md/)作为响应式设计的核心，在移动设备上应用十分广泛。媒体查询可根据不同设备类型或同设备不同状态修改应用的样式。媒体查询常用于下面两种场景：
+[媒体查询](../reference/apis/js-apis-mediaquery.md)作为响应式设计的核心，在移动设备上应用十分广泛。媒体查询可根据不同设备类型或同设备不同状态修改应用的样式。媒体查询常用于下面两种场景：
 
 1. 针对设备和应用的属性信息（比如显示区域、深浅色、分辨率），设计出相匹配的布局。
 
@@ -258,6 +258,6 @@ struct MediaQueryExample {
 
 ## 相关实例
 
-基于媒体查询，可参考以下实例：
+针对媒体查询开发，有以下相关实例可供参考：
 
-[媒体查询](https://gitee.com/openharmony/applications_app_samples/tree/master/code/UI/ArkTsComponentClollection/MediaQuery)：使用媒体查询，完成在不同设备上显示不同的界面效果。
+- [横竖屏切换（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/UI/ArkTsComponentCollection/MediaQuery)

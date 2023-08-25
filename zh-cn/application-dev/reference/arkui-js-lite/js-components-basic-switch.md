@@ -96,4 +96,4 @@ export default {
 }
 ```
 
-![switch](figures/switch.gif)
+![switch](figures/switch-lite.gif)

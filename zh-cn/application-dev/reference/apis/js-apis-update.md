@@ -1,10 +1,11 @@
 # @ohos.update (升级)
 
-升级范围：升级整个系统，包括内置的资源、预置应用；第三方的应用不在升级的范围。
+升级范围：升级整个系统，包括内置资源和预置应用，不包括三方应用。
 
-升级依赖：升级分为SD卡升级和在线升级两种。
+升级类型：SD卡升级、在线升级。
 
 - SD卡升级依赖升级包和SD卡安装。
+
 - 在线升级依赖设备厂商部署的用于管理升级包的服务器。服务器由设备厂商部署，IP由调用者传入，请求的request接口是固定的，由设备厂商开发。
 
 > **说明：**
@@ -31,7 +32,7 @@ getOnlineUpdater(upgradeInfo: UpgradeInfo): Updater
 
 | 参数名         | 类型                          | 必填   | 说明     |
 | ----------- | --------------------------- | ---- | ------ |
-| upgradeInfo | [UpgradeInfo](#upgradeinfo) | 是    | 升级信息对象。 |
+| upgradeInfo | [UpgradeInfo](#upgradeinfo) | 是    | 升级对象信息。 |
 
 **返回值：**
 
@@ -45,30 +46,30 @@ getOnlineUpdater(upgradeInfo: UpgradeInfo): Updater
 
 | 错误码ID       | 错误信息                                                  |
 | -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
+| 11500104 | IPC error.     |
 
 **示例：**
 
 ```ts
 try {
-  const upgradeInfo = {
-    upgradeApp: "com.ohos.ota.updateclient",
-    businessType: {
-      vendor: update.BusinessVendor.PUBLIC,
-      subType: update.BusinessSubType.FIRMWARE
+      const upgradeInfo: update.UpgradeInfo = {
+        upgradeApp: "com.ohos.ota.updateclient",
+        businessType: {
+          vendor: update.BusinessVendor.PUBLIC,
+          subType: update.BusinessSubType.FIRMWARE
+        }
+      };
+      let updater = update.getOnlineUpdater(upgradeInfo);
+    } catch(error) {
+      console.error(`Fail to get updater error: ${error}`);
     }
-  };
-  let updater = update.getOnlineUpdater(upgradeInfo);
-} catch(error) {
-  console.error(`Fail to get updater error: ${error}`);
-}
 ```
 
 ## update.getRestorer
 
 getRestorer(): Restorer
 
-获取恢复出厂对象。
+获取恢复出厂设置对象。
 
 **系统能力**：SystemCapability.Update.UpdateService
 
@@ -85,7 +86,7 @@ getRestorer(): Restorer
 
 | 错误码ID       | 错误信息                                                  |
 | -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
+| 11500104 | IPC error.               |
 
 **示例：**
 
@@ -117,7 +118,7 @@ getLocalUpdater(): LocalUpdater
 
 | 错误码ID       | 错误信息                                                  |
 | -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
+| 11500104 | IPC error.               |
 
 **示例：**
 
@@ -139,7 +140,7 @@ checkNewVersion(callback: AsyncCallback\<CheckResult>): void
 
 **系统能力**：SystemCapability.Update.UpdateService
 
-**需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
+**需要权限**：ohos.permission.UPDATE_SYSTEM
 
 **参数：**
 
@@ -153,14 +154,14 @@ checkNewVersion(callback: AsyncCallback\<CheckResult>): void
 
 | 错误码ID       | 错误信息                                                  |
 | -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
+| 11500104 | IPC error.               |
 
 **示例：**
 
 ```ts
-updater.checkNewVersion((err, result) => {
-  console.log(`checkNewVersion isExistNewVersion  ${result?.isExistNewVersion}`);
-});
+updater.checkNewVersion((err: BusinessError, result: update.CheckResult) => {
+      console.log(`checkNewVersion isExistNewVersion  ${result?.isExistNewVersion}`);
+    });
 ```
 
 ### checkNewVersion
@@ -171,7 +172,7 @@ checkNewVersion(): Promise\<CheckResult>
 
 **系统能力**：SystemCapability.Update.UpdateService
 
-**需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
+**需要权限**：ohos.permission.UPDATE_SYSTEM
 
 **返回值:**
 
@@ -185,18 +186,20 @@ checkNewVersion(): Promise\<CheckResult>
 
 | 错误码ID       | 错误信息                                                  |
 | -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
+| 11500104 | IPC error.               |
 
 **示例:**
 
 ```ts
-updater.checkNewVersion().then(result => {
-  console.log(`checkNewVersion isExistNewVersion: ${result.isExistNewVersion}`);
-  // 版本摘要信息
-  console.log(`checkNewVersion versionDigestInfo: ${result.newVersionInfo.versionDigestInfo.versionDigest}`);
-}).catch(err => {
-  console.log(`checkNewVersion promise error ${JSON.stringify(err)}`);
-});
+updater.checkNewVersion()
+      .then((result: update.CheckResult) => {
+        console.log(`checkNewVersion isExistNewVersion: ${result.isExistNewVersion}`);
+        // 版本摘要信息
+        console.log(`checkNewVersion versionDigestInfo: ${result.newVersionInfo.versionDigestInfo.versionDigest}`);
+      })
+      .catch((err: BusinessError)=>{
+        console.log(`checkNewVersion promise error ${JSON.stringify(err)}`);
+      })
 ```
 
 ###  getNewVersionInfo
@@ -207,7 +210,7 @@ getNewVersionInfo(callback: AsyncCallback\<NewVersionInfo>): void
 
 **系统能力**：SystemCapability.Update.UpdateService
 
-**需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
+**需要权限**：ohos.permission.UPDATE_SYSTEM
 
 **参数：**
 
@@ -221,14 +224,14 @@ getNewVersionInfo(callback: AsyncCallback\<NewVersionInfo>): void
 
 | 错误码ID       | 错误信息                                                  |
 | -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
+| 11500104 | IPC error.               |
 
 **示例：**
 
 ```ts
-updater.getNewVersionInfo((err, info) => {
-  console.log(`info displayVersion = ${info?.versionComponents[0].displayVersion}`);
-  console.log(`info innerVersion = ${info?.versionComponents[0].innerVersion}`);
+updater.getNewVersionInfo((err: BusinessError, info: update.NewVersionInfo) => {
+      console.log(`info displayVersion = ${info?.versionComponents[0].displayVersion}`);
+      console.log(`info innerVersion = ${info?.versionComponents[0].innerVersion}`);
 });
 ```
 
@@ -240,7 +243,7 @@ getNewVersionInfo(): Promise\<NewVersionInfo>
 
 **系统能力**：SystemCapability.Update.UpdateService
 
-**需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
+**需要权限**：ohos.permission.UPDATE_SYSTEM
 
 **返回值：**
 
@@ -254,16 +257,16 @@ getNewVersionInfo(): Promise\<NewVersionInfo>
 
 | 错误码ID       | 错误信息                                                  |
 | -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
+| 11500104 | IPC error.               |
 
 **示例：**
 
 ```ts
-updater.getNewVersionInfo().then(info => {
-  console.log(`info displayVersion = ${info.versionComponents[0].displayVersion}`);
-  console.log(`info innerVersion = ${info.versionComponents[0].innerVersion}`);
-}).catch(err => {
-  console.log(`getNewVersionInfo promise error ${JSON.stringify(err)}`);
+updater.getNewVersionInfo().then((info: update.NewVersionInfo) => {
+    console.log(`info displayVersion = ${info.versionComponents[0].displayVersion}`);
+    console.log(`info innerVersion = ${info.versionComponents[0].innerVersion}`);
+}).catch((err: BusinessError) => {
+    console.log(`getNewVersionInfo promise error ${JSON.stringify(err)}`);
 });
 ```
 
@@ -275,7 +278,7 @@ getNewVersionDescription(versionDigestInfo: VersionDigestInfo, descriptionOption
 
 **系统能力**：SystemCapability.Update.UpdateService
 
-**需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
+**需要权限**：ohos.permission.UPDATE_SYSTEM
 
 **参数：**
 
@@ -291,25 +294,26 @@ getNewVersionDescription(versionDigestInfo: VersionDigestInfo, descriptionOption
 
 | 错误码ID       | 错误信息                                                  |
 | -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
+| 11500104 | IPC error.               |
 
 **示例：**
 
 ```ts
 // 版本摘要信息
-const versionDigestInfo = {
+const versionDigestInfo: update.VersionDigestInfo = {
   versionDigest: "versionDigest" // 检测结果中的版本摘要信息
 };
 
 // 描述文件选项
-const descriptionOptions = {
+const descriptionOptions: update.DescriptionOptions = {
   format: update.DescriptionFormat.STANDARD, // 标准格式
   language: "zh-cn" // 中文
 };
 
-updater.getNewVersionDescription(versionDigestInfo, descriptionOptions, (err, info) => {
-  console.log(`getNewVersionDescription info ${JSON.stringify(info)}`);
-  console.log(`getNewVersionDescription err ${JSON.stringify(err)}`);
+updater.getNewVersionDescription(versionDigestInfo, descriptionOptions).then((info: Array<update.ComponentDescription>)=> {
+  console.log(`getNewVersionDescription promise info ${JSON.stringify(info)}`);
+}).catch((err: BusinessError) => {
+  console.log(`getNewVersionDescription promise error ${JSON.stringify(err)}`);
 });
 ```
 
@@ -321,7 +325,7 @@ getNewVersionDescription(versionDigestInfo: VersionDigestInfo, descriptionOption
 
 **系统能力**：SystemCapability.Update.UpdateService
 
-**需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
+**需要权限**：ohos.permission.UPDATE_SYSTEM
 
 **参数：**
 
@@ -342,25 +346,25 @@ getNewVersionDescription(versionDigestInfo: VersionDigestInfo, descriptionOption
 
 | 错误码ID       | 错误信息                                                  |
 | -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
+| 11500104 | IPC error.               |
 
 **示例：**
 
 ```ts
 // 版本摘要信息
-const versionDigestInfo = {
+const versionDigestInfo: update.VersionDigestInfo = {
   versionDigest: "versionDigest" // 检测结果中的版本摘要信息
 };
 
 // 描述文件选项
-const descriptionOptions = {
+const descriptionOptions: update.DescriptionOptions = {
   format: update.DescriptionFormat.STANDARD, // 标准格式
   language: "zh-cn" // 中文
 };
 
-updater.getNewVersionDescription(versionDigestInfo, descriptionOptions).then(info => {
+updater.getNewVersionDescription(versionDigestInfo, descriptionOptions).then((info: Array<update.ComponentDescription>)=> {
   console.log(`getNewVersionDescription promise info ${JSON.stringify(info)}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
   console.log(`getNewVersionDescription promise error ${JSON.stringify(err)}`);
 });
 ```
@@ -373,7 +377,7 @@ getCurrentVersionInfo(callback: AsyncCallback\<CurrentVersionInfo>): void
 
 **系统能力**：SystemCapability.Update.UpdateService
 
-**需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
+**需要权限**：ohos.permission.UPDATE_SYSTEM
 
 **参数：**
 
@@ -387,12 +391,12 @@ getCurrentVersionInfo(callback: AsyncCallback\<CurrentVersionInfo>): void
 
 | 错误码ID       | 错误信息                                                  |
 | -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
+| 11500104 | IPC error.               |
 
 **示例：**
 
 ```ts
-updater.getCurrentVersionInfo((err, info) => {
+updater.getCurrentVersionInfo((err: BusinessError, info: update.CurrentVersionInfo) => {
   console.log(`info osVersion = ${info?.osVersion}`);
   console.log(`info deviceName = ${info?.deviceName}`);
   console.log(`info displayVersion = ${info?.versionComponents[0].displayVersion}`);
@@ -407,13 +411,13 @@ getCurrentVersionInfo(): Promise\<CurrentVersionInfo>
 
 **系统能力**：SystemCapability.Update.UpdateService
 
-**需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
+**需要权限**：ohos.permission.UPDATE_SYSTEM
 
 **返回值：**
 
 | 类型                                       | 说明                  |
 | ---------------------------------------- | ------------------- |
-| Promise\<[CurrentVersionInfo](#currentversioninfo)> | Promise对象，返回当前版本对象。 |
+| Promise\<[CurrentVersionInfo](#currentversioninfo)> | Promise对象，返回当前版本信息对象。 |
 
 **错误码**：
 
@@ -421,16 +425,16 @@ getCurrentVersionInfo(): Promise\<CurrentVersionInfo>
 
 | 错误码ID       | 错误信息                                                  |
 | -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
+| 11500104 | IPC error.               |
 
 **示例：**
 
 ```ts
-updater.getCurrentVersionInfo().then(info => {
+updater.getCurrentVersionInfo().then((info: update.CurrentVersionInfo) => {
   console.log(`info osVersion = ${info.osVersion}`);
   console.log(`info deviceName = ${info.deviceName}`);
   console.log(`info displayVersion = ${info.versionComponents[0].displayVersion}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
   console.log(`getCurrentVersionInfo promise error ${JSON.stringify(err)}`);
 });
 ```
@@ -443,7 +447,7 @@ getCurrentVersionDescription(descriptionOptions: DescriptionOptions, callback: A
 
 **系统能力**：SystemCapability.Update.UpdateService
 
-**需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
+**需要权限**：ohos.permission.UPDATE_SYSTEM
 
 **参数：**
 
@@ -458,13 +462,13 @@ getCurrentVersionDescription(descriptionOptions: DescriptionOptions, callback: A
 
 | 错误码ID       | 错误信息                                                  |
 | -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
+| 11500104 | IPC error.               |
 
 **示例：**
 
 ```ts
 // 描述文件选项
-const descriptionOptions = {
+const descriptionOptions: update.DescriptionOptions = {
   format: update.DescriptionFormat.STANDARD, // 标准格式
   language: "zh-cn" // 中文
 };
@@ -483,7 +487,7 @@ getCurrentVersionDescription(descriptionOptions: DescriptionOptions): Promise\<A
 
 **系统能力**：SystemCapability.Update.UpdateService
 
-**需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
+**需要权限**：ohos.permission.UPDATE_SYSTEM
 
 **参数：**
 
@@ -503,20 +507,19 @@ getCurrentVersionDescription(descriptionOptions: DescriptionOptions): Promise\<A
 
 | 错误码ID       | 错误信息                                                  |
 | -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
+| 11500104 | IPC error.               |
 
 **示例：**
 
 ```ts
 // 描述文件选项
-const descriptionOptions = {
+const descriptionOptions: update.DescriptionOptions = {
   format: update.DescriptionFormat.STANDARD, // 标准格式
   language: "zh-cn" // 中文
 };
-
-updater.getCurrentVersionDescription(descriptionOptions).then(info => {
+updater.getCurrentVersionDescription(descriptionOptions).then((info: Array<update.ComponentDescription>) => {
   console.log(`getCurrentVersionDescription promise info ${JSON.stringify(info)}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
   console.log(`getCurrentVersionDescription promise error ${JSON.stringify(err)}`);
 });
 ```
@@ -529,7 +532,7 @@ getTaskInfo(callback: AsyncCallback\<TaskInfo>): void
 
 **系统能力**：SystemCapability.Update.UpdateService
 
-**需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
+**需要权限**：ohos.permission.UPDATE_SYSTEM
 
 **参数：**
 
@@ -543,12 +546,12 @@ getTaskInfo(callback: AsyncCallback\<TaskInfo>): void
 
 | 错误码ID       | 错误信息                                                  |
 | -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
+| 11500104 | IPC error.               |
 
 **示例：**
 
 ```ts
-updater.getTaskInfo((err, info) => {
+updater.getTaskInfo((err: BusinessError, info: update.TaskInfo) => {
   console.log(`getTaskInfo isexistTask= ${info?.existTask}`);
 });
 ```
@@ -561,7 +564,7 @@ getTaskInfo(): Promise\<TaskInfo>
 
 **系统能力**：SystemCapability.Update.UpdateService
 
-**需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
+**需要权限**：ohos.permission.UPDATE_SYSTEM
 
 **返回值：**
 
@@ -575,14 +578,14 @@ getTaskInfo(): Promise\<TaskInfo>
 
 | 错误码ID       | 错误信息                                                  |
 | -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
+| 11500104 | IPC error.               |
 
 **示例：**
 
 ```ts
-updater.getTaskInfo().then(info => {
+updater.getTaskInfo().then((info: update.TaskInfo) => {
   console.log(`getTaskInfo isexistTask= ${info.existTask}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
   console.log(`getTaskInfo promise error ${JSON.stringify(err)}`);
 });
 ```
@@ -595,7 +598,7 @@ download(versionDigestInfo: VersionDigestInfo, downloadOptions: DownloadOptions,
 
 **系统能力**：SystemCapability.Update.UpdateService
 
-**需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
+**需要权限**：ohos.permission.UPDATE_SYSTEM
 
 **参数：**
 
@@ -611,22 +614,22 @@ download(versionDigestInfo: VersionDigestInfo, downloadOptions: DownloadOptions,
 
 | 错误码ID       | 错误信息                                                  |
 | -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
+| 11500104 | IPC error.               |
 
 **示例：**
 
 ```ts
 // 版本摘要信息
-const versionDigestInfo = {
+const versionDigestInfo: update.VersionDigestInfo = {
   versionDigest: "versionDigest" // 检测结果中的版本摘要信息
 };
 
 // 下载选项
-const downloadOptions = {
+const downloadOptions: update.DownloadOptions = {
   allowNetwork: update.NetType.CELLULAR, // 允许数据网络下载
   order: update.Order.DOWNLOAD // 下载
 };
-updater.download(versionDigestInfo, downloadOptions, (err) => {
+updater.download(versionDigestInfo, downloadOptions, (err: BusinessError) => {
   console.log(`download error ${JSON.stringify(err)}`);
 });
 ```
@@ -639,7 +642,7 @@ download(versionDigestInfo: VersionDigestInfo, downloadOptions: DownloadOptions)
 
 **系统能力**：SystemCapability.Update.UpdateService
 
-**需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
+**需要权限**：ohos.permission.UPDATE_SYSTEM
 
 **参数：**
 
@@ -660,24 +663,24 @@ download(versionDigestInfo: VersionDigestInfo, downloadOptions: DownloadOptions)
 
 | 错误码ID       | 错误信息                                                  |
 | -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
+| 11500104 | IPC error.               |
 
 **示例：**
 
 ```ts
 // 版本摘要信息
-const versionDigestInfo = {
+const versionDigestInfo: update.VersionDigestInfo = {
   versionDigest: "versionDigest" // 检测结果中的版本摘要信息
 };
 
 // 下载选项
-const downloadOptions = {
+const downloadOptions: update.DownloadOptions = {
   allowNetwork: update.NetType.CELLULAR, // 允许数据网络下载
-  order: update.Order.DOWNLOAD // 下载
+   order: update.Order.DOWNLOAD // 下载
 };
 updater.download(versionDigestInfo, downloadOptions).then(() => {
   console.log(`download start`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
   console.log(`download error ${JSON.stringify(err)}`);
 });
 ```
@@ -690,7 +693,7 @@ resumeDownload(versionDigestInfo: VersionDigestInfo, resumeDownloadOptions: Resu
 
 **系统能力**：SystemCapability.Update.UpdateService
 
-**需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
+**需要权限**：ohos.permission.UPDATE_SYSTEM
 
 **参数：**
 
@@ -706,21 +709,21 @@ resumeDownload(versionDigestInfo: VersionDigestInfo, resumeDownloadOptions: Resu
 
 | 错误码ID       | 错误信息                                                  |
 | -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
+| 11500104 | IPC error.               |
 
 **示例：**
 
 ```ts
 // 版本摘要信息
-const versionDigestInfo = {
+const versionDigestInfo : update.VersionDigestInfo= {
   versionDigest: "versionDigest" // 检测结果中的版本摘要信息
 };
 
 // 恢复下载选项
-const resumeDownloadOptions = {
+const resumeDownloadOptions : update.ResumeDownloadOptions= {
   allowNetwork: update.NetType.CELLULAR, // 允许数据网络下载
 };
-updater.resumeDownload(versionDigestInfo, resumeDownloadOptions, (err) => {
+updater.resumeDownload(versionDigestInfo, resumeDownloadOptions, (err: BusinessError) => {
   console.log(`resumeDownload error ${JSON.stringify(err)}`);
 });
 ```
@@ -733,7 +736,7 @@ resumeDownload(versionDigestInfo: VersionDigestInfo, resumeDownloadOptions: Resu
 
 **系统能力**：SystemCapability.Update.UpdateService
 
-**需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
+**需要权限**：ohos.permission.UPDATE_SYSTEM
 
 **参数：**
 
@@ -754,23 +757,23 @@ resumeDownload(versionDigestInfo: VersionDigestInfo, resumeDownloadOptions: Resu
 
 | 错误码ID       | 错误信息                                                  |
 | -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
+| 11500104 | IPC error.               |
 
 **示例：**
 
 ```ts
 // 版本摘要信息
-const versionDigestInfo = {
+const versionDigestInfo: update.VersionDigestInfo = {
   versionDigest: "versionDigest" // 检测结果中的版本摘要信息
 };
 
 // 恢复下载选项
-const resumeDownloadOptions = {
+const resumeDownloadOptions: update.ResumeDownloadOptions = {
   allowNetwork: update.NetType.CELLULAR, // 允许数据网络下载
 };
-updater.resumeDownload(versionDigestInfo, resumeDownloadOptions).then(value => {
+updater.resumeDownload(versionDigestInfo, resumeDownloadOptions).then(() => {
   console.log(`resumeDownload start`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
   console.log(`resumeDownload error ${JSON.stringify(err)}`);
 });
 ```
@@ -783,7 +786,7 @@ pauseDownload(versionDigestInfo: VersionDigestInfo, pauseDownloadOptions: PauseD
 
 **系统能力**：SystemCapability.Update.UpdateService
 
-**需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
+**需要权限**：ohos.permission.UPDATE_SYSTEM
 
 **参数：**
 
@@ -799,21 +802,21 @@ pauseDownload(versionDigestInfo: VersionDigestInfo, pauseDownloadOptions: PauseD
 
 | 错误码ID       | 错误信息                                                  |
 | -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
+| 11500104 | IPC error.               |
 
 **示例：**
 
 ```ts
 // 版本摘要信息
-const versionDigestInfo = {
+const versionDigestInfo: update.VersionDigestInfo = {
   versionDigest: "versionDigest" // 检测结果中的版本摘要信息
 };
 
 // 暂停下载选项
-const pauseDownloadOptions = {
+const pauseDownloadOptions: update.PauseDownloadOptions = {
   isAllowAutoResume: true // 允许自动恢复下载
 };
-updater.pauseDownload(versionDigestInfo, pauseDownloadOptions, (err) => {
+updater.pauseDownload(versionDigestInfo, pauseDownloadOptions, (err: BusinessError) => {
   console.log(`pauseDownload error ${JSON.stringify(err)}`);
 });
 ```
@@ -826,7 +829,7 @@ pauseDownload(versionDigestInfo: VersionDigestInfo, pauseDownloadOptions: PauseD
 
 **系统能力**：SystemCapability.Update.UpdateService
 
-**需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
+**需要权限**：ohos.permission.UPDATE_SYSTEM
 
 **参数：**
 
@@ -847,23 +850,23 @@ pauseDownload(versionDigestInfo: VersionDigestInfo, pauseDownloadOptions: PauseD
 
 | 错误码ID       | 错误信息                                                  |
 | -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
+| 11500104 | IPC error.               |
 
 **示例：**
 
 ```ts
 // 版本摘要信息
-const versionDigestInfo = {
+const versionDigestInfo: update.VersionDigestInfo = {
   versionDigest: "versionDigest" // 检测结果中的版本摘要信息
 };
 
 // 暂停下载选项
-const pauseDownloadOptions = {
+const pauseDownloadOptions: update.PauseDownloadOptions = {
   isAllowAutoResume: true // 允许自动恢复下载
 };
-updater.pauseDownload(versionDigestInfo, pauseDownloadOptions).then(value => {
+updater.pauseDownload(versionDigestInfo, pauseDownloadOptions).then(() => {
   console.log(`pauseDownload`);
-}).catch(err => {
+}).catch((err: BusinessError)  => {
   console.log(`pauseDownload error ${JSON.stringify(err)}`);
 });
 ```
@@ -876,7 +879,7 @@ upgrade(versionDigestInfo: VersionDigestInfo, upgradeOptions: UpgradeOptions, ca
 
 **系统能力**：SystemCapability.Update.UpdateService
 
-**需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
+**需要权限**：ohos.permission.UPDATE_SYSTEM
 
 **参数：**
 
@@ -892,21 +895,21 @@ upgrade(versionDigestInfo: VersionDigestInfo, upgradeOptions: UpgradeOptions, ca
 
 | 错误码ID       | 错误信息                                                  |
 | -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
+| 11500104 | IPC error.               |
 
 **示例：**
 
 ```ts
 // 版本摘要信息
-const versionDigestInfo = {
+const versionDigestInfo: update.VersionDigestInfo = {
   versionDigest: "versionDigest" // 检测结果中的版本摘要信息
 };
 
 // 安装选项
-const upgradeOptions = {
+const upgradeOptions: update.UpgradeOptions = {
   order: update.Order.INSTALL // 安装指令
 };
-updater.upgrade(versionDigestInfo, upgradeOptions, (err) => {
+updater.upgrade(versionDigestInfo, upgradeOptions, (err: BusinessError) => {
   console.log(`upgrade error ${JSON.stringify(err)}`);
 });
 ```
@@ -919,7 +922,7 @@ upgrade(versionDigestInfo: VersionDigestInfo, upgradeOptions: UpgradeOptions): P
 
 **系统能力**：SystemCapability.Update.UpdateService
 
-**需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
+**需要权限**：ohos.permission.UPDATE_SYSTEM
 
 **参数：**
 
@@ -940,23 +943,23 @@ upgrade(versionDigestInfo: VersionDigestInfo, upgradeOptions: UpgradeOptions): P
 
 | 错误码ID       | 错误信息                                                  |
 | -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
+| 11500104 | IPC error.               |
 
 **示例：**
 
 ```ts
 // 版本摘要信息
-const versionDigestInfo = {
+const versionDigestInfo: update.VersionDigestInfo = {
   versionDigest: "versionDigest" // 检测结果中的版本摘要信息
 };
 
 // 安装选项
-const upgradeOptions = {
+const upgradeOptions: update.UpgradeOptions = {
   order: update.Order.INSTALL // 安装指令
 };
 updater.upgrade(versionDigestInfo, upgradeOptions).then(() => {
   console.log(`upgrade start`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
   console.log(`upgrade error ${JSON.stringify(err)}`);
 });
 ```
@@ -969,7 +972,7 @@ clearError(versionDigestInfo: VersionDigestInfo, clearOptions: ClearOptions, cal
 
 **系统能力**：SystemCapability.Update.UpdateService
 
-**需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
+**需要权限**：ohos.permission.UPDATE_SYSTEM
 
 **参数：**
 
@@ -985,21 +988,21 @@ clearError(versionDigestInfo: VersionDigestInfo, clearOptions: ClearOptions, cal
 
 | 错误码ID       | 错误信息                                                  |
 | -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
+| 11500104 | IPC error.               |
 
 **示例：**
 
 ```ts
 // 版本摘要信息
-const versionDigestInfo = {
+const versionDigestInfo: update.VersionDigestInfo = {
   versionDigest: "versionDigest" // 检测结果中的版本摘要信息
 };
 
 // 清除选项
-const clearOptions = {
+const clearOptions: update.ClearOptions = {
   status: update.UpgradeStatus.UPGRADE_FAIL,
 };
-updater.clearError(versionDigestInfo, clearOptions, (err) => {
+updater.clearError(versionDigestInfo, clearOptions, (err: BusinessError) => {
   console.log(`clearError error ${JSON.stringify(err)}`);
 });
 ```
@@ -1012,7 +1015,7 @@ clearError(versionDigestInfo: VersionDigestInfo, clearOptions: ClearOptions): Pr
 
 **系统能力**：SystemCapability.Update.UpdateService
 
-**需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
+**需要权限**：ohos.permission.UPDATE_SYSTEM
 
 **参数：**
 
@@ -1033,23 +1036,23 @@ clearError(versionDigestInfo: VersionDigestInfo, clearOptions: ClearOptions): Pr
 
 | 错误码ID       | 错误信息                                                  |
 | -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
+| 11500104 | IPC error.               |
 
 **示例：**
 
 ```ts
 // 版本摘要信息
-const versionDigestInfo = {
+const versionDigestInfo: update.VersionDigestInfo = {
   versionDigest: "versionDigest" // 检测结果中的版本摘要信息
 };
 
 // 清除选项
-const clearOptions = {
+const clearOptions: update.ClearOptions = {
   status: update.UpgradeStatus.UPGRADE_FAIL,
 };
 updater.clearError(versionDigestInfo, clearOptions).then(() => {
   console.log(`clearError success`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
   console.log(`clearError error ${JSON.stringify(err)}`);
 });
 ```
@@ -1062,7 +1065,7 @@ getUpgradePolicy(callback: AsyncCallback\<UpgradePolicy>): void
 
 **系统能力**：SystemCapability.Update.UpdateService
 
-**需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
+**需要权限**：ohos.permission.UPDATE_SYSTEM
 
 **参数：**
 
@@ -1076,12 +1079,12 @@ getUpgradePolicy(callback: AsyncCallback\<UpgradePolicy>): void
 
 | 错误码ID       | 错误信息                                                  |
 | -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
+| 11500104 | IPC error.               |
 
 **示例：**
 
 ```ts
-updater.getUpgradePolicy((err, policy) => {
+updater.getUpgradePolicy(err: BusinessError, policy: update.UpgradePolicy) => {
   console.log(`policy downloadStrategy = ${policy?.downloadStrategy}`);
   console.log(`policy autoUpgradeStrategy = ${policy?.autoUpgradeStrategy}`);
 });
@@ -1095,7 +1098,7 @@ getUpgradePolicy(): Promise\<UpgradePolicy>
 
 **系统能力**：SystemCapability.Update.UpdateService
 
-**需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
+**需要权限**：ohos.permission.UPDATE_SYSTEM
 
 **返回值：**
 
@@ -1109,15 +1112,15 @@ getUpgradePolicy(): Promise\<UpgradePolicy>
 
 | 错误码ID       | 错误信息                                                  |
 | -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
+| 11500104 | IPC error.               |
 
 **示例：**
 
 ```ts
-updater.getUpgradePolicy().then(policy => {
+updater.getUpgradePolicy().then((policy: update.UpgradePolicy) => {
   console.log(`policy downloadStrategy = ${policy.downloadStrategy}`);
   console.log(`policy autoUpgradeStrategy = ${policy.autoUpgradeStrategy}`);
-}).catch(err => {
+}).catch((err: BusinessError)  => {
   console.log(`getUpgradePolicy promise error ${JSON.stringify(err)}`);
 });
 ```
@@ -1130,7 +1133,7 @@ setUpgradePolicy(policy: UpgradePolicy, callback: AsyncCallback\<void>): void
 
 **系统能力**：SystemCapability.Update.UpdateService
 
-**需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
+**需要权限**：ohos.permission.UPDATE_SYSTEM
 
 **参数：**
 
@@ -1145,17 +1148,17 @@ setUpgradePolicy(policy: UpgradePolicy, callback: AsyncCallback\<void>): void
 
 | 错误码ID       | 错误信息                                                  |
 | -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
+| 11500104 | IPC error.               |
 
 **示例：**
 
 ```ts
-const policy = {
+const policy: update.UpgradePolicy = {
   downloadStrategy: false,
   autoUpgradeStrategy: false,
-  autoUpgradePeriods: [ { start: 120, end: 240 } ] // 自动升级时间段，用分钟表示
+  autoUpgradePeriods: [{ start: 120, end: 240 }] // 自动升级时间段，用分钟表示
 };
-updater.setUpgradePolicy(policy, (err) => {
+updater.setUpgradePolicy(policy, (err: BusinessError) => {
   console.log(`setUpgradePolicy result: ${err}`);
 });
 ```
@@ -1168,7 +1171,7 @@ setUpgradePolicy(policy: UpgradePolicy): Promise\<void>
 
 **系统能力**：SystemCapability.Update.UpdateService
 
-**需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
+**需要权限**：ohos.permission.UPDATE_SYSTEM
 
 **参数：**
 
@@ -1180,7 +1183,7 @@ setUpgradePolicy(policy: UpgradePolicy): Promise\<void>
 
 | 类型             | 说明                  |
 | -------------- | ------------------- |
-| Promise\<void> | Promise对象，返回设置结果对象。 |
+| Promise\<void> | Promise对象。 无返回结果的Promise对象。|
 
 **错误码**：
 
@@ -1188,19 +1191,19 @@ setUpgradePolicy(policy: UpgradePolicy): Promise\<void>
 
 | 错误码ID       | 错误信息                                                  |
 | -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
+| 11500104 | IPC error.               |
 
 **示例：**
 
 ```ts
-const policy = {
+const policy: update.UpgradePolicy = {
   downloadStrategy: false,
   autoUpgradeStrategy: false,
   autoUpgradePeriods: [ { start: 120, end: 240 } ] // 自动升级时间段，用分钟表示
 };
 updater.setUpgradePolicy(policy).then(() => {
   console.log(`setUpgradePolicy success`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
   console.log(`setUpgradePolicy promise error ${JSON.stringify(err)}`);
 });
 ```
@@ -1213,7 +1216,7 @@ terminateUpgrade(callback: AsyncCallback\<void>): void
 
 **系统能力**：SystemCapability.Update.UpdateService
 
-**需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
+**需要权限**：ohos.permission.UPDATE_SYSTEM
 
 **参数：**
 
@@ -1227,12 +1230,12 @@ terminateUpgrade(callback: AsyncCallback\<void>): void
 
 | 错误码ID       | 错误信息                                                  |
 | -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
+| 11500104 | IPC error.               |
 
 **示例：**
 
 ```ts
-updater.terminateUpgrade((err) => {
+updater.terminateUpgrade((err: BusinessError) => {
   console.log(`terminateUpgrade error ${JSON.stringify(err)}`);
 });
 ```
@@ -1245,7 +1248,7 @@ terminateUpgrade(): Promise\<void>
 
 **系统能力**：SystemCapability.Update.UpdateService
 
-**需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
+**需要权限**：ohos.permission.UPDATE_SYSTEM
 
 **返回值：**
 
@@ -1259,14 +1262,14 @@ terminateUpgrade(): Promise\<void>
 
 | 错误码ID       | 错误信息                                                  |
 | -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
+| 11500104 | IPC error.               |
 
 **示例：**
 
 ```ts
 updater.terminateUpgrade().then(() => {
   console.log(`terminateUpgrade success`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
   console.log(`terminateUpgrade error ${JSON.stringify(err)}`);
 });
 ```
@@ -1292,17 +1295,17 @@ on(eventClassifyInfo: EventClassifyInfo, taskCallback: UpgradeTaskCallback): voi
 
 | 错误码ID       | 错误信息                                                  |
 | -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
+| 11500104 | IPC error.               |
 
 **示例：**
 
 ```ts
-const eventClassifyInfo = {
+const eventClassifyInfo: update.EventClassifyInfo = {
   eventClassify: update.EventClassify.TASK, // 订阅升级更新事件
   extraInfo: ""
 };
 
-updater.on(eventClassifyInfo, (eventInfo) => {
+updater.on(eventClassifyInfo, (eventInfo: update.EventInfo) => {
   console.log("updater on " + JSON.stringify(eventInfo));
 });
 ```
@@ -1327,17 +1330,17 @@ off(eventClassifyInfo: EventClassifyInfo, taskCallback?: UpgradeTaskCallback): v
 
 | 错误码ID       | 错误信息                                                  |
 | -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
+| 11500104 | IPC error.               |
 
 **示例：**
 
 ```ts
-const eventClassifyInfo = {
+const eventClassifyInfo: update.EventClassifyInfo = {
   eventClassify: update.EventClassify.TASK, // 订阅升级更新事件
   extraInfo: ""
 };
 
-updater.off(eventClassifyInfo, (eventInfo) => {
+updater.off(eventClassifyInfo, (eventInfo: update.EventInfo) => {
   console.log("updater off " + JSON.stringify(eventInfo));
 });
 ```
@@ -1352,7 +1355,7 @@ factoryReset(callback: AsyncCallback\<void>): void
 
 **系统能力**：SystemCapability.Update.UpdateService
 
-**需要权限**：ohos.permission.FACTORY_RESET，该权限为系统权限
+**需要权限**：ohos.permission.FACTORY_RESET
 
 **参数：**
 
@@ -1366,7 +1369,7 @@ factoryReset(callback: AsyncCallback\<void>): void
 
 | 错误码ID       | 错误信息                                                  |
 | -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
+| 11500104 | IPC error.               |
 
 **示例：**
 
@@ -1384,7 +1387,7 @@ factoryReset(): Promise\<void>
 
 **系统能力**：SystemCapability.Update.UpdateService
 
-**需要权限**：ohos.permission.FACTORY_RESET，该权限为系统权限
+**需要权限**：ohos.permission.FACTORY_RESET
 
 **返回值:**
 
@@ -1398,14 +1401,14 @@ factoryReset(): Promise\<void>
 
 | 错误码ID       | 错误信息                                                  |
 | -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
+| 11500104 | IPC error.               |
 
 **示例:**
 
 ```ts
 restorer.factoryReset().then(() => {
   console.log(`factoryReset success`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
   console.log(`factoryReset error ${JSON.stringify(err)}`);
 });
 ```
@@ -1420,7 +1423,7 @@ verifyUpgradePackage(upgradeFile: UpgradeFile, certsFile: string, callback: Asyn
 
 **系统能力**：SystemCapability.Update.UpdateService
 
-**需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
+**需要权限**：ohos.permission.UPDATE_SYSTEM
 
 **参数：**
 
@@ -1436,12 +1439,12 @@ verifyUpgradePackage(upgradeFile: UpgradeFile, certsFile: string, callback: Asyn
 
 | 错误码ID       | 错误信息                                                  |
 | -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
+| 11500104 | IPC error.               |
 
 **示例：**
 
 ```ts
-const upgradeFile = {
+const upgradeFile: update.UpgradeFile = {
   fileType: update.ComponentType.OTA, // OTA包
   filePath: "path" // 本地升级包路径
 };
@@ -1459,7 +1462,7 @@ verifyUpgradePackage(upgradeFile: UpgradeFile, certsFile: string): Promise\<void
 
 **系统能力**：SystemCapability.Update.UpdateService
 
-**需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
+**需要权限**：ohos.permission.UPDATE_SYSTEM
 
 **参数：**
 
@@ -1480,18 +1483,18 @@ verifyUpgradePackage(upgradeFile: UpgradeFile, certsFile: string): Promise\<void
 
 | 错误码ID       | 错误信息                                                  |
 | -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
+| 11500104 | IPC error.               |
 
 **示例:**
 
 ```ts
-const upgradeFile = {
+const upgradeFile: update.UpgradeFile = {
   fileType: update.ComponentType.OTA, // OTA包
   filePath: "path" // 本地升级包路径
 };
 localUpdater.verifyUpgradePackage(upgradeFile, "cerstFilePath").then(() => {
   console.log(`verifyUpgradePackage success`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
   console.log(`verifyUpgradePackage error ${JSON.stringify(err)}`);
 });
 ```
@@ -1503,7 +1506,7 @@ applyNewVersion(upgradeFiles: Array<[UpgradeFile](#upgradefile)>, callback: Asyn
 
 **系统能力**：SystemCapability.Update.UpdateService
 
-**需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
+**需要权限**：ohos.permission.UPDATE_SYSTEM
 
 **参数：**
 
@@ -1518,12 +1521,12 @@ applyNewVersion(upgradeFiles: Array<[UpgradeFile](#upgradefile)>, callback: Asyn
 
 | 错误码ID       | 错误信息                                                  |
 | -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
+| 11500104 | IPC error.               |
 
 **示例：**
 
 ```ts
-const upgradeFiles = [{
+const upgradeFiles: Array<update.UpgradeFile> = [{
   fileType: update.ComponentType.OTA, // OTA包
   filePath: "path" // 本地升级包路径
 }];
@@ -1541,7 +1544,7 @@ applyNewVersion(upgradeFiles: Array<[UpgradeFile](#upgradefile)>): Promise\<void
 
 **系统能力**：SystemCapability.Update.UpdateService
 
-**需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
+**需要权限**：ohos.permission.UPDATE_SYSTEM
 
 **返回值:**
 
@@ -1555,18 +1558,18 @@ applyNewVersion(upgradeFiles: Array<[UpgradeFile](#upgradefile)>): Promise\<void
 
 | 错误码ID       | 错误信息                                                  |
 | -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
+| 11500104 | IPC error.               |
 
 **示例:**
 
 ```ts
-const upgradeFiles = [{
+const upgradeFiles: Array<update.UpgradeFile> = [{
   fileType: update.ComponentType.OTA, // OTA包
   filePath: "path" // 本地升级包路径
 }];
 localUpdater.applyNewVersion(upgradeFiles).then(() => {
   console.log(`applyNewVersion success`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
   console.log(`applyNewVersion error ${JSON.stringify(err)}`);
 });
 ```
@@ -1591,19 +1594,19 @@ on(eventClassifyInfo: EventClassifyInfo, taskCallback: UpgradeTaskCallback): voi
 
 | 错误码ID       | 错误信息                                                  |
 | -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
+| 11500104 | IPC error.               |
 
 **示例：**
 
 ```ts
-const eventClassifyInfo = {
+const eventClassifyInfo: update.EventClassifyInfo = {
   eventClassify: update.EventClassify.TASK, // 订阅升级更新事件
   extraInfo: ""
 };
 
-function onTaskUpdate(eventInfo) {
+let onTaskUpdate: update.UpgradeTaskCallback = (eventInfo: update.EventInfo) => {
   console.log(`on eventInfo id `, eventInfo.eventId);
-}
+};
 
 localUpdater.on(eventClassifyInfo, onTaskUpdate);
 ```
@@ -1628,19 +1631,19 @@ off(eventClassifyInfo: EventClassifyInfo, taskCallback?: UpgradeTaskCallback): v
 
 | 错误码ID       | 错误信息                                                  |
 | -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
+| 11500104 | IPC error.               |
 
 **示例：**
 
 ```ts
-const eventClassifyInfo = {
+const eventClassifyInfo: update.EventClassifyInfo = {
   eventClassify: update.EventClassify.TASK, // 订阅升级更新事件
   extraInfo: ""
 };
 
-function onTaskUpdate(eventInfo) {
+let onTaskUpdate: update.UpgradeTaskCallback = (eventInfo: update.EventInfo) => {
   console.log(`on eventInfo id `, eventInfo.eventId);
-}
+};
 
 localUpdater.off(eventClassifyInfo, onTaskUpdate);
 ```
@@ -1664,8 +1667,8 @@ localUpdater.off(eventClassifyInfo, onTaskUpdate);
 
 | 名称      | 类型                                | 必填   | 说明   |
 | ------- | ----------------------------------- | ---- | ---- |
-| vendor  | [BusinessVendor](#businessvendor)   | 是    | 供应商。  |
-| subType | [BusinessSubType](#businesssubtype) | 是    | 类型。   |
+| vendor  | [BusinessVendor](#businessvendor)   | 是    | 供应商/厂家。  |
+| subType | [BusinessSubType](#businesssubtype) | 是    | 升级类型。  |
 
 ## CheckResult
 
@@ -1675,7 +1678,7 @@ localUpdater.off(eventClassifyInfo, onTaskUpdate);
 
 | 名称                | 类型                              | 必填   | 说明     |
 | ----------------- | --------------------------------- | ---- | ------ |
-| isExistNewVersion | bool                              | 是    | 是否有新版本。 |
+| isExistNewVersion | boolean                              | 是    | 是否有新版本。<br>ture表示有新版本，false表示没有新版本。|
 | newVersionInfo    | [NewVersionInfo](#newversioninfo) | 否    | 新版本数据。  |
 
 ## NewVersionInfo
@@ -1712,7 +1715,7 @@ localUpdater.off(eventClassifyInfo, onTaskUpdate);
 | upgradeAction   | [UpgradeAction](#upgradeaction)     | 是    | 升级方式。     |
 | displayVersion  | string                              | 是    | 显示版本号。    |
 | innerVersion    | string                              | 是    | 版本号。      |
-| size            | number                              | 是    | 升级包大小。    |
+| size            | number                              | 是    | 升级包大小，单位为B。    |
 | effectiveMode   | [EffectiveMode](#effectivemode)     | 是    | 生效模式。     |
 | descriptionInfo | [DescriptionInfo](#descriptioninfo) | 是    | 版本描述文件信息。 |
 
@@ -1790,7 +1793,7 @@ localUpdater.off(eventClassifyInfo, onTaskUpdate);
 
 | 名称                | 类型 | 必填   | 说明       |
 | ----------------- | ---- | ---- | -------- |
-| isAllowAutoResume | bool | 是    | 是否允许自动恢复。 |
+| isAllowAutoResume | boolean | 是    | 是否允许自动恢复。<br>ture表示允许自动恢复，false表示不允许。 |
 
 ## UpgradeOptions
 
@@ -1820,8 +1823,8 @@ localUpdater.off(eventClassifyInfo, onTaskUpdate);
 
 | 名称                  | 类型                                    | 必填   | 说明      |
 | ------------------- | --------------------------------------- | ---- | ------- |
-| downloadStrategy    | bool                                    | 是    | 自动下载策略。  |
-| autoUpgradeStrategy | bool                                    | 是    | 自动升级策略。  |
+| downloadStrategy    | boolean                        | 是    | 自动下载策略。 <br>ture表示可自动下载，false表示不可自动下载。 |
+| autoUpgradeStrategy | boolean                        | 是    | 自动升级策略。 <br>ture表示可自动升级，false表示不可自动升级。 |
 | autoUpgradePeriods  | Array\<[UpgradePeriod](#upgradeperiod)> | 是    | 自动升级时间段。 |
 
 ## UpgradePeriod
@@ -1843,7 +1846,7 @@ localUpdater.off(eventClassifyInfo, onTaskUpdate);
 
 | 名称        | 类型                  | 必填   | 说明     |
 | --------- | --------------------- | ---- | ------ |
-| existTask | bool                  | 是    | 是否存在任务。 |
+| existTask |  boolean                  | 是    | 是否存在任务。<br>ture表示存在，false表示不存在。 |
 | taskBody  | [TaskBody](#taskinfo) | 是    | 任务数据。   |
 
 ## EventInfo

@@ -1,6 +1,6 @@
 # @ohos.data.relationalStore (RDB Store)
 
-The relational database (RDB) store manages data based on relational models. The RDB store provides a complete mechanism for managing local databases based on the underlying SQLite. To satisfy different needs in complicated scenarios, the RDB store offers a series of APIs for performing operations such as adding, deleting, modifying, and querying data, and supports direct execution of SQL statements. The worker threads are not supported.
+The relational database (RDB) store manages data based on relational models. It provides a complete mechanism for managing local databases based on the underlying SQLite. To satisfy different needs in complicated scenarios, the RDB store offers a series of APIs for performing operations such as adding, deleting, modifying, and querying data, and supports direct execution of SQL statements. The worker threads are not supported.
 
 The **relationalStore** module provides the following functions:
 
@@ -43,6 +43,8 @@ For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode
 | 14800010     | Failed to open or delete database by invalid database path. |
 | 14800011     | Failed to open database by database corrupted.              |
 | 14800000     | Inner error.                                                |
+| 14801001     | Only supported in stage mode.                               |
+| 14801002     | The data group id is not valid.                             |
 
 **Example**
 
@@ -127,6 +129,8 @@ For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode
 | 14800010     | Failed to open or delete database by invalid database path. |
 | 14800011     | Failed to open database by database corrupted.              |
 | 14800000     | Inner error.                                                |
+| 14801001     | Only supported in stage mode.                               |
+| 14801002     | The data group id is not valid.                             |
 
 **Example**
 
@@ -184,6 +188,8 @@ deleteRdbStore(context: Context, name: string, callback: AsyncCallback&lt;void&g
 
 Deletes an RDB store. This API uses an asynchronous callback to return the result.
 
+After the deletion, you are advised to set the database object to null.
+
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
 **Parameters**
@@ -210,6 +216,8 @@ FA model:
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
 
+var store;
+
 // Obtain the context.
 let context = featureAbility.getContext()
 
@@ -218,6 +226,7 @@ relationalStore.deleteRdbStore(context, "RdbTest.db", function (err) {
     console.error(`Delete RdbStore failed, code is ${err.code},message is ${err.message}`);
     return;
   }
+  store = null;
   console.info(`Delete RdbStore successfully.`);
 })
 ```
@@ -227,6 +236,8 @@ Stage model:
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility'
 
+var store;
+
 class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage){
     relationalStore.deleteRdbStore(this.context, "RdbTest.db", function (err) {
@@ -234,6 +245,7 @@ class EntryAbility extends UIAbility {
         console.error(`Delete RdbStore failed, code is ${err.code},message is ${err.message}`);
         return;
       }
+      store = null;
       console.info(`Delete RdbStore successfully.`);
     })
   }
@@ -245,6 +257,8 @@ class EntryAbility extends UIAbility {
 deleteRdbStore(context: Context, name: string): Promise&lt;void&gt;
 
 Deletes an RDB store. This API uses a promise to return the result.
+
+After the deletion, you are advised to set the database object to null.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -277,11 +291,14 @@ FA model:
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
 
+var store;
+
 // Obtain the context.
 let context = featureAbility.getContext();
 
 let promise = relationalStore.deleteRdbStore(context, "RdbTest.db");
 promise.then(()=>{
+  store = null;
   console.info(`Delete RdbStore successfully.`);
 }).catch((err) => {
   console.error(`Delete RdbStore failed, code is ${err.code},message is ${err.message}`);
@@ -293,10 +310,176 @@ Stage model:
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility'
 
+var store;
+
 class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage){
     let promise = relationalStore.deleteRdbStore(this.context, "RdbTest.db");
     promise.then(()=>{
+      store = null;
+      console.info(`Delete RdbStore successfully.`);
+    }).catch((err) => {
+      console.error(`Delete RdbStore failed, code is ${err.code},message is ${err.message}`);
+    })
+  }
+}
+```
+
+## relationalStore.deleteRdbStore<sup>10+</sup>
+
+deleteRdbStore(context: Context, config: StoreConfig, callback: AsyncCallback\<void>): void
+
+Deletes an RDB store. This API uses an asynchronous callback to return the result.
+
+After the deletion, you are advised to set the database object to null. If the database file is in the public sandbox directory, you must use this API to delete the database. If the database is accessed by multiple processes at the same time, you are advised to send a database deletion notification to other processes.
+
+**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**Parameters**
+
+| Name  | Type                       | Mandatory| Description                                                        |
+| -------- | --------------------------- | ---- | ------------------------------------------------------------ |
+| context  | Context                     | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](js-apis-inner-application-uiAbilityContext.md).|
+| config   | [StoreConfig](#storeconfig) | Yes  | Configuration of the RDB store.                               |
+| callback | AsyncCallback&lt;void&gt;   | Yes  | Callback invoked to return the result.                                      |
+
+**Error codes**
+
+For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode-data-rdb.md).
+
+| **ID**| **Error Message**                                               |
+| ------------ | ----------------------------------------------------------- |
+| 14800010     | Failed to open or delete database by invalid database path. |
+| 14800000     | Inner error.                                                |
+| 14801001     | Only supported in stage mode.                               |
+| 14801002     | The data group id is not valid.                             |
+
+**Example**
+
+FA model:
+
+```js
+import featureAbility from '@ohos.ability.featureAbility'
+
+var store;
+
+// Obtain the context.
+let context = featureAbility.getContext()
+const STORE_CONFIG = {
+  name: "RdbTest.db",
+  securityLevel: relationalStore.SecurityLevel.S1
+};
+
+relationalStore.deleteRdbStore(context, STORE_CONFIG, function (err) {
+  if (err) {
+    console.error(`Delete RdbStore failed, code is ${err.code},message is ${err.message}`);
+    return;
+  }
+  store = null;
+  console.info(`Delete RdbStore successfully.`);
+})
+```
+
+Stage model:
+
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility'
+
+var store;
+
+class EntryAbility extends UIAbility {
+  onWindowStageCreate(windowStage){
+    const STORE_CONFIG = {
+      name: "RdbTest.db",
+      securityLevel: relationalStore.SecurityLevel.S1
+    };
+    relationalStore.deleteRdbStore(this.context, STORE_CONFIG, function (err) {
+      if (err) {
+        console.error(`Delete RdbStore failed, code is ${err.code},message is ${err.message}`);
+        return;
+      }
+      store = null;
+      console.info(`Delete RdbStore successfully.`);
+    })
+  }
+}
+```
+
+## relationalStore.deleteRdbStore<sup>10+</sup>
+
+deleteRdbStore(context: Context, config: StoreConfig): Promise\<void>
+
+Deletes an RDB store. This API uses a promise to return the result.
+
+After the deletion, you are advised to set the database object to null. If the database file is in the public sandbox directory, you must use this API to delete the database. If the database is accessed by multiple processes at the same time, you are advised to send a database deletion notification to other processes.
+
+**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**Parameters**
+
+| Name | Type                       | Mandatory| Description                                                        |
+| ------- | --------------------------- | ---- | ------------------------------------------------------------ |
+| context | Context                     | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](js-apis-inner-application-uiAbilityContext.md).|
+| config  | [StoreConfig](#storeconfig) | Yes  | Configuration of the RDB store.                               |
+
+**Return value**
+
+| Type               | Description                     |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode-data-rdb.md).
+
+| **ID**| **Error Message**                                               |
+| ------------ | ----------------------------------------------------------- |
+| 14800010     | Failed to open or delete database by invalid database path. |
+| 14800000     | Inner error.                                                |
+| 14801001     | Only supported in stage mode.                               |
+| 14801002     | The data group id is not valid.                             |
+
+**Example**
+
+FA model:
+
+```js
+import featureAbility from '@ohos.ability.featureAbility'
+
+var store;
+
+// Obtain the context.
+let context = featureAbility.getContext();
+const STORE_CONFIG = {
+  name: "RdbTest.db",
+  securityLevel: relationalStore.SecurityLevel.S1
+};
+
+let promise = relationalStore.deleteRdbStore(context, STORE_CONFIG);
+promise.then(()=>{
+  store = null;
+  console.info(`Delete RdbStore successfully.`);
+}).catch((err) => {
+  console.error(`Delete RdbStore failed, code is ${err.code},message is ${err.message}`);
+})
+```
+
+Stage model:
+
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility'
+
+var store;
+
+class EntryAbility extends UIAbility {
+  onWindowStageCreate(windowStage){
+    const STORE_CONFIG = {
+      name: "RdbTest.db",
+      securityLevel: relationalStore.SecurityLevel.S1
+    };
+    let promise = relationalStore.deleteRdbStore(this.context, STORE_CONFIG);
+    promise.then(()=>{
+      store = null;
       console.info(`Delete RdbStore successfully.`);
     }).catch((err) => {
       console.error(`Delete RdbStore failed, code is ${err.code},message is ${err.message}`);
@@ -315,7 +498,8 @@ Defines the RDB store configuration.
 | ------------- | ------------- | ---- | --------------------------------------------------------- |
 | name          | string        | Yes  | Database file name.                                           |
 | securityLevel | [SecurityLevel](#securitylevel) | Yes  | Security level of the RDB store.                                       |
-| encrypt       | boolean       | No  | Whether to encrypt the RDB store.<br> The value **true** means to encrypt the RDB store;<br> the value **false** (default) means the opposite.|
+| encrypt       | boolean       | No  | Whether to encrypt the RDB store.<br>The value **true** means to encrypt the RDB store; the value **false** (default) means the opposite.|
+| dataGroupId<sup>10+</sup> | string | No| Application group ID, which needs to be obtained from the AppGallery.<br>**Model restriction**: This attribute can be used only in the stage model.<br>This parameter is supported since API version 10. It specifies the **relationalStore** instance created in the sandbox directory corresponding to the **dataGroupId**. If this parameter is not specified, the **relationalStore** instance is created in the sandbox directory of the application.|
 
 ## SecurityLevel
 
@@ -323,7 +507,7 @@ Enumerates the RDB store security levels.
 
 > **NOTE**
 >
-> To perform data synchronization operations, the RDB store security level must be lower than or equal to that of the peer device. For details, see the [Access Control Mechanism in Cross-Device Synchronization]( ../../database/access-control-by-device-and-data-level.md#access-control-mechanism-in-cross-device-synchronization).
+> To perform data synchronization operations, the RDB store security level must be lower than or equal to that of the peer device. For details, see the [Access Control Mechanism in Cross-Device Synchronization](../../database/access-control-by-device-and-data-level.md#access-control-mechanism-in-cross-device-synchronization).
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -369,6 +553,8 @@ Defines information about an asset (such as a document, image, and video). The a
 
 Defines an array of the [Asset](#asset10) type.
 
+**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
+
 | Type   | Description                |
 | ------- | -------------------- |
 | [Asset](#asset10)[] | Array of assets.  |
@@ -399,6 +585,36 @@ Defines the types of the key and value in a KV pair. This type is not multi-thre
 | ------ | ----------------------- |
 | string | [ValueType](#valuetype) |
 
+## PRIKeyType<sup>10+</sup> 
+
+Represents the type of the primary key in a row of a database table.
+
+**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
+
+| Type            | Description                              |
+| ---------------- | ---------------------------------- |
+| number \| string | The type of the primary key can be number or string.|
+
+## UTCTime<sup>10+</sup>
+
+Represents the data type of the UTC time.
+
+**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
+
+| Type| Description           |
+| ---- | --------------- |
+| Date | UTC time.|
+
+## ModifyTime<sup>10+</sup> 
+
+Represents the data type of the primary key and modification time of a database table.
+
+**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
+
+| Type                                                   | Description                                                        |
+| ------------------------------------------------------- | ------------------------------------------------------------ |
+| Map<[PRIKeyType](#prikeytype10), [UTCTime](#utctime10)> | The key is the primary key of a row in the database table, and the value is the last modification time of the row in UTC format.|
+
 ## SyncMode
 
 Enumerates the database synchronization modes.
@@ -407,9 +623,9 @@ Enumerates the database synchronization modes.
 | -------------- | ---- | ---------------------------------- |
 | SYNC_MODE_PUSH                       | 0   | Push data from a local device to a remote device.<br>**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core                    |
 | SYNC_MODE_PULL                       | 1   | Pull data from a remote device to a local device.<br>**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core                     |
-| SYNC_MODE_TIME_FIRST<sup>10+</sup>   | -   | Synchronize with the data with the latest modification time. Use the enum names instead of the enum values. Currently, manual synchronization between the device and cloud is not supported.<br>**System capability**: SystemCapability.DistributedDataManager.CloudSync.Client|
-| SYNC_MODE_NATIVE_FIRST<sup>10+</sup> | -   | Synchronize data from a local device to the cloud. Use the enum names instead of the enum values. Currently, manual synchronization between the device and cloud is not supported.<br>**System capability**: SystemCapability.DistributedDataManager.CloudSync.Client            |
-| SYNC_MODE_CLOUD_FIRST<sup>10+</sup>  | -   | Synchronize data from the cloud to a local device. Use the enum names instead of the enum values. Currently, manual synchronization between the device and cloud is not supported.<br>**System capability**: SystemCapability.DistributedDataManager.CloudSync.Client            |
+| SYNC_MODE_TIME_FIRST<sup>10+</sup>   | -   | Synchronize with the data with the latest modification time. Use the enum names instead of the enum values.<br>**System capability**: SystemCapability.DistributedDataManager.CloudSync.Client|
+| SYNC_MODE_NATIVE_FIRST<sup>10+</sup> | -   | Synchronize data from a local device to the cloud. Use the enum names instead of the enum values.<br>**System capability**: SystemCapability.DistributedDataManager.CloudSync.Client            |
+| SYNC_MODE_CLOUD_FIRST<sup>10+</sup>  | -   | Synchronize data from the cloud to a local device. Use the enum names instead of the enum values.<br>**System capability**: SystemCapability.DistributedDataManager.CloudSync.Client            |
 
 ## SubscribeType
 
@@ -440,15 +656,15 @@ Enumerates data change types. Use the enum names instead of the enum values.
 
 Defines the details about the device-cloud synchronization process.
 
-**System capability**: SystemCapability.DistributedDataManager.CloudSync.Client
+**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
-| Name      | Type                                | Mandatory | Description                                                                                                                  |
-| -------- | ---------------------------------- | --- | -------------------------------------------------------------------------------------------------------------------- |
-| table    | string                             | Yes  | Name of the table with data changes.<br>**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core                                  |
-| type     | [ChangeType](#changetype10)          | Yes  | Type of the data changed, which can be data or asset.<br>**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core |
-| inserted | Array\<string\> \| Array\<number\> | Yes  | Location where data is inserted. If the primary key of the table is of the string type, the value is the value of the primary key. Otherwise, the value is the row number of the inserted data.<br>**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core |
-| updated  | Array\<string\> \| Array\<number\> | Yes  | Location where data is updated. If the primary key of the table is of the string type, the value is the value of the primary key. Otherwise, the value is the row number of the updated data.<br>**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core |
-| deleted  | Array\<string\> \| Array\<number\> | Yes  | Location where data is deleted. If the primary key of the table is of the string type, the value is the value of the primary key. Otherwise, the value is the row number of the deleted data.<br>**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core |
+| Name    | Type                              | Mandatory| Description                                                        |
+| -------- | ---------------------------------- | ---- | ------------------------------------------------------------ |
+| table    | string                             | Yes  | Name of the table with data changes.                                    |
+| type     | [ChangeType](#changetype10)        | Yes  | Type of the data changed, which can be data or asset.        |
+| inserted | Array\<string\> \| Array\<number\> | Yes  | Location where data is inserted. If the primary key of the table is of the string type, the value is the value of the primary key. Otherwise, the value is the row number of the inserted data.|
+| updated  | Array\<string\> \| Array\<number\> | Yes  | Location where data is updated. If the primary key of the table is of the string type, the value is the value of the primary key. Otherwise, the value is the row number of the updated data.|
+| deleted  | Array\<string\> \| Array\<number\> | Yes  | Location where data is deleted. If the primary key of the table is of the string type, the value is the value of the primary key. Otherwise, the value is the row number of the deleted data.|
 
 ## DistributedType<sup>10+</sup>
 
@@ -458,8 +674,8 @@ Enumerates the distributed table types. Use the enum names instead of the enum v
 
 | Name               | Value  | Description                                                                                                |
 | ------------------ | --- | -------------------------------------------------------------------------------------------------- |
-| DISTRIBUTED_DEVICE | -  | Distributed database table between devices.<br>**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core              |
-| DISTRIBUTED_CLOUD  | -   | Distributed database table between the device and the cloud.<br>**System capability**: SystemCapability.DistributedDataManager.CloudSync.Client|
+| DISTRIBUTED_DEVICE | -  | Distributed database table synchronized between devices.<br>**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core |
+| DISTRIBUTED_CLOUD  | -   | Distributed database table synchronized between the device and the cloud.<br>**System capability**: SystemCapability.DistributedDataManager.CloudSync.Client |
 
 ## DistributedConfig<sup>10+</sup>
 
@@ -469,7 +685,7 @@ Defines the configuration of the distributed mode of tables.
 
 | Name    | Type   | Mandatory| Description                                                        |
 | -------- | ------- | ---- | ------------------------------------------------------------ |
-| autoSync | boolean | Yes  | The value **true** means both automatic synchronization and manual synchronization are supported for the table. The value **false** means only manual synchronization is supported for the table.|
+| autoSync | boolean | Yes  | The value **true** means both automatic synchronization and manual synchronization are supported for the table.<br/>The value **false** means only manual synchronization is supported for the table. |
 
 ## ConflictResolution<sup>10+</sup>
 
@@ -485,6 +701,70 @@ Defines the resolution to use when **insert()** and **update()** conflict.
 | ON_CONFLICT_FAIL     | 3    | Abort the current SQL statement. The **FAIL** resolution does not revert previous changes made by the failed SQL statement or end the transaction.|
 | ON_CONFLICT_IGNORE   | 4    | Skip the rows that contain constraint violations and continue to process the subsequent rows of the SQL statement.|
 | ON_CONFLICT_REPLACE  | 5    | Delete pre-existing rows that cause the constraint violation before inserting or updating the current row, and continue to execute the command normally.|
+
+## Progress<sup>10+</sup>
+
+Enumerates the device-cloud synchronization processes. Use the enum names instead of the enum values.
+
+**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
+
+| Name            | Value  | Description                    |
+| ---------------- | ---- | ------------------------ |
+| SYNC_BEGIN       | -    | The device-cloud synchronization starts.  |
+| SYNC_IN_PROGRESS | -    | The device-cloud synchronization is in progress.|
+| SYNC_FINISH      | -    | The device-cloud synchronization is complete.|
+
+## Statistic<sup>10+</sup>
+
+Represents the device-cloud synchronization statistics information.
+
+**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
+
+| Name      | Type  | Mandatory| Description                                    |
+| ---------- | ------ | ---- | ---------------------------------------- |
+| total      | number | Yes  | Total number of rows to be synchronized between the device and cloud in the database table.    |
+| successful | number | Yes  | Number of rows that are successfully synchronized between the device and cloud in the database table.      |
+| failed     | number | Yes  | Number of rows that failed to be synchronized between the device and cloud in the database table.      |
+| remained   | number | Yes  | Number of rows that are not executed for device-cloud synchronization in the database table.|
+
+## TableDetails<sup>10+</sup>
+
+Represents the upload and download statistics of device-cloud synchronization tasks.
+
+**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
+
+| Name    | Type                     | Mandatory| Description                                      |
+| -------- | ------------------------- | ---- | ------------------------------------------ |
+| upload   | [Statistic](#statistic10) | Yes  | Statistics of the device-cloud upload tasks.|
+| download | [Statistic](#statistic10) | Yes  | Statistics of the device-cloud download tasks.|
+
+## ProgressCode<sup>10+</sup>
+
+Enumerates the device-cloud synchronization states. Use the enum names instead of the enum values.
+
+**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
+
+| Name                 | Value  | Description                                                        |
+| --------------------- | ---- | ------------------------------------------------------------ |
+| SUCCESS               | -    | The device-cloud synchronization is successful.                                      |
+| UNKNOWN_ERROR         | -    | An unknown error occurs during device-cloud synchronization.                              |
+| NETWORK_ERROR         | -    | A network error occurs during device-cloud synchronization.                              |
+| CLOUD_DISABLED        | -    | The cloud is unavailable.                                            |
+| LOCKED_BY_OTHERS      | -    | The device-cloud synchronization of another device is being performed.<br>Start device-cloud synchronization after checking that cloud resources are not occupied by other devices.|
+| RECORD_LIMIT_EXCEEDED | -    | The number of records or size of the data to be synchronized exceeds the maximum. The maximum value is configured on the cloud.|
+| NO_SPACE_FOR_ASSET    | -    | The remaining cloud space is less than the size of the data to be synchronized.                    |
+
+## ProgressDetails<sup>10+</sup>
+
+Represents the statistics of the overall device-cloud synchronization (upload and download) tasks.
+
+**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
+
+| Name    | Type                                             | Mandatory| Description                                                        |
+| -------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| schedule | [Progress](#progress10)                           | Yes  | Device-cloud synchronization process.                                          |
+| code     | [ProgressCode](#progresscode10)                   | Yes  | Device-cloud synchronization state.                                    |
+| details  | [table: string] : [TableDetails](#tabledetails10) | Yes  | Statistics of each table.<br>The key indicates the table name, and the value indicates the device-cloud synchronization statistics of the table.|
 
 ## RdbPredicates
 
@@ -2133,6 +2413,53 @@ promise.then((rows) => {
 })
 ```
 
+### query<sup>10+</sup>
+
+query(predicates: RdbPredicates, callback: AsyncCallback&lt;ResultSet&gt;):void
+
+Queries data from the RDB store based on specified conditions. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**Parameters**
+
+| Name    | Type                                                        | Mandatory| Description                                                       |
+| ---------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------------- |
+| predicates | [RdbPredicates](#rdbpredicates)                         | Yes  | Query conditions specified by the **RdbPredicates** object.                  |
+| callback   | AsyncCallback&lt;[ResultSet](#resultset)&gt; | Yes  | Callback invoked to return the result. If the operation is successful, a **ResultSet** object will be returned.|
+
+**Error codes**
+
+For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode-data-rdb.md).
+
+| **ID**| **Error Message**                |
+| ------------ | ---------------------------- |
+| 14800000     | Inner error.                 |
+
+**Example**
+
+```js
+let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
+predicates.equalTo("NAME", "Rose");
+store.query(predicates, function (err, resultSet) {
+  if (err) {
+    console.error(`Query failed, code is ${err.code},message is ${err.message}`);
+    return;
+  }
+  console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
+  // resultSet is a cursor of a data set. By default, the cursor points to the -1st record. Valid data starts from 0.
+  while (resultSet.goToNextRow()) {
+    const id = resultSet.getLong(resultSet.getColumnIndex("ID"));
+    const name = resultSet.getString(resultSet.getColumnIndex("NAME"));
+    const age = resultSet.getLong(resultSet.getColumnIndex("AGE"));
+    const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"));
+    console.info(`id=${id}, name=${name}, age=${age}, salary=${salary}`);
+  }
+  // Release the dataset memory.
+  resultSet.close();
+})
+```
+
 ### query
 
 query(predicates: RdbPredicates, columns: Array&lt;string&gt;, callback: AsyncCallback&lt;ResultSet&gt;):void
@@ -2169,7 +2496,7 @@ store.query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"], function (err,
   }
   console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
   // resultSet is a cursor of a data set. By default, the cursor points to the -1st record. Valid data starts from 0.
-  while(resultSet.goToNextRow()) {
+  while (resultSet.goToNextRow()) {
     const id = resultSet.getLong(resultSet.getColumnIndex("ID"));
     const name = resultSet.getString(resultSet.getColumnIndex("NAME"));
     const age = resultSet.getLong(resultSet.getColumnIndex("AGE"));
@@ -2219,7 +2546,7 @@ let promise = store.query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]);
 promise.then((resultSet) => {
   console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
   // resultSet is a cursor of a data set. By default, the cursor points to the -1st record. Valid data starts from 0.
-  while(resultSet.goToNextRow()) {
+  while (resultSet.goToNextRow()) {
     const id = resultSet.getLong(resultSet.getColumnIndex("ID"));
     const name = resultSet.getString(resultSet.getColumnIndex("NAME"));
     const age = resultSet.getLong(resultSet.getColumnIndex("AGE"));
@@ -2232,6 +2559,59 @@ promise.then((resultSet) => {
   console.error(`Query failed, code is ${err.code},message is ${err.message}`);
 })
   ```
+
+### query<sup>10+</sup>
+
+query(table: string, predicates: dataSharePredicates.DataSharePredicates, callback: AsyncCallback&lt;ResultSet&gt;):void
+
+Queries data from the RDB store based on specified conditions. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**Model restriction**: This API can be used only in the stage model.
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name    | Type                                                        | Mandatory| Description                                                       |
+| ---------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------------- |
+| table      | string                                                       | Yes  | Name of the target table.                                           |
+| predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes  | Query conditions specified by the **DataSharePredicates** object.              |
+| callback   | AsyncCallback&lt;[ResultSet](#resultset)&gt; | Yes  | Callback invoked to return the result. If the operation is successful, a **ResultSet** object will be returned.|
+
+**Error codes**
+
+For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode-data-rdb.md).
+
+| **ID**| **Error Message**                |
+| ------------ | ---------------------------- |
+| 14800000     | Inner error.                 |
+
+**Example**
+
+```js
+import dataSharePredicates from '@ohos.data.dataSharePredicates'
+let predicates = new dataSharePredicates.DataSharePredicates();
+predicates.equalTo("NAME", "Rose");
+store.query("EMPLOYEE", predicates, function (err, resultSet) {
+  if (err) {
+    console.error(`Query failed, code is ${err.code},message is ${err.message}`);
+    return;
+  }
+  console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
+  // resultSet is a cursor of a data set. By default, the cursor points to the -1st record. Valid data starts from 0.
+  while (resultSet.goToNextRow()) {
+    const id = resultSet.getLong(resultSet.getColumnIndex("ID"));
+    const name = resultSet.getString(resultSet.getColumnIndex("NAME"));
+    const age = resultSet.getLong(resultSet.getColumnIndex("AGE"));
+    const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"));
+    console.info(`id=${id}, name=${name}, age=${age}, salary=${salary}`);
+  }
+  // Release the dataset memory.
+  resultSet.close();
+})
+```
 
 ### query
 
@@ -2275,7 +2655,7 @@ store.query("EMPLOYEE", predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"], fu
   }
   console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
   // resultSet is a cursor of a data set. By default, the cursor points to the -1st record. Valid data starts from 0.
-  while(resultSet.goToNextRow()) {
+  while (resultSet.goToNextRow()) {
     const id = resultSet.getLong(resultSet.getColumnIndex("ID"));
     const name = resultSet.getString(resultSet.getColumnIndex("NAME"));
     const age = resultSet.getLong(resultSet.getColumnIndex("AGE"));
@@ -2331,7 +2711,7 @@ let promise = store.query("EMPLOYEE", predicates, ["ID", "NAME", "AGE", "SALARY"
 promise.then((resultSet) => {
   console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
   // resultSet is a cursor of a data set. By default, the cursor points to the -1st record. Valid data starts from 0.
-  while(resultSet.goToNextRow()) {
+  while (resultSet.goToNextRow()) {
     const id = resultSet.getLong(resultSet.getColumnIndex("ID"));
     const name = resultSet.getString(resultSet.getColumnIndex("NAME"));
     const age = resultSet.getLong(resultSet.getColumnIndex("AGE"));
@@ -2402,7 +2782,7 @@ store.remoteQuery(deviceId, "EMPLOYEE", predicates, ["ID", "NAME", "AGE", "SALAR
     }
     console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
     // resultSet is a cursor of a data set. By default, the cursor points to the -1st record. Valid data starts from 0.
-    while(resultSet.goToNextRow()) {
+    while (resultSet.goToNextRow()) {
       const id = resultSet.getLong(resultSet.getColumnIndex("ID"));
       const name = resultSet.getString(resultSet.getColumnIndex("NAME"));
       const age = resultSet.getLong(resultSet.getColumnIndex("AGE"));
@@ -2473,7 +2853,7 @@ let promise = store.remoteQuery(deviceId, "EMPLOYEE", predicates, ["ID", "NAME",
 promise.then((resultSet) => {
   console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
   // resultSet is a cursor of a data set. By default, the cursor points to the -1st record. Valid data starts from 0.
-  while(resultSet.goToNextRow()) {
+  while (resultSet.goToNextRow()) {
     const id = resultSet.getLong(resultSet.getColumnIndex("ID"));
     const name = resultSet.getString(resultSet.getColumnIndex("NAME"));
     const age = resultSet.getLong(resultSet.getColumnIndex("AGE"));
@@ -2484,6 +2864,51 @@ promise.then((resultSet) => {
   resultSet.close();
 }).catch((err) => {
   console.error(`Failed to remoteQuery, code is ${err.code},message is ${err.message}`);
+})
+```
+
+### querySql<sup>10+</sup>
+
+querySql(sql: string, callback: AsyncCallback&lt;ResultSet&gt;):void
+
+Queries data using the specified SQL statement. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**Parameters**
+
+| Name  | Type                                        | Mandatory| Description                                                        |
+| -------- | -------------------------------------------- | ---- | ------------------------------------------------------------ |
+| sql      | string                                       | Yes  | SQL statement to run.                                       |
+| callback | AsyncCallback&lt;[ResultSet](#resultset)&gt; | Yes  | Callback invoked to return the result. If the operation is successful, a **ResultSet** object will be returned.   |
+
+**Error codes**
+
+For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode-data-rdb.md).
+
+| **ID**| **Error Message**                |
+| ------------ | ---------------------------- |
+| 14800000     | Inner error.                 |
+
+**Example**
+
+```js
+store.querySql("SELECT * FROM EMPLOYEE CROSS JOIN BOOK WHERE BOOK.NAME = 'sanguo'", function (err, resultSet) {
+  if (err) {
+    console.error(`Query failed, code is ${err.code},message is ${err.message}`);
+    return;
+  }
+  console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
+  // resultSet is a cursor of a data set. By default, the cursor points to the -1st record. Valid data starts from 0.
+  while (resultSet.goToNextRow()) {
+    const id = resultSet.getLong(resultSet.getColumnIndex("ID"));
+    const name = resultSet.getString(resultSet.getColumnIndex("NAME"));
+    const age = resultSet.getLong(resultSet.getColumnIndex("AGE"));
+    const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"));
+    console.info(`id=${id}, name=${name}, age=${age}, salary=${salary}`);
+  }
+  // Release the dataset memory.
+  resultSet.close();
 })
 ```
 
@@ -2521,7 +2946,7 @@ store.querySql("SELECT * FROM EMPLOYEE CROSS JOIN BOOK WHERE BOOK.NAME = ?", ['s
   }
   console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
   // resultSet is a cursor of a data set. By default, the cursor points to the -1st record. Valid data starts from 0.
-  while(resultSet.goToNextRow()) {
+  while (resultSet.goToNextRow()) {
     const id = resultSet.getLong(resultSet.getColumnIndex("ID"));
     const name = resultSet.getString(resultSet.getColumnIndex("NAME"));
     const age = resultSet.getLong(resultSet.getColumnIndex("AGE"));
@@ -2569,7 +2994,7 @@ let promise = store.querySql("SELECT * FROM EMPLOYEE CROSS JOIN BOOK WHERE BOOK.
 promise.then((resultSet) => {
   console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
   // resultSet is a cursor of a data set. By default, the cursor points to the -1st record. Valid data starts from 0.
-  while(resultSet.goToNextRow()) {
+  while (resultSet.goToNextRow()) {
     const id = resultSet.getLong(resultSet.getColumnIndex("ID"));
     const name = resultSet.getString(resultSet.getColumnIndex("NAME"));
     const age = resultSet.getLong(resultSet.getColumnIndex("AGE"));
@@ -2580,6 +3005,43 @@ promise.then((resultSet) => {
   resultSet.close();
 }).catch((err) => {
   console.error(`Query failed, code is ${err.code},message is ${err.message}`);
+})
+```
+
+### executeSql<sup>10+</sup>
+
+executeSql(sql: string, callback: AsyncCallback&lt;void&gt;):void
+
+Executes an SQL statement that contains specified arguments but returns no value. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**Parameters**
+
+| Name  | Type                                | Mandatory| Description                                                        |
+| -------- | ------------------------------------ | ---- | ------------------------------------------------------------ |
+| sql      | string                               | Yes  | SQL statement to run.                                       |
+| callback | AsyncCallback&lt;void&gt;            | Yes  | Callback invoked to return the result.                                      |
+
+**Error codes**
+
+For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode-data-rdb.md).
+
+| **ID**| **Error Message**                                |
+| ------------ | -------------------------------------------- |
+| 14800047     | The WAL file size exceeds the default limit. |
+| 14800000     | Inner error.                                 |
+
+**Example**
+
+```js
+const SQL_DELETE_TABLE = "DELETE FROM test WHERE name = 'zhangsan'"
+store.executeSql(SQL_DELETE_TABLE, function(err) {
+  if (err) {
+    console.error(`ExecuteSql failed, code is ${err.code},message is ${err.message}`);
+    return;
+  }
+  console.info(`Delete table done.`);
 })
 ```
 
@@ -2661,6 +3123,85 @@ promise.then(() => {
 }).catch((err) => {
     console.error(`ExecuteSql failed, code is ${err.code},message is ${err.message}`);
 })
+```
+
+### getModifyTime<sup>10+</sup>
+
+getModifyTime(table: string, columnName: string, primaryKeys: PRIKeyType[], callback: AsyncCallback&lt;ModifyTime&gt;): void
+
+Obtains the last modification time of the data in a table. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**Parameters**
+
+| Name     | Type                                            | Mandatory| Description                                                        |
+| ----------- | ------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| table       | string                                           | Yes  | Name of the database table to query.                                |
+| columnName  | string                                           | Yes  | Column name of the database table to query.                                |
+| primaryKeys | [PRIKeyType](#prikeytype10)[]                    | Yes  | Primary keys of the rows to query.<br>If the database table has no primary key, **rowid** must be passed in through **columnName**. In this case, **primaryKeys** specifies the row numbers of the database table to query.<br>If the database table has no primary key and no **rowid** is passed in through **columnName**, an error code will be returned.|
+| callback    | AsyncCallback&lt;[ModifyTime](#modifytime10)&gt; | Yes  | Callback invoked to return the result. If the operation is successful, the **ModifyTime** object is returned.|
+
+**Error codes**
+
+For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode-data-rdb.md).
+
+| **ID**| **Error Message**|
+| ------------ | ------------ |
+| 14800000     | Inner error. |
+
+**Example**
+
+```js
+let PRIKey = [1, 4, 2, 3];
+store.getModifyTime("cloud_tasks", "uuid", PRIKey, function (err, modifyTime) {
+    if (err) {
+        console.error(`getModifyTime failed, code is ${err.code},message is ${err.message}`);
+        return;
+    }
+    let size = modifyTime.size();
+});
+```
+
+### getModifyTime<sup>10+</sup>
+
+getModifyTime(table: string, columnName: string, primaryKeys: PRIKeyType[]): Promise&lt;ModifyTime&gt;
+
+Obtains the last modification time of the data in a table. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**Parameters**
+
+| Name     | Type                         | Mandatory| Description                                                        |
+| ----------- | ----------------------------- | ---- | ------------------------------------------------------------ |
+| table       | string                        | Yes  | Name of the database table to query.                                |
+| columnName  | string                        | Yes  | Column name of the database table to query.                                |
+| primaryKeys | [PRIKeyType](#prikeytype10)[] | Yes  | Primary keys of the rows to query.<br>If the database table has no primary key, **rowid** must be passed in through **columnName**. In this case, **primaryKeys** specifies the row numbers of the database table to query.<br>If the database table has no primary key and no **rowid** is passed in through **columnName**, an error code will be returned.|
+
+**Return value**
+
+| Type                                      | Description                                                     |
+| ------------------------------------------ | --------------------------------------------------------- |
+| Promise&lt;[ModifyTime](#modifytime10)&gt; | Promise used to return the **ModifyTime** object.|
+
+**Error codes**
+
+For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode-data-rdb.md).
+
+| **ID**| **Error Message**|
+| ------------ | ------------ |
+| 14800000     | Inner error. |
+
+**Example**
+
+```js
+let PRIKey = [1, 2, 3];
+store.getModifyTime("cloud_tasks", "uuid", PRIKey).then((modifyTime) => {
+    let size = modifyTime.size();
+}).catch((err) => {
+    console.error(`getModifyTime failed, code is ${err.code},message is ${err.message}`);
+});
 ```
 
 ### beginTransaction
@@ -3008,7 +3549,46 @@ promise.then(() => {
 
 ### setDistributedTables<sup>10+</sup>
 
-setDistributedTables(tables: Array&lt;string&gt;, type: number, config: DistributedConfig, callback: AsyncCallback&lt;void&gt;): void
+setDistributedTables(tables: Array&lt;string&gt;, type: DistributedType, callback: AsyncCallback&lt;void&gt;): void
+
+Sets distributed tables. This API uses an asynchronous callback to return the result.
+
+**Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
+
+**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**Parameters**
+
+| Name  | Type                                 | Mandatory| Description                        |
+| -------- | ------------------------------------- | ---- | ---------------------------- |
+| tables   | Array&lt;string&gt;                   | Yes  | Names of the distributed tables to set.|
+| type     | [DistributedType](#distributedtype10) | Yes  | Distributed type of the tables.            |
+| callback | AsyncCallback&lt;void&gt;             | Yes  | Callback invoked to return the result.      |
+
+**Error codes**
+
+For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode-data-rdb.md).
+
+| **ID**| **Error Message**|
+| ------------ | ------------ |
+| 14800000     | Inner error. |
+| 14800051     |The type of the distributed table does not match.|
+
+**Example**
+
+```js
+store.setDistributedTables(["EMPLOYEE"], relationalStore.DistributedType.DISTRIBUTED_CLOUD, function (err) {
+  if (err) {
+    console.error(`SetDistributedTables failed, code is ${err.code},message is ${err.message}`);
+    return;
+  }
+  console.info(`SetDistributedTables successfully.`);
+})
+```
+
+### setDistributedTables<sup>10+</sup>
+
+setDistributedTables(tables: Array&lt;string&gt;, type: DistributedType, config: DistributedConfig, callback: AsyncCallback&lt;void&gt;): void
 
 Sets distributed tables. This API uses an asynchronous callback to return the result.
 
@@ -3021,16 +3601,25 @@ Sets distributed tables. This API uses an asynchronous callback to return the re
 | Name     | Type                                 | Mandatory | Description             |
 | -------- | ----------------------------------- | --- | --------------- |
 | tables   | Array&lt;string&gt;                 | Yes  | Names of the distributed tables to set.    |
-| type     | number | Yes  | Distributed type of the tables. Currently, only **relationalStore.DistributedType.DISTRIBUTED_DEVICE** and **relationalStore.DistributedType.DISTRIBUTED_CLOUD** are supported.<br> The value **relationalStore.DistributedType.DISTRIBUTED_DEVICE** indicates distributed tables across different devices.<br> The value **relationalStore.DistributedType.DISTRIBUTED_CLOUD** indicates distributed tables between the device and cloud.|
+| type     | [DistributedType](#distributedtype10) | Yes  | Distributed type of the tables.|
 | config | [DistributedConfig](#distributedconfig10) | Yes| Configuration of the distributed mode.|
 | callback | AsyncCallback&lt;void&gt;           | Yes  | Callback invoked to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode-data-rdb.md).
+
+| **ID**| **Error Message**                                     |
+| ------------ | ------------------------------------------------- |
+| 14800000     | Inner error.                                      |
+| 14800051     | The type of the distributed table does not match. |
 
 **Example**
 
 ```js
-let config = new DistributedConfig();
-config.autoSync = true;
-store.setDistributedTables(["EMPLOYEE"], relationalStore.DistributedType.DISTRIBUTED_CLOUD, config, function (err) {
+store.setDistributedTables(["EMPLOYEE"], relationalStore.DistributedType.DISTRIBUTED_CLOUD, {
+  autoSync: true
+}, function (err) {
   if (err) {
     console.error(`SetDistributedTables failed, code is ${err.code},message is ${err.message}`);
     return;
@@ -3041,7 +3630,7 @@ store.setDistributedTables(["EMPLOYEE"], relationalStore.DistributedType.DISTRIB
 
 ### setDistributedTables<sup>10+</sup>
 
- setDistributedTables(tables: Array&lt;string>, type?: number, config?: DistributedConfig): Promise&lt;void>
+ setDistributedTables(tables: Array&lt;string>, type?: DistributedType, config?: DistributedConfig): Promise&lt;void>
 
 Sets distributed tables. This API uses a promise to return the result.
 
@@ -3053,8 +3642,8 @@ Sets distributed tables. This API uses a promise to return the result.
 
 | Name| Type                                     | Mandatory| Description                                                        |
 | ------ | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| tables | Array&lt;string&gt;                       | Yes  | Names of the distributed tables to set.                                    |
-| type   | number                                    | No  | Distributed type of the tables. The default value is **relationalStore.DistributedType.DISTRIBUTED_DEVICE**.<br> Currently, only **relationalStore.DistributedType.DISTRIBUTED_DEVICE** and **relationalStore.DistributedType.DISTRIBUTED_CLOUD** are supported.<br> The value **relationalStore.DistributedType.DISTRIBUTED_DEVICE** indicates distributed tables across different devices.<br> The value **relationalStore.DistributedType.DISTRIBUTED_CLOUD** indicates distributed tables between the device and cloud.|
+| tables | Array&lt;string&gt;                       | Yes  | Names of the distributed tables to set.                                |
+| type   | [DistributedType](#distributedtype10)     | No  | Distributed type of the tables. The default value is **relationalStore.DistributedType.DISTRIBUTED_DEVICE**.|
 | config | [DistributedConfig](#distributedconfig10) | No  | Configuration of the distributed mode. If this parameter is not specified, the value of **autoSync** is **false** by default, which means only manual synchronization is supported.|
 
 **Return value**
@@ -3063,12 +3652,21 @@ Sets distributed tables. This API uses a promise to return the result.
 | ------------------- | ------------------------- |
 | Promise&lt;void&gt; | Promise that returns no value.|
 
+**Error codes**
+
+For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode-data-rdb.md).
+
+| **ID**| **Error Message**                                     |
+| ------------ | ------------------------------------------------- |
+| 14800000     | Inner error.                                      |
+| 14800051     | The type of the distributed table does not match. |
+
 **Example**
 
 ```js
-let config = new DistributedConfig();
-config.autoSync = true;
-let promise = store.setDistributedTables(["EMPLOYEE"], relationalStore.DistributedType.DISTRIBUTED_CLOUD, config);
+let promise = store.setDistributedTables(["EMPLOYEE"], relationalStore.DistributedType.DISTRIBUTED_CLOUD, {
+  autoSync: true
+});
 promise.then(() => {
   console.info(`SetDistributedTables successfully.`);
 }).catch((err) => {
@@ -3314,11 +3912,153 @@ promise.then((result) =>{
 })
 ```
 
+### cloudSync<sup>10+</sup>
+
+cloudSync(mode: SyncMode, progress: Callback&lt;ProgressDetails&gt;, callback: AsyncCallback&lt;void&gt;): void
+
+Manually starts device-cloud synchronization for all distributed tables. This API uses an asynchronous callback to return the result. Before using this API, ensure that the cloud service must be available.
+
+**Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
+
+**System capability**: SystemCapability.DistributedDataManager.CloudSync.Client
+
+**Parameters**
+
+| Name  | Type                                                 | Mandatory| Description                                              |
+| -------- | ----------------------------------------------------- | ---- | -------------------------------------------------- |
+| mode     | [SyncMode](#syncmode)                                 | Yes  | Synchronization mode of the database.                            |
+| progress | Callback&lt;[ProgressDetails](#progressdetails10)&gt; | Yes  | Callback used to process database synchronization details.            |
+| callback | AsyncCallback&lt;void&gt;                             | Yes  | Callback invoked to send the synchronization result to the caller.|
+
+**Example**
+
+```js
+store.cloudSync(relationalStore.SyncMode.SYNC_MODE_CLOUD_FIRST, function (progressDetails) {
+    console.info(`Progess: ${progressDetails}`);
+}, function (err) {
+     if (err) {
+         console.error(`Cloud sync failed, code is ${err.code},message is ${err.message}`);
+         return;
+     }
+     console.info('Cloud sync succeeded');
+});
+```
+
+### cloudSync<sup>10+</sup>
+
+cloudSync(mode: SyncMode, progress: Callback&lt;ProgressDetails&gt;): Promise&lt;void&gt;
+
+Manually starts device-cloud synchronization for all distributed tables. This API uses a promise to return the result. Before using this API, ensure that the cloud service must be available.
+
+**Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
+
+**System capability**: SystemCapability.DistributedDataManager.CloudSync.Client
+
+**Parameters**
+
+| Name  | Type                                                 | Mandatory| Description                                  |
+| -------- | ----------------------------------------------------- | ---- | -------------------------------------- |
+| mode     | [SyncMode](#syncmode)                                 | Yes  | Synchronization mode of the database.                |
+| progress | Callback&lt;[ProgressDetails](#progressdetails10)&gt; | Yes  | Callback used to process database synchronization details.|
+
+**Return value**
+
+| Type               | Description                                   |
+| ------------------- | --------------------------------------- |
+| Promise&lt;void&gt; | Promise used to send the synchronization result.|
+
+**Example**
+
+```js
+function progress(progressDetail) {
+    console.info(`progress: ${progressDetail}`);
+}
+
+store.cloudSync(relationalStore.SyncMode.SYNC_MODE_CLOUD_FIRST, progress).then(() => {
+    console.info('Cloud sync succeeded');
+}).catch((err) => {
+    console.error(`cloudSync failed, code is ${err.code},message is ${err.message}`);
+});
+```
+
+### cloudSync<sup>10+</sup>
+
+cloudSync(mode: SyncMode, tables: string[], progress: Callback&lt;ProgressDetails&gt;, callback: AsyncCallback&lt;void&gt;): void
+
+Manually starts device-cloud synchronization of the specified table. This API uses an asynchronous callback to return the result. Before using this API, ensure that the cloud service must be available.
+
+**Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
+
+**System capability**: SystemCapability.DistributedDataManager.CloudSync.Client
+
+**Parameters**
+
+| Name  | Type                                                 | Mandatory| Description                                              |
+| -------- | ----------------------------------------------------- | ---- | -------------------------------------------------- |
+| mode     | [SyncMode](#syncmode)                                 | Yes  | Synchronization mode of the database.                            |
+| tables   | string[]                                              | Yes  | Name of the table to synchronize.                                  |
+| progress | Callback&lt;[ProgressDetails](#progressdetails10)&gt; | Yes  | Callback used to process database synchronization details.            |
+| callback | AsyncCallback&lt;void&gt;                             | Yes  | Callback invoked to send the synchronization result to the caller.|
+
+**Example**
+
+```js
+const tables = ["table1", "table2"];
+store.cloudSync(relationalStore.SyncMode.SYNC_MODE_CLOUD_FIRST, tables, function (progressDetails) {
+    console.info(`Progess: ${progressDetails}`);
+}, function (err) {
+     if (err) {
+         console.error(`Cloud sync failed, code is ${err.code},message is ${err.message}`);
+         return;
+     }
+     console.info('Cloud sync succeeded');
+});
+```
+
+### cloudSync<sup>10+</sup>
+
+cloudSync(mode: SyncMode, tables: string[], progress: Callback&lt;ProgressDetails&gt;): Promise&lt;void&gt;
+
+Manually starts device-cloud synchronization of the specified table. This API uses a promise to return the result. Before using this API, ensure that the cloud service must be available.
+
+**Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
+
+**System capability**: SystemCapability.DistributedDataManager.CloudSync.Client
+
+**Parameters**
+
+| Name  | Type                                                 | Mandatory| Description                                  |
+| -------- | ----------------------------------------------------- | ---- | -------------------------------------- |
+| mode     | [SyncMode](#syncmode)                                 | Yes  | Synchronization mode of the database.                |
+| tables   | string[]                                              | Yes  | Name of the table to synchronize.                      |
+| progress | Callback&lt;[ProgressDetails](#progressdetails10)&gt; | Yes  | Callback used to process database synchronization details.|
+
+**Return value**
+
+| Type               | Description                                   |
+| ------------------- | --------------------------------------- |
+| Promise&lt;void&gt; | Promise used to send the synchronization result.|
+
+**Example**
+
+```js
+const tables = ["table1", "table2"];
+function progress(progressDetail) {
+    console.info(`progress: ${progressDetail}`);
+}
+
+store.cloudSync(relationalStore.SyncMode.SYNC_MODE_CLOUD_FIRST, tables, progress).then(() => {
+    console.info('Cloud sync succeeded');
+}).catch((err) => {
+    console.error(`cloudSync failed, code is ${err.code},message is ${err.message}`);
+});
+```
+
 ### on('dataChange')
 
 on(event: 'dataChange', type: SubscribeType, observer: Callback&lt;Array&lt;string&gt;&gt;): void
 
-Registers the data change event listener for the RDB store. When the data in the RDB store changes, a callback is invoked to return the data changes.
+Registers a data change event listener for the RDB store. When the data in the RDB store changes, a callback is invoked to return the data changes.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -3327,12 +4067,12 @@ Registers the data change event listener for the RDB store. When the data in the
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | event    | string                                                       | Yes  | Event to observe. The value is **dataChange**, which indicates a data change event.                          |
-| type     | [SubscribeType](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-data-relationalStore.md#subscribetype) | Yes  | Subscription type to register.                                                  |
+| type     | [SubscribeType](#subscribetype) | Yes  | Subscription type to register.                                                  |
 | observer | Callback&lt;Array&lt;string&gt;&gt;                          | Yes  | Callback invoked to return the data change. **Array<string>** indicates the IDs of the peer devices whose data in the database is changed.|
 
 **Example**
 
-```
+```js
 function storeObserver(devices) {
   for (let i = 0; i < devices.length; i++) {
     console.info(`device= ${devices[i]} data changed`);
@@ -3349,7 +4089,7 @@ try {
 
 on(event: 'dataChange', type: SubscribeType, observer: Callback&lt;Array&lt;string&gt;&gt;\| Callback&lt;Array&lt;ChangeInfo&gt;&gt;): void
 
-Registers the data change event listener for the RDB store. When the data in the RDB store changes, a callback is invoked to return the data changes.
+Registers a data change event listener for the RDB store. When the data in the RDB store changes, a callback is invoked to return the data changes.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -3359,7 +4099,7 @@ Registers the data change event listener for the RDB store. When the data in the
 | -------- | ----------------------------------- | ---- | ------------------------------------------- |
 | event    | string                              | Yes  | Event to observe. The value is **dataChange**, which indicates a data change event.         |
 | type     | [SubscribeType](#subscribetype)    | Yes  | Subscription type to register.|
-| observer | Callback&lt;Array&lt;string&gt;&gt; \| Callback&lt;Array&lt;[ChangeInfo](#changeinfo10)&gt;&gt; | Yes  | Callback invoked to return the data change event.<br>If **type** is **SUBSCRIBE_TYPE_REMOTE**, **observer** must be **Callback&lt;Array&lt;string&gt;&gt;**, where **Array&lt;string&gt;** specifies the IDs of the peer devices with data changes.<br> If **type** is **SUBSCRIBE_TYPE_CLOUD**, **observer** must be **Callback&lt;Array&lt;string&gt;&gt;**, where **Array&lt;string&gt;** specifies the cloud accounts with data changes.<br> If **type** is **SUBSCRIBE_TYPE_CLOUD_DETAILS**, **observer** must be **Callback&lt;Array&lt;ChangeInfo&gt;&gt;**, where **Array&lt;ChangeInfo&gt;** specifies the details about the device-cloud synchronization.|
+| observer | Callback&lt;Array&lt;string&gt;&gt; \| Callback&lt;Array&lt;[ChangeInfo](#changeinfo10)&gt;&gt; | Yes  | Callback invoked to return the data change.<br>If **type** is **SUBSCRIBE_TYPE_REMOTE**, **observer** must be **Callback&lt;Array&lt;string&gt;&gt;**, where **Array&lt;string&gt;** specifies the IDs of the peer devices with data changes.<br>If **type** is **SUBSCRIBE_TYPE_CLOUD**, **observer** must be **Callback&lt;Array&lt;string&gt;&gt;**, where **Array&lt;string&gt;** specifies the cloud accounts with data changes.<br>If **type** is **SUBSCRIBE_TYPE_CLOUD_DETAILS**, **observer** must be **Callback&lt;Array&lt;ChangeInfo&gt;&gt;**, where **Array&lt;ChangeInfo&gt;** specifies the details about the device-cloud synchronization.|
 
 **Example**
 
@@ -3371,6 +4111,44 @@ function storeObserver(devices) {
 }
 try {
   store.on('dataChange', relationalStore.SubscribeType.SUBSCRIBE_TYPE_REMOTE, storeObserver);
+} catch (err) {
+  console.error(`Register observer failed, code is ${err.code},message is ${err.message}`);
+}
+```
+
+### on<sup>10+</sup>
+
+on(event: string, interProcess: boolean, observer: Callback\<void>): void
+
+Registers an intra-process or inter-process event listener for the RDB store. This callback is invoked by [emit](#emit10).
+
+**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**Parameters**
+
+| Name      | Type           | Mandatory| Description                                                        |
+| ------------ | --------------- | ---- | ------------------------------------------------------------ |
+| event        | string          | Yes  | Event name to observe.                                              |
+| interProcess | boolean         | Yes  | Type of the event to observe.<br>The value **true** means the inter-process event.<br>The value **false** means the intra-process event. |
+| observer     | Callback\<void> | Yes  | Callback invoked to return the result.                                                  |
+
+**Error codes**
+
+For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode-data-rdb.md).
+
+| **ID**| **Error Message**                          |
+| ------------ | -------------------------------------- |
+| 14800000     | Inner error.                           |
+| 14800050     | Failed to obtain subscription service. |
+
+**Example**
+
+```js
+function storeObserver() {
+    console.info(`storeObserver`);
+}
+try {
+  store.on('storeObserver', false, storeObserver);
 } catch (err) {
   console.error(`Register observer failed, code is ${err.code},message is ${err.message}`);
 }
@@ -3388,8 +4166,8 @@ Unregisters the data change event listener.
 
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| event    | string                                                       | Yes  | Event type. The value is **dataChange**, which indicates a data change event.                          |
-| type     | [SubscribeType](#subscribetype)| Yes  | Subscription type to unregister.                                                  |
+| event    | string                                                       | Yes  | Event type. The value is **dataChange**, which indicates a data change event.                      |
+| type     | [SubscribeType](#subscribetype) | Yes  | Subscription type to unregister.                                                |
 | observer | Callback&lt;Array&lt;string&gt;&gt;                          | Yes  | Callback for the data change event. **Array<string>** indicates the IDs of the peer devices whose data in the database is changed.|
 
 **Example**
@@ -3419,9 +4197,9 @@ Unregisters the data change event listener.
 
 | Name  | Type                               | Mandatory| Description                                       |
 | -------- | ---------------------------------- | ---- | ------------------------------------------ |
-| event    | string                              | Yes  | Event to observe. The value is **dataChange**, which indicates a data change event.         |
-| type     | [SubscribeType](#subscribetype)     | Yes  | Subscription type to register.                                |
-| observer | Callback&lt;Array&lt;string&gt;&gt;\| Callback&lt;Array&lt;[ChangeInfo](#changeinfo10)&gt;&gt; | No| Callback invoked to return the result.<br>If **type** is **SUBSCRIBE_TYPE_REMOTE**, **observer** must be **Callback&lt;Array&lt;string&gt;&gt;**, where **Array&lt;string&gt;** specifies the IDs of the peer devices with data changes.<br> If **type** is **SUBSCRIBE_TYPE_CLOUD**, **observer** must be **Callback&lt;Array&lt;string&gt;&gt;**, where **Array&lt;string&gt;** specifies the cloud accounts with data changes.<br> If **type** is **SUBSCRIBE_TYPE_CLOUD_DETAILS**, **observer** must be **Callback&lt;Array&lt;ChangeInfo&gt;&gt;**, where **Array&lt;ChangeInfo&gt;** specifies the details about the device-cloud synchronization.<br> If **observer** is not specified, listening for all data change events of the specified **type** will be canceled.|
+| event    | string                              | Yes  | Event type. The value is **dataChange**, which indicates a data change event.      |
+| type     | [SubscribeType](#subscribetype)     | Yes  | Subscription type to unregister.                              |
+| observer | Callback&lt;Array&lt;string&gt;&gt;\| Callback&lt;Array&lt;[ChangeInfo](#changeinfo10)&gt;&gt; | No| Callback invoked to return the result.<br>If **type** is **SUBSCRIBE_TYPE_REMOTE**, **observer** must be **Callback&lt;Array&lt;string&gt;&gt;**, where **Array&lt;string&gt;** specifies the IDs of the peer devices with data changes.<br>If **type** is **SUBSCRIBE_TYPE_CLOUD**, **observer** must be **Callback&lt;Array&lt;string&gt;&gt;**, where **Array&lt;string&gt;** specifies the cloud accounts with data changes.<br>If **type** is **SUBSCRIBE_TYPE_CLOUD_DETAILS**, **observer** must be **Callback&lt;Array&lt;ChangeInfo&gt;&gt;**, where **Array&lt;ChangeInfo&gt;** specifies the details about the device-cloud synchronization.<br>If **observer** is not specified, listening for all data change events of the specified **type** will be canceled.|
 
 **Example**
 
@@ -3436,6 +4214,73 @@ try {
 } catch (err) {
   console.error(`Unregister observer failed, code is ${err.code},message is ${err.message}`);
 }
+```
+
+### off<sup>10+</sup>
+
+off(event: string, interProcess: boolean, observer?: Callback\<void>): void
+
+Unregisters the data change event listener.
+
+**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**Parameters**
+
+| Name      | Type           | Mandatory| Description                                                        |
+| ------------ | --------------- | ---- | ------------------------------------------------------------ |
+| event        | string          | Yes  | Name of the event to unsubscribe from.                                          |
+| interProcess | boolean         | Yes  | Type of the event.<br>The value **true** means the inter-process event.<br>The value **false** means the intra-process event.|
+| observer     | Callback\<void> | No  | Callback for the event to unregister. If this parameter is specified, the specified callback will be unregistered. If this parameter is not specified, all callbacks of the specified event will be unregistered.|
+
+**Error codes**
+
+For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode-data-rdb.md).
+
+| **ID**| **Error Message**                          |
+| ------------ | -------------------------------------- |
+| 14800000     | Inner error.                           |
+| 14800050     | Failed to obtain subscription service. |
+
+**Example**
+
+```js
+function storeObserver() {
+    console.info(`storeObserver`);
+}
+try {
+  store.off('storeObserver', false, storeObserver);
+} catch (err) {
+  console.error(`Register observer failed, code is ${err.code},message is ${err.message}`);
+}
+```
+
+### emit<sup>10+</sup>
+
+emit(event: string): void
+
+Triggers the inter-process or intra-process event listener registered through [on](#on10).
+
+**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                |
+| ------ | ------ | ---- | -------------------- |
+| event  | string | Yes  | Name of the event.|
+
+**Error codes**
+
+For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode-data-rdb.md).
+
+| **ID**| **Error Message**                          |
+| ------------ | -------------------------------------- |
+| 14800000     | Inner error.                           |
+| 14800050     | Failed to obtain subscription service. |
+
+**Example**
+
+```js
+store.emit('storeObserver');
 ```
 
 ## ResultSet
@@ -3857,7 +4702,7 @@ Obtains the value of the Long type based on the specified column and the current
 
 | Type  | Description                                                        |
 | ------ | ------------------------------------------------------------ |
-| number | Value obtained.<br>The value range supported by API is **Number.MIN_SAFE_INTEGER** to **Number.MAX_SAFE_INTEGER**. If the value is out of this range, use [getDouble](#getdouble).|
+| number | Value obtained.<br>The value range supported by this API is **Number.MIN_SAFE_INTEGER** to **Number.MAX_SAFE_INTEGER**. If the value is out of this range, use [getDouble](#getdouble).|
 
 **Error codes**
 

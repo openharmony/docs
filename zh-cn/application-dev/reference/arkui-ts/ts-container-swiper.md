@@ -18,6 +18,8 @@
 >  Swiper子组件的visibility属性设置为None，Swiper的displayMode属性设置为SwiperDisplayMode.AutoLinear或displayCount属性设置为'auto'时，对应子组件在视窗内不占位，但不影响导航点个数。
 >
 >  Swiper子组件的visibility属性设置为None，或者visibility属性设置为Hidden时，对应子组件不显示，但依然会在视窗内占位。
+>
+>  当Swiper子组件个数小于等于Swiper组件内容区内显示的节点总个数(totalDisplayCount = DisplayCount + prevMargin? (1 : 0 ) + nextMargin? (1 : 0 ))时，按照非循环模式布局处理，此时，前后边距对应子组件不显示，但依然会在视窗内占位。Swiper组件按照totalDisplayCount个数判断测算规格。
 
 
 ## 接口
@@ -134,12 +136,12 @@ finishAnimation(callback?: () => void): void
 
 | 参数名              | 参数类型                                     | 必填项  | 参数描述                                     |
 | ---------------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| isShowBackground | boolean                                  | 否    | 设置箭头底板是否显示。<br/>默认值：false                |
+| showBackground   | boolean                                  | 否    | 设置箭头底板是否显示。<br/>默认值：false                |
 | isSidebarMiddle  | boolean                                  | 否    | 设置箭头显示位置。<br/>默认值：false <br/>默认显示在导航点指示器两侧。 |
 | backgroundSize   | [Length](ts-types.md#length)             | 否    | 设置底板大小。<br/>在导航点两侧显示：<br/>默认值：24vp<br/>在组件两侧显示：<br/>默认值：32vp<br/>不支持设置百分比。 |
-| backgroundColor  | [ResourceColor](ts-types.md#resourcecolor) | 否    | 设置底板颜色。<br/>在导航点两侧显示：<br/>默认值：\#19182431<br/>在组件两侧显示：<br/>默认值：\#00000000 |
-| arrowSize        | [Length](ts-types.md#length)             | 否    | 设置箭头大小。<br/>在导航点两侧显示时：<br/>默认值：18vp<br/>在组件两侧显示时：<br/>默认值：24vp<br/>**说明：**<br/>isShowBackground为true时，arrowSize为backgroundSize的3/4。<br/>不支持设置百分比。 |
-| arrowColor       | [ResourceColor](ts-types.md#resourcecolor) | 否    | 设置箭头颜色。<br/>默认值：\#182431                 |
+| backgroundColor  | [ResourceColor](ts-types.md#resourcecolor) | 否    | 设置底板颜色。<br/>在导航点两侧显示：<br/>默认值：'\#00000000'<br/>在组件两侧显示：<br/>默认值：'\#19182431' |
+| arrowSize        | [Length](ts-types.md#length)             | 否    | 设置箭头大小。<br/>在导航点两侧显示时：<br/>默认值：18vp<br/>在组件两侧显示时：<br/>默认值：24vp<br/>**说明：**<br/>showBackground为true时，arrowSize为backgroundSize的3/4。<br/>不支持设置百分比。 |
+| arrowColor       | [ResourceColor](ts-types.md#resourcecolor) | 否    | 设置箭头颜色。<br/>默认值：'\#182431'                 |
 
 ## SwiperAutoFill<sup>10+</sup>
 
@@ -219,7 +221,7 @@ struct SwiperExample {
       .duration(1000)
       .itemSpace(0)
       .displayArrow({
-        isShowBackground:true,
+        showBackground:true,
         isSidebarMiddle:true,
         backgroundSize:24,
         backgroundColor:Color.White,

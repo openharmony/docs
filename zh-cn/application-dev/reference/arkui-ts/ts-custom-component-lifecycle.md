@@ -81,7 +81,7 @@ struct IndexComponent {
 ![zh-cn_image_0000001563060749](figures/zh-cn_image_0000001563060749.png)
 
 
-## onLayout<sup>9+</sup><sup>(deprecated)</sup>
+## onLayout<sup>(deprecated)</sup>
 
 onLayout?(children: Array&lt;LayoutChild&gt;, constraint: ConstraintSizeOptions): void
 
@@ -93,13 +93,12 @@ ArkUI框架会在自定义组件布局时，将该自定义组件的子节点信
 
 | 参数名        | 类型                                                         | 说明               |
 |------------|------------------------------------------------------------|------------------|
-| children   | Array&lt;[LayoutChild](#layoutchild9)&gt;                  | 子组件布局信息。         |
+| children   | Array&lt;[LayoutChild](#layoutchild(deprecated))&gt;                  | 子组件布局信息。         |
 | constraint | [ConstraintSizeOptions](ts-types.md#constraintsizeoptions) | 父组件constraint信息。 |
 
 ## onPlaceChildren<sup>10+</sup>
 
-onPlaceChildren?(selfLayoutInfo: GeometryInfo, children: Array&lt;Layoutable&gt, constraint: ConstraintSizeOptions):
-void
+onPlaceChildren?(selfLayoutInfo: GeometryInfo, children: Array&lt;Layoutable&gt, constraint: ConstraintSizeOptions):void
 
 ArkUI框架会在自定义组件布局时，将该自定义组件的子节点自身的尺寸范围通过onPlaceChildren传递给该自定义组件。不允许在onPlaceChildren函数中改变状态变量。
 
@@ -109,30 +108,30 @@ ArkUI框架会在自定义组件布局时，将该自定义组件的子节点自
 
 | 参数名            | 类型                                                         | 说明               |
 |----------------|------------------------------------------------------------|------------------|
-| selfLayoutInfo | [GeometryInfo](#GeometryInfo10)                            | 父组件布局信息。         |
-| children       | Array&lt;[Layoutable](#Layoutable10)&gt;                   | 子组件布局信息。         |
+| selfLayoutInfo | [GeometryInfo](#geometryinfo10)                            | 父组件布局信息。         |
+| children       | Array&lt;[Layoutable](#layoutable10)&gt;                   | 子组件布局信息。         |
 | constraint     | [ConstraintSizeOptions](ts-types.md#constraintsizeoptions) | 父组件constraint信息。 |
 
-## onMeasure<sup>9+</sup><sup>(deprecated)</sup>
+## onMeasure<sup>(deprecated)</sup>
 
 onMeasure?(children: Array&lt;LayoutChild&gt;, constraint: ConstraintSizeOptions): void
 
 ArkUI框架会在自定义组件确定尺寸时，将该自定义组件的子节点信息和自身的尺寸范围通过onMeasure传递给该自定义组件。不允许在onMeasure函数中改变状态变量。
 
-该接口从API version 9开始支持，从API version 10开始废弃，推荐使用[onMeasureSize](#onmeasuresize10)替代。
+该接口从API version 9开始支持，从API version 10开始废弃，推荐使用[onMeasureSize](#onmeasuresize10+)替代。
 
 **参数：**
 
 | 参数名        | 类型                                                         | 说明               |
 |------------|------------------------------------------------------------|------------------|
-| children   | Array&lt;[LayoutChild](#layoutchild9)&gt;                  | 子组件布局信息。         |
+| children   | Array&lt;[LayoutChild](#layoutchild(deprecated))&gt;                  | 子组件布局信息。         |
 | constraint | [ConstraintSizeOptions](ts-types.md#constraintsizeoptions) | 父组件constraint信息。 |
 
 ## onMeasureSize<sup>10+</sup>
 
-onMeasureSize?(selfLayoutInfo: GeometryInfo, children: Array&lt;Measurable&gt, constraint: ConstraintSizeOptions):SizeResult
+onMeasureSize?(selfLayoutInfo: GeometryInfo, children: Array&lt;Measurable&gt, constraint: ConstraintSizeOptions):MeasureResult
 
-ArkUI框架会在自定义组件确定尺寸时，将该自定义组件的节点信息和自身的尺寸范围通过onMeasure传递给开发者。不允许在onMeasureSize函数中改变状态变量。
+ArkUI框架会在自定义组件确定尺寸时，将该自定义组件的节点信息和尺寸范围通过onMeasureSize传递给该开发者。不允许在onMeasureSize函数中改变状态变量。
 
 从API version 10开始，该接口支持在ArkTS卡片中使用。
 
@@ -144,11 +143,11 @@ ArkUI框架会在自定义组件确定尺寸时，将该自定义组件的节点
 | children       | Array&lt;[Measurable](#measurable10)&gt;                   | 子组件布局信息。         |
 | constraint     | [ConstraintSizeOptions](ts-types.md#constraintsizeoptions) | 父组件constraint信息。 |
 
-## onRecycle<sup>10+</sup>
+## aboutToReuse<sup>10+</sup>
 
-onRecycle?(params: { [key: string]: unknown }): void
+aboutToReuse?(params: { [key: string]: unknown }): void
 
-当一个可复用的自定义组件从复用缓存中重新加入到节点树时，触发onRecycle生命周期回调，并将组件的构造参数传递给onRecycle。
+当一个可复用的自定义组件从复用缓存中重新加入到节点树时，触发aboutToReuse生命周期回调，并将组件的构造参数传递给aboutToReuse。
 
 从API version 10开始，该接口支持在ArkTS卡片中使用。
 
@@ -157,12 +156,6 @@ onRecycle?(params: { [key: string]: unknown }): void
 | 参数名    | 类型                         | 说明         |
 |--------|----------------------------|------------|
 | params | { [key: string]: unknown } | 自定义组件的构造参数。|
-
-> **说明：**
->
->- 自定义布局暂不支持LazyForEach写法
->- 使用builder形式的自定义布局创建，自定义组件的build()方法内只允许存在this.builder()，即示例的推荐用法
->- 子组件设置的位置信息和尺寸信息，优先级小于onMeasureSize设置的尺寸信息和onPlaceChildren设置的位置信息
 
 ```ts
 // xxx.ets
@@ -189,10 +182,10 @@ struct Index {
   }
 }
 
-@Recycle
+@Reusable
 @Component
 struct Child {
-  onRecycle(params) {
+  aboutToReuse(params) {
     console.info("Recycle Child")
   }
 
@@ -207,7 +200,7 @@ struct Child {
 }
 ```
 
-## LayoutChild<sup>9+</sup><sup>(deprecated)</sup>
+## LayoutChild<sup>(deprecated)</sup>
 
 子组件布局信息。
 
@@ -219,12 +212,12 @@ struct Child {
 | name       | string                                                             | 子组件名称。              |
 | id         | string                                                             | 子组件id。              |
 | constraint | [ConstraintSizeOptions](ts-types.md#constraintsizeoptions)         | 子组件约束尺寸。            |
-| borderInfo | [LayoutBorderInfo](#layoutborderinfo9)                             | 子组件border信息。        |
+| borderInfo | [LayoutBorderInfo](#layoutborderinfo(deprecated))                             | 子组件border信息。        |
 | position   | [Position](ts-types.md#position)                                   | 子组件位置坐标。            |
 | measure    | (childConstraint:)&nbsp;=&gt;&nbsp;void                            | 调用此方法对子组件的尺寸范围进行限制。 |
-| layout     | (LayoutInfo：&nbsp;[LayoutInfo](#layoutinfo9))&nbsp;=&gt;&nbsp;void | 调用此方法对子组件的位置信息进行限制。 |
+| layout     | (LayoutInfo：&nbsp;[LayoutInfo](#layoutinfo(deprecated)))&nbsp;=&gt;&nbsp;void | 调用此方法对子组件的位置信息进行限制。 |
 
-## LayoutBorderInfo<sup>9+</sup><sup>(deprecated)</sup>
+## LayoutBorderInfo<sup>(deprecated)</sup>
 
 子组件border信息。
 
@@ -236,7 +229,7 @@ struct Child {
 | margin      | [Margin](ts-types.md#margin)         | 外边距类型，用于描述组件不同方向的外边距。   |
 | padding     | [Padding](ts-types.md#padding)       | 内边距类型，用于描述组件不同方向的内边距。   |
 
-## LayoutInfo<sup>9+</sup><sup>(deprecated)</sup>
+## LayoutInfo<sup>(deprecated)</sup>
 
 子组件layout信息。
 
@@ -350,41 +343,44 @@ struct CustomLayout {
 |--------|--------|-------|
 | width  | Number | 测量后的宽。 |
 | height | Number | 测量后的高。 |
+
+> **说明：**
+>
+>- 自定义布局暂不支持LazyForEach写法
+>- 使用builder形式的自定义布局创建，自定义组件的build()方法内只允许存在this.builder()，即示例的推荐用法
+>- 子组件设置的位置信息和尺寸信息，优先级小于onMeasureSize设置的尺寸信息和onPlaceChildren设置的位置信息
+>- onPlaceChildren和onMeasureSize使用自定义组件写法时，暂不支持尾随闭包式写法，建议使用示例内写法
+
 ```
 // xxx.ets
 @Entry
 @Component
 struct Index {
-  @State en :boolean = true
-  @State list : number[] = [1,2,3]
-
   build() {
     Column() {
-      CustomLayout()
-      {
-        ForEach(this.list, (index) => { //暂不支持lazyForEach的写法
-          Text('S' + index)
-            .fontSize(30)
-            .width(100).height(100)
-            .borderWidth(2)
-            .offset({x:10, y:20})
-        })
-      }
-      Button('添加一组数据').onClick(() => {
-        this.list.push(this.list.length + 1)
-      })
+      CustomLayout({ builder: ColumnChildren })
     }
   }
 }
 
+@Builder
+function ColumnChildren() {
+  ForEach([1, 2, 3], (index) => { //暂不支持lazyForEach的写法
+    Text('S' + index)
+      .fontSize(30)
+      .width(100)
+      .height(100)
+      .borderWidth(2)
+      .offset({ x: 10, y: 20 })
+  })
+}
 
 @Component
 struct CustomLayout {
-  @BuilderParam builder: () => {};
+  @BuilderParam builder: () => void;
   @State startSize: number = 100;
 
   onPlaceChildren(selfLayoutInfo: GeometryInfo, children: Array<Layoutable>, constraint: ConstraintSizeOptions) {
-    console.info("selfLayoutInfo width = " + selfLayoutInfo.width + "---height = " + selfLayoutInfo.height)
     let startPos = 400;
     children.forEach((child) => {
       let pos = startPos - child.measureResult.height;
@@ -396,10 +392,9 @@ struct CustomLayout {
     let size = 100;
     children.forEach((child) => {
       let result: MeasureResult = child.measure({ minHeight: size, minWidth: size, maxWidth: size, maxHeight: size })
-      size += result.width/2
+      size += result.width / 2
       ;
     })
-    children[0].measure({ minHeight: size, minWidth: size, maxWidth: size, maxHeight: size })
     return { width: 100, height: 400 };
   }
 

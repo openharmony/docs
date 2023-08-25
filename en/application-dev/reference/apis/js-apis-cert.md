@@ -553,11 +553,15 @@ cryptoCert.createX509Cert(encodingBlob, function (error, x509Cert) {
 });
 ```
 
-### getSerialNumber
+### getSerialNumber<sup>(deprecated)</sup>
 
 getSerialNumber() : number
 
 Obtains the X.509 certificate serial number.
+
+> **NOTE**
+>
+> This API is supported since API version 9 and deprecated since API version 10. You are advised to use [getCertSerialNumber](#getcertserialnumber10).
 
 **System capability**: SystemCapability.Security.Cert
 
@@ -585,6 +589,48 @@ cryptoCert.createX509Cert(encodingBlob, function (error, x509Cert) {
     } else {
         console.log("createX509Cert success");
         let serialNumber = x509Cert.getSerialNumber();
+    }
+});
+```
+
+### getCertSerialNumber<sup>10+</sup>
+
+getCertSerialNumber() : bigint
+
+Obtains the X.509 certificate serial number.
+
+**System capability**: SystemCapability.Security.Cert
+
+**Return value**
+
+| Type  | Description              |
+| ------ | ------------------ |
+| bigint | X.509 certificate serial number obtained.|
+
+**Error codes**
+
+| ID| Error Message                                         |
+| -------- | ------------------------------------------------- |
+| 19020002 | runtime error.                                    |
+
+**Example**
+
+```js
+import cryptoCert from '@ohos.security.cert';
+
+// Certificate binary data, which must be set based on the service.
+let encodingData = null;
+let encodingBlob = {
+    data: encodingData,
+    // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
+    encodingFormat: cryptoCert.EncodingFormat.FORMAT_PEM
+};
+cryptoCert.createX509Cert(encodingBlob, function (error, x509Cert) {
+    if (error != null) {
+        console.log("createX509Cert failed, errCode: " + error.code + ", errMsg: " + error.message);
+    } else {
+        console.log("createX509Cert success");
+        let serialNumber = x509Cert.getCertSerialNumber();
     }
 });
 ```

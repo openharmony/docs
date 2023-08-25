@@ -23,29 +23,29 @@ Before using the HUKS for development, you are advised to understand the followi
 
 - HUKS Core
   
-  HUKS Core is a core component that implements functions, including cryptographic calculation of keys, encryption and decryption of plaintext keys, and key access control. Generally, it runs in a secure environment (such as the TEE or security chip) of the device to ensure that the keys in plaintext are always in the HUKS Core.
+  HUKS Core is a core component that implements functions, including cryptographic calculation of keys, encryption and decryption of plaintext keys, and key access control. Generally, it runs in a secure environment such as a Trusted Execution Environment (TEE) or a secure chipset of the device to ensure that the keys in plaintext are always in the HUKS Core.
 
 - Key session
 
-  A key session holds information about the key operation date, key information, and access control attributes when a key is used. You need to pass in a key alias to create a session for the key. The HUKS generates a globally unique handle for each session. A general key operation involves creating a session, passing in data and parameters, and finalizing the session (or aborting the session).
+  A key session holds the key information, including the key operation data, key properties, and access control attributes, when a key is used. You need to pass in a key alias to create a session for the key. The HUKS generates a globally unique handle for each session. A general key operation involves creating a session, passing in data and parameters, and finishing the session (or aborting the session).
 
 
 ## Working Principles
 
 
 The security design of the HUKS includes the following:
-- Always keep keys in a secure environment.
+- Keys in a secure environment in lifecycle
 
   In the lifecycle of a key, the plaintext will never be exposed outside the HUKS Core. For the devices with a Trusted Execution Environment (TEE) or secure chipset, the HUKS Core runs in the TEE or secure chipset. This prevents the key plaintext from being disclosed even if the Rich Execution Environment (REE) is cracked.
-- Encrypt keys for storage.
+- Encrypted keys for storage
 
   The service keys are encrypted based on the device root key. Some keys can be protected by passwords if the devices support this feature.
-- Apply strict access control over keys.
+- Strict access control over keys
 
   Only authorized services can access keys. For security-sensitive services, user identity authentication can be enabled for key access.
-- Provide key attestation.
+- Key attestation
 
-  The HUKS provides attestation for hardware-backed key storage. It proves that the key has not been tampered with, is stored in the hardware-backed HUKS Core, and has correct key attributes.
+  The HUKS provides attestation for hardware-backed key storage. It proves that the key has not been tampered with, is stored in the hardware-backed HUKS Core, and has correct key properties.
 
 
 A key session is the basis for key operations in the HUKS. It initializes key information and caches the service data. Cryptographic operations on data and encryption and decryption are performed in the HUKS Core for security purposes.

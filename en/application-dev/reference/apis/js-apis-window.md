@@ -859,6 +859,15 @@ Subscribes to the gesture navigation status change event.
 | type     | string                  | Yes  | Event type. The value is fixed at **'gestureNavigationEnabledChange'**, indicating the gesture navigation status change event.   |
 | callback | Callback&lt;boolean&gt; | Yes  | Callback used to return the gesture navigation status. The value **true** means that the gesture navigation status is changed to enabled, and **false** means that the gesture navigation status is changed to disabled.|
 
+**Error codes**
+
+For details about the error codes, see [Window Error Codes](../errorcodes/errorcode-window.md).
+
+| ID| Error Message|
+| ------- | -------------------------------------------- |
+| 1300002 | This window state is abnormal. |
+| 1300003 | This window manager service works abnormally. |
+
 **Example**
 
 ```js
@@ -887,6 +896,15 @@ Unsubscribes from the gesture navigation status change event.
 | -------- | ----------------------- | -- | ------------------------------------------------------------ |
 | type     | string                  | Yes| Event type. The value is fixed at **'gestureNavigationEnabledChange'**, indicating the gesture navigation status change event.|
 | callback | Callback&lt;boolean&gt; | No| Callback function that has been used for registering the listener. If a value is passed in, the corresponding subscription is canceled. If no value is passed in, all subscriptions to the specified event are canceled.|
+
+**Error codes**
+
+For details about the error codes, see [Window Error Codes](../errorcodes/errorcode-window.md).
+
+| ID| Error Message|
+| ------- | -------------------------------------------- |
+| 1300002 | This window state is abnormal. |
+| 1300003 | This window manager service works abnormally. |
 
 **Example**
 
@@ -2744,7 +2762,7 @@ try {
 
 ### on('avoidAreaChange')<sup>9+</sup>
 
-on(type: 'avoidAreaChange', callback: Callback&lt;{AvoidAreaType, AvoidArea}&gt;): void
+on(type: 'avoidAreaChange', callback: Callback&lt;{ type: AvoidAreaType, area: AvoidArea}&gt;): void
 
 Subscribes to the event indicating changes to the area where the window cannot be displayed.
 
@@ -2755,7 +2773,7 @@ Subscribes to the event indicating changes to the area where the window cannot b
 | Name  | Type                                                              | Mandatory| Description                                  |
 | -------- |------------------------------------------------------------------| ---- |--------------------------------------|
 | type     | string                                                           | Yes  | Event type. The value is fixed at **'avoidAreaChange'**, indicating the event of changes to the area where the window cannot be displayed.|
-| callback | Callback&lt;{[AvoidAreaType](#avoidareatype7), [AvoidArea](#avoidarea7)}&gt; | Yes  | Callback used to return the area and area type.|
+| callback | Callback&lt;{ type: [AvoidAreaType](#avoidareatype7), area: [AvoidArea](#avoidarea7) }&gt; | Yes  | Callback used to return the area and area type.|
 
 **Example**
 
@@ -2772,7 +2790,7 @@ try {
 
 ### off('avoidAreaChange')<sup>9+</sup>
 
-off(type: 'avoidAreaChange', callback?: Callback&lt;{AvoidAreaType, AvoidArea}&gt;): void
+off(type: 'avoidAreaChange', callback?: Callback&lt;{ type: AvoidAreaType, area: AvoidArea }&gt;): void
 
 Unsubscribes from the event indicating changes to the area where the window cannot be displayed.
 
@@ -2783,7 +2801,7 @@ Unsubscribes from the event indicating changes to the area where the window cann
 | Name  | Type                                                                         | Mandatory | Description                                |
 | -------- |-----------------------------------------------------------------------------|-----|------------------------------------|
 | type     | string                                                                      | Yes  | Event type. The value is fixed at **'avoidAreaChange'**, indicating the event of changes to the area where the window cannot be displayed.|
-| callback | Callback&lt;{[AvoidAreaType](#avoidareatype7), [AvoidArea](#avoidarea7)}&gt; | No  | Callback used to return the area and area type. If a value is passed in, the corresponding subscription is canceled. If no value is passed in, all subscriptions to the specified event are canceled.|
+| callback | Callback&lt;{ type: [AvoidAreaType](#avoidareatype7), area: [AvoidArea](#avoidarea7) }&gt; | No  | Callback used to return the area and area type. If a value is passed in, the corresponding subscription is canceled. If no value is passed in, all subscriptions to the specified event are canceled.|
 
 **Example**
 
@@ -3122,7 +3140,16 @@ class TestRemoteObject extends rpc.RemoteObject {
 }
 
 let token = new TestRemoteObject('testObject');
+let windowClass = null;
+let config = {name: "dialogWindow", windowType: window.WindowType.TYPE_DIALOG, ctx: this.context};
 try {
+    window.createWindow(config, (err, data) => {
+        if (err.code) {
+            console.error('Failed to create the window. Cause: ' + JSON.stringify(err));
+            return;
+        }
+        windowClass = data;
+    });
     windowClass.bindDialogTarget(token, () => {
         console.info('Dialog Window Need Destroy.');
     }, (err) => {
@@ -3195,7 +3222,16 @@ class TestRemoteObject extends rpc.RemoteObject {
 }
 
 let token = new TestRemoteObject('testObject');
+let windowClass = null;
+let config = {name: "dialogWindow", windowType: window.WindowType.TYPE_DIALOG, ctx: this.context};
 try {
+    window.createWindow(config, (err, data) => {
+        if (err.code) {
+            console.error('Failed to create the window. Cause: ' + JSON.stringify(err));
+            return;
+        }
+        windowClass = data;
+    });
     let promise = windowClass.bindDialogTarget(token, () => {
         console.info('Dialog Window Need Destroy.');
     });
@@ -3246,7 +3282,16 @@ import window from '@ohos.window';
 export default class ServiceExtAbility extends ServiceExtensionAbility {
     onRequest(want, startId) {
         console.info('onRequest');
+        let windowClass = null;
+        let config = {name: "dialogWindow", windowType: window.WindowType.TYPE_DIALOG, ctx: this.context};
         try {
+            window.createWindow(config, (err, data) => {
+                if (err.code) {
+                    console.error('Failed to create the window. Cause: ' + JSON.stringify(err));
+                    return;
+                }
+                windowClass = data;
+            });
             let requestInfo = dialogRequest.getRequestInfo(want)
             windowClass.bindDialogTarget(requestInfo, () => {
                 console.info('Dialog Window Need Destroy.');
@@ -3258,7 +3303,7 @@ export default class ServiceExtAbility extends ServiceExtensionAbility {
                 console.info('Succeeded in binding dialog target.');
             });
         } catch(err) {
-            console.error('getRequestInfo err = ' + JSON.stringify(err))
+            console.error('Failed to bind dialog target. Cause:' + JSON.stringify(err))
         }
     }
 }
@@ -3306,7 +3351,16 @@ import window from '@ohos.window';
 export default class ServiceExtAbility extends ServiceExtensionAbility {
     onRequest(want, startId) {
         console.info('onRequest');
+        let windowClass = null;
+        let config = {name: "dialogWindow", windowType: window.WindowType.TYPE_DIALOG, ctx: this.context};
         try {
+            window.createWindow(config, (err, data) => {
+                if (err.code) {
+                    console.error('Failed to create the window. Cause: ' + JSON.stringify(err));
+                    return;
+                }
+                windowClass = data;
+            });
             let requestInfo = dialogRequest.getRequestInfo(want)
             let promise = windowClass.bindDialogTarget(requestInfo, () => {
                 console.info('Dialog Window Need Destroy.');
@@ -3317,7 +3371,7 @@ export default class ServiceExtAbility extends ServiceExtensionAbility {
                     console.error('Failed to bind dialog target. Cause:' + JSON.stringify(err));
             });
         } catch(err) {
-            console.error('getRequestInfo err = ' + JSON.stringify(err))
+            console.error('Failed to bind dialog target. Cause:' + JSON.stringify(err))
         }
     }
 }
@@ -3835,7 +3889,9 @@ try {
 
 setWindowPrivacyMode(isPrivacyMode: boolean, callback: AsyncCallback&lt;void&gt;): void
 
-Sets whether this window is in privacy mode. This API uses an asynchronous callback to return the result. When in privacy mode, the window content cannot be captured or recorded.
+Sets whether this window is in privacy mode. This API uses an asynchronous callback to return the result.
+
+A window in privacy mode cannot be captured or recorded.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -3877,7 +3933,9 @@ try {
 
 setWindowPrivacyMode(isPrivacyMode: boolean): Promise&lt;void&gt;
 
-Sets whether this window is in privacy mode. This API uses a promise to return the result. When in privacy mode, the window content cannot be captured or recorded.
+Sets whether this window is in privacy mode. This API uses a promise to return the result.
+
+A window in privacy mode cannot be captured or recorded.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 

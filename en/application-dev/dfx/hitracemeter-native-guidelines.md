@@ -1,6 +1,6 @@
 # Development of Performance Tracing (Native)
 
-## Introduction
+## Overview
 
 hiTraceMeter provides APIs for system performance tracing. You can call the APIs provided by the hiTraceMeter module in your own service logic to effectively track service processes and check the system performance.
 > **NOTE**

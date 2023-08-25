@@ -6,6 +6,7 @@ This module provides the following typical features related to media sessions:
 
 - [AVSession](#avsession10): used to set session metadata, playback state information, and more.
 - [AVSessionController](#avsessioncontroller10): used to obtain session IDs, send commands and events to sessions, and obtain the session metadata and playback state information.
+- [AVCastController](#avcastcontroller10): used to control playback, listen for remote playback state changes, and obtain the remote playback state in casting scenarios.
 
 > **NOTE**
 >
@@ -52,13 +53,15 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 ```js
 import featureAbility from '@ohos.ability.featureAbility';
 
-let session;
+let currentAVSession;
 let tag = "createNewSession";
 let context = featureAbility.getContext();
+let sessionId; // Used as an input parameter of subsequent functions.
 
-await avSession.createAVSession(context, tag, "audio").then((data) => {
-    session = data;
-    console.info(`CreateAVSession : SUCCESS : sessionId = ${session.sessionId}`);
+avSession.createAVSession(context, tag, "audio").then((data) => {
+    currentAVSession = data;
+    sessionId = currentAVSession.sessionId;
+    console.info(`CreateAVSession : SUCCESS : sessionId = ${sessionId}`);
 }).catch((err) => {
     console.info(`CreateAVSession BusinessError: code: ${err.code}, message: ${err.message}`);
 });
@@ -94,16 +97,18 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 ```js
 import featureAbility from '@ohos.ability.featureAbility';
 
-let session;
+let currentAVSession;
 let tag = "createNewSession";
 let context = featureAbility.getContext();
+let sessionId; // Used as an input parameter of subsequent functions.
 
 avSession.createAVSession(context, tag, "audio", function (err, data) {
     if (err) {
         console.info(`CreateAVSession BusinessError: code: ${err.code}, message: ${err.message}`);
     } else {
-        session = data;
-        console.info(`CreateAVSession : SUCCESS : sessionId = ${session.sessionId}`);
+        currentAVSession = data;
+        sessionId = currentAVSession.sessionId;
+        console.info(`CreateAVSession : SUCCESS : sessionId = ${sessionId}`);
     }
 });
 ```
@@ -145,7 +150,7 @@ avSession.getAllSessionDescriptors().then((descriptors) => {
         console.info(`GetAllSessionDescriptors : SUCCESS : descriptors[0].sessionTag : ${descriptors[0].sessionTag}`);
     }
 }).catch((err) => {
-    console.info(`GetAllSessionDescriptors BusinessError: code: ${err.code}, message: ${err.message}`);
+    console.error(`GetAllSessionDescriptors BusinessError: code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -180,7 +185,7 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 ```js
 avSession.getAllSessionDescriptors(function (err, descriptors) {
     if (err) {
-        console.info(`GetAllSessionDescriptors BusinessError: code: ${err.code}, message: ${err.message}`);
+        console.error(`GetAllSessionDescriptors BusinessError: code: ${err.code}, message: ${err.message}`);
     } else {
         console.info(`GetAllSessionDescriptors : SUCCESS : descriptors.length : ${descriptors.length}`);
         if(descriptors.length > 0 ){
@@ -237,7 +242,7 @@ avSession.getHistoricalSessionDescriptors().then((descriptors) => {
         console.info(`getHistoricalSessionDescriptors : SUCCESS : descriptors[0].elementName.bundleName : ${descriptors[0].elementName.bundleName}`);
     }
 }).catch((err) => {
-    console.info(`getHistoricalSessionDescriptors BusinessError: code: ${err.code}, message: ${err.message}`);
+    console.error(`getHistoricalSessionDescriptors BusinessError: code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -273,7 +278,7 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 ```js
 avSession.getHistoricalSessionDescriptors(1, function (err, descriptors) {
     if (err) {
-        console.info(`getHistoricalSessionDescriptors BusinessError: code: ${err.code}, message: ${err.message}`);
+        console.error(`getHistoricalSessionDescriptors BusinessError: code: ${err.code}, message: ${err.message}`);
     } else {
         console.info(`getHistoricalSessionDescriptors : SUCCESS : descriptors.length : ${descriptors.length}`);
         if(descriptors.length > 0 ){
@@ -307,9 +312,9 @@ Creates a session controller based on the session ID. Multiple session controlle
 
 **Return value**
 
-| Type                                                    | Description                                                  |
-| ------------------------------------------------------- | ------------------------------------------------------------ |
-| Promise<[AVSessionController](#avsessioncontroller10)\> | Promise used to return the session controller created, which can be used to obtain the session ID, send commands and events to sessions, and obtain metadata and playback state information. |
+| Type                                                 | Description                                                        |
+| ----------------------------------------------------- | ------------------------------------------------------------ |
+| Promise<[AVSessionController](#avsessioncontroller10)\> | Promise used to return the session controller created, which can be used to obtain the session ID, send commands and events to sessions, and obtain metadata and playback state information.|
 
 **Error codes**
 
@@ -325,23 +330,27 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 ```js
 import featureAbility from '@ohos.ability.featureAbility';
 
-let session;
+let currentAVSession;
 let tag = "createNewSession";
 let context = featureAbility.getContext();
+let sessionId; // Used as an input parameter of subsequent functions.
 
-await avSession.createAVSession(context, tag, "audio").then((data) => {
-    session = data;
-    console.info(`CreateAVSession : SUCCESS : sessionId = ${session.sessionId}`);
-}).catch((err) => {
-    console.info(`CreateAVSession BusinessError: code: ${err.code}, message: ${err.message}`);
+avSession.createAVSession(context, tag, "audio", function (err, data) {
+    if (err) {
+        console.info(`CreateAVSession BusinessError: code: ${err.code}, message: ${err.message}`);
+    } else {
+        currentAVSession = data;
+        sessionId = currentAVSession.sessionId;
+        console.info(`CreateAVSession : SUCCESS : sessionId = ${sessionId}`);
+    }
 });
 
-let controller;
-await avSession.createController(session.sessionId).then((avcontroller) => {
-    controller = avcontroller;
-    console.info(`CreateController : SUCCESS : ${controller.sessionId}`);
+let currentAVcontroller;
+avSession.createController(sessionId).then((avcontroller) => {
+    currentAVcontroller = avcontroller;
+    console.info('CreateController : SUCCESS ');
 }).catch((err) => {
-    console.info(`CreateController BusinessError: code: ${err.code}, message: ${err.message}`);
+    console.error(`CreateController BusinessError: code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -378,24 +387,28 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 ```js
 import featureAbility from '@ohos.ability.featureAbility';
 
-let session;
+let currentAVSession;
 let tag = "createNewSession";
 let context = featureAbility.getContext();
+let sessionId; // Used as an input parameter of subsequent functions.
 
-await avSession.createAVSession(context, tag, "audio").then((data) => {
-    session = data;
-    console.info(`CreateAVSession : SUCCESS : sessionId = ${session.sessionId}`);
-}).catch((err) => {
-    console.info(`CreateAVSession BusinessError: code: ${err.code}, message: ${err.message}`);
+avSession.createAVSession(context, tag, "audio", function (err, data) {
+    if (err) {
+        console.info(`CreateAVSession BusinessError: code: ${err.code}, message: ${err.message}`);
+    } else {
+        currentAVSession = data;
+        sessionId = currentAVSession.sessionId;
+        console.info(`CreateAVSession : SUCCESS : sessionId = ${sessionId}`);
+    }
 });
 
-let controller;
-avSession.createController(session.sessionId, function (err, avcontroller) {
+let currentAVcontroller;
+avSession.createController(sessionId, function (err, avcontroller) {
     if (err) {
-        console.info(`CreateController BusinessError: code: ${err.code}, message: ${err.message}`);
+        console.error(`CreateController BusinessError: code: ${err.code}, message: ${err.message}`);
     } else {
-        controller = avcontroller;
-        console.info(`CreateController : SUCCESS : ${controller.sessionId}`);
+        currentAVcontroller = avcontroller;
+        console.info('CreateController : SUCCESS ');
     }
 });
 ```
@@ -416,16 +429,16 @@ Before calling this API, import the **ohos.multimedia.audio** module to obtain t
 
 **Parameters**
 
-| Name      | Type                                                                                                                                                                | Mandatory| Description                                                        |
-| ------------ |--------------------------------------------------------------------------------------------------------------------------------------------------------------------| ---- | ------------------------------------------------------------ |
-| session      | [SessionToken](#sessiontoken) &#124; 'all'                                                                                                                         | Yes  | Session token. **SessionToken** indicates a specific token, and **'all'** indicates all tokens.|
-| audioDevices | Array\<[audio.AudioDeviceDescriptor](js-apis-audio.md#audiodevicedescriptor)\> | Yes  | Audio devices.                         |
+| Name       | Type          | Mandatory| Description|
+| ------------ | -------------- |------|------|
+| session      | [SessionToken](#sessiontoken) &#124; 'all' | Yes  | Session token. **SessionToken** indicates a specific token, and **'all'** indicates all tokens.|
+| audioDevices | Array\<[audio.AudioDeviceDescriptor](js-apis-audio.md#audiodevicedescriptor)\> | Yes  | Audio devices. |
 
 **Return value**
 
 | Type          | Description                         |
 | -------------- | ----------------------------- |
-| Promise\<void> | Promise used to return the result. If the casting is successful, no value is returned; otherwise, an error object is returned.|
+| Promise\<void> | Promise used to return the result. If casting is successful, no value is returned; otherwise, an error object is returned.|
 
 **Error codes**
 
@@ -435,7 +448,7 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 | -------- | ---------------------------------------- |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
-| 6600104  | The remote session  connection failed. |
+| 6600104  | The remote session connection failed. |
 
 **Example**
 
@@ -449,13 +462,13 @@ await audioRoutingManager.getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG).then(
     audioDevices = data;
     console.info(`Promise returned to indicate that the device list is obtained.`);
 }).catch((err) => {
-    console.info(`GetDevices BusinessError: code: ${err.code}, message: ${err.message}`);
+    console.error(`GetDevices BusinessError: code: ${err.code}, message: ${err.message}`);
 });
 
 avSession.castAudio('all', audioDevices).then(() => {
     console.info(`CreateController : SUCCESS`);
 }).catch((err) => {
-    console.info(`CreateController BusinessError: code: ${err.code}, message: ${err.message}`);
+    console.error(`CreateController BusinessError: code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -478,8 +491,8 @@ Before calling this API, import the **ohos.multimedia.audio** module to obtain t
 | Name      | Type                                        | Mandatory| Description                                                        |
 | ------------ |--------------------------------------------| ---- | ------------------------------------------------------------ |
 | session      | [SessionToken](#sessiontoken) &#124; 'all' | Yes  | Session token. **SessionToken** indicates a specific token, and **'all'** indicates all tokens.|
-| audioDevices | Array\<[audio.AudioDeviceDescriptor](js-apis-audio.md#audiodevicedescriptor)\>   | Yes  | Audio devices.                      |
-| callback     | AsyncCallback\<void>                      | Yes  | Callback used to return the result. If the casting is successful, **err** is **undefined**; otherwise, **err** is an error object.                       |
+| audioDevices | Array\<[audio.AudioDeviceDescriptor](js-apis-audio.md#audiodevicedescriptor)\>   | Yes  | Audio devices.|
+| callback     | AsyncCallback\<void>     | Yes  | Callback used to return the result. If the casting is successful, **err** is **undefined**; otherwise, **err** is an error object.     |
 
 **Error codes**
 
@@ -489,7 +502,7 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 | -------- | ---------------------------------------- |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
-| 6600104  | The remote session  connection failed. |
+| 6600104  | The remote session connection failed. |
 
 **Example**
 
@@ -503,23 +516,39 @@ await audioRoutingManager.getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG).then(
     audioDevices = data;
     console.info(`Promise returned to indicate that the device list is obtained.`);
 }).catch((err) => {
-    console.info(`GetDevices BusinessError: code: ${err.code}, message: ${err.message}`);
+    console.error(`GetDevices BusinessError: code: ${err.code}, message: ${err.message}`);
 });
 
 avSession.castAudio('all', audioDevices, function (err) {
     if (err) {
-        console.info(`CastAudio BusinessError: code: ${err.code}, message: ${err.message}`);
+        console.error(`CastAudio BusinessError: code: ${err.code}, message: ${err.message}`);
     } else {
         console.info(`CastAudio : SUCCESS `);
     }
 });
 ```
 
-## avSession.on('sessionCreate' | 'sessionDestroy' | 'topSessionChange')
+## SessionToken
 
-on(type: 'sessionCreate' | 'sessionDestroy' | 'topSessionChange', callback: (session: AVSessionDescriptor) => void): void
+Describes the information about a session token.
 
-Subscribes to session creation, session destruction, and top session change events.
+**Required permissions**: ohos.permission.MANAGE_MEDIA_RESOURCES (available only to system applications)
+
+**System capability**: SystemCapability.Multimedia.AVSession.Manager
+
+**System API**: This is a system API.
+
+| Name     | Type  | Mandatory| Description        |
+| :-------- | :----- | :--- | :----------- |
+| sessionId | string | Yes  | Session ID.      |
+| pid       | number | No  | Process ID of the session.|
+| uid       | number | No  | User ID.      |
+
+## avSession.on('sessionCreate')
+
+on(type: 'sessionCreate', callback: (session: AVSessionDescriptor) => void): void
+
+Subscribes to session creation events.
 
 **Required permissions**: ohos.permission.MANAGE_MEDIA_RESOURCES (available only to system applications)
 
@@ -529,10 +558,10 @@ Subscribes to session creation, session destruction, and top session change even
 
 **Parameters**
 
-| Name  | Type                                                        | Mandatory| Description                                                        |
-| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | Yes  | Event type.<br>- **'sessionCreate'**: session creation event, which is reported when a session is created.<br>- **'sessionDestroy'**: session destruction event, which is reported when a session is destroyed.<br>- **'topSessionChange'**: top session change event, which is reported when the top session is changed.|
-| callback | (session: [AVSessionDescriptor](#avsessiondescriptor)) => void | Yes  | Callback used to report the session descriptor.                              |
+| Name   | Type                  | Mandatory| Description                                                        |
+| -------- | ---------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                 | Yes  | Event type. The event **'sessionCreate'** is triggered when a session is created.|
+| callback | (session: [AVSessionDescriptor](#avsessiondescriptor)) => void | Yes  | Callback used to report the session descriptor.|
 
 **Error codes**
 
@@ -551,24 +580,13 @@ avSession.on('sessionCreate', (descriptor) => {
     console.info(`on sessionCreate : sessionTag : ${descriptor.sessionTag}`);
 });
 
-avSession.on('sessionDestroy', (descriptor) => {
-    console.info(`on sessionDestroy : isActive : ${descriptor.isActive}`);
-    console.info(`on sessionDestroy : type : ${descriptor.type}`);
-    console.info(`on sessionDestroy : sessionTag : ${descriptor.sessionTag}`);
-});
-
-avSession.on('topSessionChange', (descriptor) => {
-    console.info(`on topSessionChange : isActive : ${descriptor.isActive}`);
-    console.info(`on topSessionChange : type : ${descriptor.type}`);
-    console.info(`on topSessionChange : sessionTag : ${descriptor.sessionTag}`);
-});
 ```
 
-## avSession.off('sessionCreate' | 'sessionDestroy' | 'topSessionChange')
+## avSession.on('sessionDestroy')
 
-off(type: 'sessionCreate' | 'sessionDestroy' | 'topSessionChange', callback?: (session: AVSessionDescriptor) => void): void
+on(type: 'sessionDestroy', callback: (session: AVSessionDescriptor) => void): void
 
-Unsubscribes from session creation, session destruction, and top session change events.
+Subscribes to session destruction events.
 
 **Required permissions**: ohos.permission.MANAGE_MEDIA_RESOURCES (available only to system applications)
 
@@ -578,9 +596,83 @@ Unsubscribes from session creation, session destruction, and top session change 
 
 **Parameters**
 
-| Name  | Type                                                        | Mandatory| Description                                                        |
-| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | Yes  | Event type.<br>- **'sessionCreate'**: session creation event, which is reported when a session is created.<br>- **'sessionDestroy'**: session destruction event, which is reported when a session is destroyed.<br>- **'topSessionChange'**: top session change event, which is reported when the top session is changed.|
+| Name  | Type           | Mandatory| Description                                                        |
+| -------- | ---------------| ---- | ------------------------------------------------------------ |
+| type     | string         | Yes  | Event type. The event **'sessionDestroy'** is triggered when a session is destroyed.|
+| callback | (session: [AVSessionDescriptor](#avsessiondescriptor)) => void | Yes  | Callback used to report the session descriptor.|
+
+**Error codes**
+
+For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 6600101  | Session service exception. |
+
+**Example**
+
+```js
+avSession.on('sessionDestroy', (descriptor) => {
+    console.info(`on sessionDestroy : isActive : ${descriptor.isActive}`);
+    console.info(`on sessionDestroy : type : ${descriptor.type}`);
+    console.info(`on sessionDestroy : sessionTag : ${descriptor.sessionTag}`);
+});
+```
+
+## avSession.on('topSessionChange')
+
+on(type: 'topSessionChange', callback: (session: AVSessionDescriptor) => void): void
+
+Subscribes to top session change events.
+
+**Required permissions**: ohos.permission.MANAGE_MEDIA_RESOURCES (available only to system applications)
+
+**System capability**: SystemCapability.Multimedia.AVSession.Manager
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name  | Type                | Mandatory| Description                                                        |
+| -------- | --------------------| ---- | ------------------------------------------------------------ |
+| type     | string      | Yes  | Event type. The event **'topSessionChange'** is triggered when the top session is changed.|
+| callback | (session: [AVSessionDescriptor](#avsessiondescriptor)) => void | Yes  | Callback used to report the session descriptor.|
+
+**Error codes**
+
+For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 6600101  | Session service exception. |
+
+**Example**
+
+```js
+avSession.on('topSessionChange', (descriptor) => {
+    console.info(`on topSessionChange : isActive : ${descriptor.isActive}`);
+    console.info(`on topSessionChange : type : ${descriptor.type}`);
+    console.info(`on topSessionChange : sessionTag : ${descriptor.sessionTag}`);
+});
+```
+
+## avSession.off('sessionCreate')
+
+off(type: 'sessionCreate', callback?: (session: AVSessionDescriptor) => void): void
+
+Unsubscribes from session creation events.
+
+**Required permissions**: ohos.permission.MANAGE_MEDIA_RESOURCES (available only to system applications)
+
+**System capability**: SystemCapability.Multimedia.AVSession.Manager
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name  | Type      | Mandatory| Description      |
+| -------- | ----------| ---- | ----------|
+| type     | string    | Yes  | Event type, which is **'sessionCreate'** in this case.|
 | callback | (session: [AVSessionDescriptor](#avsessiondescriptor)) => void | No  | Callback used for unsubscription. If the unsubscription is successful, **err** is **undefined**; otherwise, **err** is an error object.<br>The **session** parameter in the callback describes a media session. The **callback** parameter is optional. If it is not specified, all the subscriptions to the specified event are canceled for this session.                              |
 
 **Error codes**
@@ -595,7 +687,71 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 ```js
 avSession.off('sessionCreate');
+```
+
+## avSession.off('sessionDestroy')
+
+off(type: 'sessionDestroy', callback?: (session: AVSessionDescriptor) => void): void
+
+Unsubscribes from session destruction events.
+
+**Required permissions**: ohos.permission.MANAGE_MEDIA_RESOURCES (available only to system applications)
+
+**System capability**: SystemCapability.Multimedia.AVSession.Manager
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name  | Type       | Mandatory| Description                     |
+| -------- | -----------| ---- | -------------------------|
+| type     | string     | Yes  | Event type, which is **'sessionDestroy'** in this case.|
+| callback | (session: [AVSessionDescriptor](#avsessiondescriptor)) => void | No  | Callback used for unsubscription. If the unsubscription is successful, **err** is **undefined**; otherwise, **err** is an error object.<br>The **session** parameter in the callback describes a media session. The **callback** parameter is optional. If it is not specified, all the subscriptions to the specified event are canceled for this session.|
+
+**Error codes**
+
+For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 6600101  | Session service exception. |
+
+**Example**
+
+```js
 avSession.off('sessionDestroy');
+```
+
+## avSession.off('topSessionChange')
+
+off(type: 'topSessionChange', callback?: (session: AVSessionDescriptor) => void): void
+
+Unsubscribes from top session change events.
+
+**Required permissions**: ohos.permission.MANAGE_MEDIA_RESOURCES (available only to system applications)
+
+**System capability**: SystemCapability.Multimedia.AVSession.Manager
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name  | Type             | Mandatory| Description                       |
+| -------- | -----------------| ---- | ---------------------------- |
+| type     | string           | Yes  | Event type, which is **'topSessionChange'** in this case.|
+| callback | (session: [AVSessionDescriptor](#avsessiondescriptor)) => void | No  | Callback used for unsubscription. If the unsubscription is successful, **err** is **undefined**; otherwise, **err** is an error object.<br>The **session** parameter in the callback describes a media session. The **callback** parameter is optional. If it is not specified, all the subscriptions to the specified event are canceled for this session.|
+
+**Error codes**
+
+For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 6600101  | Session service exception. |
+
+**Example**
+
+```js
 avSession.off('topSessionChange');
 ```
 
@@ -613,7 +769,7 @@ Subscribes to session service death events.
 
 | Name  | Type                | Mandatory| Description                                                        |
 | -------- | -------------------- | ---- | ------------------------------------------------------------ |
-| type     | string               | Yes  | Event type. The event **'sessionServiceDie'** is reported when the session service dies.|
+| type     | string               | Yes  | Event type. The event **'sessionServiceDie'** is triggered when the session service dies.|
 | callback | callback: () => void | Yes  | Callback used for subscription. If the subscription is successful, **err** is **undefined**; otherwise, **err** is an error object.                               |
 
 **Error codes**
@@ -646,7 +802,7 @@ Unsubscribes from session service death events.
 
 | Name   | Type                   | Mandatory |      Description                                              |
 | ------   | ---------------------- | ---- | ------------------------------------------------------- |
-| type     | string                 | Yes   | Event type. The event **'sessionServiceDie'** is reported when the session service dies.|
+| type     | string                 | Yes   | Event type. The event **'sessionServiceDie'** is triggered when the session service dies.|
 | callback | callback: () => void   | No   | Callback used for unsubscription. If the unsubscription is successful, **err** is **undefined**; otherwise, **err** is an error object.<br>The **callback** parameter is optional. If it is not specified, all the subscriptions to the specified event are canceled for this session.           |
 
 **Error codes**
@@ -661,6 +817,49 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 ```js
 avSession.off('sessionServiceDie');
+```
+
+## avSession.sendSystemAVKeyEvent
+
+sendSystemAVKeyEvent(event: KeyEvent, callback: AsyncCallback\<void>): void
+
+Sends a system key event to the top session. This API uses an asynchronous callback to return the result.
+
+**Required permissions**: ohos.permission.MANAGE_MEDIA_RESOURCES (available only to system applications)
+
+**System capability**: SystemCapability.Multimedia.AVSession.Manager
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name  | Type                                                        | Mandatory| Description                                 |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------- |
+| event    | [KeyEvent](js-apis-keyevent.md) | Yes  | Key event.                           |
+| callback | AsyncCallback\<void>                                         | Yes  | Callback used to return the result. If the event is sent, **err** is **undefined**; otherwise, **err** is an error object.|
+
+**Error codes**
+
+For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 6600101  | Session service exception. |
+| 6600105  | Invalid session command. |
+
+**Example**
+
+```js
+let keyItem = {code:0x49, pressedTime:2, deviceId:0};
+let event = {id:1, deviceId:0, actionTime:1, screenId:1, windowId:1, action:2, key:keyItem, unicodeChar:0, keys:[keyItem], ctrlKey:false, altKey:false, shiftKey:false, logoKey:false, fnKey:false, capsLock:false, numLock:false, scrollLock:false}; 
+
+avSession.sendSystemAVKeyEvent(event, function (err) {
+    if (err) {
+        console.error(`SendSystemAVKeyEvent BusinessError: code: ${err.code}, message: ${err.message}`);
+    } else {
+        console.info(`SendSystemAVKeyEvent : SUCCESS `);
+    }
+});
 ```
 
 ## avSession.sendSystemAVKeyEvent
@@ -706,16 +905,15 @@ let event = {id:1, deviceId:0, actionTime:1, screenId:1, windowId:1, action:2, k
 avSession.sendSystemAVKeyEvent(event).then(() => {
     console.info(`SendSystemAVKeyEvent Successfully`);
 }).catch((err) => {
-    console.info(`SendSystemAVKeyEvent BusinessError: code: ${err.code}, message: ${err.message}`);
+    console.error(`SendSystemAVKeyEvent BusinessError: code: ${err.code}, message: ${err.message}`);
 });
-
 ```
 
-## avSession.sendSystemAVKeyEvent
+## avSession.sendSystemControlCommand
 
-sendSystemAVKeyEvent(event: KeyEvent, callback: AsyncCallback\<void>): void
+sendSystemControlCommand(command: AVControlCommand, callback: AsyncCallback\<void>): void
 
-Sends a system key event to the top session. This API uses an asynchronous callback to return the result.
+Sends a system control command to the top session. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.MANAGE_MEDIA_RESOURCES (available only to system applications)
 
@@ -725,10 +923,10 @@ Sends a system key event to the top session. This API uses an asynchronous callb
 
 **Parameters**
 
-| Name  | Type                                                        | Mandatory| Description                                 |
-| -------- | ------------------------------------------------------------ | ---- | ------------------------------------- |
-| event    | [KeyEvent](js-apis-keyevent.md) | Yes  | Key event.                           |
-| callback | AsyncCallback\<void>                                         | Yes  | Callback used to return the result. If the event is sent, **err** is **undefined**; otherwise, **err** is an error object.|
+| Name  | Type                                 | Mandatory| Description                                 |
+| -------- | ------------------------------------- | ---- | ------------------------------------- |
+| command  | [AVControlCommand](#avcontrolcommand10) | Yes  | Command to send.  |
+| callback | AsyncCallback\<void>                  | Yes  | Callback used to return the result. If the command is sent, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -738,18 +936,32 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 | -------- | ---------------------------------------- |
 | 6600101  | Session service exception. |
 | 6600105  | Invalid session command. |
+| 6600107  | Too many commands or events. |
 
 **Example**
 
 ```js
-let keyItem = {code:0x49, pressedTime:2, deviceId:0};
-let event = {id:1, deviceId:0, actionTime:1, screenId:1, windowId:1, action:2, key:keyItem, unicodeChar:0, keys:[keyItem], ctrlKey:false, altKey:false, shiftKey:false, logoKey:false, fnKey:false, capsLock:false, numLock:false, scrollLock:false}; 
-
-avSession.sendSystemAVKeyEvent(event, function (err) {
+let cmd : avSession.AVControlCommandType = 'play';
+// let cmd : avSession.AVControlCommandType = 'pause';
+// let cmd : avSession.AVControlCommandType = 'stop';
+// let cmd : avSession.AVControlCommandType = 'playNext';
+// let cmd : avSession.AVControlCommandType = 'playPrevious';
+// let cmd : avSession.AVControlCommandType = 'fastForward';
+// let cmd : avSession.AVControlCommandType = 'rewind';
+let avcommand = {command:cmd};
+// let cmd : avSession.AVControlCommandType = 'seek';
+// let avcommand = {command:cmd, parameter:10};
+// let cmd : avSession.AVControlCommandType = 'setSpeed';
+// let avcommand = {command:cmd, parameter:2.6};
+// let cmd : avSession.AVControlCommandType = 'setLoopMode';
+// let avcommand = {command:cmd, parameter:avSession.LoopMode.LOOP_MODE_SINGLE};
+// let cmd : avSession.AVControlCommandType = 'toggleFavorite';
+// let avcommand = {command:cmd, parameter:"false"};
+avSession.sendSystemControlCommand(avcommand, function (err) {
     if (err) {
-        console.info(`SendSystemAVKeyEvent BusinessError: code: ${err.code}, message: ${err.message}`);
+        console.error(`SendSystemControlCommand BusinessError: code: ${err.code}, message: ${err.message}`);
     } else {
-        console.info(`SendSystemAVKeyEvent : SUCCESS `);
+        console.info(`sendSystemControlCommand successfully`);
     }
 });
 ```
@@ -810,19 +1022,31 @@ let avcommand = {command:cmd};
 avSession.sendSystemControlCommand(avcommand).then(() => {
     console.info(`SendSystemControlCommand successfully`);
 }).catch((err) => {
-    console.info(`SendSystemControlCommand BusinessError: code: ${err.code}, message: ${err.message}`);
+    console.error(`SendSystemControlCommand BusinessError: code: ${err.code}, message: ${err.message}`);
 });
 ```
 
-## avSession.sendSystemControlCommand
+## ProtocolType<sup>10+</sup>
 
-sendSystemControlCommand(command: AVControlCommand, callback: AsyncCallback\<void>): void
+Enumerates the protocol types supported by the remote device.
 
-Sends a system control command to the top session. This API uses an asynchronous callback to return the result.
+**System capability**: SystemCapability.Multimedia.AVSession.AVCast
 
-**Required permissions**: ohos.permission.MANAGE_MEDIA_RESOURCES (available only to system applications)
+**System API**: This is a system API.
 
-**System capability**: SystemCapability.Multimedia.AVSession.Manager
+| Name                       | Value  | Description        |
+| --------------------------- | ---- | ----------- |
+| TYPE_LOCAL      | 0    | Local device.   |
+| TYPE_CAST_PLUS_MIRROR      | 1    | Cast+ mirror mode.|
+| TYPE_CAST_PLUS_STREAM      | 2    | Cast+ stream mode.|
+
+## avSession.startCastDeviceDiscovery<sup>10+</sup>
+
+startCastDeviceDiscovery(callback: AsyncCallback\<void>): void
+
+Starts cast-enabled device discovery. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Multimedia.AVSession.AVCast
 
 **System API**: This is a system API.
 
@@ -830,8 +1054,217 @@ Sends a system control command to the top session. This API uses an asynchronous
 
 | Name  | Type                                 | Mandatory| Description                                 |
 | -------- | ------------------------------------- | ---- | ------------------------------------- |
-| command  | [AVControlCommand](#avcontrolcommand10) | Yes  | Command to send.  |
-| callback | AsyncCallback\<void>                  | Yes  | Callback used to return the result. If the command is sent, **err** is **undefined**; otherwise, **err** is an error object.|
+| callback | AsyncCallback\<void>                  | Yes  | Callback used to return the result. If the command is sent and device discovery starts, **err** is **undefined**; otherwise, **err** is an error object.|
+
+
+**Example**
+
+```js
+avSession.startCastDeviceDiscovery(function (err) {
+    if (err) {
+        console.error(`startCastDeviceDiscovery BusinessError: code: ${err.code}, message: ${err.message}`);
+    } else {
+        console.info(`startCastDeviceDiscovery successfully`);
+    }
+});
+```
+
+## avSession.startCastDeviceDiscovery<sup>10+</sup>
+
+startCastDeviceDiscovery(filter: number, callback: AsyncCallback\<void>): void
+
+Starts cast-enabled device discovery with filter criteria specified. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Multimedia.AVSession.AVCast
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name  | Type                                 | Mandatory| Description                                 |
+| -------- | ------------------------------------- | ---- | ------------------------------------- |
+| filter | number | Yes| Filter criteria for device discovery. The value consists of **ProtocolType**s.|
+| callback | AsyncCallback\<void>                  | Yes  | Callback used to return the result. If the command is sent and device discovery starts, **err** is **undefined**; otherwise, **err** is an error object.|
+
+
+**Example**
+
+```js
+let filter = 2;
+avSession.startCastDeviceDiscovery(filter, function (err) {
+    if (err) {
+        console.error(`startCastDeviceDiscovery BusinessError: code: ${err.code}, message: ${err.message}`);
+    } else {
+        console.info(`startCastDeviceDiscovery successfully`);
+    }
+});
+```
+
+## avSession.startCastDeviceDiscovery<sup>10+</sup>
+
+startCastDeviceDiscovery(filter?: number): Promise\<void>
+
+Starts cast-enabled device discovery. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Multimedia.AVSession.AVCast
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name  | Type                                 | Mandatory| Description                                 |
+| -------- | ------------------------------------- | ---- | ------------------------------------- |
+| filter | number | No| Filter criteria for device discovery. The value consists of **ProtocolType**s.|
+
+**Return value**
+| Type          | Description                         |
+| -------------- | ----------------------------- |
+| Promise\<void> | Promise used to return the result. If the command is sent and device discovery starts, no value is returned; otherwise, an error object is returned.|
+
+**Example**
+
+```js
+let filter = 2;
+avSession.startCastDeviceDiscovery(filter).then(() => {
+    console.info(`startCastDeviceDiscovery successfully`);
+}).catch((err) => {
+    console.error(`startCastDeviceDiscovery BusinessError: code: ${err.code}, message: ${err.message}`);
+});
+```
+
+## avSession.stopCastDeviceDiscovery<sup>10+</sup>
+
+stopCastDeviceDiscovery(callback: AsyncCallback\<void>): void
+
+Stops cast-enabled device discovery. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Multimedia.AVSession.AVCast
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name  | Type                                 | Mandatory| Description                                 |
+| -------- | ------------------------------------- | ---- | ------------------------------------- |
+| callback | AsyncCallback\<void>                  | Yes  | Callback used to return the result. If device discovery stops, **err** is **undefined**; otherwise, **err** is an error object.|
+
+
+**Example**
+
+```js
+avSession.stopCastDeviceDiscovery(function (err) {
+    if (err) {
+        console.error(`stopCastDeviceDiscovery BusinessError: code: ${err.code}, message: ${err.message}`);
+    } else {
+        console.info(`stopCastDeviceDiscovery successfully`);
+    }
+});
+```
+
+## avSession.stopCastDeviceDiscovery<sup>10+</sup>
+
+stopCastDeviceDiscovery(): Promise\<void>
+
+Stops cast-enabled device discovery. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Multimedia.AVSession.AVCast
+
+**System API**: This is a system API.
+
+**Return value**
+
+| Type          | Description                         |
+| -------------- | ----------------------------- |
+| Promise\<void> | Promise used to return the result. If device discovery stops, no value is returned; otherwise, an error object is returned.|
+
+**Example**
+
+```js
+avSession.stopCastDeviceDiscovery().then(() => {
+    console.info(`startCastDeviceDiscovery successfully`);
+}).catch((err) => {
+    console.error(`startCastDeviceDiscovery BusinessError: code: ${err.code}, message: ${err.message}`);
+});
+```
+
+## avSession.setDiscoverable<sup>10+</sup>
+
+setDiscoverable(enable: boolean, callback: AsyncCallback\<void>): void
+
+Sets whether to allow the device discoverable. A discoverable device can be used as the cast receiver. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Multimedia.AVSession.AVCast
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name  | Type                                 | Mandatory| Description                                 |
+| -------- | ------------------------------------- | ---- | ------------------------------------- |
+| enable | boolean | Yes| Whether to allow the device discoverable. The value **true** means to allow the device discoverable, and **false** means the opposite.|
+| callback | AsyncCallback\<void>                  | Yes  | Callback used to return the result. If the setting is successful, **err** is **undefined**; otherwise, **err** is an error object.|
+
+
+**Example**
+
+```js
+avSession.setDiscoverable(true, function (err) {
+    if (err) {
+        console.error(`setDiscoverable BusinessError: code: ${err.code}, message: ${err.message}`);
+    } else {
+        console.info(`setDiscoverable successfully`);
+    }
+});
+```
+
+## avSession.setDiscoverable<sup>10+</sup>
+
+setDiscoverable(enable: boolean): Promise\<void>
+
+Sets whether to allow the device discoverable. A discoverable device can be used as the cast receiver. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Multimedia.AVSession.AVCast
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name  | Type                                 | Mandatory| Description                                 |
+| -------- | ------------------------------------- | ---- | ------------------------------------- |
+| enable | boolean | Yes| Whether to allow the device discoverable. The value **true** means to allow the device discoverable, and **false** means the opposite.|
+
+**Return value**
+
+| Type          | Description                         |
+| -------------- | ----------------------------- |
+| Promise\<void> | Promise used to return the result. If the setting is successful, no value is returned; otherwise, an error object is returned.|
+
+**Example**
+
+```js
+avSession.setDiscoverable(true).then(() => {
+    console.info(`setDiscoverable successfully`);
+}).catch((err) => {
+    console.error(`setDiscoverable BusinessError: code: ${err.code}, message: ${err.message}`);
+});
+```
+
+## avSession.on('deviceAvailable')<sup>10+</sup>
+
+on(type: 'deviceAvailable', callback: (device: OutputDeviceInfo) => void): void
+
+Subscribes to device discovery events.
+
+**System capability**: SystemCapability.Multimedia.AVSession.AVCast
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name  | Type                | Mandatory| Description                                                        |
+| -------- | -------------------- | ---- | ------------------------------------------------------------ |
+| type     | string               | Yes  | Event type. The event **'deviceAvailable'** is triggered when a device is discovered.|
+| callback | (device: OutputDeviceInfo) => void | Yes  | Callback used for subscription. If the subscription is successful, **err** is **undefined**; otherwise, **err** is an error object.                               |
 
 **Error codes**
 
@@ -840,36 +1273,429 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 6600101  | Session service exception. |
-| 6600105  | Invalid session command. |
-| 6600107  | Too many commands or events. |
 
 **Example**
 
 ```js
-let cmd : avSession.AVControlCommandType = 'play';
-// let cmd : avSession.AVControlCommandType = 'pause';
-// let cmd : avSession.AVControlCommandType = 'stop';
-// let cmd : avSession.AVControlCommandType = 'playNext';
-// let cmd : avSession.AVControlCommandType = 'playPrevious';
-// let cmd : avSession.AVControlCommandType = 'fastForward';
-// let cmd : avSession.AVControlCommandType = 'rewind';
-let avcommand = {command:cmd};
-// let cmd : avSession.AVControlCommandType = 'seek';
-// let avcommand = {command:cmd, parameter:10};
-// let cmd : avSession.AVControlCommandType = 'setSpeed';
-// let avcommand = {command:cmd, parameter:2.6};
-// let cmd : avSession.AVControlCommandType = 'setLoopMode';
-// let avcommand = {command:cmd, parameter:avSession.LoopMode.LOOP_MODE_SINGLE};
-// let cmd : avSession.AVControlCommandType = 'toggleFavorite';
-// let avcommand = {command:cmd, parameter:"false"};
-avSession.sendSystemControlCommand(avcommand, function (err) {
+let castDevice;
+avSession.on('deviceAvailable', (device) => {
+    castDevice = device;
+    console.info(`on deviceAvailable  : ${device} `);
+});
+```
+
+## avSession.off('deviceAvailable')<sup>10+</sup>
+
+off(type: 'deviceAvailable', callback?: (device: OutputDeviceInfo) => void): void
+
+Unsubscribes from device discovery events.
+
+**System capability**: SystemCapability.Multimedia.AVSession.AVCast
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name   | Type                   | Mandatory |      Description                                              |
+| ------   | ---------------------- | ---- | ------------------------------------------------------- |
+| type     | string                 | Yes   | Event type. The event **'deviceAvailable'** is triggered when a device is discovered.|
+
+**Error codes**
+
+For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 6600101  | Session service exception. |
+
+**Example**
+
+```js
+avSession.off('deviceAvailable');
+```
+
+## avSession.getAVCastController<sup>10+</sup>
+
+getAVCastController(sessionId: string, callback: AsyncCallback\<AVCastController>): void
+
+Obtains the cast controller when a casting connection is set up. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Multimedia.AVSession.AVCast
+
+**Required permissions**: ohos.permission.MANAGE_MEDIA_RESOURCES
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name   | Type                                                       | Mandatory| Description                                                        |
+| --------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| sessionId | string                    | Yes  |Session ID.|
+| callback  | AsyncCallback<[AVCastController](#avcastcontroller10)\> | Yes  | Callback used to return the cast controller.|
+
+**Error codes**
+
+For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 6600101  | Session service exception |
+| 6600102  | session does not exist |
+
+**Example**
+
+```js
+import featureAbility from '@ohos.ability.featureAbility';
+
+let currentAVSession;
+let tag = "createNewSession";
+let context = featureAbility.getContext();
+let sessionId; // Used as an input parameter of subsequent functions.
+
+avSession.createAVSession(context, tag, "audio", function (err, data) {
     if (err) {
-        console.info(`SendSystemControlCommand BusinessError: code: ${err.code}, message: ${err.message}`);
+        console.info(`CreateAVSession BusinessError: code: ${err.code}, message: ${err.message}`);
     } else {
-        console.info(`sendSystemControlCommand successfully`);
+        currentAVSession = data;
+        sessionId = currentAVSession.sessionId;
+        console.info(`CreateAVSession : SUCCESS : sessionId = ${sessionId}`);
+    }
+});
+
+let aVCastController;
+avSession.getAVCastController(sessionId ,function (err, avcontroller) {
+    if (err) {
+        console.error(`getAVCastController BusinessError: code: ${err.code}, message: ${err.message}`);
+    } else {
+        aVCastController = avcontroller;
+        console.info('getAVCastController : SUCCESS ');
     }
 });
 ```
+
+## avSession.getAVCastController<sup>10+</sup>
+
+getAVCastController(sessionId: string): Promise\<AVCastController>;
+
+Obtains the cast controller when a casting connection is set up. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Multimedia.AVSession.AVCast
+
+**Required permissions**: ohos.permission.MANAGE_MEDIA_RESOURCES
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name   | Type                      | Mandatory| Description                                                        |
+| --------- | ------------------------- | ---- | ------------------------------------------------------------ |
+| sessionId | string                    | Yes  |Session ID.|
+
+**Return value**
+
+| Type                                                       | Description            |
+| --------- | ------------------------------------------------------------ |
+| Promise<[AVCastController](#avcastcontroller10)\>  | Promise used to return the cast controller.|
+
+**Error codes**
+
+For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 6600101  | server exception |
+| 6600102  | The session does not exist |
+
+**Example**
+
+```js
+import featureAbility from '@ohos.ability.featureAbility';
+
+let currentAVSession;
+let tag = "createNewSession";
+let context = featureAbility.getContext();
+let sessionId; // Used as an input parameter of subsequent functions.
+
+avSession.createAVSession(context, tag, "audio", function (err, data) {
+    if (err) {
+        console.info(`CreateAVSession BusinessError: code: ${err.code}, message: ${err.message}`);
+    } else {
+        currentAVSession = data;
+        sessionId = currentAVSession.sessionId;
+        console.info(`CreateAVSession : SUCCESS : sessionId = ${sessionId}`);
+    }
+});
+
+let aVCastController;
+avSession.getAVCastController(sessionId).then((avcontroller) => {
+    aVCastController = avcontroller;
+    console.info('getAVCastController : SUCCESS');
+}).catch((err) => {
+    console.error(`getAVCastController BusinessError: code: ${err.code}, message: ${err.message}`);
+});
+```
+
+## avSession.startCasting<sup>10+</sup>
+
+startCasting(session: SessionToken, device: OutputDeviceInfo, callback: AsyncCallback\<void>): void
+
+Starts casting. This API uses an asynchronous callback to return the result.
+
+**Required permissions**: ohos.permission.MANAGE_MEDIA_RESOURCES (available only to system applications)
+
+**System capability**: SystemCapability.Multimedia.AVSession.AVCast
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name  | Type                                 | Mandatory| Description                                 |
+| -------- | ------------------------------------- | ---- | ------------------------------------- |
+| session      | [SessionToken](#sessiontoken) | Yes  | Session token.  |
+| device | [OutputDeviceInfo](#outputdeviceinfo10)                        | Yes  | Device-related information.|
+| callback | AsyncCallback\<void>                  | Yes  | Callback used to return the result. If the command is sent and casting starts, **err** is **undefined**; otherwise, **err** is an error object.|
+
+**Error codes**
+
+For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 6600101  | Session service exception. |
+| 6600108 | Device connecting failed.       |
+
+**Example**
+
+```js
+import featureAbility from '@ohos.ability.featureAbility';
+
+let currentAVSession;
+let tag = "createNewSession";
+let context = featureAbility.getContext();
+let currSessionId; // Used as an input parameter of subsequent functions.
+
+avSession.createAVSession(context, tag, "audio", function (err, data) {
+    if (err) {
+        console.info(`CreateAVSession BusinessError: code: ${err.code}, message: ${err.message}`);
+    } else {
+        currentAVSession = data;
+        currSessionId = currentAVSession.sessionId;
+        console.info(`CreateAVSession : SUCCESS : sessionId = ${currSessionId}`);
+    }
+});
+
+let myToken = {
+    sessionId: currSessionId,
+}
+let castDevice;
+avSession.on('deviceAvailable', (device) => {
+    castDevice = device;
+    console.info(`on deviceAvailable  : ${device} `);
+});
+avSession.startCasting(myToken, castDevice, function (err) {
+    if (err) {
+        console.error(`startCasting BusinessError: code: ${err.code}, message: ${err.message}`);
+    } else {
+        console.info(`startCasting successfully`);
+    }
+});
+```
+
+## avSession.startCasting<sup>10+</sup>
+
+startCasting(session: SessionToken, device: OutputDeviceInfo): Promise\<void>
+
+Starts casting. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.MANAGE_MEDIA_RESOURCES (available only to system applications)
+
+**System capability**: SystemCapability.Multimedia.AVSession.AVCast
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name  | Type                                 | Mandatory| Description                                 |
+| -------- | ------------------------------------- | ---- | ------------------------------------- |
+| session      | [SessionToken](#sessiontoken) | Yes  | Session token.  |
+| device | [OutputDeviceInfo](#outputdeviceinfo10)                        | Yes  | Device-related information.|
+
+**Return value**
+
+| Type          | Description                         |
+| -------------- | ----------------------------- |
+| Promise\<void> | Promise used to return the result. If the command is sent and casting starts, no value is returned; otherwise, an error object is returned.|
+
+**Error codes**
+
+For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 6600101  | Session service exception. |
+| 6600108 | Device connecting failed.       |
+
+**Example**
+
+```js
+import featureAbility from '@ohos.ability.featureAbility';
+
+let currentAVSession;
+let tag = "createNewSession";
+let context = featureAbility.getContext();
+let currSessionId; // Used as an input parameter of subsequent functions.
+
+avSession.createAVSession(context, tag, "audio", function (err, data) {
+    if (err) {
+        console.info(`CreateAVSession BusinessError: code: ${err.code}, message: ${err.message}`);
+    } else {
+        currentAVSession = data;
+        currSessionId = currentAVSession.sessionId;
+        console.info(`CreateAVSession : SUCCESS : sessionId = ${currSessionId}`);
+    }
+});
+
+let myToken = {
+    sessionId: currSessionId,
+}
+let castDevice;
+avSession.on('deviceAvailable', (device) => {
+    castDevice = device;
+    console.info(`on deviceAvailable  : ${device} `);
+});
+avSession.startCasting(myToken, castDevice).then(() => {
+    console.info(`startCasting successfully`);
+}).catch((err) => {
+    console.error(`startCasting BusinessError: code: ${err.code}, message: ${err.message}`);
+});
+```
+
+## avSession.stopCasting<sup>10+</sup>
+
+stopCasting(session: SessionToken, callback: AsyncCallback\<void>): void
+
+Stops castings. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Multimedia.AVSession.AVCast
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name  | Type                                 | Mandatory| Description                                 |
+| -------- | ------------------------------------- | ---- | ------------------------------------- |
+| session      | [SessionToken](#sessiontoken) | Yes  | Session token.  | 
+| callback | AsyncCallback\<void>                  | Yes  | Callback used to return the result. If casting stops, **err** is **undefined**; otherwise, **err** is an error object.|
+
+**Error codes**
+
+For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 6600109  | The remote connection is not established. |
+
+**Example**
+
+```js
+import featureAbility from '@ohos.ability.featureAbility';
+
+let currentAVSession;
+let tag = "createNewSession";
+let context = featureAbility.getContext();
+let currSessionId; // Used as an input parameter of subsequent functions.
+
+avSession.createAVSession(context, tag, "audio", function (err, data) {
+    if (err) {
+        console.info(`CreateAVSession BusinessError: code: ${err.code}, message: ${err.message}`);
+    } else {
+        currentAVSession = data;
+        currSessionId = currentAVSession.sessionId;
+        console.info(`CreateAVSession : SUCCESS : sessionId = ${currSessionId}`);
+    }
+});
+
+let myToken = {
+    sessionId: currSessionId,
+}
+avSession.stopCasting(myToken, function (err) {
+    if (err) {
+        console.error(`stopCasting BusinessError: code: ${err.code}, message: ${err.message}`);
+    } else {
+        console.info(`stopCasting successfully`);
+    }
+});
+```
+
+## avSession.stopCasting<sup>10+</sup>
+
+stopCasting(session: SessionToken): Promise\<void>
+
+Stops castings. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Multimedia.AVSession.AVCast
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name  | Type                                 | Mandatory| Description                                 |
+| -------- | ------------------------------------- | ---- | ------------------------------------- |
+| session      | [SessionToken](#sessiontoken) | Yes  | Session token.  |
+
+**Return value**
+
+| Type          | Description                         |
+| -------------- | ----------------------------- |
+| Promise\<void> | Promise used to return the result. If casting stops, no value is returned; otherwise, an error object is returned.|
+
+**Error codes**
+
+For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 6600109  | The remote connection is not established. |
+
+**Example**
+
+```js
+import featureAbility from '@ohos.ability.featureAbility';
+
+let currentAVSession;
+let tag = "createNewSession";
+let context = featureAbility.getContext();
+let currSessionId; // Used as an input parameter of subsequent functions.
+
+avSession.createAVSession(context, tag, "audio", function (err, data) {
+    if (err) {
+        console.info(`CreateAVSession BusinessError: code: ${err.code}, message: ${err.message}`);
+    } else {
+        currentAVSession = data;
+        currSessionId = currentAVSession.sessionId;
+        console.info(`CreateAVSession : SUCCESS : sessionId = ${currSessionId}`);
+    }
+});
+
+let myToken = {
+    sessionId: currSessionId,
+}
+avSession.stopCasting(myToken).then(() => {
+    console.info(`stopCasting successfully`);
+}).catch((err) => {
+    console.error(`stopCasting BusinessError: code: ${err.code}, message: ${err.message}`);
+});
+```
+
+## AVSessionType<sup>10+<sup>
+Enumerates the session types supported by the session.
+
+**System capability**: SystemCapability.Multimedia.AVSession.Core
+
+| Name | Type  | Description|
+| ----- | ------ | ---- |
+| audio | string | Audio session.|
+| video | string | Video session.|
 
 ## AVSession<sup>10+</sup>
 
@@ -882,11 +1708,13 @@ An **AVSession** object is created by calling [avSession.createAVSession](#avses
 | Name     | Type  | Readable| Writable| Description                         |
 | :-------- | :----- | :--- | :--- | :---------------------------- |
 | sessionId | string | Yes  | No  | Unique session ID of the **AVSession** object.|
+| sessionType<sup>10+</sup> | AVSessionType | Yes  | No  | AVSession type.|
 
 
 **Example**
 ```js
-let sessionId = session.sessionId;
+let sessionId = currentAVSession.sessionId;
+let sessionType = currentAVSession.sessionType;
 ```
 
 ### setAVMetadata<sup>10+</sup>
@@ -937,10 +1765,10 @@ let metadata  = {
     previousAssetId: "121277",
     nextAssetId: "121279",
 };
-session.setAVMetadata(metadata).then(() => {
+currentAVSession.setAVMetadata(metadata).then(() => {
     console.info(`SetAVMetadata successfully`);
 }).catch((err) => {
-    console.info(`SetAVMetadata BusinessError: code: ${err.code}, message: ${err.message}`);
+    console.error(`SetAVMetadata BusinessError: code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -987,9 +1815,9 @@ let metadata  = {
     previousAssetId: "121277",
     nextAssetId: "121279",
 };
-session.setAVMetadata(metadata, function (err) {
+currentAVSession.setAVMetadata(metadata, function (err) {
     if (err) {
-        console.info(`SetAVMetadata BusinessError: code: ${err.code}, message: ${err.message}`);
+        console.error(`SetAVMetadata BusinessError: code: ${err.code}, message: ${err.message}`);
     } else {
         console.info(`SetAVMetadata successfully`);
     }
@@ -1036,7 +1864,7 @@ let playbackState = {
     loopMode:avSession.LoopMode.LOOP_MODE_SINGLE,
     isFavorite:true,
 };
-session.setAVPlaybackState(playbackState).then(() => {
+currentAVSession.setAVPlaybackState(playbackState).then(() => {
     console.info(`SetAVPlaybackState successfully`);
 }).catch((err) => {
     console.info(`SetAVPlaybackState BusinessError: code: ${err.code}, message: ${err.message}`);
@@ -1078,229 +1906,11 @@ let PlaybackState = {
     loopMode:avSession.LoopMode.LOOP_MODE_SINGLE,
     isFavorite:true,
 };
-session.setAVPlaybackState(PlaybackState, function (err) {
+currentAVSession.setAVPlaybackState(PlaybackState, function (err) {
     if (err) {
         console.info(`SetAVPlaybackState BusinessError: code: ${err.code}, message: ${err.message}`);
     } else {
         console.info(`SetAVPlaybackState successfully`);
-    }
-});
-```
-
-### setAVQueueItems<sup>10+</sup>
-
-setAVQueueItems(items: Array\<AVQueueItem>): Promise\<void>
-
-Sets a playlist. This API uses a promise to return the result.
-
-**System capability**: SystemCapability.Multimedia.AVSession.Core
-
-**Parameters**
-
-| Name | Type                                | Mandatory| Description                              |
-| ------ | ------------------------------------ | ---- | ---------------------------------- |
-| items  | Array<[AVQueueItem](#avqueueitem10)\> | Yes  | Playlist to set.|
-
-**Return value**
-
-| Type          | Description                         |
-| -------------- | ----------------------------- |
-| Promise\<void> | Promise used to return the result. If the setting is successful, no value is returned; otherwise, an error object is returned.|
-
-**Error codes**
-
-For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
-
-| ID| Error Message|
-| -------- | ---------------------------------------- |
-| 6600101  | Session service exception. |
-| 6600102  | The session does not exist. |
-
-**Example**
-
-```js
-import image from '@ohos.multimedia.image';
-import resourceManager from '@ohos.resourceManager';
-
-let value : Uint8Array = await resourceManager.getRawFile('IMAGE_URI');
-let imageSource : imageImageSource = image.createImageSource(value.buffer);
-let imagePixel : image.PixelMap = await imageSource.createPixelMap({desiredSize:{width: 150, height: 150}});
-let queueItemDescription_1 = {
-    mediaId: '001',
-    title: 'music_name',
-    subtitle: 'music_sub_name',
-    description: 'music_description',
-    icon : imagePixel,
-    iconUri: 'http://www.icon.uri.com',
-    extras: {'extras':'any'}
-};
-let queueItem_1 = {
-    itemId: 1,
-    description: queueItemDescription_1
-};
-let queueItemDescription_2 = {
-    mediaId: '002',
-    title: 'music_name',
-    subtitle: 'music_sub_name',
-    description: 'music_description',
-    icon: imagePixel,
-    iconUri: 'http://www.xxx.com',
-    extras: {'extras':'any'}
-};
-let queueItem_2 = {
-    itemId: 2,
-    description: queueItemDescription_2
-};
-let queueItemsArray = [queueItem_1, queueItem_2];
-session.setAVQueueItems(queueItemsArray).then(() => {
-    console.info(`SetAVQueueItems successfully`);
-}).catch((err) => {
-    console.info(`SetAVQueueItems BusinessError: code: ${err.code}, message: ${err.message}`);
-});
-```
-
-### setAVQueueItems<sup>10+</sup>
-
-setAVQueueItems(items: Array\<AVQueueItem>, callback: AsyncCallback\<void>): void
-
-Sets a playlist. This API uses an asynchronous callback to return the result.
-
-**System capability**: SystemCapability.Multimedia.AVSession.Core
-
-**Parameters**
-
-| Name  | Type                                 | Mandatory| Description                                                        |
-| -------- | ------------------------------------ | ---- | ----------------------------------------------------------- |
-| items    | Array<[AVQueueItem](#avqueueitem10)\> | Yes  | Playlist to set.                         |
-| callback | AsyncCallback\<void>                 | Yes  | Callback used to return the result. If the setting is successful, **err** is **undefined**; otherwise, **err** is an error object.|
-
-**Error codes**
-
-For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
-
-| ID| Error Message|
-| -------- | ---------------------------------------- |
-| 6600101  | Session service exception. |
-| 6600102  | The session does not exist. |
-
-**Example**
-
-```js
-import image from '@ohos.multimedia.image';
-import resourceManager from '@ohos.resourceManager';
-
-let value : Uint8Array = await resourceManager.getRawFile('IMAGE_URI');
-let imageSource : imageImageSource = image.createImageSource(value.buffer);
-let imagePixel : image.PixelMap = await imageSource.createPixelMap({desiredSize:{width: 150, height: 150}});
-let queueItemDescription_1 = {
-    mediaId: '001',
-    title: 'music_name',
-    subtitle: 'music_sub_name',
-    description: 'music_description',
-    icon: imagePixel,
-    iconUri: 'http://www.icon.uri.com',
-    extras: {'extras':'any'}
-};
-let queueItem_1 = {
-    itemId: 1,
-    description: queueItemDescription_1
-};
-let queueItemDescription_2 = {
-    mediaId: '002',
-    title: 'music_name',
-    subtitle: 'music_sub_name',
-    description: 'music_description',
-    icon: imagePixel,
-    iconUri: 'http://www.icon.uri.com',
-    extras: {'extras':'any'}
-};
-let queueItem_2 = {
-    itemId: 2,
-    description: queueItemDescription_2
-};
-let queueItemsArray = [queueItem_1, queueItem_2];
-session.setAVQueueItems(queueItemsArray, function (err) {
-    if (err) {
-        console.info(`SetAVQueueItems BusinessError: code: ${err.code}, message: ${err.message}`);
-    } else {
-        console.info(`SetAVQueueItems successfully`);
-    }
-});
-```
-
-### setAVQueueTitle<sup>10+</sup>
-
-setAVQueueTitle(title: string): Promise\<void>
-
-Sets a name for the playlist. This API uses a promise to return the result.
-
-**System capability**: SystemCapability.Multimedia.AVSession.Core
-
-**Parameters**
-
-| Name | Type  | Mandatory| Description          |
-| ------ | ------ | ---- | -------------- |
-| title  | string | Yes  | Name of the playlist.|
-
-**Return value**
-
-| Type          | Description                         |
-| -------------- | ----------------------------- |
-| Promise\<void> | Promise used to return the result. If the setting is successful, no value is returned; otherwise, an error object is returned.|
-
-**Error codes**
-
-For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
-
-| ID| Error Message|
-| -------- | ---------------------------------------- |
-| 6600101  | Session service exception. |
-| 6600102  | The session does not exist. |
-
-**Example**
-
-```js
-let queueTitle = 'QUEUE_TITLE';
-session.setAVQueueTitle(queueTitle).then(() => {
-    console.info(`SetAVQueueTitle successfully`);
-}).catch((err) => {
-    console.info(`SetAVQueueTitle BusinessError: code: ${err.code}, message: ${err.message}`);
-});
-```
-
-### setAVQueueTitle<sup>10+</sup>
-
-setAVQueueTitle(title: string, callback: AsyncCallback\<void>): void
-
-Sets a name for the playlist. This API uses an asynchronous callback to return the result.
-
-**System capability**: SystemCapability.Multimedia.AVSession.Core
-
-**Parameters**
-
-| Name  | Type                                 | Mandatory| Description                                                        |
-| -------- | --------------------- | ---- | ----------------------------------------------------------- |
-| title    | string                | Yes  | Name of the playlist.                         |
-| callback | AsyncCallback\<void>  | Yes  | Callback used to return the result. If the setting is successful, **err** is **undefined**; otherwise, **err** is an error object.|
-
-**Error codes**
-
-For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
-
-| ID| Error Message|
-| -------- | ---------------------------------------- |
-| 6600101  | Session service exception. |
-| 6600102  | The session does not exist. |
-
-**Example**
-
-```js
-let queueTitle = 'QUEUE_TITLE';
-session.setAVQueueTitle(queueTitle, function (err) {
-    if (err) {
-        console.info(`SetAVQueueTitle BusinessError: code: ${err.code}, message: ${err.message}`);
-    } else {
-        console.info(`SetAVQueueTitle successfully`);
     }
 });
 ```
@@ -1368,10 +1978,10 @@ let wantAgentInfo = {
 }
 
 wantAgent.getWantAgent(wantAgentInfo).then((agent) => {
-    session.setLaunchAbility(agent).then(() => {
+    currentAVSession.setLaunchAbility(agent).then(() => {
         console.info(`SetLaunchAbility successfully`);
     }).catch((err) => {
-        console.info(`SetLaunchAbility BusinessError: code: ${err.code}, message: ${err.message}`);
+        console.error(`SetLaunchAbility BusinessError: code: ${err.code}, message: ${err.message}`);
     });
 });
 ```
@@ -1434,9 +2044,9 @@ let wantAgentInfo = {
 }
 
 wantAgent.getWantAgent(wantAgentInfo).then((agent) => {
-    session.setLaunchAbility(agent, function (err) {
+    currentAVSession.setLaunchAbility(agent, function (err) {
         if (err) {
-            console.info(`SetLaunchAbility BusinessError: code: ${err.code}, message: ${err.message}`);
+            console.error(`SetLaunchAbility BusinessError: code: ${err.code}, message: ${err.message}`);
         } else {
             console.info(`SetLaunchAbility successfully`);
         }
@@ -1461,7 +2071,7 @@ Dispatches a custom event in the session, including the event name and event con
 
 > **NOTE**
 >
-> The **args** parameter supports the following data types: string, number, Boolean, object, array, and file descriptor. For details, see [@ohos.app.ability.Want(Want)](./js-apis-app-ability-want.md).
+> The **args** parameter supports the following data types: string, number, Boolean, object, array, and file descriptor. For details, see [@ohos.app.ability.Want (Want)](./js-apis-app-ability-want.md).
 
 **Return value**
 
@@ -1485,7 +2095,7 @@ let eventName = "dynamic_lyric";
 let args = {
     lyric : "This is lyric"
 }
-await session.dispatchSessionEvent(eventName, args).catch((err) => {
+currentAVSession.dispatchSessionEvent(eventName, args).catch((err) => {
     console.info(`dispatchSessionEvent BusinessError: code: ${err.code}, message: ${err.message}`);
 })
 ```
@@ -1508,7 +2118,7 @@ Dispatches a custom event in the session, including the event name and event con
 
 > **NOTE**
 >
-> The **args** parameter supports the following data types: string, number, Boolean, object, array, and file descriptor. For details, see [@ohos.app.ability.Want(Want)](./js-apis-app-ability-want.md).
+> The **args** parameter supports the following data types: string, number, Boolean, object, array, and file descriptor. For details, see [@ohos.app.ability.Want (Want)](./js-apis-app-ability-want.md).
 
 **Error codes**
 
@@ -1526,11 +2136,229 @@ let eventName = "dynamic_lyric";
 let args = {
     lyric : "This is lyric"
 }
-await session.dispatchSessionEvent(eventName, args, (err) => {
+currentAVSession.dispatchSessionEvent(eventName, args, (err) => {
     if(err) {
-        console.info(`dispatchSessionEvent BusinessError: code: ${err.code}, message: ${err.message}`);
+        console.error(`dispatchSessionEvent BusinessError: code: ${err.code}, message: ${err.message}`);
     }
 })
+```
+
+### setAVQueueItems<sup>10+</sup>
+
+setAVQueueItems(items: Array\<AVQueueItem>): Promise\<void>
+
+Sets a playlist. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Multimedia.AVSession.Core
+
+**Parameters**
+
+| Name | Type                                | Mandatory| Description                              |
+| ------ | ------------------------------------ | ---- | ---------------------------------- |
+| items  | Array<[AVQueueItem](#avqueueitem10)\> | Yes  | Playlist to set.|
+
+**Return value**
+
+| Type          | Description                         |
+| -------------- | ----------------------------- |
+| Promise\<void> | Promise used to return the result. If the setting is successful, no value is returned; otherwise, an error object is returned.|
+
+**Error codes**
+
+For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
+
+**Example**
+
+```js
+import image from '@ohos.multimedia.image';
+import resourceManager from '@ohos.resourceManager';
+
+let value : Uint8Array = await resourceManager.getRawFileContent('IMAGE_URI');
+let imageSource : imageImageSource = image.createImageSource(value.buffer);
+let imagePixel : image.PixelMap = await imageSource.createPixelMap({desiredSize:{width: 150, height: 150}});
+let queueItemDescription_1 = {
+    mediaId: '001',
+    title: 'music_name',
+    subtitle: 'music_sub_name',
+    description: 'music_description',
+    icon : imagePixel,
+    iconUri: 'http://www.icon.uri.com',
+    extras: {'extras':'any'}
+};
+let queueItem_1 = {
+    itemId: 1,
+    description: queueItemDescription_1
+};
+let queueItemDescription_2 = {
+    mediaId: '002',
+    title: 'music_name',
+    subtitle: 'music_sub_name',
+    description: 'music_description',
+    icon: imagePixel,
+    iconUri: 'http://www.xxx.com',
+    extras: {'extras':'any'}
+};
+let queueItem_2 = {
+    itemId: 2,
+    description: queueItemDescription_2
+};
+let queueItemsArray = [queueItem_1, queueItem_2];
+currentAVSession.setAVQueueItems(queueItemsArray).then(() => {
+    console.info(`SetAVQueueItems successfully`);
+}).catch((err) => {
+    console.error(`SetAVQueueItems BusinessError: code: ${err.code}, message: ${err.message}`);
+});
+```
+
+### setAVQueueItems<sup>10+</sup>
+
+setAVQueueItems(items: Array\<AVQueueItem>, callback: AsyncCallback\<void>): void
+
+Sets a playlist. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Multimedia.AVSession.Core
+
+**Parameters**
+
+| Name  | Type                                 | Mandatory| Description                                                        |
+| -------- | ------------------------------------ | ---- | ----------------------------------------------------------- |
+| items    | Array<[AVQueueItem](#avqueueitem10)\> | Yes  | Playlist to set.                         |
+| callback | AsyncCallback\<void>                 | Yes  | Callback used to return the result. If the setting is successful, **err** is **undefined**; otherwise, **err** is an error object.|
+
+**Error codes**
+
+For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
+
+**Example**
+
+```js
+import image from '@ohos.multimedia.image';
+import resourceManager from '@ohos.resourceManager';
+
+let value : Uint8Array = await resourceManager.getRawFileContent('IMAGE_URI');
+let imageSource : imageImageSource = image.createImageSource(value.buffer);
+let imagePixel : image.PixelMap = await imageSource.createPixelMap({desiredSize:{width: 150, height: 150}});
+let queueItemDescription_1 = {
+    mediaId: '001',
+    title: 'music_name',
+    subtitle: 'music_sub_name',
+    description: 'music_description',
+    icon: imagePixel,
+    iconUri: 'http://www.icon.uri.com',
+    extras: {'extras':'any'}
+};
+let queueItem_1 = {
+    itemId: 1,
+    description: queueItemDescription_1
+};
+let queueItemDescription_2 = {
+    mediaId: '002',
+    title: 'music_name',
+    subtitle: 'music_sub_name',
+    description: 'music_description',
+    icon: imagePixel,
+    iconUri: 'http://www.icon.uri.com',
+    extras: {'extras':'any'}
+};
+let queueItem_2 = {
+    itemId: 2,
+    description: queueItemDescription_2
+};
+let queueItemsArray = [queueItem_1, queueItem_2];
+currentAVSession.setAVQueueItems(queueItemsArray, function (err) {
+    if (err) {
+        console.error(`SetAVQueueItems BusinessError: code: ${err.code}, message: ${err.message}`);
+    } else {
+        console.info(`SetAVQueueItems successfully`);
+    }
+});
+```
+
+### setAVQueueTitle<sup>10+</sup>
+
+setAVQueueTitle(title: string): Promise\<void>
+
+Sets a name for the playlist. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Multimedia.AVSession.Core
+
+**Parameters**
+
+| Name | Type  | Mandatory| Description          |
+| ------ | ------ | ---- | -------------- |
+| title  | string | Yes  | Name of the playlist.|
+
+**Return value**
+
+| Type          | Description                         |
+| -------------- | ----------------------------- |
+| Promise\<void> | Promise used to return the result. If the setting is successful, no value is returned; otherwise, an error object is returned.|
+
+**Error codes**
+
+For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
+
+**Example**
+
+```js
+let queueTitle = 'QUEUE_TITLE';
+currentAVSession.setAVQueueTitle(queueTitle).then(() => {
+    console.info(`SetAVQueueTitle successfully`);
+}).catch((err) => {
+    console.error(`SetAVQueueTitle BusinessError: code: ${err.code}, message: ${err.message}`);
+});
+```
+
+### setAVQueueTitle<sup>10+</sup>
+
+setAVQueueTitle(title: string, callback: AsyncCallback\<void>): void
+
+Sets a name for the playlist. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Multimedia.AVSession.Core
+
+**Parameters**
+
+| Name  | Type                                 | Mandatory| Description                                                        |
+| -------- | --------------------- | ---- | ----------------------------------------------------------- |
+| title    | string                | Yes  | Name of the playlist.                         |
+| callback | AsyncCallback\<void>  | Yes  | Callback used to return the result. If the setting is successful, **err** is **undefined**; otherwise, **err** is an error object.|
+
+**Error codes**
+
+For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
+
+**Example**
+
+```js
+let queueTitle = 'QUEUE_TITLE';
+currentAVSession.setAVQueueTitle(queueTitle, function (err) {
+    if (err) {
+        console.info(`SetAVQueueTitle BusinessError: code: ${err.code}, message: ${err.message}`);
+    } else {
+        console.error(`SetAVQueueTitle successfully`);
+    }
+});
 ```
 
 ### setExtras<sup>10+</sup>
@@ -1549,7 +2377,7 @@ Sets a custom media packet in the form of key-value pairs. This API uses a promi
 
 > **NOTE**
 >
-> The **extras** parameter supports the following data types: string, number, Boolean, object, array, and file descriptor. For details, see [@ohos.app.ability.Want(Want)](./js-apis-app-ability-want.md).
+> The **extras** parameter supports the following data types: string, number, Boolean, object, array, and file descriptor. For details, see [@ohos.app.ability.Want (Want)](./js-apis-app-ability-want.md).
 
 **Return value**
 
@@ -1572,7 +2400,7 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 let extras = {
     extras : "This is custom media packet"
 }
-await session.setExtras(extras).catch((err) => {
+currentAVSession.setExtras(extras).catch((err) => {
     console.info(`setExtras BusinessError: code: ${err.code}, message: ${err.message}`);
 })
 ```
@@ -1594,7 +2422,7 @@ Sets a custom media packet in the form of key-value pairs. This API uses an asyn
 
 > **NOTE**
 >
-> The **extras** parameter supports the following data types: string, number, Boolean, object, array, and file descriptor. For details, see [@ohos.app.ability.Want(Want)](./js-apis-app-ability-want.md).
+> The **extras** parameter supports the following data types: string, number, Boolean, object, array, and file descriptor. For details, see [@ohos.app.ability.Want (Want)](./js-apis-app-ability-want.md).
 
 **Error codes**
 
@@ -1611,9 +2439,9 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 let extras = {
     extras : "This is custom media packet"
 }
-await session.setExtras(extras, (err) => {
+currentAVSession.setExtras(extras, (err) => {
     if(err) {
-        console.info(`setExtras BusinessError: code: ${err.code}, message: ${err.message}`);
+        console.error(`setExtras BusinessError: code: ${err.code}, message: ${err.message}`);
     }
 })
 ```
@@ -1644,12 +2472,12 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 **Example**
 
 ```js
-let controller;
-session.getController().then((avcontroller) => {
-    controller = avcontroller;
-    console.info(`GetController : SUCCESS : sessionid : ${controller.sessionId}`);
+let avsessionController;
+currentAVSession.getController().then((avcontroller) => {
+    avsessionController = avcontroller;
+    console.info(`GetController : SUCCESS : sessionid : ${avsessionController.sessionId}`);
 }).catch((err) => {
-    console.info(`GetController BusinessError: code: ${err.code}, message: ${err.message}`);
+    console.error(`GetController BusinessError: code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -1679,13 +2507,85 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 **Example**
 
 ```js
-let controller;
-session.getController(function (err, avcontroller) {
+let avsessionController;
+currentAVSession.getController(function (err, avcontroller) {
     if (err) {
-        console.info(`GetController BusinessError: code: ${err.code}, message: ${err.message}`);
+        console.error(`GetController BusinessError: code: ${err.code}, message: ${err.message}`);
     } else {
-        controller = avcontroller;
-        console.info(`GetController : SUCCESS : sessionid : ${controller.sessionId}`);
+        avsessionController = avcontroller;
+        console.info(`GetController : SUCCESS : sessionid : ${avsessionController.sessionId}`);
+    }
+});
+```
+
+### getAVCastController<sup>10+</sup>
+
+getAVCastController(callback: AsyncCallback\<AVCastController>): void
+
+Obtains the cast controller when a casting connection is set up. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Multimedia.AVSession.AVCast
+
+**Parameters**
+
+| Name   | Type                                                       | Mandatory| Description                                                        |
+| --------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| callback  | AsyncCallback<[AVCastController](#avcastcontroller10)\> | Yes  | Callback used to return the cast controller.|
+
+**Error codes**
+
+For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 6600102  | The session does not exist. |
+| 6600110  | The remote connection is not established. |
+
+**Example**
+
+```js
+let aVCastController;
+currentAVSession.getAVCastController().then((avcontroller) => {
+    aVCastController = avcontroller;
+    console.info(`getAVCastController : SUCCESS : sessionid : ${aVCastController.sessionId}`);
+}).catch((err) => {
+    console.error(`getAVCastController BusinessError: code: ${err.code}, message: ${err.message}`);
+});
+```
+
+### getAVCastController<sup>10+</sup>
+
+getAVCastController(): Promise\<AVCastController>;
+
+Obtains the cast controller when a casting connection is set up. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Multimedia.AVSession.AVCast
+
+**Return value**
+
+| Type                                                       | Description                                                        |
+| --------- | ------------------------------------------------------------ |
+| Promise<[AVCastController](#avcastcontroller10)\>  | Promise used to return the cast controller.|
+
+**Error codes**
+
+For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 6600102  | The session does not exist. |
+| 6600110  | The remote connection is not established. |
+
+**Example**
+
+```js
+let aVCastController;
+currentAVSession.getAVCastController(function (err, avcontroller) {
+    if (err) {
+        console.error(`getAVCastController BusinessError: code: ${err.code}, message: ${err.message}`);
+    } else {
+        aVCastController = avcontroller;
+        console.info(`getAVCastController : SUCCESS : sessionid : ${aVCastController.sessionId}`);
     }
 });
 ```
@@ -1716,10 +2616,10 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 **Example**
 
 ```js
-session.getOutputDevice().then((outputDeviceInfo) => {
+currentAVSession.getOutputDevice().then((outputDeviceInfo) => {
     console.info(`GetOutputDevice : SUCCESS : isRemote : ${outputDeviceInfo.isRemote}`);
 }).catch((err) => {
-    console.info(`GetOutputDevice BusinessError: code: ${err.code}, message: ${err.message}`);
+    console.error(`GetOutputDevice BusinessError: code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -1749,9 +2649,9 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 **Example**
 
 ```js
-session.getOutputDevice(function (err, outputDeviceInfo) {
+currentAVSession.getOutputDevice(function (err, outputDeviceInfo) {
     if (err) {
-        console.info(`GetOutputDevice BusinessError: code: ${err.code}, message: ${err.message}`);
+        console.error(`GetOutputDevice BusinessError: code: ${err.code}, message: ${err.message}`);
     } else {
         console.info(`GetOutputDevice : SUCCESS : isRemote : ${outputDeviceInfo.isRemote}`);
     }
@@ -1784,10 +2684,10 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 **Example**
 
 ```js
-session.activate().then(() => {
+currentAVSession.activate().then(() => {
     console.info(`Activate : SUCCESS `);
 }).catch((err) => {
-    console.info(`Activate BusinessError: code: ${err.code}, message: ${err.message}`);
+    console.error(`Activate BusinessError: code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -1817,9 +2717,9 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 **Example**
 
 ```js
-session.activate(function (err) {
+currentAVSession.activate(function (err) {
     if (err) {
-        console.info(`Activate BusinessError: code: ${err.code}, message: ${err.message}`);
+        console.error(`Activate BusinessError: code: ${err.code}, message: ${err.message}`);
     } else {
         console.info(`Activate : SUCCESS `);
     }
@@ -1852,10 +2752,10 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 **Example**
 
 ```js
-session.deactivate().then(() => {
+currentAVSession.deactivate().then(() => {
     console.info(`Deactivate : SUCCESS `);
 }).catch((err) => {
-    console.info(`Deactivate BusinessError: code: ${err.code}, message: ${err.message}`);
+    console.error(`Deactivate BusinessError: code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -1887,9 +2787,9 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 **Example**
 
 ```js
-session.deactivate(function (err) {
+currentAVSession.deactivate(function (err) {
     if (err) {
-        console.info(`Deactivate BusinessError: code: ${err.code}, message: ${err.message}`);
+        console.error(`Deactivate BusinessError: code: ${err.code}, message: ${err.message}`);
     } else {
         console.info(`Deactivate : SUCCESS `);
     }
@@ -1922,10 +2822,10 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 **Example**
 
 ```js
-session.destroy().then(() => {
+currentAVSession.destroy().then(() => {
     console.info(`Destroy : SUCCESS `);
 }).catch((err) => {
-    console.info(`Destroy BusinessError: code: ${err.code}, message: ${err.message}`);
+    console.error(`Destroy BusinessError: code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -1955,20 +2855,20 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 **Example**
 
 ```js
-session.destroy(function (err) {
+currentAVSession.destroy(function (err) {
     if (err) {
-        console.info(`Destroy BusinessError: code: ${err.code}, message: ${err.message}`);
+        console.error(`Destroy BusinessError: code: ${err.code}, message: ${err.message}`);
     } else {
         console.info(`Destroy : SUCCESS `);
     }
 });
 ```
 
-### on('play'|'pause'|'stop'|'playNext'|'playPrevious'|'fastForward'|'rewind')<sup>10+</sup>
+### on('play')<sup>10+</sup>
 
-on(type: 'play'|'pause'|'stop'|'playNext'|'playPrevious'|'fastForward'|'rewind', callback: () => void): void
+on(type: 'play', callback: () => void): void
 
-Subscribes to playback command events.
+Subscribes to playback started events.
 
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
@@ -1976,7 +2876,7 @@ Subscribes to playback command events.
 
 | Name  | Type                | Mandatory| Description                                                        |
 | -------- | -------------------- | ---- | ------------------------------------------------------------ |
-| type     | string               | Yes  | Event type. The following events are supported: **'play'**, **'pause'**, **'stop'**, **'playNext'**, **'playPrevious'**, **'fastForward'**, and **'rewind'**.<br>The event is reported when the corresponding playback command is sent to the session.|
+| type     | string               | Yes  | Event type. The event **'play'** is triggered when the command for starting playback is sent to the session.|
 | callback | callback: () => void | Yes  | Callback used for subscription. If the subscription is successful, **err** is **undefined**; otherwise, **err** is an error object.                                       |
 
 **Error codes**
@@ -1991,25 +2891,199 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 **Example**
 
 ```js
-session.on('play', () => {
+currentAVSession.on('play', () => {
     console.info(`on play entry`);
 });
-session.on('pause', () => {
+```
+
+### on('pause')<sup>10+</sup>
+
+on(type: 'pause', callback: () => void): void
+
+Subscribes to playback paused events.
+
+**System capability**: SystemCapability.Multimedia.AVSession.Core
+
+**Parameters**
+
+| Name  | Type                | Mandatory| Description                                                        |
+| -------- | -------------------- | ---- | ------------------------------------------------------------ |
+| type     | string               | Yes  | Event type. The event **'pause'** is triggered when the command for pausing the playback is sent to the session.|
+| callback | callback: () => void | Yes  | Callback used for subscription. If the subscription is successful, **err** is **undefined**; otherwise, **err** is an error object.    |
+
+**Error codes**
+
+For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
+
+**Example**
+
+```js
+currentAVSession.on('pause', () => {
     console.info(`on pause entry`);
 });
-session.on('stop', () => {
+```
+
+### on('stop')<sup>10+</sup>
+
+on(type:'stop', callback: () => void): void
+
+Subscribes to playback stopped events.
+
+**System capability**: SystemCapability.Multimedia.AVSession.Core
+
+**Parameters**
+
+| Name  | Type                | Mandatory| Description                                                        |
+| -------- | -------------------- | ---- | ------------------------------------------------------------ |
+| type     | string               | Yes  | Event type. The event **'stop'** is triggered when the command for stopping the playback is sent to the session.|
+| callback | callback: () => void | Yes  | Callback used for subscription. If the subscription is successful, **err** is **undefined**; otherwise, **err** is an error object.         |
+
+**Error codes**
+
+For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
+
+**Example**
+
+```js
+currentAVSession.on('stop', () => {
     console.info(`on stop entry`);
 });
-session.on('playNext', () => {
+```
+
+### on('playNext')<sup>10+</sup>
+
+on(type:'playNext', callback: () => void): void
+
+Subscribes to playNext command events.
+
+**System capability**: SystemCapability.Multimedia.AVSession.Core
+
+**Parameters**
+
+| Name  | Type                | Mandatory| Description                                                        |
+| -------- | -------------------- | ---- | ------------------------------------------------------------ |
+| type     | string               | Yes  | Event type. The event **'playNext'** is triggered when the command for playing the next item is sent to the session.|
+| callback | callback: () => void | Yes  | Callback used for subscription. If the subscription is successful, **err** is **undefined**; otherwise, **err** is an error object.    |
+
+**Error codes**
+
+For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
+
+**Example**
+
+```js
+currentAVSession.on('playNext', () => {
     console.info(`on playNext entry`);
 });
-session.on('playPrevious', () => {
+```
+
+### on('playPrevious')<sup>10+</sup>
+
+on(type:'playPrevious', callback: () => void): void
+
+Subscribes to playPrevious command events.
+
+**System capability**: SystemCapability.Multimedia.AVSession.Core
+
+**Parameters**
+
+| Name  | Type                | Mandatory| Description                                                        |
+| -------- | -------------------- | ---- | ------------------------------------------------------------ |
+| type     | string               | Yes  | Event type. The event **'playPrevious'** is triggered when the command for playing the previous item sent to the session.|
+| callback | callback: () => void | Yes  | Callback used for subscription. If the subscription is successful, **err** is **undefined**; otherwise, **err** is an error object.      |
+
+**Error codes**
+
+For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
+
+**Example**
+
+```js
+currentAVSession.on('playPrevious', () => {
     console.info(`on playPrevious entry`);
 });
-session.on('fastForward', () => {
+```
+
+### on('fastForward')<sup>10+</sup>
+
+on(type: 'fastForward', callback: () => void): void
+
+Subscribes to fastForward command events.
+
+**System capability**: SystemCapability.Multimedia.AVSession.Core
+
+**Parameters**
+
+| Name  | Type                | Mandatory| Description                                                        |
+| -------- | -------------------- | ---- | ------------------------------------------------------------ |
+| type     | string               | Yes  | Event type. The event **'fastForward'** is triggered when the command for fast forwarding is sent to the session.|
+| callback | callback: () => void | Yes  | Callback used for subscription. If the subscription is successful, **err** is **undefined**; otherwise, **err** is an error object.   |
+
+**Error codes**
+
+For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
+
+**Example**
+
+```js
+currentAVSession.on('fastForward', () => {
     console.info(`on fastForward entry`);
 });
-session.on('rewind', () => {
+```
+
+### on('rewind')<sup>10+</sup>
+
+on(type:'rewind', callback: () => void): void
+
+Subscribes to rewind command events.
+
+**System capability**: SystemCapability.Multimedia.AVSession.Core
+
+**Parameters**
+
+| Name  | Type                | Mandatory| Description                                                        |
+| -------- | -------------------- | ---- | ------------------------------------------------------------ |
+| type     | string               | Yes  | Event type. The event **'rewind'** is triggered when the command for rewinding is sent to the session.|
+| callback | callback: () => void | Yes  | Callback used for subscription. If the subscription is successful, **err** is **undefined**; otherwise, **err** is an error object.     |
+
+**Error codes**
+
+For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
+
+**Example**
+
+```js
+currentAVSession.on('rewind', () => {
     console.info(`on rewind entry`);
 });
 ```
@@ -2018,7 +3092,7 @@ session.on('rewind', () => {
 
 on(type: 'seek', callback: (time: number) => void): void
 
-Subscribes to the seek event.
+Subscribes to seek command events.
 
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
@@ -2026,7 +3100,7 @@ Subscribes to the seek event.
 
 | Name  | Type                  | Mandatory| Description                                                        |
 | -------- | ---------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                 | Yes  | Event type. The event **'seek'** is reported when the seek command is sent to the session.|
+| type     | string                 | Yes  | Event type. The event **'seek'** is triggered when the seek command is sent to the session.|
 | callback | (time: number) => void | Yes  | Callback used for subscription. The **time** parameter in the callback indicates the time to seek to, in milliseconds.                  |
 
 **Error codes**
@@ -2039,9 +3113,9 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 | 6600102  | The session does not exist. |
 
 **Example**
-The session does not exist
+
 ```js
-session.on('seek', (time) => {
+currentAVSession.on('seek', (time) => {
     console.info(`on seek entry time : ${time}`);
 });
 ```
@@ -2050,7 +3124,7 @@ session.on('seek', (time) => {
 
 on(type: 'setSpeed', callback: (speed: number) => void): void
 
-Subscribes to the event for setting the playback speed.
+Subscribes to setSpeed command events.
 
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
@@ -2058,7 +3132,7 @@ Subscribes to the event for setting the playback speed.
 
 | Name  | Type                   | Mandatory| Description                                                        |
 | -------- | ----------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                  | Yes  | Event type. The event **'setSpeed'** is reported when the command for setting the playback speed is sent to the session.|
+| type     | string                  | Yes  | Event type. The event **'setSpeed'** is triggered when the command for setting the playback speed is sent to the session.|
 | callback | (speed: number) => void | Yes  | Callback used for subscription. The **speed** parameter in the callback indicates the playback speed.                             |
 
 **Error codes**
@@ -2073,7 +3147,7 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 **Example**
 
 ```js
-session.on('setSpeed', (speed) => {
+currentAVSession.on('setSpeed', (speed) => {
     console.info(`on setSpeed speed : ${speed}`);
 });
 ```
@@ -2082,7 +3156,7 @@ session.on('setSpeed', (speed) => {
 
 on(type: 'setLoopMode', callback: (mode: LoopMode) => void): void
 
-Subscribes to the event for setting the loop mode.
+Subscribes to setLoopMode command events.
 
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
@@ -2090,7 +3164,7 @@ Subscribes to the event for setting the loop mode.
 
 | Name   | Type                                  | Mandatory| Description |
 | -------- | ------------------------------------- | ---- | ---- |
-| type     | string                                | Yes  | Event type. The event **'setLoopMode'** is reported when the command for setting the loop mode is sent to the session.|
+| type     | string                                | Yes  | Event type. The event **'setLoopMode'** is triggered when the command for setting the loop mode is sent to the session.|
 | callback | (mode: [LoopMode](#loopmode10)) => void | Yes  | Callback used for subscription. The **mode** parameter in the callback indicates the loop mode.                              |
 
 **Error codes**
@@ -2105,7 +3179,7 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 **Example**
 
 ```js
-session.on('setLoopMode', (mode) => {
+currentAVSession.on('setLoopMode', (mode) => {
     console.info(`on setLoopMode mode : ${mode}`);
 });
 ```
@@ -2114,7 +3188,7 @@ session.on('setLoopMode', (mode) => {
 
 on(type: 'toggleFavorite', callback: (assetId: string) => void): void
 
-Subscribes to the event for favoriting a media asset.
+Subscribes to toggleFavorite command events.
 
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
@@ -2122,7 +3196,7 @@ Subscribes to the event for favoriting a media asset.
 
 | Name  | Type                     | Mandatory| Description                                                        |
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                    | Yes  | Event type. The event **'toggleFavorite'** is reported when the command for favoriting the media asset is sent to the session.|
+| type     | string                    | Yes  | Event type. The event **'toggleFavorite'** is triggered when the command for favoriting the media asset is sent to the session.|
 | callback | (assetId: string) => void | Yes  | Callback used for subscription. The **assetId** parameter in the callback indicates the media asset ID.                             |
 
 **Error codes**
@@ -2137,7 +3211,7 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 **Example**
 
 ```js
-session.on('toggleFavorite', (assetId) => {
+currentAVSession.on('toggleFavorite', (assetId) => {
     console.info(`on toggleFavorite mode : ${assetId}`);
 });
 ```
@@ -2154,7 +3228,7 @@ Subscribes to the event that indicates an item in the playlist is selected. The 
 
 | Name  | Type                     | Mandatory| Description                                                                                     |
 | -------- | ------------------------ | ---- | ---------------------------------------------------------------------------------------- |
-| type     | string                   | Yes  | Event type. The event **'skipToQueueItem'** is reported when the command for selecting an item in the playlist is sent to the session.|
+| type     | string                   | Yes  | Event type. The event **'skipToQueueItem'** is triggered when an item in the playlist is selected.|
 | callback | (itemId: number) => void | Yes  | Callback used for subscription. The **itemId** parameter in the callback indicates the ID of the selected item.                                               |
 
 **Error codes**
@@ -2169,7 +3243,7 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 **Example**
 
 ```js
-session.on('skipToQueueItem', (itemId) => {
+currentAVSession.on('skipToQueueItem', (itemId) => {
     console.info(`on skipToQueueItem id : ${itemId}`);
 });
 ```
@@ -2178,7 +3252,7 @@ session.on('skipToQueueItem', (itemId) => {
 
 on(type: 'handleKeyEvent', callback: (event: KeyEvent) => void): void
 
-Subscribes to the key event.
+Subscribes to key events.
 
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
@@ -2186,7 +3260,7 @@ Subscribes to the key event.
 
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | Yes  | Event type. The event **'handleKeyEvent'** is reported when a key event is sent to the session.|
+| type     | string                                                       | Yes  | Event type. The event **'handleKeyEvent'** is triggered when a key event is sent to the session.|
 | callback | (event: [KeyEvent](js-apis-keyevent.md)) => void | Yes  | Callback used for subscription. The **event** parameter in the callback indicates the key event.                             |
 
 **Error codes**
@@ -2201,16 +3275,16 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 **Example**
 
 ```js
-session.on('handleKeyEvent', (event) => {
+currentAVSession.on('handleKeyEvent', (event) => {
     console.info(`on handleKeyEvent event : ${event}`);
 });
 ```
 
 ### on('outputDeviceChange')<sup>10+</sup>
 
-on(type: 'outputDeviceChange', callback: (device: OutputDeviceInfo) => void): void
+on(type: 'outputDeviceChange', callback: (state: ConnectionState, device: OutputDeviceInfo) => void): void
 
-Subscribes to output device changes.
+Subscribes to output device change events.
 
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
@@ -2218,11 +3292,10 @@ Subscribes to output device changes.
 
 | Name  | Type                                                   | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                                                  | Yes  | Event type. The event **'outputDeviceChange'** is reported when the output device changes.|
-| callback | (device: [OutputDeviceInfo](#outputdeviceinfo10)) => void | Yes  | Callback used for subscription. The **device** parameter in the callback indicates the output device information.                        |
+| type     | string                                                  | Yes  | Event type. The event **'outputDeviceChange'** is triggered when the output device changes.|
+| callback | (state: [ConnectionState](#connectionstate10), device: [OutputDeviceInfo](#outputdeviceinfo10)) => void | Yes  | Callback used for subscription. The **device** parameter in the callback indicates the output device information.<br>The **callback** parameter is optional. If it is not specified, all the subscriptions to the specified event are canceled for this session.                        |
 
 **Error codes**
-
 For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
 
 | ID| Error Message|
@@ -2233,8 +3306,8 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 **Example**
 
 ```js
-session.on('outputDeviceChange', (device) => {
-    console.info(`on outputDeviceChange device isRemote : ${device.isRemote}`);
+currentAVSession.on('outputDeviceChange', (state, device) => {
+    console.info(`on outputDeviceChange device : ${device}`);
 });
 ```
 
@@ -2242,7 +3315,7 @@ session.on('outputDeviceChange', (device) => {
 
 on(type: 'commonCommand', callback: (command: string, args: {[key: string]: Object}) => void): void
 
-Subscribes to custom control command changes.
+Subscribes to custom control command change events.
 
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
@@ -2250,7 +3323,7 @@ Subscribes to custom control command changes.
 
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | Yes  | Event type. The event **'commonCommand'** is reported when a custom control command changes.|
+| type     | string                                                       | Yes  | Event type. The event **'commonCommand'** is triggered when a custom control command changes.|
 | callback | (commonCommand: string, args: {[key:string]: Object}) => void         | Yes  | Callback used for subscription. The **commonCommand** parameter in the callback indicates the name of the changed custom control command, and **args** indicates the parameters carried in the command. The parameters must be the same as those set in **sendCommand**.         |
 
 **Error codes**
@@ -2265,16 +3338,16 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 **Example**
 
 ```js
-session.on('commonCommand', (commonCommand, args) => {
+currentAVSession.on('commonCommand', (commonCommand, args) => {
     console.info(`OnCommonCommand, the command is ${commonCommand}, args: ${JSON.stringify(args)}`);
 });
 ```
 
-### off('play'|'pause'|'stop'|'playNext'|'playPrevious'|'fastForward'|'rewind')<sup>10+</sup>
+### off('play')<sup>10+</sup>
 
-off(type: 'play' | 'pause' | 'stop' | 'playNext' | 'playPrevious' | 'fastForward' | 'rewind', callback?: () => void): void
+off(type: 'play', callback?: () => void): void
 
-Unsubscribes from playback command events.
+Unsubscribes from playback started events.
 
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
@@ -2282,7 +3355,66 @@ Unsubscribes from playback command events.
 
 | Name   | Type                 | Mandatory| Description                                                                                                                        |
 | -------- | -------------------- | ---- | ---------------------------------------------------------------------------------------------------------------------------- |
-| type     | string               | Yes  | Event type. The following events are supported: **'play'**, **'pause'**, **'stop'**, **'playNext'**, **'playPrevious'**, **'fastForward'**, and **'rewind'**.|
+| type     | string               | Yes  | Event type, which is **'play'** in this case.|
+| callback | callback: () => void | No  | Callback used for unsubscription. If the unsubscription is successful, **err** is **undefined**; otherwise, **err** is an error object.<br>The **callback** parameter is optional. If it is not specified, all the subscriptions to the specified event are canceled for this session.                           |
+
+**Error codes**
+For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
+
+**Example**
+
+```js
+currentAVSession.off('play');
+```
+
+### off('pause')<sup>10+</sup>
+
+off(type: 'pause', callback?: () => void): void
+
+Unsubscribes from playback paused events.
+
+**System capability**: SystemCapability.Multimedia.AVSession.Core
+
+**Parameters**
+
+| Name   | Type                 | Mandatory| Description                                                                                                                        |
+| -------- | -------------------- | ---- | ---------------------------------------------------------------------------------------------------------------------------- |
+| type     | string               | Yes  | Event type, which is **'pause'** in this case.|
+| callback | callback: () => void | No  | Callback used for unsubscription. If the unsubscription is successful, **err** is **undefined**; otherwise, **err** is an error object.<br>The **callback** parameter is optional. If it is not specified, all the subscriptions to the specified event are canceled for this session.|
+
+**Error codes**
+
+For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
+
+**Example**
+
+```js
+currentAVSession.off('pause');
+```
+
+### off('stop')<sup>10+</sup>
+
+off(type: 'stop', callback?: () => void): void
+
+Unsubscribes from playback stopped events.
+
+**System capability**: SystemCapability.Multimedia.AVSession.Core
+
+**Parameters**
+
+| Name   | Type                 | Mandatory| Description                                                                                                                        |
+| -------- | -------------------- | ---- | ---------------------------------------------------------------------------------------------------------------------------- |
+| type     | string               | Yes  | Event type, which is **'stop'** in this case.|
 | callback | callback: () => void | No  | Callback used for unsubscription. If the unsubscription is successful, **err** is **undefined**; otherwise, **err** is an error object.<br>The **callback** parameter is optional. If it is not specified, all the subscriptions to the specified event are canceled for this session.                           |
 
 **Error codes**
@@ -2297,20 +3429,134 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 **Example**
 
 ```js
-session.off('play');
-session.off('pause');
-session.off('stop');
-session.off('playNext');
-session.off('playPrevious');
-session.off('fastForward');
-session.off('rewind');
+currentAVSession.off('stop');
+```
+
+### off('playNext')<sup>10+</sup>
+
+off(type: 'playNext', callback?: () => void): void
+
+Unsubscribes from playNext command events.
+
+**System capability**: SystemCapability.Multimedia.AVSession.Core
+
+**Parameters**
+
+| Name   | Type                 | Mandatory| Description                                                                                                                        |
+| -------- | -------------------- | ---- | ---------------------------------------------------------------------------------------------------------------------------- |
+| type     | string               | Yes  | Event type, which is **'playNext'** in this case.|
+| callback | callback: () => void | No  | Callback used for unsubscription. If the unsubscription is successful, **err** is **undefined**; otherwise, **err** is an error object.<br>The **callback** parameter is optional. If it is not specified, all the subscriptions to the specified event are canceled for this session.                           |
+
+**Error codes**
+
+For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
+
+**Example**
+
+```js
+currentAVSession.off('playNext');
+```
+
+### off('playPrevious')<sup>10+</sup>
+
+off(type: 'playPrevious', callback?: () => void): void
+
+Unsubscribes from playPrevious command events.
+
+**System capability**: SystemCapability.Multimedia.AVSession.Core
+
+**Parameters**
+
+| Name   | Type                 | Mandatory| Description                                                                                                                        |
+| -------- | -------------------- | ---- | ---------------------------------------------------------------------------------------------------------------------------- |
+| type     | string               | Yes  | Event type, which is **'playPrevious'** in this case.|
+| callback | callback: () => void | No  | Callback used for unsubscription. If the unsubscription is successful, **err** is **undefined**; otherwise, **err** is an error object.<br>The **callback** parameter is optional. If it is not specified, all the subscriptions to the specified event are canceled for this session.                           |
+
+**Error codes**
+
+For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
+
+**Example**
+
+```js
+currentAVSession.off('playPrevious');
+```
+
+### off('fastForward')<sup>10+</sup>
+
+off(type: 'fastForward', callback?: () => void): void
+
+Unsubscribes from fastForward command events.
+
+**System capability**: SystemCapability.Multimedia.AVSession.Core
+
+**Parameters**
+
+| Name   | Type                 | Mandatory| Description                                                                                                                        |
+| -------- | -------------------- | ---- | ---------------------------------------------------------------------------------------------------------------------------- |
+| type     | string               | Yes  | Event type, which is **'fastForward'** in this case.|
+| callback | callback: () => void | No  | Callback used for unsubscription. If the unsubscription is successful, **err** is **undefined**; otherwise, **err** is an error object.<br>The **callback** parameter is optional. If it is not specified, all the subscriptions to the specified event are canceled for this session.                           |
+
+**Error codes**
+
+For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
+
+**Example**
+
+```js
+currentAVSession.off('fastForward');
+```
+
+### off('rewind')<sup>10+</sup>
+
+off(type: 'rewind', callback?: () => void): void
+
+Unsubscribes from rewind command events.
+
+**System capability**: SystemCapability.Multimedia.AVSession.Core
+
+**Parameters**
+
+| Name   | Type                 | Mandatory| Description                                                                                                                        |
+| -------- | -------------------- | ---- | ---------------------------------------------------------------------------------------------------------------------------- |
+| type     | string               | Yes  | Event type, which is **'rewind'** in this case.|
+| callback | callback: () => void | No  | Callback used for unsubscription. If the unsubscription is successful, **err** is **undefined**; otherwise, **err** is an error object.<br>The **callback** parameter is optional. If it is not specified, all the subscriptions to the specified event are canceled for this session.                           |
+
+**Error codes**
+
+For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
+
+**Example**
+
+```js
+currentAVSession.off('rewind');
 ```
 
 ### off('seek')<sup>10+</sup>
 
 off(type: 'seek', callback?: (time: number) => void): void
 
-Unsubscribes from the seek event.
+Unsubscribes from seek command events.
 
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
@@ -2318,7 +3564,7 @@ Unsubscribes from the seek event.
 
 | Name  | Type                  | Mandatory| Description                                         |
 | -------- | ---------------------- | ---- | ----------------------------------------- |
-| type     | string                 | Yes  | Event type. The value is fixed at **'seek'**.      |
+| type     | string                 | Yes  | Event type, which is **'seek'** in this case.      |
 | callback | (time: number) => void | No  | Callback used for unsubscription. The **time** parameter in the callback indicates the time to seek to, in milliseconds.<br>If the unsubscription is successful, **err** is **undefined**; otherwise, **err** is an error object.<br>The **callback** parameter is optional. If it is not specified, all the subscriptions to the specified event are canceled for this session.       |
 
 **Error codes**
@@ -2333,14 +3579,14 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 **Example**
 
 ```js
-session.off('seek');
+currentAVSession.off('seek');
 ```
 
 ### off('setSpeed')<sup>10+</sup>
 
 off(type: 'setSpeed', callback?: (speed: number) => void): void
 
-Unsubscribes from the event for setting the playback speed.
+Unsubscribes from setSpeed command events.
 
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
@@ -2348,7 +3594,7 @@ Unsubscribes from the event for setting the playback speed.
 
 | Name  | Type                   | Mandatory| Description                                          |
 | -------- | ----------------------- | ---- | -------------------------------------------|
-| type     | string                  | Yes  | Event type. The value is fixed at **'setSpeed'**.   |
+| type     | string                  | Yes  | Event type, which is **'setSpeed'** in this case.   |
 | callback | (speed: number) => void | No  | Callback used for unsubscription. The **speed** parameter in the callback indicates the playback speed.<br>If the unsubscription is successful, **err** is **undefined**; otherwise, **err** is an error object.<br>The **callback** parameter is optional. If it is not specified, all the subscriptions to the specified event are canceled for this session.                |
 
 **Error codes**
@@ -2363,14 +3609,14 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 **Example**
 
 ```js
-session.off('setSpeed');
+currentAVSession.off('setSpeed');
 ```
 
 ### off('setLoopMode')<sup>10+</sup>
 
 off(type: 'setLoopMode', callback?: (mode: LoopMode) => void): void
 
-Unsubscribes from the event for setting loop mode.
+Unsubscribes from setSpeed command events.
 
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
@@ -2378,7 +3624,7 @@ Unsubscribes from the event for setting loop mode.
 
 | Name  | Type                                 | Mandatory| Description    |
 | -------- | ------------------------------------- | ---- | ----- |
-| type     | string | Yes  | Event type. The value is fixed at **'setLoopMode'**.|
+| type     | string | Yes  | Event type, which is **'setLoopMode'** in this case.|
 | callback | (mode: [LoopMode](#loopmode10)) => void | No  | Callback used for unsubscription. The **mode** parameter in the callback indicates the loop mode.<br>If the unsubscription is successful, **err** is **undefined**; otherwise, **err** is an error object.<br>The **callback** parameter is optional. If it is not specified, all the subscriptions to the specified event are canceled for this session.|
 
 **Error codes**
@@ -2393,14 +3639,14 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 **Example**
 
 ```js
-session.off('setLoopMode');
+currentAVSession.off('setLoopMode');
 ```
 
 ### off('toggleFavorite')<sup>10+</sup>
 
 off(type: 'toggleFavorite', callback?: (assetId: string) => void): void
 
-Unsubscribes from the event for favoriting a media asset.
+Unsubscribes from toggleFavorite command events.
 
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
@@ -2408,7 +3654,7 @@ Unsubscribes from the event for favoriting a media asset.
 
 | Name  | Type                     | Mandatory| Description                                                        |
 | -------- | ------------------------- | ---- | -------------------------------------------------------- |
-| type     | string                    | Yes  | Event type. The value is fixed at **'toggleFavorite'**.           |
+| type     | string                    | Yes  | Event type, which is **'toggleFavorite'** in this case.           |
 | callback | (assetId: string) => void | No  | Callback used for unsubscription. The **assetId** parameter in the callback indicates the media asset ID.<br>If the unsubscription is successful, **err** is **undefined**; otherwise, **err** is an error object.<br>The **callback** parameter is optional. If it is not specified, all the subscriptions to the specified event are canceled for this session.                              |
 
 **Error codes**
@@ -2423,7 +3669,7 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 **Example**
 
 ```js
-session.off('toggleFavorite');
+currentAVSession.off('toggleFavorite');
 ```
 
 ### off('skipToQueueItem')<sup>10+</sup>
@@ -2438,7 +3684,7 @@ Unsubscribes from the event that indicates an item in the playlist is selected.
 
 | Name  | Type                     | Mandatory| Description                                                                                                                                                       |
 | -------- | ------------------------ | ---- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| type     | string                   | Yes  | Event type. The value is fixed at **'skipToQueueItem'**.                                                                                                         |
+| type     | string                   | Yes  | Event type, which is **'skipToQueueItem'** in this case.                                                                                                         |
 | callback | (itemId: number) => void | No  | Callback used for unsubscription. The **itemId** parameter in the callback indicates the ID of the item.<br>If the unsubscription is successful, **err** is **undefined**; otherwise, **err** is an error object.<br>The **callback** parameter is optional. If it is not specified, all the subscriptions to the specified event are canceled for this session.|
 
 **Error codes**
@@ -2453,14 +3699,14 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 **Example**
 
 ```js
-session.off('skipToQueueItem');
+currentAVSession.off('skipToQueueItem');
 ```
 
 ### off('handleKeyEvent')<sup>10+</sup>
 
 off(type: 'handleKeyEvent', callback?: (event: KeyEvent) => void): void
 
-Unsubscribes from the key event.
+Unsubscribes from key events.
 
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
@@ -2468,7 +3714,7 @@ Unsubscribes from the key event.
 
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | Yes  | Event type. The value is fixed at **'handleKeyEvent'**.            |
+| type     | string                                                       | Yes  | Event type, which is **'handleKeyEvent'** in this case.            |
 | callback | (event: [KeyEvent](js-apis-keyevent.md)) => void | No  | Callback used for unsubscription. The **event** parameter in the callback indicates the key event.<br>If the unsubscription is successful, **err** is **undefined**; otherwise, **err** is an error object.<br>The **callback** parameter is optional. If it is not specified, all the subscriptions to the specified event are canceled for this session.                             |
 
 **Error codes**
@@ -2483,14 +3729,14 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 **Example**
 
 ```js
-session.off('handleKeyEvent');
+currentAVSession.off('handleKeyEvent');
 ```
 
 ### off('outputDeviceChange')<sup>10+</sup>
 
-off(type: 'outputDeviceChange', callback?: (device: OutputDeviceInfo) => void): void
+off(type: 'outputDeviceChange', callback?: (state: ConnectionState, device: OutputDeviceInfo) => void): void
 
-Unsubscribes from playback device changes.
+Unsubscribes from playback device change events.
 
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
@@ -2498,8 +3744,8 @@ Unsubscribes from playback device changes.
 
 | Name  | Type                                                   | Mandatory| Description                                                     |
 | -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------ |
-| type     | string                                                  | Yes  | Event type. The value is fixed at **'outputDeviceChange'**.    |
-| callback | (device: [OutputDeviceInfo](#outputdeviceinfo10)) => void | No  | Callback used for unsubscription. The **device** parameter in the callback indicates the output device information.<br>If the unsubscription is successful, **err** is **undefined**; otherwise, **err** is an error object.<br>The **callback** parameter is optional. If it is not specified, all the subscriptions to the specified event are canceled for this session.                       |
+| type     | string                                                  | Yes  | Event type, which is **'outputDeviceChange'** in this case.    |
+| callback | (state: [ConnectionState](#connectionstate10), device: [OutputDeviceInfo](#outputdeviceinfo10)) => void | No  | Callback used for unsubscription. The **device** parameter in the callback indicates the output device information.<br>If the unsubscription is successful, **err** is **undefined**; otherwise, **err** is an error object.<br>The **callback** parameter is optional. If it is not specified, all the subscriptions to the specified event are canceled for this session.                       |
 
 **Error codes**
 
@@ -2513,7 +3759,7 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 **Example**
 
 ```js
-session.off('outputDeviceChange');
+currentAVSession.off('outputDeviceChange');
 ```
 
 
@@ -2521,7 +3767,7 @@ session.off('outputDeviceChange');
 
 off(type: 'commonCommand', callback?: (command: string, args: {[key:string]: Object}) => void): void
 
-Unsubscribes from custom control command changes.
+Unsubscribes from custom control command change events.
 
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
@@ -2529,7 +3775,7 @@ Unsubscribes from custom control command changes.
 
 | Name  | Type                                                        | Mandatory| Description                                                    |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------- |
-| type     | string                                                       | Yes  | Event type. The value is fixed at **'commonCommand'**.   |
+| type     | string                                                       | Yes  | Event type, which is **'commonCommand'** in this case.   |
 | callback | (command: string, args: {[key:string]: Object}) => void         | No  | Callback used for unsubscription. The **command** parameter in the callback indicates the name of the changed custom control command, and **args** indicates the parameters carried in the command.<br>The **callback** parameter is optional. If it is not specified, all the subscriptions to the specified event are canceled for this session.                     |
 
 **Error codes**
@@ -2544,14 +3790,1251 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 **Example**
 
 ```js
-session.off('commonCommand');
+currentAVSession.off('commonCommand');
+```
+
+### stopCasting<sup>10+</sup>
+
+stopCasting(callback: AsyncCallback\<void>): void
+
+Stops castings. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Multimedia.AVSession.AVCast
+
+**Parameters**
+
+| Name  | Type                                 | Mandatory| Description                                 |
+| -------- | ------------------------------------- | ---- | ------------------------------------- |
+| callback | AsyncCallback\<void>                  | Yes  | Callback used to return the result. If the command is sent, **err** is **undefined**; otherwise, **err** is an error object.|
+
+**Error codes**
+
+For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 6600109  | The remote connection is not established. |
+
+**Example**
+
+```js
+currentAVSession.stopCasting(function (err) {
+    if (err) {
+        console.info(`stopCasting BusinessError: code: ${err.code}, message: ${err.message}`);
+    } else {
+        console.info(`stopCasting successfully`);
+    }
+});
+```
+
+### stopCasting<sup>10+</sup>
+
+stopCasting(): Promise\<void>
+
+Stops castings. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Multimedia.AVSession.AVCast
+
+**Return value**
+
+| Type          | Description                         |
+| -------------- | ----------------------------- |
+| Promise\<void> | Promise used to return the result. If casting stops, no value is returned; otherwise, an error object is returned.|
+
+**Error codes**
+
+For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 6600109  | The remote connection is not established. |
+
+**Example**
+
+```js
+currentAVSession.stopCasting().then(() => {
+    console.info(`stopCasting successfully`);
+}).catch((err) => {
+    console.info(`stopCasting BusinessError: code: ${err.code}, message: ${err.message}`);
+});
+```
+
+## AVCastControlCommandType<sup>10+</sup>
+
+Enumerates the commands that can be sent by a cast controller.
+
+**System capability**: SystemCapability.Multimedia.AVSession.AVCast
+
+| Name          | Type  | Description        |
+| -------------- | ------ | ------------ |
+| play           | string | Play the media.        |
+| pause          | string | Pause the playback.        |
+| stop           | string | Stop the playback.        |
+| playNext       | string | Play the next media asset.      |
+| playPrevious   | string | Play the previous media asset.      |
+| fastForward    | string | Fast-forward.        |
+| rewind         | string | Rewind.        |
+| seek           | numbder | Seek to a playback position.|
+| setSpeed       | number | Set the playback speed.|
+| setLoopMode    | string | Set the loop mode.|
+| toggleFavorite | string | Favorite the media asset.    |
+| setVolume      | number | Set the volume.    |
+
+## AVCastControlCommand<sup>10+</sup>
+
+Defines the command that can be sent by a cast controller.
+
+**System capability**: SystemCapability.Multimedia.AVSession.AVCast
+
+| Name     | Type                                             | Mandatory| Description          |
+| --------- | ------------------------------------------------- | ---- | -------------- |
+| command   | [AVCastControlCommandType](#avcastcontrolcommandtype10)     | Yes  | Command.          |
+| parameter | [LoopMode](#loopmode10) &#124; string &#124; number | No  | Parameters carried in the command.|
+
+## AVCastController<sup>10+</sup>
+
+After a casting connection is set up, you can call [avSession.getAVCastController](#getavcastcontroller10) to obtain the cast controller. Through the controller, you can query the session ID, send commands and events to a session, and obtain session metadata and playback state information.
+
+### setDisplaySurface<sup>10+</sup>
+
+setDisplaySurface(surfaceId: string): Promise\<void>
+
+Sets the surface ID for playback, which is used at the cast receiver (sink). This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Multimedia.AVSession.AVCast
+
+**System API**: This is a system API.
+
+**Return value**
+
+| Type                                         | Description                       |
+| --------------------------------------------- | --------------------------- |
+| Promise\<void> | Promise used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 6600109  | The remote connection is not established. |
+
+**Example**
+```js
+aVCastController.setDisplaySurface().then(() => {
+    console.info(`setDisplaySurface : SUCCESS :`);
+});
+```
+
+### setDisplaySurface<sup>10+</sup>
+
+setDisplaySurface(surfaceId: string, callback: AsyncCallback\<void>): void
+
+Sets the surface ID for playback, which is used at the cast receiver (sink). This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Multimedia.AVSession.AVCast
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name  | Type                                               | Mandatory| Description                        |
+| -------- | --------------------------------------------------- | ---- | ---------------------------- |
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 6600109  | The remote connection is not established. |
+
+**Example**
+```js
+aVCastController.setDisplaySurface(function (err, value) {
+    if (err) {
+        console.info(`setDisplaySurface BusinessError: code: ${err.code}, message: ${err.message}`);
+    } else {
+        console.info(`setDisplaySurface : SUCCESS : state : ${value}`);
+    }
+});
+```
+
+### getAVPlaybackState<sup>10+</sup>
+
+getAVPlaybackState(callback: AsyncCallback\<AVPlaybackState>): void
+
+Obtains the remote playback state. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Multimedia.AVSession.AVCast
+
+**Parameters**
+
+| Name   | Type                                                       | Mandatory| Description                                                        |
+| --------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| callback  | AsyncCallback<[[AVPlaybackState](#avplaybackstate10)\> | Yes  | Callback used to return the remote playback state.|
+
+**Error codes**
+
+For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 6600101  | Session service exception |
+
+**Example**
+
+```js
+aVCastController.getAVPlaybackState(function (err, state) {
+    if (err) {
+        console.error(`getAVPlaybackState BusinessError: code: ${err.code}, message: ${err.message}`);
+    } else {
+        console.info(`getAVPlaybackState : SUCCESS`);
+    }
+});
+```
+
+### getAVPlaybackState<sup>10+</sup>
+
+getAVPlaybackState(): Promise\<AVPlaybackState>;
+
+Obtains the remote playback state. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Multimedia.AVSession.AVCast
+
+**Return value**
+
+| Type                                                       | Description                                                        |
+| --------- | ------------------------------------------------------------ |
+| Promise<[AVPlaybackState](#avplaybackstate10)\>  | Promise used to return the remote playback state.|
+
+**Error codes**
+
+For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 6600101  | Session service exception |
+
+**Example**
+
+```js
+aVCastController.getAVPlaybackState().then((state) => {
+    console.info(`getAVPlaybackState : SUCCESS :`);
+}).catch((err) => {
+    console.error(`getAVPlaybackState BusinessError: code: ${err.code}, message: ${err.message}`);
+});
+```
+
+### sendControlCommand<sup>10+</sup>
+
+sendControlCommand(command: AVCastControlCommand): Promise\<void>
+
+Sends a control command to the session through the controller. This API uses a promise to return the result.
+
+
+**System capability**: SystemCapability.Multimedia.AVSession.AVCast
+
+**Parameters**
+
+| Name   | Type                                 | Mandatory| Description                          |
+| ------- | ------------------------------------- | ---- | ------------------------------ |
+| command | [AVCastControlCommand](#avcastcontrolcommand10) | Yes  | Command to send.|
+
+**Return value**
+
+| Type          | Description                         |
+| -------------- | ----------------------------- |
+| Promise\<void> | Promise used to return the result. If the command is sent, no value is returned; otherwise, an error object is returned.|
+
+**Error codes**
+
+For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 6600101  | Session service exception. |
+| 6600105  | Invalid session command. |
+| 6600109  | The remote connection is not established. |
+
+**Example**
+
+```js
+let avCommand = {command:'play'};
+// let avCommand = {command:'pause'};
+// let avCommand = {command:'stop'};
+// let avCommand = {command:'playNext'};
+// let avCommand = {command:'playPrevious'};
+// let avCommand = {command:'fastForward'};
+// let avCommand = {command:'rewind'};
+// let avCommand = {command:'seek', parameter:10};
+aVCastController.sendControlCommand(avCommand).then(() => {
+    console.info(`SendControlCommand successfully`);
+}).catch((err) => {
+    console.error(`SendControlCommand BusinessError: code: ${err.code}, message: ${err.message}`);
+});
+```
+
+### sendControlCommand<sup>10+</sup>
+
+sendControlCommand(command: AVCastControlCommand, callback: AsyncCallback\<void>): void
+
+Sends a control command to the session through the controller. This API uses an asynchronous callback to return the result.
+
+
+**System capability**: SystemCapability.Multimedia.AVSession.AVCast
+
+**Parameters**
+
+| Name  | Type                                 | Mandatory| Description                          |
+| -------- | ------------------------------------- | ---- | ------------------------------ |
+| command  | [AVCastControlCommand](#avcastcontrolcommand10) | Yes  | Command to send.|
+| callback | AsyncCallback\<void>                  | Yes  | Callback used to return the result. If the command is sent, **err** is **undefined**; otherwise, **err** is an error object.                    |
+
+**Error codes**
+
+For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
+
+| ID| Error Message|
+| -------- | ------------------------------- |
+| 6600101  | Session service exception. |
+| 6600105  | Invalid session command. |
+| 6600109  | The remote connection is not established. |
+
+**Example**
+
+```js
+let avCommand = {command:'play'};
+// let avCommand = {command:'pause'};
+// let avCommand = {command:'stop'};
+// let avCommand = {command:'playNext'};
+// let avCommand = {command:'playPrevious'};
+// let avCommand = {command:'fastForward'};
+// let avCommand = {command:'rewind'};
+// let avCommand = {command:'seek', parameter:10};
+aVCastController.sendControlCommand(avCommand, function (err) {
+    if (err) {
+        console.error(`SendControlCommand BusinessError: code: ${err.code}, message: ${err.message}`);
+    } else {
+        console.info(`SendControlCommand successfully`);
+    }
+});
+```
+
+### prepare<sup>10+</sup>
+
+prepare(item: AVQueueItem, callback: AsyncCallback\<void>): void
+
+Prepares for the playback of a media asset. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Multimedia.AVSession.AVCast
+
+**Parameters**
+
+| Name   | Type                                 | Mandatory| Description                          |
+| ------- | ------------------------------------- | ---- | ------------------------------ |
+| item | [AVQueueItem](#avqueueitem10) | Yes  | Attributes of an item in the playlist.|
+| callback | AsyncCallback\<void>                  | Yes  | Callback used to return the result. If the command is sent, **err** is **undefined**; otherwise, **err** is an error object.   
+
+**Error codes**
+
+For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 6600101  | Session service exception. |
+
+**Example**
+
+```js
+// Set playback parameters.
+var playItem = {
+    itemId: 0,
+    description: {
+    mediaId: '12345',
+    mediaName: 'song1',
+    mediaType: 'AUDIO',
+    mediaUri: 'http://resource1_address',
+    mediaSize: 12345,
+    startPosition: 0,
+    duration: 0,
+    artist: 'mysong',
+    albumTitle: 'song1_title',
+    albumCoverUri: "http://resource1_album_address",
+    lyricUri: "http://resource1_lyric_address",
+    iconUri: "http://resource1_icon_address",
+    appName: 'MyMusic'
+    }
+};
+// Prepare for playback. This operation triggers loading and buffering, but not the actual playback.
+aVCastController.prepare(playItem, () => {
+  console.info('prepare done');
+});
 ```
 
 
+### prepare<sup>10+</sup>
+
+prepare(item: AVQueueItem): Promise\<void>
+
+Prepares for the playback of a media asset. This API uses a promise to return the result.
+
+
+**System capability**: SystemCapability.Multimedia.AVSession.AVCast
+
+**Parameters**
+
+| Name   | Type                                 | Mandatory| Description                          |
+| ------- | ------------------------------------- | ---- | ------------------------------ |
+| item | [AVQueueItem](#avqueueitem10) | Yes  | Attributes of an item in the playlist.|
+
+**Return value**
+
+| Type          | Description                         |
+| -------------- | ----------------------------- |
+| Promise\<void> | Promise used to return the result. If the command is sent, no value is returned; otherwise, an error object is returned.|
+
+**Error codes**
+
+For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 6600101  | Session service exception. |
+
+
+**Example**
+
+```js
+// Set playback parameters.
+var playItem = {
+    itemId: 0,
+    description: {
+        mediaId: '12345',
+        mediaName: 'song1',
+        mediaType: 'AUDIO',
+        mediaUri: 'http://resource1_address',
+        mediaSize: 12345,
+        startPosition: 0,
+        duration: 0,
+        artist: 'mysong',
+        albumTitle: 'song1_title',
+        albumCoverUri: "http://resource1_album_address",
+        lyricUri: "http://resource1_lyric_address",
+        iconUri: "http://resource1_icon_address",
+        appName: 'MyMusic'
+    }
+};
+// Prepare for playback. This operation triggers loading and buffering, but not the actual playback.
+aVCastController.prepare(playItem, () => {
+    console.info('prepare done');
+});
+```
+
+### start<sup>10+</sup>
+
+start(item: AVQueueItem, callback: AsyncCallback\<void>): void
+
+Prepares for the playback of a media asset. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Multimedia.AVSession.AVCast
+
+**Parameters**
+
+| Name   | Type                                 | Mandatory| Description                          |
+| ------- | ------------------------------------- | ---- | ------------------------------ |
+| item | [AVQueueItem](#avqueueitem10) | Yes  | Attributes of an item in the playlist.|
+| callback | AsyncCallback\<void>                  | Yes  | Callback used to return the result. If the command is sent, **err** is **undefined**; otherwise, **err** is an error object.   
+
+**Error codes**
+
+For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 6600101  | Session service exception. |
+
+**Example**
+
+```js
+// Set playback parameters.
+var playItem = {
+itemId: 0,
+description: {
+  mediaId: '12345',
+  mediaName: 'song1',
+  mediaType: 'AUDIO',
+  mediaUri: 'http://resource1_address',
+  mediaSize: 12345,
+  startPosition: 0,
+  duration: 0,
+  artist: 'mysong',
+  albumTitle: 'song1_title',
+  albumCoverUri: "http://resource1_album_address",
+  lyricUri: "http://resource1_lyric_address",
+  iconUri: "http://resource1_icon_address",
+  appName: 'MyMusic'
+}
+};
+
+// Start playback.
+aVCastController.start(playItem, () => {
+  console.info('play done');
+});
+```
+
+### start<sup>10+</sup>
+
+start(item: AVQueueItem): Promise\<void>
+
+Prepares for the playback of a media asset. This API uses a promise to return the result.
+
+
+**System capability**: SystemCapability.Multimedia.AVSession.AVCast
+
+**Parameters**
+
+| Name   | Type                                 | Mandatory| Description                          |
+| ------- | ------------------------------------- | ---- | ------------------------------ |
+| item | [AVQueueItem](#avqueueitem10) | Yes  | Attributes of an item in the playlist.|
+
+**Return value**
+
+| Type          | Description                         |
+| -------------- | ----------------------------- |
+| Promise\<void> | Promise used to return the result. If the command is sent, no value is returned; otherwise, an error object is returned.|
+
+**Error codes**
+
+For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 6600101  | Session service exception. |
+
+
+**Example**
+
+```js
+// Set playback parameters.
+var playItem = {
+itemId: 0,
+description: {
+    mediaId: '12345',
+    mediaName: 'song1',
+    mediaType: 'AUDIO',
+    mediaUri: 'http://resource1_address',
+    mediaSize: 12345,
+    startPosition: 0,
+    duration: 0,
+    artist: 'mysong',
+    albumTitle: 'song1_title',
+    albumCoverUri: "http://resource1_album_address",
+    lyricUri: "http://resource1_lyric_address",
+    iconUri: "http://resource1_icon_address",
+    appName: 'MyMusic'
+}
+};
+// Start playback.
+aVCastController.start(playItem).then(() => {
+    console.info(`start successfully`);
+}).catch((err) => {
+    console.info(`start BusinessError: code: ${err.code}, message: ${err.message}`);
+});
+```
+
+### getCurrentItem<sup>10+</sup>
+
+getCurrentItem(callback: AsyncCallback\<AVQueueItem>): void
+
+Obtains the information about the media asset that is being played. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Multimedia.AVSession.AVCast
+
+**Parameters**
+
+| Name  | Type                                 | Mandatory| Description                                 |
+| -------- | ------------------------------------- | ---- | ------------------------------------- |
+| callback | AsyncCallback\<[AVQueueItem](#avqueueitem10)>                  | Yes  | Callback used to return the result. If the command is sent, **err** is **undefined**; otherwise, **err** is an error object.|
+
+**Error codes**
+
+For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 6600101  | Session service exception. |
+
+**Example**
+
+```js
+aVCastController.getCurrentItem(function (err, value) {
+    if (err) {
+        console.error(`getCurrentItem BusinessError: code: ${err.code}, message: ${err.message}`);
+    } else {
+        console.info(`getCurrentItem successfully`);
+    }
+});
+```
+
+### getCurrentItem<sup>10+</sup>
+
+getCurrentItem(): Promise\<AVQueueItem>
+
+Obtains the information about the media asset that is being played. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Multimedia.AVSession.AVCast
+
+**Return value**
+
+| Type          | Description                         |
+| -------------- | ----------------------------- |
+| Promise\<[AVQueueItem](#avqueueitem10)> | Promise used to return the media asset obtained. If the operation fails, an error object is returned.|
+
+**Error codes**
+
+For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 6600101  | Session service exception. |
+
+**Example**
+
+```js
+aVCastController.getCurrentItem().then((AVQueueItem) => {
+    console.info(`getCurrentItem successfully`);
+}).catch((err) => {
+    console.error(`getCurrentItem BusinessError: code: ${err.code}, message: ${err.message}`);
+});
+```
+
+### on('playbackStateChange')<sup>10+</sup>
+
+on(type: 'playbackStateChange', filter: Array\<keyof AVPlaybackState> | 'all', callback: (state: AVPlaybackState) => void): void
+
+Subscribes to playback state change events.
+
+**System capability**: SystemCapability.Multimedia.AVSession.AVCast
+
+**Parameters**
+
+| Name  | Type                                                        | Mandatory| Description                                                        |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | Yes  | Event type. The event **'playbackStateChange'** is triggered when the playback state changes.|
+| filter   | Array\<keyof&nbsp;[AVPlaybackState](#avplaybackstate10)\>&nbsp;&#124;&nbsp;'all' | Yes  | The value **'all'** indicates that any playback state field change will trigger the event, and **Array<keyof&nbsp;[AVPlaybackState](#avplaybackstate10)\>** indicates that only changes to the listed playback state field will trigger the event.|
+| callback | (state: [AVPlaybackState](#avplaybackstate10)) => void         | Yes  | Callback used for subscription. The **state** parameter in the callback indicates the changed playback state.                     |
+
+**Error codes**
+
+For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
+
+| ID| Error Message|
+| -------- | ------------------------------ |
+| 6600101  | Session service exception. |
+
+**Example**
+
+```js
+aVCastController.on('playbackStateChange', 'all', (playbackState) => {
+    console.info(`on playbackStateChange state : ${playbackState.state}`);
+});
+
+let playbackFilter = ['state', 'speed', 'loopMode'];
+aVCastController.on('playbackStateChange', playbackFilter, (playbackState) => {
+    console.info(`on playbackStateChange state : ${playbackState.state}`);
+});
+```
+
+### off('playbackStateChange')<sup>10+</sup>
+
+off(type: 'playbackStateChange', callback?: (state: AVPlaybackState) => void): void
+
+Unsubscribes from playback state change events. This API is called by the controller.
+
+**System capability**: SystemCapability.Multimedia.AVSession.AVCast
+
+**Parameters**
+
+| Name  | Type                                                        | Mandatory| Description                                                    |
+| -------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------- |
+| type     | string                                                       | Yes  | Event type, which is **'playbackStateChange'** in this case.   |
+| callback | (state: [AVPlaybackState](#avplaybackstate10)) => void         | No  | Callback used for unsubscription. The **state** parameter in the callback indicates the changed playback state.<br>The **callback** parameter is optional. If it is not specified, all the subscriptions to the specified event are canceled for this session.                     |
+
+**Error codes**
+
+For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
+
+| ID| Error Message|
+| -------- | ---------------- |
+| 6600101  | Session service exception. |
+
+**Example**
+
+```js
+aVCastController.off('playbackStateChange');
+```
+
+### on('mediaItemChange')<sup>10+</sup>
+
+on(type: 'mediaItemChange', callback: Callback\<AVQueueItem>): void
+
+Subscribes to media asset change events.
+
+**System capability**: SystemCapability.Multimedia.AVSession.AVCast
+
+**Parameters**
+
+| Name  | Type                                                        | Mandatory| Description                                                        |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | Yes  | Event type. The event **'mediaItemChange'** is triggered when the media content being played changes.|
+| callback | (state: [AVQueueItem](#avqueueitem10)) => void         | Yes  | Callback used for subscription. **AVQueueItem** is the media asset that is being played.                     |
+
+**Error codes**
+
+For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
+
+| ID| Error Message|
+| -------- | ------------------------------ |
+| 6600101  | Session service exception. |
+
+**Example**
+
+```js
+aVCastController.on('mediaItemChange', (item) => {
+    console.info(`on mediaItemChange state : ${item.itemId}`);
+});
+```
+
+### off('mediaItemChange')<sup>10+</sup>
+
+off(type: 'mediaItemChange'): void
+
+Unsubscribes from media asset change events.
+
+**System capability**: SystemCapability.Multimedia.AVSession.AVCast
+
+**Parameters**
+
+| Name  | Type                                                        | Mandatory| Description                                                    |
+| -------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------- |
+| type     | string                                                       | Yes  | Event type, which is **'mediaItemChange'** in this case.   |
+
+**Error codes**
+
+For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
+
+| ID| Error Message|
+| -------- | ---------------- |
+| 6600101  | Session service exception. |
+
+**Example**
+
+```js
+aVCastController.off('mediaItemChange');
+```
+
+### on('playNext')<sup>10+</sup>
+
+on(type: 'playNext', callback: Callback\<void>): void
+
+Subscribes to playNext command events.
+
+**System capability**: SystemCapability.Multimedia.AVSession.AVCast
+
+**Parameters**
+
+| Name  | Type                                                        | Mandatory| Description                                                        |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | Yes  | Event type. The event **'playNext'** is triggered when the command for playing the next item is received.|
+| callback | Callback\<void\>         | Yes  | Callback used to return the result.                     |
+
+**Error codes**
+
+For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
+
+| ID| Error Message|
+| -------- | ------------------------------ |
+| 6600101  | Session service exception. |
+
+**Example**
+
+```js
+aVCastController.on('playNext', () => {
+    console.info(`on playNext`);
+});
+```
+
+### off('playNext')<sup>10+</sup>
+
+off(type: 'playNext'): void
+
+Unsubscribes from playNext command events.
+
+**System capability**: SystemCapability.Multimedia.AVSession.AVCast
+
+**Parameters**
+
+| Name  | Type                                                        | Mandatory| Description                                                    |
+| -------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------- |
+| type     | string                                                       | Yes  | Event type, which is **'playNext'** in this case.   |
+
+**Error codes**
+
+For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
+
+| ID| Error Message|
+| -------- | ---------------- |
+| 6600101  | Session service exception. |
+
+**Example**
+
+```js
+aVCastController.off('playNext');
+```
+
+### on('playPrevious')<sup>10+</sup>
+
+on(type: 'playPrevious', callback: Callback\<void>): void
+
+Subscribes to playPrevious command events.
+
+**System capability**: SystemCapability.Multimedia.AVSession.AVCast
+
+**Parameters**
+
+| Name  | Type                                                        | Mandatory| Description                                                        |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | Yes  | Event type. The event **'playPrevious'** is triggered when the command for playing the previous event is received.|
+| callback | Callback\<void\>         | Yes  | Callback used to return the result.                     |
+
+**Error codes**
+
+For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
+
+| ID| Error Message|
+| -------- | ------------------------------ |
+| 6600101  | Session service exception. |
+
+**Example**
+
+```js
+aVCastController.on('playPrevious', () => {
+    console.info(`on playPrevious`);
+});
+```
+
+### off('playPrevious')<sup>10+</sup>
+
+off(type: 'playPrevious'): void
+
+Unsubscribes from the playPrevious command event.
+
+**System capability**: SystemCapability.Multimedia.AVSession.AVCast
+
+**Parameters**
+
+| Name  | Type                                                        | Mandatory| Description                                                    |
+| -------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------- |
+| type     | string                                                       | Yes  | Event type, which is **'playPrevious'** in this case.   |
+
+**Error codes**
+
+For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
+
+| ID| Error Message|
+| -------- | ---------------- |
+| 6600101  | Session service exception. |
+
+**Example**
+
+```js
+aVCastController.off('playPrevious');
+```
+
+### on('seekDone')<sup>10+</sup>
+
+on(type: 'seekDone', callback: Callback\<number>): void
+
+Subscribes to seek done events.
+
+**System capability**: SystemCapability.Multimedia.AVSession.AVCast
+
+**Parameters**
+
+| Name  | Type                                                        | Mandatory| Description                                                        |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | Yes  | Event type. The event **'seekDone'** is triggered when the seek operation is complete.|
+| callback | Callback\<number\>         | Yes  | Callback used to return the position after the seek operation.                     |
+
+**Error codes**
+
+For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
+
+| ID| Error Message|
+| -------- | ------------------------------ |
+| 6600101  | Session service exception. |
+
+**Example**
+
+```js
+aVCastController.on('seekDone', (pos) => {
+    console.info(`on seekDone pos: ${pos} `);
+});
+```
+
+### off('seekDone')<sup>10+</sup>
+
+off(type: 'seekDone'): void
+
+Unsubscribes from the seek done events.
+
+**System capability**: SystemCapability.Multimedia.AVSession.AVCast
+
+**Parameters**
+
+| Name  | Type                                                        | Mandatory| Description                                                    |
+| -------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------- |
+| type     | string                                                       | Yes  | Event type, which is **'seekDone'** in this case.   |
+
+**Error codes**
+
+For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
+
+| ID| Error Message|
+| -------- | ---------------- |
+| 6600101  | Session service exception. |
+
+**Example**
+
+```js
+aVCastController.off('seekDone');
+```
+
+### on('videoSizeChange')<sup>10+</sup>
+
+on(type: 'videoSizeChange', callback: (width:number, height:number) => void): void
+
+Subscribes to video size change events.
+
+**System capability**: SystemCapability.Multimedia.AVSession.AVCast
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Parameter | Type | Mandatory | Description |
+| type | string | Yes  | Event type. The event **'videoSizeChange'** is triggered when the video size changes. |
+| callback | (width:number, height:number) => void | Yes |  Callback used to return the video width and height. |
+
+**Example**
+
+```js
+aVCastController.on('videoSizeChange', (width, height) => {
+    console.info(`width : ${width} `);
+    console.info(`height: ${height} `);
+});
+```
+
+### off('videoSizeChange')<sup>10+</sup>
+
+off(type: 'videoSizeChange'): void
+
+Unsubscribes from video size changes.
+
+**System capability**: SystemCapability.Multimedia.AVSession.AVCast
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name | Type | Mandatory | Description |
+| type | string | Yes | Event type, which is **'videoSizeChange'** in this case.    |
+
+**Example**
+
+```js
+aVCastController.off('videoSizeChange');
+```
+
+### on('error')<sup>10+</sup>
+
+on(type: 'error', callback: ErrorCallback): void
+
+Subscribes to remote AVPlayer errors. This event is used only for error prompt and does not require the user to stop playback control.
+
+**System capability**: SystemCapability.Multimedia.AVSession.AVCast
+
+**Parameters**
+
+| Name  | Type    | Mandatory| Description                                                        |
+| -------- | -------- | ---- | ------------------------------------------------------------ |
+| type     | string   | Yes  | Event type, which is **'error'** in this case. This event can be triggered by both user operations and the system.|
+| callback | function | Yes  | Callback used to return the error code ID and error message.|
+
+**Error codes**
+
+For details about the error codes, see [Media Error Codes](../errorcodes/errorcode-media.md).
+
+| ID| Error Message             |
+| -------- | --------------------- |
+| 5400101  | No memory.            |
+| 5400102  | Operation not allowed.   |
+| 5400103  | I/O error.             |
+| 5400104  | Time out.      |
+| 5400105  | Service died.         |
+| 5400106  | Unsupport format.     |
+
+**Example**
+
+```js
+aVCastController.on('error', (error) => {
+  console.error('error happened,and error message is :' + error.message)
+  console.error('error happened,and error code is :' + error.code)
+})
+```
+
+### off('error')<sup>10+</sup>
+
+off(type: 'error'): void
+
+Unsubscribes from remote AVPlayer errors.
+
+**System capability**: SystemCapability.Multimedia.AVSession.AVCast
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                                     |
+| ------ | ------ | ---- | ----------------------------------------- |
+| type   | string | Yes  | Event type, which is **'error'** in this case.|
+
+**Error codes**
+
+For details about the error codes, see [Media Error Codes](../errorcodes/errorcode-media.md).
+
+| ID| Error Message             |
+| -------- | --------------------- |
+| 5400101  | No memory.            |
+| 5400102  | Operation not allowed.   |
+| 5400103  | I/O error.             |
+| 5400104  | Time out.      |
+| 5400105  | Service died.         |
+| 5400106  | Unsupport format.     |
+
+**Example**
+
+```js
+aVCastController.off('error')
+```
+
+## ConnectionState<sup>10+</sup>
+
+Enumerates the connection states.
+
+**System capability**: SystemCapability.Multimedia.AVSession.Core
+
+| Name                       | Value  | Description        |
+| --------------------------- | ---- | ----------- |
+| STATE_CONNECTING      | 0    | The device is connecting.   |
+| STATE_CONNECTED      | 1    | The device is connected.|
+| STATE_DISCONNECTED      | 6    | The device is disconnected.|
+
+## AVMetadata<sup>10+</sup>
+
+Describes the media metadata.
+
+**System capability**: SystemCapability.Multimedia.AVSession.Core
+
+| Name           | Type                     | Mandatory| Description                                                                 |
+| --------------- |-------------------------| ---- |---------------------------------------------------------------------|
+| assetId         | string                  | Yes  | Media ID.                                                              |
+| title           | string                  | No  | Title.                                                                |
+| artist          | string                  | No  | Artist.                                                               |
+| author          | string                  | No  | Author.                                                              |
+| album           | string                  | No  | Album name.                                                              |
+| writer          | string                  | No  | Writer.                                                               |
+| composer        | string                  | No  | composer.                                                               |
+| duration        | number                  | No  | Media duration, in ms.                                                 |
+| mediaImage      | image.PixelMap &#124; string | No  | Pixel map or image path (local path or network path) of the image.                            |
+| publishDate     | Date                    | No  | Release date.                                                              |
+| subtitle        | string                  | No  | Subtitle.                                                               |
+| description     | string                  | No  | Media description.                                                              |
+| lyric           | string                  | No  | Lyric file path (local path or network path).|
+| previousAssetId | string                  | No  | ID of the previous media asset.                                                           |
+| nextAssetId     | string                  | No  | ID of the next media asset.                                                           |
+
+## AVMediaDescription<sup>10+</sup>
+
+Describes the attributes related to the media metadata in the playlist.
+
+**System capability**: SystemCapability.Multimedia.AVSession.Core
+
+| Name        | Type                   | Mandatory | Description                    |
+| ------------ | ----------------------- | ---- | ----------------------- |
+| mediaId      | string                  | Yes  | Media ID in the playlist.         |
+| title        | string                  | No  | Name of the media asset in the playlist.       |
+| subtitle     | string                  | No  | Subname of the media asset in the playlist.     |
+| description  | string                  | No  | Description of the media asset in the playlist.  |
+| icon         | image.PixelMap          | No  | Pixel map of the image of the media asset in the playlist.|
+| iconUri      | string                  | No  | Path of the image of the media asset in the playlist.|
+| extras       | {[key: string]: any}    | No  | Additional fields of the media asset in the playlist.    |
+| mediaUri     | string                  | No  | URI of the media asset in the playlist.        |
+| mediaType     | string                  | No  | Type of the media asset in the playlist.        |
+| mediaSize     | number                  | No  | Size of the media asset in the playlist.        |
+| albumTitle     | string                  | No  | Album name of the media asset in the playlist.        |
+| albumCoverUri     | string                  | No  | URI of the album title of the media asset in the playlist.   |
+| lyricContent     | string                  | No  | Lyric content of the media asset in the playlist.        |
+| lyricUri     | string                  | No  | Lyric URI of the media asset in the playlist.        |
+| artist     | string                  | No  | Author of the lyric of the media asset in the playlist.        |
+| fdSrc     | media.AVFileDescriptor        | No  | Handle to the local media file in the playlist.        |
+| duration     | number                  | No  | Playback duration of the media asset in the playlist.        |
+| startPosition     | number                  | No  | Start position for playing the media asset in the playlist.        |
+| creditsPosition     | number                  | No  | Position for playing the closing credits of the media asset in the playlist.        |
+| appName     | string                  | No  | Name of the application provided by the playlist.        |
+
+## AVQueueItem<sup>10+</sup>
+
+Describes the attributes of an item in the playlist.
+
+**System capability**: SystemCapability.Multimedia.AVSession.Core
+
+| Name        | Type                                       | Mandatory| Description                       |
+| ------------ | ------------------------------------------ | ---- | --------------------------- |
+| itemId       | number                                     | Yes  | ID of an item in the playlist.         |
+| description  | [AVMediaDescription](#avmediadescription10)  | Yes  | Media metadata of the item in the playlist.  |
+
+## AVPlaybackState<sup>10+</sup>
+
+Describes the information related to the media playback state.
+
+**System capability**: SystemCapability.Multimedia.AVSession.Core
+
+| Name        | Type                                 | Mandatory| Description    |
+| ------------ | ------------------------------------- | ---- | ------- |
+| state        | [PlaybackState](#playbackstate)       | No  | Playback state.|
+| speed        | number                                | No  | Playback speed.|
+| position     | [PlaybackPosition](#playbackposition) | No  | Playback position.|
+| bufferedTime | number                                | No  | Buffered time.|
+| loopMode     | [LoopMode](#loopmode10)                 | No  | Loop mode.|
+| isFavorite   | boolean                               | No  | Whether the media asset is favorited.|
+| activeItemId<sup>10+</sup> | number                  | No  | ID of the item that is being played.|
+| volume<sup>10+</sup> | number                  | No  | Media volume.|
+| extras<sup>10+</sup> | {[key: string]: Object}       | No  | Custom media data.|
+
+## PlaybackPosition<sup>10+</sup>
+
+Describes the information related to the playback position.
+
+**System capability**: SystemCapability.Multimedia.AVSession.Core
+
+| Name       | Type  | Mandatory| Description              |
+| ----------- | ------ | ---- | ------------------ |
+| elapsedTime | number | Yes  | Elapsed time, in ms.|
+| updateTime  | number | Yes  | Updated time, in ms.|
+
+## AVCastCategory<sup>10+</sup>
+
+Enumerates the cast categories.
+
+**System capability**: SystemCapability.Multimedia.AVSession.AVCast
+
+| Name                       | Value  | Description        |
+| --------------------------- | ---- | ----------- |
+| CATEGORY_LOCAL      | 0    | Local playback. The sound is played from the local device or a connected Bluetooth headset by default.    |
+| CATEGORY_REMOTE      | 1    | Remote playback. The sound or images are played from a remote device. |
+
+## DeviceType<sup>10+</sup>
+
+Enumerates the output device types.
+
+**System capability**: SystemCapability.Multimedia.AVSession.Core
+
+| Name                       | Value  | Description        |
+| --------------------------- | ---- | ----------- |
+| DEVICE_TYPE_LOCAL      | 0    | Local device.    |
+| DEVICE_TYPE_BLUETOOTH      | 10   | Bluetooth device. |
+| DEVICE_TYPE_TV      | 2    | TV.<br> **System capability**: SystemCapability.Multimedia.AVSession.AVCast|
+| DEVICE_TYPE_SMART_SPEAKER      | 3   | Speaker.<br> **System capability**: SystemCapability.Multimedia.AVSession.AVCast|
+
+## DeviceInfo<sup>10+</sup>
+
+Describes the information related to the output device.
+
+**System capability**: SystemCapability.Multimedia.AVSession.Core
+
+| Name      | Type          | Mandatory| Description                  |
+| ---------- | -------------- | ---- | ---------------------- |
+| castCategory   | AVCastCategory        | Yes  | Cast category.        |
+| deviceId   | string | Yes  | ID of the output device. |
+| deviceName | string | Yes  | Name of the output device.   |
+| deviceType | DeviceType | Yes  | Type of the output device.   |
+| ipAddress | string | No  | IP address of the output device.<br>This is a system API.<br> **System capability**: SystemCapability.Multimedia.AVSession.AVCast    |
+| providerId | number | No  | Vendor of the output device.<br>This is a system API.<br> **System capability**: SystemCapability.Multimedia.AVSession.AVCast   |
+
+## OutputDeviceInfo<sup>10+</sup>
+
+Describes the information related to the output device.
+
+**System capability**: SystemCapability.Multimedia.AVSession.Core
+
+| Name      | Type          | Mandatory| Description                  |
+| ---------- | -------------- | ---- | ---------------------- |
+| devices | Array\<DeviceInfo\> | Yes  | Output devices.   |
+
+## LoopMode<sup>10+</sup>
+
+Enumerates the loop modes of media playback.
+
+**System capability**: SystemCapability.Multimedia.AVSession.Core
+
+| Name              | Value  | Description    |
+| ------------------ | ---- | -------- |
+| LOOP_MODE_SEQUENCE | 0    | Sequential playback.|
+| LOOP_MODE_SINGLE   | 1    | Single loop.|
+| LOOP_MODE_LIST     | 2    | Playlist loop.|
+| LOOP_MODE_SHUFFLE  | 3    | Shuffle.|
+
+## PlaybackState<sup>10+</sup>
+
+Enumerates the media playback states.
+
+**System capability**: SystemCapability.Multimedia.AVSession.Core
+
+| Name                       | Value  | Description        |
+| --------------------------- | ---- | ----------- |
+| PLAYBACK_STATE_INITIAL      | 0    | Initial.    |
+| PLAYBACK_STATE_PREPARE      | 1    | Preparing. |
+| PLAYBACK_STATE_PLAY         | 2    | Playing.    |
+| PLAYBACK_STATE_PAUSE        | 3    | Paused.        |
+| PLAYBACK_STATE_FAST_FORWARD | 4    | Fast-forwarding.        |
+| PLAYBACK_STATE_REWIND       | 5    | Rewinding.        |
+| PLAYBACK_STATE_STOP         | 6    | Stop the playback.        |
+| PLAYBACK_STATE_COMPLETED    | 7    | Playback complete.    |
+| PLAYBACK_STATE_RELEASED     | 8    | Released.        |
+| PLAYBACK_STATE_ERROR        | 9    | Error.        |
+
+## AVSessionDescriptor
+
+Declares the session descriptor.
+
+**System capability**: SystemCapability.Multimedia.AVSession.Manager
+
+**System API**: This is a system API.
+
+| Name         | Type             | Readable| Writable| Description |
+| --------------| ---------------- |-----|-----|------|
+| sessionId    | string    | Yes | No| Session ID.     |
+| type         | [AVSessionType](#avsessiontype10)   | Yes  | No | Session type.   |
+| sessionTag   | string             | Yes  | No | Custom session name.   |
+| elementName  | [ElementName](js-apis-bundle-ElementName.md)  | Yes  | No | Information about the application to which the session belongs, including the bundle name and ability name.|
+| isActive     | boolean             | Yes  | No | Whether the session is activated.                                     |
+| isTopSession | boolean             | Yes  | No | Whether the session is the top session.                               |
+| outputDevice | [OutputDeviceInfo](#outputdeviceinfo10)    | Yes  | No | Information about the output device.  |
 
 ## AVSessionController<sup>10+</sup>
 
-An AV session controller is created by calling [avSession.createController](#avsessioncreatecontroller). Through the AV session controller, you can query the session ID, send commands and events to a session, and obtain session metadata and playback state information.
+An AV session controller is created by calling [avSession.createController](#avsessioncreatecontroller). Through the controller, you can query the session ID, send commands and events to a session, and obtain session metadata and playback state information.
 
 ### Attributes
 
@@ -2564,44 +5047,11 @@ An AV session controller is created by calling [avSession.createController](#avs
 
 **Example**
 ```js
-let sessionId;
-await avSession.createController(session.sessionId).then((controller) => {
-    sessionId = controller.sessionId;
+let AVSessionController;
+avSession.createController(currentAVSession.sessionId).then((controller) => {
+    AVSessionController = controller;
 }).catch((err) => {
-    console.info(`CreateController BusinessError: code: ${err.code}, message: ${err.message}`);
-});
-```
-
-### getAVPlaybackState<sup>10+</sup>
-
-getAVPlaybackState(): Promise\<AVPlaybackState>
-
-Obtains the information related to the playback state. This API uses a promise to return the result.
-
-**System capability**: SystemCapability.Multimedia.AVSession.Core
-
-**Return value**
-
-| Type                                         | Description                       |
-| --------------------------------------------- | --------------------------- |
-| Promise<[AVPlaybackState](#avplaybackstate10)\> | Promise used to return the **AVPlaybackState** object.|
-
-**Error codes**
-
-For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
-
-| ID| Error Message|
-| -------- | ---------------------------------------- |
-| 6600101  | Session service exception. |
-| 6600102  | The session does not exist. |
-| 6600103  | The session controller does not exist. |
-
-**Example**
-```js
-controller.getAVPlaybackState().then((playbackState) => {
-    console.info(`GetAVPlaybackState : SUCCESS : state : ${playbackState.state}`);
-}).catch((err) => {
-    console.info(`GetAVPlaybackState BusinessError: code: ${err.code}, message: ${err.message}`);
+    console.error(`CreateController BusinessError: code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -2609,15 +5059,15 @@ controller.getAVPlaybackState().then((playbackState) => {
 
 getAVPlaybackState(callback: AsyncCallback\<AVPlaybackState>): void
 
-Obtains the information related to the playback state. This API uses an asynchronous callback to return the result.
+Obtains the remote playback state. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
 **Parameters**
 
-| Name  | Type                                               | Mandatory| Description                        |
-| -------- | --------------------------------------------------- | ---- | ---------------------------- |
-| callback | AsyncCallback<[AVPlaybackState](#avplaybackstate10)\> | Yes  | Callback used to return the **AVPlaybackState** object.|
+| Name   | Type                                                       | Mandatory| Description                                                        |
+| --------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| callback  | AsyncCallback<[[AVPlaybackState](#avplaybackstate10)\> | Yes  | Callback used to return the remote playback state.|
 
 **Error codes**
 
@@ -2630,29 +5080,64 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 | 6600103  | The session controller does not exist. |
 
 **Example**
+
 ```js
-controller.getAVPlaybackState(function (err, playbackState) {
+avsessionController.getAVPlaybackState(function (err, state) {
     if (err) {
-        console.info(`GetAVPlaybackState BusinessError: code: ${err.code}, message: ${err.message}`);
+        console.error(`getAVPlaybackState BusinessError: code: ${err.code}, message: ${err.message}`);
     } else {
-        console.info(`GetAVPlaybackState : SUCCESS : state : ${playbackState.state}`);
+        console.info(`getAVPlaybackState : SUCCESS`);
     }
 });
 ```
 
-### getAVQueueItems<sup>10+</sup>
+### getAVPlaybackState<sup>10+</sup>
 
-getAVQueueItems(): Promise\<Array\<AVQueueItem>>
+getAVPlaybackState(): Promise\<AVPlaybackState>;
 
-Obtains the information related to the items in the queue. This API uses a promise to return the result.
+Obtains the remote playback state. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
 **Return value**
 
-| Type                                         | Description                          |
-| --------------------------------------------- | ----------------------------- |
-| Promise<Array<[AVQueueItem](#avqueueitem10)\>\> | Promise used to return the items in the queue.|
+| Type                                                       | Description                                                        |
+| --------- | ------------------------------------------------------------ |
+| Promise<[AVPlaybackState](#avplaybackstate10)\>  | Promise used to return the remote playback state. |
+
+**Error codes**
+
+For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
+| 6600103  | The session controller does not exist. |
+
+**Example**
+
+```js
+avsessionController.getAVPlaybackState().then((state) => {
+    console.info(`getAVPlaybackState : SUCCESS :`);
+}).catch((err) => {
+    console.error(`getAVPlaybackState BusinessError: code: ${err.code}, message: ${err.message}`);
+});
+```
+
+### getAVMetadata<sup>10+</sup>
+
+getAVMetadata(): Promise\<AVMetadata>
+
+Obtains the session metadata. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Multimedia.AVSession.Core
+
+**Return value**
+
+| Type                               | Description                         |
+| ----------------------------------- | ----------------------------- |
+| Promise<[AVMetadata](#avmetadata10)\> | Promise used to return the metadata obtained.|
 
 **Error codes**
 
@@ -2666,26 +5151,26 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 **Example**
 ```js
-controller.getAVQueueItems().then((items) => {
-    console.info(`GetAVQueueItems : SUCCESS : length : ${items.length}`);
+avsessionController.getAVMetadata().then((metadata) => {
+    console.info(`GetAVMetadata : SUCCESS : assetId : ${metadata.assetId}`);
 }).catch((err) => {
-    console.info(`GetAVQueueItems BusinessError: code: ${err.code}, message: ${err.message}`);
+    console.error(`GetAVMetadata BusinessError: code: ${err.code}, message: ${err.message}`);
 });
 ```
 
-### getAVQueueItems<sup>10+</sup>
+### getAVMetadata<sup>10+</sup>
 
-getAVQueueItems(callback: AsyncCallback\<Array\<AVQueueItem>>): void
+getAVMetadata(callback: AsyncCallback\<AVMetadata>): void
 
-Obtains the information related to the items in the playlist. This API uses an asynchronous callback to return the result.
+Obtains the session metadata. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
 **Parameters**
 
-| Name  | Type                                                | Mandatory| Description                     |
-| -------- | --------------------------------------------------- | ---- | ------------------------- |
-| callback | AsyncCallback<Array<[AVQueueItem](#avqueueitem10)\>\> | Yes  | Callback used to return the items in the playlist.|
+| Name  | Type                                     | Mandatory| Description                      |
+| -------- | ----------------------------------------- | ---- | -------------------------- |
+| callback | AsyncCallback<[AVMetadata](#avmetadata10)\> | Yes  | Callback used to return the metadata obtained.|
 
 **Error codes**
 
@@ -2699,11 +5184,11 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 **Example**
 ```js
-controller.getAVQueueItems(function (err, items) {
+avsessionController.getAVMetadata(function (err, metadata) {
     if (err) {
-        console.info(`GetAVQueueItems BusinessError: code: ${err.code}, message: ${err.message}`);
+        console.error(`GetAVMetadata BusinessError: code: ${err.code}, message: ${err.message}`);
     } else {
-        console.info(`GetAVQueueItems : SUCCESS : length : ${items.length}`);
+        console.info(`GetAVMetadata : SUCCESS : assetId : ${metadata.assetId}`);
     }
 });
 ```
@@ -2733,11 +5218,12 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 | 6600103  | The session controller does not exist. |
 
 **Example**
+
 ```js
-controller.getAVQueueTitle().then((title) => {
+avsessionController.getAVQueueTitle().then((title) => {
     console.info(`GetAVQueueTitle : SUCCESS : title : ${title}`);
 }).catch((err) => {
-    console.info(`GetAVQueueTitle BusinessError: code: ${err.code}, message: ${err.message}`);
+    console.error(`GetAVQueueTitle BusinessError: code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -2767,11 +5253,81 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 **Example**
 ```js
-controller.getAVQueueTitle(function (err, title) {
+avsessionController.getAVQueueTitle(function (err, title) {
     if (err) {
-        console.info(`GetAVQueueTitle BusinessError: code: ${err.code}, message: ${err.message}`);
+        console.error(`GetAVQueueTitle BusinessError: code: ${err.code}, message: ${err.message}`);
     } else {
         console.info(`GetAVQueueTitle : SUCCESS : title : ${title}`);
+    }
+});
+```
+
+### getAVQueueItems<sup>10+</sup>
+
+getAVQueueItems(): Promise\<Array\<AVQueueItem>>
+
+Obtains the information related to the items in the queue. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Multimedia.AVSession.Core
+
+**Return value**
+
+| Type                                         | Description                          |
+| --------------------------------------------- | ----------------------------- |
+| Promise<Array<[AVQueueItem](#avqueueitem10)\>\> | Promise used to return the items in the queue.|
+
+**Error codes**
+
+For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
+| 6600103  | The session controller does not exist. |
+
+**Example**
+
+```js
+avsessionController.getAVQueueItems().then((items) => {
+    console.info(`GetAVQueueItems : SUCCESS : length : ${items.length}`);
+}).catch((err) => {
+    console.error(`GetAVQueueItems BusinessError: code: ${err.code}, message: ${err.message}`);
+});
+```
+
+### getAVQueueItems<sup>10+</sup>
+
+getAVQueueItems(callback: AsyncCallback\<Array\<AVQueueItem>>): void
+
+Obtains the information related to the items in the playlist. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Multimedia.AVSession.Core
+
+**Parameters**
+
+| Name  | Type                                                | Mandatory| Description                     |
+| -------- | --------------------------------------------------- | ---- | ------------------------- |
+| callback | AsyncCallback<Array<[AVQueueItem](#avqueueitem10)\>\> | Yes  | Callback used to return the items in the playlist.|
+
+**Error codes**
+
+For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
+| 6600103  | The session controller does not exist. |
+
+**Example**
+
+```js
+avsessionController.getAVQueueItems(function (err, items) {
+    if (err) {
+        console.error(`GetAVQueueItems BusinessError: code: ${err.code}, message: ${err.message}`);
+    } else {
+        console.info(`GetAVQueueItems : SUCCESS : length : ${items.length}`);
     }
 });
 ```
@@ -2810,10 +5366,10 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 ```js
 let queueItemId = 0;
-controller.skipToQueueItem(queueItemId).then(() => {
+avsessionController.skipToQueueItem(queueItemId).then(() => {
     console.info(`SkipToQueueItem successfully`);
 }).catch((err) => {
-    console.info(`SkipToQueueItem BusinessError: code: ${err.code}, message: ${err.message}`);
+    console.error(`SkipToQueueItem BusinessError: code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -2846,79 +5402,11 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 ```js
 let queueItemId = 0;
-controller.skipToQueueItem(queueItemId, function (err) {
+avsessionController.skipToQueueItem(queueItemId, function (err) {
     if (err) {
-        console.info(`SkipToQueueItem BusinessError: code: ${err.code}, message: ${err.message}`);
+        console.error(`SkipToQueueItem BusinessError: code: ${err.code}, message: ${err.message}`);
     } else {
         console.info(`SkipToQueueItem successfully`);
-    }
-});
-```
-
-### getAVMetadata<sup>10+</sup>
-
-getAVMetadata(): Promise\<AVMetadata>
-
-Obtains the session metadata. This API uses a promise to return the result.
-
-**System capability**: SystemCapability.Multimedia.AVSession.Core
-
-**Return value**
-
-| Type                               | Description                         |
-| ----------------------------------- | ----------------------------- |
-| Promise<[AVMetadata](#avmetadata10)\> | Promise used to return the metadata obtained.|
-
-**Error codes**
-
-For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
-
-| ID| Error Message|
-| -------- | ---------------------------------------- |
-| 6600101  | Session service exception. |
-| 6600102  | The session does not exist. |
-| 6600103  | The session controller does not exist. |
-
-**Example**
-```js
-controller.getAVMetadata().then((metadata) => {
-    console.info(`GetAVMetadata : SUCCESS : assetId : ${metadata.assetId}`);
-}).catch((err) => {
-    console.info(`GetAVMetadata BusinessError: code: ${err.code}, message: ${err.message}`);
-});
-```
-
-### getAVMetadata<sup>10+</sup>
-
-getAVMetadata(callback: AsyncCallback\<AVMetadata>): void
-
-Obtains the session metadata. This API uses an asynchronous callback to return the result.
-
-**System capability**: SystemCapability.Multimedia.AVSession.Core
-
-**Parameters**
-
-| Name  | Type                                     | Mandatory| Description                      |
-| -------- | ----------------------------------------- | ---- | -------------------------- |
-| callback | AsyncCallback<[AVMetadata](#avmetadata10)\> | Yes  | Callback used to return the metadata obtained.|
-
-**Error codes**
-
-For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
-
-| ID| Error Message|
-| -------- | ---------------------------------------- |
-| 6600101  | Session service exception. |
-| 6600102  | The session does not exist. |
-| 6600103  | The session controller does not exist. |
-
-**Example**
-```js
-controller.getAVMetadata(function (err, metadata) {
-    if (err) {
-        console.info(`GetAVMetadata BusinessError: code: ${err.code}, message: ${err.message}`);
-    } else {
-        console.info(`GetAVMetadata : SUCCESS : assetId : ${metadata.assetId}`);
     }
 });
 ```
@@ -2943,15 +5431,15 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception. |
-| 6600103  | The session controller does not exist. |
+| 600101  | Session service exception. |
+| 600103  | The session controller does not exist. |
 
 **Example**
 ```js
-controller.getOutputDevice().then((deviceInfo) => {
+avsessionController.getOutputDevice().then((deviceInfo) => {
     console.info(`GetOutputDevice : SUCCESS : isRemote : ${deviceInfo.isRemote}`);
 }).catch((err) => {
-    console.info(`GetOutputDevice BusinessError: code: ${err.code}, message: ${err.message}`);
+    console.error(`GetOutputDevice BusinessError: code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -2975,103 +5463,17 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception. |
-| 6600103  | The session controller does not exist. |
+| 600101  | Session service exception. |
+| 600103  | The session controller does not exist. |
 
 **Example**
 
 ```js
-controller.getOutputDevice(function (err, deviceInfo) {
+avsessionController.getOutputDevice(function (err, deviceInfo) {
     if (err) {
-        console.info(`GetOutputDevice BusinessError: code: ${err.code}, message: ${err.message}`);
+        console.error(`GetOutputDevice BusinessError: code: ${err.code}, message: ${err.message}`);
     } else {
         console.info(`GetOutputDevice : SUCCESS : isRemote : ${deviceInfo.isRemote}`);
-    }
-});
-```
-
-### getExtras<sup>10+</sup>
-
-getExtras(): Promise\<{[key: string]: Object}>
-
-Obtains the custom media packet set by the provider. This API uses a promise to return the result.
-
-**System capability**: SystemCapability.Multimedia.AVSession.Core
-
-**Return value**
-
-| Type                               | Description                         |
-| ----------------------------------- | ----------------------------- |
-| Promise<{[key: string]: Object}\>   | Promise used to return the custom media packet. The content of the packet is the same as that set in **setExtras**.|
-
-**Error codes**
-
-For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
-
-| ID| Error Message|
-| -------- | ---------------------------------------- |
-| 6600101  | Session service exception. |
-| 6600102  | The session does not exist. |
-| 6600103  | The session controller does not exist. |
-| 6600105  | Invalid session command. |
-| 6600107  | Too many commands or events. |
-
-**Example**
-```js
-let extras = await controller.getExtras().catch((err) => {
-    console.info(`getExtras BusinessError: code: ${err.code}, message: ${err.message}`);
-});
-```
-
-### getExtras<sup>10+</sup>
-
-getExtras(callback: AsyncCallback\<{[key: string]: Object}>): void
-
-Obtains the custom media packet set by the provider. This API uses an asynchronous callback to return the result.
-
-**System capability**: SystemCapability.Multimedia.AVSession.Core
-
-**Parameters**
-
-| Name  | Type                                     | Mandatory| Description                      |
-| -------- | ----------------------------------------- | ---- | -------------------------- |
-| callback | AsyncCallback<{[key: string]: Object}\> | Yes  | Callback used to return the custom media packet. The content of the packet is the same as that set in **setExtras**.|
-
-**Error codes**
-
-For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
-
-| ID| Error Message|
-| -------- | ---------------------------------------- |
-| 6600101  | Session service exception. |
-| 6600102  | The session does not exist. |
-| 6600103  | The session controller does not exist. |
-| 6600105  | Invalid session command. |
-| 6600107  | Too many commands or events. |
-
-**Example**
-```js
-let metadata  = {
-    assetId: "121278",
-    title: "lose yourself",
-    artist: "Eminem",
-    author: "ST",
-    album: "Slim shady",
-    writer: "ST",
-    composer: "ST",
-    duration: 2222,
-    mediaImage: "https://www.example.com/example.jpg",
-    subtitle: "8 Mile",
-    description: "Rap",
-    lyric: "https://www.example.com/example.lrc",
-    previousAssetId: "121277",
-    nextAssetId: "121279",
-};
-controller.getExtras(function (err, extras) {
-    if (err) {
-        console.info(`getExtras BusinessError: code: ${err.code}, message: ${err.message}`);
-    } else {
-        console.info(`getExtras : SUCCESS : assetId : ${metadata.assetId}`);
     }
 });
 ```
@@ -3096,11 +5498,11 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception. |
-| 6600102  | The session does not exist. |
-| 6600103  | The session controller does not exist. |
-| 6600105  | Invalid session command. |
-| 6600106  | The session is not activated. |
+| 600101  | Session service exception. |
+| 600102  | The session does not exist. |
+| 600103  | The session controller does not exist. |
+| 600105  | Invalid session command. |
+| 600106  | The session is not activated. |
 
 **Return value**
 
@@ -3114,10 +5516,10 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 let keyItem = {code:0x49, pressedTime:2, deviceId:0};
 let event = {action:2, key:keyItem, keys:[keyItem]};
 
-controller.sendAVKeyEvent(event).then(() => {
+avsessionController.sendAVKeyEvent(event).then(() => {
     console.info(`SendAVKeyEvent Successfully`);
 }).catch((err) => {
-    console.info(`SendAVKeyEvent BusinessError: code: ${err.code}, message: ${err.message}`);
+    console.error(`SendAVKeyEvent BusinessError: code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -3142,11 +5544,11 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception. |
-| 6600102  | The session does not exist. |
-| 6600103  | The session controller does not exist. |
-| 6600105  | Invalid session command. |
-| 6600106  | The session is not activated. |
+| 600101  | Session service exception. |
+| 600102  | The session does not exist. |
+| 600103  | The session controller does not exist. |
+| 600105  | Invalid session command. |
+| 600106  | The session is not activated. |
 
 **Example**
 
@@ -3154,9 +5556,9 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 let keyItem = {code:0x49, pressedTime:2, deviceId:0};
 let event = {action:2, key:keyItem, keys:[keyItem]};
 
-controller.sendAVKeyEvent(event, function (err) {
+avsessionController.sendAVKeyEvent(event, function (err) {
     if (err) {
-        console.info(`SendAVKeyEvent BusinessError: code: ${err.code}, message: ${err.message}`);
+        console.error(`SendAVKeyEvent BusinessError: code: ${err.code}, message: ${err.message}`);
     } else {
         console.info(`SendAVKeyEvent Successfully`);
     }
@@ -3190,12 +5592,10 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 **Example**
 
 ```js
-import wantAgent from '@ohos.app.ability.wantAgent';
-
-controller.getLaunchAbility().then((agent) => {
+avsessionController.getLaunchAbility().then((agent) => {
     console.info(`GetLaunchAbility : SUCCESS : wantAgent : ${agent}`);
 }).catch((err) => {
-    console.info(`GetLaunchAbility BusinessError: code: ${err.code}, message: ${err.message}`);
+    console.error(`GetLaunchAbility BusinessError: code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -3226,11 +5626,9 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 **Example**
 
 ```js
-import wantAgent from '@ohos.app.ability.wantAgent';
-
-controller.getLaunchAbility(function (err, agent) {
+avsessionController.getLaunchAbility(function (err, agent) {
     if (err) {
-        console.info(`GetLaunchAbility BusinessError: code: ${err.code}, message: ${err.message}`);
+        console.error(`GetLaunchAbility BusinessError: code: ${err.code}, message: ${err.message}`);
     } else {
         console.info(`GetLaunchAbility : SUCCESS : wantAgent : ${agent}`);
     }
@@ -3263,7 +5661,7 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 **Example**
 
 ```js
-let time = controller.getRealPlaybackPositionSync();
+let time = avsessionController.getRealPlaybackPositionSync();
 ```
 
 ### isActive<sup>10+</sup>
@@ -3293,10 +5691,10 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 **Example**
 
 ```js
-controller.isActive().then((isActive) => {
+avsessionController.isActive().then((isActive) => {
     console.info(`IsActive : SUCCESS : isactive : ${isActive}`);
 }).catch((err) => {
-    console.info(`IsActive BusinessError: code: ${err.code}, message: ${err.message}`);
+    console.error(`IsActive BusinessError: code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -3327,9 +5725,9 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 **Example**
 
 ```js
-controller.isActive(function (err, isActive) {
+avsessionController.isActive(function (err, isActive) {
     if (err) {
-        console.info(`IsActive BusinessError: code: ${err.code}, message: ${err.message}`);
+        console.error(`IsActive BusinessError: code: ${err.code}, message: ${err.message}`);
     } else {
         console.info(`IsActive : SUCCESS : isactive : ${isActive}`);
     }
@@ -3362,10 +5760,10 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 **Example**
 
 ```js
-controller.destroy().then(() => {
+avsessionController.destroy().then(() => {
     console.info(`Destroy : SUCCESS `);
 }).catch((err) => {
-    console.info(`Destroy BusinessError: code: ${err.code}, message: ${err.message}`);
+    console.error(`Destroy BusinessError: code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -3395,9 +5793,9 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 **Example**
 
 ```js
-controller.destroy(function (err) {
+avsessionController.destroy(function (err) {
     if (err) {
-        console.info(`Destroy BusinessError: code: ${err.code}, message: ${err.message}`);
+        console.error(`Destroy BusinessError: code: ${err.code}, message: ${err.message}`);
     } else {
         console.info(`Destroy : SUCCESS `);
     }
@@ -3431,10 +5829,10 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 **Example**
 
 ```js
-controller.getValidCommands.then((validCommands) => {
+avsessionController.getValidCommands.then((validCommands) => {
     console.info(`GetValidCommands : SUCCESS : size : ${validCommands.length}`);
 }).catch((err) => {
-    console.info(`GetValidCommands BusinessError: code: ${err.code}, message: ${err.message}`);
+    console.error(`GetValidCommands BusinessError: code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -3465,9 +5863,9 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 **Example**
 
 ```js
-controller.getValidCommands(function (err, validCommands) {
+avsessionController.getValidCommands(function (err, validCommands) {
     if (err) {
-        console.info(`GetValidCommands BusinessError: code: ${err.code}, message: ${err.message}`);
+        console.error(`GetValidCommands BusinessError: code: ${err.code}, message: ${err.message}`);
     } else {
         console.info(`GetValidCommands : SUCCESS : size : ${validCommands.length}`);
     }
@@ -3482,7 +5880,7 @@ Sends a control command to the session through the controller. This API uses a p
 
 > **NOTE**
 >
-> Before using **sendControlCommand**, the controller must ensure that the AVSession has registered with the corresponding listener. For details about how to register the listener, see [Registering AVSession Listeners](#onplaypausestopplaynextplaypreviousfastforwardrewind10).
+> Before using **sendControlCommand**, the controller must ensure that the corresponding listeners are registered for the media session. For details about how to register the listeners, see [on'play'](#onplay10), [on'pause'](#onpause10), and the like.
 
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
@@ -3525,10 +5923,10 @@ let avCommand = {command:'play'};
 // let avCommand = {command:'setSpeed', parameter:2.6};
 // let avCommand = {command:'setLoopMode', parameter:avSession.LoopMode.LOOP_MODE_SINGLE};
 // let avCommand = {command:'toggleFavorite', parameter:"false"};
-controller.sendControlCommand(avCommand).then(() => {
+avsessionController.sendControlCommand(avCommand).then(() => {
     console.info(`SendControlCommand successfully`);
 }).catch((err) => {
-    console.info(`SendControlCommand BusinessError: code: ${err.code}, message: ${err.message}`);
+    console.error(`SendControlCommand BusinessError: code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -3540,7 +5938,7 @@ Sends a control command to the session through the controller. This API uses an 
 
 > **NOTE**
 >
-> Before using **sendControlCommand**, the controller must ensure that the AVSession has registered with the corresponding listener. For details about how to register the listener, see [Registering AVSession Listeners](#onplaypausestopplaynextplaypreviousfastforwardrewind10).
+> Before using **sendControlCommand**, the controller must ensure that the corresponding listeners are registered for the media session. For details about how to register the listeners, see [on'play'](#onplay10), [on'pause'](#onpause10), and the like.
 
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
@@ -3578,11 +5976,11 @@ let avCommand = {command:'play'};
 // let avCommand = {command:'setSpeed', parameter:2.6};
 // let avCommand = {command:'setLoopMode', parameter:avSession.LoopMode.LOOP_MODE_SINGLE};
 // let avCommand = {command:'toggleFavorite', parameter:"false"};
-controller.sendControlCommand(avCommand, function (err) {
+avsessionController.sendControlCommand(avCommand, function (err) {
     if (err) {
         console.info(`SendControlCommand BusinessError: code: ${err.code}, message: ${err.message}`);
     } else {
-        console.info(`SendControlCommand successfully`);
+        console.error(`SendControlCommand successfully`);
     }
 });
 ```
@@ -3603,8 +6001,7 @@ Sends a custom control command to the session through the controller. This API u
 | args | {[key: string]: any} | Yes  | Parameters in key-value pair format carried in the custom control command.|
 
 > **NOTE**
->
-> The **args** parameter supports the following data types: string, number, Boolean, object, array, and file descriptor. For details, see [@ohos.app.ability.Want(Want)](./js-apis-app-ability-want.md).
+> The **args** parameter supports the following data types: string, number, Boolean, object, array, and file descriptor. For details, see [@ohos.app.ability.Want (Want)](./js-apis-app-ability-want.md).
 
 **Return value**
 
@@ -3632,7 +6029,7 @@ let commandName = "my_command";
 let args = {
     command : "This is my command"
 }
-await controller.sendCommonCommand(commandName, args).catch((err) => {
+avsessionController.sendCommonCommand(commandName, args).catch((err) => {
     console.info(`SendCommonCommand BusinessError: code: ${err.code}, message: ${err.message}`);
 })
 ```
@@ -3654,8 +6051,7 @@ Sends a custom control command to the session through the controller. This API u
 | callback | AsyncCallback\<void>                  | Yes  | Callback used to return the result. If the command is sent, **err** is **undefined**; otherwise, **err** is an error object.                    |
 
 > **NOTE**
->
-> The **args** parameter supports the following data types: string, number, Boolean, object, array, and file descriptor. For details, see [@ohos.app.ability.Want(Want)](./js-apis-app-ability-want.md).
+> The **args** parameter supports the following data types: string, number, Boolean, object, array, and file descriptor. For details, see [@ohos.app.ability.Want (Want)](./js-apis-app-ability-want.md).
 
 **Error codes**
 
@@ -3677,18 +6073,88 @@ let commandName = "my_command";
 let args = {
     command : "This is my command"
 }
-controller.sendCommonCommand(commandName, args, (err) => {
+avsessionController.sendCommonCommand(commandName, args, (err) => {
     if(err) {
         console.info(`SendCommonCommand BusinessError: code: ${err.code}, message: ${err.message}`);
     }
 })
 ```
 
+### getExtras<sup>10+</sup>
+
+getExtras(): Promise\<{[key: string]: Object}>
+
+Obtains the custom media packet set by the provider. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Multimedia.AVSession.Core
+
+**Return value**
+
+| Type                               | Description                         |
+| ----------------------------------- | ----------------------------- |
+| Promise<{[key: string]: Object}\>   | Promise used to return the custom media packet. The content of the packet is the same as that set in **setExtras**.|
+
+**Error codes**
+
+For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
+| 6600103  | The session controller does not exist. |
+| 6600105  | Invalid session command. |
+| 6600107  | Too many commands or events. |
+
+**Example**
+```js
+let extras = await avsessionController.getExtras().catch((err) => {
+    console.info(`getExtras BusinessError: code: ${err.code}, message: ${err.message}`);
+});
+```
+
+### getExtras<sup>10+</sup>
+
+getExtras(callback: AsyncCallback\<{[key: string]: Object}>): void
+
+Obtains the custom media packet set by the provider. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Multimedia.AVSession.Core
+
+**Parameters**
+
+| Name  | Type                                     | Mandatory| Description                      |
+| -------- | ----------------------------------------- | ---- | -------------------------- |
+| callback | AsyncCallback<{[key: string]: Object}\> | Yes  | Callback used to return the custom media packet. The content of the packet is the same as that set in **setExtras**.|
+
+**Error codes**
+
+For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
+| 6600103  | The session controller does not exist. |
+| 6600105  | Invalid session command. |
+| 6600107  | Too many commands or events. |
+
+**Example**
+```js
+avsessionController.getExtras(function (err, extras) {
+    if (err) {
+        console.error(`getExtras BusinessError: code: ${err.code}, message: ${err.message}`);
+    } else {
+        console.info(`getExtras : SUCCESS : assetId : ${extras}`);
+    }
+});
+```
+
 ### on('metadataChange')<sup>10+</sup>
 
 on(type: 'metadataChange', filter: Array\<keyof AVMetadata> | 'all', callback: (data: AVMetadata) => void)
 
-Subscribes to the metadata change event.
+Subscribes to metadata change events.
 
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
@@ -3696,7 +6162,7 @@ Subscribes to the metadata change event.
 
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | Yes  | Event type. The event **'metadataChange'** is reported when the session metadata changes.|
+| type     | string                                                       | Yes  | Event type. The event **'metadataChange'** is triggered when the session metadata changes.|
 | filter   | Array\<keyof&nbsp;[AVMetadata](#avmetadata10)\>&nbsp;&#124;&nbsp;'all' | Yes  | The value **'all'** indicates that any metadata field change will trigger the event, and **Array<keyof&nbsp;[AVMetadata](#avmetadata10)\>** indicates that only changes to the listed metadata field will trigger the event.|
 | callback | (data: [AVMetadata](#avmetadata10)) => void                    | Yes  | Callback used for subscription. The **data** parameter in the callback indicates the changed metadata.                        |
 
@@ -3712,309 +6178,13 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 **Example**
 
 ```js
-controller.on('metadataChange', 'all', (metadata) => {
+avsessionController.on('metadataChange', 'all', (metadata) => {
     console.info(`on metadataChange assetId : ${metadata.assetId}`);
 });
 
 let metaFilter = ['assetId', 'title', 'description'];
-controller.on('metadataChange', metaFilter, (metadata) => {
+avsessionController.on('metadataChange', metaFilter, (metadata) => {
     console.info(`on metadataChange assetId : ${metadata.assetId}`);
-});
-```
-
-### on('playbackStateChange')<sup>10+</sup>
-
-on(type: 'playbackStateChange', filter: Array\<keyof AVPlaybackState> | 'all', callback: (state: AVPlaybackState) => void)
-
-Subscribes to the playback state change event.
-
-**System capability**: SystemCapability.Multimedia.AVSession.Core
-
-**Parameters**
-
-| Name  | Type                                                        | Mandatory| Description                                                        |
-| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | Yes  | Event type. The event **'playbackStateChange'** is reported when the playback state changes.|
-| filter   | Array\<keyof&nbsp;[AVPlaybackState](#avplaybackstate10)\>&nbsp;&#124;&nbsp;'all' | Yes  | The value **'all'** indicates that any playback state field change will trigger the event, and **Array<keyof&nbsp;[AVPlaybackState](#avplaybackstate10)\>** indicates that only changes to the listed playback state field will trigger the event.|
-| callback | (state: [AVPlaybackState](#avplaybackstate10)) => void         | Yes  | Callback used for subscription. The **state** parameter in the callback indicates the changed playback state.                     |
-
-**Error codes**
-
-For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
-
-| ID| Error Message|
-| -------- | ------------------------------ |
-| 6600101  | Session service exception. |
-| 6600103  | The session controller does not exist. |
-
-**Example**
-
-```js
-controller.on('playbackStateChange', 'all', (playbackState) => {
-    console.info(`on playbackStateChange state : ${playbackState.state}`);
-});
-
-let playbackFilter = ['state', 'speed', 'loopMode'];
-controller.on('playbackStateChange', playbackFilter, (playbackState) => {
-    console.info(`on playbackStateChange state : ${playbackState.state}`);
-});
-```
-
-### on('sessionEvent')<sup>10+</sup>
-
-on(type: 'sessionEvent', callback: (sessionEvent: string, args: {[key:string]: Object}) => void): void
-
-Subscribes to session event changes. This API is called by the controller.
-
-**System capability**: SystemCapability.Multimedia.AVSession.Core
-
-**Parameters**
-
-| Name  | Type                                                        | Mandatory| Description                                                        |
-| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | Yes  | Event type. The event **'sessionEvent'** is reported when the session event changes.|
-| callback | (sessionEvent: string, args: {[key:string]: object}) => void         | Yes  | Callback used for subscription. **sessionEvent** in the callback indicates the name of the session event that changes, and **args** indicates the parameters carried in the event.         |
-
-**Error codes**
-
-For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
-
-| ID| Error Message|
-| -------- | ------------------------------ |
-| 6600101  | Session service exception. |
-| 6600103  | The session controller does not exist. |
-
-**Example**
-
-```js
-controller.on('sessionEvent', (sessionEvent, args) => {
-    console.info(`OnSessionEvent, sessionEvent is ${sessionEvent}, args: ${JSON.stringify(args)}`);
-});
-```
-
-### on('queueItemsChange')<sup>10+</sup>
-
-on(type: 'queueItemsChange', callback: (items: Array<[AVQueueItem](#avqueueitem10)\>) => void): void
-
-Subscribes to playlist item changes. This API is called by the controller.
-
-**System capability**: SystemCapability.Multimedia.AVSession.Core
-
-**Parameters**
-
-| Name  | Type                                                  | Mandatory| Description                                                                        |
-| -------- | ----------------------------------------------------- | ---- | ---------------------------------------------------------------------------- |
-| type     | string                                                | Yes  | Event type. The event **'queueItemsChange'** is reported when one or more items in the playlist changes.|
-| callback | (items: Array<[AVQueueItem](#avqueueitem10)\>) => void  | Yes  | Callback used for subscription. The **items** parameter in the callback indicates the changed items in the playlist.                           |
-
-**Error codes**
-
-For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
-
-| ID| Error Message|
-| -------- | ------------------------------ |
-| 6600101  | Session service exception. |
-| 6600103  | The session controller does not exist. |
-
-**Example**
-
-```js
-controller.on('queueItemsChange', (items) => {
-    console.info(`OnQueueItemsChange, items length is ${items.length}`);
-});
-```
-
-### on('queueTitleChange')<sup>10+</sup>
-
-on(type: 'queueTitleChange', callback: (title: string) => void): void
-
-Subscribes to playlist name changes. This API is called by the controller.
-
-**System capability**: SystemCapability.Multimedia.AVSession.Core
-
-**Parameters**
-
-| Name  | Type                    | Mandatory| Description                                                                            |
-| -------- | ----------------------- | ---- | ------------------------------------------------------------------------------- |
-| type     | string                  | Yes  | Event type. The event **'queueTitleChange'** is reported when the playlist name changes.|
-| callback | (title: string) => void | Yes  | Callback used for subscription. The **title** parameter in the callback indicates the changed playlist name.                               |
-
-**Error codes**
-
-For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
-
-| ID| Error Message|
-| -------- | ------------------------------ |
-| 6600101  | Session service exception. |
-| 6600103  | The session controller does not exist. |
-
-**Example**
-
-```js
-controller.on('queueTitleChange', (title) => {
-    console.info(`queueTitleChange, title is ${title}`);
-});
-```
-
-### on('extrasChange')<sup>10+</sup>
-
-on(type: 'extrasChange', callback: (extras: {[key:string]: Object}) => void): void
-
-Subscribes to custom media packet changes. This API is called by the controller.
-
-**System capability**: SystemCapability.Multimedia.AVSession.Core
-
-**Parameters**
-
-| Name  | Type                                                        | Mandatory| Description                                                        |
-| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | Yes  | Event type. The event **'extrasChange'** is reported when the provider sets a custom media packet.|
-| callback | (extras: {[key:string]: object}) => void         | Yes  | Callback used for subscription. The **extras** parameter in the callback indicates the custom media packet set by the provider. This packet is the same as that set in **dispatchSessionEvent**.         |
-
-**Error codes**
-
-For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
-
-| ID| Error Message|
-| -------- | ------------------------------ |
-| 6600101  | Session service exception. |
-| 6600103  | The session controller does not exist. |
-| 401      | Parameter check failed                 |
-
-**Example**
-
-```js
-controller.on('extrasChange', (extras) => {
-    console.info(`Caught extrasChange event,the new extra is: ${JSON.stringify(extras)}`);
-});
-```
-
-### on('sessionDestroy')<sup>10+</sup>
-
-on(type: 'sessionDestroy', callback: () => void)
-
-Subscribes to the session destruction event.
-
-**System capability**: SystemCapability.Multimedia.AVSession.Core
-
-**Parameters**
-
-| Name  | Type      | Mandatory| Description                                                        |
-| -------- | ---------- | ---- | ------------------------------------------------------------ |
-| type     | string     | Yes  | Event type. The event **'sessionDestroy'** is reported when the session is destroyed.|
-| callback | () => void | Yes  | Callback used for subscription. If the subscription is successful, **err** is **undefined**; otherwise, **err** is an error object.                 |
-
-**Error codes**
-
-For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
-
-| ID| Error Message|
-| -------- | ------------------------------ |
-| 6600101  | Session service exception. |
-| 6600103  | The session controller does not exist. |
-
-**Example**
-
-```js
-controller.on('sessionDestroy', () => {
-    console.info(`on sessionDestroy : SUCCESS `);
-});
-```
-
-### on('activeStateChange')<sup>10+</sup>
-
-on(type: 'activeStateChange', callback: (isActive: boolean) => void)
-
-Subscribes to the session activation state change event.
-
-**System capability**: SystemCapability.Multimedia.AVSession.Core
-
-**Parameters**
-
-| Name  | Type                       | Mandatory| Description                                                        |
-| -------- | --------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                      | Yes  | Event type. The event **'activeStateChange'** is reported when the activation state of the session changes.|
-| callback | (isActive: boolean) => void | Yes  | Callback used for subscription. The **isActive** parameter in the callback specifies whether the session is activated. The value **true** means that the service is activated, and **false** means the opposite.                  |
-
-**Error codes**
-
-For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
-
-| ID| Error Message|
-| -------- | ----------------------------- |
-| 6600101  | Session service exception. |
-| 6600103  |The session controller does not exist. |
-
-**Example**
-
-```js
-controller.on('activeStateChange', (isActive) => {
-    console.info(`on activeStateChange : SUCCESS : isActive ${isActive}`);
-});
-```
-
-### on('validCommandChange')<sup>10+</sup>
-
-on(type: 'validCommandChange', callback: (commands: Array\<AVControlCommandType>) => void)
-
-Subscribes to valid command changes.
-
-**System capability**: SystemCapability.Multimedia.AVSession.Core
-
-**Parameters**
-
-| Name  | Type                                                        | Mandatory| Description                                                        |
-| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | Yes  | Event type. The event **'validCommandChange'** is reported when the valid commands supported by the session changes.|
-| callback | (commands: Array<[AVControlCommandType](#avcontrolcommandtype10)\>) => void | Yes  | Callback used for subscription. The **commands** parameter in the callback is a set of valid commands.                    |
-
-**Error codes**
-
-For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
-
-| ID| Error Message|
-| -------- | ------------------------------ |
-| 6600101  | Session service exception. |
-| 6600103  | The session controller does not exist. |
-
-**Example**
-
-```js
-controller.on('validCommandChange', (validCommands) => {
-    console.info(`validCommandChange : SUCCESS : size : ${validCommands.size}`);
-    console.info(`validCommandChange : SUCCESS : validCommands : ${validCommands.values()}`);
-});
-```
-
-### on('outputDeviceChange')<sup>10+</sup>
-
-on(type: 'outputDeviceChange', callback: (device: OutputDeviceInfo) => void): void
-
-Subscribes to output device changes.
-
-**System capability**: SystemCapability.Multimedia.AVSession.Core
-
-**Parameters**
-
-| Name  | Type                                                   | Mandatory| Description                                                        |
-| -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                                                  | Yes  | Event type. The event **'outputDeviceChange'** is reported when the output device changes.|
-| callback | (device: [OutputDeviceInfo](#outputdeviceinfo10)) => void | Yes  | Callback used for subscription. The **device** parameter in the callback indicates the output device information.                        |
-
-**Error codes**
-
-For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
-
-| ID| Error Message|
-| -------- | ----------------------- |
-| 6600101  | Session service exception. |
-| 6600103  | The session controller does not exist. |
-
-**Example**
-
-```js
-controller.on('outputDeviceChange', (device) => {
-    console.info(`on outputDeviceChange device isRemote : ${device.isRemote}`);
 });
 ```
 
@@ -4022,7 +6192,7 @@ controller.on('outputDeviceChange', (device) => {
 
 off(type: 'metadataChange', callback?: (data: AVMetadata) => void)
 
-Unsubscribes from metadata changes. This API is called by the controller.
+Unsubscribes from metadata change events. This API is called by the controller.
 
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
@@ -4030,7 +6200,7 @@ Unsubscribes from metadata changes. This API is called by the controller.
 
 | Name  | Type                                              | Mandatory| Description                                                   |
 | -------- | ------------------------------------------------ | ---- | ------------------------------------------------------ |
-| type     | string                                           | Yes  | Event type. The event **'metadataChange'** is reported when the session metadata changes.        |
+| type     | string                                           | Yes  | Event type, which is **'metadataChange'** in this case.        |
 | callback | (data: [AVMetadata](#avmetadata10)) => void        | No  | Callback used for subscription. The **data** parameter in the callback indicates the changed metadata.<br>The **callback** parameter is optional. If it is not specified, all the subscriptions to the specified event are canceled for this session.                        |
 
 **Error codes**
@@ -4045,14 +6215,52 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 **Example**
 
 ```js
-controller.off('metadataChange');
+avsessionController.off('metadataChange');
+```
+
+### on('playbackStateChange')<sup>10+</sup>
+
+on(type: 'playbackStateChange', filter: Array\<keyof AVPlaybackState> | 'all', callback: (state: AVPlaybackState) => void)
+
+Subscribes to playback state change events.
+
+**System capability**: SystemCapability.Multimedia.AVSession.Core
+
+**Parameters**
+
+| Name  | Type      | Mandatory| Description     |
+| --------| -----------|-----|------------|
+| type     | string    | Yes  | Event type. The event **'playbackStateChange'** is triggered when the playback state changes.|
+| filter   | Array\<keyof&nbsp;[AVPlaybackState](#avplaybackstate10)\>&nbsp;&#124;&nbsp;'all' | Yes  | The value **'all'** indicates that any playback state field change will trigger the event, and **Array<keyof&nbsp;[AVPlaybackState](#avplaybackstate10)\>** indicates that only changes to the listed playback state field will trigger the event.|
+| callback | (state: [AVPlaybackState](#avplaybackstate10)) => void       | Yes  | Callback used for subscription. The **state** parameter in the callback indicates the changed playback state.|
+
+**Error codes**
+
+For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
+
+| ID| Error Message|
+| -------- | ------------------------------ |
+| 6600101  | Session service exception. |
+| 6600103  | The session controller does not exist. |
+
+**Example**
+
+```js
+avsessionController.on('playbackStateChange', 'all', (playbackState) => {
+    console.info(`on playbackStateChange state : ${playbackState.state}`);
+});
+
+let playbackFilter = ['state', 'speed', 'loopMode'];
+avsessionController.on('playbackStateChange', playbackFilter, (playbackState) => {
+    console.info(`on playbackStateChange state : ${playbackState.state}`);
+});
 ```
 
 ### off('playbackStateChange')<sup>10+</sup>
 
 off(type: 'playbackStateChange', callback?: (state: AVPlaybackState) => void)
 
-Unsubscribes from playback state changes. This API is called by the controller.
+Unsubscribes from playback state change events. This API is called by the controller.
 
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
@@ -4060,8 +6268,8 @@ Unsubscribes from playback state changes. This API is called by the controller.
 
 | Name  | Type                                                        | Mandatory| Description                                                    |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------- |
-| type     | string                                                       | Yes  | Event type. The event **'playbackStateChange'** is reported when the playback state changes.   |
-| callback | (state: [AVPlaybackState](#avplaybackstate10)) => void         | No  | Callback used for subscription. The **state** parameter in the callback indicates the changed playback state.<br>The **callback** parameter is optional. If it is not specified, all the subscriptions to the specified event are canceled for this session.                     |
+| type     | string                                                       | Yes  | Event type, which is **'playbackStateChange'** in this case.   |
+| callback | (state: [AVPlaybackState](#avplaybackstate10)) => void         | No  | Callback used for unsubscription. The **state** parameter in the callback indicates the changed playback state.<br>The **callback** parameter is optional. If it is not specified, all the subscriptions to the specified event are canceled for this session.                     |
 
 **Error codes**
 
@@ -4075,135 +6283,46 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 **Example**
 
 ```js
-controller.off('playbackStateChange');
+avsessionController.off('playbackStateChange');
 ```
 
-### off('sessionEvent')<sup>10+</sup>
+### on('sessionDestroy')<sup>10+</sup>
 
-off(type: 'sessionEvent', callback?: (sessionEvent: string, args: {[key:string]: Obejct}) => void): void
+on(type: 'sessionDestroy', callback: () => void)
 
-Unsubscribes from session event changes. This API is called by the controller.
+Subscribes to session destruction events.
 
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
 **Parameters**
 
-| Name  | Type                                                        | Mandatory| Description                                                    |
-| -------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------- |
-| type     | string                                                       | Yes  | Event type. The value is fixed at **'sessionEvent'**.   |
-| callback | (sessionEvent: string, args: {[key:string]: object}) => void         | No  | Callback used for unsubscription. **sessionEvent** in the callback indicates the name of the session event that changes, and **args** indicates the parameters carried in the event.<br>The **callback** parameter is optional. If it is not specified, all the subscriptions to the specified event are canceled for this session.                     |
+| Name  | Type      | Mandatory| Description                                                        |
+| -------- | ---------- | ---- | ------------------------------------------------------------ |
+| type     | string     | Yes  | Event type. The event **'sessionDestroy'** is triggered when a session is destroyed.|
+| callback | () => void | Yes  | Callback used for subscription. If the subscription is successful, **err** is **undefined**; otherwise, **err** is an error object.                 |
 
 **Error codes**
 
 For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
 
 | ID| Error Message|
-| -------- | ---------------- |
+| -------- | ------------------------------ |
 | 6600101  | Session service exception. |
 | 6600103  | The session controller does not exist. |
 
 **Example**
 
 ```js
-controller.off('sessionEvent');
-```
-
-### off('queueItemsChange')<sup>10+</sup>
-
-off(type: 'queueItemsChange', callback?: (items: Array<[AVQueueItem](#avqueueitem10)\>) => void): void
-
-Unsubscribes from playback item changes. This API is called by the controller.
-
-**System capability**: SystemCapability.Multimedia.AVSession.Core
-
-**Parameters**
-
-| Name   | Type                                                | Mandatory| Description                                                                                               |
-| -------- | ---------------------------------------------------- | ---- | --------------------------------------------------------------------------------------------------- |
-| type     | string                                               | Yes  | Event type. The value is fixed at **'queueItemsChange'**.                                                    |
-| callback | (items: Array<[AVQueueItem](#avqueueitem10)\>) => void | No  | Callback used for unsubscription. The **items** parameter in the callback indicates the changed items in the playback.<br>The **callback** parameter is optional. If it is not specified, all the subscriptions to the specified event are canceled for this session.|
-
-**Error codes**
-
-For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
-
-| ID| Error Message|
-| -------- | ---------------- |
-| 6600101  | Session service exception. |
-| 6600103  | The session controller does not exist. |
-
-**Example**
-
-```js
-controller.off('queueItemsChange');
-```
-
-### off('queueTitleChange')<sup>10+</sup>
-
-off(type: 'queueTitleChange', callback?: (title: string) => void): void
-
-Unsubscribes from playlist name changes. This API is called by the controller.
-
-**System capability**: SystemCapability.Multimedia.AVSession.Core
-
-**Parameters**
-
-| Name   | Type                   | Mandatory| Description                                                                                                   |
-| -------- | ----------------------- | ---- | ------------------------------------------------------------------------------------------------------- |
-| type     | string                  | Yes  | Event type. The value is fixed at **'queueTitleChange'**.                                                        |
-| callback | (title: string) => void | No  | Callback used for unsubscription. The **items** parameter in the callback indicates the changed playlist name.<br>The **callback** parameter is optional. If it is not specified, all the subscriptions to the specified event are canceled for this session.|
-
-**Error codes**
-
-For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
-
-| ID| Error Message|
-| -------- | ---------------- |
-| 6600101  | Session service exception. |
-| 6600103  | The session controller does not exist. |
-
-**Example**
-
-```js
-controller.off('queueTitleChange');
-```
-
-### off('extrasChange')<sup>10+</sup>
-
-off(type: 'extrasChange', callback?: (extras: {[key:string]: Object}) => void): void
-
-Unsubscribes from custom media packet changes. This API is called by the controller.
-
-**System capability**: SystemCapability.Multimedia.AVSession.Core
-
-**Parameters**
-
-| Name   | Type                   | Mandatory| Description                                                                                                   |
-| -------- | ----------------------- | ---- | ------------------------------------------------------------------------------------------------------- |
-| type     | string                  | Yes  | Event type. The value is fixed at **'extrasChange'**.                                                        |
-| callback | ({[key:string]: Object}) => void | No  | Callback used for unsubscription.<br>The **callback** parameter is optional. If it is not specified, all the subscriptions to the specified event are canceled for this session.|
-
-**Error codes**
-
-For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
-
-| ID| Error Message|
-| -------- | ----------------                       |
-| 6600101  | Session service exception.             |
-| 6600103  | The session controller does not exist. |
-| 401      | Parameter check failed                 |
-
-**Example**
-
-```js
-controller.off('extrasChange');
+avsessionController.on('sessionDestroy', () => {
+    console.info(`on sessionDestroy : SUCCESS `);
+});
 ```
 
 ### off('sessionDestroy')<sup>10+</sup>
 
 off(type: 'sessionDestroy', callback?: () => void)
 
-Unsubscribes from the session destruction event. This API is called by the controller.
+Unsubscribes from session destruction events. This API is called by the controller.
 
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
@@ -4211,7 +6330,7 @@ Unsubscribes from the session destruction event. This API is called by the contr
 
 | Name  | Type      | Mandatory| Description                                                     |
 | -------- | ---------- | ---- | ----------------------------------------------------- |
-| type     | string     | Yes  | Event type. The event **'sessionDestroy'** is reported when the session is destroyed.        |
+| type     | string     | Yes  | Event type, which is **'sessionDestroy'** in this case.        |
 | callback | () => void | No  | Callback used for unsubscription. If the unsubscription is successful, **err** is **undefined**; otherwise, **err** is an error object.<br>The **callback** parameter is optional. If it is not specified, all the subscriptions to the specified event are canceled for this session.                                              |
 
 **Error codes**
@@ -4226,14 +6345,46 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 **Example**
 
 ```js
-controller.off('sessionDestroy');
+avsessionController.off('sessionDestroy');
+```
+
+### on('activeStateChange')<sup>10+</sup>
+
+on(type: 'activeStateChange', callback: (isActive: boolean) => void)
+
+Subscribes to session activation state change events.
+
+**System capability**: SystemCapability.Multimedia.AVSession.Core
+
+**Parameters**
+
+| Name  | Type                       | Mandatory| Description                                                        |
+| -------- | --------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                      | Yes  | Event type. The event **'activeStateChange'** is triggered when the activation state of the session changes.|
+| callback | (isActive: boolean) => void | Yes  | Callback used for subscription. The **isActive** parameter in the callback specifies whether the session is activated. The value **true** means that the service is activated, and **false** means the opposite.                  |
+
+**Error codes**
+
+For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
+
+| ID| Error Message|
+| -------- | ----------------------------- |
+| 6600101  | Session service exception. |
+| 6600103  |The session controller does not exist. |
+
+**Example**
+
+```js
+avsessionController.on('activeStateChange', (isActive) => {
+    console.info(`on activeStateChange : SUCCESS : isActive ${isActive}`);
+});
 ```
 
 ### off('activeStateChange')<sup>10+</sup>
 
 off(type: 'activeStateChange', callback?: (isActive: boolean) => void)
 
-Unsubscribes from session activation state changes. This API is called by the controller.
+Unsubscribes from session activation state change events. This API is called by the controller.
 
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
@@ -4241,7 +6392,7 @@ Unsubscribes from session activation state changes. This API is called by the co
 
 | Name  | Type                       | Mandatory| Description                                                     |
 | -------- | --------------------------- | ---- | ----------------------------------------------------- |
-| type     | string                      | Yes  | Event type. The event **'activeStateChange'** is reported when the session activation state changes.     |
+| type     | string                      | Yes  | Event type, which is **'activeStateChange'** in this case.     |
 | callback | (isActive: boolean) => void | No  | Callback used for unsubscription. The **isActive** parameter in the callback specifies whether the session is activated. The value **true** means that the session is activated, and **false** means the opposite.<br>The **callback** parameter is optional. If it is not specified, all the subscriptions to the specified event are canceled for this session.                  |
 
 **Error codes**
@@ -4256,14 +6407,47 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 **Example**
 
 ```js
-controller.off('activeStateChange');
+avsessionController.off('activeStateChange');
+```
+
+### on('validCommandChange')<sup>10+</sup>
+
+on(type: 'validCommandChange', callback: (commands: Array\<AVControlCommandType>) => void)
+
+Subscribes to valid command change events.
+
+**System capability**: SystemCapability.Multimedia.AVSession.Core
+
+**Parameters**
+
+| Name  | Type                                                        | Mandatory| Description                                                        |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | Yes  | Event type. The event **'validCommandChange'** is triggered when the valid commands supported by the session changes.|
+| callback | (commands: Array<[AVControlCommandType](#avcontrolcommandtype10)\>) => void | Yes  | Callback used for subscription. The **commands** parameter in the callback is a set of valid commands.                    |
+
+**Error codes**
+
+For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
+
+| ID| Error Message|
+| -------- | ------------------------------ |
+| 6600101  | Session service exception. |
+| 6600103  | The session controller does not exist. |
+
+**Example**
+
+```js
+avsessionController.on('validCommandChange', (validCommands) => {
+    console.info(`validCommandChange : SUCCESS : size : ${validCommands.size}`);
+    console.info(`validCommandChange : SUCCESS : validCommands : ${validCommands.values()}`);
+});
 ```
 
 ### off('validCommandChange')<sup>10+</sup>
 
 off(type: 'validCommandChange', callback?: (commands: Array\<AVControlCommandType>) => void)
 
-Unsubscribes from valid command changes. This API is called by the controller.
+Unsubscribes from valid command change events. This API is called by the controller.
 
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
@@ -4271,7 +6455,7 @@ Unsubscribes from valid command changes. This API is called by the controller.
 
 | Name  | Type                                                        | Mandatory| Description                                                       |
 | -------- | ------------------------------------------------------------ | ---- | -------------------------------------------------------- |
-| type     | string                                                       | Yes  | Event type. The event **'validCommandChange'** is reported when the supported commands change.        |
+| type     | string                                                       | Yes  | Event type, which is **'validCommandChange'** in this case.        |
 | callback | (commands: Array<[AVControlCommandType](#avcontrolcommandtype10)\>) => void | No  | Callback used for unsubscription. The **commands** parameter in the callback is a set of valid commands.<br>The **callback** parameter is optional. If it is not specified, all the subscriptions to the specified event are canceled for this session.         |
 
 **Error codes**
@@ -4286,14 +6470,46 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 **Example**
 
 ```js
-controller.off('validCommandChange');
+avsessionController.off('validCommandChange');
+```
+
+### on('outputDeviceChange')<sup>10+</sup>
+
+on(type: 'outputDeviceChange', callback: (state: ConnectionState, device: OutputDeviceInfo) => void): void
+
+Subscribes to output device change events.
+
+**System capability**: SystemCapability.Multimedia.AVSession.Core
+
+**Parameters**
+
+| Name  | Type                                                   | Mandatory| Description                                                        |
+| -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                                                  | Yes  | Event type. The event **'outputDeviceChange'** is triggered when the output device changes.|
+| callback | (state: [ConnectionState](#connectionstate10), device: [OutputDeviceInfo](#outputdeviceinfo10)) => void | Yes  | Callback used for subscription. The **device** parameter in the callback indicates the output device information.                        |
+
+**Error codes**
+
+For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
+
+| ID| Error Message|
+| -------- | ----------------------- |
+| 6600101  | Session service exception. |
+| 6600103  | The session controller does not exist. |
+
+**Example**
+
+```js
+avsessionController.on('outputDeviceChange', (state, device) => {
+    console.info(`on outputDeviceChange state: ${state}, device : ${device}`);
+});
 ```
 
 ### off('outputDeviceChange')<sup>10+</sup>
 
-off(type: 'outputDeviceChange', callback?: (device: OutputDeviceInfo) => void): void
+off(type: 'outputDeviceChange', callback?: (state: ConnectionState, device: OutputDeviceInfo) => void): void
 
-Unsubscribes from output device changes. This API is called by the controller.
+Unsubscribes from output device change events. This API is called by the controller.
 
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
@@ -4301,8 +6517,8 @@ Unsubscribes from output device changes. This API is called by the controller.
 
 | Name  | Type                                                   | Mandatory| Description                                                     |
 | -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------ |
-| type     | string                                                  | Yes  | Event type. The event **'outputDeviceChange'** is reported when the output device changes.     |
-| callback | (device: [OutputDeviceInfo](#outputdeviceinfo10)) => void | No  | Callback used for unsubscription. The **device** parameter in the callback indicates the output device information.<br>The **callback** parameter is optional. If it is not specified, all the subscriptions to the specified event are canceled for this session.                        |
+| type     | string                                                  | Yes  | Event type, which is **'outputDeviceChange'** in this case.     |
+| callback | (state: [ConnectionState](#connectionstate10), device: [OutputDeviceInfo](#outputdeviceinfo10)) => void | No  | Callback used for unsubscription. The **device** parameter in the callback indicates the output device information.<br>The **callback** parameter is optional. If it is not specified, all the subscriptions to the specified event are canceled for this session.                        |
 
 **Error codes**
 
@@ -4316,52 +6532,256 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 **Example**
 
 ```js
-controller.off('outputDeviceChange');
+avsessionController.off('outputDeviceChange');
 ```
 
-## SessionToken
+### on('sessionEvent')<sup>10+</sup>
 
-Describes the information about a session token.
+on(type: 'sessionEvent', callback: (sessionEvent: string, args: {[key:string]: Object}) => void): void
 
-**Required permissions**: ohos.permission.MANAGE_MEDIA_RESOURCES (available only to system applications)
-
-**System capability**: SystemCapability.Multimedia.AVSession.Manager
-
-**System API**: This is a system API.
-
-| Name     | Type  | Mandatory| Description        |
-| :-------- | :----- | :--- | :----------- |
-| sessionId | string | Yes  | Session ID.      |
-| pid       | number | Yes  | Process ID of the session.|
-| uid       | number | Yes  | User ID.      |
-
-## AVSessionType<sup>10+<sup>
-Enumerates the session types supported by the session.
+Subscribes to session event change events. This API is called by the controller.
 
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
-| Name | Type  | Description|
-| ----- | ------ | ---- |
-| audio | string | Audio session.|
-| video | string | Video session.|
+**Parameters**
 
-## AVSessionDescriptor
+| Name  | Type                                                        | Mandatory| Description                                                        |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | Yes  | Event type. The event **'sessionEvent'** is triggered when the session event changes.|
+| callback | (sessionEvent: string, args: {[key:string]: object}) => void         | Yes  | Callback used for subscription. **sessionEvent** in the callback indicates the name of the session event that changes, and **args** indicates the parameters carried in the event.         |
 
-Declares the session descriptor.
+**Error codes**
 
-**System capability**: SystemCapability.Multimedia.AVSession.Manager
+For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
 
-**System API**: This is a system API.
+| ID| Error Message|
+| -------- | ------------------------------ |
+| 6600101  | Session service exception. |
+| 6600103  | The session controller does not exist. |
 
-| Name        | Type                                                        | Readable| Writable| Description                                               |
-| ------------ | ------------------------------------------------------------ | ---- | --------------------------------------------------- | --------------------------------------------------- |
-| sessionId    | string                                                       | Yes | No| Session ID.                                             |
-| type         | [AVSessionType](#avsessiontype10)                              | Yes  | No | Session type.                                           |
-| sessionTag   | string                                                       | Yes  | No | Custom session name.                                   |
-| elementName  | [ElementName](js-apis-bundle-ElementName.md)                 | Yes  | No | Information about the application to which the session belongs, including the bundle name and ability name.|
-| isActive     | boolean                                                      | Yes  | No | Whether the session is activated.                                     |
-| isTopSession | boolean                                                      | Yes  | No | Whether the session is the top session.                               |
-| outputDevice | [OutputDeviceInfo](#outputdeviceinfo10)                        | Yes  | No | Information about the output device.                                 |
+**Example**
+
+```js
+avsessionController.on('sessionEvent', (sessionEvent, args) => {
+    console.info(`OnSessionEvent, sessionEvent is ${sessionEvent}, args: ${JSON.stringify(args)}`);
+});
+```
+
+### off('sessionEvent')<sup>10+</sup>
+
+off(type: 'sessionEvent', callback?: (sessionEvent: string, args: {[key:string]: Object}) => void): void
+
+Unsubscribes from session event change events. This API is called by the controller.
+
+**System capability**: SystemCapability.Multimedia.AVSession.Core
+
+**Parameters**
+
+| Name  | Type                                                        | Mandatory| Description                                                    |
+| -------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------- |
+| type     | string                                                       | Yes  | Event type, which is **'sessionEvent'** in this case.   |
+| callback | (sessionEvent: string, args: {[key:string]: Object}) => void         | No  | Callback used for unsubscription. **sessionEvent** in the callback indicates the name of the session event that changes, and **args** indicates the parameters carried in the event.<br>The **callback** parameter is optional. If it is not specified, all the subscriptions to the specified event are canceled for this session.                     |
+
+**Error codes**
+
+For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
+
+| ID| Error Message|
+| -------- | ---------------- |
+| 6600101  | Session service exception. |
+| 6600103  | The session controller does not exist. |
+
+**Example**
+
+```js
+avsessionController.off('sessionEvent');
+```
+
+### on('queueItemsChange')<sup>10+</sup>
+
+on(type: 'queueItemsChange', callback: (items: Array<[AVQueueItem](#avqueueitem10)\>) => void): void
+
+Subscribes to playlist item change events. This API is called by the controller.
+
+**System capability**: SystemCapability.Multimedia.AVSession.Core
+
+**Parameters**
+
+| Name  | Type                                                  | Mandatory| Description                                                                        |
+| -------- | ----------------------------------------------------- | ---- | ---------------------------------------------------------------------------- |
+| type     | string                                                | Yes  | Event type. The event **'queueItemsChange'** is triggered when one or more items in the playlist changes.|
+| callback | (items: Array<[AVQueueItem](#avqueueitem10)\>) => void  | Yes  | Callback used for subscription. The **items** parameter in the callback indicates the changed items in the playlist.                           |
+
+**Error codes**
+
+For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
+
+| ID| Error Message|
+| -------- | ------------------------------ |
+| 6600101  | Session service exception. |
+| 6600103  | The session controller does not exist. |
+
+**Example**
+
+```js
+avsessionController.on('queueItemsChange', (items) => {
+    console.info(`OnQueueItemsChange, items length is ${items.length}`);
+});
+```
+
+### off('queueItemsChange')<sup>10+</sup>
+
+off(type: 'queueItemsChange', callback?: (items: Array<[AVQueueItem](#avqueueitem10)\>) => void): void
+
+Unsubscribes from playback item change events. This API is called by the controller.
+
+**System capability**: SystemCapability.Multimedia.AVSession.Core
+
+**Parameters**
+
+| Name   | Type                                                | Mandatory| Description                                                                                               |
+| -------- | ---------------------------------------------------- | ---- | --------------------------------------------------------------------------------------------------- |
+| type     | string                                               | Yes  | Event type, which is **'queueItemsChange'** in this case.                                                    |
+| callback | (items: Array<[AVQueueItem](#avqueueitem10)\>) => void | No  | Callback used for unsubscription. The **items** parameter in the callback indicates the changed items in the playlist.<br>The **callback** parameter is optional. If it is not specified, all the subscriptions to the specified event are canceled for this session.|
+
+**Error codes**
+
+For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
+
+| ID| Error Message|
+| -------- | ---------------- |
+| 6600101  | Session service exception. |
+| 6600103  | The session controller does not exist. |
+
+**Example**
+
+```js
+avsessionController.off('queueItemsChange');
+```
+
+### on('queueTitleChange')<sup>10+</sup>
+
+on(type: 'queueTitleChange', callback: (title: string) => void): void
+
+Subscribes to playlist name change events. This API is called by the controller.
+
+**System capability**: SystemCapability.Multimedia.AVSession.Core
+
+**Parameters**
+
+| Name  | Type                    | Mandatory| Description                                                                            |
+| -------- | ----------------------- | ---- | ------------------------------------------------------------------------------- |
+| type     | string                  | Yes  | Event type. The event **'queueTitleChange'** is triggered when the playlist name changes.|
+| callback | (title: string) => void | Yes  | Callback used for subscription. The **title** parameter in the callback indicates the changed playlist name.                               |
+
+**Error codes**
+
+For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
+
+| ID| Error Message|
+| -------- | ------------------------------ |
+| 6600101  | Session service exception. |
+| 6600103  | The session controller does not exist. |
+
+**Example**
+
+```js
+avsessionController.on('queueTitleChange', (title) => {
+    console.info(`queueTitleChange, title is ${title}`);
+});
+```
+
+### off('queueTitleChange')<sup>10+</sup>
+
+off(type: 'queueTitleChange', callback?: (title: string) => void): void
+
+Unsubscribes from playlist name change events. This API is called by the controller.
+
+**System capability**: SystemCapability.Multimedia.AVSession.Core
+
+**Parameters**
+
+| Name   | Type                   | Mandatory| Description                                                                                                   |
+| -------- | ----------------------- | ---- | ------------------------------------------------------------------------------------------------------- |
+| type     | string                  | Yes  | Event type, which is **'queueTitleChange'** in this case.                                                        |
+| callback | (title: string) => void | No  | Callback used for unsubscription. The **items** parameter in the callback indicates the changed playlist name.<br>The **callback** parameter is optional. If it is not specified, all the subscriptions to the specified event are canceled for this session.|
+
+**Error codes**
+
+For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
+
+| ID| Error Message|
+| -------- | ---------------- |
+| 6600101  | Session service exception. |
+| 6600103  | The session controller does not exist. |
+
+**Example**
+
+```js
+avsessionController.off('queueTitleChange');
+```
+
+### on('extrasChange')<sup>10+</sup>
+
+on(type: 'extrasChange', callback: (extras: {[key:string]: Object}) => void): void
+
+Subscribes to custom media packet change events. This API is called by the controller.
+
+**System capability**: SystemCapability.Multimedia.AVSession.Core
+
+**Parameters**
+
+| Name  | Type                                                        | Mandatory| Description                                                        |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | Yes  | Event type. The event **'extrasChange'** is triggered when the provider sets a custom media packet.|
+| callback | (extras: {[key:string]: object}) => void         | Yes  | Callback used for subscription. The **extras** parameter in the callback indicates the custom media packet set by the provider. This packet is the same as that set in **dispatchSessionEvent**.         |
+
+**Error codes**
+
+For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
+
+| ID| Error Message|
+| -------- | ------------------------------ |
+| 6600101  | Session service exception. |
+| 6600103  | The session controller does not exist. |
+
+**Example**
+
+```js
+avsessionController.on('extrasChange', (extras) => {
+    console.info(`Caught extrasChange event,the new extra is: ${JSON.stringify(extras)}`);
+});
+```
+
+### off('extrasChange')<sup>10+</sup>
+
+off(type: 'extrasChange', callback?: (extras: {[key:string]: Object}) => void): void
+
+Unsubscribes from custom media packet change events. This API is called by the controller.
+
+**System capability**: SystemCapability.Multimedia.AVSession.Core
+
+**Parameters**
+
+| Name   | Type                   | Mandatory| Description                                                                                                   |
+| -------- | ----------------------- | ---- | ------------------------------------------------------------------------------------------------------- |
+| type     | string                  | Yes  | Event type, which is **'extrasChange'** in this case.                                                        |
+| callback | ({[key:string]: Object}) => void | No  | Callback used for unsubscription.<br>The **callback** parameter is optional. If it is not specified, all the subscriptions to the specified event are canceled for this session.|
+
+**Error codes**
+
+For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
+
+| ID| Error Message|
+| -------- | ----------------                       |
+| 6600101  | Session service exception.             |
+| 6600103  | The session controller does not exist. |
+
+**Example**
+
+```js
+avsessionController.off('extrasChange');
+```
 
 ## AVControlCommandType<sup>10+</sup>
 
@@ -4394,142 +6814,20 @@ Describes the command that can be sent to the session.
 | command   | [AVControlCommandType](#avcontrolcommandtype10)     | Yes  | Command.          |
 | parameter | [LoopMode](#loopmode10) &#124; string &#124; number | No  | Parameters carried in the command.|
 
-## AVMetadata<sup>10+</sup>
-
-Describes the media metadata.
-
-**System capability**: SystemCapability.Multimedia.AVSession.Core
-
-| Name           | Type                     | Mandatory| Description                                                                 |
-| --------------- |-------------------------| ---- |---------------------------------------------------------------------|
-| assetId         | string                  | Yes  | Media ID.                                                              |
-| title           | string                  | No  | Title.                                                                |
-| artist          | string                  | No  | Artist.                                                               |
-| author          | string                  | No  | Author.                                                              |
-| album           | string                  | No  | Album name.                                                              |
-| writer          | string                  | No  | Writer.                                                               |
-| composer        | string                  | No  | composer.                                                               |
-| duration        | number                  | No  | Media duration, in ms.                                                 |
-| mediaImage      | image.PixelMap &#124; string | No  | Pixel map or image path (local path or network path) of the image.                            |
-| publishDate     | Date                    | No  | Release date.                                                              |
-| subtitle        | string                  | No  | Subtitle.                                                               |
-| description     | string                  | No  | Media description.                                                              |
-| lyric           | string                  | No  | Lyric file path (local path or network path).|
-| previousAssetId | string                  | No  | ID of the previous media asset.                                                           |
-| nextAssetId     | string                  | No  | ID of the next media asset.                                                           |
-
-## AVMediaDescription<sup>10+</sup>
-
-Describes the attributes related to the media metadata of the playlist.
-
-**System capability**: SystemCapability.Multimedia.AVSession.Core
-
-| Name        | Type                   | Mandatory | Description                    |
-| ------------ | ----------------------- | ---- | ----------------------- |
-| mediaId      | string                  | Yes  | Media ID of the playlist.         |
-| title        | string                  | No  | Name of the playlist.       |
-| subtitle     | string                  | No  | Subname of the playlist.     |
-| description  | string                  | No  | Description of the playlist.  |
-| icon         | image.PixelMap          | No  | Pixel map of the image of the playlist.|
-| iconUri      | string                  | No  | Path of the image of the playlist.|
-| extras       | {[key: string]: any}    | No  | Additional fields of the playlist.    |
-| mediaUri     | string                  | No  | Media URI.        |
-
-## AVQueueItem<sup>10+</sup>
-
-Describes the attributes of an item in the playlist.
-
-**System capability**: SystemCapability.Multimedia.AVSession.Core
-
-| Name        | Type                                       | Mandatory| Description                       |
-| ------------ | ------------------------------------------ | ---- | --------------------------- |
-| itemId       | number                                     | Yes  | ID of an item in the playlist.         |
-| description  | [AVMediaDescription](#avmediadescription10)  | Yes  | Media metadata of the item in the playlist.  |
-
-## AVPlaybackState<sup>10+</sup>
-
-Describes the information related to the media playback state.
-
-**System capability**: SystemCapability.Multimedia.AVSession.Core
-
-| Name        | Type                                 | Mandatory| Description    |
-| ------------ | ------------------------------------- | ---- | ------- |
-| state        | [PlaybackState](#playbackstate)       | No  | Playback state.|
-| speed        | number                                | No  | Playback speed.|
-| position     | [PlaybackPosition](#playbackposition) | No  | Playback position.|
-| bufferedTime | number                                | No  | Buffered time.|
-| loopMode     | [LoopMode](#loopmode10)                 | No  | Loop mode.|
-| isFavorite   | boolean                               | No  | Whether the media asset is favorited.|
-| activeItemId<sup>10+</sup> | number                  | No  | ID of the item that is being played.|
-| extras<sup>10+</sup> | {[key: string]: Object}       | No  | Custom media data.|
-
-## PlaybackPosition<sup>10+</sup>
-
-Describes the information related to the playback position.
-
-**System capability**: SystemCapability.Multimedia.AVSession.Core
-
-| Name       | Type  | Mandatory| Description              |
-| ----------- | ------ | ---- | ------------------ |
-| elapsedTime | number | Yes  | Elapsed time, in ms.|
-| updateTime  | number | Yes  | Updated time, in ms.|
-
-## OutputDeviceInfo<sup>10+</sup>
-
-Describes the information related to the output device.
-
-**System capability**: SystemCapability.Multimedia.AVSession.Core
-
-| Name      | Type          | Mandatory| Description                  |
-| ---------- | -------------- | ---- | ---------------------- |
-| isRemote   | boolean        | Yes  | Whether the device is connected.        |
-| audioDeviceId   | Array<number\> | Yes  | IDs of output devices. |
-| deviceName | Array<string\> | Yes  | Names of output devices.   |
-
-## PlaybackState<sup>10+</sup>
-
-Enumerates the media playback states.
-
-**System capability**: SystemCapability.Multimedia.AVSession.Core
-
-| Name                       | Value  | Description        |
-| --------------------------- | ---- | ----------- |
-| PLAYBACK_STATE_INITIAL      | 0    | Initial.    |
-| PLAYBACK_STATE_PREPARE      | 1    | Preparing. |
-| PLAYBACK_STATE_PLAY         | 2    | Playing.    |
-| PLAYBACK_STATE_PAUSE        | 3    | Paused.        |
-| PLAYBACK_STATE_FAST_FORWARD | 4    | Fast-forwarding.        |
-| PLAYBACK_STATE_REWIND       | 5    | Rewinding.        |
-| PLAYBACK_STATE_STOP         | 6    | Stopped.        |
-
-
-## LoopMode<sup>10+</sup>
-
-Enumerates the loop modes of media playback.
-
-**System capability**: SystemCapability.Multimedia.AVSession.Core
-
-| Name              | Value  | Description    |
-| ------------------ | ---- | -------- |
-| LOOP_MODE_SEQUENCE | 0    | Sequential playback.|
-| LOOP_MODE_SINGLE   | 1    | Single loop.|
-| LOOP_MODE_LIST     | 2    | Playlist loop.|
-| LOOP_MODE_SHUFFLE  | 3    | Shuffle.|
-
 ## AVSessionErrorCode<sup>10+</sup>
 
 Enumerates the error codes used in the media session.
 
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
-| Name                          | Value     | Description                            |
-| ------------------------------ | ------- | ------------------------------- |
-| ERR_CODE_SERVICE_EXCEPTION     | 6600101 | Session service exception.               |
-| ERR_CODE_SESSION_NOT_EXIST     | 6600102 | The session does not exist.      |
-| ERR_CODE_CONTROLLER_NOT_EXIST  | 6600103 | The session controller does not exist.   |
-| ERR_CODE_REMOTE_CONNECTION_ERR | 6600104 | The remote session  connection failed.         |
-| ERR_CODE_COMMAND_INVALID       | 6600105 | Invalid session command.           |
-| ERR_CODE_SESSION_INACTIVE      | 6600106 | The session is not activated.                |
-| ERR_CODE_MESSAGE_OVERLOAD      | 6600107 | Too many commands or events.       |
-
-<!--no_check-->
+| Name                                  | Value     | Description                            |
+| -------------------------------------- | ------- | ------------------------------- |
+| ERR_CODE_SERVICE_EXCEPTION             | 6600101 | Session service exception.               |
+| ERR_CODE_SESSION_NOT_EXIST             | 6600102 | The session does not exist.      |
+| ERR_CODE_CONTROLLER_NOT_EXIST          | 6600103 | The session controller does not exist.   |
+| ERR_CODE_REMOTE_CONNECTION_ERR         | 6600104 | The remote session  connection failed.         |
+| ERR_CODE_COMMAND_INVALID               | 6600105 | Invalid session command.           |
+| ERR_CODE_SESSION_INACTIVE              | 6600106 | The session is not activated.                |
+| ERR_CODE_MESSAGE_OVERLOAD              | 6600107 | Too many commands or events.       |
+| ERR_CODE_DEVICE_CONNECTION_FAILED      | 6600108 | Device connecting failed.       |
+| ERR_CODE_REMOTE_CONNECTION_NOT_EXIST   | 6600109 | The remote connection is not established.       |

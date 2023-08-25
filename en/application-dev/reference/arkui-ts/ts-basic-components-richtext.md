@@ -52,6 +52,19 @@ Among the [universal attributes](ts-universal-attributes-size.md), only the **wi
 | style | Defines the inline style of an element and is placed inside the tag. Use quotation marks (') to separate the styling text and use semicolons (;) to separate styles, for example, **style='width: 500px;height: 500px;border: 1px solid;margin: 0 auto;'**.| \<h1 style='color:blue;text-align:center'>This is a heading\</h1>\<p style='color:green'>This is text\</p> |
 | \<script>\</script> | Embeds or references a client-side script, such as JavaScript.| \<script>document.write("Hello World!")\</script> |
 
+
+## Precautions
+
+The underlying layer of the **\<RichText>** component uses the **\<Web>** component to provide basic capabilities, including but not limited to HTML page parsing and rendering. However, the **\<Web>** component is resources consuming. In scenarios where the **\<RichText>** component is repeatedly used, for example, when it is repeatedly used in a list, frame freezing or slow response may occur.
+
+The **\<RichText>** component complies with the constraints of the **\<Web>** component. A typical scenario is as follows:
+
+The default viewport size of a mobile device is 980 px. This default value ensures that most web pages can be browsed properly on the mobile device. If the width of the **\<RichText>** component is less than this value, the HTML content specified by **content** may generate a scrollable page that is wrapped by the **\<RichText>** component. If you want to replace the default value, add the following tags to **content**:
+
+```html
+<meta name="viewport" content="width=device-width">
+```
+
 ## Example
 
 You can preview how this component looks on a real device. The preview is not yet available in the DevEco Studio Previewer.
@@ -67,7 +80,7 @@ struct RichTextExample {
   '<h2 style="text-align: center;">h2 heading</h2>' +
   '<h3 style="text-align: center;">h3 heading</h3>' +
   '<p style="text-align: center;">Regular paragraph</p><hr/>' +
-  '<div style="width: 500px;height: 500px;border: 1px solid;margin: 0auto;">' +
+  '<div style="width: 500px;height: 500px;border: 1px solid;margin: 0 auto;">' +
   '<p style="font-size: 35px;text-align: center;font-weight: bold; color: rgb(24,78,228)">Font size: 35px; line height: 45px</p>' +
   '<p style="background-color: #e5e5e5;line-height: 45px;font-size: 35px;text-indent: 2em;">' +
   '<p>This is text. This is text. This is text. This is text. This is text. This is text. This is text. This is text. This is text.</p>';
@@ -83,7 +96,7 @@ struct RichTextExample {
           console.info('RichText onComplete');
         })
         .width(500)
-        .height(400)
+        .height(500)
         .backgroundColor(0XBDDB69)
       RichText('layoutWeight(1)')
         .onStart(() => {
@@ -111,7 +124,3 @@ struct RichTextExample {
 ```
 
  ![richText](figures/richText.png)
-
-## Precautions
-
-The underlying layer of the **\<RichText>** component reuses the **\<Web>** component to provide basic capabilities, including but not limited to HTML page parsing and rendering. However, the **\<Web>** component is resources consuming. In scenarios where the **\<RichText>** component is repeatedly used, for example, when it is repeatedly used in a list, frame freezing or slow response may occur.

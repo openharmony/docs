@@ -1,23 +1,30 @@
 # ArkCompiler Subsystem Changelog
 
-## cl.ArkCompiler.1 type compileMode uses es2abc by default
+## cl.ArkCompiler.1 Change of Default Compiler to es2abc in Type Compilation
 
-The composition of ArkCompiler in sdk has ts2abc compiler and es2abc compiler, supporting compilation of ets/ts/js files.<br>
-Compilation Mode Introduction:<br>
-​&emsp;Non-type compilation: convert ets/ts sourceCode into js sourceCode, and use ArkCompiler compiler es2abc to generate bytecode. <br>
-​&emsp;type compilation: convert ets/ts sourceCode into ts sourceCode, and use ArkCompiler compiler ts2abc (previous version)/es2abc (enabled in this version) to generate bytecode. <br>
-Application Project hvigor version:<br>
-​&emsp;hvigorVersion field and @ohos/hvigor-ohos-plugin field in dependencies of hvigor-config.json5 file in the hvigor directory of the application project.<br>
-Enable type compilation:<br>
-​&emsp;When the hvigor version is greater than or equal to 2.6.0-rc.9.s, the type compilation mode is used by default, or in the build-profile.json5 file of the same level directory as the application sourceCode (src directory), configure the "aotCompileMode": "type" option under the buildOption tag<br>
+In the SDK, ArkCompiler has two compilers that support ets/ts/js compilation: ts2abc compiler and es2abc compiler.
 
-When type compilation is enabled and this version of the SDK is used, the ArkCompiler compiler es2abc will be used by default to compile the ts sourceCode to generate bytecode, and it is not recommended to use the old version SDK with ts2abc enabled for type compilation.<br>
+Introduction to compilation modes:
 
-**Change Impact**<br>
-With DevEco Studio development, after the type compilation mode is enabled and the new version of the SDK is used, due to the change of the compilation mode and the change of the ArkCompiler compiler, application compilation failures and runtime crashes may occur.<br>
+- Non-type compilation: converts ArkTS/TS source code into JS source code, and uses the ArkCompiler compiler es2abc to generate bytecode.
 
-**Key API/Component Changes**<br>
-type compileMode uses arkcompiler frontend compiler es2abc by default<br>
+- Type compilation: converts ArkTS/TS source code into TS source code, and uses the ArkCompiler compiler ts2abc (in earlier versions)/es2abc (enabled in this version) to generate bytecode.
+
+You can check the hvigor version of the application project in the following fields:
+​**hvigorVersion** field and **@ohos/hvigor-ohos-plugin** field under **dependencies** in the **hvigor-config.json5** file in the **hvigor** directory of the application project
+
+Enable type compilation:
+
+If the hvigor version is 2.6.0-rc.9.s or later, the type compilation mode is enabled by default. You can also manually enable this mode by setting **aotCompileMode** to **type** under the **buildOption** tag in the **build-profile.json5** file at the same level directory as the application source code (**src** directory).
+
+When type compilation is enabled and the SDK of this version is used, the ArkCompiler compiler es2abc is used by default. The earlier version SDK with ts2abc enabled is not recommended for type compilation.
+
+**Change Impact**
+In DevEco Studio, when the type compilation mode is enabled and the SDK of this version is used, the change in the compilation mode and ArkCompiler compiler may result in application compilation failures and runtime crashes.
+
+**Key API/Component Changes**
+In type compilation mode, the ArkCompiler compiler es2abc is used by default.
 
 **Adaptation Guide**
-1. When the hvigor version is greater than or equal to 2.6.0-rc.9.s, the developer needs to configure "aotCompileMode": "" in the build-profile.json5 file to switch to the original compilation mode (not type).
+
+If the hvigor version is 2.6.0-rc.9.s or later, to switch to the original compilation mode (non-type), you need to set **aotCompileMode** in the **build-profile.json5** file.

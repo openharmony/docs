@@ -37,6 +37,8 @@ What the internal state is depends on the component. For example, for the [bindP
   | [Toggle](../reference/arkui-ts/ts-basic-components-toggle.md) | isOn            | 10          |
   | [AlphabetIndexer](../reference/arkui-ts/ts-container-alphabet-indexer.md) | selected        | 10          |
   | [Select](../reference/arkui-ts/ts-basic-components-select.md) | selected, value| 10          |
+  | [BindSheet](../reference/arkui-ts/ts-universal-attributes-sheet-transition.md) | isShow | 10          |
+  | [BindContentCover](../reference/arkui-ts/ts-universal-attributes-modal-transition.md) | isShow | 10          |
 
 - When the variable bound to $$ changes, the UI is re-rendered synchronously.
 

@@ -12,6 +12,8 @@ The **MissionInfo** module defines detailed information about a mission. The inf
 import missionManager from '@ohos.app.ability.missionManager';
 ```
 
+## Attributes
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Mission
 
 **System API**: This is a system API and cannot be called by third-party applications.
@@ -26,6 +28,7 @@ import missionManager from '@ohos.app.ability.missionManager';
 | label | string | Yes| Yes| Label of the mission.|
 | iconPath | string | Yes| Yes| Path of the mission icon.|
 | continuable | boolean | Yes| Yes| Whether the mission can be continued on another device.|
+| abilityState | number | Yes| Yes| Capability status of the mission.|
 | unclearable<sup>10+</sup> | boolean | Yes| Yes| Whether the mission can be manually deleted.|
 
 **Example**

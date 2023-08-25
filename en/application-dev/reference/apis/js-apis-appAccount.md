@@ -1470,7 +1470,7 @@ Obtains the authorization token of the specified authentication type for an app 
 | ID| Error Message|
 | ------- | -------|
 | 12300001 | System service exception. |
-| 12300002 | Invalid name, owner or authType. |
+| 12300002 | Invalid name, owner, or authType. |
 | 12300003 | Account not found. |
 | 12300107 | AuthType not found. |
 
@@ -1559,7 +1559,7 @@ Sets an authorization token of the specific authentication type for an app accou
 | 12300001 | System service exception. |
 | 12300002 | Invalid name, authType, or token. |
 | 12300003 | Account not found. |
-| 12400004 | The number of token reaches the upper limit. |
+| 12400004 | The number of tokens reaches the upper limit. |
 
 **Example**
 
@@ -1606,7 +1606,7 @@ Sets an authorization token of the specific authentication type for an app accou
 | 12300001 | System service exception. |
 | 12300002 | Invalid name, authType, or token. |
 | 12300003 | Account not found. |
-| 12400004 | The number of token reaches the upper limit. |
+| 12400004 | The number of tokens reaches the upper limit. |
 
 **Example**
 
@@ -1637,7 +1637,7 @@ Deletes the authorization token of the specified authentication type for an app 
 | name     | string                    | Yes   | Name of the target app account.    |
 | owner    | string                    | Yes   | Owner of the app account. The value is the bundle name of the app. |
 | authType | string                    | Yes   | Authentication type.       |
-| token    | string                    | Yes   | Token to delete.|
+| token    | string                    | Yes   | Authorization token to delete.|
 | callback | AsyncCallback&lt;void&gt; | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.    |
 
 **Error codes**
@@ -4982,298 +4982,3 @@ Obtains the remote object of an authenticator. This API cannot be overloaded.
     }
   }
   ```
-
-## AccountCapabilityType<sup>10+</sup>
-
-Enumerates the account capability types.
-
-**System capability**: SystemCapability.Account.AppAccount
-
-| Name            | Value   | Description                  |
-| ---------------- | ----- | ----------------------- |
-| AUTHORIZATION    | 1 | Authorization capability. |
-
-## AccountCapabilityProvider<sup>10+</sup>
-
-Represents the **AccountCapabilityProvider** class.
-
-### Attributes
-
-**System capability**: SystemCapability.Account.AppAccount
-
-| Name| Type| Readable| Writable| Description|
-| -------- | -------- | -------- | -------- | -------- |
-| capabilityType | [AccountCapabilityType](#accountcapabilitytype10)  | Yes| No| Capability type of the account.|
-
-### constructor<sup>10+</sup>
-
-constructor(capabilityType: AccountCapabilityType)
-
-A constructor used to create an **AccountCapabilityProvider** instance.
-
-**System capability**: SystemCapability.Account.AppAccount
-
-**Parameters**
-
-| Name| Type   | Mandatory| Description                                  |
-| ------ | ------ | ---- | ------------------------------------- |
-| capabilityType | [AccountCapabilityType](#accountcapabilitytype10) | Yes  | Capability type of the account.    |
-
-**Example**
-
-```ts
-class MyAuthorizationProvider extends account_appAccount.AccountCapabilityProvider {
-  constructor() {
-    super(account_appAccount.AccountCapabilityType.AUTHORIZATION);
-  }
-}
-
-try {
-  let provider = new MyAuthorizationProvider();
-  if (provider instanceof account_appAccount.AccountCapabilityProvider) {
-    console.log("the provider is an instance of AccountCapabilityProvider");
-  }
-} catch (err) {
-  console.error('catch error: ' + JSON.stringify(err));
-}
-```
-
-## AccountCapabilityRequest<sup>10+</sup>
-
-Represents the **AccountCapabilityRequest** class.
-
-### constructor<sup>10+</sup>
-
-constructor(provider: AccountCapabilityProvider)
-
-A constructor used to create an **AccountCapabilityRequest** instance.
-
-**System capability**: SystemCapability.Account.AppAccount
-
-**Parameters**
-
-| Name| Type   | Mandatory| Description                                  |
-| ------ | ------ | ---- | ------------------------------------- |
-| provider | [AccountCapabilityProvider](#accountcapabilityprovider10) | Yes | Provider of the account capability.    |
-
-**Example**
-
-```ts
-class MyAuthorizationProvider extends account_appAccount.AccountCapabilityProvider {
-  constructor() {
-    super(account_appAccount.AccountCapabilityType.AUTHORIZATION);
-  }
-}
-
-class MyAuthorizationRequest extends account_appAccount.AccountCapabilityRequest {
-  constructor() {
-    let provider = new MyAuthorizationProvider();
-    super(provider);
-  }
-}
-
-try {
-  let request = new MyAuthorizationRequest();
-  if (request instanceof account_appAccount.AccountCapabilityRequest) {
-    console.log("the request is an instance of AccountCapabilityRequest");
-  }
-} catch (err) {
-  console.error('catch error: ' + JSON.stringify(err));
-}
-```
-
-## AccountCapabilityResponse<sup>10+</sup>
-
-Represents the **AccountCapabilityResponse** class.
-
-### Attributes
-
-**System capability**: SystemCapability.Account.AppAccount
-
-| Name| Type| Readable| Writable| Description|
-| -------- | -------- | -------- | -------- | -------- |
-| request | [AccountCapabilityRequest](#accountcapabilityrequest10)  | Yes| No| Account capability request corresponding to the response.|
-
-### constructor<sup>10+</sup>
-
-constructor(request: AccountCapabilityRequest)
-
-A constructor used to create an **AccountCapabilityResponse** instance.
-
-**System capability**: SystemCapability.Account.AppAccount
-
-**Parameters**
-
-| Name| Type   | Mandatory| Description                                  |
-| ------ | ------ | ---- | ------------------------------------- |
-| request | [AccountCapabilityRequest](#accountcapabilityrequest10) | Yes  | Account capability request corresponding to the response.|
-
-**Example**
-
-```ts
-class MyAuthorizationProvider extends account_appAccount.AccountCapabilityProvider {
-  constructor() {
-    super(account_appAccount.AccountCapabilityType.AUTHORIZATION);
-  }
-}
-
-class MyAuthorizationRequest extends account_appAccount.AccountCapabilityRequest {
-  constructor() {
-    let provider = new MyAuthorizationProvider();
-    super(provider);
-  }
-}
-
-class MyAuthorizationResponse extends account_appAccount.AccountCapabilityResponse {
-  constructor(request) {
-    super(request)
-  }
-}
-
-try {
-  let request = new MyAuthorizationRequest();
-  let response = new MyAuthorizationResponse(request);
-  if (response instanceof account_appAccount.AccountCapabilityResponse) {
-    console.log("the response is an instance of AccountCapabilityResponse");
-  }
-} catch (err) {
-  console.error('catch error: ' + JSON.stringify(err));
-}
-```
-
-## AuthorizationProviderInfo<sup>10+</sup>
-
-Defines information about the authorization provider.
-
-**System capability**: SystemCapability.Account.AppAccount
-
-| Name    | Type    | Readable| Writable| Description        |
-| ------- | ------ | ---- | --- | ---------- |
-| bundleName   | string | Yes| No| Bundle name of the authorization provider.|
-| abilityName  | string | Yes| No| Ability name of the authorization provider.|
-
-## AuthorizationProvider<sup>10+</sup>
-
-Represents the **AuthorizationProvider** class.
-
-### constructor<sup>10+</sup>
-
-constructor(info: AuthorizationProviderInfo)
-
-A constructor used to create an **AuthorizationProvider** instance.
-
-**System capability**: SystemCapability.Account.AppAccount
-
-**Parameters**
-
-| Name| Type   | Mandatory| Description                                  |
-| ------ | ------ | ---- | ------------------------------------- |
-| info | [AuthorizationProviderInfo](#authorizationproviderinfo10) | Yes | Information about the authorization provider.|
-
-**Example**
-
-```ts
-class MyAuthorizationProvider extends account_appAccount.AuthorizationProvider {
-  constructor() {
-    super({bundleName: 'xxx', abilityName: 'xxx'});
-  }
-}
-
-try {
-  let provider = new MyAuthorizationProvider();
-  if (provider instanceof account_appAccount.AuthorizationProvider) {
-    console.log("the provider is an instance of AuthorizationProvider");
-  }
-} catch (err) {
-  console.error("catch error: " + JSON.stringify(err));
-}
-```
-
-## AccountCapabilityScheduler<sup>10+</sup>
-
-Represents the **AccountCapabilityScheduler** class.
-
-### executeRequest<sup>10+</sup>
-
-executeRequest(request: AccountCapabilityRequest, callback: AsyncCallback&lt;AccountCapabilityResponse, { [key: string]: object }&gt;): void
-
-Executes an account capability request. This API uses an asynchronous callback to return the result.
-
-**System capability**: SystemCapability.Account.AppAccount
-
-**Parameters**
-
-| Name       | Type                       | Mandatory  | Description                       |
-| ---------- | ------------------------- | ---- | ------------------------- |
-| request    | [AccountCapabilityRequest](#accountcapabilityrequest10)   | Yes   | Account capability request to execute.                 |
-| callback   | AsyncCallback&lt;[AccountCapabilityResponse](#accountcapabilityresponse10), { [key: string]: object }&gt; | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object. |
-
-**Error codes**
-
-| ID| Error Message|
-| ------- | ------- |
-| 12300001 | System service exception. |
-| 12300002 | Invalid request. |
-
-**Example**
-
-```ts
-let scheduler = new account_appAccount.AccountCapabilityScheduler();
-let provider = new account_appAccount.AuthorizationProvider({ bundleName: 'xxx', abilityName: 'xxx' });
-let request = new account_appAccount.AccountCapabilityRequest(provider);
-try {
-  scheduler.executeRequest(request, (err, response) => {
-    if (err != null) {
-      console.log('executeRequest failed, error: ' + JSON.stringify(err));
-    } else {
-      console.log('executeRequest response: ' + JSON.stringify(response));
-    }
-  });
-} catch (err) {
-  console.log('executeRequest exception: ' + JSON.stringify(err));
-}
-```
-
-### executeRequest<sup>10+</sup>
-
-executeRequest(request: AccountCapabilityRequest): Promise&lt;AccountCapabilityResponse&gt;
-
-Executes an account capability request. This API uses a promise to return the result.
-
-**System capability**: SystemCapability.Account.AppAccount
-
-**Parameters**
-
-| Name       | Type     | Mandatory  | Description          |
-| ---------- | ------- | ---- | ------------ |
-| request       | [AccountCapabilityRequest](#accountcapabilityrequest10)  | Yes   | Account capability request to execute.|
-
-**Return value**
-
-| Type                 | Description                   |
-| ------------------- | --------------------- |
-| Promise&lt;[AccountCapabilityResponse](#accountcapabilityresponse10)&gt; |  Promise used to return the result. |
-
-**Error codes**
-
-| ID| Error Message|
-| ------- | ------- |
-| 12300001 | System service exception. |
-| 12300002 | Invalid request. |
-
-**Example**
-
-```ts
-let scheduler = new account_appAccount.AccountCapabilityScheduler();
-let provider = new account_appAccount.AuthorizationProvider({ bundleName: 'xxx', abilityName: 'xxx' });
-let request = new account_appAccount.AccountCapabilityRequest(provider);
-try {
-  scheduler.executeRequest(request).then((response) => {
-    console.log('executeRequest response: ' + JSON.stringify(response));
-  }).catch((err) => {
-    console.log('executeRequest failed, error: ' + JSON.stringify(err));
-  });
-} catch (err) {
-  console.log('executeRequest exception: ' + JSON.stringify(err));
-}
-```

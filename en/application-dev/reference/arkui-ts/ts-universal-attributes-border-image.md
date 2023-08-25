@@ -8,22 +8,22 @@ You can draw an image around a component.
 
 ## Attributes
 
-| Name        | Type                                    | Description                                     |
-| ---------- | ---------------------------------------- | --------------------------------------- |
-| borderImage     | [BorderImageOption](#borderimageoption) | Border image or border gradient.<br>This API is supported in ArkTS widgets.|
+| Name         | Type                                    | Description                                    |
+| ----------- | ---------------------------------------- | -------------------------------------- |
+| borderImage | [BorderImageOption](#borderimageoption) | Border image or border gradient.<br>This API is supported in ArkTS widgets.|
 
 ## BorderImageOption
 
 This API is supported in ArkTS widgets.
 
-| Name        | Type                                    | Description                                     |
-| ---------- | ---------------------------------------- | --------------------------------------- |
-| source     | string \| [Resource](ts-types.md#resource) \| [linearGradient](ts-universal-attributes-gradient-color.md) | Source or gradient color of the border image.<br>**NOTE**<br>The border image source applies only to container components, such as **\<Row>**, **\<Column>**, and **\<Flex>**.|
-| slice      | [Length](ts-types.md#length) \| [EdgeWidths](ts-types.md#edgewidths9) | Slice width of the border image.<br>Default value: **0**                  |
-| width      | [Length](ts-types.md#length) \| [EdgeWidths](ts-types.md#edgewidths9) | Width of the border image.<br>Default value: **0**                    |
-| outset     | [Length](ts-types.md#length) \| [EdgeWidths](ts-types.md#edgewidths9) | Amount by which the border image is extended beyond the border box.<br>Default value: **0**                |
-| repeat | [RepeatMode](#repeatmode)                               | Repeat mode of the border image.<br>Default value: **RepeatMode.Stretch**|
-| fill       | boolean                                  | Whether to fill the center of the border image.<br>Default value: **false**              |
+| Name    | Type                                      | Description                                      |
+| ------ | ---------------------------------------- | ---------------------------------------- |
+| source | string \| [Resource](ts-types.md#resource) \| [linearGradient](ts-universal-attributes-gradient-color.md) | Source or gradient color of the border image.<br>**NOTE**<br>The border image source applies only to container components, such as **\<Row>**, **\<Column>**, and **\<Flex>**.|
+| slice  | [Length](ts-types.md#length) \| [EdgeWidths](ts-types.md#edgewidths9) | Slice width of the border image.<br>Default value: **0**                   |
+| width  | [Length](ts-types.md#length) \| [EdgeWidths](ts-types.md#edgewidths9) | Width of the border image.<br>Default value: **0**                     |
+| outset | [Length](ts-types.md#length) \| [EdgeWidths](ts-types.md#edgewidths9) | Amount by which the border image is extended beyond the border box.<br>Default value: **0**                 |
+| repeat | [RepeatMode](#repeatmode)            | Repeat mode of the border image.<br>Default value: **RepeatMode.Stretch** |
+| fill   | boolean                                  | Whether to fill the center of the border image.<br>Default value: **false**               |
 
 ## RepeatMode
 

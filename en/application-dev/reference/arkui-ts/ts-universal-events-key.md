@@ -27,6 +27,7 @@ A key event is triggered when a focusable component, such as **\<Button>**, inte
 | metaKey                               | number                                   | State of the metakey (that is, the **WIN** key on the Windows keyboard or the **Command** key on the Mac keyboard) when the key is pressed. The value **1** indicates the pressed state, and **0** indicates the unpressed state.|
 | timestamp                             | number                                   | Timestamp when the key is pressed.                |
 | stopPropagation                       | () => void                               | Stops the event from bubbling upwards or downwards.                 |
+| intentionCode<sup>10+</sup>           | [IntentionCode](../apis/js-apis-intentioncode.md) | Intention corresponding to the key.       |
 
 
 ## Example
@@ -49,7 +50,7 @@ struct KeyEventExample {
           if (event.type === KeyType.Up) {
             this.eventType = 'Up'
           }
-          this.text = 'KeyType:' + this.eventType + '\nkeyCode:' + event.keyCode + '\nkeyText:' + event.keyText
+          this.text = 'KeyType:' + this.eventType + '\nkeyCode:' + event.keyCode + '\nkeyText:' + event.keyText + '\nintentionCode:' + event.intentionCode
         })
       Text(this.text).padding(15)
     }.height(300).width('100%').padding(35)
@@ -57,4 +58,4 @@ struct KeyEventExample {
 }
 ```
 
- ![keyEvent](figures/keyEvent.png) 
+ ![keyEvent](figures/keyEvent.gif)

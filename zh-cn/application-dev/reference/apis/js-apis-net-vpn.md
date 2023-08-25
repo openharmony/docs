@@ -89,7 +89,7 @@ setUp(config: VpnConfig, callback: AsyncCallback\<number\>): void
 | 401     | Parameter error.             |
 | 2200001 | Invalid parameter value.             |
 | 2200002 | Operation failed. Cannot connect to service.             |
-| 2100003 | System internal error.         |
+| 2200003 | System internal error.         |
 | 2203001 | VPN creation denied, please check the user type.         |
 | 2203002 | VPN exist already, please execute destroy first.         |
 
@@ -153,7 +153,7 @@ setUp(config: VpnConfig): Promise\<number\>
 | 401     | Parameter error.             |
 | 2200001 | Invalid parameter value.             |
 | 2200002 | Operation failed. Cannot connect to service.             |
-| 2100003 | System internal error.         |
+| 2200003 | System internal error.         |
 | 2203001 | VPN creation denied, please check the user type.         |
 | 2203002 | VPN exist already, please execute destroy first.         |
 
@@ -213,7 +213,7 @@ protect(socketFd: number, callback: AsyncCallback\<void\>): void
 | 401     | Parameter error.       |
 | 2200001 | Invalid parameter value.        |
 | 2200002 | Operation failed. Cannot connect to service.    |
-| 2100003 | System internal error.         |
+| 2200003 | System internal error.         |
 | 2203004 | Invalid socket file descriptor.         |
 
 **示例：**
@@ -276,7 +276,7 @@ protect(socketFd: number): Promise\<void\>
 | 401     | Parameter error.       |
 | 2200001 | Invalid parameter value.        |
 | 2200002 | Operation failed. Cannot connect to service.    |
-| 2100003 | System internal error.         |
+| 2200003 | System internal error.         |
 | 2203004 | Invalid socket file descriptor.         |
 
 **示例：**
@@ -334,7 +334,7 @@ destroy(callback: AsyncCallback\<void\>): void
 | 202     | Non-system applications use system APIs.        |
 | 401     | Parameter error.       |
 | 2200002 | Operation failed. Cannot connect to service.    |
-| 2100003 | System internal error.         |
+| 2200003 | System internal error.         |
 
 **示例：**
 
@@ -371,7 +371,7 @@ destroy(): Promise\<void\>
 | 201     | Permission denied.             |
 | 202     | Non-system applications use system APIs.        |
 | 2200002 | Operation failed. Cannot connect to service.    |
-| 2100003 | System internal error.         |
+| 2200003 | System internal error.         |
 
 **示例：**
 

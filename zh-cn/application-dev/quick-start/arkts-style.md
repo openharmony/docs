@@ -45,12 +45,12 @@
   ```ts
   @Component
   struct FancyUse {
-    @State heightVlaue: number = 100
+    @State heightValue: number = 100
     @Styles fancy() {
-      .height(this.heightVlaue)
+      .height(this.heightValue)
       .backgroundColor(Color.Yellow)
       .onClick(() => {
-        this.heightVlaue = 200
+        this.heightValue = 200
       })
     }
   }
@@ -77,14 +77,14 @@
 @Entry
 @Component
 struct FancyUse {
-  @State heightVlaue: number = 100
+  @State heightValue: number = 100
   // 定义在组件内的@Styles封装的样式
   @Styles fancy() {
     .width(200)
-    .height(this.heightVlaue)
+    .height(this.heightValue)
     .backgroundColor(Color.Yellow)
     .onClick(() => {
-      this.heightVlaue = 200
+      this.heightValue = 200
     })
   }
 

@@ -143,6 +143,7 @@ Tabs({ barPosition: BarPosition.Start }) {
 ## Restricting the Scrolling of the Navigation Bar
 
   By default, the navigation bar is scrollable. On some pages that require multi-level classification of content, for example, when both bottom navigation and top navigation are used, the scroll effect of the bottom navigation bar may conflict with that of the top navigation bar. In this case, the scrolling of the bottom navigation bar needs to be restricted to improve user experience.
+
   **Figure 6** Restricting the scrolling of the bottom navigation bar 
 
 ![restricted-navigation](figures/restricted-navigation.gif)
@@ -270,7 +271,7 @@ TabContent() {
 
 ## Switching to a Specified Tab
 
-Non-custom navigation bars follow the default system switching logic. If you are using a custom navigation bar, you must manually implement the logic for switching tabs so that when the user touches a tab, the application displays the corresponding tab page.
+Non-custom navigation bars follow the default system switching logic. If you are using a custom navigation bar, you must manually implement the logic for switching tabs so that when the user switches to a tab, the application displays the corresponding tab page.
 
 
   **Figure 10** Switching to a specified tab in a custom navigation bar 

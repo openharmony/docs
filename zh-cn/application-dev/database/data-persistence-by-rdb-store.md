@@ -97,7 +97,7 @@
           store.version = 3;
         }
 
-         // 这里执行数据库的增、删、改、查等操作
+         // 请确保获取到RdbStore实例后，再进行数据库的增、删、改、查等操作
 
        });
      }
@@ -151,7 +151,7 @@
         store.version = 3;
      }
    
-     // 这里执行数据库的增、删、改、查等操作
+     // 请确保获取到RdbStore实例后，再进行数据库的增、删、改、查等操作
    
    });
    ```
@@ -294,3 +294,9 @@
      console.info('Succeeded in deleting RdbStore.');
    });
    ```
+
+## 相关实例
+
+针对关系型数据库的开发，有以下相关实例可供参考：
+
+- [`Rdb`：关系型数据库（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/Data/Rdb)

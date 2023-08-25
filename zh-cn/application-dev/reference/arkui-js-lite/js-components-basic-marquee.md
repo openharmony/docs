@@ -115,4 +115,4 @@ export default {
 }
 ```
 
-![marquee](figures/marquee.gif)
+![marquee](figures/marquee-lite.gif)

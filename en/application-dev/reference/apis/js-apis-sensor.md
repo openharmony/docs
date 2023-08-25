@@ -24,7 +24,7 @@ Subscribes to data of the color sensor.
 
 **System API**: This is a system API.
 
-**Error code**
+**Error codes**
 
 For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
 
@@ -63,7 +63,7 @@ Subscribes to data of the Sodium Adsorption Ratio (SAR) sensor.
 
 **System API**: This is a system API.
 
-**Error code**
+**Error codes**
 
 For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
 
@@ -109,7 +109,7 @@ Subscribes to data of the acceleration sensor.
 | callback | Callback&lt;[AccelerometerResponse](#accelerometerresponse)&gt; | Yes  | Callback used to report the sensor data, which is an **AccelerometerResponse** object.|
 | options  | [Options](#options)                                          | No  | List of optional parameters. This parameter is used to set the data reporting frequency. The default value is 200,000,000 ns.|
 
-**Error code**
+**Error codes**
 
 For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
 
@@ -149,7 +149,7 @@ Subscribes to data of the uncalibrated acceleration sensor.
 | callback | Callback&lt;[AccelerometerUncalibratedResponse](#accelerometeruncalibratedresponse)&gt; | Yes  | Callback used to report the sensor data, which is an **AccelerometerUncalibratedResponse** object.|
 | options  | [Options](#options)                                          | No  | List of optional parameters. This parameter is used to set the data reporting frequency. The default value is 200,000,000 ns. |
 
-**Error code**
+**Error codes**
 
 For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
 
@@ -190,7 +190,7 @@ Subscribes to data of the ambient light sensor.
 | callback | Callback&lt;[LightResponse](#lightresponse)&gt; | Yes  | Callback used to report the sensor data, which is a **LightResponse** object.        |
 | options  | [Options](#options)                             | No  | List of optional parameters. This parameter is used to set the data reporting frequency. The default value is 200,000,000 ns.|
 
-**Error code**
+**Error codes**
 
 For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
 
@@ -226,7 +226,7 @@ Subscribes to data of the ambient temperature sensor.
 | callback | Callback&lt;[AmbientTemperatureResponse](#ambienttemperatureresponse)&gt; | Yes  | Callback used to report the sensor data, which is an **AmbientTemperatureResponse** object.|
 | options  | [Options](#options)                                          | No  | List of optional parameters. This parameter is used to set the data reporting frequency. The default value is 200,000,000 ns. |
 
-**Error code**
+**Error codes**
 
 For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
 
@@ -262,7 +262,7 @@ Subscribes to data of the barometer sensor.
 | callback | Callback&lt;[BarometerResponse](#barometerresponse)&gt; | Yes  | Callback used to report the sensor data, which is a **BarometerResponse** object.    |
 | options  | [Options](#options)                                     | No  | List of optional parameters. This parameter is used to set the data reporting frequency. The default value is 200,000,000 ns.|
 
-**Error code**
+**Error codes**
 
 For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
 
@@ -298,7 +298,7 @@ Subscribes to data of the gravity sensor.
 | callback | Callback&lt;[GravityResponse](#gravityresponse)&gt; | Yes  | Callback used to report the sensor data, which is a **GravityResponse** object.      |
 | options  | [Options](#options)                                 | No  | List of optional parameters. This parameter is used to set the data reporting frequency. The default value is 200,000,000 ns.|
 
-**Error code**
+**Error codes**
 
 For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
 
@@ -338,7 +338,7 @@ Subscribes to data of the gyroscope sensor.
 | callback | Callback&lt;[GyroscopeResponse](#gyroscoperesponse)&gt; | Yes  | Callback used to report the sensor data, which is a **GyroscopeResponse** object.    |
 | options  | [Options](#options)                                     | No  | List of optional parameters. This parameter is used to set the data reporting frequency. The default value is 200,000,000 ns.|
 
-**Error code**
+**Error codes**
 
 For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
 
@@ -379,7 +379,7 @@ Subscribes to data of the uncalibrated gyroscope sensor.
 | callback | Callback&lt;[GyroscopeUncalibratedResponse](#gyroscopeuncalibratedresponse)&gt; | Yes  | Callback used to report the sensor data, which is a **GyroscopeUncalibratedResponse** object.|
 | options  | [Options](#options)                                          | No  | List of optional parameters. This parameter is used to set the data reporting frequency. The default value is 200,000,000 ns. |
 
-**Error code**
+**Error codes**
 
 For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
 
@@ -420,7 +420,7 @@ Subscribes to data of the Hall effect sensor.
 | callback | Callback&lt;[HallResponse](#hallresponse)&gt; | Yes  | Callback used to report the sensor data, which is a **HallResponse** object.         |
 | options  | [Options](#options)                           | No  | List of optional parameters. This parameter is used to set the data reporting frequency. The default value is 200,000,000 ns.|
 
-**Error code**
+**Error codes**
 
 For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
 
@@ -458,7 +458,7 @@ Subscribes to data of the heart rate sensor.
 | callback | Callback&lt;[HeartRateResponse](#heartrateresponse)&gt; | Yes  | Callback used to report the sensor data, which is a **HeartRateResponse** object.    |
 | options  | [Options](#options)                                     | No  | List of optional parameters. This parameter is used to set the data reporting frequency. The default value is 200,000,000 ns.|
 
-**Error code**
+**Error codes**
 
 For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
 
@@ -494,7 +494,7 @@ Subscribes to data of the humidity sensor.
 | callback | Callback&lt;[HumidityResponse](#humidityresponse)&gt; | Yes  | Callback used to report the sensor data, which is a **HumidityResponse** object.     |
 | options  | [Options](#options)                                   | No  | List of optional parameters. This parameter is used to set the data reporting frequency. The default value is 200,000,000 ns.|
 
-**Error code**
+**Error codes**
 
 For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
 
@@ -533,7 +533,7 @@ Subscribes to data of the linear acceleration sensor.
 | callback | Callback&lt;[LinearAccelerometerResponse](#linearaccelerometerresponse)&gt; | Yes  | Callback used to report the sensor data, which is a **LinearAccelerometerResponse** object.|
 | options  | [Options](#options)                                          | No  | List of optional parameters. This parameter is used to set the data reporting frequency. The default value is 200,000,000 ns. |
 
-**Error code**
+**Error codes**
 
 For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
 
@@ -571,7 +571,7 @@ Subscribes to data of the magnetic field sensor.
 | callback | Callback&lt;[MagneticFieldResponse](#magneticfieldresponse)&gt; | Yes  | Callback used to report the sensor data, which is a **MagneticFieldResponse** object.|
 | options  | [Options](#options)                                          | No  | List of optional parameters. This parameter is used to set the data reporting frequency. The default value is 200,000,000 ns.|
 
-**Error code**
+**Error codes**
 
 For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
 
@@ -609,7 +609,7 @@ Subscribes to data of the uncalibrated magnetic field sensor.
 | callback | Callback&lt;[MagneticFieldUncalibratedResponse](#magneticfielduncalibratedresponse)&gt; | Yes  | Callback used to report the sensor data, which is a **MagneticFieldUncalibratedResponse** object.|
 | options  | [Options](#options)                                          | No  | List of optional parameters. This parameter is used to set the data reporting frequency. The default value is 200,000,000 ns. |
 
-**Error code**
+**Error codes**
 
 For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
 
@@ -642,7 +642,7 @@ Subscribes to data of the orientation sensor.
 
 **System capability**: SystemCapability.Sensors.Sensor
 
-**Error code**
+**Error codes**
 
 For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
 
@@ -682,7 +682,7 @@ Subscribes to data of the pedometer sensor.
 
 **System capability**: SystemCapability.Sensors.Sensor
 
-**Error code**
+**Error codes**
 
 For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
 
@@ -729,7 +729,7 @@ Subscribes to data of the pedometer detection sensor.
 | callback | Callback&lt;[PedometerDetectionResponse](#pedometerdetectionresponse)&gt; | Yes  | Callback used to report the sensor data, which is a **PedometerDetectionResponse** object.|
 | options  | [Options](#options)                                          | No  | List of optional parameters. This parameter is used to set the data reporting frequency. The default value is 200,000,000 ns. |
 
-**Error code**
+**Error codes**
 
 For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
 
@@ -765,7 +765,7 @@ Subscribes to data of the proximity sensor.
 | callback | Callback&lt;[ProximityResponse](#proximityresponse)&gt; | Yes  | Callback used to report the sensor data, which is a **ProximityResponse** object.    |
 | options  | [Options](#options)                                     | No  | List of optional parameters. This parameter is used to set the data reporting frequency. The default value is 200,000,000 ns.|
 
-**Error code**
+**Error codes**
 
 For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
 
@@ -802,7 +802,7 @@ Subscribes to data of the rotation vector sensor.
 | callback | Callback&lt;[RotationVectorResponse](#rotationvectorresponse)&gt; | Yes  | Callback used to report the sensor data, which is a **RotationVectorResponse** object.|
 | options  | [Options](#options)                                          | No  | List of optional parameters. This parameter is used to set the data reporting frequency. The default value is 200,000,000 ns. |
 
-**Error code**
+**Error codes**
 
 For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
 
@@ -842,7 +842,7 @@ Subscribes to data of the significant motion sensor.
 | callback | Callback&lt;[SignificantMotionResponse](#significantmotionresponse)&gt; | Yes  | Callback used to report the sensor data, which is a **SignificantMotionResponse** object.|
 | options  | [Options](#options)                                          | No  | List of optional parameters. This parameter is used to set the data reporting frequency. The default value is 200,000,000 ns. |
 
-**Error code**
+**Error codes**
 
 For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
 
@@ -879,7 +879,7 @@ Subscribes to data of the wear detection sensor.
 | callback | Callback&lt;[WearDetectionResponse](#weardetectionresponse)&gt; | Yes  | Callback used to report the sensor data, which is a **WearDetectionResponse** object.|
 | options  | [Options](#options)                                          | No  | List of optional parameters. This parameter is used to set the data reporting frequency. The default value is 200,000,000 ns.|
 
-**Error code**
+**Error codes**
 
 For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
 
@@ -918,7 +918,7 @@ Obtains data of the acceleration sensor once.
 | type     | [SensorId](#sensorid9).ACCELEROMETER                         | Yes  | Sensor type. The value is fixed at **SensorId.ACCELEROMETER**.             |
 | callback | Callback&lt;[AccelerometerResponse](#accelerometerresponse)&gt; | Yes  | Callback used to report the sensor data, which is an **AccelerometerResponse** object.|
 
-**Error code**
+**Error codes**
 
 For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
 
@@ -957,7 +957,7 @@ Obtains data of the uncalibrated acceleration sensor once.
 | type     | [SensorId](#sensorid9).ACCELEROMETER_UNCALIBRATED            | Yes  | Sensor type. The value is fixed at **SensorId.ACCELEROMETER_UNCALIBRATED**. |
 | callback | Callback&lt;[AccelerometerUncalibratedResponse](#accelerometeruncalibratedresponse)&gt; | Yes  | Callback used to report the sensor data, which is an **AccelerometerUncalibratedResponse** object.|
 
-**Error code**
+**Error codes**
 
 For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
 
@@ -997,7 +997,7 @@ Obtains data of the ambient light sensor once.
 | type     | [SensorId](#sensorid9).AMBIENT_LIGHT            | Yes  | Sensor type. The value is fixed at **SensorId.AMBIENT_LIGHT**.     |
 | callback | Callback&lt;[LightResponse](#lightresponse)&gt; | Yes  | Callback used to report the sensor data, which is a **LightResponse** object.|
 
-**Error code**
+**Error codes**
 
 For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
 
@@ -1032,7 +1032,7 @@ Obtains data of the temperature sensor once.
 | type     | [SensorId](#sensorid9).AMBIENT_TEMPERATURE                   | Yes  | Sensor type. The value is fixed at **SensorId.AMBIENT_TEMPERATURE**.        |
 | callback | Callback&lt;[AmbientTemperatureResponse](#ambienttemperatureresponse)&gt; | Yes  | Callback used to report the sensor data, which is an **AmbientTemperatureResponse** object.|
 
-**Error code**
+**Error codes**
 
 For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
 
@@ -1067,7 +1067,7 @@ Obtains data of the barometer sensor once.
 | type     | [SensorId](#sensorid9).BAROMETER                        | Yes  | Sensor type. The value is fixed at **SensorId.BAROMETER**.             |
 | callback | Callback&lt;[BarometerResponse](#barometerresponse)&gt; | Yes  | Callback used to report the sensor data, which is a **BarometerResponse** object.|
 
-**Error code**
+**Error codes**
 
 For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
 
@@ -1102,7 +1102,7 @@ Obtains data of the gravity sensor once.
 | type     | [SensorId](#sensorid9).GRAVITY                      | Yes  | Sensor type. The value is fixed at **SensorId.GRAVITY**.             |
 | callback | Callback&lt;[GravityResponse](#gravityresponse)&gt; | Yes  | Callback used to report the sensor data, which is a **GravityResponse** object.|
 
-**Error code**
+**Error codes**
 
 For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
 
@@ -1141,7 +1141,7 @@ Obtains to data of the gyroscope sensor once.
 | type     | [SensorId](#sensorid9).GYROSCOPE                        | Yes  | Sensor type. The value is fixed at **SensorId.GYROSCOPE**.             |
 | callback | Callback&lt;[GyroscopeResponse](#gyroscoperesponse)&gt; | Yes  | Callback used to report the sensor data, which is a **GyroscopeResponse** object.|
 
-**Error code**
+**Error codes**
 
 For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
 
@@ -1182,7 +1182,7 @@ Obtains data of the uncalibrated gyroscope sensor once.
 | type     | [SensorId](#sensorid9).GYROSCOPE_UNCALIBRATED                | Yes  | Sensor type. The value is fixed at **SensorId.GYROSCOPE_UNCALIBRATED**.     |
 | callback | Callback&lt;[GyroscopeUncalibratedResponse](#gyroscopeuncalibratedresponse)&gt; | Yes  | Callback used to report the sensor data, which is a **GyroscopeUncalibratedResponse** object.|
 
-**Error code**
+**Error codes**
 
 For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
 
@@ -1222,7 +1222,7 @@ Obtains data of the Hall effect sensor once.
 | type     | [SensorId](#sensorid9).HALL                   | Yes  | Sensor type. The value is fixed at **SensorId.HALL**.             |
 | callback | Callback&lt;[HallResponse](#hallresponse)&gt; | Yes  | Callback used to report the sensor data, which is a **HallResponse** object.|
 
-**Error code**
+**Error codes**
 
 For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
 
@@ -1259,7 +1259,7 @@ Obtains data of the heart rate sensor once.
 | type     | [SensorId](#sensorid9).HEART_RATE                       | Yes  | Sensor type. The value is fixed at **SensorId.HEART_RATE**.            |
 | callback | Callback&lt;[HeartRateResponse](#heartrateresponse)&gt; | Yes  | Callback used to report the sensor data, which is a **HeartRateResponse** object.|
 
-**Error code**
+**Error codes**
 
 For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
 
@@ -1294,7 +1294,7 @@ Obtains data of the humidity sensor once.
 | type     | [SensorId](#sensorid9).HUMIDITY                       | Yes  | Sensor type. The value is fixed at **SensorId.HUMIDITY**.             |
 | callback | Callback&lt;[HumidityResponse](#humidityresponse)&gt; | Yes  | Callback used to report the sensor data, which is a **HumidityResponse** object.|
 
-**Error code**
+**Error codes**
 
 For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
 
@@ -1331,7 +1331,7 @@ Obtains data of the linear acceleration sensor once.
 | type     | [SensorId](#sensorid9).LINEAR_ACCELEROMETER                  | Yes  | Sensor type. The value is fixed at **SensorId.LINEAR_ACCELEROMETER**.       |
 | callback | Callback&lt;[LinearAccelerometerResponse](#linearaccelerometerresponse)&gt; | Yes  | Callback used to report the sensor data, which is a **LinearAccelerometerResponse** object.|
 
-**Error code**
+**Error codes**
 
 For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
 
@@ -1368,7 +1368,7 @@ Obtains data of the magnetic field sensor once.
 | type     | [SensorId](#sensorid9).MAGNETIC_FIELD                        | Yes  | Sensor type. The value is fixed at **SensorId.MAGNETIC_FIELD**.            |
 | callback | Callback&lt;[MagneticFieldResponse](#magneticfieldresponse)&gt; | Yes  | Callback used to report the sensor data, which is a **MagneticFieldResponse** object.|
 
-**Error code**
+**Error codes**
 
 For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
 
@@ -1405,7 +1405,7 @@ Obtains data of the uncalibrated magnetic field sensor once.
 | type     | [SensorId](#sensorid9).MAGNETIC_FIELD_UNCALIBRATED           | Yes  | Sensor type. The value is fixed at **SensorId.MAGNETIC_FIELD_UNCALIBRATED**.|
 | callback | Callback&lt;[MagneticFieldUncalibratedResponse](#magneticfielduncalibratedresponse)&gt; | Yes  | Callback used to report the sensor data, which is a **MagneticFieldUncalibratedResponse** object.|
 
-**Error code**
+**Error codes**
 
 For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
 
@@ -1445,7 +1445,7 @@ Obtains data of the orientation sensor once.
 | type     | [SensorId](#sensorid9).ORIENTATION                          | Yes  | Sensor type. The value is fixed at **SensorId.ORIENTATION**.             |
 | callback | Callback&lt;[OrientationResponse](#orientationresponse)&gt; | Yes  | Callback used to report the sensor data, which is a **OrientationResponse** object.|
 
-**Error code**
+**Error codes**
 
 For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
 
@@ -1484,7 +1484,7 @@ Obtains data of the pedometer sensor once.
 | type     | [SensorId](#sensorid9).PEDOMETER                        | Yes  | Sensor type. The value is fixed at **SensorId.PEDOMETER**.             |
 | callback | Callback&lt;[PedometerResponse](#pedometerresponse)&gt; | Yes  | Callback used to report the sensor data, which is a **PedometerResponse** object.|
 
-**Error code**
+**Error codes**
 
 For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
 
@@ -1521,7 +1521,7 @@ Obtains data of the pedometer sensor once.
 | type     | [SensorId](#sensorid9).PEDOMETER_DETECTION                   | Yes  | Sensor type. The value is fixed at **SensorId.PEDOMETER_DETECTION**.        |
 | callback | Callback&lt;[PedometerDetectionResponse](#pedometerdetectionresponse)&gt; | Yes  | Callback used to report the sensor data, which is a **PedometerDetectionResponse** object.|
 
-**Error code**
+**Error codes**
 
 For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
 
@@ -1556,7 +1556,7 @@ Obtains data of the proximity sensor once.
 | type     | [SensorId](#sensorid9).PROXIMITY                        | Yes  | Sensor type. The value is fixed at **SensorId.PROXIMITY**.             |
 | callback | Callback&lt;[ProximityResponse](#proximityresponse)&gt; | Yes  | Callback used to report the sensor data, which is a **ProximityResponse** object.|
 
-**Error code**
+**Error codes**
 
 For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
 
@@ -1591,7 +1591,7 @@ Obtains data of the rotation vector sensor once.
 | type     | [SensorId](#sensorid9).ROTATION_VECTOR                       | Yes  | Sensor type. The value is fixed at **SensorId.ROTATION_VECTOR**.            |
 | callback | Callback&lt;[RotationVectorResponse](#rotationvectorresponse)&gt; | Yes  | Callback used to report the sensor data, which is a **RotationVectorResponse** object.|
 
-**Error code**
+**Error codes**
 
 For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
 
@@ -1629,7 +1629,7 @@ Obtains data of the significant motion sensor once.
 | type     | [SensorId](#sensorid9).SIGNIFICANT_MOTION                    | Yes  | Sensor type. The value is fixed at **SensorId.SIGNIFICANT_MOTION**.         |
 | callback | Callback&lt;[SignificantMotionResponse](#significantmotionresponse)&gt; | Yes  | Callback used to report the sensor data, which is a **SignificantMotionResponse** object.|
 
-**Error code**
+**Error codes**
 
 For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
 
@@ -1664,7 +1664,7 @@ Obtains data of the wear detection sensor once.
 | type     | [SensorId](#sensorid9).WEAR_DETECTION                        | Yes  | Sensor type. The value is fixed at **SensorId.WEAR_DETECTION**.            |
 | callback | Callback&lt;[WearDetectionResponse](#weardetectionresponse)&gt; | Yes  | Callback used to report the sensor data, which is a **WearDetectionResponse** object.|
 
-**Error code**
+**Error codes**
 
 For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
 
@@ -2596,7 +2596,7 @@ Obtains the geomagnetic field of a geographic location at a certain time. This A
 | timeMillis      | number                                                       | Yes  | Time when the magnetic declination is obtained. The value is a Unix timestamp, in ms.|
 | callback        | AsyncCallback&lt;[GeomagneticResponse](#geomagneticresponse)&gt; | Yes  | Callback used to return the geomagnetic field.                    |
 
-**Error code**
+**Error codes**
 
 For details about the following error codes, see [Error Codes of sensor.getGeomagneticInfo](../errorcodes/errorcode-sensor.md).
 
@@ -2647,7 +2647,7 @@ Obtains the geomagnetic field of a geographic location at a certain time. This A
 | ---------------------------------------------------------- | -------------- |
 | Promise&lt;[GeomagneticResponse](#geomagneticresponse)&gt; | Promise used to return the geomagnetic field.|
 
-**Error code**
+**Error codes**
 
 For details about the following error codes, see [Error Codes of sensor.getGeomagneticInfo](../errorcodes/errorcode-sensor.md).
 
@@ -2692,7 +2692,7 @@ Obtains the altitude based on the atmospheric pressure. This API uses an asynchr
 | currentPressure | number                      | Yes  | Specified atmospheric pressure, in hPa.|
 | callback        | AsyncCallback&lt;number&gt; | Yes  | Callback used to return the altitude, in meters.   |
 
-**Error code**
+**Error codes**
 
 For details about the following error codes, see [Error Codes of sensor.getDeviceAltitude](../errorcodes/errorcode-sensor.md).
 
@@ -2739,7 +2739,7 @@ Obtains the altitude based on the atmospheric pressure. This API uses a promise 
 | --------------------- | ------------------------------------ |
 | Promise&lt;number&gt; | Promise used to return the altitude, in meters.|
 
-**Error code**
+**Error codes**
 
 For details about the following error codes, see [Error Codes of sensor.getDeviceAltitude](../errorcodes/errorcode-sensor.md).
 
@@ -2779,7 +2779,7 @@ Obtains the magnetic dip based on the inclination matrix. This API uses an async
 | inclinationMatrix | Array&lt;number&gt;         | Yes  | Inclination matrix.              |
 | callback          | AsyncCallback&lt;number&gt; | Yes  | Callback used to return the magnetic dip, in radians.|
 
-**Error code**
+**Error codes**
 
 For details about the following error codes, see [Error Codes of sensor.getInclination](../errorcodes/errorcode-sensor.md).
 
@@ -2829,7 +2829,7 @@ Obtains the magnetic dip based on the inclination matrix. This API uses a promis
 | --------------------- | ---------------------------- |
 | Promise&lt;number&gt; | Promise used to return the magnetic dip, in radians.|
 
-**Error code**
+**Error codes**
 
 For details about the following error codes, see [Error Codes of sensor.getInclination](../errorcodes/errorcode-sensor.md).
 
@@ -2875,7 +2875,7 @@ Obtains the angle change between two rotation matrices. This API uses an asynchr
 | preRotationMatrix     | Array&lt;number&gt;                      | Yes  | The other rotation matrix.                   |
 | callback              | AsyncCallback&lt;Array&lt;number&gt;&gt; | Yes  | Callback used to return the angle change around the z, x, and y axes.|
 
-**Error code**
+**Error codes**
 
 For details about the following error codes, see [Error Codes of sensor.getAngleVariation](../errorcodes/errorcode-sensor.md).
 
@@ -2936,7 +2936,7 @@ Obtains the angle change between two rotation matrices. This API uses a promise 
 | ---------------------------------- | --------------------------------- |
 | Promise&lt;Array&lt;number&gt;&gt; | Promise used to return the angle change around the z, x, and y axes.|
 
-**Error code**
+**Error codes**
 
 For details about the following error codes, see [Error Codes of sensor.getAngleVariation](../errorcodes/errorcode-sensor.md).
 
@@ -2990,7 +2990,7 @@ Obtains the rotation matrix from a rotation vector. This API uses an asynchronou
 | rotationVector | Array&lt;number&gt;                      | Yes  | Rotation vector.|
 | callback       | AsyncCallback&lt;Array&lt;number&gt;&gt; | Yes  | Callback used to return the rotation matrix.|
 
-**Error code**
+**Error codes**
 
 For details about the following error codes, see [Error Codes of sensor.getRotationMatrix](../errorcodes/errorcode-sensor.md).
 
@@ -3037,7 +3037,7 @@ Obtains the rotation matrix from a rotation vector. This API uses a promise to r
 | ---------------------------------- | -------------- |
 | Promise&lt;Array&lt;number&gt;&gt; | Promise used to return the rotation matrix.|
 
-**Error code**
+**Error codes**
 
 For details about the following error codes, see [Error Codes of sensor.getRotationMatrix](../errorcodes/errorcode-sensor.md).
 
@@ -3132,7 +3132,7 @@ Transforms a rotation vector based on the coordinate system. This API uses a pro
 | ---------------------------------- | ---------------------- |
 | Promise&lt;Array&lt;number&gt;&gt; | Promise used to return the rotation vector after being transformed.|
 
-**Error code**
+**Error codes**
 
 For details about the following error codes, see [Error Codes of sensor.transformRotationMatrix](../errorcodes/errorcode-sensor.md).
 
@@ -3177,7 +3177,7 @@ Obtains the quaternion from a rotation vector. This API uses an asynchronous cal
 | rotationVector | Array&lt;number&gt;                      | Yes  | Rotation vector.|
 | callback       | AsyncCallback&lt;Array&lt;number&gt;&gt; | Yes  | Callback used to return the quaternion.  |
 
-**Error code**
+**Error codes**
 
 For details about the following error codes, see [Error Codes of sensor.getQuaternion](../errorcodes/errorcode-sensor.md).
 
@@ -3224,7 +3224,7 @@ Obtains the quaternion from a rotation vector. This API uses a promise to return
 | ---------------------------------- | ------------ |
 | Promise&lt;Array&lt;number&gt;&gt; | Promise used to return the quaternion.|
 
-**Error code**
+**Error codes**
 
 For details about the following error codes, see [Error Codes of sensor.getQuaternion](../errorcodes/errorcode-sensor.md).
 
@@ -3265,7 +3265,7 @@ Obtains the device direction based on the rotation matrix. This API uses an asyn
 | rotationMatrix | Array&lt;number&gt;                      | Yes  | Rotation matrix.                   |
 | callback       | AsyncCallback&lt;Array&lt;number&gt;&gt; | Yes  | Callback used to return the rotation angle around the z, x, and y axes.|
 
-**Error code**
+**Error codes**
 
 For details about the following error codes, see [Error Codes of sensor.getOrientation](../errorcodes/errorcode-sensor.md).
 
@@ -3319,7 +3319,7 @@ Obtains the device direction based on the rotation matrix. This API uses a promi
 | ---------------------------------- | --------------------------------- |
 | Promise&lt;Array&lt;number&gt;&gt; | Promise used to return the rotation angle around the z, x, and y axes.|
 
-**Error code**
+**Error codes**
 
 For details about the following error codes, see [Error Codes of sensor.getOrientation](../errorcodes/errorcode-sensor.md).
 
@@ -3365,7 +3365,7 @@ Obtains the rotation matrix based on a gravity vector and geomagnetic vector. Th
 | geomagnetic | Array&lt;number&gt;                                          | Yes  | Geomagnetic vector.|
 | callback    | AsyncCallback&lt;[RotationMatrixResponse](#rotationmatrixresponse)&gt; | Yes  | Callback used to return the rotation matrix.|
 
-**Error code**
+**Error codes**
 
 For details about the following error codes, see [Error Codes of sensor.getRotationMatrix](../errorcodes/errorcode-sensor.md).
 
@@ -3387,7 +3387,7 @@ try {
     console.info('Succeeded in getting rotationMatrix' + JSON.stringify(data));
   })
 } catch (error) {
-console.error(`Failed to get rotationMatrix. Code: ${error.code}, message: ${error.message}`);
+  console.error(`Failed to get rotationMatrix. Code: ${error.code}, message: ${error.message}`);
 }
 ```
 
@@ -3412,7 +3412,7 @@ Obtains the rotation matrix based on a gravity vector and geomagnetic vector. Th
 | ------------------------------------------------------------ | -------------- |
 | Promise&lt;[RotationMatrixResponse](#rotationmatrixresponse)&gt; | Promise used to return the rotation matrix.|
 
-**Error code**
+**Error codes**
 
 For details about the following error codes, see [Error Codes of sensor.getRotationMatrix](../errorcodes/errorcode-sensor.md).
 
@@ -3451,7 +3451,7 @@ Obtains information about all sensors on the device. This API uses an asynchrono
 | -------- | ---------------------------------------------- | ---- | ---------------- |
 | callback | AsyncCallback&lt;Array&lt;[Sensor](#sensor9)&gt;&gt; | Yes  | Callback used to return the sensor list.|
 
-**Error code**
+**Error codes**
 
 For details about the following error codes, see [Error Codes of sensor.getSensorList](../errorcodes/errorcode-sensor.md).
 
@@ -3491,7 +3491,7 @@ Obtains information about all sensors on the device. This API uses a promise to 
 | ------- | ---------------------------------------- | ---- | ---------------- |
 | promise | Promise&lt;Array&lt;[Sensor](#sensor9)&gt;&gt; | Yes  | Promise used to return the sensor list.|
 
-**Error code**
+**Error codes**
 
 For details about the following error codes, see [Error Codes of sensor.getSensorList](../errorcodes/errorcode-sensor.md).
 
@@ -3530,7 +3530,7 @@ Obtains information about the sensor of a specific type. This API uses an asynch
 | type     | [SensorId](#sensorid9)                  | Yes  | Sensor type.    |
 | callback | AsyncCallback&lt;[Sensor](#sensor9)&gt; | Yes  | Callback used to return the sensor information.|
 
-**Error code**
+**Error codes**
 
 For details about the following error codes, see [Error Codes of sensor.getSingleSensor](../errorcodes/errorcode-sensor.md).
 
@@ -3574,7 +3574,7 @@ Obtains information about the sensor of a specific type. This API uses a promise
 | ------- | --------------------------------- | ---- | ---------------- |
 | promise | Promise&lt;[Sensor](#sensor9)&gt; | Yes  | Promise used to return the sensor information.|
 
-**Error code**
+**Error codes**
 
 For details about the following error codes, see [Error Codes of sensor.getSingleSensor](../errorcodes/errorcode-sensor.md).
 
@@ -3612,6 +3612,8 @@ Enumerates the sensor types.
 | HALL                        | 10   | Hall effect sensor.          |
 | PROXIMITY                   | 12   | Proximity sensor.        |
 | HUMIDITY                    | 13   | Humidity sensor.          |
+| COLOR<sup>10+</sup>         | 14   | Color sensor.<br>System API: This is a system API.    |
+| SAR<sup>10+</sup>           | 15   | Sodium Adsorption Ratio (SAR) sensor.<br>System API: This is a system API.|
 | ORIENTATION                 | 256  | Orientation sensor.          |
 | GRAVITY                     | 257  | Gravity sensor.          |
 | LINEAR_ACCELEROMETER        | 258  | Linear acceleration sensor.    |
@@ -4912,7 +4914,7 @@ This API is deprecated since API version 9. You are advised to use [sensor.once.
 | callback | Callback&lt;[PedometerResponse](#pedometerresponse)&gt; | Yes  | One-shot callback used to return the pedometer sensor data. The reported data type in the callback is **PedometerResponse**.|
 
 **Example**
-  
+
 ```ts
 sensor.once(sensor.SensorType.SENSOR_TYPE_ID_PEDOMETER, function (data) {
   console.info('Succeeded in invoking once. Steps: ' + data.steps);
@@ -6211,7 +6213,7 @@ promise.then((data) => {
 }).catch((reason) => {
   console.info("Succeeded in getting promise::catch", reason);
 })
-```
+ ```
 
 ## sensor.createQuaternion<sup>(deprecated)</sup>
 
@@ -6410,4 +6412,4 @@ promise.then((data) => {
 }).catch((err) => {
   console.info(`Failed to get promise.`);
 })
- ```
+```

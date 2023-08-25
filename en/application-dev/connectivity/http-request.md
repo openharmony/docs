@@ -1,6 +1,6 @@
 # HTTP Data Request
 
-## When to Use
+## Overview
 
 An application can initiate a data request over HTTP. Common HTTP methods include **GET**, **POST**, **OPTIONS**, **HEAD**, **PUT**, **DELETE**, **TRACE**, and **CONNECT**.
 
@@ -18,7 +18,7 @@ The following table provides only a simple description of the related APIs. For 
 | ----------------------------------------- | ----------------------------------- |
 | createHttp()                              | Creates an HTTP request.                 |
 | request()                                 | Initiates an HTTP request to a given URL.    |
-| request2()<sup>10+</sup>                  | Initiates an HTTP network request based on the URL and returns a streaming response.|
+| requestInStream()<sup>10+</sup>                  | Initiates an HTTP network request to a given URL and returns a streaming response.|
 | destroy()                                 | Destroys an HTTP request.                     |
 | on(type: 'headersReceive')                | Registers an observer for HTTP Response Header events.    |
 | off(type: 'headersReceive')               | Unregisters the observer for HTTP Response Header events.|
@@ -27,8 +27,8 @@ The following table provides only a simple description of the related APIs. For 
 | off\('dataReceive'\)<sup>10+</sup>        | Unregisters the observer for events indicating receiving of HTTP streaming responses. |
 | on\('dataEnd'\)<sup>10+</sup>             | Registers an observer for events indicating completion of receiving HTTP streaming responses. |
 | off\('dataEnd'\)<sup>10+</sup>            | Unregisters the observer for events indicating completion of receiving HTTP streaming responses.|
-| on\('dataProgress'\)<sup>10+</sup>        | Registers an observer for events indicating progress of receiving HTTP streaming responses. |
-| off\('dataProgress'\)<sup>10+</sup>       | Unregisters the observer for events indicating progress of receiving HTTP streaming responses.|
+| on\('dataReceiveProgress'\)<sup>10+</sup>        | Registers an observer for events indicating progress of receiving HTTP streaming responses. |
+| off\('dataReceiveProgress'\)<sup>10+</sup>       | Unregisters the observer for events indicating progress of receiving HTTP streaming responses.|
 
 ## How to Develop request APIs
 
@@ -53,6 +53,7 @@ httpRequest.on('headersReceive', (header) => {
 });
 httpRequest.request(
   // Customize EXAMPLE_URL in extraData on your own. It is up to you whether to add parameters to the URL.
+  "EXAMPLE_URL",
   {
     method: http.RequestMethod.POST, // Optional. The default value is http.RequestMethod.GET.
     // You can add header fields based on service requirements.
@@ -81,7 +82,7 @@ httpRequest.request(
       // Call the destroy() method to release resources after HttpRequest is complete.
       httpRequest.destroy();
     } else {
-      console.info('error:' + JSON.stringify(err));
+      console.error('error:' + JSON.stringify(err));
       // Unsubscribe from HTTP Response Header events.
       httpRequest.off('headersReceive');
       // Call the destroy() method to release resources after HttpRequest is complete.
@@ -91,12 +92,12 @@ httpRequest.request(
 );
 ```
 
-## How to Develop request2 APIs
+## How to Develop requestInStream APIs
 
 1. Import the **http** namespace from **@ohos.net.http.d.ts**.
 2. Call **createHttp()** to create an **HttpRequest** object.
 3. Depending on your need, call **on()** of the **HttpRequest** object to subscribe to HTTP response header events as well as events indicating receiving of HTTP streaming responses, progress of receiving HTTP streaming responses, and completion of receiving HTTP streaming responses.
-4. Call **request2()** to initiate a network request. You need to pass in the URL and optional parameters of the HTTP request.
+4. Call **requestInStream()** to initiate a network request. You need to pass in the URL and optional parameters of the HTTP request.
 5. Parse the returned response code as needed.
 6. Call **off()** of the **HttpRequest** object to unsubscribe from the related events.
 7. Call **httpRequest.destroy()** to release resources after the request is processed.
@@ -122,11 +123,11 @@ httpRequest.on('dataEnd', () => {
   console.info('No more data in response, data receive end');
 });
 // Subscribe to events indicating progress of receiving HTTP streaming responses.
-httpRequest.on('dataProgress', (data) => {
-  console.log("dataProgress receiveSize:" + data.receiveSize + ", totalSize:" + data.totalSize);
+httpRequest.on('dataReceiveProgress', (data) => {
+  console.log("dataReceiveProgress receiveSize:" + data.receiveSize + ", totalSize:" + data.totalSize);
 });
 
-httpRequest.request2(
+httpRequest.requestInStream(
   // Customize EXAMPLE_URL in extraData on your own. It is up to you whether to add parameters to the URL.
   "EXAMPLE_URL",
   {
@@ -146,14 +147,14 @@ httpRequest.request2(
     readTimeout: 60000, // Optional. The default value is 60000, in ms. If a large amount of data needs to be transmitted, you are advised to set this parameter to a larger value to ensure normal data transmission.
     usingProtocol: http.HttpProtocol.HTTP1_1, // Optional. The default protocol type is automatically specified by the system.
   }, (err, data) => {
-    console.info('error:' + JSON.stringify(err));
+    console.error('error:' + JSON.stringify(err));
     console.info('ResponseCode :' + JSON.stringify(data));
     // Unsubscribe from HTTP Response Header events.
     httpRequest.off('headersReceive');
     // Unregister the observer for events indicating receiving of HTTP streaming responses.
     httpRequest.off('dataReceive');
     // Unregister the observer for events indicating progress of receiving HTTP streaming responses.
-    httpRequest.off('dataProgress');
+    httpRequest.off('dataReceiveProgress');
     // Unregister the observer for events indicating completion of receiving HTTP streaming responses.
     httpRequest.off('dataEnd');
     // Call the destroy() method to release resources after HttpRequest is complete.
@@ -161,10 +162,3 @@ httpRequest.request2(
   }
 );
 ```
-
-## Samples
-
-The following sample is provided to help you better understand how to develop the HTTP data request feature:
-
-- [`Http`: Data Request (ArkTS) (API9)](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Connectivity/Http)
-- [HTTP Communication (ArkTS) (API9)](https://gitee.com/openharmony/codelabs/tree/master/NetworkManagement/SmartChatEtsOH)

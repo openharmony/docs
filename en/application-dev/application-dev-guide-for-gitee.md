@@ -25,7 +25,8 @@ All applications should be developed on top of these frameworks.
 
 Then, equip yourself for developing the key features, with the following guidelines:
 
-- [Web](web/web-component-overview.md)
+- [ArkTS Common Library](arkts-utils/Readme-EN.md)
+- [Web](web/Readme-EN.md)
 - [Notification](notification/Readme-EN.md)
 - [Window Manager](windowmanager/Readme-EN.md)
 - [WebGL](webgl/Readme-EN.md)

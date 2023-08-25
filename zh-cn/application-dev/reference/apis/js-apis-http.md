@@ -86,7 +86,7 @@ createHttp(): HttpRequest
 
 | 类型        | 说明                                                         |
 | :---------- | :----------------------------------------------------------- |
-| HttpRequest | 返回一个HttpRequest对象，里面包括request、request2、destroy、on和off方法。 |
+| HttpRequest | 返回一个HttpRequest对象，里面包括request、requestInStream、destroy、on和off方法。 |
 
 **示例：**
 
@@ -364,9 +364,9 @@ destroy(): void
 httpRequest.destroy();
 ```
 
-### request2<sup>10+</sup>
+### requestInStream<sup>10+</sup>
 
-request2(url: string, callback: AsyncCallback\<number\>): void
+requestInStream(url: string, callback: AsyncCallback\<number\>): void
 
 根据URL地址，发起HTTP网络请求并返回流式响应，使用callback方式作为异步方法。
 
@@ -424,18 +424,18 @@ request2(url: string, callback: AsyncCallback\<number\>): void
 **示例：**
 
 ```js
-httpRequest.request2("EXAMPLE_URL", (err, data) => {
+httpRequest.requestInStream("EXAMPLE_URL", (err, data) => {
   if (!err) {
-    console.info("request2 OK! ResponseCode is " + JSON.stringify(data));
+    console.info("requestInStream OK! ResponseCode is " + JSON.stringify(data));
   } else {
-    console.info("request2 ERROR : err = " + JSON.stringify(err));
+    console.info("requestInStream ERROR : err = " + JSON.stringify(err));
   }
 })
 ```
 
-### request2<sup>10+</sup>
+### requestInStream<sup>10+</sup>
 
-request2(url: string, options: HttpRequestOptions, callback: AsyncCallback\<number\>): void
+requestInStream(url: string, options: HttpRequestOptions, callback: AsyncCallback\<number\>): void
 
 根据URL地址和相关配置项，发起HTTP网络请求并返回流式响应，使用callback方式作为异步方法。
 
@@ -494,7 +494,7 @@ request2(url: string, options: HttpRequestOptions, callback: AsyncCallback\<numb
 **示例：**
 
 ```js
-httpRequest.request2("EXAMPLE_URL",
+httpRequest.requestInStream("EXAMPLE_URL",
   {
     method: http.RequestMethod.GET,
     header: {
@@ -504,16 +504,16 @@ httpRequest.request2("EXAMPLE_URL",
     connectTimeout: 60000
   }, (err, data) => {
     if (!err) {
-      console.info("request2 OK! ResponseCode is " + JSON.stringify(data));
+      console.info("requestInStream OK! ResponseCode is " + JSON.stringify(data));
     } else {
-      console.info("request2 ERROR : err = " + JSON.stringify(err));
+      console.info("requestInStream ERROR : err = " + JSON.stringify(err));
     }
   })
 ```
 
-### request2<sup>10+</sup>
+### requestInStream<sup>10+</sup>
 
-request2(url: string, options? : HttpRequestOptions): Promise\<number\>
+requestInStream(url: string, options? : HttpRequestOptions): Promise\<number\>
 
 根据URL地址，发起HTTP网络请求并返回流式响应，使用Promise方式作为异步方法。
 
@@ -577,7 +577,7 @@ request2(url: string, options? : HttpRequestOptions): Promise\<number\>
 **示例：**
 
 ```js
-let promise = httpRequest.request2("EXAMPLE_URL", {
+let promise = httpRequest.requestInStream("EXAMPLE_URL", {
   method: http.RequestMethod.GET,
   connectTimeout: 60000,
   readTimeout: 60000,
@@ -586,9 +586,9 @@ let promise = httpRequest.request2("EXAMPLE_URL", {
   }
 });
 promise.then((data) => {
-  console.info("request2 OK!" + JSON.stringify(data));
+  console.info("requestInStream OK!" + JSON.stringify(data));
 }).catch((err) => {
-  console.info("request2 ERROR : err = " + JSON.stringify(err));
+  console.info("requestInStream ERROR : err = " + JSON.stringify(err));
 });
 ```
 
@@ -815,9 +815,9 @@ off(type: 'dataEnd', callback?: Callback\<void\>): void
 httpRequest.off('dataEnd');
 ```
 
-### on('dataProgress')<sup>10+</sup>
+### on('dataReceiveProgress')<sup>10+</sup>
 
-on(type: 'dataProgress', callback: Callback\<{ receiveSize: number, totalSize: number }\>): void
+on(type: 'dataReceiveProgress', callback: Callback\<{ receiveSize: number, totalSize: number }\>): void
 
 订阅HTTP流式响应数据接收进度事件。
 
@@ -830,20 +830,20 @@ on(type: 'dataProgress', callback: Callback\<{ receiveSize: number, totalSize: n
 
 | 参数名   | 类型                    | 必填 | 说明                              |
 | -------- | ----------------------- | ---- | --------------------------------- |
-| type     | string                  | 是   | 订阅的事件类型，'dataProgress'。 |
+| type     | string                  | 是   | 订阅的事件类型，'dataReceiveProgress'。 |
 | callback | AsyncCallback\<{ receiveSize: number, totalSize: number }\>   | 是   | 回调函数。<br>receiveSize：已接收的数据字节数，totalSize待接收的字节总数 |
 
 **示例：**
 
 ```js
-httpRequest.on('dataProgress', (data) => {
-  console.info('dataProgress:' + JSON.stringify(data));
+httpRequest.on('dataReceiveProgress', (data) => {
+  console.info('dataReceiveProgress:' + JSON.stringify(data));
 });
 ```
 
-### off('dataProgress')<sup>10+</sup>
+### off('dataReceiveProgress')<sup>10+</sup>
 
-off(type: 'dataProgress', callback?: Callback\<{ receiveSize: number, totalSize: number }\>): void
+off(type: 'dataReceiveProgress', callback?: Callback\<{ receiveSize: number, totalSize: number }\>): void
 
 取消订阅HTTP流式响应数据接收进度事件。
 
@@ -856,13 +856,13 @@ off(type: 'dataProgress', callback?: Callback\<{ receiveSize: number, totalSize:
 
 | 参数名   | 类型               | 必填 | 说明                                   |
 | -------- | ------------------ | ---- | -------------------------------------- |
-| type     | string             | 是   | 取消订阅的事件类型：'dataProgress'。 |
+| type     | string             | 是   | 取消订阅的事件类型：'dataReceiveProgress'。 |
 | callback | Callback\<{ receiveSize: number, totalSize: number }\>   | 否   | 回调函数。                             |
 
 **示例：**
 
 ```js
-httpRequest.off('dataProgress');
+httpRequest.off('dataReceiveProgress');
 ```
 
 ## HttpRequestOptions<sup>6+</sup>
@@ -874,7 +874,7 @@ httpRequest.off('dataProgress');
 | 名称         | 类型                                          | 必填 | 说明                                                         |
 | -------------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
 | method         | [RequestMethod](#requestmethod)               | 否   | 请求方式，默认为GET。                                                   |
-| extraData      | string<sup>6+</sup> \| Object<sup>6+</sup> \| ArrayBuffer<sup>8+</sup> | 否   | 发送请求的额外数据，默认无此字段。<br />- 当HTTP请求为POST、PUT等方法时，此字段为HTTP请求的content，以UTF-8编码形式作为请求体。当'Content-Type'为'application/x-www-form-urlencoded'时，请求提交的信息主体数据应在key和value进行URL转码后按照键值对"key1=value1&key2=value2&key3=value3"的方式进行编码。- 当HTTP请求为GET、OPTIONS、DELETE、TRACE、CONNECT等方法时，此字段为HTTP请求参数的补充。开发者需传入Encode编码后的string类型参数，Object类型的参数无需预编码，参数内容会拼接到URL中进行发送；ArrayBuffer类型的参数不会做拼接处理。|
+| extraData      | string<sup>6+</sup> \| Object<sup>6+</sup> \| ArrayBuffer<sup>8+</sup> | 否   | 发送请求的额外数据，默认无此字段。<br />- 当HTTP请求为POST、PUT等方法时，此字段为HTTP请求的content，以UTF-8编码形式作为请求体。当'Content-Type'为'application/x-www-form-urlencoded'时，请求提交的信息主体数据应在key和value进行URL转码后按照键值对"key1=value1&key2=value2&key3=value3"的方式进行编码，以字符串形式传入。<br />- 当HTTP请求为GET、OPTIONS、DELETE、TRACE、CONNECT等方法时，此字段为HTTP请求参数的补充。开发者需传入Encode编码后的string类型参数，Object类型的参数无需预编码，参数内容会拼接到URL中进行发送；ArrayBuffer类型的参数不会做拼接处理。|
 | expectDataType<sup>9+</sup>  | [HttpDataType](#httpdatatype9)  | 否   | 指定返回数据的类型，默认无此字段。如果设置了此参数，系统将优先返回指定的类型。 |
 | usingCache<sup>9+</sup>      | boolean                         | 否   | 是否使用缓存，默认为true。   |
 | priority<sup>9+</sup>        | number                          | 否   | 优先级，范围[1,1000]，默认是1。                           |
@@ -883,7 +883,7 @@ httpRequest.off('dataProgress');
 | connectTimeout               | number                          | 否   | 连接超时时间。单位为毫秒（ms），默认为60000ms。              |
 | usingProtocol<sup>9+</sup>   | [HttpProtocol](#httpprotocol9)  | 否   | 使用协议。默认值由系统自动指定。                             |
 | usingProxy<sup>10+</sup>     | boolean \| Object               | 否   | 是否使用HTTP代理，默认为false，不使用代理。<br />- 当usingProxy为布尔类型true时，使用默认网络代理。<br />- 当usingProxy为object类型时，使用指定网络代理。 
-| caPath<sup>10+</sup>     | string               | 否   | 如果设置了此参数，系统将使用用户指定路径的CA证书，否则将使用系统预设CA证书。                             |
+| caPath<sup>10+</sup>     | string               | 否   | 如果设置了此参数，系统将使用用户指定路径的CA证书，否则将使用系统预设CA证书；证书路径为沙箱映射路径，系统预设CA证书位置：/etc/ssl/certs/cacert.pem，建议用户的CA证书存放在此路径下，目前仅支持后缀名为.pem的文本格式证书。                             |
 
 ## RequestMethod<sup>6+</sup>
 

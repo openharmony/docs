@@ -12,6 +12,8 @@ The **TriggerInfo** module defines the information required for triggering the W
 import wantAgent from '@ohos.app.ability.wantAgent';
 ```
 
+## Attributes
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 | Name      | Type                | Mandatory| Description       |

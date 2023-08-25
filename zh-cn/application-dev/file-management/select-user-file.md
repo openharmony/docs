@@ -1,6 +1,6 @@
 # 选择用户文件
 
-终端用户有时需要分享、保存一些图片、视频等用户文件，开发者需要在应用中支持此类使用场景。此时，开发者可以使用OpenHarmony系统预置的[文件选择器（FilePicker）](../reference/apis/js-apis-file-picker.md)，实现用户文件选择及保存能力。
+终端用户有时需要分享、保存一些图片、视频等用户文件，开发者需要在应用中支持此类使用场景。此时，开发者可以使用OpenHarmony系统预置的[文件选择器（FilePicker）](../reference/apis/js-apis-file-picker.md)，实现用户文件选择及保存能力。通过Picker访问相关文件，无需申请权限。
 
 根据用户文件的常见类型，文件选择器（FilePicker）分别提供以下接口：
 
@@ -38,11 +38,11 @@
    </br>select返回的uri权限是只读权限，可以根据结果集中uri进行读取文件数据操作。注意不能在picker的回调里直接使用此uri进行打开文件操作，需要定义一个全局变量保存uri，使用类似一个按钮去触发打开文件。
 
    ```ts
-   let uri = null;
+   let uris = null;
    const photoViewPicker = new picker.PhotoViewPicker();
    photoViewPicker.select(photoSelectOptions).then((photoSelectResult) => {
-     uri = photoSelectResult.photoUris[0];
-     console.info('photoViewPicker.select to file succeed and uri is:' + uri);
+     uris = photoSelectResult.photoUris;
+     console.info('photoViewPicker.select to file succeed and uris are:' + uris);
    }).catch((err) => {
      console.error(`Invoke photoViewPicker.select failed, code is ${err.code}, message is ${err.message}`);
    })
@@ -77,6 +77,9 @@
 
    ```ts
    const documentSelectOptions = new picker.DocumentSelectOptions(); 
+   documentSelectOptions.maxSelectNumber = 5; // 选择文档的最大数目（可选）
+   documentSelectOptions.defaultFilePathUri = "file://docs/storage/Users/currentUser/test"; // 指定选择的文件或者目录路径（可选）
+   documentSelectOptions.fileSuffixFilters = ['.png', '.txt', '.mp4']; // 选择文件的后缀类型（可选）
    ```
 
 3. 创建文档选择器实例。调用[select()](../reference/apis/js-apis-file-picker.md#select-3)接口拉起FilePicker界面进行文件选择。文件选择成功后，返回被选中文档的uri结果集。
@@ -85,16 +88,12 @@
    
    </br>例如通过[文件管理接口](../reference/apis/js-apis-file-fs.md)根据uri获取部分文件属性信息，比如文件大小、访问时间、修改时间等。如有获取文件名称需求，请暂时使用[startAbilityForResult](../../application-dev/application-models/uiability-intra-device-interaction.md)获取。
 
-   > **说明：**
-   >
-   > 目前DocumentSelectOptions不支持参数配置，默认可以选择所有类型的用户文件。
-
    ```ts
-   let uri = null;
+   let uris = null;
    const documentViewPicker = new picker.DocumentViewPicker(); // 创建文件选择器实例
    documentViewPicker.select(documentSelectOptions).then((documentSelectResult) => {
-     uri = documentSelectResult[0];
-     console.info('documentViewPicker.select to file succeed and uri is:' + uri);
+     uris = documentSelectResult;
+     console.info('documentViewPicker.select to file succeed and uris are:' + uris);
    }).catch((err) => {
      console.error(`Invoke documentViewPicker.select failed, code is ${err.code}, message is ${err.message}`);
    })
@@ -172,7 +171,7 @@
    let uri = null;
    const audioViewPicker = new picker.AudioViewPicker();
    audioViewPicker.select(audioSelectOptions).then(audioSelectResult => {
-     uri = audioSelectOptions[0];
+     uri = audioSelectResult[0];
      console.info('audioViewPicker.select to file succeed and uri is:' + uri);
    }).catch((err) => {
      console.error(`Invoke audioViewPicker.select failed, code is ${err.code}, message is ${err.message}`);

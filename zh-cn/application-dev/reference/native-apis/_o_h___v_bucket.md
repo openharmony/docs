@@ -29,4 +29,4 @@
 | [putBlob](_r_d_b.md#putblob) | 将const uint8_t \*值放入给定列名的OH_VBucket对象中。 |
 | [putNull](_r_d_b.md#putnull) | 将NULL值放入给定列名的OH_VBucket对象中。 |
 | [clear](_r_d_b.md#clear-22) | 清空OH_VBucket对象。 |
-| [destroyValuesBucket](_r_d_b.md#destroyvaluesbucket) | 销毁OH_VBucket对象，并回收该对象占用的内存。 |
+| [destroy](_r_d_b.md#destroy-34) | 销毁OH_VBucket对象，并回收该对象占用的内存。 |

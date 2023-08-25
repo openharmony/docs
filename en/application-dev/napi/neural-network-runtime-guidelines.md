@@ -1,4 +1,4 @@
-# Connecting the Neural Network Runtime to an AI Inference Framework
+# Development Guide for Connecting the Neural Network Runtime to an AI Inference Framework
 
 ## When to Use
 
@@ -19,13 +19,14 @@ The environment requirements for the Neural Network Runtime are as follows:
 - Development environment: Ubuntu 18.04 or later.
 - Access device: a standard device running OpenHarmony. The built-in hardware accelerator driver has been connected to the Neural Network Runtime through an HDI API.
 
-The Neural Network Runtime is opened to external systems through OpenHarmony Native APIs. Therefore, you need to use the Native development suite of the OpenHarmony to compile Neural Network Runtime applications. You can download the **ohos-sdk** package of the corresponding version from [Daily Build](http://ci.openharmony.cn/dailys/dailybuilds) in the OpenHarmony community and then decompress the package to obtain the Native development suite of the corresponding platform. Take Linux as an example. The package of the Native development suite is named `native-linux-{version number}.zip`.
+The Neural Network Runtime is opened to external systems through OpenHarmony Native APIs. Therefore, you need to use the Native development suite of the OpenHarmony to compile Neural Network Runtime applications.
 
 ### Environment Setup
 
 1. Start the Ubuntu server.
-2. Copy the downloaded package of the Native development suite to the root directory of the current user.
+2. Copy the package of the Native development suite to the root directory of the current user.
 3. Decompress the package of the Native development suite.
+
 ```shell
 unzip native-linux-{version number}.zip
 ```
@@ -470,22 +471,19 @@ The development process of the Neural Network Runtime consists of three phases: 
     > The IR graphs of the model need to be passed to the hardware driver layer, so that the HDI service compiles the IR graphs into a computing graph dedicated to hardware. The compilation process is time-consuming. The Neural Network Runtime supports the computing graph cache feature. It can cache the computing graphs compiled by the HDI service to the device storage. If the same model is compiled on the same acceleration chip next time, you can specify the cache path so that the Neural Network Runtime can directly load the computing graphs in the cache file, reducing the compilation time.
 
     Check the cached files in the cache directory.
+
     ```shell
     ls /data/local/tmp
     ```
 
     The command output is as follows:
+
     ```text
     # 0.nncache  cache_info.nncache
     ```
 
     If the cache is no longer used, manually delete the cache files.
+
     ```shell
     rm /data/local/tmp/*nncache
     ```
-
-## Samples
-
-The following sample is provided to help you understand how to connect a third-party AI inference framework to the Neural Network Runtime:
-- [Development Guide for Connecting TensorFlow Lite to NNRt Delegate](https://gitee.com/openharmony/neural_network_runtime/tree/master/example/deep_learning_framework)
-<!--no_check-->

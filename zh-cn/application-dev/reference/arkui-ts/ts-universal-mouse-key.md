@@ -23,8 +23,6 @@
 
 | 名称                     | 属性类型                                     | 描述                           |
 | ---------------------- | ---------------------------------------- | ---------------------------- |
-| screenX                | number                                   | 鼠标位置相对于应用窗口左上角的x轴坐标。         |
-| screenY                | number                                   | 鼠标位置相对于应用窗口左上角的y轴坐标。         |
 | x                      | number                                   | 鼠标位置相对于当前组件左上角的x轴坐标。         |
 | y                      | number                                   | 鼠标位置相对于当前组件左上角的y轴坐标。         |
 | button                 | [MouseButton](ts-appendix-enums.md#mousebutton) | 鼠标按键。                        |
@@ -33,6 +31,12 @@
 | timestamp<sup>8+</sup> | number                                   | 事件时间戳。触发事件时距离系统启动的时间间隔，单位纳秒。 |
 | target<sup>8+</sup>    | [EventTarget](ts-universal-events-click.md#eventtarget8对象说明) | 触发事件的元素对象显示区域。               |
 | source<sup>8+</sup>    | [SourceType](ts-gesture-settings.md#sourcetype枚举说明) | 事件输入设备。                      |
+| windowX<sup>10+</sup> | number                          | 鼠标位置相对于应用窗口左上角的x轴坐标。 |
+| windowY<sup>10+</sup> | number                          | 鼠标位置相对于应用窗口左上角的y轴坐标。 |
+| displayX<sup>10+</sup> | number                         | 鼠标位置相对于应用屏幕左上角的x轴坐标。 |
+| displayY<sup>10+</sup> | number                         | 鼠标位置相对于应用屏幕左上角的y轴坐标。 |
+| screenX<sup>(deprecated)</sup> | number                 | 鼠标位置相对于应用窗口左上角的x轴坐标。<br>从API verdion 10开始不再维护，建议使用windowX代替。 |
+| screenY<sup>(deprecated)</sup> | number                 | 鼠标位置相对于应用窗口左上角的y轴坐标。<br>从API verdion 10开始不再维护，建议使用windowY代替。 |
 
 ## HoverEvent<sup>10+</sup>对象说明
 
@@ -107,7 +111,7 @@ struct MouseEventExample {
           }
           this.mouseText = 'onMouse:\nButton = ' + this.mouseBtn +
           '\nAction = ' + this.action + '\nXY=(' + event.x + ',' + event.y + ')' +
-          '\nscreenXY=(' + event.screenX + ',' + event.screenY + ')';
+          '\nwindowXY=(' + event.windowX + ',' + event.windowY + ')';
         })
       Text(this.mouseText)
     }.padding({ top: 30 }).width('100%')

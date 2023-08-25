@@ -158,7 +158,7 @@ try {
 
 ## Context.getGroupDir<sup>10+</sup>
 
-getGroupDir(groupId: string): Promise\<string>;
+getGroupDir(dataGroupID: string): Promise\<string>;
 
 Obtains the shared directory based on a group ID. This API uses a promise to return the result.
 
@@ -168,7 +168,7 @@ Obtains the shared directory based on a group ID. This API uses a promise to ret
 
 | Name      | Type                    | Mandatory  | Description           |
 | -------- | ---------------------- | ---- | ------------- |
-| groupId | string | Yes   | Group ID, which is assigned by the system when an atomic service application project is created.|
+| dataGroupID | string | Yes   | Group ID, which is assigned by the system when an atomic service application project is created.|
 
 **Return value**
 
@@ -188,16 +188,19 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 
 ```ts
 let groupId = "1";
-context.getGroupDir(groupId).then(data => {
+let getGroupDirContext: common.Context;
+try {
+  getGroupDirContext.getGroupDir(groupId).then(data => {
     console.log("getGroupDir result:" + data);
-}).catch((err) => {
-    console.error('error: ${JSON.stringify(err)}');
-});
+  })
+} catch (error) {
+  console.error('getGroupDirContext failed, error.code: ${error.code}, error.message: ${error.message}');
+}
 ```
 
 ## Context.getGroupDir<sup>10+</sup>
 
-getGroupDir(groupId: string, callback: AsyncCallback\<string>);
+getGroupDir(dataGroupID: string, callback: AsyncCallback\<string>);
 
 Obtains the shared directory based on a group ID. This API uses an asynchronous callback to return the result.
 
@@ -207,7 +210,7 @@ Obtains the shared directory based on a group ID. This API uses an asynchronous 
 
 | Name      | Type                    | Mandatory  | Description           |
 | -------- | ---------------------- | ---- | ------------- |
-| groupId | string | Yes   | Group ID, which is assigned by the system when an atomic service application project is created.|
+| dataGroupID | string | Yes   | Group ID, which is assigned by the system when an atomic service application project is created.|
 | callback | AsyncCallback\<string> | Yes   | Callback used to return the result. If no shared directory exists, null is returned. Only the encryption level EL2 is supported.|
 
 **Error codes**
@@ -221,11 +224,13 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 **Example**
 
 ```ts
-context.getGroupDir("1", (err, data) => {
-    if (err) {
-        console.error('getGroupDir faile, err: ${JSON.stringify(err)}');
-    } else {
-        console.log('getGroupDir result is: ${JSON.stringify(data)}');
-    }
+let getGroupDirContext: common.Context;
+
+getGroupDirContext.getGroupDir("1", (err, data) => {
+  if (err) {
+    console.error('getGroupDir faile, err: ${JSON.stringify(err)}');
+  } else {
+    console.log('getGroupDir result is: ${JSON.stringify(data)}');
+  }
 });
 ```

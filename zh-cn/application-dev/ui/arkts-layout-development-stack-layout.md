@@ -3,7 +3,7 @@
 
 ## 概述
 
-层叠布局（StackLayout）用于在屏幕上预留一块区域来显示组件中的元素，提供元素可以重叠的布局。层叠布局通过[Stack](https://docs.openharmony.cn/pages/v3.2Beta/zh-cn/application-dev/reference/arkui-ts/ts-container-stack.md/)容器组件实现位置的固定定位与层叠，容器中的子元素（子组件）依次入栈，后一个子元素覆盖前一个子元素，子元素可以叠加，也可以设置位置。
+层叠布局（StackLayout）用于在屏幕上预留一块区域来显示组件中的元素，提供元素可以重叠的布局。层叠布局通过[Stack](../reference/arkui-ts/ts-container-stack.md)容器组件实现位置的固定定位与层叠，容器中的子元素（子组件）依次入栈，后一个子元素覆盖前一个子元素，子元素可以叠加，也可以设置位置。
 
 层叠布局具有较强的页面层叠、位置定位能力，其使用场景有广告、卡片层叠效果等。
 

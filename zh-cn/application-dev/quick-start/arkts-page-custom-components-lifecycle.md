@@ -180,7 +180,9 @@ struct Child {
 
 - 如果调用的是router.replaceUrl，则当前Index页面被销毁，执行的生命周期流程将变为：Index onPageHide --&gt; MyComponent aboutToDisappear --&gt; Child aboutToDisappear。上文已经提到，组件的销毁是从组件树上直接摘下子树，所以先调用父组件的aboutToDisappear，再调用子组件的aboutToDisAppear，然后执行初始化新页面的生命周期流程。
 
-- 点击返回按钮，触发页面生命周期Index onBackPress。最小化应用或者应用进入后台，触发Index onPageHide。这两个状态下应用都没有被销毁，所以并不会执行组件的aboutToDisappear 。应用回到前台，执行Index onPageShow。
+- 点击返回按钮，触发页面生命周期Index onBackPress，且触发返回一个页面后会导致当前Index页面被销毁。
+
+- 最小化应用或者应用进入后台，触发Index onPageHide。当前Index页面没有被销毁，所以并不会执行组件的aboutToDisappear。应用回到前台，执行Index onPageShow。
 
 
 - 退出应用，执行Index onPageHide --&gt; MyComponent aboutToDisappear --&gt; Child aboutToDisappear。

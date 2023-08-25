@@ -40,6 +40,7 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 | miniHeight | string \| number | Panel height in the **PanelMode.Mini** mode.<br>Default value: **48**<br>Unit: vp<br>**NOTE**<br>This attribute cannot be set in percentage.|
 | show | boolean | Whether to show the panel.|
 | backgroundMask<sup>9+</sup>|[ResourceColor](ts-types.md#resourcecolor)|Background mask of the panel.|
+| showCloseIcon<sup>10+</sup> | boolean | Whether to display the close icon. The value **true** means to display the close icon, and **false** means the opposite.<br>Default value: **false**|
 
 ## PanelType
 
@@ -93,6 +94,7 @@ struct PanelExample {
       .type(PanelType.Foldable).mode(PanelMode.Half)
       .dragBar(true) // The drag bar is enabled by default.
       .halfHeight(500) // The panel height is half of the screen height by default.
+      .showCloseIcon(true) // Display the close icon.
       .onChange((width: number, height: number, mode: PanelMode) => {
         console.info(`width:${width},height:${height},mode:${mode}`)
       })
@@ -101,4 +103,4 @@ struct PanelExample {
 }
 ```
 
-![en-us_image_0000001256978381](figures/en-us_image_0000001256978381.gif)
+![en-us_image_0000001174422896](figures/en-us_image_0000001174422896.gif)

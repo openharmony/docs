@@ -45,4 +45,4 @@
 | [in](_r_d_b.md#in) | 函数指针，配置谓词以匹配数据字段为field且值在给定范围内的指定字段。 |
 | [notIn](_r_d_b.md#notin) | 函数指针，配置谓词以匹配数据字段为field且值超出给定范围内的指定字段。 |
 | [clear](_r_d_b.md#clear-12) | 函数指针，清空谓词。 |
-| [destroyPredicates](_r_d_b.md#destroypredicates) | 销毁OH_Predicates对象，并回收该对象占用的内存。 |
+| [destroy](_r_d_b.md#destroy-24) | 销毁OH_Predicates对象，并回收该对象占用的内存。 |

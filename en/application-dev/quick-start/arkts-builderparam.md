@@ -152,7 +152,7 @@ struct Parent {
 ```
 
 
-### Example of Component Initialization Through Trailing Closure
+### Component Initialization Through Trailing Closure
 
 In a custom component, the \@BuilderParam decorated attribute can be initialized using a trailing closure. During initialization, the component name is followed by a pair of braces ({}) to form a trailing closure.
 

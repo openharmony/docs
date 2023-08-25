@@ -52,6 +52,7 @@
 | [OH_AI_DeviceInfoSetFrequency](_mind_spore.md#oh_ai_deviceinfosetfrequency) ([OH_AI_DeviceInfoHandle](_mind_spore.md#oh_ai_deviceinfohandle) device_info, int frequency) | 设置NPU的频率，仅NPU设备可用。 |
 | [OH_AI_DeviceInfoGetFrequency](_mind_spore.md#oh_ai_deviceinfogetfrequency) (const [OH_AI_DeviceInfoHandle](_mind_spore.md#oh_ai_deviceinfohandle) device_info) | 获取NPU的频率类型，仅NPU设备可用。 |
 | [OH_AI_GetAllNNRTDeviceDescs](_mind_spore.md#oh_ai_getallnnrtdevicedescs) (size_t \*num) | 获取系统中所有NNRT硬件设备的描述信息。 |
+| [OH_AI_GetElementOfNNRTDeviceDescs](_mind_spore.md#oh_ai_getelementofnnrtdevicedescs) (NNRTDeviceDesc \*descs, size_t index) | 获取NNRT设备描述信息数组中的元素指针。 |
 | [OH_AI_DestroyAllNNRTDeviceDescs](_mind_spore.md#oh_ai_destroyallnnrtdevicedescs) ([NNRTDeviceDesc](_mind_spore.md#nnrtdevicedesc) \*\*desc) | 销毁从[OH_AI_GetAllNNRTDeviceDescs](_mind_spore.md#oh_ai_getallnnrtdevicedescs)获取的NNRT描写信息实例数组。 |
 | [OH_AI_GetDeviceIdFromNNRTDeviceDesc](_mind_spore.md#oh_ai_getdeviceidfromnnrtdevicedesc) (const [NNRTDeviceDesc](_mind_spore.md#nnrtdevicedesc) \*desc) | 从特定的NNRT设备描述信息实例获取NNRT设备ID。注意，此ID只对NNRT有效。 |
 | [OH_AI_GetNameFromNNRTDeviceDesc](_mind_spore.md#oh_ai_getnamefromnnrtdevicedesc) (const [NNRTDeviceDesc](_mind_spore.md#nnrtdevicedesc) \*desc) | 从特定的NNRT设备描述信息实例获取NNRT设备名称。 |
@@ -64,3 +65,4 @@
 | [OH_AI_DeviceInfoGetPerformanceMode](_mind_spore.md#oh_ai_deviceinfogetperformancemode) (const [OH_AI_DeviceInfoHandle](_mind_spore.md#oh_ai_deviceinfohandle) device_info) | 获取NNRT性能模式，仅NNRT设备可用。 |
 | [OH_AI_DeviceInfoSetPriority](_mind_spore.md#oh_ai_deviceinfosetpriority) ([OH_AI_DeviceInfoHandle](_mind_spore.md#oh_ai_deviceinfohandle) device_info, [OH_AI_Priority](_mind_spore.md#oh_ai_priority) priority) | 设置NNRT任务优先级，仅NNRT设备可用。 |
 | [OH_AI_DeviceInfoGetPriority](_mind_spore.md#oh_ai_deviceinfogetpriority) (const [OH_AI_DeviceInfoHandle](_mind_spore.md#oh_ai_deviceinfohandle) device_info) | 获取NNRT任务优先级，仅NNRT设备可用。 |
+| [OH_AI_DeviceInfoAddExtension](_mind_spore.md#oh_ai_deviceinfoaddextension) ([OH_AI_DeviceInfoHandle](_mind_spore.md#oh_ai_deviceinfohandle) device_info, const char \*name, const char \*value, size_t value_size) | 向设备信息中添加键/值对形式的扩展配置。只对NNRT设备信息有效。 |

@@ -12,7 +12,11 @@ The **MissionListener** module defines the listeners used to observe the mission
 import missionManager from '@ohos.app.ability.missionManager';
 ```
 
+## Attributes
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Mission
+
+**System API**: This is a system API and cannot be called by third-party applications.
 
 | Name       | Type                | Mandatory| Description                                                        |
 | ----------- | -------- | ---- | ------------------------------------------------------------ |

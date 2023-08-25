@@ -282,6 +282,10 @@ on(type: 'progress', callback:(uploadedSize: number, totalSize: number) =&gt; vo
 
 订阅上传任务进度监听，同步方法，使用callback形式返回结果。
 
+> **说明：**
+>
+> 当应用处于后台时，为满足功耗性能要求，不支持调用此接口进行回调。
+
 **需要权限**：ohos.permission.INTERNET
 
 **系统能力**: SystemCapability.MiscServices.Upload
@@ -838,6 +842,10 @@ download(config: DownloadConfig, callback: AsyncCallback&lt;DownloadTask&gt;): v
 on(type: 'progress', callback:(receivedSize: number, totalSize: number) =&gt; void): void
 
 订阅下载任务进度监听，同步方法，使用callback形式返回结果。
+
+> **说明：**
+>
+> 当应用处于后台时，为满足功耗性能要求，不支持调用此接口进行回调。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -1845,7 +1853,7 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 
 on(event: 'progress', callback: (progress: Progress) =&gt; void): void
 
-订阅任务进度的监听。
+订阅前端任务进度的监听。
 
 **系统能力**: SystemCapability.Request.FileTransferAgent
 
@@ -1881,7 +1889,7 @@ on(event: 'progress', callback: (progress: Progress) =&gt; void): void
     url: 'http://127.0.0.1',
     title: 'taskOnTest',
     description: 'Sample code for event listening',
-    mode: request.agent.Mode.BACKGROUND,
+    mode: request.agent.Mode.FOREGROUND,
     overwrite: false,
     method: "PUT",
     data: attachments,
@@ -1917,7 +1925,7 @@ on(event: 'progress', callback: (progress: Progress) =&gt; void): void
 
 on(event: 'completed', callback: (progress: Progress) =&gt; void): void
 
-订阅任务完成的监听。
+订阅前端任务完成的监听。
 
 **系统能力**: SystemCapability.Request.FileTransferAgent
 
@@ -1953,7 +1961,7 @@ on(event: 'completed', callback: (progress: Progress) =&gt; void): void
     url: 'http://127.0.0.1',
     title: 'taskOnTest',
     description: 'Sample code for event listening',
-    mode: request.agent.Mode.BACKGROUND,
+    mode: request.agent.Mode.FOREGROUND,
     overwrite: false,
     method: "PUT",
     data: attachments,
@@ -1989,7 +1997,7 @@ on(event: 'completed', callback: (progress: Progress) =&gt; void): void
 
 on(event: 'failed', callback: (progress: Progress) =&gt; void): void
 
-订阅任务失败的监听。
+订阅前端任务失败的监听。
 
 **系统能力**: SystemCapability.Request.FileTransferAgent
 
@@ -2025,7 +2033,7 @@ on(event: 'failed', callback: (progress: Progress) =&gt; void): void
     url: 'http://127.0.0.1',
     title: 'taskOnTest',
     description: 'Sample code for event listening',
-    mode: request.agent.Mode.BACKGROUND,
+    mode: request.agent.Mode.FOREGROUND,
     overwrite: false,
     method: "PUT",
     data: attachments,
@@ -2062,7 +2070,7 @@ on(event: 'failed', callback: (progress: Progress) =&gt; void): void
 
 off(event: 'progress', callback?: (progress: Progress) =&gt; void): void
 
-取消订阅任务进度的监听。
+取消订阅前端任务进度的监听。
 
 **系统能力**: SystemCapability.Request.FileTransferAgent
 
@@ -2098,7 +2106,7 @@ off(event: 'progress', callback?: (progress: Progress) =&gt; void): void
     url: 'http://127.0.0.1',
     title: 'taskOffTest',
     description: 'Sample code for event listening',
-    mode: request.agent.Mode.BACKGROUND,
+    mode: request.agent.Mode.FOREGROUND,
     overwrite: false,
     method: "PUT",
     data: attachments,
@@ -2135,7 +2143,7 @@ off(event: 'progress', callback?: (progress: Progress) =&gt; void): void
 
 off(event: 'completed', callback?: (progress: Progress) =&gt; void): void
 
-取消订阅任务完成的监听。
+取消订阅前端任务完成的监听。
 
 **系统能力**: SystemCapability.Request.FileTransferAgent
 
@@ -2171,7 +2179,7 @@ off(event: 'completed', callback?: (progress: Progress) =&gt; void): void
     url: 'http://127.0.0.1',
     title: 'taskOffTest',
     description: 'Sample code for event listening',
-    mode: request.agent.Mode.BACKGROUND,
+    mode: request.agent.Mode.FOREGROUND,
     overwrite: false,
     method: "PUT",
     data: attachments,
@@ -2208,7 +2216,7 @@ off(event: 'completed', callback?: (progress: Progress) =&gt; void): void
 
 off(event: 'failed', callback?: (progress: Progress) =&gt; void): void
 
-取消订阅任务失败的监听。
+取消订阅前端任务失败的监听。
 
 **系统能力**: SystemCapability.Request.FileTransferAgent
 
@@ -2244,7 +2252,7 @@ off(event: 'failed', callback?: (progress: Progress) =&gt; void): void
     url: 'http://127.0.0.1',
     title: 'taskOffTest',
     description: 'Sample code for event listening',
-    mode: request.agent.Mode.BACKGROUND,
+    mode: request.agent.Mode.FOREGROUND,
     overwrite: false,
     method: "PUT",
     data: attachments,

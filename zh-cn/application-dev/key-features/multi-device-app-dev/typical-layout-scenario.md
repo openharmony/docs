@@ -354,16 +354,11 @@ struct MultiLaneList {
 struct SideBarSample {
   @StorageLink('currentBreakpoint') private currentBreakpoint: string = "md";
   private breakpointSystem: BreakpointSystem = new BreakpointSystem()
-  @State showSideBar: boolean = false
   @State selectIndex: number = 0;
+  @State showSideBar:boolean=false;
 
   aboutToAppear() {
-    this.breakpointSystem.register()
-    if (this.currentBreakpoint === 'sm') {
-      this.showSideBar = false
-    } else {
-      this.showSideBar = true
-    }
+    this.breakpointSystem.register() 
   }
 
   aboutToDisappear() {
@@ -381,9 +376,9 @@ struct SideBarSample {
       .width(180)
       .height(36)
       .onClick(() => {
-        this.selectIndex = index
-        if (this.currentBreakpoint === 'sm') {
-          this.showSideBar = false
+        this.selectIndex = index;
+        if(this.currentBreakpoint === 'sm'){
+          this.showSideBar=false
         }
       })
   }
@@ -412,9 +407,11 @@ struct SideBarSample {
     .maxSideBarWidth(this.currentBreakpoint === 'sm' ? '100%' : '33.33%')
     .showControlButton(this.currentBreakpoint === 'sm')
     .autoHide(false)
-    .showSideBar(this.showSideBar)
+    .showSideBar(this.currentBreakpoint !== 'sm'||this.showSideBar)
     .onChange((isBarShow: boolean) => {
-      this.showSideBar = isBarShow
+      if(this.currentBreakpoint === 'sm'){
+          this.showSideBar=isBarShow
+        }         
     })
   }
 }

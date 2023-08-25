@@ -37,6 +37,7 @@ Scroll(scroller?: Scroller)
 | edgeEffect     | [EdgeEffect](ts-appendix-enums.md#edgeeffect)            | 设置滑动效果，目前支持的滑动效果参见EdgeEffect的枚举说明。<br/>默认值：EdgeEffect.None |
 | enableScrollInteraction<sup>10+</sup>  |  boolean  |   设置是否支持滚动手势，当设置为false时，无法通过手指或者鼠标滚动，但不影响控制器的滚动接口。<br/>默认值：true      |
 | nestedScroll<sup>10+</sup>                 | [NestedScrollOptions](#nestedscrolloptions10对象说明)         | 嵌套滚动选项。设置向前向后两个方向上的嵌套滚动模式，实现与父组件的滚动联动。 |
+| friction<sup>10+</sup> | number \| [Resource](ts-types.md#resource)    | 设置摩擦系数，手动划动滚动区域时生效，只对惯性滚动过程有影响，对惯性滚动过程中的链式效果有间接影响。<br/>默认值：非可穿戴设备为0.6，可穿戴设备为0.9<br/>**说明：** <br/>设置为小于等于0的值时，按默认值处理 |
 
 ## ScrollDirection枚举说明
 | 名称       | 描述                     |
@@ -80,12 +81,12 @@ scrollTo(value: { xOffset: number | string, yOffset: number | string, animation?
 
 滑动到指定位置。
 
-**参数：**
+**参数：** 
 
 | 参数名    | 参数类型                                                     | 必填 | 参数描述                                                     |
 | --------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| xOffset   | number&nbsp;\|&nbsp;string                                   | 是   | 水平滑动偏移。<br/>**说明：** <br/>该参数值不支持设置百分比。<br/>仅滚动轴为x轴时生效。 |
-| yOffset   | number&nbsp;\|&nbsp;string                                   | 是   | 垂直滑动偏移。<br/>**说明：** <br/>该参数值不支持设置百分比。<br/>仅滚动轴为y轴时生效。 |
+| xOffset   | number&nbsp;\|&nbsp;string                                   | 是   | 水平滑动偏移。<br/>**说明：** <br/>该参数值不支持设置百分比。<br/>当值小于0时，不做操作，即该参数不生效。<br/>仅滚动轴为x轴时生效。 |
+| yOffset   | number&nbsp;\|&nbsp;string                                   | 是   | 垂直滑动偏移。<br/>**说明：** <br/>该参数值不支持设置百分比。<br/>当值小于0时，不做操作，即该参数不生效。<br/>仅滚动轴为y轴时生效。 |
 | animation | {duration?:&nbsp;number, curve?:&nbsp;[Curve](ts-appendix-enums.md#curve)&nbsp;\|&nbsp;[ICurve](../apis/js-apis-curve.md#icurve)<sup>10+ </sup>}&nbsp;\|&nbsp;boolean<sup>10+ </sup> | 否   | 动画配置：<br/>-&nbsp;duration:&nbsp;滚动时长设置。<br/>-&nbsp;curve:&nbsp;滚动曲线设置。<br/>- boolean:&nbsp;使能默认弹簧动效。<br/>默认值： <br/>{<br/>duration:&nbsp;1000,<br/>curve:&nbsp;Curve.Ease<br/>}<br/>boolean:&nbsp;false<br/>**说明：** <br/>设置为小于0的值时，按默认值显示。<br/>当前List、Scroll、Grid、WaterFlow均支持boolean类型和ICurve曲线。 |
 
 
@@ -243,6 +244,7 @@ struct ScrollExample {
       .scrollBar(BarState.On)  // 滚动条常驻显示
       .scrollBarColor(Color.Gray)  // 滚动条颜色
       .scrollBarWidth(10) // 滚动条宽度
+      .friction(0.6)
       .edgeEffect(EdgeEffect.None)
       .onScroll((xOffset: number, yOffset: number) => {
         console.info(xOffset + ' ' + yOffset)
@@ -325,6 +327,7 @@ struct NestedScroll {
           .width("100%")
           .height("50%")
           .edgeEffect(EdgeEffect.None)
+          .friction(0.6)
           .onReachStart(() => {
             this.listPosition = 0
           })
@@ -399,6 +402,7 @@ struct StickyNestedScroll {
       }.width("100%")
     }
     .edgeEffect(EdgeEffect.Spring)
+    .friction(0.6)
     .backgroundColor('#DCDCDC')
     .scrollBar(BarState.Off)
     .width('100%')
