@@ -183,7 +183,7 @@ export class AudioRecorderDemo {
   async stopRecordingProcess() {
     // 1. Stop recording.
     if (this.avRecorder.state === 'started'
-      || this.avRecorder.state ==='paused') { // stop() can be called only when the AVRecorder is in the started or paused state.
+    || this.avRecorder.state ==='paused') { // stop() can be called only when the AVRecorder is in the started or paused state.
       await this.avRecorder.stop();
     }
     // 2. Reset the AVRecorder.
