@@ -271,7 +271,7 @@ try {
                 console.info('install successfully.');
             }
         });
-    }).catch(error => {
+    }).catch((error: BusinessError) => {
         console.error('getBundleInstaller failed. Cause: ' + error.message);
     });
 } catch (error) {
