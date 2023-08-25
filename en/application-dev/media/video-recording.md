@@ -70,14 +70,12 @@ Read [AVRecorder](../reference/apis/js-apis-media.md#avrecorder9) for the API re
       videoFrameHeight: number;
       videoFrameRate: number;
    }
-
    class AVConfig {
       videoSourceType: media.VideoSourceType;
       profile: AVProfile;
       url: string;
       rotation: number;
    }
-
    let avProfile: AVProfile = {
       fileFormat: media.ContainerFormatType.CFT_MPEG_4, // Video file encapsulation format. Only MP4 is supported.
       videoBitrate : 100000, // Video bit rate.
@@ -92,7 +90,6 @@ Read [AVRecorder](../reference/apis/js-apis-media.md#avrecorder9) for the API re
       url: 'fd://35', // Create, read, and write a file by referring to the sample code in Application File Access and Management.
       rotation: 0, // Video rotation angle. The default value is 0, indicating that the video is not rotated. The value can be 0, 90, 180, or 270.
    }
-
    avRecorder.prepare(avConfig).then(() => {
       console.info('avRecorder prepare success')
    }, (error: Error) => {
