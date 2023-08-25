@@ -852,7 +852,7 @@ discoveryService.stopSearchingMDNS();
 
 ### off('serviceFound')<sup>10+</sup>
 
-off(type: 'serviceFound', callback?: Callback<LocalServiceInfo>): void
+off(type: 'serviceFound', callback?: Callback\<LocalServiceInfo>): void
 
 取消订阅发现mDNS服务的通知。
 
@@ -918,7 +918,7 @@ discoveryService.stopSearchingMDNS();
 
 ### off('serviceLost')<sup>10+</sup>
 
-off(type: 'serviceLost', callback?: Callback<LocalServiceInfo>): void
+off(type: 'serviceLost', callback?: Callback\<LocalServiceInfo>): void
 
 取消订阅移除mDNS服务的通知。
 
