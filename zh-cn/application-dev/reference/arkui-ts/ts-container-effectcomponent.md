@@ -26,7 +26,7 @@ EffectComponent()
 
 ## 事件
 
-无，不支持通用事件。
+不支持通用事件。
 
 ## 属性
 
@@ -35,7 +35,7 @@ EffectComponent()
 ## 示例
 
 ```ts
-//index.ets
+//Index.ets
 @Entry
 @Component
 struct Index {
@@ -45,7 +45,7 @@ struct Index {
         .autoResize(true)
       EffectComponent() {
         Column({ space: 20 }) {
-		  // 使用backgroundBlurStyle进行模糊绘制
+          // 使用backgroundBlurStyle进行模糊绘制
           Text("Normal text with backgroundBlurStyle")
             .textAlign(TextAlign.Center)
             .fontSize(16)
@@ -65,7 +65,7 @@ struct Index {
             .width('90%')
             .height('48')
 
-          // 使用useEffect进行模糊合并绘制，继承effectcomponent的模糊参数
+          // 使用useEffect进行模糊合并绘制，继承EffectComponent的模糊参数
           Text("Normal text with useeffcet blur 1")
             .textAlign(TextAlign.Center)
             .useEffect(true)
@@ -75,7 +75,7 @@ struct Index {
             .width('90%')
             .height('48')
 
-          // 使用useEffect进行模糊合并绘制，继承effectcomponent的模糊参数
+          // 使用useEffect进行模糊合并绘制，继承EffectComponent的模糊参数
           Text("Normal text with useeffcet blur 2")
             .textAlign(TextAlign.Center)
             .useEffect(true)
