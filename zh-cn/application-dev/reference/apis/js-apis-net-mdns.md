@@ -720,7 +720,7 @@ discoveryService.stopSearchingMDNS();
 
 ### off('discoveryStart')<sup>10+</sup>
 
-off(type: 'discoveryStart', callback?: Callback<{ serviceInfo: LocalServiceInfo, errorCode?: MdnsError }>): void;
+off(type: 'discoveryStart', callback?: Callback<{ serviceInfo: LocalServiceInfo, errorCode?: MdnsError }>): void
 
 取消开启监听mDNS服务的通知。
 
@@ -731,7 +731,7 @@ off(type: 'discoveryStart', callback?: Callback<{ serviceInfo: LocalServiceInfo,
 | 参数名        | 类型                             | 必填 | 说明                                     |
 |-------------|--------------|-----------|-----------------------------------------------------|
 | type     | string                          | 是       |取消订阅的事件，固定为'discoveryStart'。<br>discoveryStart：开始搜索局域网内的mDNS服务事件。 |
-| callback | Callback<{serviceInfo: [LocalServiceInfo](#localserviceinfo), errorCode?: [MdnsError](#mdnserror)}>                  | 是        |   mDNS服务的信息和事件错误信息。      |
+| callback | Callback<{serviceInfo: [LocalServiceInfo](#localserviceinfo), errorCode?: [MdnsError](#mdnserror)}>                  | 否        |   mDNS服务的信息和事件错误信息。      |
 
 **示例：**
 
@@ -786,7 +786,7 @@ discoveryService.stopSearchingMDNS();
 
 ### off('discoveryStop')<sup>10+</sup>
 
-off(type: 'discoveryStop', callback: Callback<{serviceInfo: LocalServiceInfo, errorCode?: MdnsError}>): void
+off(type: 'discoveryStop', callback?: Callback<{ serviceInfo: LocalServiceInfo, errorCode?: MdnsError }>): void
 
 取消订阅停止监听mDNS服务的通知。
 
@@ -797,7 +797,7 @@ off(type: 'discoveryStop', callback: Callback<{serviceInfo: LocalServiceInfo, er
 | 参数名        | 类型                             | 必填 | 说明                                     |
 |-------------|--------------|-----------|-----------------------------------------------------|
 | type     | string                          | 是       |取消订阅的事件'discoveryStop'。<br>discoveryStop：停止搜索局域网内的mDNS服务事件。 |
-| callback | Callback<{serviceInfo: [LocalServiceInfo](#localserviceinfo), errorCode?: [MdnsError](#mdnserror)}>                 | 是        |   mDNS服务的信息和事件错误信息。      |
+| callback | Callback<{serviceInfo: [LocalServiceInfo](#localserviceinfo), errorCode?: [MdnsError](#mdnserror)}>                 | 否        |   mDNS服务的信息和事件错误信息。      |
 
 **示例：**
 
@@ -852,7 +852,7 @@ discoveryService.stopSearchingMDNS();
 
 ### off('serviceFound')<sup>10+</sup>
 
-off(type: 'serviceFound', callback: Callback\<LocalServiceInfo>): void
+off(type: 'serviceFound', callback?: Callback\<LocalServiceInfo>): void
 
 取消订阅发现mDNS服务的通知。
 
@@ -863,7 +863,7 @@ off(type: 'serviceFound', callback: Callback\<LocalServiceInfo>): void
 | 参数名        | 类型                             | 必填 | 说明                                     |
 |-------------|--------------|-----------|-----------------------------------------------------|
 | type     | string                          | 是       |取消订阅的事件，固定为'serviceFound'。<br>serviceFound：发现mDNS服务事件。 |
-| callback | Callback<[LocalServiceInfo](#localserviceinfo)>                 | 是        |   mDNS服务的信息。      |
+| callback | Callback<[LocalServiceInfo](#localserviceinfo)>                 | 否        |   mDNS服务的信息。      |
 
 **示例：**
 
@@ -918,7 +918,7 @@ discoveryService.stopSearchingMDNS();
 
 ### off('serviceLost')<sup>10+</sup>
 
-off(type: 'serviceLost', callback: Callback\<LocalServiceInfo>): void
+off(type: 'serviceLost', callback?: Callback\<LocalServiceInfo>): void
 
 取消订阅移除mDNS服务的通知。
 
@@ -929,7 +929,7 @@ off(type: 'serviceLost', callback: Callback\<LocalServiceInfo>): void
 | 参数名        | 类型                             | 必填 | 说明                                     |
 |-------------|--------------|-----------|-----------------------------------------------------|
 | type     | string                          | 是       |取消订阅的事件，固定为'serviceLost'。<br>serviceLost：移除mDNS服务事件。 |
-| callback | Callback<[LocalServiceInfo](#localserviceinfo)>   | 是        |   mDNS服务的信息。      |
+| callback | Callback<[LocalServiceInfo](#localserviceinfo)>   | 否        |   mDNS服务的信息。      |
 
 **示例：**
 
