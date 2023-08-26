@@ -37,8 +37,8 @@ Example: Create a user album.
 import photoAccessHelper from '@ohos.file.photoAccessHelper';
 
 try {
-  let albumName: photoAccessHelper.AlbumName = 'albumName';
-  let album: photoAccessHelper.Album = await phAccessHelper.createAlbum(albumName);
+  let albumName = 'albumName';
+  let album = await phAccessHelper.createAlbum(albumName);
   console.info('createAlbum successfully, album: ' + album.albumName + ' album uri: ' + album.albumUri);
 } catch (err) {
   console.error('createAlbum failed with err: ' + err);
@@ -66,10 +66,10 @@ Example: Obtain the user album named **albumName**.
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
 import photoAccessHelper from '@ohos.file.photoAccessHelper';
 
-let predicates: dataSharePredicates = new dataSharePredicates.DataSharePredicates();
-let albumName: photoAccessHelper = photoAccessHelper.AlbumKey.ALBUM_NAME;
+let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+let albumName: photoAccessHelper.AlbumKeys  = photoAccessHelper.AlbumKey.ALBUM_NAME;
 predicates.equalTo(albumName, 'albumName');
-let fetchOptions: dataSharePredicates.FetchOptions = {
+let fetchOptions: photoAccessHelper.FetchOptions = {
   fetchColumns: [],
   predicates: predicates
 };
@@ -111,10 +111,10 @@ Example: Rename an album named **albumName**.
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
 import photoAccessHelper from '@ohos.file.photoAccessHelper';
 
-let predicates: dataSharePredicates = new dataSharePredicates.DataSharePredicates();
-let albumName: photoAccessHelper = photoAccessHelper.AlbumKey.ALBUM_NAME;
+let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+let albumName: photoAccessHelper..AlbumKeys = photoAccessHelper.AlbumKey.ALBUM_NAME;
 predicates.equalTo(albumName, 'albumName');
-let fetchOptions: dataSharePredicates.FetchOptions = {
+let fetchOptions: photoAccessHelper.FetchOptions = {
   fetchColumns: [],
   predicates: predicates
 };
@@ -156,16 +156,16 @@ Example: Add an image to the album **albumName**.
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
 import photoAccessHelper from '@ohos.file.photoAccessHelper';
 
-let albumPredicates: dataSharePredicates = new dataSharePredicates.DataSharePredicates();
-let albumName: photoAccessHelper = photoAccessHelper.AlbumKey.ALBUM_NAME;
+let albumPredicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+let albumName: photoAccessHelper..AlbumKeys = photoAccessHelper.AlbumKey.ALBUM_NAME;
 albumPredicates.equalTo(albumName, 'albumName');
 let albumFetchOptions: dataSharePredicates.FetchOptions = {
   fetchColumns: [],
   predicates: albumPredicates
 };
 
-let photoPredicates: dataSharePredicates = new dataSharePredicates.DataSharePredicates();
-let photoFetchOptions: dataSharePredicates.FetchOptions = {
+let photoPredicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+let photoFetchOptions: photoAccessHelper.FetchOptions = {
   fetchColumns: [],
   predicates: photoPredicates
 };
@@ -174,8 +174,8 @@ try {
   let albumFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.USER, photoAccessHelper.AlbumSubtype.USER_GENERIC, albumFetchOptions);
   let album: photoAccessHelper.Album = await albumFetchResult.getFirstObject();
   console.info('getAlbums successfully, albumName: ' + album.albumName);
-  let photoFetchResult = await phAccessHelper.getAssets(photoFetchOptions);
-  let fileAsset = await photoFetchResult.getFirstObject();
+  let photoFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(photoFetchOptions);
+  let fileAsset: photoAccessHelper.PhotoAsset = await photoFetchResult.getFirstObject();
   console.info('getAssets successfully, albumName: ' + fileAsset.displayName);
   await album.addAssets([fileAsset]);
   albumFetchResult.close();
@@ -209,16 +209,16 @@ Example: Obtain an image in the user album **albumName**.
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
 import photoAccessHelper from '@ohos.file.photoAccessHelper';
 
-let albumPredicates: dataSharePredicates = new dataSharePredicates.DataSharePredicates();
-let albumName: photoAccessHelper = photoAccessHelper.AlbumKey.ALBUM_NAME;
+let albumPredicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+let albumName: photoAccessHelper.AlbumKeys = photoAccessHelper.AlbumKey.ALBUM_NAME;
 albumPredicates.equalTo(albumName, 'albumName');
-let albumFetchOptions: dataSharePredicates.FetchOptions = {
+let albumFetchOptions: photoAccessHelper.FetchOptions = {
   fetchColumns: [],
   predicates: albumPredicates
 };
 
-let photoPredicates: dataSharePredicates = new dataSharePredicates.DataSharePredicates();
-let photoFetchOptions: dataSharePredicates.FetchOptions = {
+let photoPredicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+let photoFetchOptions: photoAccessHelper.FetchOptions = {
   fetchColumns: [],
   predicates: photoPredicates
 };
@@ -227,8 +227,8 @@ try {
   let albumFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.USER, photoAccessHelper.AlbumSubtype.USER_GENERIC, albumFetchOptions);
   let album: photoAccessHelper.Album = await albumFetchResult.getFirstObject();
   console.info('getAlbums successfully, albumName: ' + album.albumName);
-  let photoFetchResult = await album.getAssets(photoFetchOptions);
-  let fileAsset = await photoFetchResult.getFirstObject();
+  let photoFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await album.getAssets(photoFetchOptions);
+  let fileAsset: photoAccessHelper.PhotoAsset = await photoFetchResult.getFirstObject();
   console.info('album getAssets successfully, albumName: ' + fileAsset.displayName);
   albumFetchResult.close();
   photoFetchResult.close();
@@ -264,16 +264,16 @@ Example: Remove an image from the album named **albumName**.
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
 import photoAccessHelper from '@ohos.file.photoAccessHelper';
 
-let albumPredicates: dataSharePredicates = new dataSharePredicates.DataSharePredicates();
-let albumName: photoAccessHelper = photoAccessHelper.AlbumKey.ALBUM_NAME;
+let albumPredicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+let albumName: photoAccessHelper.AlbumKeys = photoAccessHelper.AlbumKey.ALBUM_NAME;
 albumPredicates.equalTo(albumName, 'albumName');
-let albumFetchOptions: dataSharePredicates.FetchOptions = {
+let albumFetchOptions: photoAccessHelper.FetchOptions = {
   fetchColumns: [],
   predicates: albumPredicates
 };
 
-let photoPredicates: dataSharePredicates = new dataSharePredicates.DataSharePredicates();
-let photoFetchOptions: dataSharePredicates.FetchOptions = {
+let photoPredicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+let photoFetchOptions: photoAccessHelper.FetchOptions = {
   fetchColumns: [],
   predicates: photoPredicates
 };
@@ -282,8 +282,8 @@ try {
   let albumFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.USER, photoAccessHelper.AlbumSubtype.USER_GENERIC, albumFetchOptions);
   let album: photoAccessHelper.Album = await albumFetchResult.getFirstObject();
   console.info('getAlbums successfully, albumName: ' + album.albumName);
-  let photoFetchResult = await album.getAssets(photoFetchOptions);
-  let fileAsset = await photoFetchResult.getFirstObject();
+  let photoFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await album.getAssets(photoFetchOptions);
+  let fileAsset: photoAccessHelper.PhotoAsset = await photoFetchResult.getFirstObject();
   console.info('album getAssets successfully, albumName: ' + fileAsset.displayName);
   await album.removeAssets([fileAsset]);
   albumFetchResult.close();
@@ -315,10 +315,10 @@ Example: Delete a user album named **albumName**.
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
 import photoAccessHelper from '@ohos.file.photoAccessHelper';
 
-let predicates: dataSharePredicates = new dataSharePredicates.DataSharePredicates();
-let albumName: photoAccessHelper.AlbumName = photoAccessHelper.AlbumKey.ALBUM_NAME;
+let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+let albumName: photoAccessHelper.AlbumKeys = photoAccessHelper.AlbumKey.ALBUM_NAME;
 predicates.equalTo(albumName, '%albumName%');
-let fetchOptions: dataSharePredicates.FetchOptions = {
+let fetchOptions: photoAccessHelper.FetchOptions = {
   fetchColumns: [],
   predicates: predicates
 };

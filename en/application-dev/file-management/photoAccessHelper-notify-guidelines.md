@@ -81,7 +81,7 @@ import dataSharePredicates from '@ohos.data.dataSharePredicates';
 import photoAccessHelper from '@ohos.file.photoAccessHelper';
 
 let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
-let albumName = photoAccessHelper.AlbumKey.ALBUM_NAME;
+let albumName: photoAccessHelper.AlbumKeys = photoAccessHelper.AlbumKey.ALBUM_NAME;
 predicates.equalTo(albumName, 'albumName');
 let fetchOptions: dataSharePredicates.FetchOptions = {
   fetchColumns: [],

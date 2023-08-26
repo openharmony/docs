@@ -62,16 +62,16 @@ Example: Favorite an image.
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
 import photoAccessHelper from '@ohos.file.photoAccessHelper';
 
-let predicates: dataSharePredicates = new dataSharePredicates.DataSharePredicates();
+let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
 predicates.equalTo(photoAccessHelper.ImageVideoKey.DISPLAY_NAME, 'test.jpg');
-let fetchOptions: dataSharePredicates.FetchOptions = {
+let fetchOptions: photoAccessHelper.FetchOptions = {
   fetchColumns: [],
   predicates: predicates
 };
 
 try {
-  let photoFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAssets(fetchOptions);
-  let fileAsset = await photoFetchResult.getFirstObject();
+  let photoFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
+  let fileAsset: photoAccessHelper.PhotoAsset = await photoFetchResult.getFirstObject();
   console.info('getAssets fileAsset.displayName : ' + fileAsset.displayName);
   let favoriteState = true;
   await fileAsset.setFavorite(favoriteState);
@@ -102,8 +102,8 @@ Example: Obtain an image from **Favorites**.
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
 import photoAccessHelper from '@ohos.file.photoAccessHelper';
 
-let predicates: dataSharePredicates = new dataSharePredicates.DataSharePredicates();
-let fetchOptions: dataSharePredicates.FetchOptions = {
+let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+let fetchOptions: photoAccessHelper.FetchOptions = {
   fetchColumns: [],
   predicates: predicates
 };
@@ -113,8 +113,8 @@ try {
   let album: photoAccessHelper.Album = await albumFetchResult.getFirstObject();
   console.info('get favorite Album successfully, albumUri: ' + album.albumUri);
 
-  let photoFetchResult = await album.getAssets(fetchOptions);
-  let fileAsset = await photoFetchResult.getFirstObject();
+  let photoFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await album.getAssets(fetchOptions);
+  let fileAsset: photoAccessHelper.PhotoAsset = await photoFetchResult.getFirstObject();
   console.info('favorite album getAssets successfully, albumName: ' + fileAsset.displayName);
   photoFetchResult.close();
   albumFetchResult.close();
@@ -145,8 +145,8 @@ Example: Unfavorite an image.
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
 import photoAccessHelper from '@ohos.file.photoAccessHelper';
 
-let predicates: dataSharePredicates = new dataSharePredicates.DataSharePredicates();
-let fetchOptions: dataSharePredicates.FetchOptions = {
+let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+let fetchOptions: photoAccessHelper.FetchOptions = {
   fetchColumns: [],
   predicates: predicates
 };
@@ -156,8 +156,8 @@ try {
   let album: photoAccessHelper.Album = await albumFetchResult.getFirstObject();
   console.info('get favorite Album successfully, albumUri: ' + album.albumUri);
 
-  let photoFetchResult = await album.getAssets(fetchOptions);
-  let fileAsset = await photoFetchResult.getFirstObject();
+  let photoFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await album.getAssets(fetchOptions);
+  let fileAsset: photoAccessHelper.PhotoAsset = await photoFetchResult.getFirstObject();
   console.info('favorite album getAssets successfully, albumName: ' + fileAsset.displayName);
   let favoriteState = false;
   await fileAsset.setFavorite(favoriteState);
@@ -221,8 +221,8 @@ Example: Obtain a video in **Videos**.
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
 import photoAccessHelper from '@ohos.file.photoAccessHelper';
 
-let predicates: dataSharePredicates = new dataSharePredicates.DataSharePredicates();
-let fetchOptions: dataSharePredicates.FetchOptions = {
+let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+let fetchOptions: photoAccessHelper.FetchOptions = {
   fetchColumns: [],
   predicates: predicates
 };
@@ -232,8 +232,8 @@ try {
   let album: photoAccessHelper.Album = await albumFetchResult.getFirstObject();
   console.info('get video Album successfully, albumUri: ' + album.albumUri);
 
-  let videoFetchResult = await album.getAssets(fetchOptions);
-  let fileAsset = await videoFetchResult.getFirstObject();
+  let videoFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await album.getAssets(fetchOptions);
+  let fileAsset: photoAccessHelper.PhotoAsset = await videoFetchResult.getFirstObject();
   console.info('video album getAssets successfully, albumName: ' + fileAsset.displayName);
   videoFetchResult.close();
   albumFetchResult.close();
@@ -295,8 +295,8 @@ Example: Obtain a media asset from **Screenshots**.
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
 import photoAccessHelper from '@ohos.file.photoAccessHelper';
 
-let predicates: dataSharePredicates = new dataSharePredicates.DataSharePredicates();
-let fetchOptions: dataSharePredicates.FetchOptions = {
+let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+let fetchOptions: photoAccessHelper.FetchOptions = {
   fetchColumns: [],
   predicates: predicates
 };
@@ -306,8 +306,8 @@ try {
   let album: photoAccessHelper.Album = await albumFetchResult.getFirstObject();
   console.info('get screenshot album successfully, albumUri: ' + album.albumUri);
 
-  let screenshotFetchResult = await album.getAssets(fetchOptions);
-  let fileAsset = await screenshotFetchResult.getFirstObject();
+  let screenshotFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await album.getAssets(fetchOptions);
+  let fileAsset: photoAccessHelper.PhotoAsset = await screenshotFetchResult.getFirstObject();
   console.info('screenshot album getAssets successfully, albumName: ' + fileAsset.displayName);
   screenshotFetchResult.close();
   albumFetchResult.close();
