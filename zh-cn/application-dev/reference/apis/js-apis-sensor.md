@@ -3686,7 +3686,7 @@ try {
 | minSamplePeriod | number   | 是  | 是  | 允许的最小采样周期。   |
 | maxSamplePeriod | number   | 是  | 是  | 允许的最大采样周期。   |
 | precision       | number   | 是  | 是  | 传感器精度。           |
-| power           | number   | 是  | 是  | 传感器功率。           |
+| power           | number   | 是  | 是  | 电源电流大小，单位：毫安。  |
 
 ## ColorResponse<sup>10+</sup>
 
