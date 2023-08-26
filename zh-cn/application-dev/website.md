@@ -25,9 +25,6 @@
         - HSP
           - [应用内HSP开发指导](quick-start/in-app-hsp.md)
           - [应用间HSP开发指导](quick-start/cross-app-hsp.md)
-      - 原子化服务
-        - [原子化服务开发指导](quick-start/atomicService.md)
-        - [原子化服务空间管理（仅对系统应用开放）](quick-start/atomicService-aging.md)
       - 应用程序包快速修复
         - [快速修复概述](quick-start/quickfix-principles.md)
         - [快速修复命令行调试开发指导](quick-start/quickfix-debug.md)
@@ -302,8 +299,10 @@
           - [导航转场](ui/arkts-navigation-transition.md)
           - [模态转场](ui/arkts-modal-transition.md)
           - [共享元素转场](ui/arkts-shared-element-transition.md)
+          - [页面转场动画（不推荐）](ui/arkts-page-transition-animation.md)
         - [组件动画](ui/arkts-component-animation.md)
         - 动画曲线
+          - [动画曲线概述](ui/arkts-curve-overview.md)
           - [传统曲线](ui/arkts-traditional-curve.md)
           - [弹簧曲线](ui/arkts-spring-curve.md)
         - [动画衔接](ui/arkts-animation-smoothing.md)
@@ -481,6 +480,7 @@
         - [开发音频通话功能](media/audio-call-development.md)
       - [视频播放](media/video-playback.md)
       - [视频录制](media/video-recording.md)
+      - [屏幕录制](media/avscreen-capture.md)
       - 音视频编解码
         - [获取支持的编解码能力](media/obtain-supported-codecs.md)
         - [音频编码](media/audio-encoding.md)
@@ -633,7 +633,7 @@
     - [短时任务](task-management/transient-task.md)
     - [长时任务](task-management/continuous-task.md)
     - [延迟任务](task-management/work-scheduler.md)
-    - [代理提醒](task-management/agent-powered-reminder.md)      
+    - [代理提醒](task-management/agent-powered-reminder.md)
     - [能效资源申请（仅对系统特权应用开放）](task-management/efficiency-resource-request.md)
   - 设备管理
     - USB服务
@@ -749,6 +749,8 @@
       - [Purgeable memory开发指导](napi/purgeable-memory-guidelines.md)
     - 设备管理
       - [USB DDK开发指导](napi/usb-ddk-guidelines.md)
+    - 数据管理
+      - [RelationalStore开发指导](napi/native-relational-store-guidelines.md)
 - 工具
   - [DevEco Studio（OpenHarmony）使用指南](quick-start/deveco-studio-user-guide-for-openharmony.md)
   - 调试工具
@@ -777,14 +779,18 @@
         - [@ohos.app.ability.AbilityConstant (AbilityConstant)](reference/apis/js-apis-app-ability-abilityConstant.md)
         - [@ohos.app.ability.abilityLifecycleCallback (AbilityLifecycleCallback)](reference/apis/js-apis-app-ability-abilityLifecycleCallback.md)
         - [@ohos.app.ability.AbilityStage (AbilityStage)](reference/apis/js-apis-app-ability-abilityStage.md)
+        - [@ohos.app.ability.ActionExtensionAbility (自定义服务扩展能力)](reference/apis/js-apis-app-ability-actionExtensionAbility.md)
         - [@ohos.app.ability.ApplicationStateChangeCallback (ApplicationStateChangeCallback)](reference/apis/js-apis-app-ability-applicationStateChangeCallback.md)
         - [@ohos.app.ability.common (应用上下文Context)](reference/apis/js-apis-app-ability-common.md)
         - [@ohos.app.ability.contextConstant (ContextConstant)](reference/apis/js-apis-app-ability-contextConstant.md)
         - [@ohos.app.ability.EnvironmentCallback (EnvironmentCallback)](reference/apis/js-apis-app-ability-environmentCallback.md)
         - [@ohos.app.ability.ExtensionAbility (扩展能力基类)](reference/apis/js-apis-app-ability-extensionAbility.md)
         - [@ohos.app.ability.ServiceExtensionAbility (ServiceExtensionAbility)](reference/apis/js-apis-app-ability-serviceExtensionAbility.md)
+        - [@ohos.app.ability.ShareExtensionAbility (分享模板服务扩展能力)](reference/apis/js-apis-app-ability-shareExtensionAbility.md)
         - [@ohos.app.ability.StartOptions (StartOptions)](reference/apis/js-apis-app-ability-startOptions.md)
         - [@ohos.app.ability.UIAbility (UIAbility)](reference/apis/js-apis-app-ability-uiAbility.md)
+        - [@ohos.app.ability.UIExtensionAbility (带界面扩展能力基类)](reference/apis/js-apis-app-ability-uiExtensionAbility.md)
+        - [@ohos.app.ability.UIExtensionContentSession (带界面扩展能力界面操作类)](reference/apis/js-apis-app-ability-uiExtensionContentSession.md)
         - [@ohos.app.form.FormExtensionAbility (FormExtensionAbility)](reference/apis/js-apis-app-form-formExtensionAbility.md)
         - [@ohos.application.DataShareExtensionAbility (数据共享扩展能力)](reference/apis/js-apis-application-dataShareExtensionAbility.md)
         - [@ohos.application.StaticSubscriberExtensionAbility (StaticSubscriberExtensionAbility)](reference/apis/js-apis-application-staticSubscriberExtensionAbility.md)
@@ -811,8 +817,9 @@
         - [@ohos.app.form.formBindingData (卡片数据绑定类)](reference/apis/js-apis-app-form-formBindingData.md)
         - [@ohos.app.form.formHost (FormHost)](reference/apis/js-apis-app-form-formHost.md)
         - [@ohos.app.form.formInfo (FormInfo)](reference/apis/js-apis-app-form-formInfo.md)
+        - [@ohos.app.form.formObserver (formObserver)](reference/apis/js-apis-app-form-formObserver.md)
         - [@ohos.app.form.formProvider (FormProvider)](reference/apis/js-apis-app-form-formProvider.md)
-        - [@ohos.application.uriPermissionManager(URI权限管理)](reference/apis/js-apis-uripermissionmanager.md)
+        - [@ohos.application.uriPermissionManager (URI权限管理)](reference/apis/js-apis-uripermissionmanager.md)
       - 通用能力的接口(待停用)
         - [@ohos.ability.dataUriUtils (DataUriUtils模块)](reference/apis/js-apis-ability-dataUriUtils.md)
         - [@ohos.ability.errorCode (ErrorCode)](reference/apis/js-apis-ability-errorCode.md)
@@ -875,6 +882,7 @@
           - [ProcessInformation](reference/apis/js-apis-inner-application-processInformation.md)
           - [ServiceExtensionContext](reference/apis/js-apis-inner-application-serviceExtensionContext.md)
           - [UIAbilityContext](reference/apis/js-apis-inner-application-uiAbilityContext.md)
+          - [UIExtensionContext](reference/apis/js-apis-inner-application-uiExtensionContext.md)
           - [shellCmdResult](reference/apis/js-apis-inner-application-shellCmdResult.md)
           - [WindowExtensionContext](reference/apis/js-apis-inner-application-windowExtensionContext.md)
         - wantAgent
@@ -968,7 +976,7 @@
       - [@ohos.arkui.dragController (DragController)](reference/apis/js-apis-arkui-dragController.md)
       - [@ohos.arkui.drawableDescriptor (DrawableDescriptor)](reference/apis/js-apis-arkui-drawableDescriptor.md)
       - [@ohos.arkui.inspector (布局回调)](reference/apis/js-apis-arkui-inspector.md)
-      - [ @ohos.arkui.performanceMonitor (性能监测)](reference/apis/js-apis-arkui-performancemonitor.md)
+      - [@ohos.arkui.performanceMonitor (性能监测)](reference/apis/js-apis-arkui-performancemonitor.md)
       - [@ohos.arkui.UIContext (UIContext)](reference/apis/js-apis-arkui-UIContext.md)
       - [@ohos.curves (插值计算)](reference/apis/js-apis-curve.md)
       - [@ohos.font (注册自定义字体)](reference/apis/js-apis-font.md)
@@ -1036,7 +1044,8 @@
       - [@ohos.data.distributedKVStore (分布式键值数据库)](reference/apis/js-apis-distributedKVStore.md)
       - [@ohos.data.preferences (用户首选项)](reference/apis/js-apis-data-preferences.md)
       - [@ohos.data.relationalStore (关系型数据库)](reference/apis/js-apis-data-relationalStore.md)
-      - [@ohos.data.UDMF (统一数据管理框架)](reference/apis/js-apis-data-udmf.md)
+      - [@ohos.data.unifiedDataChannel (标准化数据通路)](reference/apis/js-apis-data-unifiedDataChannel.md)
+      - [@ohos.data.uniformTypeDescriptor (标准化数据定义与描述)](reference/apis/js-apis-data-uniformTypeDescriptor.md)
       - [@ohos.data.ValuesBucket (数据集)](reference/apis/js-apis-data-valuesBucket.md)
     - 文件管理
       - [@ohos.file.backup (备份恢复)](reference/apis/js-apis-file-backup.md)
@@ -1058,6 +1067,7 @@
       - [@ohos.fileshare (文件分享)](reference/apis/js-apis-fileShare.md)
     - AI
       - [@ohos.ai.mindSporeLite (推理能力)](reference/apis/js-apis-mindSporeLite.md)
+      - [@ohos.ai.intelligentVoice (智能语音)](reference/apis/js-apis-intelligentVoice.md)
     - 电话服务
       - [@ohos.contact (联系人)](reference/apis/js-apis-contact.md)
       - [@ohos.telephony.call (拨打电话)](reference/apis/js-apis-call.md)
@@ -1145,10 +1155,10 @@
       - [@ohos.charger (充电类型)](reference/apis/js-apis-charger.md)
       - [@ohos.cooperate (键鼠穿越)](reference/apis/js-apis-devicestatus-cooperate.md)
       - [@ohos.deviceAttest (设备证明)](reference/apis/js-apis-deviceAttest.md)
-      - [@ohos.deviceStatus.dragInteraction（拖拽）](reference/apis/js-apis-devicestatus-draginteraction.md)
+      - [@ohos.deviceStatus.dragInteraction (拖拽)](reference/apis/js-apis-devicestatus-draginteraction.md)
       - [@ohos.deviceInfo (设备信息)](reference/apis/js-apis-device-info.md)
-      - [@ohos.distributedDeviceManager (设备管理)(推荐)](reference/apis/js-apis-distributedDeviceManager.md)
-      - [@ohos.distributedHardware.deviceManager (设备管理)(待废弃)](reference/apis/js-apis-device-manager.md)
+      - [@ohos.distributedDeviceManager (设备管理)](reference/apis/js-apis-distributedDeviceManager.md)
+      - [@ohos.distributedHardware.deviceManager (设备管理)](reference/apis/js-apis-device-manager.md)
       - [@ohos.driver.deviceManager (外设管理)](reference/apis/js-apis-driver-deviceManager.md)
       - [@ohos.geoLocationManager (位置服务)](reference/apis/js-apis-geoLocationManager.md)
       - [@ohos.multimodalInput.gestureEvent (手势事件)](reference/apis/js-apis-multimodalinput-gestureevent.md)
@@ -1166,6 +1176,7 @@
       - [@ohos.multimodalInput.touchEvent (触摸输入事件)](reference/apis/js-apis-touchevent.md)
       - [@ohos.multimodalInput.shortKey(快捷键)](reference/apis/js-apis-shortKey.md)
       - [@ohos.power (系统电源管理)](reference/apis/js-apis-power.md)
+      - [@ohos.resourceschedule.deviceStandby (设备待机模块)](reference/apis/js-apis-resourceschedule-deviceStandby.md)
       - [@ohos.runningLock (Runninglock锁)](reference/apis/js-apis-runninglock.md)
       - [@ohos.sensor (传感器)](reference/apis/js-apis-sensor.md)
       - [@ohos.settings (设置数据项名称)](reference/apis/js-apis-settings.md)
@@ -1198,6 +1209,7 @@
       - [@ohos.enterprise.EnterpriseAdminExtensionAbility (企业设备管理扩展能力)](reference/apis/js-apis-EnterpriseAdminExtensionAbility.md)
       - [@ohos.enterprise.networkManager (网络管理)](reference/apis/js-apis-enterprise-networkManager.md)
       - [@ohos.enterprise.restrictions (限制类策略)](reference/apis/js-apis-enterprise-restrictions.md)
+      - [@ohos.enterprise.usbManager (USB管理)](reference/apis/js-apis-enterprise-usbManager.md)
       - [@ohos.enterprise.wifiManager (WiFi管理)](reference/apis/js-apis-enterprise-wifiManager.md)
     - 语言基础类库
       - [@ohos.buffer (Buffer)](reference/apis/js-apis-buffer.md)
@@ -1396,7 +1408,6 @@
       - [Web](reference/arkui-ts/ts-basic-components-web.md)
       - [XComponent](reference/arkui-ts/ts-basic-components-xcomponent.md)
     - 容器组件
-      - [AbilityComponent](reference/arkui-ts/ts-container-ability-component.md)
       - [Badge](reference/arkui-ts/ts-container-badge.md)
       - [Column](reference/arkui-ts/ts-container-column.md)
       - [ColumnSplit](reference/arkui-ts/ts-container-columnsplit.md)
@@ -1475,6 +1486,7 @@
     - [枚举说明](reference/arkui-ts/ts-appendix-enums.md)
     - [类型定义](reference/arkui-ts/ts-types.md)
     - 已停止维护的组件
+      - [AbilityComponent](reference/arkui-ts/ts-container-ability-component.md)  
       - [GridContainer](reference/arkui-ts/ts-container-gridcontainer.md)
     - 已停止维护的接口
       - [点击控制](reference/arkui-ts/ts-universal-attributes-click.md)
@@ -1584,6 +1596,8 @@
       - [文件组织](reference/arkui-js-lite/js-framework-file.md)
       - [js标签配置](reference/arkui-js-lite/js-framework-js-tag.md)
       - [app.js](reference/arkui-js-lite/js-framework-js-file.md)
+      - [生命周期](reference/arkui-js-lite/js-framework-lifecycle.md)
+      - [多语言](reference/arkui-js-lite/js-framework-localization.md)
       - 语法
         - [HML语法参考](reference/arkui-js-lite/js-framework-syntax-hml.md)
         - [CSS语法参考](reference/arkui-js-lite/js-framework-syntax-css.md)
@@ -1659,6 +1673,8 @@
       - [元能力子系统错误码](reference/errorcodes/errorcode-ability.md)
       - [DistributedSchedule错误码](reference/errorcodes/errorcode-DistributedSchedule.md)
       - [卡片错误码](reference/errorcodes/errorcode-form.md)
+    - AI业务
+      - [智能语音错误码](reference/errorcodes/errorcode-intelligentVoice.md)
     - 包管理
       - [包管理子系统通用错误码](reference/errorcodes/errorcode-bundle.md)
       - [zlib子系统错误码](reference/errorcodes/errorcode-zlib.md)
@@ -1670,6 +1686,7 @@
       - [动画错误码](reference/errorcodes/errorcode-animator.md)
       - [弹窗错误码](reference/errorcodes/errorcode-promptAction.md)
       - [页面路由错误码](reference/errorcodes/errorcode-router.md)
+      - [用户界面外观服务错误码](reference/errorcodes/errorcode-uiappearance.md)
     - 图形图像
       - [色彩管理错误码](reference/errorcodes/errorcode-colorspace-manager.md)
       - [屏幕错误码](reference/errorcodes/errorcode-display.md)
@@ -1679,6 +1696,7 @@
       - [Media错误码](reference/errorcodes/errorcode-media.md)
       - [媒体会话管理错误码](reference/errorcodes/errorcode-avsession.md)
       - [Camera错误码](reference/errorcodes/errorcode-camera.md)
+      - [Image错误码](reference/errorcodes/errorcode-image.md)
     - 资源管理
       - [I18n错误码](reference/errorcodes/errorcode-i18n.md)
       - [资源管理错误码](reference/errorcodes/errorcode-resource-manager.md)
