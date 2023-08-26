@@ -11,13 +11,13 @@ Metadata主要是通过一个TAG（Key），去找对应的Data，用于传递�
 1. 调用CameraOutputCapability类中的supportedMetadataObjectTypes()方法，获取当前设备支持的元数据类型，并通过createMetadataOutput()方法创建元数据输出流。
      
    ```ts
-   let metadataObjectTypes = cameraOutputCapability.supportedMetadataObjectTypes;
-   let metadataOutput;
+   let metadataObjectTypes: Array<camera.MetadataObjectType> = cameraOutputCapability.supportedMetadataObjectTypes;
+   let metadataOutput: camera.MetadataOutput;
    try {
-       metadataOutput = cameraManager.createMetadataOutput(metadataObjectTypes);
+     metadataOutput = cameraManager.createMetadataOutput(metadataObjectTypes);
    } catch (error) {
        // 失败返回错误码error.code并处理
-       console.info(error.code);
+     console.info(error.code);
    }
    ```
 
@@ -25,9 +25,9 @@ Metadata主要是通过一个TAG（Key），去找对应的Data，用于传递�
      
    ```ts
    metadataOutput.start().then(() => {
-       console.info('Callback returned with metadataOutput started.');
+     console.info('Callback returned with metadataOutput started.');
    }).catch((err) => {
-       console.info('Failed to metadataOutput start '+ err.code);
+     console.info('Failed to metadataOutput start '+ err.code);
    });
    ```
 
@@ -35,9 +35,9 @@ Metadata主要是通过一个TAG（Key），去找对应的Data，用于传递�
      
    ```ts
    metadataOutput.stop().then(() => {
-       console.info('Callback returned with metadataOutput stopped.');
+     console.info('Callback returned with metadataOutput stopped.');
    }).catch((err) => {
-       console.info('Failed to metadataOutput stop '+ err.code);
+     console.info('Failed to metadataOutput stop '+ err.code);
    });
    ```
 
@@ -48,9 +48,9 @@ Metadata主要是通过一个TAG（Key），去找对应的Data，用于传递�
 - 通过注册监听获取metadata对象，监听事件固定为metadataObjectsAvailable。检测到有效metadata数据时，callback返回相应的metadata数据信息，metadataOutput创建成功时可监听。
     
   ```ts
-  metadataOutput.on('metadataObjectsAvailable', (err, metadataObjectArr) => {
-      console.info(`metadata output metadataObjectsAvailable`);
-  })
+  metadataOutput.on('metadataObjectsAvailable', (err: BusinessError, metadataObjectArr: Array<camera.MetadataObject>) => {
+    console.info(`metadata output metadataObjectsAvailable`);
+  });
   ```
 
   > **说明：**
@@ -60,7 +60,7 @@ Metadata主要是通过一个TAG（Key），去找对应的Data，用于传递�
 - 通过注册回调函数，获取监听metadata流的错误结果，callback返回metadata输出接口使用错误时返回的错误码，错误码类型参见[CameraErrorCode](../reference/apis/js-apis-camera.md#cameraerrorcode)。
     
   ```ts
-  metadataOutput.on('error', (metadataOutputError) => {
-      console.info(`Metadata output error code: ${metadataOutputError.code}`);
-  })
+  metadataOutput.on('error', (metadataOutputError: BusinessError) => {
+    console.info(`Metadata output error code: ${metadataOutputError.code}`);
+  });
   ```
