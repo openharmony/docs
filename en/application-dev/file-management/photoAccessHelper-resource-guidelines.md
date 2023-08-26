@@ -99,8 +99,8 @@ import dataSharePredicates from '@ohos.data.dataSharePredicates';
 import photoAccessHelper from '@ohos.file.photoAccessHelper';
 
 let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
-let startTime = Date.parse(new Date('2022-06-01').toString()) / 1000; // The value of the start time is the number of seconds elapsed since the Epoch time.
-let endTime = Date.parse(new Date('2023-06-01').toString()) / 1000;  // The value of the end time is the number of seconds elapsed since the Epoch time.
+let startTime: Number = Date.parse(new Date('2022-06-01').toString()) / 1000; // The value of the start time is the number of seconds elapsed since the Epoch time.
+let endTime: Number = Date.parse(new Date('2023-06-01').toString()) / 1000;  // The value of the end time is the number of seconds elapsed since the Epoch time.
 let date_added: photoAccessHelper.PhotoKeys = photoAccessHelper.PhotoKeys.DATE_ADDED;
 predicates.between(date_added, startTime, endTime);
 predicates.orderByDesc(date_added); // Sort the obtained records in descending order.
@@ -152,9 +152,10 @@ Example: Obtain the thumbnail of 720 x 720 of an image.
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
 import photoAccessHelper from '@ohos.file.photoAccessHelper';
+import image from '@ohos.multimedia.image';
 
 let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
-let fetchOptions: dataSharePredicates.FetchOptions = {
+let fetchOptions: photoAccessHelper.FetchOptions = {
   fetchColumns: [],
   predicates: predicates
 };
@@ -163,9 +164,9 @@ try {
   let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
   let fileAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
   console.info('getAssets fileAsset.displayName : ' + fileAsset.displayName);
-  let size = { width: 720, height: 720 };
-  let pixelMap =  await fileAsset.getThumbnail(size);
-  let imageInfo = await pixelMap.getImageInfo()
+  let size: image.Size = { width: 720, height: 720 };
+  let pixelMap: image.PixelMap =  await fileAsset.getThumbnail(size);
+  let imageInfo: image.ImageInfo = await pixelMap.getImageInfo()
   console.info('getThumbnail successful, pixelMap ImageInfo size: ' + JSON.stringify(imageInfo.size));
   fetchResult.close();
 } catch (err) {
@@ -195,12 +196,12 @@ Example: Create an image asset.
 import photoAccessHelper from '@ohos.file.photoAccessHelper';
 
 try {
-  let displayName = 'testPhoto' + Date.now() + '.jpg';
+  let displayName: string = 'testPhoto' + Date.now() + '.jpg';
   let createOption: photoAccessHelper.CreateOptions = {
     subType: photoAccessHelper.PhotoSubtype.DEFAULT
   };
 
-  let fileAsset = await phAccessHelper.createAsset(displayName, createOption);
+  let fileAsset: photoAccessHelper.PhotoAsset = await phAccessHelper.createAsset(displayName, createOption);
   console.info('createAsset successfully, file displayName: ' + fileAsset.displayName);
 } catch (err) {
   console.error('createAsset failed, message = ', err);
@@ -235,7 +236,7 @@ import dataSharePredicates from '@ohos.data.dataSharePredicates';
 import photoAccessHelper from '@ohos.file.photoAccessHelper';
 
 let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
-let fetchOptions: dataSharePredicates.FetchOptions = {
+let fetchOptions: photoAccessHelper.FetchOptions = {
   fetchColumns: ['title'],
   predicates: predicates
 };
@@ -280,7 +281,7 @@ import dataSharePredicates from '@ohos.data.dataSharePredicates';
 import photoAccessHelper from '@ohos.file.photoAccessHelper';
 
 let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
-let fetchOptions: dataSharePredicates.FetchOptions = {
+let fetchOptions: photoAccessHelper.FetchOptions = {
   fetchColumns: [],
   predicates: predicates
 };

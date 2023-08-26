@@ -29,9 +29,11 @@ photoAccessHelper仅提供开发者对收藏夹、视频相册、截屏和录屏
 2. 调用getAlbums接口获取收藏夹对象。
 
 ```ts
+import photoAccessHelper from '@ohos.file.photoAccessHelper';
+
 try {
-  let fetchResult = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.SYSTEM, photoAccessHelper.AlbumSubtype.FAVORITE);
-  let album = await fetchResult.getFirstObject();
+  let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.SYSTEM, photoAccessHelper.AlbumSubtype.FAVORITE);
+  let album: photoAccessHelper.Album = await fetchResult.getFirstObject();
   console.info('get favorite Album successfully, albumUri: ' + album.albumUri);
   fetchResult.close();
 } catch (err) {
@@ -58,17 +60,18 @@ try {
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import photoAccessHelper from '@ohos.file.photoAccessHelper';
 
-let predicates = new dataSharePredicates.DataSharePredicates();
+let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
 predicates.equalTo(photoAccessHelper.ImageVideoKey.DISPLAY_NAME, 'test.jpg');
-let fetchOptions = {
+let fetchOptions: photoAccessHelper.FetchOptions = {
   fetchColumns: [],
   predicates: predicates
 };
 
 try {
-  let photoFetchResult = await phAccessHelper.getAssets(fetchOptions);
-  let fileAsset = await photoFetchResult.getFirstObject();
+  let photoFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
+  let fileAsset: photoAccessHelper.PhotoAsset = await photoFetchResult.getFirstObject();
   console.info('getAssets fileAsset.displayName : ' + fileAsset.displayName);
   let favoriteState = true;
   await fileAsset.setFavorite(favoriteState);
@@ -97,20 +100,21 @@ try {
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import photoAccessHelper from '@ohos.file.photoAccessHelper';
 
-let predicates = new dataSharePredicates.DataSharePredicates();
-let fetchOptions = {
+let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+let fetchOptions: photoAccessHelper.FetchOptions = {
   fetchColumns: [],
   predicates: predicates
 };
 
 try {
-  let albumFetchResult = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.SYSTEM, photoAccessHelper.AlbumSubtype.FAVORITE);
-  let album = await albumFetchResult.getFirstObject();
+  let albumFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.SYSTEM, photoAccessHelper.AlbumSubtype.FAVORITE);
+  let album: photoAccessHelper.Album = await albumFetchResult.getFirstObject();
   console.info('get favorite Album successfully, albumUri: ' + album.albumUri);
 
-  let photoFetchResult = await album.getAssets(fetchOptions);
-  let fileAsset = await photoFetchResult.getFirstObject();
+  let photoFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await album.getAssets(fetchOptions);
+  let fileAsset: photoAccessHelper.PhotoAsset = await photoFetchResult.getFirstObject();
   console.info('favorite album getAssets successfully, albumName: ' + fileAsset.displayName);
   photoFetchResult.close();
   albumFetchResult.close();
@@ -139,20 +143,21 @@ try {
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import photoAccessHelper from '@ohos.file.photoAccessHelper';
 
-let predicates = new dataSharePredicates.DataSharePredicates();
-let fetchOptions = {
+let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+let fetchOptions: photoAccessHelper.FetchOptions = {
   fetchColumns: [],
   predicates: predicates
 };
 
 try {
-  let albumFetchResult = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.SYSTEM, photoAccessHelper.AlbumSubtype.FAVORITE);
-  let album = await albumFetchResult.getFirstObject();
+  let albumFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.SYSTEM, photoAccessHelper.AlbumSubtype.FAVORITE);
+  let album: photoAccessHelper.Album = await albumFetchResult.getFirstObject();
   console.info('get favorite Album successfully, albumUri: ' + album.albumUri);
 
-  let photoFetchResult = await album.getAssets(fetchOptions);
-  let fileAsset = await photoFetchResult.getFirstObject();
+  let photoFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await album.getAssets(fetchOptions);
+  let fileAsset: photoAccessHelper.PhotoAsset = await photoFetchResult.getFirstObject();
   console.info('favorite album getAssets successfully, albumName: ' + fileAsset.displayName);
   let favoriteState = false;
   await fileAsset.setFavorite(favoriteState);
@@ -182,9 +187,11 @@ try {
 2. 调用getAlbums接口获取视频相册。
 
 ```ts
+import photoAccessHelper from '@ohos.file.photoAccessHelper';
+
 try {
-  let fetchResult = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.SYSTEM, photoAccessHelper.AlbumSubtype.VIDEO);
-  let album = await fetchResult.getFirstObject();
+  let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.SYSTEM, photoAccessHelper.AlbumSubtype.VIDEO);
+  let album: photoAccessHelper.Album = await fetchResult.getFirstObject();
   console.info('get video Album successfully, albumUri: ' + album.albumUri);
   fetchResult.close();
 } catch (err) {
@@ -212,20 +219,21 @@ try {
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import photoAccessHelper from '@ohos.file.photoAccessHelper';
 
-let predicates = new dataSharePredicates.DataSharePredicates();
-let fetchOptions = {
+let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+let fetchOptions: photoAccessHelper.FetchOptions = {
   fetchColumns: [],
   predicates: predicates
 };
 
 try {
-  let albumFetchResult = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.SYSTEM, photoAccessHelper.AlbumSubtype.VIDEO);
-  let album = await albumFetchResult.getFirstObject();
+  let albumFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.SYSTEM, photoAccessHelper.AlbumSubtype.VIDEO);
+  let album: photoAccessHelper.Album = await albumFetchResult.getFirstObject();
   console.info('get video Album successfully, albumUri: ' + album.albumUri);
 
-  let videoFetchResult = await album.getAssets(fetchOptions);
-  let fileAsset = await videoFetchResult.getFirstObject();
+  let videoFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await album.getAssets(fetchOptions);
+  let fileAsset: photoAccessHelper.PhotoAsset = await videoFetchResult.getFirstObject();
   console.info('video album getAssets successfully, albumName: ' + fileAsset.displayName);
   videoFetchResult.close();
   albumFetchResult.close();
@@ -253,9 +261,11 @@ try {
 2. 调用getAlbums接口获取截屏和录屏相册。
 
 ```ts
+import photoAccessHelper from '@ohos.file.photoAccessHelper';
+
 try {
-  let fetchResult = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.SYSTEM, photoAccessHelper.AlbumSubtype.SCREENSHOT);
-  let album = await fetchResult.getFirstObject();
+  let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.SYSTEM, photoAccessHelper.AlbumSubtype.SCREENSHOT);
+  let album: photoAccessHelper.Album = await fetchResult.getFirstObject();
   console.info('get screenshot Album successfully, albumUri: ' + album.albumUri);
   fetchResult.close();
 } catch (err) {
@@ -283,20 +293,21 @@ try {
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import photoAccessHelper from '@ohos.file.photoAccessHelper';
 
-let predicates = new dataSharePredicates.DataSharePredicates();
-let fetchOptions = {
+let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+let fetchOptions: photoAccessHelper.FetchOptions = {
   fetchColumns: [],
   predicates: predicates
 };
 
 try {
-  let albumFetchResult = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.SYSTEM, photoAccessHelper.AlbumSubtype.SCREENSHOT);
-  let album = await albumFetchResult.getFirstObject();
+  let albumFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.SYSTEM, photoAccessHelper.AlbumSubtype.SCREENSHOT);
+  let album: photoAccessHelper.Album = await albumFetchResult.getFirstObject();
   console.info('get screenshot album successfully, albumUri: ' + album.albumUri);
 
-  let screenshotFetchResult = await album.getAssets(fetchOptions);
-  let fileAsset = await screenshotFetchResult.getFirstObject();
+  let screenshotFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await album.getAssets(fetchOptions);
+  let fileAsset: photoAccessHelper.PhotoAsset = await screenshotFetchResult.getFirstObject();
   console.info('screenshot album getAssets successfully, albumName: ' + fileAsset.displayName);
   screenshotFetchResult.close();
   albumFetchResult.close();
