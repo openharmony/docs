@@ -518,7 +518,7 @@ export default class EntryAbility extends UIAbility {
     onCreate(want, launchParam) {
         console.log("EntryAbility onCreate")
         try {
-            web_webview.WebviewController.setHttpDns(web_webview.SecureDnsMode.Auto, "https://example1.test")
+            web_webview.WebviewController.setHttpDns(web_webview.SecureDnsMode.AUTO, "https://example1.test")
         } catch(error) {
             console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
         }
@@ -6493,9 +6493,6 @@ Web組件使用HTTPDNS的模式。
 
 | 名称          | 值 | 说明                                      |
 | ------------- | -- |----------------------------------------- |
-| Off<sup>(deprecated)</sup>           | 0 |不使用HTTPDNS， 可以用于撤销之前使用的HTTPDNS配置。<br>从API version 10开始不再维护，建议使用OFF代替。|
-| Auto<sup>(deprecated)</sup>          | 1 |自动模式，用于解析的设定dns服务器不可用时，可自动回落至系统DNS。<br>从API version 10开始不再维护，建议使用AUTO代替。|
-| SecureOnly<sup>(deprecated)</sup>    | 2 |强制使用设定的HTTPDNS服务器进行域名解析。<br>从API version 10开始不再维护，建议使用SECURE_ONLY代替。|
 | OFF                                  | 0 |不使用HTTPDNS， 可以用于撤销之前使用的HTTPDNS配置。|
 | AUTO                                 | 1 |自动模式，用于解析的设定dns服务器不可用时，可自动回落至系统DNS。|
 | SECURE_ONLY                          | 2 |强制使用设定的HTTPDNS服务器进行域名解析。|
