@@ -216,16 +216,17 @@ PlainArray进行增、删、改、查操作的常用API如下：
 // HashMap
 import HashMap from '@ohos.util.HashMap'; // 导入HashMap模块
 
-let hashMap = new HashMap();
-hashMap.set('a', 123);
-hashMap.set(4, 123); // 增加元素
-console.info(`result: ${hashMap.hasKey(4)}`); // 判断是否含有某元素
-console.info(`result: ${hashMap.get('a')}`); // 访问元素
+let hashMap1: HashMap<string, number> = new HashMap();
+hashMap1.set('a', 123);
+let hashMap2: HashMap<number, number> = new HashMap();
+hashMap2.set(4, 123); // 增加元素
+console.info(`result: ${hashMap2.hasKey(4)}`); // 判断是否含有某元素
+console.info(`result: ${hashMap1.get('a')}`); // 访问元素
 
 // TreeMap
 import TreeMap from '@ohos.util.TreeMap'; // 导入TreeMap模块
 
-let treeMap = new TreeMap();
+let treeMap: TreeMap<string, number> = new TreeMap();
 treeMap.set('a', 123);
 treeMap.set('6', 356); // 增加元素
 console.info(`result: ${treeMap.get('a')}`); // 访问元素
@@ -235,7 +236,7 @@ console.info(`result: ${treeMap.getLastKey()}`); // 访问尾元素
 // LightWeightMap
 import LightWeightMap from '@ohos.util.LightWeightMap'; // 导入LightWeightMap模块
 
-let lightWeightMap = new LightWeightMap();
+let lightWeightMap: LightWeightMap<string, number> = new LightWeightMap();
 lightWeightMap.set('x', 123);
 lightWeightMap.set('8', 356); // 增加元素
 console.info(`result: ${lightWeightMap.get('a')}`); // 访问元素
@@ -245,7 +246,7 @@ console.info(`result: ${lightWeightMap.getIndexOfKey('8')}`); // 访问元素
 // PlainArray
 import PlainArray from '@ohos.util.PlainArray' // 导入PlainArray模块
 
-let plainArray = new PlainArray();
+let plainArray: PlainArray<string> = new PlainArray();
 plainArray.add(1, 'sdd');
 plainArray.add(2, 'sff'); // 增加元素
 console.info(`result: ${plainArray.get(1)}`); // 访问元素

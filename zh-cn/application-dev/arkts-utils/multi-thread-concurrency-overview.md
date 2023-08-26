@@ -29,7 +29,7 @@ Actor并发模型作为基于消息通信并发模型的典型代表，不需要
 
 ```js
 // 定义可转移对象
-let buffer = new ArrayBuffer(100);
+let buffer: ArrayBuffer = new ArrayBuffer(100);
 ```
 
 
@@ -44,7 +44,7 @@ SharedArrayBuffer对象存储的数据在同时被修改时，需要通过原子
 
 ```js
 // 定义可共享对象，可以使用Atomics进行操作
-let sharedBuffer = new SharedArrayBuffer(1024);
+let sharedBuffer: SharedArrayBuffer = new SharedArrayBuffer(1024);
 ```
 
 ### Native绑定对象
