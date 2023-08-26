@@ -38,8 +38,8 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 | fullHeight | string \| number | Panel height in the **PanelMode.Full** mode.<br>Default value: main axis height of the panel minus 8 vp<br>**NOTE**<br>This attribute cannot be set in percentage.|
 | halfHeight | string \| number | Panel height in the **PanelMode.Half** mode.<br>Default value: half of the main axis height of the panel<br>**NOTE**<br>This attribute cannot be set in percentage.|
 | miniHeight | string \| number | Panel height in the **PanelMode.Mini** mode.<br>Default value: **48**<br>Unit: vp<br>**NOTE**<br>This attribute cannot be set in percentage.|
-| show | boolean | Whether to show the panel.|
-| backgroundMask<sup>9+</sup>|[ResourceColor](ts-types.md#resourcecolor)|Background mask of the panel.|
+| show | boolean | Whether to show the panel.<br>Default value: **true**|
+| backgroundMask<sup>9+</sup>|[ResourceColor](ts-types.md#resourcecolor)|Background mask of the panel.<br>Default value: **'#08182431'**|
 | showCloseIcon<sup>10+</sup> | boolean | Whether to display the close icon. The value **true** means to display the close icon, and **false** means the opposite.<br>Default value: **false**|
 
 ## PanelType
