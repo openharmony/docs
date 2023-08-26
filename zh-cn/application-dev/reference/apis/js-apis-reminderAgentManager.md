@@ -63,7 +63,7 @@ reminderAgentManager.publishReminder(timer, (err: BusinessError, reminderId: num
 
 publishReminder(reminderReq: ReminderRequest): Promise\<number>
 
-发布后台代理提醒。使用promisek异步回调。
+发布后台代理提醒。使用promise异步回调。
 
 > **说明：**
 >
