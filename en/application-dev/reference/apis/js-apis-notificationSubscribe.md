@@ -443,9 +443,9 @@ notificationSubscribe.remove(hashCode, reason).then(() => {
 	console.info("remove success");
 });
 ```
-## NotificationSubscribe.remove
+## NotificationSubscribe.remove<sup>10+<sup>
 
-remove(hashCodes: Array\<string\>, reason: RemoveReason, callback: AsyncCallback\<void\>): void
+remove(hashCodes: Array\<String\>, reason: RemoveReason, callback: AsyncCallback\<void\>): void
 
 Removes specified notifications. This API uses an asynchronous callback to return the result.
 
@@ -459,7 +459,7 @@ Removes specified notifications. This API uses an asynchronous callback to retur
 
 | Name      | Type                           | Mandatory| Description                                                                                                                                                                                                                                                                                 |
 |-----------|-------------------------------| ---- |-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| hashCodes | Array\<string\>               | Yes  | Array of unique notification IDs. It is the **hashCode** in the [NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest) object of [SubscribeCallbackData](js-apis-notification.md#subscribecallbackdata) of the [onConsume](js-apis-inner-notification-notificationSubscriber.md#onConsume) callback.|
+| hashCodes | Array\<String\>               | Yes  | Array of unique notification IDs. It is the **hashCode** in the [NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest) object of [SubscribeCallbackData](js-apis-notification.md#subscribecallbackdata) of the [onConsume](js-apis-inner-notification-notificationSubscriber.md#onConsume) callback.|
 | reason    | [RemoveReason](#removereason) | Yes  | Reason for removing the notification.                                                                                                                                                                                                                                                                            |
 | callback  | AsyncCallback\<void\>         | Yes  | Callback used to return the result.                                                                                                                                                                                                                                                                        |
 
@@ -489,9 +489,9 @@ let reason = notificationSubscribe.RemoveReason.CANCEL_REASON_REMOVE;
 notificationSubscribe.remove(hashCodes, reason, removeCallback);
 ```
 
-## NotificationSubscribe.remove
+## NotificationSubscribe.remove<sup>10+<sup>
 
-remove(hashCodes: Array\<string\>, reason: RemoveReason): Promise\<void\>
+remove(hashCodes: Array\<String\>, reason: RemoveReason): Promise\<void\>
 
 Removes specified notifications. This API uses a promise to return the result.
 
@@ -505,7 +505,7 @@ Removes specified notifications. This API uses a promise to return the result.
 
 | Name      | Type                           | Mandatory| Description         |
 |-----------|-------------------------------| ---- |-------------|
-| hashCodes | Array\<string\>               | Yes  | Array of unique notification IDs.|
+| hashCodes | Array\<String\>               | Yes  | Array of unique notification IDs.|
 | reason    | [RemoveReason](#removereason) | Yes  | Reason for removing the notification.    |
 
 **Error codes**
