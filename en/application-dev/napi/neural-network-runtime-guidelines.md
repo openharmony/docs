@@ -1,4 +1,4 @@
-# Development Guide for Connecting the Neural Network Runtime to an AI Inference Framework
+# Connecting the Neural Network Runtime to an AI Inference Framework
 
 ## When to Use
 
