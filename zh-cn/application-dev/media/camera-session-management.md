@@ -18,11 +18,11 @@
 1. 调用cameraManager类中的createCaptureSession()方法创建一个会话。
      
    ```ts
-   let captureSession;
+   let captureSession: camera.CaptureSession;
    try {
-       captureSession = cameraManager.createCaptureSession();
+     captureSession = cameraManager.createCaptureSession();
    } catch (error) {
-       console.error('Failed to create the CaptureSession instance. errorCode = ' + error.code);
+     console.error('Failed to create the CaptureSession instance. errorCode = ' + error.code);
    }
    ```
 
@@ -30,9 +30,9 @@
      
    ```ts
    try {
-       captureSession.beginConfig();
+     captureSession.beginConfig();
    } catch (error) {
-       console.error('Failed to beginConfig. errorCode = ' + error.code);
+     console.error('Failed to beginConfig. errorCode = ' + error.code);
    }
    ```
 
@@ -42,24 +42,24 @@
      
    ```ts
    try {
-       captureSession.addInput(cameraInput);
+     captureSession.addInput(cameraInput);
    } catch (error) {
-       console.error('Failed to addInput. errorCode = ' + error.code);
+     console.error('Failed to addInput. errorCode = ' + error.code);
    }
    try {
-       captureSession.addOutput(previewOutput);
+     captureSession.addOutput(previewOutput);
    } catch (error) {
-       console.error('Failed to addOutput(previewOutput). errorCode = ' + error.code);
+     console.error('Failed to addOutput(previewOutput). errorCode = ' + error.code);
    }
    try {
-       captureSession.addOutput(photoOutput);
+     captureSession.addOutput(photoOutput);
    } catch (error) {
-       console.error('Failed to addOutput(photoOutput). errorCode = ' + error.code);
+     console.error('Failed to addOutput(photoOutput). errorCode = ' + error.code);
    }
-   await captureSession.commitConfig() ;
+   await captureSession.commitConfig();
    await captureSession.start().then(() => {
-       console.info('Promise returned to indicate the session start success.');
-   })
+     console.info('Promise returned to indicate the session start success.');
+   });
    ```
 
 4. 会话控制。调用captureSession类中的stop()方法可以停止当前会话。调用removeOutput()和addOutput()方法可以完成会话切换控制。以下示例代码以移除拍照流photoOutput，添加视频流videoOutput为例，完成了拍照到录像的切换。
@@ -67,20 +67,20 @@
    ```ts
    await captureSession.stop();
    try {
-       captureSession.beginConfig();
+     captureSession.beginConfig();
    } catch (error) {
-       console.error('Failed to beginConfig. errorCode = ' + error.code);
+     console.error('Failed to beginConfig. errorCode = ' + error.code);
    } 
    // 从会话中移除拍照输出流
    try {
-       captureSession.removeOutput(photoOutput);
+     captureSession.removeOutput(photoOutput);
    } catch (error) {
-       console.error('Failed to removeOutput(photoOutput). errorCode = ' + error.code);
+     console.error('Failed to removeOutput(photoOutput). errorCode = ' + error.code);
    } 
    // 向会话中添加视频输出流
    try {
-       captureSession.addOutput(videoOutput);
+     captureSession.addOutput(videoOutput);
    } catch (error) {
-       console.error('Failed to addOutput(videoOutput). errorCode = ' + error.code);
+     console.error('Failed to addOutput(videoOutput). errorCode = ' + error.code);
    }
    ```
