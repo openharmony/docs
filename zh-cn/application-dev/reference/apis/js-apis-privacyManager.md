@@ -449,6 +449,10 @@ on(type: 'activeStateChange', permissionList: Array&lt;Permissions&gt;, callback
 
 订阅指定权限列表的权限使用状态变更事件。
 
+允许相同permissionList订阅多个callback。
+
+不允许存在交集的permissionList订阅相同callback。
+
 **需要权限：** ohos.permission.PERMISSION_USED_STATS，仅系统应用可用。
 
 **系统能力：** SystemCapability.Security.AccessToken
@@ -493,6 +497,8 @@ try {
 off(type: 'activeStateChange', permissionList: Array&lt;Permissions&gt;, callback?: Callback&lt;ActiveChangeResponse&gt;): void;
 
 取消订阅指定权限列表的权限使用状态变更事件。
+
+取消订阅不传callback时，批量删除permissionList下面的所有callback。
 
 **需要权限：** ohos.permission.PERMISSION_USED_STATS，仅系统应用可用。
 
