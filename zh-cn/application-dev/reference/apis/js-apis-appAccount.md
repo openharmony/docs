@@ -105,9 +105,9 @@ createAccount(name: string, options: CreateAccountOptions, callback: AsyncCallba
   ```js
   import { BusinessError } from '@ohos.base';
   
-  let options = {
+  let options:account_appAccount.CreateAccountOptions  = {
     customData: {
-      'age': '10'
+      age: '10'
     }
   }
   try {
@@ -158,9 +158,9 @@ createAccount(name: string, options?: CreateAccountOptions): Promise&lt;void&gt;
   ```js
   import { BusinessError } from '@ohos.base';
 
-  let options = {
+  let options: account_appAccount.CreateAccountOptions = {
     customData: {
-      'age': '10'
+      age: '10'
     }
   }
   try {
@@ -205,20 +205,23 @@ createAccountImplicitly(owner: string, callback: AuthCallback): void
   ```js
   import { BusinessError } from '@ohos.base';
   import Want from '@ohos.app.ability.Want';
+  import common from '@ohos.app.ability.common';
 
-  function onResultCallback(code: number, result: account_appAccount.AuthResult) {
+  let context = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+
+  function onResultCallback(code: number, result?: account_appAccount.AuthResult): void {
     console.log('resultCode: ' + code);
     console.log('result: ' + JSON.stringify(result));
   }
 
-  function onRequestRedirectedCallback(request: Want) {
-    let wantInfo = {
+  function onRequestRedirectedCallback(request: Want): void {
+    let wantInfo: Want = {
       deviceId: '',
       bundleName: 'com.example.accountjsdemo',
       action: 'ohos.want.action.viewData',
       entities: ['entity.system.default'],
     }
-    this.context.startAbility(wantInfo).then(() => {
+    context.startAbility(wantInfo).then(() => {
       console.log('startAbility successfully');
     }).catch((err: BusinessError) => {
       console.log('startAbility err: ' + JSON.stringify(err));
@@ -267,27 +270,30 @@ createAccountImplicitly(owner: string, options: CreateAccountImplicitlyOptions, 
   ```js
   import { BusinessError } from '@ohos.base';
   import Want from '@ohos.app.ability.Want';
+  import common from '@ohos.app.ability.common';
 
-  function onResultCallback(code: number, result: account_appAccount.AuthResult) {
+  let context = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+
+  function onResultCallback(code: number, result?: account_appAccount.AuthResult): void {
     console.log('resultCode: ' + code);
     console.log('result: ' + JSON.stringify(result));
   }
 
-  function onRequestRedirectedCallback(request: Want) {
-    let wantInfo = {
+  function onRequestRedirectedCallback(request: Want): void {
+    let wantInfo: Want = {
       deviceId: '',
       bundleName: 'com.example.accountjsdemo',
       action: 'ohos.want.action.viewData',
       entities: ['entity.system.default'],
     }
-    this.context.startAbility(wantInfo).then(() => {
+    context.startAbility(wantInfo).then(() => {
       console.log('startAbility successfully');
     }).catch((err: BusinessError) => {
       console.log('startAbility err: ' + JSON.stringify(err));
     })
   }
 
-  let options = {
+  let options: account_appAccount.CreateAccountImplicitlyOptions = {
     authType: 'getSocialData',
     requiredLabels: [ 'student' ]
   };
@@ -1328,7 +1334,7 @@ on(type: 'accountChange', owners: Array&lt;string&gt;, callback: Callback&lt;Arr
 **示例：**
 
   ```js
-  function changeOnCallback(data: account_appAccount.AppAccountInfo[]){
+  function changeOnCallback(data: account_appAccount.AppAccountInfo[]): void {
   	console.log('receive change data:' + JSON.stringify(data));
   }
   try{
@@ -1363,7 +1369,7 @@ off(type: 'accountChange', callback?: Callback&lt;Array&lt;AppAccountInfo&gt;&gt
 **示例：**
 
   ```js
-  function changeOnCallback(data: account_appAccount.AppAccountInfo[]) {
+  function changeOnCallback(data: account_appAccount.AppAccountInfo[]): void {
   	console.log('receive change data:' + JSON.stringify(data));
   }
   try{
@@ -1412,20 +1418,23 @@ auth(name: string, owner: string, authType: string, callback: AuthCallback): voi
   ```js
   import { BusinessError } from '@ohos.base';
   import Want from '@ohos.app.ability.Want';
+  import common from '@ohos.app.ability.common';
 
-  function onResultCallback(code: number, authResult: account_appAccount.AuthResult) {
+  let context = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+
+  function onResultCallback(code: number, authResult?: account_appAccount.AuthResult): void {
     console.log('resultCode: ' + code);
     console.log('authResult: ' + JSON.stringify(authResult));
   }
 
-  function onRequestRedirectedCallback(request: Want) {
-    let wantInfo = {
+  function onRequestRedirectedCallback(request: Want): void {
+    let wantInfo: Want = {
       deviceId: '',
       bundleName: 'com.example.accountjsdemo',
       action: 'ohos.want.action.viewData',
       entities: ['entity.system.default'],
     }
-    this.context.startAbility(wantInfo).then(() => {
+    context.startAbility(wantInfo).then(() => {
       console.log('startAbility successfully');
     }).catch((err: BusinessError) => {
       console.log('startAbility err: ' + JSON.stringify(err));
@@ -1476,28 +1485,31 @@ auth(name: string, owner: string, authType: string, options: {[key: string]: Obj
   ```js
   import { BusinessError } from '@ohos.base';
   import Want from '@ohos.app.ability.Want';
+  import common from '@ohos.app.ability.common';
 
-  function onResultCallback(code: number, authResult: account_appAccount.AuthResult) {
+  let context = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+
+  function onResultCallback(code: number, authResult?: account_appAccount.AuthResult): void {
     console.log('resultCode: ' + code);
     console.log('authResult: ' + JSON.stringify(authResult));
   }
 
-  function onRequestRedirectedCallback(request: Want) {
-    let wantInfo = {
+  function onRequestRedirectedCallback(request: Want): void {
+    let wantInfo: Want = {
       deviceId: '',
       bundleName: 'com.example.accountjsdemo',
       action: 'ohos.want.action.viewData',
       entities: ['entity.system.default'],
     }
-    this.context.startAbility(wantInfo).then(() => {
+    context.startAbility(wantInfo).then(() => {
       console.log('startAbility successfully');
     }).catch((err: BusinessError) => {
       console.log('startAbility err: ' + JSON.stringify(err));
     })
   }
 
-  let options = {
-    'password': 'xxxx',
+  let options: Record<string, Object> = {
+    password: 'xxxx',
   };
   try {
     appAccountManager.auth('LiSi', 'com.example.accountjsdemo', 'getSocialData', options, {
@@ -2187,16 +2199,16 @@ getAuthCallback(sessionId: string, callback: AsyncCallback&lt;AuthCallback&gt;):
   import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 
   export default class EntryAbility extends UIAbility {
-    onCreate(want: Want, param: AbilityConstant.LaunchParam) {
-      let sessionId = want.parameters[account_appAccount.Constants.KEY_SESSION_ID];
+    onCreate(want: Want, param: AbilityConstant.LaunchParam) { // ability 生命周期函数
+      let sessionId: string = want.parameters![account_appAccount.Constants.KEY_SESSION_ID] as string;
       try {
         appAccountManager.getAuthCallback(sessionId, (err: BusinessError, callback: account_appAccount.AuthCallback) => {
           if (err != null) {
               console.log('getAuthCallback err: ' + JSON.stringify(err));
               return;
           }
-          let result = {
-            accountInfo: {
+          let result: account_appAccount.AuthResult = {
+            account: {
               name: 'Lisi',
               owner: 'com.example.accountjsdemo',
             },
@@ -2251,12 +2263,12 @@ getAuthCallback(sessionId: string): Promise&lt;AuthCallback&gt;
   import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 
   export default class EntryAbility extends UIAbility {
-    onCreate(want: Want, param: AbilityConstant.LaunchParam) {
-      let sessionId = want.parameters[account_appAccount.Constants.KEY_SESSION_ID];
+    onCreate(want: Want, param: AbilityConstant.LaunchParam) { // ability 生命周期函数
+      let sessionId: string = want.parameters![account_appAccount.Constants.KEY_SESSION_ID] as string;
       try {
         appAccountManager.getAuthCallback(sessionId).then((callback: account_appAccount.AuthCallback) => {
-        let result = {
-          accountInfo: {
+        let result: account_appAccount.AuthResult = {
+          account: {
             name: 'Lisi',
             owner: 'com.example.accountjsdemo',
           },
@@ -2398,7 +2410,7 @@ checkAccountLabels(name: string, owner: string, labels: Array&lt;string&gt;, cal
   
   let labels = ['student'];
   try {
-    appAccountManager.checkAccountLabels('zhangsan', 'com.example.accountjsdemo', labels1,
+    appAccountManager.checkAccountLabels('zhangsan', 'com.example.accountjsdemo', labels,
       (err: BusinessError, hasAllLabels: boolean) => {
         if (err) {
           console.log('checkAccountLabels failed, error: ' + JSON.stringify(err));
@@ -2580,12 +2592,12 @@ selectAccountsByOptions(options: SelectAccountsOptions, callback: AsyncCallback&
   ```js
   import { BusinessError } from '@ohos.base';
   
-  let options = {
+  let options: account_appAccount.SelectAccountsOptions = {
     allowedOwners: [ 'com.example.accountjsdemo' ],
     requiredLabels: [ 'student' ]
   };
   try {
-    appAccountManager.selectAccountsByOptions(options5,
+    appAccountManager.selectAccountsByOptions(options,
       (err: BusinessError, accountArr: account_appAccount.AppAccountInfo[]) => {
         if (err) {
           console.log('selectAccountsByOptions failed, error: ' + JSON.stringify(err));
@@ -2632,7 +2644,7 @@ selectAccountsByOptions(options: SelectAccountsOptions): Promise&lt;Array&lt;App
   ```js
   import { BusinessError } from '@ohos.base';
   
-  let options = {
+  let options: account_appAccount.SelectAccountsOptions = {
     allowedOwners: ['com.example.accountjsdemo']
   };
   try {
@@ -2680,7 +2692,7 @@ verifyCredential(name: string, owner: string, callback: AuthCallback): void;
 
   try {
       appAccountManager.verifyCredential('zhangsan', 'com.example.accountjsdemo', {
-          onResult: (resultCode: number, result: account_appAccount.AuthResult) => {
+          onResult: (resultCode: number, result?: account_appAccount.AuthResult) => {
               console.log('verifyCredential onResult, resultCode: ' + JSON.stringify(resultCode));
               console.log('verifyCredential onResult, result: ' + JSON.stringify(result));
           },
@@ -2726,13 +2738,13 @@ verifyCredential(name: string, owner: string, options: VerifyCredentialOptions, 
   ```js
   import Want from '@ohos.app.ability.Want';
 
-  let options = {
+  let options: account_appAccount.VerifyCredentialOptions = {
     credentialType: 'pin',
     credential: '123456'
   };
   try {
     appAccountManager.verifyCredential('zhangsan', 'com.example.accountjsdemo', options, {
-      onResult: (resultCode: number, result: account_appAccount.AuthResult) => {
+      onResult: (resultCode: number, result?: account_appAccount.AuthResult) => {
         console.log('verifyCredential onResult, resultCode: ' + JSON.stringify(resultCode));
         console.log('verifyCredential onResult, result: ' + JSON.stringify(result));
       },
@@ -2777,7 +2789,7 @@ setAuthenticatorProperties(owner: string, callback: AuthCallback): void;
 
   try {
     appAccountManager.setAuthenticatorProperties('com.example.accountjsdemo', {
-      onResult: (resultCode: number, result: account_appAccount.AuthResult) => {
+      onResult: (resultCode: number, result?: account_appAccount.AuthResult) => {
         console.log('setAuthenticatorProperties onResult, resultCode: ' + JSON.stringify(resultCode));
         console.log('setAuthenticatorProperties onResult, result: ' + JSON.stringify(result));
       },
@@ -2821,12 +2833,12 @@ setAuthenticatorProperties(owner: string, options: SetPropertiesOptions, callbac
   ```js
   import Want from '@ohos.app.ability.Want';
 
-  let options = {
-    properties: {'prop1': 'value1'}
+  let options: account_appAccount.SetPropertiesOptions = {
+    properties: {prop1: 'value1'}
   };
   try {
     appAccountManager.setAuthenticatorProperties('com.example.accountjsdemo', options, {
-      onResult: (resultCode: number, result: account_appAccount.AuthResult) => {
+      onResult: (resultCode: number, result?: account_appAccount.AuthResult) => {
         console.log('setAuthenticatorProperties onResult, resultCode: ' + JSON.stringify(resultCode));
         console.log('setAuthenticatorProperties onResult, result: ' + JSON.stringify(result));
       },
@@ -2961,20 +2973,23 @@ addAccountImplicitly(owner: string, authType: string, options: {[key: string]: a
   ```js
   import { BusinessError } from '@ohos.base';
   import Want from '@ohos.app.ability.Want';
+  import common from '@ohos.app.ability.common';
 
-  function onResultCallback(code: number, result: { [key: string]: any }) {
+  let context = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+
+  function onResultCallback(code: number, result: Record<string, Object>): void {
     console.log('resultCode: ' + code);
     console.log('result: ' + JSON.stringify(result));
   }
 
-  function onRequestRedirectedCallback(request: Want) {
-    let wantInfo = {
+  function onRequestRedirectedCallback(request: Want): void {
+    let wantInfo: Want = {
       deviceId: '',
       bundleName: 'com.example.accountjsdemo',
       action: 'ohos.want.action.viewData',
       entities: ['entity.system.default'],
     }
-    this.context.startAbility(wantInfo).then(() => {
+    context.startAbility(wantInfo).then(() => {
       console.log('startAbility successfully');
     }).catch((err: BusinessError) => {
       console.log('startAbility err: ' + JSON.stringify(err));
@@ -3895,7 +3910,7 @@ on(type: 'change', owners: Array&lt;string&gt;, callback: Callback&lt;Array&lt;A
 **示例：**
 
   ```js
-  function changeOnCallback(data: account_appAccount.AppAccountInfo[]){
+  function changeOnCallback(data: account_appAccount.AppAccountInfo[]): void {
   	console.debug('receive change data:' + JSON.stringify(data));
   }
   try{
@@ -3928,7 +3943,7 @@ off(type: 'change', callback?: Callback&lt;Array&lt;AppAccountInfo&gt;&gt;): voi
 **示例：**
 
   ```js
-  function changeOnCallback(data: account_appAccount.AppAccountInfo[]){
+  function changeOnCallback(data: account_appAccount.AppAccountInfo[]): void {
   	console.debug('receive change data: ' + JSON.stringify(data));
   	appAccountManager.off('change', () => {
   		console.debug('off finish');
@@ -3969,20 +3984,23 @@ authenticate(name: string, owner: string, authType: string, options: {[key: stri
   ```js
   import { BusinessError } from '@ohos.base';
   import Want from '@ohos.app.ability.Want';
+  import common from '@ohos.app.ability.common';
 
-  function onResultCallback(code: number, result: { [key: string]: Object }) {
+  let context = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+
+  function onResultCallback(code: number, result: Record<string, Object>): void {
       console.log('resultCode: ' + code);
       console.log('result: ' + JSON.stringify(result));
   }
 
-  function onRequestRedirectedCallback(request: Want) {
-    let wantInfo = {
+  function onRequestRedirectedCallback(request: Want): void {
+    let wantInfo: Want = {
       deviceId: '',
       bundleName: 'com.example.accountjsdemo',
       action: 'ohos.want.action.viewData',
       entities: ['entity.system.default'],
     }
-    this.context.startAbility(wantInfo).then(() => {
+    context.startAbility(wantInfo).then(() => {
       console.log('startAbility successfully');
     }).catch((err: BusinessError) => {
       console.log('startAbility err: ' + JSON.stringify(err));
@@ -4517,19 +4535,20 @@ getAuthenticatorCallback(sessionId: string, callback: AsyncCallback&lt;Authentic
   import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 
   export default class EntryAbility extends UIAbility {
-    onCreate(want: Want, param: AbilityConstant.LaunchParam) {
-      let sessionId = want.parameters[account_appAccount.Constants.KEY_SESSION_ID];
+    onCreate(want: Want, param: AbilityConstant.LaunchParam) { // ability 生命周期函数
+      let sessionId: string = want.parameters![account_appAccount.Constants.KEY_SESSION_ID] as string;
       appAccountManager.getAuthenticatorCallback(sessionId,
           (err: BusinessError, callback: account_appAccount.AuthenticatorCallback) => {
           if (err.code != account_appAccount.ResultCode.SUCCESS) {
               console.log('getAuthenticatorCallback err: ' + JSON.stringify(err));
               return;
           }
-          let result = {[account_appAccount.Constants.KEY_NAME]: 'LiSi',
-                        [account_appAccount.Constants.KEY_OWNER]: 'com.example.accountjsdemo',
-                        [account_appAccount.Constants.KEY_AUTH_TYPE]: 'getSocialData',
-                        [account_appAccount.Constants.KEY_TOKEN]: 'xxxxxx'};
-          callback.onResult(account_appAccount.ResultCode.SUCCESS, result);
+          callback.onResult(account_appAccount.ResultCode.SUCCESS, {
+            name: 'LiSi',
+            owner: 'com.example.accountjsdemo',
+            authType: 'getSocialData',
+            token: 'xxxxxx'}
+          );
         });
     }
   }
@@ -4568,15 +4587,16 @@ getAuthenticatorCallback(sessionId: string): Promise&lt;AuthenticatorCallback&gt
   import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 
   export default class EntryAbility extends UIAbility {
-    onCreate(want: Want, param: AbilityConstant.LaunchParam) {
-      let sessionId = want.parameters[account_appAccount.Constants.KEY_SESSION_ID];
+    onCreate(want: Want, param: AbilityConstant.LaunchParam) { // ability 生命周期函数
+      let sessionId: string = want.parameters![account_appAccount.Constants.KEY_SESSION_ID] as string;
       appAccountManager.getAuthenticatorCallback(sessionId).then((
         callback: account_appAccount.AuthenticatorCallback) => {
-        let result = {[account_appAccount.Constants.KEY_NAME]: 'LiSi',
-                      [account_appAccount.Constants.KEY_OWNER]: 'com.example.accountjsdemo',
-                      [account_appAccount.Constants.KEY_AUTH_TYPE]: 'getSocialData',
-                      [account_appAccount.Constants.KEY_TOKEN]: 'xxxxxx'};
-        callback.onResult(account_appAccount.ResultCode.SUCCESS, result);
+        callback.onResult(account_appAccount.ResultCode.SUCCESS, {
+          name: 'LiSi',
+          owner: 'com.example.accountjsdemo',
+          authType: 'getSocialData',
+          token: 'xxxxxx'}
+        );
       }).catch((err: BusinessError) => {
         console.log('getAuthenticatorCallback err: ' + JSON.stringify(err));
       });
@@ -4855,8 +4875,8 @@ onResult: (code: number, result?: AuthResult) =&gt; void
   let appAccountManager = account_appAccount.createAppAccountManager();
   let sessionId = '1234';
   appAccountManager.getAuthCallback(sessionId).then((callback: account_appAccount.AuthCallback) => {
-      let result = {
-          accountInfo: {
+      let result: account_appAccount.AuthResult = {
+          account: {
             name: 'Lisi',
             owner: 'com.example.accountjsdemo',
           },
@@ -4891,16 +4911,17 @@ onRequestRedirected: (request: Want) =&gt; void
   class MyAuthenticator extends account_appAccount.Authenticator {
       createAccountImplicitly(
         options: account_appAccount.CreateAccountImplicitlyOptions, callback: account_appAccount.AuthCallback) {
-          callback.onRequestRedirected({
-              bundleName: 'com.example.accountjsdemo',
-              abilityName: 'com.example.accountjsdemo.LoginAbility',
-          });
+          let want: Want = {
+            bundleName: 'com.example.accountjsdemo',
+            abilityName: 'com.example.accountjsdemo.LoginAbility',
+          };
+          callback.onRequestRedirected(want);
       }
 
       auth(name: string, authType: string,
         options: { [key: string]: Object }, callback: account_appAccount.AuthCallback) {
-          let result = {
-            accountInfo: {
+          let result: account_appAccount.AuthResult = {
+            account: {
               name: 'Lisi',
               owner: 'com.example.accountjsdemo',
             },
@@ -4930,9 +4951,11 @@ onRequestContinued?: () =&gt; void
   let appAccountManager = account_appAccount.createAppAccountManager();
   let sessionId = '1234';
   appAccountManager.getAuthCallback(sessionId).then((callback: account_appAccount.AuthCallback) => {
+    if (callback.onRequestContinued != undefined) {
       callback.onRequestContinued();
+    }
   }).catch((err: BusinessError) => {
-      console.log('getAuthCallback err: ' + JSON.stringify(err));
+    console.log('getAuthCallback err: ' + JSON.stringify(err));
   });
   ```
 
@@ -4967,11 +4990,12 @@ onResult: (code: number, result: {[key: string]: any}) =&gt; void
   let appAccountManager = account_appAccount.createAppAccountManager();
   let sessionId = '1234';
   appAccountManager.getAuthenticatorCallback(sessionId).then((callback: account_appAccount.AuthenticatorCallback) => {
-      let result = {[account_appAccount.Constants.KEY_NAME]: 'LiSi',
-                    [account_appAccount.Constants.KEY_OWNER]: 'com.example.accountjsdemo',
-                    [account_appAccount.Constants.KEY_AUTH_TYPE]: 'getSocialData',
-                    [account_appAccount.Constants.KEY_TOKEN]: 'xxxxxx'};
-      callback.onResult(account_appAccount.ResultCode.SUCCESS, result);
+      callback.onResult(account_appAccount.ResultCode.SUCCESS, {
+        name: 'LiSi',
+        owner: 'com.example.accountjsdemo',
+        authType: 'getSocialData',
+        token: 'xxxxxx'}
+      );
   }).catch((err: BusinessError) => {
       console.log('getAuthenticatorCallback err: ' + JSON.stringify(err));
   });
@@ -4997,42 +5021,22 @@ onRequestRedirected: (request: Want) =&gt; void
   class MyAuthenticator extends account_appAccount.Authenticator {
       addAccountImplicitly(authType: string, callerBundleName: string,
         options: { [key: string]: Object }, callback: account_appAccount.AuthenticatorCallback) {
-          callback.onRequestRedirected({
-              bundleName: 'com.example.accountjsdemo',
-              abilityName: 'com.example.accountjsdemo.LoginAbility',
-          });
+          let want: Want = {
+            bundleName: 'com.example.accountjsdemo',
+            abilityName: 'com.example.accountjsdemo.LoginAbility',
+          };
+          callback.onRequestRedirected(want);
       }
 
       authenticate(name: string, authType: string, callerBundleName: string,
         options: { [key: string]: Object }, callback: account_appAccount.AuthenticatorCallback) {
-          let result = {[account_appAccount.Constants.KEY_NAME]: name,
-                        [account_appAccount.Constants.KEY_AUTH_TYPE]: authType,
-                        [account_appAccount.Constants.KEY_TOKEN]: 'xxxxxx'};
-          callback.onResult(account_appAccount.ResultCode.SUCCESS, result);
+          callback.onResult(account_appAccount.ResultCode.SUCCESS, {
+            name: name,
+            authType: authType,
+            token: 'xxxxxx'}
+          );
       }
   }
-  ```
-
-### onRequestContinued<sup>9+</sup>
-
-onRequestContinued?: () =&gt; void
-
-通知请求被继续处理。
-
-**系统能力：** SystemCapability.Account.AppAccount
-
-**示例：**
-
-  ```js
-  import { BusinessError } from '@ohos.base';
-  
-  let appAccountManager = account_appAccount.createAppAccountManager();
-  let sessionId = '1234';
-  appAccountManager.getAuthenticatorCallback(sessionId).then((callback: account_appAccount.AuthenticatorCallback) => {
-      callback.onRequestContinued();
-  }).catch((err: BusinessError) => {
-      console.log('getAuthenticatorCallback err: ' + JSON.stringify(err));
-  });
   ```
 
 ## Authenticator<sup>8+</sup>
@@ -5193,49 +5197,57 @@ getRemoteObject(): rpc.RemoteObject;
   class MyAuthenticator extends account_appAccount.Authenticator {
     addAccountImplicitly(authType: string, callerBundleName: string,
       options: { [key: string]: Object }, callback: account_appAccount.AuthenticatorCallback) {
-        callback.onRequestRedirected({
+        let want: Want = {
           bundleName: 'com.example.accountjsdemo',
           abilityName: 'com.example.accountjsdemo.LoginAbility',
-        });
+        };
+        callback.onRequestRedirected(want);
     }
 
     authenticate(name: string, authType: string, callerBundleName: string,
       options: { [key: string]: Object }, callback: account_appAccount.AuthenticatorCallback) {
-        let result = {[account_appAccount.Constants.KEY_NAME]: name,
-                      [account_appAccount.Constants.KEY_AUTH_TYPE]: authType,
-                      [account_appAccount.Constants.KEY_TOKEN]: 'xxxxxx'};
-        callback.onResult(account_appAccount.ResultCode.SUCCESS, result);
+        callback.onResult(account_appAccount.ResultCode.SUCCESS, {
+          name: name,
+          authType: authType,
+          token: 'xxxxxx'}
+        );
     }
 
     verifyCredential(name: string,
       options: account_appAccount.VerifyCredentialOptions, callback: account_appAccount.AuthCallback) {
-        callback.onRequestRedirected({
+        let want: Want = {
           bundleName: 'com.example.accountjsdemo',
           abilityName: 'com.example.accountjsdemo.VerifyAbility',
           parameters: {
             name: name
           }
-        });
+        };
+        callback.onRequestRedirected(want);
     }
 
     setProperties(options: account_appAccount.SetPropertiesOptions, callback: account_appAccount.AuthCallback) {
-      callback.onResult(account_appAccount.ResultCode.SUCCESS, {});
+      let want: Want = {
+          bundleName: 'com.example.accountjsdemo',
+          abilityName: 'com.example.accountjsdemo.SetPropertiesAbility',
+          parameters: {
+            options: options
+          }
+        };
+        callback.onRequestRedirected(want);
     }
 
     checkAccountLabels(name: string, labels: string[], callback: account_appAccount.AuthCallback) {
-      let result = {[account_appAccount.Constants.KEY_BOOLEAN_RESULT]: false};
-      callback.onResult(account_appAccount.ResultCode.SUCCESS, result);
+      callback.onResult(account_appAccount.ResultCode.SUCCESS);
     }
   
     checkAccountRemovable(name: string, callback: account_appAccount.AuthCallback) {
-      let result = {[account_appAccount.Constants.KEY_BOOLEAN_RESULT]: true};
-      callback.onResult(account_appAccount.ResultCode.SUCCESS, result);
+      callback.onResult(account_appAccount.ResultCode.SUCCESS);
     }
   }
-  let authenticator = null;
+
   export default {
-    onConnect(want): rpc.RemoteObject {
-      authenticator = new MyAuthenticator();
+    onConnect(want): rpc.RemoteObject { // serviceAbility 生命周期函数
+      let authenticator = new MyAuthenticator();
       return authenticator.getRemoteObject();
     }
   }
