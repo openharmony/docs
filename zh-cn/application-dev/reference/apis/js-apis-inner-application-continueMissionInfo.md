@@ -28,15 +28,16 @@ import distributedMissionManager from '@ohos.distributedMissionManager';
 
   ```ts
   import distributedMissionManager from '@ohos.distributedMissionManager';
+  import { BusinessError } from '@ohos.base';
 
-  var parameter =  {
-      srcDeviceId: "",
-      dstDeviceId: "",
-      bundleName: "ohos.test.continueapp",
-      wantParam: {"key": "value"}
-  };
   try {
-      distributedMissionManager.continueMission(parameter, (error) => {
+      distributedMissionManager.continueMission(
+        {
+            srcDeviceId: "",
+            dstDeviceId: "",
+            bundleName: "ohos.test.continueapp",
+            wantParam: {"key": "value"}
+        }, (error: BusinessError) => {
           if (error.code != 0) {
               console.error('continueMission failed, cause: ' + JSON.stringify(error))
           }
