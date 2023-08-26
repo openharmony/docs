@@ -2083,17 +2083,6 @@ Worker基于Actor并发模型实现。在Worker的交互流程中，JS主线程�
 
 Actor并发模型的交互原理：各个Actor并发地处理主线程任务，每个Actor内部都有一个消息队列及单线程执行模块，消息队列负责接收主线程及其他Actor的请求，单线程执行模块则负责串行地处理请求、向其他Actor发送请求以及创建新的Actor。由于Actor采用的是异步方式，各个Actor之间相互隔离没有数据竞争，因此Actor可以高并发运行。
 
-### 注意事项
-- Worker存在数量限制，当前支持最多同时存在8个Worker。
-- 在API version 8及之前的版本，当Worker数量超出限制时，会抛出错误Error "Too many workers, the number of workers exceeds the maximum."。
-- 从API version 9开始，当Worker数量超出限制时，会抛出错误BusinessError "Worker initialization failure, the number of workers exceeds the maximum."。
-- 主动销毁Worker可以调用新创建Worker对象的terminate()或workerPort.close()方法。
-- 自API version 9版本开始，若Worker处于已经销毁或正在销毁等非运行状态时，调用其功能接口，会抛出相应的BusinessError。
-- Worker的创建和销毁耗费性能，建议管理已创建的Worker并重复使用。
-- 创建Worker工程时，new worker.Worker构造函数和new worker.ThreadWorker构造函数不能同时使用，否则将导致工程中Worker的功能异常。自API version 9版本开始，建议使用[new worker.ThreadWorker](#constructor9)构造函数，在API version 8及之前的版本，建议使用[new worker.Worker](#constructordeprecated)构造函数。
-- 创建Worker工程时，在Worker线程的文件中（比如本文中worker.ts）不能导入任何有关构建UI的方法（比如ets文件等），否则会导致Worker的功能失效。排查方式：解压生成的Hap包，在创建Worker线程的文件目录中找到"worker.js"，全局搜索"View"关键字。如果存在该关键字，说明在worker.js中打包进去了构建UI的方法，会导致Worker的功能失效，建议在创建Worker线程的文件中修改 "import “xxx” from src"中src的目录层级。
-- 线程间通信时传递的数据量最大限制为16M。
-
 ## 完整示例
 > **说明：**<br/>
 > 以API version 9的工程为例。<br> API version 8及之前的版本仅支持FA模型，如需使用，注意更换构造Worker的接口和创建worker线程中与主线程通信的对象的两个方法。
