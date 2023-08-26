@@ -97,10 +97,10 @@ let records = unifiedData.getRecords();
 for (let i = 0; i < records.length; i++) {
   let record = records[i];
   if (record.getType() == uniformTypeDescriptor.UniformDataType.PLAIN_TEXT) {
-    let plainText = <unifiedDataChannel.PlainText> (record);
+    let plainText = record as unifiedDataChannel.PlainText;
     console.info(`textContent: ${plainText.textContent}`);
   } else if (record.getType() == uniformTypeDescriptor.UniformDataType.HYPERLINK) {
-    let hyperlink = <unifiedDataChannel.Hyperlink> (record);
+    let hyperlink = record as unifiedDataChannel.Hyperlink;
     console.info(`linkUrl: ${hyperlink.url}`);
   }
 }
@@ -148,8 +148,8 @@ let unifiedData = new unifiedDataChannel.UnifiedData(text);
 
 let records = unifiedData.getRecords();
 if (records[0].getType() == uniformTypeDescriptor.UniformDataType.PLAIN_TEXT) {
-    let plainText = <unifiedDataChannel.PlainText> (records[0]);
-    console.info(`textContent: ${plainText.textContent}`);
+  let plainText = records[0] as unifiedDataChannel.PlainText;
+  console.info(`textContent: ${plainText.textContent}`);
 }
 ```
 
@@ -426,19 +426,23 @@ let unifiedData = new unifiedDataChannel.UnifiedData(appItem);
 import image from '@ohos.multimedia.image'; // PixelMap类定义所在模块
 
 const color = new ArrayBuffer(96); // 创建pixelmap对象
-let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
+let opts: image.InitializationOptions = {
+  editable: true, pixelFormat: 3, size: {
+    height: 4, width: 6
+  }
+}
 image.createPixelMap(color, opts, (error, pixelmap) => {
-    if(error) {
-        console.error('Failed to create pixelmap.');
-    } else {
-        console.info('Succeeded in creating pixelmap.');
-        let arrayBuf = new ArrayBuffer(pixelmap.getPixelBytesNumber());
-        pixelmap.readPixelsToBuffer(arrayBuf);
-        let u8Array = new Uint8Array(arrayBuf);
-        let sdpixel = new unifiedDataChannel.SystemDefinedPixelMap();
-        sdpixel.rawData = u8Array;
-        let unifiedData = new unifiedDataChannel.UnifiedData(sdpixel);
-    }
+  if (error) {
+    console.error('Failed to create pixelmap.');
+  } else {
+    console.info('Succeeded in creating pixelmap.');
+    let arrayBuf = new ArrayBuffer(pixelmap.getPixelBytesNumber());
+    pixelmap.readPixelsToBuffer(arrayBuf);
+    let u8Array = new Uint8Array(arrayBuf);
+    let sdpixel = new unifiedDataChannel.SystemDefinedPixelMap();
+    sdpixel.rawData = u8Array;
+    let unifiedData = new unifiedDataChannel.UnifiedData(sdpixel);
+  }
 })
 ```
 
@@ -507,24 +511,26 @@ insertData(options: Options, data: UnifiedData, callback: AsyncCallback&lt;strin
 
 ```ts
 import unifiedDataChannel from '@ohos.data.unifiedDataChannel';
+import { BusinessError } from '@ohos.base';
 
 let plainText = new unifiedDataChannel.PlainText();
 plainText.textContent = 'hello world!';
 let unifiedData = new unifiedDataChannel.UnifiedData(plainText);
 
-let options = {
-    intention: unifiedDataChannel.Intention.DATA_HUB
+let options: unifiedDataChannel.Options = {
+  intention: unifiedDataChannel.Intention.DATA_HUB
 }
 try {
-    unifiedDataChannel.insertData(options, unifiedData, (err, data) => {
-        if (err === undefined) {
-            console.info(`Succeeded in inserting data. key = ${data}`);
-        } else {
-            console.error(`Failed to insert data. code is ${err.code},message is ${err.message} `);
-        }
-    });
-} catch(e) {
-    console.error(`Insert data throws an exception. code is ${e.code},message is ${e.message} `);
+  unifiedDataChannel.insertData(options, unifiedData, (err, data) => {
+    if (err === undefined) {
+      console.info(`Succeeded in inserting data. key = ${data}`);
+    } else {
+      console.error(`Failed to insert data. code is ${err.code},message is ${err.message} `);
+    }
+  });
+  } catch (e) {
+    let error: BusinessError = e as BusinessError;
+    console.error(`Insert data throws an exception. code is ${error.code},message is ${error.message} `);
 }
 
 ```
@@ -554,22 +560,24 @@ insertData(options: Options, data: UnifiedData): Promise&lt;string&gt;
 
 ```ts
 import unifiedDataChannel from '@ohos.data.unifiedDataChannel';
+import { BusinessError } from '@ohos.base';
 
 let plainText = new unifiedDataChannel.PlainText();
 plainText.textContent = 'hello world!';
 let unifiedData = new unifiedDataChannel.UnifiedData(plainText);
 
-let options = {
-    intention: unifiedDataChannel.Intention.DATA_HUB
+let options: unifiedDataChannel.Options = {
+  intention: unifiedDataChannel.Intention.DATA_HUB
 }
 try {
-    unifiedDataChannel.insertData(options, unifiedData).then((data) => {
-        console.info(`Succeeded in inserting data. key = ${data}`);
-    }).catch((err) => {
-        console.error(`Failed to insert data. code is ${err.code},message is ${err.message} `);
-    });
-} catch(e) {
-    console.error(`Insert data throws an exception. code is ${e.code},message is ${e.message} `);
+  unifiedDataChannel.insertData(options, unifiedData).then((data) => {
+    console.info(`Succeeded in inserting data. key = ${data}`);
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to insert data. code is ${err.code},message is ${err.message} `);
+  });
+} catch (e) {
+  let error: BusinessError = e as BusinessError;
+  console.error(`Insert data throws an exception. code is ${error.code},message is ${error.message} `);
 }
 ```
 
@@ -593,25 +601,27 @@ updateData(options: Options, data: UnifiedData, callback: AsyncCallback&lt;void&
 
 ```ts
 import unifiedDataChannel from '@ohos.data.unifiedDataChannel';
+import { BusinessError } from '@ohos.base';
 
 let plainText = new unifiedDataChannel.PlainText();
 plainText.textContent = 'hello world!';
 let unifiedData = new unifiedDataChannel.UnifiedData(plainText);
 
-let options = {
-    key: 'udmf://DataHub/com.ohos.test/0123456789'
+let options: unifiedDataChannel.Options = {
+  key: 'udmf://DataHub/com.ohos.test/0123456789'
 };
 
 try {
-    unifiedDataChannel.updateData(options, unifiedData, (err) => {
-        if (err === undefined) {
-            console.info('Succeeded in updating data.');
-        } else {
-            console.error(`Failed to update data. code is ${err.code},message is ${err.message} `);
-        }
-    });
-} catch(e) {
-    console.error(`Update data throws an exception. code is ${e.code},message is ${e.message} `);
+  unifiedDataChannel.updateData(options, unifiedData, (err) => {
+    if (err === undefined) {
+      console.info('Succeeded in updating data.');
+    } else {
+      console.error(`Failed to update data. code is ${err.code},message is ${err.message} `);
+    }
+  });
+} catch (e) {
+  let error: BusinessError = e as BusinessError;
+  console.error(`Update data throws an exception. code is ${error.code},message is ${error.message} `);
 }
 ```
 
@@ -640,23 +650,25 @@ updateData(options: Options, data: UnifiedData): Promise&lt;void&gt;
 
 ```ts
 import unifiedDataChannel from '@ohos.data.unifiedDataChannel';
+import { BusinessError } from '@ohos.base';
 
 let plainText = new unifiedDataChannel.PlainText();
 plainText.textContent = 'hello world!';
 let unifiedData = new unifiedDataChannel.UnifiedData(plainText);
 
-let options = {
-    key: 'udmf://DataHub/com.ohos.test/0123456789'
+let options: unifiedDataChannel.Options = {
+  key: 'udmf://DataHub/com.ohos.test/0123456789'
 };
 
 try {
-    unifiedDataChannel.updateData(options, unifiedData).then(() => {
-        console.info('Succeeded in updating data.');
-    }).catch((err) => {
-        console.error(`Failed to update data. code is ${err.code},message is ${err.message} `);
-    });
-} catch(e) {
-    console.error(`Update data throws an exception. code is ${e.code},message is ${e.message} `);
+  unifiedDataChannel.updateData(options, unifiedData).then(() => {
+    console.info('Succeeded in updating data.');
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to update data. code is ${err.code},message is ${err.message} `);
+  });
+} catch (e) {
+  let error: BusinessError = e as BusinessError;
+  console.error(`Update data throws an exception. code is ${error.code},message is ${error.message} `);
 }
 ```
 
@@ -680,30 +692,32 @@ queryData(options: Options, callback: AsyncCallback&lt;Array&lt;UnifiedData&gt;&
 ```ts
 import unifiedDataChannel from '@ohos.data.unifiedDataChannel';
 import uniformTypeDescriptor from '@ohos.data.uniformTypeDescriptor';
+import { BusinessError } from '@ohos.base';
 
-let options = {
-    intention: unifiedDataChannel.Intention.DATA_HUB
+let options: unifiedDataChannel.Options = {
+  intention: unifiedDataChannel.Intention.DATA_HUB
 };
 
 try {
-    unifiedDataChannel.queryData(options, (err, data) => {
-        if (err === undefined) {
-            console.info(`Succeeded in querying data. size = ${data.length}`);
-            for (let i = 0; i < data.length; i++) {
-                let records = data[i].getRecords();
-                for (let j = 0; j < records.length; j++) {
-                    if (records[j].getType() === uniformTypeDescriptor.UniformDataType.PLAIN_TEXT) {
-                        let text = <unifiedDataChannel.PlainText>(records[j]);
-                        console.info(`${i + 1}.${text.textContent}`);
-                    }
-                }
-            }
-        } else {
-            console.error(`Failed to query data. code is ${err.code},message is ${err.message} `);
+  unifiedDataChannel.queryData(options, (err, data) => {
+    if (err === undefined) {
+      console.info(`Succeeded in querying data. size = ${data.length}`);
+      for (let i = 0; i < data.length; i++) {
+        let records = data[i].getRecords();
+        for (let j = 0; j < records.length; j++) {
+          if (records[j].getType() === uniformTypeDescriptor.UniformDataType.PLAIN_TEXT) {
+            let text = records[j] as unifiedDataChannel.PlainText;
+            console.info(`${i + 1}.${text.textContent}`);
+          }
         }
-    });
-} catch(e) {
-    console.error(`Query data throws an exception. code is ${e.code},message is ${e.message} `);
+      }
+    } else {
+      console.error(`Failed to query data. code is ${err.code},message is ${err.message} `);
+    }
+  });
+} catch (e) {
+  let error: BusinessError = e as BusinessError;
+  console.error(`Query data throws an exception. code is ${error.code},message is ${error.message} `);
 }
 ```
 
@@ -732,28 +746,30 @@ queryData(options: Options): Promise&lt;Array&lt;UnifiedData&gt;&gt;
 ```ts
 import unifiedDataChannel from '@ohos.data.unifiedDataChannel';
 import uniformTypeDescriptor from '@ohos.data.uniformTypeDescriptor';
+import { BusinessError } from '@ohos.base';
 
-let options = {
-    key: 'udmf://DataHub/com.ohos.test/0123456789'
+let options: unifiedDataChannel.Options = {
+  key: 'udmf://DataHub/com.ohos.test/0123456789'
 };
 
 try {
-    unifiedDataChannel.queryData(options).then((data) => {
-        console.info(`Succeeded in querying data. size = ${data.length}`);
-        for (let i = 0; i < data.length; i++) {
-            let records = data[i].getRecords();
-            for (let j = 0; j < records.length; j++) {
-                if (records[j].getType() === uniformTypeDescriptor.UniformDataType.PLAIN_TEXT) {
-                    let text = <unifiedDataChannel.PlainText>(records[j]);
-                    console.info(`${i + 1}.${text.textContent}`);
-                }
-            }
+  unifiedDataChannel.queryData(options).then((data) => {
+    console.info(`Succeeded in querying data. size = ${data.length}`);
+    for (let i = 0; i < data.length; i++) {
+      let records = data[i].getRecords();
+      for (let j = 0; j < records.length; j++) {
+        if (records[j].getType() === uniformTypeDescriptor.UniformDataType.PLAIN_TEXT) {
+          let text = records[j] as unifiedDataChannel.PlainText;
+          console.info(`${i + 1}.${text.textContent}`);
         }
-    }).catch((err) => {
-        console.error(`Failed to query data. code is ${err.code},message is ${err.message} `);
-    });
-} catch(e) {
-    console.error(`Query data throws an exception. code is ${e.code},message is ${e.message} `);
+      }
+    }
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to query data. code is ${err.code},message is ${err.message} `);
+  });
+} catch (e) {
+  let error: BusinessError = e as BusinessError;
+  console.error(`Query data throws an exception. code is ${error.code},message is ${error.message} `);
 }
 ```
 
@@ -777,30 +793,32 @@ deleteData(options: Options, callback: AsyncCallback&lt;Array&lt;UnifiedData&gt;
 ```ts
 import unifiedDataChannel from '@ohos.data.unifiedDataChannel';
 import uniformTypeDescriptor from '@ohos.data.uniformTypeDescriptor';
+import { BusinessError } from '@ohos.base';
 
-let options = {
-    intention: unifiedDataChannel.Intention.DATA_HUB
+let options: unifiedDataChannel.Options = {
+  intention: unifiedDataChannel.Intention.DATA_HUB
 };
 
 try {
-    unifiedDataChannel.deleteData(options, (err, data) => {
-        if (err === undefined) {
-            console.info(`Succeeded in deleting data. size = ${data.length}`);
-            for (let i = 0; i < data.length; i++) {
-                let records = data[i].getRecords();
-                for (let j = 0; j < records.length; j++) {
-                    if (records[j].getType() === uniformTypeDescriptor.UniformDataType.PLAIN_TEXT) {
-                        let text = <unifiedDataChannel.PlainText>(records[j]);
-                        console.info(`${i + 1}.${text.textContent}`);
-                    }
-                }
-            }
-        } else {
-            console.error(`Failed to delete data. code is ${err.code},message is ${err.message} `);
+  unifiedDataChannel.deleteData(options, (err, data) => {
+    if (err === undefined) {
+      console.info(`Succeeded in deleting data. size = ${data.length}`);
+      for (let i = 0; i < data.length; i++) {
+        let records = data[i].getRecords();
+        for (let j = 0; j < records.length; j++) {
+          if (records[j].getType() === uniformTypeDescriptor.UniformDataType.PLAIN_TEXT) {
+            let text = records[j] as unifiedDataChannel.PlainText;
+            console.info(`${i + 1}.${text.textContent}`);
+          }
         }
-    });
-} catch(e) {
-    console.error(`Delete data throws an exception. code is ${e.code},message is ${e.message} `);
+      }
+    } else {
+      console.error(`Failed to delete data. code is ${err.code},message is ${err.message} `);
+    }
+  });
+} catch (e) {
+  let error: BusinessError = e as BusinessError;
+  console.error(`Delete data throws an exception. code is ${error.code},message is ${error.message} `);
 }
 ```
 
@@ -829,27 +847,29 @@ deleteData(options: Options): Promise&lt;Array&lt;UnifiedData&gt;&gt;
 ```ts
 import unifiedDataChannel from '@ohos.data.unifiedDataChannel';
 import uniformTypeDescriptor from '@ohos.data.uniformTypeDescriptor';
+import { BusinessError } from '@ohos.base';
 
-let options = {
-    key: 'udmf://DataHub/com.ohos.test/0123456789'
+let options: unifiedDataChannel.Options = {
+  key: 'udmf://DataHub/com.ohos.test/0123456789'
 };
 
 try {
-    unifiedDataChannel.deleteData(options).then((data) => {
-        console.info(`Succeeded in deleting data. size = ${data.length}`);
-        for (let i = 0; i < data.length; i++) {
-            let records = data[i].getRecords();
-            for (let j = 0; j < records.length; j++) {
-                if (records[j].getType() === uniformTypeDescriptor.UniformDataType.PLAIN_TEXT) {
-                    let text = <unifiedDataChannel.PlainText>(records[j]);
-                    console.info(`${i + 1}.${text.textContent}`);
-                }
-            }
+  unifiedDataChannel.deleteData(options).then((data) => {
+    console.info(`Succeeded in deleting data. size = ${data.length}`);
+    for (let i = 0; i < data.length; i++) {
+      let records = data[i].getRecords();
+      for (let j = 0; j < records.length; j++) {
+        if (records[j].getType() === uniformTypeDescriptor.UniformDataType.PLAIN_TEXT) {
+          let text = records[j] as unifiedDataChannel.PlainText;
+          console.info(`${i + 1}.${text.textContent}`);
         }
-    }).catch((err) => {
-        console.error(`Failed to delete data. code is ${err.code},message is ${err.message} `);
-    });
-} catch(e) {
-    console.error(`Delete data throws an exception. code is ${e.code},message is ${e.message} `);
+      }
+    }
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to delete data. code is ${err.code},message is ${err.message} `);
+  });
+} catch (e) {
+  let error: BusinessError = e as BusinessError;
+  console.error(`Query data throws an exception. code is ${error.code},message is ${error.message} `);
 }
 ```
