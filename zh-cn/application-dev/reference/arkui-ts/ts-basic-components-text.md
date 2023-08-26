@@ -61,7 +61,7 @@ Text(content?: string | Resource)
 ## 示例
 
 ### 示例1
-textAlign，textOverflow，maxLines，lineHeight使用示例。
+
 ```ts
 // xxx.ets
 @Entry
@@ -144,7 +144,7 @@ struct TextExample1 {
 ![textExp1](figures/textExp1.png)
 
 ### 示例2
-decoration，baselineOffset，letterSpacing，textCase使用示例：
+
 ```ts
 @Entry
 @Component
@@ -253,14 +253,13 @@ struct TextExample2 {
 
 ### 示例3
 
-textShadow，heightAdaptivePolicy，TextOverflow.MARQUEE使用示例：
-
 ```ts
 @Entry
 @Component
 struct TextExample {
   build() {
     Column({ space: 8 }) {
+      // 设置文字阴影效果
       Text('textShadow').fontSize(9).fontColor(0xCCCCCC).margin(15).width('90%')
       Text('textShadow')
         .width('80%')
@@ -271,6 +270,7 @@ struct TextExample {
         .textShadow({ radius: 10, color: Color.Black, offsetX: 0, offsetY: 0 })
         .borderWidth(1)
       Divider()
+      // 设置文本自适应高度的方式
       Text('heightAdaptivePolicy').fontSize(9).fontColor(0xCCCCCC).margin(15).width('90%')
       Text('This is the text with the height adaptive policy set')
         .width('80%')
@@ -300,6 +300,7 @@ struct TextExample {
         .textOverflow({ overflow: TextOverflow.Ellipsis })
         .heightAdaptivePolicy(TextHeightAdaptivePolicy.LAYOUT_CONSTRAINT_FIRST)
       Divider()
+      // 设置文本超长时以跑马灯的方式展示
       Text('marquee').fontSize(9).fontColor(0xCCCCCC).margin(15).width('90%')
       Text('This is the text with the text overflow set marquee')
         .width(300)
