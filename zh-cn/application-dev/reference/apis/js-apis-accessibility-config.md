@@ -68,12 +68,14 @@ enableAbility(name: string, capability: Array&lt;accessibility.Capability&gt;): 
 
 ```ts
 import accessibility from '@ohos.accessibility';
-let name = 'com.ohos.example/axExtension';
+import config from '@ohos.accessibility.config';
+
+let name: string = 'com.ohos.example/axExtension';
 let capability : accessibility.Capability[] = ['retrieve'];
 try {
     config.enableAbility(name, capability).then(() => {
       console.info('enable ability succeed');
-    }).catch((err) => {
+    }).catch((err: object) => {
       console.error('failed to enable ability, because ' + JSON.stringify(err));
     });
 } catch (exception) {
@@ -110,10 +112,13 @@ enableAbility(name: string, capability: Array&lt;accessibility.Capability&gt;, c
 
 ```ts
 import accessibility from '@ohos.accessibility';
-let name = 'com.ohos.example/axExtension';
-let capability : accessibility.Capability[] = ['retrieve'];
+import config from '@ohos.accessibility.config';
+import { BusinessError } from '@ohos.base';
+
+let name: string = 'com.ohos.example/axExtension';
+let capability: accessibility.Capability[] = ['retrieve'];
 try {
-    config.enableAbility(name, capability, (err) => {
+    config.enableAbility(name, capability, (err: BusinessError<void>) => {
         if (err) {
             console.error('failed to enable ability, because ' + JSON.stringify(err));
             return;
@@ -156,11 +161,14 @@ disableAbility(name: string): Promise&lt;void&gt;;
 **示例：**
 
 ```ts
-let name = 'com.ohos.example/axExtension';
+import accessibility from '@ohos.accessibility';
+import config from '@ohos.accessibility.config';
+
+let name: string = 'com.ohos.example/axExtension';
 try {
     config.disableAbility(name).then(() => {
       console.info('disable ability succeed');
-    }).catch((err) => {
+    }).catch((err: object) => {
       console.error('failed to disable ability, because ' + JSON.stringify(err));
     });
 } catch (exception) {
@@ -194,9 +202,13 @@ disableAbility(name: string, callback: AsyncCallback&lt;void&gt;): void;
 **示例：**
 
 ```ts
-let name = 'com.ohos.example/axExtension';
+import accessibility from '@ohos.accessibility';
+import config from '@ohos.accessibility.config';
+import { BusinessError } from '@ohos.base';
+
+let name: string = 'com.ohos.example/axExtension';
 try {
-    config.disableAbility(name, (err, data) => {
+    config.disableAbility(name, (err: BusinessError<void>) => {
         if (err) {
             console.error('failed to enable ability, because ' + JSON.stringify(err));
             return;
@@ -226,6 +238,8 @@ on(type: 'enabledAccessibilityExtensionListChange', callback: Callback&lt;void&g
 **示例：**
 
 ```ts
+import config from '@ohos.accessibility.config';
+
 try {
     config.on('enabledAccessibilityExtensionListChange', () => {
         console.info('subscribe enabled accessibility extension list change state success');
@@ -254,6 +268,8 @@ off(type: 'enabledAccessibilityExtensionListChange', callback?: Callback&lt;void
 **示例：**
 
 ```ts
+import config from '@ohos.accessibility.config';
+
 try {
     config.off('enabledAccessibilityExtensionListChange', () => {
         console.info('Unsubscribe enabled accessibility extension list change state success');
@@ -291,11 +307,13 @@ set(value: T): Promise&lt;void&gt;;
 **示例：**
 
 ```ts
-let value = true;
+import config from '@ohos.accessibility.config';
+
+let value: boolean = true;
 try {
     config.highContrastText.set(value).then(() => {
         console.info('set highContrastText succeed');
-    }).catch((err) => {
+    }).catch((err: object) => {
         console.error('failed to set highContrastText, because ' + JSON.stringify(err));
     });
 } catch (exception) {
@@ -321,9 +339,12 @@ set(value: T, callback: AsyncCallback&lt;void&gt;): void;
 **示例：**
 
 ```ts
-let value = true;
+import config from '@ohos.accessibility.config';
+import { BusinessError } from '@ohos.base';
+
+let value: boolean = true;
 try {
-    config.highContrastText.set(value, (err, data) => {
+    config.highContrastText.set(value, (err: BusinessError<void>) => {
         if (err) {
             console.error('failed to set highContrastText, because ' + JSON.stringify(err));
             return;
@@ -352,11 +373,14 @@ get(): Promise&lt;T&gt;;
 **示例：**
 
 ```ts
-let value;
-config.highContrastText.get().then((data) => {
+import config from '@ohos.accessibility.config';
+import { BusinessError } from '@ohos.base';
+
+let value: boolean;
+config.highContrastText.get().then((data: boolean) => {
     value = data;
     console.info('get highContrastText success');
-}).catch((err) => {
+}).catch((err: object) => {
     console.error('failed to get highContrastText, because ' + JSON.stringify(err));
 });
 ```
@@ -378,8 +402,11 @@ get(callback: AsyncCallback&lt;T&gt;): void;
 **示例：**
 
 ```ts
-let value;
-config.highContrastText.get((err, data) => {
+import config from '@ohos.accessibility.config';
+import { BusinessError } from '@ohos.base';
+
+let value: boolean;
+config.highContrastText.get((err: BusinessError<void>, data: boolean) => {
     if (err) {
         console.error('failed to get highContrastText, because ' + JSON.stringify(err));
         return;
@@ -406,8 +433,10 @@ on(callback: Callback&lt;T&gt;): void;
 **示例：**
 
 ```ts
+import config from '@ohos.accessibility.config';
+
 try {
-    config.highContrastText.on((data) => {
+    config.highContrastText.on((data: boolean) => {
         console.info('subscribe highContrastText success, result: ' + JSON.stringify(data));
     });
 } catch (exception) {
@@ -432,7 +461,9 @@ off(callback?: Callback&lt;T&gt;): void;
 **示例：**
 
 ```ts
-config.highContrastText.off((data) => {
+import config from '@ohos.accessibility.config';
+
+config.highContrastText.off((data: boolean) => {
     console.info('Unsubscribe highContrastText success, result: ' + JSON.stringify(data));
 });
 ```
