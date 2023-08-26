@@ -15,9 +15,9 @@
 2. 通过getCameraManager()方法，获取cameraManager对象。
      
    ```ts
-   let cameraManager;
-   let context: any = getContext(this);
-   cameraManager = camera.getCameraManager(context)
+   let cameraManager: camera.CameraManager;
+   let context: Context = getContext(this);  // [各类Context的获取方式](../application-models/application-context-stage.md)
+   cameraManager = camera.getCameraManager(context);
    ```
 
    > **说明：**
@@ -27,17 +27,17 @@
 3. 通过cameraManager类中的getSupportedCameras()方法，获取当前设备支持的相机列表，列表中存储了设备支持的所有相机ID。若列表不为空，则说明列表中的每个ID都支持独立创建相机对象；否则，说明当前设备无可用相机，不可继续后续操作。
      
    ```ts
-   let cameraArray = cameraManager.getSupportedCameras();
-   if (cameraArray.length <= 0) {
-       console.error("cameraManager.getSupportedCameras error");
-       return;
+   let cameraArray: Array<camera.CameraDevice> = cameraManager.getSupportedCameras();
+   if (cameraArray != undefined && cameraArray.length <= 0) {
+    console.error("cameraManager.getSupportedCameras error");
+    return;
    } 
    
    for (let index = 0; index < cameraArray.length; index++) {
-       console.info('cameraId : ' + cameraArray[index].cameraId);                          // 获取相机ID
-       console.info('cameraPosition : ' + cameraArray[index].cameraPosition);              // 获取相机位置
-       console.info('cameraType : ' + cameraArray[index].cameraType);                      // 获取相机类型
-       console.info('connectionType : ' + cameraArray[index].connectionType);              // 获取相机连接类型
+    console.info('cameraId : ' + cameraArray[index].cameraId);                          // 获取相机ID
+    console.info('cameraPosition : ' + cameraArray[index].cameraPosition);              // 获取相机位置
+    console.info('cameraType : ' + cameraArray[index].cameraType);                      // 获取相机类型
+    console.info('connectionType : ' + cameraArray[index].connectionType);              // 获取相机连接类型
    }
    ```
 
@@ -45,24 +45,24 @@
      
    ```ts
    // 创建相机输入流 
-   let cameraInput;
+   let cameraInput: camera.CameraInput;
    try {    
-       cameraInput = cameraManager.createCameraInput(cameraArray[0]);
+    cameraInput = cameraManager.createCameraInput(cameraArray[0]);
    } catch (error) {
-      console.error('Failed to createCameraInput errorCode = ' + error.code);
+    console.error('Failed to createCameraInput errorCode = ' + error.code);
    } 
    // 监听cameraInput错误信息
-   let cameraDevice = cameraArray[0];
-   cameraInput.on('error', cameraDevice, (error) => {
-       console.info(`Camera input error code: ${error.code}`);
-   }) 
+   let cameraDevice: camera.CameraDevice = cameraArray[0];
+   cameraInput.on('error', cameraDevice, (error: BusinessError) => {
+    console.info(`Camera input error code: ${error.code}`);
+   });
    // 打开相机
    await cameraInput.open(); 
    // 获取相机设备支持的输出流能力
-   let cameraOutputCapability = cameraManager.getSupportedOutputCapability(cameraArray[0]);
+   let cameraOutputCapability: camera.CameraOutputCapability = cameraManager.getSupportedOutputCapability(cameraArray[0]);
    if (!cameraOutputCapability) {
-       console.error("cameraManager.getSupportedOutputCapability error");
-       return;
+    console.error("cameraManager.getSupportedOutputCapability error");
+    return;
    }
    console.info("outputCapability: " + JSON.stringify(cameraOutputCapability));
    ```
@@ -75,8 +75,8 @@
   通过注册cameraStatus事件，通过回调返回监听结果，callback返回CameraStatusInfo参数，参数的具体内容可参考相机管理器回调接口实例[CameraStatusInfo](../reference/apis/js-apis-camera.md#camerastatusinfo)。
   
 ```ts
-cameraManager.on('cameraStatus', (err, cameraStatusInfo) => {
+cameraManager.on('cameraStatus', (err: BusinessError, cameraStatusInfo: camera.CameraStatusInfo) => {
   console.info(`camera: ${cameraStatusInfo.camera.cameraId}`);
   console.info(`status: ${cameraStatusInfo.status}`);
-})
+});
 ```
