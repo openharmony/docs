@@ -108,7 +108,7 @@ The required permissions must be authorized by the user (user_grant). After addi
     onWindowStageCreate(windowStage) {
       let list : Array<Permissions> = ['ohos.permission.READ_IMAGEVIDEO', 'ohos.permission.WRITE_IMAGEVIDEO'];
       let permissionRequestResult;
-      let atManager = abilityAccessCtrl.createAtManager();
+      let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
       atManager.requestPermissionsFromUser(this.context, list, (err, result) => {
         if (err) {
           console.error('requestPermissionsFromUserError: ' + JSON.stringify(err));
