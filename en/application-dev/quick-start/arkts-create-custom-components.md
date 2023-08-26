@@ -1,7 +1,7 @@
 # Creating a Custom Component
 
 
-In ArkUI, components are what's displayed on the UI. They can be classified as built-in components – those directly provided by ArkUI framework, and custom components – those defined by developers. Defining the entire application UI with just built-in components would lead to a monolithic design, low code maintainability, and poor execution performance. A good UI is the result of a well-thought-out development process, with such factors as code reusability, separation of service logic from the UI, and version evolution carefully considered. Creating custom components that encapsulate the UI and some business logic is a critical step in this process.
+In ArkUI, components are what's displayed on the UI. They can be classified as built-in components – those directly provided by the ArkUI framework, and custom components – those defined by developers. Defining the entire application UI with just built-in components would lead to a monolithic design, low code maintainability, and poor execution performance. A good UI is the result of a well-thought-out development process, with such factors as code reusability, separation of service logic from the UI, and version evolution carefully considered. Creating custom components that encapsulate the UI and some business logic is a critical step in this process.
 
 
 The custom component has the following features:
@@ -62,7 +62,7 @@ To fully understand the preceding example, a knowledge of the following concepts
 
 - [Basic Structure of a Custom Component](#basic-structure-of-a-custom-component)
 
-- [Member Functions/Variables](#member-functionsvariables)
+- Member functions/Variables
 
 - [Rules of for Custom Component Parameters](#rules-of-for-custom-component-parameters)
 
@@ -70,7 +70,6 @@ To fully understand the preceding example, a knowledge of the following concepts
 
 - [Universal Style of a Custom Component](#universal-style-of-a-custom-component)
 
-- [Custom Attribute Methods](#custom-attribute-methods)
 
 
 ## Basic Structure of a Custom Component
@@ -80,7 +79,7 @@ To fully understand the preceding example, a knowledge of the following concepts
   >
   > The name or its class or function name of a custom component must be different from that of any built-in components.
 
-- \@Component: The \@Component decorator can decorate only the data structures declared by the **struct** keyword. After being decorated by \@Component, a struct has the componentization capability. It must implement the **build** function to describe the UI. One struct can be decorated by only one \@Component.
+- \@Component: The \@Component decorator can decorate only the structs declared by the **struct** keyword. After being decorated by \@Component, a struct has the componentization capability. It must implement the **build** function to describe the UI. One struct can be decorated by only one \@Component.
   > **NOTE**
   >
   > Since API version 9, this decorator is supported in ArkTS widgets.
@@ -314,67 +313,3 @@ struct MyComponent {
 > **NOTE**
 >
 > When ArkUI sets styles for custom components, an invisible container component is set for **MyComponent2**. These styles are set on the container component instead of the **\<Button>** component of **MyComponent2**. As seen from the rendering result, the red background color is not directly applied to the button. Instead, it is applied to the container component that is invisible to users where the button is located.
-
-
-## Custom Attribute Methods
-
-Custom components do not support custom attribute methods. You can use the Controller capability to implement custom APIs.
-
-
-```ts
-// Custom controller
-export class MyComponentController {
-  item: MyComponent = null;
-
-  setItem(item: MyComponent) {
-    this.item = item;
-  }
-
-  changeText(value: string) {
-    this.item.value = value;
-  }
-}
-
-// Custom component
-@Component
-export default struct MyComponent {
-  public controller: MyComponentController = null;
-  @State value: string = 'Hello World';
-
-  build() {
-    Column() {
-      Text(this.value)
-        .fontSize(50)
-    }
-  }
-
-  aboutToAppear() {
-    if (this.controller)
-      this.controller.setItem (this); // Link to the controller.
-  }
-}
-
-// Processing logic
-@Entry
-@Component
-struct StyleExample {
-  controller = new MyComponentController();
-
-  build() {
-    Column() {
-      MyComponent({ controller: this.controller })
-    }
-    .onClick(() => {
-      this.controller.changeText('Text');
-    })
-  }
-}
-```
-
-In the preceding example:
-
-1. The **aboutToAppear** method of the **MyComponent** child component passes the current **this** pointer to the **item** member variable of **MyComponentController**.
-
-2. The **StyleExample** parent component holds a **Controller** instance and with which calls the **changeText** API of **Controller**. That is, the value of the state variable **value** of **MyComponent** is changed through the **this** pointer of the **MyComponent** child component held by the controller.
-
-Through the encapsulation of the controller, **MyComponent** exposes the **changeText** API. All instances that hold the controller can call the **changeText** API to change the value of the **MyComponent** state variable **value**.
