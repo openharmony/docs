@@ -286,7 +286,7 @@ struct ListLanesExample {
 }
 ```
 
-![list](figures/list1.gif)
+![list](figures/list-alignListItem.gif)
 
 
 ### Example 3
