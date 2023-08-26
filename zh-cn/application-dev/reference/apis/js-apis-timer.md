@@ -10,7 +10,8 @@
 
 setTimeout(handler: Function | string, delay?: number, ...arguments: any[]): number
 
-设置一个定时器，该定时器在定时器到期后执行一个函数。
+设置一个定时器，该定时器在定时器到期后执行一个函数。  
+该定时器在回调被执行后自动删除，或使用clearTimeout接口手动删除。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -26,7 +27,7 @@ setTimeout(handler: Function | string, delay?: number, ...arguments: any[]): num
 
 | 类型 | 说明 |
 | -------- | -------- |
-| number | 该定时器的ID。 |
+| number | 该定时器的ID，为整数。 |
 
 **示例：**
 
@@ -65,7 +66,8 @@ clearTimeout(timeoutID?: number): void
 
 setInterval(handler: Function | string, delay: number, ...arguments: any[]): number
 
-重复调用一个函数，在每次调用之间具有固定的时间延迟。
+重复调用一个函数，在每次调用之间具有固定的时间延迟。  
+删除该定时器需手动调用clearInterval接口。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -81,7 +83,7 @@ setInterval(handler: Function | string, delay: number, ...arguments: any[]): num
 
 | 类型 | 说明 |
 | -------- | -------- |
-| number | 该定时器的ID。 |
+| number | 该定时器的ID，为整数。 |
 
 **示例：**
 
