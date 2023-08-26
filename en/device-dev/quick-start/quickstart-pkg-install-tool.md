@@ -36,7 +36,7 @@ Perform the following steps on Ubuntu.
    source ~/.bashrc
    ```
 
-3. Run the **hb -h** command in the source code directory. If the following information is displayed, the installation is successful:
+3. Run the **hb help** command in the source code directory. If the following information is displayed, the installation is successful:
      
    ![hb_help](figures/hb_help.png)
 
