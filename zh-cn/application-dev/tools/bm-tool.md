@@ -415,19 +415,14 @@ bm dump-dependencies -n com.ohos.app -m entry
     ```
     find /system -name install_list_capability.json
     ```
-    HarmonyOS设备上install_list_capability.json的位置通常为以下几种，选取其中一个即可：
-    ```
-    /system/variant/phone/base/etc/app/install_list_capability.json
-    /system/etc/app/install_list_capability.json
-    ```
-    OpenHarmony设备上install_list_capability.json的位置通常为：
+    设备上install_list_capability.json的位置通常为以下目录地址，通过bundleName找到对应的配置文件：
     ```
     /system/etc/app/install_list_capability.json
     ```
     c. 执行如下命令拉取install_list_capability.json。
     ```
     hdc shell mount -o rw,remount /
-    hdc file recv /system/variant/phone/base/etc/app/install_list_capability.json
+    hdc file recv /system/etc/app/install_list_capability.json
     ```
 
 3. 将步骤1获取到的签名指纹配置到install_list_capability.json文件的app_signature中，注意要配置到对应的bundleName下。
@@ -436,8 +431,8 @@ bm dump-dependencies -n com.ohos.app -m entry
 
     ```
     hdc shell mount -o rw,remount / 
-    hdc file send install_list_capability.json /system/variant/phone/base/etc/app/install_list_capability.json 
-    hdc shell chmod 777 /system/variant/phone/base/etc/app/install_list_capability.json 
+    hdc file send install_list_capability.json /system/etc/app/install_list_capability.json 
+    hdc shell chmod 777 /system/etc/app/install_list_capability.json 
     hdc shell reboot
     ```
 5. 设备重启后，重新安装新的应用即可。
@@ -470,7 +465,7 @@ bm dump-dependencies -n com.ohos.app -m entry
 
 出现该问题的原因是配置文件app.json5和module.json5中必填字段缺失。
 
-* 方法1：请参考[app.json5配置文件](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/app-configuration-file-0000001558277229-V3)和[module.json5配置文件](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/module-configuration-file-0000001506957668-V3)查看并补充必填字段。
+* 方法1：请参考[app.json5配置文件](../../application-dev/quick-start/app-configuration-file.md)和[module.json5配置文件](../../application-dev/quick-start/module-configuration-file.md)查看并补充必填字段。
 * 方法2：通过hilog日志判断缺失字段。
 
     开启落盘命令：
@@ -505,7 +500,11 @@ bm dump-dependencies -n com.ohos.app -m entry
 该问题是由于签名中未包含该调试设备的UDID，请通过如下步骤进行解决。
 
 * 使用[自动签名](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/signing-0000001587684945-V3#section18815157237)。在连接设备后，重新为应用进行签名。
-* 如果使用的是手动签名，对于HarmonyOS应用，请在AppGallery Connect中先将该调试设备[注册调试设备](https://developer.huawei.com/consumer/cn/doc/distribution/app/agc-help-harmonyos-debugapp-manual-0000001177608893#section7732152932911)并在[申请Profile文件](https://developer.huawei.com/consumer/cn/doc/distribution/app/agc-help-harmonyos-debugapp-manual-0000001177608893?ha_linker=eyJ0cyI6MTY4NzkzNDEzOTk1OSwiaWQiOiJhZjdhYzI0MDlkMGQ5MzQ1MzFlNDE3NDQ5MmY4MjJkMyJ9#section1774717395304)选择设备时添加该调试设备，重新申请Profile证书；对于OpenHarmony应用，请参考[OpenHarmony应用手动签名](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/hapsigntool-guidelines.md)，在UnsgnedDebugProfileTemplate.json文件中添加该调试设备的[UDID](https://developer.huawei.com/consumer/cn/doc/distribution/app/agc-help-harmonyos-debugapp-manual-0000001177608893#section1835412326017)。
+* 如果使用的是手动签名，对于OpenHarmony应用，请参考[OpenHarmony应用手动签名](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/hapsigntool-guidelines.md)，在UnsgnedDebugProfileTemplate.json文件中添加该调试设备的**UDID**
+```
+//UDID获取命令
+hdc shell bm get -u
+```
 
 ### 安装HAP时提示“code:9568289 error: install failed due to grant request permissions failed”
 **问题现象**
@@ -518,7 +517,7 @@ bm dump-dependencies -n com.ohos.app -m entry
 
 该问题是由于默认应用等级为normal，只能使用normal等级的权限，如果使用了system_basic或system_core等级的权限，将导致报错。
 
-对于HarmonyOS应用，请参考[使用ACL签名配置指导](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/signing-0000001587684945-V3?catalogVersion=V3#section157591551175916)完成ACL提权；对于OpenHarmony应用，请参考[修改应用权限等级](https://developer.harmonyos.com/cn/docs/documentation/doc-guides/ohos-auto-configuring-signature-information-0000001271659465#section42735161005)修改签名模板。
+在UnsgnedDebugProfileTemplate.json文件中修改apl等级，调整成system_basic或system_core等级，重新签名打包即可。
 
 ### 安装HAP时提示“code:9568297 error: install failed due to older sdk version in the device”
 **问题现象**
@@ -551,18 +550,3 @@ bm dump-dependencies -n com.ohos.app -m entry
 该问题是由于设备上已安装的应用与新安装的应用中签名不一致。如果在**Edit Configurations**中勾选了“Keep Application Data”（不卸载应用，覆盖安装），并且重新进行了签名，将导致该报错。
 
 请卸载设备上已安装的应用，或取消勾选“Keep Application Data”后，重新安装新的应用。
-
-### 安装HAP时提示“code:9568257 error: fail to verify pkcs7 file”
-**问题现象**
-
-在启动调试或者运行应用/服务时，安装HAP出现错误，提示”error: fail to verify pkcs7 file“错误信息。
-
-![示例图](figures/zh-cn_image_00000016359212344.png)
-
-**解决措施**
-
-出现该问题的原因是应用当前使用的签名不符合HarmonyOS应用签名的要求。通常是由于当前使用的是OpenHarmony应用的签名，需替换为HarmonyOS应用的签名。
-
-请在[为应用/服务签名](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/signing-0000001587684945-V3)时勾选”Support HarmonyOS“，完成HarmonyOS应用签名后再次启动调试或者运行应用。
-
-![示例图](figures/zh-cn_image_00000016359212311.png)
