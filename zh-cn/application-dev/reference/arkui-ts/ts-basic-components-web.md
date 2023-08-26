@@ -808,11 +808,15 @@ initialScale(percent: number)
   }
   ```
 
-### userAgent
+### userAgent<sup>(deprecated)</sup>
 
 userAgent(userAgent: string)
 
 设置用户代理。
+
+> **说明：**
+>
+> 从API version 8开始支持，从API version 10开始废弃。建议使用[setCustomUserAgent](../apis/js-apis-webview.md#setcustomuseragent10)<sup>10+</sup>替代。
 
 **参数：**
 
