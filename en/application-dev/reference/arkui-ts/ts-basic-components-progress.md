@@ -70,6 +70,7 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 | strokeWidth  | [Length](ts-types.md#length) | No  | Stroke width of the progress indicator. It cannot be set in percentage.<br>Default value: **4.0vp**                                           |
 | scaleCount   | number                       | No  | Number of divisions on the ring-style process indicator.<br>Default value: **120**                                                       |
 | scaleWidth   | [Length](ts-types.md#length) | No  | Scale width of the ring-style progress bar. It cannot be set in percentage. If it is greater than the value of **strokeWidth**, the default scale width is used.<br>Default value: **2.0vp**|
+| enableSmoothEffect<sup>10+</sup> | boolean | No| Whether to enable the smooth effect. When this effect is enabled, the progress change to the set value takes place gradually. Otherwise, it takes place immediately.<br>Default value: **true**|
 
 ## CapsuleStyleOptions<sup>10+</sup>
 | Name         | Type| Mandatory| Description|
@@ -81,6 +82,7 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 | fontColor | [ResourceColor](ts-types.md#resourcecolor) | No| Font color.<br>Default value: **'\#ff182431'**|
 | enableScanEffect | boolean | No| Whether to enable the scan effect.<br>Default value: **false**|
 | showDefaultPercentage | boolean | No| Whether to show the percentage of the current progress. This attribute does not take effect when the **content** attribute is set.<br>Default value: **false**|
+| enableSmoothEffect | boolean | No| Whether to enable the smooth effect. When this effect is enabled, the progress change to the set value takes place gradually. Otherwise, it takes place immediately.<br>Default value: **true**|
 
 ## RingStyleOptions<sup>10+</sup>
 | Name          | Type                     | Mandatory| Description                                                                                       |
@@ -89,12 +91,15 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 | shadow        | boolean                      | No  | Whether to enable the shadow effect.<br>Default value: **false**                                                            |
 | status        | [ProgressStatus<sup>10+</sup>](#progressstatus10) | No| Status of the progress indicator. When this parameter is set to **LOADING**, the check update animation is played, and the **value** settings do not take effect. When the value changes from **LOADING** to **PROGRESSING**, the check update animation stops when it has reached the end state.<br>Default value: **ProgressStatus.PROGRESSING**|
 | enableScanEffect | boolean | No| Whether to enable the scan effect.<br>Default value: **false**|
+| enableSmoothEffect | boolean | No| Whether to enable the smooth effect. When this effect is enabled, the progress change to the set value takes place gradually. Otherwise, it takes place immediately.<br>Default value: **true**|
 
 ## LinearStyleOptions<sup>10+</sup>
 | Name          | Type                     | Mandatory| Description                                                                                       |
 | ------------- | ---------------------------- | ---- | ------------------------------------------------------------------------------------------ |
 | strokeWidth   | [Length](ts-types.md#length) | No  | Stroke width of the progress indicator. It cannot be set in percentage.<br>Default value: **4.0vp**|
+| strokeRadius   | [PX](ts-types.md#px10)    \| [VP](ts-types.md#vp10)    \| [LPX](ts-types.md#lpx10)    \| [Resource](ts-types.md#resource)| No  | Rounded corner radius of the progress indicator.<br>Value range: [0, strokeWidth/2] Default value: **strokeWidth/2**|
 | enableScanEffect | boolean | No| Whether to enable the scan effect.<br>Default value: **false**|
+| enableSmoothEffect | boolean | No| Whether to enable the smooth effect. When this effect is enabled, the progress change to the set value takes place gradually. Otherwise, it takes place immediately.<br>Default value: **true**|
 
 ## ScaleRingStyleOptions<sup>10+</sup>
 | Name         | Type                     | Mandatory| Description                                                                                       |
@@ -102,15 +107,18 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 | strokeWidth  | [Length](ts-types.md#length) | No  | Stroke width of the progress indicator. It cannot be set in percentage.<br>Default value: **4.0vp**                                           |
 | scaleCount   | number                       | No  | Number of divisions on the ring-style process indicator.<br>Default value: **120**                                                       |
 | scaleWidth   | [Length](ts-types.md#length) | No  | Scale width of the ring-style progress bar. It cannot be set in percentage. If it is greater than the value of **strokeWidth**, the default scale width is used.<br>Default value: **2.0vp**|
+| enableSmoothEffect | boolean | No| Whether to enable the smooth effect. When this effect is enabled, the progress change to the set value takes place gradually. Otherwise, it takes place immediately.<br>Default value: **true**|
 
 ## EclipseStyleOptions<sup>10+</sup>
-No parameter available.
+| Name         | Type                     | Mandatory| Description                                                                                       |
+| ------------ | ---------------------------- | ---- | ------------------------------------------------------------------------------------------ |
+| enableSmoothEffect | boolean | No| Whether to enable the smooth effect. When this effect is enabled, the progress change to the set value takes place gradually. Otherwise, it takes place immediately.<br>Default value: **true**|
 
 ## ProgressStatus<sup>10+</sup>
 | Name                   | Description            |
 | ----------------------- | ---------------- |
-| LOADING<sup>10+</sup>  | Loading.|
-| PROGRESSING<sup>10+</sup>  | The progress is being updated.|
+| LOADING  | Loading.|
+| PROGRESSING | The progress is being updated.|
 
 ## Events
 
@@ -249,3 +257,38 @@ struct ProgressExample {
 }
 ```
 ![capsuleProgressStyleEffect](figures/arkts-capsuleProgressStyleEffect.png)
+
+### Example 5
+This example shows the smooth effect.
+```ts
+@Entry
+@Component
+struct Index {
+  @State value: number = 0
+
+  build() {
+    Column({space: 10}) {
+      Text('enableSmoothEffect: true').fontSize(9).fontColor(0xCCCCCC).width('90%').margin(5)
+        .margin({top: 20})
+      Progress({value: this.value, total: 100, type:ProgressType.Linear})
+        .style({strokeWidth: 10, enableSmoothEffect: true})
+
+      Text('enableSmoothEffect: false').fontSize(9).fontColor(0xCCCCCC).width('90%').margin(5)
+      Progress({value: this.value, total: 100, type:ProgressType.Linear})
+        .style({strokeWidth: 10, enableSmoothEffect: false})
+
+      Button('value +10').onClick(() => {
+        this.value += 10
+      })
+        .width(75)
+        .height(15)
+        .fontSize(9)
+    }
+    .width('50%')
+    .height('100%')
+    .margin({left:20})
+  }
+}
+
+```
+![progressSmoothEffect](figures/arkts-progressSmoothEffect.gif)
