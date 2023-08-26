@@ -51,9 +51,11 @@ getLauncherAbilityInfo(bundleName: string, userId: number, callback: AsyncCallba
 
 ```ts
 import launcherBundleManager from '@ohos.bundle.launcherBundleManager';
+import { BusinessError } from '@ohos.base';
 
 try {
-    launcherBundleManager.getLauncherAbilityInfo('com.example.demo', 100, (errData, data) => {
+    launcherBundleManager.getLauncherAbilityInfo('com.example.demo', 100,
+        (errData: BusinessError, data: launcherBundleManager.LauncherAbilityInfo[]) => {
         if (errData !== null) {
             console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
         } else {
@@ -101,13 +103,15 @@ getLauncherAbilityInfo(bundleName: string, userId: number) : Promise<Array\<[Lau
 
 **示例：**
 
-```typescript
+```ts
 import launcherBundleManager from '@ohos.bundle.launcherBundleManager';
+import { BusinessError } from '@ohos.base';
 
 try {
-    launcherBundleManager.getLauncherAbilityInfo("com.example.demo", 100).then(data => {
+    launcherBundleManager.getLauncherAbilityInfo("com.example.demo", 100)
+        .then((data: launcherBundleManager.LauncherAbilityInfo[]) => {
         console.log("data is " + JSON.stringify(data));
-    }).catch (errData => {
+    }).catch ((errData: BusinessError) => {
         console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
     })
 } catch (errData) {
@@ -151,7 +155,7 @@ getLauncherAbilityInfoSync(bundleName: string, userId: number) : Array\<[Launche
 
 **示例：**
 
-```typescript
+```ts
 import launcherBundleManager from '@ohos.bundle.launcherBundleManager';
 
 try {
@@ -198,9 +202,11 @@ getAllLauncherAbilityInfo(userId: number, callback: AsyncCallback<Array\<[Launch
 
 ```ts
 import launcherBundleManager from '@ohos.bundle.launcherBundleManager';
+import { BusinessError } from '@ohos.base';
 
 try {
-    launcherBundleManager.getAllLauncherAbilityInfo(100, (errData, data) => {
+    launcherBundleManager.getAllLauncherAbilityInfo(100,
+        (errData: BusinessError, data: launcherBundleManager.LauncherAbilityInfo[]) => {
         if (errData !== null) {
             console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
         } else {
@@ -247,11 +253,13 @@ getAllLauncherAbilityInfo(userId: number) : Promise<Array\<[LauncherAbilityInfo]
 
 ```ts
 import launcherBundleManager from '@ohos.bundle.launcherBundleManager';
+import { BusinessError } from '@ohos.base';
 
 try {
-    launcherBundleManager.getAllLauncherAbilityInfo(100).then(data => {
+    launcherBundleManager.getAllLauncherAbilityInfo(100)
+        .then((data: launcherBundleManager.LauncherAbilityInfo[]) => {
         console.log("data is " + JSON.stringify(data));
-    }).catch (errData => {
+    }).catch ((errData: BusinessError) => {
         console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
     });
 } catch (errData) {
@@ -293,9 +301,11 @@ getShortcutInfo(bundleName :string, callback: AsyncCallback<Array\<[ShortcutInfo
 
 ```ts
 import launcherBundleManager from '@ohos.bundle.launcherBundleManager';
+import { BusinessError } from '@ohos.base';
 
 try {
-    launcherBundleManager.getShortcutInfo("com.example.demo", (errData, data) => {
+    launcherBundleManager.getShortcutInfo("com.example.demo",
+        (errData: BusinessError, data: launcherBundleManager.ShortcutInfo[]) => {
         if (errData !== null) {
             console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
         } else {
@@ -341,11 +351,13 @@ getShortcutInfo(bundleName : string) : Promise<Array\<[ShortcutInfo](js-apis-bun
 
 ```ts
 import launcherBundleManager from '@ohos.bundle.launcherBundleManager';
+import { BusinessError } from '@ohos.base';
 
 try {
-    launcherBundleManager.getShortcutInfo("com.example.demo").then(data => {
+    launcherBundleManager.getShortcutInfo("com.example.demo")
+        .then((data: launcherBundleManager.ShortcutInfo[]) => {
         console.log("data is " + JSON.stringify(data));
-    }).catch (errData => {
+    }).catch ((errData: BusinessError) => {
         console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
     });
 } catch (errData) {
