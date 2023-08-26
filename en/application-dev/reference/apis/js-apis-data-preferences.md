@@ -737,7 +737,7 @@ class EntryAbility extends UIAbility {
 
 removePreferencesFromCacheSync(context: Context, name: string): void
 
-Synchronously removes a **Preferences** instance from the cache.
+Removes a **Preferences** instance from the cache. This API returns the result synchronously.
 
 After an application calls [getPreferences](#data_preferencesgetpreferences) for the first time to obtain a **Preferences** instance, the obtained **Preferences** instance is cached. When the application calls [getPreferences](#data_preferencesgetpreferences) again, the **Preferences** instance will be read from the cache instead of from the persistent file. After this API is called to remove the instance from the cache, calling **getPreferences** again will read data from the persistent file and create a new **Preferences** instance.
 
@@ -1021,7 +1021,7 @@ try {
 
 getSync(key: string, defValue: ValueType): ValueType
 
-Synchronously obtains the value corresponding to the specified key from the cached **Preferences** instance. If the value is null or is not of the default value type, **defValue** is returned.
+Obtains the value corresponding to the specified key from the cached **Preferences** instance. This API returns the result synchronously. If the value is null or is not of the default value type, **defValue** is returned.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -1117,7 +1117,7 @@ try {
 
 getAllSync(): Object
 
-Obtains all KV pairs from the cached **Preferences** instance synchronously.
+Obtains all KV pairs from the cached **Preferences** instance. This API returns the result synchronously.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -1214,7 +1214,7 @@ try {
 
 putSync(key: string, value: ValueType): void
 
-Synchronously writes data to the cached **Preferences** instance. You can use [flush](#flush) to persist the **Preferences** instance.
+Writes data to the cached **Preferences** instance. This API returns the result synchronously. You can use [flush](#flush) to persist the **Preferences** instance.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -1316,7 +1316,7 @@ try {
 
 hasSync(key: string): boolean
 
-Synchronously checks whether the cached **Preferences** instance contains the KV pair of the given key.
+Checks whether the cached **Preferences** instance contains the KV pair of the given key. This API returns the result synchronously.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -1420,7 +1420,7 @@ try {
 
 deleteSync(key: string): void
 
-Synchronously deletes a KV pair from the cached **Preferences** instance based on the specified key. You can use [flush](#flush) to persist the **Preferences** instance.
+Deletes a KV pair from the cached **Preferences** instance based on the specified key. This API returns the result synchronously. You can use [flush](#flush) to persist the **Preferences** instance.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -1567,7 +1567,7 @@ try {
 
 clearSync(): void
 
-Synchronously clears all data in the cached **Preferences** instance. You can use [flush](#flush) to persist the **Preferences** instance.
+Clears all data in the cached **Preferences** instance. This API returns the result synchronously. You can use [flush](#flush) to persist the **Preferences** instance.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
