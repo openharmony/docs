@@ -43,6 +43,7 @@ startVibration(effect: VibrateEffect, attribute: VibrateAttribute, callback: Asy
 
 ```ts
 import vibrator from '@ohos.vibrator';
+import { BusinessError } from '@ohos.base';
 
 try {
   vibrator.startVibration({
@@ -51,7 +52,7 @@ try {
   }, {
     id: 0,
     usage: 'alarm'
-  }, (error) => {
+  }, (error: BusinessError) => {
     if (error) {
       console.error(`Failed to start vibration. Code: ${error.code}, message: ${error.message}`);
       return;
@@ -59,7 +60,8 @@ try {
     console.info('Succeed in starting vibration');
   });
 } catch (err) {
-  console.error(`An unexpected error occurred. Code: ${err.code}, message: ${err.message}`);
+  let e: BusinessError = err as BusinessError;
+  console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -98,6 +100,7 @@ startVibration(effect: VibrateEffect, attribute: VibrateAttribute): Promise&lt;v
 
 ```ts
 import vibrator from '@ohos.vibrator';
+import { BusinessError } from '@ohos.base';
 
 try {
   vibrator.startVibration({
@@ -108,11 +111,12 @@ try {
     usage: 'alarm'
   }).then(() => {
     console.info('Succeed in starting vibration');
-  }, (error) => {
+  }, (error: BusinessError) => {
     console.error(`Failed to start vibration. Code: ${error.code}, message: ${error.message}`);
   });
 } catch (err) {
-  console.error(`An unexpected error occurred. Code: ${err.code}, message: ${err.message}`);
+  let e: BusinessError = err as BusinessError;
+  console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -137,6 +141,7 @@ stopVibration(stopMode: VibratorStopMode, callback: AsyncCallback&lt;void&gt;): 
 
 ```ts
 import vibrator from '@ohos.vibrator';
+import { BusinessError } from '@ohos.base';
 
 try {
   // 按照固定时长振动
@@ -146,7 +151,7 @@ try {
   }, {
     id: 0,
     usage: 'alarm'
-  }, (error) => {
+  }, (error: BusinessError) => {
     if (error) {
       console.error(`Failed to start vibration. Code: ${error.code}, message: ${error.message}`);
       return;
@@ -154,12 +159,13 @@ try {
     console.info('Succeed in starting vibration');
   });
 } catch (err) {
-  console.error(`An unexpected error occurred. Code: ${err.code}, message: ${err.message}`);
+  let e: BusinessError = err as BusinessError;
+  console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
 }
 
 try {
   // 按照VIBRATOR_STOP_MODE_TIME模式停止振动
-  vibrator.stopVibration(vibrator.VibratorStopMode.VIBRATOR_STOP_MODE_TIME, function (error) {
+  vibrator.stopVibration(vibrator.VibratorStopMode.VIBRATOR_STOP_MODE_TIME, (error: BusinessError) => {
     if (error) {
       console.error(`Failed to stop vibration. Code: ${error.code}, message: ${error.message}`);
       return;
@@ -167,7 +173,8 @@ try {
     console.info('Succeed in stopping vibration');
   })
 } catch (err) {
-  console.error(`An unexpected error occurred. Code: ${err.code}, message: ${err.message}`);
+  let e: BusinessError = err as BusinessError;
+  console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -197,33 +204,36 @@ stopVibration(stopMode: VibratorStopMode): Promise&lt;void&gt;
 
 ```ts
 import vibrator from '@ohos.vibrator';
+import { BusinessError } from '@ohos.base';
 
 try {
   // 按照固定时长振动
   vibrator.startVibration({
     type: 'time',
-    duration: 1000
+    duration: 1000,
   }, {
     id: 0,
     usage: 'alarm'
   }).then(() => {
     console.info('Succeed in starting vibration');
-  }, (error) => {
+  }, (error: BusinessError) => {
     console.error(`Failed to start vibration. Code: ${error.code}, message: ${error.message}`);
   });
 } catch (err) {
-  console.error(`An unexpected error occurred. Code: ${err.code}, message: ${err.message}`);
+  let e: BusinessError = err as BusinessError;
+  console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
 }
 
 try {
   // 按照VIBRATOR_STOP_MODE_TIME模式停止振动
   vibrator.stopVibration(vibrator.VibratorStopMode.VIBRATOR_STOP_MODE_PRESET).then(() => {
     console.info('Succeed in stopping vibration');
-  }, (error) => {
+  }, (error: BusinessError) => {
     console.error(`Failed to stop vibration. Code: ${error.code}, message: ${error.message}`);
   });
 } catch (err) {
-  console.error(`An unexpected error occurred. Code: ${err.code}, message: ${err.message}`);
+  let e: BusinessError = err as BusinessError;
+  console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -247,6 +257,7 @@ stopVibration(callback: AsyncCallback&lt;void&gt;): void
 
 ```ts
 import vibrator from '@ohos.vibrator';
+import { BusinessError } from '@ohos.base';
 
 try {
   // 按照固定时长振动
@@ -256,7 +267,7 @@ try {
   }, {
     id: 0,
     usage: 'alarm'
-  }, (error) => {
+  }, (error: BusinessError) => {
     if (error) {
       console.error(`Failed to start vibration. Code: ${error.code}, message: ${error.message}`);
       return;
@@ -264,12 +275,13 @@ try {
     console.info('Succeed in starting vibration');
   });
 } catch (error) {
-  console.error(`An unexpected error occurred. Code: ${error.code}, message: ${error.message}`);
+  let e: BusinessError = error as BusinessError;
+  console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
 }
 
 try {
   // 停止所有模式的马达振动
-  vibrator.stopVibration(function (error) {
+  vibrator.stopVibration((error: BusinessError) => {
     if (error) {
       console.error(`Failed to stop vibration. Code: ${error.code}, message: ${error.message}`);
       return;
@@ -277,7 +289,8 @@ try {
     console.info('Succeed in stopping vibration');
   })
 } catch (error) {
-  console.error(`An unexpected error occurred. Code: ${error.code}, message: ${error.message}`);
+  let e: BusinessError = error as BusinessError;
+  console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -301,33 +314,36 @@ stopVibration(): Promise&lt;void&gt;
 
 ```ts
 import vibrator from '@ohos.vibrator';
+import { BusinessError } from '@ohos.base';
 
 try {
   // 按照固定时长振动
   vibrator.startVibration({
     type: 'time',
-    duration: 1000
+    duration: 1000,
   }, {
     id: 0,
     usage: 'alarm'
   }).then(() => {
     console.info('Succeed in starting vibration');
-  }, (error) => {
+  }, (error: BusinessError) => {
     console.error(`Failed to start vibration. Code: ${error.code}, message: ${error.message}`);
   });
 } catch (error) {
-  console.error(`An unexpected error occurred. Code: ${error.code}, message: ${error.message}`);
+  let e: BusinessError = error as BusinessError;
+  console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
 }
 
 try {
   // 停止所有模式的马达振动
   vibrator.stopVibration().then(() => {
     console.info('Succeed in stopping vibration');
-  }, (error) => {
+  }, (error: BusinessError) => {
     console.error(`Failed to stop vibration. Code: ${error.code}, message: ${error.message}`);
   });
 } catch (error) {
-  console.error(`An unexpected error occurred. Code: ${error.code}, message: ${error.message}`);
+  let e: BusinessError = error as BusinessError;
+  console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -350,10 +366,11 @@ isSupportEffect(effectId: string, callback: AsyncCallback&lt;boolean&gt;): void
 
 ```ts
 import vibrator from '@ohos.vibrator';
+import { BusinessError } from '@ohos.base';
 
 try {
   // 查询是否支持'haptic.clock.timer'
-  vibrator.isSupportEffect('haptic.clock.timer', function (err, state) {
+  vibrator.isSupportEffect('haptic.clock.timer', (err: BusinessError, state: boolean) => {
     if (err) {
       console.error(`Failed to query effect. Code: ${err.code}, message: ${err.message}`);
       return;
@@ -361,13 +378,14 @@ try {
     console.info('Succeed in querying effect');
     if (state) {
       try {
-        vibrator.startVibration({ // 使用startVibration需要添加ohos.permission.VIBRATE权限
+        // 使用startVibration需要添加ohos.permission.VIBRATE权限
+        vibrator.startVibration({
           type: 'preset',
           effectId: 'haptic.clock.timer',
           count: 1,
         }, {
           usage: 'unknown'
-        }, (error) => {
+        }, (error: BusinessError) => {
           if (error) {
             console.error(`Failed to start vibration. Code: ${error.code}, message: ${error.message}`);
           } else {
@@ -375,12 +393,14 @@ try {
           }
         });
       } catch (error) {
-        console.error(`An unexpected error occurred. Code: ${error.code}, message: ${error.message}`);
+        let e: BusinessError = error as BusinessError;
+        console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
       }
     }
   })
 } catch (error) {
-  console.error(`An unexpected error occurred. Code: ${error.code}, message: ${error.message}`);
+  let e: BusinessError = error as BusinessError;
+  console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -408,10 +428,11 @@ isSupportEffect(effectId: string): Promise&lt;boolean&gt;
 
 ```ts
 import vibrator from '@ohos.vibrator';
+import { BusinessError } from '@ohos.base';
 
 try {
   // 查询是否支持'haptic.clock.timer'
-  vibrator.isSupportEffect('haptic.clock.timer').then((state) => {
+  vibrator.isSupportEffect('haptic.clock.timer').then((state: boolean) => {
     console.info(`The query result is ${state}`);
     if (state) {
       try {
@@ -423,18 +444,20 @@ try {
           usage: 'unknown'
         }).then(() => {
           console.info('Succeed in starting vibration');
-        }).catch((error) => {
+        }).catch((error: BusinessError) => {
           console.error(`Failed to start vibration. Code: ${error.code}, message: ${error.message}`);
         });
       } catch (error) {
-        console.error(`An unexpected error occurred. Code: ${error.code}, message: ${error.message}`);
+        let e: BusinessError = error as BusinessError;
+        console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
       }
     }
-  }, (error) => {
+  }, (error: BusinessError) => {
     console.error(`Failed to query effect. Code: ${error.code}, message: ${error.message}`);
   })
 } catch (error) {
-  console.error(`An unexpected error occurred. Code: ${error.code}, message: ${error.message}`);
+  let e: BusinessError = error as BusinessError;
+  console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -574,9 +597,12 @@ vibrate(duration: number): Promise&lt;void&gt;
 **示例：** 
 
 ```ts
+import vibrator from '@ohos.vibrator';
+import { BusinessError } from '@ohos.base';
+
 vibrator.vibrate(1000).then(() => {
   console.info('Succeed in vibrating');
-}, (error) => {
+}, (error: BusinessError) => {
   console.error(`Failed to vibrate. Code: ${error.code}, message: ${error.message}`);
 });
 ```
@@ -603,7 +629,10 @@ vibrate(duration: number, callback?: AsyncCallback&lt;void&gt;): void
 **示例：** 
 
 ```ts
-vibrator.vibrate(1000, function (error) {
+import vibrator from '@ohos.vibrator';
+import { BusinessError } from '@ohos.base';
+
+vibrator.vibrate(1000, (error: BusinessError) => {
   if (error) {
     console.error(`Failed to vibrate. Code: ${error.code}, message: ${error.message}`);
   } else {
@@ -640,9 +669,12 @@ vibrate(effectId: EffectId): Promise&lt;void&gt;
 **示例：** 
 
 ```ts
+import vibrator from '@ohos.vibrator';
+import { BusinessError } from '@ohos.base';
+
 vibrator.vibrate(vibrator.EffectId.EFFECT_CLOCK_TIMER).then(() => {
   console.info('Succeed in vibrating');
-}, (error) => {
+}, (error: BusinessError) => {
   console.error(`Failed to vibrate. Code: ${error.code}, message: ${error.message}`);
 });
 ```
@@ -670,7 +702,10 @@ vibrate(effectId: EffectId, callback?: AsyncCallback&lt;void&gt;): void
 **示例：** 
 
 ```ts
-vibrator.vibrate(vibrator.EffectId.EFFECT_CLOCK_TIMER, function (error) {
+import vibrator from '@ohos.vibrator';
+import { BusinessError } from '@ohos.base';
+
+vibrator.vibrate(vibrator.EffectId.EFFECT_CLOCK_TIMER, (error: BusinessError) => {
   if (error) {
     console.error(`Failed to vibrate. Code: ${error.code}, message: ${error.message}`);
   } else {
@@ -706,8 +741,11 @@ stop(stopMode: VibratorStopMode): Promise&lt;void&gt;
 **示例：** 
 
 ```ts
+import vibrator from '@ohos.vibrator';
+import { BusinessError } from '@ohos.base';
+
 // 按照effectId类型启动振动
-vibrator.vibrate(vibrator.EffectId.EFFECT_CLOCK_TIMER, function (error) {
+vibrator.vibrate(vibrator.EffectId.EFFECT_CLOCK_TIMER, (error: BusinessError) => {
   if (error) {
     console.error(`Failed to vibrate. Code: ${error.code}, message: ${error.message}`);
   } else {
@@ -717,7 +755,7 @@ vibrator.vibrate(vibrator.EffectId.EFFECT_CLOCK_TIMER, function (error) {
 // 使用VIBRATOR_STOP_MODE_PRESET模式停止振动
 vibrator.stop(vibrator.VibratorStopMode.VIBRATOR_STOP_MODE_PRESET).then(() => {
   console.info('Succeed in stopping');
-}, (error) => {
+}, (error: BusinessError) => {
   console.error(`Failed to stop. Code: ${error.code}, message: ${error.message}`);
 });
 ```
@@ -745,8 +783,11 @@ stop(stopMode: VibratorStopMode, callback?: AsyncCallback&lt;void&gt;): void
 **示例：** 
 
 ```ts
+import vibrator from '@ohos.vibrator';
+import { BusinessError } from '@ohos.base';
+
 // 按照effectId类型启动振动
-vibrator.vibrate(vibrator.EffectId.EFFECT_CLOCK_TIMER, function (error) {
+vibrator.vibrate(vibrator.EffectId.EFFECT_CLOCK_TIMER, (error: BusinessError) => {
   if (error) {
     console.error(`Failed to vibrate. Code: ${error.code}, message: ${error.message}`);
   } else {
@@ -754,11 +795,11 @@ vibrator.vibrate(vibrator.EffectId.EFFECT_CLOCK_TIMER, function (error) {
   }
 })
 // 使用VIBRATOR_STOP_MODE_PRESET模式停止振动
-vibrator.stop(vibrator.VibratorStopMode.VIBRATOR_STOP_MODE_PRESET, function (error) {
+vibrator.stop(vibrator.VibratorStopMode.VIBRATOR_STOP_MODE_PRESET, (error: BusinessError) => {
   if (error) {
     console.error(`Failed to stop. Code: ${error.code}, message: ${error.message}`);
   } else {
-    onsole.info('Succeed in stopping');
+    console.info('Succeed in stopping');
   }
 })
 ```
