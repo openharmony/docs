@@ -23,12 +23,6 @@ enableWifi(): void
 
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
-**返回值：**
-
-  | **类型** | **说明** |
-  | -------- | -------- |
-  | boolean | true:操作成功，&nbsp;false:操作失败。|
-
 **错误码：**
 
 以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
@@ -49,12 +43,6 @@ disableWifi(): void
 **需要权限：** ohos.permission.SET_WIFI_INFO 和 ohos.permission.MANAGE_WIFI_CONNECTION，仅系统应用可用。
 
 **系统能力：** SystemCapability.Communication.WiFi.STA
-
-**返回值：**
-
-  | **类型** | **说明** |
-  | -------- | -------- |
-  | boolean | true:操作成功，&nbsp;false:操作失败。|
 
 **错误码：**
 
@@ -97,12 +85,6 @@ scan(): void
 **需要权限：** ohos.permission.SET_WIFI_INFO 和 ohos.permission.LOCATION
 
 **系统能力：** SystemCapability.Communication.WiFi.STA
-
-**返回值：**
-
-  | **类型** | **说明** |
-  | -------- | -------- |
-  | boolean | true:扫描操作执行成功，&nbsp;false:扫描操作执行失败。 |
 
 **错误码：**
 
@@ -757,7 +739,7 @@ getLinkedInfo(): Promise&lt;WifiLinkedInfo&gt;
 
 获取WLAN连接信息，使用Promise异步回调。
 
-**需要权限：** ohos.permission.GET_WIFI_INFO
+**需要权限：** ohos.permission.GET_WIFI_INFO 。 获取 macAddress 还需申请ohos.permission.GET_WIFI_LOCAL_MAC权限，无该权限时，macAddress 返回空字符串。
 
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
@@ -782,7 +764,7 @@ getLinkedInfo(callback: AsyncCallback&lt;WifiLinkedInfo&gt;): void
 
 获取WLAN连接信息，使用callback异步回调。
 
-**需要权限：** ohos.permission.GET_WIFI_INFO
+**需要权限：** ohos.permission.GET_WIFI_INFO 。 获取 macAddress 还需申请ohos.permission.GET_WIFI_LOCAL_MAC权限，无该权限时，macAddress 返回空字符串。
 
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
