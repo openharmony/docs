@@ -12,7 +12,7 @@ For details about the APIs, see [API Reference](../reference/apis/js-apis-common
 
 | API| Description|
 | -------- | -------- |
-| createSubscriber(subscribeInfo: [CommonEventSubscribeInfo](../reference/apis/js-apis-commonEventManager.md#commoneventsubscribeinfo), callback: AsyncCallback&lt;[CommonEventData](../reference/apis/js-apis-commonEventManager.md#commoneventdata)&gt;): void | Creates a subscriber. This API uses an asynchronous callback to return the result.|
+| createSubscriber(subscribeInfo: [CommonEventSubscribeInfo](../reference/apis/js-apis-commonEventManager.md#commoneventsubscribeinfo), callback: AsyncCallback&lt;[CommonEventSubscriber](../reference/apis/js-apis-inner-commonEvent-commonEventSubscriber.md#usage)&gt;): void | Creates a subscriber. This API uses an asynchronous callback to return the result.|
 | createSubscriber(subscribeInfo: CommonEventSubscribeInfo): Promise&lt;CommonEventSubscriber&gt; | Creates a subscriber. This API uses a promise to return the result.|
 | subscribe(subscriber: CommonEventSubscriber, callback: AsyncCallback): void | Subscribes to common events.|
 

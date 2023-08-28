@@ -48,7 +48,7 @@ Typically, the call event is triggered for touching of buttons. Below is an exam
   }
   ```
 
-- The UIAbility receives the call event and obtains the transferred parameters. It then executes the target method specified by the **method** parameter. Other data can be obtained in readString mode. Listen for the method required by the call event in the **onCreate** callback of the UIAbility.
+- The UIAbility receives the call event and obtains the transferred parameters. It then executes the target method specified by the **method** parameter. Other data can be obtained through the **[readString](../reference/apis/js-apis-rpc.md#readstring)** method. Listen for the method required by the call event in the **onCreate** callback of the UIAbility.
   
   ```ts
   import UIAbility from '@ohos.app.ability.UIAbility';
@@ -65,7 +65,7 @@ Typically, the call event is triggered for touching of buttons. Below is an exam
   }
   
   export default class CameraAbility extends UIAbility {
-    // If the UIAbility is started for the first time, onCreate is triggered afte the call event is received.
+    // If the UIAbility is started for the first time, onCreate is triggered after the call event is received.
     onCreate(want, launchParam) {
       try {
         // Listen for the method required by the call event.
