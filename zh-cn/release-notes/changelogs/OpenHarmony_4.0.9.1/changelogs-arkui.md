@@ -130,3 +130,17 @@ searchButton属性中类型SearchButtonOption修改为SearchButtonOptions。
 **适配指导**
 
 SearchButtonOption修改为SearchButtonOptions。
+
+## cl.arkui.5 Overlay组件的BindSheet属性中SheetStyle修改为SheetOptions
+
+**变更影响**
+
+如果显式地使用了SheetStyle类型，编译无法通过。
+
+**关键的接口/组件变更**
+
+BindSheet属性中类型SheetStyle修改为SheetOptions。
+
+**适配指导**
+
+SheetStyle修改为SheetOptions。
