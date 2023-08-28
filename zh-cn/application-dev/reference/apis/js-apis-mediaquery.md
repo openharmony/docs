@@ -30,14 +30,14 @@ matchMediaSync(condition: string): MediaQueryListener
 
 **参数：** 
 
-| 参数名       | 类型     | 必填   | 说明                                       |
-| --------- | ------ | ---- | ---------------------------------------- |
-| condition | string | 是    | 媒体事件的匹配条件，具体可参考[媒体查询语法规则](../../ui/arkts-layout-development-media-query.md#语法规则)。 |
+| 参数名    | 类型   | 必填 | 说明                                                         |
+| --------- | ------ | ---- | ------------------------------------------------------------ |
+| condition | string | 是   | 媒体事件的匹配条件，具体可参考[媒体查询语法规则](../../ui/arkts-layout-development-media-query.md#语法规则)。 |
 
 **返回值：** 
 
-| 类型                 | 说明                     |
-| ------------------ | ---------------------- |
+| 类型               | 说明                                         |
+| ------------------ | -------------------------------------------- |
 | MediaQueryListener | 媒体事件监听句柄，用于注册和去注册监听回调。 |
 
 **示例：** 
@@ -71,10 +71,10 @@ on(type: 'change', callback: Callback&lt;MediaQueryResult&gt;): void
 
 **参数：** 
 
-| 参数名      | 类型                               | 必填   | 说明               |
-| -------- | -------------------------------- | ---- | ---------------- |
-| type     | string                           | 是    | 必须填写字符串'change'。 |
-| callback | Callback&lt;MediaQueryResult&gt; | 是    | 向媒体查询注册的回调       |
+| 参数名   | 类型                             | 必填 | 说明                     |
+| -------- | -------------------------------- | ---- | ------------------------ |
+| type     | string                           | 是   | 必须填写字符串'change'。 |
+| callback | Callback&lt;MediaQueryResult&gt; | 是   | 向媒体查询注册的回调     |
 
 **示例：** 
 
@@ -102,7 +102,7 @@ off(type: 'change', callback?: Callback&lt;MediaQueryResult&gt;): void
     import mediaquery from '@ohos.mediaquery'
     
     let listener = mediaquery.matchMediaSync('(orientation: landscape)'); //监听横屏事件
-    function onPortrait(mediaQueryResult) {
+    function onPortrait(mediaQueryResult:mediaquery.MediaQueryResult) {
         if (mediaQueryResult.matches) {
             // do something here
         } else {
@@ -141,7 +141,7 @@ struct MediaQueryExample {
   @State text: string = 'Portrait'
   listener = mediaquery.matchMediaSync('(orientation: landscape)')
 
-  onPortrait(mediaQueryResult) {
+  onPortrait(mediaQueryResult:mediaquery.MediaQueryResult) {
     if (mediaQueryResult.matches) {
       this.color = '#FFD700'
       this.text = 'Landscape'
@@ -152,7 +152,7 @@ struct MediaQueryExample {
   }
 
   aboutToAppear() {
-    let portraitFunc = this.onPortrait.bind(this) // bind current js instance
+    let portraitFunc = (mediaQueryResult:mediaquery.MediaQueryResult):void=>this.onPortrait(mediaQueryResult)  // bind current js instance
     this.listener.on('change', portraitFunc)
   }
 
