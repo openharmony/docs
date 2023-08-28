@@ -23,8 +23,6 @@ addContact(context: Context, contact: Contact, callback: AsyncCallback<number>):
 
 **系统能力**：SystemCapability.Applications.ContactsData
 
-**模型约束**：此接口仅可在Stage模型下使用。
-
 **参数：**
 
 | 参数名   | 类型                        | 必填 | 说明                                                         |
@@ -104,8 +102,6 @@ addContact(context: Context, contact: Contact): Promise<number&gt;
 **需要权限**：ohos.permission.WRITE_CONTACTS
 
 **系统能力**：SystemCapability.Applications.ContactsData
-
-**模型约束**：此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -195,8 +191,6 @@ deleteContact(context: Context, key: string, callback: AsyncCallback&lt;void&gt;
 
 **系统能力**：SystemCapability.Applications.ContactsData
 
-**模型约束**：此接口仅可在Stage模型下使用。
-
 **参数：**
 
 | 参数名   | 类型                      | 必填 | 说明                                                         |
@@ -270,8 +264,6 @@ deleteContact(context: Context,  key: string): Promise&lt;void&gt;
 **需要权限**：ohos.permission.WRITE_CONTACTS
 
 **系统能力**：SystemCapability.Applications.ContactsData
-
-**模型约束**：此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -355,8 +347,6 @@ updateContact(context: Context, contact: Contact, callback: AsyncCallback&lt;voi
 
 **系统能力**：SystemCapability.Applications.ContactsData
 
-**模型约束**：此接口仅可在Stage模型下使用。
-
 **参数：**
 
 | 参数名   | 类型                      | 必填 | 说明                                                         |
@@ -438,8 +428,6 @@ updateContact(context: Context,  contact: Contact, attrs: ContactAttributes, cal
 **需要权限**：ohos.permission.WRITE_CONTACTS
 
 **系统能力**：SystemCapability.Applications.ContactsData
-
-**模型约束**：此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -528,8 +516,6 @@ updateContact(context: Context,  contact: Contact, attrs?: ContactAttributes): P
 **需要权限**：ohos.permission.WRITE_CONTACTS
 
 **系统能力**：SystemCapability.Applications.ContactsData
-
-**模型约束**：此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -626,8 +612,6 @@ isLocalContact(context: Context,  id: number, callback: AsyncCallback&lt;boolean
 
 **系统能力**：SystemCapability.Applications.ContactsData
 
-**模型约束**：此接口仅可在Stage模型下使用。
-
 **参数：**
 
 | 参数名   | 类型                         | 必填 | 说明                                                         |
@@ -700,8 +684,6 @@ isLocalContact(context: Context,  id: number): Promise&lt;boolean&gt;
 **需要权限**：ohos.permission.READ_CONTACTS
 
 **系统能力**：SystemCapability.Applications.ContactsData
-
-**模型约束**：此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -784,8 +766,6 @@ isMyCard(context: Context,  id: number, callback: AsyncCallback&lt;boolean&gt;):
 
 **系统能力**：SystemCapability.Applications.ContactsData
 
-**模型约束**：此接口仅可在Stage模型下使用。
-
 **参数：**
 
 | 参数名   | 类型                         | 必填 | 说明                                                         |
@@ -859,8 +839,6 @@ isMyCard(context: Context,  id: number): Promise&lt;boolean&gt;
 **需要权限**：ohos.permission.READ_CONTACTS
 
 **系统能力**：SystemCapability.Applications.ContactsData
-
-**模型约束**：此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -943,8 +921,6 @@ queryMyCard(context: Context,  callback: AsyncCallback&lt;Contact&gt;): void
 
 **系统能力**：SystemCapability.Applications.ContactsData
 
-**模型约束**：此接口仅可在Stage模型下使用。
-
 **参数：**
 
 | 参数名   | 类型                                     | 必填 | 说明                                                         |
@@ -1015,8 +991,6 @@ queryMyCard(context: Context,  attrs: ContactAttributes, callback: AsyncCallback
 **需要权限**：ohos.permission.READ_CONTACTS
 
 **系统能力**：SystemCapability.Applications.ContactsData
-
-**模型约束**：此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -1094,8 +1068,6 @@ queryMyCard(context: Context,  attrs?: ContactAttributes): Promise&lt;Contact&gt
 **需要权限**：ohos.permission.READ_CONTACTS
 
 **系统能力**：SystemCapability.Applications.ContactsData
-
-**模型约束**：此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -1235,8 +1207,6 @@ queryContact(context: Context,  key: string,  callback: AsyncCallback&lt;Contact
 
 **系统能力**：SystemCapability.Applications.ContactsData
 
-**模型约束**：此接口仅可在Stage模型下使用。
-
 **参数：**
 
 | 参数名   | 类型                                     | 必填 | 说明                                                         |
@@ -1310,8 +1280,6 @@ queryContact(context: Context,  key: string, holder: Holder, callback: AsyncCall
 **需要权限**：ohos.permission.READ_CONTACTS
 
 **系统能力**：SystemCapability.Applications.ContactsData
-
-**模型约束**：此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -1396,8 +1364,6 @@ queryContact(context: Context,  key: string,  attrs: ContactAttributes, callback
 
 **系统能力**：SystemCapability.Applications.ContactsData
 
-**模型约束**：此接口仅可在Stage模型下使用。
-
 **参数：**
 
 | 参数名   | 类型                                     | 必填 | 说明                                                         |
@@ -1476,8 +1442,6 @@ queryContact(context: Context,  key: string, holder: Holder, attrs: ContactAttri
 **需要权限**：ohos.permission.READ_CONTACTS
 
 **系统能力**：SystemCapability.Applications.ContactsData
-
-**模型约束**：此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -1568,8 +1532,6 @@ queryContact(context: Context,  key: string, holder?: Holder, attrs?: ContactAtt
 **需要权限**：ohos.permission.READ_CONTACTS
 
 **系统能力**：SystemCapability.Applications.ContactsData
-
-**模型约束**：此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -1666,8 +1628,6 @@ queryContacts(context: Context,  callback: AsyncCallback&lt;Array&lt;Contact&gt;
 
 **系统能力**：SystemCapability.Applications.ContactsData
 
-**模型约束**：此接口仅可在Stage模型下使用。
-
 **参数：**
 
 | 参数名   | 类型                                                  | 必填 | 说明                                                         |
@@ -1738,8 +1698,6 @@ queryContacts(context: Context,  holder: Holder, callback: AsyncCallback&lt;Arra
 **需要权限**：ohos.permission.READ_CONTACTS
 
 **系统能力**：SystemCapability.Applications.ContactsData
-
-**模型约束**：此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -1822,8 +1780,6 @@ queryContacts(context: Context,  attrs: ContactAttributes, callback: AsyncCallba
 
 **系统能力**：SystemCapability.Applications.ContactsData
 
-**模型约束**：此接口仅可在Stage模型下使用。
-
 **参数：**
 
 | 参数名   | 类型                                                  | 必填 | 说明                                                         |
@@ -1900,8 +1856,6 @@ queryContacts(context: Context,  holder: Holder, attrs: ContactAttributes, callb
 **需要权限**：ohos.permission.READ_CONTACTS
 
 **系统能力**：SystemCapability.Applications.ContactsData
-
-**模型约束**：此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -1989,8 +1943,6 @@ queryContacts(context: Context,  holder?: Holder, attrs?: ContactAttributes): Pr
 **需要权限**：ohos.permission.READ_CONTACTS
 
 **系统能力**：SystemCapability.Applications.ContactsData
-
-**模型约束**：此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -2086,8 +2038,6 @@ queryContactsByPhoneNumber(context: Context,  phoneNumber: string, callback: Asy
 
 **系统能力**：SystemCapability.Applications.ContactsData
 
-**模型约束**：此接口仅可在Stage模型下使用。
-
 **参数：**
 
 | 参数名      | 类型                                                  | 必填 | 说明                                                         |
@@ -2161,8 +2111,6 @@ queryContactsByPhoneNumber(context: Context,  phoneNumber: string, holder: Holde
 **需要权限**：ohos.permission.READ_CONTACTS
 
 **系统能力**：SystemCapability.Applications.ContactsData
-
-**模型约束**：此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -2247,8 +2195,6 @@ queryContactsByPhoneNumber(context: Context,  phoneNumber: string, attrs: Contac
 
 **系统能力**：SystemCapability.Applications.ContactsData
 
-**模型约束**：此接口仅可在Stage模型下使用。
-
 **参数：**
 
 | 参数名      | 类型                                                  | 必填 | 说明                                                         |
@@ -2327,8 +2273,6 @@ queryContactsByPhoneNumber(context: Context,  phoneNumber: string, holder: Holde
 **需要权限**：ohos.permission.READ_CONTACTS
 
 **系统能力**：SystemCapability.Applications.ContactsData
-
-**模型约束**：此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -2418,8 +2362,6 @@ queryContactsByPhoneNumber(context: Context,  phoneNumber: string, holder?: Hold
 **需要权限**：ohos.permission.READ_CONTACTS
 
 **系统能力**：SystemCapability.Applications.ContactsData
-
-**模型约束**：此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -2518,8 +2460,6 @@ queryContactsByEmail(context: Context,  email: string, callback: AsyncCallback&l
 
 **系统能力**：SystemCapability.Applications.ContactsData
 
-**模型约束**：此接口仅可在Stage模型下使用。
-
 **参数：**
 
 | 参数名   | 类型                                                  | 必填 | 说明                                                         |
@@ -2592,8 +2532,6 @@ queryContactsByEmail(context: Context,  email: string, holder: Holder, callback:
 **需要权限**：ohos.permission.READ_CONTACTS
 
 **系统能力**：SystemCapability.Applications.ContactsData
-
-**模型约束**：此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -2678,8 +2616,6 @@ queryContactsByEmail(context: Context,  email: string, attrs: ContactAttributes,
 
 **系统能力**：SystemCapability.Applications.ContactsData
 
-**模型约束**：此接口仅可在Stage模型下使用。
-
 **参数：**
 
 | 参数名   | 类型                                                  | 必填 | 说明                                                         |
@@ -2758,8 +2694,6 @@ queryContactsByEmail(context: Context,  email: string, holder: Holder, attrs: Co
 **需要权限**：ohos.permission.READ_CONTACTS
 
 **系统能力**：SystemCapability.Applications.ContactsData
-
-**模型约束**：此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -2849,8 +2783,6 @@ queryContactsByEmail(context: Context,  email: string, holder?: Holder, attrs?: 
 **需要权限**：ohos.permission.READ_CONTACTS
 
 **系统能力**：SystemCapability.Applications.ContactsData
-
-**模型约束**：此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -2949,8 +2881,6 @@ queryGroups(context: Context,  callback: AsyncCallback&lt;Array&lt;Group&gt;&gt;
 
 **系统能力**：SystemCapability.Applications.ContactsData
 
-**模型约束**：此接口仅可在Stage模型下使用。
-
 **参数：**
 
 | 参数名   | 类型                                              | 必填 | 说明                                                         |
@@ -3021,8 +2951,6 @@ queryGroups(context: Context,  holder: Holder, callback: AsyncCallback&lt;Array&
 **需要权限**：ohos.permission.READ_CONTACTS
 
 **系统能力**：SystemCapability.Applications.ContactsData
-
-**模型约束**：此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -3104,8 +3032,6 @@ queryGroups(context: Context,  holder?: Holder): Promise&lt;Array&lt;Group&gt;&g
 **需要权限**：ohos.permission.READ_CONTACTS
 
 **系统能力**：SystemCapability.Applications.ContactsData
-
-**模型约束**：此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -3196,8 +3122,6 @@ queryHolders(context: Context,  callback: AsyncCallback&lt;Array&lt;Holder&gt;&g
 
 **系统能力**：SystemCapability.Applications.ContactsData
 
-**模型约束**：此接口仅可在Stage模型下使用。
-
 **参数：**
 
 | 参数名   | 类型                                                | 必填 | 说明                                                         |
@@ -3268,8 +3192,6 @@ queryHolders(context: Context ): Promise&lt;Array&lt;Holder&gt;&gt;
 **需要权限**：ohos.permission.READ_CONTACTS
 
 **系统能力**：SystemCapability.Applications.ContactsData
-
-**模型约束**：此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -3345,8 +3267,6 @@ queryKey(context: Context,  id: number, callback: AsyncCallback&lt;string&gt;): 
 
 **系统能力**：SystemCapability.Applications.ContactsData
 
-**模型约束**：此接口仅可在Stage模型下使用。
-
 **参数：**
 
 | 参数名   | 类型                        | 必填 | 说明                                                         |
@@ -3419,8 +3339,6 @@ queryKey(context: Context,  id: number, holder: Holder, callback: AsyncCallback&
 **需要权限**：ohos.permission.READ_CONTACTS
 
 **系统能力**：SystemCapability.Applications.ContactsData
-
-**模型约束**：此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -3504,8 +3422,6 @@ queryKey(context: Context,  id: number, holder?: Holder): Promise&lt;string&gt;
 **需要权限**：ohos.permission.READ_CONTACTS
 
 **系统能力**：SystemCapability.Applications.ContactsData
-
-**模型约束**：此接口仅可在Stage模型下使用。
 
 **参数：**
 
