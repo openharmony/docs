@@ -2923,3 +2923,78 @@ struct CanvasExample {
 ```
 
   ![zh-cn_image_0000001239032419](figures/zh-cn_image_0000001239032420.png)
+
+
+## CanvasDirection
+
+从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+| 名称        | 描述             |
+| -------- | -------------- |
+| inherit | 继承canvas组件已设定的文本方向。 |
+| ltr     | 从左往右。 |
+| rtl     | 从右往左。 |
+
+## CanvasFillRule
+
+从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+| 名称        | 描述             |
+| -------- | -------------- |
+| evenodd  | 奇偶规则。 |
+| nonzero   | 非零规则。 |
+
+## CanvasLineCap
+
+从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+| 名称        | 描述             |
+| -------- | -------------- |
+| butt   | 线条两端为平行线，不额外扩展。               |
+| round  | 在线条两端延伸半个圆，直径等于线宽。            |
+| square | 在线条两端延伸一个矩形，宽度等于线宽的一半，高度等于线宽。 |
+
+## CanvasLineJoin
+
+从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+| 名称        | 描述             |
+| -------- | -------------- |
+| bevel  | 在线段相连处使用三角形为底填充， 每个部分矩形拐角独立。 |
+| miter   | 在相连部分的外边缘处进行延伸，使其相交于一点，形成一个菱形区域，该属性可以通过设置miterLimit属性展现效果。 |
+| round   | 在线段相连处绘制一个扇形，扇形的圆角半径是线段的宽度。 |
+
+## CanvasTextAlign
+
+从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+| 名称        | 描述             |
+| -------- | -------------- |
+| center  | 文本居中对齐。 |
+| start   | 文本对齐界线开始的地方。 |
+| end   | 文本对齐界线结束的地方。 |
+| left  | 文本左对齐。 |
+| right   | 文本右对齐。 |
+
+## CanvasTextBaseline
+
+从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+| 名称        | 描述             |
+| -------- | -------------- |
+| alphabetic  | 文本基线是标准的字母基线。 |
+| bottom   | 文本基线在文本块的底部。 与ideographic基线的区别在于ideographic基线不需要考虑下行字母。 |
+| hanging  | 文本基线是悬挂基线。 |
+| ideographic   | 文字基线是表意字基线；如果字符本身超出了alphabetic基线，那么ideograhpic基线位置在字符本身的底部。 |
+| middle   | 文本基线在文本块的中间。 |
+| top   | 文本基线在文本块的顶部。 |
+
+## ImageSmoothingQuality
+
+从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+| 名称        | 描述             |
+| -------- | -------------- |
+| low      | 低画质 |
+| medium   | 中画质 |
+| high     | 高画质 |
