@@ -1155,126 +1155,6 @@ async function example() {
 }
 ```
 
-### createDeleteRequest
-
-createDeleteRequest(uriList: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;): void;
-
-Creates a dialog box for deleting photos. This API uses an asynchronous callback to return the result. The deleted photos are moved to the trash.
-
-**Required permissions**: ohos.permission.WRITE_IMAGEVIDEO
-
-**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
-
-**Parameters**
-
-| Name  | Type                     | Mandatory| Description      |
-| -------- | ------------------------- | ---- | ---------- |
-| uriList | Array&lt;string&gt; | Yes  | URIs of the media files to delete.|
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback that returns no value.|
-
-**Error codes**
-
-For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
-
-| ID| Error Message|
-| -------- | ---------------------------------------- |
-| 401   | if parameter is invalid.         |
-
-**Example**
-
-```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-
-async function example() {
-  console.info('createDeleteRequestDemo');
-  let predicates = new dataSharePredicates.DataSharePredicates();
-  let fetchOptions = {
-    fetchColumns: [],
-    predicates: predicates
-  };
-  try {
-    const fetchResult = await phAccessHelper.getAssets(fetchOptions);
-    var asset = await fetchResult.getFirstObject();
-  } catch (err) {
-    console.info('fetch failed, message =', err);
-  }
-
-  if (asset == undefined) {
-    console.error('asset not exist');
-    return;
-  }
-  phAccessHelper.createDeleteRequest([asset.uri], (err) => {
-    if (err == undefined) {
-      console.info('createDeleteRequest successfully');
-    } else {
-      console.error('createDeleteRequest failed with error: ' + err);
-    }
-  });
-}
-```
-
-### createDeleteRequest
-
-createDeleteRequest(uriList: Array&lt;string&gt;): Promise&lt;void&gt;;
-
-Creates a dialog box for deleting photos. This API uses a promise to return the result. The deleted photos are moved to the trash.
-
-**Required permissions**: ohos.permission.WRITE_IMAGEVIDEO
-
-**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
-
-**Parameters**
-
-| Name  | Type                     | Mandatory| Description      |
-| -------- | ------------------------- | ---- | ---------- |
-| uriList | Array&lt;string&gt; | Yes  | URIs of the media files to delete.|
-
-**Return value**
-
-| Type                                   | Description             |
-| --------------------------------------- | ----------------- |
-| Promise&lt;void&gt;| Promise that returns no value.|
-
-**Error codes**
-
-For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
-
-| ID| Error Message|
-| -------- | ---------------------------------------- |
-| 401   | if parameter is invalid.         |
-
-**Example**
-
-```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-
-async function example() {
-  console.info('createDeleteRequestDemo');
-  let predicates = new dataSharePredicates.DataSharePredicates();
-  let fetchOptions = {
-    fetchColumns: [],
-    predicates: predicates
-  };
-  try {
-    const fetchResult = await phAccessHelper.getAssets(fetchOptions);
-    var asset = await fetchResult.getFirstObject();
-  } catch (err) {
-    console.info('fetch failed, message =', err);
-  }
-
-  if (asset == undefined) {
-    console.error('asset not exist');
-    return;
-  }
-  try {
-    await phAccessHelper.createDeleteRequest([asset.uri]);
-    console.info('createDeleteRequest successfully');
-  } catch (err) {
-    console.error('createDeleteRequest failed with error: ' + err);
-  }
-}
-```
-
 ### release
 
 release(callback: AsyncCallback&lt;void&gt;): void
@@ -3725,7 +3605,6 @@ Defines the key information about an image or video file.
 | POSITION  | 'position'            | File location type. **System API**: This is a system API.                              |
 | DATE_TRASHED  | 'date_trashed'  | Date when the file was deleted. The value is the number of seconds between the time when the file is deleted and January 1, 1970. **System API**: This is a system API.                |
 | HIDDEN  | 'hidden'            | Whether the file is hidden. **System API**: This is a system API.                              |
-| CAMERA_SHOT_KEY  | 'camera_shot_key'  | Key for the Untra Snamshot feature, which allows the camera to take photos or record videos with the screen off. (This parameter is available only for the system camera, and the key value is defined by the system camera.)<br/>**System API**: This is a system API. |
 
 ## AlbumKeys
 
@@ -3747,7 +3626,6 @@ Defines the options for creating an image or video asset.
 | Name                  | Type               | Mandatory| Description                                             |
 | ---------------------- | ------------------- | ---- | ------------------------------------------------ |
 | subtype           | [PhotoSubtype](#photosubtype) | No | Subtype of the image or video. **System API**: This is a system API. |
-| cameraShotKey           | string | No | Key for the Untra Snamshot feature, which allows the camera to take photos or record videos with the screen off. (This parameter is available only for the system camera, and the key value is defined by the system camera.)<br/>**System API**: This is a system API. |
 
 ## CreateOptions
 
