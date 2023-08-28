@@ -4360,14 +4360,6 @@ getPreferOutputDeviceForRendererInfo(rendererInfo: AudioRendererInfo): Promise&l
 | --------------------- | --------------------------- |
 | Promise&lt;[AudioDeviceDescriptors](#audiodevicedescriptors)&gt;   | Promise返回优先级最高的输出设备信息。 |
 
-**错误码：**
-
-以下错误码的详细介绍请参见[音频错误码](../errorcodes/errorcode-audio.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | --------------------------------------------|
-| 6800101 | if input parameter value error              |
-
 **示例：**
 
 ```js
@@ -4828,6 +4820,14 @@ setAudioEffectMode(mode: AudioEffectMode, callback: AsyncCallback\<void>): void
 | mode     | [AudioEffectMode](#audioeffectmode10)    | 是   | 音效模式。               |
 | callback | AsyncCallback\<void>                     | 是   | 用于返回执行结果的回调。  |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[音频错误码](../errorcodes/errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ----------------------------------------------|
+| 6800101 | Invalid parameter error. Return by callback.  |
+
 **示例：**
 
 ```js
@@ -4859,6 +4859,14 @@ setAudioEffectMode(mode: AudioEffectMode): Promise\<void>
 | 类型           | 说明                      |
 | -------------- | ------------------------- |
 | Promise\<void> | Promise用于返回执行结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[音频错误码](../errorcodes/errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ---------------------------------------------|
+| 6800101 | Invalid parameter error. Return by promise.  |
 
 **示例：**
 
