@@ -192,7 +192,7 @@
 - [枚举说明](ts-appendix-enums.md)
 - [类型定义](ts-types.md)
 - 已停止维护的组件
-  - [GridContainer](ts-container-gridcontainer.md)
   - [AbilityComponent](ts-container-ability-component.md)
+  - [GridContainer](ts-container-gridcontainer.md)
 - 已停止维护的接口
   - [点击控制](ts-universal-attributes-click.md)

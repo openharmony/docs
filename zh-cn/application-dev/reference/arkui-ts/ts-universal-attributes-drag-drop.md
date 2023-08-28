@@ -21,7 +21,7 @@ ArkUI组件默认支持拖拽。
 
 | 名称 | 参数类型 | 描述 |
 | -------- | -------- | -------- |
-| allowDrop | Array\<[UnifiedDataType](../apis/js-apis-data-udmf.md#unifieddatatype)> | 设置该组件上允许落入的数据类型。<br/>默认值：空<br/> |
+| allowDrop | Array\<[UniformDataType](../apis/js-apis-data-uniformTypeDescriptor.md#uniformdatatype)> | 设置该组件上允许落入的数据类型。<br/>默认值：空<br/> |
 | draggable | boolean | 设置该组件是否允许进行拖拽。<br/>默认值：false<br/> |
 
 
