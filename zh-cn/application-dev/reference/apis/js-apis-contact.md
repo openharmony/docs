@@ -68,7 +68,7 @@ addContact(contact:Contact, callback:AsyncCallback&lt;number&gt;): void
 添加联系人，使用callback方式作为异步方法。
 
 **说明**
-从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContact](#querycontact10)
+从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContact](#contactquerycontact10)
 
 **需要权限**：ohos.permission.WRITE_CONTACTS
 
@@ -155,7 +155,7 @@ addContact(contact: Contact): Promise&lt;number&gt;
 添加联系人，使用Promise方式作为异步方法。
 
 **说明**
-从API version 7 开始支持，从API 10 开始废弃，建议使用[addContact](#addcontact10)
+从API version 7 开始支持，从API 10 开始废弃，建议使用[addContact](#contactaddcontact10)
 
 **需要权限**：ohos.permission.WRITE_CONTACTS
 
@@ -238,7 +238,7 @@ deleteContact(key: string, callback: AsyncCallback&lt;void&gt;): void
 删除联系人，使用callback方式作为异步方法。
 
 **说明**
-从API version 7 开始支持，从API 10 开始废弃，建议使用[deleteContact](#deletecontact10)
+从API version 7 开始支持，从API 10 开始废弃，建议使用[deleteContact](#contactdeletecontact10)
 
 **需要权限**：ohos.permission.WRITE_CONTACTS
 
@@ -319,7 +319,7 @@ deleteContact(key: string): Promise&lt;void&gt;
 删除联系人，使用Promise方式作为异步方法。
 
 **说明**
-从API version 7 开始支持，从API 10 开始废弃，建议使用[deleteContact](#deletecontact10)
+从API version 7 开始支持，从API 10 开始废弃，建议使用[deleteContact](#contactdeletecontact10)
 
 **需要权限**：ohos.permission.WRITE_CONTACTS
 
@@ -404,7 +404,7 @@ updateContact(contact: Contact, callback: AsyncCallback&lt;void&gt;): void
 更新联系人，使用callback方式作为异步方法。
 
 **说明**
-从API version 7 开始支持，从API 10 开始废弃，建议使用[updateContact](#updatecontact10)
+从API version 7 开始支持，从API 10 开始废弃，建议使用[updateContact](#contactupdatecontact10)
 
 **需要权限**：ohos.permission.WRITE_CONTACTS
 
@@ -492,7 +492,7 @@ updateContact(contact: Contact, attrs: ContactAttributes, callback: AsyncCallbac
 更新联系人，使用callback方式作为异步方法。
 
 **说明**
-从API version 7 开始支持，从API 10 开始废弃，建议使用[updateContact](#updatecontact10)
+从API version 7 开始支持，从API 10 开始废弃，建议使用[updateContact](#contactupdatecontact10)
 
 **需要权限**：ohos.permission.WRITE_CONTACTS
 
@@ -587,7 +587,7 @@ updateContact(contact: Contact, attrs?: ContactAttributes): Promise&lt;void&gt;
 更新联系人，使用Promise方式作为异步方法。
 
 **说明**
-从API version 7 开始支持，从API 10 开始废弃，建议使用[updateContact](#updatecontact10)
+从API version 7 开始支持，从API 10 开始废弃，建议使用[updateContact](#contactupdatecontact10)
 
 **需要权限**：ohos.permission.WRITE_CONTACTS
 
@@ -674,7 +674,7 @@ isLocalContact(id: number, callback: AsyncCallback&lt;boolean&gt;): void
 判断当前联系人id是否在电话簿中，使用callback方式作为异步方法。
 
 **说明**
-从API version 7 开始支持，从API 10 开始废弃，建议使用[isLocalContact](#islocalcontact10)
+从API version 7 开始支持，从API 10 开始废弃，建议使用[isLocalContact](#contactislocalcontact10)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -754,7 +754,7 @@ isLocalContact(id: number): Promise&lt;boolean&gt;
 判断当前联系人id是否在电话簿中，使用Promise方式作为异步方法。
 
 **说明**
-从API version 7 开始支持，从API 10 开始废弃，建议使用[isLocalContact](#islocalcontact10)
+从API version 7 开始支持，从API 10 开始废弃，建议使用[isLocalContact](#contactislocalcontact10)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -834,7 +834,7 @@ isMyCard(id: number, callback: AsyncCallback&lt;boolean&gt;): void
 判断是否为“我的名片”，使用callback方式作为异步方法。
 
 **说明**
-从API version 7 开始支持，从API 10 开始废弃，建议使用[isMyCard](#ismycard10)
+从API version 7 开始支持，从API 10 开始废弃，建议使用[isMyCard](#contactismycard10)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -915,7 +915,7 @@ isMyCard(id: number): Promise&lt;boolean&gt;
 判断是否为“我的名片”，使用Promise方式作为异步方法。
 
 **说明**
-从API version 7 开始支持，从API 10 开始废弃，建议使用[isMyCard](#ismycard10)
+从API version 7 开始支持，从API 10 开始废弃，建议使用[isMyCard](#contactismycard10)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -994,7 +994,7 @@ queryMyCard(callback: AsyncCallback&lt;Contact&gt;): void
 查询“我的名片”，使用callback方式作为异步方法。
 
 **说明**
-从API version 7 开始支持，从API 10 开始废弃，建议使用[queryMyCard](#querymycard10)
+从API version 7 开始支持，从API 10 开始废弃，建议使用[queryMyCard](#contactquerymycard10)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -1071,7 +1071,7 @@ queryMyCard(attrs: ContactAttributes, callback: AsyncCallback&lt;Contact&gt;): v
 查询“我的名片”，使用callback方式作为异步方法。
 
 **说明**
-从API version 7 开始支持，从API 10 开始废弃，建议使用[queryMyCard](#querymycard10)
+从API version 7 开始支持，从API 10 开始废弃，建议使用[queryMyCard](#contactquerymycard10)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -1155,7 +1155,7 @@ queryMyCard(attrs?: ContactAttributes): Promise&lt;Contact&gt;
 查询“我的名片”，使用Promise方式作为异步方法。
 
 **说明**
-从API version 7 开始支持，从API 10 开始废弃，建议使用[queryMyCard](#querymycard10)
+从API version 7 开始支持，从API 10 开始废弃，建议使用[queryMyCard](#contactquerymycard10)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -1395,7 +1395,7 @@ queryContact(key: string,  callback: AsyncCallback&lt;Contact&gt;): void
 根据key查询联系人，使用callback方式作为异步方法。
 
 **说明**
-从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContact](#querycontact10)
+从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContact](#contactquerycontact10)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -1477,7 +1477,7 @@ queryContact(key: string, holder: Holder, callback: AsyncCallback&lt;Contact&gt;
 根据key查询联系人，使用callback方式作为异步方法。
 
 **说明**
-从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContact](#querycontact10)
+从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContact](#contactquerycontact10)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -1561,7 +1561,7 @@ queryContact(key: string,  attrs: ContactAttributes, callback: AsyncCallback&lt;
 根据key查询联系人，使用callback方式作为异步方法。
 
 **说明**
-从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContact](#querycontact10)
+从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContact](#contactquerycontact10)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -1648,7 +1648,7 @@ queryContact(key: string, holder: Holder, attrs: ContactAttributes, callback: As
 根据key查询联系人，使用callback方式作为异步方法。
 
 **说明**
-从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContact](#querycontact10)
+从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContact](#contactquerycontact10)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -1744,7 +1744,7 @@ queryContact(key: string, holder?: Holder, attrs?: ContactAttributes): Promise&l
 根据key查询联系人，使用Promise方式作为异步方法。
 
 **说明**
-从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContact](#querycontact10)
+从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContact](#contactquerycontact10)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -1830,7 +1830,7 @@ queryContacts(callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 查询所有联系人，使用callback方式作为异步方法。
 
 **说明**
-从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContacts](#querycontacts10)
+从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContacts](#contactquerycontacts10)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -1909,7 +1909,7 @@ queryContacts(holder: Holder, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt
 查询所有联系人，使用callback方式作为异步方法。
 
 **说明**
-从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContacts](#querycontacts10)
+从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContacts](#contactquerycontacts10)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -1991,7 +1991,7 @@ queryContacts(attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Cont
 查询所有联系人，使用callback方式作为异步方法。
 
 **说明**
-从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContacts](#querycontacts10)
+从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContacts](#contactquerycontacts10)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -2076,7 +2076,7 @@ queryContacts(holder: Holder, attrs: ContactAttributes, callback: AsyncCallback&
 查询所有联系人，使用callback方式作为异步方法。
 
 **说明**
-从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContacts](#querycontacts10)
+从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContacts](#contactquerycontacts10)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -2169,7 +2169,7 @@ queryContacts(holder?: Holder, attrs?: ContactAttributes): Promise&lt;Array&lt;C
 查询所有联系人，使用Promise方式作为异步方法。
 
 **说明**
-从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContacts](#querycontacts10)
+从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContacts](#contactquerycontacts10)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -2256,7 +2256,7 @@ queryContactsByPhoneNumber(phoneNumber: string, callback: AsyncCallback&lt;Array
 根据电话号码查询联系人，使用callback方式作为异步方法。
 
 **说明**
-从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContactsByPhoneNumber](#querycontactsbyphonenumber10)
+从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContactsByPhoneNumber](#contactquerycontactsbyphonenumber10)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -2338,7 +2338,7 @@ queryContactsByPhoneNumber(phoneNumber: string, holder: Holder, callback: AsyncC
 根据电话号码查询联系人，使用callback方式作为异步方法。
 
 **说明**
-从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContactsByPhoneNumber](#querycontactsbyphonenumber10)
+从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContactsByPhoneNumber](#contactquerycontactsbyphonenumber10)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -2422,7 +2422,7 @@ queryContactsByPhoneNumber(phoneNumber: string, attrs: ContactAttributes, callba
 根据电话号码查询联系人，使用callback方式作为异步方法。
 
 **说明**
-从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContactsByPhoneNumber](#querycontactsbyphonenumber10)
+从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContactsByPhoneNumber](#contactquerycontactsbyphonenumber10)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -2509,7 +2509,7 @@ queryContactsByPhoneNumber(phoneNumber: string, holder: Holder, attrs: ContactAt
 根据电话号码查询联系人，使用callback方式作为异步方法。
 
 **说明**
-从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContactsByPhoneNumber](#querycontactsbyphonenumber10)
+从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContactsByPhoneNumber](#contactquerycontactsbyphonenumber10)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -2605,7 +2605,7 @@ queryContactsByPhoneNumber(phoneNumber: string, holder?: Holder, attrs?: Contact
 根据电话号码查询联系人，使用Promise方式作为异步方法。
 
 **说明**
-从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContactsByPhoneNumber](#querycontactsbyphonenumber10)
+从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContactsByPhoneNumber](#contactquerycontactsbyphonenumber10)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -2693,7 +2693,7 @@ queryContactsByEmail(email: string, callback: AsyncCallback&lt;Array&lt;Contact&
 根据email查询联系人，使用callback方式作为异步方法。
 
 **说明**
-从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContactsByEmail](#querycontactsbyemail10)
+从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContactsByEmail](#contactquerycontactsbyemail10)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -2774,7 +2774,7 @@ queryContactsByEmail(email: string, holder: Holder, callback: AsyncCallback&lt;A
 根据email查询联系人，使用callback方式作为异步方法。
 
 **说明**
-从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContactsByEmail](#querycontactsbyemail10)
+从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContactsByEmail](#contactquerycontactsbyemail10)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -2858,7 +2858,7 @@ queryContactsByEmail(email: string, attrs: ContactAttributes, callback: AsyncCal
 根据email查询联系人，使用callback方式作为异步方法。
 
 **说明**
-从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContactsByEmail](#querycontactsbyemail10)
+从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContactsByEmail](#contactquerycontactsbyemail10)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -2945,7 +2945,7 @@ queryContactsByEmail(email: string, holder: Holder, attrs: ContactAttributes, ca
 根据email查询联系人，使用callback方式作为异步方法。
 
 **说明**
-从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContactsByEmail](#querycontactsbyemail10)
+从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContactsByEmail](#contactquerycontactsbyemail10)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -3041,7 +3041,7 @@ queryContactsByEmail(email: string, holder?: Holder, attrs?: ContactAttributes):
 根据email查询联系人，使用Promise方式作为异步方法。
 
 **说明**
-从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContactsByEmail](#querycontactsbyemail10)
+从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContactsByEmail](#contactquerycontactsbyemail10)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -3128,7 +3128,7 @@ queryGroups(callback: AsyncCallback&lt;Array&lt;Group&gt;&gt;): void
 查询联系人的所有群组，使用callback方式作为异步方法。
 
 **说明**
-从API version 7 开始支持，从API 10 开始废弃，建议使用[queryGroups](#querygroups10)
+从API version 7 开始支持，从API 10 开始废弃，建议使用[queryGroups](#contactquerygroups10)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -3207,7 +3207,7 @@ queryGroups(holder: Holder, callback: AsyncCallback&lt;Array&lt;Group&gt;&gt;): 
 查询联系人的所有群组，使用callback方式作为异步方法。
 
 **说明**
-从API version 7 开始支持，从API 10 开始废弃，建议使用[queryGroups](#querygroups10)
+从API version 7 开始支持，从API 10 开始废弃，建议使用[queryGroups](#contactquerygroups10)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -3295,7 +3295,7 @@ queryGroups(holder?: Holder): Promise&lt;Array&lt;Group&gt;&gt;
 查询联系人的所有群组，使用Promise方式作为异步方法。
 
 **说明**
-从API version 7 开始支持，从API 10 开始废弃，建议使用[queryGroups](#querygroups10)
+从API version 7 开始支持，从API 10 开始废弃，建议使用[queryGroups](#contactquerygroups10)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -3378,7 +3378,7 @@ queryHolders(callback: AsyncCallback&lt;Array&lt;Holder&gt;&gt;): void
 查询所有创建联系人的应用信息，使用callback方式作为异步方法。
 
 **说明**
-从API version 7 开始支持，从API 10 开始废弃，建议使用[queryHolders](#queryholders10)
+从API version 7 开始支持，从API 10 开始废弃，建议使用[queryHolders](#contactqueryholders10)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -3456,7 +3456,7 @@ queryHolders(): Promise&lt;Array&lt;Holder&gt;&gt;
 查询所有创建联系人的应用信息，使用Promise方式作为异步方法。
 
 **说明**
-从API version 7 开始支持，从API 10 开始废弃，建议使用[queryHolders](#queryholders10)
+从API version 7 开始支持，从API 10 开始废弃，建议使用[queryHolders](#contactqueryholders10)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -3530,7 +3530,7 @@ queryKey(id: number, callback: AsyncCallback&lt;string&gt;): void
 根据联系人的id查询联系人的key，使用callback方式作为异步方法。
 
 **说明**
-从API version 7 开始支持，从API 10 开始废弃，建议使用[queryKey](#querykey10)
+从API version 7 开始支持，从API 10 开始废弃，建议使用[queryKey](#contactquerykey10)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -3611,7 +3611,7 @@ queryKey(id: number, holder: Holder, callback: AsyncCallback&lt;string&gt;): voi
 根据联系人的id查询联系人的key，使用callback方式作为异步方法。
 
 **说明**
-从API version 7 开始支持，从API 10 开始废弃，建议使用[queryKey](#querykey10)
+从API version 7 开始支持，从API 10 开始废弃，建议使用[queryKey](#contactquerykey10)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -3701,7 +3701,7 @@ queryKey(id: number, holder?: Holder): Promise&lt;string&gt;
 根据联系人的id查询联系人的key，使用Promise方式作为异步方法。
 
 **说明**
-从API version 7 开始支持，从API 10 开始废弃，建议使用[queryKey](#querykey10)
+从API version 7 开始支持，从API 10 开始废弃，建议使用[queryKey](#contactquerykey10)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -3734,6 +3734,17 @@ queryKey(id: number, holder?: Holder): Promise&lt;string&gt;
       console.error(`queryKey fail: err->${JSON.stringify(err)}`);
   });
   ```
+
+## ContactSelectionOptions<sup>10+</sup>
+
+选择联系人条件。
+
+**系统能力**：SystemCapability.Applications.Contacts
+
+|                名称               |                  类型                 | 必填  |        说明      |
+| --------------------------------- | ------------------------------------- | ---- | ---------------- |
+| isMultiSelect <sup>10+</sup>         | boolean | 否   | 是否为多选     |
+
 
 
 ## Contact
