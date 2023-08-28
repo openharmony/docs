@@ -597,8 +597,8 @@ Provides the information about the suspension delay.
 | LOCATION                | 4    | Positioning and navigation.                 |
 | BLUETOOTH_INTERACTION   | 5    | Bluetooth-related task.                 |
 | MULTI_DEVICE_CONNECTION | 6    | Multi-device connection.                |
-| WIFI_INTERACTION        | 7    | WLAN-related (system API).|
-| VOIP                    | 8    | Audio and video calls (system API). |
+| WIFI_INTERACTION        | 7    | WLAN-related.<br>**System API**: This is a system API. |
+| VOIP                    | 8    | Audio and video calls.<br/>**System API**: This is a system API. |
 | TASK_KEEPING            | 9    | Computing task (effective only for specific devices).       |
 
 ## EfficiencyResourcesRequest

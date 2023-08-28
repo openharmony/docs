@@ -17,66 +17,6 @@ The **TaskPool** APIs return error codes in numeric format. For details about th
 import taskpool from '@ohos.taskpool';
 ```
 
-## Priority
-
-Enumerates the priorities available for created tasks. (This enum is not supported yet.)
-
-**System capability**: SystemCapability.Utils.Lang
-
-| Name| Value| Description|
-| -------- | -------- | -------- |
-| HIGH   | 0    | The task has a high priority.|
-| MEDIUM | 1 | The task has a medium priority.|
-| LOW | 2 | The task has a low priority.|
-
-## Task
-
-Implements a task. Before using any of the following APIs, you must create a **Task** instance.
-
-### constructor
-
-constructor(func: Function, ...args: unknown[])
-
-A constructor used to create a **Task** instance.
-
-**System capability**: SystemCapability.Utils.Lang
-
-**Parameters**
-
-| Name| Type     | Mandatory| Description                                                                 |
-| ------ | --------- | ---- | -------------------------------------------------------------------- |
-| func   | Function  | Yes  | Function to be passed in for task execution. For details about the supported return value types of the function, see [Sequenceable Data Types](#sequenceable-data-types).  |
-| args   | unknown[] | No  | Arguments of the function. For details about the supported parameter types, see [Sequenceable Data Types](#sequenceable-data-types). The default value is **undefined**.|
-
-**Error codes**
-
-For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
-
-| ID| Error Message                               |
-| -------- | --------------------------------------- |
-| 10200014 | The function is not mark as concurrent. |
-
-**Example**
-
-```ts
-@Concurrent
-function printArgs(args) {
-    console.log("printArgs: " + args);
-    return args;
-}
-
-let task = new taskpool.Task(printArgs, "this is my first Task");
-```
-
-### Attributes
-
-**System capability**: SystemCapability.Utils.Lang
-
-| Name     | Type     | Readable| Writable| Description                                                                      |
-| --------- | --------- | ---- | ---- | ------------------------------------------------------------------------- |
-| function  | Function  | Yes  | Yes  | Function to be passed in during task creation. For details about the supported return value types of the function, see [Sequenceable Data Types](#sequenceable-data-types).  |
-| arguments | unknown[] | Yes  | Yes  | Arguments of the function. For details about the supported parameter types, see [Sequenceable Data Types](#sequenceable-data-types).|
-
 ## taskpool.execute
 
 execute(func: Function, ...args: unknown[]): Promise\<unknown>
@@ -278,6 +218,66 @@ async function taskpoolCancel() {
 
 taskpoolCancel();
 ```
+
+## Priority
+
+Enumerates the priorities available for created tasks. (This enum is not supported yet.)
+
+**System capability**: SystemCapability.Utils.Lang
+
+| Name| Value| Description|
+| -------- | -------- | -------- |
+| HIGH   | 0    | The task has a high priority.|
+| MEDIUM | 1 | The task has a medium priority.|
+| LOW | 2 | The task has a low priority.|
+
+## Task
+
+Implements a task. Before using any of the following APIs, you must create a **Task** instance.
+
+### constructor
+
+constructor(func: Function, ...args: unknown[])
+
+A constructor used to create a **Task** instance.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
+
+| Name| Type     | Mandatory| Description                                                                 |
+| ------ | --------- | ---- | -------------------------------------------------------------------- |
+| func   | Function  | Yes  | Function to be passed in for task execution. For details about the supported return value types of the function, see [Sequenceable Data Types](#sequenceable-data-types).  |
+| args   | unknown[] | No  | Arguments of the function. For details about the supported parameter types, see [Sequenceable Data Types](#sequenceable-data-types). The default value is **undefined**.|
+
+**Error codes**
+
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+
+| ID| Error Message                               |
+| -------- | --------------------------------------- |
+| 10200014 | The function is not mark as concurrent. |
+
+**Example**
+
+```ts
+@Concurrent
+function printArgs(args) {
+    console.log("printArgs: " + args);
+    return args;
+}
+
+let task = new taskpool.Task(printArgs, "this is my first Task");
+```
+
+### Attributes
+
+**System capability**: SystemCapability.Utils.Lang
+
+| Name     | Type     | Readable| Writable| Description                                                                      |
+| --------- | --------- | ---- | ---- | ------------------------------------------------------------------------- |
+| function  | Function  | Yes  | Yes  | Function to be passed in during task creation. For details about the supported return value types of the function, see [Sequenceable Data Types](#sequenceable-data-types).  |
+| arguments | unknown[] | Yes  | Yes  | Arguments of the function. For details about the supported parameter types, see [Sequenceable Data Types](#sequenceable-data-types).|
 
 ## Additional Information
 
