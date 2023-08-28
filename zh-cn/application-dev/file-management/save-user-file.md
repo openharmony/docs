@@ -18,33 +18,36 @@ save接口会将文件保存在文件管理器，而不是图库。
    import fs from '@ohos.file.fs';
    import photoAccessHelper from '@ohos.file.photoAccessHelper';
    import dataSharePredicates from '@ohos.data.dataSharePredicates';
+   import common from '@ohos.app.ability.common';
+   import image from '@ohos.multimedia.image';
+   import { BusinessError } from '@ohos.base';
    ```
 
 2. 获取设备里第一张图片的缩略图。注意：在执行这一步之前，要先确保设备里至少有一张图片。
 
    ```ts
-   const context = getContext(this);
-   let photoAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
+   let context = getContext(this) as common.UIAbilityContext;
+   let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 
-   let pixelmapArrayBuffer;
+   let pixelmapArrayBuffer: ArrayBuffer;
    async getPixelmap() {
       try {
          let predicates = new dataSharePredicates.DataSharePredicates();
-         let fetchOption = {
+         let fetchOption: photoAccessHelper.FetchOptions = {
             fetchColumns: [],
             predicates: predicates
          };
-         let fetchResult = await photoAccessHelper.getAssets(fetchOption);
+         let fetchResult = await phAccessHelper.getAssets(fetchOption);
          console.info('[picker] getThumbnail fetchResult: ' + fetchResult);
          const asset = await fetchResult.getFirstObject();
          console.info('[picker] getThumbnail asset displayName = ', asset.displayName);
-         asset.getThumbnail().then((pixelMap) => {
+         asset.getThumbnail().then((pixelMap: image.PixelMap) => {
             let pixelBytesNumber = pixelMap.getPixelBytesNumber();
             const readBuffer = new ArrayBuffer(pixelBytesNumber);
             pixelMap.readPixelsToBuffer(readBuffer).then(() => {
                pixelmapArrayBuffer = readBuffer;
             })
-         }).catch((err) => {
+         }).catch((err: BusinessError) => {
             console.error('[picker] getThumbnail failed with error: ' + err);
          });
       } catch (error) {
@@ -68,9 +71,8 @@ save接口会将文件保存在文件管理器，而不是图库。
          try {
             let photoSaveResult = await photoViewPicker.save(photoSaveOptions);
             if (photoSaveResult != undefined) {
-               console.info("[picker] photoViewPickerSave photoSaveResult = " + JSON.stringify(photoSaveResult));
-               this.uri = photoSaveResult[0];
-               console.info('photoViewPicker.save to file succeed and uri is:' + photoSaveResult[0]);
+               uris = photoSaveResult;
+               console.info('photoViewPicker.save to file succeed and uris are:' + uris);
             }
          } catch (err) {
             console.error(`[picker] Invoke photoViewPicker.save failed, code is ${err.code}, message is ${err.message}`);
@@ -86,7 +88,7 @@ save接口会将文件保存在文件管理器，而不是图库。
    然后，通过fd使用[fs.write](../reference/apis/js-apis-file-fs.md#fswrite)接口对这个文件进行编辑修改，编辑修改完成后关闭fd。
 
    ```ts
-   async writeOnly(uri) {
+   async writeOnly(uri: string) {
       try {
          let file = fs.openSync(uri, fs.OpenMode.WRITE_ONLY);
          let writeLen = await fs.write(file.fd, pixelmapArrayBuffer);
@@ -105,6 +107,7 @@ save接口会将文件保存在文件管理器，而不是图库。
    ```ts
    import picker from '@ohos.file.picker';
    import fs from '@ohos.file.fs';
+   import { BusinessError } from '@ohos.base';
    ```
 
 2. 创建文档保存选项实例。
@@ -119,12 +122,12 @@ save接口会将文件保存在文件管理器，而不是图库。
    </br>save返回的uri权限是读写权限，可以根据结果集中uri进行文件读写等操作。注意不能在picker的回调里直接使用此uri进行打开文件操作，需要定义一个全局变量保存uri，使用类似一个按钮去触发打开文件。
 
    ```ts
-   let uri = null;
+   let uris: Array<string>;
    const documentViewPicker = new picker.DocumentViewPicker(); // 创建文件选择器实例
-   documentViewPicker.save(documentSaveOptions).then((documentSaveResult) => {
-     uri = documentSaveResult[0];
-     console.info('documentViewPicker.save to file succeed and uri is:' + uri);
-   }).catch((err) => {
+   documentViewPicker.save(documentSaveOptions).then((documentSaveResult: Array<string>) => {
+     uris = documentSaveResult;
+     console.info('documentViewPicker.save to file succeed and uris are:' + uris);
+   }).catch((err: BusinessError) => {
      console.error(`Invoke documentViewPicker.save failed, code is ${err.code}, message is ${err.message}`);
    })
    ```
@@ -151,6 +154,7 @@ save接口会将文件保存在文件管理器，而不是图库。
    ```ts
    import picker from '@ohos.file.picker';
    import fs from '@ohos.file.fs';
+   import { BusinessError } from '@ohos.base';
    ```
 
 2. 创建音频保存选项实例。
@@ -165,12 +169,12 @@ save接口会将文件保存在文件管理器，而不是图库。
    </br>save返回的uri权限是读写权限，可以根据结果集中uri进行文件读写等操作。注意不能在picker的回调里直接使用此uri进行打开文件操作，需要定义一个全局变量保存uri，使用类似一个按钮去触发打开文件。
    
    ```ts
-   let uri = null;
+   let uri: string;
    const audioViewPicker = new picker.AudioViewPicker();
-   audioViewPicker.save(audioSaveOptions).then((audioSelectResult) => {
+   audioViewPicker.save(audioSaveOptions).then((audioSelectResult: Array<string>) => {
      uri = audioSelectResult[0];
      console.info('audioViewPicker.save to file succeed and uri is:' + uri);
-   }).catch((err) => {
+   }).catch((err: BusinessError) => {
      console.error(`Invoke audioViewPicker.save failed, code is ${err.code}, message is ${err.message}`);
    })
    ```
