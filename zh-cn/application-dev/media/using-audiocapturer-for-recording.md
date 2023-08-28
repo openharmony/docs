@@ -19,20 +19,22 @@ AudioCapturer是音频采集器，用于录制PCM（Pulse Code Modulation）音�
      
    ```ts
    import audio from '@ohos.multimedia.audio';
+   import fs from '@ohos.file.fs';
+   import { BusinessError } from '@ohos.base';
    
-   let audioStreamInfo = {
+   let audioStreamInfo: audio.AudioStreamInfo = {
      samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
      channels: audio.AudioChannel.CHANNEL_2,
      sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE,
      encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW
    };
    
-   let audioCapturerInfo = {
+   let audioCapturerInfo: audio.AudioCapturerInfo = {
      source: audio.SourceType.SOURCE_TYPE_MIC,
      capturerFlags: 0
    };
    
-   let audioCapturerOptions = {
+   let audioCapturerOptions: audio.AudioCapturerOptions = {
      streamInfo: audioStreamInfo,
      capturerInfo: audioCapturerInfo
    };
@@ -50,7 +52,7 @@ AudioCapturer是音频采集器，用于录制PCM（Pulse Code Modulation）音�
 2. 调用start()方法进入running状态，开始录制音频。
      
    ```ts
-   audioCapturer.start((err) => {
+   audioCapturer.start((err: BusinessError) => {
      if (err) {
        console.error(`Capturer start failed, code is ${err.code}, message is ${err.message}`);
      } else {
@@ -62,16 +64,16 @@ AudioCapturer是音频采集器，用于录制PCM（Pulse Code Modulation）音�
 3. 指定录制文件地址，调用read()方法读取缓冲区的数据。
      
    ```ts
-   let file = fs.openSync(path, 0o2 | 0o100);
-   let bufferSize = await audioCapturer.getBufferSize();
-   let buffer = await audioCapturer.read(bufferSize, true);
+   let file: fs.File = fs.openSync(path, 0o2 | 0o100);
+   let bufferSize: number = await audioCapturer.getBufferSize();
+   let buffer: ArrayBuffer = await audioCapturer.read(bufferSize, true);
    fs.writeSync(file.fd, buffer);
    ```
 
 4. 调用stop()方法停止录制。
      
    ```ts
-   audioCapturer.stop((err) => {
+   audioCapturer.stop((err: BusinessError) => {
      if (err) {
        console.error(`Capturer stop failed, code is ${err.code}, message is ${err.message}`);
      } else {
@@ -83,7 +85,7 @@ AudioCapturer是音频采集器，用于录制PCM（Pulse Code Modulation）音�
 5. 调用release()方法销毁实例，释放资源。
      
    ```ts
-   audioCapturer.release((err) => {
+   audioCapturer.release((err: BusinessError) => {
      if (err) {
        console.error(`capturer release failed, code is ${err.code}, message is ${err.message}`);
      } else {
@@ -104,18 +106,18 @@ import fs from '@ohos.file.fs';
 const TAG = 'AudioCapturerDemo';
 
 export default class AudioCapturerDemo {
-  private audioCapturer = undefined;
-  private audioStreamInfo = {
+  private audioCapturer: audio.AudioCapturer = undefined;
+  private audioStreamInfo: audio.AudioStreamInfo = {
     samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
     channels: audio.AudioChannel.CHANNEL_1,
     sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE,
     encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW
   }
-  private audioCapturerInfo = {
+  private audioCapturerInfo: audio.AudioCapturerInfo = {
     source: audio.SourceType.SOURCE_TYPE_MIC, // 音源类型
     capturerFlags: 0 // 音频采集器标志
   }
-  private audioCapturerOptions = {
+  private audioCapturerOptions: audio.AudioCapturerOptions = {
     streamInfo: this.audioStreamInfo,
     capturerInfo: this.audioCapturerInfo
   }
@@ -130,12 +132,12 @@ export default class AudioCapturerDemo {
 
       console.info(`${TAG}: create AudioCapturer success`);
       this.audioCapturer = capturer;
-      this.audioCapturer.on('markReach', 1000, (position) => { // 订阅markReach事件，当采集的帧数达到1000时触发回调
+      this.audioCapturer.on('markReach', 1000, (position: number) => { // 订阅markReach事件，当采集的帧数达到1000时触发回调
         if (position === 1000) {
           console.info('ON Triggered successfully');
         }
       });
-      this.audioCapturer.on('periodReach', 2000, (position) => { // 订阅periodReach事件，当采集的帧数达到2000时触发回调
+      this.audioCapturer.on('periodReach', 2000, (position: number) => { // 订阅periodReach事件，当采集的帧数达到2000时触发回调
         if (position === 2000) {
           console.info('ON Triggered successfully');
         }
@@ -147,7 +149,7 @@ export default class AudioCapturerDemo {
   // 开始一次音频采集
   async start() {
     let stateGroup = [audio.AudioState.STATE_PREPARED, audio.AudioState.STATE_PAUSED, audio.AudioState.STATE_STOPPED];
-    if (stateGroup.indexOf(this.audioCapturer.state) === -1) { // 当且仅当状态为STATE_PREPARED、STATE_PAUSED和STATE_STOPPED之一时才能启动采集
+    if (stateGroup.indexOf(this.audioCapturer.state.valueOf()) === -1) { // 当且仅当状态为STATE_PREPARED、STATE_PAUSED和STATE_STOPPED之一时才能启动采集
       console.error(`${TAG}: start failed`);
       return;
     }
@@ -160,6 +162,10 @@ export default class AudioCapturerDemo {
     let fd = file.fd;
     let numBuffersToCapture = 150; // 循环写入150次
     let count = 0;
+     class Options {
+       offset: number
+       length: number
+     }
     while (numBuffersToCapture) {
       let bufferSize = await this.audioCapturer.getBufferSize();
       let buffer = await this.audioCapturer.read(bufferSize, true);
@@ -181,12 +187,12 @@ export default class AudioCapturerDemo {
   // 停止采集
   async stop() {
     // 只有采集器状态为STATE_RUNNING或STATE_PAUSED的时候才可以停止
-    if (this.audioCapturer.state !== audio.AudioState.STATE_RUNNING && this.audioCapturer.state !== audio.AudioState.STATE_PAUSED) {
+    if (this.audioCapturer.state.valueOf() !== audio.AudioState.STATE_RUNNING && this.audioCapturer.state.valueOf() !== audio.AudioState.STATE_PAUSED) {
       console.info('Capturer is not running or paused');
       return;
     }
     await this.audioCapturer.stop(); // 停止采集
-    if (this.audioCapturer.state === audio.AudioState.STATE_STOPPED) {
+    if (this.audioCapturer.state.valueOf() === audio.AudioState.STATE_STOPPED) {
       console.info('Capturer stopped');
     } else {
       console.error('Capturer stop failed');
@@ -196,12 +202,12 @@ export default class AudioCapturerDemo {
   // 销毁实例，释放资源
   async release() {
     // 采集器状态不是STATE_RELEASED或STATE_NEW状态，才能release
-    if (this.audioCapturer.state === audio.AudioState.STATE_RELEASED || this.audioCapturer.state === audio.AudioState.STATE_NEW) {
+    if (this.audioCapturer.state.valueOf() === audio.AudioState.STATE_RELEASED || this.audioCapturer.state.valueOf() === audio.AudioState.STATE_NEW) {
       console.info('Capturer already released');
       return;
     }
     await this.audioCapturer.release(); // 释放资源
-    if (this.audioCapturer.state == audio.AudioState.STATE_RELEASED) {
+    if (this.audioCapturer.state.valueOf() === audio.AudioState.STATE_RELEASED) {
       console.info('Capturer released');
     } else {
       console.error('Capturer release failed');
