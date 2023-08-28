@@ -5,7 +5,11 @@ On the widget page, the **postCardAction** API can be used to trigger a router o
 
 ## Updating Widget Content Through the router Event
 
-- On the widget page, register the **onClick** event callback of the button and call the **postCardAction** API in the callback to trigger the router event to the FormExtensionAbility.
+> **NOTE**
+>
+> This topic describes development for dynamic widgets. For static widgets, see [FormLink](../../application-dev/reference/arkui-ts/ts-container-formlink.md).
+
+- On the widget page, register the **onClick** event callback of the button and call the **postCardAction** API in the callback to trigger the router event to start the UIAbility.
   
   ```ts
   let storage = new LocalStorage();
@@ -17,7 +21,7 @@ On the widget page, the **postCardAction** API can be used to trigger a router o
     build() {
       Column() {
         Button ('Redirect')
-          .margin('20%')
+          .margin(20)
           .onClick(() => {
             console.info('postCardAction to EntryAbility');
             postCardAction(this, {
@@ -28,7 +32,7 @@ On the widget page, the **postCardAction** API can be used to trigger a router o
               }
             });
           })
-        Text(`${this.detail}`).margin('20%')
+        Text(`${this.detail}`)
       }
       .width('100%')
       .height('100%')
@@ -47,13 +51,21 @@ On the widget page, the **postCardAction** API can be used to trigger a router o
   export default class EntryAbility extends UIAbility {
     // If the UIAbility is started for the first time, onCreate is triggered after the router event is received.
     onCreate(want, launchParam) {
+      this.handleFormRouterEvent(want);
+    }
+    // If the UIAbility is running in the background, onNewWant is triggered after the router event is received.
+    onNewWant(want, launchParam) {
+      this.handleFormRouterEvent(want);
+    }
+
+    handleFormRouterEvent(want) {
       console.info('Want:' + JSON.stringify(want));
       if (want.parameters[formInfo.FormParam.IDENTITY_KEY] !== undefined) {
         let curFormId = want.parameters[formInfo.FormParam.IDENTITY_KEY];
         let message = JSON.parse(want.parameters.params).detail;
         console.info(`UpdateForm formId: ${curFormId}, message: ${message}`);
         let formData = {
-          "detail": message +': onCreate UIAbility.', // Matches the widget layout.
+          "detail": message + ': UIAbility.', // It matches the widget layout.
         };
         let formMsg = formBindingData.createFormBindingData(formData)
         formProvider.updateForm(curFormId, formMsg).then((data) => {
@@ -63,25 +75,6 @@ On the widget page, the **postCardAction** API can be used to trigger a router o
         })
       }
     }
-    // If the UIAbility is running in the background, onNewWant is triggered after the router event is received.
-    onNewWant(want, launchParam) {
-      console.info('onNewWant Want:' + JSON.stringify(want));
-      if (want.parameters[formInfo.FormParam.IDENTITY_KEY] !== undefined) {
-        let curFormId = want.parameters[formInfo.FormParam.IDENTITY_KEY];
-        let message = JSON.parse(want.parameters.params).detail;
-        console.info(`UpdateForm formId: ${curFormId}, message: ${message}`);
-        let formData = {
-          "detail": message +': onNewWant UIAbility.', // Matches the widget layout.
-        };
-        let formMsg = formBindingData.createFormBindingData(formData)
-        formProvider.updateForm(curFormId, formMsg).then((data) => {
-          console.info('updateForm success.' + JSON.stringify(data));
-        }).catch((error) => {
-          console.error('updateForm failed:' + JSON.stringify(error));
-        })
-      }
-    }
-  
     ...
   }
   ```
@@ -108,7 +101,7 @@ On the widget page, the **postCardAction** API can be used to trigger a router o
    };
    ```
 
-- On the widget page, register the **onClick** event callback of the button and call the **postCardAction** API in the callback to trigger the event to the UIAbility.
+- On the widget page, register the **onClick** event callback of the button and call the **postCardAction** API in the callback to trigger the event to start the UIAbility.
   
   ```ts
   let storage = new LocalStorage();
