@@ -55,7 +55,7 @@ RichText(content:string)
 >  **说明：**
 >
 > 在<font/>标签中font size能够设置的值只有1到7的数字，默认值是3，由于<font/>标签在一些版本中不被支持，所以不建议使用此标签，请使用CSS代替。
-> CSS语法：<p style="font-size: 35px; font-family: verdana; color: rgb(24,78,228)">
+> CSS语法：\<p style="font-size: 35px; font-family: verdana; color: rgb(24,78,228)">
 
 ## 使用场景
 
