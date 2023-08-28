@@ -46,12 +46,12 @@ TonePlayer<sup>9+</sup>提供播放和管理DTMF（Dual Tone Multi Frequency，�
      
    ```ts
    import audio from '@ohos.multimedia.audio';
-   let audioRendererInfo = {
+   let audioRendererInfo: audio.AudioRendererInfo = {
      content : audio.ContentType.CONTENT_TYPE_SONIFICATION,
      usage : audio.StreamUsage.STREAM_USAGE_MEDIA,
      rendererFlags : 0
    };
-   tonePlayerPromise = audio.createTonePlayer(audioRendererInfo);
+   let tonePlayerPromise = audio.createTonePlayer(audioRendererInfo);
    ```
 
 2. 加载指定类型DTMF音调配置。
@@ -95,11 +95,11 @@ export class TonelayerDemo {
   private timer : number;
   private timerPro : number;
   // promise调用方式
-  async testTonePlayerPromise(type) {
+  async testTonePlayerPromise(type: audio.ToneType) {
     console.info('testTonePlayerPromise start');
     if (this.timerPro) clearTimeout(this.timerPro);
-    let tonePlayerPromise;
-    let audioRendererInfo = {
+    let tonePlayerPromise: audio.TonePlayer;
+    let audioRendererInfo: audio.AudioRendererInfo = {
       content : audio.ContentType.CONTENT_TYPE_SONIFICATION,
       usage : audio.StreamUsage.STREAM_USAGE_MEDIA,
       rendererFlags : 0
