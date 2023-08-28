@@ -5923,14 +5923,14 @@ audioRenderer.getCurrentOutputDevices((err, deviceInfo) => {
   if (err) {
     console.error(`getCurrentOutputDevices Fail: ${err}`);
   } else {
-    console.info(`DeviceInfo id: ${deviceInfo.id}`);
-    console.info(`DeviceInfo type: ${deviceInfo.deviceType}`);
-    console.info(`DeviceInfo role: ${deviceInfo.deviceRole}`);
-    console.info(`DeviceInfo name: ${deviceInfo.name}`);
-    console.info(`DeviceInfo address: ${deviceInfo.address}`);
-    console.info(`DeviceInfo samplerates: ${deviceInfo.sampleRates[0]}`);
-    console.info(`DeviceInfo channelcounts: ${deviceInfo.channelCounts[0]}`);
-    console.info(`DeviceInfo channelmask: ${deviceInfo.channelMasks}`);
+    console.info(`DeviceInfo id: ${deviceInfo[0].id}`);
+    console.info(`DeviceInfo type: ${deviceInfo[0].deviceType}`);
+    console.info(`DeviceInfo role: ${deviceInfo[0].deviceRole}`);
+    console.info(`DeviceInfo name: ${deviceInfo[0].name}`);
+    console.info(`DeviceInfo address: ${deviceInfo[0].address}`);
+    console.info(`DeviceInfo samplerates: ${deviceInfo[0].sampleRates[0]}`);
+    console.info(`DeviceInfo channelcounts: ${deviceInfo[0].channelCounts[0]}`);
+    console.info(`DeviceInfo channelmask: ${deviceInfo[0].channelMasks}`);
   }
 });
 ```
@@ -5952,14 +5952,14 @@ getCurrentOutputDevices(): Promise&lt;AudioDeviceDescriptors&gt;
 
 ```js
 audioRenderer.getCurrentOutputDevices().then((deviceInfo) => {
-  console.info(`DeviceInfo id: ${deviceInfo.id}`);
-  console.info(`DeviceInfo type: ${deviceInfo.deviceType}`);
-  console.info(`DeviceInfo role: ${deviceInfo.deviceRole}`);
-  console.info(`DeviceInfo name: ${deviceInfo.name}`);
-  console.info(`DeviceInfo address: ${deviceInfo.address}`);
-  console.info(`DeviceInfo samplerates: ${deviceInfo.sampleRates[0]}`);
-  console.info(`DeviceInfo channelcounts: ${deviceInfo.channelCounts[0]}`);
-  console.info(`DeviceInfo channelmask: ${deviceInfo.channelMasks}`);
+  console.info(`DeviceInfo id: ${deviceInfo[0].id}`);
+  console.info(`DeviceInfo type: ${deviceInfo[0].deviceType}`);
+  console.info(`DeviceInfo role: ${deviceInfo[0].deviceRole}`);
+  console.info(`DeviceInfo name: ${deviceInfo[0].name}`);
+  console.info(`DeviceInfo address: ${deviceInfo[0].address}`);
+  console.info(`DeviceInfo samplerates: ${deviceInfo[0].sampleRates[0]}`);
+  console.info(`DeviceInfo channelcounts: ${deviceInfo[0].channelCounts[0]}`);
+  console.info(`DeviceInfo channelmask: ${deviceInfo[0].channelMasks}`);
 }).catch((err) => {
   console.error(`Get current output devices Fail: ${err}`);
 });
@@ -6207,12 +6207,10 @@ on(type: 'outputDeviceChange', callback: Callback\<AudioDeviceDescriptors>): voi
 **示例：**
 
 ```js
-audioRenderer.on('outputDeviceChange', (err, deviceChangeInfo) => {
-  if (err) {
-    console.error(`Subscribes output device change event callback Fail: ${err}`);
-  } else {
-    console.info(`Subscribes output device change event callback Success!`);
-  }
+audioRenderer.on('outputDeviceChange', (deviceInfo) => {
+    console.info(`DeviceInfo id: ${deviceInfo[0].id}`);
+    console.info(`DeviceInfo name: ${deviceInfo[0].name}`);
+    console.info(`DeviceInfo address: ${deviceInfo[0].address}`);
 });
 ```
 ### off('outputDeviceChange') <sup>10+</sup>
@@ -6239,12 +6237,10 @@ off(type: 'outputDeviceChange', callback?: Callback\<AudioDeviceDescriptors>): v
 **示例：**
 
 ```js
-audioRenderer.off('outputDeviceChange', (err,deviceChangeInfo) => {
-  if (err) {
-    console.error(`Unsubscribes output device change event callback Fail: ${err}`);
-  } else {
-    console.info(`Unsubscribes output device change event callback Success!`);
-  }
+audioRenderer.off('outputDeviceChange', (deviceInfo) => {
+    console.info(`DeviceInfo id: ${deviceInfo[0].id}`);
+    console.info(`DeviceInfo name: ${deviceInfo[0].name}`);
+    console.info(`DeviceInfo address: ${deviceInfo[0].address}`);
 });
 ```
 
