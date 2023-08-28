@@ -46,8 +46,9 @@
 // pages/xxx.ets
 import fs from '@ohos.file.fs';
 import common from '@ohos.app.ability.common';
+import buffer from '@ohos.buffer';
 
-function createFile() {
+createFile() {
   // 获取应用文件路径
   let context = getContext(this) as common.UIAbilityContext;
   let filesDir = context.filesDir;
@@ -58,9 +59,10 @@ function createFile() {
   let writeLen = fs.writeSync(file.fd, "Try to write str.");
   console.info("The length of str is: " + writeLen);
   // 从文件读取一段内容
-  let buf = new ArrayBuffer(1024);
-  let readLen = fs.readSync(file.fd, buf, { offset: 0 });
-  console.info("the content of file: " + String.fromCharCode.apply(null, new Uint8Array(buf.slice(0, readLen))));
+  let arrayBuffer = new ArrayBuffer(1024);
+  let readLen = fs.readSync(file.fd, arrayBuffer, { offset: 0 });
+  let buf = buffer.from(arrayBuffer, 0, readLen);
+  console.info("the content of file: " + buf.toString());
   // 关闭文件
   fs.closeSync(file);
 }
@@ -75,7 +77,7 @@ function createFile() {
 import fs from '@ohos.file.fs';
 import common from '@ohos.app.ability.common';
 
-function readWriteFile() {
+readWriteFile() {
   // 获取应用文件路径
   let context = getContext(this) as common.UIAbilityContext;
   let filesDir = context.filesDir;
@@ -112,7 +114,7 @@ function readWriteFile() {
 import fs from '@ohos.file.fs';
 import common from '@ohos.app.ability.common';
 
-async function readWriteFileWithStream() {
+async readWriteFileWithStream() {
   // 获取应用文件路径
   let context = getContext(this) as common.UIAbilityContext;
   let filesDir = context.filesDir;
@@ -147,7 +149,7 @@ async function readWriteFileWithStream() {
 
 ```ts
 // 查看文件列表
-import fs from '@ohos.file.fs';
+import fs, { Filter } from '@ohos.file.fs';
 import common from '@ohos.app.ability.common';
 
 // 获取应用文件路径
@@ -155,18 +157,20 @@ let context = getContext(this) as common.UIAbilityContext;
 let filesDir = context.filesDir;
 
 // 查看文件列表
-let options = {
-  recursion: false,
-  listNum: 0,
-  filter: {
+getListFile() {
+  let filter: Filter = {
     suffix: ['.png', '.jpg', '.txt'],          // 匹配文件后缀名为'.png','.jpg','.txt'
     displayName: ['test%'],                    // 匹配文件全名以'test'开头
     fileSizeOver: 0,                           // 匹配文件大小大于等于0
     lastModifiedAfter: new Date(0).getTime(),  // 匹配文件最近修改时间在1970年1月1日之后
-  },
-}
-let files = fs.listFileSync(filesDir, options);
-for (let i = 0; i < files.length; i++) {
-  console.info(`The name of file: ${files[i]}`);
+  }
+  let files = fs.listFileSync(filesDir, {
+    recursion: false,
+    listNum: 0,
+    filter: filter
+  });
+  for (let i = 0; i < files.length; i++) {
+    console.info(`The name of file: ${files[i]}`);
+  }
 }
 ```

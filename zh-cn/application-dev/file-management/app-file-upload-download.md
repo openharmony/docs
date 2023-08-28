@@ -19,6 +19,7 @@
 import common from '@ohos.app.ability.common';
 import fs from '@ohos.file.fs';
 import request from '@ohos.request';
+import { BusinessError } from '@ohos.base';
 
 // 获取应用文件路径
 let context = getContext(this) as common.UIAbilityContext;
@@ -30,29 +31,29 @@ fs.writeSync(file.fd, 'upload file test');
 fs.closeSync(file);
 
 // 上传任务配置项
-let uploadConfig = {
+let files: Array<request.File> = [
+  { filename: 'test.txt', name: 'test', uri: 'internal://cache/test.txt', type: 'txt' }
+]
+let data: request.RequestData = { name: 'name', value: 'value' };
+let uploadConfig: request.UploadConfig = {
   url: 'https://xxx',
   header: { key1: 'value1', key2: 'value2' },
   method: 'POST',
-  files: [
-    { filename: 'test.txt', name: 'test', uri: 'internal://cache/test.txt', type: 'txt' }
-  ],
-  data: [
-    { name: 'name', value: 'value' }
-  ]
+  files: files,
+  data: [ data ]
 }
 
 // 将本地应用文件上传至网络服务器
 try {
   request.uploadFile(context, uploadConfig)
-    .then((uploadTask) => {
-      uploadTask.on('complete', (taskStates) => {
+    .then((uploadTask: request.UploadTask) => {
+      uploadTask.on('complete', (taskStates: Array<request.TaskState>) => {
         for (let i = 0; i < taskStates.length; i++) {
           console.info(`upload complete taskState: ${JSON.stringify(taskStates[i])}`);
         }
       });
     })
-    .catch((err) => {
+    .catch((err: BusinessError) => {
       console.error(`Invoke uploadFile failed, code is ${err.code}, message is ${err.message}`);
     })
 } catch (err) {
@@ -78,6 +79,7 @@ try {
 import common from '@ohos.app.ability.common';
 import fs from '@ohos.file.fs';
 import request from '@ohos.request';
+import { BusinessError } from '@ohos.base';
 
 // 获取应用文件路径
 let context = getContext(this) as common.UIAbilityContext;
@@ -87,16 +89,17 @@ try {
   request.downloadFile(context, {
     url: 'https://xxxx/xxxx.txt',
     filePath: filesDir + '/xxxx.txt'
-  }).then((downloadTask) => {
+  }).then((downloadTask: request.DownloadTask) => {
     downloadTask.on('complete', () => {
       console.info('download complete');
       let file = fs.openSync(filesDir + '/xxxx.txt', fs.OpenMode.READ_WRITE);
-      let buf = new ArrayBuffer(1024);
-      let readLen = fs.readSync(file.fd, buf);
-      console.info(`The content of file: ${String.fromCharCode.apply(null, new Uint8Array(buf.slice(0, readLen)))}`);
+      let arrayBuffer = new ArrayBuffer(1024);
+      let readLen = fs.readSync(file.fd, arrayBuffer);
+      let buf = buffer.from(arrayBuffer, 0, readLen);
+      console.info(`The content of file: ${buf.toString()}`);
       fs.closeSync(file);
     })
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.error(`Invoke downloadTask failed, code is ${err.code}, message is ${err.message}`);
   });
 } catch (err) {

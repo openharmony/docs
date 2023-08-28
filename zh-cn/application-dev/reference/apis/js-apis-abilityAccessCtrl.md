@@ -430,6 +430,10 @@ on(type: 'permissionStateChange', tokenIDList: Array&lt;number&gt;, permissionLi
 
 订阅指定tokenId列表与权限列表的权限状态变更事件。
 
+允许指定tokenId列表与权限列表订阅多个callback。
+
+不允许存在交集的tokenId列表与权限列表订阅相同callback。
+
 **系统接口：** 此接口为系统接口。
 
 **需要权限：** ohos.permission.GET_SENSITIVE_PERMISSIONS，仅系统应用可用。
@@ -481,6 +485,8 @@ try {
 off(type: 'permissionStateChange', tokenIDList: Array&lt;number&gt;, permissionList: Array&lt;Permissions&gt;, callback?: Callback&lt;PermissionStateChangeInfo&gt;): void;
 
 取消订阅指定tokenId列表与权限列表的权限状态变更事件，使用callback回调异步返回结果。
+
+取消订阅不传callback时，批量删除tokenIDList和permissionList下面的所有callback。
 
 **系统接口：** 此接口为系统接口。
 

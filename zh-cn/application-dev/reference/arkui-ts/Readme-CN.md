@@ -52,6 +52,7 @@
     - [文本通用](ts-universal-attributes-text-style.md)
     - [拖拽控制](ts-universal-attributes-drag-drop.md)
     - [安全区域](ts-universal-attributes-expand-safe-area.md)
+    - [特效绘制合并](ts-universal-attributes-use-effect.md)
   - 手势处理
     - [绑定手势方法](ts-gesture-settings.md)
     - 基础手势
@@ -141,6 +142,7 @@
   - [TabContent](ts-container-tabcontent.md)
   - [UIExtensionComponent](ts-container-ui-extension-component.md)
   - [WaterFlow](ts-container-waterflow.md)
+  - [EffectComponent](ts-container-effectcomponent.md)
 - 媒体组件
   - [Video](ts-media-components-video.md)
 - 绘制组件
@@ -190,7 +192,7 @@
 - [枚举说明](ts-appendix-enums.md)
 - [类型定义](ts-types.md)
 - 已停止维护的组件
-  - [GridContainer](ts-container-gridcontainer.md)
   - [AbilityComponent](ts-container-ability-component.md)
+  - [GridContainer](ts-container-gridcontainer.md)
 - 已停止维护的接口
   - [点击控制](ts-universal-attributes-click.md)

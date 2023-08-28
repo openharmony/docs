@@ -17,7 +17,7 @@ import vibrator from '@ohos.vibrator';
 
 startVibration(effect: VibrateEffect, attribute: VibrateAttribute, callback: AsyncCallback&lt;void&gt;): void
 
-根据指定振动效果和振动属性触发马达振动。
+根据指定的振动效果和振动属性触发马达振动。使用callback异步回调。
 
 **需要权限**：ohos.permission.VIBRATE
 
@@ -67,7 +67,7 @@ try {
 
 startVibration(effect: VibrateEffect, attribute: VibrateAttribute): Promise&lt;void&gt;
 
-根据指定振动效果和振动属性触发马达振动。
+根据指定的振动效果和振动属性触发马达振动。使用promise异步回调。
 
 **需要权限**：ohos.permission.VIBRATE
 
@@ -84,7 +84,7 @@ startVibration(effect: VibrateEffect, attribute: VibrateAttribute): Promise&lt;v
 
 | 类型                | 说明                                   |
 | ------------------- | -------------------------------------- |
-| Promise&lt;void&gt; | Promise对象。 |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
 **错误码**：
 
@@ -120,7 +120,7 @@ try {
 
 stopVibration(stopMode: VibratorStopMode, callback: AsyncCallback&lt;void&gt;): void
 
-按照指定模式停止马达的振动。
+按照指定模式停止马达振动。使用callback异步回调。
 
 **需要权限**：ohos.permission.VIBRATE
 
@@ -175,7 +175,7 @@ try {
 
 stopVibration(stopMode: VibratorStopMode): Promise&lt;void&gt;
 
-按照指定模式停止马达的振动。
+按照指定模式停止马达的振动。使用promise异步回调。
 
 **需要权限**：ohos.permission.VIBRATE
 
@@ -185,7 +185,7 @@ stopVibration(stopMode: VibratorStopMode): Promise&lt;void&gt;
 
 | 参数名   | 类型                                  | 必填 | 说明                     |
 | -------- | ------------------------------------- | ---- | ------------------------ |
-| stopMode | [VibratorStopMode](#vibratorstopmode) | 是   | 马达停止指定的振动模式。 |
+| stopMode | [VibratorStopMode](#vibratorstopmode) | 是   | 指定的停止振动模式。 |
 
 **返回值：** 
 
@@ -231,7 +231,7 @@ try {
 
 stopVibration(callback: AsyncCallback&lt;void&gt;): void
 
-停止所有模式的马达振动。
+停止所有模式的马达振动。使用callback异步回调。
 
 **需要权限**：ohos.permission.VIBRATE
 
@@ -285,7 +285,7 @@ try {
 
 stopVibration(): Promise&lt;void&gt;
 
-停止所有模式的马达振动。
+停止所有模式的马达振动。使用promise异步回调。
 
 **需要权限**：ohos.permission.VIBRATE
 
@@ -335,7 +335,7 @@ try {
 
 isSupportEffect(effectId: string, callback: AsyncCallback&lt;boolean&gt;): void
 
-查询是否支持传入的参数effectId。
+查询是否支持传入参数effectId。使用callback异步回调。
 
 **系统能力**：SystemCapability.Sensors.MiscDevice
 
@@ -343,7 +343,7 @@ isSupportEffect(effectId: string, callback: AsyncCallback&lt;boolean&gt;): void
 
 | 参数名   | 类型                         | 必填 | 说明                                                   |
 | -------- | ---------------------------- | ---- | ------------------------------------------------------ |
-| effectId | string                       | 是   | 振动效果id                                             |
+| effectId | string                       | 是   | 预置的振动效果。                                           |
 | callback | AsyncCallback&lt;boolean&gt; | 是   | 回调函数，当返回true则表示支持该effectId，否则不支持。 |
 
 **示例：** 
@@ -388,7 +388,7 @@ try {
 
 isSupportEffect(effectId: string): Promise&lt;boolean&gt;
 
-查询是否支持传入的参数effectId。
+查询是否支持传入参数effectId。使用promise异步回调。
 
 **系统能力**：SystemCapability.Sensors.MiscDevice
 
@@ -396,7 +396,7 @@ isSupportEffect(effectId: string): Promise&lt;boolean&gt;
 
 | 参数名   | 类型   | 必填 | 说明         |
 | -------- | ------ | ---- | ------------ |
-| effectId | string | 是   | 振动效果id。 |
+| effectId | string | 是   | 预置的振动效果。 |
 
 **返回值：** 
 
@@ -446,19 +446,19 @@ try {
 
 | 名称               | 值                   | 说明                             |
 | ------------------ | -------------------- | -------------------------------- |
-| EFFECT_CLOCK_TIMER | "haptic.clock.timer" | 描述用户调整计时器时的振动效果。 |
+| EFFECT_CLOCK_TIMER | "haptic.clock.timer" | 描述用户调整计时器时的振动效果。|
 
 
 ## VibratorStopMode
 
-停止的振动模式。
+停止振动的模式。
 
 **系统能力**：SystemCapability.Sensors.MiscDevice
 
 | 名称                      | 值       | 说明                           |
 | ------------------------- | -------- | ------------------------------ |
-| VIBRATOR_STOP_MODE_TIME   | "time"   | 停止模式为duration模式的振动。 |
-| VIBRATOR_STOP_MODE_PRESET | "preset" | 停止模式为预置EffectId的振动。 |
+| VIBRATOR_STOP_MODE_TIME   | "time"   | 停止duration模式的振动。 |
+| VIBRATOR_STOP_MODE_PRESET | "preset" | 停止预置EffectId的振动。|
 
 ## VibrateEffect<sup>9+</sup>
 
@@ -526,7 +526,7 @@ try {
 
 | 名称  | 类型 | 必填 | 说明           |
 | ----- | ------ | ---- | -------------- |
-| id    | number      |  否 | 默认值为0，振动器id。     |
+| id    | number      |  否 | 振动器id， 默认值为0。    |
 | usage | [Usage](#usage9)      | 是 | 马达振动的使用场景。 |
 
 ## Usage<sup>9+</sup>

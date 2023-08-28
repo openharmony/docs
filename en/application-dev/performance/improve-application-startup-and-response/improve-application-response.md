@@ -61,7 +61,7 @@ struct ImageExample1 {
 
 ### Using TaskPool for Asynchronous Processing
 
-Compared with the worker thread, [TaskPool](https://gitee.com/sqsyqqy/docs/blob/master/en/application-dev/reference/apis/js-apis-taskpool.md) provides the task priority setting and automatic thread pool management mechanism. The following is an example:
+Compared with the worker thread, [TaskPool](../../reference/apis/js-apis-taskpool.md) provides the task priority setting and automatic thread pool management mechanism. The following is an example:
 
 ```javascript
 import taskpool from '@ohos.taskpool';

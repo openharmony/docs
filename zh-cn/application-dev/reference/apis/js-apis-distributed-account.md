@@ -297,7 +297,8 @@ setOsAccountDistributedInfo(accountInfo: DistributedInfo, callback: AsyncCallbac
   import { BusinessError } from '@ohos.base';
   
   const accountAbility = account_distributedAccount.getDistributedAccountAbility();
-  let accountInfo = {id: '12345', name: 'ZhangSan', event: 'Ohos.account.event.LOGIN'};
+  let accountInfo: account_distributedAccount.DistributedInfo =
+    {id: '12345', name: 'ZhangSan', event: 'Ohos.account.event.LOGIN'};
   try {
     accountAbility.setOsAccountDistributedInfo(accountInfo, (err: BusinessError) => {
       if (err) {
@@ -346,7 +347,8 @@ setOsAccountDistributedInfo(accountInfo: DistributedInfo): Promise&lt;void&gt;
   import { BusinessError } from '@ohos.base';
   
   const accountAbility = account_distributedAccount.getDistributedAccountAbility();
-  let accountInfo = {id: '12345', name: 'ZhangSan', event: 'Ohos.account.event.LOGIN'};
+  let accountInfo: account_distributedAccount.DistributedInfo =
+    {id: '12345', name: 'ZhangSan', event: 'Ohos.account.event.LOGIN'};
   try {
     accountAbility.setOsAccountDistributedInfo(accountInfo).then(() => {
         console.log('setOsAccountDistributedInfo successfully');
@@ -391,7 +393,8 @@ setOsAccountDistributedInfoByLocalId(localId: number, distributedInfo: Distribut
   import { BusinessError } from '@ohos.base';
   
   const accountAbility = account_distributedAccount.getDistributedAccountAbility();
-  let accountInfo = {id: '12345', name: 'ZhangSan', event: 'Ohos.account.event.LOGIN'};
+  let accountInfo: account_distributedAccount.DistributedInfo =
+    {id: '12345', name: 'ZhangSan', event: 'Ohos.account.event.LOGIN'};
   try {
     accountAbility.setOsAccountDistributedInfoByLocalId(100, accountInfo, (err: BusinessError) => {
       if (err) {
@@ -444,7 +447,8 @@ setOsAccountDistributedInfoByLocalId(localId: number, distributedInfo: Distribut
   import { BusinessError } from '@ohos.base';
   
   const accountAbility = account_distributedAccount.getDistributedAccountAbility();
-  let accountInfo = {id: '12345', name: 'ZhangSan', event: 'Ohos.account.event.LOGIN'};
+  let accountInfo: account_distributedAccount.DistributedInfo =
+    {id: '12345', name: 'ZhangSan', event: 'Ohos.account.event.LOGIN'};
   try {
     accountAbility.setOsAccountDistributedInfoByLocalId(100, accountInfo).then(() => {
         console.log('setOsAccountDistributedInfoByLocalId successfully');
@@ -482,7 +486,8 @@ updateOsAccountDistributedInfo(accountInfo: DistributedInfo, callback: AsyncCall
   import { BusinessError } from '@ohos.base';
   
   const accountAbility = account_distributedAccount.getDistributedAccountAbility();
-  let accountInfo = {id: '12345', name: 'ZhangSan', event: 'Ohos.account.event.LOGIN'};
+  let accountInfo: account_distributedAccount.DistributedInfo =
+    {id: '12345', name: 'ZhangSan', event: 'Ohos.account.event.LOGIN'};
   accountAbility.updateOsAccountDistributedInfo(accountInfo, (err: BusinessError) => {
     if (err) {
       console.log('queryOsAccountDistributedInfo exception: ' + JSON.stringify(err));
@@ -521,7 +526,8 @@ updateOsAccountDistributedInfo(accountInfo: DistributedInfo): Promise&lt;void&gt
   import { BusinessError } from '@ohos.base';
   
   const accountAbility = account_distributedAccount.getDistributedAccountAbility();
-  let accountInfo = {id: '12345', name: 'ZhangSan', event: 'Ohos.account.event.LOGIN'};
+  let accountInfo: account_distributedAccount.DistributedInfo =
+    {id: '12345', name: 'ZhangSan', event: 'Ohos.account.event.LOGIN'};
   accountAbility.updateOsAccountDistributedInfo(accountInfo).then(() => {
       console.log('updateOsAccountDistributedInfo successfully');
    }).catch((err: BusinessError) => {

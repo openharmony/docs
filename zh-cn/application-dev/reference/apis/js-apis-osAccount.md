@@ -1249,7 +1249,7 @@ getOsAccountLocalIdForDomain(domainInfo: DomainAccountInfo, callback: AsyncCallb
 
   ```js
   import { BusinessError } from '@ohos.base';
-  let domainInfo = {domain: 'testDomain', accountName: 'testAccountName'};
+  let domainInfo: account_osAccount.DomainAccountInfo = {domain: 'testDomain', accountName: 'testAccountName'};
   let accountManager = account_osAccount.getAccountManager();
   try {
     accountManager.getOsAccountLocalIdForDomain(domainInfo, (err: BusinessError, localId: number) => {
@@ -1298,7 +1298,7 @@ getOsAccountLocalIdForDomain(domainInfo: DomainAccountInfo): Promise&lt;number&g
   ```js
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
-  let domainInfo = {domain: 'testDomain', accountName: 'testAccountName'};
+  let domainInfo: account_osAccount.DomainAccountInfo = {domain: 'testDomain', accountName: 'testAccountName'};
   try {
     accountManager.getOsAccountLocalIdForDomain(domainInfo).then((localId: number) => {
       console.log('getOsAccountLocalIdForDomain successfully, localId: ' + localId);
@@ -1765,7 +1765,8 @@ createOsAccountForDomain(type: OsAccountType, domainInfo: DomainAccountInfo, cal
   ```js
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
-  let domainInfo = {domain: 'testDomain', accountName: 'testAccountName'};
+  let domainInfo: account_osAccount.DomainAccountInfo =
+    {domain: 'testDomain', accountName: 'testAccountName'};
   try {
     accountManager.createOsAccountForDomain(account_osAccount.OsAccountType.NORMAL, domainInfo,
       (err: BusinessError, osAccountInfo: account_osAccount.OsAccountInfo)=>{
@@ -1817,7 +1818,8 @@ createOsAccountForDomain(type: OsAccountType, domainInfo: DomainAccountInfo): Pr
   ```js
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
-  let domainInfo = {domain: 'testDomain', accountName: 'testAccountName'};
+  let domainInfo: account_osAccount.DomainAccountInfo =
+    {domain: 'testDomain', accountName: 'testAccountName'};
   try {
     accountManager.createOsAccountForDomain(account_osAccount.OsAccountType.NORMAL, domainInfo).then(
       (accountInfo: account_osAccount.OsAccountInfo) => {
@@ -4084,7 +4086,7 @@ getProperty(request: GetPropertyRequest, callback: AsyncCallback&lt;ExecutorProp
     account_osAccount.GetPropertyType.REMAIN_TIMES,
     account_osAccount.GetPropertyType.FREEZING_TIME
   ];
-  let request = {
+  let request: account_osAccount.GetPropertyRequest = {
     authType: account_osAccount.AuthType.PIN,
     keys: keys
   };
@@ -4138,7 +4140,7 @@ getProperty(request: GetPropertyRequest): Promise&lt;ExecutorProperty&gt;;
     account_osAccount.GetPropertyType.REMAIN_TIMES,
     account_osAccount.GetPropertyType.FREEZING_TIME
   ];
-  let request = {
+  let request: account_osAccount.GetPropertyRequest = {
     authType: account_osAccount.AuthType.PIN,
     keys: keys
   };
@@ -4183,7 +4185,7 @@ setProperty(request: SetPropertyRequest, callback: AsyncCallback&lt;void&gt;): v
   ```js
   import { BusinessError } from '@ohos.base';
   let userAuth = new account_osAccount.UserAuth();
-  let request = {
+  let request: account_osAccount.SetPropertyRequest = {
     authType: account_osAccount.AuthType.PIN,
     key: account_osAccount.SetPropertyType.INIT_ALGORITHM,
     setInfo: new Uint8Array([0])
@@ -4236,7 +4238,7 @@ setProperty(request: SetPropertyRequest): Promise&lt;void&gt;;
   ```js
   import { BusinessError } from '@ohos.base';
   let userAuth = new account_osAccount.UserAuth();
-  let request2 = {
+  let request2: account_osAccount.SetPropertyRequest = {
     authType: account_osAccount.AuthType.PIN,
     key: account_osAccount.SetPropertyType.INIT_ALGORITHM,
     setInfo: new Uint8Array([0])
@@ -4608,16 +4610,17 @@ auth(domainAccountInfo: DomainAccountInfo, credential: Uint8Array, callback: IUs
 **示例：**
   ```js
   import { AsyncCallback } from './@ohos.base';
-  let plugin = {
+  let plugin: account_osAccount.DomainPlugin = {
     auth: (domainAccountInfo: account_osAccount.DomainAccountInfo, credential: Uint8Array,
           callback: account_osAccount.IUserAuthCallback) => {
       // mock authentication
       // notify authentication result
-      callback.onResult(0, {
+      let result: account_osAccount.AuthResult = {
         token: new Uint8Array([0]),
         remainTimes: 5,
         freezingTime: 0
-      });
+      };
+      callback.onResult(0, result);
     },
     authWithPopup: (domainAccountInfo: account_osAccount.DomainAccountInfo,
                     callback: account_osAccount.IUserAuthCallback) => {},
@@ -4671,18 +4674,19 @@ authWithPopup(domainAccountInfo: DomainAccountInfo, callback: IUserAuthCallback)
 **示例：**
   ```js
   import { AsyncCallback } from './@ohos.base';
-  let plugin = {
+  let plugin: account_osAccount.DomainPlugin = {
     auth: (domainAccountInfo: account_osAccount.DomainAccountInfo, credential: Uint8Array,
           callback: account_osAccount.IUserAuthCallback) => {},
     authWithPopup: (domainAccountInfo: account_osAccount.DomainAccountInfo,
                     callback: account_osAccount.IUserAuthCallback) => {
       // mock authentication
       // notify authentication result
-      callback.onResult(0, {
+      let result: account_osAccount.AuthResult = {
         token: new Uint8Array([0]),
         remainTimes: 5,
         freezingTime: 0
-      });
+      };
+      callback.onResult(0, result);
     },
     authWithToken: (domainAccountInfo: account_osAccount.DomainAccountInfo, token: Uint8Array,
                     callback: account_osAccount.IUserAuthCallback) => {},
@@ -4721,7 +4725,7 @@ authWithToken(domainAccountInfo: DomainAccountInfo, token: Uint8Array, callback:
 **示例：**
   ```js
   import { AsyncCallback } from './@ohos.base';
-  let plugin = {
+  let plugin: account_osAccount.DomainPlugin = {
     auth: (domainAccountInfo: account_osAccount.DomainAccountInfo, credential: Uint8Array,
           callback: account_osAccount.IUserAuthCallback) => {},
     authWithPopup: (domainAccountInfo: account_osAccount.DomainAccountInfo,
@@ -4730,11 +4734,12 @@ authWithToken(domainAccountInfo: DomainAccountInfo, token: Uint8Array, callback:
                     callback: account_osAccount.IUserAuthCallback) => {
       // mock authentication
       // notify authentication result
-      callback.onResult(0, {
+      let result: account_osAccount.AuthResult = {
         token: new Uint8Array([0]),
         remainTimes: 5,
         freezingTime: 0
-      });
+      };
+      callback.onResult(0, result);
     },
     getAccountInfo: (domain: string, accountName: string,
                     callback: AsyncCallback<account_osAccount.DomainAccountInfo>) => {},
@@ -4771,7 +4776,7 @@ getAccountInfo(domain: string, accountName: string, callback: AsyncCallback&lt;D
 **示例：**
   ```js
   import { AsyncCallback, BusinessError } from '@ohos.base';
-  let plugin = {
+  let plugin: account_osAccount.DomainPlugin = {
     auth: (domainAccountInfo: account_osAccount.DomainAccountInfo, credential: Uint8Array,
           callback: account_osAccount.IUserAuthCallback) => {},
     authWithPopup: (domainAccountInfo: account_osAccount.DomainAccountInfo,
@@ -4782,12 +4787,17 @@ getAccountInfo(domain: string, accountName: string, callback: AsyncCallback&lt;D
                     callback: AsyncCallback<account_osAccount.DomainAccountInfo>) => {
       // mock getting account information
       // notify result
-      let code: BusinessError
-      callback(code, {
+      let code: BusinessError = {
+        code: 0,
+        name: "",
+        message: ""
+      };
+      let accountInfo: account_osAccount.DomainAccountInfo = {
         domain: domain,
         accountName: accountName,
         accountId: 'xxxx'
-      })
+      };
+      callback(code, accountInfo);
     },
     getAuthStatusInfo: (domainAccountInfo: account_osAccount.DomainAccountInfo,
                         callback: AsyncCallback<account_osAccount.AuthStatusInfo>) => {},
@@ -4821,7 +4831,7 @@ getAuthStatusInfo(domainAccountInfo: DomainAccountInfo, callback: AsyncCallback&
 **示例：**
   ```js
   import { AsyncCallback, BusinessError } from '@ohos.base';
-  let plugin = {
+  let plugin: account_osAccount.DomainPlugin = {
     auth: (domainAccountInfo: account_osAccount.DomainAccountInfo, credential: Uint8Array,
           callback: account_osAccount.IUserAuthCallback) => {},
     authWithPopup: (domainAccountInfo: account_osAccount.DomainAccountInfo,
@@ -4832,11 +4842,16 @@ getAuthStatusInfo(domainAccountInfo: DomainAccountInfo, callback: AsyncCallback&
                     callback: AsyncCallback<account_osAccount.DomainAccountInfo>) => {},
     getAuthStatusInfo: (domainAccountInfo: account_osAccount.DomainAccountInfo,
                         callback: AsyncCallback<account_osAccount.AuthStatusInfo>) => {
-      let code: BusinessError;
-      callback(code, {
+      let code: BusinessError = {
+        code: 0,
+        name: "",
+        message: ""
+      };
+      let statusInfo: account_osAccount.AuthStatusInfo = {
         remainTimes: 5,
         freezingTime: 0
-      })
+      };
+      callback(code, statusInfo);
     },
     bindAccount: (domainAccountInfo: account_osAccount.DomainAccountInfo, localId: number,
                   callback: AsyncCallback<void>) => {},
@@ -4868,7 +4883,7 @@ bindAccount(domainAccountInfo: DomainAccountInfo, localId: number, callback: Asy
 **示例：**
   ```js
   import { AsyncCallback, BusinessError } from './@ohos.base';
-  let plugin = {
+  let plugin: account_osAccount.DomainPlugin = {
     auth: (domainAccountInfo: account_osAccount.DomainAccountInfo, credential: Uint8Array,
           callback: account_osAccount.IUserAuthCallback) => {},
     authWithPopup: (domainAccountInfo: account_osAccount.DomainAccountInfo,
@@ -4883,8 +4898,12 @@ bindAccount(domainAccountInfo: DomainAccountInfo, localId: number, callback: Asy
                   callback: AsyncCallback<void>) => {
       // mock unbinding operation
       // notify binding result
-      let code: BusinessError;
-      callback(code)
+      let code: BusinessError = {
+        code: 0,
+        name: "",
+        message: ""
+      };
+      callback(code);
     },
     unbindAccount: (domainAccountInfo: account_osAccount.DomainAccountInfo, callback: AsyncCallback<void>) => {},
     isAccountTokenValid: (domainAccountInfo: account_osAccount.DomainAccountInfo, token: Uint8Array,
@@ -4914,7 +4933,7 @@ unbindAccount(domainAccountInfo: DomainAccountInfo, callback: AsyncCallback&lt;v
 **示例：**
   ```js
   import { AsyncCallback, BusinessError } from './@ohos.base';
-  let plugin = {
+  let plugin: account_osAccount.DomainPlugin = {
     auth: (domainAccountInfo: account_osAccount.DomainAccountInfo, credential: Uint8Array,
           callback: account_osAccount.IUserAuthCallback) => {},
     authWithPopup: (domainAccountInfo: account_osAccount.DomainAccountInfo,
@@ -4930,8 +4949,12 @@ unbindAccount(domainAccountInfo: DomainAccountInfo, callback: AsyncCallback&lt;v
     unbindAccount: (domainAccountInfo: account_osAccount.DomainAccountInfo, callback: AsyncCallback<void>) => {
       // mock unbinding operation
       // notify unbinding result
-      let code: BusinessError;
-      callback(code)
+      let code: BusinessError = {
+        code: 0,
+        name: "",
+        message: ""
+      };
+      callback(code);
     },
     isAccountTokenValid: (domainAccountInfo: account_osAccount.DomainAccountInfo, token: Uint8Array,
                           callback: AsyncCallback<boolean>) => {},
@@ -4961,7 +4984,7 @@ isAccountTokenValid(domainAccountInfo: DomainAccountInfo, token: Uint8Array, cal
 **示例：**
   ```js
   import { AsyncCallback, BusinessError } from './@ohos.base';
-  let plugin = {
+  let plugin: account_osAccount.DomainPlugin = {
     auth: (domainAccountInfo: account_osAccount.DomainAccountInfo, credential: Uint8Array,
           callback: account_osAccount.IUserAuthCallback) => {},
     authWithPopup: (domainAccountInfo: account_osAccount.DomainAccountInfo,
@@ -4979,7 +5002,11 @@ isAccountTokenValid(domainAccountInfo: DomainAccountInfo, token: Uint8Array, cal
                           callback: AsyncCallback<boolean>) => {
       // mock checking operation
       // notify checking result
-      let code: BusinessError
+      let code: BusinessError = {
+        code: 0,
+        name: "",
+        message: ""
+      };
       callback(code, true);
     },
     getAccessToken: (options: account_osAccount.GetDomainAccessTokenOptions, callback: AsyncCallback<Uint8Array>) => {}
@@ -5007,7 +5034,7 @@ getAccessToken(options: GetDomainAccessTokenOptions, callback: AsyncCallback&lt;
 **示例：**
   ```js
   import { AsyncCallback, BusinessError } from './@ohos.base';
-  let plugin = {
+  let plugin: account_osAccount.DomainPlugin = {
     auth: (domainAccountInfo: account_osAccount.DomainAccountInfo, credential: Uint8Array,
           callback: account_osAccount.IUserAuthCallback) => {},
     authWithPopup: (domainAccountInfo: account_osAccount.DomainAccountInfo,
@@ -5025,9 +5052,13 @@ getAccessToken(options: GetDomainAccessTokenOptions, callback: AsyncCallback&lt;
                           callback: AsyncCallback<boolean>) => {},
     getAccessToken: (options: account_osAccount.GetDomainAccessTokenOptions, callback: AsyncCallback<Uint8Array>) => {
       // mock getting operation
-      //let token = new Uint8Array([0]);
       // notify result
-      let code: BusinessError
+      let code: BusinessError = {
+        code: 0,
+        name: "",
+        message: ""
+      };
+      let token: Uint8Array = new Uint8Array([0]);
       callback(code, token);
     }
   }
@@ -5064,7 +5095,7 @@ static registerPlugin(plugin: DomainPlugin): void
 **示例：**
   ```js
   import { AsyncCallback } from './@ohos.base';
-  let plugin = {
+  let plugin: account_osAccount.DomainPlugin = {
     auth: (domainAccountInfo: account_osAccount.DomainAccountInfo, credential: Uint8Array,
          callback: account_osAccount.IUserAuthCallback) => {},
     authWithPopup: (domainAccountInfo: account_osAccount.DomainAccountInfo,
@@ -5150,7 +5181,7 @@ auth(domainAccountInfo: DomainAccountInfo, credential: Uint8Array, callback: IUs
 
 **示例：**
   ```js
-  let domainAccountInfo = {
+  let domainAccountInfo: account_osAccount.DomainAccountInfo = {
     domain: 'CHINA',
     accountName: 'zhangsan'
   }
@@ -5347,7 +5378,7 @@ hasAccount(domainAccountInfo: DomainAccountInfo): Promise&lt;boolean&gt;
 **示例：**
   ```js
   import { BusinessError } from '@ohos.base';
-  let domainAccountInfo = {
+  let domainAccountInfo: account_osAccount.DomainAccountInfo = {
     domain: 'CHINA',
     accountName: 'zhangsan'
   }
@@ -5393,7 +5424,7 @@ updateAccountToken(domainAccountInfo: DomainAccountInfo, token: Uint8Array, call
 **示例：**
   ```js
   import { BusinessError } from '@ohos.base';
-  let domainAccountInfo = {
+  let domainAccountInfo: account_osAccount.DomainAccountInfo = {
     domain: 'CHINA',
     accountName: 'zhangsan',
     accountId: '123456'
@@ -5448,7 +5479,7 @@ updateAccountToken(domainAccountInfo: DomainAccountInfo, token: Uint8Array): Pro
 **示例：**
   ```js
   import { BusinessError } from '@ohos.base';
-  let domainAccountInfo = {
+  let domainAccountInfo: account_osAccount.DomainAccountInfo = {
     domain: 'CHINA',
     accountName: 'zhangsan',
     accountId: '123456'
@@ -5662,10 +5693,10 @@ updateCredential(credentialInfo: CredentialInfo, callback: IIdmCallback): void;
   let userAuth: account_osAccount.UserAuth = new account_osAccount.UserAuth();
   let pinAuth: account_osAccount.PINAuth = new account_osAccount.PINAuth();
   let password: Uint8Array = new Uint8Array([0, 0, 0, 0, 0, 0]);
-  let credentialInfo = {
+  let credentialInfo: account_osAccount.CredentialInfo = {
     credType: account_osAccount.AuthType.PIN,
     credSubType: account_osAccount.AuthSubType.PIN_SIX,
-    token: null
+    token: new Uint8Array([]),
   };
   pinAuth.registerInputer({
     onGetData: (authSubType: account_osAccount.AuthSubType, callback: account_osAccount.IInputData) => {
@@ -5678,7 +5709,9 @@ updateCredential(credentialInfo: CredentialInfo, callback: IIdmCallback): void;
         if (result != account_osAccount.ResultCode.SUCCESS) {
           return;
         }
-        credentialInfo.token = extraInfo.token;
+        if (extraInfo.token != null) {
+          credentialInfo.token = extraInfo.token;
+        }
         try {
           userIDM.updateCredential(credentialInfo, {
             onResult: (result: number, extraInfo: account_osAccount.RequestResult) => {
@@ -5997,7 +6030,7 @@ onSetData: (authSubType: AuthSubType, data: Uint8Array) => void;
   ```js
   let password: Uint8Array = new Uint8Array([0, 0, 0, 0, 0, 0]);
   let passwordNumber: Uint8Array = new Uint8Array([1, 2, 3, 4]);
-  let inputer = {
+  let inputer: account_osAccount.IInputer = {
     onGetData: (authSubType: account_osAccount.AuthSubType, callback: account_osAccount.IInputData) => {
         if (authSubType == account_osAccount.AuthSubType.PIN_NUMBER) {
           callback.onSetData(authSubType, passwordNumber);
@@ -6034,7 +6067,7 @@ onGetData: (authSubType: AuthSubType, callback: IInputData) => void;
   ```js
   let password: Uint8Array = new Uint8Array([0, 0, 0, 0, 0, 0]);
   let passwordNumber: Uint8Array = new Uint8Array([1, 2, 3, 4]);
-  let inputer = {
+  let inputer: account_osAccount.IInputer = {
     onGetData: (authSubType: account_osAccount.AuthSubType, callback: account_osAccount.IInputData) => {
         if (authSubType == account_osAccount.AuthSubType.PIN_NUMBER) {
           callback.onSetData(authSubType, passwordNumber);
@@ -6073,8 +6106,8 @@ onResult: (result: number, extraInfo: AuthResult) => void;
 
 **示例：**
   ```js
-  let authCallback = {
-    onResult: (result: account_osAccount.AuthSubType, extraInfo: account_osAccount.IInputData) => {
+  let authCallback: account_osAccount.IUserAuthCallback = {
+    onResult: (result: number, extraInfo: account_osAccount.AuthResult) => {
       console.log('auth result = ' + result);
       console.log('auth extraInfo = ' + JSON.stringify(extraInfo));
     }
@@ -6101,8 +6134,8 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: any) => void;
 
 **示例：**
   ```js
-  let authCallback = {
-    onResult: (result: account_osAccount.AuthSubType, extraInfo: account_osAccount.IInputData) => {
+  let authCallback: account_osAccount.IUserAuthCallback = {
+    onResult: (result: number, extraInfo: account_osAccount.AuthResult) => {
       console.log('auth result = ' + result)
       console.log('auth extraInfo = ' + JSON.stringify(extraInfo));
     },
@@ -6139,7 +6172,7 @@ onResult: (result: number, extraInfo: RequestResult) => void;
 
 **示例：**
   ```js
-  let idmCallback = {
+  let idmCallback: account_osAccount.IIdmCallback = {
     onResult: (result: number, extraInfo: account_osAccount.RequestResult) => {
       console.log('callback result = ' + result)
       console.info('callback extraInfo = ' + JSON.stringify(extraInfo));
@@ -6167,7 +6200,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: any) => void;
 
 **示例：**
   ```js
-  let idmCallback = {
+  let idmCallback: account_osAccount.IIdmCallback = {
     onResult: (result: number, extraInfo: Object) => {
       console.log('callback result = ' + result)
       console.log('callback onResult = ' + JSON.stringify(extraInfo));

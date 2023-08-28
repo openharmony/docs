@@ -17,6 +17,7 @@
    ```ts
    import picker from '@ohos.file.picker';
    import fs from '@ohos.file.fs';
+   import { BusinessError } from '@ohos.base';
    ```
 
 2. 创建图库选择选项实例。
@@ -38,12 +39,12 @@
    </br>select返回的uri权限是只读权限，可以根据结果集中uri进行读取文件数据操作。注意不能在picker的回调里直接使用此uri进行打开文件操作，需要定义一个全局变量保存uri，使用类似一个按钮去触发打开文件。
 
    ```ts
-   let uris = null;
+   let uris: Array<string>;
    const photoViewPicker = new picker.PhotoViewPicker();
-   photoViewPicker.select(photoSelectOptions).then((photoSelectResult) => {
+   photoViewPicker.select(photoSelectOptions).then((photoSelectResult: picker.PhotoSelectResult) => {
      uris = photoSelectResult.photoUris;
      console.info('photoViewPicker.select to file succeed and uris are:' + uris);
-   }).catch((err) => {
+   }).catch((err: BusinessError) => {
      console.error(`Invoke photoViewPicker.select failed, code is ${err.code}, message is ${err.message}`);
    })
    ```
@@ -71,6 +72,8 @@
    ```ts
    import picker from '@ohos.file.picker';
    import fs from '@ohos.file.fs';
+   import Want from '@ohos.app.ability.Want';
+   import { BusinessError } from '@ohos.base';
    ```
 
 2. 创建文档选择选项实例。
@@ -89,12 +92,12 @@
    </br>例如通过[文件管理接口](../reference/apis/js-apis-file-fs.md)根据uri获取部分文件属性信息，比如文件大小、访问时间、修改时间等。如有获取文件名称需求，请暂时使用[startAbilityForResult](../../application-dev/application-models/uiability-intra-device-interaction.md)获取。
 
    ```ts
-   let uris = null;
+   let uris: Array<string>;
    const documentViewPicker = new picker.DocumentViewPicker(); // 创建文件选择器实例
-   documentViewPicker.select(documentSelectOptions).then((documentSelectResult) => {
+   documentViewPicker.select(documentSelectOptions).then((documentSelectResult: Array<string>) => {
      uris = documentSelectResult;
      console.info('documentViewPicker.select to file succeed and uris are:' + uris);
-   }).catch((err) => {
+   }).catch((err: BusinessError) => {
      console.error(`Invoke documentViewPicker.select failed, code is ${err.code}, message is ${err.message}`);
    })
    ```
@@ -104,7 +107,7 @@
    > 目前DocumentSelectOptions功能不完整, 如需获取文件名称，请使用startAbilityForResult接口。
 
    ```ts
-   let config = {
+   let config: Want = {
      action: 'ohos.want.action.OPEN_FILE',
      parameters: {
        startMode: 'choose',
@@ -149,6 +152,7 @@
    ```ts
    import picker from '@ohos.file.picker';
    import fs from '@ohos.file.fs';
+   import { BusinessError } from '@ohos.base';
    ```
 
 2. 创建音频选择选项实例。
@@ -168,12 +172,12 @@
    > 目前AudioSelectOptions不支持参数配置，默认可以选择所有类型的用户文件。
 
    ```ts
-   let uri = null;
+   let uri: string;
    const audioViewPicker = new picker.AudioViewPicker();
-   audioViewPicker.select(audioSelectOptions).then(audioSelectResult => {
+   audioViewPicker.select(audioSelectOptions).then((audioSelectResult: Array<string>) => {
      uri = audioSelectResult[0];
      console.info('audioViewPicker.select to file succeed and uri is:' + uri);
-   }).catch((err) => {
+   }).catch((err: BusinessError) => {
      console.error(`Invoke audioViewPicker.select failed, code is ${err.code}, message is ${err.message}`);
    })
    ```

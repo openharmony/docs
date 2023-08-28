@@ -49,7 +49,7 @@ import photoAccessHelper from '@ohos.file.photoAccessHelper';
 
 // 此处获取的phAccessHelper实例为全局对象，后续文档中使用到的地方默认为使用此处获取的对象，如未添加此段代码报未定义的错误请自行添加。
 const context = getContext(this);
-let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
+let phAccessHelper: photoAccessHelper.PhotoAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 ```
 
 ## 申请相册管理模块功能相关权限
@@ -108,7 +108,7 @@ let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
     onWindowStageCreate(windowStage) {
       let list : Array<Permissions> = ['ohos.permission.READ_IMAGEVIDEO', 'ohos.permission.WRITE_IMAGEVIDEO'];
       let permissionRequestResult;
-      let atManager = abilityAccessCtrl.createAtManager();
+      let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
       atManager.requestPermissionsFromUser(this.context, list, (err, result) => {
         if (err) {
           console.error('requestPermissionsFromUserError: ' + JSON.stringify(err));

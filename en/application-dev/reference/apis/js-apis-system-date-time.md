@@ -22,6 +22,8 @@ Sets the system time. This API uses an asynchronous callback to return the resul
 
 **System capability**: SystemCapability.MiscServices.Time
 
+**Required permissions**: ohos.permission.SET_TIME
+
 **Parameters**
 
 | Name  | Type           | Mandatory| Description                                      |
@@ -56,6 +58,8 @@ Sets the system time. This API uses a promise to return the result.
 **System API**: This is a system API.
 
 **System capability**: SystemCapability.MiscServices.Time
+
+**Required permissions**: ohos.permission.SET_TIME
 
 **Parameters**
 
@@ -158,7 +162,7 @@ Obtains the time elapsed since the Unix epoch. This API uses a promise to return
 
 | Name| Type   | Mandatory| Description                    |
 | ------ | ------- | ---- | ------------------------- |
-| isNano | boolean | No  | Whether the time to return is in nanoseconds.<br>- **true**: The time to return is in nanoseconds.<br>- **false**: The time to return is in milliseconds.|
+| isNano | boolean | No  | Whether the time to return is in nanoseconds. The default value is **false**.<br>- **true**: The time to return is in nanoseconds.<br>- **false**: The time to return is in milliseconds.|
 
 **Return value**
 
@@ -253,7 +257,7 @@ Obtains the time elapsed since system startup, excluding the deep sleep time. Th
 
 | Name| Type   | Mandatory| Description                             |
 | ------ | ------- | ---- | ----------------------------------- |
-| isNano | boolean | No  | Whether the time to return is in nanoseconds.<br>- **true**: The time to return is in nanoseconds.<br>- **false**: The time to return is in milliseconds.|
+| isNano | boolean | No  | Whether the time to return is in nanoseconds. The default value is **false**.<br>- **true**: The time to return is in nanoseconds.<br>- **false**: The time to return is in milliseconds.|
 
 **Return value**
 
@@ -348,7 +352,7 @@ Obtains the time elapsed since system startup, including the deep sleep time. Th
 
 | Name| Type   | Mandatory| Description                              |
 | ------ | ------- | ---- | ------------------------------- |
-| isNano | boolean | No  | Whether the time to return is in nanoseconds.<br>- **true**: The time to return is in nanoseconds.<br>- **false**: The time to return is in milliseconds.|
+| isNano | boolean | No  | Whether the time to return is in nanoseconds. The default value is **false**.<br>- **true**: The time to return is in nanoseconds.<br>- **false**: The time to return is in milliseconds.|
 
 **Return value**
 
@@ -379,6 +383,8 @@ Sets the system date. This API uses an asynchronous callback to return the resul
 **System API**: This is a system API.
 
 **System capability**: SystemCapability.MiscServices.Time
+
+**Required permissions**: ohos.permission.SET_TIME
 
 **Parameters**
 
@@ -413,6 +419,8 @@ Sets the system date. This API uses a promise to return the result.
 **System API**: This is a system API.
 
 **System capability**: SystemCapability.MiscServices.Time
+
+**Required permissions**: ohos.permission.SET_TIME
 
 **Parameters**
 
@@ -509,6 +517,8 @@ Sets the system time zone. This API uses an asynchronous callback to return the 
 
 **System capability**: SystemCapability.MiscServices.Time
 
+**Required permissions**: ohos.permission.SET_TIME_ZONE
+
 **Parameters**
 
 | Name  | Type             | Mandatory| Description                 |
@@ -541,6 +551,8 @@ Sets the system time zone. This API uses a promise to return the result.
 **System API**: This is a system API.
 
 **System capability**: SystemCapability.MiscServices.Time
+
+**Required permissions**: ohos.permission.SET_TIME_ZONE
 
 **Parameters**
 

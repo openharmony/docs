@@ -14,7 +14,8 @@
 ## 导入模块
 
 ```ts
-import systemparameter from '@ohos.systemparameter'
+import systemparameter from '@ohos.systemparameter';
+import { BusinessError } from '@ohos.base';
 ```
 
 ## systemparameter.getSync<sup>(deprecated)</sup>
@@ -42,7 +43,7 @@ getSync(key: string, def?: string): string
 
 ```ts
 try {
-    var info = systemparameter.getSync("const.ohos.apiversion");
+    let info = systemparameter.getSync("const.ohos.apiversion");
     console.log(JSON.stringify(info));
 } catch(e) {
     console.log("getSync unexpected error: " + e);
@@ -68,7 +69,7 @@ get(key: string, callback: AsyncCallback&lt;string&gt;): void
 
 ```ts
 try {
-    systemparameter.get("const.ohos.apiversion", function (err, data) {
+    systemparameter.get("const.ohos.apiversion", (err:BusinessError, data:string) => {
     if (err == undefined) {
         console.log("get test.parameter.key value success:" + data)
     } else {
@@ -99,7 +100,7 @@ get(key: string, def: string, callback: AsyncCallback&lt;string&gt;): void
 
 ```ts
 try {
-    systemparameter.get("const.ohos.apiversion", "default", function (err, data) {
+    systemparameter.get("const.ohos.apiversion", "default", (err:BusinessError, data:string) => {
         if (err == undefined) {
             console.log("get test.parameter.key value success:" + data)
         } else {
@@ -136,10 +137,10 @@ get(key: string, def?: string): Promise&lt;string&gt;
 
 ```ts
 try {
-    var p = systemparameter.get("const.ohos.apiversion");
-    p.then(function (value) {
+    let p = systemparameter.get("const.ohos.apiversion");
+    p.then((value:string) => {
         console.log("get test.parameter.key success: " + value);
-    }).catch(function (err) {
+    }).catch((err:BusinessError) => {
         console.log("get test.parameter.key error: " + err.code);
     });
 } catch(e) {
@@ -201,7 +202,7 @@ set(key: string, value: string, callback: AsyncCallback&lt;void&gt;): void
 
 ```ts
 try {
-    systemparameter.set("test.parameter.key", "testValue", function (err, data) {
+    systemparameter.set("test.parameter.key", "testValue",  (err:BusinessError, data:string) =>{
     if (err == undefined) {
         console.log("set test.parameter.key value success :" + data)
     } else {
@@ -241,10 +242,10 @@ set(key: string, value: string): Promise&lt;void&gt;
 
 ```ts
 try {
-    var p = systemparameter.set("test.parameter.key", "testValue");
-    p.then(function (value) {
+    let p = systemparameter.set("test.parameter.key", "testValue");
+    p.then((value:string) => {
         console.log("set test.parameter.key success: " + value);
-    }).catch(function (err) {
+    }).catch((err:BusinessError) => {
         console.log(" set test.parameter.key error: " + err.code);
     });
 } catch(e) {

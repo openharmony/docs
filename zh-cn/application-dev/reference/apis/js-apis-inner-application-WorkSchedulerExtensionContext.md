@@ -15,9 +15,10 @@ WorkSchedulerExtensionContext可直接作为WorkSchedulerExtension的上下文�
 
 ```ts
 import WorkSchedulerExtensionAbility from '@ohos.WorkSchedulerExtensionAbility';
+import workScheduler from '@ohos.resourceschedule.workScheduler';
 
 class MyWorkSchedulerExtensionAbility extends WorkSchedulerExtensionAbility {
-    onWorkStart(workInfo) {
+    onWorkStart(workInfo: workScheduler.WorkInfo) {
         let WorkSchedulerExtensionContext = this.context; // 获取WorkSchedulerExtensionContext
     }
 }
