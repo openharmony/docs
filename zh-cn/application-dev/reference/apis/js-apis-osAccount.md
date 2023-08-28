@@ -4626,7 +4626,7 @@ auth(domainAccountInfo: DomainAccountInfo, credential: Uint8Array, callback: IUs
                     callback: account_osAccount.IUserAuthCallback) => {},
     authWithToken: (domainAccountInfo: account_osAccount.DomainAccountInfo, token: Uint8Array,
                     callback: account_osAccount.IUserAuthCallback) => {},
-    getAccountInfo: (domain: string, accountName: string,
+    getAccountInfo: (options: account_osAccount.GetDomainAccountInfoPluginOptions,
                     callback: AsyncCallback<account_osAccount.DomainAccountInfo>) => {},
     getAuthStatusInfo: (domainAccountInfo: account_osAccount.DomainAccountInfo,
                       callback: AsyncCallback<account_osAccount.AuthStatusInfo>) => {},
@@ -4690,7 +4690,7 @@ authWithPopup(domainAccountInfo: DomainAccountInfo, callback: IUserAuthCallback)
     },
     authWithToken: (domainAccountInfo: account_osAccount.DomainAccountInfo, token: Uint8Array,
                     callback: account_osAccount.IUserAuthCallback) => {},
-    getAccountInfo: (domain: string, accountName: string,
+    getAccountInfo: (options: account_osAccount.GetDomainAccountInfoPluginOptions,
                     callback: AsyncCallback<account_osAccount.DomainAccountInfo>) => {},
     getAuthStatusInfo: (domainAccountInfo: account_osAccount.DomainAccountInfo,
                         callback: AsyncCallback<account_osAccount.AuthStatusInfo>) => {},
@@ -4741,7 +4741,7 @@ authWithToken(domainAccountInfo: DomainAccountInfo, token: Uint8Array, callback:
       };
       callback.onResult(0, result);
     },
-    getAccountInfo: (domain: string, accountName: string,
+    getAccountInfo: (options: account_osAccount.GetDomainAccountInfoPluginOptions,
                     callback: AsyncCallback<account_osAccount.DomainAccountInfo>) => {},
     getAuthStatusInfo: (domainAccountInfo: account_osAccount.DomainAccountInfo,
                         callback: AsyncCallback<account_osAccount.AuthStatusInfo>) => {},
@@ -4757,7 +4757,7 @@ authWithToken(domainAccountInfo: DomainAccountInfo, token: Uint8Array, callback:
 
 ### getAccountInfo<sup>10+</sup>
 
-getAccountInfo(domain: string, accountName: string, callback: AsyncCallback&lt;DomainAccountInfo&gt;): void
+getAccountInfo(options: GetDomainAccountInfoPluginOptions, callback: AsyncCallback&lt;DomainAccountInfo&gt;): void
 
 查询指定域帐号的信息。
 
@@ -4769,8 +4769,7 @@ getAccountInfo(domain: string, accountName: string, callback: AsyncCallback&lt;D
 
 | 参数名      | 类型                                    | 必填 | 说明             |
 | ---------- | --------------------------------------- | ---- | --------------- |
-| domain   | string  | 是   | 指示帐号所属域。|
-| accountName   | string  | 是   | 指示帐号的名称。|
+| options   | [GetDomainAccountInfoPluginOptions](#getdomainaccountinfopluginoptions10)  | 是   | 指示域帐号信息。|
 | callback   | AsyncCallback&lt;[DomainAccountInfo](#domainaccountinfo8)&gt; | 是   | 指示查询结果回调。|
 
 **示例：**
@@ -4783,7 +4782,7 @@ getAccountInfo(domain: string, accountName: string, callback: AsyncCallback&lt;D
                     callback: account_osAccount.IUserAuthCallback) => {},
     authWithToken: (domainAccountInfo: account_osAccount.DomainAccountInfo, token: Uint8Array,
                     callback: account_osAccount.IUserAuthCallback) => {},
-    getAccountInfo: (domain: string, accountName: string,
+    getAccountInfo: (options: account_osAccount.GetDomainAccountInfoPluginOptions,
                     callback: AsyncCallback<account_osAccount.DomainAccountInfo>) => {
       // mock getting account information
       // notify result
@@ -4793,8 +4792,8 @@ getAccountInfo(domain: string, accountName: string, callback: AsyncCallback&lt;D
         message: ""
       };
       let accountInfo: account_osAccount.DomainAccountInfo = {
-        domain: domain,
-        accountName: accountName,
+        domain: options.domain,
+        accountName: options.accountName,
         accountId: 'xxxx'
       };
       callback(code, accountInfo);
@@ -4838,7 +4837,7 @@ getAuthStatusInfo(domainAccountInfo: DomainAccountInfo, callback: AsyncCallback&
                     callback: account_osAccount.IUserAuthCallback) => {},
     authWithToken: (domainAccountInfo: account_osAccount.DomainAccountInfo, token: Uint8Array,
                     callback: account_osAccount.IUserAuthCallback) => {},
-    getAccountInfo: (domain: string, accountName: string,
+    getAccountInfo: (options: account_osAccount.GetDomainAccountInfoPluginOptions,
                     callback: AsyncCallback<account_osAccount.DomainAccountInfo>) => {},
     getAuthStatusInfo: (domainAccountInfo: account_osAccount.DomainAccountInfo,
                         callback: AsyncCallback<account_osAccount.AuthStatusInfo>) => {
@@ -4890,7 +4889,7 @@ bindAccount(domainAccountInfo: DomainAccountInfo, localId: number, callback: Asy
                     callback: account_osAccount.IUserAuthCallback) => {},
     authWithToken: (domainAccountInfo: account_osAccount.DomainAccountInfo, token: Uint8Array,
                     callback: account_osAccount.IUserAuthCallback) => {},
-    getAccountInfo: (domain: string, accountName: string,
+    getAccountInfo: (options: account_osAccount.GetDomainAccountInfoPluginOptions,
                     callback: AsyncCallback<account_osAccount.DomainAccountInfo>) => {},
     getAuthStatusInfo: (domainAccountInfo: account_osAccount.DomainAccountInfo,
                         callback: AsyncCallback<account_osAccount.AuthStatusInfo>) => {},
@@ -4940,7 +4939,7 @@ unbindAccount(domainAccountInfo: DomainAccountInfo, callback: AsyncCallback&lt;v
                     callback: account_osAccount.IUserAuthCallback) => {},
     authWithToken: (domainAccountInfo: account_osAccount.DomainAccountInfo, token: Uint8Array,
                     callback: account_osAccount.IUserAuthCallback) => {},
-    getAccountInfo: (domain: string, accountName: string,
+    getAccountInfo: (options: account_osAccount.GetDomainAccountInfoPluginOptions,
                     callback: AsyncCallback<account_osAccount.DomainAccountInfo>) => {},
     getAuthStatusInfo: (domainAccountInfo: account_osAccount.DomainAccountInfo,
                         callback: AsyncCallback<account_osAccount.AuthStatusInfo>) => {},
@@ -4991,7 +4990,7 @@ isAccountTokenValid(domainAccountInfo: DomainAccountInfo, token: Uint8Array, cal
                     callback: account_osAccount.IUserAuthCallback) => {},
     authWithToken: (domainAccountInfo: account_osAccount.DomainAccountInfo, token: Uint8Array,
                     callback: account_osAccount.IUserAuthCallback) => {},
-    getAccountInfo: (domain: string, accountName: string,
+    getAccountInfo: (options: account_osAccount.GetDomainAccountInfoPluginOptions,
                     callback: AsyncCallback<account_osAccount.DomainAccountInfo>) => {},
     getAuthStatusInfo: (domainAccountInfo: account_osAccount.DomainAccountInfo,
                         callback: AsyncCallback<account_osAccount.AuthStatusInfo>) => {},
@@ -5041,7 +5040,7 @@ getAccessToken(options: GetDomainAccessTokenOptions, callback: AsyncCallback&lt;
                     callback: account_osAccount.IUserAuthCallback) => {},
     authWithToken: (domainAccountInfo: account_osAccount.DomainAccountInfo, token: Uint8Array,
                     callback: account_osAccount.IUserAuthCallback) => {},
-    getAccountInfo: (domain: string, accountName: string,
+    getAccountInfo: (options: account_osAccount.GetDomainAccountInfoPluginOptions,
                     callback: AsyncCallback<account_osAccount.DomainAccountInfo>) => {},
     getAuthStatusInfo: (domainAccountInfo: account_osAccount.DomainAccountInfo,
                         callback: AsyncCallback<account_osAccount.AuthStatusInfo>) => {},
@@ -5102,7 +5101,7 @@ static registerPlugin(plugin: DomainPlugin): void
                   callback: account_osAccount.IUserAuthCallback) => {},
     authWithToken: (domainAccountInfo: account_osAccount.DomainAccountInfo, token: Uint8Array,
                   callback: account_osAccount.IUserAuthCallback) => {},
-    getAccountInfo: (domain: string, accountName: string,
+    getAccountInfo: (options: account_osAccount.GetDomainAccountInfoPluginOptions,
                    callback: AsyncCallback<account_osAccount.DomainAccountInfo>) => {},
     getAuthStatusInfo: (domainAccountInfo: account_osAccount.DomainAccountInfo,
                         callback: AsyncCallback<account_osAccount.AuthStatusInfo>) => {},
@@ -5325,7 +5324,7 @@ hasAccount(domainAccountInfo: DomainAccountInfo, callback: AsyncCallback&lt;bool
 **示例：**
   ```js
   import { BusinessError } from '@ohos.base';
-  let domainAccountInfo = {
+  let domainAccountInfo: account_osAccount.DomainAccountInfo = {
     domain: 'CHINA',
     accountName: 'zhangsan'
   }
@@ -5493,6 +5492,107 @@ updateAccountToken(domainAccountInfo: DomainAccountInfo, token: Uint8Array): Pro
     });
   } catch (err) {
     console.log('updateAccountToken exception = ' + JSON.stringify(err));
+  }
+  ```
+
+### getAccountInfo<sup>10+</sup>
+
+getAccountInfo(options: GetDomainAccountInfoOptions, callback: AsyncCallback&lt;DomainAccountInfo&gt;): void
+
+查询指定的域帐号信息，callback方式。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Account.OsAccount
+
+**需要权限：** ohos.permission.GET_DOMAIN_ACCOUNTS
+
+**参数：**
+
+| 参数名      | 类型                                    | 必填 | 说明             |
+| ---------- | --------------------------------------- | ---- | --------------- |
+| options   | [GetDomainAccountInfoOptions](#getdomainaccountinfooptions10)  | 是   | 指示域帐号信息。|
+| callback   | AsyncCallback&lt;DomainAccountInfo&gt;  | 是   | 指示查询结果回调。|
+
+**错误码：**
+
+| 错误码ID | 错误信息                     |
+| -------- | --------------------------- |
+| 12300001 | System service exception. |
+| 12300002 | Invalid domainAccountInfo. |
+| 12300013 | Network exception. |
+| 12300111 | Operation timeout. |
+
+**示例：**
+  ```js
+  import { BusinessError } from '@ohos.base';
+  let domainAccountInfo: account_osAccount.DomainAccountInfo = {
+    domain: 'CHINA',
+    accountName: 'zhangsan'
+  }
+  try {
+    account_osAccount.DomainAccountManager.getAccountInfo(domainAccountInfo,
+      (err: BusinessError, result: account_osAccount.DomainAccountInfo) => {
+      if (err) {
+        console.log('call getAccountInfo failed, error: ' + JSON.stringify(err));
+      } else {
+        console.log('getAccountInfo result: ' + result);
+      }
+    });
+  } catch (err) {
+    console.log('getAccountInfo exception = ' + JSON.stringify(err));
+  }
+  ```
+
+### getAccountInfo<sup>10+</sup>
+
+getAccountInfo(options: GetDomainAccountInfoOptions): Promise&lt;DomainAccountInfo&gt;
+
+查询指定的域帐号信息，promise方式。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Account.OsAccount
+
+**需要权限：** ohos.permission.GET_DOMAIN_ACCOUNTS
+
+**参数：**
+
+| 参数名      | 类型                                    | 必填 | 说明             |
+| ---------- | --------------------------------------- | ---- | --------------- |
+| options   | [GetDomainAccountInfoOptions](#getdomainaccountinfooptions10)  | 是   | 指示域帐号信息。|
+
+**返回值：**
+
+| 类型                      | 说明                     |
+| :------------------------ | ----------------------- |
+| Promise&lt;DomainAccountInfo&gt; | Promise对象，返回指定的域帐号信息。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                     |
+| -------- | --------------------------- |
+| 12300001 | System service exception. |
+| 12300002 | Invalid domainAccountInfo. |
+| 12300013 | Network exception. |
+| 12300111 | Operation timeout. |
+
+**示例：**
+  ```js
+  import { BusinessError } from '@ohos.base';
+  let domainAccountInfo: account_osAccount.DomainAccountInfo = {
+    domain: 'CHINA',
+    accountName: 'zhangsan'
+  }
+  try {
+    account_osAccount.DomainAccountManager.getAccountInfo(domainAccountInfo)
+      .then((result: account_osAccount.DomainAccountInfo) => {
+      console.log('getAccountInfo result: ' + result);
+    }).catch((err: BusinessError) => {
+      console.log('call getAccountInfo failed, error: ' + JSON.stringify(err));
+    });
+  } catch (err) {
+    console.log('getAccountInfo exception = ' + JSON.stringify(err));
   }
   ```
 
@@ -6621,4 +6721,29 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: any) => void;
 | domainAccountInfo  | [DomainAccountInfo](#domainaccountinfo8) | 是   | 域帐号的信息   |
 | domainAccountToken | Uint8Array | 是   | 域帐号的令牌 |
 | businessParams | { [key: string]: object } | 是   | 业务参数，由业务方根据请求协议自定义 |
+| callerUid | number | 是   | 调用方唯一标识符 |
+
+## GetDomainAccountInfoOptions<sup>10+</sup>
+
+表示查询域帐号信息的选项。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount。
+
+| 名称      | 类型   | 必填 | 说明       |
+| ----------- | ------ | ---- | ---------- |
+| accountName | string | 是   | 域帐号名。 |
+| domain      | string | 否   | 域名。     |
+
+## GetDomainAccountInfoPluginOptions<sup>10+</sup>
+
+表示插件查询域帐号信息的选项。GetDomainAccountInfoPluginOptions类继承[GetDomainAccountInfoOptions](#getdomainaccountinfooptions10)
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount。
+
+| 名称      | 类型   | 必填 | 说明       |
+| ----------- | ------ | ---- | ---------- |
 | callerUid | number | 是   | 调用方唯一标识符 |
