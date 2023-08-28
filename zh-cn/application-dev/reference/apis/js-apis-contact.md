@@ -13,7 +13,7 @@
 import contact from '@ohos.contact';
 ```
 
-## contact.addContact<sup>10+<sup>
+## contact.addContact<sup>10+</sup>
 
 addContact(context: Context, contact: Contact, callback: AsyncCallback<number>): void 
 
@@ -61,11 +61,14 @@ addContact(context: Context, contact: Contact, callback: AsyncCallback<number>):
   });
 ```
 
-## contact.addContact(deprecated)<sup>7+<sup>
+## contact.addContact(deprecated)<sup>7+</sup>
 
 addContact(contact:Contact, callback:AsyncCallback&lt;number&gt;): void
 
 添加联系人，使用callback方式作为异步方法。
+
+**说明**
+从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContact](#querycontact10)
 
 **需要权限**：ohos.permission.WRITE_CONTACTS
 
@@ -93,7 +96,7 @@ addContact(contact:Contact, callback:AsyncCallback&lt;number&gt;): void
   });
   ```
 
-## contact.addContact<sup>10+<sup>
+## contact.addContact<sup>10+</sup>
 
 addContact(context: Context, contact: Contact): Promise<number&gt;
 
@@ -145,11 +148,14 @@ addContact(context: Context, contact: Contact): Promise<number&gt;
   });
 ```
 
-## contact.addContact(deprecated)<sup>7+<sup>
+## contact.addContact(deprecated)<sup>7+</sup>
 
 addContact(contact: Contact): Promise&lt;number&gt;
 
 添加联系人，使用Promise方式作为异步方法。
+
+**说明**
+从API version 7 开始支持，从API 10 开始废弃，建议使用[addContact](#addcontact10)
 
 **需要权限**：ohos.permission.WRITE_CONTACTS
 
@@ -181,7 +187,7 @@ addContact(contact: Contact): Promise&lt;number&gt;
   });
   ```
 
-## contact.deleteContact<sup>10+<sup>
+## contact.deleteContact<sup>10+</sup>
 
 deleteContact(context: Context, key: string, callback: AsyncCallback&lt;void&gt;): void
 
@@ -225,11 +231,14 @@ deleteContact(context: Context, key: string, callback: AsyncCallback&lt;void&gt;
   });
 ```
 
-## contact.deleteContact(deprecated)<sup>7+<sup>
+## contact.deleteContact(deprecated)<sup>7+</sup>
 
 deleteContact(key: string, callback: AsyncCallback&lt;void&gt;): void
 
 删除联系人，使用callback方式作为异步方法。
+
+**说明**
+从API version 7 开始支持，从API 10 开始废弃，建议使用[deleteContact](#deletecontact10)
 
 **需要权限**：ohos.permission.WRITE_CONTACTS
 
@@ -255,7 +264,7 @@ deleteContact(key: string, callback: AsyncCallback&lt;void&gt;): void
   ```
 
 
-## contact.deleteContact<sup>10+<sup>
+## contact.deleteContact<sup>10+</sup>
 
 deleteContact(context: Context,  key: string): Promise&lt;void&gt;
 
@@ -303,11 +312,14 @@ deleteContact(context: Context,  key: string): Promise&lt;void&gt;
   });
   ```
 
-## contact.deleteContact(deprecated)<sup>7+<sup>
+## contact.deleteContact(deprecated)<sup>7+</sup>
 
 deleteContact(key: string): Promise&lt;void&gt;
 
 删除联系人，使用Promise方式作为异步方法。
+
+**说明**
+从API version 7 开始支持，从API 10 开始废弃，建议使用[deleteContact](#deletecontact10)
 
 **需要权限**：ohos.permission.WRITE_CONTACTS
 
@@ -337,7 +349,7 @@ deleteContact(key: string): Promise&lt;void&gt;
   ```
 
 
-## contact.updateContact<sup>10+<sup>
+## contact.updateContact<sup>10+</sup>
 
 updateContact(context: Context, contact: Contact, callback: AsyncCallback&lt;void&gt;): void
 
@@ -385,11 +397,14 @@ updateContact(context: Context, contact: Contact, callback: AsyncCallback&lt;voi
   });
   ```
 
-## contact.updateContact(deprecated)<sup>7+<sup>
+## contact.updateContact(deprecated)<sup>7+</sup>
 
 updateContact(contact: Contact, callback: AsyncCallback&lt;void&gt;): void
 
 更新联系人，使用callback方式作为异步方法。
+
+**说明**
+从API version 7 开始支持，从API 10 开始废弃，建议使用[updateContact](#updatecontact10)
 
 **需要权限**：ohos.permission.WRITE_CONTACTS
 
@@ -419,7 +434,7 @@ updateContact(contact: Contact, callback: AsyncCallback&lt;void&gt;): void
   ```
 
 
-## contact.updateContact<sup>10+<sup>
+## contact.updateContact<sup>10+</sup>
 
 updateContact(context: Context,  contact: Contact, attrs: ContactAttributes, callback: AsyncCallback&lt;void&gt;): void
 
@@ -470,11 +485,14 @@ updateContact(context: Context,  contact: Contact, attrs: ContactAttributes, cal
   });
   ```
 
-## contact.updateContact(deprecated)<sup>7+<sup>
+## contact.updateContact(deprecated)<sup>7+</sup>
 
 updateContact(contact: Contact, attrs: ContactAttributes, callback: AsyncCallback&lt;void&gt;): void
 
 更新联系人，使用callback方式作为异步方法。
+
+**说明**
+从API version 7 开始支持，从API 10 开始废弃，建议使用[updateContact](#updatecontact10)
 
 **需要权限**：ohos.permission.WRITE_CONTACTS
 
@@ -507,7 +525,7 @@ updateContact(contact: Contact, attrs: ContactAttributes, callback: AsyncCallbac
   ```
 
 
-## contact.updateContact<sup>10+<sup>
+## contact.updateContact<sup>10+</sup>
 
 updateContact(context: Context,  contact: Contact, attrs?: ContactAttributes): Promise&lt;void&gt;
 
@@ -562,11 +580,14 @@ updateContact(context: Context,  contact: Contact, attrs?: ContactAttributes): P
   });
 ```
 
-## contact.updateContact(deprecated)<sup>7+<sup>
+## contact.updateContact(deprecated)<sup>7+</sup>
 
 updateContact(contact: Contact, attrs?: ContactAttributes): Promise&lt;void&gt;
 
 更新联系人，使用Promise方式作为异步方法。
+
+**说明**
+从API version 7 开始支持，从API 10 开始废弃，建议使用[updateContact](#updatecontact10)
 
 **需要权限**：ohos.permission.WRITE_CONTACTS
 
@@ -602,7 +623,7 @@ updateContact(contact: Contact, attrs?: ContactAttributes): Promise&lt;void&gt;
   ```
 
 
-## contact.isLocalContact<sup>10+<sup>
+## contact.isLocalContact<sup>10+</sup>
 
 isLocalContact(context: Context,  id: number, callback: AsyncCallback&lt;boolean&gt;): void
 
@@ -646,11 +667,14 @@ isLocalContact(context: Context,  id: number, callback: AsyncCallback&lt;boolean
   });
   ```
 
-## contact.isLocalContact(deprecated)<sup>7+<sup>
+## contact.isLocalContact(deprecated)<sup>7+</sup>
 
 isLocalContact(id: number, callback: AsyncCallback&lt;boolean&gt;): void
 
 判断当前联系人id是否在电话簿中，使用callback方式作为异步方法。
+
+**说明**
+从API version 7 开始支持，从API 10 开始废弃，建议使用[isLocalContact](#islocalcontact10)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -675,7 +699,7 @@ isLocalContact(id: number, callback: AsyncCallback&lt;boolean&gt;): void
   });
   ```
 
-## contact.isLocalContact<sup>10+<sup>
+## contact.isLocalContact<sup>10+</sup>
 
 isLocalContact(context: Context,  id: number): Promise&lt;boolean&gt;
 
@@ -723,11 +747,14 @@ isLocalContact(context: Context,  id: number): Promise&lt;boolean&gt;
   });
 ```
 
-## contact.isLocalContact(deprecated)<sup>7+<sup>
+## contact.isLocalContact(deprecated)<sup>7+</sup>
 
 isLocalContact(id: number): Promise&lt;boolean&gt;
 
 判断当前联系人id是否在电话簿中，使用Promise方式作为异步方法。
+
+**说明**
+从API version 7 开始支持，从API 10 开始废弃，建议使用[isLocalContact](#islocalcontact10)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -756,7 +783,7 @@ isLocalContact(id: number): Promise&lt;boolean&gt;
   });
   ```
 
-## contact.isMyCard<sup>10+<sup>
+## contact.isMyCard<sup>10+</sup>
 
 isMyCard(context: Context,  id: number, callback: AsyncCallback&lt;boolean&gt;): void
 
@@ -800,11 +827,14 @@ isMyCard(context: Context,  id: number, callback: AsyncCallback&lt;boolean&gt;):
   });
 ```
 
-## contact.isMyCard(deprecated)<sup>7+<sup>
+## contact.isMyCard(deprecated)<sup>7+</sup>
 
 isMyCard(id: number, callback: AsyncCallback&lt;boolean&gt;): void
 
 判断是否为“我的名片”，使用callback方式作为异步方法。
+
+**说明**
+从API version 7 开始支持，从API 10 开始废弃，建议使用[isMyCard](#ismycard10)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -830,7 +860,7 @@ isMyCard(id: number, callback: AsyncCallback&lt;boolean&gt;): void
   ```
 
 
-## contact.isMyCard<sup>10+<sup>
+## contact.isMyCard<sup>10+</sup>
 
 isMyCard(context: Context,  id: number): Promise&lt;boolean&gt;
 
@@ -878,11 +908,14 @@ isMyCard(context: Context,  id: number): Promise&lt;boolean&gt;
   });
 ```
 
-## contact.isMyCard(deprecated)<sup>7+<sup>
+## contact.isMyCard(deprecated)<sup>7+</sup>
 
 isMyCard(id: number): Promise&lt;boolean&gt;
 
 判断是否为“我的名片”，使用Promise方式作为异步方法。
+
+**说明**
+从API version 7 开始支持，从API 10 开始废弃，建议使用[isMyCard](#ismycard10)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -911,7 +944,7 @@ isMyCard(id: number): Promise&lt;boolean&gt;
   });
   ```
 
-## contact.queryMyCard<sup>10+<sup>
+## contact.queryMyCard<sup>10+</sup>
 
 queryMyCard(context: Context,  callback: AsyncCallback&lt;Contact&gt;): void
 
@@ -954,11 +987,14 @@ queryMyCard(context: Context,  callback: AsyncCallback&lt;Contact&gt;): void
   });
 ```
 
-## contact.queryMyCard(deprecated)<sup>7+<sup>
+## contact.queryMyCard(deprecated)<sup>7+</sup>
 
 queryMyCard(callback: AsyncCallback&lt;Contact&gt;): void
 
 查询“我的名片”，使用callback方式作为异步方法。
+
+**说明**
+从API version 7 开始支持，从API 10 开始废弃，建议使用[queryMyCard](#querymycard10)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -982,7 +1018,7 @@ queryMyCard(callback: AsyncCallback&lt;Contact&gt;): void
   });
   ```
 
-## contact.queryMyCard<sup>10+<sup>
+## contact.queryMyCard<sup>10+</sup>
 
 queryMyCard(context: Context,  attrs: ContactAttributes, callback: AsyncCallback&lt;Contact&gt;): void
 
@@ -1028,11 +1064,14 @@ queryMyCard(context: Context,  attrs: ContactAttributes, callback: AsyncCallback
   });
 ```
 
-## contact.queryMyCard(deprecated)<sup>7+<sup>
+## contact.queryMyCard(deprecated)<sup>7+</sup>
 
 queryMyCard(attrs: ContactAttributes, callback: AsyncCallback&lt;Contact&gt;): void
 
 查询“我的名片”，使用callback方式作为异步方法。
+
+**说明**
+从API version 7 开始支持，从API 10 开始废弃，建议使用[queryMyCard](#querymycard10)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -1059,7 +1098,7 @@ queryMyCard(attrs: ContactAttributes, callback: AsyncCallback&lt;Contact&gt;): v
   });
   ```
 
-## contact.queryMyCard<sup>10+<sup>
+## contact.queryMyCard<sup>10+</sup>
 
 queryMyCard(context: Context,  attrs?: ContactAttributes): Promise&lt;Contact&gt;
 
@@ -1109,11 +1148,14 @@ queryMyCard(context: Context,  attrs?: ContactAttributes): Promise&lt;Contact&gt
   });
 ```
 
-## contact.queryMyCard(deprecated)<sup>7+<sup>
+## contact.queryMyCard(deprecated)<sup>7+</sup>
 
 queryMyCard(attrs?: ContactAttributes): Promise&lt;Contact&gt;
 
 查询“我的名片”，使用Promise方式作为异步方法。
+
+**说明**
+从API version 7 开始支持，从API 10 开始废弃，建议使用[queryMyCard](#querymycard10)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -1144,7 +1186,7 @@ queryMyCard(attrs?: ContactAttributes): Promise&lt;Contact&gt;
   ```
 
 
-## contact.selectContact<sup>7+<sup>
+## contact.selectContact(deprecated)<sup>7+</sup>
 
 selectContact(callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
@@ -1171,7 +1213,7 @@ selectContact(callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
   ```
 
 
-## contact.selectContact<sup>7+<sup>
+## contact.selectContact(deprecated)<sup>7+</sup>
 
 selectContact(): Promise&lt;Array&lt;Contact&gt;&gt;
 
@@ -1196,8 +1238,113 @@ selectContact(): Promise&lt;Array&lt;Contact&gt;&gt;
   });
   ```
 
+## contact.selectContacts<sup>10+</sup>
 
-## contact.queryContact<sup>10+<sup>
+selectContacts(callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
+
+选择联系人，使用callback方式作为异步方法。
+
+**系统能力**：SystemCapability.Applications.Contacts
+
+**参数：**
+
+| 参数名   | 类型                                                  | 必填 | 说明                                 |
+| -------- | ----------------------------------------------------- | ---- | ------------------------------------ |
+| callback | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | 是   | 回调函数，返回选择的联系人对象数组。 |
+
+**示例：**
+
+  ```js
+  contact.selectContacts((err, data) => {
+      if (err) {
+          console.log(`selectContact callback: err->${JSON.stringify(err)}`);
+          return;
+      }
+      console.log(`selectContact callback: success data->${JSON.stringify(data)}`);
+  });
+  ```
+
+## contact.selectContacts<sup>10+</sup>
+
+selectContacts(): Promise&lt;Array&lt;Contact&gt;&gt;
+
+选择联系人，使用Promise方式作为异步方法。
+
+**系统能力**：SystemCapability.Applications.Contacts
+
+**返回值：**
+
+| 类型                                            | 说明                                              |
+| ----------------------------------------------- | ------------------------------------------------- |
+| Promise&lt;Array&lt;[Contact](#contact)&gt;&gt; | 以Promise形式返回结果，返回选择的联系人对象数组。 |
+
+**示例：**
+
+  ```js
+  let promise = contact.selectContacts();
+  promise.then((data) => {
+      console.log(`selectContact success: data->${JSON.stringify(data)}`);
+  }).catch((err) => {
+      console.error(`selectContact fail: err->${JSON.stringify(err)}`);
+  });
+  ```
+
+## contact.selectContacts<sup>10+</sup>
+
+selectContacts(options: ContactSelectionOptions, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
+
+选择联系人，使用callback方式作为异步方法。
+
+**系统能力**：SystemCapability.Applications.Contacts
+
+**参数：**
+
+| 参数名   | 类型                                                  | 必填 | 说明                                 |
+| -------- | ----------------------------------------------------- | ---- | ------------------------------------ |
+| options | ContactSelectionOptions | 是   | 选择联系人时的筛选条件 |
+| callback | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | 是   | 回调函数，返回选择的联系人对象数组。 |
+
+**示例：**
+
+  ```js
+  contact.selectContacts({
+    isMultiSelect:false
+  }, (err, data) => {
+      if (err) {
+          console.log(`selectContact callback: err->${JSON.stringify(err)}`);
+          return;
+      }
+      console.log(`selectContact callback: success data->${JSON.stringify(data)}`);
+  });
+  ```
+
+## contact.selectContacts<sup>10+</sup>
+
+selectContacts(options: ContactSelectionOptions): Promise&lt;Array&lt;Contact&gt;&gt;
+
+选择联系人，使用Promise方式作为异步方法。
+
+**系统能力**：SystemCapability.Applications.Contacts
+
+**返回值：**
+
+| 类型                                            | 说明                                              |
+| ----------------------------------------------- | ------------------------------------------------- |
+| options | ContactSelectionOptions | 是   | 选择联系人时的筛选条件 |
+| Promise&lt;Array&lt;[Contact](#contact)&gt;&gt; | 以Promise形式返回结果，返回选择的联系人对象数组。 |
+
+**示例：**
+
+  ```js
+  let promise = contact.selectContacts({isMultiSelect:false});
+  promise.then((data) => {
+      console.log(`selectContact success: data->${JSON.stringify(data)}`);
+  }).catch((err) => {
+      console.error(`selectContact fail: err->${JSON.stringify(err)}`);
+  });
+  ```
+
+## contact.queryContact<sup>10+</sup>
 
 queryContact(context: Context,  key: string,  callback: AsyncCallback&lt;Contact&gt;): void
 
@@ -1241,11 +1388,14 @@ queryContact(context: Context,  key: string,  callback: AsyncCallback&lt;Contact
   });
   ```
 
-## contact.queryContact(deprecated)<sup>7+<sup>
+## contact.queryContact(deprecated)<sup>7+</sup>
 
 queryContact(key: string,  callback: AsyncCallback&lt;Contact&gt;): void
 
 根据key查询联系人，使用callback方式作为异步方法。
+
+**说明**
+从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContact](#querycontact10)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -1271,7 +1421,7 @@ queryContact(key: string,  callback: AsyncCallback&lt;Contact&gt;): void
   ```
 
 
-## contact.queryContact<sup>10+<sup>
+## contact.queryContact<sup>10+</sup>
 
 queryContact(context: Context,  key: string, holder: Holder, callback: AsyncCallback&lt;Contact&gt;): void
 
@@ -1320,11 +1470,14 @@ queryContact(context: Context,  key: string, holder: Holder, callback: AsyncCall
   });
   ```
 
-## contact.queryContact(deprecated)<sup>7+<sup>
+## contact.queryContact(deprecated)<sup>7+</sup>
 
 queryContact(key: string, holder: Holder, callback: AsyncCallback&lt;Contact&gt;): void
 
 根据key查询联系人，使用callback方式作为异步方法。
+
+**说明**
+从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContact](#querycontact10)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -1354,7 +1507,7 @@ queryContact(key: string, holder: Holder, callback: AsyncCallback&lt;Contact&gt;
   });
   ```
 
-## contact.queryContact<sup>10+<sup>
+## contact.queryContact<sup>10+</sup>
 
 queryContact(context: Context,  key: string,  attrs: ContactAttributes, callback: AsyncCallback&lt;Contact&gt;): void
 
@@ -1401,11 +1554,14 @@ queryContact(context: Context,  key: string,  attrs: ContactAttributes, callback
   });
   ```
 
-## contact.queryContact(deprecated)<sup>7+<sup>
+## contact.queryContact(deprecated)<sup>7+</sup>
 
 queryContact(key: string,  attrs: ContactAttributes, callback: AsyncCallback&lt;Contact&gt;): void
 
 根据key查询联系人，使用callback方式作为异步方法。
+
+**说明**
+从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContact](#querycontact10)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -1433,7 +1589,7 @@ queryContact(key: string,  attrs: ContactAttributes, callback: AsyncCallback&lt;
   });
   ```
 
-## contact.queryContact<sup>10+<sup>
+## contact.queryContact<sup>10+</sup>
 
 queryContact(context: Context,  key: string, holder: Holder, attrs: ContactAttributes, callback: AsyncCallback&lt;Contact&gt;): void
 
@@ -1485,11 +1641,14 @@ queryContact(context: Context,  key: string, holder: Holder, attrs: ContactAttri
   });
 ```
 
-## contact.queryContact(deprecated)<sup>7+<sup>
+## contact.queryContact(deprecated)<sup>7+</sup>
 
 queryContact(key: string, holder: Holder, attrs: ContactAttributes, callback: AsyncCallback&lt;Contact&gt;): void
 
 根据key查询联系人，使用callback方式作为异步方法。
+
+**说明**
+从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContact](#querycontact10)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -1523,7 +1682,7 @@ queryContact(key: string, holder: Holder, attrs: ContactAttributes, callback: As
   ```
 
 
-## contact.queryContact<sup>10+<sup>
+## contact.queryContact<sup>10+</sup>
 
 queryContact(context: Context,  key: string, holder?: Holder, attrs?: ContactAttributes): Promise&lt;Contact&gt;
 
@@ -1578,11 +1737,14 @@ queryContact(context: Context,  key: string, holder?: Holder, attrs?: ContactAtt
   });
   ```
 
-## contact.queryContact(deprecated)<sup>7+<sup>
+## contact.queryContact(deprecated)<sup>7+</sup>
 
 queryContact(key: string, holder?: Holder, attrs?: ContactAttributes): Promise&lt;Contact&gt;
 
 根据key查询联系人，使用Promise方式作为异步方法。
+
+**说明**
+从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContact](#querycontact10)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -1618,7 +1780,7 @@ queryContact(key: string, holder?: Holder, attrs?: ContactAttributes): Promise&l
   });
   ```
 
-## contact.queryContacts<sup>10+<sup>
+## contact.queryContacts<sup>10+</sup>
 
 queryContacts(context: Context,  callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
@@ -1661,11 +1823,14 @@ queryContacts(context: Context,  callback: AsyncCallback&lt;Array&lt;Contact&gt;
   });
   ```
 
-## contact.queryContacts(deprecated)<sup>7+<sup>
+## contact.queryContacts(deprecated)<sup>7+</sup>
 
 queryContacts(callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
 查询所有联系人，使用callback方式作为异步方法。
+
+**说明**
+从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContacts](#querycontacts10)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -1689,7 +1854,7 @@ queryContacts(callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
   });
   ```
 
-## contact.queryContacts<sup>10+<sup>
+## contact.queryContacts<sup>10+</sup>
 
 queryContacts(context: Context,  holder: Holder, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
@@ -1737,11 +1902,14 @@ queryContacts(context: Context,  holder: Holder, callback: AsyncCallback&lt;Arra
   });
   ```
 
-## contact.queryContacts(deprecated)<sup>7+<sup>
+## contact.queryContacts(deprecated)<sup>7+</sup>
 
 queryContacts(holder: Holder, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
 查询所有联系人，使用callback方式作为异步方法。
+
+**说明**
+从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContacts](#querycontacts10)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -1770,7 +1938,7 @@ queryContacts(holder: Holder, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt
   });
   ```
 
-## contact.queryContacts<sup>10+<sup>
+## contact.queryContacts<sup>10+</sup>
 
 queryContacts(context: Context,  attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
@@ -1816,11 +1984,14 @@ queryContacts(context: Context,  attrs: ContactAttributes, callback: AsyncCallba
   });
   ```
 
-## contact.queryContacts(deprecated)<sup>7+<sup>
+## contact.queryContacts(deprecated)<sup>7+</sup>
 
 queryContacts(attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
 查询所有联系人，使用callback方式作为异步方法。
+
+**说明**
+从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContacts](#querycontacts10)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -1847,7 +2018,7 @@ queryContacts(attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Cont
   });
   ```
 
-## contact.queryContacts<sup>10+<sup>
+## contact.queryContacts<sup>10+</sup>
 
 queryContacts(context: Context,  holder: Holder, attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
@@ -1898,11 +2069,14 @@ queryContacts(context: Context,  holder: Holder, attrs: ContactAttributes, callb
   });
   ```
 
-## contact.queryContacts(deprecated)<sup>7+<sup>
+## contact.queryContacts(deprecated)<sup>7+</sup>
 
 queryContacts(holder: Holder, attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
 查询所有联系人，使用callback方式作为异步方法。
+
+**说明**
+从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContacts](#querycontacts10)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -1934,7 +2108,7 @@ queryContacts(holder: Holder, attrs: ContactAttributes, callback: AsyncCallback&
   });
   ```
 
-## contact.queryContacts<sup>10+<sup>
+## contact.queryContacts<sup>10+</sup>
 
 queryContacts(context: Context,  holder?: Holder, attrs?: ContactAttributes): Promise&lt;Array&lt;Contact&gt;&gt;
 
@@ -1988,11 +2162,14 @@ queryContacts(context: Context,  holder?: Holder, attrs?: ContactAttributes): Pr
   });
   ```
 
-## contact.queryContacts(deprecated)<sup>7+<sup>
+## contact.queryContacts(deprecated)<sup>7+</sup>
 
 queryContacts(holder?: Holder, attrs?: ContactAttributes): Promise&lt;Array&lt;Contact&gt;&gt;
 
 查询所有联系人，使用Promise方式作为异步方法。
+
+**说明**
+从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContacts](#querycontacts10)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -2028,7 +2205,7 @@ queryContacts(holder?: Holder, attrs?: ContactAttributes): Promise&lt;Array&lt;C
   });
 ```
 
-## contact.queryContactsByPhoneNumber<sup>10+<sup>
+## contact.queryContactsByPhoneNumber<sup>10+</sup>
 
 queryContactsByPhoneNumber(context: Context,  phoneNumber: string, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
@@ -2072,11 +2249,14 @@ queryContactsByPhoneNumber(context: Context,  phoneNumber: string, callback: Asy
   });
   ```
 
-## contact.queryContactsByPhoneNumber(deprecated)<sup>7+<sup>
+## contact.queryContactsByPhoneNumber(deprecated)<sup>7+</sup>
 
 queryContactsByPhoneNumber(phoneNumber: string, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
 根据电话号码查询联系人，使用callback方式作为异步方法。
+
+**说明**
+从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContactsByPhoneNumber](#querycontactsbyphonenumber10)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -2102,7 +2282,7 @@ queryContactsByPhoneNumber(phoneNumber: string, callback: AsyncCallback&lt;Array
   ```
 
 
-## contact.queryContactsByPhoneNumber<sup>10+<sup>
+## contact.queryContactsByPhoneNumber<sup>10+</sup>
 
 queryContactsByPhoneNumber(context: Context,  phoneNumber: string, holder: Holder, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
@@ -2151,11 +2331,14 @@ queryContactsByPhoneNumber(context: Context,  phoneNumber: string, holder: Holde
   });
   ```
 
-## contact.queryContactsByPhoneNumber(deprecated)<sup>7+<sup>
+## contact.queryContactsByPhoneNumber(deprecated)<sup>7+</sup>
 
 queryContactsByPhoneNumber(phoneNumber: string, holder: Holder, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
 根据电话号码查询联系人，使用callback方式作为异步方法。
+
+**说明**
+从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContactsByPhoneNumber](#querycontactsbyphonenumber10)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -2185,7 +2368,7 @@ queryContactsByPhoneNumber(phoneNumber: string, holder: Holder, callback: AsyncC
   });
   ```
 
-## contact.queryContactsByPhoneNumber<sup>10+<sup>
+## contact.queryContactsByPhoneNumber<sup>10+</sup>
 
 queryContactsByPhoneNumber(context: Context,  phoneNumber: string, attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
@@ -2232,11 +2415,14 @@ queryContactsByPhoneNumber(context: Context,  phoneNumber: string, attrs: Contac
   });
   ```
 
-## contact.queryContactsByPhoneNumber(deprecated)<sup>7+<sup>
+## contact.queryContactsByPhoneNumber(deprecated)<sup>7+</sup>
 
 queryContactsByPhoneNumber(phoneNumber: string, attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
 根据电话号码查询联系人，使用callback方式作为异步方法。
+
+**说明**
+从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContactsByPhoneNumber](#querycontactsbyphonenumber10)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -2264,7 +2450,7 @@ queryContactsByPhoneNumber(phoneNumber: string, attrs: ContactAttributes, callba
   });
   ```
 
-## contact.queryContactsByPhoneNumber<sup>10+<sup>
+## contact.queryContactsByPhoneNumber<sup>10+</sup>
 
 queryContactsByPhoneNumber(context: Context,  phoneNumber: string, holder: Holder, attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
@@ -2316,11 +2502,14 @@ queryContactsByPhoneNumber(context: Context,  phoneNumber: string, holder: Holde
   });
   ```
 
-## contact.queryContactsByPhoneNumber(deprecated)<sup>7+<sup>
+## contact.queryContactsByPhoneNumber(deprecated)<sup>7+</sup>
 
 queryContactsByPhoneNumber(phoneNumber: string, holder: Holder, attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
 根据电话号码查询联系人，使用callback方式作为异步方法。
+
+**说明**
+从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContactsByPhoneNumber](#querycontactsbyphonenumber10)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -2353,7 +2542,7 @@ queryContactsByPhoneNumber(phoneNumber: string, holder: Holder, attrs: ContactAt
   });
   ```
 
-## contact.queryContactsByPhoneNumber<sup>10+<sup>
+## contact.queryContactsByPhoneNumber<sup>10+</sup>
 
 queryContactsByPhoneNumber(context: Context,  phoneNumber: string, holder?: Holder, attrs?: ContactAttributes): Promise&lt;Array&lt;Contact&gt;&gt;
 
@@ -2409,11 +2598,14 @@ queryContactsByPhoneNumber(context: Context,  phoneNumber: string, holder?: Hold
   });
   ```
 
-## contact.queryContactsByPhoneNumber(deprecated)<sup>7+<sup>
+## contact.queryContactsByPhoneNumber(deprecated)<sup>7+</sup>
 
 queryContactsByPhoneNumber(phoneNumber: string, holder?: Holder, attrs?: ContactAttributes): Promise&lt;Array&lt;Contact&gt;&gt;
 
 根据电话号码查询联系人，使用Promise方式作为异步方法。
+
+**说明**
+从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContactsByPhoneNumber](#querycontactsbyphonenumber10)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -2450,7 +2642,7 @@ queryContactsByPhoneNumber(phoneNumber: string, holder?: Holder, attrs?: Contact
   });
   ```
 
-## contact.queryContactsByEmail<sup>10+<sup>
+## contact.queryContactsByEmail<sup>10+</sup>
 
 queryContactsByEmail(context: Context,  email: string, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
@@ -2494,11 +2686,14 @@ queryContactsByEmail(context: Context,  email: string, callback: AsyncCallback&l
   });
   ```
 
-## contact.queryContactsByEmail(deprecated)<sup>7+<sup>
+## contact.queryContactsByEmail(deprecated)<sup>7+</sup>
 
 queryContactsByEmail(email: string, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
 根据email查询联系人，使用callback方式作为异步方法。
+
+**说明**
+从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContactsByEmail](#querycontactsbyemail10)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -2523,7 +2718,7 @@ queryContactsByEmail(email: string, callback: AsyncCallback&lt;Array&lt;Contact&
   });
   ```
 
-## contact.queryContactsByEmail<sup>10+<sup>
+## contact.queryContactsByEmail<sup>10+</sup>
 
 queryContactsByEmail(context: Context,  email: string, holder: Holder, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
@@ -2572,11 +2767,14 @@ queryContactsByEmail(context: Context,  email: string, holder: Holder, callback:
   });
   ```
 
-## contact.queryContactsByEmail(deprecated)<sup>7+<sup>
+## contact.queryContactsByEmail(deprecated)<sup>7+</sup>
 
 queryContactsByEmail(email: string, holder: Holder, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
 根据email查询联系人，使用callback方式作为异步方法。
+
+**说明**
+从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContactsByEmail](#querycontactsbyemail10)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -2606,7 +2804,7 @@ queryContactsByEmail(email: string, holder: Holder, callback: AsyncCallback&lt;A
   });
   ```
 
-## contact.queryContactsByEmail<sup>10+<sup>
+## contact.queryContactsByEmail<sup>10+</sup>
 
 queryContactsByEmail(context: Context,  email: string, attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
@@ -2653,11 +2851,14 @@ queryContactsByEmail(context: Context,  email: string, attrs: ContactAttributes,
   });
   ```
 
-## contact.queryContactsByEmail(deprecated)<sup>7+<sup>
+## contact.queryContactsByEmail(deprecated)<sup>7+</sup>
 
 queryContactsByEmail(email: string, attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
 根据email查询联系人，使用callback方式作为异步方法。
+
+**说明**
+从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContactsByEmail](#querycontactsbyemail10)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -2685,7 +2886,7 @@ queryContactsByEmail(email: string, attrs: ContactAttributes, callback: AsyncCal
   });
   ```
 
-## contact.queryContactsByEmail<sup>10+<sup>
+## contact.queryContactsByEmail<sup>10+</sup>
 
 queryContactsByEmail(context: Context,  email: string, holder: Holder, attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
@@ -2737,11 +2938,14 @@ queryContactsByEmail(context: Context,  email: string, holder: Holder, attrs: Co
   });
   ```
 
-## contact.queryContactsByEmail(deprecated)<sup>7+<sup>
+## contact.queryContactsByEmail(deprecated)<sup>7+</sup>
 
 queryContactsByEmail(email: string, holder: Holder, attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
 根据email查询联系人，使用callback方式作为异步方法。
+
+**说明**
+从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContactsByEmail](#querycontactsbyemail10)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -2774,7 +2978,7 @@ queryContactsByEmail(email: string, holder: Holder, attrs: ContactAttributes, ca
   });
   ```
 
-## contact.queryContactsByEmail<sup>10+<sup>
+## contact.queryContactsByEmail<sup>10+</sup>
 
 queryContactsByEmail(context: Context,  email: string, holder?: Holder, attrs?: ContactAttributes): Promise&lt;Array&lt;Contact&gt;&gt;
 
@@ -2830,11 +3034,14 @@ queryContactsByEmail(context: Context,  email: string, holder?: Holder, attrs?: 
   });
   ```
 
-## contact.queryContactsByEmail(deprecated)<sup>7+<sup>
+## contact.queryContactsByEmail(deprecated)<sup>7+</sup>
 
 queryContactsByEmail(email: string, holder?: Holder, attrs?: ContactAttributes): Promise&lt;Array&lt;Contact&gt;&gt;
 
 根据email查询联系人，使用Promise方式作为异步方法。
+
+**说明**
+从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContactsByEmail](#querycontactsbyemail10)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -2871,7 +3078,7 @@ queryContactsByEmail(email: string, holder?: Holder, attrs?: ContactAttributes):
   });
   ```
 
-## contact.queryGroups<sup>10+<sup>
+## contact.queryGroups<sup>10+</sup>
 
 queryGroups(context: Context,  callback: AsyncCallback&lt;Array&lt;Group&gt;&gt;): void
 
@@ -2914,11 +3121,14 @@ queryGroups(context: Context,  callback: AsyncCallback&lt;Array&lt;Group&gt;&gt;
   });
   ```
 
-## contact.queryGroups(deprecated)<sup>7+<sup>
+## contact.queryGroups(deprecated)<sup>7+</sup>
 
 queryGroups(callback: AsyncCallback&lt;Array&lt;Group&gt;&gt;): void
 
 查询联系人的所有群组，使用callback方式作为异步方法。
+
+**说明**
+从API version 7 开始支持，从API 10 开始废弃，建议使用[queryGroups](#querygroups10)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -2942,7 +3152,7 @@ queryGroups(callback: AsyncCallback&lt;Array&lt;Group&gt;&gt;): void
   });
   ```
 
-## contact.queryGroups<sup>10+<sup>
+## contact.queryGroups<sup>10+</sup>
 
 queryGroups(context: Context,  holder: Holder, callback: AsyncCallback&lt;Array&lt;Group&gt;&gt;): void
 
@@ -2990,11 +3200,14 @@ queryGroups(context: Context,  holder: Holder, callback: AsyncCallback&lt;Array&
   });
   ```
 
-## contact.queryGroups(deprecated)<sup>7+<sup>
+## contact.queryGroups(deprecated)<sup>7+</sup>
 
 queryGroups(holder: Holder, callback: AsyncCallback&lt;Array&lt;Group&gt;&gt;): void
 
 查询联系人的所有群组，使用callback方式作为异步方法。
+
+**说明**
+从API version 7 开始支持，从API 10 开始废弃，建议使用[queryGroups](#querygroups10)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -3023,7 +3236,7 @@ queryGroups(holder: Holder, callback: AsyncCallback&lt;Array&lt;Group&gt;&gt;): 
   });
   ```
 
-## contact.queryGroups<sup>10+<sup>
+## contact.queryGroups<sup>10+</sup>
 
 queryGroups(context: Context,  holder?: Holder): Promise&lt;Array&lt;Group&gt;&gt;
 
@@ -3075,11 +3288,14 @@ queryGroups(context: Context,  holder?: Holder): Promise&lt;Array&lt;Group&gt;&g
   });
   ```
 
-## contact.queryGroups(deprecated)<sup>7+<sup>
+## contact.queryGroups(deprecated)<sup>7+</sup>
 
 queryGroups(holder?: Holder): Promise&lt;Array&lt;Group&gt;&gt;
 
 查询联系人的所有群组，使用Promise方式作为异步方法。
+
+**说明**
+从API version 7 开始支持，从API 10 开始废弃，建议使用[queryGroups](#querygroups10)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -3112,7 +3328,7 @@ queryGroups(holder?: Holder): Promise&lt;Array&lt;Group&gt;&gt;
   });
   ```
 
-## contact.queryHolders<sup>10+<sup>
+## contact.queryHolders<sup>10+</sup>
 
 queryHolders(context: Context,  callback: AsyncCallback&lt;Array&lt;Holder&gt;&gt;): void
 
@@ -3155,11 +3371,14 @@ queryHolders(context: Context,  callback: AsyncCallback&lt;Array&lt;Holder&gt;&g
   });
   ```
 
-## contact.queryHolders(deprecated)<sup>7+<sup>
+## contact.queryHolders(deprecated)<sup>7+</sup>
 
 queryHolders(callback: AsyncCallback&lt;Array&lt;Holder&gt;&gt;): void
 
 查询所有创建联系人的应用信息，使用callback方式作为异步方法。
+
+**说明**
+从API version 7 开始支持，从API 10 开始废弃，建议使用[queryHolders](#queryholders10)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -3183,7 +3402,7 @@ queryHolders(callback: AsyncCallback&lt;Array&lt;Holder&gt;&gt;): void
   });
   ```
 
-## contact.queryHolders<sup>10+<sup>
+## contact.queryHolders<sup>10+</sup>
 
 queryHolders(context: Context ): Promise&lt;Array&lt;Holder&gt;&gt;
 
@@ -3230,11 +3449,14 @@ queryHolders(context: Context ): Promise&lt;Array&lt;Holder&gt;&gt;
   });
   ```
 
-## contact.queryHolders(deprecated)<sup>7+<sup>
+## contact.queryHolders(deprecated)<sup>7+</sup>
 
 queryHolders(): Promise&lt;Array&lt;Holder&gt;&gt;
 
 查询所有创建联系人的应用信息，使用Promise方式作为异步方法。
+
+**说明**
+从API version 7 开始支持，从API 10 开始废弃，建议使用[queryHolders](#queryholders10)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -3257,7 +3479,7 @@ queryHolders(): Promise&lt;Array&lt;Holder&gt;&gt;
   });
   ```
 
-## contact.queryKey<sup>10+<sup>
+## contact.queryKey<sup>10+</sup>
 
 queryKey(context: Context,  id: number, callback: AsyncCallback&lt;string&gt;): void
 
@@ -3301,11 +3523,14 @@ queryKey(context: Context,  id: number, callback: AsyncCallback&lt;string&gt;): 
   });
   ```
 
-## contact.queryKey(deprecated)<sup>7+<sup>
+## contact.queryKey(deprecated)<sup>7+</sup>
 
 queryKey(id: number, callback: AsyncCallback&lt;string&gt;): void
 
 根据联系人的id查询联系人的key，使用callback方式作为异步方法。
+
+**说明**
+从API version 7 开始支持，从API 10 开始废弃，建议使用[queryKey](#querykey10)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -3330,7 +3555,7 @@ queryKey(id: number, callback: AsyncCallback&lt;string&gt;): void
   });
   ```
 
-## contact.queryKey<sup>10+<sup>
+## contact.queryKey<sup>10+</sup>
 
 queryKey(context: Context,  id: number, holder: Holder, callback: AsyncCallback&lt;string&gt;): void
 
@@ -3379,11 +3604,14 @@ queryKey(context: Context,  id: number, holder: Holder, callback: AsyncCallback&
   });
   ```
 
-## contact.queryKey(deprecated)<sup>7+<sup>
+## contact.queryKey(deprecated)<sup>7+</sup>
 
 queryKey(id: number, holder: Holder, callback: AsyncCallback&lt;string&gt;): void
 
 根据联系人的id查询联系人的key，使用callback方式作为异步方法。
+
+**说明**
+从API version 7 开始支持，从API 10 开始废弃，建议使用[queryKey](#querykey10)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -3413,7 +3641,7 @@ queryKey(id: number, holder: Holder, callback: AsyncCallback&lt;string&gt;): voi
   });
   ```
 
-## contact.queryKey<sup>10+<sup>
+## contact.queryKey<sup>10+</sup>
 
 queryKey(context: Context,  id: number, holder?: Holder): Promise&lt;string&gt;
 
@@ -3466,11 +3694,14 @@ queryKey(context: Context,  id: number, holder?: Holder): Promise&lt;string&gt;
   });
   ```
 
-## contact.queryKey(deprecated)<sup>7+<sup>
+## contact.queryKey(deprecated)<sup>7+</sup>
 
 queryKey(id: number, holder?: Holder): Promise&lt;string&gt;
 
 根据联系人的id查询联系人的key，使用Promise方式作为异步方法。
+
+**说明**
+从API version 7 开始支持，从API 10 开始废弃，建议使用[queryKey](#querykey10)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
