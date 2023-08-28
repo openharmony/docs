@@ -99,9 +99,9 @@ import AbilityConstant from '@ohos.app.ability.AbilityConstant'
 - Define and register the [ErrorObserver](../reference/apis/js-apis-inner-application-errorObserver.md) callback. For details about its usage, see [errorManager](../reference/apis/js-apis-app-ability-errorManager.md).
 
 ```ts
-  export let abilityWant : Want  // file1
+import * as GlobalWant from "../file1"
+export let abilityWant : Want  // file1
 
-  import * as G form "../file1"
   let registerId = -1;
   let callback: Callback = {
       onUnhandledException(errMsg: string): void {
@@ -141,10 +141,9 @@ After the callback triggers **appRecovery.saveAppState()**, **onSaveState(state,
 After the callback triggers **appRecovery.restartApp()**, the application is restarted. After the restart, **onCreate(want, launchParam)** of **MainAbility** is called, and the saved data is in **parameters** of **want**.
 
 ```ts
+import * as GlobalWant from "../file1"
 export let abilityWant : Want  // file1
 
-import * as GlobalWant form "../file1"
-storage: LocalStorage
 onCreate(want, launchParam) {
     console.log("[Demo] MainAbility onCreate")
     GlobalWant.abilityWant = want;
@@ -160,9 +159,9 @@ onCreate(want, launchParam) {
 - Unregister the **ErrorObserver** callback.
 
 ```ts
+import * as GlobalWant from "../file1"
 export let abilityWant : Want  // file1
 
-import * as G form "../file1"
 onWindowStageDestroy() {
     // Main window is destroyed, release UI related resources
     console.log("[Demo] MainAbility onWindowStageDestroy")
@@ -180,26 +179,25 @@ onWindowStageDestroy() {
 This is triggered by the recovery framework. You do not need to register an **ErrorObserver** callback. You only need to implement **onSaveState** for application state saving and **onCreate** for data restore.
 
 ```ts
+import * as GlobalWant from "../file1"
 export let abilityWant : Want  // file1
 
-import * as GlobalWant form "../file1"
 export default class MainAbility extends Ability {
-    onCreate(want: Want, launchParam:AbilityConstant.LaunchParam):void {
-        console.log("[Demo] MainAbility onCreate")
-        GlobalWant.abilityWant = want;
-        if (launchParam.launchReason == AbilityConstant.LaunchReason.APP_RECOVERY) {
-            this.storage = new LocalStorage();
-            let recoveryData: string = want.parameters["myData"];
-            this.storage.setOrCreate<string>("myData", recoveryData);
-            this.context.restoreWindowStage(this.storage);
-        }
+  onCreate(want: Want, launchParam:AbilityConstant.LaunchParam):void {
+    console.log("[Demo] MainAbility onCreate")
+    GlobalWant.abilityWant = want;
+    if (launchParam.launchReason == AbilityConstant.LaunchReason.APP_RECOVERY) {
+      this.storage = new LocalStorage();
+      let recoveryData: string = want.parameters["myData"];
+      this.storage.setOrCreate<string>("myData", recoveryData);
+      this.context.restoreWindowStage(this.storage);
     }
-
-    onSaveState(state: AbilityConstant.StateType, wantParams: { [key: string]: Object }) : AbilityConstant.OnSaveResult{
-        // Ability has called to save app data
-        console.log("[Demo] MainAbility onSaveState")
-        wantParams["myData"] = "my1234567";
-        return AbilityConstant.OnSaveResult.ALL_AGREE;
-    }
+  }
+  onSaveState(reason: AbilityConstant.StateType, wantParam: Record<string, Object>): AbilityConstant.OnSaveResult {
+    // Ability has called to save app data
+    console.log("[Demo] MainAbility onSaveState")
+    wantParam["myData"] = "my1234567";
+    return AbilityConstant.OnSaveResult.ALL_AGREE;
+  }
 }
 ```
