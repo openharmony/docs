@@ -35,10 +35,6 @@ on(type: 'block' | 'succeed' | 'fail' | 'cancel', callback: Callback&lt;void&gt;
   | -------- | -------- |
   | Promise&lt;PrintTask&gt; | 打印完成结果 |
 
-| **错误码ID** | **错误信息** |
-| -------- | -------- |
-| 201  | 无权限 |
-
 **示例：**
 
 ```js
@@ -84,10 +80,6 @@ off(type: 'block' | 'succeed' | 'fail' | 'cancel', callback?: Callback&lt;void&g
   | -------- | -------- |
   | Promise&lt;PrintTask&gt; | 打印完成结果 |
 
-| **错误码ID** | **错误信息** |
-| -------- | -------- |
-| 201  | 无权限 |
-
 **示例：**
 
 ```js
@@ -131,10 +123,6 @@ print(files: Array&lt;string&gt;, callback: AsyncCallback&lt;PrintTask&gt;): voi
 | file | Array&lt;string&gt; | 是 | 待打印文件列表，仅支持图片和pdf |
 | callback| AsyncCallback&lt;PrintTask&gt; | 是 | 异步获取打印完成之后的回调 |
 
-| **错误码ID** | **错误信息** |
-| -------- | -------- |
-| 201  | 无权限 |
-
 **示例：**
 
 ```js
@@ -175,10 +163,6 @@ print(files: Array&lt;string&gt;): Promise&lt;PrintTask&gt;
   | **类型** | **说明** |
   | -------- | -------- |
   | Promise&lt;PrintTask&gt; | 打印完成结果 |
-
-| **错误码ID** | **错误信息** |
-| -------- | -------- |
-| 201  | 无权限 |
 
 **示例：**
 
