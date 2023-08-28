@@ -38,7 +38,7 @@ import photoAccessHelper from '@ohos.file.photoAccessHelper';
 
 try {
   let albumName = 'albumName';
-  let album = await phAccessHelper.createAlbum(albumName);
+  let album: photoAccessHelper.Album = await phAccessHelper.createAlbum(albumName);
   console.info('createAlbum successfully, album: ' + album.albumName + ' album uri: ' + album.albumUri);
 } catch (err) {
   console.error('createAlbum failed with err: ' + err);
@@ -67,7 +67,7 @@ import dataSharePredicates from '@ohos.data.dataSharePredicates';
 import photoAccessHelper from '@ohos.file.photoAccessHelper';
 
 let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
-let albumName: photoAccessHelper.AlbumKeys  = photoAccessHelper.AlbumKey.ALBUM_NAME;
+let albumName: photoAccessHelper.AlbumKeys.ALBUM_NAME  = photoAccessHelper.AlbumKey.ALBUM_NAME;
 predicates.equalTo(albumName, 'albumName');
 let fetchOptions: photoAccessHelper.FetchOptions = {
   fetchColumns: [],
@@ -112,7 +112,7 @@ import dataSharePredicates from '@ohos.data.dataSharePredicates';
 import photoAccessHelper from '@ohos.file.photoAccessHelper';
 
 let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
-let albumName: photoAccessHelper..AlbumKeys = photoAccessHelper.AlbumKey.ALBUM_NAME;
+let albumName: photoAccessHelper..AlbumKeys.ALBUM_NAME = photoAccessHelper.AlbumKey.ALBUM_NAME;
 predicates.equalTo(albumName, 'albumName');
 let fetchOptions: photoAccessHelper.FetchOptions = {
   fetchColumns: [],
@@ -157,7 +157,7 @@ import dataSharePredicates from '@ohos.data.dataSharePredicates';
 import photoAccessHelper from '@ohos.file.photoAccessHelper';
 
 let albumPredicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
-let albumName: photoAccessHelper..AlbumKeys = photoAccessHelper.AlbumKey.ALBUM_NAME;
+let albumName: photoAccessHelper..AlbumKeys.ALBUM_NAME = photoAccessHelper.AlbumKey.ALBUM_NAME;
 albumPredicates.equalTo(albumName, 'albumName');
 let albumFetchOptions: dataSharePredicates.FetchOptions = {
   fetchColumns: [],
@@ -265,7 +265,7 @@ import dataSharePredicates from '@ohos.data.dataSharePredicates';
 import photoAccessHelper from '@ohos.file.photoAccessHelper';
 
 let albumPredicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
-let albumName: photoAccessHelper.AlbumKeys = photoAccessHelper.AlbumKey.ALBUM_NAME;
+let albumName: photoAccessHelper.AlbumKeys.ALBUM_NAME = photoAccessHelper.AlbumKey.ALBUM_NAME;
 albumPredicates.equalTo(albumName, 'albumName');
 let albumFetchOptions: photoAccessHelper.FetchOptions = {
   fetchColumns: [],
@@ -316,7 +316,7 @@ import dataSharePredicates from '@ohos.data.dataSharePredicates';
 import photoAccessHelper from '@ohos.file.photoAccessHelper';
 
 let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
-let albumName: photoAccessHelper.AlbumKeys = photoAccessHelper.AlbumKey.ALBUM_NAME;
+let albumName: photoAccessHelper.AlbumKeys..ALBUM_NAME = photoAccessHelper.AlbumKey.ALBUM_NAME;
 predicates.equalTo(albumName, '%albumName%');
 let fetchOptions: photoAccessHelper.FetchOptions = {
   fetchColumns: [],

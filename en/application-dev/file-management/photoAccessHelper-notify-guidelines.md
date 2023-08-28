@@ -47,7 +47,7 @@ try {
   let fileAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
   console.info('getAssets fileAsset.uri : ' + fileAsset.uri);
 
-  let onCallback = (changeData:dataSharePredicates.ChangeData) => {
+  let onCallback = (changeData:photoAccessHelper.ChangeData) => {
     console.info('onCallback successfully, changData: ' + JSON.stringify(changeData));
   }
   phAccessHelper.registerChange(fileAsset.uri, false, onCallback);
@@ -137,7 +137,7 @@ Example: Register a listener for all file assets. When an observed file asset is
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
 import photoAccessHelper from '@ohos.file.photoAccessHelper';
 
-let onCallback = (changeData:  dataSharePredicates.ChangeData) => {
+let onCallback = (changeData: photoAccessHelper.ChangeData) => {
   console.info('onCallback successfully, changData: ' + JSON.stringify(changeData));
 }
 phAccessHelper.registerChange(photoAccessHelper.DefaultChangeUri.DEFAULT_PHOTO_URI, true, onCallback);
