@@ -1,4 +1,4 @@
-# @ohos.data.uniformTypeDescriptor（标准化数据定义与描述）
+# @ohos.data.uniformTypeDescriptor (标准化数据定义与描述)
 
 本模块描述OpenHarmony标准化数据类型的抽象定义。
 
