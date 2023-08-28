@@ -26,6 +26,7 @@
        })
        .onLoad(() => {                                                                  
          // 设置Surface宽高（1920*1080），预览尺寸设置参考前面 previewProfilesArray 获取的当前设备所支持的预览分辨率大小去设置
+         // 预览流与录像输出流的分辨率的宽高比要保持一致
          this.mXComponentController.setXComponentSurfaceSize({surfaceWidth:1920,surfaceHeight:1080});
          // 获取Surface ID
          globalThis.surfaceId = this.mXComponentController.getXComponentSurfaceId();
