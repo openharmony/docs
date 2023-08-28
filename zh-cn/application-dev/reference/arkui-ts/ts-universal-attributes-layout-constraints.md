@@ -11,7 +11,7 @@
 
 | 名称              | 参数说明   | 描述                                       |
 | --------------- | ------ | ---------------------------------------- |
-| aspectRatio     | number | 指定当前组件的宽高比，aspectRatio = width/height。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| aspectRatio     | number | 指定当前组件的宽高比，aspectRatio = width/height。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>API version 9及以前，默认值为：1.0。<br/>API version 10：无默认值。<br/>**说明：**<br/>该属性在不设置值或者设置非法值时不生效。<br/>例如，Row只设置宽度且没有子组件，aspectRatio不设置值或者设置成负数时，此时Row高度为0。 |
 | displayPriority | number | 设置当前组件在布局容器中显示的优先级，当父容器空间不足时，低优先级的组件会被隐藏。<br/>小数点后的数字不作优先级区分，即区间为[x, x + 1)内的数字视为相同优先级。例如：1.0与1.9为同一优先级。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：**<br/>仅在Row/Column/Flex(单行)容器组件中生效。 |
 
 ## 示例
