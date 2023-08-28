@@ -13,15 +13,17 @@ import print from '@ohos.print';
 
 ## PrintTask
 
-**需要权限：** ohos.permission.PRINT
-
-**系统能力：** SystemCapability.Print.PrintFramework
+打印任务完成后的事件监听回调接口类
 
 ### on
 
 on(type: 'block' | 'succeed' | 'fail' | 'cancel', callback: Callback&lt;void&gt;): void
 
 注册打印完成后的监听，使用callback回调。
+
+**需要权限：** ohos.permission.PRINT
+
+**系统能力：** SystemCapability.Print.PrintFramework
 
 **参数：**
 | **参数名** | **类型** | **必填** | **说明** |
@@ -67,6 +69,10 @@ print.print(file).then((printTask) => {
 off(type: 'block' | 'succeed' | 'fail' | 'cancel', callback?: Callback&lt;void&gt;): void
 
 取消打印完成后的监听，使用callback回调。
+
+**需要权限：** ohos.permission.PRINT
+
+**系统能力：** SystemCapability.Print.PrintFramework
 
 **参数：**
 | **参数名** | **类型** | **必填** | **说明** |
