@@ -52,9 +52,10 @@ RichText(content:string)
 | style | 属性规定元素的行内样式，写在标签内部，在使用的时候需用引号来进行区分，并以; 间隔样式，style='width: 500px;height: 500px;border: 1px soild;margin: 0 auto;'。 | \<h1 style='color:blue;text-align:center'>这是一个标题\</h1>\<p style='color:green'>这是一个段落。\</p> |
 | \<script>\</script> | 用于定义客户端脚本，比如JavaScript。 | \<script>document.write("Hello World!")\</script> |
 
-## 注释
-在<font/>标签中font size能够设置的值只有1到7的数字，默认值是3，由于<font/>标签在一些版本中不被支持，所以不建议使用此标签，请使用CSS代替。
-CSS语法：<p style="font-size: 35px; font-family: verdana; color: rgb(24,78,228)">
+>  **说明：**
+>
+> 在<font/>标签中font size能够设置的值只有1到7的数字，默认值是3，由于<font/>标签在一些版本中不被支持，所以不建议使用此标签，请使用CSS代替。
+> CSS语法：<p style="font-size: 35px; font-family: verdana; color: rgb(24,78,228)">
 
 ## 使用场景
 
