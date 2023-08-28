@@ -7,7 +7,7 @@
 详细的API说明请参考[Camera API参考](../reference/apis/js-apis-camera.md)。
 
 1. 导入media模块。创建拍照输出流的SurfaceId以及拍照输出的数据，都需要用到系统提供的[media接口](../reference/apis/js-apis-media.md)能力，导入media接口的方法如下。
-     
+   
    ```ts
    import media from '@ohos.multimedia.media';
    ```
@@ -15,7 +15,7 @@
 2. 创建Surface。
    
    系统提供的media接口可以创建一个录像AVRecorder实例，通过该实例的getInputSurface方法获取SurfaceId，与录像输出流做关联，处理录像输出流输出的数据。
- 
+
    ```ts
    let avRecorder: media.AVRecorder;
    media.createAVRecorder((error: BusinessError, recorder: media.AVRecorder) => {
@@ -45,16 +45,18 @@
    ```
 
 3. 创建录像输出流。
-     
+   
     通过CameraOutputCapability类中的videoProfiles，可获取当前设备支持的录像输出流。然后，定义创建录像的参数，通过createVideoOutput方法创建录像输出流。
-     
+    
+   **注**：预览流与录像输出流的分辨率的宽高比要保持一致，如示例代码中宽高比为640:480 = 4:3，则需要预览流中的分辨率的宽高比也为4:3，如分辨率选择640:480，或960:720，或1440:1080，以此类推
+   
    ```ts
    let videoProfilesArray: Array<camera.VideoProfile> = cameraOutputCapability.videoProfiles;
    if (!videoProfilesArray) {
      console.error("createOutput videoProfilesArray == null || undefined");
    } 
    
-   // 创建视频录制的参数
+   // 创建视频录制的参数，预览流与录像输出流的分辨率的宽(videoFrameWidth)高(videoFrameHeight)比要保持一致
    let videoConfig = {
      videoSourceType: media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_YUV,
      profile: {
@@ -88,7 +90,7 @@
      console.error('Failed to create the videoOutput instance. errorCode = ' + error.code);
    }
    ```
-
+   
 4. 开始录像。
    
    先通过videoOutput的start方法启动录像输出流，再通过avRecorder的start方法开始录像。
@@ -108,9 +110,9 @@
    ```
 
 5. 停止录像。
-     
+   
    先通过avRecorder的stop方法停止录像，再通过videoOutput的stop方法停止录像输出流。
-     
+   
    ```ts
    videoRecorder.stop().then(() => {
      console.info('stop success');
@@ -131,7 +133,7 @@
 在相机应用开发过程中，可以随时监听录像输出流状态，包括录像开始、录像结束、录像流输出的错误。
 
 - 通过注册固定的frameStart回调函数获取监听录像开始结果，videoOutput创建成功时即可监听，录像第一次曝光时触发，有该事件返回结果则认为录像开始。
-    
+  
   ```ts
   videoOutput.on('frameStart', () => {
     console.info('Video frame started');
@@ -139,7 +141,7 @@
   ```
 
 - 通过注册固定的frameEnd回调函数获取监听录像结束结果，videoOutput创建成功时即可监听，录像完成最后一帧时触发，有该事件返回结果则认为录像流已结束。
-    
+  
   ```ts
   videoOutput.on('frameEnd', () => {
     console.info('Video frame ended');
@@ -147,7 +149,7 @@
   ```
 
 - 通过注册固定的error回调函数获取监听录像输出错误结果，callback返回预览输出接口使用错误时对应的错误码，错误码类型参见[CameraErrorCode](../reference/apis/js-apis-camera.md#cameraerrorcode)。
-    
+  
   ```ts
   videoOutput.on('error', (error: BusinessError) => {
     console.info(`Video output error code: ${error.code}`);
