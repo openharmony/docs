@@ -8,8 +8,9 @@
 
 ## 导入模块
 
-```js
+```ts
 import picker from '@ohos.file.picker';
+import { BusinessError } from '@ohos.base';
 ```
 
 ## PhotoViewPicker
@@ -47,15 +48,15 @@ select(option?: PhotoSelectOptions) : Promise&lt;PhotoSelectResult&gt;
 **示例：**
 
 ```ts
-async function example() {
+async example01() {
   try {  
     let PhotoSelectOptions = new picker.PhotoSelectOptions();
     PhotoSelectOptions.MIMEType = picker.PhotoViewMIMETypes.IMAGE_TYPE;
     PhotoSelectOptions.maxSelectNumber = 5;
     let photoPicker = new picker.PhotoViewPicker();
-    photoPicker.select(PhotoSelectOptions).then((PhotoSelectResult) => {
+    photoPicker.select(PhotoSelectOptions).then((PhotoSelectResult: picker.PhotoSelectResult) => {
       console.info('PhotoViewPicker.select successfully, PhotoSelectResult uri: ' + JSON.stringify(PhotoSelectResult));
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
       console.error('PhotoViewPicker.select failed with err: ' + err);
     });
   } catch (err) {
@@ -82,13 +83,13 @@ select(option: PhotoSelectOptions, callback: AsyncCallback&lt;PhotoSelectResult&
 **示例：**
 
 ```ts
-async function example() {
-  try {   
+async example02() {
+  try {
     let PhotoSelectOptions = new picker.PhotoSelectOptions();
     PhotoSelectOptions.MIMEType = picker.PhotoViewMIMETypes.IMAGE_TYPE;
     PhotoSelectOptions.maxSelectNumber = 5;
     let photoPicker = new picker.PhotoViewPicker();
-    photoPicker.select(PhotoSelectOptions, (err, PhotoSelectResult) => {
+    photoPicker.select(PhotoSelectOptions, (err: BusinessError, PhotoSelectResult: picker.PhotoSelectResult) => {
       if (err) {
         console.error('PhotoViewPicker.select failed with err: ' + err);
         return;
@@ -118,10 +119,10 @@ select(callback: AsyncCallback&lt;PhotoSelectResult&gt;) : void
 **示例：**
 
 ```ts
-async function example() {
-  try {   
+async example03() {
+  try {
     let photoPicker = new picker.PhotoViewPicker();
-    photoPicker.select((err, PhotoSelectResult) => {
+    photoPicker.select((err: BusinessError, PhotoSelectResult: picker.PhotoSelectResult) => {
       if (err) {
         console.error('PhotoViewPicker.select failed with err: ' + err);
         return;
@@ -157,14 +158,14 @@ save(option?: PhotoSaveOptions) : Promise&lt;Array&lt;string&gt;&gt;
 **示例：**
 
 ```ts
-async function example() {
-  try {   
+async example04() {
+  try {
     let PhotoSaveOptions = new picker.PhotoSaveOptions();
     PhotoSaveOptions.newFileNames = ['PhotoViewPicker01.jpg', 'PhotoViewPicker01.mp4'];
     let photoPicker = new picker.PhotoViewPicker();
-    photoPicker.save(PhotoSaveOptions).then((PhotoSaveResult) => {
+    photoPicker.save(PhotoSaveOptions).then((PhotoSaveResult: Array<string>) => {
       console.info('PhotoViewPicker.save successfully, PhotoSaveResult uri: ' + JSON.stringify(PhotoSaveResult));
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
       console.error('PhotoViewPicker.save failed with err: ' + err);
     });
   } catch (err) {
@@ -191,12 +192,12 @@ save(option: PhotoSaveOptions, callback: AsyncCallback&lt;Array&lt;string&gt;&gt
 **示例：**
 
 ```ts
-async function example() {
+async example05() {
   try {
     let PhotoSaveOptions = new picker.PhotoSaveOptions();
     PhotoSaveOptions.newFileNames = ['PhotoViewPicker02.jpg','PhotoViewPicker02.mp4'];
     let photoPicker = new picker.PhotoViewPicker();
-    photoPicker.save(PhotoSaveOptions, (err, PhotoSaveResult) => {
+    photoPicker.save(PhotoSaveOptions, (err: BusinessError, PhotoSaveResult: Array<string>) => {
       if (err) {
         console.error('PhotoViewPicker.save failed with err: ' + err);
         return;
@@ -226,10 +227,10 @@ save(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;) : void
 **示例：**
 
 ```ts
-async function example() {
+async example06() {
   try {
     let photoPicker = new picker.PhotoViewPicker();
-    photoPicker.save((err, PhotoSaveResult) => {
+    photoPicker.save((err: BusinessError, PhotoSaveResult: Array<string>) => {
       if (err) {
         console.error('PhotoViewPicker.save failed with err: ' + err);
         return;
@@ -277,13 +278,13 @@ select(option?: DocumentSelectOptions) : Promise&lt;Array&lt;string&gt;&gt;
 **示例：**
 
 ```ts
-async function example() {
+async example07() {
   try {
     let DocumentSelectOptions = new picker.DocumentSelectOptions();
     let documentPicker = new picker.DocumentViewPicker();
-    documentPicker.select(DocumentSelectOptions).then((DocumentSelectResult) => {
+    documentPicker.select(DocumentSelectOptions).then((DocumentSelectResult: Array<string>) => {
       console.info('DocumentViewPicker.select successfully, DocumentSelectResult uri: ' + JSON.stringify(DocumentSelectResult));
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
       console.error('DocumentViewPicker.select failed with err: ' + err);
     });
   } catch (err) {
@@ -310,11 +311,11 @@ select(option: DocumentSelectOptions, callback: AsyncCallback&lt;Array&lt;string
 **示例：**
 
 ```ts
-async function example() {
+async example08() {
   try {
     let DocumentSelectOptions = new picker.DocumentSelectOptions();
     let documentPicker = new picker.DocumentViewPicker();
-    documentPicker.select(DocumentSelectOptions, (err, DocumentSelectResult) => {
+    documentPicker.select(DocumentSelectOptions, (err: BusinessError, DocumentSelectResult: Array<string>) => {
       if (err) {
         console.error('DocumentViewPicker.select failed with err: ' + err);
         return;
@@ -344,10 +345,10 @@ select(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;) : void
 **示例：**
 
 ```ts
-async function example() {
+async example09() {
   try {
     let documentPicker = new picker.DocumentViewPicker();
-    documentPicker.select((err, DocumentSelectResult) => {
+    documentPicker.select((err: BusinessError, DocumentSelectResult: Array<string>) => {
       if (err) {
         console.error('DocumentViewPicker.select failed with err: ' + err);
         return;
@@ -384,14 +385,14 @@ save(option?: DocumentSaveOptions) : Promise&lt;Array&lt;string&gt;&gt;
 **示例：**
 
 ```ts
-async function example() {
+async example10() {
   try {
     let DocumentSaveOptions = new picker.DocumentSaveOptions();
     DocumentSaveOptions.newFileNames = ['DocumentViewPicker01.txt'];
     let documentPicker = new picker.DocumentViewPicker();
-    documentPicker.save(DocumentSaveOptions).then((DocumentSaveResult) => {
+    documentPicker.save(DocumentSaveOptions).then((DocumentSaveResult: Array<string>) => {
       console.info('DocumentViewPicker.save successfully, DocumentSaveResult uri: ' + JSON.stringify(DocumentSaveResult));
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
       console.error('DocumentViewPicker.save failed with err: ' + err);
     });
   } catch (err) {
@@ -418,12 +419,12 @@ save(option: DocumentSaveOptions, callback: AsyncCallback&lt;Array&lt;string&gt;
 **示例：**
 
 ```ts
-async function example() {
+async example11() {
   try {
     let DocumentSaveOptions = new picker.DocumentSaveOptions();
     DocumentSaveOptions.newFileNames = ['DocumentViewPicker02.txt'];
     let documentPicker = new picker.DocumentViewPicker();
-    documentPicker.save(DocumentSaveOptions, (err, DocumentSaveResult) => {
+    documentPicker.save(DocumentSaveOptions, (err: BusinessError, DocumentSaveResult: Array<string>) => {
       if (err) {
         console.error('DocumentViewPicker.save failed with err: ' + err);
         return;
@@ -453,10 +454,10 @@ save(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;) : void
 **示例：**
 
 ```ts
-async function example() {
+async example12() {
   try {
     let documentPicker = new picker.DocumentViewPicker();
-    documentPicker.save((err, DocumentSaveResult) => {
+    documentPicker.save((err: BusinessError, DocumentSaveResult: Array<string>) => {
       if (err) {
         console.error('DocumentViewPicker.save failed with err: ' + err);
         return;
@@ -504,13 +505,13 @@ select(option?: AudioSelectOptions) : Promise&lt;Array&lt;string&gt;&gt;
 **示例：**
 
 ```ts
-async function example() {
+async example13() {
   try {
     let AudioSelectOptions = new picker.AudioSelectOptions();
     let audioPicker = new picker.AudioViewPicker();
-    audioPicker.select(AudioSelectOptions).then((AudioSelectResult) => {
+    audioPicker.select(AudioSelectOptions).then((AudioSelectResult: Array<string>) => {
       console.info('AudioViewPicker.select successfully, AudioSelectResult uri: ' + JSON.stringify(AudioSelectResult));
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
       console.error('AudioViewPicker.select failed with err: ' + err);
     });
   } catch (err) {
@@ -537,11 +538,11 @@ select(option: AudioSelectOptions, callback: AsyncCallback&lt;Array&lt;string&gt
 **示例：**
 
 ```ts
-async function example() {
+async example14() {
   try {
     let AudioSelectOptions = new picker.AudioSelectOptions();
     let audioPicker = new picker.AudioViewPicker();
-    audioPicker.select(AudioSelectOptions, (err, AudioSelectResult) => {
+    audioPicker.select(AudioSelectOptions, (err: BusinessError, AudioSelectResult: Array<string>) => {
       if (err) {
         console.error('AudioViewPicker.select failed with err: ' + err);
         return;
@@ -571,10 +572,10 @@ select(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;) : void
 **示例：**
 
 ```ts
-async function example() {
+async example15() {
   try {
     let audioPicker = new picker.AudioViewPicker();
-    audioPicker.select((err, AudioSelectResult) => {
+    audioPicker.select((err: BusinessError, AudioSelectResult: Array<string>) => {
       if (err) {
         console.error('AudioViewPicker.select failed with err: ' + err);
         return;
@@ -610,14 +611,14 @@ save(option?: AudioSaveOptions) : Promise&lt;Array&lt;string&gt;&gt;
 **示例：**
 
 ```ts
-async function example() {
+async example16() {
   try {
     let AudioSaveOptions = new picker.AudioSaveOptions();
     AudioSaveOptions.newFileNames = ['AudioViewPicker01.mp3'];
     let audioPicker = new picker.AudioViewPicker();
-    audioPicker.save(AudioSaveOptions).then((AudioSaveResult) => {
+    audioPicker.save(AudioSaveOptions).then((AudioSaveResult: Array<string>) => {
       console.info('AudioViewPicker.save successfully, AudioSaveResult uri: ' + JSON.stringify(AudioSaveResult))
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
       console.error('AudioViewPicker.save failed with err: ' + err);
     });
   } catch (err) {
@@ -644,12 +645,12 @@ save(option: AudioSaveOptions, callback: AsyncCallback&lt;Array&lt;string&gt;&gt
 **示例：**
 
 ```ts
-async function example() {
+async example17() {
   try {
     let AudioSaveOptions = new picker.AudioSaveOptions();
     AudioSaveOptions.newFileNames = ['AudioViewPicker02.mp3'];
     let audioPicker = new picker.AudioViewPicker();
-    audioPicker.save(AudioSaveOptions, (err, AudioSaveResult) => {
+    audioPicker.save(AudioSaveOptions, (err: BusinessError, AudioSaveResult: Array<string>) => {
       if (err) {
         console.error('AudioViewPicker.save failed with err: ' + err);
         return;
@@ -679,10 +680,10 @@ save(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;) : void
 **示例：**
 
 ```ts
-async function example() {
+async example18() {
   try {
     let audioPicker = new picker.AudioViewPicker();
-    audioPicker.save((err, AudioSaveResult) => {
+    audioPicker.save((err: BusinessError, AudioSaveResult: Array<string>) => {
       if (err) {
         console.error('AudioViewPicker.save failed with err: ' + err);
         return;
