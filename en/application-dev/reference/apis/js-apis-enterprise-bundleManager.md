@@ -1546,3 +1546,168 @@ bundleManager.uninstall(wantTemp, 'bundleName', 100, true).then(() => {
   console.error(`Failed to uninstall bundles. Code is ${err.code}, message is ${err.message}`);
 });
 ```
+
+## bundleManager.install
+
+install(admin: Want, hapFilePaths: Array\<string>, callback: AsyncCallback\<void>): void
+
+Installs applications through the specified device administrator application. This API uses an asynchronous callback to return the result.
+
+**Required permissions**: ohos.permission.ENTERPRISE_INSTALL_BUNDLE
+
+**System capability**: SystemCapability.Customization.EnterpriseDeviceManager
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name     | Type                                      | Mandatory  | Description                      |
+| -------- | ---------------------------------------- | ---- | ------------------------------- |
+| admin    | [Want](js-apis-app-ability-want.md)     | Yes   | Device administrator application.                 |
+| hapFilePaths     | Array\<string>                           | Yes   | Applications to install.|
+| callback | AsyncCallback&lt;void&gt;       | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.      |
+
+**Error codes**
+
+For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
+
+| ID| Error Message                                                                      |
+| ------- | ---------------------------------------------------------------------------- |
+| 9200001 | the application is not an administrator of the device.                              |
+| 9200002 | the administrator application does not have permission to manage the device.                                |
+| 9201002 | the application install failed.                                |
+
+**Example**
+
+```js
+let wantTemp = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
+};
+let hapFilePaths = ['/data/storage/el2/base/haps/entry/testinstall/ExtensionTest.hap']
+
+bundleManager.install(wantTemp, hapFilePaths, (err) => {
+  if (err) {
+    console.error(`Failed to install bundles. Code is ${err.code}, message is ${err.message}`);
+  }
+  console.info('Succeeded in installing bundles');
+});
+```
+
+## bundleManager.install
+
+install(admin: Want, hapFilePaths: Array\<string>, installParam: InstallParam, callback: AsyncCallback\<void>): void
+
+Installs applications with specified parameters through the specified device administrator application. This API uses an asynchronous callback to return the result.
+
+**Required permissions**: ohos.permission.ENTERPRISE_INSTALL_BUNDLE
+
+**System capability**: SystemCapability.Customization.EnterpriseDeviceManager
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name     | Type                                      | Mandatory  | Description                      |
+| -------- | ---------------------------------------- | ---- | ------------------------------- |
+| admin    | [Want](js-apis-app-ability-want.md)     | Yes   | Device administrator application.                 |
+| hapFilePaths     | Array\<string>                       | Yes   | Applications to install.|
+| installParam     | [InstallParam](#installparam)        | Yes   | Application installation parameters.|
+| callback | AsyncCallback&lt;void&gt;       | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.      |
+
+**Error codes**
+
+For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
+
+| ID| Error Message                                                                      |
+| ------- | ---------------------------------------------------------------------------- |
+| 9200001 | the application is not an administrator of the device.                              |
+| 9200002 | the administrator application does not have permission to manage the device.                                |
+| 9201002 | the application install failed.                                |
+
+**Example**
+
+```js
+let wantTemp = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
+};
+let hapFilePaths = ['/data/storage/el2/base/haps/entry/testinstall/ExtensionTest.hap']
+let installParam = {
+  userId: 100,
+  installFlag: 1,
+};
+
+bundleManager.install(wantTemp, hapFilePaths, installParam, (err) => {
+  if (err) {
+    console.error(`Failed to install bundles. Code is ${err.code}, message is ${err.message}`);
+  }
+  console.info('Succeeded in installing bundles');
+});
+```
+
+## bundleManager.install
+
+install(admin: Want, hapFilePaths: Array\<string>, installParam?: InstallParam): Promise\<void>
+
+Installs applications through the specified device administrator application. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.ENTERPRISE_INSTALL_BUNDLE
+
+**System capability**: SystemCapability.Customization.EnterpriseDeviceManager
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name  | Type                                 | Mandatory  | Description     |
+| ----- | ----------------------------------- | ---- | ------- |
+| admin | [Want](js-apis-app-ability-want.md) | Yes   | Device administrator application.|
+| hapFilePaths     | Array\<string>                       | Yes   | Applications to install.|
+| installParam     | [InstallParam](#installparam)        | No   | Application installation parameters.|
+
+**Return value**
+
+| Type                  | Description                     |
+| --------------------- | ------------------------- |
+| Promise&lt;void&gt; | Promise that returns no value. If the operation fails, an error object will be thrown.|
+
+**Error codes**
+
+For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
+
+| ID| Error Message                                                                    |
+| ------- | ---------------------------------------------------------------------------- |
+| 9200001 | the application is not an administrator of the device.                              |
+| 9200002 | the administrator application does not have permission to manage the device.                                          |
+| 9201002 | the application install failed.                                |
+
+**Example**
+
+```js
+let wantTemp = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
+};
+let hapFilePaths = ['/data/storage/el2/base/haps/entry/testinstall/ExtensionTest.hap']
+
+bundleManager.install(wantTemp, hapFilePaths).then(() => {
+  console.info('Succeeded in installing bundles');
+}).catch((err) => {
+  console.error(`Failed to install bundles. Code is ${err.code}, message is ${err.message}`);
+});
+```
+
+## InstallParam
+
+Defines the parameters specified for installing applications.
+
+ **System capability**: SystemCapability.Customization.EnterpriseDeviceManager
+
+ **System API**: This is a system API.
+
+| Name                       | Type                          | Mandatory                        | Description              |
+| ------------------------------ | ------------------------------ | ------------------ | ------------------ |
+| userId                         | number                         | No                       | User ID, which must be greater than or equal to 0. The default value is the user ID of the caller. |
+| installFlag                    | number                         | No                       | Installation flag.<br>- **0**: initial installation.<br>- **1**: overwrite installation.<br>- **2**: installation-free.<br>Default value: **0** |
+
