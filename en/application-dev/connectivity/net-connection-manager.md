@@ -1,10 +1,11 @@
 # Network Connection Management
 
-## Introduction
+## Overview
 
 The Network Connection Management module provides basic network management capabilities, including management of Wi-Fi/cellular/Ethernet connection priorities, network quality evaluation, subscription to network connection status changes, query of network connection information, and DNS resolution.
 
 > **NOTE**
+> 
 > To maximize the application running efficiency, most API calls are called asynchronously in callback or promise mode. The following code examples use the callback mode. For details about the APIs, see [sms API Reference](../reference/apis/js-apis-net-connection.md).
 
 ## Basic Concepts
@@ -107,7 +108,7 @@ conn.on('netAvailable', (data => {
 
 // Listen to network status change events. If the network is unavailable, an on_netUnavailable event is returned.
 conn.on('netUnavailable', (data => {
-  console.log("net is unavailable, netId is " + data.netId);
+  console.log("net is unavailable, data is " + JSON.stringify(data));
 }));
 
 // Register an observer for network status changes.

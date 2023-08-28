@@ -25,6 +25,7 @@ module对象包含HAP的配置信息。
 | entryTheme | 此标签标识OpenHarmony内部主题的关键字。将标记值设置为名称的资源索引。 | 字符串 | 可缺省，缺省值为空。 |
 |testRunner | 此标签用于支持对测试框架的配置。 | 对象 | 可缺省，缺省值为空。 |
 |generateBuildHash |标识当前HAP/HSP是否由打包工具生成哈希值。如果存在，则在系统OTA升级但应用的[version下的code](./app-structure.md#version对象内部结构)保持不变时，可根据哈希值判断应用是否需要升级。**<br/>注：该字段仅对预置应用生效。**|布尔值|该标签可缺省, 缺省值为false。|
+|libIsolation |用于区分同应用不同hap下的so文件，以防止so冲突。<br/>-&nbsp;true：当前hap的so会储存在libs目录中以Module名命名的路径下。<br/>-&nbsp;false：当前hap的so会直接储存在libs目录中。|布尔值|该标签可缺省, 缺省值为false。|
 
 module示例：
 

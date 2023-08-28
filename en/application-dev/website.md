@@ -144,7 +144,7 @@
         - [Component Startup Rules (Stage Model)](application-models/component-startup-rules.md)
         - Inter-Device Application Component Interaction (Continuation)
           - [Continuation Overview](application-models/inter-device-interaction-hop-overview.md)
-          - [Cross-Device Migration (for System Applications Only)](application-models/hop-cross-device-migration.md)
+          - [Cross-Device Migration](application-models/hop-cross-device-migration.md)
           - [Multi-device Collaboration (for System Applications Only)](application-models/hop-multi-device-collaboration.md)
         - [Subscribing to System Environment Variable Changes](application-models/subscribe-system-environment-variable-changes.md)
       - Process Model
@@ -558,6 +558,7 @@
       - [Network Connection Management](connectivity/net-connection-manager.md)
       - [MDNS Management](connectivity/net-mdns.md)
       - [Traffic Management](connectivity/net-statistics.md)
+      - [VPN Management](connectivity/net-vpn.md)
     - IPC & RPC
       - [IPC & RPC Overview](connectivity/ipc-rpc-overview.md)
       - [IPC & RPC Development](connectivity/ipc-rpc-development-guideline.md)
@@ -910,6 +911,7 @@
     - UI Page
       - [@ohos.animator (Animator)](reference/apis/js-apis-animator.md)
       - [@ohos.arkui.componentSnapshot (Component Snapshot)](reference/apis/js-apis-arkui-componentSnapshot.md)
+      - [@ohos.arkui.componentUtils (componentUtils)](reference/apis/js-apis-arkui-componentUtils.md)
       - [@ohos.arkui.dragController (DragController)](reference/apis/js-apis-arkui-dragController.md)
       - [@ohos.arkui.drawableDescriptor (DrawableDescriptor)](reference/apis/js-apis-arkui-drawableDescriptor.md)
       - [@ohos.arkui.inspector (Layout Callback)](reference/apis/js-apis-arkui-inspector.md)
@@ -936,12 +938,15 @@
         - [WebGL](reference/apis/js-apis-webgl.md)
         - [WebGL2](reference/apis/js-apis-webgl2.md)
     - Multimedia
+      - [@ohos.app.ability.MediaControlExtensionAbility (ExtensionAbility for Media Playback Control)](reference/apis/js-apis-app-ability-MediaControlExtensionAbility.md)
       - [@ohos.multimedia.audio (Audio Management)](reference/apis/js-apis-audio.md)
       - [@ohos.multimedia.avsession (AVSession Management)](reference/apis/js-apis-avsession.md)
       - [@ohos.multimedia.camera (Camera Management)](reference/apis/js-apis-camera.md)
       - [@ohos.multimedia.image (Image Processing)](reference/apis/js-apis-image.md)
       - [@ohos.multimedia.media (Media)](reference/apis/js-apis-media.md)
       - [@ohos.multimedia.systemSoundManager (System Sound Management)](reference/apis/js-apis-systemSoundManager.md)
+      - application
+        - [MediaControlExtensionContext (ExtensionAbility Context for Media Playback Control)](reference/apis/js-apis-inner-application-MediaControlExtensionContext.md)
       - multimedia
         - [ringtonePlayer (Ringtone Player)](reference/apis/js-apis-inner-multimedia-ringtonePlayer.md)
     - Resource Management
@@ -1016,6 +1021,7 @@
       - [@ohos.net.sharing (Network Sharing)](reference/apis/js-apis-net-sharing.md)
       - [@ohos.net.socket (Socket Connection)](reference/apis/js-apis-socket.md)
       - [@ohos.net.statistics (Traffic Management)](reference/apis/js-apis-net-statistics.md)
+      - [@ohos.net.vpn (VPN Management)](reference/apis/js-apis-net-vpn.md)
       - [@ohos.net.webSocket (WebSocket Connection)](reference/apis/js-apis-webSocket.md)
       - [@ohos.request (Upload and Download)](reference/apis/js-apis-request.md)
     - Connectivity
@@ -1085,9 +1091,10 @@
       - [@ohos.charger (Charging Type)](reference/apis/js-apis-charger.md)
       - [@ohos.cooperate (Screen Hopping)](reference/apis/js-apis-devicestatus-cooperate.md)
       - [@ohos.deviceAttest (Device Attestation)](reference/apis/js-apis-deviceAttest.md)
+      - [@ohos.deviceStatus.dragInteraction (Drag)](reference/apis/js-apis-devicestatus-draginteraction.md)
       - [@ohos.deviceInfo (Device Information)](reference/apis/js-apis-device-info.md)
-      - [@ohos.distributedDeviceManager (Device Management)](reference/apis/js-apis-distributedDeviceManager.md)
-      - [@ohos.distributedHardware.deviceManager (Device Management)](reference/apis/js-apis-device-manager.md)
+      - [@ohos.distributedDeviceManager (Device Management) (Recommended)](reference/apis/js-apis-distributedDeviceManager.md)
+      - [@ohos.distributedHardware.deviceManager (Device Management) (To Be Deprecated Soon)](reference/apis/js-apis-device-manager.md)
       - [@ohos.driver.deviceManager (Peripheral Management)](reference/apis/js-apis-driver-deviceManager.md)
       - [@ohos.geoLocationManager (Geolocation Manager)](reference/apis/js-apis-geoLocationManager.md)
       - [@ohos.multimodalInput.gestureEvent (Gesture Input Event)](reference/apis/js-apis-multimodalinput-gestureevent.md)
@@ -1119,7 +1126,6 @@
         - [DriverExtensionContext](reference/apis/js-apis-inner-application-driverExtensionContext.md)
     - Account Management
       - [@ohos.account.appAccount (App Account Management)](reference/apis/js-apis-appAccount.md)
-      - [@ohos.account.appAccount.AuthorizationExtensionAbility (App AuthorizationExtensionAbility)](reference/apis/js-apis-appAccount-authorizationExtensionAbility.md)
       - [@ohos.account.distributedAccount (Distributed Account Management)](reference/apis/js-apis-distributed-account.md)
       - [@ohos.account.osAccount (OS Account Management)](reference/apis/js-apis-osAccount.md)
     - Customization
@@ -1347,6 +1353,7 @@
       - [GridRow](reference/arkui-ts/ts-container-gridrow.md)
       - [Grid](reference/arkui-ts/ts-container-grid.md)
       - [GridItem](reference/arkui-ts/ts-container-griditem.md)
+      - [Hyperlink](reference/arkui-ts/ts-container-hyperlink.md)
       - [List](reference/arkui-ts/ts-container-list.md)
       - [ListItem](reference/arkui-ts/ts-container-listitem.md)
       - [ListItemGroup](reference/arkui-ts/ts-container-listitemgroup.md)
@@ -1362,6 +1369,7 @@
       - [Swiper](reference/arkui-ts/ts-container-swiper.md)
       - [Tabs](reference/arkui-ts/ts-container-tabs.md)
       - [TabContent](reference/arkui-ts/ts-container-tabcontent.md)
+      - [UIExtensionComponent](reference/arkui-ts/ts-container-ui-extension-component.md)
       - [WaterFlow](reference/arkui-ts/ts-container-waterflow.md)
     - Media Components
       - [Video](reference/arkui-ts/ts-media-components-video.md)
@@ -1614,6 +1622,7 @@
       - [Audio Error Codes](reference/errorcodes/errorcode-audio.md)
       - [Media Error Codes](reference/errorcodes/errorcode-media.md)
       - [AVSession Management Error Codes](reference/errorcodes/errorcode-avsession.md)
+      - [Camera Error Codes](reference/errorcodes/errorcode-camera.md)
     - Resource Management
       - [I18N Error Codes](reference/errorcodes/errorcode-i18n.md)
       - [Resource Manager Error Codes](reference/errorcodes/errorcode-resource-manager.md)
@@ -1633,7 +1642,7 @@
       - [DataShare Error Codes](reference/errorcodes/errorcode-datashare.md)
       - [Distributed Data Object Error Codes](reference/errorcodes/errorcode-distributed-dataObject.md)
       - [Distributed KV Store Error Codes](reference/errorcodes/errorcode-distributedKVStore.md)
-      - [Preferences Error Codes](reference/errorcodes/errorcode-preferences.md)
+      - [User Preference Error Codes](reference/errorcodes/errorcode-preferences.md)
     - File Management
       - [File Management Error Codes](reference/errorcodes/errorcode-filemanagement.md)
     - Telephony Service
@@ -1648,6 +1657,7 @@
       - [Policy Management Error Codes](reference/errorcodes/errorcode-net-policy.md)
       - [mDNS Error Codes](reference/errorcodes/errorcode-net-mdns.md)
       - [Traffic Management Error Codes](reference/errorcodes/errorcode-net-statistics.md)
+      - [VPN Error Codes](reference/errorcodes/errorcode-net-vpn.md)
     - Connectivity
       - [Bluetooth Error Codes](reference/errorcodes/errorcode-bluetoothManager.md)
       - [Wi-Fi Error Codes](reference/errorcodes/errorcode-wifi.md)
@@ -1667,7 +1677,7 @@
       - [Time and Time Zone Service Error Codes](reference/errorcodes/errorcode-time.md)
       - [Webview Error Codes](reference/errorcodes/errorcode-webview.md)
     - Account Management
-      - [Account Error Codes](reference/errorcodes/errorcode-account.md)
+      - [Account Management Error Codes](reference/errorcodes/errorcode-account.md)
     - Device Management
       - [Power Consumption Statistics Error Codes](reference/errorcodes/errorcode-batteryStatistics.md)
       - [Brightness Error Codes](reference/errorcodes/errorcode-brightness.md)

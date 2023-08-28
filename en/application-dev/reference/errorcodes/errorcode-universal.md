@@ -44,7 +44,7 @@ BusinessError 401: Parameter error. The type of "${parameterName}" must be ${val
 
 **Description**
 
-This error code is reported when a parameter error occurs.
+This error code is reported when a parameter error occurs. Regardless of whether the API is synchronous or asynchronous, this type of error is generally thrown in synchronous mode.
 
 **Possible Causes**
 

@@ -1,4 +1,4 @@
-# @ohos. deviceStatus.dragInteraction (拖拽)
+# @ohos.deviceStatus.dragInteraction (拖拽)
 
  拖拽功能模块，提供注册和取消拖拽状态监听的能力。 
 

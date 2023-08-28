@@ -331,7 +331,7 @@ zh-cn/application-dev/reference/apis/js-apis-prompt.md @HelloCrease @niulihua @t
 zh-cn/application-dev/reference/apis/js-apis-queue.md @gongjunsong @ge-yafang @flyingwolf @blackstone-oh
 zh-cn/application-dev/reference/apis/js-apis-radio.md @zhang-hai-feng @zengyawen @jyh926 @gaoxi785
 zh-cn/application-dev/reference/apis/js-apis-reminderAgent.md @jayleehw @RayShih @li-weifeng2 @currydavids
-zh-cn/application-dev/reference/apis/js-apis-request.md @feng-aiwen @ningningW @nagexiucai @murphy1984
+zh-cn/application-dev/reference/apis/js-apis-request.md @feng-aiwen @ningningW @hanruofei @murphy1984
 zh-cn/application-dev/reference/apis/js-apis-resource-manager.md @Buda-Liu @ningningW @mengjingzhimo @yangqing3
 zh-cn/application-dev/reference/apis/js-apis-router.md @HelloCrease @niulihua @tomatodevboy
 zh-cn/application-dev/reference/apis/js-apis-rpc.md @xuepianpian @RayShih @zhaopeng_gitee @vagrant_world
@@ -366,7 +366,7 @@ zh-cn/application-dev/reference/apis/js-apis-system-notification.md @jayleehw @R
 zh-cn/application-dev/reference/apis/js-apis-system-package.md @shuaytao @RayShih @wangzhen107 @inter515
 zh-cn/application-dev/reference/apis/js-apis-system-parameter.md @mupceet @zengyawen @handyohos @nan-xiansen
 zh-cn/application-dev/reference/apis/js-apis-system-prompt.md @HelloCrease @niulihua @tomatodevboy
-zh-cn/application-dev/reference/apis/js-apis-system-request.md @zhang-hai-feng @zengyawen @jyh926 @gaoxi785
+zh-cn/application-dev/reference/apis/js-apis-system-request.md @zhang-hai-feng @ningningW @jyh926 @gaoxi785
 zh-cn/application-dev/reference/apis/js-apis-system-router.md @HelloCrease @niulihua @tomatodevboy
 zh-cn/application-dev/reference/apis/js-apis-system-sensor.md @hellohyh001 @ningningW @butterls @star-wind-snow-and-rain
 zh-cn/application-dev/reference/apis/js-apis-system-storage.md @feng-aiwen @ge-yafang @gong-a-shi @logic42

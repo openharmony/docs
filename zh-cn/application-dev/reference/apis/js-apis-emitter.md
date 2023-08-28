@@ -99,7 +99,7 @@ emitter.off(1);
 
 ## emitter.off<sup>10+<sup>
 
-off(eventId: number，callback: Callback\<[EventData](#eventdata)\>): void
+off(eventId: number, callback: Callback\<[EventData](#eventdata)\>): void
 
 取消针对该事件ID的订阅，传入可选参数callback，并且该callback已经通过on或者once接口订阅，则取消该订阅；否则，不做任何处理。
 

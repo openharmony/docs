@@ -67,7 +67,7 @@
    ```
 
 
-  完整的示例代码和效果如下。
+  完整的示例代码和效果如下：
 
 ```ts
 import curves from '@ohos.curves';

@@ -47,5 +47,5 @@ MissionList任务链记录了任务之间的拉起关系，但是这个任务链
 - 进入任务列表，把任务链中间某个任务清理掉。  
   ![mission-chain2](figures/mission-chain2.png)
 
-- 单实例UIAbility的任务，被不同的任务反复拉起（AbilityB为单例）。  
+- 单实例UIAbility的任务，被不同的任务（包括Ability或桌面）反复拉起（AbilityB为单例）。  
   ![mission-chain3](figures/mission-chain3.png)

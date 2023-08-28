@@ -1,4 +1,4 @@
-# relation_store.h
+# relational_store.h
 
 
 ## Overview
@@ -25,6 +25,13 @@ Provides APIs to manage a relational database (RDB) store.
 | [OH_Rdb_Store](_o_h___rdb___store.md) | Defines the RDB store type.|
 
 
+### Types
+
+| Name| Description|
+| -------- | -------- |
+| [OH_Rdb_SecurityLevel](_r_d_b.md#oh_rdb_securitylevel) | Defines the RDB store security levels. |
+
+
 ### Enums
 
 | Name| Description|
@@ -41,7 +48,7 @@ Provides APIs to manage a relational database (RDB) store.
 | [OH_Rdb_CreatePredicates](_r_d_b.md#oh_rdb_createpredicates) (const char \*table) | Creates an [OH_Predicates](_o_h___predicates.md) instance.|
 | [OH_Rdb_GetOrOpen](_r_d_b.md#oh_rdb_getoropen) (const [OH_Rdb_Config](_o_h___rdb___config.md) \*config, int \*errCode) | Obtains an [OH_Rdb_Store](_o_h___rdb___store.md) instance for RDB store operations.|
 | [OH_Rdb_CloseStore](_r_d_b.md#oh_rdb_closestore) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store) | Destroys an [OH_Rdb_Store](_o_h___rdb___store.md) object and reclaims the memory occupied by the object.|
-| [OH_Rdb_DeleteStore](_r_d_b.md#oh_rdb_deletestore) (const char \*path) | Deletes an RDB store with the specified database file configuration.|
+| [OH_Rdb_DeleteStore](_r_d_b.md#oh_rdb_deletestore) (const [OH_Rdb_Config](_o_h___rdb___config.md) \*config) | Deletes an RDB store with the specified database file configuration.|
 | [OH_Rdb_Insert](_r_d_b.md#oh_rdb_insert) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, const char \*table, [OH_VBucket](_o_h___v_bucket.md) \*valuesBucket) | Inserts a row of data into a table.|
 | [OH_Rdb_Update](_r_d_b.md#oh_rdb_update) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, [OH_VBucket](_o_h___v_bucket.md) \*valuesBucket, [OH_Predicates](_o_h___predicates.md) \*predicates) | Updates data in an RDB store based on specified conditions.|
 | [OH_Rdb_Delete](_r_d_b.md#oh_rdb_delete) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, [OH_Predicates](_o_h___predicates.md) \*predicates) | Deletes data from an RDB store based on specified conditions.|

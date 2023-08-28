@@ -24,10 +24,10 @@ Read [AVRecorder](../reference/apis/js-apis-media.md#avrecorder9) for the API re
    
    ```ts
    import media from '@ohos.multimedia.media'
-   let avRecorder
-   media.createAVRecorder().then((recorder) => {
+   let avRecorder: media.AVRecorder;
+   media.createAVRecorder().then((recorder: media.AVRecorder) => {
      avRecorder = recorder
-   }, (error) => {
+   }, (error: Error) => {
      console.error('createAVRecorder failed')
    })
    ```
@@ -40,11 +40,11 @@ Read [AVRecorder](../reference/apis/js-apis-media.md#avrecorder9) for the API re
 
    ```ts
    // Callback function for state changes.
-   avRecorder.on('stateChange', (state, reason) => {
+   avRecorder.on('stateChange', (state: media.AVRecorderState, reason: media.StateChangeReason) => {
      console.info('current state is: ' + state);
    })
    // Callback function for errors.
-   avRecorder.on('error', (err) => {
+   avRecorder.on('error', (err: BusinessError) => {
      console.error('error happened, error message is ' + err);
    })
    ```
@@ -62,7 +62,7 @@ Read [AVRecorder](../reference/apis/js-apis-media.md#avrecorder9) for the API re
    > - The recording output URL (URL in **avConfig** in the sample code) must be in the format of fd://xx (where xx indicates a file descriptor). You must call [ohos.file.fs](../reference/apis/js-apis-file-fs.md) to implement access to the application file. For details, see [Application File Access and Management](../file-management/app-file-access.md).
 
    ```ts
-   let avProfile = {
+   let avProfile: media.AVRecorderProfile = {
      fileFormat: media.ContainerFormatType.CFT_MPEG_4, // Video file encapsulation format. Only MP4 is supported.
      videoBitrate: 200000, // Video bit rate.
      videoCodec: media.CodecMimeType.VIDEO_AVC, // Video file encoding format. Both MPEG-4 and AVC are supported.
@@ -70,15 +70,15 @@ Read [AVRecorder](../reference/apis/js-apis-media.md#avrecorder9) for the API re
      videoFrameHeight: 480, // Video frame height.
      videoFrameRate: 30 // Video frame rate.
    }
-   let avConfig = {
+   let avConfig: media.AVRecorderConfig = {
      videoSourceType: media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_YUV, // Video source type. YUV and ES are supported.
-     profile : this.avProfile,
+     profile : avProfile,
      url: 'fd://35', // Create, read, and write a file by referring to the sample code in Application File Access and Management.
      rotation: 0, // Video rotation angle. The default value is 0, indicating that the video is not rotated. The value can be 0, 90, 180, or 270.
    }
    avRecorder.prepare(avConfig).then(() => {
      console.info('avRecorder prepare success')
-   }, (error) => {
+   }, (error: Error) => {
      console.error('avRecorder prepare failed')
    })
    ```
@@ -90,9 +90,9 @@ Read [AVRecorder](../reference/apis/js-apis-media.md#avrecorder9) for the API re
    The video data collection module obtains the surface based on the surface ID and transmits video data to the AVRecorder through the surface. Then the AVRecorder processes the video data.
    
    ```ts
-   avRecorder.getInputSurface().then((surfaceId) => {
+   avRecorder.getInputSurface().then((surfaceId: string) => {
      console.info('avRecorder getInputSurface success')
-   }, (error) => {
+   }, (error: Error) => {
      console.error('avRecorder getInputSurface failed')
    })
    ```
@@ -123,19 +123,20 @@ Refer to the sample code below to complete the process of starting, pausing, res
 
 ```ts
 import media from '@ohos.multimedia.media'
+import { BusinessError } from '@ohos.base';
 const TAG = 'VideoRecorderDemo:'
 export class VideoRecorderDemo {
-  private avRecorder;
-  private videoOutSurfaceId;
-  private avProfile = {
+  private avRecorder: media.AVRecorder;
+  private videoOutSurfaceId: string;
+  private avProfile: media.AVRecorderProfile = {
     fileFormat: media.ContainerFormatType.CFT_MPEG_4, // Video file encapsulation format. Only MP4 is supported.
-    videoBitrate : 100000, // Video bit rate.
+    videoBitrate: 100000, // Video bit rate.
     videoCodec: media.CodecMimeType.VIDEO_AVC, // Video file encoding format. Both MPEG-4 and AVC are supported.
     videoFrameWidth: 640, // Video frame width.
     videoFrameHeight: 480, // Video frame height.
     videoFrameRate: 30 // Video frame rate.
   }
-  private avConfig = {
+  private avConfig: media.AVRecorderConfig = {
     videoSourceType: media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_YUV, // Video source type. YUV and ES are supported.
     profile : this.avProfile,
     url: 'fd://35', // Create, read, and write a file by referring to the sample code in Application File Access and Management.
@@ -145,11 +146,11 @@ export class VideoRecorderDemo {
   // Set AVRecorder callback functions.
   setAvRecorderCallback() {
     // Callback function for state changes.
-    this.avRecorder.on('stateChange', (state, reason) => {
+    this.avRecorder.on('stateChange', (state: media.AVRecorderState, reason: media.StateChangeReason) => {
       console.info(TAG + 'current state is: ' + state);
     })
     // Callback function for errors.
-    this.avRecorder.on('error', (err) => {
+    this.avRecorder.on('error', (err: BusinessError) => {
       console.error(TAG + 'error ocConstantSourceNode, error message is ' + err);
     })
   }
@@ -188,7 +189,7 @@ export class VideoRecorderDemo {
     // 5. Start the camera stream output.
     await this.startCameraOutput();
     // 6. Start recording.
-    await this.videoRecorder.start();
+    await this.avRecorder.start();
   }
 
   // Process of pausing recording.

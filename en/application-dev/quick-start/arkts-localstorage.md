@@ -36,7 +36,7 @@ LocalStorage provides two decorators based on the synchronization type of the co
 ## Restrictions
 
 - Once created, the type of a named attribute cannot be changed. Subsequent calls to **Set** must set a value of same type.
-- LocalStorage provides page-level storage. The [GetShared](../reference/arkui-ts/ts-state-management.md#getshared9) API can only obtain the LocalStorage instance transferred through [windowStage.loadContent](../reference/apis/js-apis-window.md#loadcontent9) in the current stage. Otherwise, **undefined** is returned. Example: [Sharing a LocalStorage Instance from UIAbility to One or More Pages](#sharing-a-localstorage-instance-from-uiability-to-one-or-more-pages).
+- LocalStorage provides page-level storage. The [GetShared](../reference/arkui-ts/ts-state-management.md#getshared10) API can only obtain the LocalStorage instance passed through [windowStage.loadContent](../reference/apis/js-apis-window.md#loadcontent9) in the current stage. If the instance is not available, **undefined** is returned. For the example, see [Example of Sharing a LocalStorage Instance from UIAbility to One or More Pages](#example-of-sharing-a-localstorage-instance-from-uiability-to-one-or-more-pages).
 
 
 ## \@LocalStorageProp
@@ -300,9 +300,9 @@ struct CompA {
 ```
 
 
-### State Variable Synchronization Between Sibling Nodes
+### Example of Syncing State Variable Between Sibling Components
 
-This example shows how to use \@LocalStorageLink to create a two-way synchronization for the state between sibling nodes.
+This example shows how to use \@LocalStorageLink to create a two-way synchronization for the state between sibling components.
 
 Check the changes in the **Parent** custom component.
 
@@ -377,7 +377,7 @@ Changes in the **Child** custom component:
    ```
 
 
-### Sharing a LocalStorage Instance from UIAbility to One or More Pages
+### Example of Sharing a LocalStorage Instance from UIAbility to One or More Pages
 
 In the preceding examples, the LocalStorage instance is shared only in an \@Entry decorated component and its owning child component (a page). To enable a LocalStorage instance to be shared across pages, you can create a LocalStorage instance in the owning UIAbility and call windowStage.[loadContent](../reference/apis/js-apis-window.md#loadcontent9).
 

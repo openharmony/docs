@@ -118,7 +118,12 @@ After developing the custom logic for an accessibility extension service, you mu
 ```
 ## Enabling or Disabling a Custom Accessibility Extension Service
 
-To enable or disable an accessibility extension service, run the following command:
+You can enable or disable a custom accessibility extension service through the command line interface or the device settings. 
+
+**Method 1**: through the command line interface
+
+Run the **hdc shell** command, then the following system command:
+
 - To enable the service: **accessibility enable -a AccessibilityExtAbility -b com.example.demo -c rg**
 - To disable the service: **accessibility disable -a AccessibilityExtAbility -b com.example.demo**
 
@@ -126,3 +131,9 @@ In the preceding commands, **AccessibilityExtAbility** indicates the name of the
 
 If the service is enabled or disabled successfully, the message "enable ability successfully" or "disable ability successfully" is displayed.
 
+
+ **Method 2**: through the device settings
+- From the device settings screen, access the list of installed extended services under accessibility.
+If an extended service is not installed, it is grayed out, and "No service" is displayed.
+- Select the target extended service, and toggle on or off the switch to enable or disable it.
+- If you opt to enable a service, a security reminder is displayed. Wait until the countdown ends and then select the check box indicating that you are aware of and willing to assume the listed risks.

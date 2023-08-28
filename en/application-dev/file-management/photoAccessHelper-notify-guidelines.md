@@ -33,20 +33,21 @@ Example: Listener for changes of an image. When the image is favorited, the list
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import photoAccessHelper from '@ohos.file.photoAccessHelper';
 
-let predicates = new dataSharePredicates.DataSharePredicates();
+let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
 predicates.equalTo(photoAccessHelper.ImageVideoKey.DISPLAY_NAME, 'test.jpg');
-let fetchOptions = {
+let fetchOptions: photoAccessHelper.FetchOptions = {
   fetchColumns: [],
   predicates: predicates
 };
 
 try {
-  let fetchResult = await phAccessHelper.getAssets(fetchOptions);
-  let fileAsset = await fetchResult.getFirstObject();
+  let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
+  let fileAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
   console.info('getAssets fileAsset.uri : ' + fileAsset.uri);
 
-  let onCallback = (changeData) => {
+  let onCallback = (changeData:dataSharePredicates.ChangeData) => {
     console.info('onCallback successfully, changData: ' + JSON.stringify(changeData));
   }
   phAccessHelper.registerChange(fileAsset.uri, false, onCallback);
@@ -77,21 +78,22 @@ Example: Listener for a user album. When the album is renamed, the listener call
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import photoAccessHelper from '@ohos.file.photoAccessHelper';
 
-let predicates = new dataSharePredicates.DataSharePredicates();
-let albumName = photoAccessHelper.AlbumKey.ALBUM_NAME;
+let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+let albumName: photoAccessHelper.AlbumKeys = photoAccessHelper.AlbumKey.ALBUM_NAME;
 predicates.equalTo(albumName, 'albumName');
-let fetchOptions = {
+let fetchOptions: dataSharePredicates.FetchOptions = {
   fetchColumns: [],
   predicates: predicates
 };
 
 try {
-  let fetchResult = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.USER, photoAccessHelper.AlbumSubtype.USER_GENERIC, fetchOptions);
-  let album = await fetchResult.getFirstObject();
+  let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.USER, photoAccessHelper.AlbumSubtype.USER_GENERIC, fetchOptions);
+  let album: photoAccessHelper.Album = await fetchResult.getFirstObject();
   console.info('getAlbums successfullyfully, albumName: ' + album.albumUri);
 
-  let onCallback = (changeData) => {
+  let onCallback = (changeData: photoAccessHelper.ChangeData) => {
     console.info('onCallback successfully, changData: ' + JSON.stringify(changeData));
   }
   phAccessHelper.registerChange(album.albumUri, false, onCallback);
@@ -133,21 +135,22 @@ Example: Register a listener for all file assets. When an observed file asset is
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import photoAccessHelper from '@ohos.file.photoAccessHelper';
 
-let onCallback = (changeData) => {
+let onCallback = (changeData:  dataSharePredicates.ChangeData) => {
   console.info('onCallback successfully, changData: ' + JSON.stringify(changeData));
 }
 phAccessHelper.registerChange(photoAccessHelper.DefaultChangeUri.DEFAULT_PHOTO_URI, true, onCallback);
 
-let predicates = new dataSharePredicates.DataSharePredicates();
-let fetchOptions = {
+let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+let fetchOptions: photoAccessHelper.FetchOptions = {
   fetchColumns: [],
   predicates: predicates
 };
 
 try {
-  let fetchResult = await phAccessHelper.getAssets(fetchOptions);
-  let fileAsset = await fetchResult.getFirstObject();
+  let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
+  let fileAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
   console.info('getAssets fileAsset.uri : ' + fileAsset.uri);
   await fileAsset.favorite(true);
   fetchResult.close();
@@ -175,23 +178,24 @@ Example: Unregister listening for an image. After that, the unregistered listene
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import photoAccessHelper from '@ohos.file.photoAccessHelper';
 
-let predicates = new dataSharePredicates.DataSharePredicates();
+let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
 predicates.equalTo(photoAccessHelper.ImageVideoKey.DISPLAY_NAME, 'test.jpg');
-let fetchOptions = {
+let fetchOptions: photoAccessHelper.FetchOptions = {
   fetchColumns: [],
   predicates: predicates
 };
 
 try {
-  let fetchResult = await phAccessHelper.getAssets(fetchOptions);
-  let fileAsset = await fetchResult.getFirstObject();
+  let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
+  let fileAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
   console.info('getAssets fileAsset.uri : ' + fileAsset.uri);
 
-  let onCallback1 = (changeData) => {
+  let onCallback1 = (changeData: photoAccessHelper.ChangeData) => {
     console.info('onCallback1, changData: ' + JSON.stringify(changeData));
   }
-  let onCallback2 = (changeData) => {
+  let onCallback2 = (changeData: photoAccessHelper.ChangeData) => {
     console.info('onCallback2, changData: ' + JSON.stringify(changeData));
   }
   phAccessHelper.registerChange(fileAsset.uri, false, onCallback1);

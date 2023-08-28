@@ -54,7 +54,7 @@ struct FontExample {
     // Both familyName and familySrc support the string type.
     font.registerFont({
       familyName: 'medium',
-      familySrc: '/font/medium.ttf'
+      familySrc: '/font/medium.ttf' // The font file is at the same level as the pages directory.
     })
 
     // Both familyName and familySrc support the Resource type.
@@ -138,7 +138,7 @@ Obtains information about a system font based on the font name.
 | ---------------- | ---------------------------- |
 | FontInfo         | Information about the system font.                |
 
-## FontInfo
+## FontInfo<sup>10+</sup>
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -170,7 +170,7 @@ struct FontExample {
     Column() {
       Button("getFontByName")
         .onClick(() => {
-          this.fontInfo = font.getFontByName('HarmonyOS Sans Italic')
+          this.fontInfo = font.getFontByName('Sans Italic')
           console.log("getFontByName(): path = " + this.fontInfo.path)
           console.log("getFontByName(): postScriptName = " + this.fontInfo.postScriptName)
           console.log("getFontByName(): fullName = " + this.fontInfo.fullName)

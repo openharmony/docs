@@ -1,6 +1,6 @@
-# cppcrash Log Analysis
+# Process Crash (cppcrash) Log Analysis
 
-## Introduction
+## Overview
 
 A process crash refers to a C/C++ runtime crash. The FaultLogger module of OpenHarmony provides capabilities such as process crash detection, log collection, log storage, and log reporting, helping you to locate faults more effectively.
 
@@ -23,7 +23,7 @@ Process crash detection is implemented based on the Linux signal mechanism. Curr
 
 ## Crash Log Collection
 
-Process crash log is the fault log managed together with the app freeze and JS application crash logs by the FaultLogger module. You can collect process crash logs in any of the following ways:
+Process crash log is a type of fault logs managed together with the app freeze and JS application crash logs by the FaultLogger module. You can collect process crash logs in any of the following ways:
 
 ### Collecting Logs by Using Shell
 
@@ -72,17 +72,14 @@ Thread name:crasher <- Abnormal thread
 
 ### Locating Faults Through Logs
 
-1. Determine the faulty module and fault type based on fault logs.
+- Determine the faulty module and fault type based on fault logs.
 
-    Generally, you can identify the faulty module based on the crash process name and identify the crash cause based on the signal. Besides, you can restore the function call chain of the crash stack based on the method name in the stack.
-
-    In the example, **SIGSEGV** is thrown by the Linux kernel because of access to an invalid memory address. The problem occurs in the **TriggerSegmentFaultException** function.
-
-    In most scenarios, a crash is caused by the top layer of the crash stack, such as null pointer access and proactive program abort.
-
+    Generally, you can identify the faulty module based on the crash process name and identify the crash cause based on the signal. Besides, you can restore the function call chain of the crash stack based on the method name in the stack.\
+    In the example, **SIGSEGV** is thrown by the Linux kernel because of access to an invalid memory address. The problem occurs in the **TriggerSegmentFaultException** function.\
+    In most scenarios, a crash is caused by the top layer of the crash stack, such as null pointer access and proactive program abort.\
     If the cause cannot be located through the call stack, you need to check for other faults, for example, memory corruption or stack overflow.
 
-2. Use the addr2line tool of Linux to parse the code line number to restore the call stack at the time of process crash.
+- Use the addr2line tool of Linux to parse the code line number to restore the call stack at the time of process crash.
 
     When using the addr2line tool to parse the code line number of the crash stack, make sure that binary files with debugging information is used. Generally, such files are generated during version build or application build.
 
@@ -94,17 +91,17 @@ Thread name:crasher <- Abnormal thread
     \code root directory\out\product\exe.unstripped
     ```
 
-    You can run `apt-get install addr2line` to install the addr2line tool on Linux.
-
+    You can run `apt-get install addr2line` to install the addr2line tool on Linux.\
     On On DevEco Studio, you can also use the llvm-addr2line tool archived in the SDK to parse code line numbers. The usage method is the same.
 
-    The following example shows how to use the addr2line tool to parse the code line number based on the offset address:
+    The following example shows how to use the addr2line tool to parse the code line number based on the offset address.
+
+    **[product name]** indicates the device name.
 
     ```
-    root:~/OpenHarmony/out/rk3568/exe.unstripped/hiviewdfx/faultloggerd$ addr2line -e crasher 0000332c
+    root:~/OpenHarmony/out/[product name]/exe.unstripped/hiviewdfx/faultloggerd$ addr2line -e crasher 0000332c
     base/hiviewdfx/faultloggerd/tools/crasher/dfx_crasher.c:57
     ```
 
-    In this example, the crash is caused by assignment of a value to an unwritable area. It is in code line 57 in the **dfx_crasher.c** file. You can modify it to avoid the crash.
-
+    In this example, the crash is caused by assignment of a value to an unwritable area. It is in code line 57 in the **dfx_crasher.c** file. You can modify it to avoid the crash.\
     If the obtained code line number is seemingly incorrect, you can fine-tune the address (for example, subtract the address by 1) or disable some compilation optimization items. It is known that the obtained code line number may be incorrect when Link Time Optimization (LTO) is enabled.

@@ -50,8 +50,8 @@ setDisposedStatus(appId: string, disposedWant: Want): Promise\<void>
 **示例：**
 
 ```ts
-var appId = "com.example.myapplication_xxxxx";
-var want = {bundleName: 'com.example.myapplication'};
+let appId = "com.example.myapplication_xxxxx";
+let want = {bundleName: 'com.example.myapplication'};
 
 try {
     appControl.setDisposedStatus(appId, want)
@@ -83,7 +83,7 @@ setDisposedStatus(appId: string, disposedWant: Want, callback: AsyncCallback\<vo
 | ----------- | ------------------------------- | ---- | --------------------------------------- |
 | appId  | string | 是    | 需要设置处置的应用的appId<br> appId是应用的唯一标识，由应用Bundle名称和签名信息决定，获取方法参见[获取应用的appId](#获取应用的appid)。                      |
 | disposedWant | Want  | 是 | 对应用的处置意图。 |
-| callback    | AsyncCallback\<void> | 是    | 回调函数，当设置处置状态成功，err为undefined，否则为错误对象。 |
+| callback    | AsyncCallback\<void> | 是    | 回调函数，当设置处置状态成功，err为null，否则为错误对象。 |
 
 **错误码：**
 
@@ -96,8 +96,8 @@ setDisposedStatus(appId: string, disposedWant: Want, callback: AsyncCallback\<vo
 **示例：**
 
 ```ts
-var appId = "com.example.myapplication_xxxxx";
-var want = {bundleName: 'com.example.myapplication'};
+let appId = "com.example.myapplication_xxxxx";
+let want = {bundleName: 'com.example.myapplication'};
 
 try {
     appControl.setDisposedStatus(appId, want, (error, data) => {
@@ -147,7 +147,7 @@ getDisposedStatus(appId: string): Promise\<Want>;
 **示例：**
 
 ```ts
-var appId = "com.example.myapplication_xxxxx";
+let appId = "com.example.myapplication_xxxxx";
 
 try {
     appControl.getDisposedStatus(appId)
@@ -178,7 +178,7 @@ getDisposedStatus(appId: string, callback: AsyncCallback\<Want>): void;
 | 参数名       | 类型     | 必填   | 说明                                  |
 | ----------- | ------ | ---- | --------------------------------------- |
 | appId  | string | 是    | 要查询的应用的appId<br> appId是应用的唯一标识，由应用Bundle名称和签名信息决定，获取方法参见[获取应用的appId](#获取应用的appid)。  |
-| callback    | AsyncCallback\<Want> | 是    | 回调函数。当获取应用的处置状态成功时，err为undefined，data为获取到的处置状态；否则为错误对象。                    |
+| callback    | AsyncCallback\<Want> | 是    | 回调函数。当获取应用的处置状态成功时，err为null，data为获取到的处置状态；否则为错误对象。                    |
 
 **错误码：**
 
@@ -191,7 +191,7 @@ getDisposedStatus(appId: string, callback: AsyncCallback\<Want>): void;
 **示例：**
 
 ```ts
-var appId = "com.example.myapplication_xxxxx";
+let appId = "com.example.myapplication_xxxxx";
 
 try {
     appControl.getDisposedStatus(appId, (error, data) => {
@@ -241,7 +241,7 @@ deleteDisposedStatus(appId: string): Promise\<void>
 **示例：**
 
 ```ts
-var appId = "com.example.myapplication_xxxxx";
+let appId = "com.example.myapplication_xxxxx";
 
 try {
     appControl.deleteDisposedStatus(appId)
@@ -272,7 +272,7 @@ deleteDisposedStatus(appId: string, callback: AsyncCallback\<void>) : void
 | 参数名       | 类型     | 必填   | 说明                                    |
 | ----------- | ------ | ---- | --------------------------------------- |
 | appId  | string | 是    | 要查询的应用的appId。<br> appId是应用的唯一标识，由应用Bundle名称和签名信息决定，获取方法参见[获取应用的appId](#获取应用的appid)。  |
-| callback    | AsyncCallback\<void> | 是    | 回调函数，当设置处置状态成功时，err返回undefined。否则回调函数返回具体错误对象。                   |
+| callback    | AsyncCallback\<void> | 是    | 回调函数，当设置处置状态成功时，err返回null。否则回调函数返回具体错误对象。                   |
 
 **错误码：**
 
@@ -285,7 +285,7 @@ deleteDisposedStatus(appId: string, callback: AsyncCallback\<void>) : void
 **示例：**
 
 ```ts
-var appId = "com.example.myapplication_xxxxx";
+let appId = "com.example.myapplication_xxxxx";
 try {
     appControl.deleteDisposedStatus(appId, (error, data) => {
         if (error) {
@@ -308,8 +308,8 @@ appId是应用的唯一标识，由应用Bundle名称和签名信息决定，可
 ```ts
 import bundleManager from '@ohos.bundle.bundleManager';
 
-var bundleName = 'com.example.myapplication';
-var appId;
+let bundleName = 'com.example.myapplication';
+let appId: string;
 try {
     bundleManager.getBundleInfo(bundleName, bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_SIGNATURE_INFO)
         .then((data) => {

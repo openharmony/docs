@@ -11,7 +11,7 @@
 ## 导入模块
 
 ```ts
-import WorkSchedulerExtensionAbility from '@ohos.WorkSchedulerExtensionAbility'
+import WorkSchedulerExtensionAbility from '@ohos.WorkSchedulerExtensionAbility';
 ```
 
 ## 属性
@@ -39,11 +39,13 @@ onWorkStart(work: workScheduler.WorkInfo): void
 **示例：** 
 
   ```ts
-    export default class MyWorkSchedulerExtensionAbility extends WorkSchedulerExtensionAbility {
-        onWorkStart(workInfo) {
-            console.log('MyWorkSchedulerExtensionAbility onWorkStart' + JSON.stringify(workInfo));
-        }
+  import workScheduler from '@ohos.resourceschedule.workScheduler';
+
+  export default class MyWorkSchedulerExtensionAbility extends WorkSchedulerExtensionAbility {
+    onWorkStart(workInfo: workScheduler.WorkInfo) {
+        console.log('MyWorkSchedulerExtensionAbility onWorkStart' + JSON.stringify(workInfo));
     }
+  }
   ```
 
 ## WorkSchedulerExtensionAbility.onWorkStop
@@ -64,9 +66,11 @@ onWorkStop(work: workScheduler.WorkInfo): void
 **示例：** 
 
   ```ts
-    export default class MyWorkSchedulerExtensionAbility extends WorkSchedulerExtensionAbility {
-        onWorkStop(workInfo) {
-            console.log('MyWorkSchedulerExtensionAbility onWorkStop' + JSON.stringify(workInfo));
-        }
+  import workScheduler from '@ohos.resourceschedule.workScheduler';
+
+  export default class MyWorkSchedulerExtensionAbility extends WorkSchedulerExtensionAbility {
+    onWorkStop(workInfo: workScheduler.WorkInfo) {
+        console.log('MyWorkSchedulerExtensionAbility onWorkStop' + JSON.stringify(workInfo));
     }
+  }
   ```

@@ -1275,6 +1275,151 @@ async function example() {
 }
 ```
 
+### getPhotoIndex
+
+getPhotoIndex(photoUri: string, albumUri: string, options: FetchOptions, callback: AsyncCallback&lt;number&gt;): void
+
+Obtains the index of an image or video in an album. This API uses an asynchronous callback to return the result.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.READ_IMAGEVIDEO
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Parameters**
+
+| Name  | Type                     | Mandatory| Description      |
+| -------- | ------------------------- | ---- | ---------- |
+| photoUri | string | Yes  | URI of the media asset whose index is to be obtained.|
+| albumUri | string | Yes  | Album URI, which can be an empty string. If it is an empty string, all the media assets in the Gallery are obtained by default.  |
+| options  | [FetchOptions](#fetchoptions)       | Yes  |  Fetch options. Only one search condition or sorting mode must be set in **predicates**. If no value is set or multiple search conditions or sorting modes are set, the API cannot be called successfully.     |
+
+**Return value**
+
+| Type                                   | Description             |
+| --------------------------------------- | ----------------- |
+| AsyncCallback&lt;number&gt;| Promise used to return the index obtained.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 401   | if parameter is invalid.         |
+
+**Example**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
+async function example() {
+  console.info('getPhotoIndexDemo');
+  let predicatesForGetAsset = new dataSharePredicates.DataSharePredicates();
+  let fetchOp = {
+    fetchColumns: [],
+    predicates: predicatesForGetAsset
+  };
+  //Obtain the uri of the album
+  let albumFetchResult = await helper.getAlbums(photoAccessHelper.AlbumType.SYSTEM, photoAccessHelper.AlbumSubtype.FAVORITE, fetchOp);
+  let album = await albumFetchResult.getFirstObject();
+
+   let predicates = new dataSharePredicates.DataSharePredicates();
+  predicates.orderByAsc("add_modified");
+  let fetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
+  let photoFetchResult = await album.getAssets(fetchOptions);
+  let expectIndex = 1;
+  //Obtain the uri of the second file
+  let photoAsset = await photoFetchResult.getObjectByPosition(expectIndex);
+
+  photoAccessHelper.getPhotoIndex(photoAsset.uri, album.albumUri, fetchOptions, (err, index) => {
+    try {
+      if (err == undefined) {
+        console.info(`getPhotoIndex successfully and index is : ${index}`);
+      } else {
+        console.info(`getPhotoIndex failed;`);
+      }
+    } catch (error) {
+      console.info(`getPhotoIndex failed; error: ${error}`);
+    }
+  }
+}
+```
+
+### getPhotoIndex
+
+getPhotoIndex(photoUri: string, albumUri: string, options: FetchOptions): Promise&lt;number&gt;
+
+Obtains the index of an image or video in an album. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.READ_IMAGEVIDEO
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Parameters**
+
+| Name  | Type                     | Mandatory| Description      |
+| -------- | ------------------------- | ---- | ---------- |
+| photoUri | string | Yes  | URI of the media asset whose index is to be obtained.|
+| albumUri | string | Yes  | Album URI, which can be an empty string. If it is an empty string, all the media assets in the Gallery are obtained by default.  |
+| options  | [FetchOptions](#fetchoptions)       | Yes  |  Fetch options. Only one search condition or sorting mode must be set in **predicates**. If no value is set or multiple search conditions or sorting modes are set, the API cannot be called successfully.     |
+
+**Return value**
+
+| Type                                   | Description             |
+| --------------------------------------- | ----------------- |
+| Promise&lt;number&gt;| Promise used to return the index obtained.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 401   | if parameter is invalid.         |
+
+**Example**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
+async function example() {
+  console.info('getPhotoIndexDemo');
+  let predicatesForGetAsset = new dataSharePredicates.DataSharePredicates();
+  let fetchOp = {
+    fetchColumns: [],
+    predicates: predicatesForGetAsset
+  };
+  //Obtain the uri of the album
+  let albumFetchResult = await helper.getAlbums(photoAccessHelper.AlbumType.SYSTEM, photoAccessHelper.AlbumSubtype.FAVORITE, fetchOp);
+  let album = await albumFetchResult.getFirstObject();
+
+  let predicates = new dataSharePredicates.DataSharePredicates();
+  predicates.orderByAsc("add_modified");
+  let fetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
+  let photoFetchResult = await album.getAssets(fetchOptions);
+  let expectIndex = 1;
+  //Obtain the uri of the second file
+  let photoAsset = await photoFetchResult.getObjectByPosition(expectIndex);
+
+  photoAccessHelper.getPhotoIndex(photoAsset.uri, album.albumUri, fetchOptions)
+    .then((index) => {
+        console.info(`getPhotoIndex successfully and index is : ${index}`);
+      }).catch((err) => {
+      console.info(`getPhotoIndex failed; error: ${err}`);
+    })
+}
+```
+
 ### release
 
 release(callback: AsyncCallback&lt;void&gt;): void
@@ -1360,7 +1505,7 @@ Provides APIs for encapsulating file asset attributes.
 
 | Name                     | Type                    | Readable| Writable| Description                                                  |
 | ------------------------- | ------------------------ | ---- | ---- | ------------------------------------------------------ |
-| uri                       | string                   | Yes  | No  | File asset URI, for example, **file://media/image/2**.        |
+| uri                       | string                   | Yes  | No  | File asset URI, for example, **file://media/Photo/1/IMG_datetime_0001/displayName.jpg**.        |
 | photoType   | [PhotoType](#phototype) | Yes  | No  | Type of the file.                                              |
 | displayName               | string                   | Yes  | No  | File name, including the file name extension, to display.                                |
 
@@ -2240,6 +2385,282 @@ async function example() {
   }).catch((err) => {
     console.error('setHidden failed with error:' + err);
   });
+}
+```
+
+### getExif<sup>10+</sup>
+
+getExif(): Promise&lt;string&gt;
+
+Obtains a JSON string consisting of the EXIF tags of this JPG image. This API uses a promise to return the result.
+
+**CAUTION**<br>This API returns a JSON string consisting of EXIF tags. The complete EXIF information consists of **all_exif** and **js-apis-photoAccessHelper.md**. These two fields must be passed in via **fetchColumns**.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.READ_IMAGEVIDEO
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Return value**
+
+| Type                                   | Description             |
+| --------------------------------------- | ----------------- |
+| Promise&lt;string&gt; | Callback invoked to return the JSON string obtained.|
+
+**Supported EXIF tags**
+
+For details about the EXIF tags, see [image.PropertyKey](js-apis-image.md#propertykey7).
+
+| Key Value                                   | Description             |
+| --------------------------------------- | ----------------- |
+| BitsPerSample | Number of bits per pixel.|
+| Orientation | Image orientation.|
+| ImageLength | Image length.|
+| ImageWidth | Image width.|
+| GPSLatitude | GPS latitude of the image.|
+| GPSLongitude | GPS longitude of the image.|
+| GPSLatitudeRef | Longitude reference, for example, W or E.|
+| GPSLongitudeRef | Latitude reference, for example, N or S.|
+| DateTimeOriginal | Shooting time.|
+| ExposureTime | Exposure time.|
+| SceneType | Shooting scene type.|
+| ISOSpeedRatings | ISO sensitivity or speed.|
+| FNumber | f-number.|
+| DateTime | Date and time when the image was last modified.|
+| GPSTimeStamp | GPS timestamp.|
+| GPSDateStamp | GPS date stamp.|
+| ImageDescription | Image description.|
+| Make | Camera vendor.|
+| Model | Model.|
+| PhotoMode | Photo mode.|
+| SensitivityType | Sensitivity type.|
+| StandardOutputSensitivity | Standard output sensitivity.|
+| RecommendedExposureIndex | Recommended exposure index.|
+| ApertureValue | Aperture value.|
+| MeteringMode | Metering mode.|
+| LightSource | Light source.|
+| Flash | Flash status.|
+| FocalLength | Focal length.|
+| UserComment | User comment.|
+| PixelXDimension | Pixel X dimension.|
+| PixelYDimension | Pixel Y dimension.|
+| WhiteBalance | White balance.|
+| FocalLengthIn35mmFilm | Focal length in 35 mm film.|
+| ExposureBiasValue | Exposure compensation.|
+
+**Example**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
+async function example() {
+  try {
+    console.info('getExifDemo');
+    let predicates = new dataSharePredicates.DataSharePredicates();
+    let fetchOptions = {
+      fetchColumns: [ 'all_exif',  photoKeys.USER_COMMENT],
+      predicates: predicates
+    };
+    let fetchResult = await phAccessHelper.getAssets(fetchOptions);
+    let fileAsset = await fetchResult.getFirstObject();
+    let exifMessage = await fileAsset.getExif();
+    let userCommentKey = 'UserComment';
+    let userComment = JSON.stringify(JSON.parse(exifMessage), [userCommentKey]);
+    fetchResult.close();
+  } catch (err) {
+    console.error('getExifDemoCallback failed with error: ' + err);
+  }
+}
+```
+
+### getExif<sup>10+</sup>
+
+getExif(callback: AsyncCallback&lt;string&gt;): void
+
+Obtains a JSON string consisting of the EXIF tags of this JPG image. This API uses an asynchronous callback to return the result.
+
+**CAUTION**<br>This API returns a JSON string consisting of EXIF tags. The complete EXIF information consists of **all_exif** and **ImageVideoKey.USER_COMMENT**. These two fields must be passed in via **fetchColumns**.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.READ_IMAGEVIDEO
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Parameters**
+
+| Name  | Type                     | Mandatory| Description      |
+| -------- | ------------------------- | ---- | ---------- |
+| callback | AsyncCallback&lt;string&gt; | Yes  | Callback invoked to return the JSON string obtained.|
+
+**Supported EXIF tags**
+
+For details about the EXIF tags, see [image.PropertyKey](js-apis-image.md#propertykey7).
+
+| Key Value                                   | Description             |
+| --------------------------------------- | ----------------- |
+| BitsPerSample | Number of bits per pixel.|
+| Orientation | Image orientation.|
+| ImageLength | Image length.|
+| ImageWidth | Image width.|
+| GPSLatitude | GPS latitude of the image.|
+| GPSLongitude | GPS longitude of the image.|
+| GPSLatitudeRef | Longitude reference, for example, W or E.|
+| GPSLongitudeRef | Latitude reference, for example, N or S.|
+| DateTimeOriginal | Shooting time.|
+| ExposureTime | Exposure time.|
+| SceneType | Shooting scene type.|
+| ISOSpeedRatings | ISO sensitivity or speed.|
+| FNumber | f-number.|
+| DateTime | Date and time when the image was last modified.|
+| GPSTimeStamp | GPS timestamp.|
+| GPSDateStamp | GPS date stamp.|
+| ImageDescription | Image description.|
+| Make | Camera vendor.|
+| Model | Model.|
+| PhotoMode | Photo mode.|
+| SensitivityType | Sensitivity type.|
+| StandardOutputSensitivity | Standard output sensitivity.|
+| RecommendedExposureIndex | Recommended exposure index.|
+| ApertureValue | Aperture value.|
+| MeteringMode | Metering mode.|
+| LightSource | Light source.|
+| Flash | Flash status.|
+| FocalLength | Focal length.|
+| UserComment | User comment.|
+| PixelXDimension | Pixel X dimension.|
+| PixelYDimension | Pixel Y dimension.|
+| WhiteBalance | White balance.|
+| FocalLengthIn35mmFilm | Focal length in 35 mm film.|
+| ExposureBiasValue | Exposure compensation.|
+
+**Example**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
+async function example() {
+  try {
+    console.info('getExifDemo');
+    let predicates = new dataSharePredicates.DataSharePredicates();
+    let fetchOptions = {
+      fetchColumns: [ 'all_exif',  photoKeys.USER_COMMENT],
+      predicates: predicates
+    };
+    let fetchResult = await phAccessHelper.getAssets(fetchOptions);
+    let fileAsset = await fetchResult.getFirstObject();
+    let userCommentKey = 'UserComment';
+    fileAsset.getExif((err, exifMessage) => {
+      if (exifMessage != undefined) {
+        let userComment = JSON.stringify(JSON.parse(exifMessage), [userCommentKey]);
+      } else {
+        console.error('getExif failed, message = ', err);
+      }
+    });
+    fetchResult.close();
+  } catch (err) {
+    console.error('getExifDemoCallback failed with error: ' + err);
+  }
+}
+```
+
+### setUserComment<sup>10+</sup>
+
+setUserComment(userComment: string): Promise&lt;void&gt;
+
+Sets user comment information of an image or video. This API uses a promise to return the result.
+
+**NOTE**<br>This API can be used to modify the comment information of only images or videos.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.WRITE_IMAGEVIDEO
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Parameters**
+
+| Name  | Type                     | Mandatory| Description      |
+| -------- | ------------------------- | ---- | ---------- |
+| userComment | string | Yes  | User comment information to set, which cannot exceed 140 characters.|
+
+**Return value**
+
+| Type                                   | Description             |
+| --------------------------------------- | ----------------- |
+|Promise&lt;void&gt; | Promise that returns no value.|
+
+**Example**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
+async function example() {
+  try {
+    console.info('setUserCommentDemo')
+    let predicates = new dataSharePredicates.DataSharePredicates();
+    let fetchOptions = {
+      fetchColumns: [],
+      predicates: predicates
+    };
+    let fetchResult = await phAccessHelper.getAssets(fetchOptions);
+    let fileAsset = await fetchResult.getFirstObject();
+    let userComment = 'test_set_user_comment';
+    await fileAsset.setUserComment(userComment);
+  } catch (err) {
+    console.error('setUserCommentDemoCallback failed with error: ' + err);
+  }
+}
+```
+
+### setUserComment<sup>10+</sup>
+
+setUserComment(userComment: string, callback: AsyncCallback&lt;void&gt;): void
+
+Sets user comment information of an image or video. This API uses an asynchronous callback to return the result.
+
+**NOTE**<br>This API can be used to modify the comment information of only images or videos.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.WRITE_IMAGEVIDEO
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Parameters**
+
+| Name  | Type                     | Mandatory| Description      |
+| -------- | ------------------------- | ---- | ---------- |
+| userComment | string | Yes  | User comment information to set, which cannot exceed 140 characters.|
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback that returns no value.|
+
+**Example**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
+async function example() {
+  try {
+    console.info('setUserCommentDemo')
+    let predicates = new dataSharePredicates.DataSharePredicates();
+    let fetchOptions = {
+      fetchColumns: [],
+      predicates: predicates
+    };
+    let fetchResult = await phAccessHelper.getAssets(fetchOptions);
+    let fileAsset = await fetchResult.getFirstObject();
+    let userComment = 'test_set_user_comment';
+    fileAsset.setUserComment(userComment, (err) => {
+      if (err === undefined) {
+        console.info('setUserComment successfully');
+      } else {
+        console.error('setUserComment failed with error: ' + err);
+      }
+    });
+  } catch (err) {
+    console.error('setUserCommentDemoCallback failed with error: ' + err);
+  }
 }
 ```
 
@@ -3726,6 +4147,7 @@ Defines the key information about an image or video file.
 | DATE_TRASHED  | 'date_trashed'  | Date when the file was deleted. The value is the number of seconds between the time when the file is deleted and January 1, 1970. **System API**: This is a system API.                |
 | HIDDEN  | 'hidden'            | Whether the file is hidden. **System API**: This is a system API.                              |
 | CAMERA_SHOT_KEY  | 'camera_shot_key'  | Key for the Untra Snamshot feature, which allows the camera to take photos or record videos with the screen off. (This parameter is available only for the system camera, and the key value is defined by the system camera.)<br/>**System API**: This is a system API. |
+| USER_COMMENT<sup>10+</sup>  | 'user_comment'            | User comment information. **System API**: This is a system API.          |
 
 ## AlbumKeys
 

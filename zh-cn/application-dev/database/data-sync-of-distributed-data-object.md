@@ -151,17 +151,26 @@
    // 导入模块
    import distributedDataObject from '@ohos.data.distributedDataObject';
    import UIAbility from '@ohos.app.ability.UIAbility';
-   
+   import { BusinessError } from '@ohos.base';
+   import window from '@ohos.window';
+
+   interface sourceObject{
+     name: string,
+     age: number,
+     isVis: boolean
+     parent: { [key: string]: string },
+     list: { [key: string]: string }[]
+   }
    class EntryAbility extends UIAbility {
-     onWindowStageCreate(windowStage) {
-       // 创建对象，该对象包含4个属性类型：string、number、boolean和Object
-       let localObject = distributedDataObject.create(this.context, {
+     onWindowStageCreate(windowStage: window.WindowStage) {
+       let source: sourceObject = {
          name: 'jack',
          age: 18,
          isVis: false,
          parent: { mother: 'jack mom', father: 'jack Dad' },
          list: [{ mother: 'jack mom' }, { father: 'jack Dad' }]
-       });
+       }
+       let localObject: distributedDataObject.DataObject = distributedDataObject.create(this.context, source);
      }
    }
    ```
@@ -175,34 +184,43 @@
    import featureAbility from '@ohos.ability.featureAbility';
    // 获取context
    let context = featureAbility.getContext();
-   // 创建对象，该对象包含4个属性类型：string、number、boolean和Object
-   let localObject = distributedDataObject.create(context, {
+   interface sourceObject{
+     name: string,
+     age: number,
+     isVis: boolean
+     parent: { [key: string]: string },
+     list: { [key: string]: string }[]
+   }
+   let source: sourceObject = {
      name: 'jack',
      age: 18,
      isVis: false,
      parent: { mother: 'jack mom', father: 'jack Dad' },
      list: [{ mother: 'jack mom' }, { father: 'jack Dad' }]
-   });
+   }
+   // 创建对象，该对象包含4个属性类型：string、number、boolean和Object
+   let localObject: distributedDataObject.DataObject = distributedDataObject.create(context, source);
    ```
 
 4. 加入同步组网。同步组网中的数据对象分为发起方和被拉起方。
      
    ```js
    // 设备1加入sessionId
-   let sessionId = '123456';
+   let sessionId: string = '123456';
    
    localObject.setSessionId(sessionId);
    
    // 和设备1协同的设备2加入同一个session
    
    // 创建对象，该对象包含4个属性类型：string、number、boolean和Object
-   let remoteObject = distributedDataObject.create(this.context, {
+   let remoteSource: sourceObject = {
      name: undefined,
      age: undefined, //  undefined表示数据来自对端
      isVis: true,
      parent: undefined,
      list: undefined
-   });
+   }
+   let remoteObject: distributedDataObject.DataObject = distributedDataObject.create(this.context, remoteSource);
    // 收到status上线后remoteObject同步数据，即name变成jack,age是18
    remoteObject.setSessionId(sessionId);
    ```
@@ -210,18 +228,19 @@
 5. 监听对象数据变更。可监听对端数据的变更，以callback作为变更回调实例。
      
    ```js
-   function changeCallback(sessionId, changeData) {
-     console.info(`change: ${sessionId}`);
-   
-     if (changeData !== null && changeData !== undefined) {
-       changeData.forEach(element => {
-         console.info(`The element ${localObject[element]} changed.`);
-       });
-     }
+   interface ChangeCallback {
+     sessionId: string,
+     fields: Array<string> 
    }
    
-   // 发起方要在changeCallback里刷新界面，则需要将正确的this绑定给changeCallback
-   localObject.on("change", this.changeCallback.bind(this));
+   localObject.on("change", (changeData:ChangeCallback) => {
+     console.info("change" + changeData.sessionId);
+     if (changeData.fields != null && changeData.fields != undefined) {
+       for (let index: number = 0; index < changeData.fields.length; index++) {
+         console.info(`The element ${localObject[changeData.fields[index]]} changed.`);
+       }
+     }
+   });
    ```
 
 6. 修改对象属性，对象属性支持基本类型（数字类型、布尔类型、字符串类型）以及复杂类型（数组、基本类型嵌套等）。
@@ -256,7 +275,14 @@
      
    ```js
    // 删除变更回调changeCallback
-   localObject.off('change', this.changeCallback);
+   localObject.off('change',(changeData: ChangeCallback) => {
+     console.info("change" + changeData.sessionId);
+     if (changeData.fields != null && changeData.fields != undefined) {
+       for (let index: number = 0; index < changeData.fields.length; index++) {
+         console.info("changed !" + changeData.fields[index] + " " + g_object[changeData.fields[index]]);
+       }
+     }
+   });
    // 删除所有的变更回调
    localObject.off('change'); 
    ```
@@ -264,27 +290,32 @@
 9. 监听分布式数据对象的上下线。可以监听对端分布式数据对象的上下线。
      
    ```js
-   function statusCallback(sessionId, networkId, status) {
-     // 业务处理
+   interface onStatusCallback {
+     sessionId: string,
+     networkId: string,
+     status: 'online' | 'offline'
    }
    
-   localObject.on('status', this.statusCallback);
+   localObject.on('status', (statusCallback: onStatusCallback) => {
+     console.info("status changed " + statusCallback.sessionId + " " + statusCallback.status + " " +  statusCallback.networkId);
+     // 业务处理
+   });
    ```
 
 10. 保存和撤回已保存的数据对象。
      
     ```js
     // 保存数据对象，如果应用退出后组网内设备需要恢复对象数据时调用
-    localObject.save('local').then((result) => {
+    localObject.save("local").then((result: distributedDataObject.SaveSuccessResponse) => {
       console.info(`Succeeded in saving. SessionId:${result.sessionId},version:${result.version},deviceId:${result.deviceId}`);
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
       console.error(`Failed to save. Code:${err.code},message:${err.message}`);
     });
    
     // 撤回保存的数据对象
-    localObject.revokeSave().then((result) => {
+    localObject.revokeSave().then((result: distributedDataObject.RevokeSaveSuccessResponse) => {
       console.info(`Succeeded in revokeSaving. Session:${result.sessionId}`);
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
       console.error(`Failed to revokeSave. Code:${err.code},message:${err.message}`);
     });
     ```
@@ -292,8 +323,16 @@
 11. 删除监听分布式数据对象的上下线。可以指定删除监听的上下线回调；也可以不指定，这将会删除该分布式数据对象的所有上下线回调。
      
     ```js
+    interface offStatusCallback {
+      sessionId: string,
+      deviceId: string,
+      status: 'online' | 'offline'
+    }
     // 删除上下线回调statusCallback
-    localObject.off('status', this.statusCallback);
+    localObject.off('status', (statusCallback: offStatusCallback) => {
+      console.info("status changed " + statusCallback.sessionId + " " + statusCallback.status + " " + statusCallback.deviceId);
+      // 业务处理
+    });
     // 删除所有的上下线回调
     localObject.off('status');
     ```
@@ -302,7 +341,7 @@
      
     ```js
     localObject.setSessionId(() => {
-        console.info('leave all lession.');
+      console.info('leave all session.');
     });
     ```
 

@@ -20,11 +20,11 @@ Read [AVRecorder](../reference/apis/js-apis-media.md#avrecorder9) for the API re
    ```ts
    import media from '@ohos.multimedia.media';
    
-   let avRecorder = undefined;
-   media.createAVRecorder().then((recorder) => {
+   let avRecorder: media.AVRecorder;
+   media.createAVRecorder().then((recorder: media.AVRecorder) => {
      avRecorder = recorder;
-   }, (err) => {
-     console.error(`Invoke createAVRecorder failed, code is ${err.code}, message is ${err.message}`);
+   }, (error: Error) => {
+     console.error(`createAVRecorder failed`);
    })
    ```
 
@@ -37,13 +37,13 @@ Read [AVRecorder](../reference/apis/js-apis-media.md#avrecorder9) for the API re
    
    ```ts
    // Callback function for state changes.
-   avRecorder.on('stateChange', (state, reason) => {
+   avRecorder.on('stateChange', (state: media.AVRecorderState, reason: media.StateChangeReason) => {
      console.log(`current state is ${state}`);
      // You can add the action to be performed after the state is switched.
    })
    
    // Callback function for errors.
-   avRecorder.on('error', (err) => {
+   avRecorder.on('error', (err: BusinessError) => {
      console.error(`avRecorder failed, code is ${err.code}, message is ${err.message}`);
    })
    ```
@@ -62,21 +62,21 @@ Read [AVRecorder](../reference/apis/js-apis-media.md#avrecorder9) for the API re
 
    
    ```ts
-   let avProfile = {
+   let avProfile: media.AVRecorderProfile = {
      audioBitrate: 100000, // Audio bit rate.
      audioChannels: 2, // Number of audio channels.
      audioCodec: media.CodecMimeType.AUDIO_AAC, // Audio encoding format. Currently, only AAC is supported.
      audioSampleRate: 48000, // Audio sampling rate.
      fileFormat: media.ContainerFormatType.CFT_MPEG_4A, // Encapsulation format. Currently, only M4A is supported.
    }
-   let avConfig = {
+   let avConfig: media.AVRecorderConfig = {
      audioSourceType: media.AudioSourceType.AUDIO_SOURCE_TYPE_MIC, // Audio input source. In this example, the microphone is used.
      profile: avProfile,
      url: 'fd://35', // Obtain the file descriptor of the created audio file by referring to the sample code in Application File Access and Management.
    }
    avRecorder.prepare(avConfig).then(() => {
      console.log('Invoke prepare succeeded.');
-   }, (err) => {
+   }, (err: BusinessError) => {
      console.error(`Invoke prepare failed, code is ${err.code}, message is ${err.message}`);
    })
    ```
@@ -100,17 +100,17 @@ Read [AVRecorder](../reference/apis/js-apis-media.md#avrecorder9) for the API re
 
 ```ts
 import media from '@ohos.multimedia.media';
-
+import { BusinessError } from '@ohos.base';
 export class AudioRecorderDemo {
-  private avRecorder;
-  private avProfile = {
+  private avRecorder: media.AVRecorder;
+  private avProfile: media.AVRecorderProfile = {
     audioBitrate: 100000, // Audio bit rate.
     audioChannels: 2, // Number of audio channels.
     audioCodec: media.CodecMimeType.AUDIO_AAC, // Audio encoding format. Currently, only AAC is supported.
     audioSampleRate: 48000, // Audio sampling rate.
     fileFormat: media.ContainerFormatType.CFT_MPEG_4A, // Encapsulation format. Currently, only M4A is supported.
   };
-  private avConfig = {
+  private avConfig: media.AVRecorderConfig = {
     audioSourceType: media.AudioSourceType.AUDIO_SOURCE_TYPE_MIC, // Audio input source. In this example, the microphone is used.
     profile: this.avProfile,
     url: 'fd://35', // Create, read, and write a file by referring to the sample code in Application File Access and Management.
@@ -119,11 +119,11 @@ export class AudioRecorderDemo {
   // Set AVRecorder callback functions.
   setAudioRecorderCallback() {
     // Callback function for state changes.
-    this.avRecorder.on('stateChange', (state, reason) => {
+    this.avRecorder.on('stateChange', (state: media.AVRecorderState, reason: media.StateChangeReason) => {
       console.log(`AudioRecorder current state is ${state}`);
     })
     // Callback function for errors.
-    this.avRecorder.on('error', (err) => {
+    this.avRecorder.on('error', (err: BusinessError) => {
       console.error(`AudioRecorder failed, code is ${err.code}, message is ${err.message}`);
     })
   }

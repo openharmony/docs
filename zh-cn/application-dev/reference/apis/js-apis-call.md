@@ -2821,7 +2821,7 @@ call.off('mmiCodeResult', data => {
 
 ## call.on('audioDeviceChange')<sup>10+</sup>
 
-on\(type: 'audioDeviceChange', callback: Callback\<AudioDeviceInfo\>\): void
+on\(type: 'audioDeviceChange', callback: Callback\<AudioDeviceCallbackInfo\>\): void
 
 订阅通话音频设备切换事件。使用callback异步回调。
 
@@ -2836,7 +2836,7 @@ on\(type: 'audioDeviceChange', callback: Callback\<AudioDeviceInfo\>\): void
 | 参数名   | 类型                                             | 必填 | 说明                                                |
 | -------- | ----------------------------------------------- | ---- | --------------------------------------------------- |
 | type     | string                                          | 是   | 通话音频设备发生变化，参数固定为'audioDeviceChange'。 |
-| callback | Callback<[AudioDeviceInfo](#audiodeviceinfo10)> | 是   | 回调函数。                                           |
+| callback | Callback<[AudioDeviceCallbackInfo](#audiodevicecallbackinfo10)> | 是   | 回调函数。                                           |
 
 **错误码：**
 
@@ -2863,7 +2863,7 @@ call.on('audioDeviceChange', data => {
 
 ## call.off('audioDeviceChange')<sup>10+</sup>
 
-off\(type: 'audioDeviceChange', callback?: Callback\<AudioDeviceInfo\>\): void
+off\(type: 'audioDeviceChange', callback?: Callback\<AudioDeviceCallbackInfo\>\): void
 
 取消订阅audioDeviceChange事件。使用callback异步回调。
 
@@ -2878,7 +2878,7 @@ off\(type: 'audioDeviceChange', callback?: Callback\<AudioDeviceInfo\>\): void
 | 参数名   | 类型                                                       | 必填  |                           说明                      |
 | -------- | ---------------------------------------------------------- | ---- | --------------------------------------------------- |
 | type     | string                                                     | 是   | 通话音频设备发生变化，参数固定为'audioDeviceChange'。 |
-| callback | Callback<[AudioDeviceInfo](#audiodeviceinfo10)>            | 否   | 回调函数。不填该参数将不会收到取消订阅的处理结果。     |
+| callback | Callback<[AudioDeviceCallbackInfo](#audiodevicecallbackinfo10)>            | 否   | 回调函数。不填该参数将不会收到取消订阅的处理结果。     |
 
 **错误码：**
 
@@ -4978,7 +4978,7 @@ IP多媒体系统调用模式。
 | DEVICE_WIRED_HEADSET | 2    | 有线耳机设备 |
 | DEVICE_BLUETOOTH_SCO | 3    | 蓝牙SCO设备  |
 
-## AudioDeviceInfo<sup>10+</sup>
+## AudioDeviceCallbackInfo<sup>10+</sup>
 
 音频设备信息。
 

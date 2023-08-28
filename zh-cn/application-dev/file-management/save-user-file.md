@@ -61,7 +61,7 @@ save接口会将文件保存在文件管理器，而不是图库。
    save返回的uri权限是读写权限，可以根据结果集里面的uri进行文件读写等操作。注意不能在picker的回调里直接使用此uri进行打开文件操作，需要定义一个全局变量保存uri，使用类似一个按钮去触发打开文件。
 
    ```ts  
-   let uri:string;
+   let uris = null;
    async photoViewPickerSave() {
       try {
          const photoSaveOptions = new picker.PhotoSaveOptions(); // 创建文件管理器保存选项实例
@@ -115,6 +115,7 @@ save接口会将文件保存在文件管理器，而不是图库。
    ```ts
    const documentSaveOptions = new picker.DocumentSaveOptions(); // 创建文件管理器选项实例
    documentSaveOptions.newFileNames = ["DocumentViewPicker01.txt"]; // 保存文件名（可选）
+   documentSaveOptions.fileSuffixChoices = ['.png', '.txt', '.mp4']; // 保存文件类型（可选）
    ```
 
 3. 创建文档选择器实例。调用[save()](../reference/apis/js-apis-file-picker.md#save-3)接口拉起FilePicker界面进行文件保存。用户选择目标文件夹，用户选择与文件类型相对应的文件夹，即可完成文件保存操作。保存成功后，返回保存文档的uri。
