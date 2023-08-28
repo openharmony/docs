@@ -9,14 +9,14 @@
 - 方法1：直接查看AudioCapturer的[state](../reference/apis/js-apis-audio.md#属性)：
     
   ```ts
-  let audioCapturerState = audioCapturer.state;
+  let audioCapturerState: audio.AudioState = audioCapturer.state;
   console.info(`Current state is: ${audioCapturerState }`)
   ```
 
 - 方法2：注册stateChange监听AudioCapturer的状态变化：
     
   ```ts
-  audioCapturer.on('stateChange', (capturerState) => {
+  audioCapturer.on('stateChange', (capturerState: audio.AudioState) => {
     console.info(`State change to: ${capturerState}`)
   });
   ```
@@ -47,6 +47,7 @@
      
    ```ts
    import audio from '@ohos.multimedia.audio';
+   import { BusinessError } from '@ohos.base';
    let audioManager = audio.getAudioManager();
    let audioStreamManager = audioManager.getStreamManager();
    ```
@@ -54,7 +55,7 @@
 2. 使用on('audioCapturerChange')监听音频录制流更改事件。 如果音频流监听应用需要在音频录制流状态变化、设备变化时获取通知，可以订阅该事件。
      
    ```ts
-   audioStreamManager.on('audioCapturerChange', (AudioCapturerChangeInfoArray) =>  {
+   audioStreamManager.on('audioCapturerChange', (AudioCapturerChangeInfoArray: audio.AudioCapturerChangeInfoArray) =>  {
      for (let i = 0; i < AudioCapturerChangeInfoArray.length; i++) {
        console.info(`## CapChange on is called for element ${i} ##`);
        console.info(`StreamId for ${i} is: ${AudioCapturerChangeInfoArray[i].streamId}`);
@@ -89,7 +90,7 @@
 
    ```ts
    async function getCurrentAudioCapturerInfoArray(){
-     await audioStreamManager.getCurrentAudioCapturerInfoArray().then( function (AudioCapturerChangeInfoArray) {
+     await audioStreamManager.getCurrentAudioCapturerInfoArray().then((AudioCapturerChangeInfoArray: audio.AudioCapturerChangeInfoArray) => {
        console.info('getCurrentAudioCapturerInfoArray  Get Promise Called ');
        if (AudioCapturerChangeInfoArray != null) {
          for (let i = 0; i < AudioCapturerChangeInfoArray.length; i++) {
@@ -108,7 +109,7 @@
            }
          }
        }
-     }).catch((err) => {
+     }).catch((err: BusinessError) => {
        console.error(`Invoke getCurrentAudioCapturerInfoArray failed, code is ${err.code}, message is ${err.message}`);
      });
    }
