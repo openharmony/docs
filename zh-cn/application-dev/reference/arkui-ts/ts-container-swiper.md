@@ -42,7 +42,7 @@ Swiper(controller?: SwiperController)
 | index                                 | number                                   | 设置当前在容器中显示的子组件的索引值。<br/>默认值：0<br/>**说明：** <br/>设置小于0或大于等于子组件数量时，按照默认值0处理。<br />从API version 10开始，该属性支持[$$](../../quick-start/arkts-two-way-sync.md)双向绑定变量。 |
 | autoPlay                              | boolean                                  | 子组件是否自动播放。<br/>默认值：false<br/>**说明：** <br/>loop为false时，自动轮播到最后一页时停止轮播。手势切换后不是最后一页时继续播放。 |
 | interval                              | number                                   | 使用自动播放时播放的时间间隔，单位为毫秒。<br/>默认值：3000       |
-| indicator<sup>10+</sup>               | [DotIndicator](#dotindicator) \| [DigitIndicator](#digitindicator) \| boolean | 设置可选导航点指示器样式。<br/> \- DotIndicator：圆点指示器样式。<br/> \- DigitIndicator：数字指示器样式。<br/> \- boolean：是否启用导航点指示器。<br/>&nbsp;&nbsp;默认值：true<br/>&nbsp;&nbsp;默认类型：DotIndicator |
+| indicator<sup>10+</sup>               | [DotIndicator](#dotindicator10) \| [DigitIndicator](#digitindicator10) \| boolean | 设置可选导航点指示器样式。<br/> \- DotIndicator：圆点指示器样式。<br/> \- DigitIndicator：数字指示器样式。<br/> \- boolean：是否启用导航点指示器。<br/>&nbsp;&nbsp;默认值：true<br/>&nbsp;&nbsp;默认类型：DotIndicator |
 | loop                                  | boolean                                  | 是否开启循环。<br>设置为true时表示开启循环，在LazyForEach懒循环加载模式下，加载的组件数量建议大于5个。<br/>默认值：true |
 | duration                              | number                                   | 子组件切换的动画时长，单位为毫秒。<br/>默认值：400            |
 | vertical                              | boolean                                  | 是否为纵向滑动。<br/>默认值：false                   |
@@ -112,10 +112,10 @@ finishAnimation(callback?: () => void): void
 
 | 参数名                | 参数类型                                     | 必填项  | 参数描述                                     |
 | ------------------ | ---------------------------------------- | ---- | ---------------------------------------- |
-| itemWidth          | [Length](ts-types.md#length)             | 否    | 设置Swiper组件圆点导航指示器的宽。<br/>默认值：6<br/>单位：vp |
-| itemHeight         | [Length](ts-types.md#length)             | 否    | 设置Swiper组件圆点导航指示器的高。<br/>默认值：6<br/>单位：vp |
-| selectedItemWidth  | [Length](ts-types.md#length)             | 否    | 设置选中Swiper组件圆点导航指示器的宽。<br/>默认值：6<br/>单位：vp |
-| selectedItemHeight | [Length](ts-types.md#length)             | 否    | 设置选中Swiper组件圆点导航指示器的高。<br/>默认值：6<br/>单位：vp |
+| itemWidth          | [Length](ts-types.md#length)             | 否    | 设置Swiper组件圆点导航指示器的宽，不支持设置百分比。<br/>默认值：6<br/>单位：vp |
+| itemHeight         | [Length](ts-types.md#length)             | 否    | 设置Swiper组件圆点导航指示器的高，不支持设置百分比。<br/>默认值：6<br/>单位：vp |
+| selectedItemWidth  | [Length](ts-types.md#length)             | 否    | 设置选中Swiper组件圆点导航指示器的宽，不支持设置百分比。<br/>默认值：6<br/>单位：vp |
+| selectedItemHeight | [Length](ts-types.md#length)             | 否    | 设置选中Swiper组件圆点导航指示器的高，不支持设置百分比。<br/>默认值：6<br/>单位：vp |
 | mask               | boolean                                  | 否    | 设置是否显示Swiper组件圆点导航指示器的蒙版样式。<br/>默认值：false |
 | color              | [ResourceColor](ts-types.md#resourcecolor) | 否    | 设置Swiper组件圆点导航指示器的颜色。<br/>默认值：'\#182431'（10%透明度） |
 | selectedColor      | [ResourceColor](ts-types.md#resourcecolor) | 否    | 设置选中Swiper组件圆点导航指示器的颜色。<br/>默认值：'\#007DFF' |
@@ -128,8 +128,8 @@ finishAnimation(callback?: () => void): void
 | ----------------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | fontColor         | [ResourceColor](ts-types.md#resourcecolor) | 否    | 设置Swiper组件数字导航点的字体颜色。<br/>默认值：'\#ff182431' |
 | selectedFontColor | [ResourceColor](ts-types.md#resourcecolor) | 否    | 设置选中Swiper组件数字导航点的字体颜色。<br/>默认值：'\#ff182431' |
-| digitFont         | {<br/>size?:[Length](ts-types.md#length)<br/>weight?:number \| [FontWeight](ts-appendix-enums.md#fontweight) \| string<br/>} | 否    | 设置Swiper组件数字导航点的字体样式：<br/>\- size：数字导航点指示器的字体大小。<br/>默认值：14vp<br/>\- weight：数字导航点指示器的字重。 |
-| selectedDigitFont | {<br/>size?:[Length](ts-types.md#length)<br/>weight?:number \| [FontWeight](ts-appendix-enums.md#fontweight) \| string<br/>} | 否    | 设置选中Swiper组件数字导航点的字体样式：<br/>\- size：数字导航点选中指示器的字体大小。<br/>默认值：14vp<br/>\- weight：数字导航点选中指示器的字重。 |
+| digitFont         | {<br/>size?:[Length](ts-types.md#length)<br/>weight?:number \| [FontWeight](ts-appendix-enums.md#fontweight) \| string<br/>} | 否    | 设置Swiper组件数字导航点的字体样式：<br/>\- size：数字导航点指示器的字体大小，不支持设置百分比。<br/>默认值：14vp<br/>\- weight：数字导航点指示器的字重。 |
+| selectedDigitFont | {<br/>size?:[Length](ts-types.md#length)<br/>weight?:number \| [FontWeight](ts-appendix-enums.md#fontweight) \| string<br/>} | 否    | 设置选中Swiper组件数字导航点的字体样式：<br/>\- size：数字导航点选中指示器的字体大小，不支持设置百分比。<br/>默认值：14vp<br/>\- weight：数字导航点选中指示器的字重。 |
 
 ## ArrowStyle<sup>10+</sup>
 左右箭头属性。
