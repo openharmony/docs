@@ -354,7 +354,7 @@ struct MyComponent {
 ```ts
 // entry/src/main/ets/pages/Index.ets
 import router from '@ohos.router';
-import 'library/src/main/ets/pages/Index.ets' // 引入共享包library中的命名路由页面
+import 'library/src/main/ets/pages/Index' // 引入共享包library中的命名路由页面
 
 @Entry
 @Component
