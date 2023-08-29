@@ -25,13 +25,13 @@ import distributedMissionManager from '@ohos.distributedMissionManager';
 **示例：**
 
 ```js
-  import distributedMissionManager from '@ohos.distributedMissionManager';
+import distributedMissionManager from '@ohos.distributedMissionManager';
 
-  try {
-    distributedMissionManager.on('continueStateChange', (data) => {
-      console.info("continueStateChange on:" + JSON.stringify(data));
-    });
-  } catch (err) {
-    console.error("continueStateChange errCode:" + err.code + ",errMessage:" + err.message);
-  }
-  ```
+try {
+  distributedMissionManager.on('continueStateChange', (data) => {
+    console.info("continueStateChange on:" + JSON.stringify(data));
+  });
+} catch (err) {
+  console.error("continueStateChange err: " + JSON.stringify(err));
+}
+```
