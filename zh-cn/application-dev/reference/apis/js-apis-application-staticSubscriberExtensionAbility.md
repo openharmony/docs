@@ -41,8 +41,11 @@ onReceiveEvent(event: CommonEventData): void;
 
 **示例：**
   ```ts
+  import StaticSubscriberExtensionAbility from '@ohos.application.StaticSubscriberExtensionAbility';
+  import CommonEventManager from '@ohos.commonEventManager';
+
     class MyStaticSubscriberExtensionAbility extends StaticSubscriberExtensionAbility {
-        onReceiveEvent(event) {
+        onReceiveEvent(event: CommonEventManager.CommonEventData) {
             console.log('onReceiveEvent, event: ${JSON.stringify(event)}');
         }
     }

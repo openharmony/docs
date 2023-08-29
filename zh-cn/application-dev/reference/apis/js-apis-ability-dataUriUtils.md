@@ -35,6 +35,8 @@ getId(uri: string): number
 **示例：**
 
 ```ts
+import dataUriUtils from '@ohos.ability.dataUriUtils';
+
 let id = dataUriUtils.getId('com.example.dataUriUtils/1221');
 ```
 
@@ -64,6 +66,8 @@ attachId(uri: string, id: number): string
 **示例：**
 
 ```ts
+import dataUriUtils from '@ohos.ability.dataUriUtils';
+
 let id = 1122;
 let uri = dataUriUtils.attachId(
     'com.example.dataUriUtils',
@@ -96,6 +100,8 @@ deleteId(uri: string): string
 **示例：**
 
 ```ts
+import dataUriUtils from '@ohos.ability.dataUriUtils';
+
 let uri = dataUriUtils.deleteId('com.example.dataUriUtils/1221');
 ```
 
@@ -125,6 +131,8 @@ updateId(uri: string, id: number): string
 **示例：**
 
 ```ts
+import dataUriUtils from '@ohos.ability.dataUriUtils';
+
 let id = 1122;
 let uri = dataUriUtils.updateId(
     'com.example.dataUriUtils/1221',

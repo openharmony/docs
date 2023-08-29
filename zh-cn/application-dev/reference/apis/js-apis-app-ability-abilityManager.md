@@ -59,9 +59,10 @@ updateConfiguration(config: Configuration, callback: AsyncCallback\<void>): void
 
 ```ts
 import abilityManager from '@ohos.app.ability.abilityManager';
+import { Configuration } from '@ohos.app.ability.Configuration';
 import ConfigurationConstant from '@ohos.app.ability.ConfigurationConstant';
 
-const config = {
+const config: Configuration = {
   language: 'Zh-Hans',                 // 简体中文
   colorMode: ConfigurationConstant.ColorMode.COLOR_MODE_LIGHT,         // 浅色模式
   direction: ConfigurationConstant.Direction.DIRECTION_VERTICAL,       // 垂直方向
@@ -117,9 +118,11 @@ updateConfiguration(config: Configuration): Promise\<void>
 
 ```ts
 import abilityManager from '@ohos.app.ability.abilityManager';
+import { Configuration } from '@ohos.app.ability.Configuration';
 import ConfigurationConstant from '@ohos.app.ability.ConfigurationConstant';
+import { BusinessError } from '@ohos.base';
 
-const config = {
+const config: Configuration = {
   language: 'Zh-Hans',                 // 简体中文
   colorMode: ConfigurationConstant.ColorMode.COLOR_MODE_LIGHT,         // 浅色模式
   direction: ConfigurationConstant.Direction.DIRECTION_VERTICAL,       // 垂直方向
@@ -131,7 +134,7 @@ const config = {
 try {
     abilityManager.updateConfiguration(config).then(() => {
         console.log('updateConfiguration success.');
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
         console.error('updateConfiguration fail, err: ${JSON.stringify(err)}');
     });
 } catch (paramError) {
@@ -209,11 +212,12 @@ getAbilityRunningInfos(): Promise\<Array\<AbilityRunningInfo>>
 
 ```ts
 import abilityManager from '@ohos.app.ability.abilityManager';
+import { BusinessError } from '@ohos.base';
 
 try {
     abilityManager.getAbilityRunningInfos().then((data) => {
         console.log('getAbilityRunningInfos success, data: ${JSON.stringify(data)}');
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
         console.error('getAbilityRunningInfos fail, err: ${JSON.stringify(err)}');
     });
 } catch (paramError) {
@@ -300,13 +304,14 @@ getExtensionRunningInfos(upperLimit: number): Promise\<Array\<ExtensionRunningIn
 
 ```ts
 import abilityManager from '@ohos.app.ability.abilityManager';
+import { BusinessError } from '@ohos.base';
 
 let upperLimit = 10;
 
 try {
     abilityManager.getExtensionRunningInfos(upperLimit).then((data) => {
         console.log('getExtensionRunningInfos success, data: ${JSON.stringify(data)}');
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
         console.error('getExtensionRunningInfos fail, err: ${JSON.stringify(err)}');
     });
 } catch (paramError) {
@@ -376,10 +381,11 @@ getTopAbility(): Promise\<ElementName>;
 
 ```ts
 import abilityManager from '@ohos.app.ability.abilityManager';
+import { BusinessError } from '@ohos.base';
 
 abilityManager.getTopAbility().then((data) => {
     console.log('getTopAbility success, data: ${JSON.stringify(data)}');
-}).catch((err) => {
+}).catch((err: BusinessError) => {
     console.error('getTopAbility fail, err: ${JSON.stringify(err)}');
 });
 ```
@@ -413,6 +419,8 @@ acquireShareData(missionId: number, callback: AsyncCallback<{[key: string]: Obje
 
 ```ts
 import abilityManager from '@ohos.app.ability.abilityManager';
+import { BusinessError } from '@ohos.base';
+
 try {
     abilityManager.acquireShareData(1, (err, wantParam) => { 
         if (err) {
@@ -422,7 +430,9 @@ try {
         }
     });
 } catch (paramError) {
-    console.error(`error.code: ${JSON.stringify(paramError.code)}, error.message: ${JSON.stringify(paramError.message)}`);
+    let code = (paramError as BusinessError).code;
+    let message = (paramError as BusinessError).message;
+    console.error(`error.code: ${JSON.stringify(code)}, error.message: ${JSON.stringify(message)}`);
 }
 
 ```
@@ -461,13 +471,17 @@ acquireShareData(missionId: number): Promise<{[key: string]: Object}>;
 
 ```ts
 import abilityManager from '@ohos.app.ability.abilityManager';
+import { BusinessError } from '@ohos.base';
+
 try {
     abilityManager.acquireShareData(1).then((wantParam) => {
     console.log(`acquireShareData success, data: ${JSON.stringify(wantParam)}`);
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
     console.error(`acquireShareData fail, err: ${JSON.stringify(err)}`);
     });
 } catch (paramError) {
-    console.error(`error.code: ${JSON.stringify(paramError.code)}, error.message: ${JSON.stringify(paramError.message)}`);
+    let code = (paramError as BusinessError).code;
+    let message = (paramError as BusinessError).message;
+    console.error(`error.code: ${JSON.stringify(code)}, error.message: ${JSON.stringify(message)}`);
 }
 ```

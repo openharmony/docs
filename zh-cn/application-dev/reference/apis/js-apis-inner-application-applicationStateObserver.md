@@ -28,7 +28,9 @@ import appManager from '@ohos.app.ability.appManager';
 
 **示例：**
 ```ts
-let applicationStateObserver = {
+import appManager from '@ohos.app.ability.appManager';
+
+let applicationStateObserver: appManager.ApplicationStateObserver = {
     onForegroundApplicationChanged(appStateData) {
         console.log('onForegroundApplicationChanged appStateData: ${JSON.stringify(appStateData)}');
     },
