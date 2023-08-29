@@ -17,11 +17,11 @@
      
    ```ts
    // 获取图像像素的总字节数
-   let pixelBytesNumber = pixelMap.getPixelBytesNumber();
+   let pixelBytesNumber : number = pixelMap.getPixelBytesNumber();
    // 获取图像像素每行字节数
-   let rowCount = pixelMap.getBytesNumberPerRow();
+   let rowCount : number = pixelMap.getBytesNumberPerRow();
    // 获取当前图像像素密度。像素密度是指每英寸图片所拥有的像素数量。像素密度越大，图片越精细。
-   let getDensity = pixelMap.getDensity();
+   let getDensity : number = pixelMap.getDensity();
    ```
 
 3. 读取并修改目标区域像素数据，写回原图。

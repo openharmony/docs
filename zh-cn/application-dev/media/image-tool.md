@@ -19,15 +19,15 @@ EXIF信息的读取与编辑相关API的详细介绍请参见[API参考](../refe
    import image from '@ohos.multimedia.image';
    
    // 获取沙箱路径创建ImageSource
-   const fd = ...; // 获取需要被处理的图片的fd
-   const imageSource = image.createImageSource(fd);
+   const fd : number = ...; // 获取需要被处理的图片的fd
+   const imageSource : ImageSource = image.createImageSource(fd);
    ```
 
 2. 读取、编辑EXIF信息。
      
    ```ts
    // 读取EXIF信息，BitsPerSample为每个像素比特数
-   imageSource.getImageProperty('BitsPerSample', (error, data) => {
+   imageSource.getImageProperty('BitsPerSample', (error : void, data : BitsPerSample) => {
      if (error) {
        console.error('Failed to get the value of the specified attribute key of the image.And the error is: ' + error);
      } else {
@@ -37,7 +37,7 @@ EXIF信息的读取与编辑相关API的详细介绍请参见[API参考](../refe
    
    // 编辑EXIF信息
    imageSource.modifyImageProperty('ImageWidth', '120').then(() => {
-     const width = imageSource.getImageProperty("ImageWidth");
+     const width : number = imageSource.getImageProperty("ImageWidth");
      console.info('The new imageWidth is ' + width);
    })
    ```
