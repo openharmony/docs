@@ -230,7 +230,7 @@ struct ForEachTransition {
         .fontSize(16)
         .onClick(() => {
           animateTo({ duration: 1000 }, () => {
-            // 删除数组的尾部元素，导致ForEach删除头部的组件
+            // 删除数组的尾部元素，导致ForEach删除尾部的组件
             this.numbers.pop();
           })
         })
