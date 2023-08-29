@@ -75,7 +75,7 @@
         - [总览](release-notes/changelogs/v4.0-beta2/Readme-CN.md)
         - [ArkUI Changelog](release-notes/changelogs/v4.0-beta2/changelogs-arkui.md)
         - [包管理Changelog](release-notes/changelogs/v4.0-beta2/changelogs-bundlemanager.md)
-        - [程序访问控制Changelog](release-notes/changelogs/v4.0-beta2/changelogs-accesstoken.md)
+        - [程序访问控制Changelog](release-notes/changelogs/v4.0-beta2/changelogs-accessToken.md)
         - [分布式数据管理Changelog](release-notes/changelogs/v4.0-beta2/changelogs-distributeddatamgr.md)
         - [元能力-卡片框架Changelog](release-notes/changelogs/v4.0-beta2/changelogs-formfwk.md)
         - [输入法框架Changelog](release-notes/changelogs/v4.0-beta2/changelogs-imf.md)
