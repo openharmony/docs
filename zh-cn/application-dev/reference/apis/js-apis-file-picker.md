@@ -8,7 +8,7 @@
 
 ## 导入模块
 
-```js
+```ts
 import picker from '@ohos.file.picker';
 ```
 
@@ -47,15 +47,17 @@ select(option?: PhotoSelectOptions) : Promise&lt;PhotoSelectResult&gt;
 **示例：**
 
 ```ts
-async function example() {
+import { BusinessError } from '@ohos.base';
+
+async example01() {
   try {  
     let PhotoSelectOptions = new picker.PhotoSelectOptions();
     PhotoSelectOptions.MIMEType = picker.PhotoViewMIMETypes.IMAGE_TYPE;
     PhotoSelectOptions.maxSelectNumber = 5;
     let photoPicker = new picker.PhotoViewPicker();
-    photoPicker.select(PhotoSelectOptions).then((PhotoSelectResult) => {
+    photoPicker.select(PhotoSelectOptions).then((PhotoSelectResult: picker.PhotoSelectResult) => {
       console.info('PhotoViewPicker.select successfully, PhotoSelectResult uri: ' + JSON.stringify(PhotoSelectResult));
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
       console.error('PhotoViewPicker.select failed with err: ' + err);
     });
   } catch (err) {
@@ -82,13 +84,15 @@ select(option: PhotoSelectOptions, callback: AsyncCallback&lt;PhotoSelectResult&
 **示例：**
 
 ```ts
-async function example() {
-  try {   
+import { BusinessError } from '@ohos.base';
+
+async example02() {
+  try {
     let PhotoSelectOptions = new picker.PhotoSelectOptions();
     PhotoSelectOptions.MIMEType = picker.PhotoViewMIMETypes.IMAGE_TYPE;
     PhotoSelectOptions.maxSelectNumber = 5;
     let photoPicker = new picker.PhotoViewPicker();
-    photoPicker.select(PhotoSelectOptions, (err, PhotoSelectResult) => {
+    photoPicker.select(PhotoSelectOptions, (err: BusinessError, PhotoSelectResult: picker.PhotoSelectResult) => {
       if (err) {
         console.error('PhotoViewPicker.select failed with err: ' + err);
         return;
@@ -118,10 +122,12 @@ select(callback: AsyncCallback&lt;PhotoSelectResult&gt;) : void
 **示例：**
 
 ```ts
-async function example() {
-  try {   
+import { BusinessError } from '@ohos.base';
+
+async example03() {
+  try {
     let photoPicker = new picker.PhotoViewPicker();
-    photoPicker.select((err, PhotoSelectResult) => {
+    photoPicker.select((err: BusinessError, PhotoSelectResult: picker.PhotoSelectResult) => {
       if (err) {
         console.error('PhotoViewPicker.select failed with err: ' + err);
         return;
@@ -157,14 +163,16 @@ save(option?: PhotoSaveOptions) : Promise&lt;Array&lt;string&gt;&gt;
 **示例：**
 
 ```ts
-async function example() {
-  try {   
+import { BusinessError } from '@ohos.base';
+
+async example04() {
+  try {
     let PhotoSaveOptions = new picker.PhotoSaveOptions();
     PhotoSaveOptions.newFileNames = ['PhotoViewPicker01.jpg', 'PhotoViewPicker01.mp4'];
     let photoPicker = new picker.PhotoViewPicker();
-    photoPicker.save(PhotoSaveOptions).then((PhotoSaveResult) => {
+    photoPicker.save(PhotoSaveOptions).then((PhotoSaveResult: Array<string>) => {
       console.info('PhotoViewPicker.save successfully, PhotoSaveResult uri: ' + JSON.stringify(PhotoSaveResult));
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
       console.error('PhotoViewPicker.save failed with err: ' + err);
     });
   } catch (err) {
@@ -191,12 +199,14 @@ save(option: PhotoSaveOptions, callback: AsyncCallback&lt;Array&lt;string&gt;&gt
 **示例：**
 
 ```ts
-async function example() {
+import { BusinessError } from '@ohos.base';
+
+async example05() {
   try {
     let PhotoSaveOptions = new picker.PhotoSaveOptions();
     PhotoSaveOptions.newFileNames = ['PhotoViewPicker02.jpg','PhotoViewPicker02.mp4'];
     let photoPicker = new picker.PhotoViewPicker();
-    photoPicker.save(PhotoSaveOptions, (err, PhotoSaveResult) => {
+    photoPicker.save(PhotoSaveOptions, (err: BusinessError, PhotoSaveResult: Array<string>) => {
       if (err) {
         console.error('PhotoViewPicker.save failed with err: ' + err);
         return;
@@ -226,10 +236,12 @@ save(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;) : void
 **示例：**
 
 ```ts
-async function example() {
+import { BusinessError } from '@ohos.base';
+
+async example06() {
   try {
     let photoPicker = new picker.PhotoViewPicker();
-    photoPicker.save((err, PhotoSaveResult) => {
+    photoPicker.save((err: BusinessError, PhotoSaveResult: Array<string>) => {
       if (err) {
         console.error('PhotoViewPicker.save failed with err: ' + err);
         return;
@@ -244,7 +256,7 @@ async function example() {
 
 ## DocumentViewPicker
 
-文件选择器对象，用来支撑选择和保存非媒体文件等用户场景，比如各种格式文档。在使用前，需要先创建DocumentViewPicker实例。
+文件选择器对象，用来支撑选择和保存各种格式文档。在使用前，需要先创建DocumentViewPicker实例。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
@@ -277,13 +289,15 @@ select(option?: DocumentSelectOptions) : Promise&lt;Array&lt;string&gt;&gt;
 **示例：**
 
 ```ts
-async function example() {
+import { BusinessError } from '@ohos.base';
+
+async example07() {
   try {
     let DocumentSelectOptions = new picker.DocumentSelectOptions();
     let documentPicker = new picker.DocumentViewPicker();
-    documentPicker.select(DocumentSelectOptions).then((DocumentSelectResult) => {
+    documentPicker.select(DocumentSelectOptions).then((DocumentSelectResult: Array<string>) => {
       console.info('DocumentViewPicker.select successfully, DocumentSelectResult uri: ' + JSON.stringify(DocumentSelectResult));
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
       console.error('DocumentViewPicker.select failed with err: ' + err);
     });
   } catch (err) {
@@ -310,11 +324,13 @@ select(option: DocumentSelectOptions, callback: AsyncCallback&lt;Array&lt;string
 **示例：**
 
 ```ts
-async function example() {
+import { BusinessError } from '@ohos.base';
+
+async example08() {
   try {
     let DocumentSelectOptions = new picker.DocumentSelectOptions();
     let documentPicker = new picker.DocumentViewPicker();
-    documentPicker.select(DocumentSelectOptions, (err, DocumentSelectResult) => {
+    documentPicker.select(DocumentSelectOptions, (err: BusinessError, DocumentSelectResult: Array<string>) => {
       if (err) {
         console.error('DocumentViewPicker.select failed with err: ' + err);
         return;
@@ -344,10 +360,12 @@ select(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;) : void
 **示例：**
 
 ```ts
-async function example() {
+import { BusinessError } from '@ohos.base';
+
+async example09() {
   try {
     let documentPicker = new picker.DocumentViewPicker();
-    documentPicker.select((err, DocumentSelectResult) => {
+    documentPicker.select((err: BusinessError, DocumentSelectResult: Array<string>) => {
       if (err) {
         console.error('DocumentViewPicker.select failed with err: ' + err);
         return;
@@ -384,14 +402,16 @@ save(option?: DocumentSaveOptions) : Promise&lt;Array&lt;string&gt;&gt;
 **示例：**
 
 ```ts
-async function example() {
+import { BusinessError } from '@ohos.base';
+
+async example10() {
   try {
     let DocumentSaveOptions = new picker.DocumentSaveOptions();
     DocumentSaveOptions.newFileNames = ['DocumentViewPicker01.txt'];
     let documentPicker = new picker.DocumentViewPicker();
-    documentPicker.save(DocumentSaveOptions).then((DocumentSaveResult) => {
+    documentPicker.save(DocumentSaveOptions).then((DocumentSaveResult: Array<string>) => {
       console.info('DocumentViewPicker.save successfully, DocumentSaveResult uri: ' + JSON.stringify(DocumentSaveResult));
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
       console.error('DocumentViewPicker.save failed with err: ' + err);
     });
   } catch (err) {
@@ -418,12 +438,14 @@ save(option: DocumentSaveOptions, callback: AsyncCallback&lt;Array&lt;string&gt;
 **示例：**
 
 ```ts
-async function example() {
+import { BusinessError } from '@ohos.base';
+
+async example11() {
   try {
     let DocumentSaveOptions = new picker.DocumentSaveOptions();
     DocumentSaveOptions.newFileNames = ['DocumentViewPicker02.txt'];
     let documentPicker = new picker.DocumentViewPicker();
-    documentPicker.save(DocumentSaveOptions, (err, DocumentSaveResult) => {
+    documentPicker.save(DocumentSaveOptions, (err: BusinessError, DocumentSaveResult: Array<string>) => {
       if (err) {
         console.error('DocumentViewPicker.save failed with err: ' + err);
         return;
@@ -453,10 +475,12 @@ save(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;) : void
 **示例：**
 
 ```ts
-async function example() {
+import { BusinessError } from '@ohos.base';
+
+async example12() {
   try {
     let documentPicker = new picker.DocumentViewPicker();
-    documentPicker.save((err, DocumentSaveResult) => {
+    documentPicker.save((err: BusinessError, DocumentSaveResult: Array<string>) => {
       if (err) {
         console.error('DocumentViewPicker.save failed with err: ' + err);
         return;
@@ -504,13 +528,15 @@ select(option?: AudioSelectOptions) : Promise&lt;Array&lt;string&gt;&gt;
 **示例：**
 
 ```ts
-async function example() {
+import { BusinessError } from '@ohos.base';
+
+async example13() {
   try {
     let AudioSelectOptions = new picker.AudioSelectOptions();
     let audioPicker = new picker.AudioViewPicker();
-    audioPicker.select(AudioSelectOptions).then((AudioSelectResult) => {
+    audioPicker.select(AudioSelectOptions).then((AudioSelectResult: Array<string>) => {
       console.info('AudioViewPicker.select successfully, AudioSelectResult uri: ' + JSON.stringify(AudioSelectResult));
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
       console.error('AudioViewPicker.select failed with err: ' + err);
     });
   } catch (err) {
@@ -537,11 +563,13 @@ select(option: AudioSelectOptions, callback: AsyncCallback&lt;Array&lt;string&gt
 **示例：**
 
 ```ts
-async function example() {
+import { BusinessError } from '@ohos.base';
+
+async example14() {
   try {
     let AudioSelectOptions = new picker.AudioSelectOptions();
     let audioPicker = new picker.AudioViewPicker();
-    audioPicker.select(AudioSelectOptions, (err, AudioSelectResult) => {
+    audioPicker.select(AudioSelectOptions, (err: BusinessError, AudioSelectResult: Array<string>) => {
       if (err) {
         console.error('AudioViewPicker.select failed with err: ' + err);
         return;
@@ -571,10 +599,12 @@ select(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;) : void
 **示例：**
 
 ```ts
-async function example() {
+import { BusinessError } from '@ohos.base';
+
+async example15() {
   try {
     let audioPicker = new picker.AudioViewPicker();
-    audioPicker.select((err, AudioSelectResult) => {
+    audioPicker.select((err: BusinessError, AudioSelectResult: Array<string>) => {
       if (err) {
         console.error('AudioViewPicker.select failed with err: ' + err);
         return;
@@ -610,14 +640,16 @@ save(option?: AudioSaveOptions) : Promise&lt;Array&lt;string&gt;&gt;
 **示例：**
 
 ```ts
-async function example() {
+import { BusinessError } from '@ohos.base';
+
+async example16() {
   try {
     let AudioSaveOptions = new picker.AudioSaveOptions();
     AudioSaveOptions.newFileNames = ['AudioViewPicker01.mp3'];
     let audioPicker = new picker.AudioViewPicker();
-    audioPicker.save(AudioSaveOptions).then((AudioSaveResult) => {
+    audioPicker.save(AudioSaveOptions).then((AudioSaveResult: Array<string>) => {
       console.info('AudioViewPicker.save successfully, AudioSaveResult uri: ' + JSON.stringify(AudioSaveResult))
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
       console.error('AudioViewPicker.save failed with err: ' + err);
     });
   } catch (err) {
@@ -644,12 +676,14 @@ save(option: AudioSaveOptions, callback: AsyncCallback&lt;Array&lt;string&gt;&gt
 **示例：**
 
 ```ts
-async function example() {
+import { BusinessError } from '@ohos.base';
+
+async example17() {
   try {
     let AudioSaveOptions = new picker.AudioSaveOptions();
     AudioSaveOptions.newFileNames = ['AudioViewPicker02.mp3'];
     let audioPicker = new picker.AudioViewPicker();
-    audioPicker.save(AudioSaveOptions, (err, AudioSaveResult) => {
+    audioPicker.save(AudioSaveOptions, (err: BusinessError, AudioSaveResult: Array<string>) => {
       if (err) {
         console.error('AudioViewPicker.save failed with err: ' + err);
         return;
@@ -679,10 +713,12 @@ save(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;) : void
 **示例：**
 
 ```ts
-async function example() {
+import { BusinessError } from '@ohos.base';
+
+async example18() {
   try {
     let audioPicker = new picker.AudioViewPicker();
-    audioPicker.save((err, AudioSaveResult) => {
+    audioPicker.save((err: BusinessError, AudioSaveResult: Array<string>) => {
       if (err) {
         console.error('AudioViewPicker.save failed with err: ' + err);
         return;
@@ -699,7 +735,7 @@ async function example() {
 
 枚举，可选择的媒体文件类型。
 
-**系统能力：** 以下各项对应的系统能力均为 SystemCapability.FileManagement.UserFileService
+**系统能力：** SystemCapability.FileManagement.UserFileService
 
 | 名称  |  值 |  说明 |
 | ----- |  ---- | ---- |
@@ -711,18 +747,18 @@ async function example() {
 
 图库选择选项。
 
-**系统能力：** 以下各项对应的系统能力均为 SystemCapability.FileManagement.UserFileService
+**系统能力：** SystemCapability.FileManagement.UserFileService
 
 | 名称                    | 类型                | 必填 | 说明                          |
 | ----------------------- | ------------------- | ---- | -------------------------------- |
-| MIMEType?              | [PhotoViewMIMETypes](#photoviewmimetypes)   | 否   | 可选择的媒体文件类型，若无此参数，则默认为图片和视频类型 |
-| maxSelectNumber?       | number | 否   | 选择媒体文件数量的最大值(默认值为50，最大值为500)      |
+| MIMEType              | [PhotoViewMIMETypes](#photoviewmimetypes)   | 否   | 可选择的媒体文件类型，若无此参数，则默认为图片和视频类型 |
+| maxSelectNumber       | number | 否   | 选择媒体文件数量的最大值(默认值为50，最大值为500)      |
 
 ## PhotoSelectResult
 
 返回图库选择后的结果集。
 
-**系统能力：** 以下各项对应的系统能力均为 SystemCapability.FileManagement.UserFileService
+**系统能力：** SystemCapability.FileManagement.UserFileService
 
 | 名称                    | 类型                | 可读 | 可写 | 说明                           |
 | ----------------------- | ------------------- | ---- | ---- | ------------------------------ |
@@ -733,27 +769,35 @@ async function example() {
 
 图片或视频的保存选项。
 
-**系统能力：** 以下各项对应的系统能力均为 SystemCapability.FileManagement.UserFileService
+**系统能力：** SystemCapability.FileManagement.UserFileService
 
 | 名称                    | 类型                | 必填 |  说明                           |
 | ----------------------- | ------------------- | ---- | ---------------------------- |
-| newFileNames?              | Array&lt;string&gt;    | 否  | 拉起photoPicker进行保存图片或视频资源的文件名，若无此参数，则默认需要用户自行输入 |
+| newFileNames              | Array&lt;string&gt;    | 否  | 拉起photoPicker进行保存图片或视频资源的文件名，若无此参数，则默认需要用户自行输入 |
 
 ## DocumentSelectOptions
 
-文档选择选项，目前不支持参数配置。
+文档选择选项。
 
 **系统能力：** SystemCapability.FileManagement.UserFileService
+
+| 名称                    | 类型                | 必填 | 说明                          |
+| ----------------------- | ------------------- | ---- | -------------------------------- |
+| maxSelectNumber       | number  | 否   | 选择文件/目录最大个数，上限500，有效值范围1-500      |
+| defaultFilePathUri    | string  | 否   | 指定选择的文件或者目录路径 |
+| fileSuffixFilters     | Array&lt;string&gt; | 否   | 选择文件的后缀类型 |
 
 ## DocumentSaveOptions
 
 文档保存选项。
 
-**系统能力：** 以下各项对应的系统能力均为 SystemCapability.FileManagement.UserFileService
+**系统能力：** SystemCapability.FileManagement.UserFileService
 
 | 名称                    | 类型                | 必填 |  说明                           |
 | ----------------------- | ------------------- | ---- | ---------------------------- |
-| newFileNames?            | Array&lt;string&gt;    | 否   | 拉起documentPicker进行保存的文件名，若无此参数，则默认需要用户自行输入 |
+| newFileNames            | Array&lt;string&gt;    | 否   | 拉起documentPicker进行保存的文件名，若无此参数，则默认需要用户自行输入 |
+| defaultFilePathUri    | string  | 否   | 指定保存的文件或者目录路径 |
+| fileSuffixChoices     | Array&lt;string&gt; | 否   | 保存文件的后缀类型 |
 
 ## AudioSelectOptions
 
@@ -765,8 +809,8 @@ async function example() {
 
 音频的保存选项。
 
-**系统能力：** 以下各项对应的系统能力均为 SystemCapability.FileManagement.UserFileService
+**系统能力：** SystemCapability.FileManagement.UserFileService
 
 | 名称                    | 类型                | 必填 |  说明                           |
 | ----------------------- | ------------------- | ---- | ---------------------------- |
-| newFileNames?              | Array&lt;string&gt;    | 否  | 拉起audioPicker进行保存音频资源的文件名，若无此参数，则默认需要用户自行输入 |
+| newFileNames              | Array&lt;string&gt;    | 否  | 拉起audioPicker进行保存音频资源的文件名，若无此参数，则默认需要用户自行输入 |

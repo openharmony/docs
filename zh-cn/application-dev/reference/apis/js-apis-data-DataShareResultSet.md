@@ -22,8 +22,9 @@ import DataShareResultSet from '@ohos.data.DataShareResultSet';
 ```ts
 import dataShare from '@ohos.data.dataShare';
 import dataSharePredicates from '@ohos.data.dataSharePredicates'
+import { BusinessError } from '@ohos.base'
 
-let dataShareHelper;
+let dataShareHelper: dataShare.DataShareHelper;
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 await dataShare.createDataShareHelper(this.context, uri, (err, data) => {
 	if (err != undefined) {
@@ -36,12 +37,12 @@ await dataShare.createDataShareHelper(this.context, uri, (err, data) => {
 
 let columns = ["*"];
 let da = new dataSharePredicates.DataSharePredicates();
-let resultSet;
+let resultSet: DataShareResultSet;
 da.equalTo("name", "ZhangSan");
-dataShareHelper.query(uri, da, columns).then((data) => {
+dataShareHelper.query(uri, da, columns).then((data: DataShareResultSet) => {
     console.info("query end, data : " + data);
     resultSet = data;
-}).catch((err) => {
+}).catch((err: BusinessError) => {
 	console.error("query fail, error message : " + err);
 });
 ```

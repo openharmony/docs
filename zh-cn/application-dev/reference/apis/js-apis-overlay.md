@@ -45,8 +45,8 @@ setOverlayEnabled(moduleName:string, isEnabled: boolean): Promise\<void>;
 **示例：**
 
 ```ts
-var moduleName = "feature";
-var isEnabled = false;
+let moduleName = "feature";
+let isEnabled = false;
 
 try {
     overlay.setOverlayEnabled(moduleName, isEnabled)
@@ -88,8 +88,8 @@ setOverlayEnabled(moduleName:string, isEnabled: boolean, callback: AsyncCallback
 **示例：**
 
 ```ts
-var moduleName = "feature";
-var isEnabled = false;
+let moduleName = "feature";
+let isEnabled = false;
 
 try {
     overlay.setOverlayEnabled(moduleName, isEnabled, (err, data) => {
@@ -144,9 +144,9 @@ setOverlayEnabledByBundleName(bundleName:string, moduleName:string, isEnabled: b
 **示例：**
 
 ```ts
-var bundleName = "com.example.myapplication_xxxxx";
-var moduleName = "feature";
-var isEnabled = false;
+let bundleName = "com.example.myapplication_xxxxx";
+let moduleName = "feature";
+let isEnabled = false;
 
 try {
     overlay.setOverlayEnabledByBundleName(bundleName, moduleName, isEnabled)
@@ -179,7 +179,7 @@ setOverlayEnabledByBundleName(bundleName:string, moduleName:string, isEnabled: b
 | bundleName  | string | 是    | 指定应用的bundle名称。                 |
 | moduleName  | string | 是    | 指定应用的overlay特征module的HAP名称。    |
 | isEnabled   | boolean  | 是  | 值为true表示使能，值为false表示禁用。 |
-| callback    | AsyncCallback\<void> | 是    | 回调函数。当设置指定应用的overlay module的禁用使能状态成功时，err为null，data为获取到的处置状态；否则为错误对象。                    |
+| callback    | AsyncCallback\<void> | 是    | 回调函数。当设置指定应用的overlay module的禁用使能状态成功时，err为null，否则为错误对象。                    |
 
 **错误码：**
 
@@ -195,9 +195,9 @@ setOverlayEnabledByBundleName(bundleName:string, moduleName:string, isEnabled: b
 **示例：**
 
 ```ts
-var bundleName = "com.example.myapplication_xxxxx";
-var moduleName = "feature";
-var isEnabled = false;
+let bundleName = "com.example.myapplication_xxxxx";
+let moduleName = "feature";
+let isEnabled = false;
 
 try {
     overlay.setOverlayEnabledByBundleName(bundleName, moduleName, isEnabled, (err, data) => {
@@ -245,7 +245,7 @@ getOverlayModuleInfo(moduleName: string): Promise\<OverlayModuleInfo>;
 **示例：**
 
 ```ts
-var moduleName = "feature";
+let moduleName = "feature";
 
 (async() => {
     try {
@@ -270,7 +270,7 @@ getOverlayModuleInfo(moduleName: string, callback: AsyncCallback\<OverlayModuleI
 | 参数名       | 类型     | 必填   | 说明                                    |
 | ----------- | ------ | ---- | --------------------------------------- |
 | moduleName | string | 是    | 指定当前应用中的overlay特征module的HAP名称。     |
-| callback    | AsyncCallback\<OverlayModuleInfo> | 是    | 回调函数，当获取当前应用中指定的module的overlayModuleInfo信息成功时，err返回undefined。否则回调函数返回具体错误对象。                   |
+| callback    | AsyncCallback\<OverlayModuleInfo> | 是    | 回调函数，当获取当前应用中指定的module的overlayModuleInfo信息成功时，err返回null。否则回调函数返回具体错误对象。                   |
 
 **错误码：**
 
@@ -285,7 +285,7 @@ getOverlayModuleInfo(moduleName: string, callback: AsyncCallback\<OverlayModuleI
 **示例：**
 
 ```ts
-var moduleName = "feature";
+let moduleName = "feature";
 try {
     overlay.getOverlayModuleInfo(moduleName, (err, data) => {
         if (err) {
@@ -331,7 +331,7 @@ getTargetOverlayModuleInfos(targetModuleName: string): Promise\<Array\<OverlayMo
 **示例：**
 
 ```ts
-var targetModuleName = "feature";
+let targetModuleName = "feature";
 
 (async() => {
     try {
@@ -356,7 +356,7 @@ getTargetOverlayModuleInfos(targetModuleName: string, callback: AsyncCallback\<A
 | 参数名       | 类型     | 必填   | 说明                                    |
 | ----------- | ------ | ---- | --------------------------------------- |
 | targetModuleName | string | 是    | 指定当前应用中的目标module的HAP名称。     |
-| callback    | AsyncCallback\<Array\<OverlayModuleInfo>> | 是    | 回调函数，当获取指定的目标module的OverlayModuleInfo成功时，err返回undefined。否则回调函数返回具体错误对象。                   |
+| callback    | AsyncCallback\<Array\<OverlayModuleInfo>> | 是    | 回调函数，当获取指定的目标module的OverlayModuleInfo成功时，err返回null。否则回调函数返回具体错误对象。                   |
 
 **错误码：**
 
@@ -370,7 +370,7 @@ getTargetOverlayModuleInfos(targetModuleName: string, callback: AsyncCallback\<A
 **示例：**
 
 ```ts
-var targetModuleName = "feature";
+let targetModuleName = "feature";
 try {
     overlay.getTargetOverlayModuleInfos(targetModuleName, (err, data) => {
         if (err) {
@@ -423,8 +423,8 @@ getOverlayModuleInfoByBundleName(bundleName: string, moduleName?: string): Promi
 **示例：**
 
 ```ts
-var bundleName = "com.example.myapplication_xxxxx";
-var moduleName = "feature";
+let bundleName = "com.example.myapplication_xxxxx";
+let moduleName = "feature";
 
 (async() => {
     try {
@@ -454,7 +454,7 @@ getOverlayModuleInfoByBundleName(bundleName: string, moduleName: string, callbac
 | ----------- | ------ | ---- | --------------------------------------- |
 | bundleName | string | 是    | 指定应用的bundle名称。                    |
 | moduleName | string | 是    | 指定应用中的overlay module的HAP名称。缺省该字段时，查询接口将查询指定应用中所有module的OverlayModuleInfo信息。     |
-| callback    | AsyncCallback\<Array\<OverlayModuleInfo>> | 是    | 回调函数，当获取指定应用中指定module的OverlayModuleInfo信息成功时，err返回undefined。否则回调函数返回具体错误对象。                   |
+| callback    | AsyncCallback\<Array\<OverlayModuleInfo>> | 是    | 回调函数，当获取指定应用中指定module的OverlayModuleInfo信息成功时，err返回null。否则回调函数返回具体错误对象。                   |
 
 **错误码：**
 
@@ -470,8 +470,8 @@ getOverlayModuleInfoByBundleName(bundleName: string, moduleName: string, callbac
 **示例：**
 
 ```ts
-var bundleName = "com.example.myapplication_xxxxx";
-var moduleName = "feature";
+let bundleName = "com.example.myapplication_xxxxx";
+let moduleName = "feature";
 
 try {
     overlay.getOverlayModuleInfoByBundleName(bundleName, moduleName, (err, data) => {
@@ -503,7 +503,7 @@ getOverlayModuleInfoByBundleName(bundleName: string, callback: AsyncCallback\<Ar
 | 参数名       | 类型     | 必填   | 说明                                    |
 | ----------- | ------ | ---- | --------------------------------------- |
 | bundleName | string | 是    | 指定应用的bundle名称。                    |
-| callback    | AsyncCallback\<Array\<OverlayModuleInfo>> | 是    | 回调函数，当获取指定应用中所有module的OverlayModuleInfo信息成功时，err返回undefined。否则回调函数返回具体错误对象。                   |
+| callback    | AsyncCallback\<Array\<OverlayModuleInfo>> | 是    | 回调函数，当获取指定应用中所有module的OverlayModuleInfo信息成功时，err返回null。否则回调函数返回具体错误对象。                   |
 
 **错误码：**
 
@@ -517,7 +517,7 @@ getOverlayModuleInfoByBundleName(bundleName: string, callback: AsyncCallback\<Ar
 **示例：**
 
 ```ts
-var bundleName = "com.example.myapplication_xxxxx";
+let bundleName = "com.example.myapplication_xxxxx";
 
 try {
     overlay.getOverlayModuleInfoByBundleName(bundleName, (err, data) => {
@@ -571,8 +571,8 @@ getTargetOverlayModuleInfosByBundleName(targetBundleName: string, moduleName?: s
 **示例：**
 
 ```ts
-var targetBundleName = "com.example.myapplication_xxxxx";
-var moduleName = "feature";
+let targetBundleName = "com.example.myapplication_xxxxx";
+let moduleName = "feature";
 
 (async() => {
     try {
@@ -602,7 +602,7 @@ getTargetOverlayModuleInfosByBundleName(targetBundleName: string, moduleName: st
 | ----------- | ------ | ---- | --------------------------------------- |
 | targetBundleName | string | 是    | 指定目标应用的bundle名称。                    |
 | moduleName | string | 是    | 指定应用中的目标module的HAP名称。缺省该字段时，查询接口将查询指定应用中所有module所关联的OverlayModuleInfo信息。     |
-| callback    | AsyncCallback\<Array\<OverlayModuleInfo>> | 是    | 回调函数，当获取指定应用中指定module关联的所有OverlayModuleInfo信息成功时，err返回undefined。否则回调函数返回具体错误对象。                   |
+| callback    | AsyncCallback\<Array\<OverlayModuleInfo>> | 是    | 回调函数，当获取指定应用中指定module关联的所有OverlayModuleInfo信息成功时，err返回null。否则回调函数返回具体错误对象。                   |
 
 **错误码：**
 
@@ -618,8 +618,8 @@ getTargetOverlayModuleInfosByBundleName(targetBundleName: string, moduleName: st
 **示例：**
 
 ```ts
-var targetBundleName = "com.example.myapplication_xxxxx";
-var moduleName = "feature";
+let targetBundleName = "com.example.myapplication_xxxxx";
+let moduleName = "feature";
 
 try {
     overlay.getTargetOverlayModuleInfosByBundleName(targetBundleName, moduleName, (err, data) => {
@@ -651,7 +651,7 @@ getTargetOverlayModuleInfosByBundleName(targetBundleName: string, callback: Asyn
 | 参数名       | 类型     | 必填   | 说明                                    |
 | ----------- | ------ | ---- | --------------------------------------- |
 | targetBundleName | string | 是    | 指定目标应用的bundle名称。                    |
-| callback    | AsyncCallback\<Array\<OverlayModuleInfo>> | 是    | 回调函数，当获取指定应用中所有module关联的所有OverlayModuleInfo信息成功时，err返回undefined。否则回调函数返回具体错误对象。                   |
+| callback    | AsyncCallback\<Array\<OverlayModuleInfo>> | 是    | 回调函数，当获取指定应用中所有module关联的所有OverlayModuleInfo信息成功时，err返回null。否则回调函数返回具体错误对象。                   |
 
 **错误码：**
 
@@ -665,7 +665,7 @@ getTargetOverlayModuleInfosByBundleName(targetBundleName: string, callback: Asyn
 **示例：**
 
 ```ts
-var targetBundleName = "com.example.myapplication_xxxxx";
+let targetBundleName = "com.example.myapplication_xxxxx";
 
 try {
     overlay.getTargetOverlayModuleInfosByBundleName(targetBundleName, (err, data) => {

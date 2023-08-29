@@ -6,7 +6,7 @@
 > 
 > 从API Version 10开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
-ArkUI组件默认支持拖拽。
+ArkUI组件默认不支持拖拽。
 
 当以下组件的draggable属性设置为true时可以响应拖拽事件，此时，组件不需要配置数据传输，即可进行拖拽。其他组件需要开发者将draggable属性设置为true且在onDragStart等接口中实现数据传输相关内容，才能完成拖拽。
 
@@ -21,7 +21,7 @@ ArkUI组件默认支持拖拽。
 
 | 名称 | 参数类型 | 描述 |
 | -------- | -------- | -------- |
-| allowDrop | Array\<[UnifiedDataType](../apis/js-apis-data-udmf.md#unifieddatatype)> | 设置该组件上允许落入的数据类型。<br/>默认值：空<br/> |
+| allowDrop | Array\<[UniformDataType](../apis/js-apis-data-uniformTypeDescriptor.md#uniformdatatype)> | 设置该组件上允许落入的数据类型。<br/>默认值：空<br/> |
 | draggable | boolean | 设置该组件是否允许进行拖拽。<br/>默认值：false<br/> |
 
 

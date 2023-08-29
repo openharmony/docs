@@ -28,7 +28,6 @@ import { Action, Button, Axis, AxisValue, MouseEvent } from '@ohos.multimodalInp
 | AXIS_UPDATE | 5   | 鼠标轴事件更新 |
 | AXIS_END    | 6   | 鼠标轴事件结束 |
 
-
 ## Button
 
 鼠标按键。
@@ -79,22 +78,22 @@ import { Action, Button, Axis, AxisValue, MouseEvent } from '@ohos.multimodalInp
 
 | 名称             | 类型        | 可读   | 可写   | 说明                                       |
 | -------------- | ----------- | ---- | ---- | ---------------------------------------- |
-| action         | Action      | 是    | 否    | 鼠标事件动作                                   |
+| action         | [Action](#action)      | 是    | 否    | 鼠标事件动作                                   |
 | screenX        | number      | 是    | 否    | 鼠标光标在屏幕中的横坐标                             |
 | screenY        | number      | 是    | 否    | 鼠标光标在屏幕中的纵坐标                             |
 | windowX        | number      | 是    | 否    | 鼠标所在窗口的横坐标                               |
 | windowY        | number      | 是    | 否    | 鼠标所在窗口的纵坐标                               |
 | rawDeltaX      | number      | 是    | 否    | 鼠标本次操作横坐标偏移值 |
 | rawDeltaY      | number      | 是    | 否    | 鼠标本次操作纵坐标偏移值                          |
-| button         | Button      | 是    | 否    | 鼠标按钮                               
+| button         | [Button](#button)      | 是    | 否    | 鼠标按钮                               
 | pressedButtons | Button[]    | 是    | 否    | 当前处于按下状态的鼠标按钮                              |
 | axes           | AxisValue[] | 是    | 否    | 事件包含的所有轴数据                               |
 | pressedKeys    | KeyCode[]   | 是    | 否    | 当前处于按下状态的按键列表                            |
-| ctrlKey        | boolean     | 是    | 否    | 当前ctrlKey是否处于按下状态                        |
+| ctrlKey        | boolean     | 是    | 否    | 当前ctrlKey是否处于按下状态 <br>ture表示处于按下状态，false表示处于抬起状态    |
 | altKey         | boolean     | 是    | 否    | 当前altKey是否处于按下状态                         |
 | shiftKey       | boolean     | 是    | 否    | 当前shiftKey是否处于按下状态                       |
 | logoKey        | boolean     | 是    | 否    | 当前logoKey是否处于按下状态                        |
 | fnKey          | boolean     | 是    | 否    | 当前fnKey是否处于按下状态                          |
-| capsLock       | boolean     | 是    | 否    | 当前capsLock是否处于激活状态                       |
+| capsLock       | boolean     | 是    | 否    | 当前capsLock是否处于激活状态 <br>ture表示激活状态，false表示处于未激活状态  |
 | numLock        | boolean     | 是    | 否    | 当前numLock是否处于激活状态                        |
 | scrollLock     | boolean     | 是    | 否    | 当前scrollLock是否处于激活状态                     |

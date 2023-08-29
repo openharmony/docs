@@ -86,7 +86,7 @@ Creates an HTTP request. You can use this API to initiate or destroy an HTTP req
 
 | Type       | Description                                                        |
 | :---------- | :----------------------------------------------------------- |
-| HttpRequest | An **HttpRequest** object, which contains the **request**, **request2**, **destroy**, **on**, or **off** method.|
+| HttpRequest | An **HttpRequest** object, which contains the **request**, **requestInStream**, **destroy**, **on**, or **off** method.|
 
 **Example**
 
@@ -364,9 +364,9 @@ Destroys an HTTP request.
 httpRequest.destroy();
 ```
 
-### request2<sup>10+</sup>
+### requestInStream<sup>10+</sup>
 
-request2(url: string, callback: AsyncCallback\<number\>): void
+requestInStream(url: string, callback: AsyncCallback\<number\>): void
 
 Initiates an HTTP request containing specified options to a given URL. This API uses an asynchronous callback to return the result, which is a streaming response.
 
@@ -424,18 +424,18 @@ Initiates an HTTP request containing specified options to a given URL. This API 
 **Example**
 
 ```js
-httpRequest.request2("EXAMPLE_URL", (err, data) => {
+httpRequest.requestInStream("EXAMPLE_URL", (err, data) => {
   if (!err) {
-    console.info("request2 OK! ResponseCode is " + JSON.stringify(data));
+    console.info("requestInStream OK! ResponseCode is " + JSON.stringify(data));
   } else {
-    console.info("request2 ERROR : err = " + JSON.stringify(err));
+    console.info("requestInStream ERROR : err = " + JSON.stringify(err));
   }
 })
 ```
 
-### request2<sup>10+</sup>
+### requestInStream<sup>10+</sup>
 
-request2(url: string, options: HttpRequestOptions, callback: AsyncCallback\<number\>): void
+requestInStream(url: string, options: HttpRequestOptions, callback: AsyncCallback\<number\>): void
 
 Initiates an HTTP request containing specified options to a given URL. This API uses an asynchronous callback to return the result, which is a streaming response.
 
@@ -494,7 +494,7 @@ Initiates an HTTP request containing specified options to a given URL. This API 
 **Example**
 
 ```js
-httpRequest.request2("EXAMPLE_URL",
+httpRequest.requestInStream("EXAMPLE_URL",
   {
     method: http.RequestMethod.GET,
     header: {
@@ -504,16 +504,16 @@ httpRequest.request2("EXAMPLE_URL",
     connectTimeout: 60000
   }, (err, data) => {
     if (!err) {
-      console.info("request2 OK! ResponseCode is " + JSON.stringify(data));
+      console.info("requestInStream OK! ResponseCode is " + JSON.stringify(data));
     } else {
-      console.info("request2 ERROR : err = " + JSON.stringify(err));
+      console.info("requestInStream ERROR : err = " + JSON.stringify(err));
     }
   })
 ```
 
-### request2<sup>10+</sup>
+### requestInStream<sup>10+</sup>
 
-request2(url: string, options? : HttpRequestOptions): Promise\<number\>
+requestInStream(url: string, options? : HttpRequestOptions): Promise\<number\>
 
 Initiates an HTTP request containing specified options to a given URL. This API uses a promise to return the result, which is a streaming response.
 
@@ -577,7 +577,7 @@ Initiates an HTTP request containing specified options to a given URL. This API 
 **Example**
 
 ```js
-let promise = httpRequest.request2("EXAMPLE_URL", {
+let promise = httpRequest.requestInStream("EXAMPLE_URL", {
   method: http.RequestMethod.GET,
   connectTimeout: 60000,
   readTimeout: 60000,
@@ -586,9 +586,9 @@ let promise = httpRequest.request2("EXAMPLE_URL", {
   }
 });
 promise.then((data) => {
-  console.info("request2 OK!" + JSON.stringify(data));
+  console.info("requestInStream OK!" + JSON.stringify(data));
 }).catch((err) => {
-  console.info("request2 ERROR : err = " + JSON.stringify(err));
+  console.info("requestInStream ERROR : err = " + JSON.stringify(err));
 });
 ```
 
@@ -815,9 +815,9 @@ Unregisters the observer for events indicating completion of receiving HTTP stre
 httpRequest.off('dataEnd');
 ```
 
-### on('dataProgress')<sup>10+</sup>
+### on('dataReceiveProgress')<sup>10+</sup>
 
-on(type: 'dataProgress', callback: Callback\<{ receiveSize: number, totalSize: number }\>): void
+on(type: 'dataReceiveProgress', callback: Callback\<{ receiveSize: number, totalSize: number }\>): void
 
 Registers an observer for events indicating progress of receiving HTTP streaming responses.
 
@@ -830,20 +830,20 @@ Registers an observer for events indicating progress of receiving HTTP streaming
 
 | Name  | Type                   | Mandatory| Description                             |
 | -------- | ----------------------- | ---- | --------------------------------- |
-| type     | string                  | Yes  | Event type. The value is **dataProgress**.|
+| type     | string                  | Yes  | Event type. The value is **dataReceiveProgress**.|
 | callback | AsyncCallback\<{ receiveSize: number, totalSize: number }\>   | Yes  | Callback used to return the result.<br>- **receiveSize**: number of received bytes.<br>- **totalSize**: total number of bytes to be received.|
 
 **Example**
 
 ```js
-httpRequest.on('dataProgress', (data) => {
-  console.info('dataProgress:' + JSON.stringify(data));
+httpRequest.on('dataReceiveProgress', (data) => {
+  console.info('dataReceiveProgress:' + JSON.stringify(data));
 });
 ```
 
-### off('dataProgress')<sup>10+</sup>
+### off('dataReceiveProgress')<sup>10+</sup>
 
-off(type: 'dataProgress', callback?: Callback\<{ receiveSize: number, totalSize: number }\>): void
+off(type: 'dataReceiveProgress', callback?: Callback\<{ receiveSize: number, totalSize: number }\>): void
 
 Unregisters the observer for events indicating progress of receiving HTTP streaming responses.
 
@@ -856,13 +856,13 @@ Unregisters the observer for events indicating progress of receiving HTTP stream
 
 | Name  | Type              | Mandatory| Description                                  |
 | -------- | ------------------ | ---- | -------------------------------------- |
-| type     | string             | Yes  | Event type. The value is **dataProgress**.|
+| type     | string             | Yes  | Event type. The value is **dataReceiveProgress**.|
 | callback | Callback\<{ receiveSize: number, totalSize: number }\>   | No  | Callback used to return the result.                            |
 
 **Example**
 
 ```js
-httpRequest.off('dataProgress');
+httpRequest.off('dataReceiveProgress');
 ```
 
 ## HttpRequestOptions<sup>6+</sup>

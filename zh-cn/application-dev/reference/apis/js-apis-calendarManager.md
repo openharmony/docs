@@ -107,11 +107,22 @@ deleteCalendar(calendar: Calendar, callback: AsyncCallback\<void>): void
 **示例**：
 
 ```js
-calendarManager.deleteCalendar(specificCalendar, (err) => {
+const calendarAccount: calendarManager.CalendarAccount = {
+  name: 'MyCalendar',
+  type: calendarManager.CalendarType.LOCAL
+};
+calendarManager.getCalendar(calendarAccount, (err, data) => {
   if (err) {
-    console.error("Failed to delete calendar");
+    console.error("Failed to get calendar");
   } else {
-    console.info("Succeeded in deleting calendar");
+    console.info("Succeeded in getting calendar");
+    calendarManager.deleteCalendar(data, (err) => {
+      if (err) {
+        console.error("Failed to delete calendar");
+      } else {
+        console.info("Succeeded in deleting calendar");
+      }
+    });
   }
 });
 ```
@@ -141,10 +152,19 @@ deleteCalendar(calendar: Calendar): Promise\<void>
 **示例**：
 
 ```js
-calendarManager.deleteCalendar(specificCalendar).then(() => {
-  console.error("Succeeded in deleting calendar");
+const calendarAccount: calendarManager.CalendarAccount = {
+  name: 'MyCalendar',
+  type: calendarManager.CalendarType.LOCAL
+};
+calendarManager.getCalendar(calendarAccount).then((data) => {
+  console.info("Succeeded in getting calendar");
+  calendarManager.deleteCalendar(data).then(() => {
+    console.info("Succeeded in deleting calendar");
+  }).catch((err) => {
+    console.error("Failed to delete calendar");
+  });
 }).catch((err) => {
-  console.info("Failed to delete calendar");
+  console.error("Failed to get calendar");
 });
 ```
 
@@ -199,6 +219,10 @@ getCalendar(calendarAccount: CalendarAccount, callback: AsyncCallback\<Calendar>
 
 ```js
 let calendar = null;
+const calendarAccount: calendarManager.CalendarAccount = {
+  name: 'MyCalendar',
+  type: calendarManager.CalendarType.LOCAL
+};
 calendarManager.getCalendar(calendarAccount, (err, data) => {
   if (err) {
     console.error("Failed to get calendar");

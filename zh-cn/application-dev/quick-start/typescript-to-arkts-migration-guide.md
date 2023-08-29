@@ -837,6 +837,7 @@ type N = number
 **级别：错误**
 
 ArkTS不支持通过索引访问对象的字段。改用点操作符。
+ArkTS支持通过索引访问`TypedArray`（例如`Int32Array`）中的元素。
 
 **TypeScript**
 
@@ -852,6 +853,9 @@ let x = p["x"]
 class Point {x: number = 0; y: number = 0}
 let p: Point = {x: 1, y: 2}
 let x = p.x
+
+let arr = new Int32Array(1)
+console.log(arr[0])
 ```
 
 ### 不支持structural identity
@@ -1305,7 +1309,7 @@ class Point {
     y: number = 0
 
     // 在字面量初始化之前，使用constructor()创建一个有效对象。
-    // 由于Point没有其它构造函数，编译器将自动添加一个默认构造函数。
+    // 由于没有为Point定义构造函数，编译器将自动添加一个默认构造函数。
 }
 
 function id_x_y(o: Point): Point {
@@ -1391,32 +1395,6 @@ let a2: C[] = [{n: 1, s: "1"}, {n: 2, s : "2"}]      // a2的类型为“C[]”
 **相关约束**
 * 对象字面量必须对应某些显式声明的类或接口
 * 对象字面量不能用于类型声明
-
-### 显式标注Lambda函数的参数类型
-
-**规则：**`arkts-explicit-param-types-in-lambdas`
-
-**级别：错误**
-
-当前ArkTS要求显式标注lambda函数的参数的类型。
-
-**TypeScript**
-
-```typescript
-// 只有在开启noImplicitAny选项时会产生编译时错误
-let f = (s /* type any is assumed */) => {
-    console.log(s)
-}
-```
-
-**ArkTS**
-
-```typescript
-// 显式标注Lambda函数的参数类型
-let f = (s: string) => {
-    console.log(s)
-}
-```
 
 ### 使用箭头函数而非函数表达式
 
@@ -1814,9 +1792,9 @@ let f = "string" + true // "stringtrue"
 
 let g = (new Object()) + "string" // "[object Object]string"
 
-let i = true + true // JS: 2, TS: 编译时错误
-let j = true + 2 // JS: 3, TS: 编译时错误
-let k = E.E1 + true // JS: 1, TS: 编译时错误
+let i = true + true // 编译时错误
+let j = true + 2    // 编译时错误
+let k = E.E1 + true // 编译时错误
 ```
 
 **ArkTS**
@@ -1835,7 +1813,7 @@ let f = "string" + true // "stringtrue"
 let g = (new Object()).toString() + "string"
 
 let i = true + true // 编译时错误
-let j = true + 2 // 编译时错误
+let j = true + 2    // 编译时错误
 let k = E.E1 + true // 编译时错误
 ```
 
@@ -2142,7 +2120,7 @@ ArkTS不支持`Symbol`API、`Symbol.iterator`和最终可迭代的接口。请�
 
 **级别：错误**
 
-ArkTS支持通过`for .. of`迭代数组和字符串，但不支持迭代对象。
+ArkTS支持通过`for .. of`迭代数组、字符串和`TypedArray`（例如`Int32Array`），但不支持迭代对象。
 
 **TypeScript**
 
@@ -2232,7 +2210,7 @@ console.log("Area: ", Math.PI * r * r)
 
 **级别：错误**
 
-在ArkTS中，`case`语句仅支持编译期值。若值无法在编译期确定，请使用`if`语句。
+在ArkTS中，`case`语句仅支持编译期值，支持`const`常量和`class`的`static readonly`属性。若值无法在编译期确定，请使用`if`语句。
 
 **TypeScript**
 
@@ -2689,7 +2667,7 @@ function main(): void {
 
 **级别：错误**
 
-展开运算符唯一支持的场景是函数剩余参数为数组类型。
+展开运算符唯一支持的场景是函数剩余参数为数组类型，包括`TypedArray`（例如`Int32Array`）。
 
 **TypeScript**
 
@@ -3273,7 +3251,7 @@ import "path/to/module"
 **ArkTS**
 
 ```typescript
-import * from "path/to/module"
+import * as ns from "path/to/module"
 ```
 
 ### 不支持`import default as ...`
@@ -3326,7 +3304,7 @@ import * as m from "mod"
 
 **级别：错误**
 
-ArkTS支持大多数场景下的重导出，比如命名导出和重命名导出，重导出import的。不支持`export * as ...`。
+ArkTS支持大多数场景下的重导出，例如命名重导出和重命名重导出。不支持`export * as ...`。
 
 **TypeScript**
 
@@ -3512,7 +3490,7 @@ declare namespace N {
     function foo(x: number): number
 }
 
-import * from "module"
+import * as m from "module"
 console.log("N.foo called: ", N.foo(42))
 ```
 
@@ -3621,32 +3599,6 @@ let ce = new CustomError()
 **相关约束**
 
 * 不支持在原型上赋值
-
-### 不支持动态导入
-
-**规则：**`arkts-no-runtime-import`
-
-**级别：错误**
-
-由于在ArkTS中，导入是编译时而非运行时特性，因此，ArkTS不支持动态导入，如`await import...`。改用静态`import`语法。
-
-**TypeScript**
-
-```typescript
-const zipUtil = await import("utils/create-zip-file")
-```
-
-**ArkTS**
-
-```typescript
-import { zipUtil } from "utils/create-zip-file"
-```
-
-**相关约束**
-
-* 不支持在模块名中使用通配符
-* 不支持通用模块定义(UMD)
-* 不支持导入断言
 
 ### 不支持确定赋值断言
 
@@ -3796,7 +3748,7 @@ M.abc = 200
 
 **级别：错误**
 
-当前ArkTS不支持从TypeScript扩展到标准库的utility类型（例如`Omit`、`Pick`等）。支持`Partial`和`Record`。
+ArkTS仅支持`Partial`和`Record`，不支持TypeScript中其他的`Utility Types`。
 
 对于*Record<K, V>*类型，表达式*rec[index]*的类型是*V | undefined*。
 对于`Record`类型，键-值中的值的类型必须是可选类型或者包含`undefined`的联合类型。
@@ -4079,9 +4031,7 @@ ArkTS不允许使用TypeScript或JavaScript标准库中的某些接口。大部�
 
 全局对象的属性和方法：`eval`、
 `Infinity`、`NaN`、`isFinite`、`isNaN`、`parseFloat`、`parseInt`、
-`encodeURI`、`encodeURIComponent`、`Encode`、
-`decodeURI`、`decodeURIComponent`、`Decode`、
-`escape`、`unescape`、`ParseHexOctet`
+`Encode`、`Decode`、`ParseHexOctet`
 
 `Object`：`__proto__`、`__defineGetter__`、`__defineSetter__`、
 `__lookupGetter__`、`__lookupSetter__`、`assign`、`create`、
@@ -4265,5 +4215,54 @@ function classDecorator(x: number, y: number): void {
 
 @classDecorator // 编译时错误
 class BugReport {
+}
+```
+
+### `class`不能被用作对象
+
+**规则：**`arkts-no-classes-as-obj`
+
+**级别：错误**
+
+在ArkTS中，`class`声明的是一个新的类型，不是一个值。因此，不支持将`class`用作对象（例如将`class`赋值给一个对象）。
+
+**TypeScript**
+
+```typescript
+class C {
+    s: string = ""
+    n: number = 0
+}
+
+let c = C
+```
+
+### 不支持在`import`语句前使用其他语句
+
+**规则：**`arkts-no-misplaced-imports`
+
+**级别：错误**
+
+在ArkTS中，除动态`import`语句外，所有`import`语句需要放在所有其他语句之前。
+
+**TypeScript**
+
+```typescript
+class C {
+    s: string = ""
+    n: number = 0
+}
+
+import foo from "module1"
+```
+
+**ArkTS**
+
+```typescript
+import foo from "module1"
+
+class C {
+    s: string = ""
+    n: number = 0
 }
 ```

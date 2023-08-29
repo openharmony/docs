@@ -2821,7 +2821,76 @@ notificationManager.requestEnableNotification().then(() => {
 });
 ```
 
+## notificationManager.requestEnableNotification<sup>10+<sup>
 
+requestEnableNotification(context: UIAbilityContext, callback: AsyncCallback\<void\>): void
+
+应用请求通知使能模态弹窗（Callback形式）。
+
+**系统能力**：SystemCapability.Notification.Notification
+
+**参数：**
+
+| 参数名   | 类型                     | 必填 | 说明                 |
+| -------- | ------------------------ | ---- |--------------------|
+| context | UIAbilityContext | 是   | 通知弹窗绑定Ability的上下文。 |
+| callback | AsyncCallback\<void\> | 是   | 应用请求通知使能的回调函数。     |
+
+**错误码：**
+
+错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+
+| 错误码ID | 错误信息                            |
+| -------- | ----------------------------------- |
+| 1600001  | Internal error.                     |
+| 1600002  | Marshalling or unmarshalling error. |
+| 1600003  | Failed to connect service.          |
+
+**示例：**
+
+```javascript
+function requestEnableNotificationCallback(err) {
+    if (err) {
+        console.error(`requestEnableNotification failed, code is ${err.code}, message is ${err.message}`);
+    } else {
+        console.info("requestEnableNotification success");
+    }
+};
+
+notificationManager.requestEnableNotification(globalThis.uicontext, requestEnableNotificationCallback);
+```
+
+## notificationManager.requestEnableNotification<sup>10+<sup>
+
+requestEnableNotification(context: UIAbilityContext): Promise\<void\>
+
+应用请求通知使能模态弹窗（Promise形式）。
+
+**系统能力**：SystemCapability.Notification.Notification
+
+**参数：**
+
+| 参数名   | 类型                     | 必填 | 说明                 |
+| -------- | ------------------------ | ---- |--------------------|
+| context | UIAbilityContext | 是   | 通知弹窗绑定Ability的上下文。 |
+
+**错误码：**
+
+错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+
+| 错误码ID | 错误信息                            |
+| -------- | ----------------------------------- |
+| 1600001  | Internal error.                     |
+| 1600002  | Marshalling or unmarshalling error. |
+| 1600003  | Failed to connect service.          |
+
+**示例：**
+
+```javascript
+notificationManager.requestEnableNotification(globalThis.uicontext).then(() => {
+    console.info("requestEnableNotification success");
+});
+```
 
 ## notificationManager.setDistributedEnable
 

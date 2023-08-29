@@ -4461,6 +4461,156 @@ off(type: 'preferredOutputDeviceChangeForRendererInfo', callback?: Callback<Audi
 audioRoutingManager.off('preferredOutputDeviceChangeForRendererInfo');
 ```
 
+### getPreferredInputDeviceForCapturerInfo<sup>10+</sup>
+
+getPreferredInputDeviceForCapturerInfo(capturerInfo: AudioCapturerInfo, callback: AsyncCallback&lt;AudioDeviceDescriptors&gt;): void
+
+根据音频信息，返回优先级最高的输入设备，使用callback方式异步返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Device
+
+**参数：**
+
+| 参数名                       | 类型                                                         | 必填 | 说明                      |
+| --------------------------- | ------------------------------------------------------------ | ---- | ------------------------- |
+| capturerInfo                | [AudioCapturerInfo](#audiocapturerinfo8)                     | 是   | 表示采集器信息。             |
+| callback                    | AsyncCallback&lt;[AudioDeviceDescriptors](#audiodevicedescriptors)&gt;  | 是   | 回调，返回优先级最高的输入设备信息。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[音频错误码](../errorcodes/errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 6800101 | if input parameter value error              |
+| 6800301 | System error                                |
+
+**示例：**
+```js
+let capturerInfo = {
+  source: audio.SourceType.SOURCE_TYPE_MIC,
+  capturerFlags: 0
+}
+
+audioRoutingManager.getPreferredInputDeviceForCapturerInfo(capturerInfo, (err, desc) => {
+  if (err) {
+    console.error(`Result ERROR: ${err}`);
+  } else {
+    console.info(`device descriptor: ${desc}`);
+  }
+});
+```
+
+### getPreferredInputDeviceForCapturerInfo<sup>10+</sup>
+
+getPreferredInputDeviceForCapturerInfo(capturerInfo: AudioCapturerInfo): Promise&lt;AudioDeviceDescriptors&gt;
+
+根据音频信息，返回优先级最高的输入设备，使用promise方式异步返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Device
+
+**参数：**
+
+| 参数名                 | 类型                                                         | 必填 | 说明                      |
+| ----------------------| ------------------------------------------------------------ | ---- | ------------------------- |
+| capturerInfo          | [AudioCapturerInfo](#audiocapturerinfo8)                     | 是   | 表示采集器信息。            |
+
+**返回值：**
+
+| 类型                  | 说明                         |
+| --------------------- | --------------------------- |
+| Promise&lt;[AudioDeviceDescriptors](#audiodevicedescriptors)&gt;   | Promise返回优先级最高的输入设备信息。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[音频错误码](../errorcodes/errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 6800101 | if input parameter value error              |
+| 6800301 | System error                                |
+
+**示例：**
+
+```js
+let capturerInfo = {
+  source: audio.SourceType.SOURCE_TYPE_MIC,
+  capturerFlags: 0
+}
+
+audioRoutingManager.getPreferredInputDeviceForCapturerInfo(capturerInfo).then((desc) => {
+  console.info(`device descriptor: ${desc}`);
+}).catch((err) => {
+  console.error(`Result ERROR: ${err}`);
+})
+```
+
+### on('preferredInputDeviceChangeForCapturerInfo')<sup>10+</sup>
+
+on(type: 'preferredInputDeviceChangeForCapturerInfo', capturerInfo: AudioCapturerInfo, callback: Callback<AudioDeviceDescriptors\>): void
+
+订阅最高优先级输入设备变化事件，使用callback获取最高优先级输入设备。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Device
+
+**参数：**
+
+| 参数名   | 类型                                                 | 必填 | 说明                                       |
+| :------- | :--------------------------------------------------- | :--- | :----------------------------------------- |
+| type     | string                                               | 是   | 订阅的事件的类型。支持事件：'preferredInputDeviceChangeForCapturerInfo' |
+| capturerInfo  | [AudioCapturerInfo](#audiocapturerinfo8)        | 是   | 表示采集器信息。              |
+| callback | Callback<[AudioDeviceDescriptors](#audiodevicedescriptors)\> | 是   | 获取优先级最高的输入设备信息。                         |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[音频错误码](../errorcodes/errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 6800101 | if input parameter value error              |
+
+**示例：**
+
+```js
+let capturerInfo = {
+  source: audio.SourceType.SOURCE_TYPE_MIC,
+  capturerFlags: 0
+}
+
+audioRoutingManager.on('preferredInputDeviceChangeForCapturerInfo', capturerInfo, (desc) => {
+  console.info(`device descriptor: ${desc}`);
+});
+```
+
+### off('preferredInputDeviceChangeForCapturerInfo')<sup>10+</sup>
+
+off(type: 'preferredInputDeviceChangeForCapturerInfo', callback?: Callback<AudioDeviceDescriptors\>): void
+
+取消订阅最高优先级输入音频设备变化事件。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Device
+
+**参数：**
+
+| 参数名   | 类型                                                | 必填 | 说明                                       |
+| -------- | --------------------------------------------------- | ---- | ------------------------------------------ |
+| type     | string                                              | 是   | 订阅的事件的类型。支持事件：'preferredInputDeviceChangeForCapturerInfo' |
+| callback | Callback<[AudioDeviceDescriptors](#audiodevicedescriptors)> | 否   | 监听方法的回调函数。                         |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[音频错误码](../errorcodes/errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 6800101 | if input parameter value error              |
+
+**示例：**
+
+```js
+audioRoutingManager.off('preferredInputDeviceChangeForCapturerInfo');
+```
+
 ## AudioRendererChangeInfoArray<sup>9+</sup>
 
 数组类型，AudioRenderChangeInfo数组，只读。
@@ -5773,14 +5923,14 @@ audioRenderer.getCurrentOutputDevices((err, deviceInfo) => {
   if (err) {
     console.error(`getCurrentOutputDevices Fail: ${err}`);
   } else {
-    console.info(`DeviceInfo id: ${deviceInfo.id}`);
-    console.info(`DeviceInfo type: ${deviceInfo.deviceType}`);
-    console.info(`DeviceInfo role: ${deviceInfo.deviceRole}`);
-    console.info(`DeviceInfo name: ${deviceInfo.name}`);
-    console.info(`DeviceInfo address: ${deviceInfo.address}`);
-    console.info(`DeviceInfo samplerates: ${deviceInfo.sampleRates[0]}`);
-    console.info(`DeviceInfo channelcounts: ${deviceInfo.channelCounts[0]}`);
-    console.info(`DeviceInfo channelmask: ${deviceInfo.channelMasks}`);
+    console.info(`DeviceInfo id: ${deviceInfo[0].id}`);
+    console.info(`DeviceInfo type: ${deviceInfo[0].deviceType}`);
+    console.info(`DeviceInfo role: ${deviceInfo[0].deviceRole}`);
+    console.info(`DeviceInfo name: ${deviceInfo[0].name}`);
+    console.info(`DeviceInfo address: ${deviceInfo[0].address}`);
+    console.info(`DeviceInfo samplerates: ${deviceInfo[0].sampleRates[0]}`);
+    console.info(`DeviceInfo channelcounts: ${deviceInfo[0].channelCounts[0]}`);
+    console.info(`DeviceInfo channelmask: ${deviceInfo[0].channelMasks}`);
   }
 });
 ```
@@ -5802,14 +5952,14 @@ getCurrentOutputDevices(): Promise&lt;AudioDeviceDescriptors&gt;
 
 ```js
 audioRenderer.getCurrentOutputDevices().then((deviceInfo) => {
-  console.info(`DeviceInfo id: ${deviceInfo.id}`);
-  console.info(`DeviceInfo type: ${deviceInfo.deviceType}`);
-  console.info(`DeviceInfo role: ${deviceInfo.deviceRole}`);
-  console.info(`DeviceInfo name: ${deviceInfo.name}`);
-  console.info(`DeviceInfo address: ${deviceInfo.address}`);
-  console.info(`DeviceInfo samplerates: ${deviceInfo.sampleRates[0]}`);
-  console.info(`DeviceInfo channelcounts: ${deviceInfo.channelCounts[0]}`);
-  console.info(`DeviceInfo channelmask: ${deviceInfo.channelMasks}`);
+  console.info(`DeviceInfo id: ${deviceInfo[0].id}`);
+  console.info(`DeviceInfo type: ${deviceInfo[0].deviceType}`);
+  console.info(`DeviceInfo role: ${deviceInfo[0].deviceRole}`);
+  console.info(`DeviceInfo name: ${deviceInfo[0].name}`);
+  console.info(`DeviceInfo address: ${deviceInfo[0].address}`);
+  console.info(`DeviceInfo samplerates: ${deviceInfo[0].sampleRates[0]}`);
+  console.info(`DeviceInfo channelcounts: ${deviceInfo[0].channelCounts[0]}`);
+  console.info(`DeviceInfo channelmask: ${deviceInfo[0].channelMasks}`);
 }).catch((err) => {
   console.error(`Get current output devices Fail: ${err}`);
 });
@@ -6057,12 +6207,10 @@ on(type: 'outputDeviceChange', callback: Callback\<AudioDeviceDescriptors>): voi
 **示例：**
 
 ```js
-audioRenderer.on('outputDeviceChange', (err, deviceChangeInfo) => {
-  if (err) {
-    console.error(`Subscribes output device change event callback Fail: ${err}`);
-  } else {
-    console.info(`Subscribes output device change event callback Success!`);
-  }
+audioRenderer.on('outputDeviceChange', (deviceInfo) => {
+    console.info(`DeviceInfo id: ${deviceInfo[0].id}`);
+    console.info(`DeviceInfo name: ${deviceInfo[0].name}`);
+    console.info(`DeviceInfo address: ${deviceInfo[0].address}`);
 });
 ```
 ### off('outputDeviceChange') <sup>10+</sup>
@@ -6089,12 +6237,10 @@ off(type: 'outputDeviceChange', callback?: Callback\<AudioDeviceDescriptors>): v
 **示例：**
 
 ```js
-audioRenderer.off('outputDeviceChange', (err,deviceChangeInfo) => {
-  if (err) {
-    console.error(`Unsubscribes output device change event callback Fail: ${err}`);
-  } else {
-    console.info(`Unsubscribes output device change event callback Success!`);
-  }
+audioRenderer.off('outputDeviceChange', (deviceInfo) => {
+    console.info(`DeviceInfo id: ${deviceInfo[0].id}`);
+    console.info(`DeviceInfo name: ${deviceInfo[0].name}`);
+    console.info(`DeviceInfo address: ${deviceInfo[0].address}`);
 });
 ```
 

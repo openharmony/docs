@@ -538,7 +538,7 @@ ws.off('message');
 
 ### on('close')<sup>6+</sup>
 
-on(type: 'close', callback: AsyncCallback\<{ CloseResult }\>): void
+on(type: 'close', callback: AsyncCallback\<CloseResult\>): void
 
 订阅WebSocket的关闭事件，使用callback方式作为异步方法。
 
@@ -549,7 +549,7 @@ on(type: 'close', callback: AsyncCallback\<{ CloseResult }\>): void
 | 参数名   | 类型                                            | 必填 | 说明                           |
 | -------- | ----------------------------------------------- | ---- | ------------------------------ |
 | type     | string                                          | 是   | 'close'：WebSocket的关闭事件。 |
-| callback | AsyncCallback\<{ CloseResult }\> | 是   | 回调函数。<br>close：close错误码，reason：错误码说明 |
+| callback | AsyncCallback\<CloseResult\> | 是   | 回调函数。<br>close：close错误码，reason：错误码说明 |
 
 **示例：**
 
@@ -562,7 +562,7 @@ ws.on('close', (err, value) => {
 
 ### off('close')<sup>6+</sup>
 
-off(type: 'close', callback?: AsyncCallback\<{ CloseResult }\>): void
+off(type: 'close', callback?: AsyncCallback\<CloseResult\>): void
 
 取消订阅WebSocket的关闭事件，使用callback方式作为异步方法。
 
@@ -576,7 +576,7 @@ off(type: 'close', callback?: AsyncCallback\<{ CloseResult }\>): void
 | 参数名   | 类型                                            | 必填 | 说明                           |
 | -------- | ----------------------------------------------- | ---- | ------------------------------ |
 | type     | string                                          | 是   | 'close'：WebSocket的关闭事件。 |
-| callback | AsyncCallback\<{ CloseResult }\> | 否   | 回调函数。<br>close：close错误码，reason：错误码说明 |
+| callback | AsyncCallback\<CloseResult\> | 否   | 回调函数。<br>close：close错误码，reason：错误码说明 |
 
 **示例：**
 

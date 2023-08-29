@@ -97,6 +97,8 @@ try {
 }
 ```
 
+> 说明：仅支持获取本应用中其他Module的Context和[应用内HSP](../../../application-dev/quick-start/in-app-hsp.md)的Context，不支持获取其他应用的Context和[应用间HSP](../../../application-dev/quick-start/cross-app-hsp.md)的Context。
+
 ## Context.createModuleContext
 
 createModuleContext(bundleName: string, moduleName: string): Context;
@@ -200,7 +202,7 @@ try {
 
 ## Context.getGroupDir<sup>10+</sup>
 
-getGroupDir(dataGroupID: string, callback: AsyncCallback\<string>);
+getGroupDir(dataGroupID: string, callback: AsyncCallback\<string>): void;
 
 通过使用元服务应用中的Group ID获取对应的共享目录，使用callback异步回调。
 

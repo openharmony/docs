@@ -56,13 +56,16 @@
   为了带给用户更好的体验，针对不同的音频打断事件内容，应用需要做出相应的处理操作。此处以使用AudioRenderer开发音频播放功能为例，展示推荐应用采取的处理方法，提供伪代码供开发者参考（若使用AVPlayer开发音频播放功能，处理方法类似），具体的代码实现，开发者可结合实际情况编写，处理方法也可自行调整。
   
 ```ts
-let isPlay; // 是否正在播放，实际开发中，对应与音频播放状态相关的模块
-let isDucked; //是否降低音量，实际开发中，对应与音频音量相关的模块
-let started; // 标识符，记录“开始播放（start）”操作是否成功
+import audio from '@ohos.multimedia.audio';  // 导入audio模块
+import { BusinessError } from '@ohos.base'; // 导入BusinessError
 
-async function onAudioInterrupt(){
+let isPlay: boolean; // 是否正在播放，实际开发中，对应与音频播放状态相关的模块
+let isDucked: boolean; //是否降低音量，实际开发中，对应与音频音量相关的模块
+let started: boolean; // 标识符，记录“开始播放（start）”操作是否成功
+
+async function onAudioInterrupt(): Promise<void> {
   // 此处以使用AudioRenderer开发音频播放功能举例，变量audioRenderer即为播放时创建的AudioRenderer实例。
-  audioRenderer.on('audioInterrupt', async(interruptEvent) => {
+  audioRenderer.on('audioInterrupt', async(interruptEvent: audio.InterruptEvent) => {
     // 在发生音频打断事件时，audioRenderer收到interruptEvent回调，此处根据其内容做相应处理
     // 先读取interruptEvent.forceType的类型，判断系统是否已强制执行相应操作
     // 再读取interruptEvent.hintType的类型，做出相应的处理
@@ -98,9 +101,9 @@ async function onAudioInterrupt(){
           // 此分支表示临时失去焦点后被暂停的音频流此时可以继续播放，建议应用继续播放，切换至音频播放状态
           // 若应用此时不想继续播放，可以忽略此音频打断事件，不进行处理即可
           // 继续播放，此处主动执行start()，以标识符变量started记录start()的执行结果
-          await audioRenderer.start().then(async function () {
+          await audioRenderer.start().then(() => {
             started = true; // start()执行成功
-          }).catch((err) => {
+          }).catch((err: BusinessError) => {
             started = false; // start()执行失败
           });
           // 若start()执行成功，则切换至音频播放状态

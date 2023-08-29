@@ -6,7 +6,7 @@
 
 主要包括查询和设置当前音频播放流的音效模式，音效模式包括EFFECT_NONE关闭音效模式和EFFECT_DEFAULT默认音效模式。默认音效模式会根据创建音频流的ContentType和StreamUsage自动加载对应场景的音效。
 
-### 获取播放实例
+### 获取播放实例（示例代码仅支持JS格式）
 
 管理播放实例音效的接口是getAudioEffectMode()查询当前音频播放流的音效模式和setAudioEffectMode(mode: AudioEffectMode)设置当前音频播放流的音效模式，在使用之前，需要使用createAudioRenderer(options: AudioRendererOptions)先创建音频播放流AudioRenderer实例。
 
@@ -48,7 +48,7 @@
   });
   ```
 
-### 查询当前播放实例的音效模式
+### 查询当前播放实例的音效模式（示例代码仅支持JS格式）
 
   ```js
   audioRenderer.getAudioEffectMode((err, effectmode) => {
@@ -61,7 +61,7 @@
   });
   ```
 
-### 设置当前播放实例的音效模式
+### 设置当前播放实例的音效模式（示例代码仅支持JS格式）
 
 关闭系统音效：
 
@@ -94,7 +94,7 @@
 主要包括全局音效查询相应StreamUsage对应场景的音效模式。
 对于播放音频类的应用，开发者需要关注该应用的音频流使用什么音效模式并做出相应的操作，比如音乐App播放时，应选择音乐场景下的模式。在使用查询接口前，开发者需要使用getStreamManager()创建一个AudioStreamManager音频流管理实例。
 
-### 获取音频流管理接口
+### 获取音频流管理接口（示例代码仅支持JS格式）
 
 1.创建AudioStreamManager实例。在使用AudioStreamManager的API前，需要使用getStreamManager()创建一个AudioStreamManager实例。
 
@@ -104,7 +104,7 @@
    let audioStreamManager = audioManager.getStreamManager();
    ```
 
-### 查询对应场景的音效模式
+### 查询对应场景的音效模式（示例代码仅支持JS格式）
 
   ```js
   audioStreamManager.getAudioEffectInfoArray(audio.StreamUsage.STREAM_USAGE_MEDIA, async (err, audioEffectInfoArray) => {

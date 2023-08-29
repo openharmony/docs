@@ -60,10 +60,10 @@
    ```json
    {
      "module": {
-       ...
+       // ...
        "abilities": [
          {
-           ...
+           // ...
            "continuable": true,
          }
        ]
@@ -84,20 +84,24 @@
 - 迁移决策：开发者可以通过onContinue接口的返回值决定是否支持此次迁移，返回值信息见[接口说明](#接口说明)。
 
   示例如下：
-  
-```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 
-onContinue(wantParam : {[key: string]: Object}) {
-    console.info(`onContinue version = ${wantParam.version}, targetDevice: ${wantParam.targetDevice}`)           //准备迁移数据
-    let continueInput = '迁移的数据';
-    // 将要迁移的数据保存在wantParam的自定义字段（如：data）中;
-    wantParam["data"] = continueInput       
-    console.info(`onContinue input = ${wantParam["input"]}`);
-    return AbilityConstant.OnContinueResult.AGREE
-}
-```
+  ```ts
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+
+  export default class EntryAbility extends UIAbility {
+    onContinue(wantParam: Record<string, Object>) {
+      console.info(`onContinue version = ${wantParam.version}, targetDevice: ${wantParam.targetDevice}`) // 准备迁移数据
+      let continueInput = '迁移的数据';
+      if (continueInput) {
+        // 将要迁移的数据保存在wantParam的自定义字段（如：data）中;
+        wantParam["data"] = continueInput;
+      }
+      console.info(`onContinue input = ${wantParam["data"]}`);
+      return AbilityConstant.OnContinueResult.AGREE;
+    }
+  }
+  ```
 
 5.在Stage模型中，应用在不同启动模式下将调用不同的接口，以恢复数据、加载界面。
 
@@ -113,42 +117,51 @@ onContinue(wantParam : {[key: string]: Object}) {
    - 完成数据恢复后，开发者需要调用restoreWindowStage来触发页面恢复：包括页面栈信息。
      
       ```ts
-      import UIAbility from '@ohos.app.ability.UIAbility'; 
-      import AbilityConstant from '@ohos.app.ability.AbilityConstant';  
-      
-      export default class EntryAbility extends UIAbility {     
-          storage : LocalStorage;     
-          onCreate(want, launchParam) {         
-              console.info(`EntryAbility onCreate ${AbilityConstant.LaunchReason.CONTINUATION}`)         
-              if (launchParam.launchReason == AbilityConstant.LaunchReason.CONTINUATION) {             
-                  // 将上述的保存的数据取出恢复             
-                  let continueInput = want.parameters.data             
-                  console.info(`continue input ${continueInput}`) 
-                  // 将数据显示当前页面
-                  this.storage = new LocalStorage();             
-                  this.context.restoreWindowStage(this.storage);         
-              }     
-          } 
+      import UIAbility from '@ohos.app.ability.UIAbility';
+      import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+      import Want from '@ohos.app.ability.Want';
+
+      export default class EntryAbility extends UIAbility {
+        storage : LocalStorage = new LocalStorage();
+        onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+          console.info(`EntryAbility onCreate ${AbilityConstant.LaunchReason.CONTINUATION}`)
+          if (launchParam.launchReason == AbilityConstant.LaunchReason.CONTINUATION) {
+            // 将上述的保存的数据取出恢复
+            let continueInput = '';
+            if (want.parameters != undefined) {
+              continueInput = JSON.stringify(want.parameters.data);
+              console.info(`continue input ${continueInput}`)
+            }
+            // 将数据显示当前页面
+            this.context.restoreWindowStage(this.storage);
+          }
+        }
       }
       ```
 - 如果是单实例应用，需要额外实现onNewWant接口，实现方式与onCreate的实现相同。
    - 在onNewWant中判断迁移场景，恢复数据，并触发页面恢复
 
-      ```ts  
-      export default class EntryAbility extends UIAbility {     
-          storage : LocalStorage;     
-          onNewWant(want, launchParam) {         
-              console.info(`EntryAbility onNewWant ${AbilityConstant.LaunchReason.CONTINUATION}`)         
-              if (launchParam.launchReason == AbilityConstant.LaunchReason.CONTINUATION) {             
-                  // get user data from want params             
-                  let continueInput = want.parameters.data             
-                  console.info(`continue input ${continueInput}`)          
-                  this.storage = new LocalStorage();             
-                  this.context.restoreWindowStage(this.storage);         
-              }     
-          } 
+    ```ts  
+    import UIAbility from '@ohos.app.ability.UIAbility';
+    import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+    import Want from '@ohos.app.ability.Want';
+
+    export default class EntryAbility extends UIAbility {
+      storage : LocalStorage = new LocalStorage();
+      onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+        console.info(`EntryAbility onNewWant ${AbilityConstant.LaunchReason.CONTINUATION}`)
+        if (launchParam.launchReason == AbilityConstant.LaunchReason.CONTINUATION) {
+          // get user data from want params
+          let continueInput = '';
+          if (want.parameters != undefined) {
+            continueInput = JSON.stringify(want.parameters.data);
+            console.info(`continue input ${continueInput}`);
+          }
+          this.context.restoreWindowStage(this.storage);
+        }
       }
-      ```
+    }
+    ```
 
 
 
@@ -171,12 +184,17 @@ onContinue(wantParam : {[key: string]: Object}) {
 
 ```ts
 // EntryAbility.ets
-onCreate(want, launchParam) {
-  ...
-  this.context.setMissionContinueState(AbilityConstant.ContinueState.ACTIVE, (result) => {
-    console.info('setMissionContinueState ACTIVE result: ', JSON.stringify(result));
-  };
-  ...
+import UIAbility from '@ohos.app.ability.UIAbility';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import Want from '@ohos.app.ability.Want';
+export default class EntryAbility extends UIAbility {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+    // ...
+    this.context.setMissionContinueState(AbilityConstant.ContinueState.INACTIVE, (result) => {
+      console.info(`setMissionContinueState: ${JSON.stringify(result)}`);
+    });
+    // ...
+  }
 }
 ```
 
@@ -184,16 +202,21 @@ onCreate(want, launchParam) {
 
 ```ts
 // PageName.ets
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import common from '@ohos.app.ability.common'
+@Entry
+@Component
 struct PageName {
-  Build() {
-    ...
+  private context = getContext(this) as common.UIAbilityContext;
+  build() {
+    // ...
   }
-  ...
+  // ...
   onPageShow(){
   // 进入该页面时，将应用设置为可迁移状态
     this.context.setMissionContinueState(AbilityConstant.ContinueState.ACTIVE, (result) => {
       console.info('setMissionContinueState ACTIVE result: ', JSON.stringify(result));
-    };
+    });
   }
 }
 ```
@@ -201,16 +224,25 @@ struct PageName {
 在某个组件的触发事件中设置应用迁移能力。如下例中，使用 **Button** 组件的 **onClick** 事件，触发迁移能力的改变。
 
 ```ts
-// xxx.ets
-Button(){
-  ...
+// PageName.ets
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import common from '@ohos.app.ability.common'
+@Entry
+@Component
+struct PageName {
+  private context = getContext(this) as common.UIAbilityContext;
+  build() {
+    // ...
+    Button() {
+      //...
+    }.onClick(()=>{
+    //点击该按钮时，将应用设置为可迁移状态
+      this.context.setMissionContinueState(AbilityConstant.ContinueState.ACTIVE, (result) => {
+        console.info('setMissionContinueState ACTIVE result: ', JSON.stringify(result));
+      });
+    })
+  }
 }
-.onClick(()=>{
-  //点击该按钮时，将应用设置为可迁移状态
-  this.context.setMissionContinueState(AbilityConstant.ContinueState.ACTIVE, (result) => {
-    console.info('setMissionContinueState ACTIVE result: ', JSON.stringify(result));
-  };
-})
 ```
 
 **保证迁移连续性**
@@ -219,24 +251,28 @@ Button(){
 
 ```ts
 // EntryAbility.ets
-onCreate(want, launchparam) {
-  ...
-  // 调用原因为迁移时，设置状态为可迁移，应对冷启动情况
-  if (launchParam.launchReason == AbilityConstant.LaunchReason.CONTINUATION) {
-    this.context.setMissionContinueState(AbilityConstant.ContinueState.ACTIVE, (result) => {
-      console.info('setMissionContinueState ACTIVE result: ', JSON.stringify(result));
-    };
+import UIAbility from '@ohos.app.ability.UIAbility';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import Want from '@ohos.app.ability.Want';
+export default class EntryAbility extends UIAbility {
+  // ...
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+    // ...
+    // 调用原因为迁移时，设置状态为可迁移，应对冷启动情况
+    this.context.setMissionContinueState(AbilityConstant.ContinueState.INACTIVE, (result) => {
+      console.info(`setMissionContinueState: ${JSON.stringify(result)}`);
+    });
   }
-}
-
-onNewWant(want, launchparam) {
-  ...
-  // 调用原因为迁移时，设置状态为可迁移，应对热启动情况
-  if (launchParam.launchReason == AbilityConstant.LaunchReason.CONTINUATION) {
-    this.context.setMissionContinueState(AbilityConstant.ContinueState.ACTIVE, (result) => {
-      console.info('setMissionContinueState ACTIVE result: ', JSON.stringify(result));
-    };
+  onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+    // ...
+    // 调用原因为迁移时，设置状态为可迁移，应对热启动情况
+    if (launchParam.launchReason == AbilityConstant.LaunchReason.CONTINUATION) {
+      this.context.setMissionContinueState(AbilityConstant.ContinueState.ACTIVE, (result) => {
+        console.info('setMissionContinueState ACTIVE result: ', JSON.stringify(result));
+      });
+    }
   }
+  // ...
 }
 ```
 
@@ -251,18 +287,29 @@ onNewWant(want, launchparam) {
 - 示例：应用迁移不需要自动迁移页面栈信息
 
     ```ts
+    // EntryAbility.ets
     import UIAbility from '@ohos.app.ability.UIAbility';
+    import AbilityConstant from '@ohos.app.ability.AbilityConstant';
     import wantConstant from '@ohos.app.ability.wantConstant';
-    
-    onContinue(wantParam :  {[key: string]: Object}) {
-        console.info(`onContinue version = ${wantParam.version}, targetDevice: ${wantParam.targetDevice}`)         
+    import window from '@ohos.window';
+    export default class EntryAbility extends UIAbility {
+      // ...
+      onContinue(wantParam: Record<string, Object>) {
+        console.info(`onContinue version = ${wantParam.version}, targetDevice: ${wantParam.targetDevice}`);
         wantParam[wantConstant.Params.SUPPORT_CONTINUE_PAGE_STACK_KEY] = false;
         return AbilityConstant.OnContinueResult.AGREE;
-    }
-    
-    onWindowStageRestore(windowStage) {
-        // 若不需要自动迁移页面栈信息，则需要在此处设置应用迁移后进入的页面
-        windowStage.setUIContent(this.contex, "pages/index", null);
+      }
+      // ...
+      onWindowStageRestore(windowStage: window.WindowStage) {
+          // 若不需要自动迁移页面栈信息，则需要在此处设置应用迁移后进入的页面
+        windowStage.loadContent('pages/Index', (err, data) => {
+          if (err.code) {
+            console.info('Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
+            return;
+          }
+          console.info('Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
+        });
+      }
     }
     ```
 
@@ -274,12 +321,16 @@ onNewWant(want, launchparam) {
 
     ```ts
     import UIAbility from '@ohos.app.ability.UIAbility';
+    import AbilityConstant from '@ohos.app.ability.AbilityConstant';
     import wantConstant from '@ohos.app.ability.wantConstant';
-    
-    onContinue(wantParam :  {[key: string]: Object}) {
-        console.info(`onContinue version = ${wantParam.version}, targetDevice: ${wantParam.targetDevice}`)         
+    export default class EntryAbility extends UIAbility {
+      // ...
+      onContinue(wantParam: Record<string, Object>) {
+        console.info(`onContinue version = ${wantParam.version}, targetDevice: ${wantParam.targetDevice}`);
         wantParam[wantConstant.Params.SUPPORT_CONTINUE_SOURCE_EXIT_KEY] = false;
         return AbilityConstant.OnContinueResult.AGREE;
+      }
+      // ...
     }
     ```
 

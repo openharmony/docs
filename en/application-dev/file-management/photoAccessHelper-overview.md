@@ -49,7 +49,7 @@ import photoAccessHelper from '@ohos.file.photoAccessHelper';
 
 // The phAccessHelper instance obtained here is a global object. By default, the object obtained here is used in subsequent operations in this document. If an undefined error is reported, add the code snippet here.
 const context = getContext(this);
-let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
+let phAccessHelper: photoAccessHelper.PhotoAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 ```
 
 ## Applying for Permissions
@@ -108,7 +108,7 @@ The required permissions must be authorized by the user (user_grant). After addi
     onWindowStageCreate(windowStage) {
       let list : Array<Permissions> = ['ohos.permission.READ_IMAGEVIDEO', 'ohos.permission.WRITE_IMAGEVIDEO'];
       let permissionRequestResult;
-      let atManager = abilityAccessCtrl.createAtManager();
+      let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
       atManager.requestPermissionsFromUser(this.context, list, (err, result) => {
         if (err) {
           console.error('requestPermissionsFromUserError: ' + JSON.stringify(err));

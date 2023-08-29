@@ -54,6 +54,8 @@
    import window from '@ohos.window';
    import wantConstant from '@ohos.app.ability.wantConstant';
    import UIAbility from '@ohos.app.ability.UIAbility';
+   import Want from '@ohos.app.ability.Want';
+   import { BusinessError } from '@ohos.base';
    
    export default class EntryAbility extends UIAbility {
      onWindowStageCreate(windowStage: window.WindowStage) {
@@ -61,7 +63,7 @@
        let filePath = this.context.filesDir + '/test.txt';
        // 将沙箱路径转换为uri
        let uri = fileuri.getUriFromPath(filePath);
-       let want = {
+       let want: Want  = {
          // 配置被分享文件的读写权限，例如对被分享应用进行读写授权
          flags: wantConstant.Flags.FLAG_AUTH_WRITE_URI_PERMISSION | wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION,
          // 配置分享应用的隐式拉起规则
@@ -73,7 +75,7 @@
          .then(() => {
            console.info('Invoke getCurrentBundleStats succeeded.');
          })
-         .catch((err) => {
+         .catch((err: BusinessError) => {
            console.error(`Invoke startAbility failed, code is ${err.code}, message is ${err.message}`);
          });
      }
@@ -120,10 +122,11 @@
 ```ts
 // xxx.ets
 import fs from '@ohos.file.fs';
+import Want from '@ohos.app.ability.Want';
 
 function getShareFile() {
   try {
-    let want = ...; // 获取分享方传递过来的want信息
+    let want: Want = ...; // 获取分享方传递过来的want信息
 
     // 从want信息中获取uri字段
     let uri = want.uri;

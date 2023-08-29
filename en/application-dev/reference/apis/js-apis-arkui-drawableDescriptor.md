@@ -141,7 +141,7 @@ Obtains the **DrawableDescriptor** object of the background.
 **Example**
   ```ts
 let resManager = getContext().resourceManager
-drawable: DrawableDescriptor = (<LayeredDrawableDescriptor> (resManager.getDrawableDescriptor($r('app.media.icon')
+let drawable: DrawableDescriptor = (<LayeredDrawableDescriptor> (resManager.getDrawableDescriptor($r('app.media.icon')
     .id))).getBackground();
   ```
 

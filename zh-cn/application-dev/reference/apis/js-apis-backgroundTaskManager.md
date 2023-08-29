@@ -115,14 +115,14 @@ getRemainingDelayTime(requestId: number): Promise&lt;number&gt;
 
 **示例**：
 
-  ```js
-  let delayInfo = backgroundTaskManager.requestSuspendDelay("test", () => {});
-  backgroundTaskManager.getRemainingDelayTime(delayInfo.requestId).then( res => {
-      console.log('promise => Operation getRemainingDelayTime succeeded. Data: ' + JSON.stringify(res));
-  }).catch( err => {
-      console.log('promise => Operation getRemainingDelayTime failed. Cause: ' + err.code);
-  })
-  ```
+```js
+let delayInfo = backgroundTaskManager.requestSuspendDelay("test", () => {});
+    backgroundTaskManager.getRemainingDelayTime(delayInfo.requestId).then((res:number) => {
+    console.log('promise => Operation getRemainingDelayTime succeeded. Data: ' + JSON.stringify(res));
+}).catch((err : BusinessError) => {
+    console.log('promise => Operation getRemainingDelayTime failed. Cause: ' + err.code);
+})
+```
 
 
 ## backgroundTaskManager.cancelSuspendDelay
@@ -173,31 +173,32 @@ FA模型示例：
 ```js
 import backgroundTaskManager from '@ohos.backgroundTaskManager';
 import featureAbility from '@ohos.ability.featureAbility';
-import wantAgent from '@ohos.app.ability.wantAgent';
+import wantAgent, { WantAgent } from '@ohos.app.ability.wantAgent';
+import { BusinessError } from '@ohos.base';
 
-function callback(err, data) {
-    if (err) {
-        console.error("Operation startBackgroundRunning failed Cause: " + err);
-    } else {
-        console.info("Operation startBackgroundRunning succeeded");
-    }
+function callback(err: BusinessError, data: void) {
+  if (err) {
+    console.error("Operation startBackgroundRunning failed Cause: " + err);
+  } else {
+    console.info("Operation startBackgroundRunning succeeded");
+  }
 }
 
-let wantAgentInfo = {
-    wants: [
-        {
-            bundleName: "com.example.myapplication",
-            abilityName: "EntryAbility"
-        }
-    ],
-    operationType: wantAgent.OperationType.START_ABILITY,
-    requestCode: 0,
-    wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
+let wantAgentInfo : wantAgent.WantAgentInfo = {
+  wants: [
+    {
+      bundleName: "com.example.myapplication",
+      abilityName: "EntryAbility"
+    }
+  ],
+  operationType: wantAgent.OperationType.START_ABILITY,
+  requestCode: 0,
+  wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 };
 
-wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
-    backgroundTaskManager.startBackgroundRunning(featureAbility.getContext(),
-        backgroundTaskManager.BackgroundMode.LOCATION, wantAgentObj, callback)
+wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj : WantAgent) => {
+  backgroundTaskManager.startBackgroundRunning(featureAbility.getContext(),
+    backgroundTaskManager.BackgroundMode.LOCATION, wantAgentObj, callback)
 });
 
 ```
@@ -207,35 +208,36 @@ Stage模型示例：
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
 import backgroundTaskManager from '@ohos.backgroundTaskManager';
-import wantAgent from '@ohos.app.ability.wantAgent';
+import wantAgent, { WantAgent } from '@ohos.app.ability.wantAgent';
+import { BusinessError } from '@ohos.base';
 
-function callback(err, data) {
-    if (err) {
-        console.error("Operation startBackgroundRunning failed Cause: " + err);
-    } else {
-        console.info("Operation startBackgroundRunning succeeded");
-    }
+function callback(err: BusinessError, data: void) {
+  if (err) {
+    console.error("Operation startBackgroundRunning failed Cause: " + err);
+  } else {
+    console.info("Operation startBackgroundRunning succeeded");
+  }
 }
 
 export default class EntryAbility extends UIAbility {
-    onCreate(want, launchParam) {
-        let wantAgentInfo = {
-            wants: [
-                {
-                    bundleName: "com.example.myapplication",
-                    abilityName: "EntryAbility"
-                }
-            ],
-            operationType: wantAgent.OperationType.START_ABILITY,
-            requestCode: 0,
-            wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
-        };
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+    let wantAgentInfo : wantAgent.WantAgentInfo = {
+      wants: [
+        {
+          bundleName: "com.example.myapplication",
+          abilityName: "EntryAbility"
+        }
+      ],
+      operationType: wantAgent.OperationType.START_ABILITY,
+      requestCode: 0,
+      wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
+    };
 
-        wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
-            backgroundTaskManager.startBackgroundRunning(this.context,
-                backgroundTaskManager.BackgroundMode.LOCATION, wantAgentObj, callback)
-        });
-    }
+    wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj : WantAgent) => {
+      backgroundTaskManager.startBackgroundRunning(this.context,
+        backgroundTaskManager.BackgroundMode.LOCATION, wantAgentObj, callback)
+    });
+  }
 };
 ```
 
@@ -270,27 +272,28 @@ FA模型示例：
 ```js
 import backgroundTaskManager from '@ohos.backgroundTaskManager';
 import featureAbility from '@ohos.ability.featureAbility';
-import wantAgent from '@ohos.app.ability.wantAgent';
+import wantAgent, { WantAgent } from '@ohos.app.ability.wantAgent';
+import { BusinessError } from '@ohos.base';
 
-let wantAgentInfo = {
-    wants: [
-        {
-            bundleName: "com.example.myapplication",
-            abilityName: "EntryAbility"
-        }
-    ],
-    operationType: wantAgent.OperationType.START_ABILITY,
-    requestCode: 0,
-    wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
+let wantAgentInfo : wantAgent.WantAgentInfo = {
+  wants: [
+    {
+      bundleName: "com.example.myapplication",
+      abilityName: "EntryAbility"
+    }
+  ],
+  operationType: wantAgent.OperationType.START_ABILITY,
+  requestCode: 0,
+  wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 };
 
-wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
-    backgroundTaskManager.startBackgroundRunning(featureAbility.getContext(),
-        backgroundTaskManager.BackgroundMode.LOCATION, wantAgentObj).then(() => {
-        console.info("Operation startBackgroundRunning succeeded");
-    }).catch((err) => {
-        console.error("Operation startBackgroundRunning failed Cause: " + err);
-    });
+wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj: WantAgent) => {
+  backgroundTaskManager.startBackgroundRunning(featureAbility.getContext(),
+    backgroundTaskManager.BackgroundMode.LOCATION, wantAgentObj).then(() => {
+    console.info("Operation startBackgroundRunning succeeded");
+  }).catch((err: BusinessError) => {
+    console.error("Operation startBackgroundRunning failed Cause: " + err);
+  });
 });
 ```
 
@@ -299,31 +302,32 @@ Stage模型示例：
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
 import backgroundTaskManager from '@ohos.backgroundTaskManager';
-import wantAgent from '@ohos.app.ability.wantAgent';
+import wantAgent, { WantAgent } from '@ohos.app.ability.wantAgent';
+import { BusinessError } from '@ohos.base';
 
 export default class EntryAbility extends UIAbility {
-    onCreate(want, launchParam) {
-        let wantAgentInfo = {
-            wants: [
-                {
-                    bundleName: "com.example.myapplication",
-                    abilityName: "EntryAbility"
-                }
-            ],
-            operationType: wantAgent.OperationType.START_ABILITY,
-            requestCode: 0,
-            wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
-        };
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+    let wantAgentInfo : wantAgent.WantAgentInfo = {
+      wants: [
+        {
+          bundleName: "com.example.myapplication",
+          abilityName: "EntryAbility"
+        }
+      ],
+      operationType: wantAgent.OperationType.START_ABILITY,
+      requestCode: 0,
+      wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
+    };
 
-        wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
-            backgroundTaskManager.startBackgroundRunning(this.context,
-                backgroundTaskManager.BackgroundMode.LOCATION, wantAgentObj).then(() => {
-                console.info("Operation startBackgroundRunning succeeded");
-            }).catch((err) => {
-                console.error("Operation startBackgroundRunning failed Cause: " + err);
-            });
-        });
-    }
+    wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj : WantAgent) => {
+      backgroundTaskManager.startBackgroundRunning(this.context,
+        backgroundTaskManager.BackgroundMode.LOCATION, wantAgentObj).then(() => {
+        console.info("Operation startBackgroundRunning succeeded");
+      }).catch((err: BusinessError) => {
+        console.error("Operation startBackgroundRunning failed Cause: " + err);
+      });
+    });
+  }
 };
 ```
 
@@ -349,13 +353,14 @@ FA模型示例：
 ```js
 import backgroundTaskManager from '@ohos.backgroundTaskManager';
 import featureAbility from '@ohos.ability.featureAbility';
+import { BusinessError } from '@ohos.base';
 
-function callback(err, data) {
-    if (err) {
-        console.error("Operation stopBackgroundRunning failed Cause: " + err);
-    } else {
-        console.info("Operation stopBackgroundRunning succeeded");
-    }
+function callback(err: BusinessError, data: void) {
+  if (err) {
+    console.error("Operation stopBackgroundRunning failed Cause: " + err);
+  } else {
+    console.info("Operation stopBackgroundRunning succeeded");
+  }
 }
 
 backgroundTaskManager.stopBackgroundRunning(featureAbility.getContext(), callback);
@@ -367,19 +372,20 @@ Stage模型示例：
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
 import backgroundTaskManager from '@ohos.backgroundTaskManager';
+import { BusinessError } from '@ohos.base';
 
-function callback(err, data) {
-    if (err) {
-        console.error("Operation stopBackgroundRunning failed Cause: " + err);
-    } else {
-        console.info("Operation stopBackgroundRunning succeeded");
-    }
+function callback(err: BusinessError, data: void) {
+  if (err) {
+    console.error("Operation stopBackgroundRunning failed Cause: " + err);
+  } else {
+    console.info("Operation stopBackgroundRunning succeeded");
+  }
 }
 
 export default class EntryAbility extends UIAbility {
-    onCreate(want, launchParam) {
-        backgroundTaskManager.stopBackgroundRunning(this.context, callback);
-    }
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+    backgroundTaskManager.stopBackgroundRunning(this.context, callback);
+  }
 };
 ```
 
@@ -410,11 +416,12 @@ FA模型示例：
 ```js
 import backgroundTaskManager from '@ohos.backgroundTaskManager';
 import featureAbility from '@ohos.ability.featureAbility';
+import { BusinessError } from '@ohos.base';
 
 backgroundTaskManager.stopBackgroundRunning(featureAbility.getContext()).then(() => {
-    console.info("Operation stopBackgroundRunning succeeded");
-}).catch((err) => {
-    console.error("Operation stopBackgroundRunning failed Cause: " + err);
+  console.info("Operation stopBackgroundRunning succeeded");
+}).catch((err: BusinessError) => {
+  console.error("Operation stopBackgroundRunning failed Cause: " + err);
 });
 
 ```
@@ -424,15 +431,16 @@ Stage模型示例：
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
 import backgroundTaskManager from '@ohos.backgroundTaskManager';
+import { BusinessError } from '@ohos.base';
 
 export default class EntryAbility extends UIAbility {
-    onCreate(want, launchParam) {
-        backgroundTaskManager.stopBackgroundRunning(this.context).then(() => {
-            console.info("Operation stopBackgroundRunning succeeded");
-        }).catch((err) => {
-            console.error("Operation stopBackgroundRunning failed Cause: " + err);
-        });
-    }
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+    backgroundTaskManager.stopBackgroundRunning(this.context).then(() => {
+      console.info("Operation stopBackgroundRunning succeeded");
+    }).catch((err: BusinessError) => {
+      console.error("Operation stopBackgroundRunning failed Cause: " + err);
+    });
+  }
 };
 ```
 

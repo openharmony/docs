@@ -13,33 +13,34 @@
 ```ts
 import audio from '@ohos.multimedia.audio';
 import fs from '@ohos.file.fs';
+import { BusinessError } from '@ohos.base';
 const TAG = 'VoiceCallDemoForAudioRenderer';
 // 与使用AudioRenderer开发音频播放功能过程相似，关键区别在于audioRendererInfo参数和音频数据来源
 export default class VoiceCallDemoForAudioRenderer {
-  private renderModel = undefined;
-  private audioStreamInfo = {
+  private renderModel: audio.AudioRenderer = undefined;
+  private audioStreamInfo: audio.AudioStreamInfo = {
     samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_48000, // 采样率
     channels: audio.AudioChannel.CHANNEL_2, // 通道
     sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE, // 采样格式
     encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW // 编码格式
   }
-  private audioRendererInfo = {
+  private audioRendererInfo: audio.AudioRendererInfo = {
     // 需使用通话场景相应的参数
     content: audio.ContentType.CONTENT_TYPE_SPEECH, // 音频内容类型：语音
     usage: audio.StreamUsage.STREAM_USAGE_VOICE_COMMUNICATION, // 音频流使用类型：语音通信
     rendererFlags: 0 // 音频渲染器标志：默认为0即可
   }
-  private audioRendererOptions = {
+  private audioRendererOptions: audio.AudioRendererOptions = {
     streamInfo: this.audioStreamInfo,
     rendererInfo: this.audioRendererInfo
   }
   // 初始化，创建实例，设置监听事件
   init() {
-    audio.createAudioRenderer(this.audioRendererOptions, (err, renderer) => { // 创建AudioRenderer实例
+    audio.createAudioRenderer(this.audioRendererOptions, (err: BusinessError, renderer: audio.AudioRenderer) => { // 创建AudioRenderer实例
       if (!err) {
         console.info(`${TAG}: creating AudioRenderer success`);
         this.renderModel = renderer;
-        this.renderModel.on('stateChange', (state) => { // 设置监听事件，当转换到指定的状态时触发回调
+        this.renderModel.on('stateChange', (state: audio.AudioState) => { // 设置监听事件，当转换到指定的状态时触发回调
           if (state == 1) {
             console.info('audio renderer state is: STATE_PREPARED');
           }
@@ -47,7 +48,7 @@ export default class VoiceCallDemoForAudioRenderer {
             console.info('audio renderer state is: STATE_RUNNING');
           }
         });
-        this.renderModel.on('markReach', 1000, (position) => { // 订阅markReach事件，当渲染的帧数达到1000帧时触发回调
+        this.renderModel.on('markReach', 1000, (position: number) => { // 订阅markReach事件，当渲染的帧数达到1000帧时触发回调
           if (position == 1000) {
             console.info('ON Triggered successfully');
           }
@@ -59,13 +60,13 @@ export default class VoiceCallDemoForAudioRenderer {
   }
   // 开始一次音频渲染
   async start() {
-    let stateGroup = [audio.AudioState.STATE_PREPARED, audio.AudioState.STATE_PAUSED, audio.AudioState.STATE_STOPPED];
-    if (stateGroup.indexOf(this.renderModel.state) === -1) { // 当且仅当状态为STATE_PREPARED、STATE_PAUSED和STATE_STOPPED之一时才能启动渲染
+    let stateGroup: number[] = [audio.AudioState.STATE_PREPARED, audio.AudioState.STATE_PAUSED, audio.AudioState.STATE_STOPPED];
+    if (stateGroup.indexOf(this.renderModel.state.valueOf()) === -1) { // 当且仅当状态为STATE_PREPARED、STATE_PAUSED和STATE_STOPPED之一时才能启动渲染
       console.error(TAG + 'start failed');
       return;
     }
     await this.renderModel.start(); // 启动渲染
-    const bufferSize = await this.renderModel.getBufferSize();
+    const bufferSize: number = await this.renderModel.getBufferSize();
     // 此处仅以读取音频文件的数据举例，实际音频通话开发中，需要读取的是通话对端传输来的音频数据
     let context = getContext(this);
     let path = context.filesDir;
@@ -75,15 +76,19 @@ export default class VoiceCallDemoForAudioRenderer {
     let stat = await fs.stat(filePath);
     let buf = new ArrayBuffer(bufferSize);
     let len = stat.size % bufferSize === 0 ? Math.floor(stat.size / bufferSize) : Math.floor(stat.size / bufferSize + 1);
+    class Option {
+      offset: number = 0
+      length: number = 0
+    }
     for (let i = 0; i < len; i++) {
-      let options = {
+      let options: Option = {
         offset: i * bufferSize,
         length: bufferSize
       };
       let readsize = await fs.read(file.fd, buf, options);
       // buf是要写入缓冲区的音频数据，在调用AudioRenderer.write()方法前可以进行音频数据的预处理，实现个性化的音频播放功能，AudioRenderer会读出写入缓冲区的音频数据进行渲染
-      let writeSize = await new Promise((resolve, reject) => {
-        this.renderModel.write(buf, (err, writeSize) => {
+      let writeSize: number = await new Promise((resolve, reject) => {
+        this.renderModel.write(buf, (err: BusinessError, writeSize: number) => {
           if (err) {
             reject(err);
           } else {
@@ -91,11 +96,11 @@ export default class VoiceCallDemoForAudioRenderer {
           }
         });
       });
-      if (this.renderModel.state === audio.AudioState.STATE_RELEASED) { // 如果渲染器状态为STATE_RELEASED，停止渲染
+      if (this.renderModel.state.valueOf() === audio.AudioState.STATE_RELEASED) { // 如果渲染器状态为STATE_RELEASED，停止渲染
         fs.close(file);
         await this.renderModel.stop();
       }
-      if (this.renderModel.state === audio.AudioState.STATE_RUNNING) {
+      if (this.renderModel.state.valueOf() === audio.AudioState.STATE_RUNNING) {
         if (i === len - 1) { // 如果音频文件已经被读取完，停止渲染
           fs.close(file);
           await this.renderModel.stop();
@@ -106,12 +111,12 @@ export default class VoiceCallDemoForAudioRenderer {
   // 暂停渲染
   async pause() {
     // 只有渲染器状态为STATE_RUNNING的时候才能暂停
-    if (this.renderModel.state !== audio.AudioState.STATE_RUNNING) {
+    if (this.renderModel.state.valueOf() !== audio.AudioState.STATE_RUNNING) {
       console.info('Renderer is not running');
       return;
     }
     await this.renderModel.pause(); // 暂停渲染
-    if (this.renderModel.state === audio.AudioState.STATE_PAUSED) {
+    if (this.renderModel.state.valueOf() === audio.AudioState.STATE_PAUSED) {
       console.info('Renderer is paused.');
     } else {
       console.error('Pausing renderer failed.');
@@ -120,12 +125,12 @@ export default class VoiceCallDemoForAudioRenderer {
   // 停止渲染
   async stop() {
     // 只有渲染器状态为STATE_RUNNING或STATE_PAUSED的时候才可以停止
-    if (this.renderModel.state !== audio.AudioState.STATE_RUNNING && this.renderModel.state !== audio.AudioState.STATE_PAUSED) {
+    if (this.renderModel.state.valueOf() !== audio.AudioState.STATE_RUNNING && this.renderModel.state.valueOf() !== audio.AudioState.STATE_PAUSED) {
       console.info('Renderer is not running or paused.');
       return;
     }
     await this.renderModel.stop(); // 停止渲染
-    if (this.renderModel.state === audio.AudioState.STATE_STOPPED) {
+    if (this.renderModel.state.valueOf() === audio.AudioState.STATE_STOPPED) {
       console.info('Renderer stopped.');
     } else {
       console.error('Stopping renderer failed.');
@@ -134,12 +139,12 @@ export default class VoiceCallDemoForAudioRenderer {
   // 销毁实例，释放资源
   async release() {
     // 渲染器状态不是STATE_RELEASED状态，才能release
-    if (this.renderModel.state === audio.AudioState.STATE_RELEASED) {
+    if (this.renderModel.state.valueOf() === audio.AudioState.STATE_RELEASED) {
       console.info('Renderer already released');
       return;
     }
     await this.renderModel.release(); // 释放资源
-    if (this.renderModel.state === audio.AudioState.STATE_RELEASED) {
+    if (this.renderModel.state.valueOf() === audio.AudioState.STATE_RELEASED) {
       console.info('Renderer released');
     } else {
       console.error('Renderer release failed.');
@@ -155,40 +160,41 @@ export default class VoiceCallDemoForAudioRenderer {
 ```ts
 import audio from '@ohos.multimedia.audio';
 import fs from '@ohos.file.fs';
+import { BusinessError } from '@ohos.base';
 const TAG = 'VoiceCallDemoForAudioCapturer';
 // 与使用AudioCapturer开发音频录制功能过程相似，关键区别在于audioCapturerInfo参数和音频数据流向
 export default class VoiceCallDemoForAudioCapturer {
-  private audioCapturer = undefined;
-  private audioStreamInfo = {
+  private audioCapturer: audio.AudioCapturer = undefined;
+  private audioStreamInfo: audio.AudioStreamInfo = {
     samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100, // 采样率
     channels: audio.AudioChannel.CHANNEL_1, // 通道
     sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE, // 采样格式
     encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW // 编码格式
   }
-  private audioCapturerInfo = {
+  private audioCapturerInfo: audio.AudioCapturerInfo = {
     // 需使用通话场景相应的参数
     source: audio.SourceType.SOURCE_TYPE_VOICE_COMMUNICATION, // 音源类型：语音通话
     capturerFlags: 0 // 音频采集器标志：默认为0即可
   }
-  private audioCapturerOptions = {
+  private audioCapturerOptions: audio.AudioCapturerOptions = {
     streamInfo: this.audioStreamInfo,
     capturerInfo: this.audioCapturerInfo
   }
   // 初始化，创建实例，设置监听事件
   init() {
-    audio.createAudioCapturer(this.audioCapturerOptions, (err, capturer) => { // 创建AudioCapturer实例
+    audio.createAudioCapturer(this.audioCapturerOptions, (err: BusinessError, capturer: audio.AudioCapturer) => { // 创建AudioCapturer实例
       if (err) {
         console.error(`Invoke createAudioCapturer failed, code is ${err.code}, message is ${err.message}`);
         return;
       }
       console.info(`${TAG}: create AudioCapturer success`);
       this.audioCapturer = capturer;
-      this.audioCapturer.on('markReach', 1000, (position) => { // 订阅markReach事件，当采集的帧数达到1000时触发回调
+      this.audioCapturer.on('markReach', 1000, (position: number) => { // 订阅markReach事件，当采集的帧数达到1000时触发回调
         if (position === 1000) {
           console.info('ON Triggered successfully');
         }
       });
-      this.audioCapturer.on('periodReach', 2000, (position) => { // 订阅periodReach事件，当采集的帧数达到2000时触发回调
+      this.audioCapturer.on('periodReach', 2000, (position: number) => { // 订阅periodReach事件，当采集的帧数达到2000时触发回调
         if (position === 2000) {
           console.info('ON Triggered successfully');
         }
@@ -197,8 +203,8 @@ export default class VoiceCallDemoForAudioCapturer {
   }
   // 开始一次音频采集
   async start() {
-    let stateGroup = [audio.AudioState.STATE_PREPARED, audio.AudioState.STATE_PAUSED, audio.AudioState.STATE_STOPPED];
-    if (stateGroup.indexOf(this.audioCapturer.state) === -1) { // 当且仅当状态为STATE_PREPARED、STATE_PAUSED和STATE_STOPPED之一时才能启动采集
+    let stateGroup: number[] = [audio.AudioState.STATE_PREPARED, audio.AudioState.STATE_PAUSED, audio.AudioState.STATE_STOPPED];
+    if (stateGroup.indexOf(this.audioCapturer.state.valueOf()) === -1) { // 当且仅当状态为STATE_PREPARED、STATE_PAUSED和STATE_STOPPED之一时才能启动采集
       console.error(`${TAG}: start failed`);
       return;
     }
@@ -210,10 +216,14 @@ export default class VoiceCallDemoForAudioCapturer {
     let fd = file.fd;
     let numBuffersToCapture = 150; // 循环写入150次
     let count = 0;
+    class Options {
+      offset: number = 0
+      length: number = 0
+    }
     while (numBuffersToCapture) {
-      let bufferSize = await this.audioCapturer.getBufferSize();
-      let buffer = await this.audioCapturer.read(bufferSize, true);
-      let options = {
+      let bufferSize: number = await this.audioCapturer.getBufferSize();
+      let buffer: ArrayBuffer = await this.audioCapturer.read(bufferSize, true);
+      let options: Options = {
         offset: count * bufferSize,
         length: bufferSize
       };
@@ -230,12 +240,12 @@ export default class VoiceCallDemoForAudioCapturer {
   // 停止采集
   async stop() {
     // 只有采集器状态为STATE_RUNNING或STATE_PAUSED的时候才可以停止
-    if (this.audioCapturer.state !== audio.AudioState.STATE_RUNNING && this.audioCapturer.state !== audio.AudioState.STATE_PAUSED) {
+    if (this.audioCapturer.state.valueOf() !== audio.AudioState.STATE_RUNNING && this.audioCapturer.state.valueOf() !== audio.AudioState.STATE_PAUSED) {
       console.info('Capturer is not running or paused');
       return;
     }
     await this.audioCapturer.stop(); // 停止采集
-    if (this.audioCapturer.state === audio.AudioState.STATE_STOPPED) {
+    if (this.audioCapturer.state.valueOf() === audio.AudioState.STATE_STOPPED) {
       console.info('Capturer stopped');
     } else {
       console.error('Capturer stop failed');
@@ -244,12 +254,12 @@ export default class VoiceCallDemoForAudioCapturer {
   // 销毁实例，释放资源
   async release() {
     // 采集器状态不是STATE_RELEASED或STATE_NEW状态，才能release
-    if (this.audioCapturer.state === audio.AudioState.STATE_RELEASED || this.audioCapturer.state === audio.AudioState.STATE_NEW) {
+    if (this.audioCapturer.state.valueOf() === audio.AudioState.STATE_RELEASED || this.audioCapturer.state.valueOf() === audio.AudioState.STATE_NEW) {
       console.info('Capturer already released');
       return;
     }
     await this.audioCapturer.release(); // 释放资源
-    if (this.audioCapturer.state == audio.AudioState.STATE_RELEASED) {
+    if (this.audioCapturer.state.valueOf() === audio.AudioState.STATE_RELEASED) {
       console.info('Capturer released');
     } else {
       console.error('Capturer release failed');

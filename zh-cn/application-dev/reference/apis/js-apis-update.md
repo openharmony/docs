@@ -52,17 +52,17 @@ getOnlineUpdater(upgradeInfo: UpgradeInfo): Updater
 
 ```ts
 try {
-  const upgradeInfo = {
-    upgradeApp: "com.ohos.ota.updateclient",
-    businessType: {
-      vendor: update.BusinessVendor.PUBLIC,
-      subType: update.BusinessSubType.FIRMWARE
+      const upgradeInfo: update.UpgradeInfo = {
+        upgradeApp: "com.ohos.ota.updateclient",
+        businessType: {
+          vendor: update.BusinessVendor.PUBLIC,
+          subType: update.BusinessSubType.FIRMWARE
+        }
+      };
+      let updater = update.getOnlineUpdater(upgradeInfo);
+    } catch(error) {
+      console.error(`Fail to get updater error: ${error}`);
     }
-  };
-  let updater = update.getOnlineUpdater(upgradeInfo);
-} catch(error) {
-  console.error(`Fail to get updater error: ${error}`);
-}
 ```
 
 ## update.getRestorer
@@ -159,9 +159,9 @@ checkNewVersion(callback: AsyncCallback\<CheckResult>): void
 **示例：**
 
 ```ts
-updater.checkNewVersion((err, result) => {
-  console.log(`checkNewVersion isExistNewVersion  ${result?.isExistNewVersion}`);
-});
+updater.checkNewVersion((err: BusinessError, result: update.CheckResult) => {
+      console.log(`checkNewVersion isExistNewVersion  ${result?.isExistNewVersion}`);
+    });
 ```
 
 ### checkNewVersion
@@ -191,13 +191,15 @@ checkNewVersion(): Promise\<CheckResult>
 **示例:**
 
 ```ts
-updater.checkNewVersion().then(result => {
-  console.log(`checkNewVersion isExistNewVersion: ${result.isExistNewVersion}`);
-  // 版本摘要信息
-  console.log(`checkNewVersion versionDigestInfo: ${result.newVersionInfo.versionDigestInfo.versionDigest}`);
-}).catch(err => {
-  console.log(`checkNewVersion promise error ${JSON.stringify(err)}`);
-});
+updater.checkNewVersion()
+      .then((result: update.CheckResult) => {
+        console.log(`checkNewVersion isExistNewVersion: ${result.isExistNewVersion}`);
+        // 版本摘要信息
+        console.log(`checkNewVersion versionDigestInfo: ${result.newVersionInfo.versionDigestInfo.versionDigest}`);
+      })
+      .catch((err: BusinessError)=>{
+        console.log(`checkNewVersion promise error ${JSON.stringify(err)}`);
+      })
 ```
 
 ###  getNewVersionInfo
@@ -227,9 +229,9 @@ getNewVersionInfo(callback: AsyncCallback\<NewVersionInfo>): void
 **示例：**
 
 ```ts
-updater.getNewVersionInfo((err, info) => {
-  console.log(`info displayVersion = ${info?.versionComponents[0].displayVersion}`);
-  console.log(`info innerVersion = ${info?.versionComponents[0].innerVersion}`);
+updater.getNewVersionInfo((err: BusinessError, info: update.NewVersionInfo) => {
+      console.log(`info displayVersion = ${info?.versionComponents[0].displayVersion}`);
+      console.log(`info innerVersion = ${info?.versionComponents[0].innerVersion}`);
 });
 ```
 
@@ -260,11 +262,11 @@ getNewVersionInfo(): Promise\<NewVersionInfo>
 **示例：**
 
 ```ts
-updater.getNewVersionInfo().then(info => {
-  console.log(`info displayVersion = ${info.versionComponents[0].displayVersion}`);
-  console.log(`info innerVersion = ${info.versionComponents[0].innerVersion}`);
-}).catch(err => {
-  console.log(`getNewVersionInfo promise error ${JSON.stringify(err)}`);
+updater.getNewVersionInfo().then((info: update.NewVersionInfo) => {
+    console.log(`info displayVersion = ${info.versionComponents[0].displayVersion}`);
+    console.log(`info innerVersion = ${info.versionComponents[0].innerVersion}`);
+}).catch((err: BusinessError) => {
+    console.log(`getNewVersionInfo promise error ${JSON.stringify(err)}`);
 });
 ```
 
@@ -298,19 +300,20 @@ getNewVersionDescription(versionDigestInfo: VersionDigestInfo, descriptionOption
 
 ```ts
 // 版本摘要信息
-const versionDigestInfo = {
+const versionDigestInfo: update.VersionDigestInfo = {
   versionDigest: "versionDigest" // 检测结果中的版本摘要信息
 };
 
 // 描述文件选项
-const descriptionOptions = {
+const descriptionOptions: update.DescriptionOptions = {
   format: update.DescriptionFormat.STANDARD, // 标准格式
   language: "zh-cn" // 中文
 };
 
-updater.getNewVersionDescription(versionDigestInfo, descriptionOptions, (err, info) => {
-  console.log(`getNewVersionDescription info ${JSON.stringify(info)}`);
-  console.log(`getNewVersionDescription err ${JSON.stringify(err)}`);
+updater.getNewVersionDescription(versionDigestInfo, descriptionOptions).then((info: Array<update.ComponentDescription>)=> {
+  console.log(`getNewVersionDescription promise info ${JSON.stringify(info)}`);
+}).catch((err: BusinessError) => {
+  console.log(`getNewVersionDescription promise error ${JSON.stringify(err)}`);
 });
 ```
 
@@ -349,19 +352,19 @@ getNewVersionDescription(versionDigestInfo: VersionDigestInfo, descriptionOption
 
 ```ts
 // 版本摘要信息
-const versionDigestInfo = {
+const versionDigestInfo: update.VersionDigestInfo = {
   versionDigest: "versionDigest" // 检测结果中的版本摘要信息
 };
 
 // 描述文件选项
-const descriptionOptions = {
+const descriptionOptions: update.DescriptionOptions = {
   format: update.DescriptionFormat.STANDARD, // 标准格式
   language: "zh-cn" // 中文
 };
 
-updater.getNewVersionDescription(versionDigestInfo, descriptionOptions).then(info => {
+updater.getNewVersionDescription(versionDigestInfo, descriptionOptions).then((info: Array<update.ComponentDescription>)=> {
   console.log(`getNewVersionDescription promise info ${JSON.stringify(info)}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
   console.log(`getNewVersionDescription promise error ${JSON.stringify(err)}`);
 });
 ```
@@ -393,7 +396,7 @@ getCurrentVersionInfo(callback: AsyncCallback\<CurrentVersionInfo>): void
 **示例：**
 
 ```ts
-updater.getCurrentVersionInfo((err, info) => {
+updater.getCurrentVersionInfo((err: BusinessError, info: update.CurrentVersionInfo) => {
   console.log(`info osVersion = ${info?.osVersion}`);
   console.log(`info deviceName = ${info?.deviceName}`);
   console.log(`info displayVersion = ${info?.versionComponents[0].displayVersion}`);
@@ -427,11 +430,11 @@ getCurrentVersionInfo(): Promise\<CurrentVersionInfo>
 **示例：**
 
 ```ts
-updater.getCurrentVersionInfo().then(info => {
+updater.getCurrentVersionInfo().then((info: update.CurrentVersionInfo) => {
   console.log(`info osVersion = ${info.osVersion}`);
   console.log(`info deviceName = ${info.deviceName}`);
   console.log(`info displayVersion = ${info.versionComponents[0].displayVersion}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
   console.log(`getCurrentVersionInfo promise error ${JSON.stringify(err)}`);
 });
 ```
@@ -465,7 +468,7 @@ getCurrentVersionDescription(descriptionOptions: DescriptionOptions, callback: A
 
 ```ts
 // 描述文件选项
-const descriptionOptions = {
+const descriptionOptions: update.DescriptionOptions = {
   format: update.DescriptionFormat.STANDARD, // 标准格式
   language: "zh-cn" // 中文
 };
@@ -510,14 +513,13 @@ getCurrentVersionDescription(descriptionOptions: DescriptionOptions): Promise\<A
 
 ```ts
 // 描述文件选项
-const descriptionOptions = {
+const descriptionOptions: update.DescriptionOptions = {
   format: update.DescriptionFormat.STANDARD, // 标准格式
   language: "zh-cn" // 中文
 };
-
-updater.getCurrentVersionDescription(descriptionOptions).then(info => {
+updater.getCurrentVersionDescription(descriptionOptions).then((info: Array<update.ComponentDescription>) => {
   console.log(`getCurrentVersionDescription promise info ${JSON.stringify(info)}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
   console.log(`getCurrentVersionDescription promise error ${JSON.stringify(err)}`);
 });
 ```
@@ -549,7 +551,7 @@ getTaskInfo(callback: AsyncCallback\<TaskInfo>): void
 **示例：**
 
 ```ts
-updater.getTaskInfo((err, info) => {
+updater.getTaskInfo((err: BusinessError, info: update.TaskInfo) => {
   console.log(`getTaskInfo isexistTask= ${info?.existTask}`);
 });
 ```
@@ -581,9 +583,9 @@ getTaskInfo(): Promise\<TaskInfo>
 **示例：**
 
 ```ts
-updater.getTaskInfo().then(info => {
+updater.getTaskInfo().then((info: update.TaskInfo) => {
   console.log(`getTaskInfo isexistTask= ${info.existTask}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
   console.log(`getTaskInfo promise error ${JSON.stringify(err)}`);
 });
 ```
@@ -618,16 +620,16 @@ download(versionDigestInfo: VersionDigestInfo, downloadOptions: DownloadOptions,
 
 ```ts
 // 版本摘要信息
-const versionDigestInfo = {
+const versionDigestInfo: update.VersionDigestInfo = {
   versionDigest: "versionDigest" // 检测结果中的版本摘要信息
 };
 
 // 下载选项
-const downloadOptions = {
+const downloadOptions: update.DownloadOptions = {
   allowNetwork: update.NetType.CELLULAR, // 允许数据网络下载
   order: update.Order.DOWNLOAD // 下载
 };
-updater.download(versionDigestInfo, downloadOptions, (err) => {
+updater.download(versionDigestInfo, downloadOptions, (err: BusinessError) => {
   console.log(`download error ${JSON.stringify(err)}`);
 });
 ```
@@ -667,18 +669,18 @@ download(versionDigestInfo: VersionDigestInfo, downloadOptions: DownloadOptions)
 
 ```ts
 // 版本摘要信息
-const versionDigestInfo = {
+const versionDigestInfo: update.VersionDigestInfo = {
   versionDigest: "versionDigest" // 检测结果中的版本摘要信息
 };
 
 // 下载选项
-const downloadOptions = {
+const downloadOptions: update.DownloadOptions = {
   allowNetwork: update.NetType.CELLULAR, // 允许数据网络下载
-  order: update.Order.DOWNLOAD // 下载
+   order: update.Order.DOWNLOAD // 下载
 };
 updater.download(versionDigestInfo, downloadOptions).then(() => {
   console.log(`download start`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
   console.log(`download error ${JSON.stringify(err)}`);
 });
 ```
@@ -713,15 +715,15 @@ resumeDownload(versionDigestInfo: VersionDigestInfo, resumeDownloadOptions: Resu
 
 ```ts
 // 版本摘要信息
-const versionDigestInfo = {
+const versionDigestInfo : update.VersionDigestInfo= {
   versionDigest: "versionDigest" // 检测结果中的版本摘要信息
 };
 
 // 恢复下载选项
-const resumeDownloadOptions = {
+const resumeDownloadOptions : update.ResumeDownloadOptions= {
   allowNetwork: update.NetType.CELLULAR, // 允许数据网络下载
 };
-updater.resumeDownload(versionDigestInfo, resumeDownloadOptions, (err) => {
+updater.resumeDownload(versionDigestInfo, resumeDownloadOptions, (err: BusinessError) => {
   console.log(`resumeDownload error ${JSON.stringify(err)}`);
 });
 ```
@@ -761,17 +763,17 @@ resumeDownload(versionDigestInfo: VersionDigestInfo, resumeDownloadOptions: Resu
 
 ```ts
 // 版本摘要信息
-const versionDigestInfo = {
+const versionDigestInfo: update.VersionDigestInfo = {
   versionDigest: "versionDigest" // 检测结果中的版本摘要信息
 };
 
 // 恢复下载选项
-const resumeDownloadOptions = {
+const resumeDownloadOptions: update.ResumeDownloadOptions = {
   allowNetwork: update.NetType.CELLULAR, // 允许数据网络下载
 };
-updater.resumeDownload(versionDigestInfo, resumeDownloadOptions).then(value => {
+updater.resumeDownload(versionDigestInfo, resumeDownloadOptions).then(() => {
   console.log(`resumeDownload start`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
   console.log(`resumeDownload error ${JSON.stringify(err)}`);
 });
 ```
@@ -806,15 +808,15 @@ pauseDownload(versionDigestInfo: VersionDigestInfo, pauseDownloadOptions: PauseD
 
 ```ts
 // 版本摘要信息
-const versionDigestInfo = {
+const versionDigestInfo: update.VersionDigestInfo = {
   versionDigest: "versionDigest" // 检测结果中的版本摘要信息
 };
 
 // 暂停下载选项
-const pauseDownloadOptions = {
+const pauseDownloadOptions: update.PauseDownloadOptions = {
   isAllowAutoResume: true // 允许自动恢复下载
 };
-updater.pauseDownload(versionDigestInfo, pauseDownloadOptions, (err) => {
+updater.pauseDownload(versionDigestInfo, pauseDownloadOptions, (err: BusinessError) => {
   console.log(`pauseDownload error ${JSON.stringify(err)}`);
 });
 ```
@@ -854,17 +856,17 @@ pauseDownload(versionDigestInfo: VersionDigestInfo, pauseDownloadOptions: PauseD
 
 ```ts
 // 版本摘要信息
-const versionDigestInfo = {
+const versionDigestInfo: update.VersionDigestInfo = {
   versionDigest: "versionDigest" // 检测结果中的版本摘要信息
 };
 
 // 暂停下载选项
-const pauseDownloadOptions = {
+const pauseDownloadOptions: update.PauseDownloadOptions = {
   isAllowAutoResume: true // 允许自动恢复下载
 };
-updater.pauseDownload(versionDigestInfo, pauseDownloadOptions).then(value => {
+updater.pauseDownload(versionDigestInfo, pauseDownloadOptions).then(() => {
   console.log(`pauseDownload`);
-}).catch(err => {
+}).catch((err: BusinessError)  => {
   console.log(`pauseDownload error ${JSON.stringify(err)}`);
 });
 ```
@@ -899,15 +901,15 @@ upgrade(versionDigestInfo: VersionDigestInfo, upgradeOptions: UpgradeOptions, ca
 
 ```ts
 // 版本摘要信息
-const versionDigestInfo = {
+const versionDigestInfo: update.VersionDigestInfo = {
   versionDigest: "versionDigest" // 检测结果中的版本摘要信息
 };
 
 // 安装选项
-const upgradeOptions = {
+const upgradeOptions: update.UpgradeOptions = {
   order: update.Order.INSTALL // 安装指令
 };
-updater.upgrade(versionDigestInfo, upgradeOptions, (err) => {
+updater.upgrade(versionDigestInfo, upgradeOptions, (err: BusinessError) => {
   console.log(`upgrade error ${JSON.stringify(err)}`);
 });
 ```
@@ -947,17 +949,17 @@ upgrade(versionDigestInfo: VersionDigestInfo, upgradeOptions: UpgradeOptions): P
 
 ```ts
 // 版本摘要信息
-const versionDigestInfo = {
+const versionDigestInfo: update.VersionDigestInfo = {
   versionDigest: "versionDigest" // 检测结果中的版本摘要信息
 };
 
 // 安装选项
-const upgradeOptions = {
+const upgradeOptions: update.UpgradeOptions = {
   order: update.Order.INSTALL // 安装指令
 };
 updater.upgrade(versionDigestInfo, upgradeOptions).then(() => {
   console.log(`upgrade start`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
   console.log(`upgrade error ${JSON.stringify(err)}`);
 });
 ```
@@ -992,15 +994,15 @@ clearError(versionDigestInfo: VersionDigestInfo, clearOptions: ClearOptions, cal
 
 ```ts
 // 版本摘要信息
-const versionDigestInfo = {
+const versionDigestInfo: update.VersionDigestInfo = {
   versionDigest: "versionDigest" // 检测结果中的版本摘要信息
 };
 
 // 清除选项
-const clearOptions = {
+const clearOptions: update.ClearOptions = {
   status: update.UpgradeStatus.UPGRADE_FAIL,
 };
-updater.clearError(versionDigestInfo, clearOptions, (err) => {
+updater.clearError(versionDigestInfo, clearOptions, (err: BusinessError) => {
   console.log(`clearError error ${JSON.stringify(err)}`);
 });
 ```
@@ -1040,17 +1042,17 @@ clearError(versionDigestInfo: VersionDigestInfo, clearOptions: ClearOptions): Pr
 
 ```ts
 // 版本摘要信息
-const versionDigestInfo = {
+const versionDigestInfo: update.VersionDigestInfo = {
   versionDigest: "versionDigest" // 检测结果中的版本摘要信息
 };
 
 // 清除选项
-const clearOptions = {
+const clearOptions: update.ClearOptions = {
   status: update.UpgradeStatus.UPGRADE_FAIL,
 };
 updater.clearError(versionDigestInfo, clearOptions).then(() => {
   console.log(`clearError success`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
   console.log(`clearError error ${JSON.stringify(err)}`);
 });
 ```
@@ -1082,7 +1084,7 @@ getUpgradePolicy(callback: AsyncCallback\<UpgradePolicy>): void
 **示例：**
 
 ```ts
-updater.getUpgradePolicy((err, policy) => {
+updater.getUpgradePolicy(err: BusinessError, policy: update.UpgradePolicy) => {
   console.log(`policy downloadStrategy = ${policy?.downloadStrategy}`);
   console.log(`policy autoUpgradeStrategy = ${policy?.autoUpgradeStrategy}`);
 });
@@ -1115,10 +1117,10 @@ getUpgradePolicy(): Promise\<UpgradePolicy>
 **示例：**
 
 ```ts
-updater.getUpgradePolicy().then(policy => {
+updater.getUpgradePolicy().then((policy: update.UpgradePolicy) => {
   console.log(`policy downloadStrategy = ${policy.downloadStrategy}`);
   console.log(`policy autoUpgradeStrategy = ${policy.autoUpgradeStrategy}`);
-}).catch(err => {
+}).catch((err: BusinessError)  => {
   console.log(`getUpgradePolicy promise error ${JSON.stringify(err)}`);
 });
 ```
@@ -1151,12 +1153,12 @@ setUpgradePolicy(policy: UpgradePolicy, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-const policy = {
+const policy: update.UpgradePolicy = {
   downloadStrategy: false,
   autoUpgradeStrategy: false,
-  autoUpgradePeriods: [ { start: 120, end: 240 } ] // 自动升级时间段，用分钟表示
+  autoUpgradePeriods: [{ start: 120, end: 240 }] // 自动升级时间段，用分钟表示
 };
-updater.setUpgradePolicy(policy, (err) => {
+updater.setUpgradePolicy(policy, (err: BusinessError) => {
   console.log(`setUpgradePolicy result: ${err}`);
 });
 ```
@@ -1194,14 +1196,14 @@ setUpgradePolicy(policy: UpgradePolicy): Promise\<void>
 **示例：**
 
 ```ts
-const policy = {
+const policy: update.UpgradePolicy = {
   downloadStrategy: false,
   autoUpgradeStrategy: false,
   autoUpgradePeriods: [ { start: 120, end: 240 } ] // 自动升级时间段，用分钟表示
 };
 updater.setUpgradePolicy(policy).then(() => {
   console.log(`setUpgradePolicy success`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
   console.log(`setUpgradePolicy promise error ${JSON.stringify(err)}`);
 });
 ```
@@ -1233,7 +1235,7 @@ terminateUpgrade(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-updater.terminateUpgrade((err) => {
+updater.terminateUpgrade((err: BusinessError) => {
   console.log(`terminateUpgrade error ${JSON.stringify(err)}`);
 });
 ```
@@ -1267,7 +1269,7 @@ terminateUpgrade(): Promise\<void>
 ```ts
 updater.terminateUpgrade().then(() => {
   console.log(`terminateUpgrade success`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
   console.log(`terminateUpgrade error ${JSON.stringify(err)}`);
 });
 ```
@@ -1298,12 +1300,12 @@ on(eventClassifyInfo: EventClassifyInfo, taskCallback: UpgradeTaskCallback): voi
 **示例：**
 
 ```ts
-const eventClassifyInfo = {
+const eventClassifyInfo: update.EventClassifyInfo = {
   eventClassify: update.EventClassify.TASK, // 订阅升级更新事件
   extraInfo: ""
 };
 
-updater.on(eventClassifyInfo, (eventInfo) => {
+updater.on(eventClassifyInfo, (eventInfo: update.EventInfo) => {
   console.log("updater on " + JSON.stringify(eventInfo));
 });
 ```
@@ -1333,12 +1335,12 @@ off(eventClassifyInfo: EventClassifyInfo, taskCallback?: UpgradeTaskCallback): v
 **示例：**
 
 ```ts
-const eventClassifyInfo = {
+const eventClassifyInfo: update.EventClassifyInfo = {
   eventClassify: update.EventClassify.TASK, // 订阅升级更新事件
   extraInfo: ""
 };
 
-updater.off(eventClassifyInfo, (eventInfo) => {
+updater.off(eventClassifyInfo, (eventInfo: update.EventInfo) => {
   console.log("updater off " + JSON.stringify(eventInfo));
 });
 ```
@@ -1406,7 +1408,7 @@ factoryReset(): Promise\<void>
 ```ts
 restorer.factoryReset().then(() => {
   console.log(`factoryReset success`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
   console.log(`factoryReset error ${JSON.stringify(err)}`);
 });
 ```
@@ -1442,7 +1444,7 @@ verifyUpgradePackage(upgradeFile: UpgradeFile, certsFile: string, callback: Asyn
 **示例：**
 
 ```ts
-const upgradeFile = {
+const upgradeFile: update.UpgradeFile = {
   fileType: update.ComponentType.OTA, // OTA包
   filePath: "path" // 本地升级包路径
 };
@@ -1486,13 +1488,13 @@ verifyUpgradePackage(upgradeFile: UpgradeFile, certsFile: string): Promise\<void
 **示例:**
 
 ```ts
-const upgradeFile = {
+const upgradeFile: update.UpgradeFile = {
   fileType: update.ComponentType.OTA, // OTA包
   filePath: "path" // 本地升级包路径
 };
 localUpdater.verifyUpgradePackage(upgradeFile, "cerstFilePath").then(() => {
   console.log(`verifyUpgradePackage success`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
   console.log(`verifyUpgradePackage error ${JSON.stringify(err)}`);
 });
 ```
@@ -1524,7 +1526,7 @@ applyNewVersion(upgradeFiles: Array<[UpgradeFile](#upgradefile)>, callback: Asyn
 **示例：**
 
 ```ts
-const upgradeFiles = [{
+const upgradeFiles: Array<update.UpgradeFile> = [{
   fileType: update.ComponentType.OTA, // OTA包
   filePath: "path" // 本地升级包路径
 }];
@@ -1561,13 +1563,13 @@ applyNewVersion(upgradeFiles: Array<[UpgradeFile](#upgradefile)>): Promise\<void
 **示例:**
 
 ```ts
-const upgradeFiles = [{
+const upgradeFiles: Array<update.UpgradeFile> = [{
   fileType: update.ComponentType.OTA, // OTA包
   filePath: "path" // 本地升级包路径
 }];
 localUpdater.applyNewVersion(upgradeFiles).then(() => {
   console.log(`applyNewVersion success`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
   console.log(`applyNewVersion error ${JSON.stringify(err)}`);
 });
 ```
@@ -1597,14 +1599,14 @@ on(eventClassifyInfo: EventClassifyInfo, taskCallback: UpgradeTaskCallback): voi
 **示例：**
 
 ```ts
-const eventClassifyInfo = {
+const eventClassifyInfo: update.EventClassifyInfo = {
   eventClassify: update.EventClassify.TASK, // 订阅升级更新事件
   extraInfo: ""
 };
 
-function onTaskUpdate(eventInfo) {
+let onTaskUpdate: update.UpgradeTaskCallback = (eventInfo: update.EventInfo) => {
   console.log(`on eventInfo id `, eventInfo.eventId);
-}
+};
 
 localUpdater.on(eventClassifyInfo, onTaskUpdate);
 ```
@@ -1634,14 +1636,14 @@ off(eventClassifyInfo: EventClassifyInfo, taskCallback?: UpgradeTaskCallback): v
 **示例：**
 
 ```ts
-const eventClassifyInfo = {
+const eventClassifyInfo: update.EventClassifyInfo = {
   eventClassify: update.EventClassify.TASK, // 订阅升级更新事件
   extraInfo: ""
 };
 
-function onTaskUpdate(eventInfo) {
+let onTaskUpdate: update.UpgradeTaskCallback = (eventInfo: update.EventInfo) => {
   console.log(`on eventInfo id `, eventInfo.eventId);
-}
+};
 
 localUpdater.off(eventClassifyInfo, onTaskUpdate);
 ```

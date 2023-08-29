@@ -11,7 +11,7 @@
 
 ## 导入模块
 
-```js
+```ts
 import dragController from "@ohos.arkui.dragController";
 ```
 
@@ -35,7 +35,7 @@ executeDrag(custom: CustomBuilder | DragItemInfo, dragInfo: DragInfo, callback: 
 
 ```ts
 import dragController from "@ohos.arkui.dragController"
-import UDMF from '@ohos.data.UDMF'
+import UDC from '@ohos.data.unifiedDataChannel';
 
 @Entry
 @Component
@@ -54,8 +54,8 @@ struct DragControllerPage {
       Button('touch to execute drag')
         .onTouch((event) => {
           if (event.type == TouchType.Down) {
-            let text = new UDMF.Text()
-            let unifiedData = new UDMF.UnifiedData(text)
+            let text = new UDC.Text()
+            let unifiedData = new UDC.UnifiedData(text)
 
             let dragInfo: dragController.DragInfo = {
               pointerId: 0,
@@ -101,9 +101,9 @@ executeDrag(custom: CustomBuilder | DragItemInfo, dragInfo: DragInfo): Promise&l
 
 ```ts
 import dragController from "@ohos.arkui.dragController"
-import UDMF from '@ohos.data.UDMF';
 import componentSnapshot from '@ohos.arkui.componentSnapshot';
 import image from '@ohos.multimedia.image';
+import UDC from '@ohos.data.unifiedDataChannel';
 
 @Entry
 @Component
@@ -133,8 +133,8 @@ struct DragControllerPage {
       Button('touch to execute drag')
         .onTouch((event) => {
           if (event.type == TouchType.Down) {
-            let text = new UDMF.Text()
-            let unifiedData = new UDMF.UnifiedData(text)
+            let text = new UDC.Text()
+            let unifiedData = new UDC.UnifiedData(text)
 
             let dragInfo: dragController.DragInfo = {
               pointerId: 0,
@@ -175,8 +175,8 @@ struct DragControllerPage {
 
 发起拖拽所需要的属性和拖拽时携带的信息。
 
-| 名称        | 类型                                                   | 必填 | 描述                                     |
+| 名称        | 类型                                                   | 必填 | 说明                                     |
 | ----------- | ------------------------------------------------------ | ---- | ---------------------------------------- |
 | pointerId   | number                                                 | 是   | 设置启动拖拽时屏幕上触摸点的Id。         |
-| data        | [UDMF.UnifiedData](./js-apis-data-udmf.md#unifieddata) | 否   | 设置拖拽过程中携带的数据。               |
+| data        | [unifiedDataChannel.UnifiedData](js-apis-data-unifiedDataChannel.md#unifieddata) | 否   | 设置拖拽过程中携带的数据。               |
 | extraParams | string                                                 | 否   | 设置拖拽事件额外信息，具体功能暂未实现。 |

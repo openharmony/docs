@@ -5,7 +5,8 @@
 ![WidgerCameraCard](figures/WidgerCameraCard.png)
 
 
-通常使用按钮控件来实现页面拉起，示例代码如下：
+说明：<br/>  本文主要介绍动态卡片的事件开发。对于静态卡片，请参见[FormLink](../../application-dev/reference/arkui-ts/ts-container-formlink.md)。<br/>
+通常使用按钮控件来实现页面拉起，示例代码如下:
 
 
 - 在卡片页面中布局两个按钮，点击其中一个按钮时调用postCardAction向指定UIAbility发送router事件，并在事件内定义需要传递的内容。

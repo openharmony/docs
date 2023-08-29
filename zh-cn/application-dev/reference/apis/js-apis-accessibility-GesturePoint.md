@@ -45,5 +45,7 @@ constructor(positionX: number, positionY: number);
 **示例：**
 
 ```ts
+import GesturePoint from '@ohos.accessibility.GesturePoint';
+
 let gesturePoint = new GesturePoint.GesturePoint(1, 2);
 ```
