@@ -14,17 +14,17 @@ LazyForEach(
     keyGenerator?: (item: any) => string // (可选) .键值生成函数
 ): void
 interface IDataSource {
-    totalCount(): number;                                             // Get total count of data
-    getData(index: number): any;                                      // Get single data by index
-    registerDataChangeListener(listener: DataChangeListener): void;   // Register listener to listening data changes
-    unregisterDataChangeListener(listener: DataChangeListener): void; // Unregister listener
+    totalCount(): number;                                             // 获得数据总数
+    getData(index: number): any;                                      // 获取索引值对应的数据
+    registerDataChangeListener(listener: DataChangeListener): void;   // 注册数据改变的监听器
+    unregisterDataChangeListener(listener: DataChangeListener): void; // 注销数据改变的监听器
 }
 interface DataChangeListener {
-    onDataReloaded(): void;                      // Called while data reloaded
-    onDataAdd(index: number): void;            // Called while single data added
-    onDataMove(from: number, to: number): void; // Called while single data moved
-    onDataDelete(index: number): void;          // Called while single data deleted
-    onDataChange(index: number): void;          // Called while single data changed
+    onDataReloaded(): void;                      // 重新加载数据时调用
+    onDataAdd(index: number): void;            // 添加数据时调用
+    onDataMove(from: number, to: number): void; // 数据移动起始位置与数据移动目标位置交换时调用
+    onDataDelete(index: number): void;          // 删除数据时调用
+    onDataChange(index: number): void;          // 改变数据时调用
 }
 ```
 
