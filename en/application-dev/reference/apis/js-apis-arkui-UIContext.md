@@ -1,6 +1,6 @@
 # @ohos.arkui.UIContext (UIContext)
 
-In the stage model, a window stage or window can use the **loadContent** API to load pages, create a UI instance, and render page content to the associated window. Naturally, UI instances and windows are associated on a one-by-one basis. Some global UI APIs are executed in the context of certain UI instances. When calling these APIs, you must identify the UI context, and consequently UI instance, by tracing the call chain. If these APIs are called on a non-UI page or in some asynchronous callback, the current UI context may fail to be identified, resulting in failure in API execution.
+In the stage model, a window stage or window can use the **loadContent** API to load pages, create a UI instance, and render page content to the associated window. Naturally, UI instances and windows are associated on a one-by-one basis. Some global UI APIs are executed in the context of certain UI instances. When calling these APIs, you must identify the UI context, and consequently UI instance, by tracing the call chain. If these APIs are called on a non-UI page or in some asynchronous callback, the current UI context may fail to be identified, resulting in API execution errors.
 
 **@ohos.window** adds the [getUIContext](./js-apis-window.md#getuicontext10) API in API version 10 for obtaining the **UIContext** object of a UI instance. The API provided by the **UIContext** object can be directly applied to the corresponding UI instance.
 
@@ -722,19 +722,21 @@ For details about the error codes, see [Router Error Codes](../errorcodes/errorc
 
 ```ts
 let router = uiContext.getRouter();
-try {
-  router.pushUrl({
-    url: 'pages/routerpage2',
-    params: {
-      data1: 'message',
-      data2: {
-        data3: [123, 456, 789]
-      }
+router.pushUrl({
+  url: 'pages/routerpage2',
+  params: {
+    data1: 'message',
+    data2: {
+      data3: [123, 456, 789]
     }
+  }
+})
+  .then(() => {
+    // success
   })
-} catch (err) {
-  console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
-}
+  .catch(err => {
+    console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
+  })
 ```
 
 ### pushUrl
@@ -818,19 +820,21 @@ For details about the error codes, see [Router Error Codes](../errorcodes/errorc
 
 ```ts
 let router = uiContext.getRouter();
-try {
-  router.pushUrl({
-    url: 'pages/routerpage2',
-    params: {
-      data1: 'message',
-      data2: {
-        data3: [123, 456, 789]
-      }
+router.pushUrl({
+  url: 'pages/routerpage2',
+  params: {
+    data1: 'message',
+    data2: {
+      data3: [123, 456, 789]
     }
-  }, router.RouterMode.Standard)
-} catch (err) {
-  console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
-}
+  }
+}, router.RouterMode.Standard)
+  .then(() => {
+    // success
+  })
+  .catch(err => {
+    console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
+  })
 ```
 
 ### pushUrl
@@ -913,16 +917,18 @@ For details about the error codes, see [Router Error Codes](../errorcodes/errorc
 
 ```ts
 let router = uiContext.getRouter();
-try {
-  router.replaceUrl({
-    url: 'pages/detail',
-    params: {
-      data1: 'message'
-    }
+router.replaceUrl({
+  url: 'pages/detail',
+  params: {
+    data1: 'message'
+  }
+})
+  .then(() => {
+    // success
   })
-} catch (err) {
-  console.error(`replaceUrl failed, code is ${err.code}, message is ${err.message}`);
-}
+  .catch(err => {
+    console.error(`replaceUrl failed, code is ${err.code}, message is ${err.message}`);
+  })
 ```
 
 ### replaceUrl
@@ -1090,19 +1096,21 @@ For details about the error codes, see [Router Error Codes](../errorcodes/errorc
 
 ```ts
 let router = uiContext.getRouter();
-try {
-  router.pushNamedRoute({
-    name: 'myPage',
-    params: {
-      data1: 'message',
-      data2: {
-        data3: [123, 456, 789]
-      }
+router.pushNamedRoute({
+  name: 'myPage',
+  params: {
+    data1: 'message',
+    data2: {
+      data3: [123, 456, 789]
     }
+  }
+})
+  .then(() => {
+    // success
   })
-} catch (err) {
-  console.error(`pushNamedRoute failed, code is ${err.code}, message is ${err.message}`);
-}
+  .catch(err => {
+    console.error(`pushNamedRoute failed, code is ${err.code}, message is ${err.message}`);
+  })
 ```
 
 ### pushNamedRoute
@@ -1185,19 +1193,21 @@ For details about the error codes, see [Router Error Codes](../errorcodes/errorc
 
 ```ts
 let router = uiContext.getRouter();
-try {
-  router.pushNamedRoute({
-    name: 'myPage',
-    params: {
-      data1: 'message',
-      data2: {
-        data3: [123, 456, 789]
-      }
+router.pushNamedRoute({
+  name: 'myPage',
+  params: {
+    data1: 'message',
+    data2: {
+      data3: [123, 456, 789]
     }
-  }, router.RouterMode.Standard)
-} catch (err) {
-  console.error(`pushNamedRoute failed, code is ${err.code}, message is ${err.message}`);
-}
+  }
+}, router.RouterMode.Standard)
+  .then(() => {
+    // success
+  })
+  .catch(err => {
+    console.error(`pushNamedRoute failed, code is ${err.code}, message is ${err.message}`);
+  })
 ```
 
 ### pushNamedRoute
@@ -1280,16 +1290,18 @@ For details about the error codes, see [Router Error Codes](../errorcodes/errorc
 
 ```ts
 let router = uiContext.getRouter();
-try {
-  router.replaceNamedRoute({
-    name: 'myPage',
-    params: {
-      data1: 'message'
-    }
+router.replaceNamedRoute({
+  name: 'myPage',
+  params: {
+    data1: 'message'
+  }
+})
+  .then(() => {
+    // success
   })
-} catch (err) {
-  console.error(`replaceNamedRoute failed, code is ${err.code}, message is ${err.message}`);
-}
+  .catch(err => {
+    console.error(`replaceNamedRoute failed, code is ${err.code}, message is ${err.message}`);
+  })
 ```
 
 ### replaceNamedRoute
@@ -1369,16 +1381,18 @@ For details about the error codes, see [Router Error Codes](../errorcodes/errorc
 
 ```ts
 let router = uiContext.getRouter();
-try {
-  router.replaceNamedRoute({
-    name: 'myPage',
-    params: {
-      data1: 'message'
-    }
-  }, router.RouterMode.Standard)
-} catch (err) {
-  console.error(`replaceNamedRoute failed, code is ${err.code}, message is ${err.message}`);
-}
+router.replaceNamedRoute({
+  name: 'myPage',
+  params: {
+    data1: 'message'
+  }
+}, router.RouterMode.Standard)
+  .then(() => {
+    // success
+  })
+  .catch(err => {
+    console.error(`replaceNamedRoute failed, code is ${err.code}, message is ${err.message}`);
+  })
 ```
 
 ### replaceNamedRoute
@@ -1532,13 +1546,15 @@ For details about the error codes, see [Router Error Codes](../errorcodes/errorc
 
 ```ts
 let router = uiContext.getRouter();
-try {
-  router.showAlertBeforeBackPage({            
-    message: 'Message Info'        
-  });
-} catch(error) {
-  console.error(`showAlertBeforeBackPage failed, code is ${error.code}, message is ${error.message}`);
-}
+router.showAlertBeforeBackPage({
+  message: 'Message Info'
+});
+  .then(() => {
+    // success
+  })
+  .catch(err => {
+    console.error(`showAlertBeforeBackPage failed, code is ${error.code}, message is ${error.message}`);
+  })
 ```
 
 ### hideAlertBeforeBackPage
