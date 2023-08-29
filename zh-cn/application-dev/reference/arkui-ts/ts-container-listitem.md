@@ -15,7 +15,9 @@
 
 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-**方法1：** ListItem(value?: ListItemOptions)<sup>10+</sup>
+### ListItem<sup>10+</sup>
+
+ListItem(value?: ListItemOptions)
 
 **参数：**
 
@@ -23,9 +25,12 @@
 | ------ | --------------------------------------------- | ---- | ------------------------------------------------------------ |
 | value  | [ListItemOptions](#listitemoptions10对象说明) | 否   | 为ListItem提供可选参数, 该对象内含有ListItemStyle枚举类型的style参数。 |
 
-**方法2：** ListItem(value?: string)<sup>(deprecated)</sup>
 
-从API version 10开始, 该接口不再维护，推荐使用方法1。
+### ListItem<sup>(deprecated)</sup>
+
+ListItem(value?: string)
+
+从API version 10开始, 该接口不再维护，推荐使用[ListItem<sup>10+</sup>]()。
 
 **参数：**
 
