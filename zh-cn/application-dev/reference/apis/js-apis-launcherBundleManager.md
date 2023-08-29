@@ -319,8 +319,8 @@ import { BusinessError } from '@ohos.base';
 try {
     launcherBundleManager.getShortcutInfo("com.example.demo")
         .then((data: launcherBundleManager.ShortcutInfo[]) => {
-            console.log("data is " + JSON.stringify(data));
-        }).catch ((errData: BusinessError) => {
+        console.log("data is " + JSON.stringify(data));
+    }).catch ((errData: BusinessError) => {
         console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
     });
 } catch (errData) {
