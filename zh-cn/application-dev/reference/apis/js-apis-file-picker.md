@@ -8,8 +8,13 @@
 
 ## 导入模块
 
+> **说明：**
+>
+> 示例代码里有使用BusinessError的都需要导入BusinessError模块，没有的话则不需要导入。
+
 ```ts
 import picker from '@ohos.file.picker';
+import { BusinessError } from '@ohos.base';
 ```
 
 ## PhotoViewPicker
@@ -47,8 +52,6 @@ select(option?: PhotoSelectOptions) : Promise&lt;PhotoSelectResult&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-
 async example01() {
   try {  
     let PhotoSelectOptions = new picker.PhotoSelectOptions();
@@ -84,8 +87,6 @@ select(option: PhotoSelectOptions, callback: AsyncCallback&lt;PhotoSelectResult&
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-
 async example02() {
   try {
     let PhotoSelectOptions = new picker.PhotoSelectOptions();
@@ -122,8 +123,6 @@ select(callback: AsyncCallback&lt;PhotoSelectResult&gt;) : void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-
 async example03() {
   try {
     let photoPicker = new picker.PhotoViewPicker();
@@ -163,8 +162,6 @@ save(option?: PhotoSaveOptions) : Promise&lt;Array&lt;string&gt;&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-
 async example04() {
   try {
     let PhotoSaveOptions = new picker.PhotoSaveOptions();
@@ -199,8 +196,6 @@ save(option: PhotoSaveOptions, callback: AsyncCallback&lt;Array&lt;string&gt;&gt
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-
 async example05() {
   try {
     let PhotoSaveOptions = new picker.PhotoSaveOptions();
@@ -236,8 +231,6 @@ save(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;) : void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-
 async example06() {
   try {
     let photoPicker = new picker.PhotoViewPicker();
@@ -289,8 +282,6 @@ select(option?: DocumentSelectOptions) : Promise&lt;Array&lt;string&gt;&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-
 async example07() {
   try {
     let DocumentSelectOptions = new picker.DocumentSelectOptions();
@@ -324,8 +315,6 @@ select(option: DocumentSelectOptions, callback: AsyncCallback&lt;Array&lt;string
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-
 async example08() {
   try {
     let DocumentSelectOptions = new picker.DocumentSelectOptions();
@@ -360,8 +349,6 @@ select(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;) : void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-
 async example09() {
   try {
     let documentPicker = new picker.DocumentViewPicker();
@@ -402,8 +389,6 @@ save(option?: DocumentSaveOptions) : Promise&lt;Array&lt;string&gt;&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-
 async example10() {
   try {
     let DocumentSaveOptions = new picker.DocumentSaveOptions();
@@ -438,8 +423,6 @@ save(option: DocumentSaveOptions, callback: AsyncCallback&lt;Array&lt;string&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-
 async example11() {
   try {
     let DocumentSaveOptions = new picker.DocumentSaveOptions();
@@ -475,8 +458,6 @@ save(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;) : void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-
 async example12() {
   try {
     let documentPicker = new picker.DocumentViewPicker();
@@ -528,8 +509,6 @@ select(option?: AudioSelectOptions) : Promise&lt;Array&lt;string&gt;&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-
 async example13() {
   try {
     let AudioSelectOptions = new picker.AudioSelectOptions();
@@ -563,8 +542,6 @@ select(option: AudioSelectOptions, callback: AsyncCallback&lt;Array&lt;string&gt
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-
 async example14() {
   try {
     let AudioSelectOptions = new picker.AudioSelectOptions();
@@ -599,8 +576,6 @@ select(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;) : void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-
 async example15() {
   try {
     let audioPicker = new picker.AudioViewPicker();
@@ -640,8 +615,6 @@ save(option?: AudioSaveOptions) : Promise&lt;Array&lt;string&gt;&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-
 async example16() {
   try {
     let AudioSaveOptions = new picker.AudioSaveOptions();
@@ -676,8 +649,6 @@ save(option: AudioSaveOptions, callback: AsyncCallback&lt;Array&lt;string&gt;&gt
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-
 async example17() {
   try {
     let AudioSaveOptions = new picker.AudioSaveOptions();
@@ -713,8 +684,6 @@ save(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;) : void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-
 async example18() {
   try {
     let audioPicker = new picker.AudioViewPicker();
@@ -783,9 +752,9 @@ async example18() {
 
 | 名称                    | 类型                | 必填 | 说明                          |
 | ----------------------- | ------------------- | ---- | -------------------------------- |
-| maxSelectNumber       | number  | 否   | 选择文件/目录最大个数，上限500，有效值范围1-500      |
-| defaultFilePathUri    | string  | 否   | 指定选择的文件或者目录路径 |
-| fileSuffixFilters     | Array&lt;string&gt; | 否   | 选择文件的后缀类型 |
+| maxSelectNumber<sup>10+</sup>       | number  | 否   | 选择文件/目录最大个数，上限500，有效值范围1-500      |
+| defaultFilePathUri<sup>10+</sup>    | string  | 否   | 指定选择的文件或者目录路径 |
+| fileSuffixFilters<sup>10+</sup>     | Array&lt;string&gt; | 否   | 选择文件的后缀类型 |
 
 ## DocumentSaveOptions
 
@@ -796,8 +765,8 @@ async example18() {
 | 名称                    | 类型                | 必填 |  说明                           |
 | ----------------------- | ------------------- | ---- | ---------------------------- |
 | newFileNames            | Array&lt;string&gt;    | 否   | 拉起documentPicker进行保存的文件名，若无此参数，则默认需要用户自行输入 |
-| defaultFilePathUri    | string  | 否   | 指定保存的文件或者目录路径 |
-| fileSuffixChoices     | Array&lt;string&gt; | 否   | 保存文件的后缀类型 |
+| defaultFilePathUri<sup>10+</sup>    | string  | 否   | 指定保存的文件或者目录路径 |
+| fileSuffixChoices<sup>10+</sup>     | Array&lt;string&gt; | 否   | 保存文件的后缀类型 |
 
 ## AudioSelectOptions
 
