@@ -52,7 +52,7 @@ bundleInstall.getBundleInstaller().then(installer => {
       console.info('install successfully.');
     }
   });
-}).catch(error => {
+}).catch((error: BusinessError)=> {
   let message = (error as BusinessError).message;
   console.error('getBundleInstaller failed. Cause: ' + message);
 });
