@@ -31,16 +31,19 @@ fs.writeSync(file.fd, 'upload file test');
 fs.closeSync(file);
 
 // 上传任务配置项
+let header = new Map<Object, string>();
+header.set('key1', 'value1');
+header.set('key2', 'value2');
 let files: Array<request.File> = [
   { filename: 'test.txt', name: 'test', uri: 'internal://cache/test.txt', type: 'txt' }
 ]
-let data: request.RequestData = { name: 'name', value: 'value' };
+let data: Array<request.RequestData> = [{ name: 'name', value: 'value' }];
 let uploadConfig: request.UploadConfig = {
   url: 'https://xxx',
-  header: { key1: 'value1', key2: 'value2' },
+  header: header,
   method: 'POST',
   files: files,
-  data: [ data ]
+  data: data
 }
 
 // 将本地应用文件上传至网络服务器
@@ -56,7 +59,8 @@ try {
     .catch((err: BusinessError) => {
       console.error(`Invoke uploadFile failed, code is ${err.code}, message is ${err.message}`);
     })
-} catch (err) {
+} catch (error) {
+  let err: BusinessError = error as BusinessError;
   console.error(`Invoke uploadFile failed, code is ${err.code}, message is ${err.message}`);
 }
 ```
@@ -80,6 +84,7 @@ import common from '@ohos.app.ability.common';
 import fs from '@ohos.file.fs';
 import request from '@ohos.request';
 import { BusinessError } from '@ohos.base';
+import buffer from '@ohos.buffer';
 
 // 获取应用文件路径
 let context = getContext(this) as common.UIAbilityContext;
@@ -102,7 +107,8 @@ try {
   }).catch((err: BusinessError) => {
     console.error(`Invoke downloadTask failed, code is ${err.code}, message is ${err.message}`);
   });
-} catch (err) {
+} catch (error) {
+  let err: BusinessError = error as BusinessError;
   console.error(`Invoke downloadFile failed, code is ${err.code}, message is ${err.message}`);
 }
 ```
