@@ -63,7 +63,7 @@ let localServiceInfo = {
   }]
 }
 
-mdns.addLocalService(context, localServiceInfo, function (error, data) {
+mdns.addLocalService(context, localServiceInfo, (error: BusinessError, data: Data) => {
   console.log(JSON.stringify(error));
   console.log(JSON.stringify(data));
 });
@@ -72,14 +72,39 @@ mdns.addLocalService(context, localServiceInfo, function (error, data) {
 Stage模型示例：
 
 ```ts
+// 构造单例对象
+export class GlobalContext {
+  private constructor() {}
+  private static instance: GlobalContext;
+  private _objects = new Map<string, Object>();
+
+  public static getContext(): GlobalContext {
+    if (!GlobalContext.instance) {
+      GlobalContext.instance = new GlobalContext();
+    }
+    return GlobalContext.instance;
+  }
+
+  getObject(value: string): Object | undefined {
+    return this._objects.get(value);
+  }
+
+  setObject(key: string, objectClass: Object): void {
+    this._objects.set(key, objectClass);
+  }
+
+}
+
 // 获取context
 import UIAbility from '@ohos.app.ability.UIAbility';
+import { GlobalContext } from '../GlobalContext';
 class EntryAbility extends UIAbility {
+  value:number = 0;
   onWindowStageCreate(windowStage){
-    globalThis.context = this.context;
+    GlobalContext.getContext().setObject("value", this.value);
   }
 }
-let context = globalThis.context;
+let context = GlobalContext.getContext().getObject("value");
 
 let localServiceInfo = {
   serviceType: "_print._tcp",
@@ -94,7 +119,7 @@ let localServiceInfo = {
   }]
 }
 
-mdns.addLocalService(context, localServiceInfo, function (error, data) {
+mdns.addLocalService(context, localServiceInfo, (error: BusinessError, data: Data) => {
   console.log(JSON.stringify(error));
   console.log(JSON.stringify(data));
 });
@@ -157,7 +182,7 @@ let localServiceInfo = {
   }]
 }
 
-mdns.addLocalService(context, localServiceInfo).then(function (data) {
+mdns.addLocalService(context, localServiceInfo).then((data: Data) => {
   console.log(JSON.stringify(data));
 });
 ```
@@ -167,12 +192,15 @@ Stage模型示例：
 ```ts
 // 获取context
 import UIAbility from '@ohos.app.ability.UIAbility';
+//参考addLocalService 构造单例对象
+import { GlobalContext } from '../GlobalContext';
 class EntryAbility extends UIAbility {
+  value:number = 0;
   onWindowStageCreate(windowStage){
-    globalThis.context = this.context;
+    GlobalContext.getContext().setObject("value", this.value);
   }
 }
-let context = globalThis.context;
+let context = GlobalContext.getContext().getObject("value");
 
 let localServiceInfo = {
   serviceType: "_print._tcp",
@@ -187,7 +215,7 @@ let localServiceInfo = {
   }]
 }
 
-mdns.addLocalService(context, localServiceInfo).then(function (data) {
+mdns.addLocalService(context, localServiceInfo).then((data: Data) => {
   console.log(JSON.stringify(data));
 });
 ```
@@ -244,7 +272,7 @@ let localServiceInfo = {
   }]
 }
 
-mdns.removeLocalService(context, localServiceInfo, function (error, data) {
+mdns.removeLocalService(context, localServiceInfo, (error: BusinessError, data: Data) =>  {
   console.log(JSON.stringify(error));
   console.log(JSON.stringify(data));
 });
@@ -255,12 +283,15 @@ Stage模型示例：
 ```ts
 // 获取context
 import UIAbility from '@ohos.app.ability.UIAbility';
+//参考addLocalService 构造单例对象
+import { GlobalContext } from '../GlobalContext';
 class EntryAbility extends UIAbility {
+  value:number = 0;
   onWindowStageCreate(windowStage){
-    globalThis.context = this.context;
+    GlobalContext.getContext().setObject("value", this.value);
   }
 }
-let context = globalThis.context;
+let context = GlobalContext.getContext().getObject("value");
 
 let localServiceInfo = {
   serviceType: "_print._tcp",
@@ -275,7 +306,7 @@ let localServiceInfo = {
   }]
 }
 
-mdns.removeLocalService(context, localServiceInfo, function (error, data) {
+mdns.removeLocalService(context, localServiceInfo, (error: BusinessError, data: Data) =>  {
   console.log(JSON.stringify(error));
   console.log(JSON.stringify(data));
 });
@@ -338,7 +369,7 @@ let localServiceInfo = {
   }]
 }
 
-mdns.removeLocalService(context, localServiceInfo).then(function (data) {
+mdns.removeLocalService(context, localServiceInfo).then((data: Data) => {
   console.log(JSON.stringify(data));
 });
 ```
@@ -348,12 +379,15 @@ Stage模型示例：
 ```ts
 // 获取context
 import UIAbility from '@ohos.app.ability.UIAbility';
+//参考addLocalService 构造单例对象
+import { GlobalContext } from '../GlobalContext';
 class EntryAbility extends UIAbility {
+  value:number = 0;
   onWindowStageCreate(windowStage){
-    globalThis.context = this.context;
+    GlobalContext.getContext().setObject("value", this.value);
   }
 }
-let context = globalThis.context;
+let context = GlobalContext.getContext().getObject("value");
 
 let localServiceInfo = {
   serviceType: "_print._tcp",
@@ -368,7 +402,7 @@ let localServiceInfo = {
   }]
 }
 
-mdns.removeLocalService(context, localServiceInfo).then(function (data) {
+mdns.removeLocalService(context, localServiceInfo).then((data: Data) => {
   console.log(JSON.stringify(data));
 });
 ```
@@ -418,12 +452,15 @@ Stage模型示例：
 ```ts
 // 获取context
 import UIAbility from '@ohos.app.ability.UIAbility';
+//参考addLocalService 构造单例对象
+import { GlobalContext } from '../GlobalContext';
 class EntryAbility extends UIAbility {
+  value:number = 0;
   onWindowStageCreate(windowStage){
-    globalThis.context = this.context;
+    GlobalContext.getContext().setObject("value", this.value);
   }
 }
-let context = globalThis.context;
+let context = GlobalContext.getContext().getObject("value");
 
 let serviceType = "_print._tcp";
 let discoveryService = mdns.createDiscoveryService(context, serviceType);
@@ -481,7 +518,7 @@ let localServiceInfo = {
   }]
 }
 
-mdns.resolveLocalService(context, localServiceInfo, function (error, data) {
+mdns.resolveLocalService(context, localServiceInfo, (error: BusinessError, data: Data) =>  {
   console.log(JSON.stringify(error));
   console.log(JSON.stringify(data));
 });
@@ -492,12 +529,15 @@ Stage模型示例：
 ```ts
 // 获取context
 import UIAbility from '@ohos.app.ability.UIAbility';
+//参考addLocalService 构造单例对象
+import { GlobalContext } from '../GlobalContext';
 class EntryAbility extends UIAbility {
+  value:number = 0;
   onWindowStageCreate(windowStage){
-    globalThis.context = this.context;
+    GlobalContext.getContext().setObject("value", this.value);
   }
 }
-let context = globalThis.context;
+let context = GlobalContext.getContext().getObject("value");
 
 let localServiceInfo = {
   serviceType: "_print._tcp",
@@ -512,7 +552,7 @@ let localServiceInfo = {
   }]
 }
 
-mdns.resolveLocalService(context, localServiceInfo, function (error, data) {
+mdns.resolveLocalService(context, localServiceInfo, (error: BusinessError, data: Data) =>  {
   console.log(JSON.stringify(error));
   console.log(JSON.stringify(data));
 });
@@ -575,7 +615,7 @@ let localServiceInfo = {
   }]
 }
 
-mdns.resolveLocalService(context, localServiceInfo).then(function (data) {
+mdns.resolveLocalService(context, localServiceInfo).then((data: Data) => {
   console.log(JSON.stringify(data));
 });
 ```
@@ -585,12 +625,15 @@ Stage模型示例：
 ```ts
 // 获取context
 import UIAbility from '@ohos.app.ability.UIAbility';
+//参考addLocalService 构造单例对象
+import { GlobalContext } from '../GlobalContext';
 class EntryAbility extends UIAbility {
+  value:number = 0;
   onWindowStageCreate(windowStage){
-    globalThis.context = this.context;
+    GlobalContext.getContext().setObject("value", this.value);
   }
 }
-let context = globalThis.context;
+let context = GlobalContext.getContext().getObject("value");
 
 let localServiceInfo = {
   serviceType: "_print._tcp",
@@ -605,7 +648,7 @@ let localServiceInfo = {
   }]
 }
 
-mdns.resolveLocalService(context, localServiceInfo).then(function (data) {
+mdns.resolveLocalService(context, localServiceInfo).then((data: Data) => {
   console.log(JSON.stringify(data));
 });
 ```
@@ -639,12 +682,15 @@ Stage模型示例：
 ```ts
 // 获取context
 import UIAbility from '@ohos.app.ability.UIAbility';
+//参考addLocalService 构造单例对象
+import { GlobalContext } from '../GlobalContext';
 class EntryAbility extends UIAbility {
+  value:number = 0;
   onWindowStageCreate(windowStage){
-    globalThis.context = this.context;
+    GlobalContext.getContext().setObject("value", this.value);
   }
 }
-let context = globalThis.context;
+let context = GlobalContext.getContext().getObject("value");
 let serviceType = "_print._tcp";
 let discoveryService = mdns.createDiscoveryService(context, serviceType);
 discoveryService.startSearchingMDNS();
@@ -676,12 +722,15 @@ Stage模型示例：
 ```ts
 // 获取context
 import UIAbility from '@ohos.app.ability.UIAbility';
+//参考addLocalService 构造单例对象
+import { GlobalContext } from '../GlobalContext';
 class EntryAbility extends UIAbility {
+  value:number = 0;
   onWindowStageCreate(windowStage){
-    globalThis.context = this.context;
+    GlobalContext.getContext().setObject("value", this.value);
   }
 }
-let context = globalThis.context;
+let context = GlobalContext.getContext().getObject("value");
 let serviceType = "_print._tcp";
 let discoveryService = mdns.createDiscoveryService(context, serviceType);
 discoveryService.stopSearchingMDNS();
@@ -706,12 +755,12 @@ on(type: 'discoveryStart', callback: Callback<{serviceInfo: LocalServiceInfo, er
 
 ```js
 // 参考mdns.createDiscoveryService
-let context = globalThis.context;
+let context = GlobalContext.getContext().getObject("value");
 let serviceType = "_print._tcp";
 let discoveryService = mdns.createDiscoveryService(context, serviceType);
 discoveryService.startSearchingMDNS();
 
-discoveryService.on('discoveryStart', (data) => {
+discoveryService.on('discoveryStart', (data: Data) => {
   console.log(JSON.stringify(data));
 });
 
@@ -737,18 +786,18 @@ off(type: 'discoveryStart', callback?: Callback<{ serviceInfo: LocalServiceInfo,
 
 ```js
 // 参考mdns.createDiscoveryService
-let context = globalThis.context;
+let context = GlobalContext.getContext().getObject("value");
 let serviceType = "_print._tcp";
 let discoveryService = mdns.createDiscoveryService(context, serviceType);
 discoveryService.startSearchingMDNS();
 
-discoveryService.on('discoveryStart', (data) => {
+discoveryService.on('discoveryStart', (data: Data) => {
   console.log(JSON.stringify(data));
 });
 
 discoveryService.stopSearchingMDNS();
 
-discoveryService.off('discoveryStart', (data) => {
+discoveryService.off('discoveryStart', (data: Data) => {
   console.log(JSON.stringify(data));
 });
 ```
@@ -772,12 +821,12 @@ on(type: 'discoveryStop', callback: Callback<{serviceInfo: LocalServiceInfo, err
 
 ```js
 // 参考mdns.createDiscoveryService
-let context = globalThis.context;
+let context = GlobalContext.getContext().getObject("value");
 let serviceType = "_print._tcp";
 let discoveryService = mdns.createDiscoveryService(context, serviceType);
 discoveryService.startSearchingMDNS();
 
-discoveryService.on('discoveryStop', (data) => {
+discoveryService.on('discoveryStop', (data: Data) => {
   console.log(JSON.stringify(data));
 });
 
@@ -803,18 +852,18 @@ off(type: 'discoveryStop', callback?: Callback<{ serviceInfo: LocalServiceInfo, 
 
 ```js
 // 参考mdns.createDiscoveryService
-let context = globalThis.context;
+let context = GlobalContext.getContext().getObject("value");
 let serviceType = "_print._tcp";
 let discoveryService = mdns.createDiscoveryService(context, serviceType);
 discoveryService.startSearchingMDNS();
 
-discoveryService.on('discoveryStop', (data) => {
+discoveryService.on('discoveryStop', (data: Data) => {
   console.log(JSON.stringify(data));
 });
 
 discoveryService.stopSearchingMDNS();
 
-discoveryService.off('discoveryStop', (data) => {
+discoveryService.off('discoveryStop', (data: Data) => {
   console.log(JSON.stringify(data));
 });
 ```
@@ -838,12 +887,12 @@ on(type: 'serviceFound', callback: Callback\<LocalServiceInfo>): void
 
 ```js
 // 参考mdns.createDiscoveryService
-let context = globalThis.context;
+let context = GlobalContext.getContext().getObject("value");
 let serviceType = "_print._tcp";
 let discoveryService = mdns.createDiscoveryService(context, serviceType);
 discoveryService.startSearchingMDNS();
 
-discoveryService.on('serviceFound', (data) => {
+discoveryService.on('serviceFound', (data: Data) => {
   console.log(JSON.stringify(data));
 });
 
@@ -869,18 +918,18 @@ off(type: 'serviceFound', callback?: Callback\<LocalServiceInfo>): void
 
 ```js
 // 参考mdns.createDiscoveryService
-let context = globalThis.context;
+let context = GlobalContext.getContext().getObject("value");
 let serviceType = "_print._tcp";
 let discoveryService = mdns.createDiscoveryService(context, serviceType);
 discoveryService.startSearchingMDNS();
 
-discoveryService.on('serviceFound', (data) => {
+discoveryService.on('serviceFound', (data: Data) => {
   console.log(JSON.stringify(data));
 });
 
 discoveryService.stopSearchingMDNS();
 
-discoveryService.off('serviceFound', (data) => {
+discoveryService.off('serviceFound', (data: Data) => {
   console.log(JSON.stringify(data));
 });
 ```
@@ -904,12 +953,12 @@ on(type: 'serviceLost', callback: Callback\<LocalServiceInfo>): void
 
 ```js
 // 参考mdns.createDiscoveryService
-let context = globalThis.context;
+let context = GlobalContext.getContext().getObject("value");
 let serviceType = "_print._tcp";
 let discoveryService = mdns.createDiscoveryService(context, serviceType);
 discoveryService.startSearchingMDNS();
 
-discoveryService.on('serviceLost', (data) => {
+discoveryService.on('serviceLost', (data: Data) => {
   console.log(JSON.stringify(data));
 });
 
@@ -935,18 +984,18 @@ off(type: 'serviceLost', callback?: Callback\<LocalServiceInfo>): void
 
 ```js
 // 参考mdns.createDiscoveryService
-let context = globalThis.context;
+let context = GlobalContext.getContext().getObject("value");
 let serviceType = "_print._tcp";
 let discoveryService = mdns.createDiscoveryService(context, serviceType);
 discoveryService.startSearchingMDNS();
 
-discoveryService.on('serviceLost', (data) => {
+discoveryService.on('serviceLost', (data: Data) => {
   console.log(JSON.stringify(data));
 });
 
 discoveryService.stopSearchingMDNS();
 
-discoveryService.off('serviceLost', (data) => {
+discoveryService.off('serviceLost', (data: Data) => {
   console.log(JSON.stringify(data));
 });
 ```
