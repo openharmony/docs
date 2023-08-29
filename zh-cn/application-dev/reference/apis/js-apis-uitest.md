@@ -3840,6 +3840,15 @@ assertComponentExist(by: By): Promise\<void>
 | ------ | ------------------- | ---- | -------------------- |
 | by     | [By](#bydeprecated) | 是   | 目标控件的属性要求。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
+
+| 错误码ID | 错误信息                                         |
+| -------- | ------------------------------------------------ |
+| 17000002 | if the async function was not called with await. |
+| 17000003 | if the assertion failed.                         |
+
 **示例：**
 
 ```js
