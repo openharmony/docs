@@ -5819,7 +5819,7 @@ addCredential(credentialInfo: CredentialInfo, callback: IIdmCallback): void;
   let credentialInfo: account_osAccount.CredentialInfo = {
     credType: account_osAccount.AuthType.PIN,
     credSubType: account_osAccount.AuthSubType.PIN_SIX,
-    token: null
+    token: new Uint8Array([]),
   };
   let userIDM = new account_osAccount.UserIdentityManager();
   userIDM.openSession((err: BusinessError, challenge: Uint8Array) => {
