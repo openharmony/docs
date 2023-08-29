@@ -39,7 +39,7 @@ getAllVolumes(): Promise&lt;Array&lt;Volume&gt;&gt;
 | 202 | The caller is not a system application. |
 | 401 | The input parameter is invalid. |
 | 13600001 | IPC error. |
-| 13900032 | Unknown error. |
+| 13900042 | Unknown error. |
 
 **示例：**
 
@@ -77,7 +77,7 @@ getAllVolumes(callback: AsyncCallback&lt;Array&lt;Volume&gt;&gt;): void
 | 202 | The caller is not a system application. |
 | 401 | The input parameter is invalid. |
 | 13600001 | IPC error. |
-| 13900032 | Unknown error. |
+| 13900042 | Unknown error. |
 
 **示例：**
 
@@ -124,7 +124,7 @@ mount(volumeId: string): Promise&lt;void&gt;
 | 13600003 | Failed to mount. |
 | 13600005 | Incorrect volume state. |
 | 13600008 | No such object. |
-| 13900032 | Unknown error. |
+| 13900042 | Unknown error. |
 
 **示例：**
 
@@ -168,7 +168,7 @@ mount(volumeId: string, callback:AsyncCallback&lt;void&gt;):void
 | 13600003 | Failed to mount. |
 | 13600005 | Incorrect volume state. |
 | 13600008 | No such object. |
-| 13900032 | Unknown error. |
+| 13900042 | Unknown error. |
 
 **示例：**
 
@@ -215,7 +215,7 @@ unmount(volumeId: string): Promise&lt;void&gt;
 | 13600004 | Failed to unmount. |
 | 13600005 | Incorrect volume state. |
 | 13600008 | No such object. |
-| 13900032 | Unknown error. |
+| 13900042 | Unknown error. |
 
 **示例：**
 
@@ -259,7 +259,7 @@ unmount(volumeId: string, callback: AsyncCallback&lt;void&gt;): void
 | 13600004 | Failed to unmount. |
 | 13600005 | Incorrect volume state. |
 | 13600008 | No such object. |
-| 13900032 | Unknown error. |
+| 13900042 | Unknown error. |
 
 **示例：**
 
@@ -303,7 +303,7 @@ getVolumeByUuid(uuid: string): Promise&lt;Volume&gt;
 | 401 | The input parameter is invalid. |
 | 13600001 | IPC error. |
 | 13600008 | No such object. |
-| 13900032 | Unknown error. |
+| 13900042 | Unknown error. |
 
 **示例：**
 
@@ -344,7 +344,7 @@ getVolumeByUuid(uuid: string, callback: AsyncCallback&lt;Volume&gt;): void
 | 401 | The input parameter is invalid. |
 | 13600001 | IPC error. |
 | 13600008 | No such object. |
-| 13900032 | Unknown error. |
+| 13900042 | Unknown error. |
 
 **示例：**
 
@@ -388,7 +388,7 @@ getVolumeById(volumeId: string): Promise&lt;Volume&gt;
 | 401 | The input parameter is invalid. |
 | 13600001 | IPC error. |
 | 13600008 | No such object. |
-| 13900032 | Unknown error. |
+| 13900042 | Unknown error. |
 
 **示例：**
 
@@ -429,7 +429,7 @@ getVolumeById(volumeId: string, callback: AsyncCallback&lt;Volume&gt;): void
 | 401 | The input parameter is invalid. |
 | 13600001 | IPC error. |
 | 13600008 | No such object. |
-| 13900032 | Unknown error. |
+| 13900042 | Unknown error. |
 
 **示例：**
 
@@ -476,7 +476,7 @@ setVolumeDescription(uuid: string, description: string): Promise&lt;void&gt;
 | 13600002 | Not supported filesystem. |
 | 13600005 | Incorrect volume state. |
 | 13600008 | No such object. |
-| 13900032 | Unknown error. |
+| 13900042 | Unknown error. |
 
 **示例：**
 
@@ -521,7 +521,7 @@ setVolumeDescription(uuid: string, description: string, callback: AsyncCallback&
 | 13600002 | Not supported filesystem. |
 | 13600005 | Incorrect volume state. |
 | 13600008 | No such object. |
-| 13900032 | Unknown error. |
+| 13900042 | Unknown error. |
 
 **示例：**
 
@@ -569,7 +569,7 @@ format(volumeId: string, fsType: string): Promise&lt;void&gt;
 | 13600002 | Not supported filesystem. |
 | 13600005 | Incorrect volume state. |
 | 13600008 | No such object. |
-| 13900032 | Unknown error. |
+| 13900042 | Unknown error. |
 
 **示例：**
 
@@ -614,7 +614,7 @@ format(volumeId: string, fsType: string, callback: AsyncCallback&lt;void&gt;): v
 | 13600002 | Not supported filesystem. |
 | 13600005 | Incorrect volume state. |
 | 13600008 | No such object. |
-| 13900032 | Unknown error. |
+| 13900042 | Unknown error. |
 
 **示例：**
 
@@ -660,7 +660,7 @@ partition(diskId: string, type: number): Promise&lt;void&gt;
 | 401 | The input parameter is invalid. |
 | 13600001 | IPC error. |
 | 13600008 | No such object. |
-| 13900032 | Unknown error. |
+| 13900042 | Unknown error. |
 
 **示例：**
 
@@ -703,7 +703,7 @@ partition(diskId: string, type: number, callback: AsyncCallback&lt;void&gt;): vo
 | 401 | The input parameter is invalid. |
 | 13600001 | IPC error. |
 | 13600008 | No such object. |
-| 13900032 | Unknown error. |
+| 13900042 | Unknown error. |
 
 **示例：**
 
@@ -729,4 +729,4 @@ partition(diskId: string, type: number, callback: AsyncCallback&lt;void&gt;): vo
 | description | string  | 是 | 否 | 卷设备描述。           |
 | removable   | boolean | 是 | 否 | 表示卷设备是否可移除，当前仅支持可移除存储设备。 |
 | state       | number  | 是 | 否 | 卷设备状态标识：<br>0：卸载状态 UNMOUNTED<br> 1：检查状态 CHECKING<br> 2：挂载状态 MOUNTED<br> 3：正在弹出状态 EJECTING          |
-| path        | string  | 是 | 否 | 卷设备的挂载地址，一般为/mnt/external/{uuid}         |
+| path        | string  | 是 | 否 | 卷设备的挂载地址，一般为/mnt/data/external/{uuid}         |
