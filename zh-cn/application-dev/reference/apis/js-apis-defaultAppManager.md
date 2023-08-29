@@ -64,7 +64,7 @@ isDefaultApplication(type: string): Promise\<boolean>
 ```ts
 import defaultAppMgr from '@ohos.bundle.defaultAppManager';
 defaultAppMgr.isDefaultApplication(defaultAppMgr.ApplicationType.BROWSER)
-.then((data) => {
+.then((data: defaultAppMgr.AsyncCallback<boolean>) => {
     console.info('Operation successful. IsDefaultApplication ? ' + JSON.stringify(data));
 }).catch((error) => {
     console.error('Operation failed. Cause: ' + JSON.stringify(error));
@@ -90,7 +90,9 @@ isDefaultApplication(type: string, callback: AsyncCallback\<boolean>): void
 
 ```ts
 import defaultAppMgr from '@ohos.bundle.defaultAppManager';
-defaultAppMgr.isDefaultApplication(defaultAppMgr.ApplicationType.BROWSER, (err, data) => {
+import { BusinessError } from '@ohos.base';
+
+defaultAppMgr.isDefaultApplication(defaultAppMgr.ApplicationType.BROWSER, (err: BusinessError, data: defaultAppMgr.AsyncCallback<boolean>) => {
     if (err) {
         console.error('Operation failed. Cause: ' + JSON.stringify(err));
         return;
@@ -125,7 +127,7 @@ isDefaultApplicationSync(type: string): boolean;
 ```ts
 import defaultAppMgr from '@ohos.bundle.defaultAppManager';
 defaultAppMgr.isDefaultApplicationSync(defaultAppMgr.ApplicationType.BROWSER)
-.then((data) => {
+.then((data: defaultAppMgr.AsyncCallback<boolean>) => {
     console.info('Operation successful. IsDefaultApplicationSync ? ' + JSON.stringify(data));
 }).catch((error) => {
     console.error('Operation failed. Cause: ' + JSON.stringify(error));
@@ -172,7 +174,7 @@ getDefaultApplication(type: string, userId?: number): Promise\<BundleInfo>
 ```ts
 import defaultAppMgr from '@ohos.bundle.defaultAppManager';
 defaultAppMgr.getDefaultApplication(defaultAppMgr.ApplicationType.BROWSER)
-.then((data) => {
+.then((data: defaultAppMgr.AsyncCallback<BundleInfo>) => {
     console.info('Operation successful. bundleInfo: ' + JSON.stringify(data));
 })
 .catch((error) => {
@@ -180,7 +182,7 @@ defaultAppMgr.getDefaultApplication(defaultAppMgr.ApplicationType.BROWSER)
 });
 
 defaultAppMgr.getDefaultApplication("image/png")
-.then((data) => {
+.then((data: defaultAppMgr.AsyncCallback<BundleInfo>) => {
     console.info('Operation successful. bundleInfo: ' + JSON.stringify(data));
 })
 .catch((error) => {
@@ -222,8 +224,10 @@ getDefaultApplication(type: string, userId: number, callback: AsyncCallback\<Bun
 
 ```ts
 import defaultAppMgr from '@ohos.bundle.defaultAppManager';
+import { BusinessError } from '@ohos.base';
+
 let userId = 100;
-defaultAppMgr.getDefaultApplication(defaultAppMgr.ApplicationType.BROWSER, userId, (err, data) => {
+defaultAppMgr.getDefaultApplication(defaultAppMgr.ApplicationType.BROWSER, userId, (err: BusinessError, data: defaultAppMgr.AsyncCallback<BundleInfo>) => {
     if (err) {
         console.error('Operation failed. Cause: ' + JSON.stringify(err));
         return;
@@ -231,7 +235,7 @@ defaultAppMgr.getDefaultApplication(defaultAppMgr.ApplicationType.BROWSER, userI
     console.info('Operation successful. bundleInfo:' + JSON.stringify(data));
 });
 
-defaultAppMgr.getDefaultApplication("image/png", userId, (err, data) => {
+defaultAppMgr.getDefaultApplication("image/png", userId, (err: BusinessError, data: defaultAppMgr.AsyncCallback<BundleInfo>) => {
     if (err) {
         console.error('Operation failed. Cause: ' + JSON.stringify(err));
         return;
@@ -272,14 +276,16 @@ getDefaultApplication(type: string, callback: AsyncCallback\<BundleInfo>) : void
 
 ```ts
 import defaultAppMgr from '@ohos.bundle.defaultAppManager';
-defaultAppMgr.getDefaultApplication(defaultAppMgr.ApplicationType.BROWSER, (err, data) => {
+import { BusinessError } from '@ohos.base';
+
+defaultAppMgr.getDefaultApplication(defaultAppMgr.ApplicationType.BROWSER, (err: BusinessError, data: defaultAppMgr.AsyncCallback<BundleInfo>) => {
     if (err) {
         console.error('Operation failed. Cause: ' + JSON.stringify(err));
         return;
     }
     console.info('Operation successful. bundleInfo:' + JSON.stringify(data));
 });
-defaultAppMgr.getDefaultApplication("image/png", (err, data) => {
+defaultAppMgr.getDefaultApplication("image/png", (err: BusinessError, data: defaultAppMgr.AsyncCallback<BundleInfo>) => {
     if (err) {
         console.error('Operation failed. Cause: ' + JSON.stringify(err));
         return;
@@ -328,7 +334,7 @@ getDefaultApplicationSync(type: string, userId?: number): BundleInfo;
 ```ts
 import defaultAppMgr from '@ohos.bundle.defaultAppManager';
 defaultAppMgr.getDefaultApplicationSync(defaultAppMgr.ApplicationType.BROWSER)
-.then((data) => {
+.then((data: defaultAppMgr.AsyncCallback<BundleInfo>) => {
     console.info('Operation successful. bundleInfo: ' + JSON.stringify(data));
 })
 .catch((error) => {
@@ -336,7 +342,7 @@ defaultAppMgr.getDefaultApplicationSync(defaultAppMgr.ApplicationType.BROWSER)
 });
 
 defaultAppMgr.getDefaultApplicationSync("image/png")
-.then((data) => {
+.then((data: defaultAppMgr.AsyncCallback<BundleInfo>) => {
     console.info('Operation successful. bundleInfo: ' + JSON.stringify(data));
 })
 .catch((error) => {
@@ -384,32 +390,25 @@ setDefaultApplication(type: string, elementName: ElementName, userId?: number): 
 
 ```ts
 import defaultAppMgr from '@ohos.bundle.defaultAppManager';
-defaultAppMgr.setDefaultApplication(defaultAppMgr.ApplicationType.BROWSER, {
+let info: defaultAppMgr.ElementName = {
     bundleName: "com.example.myapplication",
     moduleName: "module01",
     abilityName: "EntryAbility"
-}).then((data) => {
+}
+defaultAppMgr.setDefaultApplication(defaultAppMgr.ApplicationType.BROWSER, info).then((data: defaultAppMgr.AsyncCallback<void>) => {
     console.info('Operation successful.');
 }).catch((error) => {
     console.error('Operation failed. Cause: ' + JSON.stringify(error));
 });
 
 let userId = 100;
-defaultAppMgr.setDefaultApplication(defaultAppMgr.ApplicationType.BROWSER, {
-    bundleName: "com.example.myapplication",
-    moduleName: "module01",
-    abilityName: "EntryAbility"
-}, userId).then((data) => {
+defaultAppMgr.setDefaultApplication(defaultAppMgr.ApplicationType.BROWSER, info, userId).then((data: defaultAppMgr.AsyncCallback<void>) => {
     console.info('Operation successful.');
 }).catch((error) => {
     console.error('Operation failed. Cause: ' + JSON.stringify(error));
 });
 
-defaultAppMgr.setDefaultApplication("image/png", {
-    bundleName: "com.example.myapplication",
-    moduleName: "module01",
-    abilityName: "EntryAbility"
-}, userId).then((data) => {
+defaultAppMgr.setDefaultApplication("image/png", info, userId).then((data: defaultAppMgr.AsyncCallback<void>) => {
     console.info('Operation successful.');
 }).catch((error) => {
     console.error('Operation failed. Cause: ' + JSON.stringify(error));
@@ -451,12 +450,15 @@ setDefaultApplication(type: string, elementName: ElementName, userId: number, ca
 
 ```ts
 import defaultAppMgr from '@ohos.bundle.defaultAppManager';
+import { BusinessError } from '@ohos.base';
+
 let userId = 100;
-defaultAppMgr.setDefaultApplication(defaultAppMgr.ApplicationType.BROWSER, {
+let info: defaultAppMgr.ElementName = {
     bundleName: "com.example.myapplication",
     moduleName: "module01",
     abilityName: "EntryAbility"
-}, userId, (err, data) => {
+}
+defaultAppMgr.setDefaultApplication(defaultAppMgr.ApplicationType.BROWSER, info, userId, (errerr: BusinessError, data: defaultAppMgr.AsyncCallback<BundleInfo>) => {
     if (err) {
         console.error('Operation failed. Cause: ' + JSON.stringify(err));
         return;
@@ -464,11 +466,7 @@ defaultAppMgr.setDefaultApplication(defaultAppMgr.ApplicationType.BROWSER, {
     console.info('Operation successful.');
  });
 
-defaultAppMgr.setDefaultApplication("image/png", {
-    bundleName: "com.example.myapplication",
-    moduleName: "module01",
-    abilityName: "EntryAbility"
-}, userId, (err, data) => {
+defaultAppMgr.setDefaultApplication("image/png", info, userId, (errerr: BusinessError, data: defaultAppMgr.AsyncCallback<BundleInfo>) => {
     if (err) {
         console.error('Operation failed. Cause: ' + JSON.stringify(err));
         return;
@@ -510,11 +508,14 @@ setDefaultApplication(type: string, elementName: ElementName, callback: AsyncCal
 
 ```ts
 import defaultAppMgr from '@ohos.bundle.defaultAppManager';
-defaultAppMgr.setDefaultApplication(defaultAppMgr.ApplicationType.BROWSER, {
+import { BusinessError } from '@ohos.base';
+
+let info: defaultAppMgr.ElementName = {
     bundleName: "com.example.myapplication",
     moduleName: "module01",
     abilityName: "EntryAbility"
-}, (err, data) => {
+}
+defaultAppMgr.setDefaultApplication(defaultAppMgr.ApplicationType.BROWSER, info, (err: BusinessError, data: defaultAppMgr.AsyncCallback<BundleInfo>) => {
     if (err) {
         console.error('Operation failed. Cause: ' + JSON.stringify(err));
         return;
@@ -522,11 +523,7 @@ defaultAppMgr.setDefaultApplication(defaultAppMgr.ApplicationType.BROWSER, {
     console.info('Operation successful.');
  });
 
-defaultAppMgr.setDefaultApplication("image/png", {
-    bundleName: "com.example.myapplication",
-    moduleName: "module01",
-    abilityName: "EntryAbility"
-}, (err, data) => {
+defaultAppMgr.setDefaultApplication("image/png", info, (err: BusinessError, data: defaultAppMgr.AsyncCallback<BundleInfo>) => {
     if (err) {
         console.error('Operation failed. Cause: ' + JSON.stringify(err));
         return;
@@ -569,32 +566,25 @@ setDefaultApplicationSync(type: string, elementName: ElementName, userId?: numbe
 
 ```ts
 import defaultAppMgr from '@ohos.bundle.defaultAppManager';
-defaultAppMgr.setDefaultApplicationSync(defaultAppMgr.ApplicationType.BROWSER, {
+let info: defaultAppMgr.ElementName = {
     bundleName: "com.example.myapplication",
     moduleName: "module01",
     abilityName: "EntryAbility"
-}).then((data) => {
+}
+defaultAppMgr.setDefaultApplicationSync(defaultAppMgr.ApplicationType.BROWSER, info).then((data: defaultAppMgr.AsyncCallback<BundleInfo>) => {
     console.info('Operation successful.');
 }).catch((error) => {
     console.error('Operation failed. Cause: ' + JSON.stringify(error));
 });
 
 let userId = 100;
-defaultAppMgr.setDefaultApplicationSync(defaultAppMgr.ApplicationType.BROWSER, {
-    bundleName: "com.example.myapplication",
-    moduleName: "module01",
-    abilityName: "EntryAbility"
-}, userId).then((data) => {
+defaultAppMgr.setDefaultApplicationSync(defaultAppMgr.ApplicationType.BROWSER, info, userId).then((data: defaultAppMgr.AsyncCallback<BundleInfo>) => {
     console.info('Operation successful.');
 }).catch((error) => {
     console.error('Operation failed. Cause: ' + JSON.stringify(error));
 });
 
-defaultAppMgr.setDefaultApplicationSync("image/png", {
-    bundleName: "com.example.myapplication",
-    moduleName: "module01",
-    abilityName: "EntryAbility"
-}, userId).then((data) => {
+defaultAppMgr.setDefaultApplicationSync("image/png", info, userId).then((data: defaultAppMgr.AsyncCallback<BundleInfo>) => {
     console.info('Operation successful.');
 }).catch((error) => {
     console.error('Operation failed. Cause: ' + JSON.stringify(error));
@@ -635,7 +625,7 @@ resetDefaultApplication(type: string, userId?: number): Promise\<void>
 import defaultAppMgr from '@ohos.bundle.defaultAppManager';
 let userId = 100;
 defaultAppMgr.resetDefaultApplication(defaultAppMgr.ApplicationType.BROWSER, userId)
-.then((data) => {
+.then((data: defaultAppMgr.AsyncCallback<void>) => {
     console.info('Operation successful.');
 })
 .catch((error) => {
@@ -643,7 +633,7 @@ defaultAppMgr.resetDefaultApplication(defaultAppMgr.ApplicationType.BROWSER, use
 });
 
 defaultAppMgr.resetDefaultApplication("image/png", userId)
-.then((data) => {
+.then((data: defaultAppMgr.AsyncCallback<void>) => {
     console.info('Operation successful.');
 })
 .catch((error) => {
@@ -684,8 +674,10 @@ resetDefaultApplication(type: string, userId: number, callback: AsyncCallback\<v
 
 ```ts
 import defaultAppMgr from '@ohos.bundle.defaultAppManager';
+import { BusinessError } from '@ohos.base';
+
 let userId = 100;
-defaultAppMgr.resetDefaultApplication(defaultAppMgr.ApplicationType.BROWSER, userId, (err, data) => {
+defaultAppMgr.resetDefaultApplication(defaultAppMgr.ApplicationType.BROWSER, userId, (err: BusinessError, data: defaultAppMgr.AsyncCallback<BundleInfo>) => {
     if (err) {
         console.error('Operation failed. Cause: ' + JSON.stringify(err));
         return;
@@ -693,7 +685,7 @@ defaultAppMgr.resetDefaultApplication(defaultAppMgr.ApplicationType.BROWSER, use
     console.info('Operation successful.');
 });
 
-defaultAppMgr.resetDefaultApplication("image/png", userId, (err, data) => {
+defaultAppMgr.resetDefaultApplication("image/png", userId, (err: BusinessError, data: defaultAppMgr.AsyncCallback<BundleInfo>) => {
     if (err) {
         console.error('Operation failed. Cause: ' + JSON.stringify(err));
         return;
@@ -733,7 +725,9 @@ resetDefaultApplication(type: string, callback: AsyncCallback\<void>) : void;
 
 ```ts
 import defaultAppMgr from '@ohos.bundle.defaultAppManager';
-defaultAppMgr.resetDefaultApplication(defaultAppMgr.ApplicationType.BROWSER, (err, data) => {
+import { BusinessError } from '@ohos.base';
+
+defaultAppMgr.resetDefaultApplication(defaultAppMgr.ApplicationType.BROWSER, (err: BusinessError, data: defaultAppMgr.AsyncCallback<BundleInfo>) => {
     if (err) {
         console.error('Operation failed. Cause: ' + JSON.stringify(err));
         return;
@@ -741,7 +735,7 @@ defaultAppMgr.resetDefaultApplication(defaultAppMgr.ApplicationType.BROWSER, (er
     console.info('Operation successful.');
 });
 
-defaultAppMgr.resetDefaultApplication("image/png", (err, data) => {
+defaultAppMgr.resetDefaultApplication("image/png", (err: BusinessError, data: defaultAppMgr.AsyncCallback<BundleInfo>) => {
     if (err) {
         console.error('Operation failed. Cause: ' + JSON.stringify(err));
         return;
@@ -784,7 +778,7 @@ resetDefaultApplicationSync(type: string, userId?: number): void;
 import defaultAppMgr from '@ohos.bundle.defaultAppManager';
 let userId = 100;
 defaultAppMgr.resetDefaultApplicationSync(defaultAppMgr.ApplicationType.BROWSER, userId)
-.then((data) => {
+.then((data: defaultAppMgr.AsyncCallback<void>) => {
     console.info('Operation successful.');
 })
 .catch((error) => {
@@ -792,7 +786,7 @@ defaultAppMgr.resetDefaultApplicationSync(defaultAppMgr.ApplicationType.BROWSER,
 });
 
 defaultAppMgr.resetDefaultApplicationSync("image/png", userId)
-.then((data) => {
+.then((data: defaultAppMgr.AsyncCallback<void>) => {
     console.info('Operation successful.');
 })
 .catch((error) => {

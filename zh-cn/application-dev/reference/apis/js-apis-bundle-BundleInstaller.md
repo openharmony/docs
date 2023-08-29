@@ -35,15 +35,18 @@ SystemCapability.BundleManager.BundleFramework
 
 ```ts
 import bundle from '@ohos.bundle';
-let hapFilePaths = ['/data/storage/el2/base/haps/entry/files/'];
-let installParam = {
+import bundleInstall from '@ohos.bundle.installer';
+import { BusinessError } from '@ohos.base';
+
+let hapFilePaths: Array<string> = ['/data/storage/el2/base/haps/entry/files/'];
+let installParam: bundleInstall.InstallParam = {
     userId: 100,
     isKeepData: false,
     installFlag: 1,
 };
 
-bundle.getBundleInstaller().then(installer => {
-    installer.install(hapFilePaths, installParam, err => {
+bundle.getBundleInstaller().then(installer: bundleInstall.BundleInstaller => {
+    installer.install(hapFilePaths, installParam, err: BusinessError => {
         if (err) {
             console.error('install failed:' + JSON.stringify(err));
         } else {
@@ -51,7 +54,8 @@ bundle.getBundleInstaller().then(installer => {
         }
     });
 }).catch(error => {
-    console.error('getBundleInstaller failed. Cause: ' + error.message);
+    let message = (error as BusinessError).message;
+    console.error('getBundleInstaller failed. Cause: ' + message);
 });
 ```
 
@@ -85,15 +89,18 @@ SystemCapability.BundleManager.BundleFramework
 
 ```ts
 import bundle from '@ohos.bundle';
-let bundleName = 'com.example.myapplication';
-let installParam = {
+import bundleInstall from '@ohos.bundle.installer';
+import { BusinessError } from '@ohos.base';
+
+let bundleName: string = 'com.example.myapplication';
+let installParam: bundleInstall.InstallParam = {
     userId: 100,
     isKeepData: false,
     installFlag: 1,
 };
 
-bundle.getBundleInstaller().then(installer => {
-    installer.uninstall(bundleName, installParam, err => {
+bundle.getBundleInstaller().then(installer: bundleInstall.BundleInstaller => {
+    installer.uninstall(bundleName, installParam, err: BusinessError => {
         if (err) {
             console.error('uninstall failed:' + JSON.stringify(err));
         } else {
@@ -101,7 +108,8 @@ bundle.getBundleInstaller().then(installer => {
         }
     });
 }).catch(error => {
-    console.error('getBundleInstaller failed. Cause: ' + error.message);
+    let message = (error as BusinessError).message;
+    console.error('getBundleInstaller failed. Cause: ' + message);
 });
 ```
 ## BundleInstaller.recover<sup>(deprecated)<sup>
@@ -134,16 +142,18 @@ SystemCapability.BundleManager.BundleFramework
 
 ```ts
 import bundle from '@ohos.bundle';
+import bundleInstall from '@ohos.bundle.installer';
+import { BusinessError } from '@ohos.base';
 
-let bundleName = 'com.example.myapplication';
-let installParam = {
+let bundleName: string = 'com.example.myapplication';
+let installParam: bundleInstall.InstallParam = {
     userId: 100,
     isKeepData: false,
     installFlag: 1,
 };
 
-bundle.getBundleInstaller().then(installer => {
-    installer.recover(bundleName, installParam, err => {
+bundle.getBundleInstaller().then(installer: bundleInstall.BundleInstaller => {
+    installer.recover(bundleName, installParam, err: BusinessError => {
         if (err) {
             console.error('recover failed:' + JSON.stringify(err));
         } else {
@@ -151,7 +161,8 @@ bundle.getBundleInstaller().then(installer => {
         }
     });
 }).catch(error => {
-    console.error('getBundleInstaller failed. Cause: ' + error.message);
+    let message = (error as BusinessError).message;
+    console.error('getBundleInstaller failed. Cause: ' + message);
 });
 ```
 
