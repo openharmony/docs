@@ -11,7 +11,7 @@ The **dragController** module provides APIs for initiating drag actions. When re
 
 ## Modules to Import
 
-```js
+```ts
 import dragController from "@ohos.arkui.dragController";
 ```
 
@@ -35,7 +35,7 @@ Initiates a drag action, with the object to be dragged and the drag information 
 
 ```ts
 import dragController from "@ohos.arkui.dragController"
-import UDMF from '@ohos.data.UDMF'
+import UDC from '@ohos.data.unifiedDataChannel';
 
 @Entry
 @Component
@@ -54,8 +54,8 @@ struct DragControllerPage {
       Button('touch to execute drag')
         .onTouch((event) => {
           if (event.type == TouchType.Down) {
-            let text = new UDMF.Text()
-            let unifiedData = new UDMF.UnifiedData(text)
+            let text = new UDC.Text()
+            let unifiedData = new UDC.UnifiedData(text)
 
             let dragInfo: dragController.DragInfo = {
               pointerId: 0,
@@ -63,9 +63,9 @@ struct DragControllerPage {
               extraParams: ''
             }
             dragController.executeDrag(this.DraggingBuilder.bind(this), dragInfo, (err, {event, extraParams}) => {
-              if (event.getResult() == DragRet.DRAG_SUCCESS) {
+              if (event.getResult() == DragResult.DRAG_SUCCESSFUL) {
                 // ...
-              } else if (event.getResult() == DragRet.DRAG_FAILED) {
+              } else if (event.getResult() == DragResult.DRAG_FAILED) {
                 // ...
               }
             })
@@ -101,7 +101,7 @@ Initiates a drag action, with the object to be dragged and the drag information 
 
 ```ts
 import dragController from "@ohos.arkui.dragController"
-import UDMF from '@ohos.data.UDMF';
+import UDC from '@ohos.data.unifiedDataChannel';
 import componentSnapshot from '@ohos.arkui.componentSnapshot';
 import image from '@ohos.multimedia.image';
 
@@ -133,8 +133,8 @@ struct DragControllerPage {
       Button('touch to execute drag')
         .onTouch((event) => {
           if (event.type == TouchType.Down) {
-            let text = new UDMF.Text()
-            let unifiedData = new UDMF.UnifiedData(text)
+            let text = new UDC.Text()
+            let unifiedData = new UDC.UnifiedData(text)
 
             let dragInfo: dragController.DragInfo = {
               pointerId: 0,
@@ -151,9 +151,9 @@ struct DragControllerPage {
 
               dragController.executeDrag(dragItemInfo, dragInfo)
                 .then(({event, extraParams}) => {
-                  if (event.getResult() == DragRet.DRAG_SUCCESS) {
+                  if (event.getResult() == DragResult.DRAG_SUCCESSFUL) {
                     // ...
-                  } else if (event.getResult() == DragRet.DRAG_FAILED) {
+                  } else if (event.getResult() == DragResult.DRAG_FAILED) {
                     // ...
                   }
                 })
@@ -178,5 +178,5 @@ Defines the attributes required for initiating a drag action and information car
 | Name       | Type                                                  | Mandatory| Description                                    |
 | ----------- | ------------------------------------------------------ | ---- | ---------------------------------------- |
 | pointerId   | number                                                 | Yes  | ID of the touch point on the screen when dragging is started.        |
-| data        | [UDMF.UnifiedData](./js-apis-data-udmf.md#unifieddata) | No  | Data carried in the dragging process.              |
+| data        | [unifiedDataChannel.UnifiedData](js-apis-data-unifiedDataChannel.md#unifieddata) | No  | Data carried in the dragging process.              |
 | extraParams | string                                                 | No  | Additional information about the drag action. Not supported currently.|

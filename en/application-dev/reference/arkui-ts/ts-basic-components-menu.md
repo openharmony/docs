@@ -27,6 +27,7 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 | fontSize<sup>(deprecated)</sup> | [Length](ts-types.md#length) | Font size of the menu text. When **Length** is of the number type, the unit is fp.<br>This API is deprecated since API version 10. You are advised to use **font** instead.|
 | font<sup>10+</sup> | [Font](ts-types.md#font) | Font style of the menu text.|
 | fontColor<sup>10+</sup> | [ResourceColor](ts-types.md#resourcecolor) | Font color of the menu text.|
+| radius<sup>10+</sup> | [Dimension](ts-types.md#dimension10) \| [BorderRadiuses](#borderradiuses9) | Radius of the menu border corners.<br> The default value follows the theme.|
 
 ## Example
 

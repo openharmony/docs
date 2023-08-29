@@ -18,6 +18,8 @@ This component can contain child components.
 >  When the **\<Swiper>** component's **displayMode** attribute is set to **SwiperDisplayMode.AutoLinear** or its **displayCount** attribute is set to **'auto'**, the child component whose **visibility** attribute is set to **None** does not take up space in the viewport, but this does not affect the number of navigation dots.
 >
 >  If the **visibility** attribute of a child component is set to **None** or **Hidden**, it takes up space in the viewport, but is not displayed.
+>
+>  When the number of child components is less than or equal to the total number of allowed nodes (totalDisplayCount = DisplayCount + prevMargin? (1: 0 ) + nextMargin? (1: 0 )) in the content area, the **\<Swiper>** component uses the non-looping mode for layout. In this case, the child components specified by **nextMargin** and **prevMargin** take up space in the viewport, but are not displayed. The specifications of the **\<Swiper>** component are calculated based on the value of **totalDisplayCount**.
 
 
 ## APIs
