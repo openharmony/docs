@@ -27,7 +27,7 @@
 
 - 第3章[从一个例子开始](start-with-a-example.md)通过示例介绍“一多”应用的开发过程，让读者对“一多”有个直观认识。
 
-- 第4章[应用UX设计](https://docs.openharmony.cn/pages/v4.0/zh-ch/design/ux-design/app-ux-design.md)介绍了应用UX设计理念。主要阐述了应用设计之初UX设计的原则和要点。该章节主要面向应用的UX设计师。
+- 第4章[应用UX设计](https://docs.openharmony.cn/pages/v4.0/zh-cn/design/ux-design/app-ux-design.md)介绍了应用UX设计理念。主要阐述了应用设计之初UX设计的原则和要点。该章节主要面向应用的UX设计师。
   UX设计原则应该考虑多设备的“差异性” 、“一致性”、“灵活性”和“兼容性”。
 
 - 第5章[工程管理](ide-using.md)介绍了从工程角度如何开始开发应用，让读者可以直接上手创建多设备应用的工程，是后面学习“一多”能力的上手基础。
