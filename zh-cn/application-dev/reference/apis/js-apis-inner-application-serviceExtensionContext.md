@@ -805,7 +805,7 @@ export default class EntryAbility extends extension {
 
 ```
 
-## UIAbiliServiceExtensionContexttyContext.startAbilityAsCaller<sup>10+<sup>
+## ServiceExtensionContext.startAbilityAsCaller<sup>10+<sup>
 
 startAbilityAsCaller(want: Want, options: StartOptions, callback: AsyncCallback\<void>): void;
 
