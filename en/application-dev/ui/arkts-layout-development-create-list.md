@@ -299,7 +299,7 @@ List() {
 })
 ```
 
-This example draws a divider with a stroke thickness of 1 vp from a position 60 vp away from the start edge of the list to a position 10 vp away from the end edge of the list. The effect is shown in Figure 8.
+This example draws a divider with a stroke thickness of 1 vp from a position 60 vp away from the start edge of the list to a position 10 vp away from the end edge of the list. The effect is shown in Figure 9.
 
 >**NOTE**
 >
@@ -652,8 +652,6 @@ The following describes the implementation of the pull-and-refresh feature:
 2. Listen for the finger movement event, and record and calculate the difference between the value of the current position and the initial value. If the difference is greater than 0, the finger moves downward. Set the maximum value for the movement.
 
 3. Listen for the finger lift event. If the movement reaches the maximum value, trigger data loading and display the refresh view. After the loading is complete, hide the view.
-
- You can also use the third-party component [PullToRefresh](https://gitee.com/openharmony-sig/PullToRefresh) to implement this feature.
 
 
 ## Editing a List
