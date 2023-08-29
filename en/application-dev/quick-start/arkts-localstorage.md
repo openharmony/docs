@@ -402,7 +402,7 @@ On the page, call the **GetShared** API to obtain the LocalStorage instance shar
 
 
 ```ts
-// Use the GetShared API to obtain the Storage instance shared by stage.
+// Use the GetShared API to obtain the LocalStorage instance shared by stage.
 let storage = LocalStorage.GetShared()
 
 @Entry(storage)
