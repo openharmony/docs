@@ -107,7 +107,7 @@ let appId = "com.example.myapplication_xxxxx";
 let want = {bundleName: 'com.example.myapplication'};
 
 try {
-    appControl.setDisposedStatus(appId, want, (error: BusinessError, data: appControl.AsyncCallback) => {
+    appControl.setDisposedStatus(appId, want, (error: BusinessError, data: appControl.AsyncCallback<void>) => {
         if (error) {
             let message = (error as BusinessError).message;
             console.error('setDisposedStatus failed ' + message);
@@ -208,7 +208,7 @@ let appId = "com.example.myapplication_xxxxx";
 
 try {
     appControl.getDisposedStatus(appId)
-        .then((data: appControl.AsyncCallback) => {
+        .then((data: appControl.AsyncCallback<void>) => {
             console.info('getDisposedStatus success. DisposedStatus: ' + JSON.stringify(data));
         }).catch((error) => {
             let message = (error as BusinessError).message;
@@ -222,7 +222,7 @@ try {
 
 ## appControl.getDisposedStatus
 
-getDisposedStatus(appId: string, callback: AsyncCallback\<Want>): void;
+getDisposedStatus(appId: string, callback: AsyncCallback<void>\<Want>): void;
 
 以异步方法获取指定应用的处置状态。使用callback异步回调，成功返回应用的处置状态，失败返回对应错误信息。
 
@@ -237,7 +237,7 @@ getDisposedStatus(appId: string, callback: AsyncCallback\<Want>): void;
 | 参数名       | 类型     | 必填   | 说明                                  |
 | ----------- | ------ | ---- | --------------------------------------- |
 | appId  | string | 是    | 要查询的应用的appId。<br> appId是应用的唯一标识，由应用Bundle名称和签名信息决定，获取方法参见[获取应用的appId](#获取应用的appid)。  |
-| callback    | AsyncCallback\<Want> | 是    | 回调函数。当获取应用的处置状态成功时，err为null，data为获取到的处置状态；否则为错误对象。                    |
+| callback    | AsyncCallback<void>\<Want> | 是    | 回调函数。当获取应用的处置状态成功时，err为null，data为获取到的处置状态；否则为错误对象。                    |
 
 **错误码：**
 
@@ -256,7 +256,7 @@ import { BusinessError } from '@ohos.base';
 let appId = "com.example.myapplication_xxxxx";
 
 try {
-    appControl.getDisposedStatus(appId, (error, data: appControl.AsyncCallback) => {
+    appControl.getDisposedStatus(appId, (error, data: appControl.AsyncCallback<void>) => {
         if (error) {
             let message = (error as BusinessError).message;
             console.error('getDisposedStatus failed ' + message);
@@ -408,7 +408,7 @@ import { BusinessError } from '@ohos.base';
 
 let appId = "com.example.myapplication_xxxxx";
 try {
-    appControl.deleteDisposedStatus(appId, (error: BusinessError, data: appControl.AsyncCallback) => {
+    appControl.deleteDisposedStatus(appId, (error: BusinessError, data: appControl.AsyncCallback<void>) => {
         if (error) {
             console.error('deleteDisposedStatus failed ' + error.message);
             return;
@@ -478,7 +478,7 @@ let bundleName = 'com.example.myapplication';
 let appId: string;
 try {
     bundleManager.getBundleInfo(bundleName, bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_SIGNATURE_INFO)
-        .then((data: appControl.AsyncCallback) => {
+        .then((data: appControl.AsyncCallback<void>) => {
             appId = data.signatureInfo.appId;
             console.info("appId is " + appId);
         }).catch((error) => {
