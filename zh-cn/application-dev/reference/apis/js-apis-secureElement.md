@@ -570,7 +570,7 @@ openBasicChannel(aid: number[]): Promise\<Channel>
 
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
-| 3300101  | IllegalStateError, service state exception. |
+| 3300101  | IllegalStateError, an attempt is made to use an SE session that has been closed. |
 | 3300102  | NoSuchElementError, the AID on the SE is not available or cannot be selected.       |
 | 3300103  | SecurityError, the calling application cannot be granted access to this AID or the default applet on this session.   |
 | 3300104  | IOError, there is a communication problem to the reader or the SE.     |
@@ -619,7 +619,7 @@ try {
 
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
-| 3300101  | IllegalStateError, service state exception. |
+| 3300101  | IllegalStateError, an attempt is made to use an SE session that has been closed. |
 | 3300102  | NoSuchElementError, the AID on the SE is not available or cannot be selected.       |
 | 3300103  | SecurityError, the calling application cannot be granted access to this AID or the default applet on this session.   |
 | 3300104  | IOError, there is a communication problem to the reader or the SE.     |
@@ -675,7 +675,7 @@ openBasicChannel(aid: number[], p2: number): Promise\<Channel>
 
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
-| 3300101  | IllegalStateError, service state exception. |
+| 3300101  | IllegalStateError, an attempt is made to use an SE session that has been closed. |
 | 3300102  | NoSuchElementError, the AID on the SE is not available or cannot be selected.       |
 | 3300103  | SecurityError, the calling application cannot be granted access to this AID or the default applet on this session.   |
 | 3300104  | IOError, there is a communication problem to the reader or the SE.     |
@@ -726,7 +726,7 @@ openBasicChannel(aid: number[], p2:number, callback: AsyncCallback\<Channel>): v
 
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
-| 3300101  | IllegalStateError, service state exception. |
+| 3300101  | IllegalStateError, an attempt is made to use an SE session that has been closed. |
 | 3300102  | NoSuchElementError, the AID on the SE is not available or cannot be selected.      |
 | 3300103  | SecurityError, the calling application cannot be granted access to this AID or the default applet on this session.   |
 | 3300104  | IOError, there is a communication problem to the reader or the SE.     |
@@ -782,7 +782,7 @@ openLogicalChannel(aid: number[]): Promise\<Channel>
 
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
-| 3300101  | IllegalStateError, service state exception. |
+| 3300101  | IllegalStateError, an attempt is made to use an SE session that has been closed. |
 | 3300102  | NoSuchElementError, the AID on the SE is not available or cannot be selected.       |
 | 3300103  | SecurityError, the calling application cannot be granted access to this AID or the default applet on this session.   |
 | 3300104  | IOError, there is a communication problem to the reader or the SE.     |
@@ -831,7 +831,7 @@ try {
 
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
-| 3300101  | IllegalStateError, service state exception. |
+| 3300101  | IllegalStateError, an attempt is made to use an SE session that has been closed. |
 | 3300102  | NoSuchElementError, the AID on the SE is not available or cannot be selected.      |
 | 3300103  | SecurityError, the calling application cannot be granted access to this AID or the default applet on this session.   |
 | 3300104  | IOError, there is a communication problem to the reader or the SE.    |
@@ -887,7 +887,7 @@ P2通常为0x00。设备应允许P2的任何值，并且应允许以下值： 0x
 
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
-| 3300101  | IllegalStateError, service state exception. |
+| 3300101  | IllegalStateError, an attempt is made to use an SE session that has been closed. |
 | 3300102  | NoSuchElementError, the AID on the SE is not available or cannot be selected.      |
 | 3300103  | SecurityError, the calling application cannot be granted access to this AID or the default applet on this session.   |
 | 3300104  | IOError, there is a communication problem to the reader or the SE.     |
@@ -947,7 +947,7 @@ P2通常为0x00。设备应允许P2的任何值，并且应允许以下值： 0x
 
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
-| 3300101  | IllegalStateError, service state exception. |
+| 3300101  | IllegalStateError, an attempt is made to use an SE session that has been closed. |
 | 3300102  | NoSuchElementError, the AID on the SE is not available or cannot be selected.       |
 | 3300103  | SecurityError, the calling application cannot be granted access to this AID or the default applet on this session.   |
 | 3300104  | IOError, there is a communication problem to the reader or the SE.     |
@@ -1176,8 +1176,8 @@ transmit(command: number[]): Promise<number[]>
 
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
-| 3300101  | IllegalStateError, service state exception. |
-| 3300103  | SecurityError, the calling application cannot be granted access to this AID or the default applet on this session.   |
+| 3300101  | IllegalStateError, an attempt is made to use an SE session or channel that has been closed. |
+| 3300103  | SecurityError, the command is filtered by the security policy. |
 | 3300104  | IOError, there is a communication problem to the reader or the SE.     |
 
 **示例：**
@@ -1228,8 +1228,8 @@ transmit(command: number[], callback: AsyncCallback<number[]>): void
 
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
-| 3300101  | IllegalStateError, service state exception. |
-| 3300103  | SecurityError, the calling application cannot be granted access to this AID or the default applet on this session.   |
+| 3300101  | IllegalStateError, an attempt is made to use an SE session or channel that has been closed. |
+| 3300103  | SecurityError, the command is filtered by the security policy. |
 | 3300104  | IOError, there is a communication problem to the reader or the SE.     |
 
 **示例：**
