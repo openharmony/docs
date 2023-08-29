@@ -5600,14 +5600,14 @@ getAccountInfo(options: GetDomainAccountInfoOptions, callback: AsyncCallback&lt;
 | 错误码ID | 错误信息                     |
 | -------- | --------------------------- |
 | 12300001 | System service exception. |
-| 12300002 | Invalid domainAccountInfo. |
+| 12300003 | Account not found. |
 | 12300013 | Network exception. |
 | 12300111 | Operation timeout. |
 
 **示例：**
   ```js
   import { BusinessError } from '@ohos.base';
-  let domainAccountInfo: account_osAccount.DomainAccountInfo = {
+  let domainAccountInfo: account_osAccount.GetDomainAccountInfoOptions = {
     domain: 'CHINA',
     accountName: 'zhangsan'
   }
@@ -5654,14 +5654,14 @@ getAccountInfo(options: GetDomainAccountInfoOptions): Promise&lt;DomainAccountIn
 | 错误码ID | 错误信息                     |
 | -------- | --------------------------- |
 | 12300001 | System service exception. |
-| 12300002 | Invalid domainAccountInfo. |
+| 12300003 | Account not found. |
 | 12300013 | Network exception. |
 | 12300111 | Operation timeout. |
 
 **示例：**
   ```js
   import { BusinessError } from '@ohos.base';
-  let domainAccountInfo: account_osAccount.DomainAccountInfo = {
+  let domainAccountInfo: account_osAccount.GetDomainAccountInfoOptions = {
     domain: 'CHINA',
     accountName: 'zhangsan'
   }
