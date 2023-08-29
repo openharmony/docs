@@ -123,6 +123,48 @@ on(evt: 'progress', callback: (pg: SyncProgress) => void): void
 
 ### off
 
+off(evt: 'progress', callback: (pg: SyncProgress) => void): void
+
+移除同步过程事件监听。
+
+**需要权限**：ohos.permission.CLOUDFILE_SYNC
+
+**系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
+
+**参数：**
+
+| 参数名     | 类型   | 必填 | 说明 |
+| ---------- | ------ | ---- | ---- |
+| evt | string | 是   | 取消订阅的事件类型，取值为'progress'（同步过程事件）|
+| callback | (pg: SyncProgress) => void | 是   | 同步过程事件回调，回调入参为[SyncProgress](#syncprogress), 返回值为void|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[文件管理子系统错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID                     | 错误信息        |
+| ---------------------------- | ---------- |
+| 201 | Permission verification failed. |
+| 202 | The caller is not a system application. |
+| 401 | The input parameter is invalid. |
+| 13600001  | IPC error. |
+
+**示例：**
+
+  ```js
+  let gallerySync = new cloudSync.GallerySync();
+
+  function callback(pg) {
+    console.info("gallery sync state：" + pg.state + "error type:" + pg.error);
+  }
+
+  gallerySync.on('progress', callback);
+
+  gallerySync.off('progress', callback);
+  ```
+
+### off
+
 off(evt: 'progress'): void
 
 移除同步过程事件监听。
@@ -414,6 +456,48 @@ on(evt: 'progress', callback: (pg: DownloadProgress) => void): void
   download.on('progress', (pg: cloudSync.DownloadProgress) => {
     console.info("download state：" + pg.state);
   });
+  ```
+
+### off
+
+off(evt: 'progress', callback: (pg: DownloadProgress) => void): void
+
+移除云文件下载过程事件监听。
+
+**需要权限**：ohos.permission.CLOUDFILE_SYNC
+
+**系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
+
+**参数：**
+
+| 参数名     | 类型   | 必填 | 说明 |
+| ---------- | ------ | ---- | ---- |
+| evt | string | 是   | 取消订阅的事件类型，取值为'progress'（同步过程事件）|
+| callback | (pg: DownloadProgress) => void | 是   | 云文件下载过程事件回调，回调入参为[DownloadProgress](#downloadprogress), 返回值为void|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[文件管理子系统错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID                     | 错误信息        |
+| ---------------------------- | ---------- |
+| 201 | Permission verification failed. |
+| 202 | The caller is not a system application. |
+| 401 | The input parameter is invalid. |
+| 13600001  | IPC error. |
+
+**示例：**
+
+  ```js
+  let download = new cloudSync.Download();
+
+  function callback(pg) {
+    console.info("download state：" + pg.state + "error type:" + pg.error);
+  }
+
+  download.on('progress', callback);
+
+  download.off('progress', callback);
   ```
 
 ### off
