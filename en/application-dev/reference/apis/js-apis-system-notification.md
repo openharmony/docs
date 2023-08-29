@@ -50,18 +50,24 @@ Displays a notification.
 | options | ShowNotificationOptions | No| Notification title.|
 
 **Example**
-```javascript
-export default {
-    show() {
-        notification.show({
-            contentTitle: 'title info',
-            contentText: 'text',
-            clickAction: {
-                bundleName: 'com.example.testapp',
-                abilityName: 'notificationDemo',
-                uri: '/path/to/notification'
-            }
-        });
-    }
+```ts
+class NotificationClass {
+  show: Function
 }
+
+let notificationObj: NotificationClass = {
+  show() {
+    notification.show({
+      contentTitle: 'title info',
+      contentText: 'text',
+      clickAction: {
+        bundleName: 'com.example.testapp',
+        abilityName: 'notificationDemo',
+        uri: '/path/to/notification'
+      }
+    });
+  }
+}
+
+export default  notificationObj
 ```
