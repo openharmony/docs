@@ -58,6 +58,8 @@ createBundleContext(bundleName: string): Context;
 **示例：**
 
 ```ts
+import common from '@ohos.app.ability.common';
+
 let bundleContext: common.Context;
 try {
     bundleContext = this.context.createBundleContext('com.example.test');
@@ -89,6 +91,8 @@ createModuleContext(moduleName: string): Context;
 **示例：**
 
 ```ts
+import common from '@ohos.app.ability.common';
+
 let moduleContext: common.Context;
 try {
     moduleContext = this.context.createModuleContext('entry');
@@ -125,6 +129,8 @@ createModuleContext(bundleName: string, moduleName: string): Context;
 **示例：**
 
 ```ts
+import common from '@ohos.app.ability.common';
+
 let moduleContext: common.Context;
 try {
     moduleContext = this.context.createModuleContext('com.example.test', 'entry');
@@ -150,6 +156,8 @@ getApplicationContext(): ApplicationContext;
 **示例：**
 
 ```ts
+import common from '@ohos.app.ability.common';
+
 let applicationContext: common.Context;
 try {
     applicationContext = this.context.getApplicationContext();
@@ -189,8 +197,10 @@ getGroupDir(dataGroupID: string): Promise\<string>;
 **示例：**
 
 ```ts
+import common from '@ohos.app.ability.common';
+
 let groupId = "1";
-let getGroupDirContext: common.Context;
+let getGroupDirContext: common.Context = this.context;
 try {
   getGroupDirContext.getGroupDir(groupId).then(data => {
     console.log("getGroupDir result:" + data);
@@ -226,7 +236,9 @@ getGroupDir(dataGroupID: string, callback: AsyncCallback\<string>): void;
 **示例：**
 
 ```ts
-let getGroupDirContext: common.Context;
+import common from '@ohos.app.ability.common';
+
+let getGroupDirContext: common.Context = this.context;
 
 getGroupDirContext.getGroupDir("1", (err, data) => {
   if (err) {

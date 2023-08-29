@@ -18,6 +18,8 @@ import common from '@ohos.app.ability.common';
 在使用ApplicationContext的功能前，需要通过context的实例获取。
 
 ```ts
+import common from '@ohos.app.ability.common';
+
 let applicationContext: common.ApplicationContext = this.context.getApplicationContext();
 ```
 
@@ -50,13 +52,14 @@ on(type: 'abilityLifecycle', callback: AbilityLifecycleCallback): **number**;
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import AbilityLifecycleCallback from '@ohos.app.ability.AbilityLifecycleCallback';
 
-let lifecycleId;
+let lifecycleId: number;
 
 export default class EntryAbility extends UIAbility {
     onCreate() {
         console.log('MyAbility onCreate');
-        let AbilityLifecycleCallback = {
+        let AbilityLifecycleCallback: AbilityLifecycleCallback = {
             onAbilityCreate(ability) {
                 console.log(`AbilityLifecycleCallback onAbilityCreate ability: ${ability}`);
             },
@@ -93,7 +96,7 @@ export default class EntryAbility extends UIAbility {
         let applicationContext = this.context.getApplicationContext();
         // 2.通过applicationContext注册监听应用内生命周期
         lifecycleId = applicationContext.on('abilityLifecycle', AbilityLifecycleCallback);
-        console.log(`registerAbilityLifecycleCallback lifecycleId: ${lifecycleId)}`);
+        console.log(`registerAbilityLifecycleCallback lifecycleId: ${lifecycleId}`);
     }
 }
 ```
@@ -123,13 +126,14 @@ on(type: 'abilityLifecycleEvent', callback: AbilityLifecycleCallback): **number*
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import AbilityLifecycleCallback from '@ohos.app.ability.AbilityLifecycleCallback';
 
-let lifecycleId;
+let lifecycleId: number;
 
 export default class EntryAbility extends UIAbility {
     onCreate() {
         console.log('MyAbility onCreate');
-        let AbilityLifecycleCallback = {
+        let AbilityLifecycleCallback: AbilityLifecycleCallback = {
             onAbilityCreate(ability) {
                 console.log(`AbilityLifecycleCallback onAbilityCreate ability: ${ability}`);
             },
@@ -166,7 +170,7 @@ export default class EntryAbility extends UIAbility {
         let applicationContext = this.context.getApplicationContext();
         // 2.通过applicationContext注册监听应用内生命周期
         lifecycleId = applicationContext.on('abilityLifecycleEvent', AbilityLifecycleCallback);
-        console.log(`registerAbilityLifecycleCallback lifecycleId: ${lifecycleId)}`);
+        console.log('registerAbilityLifecycleCallback lifecycleId: ${lifecycleId}');
     }
 }
 ```
@@ -196,7 +200,7 @@ off(type: 'abilityLifecycle', callbackId: **number**,  callback: AsyncCallback<*
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
 
-let lifecycleId;
+let lifecycleId: number;
 
 export default class EntryAbility extends UIAbility {
     onDestroy() {
@@ -237,7 +241,7 @@ off(type: 'abilityLifecycle', callbackId: number): Promise\<void>;
 ```ts
 import Ability from '@ohos.app.ability.UIAbility';
 
-let lifecycleId;
+let lifecycleId: number;
 
 export default class MyAbility extends Ability {
     onDestroy() {
@@ -268,7 +272,7 @@ off(type: 'abilityLifecycleEvent', callbackId: number): <void>;
 ```ts
 import Ability from '@ohos.app.ability.UIAbility';
 
-let lifecycleId;
+let lifecycleId: number;
 
 export default class MyAbility extends Ability {
     onDestroy() {
@@ -308,14 +312,14 @@ on(type: 'environment', callback: EnvironmentCallback): **number**;
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import EnvironmentCallback from '@ohos.app.ability.EnvironmentCallback';
 
-let callbackId;
+let callbackId: number;
 
 export default class EntryAbility extends UIAbility {
     onCreate() {
         console.log('MyAbility onCreate')
-        globalThis.applicationContext = this.context.getApplicationContext();
-        let environmentCallback = {
+        let environmentCallback: EnvironmentCallback = {
             onConfigurationUpdated(config){
                 console.log(`onConfigurationUpdated config: ${JSON.stringify(config)}`);
             },
@@ -324,7 +328,7 @@ export default class EntryAbility extends UIAbility {
             }
         };
         // 1.获取applicationContext
-        let applicationContext = globalThis.applicationContext;
+        let applicationContext = this.context.getApplicationContext();
         // 2.通过applicationContext注册监听系统环境变化
         callbackId = applicationContext.on('environment', environmentCallback);
         console.log(`registerEnvironmentCallback callbackId: ${callbackId}`);
@@ -357,14 +361,14 @@ on(type: 'environmentEvent', callback: EnvironmentCallback): **number**;
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import EnvironmentCallback from '@ohos.app.ability.EnvironmentCallback';
 
-let callbackId;
+let callbackId: number;
 
 export default class EntryAbility extends UIAbility {
     onCreate() {
         console.log('MyAbility onCreate')
-        globalThis.applicationContext = this.context.getApplicationContext();
-        let environmentCallback = {
+        let environmentCallback: EnvironmentCallback = {
             onConfigurationUpdated(config){
                 console.log('onConfigurationUpdated config: ${JSON.stringify(config)}');
             },
@@ -373,7 +377,7 @@ export default class EntryAbility extends UIAbility {
             }
         };
         // 1.获取applicationContext
-        let applicationContext = globalThis.applicationContext;
+        let applicationContext = this.context.getApplicationContext();
         // 2.通过applicationContext注册监听系统环境变化
         callbackId = applicationContext.on('environmentEvent', environmentCallback);
         console.log(`registerEnvironmentCallback callbackId: ${callbackId}`);
@@ -406,7 +410,7 @@ off(type: 'environment', callbackId: **number**,  callback: AsyncCallback<**void
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
 
-let callbackId;
+let callbackId: number;
 
 export default class EntryAbility extends UIAbility {
     onDestroy() {
@@ -446,7 +450,7 @@ off(type: 'environment', callbackId: **number**,  callback: AsyncCallback<**void
 ```ts
 import Ability from '@ohos.app.ability.UIAbility';
 
-let callbackId;
+let callbackId: number;
 
 export default class MyAbility extends Ability {
     onDestroy() {
@@ -476,7 +480,7 @@ off(type: 'environmentEvent', callbackId: **number**,  callback: AsyncCallback<*
 ```ts
 import Ability from '@ohos.app.ability.UIAbility';
 
-let callbackId;
+let callbackId: number;
 
 export default class MyAbility extends Ability {
     onDestroy() {
@@ -505,11 +509,12 @@ on(type: 'applicationStateChange', callback: ApplicationStateChangeCallback): **
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import ApplicationStateChangeCallback from '@ohos.app.ability.ApplicationStateChangeCallback';
 
 export default class MyAbility extends UIAbility {
     onCreate() {
         console.log('MyAbility onCreate');
-        globalThis.applicationStateChangeCallback = {
+        let applicationStateChangeCallback: ApplicationStateChangeCallback = {
             onApplicationForeground() {
                 console.info('applicationStateChangeCallback onApplicationForeground');
             },
@@ -518,11 +523,10 @@ export default class MyAbility extends UIAbility {
             }
         }
 
-        globalThis.applicationContext = this.context.getApplicationContext();
         // 1.获取applicationContext
-        let applicationContext = globalThis.applicationContext;
+        let applicationContext = this.context.getApplicationContext();
         // 2.通过applicationContext注册应用前后台状态监听
-        applicationContext.on('applicationStateChange', globalThis.ApplicationStateChangeCallback);
+        applicationContext.on('applicationStateChange', applicationStateChangeCallback);
         console.log('Resgiter applicationStateChangeCallback');
     }
 }
@@ -582,11 +586,19 @@ getRunningProcessInformation(): Promise\<Array\<ProcessInformation>>;
 **示例：**
 
 ```ts
-applicationContext.getRunningProcessInformation().then((data) => {
-    console.log('The process running information is: ${JSON.stringify(data)}');
-}).catch((error) => {
-    console.error('error: ${JSON.stringify(error)}');
-});
+import UIAbility from '@ohos.app.ability.UIAbility';
+import { BusinessError } from '@ohos.base';
+
+export default class MyAbility extends UIAbility {
+    onForeground() {
+        let applicationContext = this.context.getApplicationContext();
+        applicationContext.getRunningProcessInformation().then((data) => {
+            console.log('The process running information is: ${JSON.stringify(data)}');
+        }).catch((error: BusinessError) => {
+            console.error('error: ${JSON.stringify(error)}');
+        });
+    }
+}
 ```
 
 ## ApplicationContext.getRunningProcessInformation<sup>9+</sup>
@@ -615,13 +627,20 @@ getRunningProcessInformation(callback: AsyncCallback\<Array\<ProcessInformation>
 **示例：**
 
 ```ts
-applicationContext.getRunningProcessInformation((err, data) => {
-    if (err) {
-        console.error('getRunningProcessInformation faile, err: ${JSON.stringify(err)}');
-    } else {
-        console.log('The process running information is: ${JSON.stringify(data)}');
+import UIAbility from '@ohos.app.ability.UIAbility';
+
+export default class MyAbility extends UIAbility {
+    onForeground() {
+        let applicationContext = this.context.getApplicationContext();
+        applicationContext.getRunningProcessInformation((err, data) => {
+            if (err) {
+                console.error('getRunningProcessInformation faile, err: ${JSON.stringify(err)}');
+            } else {
+                console.log('The process running information is: ${JSON.stringify(data)}');
+            }
+        })
     }
-})
+}
 ```
 
 ## ApplicationContext.killAllProcesses<sup>9+</sup>
@@ -649,7 +668,14 @@ killAllProcesses(): Promise\<void\>;
 **示例：**
 
 ```ts
-applicationContext.killAllProcesses();
+import UIAbility from '@ohos.app.ability.UIAbility';
+
+export default class MyAbility extends UIAbility {
+    onBackground() {
+        let applicationContext = this.context.getApplicationContext();
+        applicationContext.killAllProcesses();
+    }
+}
 ```
 
 ## ApplicationContext.killAllProcesses<sup>9+</sup>
@@ -677,10 +703,17 @@ killAllProcesses(callback: AsyncCallback\<void\>);
 **示例：**
 
 ```ts
-applicationContext.killAllProcesses(error => {
-    if (error) {
-        console.error('killAllProcesses fail, error: ${JSON.stringify(error)}');
+import UIAbility from '@ohos.app.ability.UIAbility';
+
+export default class MyAbility extends UIAbility {
+    onBackground() {
+        let applicationContext = this.context.getApplicationContext();
+        applicationContext.killAllProcesses(error => {
+            if (error) {
+                console.error('killAllProcesses fail, error: ${JSON.stringify(error)}');
+            }
+        });
     }
-});
+}
 ```
 <!--no_check-->

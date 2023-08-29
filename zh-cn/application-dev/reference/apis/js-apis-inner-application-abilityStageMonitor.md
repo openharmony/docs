@@ -19,13 +19,11 @@
 ```ts
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 
-let monitor = {
+let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+abilityDelegator.waitAbilityStageMonitor({
     moduleName: 'feature_as1',
     srcEntrance: './ets/Application/MyAbilityStage.ts',
-};
-
-let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.waitAbilityStageMonitor(monitor, (error, data) => {
+}, (error, data) => {
     if (error) {
         console.error('waitAbilityStageMonitor fail, error: ${JSON.stringify(error)}');
     } else {

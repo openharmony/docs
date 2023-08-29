@@ -39,24 +39,46 @@ ExtensionContext主要用于查询所属Extension的信息、Module的配置信�
 ```ts
 import ServiceExtension from '@ohos.app.ability.ServiceExtensionAbility';
 import Want from '@ohos.app.ability.Want';
+import rpc from '@ohos.rpc';
 
-export default class TheServiceExtension extends ServiceExtension {
-    onCreate(want:Want) {
-        console.log('ServiceAbility onCreate, want: ${want.abilityName}');
-        // 通过globalThis传递ExtensionContext给entry
-        globalThis.ExtensionContext = this.context;
+export class GlobalContext {
+    private constructor() {}
+    private static instance: GlobalContext;
+    private _objects = new Map<string, Object>();
+
+    public static getContext(): GlobalContext {
+        if (!GlobalContext.instance) {
+            GlobalContext.instance = new GlobalContext();
+        }
+        return GlobalContext.instance;
     }
 
-    onRequest(want, startId) {
+    getObject(value: string): Object | undefined {
+        return this._objects.get(value);
+    }
+
+    setObject(key: string, objectClass: Object): void {
+        this._objects.set(key, objectClass);
+    }
+}
+
+export default class TheServiceExtension extends ServiceExtension {
+    onCreate(want: Want) {
+        console.log('ServiceAbility onCreate, want: ${want.abilityName}');
+        GlobalContext.getContext().setObject("ExtensionContext", this.context);
+    }
+
+    onRequest(want: Want, startId: number) {
         console.log('ServiceAbility onRequest, want: ${want.abilityName}, startId: ${startId}');
     }
 
-    onConnect(want) {
+    onConnect(want: Want) {
         console.log('ServiceAbility onConnect, want: ${want.abilityName}');
-        return null;
+        let remoteObject = new rpc.RemoteObject("test");
+        return remoteObject;
     }
 
-    onDisconnect(want) {
+    onDisconnect(want: Want) {
         console.log('ServiceAbility onDisconnect, want: ${want.abilityName}');
     }
 
@@ -69,11 +91,13 @@ export default class TheServiceExtension extends ServiceExtension {
 在entry的MainAbility的onCreate回调内启动ServiceExtension
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import Want from '@ohos.app.ability.Want';
 
 export default class EntryAbility extends UIAbility {
-    onCreate(want, launchParam) {
+    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
         console.log('[Demo] EntryAbility onCreate');
-        let wantExt = {
+        let wantExt: Want = {
             deviceId: '',
             bundleName: 'com.example.TheServiceExtension',
             abilityName: 'TheServiceExtension',
@@ -85,19 +109,20 @@ export default class EntryAbility extends UIAbility {
 
 在entry内新建一个ServiceModule.ts，专用于执行业务逻辑
 ```ts
+import { GlobalContext } from '../TheServiceExtension'
+
 export default class ServiceModel {
-    moduleName: string;
+    moduleName: string = '';
 
     constructor() {}
 
     executeTask() {
-        if (globalThis.ExtensionContext === undefined) {
+        if (GlobalContext.getContext().getObject('ExtensionContext') === undefined) {
             console.log('ERROR, ServiceExtension does not exist');
             return;
         }
 
-        let moduleInfo = globalThis.ExtensionContext.currentHapModuleInfo;
-        this.moduleName = moduleInfo.name;
+        this.moduleName = GlobalContext.getContext().getObject('ExtensionContext').currentHapModuleInfo.name;
         // 根据moduleName执行不同的业务逻辑，实现对不同性能设备的区分
         switch (this.moduleName) {
             case 'highPerformance':

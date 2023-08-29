@@ -101,7 +101,7 @@ API10时将启动由[setRestartWant](#apprecoverysetrestartwant)指定的Ability
 import appRecovery from '@ohos.app.ability.appRecovery';
 import errorManager from '@ohos.app.ability.errorManager';
 
-let observer = {
+let observer: errorManager.ErrorObserver = {
     onUnhandledException(errorMsg) {
         console.log('onUnhandledException, errorMsg: ', errorMsg);
         appRecovery.restartApp();
@@ -135,7 +135,7 @@ saveAppState(): boolean;
 import appRecovery from '@ohos.app.ability.appRecovery';
 import errorManager from '@ohos.app.ability.errorManager';
 
-let observer = {
+let observer: errorManager.ErrorObserver = {
     onUnhandledException(errorMsg) {
         console.log('onUnhandledException, errorMsg: ', errorMsg);
         appRecovery.saveAppState();
@@ -175,7 +175,7 @@ saveAppState(context?: UIAbilityContext): boolean;
 import appRecovery from '@ohos.app.ability.appRecovery';
 import errorManager from '@ohos.app.ability.errorManager';
 
-let observer = {
+let observer: errorManager.ErrorObserver = {
     onUnhandledException(errorMsg) {
         console.log('onUnhandledException, errorMsg: ', errorMsg);
         appRecovery.saveAppState(this.context);
@@ -207,12 +207,14 @@ setRestartWant(want: Want): void;
 
 ```ts
 import appRecovery from '@ohos.app.ability.appRecovery';
+import Want from '@ohos.app.ability.Want';
+
 Button("启动到恢复Ability")
     .fontSize(40)
     .fontWeight(FontWeight.Bold)
     .onClick(()=> {
         // set restart want
-        let want = {
+        let want: Want = {
             bundleName: "ohos.samples.recovery",
             abilityName: "RecoveryAbility"
         };
