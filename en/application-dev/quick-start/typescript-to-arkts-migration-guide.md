@@ -779,7 +779,9 @@ interface Employee extends Identity,  Contact {}
 
 **Severity: error**
 
-ArkTS does not support the returning `this` type. Use explicit type instead.
+ArkTS does not support type notation using the `this` keyword (for example,
+specifying a method's return type `this` is not allowed). Use explicit type
+instead.
 
 **TypeScript**
 
@@ -959,7 +961,9 @@ type N = number
 **Severity: error**
 
 ArkTS does not support indexed access for class fields. Use dot notation
-instead.
+instead. An exception are all typed arrays from the standard library
+(for example, `Int32Array`), which support access to their elements through
+`container[index]` syntax.
 
 **TypeScript**
 
@@ -975,6 +979,9 @@ let x = p["x"]
 class Point {x: number = 0; y: number = 0}
 let p: Point = {x: 1, y: 2}
 let x = p.x
+
+let arr = new Int32Array(1)
+console.log(arr[0])
 ```
 
 ## Recipe: Structural identity is not supported
@@ -1541,33 +1548,6 @@ let a2: C[] = [{n: 1, s: "1"}, {n: 2, s : "2"}]      // ditto
 * Recipe: Object literal must correspond to some explicitly declared class or interface
 * Recipe: Object literals cannot be used as type declarations
 
-## Recipe: Lambdas require explicit type annotation for parameters
-
-**Rule `arkts-explicit-param-types-in-lambdas`**
-
-**Severity: error**
-
-Currently, ArkTS requires the types of lambda parameters
-to be explicitly specified.
-
-**TypeScript**
-
-```typescript
-// Compile-time error only with noImplicitAny:
-let f = (s /* type any is assumed */) => {
-    console.log(s)
-}
-```
-
-**ArkTS**
-
-```typescript
-// Explicit types for lambda parameters are mandatory:
-let f = (s: string) => {
-    console.log(s)
-}
-```
-
 ## Recipe: Use arrow functions instead of function expressions
 
 **Rule `arkts-no-func-expressions`**
@@ -1989,9 +1969,9 @@ let f = "string" + true // "stringtrue"
 
 let g = (new Object()) + "string" // "[object Object]string"
 
-let i = true + true // JS: 2, TS: compile-time error
-let j = true + 2 // JS: 3, TS: compile-time error
-let k = E.E1 + true // JS: 1, TS: compile-time error
+let i = true + true // compile-time error
+let j = true + 2    // compile-time error
+let k = E.E1 + true // compile-time error
 ```
 
 **ArkTS**
@@ -2011,7 +1991,7 @@ let g = (new Object()).toString() + "string"
 
 
 let i = true + true // compile-time error
-let j = true + 2 // compile-time error
+let j = true + 2    // compile-time error
 let k = E.E1 + true // compile-time error
 ```
 
@@ -2341,7 +2321,8 @@ iterate over data.
 **Severity: error**
 
 ArkTS supports the iteration over arrays and strings by the `for .. of` loop,
-but does not support the iteration of objects content.
+but does not support the iteration of objects content. All typed arrays from
+the standard library (for example, `Int32Array`) are also supported.
 
 **TypeScript**
 
@@ -2433,7 +2414,8 @@ console.log("Area: ", Math.PI * r * r)
 
 **Severity: error**
 
-ArkTS supports `case` statements that contain only compile-time values.
+ArkTS supports `case` statements that contain only compile-time values,
+top-level scope `const` values, and `static readonly` class fields.
 Use `if` statements as an alternative.
 
 **TypeScript**
@@ -2907,7 +2889,8 @@ function main(): void {
 
 The only supported scenario for the spread operator is to spread an array into
 the rest parameter. Otherwise, manually “unpack” data from arrays and objects,
-where necessary.
+where necessary. All typed arrays from the standard library (for example,
+`Int32Array`) are also supported.
 
 **TypeScript**
 
@@ -3880,34 +3863,6 @@ let ce = new CustomError()
 
 * Recipe: Prototype assignment is not supported
 
-## Recipe: Runtime import expressions are not supported
-
-**Rule `arkts-no-runtime-import`**
-
-**Severity: error**
-
-ArkTS does not support such “runtime” import expressions as `await import...`
-because in the language import is a compile-time, not a runtime feature.
-Use regular import syntax instead.
-
-**TypeScript**
-
-```typescript
-const zipUtil = await import("utils/create-zip-file")
-```
-
-**ArkTS**
-
-```typescript
-import { zipUtil } from "utils/create-zip-file"
-```
-
-**See also**
-
-* Recipe: Wildcards in module names are not supported
-* Recipe: Universal module definitions (UMD) are not supported
-* Recipe: Import assertions are not supported
-
 ## Recipe: Definite assignment assertions are not supported
 
 **Rule `arkts-no-definite-assignment`**
@@ -4065,8 +4020,7 @@ M.abc = 200
 **Severity: error**
 
 Currently ArkTS does not support utility types from TypeScript extensions to the
-standard library (`Omit`, `Pick`, etc.). Exceptions are: `Partial`,
-`Record`.
+standard library, except following: `Partial`, `Record`.
 
 For the type *Record<K, V>*, the type of an indexing expression *rec[index]* is
 of the type *V | undefined*.
@@ -4349,7 +4303,6 @@ import { something } from "module"
 
 * Recipe: Wildcards in module names are not supported
 * Recipe: Universal module definitions (UMD) are not supported
-* Recipe: Runtime import expressions are not supported
 
 ## Recipe: Usage of standard library is restricted
 
@@ -4364,9 +4317,7 @@ the following APIs is prohibited:
 
 Properties and functions of the global object: `eval`,
 `Infinity`, `NaN`, `isFinite`, `isNaN`, `parseFloat`, `parseInt`,
-`encodeURI`, `encodeURIComponent`, `Encode`,
-`decodeURI`, `decodeURIComponent`, `Decode`,
-`escape`, `unescape`, `ParseHexOctet`
+`Encode`, `Decode`, `ParseHexOctet`
 
 `Object`: `__proto__`, `__defineGetter__`, `__defineSetter__`,
 `__lookupGetter__`, `__lookupSetter__`, `assign`, `create`,
@@ -4561,3 +4512,54 @@ class BugReport {
 }
 ```
 
+## Recipe: Classes cannot be used as objects
+
+**Rule `arkts-no-classes-as-obj`**
+
+**Severity: error**
+
+ArkTS does not support using classes as objects (assigning them to variables,
+etc.) because in ArkTS, a `class` declaration introduces a new type,
+not a value.
+
+**TypeScript**
+
+```typescript
+class C {
+    s: string = ""
+    n: number = 0
+}
+
+let c = C
+```
+
+## Recipe: `import` statements after other statements are not allowed
+
+**Rule `arkts-no-misplaced-imports`**
+
+**Severity: error**
+
+In ArkTS, all `import` statements should go before all other statements
+in the program.
+
+**TypeScript**
+
+```typescript
+class C {
+    s: string = ""
+    n: number = 0
+}
+
+import foo from "module1"
+```
+
+**ArkTS**
+
+```typescript
+import foo from "module1"
+
+class C {
+    s: string = ""
+    n: number = 0
+}
+```
