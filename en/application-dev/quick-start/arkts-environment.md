@@ -15,12 +15,11 @@ Environment is a singleton object created by the ArkUI framework at application 
 - Use **Environment.EnvProp** to save the environment variables of the device to AppStorage.
 
   ```ts
-  // Save the language code of the device to AppStorage. The default value is en.
-  // Whenever its value changes in the device environment, it will update its value in AppStorage.
+  // Save languageCode to AppStorage. The default value is en.
   Environment.EnvProp('languageCode', 'en');
   ```
 
-- To keep a component variable updated with changes in the device environment, this variable should be decorated with \@StorageProp.
+- Decorate the variables with \@StorageProp to link them with components.
 
   ```ts
   @StorageProp('languageCode') lang : string = 'en';

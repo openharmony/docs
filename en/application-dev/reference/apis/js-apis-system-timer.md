@@ -36,8 +36,8 @@ Defines the initialization options for **createTimer**.
 | Name     | Type                                         | Mandatory| Description                                                        |
 | --------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type      | number                                        | Yes  | Timer type.<br>**1**: CPU time type. (The start time of the timer cannot be later than the current system time.)<br>**2**: wakeup type.<br>**4**: exact type.<br>**8**: idle type (not supported currently).|
-| repeat    | boolean                                       | Yes  | Whether the timer is a repeating timer. The value **true** means that the timer is a repeating timer, and **false** means that the timer is a one-shot timer.                       |
-| interval  | number                                        | No  | Repeat interval. For a repeating timer, the value must be greater than 5000 ms. For a one-shot timer, the value is **0**.|
+| repeat    | boolean                                       | Yes  | Whether the timer is a repeating timer.<br>The value **true** means that the timer is a repeating timer, and **false** means that the timer is a one-shot timer.                       |
+| interval  | number                                        | No  | Repeat interval.<br>For a repeating timer, the value must be greater than 5000 ms. For a one-shot timer, the value is **0**.|
 | wantAgent | [WantAgent](js-apis-app-ability-wantAgent.md) | No  | **WantAgent** object of the notification to be sent when the timer expires. (An application MainAbility can be started, but not a Service ability.)|
 | callback  | number                                        | Yes  | Callback used to return the timer ID.                            |
 

@@ -3326,6 +3326,10 @@ struct WebComponent {
 
 Implements a **WebCookieManager** instance to manage behavior of cookies in **\<Web>** components. All **\<Web>** components in an application share a **WebCookieManager** instance.
 
+> **NOTE**
+>
+> You must load the **\<Web>** component before calling APIs in **WebCookieManager**.
+
 ### getCookie
 
 static getCookie(url: string): string
@@ -3788,6 +3792,10 @@ struct WebComponent {
 
 Implements a **WebStorage** object to manage the Web SQL database and HTML5 Web Storage APIs. All **\<Web>** components in an application share a **WebStorage** object.
 
+> **NOTE**
+>
+> You must load the **\<Web>** component before calling the APIs in **WebStorage**.
+
 ### deleteOrigin
 
 static deleteOrigin(origin : string): void
@@ -4248,6 +4256,10 @@ struct WebComponent {
 
 Implements a **WebDataBase** object.
 
+> **NOTE**
+>
+> You must load the **\<Web>** component before calling the APIs in **WebDataBase**.
+
 ### getHttpAuthCredentials
 
 static getHttpAuthCredentials(host: string, realm: string): Array\<string>
@@ -4425,6 +4437,10 @@ struct WebComponent {
 ## GeolocationPermissions
 
 Implements a **GeolocationPermissions** object.
+
+> **NOTE**
+>
+> You must load the **\<Web>** component before calling the APIs in **GeolocationPermissions**.
 
 ### Required Permissions
 
