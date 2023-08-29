@@ -16,8 +16,8 @@ Metadata主要是通过一个TAG（Key），去找对应的Data，用于传递�
    try {
      metadataOutput = cameraManager.createMetadataOutput(metadataObjectTypes);
    } catch (error) {
-       // 失败返回错误码error.code并处理
-     console.info(error.code);
+     let err = error as BusinessError;
+     console.info('Failed to createMetadataOutput, error code: '+ err.code);
    }
    ```
 
@@ -26,8 +26,8 @@ Metadata主要是通过一个TAG（Key），去找对应的Data，用于传递�
    ```ts
    metadataOutput.start().then(() => {
      console.info('Callback returned with metadataOutput started.');
-   }).catch((err) => {
-     console.info('Failed to metadataOutput start '+ err.code);
+   }).catch((err: BusinessError) => {
+     console.info('Failed to metadataOutput start, error code: '+ err.code);
    });
    ```
 
@@ -36,7 +36,7 @@ Metadata主要是通过一个TAG（Key），去找对应的Data，用于传递�
    ```ts
    metadataOutput.stop().then(() => {
      console.info('Callback returned with metadataOutput stopped.');
-   }).catch((err) => {
+   }).catch((err: BusinessError) => {
      console.info('Failed to metadataOutput stop '+ err.code);
    });
    ```

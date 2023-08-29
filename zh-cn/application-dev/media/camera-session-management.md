@@ -22,7 +22,8 @@
    try {
      captureSession = cameraManager.createCaptureSession();
    } catch (error) {
-     console.error('Failed to create the CaptureSession instance. errorCode = ' + error.code);
+     let err = error as BusinessError;
+     console.error('Failed to create the CaptureSession instance. errorCode = ' + err.code);
    }
    ```
 
@@ -32,7 +33,8 @@
    try {
      captureSession.beginConfig();
    } catch (error) {
-     console.error('Failed to beginConfig. errorCode = ' + error.code);
+     let err = error as BusinessError;
+     console.error('Failed to beginConfig. errorCode = ' + err.code);
    }
    ```
 
@@ -44,17 +46,20 @@
    try {
      captureSession.addInput(cameraInput);
    } catch (error) {
-     console.error('Failed to addInput. errorCode = ' + error.code);
+     let err = error as BusinessError;
+     console.error('Failed to addInput. errorCode = ' + err.code);
    }
    try {
      captureSession.addOutput(previewOutput);
    } catch (error) {
-     console.error('Failed to addOutput(previewOutput). errorCode = ' + error.code);
+     let err = error as BusinessError;
+     console.error('Failed to addOutput(previewOutput). errorCode = ' + err.code);
    }
    try {
      captureSession.addOutput(photoOutput);
    } catch (error) {
-     console.error('Failed to addOutput(photoOutput). errorCode = ' + error.code);
+     let err = error as BusinessError;
+     console.error('Failed to addOutput(photoOutput). errorCode = ' + err.code);
    }
    await captureSession.commitConfig();
    await captureSession.start().then(() => {
@@ -69,18 +74,21 @@
    try {
      captureSession.beginConfig();
    } catch (error) {
-     console.error('Failed to beginConfig. errorCode = ' + error.code);
+     let err = error as BusinessError;
+     console.error('Failed to beginConfig. errorCode = ' + err.code);
    } 
    // 从会话中移除拍照输出流
    try {
      captureSession.removeOutput(photoOutput);
    } catch (error) {
-     console.error('Failed to removeOutput(photoOutput). errorCode = ' + error.code);
+     let err = error as BusinessError;
+     console.error('Failed to removeOutput(photoOutput). errorCode = ' + err.code);
    } 
    // 向会话中添加视频输出流
    try {
      captureSession.addOutput(videoOutput);
    } catch (error) {
-     console.error('Failed to addOutput(videoOutput). errorCode = ' + error.code);
+     let err = error as BusinessError;
+     console.error('Failed to addOutput(videoOutput). errorCode = ' + err.code);
    }
    ```
