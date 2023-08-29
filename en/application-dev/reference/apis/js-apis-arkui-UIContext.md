@@ -139,6 +139,8 @@ animateTo(value: AnimateParam, event: () => void): void
 
 Applies a transition animation for state changes.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 Since API version 9, this API is supported in ArkTS widgets.
 
 **Parameters**
@@ -216,11 +218,14 @@ showAlertDialog(options: AlertDialogParamWithConfirm | AlertDialogParamWithButto
 
 Shows an alert dialog box.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 **Parameters**
 
-| Name   | Type | Description|
-| ---- | --------------- | -------- |
-| options | [AlertDialogParamWithConfirm](../arkui-ts/ts-methods-alert-dialog-box.md#alertdialogparamwithconfirm) \| [AlertDialogParamWithButtons](../arkui-ts/ts-methods-alert-dialog-box.md#alertdialogparamwithbuttons)  | Defines and displays the **\<AlertDialog>** component.|
+| Name   | Type | Mandatory| Description|
+| ---- | --------------- | -------- | -------- |
+| options | [AlertDialogParamWithConfirm](../arkui-ts/ts-methods-alert-dialog-box.md#alertdialogparamwithconfirm) \| [AlertDialogParamWithButtons](../arkui-ts/ts-methods-alert-dialog-box.md#alertdialogparamwithbuttons) | Yes| Defines and displays the **\<AlertDialog>** component.|
+
 
 **Example**
 
@@ -252,9 +257,11 @@ showActionSheet(value: ActionSheetOptions): void
 
 Defines and shows the action sheet.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 **ActionSheetOptions parameters**
 
-| Name       | Type                   | Mandatory | Description                         |
+| Name       | Type                   | Mandatory | Description                       |
 | ---------- | -------------------------- | ------- | ----------------------------- |
 | title      | [Resource](../arkui-ts/ts-types.md#resource) \| string | Yes    |  Title of the dialog box.|
 | message    | [Resource](../arkui-ts/ts-types.md#resource) \| string | Yes    | Content of the dialog box. |
@@ -267,7 +274,7 @@ Defines and shows the action sheet.
 
 **SheetInfo parameters**
 
-| Name| Type                                                    | Mandatory| Description         |
+| Name| Type                                                    | Mandatory| Description       |
 | ------ | ------------------------------------------------------------ | ---- | ----------------- |
 | title  | [ResourceStr](../arkui-ts/ts-types.md#resourcestr) | Yes  | Text of the option.      |
 | icon   | [ResourceStr](../arkui-ts/ts-types.md#resourcestr) | No  | Sheet icon. By default, no icon is displayed.    |
@@ -320,22 +327,24 @@ showDatePickerDialog(options: DatePickerDialogOptions): void
 
 Shows a date picker dialog box.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 **DatePickerDialogOptions parameters**
 
-| Name| Type| Mandatory| Default Value| Description|
-| -------- | -------- | -------- | -------- | -------- |
-| start | Date | No| Date('1970-1-1') | Start date of the picker.|
-| end | Date | No| Date('2100-12-31') | End date of the picker.|
-| selected | Date | No| Current system date| Selected date.|
-| lunar | boolean | No| false | Whether to display the lunar calendar.|
-| showTime | boolean | No| false | Whether to display the time item.|
-| useMilitaryTime | boolean | No| false | Whether to display time in 24-hour format.|
-| disappearTextStyle | [PickerTextStyle](../arkui-ts/ts-basic-components-datepicker.md#pickertextstyle10) | No| - | Font color, font size, and font width for the top and bottom items.|
-| textStyle | [PickerTextStyle](../arkui-ts/ts-basic-components-datepicker.md#pickertextstyle10) | No| - | Font color, font size, and font width of all items except the top, bottom, and selected items.|
-| selectedTextStyle | [PickerTextStyle](../arkui-ts/ts-basic-components-datepicker.md#pickertextstyle10) | No| - | Font color, font size, and font width of the selected item.|
-| onAccept | (value: [DatePickerResult](../arkui-ts/ts-basic-components-datepicker.md#datepickerresult)) => void | No| - | Callback invoked when the OK button in the dialog box is clicked.|
-| onCancel | () => void | No| - | Callback invoked when the Cancel button in the dialog box is clicked.|
-| onChange | (value: [DatePickerResult](../arkui-ts/ts-basic-components-datepicker.md#datepickerresult)) => void | No| - | Callback invoked when the selected item in the picker changes.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| start | Date | No| Start date of the picker.<br>Default value: **Date('1970-1-1')**|
+| end | Date | No| End date of the picker.<br>Default value: **Date('2100-12-31')**|
+| selected | Date | No| Selected date.<br>Default value: current system date|
+| lunar | boolean | No| Whether to display the lunar calendar.<br>Default value: **false**|
+| showTime | boolean | No| Whether to display the time item.<br>Default value: **false**|
+| useMilitaryTime | boolean | No| Whether to display time in 24-hour format.<br>Default value: **false**|
+| disappearTextStyle | [PickerTextStyle](../arkui-ts/ts-basic-components-datepicker.md#pickertextstyle10) | No| Font color, font size, and font width for the top and bottom items.|
+| textStyle | [PickerTextStyle](../arkui-ts/ts-basic-components-datepicker.md#pickertextstyle10) | No| Font color, font size, and font width of all items except the top, bottom, and selected items.|
+| selectedTextStyle | [PickerTextStyle](../arkui-ts/ts-basic-components-datepicker.md#pickertextstyle10) | No| Font color, font size, and font width of the selected item.|
+| onAccept | (value: [DatePickerResult](../arkui-ts/ts-basic-components-datepicker.md#datepickerresult)) => void | No| Callback invoked when the OK button in the dialog box is clicked.|
+| onCancel | () => void | No| Callback invoked when the Cancel button in the dialog box is clicked.|
+| onChange | (value: [DatePickerResult](../arkui-ts/ts-basic-components-datepicker.md#datepickerresult)) => void | No| Callback invoked when the selected item in the picker changes.|
 
 **Example**
 
@@ -364,6 +373,8 @@ uiContext.showDatePickerDialog({
 showTimePickerDialog(options: TimePickerDialogOptions): void
 
 Shows a time picker dialog box.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **TimePickerDialogOptions parameters**
 
@@ -404,9 +415,11 @@ showTextPickerDialog(options: TextPickerDialogOptions): void
 
 Shows a text picker in the given settings.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 **TextPickerDialogOptions parameters**
 
-| Name| Type| Mandatory|  Description|
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- |  -------- |
 | range | string[] \| [Resource](../arkui-ts/ts-types.md#resource)\|[TextPickerRangeContent](../arkui-ts/ts-basic-components-textpicker.md#textpickerrangecontent10)[] | Yes|  Data selection range of the picker. This parameter cannot be set to an empty array. If set to an empty array, it will not be displayed.|
 | selected | number | No|  Index of the selected item.<br>Default value: **0**|
@@ -507,7 +520,7 @@ In the following API examples, you must first use [getFont()](#getfont) in **UIC
 
 ### registerFont
 
-registerFont(options: FontOptions): void
+registerFont(options: font.FontOptions): void
 
 Registers a custom font with the font manager.
 
@@ -515,9 +528,9 @@ Registers a custom font with the font manager.
 
 **Parameters**
 
-| Name    | Type                         | Mandatory  | Description         |
-| ------- | --------------------------- | ---- | ----------- |
-| options | [FontOptions](js-apis-font.md#fontoptions) | Yes   | Information about the custom font to register.|
+| Name | Type                                           | Mandatory| Description                  |
+| ------- | ----------------------------------------------- | ---- | ---------------------- |
+| options | [font.FontOptions](js-apis-font.md#fontoptions) | Yes  | Information about the custom font to register.|
 
 **Example**
 
@@ -528,13 +541,61 @@ font.registerFont({
   familySrc: '/font/medium.ttf'
 });
 ```
+### getStstemFontList
+
+getSystemFontList(): Array\<string> 
+
+Obtains the list of supported fonts.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Return value**
+
+| Type          | Description              |
+| -------------- | ------------------ |
+| Array\<string> | List of supported fonts.|
+
+**Example**
+
+```ts
+let font = uiContext.getFont();
+font.getSystemFontList()
+```
+
+### getFontByName
+
+getFontByName(fontName: string): font.FontInfo
+
+Obtains information about a system font based on the font name.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name  | Type  | Mandatory| Description          |
+| -------- | ------ | ---- | -------------- |
+| fontName | string | Yes  | System font name.|
+
+**Return value**
+
+| Type                                | Description          |
+| ------------------------------------ | -------------- |
+| [FontInfo](js-apis-font.md#fontinfo10) | Information about the system font.|
+
+**Example**
+
+```ts
+let font = uiContext.getFont();
+font.getFontByName('Sans Italic')
+```
+
 ## ComponentUtils
 
 In the following API examples, you must first use [getComponentUtils()](#getcomponentutils) in **UIContext** to obtain a **ComponentUtils** instance, and then call the APIs using the obtained instance.
 
 ### getRectangleById
 
-getRectangleById(key: string): ComponentInfo
+getRectangleById(id: string): componentUtils.ComponentInfo
 
 Obtains the size, position, translation, scaling, rotation, and affine matrix information of the specified component.
 
@@ -544,13 +605,13 @@ Obtains the size, position, translation, scaling, rotation, and affine matrix in
 
 | Name| Type  | Mandatory| Description            |
 | ------ | ------ | ---- | ---------------- |
-| key    | string | Yes  | Unique component ID.|
+| id     | string | Yes  | Unique component ID.|
 
 **Return value**
 
-| Type          | Description                                                  |
-| ------------- | ------------------------------------------------------------ |
-| ComponentInfo | Size, position, translation, scaling, rotation, and affine matrix information of the component. |
+| Type                                                    | Description                                            |
+| -------------------------------------------------------- | ------------------------------------------------ |
+| [ComponentInfo](js-apis-arkui-componentUtils.md#componentinfo) | Size, position, translation, scaling, rotation, and affine matrix information of the component.|
 
 **Example**
 
@@ -567,7 +628,7 @@ In the following API examples, you must first use [getUIInspector()](#getuiinspe
 
 ### createComponentObserver
 
-createComponentObserver(id: string): ComponentObserver
+createComponentObserver(id: string): inspector.ComponentObserver
 
 Creates an observer for the specified component.
 
@@ -581,8 +642,8 @@ Creates an observer for the specified component.
 
 **Return value**
 
-| Type                                   | Description                                              |
-| --------------------------------------- | -------------------------------------------------- |
+| Type                                                        | Description                                              |
+| ------------------------------------------------------------ | -------------------------------------------------- |
 | [ComponentObserver](js-apis-arkui-inspector.md#componentobserver) | Component observer, which is used to register and unregister listeners for completion of component layout or drawing.|
 
 **Example**
@@ -598,7 +659,7 @@ In the following API examples, you must first use [getMediaQuery()](#getmediaque
 
 ### matchMediaSync
 
-matchMediaSync(condition: string): MediaQueryListener
+matchMediaSync(condition: string): mediaQuery.MediaQueryListener
 
 Sets the media query criteria and returns the corresponding listening handle.
 
@@ -629,7 +690,7 @@ In the following API examples, you must first use [getRouter()](#getrouter) in *
 
 ### pushUrl
 
-pushUrl(options: RouterOptions): Promise&lt;void&gt;
+pushUrl(options: router.RouterOptions): Promise&lt;void&gt;
 
 Navigates to a specified page in the application.
 
@@ -637,9 +698,9 @@ Navigates to a specified page in the application.
 
 **Parameters**
 
-| Name    | Type                             | Mandatory  | Description       |
-| ------- | ------------------------------- | ---- | --------- |
-| options | [RouterOptions](js-apis-router.md#routeroptions) | Yes   | Page routing parameters.|
+| Name | Type                                                   | Mandatory| Description              |
+| ------- | ------------------------------------------------------- | ---- | ------------------ |
+| options | [router.RouterOptions](js-apis-router.md#routeroptions) | Yes  | Page routing parameters.|
 
 **Return value**
 
@@ -680,7 +741,7 @@ router.pushUrl({
 
 ### pushUrl
 
-pushUrl(options: RouterOptions, callback: AsyncCallback&lt;void&gt;): void
+pushUrl(options: router.RouterOptions, callback: AsyncCallback&lt;void&gt;): void
 
 Navigates to a specified page in the application.
 
@@ -690,7 +751,7 @@ Navigates to a specified page in the application.
 
 | Name    | Type                             | Mandatory  | Description       |
 | ------- | ------------------------------- | ---- | --------- |
-| options | [RouterOptions](js-apis-router.md#routeroptions) | Yes   | Page routing parameters.|
+| options | [router.RouterOptions](js-apis-router.md#routeroptions) | Yes   | Page routing parameters.|
 | callback | AsyncCallback&lt;void&gt;      | Yes  | Callback used to return the result.  |
 
 **Error codes**
@@ -726,7 +787,7 @@ router.pushUrl({
 
 ### pushUrl
 
-pushUrl(options: RouterOptions, mode: RouterMode): Promise&lt;void&gt;
+pushUrl(options: router.RouterOptions, mode: router.RouterMode): Promise&lt;void&gt;
 
 Navigates to a specified page in the application.
 
@@ -734,10 +795,10 @@ Navigates to a specified page in the application.
 
 **Parameters**
 
-| Name    | Type                             | Mandatory  | Description        |
-| ------- | ------------------------------- | ---- | ---------- |
-| options | [RouterOptions](js-apis-router.md#routeroptions) | Yes   | Page routing parameters. |
-| mode    | [RouterMode](js-apis-router.md#routermode9)      | Yes   | Routing mode.|
+| Name | Type                                                   | Mandatory| Description                |
+| ------- | ------------------------------------------------------- | ---- | -------------------- |
+| options | [router.RouterOptions](js-apis-router.md#routeroptions) | Yes  | Page routing parameters.  |
+| mode    | [router.RouterMode](js-apis-router.md#routermode9)      | Yes  | Routing mode.|
 
 **Return value**
 
@@ -778,7 +839,7 @@ router.pushUrl({
 
 ### pushUrl
 
-pushUrl(options: RouterOptions, mode: RouterMode, callback: AsyncCallback&lt;void&gt;): void
+pushUrl(options: router.RouterOptions, mode: router.RouterMode, callback: AsyncCallback&lt;void&gt;): void
 
 Navigates to a specified page in the application.
 
@@ -788,8 +849,8 @@ Navigates to a specified page in the application.
 
 | Name    | Type                             | Mandatory  | Description        |
 | ------- | ------------------------------- | ---- | ---------- |
-| options | [RouterOptions](js-apis-router.md#routeroptions) | Yes   | Page routing parameters. |
-| mode    | [RouterMode](js-apis-router.md#routermode9)      | Yes   | Routing mode.|
+| options | [router.RouterOptions](js-apis-router.md#routeroptions) | Yes   | Page routing parameters. |
+| mode    | [router.RouterMode](js-apis-router.md#routermode9) | Yes   | Routing mode.|
 | callback | AsyncCallback&lt;void&gt;      | Yes  | Callback used to return the result.  |
 
 **Error codes**
@@ -825,17 +886,17 @@ router.pushUrl({
 
 ### replaceUrl
 
-replaceUrl(options: RouterOptions): Promise&lt;void&gt;
+replaceUrl(options: router.RouterOptions): Promise&lt;void&gt;
 
 Replaces the current page with another one in the application and destroys the current page.
 
-**System capability**: SystemCapability.ArkUI.ArkUI.Lite
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
-| Name | Type                           | Mandatory| Description              |
-| ------- | ------------------------------- | ---- | ------------------ |
-| options | [RouterOptions](js-apis-router.md#routeroptions) | Yes  | Description of the new page.|
+| Name | Type                                                   | Mandatory| Description              |
+| ------- | ------------------------------------------------------- | ---- | ------------------ |
+| options | [router.RouterOptions](js-apis-router.md#routeroptions) | Yes  | Description of the new page.|
 
 **Return value**
 
@@ -872,17 +933,17 @@ router.replaceUrl({
 
 ### replaceUrl
 
-replaceUrl(options: RouterOptions, callback: AsyncCallback&lt;void&gt;): void
+replaceUrl(options: router.RouterOptions, callback: AsyncCallback&lt;void&gt;): void
 
 Replaces the current page with another one in the application and destroys the current page.
 
-**System capability**: SystemCapability.ArkUI.ArkUI.Lite
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
 | Name | Type                           | Mandatory| Description              |
 | ------- | ------------------------------- | ---- | ------------------ |
-| options | [RouterOptions](js-apis-router.md#routeroptions) | Yes  | Description of the new page.|
+| options | [router.RouterOptions](js-apis-router.md#routeroptions) | Yes  | Description of the new page.|
 | callback | AsyncCallback&lt;void&gt;      | Yes  | Callback used to return the result.  |
 
 **Error codes**
@@ -914,18 +975,18 @@ router.replaceUrl({
 
 ### replaceUrl
 
-replaceUrl(options: RouterOptions, mode: RouterMode): Promise&lt;void&gt;
+replaceUrl(options: router.RouterOptions, mode: router.RouterMode): Promise&lt;void&gt;
 
 Replaces the current page with another one in the application and destroys the current page.
 
-**System capability**: SystemCapability.ArkUI.ArkUI.Lite
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
-| Name    | Type                             | Mandatory  | Description        |
-| ------- | ------------------------------- | ---- | ---------- |
-| options | [RouterOptions](js-apis-router.md#routeroptions) | Yes   | Description of the new page. |
-| mode    | [RouterMode](js-apis-router.md#routermode9)      | Yes   | Routing mode.|
+| Name | Type                                                   | Mandatory| Description                |
+| ------- | ------------------------------------------------------- | ---- | -------------------- |
+| options | [router.RouterOptions](js-apis-router.md#routeroptions) | Yes  | Description of the new page.  |
+| mode    | [router.RouterMode](js-apis-router.md#routermode9)      | Yes  | Routing mode.|
 
 **Return value**
 
@@ -946,34 +1007,32 @@ For details about the error codes, see [Router Error Codes](../errorcodes/errorc
 
 ```ts
 let router = uiContext.getRouter();
-router.replaceUrl({
-  url: 'pages/detail',
-  params: {
-    data1: 'message'
-  }
-}, router.RouterMode.Standard)
-  .then(() => {
-    // success
-  })
-  .catch(err => {
-    console.error(`replaceUrl failed, code is ${err.code}, message is ${err.message}`);
-  })
+try {
+  router.replaceUrl({
+    url: 'pages/detail',
+    params: {
+      data1: 'message'
+    }
+  }, router.RouterMode.Standard)
+} catch (err) {
+  console.error(`replaceUrl failed, code is ${err.code}, message is ${err.message}`);
+}
 ```
 
 ### replaceUrl
 
-replaceUrl(options: RouterOptions, mode: RouterMode, callback: AsyncCallback&lt;void&gt;): void
+replaceUrl(options: router.RouterOptions, mode: router.RouterMode, callback: AsyncCallback&lt;void&gt;): void
 
 Replaces the current page with another one in the application and destroys the current page.
 
-**System capability**: SystemCapability.ArkUI.ArkUI.Lite
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
 | Name    | Type                             | Mandatory  | Description        |
 | ------- | ------------------------------- | ---- | ---------- |
-| options | [RouterOptions](js-apis-router.md#routeroptions) | Yes   | Description of the new page. |
-| mode    | [RouterMode](js-apis-router.md#routermode9)      | Yes   | Routing mode.|
+| options | [router.RouterOptions](js-apis-router.md#routeroptions) | Yes   | Description of the new page. |
+| mode    | [router.RouterMode](js-apis-router.md#routermode9) | Yes   | Routing mode.|
 | callback | AsyncCallback&lt;void&gt;      | Yes  | Callback used to return the result.  |
 
 **Error codes**
@@ -1005,7 +1064,7 @@ router.replaceUrl({
 
 ### pushNamedRoute
 
-pushNamedRoute(options: NamedRouterOptions): Promise&lt;void&gt;
+pushNamedRoute(options: router.NamedRouterOptions): Promise&lt;void&gt;
 
 Navigates to a page using the named route. This API uses a promise to return the result.
 
@@ -1013,9 +1072,9 @@ Navigates to a page using the named route. This API uses a promise to return the
 
 **Parameters**
 
-| Name    | Type                             | Mandatory  | Description       |
-| ------- | ------------------------------- | ---- | --------- |
-| options | [NamedRouterOptions](js-apis-router.md#namedrouteroptions10) | Yes   | Page routing parameters.|
+| Name | Type                                                        | Mandatory| Description              |
+| ------- | ------------------------------------------------------------ | ---- | ------------------ |
+| options | [router.NamedRouterOptions](js-apis-router.md#namedrouteroptions10) | Yes  | Page routing parameters.|
 
 **Return value**
 
@@ -1056,9 +1115,9 @@ router.pushNamedRoute({
 
 ### pushNamedRoute
 
-pushNamedRoute(options: NamedRouterOptions, callback: AsyncCallback&lt;void&gt;): void
+pushNamedRoute(options: router.NamedRouterOptions, callback: AsyncCallback&lt;void&gt;): void
 
-Navigates to a page using the named route. This API uses an asynchronous callback to return the result.
+Navigates to a page using the named route. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -1066,7 +1125,7 @@ Navigates to a page using the named route. This API uses an asynchronous callbac
 
 | Name    | Type                             | Mandatory  | Description       |
 | ------- | ------------------------------- | ---- | --------- |
-| options | [NamedRouterOptions](js-apis-router.md#namedrouteroptions10) | Yes   | Page routing parameters.|
+| options | [router.NamedRouterOptions](js-apis-router.md#namedrouteroptions10) | Yes   | Page routing parameters.|
 | callback | AsyncCallback&lt;void&gt;      | Yes  | Callback used to return the result.  |
 
 **Error codes**
@@ -1101,7 +1160,7 @@ router.pushNamedRoute({
 ```
 ### pushNamedRoute
 
-pushNamedRoute(options: NamedRouterOptions, mode: RouterMode): Promise&lt;void&gt;
+pushNamedRoute(options: router.NamedRouterOptions, mode: router.RouterMode): Promise&lt;void&gt;
 
 Navigates to a page using the named route. This API uses a promise to return the result.
 
@@ -1109,10 +1168,10 @@ Navigates to a page using the named route. This API uses a promise to return the
 
 **Parameters**
 
-| Name    | Type                             | Mandatory  | Description        |
-| ------- | ------------------------------- | ---- | ---------- |
-| options | [NamedRouterOptions](js-apis-router.md#namedrouteroptions10) | Yes   | Page routing parameters. |
-| mode    | [RouterMode](js-apis-router.md#routermode9)      | Yes   | Routing mode.|
+| Name | Type                                                        | Mandatory| Description                |
+| ------- | ------------------------------------------------------------ | ---- | -------------------- |
+| options | [router.NamedRouterOptions](js-apis-router.md#namedrouteroptions10) | Yes  | Page routing parameters.  |
+| mode    | [router.RouterMode](js-apis-router.md#routermode9)           | Yes  | Routing mode.|
 
 **Return value**
 
@@ -1153,9 +1212,9 @@ router.pushNamedRoute({
 
 ### pushNamedRoute
 
-pushNamedRoute(options: NamedRouterOptions, mode: RouterMode, callback: AsyncCallback&lt;void&gt;): void
+pushNamedRoute(options: router.NamedRouterOptions, mode: router.RouterMode, callback: AsyncCallback&lt;void&gt;): void
 
-Navigates to a page using the named route. This API uses an asynchronous callback to return the result.
+Navigates to a page using the named route. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -1163,8 +1222,8 @@ Navigates to a page using the named route. This API uses an asynchronous callbac
 
 | Name    | Type                             | Mandatory  | Description        |
 | ------- | ------------------------------- | ---- | ---------- |
-| options | [NamedRouterOptions](js-apis-router.md#namedrouteroptions10) | Yes   | Page routing parameters. |
-| mode    | [RouterMode](js-apis-router.md#routermode9)      | Yes   | Routing mode.|
+| options | [router.NamedRouterOptions](js-apis-router.md#namedrouteroptions10) | Yes   | Page routing parameters. |
+| mode    | [router.RouterMode](js-apis-router.md#routermode9) | Yes   | Routing mode.|
 | callback | AsyncCallback&lt;void&gt;      | Yes  | Callback used to return the result.  |
 
 **Error codes**
@@ -1200,7 +1259,7 @@ router.pushNamedRoute({
 
 ### replaceNamedRoute
 
-replaceNamedRoute(options: NamedRouterOptions): Promise&lt;void&gt;
+replaceNamedRoute(options: router.NamedRouterOptions): Promise&lt;void&gt;
 
 Replaces the current page with another one using the named route and destroys the current page. This API uses a promise to return the result.
 
@@ -1208,9 +1267,9 @@ Replaces the current page with another one using the named route and destroys th
 
 **Parameters**
 
-| Name | Type                           | Mandatory| Description              |
-| ------- | ------------------------------- | ---- | ------------------ |
-| options | [NamedRouterOptions](js-apis-router.md#namedrouteroptions10) | Yes  | Description of the new page.|
+| Name | Type                                                        | Mandatory| Description              |
+| ------- | ------------------------------------------------------------ | ---- | ------------------ |
+| options | [router.NamedRouterOptions](js-apis-router.md#namedrouteroptions10) | Yes  | Description of the new page.|
 
 **Return value**
 
@@ -1224,7 +1283,7 @@ For details about the error codes, see [Router Error Codes](../errorcodes/errorc
 
 | ID  | Error Message|
 | --------- | ------- |
-| 100001    | if UI execution context not found. |
+| 100001    | if UI execution context not found, only throw in standard system. |
 | 100004    | if the named route is not exist. |
 
 **Example**
@@ -1247,9 +1306,9 @@ router.replaceNamedRoute({
 
 ### replaceNamedRoute
 
-replaceNamedRoute(options: NamedRouterOptions, callback: AsyncCallback&lt;void&gt;): void
+replaceNamedRoute(options: router.NamedRouterOptions, callback: AsyncCallback&lt;void&gt;): void
 
-Replaces the current page with another one using the named route and destroys the current page. This API uses an asynchronous callback to return the result.
+Replaces the current page with another one using the named route and destroys the current page. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -1257,7 +1316,7 @@ Replaces the current page with another one using the named route and destroys th
 
 | Name | Type                           | Mandatory| Description              |
 | ------- | ------------------------------- | ---- | ------------------ |
-| options | [NamedRouterOptions](js-apis-router.md#namedrouteroptions10) | Yes  | Description of the new page.|
+| options | [router.NamedRouterOptions](js-apis-router.md#namedrouteroptions10) | Yes  | Description of the new page.|
 | callback | AsyncCallback&lt;void&gt;      | Yes  | Callback used to return the result.  |
 
 **Error codes**
@@ -1266,7 +1325,7 @@ For details about the error codes, see [Router Error Codes](../errorcodes/errorc
 
 | ID  | Error Message|
 | --------- | ------- |
-| 100001    | if UI execution context not found. |
+| 100001    | if UI execution context not found, only throw in standard system. |
 | 100004    | if the named route is not exist. |
 
 **Example**
@@ -1289,7 +1348,7 @@ router.replaceNamedRoute({
 
 ### replaceNamedRoute
 
-replaceNamedRoute(options: NamedRouterOptions, mode: RouterMode): Promise&lt;void&gt;
+replaceNamedRoute(options: router.NamedRouterOptions, mode: router.RouterMode): Promise&lt;void&gt;
 
 Replaces the current page with another one using the named route and destroys the current page. This API uses a promise to return the result.
 
@@ -1297,10 +1356,10 @@ Replaces the current page with another one using the named route and destroys th
 
 **Parameters**
 
-| Name    | Type                             | Mandatory  | Description        |
-| ------- | ------------------------------- | ---- | ---------- |
-| options | [NamedRouterOptions](js-apis-router.md#namedrouteroptions10) | Yes   | Description of the new page. |
-| mode    | [RouterMode](js-apis-router.md#routermode9)      | Yes   | Routing mode.|
+| Name | Type                                                        | Mandatory| Description                |
+| ------- | ------------------------------------------------------------ | ---- | -------------------- |
+| options | [router.NamedRouterOptions](js-apis-router.md#namedrouteroptions10) | Yes  | Description of the new page.  |
+| mode    | [router.RouterMode](js-apis-router.md#routermode9)           | Yes  | Routing mode.|
 
 
 **Return value**
@@ -1315,7 +1374,7 @@ For details about the error codes, see [Router Error Codes](../errorcodes/errorc
 
 | ID  | Error Message|
 | --------- | ------- |
-| 100001    | if can not get the delegate. |
+| 100001    | if can not get the delegate, only throw in standard system. |
 | 100004    | if the named route is not exist. |
 
 **Example**
@@ -1338,9 +1397,9 @@ router.replaceNamedRoute({
 
 ### replaceNamedRoute
 
-replaceNamedRoute(options: NamedRouterOptions, mode: RouterMode, callback: AsyncCallback&lt;void&gt;): void
+replaceNamedRoute(options: router.NamedRouterOptions, mode: router.RouterMode, callback: AsyncCallback&lt;void&gt;): void
 
-Replaces the current page with another one using the named route and destroys the current page. This API uses an asynchronous callback to return the result.
+Replaces the current page with another one using the named route and destroys the current page. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -1348,8 +1407,8 @@ Replaces the current page with another one using the named route and destroys th
 
 | Name    | Type                             | Mandatory  | Description        |
 | ------- | ------------------------------- | ---- | ---------- |
-| options | [NamedRouterOptions](js-apis-router.md#namedrouteroptions10) | Yes   | Description of the new page. |
-| mode    | [RouterMode](js-apis-router.md#routermode9)      | Yes   | Routing mode.|
+| options | [router.NamedRouterOptions](js-apis-router.md#namedrouteroptions10) | Yes   | Description of the new page. |
+| mode    | [router.RouterMode](js-apis-router.md#routermode9) | Yes   | Routing mode.|
 | callback | AsyncCallback&lt;void&gt;      | Yes  | Callback used to return the result.  |
 
 **Error codes**
@@ -1358,7 +1417,7 @@ For details about the error codes, see [Router Error Codes](../errorcodes/errorc
 
 | ID  | Error Message|
 | --------- | ------- |
-| 100001    | if UI execution context not found. |
+| 100001    | if UI execution context not found, only throw in standard system. |
 | 100004    | if the named route is not exist. |
 
 **Example**
@@ -1381,7 +1440,7 @@ router.replaceNamedRoute({
 
 ### back
 
-back(options?: RouterOptions ): void
+back(options?: router.RouterOptions ): void
 
 Returns to the previous page or a specified page.
 
@@ -1389,9 +1448,9 @@ Returns to the previous page or a specified page.
 
 **Parameters**
 
-| Name | Type                           | Mandatory| Description                                                        |
-| ------- | ------------------------------- | ---- | ------------------------------------------------------------ |
-| options | [RouterOptions](js-apis-router.md#routeroptions) | No  | Description of the page. The **url** parameter indicates the URL of the page to return to. If the specified page does not exist in the page stack, the application does not respond. If no URL is set, the application returns to the previous page, and the page is not rebuilt. The page in the page stack is not reclaimed. It will be reclaimed after being popped up.|
+| Name | Type                                                   | Mandatory| Description                                                        |
+| ------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| options | [router.RouterOptions](js-apis-router.md#routeroptions) | No  | Description of the page. The **url** parameter indicates the URL of the page to return to. If the specified page does not exist in the page stack, the application does not respond. If no URL is set, the application returns to the previous page, and the page is not rebuilt. The page in the page stack is not reclaimed. It will be reclaimed after being popped up.|
 
 **Example**
 
@@ -1439,7 +1498,7 @@ console.log('pages stack size = ' + size);
 
 ### getState
 
-getState(): RouterState
+getState(): router.RouterState
 
 Obtains state information about the current page.
 
@@ -1463,7 +1522,7 @@ console.log('current path = ' + page.path);
 
 ### showAlertBeforeBackPage
 
-showAlertBeforeBackPage(options: EnableAlertOptions): void
+showAlertBeforeBackPage(options: router.EnableAlertOptions): void
 
 Enables the display of a confirm dialog box before returning to the previous page.
 
@@ -1471,9 +1530,9 @@ Enables the display of a confirm dialog box before returning to the previous pag
 
 **Parameters**
 
-| Name    | Type                                      | Mandatory  | Description       |
-| ------- | ---------------------------------------- | ---- | --------- |
-| options | [EnableAlertOptions](js-apis-router.md#enablealertoptions) | Yes   | Description of the dialog box.|
+| Name | Type                                                        | Mandatory| Description              |
+| ------- | ------------------------------------------------------------ | ---- | ------------------ |
+| options | [router.EnableAlertOptions](js-apis-router.md#enablealertoptions) | Yes  | Description of the dialog box.|
 
 **Error codes**
 
@@ -1487,13 +1546,15 @@ For details about the error codes, see [Router Error Codes](../errorcodes/errorc
 
 ```ts
 let router = uiContext.getRouter();
-try {
-  router.showAlertBeforeBackPage({            
-    message: 'Message Info'        
-  });
-} catch(error) {
-  console.error(`showAlertBeforeBackPage failed, code is ${error.code}, message is ${error.message}`);
-}
+router.showAlertBeforeBackPage({
+  message: 'Message Info'
+});
+  .then(() => {
+    // success
+  })
+  .catch(err => {
+    console.error(`showAlertBeforeBackPage failed, code is ${error.code}, message is ${error.message}`);
+  })
 ```
 
 ### hideAlertBeforeBackPage
@@ -1538,7 +1599,7 @@ In the following API examples, you must first use [getPromptAction()](#getprompt
 
 ### showToast
 
-showToast(options: ShowToastOptions): void
+showToast(options: promptAction.ShowToastOptions): void
 
 Shows a toast.
 
@@ -1546,9 +1607,9 @@ Shows a toast.
 
 **Parameters**
 
-| Name    | Type                                   | Mandatory  | Description     |
-| ------- | ------------------------------------- | ---- | ------- |
-| options | [ShowToastOptions](js-apis-promptAction.md#showtoastoptions) | Yes   | Toast options.|
+| Name | Type                                                        | Mandatory| Description          |
+| ------- | ------------------------------------------------------------ | ---- | -------------- |
+| options | [promptAction.ShowToastOptions](js-apis-promptAction.md#showtoastoptions) | Yes  | Toast options.|
 
 **Error codes**
 
@@ -1574,7 +1635,7 @@ try {
 
 ### showDialog
 
-showDialog(options: ShowDialogOptions, callback: AsyncCallback&lt;ShowDialogSuccessResponse&lt;): void
+showDialog(options: promptAction.ShowDialogOptions, callback: AsyncCallback&lt;promptAction.ShowDialogSuccessResponse&gt;): void
 
 Shows a dialog box. This API uses an asynchronous callback to return the result.
 
@@ -1582,10 +1643,10 @@ Shows a dialog box. This API uses an asynchronous callback to return the result.
 
 **Parameters**
 
-| Name     | Type                                      | Mandatory  | Description          |
-| -------- | ---------------------------------------- | ---- | ------------ |
-| options  | [ShowDialogOptions](js-apis-promptAction.md#showdialogoptions)  | Yes   | Dialog box options.|
-| callback | AsyncCallback&lt;[ShowDialogSuccessResponse](js-apis-promptAction.md#showdialogsuccessresponse)&gt; | Yes   | Callback used to return the dialog box response result.  |
+| Name  | Type                                                        | Mandatory| Description                    |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------ |
+| options  | [promptAction.ShowDialogOptions](js-apis-promptAction.md#showdialogoptions) | Yes  | Dialog box options.|
+| callback | AsyncCallback&lt;[promptAction.ShowDialogSuccessResponse](js-apis-promptAction.md#showdialogsuccessresponse)&gt; | Yes  | Callback used to return the dialog box response result.    |
 
 **Error codes**
 
@@ -1627,7 +1688,7 @@ try {
 
 ### showDialog
 
-showDialog(options: ShowDialogOptions): Promise&lt;ShowDialogSuccessResponse&gt;
+showDialog(options: promptAction.ShowDialogOptions): Promise&lt;promptAction.ShowDialogSuccessResponse&gt;
 
 Shows a dialog box. This API uses a promise to return the result synchronously.
 
@@ -1635,15 +1696,15 @@ Shows a dialog box. This API uses a promise to return the result synchronously.
 
 **Parameters**
 
-| Name    | Type                                     | Mandatory  | Description    |
-| ------- | --------------------------------------- | ---- | ------ |
-| options | [ShowDialogOptions](js-apis-promptAction.md#showdialogoptions) | Yes   | Dialog box options.|
+| Name | Type                                                        | Mandatory| Description        |
+| ------- | ------------------------------------------------------------ | ---- | ------------ |
+| options | [promptAction.ShowDialogOptions](js-apis-promptAction.md#showdialogoptions) | Yes  | Dialog box options.|
 
 **Return value**
 
-| Type                                      | Description      |
-| ---------------------------------------- | -------- |
-| Promise&lt;[ShowDialogSuccessResponse](js-apis-promptAction.md#showdialogsuccessresponse)&gt; | Promise used to return the dialog box response result.|
+| Type                                                        | Description            |
+| ------------------------------------------------------------ | ---------------- |
+| Promise&lt;[promptAction.ShowDialogSuccessResponse](js-apis-promptAction.md#showdialogsuccessresponse)&gt; | Promise used to return the dialog box response result.|
 
 **Error codes**
 
@@ -1685,7 +1746,7 @@ try {
 
 ### showActionMenu
 
-showActionMenu(options: ActionMenuOptions, callback: AsyncCallback&lt;ActionMenuSuccessResponse&gt;):void
+showActionMenu(options: promptAction.ActionMenuOptions, callback:promptAction.ActionMenuSuccessResponse):void
 
 Shows an action menu. This API uses an asynchronous callback to return the result.
 
@@ -1693,10 +1754,10 @@ Shows an action menu. This API uses an asynchronous callback to return the resul
 
 **Parameters**
 
-| Name     | Type                                      | Mandatory  | Description       |
-| -------- | ---------------------------------------- | ---- | --------- |
-| options  | [ActionMenuOptions](js-apis-promptAction.md#actionmenuoptions)  | Yes   | Action menu options.  |
-| callback | AsyncCallback&lt;[ActionMenuSuccessResponse](js-apis-promptAction.md#actionmenusuccessresponse)> | Yes   | Callback used to return the action menu response result.|
+| Name  | Type                                                        | Mandatory| Description              |
+| -------- | ------------------------------------------------------------ | ---- | ------------------ |
+| options  | [promptAction.ActionMenuOptions](js-apis-promptAction.md#actionmenuoptions) | Yes  | Action menu options.    |
+| callback | [promptAction.ActionMenuSuccessResponse](js-apis-promptAction.md#actionmenusuccessresponse) | Yes  | Callback used to return the action menu response result.|
 
 **Error codes**
 
@@ -1737,7 +1798,7 @@ try {
 
 ### showActionMenu
 
-showActionMenu(options: ActionMenuOptions): Promise&lt;ActionMenuSuccessResponse&gt;
+showActionMenu(options: promptAction.ActionMenuOptions): Promise&lt;promptAction.ActionMenuSuccessResponse&gt;
 
 Shows an action menu. This API uses a promise to return the result synchronously.
 
@@ -1745,15 +1806,15 @@ Shows an action menu. This API uses a promise to return the result synchronously
 
 **Parameters**
 
-| Name    | Type                                     | Mandatory  | Description     |
-| ------- | --------------------------------------- | ---- | ------- |
-| options | [ActionMenuOptions](js-apis-promptAction.md#actionmenuoptions) | Yes   | Action menu options.|
+| Name | Type                                                        | Mandatory| Description          |
+| ------- | ------------------------------------------------------------ | ---- | -------------- |
+| options | [promptAction.ActionMenuOptions](js-apis-promptAction.md#actionmenuoptions) | Yes  | Action menu options.|
 
 **Return value**
 
-| Type                                      | Description     |
-| ---------------------------------------- | ------- |
-| Promise&lt;[ActionMenuSuccessResponse](js-apis-promptAction.md#actionmenusuccessresponse)&gt; | Promise used to return the action menu response result.|
+| Type                                                        | Description          |
+| ------------------------------------------------------------ | -------------- |
+| Promise&lt;[promptAction.ActionMenuSuccessResponse](js-apis-promptAction.md#actionmenusuccessresponse)&gt; | Promise used to return the action menu response result.|
 
 **Error codes**
 

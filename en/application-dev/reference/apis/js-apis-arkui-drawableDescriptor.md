@@ -57,7 +57,7 @@ struct Index {
     Row() {
       Column() {
         Image((<LayeredDrawableDescriptor> (this.resManager.getDrawableDescriptor($r('app.media.icon').id))))
-        Image(((<LayeredDrawableDescriptor> (this.resManager.getDrawableDescriptor($r('app.media.drawable')
+        Image(((<LayeredDrawableDescriptor> (this.resManager.getDrawableDescriptor($r('app.media.icon')
           .id))).getForeground()).getPixelMap())
       }.height('50%')
     }.width('50%')
@@ -80,7 +80,8 @@ Obtains this **pixelMap** object.
 
 **Example**
   ```ts
-pixmap: PixelMap = (<DrawableDescriptor> (this.resManager.getDrawableDescriptor($r('app.media.icon')
+let resManager = getContext().resourceManager
+let pixmap: PixelMap = (<DrawableDescriptor> (resManager.getDrawableDescriptor($r('app.media.icon')
     .id))).getPixelMap();
   ```
 
@@ -99,7 +100,8 @@ Obtains the **pixelMap** object where the foreground, background, and mask are b
 
 **Example**
   ```ts
-pixmap: PixelMap = (<LayeredDrawableDescriptor> (this.resManager.getDrawableDescriptor($r('app.media.drawable')
+let resManager = getContext().resourceManager
+let pixmap: PixelMap = (<LayeredDrawableDescriptor> (resManager.getDrawableDescriptor($r('app.media.icon')
           .id))).getPixelMap();
   ```
 
@@ -118,7 +120,8 @@ Obtains the **DrawableDescriptor** object of the foreground.
 
 **Example**
   ```ts
-drawable: DrawableDescriptor = (<LayeredDrawableDescriptor> (this.resManager.getDrawableDescriptor($r('app.media.drawable')
+let resManager = getContext().resourceManager
+let drawable: DrawableDescriptor = (<LayeredDrawableDescriptor> (resManager.getDrawableDescriptor($r('app.media.icon')
     .id))).getForeground();
   ```
 
@@ -137,7 +140,8 @@ Obtains the **DrawableDescriptor** object of the background.
 
 **Example**
   ```ts
-drawable: DrawableDescriptor = (<LayeredDrawableDescriptor> (this.resManager.getDrawableDescriptor($r('app.media.drawable')
+let resManager = getContext().resourceManager
+let drawable: DrawableDescriptor = (<LayeredDrawableDescriptor> (resManager.getDrawableDescriptor($r('app.media.icon')
     .id))).getBackground();
   ```
 
@@ -156,6 +160,26 @@ Obtains the **DrawableDescriptor** object of the mask.
 
 **Example**
   ```ts
-drawable: DrawableDescriptor = (<LayeredDrawableDescriptor> (this.resManager.getDrawableDescriptor($r('app.media.drawable')
+let resManager = getContext().resourceManager
+let drawable: DrawableDescriptor = (<LayeredDrawableDescriptor> (resManager.getDrawableDescriptor($r('app.media.icon')
     .id))).getMask();
+  ```
+## LayeredDrawableDescriptor.getMaskClipPath
+static getMaskClipPath(): string
+
+Obtains the built-in clipping path parameters of the system. It is a static method of **LayeredDrawableDescriptor**.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Return value**
+
+| Type                                      | Description                  |
+| ---------------------------------------- | -------------------- |
+| string | String of the clipping path.|
+
+**Example**
+  ```ts
+Image($r('app.media.icon'))
+    .width('200px').height('200px')
+    .clip(new Path({commands:LayeredDrawableDescriptor.getMaskClipPath()}))
   ```
