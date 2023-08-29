@@ -21,12 +21,14 @@ Create状态为在应用加载过程中，UIAbility实例创建完成时触发�
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import Want from '@ohos.app.ability.Want';
 
 export default class EntryAbility extends UIAbility {
-  onCreate(want, launchParam) {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
     // 应用初始化
   }
-  ...
+  // ...
 }
 ```
 
@@ -46,7 +48,7 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 import window from '@ohos.window';
 
 export default class EntryAbility extends UIAbility {
-  ...
+  // ...
 
   onWindowStageCreate(windowStage: window.WindowStage) {
     // 设置WindowStage的事件订阅（获焦/失焦、可见/不可见）
@@ -77,7 +79,7 @@ export default class EntryAbility extends UIAbility {
 
     // 设置UI加载
     windowStage.loadContent('pages/Index', (err, data) => {
-      ...
+      // ...
     });
   }
 }
@@ -96,11 +98,11 @@ import window from '@ohos.window';
 
 export default class EntryAbility extends UIAbility {
   windowStage: window.WindowStage;
-  ...
+  // ...
 
   onWindowStageCreate(windowStage: window.WindowStage) {
     this.windowStage = windowStage;
-    ...
+    // ...
   }
 
   onWindowStageDestroy() {
@@ -133,7 +135,7 @@ Foreground和Background状态分别在UIAbility实例切换至前台和切换至
 import UIAbility from '@ohos.app.ability.UIAbility';
 
 export default class EntryAbility extends UIAbility {
-  ...
+  // ...
 
   onForeground() {
     // 申请系统需要的资源，或者重新申请在onBackground()中释放的资源
@@ -157,7 +159,7 @@ Destroy状态在UIAbility实例销毁时触发。可以在onDestroy()回调中�
 import UIAbility from '@ohos.app.ability.UIAbility';
 
 export default class EntryAbility extends UIAbility {
-  ...
+  // ...
 
   onDestroy() {
     // 系统资源的释放、数据的保存等

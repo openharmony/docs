@@ -217,51 +217,44 @@ export default class IdlTestServiceStub extends rpc.RemoteObject implements IIdl
     
     async onRemoteMessageRequest(code: number, data, reply, option): Promise<boolean> {
         console.log("onRemoteMessageRequest called, code = " + code);
-        switch(code) {
-            case IdlTestServiceStub.COMMAND_TEST_INT_TRANSACTION: {
-                let _data = data.readInt();
-                this.testIntTransaction(_data, (errCode, returnValue) => {
-                    reply.writeInt(errCode);
-                    if (errCode == 0) {
-                        reply.writeInt(returnValue);
-                    }
-                });
-                return true;
-            }
-            case IdlTestServiceStub.COMMAND_TEST_STRING_TRANSACTION: {
-                let _data = data.readString();
-                this.testStringTransaction(_data, (errCode) => {
-                    reply.writeInt(errCode);
-                });
-                return true;
-            }
-            case IdlTestServiceStub.COMMAND_TEST_MAP_TRANSACTION: {
-                let _data = new Map();
-                let _dataSize = data.readInt();
-                for (let i = 0; i < _dataSize; ++i) {
-                    let key = data.readInt();
-                    let value = data.readInt();
-                    _data.set(key, value);
+        if (code == IdlTestServiceStub.COMMAND_TEST_INT_TRANSACTION) {
+            let _data = data.readInt();
+            this.testIntTransaction(_data, (errCode, returnValue) => {
+                reply.writeInt(errCode);
+                if (errCode == 0) {
+                    reply.writeInt(returnValue);
                 }
-                this.testMapTransaction(_data, (errCode) => {
-                    reply.writeInt(errCode);
-                });
-                return true;
+            });
+            return true;
+        } else if (code == IdlTestServiceStub.COMMAND_TEST_STRING_TRANSACTION) {
+            let _data = data.readString();
+            this.testStringTransaction(_data, (errCode) => {
+                reply.writeInt(errCode);
+            });
+            return true;
+        } else if (code == IdlTestServiceStub.COMMAND_TEST_MAP_TRANSACTION) {
+            let _data: Map<number, number> = new Map();
+            let _dataSize = data.readInt();
+            for (let i = 0; i < _dataSize; ++i) {
+                let key = data.readInt();
+                let value = data.readInt();
+                _data.set(key, value);
             }
-            case IdlTestServiceStub.COMMAND_TEST_ARRAY_TRANSACTION: {
-                let _data = data.readStringArray();
-                this.testArrayTransaction(_data, (errCode, returnValue) => {
-                    reply.writeInt(errCode);
-                    if (errCode == 0) {
-                        reply.writeInt(returnValue);
-                    }
-                });
-                return true;
-            }
-            default: {
-                console.log("invalid request code" + code);
-                break;
-            }
+            this.testMapTransaction(_data, (errCode) => {
+                reply.writeInt(errCode);
+            });
+            return true;
+        } else if (code == IdlTestServiceStub.COMMAND_TEST_ARRAY_TRANSACTION) {
+            let _data = data.readStringArray();
+            this.testArrayTransaction(_data, (errCode, returnValue) => {
+                reply.writeInt(errCode);
+                if (errCode == 0) {
+                    reply.writeInt(returnValue);
+                }
+            });
+            return true;
+        } else {
+            console.log("invalid request code" + code);
         }
         return false;
     }
@@ -372,7 +365,7 @@ function callbackTestArrayTransaction(result: number, ret: number): void {
   }
 }
 
-var onAbilityConnectDone = {
+let onAbilityConnectDone = {
   onConnect:function (elementName, proxy) {
     let testProxy = new IdlTestServiceProxy(proxy);
     let testMap = new Map();

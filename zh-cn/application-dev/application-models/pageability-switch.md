@@ -42,15 +42,17 @@ FA模型中PageAbility对应Stage模型中的UIAbility。切换步骤如下。
 
 
    ```ts
-   import Window from '@ohos.window'
+    import Window from '@ohos.window'
 
-   onWindowStageCreate(windowStage: Window.WindowStage) {
-       // Main window is created, set main page for this ability
-       windowStage.loadContent('pages/Index', (err, data) => {
-           if (err.code) {
-               console.error("loadContent failed")
-               return;
-           }
-       });
-   }
+    export default class EntryAbility extends UIAbility {
+      onWindowStageCreate(windowStage: Window.WindowStage) {
+        // Main window is created, set main page for this ability
+        windowStage.loadContent('pages/Index', (err, data) => {
+          if (err.code) {
+            console.error("loadContent failed")
+            return;
+          }
+        });
+      }
+    }
    ```
