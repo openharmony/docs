@@ -39,7 +39,7 @@
   
       ```ts
       // Stage模型参考如下代码
-      const context : Context= getContext(this);
+      const context : Context = getContext(this);
       const filePath : string = context.cacheDir + '/test.jpg';
       const file : File = fs.openSync(filePath, fs.OpenMode.READ_WRITE);
       const fd : number = file?.fd;
