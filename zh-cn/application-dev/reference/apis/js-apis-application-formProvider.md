@@ -10,6 +10,7 @@ FormProvider模块提供了卡片提供方相关接口的能力，开发者在�
 
 ```ts
 import formProvider from '@ohos.application.formProvider';
+import Base from '@ohos.base'
 ```
 
 ## setFormNextRefreshTime
@@ -31,8 +32,8 @@ setFormNextRefreshTime(formId: string, minute: number, callback: AsyncCallback&l
 **示例：**
 
   ```ts
-  let formId = '12400633174999288';
-  formProvider.setFormNextRefreshTime(formId, 5, (error, data) => {
+  let formId: string = '12400633174999288';
+  formProvider.setFormNextRefreshTime(formId, 5, (error: Base.BusinessError) => {
     if (error.code) {
       console.error('formProvider setFormNextRefreshTime, error: ${JSON.stringify(error)}');
     }
@@ -63,11 +64,11 @@ setFormNextRefreshTime(formId: string, minute: number): Promise&lt;void&gt;
 **示例：**
 
   ```ts
-  let formId = '12400633174999288';
+  let formId: string = '12400633174999288';
   formProvider.setFormNextRefreshTime(formId, 5).then(() => {
     console.log('formProvider setFormNextRefreshTime success');
-  }).catch((error) => {
-    console.error('formProvider setFormNextRefreshTime, error: ${JSON.stringify(error)}');
+  }).catch((error: Base.BusinessError) => {
+    console.error(`formProvider setFormNextRefreshTime, error: ${JSON.stringify(error)}`);
   });
   ```
 
@@ -93,10 +94,18 @@ updateForm(formId: string, formBindingData: formBindingData.FormBindingData,call
   import formBindingData from '@ohos.app.form.formBindingData';
 
   let formId = '12400633174999288';
-  let obj = formBindingData.createFormBindingData({temperature:'22c', time:'22:00'});
-  formProvider.updateForm(formId, obj, (error, data) => {
+  class createBindingDataType {
+    temperature: string
+    time: string
+  };
+  let createBindingDataParam: createBindingDataType = {
+    temperature:'22c',
+    time:'22:00'
+  };
+  let obj = formBindingData.createFormBindingData(createBindingDataParam);
+  formProvider.updateForm(formId, obj, (error: Base.BusinessError) => {
     if (error.code) {
-      console.error('formProvider updateForm, error: ${JSON.stringify(error)}');
+      console.error(`formProvider updateForm, error: ${JSON.stringify(error)}`);
     }
   });
   ```
@@ -127,12 +136,20 @@ updateForm(formId: string, formBindingData: formBindingData.FormBindingData): Pr
   ```ts
   import formBindingData from '@ohos.application.formBindingData';
 
-  let formId = '12400633174999288';
-  let obj = formBindingData.createFormBindingData({temperature:'22c', time:'22:00'});
+  let formId: string = '12400633174999288';
+  class createBindingDataType {
+    temperature: string
+    time: string
+  };
+  let createBindingDataParam: createBindingDataType = {
+    temperature:'22c',
+    time:'22:00'
+  };
+  let obj = formBindingData.createFormBindingData(createBindingDataParam);
   formProvider.updateForm(formId, obj).then(() => {
     console.log('formProvider updateForm success');
-  }).catch((error) => {
-    console.error('formProvider updateForm, error: ${JSON.stringify(error)}');
+  }).catch((error: Base.BusinessError) => {
+    console.error(`formProvider updateForm, error: ${JSON.stringify(error)}`);
   });
   ```
 
