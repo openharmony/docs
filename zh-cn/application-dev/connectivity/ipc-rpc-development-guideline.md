@@ -180,7 +180,7 @@ IPC/RPC的主要工作是让运行在不同进程的Proxy和Stub互相通信，�
 1. 添加依赖
 
    ```ts
-   import rpc from "@ohos.rpc";
+   import rpc from '@ohos.rpc';
    // 仅FA模型需要导入@ohos.ability.featureAbility
    // import featureAbility from "@ohos.ability.featureAbility";
    ```
@@ -188,17 +188,20 @@ IPC/RPC的主要工作是让运行在不同进程的Proxy和Stub互相通信，�
    Stage模型需要获取context
 
    ```ts
-   import Ability from "@ohos.app.ability.UIAbility";
+   import UIAbility from '@ohos.app.ability.UIAbility';
+   import Want from '@ohos.app.ability.Want';
+   import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+   import window from '@ohos.window';
 
-   export default class MainAbility extends Ability {
-       onCreate(want, launchParam) {
+   export default class MainAbility extends UIAbility {
+       onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
            console.log("[Demo] MainAbility onCreate");
-           globalThis.context = this.context;
+           let context = this.context;
        }
        onDestroy() {
            console.log("[Demo] MainAbility onDestroy");
        }
-       onWindowStageCreate(windowStage) {
+       onWindowStageCreate(windowStage: window.WindowStage) {
            // Main window is created, set main page for this ability
            console.log("[Demo] MainAbility onWindowStageCreate");
        }
@@ -222,53 +225,62 @@ IPC/RPC的主要工作是让运行在不同进程的Proxy和Stub互相通信，�
    首先，构造变量want，指定要绑定的Ability所在应用的包名、组件名，如果是跨设备的场景，还需要绑定目标设备NetworkId（组网场景下对应设备的标识符，可以使用deviceManager获取目标设备的NetworkId）；然后，构造变量connect，指定绑定成功、绑定失败、断开连接时的回调函数；最后，FA模型使用featureAbility提供的接口绑定Ability，Stage模型通过context获取服务后用提供的接口绑定Ability。
 
    ```ts
-   import rpc from "@ohos.rpc";
    // 仅FA模型需要导入@ohos.ability.featureAbility
    // import featureAbility from "@ohos.ability.featureAbility";
+   import rpc from '@ohos.rpc';
+   import Want from '@ohos.app.ability.Want';
+   import common from '@ohos.app.ability.common';
+   import deviceManager from '@ohos.distributedHardware.deviceManager';
 
-   let proxy = null;
-   let connectId = null;
+   let proxy: rpc.RemoteProxy;
+   let connectId: number;
 
    // 单个设备绑定Ability
-   let want = {
+   let want: Want = {
        // 包名和组件名写实际的值
-       "bundleName": "ohos.rpc.test.server",
-       "abilityName": "ohos.rpc.test.server.ServiceAbility",
+       bundleName: "ohos.rpc.test.server",
+       abilityName: "ohos.rpc.test.server.ServiceAbility",
    };
-   let connect = {
-       onConnect:function(elementName, remote) {
+   let connect: common.ConnectOptions = {
+       onConnect: (elementName, remote: rpc.RemoteProxy) => {
            proxy = remote;
        },
-       onDisconnect:function(elementName) {
+       onDisconnect: (elementName) => {
        },
-       onFailed:function() {
-           proxy = null;
+       onFailed: () => {
+           proxy;
        }
    };
    // FA模型使用此方法连接服务
    // connectId = featureAbility.connectAbility(want, connect);
 
-   connectId = globalThis.context.connectServiceExtensionAbility(want,connect);
+   connectId = this.context.connectServiceExtensionAbility(want,connect);
 
-   // 如果是跨设备绑定，可以使用deviceManager获取目标设备NetworkId
-   import deviceManager from '@ohos.distributedHardware.deviceManager';
-   function deviceManagerCallback(deviceManager) {
-       let deviceList = deviceManager.getTrustedDeviceListSync();
-       let networkId = deviceList[0].networkId;
-       let want = {
-           "bundleName": "ohos.rpc.test.server",
-           "abilityName": "ohos.rpc.test.service.ServiceAbility",
-           "networkId": networkId,
-           "flags": 256
-       };
-       // 建立连接后返回的Id需要保存下来，在断开连接时需要作为参数传入
-       // FA模型使用此方法连接服务
-       // connectId = featureAbility.connectAbility(want, connect);
-
-       connectId = globalThis.context.connectServiceExtensionAbility(want,connect);
-   }
+   // 跨设备绑定
    // 第一个参数是本应用的包名，第二个参数是接收deviceManager的回调函数
-   deviceManager.createDeviceManager("ohos.rpc.test", deviceManagerCallback);
+   deviceManager.createDeviceManager("ohos.rpc.test", (err: Error, data: deviceManager.DeviceManager) => {
+     if (err) {
+       console.error("createDeviceManager errCode:" + err.code + ",errMessage:" + err.message);
+       return;
+     }
+     console.info("createDeviceManager success");
+     let dmInstance = data;
+   });
+
+  // 使用deviceManager获取目标设备NetworkId
+  let deviceList: Array<deviceManager.DeviceInfo> = dmInstance.getTrustedDeviceListSync();
+  let networkId: string = deviceList[0].networkId;
+  let want: Want = {
+    bundleName: "ohos.rpc.test.server",
+    abilityName: "ohos.rpc.test.service.ServiceAbility",
+    deviceId: networkId,
+    flags: 256
+  };
+  // 建立连接后返回的Id需要保存下来，在断开连接时需要作为参数传入
+  // FA模型使用此方法连接服务
+  // connectId = featureAbility.connectAbility(want, connect);
+
+  connectId = this.context.connectServiceExtensionAbility(want,connect);
    ```
 
 
@@ -278,14 +290,14 @@ IPC/RPC的主要工作是让运行在不同进程的Proxy和Stub互相通信，�
 
    ```ts
    onConnect(want: Want) {
-       var robj:rpc.RemoteObject = new Stub("rpcTestAbility");
+       const robj: rpc.RemoteObject = new Stub("rpcTestAbility");
        return robj;
    }
    class Stub extends rpc.RemoteObject {
-       constructor(descriptor) {
+       constructor(descriptor: string) {
            super(descriptor);
        }
-       onRemoteMessageRequest(code, data, reply, option) {
+       onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption): boolean | Promise<boolean> {
            // 根据code处理客户端的请求
            return true;
        }
@@ -297,20 +309,21 @@ IPC/RPC的主要工作是让运行在不同进程的Proxy和Stub互相通信，�
    客户端在onConnect回调里接收到代理对象，调用sendRequest方法发起请求，在期约（JavaScript期约：用于表示一个异步操作的最终完成或失败及其结果值）或者回调函数里接收结果。
 
    ```ts
+   import rpc from '@ohos.rpc';
    // 使用期约
    let option = new rpc.MessageOption();
    let data = rpc.MessageParcel.create();
    let reply = rpc.MessageParcel.create();
    // 往data里写入参数
    proxy.sendRequest(1, data, reply, option)
-       .then(function(result) {
+       .then((result: rpc.SendRequestResult) => {
            if (result.errCode != 0) {
                console.error("send request failed, errCode: " + result.errCode);
                return;
            }
            // 从result.reply里读取结果
        })
-       .catch(function(e) {
+       .catch((e: Error) => {
            console.error("send request got exception: " + e);
        })
        .finally(() => {
@@ -319,7 +332,7 @@ IPC/RPC的主要工作是让运行在不同进程的Proxy和Stub互相通信，�
        })
 
    // 使用回调函数
-   function sendRequestCallback(result) {
+   function sendRequestCallback(result: rpc.SendRequestResult) {
        try {
            if (result.errCode != 0) {
                console.error("send request failed, errCode: " + result.errCode);
@@ -352,7 +365,7 @@ IPC/RPC的主要工作是让运行在不同进程的Proxy和Stub互相通信，�
    // FA模型使用此方法断开连接
    // featureAbility.disconnectAbility(connectId, disconnectCallback);
 
-   globalThis.context.disconnectServiceExtensionAbility(connectId);
+   this.context.disconnectServiceExtensionAbility(connectId);
    ```
 
 ## 相关实例
