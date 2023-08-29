@@ -7,14 +7,14 @@
 ![Photographing Development Process](figures/photographing-development-process.png)
 
 ## 完整示例
-
+[各类Context的获取方式](../application-models/application-context-stage.md)
 ```ts
 import camera from '@ohos.multimedia.camera';
 import image from '@ohos.multimedia.image';
 import media from '@ohos.multimedia.media';
 
 // 创建CameraManager对象
-let context: Context = getContext(this);  // [各类Context的获取方式](../application-models/application-context-stage.md)
+let context: Context = getContext(this);
 let cameraManager: camera.CameraManager = camera.getCameraManager(context);
 if (!cameraManager) {
   console.error("camera.getCameraManager error");
@@ -45,7 +45,8 @@ let cameraInput: camera.CameraInput;
 try {
   cameraInput = cameraManager.createCameraInput(cameraArray[0]);
 } catch (error) {
-  console.error('Failed to createCameraInput errorCode = ' + error.code);
+  let err = error as BusinessError;
+  console.error('Failed to createCameraInput errorCode = ' + err.code);
 }
 
 // 监听cameraInput错误信息
@@ -80,7 +81,8 @@ let previewOutput: camera.PreviewOutput;
 try {
   previewOutput = cameraManager.createPreviewOutput(previewProfilesArray[0], surfaceId);
 } catch (error) {
-  console.error("Failed to create the PreviewOutput instance.");
+  let err = error as BusinessError;
+  console.error(`Failed to create the PreviewOutput instance. error code: ${err.code}`);
 }
 
 // 监听预览输出错误信息
@@ -89,7 +91,7 @@ previewOutput.on('error', (error: BusinessError) => {
 });
 
 // 创建ImageReceiver对象，并设置照片参数：分辨率大小是根据前面 photoProfilesArray 获取的当前设备所支持的拍照分辨率大小去设置
-let imageReceiver: image.ImageReceiver = await image.createImageReceiver(1920, 1080, 4, 8);
+let imageReceiver: image.ImageReceiver = image.createImageReceiver(1920, 1080, 4, 8);
 // 获取照片显示SurfaceId
 let photoSurfaceId: string = await imageReceiver.getReceivingSurfaceId();
 // 创建拍照输出流
@@ -97,14 +99,16 @@ let photoOutput: camera.PhotoOutput;
 try {
   photoOutput = cameraManager.createPhotoOutput(photoProfilesArray[0], photoSurfaceId);
 } catch (error) {
-  console.error('Failed to createPhotoOutput errorCode = ' + error.code);
+  let err = error as BusinessError;
+  console.error('Failed to createPhotoOutput errorCode = ' + err.code);
 }
 //创建会话
 let captureSession: camera.CaptureSession;
 try {
   captureSession = cameraManager.createCaptureSession();
 } catch (error) {
-  console.error('Failed to create the CaptureSession instance. errorCode = ' + error.code);
+  let err = error as BusinessError;
+  console.error('Failed to create the CaptureSession instance. errorCode = ' + err.code);
 }
 
 // 监听session错误信息
@@ -116,28 +120,32 @@ captureSession.on('error', (error: BusinessError) => {
 try {
   captureSession.beginConfig();
 } catch (error) {
-  console.error('Failed to beginConfig. errorCode = ' + error.code);
+  let err = error as BusinessError;
+  console.error('Failed to beginConfig. errorCode = ' + err.code);
 }
 
 // 向会话中添加相机输入流
 try {
   captureSession.addInput(cameraInput);
 } catch (error) {
-  console.error('Failed to addInput. errorCode = ' + error.code);
+  let err = error as BusinessError;
+  console.error('Failed to addInput. errorCode = ' + err.code);
 }
 
 // 向会话中添加预览输出流
 try {
   captureSession.addOutput(previewOutput);
 } catch (error) {
-  console.error('Failed to addOutput(previewOutput). errorCode = ' + error.code);
+  let err = error as BusinessError;
+  console.error('Failed to addOutput(previewOutput). errorCode = ' + err.code);
 }
 
 // 向会话中添加拍照输出流
 try {
   captureSession.addOutput(photoOutput);
 } catch (error) {
-  console.error('Failed to addOutput(photoOutput). errorCode = ' + error.code);
+  let err = error as BusinessError;
+  console.error('Failed to addOutput(photoOutput). errorCode = ' + err.code);
 }
 
 // 提交会话配置
@@ -152,7 +160,8 @@ let flashStatus: boolean;
 try {
   flashStatus = captureSession.hasFlash();
 } catch (error) {
-  console.error('Failed to hasFlash. errorCode = ' + error.code);
+  let err = error as BusinessError;
+  console.error('Failed to hasFlash. errorCode = ' + err.code);
 }
 console.info('Promise returned with the flash light support status:' + flashStatus);
 
@@ -163,14 +172,16 @@ if (flashStatus) {
     let status: boolean = captureSession.isFlashModeSupported(camera.FlashMode.FLASH_MODE_AUTO);
     flashModeStatus = status;
   } catch (error) {
-    console.error('Failed to check whether the flash mode is supported. errorCode = ' + error.code);
+    let err = error as BusinessError;
+    console.error('Failed to check whether the flash mode is supported. errorCode = ' + err.code);
   }
   if(flashModeStatus) {
     // 设置自动闪光灯模式
     try {
       captureSession.setFlashMode(camera.FlashMode.FLASH_MODE_AUTO);
     } catch (error) {
-      console.error('Failed to set the flash mode. errorCode = ' + error.code);
+      let err = error as BusinessError;
+      console.error('Failed to set the flash mode. errorCode = ' + err.code);
     }
   }
 }
@@ -181,7 +192,8 @@ try {
   let status: boolean = captureSession.isFocusModeSupported(camera.FocusMode.FOCUS_MODE_CONTINUOUS_AUTO);
   focusModeStatus = status;
 } catch (error) {
-  console.error('Failed to check whether the focus mode is supported. errorCode = ' + error.code);
+  let err = error as BusinessError;
+  console.error('Failed to check whether the focus mode is supported. errorCode = ' + err.code);
 }
 
 if (focusModeStatus) {
@@ -189,23 +201,26 @@ if (focusModeStatus) {
   try {
     captureSession.setFocusMode(camera.FocusMode.FOCUS_MODE_CONTINUOUS_AUTO);
   } catch (error) {
-    console.error('Failed to set the focus mode. errorCode = ' + error.code);
+    let err = error as BusinessError;
+    console.error('Failed to set the focus mode. errorCode = ' + err.code);
   }
 }
 
 // 获取相机支持的可变焦距比范围
-let zoomRatioRange;
+let zoomRatioRange: Array<number>;
 try {
-  zoomRatioRange: Array<number> = captureSession.getZoomRatioRange();
+  zoomRatioRange = captureSession.getZoomRatioRange();
 } catch (error) {
-  console.error('Failed to get the zoom ratio range. errorCode = ' + error.code);
+  let err = error as BusinessError;
+  console.error('Failed to get the zoom ratio range. errorCode = ' + err.code);
 }
 
 // 设置可变焦距比
 try {
   captureSession.setZoomRatio(zoomRatioRange[0]);
 } catch (error) {
-  console.error('Failed to set the zoom ratio value. errorCode = ' + error.code);
+  let err = error as BusinessError;
+  console.error('Failed to set the zoom ratio value. errorCode = ' + err.code);
 }
 let settings: camera.PhotoCaptureSetting = {
   quality: camera.QualityLevel.QUALITY_LEVEL_HIGH,                                     // 设置图片质量高
