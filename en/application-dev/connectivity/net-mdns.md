@@ -11,6 +11,7 @@ Typical MDNS management scenarios include:
 - Discovering local services and listening to the status changes of local services of the specified type through the **DiscoveryService** object.
 
 > **NOTE**
+> 
 > To maximize the application running efficiency, most API calls are called asynchronously in callback or promise mode. The following code examples use the callback mode. For details about the APIs, see [mDNS Management](../reference/apis/js-apis-net-mdns.md).
 
 The following describes the development procedure specific to each application scenario.
@@ -98,7 +99,7 @@ mdns.removeLocalService(context, localServiceInfo, function (error, data) {
 
 1. Connect the device to the Wi-Fi network.
 2. Import the **mdns** namespace from **@ohos.net.mdns**.
-3. Creates a **DiscoveryService** object, which is used to discover mDNS services of the specified type.
+3. Create a **DiscoveryService** object, which is used to discover mDNS services of the specified type.
 4. Subscribe to mDNS service discovery status changes.
 5. Enable discovery of mDNS services on the LAN.
 6. Stop searching for mDNS services on the LAN.
