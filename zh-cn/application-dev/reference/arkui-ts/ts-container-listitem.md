@@ -30,7 +30,7 @@ ListItem(value?: ListItemOptions)
 
 ListItem(value?: string)
 
-从API version 10开始, 该接口不再维护，推荐使用[ListItem<sup>10+</sup>]()。
+从API version 10开始, 该接口不再维护，推荐使用[ListItem<sup>10+</sup>](#listitem10)。
 
 **参数：**
 
