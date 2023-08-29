@@ -721,19 +721,21 @@ pushUrl(options: router.RouterOptions): Promise&lt;void&gt;
 
 ```ts
 let router = uiContext.getRouter();
-try {
-  router.pushUrl({
-    url: 'pages/routerpage2',
-    params: {
-      data1: 'message',
-      data2: {
-        data3: [123, 456, 789]
-      }
+router.pushUrl({
+  url: 'pages/routerpage2',
+  params: {
+    data1: 'message',
+    data2: {
+      data3: [123, 456, 789]
     }
+  }
+})
+  .then(() => {
+    // success
   })
-} catch (err) {
-  console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
-}
+  .catch(err => {
+    console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
+  })
 ```
 
 ### pushUrl
@@ -817,19 +819,21 @@ pushUrl(options: router.RouterOptions, mode: router.RouterMode): Promise&lt;void
 
 ```ts
 let router = uiContext.getRouter();
-try {
-  router.pushUrl({
-    url: 'pages/routerpage2',
-    params: {
-      data1: 'message',
-      data2: {
-        data3: [123, 456, 789]
-      }
+router.pushUrl({
+  url: 'pages/routerpage2',
+  params: {
+    data1: 'message',
+    data2: {
+      data3: [123, 456, 789]
     }
-  }, router.RouterMode.Standard)
-} catch (err) {
-  console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
-}
+  }
+}, router.RouterMode.Standard)
+  .then(() => {
+    // success
+  })
+  .catch(err => {
+    console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
+  })
 ```
 
 ### pushUrl
@@ -912,16 +916,18 @@ replaceUrl(options: router.RouterOptions): Promise&lt;void&gt;
 
 ```ts
 let router = uiContext.getRouter();
-try {
-  router.replaceUrl({
-    url: 'pages/detail',
-    params: {
-      data1: 'message'
-    }
+router.replaceUrl({
+  url: 'pages/detail',
+  params: {
+    data1: 'message'
+  }
+})
+  .then(() => {
+    // success
   })
-} catch (err) {
-  console.error(`replaceUrl failed, code is ${err.code}, message is ${err.message}`);
-}
+  .catch(err => {
+    console.error(`replaceUrl failed, code is ${err.code}, message is ${err.message}`);
+  })
 ```
 
 ### replaceUrl
@@ -1089,19 +1095,21 @@ pushNamedRoute(options: router.NamedRouterOptions): Promise&lt;void&gt;
 
 ```ts
 let router = uiContext.getRouter();
-try {
-  router.pushNamedRoute({
-    name: 'myPage',
-    params: {
-      data1: 'message',
-      data2: {
-        data3: [123, 456, 789]
-      }
+router.pushNamedRoute({
+  name: 'myPage',
+  params: {
+    data1: 'message',
+    data2: {
+      data3: [123, 456, 789]
     }
+  }
+})
+  .then(() => {
+    // success
   })
-} catch (err) {
-  console.error(`pushNamedRoute failed, code is ${err.code}, message is ${err.message}`);
-}
+  .catch(err => {
+    console.error(`pushNamedRoute failed, code is ${err.code}, message is ${err.message}`);
+  })
 ```
 
 ### pushNamedRoute
@@ -1184,19 +1192,21 @@ pushNamedRoute(options: router.NamedRouterOptions, mode: router.RouterMode): Pro
 
 ```ts
 let router = uiContext.getRouter();
-try {
-  router.pushNamedRoute({
-    name: 'myPage',
-    params: {
-      data1: 'message',
-      data2: {
-        data3: [123, 456, 789]
-      }
+router.pushNamedRoute({
+  name: 'myPage',
+  params: {
+    data1: 'message',
+    data2: {
+      data3: [123, 456, 789]
     }
-  }, router.RouterMode.Standard)
-} catch (err) {
-  console.error(`pushNamedRoute failed, code is ${err.code}, message is ${err.message}`);
-}
+  }
+}, router.RouterMode.Standard)
+  .then(() => {
+    // success
+  })
+  .catch(err => {
+    console.error(`pushNamedRoute failed, code is ${err.code}, message is ${err.message}`);
+  })
 ```
 
 ### pushNamedRoute
@@ -1279,16 +1289,18 @@ replaceNamedRoute(options: router.NamedRouterOptions): Promise&lt;void&gt;
 
 ```ts
 let router = uiContext.getRouter();
-try {
-  router.replaceNamedRoute({
-    name: 'myPage',
-    params: {
-      data1: 'message'
-    }
+router.replaceNamedRoute({
+  name: 'myPage',
+  params: {
+    data1: 'message'
+  }
+})
+  .then(() => {
+    // success
   })
-} catch (err) {
-  console.error(`replaceNamedRoute failed, code is ${err.code}, message is ${err.message}`);
-}
+  .catch(err => {
+    console.error(`replaceNamedRoute failed, code is ${err.code}, message is ${err.message}`);
+  })
 ```
 
 ### replaceNamedRoute
@@ -1368,16 +1380,18 @@ replaceNamedRoute(options: router.NamedRouterOptions, mode: router.RouterMode): 
 
 ```ts
 let router = uiContext.getRouter();
-try {
-  router.replaceNamedRoute({
-    name: 'myPage',
-    params: {
-      data1: 'message'
-    }
-  }, router.RouterMode.Standard)
-} catch (err) {
-  console.error(`replaceNamedRoute failed, code is ${err.code}, message is ${err.message}`);
-}
+router.replaceNamedRoute({
+  name: 'myPage',
+  params: {
+    data1: 'message'
+  }
+}, router.RouterMode.Standard)
+  .then(() => {
+    // success
+  })
+  .catch(err => {
+    console.error(`replaceNamedRoute failed, code is ${err.code}, message is ${err.message}`);
+  })
 ```
 
 ### replaceNamedRoute
@@ -1531,13 +1545,15 @@ showAlertBeforeBackPage(options: router.EnableAlertOptions): void
 
 ```ts
 let router = uiContext.getRouter();
-try {
-  router.showAlertBeforeBackPage({            
-    message: 'Message Info'        
-  });
-} catch(error) {
-  console.error(`showAlertBeforeBackPage failed, code is ${error.code}, message is ${error.message}`);
-}
+router.showAlertBeforeBackPage({
+  message: 'Message Info'
+});
+  .then(() => {
+    // success
+  })
+  .catch(err => {
+    console.error(`showAlertBeforeBackPage failed, code is ${error.code}, message is ${error.message}`);
+  })
 ```
 
 ### hideAlertBeforeBackPage
