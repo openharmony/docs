@@ -51,21 +51,23 @@ setDisposedStatus(appId: string, disposedWant: Want): Promise\<void>
 
 ```ts
 import { BusinessError } from '@ohos.base';
+import Want from '@ohos.app.ability.Want';
+import appControl from '@ohos.bundle.appControl';
 
 let appId = "com.example.myapplication_xxxxx";
-let want = {bundleName: 'com.example.myapplication'};
+let want:Want = {bundleName: 'com.example.myapplication'};
 
 try {
-    appControl.setDisposedStatus(appId, want)
-        .then(() => {
-            console.info('setDisposedStatus success');
-        }).catch((error) => {
-            let message = (err as BusinessError).message;
-            console.error('setDisposedStatus failed ' + message);
-        });
-} catch (error) {
-    let message = (err as BusinessError).message;
+  appControl.setDisposedStatus(appId, want)
+    .then(() => {
+      console.info('setDisposedStatus success');
+    }).catch((error: BusinessError) => {
+    let message = (error as BusinessError).message;
     console.error('setDisposedStatus failed ' + message);
+  });
+} catch (error) {
+  let message = (error as BusinessError).message;
+  console.error('setDisposedStatus failed ' + message);
 }
 ```
 
@@ -102,22 +104,24 @@ setDisposedStatus(appId: string, disposedWant: Want, callback: AsyncCallback\<vo
 ```ts
 import appControl from '@ohos.bundle.appControl';
 import { BusinessError } from '@ohos.base';
+import Want from '@ohos.app.ability.Want';
+
 
 let appId = "com.example.myapplication_xxxxx";
-let want = {bundleName: 'com.example.myapplication'};
+let want: Want = {bundleName: 'com.example.myapplication'};
 
 try {
-    appControl.setDisposedStatus(appId, want, (error: BusinessError, data: appControl.AsyncCallback<void>) => {
-        if (error) {
-            let message = (error as BusinessError).message;
-            console.error('setDisposedStatus failed ' + message);
-            return;
-        }
-        console.info('setDisposedStatus success');
-    });
+  appControl.setDisposedStatus(appId, want, (error: BusinessError, data) => {
+    if (error) {
+      let message = (error as BusinessError).message;
+      console.error('setDisposedStatus failed ' + message);
+      return;
+    }
+    console.info('setDisposedStatus success');
+  });
 } catch (error) {
-    let message = (err as BusinessError).message;
-    console.error('setDisposedStatus failed ' + message);
+  let message = (error as BusinessError).message;
+  console.error('setDisposedStatus failed ' + message);
 }
 ```
 
@@ -161,8 +165,8 @@ let want: Want = {bundleName: 'com.example.myapplication'};
 try {
   appControl.setDisposedStatusSync(appId, want);
 } catch (error) {
-    let message = (error as BusinessError).message;
-    console.error('setDisposedStatusSync failed ' + message);
+  let message = (error as BusinessError).message;
+  console.error('setDisposedStatusSync failed ' + message);
 }
 ```
 
@@ -207,16 +211,16 @@ import { BusinessError } from '@ohos.base';
 let appId = "com.example.myapplication_xxxxx";
 
 try {
-    appControl.getDisposedStatus(appId)
-        .then((data: appControl.AsyncCallback<void>) => {
-            console.info('getDisposedStatus success. DisposedStatus: ' + JSON.stringify(data));
-        }).catch((error) => {
-            let message = (error as BusinessError).message;
-            console.error('getDisposedStatus failed ' + message);
-        });
-} catch (error) {
+  appControl.getDisposedStatus(appId)
+    .then((data) => {
+      console.info('getDisposedStatus success. DisposedStatus: ' + JSON.stringify(data));
+    }).catch((error: BusinessError) => {
     let message = (error as BusinessError).message;
     console.error('getDisposedStatus failed ' + message);
+  });
+} catch (error) {
+  let message = (error as BusinessError).message;
+  console.error('getDisposedStatus failed ' + message);
 }
 ```
 
@@ -256,17 +260,17 @@ import { BusinessError } from '@ohos.base';
 let appId = "com.example.myapplication_xxxxx";
 
 try {
-    appControl.getDisposedStatus(appId, (error, data: appControl.AsyncCallback<void>) => {
-        if (error) {
-            let message = (error as BusinessError).message;
-            console.error('getDisposedStatus failed ' + message);
-            return;
-        }
-        console.info('getDisposedStatus success. DisposedStatus: ' + JSON.stringify(data));
-    });
+  appControl.getDisposedStatus(appId, (error, data) => {
+    if (error) {
+      let message = (error as BusinessError).message;
+      console.error('getDisposedStatus failed ' + message);
+      return;
+    }
+    console.info('getDisposedStatus success. DisposedStatus: ' + JSON.stringify(data));
+  });
 } catch (error) {
-    let message = (error as BusinessError).message;
-    console.error('getDisposedStatus failed ' + message);
+  let message = (error as BusinessError).message;
+  console.error('getDisposedStatus failed ' + message);
 }
 ```
 
@@ -313,10 +317,10 @@ let appId: string = "com.example.myapplication_xxxxx";
 let want: Want;
 
 try {
-    want = appControl.getDisposedStatusSync(appId);
+  want = appControl.getDisposedStatusSync(appId);
 } catch (error) {
-    let message = (error as BusinessError).message;
-    console.error('getDisposedStatusSync failed ' + message);
+  let message = (error as BusinessError).message;
+  console.error('getDisposedStatusSync failed ' + message);
 }
 ```
 
@@ -355,21 +359,22 @@ deleteDisposedStatus(appId: string): Promise\<void>
 **示例：**
 
 ```ts
+import appControl from '@ohos.bundle.appControl';
 import { BusinessError } from '@ohos.base';
 
 let appId = "com.example.myapplication_xxxxx";
 
 try {
-    appControl.deleteDisposedStatus(appId)
-        .then(() => {
-            console.info('deleteDisposedStatus success');
-        }).catch((error) => {
-            let message = (error as BusinessError).message;
-            console.error('deleteDisposedStatus failed ' + message);
-        });
+  appControl.deleteDisposedStatus(appId)
+    .then(() => {
+      console.info('deleteDisposedStatus success');
+    }).catch((error: BusinessError) => {
+      let message = (error as BusinessError).message;
+      console.error('deleteDisposedStatus failed ' + message);
+  });
 } catch (error) {
-    let message = (error as BusinessError).message;
-    console.error('deleteDisposedStatus failed ' + message);
+  let message = (error as BusinessError).message;
+  console.error('deleteDisposedStatus failed ' + message);
 }
 ```
 
@@ -408,16 +413,16 @@ import { BusinessError } from '@ohos.base';
 
 let appId = "com.example.myapplication_xxxxx";
 try {
-    appControl.deleteDisposedStatus(appId, (error: BusinessError, data: appControl.AsyncCallback<void>) => {
-        if (error) {
-            console.error('deleteDisposedStatus failed ' + error.message);
-            return;
-        }
-        console.info('deleteDisposedStatus success');
-    });
+  appControl.deleteDisposedStatus(appId, (error: BusinessError, data) => {
+    if (error) {
+      console.error('deleteDisposedStatus failed ' + error.message);
+      return;
+    }
+    console.info('deleteDisposedStatus success');
+  });
 } catch (error) {
-    let message = (error as BusinessError).message;
-    console.error('deleteDisposedStatus failed ' + message);
+  let message = (error as BusinessError).message;
+  console.error('deleteDisposedStatus failed ' + message);
 }
 ```
 
@@ -471,22 +476,21 @@ appId是应用的唯一标识，由应用Bundle名称和签名信息决定，可
 
 ```ts
 import bundleManager from '@ohos.bundle.bundleManager';
-import appControl from '@ohos.bundle.appControl';
 import { BusinessError } from '@ohos.base';
 
 let bundleName = 'com.example.myapplication';
 let appId: string;
 try {
-    bundleManager.getBundleInfo(bundleName, bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_SIGNATURE_INFO)
-        .then((data: appControl.AsyncCallback<void>) => {
-            appId = data.signatureInfo.appId;
-            console.info("appId is " + appId);
-        }).catch((error) => {
-            let message = (error as BusinessError).message;
-            console.error("getBundleInfo failed " + message);
-        });
-} catch (error) {
+  bundleManager.getBundleInfo(bundleName, bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_SIGNATURE_INFO)
+    .then((data) => {
+      appId = data.signatureInfo.appId;
+      console.info("appId is " + appId);
+    }).catch((error: BusinessError) => {
     let message = (error as BusinessError).message;
     console.error("getBundleInfo failed " + message);
+  });
+} catch (error) {
+  let message = (error as BusinessError).message;
+  console.error("getBundleInfo failed " + message);
 }
 ```
