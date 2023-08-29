@@ -66,8 +66,8 @@ try {
     console.error('setDisposedStatus failed ' + message);
   });
 } catch (error) {
-  let message = (error as BusinessError).message;
-  console.error('setDisposedStatus failed ' + message);
+    let message = (error as BusinessError).message;
+    console.error('setDisposedStatus failed ' + message);
 }
 ```
 
@@ -120,8 +120,8 @@ try {
     console.info('setDisposedStatus success');
   });
 } catch (error) {
-  let message = (error as BusinessError).message;
-  console.error('setDisposedStatus failed ' + message);
+    let message = (error as BusinessError).message;
+    console.error('setDisposedStatus failed ' + message);
 }
 ```
 
@@ -219,8 +219,8 @@ try {
     console.error('getDisposedStatus failed ' + message);
   });
 } catch (error) {
-  let message = (error as BusinessError).message;
-  console.error('getDisposedStatus failed ' + message);
+    let message = (error as BusinessError).message;
+    console.error('getDisposedStatus failed ' + message);
 }
 ```
 
@@ -269,8 +269,8 @@ try {
     console.info('getDisposedStatus success. DisposedStatus: ' + JSON.stringify(data));
   });
 } catch (error) {
-  let message = (error as BusinessError).message;
-  console.error('getDisposedStatus failed ' + message);
+    let message = (error as BusinessError).message;
+    console.error('getDisposedStatus failed ' + message);
 }
 ```
 
@@ -317,10 +317,10 @@ let appId: string = "com.example.myapplication_xxxxx";
 let want: Want;
 
 try {
-  want = appControl.getDisposedStatusSync(appId);
+    want = appControl.getDisposedStatusSync(appId);
 } catch (error) {
-  let message = (error as BusinessError).message;
-  console.error('getDisposedStatusSync failed ' + message);
+    let message = (error as BusinessError).message;
+    console.error('getDisposedStatusSync failed ' + message);
 }
 ```
 
@@ -421,8 +421,8 @@ try {
     console.info('deleteDisposedStatus success');
   });
 } catch (error) {
-  let message = (error as BusinessError).message;
-  console.error('deleteDisposedStatus failed ' + message);
+    let message = (error as BusinessError).message;
+    console.error('deleteDisposedStatus failed ' + message);
 }
 ```
 
@@ -486,11 +486,11 @@ try {
       appId = data.signatureInfo.appId;
       console.info("appId is " + appId);
     }).catch((error: BusinessError) => {
-    let message = (error as BusinessError).message;
-    console.error("getBundleInfo failed " + message);
+      let message = (error as BusinessError).message;
+      console.error("getBundleInfo failed " + message);
   });
 } catch (error) {
-  let message = (error as BusinessError).message;
-  console.error("getBundleInfo failed " + message);
+    let message = (error as BusinessError).message;
+    console.error("getBundleInfo failed " + message);
 }
 ```
