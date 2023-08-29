@@ -106,7 +106,6 @@ import appControl from '@ohos.bundle.appControl';
 import { BusinessError } from '@ohos.base';
 import Want from '@ohos.app.ability.Want';
 
-
 let appId = "com.example.myapplication_xxxxx";
 let want: Want = {bundleName: 'com.example.myapplication'};
 
