@@ -17,12 +17,12 @@
    通过image的createImageReceiver方法创建ImageReceiver实例，再通过实例的getReceivingSurfaceId方法获取SurfaceId，与拍照输出流相关联，获取拍照输出流的数据。
  
    ```ts
-   function getImageReceiverSurfaceId() {
+   async function getImageReceiverSurfaceId() {
      let receiver: image.ImageReceiver = image.createImageReceiver(640, 480, 4, 8);
      console.info('before ImageReceiver check');
      if (receiver !== undefined) {
        console.info('ImageReceiver is ok');
-       let photoSurfaceId: string = receiver.getReceivingSurfaceId();
+       let photoSurfaceId: string = await receiver.getReceivingSurfaceId();
        console.info('ImageReceived id: ' + JSON.stringify(photoSurfaceId));
      } else {
        console.info('ImageReceiver is not ok');
@@ -43,7 +43,8 @@
    try {
      photoOutput = cameraManager.createPhotoOutput(photoProfilesArray[0], photoSurfaceId);
    } catch (error) {
-     console.error('Failed to createPhotoOutput errorCode = ' + error.code);
+     let err = error as BusinessError;
+     console.error('Failed to createPhotoOutput errorCode = ' + err.code);
    }
    ```
 
@@ -57,7 +58,8 @@
    try {
      flashStatus = captureSession.hasFlash();
    } catch (error) {
-     console.error('Failed to hasFlash. errorCode = ' + error.code);
+     let err = error as BusinessError;
+     console.error('Failed to hasFlash. errorCode = ' + err.code);
    }
    console.info('Promise returned with the flash light support status:' + flashStatus); 
    if (flashStatus) {
@@ -67,14 +69,16 @@
        let status: boolean = captureSession.isFlashModeSupported(camera.FlashMode.FLASH_MODE_AUTO);
        flashModeStatus = status;    
      } catch (error) {
-       console.error('Failed to check whether the flash mode is supported. errorCode = ' + error.code);
+       let err = error as BusinessError;
+       console.error('Failed to check whether the flash mode is supported. errorCode = ' + err.code);
      }    
      if(flashModeStatus) {
        // 设置自动闪光灯模式
        try {
          captureSession.setFlashMode(camera.FlashMode.FLASH_MODE_AUTO);
        } catch (error) {
-         console.error('Failed to set the flash mode. errorCode = ' + error.code);
+         let err = error as BusinessError;
+         console.error('Failed to set the flash mode. errorCode = ' + err.code);
        }
      }
    } 
@@ -84,14 +88,16 @@
      let status: boolean = captureSession.isFocusModeSupported(camera.FocusMode.FOCUS_MODE_CONTINUOUS_AUTO);
      focusModeStatus = status;
    } catch (error) {
-     console.error('Failed to check whether the focus mode is supported. errorCode = ' + error.code);
+     let err = error as BusinessError;
+     console.error('Failed to check whether the focus mode is supported. errorCode = ' + err.code);
    } 
    if (focusModeStatus) {
      // 设置连续自动变焦模式
      try {
          captureSession.setFocusMode(camera.FocusMode.FOCUS_MODE_CONTINUOUS_AUTO);
-     } catch (error) { 
-        console.error('Failed to set the focus mode. errorCode = ' + error.code);
+     } catch (error) {
+        let err = error as BusinessError;
+        console.error('Failed to set the focus mode. errorCode = ' + err.code);
      }
    } 
    // 获取相机支持的可变焦距比范围
@@ -99,13 +105,15 @@
    try {
      zoomRatioRange = captureSession.getZoomRatioRange();
    } catch (error) {
-     console.error('Failed to get the zoom ratio range. errorCode = ' + error.code);
+     let err = error as BusinessError;
+     console.error('Failed to get the zoom ratio range. errorCode = ' + err.code);
    } 
    // 设置可变焦距比
    try {
      captureSession.setZoomRatio(zoomRatioRange[0]);
    } catch (error) {
-     console.error('Failed to set the zoom ratio value. errorCode = ' + error.code);
+     let err = error as BusinessError;
+     console.error('Failed to set the zoom ratio value. errorCode = ' + err.code);
    }
    ```
 

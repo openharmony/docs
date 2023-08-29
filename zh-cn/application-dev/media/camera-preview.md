@@ -41,9 +41,9 @@
    let previewOutput: camera.PreviewOutput;
    try {
      previewOutput = cameraManager.createPreviewOutput(previewProfilesArray[0], surfaceId);
-   } 
-   catch (error) {
-     console.error("Failed to create the PreviewOutput instance." + error);
+   } catch (error) {
+     let err = error as BusinessError;
+     console.error("Failed to create the PreviewOutput instance. error code: " + err.code);
    }
    ```
 
