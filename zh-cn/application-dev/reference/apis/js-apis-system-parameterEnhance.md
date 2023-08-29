@@ -14,7 +14,6 @@
 
 ```ts
 import systemparameter from '@ohos.systemParameterEnhance';
-import { BusinessError } from '@ohos.base';
 ```
 
 ## systemparameter.getSync
@@ -67,6 +66,8 @@ get(key: string, callback: AsyncCallback&lt;string&gt;): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
     systemparameter.get("const.ohos.apiversion", (err:BusinessError, data:string) => {
     if (err == undefined) {
@@ -98,6 +99,8 @@ get(key: string, def: string, callback: AsyncCallback&lt;string&gt;): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
     systemparameter.get("const.ohos.apiversion", "default", (err:BusinessError, data:string) => {
         if (err == undefined) {
@@ -135,6 +138,8 @@ get(key: string, def?: string): Promise&lt;string&gt;
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
     let p = systemparameter.get("const.ohos.apiversion");
     p.then((value:string) => {
@@ -165,6 +170,8 @@ setSync(key: string, value: string): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
     systemparameter.setSync("test.parameter.key", "default");
 } catch(e) {
@@ -191,6 +198,8 @@ set(key: string, value: string, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
     systemparameter.set("test.parameter.key", "testValue", (err:BusinessError, data:string) => {
     if (err == undefined) {
@@ -227,6 +236,8 @@ set(key: string, value: string): Promise&lt;void&gt;
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
     let p = systemparameter.set("test.parameter.key", "testValue");
     p.then((value:string) => {
