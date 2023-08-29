@@ -55,12 +55,13 @@
    在InputMethodService.ts文件中，增加导入InputMethodExtensionAbility的依赖包，自定义类继承InputMethodExtensionAbility并加上需要的生命周期回调。
 
    ```ts
+   import Want from '@ohos.app.ability.Want';
    import InputMethodExtensionAbility from '@ohos.InputMethodExtensionAbility';
    import keyboardController from './model/KeyboardController'
    
    export default class InputDemoService extends InputMethodExtensionAbility {
    
-     onCreate(want) {
+     onCreate(want: Want) {
        keyboardController.onCreate(this.context);  // 初始化窗口并注册对输入法框架的事件监听
      }
    
@@ -141,7 +142,7 @@
          this.panel = inputPanel;
          if(this.panel) {
            await this.panel.resize(dWidth, keyHeight);
-           await this.panel.mobeTo(0, nonBarPosition);
+           await this.panel.moveTo(0, nonBarPosition);
            await this.panel.setUiContent('inputmethodextability/pages/Index');
          }
        });
@@ -333,7 +334,7 @@
 
 5. 在工程Module对应的[module.json5配置文件](../quick-start/module-configuration-file.md)中注册InputMethodExtensionAbility，type标签需要设置为“inputMethod”，srcEntry标签表示当前InputMethodExtensionAbility组件所对应的代码路径。
 
-   ```ts
+   ```json
    {
      "module": {
        ...

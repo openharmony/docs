@@ -67,7 +67,7 @@
             console.error("createDeviceManager err: " + JSON.stringify(err));
         }
    }
-   function getRemoteDeviceId() {
+   function getRemoteDeviceId(): string | undefined {
        if (typeof dmClass === 'object' && dmClass !== null) {
            let list = dmClass.getAvailableDeviceListSync();
            if (typeof (list) === 'undefined' || typeof (list.length) === 'undefined') {
@@ -286,6 +286,9 @@
    - 进行跨设备调用，获得目标端服务返回的结果。
      
       ```ts
+      import common from '@ohos.app.ability.common';
+      import Want from '@ohos.app.ability.Want';
+      import { BusinessError } from '@ohos.base';
       import rpc from '@ohos.rpc';
       import Want from '@ohos.app.ability.Want';
       import common from '@ohos.app.ability.common';

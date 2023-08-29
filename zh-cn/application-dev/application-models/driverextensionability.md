@@ -27,17 +27,18 @@
    const REQUEST_CODE = 99;
    
    class StubTest extends rpc.RemoteObject {
-     constructor(des) {
+     constructor(des: string) {
        super(des);
      }
      
      // 接收应用传递过来的消息处理，以及将处理的结果返回给应用
-     onRemoteMessageRequest(code, data, reply, option) {
+     onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence,
+                            option: rpc.MessageOption) {
        if (code === REQUEST_CODE) {
          // 接收应用传递过来的数据
          // 应用使用多次调用data.writeInt()写入多个数据时，驱动可以通过多次调用data.readInt()方法接收对应的数据
-         let optFir = data.readInt();
-         let optSec = data.readInt();
+         let optFir: number = data.readInt();
+         let optSec: number = data.readInt();
          // 驱动将数据的处理结果返回给应用
          // 示例中为接收了两个数据，并将两个数据的求和返回给应用
          reply.writeInt(optFir + optSec);
@@ -52,6 +53,7 @@
    
    ```ts
    import DriverExtensionAbility from '@ohos.app.ability.DriverExtensionAbility';
+   import Want from '@ohos.app.ability.Want';
    import rpc from '@ohos.rpc';
    
    const TAG: string = '[Example].[Entry].[DriverExtAbility]';
@@ -62,24 +64,24 @@
    }
    
    export default class DriverExtAbility extends DriverExtensionAbility {
-     onInit(want) {
+     onInit(want: Want) {
        console.info(TAG, `onInit, want: ${want.abilityName}`);
      }
    
      onRelease() {
-       console.info(TAG, `onRelease, want: ${want.abilityName}`);
+       console.info(TAG, `onRelease`);
      }
    
-     onConnect(want) {
+     onConnect(want: Want) {
        console.info(TAG, `onConnect, want: ${want.abilityName}`);
        return new StubTest("test");
      }
    
-     onDisconnect(want) {
+     onDisconnect(want: Want) {
        console.info(TAG, `onDisconnect, want: ${want.abilityName}`);
      }
    
-     onDump() {
+     onDump(params: Array<string>) {
        console.info(TAG, `onDump, params:` + JSON.stringify(params));
        return ['params'];
      }

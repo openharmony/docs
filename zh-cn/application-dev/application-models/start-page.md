@@ -8,9 +8,10 @@
 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
+import Want from '@ohos.app.ability.Want';
 
 async function restartAbility() {
-    let wantInfo = {
+    let wantInfo: Want = {
         bundleName: "com.sample.MyApplication",
         abilityName: "EntryAbility",
         parameters: {
@@ -29,8 +30,9 @@ async function restartAbility() {
 在目标端PageAbility的onNewWant回调中获取包含页面信息的want参数：
 
 ```ts
+import Want from '@ohos.app.ability.Want';
 export default {  
-    onNewWant(want) {    
+    onNewWant(want: Want) {    
         globalThis.newWant = want  
     }
 }
@@ -45,10 +47,10 @@ import router from '@ohos.router'
 @Component
 struct Index {
   @State message: string = 'Router Page'
-  newWant = undefined
+  
   onPageShow() {
     console.info('Index onPageShow')
-    let newWant = globalThis.newWant
+    let newWant: Want = globalThis.newWant
     if (newWant.hasOwnProperty("page")) {
       router.push({ url: newWant.page });
       globalThis.newWant = undefined
@@ -83,36 +85,38 @@ struct Index {
   @State message: string = 'Hello World'
 
   build() {
-    ...
-    Button("startAbility")
-      .onClick(() => {
-        featureAbility.startAbility({
-          want: {
-            bundleName: "com.exm.myapplication",
-            abilityName: "com.exm.myapplication.EntryAbility",
-            parameters: { page: "pages/page1" }
-          }
-        }).then((data) => {
-          console.info("startAbility finish");
-        }).catch((err) => {
-          console.info("startAbility failed errcode:" + err.code)
+    Row() {
+      Button("startAbility")
+        .onClick(() => {
+          featureAbility.startAbility({
+            want: {
+              bundleName: "com.exm.myapplication",
+              abilityName: "com.exm.myapplication.EntryAbility",
+              parameters: { page: "pages/page1" }
+            }
+          }).then((data) => {
+            console.info("startAbility finish");
+          }).catch((err) => {
+            console.info("startAbility failed errcode:" + err.code)
+          })
         })
-      })
-    ...
-    Button("page2")
-      .onClick(() => {
-        featureAbility.startAbility({
-          want: {
-            bundleName: "com.exm.myapplication",
-            abilityName: "com.exm.myapplication.EntryAbility",
-            parameters: { page: "pages/page2" }
-          }
-        }).then((data) => {
-          console.info("startAbility finish");
-        }).catch((err) => {
-          console.info("startAbility failed errcode:" + err.code)
+      ...
+      Button("page2")
+        .onClick(() => {
+          featureAbility.startAbility({
+            want: {
+              bundleName: "com.exm.myapplication",
+              abilityName: "com.exm.myapplication.EntryAbility",
+              parameters: { page: "pages/page2" }
+            }
+          }).then((data) => {
+            console.info("startAbility finish");
+          }).catch((err) => {
+            console.info("startAbility failed errcode:" + err.code)
+          })
         })
-      })
+      ...
+    }
     ...
   }
 }
@@ -136,7 +140,7 @@ export default {
     })
   },
   onDestroy() {
-    ...
+    // ...
   },
 }
 ```
