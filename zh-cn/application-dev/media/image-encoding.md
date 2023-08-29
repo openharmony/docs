@@ -20,7 +20,7 @@
    format为图像的编码格式；quality为图像质量，范围从0-100，100为最佳质量。
 
    ```ts
-   let packOpts = { format:"image/jpeg", quality:98 };
+   let packOpts : Context = { format:"image/jpeg", quality:98 };
    ```
 
 3. [创建PixelMap对象或创建ImageSource](image-decoding.md)对象。
@@ -30,9 +30,9 @@
    方法一：通过PixelMap进行编码。
 
    ```ts
-   imagePackerApi.packing(pixelMap, packOpts).then( data => {
+   imagePackerApi.packing(pixelMap : PixelMap, packOpts).then( data => {
      // data 为打包获取到的文件流，写入文件保存即可得到一张图片
-   }).catch(error => { 
+   }).catch(error : void => { 
      console.error('Failed to pack the image. And the error is: ' + error); 
    })
    ```
@@ -42,7 +42,7 @@
    ```ts
    imagePackerApi.packing(imageSource, packOpts).then( data => {
        // data 为打包获取到的文件流，写入文件保存即可得到一张图片
-   }).catch(error => { 
+   }).catch(error : void => { 
      console.error('Failed to pack the image. And the error is: ' + error); 
    })
    ```
