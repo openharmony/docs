@@ -39,6 +39,8 @@ libnative_buffer.so
 
 1. **创建OH_NativeBuffer实例**。
     ```c++
+    #include <iostream>
+
     OH_NativeBuffer_Config config {
         .width = 0x100,
         .height = 0x100,
@@ -69,8 +71,8 @@ libnative_buffer.so
 3. **获取内存的属性信息**。
     ```c++
     // 获取OH_NativeBuffer的属性
-    OH_NativeBuffer_Config config = {};
-    OH_NativeBuffer_GetConfig(buffer, &config);
+    OH_NativeBuffer_Config config2 = {};
+    OH_NativeBuffer_GetConfig(buffer, &config2);
     // 获取OH_NativeBuffer的序列号
      uint32_t hwBufferID = OH_NativeBuffer_GetSeqNum(buffer);
     ```
