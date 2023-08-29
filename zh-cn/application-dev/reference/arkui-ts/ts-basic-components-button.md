@@ -40,7 +40,7 @@ Button(label?: ResourceStr, options?: { type?: ButtonType, stateEffect?: boolean
 | 参数名     | 参数类型                                | 必填   | 参数描述          |
 | ------- | ----------------------------------- | ---- | ------------- |
 | label   | [ResourceStr](ts-types.md#resourcestr) | 否    | 按钮文本内容。 |
-| options | { type?: ButtonType, stateEffect?: boolean }   | 否    | 见方法1参数说明。 |
+| options | { type?: ButtonType, stateEffect?: boolean }   | 否    | 见[Button](#button-1)参数说明。 |
 
 ## 属性
 
