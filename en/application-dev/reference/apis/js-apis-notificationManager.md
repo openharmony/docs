@@ -751,7 +751,7 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 let slotType: notificationManager.SlotType = notificationManager.SlotType.SOCIAL_COMMUNICATION;
 
 notificationManager.getSlot(slotType).then((data: notificationManager.NotificationSlot) => {
-	console.info("getSlot success, data: " + JSON.stringify(data));
+  console.info("getSlot success, data: " + JSON.stringify(data));
 });
 ```
 
@@ -784,11 +784,11 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 ```ts
 // getSlots callback
 function getSlotsCallback(err: Base.BusinessError, data: Array<notificationManager.NotificationSlot>) {
-    if (err) {
-        console.error(`getSlots failed, code is ${err.code}, message is ${err.message}`);
-    } else {
-        console.info(`getSlots success, data is ${JSON.stringify(data)}`);
-    }
+  if (err) {
+    console.error(`getSlots failed, code is ${err.code}, message is ${err.message}`);
+  } else {
+    console.info(`getSlots success, data is ${JSON.stringify(data)}`);
+  }
 }
 notificationManager.getSlots(getSlotsCallback);
 ```
@@ -855,11 +855,11 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 ```ts
 // removeSlot callback
 function removeSlotCallback(err: Base.BusinessError) {
-    if (err) {
-        console.error(`removeSlot failed, code is ${err.code}, message is ${err.message}`);
-    } else {
-        console.info("removeSlot success");
-    }
+  if (err) {
+    console.error(`removeSlot failed, code is ${err.code}, message is ${err.message}`);
+  } else {
+    console.info("removeSlot success");
+  }
 }
 let slotType = notificationManager.SlotType.SOCIAL_COMMUNICATION;
 notificationManager.removeSlot(slotType, removeSlotCallback);
@@ -1485,7 +1485,7 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 ```ts
 let bundle: notificationManager.BundleOption = {
-    bundle: "bundleName1",
+  bundle: "bundleName1",
 };
 
 notificationManager.isBadgeDisplayed(bundle).then((data: boolean) => {
@@ -1519,7 +1519,7 @@ Sets the notification badge number. This API uses a promise to return the result
 **Example**
 
 ```ts
-let badgeNumber: number = 10
+let badgeNumber: number = 10;
 
 notificationManager.setBadgeNumber(badgeNumber).then(() => {
 	console.info("displayBadge success");
@@ -1563,7 +1563,7 @@ function setBadgeNumberCallback(err: Base.BusinessError) {
     }
 }
 
-let badgeNumber: number = 10
+let badgeNumber: number = 10;
 notificationManager.setBadgeNumber(badgeNumber, setBadgeNumberCallback);
 ```
 
@@ -1611,7 +1611,7 @@ function setSlotByBundleCallback(err: Base.BusinessError) {
 let bundle: notificationManager.BundleOption = {
     bundle: "bundleName1",
 };
-let notificationSlot: notificationManager.NotificationSlots = {
+let notificationSlot: notificationManager.NotificationSlot = {
     type: notificationManager.SlotType.SOCIAL_COMMUNICATION
 };
 notificationManager.setSlotByBundle(bundle, notificationSlot, setSlotByBundleCallback);
@@ -1798,7 +1798,7 @@ function getSlotNumByBundleCallback(err: Base.BusinessError, data: number) {
 }
 
 let bundle: notificationManager.BundleOption = {
-    bundle: "bundleName1",
+  bundle: "bundleName1",
 };
 
 notificationManager.getSlotNumByBundle(bundle, getSlotNumByBundleCallback);
@@ -1843,7 +1843,7 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 ```ts
 let bundle: notificationManager.BundleOption = {
-    bundle: "bundleName1",
+  bundle: "bundleName1",
 };
 
 notificationManager.getSlotNumByBundle(bundle).then((data: number) => {
@@ -2264,7 +2264,7 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 **Example**
 
 ```ts
-function setDoNotDisturbDateCallback(err: notificationManager.BundleOption) {
+function setDoNotDisturbDateCallback(err: Base.BusinessError) {
     if (err) {
         console.error(`setDoNotDisturbDate failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -2502,7 +2502,7 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 ```ts
 notificationManager.getDoNotDisturbDate().then((data: notificationManager.DoNotDisturbDate) => {
-	console.info("getDoNotDisturbDate success, data: " + JSON.stringify(data));
+  console.info("getDoNotDisturbDate success, data: " + JSON.stringify(data));
 });
 ```
 
@@ -2672,7 +2672,7 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 **Example**
 
 ```ts
-notificationManager.isSupportDoNotDisturbMode().then((data: data) => {
+notificationManager.isSupportDoNotDisturbMode().then((data: boolean) => {
 	console.info("supportDoNotDisturbMode success, data: " + JSON.stringify(data));
 });
 ```
@@ -2821,7 +2821,76 @@ notificationManager.requestEnableNotification().then(() => {
 });
 ```
 
+## notificationManager.requestEnableNotification<sup>10+<sup>
 
+requestEnableNotification(context: UIAbilityContext, callback: AsyncCallback\<void\>): void
+
+Requests notification to be enabled for this application in a modal. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Notification.Notification
+
+**Parameters**
+
+| Name  | Type                    | Mandatory| Description                |
+| -------- | ------------------------ | ---- |--------------------|
+| context | UIAbilityContext | Yes  | Ability context bound to the notification dialog box.|
+| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.    |
+
+**Error codes**
+
+For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
+
+| ID| Error Message                           |
+| -------- | ----------------------------------- |
+| 1600001  | Internal error.                     |
+| 1600002  | Marshalling or unmarshalling error. |
+| 1600003  | Failed to connect service.          |
+
+**Example**
+
+```javascript
+function requestEnableNotificationCallback(err) {
+    if (err) {
+        console.error(`requestEnableNotification failed, code is ${err.code}, message is ${err.message}`);
+    } else {
+        console.info("requestEnableNotification success");
+    }
+};
+
+notificationManager.requestEnableNotification(globalThis.uicontext, requestEnableNotificationCallback);
+```
+
+## notificationManager.requestEnableNotification<sup>10+<sup>
+
+requestEnableNotification(context: UIAbilityContext): Promise\<void\>
+
+Requests notification to be enabled for this application in a modal. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Notification.Notification
+
+**Parameters**
+
+| Name  | Type                    | Mandatory| Description                |
+| -------- | ------------------------ | ---- |--------------------|
+| context | UIAbilityContext | Yes  | Ability context bound to the notification dialog box.|
+
+**Error codes**
+
+For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
+
+| ID| Error Message                           |
+| -------- | ----------------------------------- |
+| 1600001  | Internal error.                     |
+| 1600002  | Marshalling or unmarshalling error. |
+| 1600003  | Failed to connect service.          |
+
+**Example**
+
+```javascript
+notificationManager.requestEnableNotification(globalThis.uicontext).then(() => {
+    console.info("requestEnableNotification success");
+});
+```
 
 ## notificationManager.setDistributedEnable
 
@@ -3032,7 +3101,7 @@ let bundle: notificationManager.BundleOption = {
     bundle: "bundleName1",
 };
 
-let enable: boolean = true
+let enable: boolean = true;
 
 notificationManager.setDistributedEnableByBundle(bundle, enable, setDistributedEnableByBundleCallback);
 ```
@@ -3077,7 +3146,7 @@ let bundle: notificationManager.BundleOption = {
     bundle: "bundleName1",
 };
 
-let enable: boolean = true
+let enable: boolean = true;
 
 notificationManager.setDistributedEnableByBundle(bundle, enable).then(() => {
     console.info("setDistributedEnableByBundle success");
@@ -3865,7 +3934,7 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 let userId: number = 100;
 
 notificationManager.getSyncNotificationEnabledWithoutApp(userId).then((data: boolean) => {
-    console.info('getSyncNotificationEnabledWithoutApp, data:' + data);
+  console.info('getSyncNotificationEnabledWithoutApp, data:' + data);
 });
 ```
 
