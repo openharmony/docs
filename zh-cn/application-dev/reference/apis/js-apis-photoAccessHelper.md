@@ -1315,37 +1315,36 @@ getPhotoIndex(photoUri: string, albumUri: string, options: FetchOptions, callbac
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
 
 async function example() {
-  console.info('getPhotoIndexDemo');
-  let predicatesForGetAsset = new dataSharePredicates.DataSharePredicates();
-  let fetchOp = {
-    fetchColumns: [],
-    predicates: predicatesForGetAsset
-  };
-  //Obtain the uri of the album
-  let albumFetchResult = await helper.getAlbums(photoAccessHelper.AlbumType.SYSTEM, photoAccessHelper.AlbumSubtype.FAVORITE, fetchOp);
-  let album = await albumFetchResult.getFirstObject();
+  try {
+    console.info('getPhotoIndexDemo');
+    let predicatesForGetAsset = new dataSharePredicates.DataSharePredicates();
+    let fetchOp = {
+      fetchColumns: [],
+      predicates: predicatesForGetAsset
+    };
+    // Obtain the uri of the album
+    let albumFetchResult = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.SYSTEM, photoAccessHelper.AlbumSubtype.FAVORITE, fetchOp);
+    let album = await albumFetchResult.getFirstObject();
+    let predicates = new dataSharePredicates.DataSharePredicates();
+    predicates.orderByAsc(photoAccessHelper.PhotoKeys.DATE_MODIFIED);
+    let fetchOptions = {
+      fetchColumns: [photoAccessHelper.PhotoKeys.DATE_MODIFIED],
+      predicates: predicates
+    };
+    let photoFetchResult = await album.getAssets(fetchOptions);
+    let expectIndex = 1;
+    // Obtain the uri of the second file
+    let photoAsset = await photoFetchResult.getObjectByPosition(expectIndex);
 
-   let predicates = new dataSharePredicates.DataSharePredicates();
-  predicates.orderByAsc("add_modified");
-  let fetchOptions = {
-    fetchColumns: [],
-    predicates: predicates
-  };
-  let photoFetchResult = await album.getAssets(fetchOptions);
-  let expectIndex = 1;
-  //Obtain the uri of the second file
-  let photoAsset = await photoFetchResult.getObjectByPosition(expectIndex);
-
-  photoAccessHelper.getPhotoIndex(photoAsset.uri, album.albumUri, fetchOptions, (err, index) => {
-    try {
+    phAccessHelper.getPhotoIndex(photoAsset.uri, album.albumUri, fetchOptions, (err, index) => {
       if (err == undefined) {
         console.info(`getPhotoIndex successfully and index is : ${index}`);
       } else {
         console.info(`getPhotoIndex failed;`);
       }
-    } catch (error) {
-      console.info(`getPhotoIndex failed; error: ${error}`);
-    }
+    });
+  } catch (error) {
+    console.info(`getPhotoIndex failed; error: ${error}`);
   }
 }
 ```
@@ -1390,33 +1389,34 @@ getPhotoIndex(photoUri: string, albumUri: string, options: FetchOptions): Promis
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
 
 async function example() {
-  console.info('getPhotoIndexDemo');
-  let predicatesForGetAsset = new dataSharePredicates.DataSharePredicates();
-  let fetchOp = {
-    fetchColumns: [],
-    predicates: predicatesForGetAsset
-  };
-  //Obtain the uri of the album
-  let albumFetchResult = await helper.getAlbums(photoAccessHelper.AlbumType.SYSTEM, photoAccessHelper.AlbumSubtype.FAVORITE, fetchOp);
-  let album = await albumFetchResult.getFirstObject();
-
-  let predicates = new dataSharePredicates.DataSharePredicates();
-  predicates.orderByAsc("add_modified");
-  let fetchOptions = {
-    fetchColumns: [],
-    predicates: predicates
-  };
-  let photoFetchResult = await album.getAssets(fetchOptions);
-  let expectIndex = 1;
-  //Obtain the uri of the second file
-  let photoAsset = await photoFetchResult.getObjectByPosition(expectIndex);
-
-  photoAccessHelper.getPhotoIndex(photoAsset.uri, album.albumUri, fetchOptions)
-    .then((index) => {
-        console.info(`getPhotoIndex successfully and index is : ${index}`);
-      }).catch((err) => {
+  try {
+    console.info('getPhotoIndexDemo');
+    let predicatesForGetAsset = new dataSharePredicates.DataSharePredicates();
+    let fetchOp = {
+      fetchColumns: [],
+      predicates: predicatesForGetAsset
+    };
+    // Obtain the uri of the album
+    let albumFetchResult = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.SYSTEM, photoAccessHelper.AlbumSubtype.FAVORITE, fetchOp);
+    let album = await albumFetchResult.getFirstObject();
+    let predicates = new dataSharePredicates.DataSharePredicates();
+    predicates.orderByAsc(photoAccessHelper.PhotoKeys.DATE_MODIFIED);
+    let fetchOptions = {
+      fetchColumns: [photoAccessHelper.PhotoKeys.DATE_MODIFIED],
+      predicates: predicates
+    };
+    let photoFetchResult = await album.getAssets(fetchOptions);
+    let expectIndex = 1;
+    // Obtain the uri of the second file
+    let photoAsset = await photoFetchResult.getObjectByPosition(expectIndex);
+    phAccessHelper.getPhotoIndex(photoAsset.uri, album.albumUri, fetchOptions).then((index) => {
+      console.info(`getPhotoIndex successfully and index is : ${index}`);
+    }).catch((err) => {
       console.info(`getPhotoIndex failed; error: ${err}`);
-    })
+    });
+  } catch (error) {
+    console.info(`getPhotoIndex failed; error: ${error}`);
+  }
 }
 ```
 
@@ -2394,7 +2394,7 @@ getExif(): Promise&lt;string&gt;
 
 返回jpg格式图片Exif标签组成的json格式的字符串，该方法使用Promise方式返回结果。
 
-**注意**：此接口返回的是exif标签组成的json格式的字符串，完整exif信息由all_exif与photoKeys.USER_COMMENT组成，fetchColumns需要传入这两个字段。
+**注意**：此接口返回的是exif标签组成的json格式的字符串，完整exif信息由all_exif与PhotoKeys.USER_COMMENT组成，fetchColumns需要传入这两个字段。
 
 **系统接口**：此接口为系统接口。
 
@@ -2459,15 +2459,18 @@ async function example() {
   try {
     console.info('getExifDemo');
     let predicates = new dataSharePredicates.DataSharePredicates();
+    predicates.isNotNull('all_exif')
     let fetchOptions = {
-      fetchColumns: [ 'all_exif',  photoKeys.USER_COMMENT],
+      fetchColumns: ['all_exif', photoAccessHelper.PhotoKeys.USER_COMMENT],
       predicates: predicates
     };
     let fetchResult = await phAccessHelper.getAssets(fetchOptions);
     let fileAsset = await fetchResult.getFirstObject();
+    console.info('getExifDemo fileAsset displayName: ' + JSON.stringify(fileAsset.displayName));
     let exifMessage = await fileAsset.getExif();
     let userCommentKey = 'UserComment';
     let userComment = JSON.stringify(JSON.parse(exifMessage), [userCommentKey]);
+    console.info('getExifDemo userComment: ' + JSON.stringify(userComment));
     fetchResult.close();
   } catch (err) {
     console.error('getExifDemoCallback failed with error: ' + err);
@@ -2481,7 +2484,7 @@ getExif(callback: AsyncCallback&lt;string&gt;): void
 
 返回jpg格式图片Exif标签组成的json格式的字符串，该方法使用Promise方式返回结果。
 
-**注意**：此接口返回的是exif标签组成的json格式的字符串，完整exif信息由all_exif与photoKeys.USER_COMMENT组成，fetchColumns需要传入这两个字段。
+**注意**：此接口返回的是exif标签组成的json格式的字符串，完整exif信息由all_exif与PhotoKeys.USER_COMMENT组成，fetchColumns需要传入这两个字段。
 
 **系统接口**：此接口为系统接口。
 
@@ -2546,16 +2549,19 @@ async function example() {
   try {
     console.info('getExifDemo');
     let predicates = new dataSharePredicates.DataSharePredicates();
+    predicates.isNotNull('all_exif')
     let fetchOptions = {
-      fetchColumns: [ 'all_exif',  photoKeys.USER_COMMENT],
+      fetchColumns: ['all_exif', photoAccessHelper.PhotoKeys.USER_COMMENT],
       predicates: predicates
     };
     let fetchResult = await phAccessHelper.getAssets(fetchOptions);
     let fileAsset = await fetchResult.getFirstObject();
+    console.info('getExifDemo fileAsset displayName: ' + JSON.stringify(fileAsset.displayName));
     let userCommentKey = 'UserComment';
     fileAsset.getExif((err, exifMessage) => {
       if (exifMessage != undefined) {
         let userComment = JSON.stringify(JSON.parse(exifMessage), [userCommentKey]);
+        console.info('getExifDemo userComment: ' + JSON.stringify(userComment));
       } else {
         console.error('getExif failed, message = ', err);
       }
