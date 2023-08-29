@@ -34,28 +34,27 @@ SystemCapability.BundleManager.BundleFramework
 **示例：**
 
 ```ts
-import bundle from '@ohos.bundle';
 import bundleInstall from '@ohos.bundle.installer';
 import { BusinessError } from '@ohos.base';
 
 let hapFilePaths: Array<string> = ['/data/storage/el2/base/haps/entry/files/'];
 let installParam: bundleInstall.InstallParam = {
-    userId: 100,
-    isKeepData: false,
-    installFlag: 1,
+  userId: 100,
+  isKeepData: false,
+  installFlag: 1,
 };
 
-bundle.getBundleInstaller().then(installer: bundleInstall.BundleInstaller => {
-    installer.install(hapFilePaths, installParam, err: BusinessError => {
-        if (err) {
-            console.error('install failed:' + JSON.stringify(err));
-        } else {
-            console.info('install successfully.');
-        }
-    });
+bundleInstall.getBundleInstaller().then(installer => {
+  installer.install(hapFilePaths, installParam, err => {
+    if (err) {
+      console.error('install failed:' + JSON.stringify(err));
+    } else {
+      console.info('install successfully.');
+    }
+  });
 }).catch(error => {
-    let message = (error as BusinessError).message;
-    console.error('getBundleInstaller failed. Cause: ' + message);
+  let message = (error as BusinessError).message;
+  console.error('getBundleInstaller failed. Cause: ' + message);
 });
 ```
 
@@ -88,28 +87,27 @@ SystemCapability.BundleManager.BundleFramework
 **示例：**
 
 ```ts
-import bundle from '@ohos.bundle';
 import bundleInstall from '@ohos.bundle.installer';
 import { BusinessError } from '@ohos.base';
 
 let bundleName: string = 'com.example.myapplication';
 let installParam: bundleInstall.InstallParam = {
-    userId: 100,
-    isKeepData: false,
-    installFlag: 1,
+  userId: 100,
+  isKeepData: false,
+  installFlag: 1,
 };
 
-bundle.getBundleInstaller().then(installer: bundleInstall.BundleInstaller => {
-    installer.uninstall(bundleName, installParam, err: BusinessError => {
-        if (err) {
-            console.error('uninstall failed:' + JSON.stringify(err));
-        } else {
-            console.info('uninstall successfully.');
-        }
-    });
-}).catch(error => {
-    let message = (error as BusinessError).message;
-    console.error('getBundleInstaller failed. Cause: ' + message);
+bundleInstall.getBundleInstaller().then(installer => {
+  installer.uninstall(bundleName, installParam, err => {
+    if (err) {
+      console.error('uninstall failed:' + JSON.stringify(err));
+    } else {
+      console.info('uninstall successfully.');
+    }
+  });
+}).catch((error: BusinessError) => {
+  let message = (error as BusinessError).message;
+  console.error('getBundleInstaller failed. Cause: ' + message);
 });
 ```
 ## BundleInstaller.recover<sup>(deprecated)<sup>
@@ -141,28 +139,27 @@ SystemCapability.BundleManager.BundleFramework
 **示例：**
 
 ```ts
-import bundle from '@ohos.bundle';
 import bundleInstall from '@ohos.bundle.installer';
 import { BusinessError } from '@ohos.base';
 
 let bundleName: string = 'com.example.myapplication';
 let installParam: bundleInstall.InstallParam = {
-    userId: 100,
-    isKeepData: false,
-    installFlag: 1,
+  userId: 100,
+  isKeepData: false,
+  installFlag: 1,
 };
 
-bundle.getBundleInstaller().then(installer: bundleInstall.BundleInstaller => {
-    installer.recover(bundleName, installParam, err: BusinessError => {
-        if (err) {
-            console.error('recover failed:' + JSON.stringify(err));
-        } else {
-            console.info('recover successfully.');
-        }
-    });
-}).catch(error => {
-    let message = (error as BusinessError).message;
-    console.error('getBundleInstaller failed. Cause: ' + message);
+bundleInstall.getBundleInstaller().then(installer => {
+  installer.uninstall(bundleName, installParam, err => {
+    if (err) {
+      console.error('uninstall failed:' + JSON.stringify(err));
+    } else {
+      console.info('uninstall successfully.');
+    }
+  });
+}).catch((error: BusinessError) => {
+  let message = (error as BusinessError).message;
+  console.error('getBundleInstaller failed. Cause: ' + message);
 });
 ```
 
