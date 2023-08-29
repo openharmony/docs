@@ -112,15 +112,17 @@ Json文件共包含2个属性。
 
 ```ts
 import vibrator from '@ohos.vibrator';
+import { BusinessError } from '@ohos.base';
 
 try {
-  vibrator.startVibration({ // 使用startVibration需要添加ohos.permission.VIBRATE权限
+  // 使用startVibration需要添加ohos.permission.VIBRATE权限
+  vibrator.startVibration({
     type: 'time',
     duration: 1000,
   }, {
     id: 0,
     usage: 'alarm'
-  }, (error) => {
+  }, (error: BusinessError) => {
     if (error) {
       console.error(`Failed to start vibration. Code: ${error.code}, message: ${error.message}`);
       return;
@@ -128,7 +130,8 @@ try {
     console.info('Succeed in starting vibration.');
   });
 } catch (err) {
-  console.error(`An unexpected error occurred. Code: ${err.code}, message: ${err.message}`);
+  let e: BusinessError = err as BusinessError;
+  console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -136,10 +139,11 @@ try {
 
 ```ts
 import vibrator from '@ohos.vibrator';
+import { BusinessError } from '@ohos.base';
 
 try {
   // 按照VIBRATOR_STOP_MODE_TIME模式停止振动， 使用stopVibration需要添加ohos.permission.VIBRATE权限
-  vibrator.stopVibration(vibrator.VibratorStopMode.VIBRATOR_STOP_MODE_TIME, function (error) {
+  vibrator.stopVibration(vibrator.VibratorStopMode.VIBRATOR_STOP_MODE_TIME, (error: BusinessError) => {
     if (error) {
       console.error(`Failed to stop vibration. Code: ${error.code}, message: ${error.message}`);
       return;
@@ -147,7 +151,8 @@ try {
     console.info('Succeeded in stopping vibration.');
   })
 } catch (err) {
-  console.error(`An unexpected error occurred. Code: ${err.code}, message: ${err.message}`);
+  let e: BusinessError = err as BusinessError;
+  console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -155,7 +160,8 @@ try {
 
 ```ts
 import vibrator from '@ohos.vibrator';
-// 使用startVibration、stopVibration需要添加ohos.permission.VIBRATE权限
+import { BusinessError } from '@ohos.base';
+
 try {
   vibrator.startVibration({
     type: 'time',
@@ -163,7 +169,7 @@ try {
   }, {
     id: 0,
     usage: 'alarm'
-  }, (error) => {
+  }, (error: BusinessError) => {
     if (error) {
       console.error(`Failed to start vibration. Code: ${error.code}, message: ${error.message}`);
       return;
@@ -171,7 +177,7 @@ try {
     console.info('Succeed in starting vibration');
   });
   // 停止所有类型的马达振动
-  vibrator.stopVibration(function (error) {
+  vibrator.stopVibration((error: BusinessError) => {
     if (error) {
       console.error(`Failed to stop vibration. Code: ${error.code}, message: ${error.message}`);
       return;
@@ -179,7 +185,8 @@ try {
     console.info('Succeed in stopping vibration');
   })
 } catch (error) {
-  console.error(`An unexpected error occurred. Code: ${error.code}, message: ${error.message}`);
+  let e: BusinessError = error as BusinessError;
+  console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -187,10 +194,11 @@ try {
 
 ```ts
 import vibrator from '@ohos.vibrator';
+import { BusinessError } from '@ohos.base';
 
 try {
   // 查询是否支持'haptic.clock.timer'
-  vibrator.isSupportEffect('haptic.clock.timer', function (err, state) {
+  vibrator.isSupportEffect('haptic.clock.timer', (err: BusinessError, state: boolean) => {
     if (err) {
       console.error(`Failed to query effect. Code: ${err.code}, message: ${err.message}`);
       return;
@@ -198,13 +206,14 @@ try {
     console.info('Succeed in querying effect');
     if (state) {
       try {
-        vibrator.startVibration({ // 使用startVibration需要添加ohos.permission.VIBRATE权限
+        // 使用startVibration需要添加ohos.permission.VIBRATE权限
+        vibrator.startVibration({
           type: 'preset',
           effectId: 'haptic.clock.timer',
           count: 1,
         }, {
           usage: 'unknown'
-        }, (error) => {
+        }, (error: BusinessError) => {
           if (error) {
             console.error(`Failed to start vibration. Code: ${error.code}, message: ${error.message}`);
           } else {
@@ -212,12 +221,14 @@ try {
           }
         });
       } catch (error) {
-        console.error(`An unexpected error occurred. Code: ${error.code}, message: ${error.message}`);
+        let e: BusinessError = error as BusinessError;
+        console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
       }
     }
   })
 } catch (error) {
-  console.error(`An unexpected error occurred. Code: ${error.code}, message: ${error.message}`);
+  let e: BusinessError = error as BusinessError;
+  console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -225,20 +236,22 @@ try {
 
 ```ts
 import vibrator from '@ohos.vibrator';
+import { BusinessError } from '@ohos.base';
+import resourceManager from '@ohos.resourceManager';
 
 // 获取振动文件资源描述符
-async function getRawfileFd(fileName) {
-  let rawFd = await globalThis.getContext().resourceManager.getRawFd(fileName);
+async function getRawfileFd(fileName: string): Promise<resourceManager.RawFileDescriptor> {
+  let rawFd = await getContext().resourceManager.getRawFd(fileName);
   return rawFd;
 }
 
 // 关闭振动文件资源描述符
-async function closeRawfileFd(fileName) {
-  await globalThis.getContext().resourceManager.closeRawFd(fileName)
+async function closeRawfileFd(fileName: string): Promise<void> {
+  await getContext().resourceManager.closeRawFd(fileName)
 }
 
 // 播放自定义振动，使用startVibration、stopVibration需要添加ohos.permission.VIBRATE权限
-async function playCustomHaptic(fileName) {
+async function playCustomHaptic(fileName: string): Promise<void> {
   try {
     let rawFd = await getRawfileFd(fileName);
     vibrator.startVibration({
@@ -248,10 +261,10 @@ async function playCustomHaptic(fileName) {
       usage: "alarm"
     }).then(() => {
       console.info('Succeed in starting vibration');
-    }, (error) => {
+    }, (error: BusinessError) => {
       console.error(`Failed to start vibration. Code: ${error.code}, message: ${error.message}`);
     });
-    vibrator.stopVibration(function (error) {
+    vibrator.stopVibration((error: BusinessError) => {
       if (error) {
         console.error(`Failed to stop vibration. Code: ${error.code}, message: ${error.message}`);
         return;
@@ -260,7 +273,8 @@ async function playCustomHaptic(fileName) {
     })
     await closeRawfileFd(fileName);
   } catch (error) {
-    console.error(`An unexpected error occurred. Code: ${error.code}, message: ${error.message}`);
+    let e: BusinessError = error as BusinessError;
+    console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
   }
 }
 ```
