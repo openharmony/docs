@@ -225,7 +225,7 @@ try {
 
 ## appControl.getDisposedStatus
 
-getDisposedStatus(appId: string, callback: AsyncCallback<void>\<Want>): void;
+getDisposedStatus(appId: string, callback: AsyncCallback\<Want>): void;
 
 以异步方法获取指定应用的处置状态。使用callback异步回调，成功返回应用的处置状态，失败返回对应错误信息。
 
