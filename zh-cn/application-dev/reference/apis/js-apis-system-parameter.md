@@ -69,7 +69,7 @@ get(key: string, callback: AsyncCallback&lt;string&gt;): void
 import { BusinessError } from '@ohos.base';
 
 try {
-    systemparameter.get("const.ohos.apiversion", (err:BusinessError, data:string) => {
+    systemparameter.get("const.ohos.apiversion", (err: BusinessError, data: string) => {
     if (err == undefined) {
         console.log("get test.parameter.key value success:" + data)
     } else {
@@ -102,7 +102,7 @@ get(key: string, def: string, callback: AsyncCallback&lt;string&gt;): void
 import { BusinessError } from '@ohos.base';
 
 try {
-    systemparameter.get("const.ohos.apiversion", "default", (err:BusinessError, data:string) => {
+    systemparameter.get("const.ohos.apiversion", "default", (err: BusinessError, data: string) => {
         if (err == undefined) {
             console.log("get test.parameter.key value success:" + data)
         } else {
@@ -142,9 +142,9 @@ import { BusinessError } from '@ohos.base';
 
 try {
     let p = systemparameter.get("const.ohos.apiversion");
-    p.then((value:string) => {
+    p.then((value: string) => {
         console.log("get test.parameter.key success: " + value);
-    }).catch((err:BusinessError) => {
+    }).catch((err: BusinessError) => {
         console.log("get test.parameter.key error: " + err.code);
     });
 } catch(e) {
@@ -208,7 +208,7 @@ set(key: string, value: string, callback: AsyncCallback&lt;void&gt;): void
 import { BusinessError } from '@ohos.base';
 
 try {
-    systemparameter.set("test.parameter.key", "testValue",  (err:BusinessError, data:string) =>{
+    systemparameter.set("test.parameter.key", "testValue",  (err: BusinessError, data: void) =>{
     if (err == undefined) {
         console.log("set test.parameter.key value success :" + data)
     } else {
@@ -251,9 +251,9 @@ import { BusinessError } from '@ohos.base';
 
 try {
     let p = systemparameter.set("test.parameter.key", "testValue");
-    p.then((value:string) => {
+    p.then((value: void) => {
         console.log("set test.parameter.key success: " + value);
-    }).catch((err:BusinessError) => {
+    }).catch((err: BusinessError) => {
         console.log(" set test.parameter.key error: " + err.code);
     });
 } catch(e) {
