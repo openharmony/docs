@@ -4035,16 +4035,16 @@ try {
 
 | 名称            | 类型 | 可读 | 可写 | 说明                   |
 | --------------- | -------- | ---------------------- | ---------------------- | ---------------------- |
-| sensorName      | string   | 是  | 是  | 传感器名称。           |
-| vendorName      | string   | 是  | 是  | 传感器供应商。         |
-| firmwareVersion | string   | 是  | 是  | 传感器固件版本。       |
-| hardwareVersion | string   | 是  | 是  | 传感器硬件版本。       |
-| sensorId        | number   | 是  | 是  | 传感器类型id。         |
-| maxRange        | number   | 是  | 是  | 传感器测量范围的最大值。 |
-| minSamplePeriod | number   | 是  | 是  | 允许的最小采样周期。   |
-| maxSamplePeriod | number   | 是  | 是  | 允许的最大采样周期。   |
-| precision       | number   | 是  | 是  | 传感器精度。           |
-| power           | number   | 是  | 是  | 传感器功率。           |
+| sensorName      | string   | 是  | 否  | 传感器名称。            |
+| vendorName      | string   | 是  | 否  | 传感器供应商。         |
+| firmwareVersion | string   | 是  | 否  | 传感器固件版本。       |
+| hardwareVersion | string   | 是  | 否  | 传感器硬件版本。       |
+| sensorId        | number   | 是  | 否  | 传感器类型id。         |
+| maxRange        | number   | 是  | 否  | 传感器测量范围的最大值。 |
+| minSamplePeriod | number   | 是  | 否  | 允许的最小采样周期。   |
+| maxSamplePeriod | number   | 是  | 否  | 允许的最大采样周期。   |
+| precision       | number   | 是  | 否  | 传感器精度。           |
+| power           | number   | 是  | 否  | 传感器功率的估计值，单位：mA。  |
 
 ## ColorResponse<sup>10+</sup>
 
