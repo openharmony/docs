@@ -8,7 +8,7 @@
 >
 > 应用本身预置的资源文件（即应用在安装前的HAP包中已经存在的资源文件）仅支持本地应用内拖拽。
 
-ArkUI组件默认支持拖拽。
+ArkUI组件默认不支持拖拽。
 
 当以下组件的[draggable](ts-universal-attributes-drag-drop.md)属性设置为true时可以响应拖拽事件，此时，组件不需要配置数据传输，即可进行拖拽。其他组件需要开发者将[draggable](ts-universal-attributes-drag-drop.md)属性设置为true且在onDragStart等接口中实现数据传输相关内容，才能完成拖拽。
 
