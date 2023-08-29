@@ -14,7 +14,7 @@
 
 ## 接口
 
-## Button
+### Button
 
 Button(options?: {type?: ButtonType, stateEffect?: boolean})
 
@@ -27,7 +27,7 @@ Button(options?: {type?: ButtonType, stateEffect?: boolean})
 | type        | ButtonType | 否    | 描述按钮显示样式。<br/>默认值：ButtonType.Capsule                           |
 | stateEffect | boolean    | 否    | 按钮按下时是否开启按压态显示效果，当设置为false时，按压效果关闭。<br/>默认值：true<br/>**说明：** <br/>当开启按压态显示效果，开发者设置状态样式时，会基于状态样式设置完成后的背景色再进行颜色叠加。 |
 
-## Button
+### Button
 
 Button(label?: ResourceStr, options?: { type?: ButtonType, stateEffect?: boolean })
 
