@@ -143,6 +143,7 @@ struct SideBarContainerExample {
     .sideBarWidth(150)
     .minSideBarWidth(50)
     .maxSideBarWidth(300)
+    .minContentWidth(0)
     .onChange((value: boolean) => {
       console.info('status:' + value)
     })
