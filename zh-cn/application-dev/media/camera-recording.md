@@ -26,8 +26,9 @@
        console.info(`createAVRecorder fail, error:${error}`);
      }
    });
-   // AVRecorderConfig可参考下一章节
-   avRecorder.prepare(AVRecorderConfig: media.AVRecorderConfig, (err: BusinessError) => {
+   // aVRecorderConfig可参考下一章节
+   let aVRecorderConfig: media.AVRecorderConfig;
+   avRecorder.prepare(aVRecorderConfig, (err: BusinessError) => {
      if (err == null) {
        console.log('prepare success');
      } else {
@@ -35,12 +36,12 @@
      }
    });
    
-   let videoSurfaceId: string = null; 
+   let videoSurfaceId: string = null;
    avRecorder.getInputSurface().then((surfaceId: string) => {
      console.info('getInputSurface success');
-     videoSurfaceId = surfaceId; 
-   }).catch((err) => {
-     console.info('getInputSurface failed and catch error is ' + err.message); 
+     videoSurfaceId = surfaceId;
+   }).catch((err: BusinessError) => {
+     console.info('getInputSurface failed and catch error is ' + err.message);
    });
    ```
 
@@ -85,7 +86,8 @@
    try {
      videoOutput = cameraManager.createVideoOutput(videoProfilesArray[0], videoSurfaceId);
    } catch (error) {
-     console.error('Failed to create the videoOutput instance. errorCode = ' + error.code);
+     let err = error as BusinessError;
+     console.error('Failed to create the videoOutput instance. errorCode = ' + err.code);
    }
    ```
 
