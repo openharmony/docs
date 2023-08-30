@@ -43,9 +43,9 @@ getAbilityDelegator(): AbilityDelegator
 **示例：**
 
 ```ts
-let abilityDelegator;
+import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry';
 
-abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 ```
 
 ## AbilityDelegatorRegistry.getArguments
@@ -65,6 +65,8 @@ getArguments(): AbilityDelegatorArgs
 **示例：**
 
 ```ts
+import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry';
+
 let args = AbilityDelegatorRegistry.getArguments();
 console.info('getArguments bundleName: ${args.bundleName}');
 console.info('getArguments testCaseNames: ${args.testCaseNames}');

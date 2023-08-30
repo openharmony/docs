@@ -47,19 +47,22 @@ addAbilityMonitor(monitor: AbilityMonitor, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import UIAbility from '@ohos.app.ability.UIAbility';
+import { BusinessError } from '@ohos.base';
+
 let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 
-function onAbilityCreateCallback(data) {
+function onAbilityCreateCallback(data: UIAbility) {
     console.info('onAbilityCreateCallback, data: ${JSON.stringify(data)}');
 }
 
-let monitor = {
+let monitor: AbilityDelegatorRegistry.AbilityMonitor = {
     abilityName: 'abilityname',
     onAbilityCreate: onAbilityCreateCallback
 };
-
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.addAbilityMonitor(monitor, (error : any) => {
+abilityDelegator.addAbilityMonitor(monitor, (error: BusinessError) => {
     console.error('addAbilityMonitor fail, error: ${JSON.stringify(error)}');
 });
 ```
@@ -95,17 +98,19 @@ addAbilityMonitor(monitor: AbilityMonitor): Promise\<void>;
 **示例：**
 
 ```ts
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import UIAbility from '@ohos.app.ability.UIAbility';
+
 let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 
-function onAbilityCreateCallback(data) {
+function onAbilityCreateCallback(data: UIAbility) {
     console.info('onAbilityCreateCallback');
 }
 
-let monitor = {
+let monitor: AbilityDelegatorRegistry.AbilityMonitor = {
     abilityName: 'abilityname',
     onAbilityCreate: onAbilityCreateCallback
 };
-
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 abilityDelegator.addAbilityMonitor(monitor).then(() => {
     console.info('addAbilityMonitor promise');
@@ -138,19 +143,23 @@ removeAbilityMonitor(monitor: AbilityMonitor, callback: AsyncCallback\<void>): v
 **示例：**
 
 ```ts
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import UIAbility from '@ohos.app.ability.UIAbility';
+import { BusinessError } from '@ohos.base';
+
 let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 
-function onAbilityCreateCallback(data) {
+function onAbilityCreateCallback(data: UIAbility) {
     console.info('onAbilityCreateCallback');
 }
 
-let monitor = {
+let monitor: AbilityDelegatorRegistry.AbilityMonitor = {
     abilityName: 'abilityname',
     onAbilityCreate: onAbilityCreateCallback
 };
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.removeAbilityMonitor(monitor, (error : any) => {
+abilityDelegator.removeAbilityMonitor(monitor, (error: BusinessError) => {
     console.error('removeAbilityMonitor fail, error: ${JSON.stringify(error)}');
 });
 ```
@@ -186,13 +195,16 @@ removeAbilityMonitor(monitor: AbilityMonitor): Promise\<void>;
 - 示例
 
 ```ts
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import UIAbility from '@ohos.app.ability.UIAbility';
+
 let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 
-function onAbilityCreateCallback(data) {
+function onAbilityCreateCallback(data: UIAbility) {
     console.info('onAbilityCreateCallback');
 }
 
-let monitor = {
+let monitor: AbilityDelegatorRegistry.AbilityMonitor = {
     abilityName: 'abilityname',
     onAbilityCreate: onAbilityCreateCallback
 };
@@ -229,19 +241,23 @@ waitAbilityMonitor(monitor: AbilityMonitor, callback: AsyncCallback\<UIAbility>)
 **示例：**
 
 ```ts
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import UIAbility from '@ohos.app.ability.UIAbility';
+import { BusinessError } from '@ohos.base';
+
 let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 
-function onAbilityCreateCallback(data) {
+function onAbilityCreateCallback(data: UIAbility) {
     console.info('onAbilityCreateCallback');
 }
 
-let monitor = {
+let monitor: AbilityDelegatorRegistry.AbilityMonitor = {
     abilityName: 'abilityname',
     onAbilityCreate: onAbilityCreateCallback
 };
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.waitAbilityMonitor(monitor, (error : any, data : any) => {
+abilityDelegator.waitAbilityMonitor(monitor, (error : BusinessError, data : UIAbility) => {
     if (error) {
         console.error('waitAbilityMonitor fail, error: ${JSON.stringify(error)}');
     } else {
@@ -277,20 +293,24 @@ waitAbilityMonitor(monitor: AbilityMonitor, timeout: number, callback: AsyncCall
 **示例：**
 
 ```ts
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import UIAbility from '@ohos.app.ability.UIAbility';
+import { BusinessError } from '@ohos.base';
+
 let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 let timeout = 100;
 
-function onAbilityCreateCallback(data) {
+function onAbilityCreateCallback(data: UIAbility) {
     console.info('onAbilityCreateCallback');
 }
 
-let monitor = {
+let monitor: AbilityDelegatorRegistry.AbilityMonitor = {
     abilityName: 'abilityname',
     onAbilityCreate: onAbilityCreateCallback
 };
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.waitAbilityMonitor(monitor, timeout, (error : any, data : any) => {
+abilityDelegator.waitAbilityMonitor(monitor, timeout, (error : BusinessError, data : UIAbility) => {
     if (error && error.code !== 0) {
         console.error('waitAbilityMonitor fail, error: ${JSON.stringify(error)}');
     } else {
@@ -333,19 +353,22 @@ waitAbilityMonitor(monitor: AbilityMonitor, timeout?: number): Promise\<UIAbilit
 **示例：**
 
 ```ts
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import UIAbility from '@ohos.app.ability.UIAbility';
+
 let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 
-function onAbilityCreateCallback(data) {
+function onAbilityCreateCallback(data: UIAbility) {
     console.info('onAbilityCreateCallback');
 }
 
-let monitor = {
+let monitor: AbilityDelegatorRegistry.AbilityMonitor = {
     abilityName: 'abilityname',
     onAbilityCreate: onAbilityCreateCallback
 };
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.waitAbilityMonitor(monitor).then((data : any) => {
+abilityDelegator.waitAbilityMonitor(monitor).then((data : BusinessError) => {
     console.info('waitAbilityMonitor promise');
 });
 ```
@@ -367,6 +390,8 @@ getAppContext(): Context;
 **示例：**
 
 ```ts
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+
 let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
@@ -396,11 +421,15 @@ getAbilityState(ability: UIAbility): number;
 **示例：**
 
 ```ts
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import UIAbility from '@ohos.app.ability.UIAbility';
+import { BusinessError } from '@ohos.base';
+
 let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
-let ability;
+let ability: UIAbility;
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.getCurrentTopAbility((err : any, data : any) => {
+abilityDelegator.getCurrentTopAbility((err : BusinessError, data : UIAbility) => {
     console.info('getCurrentTopAbility callback');
     ability = data;
     let state = abilityDelegator.getAbilityState(ability);
@@ -433,11 +462,15 @@ getCurrentTopAbility(callback: AsyncCallback\<UIAbility>): void;
 **示例：**
 
 ```ts
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import UIAbility from '@ohos.app.ability.UIAbility';
+import { BusinessError } from '@ohos.base';
+
 let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
-let ability;
+let ability: UIAbility;
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.getCurrentTopAbility((err : any, data : any) => {
+abilityDelegator.getCurrentTopAbility((err : BusinessError, data : UIAbility) => {
     console.info('getCurrentTopAbility callback');
     ability = data;
 });
@@ -468,11 +501,14 @@ getCurrentTopAbility(): Promise\<UIAbility>;
 **示例：**
 
 ```ts
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import UIAbility from '@ohos.app.ability.UIAbility';
+
 let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
-let ability;
+let ability: UIAbility;
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.getCurrentTopAbility().then((data : any) => {
+abilityDelegator.getCurrentTopAbility().then((data : UIAbility) => {
     console.info('getCurrentTopAbility promise');
     ability = data;
 });
@@ -518,14 +554,18 @@ startAbility(want: Want, callback: AsyncCallback\<void>): void;
 **示例：**
 
 ```ts
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+
 let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
-let want = {
+let want: Want = {
     bundleName: 'bundleName',
     abilityName: 'abilityName'
 };
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.startAbility(want, (err : any, data : any) => {
+abilityDelegator.startAbility(want, (err : BusinessError, data : void) => {
     console.info('startAbility callback');
 });
 ```
@@ -575,14 +615,18 @@ startAbility(want: Want): Promise\<void>;
 **示例：**
 
 ```ts
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import UIAbility from '@ohos.app.ability.UIAbility';
+import Want from '@ohos.app.ability.Want';
+
 let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
-let want = {
+let want: Want = {
     bundleName: 'bundleName',
     abilityName: 'abilityName'
 };
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.startAbility(want).then((data: any) => {
+abilityDelegator.startAbility(want).then((data: void) => {
     console.info('startAbility promise');
 });
 ```
@@ -613,14 +657,18 @@ doAbilityForeground(ability: UIAbility, callback: AsyncCallback\<void>): void;
 **示例：**
 
 ```ts
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import UIAbility from '@ohos.app.ability.UIAbility';
+import { BusinessError } from '@ohos.base';
+
 let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
-let ability;
+let ability: UIAbility;
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.getCurrentTopAbility((err : any, data : any) => {
+abilityDelegator.getCurrentTopAbility((err : BusinessError, data : UIAbility) => {
     console.info('getCurrentTopAbility callback');
     ability = data;
-    abilityDelegator.doAbilityForeground(ability, (err : any) => {
+    abilityDelegator.doAbilityForeground(ability, (err : BusinessError) => {
         console.info("doAbilityForeground callback");
     });
 });
@@ -657,11 +705,15 @@ doAbilityForeground(ability: UIAbility): Promise\<void>;
 **示例：**
 
 ```ts
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import UIAbility from '@ohos.app.ability.UIAbility';
+import { BusinessError } from '@ohos.base';
+
 let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
-let ability;
+let ability: UIAbility;
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.getCurrentTopAbility((err : any, data : any) => {
+abilityDelegator.getCurrentTopAbility((err : BusinessError, data : UIAbility) => {
     console.info('getCurrentTopAbility callback');
     ability = data;
     abilityDelegator.doAbilityForeground(ability).then(() => {
@@ -696,14 +748,18 @@ doAbilityBackground(ability: UIAbility, callback: AsyncCallback\<void>): void;
 **示例：**
 
 ```ts
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import UIAbility from '@ohos.app.ability.UIAbility';
+import { BusinessError } from '@ohos.base';
+
 let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
-let ability;
+let ability: UIAbility;
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.getCurrentTopAbility((err : any, data : any) => {
+abilityDelegator.getCurrentTopAbility((err : BusinessError, data : UIAbility) => {
     console.info('getCurrentTopAbility callback');
     ability = data;
-    abilityDelegator.doAbilityBackground(ability, (err : any) => {
+    abilityDelegator.doAbilityBackground(ability, (err : BusinessError) => {
         console.info("doAbilityBackground callback");
     });
 });
@@ -740,11 +796,15 @@ doAbilityBackground(ability: UIAbility): Promise\<void>;
 **示例：**
 
 ```ts
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import UIAbility from '@ohos.app.ability.UIAbility';
+import { BusinessError } from '@ohos.base';
+
 let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
-let ability;
+let ability: UIAbility;
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.getCurrentTopAbility((err : any, data : any) => {
+abilityDelegator.getCurrentTopAbility((err : BusinessError, data : UIAbility) => {
     console.info('getCurrentTopAbility callback');
     ability = data;
     abilityDelegator.doAbilityBackground(ability).then(() => {
@@ -770,6 +830,8 @@ printSync(msg: string): void;
 **示例：**
 
 ```ts
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+
 let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 let msg = 'msg';
 
@@ -795,11 +857,14 @@ print(msg: string, callback: AsyncCallback\<void>): void;
 **示例：**
 
 ```ts
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import { BusinessError } from '@ohos.base';
+
 let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 let msg = 'msg';
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.print(msg, (err : any) => {
+abilityDelegator.print(msg, (err : BusinessError) => {
     console.info('print callback');
 });
 ```
@@ -827,6 +892,8 @@ print(msg: string): Promise\<void>;
 **示例：**
 
 ```ts
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+
 let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 let msg = 'msg';
 
@@ -856,11 +923,14 @@ executeShellCommand(cmd: string, callback: AsyncCallback\<ShellCmdResult>): void
 **示例：**
 
 ```ts
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import { BusinessError } from '@ohos.base';
+
 let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 let cmd = 'cmd';
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.executeShellCommand(cmd, (err : any, data : any) => {
+abilityDelegator.executeShellCommand(cmd, (err : BusinessError, data: AbilityDelegatorRegistry.ShellCmdResult) => {
     console.info('executeShellCommand callback');
 });
 ```
@@ -886,12 +956,15 @@ executeShellCommand(cmd: string, timeoutSecs: number, callback: AsyncCallback\<S
 **示例：**
 
 ```ts
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import { BusinessError } from '@ohos.base';
+
 let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 let cmd = 'cmd';
 let timeout = 100;
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.executeShellCommand(cmd, timeout, (err : any, data : any) => {
+abilityDelegator.executeShellCommand(cmd, timeout, (err : BusinessError, data: AbilityDelegatorRegistry.ShellCmdResult) => {
     console.info('executeShellCommand callback');
 });
 ```
@@ -922,12 +995,14 @@ executeShellCommand(cmd: string, timeoutSecs?: number): Promise\<ShellCmdResult>
 **示例：**
 
 ```ts
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+
 let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 let cmd = 'cmd';
 let timeout = 100;
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.executeShellCommand(cmd, timeout).then((data : any) => {
+abilityDelegator.executeShellCommand(cmd, timeout).then((data) => {
     console.info('executeShellCommand promise');
 });
 ```
@@ -959,11 +1034,14 @@ finishTest(msg: string, code: number, callback: AsyncCallback\<void>): void;
 **示例：**
 
 ```ts
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import { BusinessError } from '@ohos.base';
+
 let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 let msg = 'msg';
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.finishTest(msg, 0, (err : any) => {
+abilityDelegator.finishTest(msg, 0, (err : BusinessError) => {
     console.info('finishTest callback');
 });
 ```
@@ -1000,6 +1078,8 @@ finishTest(msg: string, code: number): Promise\<void>;
 **示例：**
 
 ```ts
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+
 let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 let msg = 'msg';
 
@@ -1035,15 +1115,16 @@ addAbilityStageMonitor(monitor: AbilityStageMonitor, callback: AsyncCallback\<vo
 **示例：**
 
 ```ts
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import { BusinessError } from '@ohos.base';
+
 let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 
-let monitor = {
+abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+abilityDelegator.addAbilityStageMonitor({
     moduleName: 'moduleName',
     srcEntrance: 'srcEntrance',
-};
-
-abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.addAbilityStageMonitor(monitor, (err : any) => {
+}, (err : BusinessError) => {
     console.info('addAbilityStageMonitor callback');
 });
 ```
@@ -1079,15 +1160,15 @@ addAbilityStageMonitor(monitor: AbilityStageMonitor): Promise\<void>;
 **示例：**
 
 ```ts
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+
 let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 
-let monitor = {
+abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+abilityDelegator.addAbilityStageMonitor({
     moduleName: 'moduleName',
     srcEntrance: 'srcEntrance',
-};
-
-abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.addAbilityStageMonitor(monitor).then(() => {
+}).then(() => {
     console.info('addAbilityStageMonitor promise');
 });
 ```
@@ -1118,15 +1199,16 @@ removeAbilityStageMonitor(monitor: AbilityStageMonitor, callback: AsyncCallback\
 **示例：**
 
 ```ts
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import { BusinessError } from '@ohos.base';
+
 let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 
-let monitor = {
+abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+abilityDelegator.removeAbilityStageMonitor({
     moduleName: 'moduleName',
     srcEntrance: 'srcEntrance',
-};
-
-abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.removeAbilityStageMonitor(monitor, (err : any) => {
+}, (err : BusinessError) => {
     console.info('removeAbilityStageMonitor callback');
 });
 ```
@@ -1162,15 +1244,15 @@ removeAbilityStageMonitor(monitor: AbilityStageMonitor): Promise\<void>;
 **示例：**
 
 ```ts
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+
 let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 
-let monitor = {
+abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+abilityDelegator.removeAbilityStageMonitor({
     moduleName: 'moduleName',
     srcEntrance: 'srcEntrance',
-};
-
-abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.removeAbilityStageMonitor(monitor).then(() => {
+}).then(() => {
     console.info('removeAbilityStageMonitor promise');
 });
 ```
@@ -1201,19 +1283,16 @@ waitAbilityStageMonitor(monitor: AbilityStageMonitor, callback: AsyncCallback\<A
 **示例：**
 
 ```ts
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import AbilityStage from '@ohos.app.ability.AbilityStage';
+
 let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 
-function onAbilityCreateCallback(data) {
-    console.info('onAbilityCreateCallback');
-}
-
-let monitor = {
+abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+abilityDelegator.waitAbilityStageMonitor({
     moduleName: 'moduleName',
     srcEntrance: 'srcEntrance',
-};
-
-abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.waitAbilityStageMonitor(monitor, (err : any, data : any) => {
+}, (err : BusinessError, data : AbilityStage) => {
     console.info('waitAbilityStageMonitor callback');
 });
 ```
@@ -1250,19 +1329,16 @@ waitAbilityStageMonitor(monitor: AbilityStageMonitor, timeout?: number): Promise
 **示例：**
 
 ```ts
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import AbilityStage from '@ohos.app.ability.AbilityStage';
+
 let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 
-function onAbilityCreateCallback(data) {
-    console.info('onAbilityCreateCallback');
-}
-
-let monitor = {
+abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+abilityDelegator.waitAbilityStageMonitor({
     moduleName: 'moduleName',
     srcEntrance: 'srcEntrance',
-};
-
-abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.waitAbilityStageMonitor(monitor).then((data : any) => {
+}).then((data : AbilityStage) => {
     console.info('waitAbilityStageMonitor promise');
 });
 ```
@@ -1294,20 +1370,18 @@ waitAbilityStageMonitor(monitor: AbilityStageMonitor, timeout: number, callback:
 **示例：**
 
 ```ts
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import AbilityStage from '@ohos.app.ability.AbilityStage';
+import { BusinessError } from '@ohos.base';
+
 let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 let timeout = 100;
 
-function onAbilityCreateCallback(data) {
-    console.info('onAbilityCreateCallback');
-}
-
-let monitor = {
+abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+abilityDelegator.waitAbilityStageMonitor({
     moduleName: 'moduleName',
     srcEntrance: 'srcEntrance',
-};
-
-abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.waitAbilityStageMonitor(monitor, timeout, (err : any, data : any) => {
+}, timeout, (err : BusinessError, data : AbilityStage) => {
     console.info('waitAbilityStageMonitor callback');
 });
 ```
