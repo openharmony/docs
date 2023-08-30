@@ -579,27 +579,6 @@ class ClassB {
 以下组件层次结构呈现的是@Prop嵌套场景的数据结构。
 
 ```ts
-// 以下是嵌套类对象的数据结构。
-@Observed
-class ClassA {
-  public title: string;
-
-  constructor(title: string) {
-    this.title = title;
-  }
-}
-
-@Observed
-class ClassB {
-  public name: string;
-  public a: ClassA;
-
-  constructor(name: string, a: ClassA) {
-    this.name = name;
-    this.a = a;
-  }
-}
-
 @Entry
 @Component
 struct Parent {
