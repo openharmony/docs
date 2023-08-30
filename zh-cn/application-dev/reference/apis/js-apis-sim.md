@@ -647,9 +647,9 @@ getSimStateSync\(slotId: number\): SimState
 
 **返回值：**
 
-| 类型                             | 说明                                       |
-| -------------------------------- | ------------------------------------------ |
-| \<[SimState](#simstate)\> | 返回获取指定卡槽的SIM卡状态。 |
+| 类型                         | 说明                                       |
+| ---------------------------- | ------------------------------------------ |
+| [SimState](#simstate) | 返回获取指定卡槽的SIM卡状态。 |
 
 
 **示例：**
@@ -742,7 +742,7 @@ promise.then(data => {
 
 ## sim.getCardTypeSync<sup>10+</sup>
 
-getCardType\(slotId: number\): CardType
+getCardTypeSync\(slotId: number\): CardType
 
 获取指定卡槽SIM卡的卡类型。结果会直接返回。
 
