@@ -21,24 +21,24 @@ AudioCapturer是音频采集器，用于录制PCM（Pulse Code Modulation）音�
    import audio from '@ohos.multimedia.audio';
    import fs from '@ohos.file.fs';
    import { BusinessError } from '@ohos.base';
-   
+
    let audioStreamInfo: audio.AudioStreamInfo = {
      samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
      channels: audio.AudioChannel.CHANNEL_2,
      sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE,
      encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW
    };
-   
+
    let audioCapturerInfo: audio.AudioCapturerInfo = {
      source: audio.SourceType.SOURCE_TYPE_MIC,
      capturerFlags: 0
    };
-   
+
    let audioCapturerOptions: audio.AudioCapturerOptions = {
      streamInfo: audioStreamInfo,
      capturerInfo: audioCapturerInfo
    };
-   
+
    audio.createAudioCapturer(audioCapturerOptions, (err, data) => {
      if (err) {
        console.error(`Invoke createAudioCapturer failed, code is ${err.code}, message is ${err.message}`);
@@ -169,7 +169,7 @@ export default class AudioCapturerDemo {
     while (numBuffersToCapture) {
       let bufferSize = await this.audioCapturer.getBufferSize();
       let buffer = await this.audioCapturer.read(bufferSize, true);
-      let options = {
+      let options: Options = {
         offset: count * bufferSize,
         length: bufferSize
       };
