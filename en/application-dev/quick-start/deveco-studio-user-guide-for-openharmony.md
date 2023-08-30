@@ -11,6 +11,7 @@ HUAWEI DevEco Studio For OpenHarmony (DevEco Studio for short) is a one-stop int
 - **Multi-device bidirectional real-time preview**: Bidirectional preview, real-time preview, live preview, component preview, and multi-device preview of UI code to quickly view how your code runs on devices. For details, see [Previewing Your App/Service](https://developer.harmonyos.com/en/docs/documentation/doc-guides/ohos-previewing-app-service-0000001218760596).
 - **High-performance build system**: Hvigor, a compilation and building tool to compile and package applications/services in one-click mode, better supporting ArkTS/JS development.
 - **One-stop information acquisition**: A one-stop information acquisition platform that takes into account the developer journey of learning, development, and help seeking, in order to facilitate developer activities.
-- **Efficient code debugging**: Various debugging capabilities such as TS, JS, and C/C++ code breakpoint setting, single-step execution, and variable viewing, improving the efficiency of analyzing application/service issues.
+- **Efficient code debugging**: Various debugging capabilities such as ArkTS, JS, and C/C++ code breakpoint setting, single-step execution, and variable viewing, improving the efficiency of analyzing application/service issues.
+- **Scenario-based profiling**: A performance profiling tool that provides scenario-based profiling features, such as real-time data monitoring, measurement of the time it takes to execute functions, and memory analysis, to help you quickly locate faulty code.
 
 For more information, see [DevEco Studio User Guide (OpenHarmony)](https://developer.harmonyos.com/en/docs/documentation/doc-guides/ohos-deveco-studio-overview-0000001263280421).

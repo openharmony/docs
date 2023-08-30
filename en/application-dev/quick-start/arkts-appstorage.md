@@ -23,8 +23,7 @@ Selected state attributes of AppStorage can be synced with different data source
 
 As mentioned above, if you want to establish a binding between AppStorage and a custom component, you'll need the \@StorageProp and \@StorageLink decorators. Use \@StorageProp(key) or \@StorageLink(key) to decorate variables in the component, where **key** identifies the attribute in AppStorage.
 
-When a custom component is initialized, the \@StorageProp(key)/\@StorageLink(key) decorated variable is initialized with the value of the attribute with the given key in AppStorage. Local initialization is mandatory. If an attribute with the given key is missing from AppStorage, it will be added with the stated initializing value. (Whether the attribute with the given key exists in AppStorage depends on the application logic.)
-
+When a custom component is initialized, the \@StorageProp(key)/\@StorageLink(key) decorated variable is initialized with the value of the attribute with the given key in AppStorage. Whether the attribute with the given key exists in AppStorage depends on the application logic. This means that the attribute with the given key may be missing from AppStorage. In light of this, local initialization is mandatory for the \@StorageProp(key)/\@StorageLink(key) decorated variable.
 
 By decorating a variable with \@StorageProp(key), a one-way data synchronization is established with the attribute with the given key in AppStorage. A local change can be made, but it will not be synchronized to AppStorage. An update to the attribute with the given key in AppStorage will overwrite local changes.
 
