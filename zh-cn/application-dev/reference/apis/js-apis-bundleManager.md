@@ -1020,9 +1020,10 @@ queryAbilityInfo(want: Want, abilityFlags: [number](#abilityflag), userId: numbe
 import bundleManager from '@ohos.bundle.bundleManager';
 import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
+import Want from '@ohos.app.ability.Want';
 let abilityFlags = bundleManager.AbilityFlag.GET_ABILITY_INFO_DEFAULT;
 let userId = 100;
-let want = {
+let want: Want = {
     bundleName : "com.example.myapplication",
     abilityName : "EntryAbility"
 };
@@ -1078,8 +1079,9 @@ queryAbilityInfo(want: Want, abilityFlags: [number](#abilityflag), callback: Asy
 import bundleManager from '@ohos.bundle.bundleManager';
 import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
+import Want from '@ohos.app.ability.Want';
 let abilityFlags = bundleManager.AbilityFlag.GET_ABILITY_INFO_DEFAULT;
-let want = {
+let want: Want = {
     bundleName : "com.example.myapplication",
     abilityName : "EntryAbility"
 };
@@ -1142,9 +1144,10 @@ queryAbilityInfo(want: Want, abilityFlags: [number](#abilityflag), userId?: numb
 import bundleManager from '@ohos.bundle.bundleManager';
 import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
+import Want from '@ohos.app.ability.Want';
 let abilityFlags = bundleManager.AbilityFlag.GET_ABILITY_INFO_DEFAULT;
 let userId = 100;
-let want = {
+let want: Want = {
     bundleName : "com.example.myapplication",
     abilityName : "EntryAbility"
 };
@@ -1165,8 +1168,9 @@ try {
 import bundleManager from '@ohos.bundle.bundleManager';
 import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
+import Want from '@ohos.app.ability.Want';
 let abilityFlags = bundleManager.AbilityFlag.GET_ABILITY_INFO_DEFAULT;
-let want = {
+let want: Want = {
     bundleName : "com.example.myapplication",
     abilityName : "EntryAbility"
 };
@@ -1227,9 +1231,10 @@ queryAbilityInfoSync(want: Want, abilityFlags: [number](#abilityflag), userId?: 
 import bundleManager from '@ohos.bundle.bundleManager';
 import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
+import Want from '@ohos.app.ability.Want';
 let abilityFlags = bundleManager.AbilityFlag.GET_ABILITY_INFO_DEFAULT;
 let userId = 100;
-let want = {
+let want: Want = {
     bundleName : "com.example.myapplication",
     abilityName : "EntryAbility"
 };
@@ -1248,8 +1253,9 @@ try {
 import bundleManager from '@ohos.bundle.bundleManager';
 import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
+import Want from '@ohos.app.ability.Want';
 let abilityFlags = bundleManager.AbilityFlag.GET_ABILITY_INFO_DEFAULT;
-let want = {
+let want: Want = {
     bundleName : "com.example.myapplication",
     abilityName : "EntryAbility"
 };
@@ -1302,10 +1308,11 @@ queryExtensionAbilityInfo(want: Want, extensionAbilityType: [ExtensionAbilityTyp
 import bundleManager from '@ohos.bundle.bundleManager';
 import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
+import Want from '@ohos.app.ability.Want';
 let extensionAbilityType = bundleManager.ExtensionAbilityType.FORM;
 let extensionFlags = bundleManager.ExtensionAbilityFlag.GET_EXTENSION_ABILITY_INFO_DEFAULT;
 let userId = 100;
-let want = {
+let want: Want = {
     bundleName : "com.example.myapplication",
     abilityName : "EntryAbility"
 };
@@ -1361,9 +1368,10 @@ queryExtensionAbilityInfo(want: Want, extensionAbilityType: [ExtensionAbilityTyp
 import bundleManager from '@ohos.bundle.bundleManager';
 import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
+import Want from '@ohos.app.ability.Want';
 let extensionAbilityType = bundleManager.ExtensionAbilityType.FORM;
 let extensionFlags = bundleManager.ExtensionAbilityFlag.GET_EXTENSION_ABILITY_INFO_DEFAULT;
-let want = {
+let want: Want = {
     bundleName : "com.example.myapplication",
     abilityName : "EntryAbility"
 };
@@ -1426,11 +1434,12 @@ queryExtensionAbilityInfo(want: Want, extensionAbilityType: [ExtensionAbilityTyp
 import bundleManager from '@ohos.bundle.bundleManager';
 import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
+import Want from '@ohos.app.ability.Want';
 
 let extensionAbilityType = bundleManager.ExtensionAbilityType.FORM;
 let extensionFlags = bundleManager.ExtensionAbilityFlag.GET_EXTENSION_ABILITY_INFO_DEFAULT;
 let userId = 100;
-let want = {
+let want: Want = {
     bundleName : "com.example.myapplication",
     abilityName : "EntryAbility"
 };
@@ -1451,9 +1460,10 @@ try {
 import bundleManager from '@ohos.bundle.bundleManager';
 import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
+import Want from '@ohos.app.ability.Want';
 let extensionAbilityType = bundleManager.ExtensionAbilityType.FORM;
 let extensionFlags = bundleManager.ExtensionAbilityFlag.GET_EXTENSION_ABILITY_INFO_DEFAULT;
-let want = {
+let want: Want = {
     bundleName : "com.example.myapplication",
     abilityName : "EntryAbility"
 };
@@ -1514,11 +1524,12 @@ queryExtensionAbilityInfoSync(want: Want, extensionAbilityType: [ExtensionAbilit
 import bundleManager from '@ohos.bundle.bundleManager';
 import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
+import Want from '@ohos.app.ability.Want';
 
 let extensionAbilityType = bundleManager.ExtensionAbilityType.FORM;
 let extensionFlags = bundleManager.ExtensionAbilityFlag.GET_EXTENSION_ABILITY_INFO_DEFAULT;
 let userId = 100;
-let want = {
+let want: Want = {
     bundleName : "com.example.myapplication",
     abilityName : "EntryAbility"
 };
@@ -1536,9 +1547,10 @@ try {
 import bundleManager from '@ohos.bundle.bundleManager';
 import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
+import Want from '@ohos.app.ability.Want';
 let extensionAbilityType = bundleManager.ExtensionAbilityType.FORM;
 let extensionFlags = bundleManager.ExtensionAbilityFlag.GET_EXTENSION_ABILITY_INFO_DEFAULT;
-let want = {
+let want: Want = {
     bundleName : "com.example.myapplication",
     abilityName : "EntryAbility"
 };
@@ -2140,18 +2152,18 @@ setAbilityEnabled(info: [AbilityInfo](js-apis-bundleManager-abilityInfo.md), isE
 import bundleManager from '@ohos.bundle.bundleManager';
 import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
+import Want from '@ohos.app.ability.Want';
 let abilityFlags = bundleManager.AbilityFlag.GET_ABILITY_INFO_DEFAULT;
 let userId = 100;
-let want = {
+let want: Want = {
     bundleName : "com.example.myapplication",
     abilityName : "EntryAbility"
 };
-let info;
 
 try {
     bundleManager.queryAbilityInfo(want, abilityFlags, userId).then((abilitiesInfo) => {
         hilog.info(0x0000, 'testTag', 'queryAbilityInfo successfully. Data: %{public}s', JSON.stringify(abilitiesInfo));
-        info = abilitiesInfo[0];
+        let info = abilitiesInfo[0];
 
         bundleManager.setAbilityEnabled(info, false, err => {
             if (err) {
@@ -2209,18 +2221,18 @@ setAbilityEnabled(info: [AbilityInfo](js-apis-bundleManager-abilityInfo.md), isE
 import bundleManager from '@ohos.bundle.bundleManager';
 import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
+import Want from '@ohos.app.ability.Want';
 let abilityFlags = bundleManager.AbilityFlag.GET_ABILITY_INFO_DEFAULT;
 let userId = 100;
-let want = {
+let want: Want = {
     bundleName : "com.example.myapplication",
     abilityName : "EntryAbility"
 };
-let info;
 
 try {
     bundleManager.queryAbilityInfo(want, abilityFlags, userId).then((abilitiesInfo) => {
         hilog.info(0x0000, 'testTag', 'queryAbilityInfo successfully. Data: %{public}s', JSON.stringify(abilitiesInfo));
-        info = abilitiesInfo[0];
+        let info = abilitiesInfo[0];
 
         bundleManager.setAbilityEnabled(info, false).then(() => {
             hilog.info(0x0000, "testTag", "setAbilityEnabled successfully.");
@@ -2270,26 +2282,27 @@ setAbilityEnabledSync(info: [AbilityInfo](js-apis-bundleManager-abilityInfo.md),
 import bundleManager from '@ohos.bundle.bundleManager';
 import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
+import Want from '@ohos.app.ability.Want';
 let abilityFlags = bundleManager.AbilityFlag.GET_ABILITY_INFO_DEFAULT;
 let userId = 100;
-let want = {
+let want: Want = {
     bundleName : "com.example.myapplication",
     abilityName : "EntryAbility"
 };
-let info;
 
 try {
     bundleManager.queryAbilityInfo(want, abilityFlags, userId).then((abilitiesInfo) => {
         hilog.info(0x0000, 'testTag', 'queryAbilityInfo successfully. Data: %{public}s', JSON.stringify(abilitiesInfo));
-        info = abilitiesInfo[0];
+        let info = abilitiesInfo[0];
 
         try {
             bundleManager.setAbilityEnabledSync(info, false);
             hilog.info(0x0000, "testTag", "setAbilityEnabledSync successfully.");
         } catch (err) {
-            hilog.error(0x0000, 'testTag', 'setAbilityEnabledSync failed: %{public}s', err.message);
+            let message = (err as BusinessError).message;
+            hilog.error(0x0000, 'testTag', 'setAbilityEnabledSync failed: %{public}s', message);
         }
-    }).catch(err => {
+    }).catch((err: BusinessError) => {
         hilog.error(0x0000, 'testTag', 'queryAbilityInfo failed. Cause: %{public}s', err.message);
     });
 } catch (err) {
@@ -2474,18 +2487,18 @@ isAbilityEnabled(info: [AbilityInfo](js-apis-bundleManager-abilityInfo.md), call
 import bundleManager from '@ohos.bundle.bundleManager';
 import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
+import Want from '@ohos.app.ability.Want';
 let abilityFlags = bundleManager.AbilityFlag.GET_ABILITY_INFO_DEFAULT;
 let userId = 100;
-let want = {
+let want: Want = {
     bundleName : "com.example.myapplication",
     abilityName : "EntryAbility"
 };
-let info;
 
 try {
     bundleManager.queryAbilityInfo(want, abilityFlags, userId).then((abilitiesInfo) => {
         hilog.info(0x0000, 'testTag', 'queryAbilityInfo successfully. Data: %{public}s', JSON.stringify(abilitiesInfo));
-        info = abilitiesInfo[0];
+        let info = abilitiesInfo[0];
 
         bundleManager.isAbilityEnabled(info, (err, data) => {
             if (err) {
@@ -2540,25 +2553,25 @@ isAbilityEnabled(info: [AbilityInfo](js-apis-bundleManager-abilityInfo.md)): Pro
 import bundleManager from '@ohos.bundle.bundleManager';
 import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
+import Want from '@ohos.app.ability.Want';
 let abilityFlags = bundleManager.AbilityFlag.GET_ABILITY_INFO_DEFAULT;
 let userId = 100;
-let want = {
+let want: Want = {
     bundleName : "com.example.myapplication",
     abilityName : "EntryAbility"
 };
-let info;
 
 try {
     bundleManager.queryAbilityInfo(want, abilityFlags, userId).then((abilitiesInfo) => {
         hilog.info(0x0000, 'testTag', 'queryAbilityInfo successfully. Data: %{public}s', JSON.stringify(abilitiesInfo));
-        info = abilitiesInfo[0];
+        let info = abilitiesInfo[0];
 
         bundleManager.isAbilityEnabled(info).then((data) => {
             hilog.info(0x0000, 'testTag', 'isAbilityEnabled successfully. Data: %{public}s', JSON.stringify(data));
-        }).catch(err => {
+        }).catch((err: BusinessError) => {
             hilog.error(0x0000, 'testTag', 'isAbilityEnabled failed. Cause: %{public}s', err.message);
         });
-    }).catch(err => {
+    }).catch((err: BusinessError) => {
         hilog.error(0x0000, 'testTag', 'queryAbilityInfo failed. Cause: %{public}s', err.message);
     });
 } catch (err) {
@@ -2604,26 +2617,27 @@ isAbilityEnabledSync(info: [AbilityInfo](js-apis-bundleManager-abilityInfo.md)):
 import bundleManager from '@ohos.bundle.bundleManager';
 import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
+import Want from '@ohos.app.ability.Want';
 let abilityFlags = bundleManager.AbilityFlag.GET_ABILITY_INFO_DEFAULT;
 let userId = 100;
-let want = {
+let want: Want = {
     bundleName : "com.example.myapplication",
     abilityName : "EntryAbility"
 };
-let info;
 
 try {
     bundleManager.queryAbilityInfo(want, abilityFlags, userId).then((abilitiesInfo) => {
         hilog.info(0x0000, 'testTag', 'queryAbilityInfo successfully. Data: %{public}s', JSON.stringify(abilitiesInfo));
-        info = abilitiesInfo[0];
+        let info = abilitiesInfo[0];
 
         try {
             let data = bundleManager.isAbilityEnabledSync(info);
             hilog.info(0x0000, 'testTag', 'isAbilityEnabledSync successfully: %{public}s', JSON.stringify(data));
         } catch (err) {
-            hilog.error(0x0000, 'testTag', 'isAbilityEnabledSync failed: %{public}s', err.message);
+            let message = (err as BusinessError).message;
+            hilog.error(0x0000, 'testTag', 'isAbilityEnabledSync failed: %{public}s', message);
         }
-    }).catch(err => {
+    }).catch((err: BusinessError) => {
         hilog.error(0x0000, 'testTag', 'queryAbilityInfo failed. Cause: %{public}s', err.message);
     });
 } catch (err) {
@@ -2833,11 +2847,12 @@ getLaunchWantForBundleSync(bundleName: string, userId?: number): Want;
 import bundleManager from '@ohos.bundle.bundleManager';
 import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
+import Want from '@ohos.app.ability.Want';
 let bundleName = 'com.example.myapplication';
 let userId = 100;
 
 try {
-    let want = bundleManager.getLaunchWantForBundleSync(bundleName, userId);
+    let want: Want = bundleManager.getLaunchWantForBundleSync(bundleName, userId);
     hilog.info(0x0000, 'testTag', 'getLaunchWantForBundleSync successfully. Data: %{public}s', JSON.stringify(want));
 } catch (err) {
     let message = (err as BusinessError).message;
@@ -2849,11 +2864,12 @@ try {
 import bundleManager from '@ohos.bundle.bundleManager';
 import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
+import Want from '@ohos.app.ability.Want';
 let bundleName = 'com.example.myapplication';
 let userId = 100;
 
 try {
-    let want = bundleManager.getLaunchWantForBundleSync(bundleName);
+    let want: Want = bundleManager.getLaunchWantForBundleSync(bundleName);
     hilog.info(0x0000, 'testTag', 'getLaunchWantForBundleSync successfully. Data: %{public}s', JSON.stringify(want));
 } catch (err) {
     let message = (err as BusinessError).message;
