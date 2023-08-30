@@ -62,8 +62,8 @@ let modePosition = componentUtils.getRectangleById("onClick");
 
 | Name    | Type| Mandatory| Description                              |
 | -------- | ---- | ----------------------------------| ----------------------------------|
-| width    | number | Yes| Component width.                        |
-| height   | number | Yes| Component height.                        |
+| width    | number | Yes| Component width.<br>Unit: px                     |
+| height   | number | Yes| Component height.<br>Unit: px                     |
 
 ### Offset
 
@@ -71,8 +71,8 @@ let modePosition = componentUtils.getRectangleById("onClick");
 
 | Name    | Type| Mandatory| Description                              |
 | --------| ---- | -----------------------------------| -----------------------------------|
-| x       | number | Yes| X coordinate.                          |
-| y       | number | Yes| Y coordinate.                          |
+| x       | number | Yes| X coordinate.<br>Unit: px                          |
+| y       | number | Yes| Y coordinate.<br>Unit: px                          |
 
 ### TranslateResult
 
@@ -80,9 +80,9 @@ let modePosition = componentUtils.getRectangleById("onClick");
 
 | Name    | Type| Mandatory| Description                              |
 | --------| ---- | -----------------------------------| -----------------------------------|
-| x       | number | Yes| Translation distance along the x-axis.                      |
-| y       | number | Yes| Translation distance along the y-axis.                      |
-| z       | number | Yes| Translation distance along the z-axis.                      |
+| x       | number | Yes| Translation distance along the x-axis.<br>Unit: px                      |
+| y       | number | Yes| Translation distance along the y-axis.<br>Unit: px                      |
+| z       | number | Yes| Translation distance along the z-axis.<br>Unit: px                      |
 
 ### ScaleResult
 
@@ -90,11 +90,11 @@ let modePosition = componentUtils.getRectangleById("onClick");
 
 | Name    | Type| Mandatory| Description                              |
 | --------| ---- | -----------------------------------| -----------------------------------|
-| x       | number | Yes| Scale factor along the x-axis.                      |
-| y       | number | Yes| Scale factor along the y-axis.                      |
-| z       | number | Yes| Scale factor along the z-axis.                      |
-| centerX | number | Yes| X coordinate of the center point.                 |
-| centerY | number | Yes| Y coordinate of the center point.               |
+| x       | number | Yes| Scale factor along the x-axis.<br>Unit: px                      |
+| y       | number | Yes| Scale factor along the y-axis.<br>Unit: px                      |
+| z       | number | Yes| Scale factor along the z-axis.<br>Unit: px                      |
+| centerX | number | Yes| X coordinate of the center point.<br>Unit: px                 |
+| centerY | number | Yes| Y coordinate of the center point.<br>Unit: px               |
 
 ### RotateResult
 
@@ -102,12 +102,12 @@ let modePosition = componentUtils.getRectangleById("onClick");
 
 | Name    | Type| Mandatory| Description                              |
 | --------| ---- | -----------------------------------| -----------------------------------|
-| x       | number | Yes| X coordinate of the rotation vector.                  |
-| y       | number | Yes| Y coordinate of the rotation vector.                  |
-| z       | number | Yes| Z coordinate of the rotation vector.                  |
-| angle   | number | Yes| Rotation angle.                         |
-| centerX | number | Yes| X coordinate of the center point.                |
-| centerY | number | Yes| Y coordinate of the center point.                |
+| x       | number | Yes| X coordinate of the rotation vector.<br>Unit: px                  |
+| y       | number | Yes| Y coordinate of the rotation vector.<br>Unit: px                  |
+| z       | number | Yes| Z coordinate of the rotation vector.<br>Unit: px                  |
+| angle   | number | Yes| Rotation angle.<br>Unit: px                         |
+| centerX | number | Yes| X coordinate of the center point.<br>Unit: px                |
+| centerY | number | Yes| Y coordinate of the center point.<br>Unit: px                |
 
 ### Matrix4Result
 
@@ -115,7 +115,7 @@ let modePosition = componentUtils.getRectangleById("onClick");
 
 | Value Range  | Description                              |
 | --------| -----------------------------------|
-| [number,number,number,number,<br>number,number,number,number,<br>number,number,number,number,<br>number,number,number,number] | A number array whose length is 16 (4 x 4). For details, see **4 x 4 matrix description**.|
+| [number,number,number,number,<br>number,number,number,number,<br>number,number,number,number,<br>number,number,number,number] | A number array whose length is 16 (4 x 4). The unit is px. For details, see **4 x 4 matrix description**. |
 
 **4 x 4 matrix description**
 

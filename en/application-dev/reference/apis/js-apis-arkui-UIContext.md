@@ -214,7 +214,7 @@ struct AnimateToExample {
 
 ### showAlertDialog
 
-showAlertDialog(options: AlertDialogParamWithConfirm | AlertDialogParamWithButtons): void
+showAlertDialog(options: AlertDialogParamWithConfirm | AlertDialogParamWithButtons | AlertDialogParamWithOptions): void
 
 Shows an alert dialog box.
 
@@ -224,7 +224,8 @@ Shows an alert dialog box.
 
 | Name   | Type | Mandatory| Description|
 | ---- | --------------- | -------- | -------- |
-| options | [AlertDialogParamWithConfirm](../arkui-ts/ts-methods-alert-dialog-box.md#alertdialogparamwithconfirm) \| [AlertDialogParamWithButtons](../arkui-ts/ts-methods-alert-dialog-box.md#alertdialogparamwithbuttons)  | Yes| Defines and displays the **\<AlertDialog>** component.|
+| options | [AlertDialogParamWithConfirm](../arkui-ts/ts-methods-alert-dialog-box.md#alertdialogparamwithconfirm) \| [AlertDialogParamWithButtons](../arkui-ts/ts-methods-alert-dialog-box.md#alertdialogparamwithbuttons) \| [AlertDialogParamWithOptions](../arkui-ts/ts-methods-alert-dialog-box.md#alertdialogparamwithoptions10)  | Yes| Defines and displays the **\<AlertDialog>** component.|
+
 
 **Example**
 
@@ -579,7 +580,7 @@ Obtains information about a system font based on the font name.
 
 | Type                                | Description          |
 | ------------------------------------ | -------------- |
-| [FontInfo](js-apis-font.md#fontinfo) | Information about the system font.|
+| [FontInfo](js-apis-font.md#fontinfo10) | Information about the system font.|
 
 **Example**
 
@@ -1201,7 +1202,7 @@ try {
 
 ### pushNamedRoute
 
-pushNamedRoute(options: router.NamedRouterOptions, mode: RouterMode, callback: AsyncCallback&lt;void&gt;): void
+pushNamedRoute(options: router.NamedRouterOptions, mode: router.RouterMode, callback: AsyncCallback&lt;void&gt;): void
 
 Navigates to a page using the named route. This API uses a promise to return the result.
 
@@ -1361,7 +1362,7 @@ For details about the error codes, see [Router Error Codes](../errorcodes/errorc
 
 | ID  | Error Message|
 | --------- | ------- |
-| 100001    | if UI execution context not found, only throw in standard system. |
+| 100001    | if can not get the delegate, only throw in standard system. |
 | 100004    | if the named route is not exist. |
 
 **Example**
@@ -1425,7 +1426,7 @@ router.replaceNamedRoute({
 
 ### back
 
-back(options: router.RouterOptions ): void
+back(options?: router.RouterOptions ): void
 
 Returns to the previous page or a specified page.
 
@@ -1435,7 +1436,7 @@ Returns to the previous page or a specified page.
 
 | Name | Type                                                   | Mandatory| Description                                                        |
 | ------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| options | [router.RouterOptions](js-apis-router.md#routeroptions) | Yes  | Description of the page. The **url** parameter indicates the URL of the page to return to. If the specified page does not exist in the page stack, the application does not respond. If no URL is set, the application returns to the previous page, and the page is not rebuilt. The page in the page stack is not reclaimed. It will be reclaimed after being popped up.|
+| options | [router.RouterOptions](js-apis-router.md#routeroptions) | No  | Description of the page. The **url** parameter indicates the URL of the page to return to. If the specified page does not exist in the page stack, the application does not respond. If no URL is set, the application returns to the previous page, and the page is not rebuilt. The page in the page stack is not reclaimed. It will be reclaimed after being popped up.|
 
 **Example**
 
@@ -1618,7 +1619,7 @@ try {
 
 ### showDialog
 
-showDialog(options: promptAction.ShowDialogOptions, callback: AsyncCallback&lt;promptAction.ShowDialogSuccessResponse&lt;): void
+showDialog(options: promptAction.ShowDialogOptions, callback: AsyncCallback&lt;promptAction.ShowDialogSuccessResponse&gt;): void
 
 Shows a dialog box. This API uses an asynchronous callback to return the result.
 

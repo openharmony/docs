@@ -443,6 +443,90 @@ notificationSubscribe.remove(hashCode, reason).then(() => {
 	console.info("remove success");
 });
 ```
+## NotificationSubscribe.remove<sup>10+<sup>
+
+remove(hashCodes: Array\<String\>, reason: RemoveReason, callback: AsyncCallback\<void\>): void
+
+Removes specified notifications. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Notification.Notification
+
+**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
+
+**System API**: This is a system API and cannot be called by third-party applications.
+
+**Parameters**
+
+| Name      | Type                           | Mandatory| Description                                                                                                                                                                                                                                                                                 |
+|-----------|-------------------------------| ---- |-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| hashCodes | Array\<String\>               | Yes  | Array of unique notification IDs. It is the **hashCode** in the [NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest) object of [SubscribeCallbackData](js-apis-notification.md#subscribecallbackdata) of the [onConsume](js-apis-inner-notification-notificationSubscriber.md#onConsume) callback.|
+| reason    | [RemoveReason](#removereason) | Yes  | Reason for removing the notification.                                                                                                                                                                                                                                                                            |
+| callback  | AsyncCallback\<void\>         | Yes  | Callback used to return the result.                                                                                                                                                                                                                                                                        |
+
+**Error codes**
+
+For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
+
+| ID| Error Message                           |
+| -------- | ----------------------------------- |
+| 1600001  | Internal error.                     |
+| 1600002  | Marshalling or unmarshalling error. |
+| 1600003  | Failed to connect service.          |
+
+**Example**
+
+```js
+let hashCodes = ['hashCode1', 'hashCode2'];
+
+function removeCallback(err) {
+    if (err) {
+        console.error(`remove failed, code is ${err.code}, message is ${err.message}`);
+    } else {
+        console.info("remove success");
+    }
+}
+let reason = notificationSubscribe.RemoveReason.CANCEL_REASON_REMOVE;
+notificationSubscribe.remove(hashCodes, reason, removeCallback);
+```
+
+## NotificationSubscribe.remove<sup>10+<sup>
+
+remove(hashCodes: Array\<String\>, reason: RemoveReason): Promise\<void\>
+
+Removes specified notifications. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Notification.Notification
+
+**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
+
+**System API**: This is a system API and cannot be called by third-party applications.
+
+**Parameters**
+
+| Name      | Type                           | Mandatory| Description         |
+|-----------|-------------------------------| ---- |-------------|
+| hashCodes | Array\<String\>               | Yes  | Array of unique notification IDs.|
+| reason    | [RemoveReason](#removereason) | Yes  | Reason for removing the notification.    |
+
+**Error codes**
+
+For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
+
+| ID| Error Message                           |
+| -------- | ----------------------------------- |
+| 1600001  | Internal error.                     |
+| 1600002  | Marshalling or unmarshalling error. |
+| 1600003  | Failed to connect service.          |
+
+**Example**
+
+```js
+let hashCodes = ['hashCode1','hashCode2'];
+let reason = notificationSubscribe.RemoveReason.CLICK_REASON_REMOVE;
+notificationSubscribe.remove(hashCodes, reason).then(() => {
+    console.info("remove success");
+});
+```
 
 ## NotificationSubscribe.removeAll
 

@@ -40,7 +40,7 @@
     - [分布式迁移标识](ts-universal-attributes-restoreId.md)
     - [前景色设置](ts-universal-attributes-foreground-color.md)
     - [组件内容模糊](ts-universal-attributes-foreground-blur-style.md)
-    - [点击回弹](ts-universal-attributes-click-effect.md)
+    - [点击回弹效果](ts-universal-attributes-click-effect.md)
     - [无障碍属性](ts-universal-attributes-accessibility.md)
     - 触摸交互控制
       - [触摸热区设置](ts-universal-attributes-touch-target.md)
@@ -52,6 +52,7 @@
     - [文本通用](ts-universal-attributes-text-style.md)
     - [拖拽控制](ts-universal-attributes-drag-drop.md)
     - [安全区域](ts-universal-attributes-expand-safe-area.md)
+    - [特效绘制合并](ts-universal-attributes-use-effect.md)
   - 手势处理
     - [绑定手势方法](ts-gesture-settings.md)
     - 基础手势
@@ -116,6 +117,7 @@
   - [Column](ts-container-column.md)
   - [ColumnSplit](ts-container-columnsplit.md)
   - [Counter](ts-container-counter.md)
+  - [EffectComponent](ts-container-effectcomponent.md)
   - [Flex](ts-container-flex.md)
   - [FlowItem](ts-container-flowitem.md)
   - [FormLink](ts-container-formlink.md)
@@ -190,7 +192,7 @@
 - [枚举说明](ts-appendix-enums.md)
 - [类型定义](ts-types.md)
 - 已停止维护的组件
-  - [GridContainer](ts-container-gridcontainer.md)
   - [AbilityComponent](ts-container-ability-component.md)
+  - [GridContainer](ts-container-gridcontainer.md)
 - 已停止维护的接口
   - [点击控制](ts-universal-attributes-click.md)

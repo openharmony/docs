@@ -68,8 +68,8 @@ on(type: 'locationChange', request: LocationRequest, callback: Callback&lt;Locat
 
   ```ts
   import geolocation from '@ohos.geolocation';
-  let requestInfo = {'priority': 0x203, 'scenario': 0x300, 'timeInterval': 0, 'distanceInterval': 0, 'maxAccuracy': 0};
-  let locationChange = (location) => {
+  let requestInfo:geolocation.LocationRequest = {'priority': 0x203, 'scenario': 0x300, 'timeInterval': 0, 'distanceInterval': 0, 'maxAccuracy': 0};
+  let locationChange = (location:geolocation.Location):void => {
       console.log('locationChanger: data: ' + JSON.stringify(location));
   };
   geolocation.on('locationChange', requestInfo, locationChange);
@@ -101,8 +101,8 @@ off(type: 'locationChange', callback?: Callback&lt;Location&gt;): void
 
   ```ts
   import geolocation from '@ohos.geolocation';
-  let requestInfo = {'priority': 0x203, 'scenario': 0x300, 'timeInterval': 0, 'distanceInterval': 0, 'maxAccuracy': 0};
-  let locationChange = (location) => {
+  let requestInfo:geolocation.LocationRequest = {'priority': 0x203, 'scenario': 0x300, 'timeInterval': 0, 'distanceInterval': 0, 'maxAccuracy': 0};
+  let locationChange = (location:geolocation.Location):void => {
       console.log('locationChanger: data: ' + JSON.stringify(location));
   };
   geolocation.on('locationChange', requestInfo, locationChange);
@@ -135,7 +135,7 @@ on(type: 'locationServiceState', callback: Callback&lt;boolean&gt;): void
 
   ```ts
   import geolocation from '@ohos.geolocation';
-  let locationServiceState = (state) => {
+  let locationServiceState = (state:boolean):void => {
       console.log('locationServiceState: ' + JSON.stringify(state));
   }
   geolocation.on('locationServiceState', locationServiceState);
@@ -167,7 +167,7 @@ off(type: 'locationServiceState', callback?: Callback&lt;boolean&gt;): void;
 
   ```ts
   import geolocation from '@ohos.geolocation';
-  let locationServiceState = (state) => {
+  let locationServiceState = (state:boolean):void => {
       console.log('locationServiceState: state: ' + JSON.stringify(state));
   }
   geolocation.on('locationServiceState', locationServiceState);
@@ -202,10 +202,10 @@ on(type: 'cachedGnssLocationsReporting', request: CachedGnssLocationsRequest, ca
 
   ```ts
   import geolocation from '@ohos.geolocation';
-  let cachedLocationsCb = (locations) => {
+  let cachedLocationsCb = (locations:Array<geolocation.Location>):void => {
       console.log('cachedGnssLocationsReporting: locations: ' + JSON.stringify(locations));
   }
-  let requestInfo = {'reportingPeriodSec': 10, 'wakeUpCacheQueueFull': true};
+  let requestInfo:geolocation.CachedGnssLocationsRequest = {'reportingPeriodSec': 10, 'wakeUpCacheQueueFull': true};
   geolocation.on('cachedGnssLocationsReporting', requestInfo, cachedLocationsCb);
   ```
 
@@ -236,10 +236,10 @@ off(type: 'cachedGnssLocationsReporting', callback?: Callback&lt;Array&lt;Locati
 
   ```ts
   import geolocation from '@ohos.geolocation';
-  let cachedLocationsCb = (locations) => {
+  let cachedLocationsCb = (locations:Array<geolocation.Location>):void => {
       console.log('cachedGnssLocationsReporting: locations: ' + JSON.stringify(locations));
   }
-  let requestInfo = {'reportingPeriodSec': 10, 'wakeUpCacheQueueFull': true};
+  let requestInfo:geolocation.CachedGnssLocationsRequest = {'reportingPeriodSec': 10, 'wakeUpCacheQueueFull': true};
   geolocation.on('cachedGnssLocationsReporting', requestInfo, cachedLocationsCb);
   geolocation.off('cachedGnssLocationsReporting');
   ```
@@ -271,7 +271,7 @@ on(type: 'gnssStatusChange', callback: Callback&lt;SatelliteStatusInfo&gt;): voi
 
   ```ts
   import geolocation from '@ohos.geolocation';
-  let gnssStatusCb = (satelliteStatusInfo) => {
+  let gnssStatusCb = (satelliteStatusInfo:geolocation.SatelliteStatusInfo):void => {
       console.log('gnssStatusChange: ' + JSON.stringify(satelliteStatusInfo));
   }
   geolocation.on('gnssStatusChange', gnssStatusCb);
@@ -303,7 +303,7 @@ off(type: 'gnssStatusChange', callback?: Callback&lt;SatelliteStatusInfo&gt;): v
 
   ```ts
   import geolocation from '@ohos.geolocation';
-  let gnssStatusCb = (satelliteStatusInfo) => {
+  let gnssStatusCb = (satelliteStatusInfo:geolocation.SatelliteStatusInfo) => {
       console.log('gnssStatusChange: ' + JSON.stringify(satelliteStatusInfo));
   }
   geolocation.on('gnssStatusChange', gnssStatusCb);
@@ -337,7 +337,7 @@ on(type: 'nmeaMessageChange', callback: Callback&lt;string&gt;): void;
 
   ```ts
   import geolocation from '@ohos.geolocation';
-  let nmeaCb = (str) => {
+  let nmeaCb = (str:string):void => {
       console.log('nmeaMessageChange: ' + JSON.stringify(str));
   }
   geolocation.on('nmeaMessageChange', nmeaCb );
@@ -370,7 +370,7 @@ off(type: 'nmeaMessageChange', callback?: Callback&lt;string&gt;): void;
 
   ```ts
   import geolocation from '@ohos.geolocation';
-  let nmeaCb = (str) => {
+  let nmeaCb = (str:string):void => {
       console.log('nmeaMessageChange: ' + JSON.stringify(str));
   }
   geolocation.on('nmeaMessageChange', nmeaCb);
@@ -406,7 +406,7 @@ on(type: 'fenceStatusChange', request: GeofenceRequest, want: WantAgent): void;
   import geolocation from '@ohos.geolocation';
   import wantAgent from '@ohos.app.ability.wantAgent';
   
-  let wantAgentInfo = {
+  let wantAgentInfo:wantAgent.WantAgentInfo = {
       wants: [
           {
               bundleName: "com.example.myapplication",
@@ -420,7 +420,7 @@ on(type: 'fenceStatusChange', request: GeofenceRequest, want: WantAgent): void;
   };
   
   wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
-    let requestInfo = {'priority': 0x201, 'scenario': 0x301, "geofence": {"latitude": 121, "longitude": 26, "radius": 100, "expiration": 10000}};
+    let requestInfo:geolocation.GeofenceRequest = {'priority': 0x201, 'scenario': 0x301, "geofence": {"latitude": 121, "longitude": 26, "radius": 100, "expiration": 10000}};
     geolocation.on('fenceStatusChange', requestInfo, wantAgentObj);
   });
   ```
@@ -454,7 +454,7 @@ off(type: 'fenceStatusChange', request: GeofenceRequest, want: WantAgent): void;
   import geolocation from '@ohos.geolocation';
   import wantAgent from '@ohos.app.ability.wantAgent';
   
-  let wantAgentInfo = {
+  let wantAgentInfo:wantAgent.WantAgentInfo = {
       wants: [
           {
               bundleName: "com.example.myapplication",
@@ -468,7 +468,7 @@ off(type: 'fenceStatusChange', request: GeofenceRequest, want: WantAgent): void;
   };
   
   wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
-    let requestInfo = {'priority': 0x201, 'scenario': 0x301, "geofence": {"latitude": 121, "longitude": 26, "radius": 100, "expiration": 10000}};
+    let requestInfo:geolocation.GeofenceRequest = {'priority': 0x201, 'scenario': 0x301, "geofence": {"latitude": 121, "longitude": 26, "radius": 100, "expiration": 10000}};
     geolocation.on('fenceStatusChange', requestInfo, wantAgentObj);
     geolocation.off('fenceStatusChange', requestInfo, wantAgentObj);
   });
@@ -499,8 +499,9 @@ getCurrentLocation(request: CurrentLocationRequest, callback: AsyncCallback&lt;L
 
   ```ts
   import geolocation from '@ohos.geolocation';
-  let requestInfo = {'priority': 0x203, 'scenario': 0x300,'maxAccuracy': 0};
-  let locationChange = (err, location) => {
+  import BusinessError from "@ohos.base"
+  let requestInfo:geolocation.CurrentLocationRequest = {'priority': 0x203, 'scenario': 0x300,'maxAccuracy': 0};
+  let locationChange = (err:BusinessError.BusinessError, location:geolocation.Location) => {
       if (err) {
           console.log('locationChanger: err=' + JSON.stringify(err));
       }
@@ -536,7 +537,8 @@ getCurrentLocation(callback: AsyncCallback&lt;Location&gt;): void
 
   ```ts
   import geolocation from '@ohos.geolocation';
-  let locationChange = (err, location) => {
+  import BusinessError from "@ohos.base"
+  let locationChange = (err:BusinessError.BusinessError, location:geolocation.Location):void => {
       if (err) {
           console.log('locationChanger: err=' + JSON.stringify(err));
       }
@@ -578,7 +580,7 @@ getCurrentLocation(request?: CurrentLocationRequest): Promise&lt;Location&gt;
 
   ```ts
   import geolocation from '@ohos.geolocation';
-  let requestInfo = {'priority': 0x203, 'scenario': 0x300,'maxAccuracy': 0};
+  let requestInfo:geolocation.CurrentLocationRequest = {'priority': 0x203, 'scenario': 0x300,'maxAccuracy': 0};
   geolocation.getCurrentLocation(requestInfo).then((result) => {
       console.log('current location: ' + JSON.stringify(result));
   });
@@ -863,7 +865,7 @@ getAddressesFromLocation(request: ReverseGeoCodeRequest, callback: AsyncCallback
 
   ```ts
   import geolocation from '@ohos.geolocation';
-  let reverseGeocodeRequest = {"latitude": 31.12, "longitude": 121.11, "maxItems": 1};
+  let reverseGeocodeRequest:geolocation.ReverseGeoCodeRequest = {"latitude": 31.12, "longitude": 121.11, "maxItems": 1};
   geolocation.getAddressesFromLocation(reverseGeocodeRequest, (err, data) => {
       if (err) {
           console.log('getAddressesFromLocation: err=' + JSON.stringify(err));
@@ -904,7 +906,7 @@ getAddressesFromLocation(request: ReverseGeoCodeRequest): Promise&lt;Array&lt;Ge
 
   ```ts
   import geolocation from '@ohos.geolocation';
-  let reverseGeocodeRequest = {"latitude": 31.12, "longitude": 121.11, "maxItems": 1};
+  let reverseGeocodeRequest:geolocation.ReverseGeoCodeRequest = {"latitude": 31.12, "longitude": 121.11, "maxItems": 1};
   geolocation.getAddressesFromLocation(reverseGeocodeRequest).then((data) => {
       console.log('getAddressesFromLocation: ' + JSON.stringify(data));
   });
@@ -935,7 +937,7 @@ getAddressesFromLocationName(request: GeoCodeRequest, callback: AsyncCallback&lt
 
   ```ts
   import geolocation from '@ohos.geolocation';
-  let geocodeRequest = {"description": "上海市浦东新区xx路xx号", "maxItems": 1};
+  let geocodeRequest:geolocation.GeoCodeRequest = {"description": "上海市浦东新区xx路xx号", "maxItems": 1};
   geolocation.getAddressesFromLocationName(geocodeRequest, (err, data) => {
       if (err) {
           console.log('getAddressesFromLocationName: err=' + JSON.stringify(err));
@@ -976,7 +978,7 @@ getAddressesFromLocationName(request: GeoCodeRequest): Promise&lt;Array&lt;GeoAd
 
   ```ts
   import geolocation from '@ohos.geolocation';
-  let geocodeRequest = {"description": "上海市浦东新区xx路xx号", "maxItems": 1};
+  let geocodeRequest:geolocation.GeoCodeRequest = {"description": "上海市浦东新区xx路xx号", "maxItems": 1};
   geolocation.getAddressesFromLocationName(geocodeRequest).then((result) => {
       console.log('getAddressesFromLocationName: ' + JSON.stringify(result));
   });
@@ -1138,7 +1140,7 @@ sendCommand(command: LocationCommand, callback: AsyncCallback&lt;boolean&gt;): v
 
   ```ts
   import geolocation from '@ohos.geolocation';
-  let requestInfo = {'scenario': 0x301, 'command': "command_1"};
+  let requestInfo:geolocation.LocationCommand = {'scenario': 0x301, 'command': "command_1"};
   geolocation.sendCommand(requestInfo, (err, result) => {
       if (err) {
           console.log('sendCommand: err=' + JSON.stringify(err));
@@ -1180,7 +1182,7 @@ sendCommand(command: LocationCommand): Promise&lt;boolean&gt;;
 
   ```ts
   import geolocation from '@ohos.geolocation';
-  let requestInfo = {'scenario': 0x301, 'command': "command_1"};
+  let requestInfo:geolocation.LocationCommand = {'scenario': 0x301, 'command': "command_1"};
   geolocation.sendCommand(requestInfo).then((result) => {
       console.log('promise, sendCommand: ' + JSON.stringify(result));
   });

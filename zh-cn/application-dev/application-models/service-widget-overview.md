@@ -58,6 +58,10 @@ ArkTS卡片与JS卡片具备不同的实现原理及特征，在场景能力上�
 
 ## 相关实例
 
+此文档中示例代码均有完整示例工程对应，具体对应关系如下：
+
+- [ArkTS卡片开发指导 - 开发卡片页面](https://gitee.com/openharmony/applications_app_samples/tree/master/code/DocsSample/Form/ArkTSCardDocsSample)
+
 针对Stage模型卡片提供方的开发，有以下相关实例可供参考：
 
 - [ArkTS音乐卡片（ArkTS）（Full SDK）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/Widget/ArkTSCard/MusicControl)
@@ -69,3 +73,4 @@ ArkTS卡片与JS卡片具备不同的实现原理及特征，在场景能力上�
 - [ArkTS卡片Canvas小游戏（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/Widget/ArkTSCard/CanvasGame)
 
 - [ArkTS卡片计算器（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/Widget/ArkTSCard/Calculator)
+

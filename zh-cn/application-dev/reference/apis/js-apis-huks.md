@@ -6,6 +6,7 @@ HUKS所管理的密钥可以由应用导入或者由应用调用HUKS接口生成
 > **说明**
 >
 > 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> 以下示例代码片段仅适用于JS语言开发。
 
 ## 导入模块
 
@@ -896,7 +897,7 @@ async function TestExportFunc(alias, options) {
     }
 }
 
-function exportKey(alias, options) : Promise<huks.HuksReturnResult> {
+function exportKey(alias, options) {
     return new Promise((resolve, reject) => {
         try {
             huks.exportKeyItem(alias, options, function (error, data) {
@@ -1652,7 +1653,6 @@ finishSession操作密钥接口，使用Callback回调异步返回结果。huks.
 | -------- | ---------------------------------------------------- | ---- | -------------------------------------------- |
 | handle   | number                                               | 是   | finishSession操作的handle。                         |
 | options  | [HuksOptions](#huksoptions)                          | 是   | finishSession的参数集合。                           |
-| token    | Uint8Array                                           | 是   | finishSession操作的token。                          |
 | callback | AsyncCallback<[HuksReturnResult](#huksreturnresult9)> | 是   | 回调函数。将finishSession操作的结果添加到密钥管理系统的回调。 |
 
 **错误码：**

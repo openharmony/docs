@@ -12,8 +12,8 @@
 
 ## 导入模块
 
-```js
-import deviceControl from '@ohos.enterprise.deviceControl'
+```ts
+import deviceControl from '@ohos.enterprise.deviceControl';
 ```
 
 ## deviceControl.resetFactory
@@ -46,8 +46,9 @@ resetFactory(admin: Want, callback: AsyncCallback\<void>): void
 
 **示例：**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
   bundleName: 'bundleName',
   abilityName: 'abilityName',
 };
@@ -96,14 +97,16 @@ resetFactory(admin: Want): Promise\<void>
 
 **示例：**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+let wantTemp: Want = {
   bundleName: 'bundleName',
   abilityName: 'abilityName',
 };
 
 deviceControl.resetFactory(wantTemp).then(() => {
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to reset factory. Code is ${err.code}, message is ${err.message}`);
 })
 ```

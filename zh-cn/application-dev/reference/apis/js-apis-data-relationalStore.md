@@ -16,6 +16,10 @@
 
 ```js
 import relationalStore from '@ohos.data.relationalStore'
+import window from '@ohos.window';
+import deviceManager from '@ohos.distributedHardware.deviceManager';
+import { ValuesBucket } from '@ohos.data.ValuesBucket';
+import { BusinessError } from "@ohos.base"
 ```
 
 ## relationalStore.getRdbStore
@@ -54,17 +58,17 @@ FA模型示例：
 
 import featureAbility from '@ohos.ability.featureAbility'
 
-var store;
+let store: relationalStore.RdbStore;
 
 // 获取context
 let context = featureAbility.getContext();
 
-const STORE_CONFIG = {
+const STORE_CONFIG: relationalStore.StoreConfig = {
   name: "RdbTest.db",
   securityLevel: relationalStore.SecurityLevel.S1
 };
 
-relationalStore.getRdbStore(context, STORE_CONFIG, function (err, rdbStore) {
+relationalStore.getRdbStore(this.context, STORE_CONFIG, (err: BusinessError, rdbStore: relationalStore.RdbStore) => {
   store = rdbStore;
   if (err) {
     console.error(`Get RdbStore failed, code is ${err.code},message is ${err.message}`);
@@ -80,14 +84,14 @@ Stage模型示例：
 import UIAbility from '@ohos.app.ability.UIAbility'
 
 class EntryAbility extends UIAbility {
-  onWindowStageCreate(windowStage) {
-    var store;
-    const STORE_CONFIG = {
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    let store: relationalStore.RdbStore;
+    const STORE_CONFIG: relationalStore.StoreConfig = {
       name: "RdbTest.db",
       securityLevel: relationalStore.SecurityLevel.S1
     };
         
-    relationalStore.getRdbStore(this.context, STORE_CONFIG, function (err, rdbStore) {
+    relationalStore.getRdbStore(this.context, STORE_CONFIG, (err: BusinessError, rdbStore: relationalStore.RdbStore) => {
       store = rdbStore;
       if (err) {
         console.error(`Get RdbStore failed, code is ${err.code},message is ${err.message}`);
@@ -139,21 +143,21 @@ FA模型示例：
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
 
-var store;
+let store: relationalStore.RdbStore;
 
 // 获取context
 let context = featureAbility.getContext();
 
-const STORE_CONFIG = {
+const STORE_CONFIG: relationalStore.StoreConfig = {
   name: "RdbTest.db",
   securityLevel: relationalStore.SecurityLevel.S1
 };
 
-let promise = relationalStore.getRdbStore(context, STORE_CONFIG);
-promise.then(async (rdbStore) => {
+let promise = relationalStore.getRdbStore(this.context, STORE_CONFIG);
+promise.then(async (rdbStore: relationalStore.RdbStore) => {
   store = rdbStore;
-  console.info(`Get RdbStore successfully.`);
-}).catch((err) => {
+  console.info(`Get RdbStore successfully.`)
+}).catch((err: BusinessError) => {
   console.error(`Get RdbStore failed, code is ${err.code},message is ${err.message}`);
 })
 ```
@@ -164,18 +168,18 @@ Stage模型示例：
 import UIAbility from '@ohos.app.ability.UIAbility'
 
 class EntryAbility extends UIAbility {
-  onWindowStageCreate(windowStage) {
-    var store;
-    const STORE_CONFIG = {
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    let store: relationalStore.RdbStore;
+    const STORE_CONFIG: relationalStore.StoreConfig = {
       name: "RdbTest.db",
       securityLevel: relationalStore.SecurityLevel.S1
     };
-        
+
     let promise = relationalStore.getRdbStore(this.context, STORE_CONFIG);
-    promise.then(async (rdbStore) => {
+    promise.then(async (rdbStore: relationalStore.RdbStore) => {
       store = rdbStore;
       console.info(`Get RdbStore successfully.`)
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
       console.error(`Get RdbStore failed, code is ${err.code},message is ${err.message}`);
     })
   }
@@ -216,12 +220,12 @@ FA模型示例：
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
 
-var store;
+let store: relationalStore.RdbStore;
 
 // 获取context
 let context = featureAbility.getContext()
 
-relationalStore.deleteRdbStore(context, "RdbTest.db", function (err) {
+relationalStore.deleteRdbStore(this.context, "RdbTest.db", (err: BusinessError) => {
   if (err) {
     console.error(`Delete RdbStore failed, code is ${err.code},message is ${err.message}`);
     return;
@@ -236,11 +240,11 @@ Stage模型示例：
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility'
 
-var store;
+let store: relationalStore.RdbStore;
 
 class EntryAbility extends UIAbility {
-  onWindowStageCreate(windowStage){
-    relationalStore.deleteRdbStore(this.context, "RdbTest.db", function (err) {
+  onWindowStageCreate(windowStage: window.WindowStage){
+    relationalStore.deleteRdbStore(this.context, "RdbTest.db", (err: BusinessError) => {
       if (err) {
         console.error(`Delete RdbStore failed, code is ${err.code},message is ${err.message}`);
         return;
@@ -291,16 +295,16 @@ FA模型示例：
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
 
-var store;
+let store: relationalStore.RdbStore;
 
 // 获取context
 let context = featureAbility.getContext();
 
-let promise = relationalStore.deleteRdbStore(context, "RdbTest.db");
+let promise = relationalStore.deleteRdbStore(this.context, "RdbTest.db");
 promise.then(()=>{
   store = null;
   console.info(`Delete RdbStore successfully.`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error(`Delete RdbStore failed, code is ${err.code},message is ${err.message}`);
 })
 ```
@@ -310,15 +314,15 @@ Stage模型示例：
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility'
 
-var store;
+let store: relationalStore.RdbStore;
 
 class EntryAbility extends UIAbility {
-  onWindowStageCreate(windowStage){
+  onWindowStageCreate(windowStage: window.WindowStage){
     let promise = relationalStore.deleteRdbStore(this.context, "RdbTest.db");
     promise.then(()=>{
       store = null;
       console.info(`Delete RdbStore successfully.`);
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
       console.error(`Delete RdbStore failed, code is ${err.code},message is ${err.message}`);
     })
   }
@@ -361,16 +365,16 @@ FA模型示例：
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
 
-var store;
+let store: relationalStore.RdbStore;
 
 // 获取context
 let context = featureAbility.getContext()
-const STORE_CONFIG = {
+const STORE_CONFIG: relationalStore.StoreConfig = {
   name: "RdbTest.db",
   securityLevel: relationalStore.SecurityLevel.S1
 };
 
-relationalStore.deleteRdbStore(context, STORE_CONFIG, function (err) {
+relationalStore.deleteRdbStore(this.context, STORE_CONFIG, (err: BusinessError) => {
   if (err) {
     console.error(`Delete RdbStore failed, code is ${err.code},message is ${err.message}`);
     return;
@@ -385,15 +389,15 @@ Stage模型示例：
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility'
 
-var store;
+let store: relationalStore.RdbStore;
 
 class EntryAbility extends UIAbility {
-  onWindowStageCreate(windowStage){
-    const STORE_CONFIG = {
+  onWindowStageCreate(windowStage: window.WindowStage){
+    const STORE_CONFIG: relationalStore.StoreConfig = {
       name: "RdbTest.db",
       securityLevel: relationalStore.SecurityLevel.S1
     };
-    relationalStore.deleteRdbStore(this.context, STORE_CONFIG, function (err) {
+    relationalStore.deleteRdbStore(this.context, STORE_CONFIG, (err: BusinessError) => {
       if (err) {
         console.error(`Delete RdbStore failed, code is ${err.code},message is ${err.message}`);
         return;
@@ -446,20 +450,20 @@ FA模型示例：
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
 
-var store;
+let store: relationalStore.RdbStore;
 
 // 获取context
 let context = featureAbility.getContext();
-const STORE_CONFIG = {
+const STORE_CONFIG: relationalStore.StoreConfig = {
   name: "RdbTest.db",
   securityLevel: relationalStore.SecurityLevel.S1
 };
 
-let promise = relationalStore.deleteRdbStore(context, STORE_CONFIG);
+let promise = relationalStore.deleteRdbStore(this.context, STORE_CONFIG);
 promise.then(()=>{
   store = null;
   console.info(`Delete RdbStore successfully.`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error(`Delete RdbStore failed, code is ${err.code},message is ${err.message}`);
 })
 ```
@@ -469,11 +473,11 @@ Stage模型示例：
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility'
 
-var store;
+let store: relationalStore.RdbStore;
 
 class EntryAbility extends UIAbility {
-  onWindowStageCreate(windowStage){
-    const STORE_CONFIG = {
+  onWindowStageCreate(windowStage: window.WindowStage){
+    const STORE_CONFIG: relationalStore.StoreConfig = {
       name: "RdbTest.db",
       securityLevel: relationalStore.SecurityLevel.S1
     };
@@ -481,7 +485,7 @@ class EntryAbility extends UIAbility {
     promise.then(()=>{
       store = null;
       console.info(`Delete RdbStore successfully.`);
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
       console.error(`Delete RdbStore failed, code is ${err.code},message is ${err.message}`);
     })
   }
@@ -583,7 +587,8 @@ class EntryAbility extends UIAbility {
 
 | 键类型 | 值类型                   |
 | ------ | ----------------------- |
-| string | [ValueType](#valuetype) |
+| number | 主键的类型可以是number |
+| string | 主键的类型可以是string。 |
 
 ## PRIKeyType<sup>10+</sup> 
 
@@ -593,7 +598,8 @@ class EntryAbility extends UIAbility {
 
 | 类型             | 说明                               |
 | ---------------- | ---------------------------------- |
-| number \| string | 主键的类型可以是number或者string。 |
+| number | 主键的类型可以是number。 |
+| string | 主键的类型可以是string。 |
 
 ## UTCTime<sup>10+</sup>
 
@@ -798,7 +804,8 @@ inDevices(devices: Array&lt;string&gt;): RdbPredicates
 
 > **说明：**
 >
-> 其中devices通过调用[deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync)方法得到。deviceManager模块的接口均为系统接口，仅系统应用可用。
+> 其中devices通过调用[deviceManager.getAvailableDeviceListSync](js-apis-distributedDeviceManager.md#getavailabledevicelistsync)方法得到。
+数据库同步时调用Sync接口，需要在入参谓词中调用inDevices接口选择设备。如果不调用inDevices接口即默认连接组网内所有的设备。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -817,22 +824,20 @@ inDevices(devices: Array&lt;string&gt;): RdbPredicates
 **示例：**
 
 ```js
-import deviceManager from '@ohos.distributedHardware.deviceManager';
-let dmInstance = null;
-let deviceIds = [];
+import deviceManager from '@ohos.distributedDeviceManager';
+let dmInstance: deviceManager.DeviceManager = null;
+let deviceIds: Array<string> = [];
 
-deviceManager.createDeviceManager("com.example.appdatamgrverify", (err, manager) => {
-    if (err) {
-        console.log("create device manager failed, err=" + err);
-        return;
-    }
-    dmInstance = manager;
-    let devices = dmInstance.getTrustedDeviceListSync();
-    for (var i = 0; i < devices.length; i++) {
-        deviceIds[i] = devices[i].deviceId;
-    }
-})
-                                  
+try {
+  dmInstance = deviceManager.createDeviceManager("com.example.appdatamgrverify");
+  let devices = dmInstance.getAvailableDeviceListSync();
+  for (let i = 0; i < devices.length; i++) {
+      deviceIds[i] = devices[i].networkId;
+  }
+} catch (err) {
+  console.error("createDeviceManager errCode:" + err.code + ",errMessage:" + err.message);
+}
+
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.inDevices(deviceIds);
 ```
@@ -843,6 +848,7 @@ inAllDevices(): RdbPredicates
 
 
 同步分布式数据库时连接到组网内所有的远程设备。
+
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1639,6 +1645,7 @@ predicates.notIn("NAME", ["Lisa", "Rose"]);
 **示例：**
 
 ```js
+let store: relationalStore.RdbStore;
 // 设置数据库版本
 store.version = 3;
 // 获取数据库版本
@@ -1673,13 +1680,21 @@ insert(table: string, values: ValuesBucket, callback: AsyncCallback&lt;number&gt
 **示例：**
 
 ```js
-const valueBucket = {
-  "NAME": "Lisa",
-  "AGE": 18,
-  "SALARY": 100.5,
-  "CODES": new Uint8Array([1, 2, 3, 4, 5]),
+let key1 = "NAME";
+let key2 = "AGE";
+let key3 = "SALARY";
+let key4 = "CODES";
+let value1 = "Lisa";
+let value2 = 18;
+let value3 = 100.5;
+let value4 = new Uint8Array([1, 2, 3, 4, 5]);
+const valueBucket: ValuesBucket = {
+   key1: value1,
+   key2: value2,
+   key3: value3,
+   key4: value4,
 };
-store.insert("EMPLOYEE", valueBucket, function (err, rowId) {
+store.insert("EMPLOYEE", valueBucket, (err, rowId) => {
   if (err) {
     console.error(`Insert is failed, code is ${err.code},message is ${err.message}`);
     return;
@@ -1717,13 +1732,21 @@ insert(table: string, values: ValuesBucket,  conflict: ConflictResolution, callb
 **示例：**
 
 ```js
-const valueBucket = {
-  "NAME": "Lisa",
-  "AGE": 18,
-  "SALARY": 100.5,
-  "CODES": new Uint8Array([1, 2, 3, 4, 5]),
+let key1 = "NAME";
+let key2 = "AGE";
+let key3 = "SALARY";
+let key4 = "CODES";
+let value1 = "Lisa";
+let value2 = 18;
+let value3 = 100.5;
+let value4 = new Uint8Array([1, 2, 3, 4, 5]);
+const valueBucket: ValuesBucket = {
+   key1: value1,
+   key2: value2,
+   key3: value3,
+   key4: value4,
 };
-store.insert("EMPLOYEE", valueBucket, relationalStore.ConflictResolution.ON_CONFLICT_REPLACE, function (err, rowId) {
+store.insert("EMPLOYEE", valueBucket, relationalStore.ConflictResolution.ON_CONFLICT_REPLACE, (err, rowId) => {
   if (err) {
     console.error(`Insert is failed, code is ${err.code},message is ${err.message}`);
     return;
@@ -1765,16 +1788,24 @@ insert(table: string, values: ValuesBucket):Promise&lt;number&gt;
 **示例：**
 
 ```js
-const valueBucket = {
-  "NAME": "Lisa",
-  "AGE": 18,
-  "SALARY": 100.5,
-  "CODES": new Uint8Array([1, 2, 3, 4, 5]),
+let key1 = "NAME";
+let key2 = "AGE";
+let key3 = "SALARY";
+let key4 = "CODES";
+let value1 = "Lisa";
+let value2 = 18;
+let value3 = 100.5;
+let value4 = new Uint8Array([1, 2, 3, 4, 5]);
+const valueBucket: ValuesBucket = {
+  key1: value1,
+  key2: value2,
+  key3: value3,
+  key4: value4,
 };
 let promise = store.insert("EMPLOYEE", valueBucket);
-promise.then((rowId) => {
+promise.then((rowId: number) => {
   console.info(`Insert is successful, rowId = ${rowId}`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error(`Insert is failed, code is ${err.code},message is ${err.message}`);
 })
 ```
@@ -1813,16 +1844,24 @@ insert(table: string, values: ValuesBucket,  conflict: ConflictResolution):Promi
 **示例：**
 
 ```js
-const valueBucket = {
-  "NAME": "Lisa",
-  "AGE": 18,
-  "SALARY": 100.5,
-  "CODES": new Uint8Array([1, 2, 3, 4, 5]),
+let key1 = "NAME";
+let key2 = "AGE";
+let key3 = "SALARY";
+let key4 = "CODES";
+let value1 = "Lisa";
+let value2 = 18;
+let value3 = 100.5;
+let value4 = new Uint8Array([1, 2, 3, 4, 5]);
+const valueBucket: ValuesBucket = {
+  key1: value1,
+  key2: value2,
+  key3: value3,
+  key4: value4,
 };
 let promise = store.insert("EMPLOYEE", valueBucket, relationalStore.ConflictResolution.ON_CONFLICT_REPLACE);
-promise.then((rowId) => {
+promise.then((rowId: number) => {
   console.info(`Insert is successful, rowId = ${rowId}`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error(`Insert is failed, code is ${err.code},message is ${err.message}`);
 })
 ```
@@ -1855,27 +1894,43 @@ batchInsert(table: string, values: Array&lt;ValuesBucket&gt;, callback: AsyncCal
 **示例：**
 
 ```js
-const valueBucket1 = {
-  "NAME": "Lisa",
-  "AGE": 18,
-  "SALARY": 100.5,
-  "CODES": new Uint8Array([1, 2, 3, 4, 5])
+let key1 = "NAME";
+let key2 = "AGE";
+let key3 = "SALARY";
+let key4 = "CODES";
+let value1 = "Lisa";
+let value2 = 18;
+let value3 = 100.5;
+let value4 = new Uint8Array([1, 2, 3, 4, 5]);
+let value5 = "Jack";
+let value6 = 19;
+let value7 = 101.5;
+let value8 = new Uint8Array([6, 7, 8, 9, 10]);
+let value9 = "Tom";
+let value10 = 20;
+let value11 = 102.5;
+let value12 = new Uint8Array([11, 12, 13, 14, 15]);
+const valueBucket1: ValuesBucket = {
+  key1: value1,
+  key2: value2,
+  key3: value3,
+  key4: value4,
 };
-const valueBucket2 = {
-  "NAME": "Jack",
-  "AGE": 19,
-  "SALARY": 101.5,
-  "CODES": new Uint8Array([6, 7, 8, 9, 10])
+const valueBucket2: ValuesBucket = {
+  key1: value5,
+  key2: value6,
+  key3: value7,
+  key4: value8,
 };
-const valueBucket3 = {
-  "NAME": "Tom",
-  "AGE": 20,
-  "SALARY": 102.5,
-  "CODES": new Uint8Array([11, 12, 13, 14, 15])
+const valueBucket3: ValuesBucket = {
+  key1: value9,
+  key2: value10,
+  key3: value11,
+  key4: value12,
 };
 
 let valueBuckets = new Array(valueBucket1, valueBucket2, valueBucket3);
-store.batchInsert("EMPLOYEE", valueBuckets, function(err, insertNum) {
+store.batchInsert("EMPLOYEE", valueBuckets, (err, insertNum) => {
   if (err) {
     console.error(`batchInsert is failed, code is ${err.code},message is ${err.message}`);
     return;
@@ -1917,30 +1972,46 @@ batchInsert(table: string, values: Array&lt;ValuesBucket&gt;):Promise&lt;number&
 **示例：**
 
 ```js
-const valueBucket1 = {
-  "NAME": "Lisa",
-  "AGE": 18,
-  "SALARY": 100.5,
-  "CODES": new Uint8Array([1, 2, 3, 4, 5])
+let key1 = "NAME";
+let key2 = "AGE";
+let key3 = "SALARY";
+let key4 = "CODES";
+let value1 = "Lisa";
+let value2 = 18;
+let value3 = 100.5;
+let value4 = new Uint8Array([1, 2, 3, 4, 5]);
+let value5 = "Jack";
+let value6 = 19;
+let value7 = 101.5;
+let value8 = new Uint8Array([6, 7, 8, 9, 10]);
+let value9 = "Tom";
+let value10 = 20;
+let value11 = 102.5;
+let value12 = new Uint8Array([11, 12, 13, 14, 15]);
+const valueBucket1: ValuesBucket = {
+  key1: value1,
+  key2: value2,
+  key3: value3,
+  key4: value4,
 };
-const valueBucket2 = {
-  "NAME": "Jack",
-  "AGE": 19,
-  "SALARY": 101.5,
-  "CODES": new Uint8Array([6, 7, 8, 9, 10])
+const valueBucket2: ValuesBucket = {
+  key1: value5,
+  key2: value6,
+  key3: value7,
+  key4: value8,
 };
-const valueBucket3 = {
-  "NAME": "Tom",
-  "AGE": 20,
-  "SALARY": 102.5,
-  "CODES": new Uint8Array([11, 12, 13, 14, 15])
+const valueBucket3: ValuesBucket = {
+  key1: value9,
+  key2: value10,
+  key3: value11,
+  key4: value12,
 };
 
 let valueBuckets = new Array(valueBucket1, valueBucket2, valueBucket3);
 let promise = store.batchInsert("EMPLOYEE", valueBuckets);
-promise.then((insertNum) => {
+promise.then((insertNum: number) => {
   console.info(`batchInsert is successful, the number of values that were inserted = ${insertNum}`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error(`batchInsert is failed, code is ${err.code},message is ${err.message}`);
 })
 ```
@@ -1973,11 +2044,19 @@ update(values: ValuesBucket, predicates: RdbPredicates, callback: AsyncCallback&
 **示例：**
 
 ```js
-const valueBucket = {
-  "NAME": "Rose",
-  "AGE": 22,
-  "SALARY": 200.5,
-  "CODES": new Uint8Array([1, 2, 3, 4, 5]),
+let key1 = "NAME";
+let key2 = "AGE";
+let key3 = "SALARY";
+let key4 = "CODES";
+let value1 = "Rose";
+let value2 = 22;
+let value3 = 200.5;
+let value4 = new Uint8Array([1, 2, 3, 4, 5]);
+const valueBucket: ValuesBucket = {
+  key1: value1,
+  key2: value2,
+  key3: value3,
+  key4: value4,
 };
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Lisa");
@@ -2019,15 +2098,23 @@ update(values: ValuesBucket, predicates: RdbPredicates, conflict: ConflictResolu
 **示例：**
 
 ```js
-const valueBucket = {
-  "NAME": "Rose",
-  "AGE": 22,
-  "SALARY": 200.5,
-  "CODES": new Uint8Array([1, 2, 3, 4, 5]),
+let key1 = "NAME";
+let key2 = "AGE";
+let key3 = "SALARY";
+let key4 = "CODES";
+let value1 = "Rose";
+let value2 = 22;
+let value3 = 200.5;
+let value4 = new Uint8Array([1, 2, 3, 4, 5]);
+const valueBucket: ValuesBucket = {
+  key1: value1,
+  key2: value2,
+  key3: value3,
+  key4: value4,
 };
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Lisa");
-store.update(valueBucket, predicates, relationalStore.ConflictResolution.ON_CONFLICT_REPLACE, function (err, rows) {
+store.update(valueBucket, predicates, relationalStore.ConflictResolution.ON_CONFLICT_REPLACE, (err, rows) => {
   if (err) {
     console.error(`Updated failed, code is ${err.code},message is ${err.message}`);
     return;
@@ -2069,18 +2156,26 @@ update(values: ValuesBucket, predicates: RdbPredicates):Promise&lt;number&gt;
 **示例：**
 
 ```js
-const valueBucket = {
-  "NAME": "Rose",
-  "AGE": 22,
-  "SALARY": 200.5,
-  "CODES": new Uint8Array([1, 2, 3, 4, 5]),
+let key1 = "NAME";
+let key2 = "AGE";
+let key3 = "SALARY";
+let key4 = "CODES";
+let value1 = "Rose";
+let value2 = 22;
+let value3 = 200.5;
+let value4 = new Uint8Array([1, 2, 3, 4, 5]);
+const valueBucket: ValuesBucket = {
+  key1: value1,
+  key2: value2,
+  key3: value3,
+  key4: value4,
 };
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Lisa");
 let promise = store.update(valueBucket, predicates);
-promise.then(async (rows) => {
+promise.then(async (rows: Number) => {
   console.info(`Updated row count: ${rows}`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error(`Updated failed, code is ${err.code},message is ${err.message}`);
 })
 ```
@@ -2119,18 +2214,26 @@ update(values: ValuesBucket, predicates: RdbPredicates, conflict: ConflictResolu
 **示例：**
 
 ```js
-const valueBucket = {
-  "NAME": "Rose",
-  "AGE": 22,
-  "SALARY": 200.5,
-  "CODES": new Uint8Array([1, 2, 3, 4, 5]),
+let key1 = "NAME";
+let key2 = "AGE";
+let key3 = "SALARY";
+let key4 = "CODES";
+let value1 = "Rose";
+let value2 = 22;
+let value3 = 200.5;
+let value4 = new Uint8Array([1, 2, 3, 4, 5]);
+const valueBucket: ValuesBucket = {
+  key1: value1,
+  key2: value2,
+  key3: value3,
+  key4: value4,
 };
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Lisa");
 let promise = store.update(valueBucket, predicates, relationalStore.ConflictResolution.ON_CONFLICT_REPLACE);
-promise.then(async (rows) => {
+promise.then(async (rows: Number) => {
   console.info(`Updated row count: ${rows}`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error(`Updated failed, code is ${err.code},message is ${err.message}`);
 })
 ```
@@ -2169,15 +2272,23 @@ update(table: string, values: ValuesBucket, predicates: dataSharePredicates.Data
 
 ```js
 import dataSharePredicates from '@ohos.data.dataSharePredicates'
-const valueBucket = {
-    "NAME": "Rose",
-    "AGE": 22,
-    "SALARY": 200.5,
-    "CODES": new Uint8Array([1, 2, 3, 4, 5]),
+let key1 = "NAME";
+let key2 = "AGE";
+let key3 = "SALARY";
+let key4 = "CODES";
+let value1 = "Rose";
+let value2 = 22;
+let value3 = 200.5;
+let value4 = new Uint8Array([1, 2, 3, 4, 5]);
+const valueBucket: ValuesBucket = {
+  key1: value1,
+  key2: value2,
+  key3: value3,
+  key4: value4,
 };
 let predicates = new dataSharePredicates.DataSharePredicates();
 predicates.equalTo("NAME", "Lisa");
-store.update("EMPLOYEE", valueBucket, predicates, function (err, rows) {
+store.update("EMPLOYEE", valueBucket, predicates, (err, rows) => {
   if (err) {
     console.error(`Updated failed, code is ${err.code},message is ${err.message}`);
     return;
@@ -2225,18 +2336,26 @@ update(table: string, values: ValuesBucket, predicates: dataSharePredicates.Data
 
 ```js
 import dataSharePredicates from '@ohos.data.dataSharePredicates'
-const valueBucket = {
-  "NAME": "Rose",
-  "AGE": 22,
-  "SALARY": 200.5,
-  "CODES": new Uint8Array([1, 2, 3, 4, 5]),
+let key1 = "NAME";
+let key2 = "AGE";
+let key3 = "SALARY";
+let key4 = "CODES";
+let value1 = "Rose";
+let value2 = 22;
+let value3 = 200.5;
+let value4 = new Uint8Array([1, 2, 3, 4, 5]);
+const valueBucket: ValuesBucket = {
+  key1: value1,
+  key2: value2,
+  key3: value3,
+  key4: value4,
 };
 let predicates = new dataSharePredicates.DataSharePredicates();
 predicates.equalTo("NAME", "Lisa");
 let promise = store.update("EMPLOYEE", valueBucket, predicates);
-promise.then(async (rows) => {
+promise.then(async (rows: Number) => {
   console.info(`Updated row count: ${rows}`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error(`Updated failed, code is ${err.code},message is ${err.message}`);
 })
 ```
@@ -2270,7 +2389,7 @@ delete(predicates: RdbPredicates, callback: AsyncCallback&lt;number&gt;):void
 ```js
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Lisa");
-store.delete(predicates, function (err, rows) {
+store.delete(predicates, (err, rows) => {
   if (err) {
     console.error(`Delete failed, code is ${err.code},message is ${err.message}`);
     return;
@@ -2314,9 +2433,9 @@ delete(predicates: RdbPredicates):Promise&lt;number&gt;
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Lisa");
 let promise = store.delete(predicates);
-promise.then((rows) => {
+promise.then((rows: Number) => {
   console.info(`Delete rows: ${rows}`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error(`Delete failed, code is ${err.code},message is ${err.message}`);
 })
 ```
@@ -2356,7 +2475,7 @@ delete(table: string, predicates: dataSharePredicates.DataSharePredicates, callb
 import dataSharePredicates from '@ohos.data.dataSharePredicates'
 let predicates = new dataSharePredicates.DataSharePredicates();
 predicates.equalTo("NAME", "Lisa");
-store.delete("EMPLOYEE", predicates, function (err, rows) {
+store.delete("EMPLOYEE", predicates, (err, rows) => {
   if (err) {
     console.error(`Delete failed, code is ${err.code},message is ${err.message}`);
     return;
@@ -2406,9 +2525,9 @@ import dataSharePredicates from '@ohos.data.dataSharePredicates'
 let predicates = new dataSharePredicates.DataSharePredicates();
 predicates.equalTo("NAME", "Lisa");
 let promise = store.delete("EMPLOYEE", predicates);
-promise.then((rows) => {
+promise.then((rows: Number) => {
   console.info(`Delete rows: ${rows}`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error(`Delete failed, code is ${err.code},message is ${err.message}`);
 })
 ```
@@ -2441,7 +2560,7 @@ query(predicates: RdbPredicates, callback: AsyncCallback&lt;ResultSet&gt;):void
 ```js
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Rose");
-store.query(predicates, function (err, resultSet) {
+store.query(predicates, (err, resultSet) => {
   if (err) {
     console.error(`Query failed, code is ${err.code},message is ${err.message}`);
     return;
@@ -2489,7 +2608,7 @@ query(predicates: RdbPredicates, columns: Array&lt;string&gt;, callback: AsyncCa
 ```js
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Rose");
-store.query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"], function (err, resultSet) {
+store.query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"], (err, resultSet) => {
   if (err) {
     console.error(`Query failed, code is ${err.code},message is ${err.message}`);
     return;
@@ -2543,7 +2662,7 @@ query(predicates: RdbPredicates, columns?: Array&lt;string&gt;):Promise&lt;Resul
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Rose");
 let promise = store.query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]);
-promise.then((resultSet) => {
+promise.then((resultSet: relationalStore.ResultSet) => {
   console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
   // resultSet是一个数据集合的游标，默认指向第-1个记录，有效的数据从0开始。
   while (resultSet.goToNextRow()) {
@@ -2555,7 +2674,7 @@ promise.then((resultSet) => {
   }
   // 释放数据集的内存
   resultSet.close();
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error(`Query failed, code is ${err.code},message is ${err.message}`);
 })
   ```
@@ -2594,7 +2713,7 @@ query(table: string, predicates: dataSharePredicates.DataSharePredicates, callba
 import dataSharePredicates from '@ohos.data.dataSharePredicates'
 let predicates = new dataSharePredicates.DataSharePredicates();
 predicates.equalTo("NAME", "Rose");
-store.query("EMPLOYEE", predicates, function (err, resultSet) {
+store.query("EMPLOYEE", predicates, (err, resultSet) => {
   if (err) {
     console.error(`Query failed, code is ${err.code},message is ${err.message}`);
     return;
@@ -2648,7 +2767,7 @@ query(table: string, predicates: dataSharePredicates.DataSharePredicates, column
 import dataSharePredicates from '@ohos.data.dataSharePredicates'
 let predicates = new dataSharePredicates.DataSharePredicates();
 predicates.equalTo("NAME", "Rose");
-store.query("EMPLOYEE", predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"], function (err, resultSet) {
+store.query("EMPLOYEE", predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"], (err, resultSet) => {
   if (err) {
     console.error(`Query failed, code is ${err.code},message is ${err.message}`);
     return;
@@ -2708,7 +2827,7 @@ import dataSharePredicates from '@ohos.data.dataSharePredicates'
 let predicates = new dataSharePredicates.DataSharePredicates();
 predicates.equalTo("NAME", "Rose");
 let promise = store.query("EMPLOYEE", predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]);
-promise.then((resultSet) => {
+promise.then((resultSet: relationalStore.ResultSet) => {
   console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
   // resultSet是一个数据集合的游标，默认指向第-1个记录，有效的数据从0开始。
   while (resultSet.goToNextRow()) {
@@ -2720,7 +2839,7 @@ promise.then((resultSet) => {
   }
   // 释放数据集的内存
   resultSet.close();
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error(`Query failed, code is ${err.code},message is ${err.message}`);
 })
 ```
@@ -2733,7 +2852,7 @@ remoteQuery(device: string, table: string, predicates: RdbPredicates, columns: A
 
 > **说明：**
 >
-> 其中device通过调用[deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync)方法得到。deviceManager模块的接口均为系统接口，仅系统应用可用。
+> 其中device通过调用[deviceManager.getAvailableDeviceListSync](js-apis-distributedDeviceManager.md#getavailabledevicelistsync)方法得到。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -2758,41 +2877,36 @@ remoteQuery(device: string, table: string, predicates: RdbPredicates, columns: A
 **示例：**
 
 ```js
-import deviceManager from '@ohos.distributedHardware.deviceManager';
-let dmInstance = null;
-let deviceId = null;
+import deviceManager from '@ohos.distributedDeviceManager';
+let dmInstance: deviceManager.DeviceManager = null;
+let deviceId: string = null;
 
-deviceManager.createDeviceManager("com.example.appdatamgrverify", (err, manager) => {
-    if (err) {
-        console.log("create device manager failed, err=" + err);
-        return;
-    }
-    dmInstance = manager;
-    let devices = dmInstance.getTrustedDeviceListSync();
-    deviceId = devices[0].deviceId;
-})
+try {
+  dmInstance = deviceManager.createDeviceManager("com.example.appdatamgrverify");
+  let devices = dmInstance.getAvailableDeviceListSync();
+  deviceId = devices[0].networkId;
+} catch (err) {
+  console.error("createDeviceManager errCode:" + err.code + ",errMessage:" + err.message);
+}
 
 let predicates = new relationalStore.RdbPredicates('EMPLOYEE');
 predicates.greaterThan("id", 0);
-store.remoteQuery(deviceId, "EMPLOYEE", predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"],
-  function(err, resultSet) {
-    if (err) {
-      console.error(`Failed to remoteQuery, code is ${err.code},message is ${err.message}`);
-      return;
-    }
-    console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
-    // resultSet是一个数据集合的游标，默认指向第-1个记录，有效的数据从0开始。
-    while (resultSet.goToNextRow()) {
-      const id = resultSet.getLong(resultSet.getColumnIndex("ID"));
-      const name = resultSet.getString(resultSet.getColumnIndex("NAME"));
-      const age = resultSet.getLong(resultSet.getColumnIndex("AGE"));
-      const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"));
-      console.info(`id=${id}, name=${name}, age=${age}, salary=${salary}`);
-    }
-    // 释放数据集的内存
-    resultSet.close();
+let promise = store.remoteQuery(deviceId, "EMPLOYEE", predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]);
+promise.then((resultSet: relationalStore.ResultSet) => {
+  console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
+  // resultSet是一个数据集合的游标，默认指向第-1个记录，有效的数据从0开始。
+  while (resultSet.goToNextRow()) {
+    const id = resultSet.getLong(resultSet.getColumnIndex("ID"));
+    const name = resultSet.getString(resultSet.getColumnIndex("NAME"));
+    const age = resultSet.getLong(resultSet.getColumnIndex("AGE"));
+    const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"));
+    console.info(`id=${id}, name=${name}, age=${age}, salary=${salary}`);
   }
-)
+  // 释放数据集的内存
+  resultSet.close();
+}).catch((err: BusinessError) => {
+  console.error(`Failed to remoteQuery, code is ${err.code},message is ${err.message}`);
+})
 ```
 
 ### remoteQuery
@@ -2803,7 +2917,7 @@ remoteQuery(device: string, table: string, predicates: RdbPredicates, columns: A
 
 > **说明：**
 >
-> 其中device通过调用[deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync)方法得到。deviceManager模块的接口均为系统接口，仅系统应用可用。
+> 其中device通过调用[deviceManager.getAvailableDeviceListSync](js-apis-distributedDeviceManager.md#getavailabledevicelistsync)方法得到。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -2833,24 +2947,22 @@ remoteQuery(device: string, table: string, predicates: RdbPredicates, columns: A
 **示例：**
 
 ```js
-import deviceManager from '@ohos.distributedHardware.deviceManager';
-let dmInstance = null;
-let deviceId = null;
+import deviceManager from '@ohos.distributedDeviceManager';
+let dmInstance: deviceManager.DeviceManager = null;
+let deviceId: string = null;
 
-deviceManager.createDeviceManager("com.example.appdatamgrverify", (err, manager) => {
-    if (err) {
-        console.log("create device manager failed, err=" + err);
-        return;
-    }
-    dmInstance = manager;
-    let devices = dmInstance.getTrustedDeviceListSync();
-    deviceId = devices[0].deviceId;
-})
+try {
+  dmInstance = deviceManager.createDeviceManager("com.example.appdatamgrverify");
+  let devices = dmInstance.getAvailableDeviceListSync();
+  deviceId = devices[0].networkId;
+} catch (err) {
+  console.error("createDeviceManager errCode:" + err.code + ",errMessage:" + err.message);
+}
 
 let predicates = new relationalStore.RdbPredicates('EMPLOYEE');
 predicates.greaterThan("id", 0);
 let promise = store.remoteQuery(deviceId, "EMPLOYEE", predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]);
-promise.then((resultSet) => {
+promise.then((resultSet: relationalStore.ResultSet) => {
   console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
   // resultSet是一个数据集合的游标，默认指向第-1个记录，有效的数据从0开始。
   while (resultSet.goToNextRow()) {
@@ -2862,7 +2974,7 @@ promise.then((resultSet) => {
   }
   // 释放数据集的内存
   resultSet.close();
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to remoteQuery, code is ${err.code},message is ${err.message}`);
 })
 ```
@@ -2893,7 +3005,7 @@ querySql(sql: string, callback: AsyncCallback&lt;ResultSet&gt;):void
 **示例：**
 
 ```js
-store.querySql("SELECT * FROM EMPLOYEE CROSS JOIN BOOK WHERE BOOK.NAME = 'sanguo'", function (err, resultSet) {
+store.querySql("SELECT * FROM EMPLOYEE CROSS JOIN BOOK WHERE BOOK.NAME = 'sanguo'", (err, resultSet) => {
   if (err) {
     console.error(`Query failed, code is ${err.code},message is ${err.message}`);
     return;
@@ -2939,7 +3051,7 @@ querySql(sql: string, bindArgs: Array&lt;ValueType&gt;, callback: AsyncCallback&
 **示例：**
 
 ```js
-store.querySql("SELECT * FROM EMPLOYEE CROSS JOIN BOOK WHERE BOOK.NAME = ?", ['sanguo'], function (err, resultSet) {
+store.querySql("SELECT * FROM EMPLOYEE CROSS JOIN BOOK WHERE BOOK.NAME = ?", ['sanguo'], (err, resultSet) => {
   if (err) {
     console.error(`Query failed, code is ${err.code},message is ${err.message}`);
     return;
@@ -2991,7 +3103,7 @@ querySql(sql: string, bindArgs?: Array&lt;ValueType&gt;):Promise&lt;ResultSet&gt
 
 ```js
 let promise = store.querySql("SELECT * FROM EMPLOYEE CROSS JOIN BOOK WHERE BOOK.NAME = 'sanguo'");
-promise.then((resultSet) => {
+promise.then((resultSet: relationalStore.ResultSet) => {
   console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
   // resultSet是一个数据集合的游标，默认指向第-1个记录，有效的数据从0开始。
   while (resultSet.goToNextRow()) {
@@ -3003,7 +3115,7 @@ promise.then((resultSet) => {
   }
   // 释放数据集的内存
   resultSet.close();
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error(`Query failed, code is ${err.code},message is ${err.message}`);
 })
 ```
@@ -3036,7 +3148,7 @@ executeSql(sql: string, callback: AsyncCallback&lt;void&gt;):void
 
 ```js
 const SQL_DELETE_TABLE = "DELETE FROM test WHERE name = 'zhangsan'"
-store.executeSql(SQL_DELETE_TABLE, function(err) {
+store.executeSql(SQL_DELETE_TABLE, (err) => {
   if (err) {
     console.error(`ExecuteSql failed, code is ${err.code},message is ${err.message}`);
     return;
@@ -3074,7 +3186,7 @@ executeSql(sql: string, bindArgs: Array&lt;ValueType&gt;, callback: AsyncCallbac
 
 ```js
 const SQL_DELETE_TABLE = "DELETE FROM test WHERE name = ?"
-store.executeSql(SQL_DELETE_TABLE, ['zhangsan'], function(err) {
+store.executeSql(SQL_DELETE_TABLE, ['zhangsan'], (err) => {
   if (err) {
     console.error(`ExecuteSql failed, code is ${err.code},message is ${err.message}`);
     return;
@@ -3119,9 +3231,9 @@ executeSql(sql: string, bindArgs?: Array&lt;ValueType&gt;):Promise&lt;void&gt;
 const SQL_DELETE_TABLE = "DELETE FROM test WHERE name = 'zhangsan'"
 let promise = store.executeSql(SQL_DELETE_TABLE);
 promise.then(() => {
-    console.info(`Delete table done.`);
-}).catch((err) => {
-    console.error(`ExecuteSql failed, code is ${err.code},message is ${err.message}`);
+  console.info(`Delete table done.`);
+}).catch((err: BusinessError) => {
+  console.error(`ExecuteSql failed, code is ${err.code},message is ${err.message}`);
 })
 ```
 
@@ -3154,12 +3266,12 @@ getModifyTime(table: string, columnName: string, primaryKeys: PRIKeyType[], call
 
 ```js
 let PRIKey = [1, 4, 2, 3];
-store.getModifyTime("cloud_tasks", "uuid", PRIKey, function (err, modifyTime) {
-    if (err) {
-        console.error(`getModifyTime failed, code is ${err.code},message is ${err.message}`);
-        return;
-    }
-    let size = modifyTime.size();
+store.getModifyTime("cloud_tasks", "uuid", PRIKey, (err, modifyTime: relationalStore.ModifyTime)=> {
+  if (err) {
+    console.error(`getModifyTime failed, code is ${err.code},message is ${err.message}`);
+    return;
+  }
+  let size = modifyTime.size;
 });
 ```
 
@@ -3197,10 +3309,10 @@ getModifyTime(table: string, columnName: string, primaryKeys: PRIKeyType[]): Pro
 
 ```js
 let PRIKey = [1, 2, 3];
-store.getModifyTime("cloud_tasks", "uuid", PRIKey).then((modifyTime) => {
-    let size = modifyTime.size();
-}).catch((err) => {
-    console.error(`getModifyTime failed, code is ${err.code},message is ${err.message}`);
+store.getModifyTime("cloud_tasks", "uuid", PRIKey).then((modifyTime: relationalStore.ModifyTime) => {
+  let size = modifyTime.size;
+}).catch((err: BusinessError) => {
+  console.error(`getModifyTime failed, code is ${err.code},message is ${err.message}`);
 });
 ```
 
@@ -3226,21 +3338,29 @@ beginTransaction():void
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
 let context = featureAbility.getContext();
-const STORE_CONFIG = { 
+let key1 = "name";
+let key2 = "age";
+let key3 = "SALARY";
+let key4 = "blobType";
+let value1 = "Lisi";
+let value2 = 18;
+let value3 = 100.5;
+let value4 = new Uint8Array([1, 2, 3]);
+const STORE_CONFIG: relationalStore.StoreConfig = {
   name: "RdbTest.db",
   securityLevel: relationalStore.SecurityLevel.S1
 };
-relationalStore.getRdbStore(context, STORE_CONFIG, async function (err, store) {
+relationalStore.getRdbStore(this.context, STORE_CONFIG, async (err, store) => {
   if (err) {
     console.error(`GetRdbStore failed, code is ${err.code},message is ${err.message}`);
     return;
   }
   store.beginTransaction();
-  const valueBucket = {
-    "name": "lisi",
-	"age": 18,
-	"salary": 100.5,
-	"blobType": new Uint8Array([1, 2, 3]),
+  const valueBucket: ValuesBucket = {
+    key1: value1,
+    key2: value2,
+    key3: value3,
+    key4: value4,
   };
   await store.insert("test", valueBucket);
   store.commit();
@@ -3260,21 +3380,29 @@ commit():void
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
 let context = featureAbility.getContext();
-const STORE_CONFIG = { 
+let key1 = "name";
+let key2 = "age";
+let key3 = "SALARY";
+let key4 = "blobType";
+let value1 = "Lisi";
+let value2 = 18;
+let value3 = 100.5;
+let value4 = new Uint8Array([1, 2, 3]);
+const STORE_CONFIG: relationalStore.StoreConfig = {
   name: "RdbTest.db",
   securityLevel: relationalStore.SecurityLevel.S1
 };
-relationalStore.getRdbStore(context, STORE_CONFIG, async function (err, store) {
+relationalStore.getRdbStore(this.context, STORE_CONFIG, async (err, store) => {
   if (err) {
      console.error(`GetRdbStore failed, code is ${err.code},message is ${err.message}`);
      return;
   }
   store.beginTransaction();
-  const valueBucket = {
-	"name": "lisi",
-	"age": 18,
-	"salary": 100.5,
-	"blobType": new Uint8Array([1, 2, 3]),
+  const valueBucket: ValuesBucket = {
+    key1: value1,
+    key2: value2,
+    key3: value3,
+    key4: value4,
   };
   await store.insert("test", valueBucket);
   store.commit();
@@ -3294,24 +3422,31 @@ rollBack():void
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
 let context = featureAbility.getContext();
-const STORE_CONFIG = { 
+let key1 = "name";
+let key2 = "age";
+let key3 = "SALARY";
+let key4 = "blobType";
+let value1 = "Lisi";
+let value2 = 18;
+let value3 = 100.5;
+let value4 = new Uint8Array([1, 2, 3]);
+const STORE_CONFIG: relationalStore.StoreConfig = {
   name: "RdbTest.db",
   securityLevel: relationalStore.SecurityLevel.S1
 };
-relationalStore.getRdbStore(context, STORE_CONFIG, async function (err, store) {
+relationalStore.getRdbStore(this.context, STORE_CONFIG, async (err, store) => {
   if (err) {
     console.error(`GetRdbStore failed, code is ${err.code},message is ${err.message}`);
     return;
   }
   try {
     store.beginTransaction()
-    const valueBucket = {
-	  "id": 1,
-	  "name": "lisi",
-	  "age": 18,
-	  "salary": 100.5,
-	  "blobType": new Uint8Array([1, 2, 3]),
-	};
+    const valueBucket: ValuesBucket = {
+      key1: value1,
+      key2: value2,
+      key3: value3,
+      key4: value4,
+  };
 	await store.insert("test", valueBucket);
     store.commit();
   } catch (err) {
@@ -3347,7 +3482,7 @@ backup(destName:string, callback: AsyncCallback&lt;void&gt;):void
 **示例：**
 
 ```js
-store.backup("dbBackup.db", function(err) {
+store.backup("dbBackup.db", (err) => {
   if (err) {
     console.error(`Backup failed, code is ${err.code},message is ${err.message}`);
     return;
@@ -3390,7 +3525,7 @@ backup(destName:string): Promise&lt;void&gt;
 let promiseBackup = store.backup("dbBackup.db");
 promiseBackup.then(()=>{
   console.info(`Backup success.`);
-}).catch((err)=>{
+}).catch((err: BusinessError)=>{
   console.error(`Backup failed, code is ${err.code},message is ${err.message}`);
 })
 ```
@@ -3421,7 +3556,7 @@ restore(srcName:string, callback: AsyncCallback&lt;void&gt;):void
 **示例：**
 
 ```js
-store.restore("dbBackup.db", function(err) {
+store.restore("dbBackup.db", (err) => {
   if (err) {
     console.error(`Restore failed, code is ${err.code},message is ${err.message}`);
     return;
@@ -3464,7 +3599,7 @@ restore(srcName:string): Promise&lt;void&gt;
 let promiseRestore = store.restore("dbBackup.db");
 promiseRestore.then(()=>{
   console.info(`Restore success.`);
-}).catch((err)=>{
+}).catch((err: BusinessError)=>{
   console.error(`Restore failed, code is ${err.code},message is ${err.message}`);
 })
 ```
@@ -3497,7 +3632,7 @@ setDistributedTables(tables: Array&lt;string&gt;, callback: AsyncCallback&lt;voi
 **示例：**
 
 ```js
-store.setDistributedTables(["EMPLOYEE"], function (err) {
+store.setDistributedTables(["EMPLOYEE"], (err) => {
   if (err) {
     console.error(`SetDistributedTables failed, code is ${err.code},message is ${err.message}`);
     return;
@@ -3542,7 +3677,7 @@ store.setDistributedTables(["EMPLOYEE"], function (err) {
 let promise = store.setDistributedTables(["EMPLOYEE"]);
 promise.then(() => {
   console.info(`SetDistributedTables successfully.`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error(`SetDistributedTables failed, code is ${err.code},message is ${err.message}`);
 })
 ```
@@ -3577,7 +3712,7 @@ setDistributedTables(tables: Array&lt;string&gt;, type: DistributedType, callbac
 **示例：**
 
 ```js
-store.setDistributedTables(["EMPLOYEE"], relationalStore.DistributedType.DISTRIBUTED_CLOUD, function (err) {
+store.setDistributedTables(["EMPLOYEE"], relationalStore.DistributedType.DISTRIBUTED_CLOUD, (err) => {
   if (err) {
     console.error(`SetDistributedTables failed, code is ${err.code},message is ${err.message}`);
     return;
@@ -3621,7 +3756,7 @@ setDistributedTables(tables: Array&lt;string&gt;, type: DistributedType, config:
 ```js
 store.setDistributedTables(["EMPLOYEE"], relationalStore.DistributedType.DISTRIBUTED_CLOUD, {
   autoSync: true
-}, function (err) {
+},(err) => {
   if (err) {
     console.error(`SetDistributedTables failed, code is ${err.code},message is ${err.message}`);
     return;
@@ -3671,7 +3806,7 @@ let promise = store.setDistributedTables(["EMPLOYEE"], relationalStore.Distribut
 });
 promise.then(() => {
   console.info(`SetDistributedTables successfully.`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error(`SetDistributedTables failed, code is ${err.code},message is ${err.message}`);
 })
 ```
@@ -3684,7 +3819,7 @@ obtainDistributedTableName(device: string, table: string, callback: AsyncCallbac
 
 > **说明：**
 >
-> 其中device通过调用[deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync)方法得到。deviceManager模块的接口均为系统接口，仅系统应用可用。
+> 其中device通过调用[deviceManager.getAvailableDeviceListSync](js-apis-distributedDeviceManager.md#getavailabledevicelistsync)方法得到。
 
 **需要权限：** ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -3709,26 +3844,24 @@ obtainDistributedTableName(device: string, table: string, callback: AsyncCallbac
 **示例：**
 
 ```js
-import deviceManager from '@ohos.distributedHardware.deviceManager';
-let dmInstance = null;
-let deviceId = null;
+import deviceManager from '@ohos.distributedDeviceManager';
+let dmInstance: deviceManager.DeviceManager = null;
+let deviceId: string = null;
 
-deviceManager.createDeviceManager("com.example.appdatamgrverify", (err, manager) => {
-    if (err) {
-        console.log("create device manager failed, err=" + err);
-        return;
-    }
-    dmInstance = manager;
-    let devices = dmInstance.getTrustedDeviceListSync();
-    deviceId = devices[0].deviceId;
-})
+try {
+  dmInstance = deviceManager.createDeviceManager("com.example.appdatamgrverify");
+  let devices = dmInstance.getAvailableDeviceListSync();
+  deviceId = devices[0].networkId;
+} catch (err) {
+  console.error("createDeviceManager errCode:" + err.code + ",errMessage:" + err.message);
+}
 
-store.obtainDistributedTableName(deviceId, "EMPLOYEE", function (err, tableName) {
-    if (err) {
-        console.error(`ObtainDistributedTableName failed, code is ${err.code},message is ${err.message}`);
-        return;
-    }
-    console.info(`ObtainDistributedTableName successfully, tableName= ${tableName}`);
+store.obtainDistributedTableName(deviceId, "EMPLOYEE", (err, tableName) => {
+  if (err) {
+    console.error(`ObtainDistributedTableName failed, code is ${err.code},message is ${err.message}`);
+    return;
+  }
+  console.info(`ObtainDistributedTableName successfully, tableName= ${tableName}`);
 })
 ```
 
@@ -3740,7 +3873,7 @@ store.obtainDistributedTableName(deviceId, "EMPLOYEE", function (err, tableName)
 
 > **说明：**
 >
-> 其中device通过调用[deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync)方法得到。deviceManager模块的接口均为系统接口，仅系统应用可用。
+> 其中device通过调用[deviceManager.getAvailableDeviceListSync](js-apis-distributedDeviceManager.md#getavailabledevicelistsync)方法得到。
 
 **需要权限：** ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -3770,24 +3903,22 @@ store.obtainDistributedTableName(deviceId, "EMPLOYEE", function (err, tableName)
 **示例：**
 
 ```js
-import deviceManager from '@ohos.distributedHardware.deviceManager';
-let dmInstance = null;
-let deviceId = null;
+import deviceManager from '@ohos.distributedDeviceManager';
+let dmInstance: deviceManager.DeviceManager = null;
+let deviceId: string = null;
 
-deviceManager.createDeviceManager("com.example.appdatamgrverify", (err, manager) => {
-    if (err) {
-        console.log("create device manager failed, err=" + err);
-        return;
-    }
-    dmInstance = manager;
-    let devices = dmInstance.getTrustedDeviceListSync();
-    deviceId = devices[0].deviceId;
-})
+try {
+  dmInstance = deviceManager.createDeviceManager("com.example.appdatamgrverify");
+  let devices = dmInstance.getAvailableDeviceListSync();
+  deviceId = devices[0].networkId;
+} catch (err) {
+  console.error("createDeviceManager errCode:" + err.code + ",errMessage:" + err.message);
+}
 
 let promise = store.obtainDistributedTableName(deviceId, "EMPLOYEE");
-promise.then((tableName) => {
+promise.then((tableName: string) => {
   console.info(`ObtainDistributedTableName successfully, tableName= ${tableName}`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error(`ObtainDistributedTableName failed, code is ${err.code},message is ${err.message}`);
 })
 ```
@@ -3821,25 +3952,23 @@ sync(mode: SyncMode, predicates: RdbPredicates, callback: AsyncCallback&lt;Array
 **示例：**
 
 ```js
-import deviceManager from '@ohos.distributedHardware.deviceManager';
-let dmInstance = null;
-let deviceIds = [];
+import deviceManager from '@ohos.distributedDeviceManager';
+let dmInstance: deviceManager.DeviceManager = null;
+let deviceIds: Array<string> = [];
 
-deviceManager.createDeviceManager("com.example.appdatamgrverify", (err, manager) => {
-    if (err) {
-        console.log("create device manager failed, err=" + err);
-        return;
-    }
-    dmInstance = manager;
-    let devices = dmInstance.getTrustedDeviceListSync();
-    for (var i = 0; i < devices.length; i++) {
-        deviceIds[i] = devices[i].deviceId;
-    }
-})
+try {
+  dmInstance = deviceManager.createDeviceManager("com.example.appdatamgrverify");
+  let devices = dmInstance.getAvailableDeviceListSync();
+  for (let i = 0; i < devices.length; i++) {
+      deviceIds[i] = devices[i].networkId;
+  }
+} catch (err) {
+  console.error("createDeviceManager errCode:" + err.code + ",errMessage:" + err.message);
+}
 
 let predicates = new relationalStore.RdbPredicates('EMPLOYEE');
 predicates.inDevices(deviceIds);
-store.sync(relationalStore.SyncMode.SYNC_MODE_PUSH, predicates, function (err, result) {
+store.sync(relationalStore.SyncMode.SYNC_MODE_PUSH, predicates, (err, result) => {
   if (err) {
     console.error(`Sync failed, code is ${err.code},message is ${err.message}`);
     return;
@@ -3885,31 +4014,29 @@ store.sync(relationalStore.SyncMode.SYNC_MODE_PUSH, predicates, function (err, r
 **示例：**
 
 ```js
-import deviceManager from '@ohos.distributedHardware.deviceManager';
-let dmInstance = null;
-let deviceIds = [];
+import deviceManager from '@ohos.distributedDeviceManager';
+let dmInstance: deviceManager.DeviceManager = null;
+let deviceIds: Array<string> = [];
 
-deviceManager.createDeviceManager("com.example.appdatamgrverify", (err, manager) => {
-    if (err) {
-        console.log("create device manager failed, err=" + err);
-        return;
-    }
-    dmInstance = manager;
-    let devices = dmInstance.getTrustedDeviceListSync();
-    for (var i = 0; i < devices.length; i++) {
-        deviceIds[i] = devices[i].deviceId;
-    }
-})
+try {
+  dmInstance = deviceManager.createDeviceManager("com.example.appdatamgrverify");
+  let devices = dmInstance.getAvailableDeviceListSync();
+  for (let i = 0; i < devices.length; i++) {
+      deviceIds[i] = devices[i].networkId;
+  }
+} catch (err) {
+  console.error("createDeviceManager errCode:" + err.code + ",errMessage:" + err.message);
+}
 
 let predicates = new relationalStore.RdbPredicates('EMPLOYEE');
 predicates.inDevices(deviceIds);
 let promise = store.sync(relationalStore.SyncMode.SYNC_MODE_PUSH, predicates);
-promise.then((result) =>{
+promise.then((result: Object[][]) =>{
   console.info(`Sync done.`);
   for (let i = 0; i < result.length; i++) {
     console.info(`device= ${result[i][0]}, status= ${result[i][1]}`);
   }
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error(`Sync failed, code is ${err.code},message is ${err.message}`);
 })
 ```
@@ -3935,14 +4062,14 @@ cloudSync(mode: SyncMode, progress: Callback&lt;ProgressDetails&gt;, callback: A
 **示例：**
 
 ```js
-store.cloudSync(relationalStore.SyncMode.SYNC_MODE_CLOUD_FIRST, function (progressDetails) {
-    console.info(`Progess: ${progressDetails}`);
-}, function (err) {
-     if (err) {
-         console.error(`Cloud sync failed, code is ${err.code},message is ${err.message}`);
-         return;
-     }
-     console.info('Cloud sync succeeded');
+store.cloudSync(relationalStore.SyncMode.SYNC_MODE_CLOUD_FIRST, (progressDetails) => {
+  console.info(`Progess: ${progressDetails}`);
+}, (err) =>{
+  if (err) {
+    console.error(`Cloud sync failed, code is ${err.code},message is ${err.message}`);
+    return;
+  }
+  console.info('Cloud sync succeeded');
 });
 ```
 
@@ -3972,13 +4099,11 @@ cloudSync(mode: SyncMode, progress: Callback&lt;ProgressDetails&gt;): Promise&lt
 **示例：**
 
 ```js
-function progress(progressDetail) {
+store.cloudSync(relationalStore.SyncMode.SYNC_MODE_CLOUD_FIRST, (progressDetail: relationalStore.ProgressDetails) => {
     console.info(`progress: ${progressDetail}`);
-}
-
-store.cloudSync(relationalStore.SyncMode.SYNC_MODE_CLOUD_FIRST, progress).then(() => {
+}).then(() => {
     console.info('Cloud sync succeeded');
-}).catch((err) => {
+}).catch((err: BusinessError) => {
     console.error(`cloudSync failed, code is ${err.code},message is ${err.message}`);
 });
 ```
@@ -4006,14 +4131,14 @@ cloudSync(mode: SyncMode, tables: string[], progress: Callback&lt;ProgressDetail
 
 ```js
 const tables = ["table1", "table2"];
-store.cloudSync(relationalStore.SyncMode.SYNC_MODE_CLOUD_FIRST, tables, function (progressDetails) {
-    console.info(`Progess: ${progressDetails}`);
-}, function (err) {
-     if (err) {
-         console.error(`Cloud sync failed, code is ${err.code},message is ${err.message}`);
-         return;
-     }
-     console.info('Cloud sync succeeded');
+store.cloudSync(relationalStore.SyncMode.SYNC_MODE_CLOUD_FIRST, tables, (progressDetail: relationalStore.ProgressDetails) => {
+  console.info(`Progess: ${progressDetails}`);
+}, (err) => {
+  if (err) {
+    console.error(`Cloud sync failed, code is ${err.code},message is ${err.message}`);
+    return;
+  }
+  console.info('Cloud sync succeeded');
 });
 ```
 
@@ -4045,13 +4170,12 @@ cloudSync(mode: SyncMode, tables: string[], progress: Callback&lt;ProgressDetail
 
 ```js
 const tables = ["table1", "table2"];
-function progress(progressDetail) {
-    console.info(`progress: ${progressDetail}`);
-}
 
-store.cloudSync(relationalStore.SyncMode.SYNC_MODE_CLOUD_FIRST, tables, progress).then(() => {
+store.cloudSync(relationalStore.SyncMode.SYNC_MODE_CLOUD_FIRST, (progressDetail: relationalStore.ProgressDetails) => {
+    console.info(`progress: ${progressDetail}`);
+}).then(() => {
     console.info('Cloud sync succeeded');
-}).catch((err) => {
+}).catch((err: BusinessError) => {
     console.error(`cloudSync failed, code is ${err.code},message is ${err.message}`);
 });
 ```
@@ -4075,13 +4199,14 @@ on(event: 'dataChange', type: SubscribeType, observer: Callback&lt;Array&lt;stri
 **示例：**
 
 ```js
-function storeObserver(devices) {
-  for (let i = 0; i < devices.length; i++) {
-    console.info(`device= ${devices[i]} data changed`);
-  }
-}
 try {
-  store.on('dataChange', relationalStore.SubscribeType.SUBSCRIBE_TYPE_REMOTE, storeObserver);
+  store.on('dataChange', relationalStore.SubscribeType.SUBSCRIBE_TYPE_REMOTE, (storeObserver) => {
+    let devices: string;
+    for (let i = 0; i < devices.length; i++) {
+      console.info(`device= ${devices[i]} data changed`);
+    }
+  }
+  );
 } catch (err) {
   console.error(`Register observer failed, code is ${err.code},message is ${err.message}`);
 }
@@ -4146,11 +4271,10 @@ on(event: string, interProcess: boolean, observer: Callback\<void>): void
 **示例：**
 
 ```js
-function storeObserver() {
-    console.info(`storeObserver`);
-}
 try {
-  store.on('storeObserver', false, storeObserver);
+  store.on('storeObserver', false, (storeObserver) => {
+    console.info(`storeObserver`);
+    });
 } catch (err) {
   console.error(`Register observer failed, code is ${err.code},message is ${err.message}`);
 }
@@ -4175,13 +4299,14 @@ off(event:'dataChange', type: SubscribeType, observer: Callback&lt;Array&lt;stri
 **示例：**
 
 ```
-function storeObserver(devices) {
-  for (let i = 0; i < devices.length; i++) {
-    console.info(`device= ${devices[i]} data changed`);
-  }
-}
 try {
-  store.off('dataChange', relationalStore.SubscribeType.SUBSCRIBE_TYPE_REMOTE, storeObserver);
+  store.off('dataChange', relationalStore.SubscribeType.SUBSCRIBE_TYPE_REMOTE, (storeObserver) => {
+    let devices: string;
+    for (let i = 0; i < devices.length; i++) {
+      console.info(`device= ${devices[i]} data changed`);
+    }
+  }
+  );
 } catch (err) {
   console.error(`Unregister observer failed, code is ${err.code},message is ${err.message}`);
 }
@@ -4206,13 +4331,14 @@ off(event:'dataChange', type: SubscribeType, observer?: Callback&lt;Array&lt;str
 **示例：**
 
 ```js
-function storeObserver(devices) {
-  for (let i = 0; i < devices.length; i++) {
-    console.info(`device= ${devices[i]} data changed`);
-  }
-}
 try {
-  store.off('dataChange', relationalStore.SubscribeType.SUBSCRIBE_TYPE_REMOTE, storeObserver);
+  store.off('dataChange', relationalStore.SubscribeType.SUBSCRIBE_TYPE_REMOTE, (storeObserver) => {
+    let devices: string;
+    for (let i = 0; i < devices.length; i++) {
+      console.info(`device= ${devices[i]} data changed`);
+    }
+  }
+  );
 } catch (err) {
   console.error(`Unregister observer failed, code is ${err.code},message is ${err.message}`);
 }
@@ -4246,11 +4372,11 @@ off(event: string, interProcess: boolean, observer?: Callback\<void>): void
 **示例：**
 
 ```js
-function storeObserver() {
-    console.info(`storeObserver`);
-}
 try {
-  store.off('storeObserver', false, storeObserver);
+  store.off('storeObserver', false, (storeObserver) => {
+    console.info(`storeObserver`);
+  }
+  );
 } catch (err) {
   console.error(`Register observer failed, code is ${err.code},message is ${err.message}`);
 }
@@ -4294,11 +4420,11 @@ store.emit('storeObserver');
 首先需要获取resultSet对象。
 
 ```js
-let resultSet = null;
+let resultSet: relationalStore.ResultSet = null;
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("AGE", 18);
 let promise = store.query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]);
-promise.then((result) => {
+promise.then((result: relationalStore.ResultSet) => {
   resultSet = result;
   console.info(`resultSet columnNames: ${resultSet.columnNames}`);
   console.info(`resultSet columnCount: ${resultSet.columnCount}`);
@@ -4352,7 +4478,6 @@ getColumnIndex(columnName: string): number
 **示例：**
 
   ```js
-resultSet.goToFirstRow();
 const id = resultSet.getLong(resultSet.getColumnIndex("ID"));
 const name = resultSet.getString(resultSet.getColumnIndex("NAME"));
 const age = resultSet.getLong(resultSet.getColumnIndex("AGE"));
@@ -4426,14 +4551,7 @@ goTo(offset:number): boolean
 **示例：**
 
   ```js
-let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
-let promise= store.query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]);
-promise.then((resultSet) => {
   resultSet.goTo(1);
-  resultSet.close();
-}).catch((err) => {
-  console.error(`query failed, code is ${err.code},message is ${err.message}`);
-});
   ```
 
 ### goToRow
@@ -4467,14 +4585,7 @@ goToRow(position: number): boolean
 **示例：**
 
   ```js
-let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
-let promise = store.query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]);
-promise.then((resultSet) => {
   resultSet.goToRow(5);
-  resultSet.close();
-}).catch((err) => {
-  console.error(`query failed, code is ${err.code},message is ${err.message}`);
-});
   ```
 
 ### goToFirstRow
@@ -4503,14 +4614,7 @@ goToFirstRow(): boolean
 **示例：**
 
   ```js
-let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
-let promise = store.query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]);
-promise.then((resultSet) => {
   resultSet.goToFirstRow();
-  resultSet.close();
-}).catch((err) => {
-  console.error(`query failed, code is ${err.code},message is ${err.message}`);
-});
   ```
 
 ### goToLastRow
@@ -4538,14 +4642,7 @@ goToLastRow(): boolean
 **示例：**
 
   ```js
-let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
-let promise = store.query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]);
-promise.then((resultSet) => {
   resultSet.goToLastRow();
-  resultSet.close();
-}).catch((err) => {
-  console.error(`query failed, code is ${err.code},message is ${err.message}`);
-});
   ```
 
 ### goToNextRow
@@ -4573,14 +4670,7 @@ goToNextRow(): boolean
 **示例：**
 
   ```js
-let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
-let promise = store.query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]);
-promise.then((resultSet) => {
   resultSet.goToNextRow();
-  resultSet.close();
-}).catch((err) => {
-  console.error(`query failed, code is ${err.code},message is ${err.message}`);
-});
   ```
 
 ### goToPreviousRow
@@ -4608,14 +4698,7 @@ goToPreviousRow(): boolean
 **示例：**
 
   ```js
-let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
-let promise = store.query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]);
-promise.then((resultSet) => {
   resultSet.goToPreviousRow();
-  resultSet.close();
-}).catch((err) => {
-  console.error(`query failed, code is ${err.code},message is ${err.message}`);
-});
   ```
 
 ### getBlob
@@ -4868,13 +4951,7 @@ close(): void
 **示例：**
 
   ```js
-let predicatesClose = new relationalStore.RdbPredicates("EMPLOYEE");
-let promiseClose = store.query(predicatesClose, ["ID", "NAME", "AGE", "SALARY", "CODES"]);
-promiseClose.then((resultSet) => {
   resultSet.close();
-}).catch((err) => {
-  console.error(`resultset close failed, code is ${err.code},message is ${err.message}`);
-});
   ```
 
 **错误码：**

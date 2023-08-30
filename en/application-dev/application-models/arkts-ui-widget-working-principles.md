@@ -13,13 +13,13 @@
 
 - Widget Manager: a resident agent that manages widgets in the system. It provides the [formProvider](../reference/apis/js-apis-app-form-formProvider.md) and [formHost](../reference/apis/js-apis-app-form-formHost.md) APIs as well as the APIs for widget management, usage, and periodic updates.
 
-- Widget rendering service: a service that manages widget rendering instances. Widget rendering instances are bound to the [widget components](../reference/arkui-ts/ts-basic-components-formcomponent.md) on the widget host on a one-to-one basis. The widget rendering service runs the widget page code **widgets.abc** for rendering, and sends the rendered data to the corresponding widget component on the widget host.
+- Widget rendering service: a service that manages widget rendering instances. Widget rendering instances are bound to the [FormComponent](../reference/arkui-ts/ts-basic-components-formcomponent.md) on the widget host on a one-to-one basis. The widget rendering service runs the widget page code **widgets.abc** for rendering, and sends the rendered data to the corresponding [FormComponent](../reference/arkui-ts/ts-basic-components-formcomponent.md) on the widget host.
 
   **Figure 2** Working principles of the ArkTS widget rendering service
 
   ![WidgetRender](figures/WidgetRender.png)
 
-Unlike JS widgets, ArkTS widgets support logic code execution. The widget page code **widgets.abc** is executed by the widget rendering service, which is managed by the Widget Manager. Each widget component of a widget host corresponds to a rendering instance in the widget rendering service. Rendering instances of a widget provider run in the same virtual machine operating environment, and rendering instances of different widget providers run in different virtual machine operating environments. In this way, the resources and state data are isolated between widgets of different widget providers. During development, pay attention to the use of the [globalThis](uiability-data-sync-with-ui.md#using-globalthis-between-uiability-and-ui-page) object. Use one **globalThis** object for widgets from the same widget provider, and different **globalThis** objects for widgets from different widget providers.
+Unlike JS widgets, ArkTS widgets support logic code execution. The widget page code **widgets.abc** is executed by the widget rendering service, which is managed by the Widget Manager. Each widget component of a widget host corresponds to a rendering instance in the widget rendering service. Rendering instances of a widget provider run in the same ArkTS virtual machine operating environment, and rendering instances of different widget providers run in different ArkTS virtual machine operating environments. In this way, the resources and state data are isolated between widgets of different widget providers. During development, pay attention to the use of the [globalThis](uiability-data-sync-with-ui.md#using-globalthis-for-data-synchronization) object. Use one **globalThis** object for widgets from the same widget provider, and different **globalThis** objects for widgets from different widget providers.
 
 
 ## Advantages of ArkTS Widgets

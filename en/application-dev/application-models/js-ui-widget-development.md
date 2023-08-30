@@ -56,7 +56,7 @@ The **FormExtensionAbility** class has the following APIs. For details, see [For
 | onFormEvent(formId: string, message: string): void | Called to instruct the widget provider to process a widget event.|
 | onRemoveForm(formId: string): void | Called to notify the widget provider that a widget is being destroyed.|
 | onConfigurationUpdate(config: Configuration): void | Called when the configuration of the environment where the widget is running is being updated.|
-| onShareForm?(formId: string): { [key: string]: any } | Called to notify the widget provider that the widget host is sharing the widget data.|
+| onShareForm?(formId: string): { [key: string]: Object } | Called to notify the widget provider that the widget host is sharing the widget data.|
 
 The **FormProvider** class has the following APIs. For details, see [FormProvider](../reference/apis/js-apis-app-form-formProvider.md).
 
@@ -95,7 +95,7 @@ The widget provider development based on the [stage model](stage-model-developme
 
 To create a widget in the stage model, you need to implement the lifecycle callbacks of FormExtensionAbility. Generate a widget template and then perform the following:
 
-1. Import related modules to **EntryFormAbility.ts**.
+1. Import related modules to **EntryFormAbility.ets**.
 
    
    ```ts
@@ -106,7 +106,7 @@ To create a widget in the stage model, you need to implement the lifecycle callb
    import dataPreferences from '@ohos.data.preferences';
    ```
 
-2. Implement the FormExtension lifecycle callbacks in **EntryFormAbility.ts**.
+2. Implement the FormExtension lifecycle callbacks in **EntryFormAbility.ets**.
 
    
    ```ts
@@ -176,7 +176,7 @@ To create a widget in the stage model, you need to implement the lifecycle callb
        "extensionAbilities": [
          {
            "name": "EntryFormAbility",
-           "srcEntry": "./ets/entryformability/EntryFormAbility.ts",
+           "srcEntry": "./ets/entryformability/EntryFormAbility.ets",
            "label": "$string:EntryFormAbility_label",
            "description": "$string:EntryFormAbility_desc",
            "type": "form",
@@ -546,6 +546,29 @@ The following are examples:
     }
   }
   ```
+
+  Note:
+
+  **JSON Value** in **data** supports multi-level nested data. When updating data, ensure that complete data is carried.
+
+  Assume that a widget is displaying the course information of Mr. Zhang on July 18, as shown in the following code snippet.
+  ```ts
+  "data": {
+      "Day": "07.18",
+      "teacher": {
+          "name": "Mr.Zhang",
+          "course": "Math"
+      }
+  }
+  ```
+  To update the widget content to the course information of Mr. Li on July 18, you must pass the complete data as follows, instead of only a single date item such as **name** or **course**:
+  ```ts
+  "teacher": {
+      "name": "Mr.Li",
+      "course": "English"
+  }
+  ```
+
 
 - Receive the router event in UIAbility and obtain parameters.
 

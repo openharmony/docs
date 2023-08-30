@@ -28,7 +28,7 @@ import missionManager from '@ohos.app.ability.missionManager';
 | label | string | 是 | 是 | 表示任务的标签。 |
 | iconPath | string | 是 | 是 | 表示任务的图标路径。 |
 | continuable | boolean | 是 | 是 | 表示任务是否可以迁移。 |
-| abilityState | number | 是 | 是 | 表示此任务的能力状态。 |
+| abilityState<sup>10+</sup> | number | 是 | 是 | 表示此任务的能力状态。 |
 | unclearable<sup>10+</sup> | boolean | 是 | 是 | 表示任务是否可以被用户手动删除。 |
 
 **示例：**

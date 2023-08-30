@@ -19,6 +19,7 @@ You can use the Bootloader provided by the chipset vendor or open-source U-Boot 
 ## Adaptation, Building, Burning, and Startup
 
 1. Prepare the kernel configuration files, especially the chipset-related configuration files.
+
    Source code directory of the configuration files: **kernel/linux/config/**
 
    Create a **<*YOUR_CHIP*>_small_defconfig** file, such as **hi3516dv300_small_defconfig**, in the **linux-4.19/arch/arm/configs/** directory. The configuration file can be created by combining the general-purpose **small_common_defconfig** file and chipset-specific configurations.
@@ -48,7 +49,7 @@ You can use the Bootloader provided by the chipset vendor or open-source U-Boot 
 
    The burning mode varies according to the development board of the chipset. Pay attention to the size of each burnt image and the configuration of the boot parameters. Below is the U-Boot parameter settings of Hi3516D V300:
 
-
+   
    ```
    setenv bootargs 'mem=128M console=ttyAMA0,115200 root=/dev/mmcblk0p3 ro rootfstype=ext4 rootwait blkdevparts=mmcblk0:1M(boot),9M(kernel),50M(rootfs),50M(userfs)'
    ```
@@ -65,16 +66,23 @@ Debug the **init** process, start shell, and run a simple program in the user sp
 Based on the preceding process, the recommended verification procedure is as follows:
 
 1. Create a root file system image.
-   
+
    Create a root file system image **rootfs.img** by following instructions in [Building Procedures](../subsystems/subsys-build-all.md). As shown in the preceding figure, the startup process is closely related to the product configuration. You need to complete the following configuration when creating **rootfs.img**:
 
    - Component configuration
+      
       In the product component configuration file ***vendor*/{*company*}/{*product*}/config.json**, configure the **init** component of the startup subsystem and the **linux_4_1_9** component of the kernel subsystem.
+      
    - System service configuration
+      
       Modify the system service configuration file ***vendor*/{*company*}/{*product*}/init_configs/init_xxx.cfg** to start the shell service.
+      
    - File system configuration
+      
       In the file system configuration file ***vendor*/{*company*}/{*product*}/fs.yml**, create the **/bin/sh -> mksh** and **/lib/ld-musl-arm.so.1 -> libc.so** soft links. These two files are the shell executable program and the c library on which the executable program depends, respectively.
+      
    - Startup configuration
+      
       In the ***vendor*/{*company*}/{*product*}/init_configs/etc** directory, configure startup settings, including the **fstab**, **rsS**, and **S*xxx*** files. Configure the startup settings as needed.
    
    After the build is complete, check the **rootfs** content in the product compilation output directory to determine whether the generated **rootfs.img** file meets the expectation.

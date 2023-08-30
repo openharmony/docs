@@ -55,7 +55,7 @@ Search(options?: { value?: string, placeholder?: ResourceStr, icon?: string, con
 
 | 参数名 | 参数类型                                   | 必填 | 参数描述 |
 | ------ | ------------------------------------------ | ---- | -------- |
-| width  | [Length](ts-types.md#length)               | 否   | 光标尺寸。 |
+| width  | [Length](ts-types.md#length)               | 否   | 光标尺寸，不支持百分比。 |
 | color  | [ResourceColor](ts-types.md#resourcecolor) | 否   | 光标颜色。 |
 
 ## SearchButtonOptions<sup>10+</sup>对象说明

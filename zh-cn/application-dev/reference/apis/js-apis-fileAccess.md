@@ -1658,25 +1658,51 @@ registerObserver(uri: string, notifyForDescendants: boolean, callback: Callback&
 | notifyForDescendants | boolean                                           | 是   | 监听目录时，是否监听子文件变化 |
 | callback             | Callback&lt;[NotifyMessage](#notifymessage10)&gt; | 是   | 返回通知信息                   |
 
-**示例1：**
+**示例1：注册一个callback对一个uri的监听**
 
 ```js
 let DirUri = 'file://docs/storage/Users/currentUser/Documents';
 try {
   // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
-  let dirUri = await fileAccessHelper.mkDir(DirUri, 'NOTIFY_DIR');
-  // 期待收到uri为'file://docs/storage/Users/currentUser/Documents'，事件类型为NOTIFY_DELETE
-  const callbackDir = (NotifyMessageDir) => {
+  let dirUri1 = await fileAccessHelper.mkDir(DirUri, 'NOTIFY_DIR1');
+  let dirUri2 = await fileAccessHelper.mkDir(DirUri, 'NOTIFY_DIR2');
+  // 因注册时notifyForDescendants参数为true所以期待收到两次通知
+  // uri为'file://docs/storage/Users/currentUser/Documents/NOTIFY_DIR1/SUB_FILE'，事件类型为NOTIFY_MOVED_FROM
+  // uri为'file://docs/storage/Users/currentUser/Documents/NOTIFY_DIR1/SUB_FILE'，事件类型为NOTIFY_MOVE_SELF
+  const callbackDir1 = (NotifyMessageDir) => {
     if (NotifyMessageDir != undefined) {
-      console.log('NotifyType: ' + NotifyMessageDir.NotifyType + 'NotifyUri:' +
-      NotifyMessageDir.uris[0]);
+      console.log('NotifyType: ' + NotifyMessageDir.NotifyType + 'NotifyUri:' + NotifyMessageDir.uri[0]);
     } else {
       console.error("NotifyMessageDir is undefined");
     }
   }
-  fileAccessHelper.registerObserver(dirUri, true, callbackDir);
-  await fileAccessHelper.delete(dirUri);
-  fileAccessHelper.unregisterObserver(dirUri, callbackDir);
+  // 期待收到uri为'file://docs/storage/Users/currentUser/Documents/NOTIFY_DIR2/SUB_FILE'，事件类型为NOTIFY_MOVED_TO
+  const callbackDir2 = (NotifyMessageDir) => {
+    if (NotifyMessageDir != undefined) {
+      console.log('NotifyType: ' + NotifyMessageDir.NotifyType + 'NotifyUri:' + NotifyMessageDir.uri[0]);
+    } else {
+      console.error("NotifyMessageDir is undefined");
+    }
+  }
+  // 期待收到uri为'file://docs/storage/Users/currentUser/Documents/NOTIFY_DIR1/SUB_FILE'，事件类型为NOTIFY_MOVE_SELF
+  // 期待收到uri为'file://docs/storage/Users/currentUser/Documents/NOTIFY_DIR1/SUB_FILE'，事件类型为NOTIFY_MOVED_FROM
+  const callbackFile = (NotifyMessageDir) => {
+    if (NotifyMessageDir != undefined) {
+      console.log('NotifyType: ' + NotifyMessageDir.NotifyType + 'NotifyUri:' + NotifyMessageDir.uri[0]);
+    } else {
+      console.error("NotifyMessageDir is undefined");
+    }
+  }
+  let fileUri = await.fileAccessHelper.createFile(dirUri1, 'SUB_FILE');
+  fileAccessHelper.registerObserver(dirUri1, true, callbackDir1);
+  fileAccessHelper.registerObserver(dirUri2, true, callbackDir2);
+  // 如果不监听被移动文件本身，将不会触发NOTIFY_MOVE_SELF事件
+  fileAccessHelper.registerObserver(fileUri, true, callbackFile);
+  let moveFileUri = await fileAccessHelper.move(fileUri, dirUri2);
+  // 注册完不应立即解注册，可能存在解注册先于通知返回的情景，这将收不到通知事件
+  fileAccessHelper.unregisterObserver(dirUri1, callbackDir1);
+  fileAccessHelper.unregisterObserver(dirUri2, callbackDir2);
+  fileAccessHelper.unregisterObserver(fileUri, callbackFile);
 } catch (error) {
   console.error("registerObserver failed, errCode:" + error.code + ", errMessage:" + error.message);
 }
@@ -1689,11 +1715,10 @@ let DirUri = 'file://docs/storage/Users/currentUser/Documents';
 try {
   // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
   let dirUri = await fileAccessHelper.mkDir(DirUri, 'NOTIFY_DIR');
-  // 期待收到uri为'file://docs/storage/Users/currentUser/Documents'，事件类型为NOTIFY_DELETE
+  // 期待收到uri为'file://docs/storage/Users/currentUser/Documents/NOTIFY_DIR/SUB_DIR'，事件类型为NOTIFY_ADD
   const callbackDir = (NotifyMessageDir) => {
     if (NotifyMessageDir != undefined) {
-      console.log('NotifyType: ' + NotifyMessageDir.NotifyType + 'NotifyUri:' +
-      NotifyMessageDir.uris[0]);
+      console.log('NotifyType: ' + NotifyMessageDir.NotifyType + 'NotifyUri:' + NotifyMessageDir.uri[0]);
     } else {
       console.error("NotifyMessageDir is undefined");
     }
@@ -1701,8 +1726,8 @@ try {
   fileAccessHelper.registerObserver(dirUri, true, callbackDir);
   // 返回注册成功，仅在log中提示重复注册
   fileAccessHelper.registerObserver(dirUri, true, callbackDir);
-  await fileAccessHelper.delete(dirUri);
-  sleep(100);
+  let subDirUri = await fileAccessHelper.mkDir(dirUri, 'SUB_DIR');
+  // 注册完不应立即解注册，可能存在解注册先于通知返回的情景，这将收不到通知事件
   fileAccessHelper.unregisterObserver(dirUri, callbackDir);
 } catch (error) {
   console.error("registerObserver failed, errCode:" + error.code + ", errMessage:" + error.message);
@@ -1716,19 +1741,21 @@ let DirUri = 'file://docs/storage/Users/currentUser/Documents';
 try {
   // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
   let dirUri = await fileAccessHelper.mkDir(DirUri, 'NOTIFY_DIR');
-  // 期待收到uri为'file://docs/storage/Users/currentUser/Documents'，事件类型为NOTIFY_DELETE
+  // 期待第一次收到uri为'file://docs/storage/Users/currentUser/Documents/NOTIFY_DIR/SUB_FILE_1'，事件类型为NOTIFY_ADD
+  // 期待无第二次返回
   const callbackDir = (NotifyMessageDir) => {
     if (NotifyMessageDir != undefined) {
-      console.log('NotifyType: ' + NotifyMessageDir.NotifyType + 'NotifyUri:' +
-      NotifyMessageDir.uris[0]);
+      console.log('NotifyType: ' + NotifyMessageDir.NotifyType + 'NotifyUri:' + NotifyMessageDir.uri[0]);
     } else {
       console.error("NotifyMessageDir is undefined");
     }
   }
   fileAccessHelper.registerObserver(dirUri, true, callbackDir);
+  let subFile1 = await fileAccessHelper.createFile(dirUri, 'SUB_FILE_1');
   // 注册成功修改notifyForDescendants为false,不感知子文件的变化
   fileAccessHelper.registerObserver(dirUri, false, callbackDir);
-  await fileAccessHelper.delete(dirUri);
+  let subFile2 = await fileAccessHelper.createFile(dirUri, 'SUB_FILE_2');
+  // 注册完不应立即解注册，可能存在解注册先于通知返回的情景，这将收不到通知事件
   fileAccessHelper.unregisterObserver(dirUri, callbackDir);
 } catch (error) {
   console.error("registerObserver failed, errCode:" + error.code + ", errMessage:" + error.message);
@@ -1752,24 +1779,50 @@ try {
 | uri      | string                                            | 是   | 文件或目录的uri           |
 | callback | Callback&lt;[NotifyMessage](#notifymessage10)&gt; | 是   | 解注册uri下对应的callback |
 
-**示例：**
+**示例1: 解注册监听uri的一个callback**
 
 ```js
 let DirUri = 'file://docs/storage/Users/currentUser/Documents';
 try {
   // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
   let dirUri = await fileAccessHelper.mkDir(DirUri, 'NOTIFY_DIR');
-  // 期待收到uri为'file://docs/storage/Users/currentUser/Documents'，事件类型为NOTIFY_DELETE
+  // 期待收到uri为'file://docs/storage/Users/currentUser/Documents/NOTIFY_DIR'，事件类型为NOTIFY_DELETE
   const callbackDir = (NotifyMessageDir) => {
     if (NotifyMessageDir != undefined) {
-      console.log('NotifyType: ' + NotifyMessageDir.NotifyType + 'NotifyUri:' +
-      NotifyMessageDir.uris[0]);
+      console.log('NotifyType: ' + NotifyMessageDir.NotifyType + 'NotifyUri:' + NotifyMessageDir.uri[0]);
     } else {
       console.error("NotifyMessageDir is undefined");
     }
   }
   fileAccessHelper.registerObserver(dirUri, true, callbackDir);
   await fileAccessHelper.delete(dirUri);
+  // 注册完不应立即解注册，可能存在解注册先于通知返回的情景，这将收不到通知事件
+  fileAccessHelper.unregisterObserver(dirUri, callbackDir);
+} catch (error) {
+  console.error("unregisterObserver failed, errCode:" + error.code + ", errMessage:" + error.message);
+}
+```
+
+**示例2：对监听uri的某一callback重复解注册**
+
+```js
+let DirUri = 'file://docs/storage/Users/currentUser/Documents';
+try {
+  // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
+  let dirUri = await fileAccessHelper.mkDir(DirUri, 'NOTIFY_DIR');
+  // 期待收到uri为'file://docs/storage/Users/currentUser/Documents/NOTIFY_DIR'，事件类型为NOTIFY_DELETE
+  const callbackDir = (NotifyMessageDir) => {
+    if (NotifyMessageDir != undefined) {
+      console.log('NotifyType: ' + NotifyMessageDir.NotifyType + 'NotifyUri:' + NotifyMessageDir.uri[0]);
+    } else {
+      console.error("NotifyMessageDir is undefined");
+    }
+  }
+  fileAccessHelper.registerObserver(dirUri, true, callbackDir);
+  await fileAccessHelper.delete(dirUri);
+  // 注册完不应立即解注册，可能存在解注册先于通知返回的情景，这将收不到通知事件
+  fileAccessHelper.unregisterObserver(dirUri, callbackDir);
+  // 解注册失败，抛出错误码 E_CAN_NOT_FIND_URI
   fileAccessHelper.unregisterObserver(dirUri, callbackDir);
 } catch (error) {
   console.error("unregisterObserver failed, errCode:" + error.code + ", errMessage:" + error.message);
@@ -1792,35 +1845,39 @@ try {
 | ------ | ------ | ---- | --------------- |
 | uri    | string | 是   | 文件或目录的uri |
 
-**示例：**
+**示例1：解注册监听uri的所有callback**
 
 ```js
 let DirUri = 'file://docs/storage/Users/currentUser/Documents';
 try {
   // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
   let dirUri = await fileAccessHelper.mkDir(DirUri, 'NOTIFY_DIR');
-  // 期待收到uri为'file://docs/storage/Users/currentUser/Documents'，事件类型为NOTIFY_DELETE
+  // 期待收到uri为'file://docs/storage/Users/currentUser/Documents/NOTIFY_DIR/SUB_FILE'，事件类型为NOTIFY_MOVED_FROM
+  // 期待收到uri为'file://docs/storage/Users/currentUser/Documents/NOTIFY_DIR/RENAME_FILE'，事件类型为NOTIFY_MOVED_TO
   const callbackDir1 = (NotifyMessageDir) => {
     if (NotifyMessageDir != undefined) {
-      console.log('NotifyType: ' + NotifyMessageDir.NotifyType + 'NotifyUri:' +
-      NotifyMessageDir.uris[0]);
+      console.log('NotifyType: ' + NotifyMessageDir.NotifyType + 'NotifyUri:' + NotifyMessageDir.uri[0]);
     } else {
       console.error("NotifyMessageDir is undefined");
     }
   }
+  // 期待收不到任何事件
   const callbackDir2 = (NotifyMessageDir) => {
     if (NotifyMessageDir != undefined) {
-      console.log('NotifyType: ' + NotifyMessageDir.NotifyType + 'NotifyUri:' +
-      NotifyMessageDir.uris[0]);
+      console.log('NotifyType: ' + NotifyMessageDir.NotifyType + 'NotifyUri:' + NotifyMessageDir.uri[0]);
     } else {
       console.error("NotifyMessageDir is undefined");
     }
   }
+  let fileUri = await fileAccessHelper.createFile(dirUri, 'SUB_FILE');
   fileAccessHelper.registerObserver(dirUri, true, callbackDir1);
-  fileAccessHelper.registerObserver(dirUri, true, callbackDir2);
-  await fileAccessHelper.delete(dirUri);
+  // 此处注册为不关注下一级，将收不到关于下一级的事件
+  fileAccessHelper.registerObserver(dirUri, false, callbackDir2);
+  let renameUri = await fileAccessHelper.rename(fileUri, 'RENAME_FILE');
   // 取消注册监听dirUri的所有callback(callbackDir1、callbackDir2)
+  // 注册完不应立即解注册，可能存在解注册先于通知返回的情景，这将收不到通知事件
   fileAccessHelper.unregisterObserver(dirUri);
+  await fileAccessHelper.delete(dirUri);
 } catch (error) {
   console.error("unregisterObserver failed, errCode:" + error.code + ", errMessage:" + error.message);
 }
@@ -1883,11 +1940,11 @@ try {
 
 | 名称              | 值   | 说明                                                         |
 | ----------------- | ---- | ------------------------------------------------------------ |
-| NOTIFY_ADD        | 0    | 表示新增文件                                                 |
-| NOTIFY_DELETE     | 1    | 表示删除文件                                                 |
-| NOTIFY_MOVED_TO   | 2    | 表示移动至该文件（对该目录下子文件或目录执行rename操作，或外部文件或目录执行move操作到本文件） |
-| NOTIFY_MOVED_FROM | 3    | 表示自该文件移出（如子文件或文件夹执行move操作从该文件夹内移出） |
-| NOTIFY_MOVE_SELF  | 4    | 表示本文件被移动（如对文件或文件夹执行rename或move操作）     |
+| NOTIFY_ADD        | 0    | 表示新增文件（详见registerObserver接口的示例2、示例3）                                                 |
+| NOTIFY_DELETE     | 1    | 表示删除文件（详见unregisterObserver(uri: string, callback: Callback&lt;NotifyMessage&gt;)接口的示例1、示例2）                                               |
+| NOTIFY_MOVED_TO   | 2    | 表示移动至该文件（对目录下子文件或目录执行rename操作，或外部文件或目录执行move操作到本文件，详见registerObserver接口的示例1，及unregisterObserver(uri: string)接口的示例1）|
+| NOTIFY_MOVED_FROM | 3    | 表示自该文件移出（对目录下子文件或目录执行rename操作，或子文件（夹）执行move操作从该文件夹内移出，详见registerObserver接口的示例1，及unregisterObserver(uri: string)接口的示例1） |
+| NOTIFY_MOVE_SELF  | 4    | 表示本文件被移动（如对文件或文件夹执行rename或move操作时，监听该文件（夹）的callback收到该事件，详见registerObserver接口的示例1）     |
 
 ## NotifyMessage<sup>10+</sup>
 

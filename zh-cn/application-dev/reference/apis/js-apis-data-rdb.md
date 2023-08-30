@@ -18,6 +18,8 @@
 
 ```js
 import data_rdb from '@ohos.data.rdb';
+import { BusinessError } from "@ohos.base"
+import window from '@ohos.window';
 ```
 ## data_rdb.getRdbStore
 
@@ -43,11 +45,11 @@ FA模型示例：
 ```js
 // 获取context
 import featureAbility from '@ohos.ability.featureAbility'
-let context = featureAbility.getContext()
+let context: Context;
 
 // 获取context后调用getRdbStore
 const STORE_CONFIG = { name: "RdbTest.db"}
-data_rdb.getRdbStore(context, STORE_CONFIG, 1, function (err, rdbStore) {
+data_rdb.getRdbStore(context, STORE_CONFIG, 1, (err, rdbStore) => {
     if (err) {
         console.info("Get RdbStore failed, err: " + err)
         return
@@ -62,22 +64,23 @@ Stage模型示例：
 // 获取context
 import UIAbility from '@ohos.app.ability.UIAbility';
 
-let context;
-class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage){
-        context = this.context
-    }
+let context: Context;
+interface storeConfig {
+  name: string
 }
 
-// 获取context后调用getRdbStore
-const STORE_CONFIG = { name: "RdbTest.db"}
-data_rdb.getRdbStore(context, STORE_CONFIG, 1, function (err, rdbStore) {
-    if (err) {
+class EntryAbility extends UIAbility {
+  onWindowStageCreate(windowStage: window.WindowStage){
+    let STORE_CONFIG: storeConfig = { name: "RdbTest.db"};
+    data_rdb.getRdbStore(this.context, STORE_CONFIG, 1, (err: BusinessError, rdbStore: data_rdb.RdbStore) => {
+      if (err) {
         console.info("Get RdbStore failed, err: " + err)
         return
-    }
-    console.log("Get RdbStore successfully.")
-})
+      }
+      console.log("Get RdbStore successfully.")
+    })
+  }
+}
 ```
 
 ## data_rdb.getRdbStore
@@ -109,7 +112,7 @@ FA模型示例：
 ```js
 // 获取context
 import featureAbility from '@ohos.ability.featureAbility'
-let context = featureAbility.getContext()
+let context: Context;
 
 // 获取context后调用getRdbStore
 const STORE_CONFIG = { name: "RdbTest.db" }
@@ -127,20 +130,23 @@ Stage模型示例：
 // 获取context
 import UIAbility from '@ohos.app.ability.UIAbility';
 
-let context;
+let context: Context;
+interface storeConfig {
+  name: string
+}
 class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage){
-        context = this.context
-    }
+  onWindowStageCreate(windowStage: window.WindowStage){
+    context = this.context
+  }
 }
 
 // 获取context后调用getRdbStore
-const STORE_CONFIG = { name: "RdbTest.db" }
+let STORE_CONFIG: storeConfig = { name: "RdbTest.db"};
 let promise = data_rdb.getRdbStore(context, STORE_CONFIG, 1);
-promise.then(async (rdbStore) => {
-    console.log("Get RdbStore successfully.")
-}).catch((err) => {
-    console.log("Get RdbStore failed, err: " + err)
+promise.then(async (rdbStore: data_rdb.RdbStore) => {
+  console.log("Get RdbStore successfully.")
+}).catch((err: BusinessError) => {
+  console.log("Get RdbStore failed, err: " + err)
 })
 ```
 
@@ -167,15 +173,15 @@ FA模型示例：
 ```js
 // 获取context
 import featureAbility from '@ohos.ability.featureAbility'
-let context = featureAbility.getContext()
+let context: Context;
 
 // 获取context后调用deleteRdbStore
-data_rdb.deleteRdbStore(context, "RdbTest.db", function (err) {
-    if (err) {
-        console.info("Delete RdbStore failed, err: " + err)
-        return
-    }
-    console.log("Delete RdbStore successfully.")
+data_rdb.deleteRdbStore(context, "RdbTest.db", (err) => {
+  if (err) {
+    console.info("Delete RdbStore failed, err: " + err)
+    return
+  }
+  console.log("Delete RdbStore successfully.")
 })
 ```
 
@@ -185,20 +191,20 @@ Stage模型示例：
 // 获取context
 import UIAbility from '@ohos.app.ability.UIAbility';
 
-let context;
+let context: Context;
 class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage){
-        context = this.context
-    }
+  onWindowStageCreate(windowStage: window.WindowStage){
+    context = this.context
+  }
 }
 
 // 获取context后调用deleteRdbStore
-data_rdb.deleteRdbStore(context, "RdbTest.db", function (err) {
-    if (err) {
-        console.info("Delete RdbStore failed, err: " + err)
-        return
-    }
-    console.log("Delete RdbStore successfully.")
+data_rdb.deleteRdbStore(context, "RdbTest.db", (err) => {
+  if (err) {
+    console.info("Delete RdbStore failed, err: " + err)
+    return
+  }
+  console.log("Delete RdbStore successfully.")
 })
 ```
 
@@ -230,7 +236,7 @@ FA模型示例：
 ```js
 // 获取context
 import featureAbility from '@ohos.ability.featureAbility'
-let context = featureAbility.getContext()
+let context: Context;
 
 // 获取context后调用deleteRdbStore
 let promise = data_rdb.deleteRdbStore(context, "RdbTest.db")
@@ -247,19 +253,19 @@ Stage模型示例：
 // 获取context
 import UIAbility from '@ohos.app.ability.UIAbility';
 
-let context;
+let context: Context;
 class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage){
-        context = this.context
-    }
+  onWindowStageCreate(windowStage: window.WindowStage){
+    context = this.context
+  }
 }
 
 // 获取context后调用deleteRdbStore
 let promise = data_rdb.deleteRdbStore(context, "RdbTest.db")
 promise.then(()=>{
-    console.log("Delete RdbStore successfully.")
-}).catch((err) => {
-    console.info("Delete RdbStore failed, err: " + err)
+  console.log("Delete RdbStore successfully.")
+}).catch((err: BusinessError) => {
+  console.info("Delete RdbStore failed, err: " + err)
 })
 ```
 
@@ -371,8 +377,8 @@ inDevices(devices: Array&lt;string&gt;): RdbPredicates
 
 ```js
 import deviceManager from '@ohos.distributedHardware.deviceManager';
-let dmInstance = null;
-let deviceIds = [];
+let dmInstance: deviceManager.DeviceManager = null;
+let deviceIds: Array<string> = [];
 
 deviceManager.createDeviceManager("com.example.appdatamgrverify", (err, manager) => {
     if (err) {
@@ -381,7 +387,7 @@ deviceManager.createDeviceManager("com.example.appdatamgrverify", (err, manager)
     }
     dmInstance = manager;
     let devices = dmInstance.getTrustedDeviceListSync();
-    for (var i = 0; i < devices.length; i++) {
+    for (let i = 0; i < devices.length; i++) {
         deviceIds[i] = devices[i].deviceId;
     }
 })

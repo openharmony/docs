@@ -11,8 +11,7 @@ A custom dialog box is a dialog box you customize by using APIs of the **CustomD
 
 ## APIs
 
-CustomDialogController(value:{builder: CustomDialog, cancel?: () =&gt; void, autoCancel?: boolean, alignment?: DialogAlignment, offset?: Offset, customStyle?: boolean, gridCount?: number, maskColor?: ResourceColor, openAnimation?: AnimateParam, closeAniamtion?: AnimateParam, showInSubWindow?: boolean})
-
+CustomDialogController(value:{builder: CustomDialog, cancel?: () =&gt; void, autoCancel?: boolean, alignment?: DialogAlignment, offset?: Offset, customStyle?: boolean, gridCount?: number, maskColor?: ResourceColor, maskRect?: Rectangle, openAnimation?: AnimateParam, closeAniamtion?: AnimateParam, showInSubWindow?: boolean, backgroundColor?:ResourceColor, cornerRadius?:Dimension \| BorderRadiuses})
 
 **Parameters**
 
@@ -26,9 +25,12 @@ CustomDialogController(value:{builder: CustomDialog, cancel?: () =&gt; void, aut
 | customStyle                   | boolean                                  | No   | Whether to use a custom style for the dialog box.<br>Default value: **false**, which means that the dialog box automatically adapts its width to the grid system and its height to the child components; the maximum height is 90% of the container height; the rounded corner is 24 vp.|
 | gridCount<sup>8+</sup>        | number                                   | No   | Number of [grid columns](../../ui/arkts-layout-development-grid-layout.md) occupied by the dialog box.<br>The default value is subject to the window size, and the maximum value is the maximum number of columns supported by the system. If this parameter is set to an invalid value, the default value is used.|
 | maskColor<sup>10+</sup>       | [ResourceColor](ts-types.md#resourcecolor) | No   | Custom mask color.<br>Default value: **0x33000000**             |
+| maskRect<sup>10+</sup>        | [Rectangle](ts-methods-alert-dialog-box.md#rectangle10) | No    | Mask area of the dialog box. Events outside the mask area are transparently transmitted, and events within the mask area are not.<br>Default value: **{ x: 0, y: 0, width: '100%', height: '100%' }**|
 | openAnimation<sup>10+</sup>   | [AnimateParam](ts-explicit-animation.md#animateparam) | No   | Parameters for defining the open animation of the dialog box.<br>**NOTE**<br>**iterations**: The default value is **1**, indicating that the animation is played once; any other value evaluates to the default value.<br>**playMode**: The default value is **PlayMode.Normal**; any other value evaluates to the default value.|
 | closeAniamtion<sup>10+</sup>  | [AnimateParam](ts-explicit-animation.md#animateparam) | No   | Parameters for defining the close animation of the dialog box.<br>**NOTE**<br>**iterations**: The default value is **1**, indicating that the animation is played once; any other value evaluates to the default value.<br>**playMode**: The default value is **PlayMode.Normal**; any other value evaluates to the default value.                   |
-| showInSubWindow<sup>10+</sup> | boolean                                  | No   | Whether to display a dialog box in a subwindow.<br>Default value: **false**, indicating that the dialog box is not displayed in the subwindow<br>**NOTE**<br>A dialog box whose **showInSubWindow** attribute is **true** cannot trigger the display of another dialog box whose **showInSubWindow** attribute is also **true**.|
+| showInSubWindow<sup>10+</sup> | boolean                                  | No   | Whether to show the dialog box in a sub-window when the dialog box needs to be displayed outside the main window.<br>Default value: **false**, indicating that the dialog box is not displayed in the subwindow<br>**NOTE**<br>A dialog box whose **showInSubWindow** attribute is **true** cannot trigger the display of another dialog box whose **showInSubWindow** attribute is also **true**.|
+| backgroundColor<sup>10+</sup> | [ResourceColor](ts-types.md#resourcecolor)      | No  | Background color of the dialog box.                                          |
+| cornerRadius<sup>10+</sup>    | [BorderRadiuses](ts-types.md#borderradiuses9) \| [Dimension](ts-types.md#dimension10) | No  | Radius of the rounded corners of the background.<br>You can set separate radiuses for the four rounded corners.<br>Default value: **{ topLeft: '24vp', topRight: '24vp', bottomLeft: '24vp', bottomRight: '24vp' }**<br>**NOTE**<br>This attribute must be used together with the [borderRadius](ts-universal-attributes-border.md) attribute.|
 
 ## CustomDialogController
 
@@ -89,8 +91,8 @@ struct CustomDialogExample {
             this.confirm()
           }).backgroundColor(0xffffff).fontColor(Color.Red)
       }.margin({ bottom: 10 })
-    }
-    // The default value of borderRadius is 24vp. The border attribute must be used together with the borderRadius attribute.
+    }.borderRadius(10)
+    // When using the border or cornerRadius attribute, use it together with the borderRadius attribute.
   }
 }
 
@@ -111,13 +113,15 @@ struct CustomDialogUser {
     alignment: DialogAlignment.Default,
     offset: { dx: 0, dy: -20 },
     gridCount: 4,
-    customStyle: false
+    customStyle: false,
+    backgroundColor: 0xd9ffffff,
+    cornerRadius: 10,
   })
 
   // Delete the dialogController instance and set it to undefined when the custom component is about to be destroyed.
   aboutToDisappear() {
     delete this.dialogController, // Delete the dialogController instance.
-    this.dialogController = undefined // Set dialogController to undefined.
+    this.dialogController = undefined //Set dialogController to undefined.
   }
 
   onCancel() {
@@ -145,4 +149,4 @@ struct CustomDialogUser {
 }
 ```
 
-![en-us_image_0000001212058470](figures/en-us_image_0000001212058470.gif)
+![en-us_image_custom](figures/en-us_image_custom.gif)

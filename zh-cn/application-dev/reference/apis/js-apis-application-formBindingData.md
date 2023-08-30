@@ -53,11 +53,13 @@ import fs from '@ohos.file.fs';
 
 try {
   let fd = fs.openSync('/path/to/form.png');
-  let obj = {
-    'temperature': '21°',
-    'formImages': { 'image': fd }
-  };
-  formBindingData.createFormBindingData(obj);
+  let createFormBindingDataParam = new Map<Object, string | object>();
+  let formImagesParam = new Map<Object, object>();
+  formImagesParam.set('image', fd);
+  createFormBindingDataParam.set("name", '21°');
+  createFormBindingDataParam.set('formImages', formImagesParam);
+
+  formBindingData.createFormBindingData(createFormBindingDataParam);
 } catch (error) {
   console.error('catch error, error: ${JSON.stringify(error)}');
 }

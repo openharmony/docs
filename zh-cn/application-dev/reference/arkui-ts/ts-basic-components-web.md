@@ -808,11 +808,15 @@ initialScale(percent: number)
   }
   ```
 
-### userAgent
+### userAgent<sup>(deprecated)</sup>
 
 userAgent(userAgent: string)
 
 设置用户代理。
+
+> **说明：**
+>
+> 从API version 8开始支持，从API version 10开始废弃。建议使用[setCustomUserAgent](../apis/js-apis-webview.md#setcustomuseragent10)<sup>10+</sup>替代。
 
 **参数：**
 
@@ -2193,7 +2197,8 @@ onShowFileSelector(callback: (event?: { result: FileSelectorResult, fileSelector
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import web_webview from '@ohos.web.webview';
+  import picker from '@ohos.file.picker';
 
   @Entry
   @Component
@@ -2202,30 +2207,37 @@ onShowFileSelector(callback: (event?: { result: FileSelectorResult, fileSelector
 
     build() {
       Column() {
-        Web({ src: 'www.example.com', controller: this.controller })
+        Web({ src: $rawfile('index.html'), controller: this.controller })
           .onShowFileSelector((event) => {
-            AlertDialog.show({
-              title: event.fileSelector.getTitle(),
-              message: 'isCapture:' + event.fileSelector.isCapture() + " mode:" + event.fileSelector.getMode() + 'acceptType:' + event.fileSelector.getAcceptType(),
-              confirm: {
-                value: 'upload',
-                action: () => {
-                  let fileList: Array<string> = [
-                    '/data/storage/el2/base/test',
-                  ]
-                  event.result.handleFileList(fileList)
-                }
-              },
-              cancel: () => {
-                let fileList: Array<string> = []
-                event.result.handleFileList(fileList)
-              }
+            console.log('MyFileUploader onShowFileSelector invoked')
+            const documentSelectOptions = new picker.DocumentSelectOptions();
+            let uri = null;
+            const documentViewPicker = new picker.DocumentViewPicker();
+            documentViewPicker.select(documentSelectOptions).then((documentSelectResult) => {
+              uri = documentSelectResult[0];
+              console.info('documentViewPicker.select to file succeed and uri is:' + uri);
+              event.result.handleFileList([uri]);
+            }).catch((err) => {
+              console.error(`Invoke documentViewPicker.select failed, code is ${err.code}, message is ${err.message}`);
             })
             return true
           })
       }
     }
   }
+  ```
+  
+  加载的html文件。
+  ```html
+  <!DOCTYPE html>
+  <html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8">
+  </head>
+  <body>
+    <form id="upload-form" enctype="multipart/form-data">
+      <input type="file" id="upload" name="upload"/>
+  </body>
   ```
 
 ### onResourceLoad<sup>9+</sup>

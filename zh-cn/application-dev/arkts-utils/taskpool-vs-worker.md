@@ -102,9 +102,9 @@ TaskPool支持开发者在主线程封装任务抛给任务队列，系统选择
 
 ```js
 // API 9及之后版本使用：
-const worker1 = new worker.ThreadWorker(scriptURL);
+const worker1: worker.ThreadWorker = new worker.ThreadWorker(scriptURL);
 // API 8及之前版本使用：
-const worker1 = new worker.Worker(scriptURL);
+const worker1: worker.ThreadWorker = new worker.Worker(scriptURL);
 ```
 
 构造函数需要传入Worker的路径（scriptURL），Worker文件存放位置默认路径为Worker文件所在目录与pages目录属于同级。
@@ -119,15 +119,15 @@ const worker1 = new worker.Worker(scriptURL);
 ```js
 // 写法一
 // Stage模型-目录同级（entry模块下，workers目录与pages目录同级）
-const worker1 = new worker.ThreadWorker('entry/ets/workers/MyWorker.ts', {name:"first worker in Stage model"});
+const worker1: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/MyWorker.ts', {name:"first worker in Stage model"});
 // Stage模型-目录不同级（entry模块下，workers目录是pages目录的子目录）
-const worker2 = new worker.ThreadWorker('entry/ets/pages/workers/MyWorker.ts');
+const worker2: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/pages/workers/MyWorker.ts');
 
 // 写法二
 // Stage模型-目录同级（entry模块下，workers目录与pages目录同级），假设bundlename是com.example.workerdemo
-const worker3 = new worker.ThreadWorker('@bundle:com.example.workerdemo/entry/ets/workers/worker');
+const worker3: worker.ThreadWorker = new worker.ThreadWorker('@bundle:com.example.workerdemo/entry/ets/workers/worker');
 // Stage模型-目录不同级（entry模块下，workers目录是pages目录的子目录），假设bundlename是com.example.workerdemo
-const worker4 = new worker.ThreadWorker('@bundle:com.example.workerdemo/entry/ets/pages/workers/worker');
+const worker4: worker.ThreadWorker = new worker.ThreadWorker('@bundle:com.example.workerdemo/entry/ets/pages/workers/worker');
 ```
 
 
@@ -151,9 +151,9 @@ const worker4 = new worker.ThreadWorker('@bundle:com.example.workerdemo/entry/et
 
 ```js
 // FA模型-目录同级（entry模块下，workers目录与pages目录同级）
-const worker1 = new worker.ThreadWorker('workers/worker.js', {name:'first worker in FA model'});
+const worker1: worker.ThreadWorker = new worker.ThreadWorker('workers/worker.js', {name:'first worker in FA model'});
 // FA模型-目录不同级（entry模块下，workers目录与pages目录的父目录同级）
-const worker2 = new worker.ThreadWorker('../workers/worker.js');
+const worker2: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker.js');
 ```
 
 

@@ -32,17 +32,25 @@
 
 调用`backup.getLocalCapabilities()`获取能力文件。
 
- ```js
+ ```ts
+  import backup from '@ohos.file.backup';
+  import common from '@ohos.app.ability.common';
   import fs from '@ohos.file.fs';
+
+  // 获取应用文件路径
+  let context = getContext(this) as common.UIAbilityContext;
+  let filesDir = context.filesDir;
+
   async function getLocalCapabilities() {
     try {
       let fileData = await backup.getLocalCapabilities();
       console.info('getLocalCapabilities success');
-      let fpath = await globalThis.context.filesDir + '/localCapabilities.json';
+      let fpath = filesDir + '/localCapabilities.json';
       fs.copyFileSync(fileData.fd, fpath);
       fs.closeSync(fileData.fd);
-    } catch (err) {
-      console.error('getLocalCapabilities failed with err: ' + err);
+    } catch (error) {
+      let err: BusinessError = error as BusinessError;
+      console.error('getLocalCapabilities failed with err: ' + JSON.stringify(err));
     }
   }
  ```
@@ -88,17 +96,24 @@
 **示例**
 
  ```ts
+  import backup from '@ohos.file.backup';
+  import common from '@ohos.app.ability.common';
   import fs from '@ohos.file.fs';
+  import { BusinessError } from '@ohos.base';
+
+  // 获取沙箱路径
+  let context = getContext(this) as common.UIAbilityContext;
+  let filesDir = context.filesDir;
   // 创建SessionBackup类的实例用于备份数据
-  let g_session;
+  let g_session: backup.SessionBackup;
   function createSessionBackup() {
     let sessionBackup = new backup.SessionBackup({
-      onFileReady: async (err, file) => {
+      onFileReady: (err: BusinessError, file: backup.File) => {
         if (err) {
-          console.info('onFileReady err: ' + err);
+          console.info('onFileReady err: ' + JSON.stringify(err));
         }
         try {
-          let bundlePath = await globalThis.context.filesDir + '/' + file.bundleName;
+          let bundlePath = filesDir + '/' + file.bundleName;
           if (!fs.accessSync(bundlePath)) {
             fs.mkdirSync(bundlePath);
           }
@@ -109,23 +124,23 @@
           console.error('onFileReady failed with err: ' + e);
         }
       },
-      onBundleBegin: (err, bundleName) => {
+      onBundleBegin: (err: BusinessError, bundleName: string) => {
         if (err) {
-          console.info('onBundleBegin err: ' + err);
+          console.info('onBundleBegin err: ' + JSON.stringify(err));
         } else {
           console.info('onBundleBegin bundleName: ' + bundleName);
         }
       },
-      onBundleEnd: (err, bundleName) => {
+      onBundleEnd: (err: BusinessError, bundleName: string) => {
         if (err) {
-          console.info('onBundleEnd err: ' + err);
+          console.info('onBundleEnd err: ' + JSON.stringify(err));
         } else {
           console.info('onBundleEnd bundleName: ' + bundleName);
         }
       },
-      onAllBundlesEnd: (err) => {
+      onAllBundlesEnd: (err: BusinessError) => {
         if (err) {
-          console.info('onAllBundlesEnd err: ' + err);
+          console.info('onAllBundlesEnd err: ' + JSON.stringify(err));
         } else {
           console.info('onAllBundlesEnd');
         }
@@ -136,13 +151,12 @@
     });
     return sessionBackup;
   }
-  
-  async function sessionBackup ()
-  {
+
+  async function sessionBackup () {
     g_session = createSessionBackup();
     // 此处可根据backup.getLocalCapabilities()提供的能力文件，选择需要备份的应用
     // 也可直接根据应用包名称进行备份
-    const backupApps = [
+    const backupApps: string[] = [
       "com.example.hiworld",
     ]
     await g_session.appendBundles(backupApps);
@@ -161,11 +175,12 @@
 **示例**
 
  ```ts
+  import backup from '@ohos.file.backup';
   import fs from '@ohos.file.fs';
+  import { BusinessError } from '@ohos.base';
   // 创建SessionRestore类的实例用于恢复数据
-  let g_session;
-  async function publishFile(file)
-  {
+  let g_session: backup.SessionRestore;
+  async function publishFile(file: backup.File) {
     await g_session.publishFile({
       bundleName: file.bundleName,
       uri: file.uri
@@ -173,12 +188,12 @@
   }
   function createSessionRestore() {
     let sessionRestore = new backup.SessionRestore({
-      onFileReady: (err, file) => {
+      onFileReady: (err: BusinessError, file: backup.File) => {
         if (err) {
-          console.info('onFileReady err: ' + err);
+          console.info('onFileReady err: ' + JSON.stringify(err));
         }
         // 此处开发者请根据实际场景待恢复文件存放位置进行调整 bundlePath
-        let bundlePath;
+        let bundlePath: string;
         if (!fs.accessSync(bundlePath)) {
           console.info('onFileReady bundlePath err : ' + bundlePath);
         }
@@ -188,21 +203,21 @@
         publishFile(file);
         console.info('onFileReady success');
       },
-      onBundleBegin: (err, bundleName) => {
+      onBundleBegin: (err: BusinessError, bundleName: string) => {
         if (err) {
-          console.error('onBundleBegin failed with err: ' + err);
+          console.error('onBundleBegin failed with err: ' + JSON.stringify(err));
         }
         console.info('onBundleBegin success');
       },
-      onBundleEnd: (err, bundleName) => {
+      onBundleEnd: (err: BusinessError, bundleName: string) => {
         if (err) {
-          console.error('onBundleEnd failed with err: ' + err);
+          console.error('onBundleEnd failed with err: ' + JSON.stringify(err));
         }
         console.info('onBundleEnd success');
       },
-      onAllBundlesEnd: (err) => {
+      onAllBundlesEnd: (err: BusinessError) => {
         if (err) {
-          console.error('onAllBundlesEnd failed with err: ' + err);
+          console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
         }
         console.info('onAllBundlesEnd success');
       },
@@ -212,17 +227,16 @@
     });
     return sessionRestore;
   }
-  
-  async function restore ()
-  {
+
+  async function restore01 () {
     g_session = createSessionRestore();
-    const backupApps = [
+    const restoreApps: string[] = [
       "com.example.hiworld",
     ]
     // 能力文件的获取方式可以根据开发者实际场景进行调整。此处仅为请求示例
     // 开发者也可以根据能力文件内容的结构示例，自行构造能力文件内容
     let fileData = await backup.getLocalCapabilities();
-    await g_session.appendBundles(fileData.fd, backupApps);
+    await g_session.appendBundles(fileData.fd, restoreApps);
     console.info('appendBundles success');
     // 添加需要恢复的应用成功后，请根据需要恢复的应用名称，调用getFileHandle接口获取待恢复应用数文件的文件句柄
     // 应用待恢复数据文件数请依据实际备份文件个数为准，此处仅为请求示例
@@ -249,11 +263,17 @@
 **示例**
 
  ```ts
+  import backup from '@ohos.file.backup';
+  import common from '@ohos.app.ability.common';
   import fs from '@ohos.file.fs';
+  import { BusinessError } from '@ohos.base';
+
+  // 获取沙箱路径
+  let context = getContext(this) as common.UIAbilityContext;
+  let filesDir = context.filesDir;
   // 创建SessionRestore类的实例用于恢复数据
-  let g_session;
-  async function publishFile(file)
-  {
+  let g_session: backup.SessionRestore;
+  async function publishFile(file: backup.File) {
     await g_session.publishFile({
       bundleName: file.bundleName,
       uri: file.uri
@@ -261,11 +281,11 @@
   }
   function createSessionRestore() {
     let sessionRestore = new backup.SessionRestore({
-      onFileReady: (err, file) => {
-      if (err) {
-        console.info('onFileReady err: ' + err);
-      }
-        let bundlePath;
+      onFileReady: (err: BusinessError, file: backup.File) => {
+        if (err) {
+          console.info('onFileReady err: ' + JSON.stringify(err));
+        }
+        let bundlePath: string;
         if( file.uri == "/data/storage/el2/restore/bundle.hap" )
         {
           // 此处开发者请根据实际场景安装包的存放位置进行调整
@@ -281,21 +301,21 @@
         publishFile(file);
         console.info('onFileReady success');
       },
-      onBundleBegin: (err, bundleName) => {
+      onBundleBegin: (err: BusinessError, bundleName: string) => {
         if (err) {
-          console.error('onBundleBegin failed with err: ' + err);
+          console.error('onBundleBegin failed with err: ' + JSON.stringify(err));
         }
         console.info('onBundleBegin success');
       },
-      onBundleEnd: (err, bundleName) => {
+      onBundleEnd: (err: BusinessError, bundleName: string) => {
         if (err) {
-          console.error('onBundleEnd failed with err: ' + err);
+          console.error('onBundleEnd failed with err: ' + JSON.stringify(err));
         }
         console.info('onBundleEnd success');
       },
-      onAllBundlesEnd: (err) => {
+      onAllBundlesEnd: (err: BusinessError) => {
         if (err) {
-          console.error('onAllBundlesEnd failed with err: ' + err);
+          console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
         }
         console.info('onAllBundlesEnd success');
       },
@@ -305,29 +325,28 @@
     });
     return sessionRestore;
   }
-  
-  async function restore ()
-  {
+
+  async function restore02 () {
     g_session = createSessionRestore();
-    const backupApps = [
+    const restoreApps: string[] = [
       "com.example.hiworld",
     ]
-    let fpath = await globalThis.context.filesDir + '/localCapabilities.json';
-    let file = fs.openSync(fpath, fileIO.OpenMode.CREATE | fileIO.OpenMode.READ_WRITE);
+    let fpath = filesDir + '/localCapabilities.json';
+    let file = fs.openSync(fpath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
     let content = "{\"bundleInfos\" :[{\"allToBackup\" : false,\"extensionName\" : \"\"," +
     "\"name\" : \"cn.openharmony.inputmethodchoosedialog\",\"needToInstall\" : true,\"spaceOccupied\" : 0," +
     "\"versionCode\" : 1000000,\"versionName\" : \"1.0.0\"}],\"deviceType\" : \"default\",\"systemFullName\"   : \"OpenHarmony-4.0.6.2(Canary1)\"}";
     fs.writeSync(file.fd, content);
     fs.fsyncSync(file.fd);
-    await g_session.appendBundles(file.fd, backupApps);
+    await g_session.appendBundles(file.fd, restoreApps);
     console.info('appendBundles success');
-  
+
     // 开发者需要请求安装应用的文件句柄
     await g_session.getFileHandle({
       bundleName: restoreApps[0],
       uri: "/data/storage/el2/restore/bundle.hap"
     });
-  
+
     await g_session.getFileHandle({
       bundleName: restoreApps[0],
       uri: "manage.json"

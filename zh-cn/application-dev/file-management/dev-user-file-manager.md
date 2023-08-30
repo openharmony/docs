@@ -22,6 +22,8 @@ OpenHarmony预置了FileManager文件管理器。系统应用开发者也可以�
    ```ts
    import fileAccess from '@ohos.file.fileAccess';
    import fileExtensionInfo from '@ohos.file.fileExtensionInfo';
+   import { Filter } from '@ohos.file.fs';
+   import common from '@ohos.app.ability.common';
    ```
 
    其中fileAccess提供了文件基础操作的API，fileExtensionInfo提供了应用开发的关键结构体。
@@ -32,11 +34,14 @@ OpenHarmony预置了FileManager文件管理器。系统应用开发者也可以�
    在文件访问框架中，使用RootInfo用于表示设备的属性信息。以下示例可以获取所有设备的RootInfo。
 
    ```ts
+   // 获取应用上下文
+  let context = getContext(this) as common.UIAbilityContext;
+
    // 创建连接系统内所有文件管理服务端的helper对象
-   let fileAccessHelperAllServer = null;
-   createFileAccessHelper() {
+   let fileAccessHelperAllServer: fileAccess.FileAccessHelper;
+   function createFileAccessHelper() {
      try {    // this.context是EntryAbility传过来的Context
-       fileAccessHelperAllServer = fileAccess.createFileAccessHelper(this.context);
+       fileAccessHelperAllServer = fileAccess.createFileAccessHelper(context);
        if (!fileAccessHelperAllServer) {
          console.error("createFileAccessHelper interface returns an undefined object");
        }
@@ -44,24 +49,25 @@ OpenHarmony预置了FileManager文件管理器。系统应用开发者也可以�
          console.error("createFileAccessHelper failed, errCode:" + error.code + ", errMessage:" + error.message);
      }
    }
-   async getRoots() {  
-     let rootIterator = null;  
-     let rootInfos = [];  
-     let isDone = false;  
+   async function getRoots() {
+     let rootIterator: fileAccess.RootIterator;
+     let rootInfos: fileAccess.RootInfo[] = [];
+     let isDone: boolean = false;
      try {
        rootIterator = await fileAccessHelperAllServer.getRoots();
        if (!rootIterator) {
          console.error("getRoots interface returns an undefined object");
-         return;    
-       }    
+         return;
+       }
        while (!isDone) {
          let result = rootIterator.next();
          console.info("next result = " + JSON.stringify(result));
          isDone = result.done;
          if (!isDone)
-           rootinfos.push(result.value);
-       }  
-     } catch (error) {
+           rootInfos.push(result.value);
+       }
+     } catch (err) {
+       let error: BusinessError = err as BusinessError;
        console.error("getRoots failed, errCode:" + error.code + ", errMessage:" + error.message);
      }
    }
@@ -74,10 +80,10 @@ OpenHarmony预置了FileManager文件管理器。系统应用开发者也可以�
 
    ```ts
    // 从根目录开始
-   let rootInfo = rootinfos[0];
-   let fileInfos = [];
-   let isDone = false;
-   let filter = {suffix : [".txt", ".jpg", ".xlsx"]}; // 设定过滤条件
+   let rootInfo = rootInfos[0];
+   let fileInfos: fileAccess.FileInfo[] = [];
+   let isDone: boolean = false;
+   let filter: Filter = {suffix : [".txt", ".jpg", ".xlsx"]}; // 设定过滤条件
    try {  
      let fileIterator = rootInfo.listFile();          // 遍历设备rootinfos[0]的根目录，返回迭代器对象
      // let fileIterator = rootInfo.scanFile(filter); // 过滤设备rootinfos[0]满足指定条件的文件信息，返回迭代对象
@@ -92,15 +98,16 @@ OpenHarmony预置了FileManager文件管理器。系统应用开发者也可以�
        if (!isDone)
          fileInfos.push(result.value);
      }
-   } catch (error) {
+   } catch (err) {
+    let error: BusinessError = err as BusinessError;
      console.error("listFile failed, errCode:" + error.code + ", errMessage:" + error.message);
    }
    
    // 从指定的目录开始
    let fileInfoDir = fileInfos[0]; // fileInfoDir 表示某个目录信息
-   let subFileInfos = [];
-   let isDone = false;
-   let filter = {suffix : [".txt", ".jpg", ".xlsx"]}; // 设定过滤条件
+   let subFileInfos: fileAccess.FileInfo[] = [];
+   let isDone: boolean = false;
+   let filter: Filter = {suffix : [".txt", ".jpg", ".xlsx"]}; // 设定过滤条件
    try {
      let fileIterator = fileInfoDir.listFile(); // 遍历特定的目录fileinfo，返回迭代器对象
      // let fileIterator = rootInfo.scanFile(filter); // 过滤特定的目录fileinfo，返回迭代器对象
@@ -113,9 +120,10 @@ OpenHarmony预置了FileManager文件管理器。系统应用开发者也可以�
        console.info("next result = " + JSON.stringify(result));
        isDone = result.done;
        if (!isDone)
-         subfileInfos.push(result.value);
+         subFileInfos.push(result.value);
      }
-   } catch (error) {
+   } catch (err) {
+    let error: BusinessError = err as BusinessError;
      console.error("listFile failed, errCode:" + error.code + ", errMessage:" + error.message);
    }
    ```
@@ -128,9 +136,9 @@ OpenHarmony预置了FileManager文件管理器。系统应用开发者也可以�
    // 创建文件
    // 示例代码sourceUri是Download目录的fileinfo中的URI
    // 开发者应根据自己实际获取fileinfo的URI进行开发
-   let sourceUri = "file://docs/storage/Users/currentUser/Download";
-   let displayName = "file1";
-   let fileUri = null;
+   let sourceUri: string = "file://docs/storage/Users/currentUser/Download";
+   let displayName: string = "file1";
+   let fileUri: string;
    try {
      // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
      fileUri = await fileAccessHelper.createFile(sourceUri, displayName);
@@ -139,7 +147,8 @@ OpenHarmony预置了FileManager文件管理器。系统应用开发者也可以�
        return;
      }
      console.info("createFile sucess, fileUri: " + JSON.stringify(fileUri));
-   } catch (error) {
+   } catch (err) {
+    let error: BusinessError = err as BusinessError;
      console.error("createFile failed, errCode:" + error.code + ", errMessage:" + error.message);
    };
    ```

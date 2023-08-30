@@ -108,8 +108,8 @@ start(sinkDeviceDescriptor: string, srcInputDeviceId: number, callback: AsyncCal
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 4400001  | 当调用键鼠穿越接口传入无效的设备描述符参数时，系统会产生此错误码。                |
-| 4400002  | 当调用键鼠穿越接口时穿越状态异常，系统会产生此错误码。                |
+| 4400001  | Incorrect descriptor for the target device.                |
+| 4400002  | Screen hop failed.    |
 
 **示例**：
 
@@ -158,8 +158,8 @@ start(sinkDeviceDescriptor: string, srcInputDeviceId: number): Promise\<void>
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 4400001  | 当调用键鼠穿越接口传入无效的设备描述符参数时，系统会产生此错误码。                 |
-| 4400002  | 当调用键鼠穿越接口时穿越状态异常，系统会产生此错误码。               |
+| 4400001  | Incorrect descriptor for the target device.          |
+| 4400002  | Screen hop failed.               |
 
 **示例**：
 

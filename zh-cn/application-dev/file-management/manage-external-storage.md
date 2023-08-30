@@ -55,8 +55,9 @@
    ```ts
    import CommonEvent from '@ohos.commonEventManager';
    import volumeManager from '@ohos.file.volumeManager';
-   
-   const subscribeInfo = {
+   import { BusinessError } from '@ohos.base';
+
+   const subscribeInfo: CommonEvent.CommonEventSubscribeInfo = {
        events: [
            "usual.event.data.VOLUME_REMOVED",
            "usual.event.data.VOLUME_UNMOUNTED",
@@ -71,13 +72,13 @@
 3. 收到广播通知后获取卷设备信息。
 
    ```ts
-   CommonEvent.subscribe(subscriber, function (err, data) {
+   CommonEvent.subscribe(subscriber, (err: BusinessError, data: CommonEvent.CommonEventData) => {
      if (data.event === 'usual.event.data.VOLUME_MOUNTED') {
        // 开发者可以通过广播传递的卷设备信息来管理卷设备
-       let volId = data.parameters.id;
-       volumeManager.getVolumeById(volId, function(error, vol) {
+       let volId: string = data.parameters.id;
+       volumeManager.getVolumeById(volId, (error: BusinessError, vol: volumeManager.Volume) => {
          if (error) {
-           console.error('volumeManager getVolumeById failed');
+           console.error('volumeManager getVolumeById failed for ' + JSON.stringify(error));
          } else {
            console.info('volumeManager getVolumeById successfully, the volume state is ' + vol.state);
          }

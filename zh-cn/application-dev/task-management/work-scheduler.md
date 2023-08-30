@@ -121,6 +121,7 @@ WorkInfo参数用于设置应用条件，参数设置时需遵循以下规则：
    
    ```ts
    import WorkSchedulerExtensionAbility from '@ohos.WorkSchedulerExtensionAbility';
+   import workScheduler fron '@ohos.resourceschedule.workScheduler';
    ```
 
 3. 实现WorkSchedulerExtension生命周期接口。
@@ -128,12 +129,12 @@ WorkInfo参数用于设置应用条件，参数设置时需遵循以下规则：
    ```ts
    export default class MyWorkSchedulerExtensionAbility extends WorkSchedulerExtensionAbility {
      // 延迟任务开始回调
-     onWorkStart(workInfo) {
+     onWorkStart(workInfo: workScheduler.WorkInfo) {
        console.info(`onWorkStart, workInfo = ${JSON.stringify(workInfo)}`);
      }
    
      // 延迟任务结束回调
-     onWorkStop(workInfo) {
+     onWorkStop(workInfo: workScheduler.WorkInfo) {
        console.info(`onWorkStop, workInfo is ${JSON.stringify(workInfo)}`);
      }
    }
@@ -151,7 +152,7 @@ WorkInfo参数用于设置应用条件，参数设置时需遵循以下规则：
          "extensionAbilities": [
            {
              "name": "MyWorkSchedulerExtensionAbility",
-             "srcEntry": "./ets/WorkSchedulerExtension/WorkSchedulerExtension.ts",
+             "srcEntry": "./ets/WorkSchedulerExtension/WorkSchedulerExtension.ets",
              "label": "$string:WorkSchedulerExtensionAbility_label",
              "description": "$string:WorkSchedulerExtensionAbility_desc",
              "type": "workScheduler"
@@ -173,7 +174,7 @@ WorkInfo参数用于设置应用条件，参数设置时需遵循以下规则：
 2. 申请延迟任务。
    
    ```ts
-   private workInfo = {
+   private workInfo: workScheduler.WorkInfo = {
      workId: 1,
      networkType: workScheduler.NetworkType.NETWORK_TYPE_WIFI,
      bundleName: 'com.example.application',
@@ -183,7 +184,7 @@ WorkInfo参数用于设置应用条件，参数设置时需遵循以下规则：
    try {
      workScheduler.startWork(this.workInfo);
      console.info(`startWork success`);
-   } catch (error) {
+   } catch (error: BusinessError) {
      console.error(`startWork failed. code is ${error.code} message is ${error.message}`);
    }
    ```
@@ -191,7 +192,7 @@ WorkInfo参数用于设置应用条件，参数设置时需遵循以下规则：
 3. 取消延迟任务。
    
    ```ts
-   private workInfo = {
+   private workInfo: workScheduler.workInfo = {
      workId: 1,
      networkType: workScheduler.NetworkType.NETWORK_TYPE_WIFI,
      bundleName: 'com.example.application', 
@@ -201,7 +202,7 @@ WorkInfo参数用于设置应用条件，参数设置时需遵循以下规则：
    try {
      workScheduler.stopWork(this.workInfo);
      console.info(`stopWork success`);
-   } catch (error) {
+   } catch (error: BusinessError) {
      console.error(`stopWork failed. code is ${error.code} message is ${error.message}`);
    }
    ```

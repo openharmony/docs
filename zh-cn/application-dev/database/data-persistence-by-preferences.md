@@ -58,11 +58,13 @@
      
    ```js
    import UIAbility from '@ohos.app.ability.UIAbility';
+   import { BusinessError } from '@ohos.base';
+   import window from '@ohos.window';
    
    class EntryAbility extends UIAbility {
-     onWindowStageCreate(windowStage) {
+     onWindowStageCreate(windowStage: window.WindowStage) {
        try {
-         dataPreferences.getPreferences(this.context, 'mystore', (err, preferences) => {
+         dataPreferences.getPreferences(this.context, 'myStore', (err: BusinessError, preferences: dataPreferences.Preferences) => {
            if (err) {
              console.error(`Failed to get preferences. Code:${err.code},message:${err.message}`);
              return;
@@ -82,12 +84,13 @@
      
    ```js
    import featureAbility from '@ohos.ability.featureAbility';
+   import { BusinessError } from '@ohos.base';
    
    // 获取context
    let context = featureAbility.getContext();
    
    try {
-     dataPreferences.getPreferences(context, 'mystore', (err, preferences) => {
+     dataPreferences.getPreferences(this.context, 'myStore', (err: BusinessError, preferences: dataPreferences.Preferences) => {
        if (err) {
          console.error(`Failed to get preferences. Code:${err.code},message:${err.message}`);
          return;
@@ -157,7 +160,7 @@
      
    ```js
    try {
-     preferences.flush((err) => {
+     preferences.flush((err: BusinessError) => {
        if (err) {
          console.error(`Failed to flush. Code:${err.code}, message:${err.message}`);
          return;
@@ -174,18 +177,20 @@
      应用订阅数据变更需要指定observer作为回调方法。订阅的Key值发生变更后，当执行flush()方法时，observer被触发回调。示例代码如下所示：
      
    ```js
-   let observer = function (key) {
-     console.info('The key' + key + 'changed.');
+   interface observer {
+      key: string
    }
-   preferences.on('change', observer);
+   preferences.on('change', (key: observer) => {
+     console.info('The key' + key + 'changed.');
+   });
    // 数据产生变更，由'auto'变为'manual'
-   preferences.put('startup', 'manual', (err) => {
+   preferences.put('startup', 'manual', (err: BusinessError) => {
      if (err) {
        console.error(`Failed to put the value of 'startup'. Code:${err.code},message:${err.message}`);
        return;
      }
      console.info("Succeeded in putting the value of 'startup'.");
-     preferences.flush((err) => {
+     preferences.flush((err: BusinessError) => {
        if (err) {
          console.error(`Failed to flush. Code:${err.code}, message:${err.message}`);
          return;
@@ -210,7 +215,7 @@
      
    ```js
    try {
-     dataPreferences.deletePreferences(this.context, 'mystore', (err, val) => {
+     dataPreferences.deletePreferences(this.context, 'myStore', (err: BusinessError) => {
        if (err) {
          console.error(`Failed to delete preferences. Code:${err.code}, message:${err.message}`);
          return;

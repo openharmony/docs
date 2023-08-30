@@ -33,10 +33,11 @@ Constraints on the event domain, event name, and parameter
   
   | Field| Description|
   | -------- | -------- |
-  | type | Event type. This field is mandatory.<br>Value:<br>- FAULT: fault<br>- STATISTIC: statistics<br>- SECURITY: security<br>- BEHAVIOR: user behavior|
+  | type | Event type. This field is mandatory.<br>Value:<br>- **FAULT**: fault<br>- STATISTIC: statistics<br>- **SECURITY**: security<br>- **BEHAVIOR**: behavior|
   | level | Event level. This field is mandatory.<br>Value:<br>- CRITICAL: critical<br>- MINOR: minor|
   | tag | Event tag. This field is mandatory.<br>Rule:<br>- You can define a maximum of five tags, separated with a space.<br>- A single tag can contain a maximum of 16 characters, including a to z, A to Z, and 0 to 9.|
-  | desc | Event name. This field is mandatory.<br>Rule:<br>The description contains 3 to 128 characters, including a to z, A to Z, 0 to 9, and underscores (_).|
+  | desc | Event name. This field is mandatory.<br>Rule:<br>-  A string of 3 to 128 characters.|
+  | preserve | Whether events need to be logged in the event file. This field is optional. The default value is **true**.<br>Value:<br>- **true**: Events need to be logged in the event file.<br>- **false**: Events do not need to be logged in the event file.|
 
     **Table 2** Description of custom parameters
   
@@ -44,7 +45,7 @@ Constraints on the event domain, event name, and parameter
   | -------- | -------- |
   | type | Parameter type. This field is mandatory.<br>Value:<br>- BOOL<br>- INT8<br>- UINT8<br>- INT16<br>- UINT16<br>- INT32<br>- UINT32<br>- INT64<br>- UINT64<br>- FLOAT<br>- DOUBLE<br>- STRING |
   | arrsize | Length of the parameter of the array type. This field is optional.<br>Value:<br>1-100|
-  | desc | Parameter description. This field is mandatory.<br>Rule:<br>The description contains 3 to 128 characters, including a to z, A to Z, 0 to 9, and underscores (_).|
+  | desc | Parameter description. This field is mandatory.<br>Rule:<br>-  A string of 3 to 128 characters.|
 
 
 ## How to Develop

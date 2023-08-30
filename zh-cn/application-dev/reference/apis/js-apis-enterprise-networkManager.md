@@ -12,7 +12,7 @@
 
 ## 导入模块
 
-```js
+```ts
 import networkManager from '@ohos.enterprise.networkManager';
 ```
 
@@ -46,8 +46,9 @@ getAllNetworkInterfaces(admin: Want, callback: AsyncCallback&lt;Array&lt;string&
 
 **示例：**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
@@ -96,15 +97,17 @@ getAllNetworkInterfaces(admin: Want): Promise&lt;Array&lt;string&gt;&gt;
 
 **示例：**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
 
 networkManager.getAllNetworkInterfaces(wantTemp).then((result) => {
   console.info(`Succeeded in getting all network interfaces, result : ${JSON.stringify(result)}`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to get all network interfaces. Code: ${err.code}, message: ${err.message}`);
 });
 ```
@@ -140,8 +143,9 @@ getIpAddress(admin: Want, networkInterface: string, callback: AsyncCallback&lt;s
 
 **示例：**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
@@ -191,15 +195,17 @@ getIpAddress(admin: Want, networkInterface: string): Promise&lt;string&gt;
 
 **示例：**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
 
 networkManager.getIpAddress(wantTemp, 'eth0').then((result) => {
   console.info(`Succeeded in getting ip address, result : ${result}`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to get ip address. Code: ${err.code}, message: ${err.message}`);
 });
 ```
@@ -235,8 +241,9 @@ getMac(admin: Want, networkInterface: string, callback: AsyncCallback&lt;string&
 
 **示例：**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
@@ -286,15 +293,17 @@ getMac(admin: Want, networkInterface: string): Promise\<string>;
 
 **示例：**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
 
 networkManager.getMac(wantTemp, 'eth0').then((result) => {
   console.info(`Succeeded in getting mac, result : ${result}`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to get mac. Code: ${err.code}, message: ${err.message}`);
 });
 ```
@@ -330,8 +339,9 @@ isNetworkInterfaceDisabled(admin: Want, networkInterface: string, callback: Asyn
 
 **示例：**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
@@ -381,15 +391,17 @@ isNetworkInterfaceDisabled(admin: Want, networkInterface: string): Promise&lt;bo
 
 **示例：**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
 
 networkManager.isNetworkInterfaceDisabled(wantTemp, 'eth0').then((result) => {
   console.info(`Succeeded in querying network interface is disabled or not, result : ${result}`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to query network interface is disabled or not. Code: ${err.code}, message: ${err.message}`);
 });
 ```
@@ -426,8 +438,9 @@ setNetworkInterfaceDisabled(admin: Want, networkInterface: string, isDisabled: b
 
 **示例：**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
@@ -478,15 +491,17 @@ setNetworkInterfaceDisabled(admin: Want, networkInterface: string, isDisabled: b
 
 **示例：**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
 
 networkManager.setNetworkInterfaceDisabled(wantTemp, 'eth0', true).then(() => {
   console.info(`Succeeded in setting network interface disabled`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to set network interface disabled. Code: ${err.code}, message: ${err.message}`);
 });
 ```
@@ -522,14 +537,16 @@ setGlobalProxy(admin: Want, httpProxy: connection.HttpProxy, callback: AsyncCall
 
 **示例：**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+import connection from '@ohos.net.connection';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let exclusionStr = "192.168,baidu.com"
-let exclusionArray = exclusionStr.split(',');
-let httpProxy = {
+let exclusionStr: string = "192.168,baidu.com"
+let exclusionArray: Array<string> = exclusionStr.split(',');
+let httpProxy: connection.HttpProxy = {
   host: "192.168.xx.xxx",
   port: 8080,
   exclusionList: exclusionArray
@@ -581,14 +598,17 @@ setGlobalProxy(admin: Want, httpProxy: connection.HttpProxy): Promise\<void>
 
 **示例：**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+import connection from '@ohos.net.connection';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let exclusionStr = "192.168,baidu.com"
-let exclusionArray = exclusionStr.split(',');
-let httpProxy = {
+let exclusionStr: string = "192.168,baidu.com"
+let exclusionArray: Array<string> = exclusionStr.split(',');
+let httpProxy: connection.HttpProxy = {
   host: "192.168.xx.xxx",
   port: 8080,
   exclusionList: exclusionArray
@@ -596,7 +616,7 @@ let httpProxy = {
 
 networkManager.setGlobalProxy(wantTemp, httpProxy).then(() => {
   console.info(`Succeeded in setting network global proxy`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to set network global proxy. Code: ${err.code}, message: ${err.message}`);
 });
 ```
@@ -631,8 +651,9 @@ getGlobalProxy(admin: Want, callback: AsyncCallback\<connection.HttpProxy>): voi
 
 **示例：**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
@@ -681,15 +702,17 @@ getGlobalProxy(admin: Want): Promise\<connection.HttpProxy>
 
 **示例：**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
 
 networkManager.getGlobalProxy(wantTemp).then(() => {
   console.info(`Succeeded in getting network global proxy`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to get network global proxy. Code: ${err.code}, message: ${err.message}`);
 });
 ```
@@ -725,12 +748,13 @@ addIptablesFilterRule(admin: Want, filterRule: AddFilterRule, callback: AsyncCal
 
 **示例：**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let filterRule = {
+let filterRule: networkManager.AddFilterRule = {
   "ruleNo": 1,
   "srcAddr": "192.168.1.1-192.188.22.66",
   "destAddr": "10.1.1.1",
@@ -788,12 +812,14 @@ addIptablesFilterRule(admin: Want, filterRule: AddFilterRule): Promise\<void>
 
 **示例：**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let filterRule = {
+let filterRule: networkManager.AddFilterRule = {
   "ruleNo": 1,
   "srcAddr": "192.168.1.1-192.188.22.66",
   "destAddr": "10.1.1.1",
@@ -808,7 +834,7 @@ let filterRule = {
 
 networkManager.addIptablesFilterRule(wantTemp, filterRule).then(() => {
   console.info(`Succeeded in setting iptables filter rule`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to set iptables filter rule. Code: ${err.code}, message: ${err.message}`);
 });
 ```
@@ -844,12 +870,13 @@ removeIptablesFilterRule(admin: Want, filterRule: RemoveFilterRule, callback: As
 
 **示例：**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let filterRule = {
+let filterRule: networkManager.RemoveFilterRule = {
   "srcAddr": "192.168.1.1-192.188.22.66",
   "destAddr": "10.1.1.1",
   "srcPort": "8080",
@@ -905,12 +932,14 @@ removeIptablesFilterRule(admin: Want, filterRule: RemoveFilterRule): Promise\<vo
 
 **示例：**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let filterRule = {
+let filterRule: networkManager.RemoveFilterRule = {
   "srcAddr": "192.168.1.1-192.188.22.66",
   "destAddr": "10.1.1.1",
   "srcPort": "8080",
@@ -923,7 +952,7 @@ let filterRule = {
 
 networkManager.removeIptablesFilterRule(wantTemp, filterRule).then(() => {
   console.info(`Succeeded in removing iptables filter rule`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to remove iptables filter rule. Code: ${err.code}, message: ${err.message}`);
 });
 ```
@@ -958,8 +987,9 @@ listIptablesFilterRules(admin: Want, callback: AsyncCallback\<string>): void
 
 **示例：**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
@@ -1008,15 +1038,17 @@ listIptablesFilterRules(admin: Want): Promise\<string>
 
 **示例：**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
 
 networkManager.listIptablesFilterRules(wantTemp).then((result) => {
   console.info(`Succeeded in getting iptables filter rule, result: ${result}`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to remove iptables filter rule. Code: ${err.code}, message: ${err.message}`);
 });
 ```
