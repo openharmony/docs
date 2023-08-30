@@ -20,11 +20,15 @@
 
 ## 接口
 
-**方法1：** NavRouter()
+### NavRouter
 
-**方法2：** NavRouter(value: RouteInfo)<sup>10+</sup>
+NavRouter()
 
-  提供路由信息，指定点击NavRouter时，要跳转的NavDestination页面。
+### NavRouter<sup>10+</sup>
+
+NavRouter(value: RouteInfo)
+
+提供路由信息，指定点击NavRouter时，要跳转的NavDestination页面。
 
 
 **参数：**
