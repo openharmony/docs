@@ -107,7 +107,7 @@ Web(options: { src: ResourceStr, controller: WebviewController | WebController})
   ```
 
   2. Modify the **EntryAbility.ts** file.
-  The following uses **filesDir** as an example to describe how to obtain the path of the sandbox. For details about how to obtain other paths, see [Obtaining Application File Paths](../../application-models/application-context-stage.md#obtaining-application-file-paths).
+    The following uses **filesDir** as an example to describe how to obtain the path of the sandbox. For details about how to obtain other paths, see [Obtaining Application File Paths](../../application-models/application-context-stage.md#obtaining-application-file-paths).
   ```ts
   // xxx.ts
   import UIAbility from '@ohos.app.ability.UIAbility';
@@ -809,11 +809,15 @@ Sets the scale factor of the entire page. The default value is 100%.
   }
   ```
 
-### userAgent
+### userAgent<sup>(deprecated)</sup>
 
 userAgent(userAgent: string)
 
 Sets the user agent.
+
+> **NOTE**
+>
+> This API is supported since API version 8 and deprecated since API version 10. You are advised to use [setCustomUserAgent](../apis/js-apis-webview.md#setcustomuseragent10)<sup>10+</sup> instead.
 
 **Parameters**
 
@@ -2194,7 +2198,8 @@ Called to process an HTML form whose input type is **file**, in response to the 
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import web_webview from '@ohos.web.webview';
+  import picker from '@ohos.file.picker';
 
   @Entry
   @Component
@@ -2203,30 +2208,37 @@ Called to process an HTML form whose input type is **file**, in response to the 
 
     build() {
       Column() {
-        Web({ src: 'www.example.com', controller: this.controller })
+        Web({ src: $rawfile('index.html'), controller: this.controller })
           .onShowFileSelector((event) => {
-            AlertDialog.show({
-              title: event.fileSelector.getTitle(),
-              message: 'isCapture:' + event.fileSelector.isCapture() + " mode:" + event.fileSelector.getMode() + 'acceptType:' + event.fileSelector.getAcceptType(),
-              confirm: {
-                value: 'upload',
-                action: () => {
-                  let fileList: Array<string> = [
-                    '/data/storage/el2/base/test',
-                  ]
-                  event.result.handleFileList(fileList)
-                }
-              },
-              cancel: () => {
-                let fileList: Array<string> = []
-                event.result.handleFileList(fileList)
-              }
+            console.log('MyFileUploader onShowFileSelector invoked')
+            const documentSelectOptions = new picker.DocumentSelectOptions();
+            let uri = null;
+            const documentViewPicker = new picker.DocumentViewPicker();
+            documentViewPicker.select(documentSelectOptions).then((documentSelectResult) => {
+              uri = documentSelectResult[0];
+              console.info('documentViewPicker.select to file succeed and uri is:' + uri);
+              event.result.handleFileList([uri]);
+            }).catch((err) => {
+              console.error(`Invoke documentViewPicker.select failed, code is ${err.code}, message is ${err.message}`);
             })
             return true
           })
       }
     }
   }
+  ```
+
+  HTML file to be loaded:
+  ```html
+  <!DOCTYPE html>
+  <html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8">
+  </head>
+  <body>
+    <form id="upload-form" enctype="multipart/form-data">
+      <input type="file" id="upload" name="upload"/>
+  </body>
   ```
 
 ### onResourceLoad<sup>9+</sup>
@@ -3512,8 +3524,9 @@ Called to indicate the offset by which the  web page overscrolls.
 
 onControllerAttached(callback: () => void)
 
-Called when the controller is successfully bound to the **\<Web>** component. The controller must be WebviewController. 
-As the web page is not yet loaded when this callback is called, APIs for operating the web page cannot be used in the callback, for example, [zoomIn](../apis/js-apis-webview.md#zoomin) and [zoomOut]. (../apis/js-apis-webview.md#zoomout). Other APIs, such as [loadUrl] (../apis/js-apis-webview.md#loadurl) and [getWebId] (../apis/js-apis-webview.md#getwebid), which do not involve web page operations, can be used properly.
+Called when the controller is successfully bound to the **\<Web>** component. The controller must be WebviewController.
+
+As the web page is not yet loaded when this callback is called, APIs for operating the web page cannot be used in the callback, for example, [zoomIn](../apis/js-apis-webview.md#zoomin) and [zoomOut](../apis/js-apis-webview.md#zoomout). Other APIs, such as [loadUrl](../apis/js-apis-webview.md#loadurl) and [getWebId](../apis/js-apis-webview.md#getwebid), which do not involve web page operations, can be used properly.
 
 **Example**
 
