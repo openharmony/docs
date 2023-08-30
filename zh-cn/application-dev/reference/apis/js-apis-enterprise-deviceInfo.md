@@ -12,7 +12,7 @@
 
 ## 导入模块
 
-```js
+```ts
 import deviceInfo from '@ohos.enterprise.deviceInfo';
 ```
 
@@ -46,8 +46,9 @@ getDeviceSerial(admin: Want, callback: AsyncCallback&lt;string&gt;): void
 
 **示例：**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
@@ -96,15 +97,17 @@ getDeviceSerial(admin: Want): Promise&lt;string&gt;
 
 **示例：**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
 
 deviceInfo.getDeviceSerial(wantTemp).then((result) => {
   console.info(`Succeeded in getting device serial, result : ${result}`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to get device serial. Code: ${err.code}, message: ${err.message}`);
 });
 ```
@@ -139,8 +142,9 @@ getDisplayVersion(admin: Want, callback: AsyncCallback&lt;string&gt;): void;
 
 **示例：**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
@@ -189,15 +193,17 @@ getDisplayVersion(admin: Want): Promise&lt;string&gt;
 
 **示例：**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
 
 deviceInfo.getDisplayVersion(wantTemp).then((result) => {
   console.info(`Succeeded in getting display version, result : ${result}`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to get display version. Code: ${err.code}, message: ${err.message}`);
 });
 ```
@@ -232,8 +238,9 @@ getDeviceName(admin: Want, callback: AsyncCallback&lt;string&gt;): void
 
 **示例：**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
@@ -282,15 +289,17 @@ getDeviceName(admin: Want): Promise&lt;string&gt;
 
 **示例：**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
 
 deviceInfo.getDeviceName(wantTemp).then((result) => {
   console.info(`Succeeded in getting device name, result : ${result}`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to get device name. Code: ${err.code}, message: ${err.message}`);
 });
 ```

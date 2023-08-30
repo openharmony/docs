@@ -14,7 +14,9 @@
 
 ## 接口
 
-**方法1：** Button(options?: {type?: ButtonType, stateEffect?: boolean})
+### Button
+
+Button(options?: {type?: ButtonType, stateEffect?: boolean})
 
 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -25,9 +27,11 @@
 | type        | ButtonType | 否    | 描述按钮显示样式。<br/>默认值：ButtonType.Capsule                           |
 | stateEffect | boolean    | 否    | 按钮按下时是否开启按压态显示效果，当设置为false时，按压效果关闭。<br/>默认值：true<br/>**说明：** <br/>当开启按压态显示效果，开发者设置状态样式时，会基于状态样式设置完成后的背景色再进行颜色叠加。 |
 
-**方法2：** Button(label?: ResourceStr, options?: { type?: ButtonType, stateEffect?: boolean })
+### Button
 
-  使用文本内容创建相应的按钮组件，此时Button无法包含子组件。
+Button(label?: ResourceStr, options?: { type?: ButtonType, stateEffect?: boolean })
+
+使用文本内容创建相应的按钮组件，此时Button无法包含子组件。
 
 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -36,7 +40,7 @@
 | 参数名     | 参数类型                                | 必填   | 参数描述          |
 | ------- | ----------------------------------- | ---- | ------------- |
 | label   | [ResourceStr](ts-types.md#resourcestr) | 否    | 按钮文本内容。 |
-| options | { type?: ButtonType, stateEffect?: boolean }   | 否    | 见方法1参数说明。 |
+| options | { type?: ButtonType, stateEffect?: boolean }   | 否    | 见[Button](#button-1)参数说明。 |
 
 ## 属性
 

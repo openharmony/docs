@@ -28,7 +28,7 @@ import missionManager from '@ohos.app.ability.missionManager';
 
 **示例：**
 ```ts
-  import ElementName from '@ohos.bundle';
+  import ElementName from '@ohos.bundle.bundleManager';
   import image from '@ohos.multimedia.image';
   import missionManager from '@ohos.app.ability.missionManager';
 

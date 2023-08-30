@@ -13,10 +13,10 @@
    ```
 
 2. 通过getCameraManager()方法，获取cameraManager对象。
-     
+   [各类Context的获取方式](../application-models/application-context-stage.md)。
    ```ts
    let cameraManager: camera.CameraManager;
-   let context: Context = getContext(this);  // [各类Context的获取方式](../application-models/application-context-stage.md)
+   let context: Context = getContext(this);
    cameraManager = camera.getCameraManager(context);
    ```
 
@@ -29,15 +29,15 @@
    ```ts
    let cameraArray: Array<camera.CameraDevice> = cameraManager.getSupportedCameras();
    if (cameraArray != undefined && cameraArray.length <= 0) {
-    console.error("cameraManager.getSupportedCameras error");
-    return;
+     console.error("cameraManager.getSupportedCameras error");
+     return;
    } 
    
    for (let index = 0; index < cameraArray.length; index++) {
-    console.info('cameraId : ' + cameraArray[index].cameraId);                          // 获取相机ID
-    console.info('cameraPosition : ' + cameraArray[index].cameraPosition);              // 获取相机位置
-    console.info('cameraType : ' + cameraArray[index].cameraType);                      // 获取相机类型
-    console.info('connectionType : ' + cameraArray[index].connectionType);              // 获取相机连接类型
+     console.info('cameraId : ' + cameraArray[index].cameraId);                          // 获取相机ID
+     console.info('cameraPosition : ' + cameraArray[index].cameraPosition);              // 获取相机位置
+     console.info('cameraType : ' + cameraArray[index].cameraType);                      // 获取相机类型
+     console.info('connectionType : ' + cameraArray[index].connectionType);              // 获取相机连接类型
    }
    ```
 
@@ -47,22 +47,23 @@
    // 创建相机输入流 
    let cameraInput: camera.CameraInput;
    try {    
-    cameraInput = cameraManager.createCameraInput(cameraArray[0]);
+     cameraInput = cameraManager.createCameraInput(cameraArray[0]);
    } catch (error) {
-    console.error('Failed to createCameraInput errorCode = ' + error.code);
+     let err = error as BusinessError;
+     console.error('Failed to createCameraInput errorCode = ' + err.code);
    } 
    // 监听cameraInput错误信息
    let cameraDevice: camera.CameraDevice = cameraArray[0];
    cameraInput.on('error', cameraDevice, (error: BusinessError) => {
-    console.info(`Camera input error code: ${error.code}`);
+     console.info(`Camera input error code: ${error.code}`);
    });
    // 打开相机
    await cameraInput.open(); 
    // 获取相机设备支持的输出流能力
    let cameraOutputCapability: camera.CameraOutputCapability = cameraManager.getSupportedOutputCapability(cameraArray[0]);
    if (!cameraOutputCapability) {
-    console.error("cameraManager.getSupportedOutputCapability error");
-    return;
+     console.error("cameraManager.getSupportedOutputCapability error");
+     return;
    }
    console.info("outputCapability: " + JSON.stringify(cameraOutputCapability));
    ```

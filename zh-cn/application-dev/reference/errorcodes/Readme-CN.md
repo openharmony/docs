@@ -14,12 +14,12 @@
   - [事件错误码](errorcode-CommonEventService.md)
   - [通知错误码](errorcode-notification.md)
   - [DistributedNotificationService错误码](errorcode-DistributedNotificationService.md)
-  - [拖拽事件错误码](errorcode-drag-event.md)
 - UI界面
   - [动画错误码](errorcode-animator.md)
   - [弹窗错误码](errorcode-promptAction.md)
   - [页面路由错误码](errorcode-router.md)
   - [用户界面外观服务错误码](errorcode-uiappearance.md)
+  - [拖拽事件错误码](errorcode-drag-event.md)
 - 图形图像
   - [色彩管理错误码](errorcode-colorspace-manager.md)
   - [屏幕错误码](errorcode-display.md)

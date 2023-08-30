@@ -78,7 +78,7 @@
        let volId: string = data.parameters.id;
        volumeManager.getVolumeById(volId, (error: BusinessError, vol: volumeManager.Volume) => {
          if (error) {
-           console.error('volumeManager getVolumeById failed');
+           console.error('volumeManager getVolumeById failed for ' + JSON.stringify(error));
          } else {
            console.info('volumeManager getVolumeById successfully, the volume state is ' + vol.state);
          }

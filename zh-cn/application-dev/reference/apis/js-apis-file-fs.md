@@ -314,6 +314,7 @@ close(file: number|File, callback: AsyncCallback&lt;void&gt;): void
       console.info("close file failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("close file success");
+      fs.closeSync(file);
     }
   });
   ```
@@ -460,7 +461,7 @@ copyDir(src: string, dest: string, mode?: number): Promise\<void>
   | ------ | ------ | ---- | --------------------------- |
   | src | string | 是    | 源文件夹的应用沙箱路径。 |
   | dest | string | 是    | 目标文件夹的应用沙箱路径。 |
-  | mode | number | 否    | 复制模式。默认mode为0。<br/>-&nbsp; mode为0，文件级别抛异常。目标文件夹下存在与源文件夹名冲突的文件夹，若冲突文件夹下存在同名文件，则抛出异常。源文件夹下未冲突的文件全部移动至目标文件夹下，目标文件夹下未冲突文件将继续保留，且冲突文件信息将在抛出异常的data属性中以Array\<[ConflictFiles](#conflictfiles)>形式提供。<br/>-&nbsp; mode为1，文件级别强制覆盖。目标文件夹下存在与源文件夹名冲突的文件夹，若冲突文件夹下存在同名文件，则强制覆盖冲突文件夹下所有同名文件，未冲突文件将继续保留。|
+  | mode | number | 否    | 复制模式。默认mode为0。<br/>-&nbsp; mode为0，文件级别抛异常。目标文件夹下存在与源文件夹名冲突的文件夹，若冲突文件夹下存在同名文件，则抛出异常。源文件夹下未冲突的文件全部移动至目标文件夹下，目标文件夹下未冲突文件将继续保留，且冲突文件信息将在抛出异常的data属性中以Array\<[ConflictFiles](#conflictfiles10)>形式提供。<br/>-&nbsp; mode为1，文件级别强制覆盖。目标文件夹下存在与源文件夹名冲突的文件夹，若冲突文件夹下存在同名文件，则强制覆盖冲突文件夹下所有同名文件，未冲突文件将继续保留。|
 
 **返回值：**
 
@@ -494,7 +495,7 @@ copyDir(src: string, dest: string, mode?: number): Promise\<void>
 
 ## fs.copyDir<sup>10+</sup>
 
-copyDir(src: string, dest: string, mode?: number, callback: AsyncCallback\<void>): void
+copyDir(src: string, dest: string, mode?: number, callback: AsyncCallback\<void, Array\<ConflictFiles>>): void
 
 复制源文件夹至目标路径下，使用Callback异步回调。
 
@@ -506,8 +507,8 @@ copyDir(src: string, dest: string, mode?: number, callback: AsyncCallback\<void>
   | ------ | ------ | ---- | --------------------------- |
   | src | string | 是    | 源文件夹的应用沙箱路径。 |
   | dest | string | 是    | 目标文件夹的应用沙箱路径。 |
-  | mode | number | 否    | 复制模式。默认mode为0。<br/>-&nbsp; mode为0，文件级别抛异常。目标文件夹下存在与源文件夹名冲突的文件夹，若冲突文件夹下存在同名文件，则抛出异常。源文件夹下未冲突的文件全部移动至目标文件夹下，目标文件夹下未冲突文件将继续保留，且冲突文件信息将在抛出异常的data属性中以Array\<[ConflictFiles](#conflictfiles)>形式提供。<br/>-&nbsp; mode为1，文件级别强制覆盖。目标文件夹下存在与源文件夹名冲突的文件夹，若冲突文件夹下存在同名文件，则强制覆盖冲突文件夹下所有同名文件，未冲突文件将继续保留。|
-  | callback | AsyncCallback&lt;void&gt; | 是    | 异步复制文件夹之后的回调。              |
+  | mode | number | 否    | 复制模式。默认mode为0。<br/>-&nbsp; mode为0，文件级别抛异常。目标文件夹下存在与源文件夹名冲突的文件夹，若冲突文件夹下存在同名文件，则抛出异常。源文件夹下未冲突的文件全部移动至目标文件夹下，目标文件夹下未冲突文件将继续保留，且冲突文件信息将在抛出异常的data属性中以Array\<[ConflictFiles](#conflictfiles10)>形式提供。<br/>-&nbsp; mode为1，文件级别强制覆盖。目标文件夹下存在与源文件夹名冲突的文件夹，若冲突文件夹下存在同名文件，则强制覆盖冲突文件夹下所有同名文件，未冲突文件将继续保留。|
+  | callback | AsyncCallback&lt;void, Array&lt;[ConflictFiles](#conflictfiles10)&gt;&gt; | 是    | 异步复制文件夹之后的回调。              |
 
 **错误码：**
 
@@ -1601,6 +1602,7 @@ fsync(fd: number): Promise&lt;void&gt;
   let file = fs.openSync(filePath);
   fs.fsync(file.fd).then(() => {
       console.info("sync data succeed");
+      fs.closeSync(file);
   }).catch((err) => {
       console.info("sync data failed with error message: " + err.message + ", error code: " + err.code);
   });
@@ -2050,7 +2052,7 @@ moveDir(src: string, dest: string, mode?: number): Promise\<void>
   | ------ | ------ | ---- | --------------------------- |
   | src | string | 是    | 源文件夹的应用沙箱路径。 |
   | dest | string | 是    | 目标文件夹的应用沙箱路径。 |
-  | mode | number | 否    | 移动模式。默认mode为0。<br/>-&nbsp;mode为0，文件夹级别抛异常。若目标文件夹下存在与源文件夹名冲突的文件夹，则抛出异常。<br/>-&nbsp;mode为1，文件级别抛异常。目标文件夹下存在与源文件夹名冲突的文件夹，若冲突文件夹下存在同名文件，则抛出异常。源文件夹下未冲突的文件全部移动至目标文件夹下，目标文件夹下未冲突文件将继续保留，且冲突文件信息将在抛出异常的data属性中以Array\<[ConflictFiles](#conflictfiles)>形式提供。<br/>-&nbsp; mode为2，文件级别强制覆盖。目标文件夹下存在与源文件夹名冲突的文件夹，若冲突文件夹下存在同名文件，则强制覆盖冲突文件夹下所有同名文件，未冲突文件将继续保留。<br/>-&nbsp; mode为3，文件夹级别强制覆盖。移动源文件夹至目标文件夹下，目标文件夹下移动的文件夹内容与源文件夹完全一致。若目标文件夹下存在与源文件夹名冲突的文件夹，该文件夹下所有原始文件将不会保留。|
+  | mode | number | 否    | 移动模式。默认mode为0。<br/>-&nbsp;mode为0，文件夹级别抛异常。若目标文件夹下存在与源文件夹名冲突的非空文件夹，则抛出异常。<br/>-&nbsp;mode为1，文件级别抛异常。目标文件夹下存在与源文件夹名冲突的文件夹，若冲突文件夹下存在同名文件，则抛出异常。源文件夹下未冲突的文件全部移动至目标文件夹下，目标文件夹下未冲突文件将继续保留，且冲突文件信息将在抛出异常的data属性中以Array\<[ConflictFiles](#conflictfiles10)>形式提供。<br/>-&nbsp; mode为2，文件级别强制覆盖。目标文件夹下存在与源文件夹名冲突的文件夹，若冲突文件夹下存在同名文件，则强制覆盖冲突文件夹下所有同名文件，未冲突文件将继续保留。<br/>-&nbsp; mode为3，文件夹级别强制覆盖。移动源文件夹至目标文件夹下，目标文件夹下移动的文件夹内容与源文件夹完全一致。若目标文件夹下存在与源文件夹名冲突的文件夹，该文件夹下所有原始文件将不会保留。|
 
 **返回值：**
 
@@ -2084,7 +2086,7 @@ moveDir(src: string, dest: string, mode?: number): Promise\<void>
 
 ## fs.moveDir<sup>10+</sup>
 
-moveDir(src: string, dest: string, mode?: number, callback: AsyncCallback\<void>): void
+moveDir(src: string, dest: string, mode?: number, callback: AsyncCallback\<void, Array\<ConflictFiles>>): void
 
 移动源文件夹至目标路径下，使用Callback异步回调。
 
@@ -2096,8 +2098,8 @@ moveDir(src: string, dest: string, mode?: number, callback: AsyncCallback\<void>
   | ------ | ------ | ---- | --------------------------- |
   | src | string | 是    | 源文件夹的应用沙箱路径。 |
   | dest | string | 是    | 目标文件夹的应用沙箱路径。 |
-  | mode | number | 否    | 移动模式。默认mode为0。<br/>-&nbsp;mode为0，文件夹级别抛异常。若目标文件夹下存在与源文件夹名冲突的文件夹，则抛出异常。<br/>-&nbsp;mode为1，文件级别抛异常。目标文件夹下存在与源文件夹名冲突的文件夹，若冲突文件夹下存在同名文件，则抛出异常。源文件夹下未冲突的文件全部移动至目标文件夹下，目标文件夹下未冲突文件将继续保留，且冲突文件信息将在抛出异常的data属性中以Array\<[ConflictFiles](#conflictfiles)>形式提供。<br/>-&nbsp; mode为2，文件级别强制覆盖。目标文件夹下存在与源文件夹名冲突的文件夹，若冲突文件夹下存在同名文件，则强制覆盖冲突文件夹下所有同名文件，未冲突文件将继续保留。<br/>-&nbsp; mode为3，文件夹级别强制覆盖。移动源文件夹至目标文件夹下，目标文件夹下移动的文件夹内容与源文件夹完全一致。若目标文件夹下存在与源文件夹名冲突的文件夹，该文件夹下所有原始文件将不会保留。|
-  | callback | AsyncCallback&lt;void&gt; | 是    | 异步移动文件夹之后的回调。              |
+  | mode | number | 否    | 移动模式。默认mode为0。<br/>-&nbsp;mode为0，文件夹级别抛异常。若目标文件夹下存在与源文件夹名冲突的文件夹，则抛出异常。<br/>-&nbsp;mode为1，文件级别抛异常。目标文件夹下存在与源文件夹名冲突的文件夹，若冲突文件夹下存在同名文件，则抛出异常。源文件夹下未冲突的文件全部移动至目标文件夹下，目标文件夹下未冲突文件将继续保留，且冲突文件信息将在抛出异常的data属性中以Array\<[ConflictFiles](#conflictfiles10)>形式提供。<br/>-&nbsp; mode为2，文件级别强制覆盖。目标文件夹下存在与源文件夹名冲突的文件夹，若冲突文件夹下存在同名文件，则强制覆盖冲突文件夹下所有同名文件，未冲突文件将继续保留。<br/>-&nbsp; mode为3，文件夹级别强制覆盖。移动源文件夹至目标文件夹下，目标文件夹下移动的文件夹内容与源文件夹完全一致。若目标文件夹下存在与源文件夹名冲突的文件夹，该文件夹下所有原始文件将不会保留。|
+  | callback | AsyncCallback&lt;void, Array&lt;[ConflictFiles](#conflictfiles10)&gt;&gt; | 是    | 异步移动文件夹之后的回调。              |
 
 **错误码：**
 
@@ -2323,7 +2325,7 @@ mkdtempSync(prefix: string): string
 
 ## fs.createRandomAccessFile<sup>10+</sup>
 
-createRandomAccessFile(file: string|File, mode?: string): Promise&lt;RandomAccessFile&gt;
+createRandomAccessFile(file: string|File, mode?: number): Promise&lt;RandomAccessFile&gt;
 
 基于文件路径或文件对象创建RandomAccessFile文件对象，使用Promise异步回调。
 
@@ -2352,6 +2354,8 @@ createRandomAccessFile(file: string|File, mode?: string): Promise&lt;RandomAcces
   let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
   fs.createRandomAccessFile(file).then((randomAccessFile) => {
       console.info("randomAccessFile fd: " + randomAccessFile.fd);
+      randomAccessFile.close();
+      fs.closeSync(file);
   }).catch((err) => {
       console.info("create randomAccessFile failed with error message: " + err.message + ", error code: " + err.code);
   });
@@ -2360,7 +2364,7 @@ createRandomAccessFile(file: string|File, mode?: string): Promise&lt;RandomAcces
 
 ## fs.createRandomAccessFile<sup>10+</sup>
 
-createRandomAccessFile(file: string|File, mode?: string, callback: AsyncCallback&lt;RandomAccessFile&gt;): void
+createRandomAccessFile(file: string|File, mode?: number, callback: AsyncCallback&lt;RandomAccessFile&gt;): void
 
 基于文件路径或文件对象创建RandomAccessFile文件对象，使用callback异步回调。
 
@@ -2387,6 +2391,8 @@ createRandomAccessFile(file: string|File, mode?: string, callback: AsyncCallback
           console.info("create randomAccessFile failed with error message: " + err.message + ", error code: " + err.code);
       } else {
           console.info("randomAccessFilefile fd: " + randomAccessFile.fd);
+          randomAccessFile.close();
+          fs.closeSync(file);
       }
   });
   ```
@@ -2394,7 +2400,7 @@ createRandomAccessFile(file: string|File, mode?: string, callback: AsyncCallback
 
 ## fs.createRandomAccessFileSync<sup>10+</sup>
 
-createRandomAccessFileSync(file: string|File, , mode?: string): RandomAccessFile
+createRandomAccessFileSync(file: string|File, mode?: number): RandomAccessFile
 
 基于文件路径或文件对象创建RandomAccessFile文件对象。
 
@@ -2421,8 +2427,10 @@ createRandomAccessFileSync(file: string|File, , mode?: string): RandomAccessFile
 
   ```js
   let filePath = pathDir + "/test.txt";
-  let file = fs.openSync(filePath, fileIO.OpenMode.CREATE | fileIO.OpenMode.READ_WRITE);
-  let randomaccessfile = fileIO.createRandomAccessFileSync(file);
+  let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
+  let randomaccessfile = fs.createRandomAccessFileSync(file);
+  randomaccessfile.close();
+  fs.closeSync(file);
   ```
 
 ## fs.createStream
@@ -3447,6 +3455,7 @@ setFilePointer(): void
   let filePath = pathDir + "/test.txt";
   let randomAccessFile = fs.createRandomAccessFileSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
   randomAccessFile.setFilePointer(1);
+  randomAccessFile.close();
   ```
 
 
@@ -3467,7 +3476,7 @@ close(): void
   ```js
   let filePath = pathDir + "/test.txt";
   let randomAccessFile = fs.createRandomAccessFileSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
-  randomAccessFile.closeSync();
+  randomAccessFile.close();
   ```
 
 ### write<sup>10+</sup>
@@ -3499,11 +3508,13 @@ write(buffer: ArrayBuffer|string, options?: { offset?: number; length?: number; 
 
   ```js
   let filePath = pathDir + "/test.txt";
-  let file = fs.openSync(fpath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
+  let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
   let randomaccessfile = fs.createRandomAccessFileSync(file);
   let bufferLength = 4096;
   randomaccessfile.write(new ArrayBuffer(bufferLength), { offset: 1, length: 5 }).then((bytesWritten) => {
       console.info("randomAccessFile bytesWritten: " + bytesWritten);
+      randomaccessfile.close();
+      fs.closeSync(file);
   }).catch((err) => {
       console.info("create randomAccessFile failed with error message: " + err.message + ", error code: " + err.code);
   });
@@ -3534,6 +3545,7 @@ write(buffer: ArrayBuffer|string, options?: { offset?: number; length?: number; 
 
   ```js
   let filePath = pathDir + "/test.txt";
+  let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
   let randomAccessFile = fs.createRandomAccessFileSync(file);
   let bufferLength = 4096;
   randomAccessFile.write(new ArrayBuffer(bufferLength), { offset: 1 }, function(err, bytesWritten) {
@@ -3542,6 +3554,8 @@ write(buffer: ArrayBuffer|string, options?: { offset?: number; length?: number; 
       } else {
           if (bytesWritten) {
               console.info("write succeed and size is:" + bytesWritten);
+              randomAccessFile.close();
+              fs.closeSync(file);
           }
       }
   });
@@ -3576,8 +3590,10 @@ writeSync(buffer: ArrayBuffer|string, options?: { offset?: number; length?: numb
 
   ```js
   let filePath = pathDir + "/test.txt";
-  let randomaccessfile= fs.createRandomAccessFileSync(filePath,"r+");
+  let randomaccessfile = fs.createRandomAccessFileSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
   let bytesWritten = randomaccessfile.writeSync("hello, world", {offset: 5, length: 5, encoding :'utf-8'});
+  randomaccessfile.close();
+  fs.closeSync(file);
   ```
 
 ### read<sup>10+</sup>
@@ -3614,6 +3630,8 @@ read(buffer: ArrayBuffer, options?: { offset?: number; length?: number; }): Prom
   let bufferLength = 4096;
   randomaccessfile.read(new ArrayBuffer(bufferLength), { offset: 1, length: 5 }).then((readLength) => {
       console.info("randomAccessFile readLength: " + readLength);
+      randomaccessfile.close();
+      fs.closeSync(file);
   }).catch((err) => {
       console.info("create randomAccessFile failed with error message: " + err.message + ", error code: " + err.code);
   });
@@ -3644,7 +3662,7 @@ read(buffer: ArrayBuffer, options?: { position?: number; offset?: number; length
   ```js
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
-  let randomaccessfile = await fileIO.createRandomAccessFile(file);
+  let randomaccessfile = fs.createRandomAccessFileSync(file);
   let length = 20;
   randomaccessfile.read(new ArrayBuffer(length), { offset: 1, length: 5 }, function (err, readLength) {
     if (err) {
@@ -3652,6 +3670,8 @@ read(buffer: ArrayBuffer, options?: { position?: number; offset?: number; length
     } else {
       if (readLength) {
         console.info("read succeed and size is:" + readLength);
+        randomaccessfile.close();
+        fs.closeSync(file);
       }
     }
   });
@@ -3686,10 +3706,12 @@ readSync(buffer: ArrayBuffer, options?: { offset?: number; length?: number; }): 
 
   ```js
   let filePath = pathDir + "/test.txt";
-  let file = fs.openSync(filePath, fileIO.OpenMode.CREATE | fileIO.OpenMode.READ_WRITE);
+  let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
   let randomaccessfile = fs.createRandomAccessFileSync(file);
   let length = 4096;
   let readLength = randomaccessfile.readSync(new ArrayBuffer(length));
+  randomaccessfile.close();
+  fs.closeSync(file);
   ```
 
 

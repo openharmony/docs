@@ -313,6 +313,44 @@ CommonEventManager.createSubscriber(subscribeInfo).then((commonEventSubscriber:C
 
 ```
 
+## CommonEventManager.createSubscriberSync
+
+createSubscriberSync(subscribeInfo: CommonEventSubscribeInfo): CommonEventSubscriber
+
+createSubscriber的同步接口。
+
+**系统能力：** SystemCapability.Notification.CommonEvent
+
+**参数：**
+
+| 参数名          | 类型                                                  | 必填 | 说明           |
+| ------------- | ----------------------------------------------------- | ---- | -------------- |
+| subscribeInfo | [CommonEventSubscribeInfo](./js-apis-inner-commonEvent-commonEventSubscribeInfo.md) | 是   | 表示订阅信息。 |
+
+**返回值：**
+| 类型                                                      | 说明             |
+| --------------------------------------------------------- | ---------------- |
+| [CommonEventSubscriber](./js-apis-inner-commonEvent-commonEventSubscriber.md) | 返回订阅者对象。 |
+
+**示例：**
+
+```ts
+let subscriber; //用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
+
+//订阅者信息
+let subscribeInfo = {
+	events: ["event"]
+};
+
+//创建订阅者
+try {
+    subscriber = CommonEventManager.createSubscriberSync(subscribeInfo);
+} catch (err) {
+    console.error(`createSubscriberSync failed, code is ${err.code}, message is ${err.message}`);
+}
+
+```
+
 ## CommonEventManager.subscribe
 
 subscribe(subscriber: CommonEventSubscriber, callback: AsyncCallback\<CommonEventData>): void

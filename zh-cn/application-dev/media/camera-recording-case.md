@@ -8,18 +8,18 @@
 
 
 ## 完整示例
-
+[各类Context的获取方式](../application-models/application-context-stage.md)
 ```ts
 import camera from '@ohos.multimedia.camera';
 import media from '@ohos.multimedia.media';
 
 // 创建CameraManager对象
-let context: Context = getContext(this);  // [各类Context的获取方式](../application-models/application-context-stage.md)
+let context: Context = getContext(this);
 let cameraManager: camera.CameraManager = camera.getCameraManager(context);
 if (!cameraManager) {
   console.error("camera.getCameraManager error");
   return;
-} 
+}
 
 // 监听相机状态变化
 cameraManager.on('cameraStatus', (err: BusinessError, cameraStatusInfo: camera.CameraStatusInfo) => {
@@ -27,6 +27,12 @@ cameraManager.on('cameraStatus', (err: BusinessError, cameraStatusInfo: camera.C
   console.log(`status: ${cameraStatusInfo.status}`);
 });
 
+// 获取相机列表
+let cameraArray: Array<camera.CameraDevice> = cameraManager.getSupportedCameras();
+if (cameraArray.length <= 0) {
+  console.error("cameraManager.getSupportedCameras error")
+  return;
+}
 // 获取相机设备支持的输出流能力
 let cameraOutputCap: camera.CameraOutputCapability = cameraManager.getSupportedOutputCapability(cameraArray[0]);
 if (!cameraOutputCap) {
@@ -38,17 +44,17 @@ console.log("outputCapability: " + JSON.stringify(cameraOutputCap));
 let previewProfilesArray: Array<camera.Profile> = cameraOutputCap.previewProfiles;
 if (!previewProfilesArray) {
   console.error("createOutput previewProfilesArray == null || undefined");
-} 
+}
 
 let photoProfilesArray: Array<camera.Profile> = cameraOutputCap.photoProfiles;
 if (!photoProfilesArray) {
   console.error("createOutput photoProfilesArray == null || undefined");
-} 
+}
 
 let videoProfilesArray: Array<camera.VideoProfile> = cameraOutputCap.videoProfiles;
 if (!videoProfilesArray) {
   console.error("createOutput videoProfilesArray == null || undefined");
-} 
+}
 
 let metadataObjectTypesArray: Array<camera.MetadataObjectType> = cameraOutputCap.supportedMetadataObjectTypes;
 if (!metadataObjectTypesArray) {
@@ -68,7 +74,7 @@ let AVRecorderProfile = {
   videoFrameHeight : 480,
   videoFrameRate : 30
 };
-let AVRecorderConfig = {
+let aVRecorderConfig = {
   audioSourceType : media.AudioSourceType.AUDIO_SOURCE_TYPE_MIC,
   videoSourceType : media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_YUV,
   profile : AVRecorderProfile,
@@ -87,7 +93,7 @@ media.createAVRecorder((error: BusinessError, recorder: media.AVRecorder) => {
   }
 });
 
-avRecorder.prepare(AVRecorderConfig: media.AVRecorderConfig, (err: BusinessError) => {
+avRecorder.prepare(aVRecorderConfig, (err: BusinessError) => {
   if (err == null) {
     console.log('prepare success');
   } else {
@@ -136,13 +142,6 @@ try {
   captureSession.beginConfig();
 } catch (error) {
   console.error('Failed to beginConfig. errorCode = ' + error.code);
-}
-
-// 获取相机列表
-let cameraArray: Array<camera.CameraDevice> = cameraManager.getSupportedCameras();
-if (cameraArray.length <= 0) {
-  console.error("cameraManager.getSupportedCameras error")
-  return;
 }
 
 // 创建相机输入流

@@ -124,6 +124,7 @@
      // 获取到文档文件的文件名称
      let file_name_list = result.want.parameters.file_name_list;
    } catch (err) {
+      let err: BusinessError = error as BusinessError;
      console.error(`Invoke documentViewPicker.select failed, code is ${err.code}, message is ${err.message}`);
    }
    ```

@@ -39,8 +39,8 @@
   
       ```ts
       // Stage模型参考如下代码
-      const context : Context = getContext(this);
-      const filePath : string = context.cacheDir + '/test.jpg';
+      const context = getContext(this);
+      const filePath = context.cacheDir + '/test.jpg';
       const file : File = fs.openSync(filePath, fs.OpenMode.READ_WRITE);
       const fd : number = file?.fd;
       ```
@@ -60,7 +60,7 @@
       // Stage模型
       const context : Context = getContext(this);
       // 获取resourceManager资源管理器
-      const resourceMgr : ResourceManager = context.resourceManager;
+      const resourceMgr : resmgr.ResourceManager = context.resourceManager;
       ```
 
       ```ts
@@ -73,7 +73,7 @@
       不同模型获取资源管理器的方式不同，获取资源管理器后，再调用resourceMgr.getRawFileContent()获取资源文件的ArrayBuffer。
 
       ```ts
-      const fileData : Content = await resourceMgr.getRawFileContent('test.jpg');
+      const fileData : void = await resourceMgr.getRawFileContent('test.jpg');
       // 获取图片的ArrayBuffer
       const buffer = fileData.buffer;
       ```
@@ -126,13 +126,13 @@
    ```ts
    const context : Context = getContext(this);
    // 获取resourceManager资源管理
-   const resourceMgr : ResourceManager = context.resourceManager;
+   const resourceMgr : resmgr.ResourceManager = context.resourceManager;
    ```
 
 2. 获取rawfile文件夹下test.jpg的ArrayBuffer。
      
    ```ts
-   const fileData : Content = await resourceMgr.getRawFileContent('test.jpg');
+   const fileData : void = await resourceMgr.getRawFileContent('test.jpg');
    // 获取图片的ArrayBuffer
    const buffer = fileData.buffer;
    ```
@@ -140,7 +140,7 @@
 3. 创建imageSource。
      
    ```ts
-   const imageSource : ImageSource = image.createImageSource(buffer);
+   const imageSource : resmgr.ImageSource = image.createImageSource(buffer);
    ```
 
 4. 创建PixelMap。
