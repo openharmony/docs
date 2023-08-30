@@ -114,11 +114,11 @@ struct Index {
 
 ## 系统资源
 
-除了自定义资源，开发者也可以使用系统中预定义的资源（即[分层参数](visual-basics.md)，同一资源ID在设备类型、深浅色等不同配置下有不同的取值）。
+除了自定义资源，开发者也可以使用系统中预定义的资源（即[分层参数](../../../design/ux-design/visual-basis.md)，同一资源ID在设备类型、深浅色等不同配置下有不同的取值）。
 
 在开发过程中，分层参数的用法与资源限定词基本一致。开发者可以通过"$r('sys.type.resource_id')"的形式引用系统资源。sys代表是系统资源；type代表资源类型，值可以取color、float、string和media；resource_id代表资源id。
 
-可以查看本文[应用UX设计中关于资源的介绍](design-resources.md)，获取系统支持的资源ID及其在不同配置下的取值。
+可以查看[应用UX设计中关于资源的介绍](../../../design/ux-design/design-resources.md)，获取系统支持的资源ID及其在不同配置下的取值。
 
 > **说明：**
 > - 仅声明式开发范式支持使用分层参数，类Web开发范式不支持。
