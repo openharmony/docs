@@ -1091,7 +1091,7 @@
       - [@ohos.charger (Charging Type)](reference/apis/js-apis-charger.md)
       - [@ohos.cooperate (Screen Hopping)](reference/apis/js-apis-devicestatus-cooperate.md)
       - [@ohos.deviceAttest (Device Attestation)](reference/apis/js-apis-deviceAttest.md)
-      - [@ohos.deviceStatus.dragInteraction (Drag)](reference/apis/js-apis-devicestatus-draginteraction.md)
+      - [@ohos.deviceStatus.dragInteraction (Drag Interaction)](reference/apis/js-apis-devicestatus-draginteraction.md)
       - [@ohos.deviceInfo (Device Information)](reference/apis/js-apis-device-info.md)
       - [@ohos.distributedDeviceManager (Device Management) (Recommended)](reference/apis/js-apis-distributedDeviceManager.md)
       - [@ohos.distributedHardware.deviceManager (Device Management) (To Be Deprecated Soon)](reference/apis/js-apis-device-manager.md)

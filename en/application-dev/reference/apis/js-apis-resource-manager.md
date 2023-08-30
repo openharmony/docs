@@ -106,7 +106,10 @@ Obtains the **ResourceManager** object of this application. This API uses a prom
 
 **Example**
   ```js
-  resourceManager.getResourceManager().then(mgr => {
+  import resourceManager from '@ohos.resourceManager';
+  import { BusinessError } from '@ohos.base';
+
+  resourceManager.getResourceManager().then((mgr: resourceManager.ResourceManager) => {
     mgr.getStringValue(0x1000000, (error, value) => {
       if (error != null) {
         console.log("error is " + error);
@@ -114,7 +117,7 @@ Obtains the **ResourceManager** object of this application. This API uses a prom
         let str = value;
       }
     });
-  }).catch(error => {
+  }).catch((error: BusinessError) => {
     console.log("error is " + error);
   });
   ```
@@ -145,8 +148,11 @@ Obtains the **ResourceManager** object of an application based on the specified 
 
 **Example**
   ```js
-  resourceManager.getResourceManager("com.example.myapplication").then(mgr => {
-  }).catch(error => {
+  import resourceManager from '@ohos.resourceManager';
+  import { BusinessError } from '@ohos.base';
+
+  resourceManager.getResourceManager("com.example.myapplication").then((mgr: resourceManager.ResourceManager) => {
+  }).catch((error: BusinessError) => {
   });
   ```
 
@@ -175,12 +181,13 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 **Example**
   ```js
 import resourceManager from '@ohos.resourceManager';
+import { BusinessError } from '@ohos.base';
 
   try {
     let systemResourceManager = resourceManager.getSystemResourceManager();
-    systemResourceManager.getStringValue($r('sys.string.ohos_lab_vibrate').id).then(value => {
+    systemResourceManager.getStringValue($r('sys.string.ohos_lab_vibrate').id).then((value: string) => {
       let str = value;
-    }).catch(error => {
+    }).catch((error: BusinessError) => {
       console.log("systemResourceManager getStringValue promise error is " + error);
     });
   } catch (error) {
@@ -414,7 +421,9 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 **Example**
   ```ts
-  let resource = {
+  import resourceManager from '@ohos.resourceManager';
+
+  let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
     moduleName: "entry",
     id: $r('app.string.test').id
@@ -462,7 +471,9 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 **Example**
   ```ts
-  let resource = {
+  import resourceManager from '@ohos.resourceManager';
+
+  let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
     moduleName: "entry",
     id: $r('app.string.test').id
@@ -626,10 +637,12 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 **Example**
   ```ts
+  import { BusinessError } from '@ohos.base';
+
   try {
-    this.context.resourceManager.getStringValue($r('app.string.test').id).then(value => {
+    this.context.resourceManager.getStringValue($r('app.string.test').id).then((value: string) => {
       let str = value;
-    }).catch(error => {
+    }).catch((error: BusinessError) => {
       console.log("getStringValue promise error is " + error);
     });
   } catch (error) {
@@ -666,7 +679,9 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 **Example**
   ```ts
-  let resource = {
+  import resourceManager from '@ohos.resourceManager';
+
+  let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
     moduleName: "entry",
     id: $r('app.string.test').id
@@ -718,15 +733,18 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 **Example**
   ```ts
-  let resource = {
+  import resourceManager from '@ohos.resourceManager';
+  import { BusinessError } from '@ohos.base';
+
+  let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
     moduleName: "entry",
     id: $r('app.string.test').id
   };
   try {
-    this.context.resourceManager.getStringValue(resource).then(value => {
+    this.context.resourceManager.getStringValue(resource).then((value: string) => {
       let str = value;
-    }).catch(error => {
+    }).catch((error: BusinessError) => {
       console.log("getStringValue promise error is " + error);
     });
   } catch (error) {
@@ -806,10 +824,12 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 **Example**
   ```ts
+  import { BusinessError } from '@ohos.base';
+
   try {
-    this.context.resourceManager.getStringByName("test").then(value => {
+    this.context.resourceManager.getStringByName("test").then((value: string) => {
       let str = value;
-    }).catch(error => {
+    }).catch((error: BusinessError) => {
       console.log("getStringByName promise error is " + error);
     });
   } catch (error) {
@@ -890,7 +910,9 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 **Example**
   ```ts
-  let resource = {
+  import resourceManager from '@ohos.resourceManager';
+
+  let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
     moduleName: "entry",
     id: $r('app.strarray.test').id
@@ -899,6 +921,45 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
     this.context.resourceManager.getStringArrayValueSync(resource);
   } catch (error) {
     console.error(`getStringArrayValueSync failed, error code: ${error.code}, message: ${error.message}.`);
+  }
+  ```
+
+### getStringArrayByNameSync<sup>10+</sup>
+
+getStringArrayByNameSync(resName: string): Array&lt;string&gt;
+
+Obtains the string array corresponding to the specified resource name. This API returns the result synchronously.
+
+**System capability**: SystemCapability.Global.ResourceManager
+
+**Parameters**
+
+| Name  | Type    | Mandatory  | Description   |
+| ----- | ------ | ---- | ----- |
+| resName | string | Yes   | Resource name.|
+
+**Return value**
+
+| Type                   | Description         |
+| --------------------- | ----------- |
+| Array&lt;string&gt; | String array corresponding to the specified resource name.|
+
+**Error codes**
+
+For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 9001003  | If the resName invalid.                       |
+| 9001004  | If the resource not found by resName.         |
+| 9001006  | If the resource re-ref too much.            |
+
+**Example**
+  ```ts
+  try {
+    this.context.resourceManager.getStringArrayByNameSync("test");
+  } catch (error) {
+    console.error(`getStringArrayByNameSync failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -974,10 +1035,12 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 **Example**
   ```ts
+  import { BusinessError } from '@ohos.base';
+
   try {
-    this.context.resourceManager.getStringArrayValue($r('app.strarray.test').id).then(value => {
+    this.context.resourceManager.getStringArrayValue($r('app.strarray.test').id).then((value: Array<string>) => {
       let strArray = value;
-    }).catch(error => {
+    }).catch((error: BusinessError) => {
       console.log("getStringArrayValue promise error is " + error);
     });
   } catch (error) {
@@ -1014,7 +1077,9 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 **Example**
   ```ts
-  let resource = {
+  import resourceManager from '@ohos.resourceManager';
+
+  let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
     moduleName: "entry",
     id: $r('app.strarray.test').id
@@ -1066,15 +1131,18 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 **Example**
   ```ts
-  let resource = {
+  import resourceManager from '@ohos.resourceManager';
+  import { BusinessError } from '@ohos.base';
+
+  let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
     moduleName: "entry",
     id: $r('app.strarray.test').id
   };
   try {
-    this.context.resourceManager.getStringArrayValue(resource).then(value => {
+    this.context.resourceManager.getStringArrayValue(resource).then((value: Array<string>) => {
       let strArray = value;
-    }).catch(error => {
+    }).catch((error: BusinessError) => {
       console.log("getStringArray promise error is " + error);
     });
   } catch (error) {
@@ -1154,10 +1222,12 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 **Example**
   ```ts
+  import { BusinessError } from '@ohos.base';
+
   try {
-    this.context.resourceManager.getStringArrayByName("test").then(value => {
+    this.context.resourceManager.getStringArrayByName("test").then((value: Array<string>) => {
       let strArray = value;
-    }).catch(error => {
+    }).catch((error: BusinessError) => {
       console.log("getStringArrayByName promise error is " + error);
     });
   } catch (error) {
@@ -1240,7 +1310,9 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 **Example**
   ```ts
-  let resource = {
+  import resourceManager from '@ohos.resourceManager';
+
+  let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
     moduleName: "entry",
     id: $r('app.plural.test').id
@@ -1249,6 +1321,46 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
     this.context.resourceManager.getPluralStringValueSync(resource, 1);
   } catch (error) {
     console.error(`getPluralStringValueSync failed, error code: ${error.code}, message: ${error.message}.`);
+  }
+  ```
+
+### getPluralStringByNameSync<sup>10+</sup>
+
+getPluralStringByNameSync(resName: string, num: number): string
+
+Obtains the singular-plural string corresponding to the specified resource name based on the specified number. This API returns the result synchronously.
+
+**System capability**: SystemCapability.Global.ResourceManager
+
+**Parameters**
+
+| Name  | Type    | Mandatory  | Description   |
+| ----- | ------ | ---- | ----- |
+| resName | string | Yes   | Resource name.|
+| num      | number                 | Yes   | Number.  |
+
+**Return value**
+
+| Type                   | Description         |
+| --------------------- | ----------- |
+| string | Singular-plural string corresponding to the specified resource name.|
+
+**Error codes**
+
+For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 9001003  | If the resName invalid.                       |
+| 9001004  | If the resource not found by resName.         |
+| 9001006  | If the resource re-ref too much.            |
+
+**Example**
+  ```ts
+  try {
+    this.context.resourceManager.getPluralStringByNameSync("test", 1);
+  } catch (error) {
+    console.error(`getPluralStringByNameSync failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -1326,10 +1438,12 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 **Example**
   ```ts
+  import { BusinessError } from '@ohos.base';
+
   try {
-    this.context.resourceManager.getPluralStringValue($r("app.plural.test").id, 1).then(value => {
+    this.context.resourceManager.getPluralStringValue($r("app.plural.test").id, 1).then((value: string) => {
       let str = value;
-    }).catch(error => {
+    }).catch((error: BusinessError) => {
       console.log("getPluralStringValue promise error is " + error);
     });
   } catch (error) {
@@ -1367,7 +1481,9 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 **Example**
   ```ts
-  let resource = {
+  import resourceManager from '@ohos.resourceManager';
+
+  let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
     moduleName: "entry",
     id: $r('app.plural.test').id
@@ -1420,15 +1536,18 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 **Example**
   ```ts
-  let resource = {
+  import resourceManager from '@ohos.resourceManager';
+  import { BusinessError } from '@ohos.base';
+
+  let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
     moduleName: "entry",
     id: $r('app.plural.test').id
   };
   try {
-    this.context.resourceManager.getPluralStringValue(resource, 1).then(value => {
+    this.context.resourceManager.getPluralStringValue(resource, 1).then((value: string) => {
       let str = value;
-    }).catch(error => {
+    }).catch((error: BusinessError) => {
       console.log("getPluralStringValue promise error is " + error);
     });
   } catch (error) {
@@ -1510,10 +1629,12 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 **Example**
   ```ts
+  import { BusinessError } from '@ohos.base';
+
   try {
-    this.context.resourceManager.getPluralStringByName("test", 1).then(value => {
+    this.context.resourceManager.getPluralStringByName("test", 1).then((value: string) => {
       let str = value;
-    }).catch(error => {
+    }).catch((error: BusinessError) => {
       console.log("getPluralStringByName promise error is " + error);
     });
   } catch (error) {
@@ -1525,7 +1646,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 getMediaContentSync(resId: number, density?: number): Uint8Array
 
-Obtains the content of the media file (with the default or specified screen density) corresponding to the specified resource ID. This API returns the result synchronously.
+Obtains the media file content (with the default or specified screen density) corresponding to the specified resource ID. This API returns the result synchronously.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -1540,7 +1661,7 @@ Obtains the content of the media file (with the default or specified screen dens
 
 | Type                   | Description         |
 | -------- | ----------- |
-| Uint8Array   | Content of the media file corresponding to the specified resource ID.|
+| Uint8Array   | Media file content corresponding to the specified resource ID.|
 
 **Error codes**
 
@@ -1570,7 +1691,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 getMediaContentSync(resource: Resource, density?: number): Uint8Array
 
-Obtains the content of the media file (with the default or specified screen density) corresponding to the specified resource object. This API returns the result synchronously.
+Obtains the media file content (with the default or specified screen density) corresponding to the specified resource object. This API returns the result synchronously.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -1587,7 +1708,7 @@ Obtains the content of the media file (with the default or specified screen dens
 
 | Type                   | Description         |
 | --------------------- | ----------- |
-| Uint8Array | Content of the media file corresponding to the specified resource object|
+| Uint8Array | Media file content corresponding to the specified resource object|
 
 **Error codes**
 
@@ -1600,7 +1721,9 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 **Example**
   ```ts
-  let resource = {
+  import resourceManager from '@ohos.resourceManager';
+
+  let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
     moduleName: "entry",
     id: $r('app.media.test').id
@@ -1618,11 +1741,56 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
   }
   ```
 
+### getMediaByNameSync<sup>10+</sup>
+
+getMediaByNameSync(resName: string, density?: number): Uint8Array
+
+Obtains the media file content (with the default or specified screen density) corresponding to the specified resource name. This API returns the result synchronously.
+
+**System capability**: SystemCapability.Global.ResourceManager
+
+**Parameters**
+
+| Name  | Type    | Mandatory  | Description   |
+| ----- | ------ | ---- | ----- |
+| resName | string | Yes   | Resource name.|
+| [density](#screendensity) | number | No   | Screen density. The default value or value **0** indicates the default screen density.|
+
+**Return value**
+
+| Type                   | Description         |
+| --------------------- | ----------- |
+| Uint8Array | Media file content corresponding to the resource name.|
+
+**Error codes**
+
+For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 9001003  | If the resName invalid.                       |
+| 9001004  | If the resource not found by resName.         |
+
+**Example**
+  ```ts
+  try {
+    this.context.resourceManager.getMediaByNameSync("test"); // Default screen density
+  } catch (error) {
+    console.error(`getMediaByNameSync failed, error code: ${error.code}, message: ${error.message}.`);
+  }
+
+  try {
+    this.context.resourceManager.getMediaByNameSync("test", 120); // Specified screen density
+  } catch (error) {
+    console.error(`getMediaByNameSync failed, error code: ${error.code}, message: ${error.message}.`);
+  }
+  ```
+
 ### getMediaContent<sup>9+</sup>
 
 getMediaContent(resId: number, callback: AsyncCallback&lt;Uint8Array&gt;): void
 
-Obtains the content of the media file corresponding to the specified resource ID. This API uses an asynchronous callback to return the result.
+Obtains the media file content corresponding to the specified resource ID. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -1661,7 +1829,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 getMediaContent(resId: number, density: number, callback: AsyncCallback&lt;Uint8Array&gt;): void
 
-Obtains the content of the media file (with the specified screen density) corresponding to the specified resource ID. This API uses an asynchronous callback to return the result.
+Obtains the media file content (with the specified screen density) corresponding to the specified resource ID. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -1701,7 +1869,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 getMediaContent(resId: number): Promise&lt;Uint8Array&gt;
 
-Obtains the content of the media file corresponding to the specified resource ID. This API uses a promise to return the result.
+Obtains the media file content corresponding to the specified resource ID. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -1728,10 +1896,12 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 **Example**
   ```ts
+  import { BusinessError } from '@ohos.base';
+
   try {
-    this.context.resourceManager.getMediaContent($r('app.media.test').id).then(value => {
+    this.context.resourceManager.getMediaContent($r('app.media.test').id).then((value: Uint8Array) => {
       let media = value;
-    }).catch(error => {
+    }).catch((error: BusinessError) => {
       console.log("getMediaContent promise error is " + error);
     });
   } catch (error) {
@@ -1743,7 +1913,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 getMediaContent(resId: number, density: number): Promise&lt;Uint8Array&gt;
 
-Obtains the content of the media file (with the specified screen density) corresponding to the specified resource ID. This API uses a promise to return the result.
+Obtains the media file content (with the specified screen density) corresponding to the specified resource ID. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -1771,10 +1941,12 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 **Example**
   ```ts
+  import { BusinessError } from '@ohos.base';
+
   try {
-    this.context.resourceManager.getMediaContent($r('app.media.test').id, 120).then(value => {
+    this.context.resourceManager.getMediaContent($r('app.media.test').id, 120).then((value: Uint8Array) => {
       let media = value;
-    }).catch(error => {
+    }).catch((error: BusinessError) => {
       console.error(`promise getMediaContent failed, error code: ${error.code}, message: ${error.message}.`);
     });
   } catch (error) {
@@ -1786,7 +1958,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 getMediaContent(resource: Resource, callback: AsyncCallback&lt;Uint8Array&gt;): void
 
-Obtains the content of the media file corresponding to the specified resource object. This API uses an asynchronous callback to return the result.
+Obtains the media file content corresponding to the specified resource object. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -1810,7 +1982,9 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 **Example**
   ```ts
-  let resource = {
+  import resourceManager from '@ohos.resourceManager';
+
+  let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
     moduleName: "entry",
     id: $r('app.media.test').id
@@ -1832,7 +2006,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 getMediaContent(resource: Resource, density: number, callback: AsyncCallback&lt;Uint8Array&gt;): void
 
-Obtains the content of the media file (with the specified screen density) corresponding to the specified resource object. This API uses an asynchronous callback to return the result.
+Obtains the media file content (with the specified screen density) corresponding to the specified resource object. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -1857,7 +2031,9 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 **Example**
   ```ts
-  let resource = {
+  import resourceManager from '@ohos.resourceManager';
+
+  let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
     moduleName: "entry",
     id: $r('app.media.test').id
@@ -1879,7 +2055,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 getMediaContent(resource: Resource): Promise&lt;Uint8Array&gt;
 
-Obtains the content of the media file corresponding to the specified resource object. This API uses a promise to return the result.
+Obtains the media file content corresponding to the specified resource object. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -1908,15 +2084,18 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 **Example**
   ```ts
-  let resource = {
+  import resourceManager from '@ohos.resourceManager';
+  import { BusinessError } from '@ohos.base';
+
+  let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
     moduleName: "entry",
     id: $r('app.media.test').id
   };
   try {
-    this.context.resourceManager.getMediaContent(resource).then(value => {
+    this.context.resourceManager.getMediaContent(resource).then((value: Uint8Array) => {
       let media = value;
-    }).catch(error => {
+    }).catch((error: BusinessError) => {
       console.log("getMediaContent promise error is " + error);
     });
   } catch (error) {
@@ -1928,7 +2107,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 getMediaContent(resource: Resource, density: number): Promise&lt;Uint8Array&gt;
 
-Obtains the content of the media file (with the specified screen density) corresponding to the specified resource object. This API uses a promise to return the result.
+Obtains the media file content (with the specified screen density) corresponding to the specified resource object. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -1958,15 +2137,18 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 **Example**
   ```ts
-  let resource = {
+  import resourceManager from '@ohos.resourceManager';
+  import { BusinessError } from '@ohos.base';
+
+  let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
     moduleName: "entry",
     id: $r('app.media.test').id
   };
   try {
-    this.context.resourceManager.getMediaContent(resource, 120).then(value => {
+    this.context.resourceManager.getMediaContent(resource, 120).then((value: Uint8Array) => {
       let media = value;
-    }).catch(error => {
+    }).catch((error: BusinessError) => {
       console.error(`promise getMediaContent failed, error code: ${error.code}, message: ${error.message}.`);
     });
   } catch (error) {
@@ -1978,7 +2160,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 getMediaByName(resName: string, callback: AsyncCallback&lt;Uint8Array&gt;): void
 
-Obtains the content of the media file corresponding to the specified resource ID. This API uses an asynchronous callback to return the result.
+Obtains the media file content corresponding to the specified resource ID. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -2017,7 +2199,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 getMediaByName(resName: string, density: number, callback: AsyncCallback&lt;Uint8Array&gt;): void
 
-Obtains the content of the media file (with the specified screen density) corresponding to the specified resource ID. This API uses an asynchronous callback to return the result.
+Obtains the media file content (with the specified screen density) corresponding to the specified resource ID. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -2057,7 +2239,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 getMediaByName(resName: string): Promise&lt;Uint8Array&gt;
 
-Obtains the content of the media file corresponding to the specified resource name. This API uses a promise to return the result.
+Obtains the media file content corresponding to the specified resource name. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -2084,10 +2266,12 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 **Example**
   ```ts
+  import { BusinessError } from '@ohos.base';
+
   try {
-    this.context.resourceManager.getMediaByName("test").then(value => {
+    this.context.resourceManager.getMediaByName("test").then((value: Uint8Array) => {
       let media = value;
-    }).catch(error => {
+    }).catch((error: BusinessError) => {
       console.log("getMediaByName promise error is " + error);
     });
   } catch (error) {
@@ -2099,7 +2283,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 getMediaByName(resName: string, density: number): Promise&lt;Uint8Array&gt;
 
-Obtains the content of the media file (with the specified screen density) corresponding to the specified resource name. This API uses a promise to return the result.
+Obtains the media file content (with the specified screen density) corresponding to the specified resource name. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -2127,10 +2311,12 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 **Example**
   ```ts
+  import { BusinessError } from '@ohos.base';
+
   try {
-    this.context.resourceManager.getMediaByName("test", 120).then(value => {
+    this.context.resourceManager.getMediaByName("test", 120).then((value: Uint8Array) => {
       let media = value;
-    }).catch(error => {
+    }).catch((error: BusinessError) => {
       console.error(`promise getMediaByName failed, error code: ${error.code}, message: ${error.message}.`);
     });
   } catch (error) {
@@ -2217,7 +2403,9 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 **Example**
   ```ts
-  let resource = {
+  import resourceManager from '@ohos.resourceManager';
+
+  let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
     moduleName: "entry",
     id: $r('app.media.test').id
@@ -2232,6 +2420,51 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
     this.context.resourceManager.getMediaContentBase64Sync(resource, 120); // Specified screen density
   } catch (error) {
     console.error(`getMediaContentBase64Sync failed, error code: ${error.code}, message: ${error.message}.`);
+  }
+  ```
+
+### getMediaBase64ByNameSync<sup>10+</sup>
+
+getMediaBase64ByNameSync(resName: string, density?: number): string
+
+Obtains the Base64 code of the image (with the default or specified screen density) corresponding to the specified resource name.
+
+**System capability**: SystemCapability.Global.ResourceManager
+
+**Parameters**
+
+| Name  | Type    | Mandatory  | Description   |
+| ----- | ------ | ---- | ----- |
+| resName | string | Yes   | Resource name.|
+| [density](#screendensity) | number | No   | Screen density. The default value or value **0** indicates the default screen density.|
+
+**Return value**
+
+| Type                   | Description         |
+| --------------------- | ----------- |
+| string | Promise used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 9001003  | If the resName invalid.                       |
+| 9001004  | If the resource not found by resName.         |
+
+**Example**
+  ```ts
+  try {
+    this.context.resourceManager.getMediaBase64ByNameSync("test"); // Default screen density
+  } catch (error) {
+    console.error(`getMediaBase64ByNameSync failed, error code: ${error.code}, message: ${error.message}.`);
+  }
+
+  try {
+    this.context.resourceManager.getMediaBase64ByNameSync("test", 120); // Specified screen density
+  } catch (error) {
+    console.error(`getMediaBase64ByNameSync failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -2345,10 +2578,12 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 **Example**
   ```ts
+  import { BusinessError } from '@ohos.base';
+
   try {
-    this.context.resourceManager.getMediaContentBase64($r('app.media.test').id).then(value => {
+    this.context.resourceManager.getMediaContentBase64($r('app.media.test').id).then((value: string) => {
       let media = value;
-    }).catch(error => {
+    }).catch((error: BusinessError) => {
       console.log("getMediaContentBase64 promise error is " + error);
     });
   } catch (error) {
@@ -2388,10 +2623,12 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 **Example**
   ```ts
+  import { BusinessError } from '@ohos.base';
+
   try {
-    this.context.resourceManager.getMediaContentBase64($r('app.media.test').id, 120).then(value => {
+    this.context.resourceManager.getMediaContentBase64($r('app.media.test').id, 120).then((value: string) => {
       let media = value;
-    }).catch(error => {
+    }).catch((error: BusinessError) => {
       console.error(`promise getMediaContentBase64 failed, error code: ${error.code}, message: ${error.message}.`);
     });
   } catch (error) {
@@ -2427,7 +2664,9 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 **Example**
   ```ts
-  let resource = {
+  import resourceManager from '@ohos.resourceManager';
+
+  let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
     moduleName: "entry",
     id: $r('app.media.test').id
@@ -2474,7 +2713,9 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 **Example**
   ```ts
-  let resource = {
+  import resourceManager from '@ohos.resourceManager';
+
+  let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
     moduleName: "entry",
     id: $r('app.media.test').id
@@ -2525,15 +2766,18 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 **Example**
   ```ts
-  let resource = {
+  import resourceManager from '@ohos.resourceManager';
+  import { BusinessError } from '@ohos.base';
+
+  let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
     moduleName: "entry",
     id: $r('app.media.test').id
   };
   try {
-    this.context.resourceManager.getMediaContentBase64(resource).then(value => {
+    this.context.resourceManager.getMediaContentBase64(resource).then((value: string) => {
       let media = value;
-    }).catch(error => {
+    }).catch((error: BusinessError) => {
       console.log("getMediaContentBase64 promise error is " + error);
     });
   } catch (error) {
@@ -2575,15 +2819,18 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 **Example**
   ```ts
-  let resource = {
+  import resourceManager from '@ohos.resourceManager';
+  import { BusinessError } from '@ohos.base';
+
+  let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
     moduleName: "entry",
     id: $r('app.media.test').id
   };
   try {
-    this.context.resourceManager.getMediaContentBase64(resource, 120).then(value => {
+    this.context.resourceManager.getMediaContentBase64(resource, 120).then((value: string) => {
       let media = value;
-    }).catch(error => {
+    }).catch((error: BusinessError) => {
       console.error(`promise getMediaContentBase64 failed, error code: ${error.code}, message: ${error.message}.`);
     });
   } catch (error) {
@@ -2701,10 +2948,12 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 **Example**
   ```ts
+  import { BusinessError } from '@ohos.base';
+
   try {
-    this.context.resourceManager.getMediaBase64ByName("test").then(value => {
+    this.context.resourceManager.getMediaBase64ByName("test").then((value: string) => {
       let media = value;
-    }).catch(error => {
+    }).catch((error: BusinessError) => {
       console.log("getMediaBase64ByName promise error is " + error);
     });
   } catch (error) {
@@ -2744,10 +2993,12 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 **Example**
   ```ts
+  import { BusinessError } from '@ohos.base';
+
   try {
-    this.context.resourceManager.getMediaBase64ByName("test", 120).then(value => {
+    this.context.resourceManager.getMediaBase64ByName("test", 120).then((value: string) => {
       let media = value;
-    }).catch(error => {
+    }).catch((error: BusinessError) => {
       console.error(`promise getMediaBase64ByName failed, error code: ${error.code}, message: ${error.message}.`);
     });
   } catch (error) {
@@ -2833,7 +3084,9 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 **Example**
   ```ts
-  let resource = {
+  import resourceManager from '@ohos.resourceManager';
+
+  let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
     moduleName: "entry",
     id: $r('app.media.icon').id
@@ -2966,7 +3219,9 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 **Example**
   ```ts
-  let resource = {
+  import resourceManager from '@ohos.resourceManager';
+
+  let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
     moduleName: "entry",
     id: $r('app.boolean.boolean_test').id
@@ -3096,7 +3351,9 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 **Example**
   ```ts
-  let resource = {
+  import resourceManager from '@ohos.resourceManager';
+
+  let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
     moduleName: "entry",
     id: $r('app.integer.integer_test').id
@@ -3226,7 +3483,9 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 **Example**
   ```ts
-  let resource = {
+  import resourceManager from '@ohos.resourceManager';
+
+  let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
     moduleName: "entry",
     id: $r('app.color.test').id
@@ -3349,10 +3608,12 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 **Example**
   ```ts
+  import { BusinessError } from '@ohos.base';
+
   try {
-    this.context.resourceManager.getColor($r('app.color.test').id).then(value => {
+    this.context.resourceManager.getColor($r('app.color.test').id).then((value: number) => {
       let str = value;
-    }).catch(error => {
+    }).catch((error: BusinessError) => {
       console.log("getColor promise error is " + error);
     });
   } catch (error) {
@@ -3389,7 +3650,9 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 **Example**
   ```ts
-  let resource = {
+  import resourceManager from '@ohos.resourceManager';
+
+  let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
     moduleName: "entry",
     id: $r('app.color.test').id
@@ -3441,15 +3704,18 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 **Example**
   ```ts
-  let resource = {
+  import resourceManager from '@ohos.resourceManager';
+  import { BusinessError } from '@ohos.base';
+
+  let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
     moduleName: "entry",
     id: $r('app.color.test').id
   };
   try {
-    this.context.resourceManager.getColor(resource).then(value => {
+    this.context.resourceManager.getColor(resource).then((value: number) => {
       let str = value;
-    }).catch(error => {
+    }).catch((error: BusinessError) => {
       console.log("getColor promise error is " + error);
     });
   } catch (error) {
@@ -3529,10 +3795,12 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 **Example**
   ```ts
+  import { BusinessError } from '@ohos.base';
+
   try {
-    this.context.resourceManager.getColorByName("test").then(value => {
+    this.context.resourceManager.getColorByName("test").then((value: number) => {
       let string = value;
-    }).catch(error => {
+    }).catch((error: BusinessError) => {
       console.log("getColorByName promise error is " + error);
     });
   } catch (error) {
@@ -3603,7 +3871,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 **Example**
   ```ts
   try {
-    this.context.resourceManager.getRawFileContent("test.xml", (error, value) => {
+    this.context.resourceManager.getRawFileContent("test.txt", (error, value) => {
       if (error != null) {
         console.log("error is " + error);
       } else {
@@ -3645,10 +3913,12 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 **Example**
   ```ts
+  import { BusinessError } from '@ohos.base';
+
   try {
-    this.context.resourceManager.getRawFileContent("test.xml").then(value => {
+    this.context.resourceManager.getRawFileContent("test.txt").then((value: Uint8Array) => {
       let rawFile = value;
-    }).catch(error => {
+    }).catch((error: BusinessError) => {
       console.log("getRawFileContent promise error is " + error);
     });
   } catch (error) {
@@ -3761,10 +4031,12 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 **Example**
   ```ts
+  import { BusinessError } from '@ohos.base';
+
   try { // Passing "" means to obtain the list of files in the root directory of the raw file.
-    this.context.resourceManager.getRawFileList("").then(value => {
+    this.context.resourceManager.getRawFileList("").then((value: Array<string>) => {
       let rawFile = value;
-    }).catch(error => {
+    }).catch((error: BusinessError) => {
       console.error(`promise getRawFileList failed, error code: ${error.code}, message: ${error.message}.`);
     });
   } catch (error) {
@@ -3835,7 +4107,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 **Example**
   ```ts
   try {
-    this.context.resourceManager.getRawFd("test.xml", (error, value) => {
+    this.context.resourceManager.getRawFd("test.txt", (error, value) => {
       if (error != null) {
         console.log(`callback getRawFd failed error code: ${error.code}, message: ${error.message}.`);
       } else {
@@ -3879,12 +4151,14 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 **Example**
   ```ts
+  import { BusinessError } from '@ohos.base';
+
   try {
-    this.context.resourceManager.getRawFd("test.xml").then(value => {
+    this.context.resourceManager.getRawFd("test.txt").then((value: resourceManager.RawFileDescriptor) => {
       let fd = value.fd;
       let offset = value.offset;
       let length = value.length;
-    }).catch(error => {
+    }).catch((error: BusinessError) => {
       console.log(`promise getRawFd error error code: ${error.code}, message: ${error.message}.`);
     });
   } catch (error) {
@@ -3949,7 +4223,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 **Example**
   ```ts
   try {
-    this.context.resourceManager.closeRawFd("test.xml", (error, value) => {
+    this.context.resourceManager.closeRawFd("test.txt", (error, value) => {
       if (error != null) {
         console.log("error is " + error);
       }
@@ -3990,13 +4264,34 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 **Example**
   ```ts
   try {
-    this.context.resourceManager.closeRawFd("test.xml").then(value => {
-      let result = value;
-    }).catch(error => {
-      console.log("closeRawFd promise error is " + error);
-    });
+    this.context.resourceManager.closeRawFd("test.txt");
   } catch (error) {
     console.error(`promise closeRawFd failed, error code: ${error.code}, message: ${error.message}.`);
+  }
+  ```
+
+### getConfigurationSync
+
+getConfigurationSync(): Configuration
+
+Obtains the device configuration. This API return the results synchronously.
+
+**System capability**: SystemCapability.Global.ResourceManager
+
+**Return value**
+
+| Type                                      | Description              |
+| ---------------------------------------- | ---------------- |
+| Promise&lt;[Configuration](#configuration)&gt; | Promise used to return the result.|
+
+**Example**
+  ```ts
+  try {
+    let value = this.context.resourceManager.getConfigurationSync();
+    let direction = value.direction;
+    let locale = value.locale;
+  } catch (error) {
+    console.error("getConfigurationSync error is " + error);
   }
   ```
 
@@ -4046,15 +4341,42 @@ Obtains the device configuration. This API uses a promise to return the result.
 
 **Example**
   ```ts
+  import { BusinessError } from '@ohos.base';
+
   try {
-    this.context.resourceManager.getConfiguration().then(value => {
+    this.context.resourceManager.getConfiguration().then((value: resourceManager.Configuration) => {
       let direction = value.direction;
       let locale = value.locale;
-    }).catch(error => {
+    }).catch((error: BusinessError) => {
       console.error("getConfiguration promise error is " + error);
     });
   } catch (error) {
     console.error("getConfiguration promise error is " + error);
+  }
+  ```
+
+### getDeviceCapabilitySync
+
+getDeviceCapabilitySync(): DeviceCapability
+
+Obtains the device capability. This API return the results synchronously.
+
+**System capability**: SystemCapability.Global.ResourceManager
+
+**Return value**
+
+| Type                                      | Description                 |
+| ---------------------------------------- | ------------------- |
+| DeviceCapability | Promise used to return the result.|
+
+**Example**
+  ```ts
+  try {
+    let value = this.context.resourceManager.getDeviceCapabilitySync();
+    let screenDensity = value.screenDensity;
+    let deviceType = value.deviceType;
+  } catch (error) {
+    console.error("getDeviceCapabilitySync error is " + error);
   }
   ```
 
@@ -4104,11 +4426,13 @@ Obtains the device capability. This API uses a promise to return the result.
 
 **Example**
   ```ts
+  import { BusinessError } from '@ohos.base';
+
   try {
-    this.context.resourceManager.getDeviceCapability().then(value => {
+    this.context.resourceManager.getDeviceCapability().then((value: resourceManager.DeviceCapability) => {
       let screenDensity = value.screenDensity;
       let deviceType = value.deviceType;
-    }).catch(error => {
+    }).catch((error: BusinessError) => {
       console.error("getDeviceCapability promise error is " + error);
     });
   } catch (error) {
@@ -4191,7 +4515,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
   ```ts
   let path = getContext().bundleCodeDir + "/library1-default-signed.hsp";
   try {
-    this.resmgr.removeResource(path);
+    this.context.resourceManager.removeResource(path);
   } catch (error) {
     console.error(`removeResource failed, error code: ${error.code}, message: ${error.message}.`);
   }
@@ -4252,10 +4576,12 @@ This API is deprecated since API version 9. You are advised to use [getStringVal
 
 **Example**
   ```ts
+  import { BusinessError } from '@ohos.base';
+
   resourceManager.getResourceManager((error, mgr) => {
-      mgr.getString($r('app.string.test').id).then(value => {
+      mgr.getString($r('app.string.test').id).then((value: string) => {
           let str = value;
-      }).catch(error => {
+      }).catch((error: BusinessError) => {
           console.log("getstring promise error is " + error);
       });
   });
@@ -4317,10 +4643,12 @@ This API is deprecated since API version 9. You are advised to use [getStringArr
 
 **Example**
   ```ts
+  import { BusinessError } from '@ohos.base';
+
   resourceManager.getResourceManager((error, mgr) => {
-       mgr.getStringArray($r('app.strarray.test').id).then(value => {
+       mgr.getStringArray($r('app.strarray.test').id).then((value: Array<string>) => {
           let strArray = value;
-      }).catch(error => {
+      }).catch((error: BusinessError) => {
           console.log("getStringArray promise error is " + error);
       });
   });
@@ -4331,7 +4659,7 @@ This API is deprecated since API version 9. You are advised to use [getStringArr
 
 getMedia(resId: number, callback: AsyncCallback&lt;Uint8Array&gt;): void
 
-Obtains the content of the media file corresponding to the specified resource ID. This API uses an asynchronous callback to return the result.
+Obtains the media file content corresponding to the specified resource ID. This API uses an asynchronous callback to return the result.
 
 This API is deprecated since API version 9. You are advised to use [getMediaContent](#getmediacontent9) instead.
 
@@ -4362,7 +4690,7 @@ This API is deprecated since API version 9. You are advised to use [getMediaCont
 
 getMedia(resId: number): Promise&lt;Uint8Array&gt;
 
-Obtains the content of the media file corresponding to the specified resource ID. This API uses a promise to return the result.
+Obtains the media file content corresponding to the specified resource ID. This API uses a promise to return the result.
 
 This API is deprecated since API version 9. You are advised to use [getMediaContent](#getmediacontent9-1) instead.
 
@@ -4382,10 +4710,12 @@ This API is deprecated since API version 9. You are advised to use [getMediaCont
 
 **Example**
   ```ts
+  import { BusinessError } from '@ohos.base';
+
   resourceManager.getResourceManager((error, mgr) => {
-      mgr.getMedia($r('app.media.test').id).then(value => {
+      mgr.getMedia($r('app.media.test').id).then((value: Uint8Array) => {
           let media = value;
-      }).catch(error => {
+      }).catch((error: BusinessError) => {
           console.log("getMedia promise error is " + error);
       });
   });
@@ -4447,10 +4777,12 @@ This API is deprecated since API version 9. You are advised to use [getMediaCont
 
 **Example**
   ```ts
+  import { BusinessError } from '@ohos.base';
+
   resourceManager.getResourceManager((error, mgr) => {
-      mgr.getMediaBase64($r('app.media.test').id).then(value => {
+      mgr.getMediaBase64($r('app.media.test').id).then((value: string) => {
           let media = value;
-      }).catch(error => {
+      }).catch((error: BusinessError) => {
           console.log("getMediaBase64 promise error is " + error);
       });
   });
@@ -4482,10 +4814,12 @@ This API is deprecated since API version 9. You are advised to use [getPluralStr
 
 **Example**
   ```ts
+  import { BusinessError } from '@ohos.base';
+
   resourceManager.getResourceManager((error, mgr) => {
-      mgr.getPluralString($r("app.plural.test").id, 1).then(value => {
+      mgr.getPluralString($r("app.plural.test").id, 1).then((value: string) => {
           let str = value;
-      }).catch(error => {
+      }).catch((error: BusinessError) => {
           console.log("getPluralString promise error is " + error);
       });
   });
@@ -4544,7 +4878,7 @@ This API is deprecated since API version 9. You are advised to use [getRawFileCo
 **Example**
   ```ts
   resourceManager.getResourceManager((error, mgr) => {
-      mgr.getRawFile("test.xml", (error, value) => {
+      mgr.getRawFile("test.txt", (error, value) => {
           if (error != null) {
               console.log("error is " + error);
           } else {
@@ -4579,10 +4913,12 @@ This API is deprecated since API version 9. You are advised to use [getRawFileCo
 
 **Example**
   ```ts
+  import { BusinessError } from '@ohos.base';
+
   resourceManager.getResourceManager((error, mgr) => {
-      mgr.getRawFile("test.xml").then(value => {
+      mgr.getRawFile("test.txt").then((value: Uint8Array) => {
           let rawFile = value;
-      }).catch(error => {
+      }).catch((error: BusinessError) => {
           console.log("getRawFile promise error is " + error);
       });
   });
@@ -4609,7 +4945,7 @@ This API is deprecated since API version 9. You are advised to use [getRawFd](#g
 **Example**
   ```ts
   resourceManager.getResourceManager((error, mgr) => {
-      mgr.getRawFileDescriptor("test.xml", (error, value) => {
+      mgr.getRawFileDescriptor("test.txt", (error, value) => {
           if (error != null) {
               console.log("error is " + error);
           } else {
@@ -4645,12 +4981,14 @@ This API is deprecated since API version 9. You are advised to use [getRawFd](#g
 
 **Example**
   ```ts
+  import { BusinessError } from '@ohos.base';
+
   resourceManager.getResourceManager((error, mgr) => {
-      mgr.getRawFileDescriptor("test.xml").then(value => {
+      mgr.getRawFileDescriptor("test.txt").then((value: resourceManager.RawFileDescriptor) => {
           let fd = value.fd;
           let offset = value.offset;
           let length = value.length;
-      }).catch(error => {
+      }).catch((error: BusinessError) => {
           console.log("getRawFileDescriptor promise error is " + error);
       });
   });
@@ -4676,7 +5014,7 @@ This API is deprecated since API version 9. You are advised to use [closeRawFd](
 **Example**
   ```ts
   resourceManager.getResourceManager((error, mgr) => {
-      mgr.closeRawFileDescriptor("test.xml", (error, value) => {
+      mgr.closeRawFileDescriptor("test.txt", (error, value) => {
           if (error != null) {
               console.log("error is " + error);
           }
@@ -4709,10 +5047,6 @@ This API is deprecated since API version 9. You are advised to use [closeRawFd](
 **Example**
   ```ts
   resourceManager.getResourceManager((error, mgr) => {
-      mgr.closeRawFileDescriptor("test.xml").then(value => {
-          let result = value;
-      }).catch(error => {
-          console.log("closeRawFileDescriptor promise error is " + error);
-      });
+      mgr.closeRawFileDescriptor("test.txt");
   });
   ```

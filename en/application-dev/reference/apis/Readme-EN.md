@@ -304,6 +304,7 @@
 
 - AI
   - [@ohos.ai.mindSporeLite (Inference)](js-apis-mindSporeLite.md)
+  - [@ohos.ai.intelligentVoice (Intelligent Voice)](js-apis-intelligentVoice.md)
 
 - Telephony Service
   - [@ohos.contact (Contacts)](js-apis-contact.md)
@@ -396,7 +397,7 @@
   - [@ohos.charger (Charging Type)](js-apis-charger.md)
   - [@ohos.cooperate (Screen Hopping)](js-apis-devicestatus-cooperate.md)
   - [@ohos.deviceAttest (Device Attestation)](js-apis-deviceAttest.md)
-  - [@ohos.deviceStatus.dragInteraction (Drag)](js-apis-devicestatus-draginteraction.md)
+  - [@ohos.deviceStatus.dragInteraction (Drag Interaction)](js-apis-devicestatus-draginteraction.md)
   - [@ohos.deviceInfo (Device Information)](js-apis-device-info.md)
   - [@ohos.distributedDeviceManager (Device Management)](js-apis-distributedDeviceManager.md)
   - [@ohos.distributedHardware.deviceManager (Device Management)](js-apis-device-manager.md)
