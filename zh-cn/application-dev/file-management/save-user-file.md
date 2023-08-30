@@ -30,7 +30,7 @@ save接口会将文件保存在文件管理器，而不是图库。
    let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 
    let pixelmapArrayBuffer: ArrayBuffer;
-   async getPixelmap() {
+   async function getPixelmap() {
       try {
          let predicates = new dataSharePredicates.DataSharePredicates();
          let fetchOption: photoAccessHelper.FetchOptions = {
@@ -48,10 +48,11 @@ save接口会将文件保存在文件管理器，而不是图库。
                pixelmapArrayBuffer = readBuffer;
             })
          }).catch((err: BusinessError) => {
-            console.error('[picker] getThumbnail failed with error: ' + err);
+            console.error('[picker] getThumbnail failed with error: ' + JSON.stringify(err));
          });
       } catch (error) {
-         console.error('[picker] getThumbnail error = ' + error);
+         let err: BusinessError = error as BusinessError;
+         console.error('[picker] getThumbnail error = ' + JSON.stringify(err));
       }
    }
    ```
@@ -61,7 +62,7 @@ save接口会将文件保存在文件管理器，而不是图库。
    save返回的uri权限是读写权限，可以根据结果集里面的uri进行文件读写等操作。注意不能在picker的回调里直接使用此uri进行打开文件操作，需要定义一个全局变量保存uri，使用类似一个按钮去触发打开文件。
 
    ```ts  
-   let uris = null;
+   let uris: string;
    async photoViewPickerSave() {
       try {
          const photoSaveOptions = new picker.PhotoSaveOptions(); // 创建文件管理器保存选项实例
@@ -74,11 +75,13 @@ save接口会将文件保存在文件管理器，而不是图库。
                uris = photoSaveResult;
                console.info('photoViewPicker.save to file succeed and uris are:' + uris);
             }
-         } catch (err) {
+         } catch (error) {
+            let err: BusinessError = error as BusinessError;
             console.error(`[picker] Invoke photoViewPicker.save failed, code is ${err.code}, message is ${err.message}`);
          }
       } catch (error) {
-         console.info("[picker] photoViewPickerSave error = " + error);
+         let err: BusinessError = error as BusinessError;
+         console.info("[picker] photoViewPickerSave error = " + JSON.stringify(err));
       }
    }
    ```
@@ -88,14 +91,15 @@ save接口会将文件保存在文件管理器，而不是图库。
    然后，通过fd使用[fs.write](../reference/apis/js-apis-file-fs.md#fswrite)接口对这个文件进行编辑修改，编辑修改完成后关闭fd。
 
    ```ts
-   async writeOnly(uri: string) {
+   async function writeOnly(uri: string) {
       try {
          let file = fs.openSync(uri, fs.OpenMode.WRITE_ONLY);
          let writeLen = await fs.write(file.fd, pixelmapArrayBuffer);
          fs.closeSync(file);
          console.info("[picker] writeOnly writeLen = " + writeLen);
       } catch (error) {
-         console.info("[picker] writeOnly error: " + error);
+         let err: BusinessError = error as BusinessError;
+         console.info("[picker] writeOnly error: " + JSON.stringify(err));
       }
    }
    ```

@@ -138,11 +138,13 @@ function getShareFile() {
       // 根据需要对被分享文件的URI进行相应操作。例如读写的方式打开URI获取file对象
       let file = fs.openSync(uri, fs.OpenMode.READ_WRITE);
       console.info('open file successfully!');
-    } catch (error) {
+    } catch (err) {
+      let error: BusinessError = err as BusinessError;
       console.error(`Invoke openSync failed, code is ${error.code}, message is ${error.message}`);
     }
   } catch (error) {
-    console.error(`Invoke openSync failed, code is ${error.code}, message is ${error.message}`);
+    let err: BusinessError = error as BusinessError;
+    console.error(`Invoke openSync failed, code is ${err.code}, message is ${err.message}`);
   }
 }
 ```
