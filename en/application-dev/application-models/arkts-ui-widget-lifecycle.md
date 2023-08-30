@@ -4,7 +4,7 @@
 When creating an ArkTS widget, you need to implement the [FormExtensionAbility](../reference/apis/js-apis-app-form-formExtensionAbility.md) lifecycle APIs.
 
 
-1. Import related modules to **EntryFormAbility.ts**.
+1. Import related modules to **EntryFormAbility.ets**.
    
    ```ts
    import formInfo from '@ohos.app.form.formInfo';
@@ -13,7 +13,7 @@ When creating an ArkTS widget, you need to implement the [FormExtensionAbility](
    import formProvider from '@ohos.app.form.formProvider';
    ```
 
-2. In **EntryFormAbility.ts**, implement the [FormExtensionAbility](../reference/apis/js-apis-app-form-formExtensionAbility.md) lifecycle APIs, including **onAddForm**, whose **want** parameter can be used to obtain the widget information through [FormParam](../reference/apis/js-apis-app-form-formInfo.md#formparam).
+2. In **EntryFormAbility.ets**, implement the [[FormExtensionAbility](../reference/apis/js-apis-app-form-formExtensionAbility.md) lifecycle APIs, including **onAddForm**, whose **want** parameter can be used to obtain the widget information through [FormParam](../reference/apis/js-apis-app-form-formInfo.md#formparam).
    
    ```typescript
    import formInfo from '@ohos.app.form.formInfo';
@@ -36,9 +36,8 @@ When creating an ArkTS widget, you need to implement the [FormExtensionAbility](
      }
    
      onCastToNormalForm(formId) {
-       // Called when the form provider is notified that a temporary form is successfully
-       // converted to a normal form.
-       // Called when the widget host converts the temporary widget into a normal one. The widget provider should do something to respond to the conversion.
+       // Called when the widget host converts the temporary widget into a normal one.   
+       // The widget provider should do something to respond to the conversion.
        console.info(`[EntryFormAbility] onCastToNormalForm, formId: ${formId}`);
      }
    
@@ -60,20 +59,20 @@ When creating an ArkTS widget, you need to implement the [FormExtensionAbility](
      }
    
      onChangeFormVisibility(newStatus) {
-       // Called when the form provider receives form events from the system.
-       // The callback is performed only when formVisibleNotify is set to true and the application is a system application.
+       // Called when the widget provider receives form events from the system.
+       // The callback is triggered only when formVisibleNotify is set to true and the application is a system application.
        console.info('[EntryFormAbility] onChangeFormVisibility');
      }
    
      onFormEvent(formId, message) {
-       // Called when a specified message event defined by the form provider is triggered.
+       // Called when a specified message event defined by the widget provider is triggered.
        // If the widget supports event triggering, override this method and implement the trigger.
        console.info('[EntryFormAbility] onFormEvent');
      }
    
      onRemoveForm(formId) {
-       // Called to notify the form provider that a specified form has been destroyed.
-       // Called when the corresponding widget is deleted. The input parameter is the ID of the deleted card.
+       // Called to notify the widget provider that a specified widget has been destroyed.
+       // The input parameter is the ID of the deleted card.
        console.info('[EntryFormAbility] onRemoveForm');
      }
    
@@ -83,8 +82,8 @@ When creating an ArkTS widget, you need to implement the [FormExtensionAbility](
      }
    
      onAcquireFormState(want) {
-       // Called to return a {@link FormState} object.
-       // Called when the widget provider receives the status query result of a widget. By default, the initial state of the widget is returned.
+       // Called to return a FormState object upon a status query request
+       // from the widget. By default, the initial widget state is returned.
        return formInfo.FormState.READY;
      }
    }
