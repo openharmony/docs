@@ -154,21 +154,18 @@ let wantTemp: Want = {
 let certFileArray: Uint8Array = new Uint8Array();
 // The variable context needs to be initialized in MainAbility's onCreate callback function
 // test.cer needs to be placed in the rawfile directory
-await getContext().resourceManager.getRawFileContent("test.cer")
-  .then((value) => {
-    certFileArray = value
-  })
-  .catch((error: BusinessError) => {
-    console.error(`Failed to get row file content. message: ${error.message}`);
-    return
+getContext().resourceManager.getRawFileContent("test.cer").then((value) => {
+  certFileArray = value;
+  deviceSettings.installUserCertificate(wantTemp, { inData: certFileArray, alias: "cert_alias_xts" }, (err, result) => {
+    if (err) {
+      console.error(`Failed to install user certificate. Code: ${err.code}, message: ${err.message}`);
+    } else {
+      console.info(`Succeeded in installing user certificate, result : ${JSON.stringify(result)}`);
+    }
   });
-
-deviceSettings.installUserCertificate(wantTemp, { inData: certFileArray, alias: "cert_alias_xts" }, (err, result) => {
-  if (err) {
-    console.error(`Failed to install user certificate. Code: ${err.code}, message: ${err.message}`);
-  } else {
-    console.info(`Succeeded in installing user certificate, result : ${JSON.stringify(result)}`);
-  }
+}).catch((error: BusinessError) => {
+  console.error(`Failed to get row file content. message: ${error.message}`);
+  return
 });
 ```
 
@@ -219,21 +216,18 @@ let wantTemp: Want = {
 let certFileArray: Uint8Array = new Uint8Array();
 // The variable context needs to be initialized in MainAbility's onCreate callback function
 // test.cer needs to be placed in the rawfile directory
-await getContext().resourceManager.getRawFileContent("test.cer")
-  .then((value) => {
-    certFileArray = value
+getContext().resourceManager.getRawFileContent("test.cer").then((value) => {
+  certFileArray = value
+  deviceSettings.installUserCertificate(wantTemp, { inData: certFileArray, alias: "cert_alias_xts" })
+    .then((result) => {
+      console.info(`Succeeded in installing user certificate, result : ${JSON.stringify(result)}`);
+    }).catch((err: BusinessError) => {
+    console.error(`Failed to install user certificate. Code: ${err.code}, message: ${err.message}`);
   })
-  .catch((error: BusinessError) => {
-    console.error(`Failed to get row file content. message: ${error.message}`);
-    return
-  });
-
-await deviceSettings.installUserCertificate(wantTemp, { inData: certFileArray, alias: "cert_alias_xts" })
-  .then((result) => {
-    console.info(`Succeeded in installing user certificate, result : ${JSON.stringify(result)}`);
-  }).catch((err: BusinessError) => {
-  console.error(`Failed to install user certificate. Code: ${err.code}, message: ${err.message}`);
-})
+}).catch((error: BusinessError) => {
+  console.error(`Failed to get row file content. message: ${error.message}`);
+  return
+});
 ```
 
 ## CertBlob
