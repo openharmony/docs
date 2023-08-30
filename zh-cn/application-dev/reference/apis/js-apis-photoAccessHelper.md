@@ -1169,7 +1169,7 @@ createDeleteRequest(uriList: Array&lt;string&gt;, callback: AsyncCallback&lt;voi
 
 | 参数名   | 类型                      | 必填 | 说明       |
 | -------- | ------------------------- | ---- | ---------- |
-| uriList | Array&lt;string&gt; | 是   | 待删除的媒体文件uri数组。 |
+| uriList | Array&lt;string&gt; | 是   | 待删除的媒体文件uri数组，最大删除数量300。 |
 | callback | AsyncCallback&lt;void&gt; | 是   | callback返回void。 |
 
 **错误码：**
@@ -1227,7 +1227,7 @@ createDeleteRequest(uriList: Array&lt;string&gt;): Promise&lt;void&gt;;
 
 | 参数名   | 类型                      | 必填 | 说明       |
 | -------- | ------------------------- | ---- | ---------- |
-| uriList | Array&lt;string&gt; | 是   | 待删除的媒体文件uri数组。 |
+| uriList | Array&lt;string&gt; | 是   | 待删除的媒体文件uri数组，最大删除数量300。 |
 
 **返回值：**
 
