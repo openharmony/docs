@@ -27,7 +27,7 @@ addContact(context: Context, contact: Contact, callback: AsyncCallback<number>):
 
 | 参数名   | 类型                        | 必填 | 说明                                                         |
 | -------- | --------------------------- | ---- | ------------------------------------------------------------ |
-| context  | Context                     | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-app-ability-uiAbility.md)。 |
+| context  | Context                     | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-inner-application-context.md)。 |
 | contact  | [Contact](#contact)         | 是   | 联系人信息。                                                 |
 | callback | AsyncCallback&lt;number&gt; | 是   | 回调函数，返回添加的联系人id。                               |
 
@@ -67,8 +67,9 @@ addContact(contact:Contact, callback:AsyncCallback&lt;number&gt;): void
 
 添加联系人，使用callback方式作为异步方法。
 
-**说明**
-从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContact](#contactquerycontact10)
+> **说明**
+>
+> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContact](#contactquerycontact10)
 
 **需要权限**：ohos.permission.WRITE_CONTACTS
 
@@ -110,7 +111,7 @@ addContact(context: Context, contact: Contact): Promise<number&gt;
 
 | 参数名  | 类型                | 必填 | 说明                                                         |
 | ------- | ------------------- | ---- | ------------------------------------------------------------ |
-| context | Context             | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-app-ability-uiAbility.md)。 |
+| context | Context             | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-inner-application-context.md)。 |
 | contact | [Contact](#contact) | 是   | 联系人信息。                                                 |
 
 **返回值：**
@@ -154,8 +155,9 @@ addContact(contact: Contact): Promise&lt;number&gt;
 
 添加联系人，使用Promise方式作为异步方法。
 
-**说明**
-从API version 7 开始支持，从API 10 开始废弃，建议使用[addContact](#contactaddcontact10)
+> **说明**
+>
+> 从API version 7 开始支持，从API 10 开始废弃，建议使用[addContact](#contactaddcontact10)
 
 **需要权限**：ohos.permission.WRITE_CONTACTS
 
@@ -201,7 +203,7 @@ deleteContact(context: Context, key: string, callback: AsyncCallback&lt;void&gt;
 
 | 参数名   | 类型                      | 必填 | 说明                                                         |
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
-| context  | Context                   | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-app-ability-uiAbility.md)。 |
+| context  | Context                   | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-inner-application-context.md)。 |
 | key      | string                    | 是   | 联系人key值，一个联系人对应一个key。                         |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数，返回删除联系人的结果。                             |
 
@@ -237,8 +239,9 @@ deleteContact(key: string, callback: AsyncCallback&lt;void&gt;): void
 
 删除联系人，使用callback方式作为异步方法。
 
-**说明**
-从API version 7 开始支持，从API 10 开始废弃，建议使用[deleteContact](#contactdeletecontact10)
+> **说明**
+>
+> 从API version 7 开始支持，从API 10 开始废弃，建议使用[deleteContact](#contactdeletecontact10)
 
 **需要权限**：ohos.permission.WRITE_CONTACTS
 
@@ -278,7 +281,7 @@ deleteContact(context: Context,  key: string): Promise&lt;void&gt;
 
 | 参数名  | 类型    | 必填 | 说明                                                         |
 | ------- | ------- | ---- | ------------------------------------------------------------ |
-| context | Context | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-app-ability-uiAbility.md)。 |
+| context | Context | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-inner-application-context.md)。 |
 | key     | string  | 是   | 联系人的key值，一个联系人对应一个key。                       |
 
 **返回值：**
@@ -318,8 +321,9 @@ deleteContact(key: string): Promise&lt;void&gt;
 
 删除联系人，使用Promise方式作为异步方法。
 
-**说明**
-从API version 7 开始支持，从API 10 开始废弃，建议使用[deleteContact](#contactdeletecontact10)
+> **说明**
+>
+> 从API version 7 开始支持，从API 10 开始废弃，建议使用[deleteContact](#contactdeletecontact10)
 
 **需要权限**：ohos.permission.WRITE_CONTACTS
 
@@ -363,7 +367,7 @@ updateContact(context: Context, contact: Contact, callback: AsyncCallback&lt;voi
 
 | 参数名   | 类型                      | 必填 | 说明                                                         |
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
-| context  | Context                   | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-app-ability-uiAbility.md)。 |
+| context  | Context                   | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-inner-application-context.md)。 |
 | contact  | [Contact](#contact)       | 是   | 联系人信息。                                                 |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数，返回更新联系人的更新结果。                         |
 
@@ -403,8 +407,9 @@ updateContact(contact: Contact, callback: AsyncCallback&lt;void&gt;): void
 
 更新联系人，使用callback方式作为异步方法。
 
-**说明**
-从API version 7 开始支持，从API 10 开始废弃，建议使用[updateContact](#contactupdatecontact10)
+> **说明**
+>
+> 从API version 7 开始支持，从API 10 开始废弃，建议使用[updateContact](#contactupdatecontact10)
 
 **需要权限**：ohos.permission.WRITE_CONTACTS
 
@@ -448,7 +453,7 @@ updateContact(context: Context,  contact: Contact, attrs: ContactAttributes, cal
 
 | 参数名   | 类型                                    | 必填 | 说明                                                         |
 | -------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
-| context  | Context                                 | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-app-ability-uiAbility.md)。 |
+| context  | Context                                 | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-inner-application-context.md)。 |
 | contact  | [Contact](#contact)                     | 是   | 联系人信息。                                                 |
 | attrs    | [ContactAttributes](#contactattributes) | 是   | 联系人的属性列表。                                           |
 | callback | AsyncCallback&lt;void&gt;               | 是   | 回调函数，返回更新联系人的更新结果。                         |
@@ -491,8 +496,9 @@ updateContact(contact: Contact, attrs: ContactAttributes, callback: AsyncCallbac
 
 更新联系人，使用callback方式作为异步方法。
 
-**说明**
-从API version 7 开始支持，从API 10 开始废弃，建议使用[updateContact](#contactupdatecontact10)
+> **说明**
+>
+> 从API version 7 开始支持，从API 10 开始废弃，建议使用[updateContact](#contactupdatecontact10)
 
 **需要权限**：ohos.permission.WRITE_CONTACTS
 
@@ -539,7 +545,7 @@ updateContact(context: Context,  contact: Contact, attrs?: ContactAttributes): P
 
 | 参数名  | 类型                                    | 必填 | 说明                                                         |
 | ------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
-| context | Context                                 | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-app-ability-uiAbility.md)。 |
+| context | Context                                 | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-inner-application-context.md)。 |
 | contact | [Contact](#contact)                     | 是   | 联系人信息。                                                 |
 | attrs   | [ContactAttributes](#contactattributes) | 否   | 联系人的属性列表。                                           |
 
@@ -586,8 +592,9 @@ updateContact(contact: Contact, attrs?: ContactAttributes): Promise&lt;void&gt;
 
 更新联系人，使用Promise方式作为异步方法。
 
-**说明**
-从API version 7 开始支持，从API 10 开始废弃，建议使用[updateContact](#contactupdatecontact10)
+> **说明**
+>
+> 从API version 7 开始支持，从API 10 开始废弃，建议使用[updateContact](#contactupdatecontact10)
 
 **需要权限**：ohos.permission.WRITE_CONTACTS
 
@@ -637,7 +644,7 @@ isLocalContact(context: Context,  id: number, callback: AsyncCallback&lt;boolean
 
 | 参数名   | 类型                         | 必填 | 说明                                                         |
 | -------- | ---------------------------- | ---- | ------------------------------------------------------------ |
-| context  | Context                      | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-app-ability-uiAbility.md)。 |
+| context  | Context                      | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-inner-application-context.md)。 |
 | id       | number                       | 是   | 联系人对象的id属性，一个联系人对应一个id。                   |
 | callback | AsyncCallback&lt;boolean&gt; | 是   | 回调函数，返回布尔值。true代表联系人id在本地电话簿中，false则代表联系人id不在本地电话簿中。 |
 
@@ -673,8 +680,9 @@ isLocalContact(id: number, callback: AsyncCallback&lt;boolean&gt;): void
 
 判断当前联系人id是否在电话簿中，使用callback方式作为异步方法。
 
-**说明**
-从API version 7 开始支持，从API 10 开始废弃，建议使用[isLocalContact](#contactislocalcontact10)
+> **说明**
+>
+> 从API version 7 开始支持，从API 10 开始废弃，建议使用[isLocalContact](#contactislocalcontact10)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -713,7 +721,7 @@ isLocalContact(context: Context,  id: number): Promise&lt;boolean&gt;
 
 | 参数名  | 类型    | 必填 | 说明                                                         |
 | ------- | ------- | ---- | ------------------------------------------------------------ |
-| context | Context | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-app-ability-uiAbility.md)。 |
+| context | Context | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-inner-application-context.md)。 |
 | id      | number  | 是   | 联系人对象的id属性，一个联系人对应一个id。                   |
 
 **返回值：**
@@ -753,8 +761,8 @@ isLocalContact(id: number): Promise&lt;boolean&gt;
 
 判断当前联系人id是否在电话簿中，使用Promise方式作为异步方法。
 
-**说明**
-从API version 7 开始支持，从API 10 开始废弃，建议使用[isLocalContact](#contactislocalcontact10)
+> **说明**
+>从API version 7 开始支持，从API 10 开始废弃，建议使用[isLocalContact](#contactislocalcontact10)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -797,7 +805,7 @@ isMyCard(context: Context,  id: number, callback: AsyncCallback&lt;boolean&gt;):
 
 | 参数名   | 类型                         | 必填 | 说明                                                         |
 | -------- | ---------------------------- | ---- | ------------------------------------------------------------ |
-| context  | Context                      | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-app-ability-uiAbility.md)。 |
+| context  | Context                      | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-inner-application-context.md)。 |
 | id       | number                       | 是   | 联系人对象的id属性。                                         |
 | callback | AsyncCallback&lt;boolean&gt; | 是   | 回调函数，返回是否为“我的名片”的布尔值。true代表此联系人是“我的名片”，false则代表不是。 |
 
@@ -833,8 +841,8 @@ isMyCard(id: number, callback: AsyncCallback&lt;boolean&gt;): void
 
 判断是否为“我的名片”，使用callback方式作为异步方法。
 
-**说明**
-从API version 7 开始支持，从API 10 开始废弃，建议使用[isMyCard](#contactismycard10)
+> **说明**
+>从API version 7 开始支持，从API 10 开始废弃，建议使用[isMyCard](#contactismycard10)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -874,7 +882,7 @@ isMyCard(context: Context,  id: number): Promise&lt;boolean&gt;
 
 | 参数名  | 类型    | 必填 | 说明                                                         |
 | ------- | ------- | ---- | ------------------------------------------------------------ |
-| context | Context | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-app-ability-uiAbility.md)。 |
+| context | Context | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-inner-application-context.md)。 |
 | id      | number  | 是   | 联系人对象的id属性。                                         |
 
 **返回值：**
@@ -914,8 +922,9 @@ isMyCard(id: number): Promise&lt;boolean&gt;
 
 判断是否为“我的名片”，使用Promise方式作为异步方法。
 
-**说明**
-从API version 7 开始支持，从API 10 开始废弃，建议使用[isMyCard](#contactismycard10)
+> **说明**
+>
+> 从API version 7 开始支持，从API 10 开始废弃，建议使用[isMyCard](#contactismycard10)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -958,7 +967,7 @@ queryMyCard(context: Context,  callback: AsyncCallback&lt;Contact&gt;): void
 
 | 参数名   | 类型                                     | 必填 | 说明                                                         |
 | -------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
-| context  | Context                                  | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-app-ability-uiAbility.md)。 |
+| context  | Context                                  | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-inner-application-context.md)。 |
 | callback | AsyncCallback&lt;[Contact](#contact)&gt; | 是   | 回调函数，返回“我的名片”信息。                               |
 
 **错误码：**
@@ -993,8 +1002,9 @@ queryMyCard(callback: AsyncCallback&lt;Contact&gt;): void
 
 查询“我的名片”，使用callback方式作为异步方法。
 
-**说明**
-从API version 7 开始支持，从API 10 开始废弃，建议使用[queryMyCard](#contactquerymycard10)
+> **说明**
+>
+> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryMyCard](#contactquerymycard10)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -1032,7 +1042,7 @@ queryMyCard(context: Context,  attrs: ContactAttributes, callback: AsyncCallback
 
 | 参数名   | 类型                                     | 必填 | 说明                                                         |
 | -------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
-| context  | Context                                  | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-app-ability-uiAbility.md)。 |
+| context  | Context                                  | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-inner-application-context.md)。 |
 | attrs    | [ContactAttributes](#contactattributes)  | 是   | 联系人的属性列表。                                           |
 | callback | AsyncCallback&lt;[Contact](#contact)&gt; | 是   | 回调函数，返回“我的名片”信息。                               |
 
@@ -1070,8 +1080,9 @@ queryMyCard(attrs: ContactAttributes, callback: AsyncCallback&lt;Contact&gt;): v
 
 查询“我的名片”，使用callback方式作为异步方法。
 
-**说明**
-从API version 7 开始支持，从API 10 开始废弃，建议使用[queryMyCard](#contactquerymycard10)
+> **说明**
+>
+> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryMyCard](#contactquerymycard10)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -1112,7 +1123,7 @@ queryMyCard(context: Context,  attrs?: ContactAttributes): Promise&lt;Contact&gt
 
 | 参数名  | 类型                                    | 必填 | 说明                                                         |
 | ------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
-| context | Context                                 | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-app-ability-uiAbility.md)。 |
+| context | Context                                 | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-inner-application-context.md)。 |
 | attrs   | [ContactAttributes](#contactattributes) | 否   | 联系人的属性列表。                                           |
 
 **返回值：**
@@ -1154,8 +1165,9 @@ queryMyCard(attrs?: ContactAttributes): Promise&lt;Contact&gt;
 
 查询“我的名片”，使用Promise方式作为异步方法。
 
-**说明**
-从API version 7 开始支持，从API 10 开始废弃，建议使用[queryMyCard](#contactquerymycard10)
+> **说明**
+>
+> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryMyCard](#contactquerymycard10)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -1192,8 +1204,9 @@ selectContact(callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
 选择联系人，使用callback方式作为异步方法。
 
-**说明**
-从API version 7 开始支持，从API 10 开始废弃，建议使用[selectContacts](#contactselectcontacts10)
+> **说明**
+>
+> 从API version 7 开始支持，从API 10 开始废弃，建议使用[selectContacts](#contactselectcontacts10)
 
 **系统能力**：SystemCapability.Applications.Contacts
 
@@ -1222,8 +1235,9 @@ selectContact(): Promise&lt;Array&lt;Contact&gt;&gt;
 
 选择联系人，使用Promise方式作为异步方法。
 
-**说明**
-从API version 7 开始支持，从API 10 开始废弃，建议使用[selectContacts](#contactselectcontacts10)
+> **说明**
+>
+> 从API version 7 开始支持，从API 10 开始废弃，建议使用[selectContacts](#contactselectcontacts10)
 
 **系统能力**：SystemCapability.Applications.Contacts
 
@@ -1364,7 +1378,7 @@ queryContact(context: Context,  key: string,  callback: AsyncCallback&lt;Contact
 
 | 参数名   | 类型                                     | 必填 | 说明                                                         |
 | -------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
-| context  | Context                                  | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-app-ability-uiAbility.md)。 |
+| context  | Context                                  | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-inner-application-context.md)。 |
 | key      | string                                   | 是   | 联系人的key值，一个联系人对应一个key。                       |
 | callback | AsyncCallback&lt;[Contact](#contact)&gt; | 是   | 回调函数，返回查询的联系人对象。                             |
 
@@ -1400,8 +1414,9 @@ queryContact(key: string,  callback: AsyncCallback&lt;Contact&gt;): void
 
 根据key查询联系人，使用callback方式作为异步方法。
 
-**说明**
-从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContact](#contactquerycontact10)
+> **说明**
+>
+> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContact](#contactquerycontact10)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -1441,7 +1456,7 @@ queryContact(context: Context,  key: string, holder: Holder, callback: AsyncCall
 
 | 参数名   | 类型                                     | 必填 | 说明                                                         |
 | -------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
-| context  | Context                                  | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-app-ability-uiAbility.md)。 |
+| context  | Context                                  | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-inner-application-context.md)。 |
 | key      | string                                   | 是   | 联系人的key值，一个联系人对应一个key。                       |
 | holder   | [Holder](#holder)                        | 是   | 创建联系人的应用信息。                                       |
 | callback | AsyncCallback&lt;[Contact](#contact)&gt; | 是   | 回调函数，返回查询的联系人对象。                             |
@@ -1482,8 +1497,9 @@ queryContact(key: string, holder: Holder, callback: AsyncCallback&lt;Contact&gt;
 
 根据key查询联系人，使用callback方式作为异步方法。
 
-**说明**
-从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContact](#contactquerycontact10)
+> **说明**
+>
+> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContact](#contactquerycontact10)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -1527,7 +1543,7 @@ queryContact(context: Context,  key: string,  attrs: ContactAttributes, callback
 
 | 参数名   | 类型                                     | 必填 | 说明                                                         |
 | -------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
-| context  | Context                                  | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-app-ability-uiAbility.md)。 |
+| context  | Context                                  | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-inner-application-context.md)。 |
 | key      | string                                   | 是   | 联系人的key值，一个联系人对应一个key。                       |
 | attrs    | [ContactAttributes](#contactattributes)  | 是   | 联系人的属性列表。                                           |
 | callback | AsyncCallback&lt;[Contact](#contact)&gt; | 是   | 回调函数，返回查询的联系人对象。                             |
@@ -1566,8 +1582,9 @@ queryContact(key: string,  attrs: ContactAttributes, callback: AsyncCallback&lt;
 
 根据key查询联系人，使用callback方式作为异步方法。
 
-**说明**
-从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContact](#contactquerycontact10)
+> **说明**
+>
+> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContact](#contactquerycontact10)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -1609,7 +1626,7 @@ queryContact(context: Context,  key: string, holder: Holder, attrs: ContactAttri
 
 | 参数名   | 类型                                     | 必填 | 说明                                                         |
 | -------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
-| context  | Context                                  | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-app-ability-uiAbility.md)。 |
+| context  | Context                                  | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-inner-application-context.md)。 |
 | key      | string                                   | 是   | 联系人的key值，一个联系人对应一个key。                       |
 | holder   | [Holder](#holder)                        | 是   | 创建联系人的应用信息。                                       |
 | attrs    | [ContactAttributes](#contactattributes)  | 是   | 联系人的属性列表。                                           |
@@ -1653,8 +1670,9 @@ queryContact(key: string, holder: Holder, attrs: ContactAttributes, callback: As
 
 根据key查询联系人，使用callback方式作为异步方法。
 
-**说明**
-从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContact](#contactquerycontact10)
+> **说明**
+>
+> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContact](#contactquerycontact10)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -1702,7 +1720,7 @@ queryContact(context: Context,  key: string, holder?: Holder, attrs?: ContactAtt
 
 | 参数名  | 类型                                    | 必填 | 说明                                                         |
 | ------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
-| context | Context                                 | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-app-ability-uiAbility.md)。 |
+| context | Context                                 | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-inner-application-context.md)。 |
 | key     | string                                  | 是   | 联系人的key值，一个联系人对应一个key。                       |
 | holder  | [Holder](#holder)                       | 否   | 创建联系人的应用信息。                                       |
 | attrs   | [ContactAttributes](#contactattributes) | 否   | 联系人的属性列表。                                           |
@@ -1749,8 +1767,9 @@ queryContact(key: string, holder?: Holder, attrs?: ContactAttributes): Promise&l
 
 根据key查询联系人，使用Promise方式作为异步方法。
 
-**说明**
-从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContact](#contactquerycontact10)
+> **说明**
+>
+> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContact](#contactquerycontact10)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -1800,7 +1819,7 @@ queryContacts(context: Context,  callback: AsyncCallback&lt;Array&lt;Contact&gt;
 
 | 参数名   | 类型                                                  | 必填 | 说明                                                         |
 | -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| context  | Context                                               | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-app-ability-uiAbility.md)。 |
+| context  | Context                                               | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-inner-application-context.md)。 |
 | callback | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | 是   | 回调函数，返回查询到的联系人对象数组。                       |
 
 **错误码：**
@@ -1835,8 +1854,9 @@ queryContacts(callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
 查询所有联系人，使用callback方式作为异步方法。
 
-**说明**
-从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContacts](#contactquerycontacts10)
+> **说明**
+>
+> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContacts](#contactquerycontacts10)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -1874,7 +1894,7 @@ queryContacts(context: Context,  holder: Holder, callback: AsyncCallback&lt;Arra
 
 | 参数名   | 类型                                                  | 必填 | 说明                                                         |
 | -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| context  | Context                                               | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-app-ability-uiAbility.md)。 |
+| context  | Context                                               | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-inner-application-context.md)。 |
 | holder   | [Holder](#holder)                                     | 是   | 创建联系人的应用信息。                                       |
 | callback | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | 是   | 回调函数，返回查询到的联系人对象数组。                       |
 
@@ -1914,8 +1934,9 @@ queryContacts(holder: Holder, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt
 
 查询所有联系人，使用callback方式作为异步方法。
 
-**说明**
-从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContacts](#contactquerycontacts10)
+> **说明**
+>
+> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContacts](#contactquerycontacts10)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -1958,7 +1979,7 @@ queryContacts(context: Context,  attrs: ContactAttributes, callback: AsyncCallba
 
 | 参数名   | 类型                                                  | 必填 | 说明                                                         |
 | -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| context  | Context                                               | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-app-ability-uiAbility.md)。 |
+| context  | Context                                               | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-inner-application-context.md)。 |
 | attrs    | [ContactAttributes](#contactattributes)               | 是   | 联系人的属性列表。                                           |
 | callback | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | 是   | 回调函数，返回查询到的联系人对象数组。                       |
 
@@ -1996,8 +2017,9 @@ queryContacts(attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Cont
 
 查询所有联系人，使用callback方式作为异步方法。
 
-**说明**
-从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContacts](#contactquerycontacts10)
+> **说明**
+>
+> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContacts](#contactquerycontacts10)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -2038,7 +2060,7 @@ queryContacts(context: Context,  holder: Holder, attrs: ContactAttributes, callb
 
 | 参数名   | 类型                                                  | 必填 | 说明                                                         |
 | -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| context  | Context                                               | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-app-ability-uiAbility.md)。 |
+| context  | Context                                               | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-inner-application-context.md)。 |
 | holder   | [Holder](#holder)                                     | 是   | 创建联系人的应用信息。                                       |
 | attrs    | [ContactAttributes](#contactattributes)               | 是   | 联系人的属性列表。                                           |
 | callback | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | 是   | 回调函数，返回查询到的联系人对象数组。                       |
@@ -2081,8 +2103,9 @@ queryContacts(holder: Holder, attrs: ContactAttributes, callback: AsyncCallback&
 
 查询所有联系人，使用callback方式作为异步方法。
 
-**说明**
-从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContacts](#contactquerycontacts10)
+> **说明**
+>
+> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContacts](#contactquerycontacts10)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -2128,7 +2151,7 @@ queryContacts(context: Context,  holder?: Holder, attrs?: ContactAttributes): Pr
 
 | 参数名  | 类型                                    | 必填 | 说明                                                         |
 | ------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
-| context | Context                                 | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-app-ability-uiAbility.md)。 |
+| context | Context                                 | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-inner-application-context.md)。 |
 | holder  | [Holder](#holder)                       | 否   | 创建联系人的应用信息。                                       |
 | attrs   | [ContactAttributes](#contactattributes) | 否   | 联系人的属性列表。                                           |
 
@@ -2174,8 +2197,9 @@ queryContacts(holder?: Holder, attrs?: ContactAttributes): Promise&lt;Array&lt;C
 
 查询所有联系人，使用Promise方式作为异步方法。
 
-**说明**
-从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContacts](#contactquerycontacts10)
+> **说明**
+>
+> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContacts](#contactquerycontacts10)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -2225,7 +2249,7 @@ queryContactsByPhoneNumber(context: Context,  phoneNumber: string, callback: Asy
 
 | 参数名      | 类型                                                  | 必填 | 说明                                                         |
 | ----------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| context     | Context                                               | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-app-ability-uiAbility.md)。 |
+| context     | Context                                               | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-inner-application-context.md)。 |
 | phoneNumber | string                                                | 是   | 联系人的电话号码。                                           |
 | callback    | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | 是   | 回调函数，返回查询到的联系人对象数组。                       |
 
@@ -2261,8 +2285,9 @@ queryContactsByPhoneNumber(phoneNumber: string, callback: AsyncCallback&lt;Array
 
 根据电话号码查询联系人，使用callback方式作为异步方法。
 
-**说明**
-从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContactsByPhoneNumber](#contactquerycontactsbyphonenumber10)
+> **说明**
+>
+> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContactsByPhoneNumber](#contactquerycontactsbyphonenumber10)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -2302,7 +2327,7 @@ queryContactsByPhoneNumber(context: Context,  phoneNumber: string, holder: Holde
 
 | 参数名      | 类型                                                  | 必填 | 说明                                                         |
 | ----------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| context     | Context                                               | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-app-ability-uiAbility.md)。 |
+| context     | Context                                               | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-inner-application-context.md)。 |
 | phoneNumber | string                                                | 是   | 联系人的电话号码。                                           |
 | holder      | [Holder](#holder)                                     | 是   | 创建联系人的应用信息。                                       |
 | callback    | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | 是   | 回调函数，返回查询到的联系人对象数组。                       |
@@ -2343,8 +2368,9 @@ queryContactsByPhoneNumber(phoneNumber: string, holder: Holder, callback: AsyncC
 
 根据电话号码查询联系人，使用callback方式作为异步方法。
 
-**说明**
-从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContactsByPhoneNumber](#contactquerycontactsbyphonenumber10)
+> **说明**
+>
+> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContactsByPhoneNumber](#contactquerycontactsbyphonenumber10)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -2388,7 +2414,7 @@ queryContactsByPhoneNumber(context: Context,  phoneNumber: string, attrs: Contac
 
 | 参数名      | 类型                                                  | 必填 | 说明                                                         |
 | ----------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| context     | Context                                               | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-app-ability-uiAbility.md)。 |
+| context     | Context                                               | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-inner-application-context.md)。 |
 | phoneNumber | string                                                | 是   | 联系人的电话号码。                                           |
 | attrs       | [ContactAttributes](#contactattributes)               | 是   | 联系人的属性列表。                                           |
 | callback    | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | 是   | 回调函数，返回查询到的联系人对象数组。                       |
@@ -2427,8 +2453,9 @@ queryContactsByPhoneNumber(phoneNumber: string, attrs: ContactAttributes, callba
 
 根据电话号码查询联系人，使用callback方式作为异步方法。
 
-**说明**
-从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContactsByPhoneNumber](#contactquerycontactsbyphonenumber10)
+> **说明**
+>
+> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContactsByPhoneNumber](#contactquerycontactsbyphonenumber10)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -2470,7 +2497,7 @@ queryContactsByPhoneNumber(context: Context,  phoneNumber: string, holder: Holde
 
 | 参数名      | 类型                                                  | 必填 | 说明                                                         |
 | ----------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| context     | Context                                               | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-app-ability-uiAbility.md)。 |
+| context     | Context                                               | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-inner-application-context.md)。 |
 | phoneNumber | string                                                | 是   | 联系人的电话号码。                                           |
 | holder      | [Holder](#holder)                                     | 是   | 创建联系人的应用信息。                                       |
 | attrs       | [ContactAttributes](#contactattributes)               | 是   | 联系人的属性列表。                                           |
@@ -2514,8 +2541,9 @@ queryContactsByPhoneNumber(phoneNumber: string, holder: Holder, attrs: ContactAt
 
 根据电话号码查询联系人，使用callback方式作为异步方法。
 
-**说明**
-从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContactsByPhoneNumber](#contactquerycontactsbyphonenumber10)
+> **说明**
+>
+> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContactsByPhoneNumber](#contactquerycontactsbyphonenumber10)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -2562,7 +2590,7 @@ queryContactsByPhoneNumber(context: Context,  phoneNumber: string, holder?: Hold
 
 | 参数名      | 类型                                    | 必填 | 说明                                                         |
 | ----------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
-| context     | Context                                 | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-app-ability-uiAbility.md)。 |
+| context     | Context                                 | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-inner-application-context.md)。 |
 | phoneNumber | string                                  | 是   | 联系人的电话号码。                                           |
 | holder      | [Holder](#holder)                       | 否   | 创建联系人的应用信息。                                       |
 | attrs       | [ContactAttributes](#contactattributes) | 否   | 联系人的属性列表。                                           |
@@ -2610,8 +2638,9 @@ queryContactsByPhoneNumber(phoneNumber: string, holder?: Holder, attrs?: Contact
 
 根据电话号码查询联系人，使用Promise方式作为异步方法。
 
-**说明**
-从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContactsByPhoneNumber](#contactquerycontactsbyphonenumber10)
+> **说明**
+>
+> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContactsByPhoneNumber](#contactquerycontactsbyphonenumber10)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -2662,7 +2691,7 @@ queryContactsByEmail(context: Context,  email: string, callback: AsyncCallback&l
 
 | 参数名   | 类型                                                  | 必填 | 说明                                                         |
 | -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| context  | Context                                               | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-app-ability-uiAbility.md)。 |
+| context  | Context                                               | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-inner-application-context.md)。 |
 | email    | string                                                | 是   | 联系人的邮箱地址。                                           |
 | callback | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | 是   | 回调函数，返回查询到的联系人对象数组。                       |
 
@@ -2698,8 +2727,9 @@ queryContactsByEmail(email: string, callback: AsyncCallback&lt;Array&lt;Contact&
 
 根据email查询联系人，使用callback方式作为异步方法。
 
-**说明**
-从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContactsByEmail](#contactquerycontactsbyemail10)
+> **说明**
+>
+> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContactsByEmail](#contactquerycontactsbyemail10)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -2738,7 +2768,7 @@ queryContactsByEmail(context: Context,  email: string, holder: Holder, callback:
 
 | 参数名   | 类型                                                  | 必填 | 说明                                                         |
 | -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| context  | Context                                               | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-app-ability-uiAbility.md)。 |
+| context  | Context                                               | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-inner-application-context.md)。 |
 | email    | string                                                | 是   | 联系人的邮箱地址。                                           |
 | holder   | [Holder](#holder)                                     | 是   | 创建联系人的应用信息。                                       |
 | callback | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | 是   | 回调函数，返回查询到的联系人对象数组。                       |
@@ -2779,8 +2809,9 @@ queryContactsByEmail(email: string, holder: Holder, callback: AsyncCallback&lt;A
 
 根据email查询联系人，使用callback方式作为异步方法。
 
-**说明**
-从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContactsByEmail](#contactquerycontactsbyemail10)
+> **说明**
+>
+> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContactsByEmail](#contactquerycontactsbyemail10)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -2824,7 +2855,7 @@ queryContactsByEmail(context: Context,  email: string, attrs: ContactAttributes,
 
 | 参数名   | 类型                                                  | 必填 | 说明                                                         |
 | -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| context  | Context                                               | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-app-ability-uiAbility.md)。 |
+| context  | Context                                               | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-inner-application-context.md)。 |
 | email    | string                                                | 是   | 联系人的邮箱地址。                                           |
 | attrs    | [ContactAttributes](#contactattributes)               | 是   | 联系人的属性列表。                                           |
 | callback | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | 是   | 回调函数，返回查询到联系人对象数组。                         |
@@ -2863,8 +2894,9 @@ queryContactsByEmail(email: string, attrs: ContactAttributes, callback: AsyncCal
 
 根据email查询联系人，使用callback方式作为异步方法。
 
-**说明**
-从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContactsByEmail](#contactquerycontactsbyemail10)
+> **说明**
+>
+> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContactsByEmail](#contactquerycontactsbyemail10)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -2906,7 +2938,7 @@ queryContactsByEmail(context: Context,  email: string, holder: Holder, attrs: Co
 
 | 参数名   | 类型                                                  | 必填 | 说明                                                         |
 | -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| context  | Context                                               | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-app-ability-uiAbility.md)。 |
+| context  | Context                                               | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-inner-application-context.md)。 |
 | email    | string                                                | 是   | 联系人的邮箱地址。                                           |
 | holder   | [Holder](#holder)                                     | 是   | 创建联系人的应用信息。                                       |
 | attrs    | [ContactAttributes](#contactattributes)               | 是   | 联系人的属性列表。                                           |
@@ -2950,8 +2982,9 @@ queryContactsByEmail(email: string, holder: Holder, attrs: ContactAttributes, ca
 
 根据email查询联系人，使用callback方式作为异步方法。
 
-**说明**
-从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContactsByEmail](#contactquerycontactsbyemail10)
+> **说明**
+>
+> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContactsByEmail](#contactquerycontactsbyemail10)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -2998,7 +3031,7 @@ queryContactsByEmail(context: Context,  email: string, holder?: Holder, attrs?: 
 
 | 参数名  | 类型                                    | 必填 | 说明                                                         |
 | ------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
-| context | Context                                 | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-app-ability-uiAbility.md)。 |
+| context | Context                                 | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-inner-application-context.md)。 |
 | email   | string                                  | 是   | 联系人的邮箱地址。                                           |
 | holder  | [Holder](#holder)                       | 否   | 创建联系人的应用信息。                                       |
 | attrs   | [ContactAttributes](#contactattributes) | 否   | 联系人的属性列表。                                           |
@@ -3046,8 +3079,9 @@ queryContactsByEmail(email: string, holder?: Holder, attrs?: ContactAttributes):
 
 根据email查询联系人，使用Promise方式作为异步方法。
 
-**说明**
-从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContactsByEmail](#contactquerycontactsbyemail10)
+> **说明**
+>
+> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContactsByEmail](#contactquerycontactsbyemail10)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -3098,7 +3132,7 @@ queryGroups(context: Context,  callback: AsyncCallback&lt;Array&lt;Group&gt;&gt;
 
 | 参数名   | 类型                                              | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| context  | Context                                           | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-app-ability-uiAbility.md)。 |
+| context  | Context                                           | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-inner-application-context.md)。 |
 | callback | AsyncCallback&lt;Array&lt;[Group](#group)&gt;&gt; | 是   | 回调函数，返回查询到的群组对象数组。                         |
 
 **错误码：**
@@ -3133,8 +3167,9 @@ queryGroups(callback: AsyncCallback&lt;Array&lt;Group&gt;&gt;): void
 
 查询联系人的所有群组，使用callback方式作为异步方法。
 
-**说明**
-从API version 7 开始支持，从API 10 开始废弃，建议使用[queryGroups](#contactquerygroups10)
+> **说明**
+>
+> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryGroups](#contactquerygroups10)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -3172,7 +3207,7 @@ queryGroups(context: Context,  holder: Holder, callback: AsyncCallback&lt;Array&
 
 | 参数名   | 类型                                              | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| context  | Context                                           | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-app-ability-uiAbility.md)。 |
+| context  | Context                                           | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-inner-application-context.md)。 |
 | holder   | Holder                                            | 是   | 创建联系人的应用信息。                                       |
 | callback | AsyncCallback&lt;Array&lt;[Group](#group)&gt;&gt; | 是   | 回调函数，返回查询到的群组对象数组。                         |
 
@@ -3212,8 +3247,9 @@ queryGroups(holder: Holder, callback: AsyncCallback&lt;Array&lt;Group&gt;&gt;): 
 
 查询联系人的所有群组，使用callback方式作为异步方法。
 
-**说明**
-从API version 7 开始支持，从API 10 开始废弃，建议使用[queryGroups](#contactquerygroups10)
+> **说明**
+>
+> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryGroups](#contactquerygroups10)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -3256,7 +3292,7 @@ queryGroups(context: Context,  holder?: Holder): Promise&lt;Array&lt;Group&gt;&g
 
 | 参数名  | 类型              | 必填 | 说明                                                         |
 | ------- | ----------------- | ---- | ------------------------------------------------------------ |
-| context | Context           | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-app-ability-uiAbility.md)。 |
+| context | Context           | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-inner-application-context.md)。 |
 | holder  | [Holder](#holder) | 否   | 创建联系人的应用信息。                                       |
 
 **返回值：**
@@ -3300,8 +3336,9 @@ queryGroups(holder?: Holder): Promise&lt;Array&lt;Group&gt;&gt;
 
 查询联系人的所有群组，使用Promise方式作为异步方法。
 
-**说明**
-从API version 7 开始支持，从API 10 开始废弃，建议使用[queryGroups](#contactquerygroups10)
+> **说明**
+>
+> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryGroups](#contactquerygroups10)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -3348,7 +3385,7 @@ queryHolders(context: Context,  callback: AsyncCallback&lt;Array&lt;Holder&gt;&g
 
 | 参数名   | 类型                                                | 必填 | 说明                                                         |
 | -------- | --------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| context  | Context                                             | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-app-ability-uiAbility.md)。 |
+| context  | Context                                             | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-inner-application-context.md)。 |
 | callback | AsyncCallback&lt;Array&lt;[Holder](#holder)&gt;&gt; | 是   | 回调函数，返回查询到的创建联系人应用信息的对象数组。         |
 
 **错误码：**
@@ -3383,8 +3420,9 @@ queryHolders(callback: AsyncCallback&lt;Array&lt;Holder&gt;&gt;): void
 
 查询所有创建联系人的应用信息，使用callback方式作为异步方法。
 
-**说明**
-从API version 7 开始支持，从API 10 开始废弃，建议使用[queryHolders](#contactqueryholders10)
+> **说明**
+>
+> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryHolders](#contactqueryholders10)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -3422,7 +3460,7 @@ queryHolders(context: Context ): Promise&lt;Array&lt;Holder&gt;&gt;
 
 | 参数名  | 类型    | 必填 | 说明                                                         |
 | ------- | ------- | ---- | ------------------------------------------------------------ |
-| context | Context | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-app-ability-uiAbility.md)。 |
+| context | Context | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-inner-application-context.md)。 |
 
 **返回值：**
 
@@ -3461,8 +3499,9 @@ queryHolders(): Promise&lt;Array&lt;Holder&gt;&gt;
 
 查询所有创建联系人的应用信息，使用Promise方式作为异步方法。
 
-**说明**
-从API version 7 开始支持，从API 10 开始废弃，建议使用[queryHolders](#contactqueryholders10)
+> **说明**
+>
+> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryHolders](#contactqueryholders10)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -3499,7 +3538,7 @@ queryKey(context: Context,  id: number, callback: AsyncCallback&lt;string&gt;): 
 
 | 参数名   | 类型                        | 必填 | 说明                                                         |
 | -------- | --------------------------- | ---- | ------------------------------------------------------------ |
-| context  | Context                     | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-app-ability-uiAbility.md)。 |
+| context  | Context                     | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-inner-application-context.md)。 |
 | id       | number                      | 是   | 联系人对象的id属性。                                         |
 | callback | AsyncCallback&lt;string&gt; | 是   | 回调函数，返回查询到的联系人对应的key。                      |
 
@@ -3535,8 +3574,9 @@ queryKey(id: number, callback: AsyncCallback&lt;string&gt;): void
 
 根据联系人的id查询联系人的key，使用callback方式作为异步方法。
 
-**说明**
-从API version 7 开始支持，从API 10 开始废弃，建议使用[queryKey](#contactquerykey10)
+> **说明**
+>
+> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryKey](#contactquerykey10)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -3575,7 +3615,7 @@ queryKey(context: Context,  id: number, holder: Holder, callback: AsyncCallback&
 
 | 参数名   | 类型                        | 必填 | 说明                                                         |
 | -------- | --------------------------- | ---- | ------------------------------------------------------------ |
-| context  | Context                     | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-app-ability-uiAbility.md)。 |
+| context  | Context                     | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-inner-application-context.md)。 |
 | id       | number                      | 是   | 联系人对象的id属性。                                         |
 | holder   | [Holder](#holder)           | 是   | 创建联系人的应用信息。                                       |
 | callback | AsyncCallback&lt;string&gt; | 是   | 回调函数，返回查询到的联系人对应的key。                      |
@@ -3616,8 +3656,9 @@ queryKey(id: number, holder: Holder, callback: AsyncCallback&lt;string&gt;): voi
 
 根据联系人的id查询联系人的key，使用callback方式作为异步方法。
 
-**说明**
-从API version 7 开始支持，从API 10 开始废弃，建议使用[queryKey](#contactquerykey10)
+> **说明**
+>
+> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryKey](#contactquerykey10)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -3661,7 +3702,7 @@ queryKey(context: Context,  id: number, holder?: Holder): Promise&lt;string&gt;
 
 | 参数名  | 类型              | 必填 | 说明                                                         |
 | ------- | ----------------- | ---- | ------------------------------------------------------------ |
-| context | Context           | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-app-ability-uiAbility.md)。 |
+| context | Context           | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-inner-application-context.md)。 |
 | id      | number            | 是   | 联系人对象的id属性。                                         |
 | holder  | [Holder](#holder) | 否   | 创建联系人的应用信息。                                       |
 
@@ -3706,8 +3747,9 @@ queryKey(id: number, holder?: Holder): Promise&lt;string&gt;
 
 根据联系人的id查询联系人的key，使用Promise方式作为异步方法。
 
-**说明**
-从API version 7 开始支持，从API 10 开始废弃，建议使用[queryKey](#contactquerykey10)
+> **说明**
+>
+> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryKey](#contactquerykey10)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
