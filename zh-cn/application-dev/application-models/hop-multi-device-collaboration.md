@@ -67,7 +67,7 @@
             console.error("createDeviceManager err: " + JSON.stringify(err));
         }
    }
-   function getRemoteDeviceId() {
+   function getRemoteDeviceId(): string | undefined {
        if (typeof dmClass === 'object' && dmClass !== null) {
            let list = dmClass.getAvailableDeviceListSync();
            if (typeof (list) === 'undefined' || typeof (list.length) === 'undefined') {

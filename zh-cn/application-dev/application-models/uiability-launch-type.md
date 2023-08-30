@@ -95,12 +95,16 @@ specified启动模式为指定实例模式，针对一些特殊场景使用（�
    ```ts
    // 在启动指定实例模式的UIAbility时，给每一个UIAbility实例配置一个独立的Key标识
    // 例如在文档使用场景中，可以用文档路径作为Key标识
+   import common from '@ohos.app.ability.common';
+   import Want from '@ohos.app.ability.Want';
+   import { BusinessError } from '@ohos.base';
+
    function getInstance() {
-     ...
+     return 'key';
    }
    
-   let context = ...; // context为调用方UIAbility的UIAbilityContext
-   let want = {
+   let context:common.UIAbilityContext = ...; // context为调用方UIAbility的UIAbilityContext
+   let want: Want = {
      deviceId: '', // deviceId为空表示本设备
      bundleName: 'com.example.myapplication',
      abilityName: 'SpecifiedAbility',
@@ -112,7 +116,7 @@ specified启动模式为指定实例模式，针对一些特殊场景使用（�
    
    context.startAbility(want).then(() => {
      console.info('Succeeded in starting ability.');
-   }).catch((err) => {
+   }).catch((err: BusinessError) => {
      console.error(`Failed to start ability. Code is ${err.code}, message is ${err.message}`);
    })
    ```
@@ -123,14 +127,17 @@ specified启动模式为指定实例模式，针对一些特殊场景使用（�
 
    ```ts
    import AbilityStage from '@ohos.app.ability.AbilityStage';
+   import Want from '@ohos.app.ability.Want';
    
    export default class MyAbilityStage extends AbilityStage {
-     onAcceptWant(want): string {
+     onAcceptWant(want: Want): string {
        // 在被调用方的AbilityStage中，针对启动模式为specified的UIAbility返回一个UIAbility实例对应的一个Key值
        // 当前示例指的是module1 Module的SpecifiedAbility
        if (want.abilityName === 'SpecifiedAbility') {
          // 返回的字符串Key标识为自定义拼接的字符串内容
-         return `SpecifiedAbilityInstance_${want.parameters.instanceKey}`;
+         if (want.parameters) {
+           return `SpecifiedAbilityInstance_${want.parameters.instanceKey}`;
+         }
        }
    
        return '';
