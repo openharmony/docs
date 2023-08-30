@@ -52,7 +52,7 @@ async function RequestPermission() {
   console.info('RequestPermission begin');
   let array: Array<string> = ["ohos.permission.DISTRIBUTED_DATASYNC"];
   let bundleFlag = 0;
-  let tokenID = undefined;
+  let tokenID: number | undefined = undefined;
   let userID = 100;
   let appInfo = await bundle.getApplicationInfo('ohos.samples.etsDemo', bundleFlag, userID);
   tokenID = appInfo.accessTokenId;
@@ -89,7 +89,7 @@ async function RequestPermission() {
 ```ts
 import deviceManager from '@ohos.distributedHardware.deviceManager';
 
-let dmClass;
+let dmClass: deviceManager.DeviceManager;
 
 function getDeviceManager() {
   deviceManager.createDeviceManager('ohos.example.distributedService', (error, dm) => {
@@ -100,9 +100,9 @@ function getDeviceManager() {
   })
 }
 
-function getRemoteDeviceId() {
+function getRemoteDeviceId(): string | undefined {
   if (typeof dmClass === 'object' && dmClass != null) {
-    let list = dmClass.getTrustedDeviceListSync();
+    let list: Array<deviceManager.DeviceInfo> = dmClass.getTrustedDeviceListSync();
     if (typeof (list) == 'undefined' || typeof (list.length) == 'undefined') {
       console.info("EntryAbility onButtonClick getRemoteDeviceId err: list is null");
       return;
@@ -111,6 +111,7 @@ function getRemoteDeviceId() {
     return list[0].deviceId;
   } else {
     console.info("EntryAbility onButtonClick getRemoteDeviceId err: dmClass is null");
+    return;
   }
 }
 ```
@@ -123,15 +124,14 @@ function getRemoteDeviceId() {
 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
+import Want from '@ohos.app.ability.Want';
 
 function onStartRemoteAbility() {
   console.info('onStartRemoteAbility begin');
-  let params;
-  let wantValue = {
+  let wantValue: Want = {
     bundleName: 'ohos.samples.etsDemo',
     abilityName: 'ohos.samples.etsDemo.RemoteAbility',
     deviceId: getRemoteDeviceId(), // getRemoteDeviceId的定义在前面的示例代码中
-    parameters: params
   };
   console.info('onStartRemoteAbility want=' + JSON.stringify(wantValue));
   featureAbility.startAbility({
