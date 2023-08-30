@@ -15,11 +15,7 @@
 ## 导入模块
 
 ```js
-import relationalStore from '@ohos.data.relationalStore'
-import window from '@ohos.window';
-import deviceManager from '@ohos.distributedHardware.deviceManager';
-import { ValuesBucket } from '@ohos.data.ValuesBucket';
-import { BusinessError } from "@ohos.base"
+import relationalStore from '@ohos.data.relationalStore';
 ```
 
 ## relationalStore.getRdbStore
@@ -56,7 +52,8 @@ FA模型示例：
 
 ```js
 
-import featureAbility from '@ohos.ability.featureAbility'
+import featureAbility from '@ohos.ability.featureAbility';
+import { BusinessError } from "@ohos.base";
 
 let store: relationalStore.RdbStore;
 
@@ -81,7 +78,9 @@ relationalStore.getRdbStore(this.context, STORE_CONFIG, (err: BusinessError, rdb
 Stage模型示例：
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility'
+import UIAbility from '@ohos.app.ability.UIAbility';
+import window from '@ohos.window';
+import { BusinessError } from "@ohos.base";
 
 class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
@@ -141,7 +140,8 @@ getRdbStore(context: Context, config: StoreConfig): Promise&lt;RdbStore&gt;
 FA模型示例：
 
 ```js
-import featureAbility from '@ohos.ability.featureAbility'
+import featureAbility from '@ohos.ability.featureAbility';
+import { BusinessError } from "@ohos.base";
 
 let store: relationalStore.RdbStore;
 
@@ -165,7 +165,9 @@ promise.then(async (rdbStore: relationalStore.RdbStore) => {
 Stage模型示例：
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility'
+import UIAbility from '@ohos.app.ability.UIAbility';
+import window from '@ohos.window';
+import { BusinessError } from "@ohos.base";
 
 class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
@@ -218,7 +220,8 @@ deleteRdbStore(context: Context, name: string, callback: AsyncCallback&lt;void&g
 FA模型示例：
 
 ```js
-import featureAbility from '@ohos.ability.featureAbility'
+import featureAbility from '@ohos.ability.featureAbility';
+import { BusinessError } from "@ohos.base";
 
 let store: relationalStore.RdbStore;
 
@@ -238,7 +241,9 @@ relationalStore.deleteRdbStore(this.context, "RdbTest.db", (err: BusinessError) 
 Stage模型示例：
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility'
+import UIAbility from '@ohos.app.ability.UIAbility';
+import window from '@ohos.window';
+import { BusinessError } from "@ohos.base";
 
 let store: relationalStore.RdbStore;
 
@@ -293,7 +298,8 @@ deleteRdbStore(context: Context, name: string): Promise&lt;void&gt;
 FA模型示例：
 
 ```js
-import featureAbility from '@ohos.ability.featureAbility'
+import featureAbility from '@ohos.ability.featureAbility';
+import { BusinessError } from "@ohos.base";
 
 let store: relationalStore.RdbStore;
 
@@ -312,7 +318,9 @@ promise.then(()=>{
 Stage模型示例：
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility'
+import UIAbility from '@ohos.app.ability.UIAbility';
+import window from '@ohos.window';
+import { BusinessError } from "@ohos.base";
 
 let store: relationalStore.RdbStore;
 
@@ -363,7 +371,8 @@ deleteRdbStore(context: Context, config: StoreConfig, callback: AsyncCallback\<v
 FA模型示例：
 
 ```js
-import featureAbility from '@ohos.ability.featureAbility'
+import featureAbility from '@ohos.ability.featureAbility';
+import { BusinessError } from "@ohos.base";
 
 let store: relationalStore.RdbStore;
 
@@ -387,7 +396,9 @@ relationalStore.deleteRdbStore(this.context, STORE_CONFIG, (err: BusinessError) 
 Stage模型示例：
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility'
+import UIAbility from '@ohos.app.ability.UIAbility';
+import window from '@ohos.window';
+import { BusinessError } from "@ohos.base";
 
 let store: relationalStore.RdbStore;
 
@@ -448,7 +459,8 @@ deleteRdbStore(context: Context, config: StoreConfig): Promise\<void>
 FA模型示例：
 
 ```js
-import featureAbility from '@ohos.ability.featureAbility'
+import featureAbility from '@ohos.ability.featureAbility';
+import { BusinessError } from "@ohos.base";
 
 let store: relationalStore.RdbStore;
 
@@ -471,7 +483,9 @@ promise.then(()=>{
 Stage模型示例：
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility'
+import UIAbility from '@ohos.app.ability.UIAbility';
+import window from '@ohos.window';
+import { BusinessError } from "@ohos.base";
 
 let store: relationalStore.RdbStore;
 
@@ -1680,6 +1694,8 @@ insert(table: string, values: ValuesBucket, callback: AsyncCallback&lt;number&gt
 **示例：**
 
 ```js
+import { ValuesBucket } from '@ohos.data.ValuesBucket';
+
 let key1 = "NAME";
 let key2 = "AGE";
 let key3 = "SALARY";
@@ -1732,6 +1748,8 @@ insert(table: string, values: ValuesBucket,  conflict: ConflictResolution, callb
 **示例：**
 
 ```js
+import { ValuesBucket } from '@ohos.data.ValuesBucket';
+
 let key1 = "NAME";
 let key2 = "AGE";
 let key3 = "SALARY";
@@ -1788,6 +1806,9 @@ insert(table: string, values: ValuesBucket):Promise&lt;number&gt;
 **示例：**
 
 ```js
+import { ValuesBucket } from '@ohos.data.ValuesBucket';
+import { BusinessError } from "@ohos.base";
+
 let key1 = "NAME";
 let key2 = "AGE";
 let key3 = "SALARY";
@@ -1844,6 +1865,9 @@ insert(table: string, values: ValuesBucket,  conflict: ConflictResolution):Promi
 **示例：**
 
 ```js
+import { ValuesBucket } from '@ohos.data.ValuesBucket';
+import { BusinessError } from "@ohos.base";
+
 let key1 = "NAME";
 let key2 = "AGE";
 let key3 = "SALARY";
@@ -1894,6 +1918,8 @@ batchInsert(table: string, values: Array&lt;ValuesBucket&gt;, callback: AsyncCal
 **示例：**
 
 ```js
+import { ValuesBucket } from '@ohos.data.ValuesBucket';
+
 let key1 = "NAME";
 let key2 = "AGE";
 let key3 = "SALARY";
@@ -1972,6 +1998,9 @@ batchInsert(table: string, values: Array&lt;ValuesBucket&gt;):Promise&lt;number&
 **示例：**
 
 ```js
+import { ValuesBucket } from '@ohos.data.ValuesBucket';
+import { BusinessError } from "@ohos.base";
+
 let key1 = "NAME";
 let key2 = "AGE";
 let key3 = "SALARY";
@@ -2044,6 +2073,8 @@ update(values: ValuesBucket, predicates: RdbPredicates, callback: AsyncCallback&
 **示例：**
 
 ```js
+import { ValuesBucket } from '@ohos.data.ValuesBucket';
+
 let key1 = "NAME";
 let key2 = "AGE";
 let key3 = "SALARY";
@@ -2098,6 +2129,8 @@ update(values: ValuesBucket, predicates: RdbPredicates, conflict: ConflictResolu
 **示例：**
 
 ```js
+import { ValuesBucket } from '@ohos.data.ValuesBucket';
+
 let key1 = "NAME";
 let key2 = "AGE";
 let key3 = "SALARY";
@@ -2156,6 +2189,9 @@ update(values: ValuesBucket, predicates: RdbPredicates):Promise&lt;number&gt;
 **示例：**
 
 ```js
+import { ValuesBucket } from '@ohos.data.ValuesBucket';
+import { BusinessError } from "@ohos.base";
+
 let key1 = "NAME";
 let key2 = "AGE";
 let key3 = "SALARY";
@@ -2214,6 +2250,9 @@ update(values: ValuesBucket, predicates: RdbPredicates, conflict: ConflictResolu
 **示例：**
 
 ```js
+import { ValuesBucket } from '@ohos.data.ValuesBucket';
+import { BusinessError } from "@ohos.base";
+
 let key1 = "NAME";
 let key2 = "AGE";
 let key3 = "SALARY";
@@ -2272,6 +2311,8 @@ update(table: string, values: ValuesBucket, predicates: dataSharePredicates.Data
 
 ```js
 import dataSharePredicates from '@ohos.data.dataSharePredicates'
+import { ValuesBucket } from '@ohos.data.ValuesBucket';
+
 let key1 = "NAME";
 let key2 = "AGE";
 let key3 = "SALARY";
@@ -2335,7 +2376,10 @@ update(table: string, values: ValuesBucket, predicates: dataSharePredicates.Data
 **示例：**
 
 ```js
-import dataSharePredicates from '@ohos.data.dataSharePredicates'
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { ValuesBucket } from '@ohos.data.ValuesBucket';
+import { BusinessError } from "@ohos.base";
+
 let key1 = "NAME";
 let key2 = "AGE";
 let key3 = "SALARY";
@@ -2430,6 +2474,8 @@ delete(predicates: RdbPredicates):Promise&lt;number&gt;
 **示例：**
 
 ```js
+import { BusinessError } from "@ohos.base";
+
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Lisa");
 let promise = store.delete(predicates);
@@ -2521,7 +2567,9 @@ delete(table: string, predicates: dataSharePredicates.DataSharePredicates):Promi
 **示例：**
 
 ```js
-import dataSharePredicates from '@ohos.data.dataSharePredicates'
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { BusinessError } from "@ohos.base";
+
 let predicates = new dataSharePredicates.DataSharePredicates();
 predicates.equalTo("NAME", "Lisa");
 let promise = store.delete("EMPLOYEE", predicates);
@@ -2658,7 +2706,9 @@ query(predicates: RdbPredicates, columns?: Array&lt;string&gt;):Promise&lt;Resul
 
 **示例：**
 
-  ```js
+```js
+import { BusinessError } from "@ohos.base";
+
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Rose");
 let promise = store.query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]);
@@ -2677,7 +2727,7 @@ promise.then((resultSet: relationalStore.ResultSet) => {
 }).catch((err: BusinessError) => {
   console.error(`Query failed, code is ${err.code},message is ${err.message}`);
 })
-  ```
+```
 
 ### query<sup>10+</sup>
 
@@ -2823,7 +2873,9 @@ query(table: string, predicates: dataSharePredicates.DataSharePredicates, column
 **示例：**
 
 ```js
-import dataSharePredicates from '@ohos.data.dataSharePredicates'
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { BusinessError } from "@ohos.base";
+
 let predicates = new dataSharePredicates.DataSharePredicates();
 predicates.equalTo("NAME", "Rose");
 let promise = store.query("EMPLOYEE", predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]);
@@ -2878,6 +2930,8 @@ remoteQuery(device: string, table: string, predicates: RdbPredicates, columns: A
 
 ```js
 import deviceManager from '@ohos.distributedDeviceManager';
+import { BusinessError } from "@ohos.base";
+
 let dmInstance: deviceManager.DeviceManager = null;
 let deviceId: string = null;
 
@@ -2948,6 +3002,8 @@ remoteQuery(device: string, table: string, predicates: RdbPredicates, columns: A
 
 ```js
 import deviceManager from '@ohos.distributedDeviceManager';
+import { BusinessError } from "@ohos.base";
+
 let dmInstance: deviceManager.DeviceManager = null;
 let deviceId: string = null;
 
@@ -3102,6 +3158,8 @@ querySql(sql: string, bindArgs?: Array&lt;ValueType&gt;):Promise&lt;ResultSet&gt
 **示例：**
 
 ```js
+import { BusinessError } from "@ohos.base";
+
 let promise = store.querySql("SELECT * FROM EMPLOYEE CROSS JOIN BOOK WHERE BOOK.NAME = 'sanguo'");
 promise.then((resultSet: relationalStore.ResultSet) => {
   console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
@@ -3228,6 +3286,8 @@ executeSql(sql: string, bindArgs?: Array&lt;ValueType&gt;):Promise&lt;void&gt;
 **示例：**
 
 ```js
+import { BusinessError } from "@ohos.base";
+
 const SQL_DELETE_TABLE = "DELETE FROM test WHERE name = 'zhangsan'"
 let promise = store.executeSql(SQL_DELETE_TABLE);
 promise.then(() => {
@@ -3308,6 +3368,8 @@ getModifyTime(table: string, columnName: string, primaryKeys: PRIKeyType[]): Pro
 **示例：**
 
 ```js
+import { BusinessError } from "@ohos.base";
+
 let PRIKey = [1, 2, 3];
 store.getModifyTime("cloud_tasks", "uuid", PRIKey).then((modifyTime: relationalStore.ModifyTime) => {
   let size = modifyTime.size;
@@ -3337,6 +3399,8 @@ beginTransaction():void
 
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
+import { ValuesBucket } from '@ohos.data.ValuesBucket';
+
 let context = featureAbility.getContext();
 let key1 = "name";
 let key2 = "age";
@@ -3379,6 +3443,8 @@ commit():void
 
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
+import { ValuesBucket } from '@ohos.data.ValuesBucket';
+
 let context = featureAbility.getContext();
 let key1 = "name";
 let key2 = "age";
@@ -3421,6 +3487,8 @@ rollBack():void
 
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
+import { ValuesBucket } from '@ohos.data.ValuesBucket';
+
 let context = featureAbility.getContext();
 let key1 = "name";
 let key2 = "age";
@@ -3522,6 +3590,8 @@ backup(destName:string): Promise&lt;void&gt;
 **示例：**
 
 ```js
+import { BusinessError } from "@ohos.base";
+
 let promiseBackup = store.backup("dbBackup.db");
 promiseBackup.then(()=>{
   console.info(`Backup success.`);
@@ -3596,6 +3666,8 @@ restore(srcName:string): Promise&lt;void&gt;
 **示例：**
 
 ```js
+import { BusinessError } from "@ohos.base";
+
 let promiseRestore = store.restore("dbBackup.db");
 promiseRestore.then(()=>{
   console.info(`Restore success.`);
@@ -3674,6 +3746,8 @@ store.setDistributedTables(["EMPLOYEE"], (err) => {
 **示例：**
 
 ```js
+import { BusinessError } from "@ohos.base";
+
 let promise = store.setDistributedTables(["EMPLOYEE"]);
 promise.then(() => {
   console.info(`SetDistributedTables successfully.`);
@@ -3801,6 +3875,8 @@ store.setDistributedTables(["EMPLOYEE"], relationalStore.DistributedType.DISTRIB
 **示例：**
 
 ```js
+import { BusinessError } from "@ohos.base";
+
 let promise = store.setDistributedTables(["EMPLOYEE"], relationalStore.DistributedType.DISTRIBUTED_CLOUD, {
   autoSync: true
 });
@@ -3904,6 +3980,8 @@ store.obtainDistributedTableName(deviceId, "EMPLOYEE", (err, tableName) => {
 
 ```js
 import deviceManager from '@ohos.distributedDeviceManager';
+import { BusinessError } from "@ohos.base";
+
 let dmInstance: deviceManager.DeviceManager = null;
 let deviceId: string = null;
 
@@ -4015,6 +4093,8 @@ store.sync(relationalStore.SyncMode.SYNC_MODE_PUSH, predicates, (err, result) =>
 
 ```js
 import deviceManager from '@ohos.distributedDeviceManager';
+import { BusinessError } from "@ohos.base";
+
 let dmInstance: deviceManager.DeviceManager = null;
 let deviceIds: Array<string> = [];
 
@@ -4099,6 +4179,8 @@ cloudSync(mode: SyncMode, progress: Callback&lt;ProgressDetails&gt;): Promise&lt
 **示例：**
 
 ```js
+import { BusinessError } from "@ohos.base";
+
 store.cloudSync(relationalStore.SyncMode.SYNC_MODE_CLOUD_FIRST, (progressDetail: relationalStore.ProgressDetails) => {
     console.info(`progress: ${progressDetail}`);
 }).then(() => {
@@ -4169,6 +4251,8 @@ cloudSync(mode: SyncMode, tables: string[], progress: Callback&lt;ProgressDetail
 **示例：**
 
 ```js
+import { BusinessError } from "@ohos.base";
+
 const tables = ["table1", "table2"];
 
 store.cloudSync(relationalStore.SyncMode.SYNC_MODE_CLOUD_FIRST, (progressDetail: relationalStore.ProgressDetails) => {
@@ -4199,6 +4283,7 @@ on(event: 'dataChange', type: SubscribeType, observer: Callback&lt;Array&lt;stri
 **示例：**
 
 ```js
+import deviceManager from '@ohos.distributedHardware.deviceManager';
 try {
   store.on('dataChange', relationalStore.SubscribeType.SUBSCRIBE_TYPE_REMOTE, (storeObserver) => {
     let devices: string;
@@ -4231,6 +4316,7 @@ on(event: 'dataChange', type: SubscribeType, observer: Callback&lt;Array&lt;stri
 **示例：**
 
 ```js
+import deviceManager from '@ohos.distributedHardware.deviceManager';
 function storeObserver(devices) {
   for (let i = 0; i < devices.length; i++) {
     console.info(`device= ${devices[i]} data changed`);
@@ -4299,6 +4385,7 @@ off(event:'dataChange', type: SubscribeType, observer: Callback&lt;Array&lt;stri
 **示例：**
 
 ```
+import deviceManager from '@ohos.distributedHardware.deviceManager';
 try {
   store.off('dataChange', relationalStore.SubscribeType.SUBSCRIBE_TYPE_REMOTE, (storeObserver) => {
     let devices: string;
@@ -4331,6 +4418,7 @@ off(event:'dataChange', type: SubscribeType, observer?: Callback&lt;Array&lt;str
 **示例：**
 
 ```js
+import deviceManager from '@ohos.distributedHardware.deviceManager';
 try {
   store.off('dataChange', relationalStore.SubscribeType.SUBSCRIBE_TYPE_REMOTE, (storeObserver) => {
     let devices: string;

@@ -18,8 +18,6 @@
 
 ```js
 import data_rdb from '@ohos.data.rdb';
-import { BusinessError } from "@ohos.base"
-import window from '@ohos.window';
 ```
 ## data_rdb.getRdbStore
 
@@ -63,6 +61,8 @@ Stage模型示例：
 ```ts
 // 获取context
 import UIAbility from '@ohos.app.ability.UIAbility';
+import { BusinessError } from "@ohos.base";
+import window from '@ohos.window';
 
 let context: Context;
 interface storeConfig {
@@ -129,6 +129,8 @@ Stage模型示例：
 ```ts
 // 获取context
 import UIAbility from '@ohos.app.ability.UIAbility';
+import { BusinessError } from "@ohos.base";
+import window from '@ohos.window';
 
 let context: Context;
 interface storeConfig {
@@ -190,6 +192,7 @@ Stage模型示例：
 ```ts
 // 获取context
 import UIAbility from '@ohos.app.ability.UIAbility';
+import window from '@ohos.window';
 
 let context: Context;
 class EntryAbility extends UIAbility {
@@ -252,6 +255,8 @@ Stage模型示例：
 ```ts
 // 获取context
 import UIAbility from '@ohos.app.ability.UIAbility';
+import { BusinessError } from "@ohos.base";
+import window from '@ohos.window';
 
 let context: Context;
 class EntryAbility extends UIAbility {
