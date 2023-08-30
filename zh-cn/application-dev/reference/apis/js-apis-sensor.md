@@ -3598,7 +3598,7 @@ try {
 
 ## SensorId<sup>9+</sup>
 
-表示要订阅或取消订阅的传感器类型。
+表示当前支持订阅或取消订阅的传感器类型。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
