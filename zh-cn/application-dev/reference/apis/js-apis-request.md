@@ -3053,7 +3053,7 @@ show(id: string, callback: AsyncCallback&lt;TaskInfo&gt;): void
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | id | string | 是 | 任务id。 |
-  | callback | AsyncCallback&lt;TaskInfo&gt; | 是 | 回调函数，返回任务详细信息。 |
+  | callback | AsyncCallback&lt;[TaskInfo](#taskinfo10)&gt; | 是 | 回调函数，返回任务详细信息。 |
 
 **错误码：**
 以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
@@ -3094,7 +3094,7 @@ show(id: string): Promise&lt;TaskInfo&gt;
 
 | 类型                | 说明                      |
 | ------------------- | ------------------------- |
-| Promise&lt;TaskInfo&gt; | Promise对象。返回任务详细信息的Promise对象。 |
+| Promise&lt;[TaskInfo](#taskinfo10)&gt; | Promise对象。返回任务详细信息的Promise对象。 |
 
 **错误码：**
 以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
@@ -3129,7 +3129,7 @@ touch(id: string, token: string, callback: AsyncCallback&lt;TaskInfo&gt;): void
   | -------- | -------- | -------- | -------- |
   | id | string | 是 | 任务id。 |
   | token | string | 是 | 任务查询token。 |
-  | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，返回任务详细信息。 |
+  | callback | AsyncCallback&lt;[TaskInfo](#taskinfo10)&gt; | 是 | 回调函数，返回任务详细信息。 |
 
 **错误码：**
 以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
@@ -3171,7 +3171,7 @@ touch(id: string, token: string): Promise&lt;TaskInfo&gt;
 
 | 类型                | 说明                      |
 | ------------------- | ------------------------- |
-| Promise&lt;TaskInfo&gt; | Promise对象。返回任务详细信息的Promise对象。 |
+| Promise&lt;[TaskInfo](#taskinfo10)&gt; | Promise对象。返回任务详细信息的Promise对象。 |
 
 **错误码：**
 以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
@@ -3292,7 +3292,7 @@ query(id: string, callback: AsyncCallback&lt;TaskInfo&gt;): void
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | id | string | 是 | 任务id。 |
-  | callback | AsyncCallback&lt;TaskInfo&gt; | 是 | 回调函数，返回任务详细信息。 |
+  | callback | AsyncCallback&lt;[TaskInfo](#taskinfo10)&gt; | 是 | 回调函数，返回任务详细信息。 |
 
 **错误码：**
 以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
@@ -3337,7 +3337,7 @@ query(id: string): Promise&lt;TaskInfo&gt;
 
 | 类型                | 说明                      |
 | ------------------- | ------------------------- |
-| Promise&lt;TaskInfo&gt; | Promise对象。返回任务详细信息的Promise对象。 |
+| Promise&lt;[TaskInfo](#taskinfo10)&gt; | Promise对象。返回任务详细信息的Promise对象。 |
 
 **错误码：**
 以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
