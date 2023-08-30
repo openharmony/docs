@@ -110,7 +110,7 @@
   
 - 定时启动
 
-  通过约定时间拉起服务， 若服务已拉起， 则不在重新拉起服务。具体命令参考： **[begetctl命令说明](subsys-boot-init-plugin#参数说明)** 。
+  通过约定时间拉起服务， 若服务已拉起， 则不在重新拉起服务。具体命令参考： **[begetctl命令说明](subsys-boot-init-plugin.md)** 。
   ```
   timer_start servicename timeout
   ```
