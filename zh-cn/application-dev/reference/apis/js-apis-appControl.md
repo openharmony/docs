@@ -60,11 +60,11 @@ try {
         .then(() => {
             console.info('setDisposedStatus success');
         }).catch((error) => {
-            let message = (err as BusinessError).message;
+            let message = (error as BusinessError).message;
             console.error('setDisposedStatus failed ' + message);
         });
 } catch (error) {
-    let message = (err as BusinessError).message;
+    let message = (error as BusinessError).message;
     console.error('setDisposedStatus failed ' + message);
 }
 ```
@@ -116,7 +116,7 @@ try {
         console.info('setDisposedStatus success');
     });
 } catch (error) {
-    let message = (err as BusinessError).message;
+    let message = (error as BusinessError).message;
     console.error('setDisposedStatus failed ' + message);
 }
 ```
