@@ -36,11 +36,11 @@
    })
    
    // 场景二：读取指定区域内的图片数据，结果写入area.pixels中
-   const area = {
+   const area : image.PositionArea = {
      pixels: new ArrayBuffer(8),
      offset: 0,
      stride: 8,
-     region: { size : { height: 1, width: 2 }, x: 0, y: 0 }
+     region: { size: { height: 1, width: 2 }, x: 0, y: 0 }
    }
    pixelMap.readPixels(area).then(() => {
      console.info('Succeeded in reading the image data in the area.');
