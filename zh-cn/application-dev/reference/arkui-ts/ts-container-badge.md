@@ -18,7 +18,9 @@
 
 ## 接口
 
-**方法1：** Badge(value: {count: number, position?: BadgePosition, maxCount?: number, style: BadgeStyle})
+### Badge
+
+Badge(value: {count: number, position?: BadgePosition \| Position, maxCount?: number, style: BadgeStyle})
 
 创建数字标记组件。
 
@@ -33,7 +35,9 @@
 | maxCount | number | 否 | 最大消息数，超过最大消息时仅显示maxCount+。<br/>默认值：99<br/>取值范围：[-2147483648,2147483647]，非整数时会舍去小数部分取整数部分，如5.5取5。 |
 | style | [BadgeStyle](#badgestyle对象说明) | 是 | Badge组件可设置样式，支持设置文本颜色、尺寸、圆点颜色和尺寸。 |
 
-**方法2：** Badge(value: {value: string, position?: BadgePosition, style: BadgeStyle})
+### Badge
+
+Badge(value: {value: string, position?: BadgePosition \| Position, style: BadgeStyle})
 
 根据字符串创建标记组件。
 
