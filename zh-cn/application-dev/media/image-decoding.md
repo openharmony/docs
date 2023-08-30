@@ -100,11 +100,11 @@
 4. 设置解码参数DecodingOptions，解码获取PixelMap图片对象。
      
    ```ts
-   class decodingOption {
-      flag : boolean = true
-      n : number = 0
+   class DecodingOption {
+      editable : boolean = true
+      desiredPixelFormat : number = 0
    }
-   let decodingOptions = {
+   let decodingOptions : DecodingOption = {
        editable: true,
        desiredPixelFormat: 3,
    }
