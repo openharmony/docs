@@ -54,23 +54,25 @@ struct DragControllerPage {
   build() {
     Column() {
       Button('touch to execute drag')
-        .onTouch((event) => {
-          if (event.type == TouchType.Down) {
-            let text = new UDC.Text()
-            let unifiedData = new UDC.UnifiedData(text)
+        .onTouch((event?:TouchEvent) => {
+          if(event){
+            if (event.type == TouchType.Down) {
+              let text:object = new UDMF.Text()
+              let unifiedData:object = new UDMF.UnifiedData(text)
 
-            let dragInfo: dragController.DragInfo = {
-              pointerId: 0,
-              data: unifiedData,
-              extraParams: ''
-            }
-            dragController.executeDrag(this.DraggingBuilder.bind(this), dragInfo, (err, {event, extraParams}) => {
-              if (event.getResult() == DragResult.DRAG_SUCCESSFUL) {
-                // ...
-              } else if (event.getResult() == DragResult.DRAG_FAILED) {
-                // ...
+              let dragInfo: dragController.DragInfo = {
+                pointerId: 0,
+                data: unifiedData,
+                extraParams: ''
               }
-            })
+              dragController.executeDrag(this.DraggingBuilder.bind(this), dragInfo, (err, {event, extraParams}) => {
+                if (event.getResult() == DragResult.DRAG_SUCCESSFUL) {
+                // ...
+                } else if (event.getResult() == DragResult.DRAG_FAILED) {
+                // ...
+                }
+              })
+            }
           }
         })
     }
@@ -110,7 +112,7 @@ import image from '@ohos.multimedia.image';
 @Entry
 @Component
 struct DragControllerPage {
-  @State pixmap: image.PixelMap = null
+  @State pixmap: image.PixelMap|null = null
 
   @Builder DraggingBuilder() {
     Column() {
@@ -133,35 +135,37 @@ struct DragControllerPage {
   build() {
     Column() {
       Button('touch to execute drag')
-        .onTouch((event) => {
-          if (event.type == TouchType.Down) {
-            let text = new UDC.Text()
-            let unifiedData = new UDC.UnifiedData(text)
+        .onTouch((event?:TouchEvent) => {
+          if(event){
+            if (event.type == TouchType.Down) {
+              let text:object = new UDMF.Text()
+              let unifiedData:object = new UDMF.UnifiedData(text)
 
-            let dragInfo: dragController.DragInfo = {
-              pointerId: 0,
-              data: unifiedData,
-              extraParams: ''
-            }
-            componentSnapshot.createFromBuilder(this.PixmapBuilder.bind(this)).then((pix: image.PixelMap) => {
-              this.pixmap = pix;
-              let dragItemInfo: DragItemInfo = {
-                pixelMap: this.pixmap,
-                builder: this.DraggingBuilder.bind(this),
-                extraInfo: "DragItemInfoTest"
+              let dragInfo: dragController.DragInfo = {
+                pointerId: 0,
+                data: unifiedData,
+                extraParams: ''
               }
+              componentSnapshot.createFromBuilder(this.PixmapBuilder.bind(this)).then((pix: image.PixelMap) => {
+                this.pixmap = pix;
+                let dragItemInfo: DragItemInfo = {
+                  pixelMap: this.pixmap,
+                  builder: this.DraggingBuilder.bind(this),
+                  extraInfo: "DragItemInfoTest"
+                }
 
-              dragController.executeDrag(dragItemInfo, dragInfo)
-                .then(({event, extraParams}) => {
-                  if (event.getResult() == DragResult.DRAG_SUCCESSFUL) {
-                    // ...
-                  } else if (event.getResult() == DragResult.DRAG_FAILED) {
-                    // ...
-                  }
-                })
-                .catch((err) => {
-                })
-            })
+                dragController.executeDrag(dragItemInfo, dragInfo)
+                  .then(({event, extraParams}) => {
+                    if (event.getResult() == DragResult.DRAG_SUCCESSFUL) {
+                      // ...
+                    } else if (event.getResult() == DragResult.DRAG_FAILED) {
+                      // ...
+                    }
+                  })
+                  .catch((err) => {
+                  })
+              })
+            }
           }
         })
     }

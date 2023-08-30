@@ -66,7 +66,8 @@ try {
       }
     })
 } catch (error) {
-    console.error('Set dark-mode failed, ' + error.message);
+    let message = (error as BusinessError).message;
+    console.error('Set dark-mode failed, ' + message);
 }
   ```
 
@@ -111,7 +112,8 @@ try {
       console.error('Set dark-mode failed, ' + error.message);
     });
 } catch (error) {
-    console.error('Set dark-mode failed, ' + error.message);
+    let message = (error as BusinessError).message;
+    console.error('Set dark-mode failed, ' + message);
 }
   ```
 
@@ -147,6 +149,7 @@ try {
     let darkMode = uiAppearance.getDarkMode();
     console.info('Get dark-mode ' + mode);
 } catch (error) {
-    console.error('Get dark-mode failed, ' + error.message);
+    let message = (error as BusinessError).message;
+    console.error('Get dark-mode failed, ' + message);
 }
   ```
