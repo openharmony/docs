@@ -27,7 +27,7 @@ EXIF信息的读取与编辑相关API的详细介绍请参见[API参考](../refe
      
    ```ts
    // 读取EXIF信息，BitsPerSample为每个像素比特数
-   imageSource.getImageProperty('BitsPerSample', (error, data : GetImagePropertyOptions) => {
+   imageSource.getImageProperty('BitsPerSample', (error, data) => {
      if (error) {
        console.error('Failed to get the value of the specified attribute key of the image.And the error is: ' + error);
      } else {
@@ -37,7 +37,7 @@ EXIF信息的读取与编辑相关API的详细介绍请参见[API参考](../refe
    
    // 编辑EXIF信息
    imageSource.modifyImageProperty('ImageWidth', '120').then(() => {
-     const width : Promise<string> = imageSource.getImageProperty("ImageWidth");
+     const width : string = imageSource.getImageProperty("ImageWidth");
      console.info('The new imageWidth is ' + width);
    })
    ```
