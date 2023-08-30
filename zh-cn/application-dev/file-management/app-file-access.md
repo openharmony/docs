@@ -48,12 +48,12 @@ import fs from '@ohos.file.fs';
 import common from '@ohos.app.ability.common';
 import buffer from '@ohos.buffer';
 
-createFile() {
-  // 获取应用文件路径
-  let context = getContext(this) as common.UIAbilityContext;
-  let filesDir = context.filesDir;
+// 获取应用文件路径
+let context = getContext(this) as common.UIAbilityContext;
+let filesDir = context.filesDir;
 
-  // 新建并打开文件
+function createFile() {
+    // 新建并打开文件
   let file = fs.openSync(filesDir + '/test.txt', fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
   // 写入一段内容至文件
   let writeLen = fs.writeSync(file.fd, "Try to write str.");
@@ -77,11 +77,11 @@ createFile() {
 import fs from '@ohos.file.fs';
 import common from '@ohos.app.ability.common';
 
-readWriteFile() {
-  // 获取应用文件路径
-  let context = getContext(this) as common.UIAbilityContext;
-  let filesDir = context.filesDir;
+// 获取应用文件路径
+let context = getContext(this) as common.UIAbilityContext;
+let filesDir = context.filesDir;
 
+function readWriteFile() {
   // 打开文件
   let srcFile = fs.openSync(filesDir + '/test.txt', fs.OpenMode.READ_WRITE);
   let destFile = fs.openSync(filesDir + '/destFile.txt', fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
@@ -114,11 +114,11 @@ readWriteFile() {
 import fs from '@ohos.file.fs';
 import common from '@ohos.app.ability.common';
 
-async readWriteFileWithStream() {
-  // 获取应用文件路径
-  let context = getContext(this) as common.UIAbilityContext;
-  let filesDir = context.filesDir;
+// 获取应用文件路径
+let context = getContext(this) as common.UIAbilityContext;
+let filesDir = context.filesDir;
 
+async readWriteFileWithStream() {
   // 打开文件流
   let inputStream = fs.createStreamSync(filesDir + '/test.txt', 'r+');
   let outputStream = fs.createStreamSync(filesDir + '/destFile.txt', "w+");
@@ -148,7 +148,6 @@ async readWriteFileWithStream() {
 以下示例代码演示了如何查看文件列表：
 
 ```ts
-// 查看文件列表
 import fs, { Filter } from '@ohos.file.fs';
 import common from '@ohos.app.ability.common';
 
@@ -157,7 +156,7 @@ let context = getContext(this) as common.UIAbilityContext;
 let filesDir = context.filesDir;
 
 // 查看文件列表
-getListFile() {
+function getListFile() {
   let filter: Filter = {
     suffix: ['.png', '.jpg', '.txt'],          // 匹配文件后缀名为'.png','.jpg','.txt'
     displayName: ['test%'],                    // 匹配文件全名以'test'开头
