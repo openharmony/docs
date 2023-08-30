@@ -12,7 +12,7 @@
 
 ## 导入模块
 
-```js
+```ts
 import applicationManager from '@ohos.enterprise.applicationManager';
 ```
 
@@ -48,12 +48,13 @@ addDisallowedRunningBundles(admin: Want, appIds: Array\<string>, callback: Async
 
 **示例：**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let appIds = ['com.example.myapplication'];
+let appIds: Array<string> = ['com.example.myapplication'];
 
 applicationManager.addDisallowedRunningBundles(wantTemp, appIds, (err) => {
   if (err) {
@@ -96,12 +97,13 @@ addDisallowedRunningBundles(admin: Want, appIds: Array\<string>, userId: number,
 
 **示例：**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let appIds = ['com.example.myapplication'];
+let appIds: Array<string> = ['com.example.myapplication'];
 
 applicationManager.addDisallowedRunningBundles(wantTemp, appIds, 100, (err) => {
   if (err) {
@@ -149,17 +151,19 @@ addDisallowedRunningBundles(admin: Want, appIds: Array\<string>, userId?: number
 
 **示例：**
 
-```js
-let wantTemp = {
-    bundleName: 'com.example.myapplication',
-    abilityName: 'EntryAbility',
+```ts
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+let wantTemp: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
-let appIds = ['com.example.myapplication'];
+let appIds: Array<string> = ['com.example.myapplication'];
 
 applicationManager.addDisallowedRunningBundles(wantTemp, appIds, 100).then(() => {
-    console.info('Succeeded in adding disallowed running bundles');
-}).catch((err) => {
-    console.error(`Failed to add disallowed running bundles. Code is ${err.code}, message is ${err.message}`);
+  console.info('Succeeded in adding disallowed running bundles');
+}).catch((err: BusinessError) => {
+  console.error(`Failed to add disallowed running bundles. Code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -194,12 +198,13 @@ removeDisallowedRunningBundles(admin: Want, appIds: Array\<string>, callback: As
 
 **示例：**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let appIds = ['com.example.myapplication'];
+let appIds: Array<string> = ['com.example.myapplication'];
 
 applicationManager.removeDisallowedRunningBundles(wantTemp, appIds, (err) => {
   if (err) {
@@ -242,12 +247,13 @@ removeDisallowedRunningBundles(admin: Want, appIds: Array\<string>, userId: numb
 
 **示例：**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let appIds = ['com.example.myapplication'];
+let appIds: Array<string> = ['com.example.myapplication'];
 
 applicationManager.removeDisallowedRunningBundles(wantTemp, appIds, 100, (err) => {
   if (err) {
@@ -295,17 +301,19 @@ removeDisallowedRunningBundles(admin: Want, appIds: Array\<string>, userId?: num
 
 **示例：**
 
-```js
-let wantTemp = {
-    bundleName: 'com.example.myapplication',
-    abilityName: 'EntryAbility',
+```ts
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+let wantTemp: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
-let appIds = ['com.example.myapplication'];
+let appIds: Array<string> = ['com.example.myapplication'];
 
 applicationManager.removeDisallowedRunningBundles(wantTemp, appIds, 100).then(() => {
-    console.info('Succeeded in removing disallowed running bundles');
-}).catch((err) => {
-    console.error(`Failed to remove disallowed running bundles. Code is ${err.code}, message is ${err.message}`);
+  console.info('Succeeded in removing disallowed running bundles');
+}).catch((err: BusinessError) => {
+  console.error(`Failed to remove disallowed running bundles. Code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -339,8 +347,9 @@ getDisallowedRunningBundles(admin: Want, callback: AsyncCallback&lt;Array&lt;str
 
 **示例：**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
@@ -385,8 +394,9 @@ getDisallowedRunningBundles(admin: Want, userId: number, callback: AsyncCallback
 
 **示例：**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
@@ -436,15 +446,17 @@ getDisallowedRunningBundles(admin: Want, userId?: number): Promise&lt;Array&lt;s
 
 **示例：**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
 
 applicationManager.getDisallowedRunningBundles(wantTemp, 100).then((result) => {
   console.info(`Succeeded in getting disallowed running bundles, result : ${JSON.stringify(result)}`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to get disallowed running bundles. Code is ${err.code}, message is ${err.message}`);
 });
 ```

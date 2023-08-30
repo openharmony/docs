@@ -9,6 +9,7 @@ FormProvider模块提供了卡片提供方相关接口的能力，开发者在�
 
 ```ts
 import formProvider from '@ohos.app.form.formProvider';
+import Base from '@ohos.base';
 ```
 
 ## setFormNextRefreshTime
@@ -45,9 +46,9 @@ setFormNextRefreshTime(formId: string, minute: number, callback: AsyncCallback&l
 **示例：**
 
 ```ts
-let formId = '12400633174999288';
+let formId: string = '12400633174999288';
 try {
-  formProvider.setFormNextRefreshTime(formId, 5, (error) => {
+  formProvider.setFormNextRefreshTime(formId, 5, (error: Base.BusinessError) => {
     if (error) {
       console.error(`callback error, code: ${error.code}, message: ${error.message})`);
       return;
@@ -98,11 +99,11 @@ setFormNextRefreshTime(formId: string, minute: number): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-let formId = '12400633174999288';
+let formId: string = '12400633174999288';
 try {
   formProvider.setFormNextRefreshTime(formId, 5).then(() => {
     console.log(`formProvider setFormNextRefreshTime success`);
-  }).catch((error) => {
+  }).catch((error: Base.BusinessError) => {
     console.error(`promise error, code: ${error.code}, message: ${error.message})`);
   });
 } catch (error) {
@@ -145,10 +146,17 @@ updateForm(formId: string, formBindingData: formBindingData.FormBindingData,call
 ```ts
 import formBindingData from '@ohos.app.form.formBindingData';
 
-let formId = '12400633174999288';
+let formId: string = '12400633174999288';
 try {
-  let obj = formBindingData.createFormBindingData({temperature:'22c', time:'22:00'});
-  formProvider.updateForm(formId, obj, (error) => {
+  class createFormBindingDataParamType {
+    temperature: string
+    time: string
+  }
+  let obj = formBindingData.createFormBindingData({
+    temperature:'22c',
+    time:'22:00'
+  } as createFormBindingDataParamType);
+  formProvider.updateForm(formId, obj, (error: Base.BusinessError) => {
     if (error) {
       console.error(`callback error, code: ${error.code}, message: ${error.message})`);
       return;
@@ -200,12 +208,19 @@ updateForm(formId: string, formBindingData: formBindingData.FormBindingData): Pr
 ```ts
 import formBindingData from '@ohos.app.form.formBindingData';
 
-let formId = '12400633174999288';
-let obj = formBindingData.createFormBindingData({ temperature: '22c', time: '22:00' });
+let formId: string = '12400633174999288';
+class createFormBindingDataParamType {
+    temperature: string
+    time: string
+  }
+let obj = formBindingData.createFormBindingData({
+    temperature:'22c',
+    time:'22:00'
+  } as createFormBindingDataParamType);
 try {
   formProvider.updateForm(formId, obj).then(() => {
     console.log(`formProvider updateForm success`);
-  }).catch((error) => {
+  }).catch((error: Base.BusinessError) => {
     console.error(`promise error, code: ${error.code}, message: ${error.message})`);
   });
 } catch (error) {
@@ -247,7 +262,7 @@ try {
       console.error(`callback error, code: ${error.code}, message: ${error.message})`);
       return;
     }
-    console.log('formProvider getFormsInfo, data: ${JSON.stringify(data)}');
+    console.log(`formProvider getFormsInfo, data: ${JSON.stringify(data)}`);
   });
 } catch (error) {
   console.error(`catch error, code: ${error.code}, message: ${error.message})`);
@@ -294,7 +309,7 @@ try {
       console.error(`callback error, code: ${error.code}, message: ${error.message})`);
       return;
     }
-    console.log('formProvider getFormsInfo, data: ${JSON.stringify(data)}');
+    console.log(`formProvider getFormsInfo, data: ${JSON.stringify(data)}`);
   });
 } catch (error) {
   console.error(`catch error, code: ${error.code}, message: ${error.message})`);
@@ -342,9 +357,9 @@ const filter: formInfo.FormInfoFilter = {
   moduleName: 'entry'
 };
 try {
-  formProvider.getFormsInfo(filter).then((data) => {
-    console.log('formProvider getFormsInfo, data: ${JSON.stringify(data)}');
-  }).catch((error) => {
+  formProvider.getFormsInfo(filter).then((data: formInfo.FormInfo[]) => {
+    console.log(`formProvider getFormsInfo, data: ${JSON.stringify(data)}`);
+  }).catch((error: Base.BusinessError) => {
     console.error(`promise error, code: ${error.code}, message: ${error.message})`);
   });
 } catch (error) {
@@ -386,8 +401,9 @@ requestPublishForm(want: Want, formBindingData: formBindingData.FormBindingData,
 
 ```ts
 import formBindingData from '@ohos.app.form.formBindingData';
+import Want from '@ohos.app.ability.Want';
 
-let want = {
+let want: Want = {
   abilityName: 'FormAbility',
   parameters: {
     'ohos.extra.param.key.form_dimension': 2,
@@ -396,8 +412,15 @@ let want = {
   }
 };
 try {
-  let obj = formBindingData.createFormBindingData({ temperature: '22c', time: '22:00' });
-  formProvider.requestPublishForm(want, obj, (error, data) => {
+  class createFormBindingDataParamType {
+    temperature: string
+    time: string
+  }
+  let obj = formBindingData.createFormBindingData({
+    temperature:'22c',
+    time:'22:00'
+  } as createFormBindingDataParamType);
+  formProvider.requestPublishForm(want, obj, (error: Base.BusinessError, data: string) => {
     if (error) {
       console.error(`callback error, code: ${error.code}, message: ${error.message})`);
       return;
@@ -441,7 +464,9 @@ requestPublishForm(want: Want, callback: AsyncCallback&lt;string&gt;): void
 **示例：**
 
 ```ts
-let want = {
+import Want from '@ohos.app.ability.Want';
+
+let want: Want = {
   abilityName: 'FormAbility',
   parameters: {
     'ohos.extra.param.key.form_dimension': 2,
@@ -450,12 +475,12 @@ let want = {
   }
 };
 try {
-  formProvider.requestPublishForm(want, (error, data) => {
+  formProvider.requestPublishForm(want, (error: Base.BusinessError, data: string) => {
     if (error) {
       console.error(`callback error, code: ${error.code}, message: ${error.message})`);
       return;
     }
-    console.log('formProvider requestPublishForm, form ID is: ${JSON.stringify(data)}');
+    console.log(`formProvider requestPublishForm, form ID is: ${JSON.stringify(data)}`);
   });
 } catch (error) {
   console.error(`catch error, code: ${error.code}, message: ${error.message})`);
@@ -500,7 +525,9 @@ requestPublishForm(want: Want, formBindingData?: formBindingData.FormBindingData
 **示例：**
 
 ```ts
-let want = {
+import Want from '@ohos.app.ability.Want';
+
+let want: Want = {
   abilityName: 'FormAbility',
   parameters: {
     'ohos.extra.param.key.form_dimension': 2,
@@ -509,9 +536,9 @@ let want = {
   }
 };
 try {
-  formProvider.requestPublishForm(want).then((data) => {
-    console.log('formProvider requestPublishForm success, form ID is : ${JSON.stringify(data)}');
-  }).catch((error) => {
+  formProvider.requestPublishForm(want).then((data: string) => {
+    console.log(`formProvider requestPublishForm success, form ID is : ${JSON.stringify(data)}`);
+  }).catch((error: Base.BusinessError) => {
     console.error(`promise error, code: ${error.code}, message: ${error.message})`);
   });
 } catch (error) {
@@ -549,13 +576,15 @@ isRequestPublishFormSupported(callback: AsyncCallback&lt;boolean&gt;): void
 **示例：**
 
 ```ts
+import Want from '@ohos.app.ability.Want';
+
 try {
-  formProvider.isRequestPublishFormSupported((error, isSupported) => {
+  formProvider.isRequestPublishFormSupported((error: Base.BusinessError, isSupported: boolean) => {
     if (error) {
       console.error(`callback error, code: ${error.code}, message: ${error.message})`);
     } else {
       if (isSupported) {
-        var want = {
+        let want: Want = {
           abilityName: 'FormAbility',
           parameters: {
             'ohos.extra.param.key.form_dimension': 2,
@@ -564,12 +593,12 @@ try {
           }
         };
         try {
-          formProvider.requestPublishForm(want, (error, data) => {
+          formProvider.requestPublishForm(want, (error: Base.BusinessError, data: string) => {
             if (error) {
               console.error(`callback error, code: ${error.code}, message: ${error.message})`);
               return;
             }
-            console.log('formProvider requestPublishForm, form ID is: ${JSON.stringify(data)}');
+            console.log(`formProvider requestPublishForm, form ID is: ${JSON.stringify(data)}`);
           });
         } catch (error) {
           console.error(`catch error, code: ${error.code}, message: ${error.message})`);
@@ -611,10 +640,12 @@ isRequestPublishFormSupported(): Promise&lt;boolean&gt;
 **示例：**
 
 ```ts
+import Want from '@ohos.app.ability.Want';
+
 try {
-  formProvider.isRequestPublishFormSupported().then((isSupported) => {
+  formProvider.isRequestPublishFormSupported().then((isSupported: boolean) => {
     if (isSupported) {
-      var want = {
+      let want: Want = {
         abilityName: 'FormAbility',
         parameters: {
           'ohos.extra.param.key.form_dimension': 2,
@@ -623,16 +654,16 @@ try {
         }
       };
       try {
-        formProvider.requestPublishForm(want).then((data) => {
-          console.log('formProvider requestPublishForm success, form ID is : ${JSON.stringify(data)}');
-        }).catch((error) => {
+        formProvider.requestPublishForm(want).then((data: string) => {
+          console.log(`formProvider requestPublishForm success, form ID is : ${JSON.stringify(data)}`);
+        }).catch((error: Base.BusinessError) => {
           console.error(`promise error, code: ${error.code}, message: ${error.message})`);
         });
       } catch (error) {
         console.error(`catch error, code: ${error.code}, message: ${error.message})`);
       }
     }
-  }).catch((error) => {
+  }).catch((error: Base.BusinessError) => {
     console.error(`promise error, code: ${error.code}, message: ${error.message})`);
   });
 } catch (error) {
