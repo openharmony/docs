@@ -17,6 +17,8 @@ import featureAbility from "@ohos.ability.featureAbility";
 
 
 ```ts
+import featureAbility from "@ohos.ability.featureAbility";
+
 let context = featureAbility.getContext()
 ```
 

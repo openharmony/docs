@@ -164,7 +164,12 @@ UIAbility是系统调度的最小单元。在设备内的功能模块之间跳�
    let context: common.UIAbilityContext = ...; // UIAbilityContext
    const RESULT_CODE: number = 1001;
 
-   // ...
+   let want: Want = {
+     deviceId: '', // deviceId为空表示本设备
+     bundleName: 'com.example.myapplication',
+     moduleName: 'func', // moduleName非必选
+     abilityName: 'FuncAbility',
+   }
 
    // context为调用方UIAbility的UIAbilityContext
    context.startAbilityForResult(want).then((data) => {
@@ -561,6 +566,10 @@ export default class FuncAbility extends UIAbility {
 2. 在短信应用UIAbility的`onNewWant()`回调中解析调用方传递过来的want参数，通过调用UIContext中的[`getRouter()`](../reference/apis/js-apis-arkui-UIContext.md#getrouter)方法获取[`Router`](../reference/apis/js-apis-arkui-UIContext.md#router)对象，并进行指定页面的跳转。此时再次启动该短信应用的UIAbility实例时，即可跳转到该短信应用的UIAbility实例的指定页面。
 
    ```ts
+   import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+   import UIAbility from '@ohos.app.ability.UIAbility';
+   import Want from '@ohos.app.ability.Want';
+   import { Router, UIContext } from '@ohos.arkui.UIContext';
    import { BusinessError } from '@ohos.base';
 
    export default class EntryAbility extends UIAbility {
@@ -570,12 +579,14 @@ export default class FuncAbility extends UIAbility {
      onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam) {
        if (want?.parameters?.router && want.parameters.router === 'funcA') {
          let funcAUrl = 'pages/Second';
-         let router: Router = this.uiContext.getRouter();
-         router.pushUrl({
-           url: funcAUrl
-         }).catch((err: BusinessError) => {
-           console.error(`Failed to push url. Code is ${err.code}, message is ${err.message}`);
-         })
+         if (this.uiContext) {
+           let router: Router = this.uiContext.getRouter();
+           router.pushUrl({
+             url: funcAUrl
+           }).catch((err: BusinessError) => {
+             console.error(`Failed to push url. Code is ${err.code}, message is ${err.message}`);
+           })
+         }
        }
      }
 
@@ -673,6 +684,8 @@ Call功能主要接口如下表所示。具体的API详见[接口文档](../refe
 
    
    ```ts
+   import rpc from '@ohos.rpc';
+
    export default class MyParcelable {
      num: number = 0;
      str: string = '';
@@ -681,14 +694,14 @@ Call功能主要接口如下表所示。具体的API详见[接口文档](../refe
        this.num = num;
        this.str = string;
      }
-   
-     marshalling(messageSequence) {
+
+     marshalling(messageSequence: rpc.MessageSequence) {
        messageSequence.writeInt(this.num);
        messageSequence.writeString(this.str);
        return true;
      }
-   
-     unmarshalling(messageSequence) {
+
+     unmarshalling(messageSequence: rpc.MessageSequence) {
        this.num = messageSequence.readInt();
        this.str = messageSequence.readString();
        return true;
@@ -702,7 +715,12 @@ Call功能主要接口如下表所示。具体的API详见[接口文档](../refe
    
    
    ```ts
+   import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+   import UIAbility from '@ohos.app.ability.UIAbility';
+   import Want from '@ohos.app.ability.Want';
    import rpc from '@ohos.rpc';
+   import { BusinessError } from '@ohos.base';
+   import MyParcelable from './MyParcelable';
 
    const TAG: string = '[CalleeAbility]';
    const MSG_SEND_METHOD: string = 'CallSendMsg';
@@ -711,13 +729,14 @@ Call功能主要接口如下表所示。具体的API详见[接口文档](../refe
      console.info('CalleeSortFunc called');
    
      // 获取Caller发送的序列化数据
-     let receivedData = new MyParcelable(0, '');
+     let receivedData: MyParcelable = new MyParcelable(0, '');
      data.readParcelable(receivedData);
      console.info(`receiveData[${receivedData.num}, ${receivedData.str}]`);
-   
+     let num: number = receivedData.num;
+
      // 作相应处理
      // 返回序列化数据result给Caller
-     return new MyParcelable(receivedData.num + 1, `send ${receivedData.str} succeed`);
+     return new MyParcelable(num + 1, `send ${receivedData.str} succeed`) as rpc.Parcelable;
    }
    
    export default class CalleeAbility extends UIAbility {
@@ -725,7 +744,9 @@ Call功能主要接口如下表所示。具体的API详见[接口文档](../refe
        try {
          this.callee.on(MSG_SEND_METHOD, sendMsgCallback);
        } catch (err) {
-         console.error(`Failed to register. Code is ${err.code}, message is ${err.message}`);
+         let code = (err as BusinessError).code;
+         let message = (err as BusinessError).message;
+         console.error(`Failed to register. Code is ${code}, message is ${message}`);
        }
      }
    
@@ -733,7 +754,9 @@ Call功能主要接口如下表所示。具体的API详见[接口文档](../refe
        try {
          this.callee.off(MSG_SEND_METHOD);
        } catch (err) {
-         console.error(`Failed to unregister. Code is ${err.code}, message is ${err.message}`);
+         let code = (err as BusinessError).code;
+         let message = (err as BusinessError).message;
+         console.error(`Failed to unregister. Code is ${code}, message is ${message}`);
        }
      }
    }
@@ -755,6 +778,7 @@ Call功能主要接口如下表所示。具体的API详见[接口文档](../refe
    ```ts
    import UIAbility from '@ohos.app.ability.UIAbility';
    import { Caller } from '@ohos.app.ability.UIAbility';
+   import { BusinessError } from '@ohos.base';
 
    export default class CallerAbility extends UIAbility {
      caller: Caller | undefined = undefined;
@@ -767,13 +791,15 @@ Call功能主要接口如下表所示。具体的API详见[接口文档](../refe
          })
          console.info('Succeeded in registering on release.');
        } catch (err) {
-         console.error(`Failed to caller register on release. Code is ${err.code}, message is ${err.message}`);
+         let code = (err as BusinessError).code;
+         let message = (err as BusinessError).message;
+         console.error(`Failed to caller register on release. Code is ${code}, message is ${message}`);
        }
      }
 
      async onButtonGetCaller() {
        try {
-         this.caller = await context.startAbilityByCall({
+         this.caller = await this.context.startAbilityByCall({
            bundleName: 'com.samples.CallApplication',
            abilityName: 'CalleeAbility'
          });
@@ -784,7 +810,9 @@ Call功能主要接口如下表所示。具体的API详见[接口文档](../refe
          console.info('get caller success')
          this.regOnRelease(this.caller)
        } catch (err) {
-         console.error(`Failed to get caller. Code is ${err.code}, message is ${err.message}`);
+         let code = (err as BusinessError).code;
+         let message = (err as BusinessError).message;
+         console.error(`Failed to get caller. Code is ${code}, message is ${message}`);
        }
      }
    }

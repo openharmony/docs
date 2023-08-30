@@ -46,7 +46,7 @@ Worker的开发步骤如下：
       wk.postMessage("message from main thread.")
 
       // 处理来自worker线程的消息
-      wk.onmessage = function(message) => {
+      wk.onmessage = (message) => {
         console.info("message from worker: " + message)
 
         // 根据业务按需停止worker线程

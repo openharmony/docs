@@ -135,11 +135,12 @@ export default class ServiceExtImpl extends IdlServiceExtStub {
    import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
    import ServiceExtImpl from '../IdlServiceExt/idl_service_ext_impl';
    import Want from '@ohos.app.ability.Want';
+   import rpc from '@ohos.rpc';
    
    const TAG: string = "[ServiceExtAbility]";
    
    export default class ServiceExtAbility extends ServiceExtensionAbility {
-     serviceExtImpl = new ServiceExtImpl("ExtImpl");
+     serviceExtImpl: ServiceExtImpl = new ServiceExtImpl("ExtImpl");
 
      onCreate(want: Want) {
        console.info(TAG, `onCreate, want: ${want.abilityName}`);
@@ -152,7 +153,7 @@ export default class ServiceExtImpl extends IdlServiceExtStub {
      onConnect(want: Want) {
        console.info(TAG, `onConnect, want: ${want.abilityName}`);
        // 返回ServiceExtImpl对象，客户端获取后便可以与ServiceExtensionAbility进行通信
-       return this.serviceExtImpl;
+       return this.serviceExtImpl as rpc.RemoteObject;
      }
    
      onDisconnect(want: Want) {
@@ -322,12 +323,12 @@ ServiceExtensionAbility服务组件在[onConnect()](../reference/apis/js-apis-ap
         console.info(`onConnect remote is null`);
         return;
       }
-      let serviceExtProxy = new IdlServiceExtProxy(remote);
+      let serviceExtProxy: IdlServiceExtProxy = new IdlServiceExtProxy(remote);
       // 通过接口调用的方式进行通信，屏蔽了RPC通信的细节，简洁明了
-      serviceExtProxy.processData(1, (errorCode, retVal) => {
+      serviceExtProxy.processData(1, (errorCode: number, retVal: number) => {
         console.info(`processData, errorCode: ${errorCode}, retVal: ${retVal}`);
       });
-      serviceExtProxy.insertDataToMap('theKey', 1, (errorCode) => {
+      serviceExtProxy.insertDataToMap('theKey', 1, (errorCode: number) => {
         console.info(`insertDataToMap, errorCode: ${errorCode}`);
       })
     },

@@ -32,7 +32,7 @@ startAbility接口由FA模型切换到Stage模型的示例：
 
   // context为Ability对象的成员，在非Ability对象内部调用需要
   // 将Context对象传递过去
-  let wantInfo = {
+  let wantInfo: Want = {
     bundleName: "com.example.myapplication",
     abilityName: "EntryAbility"
   };

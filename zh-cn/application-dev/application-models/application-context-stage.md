@@ -286,7 +286,7 @@ const TAG: string = '[Example].[Entry].[EntryAbility]';
 
 export default class EntryAbility extends UIAbility {
   // 定义生命周期ID
-  lifecycleId: number;
+  lifecycleId: number = -1;
 
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
     // 定义生命周期回调对象

@@ -25,7 +25,7 @@ export default class EntryAbility extends UIAbility {
     }
     onWindowStageCreate(windowStage: window.WindowStage) {
         console.info("EntryAbility onWindowStageCreate")
-        let want = {
+        let want: Want = {
             bundleName: "com.ohos.fa",
             abilityName: "ServiceAbility",
         };
