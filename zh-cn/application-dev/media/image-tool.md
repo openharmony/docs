@@ -27,7 +27,7 @@ EXIF信息的读取与编辑相关API的详细介绍请参见[API参考](../refe
      
    ```ts
    // 读取EXIF信息，BitsPerSample为每个像素比特数
-   imageSource.getImageProperty('BitsPerSample', (error : void, data : BitsPerSample) => {
+   imageSource.getImageProperty('BitsPerSample', (error, data : GetImagePropertyOptions) => {
      if (error) {
        console.error('Failed to get the value of the specified attribute key of the image.And the error is: ' + error);
      } else {
