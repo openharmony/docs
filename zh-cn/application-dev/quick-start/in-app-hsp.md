@@ -23,7 +23,7 @@ library
 ```ts
 // library/src/main/ets/utils/test.ts
 export class Log {
-    static info(msg) {
+    static info(msg: string) {
         console.info(msg);
     }
 }
@@ -119,7 +119,8 @@ export { ResManager } from './ResManager'
 import native from "libnative.so"
 
 export function nativeMulti(a: number, b: number) {
-    return native.multi(a, b);
+    let result: number = native.multi(a, b);
+    return result;
 }
 ```
 
@@ -194,6 +195,7 @@ struct Index {
 若开发者想在entry模块中，添加一个按钮跳转至library模块中的menu页面（路径为：`library/src/main/ets/pages/menu.ets`），那么可以在使用方的代码（entry模块下的Index.ets，路径为：`entry/src/main/ets/MainAbility/Index.ets`）里这样使用：
 ```ts
 import router from '@ohos.router';
+import { BusinessError } from '@ohos.base';
 
 @Entry
 @Component
@@ -225,7 +227,7 @@ struct Index {
               url: '@bundle:com.example.hmservice/library/ets/pages/menu'
             }).then(() => {
               console.log("push page success");
-            }).catch(err => {
+            }).catch((err: BusinessError) => {
               console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
             })
         })
