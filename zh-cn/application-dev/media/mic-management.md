@@ -12,8 +12,8 @@
      
    ```ts
    import audio from '@ohos.multimedia.audio';
-   
-   let audioVolumeGroupManager;
+
+   let audioVolumeGroupManager: audio.AudioVolumeGroupManager;
    async function loadVolumeGroupManager() { //创建audioVolumeGroupManager对象
      const groupid = audio.DEFAULT_VOLUME_GROUP_ID;
      audioVolumeGroupManager = await audio.getAudioManager().getVolumeManager().getVolumeGroupManager(groupid);
@@ -28,7 +28,7 @@
      
    ```ts
    async function on() {   //监听麦克风状态变化
-     audioVolumeGroupManager.on('micStateChange', (micStateChange) => {
+     audioVolumeGroupManager.on('micStateChange', (micStateChange: audio.MicStateChangeEvent) => {
        console.info(`Current microphone status is: ${micStateChange.mute} `);
      });
    }
@@ -38,7 +38,7 @@
      
    ```ts
    async function isMicrophoneMute() { //查询麦克风是否静音
-     await audioVolumeGroupManager.isMicrophoneMute().then((value) => {
+     await audioVolumeGroupManager.isMicrophoneMute().then((value: boolean) => {
        console.info(`isMicrophoneMute is: ${value}.`);
      });
    }
@@ -64,51 +64,48 @@
 参考以下示例，完成从设置麦克风静音到取消麦克风静音的过程。
 
 ```ts
-import audio from '@ohos.multimedia.audio';
+   import audio from '@ohos.multimedia.audio';
+   
+   let audioVolumeGroupManager: audio.AudioVolumeGroupManager;
+   
+   async function loadVolumeGroupManager() {
+        const groupid = audio.DEFAULT_VOLUME_GROUP_ID;
+        audioVolumeGroupManager = await audio.getAudioManager().getVolumeManager().getVolumeGroupManager(groupid);
+        console.info('audioVolumeGroupManager------create-------success.');
+   }
+   
+   async function on() {   //监听麦克风状态变化
+     await loadVolumeGroupManager();
+     audioVolumeGroupManager.on('micStateChange', (micStateChange) => {
+       console.info(`Current microphone status is: ${micStateChange.mute} `);
+     });
+   }
+   async function isMicrophoneMute() { //查询麦克风是否静音
+     await audioVolumeGroupManager.isMicrophoneMute().then((value) => {
+       console.info(`isMicrophoneMute is: ${value}.`);
+     });
+   }
+   async function setMicrophoneMuteTrue() { //设置麦克风静音
+     await loadVolumeGroupManager();
+     await audioVolumeGroupManager.setMicrophoneMute(true).then(() => {
+       console.info('setMicrophoneMute to mute.');
+     });
+   }
+   async function setMicrophoneMuteFalse() { //取消麦克风静音
+     await loadVolumeGroupManager();
+     await audioVolumeGroupManager.setMicrophoneMute(false).then(() => {
+       console.info('setMicrophoneMute to not mute.');
+     });
+   }
+   async function test(){
+     await on();
+     await isMicrophoneMute();
+     await setMicrophoneMuteTrue();
+     await isMicrophoneMute();
+     await setMicrophoneMuteFalse();
+     await isMicrophoneMute();
+     await setMicrophoneMuteTrue();
+     await isMicrophoneMute();
+   }
 
-@Entry
-@Component
-struct AudioVolumeGroup {
- private audioVolumeGroupManager: audio.AudioVolumeGroupManager;
-
-  async loadVolumeGroupManager() {
-    const groupid = audio.DEFAULT_VOLUME_GROUP_ID;
-    this.audioVolumeGroupManager = await audio.getAudioManager().getVolumeManager().getVolumeGroupManager(groupid);
-    console.info('audioVolumeGroupManager------create-------success.');
-  }
-
-  async on() {   //监听麦克风状态变化
-    await this.loadVolumeGroupManager();
-    this.audioVolumeGroupManager.on('micStateChange', (micStateChange) => {
-      console.info(`Current microphone status is: ${micStateChange.mute} `);
-    });
-  }
-  async isMicrophoneMute() { //查询麦克风是否静音
-    await this.audioVolumeGroupManager.isMicrophoneMute().then((value) => {
-      console.info(`isMicrophoneMute is: ${value}.`);
-    });
-  }
-  async setMicrophoneMuteTrue() { //设置麦克风静音
-    await this.loadVolumeGroupManager();
-    await this.audioVolumeGroupManager.setMicrophoneMute(true).then(() => {
-      console.info('setMicrophoneMute to mute.');
-    });
-  }
-  async setMicrophoneMuteFalse() { //取消麦克风静音
-    await this.loadVolumeGroupManager();
-    await this.audioVolumeGroupManager.setMicrophoneMute(false).then(() => {
-      console.info('setMicrophoneMute to not mute.');
-    });
-  }
-  async test(){
-    await this.on();
-    await this.isMicrophoneMute();
-    await this.setMicrophoneMuteTrue();
-    await this.isMicrophoneMute();
-    await this.setMicrophoneMuteFalse();
-    await this.isMicrophoneMute();
-    await this.setMicrophoneMuteTrue();
-    await this.isMicrophoneMute();
-  }
-}
 ```

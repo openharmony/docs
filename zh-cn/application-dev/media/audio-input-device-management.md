@@ -65,6 +65,7 @@ audioRoutingManager.off('deviceChange', (deviceChanged: audio.DeviceChangeAction
 > 用户可以选择连接一组音频设备（如一对蓝牙耳机），但系统侧只感知为一个设备，该组设备共用一个设备id。
 
 ```ts
+import audio from '@ohos.multimedia.audio';
 let inputAudioDeviceDescriptor: audio.AudioDeviceDescriptors = [{
     deviceRole : audio.DeviceRole.INPUT_DEVICE,
     deviceType : audio.DeviceType.EARPIECE,
