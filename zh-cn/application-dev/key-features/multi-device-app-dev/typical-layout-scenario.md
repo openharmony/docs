@@ -532,7 +532,7 @@ export default class MainAbility extends Ability {
     // 将长度的单位由px换算为vp
     let windowWidthVp = windowWidth / (display.getDefaultDisplaySync().densityDPI / 160)
     let newBp: string = ''
-    let myWidth: number
+    let newWd: number
     if (windowWidthVp < 320) {
       newBp = 'xs'
       newWd = 360
