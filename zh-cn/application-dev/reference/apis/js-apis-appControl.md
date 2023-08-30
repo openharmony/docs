@@ -58,13 +58,13 @@ let appId = "com.example.myapplication_xxxxx";
 let want:Want = {bundleName: 'com.example.myapplication'};
 
 try {
-  appControl.setDisposedStatus(appId, want)
-    .then(() => {
-      console.info('setDisposedStatus success');
-    }).catch((error: BusinessError) => {
-    let message = (error as BusinessError).message;
-    console.error('setDisposedStatus failed ' + message);
-  });
+    appControl.setDisposedStatus(appId, want)
+        .then(() => {
+            console.info('setDisposedStatus success');
+        }).catch((error: BusinessError) => {
+            let message = (error as BusinessError).message;
+            console.error('setDisposedStatus failed ' + message);
+        });
 } catch (error) {
     let message = (error as BusinessError).message;
     console.error('setDisposedStatus failed ' + message);
