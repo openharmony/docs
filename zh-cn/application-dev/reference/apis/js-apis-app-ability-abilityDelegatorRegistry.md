@@ -45,10 +45,11 @@ getAbilityDelegator(): AbilityDelegator
 
 ```ts
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import Want from '@ohos.app.ability.Want';
 
 let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 
-let want = {
+let want: Want = {
     bundleName: 'com.example.myapplication',
     abilityName: 'EntryAbility'
 };

@@ -21,9 +21,10 @@ import StaticSubscriberExtensionContext from '@ohos.application.StaticSubscriber
 
 ```ts
 import StaticSubscriberExtensionAbility from '@ohos.application.StaticSubscriberExtensionAbility'
+import StaticSubscriberExtensionContext from '@ohos.application.StaticSubscriberExtensionContext'
 
 export default class MyStaticSubscriberExtensionAbility extends StaticSubscriberExtensionAbility {
-    context = this.context;
+    context: StaticSubscriberExtensionContext = this.context;
 };
 ```
 
@@ -73,13 +74,16 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void;
 **示例：**
 
   ```ts
-  let want = {
+  import Want from '@ohos.app.ability.Want';
+  import { BusinessError } from '@ohos.base';
+
+  let want: Want = {
     bundleName: "com.example.myapp",
     abilityName: "MyAbility"
   };
 
   try {
-    this.context.startAbility(want, (error) => {
+    this.context.startAbility(want, (error: BusinessError) => {
       if (error) {
         // 处理业务逻辑错误
         console.log('startAbility failed, error.code: ' + JSON.stringify(error.code) +
@@ -91,8 +95,10 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void;
     });
   } catch (paramError) {
     // 处理入参错误异常
-    console.log('startAbility failed, error.code: ' + JSON.stringify(paramError.code) +
-    ' error.message: ' + JSON.stringify(paramError.message));
+    let code = (paramError as BusinessError).code;
+    let message = (paramError as BusinessError).message;
+    console.log('startAbility failed, error.code: ' + JSON.stringify(code) +
+    ' error.message: ' + JSON.stringify(message));
   }
   ```
 
@@ -147,7 +153,10 @@ startAbility(want: Want): Promise&lt;void&gt;;
 **示例：**
 
   ```ts
-  let want = {
+  import Want from '@ohos.app.ability.Want';
+  import { BusinessError } from '@ohos.base';
+
+  let want: Want = {
     bundleName: "com.example.myapp",
     abilityName: "MyAbility"
   };
@@ -158,14 +167,16 @@ startAbility(want: Want): Promise&lt;void&gt;;
         // 执行正常业务
         console.log('startAbility succeed');
       })
-      .catch((error) => {
+      .catch((error: BusinessError) => {
         // 处理业务逻辑错误
         console.log('startAbility failed, error.code: ' + JSON.stringify(error.code) +
         ' error.message: ' + JSON.stringify(error.message));
       });
   } catch (paramError) {
     // 处理入参错误异常
-    console.log('startAbility failed, error.code: ' + JSON.stringify(paramError.code) +
-    ' error.message: ' + JSON.stringify(paramError.message));
+    let code = (paramError as BusinessError).code;
+    let message = (paramError as BusinessError).message;
+    console.log('startAbility failed, error.code: ' + JSON.stringify(code) +
+    ' error.message: ' + JSON.stringify(message));
   }
   ```

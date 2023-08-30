@@ -587,15 +587,7 @@ connectAbility(request: Want, options:ConnectOptions): number
 ```ts
 import rpc from '@ohos.rpc';
 import featureAbility from '@ohos.ability.featureAbility';
-function onConnectCallback(element, remote){
-    console.log('ConnectAbility onConnect remote is proxy: ${(remote instanceof rpc.RemoteProxy)}');
-}
-function onDisconnectCallback(element){
-    console.log('ConnectAbility onDisconnect element.deviceId : ${element.deviceId}')
-}
-function onFailedCallback(code){
-    console.error('featureAbilityTest ConnectAbility onFailed errCode : ${code}')
-}
+
 let connectId = featureAbility.connectAbility(
     {
         deviceId: '',
@@ -603,9 +595,15 @@ let connectId = featureAbility.connectAbility(
         abilityName: 'com.ix.ServiceAbility.ServiceAbilityA',
     },
     {
-        onConnect: onConnectCallback,
-        onDisconnect: onDisconnectCallback,
-        onFailed: onFailedCallback,
+        onConnect: (element, remote) => {
+            console.log('ConnectAbility onConnect remote is proxy: ${(remote instanceof rpc.RemoteProxy)}');
+        },
+        onDisconnect: (element) => {
+            console.log('ConnectAbility onDisconnect element.deviceId : ${element.deviceId}')
+        },
+        onFailed: (code) => {
+            console.error('featureAbilityTest ConnectAbility onFailed errCode : ${code}')
+        },
     },
 );
 ```
@@ -630,24 +628,22 @@ disconnectAbility(connection: number, callback:AsyncCallback\<void>): void
 ```ts
 import rpc from '@ohos.rpc';
 import featureAbility from '@ohos.ability.featureAbility';
-function onConnectCallback(element, remote){
-    console.log('ConnectAbility onConnect remote is proxy: ${(remote instanceof rpc.RemoteProxy)}');
-}
-function onDisconnectCallback(element){
-    console.log('ConnectAbility onDisconnect element.deviceId : ${element.deviceId}');
-}
-function onFailedCallback(code){
-    console.error('featureAbilityTest ConnectAbility onFailed errCode : ${code}');
-}
+
 let connectId = featureAbility.connectAbility(
     {
         bundleName: 'com.ix.ServiceAbility',
         abilityName: 'com.ix.ServiceAbility.ServiceAbilityA',
     },
     {
-        onConnect: onConnectCallback,
-        onDisconnect: onDisconnectCallback,
-        onFailed: onFailedCallback,
+        onConnect: (element, remote) => {
+            console.log('ConnectAbility onConnect remote is proxy: ${(remote instanceof rpc.RemoteProxy)}');
+        },
+        onDisconnect: (element) => {
+            console.log('ConnectAbility onDisconnect element.deviceId : ${element.deviceId}');
+        },
+        onFailed: (code) => {
+            console.error('featureAbilityTest ConnectAbility onFailed errCode : ${code}');
+        },
     },
 );
 
@@ -685,30 +681,29 @@ disconnectAbility(connection: number): Promise\<void>
 ```ts
 import rpc from '@ohos.rpc';
 import featureAbility from '@ohos.ability.featureAbility';
-function onConnectCallback(element, remote){
-    console.log('ConnectAbility onConnect remote is proxy: ${(remote instanceof rpc.RemoteProxy)}');
-}
-function onDisconnectCallback(element){
-    console.log('ConnectAbility onDisconnect element.deviceId : ${element.deviceId}');
-}
-function onFailedCallback(code){
-    console.error('featureAbilityTest ConnectAbility onFailed errCode : ${code}');
-}
+import { BusinessError } from '@ohos.base';
+
 let connectId = featureAbility.connectAbility(
     {
         bundleName: 'com.ix.ServiceAbility',
         abilityName: 'com.ix.ServiceAbility.ServiceAbilityA',
     },
     {
-        onConnect: onConnectCallback,
-        onDisconnect: onDisconnectCallback,
-        onFailed: onFailedCallback,
+        onConnect: (element, remote) => {
+            console.log('ConnectAbility onConnect remote is proxy: ${(remote instanceof rpc.RemoteProxy)}');
+        },
+        onDisconnect: (element) => {
+            console.log('ConnectAbility onDisconnect element.deviceId : ${element.deviceId}');
+        },
+        onFailed: (code) => {
+            console.error('featureAbilityTest ConnectAbility onFailed errCode : ${code}');
+        },
     },
 );
 
 featureAbility.disconnectAbility(connectId).then((data) => {
     console.log('data: ${data)}')
-}).catch((error)=>{
+}).catch((error: BusinessError)=>{
     console.error('featureAbilityTest result errCode : ${error.code}');
 });
 ```
@@ -731,7 +726,11 @@ getWindow(callback: AsyncCallback\<window.Window>): void
 **示例：**
 
 ```ts
-featureAbility.getWindow((error, data) => {
+import featureAbility from '@ohos.ability.featureAbility';
+import { BusinessError } from '@ohos.base';
+import window from '@ohos.window';
+
+featureAbility.getWindow((error: BusinessError, data: window.Window) => {
     if (error && error.code !== 0) {
         console.error('getWindow fail, error: ${JSON.stringify(error)}');
     } else {
@@ -757,6 +756,8 @@ getWindow(): Promise\<window.Window>;
 **示例：**
 
 ```ts
+import featureAbility from '@ohos.ability.featureAbility';
+
 featureAbility.getWindow().then((data) => {
     console.info('getWindow data: ${typeof(data)}');
 });

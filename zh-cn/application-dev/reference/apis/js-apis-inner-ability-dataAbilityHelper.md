@@ -40,7 +40,9 @@ openFile(uri: string, mode: string, callback: AsyncCallback\<number>): void
 **示例：**
 
 ```ts
+import ability from '@ohos.ability.ability';
 import featureAbility from '@ohos.ability.featureAbility';
+
 let DAHelper: ability.DataAbilityHelper = featureAbility.acquireDataAbilityHelper(
     'dataability:///com.example.DataAbility'
 );
@@ -78,7 +80,9 @@ openFile(uri: string, mode: string): Promise\<number>
 **示例：**
 
 ```ts
+import ability from '@ohos.ability.ability';
 import featureAbility from '@ohos.ability.featureAbility';
+
 let DAHelper: ability.DataAbilityHelper = featureAbility.acquireDataAbilityHelper(
     'dataability:///com.example.DataAbility'
 );
@@ -107,7 +111,9 @@ on(type: 'dataChange', uri: string, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
+import ability from '@ohos.ability.ability';
 import featureAbility from '@ohos.ability.featureAbility';
+
 let DAHelper: ability.DataAbilityHelper = featureAbility.acquireDataAbilityHelper(
     'dataability:///com.example.DataAbility'
 );
@@ -140,7 +146,9 @@ off(type: 'dataChange', uri: string, callback?: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
+import ability from '@ohos.ability.ability';
 import featureAbility from '@ohos.ability.featureAbility';
+
 let DAHelper: ability.DataAbilityHelper = featureAbility.acquireDataAbilityHelper(
     'dataability:///com.example.DataAbility'
 );
@@ -176,7 +184,9 @@ getType(uri: string, callback: AsyncCallback\<string>): void
 **示例：**
 
 ```ts
+import ability from '@ohos.ability.ability';
 import featureAbility from '@ohos.ability.featureAbility';
+
 let DAHelper: ability.DataAbilityHelper = featureAbility.acquireDataAbilityHelper(
     'dataability:///com.example.DataAbility'
 );
@@ -212,7 +222,9 @@ getType(uri: string): Promise\<string>
 **示例：**
 
 ```ts
+import ability from '@ohos.ability.ability';
 import featureAbility from '@ohos.ability.featureAbility';
+
 let DAHelper: ability.DataAbilityHelper = featureAbility.acquireDataAbilityHelper(
     'dataability:///com.example.DataAbility'
 );
@@ -240,7 +252,9 @@ getFileTypes(uri: string, mimeTypeFilter: string, callback: AsyncCallback<Array\
 **示例：**
 
 ```ts
+import ability from '@ohos.ability.ability';
 import featureAbility from '@ohos.ability.featureAbility';
+
 let DAHelper: ability.DataAbilityHelper = featureAbility.acquireDataAbilityHelper(
     'dataability:///com.example.DataAbility'
 );
@@ -277,7 +291,9 @@ getFileTypes(uri: string, mimeTypeFilter: string): Promise\<Array\<string>>
 **示例：**
 
 ```ts
+import ability from '@ohos.ability.ability';
 import featureAbility from '@ohos.ability.featureAbility';
+
 let DAHelper: ability.DataAbilityHelper = featureAbility.acquireDataAbilityHelper(
     'dataability:///com.example.DataAbility'
 );
@@ -304,7 +320,9 @@ normalizeUri(uri: string, callback: AsyncCallback\<string>): void
 **示例：**
 
 ```ts
+import ability from '@ohos.ability.ability';
 import featureAbility from '@ohos.ability.featureAbility';
+
 let DAHelper: ability.DataAbilityHelper = featureAbility.acquireDataAbilityHelper(
     'dataability:///com.example.DataAbility'
 );
@@ -340,7 +358,9 @@ normalizeUri(uri: string): Promise\<string>
 **示例：**
 
 ```ts
+import ability from '@ohos.ability.ability';
 import featureAbility from '@ohos.ability.featureAbility';
+
 let DAHelper: ability.DataAbilityHelper = featureAbility.acquireDataAbilityHelper(
     'dataability:///com.example.DataAbility'
 );
@@ -367,7 +387,9 @@ denormalizeUri(uri: string, callback: AsyncCallback\<string>): void
 **示例：**
 
 ```ts
+import ability from '@ohos.ability.ability';
 import featureAbility from '@ohos.ability.featureAbility';
+
 let DAHelper: ability.DataAbilityHelper = featureAbility.acquireDataAbilityHelper(
     'dataability:///com.example.DataAbility'
 );
@@ -403,7 +425,9 @@ denormalizeUri(uri: string): Promise\<string>
 **示例：**
 
 ```ts
+import ability from '@ohos.ability.ability';
 import featureAbility from '@ohos.ability.featureAbility';
+
 let DAHelper: ability.DataAbilityHelper = featureAbility.acquireDataAbilityHelper(
     'dataability:///com.example.DataAbility'
 );
@@ -430,7 +454,9 @@ notifyChange(uri: string, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
+import ability from '@ohos.ability.ability';
 import featureAbility from '@ohos.ability.featureAbility';
+
 let DAHelper: ability.DataAbilityHelper = featureAbility.acquireDataAbilityHelper(
     'dataability:///com.example.DataAbility'
 );
@@ -466,7 +492,9 @@ notifyChange(uri: string): Promise\<void>
 **示例：**
 
 ```ts
+import ability from '@ohos.ability.ability';
 import featureAbility from '@ohos.ability.featureAbility';
+
 let DAHelper: ability.DataAbilityHelper = featureAbility.acquireDataAbilityHelper(
     'dataability:///com.example.DataAbility'
 );
@@ -494,11 +522,14 @@ insert(uri: string, valuesBucket: rdb.ValuesBucket, callback: AsyncCallback\<num
 **示例：**
 
 ```ts
+import ability from '@ohos.ability.ability';
 import featureAbility from '@ohos.ability.featureAbility';
+import rdb from '@ohos.data.rdb';
+
 let DAHelper: ability.DataAbilityHelper = featureAbility.acquireDataAbilityHelper(
     'dataability:///com.example.DataAbility'
 );
-const valueBucket = {
+const valueBucket: rdb.ValuesBucket = {
     'name': 'rose',
     'age': 22,
     'salary': 200.5,
@@ -537,11 +568,14 @@ insert(uri: string, valuesBucket: rdb.ValuesBucket): Promise\<number>
 **示例：**
 
 ```ts
+import ability from '@ohos.ability.ability';
 import featureAbility from '@ohos.ability.featureAbility';
+import rdb from '@ohos.data.rdb';
+
 let DAHelper: ability.DataAbilityHelper = featureAbility.acquireDataAbilityHelper(
     'dataability:///com.example.DataAbility'
 );
-const valueBucket = {
+const valueBucket: rdb.ValuesBucket = {
     'name': 'rose1',
     'age': 221,
     'salary': 20.5,
@@ -571,13 +605,16 @@ batchInsert(uri: string, valuesBuckets: Array\<rdb.ValuesBucket>, callback: Asyn
 **示例：**
 
 ```ts
+import ability from '@ohos.ability.ability';
 import featureAbility from '@ohos.ability.featureAbility';
+import rdb from '@ohos.data.rdb';
+
 let DAHelper: ability.DataAbilityHelper = featureAbility.acquireDataAbilityHelper(
     'dataability:///com.example.DataAbility'
 );
-let cars = new Array({'name': 'roe11', 'age': 21, 'salary': 20.5, 'blobType': 'u8',},
-                     {'name': 'roe12', 'age': 21, 'salary': 20.5, 'blobType': 'u8',},
-                     {'name': 'roe13', 'age': 21, 'salary': 20.5, 'blobType': 'u8',});
+let cars = new Array({'name': 'roe11', 'age': 21, 'salary': 20.5, 'blobType': 'u8',} as rdb.ValuesBucket,
+                     {'name': 'roe12', 'age': 21, 'salary': 20.5, 'blobType': 'u8',} as rdb.ValuesBucket,
+                     {'name': 'roe13', 'age': 21, 'salary': 20.5, 'blobType': 'u8',} as rdb.ValuesBucket);
 DAHelper.batchInsert('dataability:///com.example.DataAbility', cars, (error, data) => {
     if (error && error.code !== 0) {
         console.error('batchInsert fail, error: ${JSON.stringify(error)}');
@@ -611,13 +648,16 @@ batchInsert(uri: string, valuesBuckets: Array<rdb.ValuesBucket>): Promise\<numbe
 **示例：**
 
 ```ts
+import ability from '@ohos.ability.ability';
 import featureAbility from '@ohos.ability.featureAbility';
+import rdb from '@ohos.data.rdb';
+
 let DAHelper: ability.DataAbilityHelper = featureAbility.acquireDataAbilityHelper(
     'dataability:///com.example.DataAbility'
 );
-let cars = new Array({'name': 'roe11', 'age': 21, 'salary': 20.5, 'blobType': 'u8',},
-                     {'name': 'roe12', 'age': 21, 'salary': 20.5, 'blobType': 'u8',},
-                     {'name': 'roe13', 'age': 21, 'salary': 20.5, 'blobType': 'u8',});
+let cars = new Array({'name': 'roe11', 'age': 21, 'salary': 20.5, 'blobType': 'u8',} as rdb.ValuesBucket,
+                     {'name': 'roe12', 'age': 21, 'salary': 20.5, 'blobType': 'u8',} as rdb.ValuesBucket,
+                     {'name': 'roe13', 'age': 21, 'salary': 20.5, 'blobType': 'u8',} as rdb.ValuesBucket);
 DAHelper.batchInsert('dataability:///com.example.DataAbility', cars).then((data) => {
     console.info('batchInsert data: ${JSON.stringify(data)}');
 });
@@ -642,8 +682,10 @@ delete(uri: string, predicates: dataAbility.DataAbilityPredicates, callback: Asy
 **示例：**
 
 ```ts
+import ability from '@ohos.ability.ability';
 import featureAbility from '@ohos.ability.featureAbility';
 import ohos_data_ability from '@ohos.data.dataAbility';
+
 let DAHelper: ability.DataAbilityHelper = featureAbility.acquireDataAbilityHelper(
     'dataability:///com.example.DataAbility'
 );
@@ -681,8 +723,10 @@ delete(uri: string, predicates?: dataAbility.DataAbilityPredicates): Promise\<nu
 **示例：**
 
 ```ts
+import ability from '@ohos.ability.ability';
 import featureAbility from '@ohos.ability.featureAbility';
 import ohos_data_ability from '@ohos.data.dataAbility';
+
 let DAHelper: ability.DataAbilityHelper = featureAbility.acquireDataAbilityHelper(
     'dataability:///com.example.DataAbility'
 );
@@ -712,12 +756,15 @@ update(uri: string, valuesBucket: rdb.ValuesBucket, predicates: dataAbility.Data
 **示例：**
 
 ```ts
+import ability from '@ohos.ability.ability';
 import featureAbility from '@ohos.ability.featureAbility';
 import ohos_data_ability from '@ohos.data.dataAbility';
+import rdb from '@ohos.data.rdb';
+
 let DAHelper: ability.DataAbilityHelper = featureAbility.acquireDataAbilityHelper(
     'dataability:///com.example.DataAbility'
 );
-const va = {
+const va: rdb.ValuesBucket = {
     'name': 'roe1',
     'age': 21,
     'salary': 20.5,
@@ -758,12 +805,15 @@ update(uri: string, valuesBucket: rdb.ValuesBucket, predicates?: dataAbility.Dat
 **示例：**
 
 ```ts
+import ability from '@ohos.ability.ability';
 import featureAbility from '@ohos.ability.featureAbility';
 import ohos_data_ability from '@ohos.data.dataAbility';
+import rdb from '@ohos.data.rdb';
+
 let DAHelper: ability.DataAbilityHelper = featureAbility.acquireDataAbilityHelper(
     'dataability:///com.example.DataAbility'
 );
-const va = {
+const va: rdb.ValuesBucket = {
     'name': 'roe1',
     'age': 21,
     'salary': 20.5,
@@ -795,8 +845,10 @@ query(uri: string, columns: Array\<string>, predicates: dataAbility.DataAbilityP
 **示例：**
 
 ```ts
+import ability from '@ohos.ability.ability';
 import featureAbility from '@ohos.ability.featureAbility';
 import ohos_data_ability from '@ohos.data.dataAbility';
+
 let DAHelper: ability.DataAbilityHelper = featureAbility.acquireDataAbilityHelper(
     'dataability:///com.example.DataAbility'
 );
@@ -838,8 +890,10 @@ query(uri: string, columns?: Array\<string>, predicates?: dataAbility.DataAbilit
 **示例：**
 
 ```ts
+import ability from '@ohos.ability.ability';
 import featureAbility from '@ohos.ability.featureAbility';
 import ohos_data_ability from '@ohos.data.dataAbility';
+
 let DAHelper: ability.DataAbilityHelper = featureAbility.acquireDataAbilityHelper(
     'dataability:///com.example.DataAbility'
 );
@@ -871,6 +925,7 @@ call(uri: string, method: string, arg: string, extras: PacMap, callback: AsyncCa
 **示例：**
 
 ```ts
+import ability from '@ohos.ability.ability';
 import featureAbility from '@ohos.ability.featureAbility';
 
 let dataAbilityHelper: ability.DataAbilityHelper = featureAbility.acquireDataAbilityHelper(
@@ -912,7 +967,9 @@ call(uri: string, method: string, arg: string, extras: PacMap): Promise\<PacMap>
 **示例：**
 
 ```ts
+import ability from '@ohos.ability.ability';
 import featureAbility from '@ohos.ability.featureAbility';
+import { BusinessError } from '@ohos.base';
 
 let dataAbilityHelper: ability.DataAbilityHelper = featureAbility.acquireDataAbilityHelper(
     'dataability:///com.example.jsapidemo.UserDataAbility'
@@ -920,7 +977,7 @@ let dataAbilityHelper: ability.DataAbilityHelper = featureAbility.acquireDataAbi
 dataAbilityHelper.call('dataability:///com.example.jsapidemo.UserDataAbility',
     'method', 'arg', {'key1':'value1'}).then((data) => {
     console.info('call success, data: ${data}');
-}).catch((error) => {
+}).catch((error: BusinessError) => {
     console.error('call failed, error: ${error}');
 });
 ```
@@ -944,10 +1001,11 @@ executeBatch(uri: string, operations: Array\<DataAbilityOperation>, callback: As
 **示例：**
 
 ```ts
+import ability from '@ohos.ability.ability';
 import featureAbility from '@ohos.ability.featureAbility';
 
 // 根据DataAbilityOperation列表选择要对数据库做的操作
-let op=new Array();
+let op: Array<ability.DataAbilityOperation> = new Array();
 let dataAbilityHelper: ability.DataAbilityHelper = featureAbility.acquireDataAbilityHelper(
     'dataability:///com.example.jsapidemo.UserDataAbility'
 );
@@ -984,16 +1042,18 @@ executeBatch(uri: string, operations: Array\<DataAbilityOperation>): Promise\<Ar
 **示例：**
 
 ```ts
+import ability from '@ohos.ability.ability';
 import featureAbility from '@ohos.ability.featureAbility';
+import { BusinessError } from '@ohos.base';
 
 // 根据DataAbilityOperation列表选择要对数据库做的操作
-let op=new Array();
+let op: Array<ability.DataAbilityOperation> = new Array();
 let dataAbilityHelper: ability.DataAbilityHelper = featureAbility.acquireDataAbilityHelper(
     'dataability:///com.example.jsapidemo.UserDataAbility'
 );
 dataAbilityHelper.executeBatch('dataability:///com.example.jsapidemo.UserDataAbility', op).then((data) => {
     console.info('executeBatch success, data: ${data}');
-}).catch((error) => {
+}).catch((error: BusinessError) => {
     console.error('executeBatch failed, error: ${error}');
 });
 
