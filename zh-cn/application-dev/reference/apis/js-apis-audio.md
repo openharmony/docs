@@ -4482,8 +4482,8 @@ getPreferredInputDeviceForCapturerInfo(capturerInfo: AudioCapturerInfo, callback
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | if input parameter value error              |
-| 6800301 | System error                                |
+| 6800101 | Invalid parameter error. Return by callback.|
+| 6800301 | System error. Return by callback.           |
 
 **示例：**
 ```js
@@ -4527,8 +4527,8 @@ getPreferredInputDeviceForCapturerInfo(capturerInfo: AudioCapturerInfo): Promise
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | if input parameter value error              |
-| 6800301 | System error                                |
+| 6800101 | Invalid parameter error. Return by promise. |
+| 6800301 | System error. Return by promise.            |
 
 **示例：**
 
