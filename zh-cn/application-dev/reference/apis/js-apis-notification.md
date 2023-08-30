@@ -76,7 +76,7 @@ publish(request: NotificationRequest): Promise\<void\>
 ```js
 // 通知Request对象
 let notificationRequest = {
-    notificationId: 1,
+    id: 1,
     content: {
         contentType: Notification.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
         normal: {
@@ -163,7 +163,7 @@ publish(request: NotificationRequest, userId: number): Promise\<void\>
 
 ```js
 let notificationRequest = {
-    notificationId: 1,
+    id: 1,
     content: {
         contentType: Notification.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
         normal: {
