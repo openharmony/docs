@@ -36,7 +36,7 @@ ListItem(value?: string)
 
 | 参数名 | 参数类型                      | 必填 | 参数描述 |
 | ------ | ----------------------------- | ---- | -------- |
-| value  | string<sup>(deprecated)</sup> | 否   | 无       |
+| value  | string | 否   | 无       |
 
 ## 属性
 
