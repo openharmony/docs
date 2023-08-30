@@ -107,7 +107,7 @@
   // 创建SessionBackup类的实例用于备份数据
   let g_session: backup.SessionBackup;
   function createSessionBackup() {
-    let sessionBackup = new backup.SessionBackup({
+    let generalCallbacks: backup.GeneralCallbacks = {
       onFileReady: (err: BusinessError, file: backup.File) => {
         if (err) {
           console.info('onFileReady err: ' + JSON.stringify(err));
@@ -148,7 +148,8 @@
       onBackupServiceDied: () => {
         console.info('onBackupServiceDied');
       },
-    });
+    }
+    let sessionBackup = new backup.SessionBackup(generalCallbacks);
     return sessionBackup;
   }
 
@@ -181,13 +182,14 @@
   // 创建SessionRestore类的实例用于恢复数据
   let g_session: backup.SessionRestore;
   async function publishFile(file: backup.File) {
-    await g_session.publishFile({
+    let fileMeta: backup.FileMeta = {
       bundleName: file.bundleName,
       uri: file.uri
-    });
+    }
+    await g_session.publishFile(fileMeta);
   }
   function createSessionRestore() {
-    let sessionRestore = new backup.SessionRestore({
+    let generalCallbacks: backup.GeneralCallbacks = {
       onFileReady: (err: BusinessError, file: backup.File) => {
         if (err) {
           console.info('onFileReady err: ' + JSON.stringify(err));
@@ -224,7 +226,8 @@
       onBackupServiceDied: () => {
         console.info('service died');
       }
-    });
+    }
+    let sessionRestore = new backup.SessionRestore(generalCallbacks);
     return sessionRestore;
   }
 
@@ -240,14 +243,13 @@
     console.info('appendBundles success');
     // 添加需要恢复的应用成功后，请根据需要恢复的应用名称，调用getFileHandle接口获取待恢复应用数文件的文件句柄
     // 应用待恢复数据文件数请依据实际备份文件个数为准，此处仅为请求示例
-    await g_session.getFileHandle({
+    let handle: backup.FileMeta = {
       bundleName: restoreApps[0],
       uri: "manage.json"
-    });
-    await g_session.getFileHandle({
-      bundleName: restoreApps[0],
-      uri: "1.tar"
-    });
+    }
+    await g_session.getFileHandle(handle);
+    handle.uri = "1.tar";
+    await g_session.getFileHandle(handle);
     console.info('getFileHandle success');
   }
  ```
@@ -274,13 +276,14 @@
   // 创建SessionRestore类的实例用于恢复数据
   let g_session: backup.SessionRestore;
   async function publishFile(file: backup.File) {
-    await g_session.publishFile({
+    let fileMeta: backup.FileMeta = {
       bundleName: file.bundleName,
       uri: file.uri
-    });
+    }
+    await g_session.publishFile(fileMeta);
   }
   function createSessionRestore() {
-    let sessionRestore = new backup.SessionRestore({
+    let generalCallbacks: backup.GeneralCallbacks = {
       onFileReady: (err: BusinessError, file: backup.File) => {
         if (err) {
           console.info('onFileReady err: ' + JSON.stringify(err));
@@ -322,7 +325,8 @@
       onBackupServiceDied: () => {
         console.info('service died');
       }
-    });
+    }
+    let sessionRestore = new backup.SessionRestore(generalCallbacks);
     return sessionRestore;
   }
 
@@ -342,19 +346,15 @@
     console.info('appendBundles success');
 
     // 开发者需要请求安装应用的文件句柄
-    await g_session.getFileHandle({
+    let handle: backup.FileMeta = {
       bundleName: restoreApps[0],
       uri: "/data/storage/el2/restore/bundle.hap"
-    });
-
-    await g_session.getFileHandle({
-      bundleName: restoreApps[0],
-      uri: "manage.json"
-    });
-    await g_session.getFileHandle({
-      bundleName: restoreApps[0],
-      uri: "1.tar"
-    });
+    }
+    await g_session.getFileHandle(handle);
+    handle.uri = "manage.json";
+    await g_session.getFileHandle(handle);
+    handle.uri = "1.tar";
+    await g_session.getFileHandle(handle);
     console.info('getFileHandle success');
   }
  ```

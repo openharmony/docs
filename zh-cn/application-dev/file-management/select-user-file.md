@@ -107,25 +107,27 @@
    > 目前DocumentSelectOptions功能不完整, 如需获取文件名称，请使用startAbilityForResult接口。
 
    ```ts
-   let config: Want = {
-     action: 'ohos.want.action.OPEN_FILE',
-     parameters: {
-       startMode: 'choose',
+   async function example() {
+     let config: Want = {
+       action: 'ohos.want.action.OPEN_FILE',
+       parameters: {
+         startMode: 'choose',
+       }
      }
-   }
-   try {
-     let result = await context.startAbilityForResult(config, {windowMode: 1});
-     if (result.resultCode !== 0) {
-       console.error(`documentViewPicker.select failed, code is ${result.resultCode}, message is ${result.want.parameters.message}`);
-       return;
+     try {
+       let result = await context.startAbilityForResult(config, {windowMode: 1});
+       if (result.resultCode !== 0) {
+         console.error(`documentViewPicker.select failed, code is ${result.resultCode}, message is ${result.want.parameters.message}`);
+         return;
+       }
+       // 获取到文档文件的uri
+       let select_item_list = result.want.parameters.select_item_list;
+       // 获取到文档文件的文件名称
+       let file_name_list = result.want.parameters.file_name_list;
+     } catch (error) {
+        let err: BusinessError = error as BusinessError;
+       console.error(`Invoke documentViewPicker.select failed, code is ${err.code}, message is ${err.message}`);
      }
-     // 获取到文档文件的uri
-     let select_item_list = result.want.parameters.select_item_list;
-     // 获取到文档文件的文件名称
-     let file_name_list = result.want.parameters.file_name_list;
-   } catch (err) {
-      let err: BusinessError = error as BusinessError;
-     console.error(`Invoke documentViewPicker.select failed, code is ${err.code}, message is ${err.message}`);
    }
    ```
 
