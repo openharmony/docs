@@ -1183,7 +1183,7 @@ try {
 }
 ```
 
-### bundleManager.queryAbilityInfoSync
+### bundleManager.queryAbilityInfoSync<sup>10+</sup>
 
 queryAbilityInfoSync(want: Want, abilityFlags: [number](#abilityflag), userId?: number): Array\<[AbilityInfo](js-apis-bundleManager-abilityInfo.md)>;
 
@@ -1470,7 +1470,7 @@ try {
 }
 ```
 
-### bundleManager.queryExtensionAbilityInfoSync
+### bundleManager.queryExtensionAbilityInfoSync<sup>10+</sup>
 
 queryExtensionAbilityInfoSync(want: Want, extensionAbilityType: [ExtensionAbilityType](#extensionabilitytype), extensionAbilityFlags: [number](#extensionabilityflag), userId?: number): Array\<[ExtensionAbilityInfo](js-apis-bundleManager-extensionAbilityInfo.md)>;
 
@@ -2792,7 +2792,7 @@ try {
 ```
 
 
-### bundleManager.getLaunchWantForBundleSync
+### bundleManager.getLaunchWantForBundleSync<sup>10+</sup>
 
 getLaunchWantForBundleSync(bundleName: string, userId?: number): Want;
 
@@ -3333,7 +3333,7 @@ try {
 }
 ```
 
-### bundleManager.getPermissionDefSync
+### bundleManager.getPermissionDefSync<sup>10+</sup>
 
 getPermissionDefSync(permissionName: string): [PermissionDef](js-apis-bundleManager-permissionDef.md);
 
@@ -3498,7 +3498,7 @@ try {
 }
 ```
 
-### bundleManager.getAbilityLabelSync
+### bundleManager.getAbilityLabelSync<sup>10+</sup>
 
 getAbilityLabelSync(bundleName: string, moduleName: string, abilityName: string): string;
 

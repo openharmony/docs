@@ -124,7 +124,7 @@ try {
 }
 ```
 
-## appControl.setDisposedStatusSync
+## appControl.setDisposedStatusSync<sup>10+</sup>
 
 setDisposedStatusSync(appId: string, disposedWant: Want): void;
 
@@ -273,7 +273,7 @@ try {
 }
 ```
 
-## appControl.getDisposedStatusSync
+## appControl.getDisposedStatusSync<sup>10+</sup>
 
 getDisposedStatusSync(appId: string): Want;
 
@@ -425,7 +425,7 @@ try {
 }
 ```
 
-## appControl.deleteDisposedStatusSync
+## appControl.deleteDisposedStatusSync<sup>10+</sup>
 
 deleteDisposedStatusSync(appId: string) : void
 
