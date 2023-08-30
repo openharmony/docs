@@ -2542,35 +2542,16 @@ avRecorder.off('error');
 
 | 名称             | 类型                                         | 必填 | 说明                                                         |
 | ---------------- | -------------------------------------------- | ---- | ------------------------------------------------------------ |
-| audioBitrate     | number                                       | 否   | 音频编码比特率，选择音频录制时必填。                         |
-| audioChannels    | number                                       | 否   | 音频采集声道数，选择音频录制时必填。                         |
+| audioBitrate     | number                                       | 否   | 音频编码比特率，选择音频录制时必填，规格支持范围[8000 - 384000]。 |
+| audioChannels    | number                                       | 否   | 音频采集声道数，选择音频录制时必填，规格支持范围[1 - 2]。    |
 | audioCodec       | [CodecMimeType](#codecmimetype8)             | 否   | 音频编码格式，选择音频录制时必填。当前仅支持AUDIO_AAC。      |
-| audioSampleRate  | number                                       | 否   | 音频采样率，选择音频录制时必填。                             |
+| audioSampleRate  | number                                       | 否   | 音频采样率，选择音频录制时必填，规格支持范围[8000, 11025, 12000, 16000, 22050, 24000, 32000, 44100, 48000, 64000, 96000]。 |
 | fileFormat       | [ContainerFormatType](#containerformattype8) | 是   | 文件的容器格式，必要参数。                                   |
-| videoBitrate     | number                                       | 否   | 视频编码比特率，选择视频录制时必填。                         |
-| videoCodec       | [CodecMimeType](#codecmimetype8)             | 否   | 视频编码格式，选择视频录制时必填。需要查询设备支持的编码能力（包括编码格式，分辨率大小等）。 |
-| videoFrameWidth  | number                                       | 否   | 视频帧的宽，选择视频录制时必填。                             |
-| videoFrameHeight | number                                       | 否   | 视频帧的高，选择视频录制时必填。                             |
-| videoFrameRate   | number                                       | 否   | 视频帧率，选择视频录制时必填。                               |
-
-录制支持的音频编码规格。
-
-| 编码参数名称    | 参数规格                                                     | 说明                           |
-| --------------- | ------------------------------------------------------------ | ------------------------------ |
-| 编码格式        | AUDIO_AAC                                                    | 音频录制支持设置的编码格式。   |
-| audioBitrate    | [8000 - 384000]                                              | 音频录制支持设置的比特率范围。 |
-| audioChannels   | [1 - 2]                                                      | 音频录制支持设置的通道数范围。 |
-| audioSampleRate | [8000, 11025, 12000, 16000, 22050, 24000, 32000, 44100, 48000, 64000, 96000] | 音频录制支持设置的采样率范围。 |
-
-录制支持的视频编码规格。
-
-| 编码参数名称     | 参数规格      | 说明                               |
-| ---------------- | ------------- | ---------------------------------- |
-| 编码格式         | VIDEO_MPEG4   | 视频录制支持设置的编码格式。       |
-| videoBitrate     | [1 - 3000000] | 视频录制支持设置的比特率范围。     |
-| videoFrameWidth  | [2 - 1920]    | 视频录制支持设置的视频帧宽的范围。 |
-| videoFrameHeight | [2 - 1080]    | 视频录制支持设置的视频帧高的范围。 |
-| videoFrameRate   | [1 - 30]      | 视频录制支持设置的帧率范围。       |
+| videoBitrate     | number                                       | 否   | 视频编码比特率，选择视频录制时必填，规格支持范围[1 - 3000000]。 |
+| videoCodec       | [CodecMimeType](#codecmimetype8)             | 否   | 视频编码格式，选择视频录制时必填。当前仅支持VIDEO_MPEG4。    |
+| videoFrameWidth  | number                                       | 否   | 视频帧的宽，选择视频录制时必填，规格支持范围[2 - 1920]。     |
+| videoFrameHeight | number                                       | 否   | 视频帧的高，选择视频录制时必填，规格支持范围[2 - 1080]。     |
+| videoFrameRate   | number                                       | 否   | 视频帧率，选择视频录制时必填，规格支持范围[1 - 30]。         |
 
 ## AudioSourceType<sup>9+</sup>
 
