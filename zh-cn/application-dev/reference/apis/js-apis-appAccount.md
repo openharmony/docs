@@ -1509,7 +1509,7 @@ auth(name: string, owner: string, authType: string, options: {[key: string]: Obj
   }
 
   let options: Record<string, Object> = {
-    password: 'xxxx',
+    'password': 'xxxx',
   };
   try {
     appAccountManager.auth('LiSi', 'com.example.accountjsdemo', 'getSocialData', options, {
@@ -4919,7 +4919,7 @@ onRequestRedirected: (request: Want) =&gt; void
       }
 
       auth(name: string, authType: string,
-        options: { [key: string]: Object }, callback: account_appAccount.AuthCallback) {
+        options: Record<string, Object>, callback: account_appAccount.AuthCallback) {
           let result: account_appAccount.AuthResult = {
             account: {
               name: 'Lisi',
@@ -5020,7 +5020,7 @@ onRequestRedirected: (request: Want) =&gt; void
   ```js
   class MyAuthenticator extends account_appAccount.Authenticator {
       addAccountImplicitly(authType: string, callerBundleName: string,
-        options: { [key: string]: Object }, callback: account_appAccount.AuthenticatorCallback) {
+        options: Record<string, Object>, callback: account_appAccount.AuthenticatorCallback) {
           let want: Want = {
             bundleName: 'com.example.accountjsdemo',
             abilityName: 'com.example.accountjsdemo.LoginAbility',
@@ -5029,7 +5029,7 @@ onRequestRedirected: (request: Want) =&gt; void
       }
 
       authenticate(name: string, authType: string, callerBundleName: string,
-        options: { [key: string]: Object }, callback: account_appAccount.AuthenticatorCallback) {
+        options: Record<string, Object>, callback: account_appAccount.AuthenticatorCallback) {
           callback.onResult(account_appAccount.ResultCode.SUCCESS, {
             name: name,
             authType: authType,
@@ -5192,11 +5192,9 @@ getRemoteObject(): rpc.RemoteObject;
 **示例：**
 
   ```js
-  import rpc from '@ohos.rpc';
-
   class MyAuthenticator extends account_appAccount.Authenticator {
     addAccountImplicitly(authType: string, callerBundleName: string,
-      options: { [key: string]: Object }, callback: account_appAccount.AuthenticatorCallback) {
+      options: Record<string, Object>, callback: account_appAccount.AuthenticatorCallback) {
         let want: Want = {
           bundleName: 'com.example.accountjsdemo',
           abilityName: 'com.example.accountjsdemo.LoginAbility',
@@ -5205,7 +5203,7 @@ getRemoteObject(): rpc.RemoteObject;
     }
 
     authenticate(name: string, authType: string, callerBundleName: string,
-      options: { [key: string]: Object }, callback: account_appAccount.AuthenticatorCallback) {
+      options: Record<string, Object>, callback: account_appAccount.AuthenticatorCallback) {
         callback.onResult(account_appAccount.ResultCode.SUCCESS, {
           name: name,
           authType: authType,

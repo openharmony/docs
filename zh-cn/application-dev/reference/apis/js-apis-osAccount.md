@@ -5600,14 +5600,14 @@ getAccountInfo(options: GetDomainAccountInfoOptions, callback: AsyncCallback&lt;
 | 错误码ID | 错误信息                     |
 | -------- | --------------------------- |
 | 12300001 | System service exception. |
-| 12300002 | Invalid domainAccountInfo. |
+| 12300003 | Account not found. |
 | 12300013 | Network exception. |
 | 12300111 | Operation timeout. |
 
 **示例：**
   ```js
   import { BusinessError } from '@ohos.base';
-  let domainAccountInfo: account_osAccount.DomainAccountInfo = {
+  let domainAccountInfo: account_osAccount.GetDomainAccountInfoOptions = {
     domain: 'CHINA',
     accountName: 'zhangsan'
   }
@@ -5654,14 +5654,14 @@ getAccountInfo(options: GetDomainAccountInfoOptions): Promise&lt;DomainAccountIn
 | 错误码ID | 错误信息                     |
 | -------- | --------------------------- |
 | 12300001 | System service exception. |
-| 12300002 | Invalid domainAccountInfo. |
+| 12300003 | Account not found. |
 | 12300013 | Network exception. |
 | 12300111 | Operation timeout. |
 
 **示例：**
   ```js
   import { BusinessError } from '@ohos.base';
-  let domainAccountInfo: account_osAccount.DomainAccountInfo = {
+  let domainAccountInfo: account_osAccount.GetDomainAccountInfoOptions = {
     domain: 'CHINA',
     accountName: 'zhangsan'
   }
@@ -5819,7 +5819,7 @@ addCredential(credentialInfo: CredentialInfo, callback: IIdmCallback): void;
   let credentialInfo: account_osAccount.CredentialInfo = {
     credType: account_osAccount.AuthType.PIN,
     credSubType: account_osAccount.AuthSubType.PIN_SIX,
-    token: null
+    token: new Uint8Array([]),
   };
   let userIDM = new account_osAccount.UserIdentityManager();
   userIDM.openSession((err: BusinessError, challenge: Uint8Array) => {
