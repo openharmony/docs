@@ -24,6 +24,7 @@ OpenHarmony预置了FileManager文件管理器。系统应用开发者也可以�
    import fileExtensionInfo from '@ohos.file.fileExtensionInfo';
    import { Filter } from '@ohos.file.fs';
    import common from '@ohos.app.ability.common';
+   import { BusinessError } from '@ohos.base';
    ```
 
    其中fileAccess提供了文件基础操作的API，fileExtensionInfo提供了应用开发的关键结构体。
@@ -33,7 +34,7 @@ OpenHarmony预置了FileManager文件管理器。系统应用开发者也可以�
 
    在文件访问框架中，使用RootInfo用于表示设备的属性信息。以下示例可以获取所有设备的RootInfo。
 
-   ```ts
+  ```ts
    // 获取应用上下文
   let context = getContext(this) as common.UIAbilityContext;
 
@@ -45,7 +46,8 @@ OpenHarmony预置了FileManager文件管理器。系统应用开发者也可以�
        if (!fileAccessHelperAllServer) {
          console.error("createFileAccessHelper interface returns an undefined object");
        }
-     } catch (error) {    
+     } catch (err) {
+         let error: BusinessError = err as BusinessError;
          console.error("createFileAccessHelper failed, errCode:" + error.code + ", errMessage:" + error.message);
      }
    }
@@ -71,7 +73,7 @@ OpenHarmony预置了FileManager文件管理器。系统应用开发者也可以�
        console.error("getRoots failed, errCode:" + error.code + ", errMessage:" + error.message);
      }
    }
-   ```
+  ```
 
 4. 浏览目录。
    在文件访问框架中，使用FileInfo表示一个文件（目录）的基础信息。开发者可以使用listfile接口遍历下一级所有文件（目录）的迭代器对象；也可以通过scanfile过滤指定目录，获取满足条件的迭代器对象。

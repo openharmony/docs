@@ -123,6 +123,7 @@
 // xxx.ets
 import fs from '@ohos.file.fs';
 import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
 
 function getShareFile() {
   try {
