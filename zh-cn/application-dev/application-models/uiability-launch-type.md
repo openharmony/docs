@@ -135,7 +135,9 @@ specified启动模式为指定实例模式，针对一些特殊场景使用（�
        // 当前示例指的是module1 Module的SpecifiedAbility
        if (want.abilityName === 'SpecifiedAbility') {
          // 返回的字符串Key标识为自定义拼接的字符串内容
-         return `SpecifiedAbilityInstance_${want.parameters.instanceKey}`;
+         if (want.parameters) {
+           return `SpecifiedAbilityInstance_${want.parameters.instanceKey}`;
+         }
        }
    
        return '';

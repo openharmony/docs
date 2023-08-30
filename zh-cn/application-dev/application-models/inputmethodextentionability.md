@@ -160,7 +160,7 @@
          this.textInputClient = textInputClient;		// 此为输入法客户端实例，由此调用输入法框架提供给输入法应用的功能接口
          this.boardController = kbController;
        })
-       globalThis.inputAbility.on('inputStop', () => {
+       inputMethodAbility.on('inputStop', () => {
          this.onDestroy();	// 销毁KeyboardController
        });
      }
@@ -278,14 +278,14 @@
    // 数字键盘
    @Component
    struct numberMenu {
-     private numberList: sourceListType[]
+     private numberList: sourceListType[] = numberSourceListData;
    
      build() {
        Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.SpaceEvenly }) {
          Flex({ justifyContent: FlexAlign.SpaceBetween }) {
            ForEach(this.numberList, (item: sourceListType) => {  // 数字键盘第一行
              keyItem({ keyValue: item })
-           }, (item: sourceListType) => item.content);
+           }, (item: sourceListType): sourceListType => item.content);
          }
          .padding({ top: "2%" })
          .width("96%")

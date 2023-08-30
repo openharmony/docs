@@ -95,9 +95,10 @@ export default class EntryAbility extends UIAbility {
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
 import window from '@ohos.window';
+import { BusinessError } from '@ohos.base';
 
 export default class EntryAbility extends UIAbility {
-  windowStage: window.WindowStage;
+  windowStage: window.WindowStage | undefined = undefined;
   // ...
 
   onWindowStageCreate(windowStage: window.WindowStage) {
@@ -109,9 +110,13 @@ export default class EntryAbility extends UIAbility {
     // 释放UI资源
     // 例如在onWindowStageDestroy()中注销获焦/失焦等WindowStage事件
     try {
-      this.windowStage.off('windowStageEvent');
+      if (this.windowStage) {
+        this.windowStage.off('windowStageEvent');
+      }
     } catch (err) {
-      console.error(`Failed to disable the listener for window stage event changes. Code is ${err.code}, message is ${err.message}`);
+      let code = (err as BusinessError).code;
+      let message = (err as BusinessError).message;
+      console.error(`Failed to disable the listener for windowStageEvent. Code is ${code}, message is ${message}`);
     };
   }
 }

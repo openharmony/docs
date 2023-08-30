@@ -10,29 +10,25 @@
      import rpc from "@ohos.rpc"
      
      class FirstServiceAbilityStub extends rpc.RemoteObject {
-       constructor(des: any) {
-         if (typeof des === 'string') {
-           super(des)
-         } else {
-           return
-         }
+       constructor(des: string) {
+         super(des);
        }
      }
      
-     export default {
+     export default class ServiceAbility {
        onStart() {
          console.info('ServiceAbility onStart')
-       },
+       };
        onStop() {
          console.info('ServiceAbility onStop')
-       },
+       };
        onCommand(want: Want, startId: number) {
          console.info('ServiceAbility onCommand')
-       },
+       };
        onConnect(want: Want) {
          console.info('ServiceAbility onConnect' + want)
          return new FirstServiceAbilityStub('test')
-       },
+       };
        onDisconnect(want: Want) {
          console.info('ServiceAbility onDisconnect' + want)
        }

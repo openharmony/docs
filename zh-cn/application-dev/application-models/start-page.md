@@ -31,10 +31,31 @@ async function restartAbility() {
 
 ```ts
 import Want from '@ohos.app.ability.Want';
-export default {  
-    onNewWant(want: Want) {    
-        globalThis.newWant = want  
+export class GlobalContext {
+  private constructor() {}
+  private static instance: GlobalContext;
+  private _objects = new Map<string, Object>();
+
+  public static getContext(): GlobalContext {
+    if (!GlobalContext.instance) {
+      GlobalContext.instance = new GlobalContext();
     }
+    return GlobalContext.instance;
+  }
+
+  getObject(value: string): Object | undefined {
+    return this._objects.get(value);
+  }
+
+  setObject(key: string, objectClass: Object): void {
+    this._objects.set(key, objectClass);
+  }
+}
+
+export default class EntryAbility{  
+  onNewWant(want: Want) { 
+    GlobalContext.getContext().setObject("newWant", want);  
+  }
 }
 ```
 
@@ -42,7 +63,9 @@ export default {
 在目标端页面的自定义组件中获取包含页面信息的want参数并根据uri做路由处理：
 
 ```ts
-import router from '@ohos.router'
+import router from '@ohos.router';
+import { GlobalContext } from '../GlobalContext'
+
 @Entry
 @Component
 struct Index {
@@ -50,10 +73,10 @@ struct Index {
   
   onPageShow() {
     console.info('Index onPageShow')
-    let newWant: Want = globalThis.newWant
+    let newWant: Want = GlobalContext.getContext().getObject("newWant")
     if (newWant.hasOwnProperty("page")) {
       router.push({ url: newWant.page });
-      globalThis.newWant = undefined
+      GlobalContext.getContext().setObject("newWant", undefined)
     }
   }
 
@@ -78,7 +101,9 @@ struct Index {
 调用方的页面中实现按钮点击触发startAbility方法启动目标端PageAbility，startAbility方法的入参want中携带指定页面信息，示例代码如下：
 
 ```ts
-import featureAbility from '@ohos.ability.featureAbility'
+import featureAbility from '@ohos.ability.featureAbility';
+import { BusinessError } from '@ohos.base';
+
 @Entry
 @Component
 struct Index {
@@ -96,7 +121,7 @@ struct Index {
             }
           }).then((data) => {
             console.info("startAbility finish");
-          }).catch((err) => {
+          }).catch((err: BusinessError) => {
             console.info("startAbility failed errcode:" + err.code)
           })
         })
@@ -111,7 +136,7 @@ struct Index {
             }
           }).then((data) => {
             console.info("startAbility finish");
-          }).catch((err) => {
+          }).catch((err: BusinessError) => {
             console.info("startAbility failed errcode:" + err.code)
           })
         })
@@ -129,18 +154,20 @@ struct Index {
 import featureAbility from '@ohos.ability.featureAbility';
 import router from '@ohos.router';
 
-export default {
+export default class EntryAbility {
   onCreate() {
     featureAbility.getWant().then((want) => {
-      if (want.parameters.page) {
-        router.push({
-          url: want.parameters.page
-        })
+      if (want.parameters) {
+        if (want.parameters.page) {
+          router.push({
+            url: want.parameters.page
+          })
+        }
       }
     })
-  },
+  };
   onDestroy() {
     // ...
-  },
+  };
 }
 ```

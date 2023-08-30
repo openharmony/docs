@@ -81,7 +81,7 @@
    
    // 3.获取单个任务的详细信息()
    let missionId = 11; // 11只是示例，实际是从系统中获取的任务id，下面类似
-   let mission = missionManager.getMissionInfo("", missionId).catch((err) => {
+   let mission = missionManager.getMissionInfo("", missionId).catch((err: BusinessError) => {
      console.info('${err.code}');
    });
    

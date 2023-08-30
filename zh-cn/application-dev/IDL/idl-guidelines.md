@@ -215,11 +215,12 @@ export default class IdlTestServiceStub extends rpc.RemoteObject implements IIdl
         super(des);
     }
     
-    async onRemoteMessageRequest(code: number, data, reply, option): Promise<boolean> {
+    async onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence,
+        option: rpc.MessageOption): Promise<boolean> {
         console.log("onRemoteMessageRequest called, code = " + code);
         if (code == IdlTestServiceStub.COMMAND_TEST_INT_TRANSACTION) {
             let _data = data.readInt();
-            this.testIntTransaction(_data, (errCode, returnValue) => {
+            this.testIntTransaction(_data, (errCode: number, returnValue: number) => {
                 reply.writeInt(errCode);
                 if (errCode == 0) {
                     reply.writeInt(returnValue);
@@ -228,7 +229,7 @@ export default class IdlTestServiceStub extends rpc.RemoteObject implements IIdl
             return true;
         } else if (code == IdlTestServiceStub.COMMAND_TEST_STRING_TRANSACTION) {
             let _data = data.readString();
-            this.testStringTransaction(_data, (errCode) => {
+            this.testStringTransaction(_data, (errCode: number) => {
                 reply.writeInt(errCode);
             });
             return true;
@@ -240,13 +241,13 @@ export default class IdlTestServiceStub extends rpc.RemoteObject implements IIdl
                 let value = data.readInt();
                 _data.set(key, value);
             }
-            this.testMapTransaction(_data, (errCode) => {
+            this.testMapTransaction(_data, (errCode: number) => {
                 reply.writeInt(errCode);
             });
             return true;
         } else if (code == IdlTestServiceStub.COMMAND_TEST_ARRAY_TRANSACTION) {
             let _data = data.readStringArray();
-            this.testArrayTransaction(_data, (errCode, returnValue) => {
+            this.testArrayTransaction(_data, (errCode: number, returnValue: number) => {
                 reply.writeInt(errCode);
                 if (errCode == 0) {
                     reply.writeInt(returnValue);
@@ -305,17 +306,20 @@ class IdlTestImp extends IdlTestServiceStub {
 在服务实现接口后，需要向客户端公开该接口，以便客户端进程绑定。如果开发者的服务要公开该接口，请扩展Ability并实现onConnect()从而返回IRemoteObject，以便客户端能与服务进程交互。服务端向客户端公开IRemoteAbility接口的代码示例如下:
 
 ```ts
-export default {
+import Want from '@ohos.app.ability.Want';
+import rpc from "@ohos.rpc";
+
+export default class ServiceAbility {
     onStart() {
         console.info('ServiceAbility onStart');
-    },
+    };
     onStop() {
         console.info('ServiceAbility onStop');
-    },
-    onCommand(want, startId) {
+    };
+    onCommand(want: Want, startId: number) {
         console.info('ServiceAbility onCommand');
-    },
-    onConnect(want) {
+    };
+    onConnect(want: Want) {
         console.info('ServiceAbility onConnect');
         try {
             console.log('ServiceAbility want:' + typeof(want));
@@ -325,9 +329,9 @@ export default {
             console.log('ServiceAbility error:' + err)
         }
         console.info('ServiceAbility onConnect end');
-        return new IdlTestImp('connect');
-    },
-    onDisconnect(want) {
+        return new IdlTestImp('connect') as rpc.RemoteObject;
+    };
+    onDisconnect(want: Want) {
         console.info('ServiceAbility onDisconnect');
         console.info('ServiceAbility want:' + JSON.stringify(want));
     }
@@ -339,6 +343,8 @@ export default {
 客户端调用connectServiceExtensionAbility()以连接服务时，客户端的onAbilityConnectDone中的onConnect回调会接收服务的onConnect()方法返回的IRemoteObject实例。由于客户端和服务在不同应用内，所以客户端应用的目录内必须包含.idl文件(SDK工具会自动生成Proxy代理类)的副本。客户端的onAbilityConnectDone中的onConnect回调会接收服务的onConnect()方法返回的IRemoteObject实例，使用IRemoteObject创建IdlTestServiceProxy类的实例对象testProxy，然后调用相关IPC方法。示例代码如下：
 
 ```ts
+import common from '@ohos.app.ability.common';
+import Want from '@ohos.app.ability.Want';
 import IdlTestServiceProxy from './idl_test_service_proxy'
 
 function callbackTestIntTransaction(result: number, ret: number): void {
@@ -365,10 +371,10 @@ function callbackTestArrayTransaction(result: number, ret: number): void {
   }
 }
 
-let onAbilityConnectDone = {
-  onConnect:function (elementName, proxy) {
-    let testProxy = new IdlTestServiceProxy(proxy);
-    let testMap = new Map();
+let onAbilityConnectDone: common.ConnectOptions = {
+  onConnect: (elementName, proxy) => {
+    let testProxy: IdlTestServiceProxy = new IdlTestServiceProxy(proxy);
+    let testMap: Map<number, number> = new Map();
     testMap.set(1, 1);
     testMap.set(1, 2);
     testProxy.testIntTransaction(123, callbackTestIntTransaction);
@@ -376,21 +382,23 @@ let onAbilityConnectDone = {
     testProxy.testMapTransaction(testMap, callbackTestMapTransaction);
     testProxy.testArrayTransaction(['1','2'], callbackTestMapTransaction);
   },
-  onDisconnect:function (elementName) {
+  onDisconnect: (elementName) => {
     console.log('onDisconnectService onDisconnect');
   },
-  onFailed:function (code) {
+  onFailed: (code) => {
     console.log('onDisconnectService onFailed');
   }
 };
 
+let context: common.UIAbilityContext = this.context;
+
 function connectAbility(): void {
-    let want = {
+    let want: Want = {
         bundleName: 'com.example.myapplicationidl',
         abilityName: 'com.example.myapplicationidl.ServiceAbility'
     };
     let connectionId = -1;
-    connectionId = this.context.connectServiceExtensionAbility(want, onAbilityConnectDone);
+    connectionId = context.connectServiceExtensionAbility(want, onAbilityConnectDone);
 }
 
 
@@ -420,18 +428,18 @@ export default class MySequenceable {
     getString() : string {
         return this.str;
     }
-    marshalling(messageParcel) {
+    marshalling(messageParcel: rpc.MessageSequence) {
         messageParcel.writeInt(this.num);
         messageParcel.writeString(this.str);
         return true;
     }
-    unmarshalling(messageParcel) {
+    unmarshalling(messageParcel: rpc.MessageSequence) {
         this.num = messageParcel.readInt();
         this.str = messageParcel.readString();
         return true;
     }
-    private num;
-    private str;
+    private num: number;
+    private str: string;
 }
 ```
 
