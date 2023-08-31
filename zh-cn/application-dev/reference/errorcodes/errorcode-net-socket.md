@@ -159,7 +159,7 @@ Resource temporarily unavailable try again.
 
 **错误信息**
 
-Socket operation on non-socket.
+Not a socket.
 
 **错误描述**
 
@@ -214,7 +214,7 @@ Address already in use.
 
 **错误信息**
 
-Cannot assign requested address.
+Address not available.
 
 **错误描述**
 
