@@ -10,15 +10,17 @@
 
 ```ts
 import CommonEvent from '@ohos.commonEvent';
-let subscriber; // 用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
+import CommonEventManager from '@ohos.commonEventManager';
+import Base from '@ohos.base';
+let subscriber:CommonEventManager.CommonEventSubscriber; // 用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
 
 // 订阅者信息
-let subscribeInfo = {
+let subscribeInfo:CommonEventManager.CommonEventSubscribeInfo = {
 	events: ["event"]
 };
 
 // 创建订阅者回调
-function createCB(err, commonEventSubscriber) {
+function createCB(err:Base.BusinessError, commonEventSubscriber:CommonEventManager.CommonEventSubscriber) {
     if (err.code) {
         console.error(`createSubscriber failed, code is ${err.code}`);
     } else {
@@ -49,7 +51,7 @@ getCode(callback: AsyncCallback\<number>): void
 
 ```ts
 //获取有序公共事件代码回调
-function getCodeCB(err, code) {
+function getCodeCB(err:Base.BusinessError, code:number) {
     if (err.code) {
         console.error(`getCode failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -76,9 +78,9 @@ getCode(): Promise\<number>
 **示例：**
 
 ```ts
-subscriber.getCode().then((code) => {
+subscriber.getCode().then((code:number) => {
     console.info("getCode " + JSON.stringify(code));
-}).catch((err) => {
+}).catch((err:Base.BusinessError) => {
     console.error(`getCode failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
@@ -123,7 +125,7 @@ setCode(code: number, callback: AsyncCallback\<void>): void
 
 ```ts
 //设置有序公共事件的代码回调
-function setCodeCB(err) {
+function setCodeCB(err:Base.BusinessError) {
     if (err.code) {
         console.error(`setCode failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -158,7 +160,7 @@ setCode(code: number): Promise\<void>
 ```ts
 subscriber.setCode(1).then(() => {
     console.info("setCode");
-}).catch((err) => {
+}).catch((err:Base.BusinessError) => {
     console.error(`setCode failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
@@ -207,7 +209,7 @@ getData(callback: AsyncCallback\<string>): void
 
 ```ts
 //获取有序公共事件代码数据回调
-function getDataCB(err, data) {
+function getDataCB(err:Base.BusinessError, data:string) {
     if (err.code) {
         console.error(`getData failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -234,9 +236,9 @@ getData(): Promise\<string>
 **示例：**
 
 ```ts
-subscriber.getData().then((data) => {
+subscriber.getData().then((data:string) => {
     console.info("getData " + JSON.stringify(data));
-}).catch((err) => {
+}).catch((err:Base.BusinessError) => {
     console.error(`getData failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
@@ -281,7 +283,7 @@ setData(data: string, callback: AsyncCallback\<void>): void
 
 ```ts
 //设置有序公共事件的结果数据回调
-function setDataCB(err) {
+function setDataCB(err:Base.BusinessError) {
     if (err.code) {
         console.error(`setCode failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -316,7 +318,7 @@ setData(data: string): Promise\<void>
 ```ts
 subscriber.setData("publish_data_changed").then(() => {
     console.info("setData");
-}).catch((err) => {
+}).catch((err:Base.BusinessError) => {
     console.error(`setCode failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
@@ -364,7 +366,7 @@ setCodeAndData(code: number, data: string, callback:AsyncCallback\<void>): void
 
 ```ts
 //设置有序公共事件的代码和数据回调
-function setCodeDataCB(err) {
+function setCodeDataCB(err:Base.BusinessError) {
     if (err.code) {
         console.error(`setCodeAndData failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -400,7 +402,7 @@ setCodeAndData(code: number, data: string): Promise\<void>
 ```ts
 subscriber.setCodeAndData(1, "publish_data_changed").then(() => {
     console.info("setCodeAndData");
-}).catch((err) => {
+}).catch((err:Base.BusinessError) => {
     console.error(`setCodeAndData failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
@@ -450,7 +452,7 @@ isOrderedCommonEvent(callback: AsyncCallback\<boolean>): void
 
 ```ts
 //获取当前公共事件是否为有序事件的回调
-function isOrderedCB(err, isOrdered) {
+function isOrderedCB(err:Base.BusinessError, isOrdered:boolean) {
     if (err.code) {
         console.error(`isOrderedCommonEvent failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -479,9 +481,9 @@ isOrderedCommonEvent(): Promise\<boolean>
 **示例：**
 
 ```ts
-subscriber.isOrderedCommonEvent().then((isOrdered) => {
+subscriber.isOrderedCommonEvent().then((isOrdered:boolean) => {
     console.info("isOrdered " + JSON.stringify(isOrdered));
-}).catch((err) => {
+}).catch((err:Base.BusinessError) => {
     console.error(`isOrdered failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
@@ -529,7 +531,7 @@ isStickyCommonEvent(callback: AsyncCallback\<boolean>): void
 
 ```ts
 //获取当前公共事件是否为粘性事件的回调
-function isStickyCB(err, isSticky) {
+function isStickyCB(err:Base.BusinessError, isSticky:boolean) {
     if (err.code) {
         console.error(`isStickyCommonEvent failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -558,9 +560,9 @@ isStickyCommonEvent(): Promise\<boolean>
 **示例：**
 
 ```ts
-subscriber.isStickyCommonEvent().then((isSticky) => {
+subscriber.isStickyCommonEvent().then((isSticky:boolean) => {
     console.info("isSticky " + JSON.stringify(isSticky));
-}).catch((err) => {
+}).catch((err:Base.BusinessError) => {
     console.error(`isSticky failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
@@ -606,7 +608,7 @@ abortCommonEvent(callback: AsyncCallback\<void>): void
 
 ```ts
 //取消当前有序公共事件的回调
-function abortCB(err) {
+function abortCB(err:Base.BusinessError) {
     if (err.code) {
 		console.error(`abortCommonEvent failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -635,7 +637,7 @@ abortCommonEvent(): Promise\<void>
 ```ts
 subscriber.abortCommonEvent().then(() => {
     console.info("abortCommonEvent");
-}).catch((err) => {
+}).catch((err:Base.BusinessError) => {
     console.error(`abortCommonEvent failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
@@ -672,7 +674,7 @@ clearAbortCommonEvent(callback: AsyncCallback\<void>): void
 
 ```ts
 //清除当前公共事件取消状态的回调
-function clearAbortCB(err) {
+function clearAbortCB(err:Base.BusinessError) {
     if (err.code) {
         console.error(`clearAbortCommonEvent failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -701,7 +703,7 @@ clearAbortCommonEvent(): Promise\<void>
 ```ts
 subscriber.clearAbortCommonEvent().then(() => {
     console.info("clearAbortCommonEvent");
-}).catch((err) => {
+}).catch((err:Base.BusinessError) => {
     console.error(`clearAbortCommonEvent failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
@@ -738,7 +740,7 @@ getAbortCommonEvent(callback: AsyncCallback\<boolean>): void
 
 ```ts
 //获取当前有序公共事件是否取消的回调
-function getAbortCB(err, abortEvent) {
+function getAbortCB(err:Base.BusinessError, abortEvent:boolean) {
     if (err.code) {
         console.error(`getAbortCommonEvent failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -765,9 +767,9 @@ getAbortCommonEvent(): Promise\<boolean>
 **示例：**
 
 ```ts
-subscriber.getAbortCommonEvent().then((abortEvent) => {
+subscriber.getAbortCommonEvent().then((abortEvent:boolean) => {
     console.info("abortCommonEvent " + JSON.stringify(abortEvent));
-}).catch((err) => {
+}).catch((err:Base.BusinessError) => {
     console.error(`getAbortCommonEvent failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
@@ -811,7 +813,7 @@ getSubscribeInfo(callback: AsyncCallback\<CommonEventSubscribeInfo>): void
 
 ```ts
 //获取订阅者信息回调
-function getCB(err, subscribeInfo) {
+function getCB(err:Base.BusinessError, subscribeInfo:CommonEventManager.CommonEventSubscribeInfo) {
     if (err.code) {
         console.error(`getSubscribeInfo failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -838,9 +840,9 @@ getSubscribeInfo(): Promise\<CommonEventSubscribeInfo>
 **示例：**
 
 ```ts
-subscriber.getSubscribeInfo().then((subscribeInfo) => {
+subscriber.getSubscribeInfo().then((subscribeInfo:CommonEventManager.CommonEventSubscribeInfo) => {
     console.info("subscribeInfo " + JSON.stringify(subscribeInfo));
-}).catch((err) => {
+}).catch((err:Base.BusinessError) => {
     console.error(`getSubscribeInfo failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
@@ -884,7 +886,7 @@ finishCommonEvent(callback: AsyncCallback\<void>): void
 
 ```ts
 //结束当前有序公共事件的回调
-function finishCB(err) {
+function finishCB(err:Base.BusinessError) {
   if (err.code) {
     console.error(`finishCommonEvent failed, code is ${err.code}, message is ${err.message}`);
   } else {
@@ -914,7 +916,7 @@ finishCommonEvent(): Promise\<void>
 ```ts
 subscriber.finishCommonEvent().then(() => {
     console.info("FinishCommonEvent");
-}).catch((err) => {
+}).catch((err:Base.BusinessError) => {
     console.error(`finishCommonEvent failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
