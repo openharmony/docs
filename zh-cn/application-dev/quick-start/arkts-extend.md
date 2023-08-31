@@ -64,27 +64,27 @@
 - \@Extend装饰的方法的参数可以为function，作为Event事件的句柄。
 
   ```ts
-  @Extend(Text) function makeMeClick(onClick: () => void) {
-    .backgroundColor(Color.Blue)
-    .onClick(onClick)
+@Extend(Text) function makeMeClick(onClick: () => void) {
+  .backgroundColor(Color.Blue)
+  .onClick(onClick)
+}
+
+@Entry
+@Component
+struct FancyUse {
+  @State label: string = 'Hello World';
+
+  onClickHandler() {
+    this.label = 'Hello ArkUI';
   }
 
-  @Entry
-  @Component
-  struct FancyUse {
-    @State label: string = 'Hello World';
-
-    onClickHandler() {
-      this.label = 'Hello ArkUI';
-    }
-
-    build() {
-      Row({ space: 10 }) {
-        Text(`${this.label}`)
-          .makeMeClick(this.onClickHandler.bind(this))
-      }
+  build() {
+    Row({ space: 10 }) {
+      Text(`${this.label}`)
+        .makeMeClick(this.onClickHandler.bind(this))
     }
   }
+}
   ```
 
 - \@Extend的参数可以为[状态变量](arkts-state-management-overview.md)，当状态变量改变时，UI可以正常的被刷新渲染。
