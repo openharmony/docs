@@ -111,7 +111,6 @@
   - [Web](ts-basic-components-web.md)
   - [XComponent](ts-basic-components-xcomponent.md)
 - Container Components
-  - [AbilityComponent](ts-container-ability-component.md)
   - [Badge](ts-container-badge.md)
   - [Column](ts-container-column.md)
   - [ColumnSplit](ts-container-columnsplit.md)
@@ -189,6 +188,7 @@
 - [Enums](ts-appendix-enums.md)
 - [Types](ts-types.md)
 - Components No Longer Maintained
+  - [AbilityComponent](ts-container-ability-component.md)
   - [GridContainer](ts-container-gridcontainer.md)
 - APIs No Longer Maintained
   - [Click Control](ts-universal-attributes-click.md)
