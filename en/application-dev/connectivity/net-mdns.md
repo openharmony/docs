@@ -11,6 +11,7 @@ Typical MDNS management scenarios include:
 - Discovering local services and listening to the status changes of local services of the specified type through the **DiscoveryService** object.
 
 > **NOTE**
+> 
 > To maximize the application running efficiency, most API calls are called asynchronously in callback or promise mode. The following code examples use the callback mode. For details about the APIs, see [mDNS Management](../reference/apis/js-apis-net-mdns.md).
 
 The following describes the development procedure specific to each application scenario.
@@ -28,9 +29,13 @@ For the complete list of APIs and example code, see [mDNS Management](../referen
 | ohos.net.mdns.DiscoveryService | startSearchingMDNS(): void | Searches for mDNS services on the LAN.|
 | ohos.net.mdns.DiscoveryService | stopSearchingMDNS(): void | Stops searching for mDNS services on the LAN.|
 | ohos.net.mdns.DiscoveryService | on(type: 'discoveryStart', callback: Callback<{serviceInfo: LocalServiceInfo, errorCode?: MdnsError}>): void | Enables listening for **discoveryStart** events.|
+| ohos.net.mdns.DiscoveryService | off(type: 'discoveryStart', callback: Callback<{serviceInfo: LocalServiceInfo, errorCode?: MdnsError}>): void | Disables listening for **discoveryStart** events.|
 | ohos.net.mdns.DiscoveryService | on(type: 'discoveryStop', callback: Callback<{serviceInfo: LocalServiceInfo, errorCode?: MdnsError}>): void | Enables listening for **discoveryStop** events.|
+| ohos.net.mdns.DiscoveryService | off(type: 'discoveryStop', callback: Callback<{serviceInfo: LocalServiceInfo, errorCode?: MdnsError}>): void | Disables listening for **discoveryStop** events.|
 | ohos.net.mdns.DiscoveryService | on(type: 'serviceFound', callback: Callback\<LocalServiceInfo>): void | Enables listening for **serviceFound** events.|
+| ohos.net.mdns.DiscoveryService | off(type: 'serviceFound', callback: Callback\<LocalServiceInfo>): void | Disables listening for **serviceFound** events.|
 | ohos.net.mdns.DiscoveryService | on(type: 'serviceLost', callback: Callback\<LocalServiceInfo>): void | Enables listening for **serviceLost** events.|
+| ohos.net.mdns.DiscoveryService | off(type: 'serviceLost', callback: Callback\<LocalServiceInfo>): void | Disables listening for **serviceLost** events.|
 
 ## Managing Local Services
 
@@ -94,10 +99,11 @@ mdns.removeLocalService(context, localServiceInfo, function (error, data) {
 
 1. Connect the device to the Wi-Fi network.
 2. Import the **mdns** namespace from **@ohos.net.mdns**.
-3. Creates a **DiscoveryService** object, which is used to discover mDNS services of the specified type.
+3. Create a **DiscoveryService** object, which is used to discover mDNS services of the specified type.
 4. Subscribe to mDNS service discovery status changes.
 5. Enable discovery of mDNS services on the LAN.
 6. Stop searching for mDNS services on the LAN.
+7. Unsubscribe from mDNS service discovery status changes.
 
 ```js
 // Import the mdns namespace from @ohos.net.mdns.
@@ -139,4 +145,18 @@ discoveryService.startSearchingMDNS();
 
 // Stop searching for mDNS services on the LAN.
 discoveryService.stopSearchingMDNS();
+
+// Unsubscribe from mDNS service discovery status changes.
+discoveryService.off('discoveryStart', (data) => {
+  console.log(JSON.stringify(data));
+});
+discoveryService.off('discoveryStop', (data) => {
+  console.log(JSON.stringify(data));
+});
+discoveryService.off('serviceFound', (data) => {
+  console.log(JSON.stringify(data));
+});
+discoveryService.off('serviceLost', (data) => {
+  console.log(JSON.stringify(data));
+});
 ```
