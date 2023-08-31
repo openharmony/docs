@@ -284,13 +284,16 @@ class Month {
 @Component
 struct CalendarExample {
   // 模拟6个月
+   arr28: Array<number> = Array(31).fill(0).map((_: number, i: number): number => i + 1);
+   arr30: Array<number> = Array(31).fill(0).map((_: number, i: number): number => i + 1);
+   arr31: Array<number> = Array(31).fill(0).map((_: number, i: number): number => i + 1);
   @State calendar : Month[] = [
-    new Month(2020, 1, ...Array(31).fill(0).map((_: number, i: number): number => i + 1)),
-    new Month(2020, 2, ...Array(28).fill(0).map((_: number, i: number): number => i + 1)),
-    new Month(2020, 3, ...Array(31).fill(0).map((_: number, i: number): number => i + 1)),
-    new Month(2020, 4, ...Array(30).fill(0).map((_: number, i: number): number => i + 1)),
-    new Month(2020, 5, ...Array(31).fill(0).map((_: number, i: number): number => i + 1)),
-    new Month(2020, 6, ...Array(30).fill(0).map((_: number, i: number): number => i + 1))
+    new Month(2020, 1, ...(this.arr31)),
+    new Month(2020, 2, ...(this.arr28)),
+    new Month(2020, 3, ...(this.arr31)),
+    new Month(2020, 4, ...(this.arr30)),
+    new Month(2020, 5, ...(this.arr31)),
+    new Month(2020, 6, ...(this.arr30))
   ]
   build() {
     Column() {
@@ -298,7 +301,7 @@ struct CalendarExample {
         Text('next month')
       }.onClick(() => {
         this.calendar.shift()
-        this.calendar.push(new Month(2020, 7, ...Array(31).fill(0).map((_: number, i: number): number => i + 1)))
+        this.calendar.push(new Month(2020, 7, ...(this.arr31)))
       })
       ForEach(this.calendar,
         (item: Month) => {
