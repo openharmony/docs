@@ -79,8 +79,7 @@
            console.error(`Invoke startAbility failed, code is ${err.code}, message is ${err.message}`);
          });
      }
-   
-     ...
+     // ...
    }
    ```
 

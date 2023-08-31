@@ -65,7 +65,7 @@ async function example01() {
     });
   } catch (error) {
     let err: BusinessError = error as BusinessError;
-    console.error('PhotoViewPicker failed with err: ' + + JSON.stringify(err));
+    console.error('PhotoViewPicker failed with err: ' + JSON.stringify(err));
   }
 }
 ```
@@ -207,7 +207,7 @@ async function example05() {
     let photoPicker = new picker.PhotoViewPicker();
     photoPicker.save(PhotoSaveOptions, (err: BusinessError, PhotoSaveResult: Array<string>) => {
       if (err) {
-        console.error('PhotoViewPicker.save failed with err: ' JSON.stringify(err));
+        console.error('PhotoViewPicker.save failed with err: ' + JSON.stringify(err));
         return;
       }
       console.info('PhotoViewPicker.save successfully, PhotoSaveResult uri: ' + JSON.stringify(PhotoSaveResult));

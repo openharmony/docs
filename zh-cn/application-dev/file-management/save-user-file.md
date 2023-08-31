@@ -62,8 +62,8 @@ save接口会将文件保存在文件管理器，而不是图库。
    save返回的uri权限是读写权限，可以根据结果集里面的uri进行文件读写等操作。注意不能在picker的回调里直接使用此uri进行打开文件操作，需要定义一个全局变量保存uri，使用类似一个按钮去触发打开文件。
 
    ```ts  
-   let uris: string;
-   async photoViewPickerSave() {
+   let uris: Array<string>;
+   async function photoViewPickerSave() {
       try {
          const photoSaveOptions = new picker.PhotoSaveOptions(); // 创建文件管理器保存选项实例
          photoSaveOptions.newFileNames = ["PhotoViewPicker01.png"]; // 保存文件名（可选），方括号里的文件名自定义，每次不能重复，设备里已有这个文件的话，名字就需要改个不一样的，不然接口会报错
