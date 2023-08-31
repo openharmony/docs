@@ -275,7 +275,7 @@ class Month {
   month: number;
   days: number[];
 
-  constructor(year: number, month: number, days: number[]) {
+  constructor(year: number, month: number, ...days: number[]) {
     this.year = year;
     this.month = month;
     this.days = days;
@@ -285,12 +285,12 @@ class Month {
 struct CalendarExample {
   // 模拟6个月
   @State calendar : Month[] = [
-    new Month(2020, 1, [Array(31)[0].keys(), Array(31)[1].keys(), Array(31)[2].keys(), Array(31)[3].keys(), Array(31)[4].keys(), Array(31)[5].keys(), Array(31)[6].keys(), Array(31)[7].keys(), Array(31)[8].keys(), Array(31)[9].keys(), Array(31)[10].keys(), Array(31)[11].keys(), Array(31)[12].keys(), Array(31)[13].keys(), Array(31)[14].keys(), Array(31)[15].keys(), Array(31)[16].keys(), Array(31)[17].keys(), Array(31)[18].keys(), Array(31)[19].keys(), Array(31)[20].keys(), Array(31)[21].keys(), Array(31)[22].keys(), Array(31)[23].keys(), Array(31)[24].keys(), Array(31)[25].keys(), Array(31)[26].keys(), Array(31)[27].keys(), Array(31)[28].keys(), Array(31)[29].keys(), Array(31)[30].keys(), Array(31)[31].keys()]),
-    new Month(2020, 2, [Array(28)[0].keys(), Array(31)[1].keys(), Array(31)[2].keys(), Array(31)[3].keys(), Array(31)[4].keys(), Array(31)[5].keys(), Array(31)[6].keys(), Array(31)[7].keys(), Array(31)[8].keys(), Array(31)[9].keys(), Array(31)[10].keys(), Array(31)[11].keys(), Array(31)[12].keys(), Array(31)[13].keys(), Array(31)[14].keys(), Array(31)[15].keys(), Array(31)[16].keys(), Array(31)[17].keys(), Array(31)[18].keys(), Array(31)[19].keys(), Array(31)[20].keys(), Array(31)[21].keys(), Array(31)[22].keys(), Array(31)[23].keys(), Array(31)[24].keys(), Array(31)[25].keys(), Array(31)[26].keys(), Array(31)[27].keys(), Array(31)[28].keys()]),
-    new Month(2020, 3, [Array(31)[0].keys(), Array(31)[1].keys(), Array(31)[2].keys(), Array(31)[3].keys(), Array(31)[4].keys(), Array(31)[5].keys(), Array(31)[6].keys(), Array(31)[7].keys(), Array(31)[8].keys(), Array(31)[9].keys(), Array(31)[10].keys(), Array(31)[11].keys(), Array(31)[12].keys(), Array(31)[13].keys(), Array(31)[14].keys(), Array(31)[15].keys(), Array(31)[16].keys(), Array(31)[17].keys(), Array(31)[18].keys(), Array(31)[19].keys(), Array(31)[20].keys(), Array(31)[21].keys(), Array(31)[22].keys(), Array(31)[23].keys(), Array(31)[24].keys(), Array(31)[25].keys(), Array(31)[26].keys(), Array(31)[27].keys(), Array(31)[28].keys(), Array(31)[29].keys(), Array(31)[30].keys(), Array(31)[31].keys()]),
-    new Month(2020, 4, [Array(30)[0].keys(), Array(31)[1].keys(), Array(31)[2].keys(), Array(31)[3].keys(), Array(31)[4].keys(), Array(31)[5].keys(), Array(31)[6].keys(), Array(31)[7].keys(), Array(31)[8].keys(), Array(31)[9].keys(), Array(31)[10].keys(), Array(31)[11].keys(), Array(31)[12].keys(), Array(31)[13].keys(), Array(31)[14].keys(), Array(31)[15].keys(), Array(31)[16].keys(), Array(31)[17].keys(), Array(31)[18].keys(), Array(31)[19].keys(), Array(31)[20].keys(), Array(31)[21].keys(), Array(31)[22].keys(), Array(31)[23].keys(), Array(31)[24].keys(), Array(31)[25].keys(), Array(31)[26].keys(), Array(31)[27].keys(), Array(31)[28].keys(), Array(31)[29].keys(), Array(31)[30].keys()]),
-    new Month(2020, 5, [Array(31)[0].keys(), Array(31)[1].keys(), Array(31)[2].keys(), Array(31)[3].keys(), Array(31)[4].keys(), Array(31)[5].keys(), Array(31)[6].keys(), Array(31)[7].keys(), Array(31)[8].keys(), Array(31)[9].keys(), Array(31)[10].keys(), Array(31)[11].keys(), Array(31)[12].keys(), Array(31)[13].keys(), Array(31)[14].keys(), Array(31)[15].keys(), Array(31)[16].keys(), Array(31)[17].keys(), Array(31)[18].keys(), Array(31)[19].keys(), Array(31)[20].keys(), Array(31)[21].keys(), Array(31)[22].keys(), Array(31)[23].keys(), Array(31)[24].keys(), Array(31)[25].keys(), Array(31)[26].keys(), Array(31)[27].keys(), Array(31)[28].keys(), Array(31)[29].keys(), Array(31)[30].keys(), Array(31)[31].keys()]),
-    new Month(2020, 6, [Array(30)[0].keys(), Array(31)[1].keys(), Array(31)[2].keys(), Array(31)[3].keys(), Array(31)[4].keys(), Array(31)[5].keys(), Array(31)[6].keys(), Array(31)[7].keys(), Array(31)[8].keys(), Array(31)[9].keys(), Array(31)[10].keys(), Array(31)[11].keys(), Array(31)[12].keys(), Array(31)[13].keys(), Array(31)[14].keys(), Array(31)[15].keys(), Array(31)[16].keys(), Array(31)[17].keys(), Array(31)[18].keys(), Array(31)[19].keys(), Array(31)[20].keys(), Array(31)[21].keys(), Array(31)[22].keys(), Array(31)[23].keys(), Array(31)[24].keys(), Array(31)[25].keys(), Array(31)[26].keys(), Array(31)[27].keys(), Array(31)[28].keys(), Array(31)[29].keys(), Array(31)[30].keys()])
+    new Month(2020, 1, ...Array(31).fill(0).map((_: number, i: number): number => i + 1)),
+    new Month(2020, 2, ...Array(28).fill(0).map((_: number, i: number): number => i + 1)),
+    new Month(2020, 3, ...Array(31).fill(0).map((_: number, i: number): number => i + 1)),
+    new Month(2020, 4, ...Array(30).fill(0).map((_: number, i: number): number => i + 1)),
+    new Month(2020, 5, ...Array(31).fill(0).map((_: number, i: number): number => i + 1)),
+    new Month(2020, 6, ...Array(30).fill(0).map((_: number, i: number): number => i + 1))
   ]
   build() {
     Column() {
@@ -298,19 +298,19 @@ struct CalendarExample {
         Text('next month')
       }.onClick(() => {
         this.calendar.shift()
-        this.calendar.push(new Month(2020, 7, [Array(31)[0].keys(), Array(31)[1].keys(), Array(31)[2].keys(), Array(31)[3].keys(), Array(31)[4].keys(), Array(31)[5].keys(), Array(31)[6].keys(), Array(31)[7].keys(), Array(31)[8].keys(), Array(31)[9].keys(), Array(31)[10].keys(), Array(31)[11].keys(), Array(31)[12].keys(), Array(31)[13].keys(), Array(31)[14].keys(), Array(31)[15].keys(), Array(31)[16].keys(), Array(31)[17].keys(), Array(31)[18].keys(), Array(31)[19].keys(), Array(31)[20].keys(), Array(31)[21].keys(), Array(31)[22].keys(), Array(31)[23].keys(), Array(31)[24].keys(), Array(31)[25].keys(), Array(31)[26].keys(), Array(31)[27].keys(), Array(31)[28].keys(), Array(31)[29].keys(), Array(31)[30].keys(), Array(31)[31].keys()]))
+        this.calendar.push(new Month(2020, 7, ...Array(31).fill(0).map((_: number, i: number): number => i + 1)))
       })
       ForEach(this.calendar,
         (item: Month) => {
           ForEach(item.days,
             (day : number) => {
-              // 构建日期块
+              // Build a date block.
             },
             (day : number) => day.toString()
-          )// 内部ForEach
+          )// Inner ForEach
         },
-        (item: Month) => (item.year * 12 + item.month).toString() // 字段与年和月一起使用，作为月份的唯一ID。
-      )// 外部ForEach
+        (item: Month) => (item.year * 12 + item.month).toString() // This field is used together with the year and month as the unique ID of the month.
+      )// Outer ForEach
     }
   }
 }
