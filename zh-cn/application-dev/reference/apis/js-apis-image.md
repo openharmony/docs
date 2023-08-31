@@ -939,6 +939,7 @@ setColorSpace(colorSpace: colorSpaceManager.ColorSpaceManager): void
 ```js
 import colorSpaceManager from '@ohos.graphics.colorSpaceManager';
 async function Demo() {
+    let colorSpaceName = colorSpaceManager.ColorSpace.SRGB;
     var csm = colorSpaceManager.create(colorSpaceName);
     pixelmap.setColorSpace(csm);
 }
@@ -1023,6 +1024,7 @@ unmarshalling(sequence: rpc.MessageSequence): Promise\<PixelMap>
 | ------- | --------------------------------------------|
 | 62980115 | If the input parameter invalid              |
 | 62980097 | If the ipc error              |
+| 62980096 | If the Operation failed             |
 
 **示例：**
 
@@ -1725,7 +1727,7 @@ createPixelMapList(options?: DecodingOptions): Promise<Array\<PixelMap>>;
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 62980096| If the operation invalid              |
+| 62980096| If the operation failed              |
 | 62980103| If the image data unsupport             |
 | 62980110| If the image source data error              |
 | 62980111| If the image source data incomplete            |
@@ -1765,7 +1767,7 @@ createPixelMapList(callback: AsyncCallback<Array\<PixelMap>>): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 62980096| If the operation invalid              |
+| 62980096| If the operation failed              |
 | 62980103| If the image data unsupport             |
 | 62980110| If the image source data error              |
 | 62980111| If the image source data incomplete            |
@@ -1800,7 +1802,7 @@ createPixelMapList(options: DecodingOptions, callback: AsyncCallback<Array\<Pixe
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 62980096| If the operation invalid              |
+| 62980096| If the operation failed              |
 | 62980103| If the image data unsupport             |
 | 62980110| If the image source data error              |
 | 62980111| If the image source data incomplete            |
@@ -1842,7 +1844,7 @@ getDelayTimeList(callback: AsyncCallback<Array\<number>>): void;
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 62980096| If the operation invalid              |
+| 62980096| If the operation failed              |
 | 62980110| If the image source data error              |
 | 62980111| If the image source data incomplete            |
 | 62980113| If the image format unknown            |
@@ -1878,7 +1880,7 @@ getDelayTimeList(): Promise<Array\<number>>;
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 62980096| If the operation invalid              |
+| 62980096| If the operation failed              |
 | 62980110| If the image source data error              |
 | 62980111| If the image source data incomplete            |
 | 62980113| If the image format unknown            |
@@ -1912,7 +1914,7 @@ getFrameCount(callback: AsyncCallback\<number>): void;
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 62980096| If the operation invalid              |
+| 62980096| If the operation failed              |
 | 62980110| If the image source data error              |
 | 62980111| If the image source data incomplete            |
 | 62980113| If the image format unknown            |
@@ -1941,6 +1943,20 @@ getFrameCount(): Promise\<number>;
 | 类型           | 说明                        |
 | -------------- | --------------------------- |
 | Promise\<number> | Promise实例，异步返回图像帧数。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Image错误码](../errorcodes/errorcode-image.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 62980096| If the operation failed              |
+| 62980110| If the image source data error              |
+| 62980111| If the image source data incomplete            |
+| 62980113| If the image format unknown            |
+| 62980116| If the image decode failed            |
+| 62980118| If the image plugin create failed             |
+| 62980122| If the image decode head abnormal             |
 
 **示例：**
 
@@ -3005,6 +3021,7 @@ PixelMap的初始化选项。
 | GPS_DATE_STAMP<sup>10+</sup>             | "GPSDateStamp"         | GPS日期戳，当前为只读属性。          |
 | IMAGE_DESCRIPTION<sup>10+</sup>          | "ImageDescription"     | 图像信息描述，当前为只读属性。               |
 | MAKE<sup>10+</sup>                       | "Make"                 | 生产商，当前为只读属性。                  |
+| MODEL<sup>10+</sup>                      | "Model"                | 设备型号，当前为只读属性。                  |
 | PHOTO_MODE<sup>10+</sup>                 | "PhotoMode "           | 拍照模式，当前为只读属性。              |
 | SENSITIVITY_TYPE<sup>10+</sup>           | "SensitivityType"      | 灵敏度类型，当前为只读属性。             |
 | STANDARD_OUTPUT_SENSITIVITY<sup>10+</sup>           | "StandardOutputSensitivity"          | 标准输出灵敏度，当前为只读属性。    |
