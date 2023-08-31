@@ -77,13 +77,22 @@ MyGlobalBuilderFunction()
 
 
 ```ts
-ABuilder( $$ : { paramA1: string, paramB1 : string } );
+class ABuilderParam {
+  paramA1: string = ''
+  paramB1: string = ''
+}
+
+ABuilder($$ : ABuilderParam);
 ```
 
 
 
 ```ts
-@Builder function ABuilder($$: { paramA1: string }) {
+class ABuilderParam {
+  paramA1: string = ''
+}
+
+@Builder function ABuilder($$: ABuilderParam) {
   Row() {
     Text(`UseStateVarByReference: ${$$.paramA1} `)
   }

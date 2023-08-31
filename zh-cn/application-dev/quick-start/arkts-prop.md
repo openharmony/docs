@@ -118,7 +118,7 @@ this.title.push('3')
 ```ts
 @Component
 struct DateComponent {
-  @Prop selectedDate: Date;
+  @Prop selectedDate: Date = new Date('');
 
   build() {
     Column() {
@@ -198,7 +198,7 @@ ParentComponent的状态变量countDownStartValue的变化将重置CountDownComp
 ```ts
 @Component
 struct CountDownComponent {
-  @Prop count: number;
+  @Prop count: number = 0;
   costOfOneAttempt: number = 1;
 
   build() {
@@ -370,7 +370,7 @@ class Book {
 
 @Component
 struct ReaderComp {
-  @Prop book: Book;
+  @Prop book: Book = new Book("", 0);
 
   build() {
     Row() {
@@ -497,7 +497,7 @@ class Book {
 ```ts
 @Component
 struct MyComponent {
-  @Prop customCounter: number;
+  @Prop customCounter: number = 0;
   @Prop customCounter2: number = 5;
 
   build() {
@@ -588,10 +588,10 @@ struct Parent {
   build() {
     Column() {
       Button('change')
-      .onClick(() => {
-        this.votes.name = "aaaaa"
-        this.votes.a.title = "wwwww"
-      })
+        .onClick(() => {
+          this.votes.name = "aaaaa"
+          this.votes.a.title = "wwwww"
+        })
       Child({ vote: this.votes })
     }
 
@@ -600,33 +600,33 @@ struct Parent {
 
 @Component
 struct Child {
-  @Prop vote: ClassB
+  @Prop vote: ClassB = new ClassB('', new ClassA(''));
   build() {
-  Column() {
+    Column() {
 
-    Text(this.vote.name).fontSize(36).fontColor(Color.Red).margin(50)
-      .onClick(() => {
-        this.vote.name = 'Bye'
-      })
-    Text(this.vote.a.title).fontSize(36).fontColor(Color.Blue)
-      .onClick(() => {
-        this.vote.a.title = "openHarmony"
-      })
-    Child1({vote1:this.vote.a})
+      Text(this.vote.name).fontSize(36).fontColor(Color.Red).margin(50)
+        .onClick(() => {
+          this.vote.name = 'Bye'
+        })
+      Text(this.vote.a.title).fontSize(36).fontColor(Color.Blue)
+        .onClick(() => {
+          this.vote.a.title = "openHarmony"
+        })
+      Child1({vote1:this.vote.a})
 
-  }
+    }
   }
 }
 
 @Component
 struct Child1 {
-  @Prop vote1: ClassA
+  @Prop vote1: ClassA = new ClassA('');
   build() {
     Column() {
-    Text(this.vote1.title).fontSize(36).fontColor(Color.Red).margin(50)
-    .onClick(() => {
-      this.vote1.title = 'Bye Bye'
-    })
+      Text(this.vote1.title).fontSize(36).fontColor(Color.Red).margin(50)
+        .onClick(() => {
+          this.vote1.title = 'Bye Bye'
+        })
     }
   }
 }

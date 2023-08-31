@@ -101,7 +101,7 @@ class PointVector extends Array<Point> implements AnimatableArithmetic<PointVect
     let result = new PointVector([])
     const len = Math.min(this.length, rhs.length)
     for (let i = 0; i < len; i++) {
-      result.push(this[i].plus(rhs[i]))
+      result.push((this as Array<Point>)[i].plus((rhs as Array<Point>)[i]))
     }
     return result
   }
@@ -109,14 +109,14 @@ class PointVector extends Array<Point> implements AnimatableArithmetic<PointVect
     let result = new PointVector([])
     const len = Math.min(this.length, rhs.length)
     for (let i = 0; i < len; i++) {
-      result.push(this[i].subtract(rhs[i]))
+      result.push((this as Array<Point>)[i].subtract((rhs as Array<Point>)[i]))
     }
     return result
   }
   multiply(scale: number): PointVector {
     let result = new PointVector([])
     for (let i = 0; i < this.length; i++) {
-      result.push(this[i].multiply(scale))
+      result.push((this as Array<Point>)[i].multiply(scale))
     }
     return result
   }
@@ -125,14 +125,14 @@ class PointVector extends Array<Point> implements AnimatableArithmetic<PointVect
       return false
     }
     for (let i = 0; i < this.length; i++) {
-      if (!this[i].equals(rhs[i])) {
+      if (!(this as Array<Point>)[i].equals((rhs as Array<Point>)[i])) {
         return false
       }
     }
     return true
   }
-  get():Array<[x: number, y: number]> {
-    let result = []
+  get(): Array<Object[]> {
+    let result: Array<Object[]> = []
     this.forEach(p => result.push([p.x, p.y]))
     return result
   }
