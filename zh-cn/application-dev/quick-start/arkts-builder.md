@@ -77,13 +77,22 @@ MyGlobalBuilderFunction()
 
 
 ```ts
-ABuilder( $$ : { paramA1: string, paramB1 : string } );
+class ABuilderParam {
+  paramA1: string = ''
+  paramB1: string = ''
+}
+
+ABuilder($$ : ABuilderParam);
 ```
 
 
 
 ```ts
-@Builder function ABuilder($$: { paramA1: string }) {
+class ABuilderParam {
+  paramA1: string = ''
+}
+
+@Builder function ABuilder($$: ABuilderParam) {
   Row() {
     Text(`UseStateVarByReference: ${$$.paramA1} `)
   }
@@ -94,10 +103,10 @@ struct Parent {
   @State label: string = 'Hello';
   build() {
     Column() {
-      // 在Parent组件中调用ABuilder的时候，将this.label引用传递给ABuilder
+      // Pass the this.label reference to the ABuilder component when the ABuilder component is called in the Parent component.
       ABuilder({ paramA1: this.label })
       Button('Click me').onClick(() => {
-        // 点击“Click me”后，UI从“Hello”刷新为“ArkUI”
+        // After Click me is clicked, the UI text changes from Hello to ArkUI.
         this.label = 'ArkUI';
       })
     }
