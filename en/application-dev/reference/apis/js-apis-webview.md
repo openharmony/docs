@@ -518,7 +518,7 @@ export default class EntryAbility extends UIAbility {
     onCreate(want, launchParam) {
         console.log("EntryAbility onCreate")
         try {
-            web_webview.WebviewController.setHttpDns(web_webview.SecureDnsMode.Auto, "https://example1.test")
+            web_webview.WebviewController.setHttpDns(web_webview.SecureDnsMode.AUTO, "https://example1.test")
         } catch(error) {
             console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
         }
@@ -6493,9 +6493,6 @@ Describes the mode in which the **\<Web>** component uses HTTPDNS.
 
 | Name         | Value| Description                                     |
 | ------------- | -- |----------------------------------------- |
-| Off<sup>(deprecated)</sup>           | 0 |HTTPDNS is not used. This value can be used to revoke the previously used HTTPDNS configuration.<br>This API is deprecated since API version 10. You are advised to use **OFF** instead.|
-| Auto<sup>(deprecated)</sup>          | 1 |HTTPDNS is used in automatic mode. When the specified HTTPDNS server is unavailable for resolution, the component will fall back to the system DNS server.<br>This API is deprecated since API version 10. You are advised to use **AUTO** instead.|
-| SecureOnly<sup>(deprecated)</sup>    | 2 |The specified HTTPDNS server is forcibly used for DNS resolution.<br>This API is deprecated since API version 10. You are advised to use **SECURE_ONLY** instead.|
 | OFF                                  | 0 |HTTPDNS is not used. This value can be used to revoke the previously used HTTPDNS configuration.|
 | AUTO                                 | 1 |HTTPDNS is used in automatic mode. When the specified HTTPDNS server is unavailable for resolution, the component will fall back to the system DNS server.|
 | SECURE_ONLY                          | 2 |The specified HTTPDNS server is forcibly used for DNS resolution.|
