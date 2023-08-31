@@ -37,6 +37,7 @@
    
    ```ts
    import notificationManager from '@ohos.notificationManager';
+   import Base from '@ohos.base';
    ```
 
 3. 构造NotificationRequest对象，并发布通知。
@@ -55,7 +56,7 @@
         }
       };
       
-      notificationManager.publish(notificationRequest, (err) => {
+      notificationManager.publish(notificationRequest, (err:Base.BusinessError) => {
         if (err) {
           console.error(`Failed to publish notification. Code is ${err.code}, message is ${err.message}`);
           return;
@@ -85,7 +86,7 @@
       };
       
       // 发布通知
-      notificationManager.publish(notificationRequest, (err) => {
+      notificationManager.publish(notificationRequest, (err:Base.BusinessError) => {
         if (err) {
           console.error(`Failed to publish notification. Code is ${err.code}, message is ${err.message}`);
           return;
@@ -114,7 +115,7 @@
       };
       
       // 发布通知
-      notificationManager.publish(notificationRequest, (err) => {
+      notificationManager.publish(notificationRequest, (err:Base.BusinessError) => {
         if (err) {
           console.error(`Failed to publish notification. Code is ${err.code}, message is ${err.message}`);
           return;
@@ -145,7 +146,7 @@
       };
       
       // 发布通知
-      notificationManager.publish(notificationRequest, (err) => {
+      notificationManager.publish(notificationRequest, (err:Base.BusinessError) => {
         if (err) {
           console.error(`Failed to publish notification. Code is ${err.code}, message is ${err.message}`);
           return;
