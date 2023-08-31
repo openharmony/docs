@@ -2755,3 +2755,15 @@
 **ACL使能**：TRUE
 
 **起始版本**：11
+
+## ohos.permission.QUERY_ACCESSIBILITY_ELEMENT
+
+允许批量查询无障碍节点。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
