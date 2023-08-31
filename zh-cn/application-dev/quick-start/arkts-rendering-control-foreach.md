@@ -304,13 +304,13 @@ struct CalendarExample {
         (item: Month) => {
           ForEach(item.days,
             (day : number) => {
-              // Build a date block.
+              // 构建日期块
             },
             (day : number) => day.toString()
-          )// Inner ForEach
+          )// 内部ForEach
         },
-        (item: Month) => (item.year * 12 + item.month).toString() // This field is used together with the year and month as the unique ID of the month.
-      )// Outer ForEach
+        (item: Month) => (item.year * 12 + item.month).toString() // 内部ForEach
+      )// 内部ForEach
     }
   }
 }
