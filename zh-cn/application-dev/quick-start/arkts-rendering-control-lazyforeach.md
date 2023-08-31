@@ -225,7 +225,6 @@ struct MyComponent {
         })
       }, item => item)
     }.cachedCount(5)
-    }
   }
 }
 ```
