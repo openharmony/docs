@@ -3,8 +3,6 @@
 
 > **NOTE**
 > 
-> To use ArkTS, your DevEco Studio must be V3.0.0.900 Beta3 or later.
-> 
 > In this document, DevEco Studio 4.0 Beta2 is used. You can download it [here](../../release-notes/OpenHarmony-v4.0-beta2.md#version-mapping).
 
 ## Creating an ArkTS Project
@@ -30,9 +28,9 @@ The following describes how to create the OpenHarmony projects of API 10 and API
    > **NOTE**
    >
    > You can use the low-code development mode apart from the traditional coding approach.
-   > 
+   >
    > On the low-code development pages, you can design your application UI in an efficient, intuitive manner, with a wide array of UI editing features.
-   > 
+   >
    > To use the low-code development mode, turn on **Enable Super Visual** on the page shown above.
 
 4. Click **Finish**. DevEco Studio will automatically generate the sample code and resources that match your project type. Wait until the project is created.
@@ -69,9 +67,9 @@ The following describes how to create the OpenHarmony projects of API 10 and API
    > **NOTE**
    >
    > You can use the low-code development mode apart from the traditional coding approach.
-   > 
+   >
    > On the low-code development pages, you can design your application UI in an efficient, intuitive manner, with a wide array of UI editing features.
-   > 
+   >
    > To use the low-code development mode, turn on **Enable Super Visual** on the page shown above.
 
 4. Click **Finish**. DevEco Studio will automatically generate the sample code and resources that match your project type. Wait until the project is created.
@@ -306,7 +304,13 @@ You can implement page redirection through the [page router](../reference/apis/j
            .height('5%')
            // Bind the onClick event to the Next button so that clicking the button redirects the user to the second page.
            .onClick(() => {
-             router.pushUrl({ url: 'pages/Second' })
+             console.info(`Succeeded in clicking the 'Next' button.`)
+            // Redirect the user to the second page.
+              router.pushUrl({ url: 'pages/Second' }).then(() => {
+                console.info('Succeeded in jumping to the second page.')
+              }).catch((err) => {
+                console.error(`Failed to jump to the second page.Code is ${err.code}, message is ${err.message}`)
+              })
            })
          }
          .width('100%')
@@ -350,7 +354,14 @@ You can implement page redirection through the [page router](../reference/apis/j
            .height('5%')
            // Bind the onClick event to the Back button so that clicking the button redirects the user back to the first page.
            .onClick(() => {
-             router.back()
+             console.info(`Succeeded in clicking the 'Back' button.`)
+             try {
+               // Redirect the user back to the first page.
+               router.back()
+               console.info('Succeeded in returning to the first page.')
+             } catch (err) {
+               console.error(`Failed to return to the first page.Code is ${err.code}, message is ${err.message}`)
+             }
            })
          }
          .width('100%')
