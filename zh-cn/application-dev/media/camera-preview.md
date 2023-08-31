@@ -10,7 +10,7 @@
      
    ```ts
    import camera from '@ohos.multimedia.camera';
-   import type { BusinessError } from '@ohos.base';
+   import { BusinessError } from '@ohos.base';
    ```
 
 2. 创建Surface。
