@@ -60,7 +60,13 @@ function createFile() {
   console.info("The length of str is: " + writeLen);
   // 从文件读取一段内容
   let arrayBuffer = new ArrayBuffer(1024);
-  let readLen = fs.readSync(file.fd, arrayBuffer, { offset: 0 });
+  class Option {
+    public offset: number = 0;
+    public length: number;
+  }
+  let option = new Option();
+  option.length = arrayBuffer.byteLength;
+  let readLen = fs.readSync(file.fd, arrayBuffer, option);
   let buf = buffer.from(arrayBuffer, 0, readLen);
   console.info("the content of file: " + buf.toString());
   // 关闭文件
@@ -89,11 +95,18 @@ function readWriteFile() {
   let bufSize = 4096;
   let readSize = 0;
   let buf = new ArrayBuffer(bufSize);
-  let readLen = fs.readSync(srcFile.fd, buf, { offset: readSize });
+  class Option {
+    public offset: number = 0;
+    public length: number = bufSize;
+  }
+  let option = new Option();
+  option.offset = readSize;
+  let readLen = fs.readSync(srcFile.fd, buf, option);
   while (readLen > 0) {
     readSize += readLen;
     fs.writeSync(destFile.fd, buf);
-    readLen = fs.readSync(srcFile.fd, buf, { offset: readSize });
+    option.offset = readSize;
+    readLen = fs.readSync(srcFile.fd, buf, option);
   }
   // 关闭文件
   fs.closeSync(srcFile);
@@ -118,7 +131,7 @@ import common from '@ohos.app.ability.common';
 let context = getContext(this) as common.UIAbilityContext;
 let filesDir = context.filesDir;
 
-async readWriteFileWithStream() {
+async function readWriteFileWithStream() {
   // 打开文件流
   let inputStream = fs.createStreamSync(filesDir + '/test.txt', 'r+');
   let outputStream = fs.createStreamSync(filesDir + '/destFile.txt', "w+");
@@ -126,11 +139,18 @@ async readWriteFileWithStream() {
   let bufSize = 4096;
   let readSize = 0;
   let buf = new ArrayBuffer(bufSize);
-  let readLen = await inputStream.read(buf, { offset: readSize });
+  class Option {
+    public offset: number = 0;
+    public length: number = bufSize;
+  }
+  let option = new Option();
+  option.offset = readSize;
+  let readLen = await inputStream.read(buf, option);
   readSize += readLen;
   while (readLen > 0) {
     await outputStream.write(buf);
-    readLen = await inputStream.read(buf, { offset: readSize });
+    option.offset = readSize;
+    readLen = await inputStream.read(buf, option);
     readSize += readLen;
   }
   // 关闭文件流
@@ -157,17 +177,17 @@ let filesDir = context.filesDir;
 
 // 查看文件列表
 function getListFile() {
-  let filter: Filter = {
-    suffix: ['.png', '.jpg', '.txt'],          // 匹配文件后缀名为'.png','.jpg','.txt'
-    displayName: ['test%'],                    // 匹配文件全名以'test'开头
-    fileSizeOver: 0,                           // 匹配文件大小大于等于0
-    lastModifiedAfter: new Date(0).getTime(),  // 匹配文件最近修改时间在1970年1月1日之后
+  class ListFileOption {
+    public recursion: boolean = false;
+    public listNum: number = 0;
+    public filter: Filter
   }
-  let files = fs.listFileSync(filesDir, {
-    recursion: false,
-    listNum: 0,
-    filter: filter
-  });
+  let option = new ListFileOption();
+  option.filter.suffix = ['.png', '.jpg', '.txt'];          // 匹配文件后缀名为'.png','.jpg','.txt'
+  option.filter.displayName = ['test%'];                    // 匹配文件全名以'test'开头
+  option.filter.fileSizeOver = 0;                    // 匹配文件全名以'test'开头
+  option.filter.lastModifiedAfter = new Date(0).getTime();  // 匹配文件最近修改时间在1970年1月1日之后
+  let files = fs.listFileSync(filesDir, option);
   for (let i = 0; i < files.length; i++) {
     console.info(`The name of file: ${files[i]}`);
   }

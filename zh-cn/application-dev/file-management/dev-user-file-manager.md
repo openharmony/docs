@@ -24,6 +24,7 @@ OpenHarmony预置了FileManager文件管理器。系统应用开发者也可以�
    import fileExtensionInfo from '@ohos.file.fileExtensionInfo';
    import { Filter } from '@ohos.file.fs';
    import common from '@ohos.app.ability.common';
+   import { BusinessError } from '@ohos.base';
    ```
 
    其中fileAccess提供了文件基础操作的API，fileExtensionInfo提供了应用开发的关键结构体。
@@ -35,7 +36,7 @@ OpenHarmony预置了FileManager文件管理器。系统应用开发者也可以�
 
    ```ts
    // 获取应用上下文
-  let context = getContext(this) as common.UIAbilityContext;
+   let context = getContext(this) as common.UIAbilityContext;
 
    // 创建连接系统内所有文件管理服务端的helper对象
    let fileAccessHelperAllServer: fileAccess.FileAccessHelper;
@@ -45,13 +46,14 @@ OpenHarmony预置了FileManager文件管理器。系统应用开发者也可以�
        if (!fileAccessHelperAllServer) {
          console.error("createFileAccessHelper interface returns an undefined object");
        }
-     } catch (error) {    
+     } catch (err) {
+         let error: BusinessError = err as BusinessError;
          console.error("createFileAccessHelper failed, errCode:" + error.code + ", errMessage:" + error.message);
      }
    }
+   let rootInfos: Array<fileAccess.RootInfo> = [];
    async function getRoots() {
      let rootIterator: fileAccess.RootIterator;
-     let rootInfos: fileAccess.RootInfo[] = [];
      let isDone: boolean = false;
      try {
        rootIterator = await fileAccessHelperAllServer.getRoots();
@@ -81,7 +83,7 @@ OpenHarmony预置了FileManager文件管理器。系统应用开发者也可以�
    ```ts
    // 从根目录开始
    let rootInfo = rootInfos[0];
-   let fileInfos: fileAccess.FileInfo[] = [];
+   let fileInfos: Array<fileAccess.FileInfo> = [];
    let isDone: boolean = false;
    let filter: Filter = {suffix : [".txt", ".jpg", ".xlsx"]}; // 设定过滤条件
    try {  
@@ -89,7 +91,6 @@ OpenHarmony预置了FileManager文件管理器。系统应用开发者也可以�
      // let fileIterator = rootInfo.scanFile(filter); // 过滤设备rootinfos[0]满足指定条件的文件信息，返回迭代对象
      if (!fileIterator) {
        console.error("listFile interface returns an undefined object");
-       return;  
      }
      while (!isDone) {
        let result = fileIterator.next();
@@ -105,21 +106,20 @@ OpenHarmony预置了FileManager文件管理器。系统应用开发者也可以�
    
    // 从指定的目录开始
    let fileInfoDir = fileInfos[0]; // fileInfoDir 表示某个目录信息
-   let subFileInfos: fileAccess.FileInfo[] = [];
-   let isDone: boolean = false;
-   let filter: Filter = {suffix : [".txt", ".jpg", ".xlsx"]}; // 设定过滤条件
+   let subFileInfos: Array<fileAccess.FileInfo> = [];
+   let isDone02: boolean = false;
+   let filter02: Filter = {suffix : [".txt", ".jpg", ".xlsx"]}; // 设定过滤条件
    try {
      let fileIterator = fileInfoDir.listFile(); // 遍历特定的目录fileinfo，返回迭代器对象
-     // let fileIterator = rootInfo.scanFile(filter); // 过滤特定的目录fileinfo，返回迭代器对象
+     // let fileIterator = rootInfo.scanFile(filter02); // 过滤特定的目录fileinfo，返回迭代器对象
      if (!fileIterator) {
        console.error("listFile interface returns an undefined object");
-       return;
      }
-     while (!isDone) {
+     while (!isDone02) {
        let result = fileIterator.next();
        console.info("next result = " + JSON.stringify(result));
-       isDone = result.done;
-       if (!isDone)
+       isDone02 = result.done;
+       if (!isDone02)
          subFileInfos.push(result.value);
      }
    } catch (err) {
@@ -136,19 +136,20 @@ OpenHarmony预置了FileManager文件管理器。系统应用开发者也可以�
    // 创建文件
    // 示例代码sourceUri是Download目录的fileinfo中的URI
    // 开发者应根据自己实际获取fileinfo的URI进行开发
-   let sourceUri: string = "file://media/file/6";
-   let displayName: string = "file1";
-   let fileUri: string;
-   try {
-     // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
-     fileUri = await fileAccessHelper.createFile(sourceUri, displayName);
-     if (!fileUri) {
-       console.error("createFile return undefined object");
-       return;
-     }
-     console.info("createFile sucess, fileUri: " + JSON.stringify(fileUri));
-   } catch (err) {
-    let error: BusinessError = err as BusinessError;
-     console.error("createFile failed, errCode:" + error.code + ", errMessage:" + error.message);
-   };
+   async function creatFile() {
+     let sourceUri: string = "file://docs/storage/Users/currentUser/Download";
+     let displayName: string = "file1";
+     let fileUri: string;
+     try {
+       // fileAccessHelperAllServer 参考 fileAccess.createFileAccessHelper 示例代码获取
+       fileUri = await fileAccessHelperAllServer.createFile(sourceUri, displayName);
+       if (!fileUri) {
+         console.error("createFile return undefined object");
+       }
+       console.info("createFile sucess, fileUri: " + JSON.stringify(fileUri));
+     } catch (err) {
+      let error: BusinessError = err as BusinessError;
+      console.error("createFile failed, errCode:" + error.code + ", errMessage:" + error.message);
+     };
+   }
    ```
