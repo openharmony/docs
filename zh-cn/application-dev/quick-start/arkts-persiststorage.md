@@ -40,7 +40,7 @@ PersistentStorage和UIContext相关联，需要在[UIContext](../reference/apis/
 2. 在AppStorage获取对应属性：
 
    ```ts
-AppStorage.Get<number>('aProp'); // returns 47
+   AppStorage.Get<number>('aProp'); // returns 47
    ```
 
    或在组件内部定义：
