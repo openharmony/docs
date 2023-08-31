@@ -13,11 +13,63 @@
 import contact from '@ohos.contact';
 ```
 
-## contact.addContact
+## contact.addContact<sup>10+</sup>
+
+addContact(context: Context, contact: Contact, callback: AsyncCallback&lt;number&gt;): void 
+
+添加联系人，使用callback方式作为异步方法。
+
+**需要权限**：ohos.permission.WRITE_CONTACTS
+
+**系统能力**：SystemCapability.Applications.ContactsData
+
+**参数：**
+
+| 参数名   | 类型                        | 必填 | 说明                                                         |
+| -------- | --------------------------- | ---- | ------------------------------------------------------------ |
+| context  | Context                     | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](js-apis-inner-application-context.md)。 |
+| contact  | [Contact](#contact)         | 是   | 联系人信息。                                                 |
+| callback | AsyncCallback&lt;number&gt; | 是   | 回调函数，返回添加的联系人id。                               |
+
+**错误码：**
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 201      | Permission denied. |
+| 401      | Parameter error.   |
+
+**示例：**
+
+```js
+  // 获取context
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage){
+      globalThis.context = this.context;
+    }
+  }
+  contact.addContact(
+    globalThis.context as Context,
+    {name: {fullName: 'xxx'},
+      phoneNumbers: [{phoneNumber: '138xxxxxxxx'}]
+    }, (err, data) => {
+      if (err) {
+        console.log(`addContact callback: err->${JSON.stringify(err)}`);
+        return;
+      }
+      console.log(`addContact callback: success data->${JSON.stringify(data)}`);
+  });
+```
+
+## contact.addContact(deprecated)<sup>7+</sup>
 
 addContact(contact:Contact, callback:AsyncCallback&lt;number&gt;): void
 
 添加联系人，使用callback方式作为异步方法。
+
+> **说明**
+>
+> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContact](#contactquerycontact10)
 
 **需要权限**：ohos.permission.WRITE_CONTACTS
 
@@ -45,12 +97,67 @@ addContact(contact:Contact, callback:AsyncCallback&lt;number&gt;): void
   });
   ```
 
+## contact.addContact<sup>10+</sup>
 
-## contact.addContact
+addContact(context: Context, contact: Contact): Promise<number&gt;
+
+添加联系人，使用Promise方式作为异步方法。
+
+**需要权限**：ohos.permission.WRITE_CONTACTS
+
+**系统能力**：SystemCapability.Applications.ContactsData
+
+**参数：**
+
+| 参数名  | 类型                | 必填 | 说明                                                         |
+| ------- | ------------------- | ---- | ------------------------------------------------------------ |
+| context | Context             | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](js-apis-inner-application-context.md)。 |
+| contact | [Contact](#contact) | 是   | 联系人信息。                                                 |
+
+**返回值：**
+
+| 类型                  | 说明                                        |
+| --------------------- | ------------------------------------------- |
+| Promise&lt;number&gt; | 以Promise形式返回结果，返回添加的联系人id。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 201      | Permission denied. |
+| 401      | Parameter error.   |
+
+**示例：**
+
+```js
+  // 获取context
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage){
+      globalThis.context = this.context;
+    }
+  }
+  let promise = contact.addContact(
+    globalThis.context as Context,
+    {name: {fullName: 'xxx'},
+      phoneNumbers: [{phoneNumber: '138xxxxxxxx'}]
+  });
+  promise.then((data) => {
+    console.log(`addContact success: data->${JSON.stringify(data)}`);
+  }).catch((err) => {
+    console.error(`addContact fail: err->${JSON.stringify(err)}`);
+  });
+```
+
+## contact.addContact(deprecated)<sup>7+</sup>
 
 addContact(contact: Contact): Promise&lt;number&gt;
 
 添加联系人，使用Promise方式作为异步方法。
+
+> **说明**
+>
+> 从API version 7 开始支持，从API 10 开始废弃，建议使用[addContact](#contactaddcontact10)
 
 **需要权限**：ohos.permission.WRITE_CONTACTS
 
@@ -82,12 +189,59 @@ addContact(contact: Contact): Promise&lt;number&gt;
   });
   ```
 
+## contact.deleteContact<sup>10+</sup>
 
-## contact.deleteContact
+deleteContact(context: Context, key: string, callback: AsyncCallback&lt;void&gt;): void
+
+删除联系人，使用callback方式作为异步方法。
+
+**需要权限**：ohos.permission.WRITE_CONTACTS
+
+**系统能力**：SystemCapability.Applications.ContactsData
+
+**参数：**
+
+| 参数名   | 类型                      | 必填 | 说明                                                         |
+| -------- | ------------------------- | ---- | ------------------------------------------------------------ |
+| context  | Context                   | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](js-apis-inner-application-context.md)。 |
+| key      | string                    | 是   | 联系人key值，一个联系人对应一个key。                         |
+| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数，返回删除联系人的结果。                             |
+
+**错误码：**
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 201      | Permission denied. |
+| 401      | Parameter error.   |
+
+**示例：**
+
+```js
+  // 获取context
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage){
+      globalThis.context = this.context;
+    }
+  }  
+  contact.deleteContact(globalThis.context as Context, 'xxx', (err) => {
+      if (err) {
+          console.log(`deleteContact callback: err->${JSON.stringify(err)}`);
+          return;
+      }
+      console.log('deleteContact success');
+  });
+```
+
+## contact.deleteContact(deprecated)<sup>7+</sup>
 
 deleteContact(key: string, callback: AsyncCallback&lt;void&gt;): void
 
 删除联系人，使用callback方式作为异步方法。
+
+> **说明**
+>
+> 从API version 7 开始支持，从API 10 开始废弃，建议使用[deleteContact](#contactdeletecontact10)
 
 **需要权限**：ohos.permission.WRITE_CONTACTS
 
@@ -113,11 +267,63 @@ deleteContact(key: string, callback: AsyncCallback&lt;void&gt;): void
   ```
 
 
-## contact.deleteContact
+## contact.deleteContact<sup>10+</sup>
+
+deleteContact(context: Context,  key: string): Promise&lt;void&gt;
+
+删除联系人，使用Promise方式作为异步方法。
+
+**需要权限**：ohos.permission.WRITE_CONTACTS
+
+**系统能力**：SystemCapability.Applications.ContactsData
+
+**参数：**
+
+| 参数名  | 类型    | 必填 | 说明                                                         |
+| ------- | ------- | ---- | ------------------------------------------------------------ |
+| context | Context | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](js-apis-inner-application-context.md)。 |
+| key     | string  | 是   | 联系人的key值，一个联系人对应一个key。                       |
+
+**返回值：**
+
+| 类型                | 说明                                          |
+| ------------------- | --------------------------------------------- |
+| Promise&lt;void&gt; | 以Promise形式返回结果，返回删除联系人的结果。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 201      | Permission denied. |
+| 401      | Parameter error.   |
+
+**示例：**
+
+  ```js
+  // 获取context
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage){
+      globalThis.context = this.context;
+    }
+  }
+  let promise = contact.deleteContact(globalThis.context as Context, 'xxx');
+  promise.then(() => {
+      console.log(`deleteContact success`);
+  }).catch((err) => {
+      console.error(`deleteContact fail: err->${JSON.stringify(err)}`);
+  });
+  ```
+
+## contact.deleteContact(deprecated)<sup>7+</sup>
 
 deleteContact(key: string): Promise&lt;void&gt;
 
 删除联系人，使用Promise方式作为异步方法。
+
+> **说明**
+>
+> 从API version 7 开始支持，从API 10 开始废弃，建议使用[deleteContact](#contactdeletecontact10)
 
 **需要权限**：ohos.permission.WRITE_CONTACTS
 
@@ -147,11 +353,63 @@ deleteContact(key: string): Promise&lt;void&gt;
   ```
 
 
-## contact.updateContact
+## contact.updateContact<sup>10+</sup>
+
+updateContact(context: Context, contact: Contact, callback: AsyncCallback&lt;void&gt;): void
+
+更新联系人，使用callback方式作为异步方法。
+
+**需要权限**：ohos.permission.WRITE_CONTACTS
+
+**系统能力**：SystemCapability.Applications.ContactsData
+
+**参数：**
+
+| 参数名   | 类型                      | 必填 | 说明                                                         |
+| -------- | ------------------------- | ---- | ------------------------------------------------------------ |
+| context  | Context                   | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](js-apis-inner-application-context.md)。 |
+| contact  | [Contact](#contact)       | 是   | 联系人信息。                                                 |
+| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数，返回更新联系人的更新结果。                         |
+
+**错误码：**
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 201      | Permission denied. |
+| 401      | Parameter error.   |
+
+**示例：**
+
+  ```js
+  // 获取context
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage){
+      globalThis.context = this.context;
+    }
+  }
+  contact.updateContact(globalThis.context as Context, {
+      id: 1,
+      name: {fullName: 'xxx'},
+      phoneNumbers: [{phoneNumber: '138xxxxxxxx'}]
+  }, (err) => {
+      if (err) {
+          console.log('updateContact callback: err->${JSON.stringify(err)}');
+          return;
+      }
+      console.log('updateContact success');
+  });
+  ```
+
+## contact.updateContact(deprecated)<sup>7+</sup>
 
 updateContact(contact: Contact, callback: AsyncCallback&lt;void&gt;): void
 
 更新联系人，使用callback方式作为异步方法。
+
+> **说明**
+>
+> 从API version 7 开始支持，从API 10 开始废弃，建议使用[updateContact](#contactupdatecontact10)
 
 **需要权限**：ohos.permission.WRITE_CONTACTS
 
@@ -181,11 +439,66 @@ updateContact(contact: Contact, callback: AsyncCallback&lt;void&gt;): void
   ```
 
 
-## contact.updateContact
+## contact.updateContact<sup>10+</sup>
+
+updateContact(context: Context,  contact: Contact, attrs: ContactAttributes, callback: AsyncCallback&lt;void&gt;): void
+
+更新联系人，使用callback方式作为异步方法。
+
+**需要权限**：ohos.permission.WRITE_CONTACTS
+
+**系统能力**：SystemCapability.Applications.ContactsData
+
+**参数：**
+
+| 参数名   | 类型                                    | 必填 | 说明                                                         |
+| -------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
+| context  | Context                                 | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](js-apis-inner-application-context.md)。 |
+| contact  | [Contact](#contact)                     | 是   | 联系人信息。                                                 |
+| attrs    | [ContactAttributes](#contactattributes) | 是   | 联系人的属性列表。                                           |
+| callback | AsyncCallback&lt;void&gt;               | 是   | 回调函数，返回更新联系人的更新结果。                         |
+
+**错误码：**
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 201      | Permission denied. |
+| 401      | Parameter error.   |
+
+**示例：**
+
+  ```js
+  // 获取context
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage){
+      globalThis.context = this.context;
+    }
+  }
+  contact.updateContact(globalThis.context as Context, {
+      id: 1,
+      name: {fullName: 'xxx'},
+      phoneNumbers: [{phoneNumber: '138xxxxxxxx'}]
+  }, {
+      attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
+  }, (err) => {
+      if (err) {
+          console.log('updateContact callback: err->${JSON.stringify(err)}');
+          return;
+      }
+      console.log('updateContact success');
+  });
+  ```
+
+## contact.updateContact(deprecated)<sup>7+</sup>
 
 updateContact(contact: Contact, attrs: ContactAttributes, callback: AsyncCallback&lt;void&gt;): void
 
 更新联系人，使用callback方式作为异步方法。
+
+> **说明**
+>
+> 从API version 7 开始支持，从API 10 开始废弃，建议使用[updateContact](#contactupdatecontact10)
 
 **需要权限**：ohos.permission.WRITE_CONTACTS
 
@@ -218,11 +531,70 @@ updateContact(contact: Contact, attrs: ContactAttributes, callback: AsyncCallbac
   ```
 
 
-## contact.updateContact
+## contact.updateContact<sup>10+</sup>
+
+updateContact(context: Context,  contact: Contact, attrs?: ContactAttributes): Promise&lt;void&gt;
+
+更新联系人，使用Promise方式作为异步方法。
+
+**需要权限**：ohos.permission.WRITE_CONTACTS
+
+**系统能力**：SystemCapability.Applications.ContactsData
+
+**参数：**
+
+| 参数名  | 类型                                    | 必填 | 说明                                                         |
+| ------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
+| context | Context                                 | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](js-apis-inner-application-context.md)。 |
+| contact | [Contact](#contact)                     | 是   | 联系人信息。                                                 |
+| attrs   | [ContactAttributes](#contactattributes) | 否   | 联系人的属性列表。                                           |
+
+**返回值：**
+
+| 类型                | 说明                                              |
+| ------------------- | ------------------------------------------------- |
+| Promise&lt;void&gt; | 以Promise形式返回结果，返回更新联系人的更新结果。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 201      | Permission denied. |
+| 401      | Parameter error.   |
+
+**示例：**
+
+```js
+  // 获取context
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage){
+      globalThis.context = this.context;
+    }
+  }
+  let promise = contact.updateContact(globalThis.context as Context, {
+      id: 1,
+      name: {fullName: 'xxx'},
+      phoneNumbers: [{phoneNumber: '138xxxxxxxx'}]
+  }, {
+      attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
+  });
+  promise.then(() => {
+      console.log('updateContact success');
+  }).catch((err) => {
+      console.error(`updateContact fail: err->${JSON.stringify(err)}`);
+  });
+```
+
+## contact.updateContact(deprecated)<sup>7+</sup>
 
 updateContact(contact: Contact, attrs?: ContactAttributes): Promise&lt;void&gt;
 
 更新联系人，使用Promise方式作为异步方法。
+
+> **说明**
+>
+> 从API version 7 开始支持，从API 10 开始废弃，建议使用[updateContact](#contactupdatecontact10)
 
 **需要权限**：ohos.permission.WRITE_CONTACTS
 
@@ -258,11 +630,59 @@ updateContact(contact: Contact, attrs?: ContactAttributes): Promise&lt;void&gt;
   ```
 
 
-## contact.isLocalContact
+## contact.isLocalContact<sup>10+</sup>
+
+isLocalContact(context: Context,  id: number, callback: AsyncCallback&lt;boolean&gt;): void
+
+判断当前联系人id是否在电话簿中，使用callback方式作为异步方法。
+
+**需要权限**：ohos.permission.READ_CONTACTS
+
+**系统能力**：SystemCapability.Applications.ContactsData
+
+**参数：**
+
+| 参数名   | 类型                         | 必填 | 说明                                                         |
+| -------- | ---------------------------- | ---- | ------------------------------------------------------------ |
+| context  | Context                      | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](js-apis-inner-application-context.md)。 |
+| id       | number                       | 是   | 联系人对象的id属性，一个联系人对应一个id。                   |
+| callback | AsyncCallback&lt;boolean&gt; | 是   | 回调函数，返回布尔值。true代表联系人id在本地电话簿中，false则代表联系人id不在本地电话簿中。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 201      | Permission denied. |
+| 401      | Parameter error.   |
+
+**示例：**
+
+  ```js
+  // 获取context
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage){
+      globalThis.context = this.context;
+    }
+  }
+  contact.isLocalContact(globalThis.context as Context, /*id*/1, (err, data) => {
+      if (err) {
+          console.log(`isLocalContact callback: err->${JSON.stringify(err)}`);
+          return;
+      }
+      console.log(`isLocalContact callback: success data->${JSON.stringify(data)}`);
+  });
+  ```
+
+## contact.isLocalContact(deprecated)<sup>7+</sup>
 
 isLocalContact(id: number, callback: AsyncCallback&lt;boolean&gt;): void
 
 判断当前联系人id是否在电话簿中，使用callback方式作为异步方法。
+
+> **说明**
+>
+> 从API version 7 开始支持，从API 10 开始废弃，建议使用[isLocalContact](#contactislocalcontact10)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -287,12 +707,62 @@ isLocalContact(id: number, callback: AsyncCallback&lt;boolean&gt;): void
   });
   ```
 
+## contact.isLocalContact<sup>10+</sup>
 
-## contact.isLocalContact
+isLocalContact(context: Context,  id: number): Promise&lt;boolean&gt;
+
+判断当前联系人id是否在电话簿中，使用Promise方式作为异步方法。
+
+**需要权限**：ohos.permission.READ_CONTACTS
+
+**系统能力**：SystemCapability.Applications.ContactsData
+
+**参数：**
+
+| 参数名  | 类型    | 必填 | 说明                                                         |
+| ------- | ------- | ---- | ------------------------------------------------------------ |
+| context | Context | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](js-apis-inner-application-context.md)。 |
+| id      | number  | 是   | 联系人对象的id属性，一个联系人对应一个id。                   |
+
+**返回值：**
+
+| 类型                   | 说明                                                         |
+| ---------------------- | ------------------------------------------------------------ |
+| Promise&lt;boolean&gt; | 以Promise形式返回结果，返回布尔值。true代表联系人id在本地电话簿中，false则代表联系人id不在本地电话簿中。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 201      | Permission denied. |
+| 401      | Parameter error.   |
+
+**示例：**
+
+```js
+  // 获取context
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage){
+      globalThis.context = this.context;
+    }
+  }
+  let promise = contact.isLocalContact(globalThis.context as Context, /*id*/1);
+  promise.then((data) => {
+      console.log(`isLocalContact success: data->${JSON.stringify(data)}`);
+  }).catch((err) => {
+      console.error(`isLocalContact fail: err->${JSON.stringify(err)}`);
+  });
+```
+
+## contact.isLocalContact(deprecated)<sup>7+</sup>
 
 isLocalContact(id: number): Promise&lt;boolean&gt;
 
 判断当前联系人id是否在电话簿中，使用Promise方式作为异步方法。
+
+> **说明**
+>从API version 7 开始支持，从API 10 开始废弃，建议使用[isLocalContact](#contactislocalcontact10)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -321,12 +791,58 @@ isLocalContact(id: number): Promise&lt;boolean&gt;
   });
   ```
 
+## contact.isMyCard<sup>10+</sup>
 
-## contact.isMyCard
+isMyCard(context: Context,  id: number, callback: AsyncCallback&lt;boolean&gt;): void
+
+判断是否为“我的名片”，使用callback方式作为异步方法。
+
+**需要权限**：ohos.permission.READ_CONTACTS
+
+**系统能力**：SystemCapability.Applications.ContactsData
+
+**参数：**
+
+| 参数名   | 类型                         | 必填 | 说明                                                         |
+| -------- | ---------------------------- | ---- | ------------------------------------------------------------ |
+| context  | Context                      | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](js-apis-inner-application-context.md)。 |
+| id       | number                       | 是   | 联系人对象的id属性。                                         |
+| callback | AsyncCallback&lt;boolean&gt; | 是   | 回调函数，返回是否为“我的名片”的布尔值。true代表此联系人是“我的名片”，false则代表不是。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 201      | Permission denied. |
+| 401      | Parameter error.   |
+
+**示例：**
+
+```js
+  // 获取context
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage){
+      globalThis.context = this.context;
+    }
+  }
+  contact.isMyCard(globalThis.context as Context, /*id*/1, (err, data) => {
+      if (err) {
+          console.log(`isMyCard callback: err->${JSON.stringify(err)}`);
+          return;
+      }
+      console.log(`isMyCard callback: success data->${JSON.stringify(data)}`);
+  });
+```
+
+## contact.isMyCard(deprecated)<sup>7+</sup>
 
 isMyCard(id: number, callback: AsyncCallback&lt;boolean&gt;): void
 
 判断是否为“我的名片”，使用callback方式作为异步方法。
+
+> **说明**
+>从API version 7 开始支持，从API 10 开始废弃，建议使用[isMyCard](#contactismycard10)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -352,11 +868,63 @@ isMyCard(id: number, callback: AsyncCallback&lt;boolean&gt;): void
   ```
 
 
-## contact.isMyCard
+## contact.isMyCard<sup>10+</sup>
+
+isMyCard(context: Context,  id: number): Promise&lt;boolean&gt;
+
+判断是否为“我的名片”，使用Promise方式作为异步方法。
+
+**需要权限**：ohos.permission.READ_CONTACTS
+
+**系统能力**：SystemCapability.Applications.ContactsData
+
+**参数：**
+
+| 参数名  | 类型    | 必填 | 说明                                                         |
+| ------- | ------- | ---- | ------------------------------------------------------------ |
+| context | Context | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](js-apis-inner-application-context.md)。 |
+| id      | number  | 是   | 联系人对象的id属性。                                         |
+
+**返回值：**
+
+| 类型                   | 说明                                                         |
+| ---------------------- | ------------------------------------------------------------ |
+| Promise&lt;boolean&gt; | 以Promise形式返回结果，返回是否为“我的名片”的布尔值。true代表此联系人是“我的名片”，false则代表不是。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 201      | Permission denied. |
+| 401      | Parameter error.   |
+
+**示例：**
+
+```js
+  // 获取context
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage){
+      globalThis.context = this.context;
+    }
+  }
+  let promise = contact.isMyCard(globalThis.context as Context, /*id*/1);
+  promise.then((data) => {
+      console.log(`isMyCard success: data->${JSON.stringify(data)}`);
+  }).catch((err) => {
+      console.error(`isMyCard fail: err->${JSON.stringify(err)}`);
+  });
+```
+
+## contact.isMyCard(deprecated)<sup>7+</sup>
 
 isMyCard(id: number): Promise&lt;boolean&gt;
 
 判断是否为“我的名片”，使用Promise方式作为异步方法。
+
+> **说明**
+>
+> 从API version 7 开始支持，从API 10 开始废弃，建议使用[isMyCard](#contactismycard10)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -385,12 +953,58 @@ isMyCard(id: number): Promise&lt;boolean&gt;
   });
   ```
 
+## contact.queryMyCard<sup>10+</sup>
 
-## contact.queryMyCard
+queryMyCard(context: Context,  callback: AsyncCallback&lt;Contact&gt;): void
+
+查询“我的名片”，使用callback方式作为异步方法。
+
+**需要权限**：ohos.permission.READ_CONTACTS
+
+**系统能力**：SystemCapability.Applications.ContactsData
+
+**参数：**
+
+| 参数名   | 类型                                     | 必填 | 说明                                                         |
+| -------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
+| context  | Context                                  | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](js-apis-inner-application-context.md)。 |
+| callback | AsyncCallback&lt;[Contact](#contact)&gt; | 是   | 回调函数，返回“我的名片”信息。                               |
+
+**错误码：**
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 201      | Permission denied. |
+| 401      | Parameter error.   |
+
+**示例：**
+
+```js
+  // 获取context
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage){
+      globalThis.context = this.context;
+    }
+  }
+  contact.queryMyCard(globalThis.context as Context, (err, data) => {
+      if (err) {
+          console.log(`queryMyCard callback: err->${JSON.stringify(err)}`);
+          return;
+      }
+      console.log(`queryMyCard callback: success data->${JSON.stringify(data)}`);
+  });
+```
+
+## contact.queryMyCard(deprecated)<sup>7+</sup>
 
 queryMyCard(callback: AsyncCallback&lt;Contact&gt;): void
 
 查询“我的名片”，使用callback方式作为异步方法。
+
+> **说明**
+>
+> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryMyCard](#contactquerymycard10)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -414,12 +1028,61 @@ queryMyCard(callback: AsyncCallback&lt;Contact&gt;): void
   });
   ```
 
+## contact.queryMyCard<sup>10+</sup>
 
-## contact.queryMyCard
+queryMyCard(context: Context,  attrs: ContactAttributes, callback: AsyncCallback&lt;Contact&gt;): void
+
+查询“我的名片”，使用callback方式作为异步方法。
+
+**需要权限**：ohos.permission.READ_CONTACTS
+
+**系统能力**：SystemCapability.Applications.ContactsData
+
+**参数：**
+
+| 参数名   | 类型                                     | 必填 | 说明                                                         |
+| -------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
+| context  | Context                                  | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](js-apis-inner-application-context.md)。 |
+| attrs    | [ContactAttributes](#contactattributes)  | 是   | 联系人的属性列表。                                           |
+| callback | AsyncCallback&lt;[Contact](#contact)&gt; | 是   | 回调函数，返回“我的名片”信息。                               |
+
+**错误码：**
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 201      | Permission denied. |
+| 401      | Parameter error.   |
+
+**示例：**
+
+```js
+  // 获取context
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage){
+      globalThis.context = this.context;
+    }
+  }
+  contact.queryMyCard(globalThis.context as Context, {
+      attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
+  }, (err, data) => {
+      if (err) {
+          console.log(`queryMyCard callback: err->${JSON.stringify(err)}`);
+          return;
+      }
+      console.log(`queryMyCard callback: success data->${JSON.stringify(data)}`);
+  });
+```
+
+## contact.queryMyCard(deprecated)<sup>7+</sup>
 
 queryMyCard(attrs: ContactAttributes, callback: AsyncCallback&lt;Contact&gt;): void
 
 查询“我的名片”，使用callback方式作为异步方法。
+
+> **说明**
+>
+> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryMyCard](#contactquerymycard10)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -446,12 +1109,65 @@ queryMyCard(attrs: ContactAttributes, callback: AsyncCallback&lt;Contact&gt;): v
   });
   ```
 
+## contact.queryMyCard<sup>10+</sup>
 
-## contact.queryMyCard
+queryMyCard(context: Context,  attrs?: ContactAttributes): Promise&lt;Contact&gt;
+
+查询“我的名片”，使用Promise方式作为异步方法。
+
+**需要权限**：ohos.permission.READ_CONTACTS
+
+**系统能力**：SystemCapability.Applications.ContactsData
+
+**参数：**
+
+| 参数名  | 类型                                    | 必填 | 说明                                                         |
+| ------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
+| context | Context                                 | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](js-apis-inner-application-context.md)。 |
+| attrs   | [ContactAttributes](#contactattributes) | 否   | 联系人的属性列表。                                           |
+
+**返回值：**
+
+| 类型                               | 说明                                        |
+| ---------------------------------- | ------------------------------------------- |
+| Promise&lt;[Contact](#contact)&gt; | 以Promise形式返回结果，返回“我的名片”信息。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 201      | Permission denied. |
+| 401      | Parameter error.   |
+
+**示例：**
+
+```js
+  // 获取context
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage){
+      globalThis.context = this.context;
+    }
+  }
+  let promise = contact.queryMyCard(globalThis.context as Context, {
+      attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
+  });
+  promise.then((data) => {
+      console.log(`queryMyCard success: data->${JSON.stringify(data)}`);
+  }).catch((err) => {
+      console.error(`queryMyCard fail: err->${JSON.stringify(err)}`);
+  });
+```
+
+## contact.queryMyCard(deprecated)<sup>7+</sup>
 
 queryMyCard(attrs?: ContactAttributes): Promise&lt;Contact&gt;
 
 查询“我的名片”，使用Promise方式作为异步方法。
+
+> **说明**
+>
+> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryMyCard](#contactquerymycard10)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -482,11 +1198,15 @@ queryMyCard(attrs?: ContactAttributes): Promise&lt;Contact&gt;
   ```
 
 
-## contact.selectContact
+## contact.selectContact(deprecated)<sup>7+</sup>
 
 selectContact(callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
 选择联系人，使用callback方式作为异步方法。
+
+> **说明**
+>
+> 从API version 7 开始支持，从API 10 开始废弃，建议使用[selectContacts](#contactselectcontacts10)
 
 **系统能力**：SystemCapability.Applications.Contacts
 
@@ -509,11 +1229,15 @@ selectContact(callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
   ```
 
 
-## contact.selectContact
+## contact.selectContact(deprecated)<sup>7+</sup>
 
 selectContact(): Promise&lt;Array&lt;Contact&gt;&gt;
 
 选择联系人，使用Promise方式作为异步方法。
+
+> **说明**
+>
+> 从API version 7 开始支持，从API 10 开始废弃，建议使用[selectContacts](#contactselectcontacts10)
 
 **系统能力**：SystemCapability.Applications.Contacts
 
@@ -534,12 +1258,165 @@ selectContact(): Promise&lt;Array&lt;Contact&gt;&gt;
   });
   ```
 
+## contact.selectContacts<sup>10+</sup>
 
-## contact.queryContact
+selectContacts(callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
+
+选择联系人，使用callback方式作为异步方法。
+
+**系统能力**：SystemCapability.Applications.Contacts
+
+**参数：**
+
+| 参数名   | 类型                                                  | 必填 | 说明                                 |
+| -------- | ----------------------------------------------------- | ---- | ------------------------------------ |
+| callback | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | 是   | 回调函数，返回选择的联系人对象数组。 |
+
+**示例：**
+
+  ```js
+  contact.selectContacts((err, data) => {
+      if (err) {
+          console.log(`selectContact callback: err->${JSON.stringify(err)}`);
+          return;
+      }
+      console.log(`selectContact callback: success data->${JSON.stringify(data)}`);
+  });
+  ```
+
+## contact.selectContacts<sup>10+</sup>
+
+selectContacts(): Promise&lt;Array&lt;Contact&gt;&gt;
+
+选择联系人，使用Promise方式作为异步方法。
+
+**系统能力**：SystemCapability.Applications.Contacts
+
+**返回值：**
+
+| 类型                                            | 说明                                              |
+| ----------------------------------------------- | ------------------------------------------------- |
+| Promise&lt;Array&lt;[Contact](#contact)&gt;&gt; | 以Promise形式返回结果，返回选择的联系人对象数组。 |
+
+**示例：**
+
+  ```js
+  let promise = contact.selectContacts();
+  promise.then((data) => {
+      console.log(`selectContact success: data->${JSON.stringify(data)}`);
+  }).catch((err) => {
+      console.error(`selectContact fail: err->${JSON.stringify(err)}`);
+  });
+  ```
+
+## contact.selectContacts<sup>10+</sup>
+
+selectContacts(options: ContactSelectionOptions, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
+
+选择联系人，使用callback方式作为异步方法。
+
+**系统能力**：SystemCapability.Applications.Contacts
+
+**参数：**
+
+| 参数名   | 类型                                                  | 必填 | 说明                                 |
+| -------- | ----------------------------------------------------- | ---- | ------------------------------------ |
+| options | ContactSelectionOptions | 是   | 选择联系人时的筛选条件 |
+| callback | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | 是   | 回调函数，返回选择的联系人对象数组。 |
+
+**示例：**
+
+  ```js
+  contact.selectContacts({
+    isMultiSelect:false
+  }, (err, data) => {
+      if (err) {
+          console.log(`selectContact callback: err->${JSON.stringify(err)}`);
+          return;
+      }
+      console.log(`selectContact callback: success data->${JSON.stringify(data)}`);
+  });
+  ```
+
+## contact.selectContacts<sup>10+</sup>
+
+selectContacts(options: ContactSelectionOptions): Promise&lt;Array&lt;Contact&gt;&gt;
+
+选择联系人，使用Promise方式作为异步方法。
+
+**系统能力**：SystemCapability.Applications.Contacts
+
+**返回值：**
+
+| 类型                                            | 说明                                              |
+| ----------------------------------------------- | ------------------------------------------------- |
+| options | ContactSelectionOptions | 是   | 选择联系人时的筛选条件 |
+| Promise&lt;Array&lt;[Contact](#contact)&gt;&gt; | 以Promise形式返回结果，返回选择的联系人对象数组。 |
+
+**示例：**
+
+  ```js
+  let promise = contact.selectContacts({isMultiSelect:false});
+  promise.then((data) => {
+      console.log(`selectContact success: data->${JSON.stringify(data)}`);
+  }).catch((err) => {
+      console.error(`selectContact fail: err->${JSON.stringify(err)}`);
+  });
+  ```
+
+## contact.queryContact<sup>10+</sup>
+
+queryContact(context: Context,  key: string,  callback: AsyncCallback&lt;Contact&gt;): void
+
+根据key查询联系人，使用callback方式作为异步方法。
+
+**需要权限**：ohos.permission.READ_CONTACTS
+
+**系统能力**：SystemCapability.Applications.ContactsData
+
+**参数：**
+
+| 参数名   | 类型                                     | 必填 | 说明                                                         |
+| -------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
+| context  | Context                                  | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](js-apis-inner-application-context.md)。 |
+| key      | string                                   | 是   | 联系人的key值，一个联系人对应一个key。                       |
+| callback | AsyncCallback&lt;[Contact](#contact)&gt; | 是   | 回调函数，返回查询的联系人对象。                             |
+
+**错误码：**
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 201      | Permission denied. |
+| 401      | Parameter error.   |
+
+**示例：**
+
+  ```js
+  // 获取context
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage){
+      globalThis.context = this.context;
+    }
+  }
+  contact.queryContact(globalThis.context as Context, 'xxx', (err, data) => {
+      if (err) {
+          console.log(`queryContact callback: err->${JSON.stringify(err)}`);
+          return;
+      }
+      console.log(`queryContact callback: success data->${JSON.stringify(data)}`);
+  });
+  ```
+
+## contact.queryContact(deprecated)<sup>7+</sup>
 
 queryContact(key: string,  callback: AsyncCallback&lt;Contact&gt;): void
 
 根据key查询联系人，使用callback方式作为异步方法。
+
+> **说明**
+>
+> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContact](#contactquerycontact10)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -565,11 +1442,64 @@ queryContact(key: string,  callback: AsyncCallback&lt;Contact&gt;): void
   ```
 
 
-## contact.queryContact
+## contact.queryContact<sup>10+</sup>
+
+queryContact(context: Context,  key: string, holder: Holder, callback: AsyncCallback&lt;Contact&gt;): void
+
+根据key查询联系人，使用callback方式作为异步方法。
+
+**需要权限**：ohos.permission.READ_CONTACTS
+
+**系统能力**：SystemCapability.Applications.ContactsData
+
+**参数：**
+
+| 参数名   | 类型                                     | 必填 | 说明                                                         |
+| -------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
+| context  | Context                                  | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](js-apis-inner-application-context.md)。 |
+| key      | string                                   | 是   | 联系人的key值，一个联系人对应一个key。                       |
+| holder   | [Holder](#holder)                        | 是   | 创建联系人的应用信息。                                       |
+| callback | AsyncCallback&lt;[Contact](#contact)&gt; | 是   | 回调函数，返回查询的联系人对象。                             |
+
+**错误码：**
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 201      | Permission denied. |
+| 401      | Parameter error.   |
+
+**示例：**
+
+  ```js
+  // 获取context
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage){
+      globalThis.context = this.context;
+    }
+  }
+  contact.queryContact(globalThis.context as Context, 'xxx', {
+      holderId: 0,
+      bundleName: "",
+      displayName: ""
+  }, (err, data) => {
+      if (err) {
+          console.log(`queryContact callback: err->${JSON.stringify(err)}`);
+          return;
+      }
+      console.log(`queryContact callback: success data->${JSON.stringify(data)}`);
+  });
+  ```
+
+## contact.queryContact(deprecated)<sup>7+</sup>
 
 queryContact(key: string, holder: Holder, callback: AsyncCallback&lt;Contact&gt;): void
 
 根据key查询联系人，使用callback方式作为异步方法。
+
+> **说明**
+>
+> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContact](#contactquerycontact10)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -599,12 +1529,62 @@ queryContact(key: string, holder: Holder, callback: AsyncCallback&lt;Contact&gt;
   });
   ```
 
+## contact.queryContact<sup>10+</sup>
 
-## contact.queryContact
+queryContact(context: Context,  key: string,  attrs: ContactAttributes, callback: AsyncCallback&lt;Contact&gt;): void
+
+根据key查询联系人，使用callback方式作为异步方法。
+
+**需要权限**：ohos.permission.READ_CONTACTS
+
+**系统能力**：SystemCapability.Applications.ContactsData
+
+**参数：**
+
+| 参数名   | 类型                                     | 必填 | 说明                                                         |
+| -------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
+| context  | Context                                  | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](js-apis-inner-application-context.md)。 |
+| key      | string                                   | 是   | 联系人的key值，一个联系人对应一个key。                       |
+| attrs    | [ContactAttributes](#contactattributes)  | 是   | 联系人的属性列表。                                           |
+| callback | AsyncCallback&lt;[Contact](#contact)&gt; | 是   | 回调函数，返回查询的联系人对象。                             |
+
+**错误码：**
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 201      | Permission denied. |
+| 401      | Parameter error.   |
+
+**示例：**
+
+  ```js
+  // 获取context
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage){
+      globalThis.context = this.context;
+    }
+  }
+  contact.queryContact(globalThis.context as Context, 'xxx', {
+      attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
+  }, (err, data) => {
+      if (err) {
+          console.log(`queryContact callback: err->${JSON.stringify(err)}`);
+          return;
+      }
+      console.log(`queryContact callback: success data->${JSON.stringify(data)}`);
+  });
+  ```
+
+## contact.queryContact(deprecated)<sup>7+</sup>
 
 queryContact(key: string,  attrs: ContactAttributes, callback: AsyncCallback&lt;Contact&gt;): void
 
 根据key查询联系人，使用callback方式作为异步方法。
+
+> **说明**
+>
+> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContact](#contactquerycontact10)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -632,12 +1612,67 @@ queryContact(key: string,  attrs: ContactAttributes, callback: AsyncCallback&lt;
   });
   ```
 
+## contact.queryContact<sup>10+</sup>
 
-## contact.queryContact
+queryContact(context: Context,  key: string, holder: Holder, attrs: ContactAttributes, callback: AsyncCallback&lt;Contact&gt;): void
+
+根据key查询联系人，使用callback方式作为异步方法。
+
+**需要权限**：ohos.permission.READ_CONTACTS
+
+**系统能力**：SystemCapability.Applications.ContactsData
+
+**参数：**
+
+| 参数名   | 类型                                     | 必填 | 说明                                                         |
+| -------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
+| context  | Context                                  | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](js-apis-inner-application-context.md)。 |
+| key      | string                                   | 是   | 联系人的key值，一个联系人对应一个key。                       |
+| holder   | [Holder](#holder)                        | 是   | 创建联系人的应用信息。                                       |
+| attrs    | [ContactAttributes](#contactattributes)  | 是   | 联系人的属性列表。                                           |
+| callback | AsyncCallback&lt;[Contact](#contact)&gt; | 是   | 回调函数，返回查询的联系人对象。                             |
+
+**错误码：**
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 201      | Permission denied. |
+| 401      | Parameter error.   |
+
+**示例：**
+
+```js
+  // 获取context
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage){
+      globalThis.context = this.context;
+    }
+  }
+  contact.queryContact(globalThis.context as Context, 'xxx', {
+      holderId: 0,
+      bundleName: "",
+      displayName: ""
+  }, {
+      attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
+  }, (err, data) => {
+      if (err) {
+          console.log(`queryContact callback: err->${JSON.stringify(err)}`);
+          return;
+      }
+      console.log(`queryContact callback: success data->${JSON.stringify(data)}`);
+  });
+```
+
+## contact.queryContact(deprecated)<sup>7+</sup>
 
 queryContact(key: string, holder: Holder, attrs: ContactAttributes, callback: AsyncCallback&lt;Contact&gt;): void
 
 根据key查询联系人，使用callback方式作为异步方法。
+
+> **说明**
+>
+> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContact](#contactquerycontact10)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -671,11 +1706,70 @@ queryContact(key: string, holder: Holder, attrs: ContactAttributes, callback: As
   ```
 
 
-## contact.queryContact
+## contact.queryContact<sup>10+</sup>
+
+queryContact(context: Context,  key: string, holder?: Holder, attrs?: ContactAttributes): Promise&lt;Contact&gt;
+
+根据key查询联系人，使用Promise方式作为异步方法。
+
+**需要权限**：ohos.permission.READ_CONTACTS
+
+**系统能力**：SystemCapability.Applications.ContactsData
+
+**参数：**
+
+| 参数名  | 类型                                    | 必填 | 说明                                                         |
+| ------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
+| context | Context                                 | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](js-apis-inner-application-context.md)。 |
+| key     | string                                  | 是   | 联系人的key值，一个联系人对应一个key。                       |
+| holder  | [Holder](#holder)                       | 否   | 创建联系人的应用信息。                                       |
+| attrs   | [ContactAttributes](#contactattributes) | 否   | 联系人的属性列表。                                           |
+
+**返回值：**
+| 类型                               | 说明                                            |
+| ---------------------------------- | ----------------------------------------------- |
+| Promise&lt;[Contact](#contact)&gt; | 以Promise形式返回结果，返回查询到的联系人对象。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 201      | Permission denied. |
+| 401      | Parameter error.   |
+
+**示例：**
+
+  ```js
+  // 获取context
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage){
+      globalThis.context = this.context;
+    }
+  }
+  let promise = contact.queryContact(globalThis.context as Context, 'xxx', {
+      holderId: 0,
+      bundleName: "",
+      displayName: ""
+  }, {
+      attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
+  });
+  promise.then((data) => {
+      console.log(`queryContact success: data->${JSON.stringify(data)}`);
+  }).catch((err) => {
+      console.error(`queryContact fail: err->${JSON.stringify(err)}`);
+  });
+  ```
+
+## contact.queryContact(deprecated)<sup>7+</sup>
 
 queryContact(key: string, holder?: Holder, attrs?: ContactAttributes): Promise&lt;Contact&gt;
 
 根据key查询联系人，使用Promise方式作为异步方法。
+
+> **说明**
+>
+> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContact](#contactquerycontact10)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -711,12 +1805,58 @@ queryContact(key: string, holder?: Holder, attrs?: ContactAttributes): Promise&l
   });
   ```
 
+## contact.queryContacts<sup>10+</sup>
 
-## contact.queryContacts
+queryContacts(context: Context,  callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
+
+查询所有联系人，使用callback方式作为异步方法。
+
+**需要权限**：ohos.permission.READ_CONTACTS
+
+**系统能力**：SystemCapability.Applications.ContactsData
+
+**参数：**
+
+| 参数名   | 类型                                                  | 必填 | 说明                                                         |
+| -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| context  | Context                                               | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](js-apis-inner-application-context.md)。 |
+| callback | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | 是   | 回调函数，返回查询到的联系人对象数组。                       |
+
+**错误码：**
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 201      | Permission denied. |
+| 401      | Parameter error.   |
+
+**示例：**
+
+  ```js
+  // 获取context
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage){
+      globalThis.context = this.context;
+    }
+  }
+  contact.queryContacts(globalThis.context as Context, (err, data) => {
+      if (err) {
+          console.log(`queryContacts callback: err->${JSON.stringify(err)}`);
+          return;
+      }
+      console.log(`queryContacts callback: success data->${JSON.stringify(data)}`);
+  });
+  ```
+
+## contact.queryContacts(deprecated)<sup>7+</sup>
 
 queryContacts(callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
 查询所有联系人，使用callback方式作为异步方法。
+
+> **说明**
+>
+> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContacts](#contactquerycontacts10)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -740,12 +1880,63 @@ queryContacts(callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
   });
   ```
 
+## contact.queryContacts<sup>10+</sup>
 
-## contact.queryContacts
+queryContacts(context: Context,  holder: Holder, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
+
+查询所有联系人，使用callback方式作为异步方法。
+
+**需要权限**：ohos.permission.READ_CONTACTS
+
+**系统能力**：SystemCapability.Applications.ContactsData
+
+**参数：**
+
+| 参数名   | 类型                                                  | 必填 | 说明                                                         |
+| -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| context  | Context                                               | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](js-apis-inner-application-context.md)。 |
+| holder   | [Holder](#holder)                                     | 是   | 创建联系人的应用信息。                                       |
+| callback | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | 是   | 回调函数，返回查询到的联系人对象数组。                       |
+
+**错误码：**
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 201      | Permission denied. |
+| 401      | Parameter error.   |
+
+**示例：**
+
+  ```js
+  // 获取context
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage){
+      globalThis.context = this.context;
+    }
+  }
+  contact.queryContacts(globalThis.context as Context, {
+      holderId: 0,
+      bundleName: "",
+      displayName: ""
+  }, (err, data) => {
+      if (err) {
+          console.log(`queryContacts callback: err->${JSON.stringify(err)}`);
+          return;
+      }
+      console.log(`queryContacts callback: success data->${JSON.stringify(data)}`);
+  });
+  ```
+
+## contact.queryContacts(deprecated)<sup>7+</sup>
 
 queryContacts(holder: Holder, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
 查询所有联系人，使用callback方式作为异步方法。
+
+> **说明**
+>
+> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContacts](#contactquerycontacts10)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -774,12 +1965,61 @@ queryContacts(holder: Holder, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt
   });
   ```
 
+## contact.queryContacts<sup>10+</sup>
 
-## contact.queryContacts
+queryContacts(context: Context,  attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
+
+查询所有联系人，使用callback方式作为异步方法。
+
+**需要权限**：ohos.permission.READ_CONTACTS
+
+**系统能力**：SystemCapability.Applications.ContactsData
+
+**参数：**
+
+| 参数名   | 类型                                                  | 必填 | 说明                                                         |
+| -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| context  | Context                                               | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](js-apis-inner-application-context.md)。 |
+| attrs    | [ContactAttributes](#contactattributes)               | 是   | 联系人的属性列表。                                           |
+| callback | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | 是   | 回调函数，返回查询到的联系人对象数组。                       |
+
+**错误码：**
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 201      | Permission denied. |
+| 401      | Parameter error.   |
+
+**示例：**
+
+  ```js
+  // 获取context
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage){
+      globalThis.context = this.context;
+    }
+  }
+  contact.queryContacts(globalThis.context as Context, {
+      attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
+  }, (err, data) => {
+      if (err) {
+          console.log(`queryContacts callback: err->${JSON.stringify(err)}`);
+          return;
+      }
+      console.log(`queryContacts callback: success data->${JSON.stringify(data)}`);
+  });
+  ```
+
+## contact.queryContacts(deprecated)<sup>7+</sup>
 
 queryContacts(attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
 查询所有联系人，使用callback方式作为异步方法。
+
+> **说明**
+>
+> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContacts](#contactquerycontacts10)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -806,12 +2046,66 @@ queryContacts(attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Cont
   });
   ```
 
+## contact.queryContacts<sup>10+</sup>
 
-## contact.queryContacts
+queryContacts(context: Context,  holder: Holder, attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
+
+查询所有联系人，使用callback方式作为异步方法。
+
+**需要权限**：ohos.permission.READ_CONTACTS
+
+**系统能力**：SystemCapability.Applications.ContactsData
+
+**参数：**
+
+| 参数名   | 类型                                                  | 必填 | 说明                                                         |
+| -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| context  | Context                                               | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](js-apis-inner-application-context.md)。 |
+| holder   | [Holder](#holder)                                     | 是   | 创建联系人的应用信息。                                       |
+| attrs    | [ContactAttributes](#contactattributes)               | 是   | 联系人的属性列表。                                           |
+| callback | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | 是   | 回调函数，返回查询到的联系人对象数组。                       |
+
+**错误码：**
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 201      | Permission denied. |
+| 401      | Parameter error.   |
+
+**示例：**
+
+  ```js
+  // 获取context
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage){
+      globalThis.context = this.context;
+    }
+  }
+  contact.queryContacts(globalThis.context as Context, {
+      holderId: 0,
+      bundleName: "",
+      displayName: ""
+  }, {
+      attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
+  }, (err, data) => {
+      if (err) {
+          console.log(`queryContacts callback: err->${JSON.stringify(err)}`);
+          return;
+      }
+      console.log(`queryContacts callback: success data->${JSON.stringify(data)}`);
+  });
+  ```
+
+## contact.queryContacts(deprecated)<sup>7+</sup>
 
 queryContacts(holder: Holder, attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
 查询所有联系人，使用callback方式作为异步方法。
+
+> **说明**
+>
+> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContacts](#contactquerycontacts10)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -843,10 +2137,9 @@ queryContacts(holder: Holder, attrs: ContactAttributes, callback: AsyncCallback&
   });
   ```
 
+## contact.queryContacts<sup>10+</sup>
 
-## contact.queryContacts
-
-queryContacts(holder?: Holder, attrs?: ContactAttributes): Promise&lt;Array&lt;Contact&gt;&gt;
+queryContacts(context: Context,  holder?: Holder, attrs?: ContactAttributes): Promise&lt;Array&lt;Contact&gt;&gt;
 
 查询所有联系人，使用Promise方式作为异步方法。
 
@@ -856,20 +2149,35 @@ queryContacts(holder?: Holder, attrs?: ContactAttributes): Promise&lt;Array&lt;C
 
 **参数：**
 
-| 参数名 | 类型                                    | 必填 | 说明                   |
-| ------ | --------------------------------------- | ---- | ---------------------- |
-| holder | [Holder](#holder)                       | 否   | 创建联系人的应用信息。 |
-| attrs  | [ContactAttributes](#contactattributes) | 否   | 联系人的属性列表。     |
+| 参数名  | 类型                                    | 必填 | 说明                                                         |
+| ------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
+| context | Context                                 | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](js-apis-inner-application-context.md)。 |
+| holder  | [Holder](#holder)                       | 否   | 创建联系人的应用信息。                                       |
+| attrs   | [ContactAttributes](#contactattributes) | 否   | 联系人的属性列表。                                           |
 
 **返回值：**
 | 类型                                            | 说明                                                |
 | ----------------------------------------------- | --------------------------------------------------- |
 | Promise&lt;Array&lt;[Contact](#contact)&gt;&gt; | 以Promise形式返回结果，返回查询到的联系人对象数组。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 201      | Permission denied. |
+| 401      | Parameter error.   |
+
 **示例：**
 
   ```js
-  let promise = contact.queryContacts({
+  // 获取context
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage){
+      globalThis.context = this.context;
+    }
+  }
+  let promise = contact.queryContacts(globalThis.context as Context, {
       holderId: 0,
       bundleName: "",
       displayName: ""
@@ -883,12 +2191,103 @@ queryContacts(holder?: Holder, attrs?: ContactAttributes): Promise&lt;Array&lt;C
   });
   ```
 
+## contact.queryContacts(deprecated)<sup>7+</sup>
 
-## contact.queryContactsByPhoneNumber
+queryContacts(holder?: Holder, attrs?: ContactAttributes): Promise&lt;Array&lt;Contact&gt;&gt;
+
+查询所有联系人，使用Promise方式作为异步方法。
+
+> **说明**
+>
+> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContacts](#contactquerycontacts10)
+
+**需要权限**：ohos.permission.READ_CONTACTS
+
+**系统能力**：SystemCapability.Applications.ContactsData
+
+**参数：**
+
+| 参数名 | 类型                                    | 必填 | 说明                   |
+| ------ | --------------------------------------- | ---- | ---------------------- |
+| holder | [Holder](#holder)                       | 否   | 创建联系人的应用信息。 |
+| attrs  | [ContactAttributes](#contactattributes) | 否   | 联系人的属性列表。     |
+
+**返回值：**
+
+| 类型                                            | 说明                                                |
+| ----------------------------------------------- | --------------------------------------------------- |
+| Promise&lt;Array&lt;[Contact](#contact)&gt;&gt; | 以Promise形式返回结果，返回查询到的联系人对象数组。 |
+
+**示例：**
+
+```js
+  let promise = contact.queryContacts({
+      holderId: 0,
+      bundleName: "",
+      displayName: ""
+  }, {
+      attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
+  });
+  promise.then((data) => {
+      console.log(`queryContacts success: data->${JSON.stringify(data)}`);
+  }).catch((err) => {
+      console.error(`queryContacts fail: err->${JSON.stringify(err)}`);
+  });
+```
+
+## contact.queryContactsByPhoneNumber<sup>10+</sup>
+
+queryContactsByPhoneNumber(context: Context,  phoneNumber: string, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
+
+根据电话号码查询联系人，使用callback方式作为异步方法。
+
+**需要权限**：ohos.permission.READ_CONTACTS
+
+**系统能力**：SystemCapability.Applications.ContactsData
+
+**参数：**
+
+| 参数名      | 类型                                                  | 必填 | 说明                                                         |
+| ----------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| context     | Context                                               | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](js-apis-inner-application-context.md)。 |
+| phoneNumber | string                                                | 是   | 联系人的电话号码。                                           |
+| callback    | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | 是   | 回调函数，返回查询到的联系人对象数组。                       |
+
+**错误码：**
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 201      | Permission denied. |
+| 401      | Parameter error.   |
+
+**示例：**
+
+  ```js
+  // 获取context
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage){
+      globalThis.context = this.context;
+    }
+  }
+  contact.queryContactsByPhoneNumber(globalThis.context as Context, '138xxxxxxxx', (err, data) => {
+      if (err) {
+          console.log(`queryContactsByPhoneNumber callback: err->${JSON.stringify(err)}`);
+          return;
+      }
+      console.log(`queryContactsByPhoneNumber callback: success data->${JSON.stringify(data)}`);
+  });
+  ```
+
+## contact.queryContactsByPhoneNumber(deprecated)<sup>7+</sup>
 
 queryContactsByPhoneNumber(phoneNumber: string, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
 根据电话号码查询联系人，使用callback方式作为异步方法。
+
+> **说明**
+>
+> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContactsByPhoneNumber](#contactquerycontactsbyphonenumber10)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -914,11 +2313,64 @@ queryContactsByPhoneNumber(phoneNumber: string, callback: AsyncCallback&lt;Array
   ```
 
 
-## contact.queryContactsByPhoneNumber
+## contact.queryContactsByPhoneNumber<sup>10+</sup>
+
+queryContactsByPhoneNumber(context: Context,  phoneNumber: string, holder: Holder, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
+
+根据电话号码查询联系人，使用callback方式作为异步方法。
+
+**需要权限**：ohos.permission.READ_CONTACTS
+
+**系统能力**：SystemCapability.Applications.ContactsData
+
+**参数：**
+
+| 参数名      | 类型                                                  | 必填 | 说明                                                         |
+| ----------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| context     | Context                                               | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](js-apis-inner-application-context.md)。 |
+| phoneNumber | string                                                | 是   | 联系人的电话号码。                                           |
+| holder      | [Holder](#holder)                                     | 是   | 创建联系人的应用信息。                                       |
+| callback    | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | 是   | 回调函数，返回查询到的联系人对象数组。                       |
+
+**错误码：**
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 201      | Permission denied. |
+| 401      | Parameter error.   |
+
+**示例：**
+
+  ```js
+  // 获取context
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage){
+      globalThis.context = this.context;
+    }
+  }
+  contact.queryContactsByPhoneNumber(globalThis.context as Context, '138xxxxxxxx', {
+      holderId: 0,
+      bundleName: "",
+      displayName: ""
+  }, (err, data) => {
+      if (err) {
+          console.log(`queryContactsByPhoneNumber callback: err->${JSON.stringify(err)}`);
+          return;
+      }
+      console.log(`queryContactsByPhoneNumber callback: success data->${JSON.stringify(data)}`);
+  });
+  ```
+
+## contact.queryContactsByPhoneNumber(deprecated)<sup>7+</sup>
 
 queryContactsByPhoneNumber(phoneNumber: string, holder: Holder, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
 根据电话号码查询联系人，使用callback方式作为异步方法。
+
+> **说明**
+>
+> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContactsByPhoneNumber](#contactquerycontactsbyphonenumber10)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -948,12 +2400,62 @@ queryContactsByPhoneNumber(phoneNumber: string, holder: Holder, callback: AsyncC
   });
   ```
 
+## contact.queryContactsByPhoneNumber<sup>10+</sup>
 
-## contact.queryContactsByPhoneNumber
+queryContactsByPhoneNumber(context: Context,  phoneNumber: string, attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
+
+根据电话号码查询联系人，使用callback方式作为异步方法。
+
+**需要权限**：ohos.permission.READ_CONTACTS
+
+**系统能力**：SystemCapability.Applications.ContactsData
+
+**参数：**
+
+| 参数名      | 类型                                                  | 必填 | 说明                                                         |
+| ----------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| context     | Context                                               | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](js-apis-inner-application-context.md)。 |
+| phoneNumber | string                                                | 是   | 联系人的电话号码。                                           |
+| attrs       | [ContactAttributes](#contactattributes)               | 是   | 联系人的属性列表。                                           |
+| callback    | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | 是   | 回调函数，返回查询到的联系人对象数组。                       |
+
+**错误码：**
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 201      | Permission denied. |
+| 401      | Parameter error.   |
+
+**示例：**
+
+  ```js
+  // 获取context
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage){
+      globalThis.context = this.context;
+    }
+  }
+  contact.queryContactsByPhoneNumber(globalThis.context as Context, '138xxxxxxxx', {
+      attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
+  }, (err, data) => {
+      if (err) {
+          console.log(`queryContactsByPhoneNumber callback: err->${JSON.stringify(err)}`);
+          return;
+      }
+      console.log(`queryContactsByPhoneNumber callback: success data->${JSON.stringify(data)}`);
+  });
+  ```
+
+## contact.queryContactsByPhoneNumber(deprecated)<sup>7+</sup>
 
 queryContactsByPhoneNumber(phoneNumber: string, attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
 根据电话号码查询联系人，使用callback方式作为异步方法。
+
+> **说明**
+>
+> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContactsByPhoneNumber](#contactquerycontactsbyphonenumber10)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -981,12 +2483,67 @@ queryContactsByPhoneNumber(phoneNumber: string, attrs: ContactAttributes, callba
   });
   ```
 
+## contact.queryContactsByPhoneNumber<sup>10+</sup>
 
-## contact.queryContactsByPhoneNumber
+queryContactsByPhoneNumber(context: Context,  phoneNumber: string, holder: Holder, attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
+
+根据电话号码查询联系人，使用callback方式作为异步方法。
+
+**需要权限**：ohos.permission.READ_CONTACTS
+
+**系统能力**：SystemCapability.Applications.ContactsData
+
+**参数：**
+
+| 参数名      | 类型                                                  | 必填 | 说明                                                         |
+| ----------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| context     | Context                                               | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](js-apis-inner-application-context.md)。 |
+| phoneNumber | string                                                | 是   | 联系人的电话号码。                                           |
+| holder      | [Holder](#holder)                                     | 是   | 创建联系人的应用信息。                                       |
+| attrs       | [ContactAttributes](#contactattributes)               | 是   | 联系人的属性列表。                                           |
+| callback    | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | 是   | 回调函数，返回查询到的联系人对象数组。                       |
+
+**错误码：**
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 201      | Permission denied. |
+| 401      | Parameter error.   |
+
+**示例：**
+
+  ```js
+  // 获取context
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage){
+      globalThis.context = this.context;
+    }
+  }
+  contact.queryContactsByPhoneNumber(globalThis.context as Context, '138xxxxxxxx', {
+      holderId: 0,
+      bundleName: "",
+      displayName: ""
+  }, {
+      attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
+  }, (err, data) => {
+      if (err) {
+          console.log(`queryContactsByPhoneNumber callback: err->${JSON.stringify(err)}`);
+          return;
+      }
+      console.log(`queryContactsByPhoneNumber callback: success data->${JSON.stringify(data)}`);
+  });
+  ```
+
+## contact.queryContactsByPhoneNumber(deprecated)<sup>7+</sup>
 
 queryContactsByPhoneNumber(phoneNumber: string, holder: Holder, attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
 根据电话号码查询联系人，使用callback方式作为异步方法。
+
+> **说明**
+>
+> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContactsByPhoneNumber](#contactquerycontactsbyphonenumber10)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -1019,12 +2576,71 @@ queryContactsByPhoneNumber(phoneNumber: string, holder: Holder, attrs: ContactAt
   });
   ```
 
+## contact.queryContactsByPhoneNumber<sup>10+</sup>
 
-## contact.queryContactsByPhoneNumber
+queryContactsByPhoneNumber(context: Context,  phoneNumber: string, holder?: Holder, attrs?: ContactAttributes): Promise&lt;Array&lt;Contact&gt;&gt;
+
+根据电话号码查询联系人，使用Promise方式作为异步方法。
+
+**需要权限**：ohos.permission.READ_CONTACTS
+
+**系统能力**：SystemCapability.Applications.ContactsData
+
+**参数：**
+
+| 参数名      | 类型                                    | 必填 | 说明                                                         |
+| ----------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
+| context     | Context                                 | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](js-apis-inner-application-context.md)。 |
+| phoneNumber | string                                  | 是   | 联系人的电话号码。                                           |
+| holder      | [Holder](#holder)                       | 否   | 创建联系人的应用信息。                                       |
+| attrs       | [ContactAttributes](#contactattributes) | 否   | 联系人的属性列表。                                           |
+
+**返回值：**
+
+| 类型                                            | 说明                                                |
+| ----------------------------------------------- | --------------------------------------------------- |
+| Promise&lt;Array&lt;[Contact](#contact)&gt;&gt; | 以Promise形式返回结果，返回查询到的联系人对象数组。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 201      | Permission denied. |
+| 401      | Parameter error.   |
+
+**示例：**
+
+  ```js
+  // 获取context
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage){
+      globalThis.context = this.context;
+    }
+  }
+  let promise = contact.queryContactsByPhoneNumber(globalThis.context as Context, '138xxxxxxxx', {
+      holderId: 0,
+      bundleName: "",
+      displayName: ""
+  }, {
+      attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
+  });
+  promise.then((data) => {
+      console.log(`queryContactsByPhoneNumber success: data->${JSON.stringify(data)}`);
+  }).catch((err) => {
+      console.error(`queryContactsByPhoneNumber fail: err->${JSON.stringify(err)}`);
+  });
+  ```
+
+## contact.queryContactsByPhoneNumber(deprecated)<sup>7+</sup>
 
 queryContactsByPhoneNumber(phoneNumber: string, holder?: Holder, attrs?: ContactAttributes): Promise&lt;Array&lt;Contact&gt;&gt;
 
 根据电话号码查询联系人，使用Promise方式作为异步方法。
+
+> **说明**
+>
+> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContactsByPhoneNumber](#contactquerycontactsbyphonenumber10)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -1061,12 +2677,59 @@ queryContactsByPhoneNumber(phoneNumber: string, holder?: Holder, attrs?: Contact
   });
   ```
 
+## contact.queryContactsByEmail<sup>10+</sup>
 
-## contact.queryContactsByEmail
+queryContactsByEmail(context: Context,  email: string, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
+
+根据email查询联系人，使用callback方式作为异步方法。
+
+**需要权限**：ohos.permission.READ_CONTACTS
+
+**系统能力**：SystemCapability.Applications.ContactsData
+
+**参数：**
+
+| 参数名   | 类型                                                  | 必填 | 说明                                                         |
+| -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| context  | Context                                               | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](js-apis-inner-application-context.md)。 |
+| email    | string                                                | 是   | 联系人的邮箱地址。                                           |
+| callback | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | 是   | 回调函数，返回查询到的联系人对象数组。                       |
+
+**错误码：**
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 201      | Permission denied. |
+| 401      | Parameter error.   |
+
+**示例：**
+
+  ```js
+  // 获取context
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage){
+      globalThis.context = this.context;
+    }
+  }
+  contact.queryContactsByEmail(globalThis.context as Context, 'xxx@email.com', (err, data) => {
+      if (err) {
+          console.log(`queryContactsByEmail callback: err->${JSON.stringify(err)}`);
+          return;
+      }
+      console.log(`queryContactsByEmail callback: success data->${JSON.stringify(data)}`);
+  });
+  ```
+
+## contact.queryContactsByEmail(deprecated)<sup>7+</sup>
 
 queryContactsByEmail(email: string, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
 根据email查询联系人，使用callback方式作为异步方法。
+
+> **说明**
+>
+> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContactsByEmail](#contactquerycontactsbyemail10)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -1091,12 +2754,64 @@ queryContactsByEmail(email: string, callback: AsyncCallback&lt;Array&lt;Contact&
   });
   ```
 
+## contact.queryContactsByEmail<sup>10+</sup>
 
-## contact.queryContactsByEmail
+queryContactsByEmail(context: Context,  email: string, holder: Holder, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
+
+根据email查询联系人，使用callback方式作为异步方法。
+
+**需要权限**：ohos.permission.READ_CONTACTS
+
+**系统能力**：SystemCapability.Applications.ContactsData
+
+**参数：**
+
+| 参数名   | 类型                                                  | 必填 | 说明                                                         |
+| -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| context  | Context                                               | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](js-apis-inner-application-context.md)。 |
+| email    | string                                                | 是   | 联系人的邮箱地址。                                           |
+| holder   | [Holder](#holder)                                     | 是   | 创建联系人的应用信息。                                       |
+| callback | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | 是   | 回调函数，返回查询到的联系人对象数组。                       |
+
+**错误码：**
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 201      | Permission denied. |
+| 401      | Parameter error.   |
+
+**示例：**
+
+  ```js
+  // 获取context
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage){
+      globalThis.context = this.context;
+    }
+  }
+  contact.queryContactsByEmail(globalThis.context as Context, 'xxx@email.com', {
+      holderId: 0,
+      bundleName: "",
+      displayName: ""
+  }, (err, data) => {
+      if (err) {
+          console.log(`queryContactsByEmail callback: err->${JSON.stringify(err)}`);
+          return;
+      }
+      console.log(`queryContactsByEmail callback: success data->${JSON.stringify(data)}`);
+  });
+  ```
+
+## contact.queryContactsByEmail(deprecated)<sup>7+</sup>
 
 queryContactsByEmail(email: string, holder: Holder, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
 根据email查询联系人，使用callback方式作为异步方法。
+
+> **说明**
+>
+> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContactsByEmail](#contactquerycontactsbyemail10)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -1126,12 +2841,62 @@ queryContactsByEmail(email: string, holder: Holder, callback: AsyncCallback&lt;A
   });
   ```
 
+## contact.queryContactsByEmail<sup>10+</sup>
 
-## contact.queryContactsByEmail
+queryContactsByEmail(context: Context,  email: string, attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
+
+根据email查询联系人，使用callback方式作为异步方法。
+
+**需要权限**：ohos.permission.READ_CONTACTS
+
+**系统能力**：SystemCapability.Applications.ContactsData
+
+**参数：**
+
+| 参数名   | 类型                                                  | 必填 | 说明                                                         |
+| -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| context  | Context                                               | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](js-apis-inner-application-context.md)。 |
+| email    | string                                                | 是   | 联系人的邮箱地址。                                           |
+| attrs    | [ContactAttributes](#contactattributes)               | 是   | 联系人的属性列表。                                           |
+| callback | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | 是   | 回调函数，返回查询到联系人对象数组。                         |
+
+**错误码：**
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 201      | Permission denied. |
+| 401      | Parameter error.   |
+
+**示例：**
+
+  ```js
+  // 获取context
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage){
+      globalThis.context = this.context;
+    }
+  }
+  contact.queryContactsByEmail(globalThis.context as Context, 'xxx@email.com', {
+      attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
+  }, (err, data) => {
+      if (err) {
+          console.log(`queryContactsByEmail callback: err->${JSON.stringify(err)}`);
+          return;
+      }
+      console.log(`queryContactsByEmail callback: success data->${JSON.stringify(data)}`);
+  });
+  ```
+
+## contact.queryContactsByEmail(deprecated)<sup>7+</sup>
 
 queryContactsByEmail(email: string, attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
 根据email查询联系人，使用callback方式作为异步方法。
+
+> **说明**
+>
+> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContactsByEmail](#contactquerycontactsbyemail10)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -1159,12 +2924,67 @@ queryContactsByEmail(email: string, attrs: ContactAttributes, callback: AsyncCal
   });
   ```
 
+## contact.queryContactsByEmail<sup>10+</sup>
 
-## contact.queryContactsByEmail
+queryContactsByEmail(context: Context,  email: string, holder: Holder, attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
+
+根据email查询联系人，使用callback方式作为异步方法。
+
+**需要权限**：ohos.permission.READ_CONTACTS
+
+**系统能力**：SystemCapability.Applications.ContactsData
+
+**参数：**
+
+| 参数名   | 类型                                                  | 必填 | 说明                                                         |
+| -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| context  | Context                                               | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](js-apis-inner-application-context.md)。 |
+| email    | string                                                | 是   | 联系人的邮箱地址。                                           |
+| holder   | [Holder](#holder)                                     | 是   | 创建联系人的应用信息。                                       |
+| attrs    | [ContactAttributes](#contactattributes)               | 是   | 联系人的属性列表。                                           |
+| callback | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | 是   | 回调函数，返回查询到联系人对象数组。                         |
+
+**错误码：**
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 201      | Permission denied. |
+| 401      | Parameter error.   |
+
+**示例：**
+
+  ```js
+  // 获取context
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage){
+      globalThis.context = this.context;
+    }
+  }
+  contact.queryContactsByEmail(globalThis.context as Context, 'xxx@email.com', {
+      holderId: 0,
+      bundleName: "",
+      displayName: ""
+  }, {
+      attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
+  }, (err, data) => {
+      if (err) {
+          console.log(`queryContactsByEmail callback: err->${JSON.stringify(err)}`);
+          return;
+      }
+      console.log(`queryContactsByEmail callback: success data->${JSON.stringify(data)}`);
+  });
+  ```
+
+## contact.queryContactsByEmail(deprecated)<sup>7+</sup>
 
 queryContactsByEmail(email: string, holder: Holder, attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
 根据email查询联系人，使用callback方式作为异步方法。
+
+> **说明**
+>
+> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContactsByEmail](#contactquerycontactsbyemail10)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -1197,12 +3017,71 @@ queryContactsByEmail(email: string, holder: Holder, attrs: ContactAttributes, ca
   });
   ```
 
+## contact.queryContactsByEmail<sup>10+</sup>
 
-## contact.queryContactsByEmail
+queryContactsByEmail(context: Context,  email: string, holder?: Holder, attrs?: ContactAttributes): Promise&lt;Array&lt;Contact&gt;&gt;
+
+根据email查询联系人，使用Promise方式作为异步方法。
+
+**需要权限**：ohos.permission.READ_CONTACTS
+
+**系统能力**：SystemCapability.Applications.ContactsData
+
+**参数：**
+
+| 参数名  | 类型                                    | 必填 | 说明                                                         |
+| ------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
+| context | Context                                 | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](js-apis-inner-application-context.md)。 |
+| email   | string                                  | 是   | 联系人的邮箱地址。                                           |
+| holder  | [Holder](#holder)                       | 否   | 创建联系人的应用信息。                                       |
+| attrs   | [ContactAttributes](#contactattributes) | 否   | 联系人的属性列表。                                           |
+
+**返回值：**
+
+| 类型                                            | 说明                                                |
+| ----------------------------------------------- | --------------------------------------------------- |
+| Promise&lt;Array&lt;[Contact](#contact)&gt;&gt; | 以Promise形式返回结果，返回查询到的联系人对象数组。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 201      | Permission denied. |
+| 401      | Parameter error.   |
+
+**示例：**
+
+  ```js
+  // 获取context
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage){
+      globalThis.context = this.context;
+    }
+  }
+  let promise = contact.queryContactsByEmail(globalThis.context as Context, 'xxx@email.com', {
+      holderId: 0,
+      bundleName: "",
+      displayName: ""
+  }, {
+      attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
+  });
+  promise.then((data) => {
+      console.log(`queryContactsByEmail success: data->${JSON.stringify(data)}`);
+  }).catch((err) => {
+      console.error(`queryContactsByEmail fail: err->${JSON.stringify(err)}`);
+  });
+  ```
+
+## contact.queryContactsByEmail(deprecated)<sup>7+</sup>
 
 queryContactsByEmail(email: string, holder?: Holder, attrs?: ContactAttributes): Promise&lt;Array&lt;Contact&gt;&gt;
 
 根据email查询联系人，使用Promise方式作为异步方法。
+
+> **说明**
+>
+> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContactsByEmail](#contactquerycontactsbyemail10)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -1239,12 +3118,58 @@ queryContactsByEmail(email: string, holder?: Holder, attrs?: ContactAttributes):
   });
   ```
 
+## contact.queryGroups<sup>10+</sup>
 
-## contact.queryGroups
+queryGroups(context: Context,  callback: AsyncCallback&lt;Array&lt;Group&gt;&gt;): void
+
+查询联系人的所有群组，使用callback方式作为异步方法。
+
+**需要权限**：ohos.permission.READ_CONTACTS
+
+**系统能力**：SystemCapability.Applications.ContactsData
+
+**参数：**
+
+| 参数名   | 类型                                              | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| context  | Context                                           | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](js-apis-inner-application-context.md)。 |
+| callback | AsyncCallback&lt;Array&lt;[Group](#group)&gt;&gt; | 是   | 回调函数，返回查询到的群组对象数组。                         |
+
+**错误码：**
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 201      | Permission denied. |
+| 401      | Parameter error.   |
+
+**示例：**
+
+  ```js
+  // 获取context
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage){
+      globalThis.context = this.context;
+    }
+  }
+  contact.queryGroups(globalThis.context as Context, (err, data) => {
+      if (err) {
+          console.log(`queryGroups callback: err->${JSON.stringify(err)}`);
+          return;
+      }
+      console.log(`queryGroups callback: success data->${JSON.stringify(data)}`);
+  });
+  ```
+
+## contact.queryGroups(deprecated)<sup>7+</sup>
 
 queryGroups(callback: AsyncCallback&lt;Array&lt;Group&gt;&gt;): void
 
 查询联系人的所有群组，使用callback方式作为异步方法。
+
+> **说明**
+>
+> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryGroups](#contactquerygroups10)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -1268,12 +3193,63 @@ queryGroups(callback: AsyncCallback&lt;Array&lt;Group&gt;&gt;): void
   });
   ```
 
+## contact.queryGroups<sup>10+</sup>
 
-## contact.queryGroups
+queryGroups(context: Context,  holder: Holder, callback: AsyncCallback&lt;Array&lt;Group&gt;&gt;): void
+
+查询联系人的所有群组，使用callback方式作为异步方法。
+
+**需要权限**：ohos.permission.READ_CONTACTS
+
+**系统能力**：SystemCapability.Applications.ContactsData
+
+**参数：**
+
+| 参数名   | 类型                                              | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| context  | Context                                           | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](js-apis-inner-application-context.md)。 |
+| holder   | Holder                                            | 是   | 创建联系人的应用信息。                                       |
+| callback | AsyncCallback&lt;Array&lt;[Group](#group)&gt;&gt; | 是   | 回调函数，返回查询到的群组对象数组。                         |
+
+**错误码：**
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 201      | Permission denied. |
+| 401      | Parameter error.   |
+
+**示例：**
+
+  ```js
+  // 获取context
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage){
+      globalThis.context = this.context;
+    }
+  }
+  contact.queryGroups(globalThis.context as Context, {
+      holderId: 0,
+      bundleName: "",
+      displayName: ""
+  }, (err, data) => {
+      if (err) {
+          console.log(`queryGroups callback: err->${JSON.stringify(err)}`);
+          return;
+      }
+      console.log(`queryGroups callback: success data->${JSON.stringify(data)}`);
+  });
+  ```
+
+## contact.queryGroups(deprecated)<sup>7+</sup>
 
 queryGroups(holder: Holder, callback: AsyncCallback&lt;Array&lt;Group&gt;&gt;): void
 
 查询联系人的所有群组，使用callback方式作为异步方法。
+
+> **说明**
+>
+> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryGroups](#contactquerygroups10)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -1302,12 +3278,67 @@ queryGroups(holder: Holder, callback: AsyncCallback&lt;Array&lt;Group&gt;&gt;): 
   });
   ```
 
+## contact.queryGroups<sup>10+</sup>
 
-## contact.queryGroups
+queryGroups(context: Context,  holder?: Holder): Promise&lt;Array&lt;Group&gt;&gt;
+
+查询联系人的所有群组，使用Promise方式作为异步方法。
+
+**需要权限**：ohos.permission.READ_CONTACTS
+
+**系统能力**：SystemCapability.Applications.ContactsData
+
+**参数：**
+
+| 参数名  | 类型              | 必填 | 说明                                                         |
+| ------- | ----------------- | ---- | ------------------------------------------------------------ |
+| context | Context           | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](js-apis-inner-application-context.md)。 |
+| holder  | [Holder](#holder) | 否   | 创建联系人的应用信息。                                       |
+
+**返回值：**
+
+| 类型                                        | 说明                                              |
+| ------------------------------------------- | ------------------------------------------------- |
+| Promise&lt;Array&lt;[Group](#group)&gt;&gt; | 以Promise形式返回结果，返回查询到的群组对象数组。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 201      | Permission denied. |
+| 401      | Parameter error.   |
+
+**示例：**
+
+  ```js
+  // 获取context
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage){
+      globalThis.context = this.context;
+    }
+  }
+  let promise = contact.queryGroups(globalThis.context as Context, {
+      holderId: 0,
+      bundleName: "",
+      displayName: ""
+  });
+  promise.then((data) => {
+      console.log(`queryGroups success: data->${JSON.stringify(data)}`);
+  }).catch((err) => {
+      console.error(`queryGroups fail: err->${JSON.stringify(err)}`);
+  });
+  ```
+
+## contact.queryGroups(deprecated)<sup>7+</sup>
 
 queryGroups(holder?: Holder): Promise&lt;Array&lt;Group&gt;&gt;
 
 查询联系人的所有群组，使用Promise方式作为异步方法。
+
+> **说明**
+>
+> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryGroups](#contactquerygroups10)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -1340,12 +3371,58 @@ queryGroups(holder?: Holder): Promise&lt;Array&lt;Group&gt;&gt;
   });
   ```
 
+## contact.queryHolders<sup>10+</sup>
 
-## contact.queryHolders
+queryHolders(context: Context,  callback: AsyncCallback&lt;Array&lt;Holder&gt;&gt;): void
+
+查询所有创建联系人的应用信息，使用callback方式作为异步方法。
+
+**需要权限**：ohos.permission.READ_CONTACTS
+
+**系统能力**：SystemCapability.Applications.ContactsData
+
+**参数：**
+
+| 参数名   | 类型                                                | 必填 | 说明                                                         |
+| -------- | --------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| context  | Context                                             | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](js-apis-inner-application-context.md)。 |
+| callback | AsyncCallback&lt;Array&lt;[Holder](#holder)&gt;&gt; | 是   | 回调函数，返回查询到的创建联系人应用信息的对象数组。         |
+
+**错误码：**
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 201      | Permission denied. |
+| 401      | Parameter error.   |
+
+**示例：**
+
+  ```js
+  // 获取context
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage){
+      globalThis.context = this.context;
+    }
+  }
+  contact.queryHolders(globalThis.context as Context, (err, data) => {
+      if (err) {
+          console.log(`queryHolders callback: err->${JSON.stringify(err)}`);
+          return;
+      }
+      console.log(`queryHolders callback: success data->${JSON.stringify(data)}`);
+  });
+  ```
+
+## contact.queryHolders(deprecated)<sup>7+</sup>
 
 queryHolders(callback: AsyncCallback&lt;Array&lt;Holder&gt;&gt;): void
 
 查询所有创建联系人的应用信息，使用callback方式作为异步方法。
+
+> **说明**
+>
+> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryHolders](#contactqueryholders10)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -1369,12 +3446,62 @@ queryHolders(callback: AsyncCallback&lt;Array&lt;Holder&gt;&gt;): void
   });
   ```
 
+## contact.queryHolders<sup>10+</sup>
 
-## contact.queryHolders
+queryHolders(context: Context ): Promise&lt;Array&lt;Holder&gt;&gt;
+
+查询所有创建联系人的应用信息，使用Promise方式作为异步方法。
+
+**需要权限**：ohos.permission.READ_CONTACTS
+
+**系统能力**：SystemCapability.Applications.ContactsData
+
+**参数：**
+
+| 参数名  | 类型    | 必填 | 说明                                                         |
+| ------- | ------- | ---- | ------------------------------------------------------------ |
+| context | Context | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](js-apis-inner-application-context.md)。 |
+
+**返回值：**
+
+| 类型                                          | 说明                                                         |
+| --------------------------------------------- | ------------------------------------------------------------ |
+| Promise&lt;Array&lt;[Holder](#holder)&gt;&gt; | 以Promise形式返回结果，返回查询到的创建联系人应用信息的对象数组。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 201      | Permission denied. |
+| 401      | Parameter error.   |
+
+**示例：**
+
+  ```js
+  // 获取context
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage){
+      globalThis.context = this.context;
+    }
+  }
+  let promise = contact.queryHolders(globalThis.context as Context);
+  promise.then((data) => {
+      console.log(`queryHolders success: data->${JSON.stringify(data)}`);
+  }).catch((err) => {
+      console.error(`queryHolders fail: err->${JSON.stringify(err)}`);
+  });
+  ```
+
+## contact.queryHolders(deprecated)<sup>7+</sup>
 
 queryHolders(): Promise&lt;Array&lt;Holder&gt;&gt;
 
 查询所有创建联系人的应用信息，使用Promise方式作为异步方法。
+
+> **说明**
+>
+> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryHolders](#contactqueryholders10)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -1397,12 +3524,59 @@ queryHolders(): Promise&lt;Array&lt;Holder&gt;&gt;
   });
   ```
 
+## contact.queryKey<sup>10+</sup>
 
-## contact.queryKey
+queryKey(context: Context,  id: number, callback: AsyncCallback&lt;string&gt;): void
+
+根据联系人的id查询联系人的key，使用callback方式作为异步方法。
+
+**需要权限**：ohos.permission.READ_CONTACTS
+
+**系统能力**：SystemCapability.Applications.ContactsData
+
+**参数：**
+
+| 参数名   | 类型                        | 必填 | 说明                                                         |
+| -------- | --------------------------- | ---- | ------------------------------------------------------------ |
+| context  | Context                     | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](js-apis-inner-application-context.md)。 |
+| id       | number                      | 是   | 联系人对象的id属性。                                         |
+| callback | AsyncCallback&lt;string&gt; | 是   | 回调函数，返回查询到的联系人对应的key。                      |
+
+**错误码：**
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 201      | Permission denied. |
+| 401      | Parameter error.   |
+
+**示例：**
+
+  ```js
+  // 获取context
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage){
+      globalThis.context = this.context;
+    }
+  }
+  contact.queryKey(globalThis.context as Context, /*id*/1, (err, data) => {
+      if (err) {
+          console.log(`queryKey callback: err->${JSON.stringify(err)}`);
+          return;
+      }
+      console.log(`queryKey callback: success data->${JSON.stringify(data)}`);
+  });
+  ```
+
+## contact.queryKey(deprecated)<sup>7+</sup>
 
 queryKey(id: number, callback: AsyncCallback&lt;string&gt;): void
 
 根据联系人的id查询联系人的key，使用callback方式作为异步方法。
+
+> **说明**
+>
+> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryKey](#contactquerykey10)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -1427,12 +3601,64 @@ queryKey(id: number, callback: AsyncCallback&lt;string&gt;): void
   });
   ```
 
+## contact.queryKey<sup>10+</sup>
 
-## contact.queryKey
+queryKey(context: Context,  id: number, holder: Holder, callback: AsyncCallback&lt;string&gt;): void
+
+根据联系人的id查询联系人的key，使用callback方式作为异步方法。
+
+**需要权限**：ohos.permission.READ_CONTACTS
+
+**系统能力**：SystemCapability.Applications.ContactsData
+
+**参数：**
+
+| 参数名   | 类型                        | 必填 | 说明                                                         |
+| -------- | --------------------------- | ---- | ------------------------------------------------------------ |
+| context  | Context                     | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](js-apis-inner-application-context.md)。 |
+| id       | number                      | 是   | 联系人对象的id属性。                                         |
+| holder   | [Holder](#holder)           | 是   | 创建联系人的应用信息。                                       |
+| callback | AsyncCallback&lt;string&gt; | 是   | 回调函数，返回查询到的联系人对应的key。                      |
+
+**错误码：**
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 201      | Permission denied. |
+| 401      | Parameter error.   |
+
+**示例：**
+
+  ```js
+  // 获取context
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage){
+      globalThis.context = this.context;
+    }
+  }
+  contact.queryKey(globalThis.context as Context, /*id*/1, {
+      holderId: 0,
+      bundleName: "",
+      displayName: ""
+  }, (err, data) => {
+      if (err) {
+          console.log(`queryKey callback: err->${JSON.stringify(err)}`);
+          return;
+      }
+      console.log(`queryKey callback: success data->${JSON.stringify(data)}`);
+  });
+  ```
+
+## contact.queryKey(deprecated)<sup>7+</sup>
 
 queryKey(id: number, holder: Holder, callback: AsyncCallback&lt;string&gt;): void
 
 根据联系人的id查询联系人的key，使用callback方式作为异步方法。
+
+> **说明**
+>
+> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryKey](#contactquerykey10)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -1462,12 +3688,68 @@ queryKey(id: number, holder: Holder, callback: AsyncCallback&lt;string&gt;): voi
   });
   ```
 
+## contact.queryKey<sup>10+</sup>
 
-## contact.queryKey
+queryKey(context: Context,  id: number, holder?: Holder): Promise&lt;string&gt;
+
+根据联系人的id查询联系人的key，使用Promise方式作为异步方法。
+
+**需要权限**：ohos.permission.READ_CONTACTS
+
+**系统能力**：SystemCapability.Applications.ContactsData
+
+**参数：**
+
+| 参数名  | 类型              | 必填 | 说明                                                         |
+| ------- | ----------------- | ---- | ------------------------------------------------------------ |
+| context | Context           | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](js-apis-inner-application-context.md)。 |
+| id      | number            | 是   | 联系人对象的id属性。                                         |
+| holder  | [Holder](#holder) | 否   | 创建联系人的应用信息。                                       |
+
+**返回值：**
+
+| 类型                  | 说明                                                 |
+| --------------------- | ---------------------------------------------------- |
+| Promise&lt;string&gt; | 以Promise形式返回结果，返回查询到的联系人对应的key。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 201      | Permission denied. |
+| 401      | Parameter error.   |
+
+**示例：**
+
+  ```js
+  // 获取context
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage){
+      globalThis.context = this.context;
+    }
+  }
+  let promise = contact.queryKey(globalThis.context as Context, /*id*/1, {
+      holderId: 0,
+      bundleName: "",
+      displayName: ""
+  });
+  promise.then((data) => {
+      console.log(`queryKey success: data->${JSON.stringify(data)}`);
+  }).catch((err) => {
+      console.error(`queryKey fail: err->${JSON.stringify(err)}`);
+  });
+  ```
+
+## contact.queryKey(deprecated)<sup>7+</sup>
 
 queryKey(id: number, holder?: Holder): Promise&lt;string&gt;
 
 根据联系人的id查询联系人的key，使用Promise方式作为异步方法。
+
+> **说明**
+>
+> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryKey](#contactquerykey10)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -1500,6 +3782,17 @@ queryKey(id: number, holder?: Holder): Promise&lt;string&gt;
       console.error(`queryKey fail: err->${JSON.stringify(err)}`);
   });
   ```
+
+## ContactSelectionOptions<sup>10+</sup>
+
+选择联系人条件。
+
+**系统能力**：SystemCapability.Applications.Contacts
+
+|                名称               |                  类型                 | 必填  |        说明      |
+| --------------------------------- | ------------------------------------- | ---- | ---------------- |
+| isMultiSelect <sup>10+</sup>         | boolean | 否   | 是否为多选     |
+
 
 
 ## Contact
