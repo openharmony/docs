@@ -2808,7 +2808,7 @@ let FilterTypes = captureSession.getSupportedBeautyTypes();
 ```
 ### getSupportedBeautyRange
 
-getSupportedBeautyRange(type: BeautyType): Array<number>
+getSupportedBeautyRange(type: BeautyType): Array\<number\>
 
 获取指定美颜效果的范围值。
 
