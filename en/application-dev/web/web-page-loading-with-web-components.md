@@ -19,6 +19,7 @@ In the following example, after the **www.example.com** page is loaded by the **
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
@@ -33,7 +34,8 @@ struct WebComponent {
             // Upon button clicking, call loadUrl to redirect to www.example1.com.
             this.webviewController.loadUrl('www.example1.com');
           } catch (error) {
-            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       // When creating a Web component, set the default network page to be loaded to www.example.com.
@@ -64,6 +66,7 @@ The following example shows how to load a local page file.
   ```ts
   // xxx.ets
   import web_webview from '@ohos.web.webview';
+  import business_error from '@ohos.base';
 
   @Entry
   @Component
@@ -78,7 +81,8 @@ The following example shows how to load a local page file.
               // Upon button clicking, call loadUrl to redirect to local1.html.
               this.webviewController.loadUrl($rawfile("local1.html"));
             } catch (error) {
-              console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+              let e: business_error.BusinessError = error as business_error.BusinessError;
+              console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
             }
           })
         // When creating a Web component, load the local.html file through $rawfile.
@@ -111,6 +115,7 @@ The **Web** component provides the [loadData()](../reference/apis/js-apis-webvie
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
@@ -129,7 +134,8 @@ struct WebComponent {
               'UTF-8'
             );
           } catch (error) {
-            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       // When creating a Web component, set the default network page to be loaded to www.example.com.
