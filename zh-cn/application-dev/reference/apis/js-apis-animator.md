@@ -334,7 +334,7 @@ import animator from '@ohos.animator';
 @Component
 struct AnimatorTest {
   private TAG: string = '[AnimatorTest]'
-  private backAnimator: any = undefined
+  private backAnimator: AnimatorResult | undefined = undefined
   private flag: boolean = false
   @State wid: number = 100
   @State hei: number = 100
@@ -351,17 +351,17 @@ struct AnimatorTest {
       begin: 100,
       end: 200
     })
-    this.backAnimator.onfinish = function () {
+    this.backAnimator.onfinish = ()=> {
       _this.flag = true
       console.info(_this.TAG, 'backAnimator onfinish')
     }
-    this.backAnimator.onrepeat = function () {
+    this.backAnimator.onrepeat = ()=> {
       console.info(_this.TAG, 'backAnimator repeat')
     }
-    this.backAnimator.oncancel = function () {
+    this.backAnimator.oncancel = ()=> {
       console.info(_this.TAG, 'backAnimator cancel')
     }
-    this.backAnimator.onframe = function (value) {
+    this.backAnimator.onframe = (value:number)=> {
       _this.wid = value
       _this.hei = value
     }
@@ -395,7 +395,9 @@ struct AnimatorTest {
             .fontColor(Color.Black)
             .onClick(() => {
               this.flag = false
-              this.backAnimator.play()
+              if(this.backAnimator){
+                this.backAnimator.play()
+              }
             })
         }
         .padding(10)
@@ -405,7 +407,9 @@ struct AnimatorTest {
             .fontSize(30)
             .fontColor(Color.Black)
             .onClick(() => {
-              this.backAnimator.pause()
+              if(this.backAnimator){
+                this.backAnimator.pause()
+              }
             })
         }
         .padding(10)
@@ -416,7 +420,9 @@ struct AnimatorTest {
             .fontColor(Color.Black)
             .onClick(() => {
               this.flag = true
-              this.backAnimator.finish()
+              if(this.backAnimator){
+                this.backAnimator.finish()
+              }
             })
         }
         .padding(10)
@@ -427,7 +433,9 @@ struct AnimatorTest {
             .fontColor(Color.Black)
             .onClick(() => {
               this.flag = false
-              this.backAnimator.reverse()
+              if(this.backAnimator){
+                this.backAnimator.reverse()
+              }
             })
         }
         .padding(10)
@@ -437,7 +445,9 @@ struct AnimatorTest {
             .fontSize(30)
             .fontColor(Color.Black)
             .onClick(() => {
-              this.backAnimator.cancel()
+              if(this.backAnimator){
+                this.backAnimator.cancel()
+              }
             })
         }
         .padding(10)

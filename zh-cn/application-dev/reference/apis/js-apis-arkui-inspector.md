@@ -126,7 +126,7 @@ off(type: 'draw', callback?: () => void): void
       }.height(320).width(360).padding({ right: 10, top: 10 })
     }
 
-    listener = inspector.createComponentObserver('IMAGE_ID')
+    listener:inspector.ComponentObserver = inspector.createComponentObserver('IMAGE_ID')
 
     aboutToAppear() {
       let FuncLayout = this.onLayoutComplete.bind(this) // bind current js instance
