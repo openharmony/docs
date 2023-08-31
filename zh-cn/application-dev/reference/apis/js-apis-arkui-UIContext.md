@@ -392,12 +392,20 @@ showTimePickerDialog(options: TimePickerDialogOptions): void
 **示例：**
 
 ```ts
-let selectTime: Date = new Date('2020-12-25T08:30:00')
+class sethours{
+  selectTime: Date = new Date('2020-12-25T08:30:00')
+  hours(h:number,m:number){
+    this.selectTime.setHours(h,m)
+  }
+}
 uiContext.showTimePickerDialog({
   selected: this.selectTime,
   onAccept: (value: TimePickerResult) => {
     // 设置selectTime为按下确定按钮时的时间，这样当弹窗再次弹出时显示选中的为上一次确定的时间
-    this.selectTime.setHours(value.hour, value.minute)
+    let time = new sethours()
+    if(value.hour&&value.minute){
+      time.hours(value.hour, value.minute)
+    }
     console.info("TimePickerDialog:onAccept()" + JSON.stringify(value))
   },
   onCancel: () => {
@@ -435,14 +443,29 @@ showTextPickerDialog(options: TextPickerDialogOptions): void
 **示例：**
 
 ```ts
-let select: number = 2
+{ class setvalue{
+  select: number = 2
+  set(val:number){
+    this.select = val
+  }
+}
+class setvaluearr{
+  select: number[] = []
+  set(val:number[]){
+    this.select = val
+  }
+}
 let fruits: string[] = ['apple1', 'orange2', 'peach3', 'grape4', 'banana5']
 uiContext.showTextPickerDialog({
   range: this.fruits,
   selected: this.select,
   onAccept: (value: TextPickerResult) => {
     // 设置select为按下确定按钮时候的选中项index，这样当弹窗再次弹出时显示选中的是上一次确定的选项
-    this.select = value.index
+    let setv = new setvalue()
+    let setvarr = new setvaluearr()
+    if(value.index){
+      value.index instanceof Array?setvarr.set(value.index) : setv.set(value.index)
+    }
     console.info("TextPickerDialog:onAccept()" + JSON.stringify(value))
   },
   onCancel: () => {
@@ -477,7 +500,7 @@ createAnimator(options: AnimatorOptions): AnimatorResult
 **示例：**
 
 ```ts
-let options = {
+let options:AnimatorOptions = {
   duration: 1500,
   easing: "friction",
   delay: 0,
@@ -535,7 +558,7 @@ registerFont(options: font.FontOptions): void
 **示例：**
 
 ```ts
-let font = uiContext.getFont();
+let font:Font = uiContext.getFont();
 font.registerFont({
   familyName: 'medium',
   familySrc: '/font/medium.ttf'
@@ -558,7 +581,7 @@ getSystemFontList(): Array\<string>
 **示例：** 
 
 ```ts
-let font = uiContext.getFont();
+let font:Font = uiContext.getFont();
 font.getSystemFontList()
 ```
 
@@ -585,7 +608,7 @@ getFontByName(fontName: string): font.FontInfo
 **示例：** 
 
 ```ts
-let font = uiContext.getFont();
+let font:Font = uiContext.getFont();
 font.getFontByName('Sans Italic')
 ```
 
@@ -616,10 +639,10 @@ getRectangleById(id: string): componentUtils.ComponentInfo
 **示例：**
 
 ```ts
-let componentUtils = uiContext.getComponentUtils();
-let modePosition = componentUtils.getRectangleById("onClick");
-let localOffsetWidth = modePosition.size.width;
-let localOffsetHeight = modePosition.size.height;
+let componentUtils:ComponentUtils = uiContext.getComponentUtils();
+let modePosition:componentUtils.ComponentInfo = componentUtils.getRectangleById("onClick");
+let localOffsetWidth:object = modePosition.size.width;
+let localOffsetHeight:object = modePosition.size.height;
 ```
 
 ## UIInspector
@@ -649,7 +672,7 @@ createComponentObserver(id: string): inspector.ComponentObserver
 **示例：**
 
 ```ts
-let inspector = uiContext.getUIInspector();
+let inspector:UIInspector = uiContext.getUIInspector();
 let listener = inspector.createComponentObserver('COMPONENT_ID');
 ```
 
@@ -680,7 +703,7 @@ matchMediaSync(condition: string): mediaQuery.MediaQueryListener
 **示例：**
 
 ```ts
-let mediaquery = uiContext.getMediaQuery();
+let mediaquery: MediaQuery = uiContext.getMediaQuery();
 let listener = mediaquery.matchMediaSync('(orientation: landscape)'); //监听横屏事件
 ```
 
@@ -722,21 +745,21 @@ pushUrl(options: router.RouterOptions): Promise&lt;void&gt;
 
 ```ts
 let router = uiContext.getRouter();
-router.pushUrl({
-  url: 'pages/routerpage2',
-  params: {
-    data1: 'message',
-    data2: {
-      data3: [123, 456, 789]
+try {
+  router.pushUrl({
+    url: 'pages/routerpage2',
+    params: {
+      data1: 'message',
+      data2: {
+        data3: [123, 456, 789]
+      }
     }
-  }
-})
-  .then(() => {
-    // success
   })
-  .catch(err => {
-    console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
-  })
+} catch (err) {
+  let message = (err as BusinessError).message;
+  let code = (err as BusinessError).code;
+  console.error(`pushUrl failed, code is ${code}, message is ${message}`);
+}
 ```
 
 ### pushUrl
@@ -776,7 +799,7 @@ router.pushUrl({
       data3: [123, 456, 789]
     }
   }
-}, (err) => {
+}, (err: Error) => {
   if (err) {
     console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
     return;
@@ -820,21 +843,21 @@ pushUrl(options: router.RouterOptions, mode: router.RouterMode): Promise&lt;void
 
 ```ts
 let router = uiContext.getRouter();
-router.pushUrl({
-  url: 'pages/routerpage2',
-  params: {
-    data1: 'message',
-    data2: {
-      data3: [123, 456, 789]
+try {
+  router.pushUrl({
+    url: 'pages/routerpage2',
+    params: {
+      data1: 'message',
+      data2: {
+        data3: [123, 456, 789]
+      }
     }
-  }
-}, router.RouterMode.Standard)
-  .then(() => {
-    // success
-  })
-  .catch(err => {
-    console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
-  })
+  }, router.RouterMode.Standard)
+} catch (err) {
+  let message = (err as BusinessError).message;
+  let code = (err as BusinessError).code;
+  console.error(`pushUrl failed, code is ${code}, message is ${message}`);
+}
 ```
 
 ### pushUrl
@@ -917,18 +940,18 @@ replaceUrl(options: router.RouterOptions): Promise&lt;void&gt;
 
 ```ts
 let router = uiContext.getRouter();
-router.replaceUrl({
-  url: 'pages/detail',
-  params: {
-    data1: 'message'
-  }
-})
-  .then(() => {
-    // success
+try {
+  router.replaceUrl({
+    url: 'pages/detail',
+    params: {
+      data1: 'message'
+    }
   })
-  .catch(err => {
-    console.error(`replaceUrl failed, code is ${err.code}, message is ${err.message}`);
-  })
+} catch (err) {
+  let message = (err as BusinessError).message;
+  let code = (err as BusinessError).code;
+  console.error(`replaceUrl failed, code is ${code}, message is ${message}`);
+}
 ```
 
 ### replaceUrl
@@ -964,7 +987,7 @@ router.replaceUrl({
   params: {
     data1: 'message'
   }
-}, (err) => {
+}, (err: Error) => {
   if (err) {
     console.error(`replaceUrl failed, code is ${err.code}, message is ${err.message}`);
     return;
@@ -1015,7 +1038,9 @@ try {
     }
   }, router.RouterMode.Standard)
 } catch (err) {
-  console.error(`replaceUrl failed, code is ${err.code}, message is ${err.message}`);
+  let message = (err as BusinessError).message;
+  let code = (err as BusinessError).code;
+  console.error(`replaceUrl failed, code is ${code}, message is ${message}`);
 }
 ```
 
@@ -1053,7 +1078,7 @@ router.replaceUrl({
   params: {
     data1: 'message'
   }
-}, router.RouterMode.Standard, (err) => {
+}, router.RouterMode.Standard, (err: Error) => {
   if (err) {
     console.error(`replaceUrl failed, code is ${err.code}, message is ${err.message}`);
     return;
@@ -1096,21 +1121,21 @@ pushNamedRoute(options: router.NamedRouterOptions): Promise&lt;void&gt;
 
 ```ts
 let router = uiContext.getRouter();
-router.pushNamedRoute({
-  name: 'myPage',
-  params: {
-    data1: 'message',
-    data2: {
-      data3: [123, 456, 789]
+try {
+  router.pushNamedRoute({
+    name: 'myPage',
+    params: {
+      data1: 'message',
+      data2: {
+        data3: [123, 456, 789]
+      }
     }
-  }
-})
-  .then(() => {
-    // success
   })
-  .catch(err => {
-    console.error(`pushNamedRoute failed, code is ${err.code}, message is ${err.message}`);
-  })
+} catch (err) {
+  let message = (err as BusinessError).message;
+  let code = (err as BusinessError).code;
+  console.error(`pushNamedRoute failed, code is ${code}, message is ${message}`);
+}
 ```
 
 ### pushNamedRoute
@@ -1150,7 +1175,7 @@ router.pushNamedRoute({
       data3: [123, 456, 789]
     }
   }
-}, (err) => {
+}, (err: Error) => {
   if (err) {
     console.error(`pushNamedRoute failed, code is ${err.code}, message is ${err.message}`);
     return;
@@ -1193,21 +1218,21 @@ pushNamedRoute(options: router.NamedRouterOptions, mode: router.RouterMode): Pro
 
 ```ts
 let router = uiContext.getRouter();
-router.pushNamedRoute({
-  name: 'myPage',
-  params: {
-    data1: 'message',
-    data2: {
-      data3: [123, 456, 789]
+try {
+  router.pushNamedRoute({
+    name: 'myPage',
+    params: {
+      data1: 'message',
+      data2: {
+        data3: [123, 456, 789]
+      }
     }
-  }
-}, router.RouterMode.Standard)
-  .then(() => {
-    // success
-  })
-  .catch(err => {
-    console.error(`pushNamedRoute failed, code is ${err.code}, message is ${err.message}`);
-  })
+  }, router.RouterMode.Standard)
+} catch (err) {
+  let message = (err as BusinessError).message;
+  let code = (err as BusinessError).code;
+  console.error(`pushNamedRoute failed, code is ${code}, message is ${message}`);
+}
 ```
 
 ### pushNamedRoute
@@ -1248,7 +1273,7 @@ router.pushNamedRoute({
       data3: [123, 456, 789]
     }
   }
-}, router.RouterMode.Standard, (err) => {
+}, router.RouterMode.Standard, (err: Error) => {
   if (err) {
     console.error(`pushNamedRoute failed, code is ${err.code}, message is ${err.message}`);
     return;
@@ -1290,18 +1315,18 @@ replaceNamedRoute(options: router.NamedRouterOptions): Promise&lt;void&gt;
 
 ```ts
 let router = uiContext.getRouter();
-router.replaceNamedRoute({
-  name: 'myPage',
-  params: {
-    data1: 'message'
-  }
-})
-  .then(() => {
-    // success
+try {
+  router.replaceNamedRoute({
+    name: 'myPage',
+    params: {
+      data1: 'message'
+    }
   })
-  .catch(err => {
-    console.error(`replaceNamedRoute failed, code is ${err.code}, message is ${err.message}`);
-  })
+} catch (err) {
+  let message = (err as BusinessError).message;
+  let code = (err as BusinessError).code;
+  console.error(`replaceNamedRoute failed, code is ${code}, message is ${message}`);
+}
 ```
 
 ### replaceNamedRoute
@@ -1337,7 +1362,7 @@ router.replaceNamedRoute({
   params: {
     data1: 'message'
   }
-}, (err) => {
+}, (err: Error) => {
   if (err) {
     console.error(`replaceNamedRoute failed, code is ${err.code}, message is ${err.message}`);
     return;
@@ -1381,18 +1406,18 @@ replaceNamedRoute(options: router.NamedRouterOptions, mode: router.RouterMode): 
 
 ```ts
 let router = uiContext.getRouter();
-router.replaceNamedRoute({
-  name: 'myPage',
-  params: {
-    data1: 'message'
-  }
-}, router.RouterMode.Standard)
-  .then(() => {
-    // success
-  })
-  .catch(err => {
-    console.error(`replaceNamedRoute failed, code is ${err.code}, message is ${err.message}`);
-  })
+try {
+  router.replaceNamedRoute({
+    name: 'myPage',
+    params: {
+      data1: 'message'
+    }
+  }, router.RouterMode.Standard)
+} catch (err) {
+  let message = (err as BusinessError).message;
+  let code = (err as BusinessError).code;
+  console.error(`replaceNamedRoute failed, code is ${code}, message is ${message}`);
+}
 ```
 
 ### replaceNamedRoute
@@ -1429,7 +1454,7 @@ router.replaceNamedRoute({
   params: {
     data1: 'message'
   }
-}, router.RouterMode.Standard, (err) => {
+}, router.RouterMode.Standard, (err: Error) => {
   if (err) {
     console.error(`replaceNamedRoute failed, code is ${err.code}, message is ${err.message}`);
     return;
@@ -1455,7 +1480,7 @@ back(options?: router.RouterOptions ): void
 **示例：**
 
 ```ts
-let router = uiContext.getRouter();
+let router: Router = uiContext.getRouter();
 router.back({url:'pages/detail'});    
 ```
 
@@ -1470,7 +1495,7 @@ clear(): void
 **示例：**
 
 ```ts
-let router = uiContext.getRouter();
+let router: Router = uiContext.getRouter();
 router.clear();    
 ```
 
@@ -1491,7 +1516,7 @@ getLength(): string
 **示例：**
 
 ```ts
-let router = uiContext.getRouter();
+let router: Router = uiContext.getRouter();
 let size = router.getLength();        
 console.log('pages stack size = ' + size);    
 ```
@@ -1513,7 +1538,7 @@ getState(): router.RouterState
 **示例：**
 
 ```ts
-let router = uiContext.getRouter();
+let router: Router = uiContext.getRouter();
 let page = router.getState();
 console.log('current index = ' + page.index);
 console.log('current name = ' + page.name);
@@ -1545,16 +1570,16 @@ showAlertBeforeBackPage(options: router.EnableAlertOptions): void
 **示例：**
 
 ```ts
-let router = uiContext.getRouter();
-router.showAlertBeforeBackPage({
-  message: 'Message Info'
-});
-  .then(() => {
-    // success
-  })
-  .catch(err => {
-    console.error(`showAlertBeforeBackPage failed, code is ${error.code}, message is ${error.message}`);
-  })
+let router: Router = uiContext.getRouter();
+try {
+  router.showAlertBeforeBackPage({            
+    message: 'Message Info'        
+  });
+} catch(error) {
+  let message = (error as BusinessError).message;
+  let code = (error as BusinessError).code;
+  console.error(`showAlertBeforeBackPage failed, code is ${code}, message is ${message}`);
+}
 ```
 
 ### hideAlertBeforeBackPage
@@ -1568,7 +1593,7 @@ hideAlertBeforeBackPage(): void
 **示例：**
 
 ```ts
-let router = uiContext.getRouter();
+let router: Router = uiContext.getRouter();
 router.hideAlertBeforeBackPage();    
 ```
 
@@ -1589,7 +1614,7 @@ getParams(): Object
 **示例：**
 
 ```ts
-let router = uiContext.getRouter();
+let router: Router = uiContext.getRouter();
 router.getParams();
 ```
 
@@ -1622,14 +1647,16 @@ showToast(options: promptAction.ShowToastOptions): void
 **示例：**
 
 ```ts
-let promptAction = uiContext.getPromptAction();
+let promptAction: PromptAction = uiContext.getPromptAction();
 try {
   promptAction.showToast({            
     message: 'Message Info',
     duration: 2000 
   });
 } catch (error) {
-  console.error(`showToast args error code is ${error.code}, message is ${error.message}`);
+  let message = (error as BusinessError).message;
+  let code = (error as BusinessError).code;
+  console.error(`showToast args error code is ${code}, message is ${message}`);
 };
 ```
 
@@ -1659,7 +1686,11 @@ showDialog(options: promptAction.ShowDialogOptions, callback: AsyncCallback&lt;p
 **示例：**
 
 ```ts
-let promptAction = uiContext.getPromptAction();
+class buttonsMoabl {
+  text: string = ""
+  color: string = ""
+}
+let promptAction: PromptAction = uiContext.getPromptAction();
 try {
   promptAction.showDialog({
     title: 'showDialog Title Info',
@@ -1668,11 +1699,11 @@ try {
       {
         text: 'button1',
         color: '#000000'
-      },
+      } as buttonsMoabl,
       {
         text: 'button2',
         color: '#000000'
-      }
+      } as buttonsMoabl
     ]
   }, (err, data) => {
     if (err) {
@@ -1717,7 +1748,7 @@ showDialog(options: promptAction.ShowDialogOptions): Promise&lt;promptAction.Sho
 **示例：**
 
 ```ts
-let promptAction = uiContext.getPromptAction();
+let promptAction: PromptAction = uiContext.getPromptAction();
 try {
   promptAction.showDialog({
     title: 'Title Info',
@@ -1736,11 +1767,13 @@ try {
     .then(data => {
       console.info('showDialog success, click button: ' + data.index);
     })
-    .catch(err => {
+    .catch((err:Error) => {
       console.info('showDialog error: ' + err);
     })
 } catch (error) {
-  console.error(`showDialog args error code is ${error.code}, message is ${error.message}`);
+  let message = (error as BusinessError).message;
+  let code = (error as BusinessError).code;
+  console.error(`showDialog args error code is ${code}, message is ${message}`);
 };
 ```
 
@@ -1770,7 +1803,7 @@ showActionMenu(options: promptAction.ActionMenuOptions, callback:promptAction.Ac
 **示例：**
 
 ```ts
-let promptAction = uiContext.getPromptAction();
+let promptAction: PromptAction = uiContext.getPromptAction();
 try {
   promptAction.showActionMenu({
     title: 'Title Info',
@@ -1784,7 +1817,7 @@ try {
         color: '#000000'
       },
     ]
-  }, (err, data) => {
+  }, (err:Error, data:promptAction.ActionMenuSuccessResponse) => {
     if (err) {
       console.info('showActionMenu err: ' + err);
       return;
@@ -1792,7 +1825,9 @@ try {
     console.info('showActionMenu success callback, click button: ' + data.index);
   })
 } catch (error) {
-  console.error(`showActionMenu args error code is ${error.code}, message is ${error.message}`);
+  let message = (error as BusinessError).message;
+  let code = (error as BusinessError).code;
+  console.error(`showActionMenu args error code is ${code}, message is ${message}`);
 };
 ```
 
@@ -1827,7 +1862,7 @@ showActionMenu(options: promptAction.ActionMenuOptions): Promise&lt;promptAction
 **示例：**
 
 ```ts
-let promptAction = uiContext.getPromptAction();
+let promptAction: PromptAction = uiContext.getPromptAction();
 try {
   promptAction.showActionMenu({
     title: 'showActionMenu Title Info',
@@ -1845,10 +1880,12 @@ try {
     .then(data => {
       console.info('showActionMenu success, click button: ' + data.index);
     })
-    .catch(err => {
+    .catch((err:Error) => {
       console.info('showActionMenu error: ' + err);
     })
 } catch (error) {
-  console.error(`showActionMenu args error code is ${error.code}, message is ${error.message}`);
+  let message = (error as BusinessError).message;
+  let code = (error as BusinessError).code;
+  console.error(`showActionMenu args error code is ${code}, message is ${message}`);
 };
 ```

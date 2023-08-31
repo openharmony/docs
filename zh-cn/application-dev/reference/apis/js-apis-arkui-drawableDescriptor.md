@@ -56,9 +56,9 @@ struct Index {
   build() {
     Row() {
       Column() {
-        Image((<LayeredDrawableDescriptor> (this.resManager.getDrawableDescriptor($r('app.media.icon').id))))
-        Image(((<LayeredDrawableDescriptor> (this.resManager.getDrawableDescriptor($r('app.media.icon')
-          .id))).getForeground()).getPixelMap())
+        Image((this.resManager.getDrawableDescriptor($r('app.media.icon').id) as LayeredDrawableDescriptor))
+        Image(((this.resManager.getDrawableDescriptor($r('app.media.icon')
+          .id) as LayeredDrawableDescriptor).getForeground()).getPixelMap())
       }.height('50%')
     }.width('50%')
   }
@@ -81,8 +81,9 @@ getPixelMap(): image.PixelMap;
 **示例：**
   ```ts
 let resManager = getContext().resourceManager
-let pixmap: PixelMap = (<DrawableDescriptor> (resManager.getDrawableDescriptor($r('app.media.icon')
-    .id))).getPixelMap();
+let pixmap: DrawableDescriptor = (resManager.getDrawableDescriptor($r('app.media.icon')
+    .id)) as DrawableDescriptor;
+let pixmapNew: DrawableDescriptor = pixmap.getPixelMap()
   ```
 
 ## LayeredDrawableDescriptor.getPixelMap
@@ -101,8 +102,9 @@ getPixelMap(): image.PixelMap;
 **示例：**
   ```ts
 let resManager = getContext().resourceManager
-let pixmap: PixelMap = (<LayeredDrawableDescriptor> (resManager.getDrawableDescriptor($r('app.media.icon')
-          .id))).getPixelMap();
+let pixmap: LayeredDrawableDescriptor = (resManager.getDrawableDescriptor($r('app.media.icon')
+    .id)) as LayeredDrawableDescriptor;
+let pixmapNew: LayeredDrawableDescriptor = pixmap.getPixelMap()
   ```
 
 ## LayeredDrawableDescriptor.getForeground
@@ -121,8 +123,9 @@ getForeground(): DrawableDescriptor;
 **示例：**
   ```ts
 let resManager = getContext().resourceManager
-let drawable: DrawableDescriptor = (<LayeredDrawableDescriptor> (resManager.getDrawableDescriptor($r('app.media.icon')
-    .id))).getForeground();
+let drawable: LayeredDrawableDescriptor = (resManager.getDrawableDescriptor($r('app.media.icon')
+    .id)) as LayeredDrawableDescriptor;
+let drawableNew: LayeredDrawableDescriptor =drawable.getForeground()
   ```
 
 ## LayeredDrawableDescriptor.getBackground
@@ -141,8 +144,9 @@ getBackground(): DrawableDescriptor;
 **示例：**
   ```ts
 let resManager = getContext().resourceManager
-let drawable: DrawableDescriptor = (<LayeredDrawableDescriptor> (resManager.getDrawableDescriptor($r('app.media.icon')
-    .id))).getBackground();
+let drawable: LayeredDrawableDescriptor = (resManager.getDrawableDescriptor($r('app.media.icon')
+    .id)) as LayeredDrawableDescriptor;
+let drawableNew: LayeredDrawableDescriptor =drawable.getBackground()
   ```
 
 ## LayeredDrawableDescriptor.getMask
@@ -161,8 +165,9 @@ getMask(): DrawableDescriptor;
 **示例：**
   ```ts
 let resManager = getContext().resourceManager
-let drawable: DrawableDescriptor = (<LayeredDrawableDescriptor> (resManager.getDrawableDescriptor($r('app.media.icon')
-    .id))).getMask();
+let drawable: LayeredDrawableDescriptor = (resManager.getDrawableDescriptor($r('app.media.icon')
+    .id)) as LayeredDrawableDescriptor;
+let drawableNew: LayeredDrawableDescriptor =drawable.getMask()
   ```
 ## LayeredDrawableDescriptor.getMaskClipPath
 static getMaskClipPath(): string
