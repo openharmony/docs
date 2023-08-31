@@ -38,6 +38,7 @@ The following table describes the APIs for notification publishing. You specify 
    
    ```ts
    import notificationManager from '@ohos.notificationManager';
+   import Base from '@ohos.base';
    ```
 
 3. Create a **NotificationRequest** object and publish a progress notification.
@@ -56,7 +57,7 @@ The following table describes the APIs for notification publishing. You specify 
         }
       };
       
-      notificationManager.publish(notificationRequest, (err) => {
+      notificationManager.publish(notificationRequest, (err:Base.BusinessError) => {
         if (err) {
           console.error(`Failed to publish notification. Code is ${err.code}, message is ${err.message}`);
           return;
@@ -86,7 +87,7 @@ The following table describes the APIs for notification publishing. You specify 
       };
       
       // Publish the notification.
-      notificationManager.publish(notificationRequest, (err) => {
+      notificationManager.publish(notificationRequest, (err:Base.BusinessError) => {
         if (err) {
           console.error(`Failed to publish notification. Code is ${err.code}, message is ${err.message}`);
           return;
@@ -115,7 +116,7 @@ The following table describes the APIs for notification publishing. You specify 
       };
       
       // Publish the notification.
-      notificationManager.publish(notificationRequest, (err) => {
+      notificationManager.publish(notificationRequest, (err:Base.BusinessError) => {
         if (err) {
           console.error(`Failed to publish notification. Code is ${err.code}, message is ${err.message}`);
           return;
@@ -146,7 +147,7 @@ The following table describes the APIs for notification publishing. You specify 
       };
       
       // Publish the notification.
-      notificationManager.publish(notificationRequest, (err) => {
+      notificationManager.publish(notificationRequest, (err:Base.BusinessError) => {
         if (err) {
           console.error(`Failed to publish notification. Code is ${err.code}, message is ${err.message}`);
           return;
