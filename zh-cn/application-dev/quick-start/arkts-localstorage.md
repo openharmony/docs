@@ -191,36 +191,37 @@ link1.set(49); // two-way sync: link1.get() == link2.get() == prop.get() == 49
 - \@LocalStorageLink绑定LocalStorage对给定的属性，建立双向数据同步。
 
   ```ts
-  // 创建新实例并使用给定对象初始化
-  let storage = new LocalStorage({ 'PropA': 47 });
+// 创建新实例并使用给定对象初始化
+let storage = new LocalStorage();
+storage['PropA'] = 47;
 
-  @Component
-  struct Child {
-    // @LocalStorageLink变量装饰器与LocalStorage中的'ProA'属性建立双向绑定
-    @LocalStorageLink('PropA') storLink2: number = 1;
+@Component
+struct Child {
+  // @LocalStorageLink变量装饰器与LocalStorage中的'ProA'属性建立双向绑定
+  @LocalStorageLink('PropA') storLink2: number = 1;
 
-    build() {
-      Button(`Child from LocalStorage ${this.storLink2}`)
-        // 更改将同步至LocalStorage中的'ProA'以及Parent.storLink1
-        .onClick(() => this.storLink2 += 1)
+  build() {
+    Button(`Child from LocalStorage ${this.storLink2}`)
+      // 更改将同步至LocalStorage中的'ProA'以及Parent.storLink1
+      .onClick(() => this.storLink2 += 1)
+  }
+}
+// 使LocalStorage可从@Component组件访问
+@Entry(storage)
+@Component
+struct CompA {
+  // @LocalStorageLink变量装饰器与LocalStorage中的'ProA'属性建立双向绑定
+  @LocalStorageLink('PropA') storLink1: number = 1;
+
+  build() {
+    Column({ space: 15 }) {
+      Button(`Parent from LocalStorage ${this.storLink1}`) // initial value from LocalStorage will be 47, because 'PropA' initialized already
+        .onClick(() => this.storLink1 += 1)
+      // @Component子组件自动获得对CompA LocalStorage实例的访问权限。
+      Child()
     }
   }
-  // 使LocalStorage可从@Component组件访问
-  @Entry(storage)
-  @Component
-  struct CompA {
-    // @LocalStorageLink变量装饰器与LocalStorage中的'ProA'属性建立双向绑定
-    @LocalStorageLink('PropA') storLink1: number = 1;
-
-    build() {
-      Column({ space: 15 }) {
-        Button(`Parent from LocalStorage ${this.storLink1}`) // initial value from LocalStorage will be 47, because 'PropA' initialized already
-          .onClick(() => this.storLink1 += 1)
-        // @Component子组件自动获得对CompA LocalStorage实例的访问权限。
-        Child()
-      }
-    }
-  }
+}
   ```
 
 
@@ -233,37 +234,39 @@ link1.set(49); // two-way sync: link1.get() == link2.get() == prop.get() == 49
 - Child组件中，Text绑定的storProp2 依旧显示47。
 
   ```ts
-  // 创建新实例并使用给定对象初始化
-  let storage = new LocalStorage({ 'PropA': 47 });
-  // 使LocalStorage可从@Component组件访问
-  @Entry(storage)
-  @Component
-  struct CompA {
-    // @LocalStorageProp变量装饰器与LocalStorage中的'ProA'属性建立单向绑定
-    @LocalStorageProp('PropA') storProp1: number = 1;
+// 创建新实例并使用给定对象初始化
+let storage = new LocalStorage();
+storage['PropA'] = 47;
 
-    build() {
-      Column({ space: 15 }) {
-        // 点击后从47开始加1，只改变当前组件显示的storProp1，不会同步到LocalStorage中
-        Button(`Parent from LocalStorage ${this.storProp1}`)
-          .onClick(() => this.storProp1 += 1)
-        Child()
-      }
+// 使LocalStorage可从@Component组件访问
+@Entry(storage)
+@Component
+struct CompA {
+  // @LocalStorageProp变量装饰器与LocalStorage中的'ProA'属性建立单向绑定
+  @LocalStorageProp('PropA') storProp1: number = 1;
+
+  build() {
+    Column({ space: 15 }) {
+      // 点击后从47开始加1，只改变当前组件显示的storProp1，不会同步到LocalStorage中
+      Button(`Parent from LocalStorage ${this.storProp1}`)
+        .onClick(() => this.storProp1 += 1)
+      Child()
     }
   }
+}
 
-  @Component
-  struct Child {
-    // @LocalStorageProp变量装饰器与LocalStorage中的'ProA'属性建立单向绑定
-    @LocalStorageProp('PropA') storProp2: number = 2;
+@Component
+struct Child {
+  // @LocalStorageProp变量装饰器与LocalStorage中的'ProA'属性建立单向绑定
+  @LocalStorageProp('PropA') storProp2: number = 2;
 
-    build() {
-      Column({ space: 15 }) {
-        // 当CompA改变时，当前storProp2不会改变，显示47
-        Text(`Parent from LocalStorage ${this.storProp2}`)
-      }
+  build() {
+    Column({ space: 15 }) {
+      // 当CompA改变时，当前storProp2不会改变，显示47
+      Text(`Parent from LocalStorage ${this.storProp2}`)
     }
   }
+}
   ```
 
 
@@ -274,9 +277,10 @@ link1.set(49); // two-way sync: link1.get() == link2.get() == prop.get() == 49
 
 ```ts
 // 构造LocalStorage实例
-let storage = new LocalStorage({ 'PropA': 47 });
+let storage = new LocalStorage();
+storage['PropA'] = 47;
 // 调用link9+接口构造'PropA'的双向同步数据，linkToPropA 是全局变量
-let linkToPropA = storage.link('PropA');
+let linkToPropA = storage.link<number>('PropA');
 
 @Entry(storage)
 @Component
@@ -288,7 +292,7 @@ struct CompA {
   build() {
     Column() {
       Text(`incr @LocalStorageLink variable`)
-        // 点击“incr @LocalStorageLink variable”，this.storLink加1，改变同步回storage，全局变量linkToPropA也会同步改变 
+        // 点击“incr @LocalStorageLink variable”，this.storLink加1，改变同步回storage，全局变量linkToPropA也会同步改变
 
         .onClick(() => this.storLink += 1)
 
@@ -388,11 +392,10 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 import window from '@ohos.window';
 
 export default class EntryAbility extends UIAbility {
-  storage: LocalStorage = new LocalStorage({
-    'PropA': 47
-  });
+  storage: LocalStorage = new LocalStorage();
 
   onWindowStageCreate(windowStage: window.WindowStage) {
+    this.storage['PropA'] = 47;
     windowStage.loadContent('pages/Index', this.storage);
   }
 }
