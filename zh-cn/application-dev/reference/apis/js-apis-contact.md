@@ -15,7 +15,7 @@ import contact from '@ohos.contact';
 
 ## contact.addContact<sup>10+</sup>
 
-addContact(context: Context, contact: Contact, callback: AsyncCallback<number>): void 
+addContact(context: Context, contact: Contact, callback: AsyncCallback&lt;number&gt;>): void 
 
 添加联系人，使用callback方式作为异步方法。
 
