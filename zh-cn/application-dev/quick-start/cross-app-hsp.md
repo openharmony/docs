@@ -82,7 +82,8 @@ export function foo2() {
 import native from "libnative.so"
 
 export function nativeMulti(a: number, b: number) {
-    return native.multi(a, b);
+    let result: number = native.multi(a, b);
+    return result;
 }
 ```
 
