@@ -64,8 +64,10 @@ Creates an app account. This API uses an asynchronous callback to return the res
 **Example**
 
   ```js
+  import { BusinessError } from '@ohos.base';
+  
   try {
-    appAccountManager.createAccount('WangWu', (err) => { 
+    appAccountManager.createAccount('WangWu', (err: BusinessError) => { 
         console.log('createAccount err: ' + JSON.stringify(err));
     });
   } catch (err) {
@@ -101,13 +103,15 @@ Creates an app account with custom data. This API uses an asynchronous callback 
 **Example**
 
   ```js
-  let options = {
+  import { BusinessError } from '@ohos.base';
+  
+  let options:account_appAccount.CreateAccountOptions  = {
     customData: {
-      'age': '10'
+      age: '10'
     }
   }
   try {
-    appAccountManager.createAccount('LiSi', options, (err) => {
+    appAccountManager.createAccount('LiSi', options, (err: BusinessError) => {
       if (err) {
         console.log('createAccount failed, error: ' + JSON.stringify(err));
       } else {
@@ -152,15 +156,17 @@ Creates an app account with custom data. This API uses a promise to return the r
 **Example**
 
   ```js
-  let options = {
+  import { BusinessError } from '@ohos.base';
+
+  let options: account_appAccount.CreateAccountOptions = {
     customData: {
-      'age': '10'
+      age: '10'
     }
   }
   try {
     appAccountManager.createAccount('LiSi', options).then(() => {
       console.log('createAccount successfully');
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
       console.log('createAccount failed, error: ' + JSON.stringify(err));
     });
   } catch(err) {
@@ -197,21 +203,27 @@ Creates an app account implicitly based on the specified account owner. This API
 **Example**
 
   ```js
-  function onResultCallback(code, result) {
+  import { BusinessError } from '@ohos.base';
+  import Want from '@ohos.app.ability.Want';
+  import common from '@ohos.app.ability.common';
+
+  let context = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+
+  function onResultCallback(code: number, result?: account_appAccount.AuthResult): void {
     console.log('resultCode: ' + code);
     console.log('result: ' + JSON.stringify(result));
   }
 
-  function onRequestRedirectedCallback(request) {
-    let wantInfo = {
+  function onRequestRedirectedCallback(request: Want): void {
+    let wantInfo: Want = {
       deviceId: '',
       bundleName: 'com.example.accountjsdemo',
       action: 'ohos.want.action.viewData',
       entities: ['entity.system.default'],
     }
-    this.context.startAbility(wantInfo).then(() => {
+    context.startAbility(wantInfo).then(() => {
       console.log('startAbility successfully');
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
       console.log('startAbility err: ' + JSON.stringify(err));
     })
   }
@@ -256,26 +268,32 @@ Creates an app account implicitly based on the specified account owner and optio
 **Example**
 
   ```js
-  function onResultCallback(code, result) {
+  import { BusinessError } from '@ohos.base';
+  import Want from '@ohos.app.ability.Want';
+  import common from '@ohos.app.ability.common';
+
+  let context = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+
+  function onResultCallback(code: number, result?: account_appAccount.AuthResult): void {
     console.log('resultCode: ' + code);
     console.log('result: ' + JSON.stringify(result));
   }
 
-  function onRequestRedirectedCallback(request) {
-    let wantInfo = {
+  function onRequestRedirectedCallback(request: Want): void {
+    let wantInfo: Want = {
       deviceId: '',
       bundleName: 'com.example.accountjsdemo',
       action: 'ohos.want.action.viewData',
       entities: ['entity.system.default'],
     }
-    this.context.startAbility(wantInfo).then(() => {
+    context.startAbility(wantInfo).then(() => {
       console.log('startAbility successfully');
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
       console.log('startAbility err: ' + JSON.stringify(err));
     })
   }
 
-  let options = {
+  let options: account_appAccount.CreateAccountImplicitlyOptions = {
     authType: 'getSocialData',
     requiredLabels: [ 'student' ]
   };
@@ -315,8 +333,10 @@ Removes an app account. This API uses an asynchronous callback to return the res
 **Example**
 
   ```js
+  import { BusinessError } from '@ohos.base';
+  
   try {
-    appAccountManager.removeAccount('ZhaoLiu', (err) => {
+    appAccountManager.removeAccount('ZhaoLiu', (err: BusinessError) => {
       if (err) {
         console.log('removeAccount failed, error: ' + JSON.stringify(err));
       } else {
@@ -359,10 +379,12 @@ Removes an app account. This API uses a promise to return the result.
 **Example**
 
   ```js
+  import { BusinessError } from '@ohos.base';
+
   try {
     appAccountManager.removeAccount('Lisi').then(() => {
       console.log('removeAccount successfully');
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
       console.log('removeAccount failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
@@ -399,8 +421,10 @@ Sets the access to the data of an account for an app. This API uses an asynchron
 **Example**
 
   ```js
+  import { BusinessError } from '@ohos.base';
+  
   try {
-    appAccountManager.setAppAccess('ZhangSan', 'com.example.accountjsdemo', true, (err) => {
+    appAccountManager.setAppAccess('ZhangSan', 'com.example.accountjsdemo', true, (err: BusinessError) => {
       if (err) {
         console.log('setAppAccess failed: ' + JSON.stringify(err));
       } else {
@@ -446,10 +470,12 @@ Sets the access to the data of an account for an app. This API uses a promise to
 **Example**
 
   ```js
+  import { BusinessError } from '@ohos.base';
+
   try {
     appAccountManager.setAppAccess('ZhangSan', 'com.example.accountjsdemo', true).then(() => {
       console.log('setAppAccess successfully');
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
       console.log('setAppAccess failed: ' + JSON.stringify(err));
     });
   } catch (err) {
@@ -484,14 +510,17 @@ Checks whether an app can access the data of an account. This API uses an asynch
 **Example**
 
   ```js
+  import { BusinessError } from '@ohos.base';
+  
   try {
-    appAccountManager.checkAppAccess('ZhangSan', 'com.example.accountjsdemo', (err, isAccessible) => {
-      if (err) {
-        console.log('checkAppAccess failed, error: ' + JSON.stringify(err));
-      } else {
-        console.log('checkAppAccess successfully');
-      }
-    });
+    appAccountManager.checkAppAccess('ZhangSan', 'com.example.accountjsdemo',
+      (err: BusinessError, isAccessible: boolean) => {
+        if (err) {
+          console.log('checkAppAccess failed, error: ' + JSON.stringify(err));
+        } else {
+          console.log('checkAppAccess successfully');
+        }
+      });
   } catch (err) {
     console.log('checkAppAccess exception: ' + JSON.stringify(err));
   }
@@ -529,10 +558,12 @@ Checks whether an app can access the data of an account. This API uses a promise
 **Example**
 
   ```js
+  import { BusinessError } from '@ohos.base';
+
   try {
-    appAccountManager.checkAppAccess('ZhangSan', 'com.example.accountjsdemo').then((isAccessible) => {
+    appAccountManager.checkAppAccess('ZhangSan', 'com.example.accountjsdemo').then((isAccessible: boolean) => {
       console.log('checkAppAccess successfully, isAccessible: ' + isAccessible);
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
       console.log('checkAppAccess failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
@@ -569,8 +600,10 @@ Sets data synchronization for an app account. This API uses an asynchronous call
 **Example**
 
   ```js
+  import { BusinessError } from '@ohos.base';
+  
   try {
-      appAccountManager.setDataSyncEnabled('ZhangSan', true, (err) => { 
+      appAccountManager.setDataSyncEnabled('ZhangSan', true, (err: BusinessError) => { 
           console.log('setDataSyncEnabled err: ' + JSON.stringify(err));
       });
   } catch (err) {
@@ -612,10 +645,12 @@ Sets data synchronization for an app account. This API uses a promise to return 
 **Example**
 
   ```js
+  import { BusinessError } from '@ohos.base';
+
   try {
       appAccountManager .setDataSyncEnabled('ZhangSan', true).then(() => { 
           console.log('setDataSyncEnabled Success');
-      }).catch((err) => {
+      }).catch((err: BusinessError) => {
           console.log('setDataSyncEnabled err: ' + JSON.stringify(err));
       });
   } catch (err) {
@@ -651,8 +686,10 @@ Checks whether data synchronization is enabled for an app account. This API uses
 **Example**
 
   ```js
+  import { BusinessError } from '@ohos.base';
+  
   try {
-    appAccountManager.checkDataSyncEnabled('ZhangSan', (err, isEnabled) => {
+    appAccountManager.checkDataSyncEnabled('ZhangSan', (err: BusinessError, isEnabled: boolean) => {
       if (err) {
         console.log('checkDataSyncEnabled failed, err: ' + JSON.stringify(err));
       } else {
@@ -697,10 +734,12 @@ Checks whether data synchronization is enabled for an app account. This API uses
 **Example**
 
   ```js
+  import { BusinessError } from '@ohos.base';
+
   try {
-    appAccountManager.checkDataSyncEnabled('ZhangSan').then((isEnabled) => {
+    appAccountManager.checkDataSyncEnabled('ZhangSan').then((isEnabled: boolean) => {
         console.log('checkDataSyncEnabled successfully, isEnabled: ' + isEnabled);
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
       console.log('checkDataSyncEnabled failed, err: ' + JSON.stringify(err));
     });
   } catch (err) {
@@ -736,8 +775,10 @@ Sets a credential for an app account. This API uses an asynchronous callback to 
 **Example**
 
   ```js
+  import { BusinessError } from '@ohos.base';
+  
   try {
-    appAccountManager.setCredential('ZhangSan', 'PIN_SIX', 'xxxxxx', (err) => {
+    appAccountManager.setCredential('ZhangSan', 'PIN_SIX', 'xxxxxx', (err: BusinessError) => {
       if (err) {
         console.log('setCredential failed, error: ' + JSON.stringify(err));
       } else {
@@ -782,10 +823,12 @@ Sets a credential for an app account. This API uses a promise to return the resu
 **Example**
 
   ```js
+  import { BusinessError } from '@ohos.base';
+
   try {
     appAccountManager.setCredential('ZhangSan', 'PIN_SIX', 'xxxxxx').then(() => {
       console.log('setCredential successfully');
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
       console.log('setCredential failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
@@ -821,8 +864,10 @@ Obtains the credential of an app account. This API uses an asynchronous callback
 **Example**
 
   ```js
+  import { BusinessError } from '@ohos.base';
+  
   try {
-      appAccountManager.getCredential('ZhangSan', 'PIN_SIX', (err, result) => { 
+      appAccountManager.getCredential('ZhangSan', 'PIN_SIX', (err: BusinessError, result: string) => { 
         if (err) {
           console.log('getCredential failed, error: ' + JSON.stringify(err));
         } else {
@@ -867,10 +912,12 @@ Obtains the credential of an app account. This API uses a promise to return the 
 **Example**
 
   ```js
+  import { BusinessError } from '@ohos.base';
+
   try {
-    appAccountManager.getCredential('ZhangSan', 'PIN_SIX').then((credential) => {
+    appAccountManager.getCredential('ZhangSan', 'PIN_SIX').then((credential: string) => {
         console.log('getCredential successfully, credential: ' + credential);
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
         console.log('getCredential failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
@@ -907,8 +954,10 @@ Sets custom data for an app account. This API uses an asynchronous callback to r
 **Example**
 
   ```js
+  import { BusinessError } from '@ohos.base';
+  
   try {
-    appAccountManager.setCustomData('ZhangSan', 'age', '12', (err) => {
+    appAccountManager.setCustomData('ZhangSan', 'age', '12', (err: BusinessError) => {
       if (err) {
         console.log('setCustomData failed, error: ' + JSON.stringify(err));
       } else {
@@ -954,10 +1003,12 @@ Sets custom data for an app account. This API uses a promise to return the resul
 **Example**
 
   ```js
+  import { BusinessError } from '@ohos.base';
+
   try {
     appAccountManager.setCustomData('ZhangSan', 'age', '12').then(() => {
       console.log('setCustomData successfully');
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
       console.log('setCustomData failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
@@ -993,8 +1044,10 @@ Obtains the custom data of an app account based on the specified key. This API u
 **Example**
 
   ```js
+  import { BusinessError } from '@ohos.base';
+  
   try {
-    appAccountManager.getCustomData('ZhangSan', 'age', (err, data) => {
+    appAccountManager.getCustomData('ZhangSan', 'age', (err: BusinessError, data: string) => {
       if (err) {
         console.log('getCustomData failed, error: ' + err);
       } else {
@@ -1039,10 +1092,12 @@ Obtains the custom data of an app account based on the specified key. This API u
 **Example**
 
   ```js
+  import { BusinessError } from '@ohos.base';
+
   try {
-    appAccountManager.getCustomData('ZhangSan', 'age').then((data) => {
+    appAccountManager.getCustomData('ZhangSan', 'age').then((data: string) => {
       console.log('getCustomData successfully, data: ' + data);
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
       console.log('getCustomData failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
@@ -1114,8 +1169,10 @@ Obtains information about all accessible app accounts. This API uses an asynchro
 **Example**
 
   ```js
+  import { BusinessError } from '@ohos.base';
+  
   try {
-    appAccountManager.getAllAccounts((err, data) => {
+    appAccountManager.getAllAccounts((err: BusinessError, data: account_appAccount.AppAccountInfo[]) => {
       if (err) {
         console.debug('getAllAccounts failed, error: ' + JSON.stringify(err));
       } else {
@@ -1150,10 +1207,12 @@ Obtains information about all accessible app accounts. This API uses a promise t
 **Example**
 
   ```js
+  import { BusinessError } from '@ohos.base';
+
   try {
-    appAccountManager.getAllAccounts().then((data) => {
+    appAccountManager.getAllAccounts().then((data: account_appAccount.AppAccountInfo[]) => {
       console.debug('getAllAccounts successfully');
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
       console.debug('getAllAccounts failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
@@ -1187,14 +1246,17 @@ Obtains the app accounts that can be accessed by the invoker based on the app ac
 **Example**
 
   ```js
+  import { BusinessError } from '@ohos.base';
+  
   try {
-    appAccountManager.getAccountsByOwner('com.example.accountjsdemo2', (err, data) => {
-      if (err) {
-        console.debug('getAccountsByOwner failed, error:' + JSON.stringify(err));
-      } else {
-        console.debug('getAccountsByOwner successfully, data:' + JSON.stringify(data));
-      }
-    });
+    appAccountManager.getAccountsByOwner('com.example.accountjsdemo2',
+      (err: BusinessError, data: account_appAccount.AppAccountInfo[]) => {
+        if (err) {
+          console.debug('getAccountsByOwner failed, error:' + JSON.stringify(err));
+        } else {
+          console.debug('getAccountsByOwner successfully, data:' + JSON.stringify(data));
+        }
+      });
   } catch (err) {
     console.debug('getAccountsByOwner exception:' + JSON.stringify(err));
   }
@@ -1231,10 +1293,13 @@ Obtains the app accounts that can be accessed by the invoker based on the app ac
 **Example**
 
   ```js
+  import { BusinessError } from '@ohos.base';
+
   try {
-    appAccountManager.getAccountsByOwner('com.example.accountjsdemo2').then((data) => {
+    appAccountManager.getAccountsByOwner('com.example.accountjsdemo2').then((
+      data: account_appAccount.AppAccountInfo[]) => {
       console.debug('getAccountsByOwner successfully, data: ' + JSON.stringify(data));
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
       console.debug('getAccountsByOwner failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
@@ -1269,7 +1334,7 @@ Subscribes to account information changes of apps.
 **Example**
 
   ```js
-  function changeOnCallback(data){
+  function changeOnCallback(data: account_appAccount.AppAccountInfo[]): void {
   	console.log('receive change data:' + JSON.stringify(data));
   }
   try{
@@ -1304,7 +1369,7 @@ Unsubscribes from account information changes.
 **Example**
 
   ```js
-  function changeOnCallback(data) {
+  function changeOnCallback(data: account_appAccount.AppAccountInfo[]): void {
   	console.log('receive change data:' + JSON.stringify(data));
   }
   try{
@@ -1351,23 +1416,27 @@ Authenticates an app account. This API uses an asynchronous callback to return t
 **Example**
 
   ```js
+  import { BusinessError } from '@ohos.base';
+  import Want from '@ohos.app.ability.Want';
+  import common from '@ohos.app.ability.common';
 
+  let context = getContext(this) as common.UIAbilityContext; // UIAbilityContext
 
-  function onResultCallback(code, authResult) {
+  function onResultCallback(code: number, authResult?: account_appAccount.AuthResult): void {
     console.log('resultCode: ' + code);
     console.log('authResult: ' + JSON.stringify(authResult));
   }
 
-  function onRequestRedirectedCallback(request) {
-    let wantInfo = {
+  function onRequestRedirectedCallback(request: Want): void {
+    let wantInfo: Want = {
       deviceId: '',
       bundleName: 'com.example.accountjsdemo',
       action: 'ohos.want.action.viewData',
       entities: ['entity.system.default'],
     }
-    this.context.startAbility(wantInfo).then(() => {
+    context.startAbility(wantInfo).then(() => {
       console.log('startAbility successfully');
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
       console.log('startAbility err: ' + JSON.stringify(err));
     })
   }
@@ -1414,29 +1483,33 @@ Authenticates an app account with customized options. This API uses an asynchron
 **Example**
 
   ```js
+  import { BusinessError } from '@ohos.base';
+  import Want from '@ohos.app.ability.Want';
+  import common from '@ohos.app.ability.common';
 
+  let context = getContext(this) as common.UIAbilityContext; // UIAbilityContext
 
-  function onResultCallback(code, authResult) {
+  function onResultCallback(code: number, authResult?: account_appAccount.AuthResult): void {
     console.log('resultCode: ' + code);
     console.log('authResult: ' + JSON.stringify(authResult));
   }
 
-  function onRequestRedirectedCallback(request) {
-    let wantInfo = {
+  function onRequestRedirectedCallback(request: Want): void {
+    let wantInfo: Want = {
       deviceId: '',
       bundleName: 'com.example.accountjsdemo',
       action: 'ohos.want.action.viewData',
       entities: ['entity.system.default'],
     }
-    this.context.startAbility(wantInfo).then(() => {
+    context.startAbility(wantInfo).then(() => {
       console.log('startAbility successfully');
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
       console.log('startAbility err: ' + JSON.stringify(err));
     })
   }
 
-  let options = {
-    'password': 'xxxx',
+  let options: Record<string, Object> = {
+    password: 'xxxx',
   };
   try {
     appAccountManager.auth('LiSi', 'com.example.accountjsdemo', 'getSocialData', options, {
@@ -1477,14 +1550,17 @@ Obtains the authorization token of the specified authentication type for an app 
 **Example**
 
   ```js
+  import { BusinessError } from '@ohos.base';
+  
   try {
-    appAccountManager.getAuthToken('LiSi', 'com.example.accountjsdemo', 'getSocialData', (err, token) => {
-      if (err) {
-        console.log('getAuthToken failed, error: ' + JSON.stringify(err));
-      } else {
-        console.log('getAuthToken successfully, token: ' + token);
-      }
-    });
+    appAccountManager.getAuthToken('LiSi', 'com.example.accountjsdemo', 'getSocialData',
+      (err: BusinessError, token: string) => {
+        if (err) {
+          console.log('getAuthToken failed, error: ' + JSON.stringify(err));
+        } else {
+          console.log('getAuthToken successfully, token: ' + token);
+        }
+      });
   } catch (err) {
       console.log('getAuthToken exception: ' + JSON.stringify(err));
   }
@@ -1524,10 +1600,12 @@ Obtains the authorization token of the specified authentication type for an app 
 **Example**
 
   ```js
+  import { BusinessError } from '@ohos.base';
+  
   try {
-    appAccountManager.getAuthToken('LiSi', 'com.example.accountjsdemo', 'getSocialData').then((token) => {
+    appAccountManager.getAuthToken('LiSi', 'com.example.accountjsdemo', 'getSocialData').then((token: string) => {
       console.log('getAuthToken successfully, token: ' + token);
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
       console.log('getAuthToken failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
@@ -1564,8 +1642,10 @@ Sets an authorization token of the specific authentication type for an app accou
 **Example**
 
   ```js
+  import { BusinessError } from '@ohos.base';
+  
   try {
-    appAccountManager.setAuthToken('LiSi', 'getSocialData', 'xxxx', (err) => {
+    appAccountManager.setAuthToken('LiSi', 'getSocialData', 'xxxx', (err: BusinessError) => {
       if (err) {
         console.log('setAuthToken failed, error: ' + JSON.stringify(err));
       } else {
@@ -1573,7 +1653,7 @@ Sets an authorization token of the specific authentication type for an app accou
       }
     });
   } catch (err) {
-      console.log('setAuthToken exception: ' + JSON.stringify(err));
+    console.log('setAuthToken exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -1611,10 +1691,12 @@ Sets an authorization token of the specific authentication type for an app accou
 **Example**
 
   ```js
+  import { BusinessError } from '@ohos.base';
+  
   try {
     appAccountManager.setAuthToken('LiSi', 'getSocialData', 'xxxx').then(() => {
         console.log('setAuthToken successfully');
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
         console.log('setAuthToken failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
@@ -1652,8 +1734,11 @@ Deletes the authorization token of the specified authentication type for an app 
 **Example**
 
   ```js
+  import { BusinessError } from '@ohos.base';
+  
   try {
-      appAccountManager.deleteAuthToken('LiSi', 'com.example.accountjsdemo', 'getSocialData', 'xxxxx', (err) => {
+    appAccountManager.deleteAuthToken('LiSi', 'com.example.accountjsdemo', 'getSocialData', 'xxxxx',
+      (err: BusinessError) => {
         if (err) {
           console.log('deleteAuthToken failed, error: ' + JSON.stringify(err));
         } else {
@@ -1661,7 +1746,7 @@ Deletes the authorization token of the specified authentication type for an app 
         }
       });
   } catch (err) {
-      console.log('deleteAuthToken exception: ' + JSON.stringify(err));
+    console.log('deleteAuthToken exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -1700,10 +1785,12 @@ Deletes the authorization token of the specified authentication type for an app 
 **Example**
 
   ```js
+  import { BusinessError } from '@ohos.base';
+  
   try {
     appAccountManager.deleteAuthToken('LiSi', 'com.example.accountjsdemo', 'getSocialData', 'xxxxx').then(() => {
       console.log('deleteAuthToken successfully');
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
       console.log('deleteAuthToken failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
@@ -1743,8 +1830,11 @@ Sets the visibility of an authorization token to an app. This API uses an asynch
 **Example**
 
   ```js
+  import { BusinessError } from '@ohos.base';
+  
   try {
-      appAccountManager.setAuthTokenVisibility('LiSi', 'getSocialData', 'com.example.accountjsdemo', true, (err) => {
+    appAccountManager.setAuthTokenVisibility('LiSi', 'getSocialData', 'com.example.accountjsdemo', true,
+      (err: BusinessError) => {
         if (err) {
           console.log('setAuthTokenVisibility failed, error: ' + JSON.stringify(err));
         } else {
@@ -1793,10 +1883,12 @@ Sets the visibility of an authorization token to an app. This API uses a promise
 **Example**
 
   ```js
+  import { BusinessError } from '@ohos.base';
+  
   try {
     appAccountManager.setAuthTokenVisibility('LiSi', 'getSocialData', 'com.example.accountjsdemo', true).then(() => {
       console.log('setAuthTokenVisibility successfully');
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
       console.log('setAuthTokenVisibility failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
@@ -1833,14 +1925,17 @@ Checks the visibility of an authorization token of the specified authentication 
 **Example**
 
   ```js
+  import { BusinessError } from '@ohos.base';
+  
   try {
-    appAccountManager.checkAuthTokenVisibility('LiSi', 'getSocialData', 'com.example.accountjsdemo', (err, isVisible) => {
-      if (err) {
-        console.log('checkAuthTokenVisibility failed, error: ' + JSON.stringify(err));
-      } else {
-        console.log('checkAuthTokenVisibility successfully, isVisible: ' + isVisible);
-      }
-    });
+    appAccountManager.checkAuthTokenVisibility('LiSi', 'getSocialData', 'com.example.accountjsdemo',
+      (err: BusinessError, isVisible: boolean) => {
+        if (err) {
+          console.log('checkAuthTokenVisibility failed, error: ' + JSON.stringify(err));
+        } else {
+          console.log('checkAuthTokenVisibility successfully, isVisible: ' + isVisible);
+        }
+      });
   } catch (err) {
     console.log('checkAuthTokenVisibility exception: ' + JSON.stringify(err));
   }
@@ -1880,10 +1975,13 @@ Checks the visibility of an authorization token of the specified authentication 
 **Example**
 
   ```js
+  import { BusinessError } from '@ohos.base';
+  
   try {
-    appAccountManager.checkAuthTokenVisibility('LiSi', 'getSocialData', 'com.example.accountjsdemo').then((isVisible) => {
+    appAccountManager.checkAuthTokenVisibility('LiSi', 'getSocialData', 'com.example.accountjsdemo').then((
+      isVisible: boolean) => {
       console.log('checkAuthTokenVisibility successfully, isVisible: ' + isVisible);
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
       console.log('checkAuthTokenVisibility failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
@@ -1918,14 +2016,17 @@ Obtains all tokens visible to the invoker for an app account. This API uses an a
 **Example**
 
   ```js
+  import { BusinessError } from '@ohos.base';
+  
   try {
-    appAccountManager.getAllAuthTokens('LiSi', 'com.example.accountjsdemo', (err, tokenArr) => {
-      if (err) {
-        console.log('getAllAuthTokens failed, error: ' + JSON.stringify(err));
-      } else {
-        console.log('getAllAuthTokens successfully, tokenArr: ' + tokenArr);
-      }
-    });
+    appAccountManager.getAllAuthTokens('LiSi', 'com.example.accountjsdemo',
+      (err: BusinessError, tokenArr: account_appAccount.AuthTokenInfo[]) => {
+        if (err) {
+          console.log('getAllAuthTokens failed, error: ' + JSON.stringify(err));
+        } else {
+          console.log('getAllAuthTokens successfully, tokenArr: ' + tokenArr);
+        }
+      });
   } catch (err) {
     console.log('getAllAuthTokens exception: ' + JSON.stringify(err));
   }
@@ -1963,11 +2064,14 @@ Obtains all tokens visible to the invoker for an app account. This API uses a pr
 **Example**
 
   ```js
+  import { BusinessError } from '@ohos.base';
+  
   try {
-    appAccountManager.getAllAuthTokens('LiSi', 'com.example.accountjsdemo').then((tokenArr) => {
-        console.log('getAllAuthTokens successfully, tokenArr: ' + JSON.stringify(tokenArr));
-    }).catch((err) => {
-        console.log('getAllAuthTokens failed, error: ' + JSON.stringify(err));
+    appAccountManager.getAllAuthTokens('LiSi', 'com.example.accountjsdemo').then((
+      tokenArr: account_appAccount.AuthTokenInfo[]) => {
+      console.log('getAllAuthTokens successfully, tokenArr: ' + JSON.stringify(tokenArr));
+    }).catch((err: BusinessError) => {
+      console.log('getAllAuthTokens failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
     console.log('getAllAuthTokens exception: ' + JSON.stringify(err));
@@ -2002,8 +2106,10 @@ Obtains the authorization list of the specified authentication type for an app a
 **Example**
 
   ```js
+  import { BusinessError } from '@ohos.base';
+  
   try {
-    appAccountManager.getAuthList('LiSi', 'getSocialData', (err, authList) => {
+    appAccountManager.getAuthList('LiSi', 'getSocialData', (err: BusinessError, authList: string[]) => {
       if (err) {
         console.log('getAuthList failed, error: ' + JSON.stringify(err));
       } else {
@@ -2048,10 +2154,12 @@ Obtains the authorization list of the specified authentication type for an app a
 **Example**
 
   ```js
+  import { BusinessError } from '@ohos.base';
+  
   try {
-    appAccountManager.getAuthList('LiSi', 'getSocialData').then((authList) => {
+    appAccountManager.getAuthList('LiSi', 'getSocialData').then((authList: string[]) => {
         console.log('getAuthList successfully, authList: ' + authList);
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
         console.log('getAuthList failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
@@ -2085,19 +2193,22 @@ Obtains the authenticator callback for an authentication session. This API uses 
 **Example**
 
   ```js
+  import { BusinessError } from '@ohos.base';
   import UIAbility from '@ohos.app.ability.UIAbility';
+  import Want from '@ohos.app.ability.Want';
+  import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 
   export default class EntryAbility extends UIAbility {
-    onCreate(want, param) {
-      var sessionId = want.parameters[account_appAccount.Constants.KEY_SESSION_ID];
+    onCreate(want: Want, param: AbilityConstant.LaunchParam) { // Ability lifecycle function.
+      let sessionId: string = want.parameters![account_appAccount.Constants.KEY_SESSION_ID] as string;
       try {
-        appAccountManager.getAuthCallback(sessionId, (err, callback) => {
+        appAccountManager.getAuthCallback(sessionId, (err: BusinessError, callback: account_appAccount.AuthCallback) => {
           if (err != null) {
               console.log('getAuthCallback err: ' + JSON.stringify(err));
               return;
           }
-          var result = {
-            accountInfo: {
+          let result: account_appAccount.AuthResult = {
+            account: {
               name: 'Lisi',
               owner: 'com.example.accountjsdemo',
             },
@@ -2146,15 +2257,18 @@ Obtains the authenticator callback for an authentication session. This API uses 
 **Example**
 
   ```js
+  import { BusinessError } from '@ohos.base';
   import UIAbility from '@ohos.app.ability.UIAbility';
+  import Want from '@ohos.app.ability.Want';
+  import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 
   export default class EntryAbility extends UIAbility {
-    onCreate(want, param) {
-      var sessionId = want.parameters[account_appAccount.Constants.KEY_SESSION_ID];
+    onCreate(want: Want, param: AbilityConstant.LaunchParam) { // Ability lifecycle function.
+      let sessionId: string = want.parameters![account_appAccount.Constants.KEY_SESSION_ID] as string;
       try {
-        appAccountManager.getAuthCallback(sessionId).then((callback) => {
-        var result = {
-          accountInfo: {
+        appAccountManager.getAuthCallback(sessionId).then((callback: account_appAccount.AuthCallback) => {
+        let result: account_appAccount.AuthResult = {
+          account: {
             name: 'Lisi',
             owner: 'com.example.accountjsdemo',
           },
@@ -2164,7 +2278,7 @@ Obtains the authenticator callback for an authentication session. This API uses 
           }
         };
         callback.onResult(0, result);
-        }).catch((err) => {
+        }).catch((err: BusinessError) => {
           console.log('getAuthCallback err: ' + JSON.stringify(err));
         });
       } catch (err) {
@@ -2200,14 +2314,17 @@ Obtains the authenticator information of an app. This API uses an asynchronous c
 **Example**
 
   ```js
+  import { BusinessError } from '@ohos.base';
+  
   try {
-    appAccountManager.queryAuthenticatorInfo('com.example.accountjsdemo', (err, info) => {
-      if (err) {
-        console.log('queryAuthenticatorInfo failed, error: ' + JSON.stringify(err));
-      } else {
-        console.log('queryAuthenticatorInfo successfully, info: ' + JSON.stringify(info));
-      }
-    });
+    appAccountManager.queryAuthenticatorInfo('com.example.accountjsdemo',
+      (err: BusinessError, info: account_appAccount.AuthenticatorInfo) => {
+        if (err) {
+          console.log('queryAuthenticatorInfo failed, error: ' + JSON.stringify(err));
+        } else {
+          console.log('queryAuthenticatorInfo successfully, info: ' + JSON.stringify(info));
+        }
+      });
   } catch (err) {
     console.log('queryAuthenticatorInfo exception: ' + JSON.stringify(err));
   }
@@ -2244,11 +2361,14 @@ Obtains the authenticator information of an app. This API uses a promise to retu
 **Example**
 
   ```js
+  import { BusinessError } from '@ohos.base';
+  
   try {
-    appAccountManager.queryAuthenticatorInfo('com.example.accountjsdemo').then((info) => { 
-        console.log('queryAuthenticatorInfo successfully, info: ' + JSON.stringify(info));
-    }).catch((err) => {
-        console.log('queryAuthenticatorInfo failed, error: ' + JSON.stringify(err));
+    appAccountManager.queryAuthenticatorInfo('com.example.accountjsdemo').then((
+      info: account_appAccount.AuthenticatorInfo) => { 
+      console.log('queryAuthenticatorInfo successfully, info: ' + JSON.stringify(info));
+    }).catch((err: BusinessError) => {
+      console.log('queryAuthenticatorInfo failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
     console.log('queryAuthenticatorInfo exception: ' + JSON.stringify(err));
@@ -2286,15 +2406,18 @@ Checks whether an app account has specific labels. This API uses an asynchronous
 **Example**
 
   ```js
+  import { BusinessError } from '@ohos.base';
+  
   let labels = ['student'];
   try {
-    appAccountManager.checkAccountLabels('zhangsan', 'com.example.accountjsdemo', labels, (err, hasAllLabels) => {
-      if (err) {
-        console.log('checkAccountLabels failed, error: ' + JSON.stringify(err));
-      } else {
-        console.log('checkAccountLabels successfully, hasAllLabels: ' + hasAllLabels);
-      }
-    });
+    appAccountManager.checkAccountLabels('zhangsan', 'com.example.accountjsdemo', labels,
+      (err: BusinessError, hasAllLabels: boolean) => {
+        if (err) {
+          console.log('checkAccountLabels failed, error: ' + JSON.stringify(err));
+        } else {
+          console.log('checkAccountLabels successfully, hasAllLabels: ' + hasAllLabels);
+        }
+      });
   } catch (err) {
     console.log('checkAccountLabels exception: ' + JSON.stringify(err));
   }
@@ -2336,11 +2459,14 @@ Checks whether an app account has specific labels. This API uses a promise to re
 **Example**
 
   ```js
+  import { BusinessError } from '@ohos.base';
+  
   let labels = ['student'];
   try {
-    appAccountManager.checkAccountLabels('zhangsan', 'com.example.accountjsdemo', labels).then((hasAllLabels) => {
+    appAccountManager.checkAccountLabels('zhangsan', 'com.example.accountjsdemo', labels).then((
+      hasAllLabels: boolean) => {
       console.log('checkAccountLabels successfully: ' + hasAllLabels);
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
       console.log('checkAccountLabels failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
@@ -2376,8 +2502,10 @@ Deletes the credential of the specified type from an app account. This API uses 
 **Example**
 
   ```js
+  import { BusinessError } from '@ohos.base';
+  
   try {
-    appAccountManager.deleteCredential('zhangsan', 'PIN_SIX', (err) => {
+    appAccountManager.deleteCredential('zhangsan', 'PIN_SIX', (err: BusinessError) => {
       if (err) {
         console.log('deleteCredential failed, error: ' + JSON.stringify(err));
       } else {
@@ -2422,10 +2550,12 @@ Deletes the credential of the specified type from an app account. This API uses 
 **Example**
 
   ```js
+  import { BusinessError } from '@ohos.base';
+  
   try {
     appAccountManager.deleteCredential('zhangsan', 'PIN_SIX').then(() => {
       console.log('deleteCredential successfully');
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
       console.log('deleteCredential failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
@@ -2460,18 +2590,21 @@ Selects the accounts that can be accessed by the invoker based on the options. T
 **Example**
 
   ```js
-  let options = {
+  import { BusinessError } from '@ohos.base';
+  
+  let options: account_appAccount.SelectAccountsOptions = {
     allowedOwners: [ 'com.example.accountjsdemo' ],
     requiredLabels: [ 'student' ]
   };
   try {
-    appAccountManager.selectAccountsByOptions(options, (err, accountArr) => {
-      if (err) {
-        console.log('selectAccountsByOptions failed, error: ' + JSON.stringify(err));
-      } else {
-        console.log('selectAccountsByOptions successfully, accountArr: ' + JSON.stringify(accountArr));
-      }
-    });
+    appAccountManager.selectAccountsByOptions(options,
+      (err: BusinessError, accountArr: account_appAccount.AppAccountInfo[]) => {
+        if (err) {
+          console.log('selectAccountsByOptions failed, error: ' + JSON.stringify(err));
+        } else {
+          console.log('selectAccountsByOptions successfully, accountArr: ' + JSON.stringify(accountArr));
+        }
+      });
   } catch (err) {
     console.log('selectAccountsByOptions exception: ' + JSON.stringify(err));
   }
@@ -2509,13 +2642,15 @@ Selects the accounts that can be accessed by the invoker based on the options. T
 **Example**
 
   ```js
-  let options = {
+  import { BusinessError } from '@ohos.base';
+  
+  let options: account_appAccount.SelectAccountsOptions = {
     allowedOwners: ['com.example.accountjsdemo']
   };
   try {
-    appAccountManager.selectAccountsByOptions(options).then((accountArr) => {
+    appAccountManager.selectAccountsByOptions(options).then((accountArr: account_appAccount.AppAccountInfo[]) => {
       console.log('selectAccountsByOptions successfully, accountArr: ' + JSON.stringify(accountArr));
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
       console.log('selectAccountsByOptions failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
@@ -2553,13 +2688,15 @@ Verifies the credential of an app account. This API uses an asynchronous callbac
 **Example**
 
   ```js
+  import Want from '@ohos.app.ability.Want';
+
   try {
       appAccountManager.verifyCredential('zhangsan', 'com.example.accountjsdemo', {
-          onResult: (resultCode, result) => {
+          onResult: (resultCode: number, result?: account_appAccount.AuthResult) => {
               console.log('verifyCredential onResult, resultCode: ' + JSON.stringify(resultCode));
               console.log('verifyCredential onResult, result: ' + JSON.stringify(result));
           },
-          onRequestRedirected: (request) => {
+          onRequestRedirected: (request: Want) => {
               console.log('verifyCredential onRequestRedirected, request: ' + JSON.stringify(request));
           }
       });
@@ -2599,17 +2736,19 @@ Verifies the user credential. This API uses an asynchronous callback to return t
 **Example**
 
   ```js
-  let options = {
+  import Want from '@ohos.app.ability.Want';
+
+  let options: account_appAccount.VerifyCredentialOptions = {
     credentialType: 'pin',
     credential: '123456'
   };
   try {
     appAccountManager.verifyCredential('zhangsan', 'com.example.accountjsdemo', options, {
-      onResult: (resultCode, result) => {
+      onResult: (resultCode: number, result?: account_appAccount.AuthResult) => {
         console.log('verifyCredential onResult, resultCode: ' + JSON.stringify(resultCode));
         console.log('verifyCredential onResult, result: ' + JSON.stringify(result));
       },
-      onRequestRedirected: (request) => {
+      onRequestRedirected: (request: Want) => {
         console.log('verifyCredential onRequestRedirected, request: ' + JSON.stringify(request));
       }
     });
@@ -2646,13 +2785,15 @@ Sets the authenticator attributes of an app. This API uses an asynchronous callb
 **Example**
 
   ```js
+  import Want from '@ohos.app.ability.Want';
+
   try {
     appAccountManager.setAuthenticatorProperties('com.example.accountjsdemo', {
-      onResult: (resultCode, result) => {
+      onResult: (resultCode: number, result?: account_appAccount.AuthResult) => {
         console.log('setAuthenticatorProperties onResult, resultCode: ' + JSON.stringify(resultCode));
         console.log('setAuthenticatorProperties onResult, result: ' + JSON.stringify(result));
       },
-      onRequestRedirected: (request) => {
+      onRequestRedirected: (request: Want) => {
         console.log('setAuthenticatorProperties onRequestRedirected, request: ' + JSON.stringify(request));
       }
     });
@@ -2690,16 +2831,18 @@ Set authenticator properties. This API uses an asynchronous callback to return t
 **Example**
 
   ```js
-  let options = {
-    properties: {'prop1': 'value1'}
+  import Want from '@ohos.app.ability.Want';
+
+  let options: account_appAccount.SetPropertiesOptions = {
+    properties: {prop1: 'value1'}
   };
   try {
     appAccountManager.setAuthenticatorProperties('com.example.accountjsdemo', options, {
-      onResult: (resultCode, result) => {
+      onResult: (resultCode: number, result?: account_appAccount.AuthResult) => {
         console.log('setAuthenticatorProperties onResult, resultCode: ' + JSON.stringify(resultCode));
         console.log('setAuthenticatorProperties onResult, result: ' + JSON.stringify(result));
       },
-      onRequestRedirected: (request) => {
+      onRequestRedirected: (request: Want) => {
         console.log('setAuthenticatorProperties onRequestRedirected, request: ' + JSON.stringify(request));
       }
     });
@@ -2732,7 +2875,9 @@ Adds an app account. This API uses an asynchronous callback to return the result
 **Example**
 
   ```js
-  appAccountManager.addAccount('WangWu', (err) => { 
+  import { BusinessError } from '@ohos.base';
+  
+  appAccountManager.addAccount('WangWu', (err: BusinessError) => { 
       console.log('addAccount err: ' + JSON.stringify(err));
   });
   ```
@@ -2759,7 +2904,9 @@ Adds an app account name and additional information. This API uses an asynchrono
 **Example**
 
   ```js
-  appAccountManager.addAccount('LiSi', 'token101', (err) => { 
+  import { BusinessError } from '@ohos.base';
+  
+  appAccountManager.addAccount('LiSi', 'token101', (err: BusinessError) => { 
     console.log('addAccount err: ' + JSON.stringify(err));
   });
   ```
@@ -2791,9 +2938,11 @@ Adds an app account name and additional information. This API uses an asynchrono
 **Example**
 
   ```js
+  import { BusinessError } from '@ohos.base';
+  
   appAccountManager.addAccount('LiSi', 'token101').then(()=> { 
     console.log('addAccount Success');
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.log('addAccount err: ' + JSON.stringify(err));
   });
   ```
@@ -2822,23 +2971,27 @@ Adds an app account implicitly based on the specified owner. This API uses an as
 **Example**
 
   ```js
+  import { BusinessError } from '@ohos.base';
+  import Want from '@ohos.app.ability.Want';
+  import common from '@ohos.app.ability.common';
 
+  let context = getContext(this) as common.UIAbilityContext; // UIAbilityContext
 
-  function onResultCallback(code, result) {
+  function onResultCallback(code: number, result: Record<string, Object>): void {
     console.log('resultCode: ' + code);
     console.log('result: ' + JSON.stringify(result));
   }
 
-  function onRequestRedirectedCallback(request) {
-    let wantInfo = {
+  function onRequestRedirectedCallback(request: Want): void {
+    let wantInfo: Want = {
       deviceId: '',
       bundleName: 'com.example.accountjsdemo',
       action: 'ohos.want.action.viewData',
       entities: ['entity.system.default'],
     }
-    this.context.startAbility(wantInfo).then(() => {
+    context.startAbility(wantInfo).then(() => {
       console.log('startAbility successfully');
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
       console.log('startAbility err: ' + JSON.stringify(err));
     })
   }
@@ -2871,7 +3024,9 @@ Deletes an app account. This API uses an asynchronous callback to return the res
 **Example**
 
   ```js
-  appAccountManager.deleteAccount('ZhaoLiu', (err) => { 
+  import { BusinessError } from '@ohos.base';
+  
+  appAccountManager.deleteAccount('ZhaoLiu', (err: BusinessError) => { 
       console.log('deleteAccount err: ' + JSON.stringify(err));
    });
   ```
@@ -2903,9 +3058,11 @@ Deletes an app account. This API uses a promise to return the result.
 **Example**
 
   ```js
+  import { BusinessError } from '@ohos.base';
+
   appAccountManager.deleteAccount('ZhaoLiu').then(() => { 
         console.log('deleteAccount Success');
-   }).catch((err) => {
+   }).catch((err: BusinessError) => {
       console.log('deleteAccount err: ' + JSON.stringify(err));
   });
   ```
@@ -2932,7 +3089,9 @@ Disables an app account from accessing an app. This API uses an asynchronous cal
 **Example**
 
   ```js
-  appAccountManager.disableAppAccess('ZhangSan', 'com.example.accountjsdemo', (err) => { 
+  import { BusinessError } from '@ohos.base';
+
+  appAccountManager.disableAppAccess('ZhangSan', 'com.example.accountjsdemo', (err: BusinessError) => { 
       console.log('disableAppAccess err: ' + JSON.stringify(err));
   });
   ```
@@ -2965,9 +3124,11 @@ Disables an app account from accessing an app. This API uses a promise to return
 **Example**
 
   ```js
+  import { BusinessError } from '@ohos.base';
+
   appAccountManager.disableAppAccess('ZhangSan', 'com.example.accountjsdemo').then(() => { 
       console.log('disableAppAccess Success');
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
       console.log('disableAppAccess err: ' + JSON.stringify(err));
   });
   ```
@@ -2995,7 +3156,9 @@ Enables an app account to access an app. This API uses an asynchronous callback 
 **Example**
 
   ```js
-  appAccountManager.enableAppAccess('ZhangSan', 'com.example.accountjsdemo', (err) => { 
+  import { BusinessError } from '@ohos.base';
+  
+  appAccountManager.enableAppAccess('ZhangSan', 'com.example.accountjsdemo', (err: BusinessError) => { 
       console.log('enableAppAccess: ' + JSON.stringify(err));
    });
   ```
@@ -3028,9 +3191,11 @@ Enables an app account to access an app. This API uses a promise to return the r
 **Example**
 
   ```js
+  import { BusinessError } from '@ohos.base';
+  
   appAccountManager.enableAppAccess('ZhangSan', 'com.example.accountjsdemo').then(() => { 
        console.log('enableAppAccess Success');
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
       console.log('enableAppAccess err: ' + JSON.stringify(err));
   });
   ```
@@ -3059,7 +3224,9 @@ Checks whether data synchronization is enabled for an app account. This API uses
 **Example**
 
   ```js
-  appAccountManager.checkAppAccountSyncEnable('ZhangSan', (err, result) => { 
+  import { BusinessError } from '@ohos.base';
+  
+  appAccountManager.checkAppAccountSyncEnable('ZhangSan', (err: BusinessError, result: boolean) => { 
       console.log('checkAppAccountSyncEnable err: ' + JSON.stringify(err));
       console.log('checkAppAccountSyncEnable result: ' + result);
   });
@@ -3094,9 +3261,11 @@ Checks whether data synchronization is enabled for an app account. This API uses
 **Example**
 
   ```js
-  appAccountManager.checkAppAccountSyncEnable('ZhangSan').then((data) => { 
+  import { BusinessError } from '@ohos.base';
+  
+  appAccountManager.checkAppAccountSyncEnable('ZhangSan').then((data: boolean) => { 
       console.log('checkAppAccountSyncEnable, result: ' + data);
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
       console.log('checkAppAccountSyncEnable err: ' + JSON.stringify(err));
   });
   ```
@@ -3125,7 +3294,9 @@ Set credentials for an app account. This API uses an asynchronous callback to re
 **Example**
 
   ```js
-  appAccountManager.setAccountCredential('ZhangSan', 'credentialType001', 'credential001', (err) => { 
+  import { BusinessError } from '@ohos.base';
+  
+  appAccountManager.setAccountCredential('ZhangSan', 'credentialType001', 'credential001', (err: BusinessError) => { 
       console.log('setAccountCredential err: ' + JSON.stringify(err));
   });
   ```
@@ -3159,9 +3330,11 @@ Set credentials for an app account. This API uses a promise to return the result
 **Example**
 
   ```js
+  import { BusinessError } from '@ohos.base';
+  
   appAccountManager.setAccountCredential('ZhangSan', 'credentialType001', 'credential001').then(() => { 
       console.log('setAccountCredential Success');
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
       console.log('setAccountCredential err: ' + JSON.stringify(err));
   });
   ```
@@ -3190,7 +3363,9 @@ Sets additional information for an app account. This API uses an asynchronous ca
 **Example**
 
   ```js
-  appAccountManager.setAccountExtraInfo('ZhangSan', 'Tk002', (err) => { 
+  import { BusinessError } from '@ohos.base';
+  
+  appAccountManager.setAccountExtraInfo('ZhangSan', 'Tk002', (err: BusinessError) => { 
       console.log('setAccountExtraInfo err: ' + JSON.stringify(err));
   });
   ```
@@ -3224,9 +3399,11 @@ Sets additional information for an app account. This API uses a promise to retur
 **Example**
 
   ```js
+  import { BusinessError } from '@ohos.base';
+  
   appAccountManager.setAccountExtraInfo('ZhangSan', 'Tk002').then(() => { 
       console.log('setAccountExtraInfo Success');
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
       console.log('setAccountExtraInfo err: ' + JSON.stringify(err));
   });
   ```
@@ -3256,7 +3433,9 @@ Sets data synchronization for an app account. This API uses an asynchronous call
 **Example**
 
   ```js
-  appAccountManager.setAppAccountSyncEnable('ZhangSan', true, (err) => { 
+  import { BusinessError } from '@ohos.base';
+  
+  appAccountManager.setAppAccountSyncEnable('ZhangSan', true, (err: BusinessError) => { 
       console.log('setAppAccountSyncEnable err: ' + JSON.stringify(err));
   });
   ```
@@ -3291,9 +3470,11 @@ Sets data synchronization for an app account. This API uses a promise to return 
 **Example**
 
   ```js
+  import { BusinessError } from '@ohos.base';
+  
   appAccountManager .setAppAccountSyncEnable('ZhangSan', true).then(() => { 
       console.log('setAppAccountSyncEnable Success');
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
       console.log('setAppAccountSyncEnable err: ' + JSON.stringify(err));
   });
   ```
@@ -3323,7 +3504,9 @@ Sets data to be associated with an app account. This API uses an asynchronous ca
 **Example**
 
   ```js
-  appAccountManager.setAssociatedData('ZhangSan', 'k001', 'v001', (err) => { 
+  import { BusinessError } from '@ohos.base';
+  
+  appAccountManager.setAssociatedData('ZhangSan', 'k001', 'v001', (err: BusinessError) => { 
       console.log('setAssociatedData err: ' + JSON.stringify(err));
   });
   ```
@@ -3358,9 +3541,11 @@ Sets data to be associated with an app account. This API uses a promise to retur
 **Example**
 
   ```js
+  import { BusinessError } from '@ohos.base';
+  
   appAccountManager.setAssociatedData('ZhangSan', 'k001', 'v001').then(() => { 
       console.log('setAssociatedData Success');
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
       console.log('setAssociatedData err: ' + JSON.stringify(err));
   });
   ```
@@ -3388,7 +3573,9 @@ Obtains information about all accessible app accounts. This API uses an asynchro
 **Example**
 
   ```js
-  appAccountManager.getAllAccessibleAccounts((err, data)=>{
+  import { BusinessError } from '@ohos.base';
+  
+  appAccountManager.getAllAccessibleAccounts((err: BusinessError, data: account_appAccount.AppAccountInfo[])=>{
   	console.debug('getAllAccessibleAccounts err: ' + JSON.stringify(err));
   	console.debug('getAllAccessibleAccounts data: ' + JSON.stringify(data));
   });
@@ -3417,9 +3604,11 @@ Obtains information about all accessible app accounts. This API uses a promise t
 **Example**
 
   ```js
-  appAccountManager.getAllAccessibleAccounts().then((data) => { 
+  import { BusinessError } from '@ohos.base';
+  
+  appAccountManager.getAllAccessibleAccounts().then((data: account_appAccount.AppAccountInfo[]) => { 
        console.log('getAllAccessibleAccounts: ' + data);
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
       console.log('getAllAccessibleAccounts err: ' + JSON.stringify(err));
   });
   ```
@@ -3448,8 +3637,10 @@ Obtains the app accounts that can be accessed by the invoker based on the app ac
 **Example**
 
   ```js
+  import { BusinessError } from '@ohos.base';
+  
   const selfBundle = 'com.example.actsgetallaaccounts';
-  appAccountManager.getAllAccounts(selfBundle, (err, data)=>{
+  appAccountManager.getAllAccounts(selfBundle, (err: BusinessError, data: account_appAccount.AppAccountInfo[])=>{
   	console.debug('getAllAccounts err: ' + JSON.stringify(err));
   	console.debug('getAllAccounts data:' + JSON.stringify(data));
   });
@@ -3484,10 +3675,12 @@ Obtains the app accounts that can be accessed by the invoker based on the app ac
 **Example**
 
   ```js
+  import { BusinessError } from '@ohos.base';
+  
   const selfBundle = 'com.example.actsgetallaaccounts';
-  appAccountManager.getAllAccounts(selfBundle).then((data) => { 
+  appAccountManager.getAllAccounts(selfBundle).then((data: account_appAccount.AppAccountInfo[]) => { 
        console.log('getAllAccounts: ' + data);
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
       console.log('getAllAccounts err: ' + JSON.stringify(err));
   });
   ```
@@ -3515,7 +3708,9 @@ Obtains the credential of an app account. This API uses an asynchronous callback
 **Example**
 
   ```js
-  appAccountManager.getAccountCredential('ZhangSan', 'credentialType001', (err, result) => { 
+  import { BusinessError } from '@ohos.base';
+  
+  appAccountManager.getAccountCredential('ZhangSan', 'credentialType001', (err: BusinessError, result: string) => { 
       console.log('getAccountCredential err: ' + JSON.stringify(err));
       console.log('getAccountCredential result: ' + result);
   });
@@ -3549,9 +3744,11 @@ Obtains the credential of an app account. This API uses a promise to return the 
 **Example**
 
   ```js
-  appAccountManager.getAccountCredential('ZhangSan', 'credentialType001').then((data) => { 
+  import { BusinessError } from '@ohos.base';
+  
+  appAccountManager.getAccountCredential('ZhangSan', 'credentialType001').then((data: string) => { 
       console.log('getAccountCredential, result: ' + data);
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
       console.log('getAccountCredential err: ' + JSON.stringify(err));
   });
   ```
@@ -3578,7 +3775,9 @@ Obtains additional information of an app account. Additional information refers 
 **Example**
 
   ```js
-  appAccountManager.getAccountExtraInfo('ZhangSan', (err, result) => { 
+  import { BusinessError } from '@ohos.base';
+  
+  appAccountManager.getAccountExtraInfo('ZhangSan', (err: BusinessError, result: string) => { 
       console.log('getAccountExtraInfo err: ' + JSON.stringify(err));
       console.log('getAccountExtraInfo result: ' + result);
   });
@@ -3611,9 +3810,11 @@ Obtains additional information of an app account. Additional information refers 
 **Example**
 
   ```js
-  appAccountManager.getAccountExtraInfo('ZhangSan').then((data) => { 
+  import { BusinessError } from '@ohos.base';
+  
+  appAccountManager.getAccountExtraInfo('ZhangSan').then((data: string) => { 
       console.log('getAccountExtraInfo, result: ' + data);
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
       console.log('getAccountExtraInfo err: ' + JSON.stringify(err));
   });
   ```
@@ -3641,7 +3842,9 @@ Obtains data associated with an app account. This API uses an asynchronous callb
 **Example**
 
   ```js
-  appAccountManager.getAssociatedData('ZhangSan', 'k001', (err, result) => { 
+  import { BusinessError } from '@ohos.base';
+  
+  appAccountManager.getAssociatedData('ZhangSan', 'k001', (err: BusinessError, result: string) => { 
       console.log('getAssociatedData err: ' + JSON.stringify(err));
       console.log('getAssociatedData result: ' + result);
   });
@@ -3675,9 +3878,11 @@ Obtains data associated with an app account. This API uses a promise to return t
 **Example**
 
   ```js
-  appAccountManager.getAssociatedData('ZhangSan', 'k001').then((data) => { 
+  import { BusinessError } from '@ohos.base';
+  
+  appAccountManager.getAssociatedData('ZhangSan', 'k001').then((data: string) => { 
        console.log('getAssociatedData: ' + data);
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
       console.log('getAssociatedData err: ' + JSON.stringify(err));
   });
   ```
@@ -3705,7 +3910,7 @@ Subscribes to account information changes of apps.
 **Example**
 
   ```js
-  function changeOnCallback(data){
+  function changeOnCallback(data: account_appAccount.AppAccountInfo[]): void {
   	console.debug('receive change data:' + JSON.stringify(data));
   }
   try{
@@ -3738,9 +3943,9 @@ Unsubscribes from account information changes.
 **Example**
 
   ```js
-  function changeOnCallback(data){
+  function changeOnCallback(data: account_appAccount.AppAccountInfo[]): void {
   	console.debug('receive change data: ' + JSON.stringify(data));
-  	appAccountManager.off('change', function(){
+  	appAccountManager.off('change', () => {
   		console.debug('off finish');
   	})
   }
@@ -3777,21 +3982,27 @@ Authenticates an app account with customized options. This API uses an asynchron
 **Example**
 
   ```js
-  function onResultCallback(code, result) {
+  import { BusinessError } from '@ohos.base';
+  import Want from '@ohos.app.ability.Want';
+  import common from '@ohos.app.ability.common';
+
+  let context = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+
+  function onResultCallback(code: number, result: Record<string, Object>): void {
       console.log('resultCode: ' + code);
       console.log('result: ' + JSON.stringify(result));
   }
 
-  function onRequestRedirectedCallback(request) {
-    let wantInfo = {
+  function onRequestRedirectedCallback(request: Want): void {
+    let wantInfo: Want = {
       deviceId: '',
       bundleName: 'com.example.accountjsdemo',
       action: 'ohos.want.action.viewData',
       entities: ['entity.system.default'],
     }
-    this.context.startAbility(wantInfo).then(() => {
+    context.startAbility(wantInfo).then(() => {
       console.log('startAbility successfully');
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
       console.log('startAbility err: ' + JSON.stringify(err));
     })
   }
@@ -3826,10 +4037,13 @@ Obtains the authorization token of the specified authentication type for an app 
 **Example**
 
   ```js
-  appAccountManager.getOAuthToken('LiSi', 'com.example.accountjsdemo', 'getSocialData', (err, data) => {
-       console.log('getOAuthToken err: ' + JSON.stringify(err));
-       console.log('getOAuthToken token: ' + data);
-  });
+  import { BusinessError } from '@ohos.base';
+  
+  appAccountManager.getOAuthToken('LiSi', 'com.example.accountjsdemo', 'getSocialData',
+    (err: BusinessError, data: string) => {
+      console.log('getOAuthToken err: ' + JSON.stringify(err));
+      console.log('getOAuthToken token: ' + data);
+    });
   ```
 
 ### getOAuthToken<sup>(deprecated)</sup>
@@ -3861,9 +4075,11 @@ Obtains the authorization token of the specified authentication type for an app 
 **Example**
 
   ```js
-  appAccountManager.getOAuthToken('LiSi', 'com.example.accountjsdemo', 'getSocialData').then((data) => {
+  import { BusinessError } from '@ohos.base';
+  
+  appAccountManager.getOAuthToken('LiSi', 'com.example.accountjsdemo', 'getSocialData').then((data: string) => {
        console.log('getOAuthToken token: ' + data);
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
       console.log('getOAuthToken err: ' + JSON.stringify(err));
   });
   ```
@@ -3892,7 +4108,9 @@ Sets an authorization token of the specific authentication type for an app accou
 **Example**
 
   ```js
-  appAccountManager.setOAuthToken('LiSi', 'getSocialData', 'xxxx', (err) => {
+  import { BusinessError } from '@ohos.base';
+  
+  appAccountManager.setOAuthToken('LiSi', 'getSocialData', 'xxxx', (err: BusinessError) => {
       console.log('setOAuthToken err: ' + JSON.stringify(err));
   });
   ```
@@ -3926,9 +4144,11 @@ Sets an authorization token of the specific authentication type for an app accou
 **Example**
 
   ```js
+  import { BusinessError } from '@ohos.base';
+  
   appAccountManager.setOAuthToken('LiSi', 'getSocialData', 'xxxx').then(() => {
       console.log('setOAuthToken successfully');
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
       console.log('setOAuthToken err: ' + JSON.stringify(err));
   });
   ```
@@ -3958,9 +4178,12 @@ Deletes the authorization token of the specified authentication type for an app 
 **Example**
 
   ```js
-  appAccountManager.deleteOAuthToken('LiSi', 'com.example.accountjsdemo', 'getSocialData', 'xxxxx', (err) => {
-       console.log('deleteOAuthToken err: ' + JSON.stringify(err));
-  });
+  import { BusinessError } from '@ohos.base';
+  
+  appAccountManager.deleteOAuthToken('LiSi', 'com.example.accountjsdemo', 'getSocialData', 'xxxxx',
+    (err: BusinessError) => {
+      console.log('deleteOAuthToken err: ' + JSON.stringify(err));
+    });
   ```
 
 ### deleteOAuthToken<sup>(deprecated)</sup>
@@ -3993,9 +4216,11 @@ Deletes the authorization token of the specified authentication type for an app 
 **Example**
 
   ```js
+  import { BusinessError } from '@ohos.base';
+  
   appAccountManager.deleteOAuthToken('LiSi', 'com.example.accountjsdemo', 'getSocialData', 'xxxxx').then(() => {
        console.log('deleteOAuthToken successfully');
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
       console.log('deleteOAuthToken err: ' + JSON.stringify(err));
   });
   ```
@@ -4025,9 +4250,12 @@ Sets the visibility of an authorization token to an app. This API uses an asynch
 **Example**
 
   ```js
-  appAccountManager.setOAuthTokenVisibility('LiSi', 'getSocialData', 'com.example.accountjsdemo', true, (err) => {
-       console.log('setOAuthTokenVisibility err: ' + JSON.stringify(err));
-  });
+  import { BusinessError } from '@ohos.base';
+  
+  appAccountManager.setOAuthTokenVisibility('LiSi', 'getSocialData', 'com.example.accountjsdemo', true,
+    (err: BusinessError) => {
+      console.log('setOAuthTokenVisibility err: ' + JSON.stringify(err));
+    });
   ```
 
 ### setOAuthTokenVisibility<sup>(deprecated)</sup>
@@ -4060,9 +4288,11 @@ Sets the visibility of an authorization token to an app. This API uses a promise
 **Example**
 
   ```js
+  import { BusinessError } from '@ohos.base';
+  
   appAccountManager.setOAuthTokenVisibility('LiSi', 'getSocialData', 'com.example.accountjsdemo', true).then(() => {
       console.log('setOAuthTokenVisibility successfully');
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
       console.log('setOAuthTokenVisibility err: ' + JSON.stringify(err));
   });
   ```
@@ -4091,10 +4321,13 @@ Checks the visibility of an authorization token of the specified authentication 
 **Example**
 
   ```js
-  appAccountManager.checkOAuthTokenVisibility('LiSi', 'getSocialData', 'com.example.accountjsdemo', (err, data) => {
+  import { BusinessError } from '@ohos.base';
+  
+  appAccountManager.checkOAuthTokenVisibility('LiSi', 'getSocialData', 'com.example.accountjsdemo',
+    (err: BusinessError, data: boolean) => {
       console.log('checkOAuthTokenVisibility err: ' + JSON.stringify(err));
       console.log('checkOAuthTokenVisibility isVisible: ' + data);
-  });
+    });
   ```
 
 ### checkOAuthTokenVisibility<sup>(deprecated)</sup>
@@ -4126,10 +4359,13 @@ Checks the visibility of an authorization token of the specified authentication 
 **Example**
 
   ```js
-  appAccountManager.checkOAuthTokenVisibility('LiSi', 'getSocialData', 'com.example.accountjsdemo').then((data) => {
-      console.log('checkOAuthTokenVisibility isVisible: ' + data);
-  }).catch((err) => {
-      console.log('checkOAuthTokenVisibility err: ' + JSON.stringify(err));
+  import { BusinessError } from '@ohos.base';
+  
+  appAccountManager.checkOAuthTokenVisibility('LiSi', 'getSocialData', 'com.example.accountjsdemo').then((
+    data: boolean) => {
+    console.log('checkOAuthTokenVisibility isVisible: ' + data);
+  }).catch((err: BusinessError) => {
+    console.log('checkOAuthTokenVisibility err: ' + JSON.stringify(err));
   });
   ```
 
@@ -4156,10 +4392,13 @@ Obtains all tokens visible to the invoker for an app account. This API uses an a
 **Example**
 
   ```js
-  appAccountManager.getAllOAuthTokens('LiSi', 'com.example.accountjsdemo', (err, data) => {
+  import { BusinessError } from '@ohos.base';
+  
+  appAccountManager.getAllOAuthTokens('LiSi', 'com.example.accountjsdemo',
+    (err: BusinessError, data: account_appAccount.OAuthTokenInfo[]) => {
       console.log('getAllOAuthTokens err: ' + JSON.stringify(err));
       console.log('getAllOAuthTokens data: ' + JSON.stringify(data));
-  });
+    });
   ```
 
 ### getAllOAuthTokens<sup>(deprecated)</sup>
@@ -4190,10 +4429,13 @@ Obtains all tokens visible to the invoker for an app account. This API uses a pr
 **Example**
 
   ```js
-  appAccountManager.getAllOAuthTokens('LiSi', 'com.example.accountjsdemo').then((data) => {
-      console.log('getAllOAuthTokens data: ' + JSON.stringify(data));
-  }).catch((err) => {
-      console.log('getAllOAuthTokens err: ' + JSON.stringify(err));
+  import { BusinessError } from '@ohos.base';
+  
+  appAccountManager.getAllOAuthTokens('LiSi', 'com.example.accountjsdemo').then((
+    data: account_appAccount.OAuthTokenInfo[]) => {
+    console.log('getAllOAuthTokens data: ' + JSON.stringify(data));
+  }).catch((err: BusinessError) => {
+    console.log('getAllOAuthTokens err: ' + JSON.stringify(err));
   });
   ```
 
@@ -4220,7 +4462,9 @@ Obtains the authorization list of the specified authentication type for an app a
 **Example**
 
   ```js
-  appAccountManager.getOAuthList('LiSi', 'getSocialData', (err, data) => {
+  import { BusinessError } from '@ohos.base';
+  
+  appAccountManager.getOAuthList('LiSi', 'getSocialData', (err: BusinessError, data: string[]) => {
     console.log('getOAuthList err: ' + JSON.stringify(err));
     console.log('getOAuthList data: ' + JSON.stringify(data));
   });
@@ -4254,9 +4498,11 @@ Obtains the authorization list of the specified authentication type for an app a
 **Example**
 
   ```js
-  appAccountManager.getOAuthList('LiSi', 'getSocialData').then((data) => {
+  import { BusinessError } from '@ohos.base';
+  
+  appAccountManager.getOAuthList('LiSi', 'getSocialData').then((data: string[]) => {
        console.log('getOAuthList data: ' + JSON.stringify(data));
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
       console.log('getOAuthList err: ' + JSON.stringify(err));
   });
   ```
@@ -4283,22 +4529,27 @@ Obtains the authenticator callback for an authentication session. This API uses 
 **Example**
 
   ```js
+  import { BusinessError } from '@ohos.base';
   import UIAbility from '@ohos.app.ability.UIAbility';
+  import Want from '@ohos.app.ability.Want';
+  import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 
   export default class EntryAbility extends UIAbility {
-    onCreate(want, param) {
-      var sessionId = want.parameters[account_appAccount.Constants.KEY_SESSION_ID];
-      appAccountManager.getAuthenticatorCallback(sessionId, (err, callback) => {
-        if (err.code != account_appAccount.ResultCode.SUCCESS) {
-            console.log('getAuthenticatorCallback err: ' + JSON.stringify(err));
-            return;
-        }
-        var result = {[account_appAccount.Constants.KEY_NAME]: 'LiSi',
-                      [account_appAccount.Constants.KEY_OWNER]: 'com.example.accountjsdemo',
-                      [account_appAccount.Constants.KEY_AUTH_TYPE]: 'getSocialData',
-                      [account_appAccount.Constants.KEY_TOKEN]: 'xxxxxx'};
-        callback.onResult(account_appAccount.ResultCode.SUCCESS, result);
-      });
+    onCreate(want: Want, param: AbilityConstant.LaunchParam) { // Ability lifecycle function.
+      let sessionId: string = want.parameters![account_appAccount.Constants.KEY_SESSION_ID] as string;
+      appAccountManager.getAuthenticatorCallback(sessionId,
+          (err: BusinessError, callback: account_appAccount.AuthenticatorCallback) => {
+          if (err.code != account_appAccount.ResultCode.SUCCESS) {
+              console.log('getAuthenticatorCallback err: ' + JSON.stringify(err));
+              return;
+          }
+          callback.onResult(account_appAccount.ResultCode.SUCCESS, {
+            name: 'LiSi',
+            owner: 'com.example.accountjsdemo',
+            authType: 'getSocialData',
+            token: 'xxxxxx'}
+          );
+        });
     }
   }
   ```
@@ -4330,18 +4581,23 @@ Obtains the authenticator callback for an authentication session. This API uses 
 **Example**
 
   ```js
+  import { BusinessError } from '@ohos.base';
   import UIAbility from '@ohos.app.ability.UIAbility';
+  import Want from '@ohos.app.ability.Want';
+  import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 
   export default class EntryAbility extends UIAbility {
-    onCreate(want, param) {
-      var sessionId = want.parameters[account_appAccount.Constants.KEY_SESSION_ID];
-      appAccountManager.getAuthenticatorCallback(sessionId).then((callback) => {
-        var result = {[account_appAccount.Constants.KEY_NAME]: 'LiSi',
-                      [account_appAccount.Constants.KEY_OWNER]: 'com.example.accountjsdemo',
-                      [account_appAccount.Constants.KEY_AUTH_TYPE]: 'getSocialData',
-                      [account_appAccount.Constants.KEY_TOKEN]: 'xxxxxx'};
-        callback.onResult(account_appAccount.ResultCode.SUCCESS, result);
-      }).catch((err) => {
+    onCreate(want: Want, param: AbilityConstant.LaunchParam) { // Ability lifecycle function.
+      let sessionId: string = want.parameters![account_appAccount.Constants.KEY_SESSION_ID] as string;
+      appAccountManager.getAuthenticatorCallback(sessionId).then((
+        callback: account_appAccount.AuthenticatorCallback) => {
+        callback.onResult(account_appAccount.ResultCode.SUCCESS, {
+          name: 'LiSi',
+          owner: 'com.example.accountjsdemo',
+          authType: 'getSocialData',
+          token: 'xxxxxx'}
+        );
+      }).catch((err: BusinessError) => {
         console.log('getAuthenticatorCallback err: ' + JSON.stringify(err));
       });
     }
@@ -4370,10 +4626,13 @@ Obtains the authenticator information of an app. This API uses an asynchronous c
 **Example**
 
   ```js
-  appAccountManager.getAuthenticatorInfo('com.example.accountjsdemo', (err, data) => {
+  import { BusinessError } from '@ohos.base';
+  
+  appAccountManager.getAuthenticatorInfo('com.example.accountjsdemo',
+    (err: BusinessError, data: account_appAccount.AuthenticatorInfo) => {
       console.log('getAuthenticatorInfo err: ' + JSON.stringify(err));
       console.log('getAuthenticatorInfo data: ' + JSON.stringify(data));
-  });
+    });
   ```
 
 ### getAuthenticatorInfo<sup>(deprecated)</sup>
@@ -4403,10 +4662,13 @@ Obtains the authenticator information of an app. This API uses a promise to retu
 **Example**
 
   ```js
-  appAccountManager.getAuthenticatorInfo('com.example.accountjsdemo').then((data) => { 
-       console.log('getAuthenticatorInfo: ' + JSON.stringify(data));
-  }).catch((err) => {
-      console.log('getAuthenticatorInfo err: ' + JSON.stringify(err));
+  import { BusinessError } from '@ohos.base';
+  
+  appAccountManager.getAuthenticatorInfo('com.example.accountjsdemo').then((
+    data: account_appAccount.AuthenticatorInfo) => { 
+    console.log('getAuthenticatorInfo: ' + JSON.stringify(data));
+  }).catch((err: BusinessError) => {
+    console.log('getAuthenticatorInfo err: ' + JSON.stringify(err));
   });
   ```
 
@@ -4609,11 +4871,13 @@ Called to return the result of an authentication request.
 **Example**
 
   ```js
+  import { BusinessError } from '@ohos.base';
+  
   let appAccountManager = account_appAccount.createAppAccountManager();
-  var sessionId = '1234';
-  appAccountManager.getAuthCallback(sessionId).then((callback) => {
-      var result = {
-          accountInfo: {
+  let sessionId = '1234';
+  appAccountManager.getAuthCallback(sessionId).then((callback: account_appAccount.AuthCallback) => {
+      let result: account_appAccount.AuthResult = {
+          account: {
             name: 'Lisi',
             owner: 'com.example.accountjsdemo',
           },
@@ -4623,7 +4887,7 @@ Called to return the result of an authentication request.
           }
       };
       callback.onResult(account_appAccount.ResultCode.SUCCESS, result);
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
       console.log('getAuthCallback err: ' + JSON.stringify(err));
   });
   ```
@@ -4646,16 +4910,19 @@ Called to redirect a request.
 
   ```js
   class MyAuthenticator extends account_appAccount.Authenticator {
-      createAccountImplicitly(options, callback) {
-          callback.onRequestRedirected({
-              bundleName: 'com.example.accountjsdemo',
-              abilityName: 'com.example.accountjsdemo.LoginAbility',
-          });
+      createAccountImplicitly(
+        options: account_appAccount.CreateAccountImplicitlyOptions, callback: account_appAccount.AuthCallback) {
+          let want: Want = {
+            bundleName: 'com.example.accountjsdemo',
+            abilityName: 'com.example.accountjsdemo.LoginAbility',
+          };
+          callback.onRequestRedirected(want);
       }
 
-      auth(name, authType, options, callback) {
-          var result = {
-            accountInfo: {
+      auth(name: string, authType: string,
+        options: { [key: string]: Object }, callback: account_appAccount.AuthCallback) {
+          let result: account_appAccount.AuthResult = {
+            account: {
               name: 'Lisi',
               owner: 'com.example.accountjsdemo',
             },
@@ -4680,12 +4947,16 @@ Called to continue to process the request.
 **Example**
 
   ```js
+  import { BusinessError } from '@ohos.base';
+  
   let appAccountManager = account_appAccount.createAppAccountManager();
-  var sessionId = '1234';
-  appAccountManager.getAuthCallback(sessionId).then((callback) => {
+  let sessionId = '1234';
+  appAccountManager.getAuthCallback(sessionId).then((callback: account_appAccount.AuthCallback) => {
+    if (callback.onRequestContinued != undefined) {
       callback.onRequestContinued();
-  }).catch((err) => {
-      console.log('getAuthCallback err: ' + JSON.stringify(err));
+    }
+  }).catch((err: BusinessError) => {
+    console.log('getAuthCallback err: ' + JSON.stringify(err));
   });
   ```
 
@@ -4715,15 +4986,18 @@ Called to return the result of an authentication request.
 **Example**
 
   ```js
+  import { BusinessError } from '@ohos.base';
+  
   let appAccountManager = account_appAccount.createAppAccountManager();
-  var sessionId = '1234';
-  appAccountManager.getAuthenticatorCallback(sessionId).then((callback) => {
-      var result = {[account_appAccount.Constants.KEY_NAME]: 'LiSi',
-                    [account_appAccount.Constants.KEY_OWNER]: 'com.example.accountjsdemo',
-                    [account_appAccount.Constants.KEY_AUTH_TYPE]: 'getSocialData',
-                    [account_appAccount.Constants.KEY_TOKEN]: 'xxxxxx'};
-      callback.onResult(account_appAccount.ResultCode.SUCCESS, result);
-  }).catch((err) => {
+  let sessionId = '1234';
+  appAccountManager.getAuthenticatorCallback(sessionId).then((callback: account_appAccount.AuthenticatorCallback) => {
+      callback.onResult(account_appAccount.ResultCode.SUCCESS, {
+        name: 'LiSi',
+        owner: 'com.example.accountjsdemo',
+        authType: 'getSocialData',
+        token: 'xxxxxx'}
+      );
+  }).catch((err: BusinessError) => {
       console.log('getAuthenticatorCallback err: ' + JSON.stringify(err));
   });
   ```
@@ -4746,40 +5020,24 @@ Called to redirect a request.
 
   ```js
   class MyAuthenticator extends account_appAccount.Authenticator {
-      addAccountImplicitly(authType, callerBundleName, options, callback) {
-          callback.onRequestRedirected({
-              bundleName: 'com.example.accountjsdemo',
-              abilityName: 'com.example.accountjsdemo.LoginAbility',
-          });
+      addAccountImplicitly(authType: string, callerBundleName: string,
+        options: { [key: string]: Object }, callback: account_appAccount.AuthenticatorCallback) {
+          let want: Want = {
+            bundleName: 'com.example.accountjsdemo',
+            abilityName: 'com.example.accountjsdemo.LoginAbility',
+          };
+          callback.onRequestRedirected(want);
       }
 
-      authenticate(name, authType, callerBundleName, options, callback) {
-          var result = {[account_appAccount.Constants.KEY_NAME]: name,
-                        [account_appAccount.Constants.KEY_AUTH_TYPE]: authType,
-                        [account_appAccount.Constants.KEY_TOKEN]: 'xxxxxx'};
-          callback.onResult(account_appAccount.ResultCode.SUCCESS, result);
+      authenticate(name: string, authType: string, callerBundleName: string,
+        options: { [key: string]: Object }, callback: account_appAccount.AuthenticatorCallback) {
+          callback.onResult(account_appAccount.ResultCode.SUCCESS, {
+            name: name,
+            authType: authType,
+            token: 'xxxxxx'}
+          );
       }
   }
-  ```
-
-### onRequestContinued<sup>9+</sup>
-
-onRequestContinued?: () =&gt; void
-
-Called to continue to process the request.
-
-**System capability**: SystemCapability.Account.AppAccount
-
-**Example**
-
-  ```js
-  let appAccountManager = account_appAccount.createAppAccountManager();
-  var sessionId = '1234';
-  appAccountManager.getAuthenticatorCallback(sessionId).then((callback) => {
-      callback.onRequestContinued();
-  }).catch((err) => {
-      console.log('getAuthenticatorCallback err: ' + JSON.stringify(err));
-  });
   ```
 
 ## Authenticator<sup>8+</sup>
@@ -4935,49 +5193,62 @@ Obtains the remote object of an authenticator. This API cannot be overloaded.
 **Example**
 
   ```js
+  import rpc from '@ohos.rpc';
+
   class MyAuthenticator extends account_appAccount.Authenticator {
-    addAccountImplicitly(authType, callerBundleName, options, callback) {
-      callback.onRequestRedirected({
-        bundleName: 'com.example.accountjsdemo',
-        abilityName: 'com.example.accountjsdemo.LoginAbility',
-      });
+    addAccountImplicitly(authType: string, callerBundleName: string,
+      options: { [key: string]: Object }, callback: account_appAccount.AuthenticatorCallback) {
+        let want: Want = {
+          bundleName: 'com.example.accountjsdemo',
+          abilityName: 'com.example.accountjsdemo.LoginAbility',
+        };
+        callback.onRequestRedirected(want);
     }
 
-    authenticate(name, authType, callerBundleName, options, callback) {
-      var result = {[account_appAccount.Constants.KEY_NAME]: name,
-                    [account_appAccount.Constants.KEY_AUTH_TYPE]: authType,
-                    [account_appAccount.Constants.KEY_TOKEN]: 'xxxxxx'};
-      callback.onResult(account_appAccount.ResultCode.SUCCESS, result);
+    authenticate(name: string, authType: string, callerBundleName: string,
+      options: { [key: string]: Object }, callback: account_appAccount.AuthenticatorCallback) {
+        callback.onResult(account_appAccount.ResultCode.SUCCESS, {
+          name: name,
+          authType: authType,
+          token: 'xxxxxx'}
+        );
     }
 
-    verifyCredential(name, options, callback) {
-      callback.onRequestRedirected({
-        bundleName: 'com.example.accountjsdemo',
-        abilityName: 'com.example.accountjsdemo.VerifyAbility',
-        parameters: {
-          name: name
-        }
-      });
+    verifyCredential(name: string,
+      options: account_appAccount.VerifyCredentialOptions, callback: account_appAccount.AuthCallback) {
+        let want: Want = {
+          bundleName: 'com.example.accountjsdemo',
+          abilityName: 'com.example.accountjsdemo.VerifyAbility',
+          parameters: {
+            name: name
+          }
+        };
+        callback.onRequestRedirected(want);
     }
 
-    setProperties(options, callback) {
-      callback.onResult(account_appAccount.ResultCode.SUCCESS, {});
+    setProperties(options: account_appAccount.SetPropertiesOptions, callback: account_appAccount.AuthCallback) {
+      let want: Want = {
+          bundleName: 'com.example.accountjsdemo',
+          abilityName: 'com.example.accountjsdemo.SetPropertiesAbility',
+          parameters: {
+            options: options
+          }
+        };
+        callback.onRequestRedirected(want);
     }
 
-    checkAccountLabels(name, labels, callback) {
-      var result = {[account_appAccount.Constants.KEY_BOOLEAN_RESULT]: false};
-      callback.onResult(account_appAccount.ResultCode.SUCCESS, result);
+    checkAccountLabels(name: string, labels: string[], callback: account_appAccount.AuthCallback) {
+      callback.onResult(account_appAccount.ResultCode.SUCCESS);
     }
   
-    checkAccountRemovable(name, callback) {
-      var result = {[account_appAccount.Constants.KEY_BOOLEAN_RESULT]: true};
-      callback.onResult(account_appAccount.ResultCode.SUCCESS, result);
+    checkAccountRemovable(name: string, callback: account_appAccount.AuthCallback) {
+      callback.onResult(account_appAccount.ResultCode.SUCCESS);
     }
   }
-  var authenticator = null;
+
   export default {
-    onConnect(want) {
-      authenticator = new MyAuthenticator();
+    onConnect(want): rpc.RemoteObject { // serviceAbility lifecycle function.
+      let authenticator = new MyAuthenticator();
       return authenticator.getRemoteObject();
     }
   }
