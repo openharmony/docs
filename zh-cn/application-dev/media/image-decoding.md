@@ -73,7 +73,7 @@
       不同模型获取资源管理器的方式不同，获取资源管理器后，再调用resourceMgr.getRawFileContent()获取资源文件的ArrayBuffer。
 
       ```ts
-      const fileData : void = await resourceMgr.getRawFileContent('test.jpg');
+      const fileData : Uint8Array = await resourceMgr.getRawFileContent('test.jpg');
       // 获取图片的ArrayBuffer
       const buffer = fileData.buffer;
       ```
@@ -100,11 +100,7 @@
 4. 设置解码参数DecodingOptions，解码获取PixelMap图片对象。
      
    ```ts
-   class DecodingOption {
-      editable : boolean = true
-      desiredPixelFormat : number = 0
-   }
-   let decodingOptions : DecodingOption = {
+   let decodingOptions : image.DecodingOptions = {
        editable: true,
        desiredPixelFormat: 3,
    }
@@ -132,7 +128,7 @@
 2. 获取rawfile文件夹下test.jpg的ArrayBuffer。
      
    ```ts
-   const fileData : void = await resourceMgr.getRawFileContent('test.jpg');
+   const fileData : Uint8Array = await resourceMgr.getRawFileContent('test.jpg');
    // 获取图片的ArrayBuffer
    const buffer = fileData.buffer;
    ```
