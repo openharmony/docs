@@ -81,7 +81,7 @@ The following describes how to use the **\<XComponent>** to call the native APIs
     // ...
     ```
 
-2. Register the N-API module. For details, see [Using Native APIs in Application Projects](https://gitee.com/openharmony/docs/blob/master/en/application-dev/napi/napi-guidelines.md).
+2. Register the N-API module. For details, see [Using Native APIs in Application Projects](napi-guidelines.md).
 
     ```c++
     // In the napi_init.cpp file, use the Init method to register the target function to transfer the encapsulated C++ methods for the JS side to call.
