@@ -6,7 +6,7 @@ You can apply custom drawing in your ArkTS widget to create a more vibrant exper
 ```ts
 @Entry
 @Component
-struct WidgetCard {
+struct CanvasCard {
   private canvasWidth: number = 0;
   private canvasHeight: number = 0;
   // Initialize CanvasRenderingContext2D and RenderingContextSettings.
