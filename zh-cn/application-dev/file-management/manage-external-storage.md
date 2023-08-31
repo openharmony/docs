@@ -57,16 +57,19 @@
    import volumeManager from '@ohos.file.volumeManager';
    import { BusinessError } from '@ohos.base';
 
-   const subscribeInfo: CommonEvent.CommonEventSubscribeInfo = {
+   let subscriber: CommonEvent.CommonEventSubscriber;
+   async function example() {
+     const subscribeInfo: CommonEvent.CommonEventSubscribeInfo = {
        events: [
-           "usual.event.data.VOLUME_REMOVED",
-           "usual.event.data.VOLUME_UNMOUNTED",
-           "usual.event.data.VOLUME_MOUNTED",
-           "usual.event.data.VOLUME_BAD_REMOVAL",
-           "usual.event.data.VOLUME_EJECT"
-      ]
-   };
-   let subscriber = await CommonEvent.createSubscriber(subscribeInfo);
+         "usual.event.data.VOLUME_REMOVED",
+         "usual.event.data.VOLUME_UNMOUNTED",
+         "usual.event.data.VOLUME_MOUNTED",
+         "usual.event.data.VOLUME_BAD_REMOVAL",
+         "usual.event.data.VOLUME_EJECT"
+       ]
+     };
+     subscriber = await CommonEvent.createSubscriber(subscribeInfo);
+   }
    ```
 
 3. 收到广播通知后获取卷设备信息。
