@@ -40,7 +40,7 @@ AccessibilityExtensionAbility为无障碍扩展服务框架，允许三方开发
 在已创建工程的ets文件夹下创建AccessibilityExtAbility文件夹，在该文件夹下创建AccessibilityExtAbility.ts文件，在新增的文件中加入以下代码：
 
 ```typescript
-import AccessibilityExtensionAbility from '@ohos.application.AccessibilityExtensionAbility';
+import AccessibilityExtensionAbility, { AccessibilityEvent } from '@ohos.application.AccessibilityExtensionAbility';
 
 class AccessibilityExtAbility extends AccessibilityExtensionAbility {
     onConnect() {
@@ -51,7 +51,7 @@ class AccessibilityExtAbility extends AccessibilityExtensionAbility {
         console.info('AccessibilityExtAbility onDisconnect');
     }
 
-    onAccessibilityEvent(accessibilityEvent) {
+    onAccessibilityEvent(accessibilityEvent: AccessibilityEvent) {
         console.info('AccessibilityExtAbility onAccessibilityEvent: ' + JSON.stringify(accessibilityEvent));
     }
 }
@@ -72,7 +72,7 @@ export default AccessibilityExtAbility;
 相关无障碍事件可以在`onAccessibilityEvent()`方法中进行业务逻辑处理，具体事件可参考[AccessibilityEvent](../reference/apis/js-apis-application-accessibilityExtensionAbility.md#accessibilityevent)。此处以事件`pageStateUpdate`为例：
 
 ```typescript
-onAccessibilityEvent(accessibilityEvent) {
+onAccessibilityEvent(accessibilityEvent: AccessibilityEvent) {
     console.info('AccessibilityExtAbility onAccessibilityEvent: ' + JSON.stringify(accessibilityEvent));
     if (accessibilityEvent.eventType === 'pageStateUpdate') {
         console.info('AccessibilityExtAbility onAccessibilityEvent: pageStateUpdate');
