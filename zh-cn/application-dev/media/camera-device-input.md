@@ -10,8 +10,8 @@
      
    ```ts
    import camera from '@ohos.multimedia.camera';
-   import type { BusinessError } from '@ohos.base';
-   import type featureAbility from '@ohos.ability.featureAbility';
+   import { BusinessError } from '@ohos.base';
+   import featureAbility from '@ohos.ability.featureAbility';
    ```
 
 2. 通过getCameraManager()方法，获取cameraManager对象。

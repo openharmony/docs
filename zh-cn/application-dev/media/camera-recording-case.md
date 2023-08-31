@@ -11,9 +11,9 @@
 [各类Context的获取方式](../application-models/application-context-stage.md)
 ```ts
 import camera from '@ohos.multimedia.camera';
-import type { BusinessError } from '@ohos.base';
+import { BusinessError } from '@ohos.base';
 import media from '@ohos.multimedia.media';
-import type featureAbility from '@ohos.ability.featureAbility';
+import featureAbility from '@ohos.ability.featureAbility';
 
 async function videoRecording(context: featureAbility.Context, surfaceId: string): Promise<void> {
   // 创建CameraManager对象

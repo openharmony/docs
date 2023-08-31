@@ -11,7 +11,7 @@ Metadata主要是通过一个TAG（Key），去找对应的Data，用于传递�
 1. 导入相关接口，导入方法如下。
    ```ts
    import camera from '@ohos.multimedia.camera';
-   import type { BusinessError } from '@ohos.base';
+   import { BusinessError } from '@ohos.base';
    ```
 
 2. 调用CameraOutputCapability类中的supportedMetadataObjectTypes()方法，获取当前设备支持的元数据类型，并通过createMetadataOutput()方法创建元数据输出流。

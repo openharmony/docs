@@ -35,7 +35,7 @@
 
 ```js
 import camera from '@ohos.multimedia.camera';
-import type featureAbility from '@ohos.ability.featureAbility';
+import featureAbility from '@ohos.ability.featureAbility';
 
 async function preview(context: featureAbility.Context, cameraInfo: camera.CameraDevice, previewProfile: camera.Profile, photoProfile: camera.Profile, surfaceId: string): Promise<void> {
   const cameraManager: camera.CameraManager = camera.getCameraManager(context);
@@ -85,9 +85,9 @@ async function preview(context: featureAbility.Context, cameraInfo: camera.Camer
 [各类Context的获取方式](../application-models/application-context-stage.md)
 ```js
 import camera from '@ohos.multimedia.camera';
-import type { BusinessError } from '@ohos.base';
+import { BusinessError } from '@ohos.base';
 import image from '@ohos.multimedia.image';
-import type featureAbility from '@ohos.ability.featureAbility';
+import featureAbility from '@ohos.ability.featureAbility';
 
 async function enableQuickThumbnail(context: featureAbility.Context, surfaceId: string, photoProfile: camera.Profile): Promise<void> {
   let cameraManager: camera.CameraManager = camera.getCameraManager(context);
@@ -154,8 +154,8 @@ function showOrSavePicture(pixelMap: image.PixelMap): void {
 
   ```js
   import camera from '@ohos.multimedia.camera';
-  import type { BusinessError } from '@ohos.base';
-  import type featureAbility from '@ohos.ability.featureAbility';
+  import { BusinessError } from '@ohos.base';
+  import featureAbility from '@ohos.ability.featureAbility';
 
   function preLaunch(context: featureAbility.Context): void {
     let cameraManager: camera.CameraManager = camera.getCameraManager(context);
@@ -176,8 +176,8 @@ function showOrSavePicture(pixelMap: image.PixelMap): void {
 
   ```js
   import camera from '@ohos.multimedia.camera';
-  import type { BusinessError } from '@ohos.base';
-  import type featureAbility from '@ohos.ability.featureAbility';
+  import { BusinessError } from '@ohos.base';
+  import featureAbility from '@ohos.ability.featureAbility';
 
   function setPreLaunchConfig(context: featureAbility.Context): void {
     let cameraManager: camera.CameraManager = camera.getCameraManager(context);
