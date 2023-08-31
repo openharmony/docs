@@ -283,7 +283,7 @@ class Month {
 }
 @Component
 struct CalendarExample {
-  // Simulate with six months.
+  // 模拟6个月
   @State calendar : Month[] = [
     new Month(2020, 1, [Array(31)[0].keys(), Array(31)[1].keys(), Array(31)[2].keys(), Array(31)[3].keys(), Array(31)[4].keys(), Array(31)[5].keys(), Array(31)[6].keys(), Array(31)[7].keys(), Array(31)[8].keys(), Array(31)[9].keys(), Array(31)[10].keys(), Array(31)[11].keys(), Array(31)[12].keys(), Array(31)[13].keys(), Array(31)[14].keys(), Array(31)[15].keys(), Array(31)[16].keys(), Array(31)[17].keys(), Array(31)[18].keys(), Array(31)[19].keys(), Array(31)[20].keys(), Array(31)[21].keys(), Array(31)[22].keys(), Array(31)[23].keys(), Array(31)[24].keys(), Array(31)[25].keys(), Array(31)[26].keys(), Array(31)[27].keys(), Array(31)[28].keys(), Array(31)[29].keys(), Array(31)[30].keys(), Array(31)[31].keys()]),
     new Month(2020, 2, [Array(28)[0].keys(), Array(31)[1].keys(), Array(31)[2].keys(), Array(31)[3].keys(), Array(31)[4].keys(), Array(31)[5].keys(), Array(31)[6].keys(), Array(31)[7].keys(), Array(31)[8].keys(), Array(31)[9].keys(), Array(31)[10].keys(), Array(31)[11].keys(), Array(31)[12].keys(), Array(31)[13].keys(), Array(31)[14].keys(), Array(31)[15].keys(), Array(31)[16].keys(), Array(31)[17].keys(), Array(31)[18].keys(), Array(31)[19].keys(), Array(31)[20].keys(), Array(31)[21].keys(), Array(31)[22].keys(), Array(31)[23].keys(), Array(31)[24].keys(), Array(31)[25].keys(), Array(31)[26].keys(), Array(31)[27].keys(), Array(31)[28].keys()]),
@@ -304,13 +304,13 @@ struct CalendarExample {
         (item: Month) => {
           ForEach(item.days,
             (day : number) => {
-              // Build a date block.
+              // 构建日期块
             },
             (day : number) => day.toString()
-          )// Inner ForEach
+          )// 内部ForEach
         },
-        (item: Month) => (item.year * 12 + item.month).toString() // This field is used together with the year and month as the unique ID of the month.
-      )// Outer ForEach
+        (item: Month) => (item.year * 12 + item.month).toString() // 字段与年和月一起使用，作为月份的唯一ID。
+      )// 外部ForEach
     }
   }
 }
