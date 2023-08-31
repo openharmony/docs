@@ -13,6 +13,7 @@ The following uses [setCookie()](../reference/apis/js-apis-webview.md#setcookie)
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
@@ -26,7 +27,8 @@ struct WebComponent {
           try {
             web_webview.WebCookieManager.setCookie('https://www.example.com', 'value=test');
           } catch (error) {
-            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -82,6 +84,7 @@ struct WebComponent {
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
@@ -96,7 +99,8 @@ struct WebComponent {
             // If this parameter is set to true, the cache in both the ROM and RAM is cleared. If this parameter is set to false, only the cache in the RAM is cleared.
             this.controller.removeCache(true);
           } catch (error) {
-            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
