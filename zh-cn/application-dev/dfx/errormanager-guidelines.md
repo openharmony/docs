@@ -38,14 +38,17 @@
 ## 开发示例
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 import errorManager from '@ohos.app.ability.errorManager';
+import Want from '@ohos.app.ability.Want';
+import window from '@ohos.window';
 
 let registerId = -1;
-let callback = {
-    onUnhandledException: function (errMsg) {
+let callback: errorManager.ErrorObserver = {
+    onUnhandledException: (errMsg) => {
         console.log(errMsg);
     },
-    onException: function (errorObj) {
+    onException: (errorObj) => {
         console.log('onException, name: ', errorObj.name);
         console.log('onException, message: ', errorObj.message);
         if (typeof(errorObj.stack) === 'string') {
@@ -53,12 +56,13 @@ let callback = {
         }
     }
 }
+let abilityWant: Want;
 
 export default class EntryAbility extends UIAbility {
-    onCreate(want, launchParam) {
+    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
         console.log("[Demo] EntryAbility onCreate")
         registerId = errorManager.on("error", callback);
-        globalThis.abilityWant = want;
+        abilityWant = want;
     }
 
     onDestroy() {
@@ -68,7 +72,7 @@ export default class EntryAbility extends UIAbility {
         });
     }
 
-    onWindowStageCreate(windowStage) {
+    onWindowStageCreate(windowStage: window.WindowStage) {
         // Main window is created, set main page for this ability
         console.log("[Demo] EntryAbility onWindowStageCreate")
 
