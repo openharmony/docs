@@ -18,8 +18,8 @@
      
    ```ts
    import camera from '@ohos.multimedia.camera';
-   import type { BusinessError } from '@ohos.base';
-   import type featureAbility from '@ohos.ability.featureAbility';
+   import { BusinessError } from '@ohos.base';
+   import featureAbility from '@ohos.ability.featureAbility';
    ```
 
 2. 调用cameraManager类中的createCaptureSession()方法创建一个会话。

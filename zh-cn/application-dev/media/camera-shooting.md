@@ -11,7 +11,7 @@
    ```ts
    import image from '@ohos.multimedia.image';
    import camera from '@ohos.multimedia.camera';
-   import type { BusinessError } from '@ohos.base';
+   import { BusinessError } from '@ohos.base';
    ```
 
 2. 获取SurfaceId。
