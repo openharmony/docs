@@ -309,8 +309,8 @@ struct CalendarExample {
             (day : number) => day.toString()
           )// 内部ForEach
         },
-        (item: Month) => (item.year * 12 + item.month).toString() // 内部ForEach
-      )// 内部ForEach
+        (item: Month) => (item.year * 12 + item.month).toString() // 字段与年和月一起使用，作为月份的唯一ID。
+      )// 外部ForEach
     }
   }
 }
