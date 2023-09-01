@@ -196,12 +196,12 @@ link1.set(49); // two-way sync: link1.get() == link2.get() == prop.get() == 49
 
   @Component
   struct Child {
-    // @LocalStorageLink变量装饰器与LocalStorage中的'ProA'属性建立双向绑定
+    // @LocalStorageLink变量装饰器与LocalStorage中的'PropA'属性建立双向绑定
     @LocalStorageLink('PropA') storLink2: number = 1;
 
     build() {
       Button(`Child from LocalStorage ${this.storLink2}`)
-        // 更改将同步至LocalStorage中的'ProA'以及Parent.storLink1
+        // 更改将同步至LocalStorage中的'PropA'以及Parent.storLink1
         .onClick(() => this.storLink2 += 1)
     }
   }
@@ -209,7 +209,7 @@ link1.set(49); // two-way sync: link1.get() == link2.get() == prop.get() == 49
   @Entry(storage)
   @Component
   struct CompA {
-    // @LocalStorageLink变量装饰器与LocalStorage中的'ProA'属性建立双向绑定
+    // @LocalStorageLink变量装饰器与LocalStorage中的'PropA'属性建立双向绑定
     @LocalStorageLink('PropA') storLink1: number = 1;
 
     build() {
@@ -239,7 +239,7 @@ link1.set(49); // two-way sync: link1.get() == link2.get() == prop.get() == 49
   @Entry(storage)
   @Component
   struct CompA {
-    // @LocalStorageProp变量装饰器与LocalStorage中的'ProA'属性建立单向绑定
+    // @LocalStorageProp变量装饰器与LocalStorage中的'PropA'属性建立单向绑定
     @LocalStorageProp('PropA') storProp1: number = 1;
 
     build() {
@@ -254,7 +254,7 @@ link1.set(49); // two-way sync: link1.get() == link2.get() == prop.get() == 49
 
   @Component
   struct Child {
-    // @LocalStorageProp变量装饰器与LocalStorage中的'ProA'属性建立单向绑定
+    // @LocalStorageProp变量装饰器与LocalStorage中的'PropA'属性建立单向绑定
     @LocalStorageProp('PropA') storProp2: number = 2;
 
     build() {
