@@ -10,7 +10,7 @@ URI权限管理模块。用于应用A授权/撤销授权URI给应用B
 ## 导入模块
 
   
-```js
+```ts
 import uriPermissionManager from '@ohos.application.uriPermissionManager';
 ```
 
@@ -33,7 +33,7 @@ grantUriPermission(uri: string, flag: wantConstant.Flags, targetBundleName: stri
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
   | uri | string | 是 | 指向文件的URI，例如fileshare:///com.samples.filesharetest.FileShare/person/10。 | 
-  | flag | [wantConstant.Flags](js-apis-ability-wantConstant.md#wantconstantflags) | 是 | URI的读权限或写权限。 | 
+  | flag | [wantConstant.Flags](js-apis-app-ability-wantConstant.md#wantconstantflags) | 是 | URI的读权限或写权限。 | 
   | targetBundleName | string | 是 | 被授权URI的应用包名 | 
   | callback | AsyncCallback&lt;number&gt; | 是 | callback形式返回检验结果，返回0表示有权限，返回-1表示无权限。 | 
 
@@ -50,15 +50,15 @@ grantUriPermission(uri: string, flag: wantConstant.Flags, targetBundleName: stri
 
 **示例：**
     
-  ```js
+  ```ts
   import uriPermissionManager from '@ohos.application.uriPermissionManager';
-  import WantConstant from '@ohos.ability.wantConstant';
+  import WantConstant from '@ohos.app.ability.wantConstant';
   import fs from '@ohos.file.fs';
   import fileUri from '@ohos.file.fileuri';
 
   let targetBundleName = 'com.example.test_case1'
   let path = "file://com.example.test_case1/data/storage/el2/base/haps/entry_test/files/newDir";
-  fs.mkdir(path, function (err) {
+  fs.mkdir(path, (err) => {
     if (err) {
       console.log("mkdir error"+err.message)
     } else {
@@ -90,7 +90,7 @@ grantUriPermission(uri: string, flag: wantConstant.Flags, targetBundleName: stri
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
   | uri | string | 是 | 指向文件的URI，例如fileshare:///com.samples.filesharetest.FileShare/person/10。 | 
-  | flag | [wantConstant.Flags](js-apis-ability-wantConstant.md#wantconstantflags) | 是 | URI的读权限或写权限。 | 
+  | flag | [wantConstant.Flags](js-apis-app-ability-wantConstant.md#wantconstantflags) | 是 | URI的读权限或写权限。 | 
   | targetBundleName | string | 是 | 被授权URI的应用包名 |  
 
 **返回值：**
@@ -112,16 +112,17 @@ grantUriPermission(uri: string, flag: wantConstant.Flags, targetBundleName: stri
 
 **示例：**
     
-  ```js
+  ```ts
   import uriPermissionManager from '@ohos.application.uriPermissionManager';
-  import WantConstant from '@ohos.ability.wantConstant';
+  import WantConstant from '@ohos.app.ability.wantConstant';
   import fs from '@ohos.file.fs';
   import fileUri from '@ohos.file.fileuri';
+  import { BusinessError } from '@ohos.base';
 
   let targetBundleName = 'com.example.test_case1'
   let path = "file://com.example.test_case1/data/storage/el2/base/haps/entry_test/files/newDir";
 
-  fs.mkdir(path, function (err) {
+  fs.mkdir(path, (err) => {
     if (err) {
       console.log("mkdir error"+err.message)
     } else {
@@ -132,7 +133,7 @@ grantUriPermission(uri: string, flag: wantConstant.Flags, targetBundleName: stri
   uriPermissionManager.grantUriPermission(uri, WantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION, targetBundleName)
     .then((data) => {
       console.log('Verification succeeded.' + data)
-    }).catch((error) => {
+    }).catch((error: BusinessError) => {
     console.log('Verification failed.');
   })
   ```
@@ -168,10 +169,9 @@ revokeUriPermission(uri: string, targetBundleName: string, callback: AsyncCallba
 
 **示例：**
     
-  ```js
+  ```ts
   import uriPermissionManager from '@ohos.application.uriPermissionManager';
-  import WantConstant from '@ohos.ability.wantConstant';
-  
+
   let targetBundleName = 'com.example.test_case2'
   let uri = "file://com.example.test_case1/data/storage/el2/base/haps/entry_test/files/newDir"
   uriPermissionManager.revokeUriPermission(uri, targetBundleName, (result) => {
@@ -219,16 +219,16 @@ revokeUriPermission(uri: string, targetBundleName: string): Promise&lt;number&gt
 
 **示例：**
     
-  ```js
+  ```ts
   import uriPermissionManager from '@ohos.application.uriPermissionManager';
-  import WantConstant from '@ohos.ability.wantConstant';
+  import { BusinessError } from '@ohos.base';
 
   let targetBundleName = 'com.example.test_case2'
   let uri = "file://com.example.test_case1/data/storage/el2/base/haps/entry_test/files/newDir"
   uriPermissionManager.revokeUriPermission(uri, targetBundleName)
   .then((data) => {
       console.log('Verification succeeded.' + data)
-  }).catch((error) => {
+  }).catch((error: BusinessError) => {
       console.log('Verification failed.');
   })
   ```
