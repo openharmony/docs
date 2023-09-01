@@ -251,7 +251,7 @@ media.createVideoRecorder().then((video: media.VideoRecorder) => {
   } else {
     console.error('video createVideoRecorder fail');
   }
-}).catch((error: BusinessError) => {
+}).catch((error: Error) => {
   console.error(`video catchCallback, error message:${error.message}`);
 });
 ```
