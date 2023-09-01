@@ -121,7 +121,7 @@ createAVRecorder(callback: AsyncCallback\<AVRecorder>): void
 
 **示例：**
 
-```js
+```ts
 let avRecorder: media.AVRecorder;
 
 media.createAVRecorder((error: BusinessError, recorder: media.AVRecorder) => {
