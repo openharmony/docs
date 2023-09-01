@@ -17,7 +17,7 @@ This subsystem offers the following audio and video services:
 
 ## Modules to Import
 
-```js
+```ts
 import media from '@ohos.multimedia.media';
 ```
 
@@ -122,10 +122,10 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 
 **Example**
 
-```js
-let avRecorder;
+```ts
+let avRecorder: media.AVRecorder;
 
-media.createAVRecorder((error, recorder) => {
+media.createAVRecorder((error: BusinessError, recorder: media.AVRecorder) => {
   if (recorder != null) {
     avRecorder = recorder;
     console.info('createAVRecorder success');
@@ -160,17 +160,17 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 
 **Example**
 
-```js
-let avRecorder;
+```ts
+let avRecorder: media.AVRecorder;
 
-media.createAVRecorder().then((recorder) => {
+media.createAVRecorder().then((recorder: media.AVRecorder) => {
   if (recorder != null) {
     avRecorder = recorder;
     console.info('createAVRecorder success');
   } else {
     console.error('createAVRecorder fail');
   }
-}).catch((error) => {
+}).catch((error: Error) => {
   console.error(`createAVRecorder catchCallback, error message:${error.message}`);
 });
 ```
@@ -202,10 +202,10 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 
 **Example**
 
-```js
-let videoRecorder;
+```ts
+let videoRecorder: media.VideoRecorder;
 
-media.createVideoRecorder((error, video) => {
+media.createVideoRecorder((error: BusinessError, video: media.VideoRecorder) => {
   if (video != null) {
     videoRecorder = video;
     console.info('video createVideoRecorder success');
@@ -242,17 +242,17 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 
 **Example**
 
-```js
-let videoRecorder;
+```ts
+let videoRecorder: media.VideoRecorder;
 
-media.createVideoRecorder().then((video) => {
+media.createVideoRecorder().then((video: media.VideoRecorder) => {
   if (video != null) {
     videoRecorder = video;
     console.info('video createVideoRecorder success');
   } else {
     console.error('video createVideoRecorder fail');
   }
-}).catch((error) => {
+}).catch((error: Error) => {
   console.error(`video catchCallback, error message:${error.message}`);
 });
 ```
@@ -1763,9 +1763,9 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 
 **Example**
 
-```js
+```ts
 // Configure the parameters based on those supported by the hardware device.
-let AVRecorderProfile = {
+let AVRecorderProfile: media.AVRecorderProfile = {
   audioBitrate : 48000,
   audioChannels : 2,
   audioCodec : media.CodecMimeType.AUDIO_AAC,
@@ -1777,7 +1777,7 @@ let AVRecorderProfile = {
   videoFrameHeight : 480,
   videoFrameRate : 30
 }
-let AVRecorderConfig = {
+let AVRecorderConfig: media.AVRecorderConfig = {
   audioSourceType : media.AudioSourceType.AUDIO_SOURCE_TYPE_MIC,
   videoSourceType : media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_YUV,
   profile : AVRecorderProfile,
@@ -1786,7 +1786,7 @@ let AVRecorderConfig = {
   location : { latitude : 30, longitude : 130 }
 }
 
-avRecorder.prepare(AVRecorderConfig, (err) => {
+avRecorder.prepare(AVRecorderConfig, (err: BusinessError) => {
   if (err == null) {
     console.info('prepare success');
   } else {
@@ -1834,9 +1834,9 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 
 **Example**
 
-```js
+```ts
 // Configure the parameters based on those supported by the hardware device.
-let AVRecorderProfile = {
+let AVRecorderProfile: media.AVRecorderProfile = {
   audioBitrate : 48000,
   audioChannels : 2,
   audioCodec : media.CodecMimeType.AUDIO_AAC,
@@ -1848,7 +1848,7 @@ let AVRecorderProfile = {
   videoFrameHeight : 480,
   videoFrameRate : 30
 }
-let AVRecorderConfig = {
+let AVRecorderConfig: media.AVRecorderConfig = {
   audioSourceType : media.AudioSourceType.AUDIO_SOURCE_TYPE_MIC,
   videoSourceType : media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_YUV,
   profile : AVRecorderProfile,
@@ -1859,10 +1859,9 @@ let AVRecorderConfig = {
 
 avRecorder.prepare(AVRecorderConfig).then(() => {
   console.info('prepare success');
-}).catch((err) => {
+}).catch((err: Error) => {
   console.error('prepare failed and catch error is ' + err.message);
 });
-
 ```
 
 ### getInputSurface<sup>9+</sup><a name=avrecorder_getinputsurface></a>
@@ -1895,10 +1894,10 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 
 **Example**
 
-```js
-let surfaceID = null; // The surfaceID is transferred to the camera API to create a videoOutput instance.
+```ts
+let surfaceID: string; // The surfaceID is transferred to the camera API to create a videoOutput instance.
 
-avRecorder.getInputSurface((err, surfaceId) => {
+avRecorder.getInputSurface((err: BusinessError, surfaceId: string) => {
   if (err == null) {
     console.info('getInputSurface success');
     surfaceID = surfaceId;
@@ -1906,7 +1905,6 @@ avRecorder.getInputSurface((err, surfaceId) => {
     console.error('getInputSurface failed and error is ' + err.message);
   }
 });
-
 ```
 
 ### getInputSurface<sup>9+</sup>
@@ -1939,13 +1937,13 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 
 **Example**
 
-```js
-let surfaceID = null; // The surfaceID is transferred to the camera API to create a videoOutput instance.
+```ts
+let surfaceID: string; // The surfaceID is transferred to the camera API to create a videoOutput instance.
 
-avRecorder.getInputSurface().then((surfaceId) => {
+avRecorder.getInputSurface().then((surfaceId: string) => {
   console.info('getInputSurface success');
   surfaceID = surfaceId;
-}).catch((err) => {
+}).catch((err: Error) => {
   console.error('getInputSurface failed and catch error is ' + err.message);
 });
 ```
@@ -1978,8 +1976,8 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 
 **Example**
 
-```js
-avRecorder.start((err) => {
+```ts
+avRecorder.start((err: BusinessError) => {
   if (err == null) {
     console.info('start AVRecorder success');
   } else {
@@ -2016,10 +2014,10 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 
 **Example**
 
-```js
+```ts
 avRecorder.start().then(() => {
   console.info('start AVRecorder success');
-}).catch((err) => {
+}).catch((err: Error) => {
   console.error('start AVRecorder failed and catch error is ' + err.message);
 });
 ```
@@ -2052,8 +2050,8 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 
 **Example**
 
-```js
-avRecorder.pause((err) => {
+```ts
+avRecorder.pause((err: BusinessError) => {
   if (err == null) {
     console.info('pause AVRecorder success');
   } else {
@@ -2090,10 +2088,10 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 
 **Example**
 
-```js
+```ts
 avRecorder.pause().then(() => {
   console.info('pause AVRecorder success');
-}).catch((err) => {
+}).catch((err: Error) => {
   console.error('pause AVRecorder failed and catch error is ' + err.message);
 });
 ```
@@ -2126,8 +2124,8 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 
 **Example**
 
-```js
-avRecorder.resume((err) => {
+```ts
+avRecorder.resume((err: BusinessError) => {
   if (err == null) {
     console.info('resume AVRecorder success');
   } else {
@@ -2164,10 +2162,10 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 
 **Example**
 
-```js
+```ts
 avRecorder.resume().then(() => {
   console.info('resume AVRecorder success');
-}).catch((err) => {
+}).catch((err: Error) => {
   console.error('resume AVRecorder failed and catch error is ' + err.message);
 });
 ```
@@ -2202,8 +2200,8 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 
 **Example**
 
-```js
-avRecorder.stop((err) => {
+```ts
+avRecorder.stop((err: BusinessError) => {
   if (err == null) {
     console.info('stop AVRecorder success');
   } else {
@@ -2242,10 +2240,10 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 
 **Example**
 
-```js
+```ts
 avRecorder.stop().then(() => {
   console.info('stop AVRecorder success');
-}).catch((err) => {
+}).catch((err: Error) => {
   console.error('stop AVRecorder failed and catch error is ' + err.message);
 });
 ```
@@ -2277,8 +2275,8 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 
 **Example**
 
-```js
-avRecorder.reset((err) => {
+```ts
+avRecorder.reset((err: BusinessError) => {
   if (err == null) {
     console.info('reset AVRecorder success');
   } else {
@@ -2314,10 +2312,10 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 
 **Example**
 
-```js
+```ts
 avRecorder.reset().then(() => {
   console.info('reset AVRecorder success');
-}).catch((err) => {
+}).catch((err: Error) => {
   console.error('reset AVRecorder failed and catch error is ' + err.message);
 });
 ```
@@ -2348,8 +2346,8 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 
 **Example**
 
-```js
-avRecorder.release((err) => {
+```ts
+avRecorder.release((err: BusinessError) => {
   if (err == null) {
     console.info('release AVRecorder success');
   } else {
@@ -2384,10 +2382,10 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 
 **Example**
 
-```js
+```ts
 avRecorder.release().then(() => {
   console.info('release AVRecorder success');
-}).catch((err) => {
+}).catch((err: Error) => {
   console.error('release AVRecorder failed and catch error is ' + err.message);
 });
 ```
@@ -2409,8 +2407,8 @@ Subscribes to AVRecorder state changes. An application can subscribe to only one
 
 **Example**
 
-```js
-avRecorder.on('stateChange', async (state, reason) => {
+```ts
+avRecorder.on('stateChange', async (state: media.AVRecorderState, reason: media.StateChangeReason) => {
   console.info('case state has changed, new state is :' + state + ',and new reason is : ' + reason);
 });
 ```
@@ -2431,7 +2429,7 @@ Unsubscribes from AVRecorder state changes.
 
 **Example**
 
-```js
+```ts
 avRecorder.off('stateChange');
 ```
 
@@ -2463,8 +2461,8 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 
 **Example**
 
-```js
-avRecorder.on('error', (err) => {
+```ts
+avRecorder.on('error', (err: BusinessError) => {
   console.error('case avRecorder.on(error) called, errMessage is ' + err.message);
 });
 ```
@@ -2494,7 +2492,7 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 
 **Example**
 
-```js
+```ts
 avRecorder.off('error');
 ```
 
@@ -2644,9 +2642,9 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 
 **Example**
 
-```js
+```ts
 // Configure the parameters based on those supported by the hardware device.
-let videoProfile = {
+let videoProfile: media.VideoRecorderProfile = {
   audioBitrate : 48000,
   audioChannels : 2,
   audioCodec : 'audio/mp4a-latm',
@@ -2659,7 +2657,7 @@ let videoProfile = {
   videoFrameRate : 30
 }
 
-let videoConfig = {
+let videoConfig: media.VideoRecorderConfig = {
   audioSourceType : 1,
   videoSourceType : 0,
   profile : videoProfile,
@@ -2669,7 +2667,7 @@ let videoConfig = {
 }
 
 // asyncallback
-videoRecorder.prepare(videoConfig, (err) => {
+videoRecorder.prepare(videoConfig, (err: BusinessError) => {
   if (err == null) {
     console.info('prepare success');
   } else {
@@ -2715,9 +2713,9 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 
 **Example**
 
-```js
+```ts
 // Configure the parameters based on those supported by the hardware device.
-let videoProfile = {
+let videoProfile: media.VideoRecorderProfile = {
   audioBitrate : 48000,
   audioChannels : 2,
   audioCodec : 'audio/mp4a-latm',
@@ -2730,7 +2728,7 @@ let videoProfile = {
   videoFrameRate : 30
 }
 
-let videoConfig = {
+let videoConfig: media.VideoRecorderConfig = {
   audioSourceType : 1,
   videoSourceType : 0,
   profile : videoProfile,
@@ -2742,7 +2740,7 @@ let videoConfig = {
 // promise
 videoRecorder.prepare(videoConfig).then(() => {
   console.info('prepare success');
-}).catch((err) => {
+}).catch((err: Error) => {
   console.error('prepare failed and catch error is ' + err.message);
 });
 ```
@@ -2779,10 +2777,10 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 
 **Example**
 
-```js
+```ts
 // asyncallback
-let surfaceID = null;                                               // Surface ID passed to the external system.
-videoRecorder.getInputSurface((err, surfaceId) => {
+let surfaceID: string;                                               // Surface ID passed to the external system.
+videoRecorder.getInputSurface((err: BusinessError, surfaceId: string) => {
   if (err == null) {
     console.info('getInputSurface success');
     surfaceID = surfaceId;
@@ -2824,13 +2822,13 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 
 **Example**
 
-```js
+```ts
 // promise
-let surfaceID = null;                                               // Surface ID passed to the external system.
-videoRecorder.getInputSurface().then((surfaceId) => {
+let surfaceID: string;                                               // Surface ID passed to the external system.
+videoRecorder.getInputSurface().then((surfaceId: string) => {
   console.info('getInputSurface success');
   surfaceID = surfaceId;
-}).catch((err) => {
+}).catch((err: Error) => {
   console.error('getInputSurface failed and catch error is ' + err.message);
 });
 ```
@@ -2865,9 +2863,9 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 
 **Example**
 
-```js
+```ts
 // asyncallback
-videoRecorder.start((err) => {
+videoRecorder.start((err: BusinessError) => {
   if (err == null) {
     console.info('start videorecorder success');
   } else {
@@ -2906,11 +2904,11 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 
 **Example**
 
-```js
+```ts
 // promise
 videoRecorder.start().then(() => {
   console.info('start videorecorder success');
-}).catch((err) => {
+}).catch((err: Error) => {
   console.error('start videorecorder failed and catch error is ' + err.message);
 });
 ```
@@ -2945,9 +2943,9 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 
 **Example**
 
-```js
+```ts
 // asyncallback
-videoRecorder.pause((err) => {
+videoRecorder.pause((err: BusinessError) => {
   if (err == null) {
     console.info('pause videorecorder success');
   } else {
@@ -2986,11 +2984,11 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 
 **Example**
 
-```js
+```ts
 // promise
 videoRecorder.pause().then(() => {
   console.info('pause videorecorder success');
-}).catch((err) => {
+}).catch((err: Error) => {
   console.error('pause videorecorder failed and catch error is ' + err.message);
 });
 ```
@@ -3023,9 +3021,9 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 
 **Example**
 
-```js
+```ts
 // asyncallback
-videoRecorder.resume((err) => {
+videoRecorder.resume((err: BusinessError) => {
   if (err == null) {
     console.info('resume videorecorder success');
   } else {
@@ -3062,11 +3060,11 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 
 **Example**
 
-```js
+```ts
 // promise
 videoRecorder.resume().then(() => {
   console.info('resume videorecorder success');
-}).catch((err) => {
+}).catch((err: Error) => {
   console.error('resume videorecorder failed and catch error is ' + err.message);
 });
 ```
@@ -3101,9 +3099,9 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 
 **Example**
 
-```js
+```ts
 // asyncallback
-videoRecorder.stop((err) => {
+videoRecorder.stop((err: BusinessError) => {
   if (err == null) {
     console.info('stop videorecorder success');
   } else {
@@ -3142,11 +3140,11 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 
 **Example**
 
-```js
+```ts
 // promise
 videoRecorder.stop().then(() => {
   console.info('stop videorecorder success');
-}).catch((err) => {
+}).catch((err: Error) => {
   console.error('stop videorecorder failed and catch error is ' + err.message);
 });
 ```
@@ -3177,9 +3175,9 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 
 **Example**
 
-```js
+```ts
 // asyncallback
-videoRecorder.release((err) => {
+videoRecorder.release((err: BusinessError) => {
   if (err == null) {
     console.info('release videorecorder success');
   } else {
@@ -3214,11 +3212,11 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 
 **Example**
 
-```js
+```ts
 // promise
 videoRecorder.release().then(() => {
   console.info('release videorecorder success');
-}).catch((err) => {
+}).catch((err: Error) => {
   console.error('release videorecorder failed and catch error is ' + err.message);
 });
 ```
@@ -3252,9 +3250,9 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 
 **Example**
 
-```js
+```ts
 // asyncallback
-videoRecorder.reset((err) => {
+videoRecorder.reset((err: BusinessError) => {
   if (err == null) {
     console.info('reset videorecorder success');
   } else {
@@ -3292,11 +3290,11 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 
 **Example**
 
-```js
+```ts
 // promise
 videoRecorder.reset().then(() => {
   console.info('reset videorecorder success');
-}).catch((err) => {
+}).catch((err: Error) => {
   console.error('reset videorecorder failed and catch error is ' + err.message);
 });
 ```
@@ -3327,10 +3325,10 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 
 **Example**
 
-```js
+```ts
 // This event is reported when an error occurs during the retrieval of videoRecordState.
-videoRecorder.on('error', (error) => {                                  // Set the 'error' event callback.
-  console.error(`audio error called, error: ${error}`); 
+videoRecorder.on('error', (error: BusinessError) => {                                  // Set the 'error' event callback.
+  console.error(`audio error called, error: ${error}`);
 })
 ```
 
@@ -3504,8 +3502,8 @@ Only one **AudioRecorder** instance can be created per device.
 
 **Example**
 
-```js
-let audioRecorder = media.createAudioRecorder();
+```ts
+let audioRecorder: media.AudioRecorder = media.createAudioRecorder();
 ```
 
 ## MediaErrorCode<sup>(deprecated)</sup><a name=mediaerrorcode></a>
@@ -4775,8 +4773,8 @@ Prepares for recording.
 
 **Example**
 
-```js
-let audioRecorderConfig = {
+```ts
+let audioRecorderConfig: media.AudioRecorderConfig = {
   audioEncoder : media.AudioEncoder.AAC_LC,
   audioEncodeBitRate : 22050,
   audioSampleRate : 22050,
@@ -4802,7 +4800,7 @@ Starts audio recording. This API can be called only after the [prepare](#audiore
 
 **Example**
 
-```js
+```ts
 audioRecorder.on('start', () => {    // Set the 'start' event callback.
   console.log('audio recorder start success');
 });
@@ -4819,7 +4817,7 @@ Pauses audio recording. This API can be called only after the [start](#audioreco
 
 **Example**
 
-```js
+```ts
 audioRecorder.on('pause', () => {    // Set the 'pause' event callback.
   console.log('audio recorder pause success');
 });
@@ -4836,7 +4834,7 @@ Resumes audio recording. This API can be called only after the [pause](#audiorec
 
 **Example**
 
-```js
+```ts
 audioRecorder.on('resume', () => { // Set the 'resume' event callback.
   console.log('audio recorder resume success');
 });
@@ -4853,7 +4851,7 @@ Stops audio recording.
 
 **Example**
 
-```js
+```ts
 audioRecorder.on('stop', () => {    // Set the 'stop' event callback.
   console.log('audio recorder stop success');
 });
@@ -4870,7 +4868,7 @@ Releases the audio recording resources.
 
 **Example**
 
-```js
+```ts
 audioRecorder.on('release', () => {    // Set the 'release' event callback.
   console.log('audio recorder release success');
 });
@@ -4890,7 +4888,7 @@ Before resetting audio recording, you must call [stop()](#audiorecorder_stop) to
 
 **Example**
 
-```js
+```ts
 audioRecorder.on('reset', () => {    // Set the 'reset' event callback.
   console.log('audio recorder reset success');
 });
@@ -4914,9 +4912,9 @@ Subscribes to the audio recording events.
 
 **Example**
 
-```js
-let audioRecorder = media.createAudioRecorder();                                  // Create an AudioRecorder instance.
-let audioRecorderConfig = {
+```ts
+let audioRecorder: media.AudioRecorder = media.createAudioRecorder();                                  // Create an AudioRecorder instance.
+let audioRecorderConfig: media.AudioRecorderConfig = {
   audioEncoder : media.AudioEncoder.AAC_LC,
   audioEncodeBitRate : 22050,
   audioSampleRate : 22050,
@@ -4925,7 +4923,7 @@ let audioRecorderConfig = {
   uri : 'fd://xx',                                                            // The file must be created by the caller and granted with proper permissions.
   location : { latitude : 30, longitude : 130},
 }
-audioRecorder.on('error', (error) => {                                             // Set the 'error' event callback.
+audioRecorder.on('error', (error: BusinessError) => {                                             // Set the 'error' event callback.
   console.info(`audio error called, error: ${error}`);
 });
 audioRecorder.on('prepare', () => {                                              // Set the 'prepare' event callback.
@@ -4970,8 +4968,8 @@ Subscribes to audio recording error events. After an error event is reported, yo
 
 **Example**
 
-```js
-let audioRecorderConfig = {
+```ts
+let audioRecorderConfig: media.AudioRecorderConfig = {
   audioEncoder : media.AudioEncoder.AAC_LC,
   audioEncodeBitRate : 22050,
   audioSampleRate : 22050,
@@ -4980,7 +4978,7 @@ let audioRecorderConfig = {
   uri : 'fd://xx',                                                     // The file must be created by the caller and granted with proper permissions.
   location : { latitude : 30, longitude : 130},
 }
-audioRecorder.on('error', (error) => {                                  // Set the 'error' event callback.
+audioRecorder.on('error', (error: BusinessError) => {                                  // Set the 'error' event callback.
   console.error(`audio error called, error: ${error}`);
 });
 audioRecorder.prepare(audioRecorderConfig);                            // Do no set any parameter in prepare and trigger the 'error' event callback.
