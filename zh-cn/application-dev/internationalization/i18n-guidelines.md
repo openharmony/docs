@@ -400,7 +400,7 @@ try {
 
    ```ts
    let fromUnit: I18n.UnitInfo = {unit: "cup", measureSystem: "US"};
-    let toUnit: I18n.UnitInfo = {unit: "liter", measureSystem: "SI"};
+   let toUnit: I18n.UnitInfo = {unit: "liter", measureSystem: "SI"};
    let number = 1000;
    let locale = "en-US";
    let style = "long";
