@@ -168,7 +168,8 @@ PixelMap是图片解码后的像素图，具体用法请参考[图片开发指�
        ```ts
        let code = data.responseCode;
        if (ResponseCode.ResponseCode.OK === code) {
-         let imageSource = image.createImageSource(data.result);
+         let res: any = data.result
+         let imageSource = image.createImageSource(res);
          let options = {
            alphaType: 0, // 透明度
            editable: false, // 是否可编辑
