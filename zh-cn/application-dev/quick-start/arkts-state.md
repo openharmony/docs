@@ -296,14 +296,14 @@ struct MyComponent {
 2. 对于\@State来说，命名参数机制传递的值并不是必选的，如果没有命名参数传值，则使用本地初始化的默认值：
 
    ```ts
-class C1 {
-  public count:number;
-  public increaseBy:number;
-  constructor(count: number, increaseBy:number) {
-    this.count = count;
-    this.increaseBy = increaseBy;
-  }
-}
-let obj = new C1(1, 2)
-MyComponent(obj)
+   class C1 {
+      public count:number;
+      public increaseBy:number;
+      constructor(count: number, increaseBy:number) {
+      this.count = count;
+      this.increaseBy = increaseBy;
+     }
+   }
+   let obj = new C1(1, 2)
+   MyComponent(obj)
    ```
