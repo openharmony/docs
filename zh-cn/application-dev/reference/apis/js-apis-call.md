@@ -396,9 +396,9 @@ promise.then(data => {
 
 ## call.hasCallSync<sup>10+</sup>
 
-hasCallSync\(\): boolean;
+hasCallSync\(\): boolean
 
-判断是否存在通话。结果会直接返回。
+判断是否存在通话。
 
 **系统能力**：SystemCapability.Telephony.CallManager
 
@@ -468,7 +468,7 @@ promise.then(data => {
 
 getCallStateSync\(\): CallState
 
-获取当前通话状态。结果会直接返回。
+获取当前通话状态。
 
 **系统能力**：SystemCapability.Telephony.CallManager
 

@@ -394,7 +394,7 @@ promise.then(data => {
 
 getISOCountryCodeForNetworkSync\(slotId: number\): string
 
-获取注册网络所在国家的ISO国家码。结果会直接返回。
+获取注册网络所在国家的ISO国家码。
 
 **系统能力**：SystemCapability.Telephony.CoreService
 
@@ -575,7 +575,7 @@ promise.then(data => {
 
 getSignalInformationSync\(slotId: number\): Array\<SignalInformation\>
 
-获取指定SIM卡槽对应的注册网络信号强度信息列表。结果会直接返回。
+获取指定SIM卡槽对应的注册网络信号强度信息列表。
 
 **系统能力**：SystemCapability.Telephony.CoreService
 
@@ -920,7 +920,7 @@ promise.then(data => {
 
 getOperatorNameSync\(slotId: number\): string
 
-获取运营商名称。结果会直接返回。
+获取运营商名称。
 
 **系统能力**：SystemCapability.Telephony.CoreService
 

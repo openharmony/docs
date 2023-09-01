@@ -72,7 +72,7 @@ promise.then(data => {
 
 isSimActiveSync\(slotId: number\): boolean
 
-获取指定卡槽SIM卡是否激活。结果会直接返回。
+获取指定卡槽SIM卡是否激活。
 
 **系统能力**：SystemCapability.Telephony.CoreService
 
@@ -307,7 +307,7 @@ promise.then(data => {
 
 getISOCountryCodeForSimSync\(slotId: number\): string
 
-获取指定卡槽SIM卡的ISO国家码。结果会直接返回。
+获取指定卡槽SIM卡的ISO国家码。
 
 **系统能力**：SystemCapability.Telephony.CoreService
 
@@ -417,7 +417,7 @@ promise.then(data => {
 
 getSimOperatorNumericSync\(slotId: number\): string
 
-获取指定卡槽SIM卡的归属PLMN（Public Land Mobile Network）号。结果会直接返回。
+获取指定卡槽SIM卡的归属PLMN（Public Land Mobile Network）号。
 
 **系统能力**：SystemCapability.Telephony.CoreService
 
@@ -527,7 +527,7 @@ promise.then(data => {
 
 getSimSpnSync\(slotId: number\): string
 
-获取指定卡槽SIM卡的服务提供商名称（Service Provider Name，SPN）。结果会直接返回。
+获取指定卡槽SIM卡的服务提供商名称（Service Provider Name，SPN）。
 
 **系统能力**：SystemCapability.Telephony.CoreService
 
@@ -635,7 +635,7 @@ promise.then(data => {
 
 getSimStateSync\(slotId: number\): SimState
 
-获取指定卡槽的SIM卡状态。结果会直接返回。
+获取指定卡槽的SIM卡状态。
 
 **系统能力**：SystemCapability.Telephony.CoreService
 
@@ -744,7 +744,7 @@ promise.then(data => {
 
 getCardTypeSync\(slotId: number\): CardType
 
-获取指定卡槽SIM卡的卡类型。结果会直接返回。
+获取指定卡槽SIM卡的卡类型。
 
 **系统能力**：SystemCapability.Telephony.CoreService
 
@@ -852,7 +852,7 @@ promise.then(data => {
 
 hasSimCardSync\(slotId: number\): boolean
 
-获取指定卡槽SIM卡是否插卡。结果会直接返回。
+获取指定卡槽SIM卡是否插卡。
 
 **系统能力**：SystemCapability.Telephony.CoreService
 
@@ -4101,7 +4101,7 @@ try {
 
 getOpKeySync\(slotId: number\): string
 
-获取指定卡槽中SIM卡的opkey。结果会直接返回。
+获取指定卡槽中SIM卡的opkey。
 
 **系统能力**：SystemCapability.Telephony.CoreService
 
@@ -4218,7 +4218,7 @@ try {
 
 getOpNameSync\(slotId: number\): string
 
-获取指定卡槽中SIM卡的OpName。结果会直接返回。
+获取指定卡槽中SIM卡的OpName。
 
 **系统能力**：SystemCapability.Telephony.CoreService
 
