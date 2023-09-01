@@ -103,7 +103,7 @@ export { MainPage } from './src/main/ets/components/MainPage/MainPage'
 ```js
 // library/src/main/ts/test.ets
 export class Log {
-    static info(msg) {
+    static info(msg: string) {
         console.info(msg);
     }
 }
