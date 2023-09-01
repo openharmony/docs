@@ -70,4 +70,4 @@ struct TextPickerDialogExample {
 }
 ```
 
-![TextPickerDialog](figures\TextPickerDialog.gif)
+![TextPickerDialog](figures/TextPickerDialog.gif)
