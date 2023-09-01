@@ -264,7 +264,7 @@ struct ParentComponent {
 ```ts
 @Component
 struct Child {
-  @Prop value: number;
+  @Prop value: number = 0;
 
   build() {
     Text(`${this.value}`)
@@ -288,10 +288,10 @@ struct Index {
         Divider().height(5)
 
         ForEach(this.arr, 
-          item => {
+          (item: void) => {
             Child({value: item})
           }, 
-          item => item.toString()
+          (item: string) => item.toString()
         )
         Text('replace entire arr')
         .fontSize(50)
@@ -419,7 +419,7 @@ class Book {
 
 @Component
 struct ReaderComp {
-  @Prop book: Book;
+  @Prop book: Book = new Book();
 
   build() {
     Row() {
@@ -442,10 +442,10 @@ struct Library {
       ReaderComp({ book: this.allBooks[2] })
       Divider()
       Text('Books on loaan to a reader')
-      ForEach(this.allBooks, book => {
+      ForEach(this.allBooks, (book: void) => {
         ReaderComp({ book: book })
       },
-        book => book.id)
+        (book: number): number => book.id)
       Button('Add new')
         .onClick(() => {
           this.allBooks.push(new Book("The C++ Standard Library", 512));
