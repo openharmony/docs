@@ -75,4 +75,4 @@ struct TimePickerDialogExample {
 }
 ```
 
-![TimetPickerDialog](figures\TimePickerDialog.gif)
+![TimetPickerDialog](figures/TimePickerDialog.gif)
