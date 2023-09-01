@@ -4779,7 +4779,7 @@ let audioRecorderConfig: media.AudioRecorderConfig = {
 audioRecorder.on('prepare', () => {    //设置'prepare'事件回调
   console.log('prepare success');
 });
-audioRecorder.prepare(audioRecorderConfig);              // prepare不设置参数，触发'error'事件
+audioRecorder.prepare(audioRecorderConfig);
 ```
 
 
@@ -4941,7 +4941,7 @@ audioRecorder.on('release', () => {                                             
 audioRecorder.on('reset', () => {                                                 // 设置'reset'事件回调
   console.log('audio recorder reset success');
 });
-audioRecorder.prepare(audioRecorderConfig)       
+audioRecorder.prepare(audioRecorderConfig)                                        // 设置录制参数 ，并触发'prepare'事件回调      
 ```
 
 ### on('error')
