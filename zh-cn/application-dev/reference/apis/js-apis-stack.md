@@ -244,7 +244,7 @@ stack.push(2);
 stack.push(4);
 stack.push(5);
 stack.push(4);
-stack.forEach((value : number, index : number) :void => {
+stack.forEach((value : number, index ?: number) :void => {
   console.log("value:" + value, "index:" + index);
 });
 ```
@@ -321,7 +321,7 @@ while(!stack.isEmpty()) {
 
 // 使用方法二：
 let iter = stack[Symbol.iterator]();
-let temp = iter.next().value;
+let temp: IteratorResult<number> = iter.next().value;
 while(temp != undefined) {
   console.log("value:" + temp);
   temp = iter.next().value;
