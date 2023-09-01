@@ -16,7 +16,7 @@
 
 ## 导入模块
 
-```js
+```ts
 import media from '@ohos.multimedia.media';
 ```
 
@@ -159,7 +159,7 @@ createAVRecorder(): Promise\<AVRecorder>
 
 **示例：**
 
-```js
+```ts
 let avRecorder: media.AVRecorder;
 
 media.createAVRecorder().then((recorder: media.AVRecorder) => {
@@ -201,7 +201,7 @@ createVideoRecorder(callback: AsyncCallback\<VideoRecorder>): void
 
 **示例：**
 
-```js
+```ts
 let videoRecorder: media.VideoRecorder;
 
 media.createVideoRecorder((error: BusinessError, video: media.VideoRecorder) => {
@@ -241,7 +241,7 @@ createVideoRecorder(): Promise\<VideoRecorder>
 
 **示例：**
 
-```js
+```ts
 let videoRecorder: media.VideoRecorder;
 
 media.createVideoRecorder().then((video: media.VideoRecorder) => {
@@ -1766,7 +1766,7 @@ prepare(config: AVRecorderConfig, callback: AsyncCallback\<void>): void
 
 **示例：**
 
-```js
+```ts
 // 配置参数以实际硬件设备支持的范围为准
 let AVRecorderProfile: media.AVRecorderProfile = {
   audioBitrate : 48000,
@@ -1837,7 +1837,7 @@ prepare(config: AVRecorderConfig): Promise\<void>
 
 **示例：**
 
-```js
+```ts
 // 配置参数以实际硬件设备支持的范围为准
 let AVRecorderProfile: media.AVRecorderProfile = {
   audioBitrate : 48000,
@@ -1897,7 +1897,7 @@ getInputSurface(callback: AsyncCallback\<string>): void
 
 **示例：**
 
-```js
+```ts
 let surfaceID: string; // 该surfaceID用于传递给相机接口创造videoOutput
 
 avRecorder.getInputSurface((err: BusinessError, surfaceId: string) => {
@@ -1941,7 +1941,7 @@ getInputSurface(): Promise\<string>
 
 **示例：**
 
-```js
+```ts
 let surfaceID: string; // 该surfaceID用于传递给相机接口创造videoOutput
 
 avRecorder.getInputSurface().then((surfaceId: string) => {
@@ -1980,7 +1980,7 @@ start(callback: AsyncCallback\<void>): void
 
 **示例：**
 
-```js
+```ts
 avRecorder.start((err: BusinessError) => {
   if (err == null) {
     console.info('start AVRecorder success');
@@ -2018,7 +2018,7 @@ start(): Promise\<void>
 
 **示例：**
 
-```js
+```ts
 avRecorder.start().then(() => {
   console.info('start AVRecorder success');
 }).catch((err: Error) => {
@@ -2054,7 +2054,7 @@ pause(callback: AsyncCallback\<void>): void
 
 **示例：**
 
-```js
+```ts
 avRecorder.pause((err: BusinessError) => {
   if (err == null) {
     console.info('pause AVRecorder success');
@@ -2092,7 +2092,7 @@ pause(): Promise\<void>
 
 **示例：**
 
-```js
+```ts
 avRecorder.pause().then(() => {
   console.info('pause AVRecorder success');
 }).catch((err: Error) => {
@@ -2128,7 +2128,7 @@ resume(callback: AsyncCallback\<void>): void
 
 **示例：**
 
-```js
+```ts
 avRecorder.resume((err: BusinessError) => {
   if (err == null) {
     console.info('resume AVRecorder success');
@@ -2166,7 +2166,7 @@ resume(): Promise\<void>
 
 **示例：**
 
-```js
+```ts
 avRecorder.resume().then(() => {
   console.info('resume AVRecorder success');
 }).catch((err: Error) => {
@@ -2204,7 +2204,7 @@ stop(callback: AsyncCallback\<void>): void
 
 **示例：**
 
-```js
+```ts
 avRecorder.stop((err: BusinessError) => {
   if (err == null) {
     console.info('stop AVRecorder success');
@@ -2244,7 +2244,7 @@ stop(): Promise\<void>
 
 **示例：**
 
-```js
+```ts
 avRecorder.stop().then(() => {
   console.info('stop AVRecorder success');
 }).catch((err: Error) => {
@@ -2279,7 +2279,7 @@ reset(callback: AsyncCallback\<void>): void
 
 **示例：**
 
-```js
+```ts
 avRecorder.reset((err: BusinessError) => {
   if (err == null) {
     console.info('reset AVRecorder success');
@@ -2316,7 +2316,7 @@ reset(): Promise\<void>
 
 **示例：**
 
-```js
+```ts
 avRecorder.reset().then(() => {
   console.info('reset AVRecorder success');
 }).catch((err: Error) => {
@@ -2350,7 +2350,7 @@ release(callback: AsyncCallback\<void>): void
 
 **示例：**
 
-```js
+```ts
 avRecorder.release((err: BusinessError) => {
   if (err == null) {
     console.info('release AVRecorder success');
@@ -2386,7 +2386,7 @@ release(): Promise\<void>
 
 **示例：**
 
-```js
+```ts
 avRecorder.release().then(() => {
   console.info('release AVRecorder success');
 }).catch((err: Error) => {
@@ -2411,7 +2411,7 @@ on(type: 'stateChange', callback: (state: AVRecorderState, reason: StateChangeRe
 
 **示例：**
 
-```js
+```ts
 avRecorder.on('stateChange', async (state: media.AVRecorderState, reason: media.StateChangeReason) => {
   console.info('case state has changed, new state is :' + state + ',and new reason is : ' + reason);
 });
@@ -2433,7 +2433,7 @@ off(type: 'stateChange'): void
 
 **示例：**
 
-```js
+```ts
 avRecorder.off('stateChange');
 ```
 
@@ -2465,7 +2465,7 @@ on(type: 'error', callback: ErrorCallback): void
 
 **示例：**
 
-```js
+```ts
 avRecorder.on('error', (err: BusinessError) => {
   console.error('case avRecorder.on(error) called, errMessage is ' + err.message);
 });
@@ -2496,7 +2496,7 @@ off(type: 'error'): void
 
 **示例：**
 
-```js
+```ts
 avRecorder.off('error');
 ```
 
@@ -2645,7 +2645,7 @@ prepare(config: VideoRecorderConfig, callback: AsyncCallback\<void>): void;
 
 **示例：**
 
-```js
+```ts
 // 配置参数以实际硬件设备支持的范围为准
 let videoProfile: media.VideoRecorderProfile = {
   audioBitrate : 48000,
@@ -2716,7 +2716,7 @@ prepare(config: VideoRecorderConfig): Promise\<void>;
 
 **示例：**
 
-```js
+```ts
 // 配置参数以实际硬件设备支持的范围为准
 let videoProfile: media.VideoRecorderProfile = {
   audioBitrate : 48000,
@@ -2780,7 +2780,7 @@ getInputSurface(callback: AsyncCallback\<string>): void;
 
 **示例：**
 
-```js
+```ts
 // asyncallback
 let surfaceID: string;                                               // 传递给外界的surfaceID
 videoRecorder.getInputSurface((err: BusinessError, surfaceId: string) => {
@@ -2825,7 +2825,7 @@ getInputSurface(): Promise\<string>;
 
 **示例：**
 
-```js
+```ts
 // promise
 let surfaceID: string;                                               // 传递给外界的surfaceID
 videoRecorder.getInputSurface().then((surfaceId: string) => {
@@ -2866,7 +2866,7 @@ start(callback: AsyncCallback\<void>): void;
 
 **示例：**
 
-```js
+```ts
 // asyncallback
 videoRecorder.start((err: BusinessError) => {
   if (err == null) {
@@ -2907,7 +2907,7 @@ start(): Promise\<void>;
 
 **示例：**
 
-```js
+```ts
 // promise
 videoRecorder.start().then(() => {
   console.info('start videorecorder success');
@@ -2946,7 +2946,7 @@ pause(callback: AsyncCallback\<void>): void;
 
 **示例：**
 
-```js
+```ts
 // asyncallback
 videoRecorder.pause((err: BusinessError) => {
   if (err == null) {
@@ -2987,7 +2987,7 @@ pause(): Promise\<void>;
 
 **示例：**
 
-```js
+```ts
 // promise
 videoRecorder.pause().then(() => {
   console.info('pause videorecorder success');
@@ -3024,7 +3024,7 @@ resume(callback: AsyncCallback\<void>): void;
 
 **示例：**
 
-```js
+```ts
 // asyncallback
 videoRecorder.resume((err: Error) => {
   if (err == null) {
@@ -3063,7 +3063,7 @@ resume(): Promise\<void>;
 
 **示例：**
 
-```js
+```ts
 // promise
 videoRecorder.resume().then(() => {
   console.info('resume videorecorder success');
@@ -3102,7 +3102,7 @@ stop(callback: AsyncCallback\<void>): void;
 
 **示例：**
 
-```js
+```ts
 // asyncallback
 videoRecorder.stop((err: BusinessError) => {
   if (err == null) {
@@ -3143,7 +3143,7 @@ stop(): Promise\<void>;
 
 **示例：**
 
-```js
+```ts
 // promise
 videoRecorder.stop().then(() => {
   console.info('stop videorecorder success');
@@ -3178,7 +3178,7 @@ release(callback: AsyncCallback\<void>): void;
 
 **示例：**
 
-```js
+```ts
 // asyncallback
 videoRecorder.release((err: BusinessError) => {
   if (err == null) {
@@ -3215,7 +3215,7 @@ release(): Promise\<void>;
 
 **示例：**
 
-```js
+```ts
 // promise
 videoRecorder.release().then(() => {
   console.info('release videorecorder success');
@@ -3253,7 +3253,7 @@ reset(callback: AsyncCallback\<void>): void;
 
 **示例：**
 
-```js
+```ts
 // asyncallback
 videoRecorder.reset((err: BusinessError) => {
   if (err == null) {
@@ -3293,7 +3293,7 @@ reset(): Promise\<void>;
 
 **示例：**
 
-```js
+```ts
 // promise
 videoRecorder.reset().then(() => {
   console.info('reset videorecorder success');
@@ -3328,7 +3328,7 @@ on(type: 'error', callback: ErrorCallback): void
 
 **示例：**
 
-```js
+```ts
 // 当获取videoRecordState接口出错时通过此订阅事件上报
 videoRecorder.on('error', (error: Error) => {                                  // 设置'error'事件回调
   console.error(`audio error called, error: ${error}`);
@@ -4766,8 +4766,8 @@ prepare(config: AudioRecorderConfig): void
 
 **示例：**
 
-```js
-let audioRecorderConfig = {
+```ts
+let audioRecorderConfig: media.AudioRecorderConfig = {
   audioEncoder : media.AudioEncoder.AAC_LC,
   audioEncodeBitRate : 22050,
   audioSampleRate : 22050,
@@ -4779,7 +4779,7 @@ let audioRecorderConfig = {
 audioRecorder.on('prepare', () => {    //设置'prepare'事件回调
   console.log('prepare success');
 });
-audioRecorder.prepare(audioRecorderConfig);
+audioRecorder.prepare(audioRecorderConfig);              // prepare不设置参数，触发'error'事件
 ```
 
 
@@ -4793,7 +4793,7 @@ start(): void
 
 **示例：**
 
-```js
+```ts
 audioRecorder.on('start', () => {    //设置'start'事件回调
   console.log('audio recorder start success');
 });
@@ -4810,7 +4810,7 @@ pause():void
 
 **示例：**
 
-```js
+```ts
 audioRecorder.on('pause', () => {    //设置'pause'事件回调
   console.log('audio recorder pause success');
 });
@@ -4827,7 +4827,7 @@ resume():void
 
 **示例：**
 
-```js
+```ts
 audioRecorder.on('resume', () => {    //设置'resume'事件回调
   console.log('audio recorder resume success');
 });
@@ -4844,7 +4844,7 @@ stop(): void
 
 **示例：**
 
-```js
+```ts
 audioRecorder.on('stop', () => {    //设置'stop'事件回调
   console.log('audio recorder stop success');
 });
@@ -4861,7 +4861,7 @@ release(): void
 
 **示例：**
 
-```js
+```ts
 audioRecorder.on('release', () => {    //设置'release'事件回调
   console.log('audio recorder release success');
 });
@@ -4881,7 +4881,7 @@ reset(): void
 
 **示例：**
 
-```js
+```ts
 audioRecorder.on('reset', () => {    //设置'reset'事件回调
   console.log('audio recorder reset success');
 });
@@ -4905,7 +4905,7 @@ on(type: 'prepare' | 'start' | 'pause' | 'resume' | 'stop' | 'release' | 'reset'
 
 **示例：**
 
-```js
+```ts
 let audioRecorder: media.AudioRecorder = media.createAudioRecorder();                                  // 创建一个音频录制实例
 let audioRecorderConfig: media.AudioRecorderConfig = {
   audioEncoder : media.AudioEncoder.AAC_LC,
@@ -4961,7 +4961,7 @@ on(type: 'error', callback: ErrorCallback): void
 
 **示例：**
 
-```js
+```ts
 let audioRecorderConfig: media.AudioRecorderConfig = {
   audioEncoder : media.AudioEncoder.AAC_LC,
   audioEncodeBitRate : 22050,
