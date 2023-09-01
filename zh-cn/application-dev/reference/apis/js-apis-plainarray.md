@@ -620,7 +620,7 @@ callbackfn的参数说明：
 let plainArray: PlainArray<string> = new PlainArray();
 plainArray.add(1, "squirrel");
 plainArray.add(2, "sparrow");
-plainArray.forEach((value:string, index: number) => {
+plainArray.forEach((value: string, index?: number) => {
     console.log("value:" + value, "index:" + index);
 });
 ```
@@ -656,7 +656,7 @@ plainArray.add(1, "squirrel");
 plainArray.add(2, "sparrow");
 
 let iter = plainArray[Symbol.iterator]();
-let temp = iter.next();
+let temp: IteratorResult<Object[]> = iter.next();
 while(!temp.done) {
   console.log("key:" + temp.value[0]);
   console.log("value:" + temp.value[1]);

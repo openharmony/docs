@@ -462,9 +462,9 @@ let treeSet : TreeSet<string> = new TreeSet();
 treeSet.add("squirrel");
 treeSet.add("sparrow");
 let it = treeSet.values();
-let t = it.next();
+let t: IteratorResult<string> = it.next();
 while(!t.done) {
-  console.log(t.value);
+  console.log("TreeSet: " + t.value);
   t = it.next()
 }
 ```
@@ -506,7 +506,7 @@ callbackFn的参数说明：
 let treeSet : TreeSet<string> = new TreeSet();
 treeSet.add("sparrow");
 treeSet.add("gull");
-treeSet.forEach((value : string, key : string) :void => {
+treeSet.forEach((value ?: string, key ?: string) :void => {
   console.log("value:" + value, "key:" + key);
 });
 ```
@@ -541,9 +541,9 @@ let treeSet : TreeSet<string> = new TreeSet();
 treeSet.add("squirrel");
 treeSet.add("sparrow");
 let it = treeSet.entries();
-let t = it.next();
+let t: IteratorResult<Object[]> = it.next();
 while(!t.done) {
-  console.log(t.value);
+  console.log("TreeSet: " + t.value);
   t = it.next()
 }
 ```
@@ -585,7 +585,7 @@ for (let item of numbers) {
 }
 // 使用方法二：
 let iter = treeSet[Symbol.iterator]();
-let temp = iter.next().value;
+let temp: IteratorResult<string> = iter.next().value;
 while(temp != undefined) {
   console.log("value:" + temp);
   temp = iter.next().value;

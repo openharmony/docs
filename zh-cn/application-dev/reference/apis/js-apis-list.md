@@ -503,7 +503,7 @@ list.add(2);
 list.add(4);
 list.add(5);
 list.add(4);
-list.forEach((value:number, index:number) => {
+list.forEach((value: number, index?: number) => {
   console.log("value:" + value, "index:" + index);
 });
 ```
@@ -829,7 +829,7 @@ for (let item of items) {
 
 // 使用方法二：
 let iter = list[Symbol.iterator]();
-let temp = iter.next();
+let temp: IteratorResult<number> = iter.next();
 while(!temp.done) {
   console.log("value: " + temp.value);
   temp = iter.next();
