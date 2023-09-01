@@ -1,6 +1,6 @@
 # MDNS Management
 
-## Introduction
+## Overview
 
 Multicast DNS (mDNS) provides functions such as adding, removing, discovering, and resolving local services on a LAN.
 - Local service: a service provider on a LAN, for example, a printer or scanner.
