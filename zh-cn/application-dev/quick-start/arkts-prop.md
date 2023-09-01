@@ -264,7 +264,7 @@ struct ParentComponent {
 ```ts
 @Component
 struct Child {
-  @Prop value: number;
+  @Prop value: number = 0;
 
   build() {
     Text(`${this.value}`)
@@ -288,10 +288,10 @@ struct Index {
         Divider().height(5)
 
         ForEach(this.arr, 
-          item => {
+          (item: void) => {
             Child({value: item})
           }, 
-          item => item.toString()
+          (item: string) => item.toString()
         )
         Text('replace entire arr')
         .fontSize(50)
