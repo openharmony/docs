@@ -4,8 +4,11 @@ The **router** capability of the **postCardAction** API can be used in a widget 
 
 ![WidgerCameraCard](figures/WidgerCameraCard.png)
 
+> **NOTE**
+>
+> This topic describes development for dynamic widgets. For static widgets, see [FormLink](../../application-dev/reference/arkui-ts/ts-container-formlink.md).
 
-Generally, a button is used to start a page.
+Generally, a button is used to start a page. Below is an example:
 
 
 - Design two buttons on the widget page. When one of the buttons is clicked, **postCardAction** is called to send a router event to the specified UIAbility, with the content to be transferred defined in the event.
@@ -57,7 +60,7 @@ Generally, a button is used to start a page.
   let selectPage = "";
   let currentWindowStage = null;
   
-  export default class CameraAbility extends UIAbility {
+  export default class EntryAbility extends UIAbility {
     // If the UIAbility is started for the first time, the onCreate lifecycle callback is triggered after the router event is received.
     onCreate(want, launchParam) {
       // Obtain the targetPage parameter passed in the router event.

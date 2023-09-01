@@ -13,6 +13,10 @@ Compared with the [implementation of the ArkTS widget](../application-models/ark
 - Data management service: provides a mechanism for data sharing among multiple applications.
 - Data provider: must be a system application that has data sharing enabled. The shared data is identified through the defined **key** + **subscriberId** combination.
 
+> **NOTE**
+>
+> This feature can be used when the system provides applications as data providers and publicly available shared data identifiers.
+
 Processing flow of the widget provider (indicated by the blue arrows in the figure):
 
 1. The widget provider sets the **dataProxyEnabled** field to **true** in the **form_config.json** file to enable the update-through-proxy feature.
@@ -29,7 +33,7 @@ Processing flow of the widget update proxy (indicated by the red arrows in the f
 1. The data provider uses the **key** + **subscriberId** combination as the data ID to store data to the database.
 2. The data management service detects the change in the database and publishes the new data to all currently registered subscription instances.
 3. The Widget Manager parses data from the subscription instance and sends the data to the widget rendering service.
-4. The widget rendering service runs the widget page code **widgets.abc**, renders based on the new data, and sends the rendered data to the widget component (../reference/arkui-ts/ts-basic-components-formcomponent.md) corresponding to the widget host.
+4. The widget rendering service runs the widget page code **widgets.abc**, which implements rendering based on the new data and sends the rendered data to the [FormComponent](../reference/arkui-ts/ts-basic-components-formcomponent.md) corresponding to the widget host.
 
 There are two types of shared data provided by the data provider:
 
