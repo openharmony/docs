@@ -20,7 +20,7 @@ EXIF信息的读取与编辑相关API的详细介绍请参见[API参考](../refe
    
    // 获取沙箱路径创建ImageSource
    const fd : number = ...; // 获取需要被处理的图片的fd
-   const imageSource : ImageSource = image.createImageSource(fd);
+   const imageSource : image.ImageSource = image.createImageSource(fd);
    ```
 
 2. 读取、编辑EXIF信息。
@@ -37,7 +37,7 @@ EXIF信息的读取与编辑相关API的详细介绍请参见[API参考](../refe
    
    // 编辑EXIF信息
    imageSource.modifyImageProperty('ImageWidth', '120').then(() => {
-     const width : string = imageSource.getImageProperty("ImageWidth");
+     const width : Promise<string> = imageSource.getImageProperty("ImageWidth");
      console.info('The new imageWidth is ' + width);
    })
    ```

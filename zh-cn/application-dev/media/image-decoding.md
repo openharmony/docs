@@ -41,7 +41,7 @@
       // Stage模型参考如下代码
       const context = getContext(this);
       const filePath = context.cacheDir + '/test.jpg';
-      const file : File = fs.openSync(filePath, fs.OpenMode.READ_WRITE);
+      const file : fs.File = fs.openSync(filePath, fs.OpenMode.READ_WRITE);
       const fd : number = file?.fd;
       ```
 
@@ -51,7 +51,7 @@
       
       const context = featureAbility.getContext();
       const filePath = context.getCacheDir() + "/test.jpg";
-      const file : File = fs.openSync(filePath, fs.OpenMode.READ_WRITE);
+      const file : fs.File = fs.openSync(filePath, fs.OpenMode.READ_WRITE);
       const fd : number = file?.fd;
       ```
    - 方法三：通过资源管理器获取资源文件的ArrayBuffer。具体请参考[ResourceManager API参考文档](../reference/apis/js-apis-resource-manager.md#getrawfilecontent9-1)。
@@ -60,7 +60,7 @@
       // Stage模型
       const context : Context = getContext(this);
       // 获取resourceManager资源管理器
-      const resourceMgr : resmgr.ResourceManager = context.resourceManager;
+      const resourceMgr : resourceManager.ResourceManager = context.resourceManager;
       ```
 
       ```ts
@@ -83,18 +83,18 @@
         
       ```ts
       // path为已获得的沙箱路径
-      const imageSource : ImageSource = image.createImageSource(filePath);
+      const imageSource : image.ImageSource = image.createImageSource(filePath);
       ```
    - 方法二：通过文件描述符fd创建ImageSource。文件描述符可以通过步骤2的方法二获取。
         
       ```ts
       // fd为已获得的文件描述符
-      const imageSource : ImageSource = image.createImageSource(fd);
+      const imageSource : image.ImageSource = image.createImageSource(fd);
       ```
    - 方法三：通过缓冲区数组创建ImageSource。缓冲区数组可以通过步骤2的方法三获取。
         
       ```ts
-      const imageSource : ImageSource = image.createImageSource(buffer);
+      const imageSource : image.ImageSource = image.createImageSource(buffer);
       ```
 
 4. 设置解码参数DecodingOptions，解码获取PixelMap图片对象。
@@ -105,7 +105,7 @@
        desiredPixelFormat: 3,
    }
    // 创建pixelMap并进行简单的旋转和缩放 
-   const pixelMap : PixelMap = await imageSource.createPixelMap(decodingOptions);
+   const pixelMap : image.PixelMap = await imageSource.createPixelMap(decodingOptions);
    ```
 
    解码完成，获取到PixelMap对象后，可以进行后续[图片处理](image-transformation.md)。
@@ -122,7 +122,7 @@
    ```ts
    const context : Context = getContext(this);
    // 获取resourceManager资源管理
-   const resourceMgr : resmgr.ResourceManager = context.resourceManager;
+   const resourceMgr : resourceManager.ResourceManager = context.resourceManager;
    ```
 
 2. 获取rawfile文件夹下test.jpg的ArrayBuffer。
@@ -136,13 +136,13 @@
 3. 创建imageSource。
      
    ```ts
-   const imageSource : resmgr.ImageSource = image.createImageSource(buffer);
+   const imageSource : image.ImageSource = image.createImageSource(buffer);
    ```
 
 4. 创建PixelMap。
      
    ```ts
-   const pixelMap : PixelMap = await imageSource.createPixelMap();
+   const pixelMap : image.PixelMap = await imageSource.createPixelMap();
    ```
 
 5. 释放pixelMap。
