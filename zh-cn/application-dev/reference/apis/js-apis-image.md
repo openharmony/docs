@@ -983,7 +983,8 @@ class MySequence {
         return true;
     }
     async unmarshalling(messageSequence) {
-        await image.unmarshalling(messageSequence).then(async (pixelMap) => {
+        let pixelParcel = await image.createPixelMap(new ArrayBuffer(96), {size: { height:4, width: 6}});
+        await pixelParcel.unmarshalling(messageSequence).then(async (pixelMap) => {
             this.pixel_map = pixelMap;
         })
         return true;
@@ -1041,7 +1042,8 @@ class MySequence {
         return true;
     }
     async unmarshalling(messageSequence) {
-        await image.unmarshalling(messageSequence).then(async (pixelMap) => {
+        let pixelParcel = await image.createPixelMap(new ArrayBuffer(96), {size: { height:4, width: 6}});
+        await pixelParcel.unmarshalling(messageSequence).then(async (pixelMap) => {
             this.pixel_map = pixelMap;
         })
         return true;
