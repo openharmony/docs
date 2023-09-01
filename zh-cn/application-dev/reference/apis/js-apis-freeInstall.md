@@ -91,6 +91,7 @@ try {
         } else {
             console.info('Operation succeed');
         }
+    });
 } catch (err) {
     console.error('Operation failed:' + JSON.stringify(err));
 }
@@ -291,6 +292,7 @@ try {
         } else {
             console.info('Operation succeed:' + JSON.stringify(data));
         }
+    });
 } catch (err) {
     console.error('Operation failed:' + JSON.stringify(err));
 }
@@ -375,6 +377,7 @@ try {
         } else {
             console.info('Operation succeed:' + JSON.stringify(data));
         }
+    });
 } catch (err) {
     console.error('Operation failed:' + JSON.stringify(err));
 }
