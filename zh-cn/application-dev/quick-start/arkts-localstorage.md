@@ -198,12 +198,12 @@ storage['PropA'] = 47;
 
 @Component
 struct Child {
-  // @LocalStorageLink变量装饰器与LocalStorage中的'ProA'属性建立双向绑定
+  // @LocalStorageLink变量装饰器与LocalStorage中的'PropA'属性建立双向绑定
   @LocalStorageLink('PropA') storLink2: number = 1;
 
   build() {
     Button(`Child from LocalStorage ${this.storLink2}`)
-      // 更改将同步至LocalStorage中的'ProA'以及Parent.storLink1
+      // 更改将同步至LocalStorage中的'PropA'以及Parent.storLink1
       .onClick(() => this.storLink2 += 1)
   }
 }
@@ -211,7 +211,7 @@ struct Child {
 @Entry(storage)
 @Component
 struct CompA {
-  // @LocalStorageLink变量装饰器与LocalStorage中的'ProA'属性建立双向绑定
+  // @LocalStorageLink变量装饰器与LocalStorage中的'PropA'属性建立双向绑定
   @LocalStorageLink('PropA') storLink1: number = 1;
 
   build() {
@@ -243,7 +243,7 @@ storage['PropA'] = 47;
 @Entry(storage)
 @Component
 struct CompA {
-  // @LocalStorageProp变量装饰器与LocalStorage中的'ProA'属性建立单向绑定
+  // @LocalStorageProp变量装饰器与LocalStorage中的'PropA'属性建立单向绑定
   @LocalStorageProp('PropA') storProp1: number = 1;
 
   build() {
@@ -258,7 +258,7 @@ struct CompA {
 
 @Component
 struct Child {
-  // @LocalStorageProp变量装饰器与LocalStorage中的'ProA'属性建立单向绑定
+  // @LocalStorageProp变量装饰器与LocalStorage中的'PropA'属性建立单向绑定
   @LocalStorageProp('PropA') storProp2: number = 2;
 
   build() {
@@ -410,12 +410,12 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-在UI页面通过GetShared接口获取在通过loadContent共享的LocalStorage实例。
+在UI页面通过getShared接口获取在通过loadContent共享的LocalStorage实例。
 
 
 ```ts
-// 通过GetShared接口获取stage共享的LocalStorage实例
-let storage = LocalStorage.GetShared()
+// 通过getShared接口获取stage共享的LocalStorage实例
+let storage = LocalStorage.getShared()
 
 @Entry(storage)
 @Component
