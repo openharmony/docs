@@ -81,16 +81,15 @@ setHapModuleUpgradeFlag(bundleName: string, moduleName: string, upgradeFlag: Upg
 
 ```js
 import freeInstall from '@ohos.bundle.freeInstall';
+import { BusinessError } from '@ohos.base';
 let bundleName = 'com.example.myapplication';
 let moduleName = 'entry';
 let upgradeFlag = freeInstall.UpgradeFlag.SINGLE_UPGRADE;
 try {
-    freeInstall.setHapModuleUpgradeFlag(bundleName, moduleName, upgradeFlag, err => {
-        if (err) {
-            console.error('Operation failed:' + JSON.stringify(err));
-        } else {
-            console.info('Operation succeed');
-        }
+    freeInstall.setHapModuleUpgradeFlag(bundleName, moduleName, upgradeFlag).then(() => {
+        console.info('Operation succeed')
+    }).catch((err: BusinessError) => {
+        console.error('Operation failed:' + JSON.stringify(err));
     });
 } catch (err) {
     console.error('Operation failed:' + JSON.stringify(err));
@@ -183,15 +182,14 @@ isHapModuleRemovable(bundleName: string, moduleName: string, callback: AsyncCall
 
 ```js
 import freeInstall from '@ohos.bundle.freeInstall';
+import { BusinessError } from '@ohos.base';
 let bundleName = 'com.example.myapplication';
 let moduleName = 'entry';
 try {
-    freeInstall.isHapModuleRemovable(bundleName, moduleName, (err, data) => {
-        if (err) {
-            console.error('Operation failed:' + JSON.stringify(err));
-        } else {
-            console.info('Operation succeed:' + JSON.stringify(data));
-        }
+    freeInstall.isHapModuleRemovable(bundleName, moduleName).then(data => {
+        console.info('Operation succeed:' + JSON.stringify(data));
+    }).catch((err: BusinessError) => {
+        console.error('Operation failed:' + JSON.stringify(err));
     });
 } catch (err) {
     console.error('Operation failed:' + JSON.stringify(err));
@@ -281,15 +279,14 @@ getBundlePackInfo(bundleName: string, bundlePackFlag : BundlePackFlag, callback:
 
 ```js
 import freeInstall from '@ohos.bundle.freeInstall';
+import { BusinessError } from '@ohos.base';
 let bundleName = 'com.example.myapplication';
 let bundlePackFlag = freeInstall.BundlePackFlag.GET_PACK_INFO_ALL;
 try {
-    freeInstall.getBundlePackInfo(bundleName, bundlePackFlag, (err, data) => {
-        if (err) {
-            console.error('Operation failed:' + JSON.stringify(err));
-        } else {
-            console.info('Operation succeed:' + JSON.stringify(data));
-        }
+    freeInstall.getBundlePackInfo(bundleName, bundlePackFlag).then(data => {
+        console.info('Operation succeed:' + JSON.stringify(data));
+    }).catch((err: BusinessError) => {
+        console.error('Operation failed:' + JSON.stringify(err));
     });
 } catch (err) {
     console.error('Operation failed:' + JSON.stringify(err));
@@ -367,13 +364,12 @@ getDispatchInfo(callback: AsyncCallback\<DispatchInfo>): void;
 
 ```js
 import freeInstall from '@ohos.bundle.freeInstall';
+import { BusinessError } from '@ohos.base';
 try {
-    freeInstall.getDispatchInfo((err, data) => {
-        if (err) {
-            console.error('Operation failed:' + JSON.stringify(err));
-        } else {
-            console.info('Operation succeed:' + JSON.stringify(data));
-        }
+    freeInstall.getDispatchInfo().then(data => {
+        console.info('Operation succeed:' + JSON.stringify(data));
+    }).catch((err: BusinessError) => {
+        console.error('Operation failed:' + JSON.stringify(err));
     });
 } catch (err) {
     console.error('Operation failed:' + JSON.stringify(err));
