@@ -1,8 +1,8 @@
 # @ohos.systemParameterEnhance (System Parameter)
 
 The **SystemParameter** module provides system services with easy access to key-value pairs. You can use the APIs provided by this module to describe the service status and change the service behavior. The basic operation primitives are get and set. You can obtain the values of system parameters through getters and modify the values through setters.
-For details about the system parameter design principles and definitions, see
-[Service Management](../../../device-dev/subsystems/subsys-boot-init-sysparam.md).
+
+For details about the system parameter design principles and definitions, see [Parameter Management](../../../device-dev/subsystems/subsys-boot-init-sysparam.md).
 
 > **NOTE**
 >
@@ -13,7 +13,7 @@ For details about the system parameter design principles and definitions, see
 ## Modules to Import
 
 ```ts
-import systemparameter from '@ohos.systemParameterEnhance'
+import systemparameter from '@ohos.systemParameterEnhance';
 ```
 
 ## systemparameter.getSync
@@ -29,19 +29,19 @@ Obtains the value of the system parameter with the specified key.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | key | string | Yes| Key of the system parameter.|
-| def | string | No| Default value of the system parameter.<br>It works only when the system parameter does not exist.<br>The value can be **undefined** or any custom value. |
+| def | string | No| Default value of the system parameter.<br> It works only when the system parameter does not exist.<br> The value can be **undefined** or any custom value.|
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| string | Value of the system parameter.<br>If the specified key exists, the set value is returned.<br>If the specified key does not exist and **def** is set to a valid value, the set value is returned. If the specified key does not exist and **def** is set to an invalid value (such as **undefined**) or is not set, an exception is thrown. |
+| string | Value of the system parameter.<br> If the specified key exists, the set value is returned.<br> If the specified key does not exist and **def** is set to a valid value, the set value is returned. If the specified key does not exist and **def** is set to an invalid value (such as **undefined**) or is not set, an exception is thrown.|
 
 **Example**
 
 ```ts
 try {
-    var info = systemparameter.getSync("const.ohos.apiversion");
+    let info = systemparameter.getSync("const.ohos.apiversion");
     console.log(JSON.stringify(info));
 } catch(e) {
     console.log("getSync unexpected error: " + e);
@@ -66,8 +66,10 @@ Obtains the value of the system parameter with the specified key.
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
-    systemparameter.get("const.ohos.apiversion", function (err, data) {
+    systemparameter.get("const.ohos.apiversion", (err: BusinessError, data: string) => {
     if (err == undefined) {
         console.log("get test.parameter.key value success:" + data)
     } else {
@@ -97,8 +99,10 @@ Obtains the value of the system parameter with the specified key. This API uses 
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
-    systemparameter.get("const.ohos.apiversion", "default", function (err, data) {
+    systemparameter.get("const.ohos.apiversion", "default", (err: BusinessError, data: string) => {
         if (err == undefined) {
             console.log("get test.parameter.key value success:" + data)
         } else {
@@ -123,7 +127,7 @@ Obtains the value of the system parameter with the specified key. This API uses 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | key | string | Yes| Key of the system parameter.|
-| def | string | No| Default value of the system parameter.<br>It works only when the system parameter does not exist.<br>The value can be **undefined** or any custom value. |
+| def | string | No| Default value of the system parameter.<br> It works only when the system parameter does not exist.<br> The value can be **undefined** or any custom value.|
 
 **Return value**
 
@@ -134,11 +138,13 @@ Obtains the value of the system parameter with the specified key. This API uses 
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
-    var p = systemparameter.get("const.ohos.apiversion");
-    p.then(function (value) {
+    let p = systemparameter.get("const.ohos.apiversion");
+    p.then((value: string) => {
         console.log("get test.parameter.key success: " + value);
-    }).catch(function (err) {
+    }).catch((err: BusinessError) => {
         console.log("get test.parameter.key error: " + err.code);
     });
 } catch(e) {
@@ -164,6 +170,8 @@ Sets a value for the system parameter with the specified key.
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
     systemparameter.setSync("test.parameter.key", "default");
 } catch(e) {
@@ -190,8 +198,10 @@ Sets a value for the system parameter with the specified key. This API uses an a
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
-    systemparameter.set("test.parameter.key", "testValue", function (err, data) {
+    systemparameter.set("test.parameter.key", "testValue", (err: BusinessError, data: void) => {
     if (err == undefined) {
         console.log("set test.parameter.key value success :" + data)
     } else {
@@ -226,11 +236,13 @@ Sets a value for the system parameter with the specified key. This API uses a pr
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
-    var p = systemparameter.set("test.parameter.key", "testValue");
-    p.then(function (value) {
+    let p = systemparameter.set("test.parameter.key", "testValue");
+    p.then((value: void) => {
         console.log("set test.parameter.key success: " + value);
-    }).catch(function (err) {
+    }).catch((err: BusinessError) => {
         console.log(" set test.parameter.key error: " + err.code);
     });
 } catch(e) {
