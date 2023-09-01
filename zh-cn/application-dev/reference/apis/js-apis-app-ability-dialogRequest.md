@@ -10,7 +10,7 @@ dialogRequest模块用于处理模态弹框的能力，包括获取RequestInfo�
 
 ## 导入模块
 
-```js
+```ts
 import dialogRequest from '@ohos.app.ability.dialogRequest';
 ```
 
