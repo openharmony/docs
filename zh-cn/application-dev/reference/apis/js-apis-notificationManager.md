@@ -291,7 +291,7 @@ cancel(id: number, label?: string): Promise\<void\>
 | 参数名  | 类型   | 必填 | 说明     |
 | ----- | ------ | ---- | -------- |
 | id    | number | 是   | 通知ID。   |
-| label | string | 否   | 通知标签。 |
+| label | string | 否   | 通知标签，默认为空。 |
 
 **错误码：**
 
@@ -4002,7 +4002,7 @@ off(type: 'checkNotification', callback?: (checkInfo: NotificationCheckInfo) => 
 | 参数名 | 类型                          | 必填 | 说明           |
 | ------ | ----------------------------- | ---- | -------------- |
 | type | string                                                       | 是   | 回调函数类型名，固定为'checkNotification'。 |
-| callback | (checkInfo: [NotificationCheckInfo](#notificationcheckinfo)) =>  [NotificationCheckResult](#notificationcheckresult)  | 否   | 消息验证函数指针。 |
+| callback | (checkInfo: [NotificationCheckInfo](#notificationcheckinfo)) =>  [NotificationCheckResult](#notificationcheckresult)  | 否   | 消息验证函数指针，默认为空。 |
 
 **错误码：**
 
