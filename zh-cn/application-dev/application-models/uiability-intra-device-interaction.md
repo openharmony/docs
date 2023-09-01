@@ -541,18 +541,20 @@ export default class FuncAbility extends UIAbility {
 
      onWindowStageCreate(windowStage: window.WindowStage) {
        // Main window is created, set main page for this ability
-       // ...
+       let url = 'pages/Index';
+       if (this.funcAbilityWant?.parameters?.router && this.funcAbilityWant.parameters.router === 'funcA') {
+         url = 'pages/Second';
+       }
 
-       let windowClass: window.Window;
-       windowStage.getMainWindow((err, data) => {
+       windowStage.loadContent(url, (err, data) => {
          if (err.code) {
            return;
          }
-   
+
          let windowClass: window.Window;
          windowStage.getMainWindow((err, data) => {
            if (err.code) {
-             console.error(TAG, `Failed to obtain the main window. Code is ${err.code}, message is ${err.message}`);
+             console.error(`Failed to obtain the main window. Code is ${err.code}, message is ${err.message}`);
              return;
            }
            windowClass = data;
