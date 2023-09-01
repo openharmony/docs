@@ -2822,7 +2822,7 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 
 **Example**
 
-```js
+```ts
 // promise
 let surfaceID: string;                                               // Surface ID passed to the external system.
 videoRecorder.getInputSurface().then((surfaceId: string) => {
@@ -2943,7 +2943,7 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 
 **Example**
 
-```js
+```ts
 // asyncallback
 videoRecorder.pause((err: BusinessError) => {
   if (err == null) {
