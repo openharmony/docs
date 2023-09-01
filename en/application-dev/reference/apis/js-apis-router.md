@@ -1,5 +1,7 @@
 # @ohos.router (Page Routing)
 
+<!--subsystem: ArkUI-->
+
 The **Router** module provides APIs to access pages through URLs. You can use the APIs to navigate to a specified page in an application, replace the current page with another one in an application, and return to the previous page or a specified page.
 
 > **NOTE**
@@ -11,6 +13,8 @@ The **Router** module provides APIs to access pages through URLs. You can use th
 > - The functionality of this module depends on UI context. This means that the APIs of this module cannot be used where the UI context is unclear. For details, see [UIContext](./js-apis-arkui-UIContext.md#uicontext).
 >
 > - Since API version 10, you can use the [getRouter](./js-apis-arkui-UIContext.md#getrouter) API in [UIContext](./js-apis-arkui-UIContext.md#uicontext) to obtain the [Router](./js-apis-arkui-UIContext.md#router) object associated with the current UI context.
+>
+> - To achieve a better transition effect, you are advised to use the [\<Navigation>](../../ui/arkts-navigation-navigation.md) component and [modal transition](../../ui/arkts-modal-transition.md).
 
 ## Modules to Import
 
@@ -51,19 +55,21 @@ For details about the error codes, see [Router Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-try {
-  router.pushUrl({
-    url: 'pages/routerpage2',
-    params: {
-      data1: 'message',
-      data2: {
-        data3: [123, 456, 789]
-      }
+router.pushUrl({
+  url: 'pages/routerpage2',
+  params: {
+    data1: 'message',
+    data2: {
+      data3: [123, 456, 789]
     }
+  }
+})
+  .then(() => {
+    // success
   })
-} catch (err) {
-  console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
-}
+  .catch(err => {
+    console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
+  })
 ```
 
 ## router.pushUrl<sup>9+</sup>
@@ -144,19 +150,21 @@ For details about the error codes, see [Router Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-try {
-  router.pushUrl({
-    url: 'pages/routerpage2',
-    params: {
-      data1: 'message',
-      data2: {
-        data3: [123, 456, 789]
-      }
+router.pushUrl({
+  url: 'pages/routerpage2',
+  params: {
+    data1: 'message',
+    data2: {
+      data3: [123, 456, 789]
     }
-  }, router.RouterMode.Standard)
-} catch (err) {
-  console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
-}
+  }
+}, router.RouterMode.Standard)
+  .then(() => {
+    // success
+  })
+  .catch(err => {
+    console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
+  })
 ```
 
 ## router.pushUrl<sup>9+</sup>
@@ -237,16 +245,18 @@ For details about the error codes, see [Router Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-try {
-  router.replaceUrl({
-    url: 'pages/detail',
-    params: {
-      data1: 'message'
-    }
+router.replaceUrl({
+  url: 'pages/detail',
+  params: {
+    data1: 'message'
+  }
+})
+  .then(() => {
+    // success
   })
-} catch (err) {
-  console.error(`replaceUrl failed, code is ${err.code}, message is ${err.message}`);
-}
+  .catch(err => {
+    console.error(`replaceUrl failed, code is ${err.code}, message is ${err.message}`);
+  })
 ```
 
 ## router.replaceUrl<sup>9+</sup>
@@ -324,16 +334,18 @@ For details about the error codes, see [Router Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-try {
-  router.replaceUrl({
-    url: 'pages/detail',
-    params: {
-      data1: 'message'
-    }
-  }, router.RouterMode.Standard)
-} catch (err) {
-  console.error(`replaceUrl failed, code is ${err.code}, message is ${err.message}`);
-}
+router.replaceUrl({
+  url: 'pages/detail',
+  params: {
+    data1: 'message'
+  }
+}, router.RouterMode.Standard)
+  .then(() => {
+    // success
+  })
+  .catch(err => {
+    console.error(`replaceUrl failed, code is ${err.code}, message is ${err.message}`);
+  })
 ```
 
 ## router.replaceUrl<sup>9+</sup>
@@ -412,19 +424,21 @@ For details about the error codes, see [Router Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-try {
-  router.pushNamedRoute({
-    name: 'myPage',
-    params: {
-      data1: 'message',
-      data2: {
-        data3: [123, 456, 789]
-      }
+router.pushNamedRoute({
+  name: 'myPage',
+  params: {
+    data1: 'message',
+    data2: {
+      data3: [123, 456, 789]
     }
+  }
+})
+  .then(() => {
+    // success
   })
-} catch (err) {
-  console.error(`pushNamedRoute failed, code is ${err.code}, message is ${err.message}`);
-}
+  .catch(err => {
+    console.error(`pushNamedRoute failed, code is ${err.code}, message is ${err.message}`);
+  })
 ```
 
 For details, see [UI Development-Named Route](../../ui/arkts-routing.md#named-route).
@@ -507,19 +521,21 @@ For details about the error codes, see [Router Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-try {
-  router.pushNamedRoute({
-    name: 'myPage',
-    params: {
-      data1: 'message',
-      data2: {
-        data3: [123, 456, 789]
-      }
+router.pushNamedRoute({
+  name: 'myPage',
+  params: {
+    data1: 'message',
+    data2: {
+      data3: [123, 456, 789]
     }
-  }, router.RouterMode.Standard)
-} catch (err) {
-  console.error(`pushNamedRoute failed, code is ${err.code}, message is ${err.message}`);
-}
+  }
+}, router.RouterMode.Standard)
+  .then(() => {
+    // success
+  })
+  .catch(err => {
+    console.error(`pushNamedRoute failed, code is ${err.code}, message is ${err.message}`);
+  })
 ```
 
 ## router.pushNamedRoute<sup>10+</sup>
@@ -600,16 +616,18 @@ For details about the error codes, see [Router Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-try {
-  router.replaceNamedRoute({
-    name: 'myPage',
-    params: {
-      data1: 'message'
-    }
+router.replaceNamedRoute({
+  name: 'myPage',
+  params: {
+    data1: 'message'
+  }
+})
+  .then(() => {
+    // success
   })
-} catch (err) {
-  console.error(`replaceNamedRoute failed, code is ${err.code}, message is ${err.message}`);
-}
+  .catch(err => {
+    console.error(`replaceNamedRoute failed, code is ${err.code}, message is ${err.message}`);
+  })
 ```
 
 ## router.replaceNamedRoute<sup>10+</sup>
@@ -687,16 +705,18 @@ For details about the error codes, see [Router Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-try {
-  router.replaceNamedRoute({
-    name: 'myPage',
-    params: {
-      data1: 'message'
-    }
-  }, router.RouterMode.Standard)
-} catch (err) {
-  console.error(`replaceNamedRoute failed, code is ${err.code}, message is ${err.message}`);
-}
+router.replaceNamedRoute({
+  name: 'myPage',
+  params: {
+    data1: 'message'
+  }
+}, router.RouterMode.Standard)
+  .then(() => {
+    // success
+  })
+  .catch(err => {
+    console.error(`replaceNamedRoute failed, code is ${err.code}, message is ${err.message}`);
+  })
 ```
 
 ## router.replaceNamedRoute<sup>10+</sup>
@@ -857,13 +877,15 @@ For details about the error codes, see [Router Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-try {
-  router.showAlertBeforeBackPage({
-    message: 'Message Info'
-  });
-} catch(error) {
-  console.error(`showAlertBeforeBackPage failed, code is ${error.code}, message is ${error.message}`);
-}
+router.showAlertBeforeBackPage({
+  message: 'Message Info'
+})
+  .then(() => {
+    // success
+  })
+  .catch(err => {
+    console.error(`showAlertBeforeBackPage failed, code is ${error.code}, message is ${error.message}`);
+  })
 ```
 ## EnableAlertOptions
 

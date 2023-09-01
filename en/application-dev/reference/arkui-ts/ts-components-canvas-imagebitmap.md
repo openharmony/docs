@@ -24,8 +24,8 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 | Name| Type| Description|
 | -------- | -------- | -------- |
-| width | number | Pixel width of the **ImageBitmap** object.<br>Since API version 9, this API is supported in ArkTS widgets.|
-| height | number | Pixel height of the **ImageBitmap** object.<br>Since API version 9, this API is supported in ArkTS widgets.|
+| width | number | Pixel width of the **ImageBitmap** object. The current value is **0**.<br>Since API version 9, this API is supported in ArkTS widgets.|
+| height | number | Pixel height of the **ImageBitmap** object. The current value is **0**.<br>Since API version 9, this API is supported in ArkTS widgets.|
 
 **Example**
 
