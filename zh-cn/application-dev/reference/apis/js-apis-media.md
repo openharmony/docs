@@ -202,9 +202,9 @@ createVideoRecorder(callback: AsyncCallback\<VideoRecorder>): void
 **示例：**
 
 ```js
-let videoRecorder;
+let videoRecorder: media.VideoRecorder;
 
-media.createVideoRecorder((error, video) => {
+media.createVideoRecorder((error: BusinessError, video: media.VideoRecorder) => {
   if (video != null) {
     videoRecorder = video;
     console.info('video createVideoRecorder success');
@@ -242,16 +242,16 @@ createVideoRecorder(): Promise\<VideoRecorder>
 **示例：**
 
 ```js
-let videoRecorder;
+let videoRecorder: media.VideoRecorder;
 
-media.createVideoRecorder().then((video) => {
+media.createVideoRecorder().then((video: media.VideoRecorder) => {
   if (video != null) {
     videoRecorder = video;
     console.info('video createVideoRecorder success');
   } else {
     console.error('video createVideoRecorder fail');
   }
-}).catch((error) => {
+}).catch((error: BusinessError) => {
   console.error(`video catchCallback, error message:${error.message}`);
 });
 ```
@@ -2647,7 +2647,7 @@ prepare(config: VideoRecorderConfig, callback: AsyncCallback\<void>): void;
 
 ```js
 // 配置参数以实际硬件设备支持的范围为准
-let videoProfile = {
+let videoProfile: media.VideoRecorderProfile = {
   audioBitrate : 48000,
   audioChannels : 2,
   audioCodec : 'audio/mp4a-latm',
@@ -2660,7 +2660,7 @@ let videoProfile = {
   videoFrameRate : 30
 }
 
-let videoConfig = {
+let videoConfig: media.VideoRecorderConfig = {
   audioSourceType : 1,
   videoSourceType : 0,
   profile : videoProfile,
@@ -2670,7 +2670,7 @@ let videoConfig = {
 }
 
 // asyncallback
-videoRecorder.prepare(videoConfig, (err) => {
+videoRecorder.prepare(videoConfig, (err: BusinessError) => {
   if (err == null) {
     console.info('prepare success');
   } else {
@@ -2718,7 +2718,7 @@ prepare(config: VideoRecorderConfig): Promise\<void>;
 
 ```js
 // 配置参数以实际硬件设备支持的范围为准
-let videoProfile = {
+let videoProfile: media.VideoRecorderProfile = {
   audioBitrate : 48000,
   audioChannels : 2,
   audioCodec : 'audio/mp4a-latm',
@@ -2731,7 +2731,7 @@ let videoProfile = {
   videoFrameRate : 30
 }
 
-let videoConfig = {
+let videoConfig: media.VideoRecorderConfig = {
   audioSourceType : 1,
   videoSourceType : 0,
   profile : videoProfile,
@@ -2743,7 +2743,7 @@ let videoConfig = {
 // promise
 videoRecorder.prepare(videoConfig).then(() => {
   console.info('prepare success');
-}).catch((err) => {
+}).catch((err: Error) => {
   console.error('prepare failed and catch error is ' + err.message);
 });
 ```
@@ -2782,8 +2782,8 @@ getInputSurface(callback: AsyncCallback\<string>): void;
 
 ```js
 // asyncallback
-let surfaceID = null;                                               // 传递给外界的surfaceID
-videoRecorder.getInputSurface((err, surfaceId) => {
+let surfaceID: string;                                               // 传递给外界的surfaceID
+videoRecorder.getInputSurface((err: BusinessError, surfaceId: string) => {
   if (err == null) {
     console.info('getInputSurface success');
     surfaceID = surfaceId;
@@ -2827,11 +2827,11 @@ getInputSurface(): Promise\<string>;
 
 ```js
 // promise
-let surfaceID = null;                                               // 传递给外界的surfaceID
-videoRecorder.getInputSurface().then((surfaceId) => {
+let surfaceID: string;                                               // 传递给外界的surfaceID
+videoRecorder.getInputSurface().then((surfaceId: string) => {
   console.info('getInputSurface success');
   surfaceID = surfaceId;
-}).catch((err) => {
+}).catch((err: Error) => {
   console.error('getInputSurface failed and catch error is ' + err.message);
 });
 ```
@@ -2868,7 +2868,7 @@ start(callback: AsyncCallback\<void>): void;
 
 ```js
 // asyncallback
-videoRecorder.start((err) => {
+videoRecorder.start((err: BusinessError) => {
   if (err == null) {
     console.info('start videorecorder success');
   } else {
@@ -2911,7 +2911,7 @@ start(): Promise\<void>;
 // promise
 videoRecorder.start().then(() => {
   console.info('start videorecorder success');
-}).catch((err) => {
+}).catch((err: Error) => {
   console.error('start videorecorder failed and catch error is ' + err.message);
 });
 ```
@@ -2948,7 +2948,7 @@ pause(callback: AsyncCallback\<void>): void;
 
 ```js
 // asyncallback
-videoRecorder.pause((err) => {
+videoRecorder.pause((err: BusinessError) => {
   if (err == null) {
     console.info('pause videorecorder success');
   } else {
@@ -2991,7 +2991,7 @@ pause(): Promise\<void>;
 // promise
 videoRecorder.pause().then(() => {
   console.info('pause videorecorder success');
-}).catch((err) => {
+}).catch((err: Error) => {
   console.error('pause videorecorder failed and catch error is ' + err.message);
 });
 ```
@@ -3026,7 +3026,7 @@ resume(callback: AsyncCallback\<void>): void;
 
 ```js
 // asyncallback
-videoRecorder.resume((err) => {
+videoRecorder.resume((err: Error) => {
   if (err == null) {
     console.info('resume videorecorder success');
   } else {
@@ -3067,7 +3067,7 @@ resume(): Promise\<void>;
 // promise
 videoRecorder.resume().then(() => {
   console.info('resume videorecorder success');
-}).catch((err) => {
+}).catch((err: Error) => {
   console.error('resume videorecorder failed and catch error is ' + err.message);
 });
 ```
@@ -3104,7 +3104,7 @@ stop(callback: AsyncCallback\<void>): void;
 
 ```js
 // asyncallback
-videoRecorder.stop((err) => {
+videoRecorder.stop((err: BusinessError) => {
   if (err == null) {
     console.info('stop videorecorder success');
   } else {
@@ -3147,7 +3147,7 @@ stop(): Promise\<void>;
 // promise
 videoRecorder.stop().then(() => {
   console.info('stop videorecorder success');
-}).catch((err) => {
+}).catch((err: Error) => {
   console.error('stop videorecorder failed and catch error is ' + err.message);
 });
 ```
@@ -3180,7 +3180,7 @@ release(callback: AsyncCallback\<void>): void;
 
 ```js
 // asyncallback
-videoRecorder.release((err) => {
+videoRecorder.release((err: BusinessError) => {
   if (err == null) {
     console.info('release videorecorder success');
   } else {
@@ -3219,7 +3219,7 @@ release(): Promise\<void>;
 // promise
 videoRecorder.release().then(() => {
   console.info('release videorecorder success');
-}).catch((err) => {
+}).catch((err: Error) => {
   console.error('release videorecorder failed and catch error is ' + err.message);
 });
 ```
@@ -3255,7 +3255,7 @@ reset(callback: AsyncCallback\<void>): void;
 
 ```js
 // asyncallback
-videoRecorder.reset((err) => {
+videoRecorder.reset((err: BusinessError) => {
   if (err == null) {
     console.info('reset videorecorder success');
   } else {
@@ -3297,7 +3297,7 @@ reset(): Promise\<void>;
 // promise
 videoRecorder.reset().then(() => {
   console.info('reset videorecorder success');
-}).catch((err) => {
+}).catch((err: Error) => {
   console.error('reset videorecorder failed and catch error is ' + err.message);
 });
 ```
@@ -3330,8 +3330,8 @@ on(type: 'error', callback: ErrorCallback): void
 
 ```js
 // 当获取videoRecordState接口出错时通过此订阅事件上报
-videoRecorder.on('error', (error) => {                                  // 设置'error'事件回调
-  console.error(`audio error called, error: ${error}`); 
+videoRecorder.on('error', (error: Error) => {                                  // 设置'error'事件回调
+  console.error(`audio error called, error: ${error}`);
 })
 ```
 
@@ -3502,7 +3502,7 @@ createAudioRecorder(): AudioRecorder
 **示例：**
 
 ```js
-let audioRecorder = media.createAudioRecorder();
+let audioRecorder: media.AudioRecorder = media.createAudioRecorder();
 ```
 
 ## MediaErrorCode<sup>(deprecated)</sup><a name=mediaerrorcode></a>
@@ -4906,8 +4906,8 @@ on(type: 'prepare' | 'start' | 'pause' | 'resume' | 'stop' | 'release' | 'reset'
 **示例：**
 
 ```js
-let audioRecorder = media.createAudioRecorder();                                  // 创建一个音频录制实例
-let audioRecorderConfig = {
+let audioRecorder: media.AudioRecorder = media.createAudioRecorder();                                  // 创建一个音频录制实例
+let audioRecorderConfig: media.AudioRecorderConfig = {
   audioEncoder : media.AudioEncoder.AAC_LC,
   audioEncodeBitRate : 22050,
   audioSampleRate : 22050,
@@ -4916,7 +4916,7 @@ let audioRecorderConfig = {
   uri : 'fd://xx',                                                            // 文件需先由调用者创建，并给予适当的权限
   location : { latitude : 30, longitude : 130},
 }
-audioRecorder.on('error', (error) => {                                             // 设置'error'事件回调
+audioRecorder.on('error', (error: BusinessError) => {                                             // 设置'error'事件回调
   console.info(`audio error called, error: ${error}`);
 });
 audioRecorder.on('prepare', () => {                                              // 设置'prepare'事件回调
@@ -4941,7 +4941,7 @@ audioRecorder.on('release', () => {                                             
 audioRecorder.on('reset', () => {                                                 // 设置'reset'事件回调
   console.log('audio recorder reset success');
 });
-audioRecorder.prepare(audioRecorderConfig)                                       // 设置录制参数 ，并触发'prepare'事件回调
+audioRecorder.prepare(audioRecorderConfig)       
 ```
 
 ### on('error')
@@ -4962,7 +4962,7 @@ on(type: 'error', callback: ErrorCallback): void
 **示例：**
 
 ```js
-let audioRecorderConfig = {
+let audioRecorderConfig: media.AudioRecorderConfig = {
   audioEncoder : media.AudioEncoder.AAC_LC,
   audioEncodeBitRate : 22050,
   audioSampleRate : 22050,
@@ -4971,7 +4971,7 @@ let audioRecorderConfig = {
   uri : 'fd://xx',                                                     // 文件需先由调用者创建，并给予适当的权限
   location : { latitude : 30, longitude : 130},
 }
-audioRecorder.on('error', (error) => {                                  // 设置'error'事件回调
+audioRecorder.on('error', (error: Error) => {                                  // 设置'error'事件回调
   console.error(`audio error called, error: ${error}`);
 });
 audioRecorder.prepare(audioRecorderConfig);                            // prepare不设置参数，触发'error'事件
