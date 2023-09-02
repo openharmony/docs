@@ -349,6 +349,8 @@ constructor(name: string, param: unknown)
 
 ## 示例
 
+### 示例1
+
 ```ts
 // xxx.ets
 @Entry
@@ -466,3 +468,153 @@ struct NavigationExample {
 ```
 
 ![zh-cn_image_0000001192655288](figures/zh-cn_image_0000001192655288.gif)
+
+
+
+### 示例2
+```ts
+// Index.ets
+
+import { pageOne } from './pageOne'
+import { pageTwo } from './pageTwo'
+
+@Entry
+@Component
+struct NavigationExample {
+  @Provide('pageInfos') pageInfos: NavPathStack = new NavPathStack()
+
+  @Builder
+  PageMap(name: string, param: unknown) {
+    if (name === 'pageOne') {
+      pageOne()
+    } else if (name === 'pageTwo') {
+      pageTwo({ names: name, values: this.pageInfos })
+    }
+  }
+
+  build() {
+    Navigation(this.pageInfos) {
+      Column() {
+        Button('pushPath', { stateEffect: true, type: ButtonType.Capsule })
+          .width('80%')
+          .height(40)
+          .margin(20)
+          .onClick(() => {
+            this.pageInfos.pushPath({ name: 'pageOne' }) //将name指定的NavDestination页面信息入栈
+          })
+      }
+    }.title('NavIndex').navDestination(this.PageMap)
+  }
+}
+```
+```ts
+// pageOne.ets
+
+@Component
+export struct pageOne {
+  @Consume('pageInfos') pageInfos: NavPathStack;
+
+  build() {
+    NavDestination() {
+      Column() {
+        Button('pushPathByName', { stateEffect: true, type: ButtonType.Capsule })
+          .width('80%')
+          .height(40)
+          .margin(20)
+          .onClick(() => {
+            this.pageInfos.pushPathByName('pageTwo', { count: 10 }) //将name指定的NavDestination页面信息入栈，传递的数据为param
+          })
+        Button('popToname', { stateEffect: true, type: ButtonType.Capsule })
+          .width('80%')
+          .height(40)
+          .margin(20)
+          .onClick(() => {
+            this.pageInfos.popToName('pageTwo') //回退路由栈到第一个名为name的NavDestination页面
+            console.log('popToName' + JSON.stringify(this.pageInfos), '返回值' + JSON.stringify(this.pageInfos.popToName('pageTwo')))
+          })
+        Button('popToIndex', { stateEffect: true, type: ButtonType.Capsule })
+          .width('80%')
+          .height(40)
+          .margin(20)
+          .onClick(() => {
+            this.pageInfos.popToIndex(1) // 回退路由栈到index指定的NavDestination页面
+            console.log('popToIndex' + JSON.stringify(this.pageInfos))
+          })
+        Button('moveToTop', { stateEffect: true, type: ButtonType.Capsule })
+          .width('80%')
+          .height(40)
+          .margin(20)
+          .onClick(() => {
+            this.pageInfos.moveToTop('pageTwo') // 将第一个名为name的NavDestination页面移到栈顶
+            console.log('moveToTop' + JSON.stringify(this.pageInfos), '返回值' + JSON.stringify(this.pageInfos.moveToTop('pageTwo')))
+          })
+        Button('moveIndexToTop', { stateEffect: true, type: ButtonType.Capsule })
+          .width('80%')
+          .height(40)
+          .margin(20)
+          .onClick(() => {
+            this.pageInfos.moveIndexToTop(1) // 将index指定的NavDestination页面移到栈顶
+            console.log('moveIndexToTop' + JSON.stringify(this.pageInfos))
+          })
+        Button('clear', { stateEffect: true, type: ButtonType.Capsule })
+          .width('80%')
+          .height(40)
+          .margin(20)
+          .onClick(() => {
+            this.pageInfos.clear() //清除栈中所有页面
+          })
+        Button('get', { stateEffect: true, type: ButtonType.Capsule })
+          .width('80%')
+          .height(40)
+          .margin(20)
+          .onClick(() => {
+            console.log('-------------------')
+            console.log('获取栈中所有NavDestination页面的名称', JSON.stringify(this.pageInfos.getAllPathName()))
+            console.log('获取index指定的NavDestination页面的参数信息', JSON.stringify(this.pageInfos.getParamByIndex(1)))
+            console.log('获取全部名为name的NavDestination页面的参数信息', JSON.stringify(this.pageInfos.getParamByName('pageTwo')))
+            console.log('获取全部名为name的NavDestination页面的位置索引', JSON.stringify(this.pageInfos.getIndexByName('pageOne')))
+            console.log('获取栈大小', JSON.stringify(this.pageInfos.size()))
+          })
+      }.width('100%').height('100%')
+    }.title('pageOne')
+    .onBackPressed(() => {
+      this.pageInfos.pop() // 弹出路由栈栈顶元素
+      console.log('pop' + '返回值' + JSON.stringify(this.pageInfos.pop()))
+      return true
+    })
+  }
+}
+```
+```ts
+// pageTwo.ets
+
+export class pages {
+  names: string
+  values: NavPathStack
+
+  constructor(name: string, param: NavPathStack) {
+    this.names = name
+    this.values = param
+  }
+}
+
+@Builder
+export function pageTwo(info: pages) {
+  NavDestination() {
+    Column() {
+      Button('pushPathByName', { stateEffect: true, type: ButtonType.Capsule })
+        .width('80%')
+        .height(40)
+        .margin(20)
+        .onClick(() => {
+          info.values.pushPathByName('pageOne', {})
+        })
+    }.width('100%').height('100%')
+  }.title('pageTwo')
+  .onBackPressed(() => {
+    info.values.pop()
+    return true
+  })
+}
+```
+![navigation.gif](figures/navigation.gif)
