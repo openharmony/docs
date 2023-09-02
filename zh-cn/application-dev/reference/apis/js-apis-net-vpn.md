@@ -43,16 +43,16 @@ createVpnConnection(context: AbilityContext): VpnConnection
 Stage模型示例：
 
 ```ts
-// 获取context
-import UIAbility from '@ohos.app.ability.UIAbility';
-class EntryAbility extends UIAbility {
-  onWindowStageCreate(windowStage){
-    globalThis.context = this.context;
+  // 获取context
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage){
+      globalThis.context = this.context;
+    }
   }
-}
-let context = globalThis.context;
-VpnConnection = vpn.createVpnConnection(context);
-console.info("vpn onInit: " + JSON.stringify(VpnConnection));
+  let context = globalThis.context;
+  let VpnConnection = vpn.createVpnConnection(context);
+  console.info("vpn onInit: " + JSON.stringify(VpnConnection));
 ```
 
 ## VpnConnection
@@ -96,6 +96,14 @@ setUp(config: VpnConfig, callback: AsyncCallback\<number\>): void
 **示例：**
 
 ```js
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage){
+      globalThis.context = this.context;
+    }
+  }
+  let VpnConnection = vpn.createVpnConnection(globalThis.context);
+
   let config = {
     addresses: [{
       address: {
@@ -160,6 +168,14 @@ setUp(config: VpnConfig): Promise\<number\>
 **示例：**
 
 ```js
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage){
+      globalThis.context = this.context;
+    }
+  }
+  let VpnConnection = vpn.createVpnConnection(globalThis.context);
+
   let config = {
     addresses: [{
       address: {
@@ -220,6 +236,14 @@ protect(socketFd: number, callback: AsyncCallback\<void\>): void
 
 ```js
   import socket from "@ohos.net.socket";
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage){
+      globalThis.context = this.context;
+    }
+  }
+  let VpnConnection = vpn.createVpnConnection(globalThis.context);
+
   var tcp = socket.constructTCPSocketInstance();  
   tcp.bind({
     address: "0.0.0.0",
@@ -283,6 +307,14 @@ protect(socketFd: number): Promise\<void\>
 
 ```js
   import socket from "@ohos.net.socket";
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage){
+      globalThis.context = this.context;
+    }
+  }
+  let VpnConnection = vpn.createVpnConnection(globalThis.context);
+
   var tcp = socket.constructTCPSocketInstance();  
   tcp.bind({
     address: "0.0.0.0",
@@ -339,6 +371,13 @@ destroy(callback: AsyncCallback\<void\>): void
 **示例：**
 
 ```js
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage){
+      globalThis.context = this.context;
+    }
+  }
+  let VpnConnection = vpn.createVpnConnection(globalThis.context);
   VpnConnection.destroy((error) => {
     console.info(JSON.stringify(error));
   })
@@ -376,6 +415,13 @@ destroy(): Promise\<void\>
 **示例：**
 
 ```js
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage){
+      globalThis.context = this.context;
+    }
+  }
+  let VpnConnection = vpn.createVpnConnection(globalThis.context);
   VpnConnection.destroy().then(() => {
     console.info("destroy success.")
   }).catch(err => {
