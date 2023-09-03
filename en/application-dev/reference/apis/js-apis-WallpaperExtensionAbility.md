@@ -1,12 +1,12 @@
 # @ohos.WallpaperExtensionAbility (WallpaperExtensionAbility)
 
-The **WallpaperExtensionAbility** module provides APIs for developing wallpaper extension abilities and managing the lifecycle of these extension abilities.
+The **WallpaperExtensionAbility** module provides lifecycle callbacks for wallpaper extension abilities and APIs for listening for wallpaper changes.
 
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
-> The APIs of this module can be used only in the FA model.
+> The APIs of this module can be used only in the stage model.
 >
 > The APIs provided by this module are system APIs.
 
