@@ -5,61 +5,58 @@ A Harmony Archive (HAR) is a static shared package that can contain code, C++ li
 You can [create a HAR module in DevEco Studio](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/creating_har_api9-0000001518082393-V3#section143510369612).
 
 To better protect your source code, enable obfuscation for the HAR module so that DevEco Studio compiles, obfuscates, and compresses code during HAR building.
-
 > **NOTE**
 >
 > Obfuscation is only available for ArkTS projects in the stage model.
 
-### Obfuscation in API Version 9
+Whether obfuscation is enabled by default varies by version.
 
-In API version 9, obfuscation is disabled by default, and can be enabled by setting **artifactType** to **obfuscation** in the **build-profile.json5** file of the HAR module. The configuration is as follows:
+- In API version 9, obfuscation is disabled by default, and can be enabled by setting **artifactType** to **obfuscation** in the **build-profile.json5** file of the HAR module. The configuration is as follows:
 
-```json
-{
-  "apiType": "stageMode",
-  "buildOption": {
-      "artifactType": "obfuscation"
-  }
-}
-```
-The value options of **artifactType** are as follows, with the default value being **original**:
-- **original**: Code is not obfuscated.
-- **obfuscation**: Code is obfuscated using Uglify.
-
-### Obfuscation in API Version 10
-
-In API version 10, obfuscation is enabled by default, and can be set through the **enable** field under **ruleOptions** in the **build-profile.json5** file of the HAR module. The configuration is as follows:
-
-```json
-{
-  "apiType": "stageMode",
-  "buildOption": {
-  },
-  "buildOptionSet": [
-    {
-      "name": "release",
-      "arkOptions": {
-        "obfuscation": {
-          "ruleOptions": {
-            "enable": true,
-            "files": [
-              "./obfuscation-rules.txt"
-            ]
-          },
-          "consumerFiles": [
-            "./consumer-rules.txt"
-          ]
-        }
-      }
-    },
-  ],
-  "targets": [
-    {
-      "name": "default"
+  ```json
+  {
+    "apiType": "stageMode",
+    "buildOption": {
+        "artifactType": "obfuscation"
     }
-  ]
-}
-```
+  }
+  ```
+  The value options of **artifactType** are as follows, with the default value being **original**:
+  - **original**: Code is not obfuscated.
+  - **obfuscation**: Code is obfuscated using Uglify.
+
+- In API version 10, obfuscation is enabled by default, and can be set through the **enable** field under **ruleOptions** in the **build-profile.json5** file of the HAR module. The configuration is as follows:
+
+  ```json
+  {
+    "apiType": "stageMode",
+    "buildOption": {
+    },
+    "buildOptionSet": [
+      {
+        "name": "release",
+        "arkOptions": {
+          "obfuscation": {
+            "ruleOptions": {
+              "enable": true,
+              "files": [
+                "./obfuscation-rules.txt"
+              ]
+            },
+            "consumerFiles": [
+              "./consumer-rules.txt"
+            ]
+          }
+        }
+      },
+    ],
+    "targets": [
+      {
+        "name": "default"
+      }
+    ]
+  }
+  ```
 ### Adaptation Guide
 
 The **artifactType** field is forward compatible, and the original function is not affected. Yet, it is deprecated since API version 10, and you are advised to use the substitute as soon as possible.
