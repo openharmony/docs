@@ -130,23 +130,23 @@ class ClassA {
 
 @Component
 struct LinkChild {
-  @Link testNum: ClassA;
+ @Link testNum: ClassA;
 
-  build() {
-    Text(`LinkChild testNum ${this.testNum?.c}`)
-  }
+ build() {
+   Text(`LinkChild testNum ${this.testNum?.c}`)
+ }
 }
 
 @Component
 struct PropChild1 {
-  @Prop testNum: ClassA = new ClassA(1);
+ @Prop testNum: ClassA = new ClassA(1);
 
-  build() {
-    Text(`PropChild1 testNum ${this.testNum?.c}`)
-      .onClick(() => {
-        this.testNum = new ClassA(48);
-      })
-  }
+ build() {
+   Text(`PropChild1 testNum ${this.testNum?.c}`)
+     .onClick(() => {
+       this.testNum = new ClassA(48);
+     })
+ }
 }
 
 @Component
@@ -359,6 +359,7 @@ struct ViewClassC {
                     this.c.setC(this.c.getC()+1);
                 })
         }
+    }
 }
 
 @Entry
