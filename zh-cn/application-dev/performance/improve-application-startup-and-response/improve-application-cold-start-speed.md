@@ -69,7 +69,7 @@ OpenHarmony的应用冷启动过程大致可分成以下四个阶段：应用进
 
 aboutToAppear函数会在创建自定义组件实例后，页面绘制之前执行，以下代码在aboutToAppear中对耗时长的计算任务进行了异步处理，避免在该接口执行该耗时操作，不阻塞页面绘制。
 
-```javascript
+```typescript
 @Entry
 @Component
 struct Index {

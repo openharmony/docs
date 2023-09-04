@@ -6,7 +6,7 @@
 
 反例：应用使用了自定义动画，动画曲线计算过程很容易引起UI线程高负载，易导致丢帧。
 
-```javascript
+```typescript
 @Entry
 @Component
 struct AttrAnimationExample {
@@ -56,7 +56,7 @@ struct AttrAnimationExample {
 
 建议：通过系统提供的属性动效API实现上述动效功能。
 
-```javascript
+```typescript
 @Entry
 @Component
 struct AttrAnimationExample {
@@ -96,7 +96,7 @@ struct AttrAnimationExample {
 
 建议：通过系统提供的显式动效API实现上述动效功能。
 
-```javascript
+```typescript
 @Entry
 @Component
 struct AnimateToExample {

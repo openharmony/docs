@@ -13,7 +13,7 @@
 
 OpenHarmony提供的Image组件默认生效异步加载特性，当应用在页面上展示一批本地图片的时候，会先显示空白占位块，当图片在其他线程加载完毕后，再替换占位块。这样图片加载就可以不阻塞页面的显示，给用户带来良好的交互体验。因此，只在加载图片耗时比较短的情况下建议下述代码。 
 
-```javascript
+```typescript
 @Entry
 @Component
 struct ImageExample1 {
@@ -37,7 +37,7 @@ struct ImageExample1 {
 
 建议：在加载图片的耗时比较短的时候，通过异步加载的效果会大打折扣，建议配置Image的syncLoad属性。
 
-```javascript
+```typescript
 @Entry
 @Component
 struct ImageExample1 {
@@ -63,7 +63,7 @@ struct ImageExample1 {
 
 OpenHarmony提供了[TaskPool线程池](../../reference/apis/js-apis-taskpool.md)，相比worker线程，TaskPool提供了任务优先级设置、线程池自动管理机制，示例如下：
 
-```javascript
+```typescript
 import taskpool from '@ohos.taskpool';
 
 @Concurrent
@@ -102,7 +102,7 @@ struct AspectRatioExample {
 
 以下代码展示了将一个长时间执行的非UI任务通过Promise声明成异步任务，主线程可以先进行用户反馈-绘制初始页面。等主线程空闲时，再执行异步任务。等到异步任务运行完毕后，重绘相关组件刷新页面。
 
-```javascript
+```typescript
 @Entry
 @Component
 struct AspectRatioExample {
@@ -146,7 +146,7 @@ struct AspectRatioExample {
 
 以下代码的Text('New Page')组件被状态变量isVisible控制，isVisible为true时创建，false时销毁。当isVisible发生变化时，Stack容器内的所有组件都会刷新：
 
-```javascript
+```typescript
 @Entry
 @Component
 struct StackExample {
@@ -175,7 +175,7 @@ struct StackExample {
 
 建议：对于这种受状态变量控制的组件，在if外套一层容器，减少刷新范围。
 
-```javascript
+```typescript
 @Entry
 @Component
 struct StackExample {
@@ -208,7 +208,7 @@ struct StackExample {
 
 反例：this.arr中的每一项元素都被初始化和加载，数组中的元素有10000个，主线程执行耗时长。
 
-```javascript
+```typescript
 @Entry
 @Component
 struct MyComponent {
@@ -227,7 +227,7 @@ struct MyComponent {
 
 建议：这种情况下用LazyForEach替换ForEach，LazyForEach一般只加载可见的元素，避免一次性初始化和加载所有元素。
 
-```javascript
+```typescript
 class BasicDataSource implements IDataSource {
   private listeners: DataChangeListener[] = []
 
