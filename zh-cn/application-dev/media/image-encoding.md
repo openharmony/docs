@@ -30,7 +30,7 @@
    方法一：通过PixelMap进行编码。
 
    ```ts
-   imagePackerApi.packing(pixelMap, packOpts).then( data => {
+   imagePackerApi.packing(pixelMap, packOpts).then( (data : ArrayBuffer) => {
      // data 为打包获取到的文件流，写入文件保存即可得到一张图片
    }).catch(error => { 
      console.error('Failed to pack the image. And the error is: ' + error); 
@@ -40,7 +40,7 @@
    方法二：通过imageSource进行编码。
 
    ```ts
-   imagePackerApi.packing(imageSource, packOpts).then( data => {
+   imagePackerApi.packing(imageSource, packOpts).then( (data : ArrayBuffer) => {
        // data 为打包获取到的文件流，写入文件保存即可得到一张图片
    }).catch(error => { 
      console.error('Failed to pack the image. And the error is: ' + error); 
