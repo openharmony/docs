@@ -708,7 +708,7 @@ getTrafficStatsByIface(ifaceInfo: IfaceInfo, callback: AsyncCallback\<NetStatsIn
     endTime: 16859485670
   }
 
-  statistics.getTrafficStatsByIface(ifaceInfo), (error, statsInfo) => {
+  statistics.getTrafficStatsByIface((ifaceInfo), (error, statsInfo) => {
     console.log(JSON.stringify(error))
     console.log("getTrafficStatsByIface bytes of received = " + JSON.stringify(statsInfo.rxBytes));
     console.log("getTrafficStatsByIface bytes of sent = " + JSON.stringify(statsInfo.txBytes));
@@ -761,7 +761,7 @@ getTrafficStatsByIface(ifaceInfo: IfaceInfo): Promise\<NetStatsInfo>;
     endTime: 16859485670
   }
 
-  statistics.getTrafficStatsByIface().then(function (statsInfo) {
+  statistics.getTrafficStatsByIface(ifaceInfo).then(function (statsInfo) {
     console.log("getTrafficStatsByIface bytes of received = " + JSON.stringify(statsInfo.rxBytes));
     console.log("getTrafficStatsByIface bytes of sent = " + JSON.stringify(statsInfo.txBytes));
     console.log("getTrafficStatsByIface packets of received = " + JSON.stringify(statsInfo.rxPackets));
@@ -814,7 +814,7 @@ getTrafficStatsByUid(uidInfo: UidInfo, callback: AsyncCallback\<NetStatsInfo>): 
     uid: 20010037
   }
 
-  statistics.getTrafficStatsByUid(uidInfo), (error, statsInfo) => {
+  statistics.getTrafficStatsByUid((uidInfo), (error, statsInfo) => {
     console.log(JSON.stringify(error))
     console.log("getTrafficStatsByUid bytes of received = " + JSON.stringify(statsInfo.rxBytes));
     console.log("getTrafficStatsByUid bytes of sent = " + JSON.stringify(statsInfo.txBytes));
