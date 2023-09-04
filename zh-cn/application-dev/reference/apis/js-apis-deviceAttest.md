@@ -11,7 +11,7 @@
 
 ## 导入模块
 
-```js
+```ts
 import deviceAttest from '@ohos.deviceAttest';
 ```
 
@@ -37,7 +37,7 @@ getAttestStatus(callback: AsyncCallback&lt;AttestResultInfo&gt;) : void
 
 **示例：**
 
-```js
+```ts
 try {
     deviceAttest.getAttestStatus((error, value) => {
     if (typeof error != 'undefined') {
@@ -78,7 +78,7 @@ getAttestStatus() : Promise&lt;AttestResultInfo&gt;
 
 **示例：**
 
-```js
+```ts
 try {
     deviceAttest.getAttestStatus().then((value) => {
     console.info("auth:" + value.authResult + " software:" + value.softwareResult + " ticket:" + value.ticket);
@@ -117,7 +117,7 @@ getAttestStatusSync() : AttestResultInfo
 
 **示例：**
 
-```js
+```ts
 try {
     let value = deviceAttest.getAttestStatusSync();
     console.info("auth:" + value.authResult + " software:" + value.softwareResult + " ticket:" + value.ticket);
