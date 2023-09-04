@@ -27,13 +27,15 @@ Data sources of the archived type can be classified into local resources, online
 
 - Local resources
 
-  To load local images, create an **ets** folder and place the local images in any position in the folder. Then, in the **\<Image>** component, set **src** to the local image path, with the root directory being the **ets** folder.
+  To load local images, create an **ets** folder and place the local images in any position in the folder.
+
+  Then, in the **\<Image>** component, set **src** to the local image path, with the root directory being the **ets** folder.
 
   ```ts
-Image('images/view.jpg')
+  Image('images/view.jpg')
   .width(200)
   ```
-  
+
 - Online resources
 
   To use online images, first apply for the **ohos.permission.INTERNET** permission. For details, see [Applying for Permissions](../security/accesstoken-guidelines.md). Then, in the **\<Image>** component, set **src** to the URL of the online image.
@@ -46,9 +48,9 @@ Image('images/view.jpg')
 
   **Resource** objects can be used to import images across bundles and modules.
 
-  To load **Resource** objects, place images in the **resources** folder, which can then be read and converted to the **Resource** objects through **$r**.
+  To load **Resource** objects, place images in the **resources** folder, which can be read and converted to the **Resource** objects through **$r**.
 
-  **Figure 1** resources folder 
+  **Figure 1** resources folder
 
   ![image-resource](figures/image-resource.jpg)
 
@@ -75,17 +77,15 @@ Image('images/view.jpg')
   To load images from the media library, use a path string that starts with **file://**.
 
   1. Call the API to obtain the image URL in the media library.
-      ​    
       ```ts
       import picker from '@ohos.file.picker';
-
+      
       @Entry
       @Component
       struct Index {
         @State imgDatas: string[] = [];
         // Obtain the image URL set.
         getAllImg() {
-          let photoPicker = new picker.PhotoViewPicker();
           let result = new Array<string>();
           try {
             let PhotoSelectOptions = new picker.PhotoSelectOptions();
@@ -101,7 +101,7 @@ Image('images/view.jpg')
           } catch (err) {
             console.error(`PhotoViewPicker failed with. Code: ${err.code}, message: ${err.message}`);    }
         }
-
+      
         // Call the preceding function in aboutToAppear to obtain the image URL set and store the URLs in imgDatas.
         async aboutToAppear() {
           this.getAllImg();
@@ -121,8 +121,8 @@ Image('images/view.jpg')
         }
       }
       ```
+
   2. Check the format of the URL obtained from the media library:
-      ​    
       ```ts
       Image('file://media/Photos/5')
       .width(200)
@@ -150,14 +150,12 @@ A pixel map is a pixel image obtained after image decoding. For details, see [Im
    Request an online image and implement transcoding to generate a pixel map.
 
    1. Reference the network and media library access permissions.
-       ​    
        ```ts
        import http from '@ohos.net.http';
        import ResponseCode from '@ohos.net.http';
        import image from '@ohos.multimedia.image';
        ```
    2. Enter the online image address.
-       ​    
        ```ts
        http.createHttp().request("https://www.example.com/xxx.png",
          (error, data) => {
@@ -168,25 +166,25 @@ A pixel map is a pixel image obtained after image decoding. For details, see [Im
          }
        )
        ```
-   3. Transcode the data returned by the online image address to a pixel map.
-       ​    
+   3. Transcode the data returned by the online image address to a pixel map.  
        ```ts
        let code = data.responseCode;
-       if(ResponseCode.ResponseCode.OK === code) {
-         let imageSource = image.createImageSource(data.result);
+       if (ResponseCode.ResponseCode.OK === code) {
+         let res: any = data.result  
+         let imageSource = image.createImageSource(res);
          let options = {
-           alphaType: 0,                     // Alpha type.
-           editable: false,                  // Whether the image is editable.
-           pixelFormat: 3,                   // Pixel format.
-           scaleMode: 1,                     // Scale mode.
-           size: {height: 100, width: 100}
-          }  // Image size.
-           imageSource.createPixelMap(options).then((pixelMap) => {
+           alphaType: 0, // Alpha type.
+           editable: false, // Whether the image is editable.
+           pixelFormat: 3, // Pixel format.
+           scaleMode: 1, // Scale mode.
+           size: { height: 100, width: 100 }
+         }  // Image size.
+         imageSource.createPixelMap(options).then((pixelMap) => {
            this.image = pixelMap
-       })
+         })
+       }
        ```
    4. Display the image.
-       ​    
        ```ts
        Button ("Get Online Image")
          .onClick(() => {
