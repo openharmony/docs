@@ -43,11 +43,11 @@ FA model:
 ```js
 // Obtain the context.
 import featureAbility from '@ohos.ability.featureAbility'
-let context = featureAbility.getContext()
+let context: Context;
 
 // Call getRdbStore.
 const STORE_CONFIG = { name: "RdbTest.db"}
-data_rdb.getRdbStore(context, STORE_CONFIG, 1, function (err, rdbStore) {
+data_rdb.getRdbStore(context, STORE_CONFIG, 1, (err, rdbStore) => {
     if (err) {
         console.info("Failed to get RdbStore, err: " + err)
         return
@@ -61,23 +61,26 @@ Stage model:
 ```ts
 // Obtain the context.
 import UIAbility from '@ohos.app.ability.UIAbility';
+import { BusinessError } from "@ohos.base";
+import window from '@ohos.window';
 
-let context;
-class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage){
-        context = this.context
-    }
+let context: Context;
+interface storeConfig {
+  name: string
 }
 
-// Call getRdbStore.
-const STORE_CONFIG = { name: "RdbTest.db"}
-data_rdb.getRdbStore(context, STORE_CONFIG, 1, function (err, rdbStore) {
-    if (err) {
+class EntryAbility extends UIAbility {
+  onWindowStageCreate(windowStage: window.WindowStage){
+    let STORE_CONFIG: storeConfig = { name: "RdbTest.db"};
+    data_rdb.getRdbStore(this.context, STORE_CONFIG, 1, (err: BusinessError, rdbStore: data_rdb.RdbStore) => {
+      if (err) {
         console.info("Failed to get RdbStore, err: " + err)
         return
-    }
-    console.log("Got RdbStore successfully.")
-})
+      }
+      console.log("Got RdbStore successfully.")
+    })
+  }
+}
 ```
 
 ## data_rdb.getRdbStore
@@ -109,7 +112,7 @@ FA model:
 ```js
 // Obtain the context.
 import featureAbility from '@ohos.ability.featureAbility'
-let context = featureAbility.getContext()
+let context: Context;
 
 // Call getRdbStore.
 const STORE_CONFIG = { name: "RdbTest.db" }
@@ -126,21 +129,26 @@ Stage model:
 ```ts
 // Obtain the context.
 import UIAbility from '@ohos.app.ability.UIAbility';
+import { BusinessError } from "@ohos.base";
+import window from '@ohos.window';
 
-let context;
+let context: Context;
+interface storeConfig {
+  name: string
+}
 class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage){
-        context = this.context
-    }
+  onWindowStageCreate(windowStage: window.WindowStage){
+    context = this.context
+  }
 }
 
 // Call getRdbStore.
-const STORE_CONFIG = { name: "RdbTest.db" }
+let STORE_CONFIG: storeConfig = { name: "RdbTest.db"};
 let promise = data_rdb.getRdbStore(context, STORE_CONFIG, 1);
-promise.then(async (rdbStore) => {
-    console.log("Got RdbStore successfully.")
-}).catch((err) => {
-    console.log("Failed to get RdbStore, err: " + err)
+promise.then(async (rdbStore: data_rdb.RdbStore) => {
+  console.log("Got RdbStore successfully.")
+}).catch((err: BusinessError) => {
+  console.log("Failed to get RdbStore, err: " + err)
 })
 ```
 
@@ -167,15 +175,15 @@ FA model:
 ```js
 // Obtain the context.
 import featureAbility from '@ohos.ability.featureAbility'
-let context = featureAbility.getContext()
+let context: Context;
 
 // Call deleteRdbStore.
-data_rdb.deleteRdbStore(context, "RdbTest.db", function (err) {
-    if (err) {
-        console.info("Failed to delete RdbStore, err: " + err)
-        return
-    }
-    console.log("Deleted RdbStore successfully.")
+data_rdb.deleteRdbStore(context, "RdbTest.db", (err) => {
+  if (err) {
+    console.info("Failed to delete RdbStore, err: " + err)
+    return
+  }
+  console.log("Deleted RdbStore successfully.")
 })
 ```
 
@@ -184,21 +192,22 @@ Stage model:
 ```ts
 // Obtain the context.
 import UIAbility from '@ohos.app.ability.UIAbility';
+import window from '@ohos.window';
 
-let context;
+let context: Context;
 class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage){
-        context = this.context
-    }
+  onWindowStageCreate(windowStage: window.WindowStage){
+    context = this.context
+  }
 }
 
 // Call deleteRdbStore.
-data_rdb.deleteRdbStore(context, "RdbTest.db", function (err) {
-    if (err) {
-        console.info("Failed to delete RdbStore, err: " + err)
-        return
-    }
-    console.log("Deleted RdbStore successfully.")
+data_rdb.deleteRdbStore(context, "RdbTest.db", (err) => {
+  if (err) {
+    console.info("Failed to delete RdbStore, err: " + err)
+    return
+  }
+  console.log("Deleted RdbStore successfully.")
 })
 ```
 
@@ -230,7 +239,7 @@ FA model:
 ```js
 // Obtain the context.
 import featureAbility from '@ohos.ability.featureAbility'
-let context = featureAbility.getContext()
+let context: Context;
 
 // Call deleteRdbStore.
 let promise = data_rdb.deleteRdbStore(context, "RdbTest.db")
@@ -246,20 +255,22 @@ Stage model:
 ```ts
 // Obtain the context.
 import UIAbility from '@ohos.app.ability.UIAbility';
+import { BusinessError } from "@ohos.base";
+import window from '@ohos.window';
 
-let context;
+let context: Context;
 class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage){
-        context = this.context
-    }
+  onWindowStageCreate(windowStage: window.WindowStage){
+    context = this.context
+  }
 }
 
 // Call deleteRdbStore.
 let promise = data_rdb.deleteRdbStore(context, "RdbTest.db")
 promise.then(()=>{
-    console.log("Deleted RdbStore successfully.")
-}).catch((err) => {
-    console.info("Failed to delete RdbStore, err: " + err)
+  console.log("Deleted RdbStore successfully.")
+}).catch((err: BusinessError) => {
+  console.info("Failed to delete RdbStore, err: " + err)
 })
 ```
 
@@ -371,8 +382,8 @@ Sets an **RdbPredicates** to specify the remote devices to connect on the networ
 
 ```js
 import deviceManager from '@ohos.distributedHardware.deviceManager';
-let dmInstance = null;
-let deviceIds = [];
+let dmInstance: deviceManager.DeviceManager = null;
+let deviceIds: Array<string> = [];
 
 deviceManager.createDeviceManager("com.example.appdatamgrverify", (err, manager) => {
     if (err) {
@@ -381,7 +392,7 @@ deviceManager.createDeviceManager("com.example.appdatamgrverify", (err, manager)
     }
     dmInstance = manager;
     let devices = dmInstance.getTrustedDeviceListSync();
-    for (var i = 0; i < devices.length; i++) {
+    for (let i = 0; i < devices.length; i++) {
         deviceIds[i] = devices[i].deviceId;
     }
 })
