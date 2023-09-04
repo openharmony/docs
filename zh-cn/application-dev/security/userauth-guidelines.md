@@ -48,9 +48,9 @@ userIAM_userAuth模块提供了用户认证的相关方法，包括查询认证�
     // 查询认证能力是否支持
     try {
         userIAM_userAuth.getAvailableStatus(userIAM_userAuth.UserAuthType.FACE, userIAM_userAuth.AuthTrustLevel.ATL1);
-        console.info("current auth trust level is supported");
+        console.info('current auth trust level is supported');
     } catch (error) {
-        console.info("current auth trust level is not supported, error = " + error);
+        console.info('current auth trust level is not supported, error = ' + error);
     }
     ```
 
@@ -79,7 +79,6 @@ userIAM_userAuth模块提供了用户认证的相关方法，包括查询认证�
     const widgetParam : userIAM_userAuth.WidgetParam = {
       title: '请输入密码',
       navigationButtonText: '返回',
-      windowMode: userIAM_userAuth.WindowModeType.DIALOG_BOX,
     };
     try {
       //获取认证对象
@@ -129,7 +128,6 @@ userIAM_userAuth模块提供了用户认证的相关方法，包括查询认证�
     const widgetParam : userIAM_userAuth.WidgetParam = {
       title: '请输入密码',
       navigationButtonText: '返回',
-      windowMode: userIAM_userAuth.WindowModeType.DIALOG_BOX,
     };
     try {
       //获取认证对象
