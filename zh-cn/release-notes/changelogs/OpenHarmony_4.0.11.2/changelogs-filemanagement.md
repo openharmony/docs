@@ -20,7 +20,6 @@
 
 | 类名           | 删除接口声明                                                 |
 | -------------- | ------------------------------------------------------------ |
-| fileAccessHelper | getThumbnail(uri: string, size: image.Size): Promise<image.PixelMap>;|
 | fileAccessHelper | getThumbnail(uri: string, size: image.Size, callback: AsyncCallback<image.PixelMap>): void;|
 
  选项删除
