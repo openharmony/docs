@@ -398,7 +398,7 @@ struct SwiperExample {
       .autoPlay(true)
       .interval(4000)
       .indicator(Indicator.digit()
-        .right(130)
+        .right("43%")
         .top(200)
         .fontColor(Color.Gray)
         .selectedFontColor(Color.Gray)
