@@ -178,7 +178,7 @@ import print from '@ohos.print';
 let file = ['file://data/print/a.png', 'file://data/print/b.png'];
 // 或者传入fd
 // let file = ['fd://1', 'fd://2'];
-print.print(file).then((printTask) => {
+print.print(file).then((printTask: print.PrintTask) => {
   printTask.on('succeed', () => {
     console.log('print state is succeed')
   })
