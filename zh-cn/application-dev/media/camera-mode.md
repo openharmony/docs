@@ -178,7 +178,7 @@ async function cameraModeCase(context: featureAbility.Context, surfaceId: string
   // 获取支持的美颜类型对应的美颜强度范围
   let beautyRanges: Array<number>;
   try {
-    beautyRanges = portraitSession.getSupportedBeautyRanges(beautyTypes[0]);
+    beautyRanges = portraitSession.getSupportedBeautyRange(beautyTypes[0]);
   } catch (error) {
     let err = error as BusinessError;
     console.error('Failed to get the beauty types ranges. errorCode = ' + err.code);
