@@ -571,13 +571,13 @@ struct ParentComp {
   build() {
     Row() {
       Column() {
-        CounterComp({ value: this.counter[0], subValue: this.counter[0].subCounter[0] })
-        CounterComp({ value: this.counter[1], subValue: this.counter[1].subCounter[0] })
-        CounterComp({ value: this.counter[2], subValue: this.counter[2].subCounter[0] })
+        CounterComp({ value: this.counter[0], subValue: this.counter[0].subCounter })
+        CounterComp({ value: this.counter[1], subValue: this.counter[1].subCounter })
+        CounterComp({ value: this.counter[2], subValue: this.counter[2].subCounter })
         Divider().height(5)
         ForEach(this.counter,
           (item: ParentCounter) => {
-            CounterComp({ value: item, subValue: item.subCounter[0] })
+            CounterComp({ value: item, subValue: item.subCounter })
           },
           (item: ParentCounter) => item.id.toString()
         )
@@ -668,13 +668,13 @@ struct ParentComp {
   build() {
     Row() {
       Column() {
-        CounterComp({ value: this.counter[0], subValue: this.counter[0].subCounter[0] })
-        CounterComp({ value: this.counter[1], subValue: this.counter[1].subCounter[0] })
-        CounterComp({ value: this.counter[2], subValue: this.counter[2].subCounter[0] })
+        CounterComp({ value: this.counter[0], subValue: this.counter[0].subCounter })
+        CounterComp({ value: this.counter[1], subValue: this.counter[1].subCounter })
+        CounterComp({ value: this.counter[2], subValue: this.counter[2].subCounter })
         Divider().height(5)
         ForEach(this.counter,
           (item: ParentCounter) => {
-            CounterComp({ value: item, subValue: item.subCounter[0] })
+            CounterComp({ value: item, subValue: item.subCounter })
           },
           (item: ParentCounter) => item.id.toString()
         )
