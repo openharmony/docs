@@ -1444,7 +1444,7 @@ getImageProperty(key:string, options?: GetImagePropertyOptions): Promise\<string
 
 ```js
 imageSourceApi.getImageProperty("BitsPerSample")
-    .then(data => {
+    .then((data : string) => {
 		console.log('Succeeded in getting the value of the specified attribute key of the image.');
 	})
 ```
@@ -1467,7 +1467,7 @@ getImageProperty(key:string, callback: AsyncCallback\<string>): void
 **示例：**
 
 ```js
-imageSourceApi.getImageProperty("BitsPerSample",(error,data : string) => { 
+imageSourceApi.getImageProperty("BitsPerSample",(error, data : string) => { 
     if(error) {
         console.log('Failed to get the value of the specified attribute key of the image.');
     } else {
@@ -1496,7 +1496,7 @@ getImageProperty(key:string, options: GetImagePropertyOptions, callback: AsyncCa
 
 ```js
 let property : image.GetImagePropertyOptions = { index: 0, defaultValue: '9999' }
-imageSourceApi.getImageProperty("BitsPerSample",property,(error,data) => { 
+imageSourceApi.getImageProperty("BitsPerSample",property,(error, data : string) => { 
     if(error) {
         console.log('Failed to get the value of the specified attribute key of the image.');
     } else {
@@ -1530,7 +1530,7 @@ modifyImageProperty(key: string, value: string): Promise\<void>
 
 ```js
 imageSourceApi.modifyImageProperty("ImageWidth", "120").then(() => {
-    const w = imageSourceApi.getImageProperty("ImageWidth")
+    const w : string = imageSourceApi.getImageProperty("ImageWidth");
     console.info('w', w);
 })
 ```
@@ -1746,7 +1746,7 @@ let decodeOpts : image.DecodingOptions = {
     desiredPixelFormat: 3,
     index: 0,
 };
-let pixelmaplist = imageSourceApi.createPixelMapList(decodeOpts);
+let pixelmaplist : Array<image.PixelMap> = imageSourceApi.createPixelMapList(decodeOpts);
 ```
 
 ### createPixelMapList<sup>10+</sup>
@@ -1778,7 +1778,7 @@ createPixelMapList(callback: AsyncCallback<Array\<PixelMap>>): void
 **示例：**
 
 ```js
-imageSourceApi.createPixelMapList( pixelmaplist => {
+imageSourceApi.createPixelMapList( (pixelmaplist : Array<image.PixelMap>) => {
     console.info('Succeeded in creating pixelmaplist object.');
 })
 ```
@@ -1821,7 +1821,7 @@ let decodeOpts : image.DecodingOptions = {
     desiredPixelFormat: 3,
     index: 0,
 };
-imageSourceApi.createPixelMapList(decodeOpts, pixelmaplist => { 
+imageSourceApi.createPixelMapList(decodeOpts, (pixelmaplist : Array<image.PixelMap>) => { 
     console.log('Succeeded in creating pixelmaplist object.');
 })
 ```
@@ -1857,7 +1857,7 @@ getDelayTimeList(callback: AsyncCallback<Array\<number>>): void;
 **示例：**
 
 ```js
-imageSourceApi.getDelayTimeList( delayTimes => {
+imageSourceApi.getDelayTimeList( (delayTimes : Array<number>) => {
     console.log('Succeeded in getting delay time.');
 });
 ```
@@ -1893,7 +1893,7 @@ getDelayTimeList(): Promise<Array\<number>>;
 **示例：**
 
 ```js
-let delayTimes = imageSourceApi.getDelayTimeList();
+let delayTimes : Array<number> = imageSourceApi.getDelayTimeList();
 ```
 
 ### getFrameCount<sup>10+</sup>
@@ -1927,7 +1927,7 @@ getFrameCount(callback: AsyncCallback\<number>): void;
 **示例：**
 
 ```js
-imageSourceApi.getFrameCount( frameCount => {
+imageSourceApi.getFrameCount( (frameCount : number) => {
     console.log('Succeeded in getting frame count.');
 });
 ```
@@ -1963,7 +1963,7 @@ getFrameCount(): Promise\<number>;
 **示例：**
 
 ```js
-let frameCount = imageSourceApi.getFrameCount();
+let frameCount : number = imageSourceApi.getFrameCount();
 ```
 
 ### release
