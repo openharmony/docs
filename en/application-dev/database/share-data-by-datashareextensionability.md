@@ -57,15 +57,16 @@ Before implementing a **DataShare** service, you need to create a **DataShareExt
 
 2. Right-click the **DataShareAbility** directory, and choose **New > TypeScript File** to create a file named **DataShareExtAbility.ts**.
 
-3. Import **@ohos.application.DataShareExtensionAbility** and other dependencies to the **DataShareExtAbility.ts** file, and 
-override the service implementation as required. For example, if the data provider provides only the data insertion, deletion, and query services, you can override only these APIs.
-   
+3. Import **@ohos.application.DataShareExtensionAbility** and other dependencies to the **DataShareExtAbility.ts** file, and override the service implementation as required. For example, if the data provider provides only the data insertion, deletion, and query services, you can override only these APIs.
+
    ```js
    import Extension from '@ohos.application.DataShareExtensionAbility';
    import rdb from '@ohos.data.relationalStore';
    import dataSharePredicates from '@ohos.data.dataSharePredicates';
+   import relationalStore from '@ohos.data.relationalStore';
+   import Want from '@ohos.app.ability.Want';
    ```
-
+   
 4. Implement the data provider services. For example, implement data storage of the data provider by using a database, reading and writing files, or accessing the network.
    
    ```js
@@ -75,20 +76,20 @@ override the service implementation as required. For example, if the data provid
    + TBL_NAME
    + ' (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, age INTEGER, isStudent BOOLEAN, Binary BINARY)';
    
-   let rdbStore;
-   let result;
+   let rdbStore: relationalStore.RdbStore;
+   let result: string;
    
    export default class DataShareExtAbility extends Extension {
-     private rdbStore_;
+     private rdbStore_: relationalStore.RdbStore;
    
      // Override onCreate().
-     onCreate(want, callback) {
+     onCreate(want: Want, callback: Function) {
        result = this.context.cacheDir + '/datashare.txt';
        // Create an RDB store.
        rdb.getRdbStore(this.context, {
          name: DB_NAME,
          securityLevel: rdb.SecurityLevel.S1
-       }, function (err, data) {
+       }, (err, data) => {
          rdbStore = data;
          rdbStore.executeSql(DDL_TBL_CREATE, [], (err) => {
            console.info(`DataShareExtAbility onCreate, executeSql done err:${err}`);
@@ -100,7 +101,7 @@ override the service implementation as required. For example, if the data provid
      }
    
      // Override query().
-     query(uri, predicates, columns, callback) {
+     query(uri: string, predicates: dataSharePredicates.DataSharePredicates, columns: Array<string>, callback: Function) {
        if (predicates === null || predicates === undefined) {
          console.info('invalid predicates');
        }
@@ -188,6 +189,8 @@ override the service implementation as required. For example, if the data provid
    import UIAbility from '@ohos.app.ability.UIAbility';
    import dataShare from '@ohos.data.dataShare';
    import dataSharePredicates from '@ohos.data.dataSharePredicates';
+   import { ValuesBucket } from '@ohos.data.ValuesBucket'
+   import window from '@ohos.window';
    ```
 
 2. Define the URI string for communicating with the data provider.
@@ -200,11 +203,11 @@ override the service implementation as required. For example, if the data provid
 3. Create a **DataShareHelper** instance.
    
    ```js
-   let dsHelper;
-   let abilityContext;
+   let dsHelper: dataShare.DataShareHelper;
+   let abilityContext: Context;
    
    export default class EntryAbility extends UIAbility {
-     onWindowStageCreate(windowStage) {
+     onWindowStageCreate(windowStage: window.WindowStage) {
        abilityContext = this.context;
        dataShare.createDataShareHelper(abilityContext, dseUri, (err, data) => {
          dsHelper = data;
@@ -217,8 +220,19 @@ override the service implementation as required. For example, if the data provid
    
    ```js
    // Construct a piece of data.
-   let valuesBucket = { 'name': 'ZhangSan', 'age': 21, 'isStudent': false, 'Binary': new Uint8Array([1, 2, 3]) };
-   let updateBucket = { 'name': 'LiSi', 'age': 18, 'isStudent': true, 'Binary': new Uint8Array([1, 2, 3]) };
+   let key1 = 'name';
+   let key2 = 'age';
+   let key3 = 'isStudent';
+   let key4 = 'Binary';
+   let valueName1 = 'ZhangSan';
+   let valueName2 = 'LiSi';
+   let valueAge1 = 21;
+   let valueAge2 = 18;
+   let valueIsStudent1 = false;
+   let valueIsStudent2 = true;
+   let valueBinary = new Uint8Array([1, 2, 3]);
+   let valuesBucket: ValuesBucket = { key1: valueName1, key2: valueAge1, key3: valueIsStudent1, key4: valueBinary };
+   let updateBucket: ValuesBucket = { key1: valueName2, key2: valueAge2, key3: valueIsStudent2, key4: valueBinary };
    let predicates = new dataSharePredicates.DataSharePredicates();
    let valArray = ['*'];
    // Insert a piece of data.
@@ -238,4 +252,3 @@ override the service implementation as required. For example, if the data provid
      console.info(`dsHelper delete result:${data}`);
    });
    ```
-
