@@ -41,12 +41,13 @@ onConnect(want: Want): void
 **示例：**
 
 ```ts
-export default class MyWindowExtensionAbility extends WindowExtensionAbility {
+import WindowExtensionAbility from '@ohos.application.WindowExtensionAbility';
+import Want from '@ohos.app.ability.Want';
 
-  onConnect(want) {
+export default class MyWindowExtensionAbility extends WindowExtensionAbility {
+  onConnect(want: Want) {
     console.info('WindowExtAbility onConnect, abilityName: ${want.abilityName}');
   }
-
 }
 ```
 
@@ -68,12 +69,13 @@ onDisconnect(want: Want): void
 **示例：**
 
 ```ts
-export default class MyWindowExtensionAbility extends WindowExtensionAbility {
+import WindowExtensionAbility from '@ohos.application.WindowExtensionAbility';
+import Want from '@ohos.app.ability.Want';
 
-  onDisconnect(want) {
+export default class MyWindowExtensionAbility extends WindowExtensionAbility {
+  onDisconnect(want: Want) {
     console.info('WindowExtAbility onDisconnect, abilityName: ${want.abilityName}');
   }
-
 }
 ```
 
@@ -95,16 +97,20 @@ onWindowReady(window: window.Window): void
 **示例：**
 
 ```ts
-export default class MyWindowExtensionAbility extends WindowExtensionAbility {
+import WindowExtensionAbility from '@ohos.application.WindowExtensionAbility';
+import window from '@ohos.window';
 
-  onWindowReady(window) {
-    window.loadContent('WindowExtAbility/pages/index1').then(() => {
-      window.getProperties().then((pro) => {
+let windowStage: window.WindowStage | null = null
+
+export default class MyWindowExtensionAbility extends WindowExtensionAbility {
+  onWindowReady(windowClass: window.Window) {
+
+    windowStage!.loadContent('WindowExtAbility/pages/index1').then(() => {
+      windowClass.getProperties().then((pro: window.WindowProperties) => {
         console.log('WindowExtension pro: ${JSON.stringify(pro)}');
       });
-      window.show();
+      windowClass.show();
     });
   }
-
 }
 ```
