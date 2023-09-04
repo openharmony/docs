@@ -68,13 +68,17 @@ Chrome 浏览器 JavaScript Profiler 工具默认调用V8引擎提供的 Profile
 
 #### 2.2.2 比重图 (Heavy)
 
-比重图列出了所有调用栈的栈顶，可以理解为时序火焰图从下往上看，看到的首先是调用链末端函数，以及各自的Self Time时间，将比重图的所有 Self Time 的比例相加结果为 100% 。
+比重图列出了所有调用栈的栈顶，可以理解为**时序火焰图从下往上看**，看到的首先是调用链末端函数，以及各自的 Self Time 时间，将比重图的所有 Self Time 的比例相加结果为 100% 。
 
 具体到某一个函数，箭头展开，可以看到调用该函数的完整调用链，可能包含多条调用链，指代这些调用链最终都会调用到该函数。
 
 该图表可按照 Self Time 的大小排序，排在最前面的代表对应函数的 Self Time 耗时最长，可以作为重点进行分析。
 
-![比重图(Heavy)示例](./figures/heavy-view.png)
+> **注意：** 如下两图分别为 Chrome 浏览器比重图 (Heavy) 和VSCode 对同一 .cpuprofile 文件的解析结果，不难发现，两种解析方式的时间有所差异，该差异是由计算方式的不同导致的。 Chrome 浏览器比重图 (Heavy) 的时间并不是实际时间，而是通过函数的命中率乘以总时间得到，而 VSCode 的时间是实际耗时。做精确分析时建议使用 VSCode 解析，直接用 VSCode 打开 .cpuprofile 文件即可。 Chrome 浏览器时序火焰图 (Chart) 的时间也是实际耗时，与 VSCode 解析时间一致。
+
+![Chrome比重图(Heavy)示例](./figures/heavy-view.png)
+
+![VSCode比重图(Heavy)示例](./figures/vscode-cpuprofile-eg.png)
 
 #### 2.2.3 树形图 (Tree)
 
@@ -92,7 +96,7 @@ Chrome 浏览器 JavaScript Profiler 工具默认调用V8引擎提供的 Profile
 
 #### 2.3.1 函数名包含“（TAG）”标签
 
-当前支持8类函数名标签，分别是 `(NAPI)` 、 `(ARKUI_ENGINE)` 、 `(BUILTIN)` 、 `(GC)` 、 `(AINT)` 、 `(CINT)` 、 `(AOT)` 、 `(RUNTIME)` 。可为应用开发者及系统开发者提供参考。后四种标签默认不可见，可通过命令 `hdc shell param set persist.ark.properties 0x505c; hdc shell reboot` 打开。下面分别介绍其含义。
+当前支持8类函数名标签，分别是 `(NAPI)` 、 `(ARKUI_ENGINE)` 、 `(BUILTIN)` 、 `(GC)` 、 `(AINT)` 、 `(CINT)` 、 `(AOT)` 、 `(RUNTIME)` 。可为应用开发者及系统开发者提供参考。后四种标签通过非命令方式采集时默认不可见，可通过命令 `hdc shell param set persist.ark.properties 0x505c; hdc shell reboot` 打开。下面分别介绍其含义。
 
 **(NAPI)** ：系统 NativeAPI 或者开发者在 IDE 上自定义的 NativeAPI ，例如模板 Native C++ 应用中的 testNapi.add() 。
 
@@ -122,21 +126,11 @@ Chrome 浏览器 JavaScript Profiler 工具默认调用V8引擎提供的 Profile
 
 > 注：当前尚未统计 (idle) 阶段，该部分时间包含在 (program) 阶段中。
 
-#### 2.3.3 （TAG） 时间占比统计工具 （ARK Performence Profile.exe）
-
-工具：
-
-可采集 cpuprofiler 数据，也可直接导入 .cpuprofile 文件，计算出每种 TAG 的耗时占比，并以饼状图展示如下：
-
-![ARK Performance Profile 分析示例](./figures/ARK-performance-profile-tool.png)
-
 ## 3. 数据采集方法及适用场景
 
 ### 3.1 Deveco Studio Insight 工具采集
 
 #### 3.1.1 适用场景及支持情况
-
-
 
 | 场景 | 支持情况 |
 | --- | --- |
@@ -149,7 +143,7 @@ Chrome 浏览器 JavaScript Profiler 工具默认调用V8引擎提供的 Profile
 1. 启动应用，打开 Deveco Studio 并确保连接到设备（右上角显示设备SN）；
 2. 按照下图所示 1 - 5 步骤打开 `Insight -> Time` ，选择设备及应用，创建一个新的 Time Session 监视器。
 
-![ARK Performance Profile 采集指引](./figures/ARK-performance-profile-tool-catch-guide.png)
+![Deveco Studio Insight 采集指引](./figures/deveco-studio-insight-catch-guide.png)
 
 3. 点击开始录制按钮，箭头变成方块代表开始录制。
 4. 操作应用，复现待分析场景；
