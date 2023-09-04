@@ -19,7 +19,7 @@
 | 双击 | [TapGesture](../../reference/arkui-ts/ts-basic-gestures-tapgesture.md) | √ | √ | √ | 
 | 长按 | [LongPressGesture](../../reference/arkui-ts/ts-basic-gestures-longpressgesture.md) | √ | × | √ | 
 | 上下文菜单 | [ContentMenu](../../reference/arkui-ts/ts-universal-attributes-menu.md) | √ | √ | √ | 
-| 拖拽 | [Drag](../../reference/arkui-ts/ts-universal-attributes-drag-drop.md) | √ | √ | √ |
+| 拖拽 | [Drag](../../reference/arkui-ts/ts-universal-events-drag-drop.md) | √ | √ | √ |
 | 轻扫 | [SwipeGesture](../../reference/arkui-ts/ts-basic-gestures-swipegesture.md) | √ | √ | √ | 
 | 滚动及平移 | [PanGesture](../../reference/arkui-ts/ts-basic-gestures-pangesture.md) | √ | √ | √ | 
 | 缩放 | [PinchGesture](../../reference/arkui-ts/ts-basic-gestures-pinchgesture.md) | √ | √ | √ | 
