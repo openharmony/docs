@@ -80,8 +80,8 @@ insertFront(element: T): void
 
 ```ts
 class C1 {
-  name: string
-  age: string
+  name: string = ""
+  age: string = ""
 }
 let deque: Deque<string | number | boolean | Array<number> | C1> = new Deque();
 deque.insertFront("a");
