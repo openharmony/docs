@@ -1910,7 +1910,7 @@ listFile(path: string, options?: {
     "listNum": 0,
     "filter": {
       "suffix": [".png", ".jpg", ".jpeg"],
-      "displayName": ["%abc", "efg%"],
+      "displayName": ["*abc", "efg*"],
       "fileSizeOver": 1024,
       "lastModifiedAfter": new Date().getTime(),
     }
@@ -1964,7 +1964,7 @@ listFile(path: string, options?: {
     "listNum": 0,
     "filter": {
       "suffix": [".png", ".jpg", ".jpeg"],
-      "displayName": ["%abc", "efg%"],
+      "displayName": ["*abc", "efg*"],
       "fileSizeOver": 1024,
       "lastModifiedAfter": new Date().getTime(),
     }
@@ -2026,7 +2026,7 @@ listFileSync(path: string, options?: {
     "listNum": 0,
     "filter": {
       "suffix": [".png", ".jpg", ".jpeg"],
-      "displayName": ["%abc", "efg%"],
+      "displayName": ["*abc", "efg*"],
       "fileSizeOver": 1024,
       "lastModifiedAfter": new Date().getTime(),
     }
