@@ -1262,7 +1262,7 @@ getSocketFd(callback: AsyncCallback\<number\>): void
 
 ```js
   import socket from "@ohos.net.socket";
-  var tcp = socket.constructTCPSocketInstance();
+  let tcp = socket.constructTCPSocketInstance();
   let tunnelfd = 0
   tcp.bind({
       address: "0.0.0.0",
@@ -1302,7 +1302,7 @@ getSocketFd(): Promise\<number\>
 
 ```js
   import socket from "@ohos.net.socket";
-  var tcp = socket.constructTCPSocketInstance();
+  let tcp = socket.constructTCPSocketInstance();
   let tunnelfd = 0
   tcp.bind({
       address: "0.0.0.0",
@@ -2936,6 +2936,7 @@ on(type: 'message', callback: Callback<{message: ArrayBuffer, remoteInfo: Socket
 **示例：**
 
 ```js
+import socket from '@ohos.net.socket';
 let tls = socket.constructTLSSocketInstance();
 let messageView = '';
 tls.on('message', value => {
@@ -2970,6 +2971,7 @@ off(type: 'message', callback?: Callback\<{message: ArrayBuffer, remoteInfo: Soc
 **示例：**
 
 ```js
+import socket from '@ohos.net.socket';
 let tls = socket.constructTLSSocketInstance();
 let messageView = '';
 let callback = value => {
@@ -3003,6 +3005,7 @@ on(type: 'connect' | 'close', callback: Callback\<void\>): void
 **示例：**
 
 ```js
+import socket from '@ohos.net.socket';
 let tls = socket.constructTLSSocketInstance();
 tls.on('connect', () => {
   console.log("on connect success")
@@ -3033,6 +3036,7 @@ off(type: 'connect' | 'close', callback?: Callback\<void\>): void
 **示例：**
 
 ```js
+import socket from '@ohos.net.socket';
 let tls = socket.constructTLSSocketInstance();
 let callback1 = () => {
   console.log("on connect success");
@@ -3067,6 +3071,7 @@ on(type: 'error', callback: ErrorCallback): void
 **示例：**
 
 ```js
+import socket from '@ohos.net.socket';
 let tls = socket.constructTLSSocketInstance();
 tls.on('error', err => {
   console.log("on error, err:" + JSON.stringify(err))
@@ -3094,6 +3099,7 @@ off(type: 'error', callback?: ErrorCallback): void
 **示例：**
 
 ```js
+import socket from '@ohos.net.socket';
 let tls = socket.constructTLSSocketInstance();
 let callback = err => {
   console.log("on error, err:" + JSON.stringify(err));
