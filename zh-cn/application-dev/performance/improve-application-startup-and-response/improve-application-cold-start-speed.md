@@ -73,8 +73,8 @@ aboutToAppear函数会在创建自定义组件实例后，页面绘制之前执�
 @Entry
 @Component
 struct Index {
-  @State private text: string = undefined;
-  private count: number = undefined;
+  @State private text: string = "";
+  private count: number = 0;
 
   aboutToAppear() {
     this.computeTaskAsync(); // 异步任务

@@ -107,7 +107,7 @@ struct AspectRatioExample {
 @Component
 struct AspectRatioExample {
   @State private children: string[] = ['1', '2', '3', '4', '5', '6'];
-  private count: number = undefined;
+  private count: number = 0;
 
   aboutToAppear() {
     this.computeTaskAsync();  // 调用异步运算函数

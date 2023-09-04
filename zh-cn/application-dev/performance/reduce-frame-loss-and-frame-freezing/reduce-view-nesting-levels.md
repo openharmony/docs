@@ -39,7 +39,6 @@ struct AspectRatioExample {
 建议：通过减少冗余的Stack容器嵌套，每个GridItem的组件数比上面少了3个，缩短了组件刷新与渲染耗时。
 
 ```typescript
-// xxx.ets
 @Entry
 @Component
 struct AspectRatioExample {

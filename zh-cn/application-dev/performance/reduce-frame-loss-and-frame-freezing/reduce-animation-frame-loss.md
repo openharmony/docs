@@ -17,8 +17,8 @@ struct AttrAnimationExample {
   computeSize() {
     let duration = 2000
     let period = 16
-    let widthSizeEnd = undefined
-    let heightSizeEnd = undefined
+    let widthSizeEnd = 0
+    let heightSizeEnd = 0
     if (this.flag) {
       widthSizeEnd = 100
       heightSizeEnd = 50
@@ -67,7 +67,7 @@ struct AttrAnimationExample {
   build() {
     Column() {
       Button('click me')
-        .onClick((event: ClickEvent) => {
+        .onClick((event?: ClickEvent | undefined) => {
           if (this.flag) {
             this.widthSize = 100
             this.heightSize = 50
@@ -107,7 +107,7 @@ struct AnimateToExample {
   build() {
     Column() {
       Button('click me')
-        .onClick((event: ClickEvent) => {
+        .onClick((event?: ClickEvent | undefined) => {
           if (this.flag) {
             animateTo({
               duration: 2000, // 动画时长
