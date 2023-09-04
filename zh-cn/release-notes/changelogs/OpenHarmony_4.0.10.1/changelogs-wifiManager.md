@@ -1,47 +1,76 @@
-# wifiå­ç³»ç»ŸChangeLog
+# wifi×ÓÏµÍ³ChangeLog
 
-## 1 æƒé™å˜æ›´ã€‚
+## 1 È¨ÏŞ±ä¸ü¡£
 
-1. æ¥å£æ–°å¢è¿”å›éšæœºmacï¼Œå–æ¶ˆä½ç½®æƒé™ã€‚
-1. è¿”å›çœŸå®macéœ€è¦GET_PEER_MACæƒé™ã€‚
+1- Éæ¼°½Ó¿Ú
 
-| æ¥å£å£°æ˜ | æƒé™å˜æ›´è¯´æ˜ |
-| -------- | ---------------------------- |
-|**function** getCandidateConfigs(): Array<WifiDeviceConfig>; | 1.å–æ¶ˆä½ç½®æƒé™ |
-|**function** getDeviceConfigs(): Array<WifiDeviceConfig>; | 1.å–æ¶ˆä½ç½®æƒé™ |
-|**function** getStations(): Array<StationInfo>; | 1.å–æ¶ˆä½ç½®æƒé™;2.è¿”å›éšæœºMAC(GET_PEER_MACæƒé™è¿”å›çœŸå®MAC) |
-| **function** getCurrentP2pGroup(): Promise<WifiP2pGroupInfo>; | 1.å–æ¶ˆä½ç½®æƒé™ |
-| **function** getCurrentP2pGroup(callback: AsyncCallback<WifiP2pGroupInfo>): **void**; | 1.å–æ¶ˆä½ç½®æƒé™ |
-| **function** getP2pPeerDevices(): Promise<WifiP2pDevice[]>; | 1.å–æ¶ˆä½ç½®æƒé™;2.è¿”å›éšæœºMAC(GET_PEER_MACæƒé™è¿”å›çœŸå®MAC) |
-| **function** getP2pPeerDevices(callback: AsyncCallback<WifiP2pDevice[]>): **void**; | 1.å–æ¶ˆä½ç½®æƒé™;2.è¿”å›éšæœºMAC(GET_PEER_MACæƒé™è¿”å›çœŸå®MAC) |
-| **function** p2pConnect(config: WifiP2PConfig): **void**; | 1.å–æ¶ˆä½ç½®æƒé™ |
-| **function** startDiscoverDevices(): **void**; | 1.å–æ¶ˆä½ç½®æƒé™ |
-| **function** getP2pGroups(): Promise<Array<WifiP2pGroupInfo>>; | 1.å–æ¶ˆä½ç½®æƒé™ |
-| **function** getP2pGroups(callback: AsyncCallback<Array<WifiP2pGroupInfo>>): **void**; | 1.å–æ¶ˆä½ç½®æƒé™ |
-| **function** on(**type**: "p2pDeviceChange", callback: Callback<WifiP2pDevice>): **void**; | 1.å–æ¶ˆä½ç½®æƒé™;2.è¿”å›éšæœºMAC(GET_PEER_MACæƒé™è¿”å›çœŸå®MAC) |
-| **function** off(**type**: "p2pDeviceChange", callback?: Callback<WifiP2pDevice>): **void**; | 1.å–æ¶ˆä½ç½®æƒé™;2.è¿”å›éšæœºMAC(GET_PEER_MACæƒé™è¿”å›çœŸå®MAC) |
-| **function** on(**type**: "p2pPeerDeviceChange", callback: Callback<WifiP2pDevice[]>): **void**; | 1.å–æ¶ˆä½ç½®æƒé™;2.è¿”å›éšæœºMAC(GET_PEER_MACæƒé™è¿”å›çœŸå®MAC) |
-| **function** off(**type**: "p2pPeerDeviceChange", callback?: Callback<WifiP2pDevice[]>): **void**; | 1.å–æ¶ˆä½ç½®æƒé™;2.è¿”å›éšæœºMAC(GET_PEER_MACæƒé™è¿”å›çœŸå®MAC) |
+| ½Ó¿ÚÉùÃ÷ |±ä¸üÇ°È¨ÏŞ |±ä¸üºóÈ¨ÏŞ |
+|----|----|----|
+|**function** getCandidateConfigs(): Array<WifiDeviceConfig>; | 1.ĞèÒªÎ»ÖÃÈ¨ÏŞ |1.È¡ÏûÎ»ÖÃÈ¨ÏŞ |
+|**function** getDeviceConfigs(): Array<WifiDeviceConfig>;| 1.ĞèÒªÎ»ÖÃÈ¨ÏŞ | 1.È¡ÏûÎ»ÖÃÈ¨ÏŞ |
+|**function** getStations(): Array<StationInfo>;| 1.ĞèÒªÎ»ÖÃÈ¨ÏŞ | 1.È¡ÏûÎ»ÖÃÈ¨ÏŞ;2.·µ»ØËæ»úMAC(GET_PEER_MACÈ¨ÏŞ·µ»ØÕæÊµMAC) |
+| **function** getCurrentP2pGroup(): Promise<WifiP2pGroupInfo>;| 1.ĞèÒªÎ»ÖÃÈ¨ÏŞ | 1.È¡ÏûÎ»ÖÃÈ¨ÏŞ |
+| **function** getCurrentP2pGroup(callback: AsyncCallback<WifiP2pGroupInfo>): **void**; | 1.ĞèÒªÎ»ÖÃÈ¨ÏŞ| 1.È¡ÏûÎ»ÖÃÈ¨ÏŞ |
+| **function** getP2pPeerDevices(): Promise<WifiP2pDevice[]>;| 1.ĞèÒªÎ»ÖÃÈ¨ÏŞ | 1.È¡ÏûÎ»ÖÃÈ¨ÏŞ;2.·µ»ØËæ»úMAC(GET_PEER_MACÈ¨ÏŞ·µ»ØÕæÊµMAC) |
+| **function** getP2pPeerDevices(callback: AsyncCallback<WifiP2pDevice[]>): **void**;| 1.ĞèÒªÎ»ÖÃÈ¨ÏŞ | 1.È¡ÏûÎ»ÖÃÈ¨ÏŞ;2.·µ»ØËæ»úMAC(GET_PEER_MACÈ¨ÏŞ·µ»ØÕæÊµMAC) |
+| **function** p2pConnect(config: WifiP2PConfig): **void**; | 1.ĞèÒªÎ»ÖÃÈ¨ÏŞ| 1.È¡ÏûÎ»ÖÃÈ¨ÏŞ |
+| **function** startDiscoverDevices(): **void**; | 1.ĞèÒªÎ»ÖÃÈ¨ÏŞ| 1.È¡ÏûÎ»ÖÃÈ¨ÏŞ |
+| **function** getP2pGroups(): Promise<Array<WifiP2pGroupInfo>>;| 1.ĞèÒªÎ»ÖÃÈ¨ÏŞ | 1.È¡ÏûÎ»ÖÃÈ¨ÏŞ |
+| **function** getP2pGroups(callback: AsyncCallback<Array<WifiP2pGroupInfo>>): **void**; | 1.ĞèÒªÎ»ÖÃÈ¨ÏŞ| 1.È¡ÏûÎ»ÖÃÈ¨ÏŞ |
+| **function** on(**type**: "p2pDeviceChange", callback: Callback<WifiP2pDevice>): **void**;| 1.ĞèÒªÎ»ÖÃÈ¨ÏŞ | 1.È¡ÏûÎ»ÖÃÈ¨ÏŞ;2.·µ»ØËæ»úMAC(GET_PEER_MACÈ¨ÏŞ·µ»ØÕæÊµMAC) |
+| **function** off(**type**: "p2pDeviceChange", callback?: Callback<WifiP2pDevice>): **void**; | 1.ĞèÒªÎ»ÖÃÈ¨ÏŞ| 1.È¡ÏûÎ»ÖÃÈ¨ÏŞ;2.·µ»ØËæ»úMAC(GET_PEER_MACÈ¨ÏŞ·µ»ØÕæÊµMAC) |
+| **function** on(**type**: "p2pPeerDeviceChange", callback: Callback<WifiP2pDevice[]>): **void**; | 1.ĞèÒªÎ»ÖÃÈ¨ÏŞ| 1.È¡ÏûÎ»ÖÃÈ¨ÏŞ;2.·µ»ØËæ»úMAC(GET_PEER_MACÈ¨ÏŞ·µ»ØÕæÊµMAC) |
+| **function** off(**type**: "p2pPeerDeviceChange", callback?: Callback<WifiP2pDevice[]>): **void**;| 1.ĞèÒªÎ»ÖÃÈ¨ÏŞ | 1.È¡ÏûÎ»ÖÃÈ¨ÏŞ;2.·µ»ØËæ»úMAC(GET_PEER_MACÈ¨ÏŞ·µ»ØÕæÊµMAC) |
 
+**±ä¸üÓ°Ïì**<br>
+Ê¹ÓÃÖ®Ç°ÒÑ·¢²¼µÄAPI 9¸÷beta°æ±¾ÇÒÊ¹ÓÃµ½ÁËÉÏÊö½Ó¿ÚµÄ£¬ĞèÒª¸ÄÎªÊ¹ÓÃ ½Ó¿Ú¡£
 
-### 2 æ–°å¢æ¥å£å£°æ˜
-| æ¥å£å£°æ˜ | æ¥å£æè¿° |
+**¹Ø¼üµÄ½Ó¿Ú/×é¼ş±ä¸ü**<br>
+ÎŞ
+
+**ÊÊÅäÖ¸µ¼**<br>
+È¨ÏŞÖØĞÂÊÊÅä
+
+### 2 ĞÂÔö½Ó¿ÚÉùÃ÷
+
+| ½Ó¿ÚÉùÃ÷ | ½Ó¿ÚÃèÊö |
 |------|---------|
-| **function** startScan(): **void**; | å¯åŠ¨æ‰«æ |
-| **function** getScanInfoList(): Array<WifiScanInfo>;         | è·å–æ‰«æåˆ—è¡¨         |
-| **function** setScanAlwaysAllowed(isScanAlwaysAllowed: boolean): **void**; | è®¾ç½®åå°æ‰«æå¼€å…³     |
-| **function** getScanAlwaysAllowed(): boolean;                | è·å–åå°æ‰«æå¼€å…³     |
-| **function** getIpv6Info(): Ipv6Info;                        | è·å–ipv6åœ°å€ä¿¡æ¯     |
-| **function** isBandTypeSupported(bandType: WifiBandType): boolean; | åˆ¤æ–­æ˜¯å¦æ”¯æŒBandType |
-| **function** get5GChannelList(): Array<**number**>;          | è·å–5Gä¿¡é“åˆ—è¡¨       |
-| **function** getDisconnectedReason(): DisconnectedReason;    | è·å–ç½‘ç»œæ–­å¼€åŸå›      |
+| **function** startScan(): **void**; | Æô¶¯É¨Ãè |
+| **function** getScanInfoList(): Array<WifiScanInfo>;         | »ñÈ¡É¨ÃèÁĞ±í         |
+| **function** setScanAlwaysAllowed(isScanAlwaysAllowed: boolean): **void**; | ÉèÖÃºóÌ¨É¨Ãè¿ª¹Ø     |
+| **function** getScanAlwaysAllowed(): boolean;                | »ñÈ¡ºóÌ¨É¨Ãè¿ª¹Ø     |
+| **function** getIpv6Info(): Ipv6Info;                        | »ñÈ¡ipv6µØÖ·ĞÅÏ¢     |
+| **function** isBandTypeSupported(bandType: WifiBandType): boolean; | ÅĞ¶ÏÊÇ·ñÖ§³ÖBandType |
+| **function** get5GChannelList(): Array<**number**>;          | »ñÈ¡5GĞÅµÀÁĞ±í       |
+| **function** getDisconnectedReason(): DisconnectedReason;    | »ñÈ¡ÍøÂç¶Ï¿ªÔ­Òò     |
 
-### 3 åºŸå¼ƒæ¥å£
+**±ä¸üÓ°Ïì**<br>
+Ê¹ÓÃÖ®Ç°ÒÑ·¢²¼µÄAPI ÎŞÓ°Ïì¡£
+
+**¹Ø¼üµÄ½Ó¿Ú/×é¼ş±ä¸ü**<br>
+ÎŞ
+
+**ÊÊÅäÖ¸µ¼**<br>
+ÎŞĞèÊÊÅä
 
 
-| æ¥å£å£°æ˜  |åºŸå¼ƒè¯´æ˜                                                 |
+### 3 ·ÏÆú½Ó¿Ú
+
+
+| ½Ó¿ÚÉùÃ÷  |·ÏÆúËµÃ÷                                                 |
 | ------------- |-------------------------------------------------------- |
-| **function** scan(): **void**; | ä½¿ç”¨startScanæ¥å£å¯åŠ¨æ‰«æ |
-| **function** getScanResults(): Promise<Array<WifiScanInfo>>; | ä½¿ç”¨getScanInfoListè·å–æ‰«æåˆ—è¡¨ |
-| **function** getScanResults(callback: AsyncCallback<Array<WifiScanInfo>>): **void**; | ä½¿ç”¨getScanInfoListè·å–æ‰«æåˆ—è¡¨ |
-| **function** getScanResultsSync(): Array<WifiScanInfo>;      | ä½¿ç”¨getScanInfoListè·å–æ‰«æåˆ—è¡¨ |
+| **function** scan(): **void**; | Ê¹ÓÃstartScan½Ó¿ÚÆô¶¯É¨Ãè |
+| **function** getScanResults(): Promise<Array<WifiScanInfo>>; | Ê¹ÓÃgetScanInfoList»ñÈ¡É¨ÃèÁĞ±í |
+| **function** getScanResults(callback: AsyncCallback<Array<WifiScanInfo>>): **void**; | Ê¹ÓÃgetScanInfoList»ñÈ¡É¨ÃèÁĞ±í |
+| **function** getScanResultsSync(): Array<WifiScanInfo>;      | Ê¹ÓÃgetScanInfoList»ñÈ¡É¨ÃèÁĞ±í |
+	
+**±ä¸üÓ°Ïì**<br>
+Ê¹ÓÃÖ®Ç°ÒÑ·¢²¼µÄAPI 9¸÷beta°æ±¾ÇÒÊ¹ÓÃµ½ÁËÉÏÊöµÄscan£¬ĞèÒª¸ÄÎªÊ¹ÓÃstartScan½Ó¿Ú¡£
+Ê¹ÓÃÖ®Ç°ÒÑ·¢²¼µÄAPI 9¸÷beta°æ±¾ÇÒÊ¹ÓÃµ½ÁËÉÏÊöµÄgetScanResults£¬ĞèÒª¸ÄÎªÊ¹ÓÃgetScanInfoList½Ó¿Ú¡£
+
+**¹Ø¼üµÄ½Ó¿Ú/×é¼ş±ä¸ü**<br>
+ÎŞ
+
+**ÊÊÅäÖ¸µ¼**<br>
+ÓÉscanĞèÒª¸ÄÎªÊ¹ÓÃstartScan½Ó¿Ú¡£
+ÓÉgetScanResultsĞèÒª¸ÄÎªÊ¹ÓÃgetScanInfoList½Ó¿Ú¡£
