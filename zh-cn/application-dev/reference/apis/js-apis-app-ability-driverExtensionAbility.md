@@ -45,7 +45,7 @@ Extension生命周期回调，在创建时回调，执行初始化业务逻辑�
 
   ```ts
   class DriverExt extends DriverExtension {
-    onInit(want) {
+    onInit(want : Want) {
       console.log('onInit, want: ${want.abilityName}');
     }
   }
@@ -96,14 +96,14 @@ Extension生命周期回调，如果是connectAbility拉起的服务，会在onC
   ```ts
   import rpc from '@ohos.rpc';
   class StubTest extends rpc.RemoteObject{
-      constructor(des) {
+      constructor(des : string) {
           super(des);
       }
-      onRemoteMessageRequest(code, data, reply, option) {
+      onRemoteMessageRequest(code : number, data : MessageSequence, reply : MessageSequence, option : MessageOption) {
       }
   }
   class DriverExt extends DriverExtension {
-    onConnect(want) {
+    onConnect(want : Want) {
       console.log('onConnect , want: ${want.abilityName}');
       return new StubTest('test');
     }
@@ -115,10 +115,10 @@ Extension生命周期回调，如果是connectAbility拉起的服务，会在onC
   ```ts
 import rpc from '@ohos.rpc';
 class StubTest extends rpc.RemoteObject{
-    constructor(des) {
+    constructor(des : string) {
         super(des);
     }
-    onRemoteMessageRequest(code, data, reply, option) {
+    onRemoteMessageRequest(code : number, data : MessageSequence, reply : MessageSequence, option : MessageOption) {
     }
 }
 async function getDescriptor() {
@@ -126,7 +126,7 @@ async function getDescriptor() {
     return "asyncTest"
 }
 class DriverExt extends DriverExtension {
-  async onConnect(want) {
+  async onConnect(want : Want) {
     console.log(`onConnect , want: ${want.abilityName}`);
     let descriptor = await getDescriptor();
     return new StubTest(descriptor);
@@ -152,7 +152,7 @@ Extension的生命周期回调，客户端执行断开连接服务时回调。
 
   ```ts
   class DriverExt extends DriverExtension {
-    onDisconnect(want) {
+    onDisconnect(want : Want) {
       console.log('onDisconnect, want: ${want.abilityName}');
     }
   }
@@ -162,7 +162,7 @@ Extension的生命周期回调，客户端执行断开连接服务时回调。
 
   ```ts
 class DriverExt extends DriverExtension {
-  async onDisconnect(want) {
+  async onDisconnect(want : Want) {
     console.log('onDisconnect, want: ${want.abilityName}');
     // 调用异步函数...
   }
@@ -188,7 +188,7 @@ onDump(params: Array\<string>): Array\<string>;
     
   ```ts
   class DriverExt extends DriverExtension {
-      onDump(params) {
+      onDump(params : Array<string>) {
           console.log('dump, params: ${JSON.stringify(params)}');
           return ['params'];
       }
