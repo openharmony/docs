@@ -1,6 +1,6 @@
-# @ohos.data.UDMF (Unified Data Management Framework)
+# @ohos.data.unifiedDataChannel (Unified Data Channel)
 
-The **UDMF** module provides unified data management capabilities, including standard definition of data types, such as text and image. By calling the APIs provided by this module, applications can encapsulate a variety of data into unified data objects.
+As a part of the Unified Data Management Framework (UDMF), the **unifiedDataChannel** module provides unified data channels and standard data access interfaces for many-to-many data sharing across applications. It also provides standard definitions for data types, such as text and image, to streamline data interaction between different applications and minimize the workload of data type adaptation.
 
 > **NOTE**
 >
@@ -9,31 +9,8 @@ The **UDMF** module provides unified data management capabilities, including sta
 ## Modules to Import
 
 ```js
-import UDMF from '@ohos.data.UDMF';
+import unifiedDataChannel from '@ohos.data.unifiedDataChannel';
 ```
-
-## UnifiedDataType
-
-Enumerates the types of the [data records](#unifiedrecord) in the [unifiedData](#unifieddata) object.
-
-**System capability**: SystemCapability.DistributedDataManager.UDMF.Core
-
-| Name                        | Value                           | Description       |
-|----------------------------|------------------------------|-----------|
-| TEXT                       | 'Text'                       | Text.    |
-| PLAIN_TEXT                 | 'Text.PlainText'             | Plaintext.   |
-| HYPERLINK                  | 'Text.Hyperlink'             | Hyperlink.   |
-| HTML                       | 'Text.HTML'                  | HyperText Markup Language (HTML).   |
-| FILE                       | 'File'                       | File.    |
-| IMAGE                      | 'File.Media.Image'           | Image.    |
-| VIDEO                      | 'File.Media.Video'           | Video.    |
-| AUDIO                      | 'File.Media.Audio'           | Audio.    |
-| FOLDER                     | 'File.Folder'                | Folder.   |
-| SYSTEM_DEFINED_RECORD      | 'SystemDefinedType'          | System ability data.|
-| SYSTEM_DEFINED_FORM        | 'SystemDefinedType.Form'     | Widget.    |
-| SYSTEM_DEFINED_APP_ITEM    | 'SystemDefinedType.AppItem'  | Icon.    |
-| SYSTEM_DEFINED_PIXEL_MAP   | 'SystemDefinedType.PixelMap' | Pixel map. |
-| APPLICATION_DEFINED_RECORD | 'ApplicationDefinedType'     | Application-defined type. |
 
 ## UnifiedData
 
@@ -58,9 +35,9 @@ A constructor used to create a **UnifiedData** object with a data record.
 **Example**
 
 ```js
-let text = new UDMF.PlainText();
+let text = new unifiedDataChannel.PlainText();
 text.textContent = 'this is textContent of text';
-let unifiedData = new UDMF.UnifiedData(text);
+let unifiedData = new unifiedDataChannel.UnifiedData(text);
 ```
 
 ### addRecord
@@ -80,11 +57,11 @@ Adds a data record to this **UnifiedRecord** object.
 **Example**
 
 ```js
-let text1 = new UDMF.PlainText();
+let text1 = new unifiedDataChannel.PlainText();
 text1.textContent = 'this is textContent of text1';
-let unifiedData = new UDMF.UnifiedData(text1);
+let unifiedData = new unifiedDataChannel.UnifiedData(text1);
 
-let text2 = new UDMF.PlainText();
+let text2 = new unifiedDataChannel.PlainText();
 text2.textContent = 'this is textContent of text2';
 unifiedData.addRecord(text2);
 ```
@@ -106,22 +83,24 @@ Obtains all data records from this **UnifiedData** object. The data obtained is 
 **Example**
 
 ```js
-let text = new UDMF.PlainText();
-text.textContent = 'this is textContent of text';
-let unifiedData = new UDMF.UnifiedData(text);
+import uniformTypeDescriptor from '@ohos.data.uniformTypeDescriptor';
 
-let link = new UDMF.Hyperlink();
+let text = new unifiedDataChannel.PlainText();
+text.textContent = 'this is textContent of text';
+let unifiedData = new unifiedDataChannel.UnifiedData(text);
+
+let link = new unifiedDataChannel.Hyperlink();
 link.url = 'www.XXX.com';
 unifiedData.addRecord(link);
 
 let records = unifiedData.getRecords();
 for (let i = 0; i < records.length; i++) {
   let record = records[i];
-  if (record.getType() == UDMF.UnifiedDataType.PLAIN_TEXT) {
-    let plainText = <UDMF.PlainText> (record);
+  if (record.getType() == uniformTypeDescriptor.UniformDataType.PLAIN_TEXT) {
+    let plainText = record as unifiedDataChannel.PlainText;
     console.info(`textContent: ${plainText.textContent}`);
-  } else if (record.getType() == UDMF.UnifiedDataType.HYPERLINK) {
-    let hyperlink = <UDMF.Hyperlink> (record);
+  } else if (record.getType() == uniformTypeDescriptor.UniformDataType.HYPERLINK) {
+    let hyperlink = record as unifiedDataChannel.Hyperlink;
     console.info(`linkUrl: ${hyperlink.url}`);
   }
 }
@@ -135,7 +114,7 @@ Defines the summary of a **UnifiedData object**, including the data types and si
 
 | Name     | Type                     | Readable| Writable| Description                                                                               |
 | --------- | ------------------------- | ---- | ---- |-----------------------------------------------------------------------------------|
-| summary   | { [key: string]: number } | Yes  | No  | A directory type object, where **key** indicates the data type (see [UnifiedDataType](#unifieddatatype)), and the value indicates the total size (in bytes) of this type of records in the **UnifiedData** object.|
+| summary   | { [key: string]: number } | Yes  | No  | Dictionary type object, where the key indicates the data type (see [UniformDataType](js-apis-data-uniformTypeDescriptor.md#uniformdatatype)), and the value indicates the total size (in bytes) of this type of records in the **UnifiedData** object.|
 | totalSize | number                    | Yes  | No  | Total size of all the records in the **UnifiedData** object, in bytes.                                                                    |
 
 ## UnifiedRecord
@@ -156,19 +135,21 @@ Obtains the type of this **UnfiedRecord**. The data obtained by [getRecords](#ge
 
 | Type  | Description                                                  |
 | ------ |------------------------------------------------------|
-| string | Data type obtained. For details, see [UnifiedDataType](#unifieddatatype).|
+| string | Data type obtained. For details, see [UniformDataType](js-apis-data-uniformTypeDescriptor.md#uniformdatatype).|
 
 **Example**
 
 ```js
-let text = new UDMF.PlainText();
+import uniformTypeDescriptor from '@ohos.data.uniformTypeDescriptor';
+
+let text = new unifiedDataChannel.PlainText();
 text.textContent = 'this is textContent of text';
-let unifiedData = new UDMF.UnifiedData(text);
+let unifiedData = new unifiedDataChannel.UnifiedData(text);
 
 let records = unifiedData.getRecords();
-if (records[0].getType() == UDMF.UnifiedDataType.PLAIN_TEXT) {
-    let plainText = <UDMF.PlainText> (records[0]);
-    console.info(`textContent: ${plainText.textContent}`);
+if (records[0].getType() == uniformTypeDescriptor.UniformDataType.PLAIN_TEXT) {
+  let plainText = records[0] as unifiedDataChannel.PlainText;
+  console.info(`textContent: ${plainText.textContent}`);
 }
 ```
 
@@ -185,12 +166,12 @@ Represents the text data. It is a child class of [UnifiedRecord](#unifiedrecord)
 **Example**
 
 ```js
-let text = new UDMF.Text();
+let text = new unifiedDataChannel.Text();
 text.details = {
   title: 'MyTitle',
   content: 'this is content',
 };
-let unifiedData = new UDMF.UnifiedData(text);
+let unifiedData = new unifiedDataChannel.UnifiedData(text);
 ```
 
 ## PlainText
@@ -207,7 +188,7 @@ Represents the plaintext data. It is a child class of [Text](#text) and is used 
 **Example**
 
 ```js
-let text = new UDMF.PlainText();
+let text = new unifiedDataChannel.PlainText();
 text.textContent = 'this is textContent';
 text.abstract = 'this is abstract';
 ```
@@ -226,7 +207,7 @@ Represents hyperlink data. It is a child class of [Text](#text) and is used to d
 **Example**
 
 ```js
-let link = new UDMF.Hyperlink();
+let link = new unifiedDataChannel.Hyperlink();
 link.url = 'www.XXX.com';
 link.description = 'this is description';
 ```
@@ -245,7 +226,7 @@ Represents the HTML data. It is a child class of [Text](#text) and is used to de
 **Example**
 
 ```js
-let html = new UDMF.HTML();
+let html = new unifiedDataChannel.HTML();
 html.htmlContent = '<div><p>Title</p></div>';
 html.plainContent = 'this is plainContent';
 ```
@@ -264,7 +245,7 @@ Represents the file data. It is a child class of [UnifiedRecord](#unifiedrecord)
 **Example**
 
 ```js
-let file = new UDMF.File();
+let file = new unifiedDataChannel.File();
 file.details = {
     name: 'test',
     type: 'txt',
@@ -285,7 +266,7 @@ Represents the image data. It is a child class of [File](#file) and is used to d
 **Example**
 
 ```js
-let image = new UDMF.Image();
+let image = new unifiedDataChannel.Image();
 image.imageUri = 'schema://com.samples.test/files/test.jpg';
 ```
 
@@ -302,7 +283,7 @@ Represents video data. It is a child class of [File](#file) and is used to descr
 **Example**
 
 ```js
-let video = new UDMF.Video();
+let video = new unifiedDataChannel.Video();
 video.videoUri = 'schema://com.samples.test/files/test.mp4';
 ```
 
@@ -319,7 +300,7 @@ Represents video data. It is a child class of [File](#file) and is used to descr
 **Example**
 
 ```js
-let audio = new UDMF.Audio();
+let audio = new unifiedDataChannel.Audio();
 audio.audioUri = 'schema://com.samples.test/files/test.mp3';
 ```
 
@@ -336,7 +317,7 @@ Represents the folder data. It is a child class of [File](#file) and is used to 
 **Example**
 
 ```js
-let folder = new UDMF.Folder();
+let folder = new unifiedDataChannel.Folder();
 folder.folderUri = 'schema://com.samples.test/files/folder/';
 ```
 
@@ -353,14 +334,14 @@ Represents specific data types defined by OpenHarmony. It is a child class of [U
 **Example**
 
 ```js
-let sdr = new UDMF.SystemDefinedRecord();
+let sdr = new unifiedDataChannel.SystemDefinedRecord();
 let u8Array = new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
 sdr.details = {
     title: 'recordTitle',
     version: 1,
     content: u8Array,
 };
-let unifiedData = new UDMF.UnifiedData(sdr);
+let unifiedData = new unifiedDataChannel.UnifiedData(sdr);
 ```
 
 ## SystemDefinedForm
@@ -380,7 +361,7 @@ Represents the widget data. It is a child class of [SystemDefinedRecord](#system
 **Example**
 
 ```js
-let form = new UDMF.SystemDefinedForm();
+let form = new unifiedDataChannel.SystemDefinedForm();
 form.formId = 123456;
 form.formName = 'MyFormName';
 form.bundleName = 'MyBundleName';
@@ -392,7 +373,7 @@ form.details = {
   formKey2: 'formValue',
   formKey3: u8Array,
 };
-let unifiedData = new UDMF.UnifiedData(form);
+let unifiedData = new unifiedDataChannel.UnifiedData(form);
 ```
 
 ## SystemDefinedAppItem
@@ -413,7 +394,7 @@ Represents the icon data. It is a child class of [SystemDefinedRecord](#systemde
 **Example**
 
 ```js
-let appItem = new UDMF.SystemDefinedAppItem();
+let appItem = new unifiedDataChannel.SystemDefinedAppItem();
 appItem.appId = 'MyAppId';
 appItem.appName = 'MyAppName';
 appItem.appIconId = 'MyAppIconId';
@@ -426,7 +407,7 @@ appItem.details = {
     appItemKey2: 'appItemValue',
     appItemKey3: u8Array,
 };
-let unifiedData = new UDMF.UnifiedData(appItem);
+let unifiedData = new unifiedDataChannel.UnifiedData(appItem);
 ```
 
 ## SystemDefinedPixelMap
@@ -445,19 +426,23 @@ Represents the image data corresponding to the [PixelMap](js-apis-image.md#pixel
 import image from '@ohos.multimedia.image'; // Module where the PixelMap class is defined.
 
 const color = new ArrayBuffer(96); // Create a PixelMap object.
-let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
+let opts: image.InitializationOptions = {
+  editable: true, pixelFormat: 3, size: {
+    height: 4, width: 6
+  }
+}
 image.createPixelMap(color, opts, (error, pixelmap) => {
-    if(error) {
-        console.error('Failed to create pixelmap.');
-    } else {
-        console.info('Succeeded in creating pixelmap.');
-        let arrayBuf = new ArrayBuffer(pixelmap.getPixelBytesNumber());
-        pixelmap.readPixelsToBuffer(arrayBuf);
-        let u8Array = new Uint8Array(arrayBuf);
-        let sdpixel = new UDMF.SystemDefinedPixelMap();
-        sdpixel.rawData = u8Array;
-        let unifiedData = new UDMF.UnifiedData(sdpixel);
-    }
+  if (error) {
+    console.error('Failed to create pixelmap.');
+  } else {
+    console.info('Succeeded in creating pixelmap.');
+    let arrayBuf = new ArrayBuffer(pixelmap.getPixelBytesNumber());
+    pixelmap.readPixelsToBuffer(arrayBuf);
+    let u8Array = new Uint8Array(arrayBuf);
+    let sdpixel = new unifiedDataChannel.SystemDefinedPixelMap();
+    sdpixel.rawData = u8Array;
+    let unifiedData = new unifiedDataChannel.UnifiedData(sdpixel);
+  }
 })
 ```
 
@@ -475,11 +460,11 @@ Represents the custom data type for applications only. It is a child class of [U
 **Example**
 
 ```js
-let record = new UDMF.ApplicationDefinedRecord();
+let record = new unifiedDataChannel.ApplicationDefinedRecord();
 let u8Array = new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
 record.applicationDefinedType = 'ApplicationDefinedType';
 record.rawData = u8Array;
-let unifiedData = new UDMF.UnifiedData(record);
+let unifiedData = new unifiedDataChannel.UnifiedData(record);
 ```
 
 ## Intention
@@ -502,11 +487,11 @@ Defines the data operation performed by the UDMF. It includes two optional param
 | Name      | Type                     | Readable| Writable| Mandatory| Description                                                                                                                                                                                                                               |
 |-----------|-------------------------|----|----|----|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | intention | [Intention](#intention) | Yes | Yes | No | Type of the data channel related to the data operation.                                                                                                                                                                                                                 |
-| key       | string                  | Yes | Yes | No | Unique identifier of a data object in the UDMF, which can be obtained from the return value of [insertData](#udmfinsertdata).<br>The key consists of **udmf:/**, **intention**, **bundleName**, and **groupId** with a (/) in between, for example, **udmf://DataHub/com.ohos.test/0123456789**.<br>**udmf:/** is fixed, **DataHub** is an enum of **intention**, **com.ohos.test** is the bundle name, and **0123456789** is a group ID randomly generated.|
+| key       | string                  | Yes | Yes | No | Unique identifier of the data object in the UDMF, which can be obtained from the value returned by [insertData](#unifieddatachannelinsertdata).<br>The key consists of **udmf:/**, **intention**, **bundleName**, and **groupId** with a (/) in between, for example, **udmf://DataHub/com.ohos.test/0123456789**.<br>**udmf:/** is fixed, **DataHub** is an enum of **intention**, **com.ohos.test** is the bundle name, and **0123456789** is a group ID randomly generated.|
 
 
 
-## UDMF.insertData
+## unifiedDataChannel.insertData
 
 insertData(options: Options, data: UnifiedData, callback: AsyncCallback&lt;string&gt;): void
 
@@ -525,30 +510,32 @@ Inserts data to the UDMF public data channel. This API uses an asynchronous call
 **Example**
 
 ```ts
-import UDMF from '@ohos.data.UDMF';
+import unifiedDataChannel from '@ohos.data.unifiedDataChannel';
+import { BusinessError } from '@ohos.base';
 
-let plainText = new UDMF.PlainText();
+let plainText = new unifiedDataChannel.PlainText();
 plainText.textContent = 'hello world!';
-let unifiedData = new UDMF.UnifiedData(plainText);
+let unifiedData = new unifiedDataChannel.UnifiedData(plainText);
 
-let options = {
-    intention: UDMF.Intention.DATA_HUB
+let options: unifiedDataChannel.Options = {
+  intention: unifiedDataChannel.Intention.DATA_HUB
 }
 try {
-    UDMF.insertData(options, unifiedData, (err, data) => {
-        if (err === undefined) {
-            console.info(`Succeeded in inserting data. key = ${data}`);
-        } else {
-            console.error(`Failed to insert data. code is ${err.code},message is ${err.message} `);
-        }
-    });
-} catch(e) {
-    console.error(`Insert data throws an exception. code is ${e.code},message is ${e.message} `);
+  unifiedDataChannel.insertData(options, unifiedData, (err, data) => {
+    if (err === undefined) {
+      console.info(`Succeeded in inserting data. key = ${data}`);
+    } else {
+      console.error(`Failed to insert data. code is ${err.code},message is ${err.message} `);
+    }
+  });
+  } catch (e) {
+    let error: BusinessError = e as BusinessError;
+    console.error(`Insert data throws an exception. code is ${error.code},message is ${error.message} `);
 }
 
 ```
 
-## UDMF.insertData
+## unifiedDataChannel.insertData
 
 insertData(options: Options, data: UnifiedData): Promise&lt;string&gt;
 
@@ -572,27 +559,29 @@ Inserts data to the UDMF public data channel. This API uses a promise to return 
 **Example**
 
 ```ts
-import UDMF from '@ohos.data.UDMF';
+import unifiedDataChannel from '@ohos.data.unifiedDataChannel';
+import { BusinessError } from '@ohos.base';
 
-let plainText = new UDMF.PlainText();
+let plainText = new unifiedDataChannel.PlainText();
 plainText.textContent = 'hello world!';
-let unifiedData = new UDMF.UnifiedData(plainText);
+let unifiedData = new unifiedDataChannel.UnifiedData(plainText);
 
-let options = {
-    intention: UDMF.Intention.DATA_HUB
+let options: unifiedDataChannel.Options = {
+  intention: unifiedDataChannel.Intention.DATA_HUB
 }
 try {
-    UDMF.insertData(options, unifiedData).then((data) => {
-        console.info(`Succeeded in inserting data. key = ${data}`);
-    }).catch((err) => {
-        console.error(`Failed to insert data. code is ${err.code},message is ${err.message} `);
-    });
-} catch(e) {
-    console.error(`Insert data throws an exception. code is ${e.code},message is ${e.message} `);
+  unifiedDataChannel.insertData(options, unifiedData).then((data) => {
+    console.info(`Succeeded in inserting data. key = ${data}`);
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to insert data. code is ${err.code},message is ${err.message} `);
+  });
+} catch (e) {
+  let error: BusinessError = e as BusinessError;
+  console.error(`Insert data throws an exception. code is ${error.code},message is ${error.message} `);
 }
 ```
 
-## UDMF.updateData
+## unifiedDataChannel.updateData
 
 updateData(options: Options, data: UnifiedData, callback: AsyncCallback&lt;void&gt;): void
 
@@ -611,30 +600,32 @@ Updates the data in the UDMF public data channel. This API uses an asynchronous 
 **Example**
 
 ```ts
-import UDMF from '@ohos.data.UDMF';
+import unifiedDataChannel from '@ohos.data.unifiedDataChannel';
+import { BusinessError } from '@ohos.base';
 
-let plainText = new UDMF.PlainText();
+let plainText = new unifiedDataChannel.PlainText();
 plainText.textContent = 'hello world!';
-let unifiedData = new UDMF.UnifiedData(plainText);
+let unifiedData = new unifiedDataChannel.UnifiedData(plainText);
 
-let options = {
-    key: 'udmf://DataHub/com.ohos.test/0123456789'
+let options: unifiedDataChannel.Options = {
+  key: 'udmf://DataHub/com.ohos.test/0123456789'
 };
 
 try {
-    UDMF.updateData(options, unifiedData, (err) => {
-        if (err === undefined) {
-            console.info('Succeeded in updating data.');
-        } else {
-            console.error(`Failed to update data. code is ${err.code},message is ${err.message} `);
-        }
-    });
-} catch(e) {
-    console.error(`Update data throws an exception. code is ${e.code},message is ${e.message} `);
+  unifiedDataChannel.updateData(options, unifiedData, (err) => {
+    if (err === undefined) {
+      console.info('Succeeded in updating data.');
+    } else {
+      console.error(`Failed to update data. code is ${err.code},message is ${err.message} `);
+    }
+  });
+} catch (e) {
+  let error: BusinessError = e as BusinessError;
+  console.error(`Update data throws an exception. code is ${error.code},message is ${error.message} `);
 }
 ```
 
-## UDMF.updateData
+## unifiedDataChannel.updateData
 
 updateData(options: Options, data: UnifiedData): Promise&lt;void&gt;
 
@@ -658,28 +649,30 @@ Updates the data in the UDMF public data channel. This API uses a promise to ret
 **Example**
 
 ```ts
-import UDMF from '@ohos.data.UDMF';
+import unifiedDataChannel from '@ohos.data.unifiedDataChannel';
+import { BusinessError } from '@ohos.base';
 
-let plainText = new UDMF.PlainText();
+let plainText = new unifiedDataChannel.PlainText();
 plainText.textContent = 'hello world!';
-let unifiedData = new UDMF.UnifiedData(plainText);
+let unifiedData = new unifiedDataChannel.UnifiedData(plainText);
 
-let options = {
-    key: 'udmf://DataHub/com.ohos.test/0123456789'
+let options: unifiedDataChannel.Options = {
+  key: 'udmf://DataHub/com.ohos.test/0123456789'
 };
 
 try {
-    UDMF.updateData(options, unifiedData).then(() => {
-        console.info('Succeeded in updating data.');
-    }).catch((err) => {
-        console.error(`Failed to update data. code is ${err.code},message is ${err.message} `);
-    });
-} catch(e) {
-    console.error(`Update data throws an exception. code is ${e.code},message is ${e.message} `);
+  unifiedDataChannel.updateData(options, unifiedData).then(() => {
+    console.info('Succeeded in updating data.');
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to update data. code is ${err.code},message is ${err.message} `);
+  });
+} catch (e) {
+  let error: BusinessError = e as BusinessError;
+  console.error(`Update data throws an exception. code is ${error.code},message is ${error.message} `);
 }
 ```
 
-## UDMF.queryData
+## unifiedDataChannel.queryData
 
 queryData(options: Options, callback: AsyncCallback&lt;Array&lt;UnifiedData&gt;&gt;): void
 
@@ -697,35 +690,38 @@ Queries data in the UDMF public data channel. This API uses an asynchronous call
 **Example**
 
 ```ts
-import UDMF from '@ohos.data.UDMF';
+import unifiedDataChannel from '@ohos.data.unifiedDataChannel';
+import uniformTypeDescriptor from '@ohos.data.uniformTypeDescriptor';
+import { BusinessError } from '@ohos.base';
 
-let options = {
-    intention: UDMF.Intention.DATA_HUB
+let options: unifiedDataChannel.Options = {
+  intention: unifiedDataChannel.Intention.DATA_HUB
 };
 
 try {
-    UDMF.queryData(options, (err, data) => {
-        if (err === undefined) {
-            console.info(`Succeeded in querying data. size = ${data.length}`);
-            for (let i = 0; i < data.length; i++) {
-                let records = data[i].getRecords();
-                for (let j = 0; j < records.length; j++) {
-                    if (records[j].getType() === UDMF.UnifiedDataType.PLAIN_TEXT) {
-                        let text = <UDMF.PlainText>(records[j]);
-                        console.info(`${i + 1}.${text.textContent}`);
-                    }
-                }
-            }
-        } else {
-            console.error(`Failed to query data. code is ${err.code},message is ${err.message} `);
+  unifiedDataChannel.queryData(options, (err, data) => {
+    if (err === undefined) {
+      console.info(`Succeeded in querying data. size = ${data.length}`);
+      for (let i = 0; i < data.length; i++) {
+        let records = data[i].getRecords();
+        for (let j = 0; j < records.length; j++) {
+          if (records[j].getType() === uniformTypeDescriptor.UniformDataType.PLAIN_TEXT) {
+            let text = records[j] as unifiedDataChannel.PlainText;
+            console.info(`${i + 1}.${text.textContent}`);
+          }
         }
-    });
-} catch(e) {
-    console.error(`Query data throws an exception. code is ${e.code},message is ${e.message} `);
+      }
+    } else {
+      console.error(`Failed to query data. code is ${err.code},message is ${err.message} `);
+    }
+  });
+} catch (e) {
+  let error: BusinessError = e as BusinessError;
+  console.error(`Query data throws an exception. code is ${error.code},message is ${error.message} `);
 }
 ```
 
-## UDMF.queryData
+## unifiedDataChannel.queryData
 
 queryData(options: Options): Promise&lt;Array&lt;UnifiedData&gt;&gt;
 
@@ -748,33 +744,36 @@ Queries data in the UDMF public data channel. This API uses a promise to return 
 **Example**
 
 ```ts
-import UDMF from '@ohos.data.UDMF';
+import unifiedDataChannel from '@ohos.data.unifiedDataChannel';
+import uniformTypeDescriptor from '@ohos.data.uniformTypeDescriptor';
+import { BusinessError } from '@ohos.base';
 
-let options = {
-    key: 'udmf://DataHub/com.ohos.test/0123456789'
+let options: unifiedDataChannel.Options = {
+  key: 'udmf://DataHub/com.ohos.test/0123456789'
 };
 
 try {
-    UDMF.queryData(options).then((data) => {
-        console.info(`Succeeded in querying data. size = ${data.length}`);
-        for (let i = 0; i < data.length; i++) {
-            let records = data[i].getRecords();
-            for (let j = 0; j < records.length; j++) {
-                if (records[j].getType() === UDMF.UnifiedDataType.PLAIN_TEXT) {
-                    let text = <UDMF.PlainText>(records[j]);
-                    console.info(`${i + 1}.${text.textContent}`);
-                }
-            }
+  unifiedDataChannel.queryData(options).then((data) => {
+    console.info(`Succeeded in querying data. size = ${data.length}`);
+    for (let i = 0; i < data.length; i++) {
+      let records = data[i].getRecords();
+      for (let j = 0; j < records.length; j++) {
+        if (records[j].getType() === uniformTypeDescriptor.UniformDataType.PLAIN_TEXT) {
+          let text = records[j] as unifiedDataChannel.PlainText;
+          console.info(`${i + 1}.${text.textContent}`);
         }
-    }).catch((err) => {
-        console.error(`Failed to query data. code is ${err.code},message is ${err.message} `);
-    });
-} catch(e) {
-    console.error(`Query data throws an exception. code is ${e.code},message is ${e.message} `);
+      }
+    }
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to query data. code is ${err.code},message is ${err.message} `);
+  });
+} catch (e) {
+  let error: BusinessError = e as BusinessError;
+  console.error(`Query data throws an exception. code is ${error.code},message is ${error.message} `);
 }
 ```
 
-## UDMF.deleteData
+## unifiedDataChannel.deleteData
 
 deleteData(options: Options, callback: AsyncCallback&lt;Array&lt;UnifiedData&gt;&gt;): void
 
@@ -792,35 +791,38 @@ Deletes data from the UDMF public data channel. This API uses an asynchronous ca
 **Example**
 
 ```ts
-import UDMF from '@ohos.data.UDMF';
+import unifiedDataChannel from '@ohos.data.unifiedDataChannel';
+import uniformTypeDescriptor from '@ohos.data.uniformTypeDescriptor';
+import { BusinessError } from '@ohos.base';
 
-let options = {
-    intention: UDMF.Intention.DATA_HUB
+let options: unifiedDataChannel.Options = {
+  intention: unifiedDataChannel.Intention.DATA_HUB
 };
 
 try {
-    UDMF.deleteData(options, (err, data) => {
-        if (err === undefined) {
-            console.info(`Succeeded in deleting data. size = ${data.length}`);
-            for (let i = 0; i < data.length; i++) {
-                let records = data[i].getRecords();
-                for (let j = 0; j < records.length; j++) {
-                    if (records[j].getType() === UDMF.UnifiedDataType.PLAIN_TEXT) {
-                        let text = <UDMF.PlainText>(records[j]);
-                        console.info(`${i + 1}.${text.textContent}`);
-                    }
-                }
-            }
-        } else {
-            console.error(`Failed to delete data. code is ${err.code},message is ${err.message} `);
+  unifiedDataChannel.deleteData(options, (err, data) => {
+    if (err === undefined) {
+      console.info(`Succeeded in deleting data. size = ${data.length}`);
+      for (let i = 0; i < data.length; i++) {
+        let records = data[i].getRecords();
+        for (let j = 0; j < records.length; j++) {
+          if (records[j].getType() === uniformTypeDescriptor.UniformDataType.PLAIN_TEXT) {
+            let text = records[j] as unifiedDataChannel.PlainText;
+            console.info(`${i + 1}.${text.textContent}`);
+          }
         }
-    });
-} catch(e) {
-    console.error(`Delete data throws an exception. code is ${e.code},message is ${e.message} `);
+      }
+    } else {
+      console.error(`Failed to delete data. code is ${err.code},message is ${err.message} `);
+    }
+  });
+} catch (e) {
+  let error: BusinessError = e as BusinessError;
+  console.error(`Delete data throws an exception. code is ${error.code},message is ${error.message} `);
 }
 ```
 
-## UDMF.deleteData
+## unifiedDataChannel.deleteData
 
 deleteData(options: Options): Promise&lt;Array&lt;UnifiedData&gt;&gt;
 
@@ -843,28 +845,31 @@ Deletes data from the UDMF public data channel. This API uses a promise to retur
 **Example**
 
 ```ts
-import UDMF from '@ohos.data.UDMF';
+import unifiedDataChannel from '@ohos.data.unifiedDataChannel';
+import uniformTypeDescriptor from '@ohos.data.uniformTypeDescriptor';
+import { BusinessError } from '@ohos.base';
 
-let options = {
-    key: 'udmf://DataHub/com.ohos.test/0123456789'
+let options: unifiedDataChannel.Options = {
+  key: 'udmf://DataHub/com.ohos.test/0123456789'
 };
 
 try {
-    UDMF.deleteData(options).then((data) => {
-        console.info(`Succeeded in deleting data. size = ${data.length}`);
-        for (let i = 0; i < data.length; i++) {
-            let records = data[i].getRecords();
-            for (let j = 0; j < records.length; j++) {
-                if (records[j].getType() === UDMF.UnifiedDataType.PLAIN_TEXT) {
-                    let text = <UDMF.PlainText>(records[j]);
-                    console.info(`${i + 1}.${text.textContent}`);
-                }
-            }
+  unifiedDataChannel.deleteData(options).then((data) => {
+    console.info(`Succeeded in deleting data. size = ${data.length}`);
+    for (let i = 0; i < data.length; i++) {
+      let records = data[i].getRecords();
+      for (let j = 0; j < records.length; j++) {
+        if (records[j].getType() === uniformTypeDescriptor.UniformDataType.PLAIN_TEXT) {
+          let text = records[j] as unifiedDataChannel.PlainText;
+          console.info(`${i + 1}.${text.textContent}`);
         }
-    }).catch((err) => {
-        console.error(`Failed to delete data. code is ${err.code},message is ${err.message} `);
-    });
-} catch(e) {
-    console.error(`Delete data throws an exception. code is ${e.code},message is ${e.message} `);
+      }
+    }
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to delete data. code is ${err.code},message is ${err.message} `);
+  });
+} catch (e) {
+  let error: BusinessError = e as BusinessError;
+  console.error(`Query data throws an exception. code is ${error.code},message is ${error.message} `);
 }
 ```
