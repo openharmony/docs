@@ -47,7 +47,7 @@ getTotalSizeOfVolume(volumeUuid: string): Promise&lt;number&gt;
 | 401 | The input parameter is invalid. |
 | 13600001 | IPC error. |
 | 13600008 | No such object. |
-| 13900032 | Unknown error. |
+| 13900042 | Unknown error. |
 
 **示例：**
 
@@ -90,7 +90,7 @@ getTotalSizeOfVolume(volumeUuid: string, callback: AsyncCallback&lt;number&gt;):
 | 401 | The input parameter is invalid. |
 | 13600001 | IPC error. |
 | 13600008 | No such object. |
-| 13900032 | Unknown error. |
+| 13900042 | Unknown error. |
 
 **示例：**
 
@@ -137,7 +137,7 @@ getFreeSizeOfVolume(volumeUuid: string): Promise&lt;number&gt;
 | 401 | The input parameter is invalid. |
 | 13600001 | IPC error. |
 | 13600008 | No such object. |
-| 13900032 | Unknown error. |
+| 13900042 | Unknown error. |
 
 **示例：**
 
@@ -181,7 +181,7 @@ getFreeSizeOfVolume(volumeUuid: string, callback: AsyncCallback&lt;number&gt;): 
 | 401 | The input parameter is invalid. |
 | 13600001 | IPC error. |
 | 13600008 | No such object. |
-| 13900032 | Unknown error. |
+| 13900042 | Unknown error. |
 
 **示例：**
 
@@ -228,7 +228,7 @@ getBundleStats(packageName: string): Promise&lt;BundleStats&gt;
 | 401 | The input parameter is invalid. |
 | 13600001 | IPC error. |
 | 13600008 | No such object. |
-| 13900032 | Unknown error. |
+| 13900042 | Unknown error. |
 
 **示例：**
 
@@ -271,7 +271,7 @@ getBundleStats(packageName: string,  callback: AsyncCallback&lt;BundleStats&gt;)
 | 401 | The input parameter is invalid. |
 | 13600001 | IPC error. |
 | 13600008 | No such object. |
-| 13900032 | Unknown error. |
+| 13900042 | Unknown error. |
 
 **示例：**
 
@@ -305,13 +305,16 @@ getCurrentBundleStats(): Promise&lt;BundleStats&gt;
 | -------- | -------- |
 | 401 | The input parameter is invalid. |
 | 13600001 | IPC error. |
-| 13900032 | Unknown error. |
+| 13900042 | Unknown error. |
 
 **示例：**
 
   ```js
-  let bundleStats = storageStatistics.getCurrentBundleStats();
-  console.info("getCurrentBundleStats successfully:"+ JSON.stringify(bundleStats));
+  storageStatistics.getCurrentBundleStats().then(function(BundleStats){
+      console.info("getCurrentBundleStats successfully:"+ JSON.stringify(BundleStats));
+  }).catch(function(err){
+      console.info("getCurrentBundleStats failed with error:"+ err);
+  });
   ```
 
 ## storageStatistics.getCurrentBundleStats<sup>9+</sup>
@@ -336,7 +339,7 @@ getCurrentBundleStats(callback: AsyncCallback&lt;BundleStats&gt;): void
 | -------- | -------- |
 | 401 | The input parameter is invalid. |
 | 13600001 | IPC error. |
-| 13900032 | Unknown error. |
+| 13900042 | Unknown error. |
 
 **示例：**
 
@@ -385,13 +388,16 @@ getTotalSize(): Promise&lt;number&gt;
 | 202 | The caller is not a system application. |
 | 401 | The input parameter is invalid. |
 | 13600001 | IPC error. |
-| 13900032 | Unknown error. |
+| 13900042 | Unknown error. |
 
 **示例：**
 
   ```js
-  let number = storageStatistics.getTotalSize();
-  console.info("getTotalSize successfully:"+ JSON.stringify(number));
+  storageStatistics.getTotalSize().then(function(number){
+      console.info("getTotalSize successfully:"+ JSON.stringify(number));
+  }).catch(function(err){
+      console.info("getTotalSize failed with error:"+ err);
+  });
   ```
 
 ## storageStatistics.getTotalSize<sup>9+</sup>
@@ -422,7 +428,7 @@ getTotalSize(callback: AsyncCallback&lt;number&gt;): void
 | 202 | The caller is not a system application. |
 | 401 | The input parameter is invalid. |
 | 13600001 | IPC error. |
-| 13900032 | Unknown error. |
+| 13900042 | Unknown error. |
 
 **示例：**
 
@@ -431,6 +437,41 @@ getTotalSize(callback: AsyncCallback&lt;number&gt;): void
       // do something
       console.info("getTotalSize successfully:"+ JSON.stringify(number));
   });
+  ```
+
+## storageStatistics.getTotalSizeSync<sup>10+</sup>
+
+getTotalSizeSync(): number
+
+同步获取内置存储的总空间大小（单位为Byte）。
+
+**需要权限**：ohos.permission.STORAGE_MANAGER
+
+**系统能力**：SystemCapability.FileManagement.StorageService.SpatialStatistics
+
+**系统接口：** 该接口为系统接口。
+
+**错误码：**
+
+以下错误码的详细介绍请参见[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 201 | Permission verification failed. |
+| 202 | The caller is not a system application. |
+| 401 | The input parameter is invalid. |
+| 13600001 | IPC error. |
+| 13900042 | Unknown error. |
+
+**示例：**
+
+  ```js
+  try {
+    let number = storageStatistics.getTotalSizeSync();
+    console.info("getTotalSizeSync successfully:"+ JSON.stringify(number));
+  } catch (err) {
+    console.info("getTotalSizeSync failed with error:"+ err);
+  }
   ```
 
 ## storageStatistics.getFreeSize<sup>9+</sup>
@@ -461,13 +502,16 @@ getFreeSize(): Promise&lt;number&gt;
 | 202 | The caller is not a system application. |
 | 401 | The input parameter is invalid. |
 | 13600001 | IPC error. |
-| 13900032 | Unknown error. |
+| 13900042 | Unknown error. |
 
 **示例：**
 
   ```js
-  let number = storageStatistics.getFreeSize();
-  console.info("getFreeSize successfully:"+ JSON.stringify(number));
+  storageStatistics.getFreeSize().then(function(number){
+      console.info("getFreeSize successfully:"+ JSON.stringify(number));
+  }).catch(function(err){
+      console.info("getFreeSize failed with error:"+ err);
+  });
   ```
 
 ## storageStatistics.getFreeSize<sup>9+</sup>
@@ -498,7 +542,7 @@ getFreeSize(callback: AsyncCallback&lt;number&gt;): void
 | 202 | The caller is not a system application. |
 | 401 | The input parameter is invalid. |
 | 13600001 | IPC error. |
-| 13900032 | Unknown error. |
+| 13900042 | Unknown error. |
 
 **示例：**
 
@@ -507,6 +551,41 @@ getFreeSize(callback: AsyncCallback&lt;number&gt;): void
       // do something
       console.info("getFreeSize successfully:"+ JSON.stringify(number));
   });
+  ```
+
+## storageStatistics.getFreeSizeSync<sup>10+</sup>
+
+getFreeSizeSync(): number
+
+同步获取内置存储的可用空间大小（单位为Byte）。
+
+**需要权限**：ohos.permission.STORAGE_MANAGER
+
+**系统能力**：SystemCapability.FileManagement.StorageService.SpatialStatistics
+
+**系统接口：** 该接口为系统接口。
+
+**错误码：**
+
+以下错误码的详细介绍请参见[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 201 | Permission verification failed. |
+| 202 | The caller is not a system application. |
+| 401 | The input parameter is invalid. |
+| 13600001 | IPC error. |
+| 13900042 | Unknown error. |
+
+**示例：**
+
+  ```js
+  try {
+    let number = storageStatistics.getFreeSizeSync();
+    console.info("getFreeSizeSync successfully:"+ JSON.stringify(number));
+  } catch (err) {
+    console.info("getFreeSizeSync failed with error:"+ err);
+  }
   ```
 
 ## storageStatistics.getSystemSize<sup>9+</sup>
@@ -537,7 +616,7 @@ getSystemSize(): Promise&lt;number&gt;
 | 202 | The caller is not a system application. |
 | 401 | The input parameter is invalid. |
 | 13600001 | IPC error. |
-| 13900032 | Unknown error. |
+| 13900042 | Unknown error. |
 
 **示例：**
 
@@ -577,7 +656,7 @@ getSystemSize(callback: AsyncCallback&lt;number&gt;): void
 | 202 | The caller is not a system application. |
 | 401 | The input parameter is invalid. |
 | 13600001 | IPC error. |
-| 13900032 | Unknown error. |
+| 13900042 | Unknown error. |
 
 **示例：**
 
@@ -616,7 +695,7 @@ getUserStorageStats(): Promise&lt;StorageStats&gt;
 | 202 | The caller is not a system application. |
 | 401 | The input parameter is invalid. |
 | 13600001 | IPC error. |
-| 13900032 | Unknown error. |
+| 13900042 | Unknown error. |
 
 **示例：**
 
@@ -656,7 +735,7 @@ getUserStorageStats(callback: AsyncCallback&lt;StorageStats&gt;): void
 | 202 | The caller is not a system application. |
 | 401 | The input parameter is invalid. |
 | 13600001 | IPC error. |
-| 13900032 | Unknown error. |
+| 13900042 | Unknown error. |
 
 **示例：**
 
@@ -702,7 +781,7 @@ getUserStorageStats(userId: number): Promise&lt;StorageStats&gt;
 | 401 | The input parameter is invalid. |
 | 13600001 | IPC error. |
 | 13600009 | User if out of range. |
-| 13900032 | Unknown error. |
+| 13900042 | Unknown error. |
 
 **示例：**
 
@@ -745,7 +824,7 @@ getUserStorageStats(userId: number, callback: AsyncCallback&lt;StorageStats&gt;)
 | 401 | The input parameter is invalid. |
 | 13600001 | IPC error. |
 | 13600009 | User if out of range. |
-| 13900032 | Unknown error. |
+| 13900042 | Unknown error. |
 
 **示例：**
 
