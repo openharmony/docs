@@ -350,44 +350,43 @@ class ClassB extends ClassA {
 @Component
 struct ViewClassC {
 
-  @ObjectLink c : ClassC;
-  build() {
-    Column({space:10}) {
-      Text(`c: ${this.c.getC()}`)
-      Button("Change C")
-        .onClick(() => {
-          this.c.setC(this.c.getC()+1);
-        })
-    }
-  }
+    @ObjectLink c : ClassC;
+    build() {
+        Column({space:10}) {
+            Text(`c: ${this.c.getC()}`)
+            Button("Change C")
+                .onClick(() => {
+                    this.c.setC(this.c.getC()+1);
+                })
+        }
 }
 
 @Entry
 @Component
 struct MyView {
-  @State b : ClassB = new ClassB(10, 20, 30);
+    @State b : ClassB = new ClassB(10, 20, 30);
 
-  build() {
-    Column({space:10}) {
-      Text(`a: ${this.b.a}`)
-      Button("Change ClassA.a")
-        .onClick(() => {
-          this.b.a +=1;
-        })
+    build() {
+        Column({space:10}) {
+            Text(`a: ${this.b.a}`)
+             Button("Change ClassA.a")
+            .onClick(() => {
+                this.b.a +=1;
+            })
 
-      Text(`b: ${this.b.b}`)
-      Button("Change ClassB.b")
-        .onClick(() => {
-          this.b.b += 1;
-        })
+            Text(`b: ${this.b.b}`)
+            Button("Change ClassB.b")
+            .onClick(() => {
+                this.b.b += 1;
+            })
 
-      ViewClassC({c: this.b.c})   // Text(`c: ${this.b.c.c}`)的替代写法
-      Button("Change ClassB.ClassC.c")
-        .onClick(() => {
-          this.b.c.c += 1;
-        })
-    }
-  }
+            ViewClassC({c: this.b.c})   // Text(`c: ${this.b.c.c}`)的替代写法
+            Button("Change ClassB.ClassC.c")
+            .onClick(() => {
+                this.b.c.c += 1;
+            })
+        }
+     }
 }
 ```
 
@@ -1118,6 +1117,12 @@ class ClassE {
     this.d = d;
   }
 }
+
+```
+
+以下组件层次结构呈现的是@Prop嵌套场景的数据结构。
+
+```ts
 @Entry
 @Component
 struct Parent {
