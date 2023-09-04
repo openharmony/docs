@@ -57,6 +57,8 @@ setDarkMode(mode: DarkMode, callback: AsyncCallback\<void>): void
 **示例：** 
 
   ```ts
+import uiAppearance from '@ohos.uiAppearance'
+import { BusinessError } from '@ohos.base';
 try {
     uiAppearance.setDarkMode(uiAppearance.DarkMode.ALWAYS_DARK, (error) => {
       if (error) {
@@ -105,10 +107,12 @@ setDarkMode(mode: DarkMode): Promise\<void>;
 **示例：** 
 
   ```ts
+import uiAppearance from '@ohos.uiAppearance'
+import { BusinessError } from '@ohos.base';
 try {
     uiAppearance.setDarkMode(uiAppearance.DarkMode.ALWAYS_DARK).then(() => {
       console.info('Set dark-mode successfully.');
-    }).catch((error) => {
+    }).catch((error:Error) => {
       console.error('Set dark-mode failed, ' + error.message);
     });
 } catch (error) {
@@ -145,9 +149,11 @@ getDarkMode(): DarkMode;
 **示例：** 
 
   ```ts
+import uiAppearance from '@ohos.uiAppearance'
+import { BusinessError } from '@ohos.base';
 try {
     let darkMode = uiAppearance.getDarkMode();
-    console.info('Get dark-mode ' + mode);
+    console.info('Get dark-mode ' + darkMode);
 } catch (error) {
     let message = (error as BusinessError).message;
     console.error('Get dark-mode failed, ' + message);

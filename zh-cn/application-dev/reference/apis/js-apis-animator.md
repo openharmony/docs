@@ -15,7 +15,7 @@
 ## 导入模块
 
 ```js
-import animator from '@ohos.animator';
+import animator, { AnimatorResult } from '@ohos.animator';
 ```
 ## create<sup>9+</sup>
 
@@ -40,7 +40,7 @@ create(options: AnimatorOptions): AnimatorResult
 **示例：** 
 
   ```js
-import animator, { AnimatorOptions } from '@ohos.animator';
+import animator, { AnimatorResult } from '@ohos.animator';
 
 let options: AnimatorOptions = { // xxx.js文件中不需要强调显式类型AnimatorOptions
   duration: 1500,
@@ -328,7 +328,7 @@ export default {
 ### 基于TS扩展的声明式开发范式
 
 ```ts
-import animator from '@ohos.animator';
+import animator, { AnimatorResult } from '@ohos.animator';
 
 @Entry
 @Component
@@ -459,16 +459,18 @@ struct AnimatorTest {
             .onClick(() => {
               if (this.flag) {
                 this.flag = false
-                this.backAnimator.reset({
-                  duration: 5000,
-                  easing: "ease-in",
-                  delay: 0,
-                  fill: "none",
-                  direction: "normal",
-                  iterations: 4,
-                  begin: 100,
-                  end: 300
-                })
+                if(this.backAnimator){
+                  this.backAnimator.reset({
+                    duration: 5000,
+                    easing: "ease-in",
+                    delay: 0,
+                    fill: "none",
+                    direction: "normal",
+                    iterations: 4,
+                    begin: 100,
+                    end: 300
+                  })
+                }
               } else {
                 console.info(this.TAG, 'Animation not ended')
               }
