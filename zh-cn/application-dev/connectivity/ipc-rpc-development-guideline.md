@@ -256,33 +256,33 @@ IPC/RPC的主要工作是让运行在不同进程的Proxy和Stub互相通信，�
 
    connectId = this.context.connectServiceExtensionAbility(want,connect);
 
-   // 跨设备绑定
-   // 第一个参数是本应用的包名，第二个参数是接收deviceManager的回调函数
-   deviceManager.createDeviceManager("ohos.rpc.test", (err: Error, data: deviceManager.DeviceManager) => {
-     if (err) {
-       console.error("createDeviceManager errCode:" + err.code + ",errMessage:" + err.message);
-       return;
-     }
-     console.info("createDeviceManager success");
-     let dmInstance = data;
-   });
+   // 跨设备绑定 
+   let deviceManagerCallback = (err: BusinessError, data: deviceManager.DeviceManager) => {
+       if (err) {
+         console.error("createDeviceManager errCode:" + err.code + ",errMessage:" + err.message);
+         return;
+       }
+       console.info("createDeviceManager success");
+       let dmInstance = data;
+   }
+   deviceManager.createDeviceManager("ohos.rpc.test", deviceManagerCallback);
 
   // 使用deviceManager获取目标设备NetworkId
   let deviceList: Array<deviceManager.DeviceInfo> = dmInstance.getTrustedDeviceListSync();
   let networkId: string = deviceList[0].networkId;
   let want: Want = {
-    bundleName: "ohos.rpc.test.server",
-    abilityName: "ohos.rpc.test.service.ServiceAbility",
-    deviceId: networkId,
-    flags: 256
+      bundleName: "ohos.rpc.test.server",
+      abilityName: "ohos.rpc.test.service.ServiceAbility",
+      deviceId: networkId,
+      flags: 256
   };
   // 建立连接后返回的Id需要保存下来，在断开连接时需要作为参数传入
   // FA模型使用此方法连接服务
   // connectId = featureAbility.connectAbility(want, connect);
 
+  // 第一个参数是本应用的包名，第二个参数是接收deviceManager的回调函数
   connectId = this.context.connectServiceExtensionAbility(want,connect);
    ```
-
 
 3. 服务端处理客户端请求
 
