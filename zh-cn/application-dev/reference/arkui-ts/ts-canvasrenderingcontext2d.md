@@ -1425,8 +1425,10 @@ createPattern(image: ImageBitmap, repetition: string | null): CanvasPattern | nu
           .height('100%')
           .backgroundColor('#ffff00')
           .onReady(() =>{
-            var pattern = this.context.createPattern(this.img, 'repeat')
-            this.context.fillStyle = pattern
+            let pattern = this.context.createPattern(this.img, 'repeat')
+            if (pattern) {
+              this.context.fillStyle = pattern
+            }
             this.context.fillRect(0, 0, 200, 200)
           })
       }
@@ -2423,7 +2425,7 @@ getImageData(sx: number, sy: number, sw: number, sh: number): ImageData
           .backgroundColor('#ffff00')
           .onReady(() =>{
             this.context.drawImage(this.img,0,0,130,130)
-            var imagedata = this.context.getImageData(50,50,130,130)
+            let imagedata = this.context.getImageData(50,50,130,130)
             this.context.putImageData(imagedata,150,150)
           })
       }
@@ -2475,8 +2477,8 @@ putImageData(imageData: ImageData, dx: number | string, dy: number | string, dir
           .height('100%')
           .backgroundColor('#ffff00')
           .onReady(() =>{
-            var imageData = this.context.createImageData(100, 100)
-            for (var i = 0; i < imageData.data.length; i += 4) {
+            let imageData = this.context.createImageData(100, 100)
+            for (let i = 0; i < imageData.data.length; i += 4) {
               imageData.data[i + 0] = 255
               imageData.data[i + 1] = 0
               imageData.data[i + 2] = 255
@@ -2628,15 +2630,15 @@ transferFromImageBitmap(bitmap: ImageBitmap): void
           .height('100%')
           .backgroundColor('#ffff00')
           .onReady(() =>{
-            var imageData = this.offContext.createImageData(100, 100)
-            for (var i = 0; i < imageData.data.length; i += 4) {
+            let imageData = this.offContext.createImageData(100, 100)
+            for (let i = 0; i < imageData.data.length; i += 4) {
               imageData.data[i + 0] = 255
               imageData.data[i + 1] = 0
               imageData.data[i + 2] = 255
               imageData.data[i + 3] = 255
             }
             this.offContext.putImageData(imageData, 10, 10)
-            var image = this.offContext.transferToImageBitmap()
+            let image = this.offContext.transferToImageBitmap()
             this.context.transferFromImageBitmap(image)
           })
       }
@@ -2686,7 +2688,7 @@ toDataURL(type?: string, quality?: number): string
           .height('100%')
           .backgroundColor('#ffff00')
           .onReady(() =>{
-            var dataURL = this.context.toDataURL()
+            let dataURL = this.context.toDataURL()
           })
       }
       .width('100%')
@@ -2810,7 +2812,7 @@ createLinearGradient(x0: number, y0: number, x1: number, y1: number): void
           .height('100%')
           .backgroundColor('#ffff00')
           .onReady(() =>{
-            var grad = this.context.createLinearGradient(50,0, 300,100)
+            let grad = this.context.createLinearGradient(50,0, 300,100)
             grad.addColorStop(0.0, '#ff0000')
             grad.addColorStop(0.5, '#ffffff')
             grad.addColorStop(1.0, '#00ff00')
@@ -2863,7 +2865,7 @@ createRadialGradient(x0: number, y0: number, r0: number, x1: number, y1: number,
           .height('100%')
           .backgroundColor('#ffff00')
           .onReady(() =>{
-            var grad = this.context.createRadialGradient(200,200,50, 200,200,200)
+            let grad = this.context.createRadialGradient(200,200,50, 200,200,200)
             grad.addColorStop(0.0, '#ff0000')
             grad.addColorStop(0.5, '#ffffff')
             grad.addColorStop(1.0, '#00ff00')
@@ -2910,7 +2912,7 @@ struct CanvasExample {
         .height('100%')
         .backgroundColor('#ffffff')
         .onReady(() => {
-          var grad = this.context.createConicGradient(0, 50, 80)
+          let grad = this.context.createConicGradient(0, 50, 80)
           grad.addColorStop(0.0, '#ff0000')
           grad.addColorStop(0.5, '#ffffff')
           grad.addColorStop(1.0, '#00ff00')
