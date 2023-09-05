@@ -1399,13 +1399,11 @@ try {
 | STATE_BACKGROUND        | 4   |       当应用处于后台不可见时处于的状态。           |
 | STATE_DESTROY        | 5   |           当应用在销毁的时候处于的状态。       |
 
-## ProcessState
+## ProcessState<sup>10+</sup>
 
 进程状态，该类型为枚举，可配合[ProcessData](js-apis-inner-application-processData.md)返回相应的进程状态。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
-
-**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 | 名称                 | 值  | 说明                               |
 | -------------------- | --- | --------------------------------- |
