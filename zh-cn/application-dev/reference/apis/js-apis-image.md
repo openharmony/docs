@@ -751,7 +751,7 @@ rotate(angle: number, callback: AsyncCallback\<void>): void
 import {BusinessError} from '@ohos.base'
 let angle = 90.0;
 pixelmap.rotate(angle, (err : BusinessError) => {
-	if (err) {
+  if (err) {
         console.error("Failed to set rotation.");
         return;
     } else {
