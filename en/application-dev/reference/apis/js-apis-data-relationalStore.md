@@ -577,7 +577,7 @@ Defines the data types allowed.
 
 ## ValuesBucket
 
-Defines the types of the key and value in a KV pair. This type is not multi-thread safe. If a **ValuesBucket** instance is operated by multiple threads at the same time in an application, use a lock for the instance.
+Enumerates the types of the key in a KV pair. This type is not multi-thread safe. If a **ValuesBucket** instance is operated by multiple threads at the same time in an application, use a lock for the instance.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -587,13 +587,14 @@ Defines the types of the key and value in a KV pair. This type is not multi-thre
 
 ## PRIKeyType<sup>10+</sup> 
 
-Represents the type of the primary key in a row of a database table.
+Enumerates the types of the primary key in a row of a database table.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
 | Type            | Description                              |
 | ---------------- | ---------------------------------- |
-| number \| string | The type of the primary key can be number or string.|
+| number | The primary key is a number.|
+| string | The primary key is a string.|
 
 ## UTCTime<sup>10+</sup>
 
@@ -798,7 +799,8 @@ Sets an **RdbPredicates** to specify the remote devices to connect on the networ
 
 > **NOTE**
 >
-> The value of **devices** is obtained by [deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync). The APIs of the **deviceManager** module are system interfaces and available only to system applications.
+> The value of **devices** can be obtained by [deviceManager.getAvailableDeviceListSync](js-apis-distributedDeviceManager.md#getavailabledevicelistsync).
+If **inDevices** is specified in **predicates** when **sync()** is called, data is synchronized with the specified device. If **inDevices** is not specified, data is synchronized with all devices on the network by default.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -817,22 +819,20 @@ Sets an **RdbPredicates** to specify the remote devices to connect on the networ
 **Example**
 
 ```js
-import deviceManager from '@ohos.distributedHardware.deviceManager';
+import deviceManager from '@ohos.distributedDeviceManager';
 let dmInstance = null;
 let deviceIds = [];
 
-deviceManager.createDeviceManager("com.example.appdatamgrverify", (err, manager) => {
-    if (err) {
-        console.log("create device manager failed, err=" + err);
-        return;
-    }
-    dmInstance = manager;
-    let devices = dmInstance.getTrustedDeviceListSync();
-    for (var i = 0; i < devices.length; i++) {
-        deviceIds[i] = devices[i].deviceId;
-    }
-})
-                                  
+try {
+  dmInstance = deviceManager.createDeviceManager("com.example.appdatamgrverify");
+  let devices = dmInstance.getAvailableDeviceListSync();
+  for (var i = 0; i < devices.length; i++) {
+      deviceIds[i] = devices[i].networkId;
+  }
+} catch (err) {
+  console.error("createDeviceManager errCode:" + err.code + ",errMessage:" + err.message);
+}
+
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.inDevices(deviceIds);
 ```
@@ -843,6 +843,7 @@ inAllDevices(): RdbPredicates
 
 
 Sets an **RdbPredicates** to specify all remote devices on the network to connect during distributed database synchronization.
+
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -2733,7 +2734,7 @@ Queries data from the RDB store of a remote device based on specified conditions
 
 > **NOTE**
 >
-> The value of **device** is obtained by [deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync). The APIs of the **deviceManager** module are system interfaces and available only to system applications.
+> The value of **device** can be obtained by [deviceManager.getAvailableDeviceListSync](js-apis-distributedDeviceManager.md#getavailabledevicelistsync).
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -2758,19 +2759,17 @@ For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode
 **Example**
 
 ```js
-import deviceManager from '@ohos.distributedHardware.deviceManager';
+import deviceManager from '@ohos.distributedDeviceManager';
 let dmInstance = null;
 let deviceId = null;
 
-deviceManager.createDeviceManager("com.example.appdatamgrverify", (err, manager) => {
-    if (err) {
-        console.log("create device manager failed, err=" + err);
-        return;
-    }
-    dmInstance = manager;
-    let devices = dmInstance.getTrustedDeviceListSync();
-    deviceId = devices[0].deviceId;
-})
+try {
+  dmInstance = deviceManager.createDeviceManager("com.example.appdatamgrverify");
+  let devices = dmInstance.getAvailableDeviceListSync();
+  deviceId = devices[0].networkId;
+} catch (err) {
+  console.error("createDeviceManager errCode:" + err.code + ",errMessage:" + err.message);
+}
 
 let predicates = new relationalStore.RdbPredicates('EMPLOYEE');
 predicates.greaterThan("id", 0);
@@ -2803,7 +2802,7 @@ Queries data from the RDB store of a remote device based on specified conditions
 
 > **NOTE**
 >
-> The value of **device** is obtained by [deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync). The APIs of the **deviceManager** module are system interfaces and available only to system applications.
+> The value of **device** can be obtained by [deviceManager.getAvailableDeviceListSync](js-apis-distributedDeviceManager.md#getavailabledevicelistsync).
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -2833,19 +2832,17 @@ For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode
 **Example**
 
 ```js
-import deviceManager from '@ohos.distributedHardware.deviceManager';
+import deviceManager from '@ohos.distributedDeviceManager';
 let dmInstance = null;
 let deviceId = null;
 
-deviceManager.createDeviceManager("com.example.appdatamgrverify", (err, manager) => {
-    if (err) {
-        console.log("create device manager failed, err=" + err);
-        return;
-    }
-    dmInstance = manager;
-    let devices = dmInstance.getTrustedDeviceListSync();
-    deviceId = devices[0].deviceId;
-})
+try {
+  dmInstance = deviceManager.createDeviceManager("com.example.appdatamgrverify");
+  let devices = dmInstance.getAvailableDeviceListSync();
+  deviceId = devices[0].networkId;
+} catch (err) {
+  console.error("createDeviceManager errCode:" + err.code + ",errMessage:" + err.message);
+}
 
 let predicates = new relationalStore.RdbPredicates('EMPLOYEE');
 predicates.greaterThan("id", 0);
@@ -3586,6 +3583,8 @@ store.setDistributedTables(["EMPLOYEE"], relationalStore.DistributedType.DISTRIB
 })
 ```
 
+
+
 ### setDistributedTables<sup>10+</sup>
 
 setDistributedTables(tables: Array&lt;string&gt;, type: DistributedType, config: DistributedConfig, callback: AsyncCallback&lt;void&gt;): void
@@ -3682,7 +3681,7 @@ Obtains the distributed table name of a remote device based on the local table n
 
 > **NOTE**
 >
-> The value of **device** is obtained by [deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync). The APIs of the **deviceManager** module are system interfaces and available only to system applications.
+> The value of **device** can be obtained by [deviceManager.getAvailableDeviceListSync](js-apis-distributedDeviceManager.md#getavailabledevicelistsync).
 
 **Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -3707,19 +3706,17 @@ For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode
 **Example**
 
 ```js
-import deviceManager from '@ohos.distributedHardware.deviceManager';
+import deviceManager from '@ohos.distributedDeviceManager';
 let dmInstance = null;
 let deviceId = null;
 
-deviceManager.createDeviceManager("com.example.appdatamgrverify", (err, manager) => {
-    if (err) {
-        console.log("create device manager failed, err=" + err);
-        return;
-    }
-    dmInstance = manager;
-    let devices = dmInstance.getTrustedDeviceListSync();
-    deviceId = devices[0].deviceId;
-})
+try {
+  dmInstance = deviceManager.createDeviceManager("com.example.appdatamgrverify");
+  let devices = dmInstance.getAvailableDeviceListSync();
+  deviceId = devices[0].networkId;
+} catch (err) {
+  console.error("createDeviceManager errCode:" + err.code + ",errMessage:" + err.message);
+}
 
 store.obtainDistributedTableName(deviceId, "EMPLOYEE", function (err, tableName) {
     if (err) {
@@ -3738,7 +3735,7 @@ Obtains the distributed table name of a remote device based on the local table n
 
 > **NOTE**
 >
-> The value of **device** is obtained by [deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync). The APIs of the **deviceManager** module are system interfaces and available only to system applications.
+> The value of **device** can be obtained by [deviceManager.getAvailableDeviceListSync](js-apis-distributedDeviceManager.md#getavailabledevicelistsync).
 
 **Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -3768,19 +3765,17 @@ For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode
 **Example**
 
 ```js
-import deviceManager from '@ohos.distributedHardware.deviceManager';
+import deviceManager from '@ohos.distributedDeviceManager';
 let dmInstance = null;
 let deviceId = null;
 
-deviceManager.createDeviceManager("com.example.appdatamgrverify", (err, manager) => {
-    if (err) {
-        console.log("create device manager failed, err=" + err);
-        return;
-    }
-    dmInstance = manager;
-    let devices = dmInstance.getTrustedDeviceListSync();
-    deviceId = devices[0].deviceId;
-})
+try {
+  dmInstance = deviceManager.createDeviceManager("com.example.appdatamgrverify");
+  let devices = dmInstance.getAvailableDeviceListSync();
+  deviceId = devices[0].networkId;
+} catch (err) {
+  console.error("createDeviceManager errCode:" + err.code + ",errMessage:" + err.message);
+}
 
 let promise = store.obtainDistributedTableName(deviceId, "EMPLOYEE");
 promise.then((tableName) => {
@@ -3819,21 +3814,19 @@ For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode
 **Example**
 
 ```js
-import deviceManager from '@ohos.distributedHardware.deviceManager';
+import deviceManager from '@ohos.distributedDeviceManager';
 let dmInstance = null;
 let deviceIds = [];
 
-deviceManager.createDeviceManager("com.example.appdatamgrverify", (err, manager) => {
-    if (err) {
-        console.log("create device manager failed, err=" + err);
-        return;
-    }
-    dmInstance = manager;
-    let devices = dmInstance.getTrustedDeviceListSync();
-    for (var i = 0; i < devices.length; i++) {
-        deviceIds[i] = devices[i].deviceId;
-    }
-})
+try {
+  dmInstance = deviceManager.createDeviceManager("com.example.appdatamgrverify");
+  let devices = dmInstance.getAvailableDeviceListSync();
+  for (var i = 0; i < devices.length; i++) {
+      deviceIds[i] = devices[i].networkId;
+  }
+} catch (err) {
+  console.error("createDeviceManager errCode:" + err.code + ",errMessage:" + err.message);
+}
 
 let predicates = new relationalStore.RdbPredicates('EMPLOYEE');
 predicates.inDevices(deviceIds);
@@ -3883,21 +3876,19 @@ For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode
 **Example**
 
 ```js
-import deviceManager from '@ohos.distributedHardware.deviceManager';
+import deviceManager from '@ohos.distributedDeviceManager';
 let dmInstance = null;
 let deviceIds = [];
 
-deviceManager.createDeviceManager("com.example.appdatamgrverify", (err, manager) => {
-    if (err) {
-        console.log("create device manager failed, err=" + err);
-        return;
-    }
-    dmInstance = manager;
-    let devices = dmInstance.getTrustedDeviceListSync();
-    for (var i = 0; i < devices.length; i++) {
-        deviceIds[i] = devices[i].deviceId;
-    }
-})
+try {
+  dmInstance = deviceManager.createDeviceManager("com.example.appdatamgrverify");
+  let devices = dmInstance.getAvailableDeviceListSync();
+  for (var i = 0; i < devices.length; i++) {
+      deviceIds[i] = devices[i].networkId;
+  }
+} catch (err) {
+  console.error("createDeviceManager errCode:" + err.code + ",errMessage:" + err.message);
+}
 
 let predicates = new relationalStore.RdbPredicates('EMPLOYEE');
 predicates.inDevices(deviceIds);
@@ -4129,7 +4120,7 @@ Registers an intra-process or inter-process event listener for the RDB store. Th
 | Name      | Type           | Mandatory| Description                                                        |
 | ------------ | --------------- | ---- | ------------------------------------------------------------ |
 | event        | string          | Yes  | Event name to observe.                                              |
-| interProcess | boolean         | Yes  | Type of the event to observe.<br>The value **true** means the inter-process event.<br>The value **false** means the intra-process event. |
+| interProcess | boolean         | Yes  | Type of the event to observe.<br>The value **true** means the inter-process event.<br>The value **false** means the intra-process event.|
 | observer     | Callback\<void> | Yes  | Callback invoked to return the result.                                                  |
 
 **Error codes**
