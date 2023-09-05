@@ -10,7 +10,7 @@
 
 ## 导入模块
 
-```js
+```ts
 import { DrawableDescriptor, LayeredDrawableDescriptor } from '@ohos.arkui.drawableDescriptor';
 ```
 
