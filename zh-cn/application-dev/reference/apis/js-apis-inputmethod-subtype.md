@@ -8,7 +8,7 @@
 
 ## 导入模块
 
-```
+```ts
 import InputMethodSubtype from '@ohos.InputMethodSubtype';
 ```
 
