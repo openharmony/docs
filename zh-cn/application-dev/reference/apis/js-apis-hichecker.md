@@ -44,7 +44,6 @@ addCheckRule(rule: bigint): void
 **示例：**
 
 ```ts
-import hichecker from '@ohos.hichecker';
 import { BusinessError } from '@ohos.base';
 
 try {
@@ -75,7 +74,6 @@ removeCheckRule(rule: bigint): void
 **示例：**
 
 ```ts
-import hichecker from '@ohos.hichecker';
 import { BusinessError } from '@ohos.base'
 
 try {
@@ -112,7 +110,6 @@ containsCheckRule(rule: bigint): boolean
 **示例：**
 
 ```ts
-import hichecker from '@ohos.hichecker';
 import { BusinessError } from '@ohos.base'
 
 try {
@@ -235,7 +232,7 @@ contains(rule: bigint): boolean
 
 **示例：**
 
-```ts
+```js
 // 添加一条规则
 hichecker.addRule(hichecker.RULE_THREAD_CHECK_SLOW_PROCESS);
 
