@@ -129,19 +129,17 @@ off(type: 'draw', callback?: () => void): void
     listener:inspector.ComponentObserver = inspector.createComponentObserver('IMAGE_ID')
 
     aboutToAppear() {
-      let FuncLayout = this.onLayoutComplete.bind(this) // bind current js instance
-      let FuncDraw = this.onDrawComplete.bind(this) // bind current js instance
+      let onLayoutComplete:()=>void=():void=>{
+          // do something here
+      }
+      let onDrawComplete:()=>void=():void=>{
+          // do something here
+      }
+      let FuncLayout = onLayoutComplete // bind current js instance
+      let FuncDraw = onDrawComplete // bind current js instance
 
       this.listener.on('layout', FuncLayout)
       this.listener.on('draw', FuncDraw)
-    }
-
-    onLayoutComplete() {
-      // do something here
-    }
-
-    onDrawComplete() {
-      // do something here
     }
   }
   ```
