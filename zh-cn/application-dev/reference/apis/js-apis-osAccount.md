@@ -90,7 +90,9 @@ activateOsAccount(localId: number, callback: AsyncCallback&lt;void&gt;): void
       }
     });
   } catch (err) {
-    console.error(`activateOsAccount failed, code is ${err.code}, message is ${err.message}`);
+    let code = (err as BusinessError).code
+    let message = (err as BusinessError).message
+    console.error(`activateOsAccount failed, code is ${code}, message is ${message}`);
   }
   ```
 
@@ -178,7 +180,9 @@ checkMultiOsAccountEnabled(callback: AsyncCallback&lt;boolean&gt;): void
       }
     });
   } catch (err) {
-    console.error(`checkMultiOsAccountEnabled failed, code is ${err.code}, message is ${err.message}`);
+    let code = (err as BusinessError).code
+    let message = (err as BusinessError).message
+    console.error(`checkMultiOsAccountEnabled failed, code is ${code}, message is ${message}`);
   }
   ```
 
@@ -214,7 +218,9 @@ checkMultiOsAccountEnabled(): Promise&lt;boolean&gt;
       console.error(`checkMultiOsAccountEnabled failed, code is ${err.code}, message is ${err.message}`);
     });
   } catch (err) {
-    console.error(`checkMultiOsAccountEnabled failed, code is ${err.code}, message is ${err.message}`);
+    let code = (err as BusinessError).code
+    let message = (err as BusinessError).message
+    console.error(`checkMultiOsAccountEnabled failed, code is ${code}, message is ${message}`);
   }
   ```
 
