@@ -227,5 +227,6 @@
 
 | ISSUE | 问题描述 | 影响 | 计划解决日期 |
 | ----- | -------- | ---- | ------------ |
-|       |          |      |              |
-|       |          |      |              |
+| [I7E931](https://e.gitee.com/open_harmony/dashboard?issue=I7E931) | 调试3.2内存泄漏问题 | JS应用需要IPC需要建立NAPIRemoteObject对象进程通信，创建一次可以循环使用，建立一次后泄露1.2kb，应用不需要反复创建新对象，泄露量可控，应用进程退出会释放掉 | 2023年9月15日 |
+| [I7P9VS](https://e.gitee.com/open_harmony/issues/table/?issue=I7P9VS) | [Bug]: 【OpenHarmony 3.2.14.5】【RK3568】【压力测试】【必现10/10】反复进入大图浏览界面后返回，ElementRegister::ClearRemovedItems处出现内存泄露 | 已经从KB降低到泄露72字节，对系统影响较小 | 2023年9月15日 |
+| [I7P9T5](https://e.gitee.com/open_harmony/issues/table/?issue=I7P9T5) | [Bug]: 【OpenHarmony 3.2.14.5】【RK3568】【压力测试】【必现10/10】反复进入某相册的图片宫格浏览界面，ElementRegister::RemoveItem 和ElementRegister::ClearRemovedItems出现内存泄露 | 已经从KB降低到泄露144字节，对系统影响较小 | 2023年9月15日 |
