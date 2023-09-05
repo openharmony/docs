@@ -10,7 +10,7 @@
 
 ## 导入模块
 
-```js
+```ts
 import inspector from '@ohos.arkui.inspector'
 ```
 
@@ -36,8 +36,8 @@ createComponentObserver(id: string): ComponentObserver
 
 **示例：** 
 
-```js
-let listener = inspector.createComponentObserver('COMPONENT_ID'); //监听id为COMPONENT_ID的组件回调事件
+```ts
+let listener:inspector = inspector.createComponentObserver('COMPONENT_ID'); //监听id为COMPONENT_ID的组件回调事件
 ```
 
 ## ComponentObserver
