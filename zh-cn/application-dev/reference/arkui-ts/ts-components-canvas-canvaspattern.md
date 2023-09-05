@@ -33,7 +33,7 @@ struct CanvasPatternPage {
   private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
   private matrix: Matrix2D = new Matrix2D()
   private img: ImageBitmap = new ImageBitmap("common/pattern.jpg")
-  private pattern : CanvasPattern
+  private pattern : CanvasPattern | null = null
 
   build() {
       Column() {
@@ -43,7 +43,9 @@ struct CanvasPatternPage {
             this.matrix.scaleX = 1
             this.matrix.translateX = 50
             this.matrix.translateY = 200
-            this.pattern.setTransform(this.matrix)
+            if (this.pattern) {
+              this.pattern.setTransform(this.matrix)
+            }
             this.context.fillRect(0, 0, 480, 720)
           })
           .width("45%")
@@ -54,12 +56,14 @@ struct CanvasPatternPage {
           .backgroundColor('#FFFFFF')
           .onReady(() => {
             this.pattern = this.context.createPattern(this.img, 'no-repeat')
-            this.context.fillStyle = this.pattern
             this.matrix.scaleY = 0.5
             this.matrix.scaleX = 0.5
             this.matrix.translateX = 50
             this.matrix.translateY = 50
-            this.pattern.setTransform(this.matrix)
+            if (this.pattern) {
+              this.context.fillStyle = this.pattern
+              this.pattern.setTransform(this.matrix)
+            }
             this.context.fillRect(0, 0, 480, 720)
           })
       }
