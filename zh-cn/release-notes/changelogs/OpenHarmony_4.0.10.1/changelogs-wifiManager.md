@@ -64,7 +64,7 @@
 由scan需要改为使用startScan接口。
 
 
-### cl.wifiManager.4 修改接口getScanResults(): Promise<Array<WifiScanInfo>> 为 **function** getScanInfoList(): Array<WifiScanInfo>; |
+### cl.wifiManager.4 修改接口getScanResults(): Promise<Array<WifiScanInfo>> 为 **function** getScanInfoList(): Array<WifiScanInfo>;
 	
 **变更影响**<br>
 使用之前已发布的API 9各beta版本且使用到了上述的getScanResults，需要改为使用getScanInfoList接口。
@@ -91,10 +91,10 @@
 ### cl.wifiManager.6 修改接口**function** getScanResultsSync(): Array<WifiScanInfo>; 为 **function** getScanInfoList(): Array<WifiScanInfo>;
 
 **变更影响**<br>
-使用之前已发布的API 9各beta版本且使用到了上述的getScanResults，需要改为使用getScanInfoList接口。
+使用之前已发布的API 9各beta版本且使用到了上述的getScanResultsSync，需要改为使用getScanInfoList接口。
 
 **关键的接口/组件变更**<br>
 无
 
 **适配指导**<br>
-由getScanResults需要改为使用getScanInfoList接口。
+由getScanResultsSync需要改为使用getScanInfoList接口。
