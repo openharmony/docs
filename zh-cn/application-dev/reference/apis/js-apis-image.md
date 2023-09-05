@@ -996,7 +996,7 @@ class MySequence {
         this.pixel_map.marshalling(messageSequence);
         return true;
     }
-    async unmarshalling(messageSequence : rpc.MessageSequence) {
+    unmarshalling(messageSequence : rpc.MessageSequence) {
         let pixelParcel : image.PixelMap = await image.createPixelMap(new ArrayBuffer(96), {size: { height:4, width: 6}});
         await pixelParcel.unmarshalling(messageSequence).then(async (pixelMap : image.PixelMap) => {
             this.pixel_map = pixelMap;
@@ -1005,9 +1005,24 @@ class MySequence {
     }
 }
 async function Demo() {
-    let parcelable : MySequence = new MySequence(pixelmap);
+   const color : ArrayBuffer = new ArrayBuffer(96);
+   let bufferArr : Uint8Array = new Uint8Array(color);
+   for (let i = 0; i < bufferArr.length; i++) {
+      bufferArr[i] = 0x80;
+   }
+   let opts : image.InitializationOptions = {
+      editable: true,
+      pixelFormat: 2,
+      size: { height: 4, width: 6 },
+      alphaType: 1
+   }
+   let pixelMap;
+   await image.createPixelMap(color, opts).then((pixelmap : image.PixelMap) => {
+      pixelMap = pixelmap;
+   })
+    let parcelable : MySequence = new MySequence(pixelMap);
     let data : rpc.MessageSequence = rpc.MessageSequence.create();
-    data.writeParcelable(parcelable);
+    data.writeParcelable(parcelable : rpc.PixelParcel);
 }
 ```
 
@@ -1055,7 +1070,7 @@ class MySequence {
         this.pixel_map.marshalling(messageSequence);
         return true;
     }
-    async unmarshalling(messageSequence : rpc.MessageSequence) {
+    unmarshalling(messageSequence : rpc.MessageSequence) {
         let pixelParcel : image.PixelMap = await image.createPixelMap(new ArrayBuffer(96), {size: { height:4, width: 6}});
         await pixelParcel.unmarshalling(messageSequence).then(async (pixelMap : image.PixelMap) => {
             this.pixel_map = pixelMap;
@@ -1064,10 +1079,24 @@ class MySequence {
     }
 }
 async function Demo() {
-    let pixel_map = undefined;
-    let ret : MySequence = new MySequence(pixel_map);
+   const color : ArrayBuffer = new ArrayBuffer(96);
+   let bufferArr : Uint8Array = new Uint8Array(color);
+   for (let i = 0; i < bufferArr.length; i++) {
+      bufferArr[i] = 0x80;
+   }
+   let opts : image.InitializationOptions = {
+      editable: true,
+      pixelFormat: 2,
+      size: { height: 4, width: 6 },
+      alphaType: 1
+   }
+   let pixelMap;
+   await image.createPixelMap(color, opts).then((pixelmap : image.PixelMap) => {
+      pixelMap = pixelmap;
+   })
+    let ret : MySequence = new MySequence(pixelMap);
     let data : rpc.MessageSequence = rpc.MessageSequence.create();
-    await data.readParcelable(ret);
+    await data.readParcelable(ret : rpc.PixelParcel);
 }
 ```
 
