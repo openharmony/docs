@@ -35,7 +35,7 @@ Along its evolution, OpenHarmony has provided two application models:
 
 For details about the differences between the FA model and stage model, see [Interpretation of the Application Model](../application-models/application-model-description.md).
 
-To help you better understand the preceding basic concepts and application development process, **Getting Started** provides a development example that contains two pages in different programming languages and application models.
+To help you better understand the preceding basic concepts and application development process, **Getting Started** walks you through an example of building the first ArkTS application with two pages in the stage model.
 
 
 ## Tool Preparation
