@@ -17,7 +17,7 @@ UiTest提供模拟UI操作的能力，供开发者在测试场景使用，主要
 >本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 
-## 导入模块 
+## 导入模块
 
 ```typescript
 import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix, UiDirection, MouseButton, UIElementInfo, UIEventObserver} from '@ohos.UiTest';
@@ -871,7 +871,7 @@ async function demo() {
 
 ### isLongClickable<sup>9+</sup>
 
-isLongClickable(): Promise\<boolean> 
+isLongClickable(): Promise\<boolean>
 
 获取控件对象可长按点击属性。
 
