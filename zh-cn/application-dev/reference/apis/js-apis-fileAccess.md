@@ -1764,7 +1764,7 @@ try {
 
 ### unregisterObserver<sup>10+</sup>
 
- unregisterObserver(uri: string, callback: Callback&lt;NotifyMessage&gt;): void
+ unregisterObserver(uri: string, callback?: Callback&lt;NotifyMessage&gt;): void
 
 取消注册指定的uri和callback。
 
@@ -1777,7 +1777,7 @@ try {
 | 参数名   | 类型                                              | 必填 | 说明                      |
 | -------- | ------------------------------------------------- | ---- | ------------------------- |
 | uri      | string                                            | 是   | 文件或目录的uri           |
-| callback | Callback&lt;[NotifyMessage](#notifymessage10)&gt; | 是   | 解注册uri下对应的callback |
+| callback | Callback&lt;[NotifyMessage](#notifymessage10)&gt; | 否   | 解注册uri下对应的callback。如果该参数不填，则解注册对应的所有callbackback |
 
 **示例1: 解注册监听uri的一个callback**
 
@@ -1829,23 +1829,7 @@ try {
 }
 ```
 
-### unregisterObserver<sup>10+</sup>
-
- unregisterObserver(uri: string): void
-
-取消注册指定的uri对应的所有callback。
-
-**系统能力**：SystemCapability.FileManagement.UserFileService
-
-**需要权限**：ohos.permission.FILE_ACCESS_MANAGER
-
-**参数：**
-
-| 参数名 | 类型   | 必填 | 说明            |
-| ------ | ------ | ---- | --------------- |
-| uri    | string | 是   | 文件或目录的uri |
-
-**示例1：解注册监听uri的所有callback**
+**示例3：解注册监听uri的所有callback**
 
 ```js
 let DirUri = 'file://docs/storage/Users/currentUser/Documents';
@@ -1935,8 +1919,6 @@ try {
 **模型约束**：此接口仅可在Stage模型下使用。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
-
-**需要权限**：ohos.permission.FILE_ACCESS_MANAGER
 
 | 名称              | 值   | 说明                                                         |
 | ----------------- | ---- | ------------------------------------------------------------ |
