@@ -43,7 +43,9 @@ DataShare客户端连接DataShareExtensionAbility服务端时，服务端回调�
 **示例：**
 
 ```ts
-import rdb from '@ohos.data.relationalStore';
+import rdb from '@ohos.data.relationalStore'
+import relationalStore from '@ohos.data.relationalStore'
+import Want from '@ohos.app.ability.Want'
 
 let DB_NAME = 'DB00.db';
 let TBL_NAME = 'TBL00';
@@ -90,7 +92,7 @@ insert?(uri: string, valueBucket: ValuesBucket, callback: AsyncCallback&lt;numbe
 **示例：**
 
 ```ts
-import rdb from '@ohos.data.relationalStore';
+import relationalStore from '@ohos.data.relationalStore'
 import { ValuesBucket } from '@ohos.data.ValuesBucket'
 
 let DB_NAME = 'DB00.db';
@@ -136,7 +138,7 @@ update?(uri: string, predicates: dataSharePredicates.DataSharePredicates, valueB
 **示例：**
 
 ```ts
-import rdb from '@ohos.data.relationalStore';
+import relationalStore from '@ohos.data.relationalStore';
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
 import { ValuesBucket } from '@ohos.data.ValuesBucket'
 
@@ -180,7 +182,7 @@ delete?(uri: string, predicates: dataSharePredicates.DataSharePredicates, callba
 **示例：**
 
 ```ts
-import rdb from '@ohos.data.relationalStore';
+import relationalStore from '@ohos.data.relationalStore';
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
 
 let DB_NAME = 'DB00.db';
@@ -224,7 +226,7 @@ query?(uri: string, predicates: dataSharePredicates.DataSharePredicates, columns
 **示例：**
 
 ```ts
-import rdb from '@ohos.data.relationalStore';
+import relationalStore from '@ohos.data.relationalStore';
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
 
 let DB_NAME = 'DB00.db';
@@ -270,7 +272,7 @@ batchInsert?(uri: string, valueBuckets: Array&lt;ValuesBucket&gt;, callback: Asy
 **示例：**
 
 ```ts
-import rdb from '@ohos.data.relationalStore';
+import relationalStore from '@ohos.data.relationalStore';
 import { ValuesBucket } from '@ohos.data.ValuesBucket'
 
 let DB_NAME = 'DB00.db';
@@ -313,6 +315,8 @@ normalizeUri?(uri: string, callback: AsyncCallback&lt;string&gt;): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base'
+
 export default class DataShareExtAbility extends DataShareExtensionAbility {
   normalizeUri(uri: string, callback: Function) {
     let key = 'code';
@@ -346,6 +350,8 @@ denormalizeUri?(uri: string, callback: AsyncCallback&lt;string&gt;): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base'
+
 export default class DataShareExtAbility extends DataShareExtensionAbility {
   denormalizeUri(uri: string, callback: Function) {
     let key = 'code';
