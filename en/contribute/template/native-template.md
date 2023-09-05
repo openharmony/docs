@@ -8,21 +8,16 @@
 
 ```
 /**
- * @addtogroup Module name
+ * @addtogroup Followed by a module name.
  * @{
  * 
  * @brief Outline the functionality of the module in one sentence.
  * 
  * Describe the main functionalities, use scenarios, and use suggestions of the module. Focus on the logical concepts involved in this module, their relationships, and their functionalities in an application.
- * For example, for choreographer, describe its functionalities and how to use it.
- * Choreographer orchestrates the timing of frame rendering. It is a C implementation in Java. Applications can use choreographer to arrange the proper timing of frame rendering as follows:
- * 1. Register a callback function with choreographer.
- * 2. The callback function is called when it is time to start the next frame, with the FrameCallbackData parameter returned.
- * 3. Perform processing on the callback.
- * 4. The SF performs conversion based on the return value of the callback.
+ * Introduce the functionalities of each concept, and then introduce how to use it.
  * In the detailed description, if there are multiple paragraphs, end each paragraph with \n.\n
  *
- * @since OS version
+ * @since Followed by an OS version.
  */
 
 ...
@@ -34,14 +29,15 @@
 
 ```
 /**
- * @file Header file name
+ * @file Followed by a header file name.
  * 
  * @brief Outline the functionality of the header file in one sentence.
  *
  * Describe the main functionalities, use scenarios, and use suggestions of this class or interface. Focus on the logical concepts involved in this class, their relationships, and their functionalities in an application.\n
  * In the detailed description, if there are multiple paragraphs, end each paragraph with \n.\n
- * @library Name of the .so file to be linked when the header file interface is referenced
- * @since OS version
+ * @library Followed by the name of the .so file to be linked when the header file interface is referenced
+ * @syscap Followed by the system capability of the header file.
+ * @since Followed by an OS version.
  */
 ```
 
@@ -54,8 +50,8 @@
  * Describe the functionalities, use restrictions, use suggestions, and value ranges of the macro definition, constant, and variable, as well as consequences when boundary values and invalid values are used.\n
  * In the detailed description, if there are multiple paragraphs, end each paragraph with \n.\n
  * 
- * @deprecated (Optional) Add this flag for a deprecated interface. Specify the version from which the interface is deprecated and the substitute interface.
- * @since OS version
+ * @deprecated (Optional) Followed by 'since' plus an OS version. Add this flag for a deprecated variable. Specify the version from which the variable is deprecated, and provide the substitute variable.
+ * @since Followed by an OS version.
  */
 ```
 
@@ -68,14 +64,18 @@
  * Describe the functionalities, use scenarios, and use suggestions of the struct or union.\n
  * In the detailed description, if there are multiple paragraphs, end each paragraph with \n.\n
  * 
- * @deprecated (Optional) Add this flag for a deprecated interface. Specify the version from which the interface is deprecated and the substitute interface.
- * @since OS version
+ * @deprecated (Optional) Followed by 'since' plus an OS version. Add this flag for a deprecated struct or union. Specify the version from which the struct or union is deprecated, and provide the substitute struct or union.
+ * @since Followed by an OS version.
  */
 struct StructName { 
 /** Describe the meaning of member 1. */
 unsigned long StructMember1;
 /** Describe the meaning of member 2. */
 unsigned long StructMember2;
+/** Describe the meaning of member 3.
+ * @since (Optional) Followed by an OS version. Add this flag for a new member if its introduced version is different from the version of the struct.
+ */
+unsigned long StructMember3;
 };
 ```
 
@@ -88,15 +88,19 @@ unsigned long StructMember2;
  * Describe the main functionalities, use scenarios, and use suggestions of the enum.\n
  * In the detailed description, if there are multiple paragraphs, end each paragraph with \n.\n
  * 
- * @deprecated (Optional) Add this flag for a deprecated interface. Specify the version from which the interface is deprecated and the substitute interface.
- * @since OS version
+ * @deprecated (Optional) Followed by 'since' plus an OS version. Add this flag for a deprecated enum. Specify the version from which the enum is deprecated, and provide the substitute enum.
+ * @since Followed by an OS version.
  */
 enum EnumName {
-    /** Describe the meaning of the enumerated value 1. */
+    /** Describe the meaning of enumerated value 1. */
     EnumMermber1,  
-    /** Describe the meaning of the enumerated value 2. */
+    /** Describe the meaning of enumerated value 2.
+     * @deprecated (Optional) Followed by 'since' plus an OS version. Add this flag for a deprecated enumerated value. Specify the version from which the enumerated value is deprecated. Do not delete the enumerated values, especially the enumerated values that are encoded in sequence. 
+     */
     EnumMermber2, 
-    /** Describe the meaning of the enumerated value 3. */
+    /** Describe the meaning of enumerated value 3.
+     * @since (Optional) Followed by an OS version. Add this flag for a new enumerated value if its introduced version is different from the version of the enum.
+     */
     EnumMermber3 
 }; 
 ```
@@ -111,10 +115,11 @@ enum EnumName {
  * In the detailed description, if there are multiple paragraphs, end each paragraph with \n.\n
  * 
  * @param (Optional) Followed by the parameter name and description. Use one @param tag for each parameter. If the function does not have parameters, delete the tag. Content of the parameter description: 1. Parameter functionality, use restrictions, and use suggestions; 2. Value range of the parameter, and consequences when boundary values and invalid values are used; 3. Recommended or empirical values
- * @return (Optional) Followed by the return value description. If the function does not return a value, delete the tag.
+ * @return (Optional) Followed by the return value description. Describe the meaning of each return value. If the function does not return a value, delete the tag.
  * @see (Optional) Followed by a function associated with the current function. Use one @see tag for each associated function. If the current function does not have associated functions, delete the tag.
  * @permission (Optional) Followed by the permission required to use the function. Use one @permission tag for each associated permission. If the function does not require any permission, delete the tag.
- * @deprecated (Optional) Add this flag for a deprecated interface. Specify the version from which the interface is deprecated and the substitute interface.
- * @since OS version
+ * @deprecated (Optional) Followed by 'since' plus an OS version. Add this flag for a deprecated function. Specify the version from which the function is deprecated.
+ * @useinstead Followed by the substitute function.
+ * @since Followed by an OS version.
  */
 ```

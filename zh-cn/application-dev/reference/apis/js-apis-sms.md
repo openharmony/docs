@@ -259,6 +259,452 @@ promise.then(() => {
 
 ```
 
+## sms.sendMms<sup>11+</sup>
+
+sendMms\(context: Context, mmsParams: MmsParams, callback: AsyncCallback&lt;void&gt;\): void
+
+发送彩信。使用callback异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限**：ohos.permission.SEND_MESSAGES
+
+**系统能力**：SystemCapability.Telephony.SmsMms
+
+**参数：**
+
+| 参数名   | 类型                        | 必填 | 说明                                     |
+| -------- | --------------------------- | ---- | ---------------------------------------- |
+| context | Context          | 是   | 应用上下文。<br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-inner-application-uiAbilityContext.md)。 |
+| mmsParams | [MmsParams](#mmsparams) | 是   | 发送彩信的参数和回调，参考[MmsParams](#mmsparams)。 |
+| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
+**示例：**
+
+FA模型示例：
+
+```js
+// 获取context
+import featureAbility from '@ohos.ability.featureAbility';
+let context = featureAbility.getContext();
+
+// 彩信pdu存储路径
+const sandBoxPath = '/data/storage/el2/base/files/';
+let filePath  = sandBoxPath + 'SendReq.mms';
+
+// 彩信用户代理、用户代理描述配置。根据运营商要求配置，默认ua，uaprof
+let mmsConf = {
+  userAgent:'ua',
+  userAgentProfile: 'uaprof'
+};
+
+// 发送彩信参数(mmsc以联通卡为例)
+let mmsPars = {
+  slotId : DEFAULT_SLOTID,
+  mmsc: 'http://mmsc.myuni.com.cn',
+  data: filePath,
+  mmsConfig: mmsConf
+};
+
+// 调用发送接口
+mms.sendMms(context, mmsPars, async(err) =>{
+  if (err) {
+    console.log(`sendMms fail, err : ${toString(err)}`);
+    return;
+  }
+  console.log(`sendMms Success`);
+}
+```
+
+Stage模型示例：
+
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+
+// 彩信pdu存储路径
+const sandBoxPath = '/data/storage/el2/base/files/';
+let filePath  = sandBoxPath + 'SendReq.mms';
+
+// 彩信用户代理、用户代理描述配置。根据运营商要求配置，默认ua，uaprof
+let mmsConf = {
+  userAgent:'ua',
+  userAgentProfile: 'uaprof'
+};
+
+// 发送彩信参数(mmsc以联通卡为例)
+let mmsPars = {
+  slotId : DEFAULT_SLOTID,
+  mmsc: 'http://mmsc.myuni.com.cn',
+  data: filePath,
+  mmsConfig: mmsConf
+};
+
+class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage) {
+    mms.sendMms(this.context, mmsPars, async(err) =>{
+        if (err) {
+            console.log(`sendMms fail, err : ${toString(err)}`);
+            return;
+        }
+        console.log(`sendMms Success`);
+        }
+    }
+}
+```
+
+## sms.sendMms<sup>11+</sup>
+
+sendMms\(context: Context, mmsParams: MmsParams\): Promise&lt;void&gt;
+
+发送彩信。使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限**：ohos.permission.SEND_MESSAGES
+
+**系统能力**：SystemCapability.Telephony.SmsMms
+
+**参数：**
+
+| 参数名   | 类型                        | 必填 | 说明                                     |
+| -------- | --------------------------- | ---- | ---------------------------------------- |
+| context | Context          | 是   | 应用上下文。<br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-inner-application-uiAbilityContext.md)。 |
+| mmsParams | [MmsParams](#mmsparams) | 是   | 发送彩信的参数和回调，参考[MmsParams](#mmsparams)。 |
+
+**返回值：**
+
+| 类型            | 说明                                                         |
+| --------------- | ------------------------------------------------------------ |
+| Promise&lt;void&gt; | 以Promise形式返回发送彩信的结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
+**示例：**
+
+FA模型示例：
+
+```js
+// 获取context
+import featureAbility from '@ohos.ability.featureAbility';
+let context = featureAbility.getContext();
+
+// 彩信pdu存储路径
+const sandBoxPath = '/data/storage/el2/base/files/';
+let filePath  = sandBoxPath + 'SendReq.mms';
+
+// 彩信用户代理、用户代理描述配置。根据运营商要求配置，默认ua，uaprof
+let mmsConf = {
+  userAgent:'ua',
+  userAgentProfile: 'uaprof'
+};
+
+// 发送彩信参数(mmsc以联通卡为例)
+let mmsPars = {
+  slotId : DEFAULT_SLOTID,
+  mmsc: 'http://mmsc.myuni.com.cn',
+  data: filePath,
+  mmsConfig: mmsConf
+};
+
+// 调用发送接口
+let promise = sms.sendMms(context, mmsPars);
+promise.then(() => {
+    console.log(`sendMms success`);
+}).catch(err => {
+    console.error(`sendMms failed, promise: err->${JSON.stringify(err)}`);
+});
+```
+
+Stage模型示例：
+
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+
+// 彩信pdu存储路径
+const sandBoxPath = '/data/storage/el2/base/files/';
+let filePath  = sandBoxPath + 'SendReq.mms';
+
+// 彩信用户代理、用户代理描述配置。根据运营商要求配置，默认ua，uaprof
+let mmsConf = {
+  userAgent:'ua',
+  userAgentProfile: 'uaprof'
+};
+
+// 发送彩信参数(mmsc以联通卡为例)
+let mmsPars = {
+  slotId : DEFAULT_SLOTID,
+  mmsc: 'http://mmsc.myuni.com.cn',
+  data: filePath,
+  mmsConfig: mmsConf
+};
+
+class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage) {
+    let promise = sms.sendMms(this.context, mmsPars);
+    promise.then(() => {
+        console.log(`sendMms success`);
+    }).catch(err => {
+        console.error(`sendMms failed, promise: err->${JSON.stringify(err)}`);
+    });
+    }
+}
+```
+
+## sms.downloadMms<sup>11+</sup>
+
+downloadMms\(context: Context, mmsParams: MmsParams, callback: AsyncCallback&lt;void&gt;\): void
+
+下载彩信。使用callback异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限**：ohos.permission.RECEIVE_MMS
+
+**系统能力**：SystemCapability.Telephony.SmsMms
+
+**参数：**
+
+| 参数名   | 类型                        | 必填 | 说明                                     |
+| -------- | --------------------------- | ---- | ---------------------------------------- |
+| context | Context          | 是   | 应用上下文。<br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-inner-application-uiAbilityContext.md)。 |
+| mmsParams | [MmsParams](#mmsparams) | 是   | 下载彩信的参数和回调，参考[MmsParams](#mmsparams)。 |
+| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
+**示例：**
+
+FA模型示例：
+
+```js
+// 获取context
+import featureAbility from '@ohos.ability.featureAbility';
+let context = featureAbility.getContext();
+
+// 彩信pdu存储路径
+const sandBoxPath = '/data/storage/el2/base/files/';
+let filePath  = sandBoxPath + 'RetrieveConf.mms';
+
+// 从WapPush中解析出彩信URL
+let wapPushUrl  = 'URL';
+
+// 彩信用户代理、用户代理描述配置。根据运营商要求配置，默认ua，uaprof
+let mmsConf = {
+  userAgent:'ua',
+  userAgentProfile: 'uaprof'
+};
+
+// 下载彩信参数
+let mmsPars = {
+  slotId : DEFAULT_SLOTID,
+  mmsc: wapPushUrl,
+  data: filePath,
+  mmsConfig: mmsConf
+};
+
+// 调用下载接口
+mms.downloadMms(context, mmsPars, async(err) =>{
+  if (err) {
+    console.log(`downloadMms fail, err : ${toString(err)}`);
+    return;
+  }
+  console.log(`downloadMms Success`);
+}
+```
+
+Stage模型示例：
+
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+
+// 彩信pdu存储路径
+const sandBoxPath = '/data/storage/el2/base/files/';
+let filePath  = sandBoxPath + 'RetrieveConf.mms';
+
+// 从WapPush中解析出彩信URL
+let wapPushUrl  = 'URL';
+
+// 彩信用户代理、用户代理描述配置。根据运营商要求配置，默认ua，uaprof
+let mmsConf = {
+  userAgent:'ua',
+  userAgentProfile: 'uaprof'
+};
+
+// 下载彩信参数
+let mmsPars = {
+  slotId : DEFAULT_SLOTID,
+  mmsc: wapPushUrl,
+  data: filePath,
+  mmsConfig: mmsConf
+};
+
+class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage) {
+    mms.downloadMms(this.context, mmsPars, async(err) =>{
+        if (err) {
+            console.log(`downloadMms fail, err : ${toString(err)}`);
+            return;
+        }
+        console.log(`downloadMms Success`);
+        }
+    }
+}
+```
+
+## sms.downloadMms<sup>11+</sup>
+
+downloadMms\(context: Context, mmsParams: MmsParams\): Promise&lt;void&gt;
+
+发送彩信。使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限**：ohos.permission.RECEIVE_MMS
+
+**系统能力**：SystemCapability.Telephony.SmsMms
+
+**参数：**
+
+| 参数名   | 类型                        | 必填 | 说明                                     |
+| -------- | --------------------------- | ---- | ---------------------------------------- |
+| context | Context          | 是   | 应用上下文。<br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-inner-application-uiAbilityContext.md)。 |
+| mmsParams | [MmsParams](#mmsparams) | 是   | 发送彩信的参数和回调，参考[MmsParams](#mmsparams)。 |
+
+**返回值：**
+
+| 类型            | 说明                                                         |
+| --------------- | ------------------------------------------------------------ |
+| Promise&lt;void&gt; | 以Promise形式返回发送彩信的结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
+**示例：**
+
+FA模型示例：
+
+```js
+// 获取context
+import featureAbility from '@ohos.ability.featureAbility';
+let context = featureAbility.getContext();
+
+// 彩信pdu存储路径
+const sandBoxPath = '/data/storage/el2/base/files/';
+let filePath  = sandBoxPath + 'RetrieveConf.mms';
+
+// 从WapPush中解析出彩信URL
+let wapPushUrl  = 'URL';
+
+// 彩信用户代理、用户代理描述配置。根据运营商要求配置，默认ua，uaprof
+let mmsConf = {
+  userAgent:'ua',
+  userAgentProfile: 'uaprof'
+};
+
+// 下载彩信参数
+let mmsPars = {
+  slotId : DEFAULT_SLOTID,
+  mmsc: wapPushUrl,
+  data: filePath,
+  mmsConfig: mmsConf
+};
+
+// 调用发送接口
+let promise = sms.downloadMms(context, mmsPars);
+promise.then(() => {
+    console.log(`downloadMms success`);
+}).catch(err => {
+    console.error(`downloadMms failed, promise: err->${JSON.stringify(err)}`);
+});
+```
+
+Stage模型示例：
+
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+
+// 彩信pdu存储路径
+const sandBoxPath = '/data/storage/el2/base/files/';
+let filePath  = sandBoxPath + 'RetrieveConf.mms';
+
+// 从WapPush中解析出彩信URL
+let wapPushUrl  = 'URL';
+
+// 彩信用户代理、用户代理描述配置。根据运营商要求配置，默认ua，uaprof
+let mmsConf = {
+  userAgent:'ua',
+  userAgentProfile: 'uaprof'
+};
+
+// 下载彩信参数
+let mmsPars = {
+  slotId : DEFAULT_SLOTID,
+  mmsc: wapPushUrl,
+  data: filePath,
+  mmsConfig: mmsConf
+};
+
+class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage) {
+    let promise = sms.downloadMms(this.context, mmsPars);
+    promise.then(() => {
+        console.log(`downloadMms success`);
+    }).catch(err => {
+        console.error(`downloadMms failed, promise: err->${JSON.stringify(err)}`);
+    });
+    }
+}
+```
+
 ## sms.getDefaultSmsSlotId<sup>7+</sup>
 
 getDefaultSmsSlotId\(callback: AsyncCallback&lt;number&gt;\): void
@@ -1777,6 +2223,33 @@ promise.then(data => {
 | sendCallback     | AsyncCallback&lt;[ISendShortMessageCallback](#isendshortmessagecallback)&gt; | 否   | 短信发送结果回调，返回短信发送的结果，参考[ISendShortMessageCallback](#isendshortmessagecallback)。 |
 | deliveryCallback | AsyncCallback&lt;[IDeliveryShortMessageCallback](#ideliveryshortmessagecallback)&gt; | 否   | 短信送达结果回调，返回短信递送报告，参考[IDeliveryShortMessageCallback](#ideliveryshortmessagecallback)。 |
 
+## MmsParams<sup>11+</sup>
+
+发送彩信的参数。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力**：SystemCapability.Telephony.SmsMms
+
+|       名称       | 类型                                                         | 必填 | 说明                                                         |
+| ---------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| slotId<sup>11+</sup>           | number                                                       | 是   | 用于发送短信的SIM卡槽ID：<br/>- 0：卡槽1<br/>- 1：卡槽2      |
+| mmsc<sup>11+</sup>  | string                                                       | 是   | 彩信中心地址。                                             |
+| data<sup>11+</sup>          | string                               | 是   | 彩信PDU地址。 |
+| mmsConfig<sup>11+</sup>    | MmsConfig                                                       | 否   | 彩信配置文件，参考[MmsConfig](#mmsconfig)。                |
+
+## MmsConfig<sup>11+</sup>
+
+彩信配置文件。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力**：SystemCapability.Telephony.SmsMms
+
+|       名称       | 类型                                                         | 必填 | 说明                                                         |
+| ---------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| userAgent<sup>11+</sup>  | string                                                       | 是   | 用户代理。                                             |
+| userAgentProfile<sup>11+</sup>    | string                                                       | 是   | 用户代理配置。                |
 
 ## ISendShortMessageCallback
 

@@ -16,9 +16,9 @@ Vulkan是一套用来做2D和3D渲染的图形应用程序接口，其中创建V
 
 ## 开发步骤
 
-以下步骤说明了如何在OpenHarmony平台创建一个VkSurfaceKHR对象。
+以下步骤说明了如何创建一个VkSurfaceKHR对象。
 
-首先，使用OpenHarmony平台扩展的接口，需要定义一个宏`VK_USE_PLATFORM_OHOS`，我们在CMakeLists.txt定义这个宏。
+首先，使用平台扩展的接口，需要定义一个宏`VK_USE_PLATFORM_OHOS`，我们在CMakeLists.txt定义这个宏。
 ```txt
 ADD_DEFINITIONS(-DVK_USE_PLATFORM_OHOS=1)
 ```
@@ -56,7 +56,7 @@ libvulkan.so
 
     std::vector<const char*> instanceExtensions = {
         VK_KHR_SURFACE_EXTENSION_NAME,
-        VK_OHOS_SURFACE_EXTENSION_NAME // OpenHarmony平台的Surface扩展
+        VK_OHOS_SURFACE_EXTENSION_NAME // Surface扩展
     };
     instanceCreateInfo.enabledExtensionCount = static_cast<uint32_t>(instanceExtensions.size());
     instanceCreateInfo.ppEnabledExtensionNames = instanceExtensions.data();

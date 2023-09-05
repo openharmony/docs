@@ -20,7 +20,9 @@ singleton启动模式为单实例模式，也是默认情况下的启动模式�
 **图1** 单实例模式演示效果  
 ![uiability-launch-type1](figures/uiability-launch-type1.gif)  
 
-> **说明**：应用的UIAbility实例已创建，该UIAbility配置为单实例模式，再次调用[`startAbility()`](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)方法启动该UIAbility实例。由于启动的还是原来的UIAbility实例，并未重新创建一个新的UIAbility实例，此时只会进入该UIAbility的[`onNewWant()`](../reference/apis/js-apis-app-ability-uiAbility.md#abilityonnewwant)回调，不会进入其[`onCreate()`](../reference/apis/js-apis-app-ability-uiAbility.md#uiabilityoncreate)和[`onWindowStageCreate()`](../reference/apis/js-apis-app-ability-uiAbility.md#uiabilityonwindowstagecreate)生命周期回调。
+> **说明**：
+>
+> 应用的UIAbility实例已创建，该UIAbility配置为单实例模式，再次调用[`startAbility()`](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)方法启动该UIAbility实例。由于启动的还是原来的UIAbility实例，并未重新创建一个新的UIAbility实例，此时只会进入该UIAbility的[`onNewWant()`](../reference/apis/js-apis-app-ability-uiAbility.md#uiabilityonnewwant)回调，不会进入其[`onCreate()`](../reference/apis/js-apis-app-ability-uiAbility.md#uiabilityoncreate)和[`onWindowStageCreate()`](../reference/apis/js-apis-app-ability-uiAbility.md#uiabilityonwindowstagecreate)生命周期回调。
 
 如果需要使用singleton启动模式，在[module.json5配置文件](../quick-start/module-configuration-file.md)中的`launchType`字段配置为`singleton`即可。
 
