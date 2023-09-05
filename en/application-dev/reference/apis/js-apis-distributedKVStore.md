@@ -12,8 +12,7 @@ The **distributedKVStore** module provides the following functions:
 
 > **NOTE**
 >
-> - The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-> - All the APIs that need to obtain **deviceId** in this module are available only to system applications.
+> The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
 
@@ -2030,7 +2029,7 @@ deviceId(deviceId:string):Query
 Creates a **Query** object with the device ID as the key prefix.
 > **NOTE**
 >
-> **deviceId** is obtained by [deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync). The APIs of the **deviceManager** module are system interfaces and available only to system applications.
+> **deviceId** can be obtained by [deviceManager.getAvailableDeviceListSync](js-apis-distributedDeviceManager.md#getavailabledevicelistsync).
 > For details about how to obtain **deviceId**, see [sync()](#sync).
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
@@ -2819,7 +2818,7 @@ removeDeviceData(deviceId: string, callback: AsyncCallback&lt;void&gt;): void
 Deletes data of a device. This API uses an asynchronous callback to return the result.
 > **NOTE**
 >
-> **deviceId** is obtained by [deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync). The APIs of the **deviceManager** module are system interfaces and available only to system applications.
+> **deviceId** can be obtained by [deviceManager.getAvailableDeviceListSync](js-apis-distributedDeviceManager.md#getavailabledevicelistsync).
 > For details about how to obtain **deviceId**, see [sync()](#sync).
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
@@ -2871,7 +2870,7 @@ removeDeviceData(deviceId: string): Promise&lt;void&gt;
 Deletes data of a device. This API uses a promise to return the result.
 > **NOTE**
 >
-> **deviceId** is obtained by [deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync). The APIs of the **deviceManager** module are system interfaces and available only to system applications.
+> **deviceId** can be obtained by [deviceManager.getAvailableDeviceListSync](js-apis-distributedDeviceManager.md#getavailabledevicelistsync).
 > For details about how to obtain **deviceId**, see [sync()](#sync).
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
@@ -4550,7 +4549,7 @@ sync(deviceIds: string[], mode: SyncMode, delayMs?: number): void
 Synchronizes the KV store manually. For details about the synchronization modes of KV stores, see [Cross-Device Synchronization of KV Stores](../../database/data-sync-of-kv-store.md).
 > **NOTE**
 >
-> **deviceIds** is the **networkId** in [DeviceInfo](js-apis-device-manager.md#deviceinfo), which is obtained by [deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync). The APIs of the **deviceManager** module are system interfaces and available only to system applications.
+> **deviceIds** is **networkId** in [DeviceBasicInfo](js-apis-distributedDeviceManager.md#devicebasicinfo), which can be obtained by [deviceManager.getAvailableDeviceListSync](js-apis-distributedDeviceManager.md#getavailabledevicelistsync).
 
 **Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -4576,40 +4575,41 @@ For details about the error codes, see [Distributed KV Store Error Codes](../err
 **Example**
 
 ```js
-import deviceManager from '@ohos.distributedHardware.deviceManager';
+import deviceManager from '@ohos.distributedDeviceManager';
 
 let devManager;
 const KEY_TEST_SYNC_ELEMENT = 'key_test_sync';
 const VALUE_TEST_SYNC_ELEMENT = 'value-string-001';
 // create deviceManager
-deviceManager.createDeviceManager('bundleName', (err, value) => {
-  if (!err) {
-    devManager = value;
-    let deviceIds = [];
-    if (devManager != null) {
-      var devices = devManager.getTrustedDeviceListSync();
-      for (var i = 0; i < devices.length; i++) {
-        deviceIds[i] = devices[i].networkId;
-      }
-    }
-    try {
-      kvStore.on('syncComplete', function (data) {
-        console.info('Sync dataChange');
-      });
-      kvStore.put(KEY_TEST_SYNC_ELEMENT + 'testSync101', VALUE_TEST_SYNC_ELEMENT, function (err) {
-        if (err != undefined) {
-          console.error(`Failed to sync.code is ${err.code},message is ${err.message}`);
-          return;
-        }
-        console.info('Succeeded in putting data');
-        const mode = distributedKVStore.SyncMode.PULL_ONLY;
-        kvStore.sync(deviceIds, mode, 1000);
-      });
-    } catch (e) {
-      console.error(`Failed to sync.code is ${e.code},message is ${e.message}`);
+try {
+  devManager = deviceManager.createDeviceManager(context.applicationInfo.name);
+  let deviceIds = [];
+  if (devManager != null) {
+    var devices = devManager.getAvailableDeviceListSync();
+    for (var i = 0; i < devices.length; i++) {
+      deviceIds[i] = devices[i].networkId;
     }
   }
-});
+  try {
+    kvStore.on('syncComplete', function (data) {
+      console.info('Sync dataChange');
+    });
+    kvStore.put(KEY_TEST_SYNC_ELEMENT + 'testSync101', VALUE_TEST_SYNC_ELEMENT, function (err) {
+      if (err != undefined) {
+        console.error(`Failed to sync.code is ${err.code},message is ${err.message}`);
+        return;
+      }
+      console.info('Succeeded in putting data');
+      const mode = distributedKVStore.SyncMode.PULL_ONLY;
+      kvStore.sync(deviceIds, mode, 1000);
+    });
+  } catch (e) {
+    console.error(`Failed to sync.code is ${e.code},message is ${e.message}`);
+  }
+
+} catch (err) {
+  console.error("createDeviceManager errCode:" + err.code + ",errMessage:" + err.message);
+}
 ```
 
 ### sync
@@ -4619,7 +4619,7 @@ sync(deviceIds: string[], query: Query, mode: SyncMode, delayMs?: number): void
 Synchronizes the KV store manually. This API returns the result synchronously. For details about the synchronization modes of KV stores, see [Cross-Device Synchronization of KV Stores](../../database/data-sync-of-kv-store.md).
 > **NOTE**
 >
-> **deviceIds** is the **networkId** in [DeviceInfo](js-apis-device-manager.md#deviceinfo), which is obtained by [deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync). The APIs of the **deviceManager** module are system interfaces and available only to system applications.
+> **deviceIds** is **networkId** in [DeviceBasicInfo](js-apis-distributedDeviceManager.md#devicebasicinfo), which can be obtained by [deviceManager.getAvailableDeviceListSync](js-apis-distributedDeviceManager.md#getavailabledevicelistsync).
 
 **Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -4646,43 +4646,44 @@ For details about the error codes, see [Distributed KV Store Error Codes](../err
 **Example**
 
 ```js
-import deviceManager from '@ohos.distributedHardware.deviceManager';
+import deviceManager from '@ohos.distributedDeviceManager';
 
 let devManager;
 const KEY_TEST_SYNC_ELEMENT = 'key_test_sync';
 const VALUE_TEST_SYNC_ELEMENT = 'value-string-001';
 // create deviceManager
-deviceManager.createDeviceManager('bundleName', (err, value) => {
-  if (!err) {
-    devManager = value;
-    let deviceIds = [];
-    if (devManager != null) {
-      var devices = devManager.getTrustedDeviceListSync();
-      for (var i = 0; i < devices.length; i++) {
-        deviceIds[i] = devices[i].networkId;
-      }
-    }
-    try {
-      kvStore.on('syncComplete', function (data) {
-        console.info('Sync dataChange');
-      });
-      kvStore.put(KEY_TEST_SYNC_ELEMENT + 'testSync101', VALUE_TEST_SYNC_ELEMENT, function (err) {
-        if (err != undefined) {
-          console.error(`Failed to sync.code is ${err.code},message is ${err.message}`);
-          return;
-        }
-        console.info('Succeeded in putting data');
-        const mode = distributedKVStore.SyncMode.PULL_ONLY;
-        const query = new distributedKVStore.Query();
-        query.prefixKey("batch_test");
-        query.deviceId('localDeviceId');
-        kvStore.sync(deviceIds, query, mode, 1000);
-      });
-    } catch (e) {
-      console.error(`Failed to sync.code is ${e.code},message is ${e.message}`);
+try {
+  let devManager = deviceManager.createDeviceManager(context.applicationInfo.name);
+  let deviceIds = [];
+  if (devManager != null) {
+    var devices = devManager.getAvailableDeviceListSync();
+    for (var i = 0; i < devices.length; i++) {
+      deviceIds[i] = devices[i].networkId;
     }
   }
-});
+  try {
+    kvStore.on('syncComplete', function (data) {
+      console.info('Sync dataChange');
+    });
+    kvStore.put(KEY_TEST_SYNC_ELEMENT + 'testSync101', VALUE_TEST_SYNC_ELEMENT, function (err) {
+      if (err != undefined) {
+        console.error(`Failed to sync.code is ${err.code},message is ${err.message}`);
+        return;
+      }
+      console.info('Succeeded in putting data');
+      const mode = distributedKVStore.SyncMode.PULL_ONLY;
+      const query = new distributedKVStore.Query();
+      query.prefixKey("batch_test");
+      query.deviceId(devManager.getLocalDeviceNetworkId());
+      kvStore.sync(deviceIds, query, mode, 1000);
+    });
+  } catch (e) {
+    console.error(`Failed to sync.code is ${e.code},message is ${e.message}`);
+  }
+
+} catch (err) {
+  console.error("createDeviceManager errCode:" + err.code + ",errMessage:" + err.message);
+}
 ```
 
 ### on('dataChange')
@@ -5046,7 +5047,7 @@ get(deviceId: string, key: string, callback: AsyncCallback&lt;boolean | string |
 Obtains a string value that matches the specified device ID and key. This API uses an asynchronous callback to return the result.
 > **NOTE**
 >
-> **deviceId** is obtained by [deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync). The APIs of the **deviceManager** module are system interfaces and available only to system applications.
+> **deviceId** can be obtained by [deviceManager.getAvailableDeviceListSync](js-apis-distributedDeviceManager.md#getavailabledevicelistsync).
 > For details about how to obtain **deviceId**, see [sync()](#sync).
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
@@ -5101,7 +5102,7 @@ get(deviceId: string, key: string): Promise&lt;boolean | string | number | Uint8
 Obtains a string value that matches the specified device ID and key. This API uses a promise to return the result.
 > **NOTE**
 >
-> **deviceId** is obtained by [deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync). The APIs of the **deviceManager** module are system interfaces and available only to system applications.
+> **deviceId** can be obtained by [deviceManager.getAvailableDeviceListSync](js-apis-distributedDeviceManager.md#getavailabledevicelistsync).
 > For details about how to obtain **deviceId**, see [sync()](#sync).
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
@@ -5281,7 +5282,7 @@ getEntries(deviceId: string, keyPrefix: string, callback: AsyncCallback&lt;Entry
 Obtains all KV pairs that match the specified device ID and key prefix. This API uses an asynchronous callback to return the result.
 > **NOTE**
 >
-> **deviceId** is obtained by [deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync). The APIs of the **deviceManager** module are system interfaces and available only to system applications.
+> **deviceId** can be obtained by [deviceManager.getAvailableDeviceListSync](js-apis-distributedDeviceManager.md#getavailabledevicelistsync).
 > For details about how to obtain **deviceId**, see [sync()](#sync).
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
@@ -5348,7 +5349,7 @@ getEntries(deviceId: string, keyPrefix: string): Promise&lt;Entry[]&gt;
 Obtains all KV pairs that match the specified device ID and key prefix. This API uses a promise to return the result.
 > **NOTE**
 >
-> **deviceId** is obtained by [deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync). The APIs of the **deviceManager** module are system interfaces and available only to system applications.
+> **deviceId** can be obtained by [deviceManager.getAvailableDeviceListSync](js-apis-distributedDeviceManager.md#getavailabledevicelistsync).
 > For details about how to obtain **deviceId**, see [sync()](#sync).
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
@@ -5544,7 +5545,7 @@ getEntries(deviceId: string, query: Query, callback: AsyncCallback&lt;Entry[]&gt
 Obtains the KV pairs that match the specified device ID and **Query** object. This API uses an asynchronous callback to return the result.
 > **NOTE**
 >
-> **deviceId** is obtained by [deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync). The APIs of the **deviceManager** module are system interfaces and available only to system applications.
+> **deviceId** can be obtained by [deviceManager.getAvailableDeviceListSync](js-apis-distributedDeviceManager.md#getavailabledevicelistsync).
 > For details about how to obtain **deviceId**, see [sync()](#sync).
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
@@ -5616,7 +5617,7 @@ getEntries(deviceId: string, query: Query): Promise&lt;Entry[]&gt;
 Obtains the KV pairs that match the specified device ID and **Query** object. This API uses a promise to return the result.
 > **NOTE**
 >
-> **deviceId** is obtained by [deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync). The APIs of the **deviceManager** module are system interfaces and available only to system applications.
+> **deviceId** can be obtained by [deviceManager.getAvailableDeviceListSync](js-apis-distributedDeviceManager.md#getavailabledevicelistsync).
 > For details about how to obtain **deviceId**, see [sync()](#sync).
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
@@ -5824,7 +5825,7 @@ getResultSet(deviceId: string, keyPrefix: string, callback: AsyncCallback&lt;KVS
 Obtains a **KVStoreResultSet** object that matches the specified device ID and key prefix. This API uses an asynchronous callback to return the result.
 > **NOTE**
 >
-> **deviceId** is obtained by [deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync). The APIs of the **deviceManager** module are system interfaces and available only to system applications.
+> **deviceId** can be obtained by [deviceManager.getAvailableDeviceListSync](js-apis-distributedDeviceManager.md#getavailabledevicelistsync).
 > For details about how to obtain **deviceId**, see [sync()](#sync).
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
@@ -5879,7 +5880,7 @@ getResultSet(deviceId: string, keyPrefix: string): Promise&lt;KVStoreResultSet&g
 Obtains a **KVStoreResultSet** object that matches the specified device ID and key prefix. This API uses a promise to return the result.
 > **NOTE**
 >
-> **deviceId** is obtained by [deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync). The APIs of the **deviceManager** module are system interfaces and available only to system applications.
+> **deviceId** can be obtained by [deviceManager.getAvailableDeviceListSync](js-apis-distributedDeviceManager.md#getavailabledevicelistsync).
 > For details about how to obtain **deviceId**, see [sync()](#sync).
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
@@ -5935,7 +5936,7 @@ getResultSet(deviceId: string, query: Query, callback: AsyncCallback&lt;KVStoreR
 Obtains a **KVStoreResultSet** object that matches the specified device ID and **Query** object. This API uses an asynchronous callback to return the result.
 > **NOTE**
 >
-> **deviceId** is obtained by [deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync). The APIs of the **deviceManager** module are system interfaces and available only to system applications.
+> **deviceId** can be obtained by [deviceManager.getAvailableDeviceListSync](js-apis-distributedDeviceManager.md#getavailabledevicelistsync).
 > For details about how to obtain **deviceId**, see [sync()](#sync).
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
@@ -6011,7 +6012,7 @@ getResultSet(deviceId: string, query: Query): Promise&lt;KVStoreResultSet&gt;
 Obtains a **KVStoreResultSet** object that matches the specified device ID and **Query** object. This API uses a promise to return the result.
 > **NOTE**
 >
-> **deviceId** is obtained by [deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync). The APIs of the **deviceManager** module are system interfaces and available only to system applications.
+> **deviceId** can be obtained by [deviceManager.getAvailableDeviceListSync](js-apis-distributedDeviceManager.md#getavailabledevicelistsync).
 > For details about how to obtain **deviceId**, see [sync()](#sync).
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
@@ -6154,7 +6155,7 @@ getResultSet(query: Query, callback:AsyncCallback&lt;KVStoreResultSet&gt;): void
 Obtains a **KVStoreResultSet** object that matches the specified **Query** object for this device. This API uses an asynchronous callback to return the result.
 > **NOTE**
 >
-> **deviceId** is obtained by [deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync). The APIs of the **deviceManager** module are system interfaces and available only to system applications.
+> **deviceId** can be obtained by [deviceManager.getAvailableDeviceListSync](js-apis-distributedDeviceManager.md#getavailabledevicelistsync).
 > For details about how to obtain **deviceId**, see [sync()](#sync).
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
@@ -6343,7 +6344,7 @@ getResultSet(deviceId: string, predicates: dataSharePredicates.DataSharePredicat
 Obtains a **KVStoreResultSet** object that matches the specified predicate object and device ID. This API uses an asynchronous callback to return the result.
 > **NOTE**
 >
-> **deviceId** is obtained by [deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync). The APIs of the **deviceManager** module are system interfaces and available only to system applications.
+> **deviceId** can be obtained by [deviceManager.getAvailableDeviceListSync](js-apis-distributedDeviceManager.md#getavailabledevicelistsync).
 > For details about how to obtain **deviceId**, see [sync()](#sync).
 
 **System API**: This is a system API.
@@ -6404,7 +6405,7 @@ getResultSet(deviceId: string, predicates: dataSharePredicates.DataSharePredicat
 Obtains a **KVStoreResultSet** object that matches the specified predicate object and device ID. This API uses a promise to return the result.
 > **NOTE**
 >
-> **deviceId** is obtained by [deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync). The APIs of the **deviceManager** module are system interfaces and available only to system applications.
+> **deviceId** can be obtained by [deviceManager.getAvailableDeviceListSync](js-apis-distributedDeviceManager.md#getavailabledevicelistsync).
 > For details about how to obtain **deviceId**, see [sync()](#sync).
 
 **System API**: This is a system API.
@@ -6585,7 +6586,7 @@ getResultSize(deviceId: string, query: Query, callback: AsyncCallback&lt;number&
 Obtains the number of results that matches the specified device ID and **Query** object. This API uses an asynchronous callback to return the result.
 > **NOTE**
 >
-> **deviceId** is obtained by [deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync). The APIs of the **deviceManager** module are system interfaces and available only to system applications.
+> **deviceId** can be obtained by [deviceManager.getAvailableDeviceListSync](js-apis-distributedDeviceManager.md#getavailabledevicelistsync).
 > For details about how to obtain **deviceId**, see [sync()](#sync).
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
@@ -6651,7 +6652,7 @@ getResultSize(deviceId: string, query: Query): Promise&lt;number&gt;
 Obtains the number of results that matches the specified device ID and **Query** object. This API uses a promise to return the result.
 > **NOTE**
 >
-> **deviceId** is obtained by [deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync). The APIs of the **deviceManager** module are system interfaces and available only to system applications.
+> **deviceId** can be obtained by [deviceManager.getAvailableDeviceListSync](js-apis-distributedDeviceManager.md#getavailabledevicelistsync).
 > For details about how to obtain **deviceId**, see [sync()](#sync).
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
