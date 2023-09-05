@@ -52,6 +52,20 @@ viewPort{ x?: number | string, y?: number | string, width?: number | string, hei
 - 通过形状视口对图形进行放大与缩小。
 
   ```ts
+  class tmp{
+    x:number = 0
+    y:number = 0
+    width:number = 75
+    height:number = 75
+  }
+  let viep:tmp = new tmp()
+  class tmp1{
+    x:number = 0
+    y:number = 0
+    width:number = 300
+    height:number = 300
+  }
+  let viep1:tmp1 = new tmp1()
   // 画一个宽高都为150的圆
   Text('原始尺寸Circle组件')
   Circle({width: 75, height: 75}).fill('#E87361')
@@ -65,7 +79,7 @@ viewPort{ x?: number | string, y?: number | string, width?: number | string, hei
         Rect().width('100%').height('100%').fill('#0097D4')
         Circle({width: 75, height: 75}).fill('#E87361')
       }
-      .viewPort({x: 0, y: 0, width: 75, height: 75})
+      .viewPort(viep)
       .width(150)
       .height(150)
       .backgroundColor('#F5DC62')
@@ -78,7 +92,7 @@ viewPort{ x?: number | string, y?: number | string, width?: number | string, hei
         Rect().width('100%').height('100%').fill('#BDDB69')
         Circle({width: 75, height: 75}).fill('#E87361')
       }
-      .viewPort({x: 0, y: 0, width: 300, height: 300})
+      .viewPort(viep1)
       .width(150)
       .height(150)
       .backgroundColor('#F5DC62')
@@ -91,11 +105,25 @@ viewPort{ x?: number | string, y?: number | string, width?: number | string, hei
 - 创建一个宽高都为300的shape组件，背景色为黄色，一个宽高都为300的viewport。用一个蓝色的矩形来填充viewport，在viewport中绘制一个半径为75的圆。
 
   ```ts
+  class tmp{
+    x:number = 0
+    y:number = 0
+    width:number = 300
+    height:number = 300
+  }
+  let viep:tmp = new tmp()
+  class tmp1{
+    x:number = -150
+    y:number = -150
+    width:number = 300
+    height:number = 300
+  }
+  let viep1:tmp1 = new tmp1()
   Shape() {
     Rect().width("100%").height("100%").fill("#0097D4")
     Circle({ width: 150, height: 150 }).fill("#E87361")
   }
-    .viewPort({ x: 0, y: 0, width: 300, height: 300 })
+    .viewPort(viep)
     .width(300)
     .height(300)
     .backgroundColor("#F5DC62")
@@ -110,7 +138,7 @@ viewPort{ x?: number | string, y?: number | string, width?: number | string, hei
     Rect().width("100%").height("100%").fill("#0097D4")
     Circle({ width: 150, height: 150 }).fill("#E87361")
   }
-    .viewPort({ x: -150, y: -150, width: 300, height: 300 })
+    .viewPort(viep1)
     .width(300)
     .height(300)
     .backgroundColor("#F5DC62")
