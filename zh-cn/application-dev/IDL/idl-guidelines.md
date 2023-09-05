@@ -156,7 +156,9 @@ OpenHarmony IDL容器数据类型与Ts数据类型、C++数据类型的对应关
 
 进入对应路径后，查看toolchains->3.x.x.x（对应版本号命名文件夹）下是否存在idl工具的可执行文件。
 
-> **注意**：请保证使用最新版的SDK，版本老旧可能导致部分语句报错。
+> **注意**：
+>
+> 请保证使用最新版的SDK，版本老旧可能导致部分语句报错。
 
 若不存在，可对应版本前往[docs仓版本目录](../../release-notes)下载SDK包，以[3.2Beta3版本](../../release-notes/OpenHarmony-v3.2-beta3.md)为例，可通过镜像站点获取。
 
@@ -185,7 +187,9 @@ OpenHarmony IDL容器数据类型与Ts数据类型、C++数据类型的对应关
 
 -d后的dir为目标输出目录，以输出文件夹名为IIdlTestServiceTs为例，在idl可执行文件所在目录下执行`idl -gen-ts -d IIdlTestServiceTs -c IIdlTestServiceTs/IIdlTestService.idl`，将会在执行环境的dir目录（即IIdlTestServiceTs目录）中生成接口文件、Stub文件、Proxy文件。
 
-> **注意**：生成的接口类文件名称和.idl文件名称保持一致，否则会生成代码时会出现错误。
+> **注意**：
+>
+> 生成的接口类文件名称和.idl文件名称保持一致，否则会生成代码时会出现错误。
 
 以名为`IIdlTestService.idl`的.idl文件、目标输出文件夹为IIdlTestServiceTs为例，其目录结构应类似于:
 
