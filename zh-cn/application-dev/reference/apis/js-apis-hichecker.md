@@ -3,8 +3,9 @@
 HiChecker可以作为应用开发阶段使用的检测工具，用于检测代码运行过程中部分易忽略的问题，如应用线程出现耗时调用、应用进程中Ability资源泄露等问题。开发者可以通过日志记录或进程crash等形式查看具体问题并进行修改，提升应用的使用体验。
 
 > **说明：**
-> 
+>
 > 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+
 
 ## 导入模块
 
@@ -12,18 +13,19 @@ HiChecker可以作为应用开发阶段使用的检测工具，用于检测代�
 import hichecker from '@ohos.hichecker';
 ```
 
+
 ## 常量
 
 提供了所有规则类型的常量。
 
 **系统能力：** SystemCapability.HiviewDFX.HiChecker
 
-| 名称                                 | 参数类型   | 说明                    |
-| ---------------------------------- | ------ | --------------------- |
-| RULE_CAUTION_PRINT_LOG             | bigint | 告警规则，当有告警时记录日志。       |
-| RULE_CAUTION_TRIGGER_CRASH         | bigint | 告警规则，当有告警时让应用推出。      |
-| RULE_THREAD_CHECK_SLOW_PROCESS     | bigint | 检测规则，检测是否有耗时函数被调用。    |
-| RULE_CHECK_ABILITY_CONNECTION_LEAK | bigint | 检测规则，检测是否发生ability泄露。 |
+| 名称                               | 参数类型 | 说明                                                   |
+| ---------------------------------- | -------- | ------------------------------------------------------ |
+| RULE_CAUTION_PRINT_LOG             | bigint   | 告警规则，当有告警时记录日志。                         |
+| RULE_CAUTION_TRIGGER_CRASH         | bigint   | 告警规则，当有告警时让应用推出。                       |
+| RULE_THREAD_CHECK_SLOW_PROCESS     | bigint   | 检测规则，检测是否有耗时函数被调用。                   |
+| RULE_CHECK_ABILITY_CONNECTION_LEAK | bigint   | 检测规则，检测是否发生ability泄露。                    |
 
 ## hichecker.addCheckRule<sup>9+</sup>
 
@@ -35,9 +37,9 @@ addCheckRule(rule: bigint): void
 
 **参数：**
 
-| 参数名  | 类型     | 必填  | 说明       |
-| ---- | ------ | --- | -------- |
-| rule | bigint | 是   | 需要添加的规则。 |
+| 参数名 | 类型   | 必填 | 说明             |
+| ------ | ------ | ---- | ---------------- |
+| rule   | bigint | 是   | 需要添加的规则。 |
 
 **示例：**
 
@@ -66,9 +68,9 @@ removeCheckRule(rule: bigint): void
 
 **参数：**
 
-| 参数名  | 类型     | 必填  | 说明       |
-| ---- | ------ | --- | -------- |
-| rule | bigint | 是   | 需要删除的规则。 |
+| 参数名 | 类型   | 必填 | 说明             |
+| ------ | ------ | ---- | ---------------- |
+| rule   | bigint | 是   | 需要删除的规则。 |
 
 **示例：**
 
@@ -97,14 +99,14 @@ containsCheckRule(rule: bigint): boolean
 
 **参数：**
 
-| 参数名  | 类型     | 必填  | 说明       |
-| ---- | ------ | --- | -------- |
-| rule | bigint | 是   | 需要查询的规则。 |
+| 参数名 | 类型   | 必填 | 说明             |
+| ------ | ------ | ---- | ---------------- |
+| rule   | bigint | 是   | 需要查询的规则。 |
 
 **返回值：**
 
-| 类型      | 说明                                    |
-| ------- | ------------------------------------- |
+| 类型    | 说明                                                       |
+| ------- | ---------------------------------------------------------- |
 | boolean | 查询结果，true&nbsp;表示规则已添加，false 表示规则未添加。 |
 
 **示例：**
@@ -130,7 +132,7 @@ try {
 addRule(rule: bigint): void
 
 > **说明：**
-> 
+>
 > 从 API Version 9 开始废弃，建议使用[hichecker.addCheckRule](#hicheckeraddcheckrule9)替代。
 
 添加一条或多条规则到系统，系统根据添加的规则进行检测或反馈。
@@ -139,9 +141,9 @@ addRule(rule: bigint): void
 
 **参数：**
 
-| 参数名  | 类型     | 必填  | 说明       |
-| ---- | ------ | --- | -------- |
-| rule | bigint | 是   | 需要添加的规则。 |
+| 参数名 | 类型   | 必填 | 说明             |
+| ------ | ------ | ---- | ---------------- |
+| rule   | bigint | 是   | 需要添加的规则。 |
 
 **示例：**
 
@@ -159,7 +161,7 @@ hichecker.addRule(
 removeRule(rule: bigint): void
 
 > **说明：**
-> 
+>
 > 从 API Version 9 开始废弃，建议使用[hichecker.removeCheckRule](#hicheckerremovecheckrule9)替代。
 
 删除一条或多条规则，删除的规则后续将不再生效。
@@ -168,9 +170,9 @@ removeRule(rule: bigint): void
 
 **参数：**
 
-| 参数名  | 类型     | 必填  | 说明       |
-| ---- | ------ | --- | -------- |
-| rule | bigint | 是   | 需要删除的规则。 |
+| 参数名 | 类型   | 必填 | 说明             |
+| ------ | ------ | ---- | ---------------- |
+| rule   | bigint | 是   | 需要删除的规则。 |
 
 **示例：**
 
@@ -193,8 +195,8 @@ getRule(): bigint
 
 **返回值：**
 
-| 类型     | 说明          |
-| ------ | ----------- |
+| 类型   | 说明                   |
+| ------ | ---------------------- |
 | bigint | 当前系统中添加的规则。 |
 
 **示例：**
@@ -212,7 +214,7 @@ hichecker.getRule();   // return 1n;
 contains(rule: bigint): boolean
 
 > **说明：**
-> 
+>
 > 从 API Version 9 开始废弃，建议使用[hichecker.containsCheckRule](#hicheckercontainscheckrule9)替代。
 
 当前已添加的规则集中是否包含了某一个特定的规则，如果传入的规则级别为线程级别，则仅在当前线程中进行查询。
@@ -221,14 +223,14 @@ contains(rule: bigint): boolean
 
 **参数：**
 
-| 参数名  | 类型     | 必填  | 说明       |
-| ---- | ------ | --- | -------- |
-| rule | bigint | 是   | 需要查询的规则。 |
+| 参数名 | 类型   | 必填 | 说明             |
+| ------ | ------ | ---- | ---------------- |
+| rule   | bigint | 是   | 需要查询的规则。 |
 
 **返回值：**
 
-| 类型      | 说明                                    |
-| ------- | ------------------------------------- |
+| 类型    | 说明                                                       |
+| ------- | ---------------------------------------------------------- |
 | boolean | 查询结果，true&nbsp;表示规则已添加，false 表示规则未添加。 |
 
 **示例：**
