@@ -2282,7 +2282,7 @@ injectMultiPointerAction(pointers: PointerMatrix, speed?: number): Promise\<bool
 **示例：**
 
 ```typescript
-import { PointerMatrix } from '@ohos.UiTest';
+import { Driver, PointerMatrix } from '@ohos.UiTest';
 async function demo() {
     let driver = Driver.create();
     let pointers = PointerMatrix.create(2,3);
@@ -2322,7 +2322,7 @@ fling(direction: UiDirection, speed: number): Promise\<void>;
 **示例：**
 
 ```typescript
-import { PointerMatrix, UiDirection } from '@ohos.UiTest';
+import { Driver, UiDirection } from '@ohos.UiTest';
 async function demo() {
     let driver = Driver.create();
     await driver.fling(UiDirection.DOWN, 10000);
