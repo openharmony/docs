@@ -23,7 +23,7 @@
 | **function** off(**type**: "p2pPeerDeviceChange", callback?: Callback<WifiP2pDevice[]>): **void**;| 1.需要位置权限 2.返回物理MAC| 1.取消位置权限;2.返回随机MAC(GET_PEER_MAC权限返回真实MAC) |
 
 **变更影响**<br>
-使用之前已发布的API 9各beta版本且使用到了上述接口的，需要改为使用变更后的权限。
+使用之前已发布的API版本且使用到了上述接口的，需要改为使用变更后的权限。
 
 **关键的接口/组件变更**<br>
 无
