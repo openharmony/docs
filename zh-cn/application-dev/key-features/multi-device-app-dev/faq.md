@@ -96,6 +96,7 @@ launchType字段配置为specified时，系统会根据AbilityStage的onAcceptWa
 // MyAbilityStage.ts
 import AbilityStage from "@ohos.app.ability.AbilityStage"
 import deviceInfo from'@ohos.deviceInfo'
+import Want from '@ohos.app.ability.Want'
 
 export default class MyAbilityStage extends AbilityStage {
     ...
@@ -107,7 +108,7 @@ export default class MyAbilityStage extends AbilityStage {
         // 如果不是平板，直接以设备类型作为key，每次启动的key相同
         return deviceInfo.deviceType
     }
-    onAcceptWant(want) {
+    onAcceptWant(want: Want) : string{
         return this.generateKey()
     }
 }
