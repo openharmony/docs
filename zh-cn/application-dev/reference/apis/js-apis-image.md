@@ -82,7 +82,7 @@ image.createPixelMap(color, opts, (error : BusinessError, pixelmap : image.Pixel
 
 图像像素类，用于读取或写入图像数据以及获取图像信息。在调用PixelMap的方法前，需要先通过createPixelMap创建一个PixelMap实例。目前pixelmap序列化大小最大128MB，超过会送显失败。大小计算方式为(宽\*高\*每像素占用字节数)。
 
- ### 属性
+### 属性
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -233,7 +233,7 @@ writePixels(area: PositionArea): Promise\<void>
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
-**参数：** 
+**参数：**
 
 | 参数名 | 类型                           | 必填 | 说明                 |
 | ------ | ------------------------------ | ---- | -------------------- |
@@ -283,7 +283,7 @@ writePixels(area: PositionArea, callback: AsyncCallback\<void>): void
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
-**参数：** 
+**参数：**
 
 | 参数名    | 类型                           | 必填 | 说明                           |
 | --------- | ------------------------------ | ---- | ------------------------------ |
@@ -1444,7 +1444,7 @@ getImageProperty(key:string, options?: GetImagePropertyOptions): Promise\<string
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
- **参数：**
+**参数：**
 
 | 参数名  | 类型                                                 | 必填 | 说明                                 |
 | ------- | ---------------------------------------------------- | ---- | ------------------------------------ |
@@ -1474,7 +1474,7 @@ getImageProperty(key:string, callback: AsyncCallback\<string>): void
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
- **参数：**
+**参数：**
 
 | 参数名   | 类型                   | 必填 | 说明                                                         |
 | -------- | ---------------------- | ---- | ------------------------------------------------------------ |
@@ -2529,7 +2529,7 @@ createImageCreator(width: number, height: number, format: number, capacity: numb
 
 | 类型                           | 说明                                    |
 | ------------------------------ | --------------------------------------- |
-| [ImageCreator](#imagecreator9) | 如果操作成功，则返回ImageCreator实例。 |    
+| [ImageCreator](#imagecreator9) | 如果操作成功，则返回ImageCreator实例。 |
 
 **示例：**
 
