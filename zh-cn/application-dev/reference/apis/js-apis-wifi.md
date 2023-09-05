@@ -92,7 +92,7 @@ isWifiActive(): boolean
 
 **示例：**
 
-```js
+```ts
 import wifi from '@ohos.wifi';
 
 try {
@@ -270,7 +270,7 @@ addDeviceConfig(config: WifiDeviceConfig): Promise&lt;number&gt;
 
   **示例：**
 
-```js
+```ts
 import wifi from '@ohos.wifi';
 
 try {
@@ -363,7 +363,7 @@ addDeviceConfig(config: WifiDeviceConfig, callback: AsyncCallback&lt;number&gt;)
 
 **示例：**
 
-```js
+```ts
 import wifi from '@ohos.wifi';
 
 try {
@@ -402,7 +402,7 @@ addUntrustedConfig(config: WifiDeviceConfig): Promise&lt;boolean&gt;
   | Promise&lt;boolean&gt; | Promise对象。表示操作结果，true: 成功， false: 失败。 |
 
 **示例：**
-```js
+```ts
 import wifi from '@ohos.wifi';
 
 try {
@@ -437,7 +437,7 @@ addUntrustedConfig(config: WifiDeviceConfig, callback: AsyncCallback&lt;boolean&
   | callback | AsyncCallback&lt;boolean&gt; | 是 | 回调函数。当操作成功时，err为0，data表示操作结果，true: 成功， false: 失败。如果error为非0，表示处理出现错误。 |
 
 **示例：**
-```js
+```ts
 import wifi from '@ohos.wifi';
 
 try {
@@ -478,7 +478,7 @@ removeUntrustedConfig(config: WifiDeviceConfig): Promise&lt;boolean&gt;
 
 **示例：**
 
-```js
+```ts
 import wifi from '@ohos.wifi';
 
 try {
@@ -510,7 +510,7 @@ removeUntrustedConfig(config: WifiDeviceConfig, callback: AsyncCallback&lt;boole
   | callback | AsyncCallback&lt;boolean&gt; | 是 | 回调函数。当操作成功时，err为0，data表示操作结果，true: 成功， false: 失败。如果error为非0，表示处理出现错误。 |
 
 **示例：**
-```js
+```ts
 import wifi from '@ohos.wifi';
 
 try {
@@ -549,7 +549,7 @@ connectToNetwork(networkId: number): boolean
 
 **示例：**
 
-```js
+```ts
 import wifi from '@ohos.wifi';
 
 try {
@@ -586,7 +586,7 @@ connectToDevice(config: WifiDeviceConfig): boolean
   | boolean | true:操作成功，&nbsp;false:操作失败。 |
 
 **示例：**
-```js
+```ts
 import wifi from '@ohos.wifi';
 
 try {
@@ -656,7 +656,7 @@ getSignalLevel(rssi: number, band: number): number
   | number | 信号强度，取值范围为[0,&nbsp;4]。 |
 
 **示例：**
-```js
+```ts
 import wifi from '@ohos.wifi';
 
 try {
@@ -865,7 +865,7 @@ isFeatureSupported(featureId: number): boolean
   | boolean | true:支持，&nbsp;false:不支持。 |
 
 **示例：**
-```js
+```ts
 import wifi from '@ohos.wifi';
 
 try {
@@ -897,7 +897,7 @@ getDeviceMacAddress(): string[]
   | string[] | MAC地址。 |
 
 **示例：**
-```js
+```ts
 import wifi from '@ohos.wifi';
 
 try {
@@ -926,7 +926,7 @@ getIpInfo(): IpInfo
   | [IpInfo](#ipinfo7) | IP信息。 |
 
 **示例：**
-```js
+```ts
 import wifi from '@ohos.wifi';
 
 try {
@@ -971,7 +971,7 @@ getCountryCode(): string
   | string | 国家码。 |
 
 **示例：**
-```js
+```ts
 import wifi from '@ohos.wifi';
 
 try {
@@ -1059,7 +1059,7 @@ getDeviceConfigs(): &nbsp;Array&lt;[WifiDeviceConfig](#wifideviceconfig)&gt;
   | &nbsp;Array&lt;[WifiDeviceConfig](#wifideviceconfig)&gt; | 网络配置信息的数组。 |
 
 **示例：**
-```js
+```ts
 import wifi from '@ohos.wifi';
 
 try {
@@ -1095,7 +1095,7 @@ updateNetwork(config: WifiDeviceConfig): number
   | number | 返回更新的网络配置ID，如果值为-1表示更新失败。 |
 
 **示例：**
-```js
+```ts
 import wifi from '@ohos.wifi';
 
 try {
@@ -1136,7 +1136,7 @@ disableNetwork(netId: number): boolean
   | boolean | true:操作成功，&nbsp;false:操作失败。 |
 
 **示例：**
-```js
+```ts
 import wifi from '@ohos.wifi';
 
 try {
@@ -1201,7 +1201,7 @@ removeDevice(id: number): boolean
   | boolean | true:操作成功，&nbsp;false:操作失败。 |
 
 **示例：**
-```js
+```ts
 import wifi from '@ohos.wifi';
 
 try {
@@ -1289,7 +1289,7 @@ isHotspotDualBandSupported(): boolean
   | boolean | true:支持，&nbsp;false:不支持。|
 
 **示例：**
-```js
+```ts
 import wifi from '@ohos.wifi';
 
 try {
@@ -1319,7 +1319,7 @@ isHotspotActive(): boolean
   | boolean | true:已使能，&nbsp;false:未使能。|
 
 **示例：**
-```js
+```ts
 import wifi from '@ohos.wifi';
 
 try {
@@ -1355,7 +1355,7 @@ setHotspotConfig(config: HotspotConfig): boolean
   | boolean | true:操作成功，&nbsp;false:操作失败。 |
 
 **示例：**
-```js
+```ts
 import wifi from '@ohos.wifi';
 
 try {
@@ -1410,7 +1410,7 @@ getHotspotConfig(): HotspotConfig
   | [HotspotConfig](#hotspotconfig7) | 热点的配置信息。 |
 
 **示例：**
-```js
+```ts
 import wifi from '@ohos.wifi';
 
 try {
@@ -1440,7 +1440,7 @@ getStations(): &nbsp;Array&lt;[StationInfo](#stationinfo7)&gt;
   | &nbsp;Array&lt;[StationInfo](#stationinfo7)&gt; | 连接的设备数组。 |
 
 **示例：**
-```js
+```ts
 import wifi from '@ohos.wifi';
 
 try {
@@ -1695,7 +1695,7 @@ createGroup(config: WifiP2PConfig): boolean
   | boolean | true:创建群组操作执行成功，&nbsp;false:创建群组操作执行失败。 |
 
 **示例：**
-```js
+```ts
 import wifi from '@ohos.wifi';
 
 try {
@@ -2021,7 +2021,7 @@ setDeviceName(devName: string): boolean
   | boolean | true:操作成功，&nbsp;false:操作失败。 |
 
 **示例：**
-```js
+```ts
 import wifi from '@ohos.wifi';
 
 try {

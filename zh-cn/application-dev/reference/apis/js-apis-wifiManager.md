@@ -289,7 +289,7 @@ getScanResultsSync(): &nbsp;Array&lt;[WifiScanInfo](#wifiscaninfo)&gt;
 
 **示例：**
 
-```js
+```ts
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
@@ -342,7 +342,7 @@ getScanInfoList(): Array&lt;WifiScanInfo&gt;;
 
 **示例：**
 
-```js
+```ts
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
@@ -549,7 +549,7 @@ getScanAlwaysAllowed(): boolean
 
 **示例：**
 
-```js
+```ts
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
@@ -594,7 +594,7 @@ addDeviceConfig(config: WifiDeviceConfig): Promise&lt;number&gt;
 
 **示例：**
 
-```js
+```ts
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
@@ -790,7 +790,7 @@ addDeviceConfig(config: WifiDeviceConfig, callback: AsyncCallback&lt;number&gt;)
 
 **示例：**
 
-```js
+```ts
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
@@ -838,7 +838,7 @@ addCandidateConfig(config: WifiDeviceConfig): Promise&lt;number&gt;
 | 2501000  | Operation failed.|
 
 **示例：**
-`````js
+`````ts
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
@@ -881,7 +881,7 @@ addCandidateConfig(config: WifiDeviceConfig, callback: AsyncCallback&lt;number&g
 | 2501000  | Operation failed.|
 
 **示例：**
-`````js
+`````ts
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
@@ -930,7 +930,7 @@ removeCandidateConfig(networkId: number): Promise&lt;void&gt;
 
 **示例：**
 
-```js
+```ts
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
@@ -969,7 +969,7 @@ removeCandidateConfig(networkId: number, callback: AsyncCallback&lt;void&gt;): v
 | 2501000  | Operation failed.|
 
 **示例：**
-```js
+```ts
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
@@ -1008,7 +1008,7 @@ getCandidateConfigs(): &nbsp;Array&lt;[WifiDeviceConfig](#wifideviceconfig)&gt;
 
 **示例：**
 
-`````js
+`````ts
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
@@ -1054,7 +1054,7 @@ connectToCandidateConfig(networkId: number): void
 | 2501001  | Wifi is closed.|
 
 **示例：**
-```js
+```ts
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
@@ -1096,7 +1096,7 @@ connectToNetwork(networkId: number): void
 
 **示例：**
 
-```js
+```ts
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
@@ -1136,7 +1136,7 @@ connectToDevice(config: WifiDeviceConfig): void
 | 2501001  | Wifi is closed.|
 
 **示例：**
-```js
+```ts
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
@@ -1216,7 +1216,7 @@ getSignalLevel(rssi: number, band: number): number
 | 2501000  | Operation failed.|
 
 **示例：**
-```js
+```ts
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
@@ -1396,7 +1396,7 @@ isConnected(): boolean
 | 2501000  | Operation failed.|
 
 **示例：**
-```js
+```ts
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
@@ -1450,7 +1450,7 @@ getSupportedFeatures(): number
 | 2401000  | Operation failed.|
 
 **示例：**
-```js
+```ts
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
@@ -1494,7 +1494,7 @@ isFeatureSupported(featureId: number): boolean
 | 2401000  | Operation failed.|
 
 **示例：**
-```js
+```ts
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
@@ -1534,7 +1534,7 @@ getDeviceMacAddress(): string[]
 | 2501000  | Operation failed.|
 
 **示例：**
-```js
+```ts
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
@@ -1571,7 +1571,7 @@ getIpInfo(): IpInfo
 | 2501000  | Operation failed.|
 
 **示例：**
-```js
+```ts
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
@@ -1624,7 +1624,7 @@ getIpv6Info(): Ipv6Info
 | 2501000  | Operation failed.|
 
 **示例：**
-```js
+```ts
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
@@ -1676,7 +1676,7 @@ getCountryCode(): string
 | 2401000  | Operation failed.|
 
 **示例：**
-```js
+```ts
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
@@ -1778,7 +1778,7 @@ getDeviceConfigs(): &nbsp;Array&lt;[WifiDeviceConfig](#wifideviceconfig)&gt;
 | 2501000  | Operation failed.|
 
 **示例：**
-```js
+```ts
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
@@ -1822,7 +1822,7 @@ updateNetwork(config: WifiDeviceConfig): number
 | 2501000  | Operation failed.|
 
 **示例：**
-```js
+```ts
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
@@ -1865,7 +1865,7 @@ disableNetwork(netId: number): void
 | 2501000  | Operation failed.|
 
 **示例：**
-```js
+```ts
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
@@ -1934,7 +1934,7 @@ removeDevice(id: number): void
 | 2501000  | Operation failed.|
 
 **示例：**
-```js
+```ts
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
@@ -1976,7 +1976,7 @@ isBandTypeSupported(bandType: WifiBandType): boolean
 | 2501000  | Operation failed.|
 
 **示例：**
-```js
+```ts
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
@@ -2015,7 +2015,7 @@ get5GChannelList(): Array&lt;number&gt;
 | 2501000  | Operation failed.|
 
 **示例：**
-```js
+```ts
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
@@ -2052,7 +2052,7 @@ getDisconnectedReason(): DisconnectedReason
 | DisconnectedReason | 最近断开的原因 |
 
 **示例：**
-```js
+```ts
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
@@ -2166,7 +2166,7 @@ isHotspotDualBandSupported(): boolean
 | 2601000  | Operation failed.|
 
 **示例：**
-```js
+```ts
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
@@ -2204,7 +2204,7 @@ isHotspotActive(): boolean
 | 2601000  | Operation failed.|
 
 **示例：**
-```js
+```ts
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
@@ -2242,7 +2242,7 @@ setHotspotConfig(config: HotspotConfig): void
 | 2601000  | Operation failed.|
 
 **示例：**
-```js
+```ts
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
@@ -2305,7 +2305,7 @@ getHotspotConfig(): HotspotConfig
 | 2601000  | Operation failed.|
 
 **示例：**
-```js
+```ts
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
@@ -2343,7 +2343,7 @@ getStations(): &nbsp;Array&lt;[StationInfo](#stationinfo9)&gt;
 | 2601000  | Operation failed.|
 
 **示例：**
-```js
+```ts
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
@@ -2703,7 +2703,7 @@ createGroup(config: WifiP2PConfig): void
 | 2801000  | Operation failed.|
 
 **示例：**
-```js
+```ts
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
@@ -3002,7 +3002,7 @@ deletePersistentGroup(netId: number): void
 | 2801000  | Operation failed.|
 
 **示例：**
-```js
+```ts
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
@@ -3129,7 +3129,7 @@ setDeviceName(devName: string): void
 | 2801000  | Operation failed.|
 
 **示例：**
-```js
+```ts
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
