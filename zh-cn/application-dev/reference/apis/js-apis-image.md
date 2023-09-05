@@ -1020,9 +1020,9 @@ async function Demo() {
    await image.createPixelMap(color, opts).then((pixelmap : image.PixelMap) => {
       pixelMap = pixelmap;
    })
-    let parcelable : MySequence = new MySequence(pixelMap);
-    let data : rpc.MessageSequence = rpc.MessageSequence.create();
-    data.writeParcelable(parcelable : rpc.Parcelable);
+   let parcelable : MySequence = new MySequence(pixelMap);
+   let data : rpc.MessageSequence = rpc.MessageSequence.create();
+   data.writeParcelable(parcelable : rpc.Parcelable);
 }
 ```
 
@@ -1094,9 +1094,9 @@ async function Demo() {
    await image.createPixelMap(color, opts).then((pixelmap : image.PixelMap) => {
       pixelMap = pixelmap;
    })
-    let ret : MySequence = new MySequence(pixelMap);
-    let data : rpc.MessageSequence = rpc.MessageSequence.create();
-    await data.readParcelable(ret : rpc.Parcelable);
+   let ret : MySequence = new MySequence(pixelMap);
+   let data : rpc.MessageSequence = rpc.MessageSequence.create();
+   await data.readParcelable(ret : rpc.Parcelable);
 }
 ```
 
