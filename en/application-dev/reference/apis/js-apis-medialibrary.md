@@ -20,6 +20,7 @@ Obtains a **MediaLibrary** instance, which is used to access and modify personal
 This API can be used only in the stage model.
 
 > **NOTE**
+>
 > This API is deprecated since API version 9. Use [getPhotoAccessHelper](js-apis-photoAccessHelper.md#photoaccesshelpergetphotoaccesshelper) instead.
 
 **System capability**: SystemCapability.Multimedia.MediaLibrary.Core
@@ -44,7 +45,7 @@ const context = getContext(this);
 let media = mediaLibrary.getMediaLibrary(context);
 ```
 
-**Example (API version 8)**
+**Example (from API version 8)**
 
 ```js
 import featureAbility from '@ohos.ability.featureAbility';
@@ -62,6 +63,7 @@ Obtains a **MediaLibrary** instance, which is used to access and modify personal
 This API can be used only in the FA model.
 
 > **NOTE**
+>
 > This API is deprecated since API version 9. There is no substitute API.
 
 **System capability**: SystemCapability.Multimedia.MediaLibrary.Core
@@ -344,7 +346,7 @@ Creates a media asset. This API uses a promise to return the result.
 | ------------ | ------------------------ | ---- | ------------------------------------------------------------ |
 | mediaType    | [MediaType](#mediatype8) | Yes  | Media type.                                                    |
 | displayName  | string                   | Yes  | File name to display.                                                  |
-| relativePath | string                   | Yes  | Relative path of the file, which can be obtained by [getPublicDirectory](#getpublicdirectory8).|
+| relativePath | string                   | Yes  | Relative path of the file, which can be obtained by **getPublicDirectory**.|
 
 **Return value**
 
@@ -557,7 +559,7 @@ Obtains albums. This API uses an asynchronous callback to return the result.
 > **NOTE**
 >
 > - This API is deprecated since API version 9. Use [getAlbums](js-apis-photoAccessHelper.md#getalbums) instead.
-> - From the SDK of API version 10, **relativePath** is no longer associated with an album. Therefore, **relativePath** cannot be used as a search criterion in **getAlbums**. Currently, only **Camera** and **ScreenShots** albums are supported. For more details, see [changelogs-mediaLibrary.md](../../../release-notes/changelogs/OpenHarmony_4.0.8.2/changelogs-mediaLibrary.md).
+> - From the SDK of API version 10, **relativePath** is no longer associated with an album. Therefore, **relativePath** cannot be used as a search criterion in **getAlbums**. Currently, only **Camera** and **ScreenShots** albums are supported. For details, see [changelogs-mediaLibrary.md](../../../release-notes/changelogs/OpenHarmony_4.0.8.2/changelogs-mediaLibrary.md).
 
 **Required permissions**: ohos.permission.READ_MEDIA
 
@@ -597,7 +599,7 @@ Obtains albums. This API uses a promise to return the result.
 > **NOTE**
 >
 > - This API is deprecated since API version 9. Use [getAlbums](js-apis-photoAccessHelper.md#getalbums-2) instead.
-> - From the SDK of API version 10, **relativePath** is no longer associated with an album. Therefore, **relativePath** cannot be used as a search criterion in **getAlbums**. Currently, only **Camera** and **ScreenShots** albums are supported. For more details, see [changelogs-mediaLibrary.md](../../../release-notes/changelogs/OpenHarmony_4.0.8.2/changelogs-mediaLibrary.md).
+> - From the SDK of API version 10, **relativePath** is no longer associated with an album. Therefore, **relativePath** cannot be used as a search criterion in **getAlbums**. Currently, only **Camera** and **ScreenShots** albums are supported. For details, see [changelogs-mediaLibrary.md](../../../release-notes/changelogs/OpenHarmony_4.0.8.2/changelogs-mediaLibrary.md).
 
 **Required permissions**: ohos.permission.READ_MEDIA
 
@@ -666,6 +668,7 @@ Releases this **MediaLibrary** instance.
 Call this API when you no longer need to use the APIs in the **MediaLibrary** instance.
 
 > **NOTE**
+>
 > This API is deprecated since API version 9. Use [release](js-apis-photoAccessHelper.md#release-1) instead.
 
 **System capability**: SystemCapability.Multimedia.MediaLibrary.Core
