@@ -163,7 +163,7 @@ try {
     (err: BusinessError) => {
       console.error(`error code: ${err.code}, error msg: ${err.message}`);
     }
-  )
+  );
 } catch (err) {
   console.error(`error code: ${(err as BusinessError).code}, error msg: ${(err as BusinessError).message}`);
 }
@@ -251,9 +251,9 @@ let watcher: hiSysEvent.Watcher = {
   onServiceDied: () => {
     // do something here.
   }
-}
+};
 try {
-  hiSysEvent.addWatcher(watcher)
+  hiSysEvent.addWatcher(watcher);
 } catch (err) {
   console.error(`error code: ${(err as BusinessError).code}, error msg: ${(err as BusinessError).message}`);
 }
@@ -294,7 +294,7 @@ let watchRules: hiSysEvent.WatchRule[] = [{
     name: "STACK",
     tag: "STABILITY",
     ruleType: hiSysEvent.RuleType.WHOLE_WORD,
-  } as hiSysEvent.WatchRule ]
+  } as hiSysEvent.WatchRule ];
 let watcher: hiSysEvent.Watcher = {
   rules: watchRules,
   onEvent: (info: hiSysEvent.SysEventInfo) => {
@@ -303,10 +303,10 @@ let watcher: hiSysEvent.Watcher = {
   onServiceDied: () => {
     // do something here.
   }
-}
+};
 try {
-  hiSysEvent.addWatcher(watcher)
-  hiSysEvent.removeWatcher(watcher)
+  hiSysEvent.addWatcher(watcher);
+  hiSysEvent.removeWatcher(watcher);
 } catch (err) {
   console.error(`error code: ${(err as BusinessError).code}, error msg: ${(err as BusinessError).message}`);
 }
@@ -400,7 +400,7 @@ try {
   };
   hiSysEvent.write(eventInfo, (err: BusinessError, val: number) => {
     // do something here.
-  })
+  });
 
   let queryArg: hiSysEvent.QueryArg = {
     beginTime: -1,
@@ -410,7 +410,7 @@ try {
   let queryRules: hiSysEvent.QueryRule[] = [{
     domain: "RELIABILITY",
     names: ["STACK"],
-  } as hiSysEvent.QueryRule]
+  } as hiSysEvent.QueryRule];
   let querier: hiSysEvent.Querier = {
     onQuery: (infos: hiSysEvent.SysEventInfo[]) => {
       // do something here.
@@ -418,8 +418,8 @@ try {
     onComplete: (reason: number, total: number) => {
       // do something here.
     }
-  }
-  hiSysEvent.query(queryArg, queryRules, querier)
+  };
+  hiSysEvent.query(queryArg, queryRules, querier);
 } catch (err) {
   console.error(`error code: ${(err as BusinessError).code}, error msg: ${(err as BusinessError).message}`);
 }
@@ -481,18 +481,18 @@ try {
   };
   hiSysEvent.write(eventInfo, (err: BusinessError, val: number) => {
     // do something here.
-  })
+  });
 
   let queryArg: hiSysEvent.QueryArg = {
     beginTime: -1,
     endTime: -1,
     maxEvents: 1,
-  }
+  };
   let queryRules: hiSysEvent.QueryRule[] = [{
     domain: "RELIABILITY",
     names: ["STACK"],
-  } as hiSysEvent.QueryRule]
-  let time = hiSysEvent.exportSysEvents(queryArg, queryRules)
+  } as hiSysEvent.QueryRule];
+  let time = hiSysEvent.exportSysEvents(queryArg, queryRules);
   console.log(`receive export task time is : ${time}`);
 
   // 延迟读取本次导出的事件
@@ -506,7 +506,7 @@ try {
         console.log("read file end, events is :" + JSON.stringify(events));
       }
     }
-  }, 10000)
+  }, 10000);
 } catch catch (err) {
   console.error(`error code: ${(err as BusinessError).code}, error msg: ${(err as BusinessError).message}`);
 }
@@ -559,7 +559,7 @@ try {
     domain: "BUNDLE_MANAGER",
     names: ["BUNDLE_UNINSTALL"],
   } as hiSysEvent.QueryRule];
-  hiSysEvent.subscribe(rules)
+  hiSysEvent.subscribe(rules);
 
   let customizedParams: Record<string, string | number> = {
     'PID': 487,
@@ -576,7 +576,7 @@ try {
   };
   hiSysEvent.write(eventInfo, (err: BusinessError, val: number) => {
     // do something here.
-  })
+  });
 
   // 延迟读取订阅的事件
   setTimeout(() => {
@@ -587,7 +587,7 @@ try {
       let events: string = JSON.parse('[' + res.slice(0, res.length - 1) + ']');
       console.log("read file end, events is :" + JSON.stringify(events));
     }
-  }, 10000)
+  }, 10000);
 } catch catch (err) {
   console.error(`error code: ${(err as BusinessError).code}, error msg: ${(err as BusinessError).message}`);
 }
@@ -626,7 +626,7 @@ try {
     domain: "BUNDLE_MANAGER",
     names: ["BUNDLE_UNINSTALL"],
   } as hiSysEvent.QueryRule];
-  hiSysEvent.subscribe(rules)
+  hiSysEvent.subscribe(rules);
   hiSysEvent.unsubscribe();
 } catch (err) {
   console.error(`error code: ${(err as BusinessError).code}, error msg: ${(err as BusinessError).message}`);

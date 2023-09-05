@@ -57,13 +57,13 @@ hiTraceChain是基于云计算分布式跟踪调用链思想，在端侧业务�
                     'PACKAGE_NAME': "com.demo.hitracechain",
                     'PROCESS_NAME': "hitracechaindemo",
                     'MSG': "no msg."
-                  }
+                  };
                   let eventInfo: hiSysEvent.SysEventInfo = {
                     domain: "RELIABILITY",
                     name: "STACK",
                     eventType: hiSysEvent.EventType.FAULT,
                     params: customizedParams
-                  }
+                  };
                   hiSysEvent.write(eventInfo).then((val: number) => {
                     console.info(`write result is ${val}`);
                     // 业务结束，关闭分布式跟踪。
