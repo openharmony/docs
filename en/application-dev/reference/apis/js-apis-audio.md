@@ -672,7 +672,7 @@ Describes audio renderer information.
 | ------------- | --------------------------- | ---- | ---------------- |
 | content       | [ContentType](#contenttype) | No  | Audio content type.<br>This parameter is mandatory in API versions 8 and 9 and optional since API version 10.|
 | usage         | [StreamUsage](#streamusage) | Yes  | Audio stream usage.|
-| rendererFlags | number                      | Yes  | Audio renderer flags.|
+| rendererFlags | number                      | Yes  | Audio renderer flags.<br>The value **0** means a common audio renderer, and **1** means a low-latency audio renderer. Currently, the JS APIs do not support the low-latency audio renderer.|
 
 ## InterruptResult<sup>9+</sup>
 
@@ -4341,9 +4341,9 @@ async function selectOutputDeviceByFilter(){
 }
 ```
 
-### getPreferOutputDeviceForRendererInfo<sup>10+</sup>
+### getPreferredOutputDeviceForRendererInfo<sup>10+</sup>
 
-getPreferOutputDeviceForRendererInfo(rendererInfo: AudioRendererInfo, callback: AsyncCallback&lt;AudioDeviceDescriptors&gt;): void
+getPreferredOutputDeviceForRendererInfo(rendererInfo: AudioRendererInfo, callback: AsyncCallback&lt;AudioDeviceDescriptors&gt;): void
 
 Obtains the output device with the highest priority based on the audio renderer information. This API uses an asynchronous callback to return the result.
 
@@ -4356,6 +4356,15 @@ Obtains the output device with the highest priority based on the audio renderer 
 | rendererInfo                | [AudioRendererInfo](#audiorendererinfo8)                     | Yes  | Audio renderer information.            |
 | callback                    | AsyncCallback&lt;[AudioDeviceDescriptors](#audiodevicedescriptors)&gt;  | Yes  | Callback used to return the information about the output device with the highest priority.|
 
+**Error codes**
+
+For details about the error codes, see [Audio Error Codes](../errorcodes/errorcode-audio.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 6800101 | if input parameter value error. Return by callback.  |
+| 6800301 | System error. Return by callback.                    |
+
 **Example**
 ```js
 let rendererInfo = {
@@ -4363,8 +4372,8 @@ let rendererInfo = {
     usage : audio.StreamUsage.STREAM_USAGE_MEDIA,
     rendererFlags : 0 }
 
-async function getPreferOutputDevice() {
-  audioRoutingManager.getPreferOutputDeviceForRendererInfo(rendererInfo, (err, desc) => {
+async function getPreferredOutputDevice() {
+  audioRoutingManager.getPreferredOutputDeviceForRendererInfo(rendererInfo, (err, desc) => {
     if (err) {
       console.error(`Result ERROR: ${err}`);
     } else {
@@ -4374,8 +4383,8 @@ async function getPreferOutputDevice() {
 }
 ```
 
-### getPreferOutputDeviceForRendererInfo<sup>10+</sup>
-getPreferOutputDeviceForRendererInfo(rendererInfo: AudioRendererInfo): Promise&lt;AudioDeviceDescriptors&gt;
+### getPreferredOutputDeviceForRendererInfo<sup>10+</sup>
+getPreferredOutputDeviceForRendererInfo(rendererInfo: AudioRendererInfo): Promise&lt;AudioDeviceDescriptors&gt;
 
 Obtains the output device with the highest priority based on the audio renderer information. This API uses a promise to return the result.
 
@@ -4399,7 +4408,8 @@ For details about the error codes, see [Audio Error Codes](../errorcodes/errorco
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
-| 6800101 | if input parameter value error              |
+| 6800101 | if input parameter value error. Return by promise.  |
+| 6800301 | System error. Return by promise.                    |
 
 **Example**
 
@@ -4409,8 +4419,8 @@ let rendererInfo = {
     usage : audio.StreamUsage.STREAM_USAGE_MEDIA,
     rendererFlags : 0 }
 
-async function getPreferOutputDevice() {
-  audioRoutingManager.getPreferOutputDeviceForRendererInfo(rendererInfo).then((desc) => {
+async function getPreferredOutputDevice() {
+  audioRoutingManager.getPreferredOutputDeviceForRendererInfo(rendererInfo).then((desc) => {
     console.info(`device descriptor: ${desc}`);
   }).catch((err) => {
     console.error(`Result ERROR: ${err}`);
@@ -4418,9 +4428,9 @@ async function getPreferOutputDevice() {
 }
 ```
 
-### on('preferOutputDeviceChangeForRendererInfo')<sup>10+</sup>
+### on('preferredOutputDeviceChangeForRendererInfo')<sup>10+</sup>
 
-on(type: 'preferOutputDeviceChangeForRendererInfo', rendererInfo: AudioRendererInfo, callback: Callback<AudioDeviceDescriptors\>): void
+on(type: 'preferredOutputDeviceChangeForRendererInfo', rendererInfo: AudioRendererInfo, callback: Callback<AudioDeviceDescriptors\>): void
 
 Subscribes to the change of the output device with the highest priority. This API uses an asynchronous callback to return the result.
 
@@ -4430,7 +4440,7 @@ Subscribes to the change of the output device with the highest priority. This AP
 
 | Name  | Type                                                | Mandatory| Description                                      |
 | :------- | :--------------------------------------------------- | :--- | :----------------------------------------- |
-| type     | string                                               | Yes  | Event type. The value **'preferOutputDeviceChangeForRendererInfo'** means the event triggered when the output device with the highest priority changes.|
+| type     | string                                               | Yes  | Event type. The value **'preferredOutputDeviceChangeForRendererInfo'** means the output device change event, which is triggered when the output device with the highest priority is changed.|
 | rendererInfo  | [AudioRendererInfo](#audiorendererinfo8)        | Yes  | Audio renderer information.             |
 | callback | Callback<[AudioDeviceDescriptors](#audiodevicedescriptors)\> | Yes  | Callback used to return the information about the output device with the highest priority.                        |
 
@@ -4450,14 +4460,14 @@ let rendererInfo = {
     usage : audio.StreamUsage.STREAM_USAGE_MEDIA,
     rendererFlags : 0 }
 
-audioRoutingManager.on('preferOutputDeviceChangeForRendererInfo', rendererInfo, (desc) => {
+audioRoutingManager.on('preferredOutputDeviceChangeForRendererInfo', rendererInfo, (desc) => {
   console.info(`device descriptor: ${desc}`);
 });
 ```
 
-### off('preferOutputDeviceChangeForRendererInfo')<sup>10+</sup>
+### off('preferredOutputDeviceChangeForRendererInfo')<sup>10+</sup>
 
-off(type: 'preferOutputDeviceChangeForRendererInfo', callback?: Callback<AudioDeviceDescriptors\>): void
+off(type: 'preferredOutputDeviceChangeForRendererInfo', callback?: Callback<AudioDeviceDescriptors\>): void
 
 Unsubscribes from the change of the output device with the highest priority.
 
@@ -4467,7 +4477,7 @@ Unsubscribes from the change of the output device with the highest priority.
 
 | Name  | Type                                               | Mandatory| Description                                      |
 | -------- | --------------------------------------------------- | ---- | ------------------------------------------ |
-| type     | string                                              | Yes  | Event type. The value **'preferOutputDeviceChangeForRendererInfo'** means the event triggered when the output device with the highest priority changes.|
+| type     | string                                              | Yes  | Event type. The value **'preferredOutputDeviceChangeForRendererInfo'** means the output device change event, which is triggered when the output device with the highest priority is changed.|
 | callback | Callback<[AudioDeviceDescriptors](#audiodevicedescriptors)> | No  | Callback used for unsubscription.                        |
 
 **Error codes**
@@ -4481,7 +4491,157 @@ For details about the error codes, see [Audio Error Codes](../errorcodes/errorco
 **Example**
 
 ```js
-audioRoutingManager.off('preferOutputDeviceChangeForRendererInfo');
+audioRoutingManager.off('preferredOutputDeviceChangeForRendererInfo');
+```
+
+### getPreferredInputDeviceForCapturerInfo<sup>10+</sup>
+
+getPreferredInputDeviceForCapturerInfo(capturerInfo: AudioCapturerInfo, callback: AsyncCallback&lt;AudioDeviceDescriptors&gt;): void
+
+Obtains the input device with the highest priority based on the audio renderer information. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Multimedia.Audio.Device
+
+**Parameters**
+
+| Name                      | Type                                                        | Mandatory| Description                     |
+| --------------------------- | ------------------------------------------------------------ | ---- | ------------------------- |
+| capturerInfo                | [AudioCapturerInfo](#audiocapturerinfo8)                     | Yes  | Audio capturer information.            |
+| callback                    | AsyncCallback&lt;[AudioDeviceDescriptors](#audiodevicedescriptors)&gt;  | Yes  | Callback used to return the information about the input device with the highest priority.|
+
+**Error codes**
+
+For details about the error codes, see [Audio Error Codes](../errorcodes/errorcode-audio.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 6800101 | if input parameter value error              |
+| 6800301 | System error                                |
+
+**Example**
+```js
+let capturerInfo = {
+  source: audio.SourceType.SOURCE_TYPE_MIC,
+  capturerFlags: 0
+}
+
+audioRoutingManager.getPreferredInputDeviceForCapturerInfo(capturerInfo, (err, desc) => {
+  if (err) {
+    console.error(`Result ERROR: ${err}`);
+  } else {
+    console.info(`device descriptor: ${desc}`);
+  }
+});
+```
+
+### getPreferredInputDeviceForCapturerInfo<sup>10+</sup>
+
+getPreferredInputDeviceForCapturerInfo(capturerInfo: AudioCapturerInfo): Promise&lt;AudioDeviceDescriptors&gt;
+
+Obtains the input device with the highest priority based on the audio renderer information. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Multimedia.Audio.Device
+
+**Parameters**
+
+| Name                | Type                                                        | Mandatory| Description                     |
+| ----------------------| ------------------------------------------------------------ | ---- | ------------------------- |
+| capturerInfo          | [AudioCapturerInfo](#audiocapturerinfo8)                     | Yes  | Audio capturer information.           |
+
+**Return value**
+
+| Type                 | Description                        |
+| --------------------- | --------------------------- |
+| Promise&lt;[AudioDeviceDescriptors](#audiodevicedescriptors)&gt;   | Promise used to return the information about the input device with the highest priority.|
+
+**Error codes**
+
+For details about the error codes, see [Audio Error Codes](../errorcodes/errorcode-audio.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 6800101 | if input parameter value error              |
+| 6800301 | System error                                |
+
+**Example**
+
+```js
+let capturerInfo = {
+  source: audio.SourceType.SOURCE_TYPE_MIC,
+  capturerFlags: 0
+}
+
+audioRoutingManager.getPreferredInputDeviceForCapturerInfo(capturerInfo).then((desc) => {
+  console.info(`device descriptor: ${desc}`);
+}).catch((err) => {
+  console.error(`Result ERROR: ${err}`);
+})
+```
+
+### on('preferredInputDeviceChangeForCapturerInfo')<sup>10+</sup>
+
+on(type: 'preferredInputDeviceChangeForCapturerInfo', capturerInfo: AudioCapturerInfo, callback: Callback<AudioDeviceDescriptors\>): void
+
+Subscribes to the change of the input device with the highest priority. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Multimedia.Audio.Device
+
+**Parameters**
+
+| Name  | Type                                                | Mandatory| Description                                      |
+| :------- | :--------------------------------------------------- | :--- | :----------------------------------------- |
+| type     | string                                               | Yes  | Event type. The value **'preferredInputDeviceChangeForCapturerInfo'** means the input device change event, which is triggered when the input device with the highest priority is changed.|
+| capturerInfo  | [AudioCapturerInfo](#audiocapturerinfo8)        | Yes  | Audio capturer information.             |
+| callback | Callback<[AudioDeviceDescriptors](#audiodevicedescriptors)\> | Yes  | Callback used to return the information about the input device with the highest priority.                        |
+
+**Error codes**
+
+For details about the error codes, see [Audio Error Codes](../errorcodes/errorcode-audio.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 6800101 | if input parameter value error              |
+
+**Example**
+
+```js
+let capturerInfo = {
+  source: audio.SourceType.SOURCE_TYPE_MIC,
+  capturerFlags: 0
+}
+
+audioRoutingManager.on('preferredInputDeviceChangeForCapturerInfo', capturerInfo, (desc) => {
+  console.info(`device descriptor: ${desc}`);
+});
+```
+
+### off('preferredInputDeviceChangeForCapturerInfo')<sup>10+</sup>
+
+off(type: 'preferredInputDeviceChangeForCapturerInfo', callback?: Callback<AudioDeviceDescriptors\>): void
+
+Unsubscribes from the change of the input device with the highest priority.
+
+**System capability**: SystemCapability.Multimedia.Audio.Device
+
+**Parameters**
+
+| Name  | Type                                               | Mandatory| Description                                      |
+| -------- | --------------------------------------------------- | ---- | ------------------------------------------ |
+| type     | string                                              | Yes  | Event type. The value **'preferredInputDeviceChangeForCapturerInfo'** means the input device change event, which is triggered when the input device with the highest priority is changed.|
+| callback | Callback<[AudioDeviceDescriptors](#audiodevicedescriptors)> | No  | Callback used for unsubscription.                        |
+
+**Error codes**
+
+For details about the error codes, see [Audio Error Codes](../errorcodes/errorcode-audio.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 6800101 | if input parameter value error              |
+
+**Example**
+
+```js
+audioRoutingManager.off('preferredInputDeviceChangeForCapturerInfo');
 ```
 
 ## AudioRendererChangeInfoArray<sup>9+</sup>
@@ -4861,6 +5021,14 @@ Sets an audio effect mode. This API uses an asynchronous callback to return the 
 | mode     | [AudioEffectMode](#audioeffectmode10)    | Yes  | Audio effect mode to set.              |
 | callback | AsyncCallback\<void>                     | Yes  | Callback used to return the result. |
 
+**Error codes**
+
+For details about the error codes, see [Audio Error Codes](../errorcodes/errorcode-audio.md).
+
+| ID| Error Message|
+| ------- | ----------------------------------------------|
+| 6800101 | Invalid parameter error. Return by callback.  |
+
 **Example**
 
 ```js
@@ -4892,6 +5060,14 @@ Sets an audio effect mode. This API uses a promise to return the result.
 | Type          | Description                     |
 | -------------- | ------------------------- |
 | Promise\<void> | Promise used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Audio Error Codes](../errorcodes/errorcode-audio.md).
+
+| ID| Error Message|
+| ------- | ---------------------------------------------|
+| 6800101 | Invalid parameter error. Return by promise.  |
 
 **Example**
 
