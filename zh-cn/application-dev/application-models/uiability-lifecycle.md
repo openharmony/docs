@@ -32,7 +32,9 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-> **说明**：[Want](../reference/apis/js-apis-app-ability-want.md)是对象间信息传递的载体，可以用于应用组件间的信息传递。Want的详细介绍请参见[信息传递载体Want](want-overview.md)。
+> **说明**：
+>
+> [Want](../reference/apis/js-apis-app-ability-want.md)是对象间信息传递的载体，可以用于应用组件间的信息传递。Want的详细介绍请参见[信息传递载体Want](want-overview.md)。
 
 ### WindowStageCreate和WindowStageDestory状态
 
