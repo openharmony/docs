@@ -11,7 +11,7 @@
 
 ## 导入模块
 
-```js
+```ts
 import componentSnapshot from "@ohos.arkui.componentSnapshot";
 ```
 
@@ -42,14 +42,14 @@ get(id: string, callback: AsyncCallback<image.PixelMap>): void
 
 **示例：**
 
-```js
+```ts
 import componentSnapshot from '@ohos.arkui.componentSnapshot'
 import image from '@ohos.multimedia.image'
 
 @Entry
 @Component
 struct SnapshotExample {
-  @State pixmap: image.PixelMap = undefined
+  @State pixmap: image.PixelMap|undefined = undefined
 
   build() {
     Column() {
@@ -108,14 +108,14 @@ get(id: string): Promise<image.PixelMap>
 
 **示例：**
 
-```js
+```ts
 import componentSnapshot from '@ohos.arkui.componentSnapshot'
 import image from '@ohos.multimedia.image'
 
 @Entry
 @Component
 struct SnapshotExample {
-  @State pixmap: image.PixelMap = undefined
+  @State pixmap: image.PixelMap|undefined = undefined
 
   build() {
     Column() {
