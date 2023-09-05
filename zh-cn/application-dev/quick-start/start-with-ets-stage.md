@@ -275,6 +275,7 @@
    // Index.ets
    // 导入页面路由模块
    import router from '@ohos.router';
+   import { BusinessError } from '@ohos.base';
    
    @Entry
    @Component
@@ -306,7 +307,7 @@
             // 跳转到第二页
               router.pushUrl({ url: 'pages/Second' }).then(() => {
                 console.info('Succeeded in jumping to the second page.')
-              }).catch((err) => {
+              }).catch((err: BusinessError) => {
                 console.error(`Failed to jump to the second page.Code is ${err.code}, message is ${err.message}`)
               })
            })
@@ -326,6 +327,7 @@
    // Second.ets
    // 导入页面路由模块
    import router from '@ohos.router';
+   import { BusinessError } from '@ohos.base';
    
    @Entry
    @Component
@@ -358,7 +360,9 @@
                router.back()
                console.info('Succeeded in returning to the first page.')
              } catch (err) {
-               console.error(`Failed to return to the first page.Code is ${err.code}, message is ${err.message}`)
+                let code = (err as BusinessError).code;
+                let message = (err as BusinessError).message;
+               console.error(`Failed to return to the first page.Code is ${code}, message is ${message}`)
              }
            })
          }
