@@ -31,7 +31,7 @@ Web组件提供了在新窗口打开页面的能力，开发者可以通过[mult
         .multiWindowAccess(true)
         .onWindowNew((event) => {
           console.info("onWindowNew...");
-          var popController: web_webview.WebviewController = new web_webview.WebviewController();
+          let popController: web_webview.WebviewController = new web_webview.WebviewController();
           // 开发者需要在此处新建窗口,跟popController关联，并且将popController返回给Web组件。如果不需要打开新窗口请将返回值设置为event.handler.setWebController(null);
           event.handler.setWebController(popController);
         })
