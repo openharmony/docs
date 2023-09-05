@@ -116,13 +116,13 @@ Column() {
     })
   ```
 
-- 使用匿名函数表达式配置组件的事件方法，要求使用bind，以确保函数体中的this指向当前组件。
+- 使用匿名函数表达式配置组件的事件方法，要求使用“() => {...}”，以确保函数与组件绑定，同时符合ArtTS语法规范。
 
   ```ts
   Button('add counter')
-    .onClick(function(){
+    .onClick(() => {
       this.counter += 2;
-    }.bind(this))
+    })
   ```
 
 - 使用组件的成员函数配置组件的事件方法。
@@ -133,7 +133,7 @@ Column() {
   }
   ...
   Button('add counter')
-    .onClick(this.myClickHandler.bind(this))
+    .onClick(this.myClickHandler)
   ```
 
 
