@@ -62,8 +62,8 @@ struct GestureGroupExample {
       // 以下组合手势为顺序识别，当长按手势事件未正常触发时则不会触发拖动手势事件
     GestureGroup(GestureMode.Sequence,
     LongPressGesture({ repeat: true })
-      .onAction((event: GestureEvent) => {
-        if (event.repeat) {
+      .onAction((event?: GestureEvent) => {
+        if (event && event.repeat) {
           this.count++
         }
         console.info('LongPress onAction')
@@ -76,9 +76,11 @@ struct GestureGroupExample {
         this.borderStyles = BorderStyle.Dashed
         console.info('pan start')
       })
-      .onActionUpdate((event: GestureEvent) => {
-        this.offsetX = this.positionX + event.offsetX
-        this.offsetY = this.positionY + event.offsetY
+      .onActionUpdate((event?: GestureEvent) => {
+        if (event) {
+          this.offsetX = this.positionX + event.offsetX
+          this.offsetY = this.positionY + event.offsetY
+        }
         console.info('pan update')
       })
       .onActionEnd(() => {
