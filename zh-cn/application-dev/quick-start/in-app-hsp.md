@@ -145,6 +145,7 @@ export { nativeMulti } from './utils/nativeTest'
 ```ts
 // entry/src/main/ets/pages/index.ets
 import { Log, add, MyTitleBar, ResManager, nativeMulti } from "library"
+import { BusinessError } from '@ohos.base';
 
 @Entry
 @Component
@@ -172,7 +173,7 @@ struct Index {
               .then(value => {
                 console.log("getStringValue is " + value);
               })
-              .catch(error => {
+              .catch((err: BusinessError) => {
                 console.log("getStringValue promise error is " + error);
               });
           })
