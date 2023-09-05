@@ -5,7 +5,7 @@
 
 - [分层参数](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/key-features/multi-device-app-dev/visual-basics.md)的场景、id、参数详细对照表，[OpenHarmony系统资源分层设计表V1.0.xlsm](figures/OpenHarmony_系统资源分层设计表_V1.0.xlsm)
 
-- 符合规范的[设计交付件](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/key-features/multi-device-app-dev/design-delivery.md)样例，[OpenHarmony天气应用UX设计交付件V1.0.zip](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/key-features/multi-device-app-dev/OpenHarmony_%E5%A4%A9%E6%B0%94%E5%BA%94%E7%94%A8UX%E8%AE%BE%E8%AE%A1%E4%BA%A4%E4%BB%98%E4%BB%B6_V1.0.zip)
+- 符合规范的[设计交付件](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/key-features/multi-device-app-dev/design-delivery.md)样例，[OpenHarmony天气应用UX设计交付件V1.0.zip](figures/OpenHarmony_天气应用UX设计交付件_V1.0.zip)
 
 - OpenHarmony[图标](visual-icons.md)资源，[OpenHarmony_Icons.zip](figures/OpenHarmony_Icons.zip)
 
