@@ -332,9 +332,7 @@ import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 class MyUIAbility extends UIAbility {
     onShare(wantParams) {
         console.log('onShare');
-        wantParams['ohos.extra.param.key.contentTitle'] = 'shareFeatureAbility';
-        wantParams['ohos.extra.param.key.shareAbstract'] = 'huawei employee';
-        wantParams['ohos.extra.param.key.shareUrl'] = 'w3.huawei.com';
+        wantParams['ohos.extra.param.key.shareUrl'] = 'example.com';
     }
 }
   ```
