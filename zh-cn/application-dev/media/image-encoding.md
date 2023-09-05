@@ -32,7 +32,7 @@
    ```ts
    imagePackerApi.packing(pixelMap, packOpts).then( (data : ArrayBuffer) => {
      // data 为打包获取到的文件流，写入文件保存即可得到一张图片
-   }).catch(error => { 
+   }).catch((error : BusinessError) => { 
      console.error('Failed to pack the image. And the error is: ' + error); 
    })
    ```
@@ -42,7 +42,7 @@
    ```ts
    imagePackerApi.packing(imageSource, packOpts).then( (data : ArrayBuffer) => {
        // data 为打包获取到的文件流，写入文件保存即可得到一张图片
-   }).catch(error => { 
+   }).catch((error : BusinessError) => { 
      console.error('Failed to pack the image. And the error is: ' + error); 
    })
    ```
