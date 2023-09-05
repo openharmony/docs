@@ -42,20 +42,20 @@ struct DividerExample {
       // 使用横向分割线场景
       Text('Horizontal divider').fontSize(9).fontColor(0xCCCCCC)
       List() {
-        ForEach([1, 2, 3], (item) => {
+        ForEach([1, 2, 3], (item: number) => {
           ListItem() {
             Text('list' + item).width('100%').fontSize(14).fontColor('#182431').textAlign(TextAlign.Start)
           }.width(244).height(48)
-        }, item => item.toString())
+        }, (item: number) => item.toString())
       }.padding({ left: 24, bottom: 8 })
 
       Divider().strokeWidth(8).color('#F1F3F5')
       List() {
-        ForEach([4, 5], (item) => {
+        ForEach([4, 5], (item: number) => {
           ListItem() {
             Text('list' + item).width('100%').fontSize(14).fontColor('#182431').textAlign(TextAlign.Start)
           }.width(244).height(48)
-        }, item => item.toString())
+        }, (item: number) => item.toString())
       }.padding({ left: 24, top: 8 })
 
       // 使用纵向分割线场景
