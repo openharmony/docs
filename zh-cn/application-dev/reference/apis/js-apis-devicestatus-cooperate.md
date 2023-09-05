@@ -156,7 +156,7 @@ activate(targetNetworkId: string, inputDeviceId: number, callback: AsyncCallback
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 20900001 | 当调用键鼠穿越接口时穿越状态异常，系统会产生此错误码。                |
+| 20900001 | Operation failed.  |
 
 **示例**：
 
@@ -205,7 +205,7 @@ activate(targetNetworkId: string, inputDeviceId: number): Promise&lt;void&gt;;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 20900001 | 当调用键鼠穿越接口时穿越状态异常，系统会产生此错误码。               |
+| 20900001 | Operation failed.    |
 
 **示例**：
 
