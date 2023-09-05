@@ -21,7 +21,6 @@ struct WebComponent {
         .onClick(() => {
           if (this.webviewController.accessBackward()) {
             this.webviewController.backward();
-            return true;
           }
         })
       Web({ src: 'https://www.example.com/cn/', controller: this.webviewController})
@@ -55,11 +54,13 @@ struct WebComponent {
       Column() {
         Web({ src: $rawfile('route.html'), controller: this.webviewController })
           .onUrlLoadIntercept((event) => {
-            let url: string = event.data as string;
-            if (url.indexOf('native://') === 0) {
-              // 跳转其他界面
-              router.pushUrl({ url:url.substring(9) })
-              return true;
+            if (event) {
+              let url: string = event.data as string;
+              if (url.indexOf('native://') === 0) {
+                // 跳转其他界面
+                router.pushUrl({ url:url.substring(9) })
+                return true;
+              }
             }
             return false;
           })
@@ -122,18 +123,20 @@ Web组件可以实现点击前端页面超链接跳转到其他应用。
       Column() {
         Web({ src: $rawfile('xxx.html'), controller: this.webviewController})
           .onUrlLoadIntercept((event) => {
-            let url: string = event.data as string;
-            // 判断链接是否为拨号链接
-            if (url.indexOf('tel://') === 0) {
-              // 跳转拨号界面
-              call.makeCall(url.substring(6), (err) => {
-                if (!err) {
-                  console.info('make call succeeded.');
-                } else {
-                  console.info('make call fail, err is:' + JSON.stringify(err));
-                }
-              });
-              return true;
+            if (event) {
+              let url: string = event.data as string;
+              // 判断链接是否为拨号链接
+              if (url.indexOf('tel://') === 0) {
+                // 跳转拨号界面
+                call.makeCall(url.substring(6), (err) => {
+                  if (!err) {
+                    console.info('make call succeeded.');
+                  } else {
+                    console.info('make call fail, err is:' + JSON.stringify(err));
+                  }
+                });
+                return true;
+              }
             }
             return false;
           })
