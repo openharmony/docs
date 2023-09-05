@@ -81,7 +81,7 @@ struct ImageExample {
           }
           .height('90%')
           .width('100%')
-          .allowDrop([UTD.UniformDataType.TEXT, UTD.UniformDataType.IMAGE])
+          .allowDrop([UTD.UniformDataType.TEXT])
           .onDrop((event: DragEvent, extraParams: string) => {
             let jsonString = JSON.parse(extraParams);
             this.uri = jsonString.extraInfo;
