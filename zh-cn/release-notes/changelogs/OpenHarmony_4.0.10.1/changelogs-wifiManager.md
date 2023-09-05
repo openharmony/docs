@@ -31,7 +31,7 @@
 **适配指导**<br>
 权限重新适配
 
-### cl.wifiManager.2 新增接口声明
+## cl.wifiManager.2 新增接口声明
 
 | 接口声明 | 接口描述 |
 |------|---------|
@@ -52,7 +52,7 @@
 无需适配
 
 
-### cl.wifiManager.3 修改接口**function** scan(): **void** 为 **function** startScan(): **void**;
+## cl.wifiManager.3 修改接口**function** scan(): **void** 为 **function** startScan(): **void**;
 
 **变更影响**<br>
 使用之前已发布的API 9各beta版本且使用到了上述的scan，需要改为使用startScan接口。
@@ -64,7 +64,7 @@
 由scan需要改为使用startScan接口。
 
 
-### cl.wifiManager.4 修改接口getScanResults(): Promise<Array<WifiScanInfo>> 为 **function** getScanInfoList(): Array<WifiScanInfo>;
+## cl.wifiManager.4 修改接口getScanResults(): Promise<Array<WifiScanInfo>> 为 **function** getScanInfoList(): Array<WifiScanInfo>;
 	
 **变更影响**<br>
 使用之前已发布的API 9各beta版本且使用到了上述的getScanResults，需要改为使用getScanInfoList接口。
@@ -76,7 +76,7 @@
 由getScanResults需要改为使用getScanInfoList接口。
 
 
-### cl.wifiManager.5 修改接口function** getScanResults(callback: AsyncCallback<Array<WifiScanInfo>>): **void**; 为 **function** getScanInfoList(): Array<WifiScanInfo>;
+## cl.wifiManager.5 修改接口function** getScanResults(callback: AsyncCallback<Array<WifiScanInfo>>): **void**; 为 **function** getScanInfoList(): Array<WifiScanInfo>;
 	
 **变更影响**<br>
 使用之前已发布的API 9各beta版本且使用到了上述的getScanResults，需要改为使用getScanInfoList接口。
@@ -88,7 +88,7 @@
 由getScanResults需要改为使用getScanInfoList接口。
 
 
-### cl.wifiManager.6 修改接口**function** getScanResultsSync(): Array<WifiScanInfo>; 为 **function** getScanInfoList(): Array<WifiScanInfo>;
+## cl.wifiManager.6 修改接口**function** getScanResultsSync(): Array<WifiScanInfo>; 为 **function** getScanInfoList(): Array<WifiScanInfo>;
 
 **变更影响**<br>
 使用之前已发布的API 9各beta版本且使用到了上述的getScanResultsSync，需要改为使用getScanInfoList接口。
