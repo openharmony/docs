@@ -3925,7 +3925,7 @@ async function preview(context: featureAbility.Context, cameraInfo: camera.Camer
   const cameraInput: camera.CameraInput = cameraManager.createCameraInput(cameraInfo)
   const previewOutput: camera.PreviewOutput = await cameraManager.createDeferredPreviewOutput(previewProfile);
   const photoOutput: camera.PhotoOutput = cameraManager.createPhotoOutput(photoProfile);
-  const session: camera.CaptureSession  = await this.mCameraManager.createCaptureSession();
+  const session: camera.CaptureSession  = await cameraManager.createCaptureSession();
   session.beginConfig();
   session.addInput(cameraInput);
   session.addOutput(previewOutput);
@@ -4666,7 +4666,7 @@ off(type: 'quickThumbnail', callback?: AsyncCallback\<image.PixelMap>): void
 
 ```ts
 function unregisterQuickThumbnail(photoOutput: camera.PhotoOutput): void {
-  this.photoOutput.off('quickThumbnail');
+  photoOutput.off('quickThumbnail');
 }
 ```
 
