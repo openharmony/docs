@@ -40,7 +40,7 @@ struct ImageExample1 {
 ```typescript
 @Entry
 @Component
-struct ImageExample1 {
+struct ImageExample2 {
   build() {
     Column() {
       Row() {
@@ -78,7 +78,7 @@ function computeTask(arr: string[]): string[] {
 
 @Entry
 @Component
-struct AspectRatioExample {
+struct AspectRatioExample3 {
   @State children: string[] = ['1', '2', '3', '4', '5', '6'];
 
   aboutToAppear() {
@@ -88,8 +88,7 @@ struct AspectRatioExample {
   async computeTaskInTaskPool() {
     const param = this.children.slice();
     let task = new taskpool.Task(computeTask, param);
-    // @ts-ignore
-    this.children = await taskpool.execute(task);
+    await taskpool.execute(task);
   }
 
   build() {
@@ -105,7 +104,7 @@ struct AspectRatioExample {
 ```typescript
 @Entry
 @Component
-struct AspectRatioExample {
+struct AspectRatioExample4 {
   @State private children: string[] = ['1', '2', '3', '4', '5', '6'];
   private count: number = 0;
 
@@ -123,11 +122,9 @@ struct AspectRatioExample {
   }
 
   computeTaskAsync() {
-    new Promise((resolved, rejected) => {
-      setTimeout(() => { // 这里使用setTimeout来实现异步延迟运行
-        this.computeTask();
-      }, 1000)
-    })
+    setTimeout(() => { // 这里使用setTimeout来实现异步延迟运行
+      this.computeTask();
+    }, 1000)
   }
 
   build() {
@@ -149,7 +146,7 @@ struct AspectRatioExample {
 ```typescript
 @Entry
 @Component
-struct StackExample {
+struct StackExample5 {
   @State isVisible : boolean = false;
 
   build() {
@@ -178,7 +175,7 @@ struct StackExample {
 ```typescript
 @Entry
 @Component
-struct StackExample {
+struct StackExample6 {
   @State isVisible : boolean = false;
 
   build() {
@@ -211,8 +208,8 @@ struct StackExample {
 ```typescript
 @Entry
 @Component
-struct MyComponent {
-  @State arr: number[] = Array.from(Array(10000), (v,k) =>k); 
+struct MyComponent7 {
+  @State arr: number[] = Array.from(Array<number>(10000), (v,k) =>k); 
   build() {
     List() {
       ForEach(this.arr, (item: number) => {
@@ -235,8 +232,8 @@ class BasicDataSource implements IDataSource {
     return 0
   }
 
-  public getData(index: number): any {
-    return undefined
+  public getData(index: number): string {
+    return ''
   }
 
   registerDataChangeListener(listener: DataChangeListener): void {
@@ -286,13 +283,13 @@ class BasicDataSource implements IDataSource {
 }
 
 class MyDataSource extends BasicDataSource {
-  private dataArray: string[] = Array.from(Array(10000), (v, k) => k.toString());
+  private dataArray: string[] = Array.from(Array<number>(10000), (v, k) => k.toString());
 
   public totalCount(): number {
     return this.dataArray.length
   }
 
-  public getData(index: number): any {
+  public getData(index: number): string  {
     return this.dataArray[index]
   }
 
@@ -318,7 +315,7 @@ struct MyComponent {
         ListItem() {
             Text(item).fontSize(20).margin({ left: 10 })
         }
-      }, item => item)
+      }, (item:string) => item)
     }
   }
 }

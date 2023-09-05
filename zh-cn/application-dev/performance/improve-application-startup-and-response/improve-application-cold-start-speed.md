@@ -100,11 +100,9 @@ struct Index {
 
   // 运算任务异步处理
   private computeTaskAsync() {
-    new Promise((resolved, rejected) => {
-      setTimeout(() => { // 这里使用setTimeout来实现异步延迟运行
-        this.computeTask();
-      }, 1000)
-    })
+    setTimeout(() => { // 这里使用setTimeout来实现异步延迟运行
+      this.computeTask();
+    }, 1000)
   }
 }
 ```
