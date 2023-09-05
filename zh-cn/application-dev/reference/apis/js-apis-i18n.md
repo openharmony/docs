@@ -1753,7 +1753,6 @@ static getTimezonesByLocation(longitude: number, latitude: number): Array&lt;Tim
 
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
-|  401   |  check param failed   |
 | 890001 | param value not valid |
 
 **示例：**
