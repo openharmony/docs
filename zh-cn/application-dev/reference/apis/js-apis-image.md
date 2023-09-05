@@ -41,7 +41,7 @@ let bufferArr : Uint8Array = new Uint8Array(color);
 let opts : image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
 image.createPixelMap(color, opts).then((pixelmap : image.PixelMap) => {
   console.log('Succeeded in creating pixelmap.');
-}).catch(error => {
+}).catch((error : BusinessError) => {
   console.log('Failed to create pixelmap.');
 })
 ```
@@ -115,7 +115,7 @@ readPixelsToBuffer(dst: ArrayBuffer): Promise\<void>
 const readBuffer : ArrayBuffer = new ArrayBuffer(96);  //96为需要创建的像素buffer大小，取值为：height * width *4
 pixelmap.readPixelsToBuffer(readBuffer).then(() => {
     console.log('Succeeded in reading image pixel data.');  //符合条件则进入 
-}).catch(error => {
+}).catch((error : BusinessError) => {
     console.log('Failed to read image pixel data.');  //不符合条件则进入
 })
 ```
@@ -179,7 +179,7 @@ const area : image.PositionArea = {
 }
 pixelmap.readPixels(area).then(() => {
     console.log('Succeeded in reading the image data in the area.'); //符合条件则进入
-}).catch(error => {
+}).catch((error : BusinessError) => {
     console.log('Failed to read the image data in the area.'); //不符合条件则进入
 })
 ```
@@ -264,7 +264,7 @@ image.createPixelMap(color, opts)
         pixelmap.writePixels(area).then(() => {
 		    console.info('Succeeded to write pixelmap into the specified area.');
         })
-    }).catch(error => {
+    }).catch((error : BusinessError) => {
         console.log('error: ' + error);
     })
 ```
@@ -335,7 +335,7 @@ for (var i = 0; i < bufferArr.length; i++) {
 }
 pixelmap.writeBufferToPixels(color).then(() => {
     console.log("Succeeded in writing data from a buffer to a PixelMap.");
-}).catch((err) => {
+}).catch((error : BusinessError) => {
     console.error("Failed to write data from a buffer to a PixelMap.");
 })
 ```
@@ -1076,7 +1076,7 @@ release():Promise\<void>
 ```js
 pixelmap.release().then(() => {
 	console.log('Succeeded in releasing pixelmap object.');
-}).catch(error => {
+}).catch((error : BusinessError) => {
 	console.log('Failed to release pixelmap object.');
 })
 ```
@@ -1414,7 +1414,7 @@ getImageInfo(index?: number): Promise\<ImageInfo>
 imageSourceApi.getImageInfo(0)
     .then((imageInfo : image.ImageInfo) => {
 		console.log('Succeeded in obtaining the image information.');
-	}).catch(error => {
+	}).catch((error : BusinessError) => {
 		console.log('Failed to obtain the image information.');
 	})
 ```
@@ -1644,7 +1644,7 @@ createPixelMap(options?: DecodingOptions): Promise\<PixelMap>
 ```js
 imageSourceApi.createPixelMap().then((pixelmap : image.PixelMap) => {
     console.log('Succeeded in creating pixelmap object through image decoding parameters.');
-}).catch(error => {
+}).catch((error : BusinessError) => {
     console.log('Failed to create pixelmap object through image decoding parameters.');
 })
 ```
@@ -2007,7 +2007,7 @@ release(): Promise\<void>
 ```js
 imageSourceApi.release().then(()=>{
     console.log('Succeeded in releasing the image source instance.');
-}).catch(error => {
+}).catch((error : BusinessError) => {
     console.log('Failed to release the image source instance.');
 })
 ```
@@ -2097,7 +2097,7 @@ let packOpts : image.PackingOption = { format:"image/jpeg", quality:98 }
 imagePackerApi.packing(imageSourceApi, packOpts)
     .then( data : ArrayBuffer => {
         console.log('packing succeeded.');
-	}).catch(error => {
+	}).catch((error : BusinessError) => {
 	    console.log('packing failed.');
 	})
 ```
@@ -2164,7 +2164,7 @@ image.createPixelMap(color, opts).then((pixelmap : image.PixelMap) => {
     imagePackerApi.packing(pixelmap, packOpts)
         .then( data : ArrayBuffer => {
             console.log('Succeeded in packing the image.');
-        }).catch(error => {
+        }).catch((error : BusinessError) => {
             console.log('Failed to pack the image..');
         })
 })
@@ -2211,7 +2211,7 @@ release(): Promise\<void>
 ```js
 imagePackerApi.release().then(()=>{
     console.log('Succeeded in releasing image packaging.');
-}).catch((error)=>{ 
+}).catch((error : BusinessError)=>{ 
     console.log('Failed to release image packaging.'); 
 }) 
 ```
@@ -2306,7 +2306,7 @@ getReceivingSurfaceId(): Promise\<string>
 ```js
 receiver.getReceivingSurfaceId().then( (id : string) => { 
     console.log('getReceivingSurfaceId succeeded.');
-}).catch(error => {
+}).catch((error : BusinessError) => {
     console.log('getReceivingSurfaceId failed.');
 })
 ```
@@ -2356,7 +2356,7 @@ readLatestImage(): Promise\<Image>
 ```js
 receiver.readLatestImage().then((img : image.Image) => {
     console.log('readLatestImage succeeded.');
-}).catch(error => {
+}).catch((error : BusinessError) => {
     console.log('readLatestImage failed.');
 })
 ```
@@ -2406,7 +2406,7 @@ readNextImage(): Promise\<Image>
 ```js
 receiver.readNextImage().then((img : image.Image) => {
     console.log('readNextImage succeeded.');
-}).catch(error => {
+}).catch((error : BusinessError) => {
     console.log('readNextImage failed.');
 })
 ```
@@ -2471,7 +2471,7 @@ release(): Promise\<void>
 ```js
 receiver.release().then(() => {
     console.log('release succeeded.');
-}).catch(error => {
+}).catch((error : BusinessError) => {
     console.log('release failed.');
 })
 ```
@@ -2563,7 +2563,7 @@ dequeueImage(): Promise\<Image>
 ```js
 creator.dequeueImage().then((img : image.Image) => {
     console.info('dequeueImage succeeded.');
-}).catch(error => {
+}).catch((error : BusinessError) => {
     console.log('dequeueImage failed: ' + error);
 })
 ```
@@ -2643,7 +2643,7 @@ creator.dequeueImage().then((img : image.Image) => {
     })
     creator.queueImage(img).then(() => {
         console.info('queueImage succeeded.');
-    }).catch(error => {
+    }).catch((error : BusinessError) => {
         console.info('queueImage failed: ' + error);
     })
 })
@@ -2719,7 +2719,7 @@ release(): Promise\<void>
 ```js
 creator.release().then(() => {
     console.info('release succeeded');
-}).catch(error => {
+}).catch((error : BusinessError) => {
     console.info('release failed');
 })
 ```
@@ -2836,7 +2836,7 @@ release(): Promise\<void>
 ```js
 img.release().then(() =>{
     console.log('release succeeded.');
-}).catch(error => {
+}).catch((error : BusinessError) => {
     console.log('release failed.');
 })
 ```
