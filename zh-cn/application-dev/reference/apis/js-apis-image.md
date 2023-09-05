@@ -36,12 +36,13 @@ createPixelMap(colors: ArrayBuffer, options: InitializationOptions): Promise\<Pi
 **示例：**
 
 ```js
+import {BusinessError} from '@ohos.base'
 const color : ArrayBuffer = new ArrayBuffer(96);  //96为需要创建的像素buffer大小，取值为：height * width *4
 let bufferArr : Uint8Array = new Uint8Array(color);
 let opts : image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
 image.createPixelMap(color, opts).then((pixelmap : image.PixelMap) => {
   console.log('Succeeded in creating pixelmap.');
-}).catch(error => {
+}).catch((error : BusinessError) => {
   console.log('Failed to create pixelmap.');
 })
 ```
@@ -112,10 +113,11 @@ readPixelsToBuffer(dst: ArrayBuffer): Promise\<void>
 **示例：**
 
 ```js
+import {BusinessError} from '@ohos.base'
 const readBuffer : ArrayBuffer = new ArrayBuffer(96);  //96为需要创建的像素buffer大小，取值为：height * width *4
 pixelmap.readPixelsToBuffer(readBuffer).then(() => {
     console.log('Succeeded in reading image pixel data.');  //符合条件则进入 
-}).catch(error => {
+}).catch((error : BusinessError) => {
     console.log('Failed to read image pixel data.');  //不符合条件则进入
 })
 ```
@@ -171,6 +173,7 @@ readPixels(area: PositionArea): Promise\<void>
 **示例：**
 
 ```js
+import {BusinessError} from '@ohos.base'
 const area : image.PositionArea = {
     pixels: new ArrayBuffer(8),
     offset: 0,
@@ -179,7 +182,7 @@ const area : image.PositionArea = {
 }
 pixelmap.readPixels(area).then(() => {
     console.log('Succeeded in reading the image data in the area.'); //符合条件则进入
-}).catch(error => {
+}).catch((error : BusinessError) => {
     console.log('Failed to read the image data in the area.'); //不符合条件则进入
 })
 ```
@@ -243,6 +246,7 @@ writePixels(area: PositionArea): Promise\<void>
 **示例：**
 
 ```js
+import {BusinessError} from '@ohos.base'
 const color : ArrayBuffer = new ArrayBuffer(96);  //96为需要创建的像素buffer大小，取值为：height * width *4
 let bufferArr : Uint8Array = new Uint8Array(color);
 let opts : image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
@@ -264,7 +268,7 @@ image.createPixelMap(color, opts)
         pixelmap.writePixels(area).then(() => {
 		    console.info('Succeeded to write pixelmap into the specified area.');
         })
-    }).catch(error => {
+    }).catch((error : BusinessError) => {
         console.log('error: ' + error);
     })
 ```
@@ -328,6 +332,7 @@ writeBufferToPixels(src: ArrayBuffer): Promise\<void>
 **示例：**
 
 ```js
+import {BusinessError} from '@ohos.base'
 const color : ArrayBuffer = new ArrayBuffer(96);  //96为需要创建的像素buffer大小，取值为：height * width *4
 let bufferArr : Uint8Array = new Uint8Array(color);
 for (var i = 0; i < bufferArr.length; i++) {
@@ -335,7 +340,7 @@ for (var i = 0; i < bufferArr.length; i++) {
 }
 pixelmap.writeBufferToPixels(color).then(() => {
     console.log("Succeeded in writing data from a buffer to a PixelMap.");
-}).catch((err) => {
+}).catch((error : BusinessError) => {
     console.error("Failed to write data from a buffer to a PixelMap.");
 })
 ```
@@ -1074,9 +1079,10 @@ release():Promise\<void>
 **示例：**
 
 ```js
+import {BusinessError} from '@ohos.base'
 pixelmap.release().then(() => {
 	console.log('Succeeded in releasing pixelmap object.');
-}).catch(error => {
+}).catch((error : BusinessError) => {
 	console.log('Failed to release pixelmap object.');
 })
 ```
@@ -1411,10 +1417,11 @@ getImageInfo(index?: number): Promise\<ImageInfo>
 **示例：**
 
 ```js
+import {BusinessError} from '@ohos.base'
 imageSourceApi.getImageInfo(0)
     .then((imageInfo : image.ImageInfo) => {
 		console.log('Succeeded in obtaining the image information.');
-	}).catch(error => {
+	}).catch((error : BusinessError) => {
 		console.log('Failed to obtain the image information.');
 	})
 ```
@@ -1642,9 +1649,10 @@ createPixelMap(options?: DecodingOptions): Promise\<PixelMap>
 **示例：**
 
 ```js
+import {BusinessError} from '@ohos.base'
 imageSourceApi.createPixelMap().then((pixelmap : image.PixelMap) => {
     console.log('Succeeded in creating pixelmap object through image decoding parameters.');
-}).catch(error => {
+}).catch((error : BusinessError) => {
     console.log('Failed to create pixelmap object through image decoding parameters.');
 })
 ```
@@ -2005,9 +2013,10 @@ release(): Promise\<void>
 **示例：**
 
 ```js
+import {BusinessError} from '@ohos.base'
 imageSourceApi.release().then(()=>{
     console.log('Succeeded in releasing the image source instance.');
-}).catch(error => {
+}).catch((error : BusinessError) => {
     console.log('Failed to release the image source instance.');
 })
 ```
@@ -2092,12 +2101,13 @@ packing(source: ImageSource, option: PackingOption): Promise\<ArrayBuffer>
 **示例：**
 
 ```js
+import {BusinessError} from '@ohos.base'
 const imageSourceApi : image.ImageSource = image.createImageSource(0);
 let packOpts : image.PackingOption = { format:"image/jpeg", quality:98 }
 imagePackerApi.packing(imageSourceApi, packOpts)
     .then( data : ArrayBuffer => {
         console.log('packing succeeded.');
-	}).catch(error => {
+	}).catch((error : BusinessError) => {
 	    console.log('packing failed.');
 	})
 ```
@@ -2156,6 +2166,7 @@ packing(source: PixelMap, option: PackingOption): Promise\<ArrayBuffer>
 **示例：**
 
 ```js
+import {BusinessError} from '@ohos.base'
 const color : ArrayBuffer = new ArrayBuffer(96);  //96为需要创建的像素buffer大小，取值为：height * width *4
 let bufferArr : Uint8Array = new Uint8Array(color);
 let opts : image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
@@ -2164,7 +2175,7 @@ image.createPixelMap(color, opts).then((pixelmap : image.PixelMap) => {
     imagePackerApi.packing(pixelmap, packOpts)
         .then( data : ArrayBuffer => {
             console.log('Succeeded in packing the image.');
-        }).catch(error => {
+        }).catch((error : BusinessError) => {
             console.log('Failed to pack the image..');
         })
 })
@@ -2209,9 +2220,10 @@ release(): Promise\<void>
 **示例：**
 
 ```js
+import {BusinessError} from '@ohos.base'
 imagePackerApi.release().then(()=>{
     console.log('Succeeded in releasing image packaging.');
-}).catch((error)=>{ 
+}).catch((error : BusinessError)=>{ 
     console.log('Failed to release image packaging.'); 
 }) 
 ```
@@ -2304,9 +2316,10 @@ getReceivingSurfaceId(): Promise\<string>
 **示例：**
 
 ```js
+import {BusinessError} from '@ohos.base'
 receiver.getReceivingSurfaceId().then( (id : string) => { 
     console.log('getReceivingSurfaceId succeeded.');
-}).catch(error => {
+}).catch((error : BusinessError) => {
     console.log('getReceivingSurfaceId failed.');
 })
 ```
@@ -2354,9 +2367,10 @@ readLatestImage(): Promise\<Image>
 **示例：**
 
 ```js
+import {BusinessError} from '@ohos.base'
 receiver.readLatestImage().then((img : image.Image) => {
     console.log('readLatestImage succeeded.');
-}).catch(error => {
+}).catch((error : BusinessError) => {
     console.log('readLatestImage failed.');
 })
 ```
@@ -2404,9 +2418,10 @@ readNextImage(): Promise\<Image>
 **示例：**
 
 ```js
+import {BusinessError} from '@ohos.base'
 receiver.readNextImage().then((img : image.Image) => {
     console.log('readNextImage succeeded.');
-}).catch(error => {
+}).catch((error : BusinessError) => {
     console.log('readNextImage failed.');
 })
 ```
@@ -2469,9 +2484,10 @@ release(): Promise\<void>
 **示例：**
 
 ```js
+import {BusinessError} from '@ohos.base'
 receiver.release().then(() => {
     console.log('release succeeded.');
-}).catch(error => {
+}).catch((error : BusinessError) => {
     console.log('release failed.');
 })
 ```
@@ -2561,9 +2577,10 @@ dequeueImage(): Promise\<Image>
 **示例：**
 
 ```js
+import {BusinessError} from '@ohos.base'
 creator.dequeueImage().then((img : image.Image) => {
     console.info('dequeueImage succeeded.');
-}).catch(error => {
+}).catch((error : BusinessError) => {
     console.log('dequeueImage failed: ' + error);
 })
 ```
@@ -2630,6 +2647,7 @@ queueImage(interface: Image): Promise\<void>
 **示例：**
 
 ```js
+import {BusinessError} from '@ohos.base'
 creator.dequeueImage().then((img : image.Image) => {
     //绘制图片
     img.getComponent(4).then(component : image.Component => {
@@ -2643,7 +2661,7 @@ creator.dequeueImage().then((img : image.Image) => {
     })
     creator.queueImage(img).then(() => {
         console.info('queueImage succeeded.');
-    }).catch(error => {
+    }).catch((error : BusinessError) => {
         console.info('queueImage failed: ' + error);
     })
 })
@@ -2717,9 +2735,10 @@ release(): Promise\<void>
 **示例：**
 
 ```js
+import {BusinessError} from '@ohos.base'
 creator.release().then(() => {
     console.info('release succeeded');
-}).catch(error => {
+}).catch((error : BusinessError) => {
     console.info('release failed');
 })
 ```
@@ -2834,9 +2853,10 @@ release(): Promise\<void>
 **示例：**
 
 ```js
+import {BusinessError} from '@ohos.base'
 img.release().then(() =>{
     console.log('release succeeded.');
-}).catch(error => {
+}).catch((error : BusinessError) => {
     console.log('release failed.');
 })
 ```
