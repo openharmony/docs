@@ -40,7 +40,7 @@
 如下接口从API 10开始废弃，废弃不影响已开发应用的兼容性，但建议改为使用新的替代接口。
 
 **关键的接口/组件变更**<br>
-|废弃接口 |对应新增接口 |功能说明|                                            |
+|废弃接口 |对应新增接口 |功能说明|
 | ------------- |-------------------------------------------------------- |-----------------------|
 | **function** scan(): **void**; |**function** startScan(): **void**;| 使用startScan接口启动扫描 |
 | **function** getScanResults(): Promise<Array<WifiScanInfo>>;|**function** getScanInfoList(): Array<WifiScanInfo>;| 使用getScanInfoList获取扫描列表 |
