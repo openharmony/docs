@@ -13,7 +13,7 @@
 | 软件                              | 版本                                             | 备注                                                         |
 | --------------------------------- | ------------------------------------------------ | ------------------------------------------------------------ |
 | OpenHarmony                       | 3.2.3 Release                                    | NA                                                           |
-| Public SDK                        | Ohos_sdk_public 3.2.14.5 (API Version 9 Release) | 面向应用开发者提供，不包含需要使用系统权限的系统接口。通过DevEco Studio默认获取的SDK为Public SDK。 |
+| Public SDK                        | Ohos_sdk_public 3.2.14.6 (API Version 9 Release) | 面向应用开发者提供，不包含需要使用系统权限的系统接口。通过DevEco Studio默认获取的SDK为Public SDK。 |
 | HUAWEI DevEco Studio（可选）      | 3.1 Release                                      | OpenHarmony应用开发推荐使用。<br />[点击此处获取](https://developer.harmonyos.com/cn/develop/deveco-studio#download) |
 | HUAWEI DevEco Device Tool（可选） | 3.1 Release                                      | OpenHarmony智能设备集成开发环境推荐使用。<br />[点击此处获取](https://device.harmonyos.com/cn/develop/ide/) |
 
@@ -76,9 +76,9 @@
 | Hi3516解决方案-LiteOS（二进制）       | 3.2.3 Release | [站点](https://repo.huaweicloud.com/openharmony/os/3.2.3/hispark_taurus_LiteOS.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/3.2.3/hispark_taurus_LiteOS.tar.gz.sha256) |
 | Hi3516解决方案-Linux（二进制）        | 3.2.3 Release | [站点](https://repo.huaweicloud.com/openharmony/os/3.2.3/hispark_taurus_Linux.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/3.2.3/hispark_taurus_Linux.tar.gz.sha256) |
 | RK3568标准系统解决方案（二进制）      | 3.2.3 Release | [站点](https://repo.huaweicloud.com/openharmony/os/3.2.3/dayu200_standard_arm32.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/3.2.3/dayu200_standard_arm32.tar.gz.sha256) |
-| 标准系统Public SDK包（Mac）           | 3.2.14.5      | [站点](https://repo.huaweicloud.com/openharmony/os/3.2.3/ohos-sdk-mac-public.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/3.2.3/ohos-sdk-mac-public.tar.gz.sha256) |
-| 标准系统Public SDK包（Mac-M1）        | 3.2.14.5      | [站点](https://repo.huaweicloud.com/openharmony/os/3.2.3/L2-SDK-MAC-M1-PUBLIC.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/3.2.3/L2-SDK-MAC-M1-PUBLIC.tar.gz.sha256) |
-| 标准系统Public SDK包（Windows/Linux） | 3.2.14.5      | [站点](https://repo.huaweicloud.com/openharmony/os/3.2.3/ohos-sdk-windows_linux-public.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/3.2.3/ohos-sdk-windows_linux-public.tar.gz.sha256) |
+| 标准系统Public SDK包（Mac）           | 3.2.14.6      | [站点](https://repo.huaweicloud.com/openharmony/os/3.2.3/ohos-sdk-mac-public.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/3.2.3/ohos-sdk-mac-public.tar.gz.sha256) |
+| 标准系统Public SDK包（Mac-M1）        | 3.2.14.6      | [站点](https://repo.huaweicloud.com/openharmony/os/3.2.3/L2-SDK-MAC-M1-PUBLIC.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/3.2.3/L2-SDK-MAC-M1-PUBLIC.tar.gz.sha256) |
+| 标准系统Public SDK包（Windows/Linux） | 3.2.14.6      | [站点](https://repo.huaweicloud.com/openharmony/os/3.2.3/ohos-sdk-windows_linux-public.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/3.2.3/ohos-sdk-windows_linux-public.tar.gz.sha256) |
 
 ## 更新说明
 
@@ -96,19 +96,35 @@
 
 | ISSUE                                                        | 问题描述                                                     |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| [I73TPR](https://gitee.com/openharmony/ability_form_fwk/issues/I73TPR) | 【OpenHarmony  3.2.12.3】【RK3568】【压力测试】【ToC】【低概率1/10】【wukong】出现1次，由进程com.ohos.note下的com.ohos.note线程导致libace.z.so出现cppcrash |
-| [I76UCD](https://gitee.com/openharmony/ability_form_fwk/issues/I76UCD) | 【OpenHarmony_3.2.12.5】【3.2Release】【多媒体子系统】【ToC】【RK3568】【必现-10/10】录像文件在图库播放最后2秒画面卡住未播放 |
-| [I7B07F](https://gitee.com/openharmony/ability_form_fwk/issues/I7B07F) | 【OpenHarmony_3.2.12.5】【软总线】【发现】【Toc】【rk3568】【必现-3/3】蓝牙发现失败 |
-| [I7BZ4F](https://gitee.com/openharmony/ability_form_fwk/issues/I7BZ4F) | 【OpenHarmony_3.2.13.1】【RK3568】【发现】【Toc】【概率 3/42】coap发现概率失败 |
-| [I7C2B1](https://gitee.com/openharmony/ability_form_fwk/issues/I7C2B1) | 【OpenHarmony 3.2.13.1】【RK3568】【xts压力测试】【高概率20/30】出现20次  由进程com.amsst.stserviceabilityclient下的IPC_2_8347线程导致libabilitykit_native.z.so出现cppcrash |
-| [I7C98S](https://gitee.com/openharmony/ability_form_fwk/issues/I7C98S) | 【OpenHarmony 3.2.13.1】【RK3568】【压力测试】【ToC】【低概率2/10】【wukong】出现2次，  com.ohos.photos下出现jscrash问题，栈名：initializeConsume |
-| [I7D48T](https://gitee.com/openharmony/ability_form_fwk/issues/I7D48T) | 【OpenHarmony】【体验测试】【版本号：3.2.13.1】【rk3568】【ToC】【概率：必现】web浏览器打开天猫网页从上往下滑54帧，实际值50.9fps，差基线3.1fps |
-| [I7D4KX](https://gitee.com/openharmony/ability_form_fwk/issues/I7D4KX) | 【OpenHarmony】【体验测试】【版本号：3.2.13.1】【rk3568】【ToC】【概率：必现】拨号盘按键响应时延88ms，实际值120.8ms，超基线32.8ms |
-| [I7EZJK](https://gitee.com/openharmony/ability_form_fwk/issues/I7EZJK) | 【OpenHarmony 3.2.13.5】【媒体子系统】【RK3568】【必现】在图库中新建相册后，无法重命名相册 |
-| [I7FO8I](https://gitee.com/openharmony/ability_form_fwk/issues/I7FO8I) | [Bug]: 【OpenHarmony 3.2  0620daily】【RK3568】【压力测试】【ToC】【低概率1/10】【wukong】出现1次  进com.ohos.adminprovisioning下的IPC_3_14056线程导致libabilitykit_native.z.so出现cppcrash |
-| [I7FR03](https://gitee.com/openharmony/ability_form_fwk/issues/I7FR03) | [Bug]: 【OpenHarmony 3.2  0620daily】【RK3568】【压力测试】【ToC】【低概率1/10】【wukong】出现1次  由进程com.ohos.note下的RSRenderThread线程出现Rosenweb on  consumer导致libmali-bifrost-g52-g2p0-ohos.so出现cppcrash |
-| [I7GA51](https://gitee.com/openharmony/ability_form_fwk/issues/I7GA51) | [Bug]: 【OpenHarmony 3.2.13.5】【应用子系统】【RK3568】【必现_5/5】桌面大文件夹展开后导航点与第四行图标重叠 |
-| [I7GAJQ](https://gitee.com/openharmony/ability_form_fwk/issues/I7GAJQ) | [Bug]: 【OpenHarmony  3.2.13.5】【应用子系统】【RK3568】【必现_5/5】进入图库服务卡片界面后，再进入相机服务卡片界面显示异常 |
+| [I73TPR](https://gitee.com/open_harmony/dashboard?issue_id=I73TPR) | 【OpenHarmony  3.2.12.3】【RK3568】【压力测试】【ToC】【低概率1/10】【wukong】出现1次，由进程com.ohos.note下的com.ohos.note线程导致libace.z.so出现cppcrash |
+| [I76UCD](https://gitee.com/open_harmony/dashboard?issue_id=I76UCD) | 【OpenHarmony_3.2.12.5】【3.2Release】【多媒体子系统】【ToC】【RK3568】【必现-10/10】录像文件在图库播放最后2秒画面卡住未播放 |
+| [I7B07F](https://e.gitee.com/open_harmony/issues/table/?issue=I7B07F) | 【OpenHarmony_3.2.12.5】【软总线】【发现】【Toc】【rk3568】【必现-3/3】蓝牙发现失败 |
+| [I7BZ4F](https://e.gitee.com/open_harmony/issues/table/?issue=I7BZ4F) | 【OpenHarmony_3.2.13.1】【RK3568】【发现】【Toc】【概率 3/42】coap发现概率失败 |
+| [I7C98S](https://e.gitee.com/open_harmony/issues/table/?issue=I7C98S) | 【OpenHarmony 3.2.13.1】【RK3568】【压力测试】【ToC】【低概率2/10】【wukong】出现2次，  com.ohos.photos下出现jscrash问题，栈名：initializeConsume |
+| [I7FO8I](https://e.gitee.com/open_harmony/issues/table/?issue=I7FO8I) | [Bug]: 【OpenHarmony 3.2  0620daily】【RK3568】【压力测试】【ToC】【低概率1/10】【wukong】出现1次  进com.ohos.adminprovisioning下的IPC_3_14056线程导致libabilitykit_native.z.so出现cppcrash |
+| [I7FR03](https://e.gitee.com/open_harmony/issues/table/?issue=I7FR03) | [Bug]: 【OpenHarmony 3.2  0620daily】【RK3568】【压力测试】【ToC】【低概率1/10】【wukong】出现1次  由进程com.ohos.note下的RSRenderThread线程出现Rosenweb on  consumer导致libmali-bifrost-g52-g2p0-ohos.so出现cppcrash |
+| [I7O80Z](https://e.gitee.com/open_harmony/dashboard?issue=I7O80Z) | 【3.2】打包l0的hap失败 |
+| [I7WJ2I](https://gitee.com/open_harmony/dashboard?issue_id=I7WJ2I) | 【Openharmony-master】【驱动子系统】【rk3568】【必现-5/5】修复动态配流失败问题（cherry-pick 3.2release） |
+| [I6UYP6](https://gitee.com/open_harmony/dashboard?issue_id=I6UYP6) | 【3.2 Release】调用put和putSync接口设置key值长度和value值长度超过最大字节数，接口响应未进异常 |
+| [I72P5E](https://gitee.com/open_harmony/dashboard?issue_id=I72P5E) | 【OpenHarmony 3.2.12.2】【RK3568】【压力测试】【ToC】【必现10/10】反复进入大图浏览界面后返回，导致libace.z.so出现内存泄露 |
+| [I72P5I](https://gitee.com/open_harmony/dashboard?issue_id=I72P5I) | 【OpenHarmony 3.2.12.2】【RK3568】【压力测试】【ToC】【必现10/10】反复进入某相册的图片宫格浏览界面，导致libace.z.so出现内存泄露 |
+| [I76N0Y](https://gitee.com/open_harmony/dashboard?issue_id=I76N0Y) | 【OpenHarmony 3.2.12.2】【RK3568】【压力测试】【ToC】【必现10/10】反复在dock栏添加/移除应用，导致libace.z.so出现内存泄露 |
+| [I7FNXR](https://gitee.com/open_harmony/dashboard?issue_id=I7FNXR) | [Bug]: 【OpenHarmony 3.2.13.5】【RK3568】【压力测试】【ToC】【低概率1/10】【wukong】出现1次 进camera_service下的IPC_7_15380线程导致libipc_core.z.so出现cppcrash |
+| [I7GATH](https://gitee.com/open_harmony/dashboard?issue_id=I7GATH) | [Bug]:【OpenHarmony 3.2.13.5】【输入法】【必现-5/5】执行DevecoTesting服务接口注入测试后输入法选择框有cppcrash |
+| [I7HDQP](https://gitee.com/open_harmony/dashboard?issue_id=I7HDQP) | [Bug]: 【OpenHarmony 3.2.13.5】【应用子系统】【RK3568】【必现_5/5】切换英文后，桌面上应用名称仍中文显示，重启后才英文显示 |
+| [I7HFEO](https://gitee.com/open_harmony/dashboard?issue_id=I7HFEO) | [Bug]: 【OpenHarmony 3.2.14.1】【测试子系统】【3861】【必现-5/5】ActsUiTest模块执行一条fail项 |
+| [I7HX8E](https://gitee.com/open_harmony/dashboard?issue_id=I7HX8E) | [Bug]: 【OpenHarmony 3.2.14.1】【RK3568】【xts压力测试】【ToC】【低概率】出现2次 由进程com.ohos.rpctest下的jsThread-1线程导致librpc.z.so出现cppcrash |
+| [I7IV88](https://gitee.com/open_harmony/dashboard?issue_id=I7IV88) | [Bug]: 【OpenHarmony 3.2.14.1】【RK3568】【压力测试】【ToC】【低概率】【wukong】出现4次 由关键进程com.ohos.mms下的clickToGroupDetail 出现jscrash |
+| [I7KZKQ](https://gitee.com/open_harmony/dashboard?issue_id=I7KZKQ) | [Bug]: 【OpenHarmony 3.2.14.2】【RK3568】【压力测试】【ToC】【低概率】【wukong】出现13次 由关键进程com.ohos.mms下的clickInfoToConversation 出现jscrash |
+| [I7KZLX](https://gitee.com/open_harmony/dashboard?issue_id=I7KZLX) | [Bug]: 【OpenHarmony 3.2.14.2】【RK3568】【压力测试】【ToC】【低概率】【wukong】出现1次 由应用com.ohos.mms下的dealSessionDraft出现jscrash |
+| [I7KZN7](https://gitee.com/open_harmony/dashboard?issue_id=I7KZN7) | [Bug]: 【OpenHarmony 3.2.14.2】【RK3568】【压力测试】【ToC】【低概率】【wukong】出现18次 由关键进程com.ohos.contact下的menuChange 出现jscrash |
+| [I7PAL6](https://gitee.com/open_harmony/dashboard?issue_id=I7PAL6) | [Bug]: 【OpenHarmony 3.2.14.5】【RK3568】【压力测试】【ToC】【低概率】【wukong】出现1次 进/system/bin/installs下的IPC_1_643线程导致libhap_restorecon.z.so出现cppcrash |
+| [I7Q85E](https://gitee.com/open_harmony/dashboard?issue_id=I7Q85E) | [Bug]: 【OpenHarmony 3.2.14.5】【RK3568】【压力测试】【wukong】 wukong压力测试内存占用过高 |
+| [I7VAB8](https://gitee.com/open_harmony/dashboard?issue_id=I7VAB8) | [Bug]: 【OpenHarmony 3.2.14.6】【RK3568】【压力测试】【ToC】【低概率】【wukong】出现24次 进程com.ohos.camera下的com.ohos.camera线程导致libcamera_napi.z.so出现cppcrash |
+| [I7VBCV](https://gitee.com/open_harmony/dashboard?issue_id=I7VBCV) | 【OpenHarmony 3.2.14.6】【RK3568】【压力测试】【ToC】【低频率】出现3次，进程ohos.samples.distributedmusicplayer下出现jscrash，栈名：cancelTimer |
+| [I7BL13](https://gitee.com/open_harmony/dashboard?issue_id=I7BL13) | 【OpenHarmony-release3.2】【电源子系统】【ToC】【rk3568】【必现-5/5】使用局部变量创建了全局线程 |
+| [I7BY2N](https://gitee.com/open_harmony/dashboard?issue_id=I7BY2N) | [3.2-release] 支持编译空文件 |
+| [I7CREK](https://gitee.com/open_harmony/dashboard?issue_id=I7CREK) | [3.2release]json参数校验调整 | 
 
 ## 修复安全issue列表
 
@@ -116,33 +132,94 @@
 
 | ISSUE  | 问题描述                                            |
 | ------ | --------------------------------------------------- |
-| I6QYW7 | 【漏洞】 【OpenHarmony-3.2-Release】 CVE-2022-4095  |
-| I6RZV9 | 【漏洞】 【OpenHarmony-3.2-Release】 CVE-2022-4744  |
-| I6TCVF | 【漏洞】 【OpenHarmony-3.2-Release】 CVE-2023-1838  |
-| I6TCVR | 【漏洞】 【OpenHarmony-3.2-Release】 CVE-2023-1855  |
-| I6TCW0 | 【漏洞】 【OpenHarmony-3.2-Release】 CVE-2023-1582  |
-| I6U82D | 【漏洞】 【OpenHarmony-3.2-Release】 CVE-2023-30456 |
-| I6UW4X | 【漏洞】 【OpenHarmony-3.2-Release】 CVE-2022-29581 |
-| I6UW4Y | 【漏洞】 【OpenHarmony-3.2-Release】 CVE-2022-1158  |
-| I6VHE0 | 【漏洞】 【OpenHarmony-3.2-Release】 CVE-2023-1990  |
-| I6VVQJ | 【漏洞】 【OpenHarmony-3.2-Release】 CVE-2023-1859  |
-| I6W9EQ | 【漏洞】 【OpenHarmony-3.2-Release】 CVE-2023-30772 |
-| I6YK8O | 【漏洞】 【OpenHarmony-3.2-Release】 CVE-2023-2008  |
-| I6ZH6E | 【漏洞】 【OpenHarmony-3.2-Release】 CVE-2023-0458  |
-| I6ZJDL | 【漏洞】 【OpenHarmony-3.2-Release】 CVE-2023-31436 |
-| I6ZK8X | 【漏洞】 【OpenHarmony-3.2-Release】 CVE-2023-2177  |
-| I6ZK92 | 【漏洞】 【OpenHarmony-3.2-Release】 CVE-2023-2194  |
-| I6ZQRA | 【漏洞】 【OpenHarmony-3.2-Release】 CVE-2023-28328 |
-| I6ZQRH | 【漏洞】 【OpenHarmony-3.2-Release】 CVE-2023-2166  |
-| I6ZQRM | 【漏洞】 【OpenHarmony-3.2-Release】 CVE-2023-28327 |
-| I6ZUT4 | 【漏洞】 【OpenHarmony-3.2-Release】 CVE-2023-2248  |
-| I6ZZDJ | 【漏洞】 【OpenHarmony-3.2-Release】 CVE-2023-1998  |
-| I70B1G | 【漏洞】 【OpenHarmony-3.2-Release】 CVE-2023-2483  |
-| I72GRH | 【漏洞】 【OpenHarmony-3.2-Release】 CVE-2023-32269 |
-| I73Z2O | 【漏洞】 【OpenHarmony-3.2-Release】 CVE-2023-2124  |
-| I76VW0 | 【漏洞】 【OpenHarmony-3.2-Release】 CVE-2023-0459  |
-| I78R44 | 【漏洞】 【OpenHarmony-3.2-Release】 CVE-2023-33203 |
-| I79YE0 | 【漏洞】 【OpenHarmony-3.2-Release】 CVE-2023-34256 |
+| I71KHW | 【漏洞】【OpenHarmony-3.2-Release】CVE-2023-32233 |
+| I6QYW7 | 【漏洞】【OpenHarmony-3.2-Release】CVE-2022-4095 |
+| I6RZV9 | 【漏洞】【OpenHarmony-3.2-Release】CVE-2022-4744 |
+| I6TCVF | 【漏洞】【OpenHarmony-3.2-Release】CVE-2023-1838 |
+| I6TCVR | 【漏洞】【OpenHarmony-3.2-Release】CVE-2023-1855 |
+| I6TCW0 | 【漏洞】【OpenHarmony-3.2-Release】CVE-2023-1582 |
+| I6U82D | 【漏洞】【OpenHarmony-3.2-Release】CVE-2023-30456 |
+| I6UW4X | 【漏洞】【OpenHarmony-3.2-Release】CVE-2022-29581 |
+| I6UW4Y | 【漏洞】【OpenHarmony-3.2-Release】CVE-2022-1158 |
+| I6VHE0 | 【漏洞】【OpenHarmony-3.2-Release】CVE-2023-1990 |
+| I6VVQJ | 【漏洞】【OpenHarmony-3.2-Release】CVE-2023-1859 |
+| I6W9EQ | 【漏洞】【OpenHarmony-3.2-Release】CVE-2023-30772 |
+| I6YK8O | 【漏洞】【OpenHarmony-3.2-Release】CVE-2023-2008 |
+| I6ZH6E | 【漏洞】【OpenHarmony-3.2-Release】CVE-2023-0458 |
+| I6ZJDL | 【漏洞】【OpenHarmony-3.2-Release】CVE-2023-31436 |
+| I6ZK8X | 【漏洞】【OpenHarmony-3.2-Release】CVE-2023-2177 |
+| I6ZK92 | 【漏洞】【OpenHarmony-3.2-Release】CVE-2023-2194 |
+| I6ZQRA | 【漏洞】【OpenHarmony-3.2-Release】CVE-2023-28328 |
+| I6ZQRH | 【漏洞】【OpenHarmony-3.2-Release】CVE-2023-2166 |
+| I6ZQRM | 【漏洞】【OpenHarmony-3.2-Release】CVE-2023-28327 |
+| I6ZUT4 | 【漏洞】【OpenHarmony-3.2-Release】CVE-2023-2248 |
+| I6ZZDJ | 【漏洞】【OpenHarmony-3.2-Release】CVE-2023-1998 |
+| I70B1G | 【漏洞】【OpenHarmony-3.2-Release】CVE-2023-2483 |
+| I72GRH | 【漏洞】【OpenHarmony-3.2-Release】CVE-2023-32269 |
+| I73Z2O | 【漏洞】【OpenHarmony-3.2-Release】CVE-2023-2124 |
+| I76VW0 | 【漏洞】【OpenHarmony-3.2-Release】CVE-2023-0459 |
+| I78R44 | 【漏洞】【OpenHarmony-3.2-Release】CVE-2023-33203 |
+| I79YE0 | 【漏洞】【OpenHarmony-3.2-Release】CVE-2023-34256 |
+| I7HIGZ | 【漏洞】【OpenHarmony-3.2-Release】CVE-2022-41858 |
+| I7HIH1 | 【漏洞】【OpenHarmony-3.2-Release】CVE-2023-3421 |
+| I7HIH4 | 【漏洞】【OpenHarmony-3.2-Release】CVE-2023-3268 |
+| I7HIHC | 【漏洞】【OpenHarmony-3.2-Release】CVE-2023-35788 |
+| I7HIHE | 【漏洞】【OpenHarmony-3.2-Release】CVE-2023-3161 |
+| I7HIHF | 【漏洞】【OpenHarmony-3.2-Release】CVE-2023-3220 |
+| I7HIHG | 【漏洞】【OpenHarmony-3.2-Release】CVE-2023-3159 |
+| I7HIHN | 【漏洞】【OpenHarmony-3.2-Release】CVE-2023-35823 |
+| I7HIHP | 【漏洞】【OpenHarmony-3.2-Release】CVE-2023-35828 |
+| I7HIHQ | 【漏洞】【OpenHarmony-3.2-Release】CVE-2023-35824 |
+| I7HIHR | 【漏洞】【OpenHarmony-3.2-Release】CVE-2023-35829 |
+| I7HIHT | 【漏洞】【OpenHarmony-3.2-Release】CVE-2023-3141 |
+| I7HIHV | 【漏洞】【OpenHarmony-3.2-Release】CVE-2023-3216 |
+| I7HIHW | 【漏洞】【OpenHarmony-3.2-Release】CVE-2023-3215 |
+| I7HII0 | 【漏洞】【OpenHarmony-3.2-Release】CVE-2023-3212 |
+| I7HII2 | 【漏洞】【OpenHarmony-3.2-Release】CVE-2023-2002 |
+| I7HII3 | 【漏洞】【OpenHarmony-3.2-Release】CVE-2023-2970 |
+| I7HII8 | 【漏洞】【OpenHarmony-3.2-Release】CVE-2023-3079 |
+| I7I5J3 | 【漏洞】【OpenHarmony-3.2-Release】CVE-2020-22597 |
+| I7JKP5 | 【漏洞】【OpenHarmony-3.2-Release】CVE-2023-37327 |
+| I7MTCB | 【漏洞】【OpenHarmony-3.2-Release】CVE-2020-22039 |
+| I7MTCL | 【漏洞】【OpenHarmony-3.2-Release】CVE-2020-12284 |
+| I7MTCU | 【漏洞】【OpenHarmony-3.2-Release】CVE-2020-22044 |
+| I7MTD1 | 【漏洞】【OpenHarmony-3.2-Release】CVE-2020-22021 |
+| I7MTD8 | 【漏洞】【OpenHarmony-3.2-Release】CVE-2020-22040 |
+| I7MTDG | 【漏洞】【OpenHarmony-3.2-Release】CVE-2020-22037 |
+| I7MTDN | 【漏洞】【OpenHarmony-3.2-Release】CVE-2020-22041 |
+| I7MTDX | 【漏洞】【OpenHarmony-3.2-Release】CVE-2020-22026 |
+| I7MTE2 | 【漏洞】【OpenHarmony-3.2-Release】CVE-2020-22043 |
+| I7MTE9 | 【漏洞】【OpenHarmony-3.2-Release】CVE-2020-22042 |
+| I7MTEM | 【漏洞】【OpenHarmony-3.2-Release】CVE-2020-22035 |
+| I7MTEX | 【漏洞】【OpenHarmony-3.2-Release】CVE-2020-22036 |
+| I7MTFZ | 【漏洞】【OpenHarmony-3.2-Release】CVE-2020-22048 |
+| I7MTGL | 【漏洞】【OpenHarmony-3.2-Release】lj-c-131450017-9125433 |
+| I7MTML | 【漏洞】【OpenHarmony-3.2-Release】CVE-2023-3446 |
+| I7N91T | 【漏洞】【OpenHarmony-3.2-Release】CVE-2022-25636 |
+| I7NU2Z | 【漏洞】【OpenHarmony-3.2-Release】CVE-2020-22028 |
+| I7NU35 | 【漏洞】【OpenHarmony-3.2-Release】CVE-2020-22019 |
+| I7NU3C | 【漏洞】【OpenHarmony-3.2-Release】CVE-2020-22020 |
+| I7NVP2 | 【漏洞】【OpenHarmony-3.2-Release】CVE-2022-41409 |
+| I7OWF7 | 【漏洞】【OpenHarmony-3.2-Release】CVE-2020-27777 |
+| I7OWFA | 【漏洞】【OpenHarmony-3.2-Release】CVE-2020-25668 |
+| I7OY06 | 【漏洞】【OpenHarmony-3.2-Release】CVE-2022-4912 |
+| I7OY0E | 【漏洞】【OpenHarmony-3.2-Release】CVE-2022-4909 |
+| I7OZ6F | 【漏洞】【OpenHarmony-3.2-Release】CVE-2023-36191 |
+| I7P791 | 【漏洞】【OpenHarmony-3.2-Release】CVE-2023-3598 |
+| I7PTFP | 【漏洞】【OpenHarmony-3.2-Release】CVE-2023-3567 |
+| I7Q3I0 | 【漏洞】【OpenHarmony-3.2-Release】CVE-2023-3812 |
+| I7QFUC | 【漏洞】【OpenHarmony-3.2-Release】CVE-2023-3817 |
+| I7QR0J | 【漏洞】【OpenHarmony-3.2-Release】CVE-2022-1729 |
+| I7QR0S | 【漏洞】【OpenHarmony-3.2-Release】CVE-2022-3202 |
+| I7QR0V | 【漏洞】【OpenHarmony-3.2-Release】CVE-2022-3564 |
+| I7QR1U | 【漏洞】【OpenHarmony-3.2-Release】CVE-2021-4083 |
+| I7QRFE | 【漏洞】【OpenHarmony-3.2-Release】CVE-2023-4072 |
+| I7QRFQ | 【漏洞】【OpenHarmony-3.2-Release】CVE-2023-4071 |
+| I7QRFT | 【漏洞】【OpenHarmony-3.2-Release】CVE-2023-4076 |
+| I7S222 | 【漏洞】【OpenHarmony-3.2-Release】CVE-2023-4273 |
+| I7T5YY | 【漏洞】【OpenHarmony-3.2-Release】CVE-2023-4194 |
+| I7UE6S | 【漏洞】【OpenHarmony-3.2-Release】CVE-2022-3623 |
+| I7UE6U | 【漏洞】【OpenHarmony-3.2-Release】CVE-2022-2196 
 
 ## 遗留缺陷列表
 
