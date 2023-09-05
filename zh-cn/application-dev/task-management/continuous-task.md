@@ -103,7 +103,7 @@
      private context: Context = getContext(this);
    
      startContinuousTask() {
-       let wantAgentInfo: wantAgent.wantAgentInfo = {
+       let wantAgentInfo: wantAgent.WantAgentInfo = {
          // 点击通知后，将要执行的动作列表
          wants: [
            {
@@ -353,7 +353,7 @@
     import { BusinessError } from '@ohos.base';
    ```
 
-4. 申请和取消长时任务。在 ServiceAbility 中，调用 startBackgroundRunning() 接口和 startBackgroundRunning() 接口实现长时任务的申请和取消。
+4. 申请和取消长时任务。在 ServiceAbility 中，调用 startBackgroundRunning() 接口和 startBackgroundRunning() 接口实现长时任务的申请和取消，通过js代码实现。
    
    ```js
     function startContinuousTask() {
