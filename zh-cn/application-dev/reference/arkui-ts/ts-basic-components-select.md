@@ -89,10 +89,12 @@ struct SelectExample {
         .space(this.space)
         .arrowPosition(this.arrowPosition)
         .menuAlign(MenuAlignType.START, {dx:0, dy:0})
-        .onSelect((index:number, text: string)=>{
+        .onSelect((index:number, text?: string | undefined)=>{
           console.info('Select:' + index)
           this.index = index;
-          this.text = text;
+          if(text){
+            this.text = text;
+          }
         })
     }.width('100%')
   }
