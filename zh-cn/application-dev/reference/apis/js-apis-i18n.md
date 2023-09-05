@@ -116,14 +116,6 @@ static getSystemLanguages(): Array&lt;string&gt;
 | ------------------- | ------------ |
 | Array&lt;string&gt; | 系统支持的语言ID列表。 |
 
-**错误码：**
-
-以下错误码的详细介绍请参见[ohos.i18n错误码](../errorcodes/errorcode-i18n.md)。
-
-| 错误码ID  | 错误信息                   |
-| ------ | ---------------------- |
-| 890001 | param value not valid |
-
 **示例：**
   ```ts
   import { BusinessError } from '@ohos.base';
@@ -231,14 +223,6 @@ static getSystemLanguage(): string
 | ------ | ------- |
 | string | 系统语言ID。 |
 
-**错误码：**
-
-以下错误码的详细介绍请参见[ohos.i18n错误码](../errorcodes/errorcode-i18n.md)。
-
-| 错误码ID  | 错误信息                   |
-| ------ | ---------------------- |
-| 890001 | param value not valid |
-
 **示例：**
   ```ts
   import { BusinessError } from '@ohos.base';
@@ -302,14 +286,6 @@ static getSystemRegion(): string
 | 类型     | 说明      |
 | ------ | ------- |
 | string | 系统地区ID。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[ohos.i18n错误码](../errorcodes/errorcode-i18n.md)。
-
-| 错误码ID  | 错误信息                   |
-| ------ | ---------------------- |
-| 890001 | param value not valid |
 
 **示例：**
   ```ts
@@ -375,14 +351,6 @@ static getSystemLocale(): string
 | ------ | ------- |
 | string | 系统区域ID。 |
 
-**错误码：**
-
-以下错误码的详细介绍请参见[ohos.i18n错误码](../errorcodes/errorcode-i18n.md)。
-
-| 错误码ID  | 错误信息                   |
-| ------ | ---------------------- |
-| 890001 | param value not valid |
-
 **示例：**
   ```ts
   import { BusinessError } from '@ohos.base';
@@ -446,14 +414,6 @@ static is24HourClock(): boolean
 | 类型      | 说明                                       |
 | ------- | ---------------------------------------- |
 | boolean | 返回true，表示系统24小时开关开启；返回false，表示系统24小时开关关闭。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[ohos.i18n错误码](../errorcodes/errorcode-i18n.md)。
-
-| 错误码ID  | 错误信息                   |
-| ------ | ---------------------- |
-| 890001 | param value not valid |
 
 **示例：**
   ```ts
@@ -602,14 +562,6 @@ static getPreferredLanguageList(): Array&lt;string&gt;
 | ------------------- | --------- |
 | Array&lt;string&gt; | 系统偏好语言列表。 |
 
-**错误码：**
-
-以下错误码的详细介绍请参见[ohos.i18n错误码](../errorcodes/errorcode-i18n.md)。
-
-| 错误码ID  | 错误信息                   |
-| ------ | ---------------------- |
-| 890001 | param value not valid |
-
 **示例：**
   ```ts
   import { BusinessError } from '@ohos.base';
@@ -636,14 +588,6 @@ static getFirstPreferredLanguage(): string
 | ------ | -------------- |
 | string | 偏好语言列表中的第一个语言。 |
 
-**错误码：**
-
-以下错误码的详细介绍请参见[ohos.i18n错误码](../errorcodes/errorcode-i18n.md)。
-
-| 错误码ID  | 错误信息                   |
-| ------ | ---------------------- |
-| 890001 | param value not valid |
-
 **示例：**
   ```ts
   import { BusinessError } from '@ohos.base';
@@ -669,14 +613,6 @@ static getAppPreferredLanguage(): string
 | 类型     | 说明       |
 | ------ | -------- |
 | string | 应用的偏好语言。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[ohos.i18n错误码](../errorcodes/errorcode-i18n.md)。
-
-| 错误码ID  | 错误信息                   |
-| ------ | ---------------------- |
-| 890001 | param value not valid |
 
 **示例：**
   ```ts
@@ -741,14 +677,6 @@ static getUsingLocalDigit(): boolean
 | 类型      | 说明                                       |
 | ------- | ---------------------------------------- |
 | boolean | true表示系统当前已打开本地数字开关，false表示系统当前未打开本地数字开关。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[ohos.i18n错误码](../errorcodes/errorcode-i18n.md)。
-
-| 错误码ID  | 错误信息                   |
-| ------ | ---------------------- |
-| 890001 | param value not valid |
 
 **示例：**
   ```ts
@@ -1818,6 +1746,15 @@ static getTimezonesByLocation(longitude: number, latitude: number): Array&lt;Tim
 | 类型       | 说明          |
 | -------- | ----------- |
 | Array&lt;[TimeZone](#timezone)&gt; | 时区对象的数组 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.i18n错误码](../errorcodes/errorcode-i18n.md)。
+
+| 错误码ID  | 错误信息                   |
+| ------ | ---------------------- |
+|  401   |  check param failed   |
+| 890001 | param value not valid |
 
 **示例：**
   ```ts
