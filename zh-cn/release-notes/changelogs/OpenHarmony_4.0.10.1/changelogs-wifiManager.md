@@ -32,70 +32,28 @@
 权限重新适配
 
 
-## cl.wifiManager.2 修改接口**function** scan(): **void** 为 **function** startScan(): **void**;
+## cl.wifiManager.2 扫描wifi能力的接口废弃与新增
+  
+因为优化扫描接口scan(),getScanResults(),getScanResultsSync(),对原接口废弃,推荐使用新的接口进行应用开发.
 
 **变更影响**<br>
-使用之前已发布的API 9各beta版本且使用到了上述的scan，需要改为使用startScan接口。
+如下接口从API 10开始废弃，废弃不影响已开发应用的兼容性，但建议改为使用新的替代接口。
 
 **关键的接口/组件变更**<br>
-无
+|废弃接口 |对应新增接口 |功能说明|                                            |
+| ------------- |-------------------------------------------------------- |-----------------------|
+| **function** scan(): **void**; |**function** startScan(): **void**;| 使用startScan接口启动扫描 |
+| **function** getScanResults(): Promise<Array<WifiScanInfo>>;|**function** getScanInfoList(): Array<WifiScanInfo>;| 使用getScanInfoList获取扫描列表 |
+| **function** getScanResults(callback: AsyncCallback<Array<WifiScanInfo>>): **void**;|**function** getScanInfoList(): Array<WifiScanInfo>; | 使用getScanInfoList获取扫描列表 |
+| **function** getScanResultsSync(): Array<WifiScanInfo>; |**function** getScanInfoList(): Array<WifiScanInfo>; | 使用getScanInfoList获取扫描列表 |
+
 
 **适配指导**<br>
-由scan需要改为使用startScan接口。
+应用中使用废弃接口的，建议升级API 10以后修改为对应的新增接口。
 
 
-## cl.wifiManager.3 修改接口getScanResults(): Promise<Array<WifiScanInfo>> 为 **function** getScanInfoList(): Array<WifiScanInfo>;
-	
-**变更影响**<br>
-使用之前已发布的API 9各beta版本且使用到了上述的getScanResults，需要改为使用getScanInfoList接口。
-
-**关键的接口/组件变更**<br>
-无
-
-**适配指导**<br>
-由getScanResults需要改为使用getScanInfoList接口。
 
 
-## cl.wifiManager.4 修改接口function** getScanResults(callback: AsyncCallback<Array<WifiScanInfo>>): **void**; 为 **function** getScanInfoList(): Array<WifiScanInfo>;
-	
-**变更影响**<br>
-使用之前已发布的API 9各beta版本且使用到了上述的getScanResults，需要改为使用getScanInfoList接口。
-
-**关键的接口/组件变更**<br>
-无
-
-**适配指导**<br>
-由getScanResults需要改为使用getScanInfoList接口。
 
 
-## cl.wifiManager.5 修改接口**function** getScanResultsSync(): Array<WifiScanInfo>; 为 **function** getScanInfoList(): Array<WifiScanInfo>;
 
-**变更影响**<br>
-使用之前已发布的API 9各beta版本且使用到了上述的getScanResultsSync，需要改为使用getScanInfoList接口。
-
-**关键的接口/组件变更**<br>
-无
-
-**适配指导**<br>
-由getScanResultsSync需要改为使用getScanInfoList接口。
-
-
-## cl.wifiManager.6 新增接口声明
-
-| 接口声明 | 接口描述 |
-|------|---------|
-| **function** setScanAlwaysAllowed(isScanAlwaysAllowed: boolean): **void**; | 设置后台扫描开关     |
-| **function** getScanAlwaysAllowed(): boolean;                | 获取后台扫描开关     |
-| **function** getIpv6Info(): Ipv6Info;                        | 获取ipv6地址信息     |
-| **function** isBandTypeSupported(bandType: WifiBandType): boolean; | 判断是否支持BandType |
-| **function** get5GChannelList(): Array<**number**>;          | 获取5G信道列表       |
-| **function** getDisconnectedReason(): DisconnectedReason;    | 获取网络断开原因     |
-
-**变更影响**<br>
-使用之前已发布的API 无影响。
-
-**关键的接口/组件变更**<br>
-无
-
-**适配指导**<br>
-无需适配
