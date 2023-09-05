@@ -1863,7 +1863,7 @@ The following describes the unique APIs of **MifareUltralightTag**.
 
 readMultiplePages(pageIndex: number): Promise\<number[]>
 
-Reads four pages (4 bytes per page) from this tag. This API uses a promise to return the result.
+Reads four pages of data (4 bytes per page) from this tag. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.NFC_TAG
 
@@ -1921,7 +1921,7 @@ try {
 
 readMultiplePages(pageIndex: number, callback: AsyncCallback\<number[]>): void
 
-Reads four pages (4 bytes per page) from this tag. This API uses an asynchronous callback to return the result.
+Reads four pages of data (4 bytes per page) from this tag. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.NFC_TAG
 
@@ -2188,6 +2188,13 @@ Formats this tag as an NDEF tag, and writes an NDEF message to it. This API uses
 | ------------------ | --------------------------|
 | callback: AsyncCallback\<void> | Callback invoked to return the result.|
 
+**Error codes**
+
+For details about the error codes, see [NFC Error Codes](../errorcodes/errorcode-nfc.md).
+
+| ID| Error Message|
+| ------- | -------|
+| 3100201 | Tag running state is abnormal in service. |
 
 **Example**
 
@@ -2297,6 +2304,13 @@ Formats this tag as an NDEF tag, writes an NDEF message to the NDEF tag, and the
 | ------------------ | --------------------------|
 | callback: AsyncCallback\<void> | Callback invoked to return the result.|
 
+**Error codes**
+
+For details about the error codes, see [NFC Error Codes](../errorcodes/errorcode-nfc.md).
+
+| ID| Error Message|
+| ------- | -------|
+| 3100201 | Tag running state is abnormal in service. |
 
 **Example**
 
