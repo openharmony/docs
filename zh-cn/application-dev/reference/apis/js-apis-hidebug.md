@@ -29,7 +29,7 @@ getNativeHeapSize(): bigint
 
 **示例：**
   ```ts
-  let nativeHeapSize : bigint = hidebug.getNativeHeapSize();
+  let nativeHeapSize: bigint = hidebug.getNativeHeapSize();
   ```
 
 ## hidebug.getNativeHeapAllocatedSize
@@ -49,7 +49,7 @@ getNativeHeapAllocatedSize(): bigint
 
 **示例：**
   ```ts
-  let nativeHeapAllocatedSize : bigint = hidebug.getNativeHeapAllocatedSize();
+  let nativeHeapAllocatedSize: bigint = hidebug.getNativeHeapAllocatedSize();
   ```
 
 ## hidebug.getNativeHeapFreeSize
@@ -68,7 +68,7 @@ getNativeHeapFreeSize(): bigint
 
 **示例：**
   ```ts
-  let nativeHeapFreeSize : bigint = hidebug.getNativeHeapFreeSize();
+  let nativeHeapFreeSize: bigint = hidebug.getNativeHeapFreeSize();
   ```
 
 ## hidebug.getPss
@@ -87,7 +87,7 @@ getPss(): bigint
 
 **示例：**
   ```ts
-  let pss : bigint = hidebug.getPss();
+  let pss: bigint = hidebug.getPss();
   ```
 
 ## hidebug.getSharedDirty
@@ -107,7 +107,7 @@ getSharedDirty(): bigint
 
 **示例：**
   ```ts
-  let sharedDirty : bigint = hidebug.getSharedDirty();
+  let sharedDirty: bigint = hidebug.getSharedDirty();
   ```
 
 ## hidebug.getPrivateDirty<sup>9+<sup>
@@ -126,7 +126,7 @@ getPrivateDirty(): bigint
 
 **示例：**
   ```ts
-  let privateDirty : bigint = hidebug.getPrivateDirty();
+  let privateDirty: bigint = hidebug.getPrivateDirty();
   ```
 
 ## hidebug.getCpuUsage<sup>9+<sup>
@@ -148,7 +148,7 @@ getCpuUsage(): number
 
 **示例：**
   ```ts
-  let cpuUsage : number = hidebug.getCpuUsage();
+  let cpuUsage: number = hidebug.getCpuUsage();
   ```
 
 ## hidebug.getServiceDump<sup>9+<sup>
@@ -187,13 +187,13 @@ try {
 }
 
 if (applicationContext) {
-  let filesDir : string = applicationContext.filesDir;
+  let filesDir: string = applicationContext.filesDir;
 }
-let path : string = filesDir + "/serviceInfo.txt";
+let path: string = filesDir + "/serviceInfo.txt";
 console.info("output path: " + path);
-let file : file.fs = fs.openSync(path, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
-let serviceId : number = 10;
-let args : Array = new Array("allInfo");
+let file: file.fs = fs.openSync(path, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+let serviceId: number = 10;
+let args: Array = new Array("allInfo");
 
 try {
   hidebug.getServiceDump(serviceId, file.fd, args);
