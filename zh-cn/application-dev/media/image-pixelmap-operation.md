@@ -27,6 +27,7 @@
 3. 读取并修改目标区域像素数据，写回原图。
      
    ```ts
+   import {BusinessError} from '@ohos.base'
    // 场景一：将读取的整张图像像素数据结果写入ArrayBuffer中
    const readBuffer = new ArrayBuffer(pixelBytesNumber);
    pixelMap.readPixelsToBuffer(readBuffer).then(() => {
