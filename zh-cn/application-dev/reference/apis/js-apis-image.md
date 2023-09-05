@@ -171,7 +171,7 @@ readPixels(area: PositionArea): Promise\<void>
 **示例：**
 
 ```js
-const area image.PositionArea = {
+const area : image.PositionArea = {
     pixels: new ArrayBuffer(8),
     offset: 0,
     stride: 8,
