@@ -1022,7 +1022,7 @@ async function Demo() {
    })
     let parcelable : MySequence = new MySequence(pixelMap);
     let data : rpc.MessageSequence = rpc.MessageSequence.create();
-    data.writeParcelable(parcelable : rpc.PixelParcel);
+    data.writeParcelable(parcelable : rpc.Parcelable);
 }
 ```
 
@@ -1096,7 +1096,7 @@ async function Demo() {
    })
     let ret : MySequence = new MySequence(pixelMap);
     let data : rpc.MessageSequence = rpc.MessageSequence.create();
-    await data.readParcelable(ret : rpc.PixelParcel);
+    await data.readParcelable(ret : rpc.Parcelable);
 }
 ```
 
