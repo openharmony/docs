@@ -60,7 +60,8 @@ function publishCB(err:Base.BusinessError) {
 // Publish a common event.
 try {
     CommonEventManager.publish("event", publishCB);
-} catch(err) {
+} catch (error) {
+    let err:Base.BusinessError = error as Base.BusinessError;
     console.error(`publish failed, code is ${err.code}, message is ${err.message}`);
 }
 ```
@@ -114,7 +115,8 @@ function publishCB(err:Base.BusinessError) {
 // Publish a common event.
 try {
     CommonEventManager.publish("event", options, publishCB);
-} catch (err) {
+} catch (error) {
+    let err:Base.BusinessError = error as Base.BusinessError;
     console.error(`publish failed, code is ${err.code}, message is ${err.message}`);
 }
 ```
@@ -166,7 +168,8 @@ let userId = 100;
 // Publish a common event.
 try {
     CommonEventManager.publishAsUser("event", userId, publishCB);
-} catch (err) {
+} catch (error) {
+    let err:Base.BusinessError = error as Base.BusinessError;
     console.error(`publishAsUser failed, code is ${err.code}, message is ${err.message}`);
 }
 ```
@@ -226,7 +229,8 @@ let userId = 100;
 // Publish a common event.
 try {
     CommonEventManager.publishAsUser("event", userId, options, publishCB);
-} catch (err) {
+} catch (error) {
+    let err:Base.BusinessError = error as Base.BusinessError;
     console.error(`publishAsUser failed, code is ${err.code}, message is ${err.message}`);
 }
 ```
@@ -269,7 +273,8 @@ function createCB(err:Base.BusinessError, commonEventSubscriber:CommonEventManag
 // Create a subscriber.
 try {
     CommonEventManager.createSubscriber(subscribeInfo, createCB);
-} catch (err) {
+} catch (error) {
+    let err:Base.BusinessError = error as Base.BusinessError;
     console.error(`createSubscriber failed, code is ${err.code}, message is ${err.message}`);
 }
 ```
@@ -366,7 +371,8 @@ function createCB(err:Base.BusinessError, commonEventSubscriber:CommonEventManag
         // Subscribe to a common event.
         try {
             CommonEventManager.subscribe(subscriber, SubscribeCB);
-        } catch (err) {
+        } catch (error) {
+            let err:Base.BusinessError = error as Base.BusinessError;
             console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
         }
     } else {
@@ -377,7 +383,8 @@ function createCB(err:Base.BusinessError, commonEventSubscriber:CommonEventManag
 // Create a subscriber.
 try {
     CommonEventManager.createSubscriber(subscribeInfo, createCB);
-} catch (err) {
+} catch (error) {
+    let err:Base.BusinessError = error as Base.BusinessError;
     console.error(`createSubscriber failed, code is ${err.code}, message is ${err.message}`);
 }
 ```
@@ -433,7 +440,8 @@ function createCB(err:Base.BusinessError, commonEventSubscriber:CommonEventManag
         // Subscribe to a common event.
         try {
             CommonEventManager.subscribe(subscriber, subscribeCB);
-        } catch(err) {
+        } catch (error) {
+            let err:Base.BusinessError = error as Base.BusinessError;
             console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
         }
     }
@@ -449,14 +457,16 @@ function unsubscribeCB(err:Base.BusinessError) {
 // Create a subscriber.
 try {
     CommonEventManager.createSubscriber(subscribeInfo, createCB);
-} catch (err) {
+} catch (error) {
+    let err:Base.BusinessError = error as Base.BusinessError;
     console.error(`createSubscriber failed, code is ${err.code}, message is ${err.message}`);
 }
 
 // Unsubscribe from the common event.
 try {
     CommonEventManager.unsubscribe(subscriber, unsubscribeCB);
-} catch (err) {
+} catch (error) {
+    let err:Base.BusinessError = error as Base.BusinessError;
     console.error(`unsubscribe failed, code is ${err.code}, message is ${err.message}`);
 }
 ```
@@ -583,7 +593,7 @@ CommonEventManager.setStaticSubscriberState(true, (err:Base.BusinessError) => {
         console.info(`Set static subscriber state callback failed, err is null.`);
         return;
     }
-    if (err.code) {
+    if (err.code !== undefined && err.code != null) {
         console.info(`Set static subscriber state callback failed, errCode: ${err.code}, errMes: ${err.message}`);
         return;
     }
