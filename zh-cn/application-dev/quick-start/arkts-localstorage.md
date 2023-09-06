@@ -196,12 +196,12 @@ link1.set(49); // two-way sync: link1.get() == link2.get() == prop.get() == 49
 
   @Component
   struct Child {
-    // @LocalStorageLink变量装饰器与LocalStorage中的'ProA'属性建立双向绑定
+    // @LocalStorageLink变量装饰器与LocalStorage中的'PropA'属性建立双向绑定
     @LocalStorageLink('PropA') storLink2: number = 1;
 
     build() {
       Button(`Child from LocalStorage ${this.storLink2}`)
-        // 更改将同步至LocalStorage中的'ProA'以及Parent.storLink1
+        // 更改将同步至LocalStorage中的'PropA'以及Parent.storLink1
         .onClick(() => this.storLink2 += 1)
     }
   }
@@ -209,7 +209,7 @@ link1.set(49); // two-way sync: link1.get() == link2.get() == prop.get() == 49
   @Entry(storage)
   @Component
   struct CompA {
-    // @LocalStorageLink变量装饰器与LocalStorage中的'ProA'属性建立双向绑定
+    // @LocalStorageLink变量装饰器与LocalStorage中的'PropA'属性建立双向绑定
     @LocalStorageLink('PropA') storLink1: number = 1;
 
     build() {
@@ -239,7 +239,7 @@ link1.set(49); // two-way sync: link1.get() == link2.get() == prop.get() == 49
   @Entry(storage)
   @Component
   struct CompA {
-    // @LocalStorageProp变量装饰器与LocalStorage中的'ProA'属性建立单向绑定
+    // @LocalStorageProp变量装饰器与LocalStorage中的'PropA'属性建立单向绑定
     @LocalStorageProp('PropA') storProp1: number = 1;
 
     build() {
@@ -254,7 +254,7 @@ link1.set(49); // two-way sync: link1.get() == link2.get() == prop.get() == 49
 
   @Component
   struct Child {
-    // @LocalStorageProp变量装饰器与LocalStorage中的'ProA'属性建立单向绑定
+    // @LocalStorageProp变量装饰器与LocalStorage中的'PropA'属性建立单向绑定
     @LocalStorageProp('PropA') storProp2: number = 2;
 
     build() {
@@ -275,7 +275,7 @@ link1.set(49); // two-way sync: link1.get() == link2.get() == prop.get() == 49
 ```ts
 // 构造LocalStorage实例
 let storage = new LocalStorage({ 'PropA': 47 });
-// 调用link9+接口构造'PropA'的双向同步数据，linkToPropA 是全部变量
+// 调用link9+接口构造'PropA'的双向同步数据，linkToPropA 是全局变量
 let linkToPropA = storage.link('PropA');
 
 @Entry(storage)
@@ -398,12 +398,12 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-在UI页面通过GetShared接口获取在通过loadContent共享的LocalStorage实例。
+在UI页面通过getShared接口获取在通过loadContent共享的LocalStorage实例。
 
 
 ```ts
-// 通过GetShared接口获取stage共享的Storage实例
-let storage = LocalStorage.GetShared()
+// 通过getShared接口获取stage共享的Storage实例
+let storage = LocalStorage.getShared()
 
 @Entry(storage)
 @Component

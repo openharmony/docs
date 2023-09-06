@@ -28,7 +28,7 @@ setIfaceConfig(iface: string, ic: InterfaceConfiguration, callback: AsyncCallbac
 | 参数名   | 类型                                              | 必填 | 说明                                       |
 | -------- | ------------------------------------------------- | ---- | ------------------------------------------ |
 | iface    | string                                            | 是   | 网络接口名                                     |
-| ic       | [InterfaceConfiguration](#interfaceconfiguration) | 是   | 要设置的网络接口配置信息                   |
+| ic       | [InterfaceConfiguration](#interfaceconfiguration9) | 是   | 要设置的网络接口配置信息                   |
 | callback | AsyncCallback\<void>                     | 是   | 回调函数，成功无返回，失败返回对应错误码。 |
 
 **错误码：**
@@ -55,12 +55,7 @@ ethernet.setIfaceConfig("eth0", {
   route: "192.168.xx.xxx",
   gateway: "192.168.xx.xxx",
   netMask: "255.255.255.0",
-  dnsServers: "1.1.1.1",
-  httpProxy: {
-    host: "180.89.xx.xx",
-    port: 8080,
-    exclusionList: {"example.com","192.168.0.1"}
-  }
+  dnsServers: "1.1.1.1"
 }, (error) => {
   if (error) {
     console.log("setIfaceConfig callback error = " + JSON.stringify(error));
@@ -87,7 +82,7 @@ setIfaceConfig(iface: string, ic: InterfaceConfiguration): Promise\<void>
 | 参数名 | 类型                                              | 必填 | 说明                     |
 | ------ | ------------------------------------------------- | ---- | ------------------------ |
 | iface  | string                                            | 是   | 接口名                   |
-| ic     | [InterfaceConfiguration](#interfaceconfiguration) | 是   | 要设置的网络接口配置信息 |
+| ic     | [InterfaceConfiguration](#interfaceconfiguration9) | 是   | 要设置的网络接口配置信息 |
 
 **返回值：**
 
@@ -119,12 +114,7 @@ ethernet.setIfaceConfig("eth0", {
   route: "192.168.xx.xxx",
   gateway: "192.168.xx.xxx",
   netMask: "255.255.255.0",
-  dnsServers: "1.1.1.1",
-  httpProxy: {
-    host: "180.89.xx.xx",
-    port: 8080,
-    exclusionList: {"example.com","192.168.0.1"}
-  }
+  dnsServers: "1.1.1.1"
 }).then(() => {
   console.log("setIfaceConfig promise ok ");
 }).catch(error => {

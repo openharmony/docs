@@ -1,7 +1,7 @@
 # @ohos.ai.mindSporeLite (Inference)
 
 MindSpore Lite is an AI engine that implements AI model inference for different hardware devices. It has been used in a wide range of fields, such as image classification, target recognition, facial recognition, and character recognition.
-The **mindSporeLite** module provides APIs for the MindSpore Lite inference engine to implment model inference.
+The **mindSporeLite** module provides APIs for the MindSpore Lite inference engine to implement model inference.
 
 > **NOTE**
 >
@@ -48,7 +48,7 @@ Defines the CPU backend device option.
 | threadNum              | number                                    | Yes  | Yes  | Number of runtime threads. The default value is **2**.                             |
 | threadAffinityMode     | [ThreadAffinityMode](#threadaffinitymode) | Yes  | Yes  | Affinity mode for binding runtime threads to CPU cores. The default value is **mindSporeLite.ThreadAffinityMode.NO_AFFINITIES**.|
 | threadAffinityCoreList | number[]                                  | Yes  | Yes  | List of CPU cores bound to runtime threads. Set this parameter only when **threadAffinityMode** is set. If **threadAffinityMode** is set to **mindSporeLite.ThreadAffinityMode.NO_AFFINITIES**, this parameter is empty. The number in the list indicates the SN of the CPU core. The default value is **[]**.|
-| precisionMode          | string                                    | Yes  | Yes  | Whether to enable the Float16 inference mode. The value **preferred_fp16** means to enable half-precision inference and the default value **force_fp32** means to disable half-precision inference. Other settings are not supported.|
+| precisionMode          | string                                    | Yes  | Yes  | Whether to enable the Float16 inference mode. The value **preferred_fp16** means to enable half-precision inference and the default value **enforce_fp32** means to disable half-precision inference. Other settings are not supported.|
 
 **Float16 inference mode**: a mode that uses half-precision inference. Float16 uses 16 bits to represent a number and therefore it is also called half-precision.
 
@@ -125,7 +125,7 @@ Loads the input model from the full path for model inference. This API uses an a
 
 ```js
 let context: mindSporeLite.Context = {};
-let context = {'target': ['cpu']};
+context = {'target': ['cpu']};
 let model_file = '/path/to/xxx.ms';
 mindSporeLite.loadModelFromFile(model_file, context, (result) => {
   const modelInputs = result.getInputs();
@@ -181,16 +181,16 @@ Loads the input model from the memory for inference. This API uses an asynchrono
 
 ```js
 import resourceManager from '@ohos.resourceManager'
-@State modelName: string = 'xxx.ms';
+let modelName = '/path/to/xxx.ms';
 let syscontext = globalThis.context;
-syscontext.resourceManager.getRawFileContent(this.modelName).then((buffer) => {
-  this.modelBuffer = buffer;
+syscontext.resourceManager.getRawFileContent(modelName).then((buffer) => {
+  let modelBuffer = buffer;
+  mindSporeLite.loadModelFromBuffer(modelBuffer.buffer, (result) => {
+  	const modelInputs = result.getInputs();
+  	console.log(modelInputs[0].name);
+  })
 }).catch(error => {
   console.error('Failed to get buffer, error code: ${error.code},message:${error.message}.');
-})
-mindSporeLite.loadModelFromBuffer(this.modelBuffer.buffer, (result) => {
-  const modelInputs = result.getInputs();
-  console.log(modelInputs[0].name);
 })
 ```
 ## mindSporeLite.loadModelFromBuffer
@@ -213,18 +213,18 @@ Loads the input model from the memory for inference. This API uses an asynchrono
 
 ```js
 import resourceManager from '@ohos.resourceManager'
-@State modelName: string = 'xxx.ms';
+let modelName = '/path/to/xxx.ms';
 let syscontext = globalThis.context;
-syscontext.resourceManager.getRawFileContent(this.modelName).then((error,buffer) => {
-  this.modelBuffer = buffer;
+syscontext.resourceManager.getRawFileContent(modelName).then((error,buffer) => {
+  let modelBuffer = buffer;
+  let context: mindSporeLite.Context = {};
+  context = {'target': ['cpu']};
+  mindSporeLite.loadModelFromBuffer(modelBuffer.buffer, context, (result) => {
+    const modelInputs = result.getInputs();
+    console.log(modelInputs[0].name);
+  })  
 }).catch(error => {
   console.error('Failed to get buffer, error code: ${error.code},message:${error.message}.');
-})
-let context: mindSporeLite.Context = {};
-context = {'target': ['cpu']};
-mindSporeLite.loadModelFromBuffer(this.modelBuffer.buffer, context, (result) => {
-  const modelInputs = result.getInputs();
-  console.log(modelInputs[0].name);
 })
 ```
 ## mindSporeLite.loadModelFromBuffer
@@ -252,16 +252,16 @@ Loads the input model from the memory for inference. This API uses a promise to 
 
 ```js
 import resourceManager from '@ohos.resourceManager'
-@State modelName: string = 'xxx.ms';
+let modelName = '/path/to/xxx.ms';
 let syscontext = globalThis.context;
-syscontext.resourceManager.getRawFileContent(this.modelName).then((buffer) => {
-  this.modelBuffer = buffer;
+syscontext.resourceManager.getRawFileContent(modelName).then((buffer) => {
+  let modelBuffer = buffer;
+  mindSporeLite.loadModelFromBuffer(modelBuffer.buffer).then((result) => {
+    const modelInputs = result.getInputs();
+    console.log(modelInputs[0].name);
+  })  
 }).catch(error => {
   console.error('Failed to get buffer, error code: ${error.code},message:${error.message}.');
-})
-mindSporeLite.loadModelFromBuffer(model_file).then((result) => {
-  const modelInputs = result.getInputs();
-  console.log(modelInputs[0].name);
 })
 ```
 ## mindSporeLite.loadModelFromFd
@@ -284,7 +284,7 @@ Loads the input model based on the specified file descriptor for inference. This
 ```js
 import fs from '@ohos.file.fs';
 let model_file = '/path/to/xxx.ms';
-let file = await fs.open(model_file, 0);
+let file = fs.openSync(model_file, fs.OpenMode.READ_ONLY);
 mindSporeLite.loadModelFromFd(file.fd, (result) => {
   const modelInputs = result.getInputs();
   console.log(modelInputs[0].name);
@@ -313,7 +313,7 @@ import fs from '@ohos.file.fs';
 let model_file = '/path/to/xxx.ms';
 let context : mindSporeLite.Context = {};
 context = {'target': ['cpu']};
-let file = await fs.open(model_file, 0);
+let file = fs.openSync(model_file, fs.OpenMode.READ_ONLY);
 mindSporeLite.loadModelFromFd(file.fd, context, (result) => {
   const modelInputs = result.getInputs();
   console.log(modelInputs[0].name);
@@ -345,7 +345,7 @@ Loads the input model based on the specified file descriptor for inference. This
 ```js
 import fs from '@ohos.file.fs';
 let model_file = '/path/to/xxx.ms';
-let file = await fs.open(model_file, 0);
+let file = fs.openSync(model_file, fs.OpenMode.READ_ONLY);
 let mindSporeLiteModel = await mindSporeLite.loadModelFromFd(file.fd);
 mindSporeLite.loadModelFromFd(file.fd).then((result) => {
   const modelInputs = result.getInputs();
@@ -383,9 +383,9 @@ mindSporeLite.loadModelFromFile(model_file).then((result) => {
 ```
 ### predict
 
-predict(inputs: MSTensor[], callback: Callback&lt;Model&gt;): void
+predict(inputs: MSTensor[], callback: Callback&lt;MSTensor[]&gt;): void
 
-Executes the inference model. This API uses an asynchronous callback to return the result.
+Executes the inference model. This API uses an asynchronous callback to return the result. Ensure that the model object is not reclaimed when being invoked.
 
 **System capability**: SystemCapability.AI.MindSporeLite
 
@@ -394,21 +394,21 @@ Executes the inference model. This API uses an asynchronous callback to return t
 | Name| Type                   | Mandatory| Description                      |
 | ------ | ----------------------- | ---- | -------------------------- |
 | inputs | [MSTensor](#mstensor)[] | Yes  | Model input, which is an **MSTensor** object.|
-| callback | Callback<[Model](#model)> | Yes  | Callback used to return the result, which is a **Model** object.|
+| callback | Callback<[MSTensor](#mstensor)[]> | Yes  | Callback used to return the result, **MSTensor** object.|
 
 **Example**
 
 ```js
 import resourceManager from '@ohos.resourceManager'
-@State inputName: string = 'input_data.bin';
+let inputName = 'input_data.bin';
 let syscontext = globalThis.context;
-syscontext.resourceManager.getRawFileContent(this.inputName).then((buffer) => {
-  this.inputBuffer = buffer;
+syscontext.resourceManager.getRawFileContent(inputName).then(async (buffer) => {
+  let inputBuffer = buffer;
   let model_file = '/path/to/xxx.ms';
   let mindSporeLiteModel = await mindSporeLite.loadModelFromFile(model_file);
   const modelInputs = mindSporeLiteModel.getInputs();
-  modelInputs[0].setData(this.inputBuffer.buffer);
-  result.predict(modelInputs, (result) => {
+  modelInputs[0].setData(inputBuffer.buffer);
+  mindSporeLiteModel.predict(modelInputs, (result) => {
     let output = new Float32Array(result[0].getData());
     for (let i = 0; i < output.length; i++) {
       console.log(output[i].toString());
@@ -420,7 +420,7 @@ syscontext.resourceManager.getRawFileContent(this.inputName).then((buffer) => {
 
 predict(inputs: MSTensor[]): Promise&lt;MSTensor[]&gt;
 
-Executes the inference model. This API uses a promise to return the result.
+Executes the inference model. This API uses a promise to return the result. Ensure that the model object is not reclaimed when being invoked.
 
 **System capability**: SystemCapability.AI.MindSporeLite
 
@@ -440,15 +440,15 @@ Executes the inference model. This API uses a promise to return the result.
 
 ```js
 import resourceManager from '@ohos.resourceManager'
-@State inputName: string = 'input_data.bin';
+let inputName = 'input_data.bin';
 let syscontext = globalThis.context;
-syscontext.resourceManager.getRawFileContent(this.inputName).then((buffer) => {
-  this.inputBuffer = buffer;
+syscontext.resourceManager.getRawFileContent(inputName).then(async (buffer) => {
+  let inputBuffer = buffer;
   let model_file = '/path/to/xxx.ms';
   let mindSporeLiteModel = await mindSporeLite.loadModelFromFile(model_file);
   const modelInputs = mindSporeLiteModel.getInputs();
-  modelInputs[0].setData(this.inputBuffer.buffer);
-  result.predict(modelInputs).then((result) => {
+  modelInputs[0].setData(inputBuffer.buffer);
+  mindSporeLiteModel.predict(modelInputs).then((result) => {
     let output = new Float32Array(result[0].getData());
     for (let i = 0; i < output.length; i++) {
       console.log(output[i].toString());
@@ -541,15 +541,15 @@ Obtains tensor data.
 
 ```js
 import resourceManager from '@ohos.resourceManager'
-@State inputName: string = 'input_data.bin';
+let inputName = 'input_data.bin';
 let syscontext = globalThis.context;
-syscontext.resourceManager.getRawFileContent(this.inputName).then((buffer) => {
-  this.inputBuffer = buffer;
+syscontext.resourceManager.getRawFileContent(inputName).then(async (buffer) => {
+  let inputBuffer = buffer;
   let model_file = '/path/to/xxx.ms';
   let mindSporeLiteModel = await mindSporeLite.loadModelFromFile(model_file);
   const modelInputs = mindSporeLiteModel.getInputs();
-  modelInputs[0].setData(this.inputBuffer.buffer);
-  result.predict(modelInputs).then((result) => {
+  modelInputs[0].setData(inputBuffer.buffer);
+  mindSporeLiteModel.predict(modelInputs).then((result) => {
     let output = new Float32Array(result[0].getData());
     for (let i = 0; i < output.length; i++) {
       console.log(output[i].toString());
@@ -576,15 +576,15 @@ Sets the tensor data.
 
 ```js
 import resourceManager from '@ohos.resourceManager'
-@State inputName: string = 'input_data.bin';
+let inputName = 'input_data.bin';
 let syscontext = globalThis.context;
-syscontext.resourceManager.getRawFileContent(this.inputName).then((buffer) => {
-  this.inputBuffer = buffer;
+syscontext.resourceManager.getRawFileContent(inputName).then(async (buffer) => {
+  let inputBuffer = buffer;
+  let model_file = '/path/to/xxx.ms';
+  let mindSporeLiteModel = await mindSporeLite.loadModelFromFile(model_file);
+  const modelInputs = mindSporeLiteModel.getInputs();
+  modelInputs[0].setData(inputBuffer.buffer);
 })
-let model_file = '/path/to/xxx.ms';
-let mindSporeLiteModel = await mindSporeLite.loadModelFromFile(model_file);
-const modelInputs = mindSporeLiteModel.getInputs();
-modelInputs[0].setData(this.inputBuffer.buffer);
 ```
 
 ## DataType

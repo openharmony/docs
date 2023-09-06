@@ -128,7 +128,7 @@ caretPosition(value:&nbsp;number): void
 | value  | number   | 是   | 从字符串开始到光标所在位置的字符长度。 |
 ### setTextSelection<sup>10+</sup>
 
-setTextSelection(selectionStart:&nbsp;number, selectionStart:&nbsp;number): void
+setTextSelection(selectionStart:&nbsp;number, selectionEnd:&nbsp;number): void
 
 设置文本选择区域并高亮显示。
 

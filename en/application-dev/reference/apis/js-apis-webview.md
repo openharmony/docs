@@ -254,20 +254,20 @@ struct WebComponent {
         .onClick(() => {
           // Use the local port to send messages to HTML5.
           try {
-              console.log("In eTS side send true start");
+              console.log("In ArkTS side send true start");
               if (this.nativePort) {
                   this.message.setString("helloFromEts");
                   this.nativePort.postMessageEventExt(this.message);
               }
           }
           catch (error) {
-              console.log("In eTS side send message catch error:" + error.code + ", msg:" + error.message);
+              console.log("In ArkTS side send message catch error:" + error.code + ", msg:" + error.message);
           }
         })
 
       Web({ src: $rawfile('index.html'), controller: this.controller })
       .onPageEnd((e)=>{
-        console.log("In eTS side message onPageEnd init mesaage channel");
+        console.log("In ArkTS side message onPageEnd init mesaage channel");
         // 1. Create a message port.
         this.ports = this.controller.createWebMessagePorts(true);
         // 2. Send port 1 to HTML5.
@@ -276,10 +276,10 @@ struct WebComponent {
         this.nativePort = this.ports[0];
         // 4. Set the callback.
         this.nativePort.onMessageEventExt((result) => {
-            console.log("In eTS side got message");
+            console.log("In ArkTS side got message");
             try {
                 var type = result.getType();
-                console.log("In eTS side getType:" + type);
+                console.log("In ArkTS side getType:" + type);
                 switch (type) {
                     case web_webview.WebMessageType.STRING: {
                         this.msg1 = "result type:" + typeof (result.getString());
@@ -592,8 +592,8 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
-| 17100002 | Invalid url.                                                 |
-| 17100003 | Invalid resource path or file type.                          |
+| 17100002 | Invalid url.                             |
+| 17100003 | Invalid resource path or file type.      |
 
 **Example**
 
@@ -652,71 +652,71 @@ struct WebComponent {
 There are three methods for loading local resource files:
 
 1. Using $rawfile
-   ```ts
-   // xxx.ets
-   import web_webview from '@ohos.web.webview'
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
 
-   @Entry
-   @Component
-   struct WebComponent {
-     controller: web_webview.WebviewController = new web_webview.WebviewController();
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
 
-     build() {
-       Column() {
-         Button('loadUrl')
-           .onClick(() => {
-             try {
-               // Load a local resource file through $rawfile.
-               this.controller.loadUrl($rawfile('index.html'));
-             } catch (error) {
-               console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
-             }
-           })
-         Web({ src: 'www.example.com', controller: this.controller })
-       }
-     }
-   }
-   ```
+  build() {
+    Column() {
+      Button('loadUrl')
+        .onClick(() => {
+          try {
+            // Load a local resource file through $rawfile.
+            this.controller.loadUrl($rawfile('index.html'));
+          } catch (error) {
+            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
 
 2. Using the resources protocol
-   ```ts
-   // xxx.ets
-   import web_webview from '@ohos.web.webview'
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
 
-   @Entry
-   @Component
-   struct WebComponent {
-     controller: web_webview.WebviewController = new web_webview.WebviewController();
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
 
-     build() {
-       Column() {
-         Button('loadUrl')
-           .onClick(() => {
-             try {
-               // Load a local resource file through the resource protocol.
-               this.controller.loadUrl("resource://rawfile/index.html");
-             } catch (error) {
-               console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
-             }
-           })
-         Web({ src: 'www.example.com', controller: this.controller })
-       }
-     }
-   }
-   ```
+  build() {
+    Column() {
+      Button('loadUrl')
+        .onClick(() => {
+          try {
+            // Load local resource files through the resource protocol.
+            this.controller.loadUrl("resource://rawfile/index.html");
+          } catch (error) {
+            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
 
 3. Using a sandbox path. For details, see the example of loading local resource files in the sandbox in [Web](../arkui-ts/ts-basic-components-web.md#web).
 
-   HTML file to be loaded:
-   ```html
-   <!-- index.html -->
-   <!DOCTYPE html>
-   <html>
-     <body>
-       <p>Hello World</p>
-     </body>
-   </html>
-   ```
+HTML file to be loaded:
+```html
+<!-- index.html -->
+<!DOCTYPE html>
+<html>
+  <body>
+    <p>Hello World</p>
+  </body>
+</html>
+```
 
 ### loadData
 
@@ -748,7 +748,7 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
-| 17100002 | Invalid url.                                                 |
+| 17100002 | Invalid url.                             |
 
 **Example**
 
@@ -1773,7 +1773,7 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
-| 17100008 | Cannot delete JavaScriptProxy.                               |
+| 17100008 | Cannot delete JavaScriptProxy.           |
 
 **Example**
 
@@ -1824,7 +1824,7 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
-| 17100004 | Function not enable.                                         |
+| 17100004 | Function not enable.                     |
 
 **Example**
 
@@ -2361,7 +2361,7 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
-| 17100004 | Function not enable.                                         |
+| 17100004 | Function not enable.                     |
 
 **Example**
 
@@ -2405,7 +2405,7 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
-| 17100004 | Function not enable.                                         |
+| 17100004 | Function not enable.                     |
 
 **Example**
 
@@ -2804,7 +2804,7 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
-| 17100003 | Invalid resource path or file type.                          |
+| 17100003 | Invalid resource path or file type.      |
 
 **Example**
 

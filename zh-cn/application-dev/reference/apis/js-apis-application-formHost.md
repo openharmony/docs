@@ -159,7 +159,7 @@ releaseForm(formId: string, isReleaseCache?: boolean): Promise&lt;void&gt;
 | 参数名         | 类型     | 必填 | 说明        |
 | -------------- | ------  | ---- | ----------- |
 | formId         | string  | 是   | 卡片标识。     |
-| isReleaseCache | boolean | 否   | 是否释放缓存。 |
+| isReleaseCache | boolean | 否   | 是否释放缓存，默认为false。 |
 
 **返回值：**
 

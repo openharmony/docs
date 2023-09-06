@@ -23,8 +23,11 @@ The ArkTS widget provides the **postCardAction()** API for interaction between t
 | "bundleName" | string | Name of the target bundle when **action** is **"router"** or **"call"**. This parameter is optional.|
 | "moduleName" | string | Name of the target module when **action** is **"router"** or **"call"**. This parameter is optional.|
 | "abilityName" | string | Name of the target UIAbility when **action** is **"router"** or **"call"**. This parameter is mandatory.|
-| "params" | Object | Additional parameters carried in the current action. The value is a key-value pair in JSON format. For the **"call"** action type, the **method** parameter (mandatory) must be set and its value type must be string.|
+| "params" | Object | Additional parameters carried in the current action. The value is a key-value pair in JSON format. This parameter is mandatory.|
 
+>**NOTE**
+>
+>When **action** is **"router"** or **"call"**, **'method'** of the string type must be passed to **params** to trigger the corresponding method in the UIAbility.
 
 Sample code of the **postCardAction()** API:
 

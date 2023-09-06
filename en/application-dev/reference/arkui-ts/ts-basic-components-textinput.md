@@ -45,8 +45,8 @@ Among the [universal attributes](ts-universal-attributes-size.md) and [universal
 | selectedBackgroundColor<sup>10+</sup> | [ResourceColor](ts-types.md#resourcecolor) | Background color of the selected text.<br>If the opacity is not set, the color is opaque. For example, **0x80000000** indicates black with 50% opacity.|
 | caretStyle<sup>10+</sup> | {<br>width: [Length](ts-types.md#length)<br>} | Caret style.                                       |
 | caretPosition<sup>10+</sup> | number | Caret position.|
-| showUnit<sup>10+</sup>                |  [CustomBuilder](ts-types.md#CustomBuilder8)         | Unit for content in the component.<br>By default, there is no unit.|
-| showError<sup>10+</sup> | string \| undefined | Error text displayed when an error occurs.<br>By default, no error text is displayed.|
+| showUnit<sup>10+</sup>                | [CustomBuilder](ts-types.md#CustomBuilder8)         | Unit for content in the component.<br>By default, there is no unit.|
+| showError<sup>10+</sup> | string \| undefined | Error message displayed when an error occurs.<br>By default, no error message is displayed.<br>**NOTE**<br>If the parameter type is string and the input content does not comply with specifications, the error message is displayed. If the parameter type is undefined, no error message is displayed. See [Example 2](#example-2).|
 | showUnderline<sup>10+</sup> | boolean | Whether to show an underline.<br>Default value: **false**|
 | passwordIcon<sup>10+</sup> | [PasswordIcon](#passwordicon10) | Password icon to display at the end of the password text box.<br>By default, the system-provided icon is used.|
 | enableKeyboardOnFocus<sup>10+</sup> | boolean | Whether to enable the input method when the component obtains focus.<br>Default value: **true**  |
@@ -129,7 +129,7 @@ Sets the position of the caret.
 | value  | number   | Yes  | Length from the start of the string to the position where the caret is located.|
 ### setTextSelection<sup>10+</sup>
 
-setTextSelection(selectionStart: number, selectionStart: number): void
+setTextSelection(selectionStart: number, selectionEnd: number): void
 
 Sets the text selection area, which will be highlighted.
 
@@ -248,17 +248,20 @@ struct TextInputExample {
 ### Example 2
 
 ```ts
-// xxx.ets
 @Entry
 @Component
 struct TextInputExample {
-  @State PassWordSrc1:Resource=$r('app.media.icon')
-  @State PassWordSrc2:Resource=$r('app.media.icon')
+  @State PassWordSrc1: Resource = $r('app.media.onIcon')
+  @State PassWordSrc2: Resource = $r('app.media.offIcon')
+  @State TextError: string = undefined
+  @State Text: string = ''
+  @State NameText: string = 'test'
+
   @Builder itemEnd() {
     Select([{ value: 'KB' },
       { value: 'MB' },
-      { value: 'GB'},
-      { value: 'TB',}])
+      { value: 'GB' },
+      { value: 'TB', }])
       .height("48vp")
       .borderRadius(0)
       .selected(2)
@@ -269,30 +272,49 @@ struct TextInputExample {
       .selectedOptionFont({ size: 20, weight: 400 })
       .optionFont({ size: 20, weight: 400 })
       .backgroundColor(Color.Transparent)
-      .responseRegion({height:"40vp",width:"80%",x:'10%',y:'6vp'})
+      .responseRegion({ height: "40vp", width: "80%", x: '10%', y: '6vp' })
       .onSelect((index: number) => {
         console.info('Select:' + index)
       })
   }
 
   build() {
-    Column() {
+    Column({ space: 20 }) {
       // Customize the password icon.
-      TextInput({ placeholder: 'user define password icon' })
+      TextInput({ placeholder: 'Custom password icon' })
         .type(InputType.Password)
-        .width(400)
+        .width(380)
         .height(60)
-        .passwordIcon({onIconSrc:this.PassWordSrc1,offIconSrc : this.PassWordSrc2})
+        .passwordIcon({ onIconSrc: this.PassWordSrc1, offIconSrc: this.PassWordSrc2 })
       // Show an underline.
-      TextInput({ placeholder: 'underline style' })
+      TextInput({ placeholder: 'Underline style' })
         .showUnderline(true)
-        .width(400)
+        .width(380)
         .height(60)
         .showError('Error')
         .showUnit(this.itemEnd.bind(this))
+
+      Text (`User name: ${this.Text}`)
+        .width('95%')
+      TextInput({ placeholder: 'Enter user name', text: this.Text })
+        .showUnderline(true)
+        .width(380)
+        .showError(this.TextError)
+        .onChange((value: string) => {
+          this.Text = value
+        })
+        .onSubmit(() => {// If the entered user name is incorrect, the text box will be cleared and the error message will be displayed.
+          if (this.Text == this.NameText) {
+            this.TextError = undefined
+          } else {
+            this.TextError ='Incorrect user name.'
+            this.Text = ''
+          }
+        })
+
     }.width('100%')
   }
 }
 ```
 
-![showUnit](figures/showUnit.png)
+![TextInputError](figures/TextInputError.PNG)

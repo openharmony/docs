@@ -170,7 +170,7 @@ Grid() {
   }
 }
 .rowsTemplate('1fr 1fr')
-.rowsTemplate('1fr 1fr')
+.columnsTemplate('1fr 1fr')
 ```
 
 对于内容结构相似的多个GridItem，通常更推荐使用ForEach语句中嵌套GridItem的形式，来减少重复代码。
@@ -193,7 +193,7 @@ struct OfficeService {
         }, service => service)
       }
       .rowsTemplate('1fr 1fr')
-      .rowsTemplate('1fr 1fr')
+      .columnsTemplate('1fr 1fr')
       ...
     }
     ...

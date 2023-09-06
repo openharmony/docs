@@ -188,7 +188,7 @@ struct ParentComponent {
 ### 父组件\@State到子组件\@Prop简单数据类型同步
 
 
-以下示例是\@State到子组件\@Prop简单数据同步，父组件ParentComponent的状态变量countDownStartValue初始化子组件CountDownComponent中\@Prop装饰的count，点击“Try again”，count的修改仅保留在CountDownComponent 不会同步给父组件CountDownComponent。
+以下示例是\@State到子组件\@Prop简单数据同步，父组件ParentComponent的状态变量countDownStartValue初始化子组件CountDownComponent中\@Prop装饰的count，点击“Try again”，count的修改仅保留在CountDownComponent 不会同步给父组件ParentComponent。
 
 
 ParentComponent的状态变量countDownStartValue的变化将重置CountDownComponent的count。
@@ -400,7 +400,7 @@ struct Library {
 
 在下面的示例中，更改了\@State 修饰的allBooks数组中Book对象上的属性，但点击“Mark read for everyone”无反应。这是因为该属性是第二层的嵌套属性，\@State装饰器只能观察到第一层属性，不会观察到此属性更改，所以框架不会更新ReaderComp。
 
-```
+```ts
 let nextId: number = 1;
 
 // @Observed
@@ -465,7 +465,7 @@ struct Library {
 
  需要使用\@Observed装饰class Book，Book的属性将被观察。 需要注意的是，\@Prop在子组件装饰的状态变量和父组件的数据源是单向同步关系，即ReaderComp中的\@Prop book的修改不会同步给父组件Library。而父组件只会在数值有更新的时候（和上一次状态的对比），才会触发UI的重新渲染。
 
-```
+```ts
 @Observed
 class Book {
   public id: number;
@@ -537,11 +537,12 @@ struct MainProgram {
       }
 
       Row() {
-        Column()
-        // customCounter必须从父组件初始化，因为MyComponent的customCounter成员变量缺少本地初始化；此处，customCounter2可以不做初始化。
-        MyComponent({ customCounter: this.mainCounter })
-        // customCounter2也可以从父组件初始化，父组件初始化的值会覆盖子组件customCounter2的本地初始化的值
-        MyComponent({ customCounter: this.mainCounter, customCounter2: this.mainCounter })
+        Column() {
+          // customCounter必须从父组件初始化，因为MyComponent的customCounter成员变量缺少本地初始化；此处，customCounter2可以不做初始化。
+          MyComponent({ customCounter: this.mainCounter })
+          // customCounter2也可以从父组件初始化，父组件初始化的值会覆盖子组件customCounter2的本地初始化的值
+          MyComponent({ customCounter: this.mainCounter, customCounter2: this.mainCounter })
+        }
       }
     }
   }

@@ -33,6 +33,8 @@ libnative_vsync.so
 
 1. **首先需要准备一个VSync回调函数**
     ```c++
+    #include <iostream>
+
     static bool flag = false;
     static void OnVSync(long long timestamp, void* data)
     {
@@ -49,6 +51,9 @@ libnative_vsync.so
 
 3. **通过OH_NativeVsync实例设置VSync回调函数**。
     ```c++
+    #include <unistd.h>
+    #include <iostream>
+
     OH_NativeVSync_RequestFrame(nativeVSync, callback, nullptr);
     while (!flag) { // 判断flag值，上面的VSync回调函数被执行后才会跳出while循环，表示已经接收到VSync信号
         std::cout << "wait for vsync!\n";
