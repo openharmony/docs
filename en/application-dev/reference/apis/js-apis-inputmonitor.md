@@ -37,7 +37,7 @@ Enables listening for global touch events.
 
 ```js
 try {
-  inputMonitor.on("touch", (touchEvent) => {
+  inputMonitor.on("touch", (touchEvent: TouchEvent) => {
     console.log(`Monitor on success ${JSON.stringify(touchEvent)}`);
     return false;
   });
@@ -99,7 +99,7 @@ Disables listening for global touch events.
 
 ```js
 // Disable listening for a single callback function.
-function callback(touchEvent) {
+let callback = (touchEvent: touchEvent) => {
   console.log(`Monitor on success ${JSON.stringify(touchEvent)}`);
   return false;
 };
@@ -114,7 +114,7 @@ try {
 
 ```js
 // Cancel listening for all callback functions.
-function callback(touchEvent) {
+let callback = (touchEvent: touchEvent) => {
   console.log(`Monitor on success ${JSON.stringify(touchEvent)}`);
   return false;
 };
@@ -148,7 +148,7 @@ Stops listening for global mouse events.
 
 ```js
 // Disable listening for a single callback.
-function callback(mouseEvent) {
+let callback = (mouseEvent: MouseEvent) => {
   console.log(`Monitor on success ${JSON.stringify(mouseEvent)}`);
   return false;
 };
@@ -163,7 +163,7 @@ try {
 
 ```js
 // Disable listening for all callback functions.
-function callback(mouseEvent) {
+let callback = (mouseEvent: MouseEvent) => {
   console.log(`Monitor on success ${JSON.stringify(mouseEvent)}`);
   return false;
 };
