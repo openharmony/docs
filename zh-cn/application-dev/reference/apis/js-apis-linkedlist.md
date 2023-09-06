@@ -641,7 +641,7 @@ linkedList.add(2);
 linkedList.add(4);
 linkedList.add(5);
 linkedList.add(4);
-linkedList.forEach((value:number, index: number) => {
+linkedList.forEach((value: number, index?: number) => {
   console.log("value:" + value, "index:" + index);
 });
 ```
@@ -851,7 +851,7 @@ for (let item of items) {
 
 // 使用方法二：
 let iter = linkedList[Symbol.iterator]();
-let temp = iter.next();
+let temp: IteratorResult<number> = iter.next();
 while(!temp.done) {
   console.log("value:" + temp.value);
   temp = iter.next();

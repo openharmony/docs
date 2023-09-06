@@ -35,10 +35,17 @@ Enables listening for combination key events. This API uses an asynchronous call
 ```js
 let leftAltKey = 2045;
 let tabKey = 2049;
+let keyOptions: inputConsumer.KeyOptions = {
+  preKeys: [ leftAltKey ],
+  finalKey: tabKey,
+  isFinalKeyDown: true,
+  finalKeyDownDuration: 0
+};
+let callback = (keyOptions: inputConsumer.KeyOptions) => {
+  console.log(`keyOptions: ${JSON.stringify(keyOptions)}`);
+}
 try {
-  inputConsumer.on("key", {preKeys: [leftAltKey], finalKey: tabKey, isFinalKeyDown: true, finalKeyDownDuration: 0}, keyOptions => {
-    console.log(`keyOptions: ${JSON.stringify(keyOptions)}`);
-  });
+  inputConsumer.on("key", keyOptions, callback);
 } catch (error) {
   console.log(`Subscribe failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
@@ -70,7 +77,7 @@ let tabKey = 2049;
 let callback = function (keyOptions) {
   console.log(`keyOptions: ${JSON.stringify(keyOptions)}`);
 }
-let keyOption = {preKeys: [leftAltKey], finalKey: tabKey, isFinalKeyDown: true, finalKeyDownDuration: 0};
+let keyOption: inputConsumer.KeyOptions = {preKeys: [leftAltKey], finalKey: tabKey, isFinalKeyDown: true, finalKeyDownDuration: 0};
 try {
   inputConsumer.on("key", keyOption, callback);
   inputConsumer.off("key", keyOption, callback);
@@ -86,7 +93,7 @@ let tabKey = 2049;
 let callback = function (keyOptions) {
   console.log(`keyOptions: ${JSON.stringify(keyOptions)}`);
 }
-let keyOption = {preKeys: [leftAltKey], finalKey: tabKey, isFinalKeyDown: true, finalKeyDownDuration: 0};
+let keyOption: inputConsumer.KeyOptions = {preKeys: [leftAltKey], finalKey: tabKey, isFinalKeyDown: true, finalKeyDownDuration: 0};
 try {
   inputConsumer.on("key", keyOption, callback);
   inputConsumer.off("key", keyOption);

@@ -456,7 +456,7 @@ arrayList.add(2);
 arrayList.add(4);
 arrayList.add(5);
 arrayList.add(4);
-arrayList.forEach((value: number, index: number) => {
+arrayList.forEach((value: number, index?: number) => {
   console.log("hyq value:" + value, "index:" + index);
 });
 ```
@@ -799,12 +799,12 @@ arrayList.add(4);
 // 使用方法一：
 let numbers: Array<number> = arrayList.convertToArray()
 for (let item of numbers) {
-  console.log(`hyq value : ${item}`);
+  console.log(`value : ${item}`);
 }
 
 // 使用方法二：
 let iter = arrayList[Symbol.iterator]();
-let temp = iter.next();
+let temp: IteratorResult<number> = iter.next().value;
 while(!temp.done) {
     console.log(`value:${temp.value}`);
     temp = iter.next();

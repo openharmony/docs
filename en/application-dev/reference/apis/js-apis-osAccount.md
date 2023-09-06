@@ -3226,6 +3226,7 @@ Checks whether an OS account has been verified. This API uses a promise to retur
   ```js
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
+  let localId: number = 100;
   accountManager.isOsAccountVerified(localId).then((isVerified: boolean) => {
     console.log('isOsAccountVerified successfully, isVerified: ' + isVerified);
   }).catch((err: BusinessError) => {
@@ -3457,7 +3458,7 @@ Obtains the OS account ID based on the domain account information. This API uses
 
   ```js
   import { BusinessError } from '@ohos.base';
-  let domainInfo = {domain: 'testDomain', accountName: 'testAccountName'};
+  let domainInfo: account_osAccount.DomainAccountInfo = {domain: 'testDomain', accountName: 'testAccountName'};
   let accountManager = account_osAccount.getAccountManager();
   accountManager.getOsAccountLocalIdFromDomain(domainInfo, (err: BusinessError, localId: number) => {
     if (err) {
@@ -3499,7 +3500,7 @@ Obtains the OS account ID based on the domain account information. This API uses
   ```js
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
-  let domainInfo = {domain: 'testDomain', accountName: 'testAccountName'};
+  let domainInfo: account_osAccount.DomainAccountInfo = {domain: 'testDomain', accountName: 'testAccountName'};
   accountManager.getOsAccountLocalIdFromDomain(domainInfo).then((localId: number) => {
     console.log('getOsAccountLocalIdFromDomain successfully, localId: ' + localId);
   }).catch((err: BusinessError) => {

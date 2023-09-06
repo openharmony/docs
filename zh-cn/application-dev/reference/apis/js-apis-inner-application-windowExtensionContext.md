@@ -17,14 +17,16 @@ WindowExtensionContext模块提供[WindowExtensionAbility](js-apis-application-w
 在使用WindowExtensionContext的功能前，需要通过WindowExtensionAbility子类实例获取。
 
 ```ts
-  import WindowExtensionAbility from '@ohos.application.WindowExtensionAbility';
+import WindowExtensionAbility from '@ohos.application.WindowExtensionAbility';
+import WindowExtensionContext from 'application/WindowExtensionContext';
 
-  let context;
-  class WindowExtAbility extends WindowExtensionAbility {
-    onConnect() {
-      context = this.context; // 获取WindowExtensionContext
-    }
+let context: WindowExtensionContext | null = null;
+
+class WindowExtAbility extends WindowExtensionAbility {
+  onConnect() {
+    context = this.context; // 获取WindowExtensionContext
   }
+}
 ```
 
 ## WindowExtensionContext.startAbility
@@ -46,28 +48,36 @@ startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&
 **示例：**
 
   ```ts
-  var want = {
-    bundleName: 'com.example.myapplication',
-    abilityName: 'MainAbility'
-  };
-  var options = {
-    windowMode: 102
-  };
+import { BusinessError } from '@ohos.base';
+import Want from '@ohos.app.ability.Want';
+import StartOptions from '@ohos.app.ability.StartOptions';
 
-  try {
-    this.context.startAbility(want, options, (error) => {
-      if (error.code) {
-        // 处理业务逻辑错误
-        console.error('startAbility failed, error.code: ${error.code}, error.message: ${error.message}');
-        return;
-      }
-      // 执行正常业务
-      console.log('startAbility succeed');
-    });
-  } catch (paramError) {
-    // 处理入参错误异常
-    console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
-  }
+let want: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'MainAbility'
+};
+let options: StartOptions = {
+  windowMode: 102
+};
+
+try {
+  this.context.startAbility(want, options, (error: BusinessError) => {
+    let message = (error as BusinessError).message;
+    let errCode = (error as BusinessError).code;
+    if (errCode) {
+      // 处理业务逻辑错误
+      console.error('startAbility failed, error.code: ${errCode}, error.message: ${message}');
+      return;
+    }
+    // 执行正常业务
+    console.log('startAbility succeed');
+  });
+} catch (paramError) {
+  // 处理入参错误异常
+  let message = (paramError as BusinessError).message;
+  let errCode = (paramError as BusinessError).code;
+  console.error('error.code: ${errCode}, error.message: ${message}');
+}
   ```
 
 ## WindowExtensionContext.startAbility
@@ -94,26 +104,34 @@ startAbility(want: Want, options?: StartOptions): Promise\<void>
 **示例：**
 
   ```ts
-  var want = {
-    bundleName: 'com.example.myapp',
-    abilityName: 'MainAbility'
-  };
-  var options = {
-  	windowMode: 102,
-  };
+import { BusinessError } from '@ohos.base';
+import Want from '@ohos.app.ability.Want';
+import StartOptions from '@ohos.app.ability.StartOptions';
 
-  try {
-    this.context.startAbility(want, options)
-      .then((data) => {
-        // 执行正常业务
-        console.log('startAbility succeed');
-      })
-      .catch((error) => {
-        // 处理业务逻辑错误
-        console.error('startAbility failed, error.code: ${error.code}, error.message: ${error.message}');
-      });
-  } catch (paramError) {
-    // 处理入参错误异常
-    console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
-  }
+let want: Want = {
+  bundleName: 'com.example.myapp',
+  abilityName: 'MainAbility'
+};
+let options: StartOptions = {
+  windowMode: 102,
+};
+
+try {
+  this.context.startAbility(want, options)
+    .then(() => {
+      // 执行正常业务
+      console.log('startAbility succeed');
+    })
+    .catch((error: BusinessError) => {
+      // 处理业务逻辑错误
+      let message = (error as BusinessError).message;
+      let errCode = (error as BusinessError).code;
+      console.error('startAbility failed, error.code: ${errCode}, error.message: ${message}');
+    });
+} catch (paramError) {
+  // 处理入参错误异常
+  let message = (paramError as BusinessError).message;
+  let errCode = (paramError as BusinessError).code;
+  console.error('error.code: ${errCode}, error.message: ${message}');
+}
   ```

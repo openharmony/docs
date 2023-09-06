@@ -33,7 +33,7 @@
 
 [各类Context的获取方式](../application-models/application-context-stage.md)
 
-```js
+```ts
 import camera from '@ohos.multimedia.camera';
 import featureAbility from '@ohos.ability.featureAbility';
 
@@ -83,7 +83,7 @@ async function preview(context: featureAbility.Context, cameraInfo: camera.Camer
 ![](figures/quick-thumbnail-sequence-diagram.png)
 
 [各类Context的获取方式](../application-models/application-context-stage.md)
-```js
+```ts
 import camera from '@ohos.multimedia.camera';
 import { BusinessError } from '@ohos.base';
 import image from '@ohos.multimedia.image';
@@ -152,7 +152,7 @@ function showOrSavePicture(pixelMap: image.PixelMap): void {
 
 - **桌面应用**
 
-  ```js
+  ```ts
   import camera from '@ohos.multimedia.camera';
   import { BusinessError } from '@ohos.base';
   import featureAbility from '@ohos.ability.featureAbility';
@@ -174,7 +174,7 @@ function showOrSavePicture(pixelMap: image.PixelMap): void {
 
   具体申请方式及校验方式，请参考[访问控制授权申请指导](../security/accesstoken-guidelines.md)。
 
-  ```js
+  ```ts
   import camera from '@ohos.multimedia.camera';
   import { BusinessError } from '@ohos.base';
   import featureAbility from '@ohos.ability.featureAbility';

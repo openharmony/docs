@@ -55,10 +55,10 @@ struct OffscreenCanvasPage {
           .borderColor('#00FF00')
           .backgroundColor('#FFFFFF')
           .onReady(() => {
-            var offContext = this.offCanvas.getContext("2d", this.settings)
+            let offContext = this.offCanvas.getContext("2d", this.settings)
             offContext.fillStyle = '#CDCDCD'
             offContext.fillRect(0, 0, this.offCanvas.width, 150)
-            var image = this.offCanvas.transferToImageBitmap()
+            let image = this.offCanvas.transferToImageBitmap()
             this.context.setTransform(1, 0, 0, 1, 50, 200)
             this.context.transferFromImageBitmap(image)
           })
@@ -91,10 +91,10 @@ struct OffscreenCanvasPage {
           .borderColor('#00FF00')
           .backgroundColor('#FFFFFF')
           .onReady(() => {
-            var offContext = this.offCanvas.getContext("2d", this.settings)
+            let offContext = this.offCanvas.getContext("2d", this.settings)
             offContext.fillStyle = '#CDCDCD'
             offContext.fillRect(0, 0, 100, this.offCanvas.height)
-            var image = this.offCanvas.transferToImageBitmap()
+            let image = this.offCanvas.transferToImageBitmap()
             this.context.setTransform(1, 0, 0, 1, 50, 200)
             this.context.transferFromImageBitmap(image)
           })
@@ -142,13 +142,13 @@ struct OffscreenCanvasPage {
         .borderColor('#00FF00')
         .backgroundColor('#FFFFFF')
         .onReady(() => {
-          var offContext = this.offCanvas.getContext("2d", this.settings)
+          let offContext = this.offCanvas.getContext("2d", this.settings)
           offContext.fillStyle = '#CDCDCD'
           offContext.fillRect(0, 0, 300, 500)
           offContext.fillStyle = '#000000'
           offContext.font = '70px serif bold'
           offContext.fillText("Offscreen : Hello World!", 20, 60)
-          var image = this.offCanvas.transferToImageBitmap()
+          let image = this.offCanvas.transferToImageBitmap()
           this.context.transferFromImageBitmap(image)
         })
     }
@@ -197,7 +197,7 @@ struct OffscreenCanvasExamplePage {
           .height('100%')
           .backgroundColor('#FFFFFF')
           .onReady(() => {
-            var offContext = this.offscreenCanvas.getContext("2d", this.settings)
+            let offContext = this.offscreenCanvas.getContext("2d", this.settings)
             offContext.font = '70px sans-serif'
             offContext.fillText("Offscreen : Hello World!", 20, 60)
             offContext.fillStyle = "#0000ff"
@@ -217,7 +217,7 @@ struct OffscreenCanvasExamplePage {
             offContext.stroke()
             offContext.fillStyle = '#FF00FF'
             offContext.fillRect(100, 100, 60, 60)
-            var imageData = this.offscreenCanvas.transferToImageBitmap()
+            let imageData = this.offscreenCanvas.transferToImageBitmap()
             this.context.transferFromImageBitmap(imageData)
           })
       }.width('100%').height('100%')

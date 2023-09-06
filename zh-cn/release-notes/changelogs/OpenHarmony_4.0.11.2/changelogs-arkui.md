@@ -25,3 +25,10 @@ PanelHeight枚举的WRAP_CONTENT值从0变为'wrapContent'，接口行为变更�
 4.0.9.1版本之前，开发者defaultFocus设置为true不生效
 
 4.0.9.1版本及之后，开发者defaultFocus设置为true生效
+
+## cl.arkui.4 焦点tabIndex走焦方式由非循环走焦更改为循环走焦。
+
+**变更影响**
+4.0.10.2版本之前，焦点tabIndex走焦方式为非循环走焦
+
+4.0.10.2版本及之后，焦点tabIndex走焦方式为循环走焦

@@ -124,21 +124,25 @@ import router from '@ohos.router';
 ```ts
 class DataModelInfo {
   age: number;
+
+  constructor(age: number) {
+    this.age = age;
+  }
 }
 
 class DataModel {
   id: number;
   info: DataModelInfo;
+
+  constructor(id: number, info: DataModelInfo) {
+    this.id = id;
+    this.info = info;
+  }
 }
 
 function onJumpClick(): void {
   // 在Home页面中
-  let paramsInfo: DataModel = {
-    id: 123,
-    info: {
-      age: 20
-    }
-  };
+  let paramsInfo: DataModel = new DataModel(123, new DataModelInfo(20));
 
   router.pushUrl({
     url: 'pages/Detail', // 目标url
@@ -157,9 +161,9 @@ function onJumpClick(): void {
 
 
 ```ts
-const params = router.getParams(); // 获取传递过来的参数对象
-const id = params['id']; // 获取id属性的值
-const age = params['info'].age; // 获取age属性的值
+const params:DataModel = router.getParams() as DataModel; // 获取传递过来的参数对象
+const id:number = params.id; // 获取id属性的值
+const age:number = params.info.age; // 获取age属性的值
 ```
 
 
@@ -204,11 +208,17 @@ import router from '@ohos.router';
 
 
   ```ts
+  class routerParam {
+    info: string;
+
+    constructor(info: string) {
+      this.info = info;
+    }
+  }
+
   router.back({
     url: 'pages/Home',
-    params: {
-      info: '来自Home页'
-    }
+    params: new routerParam('来自Home页')
   });
   ```
 
@@ -219,8 +229,8 @@ import router from '@ohos.router';
 
 ```ts
 onPageShow() {
-  const params = router.getParams(); // 获取传递过来的参数对象
-  const info = params['info']; // 获取info属性的值
+  const params = router.getParams() as routerParam; // 获取传递过来的参数对象
+  const info = params.info; // 获取info属性的值
 }
 ```
 
@@ -257,6 +267,8 @@ import router from '@ohos.router';
 
 
 ```ts
+import {BusinessError} from '@ohos.base';
+
 // 定义一个返回按钮的点击事件处理函数
 function onBackClick(): void {
   // 调用router.showAlertBeforeBackPage()方法，设置返回询问框的信息
@@ -265,7 +277,7 @@ function onBackClick(): void {
       message: '您还没有完成支付，确定要返回吗？' // 设置询问框的内容
     });
   } catch (err) {
-    console.error(`Invoke showAlertBeforeBackPage failed, code is ${err.code}, message is ${err.message}`);
+    console.error(`Invoke showAlertBeforeBackPage failed, code is ${(err as BusinessError).code}, message is ${(err as BusinessError).message}`);
   }
 
   // 调用router.back()方法，返回上一个页面
@@ -295,6 +307,9 @@ import router from '@ohos.router';
 
 
 ```ts
+import { BusinessError } from '@ohos.base';
+import promptAction from '@ohos.promptAction';
+
 function onBackClick() {
   // 弹出自定义的询问框
   promptAction.showDialog({
@@ -319,7 +334,7 @@ function onBackClick() {
       // 调用router.back()方法，返回上一个页面
       router.back();
     }
-  }).catch((err) => {
+  }).catch((err:BusinessError) => {
     console.error(`Invoke showDialog failed, code is ${err.code}, message is ${err.message}`);
   })
 }
@@ -355,6 +370,25 @@ struct MyComponent {
 // entry/src/main/ets/pages/Index.ets
 import router from '@ohos.router';
 import 'library/src/main/ets/pages/Index' // 引入共享包library中的命名路由页面
+import { BusinessError } from '@ohos.base';
+
+class innerParams {
+  data3: number[];
+
+  constructor(tuple: number[]) {
+    this.data3 = tuple;
+  }
+}
+
+class routerParams {
+  data1: string;
+  data2: innerParams;
+
+  constructor(data1: string, data2: number[]) {
+    this.data1 = data1;
+    this.data2 = new innerParams(data2);
+  }
+}
 
 @Entry
 @Component
@@ -370,15 +404,10 @@ struct Index {
           try {
             router.pushNamedRoute({
               name: 'myPage',
-              params: {
-                data1: 'message',
-                data2: {
-                  data3: [123, 456, 789]
-                }
-              }
+              params: new routerParams('message', [123, 456, 789])
             })
           } catch (err) {
-            console.error(`pushNamedRoute failed, code is ${err.code}, message is ${err.message}`);
+            console.error(`pushNamedRoute failed, code is ${(err as BusinessError).code}, message is ${(err as BusinessError).message}`);
           }
         })
     }

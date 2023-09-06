@@ -219,10 +219,8 @@ import { BusinessError } from '@ohos.base';
 
 | 名称                   | 值  | 说明   |
 | -------------------- | ---- | ---- |
-| DEVICE_TYPE_PHONE    | 0x00 | 手机   |
 | DEVICE_TYPE_TABLET   | 0x01 | 平板   |
 | DEVICE_TYPE_CAR      | 0x02 | 汽车   |
-| DEVICE_TYPE_PC       | 0x03 | 电脑   |
 | DEVICE_TYPE_TV       | 0x04 | 电视   |
 | DEVICE_TYPE_WEARABLE | 0x06 | 穿戴   |
 
@@ -4755,7 +4753,7 @@ getDeviceCapability(): Promise&lt;DeviceCapability&gt;
 
 release()
 
-用户释放创建的resourceManager。
+用户释放创建的resourceManager, 此接口暂不支持。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 

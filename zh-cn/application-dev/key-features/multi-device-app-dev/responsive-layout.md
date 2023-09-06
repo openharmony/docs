@@ -54,13 +54,14 @@
    // MainAbility.ts
    import window from '@ohos.window'
    import display from '@ohos.display'
+   import Ability from '@ohos.app.ability.Ability'
    
    export default class MainAbility extends Ability {
-     private windowObj: window.Window
-     private curBp: string
-     ...
+     private windowObj?: window.Window
+     private curBp: string = ''
+     //...
      // 根据当前窗口尺寸更新断点
-     private updateBreakpoint(windowWidth) {
+     private updateBreakpoint(windowWidth: number) :void{
        // 将长度的单位由px换算为vp
        let windowWidthVp = windowWidth / (display.getDefaultDisplaySync().densityDPI / 160)
        let newBp: string = ''
@@ -80,7 +81,7 @@
        }
      }
 
-     onWindowStageCreate(windowStage: window.WindowStage) {
+     onWindowStageCreate(windowStage: window.WindowStage) :void{
        windowStage.getMainWindow().then((windowObj) => {
          this.windowObj = windowObj
          // 获取应用启动时的窗口尺寸
@@ -90,16 +91,16 @@
            this.updateBreakpoint(windowSize.width)
          })
        });
-       ...
+      // ...
      }
        
      // 窗口销毁时，取消窗口尺寸变化监听
-     onWindowStageDestroy() {
+     onWindowStageDestroy() :void{
        if (this.windowObj) {
          this.windowObj.off('windowSizeChange')
        }
      }
-     ...
+     //...
    }
    ```
 
@@ -165,7 +166,7 @@ export class BreakpointType<T> {
     this.md = md
     this.lg = lg
   }
-  GetValue(currentBreakpoint: string) {
+  GetValue(currentBreakpoint: string):T | undefined{
     if (currentBreakpoint === 'sm') {
       return this.sm
     }
@@ -181,33 +182,33 @@ export class BreakpointType<T> {
 
 export class BreakpointSystem {
   private currentBreakpoint: string = 'md'
-  private smListener: mediaquery.MediaQueryListener
-  private mdListener: mediaquery.MediaQueryListener
-  private lgListener: mediaquery.MediaQueryListener
+  private smListener?: mediaquery.MediaQueryListener
+  private mdListener?: mediaquery.MediaQueryListener
+  private lgListener?: mediaquery.MediaQueryListener
 
-  private updateCurrentBreakpoint(breakpoint: string) {
+  private updateCurrentBreakpoint(breakpoint: string) :void{
     if (this.currentBreakpoint !== breakpoint) {
       this.currentBreakpoint = breakpoint
       AppStorage.Set<string>('currentBreakpoint', this.currentBreakpoint)
     }
   }
-  private isBreakpointSM = (mediaQueryResult) => {
+  private isBreakpointSM = (mediaQueryResult:mediaquery.MediaQueryResult) :void=> {
     if (mediaQueryResult.matches) {
       this.updateCurrentBreakpoint('sm')
     }
   }
-  private isBreakpointMD = (mediaQueryResult) => {
+  private isBreakpointMD = (mediaQueryResult:mediaquery.MediaQueryResult) :void=> {
     if (mediaQueryResult.matches) {
       this.updateCurrentBreakpoint('md')
     }
   }
-  private isBreakpointLG = (mediaQueryResult) => {
+  private isBreakpointLG = (mediaQueryResult:mediaquery.MediaQueryResult):void => {
     if (mediaQueryResult.matches) {
       this.updateCurrentBreakpoint('lg')
     }
   }
 
-  public register() {
+  public register() :void{
     this.smListener = mediaquery.matchMediaSync("(320vp<width<600vp)")
     //初始化
     if (this.smListener.matches){
@@ -215,20 +216,20 @@ export class BreakpointSystem {
     }
     this.smListener.on("change", this.isBreakpointSM)
     this.mdListener = mediaquery.matchMediaSync("(600vp<width<840vp)")
-   //初始化
+    //初始化
     if (this.mdListener.matches){
       this.updateCurrentBreakpoint('md')
     }
     this.mdListener.on("change", this.isBreakpointMD)
     this.lgListener = mediaquery.matchMediaSync("(840vp<width)")
-   //初始化
+    //初始化
     if (this.lgListener.matches){
       this.updateCurrentBreakpoint('lg')
     }
     this.lgListener.on("change", this.isBreakpointLG)
   }
 
-  public unregister() {
+  public unregister() :void{
     this.smListener.off("change", this.isBreakpointSM)
     this.mdListener.off("change", this.isBreakpointMD)
     this.lgListener.off("change", this.isBreakpointLG)
@@ -441,7 +442,7 @@ struct GridRowSample3 {
     // 配置不同断点下columns和gutter的取值
     GridRow({columns: {sm: 4, md: 8, lg: 12},
       gutter: {x: {sm: 8, md: 16, lg: 24}, y: {sm: 8, md: 16, lg: 24}}}) {
-      ForEach(this.bgColors, (bgColor)=>{
+      ForEach(this.bgColors, (bgColor:ResourceColor)=>{
         GridCol({span: {sm: 2, md: 2, lg: 2}}) {
           Row().backgroundColor(bgColor).height(30).width('100%')
         }
@@ -538,21 +539,25 @@ struct GridRowSample4 {
 
 
 ```ts
+class Obj {
+  public index: number = 1;
+  public color: Resource = $r('sys.color.ohos_id_color_palette_aux1')
+}
 @Entry
 @Component
 struct GridRowSample5 {
-  private elements: Object[] = [
-    {'index': 1, 'color': $r('sys.color.ohos_id_color_palette_aux1')},
-    {'index': 2, 'color': $r('sys.color.ohos_id_color_palette_aux2')},
-    {'index': 3, 'color': $r('sys.color.ohos_id_color_palette_aux3')},
-    {'index': 4, 'color': $r('sys.color.ohos_id_color_palette_aux4')},
-    {'index': 5, 'color': $r('sys.color.ohos_id_color_palette_aux5')},
-    {'index': 6, 'color': $r('sys.color.ohos_id_color_palette_aux6')},
+  private elements: Obj[] = [
+    {index: 1, color: $r('sys.color.ohos_id_color_palette_aux1')},
+    {index: 2, color: $r('sys.color.ohos_id_color_palette_aux2')},
+    {index: 3, color: $r('sys.color.ohos_id_color_palette_aux3')},
+    {index: 4, color: $r('sys.color.ohos_id_color_palette_aux4')},
+    {index: 5, color: $r('sys.color.ohos_id_color_palette_aux5')},
+    {index: 6, color: $r('sys.color.ohos_id_color_palette_aux6')},
   ]
 
   build() {
     GridRow() {
-      ForEach(this.elements, (item)=>{
+      ForEach(this.elements, (item:Obj)=>{
         GridCol({span: {sm: 6, md: (item.index % 3 === 0) ? 0 : 4, lg: 3}}) {
           Row() {
             Text('' + item.index).fontSize(24)
@@ -580,21 +585,25 @@ struct GridRowSample5 {
 
 
 ```ts
+class Obj {
+  public index: number = 1;
+  public color: Resource = $r('sys.color.ohos_id_color_palette_aux1')
+}
 @Entry
 @Component
 struct GridRowSample6 {
-  private elements: Object[] = [
-    {'index': 1, 'color': $r('sys.color.ohos_id_color_palette_aux1')},
-    {'index': 2, 'color': $r('sys.color.ohos_id_color_palette_aux2')},
-    {'index': 3, 'color': $r('sys.color.ohos_id_color_palette_aux3')},
-    {'index': 4, 'color': $r('sys.color.ohos_id_color_palette_aux4')},
-    {'index': 5, 'color': $r('sys.color.ohos_id_color_palette_aux5')},
-    {'index': 6, 'color': $r('sys.color.ohos_id_color_palette_aux6')},
+  private elements: Obj[] = [
+    {index: 1, color: $r('sys.color.ohos_id_color_palette_aux1')},
+    {index: 2, color: $r('sys.color.ohos_id_color_palette_aux2')},
+    {index: 3, color: $r('sys.color.ohos_id_color_palette_aux3')},
+    {index: 4, color: $r('sys.color.ohos_id_color_palette_aux4')},
+    {index: 5, color: $r('sys.color.ohos_id_color_palette_aux5')},
+    {index: 6, color: $r('sys.color.ohos_id_color_palette_aux6')},
   ]
 
   build() {
     GridRow() {
-      ForEach(this.elements, (item)=>{
+      ForEach(this.elements, (item:Obj)=>{
         GridCol({span: {sm: 6, md: 4, lg: 3}, offset: {sm: 0, md: 2, lg: 1} }) {
           Row() {
             Text('' + item.index).fontSize(24)
@@ -622,21 +631,25 @@ struct GridRowSample6 {
 
 
 ```ts
+class Obj {
+  public index: number = 1;
+  public color: Resource = $r('sys.color.ohos_id_color_palette_aux1')
+}
 @Entry
 @Component
 struct GridRowSample7 {
-  private elements: Object[] = [
-    {'index': 1, 'color': $r('sys.color.ohos_id_color_palette_aux1')},
-    {'index': 2, 'color': $r('sys.color.ohos_id_color_palette_aux2')},
-    {'index': 3, 'color': $r('sys.color.ohos_id_color_palette_aux3')},
-    {'index': 4, 'color': $r('sys.color.ohos_id_color_palette_aux4')},
-    {'index': 5, 'color': $r('sys.color.ohos_id_color_palette_aux5')},
-    {'index': 6, 'color': $r('sys.color.ohos_id_color_palette_aux6')},
+  private elements: Obj[] = [
+    {index: 1, color: $r('sys.color.ohos_id_color_palette_aux1')},
+    {index: 2, color: $r('sys.color.ohos_id_color_palette_aux2')},
+    {index: 3, color: $r('sys.color.ohos_id_color_palette_aux3')},
+    {index: 4, color: $r('sys.color.ohos_id_color_palette_aux4')},
+    {index: 5, color: $r('sys.color.ohos_id_color_palette_aux5')},
+    {index: 6, color: $r('sys.color.ohos_id_color_palette_aux6')},
   ]
 
   build() {
     GridRow() {
-      ForEach(this.elements, (item)=>{
+      ForEach(this.elements, (item:Obj)=>{
         GridCol({span: {sm: 6, md: 4, lg: 3}, order: {lg: (6-item.index)}}) {
           Row() {
             Text('' + item.index).fontSize(24)
@@ -664,21 +677,24 @@ struct GridRowSample7 {
 
 
 ```ts
+class Obj {
+  public index: number = 1;
+  public color: Resource = $r('sys.color.ohos_id_color_palette_aux1')
+}
 @Entry
 @Component
 struct GridRowSample8 {
-  private elements: Object[] = [
-    {'index': 1, 'color': $r('sys.color.ohos_id_color_palette_aux1')},
-    {'index': 2, 'color': $r('sys.color.ohos_id_color_palette_aux2')},
-    {'index': 3, 'color': $r('sys.color.ohos_id_color_palette_aux3')},
-    {'index': 4, 'color': $r('sys.color.ohos_id_color_palette_aux4')},
-    {'index': 5, 'color': $r('sys.color.ohos_id_color_palette_aux5')},
-    {'index': 6, 'color': $r('sys.color.ohos_id_color_palette_aux6')},
+  private elements: Obj[] = [
+    {index: 1, color: $r('sys.color.ohos_id_color_palette_aux1')},
+    {index: 2, color: $r('sys.color.ohos_id_color_palette_aux2')},
+    {index: 3, color: $r('sys.color.ohos_id_color_palette_aux3')},
+    {index: 4, color: $r('sys.color.ohos_id_color_palette_aux4')},
+    {index: 5, color: $r('sys.color.ohos_id_color_palette_aux5')},
+    {index: 6, color: $r('sys.color.ohos_id_color_palette_aux6')},
   ]
-
   build() {
     GridRow() {
-      ForEach(this.elements, (item)=>{
+      ForEach(this.elements, (item:Obj)=>{
         // 不配置md断点下三个参数的值，则其取值与sm断点相同
         GridCol({span: {sm:4, lg: 3}, offset: {sm: 2, lg: 1},
           order: {sm: (6-item.index), lg: item.index}}) {
@@ -707,23 +723,26 @@ struct GridRowSample8 {
 
 
 ```ts
+class Obj {
+  public index: number = 1;
+  public color: Resource = $r('sys.color.ohos_id_color_palette_aux1')
+}
 @Entry
 @Component
 struct GridRowSample9 {
-  private elements: Object[] = [
-    {'index': 1, 'color': $r('sys.color.ohos_id_color_palette_aux1')},
-    {'index': 2, 'color': $r('sys.color.ohos_id_color_palette_aux2')},
-    {'index': 3, 'color': $r('sys.color.ohos_id_color_palette_aux3')},
-    {'index': 4, 'color': $r('sys.color.ohos_id_color_palette_aux4')},
-    {'index': 5, 'color': $r('sys.color.ohos_id_color_palette_aux5')},
-    {'index': 6, 'color': $r('sys.color.ohos_id_color_palette_aux6')},
+  private elements: Obj[] = [
+    {index: 1, color: $r('sys.color.ohos_id_color_palette_aux1')},
+    {index: 2, color: $r('sys.color.ohos_id_color_palette_aux2')},
+    {index: 3, color: $r('sys.color.ohos_id_color_palette_aux3')},
+    {index: 4, color: $r('sys.color.ohos_id_color_palette_aux4')},
+    {index: 5, color: $r('sys.color.ohos_id_color_palette_aux5')},
+    {index: 6, color: $r('sys.color.ohos_id_color_palette_aux6')},
   ]
-
   build() {
     GridRow() {
       GridCol({span: {sm: 12, md: 10, lg: 8}, offset: {sm: 0, md: 1, lg: 2}}) {
         GridRow() {
-          ForEach(this.elements, (item)=>{
+          ForEach(this.elements, (item:Obj)=>{
             GridCol({span: {sm: 6, md: 4, lg: 3}}) {
               Row() {
                 Text('' + item.index).fontSize(24)

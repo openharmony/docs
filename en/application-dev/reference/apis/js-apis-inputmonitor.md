@@ -146,7 +146,7 @@ Disables listening for global mouse events.
 
 ```js
 // Disable listening for a single callback.
-function callback(mouseEvent) {
+let callback = (mouseEvent: MouseEvent) => {
   console.log(`Monitor on success ${JSON.stringify(mouseEvent)}`);
   return false;
 };

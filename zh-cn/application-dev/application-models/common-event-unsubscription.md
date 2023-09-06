@@ -19,6 +19,7 @@
    
    ```ts
    import commonEventManager from '@ohos.commonEventManager';
+   import Base from '@ohos.base';
    ```
 
 2. 根据[动态订阅公共事件](common-event-subscription.md)章节的步骤来订阅某个事件。
@@ -28,7 +29,7 @@
    ```ts
    // subscriber为订阅事件时创建的订阅者对象
    if (subscriber !== null) {
-       commonEventManager.unsubscribe(subscriber, (err) => {
+       commonEventManager.unsubscribe(subscriber, (err: Base.BusinessError) => {
            if (err) {
                console.error(`[CommonEvent] UnsubscribeCallBack err=${JSON.stringify(err)}`);
            } else {

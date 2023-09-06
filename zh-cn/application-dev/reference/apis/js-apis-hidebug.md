@@ -8,7 +8,7 @@
 
 ## 导入模块
 
-```js
+```ts
 import hidebug from '@ohos.hidebug';
 ```
 
@@ -28,8 +28,8 @@ getNativeHeapSize(): bigint
 | bigint | 返回本应用堆内存总大小，单位为kB。 |
 
 **示例：**
-  ```js
-  let nativeHeapSize = hidebug.getNativeHeapSize();
+  ```ts
+  let nativeHeapSize: bigint = hidebug.getNativeHeapSize();
   ```
 
 ## hidebug.getNativeHeapAllocatedSize
@@ -48,8 +48,8 @@ getNativeHeapAllocatedSize(): bigint
 
 
 **示例：**
-  ```js
-  let nativeHeapAllocatedSize = hidebug.getNativeHeapAllocatedSize();
+  ```ts
+  let nativeHeapAllocatedSize: bigint = hidebug.getNativeHeapAllocatedSize();
   ```
 
 ## hidebug.getNativeHeapFreeSize
@@ -67,8 +67,8 @@ getNativeHeapFreeSize(): bigint
 | bigint | 返回本应用堆内存的空闲内存，单位为kB。 |
 
 **示例：**
-  ```js
-  let nativeHeapFreeSize = hidebug.getNativeHeapFreeSize();
+  ```ts
+  let nativeHeapFreeSize: bigint = hidebug.getNativeHeapFreeSize();
   ```
 
 ## hidebug.getPss
@@ -86,8 +86,8 @@ getPss(): bigint
 | bigint | 返回应用进程实际使用的物理内存大小，单位为kB。 |
 
 **示例：**
-  ```js
-  let pss = hidebug.getPss();
+  ```ts
+  let pss: bigint = hidebug.getPss();
   ```
 
 ## hidebug.getSharedDirty
@@ -106,8 +106,8 @@ getSharedDirty(): bigint
 
 
 **示例：**
-  ```js
-  let sharedDirty = hidebug.getSharedDirty();
+  ```ts
+  let sharedDirty: bigint = hidebug.getSharedDirty();
   ```
 
 ## hidebug.getPrivateDirty<sup>9+<sup>
@@ -125,8 +125,8 @@ getPrivateDirty(): bigint
 | bigint | 返回进程的私有脏内存大小，单位为kB。 |
 
 **示例：**
-  ```js
-  let privateDirty = hidebug.getPrivateDirty();
+  ```ts
+  let privateDirty: bigint = hidebug.getPrivateDirty();
   ```
 
 ## hidebug.getCpuUsage<sup>9+<sup>
@@ -147,8 +147,8 @@ getCpuUsage(): number
 
 
 **示例：**
-  ```js
-  let cpuUsage = hidebug.getCpuUsage();
+  ```ts
+  let cpuUsage: number = hidebug.getCpuUsage();
   ```
 
 ## hidebug.getServiceDump<sup>9+<sup>
@@ -172,31 +172,34 @@ getServiceDump(serviceid : number, fd : number, args : Array\<string>) : void
 
 **示例：**
 
-```js
+```ts
 import fs from '@ohos.file.fs'
 import hidebug from '@ohos.hidebug'
 import common from '@ohos.app.ability.common'
+import { BusinessError } from '@ohos.base'
 
-let applicationContext: common.Context;
+let applicationContext: common.Context | null = null;
 try {
   applicationContext = this.context.getApplicationContext();
 } catch (error) {
-  console.info(error.code);
-  console.info(error.message);
+  console.info((error as BusinessError).code);
+  console.info((error as BusinessError).message);
 }
 
-var filesDir = applicationContext.filesDir;
-var path = filesDir + "/serviceInfo.txt";
+if (applicationContext) {
+  let filesDir: string = applicationContext.filesDir;
+}
+let path: string = filesDir + "/serviceInfo.txt";
 console.info("output path: " + path);
-let file = fs.openSync(path, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
-var serviceId = 10;
-var args = new Array("allInfo");
+let file: file.fs = fs.openSync(path, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+let serviceId: number = 10;
+let args: Array = new Array("allInfo");
 
 try {
   hidebug.getServiceDump(serviceId, file.fd, args);
 } catch (error) {
-  console.info(error.code);
-  console.info(error.message);
+  console.info((error as BusinessError).code);
+  console.info((error as BusinessError).message);
 }
 fs.closeSync(file);
 ```
@@ -217,16 +220,17 @@ startJsCpuProfiling(filename : string) : void
 
 **示例：**
 
-```js
+```ts
 import hidebug from '@ohos.hidebug'
+import { BusinessError } from '@ohos.base'
 
 try {
   hidebug.startJsCpuProfiling("cpu_profiling");
   // ...
   hidebug.stopJsCpuProfiling();
 } catch (error) {
-  console.info(error.code)
-  console.info(error.message)
+  console.info((error as BusinessError).code)
+  console.info((error as BusinessError).message)
 }
 ```
 
@@ -246,16 +250,17 @@ stopJsCpuProfiling() : void
 
 **示例：**
 
-```js
+```ts
 import hidebug from '@ohos.hidebug'
+import { BusinessError } from '@ohos.base'
 
 try {
   hidebug.startJsCpuProfiling("cpu_profiling");
   // ...
   hidebug.stopJsCpuProfiling();
 } catch (error) {
-  console.info(error.code)
-  console.info(error.message)
+  console.info((error as BusinessError).code)
+  console.info((error as BusinessError).message)
 }
 ```
 
@@ -275,14 +280,15 @@ dumpJsHeapData(filename : string) : void
 
 **示例：**
 
-```js
+```ts
 import hidebug from '@ohos.hidebug'
+import { BusinessError } from '@ohos.base'
 
 try {
   hidebug.dumpJsHeapData("heapData");
 } catch (error) {
-  console.info(error.code)
-  console.info(error.message)
+  console.info((error as BusinessError).code)
+  console.info((error as BusinessError).message)
 }
 ```
 
@@ -304,7 +310,7 @@ startProfiling(filename : string) : void
 
 **示例：**
 
-```js
+```ts
 hidebug.startProfiling("cpuprofiler-20220216");
 // code block
 // ...
@@ -324,7 +330,7 @@ stopProfiling() : void
 
 **示例：**
 
-```js
+```ts
 hidebug.startProfiling("cpuprofiler-20220216");
 // code block
 // ...
@@ -350,6 +356,6 @@ dumpHeapData(filename : string) : void
 
 **示例：**
 
-```js
+```ts
 hidebug.dumpHeapData("heap-20220216");
 ```

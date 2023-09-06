@@ -39,7 +39,7 @@ ImageData对象可以存储canvas渲染的像素数据。
           .backgroundColor('#ffff00')
           .onReady(() =>{
             this.context.drawImage(this.img,0,0,130,130)
-            var imagedata = this.context.getImageData(50,50,130,130)
+            let imagedata = this.context.getImageData(50,50,130,130)
             this.context.putImageData(imagedata,150,150)
           })
       }

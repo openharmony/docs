@@ -9,7 +9,7 @@
 
 ## 导入模块
 
-```js
+```ts
 import account_osAccount from '@ohos.account.osAccount';
 ```
 
@@ -28,7 +28,7 @@ getAccountManager(): AccountManager
 | [AccountManager](#accountmanager) | 系统帐号管理对象。 |
 
 **示例：**
-  ```js
+  ```ts
   let accountManager = account_osAccount.getAccountManager();
   ```
 
@@ -78,7 +78,7 @@ activateOsAccount(localId: number, callback: AsyncCallback&lt;void&gt;): void
 | 12300009 | Account has been activated. |
 
 **示例：** 激活ID为100的系统帐号
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let localId: number = 100;
   try {
@@ -90,7 +90,7 @@ activateOsAccount(localId: number, callback: AsyncCallback&lt;void&gt;): void
       }
     });
   } catch (err) {
-    console.error(`activateOsAccount failed, code is ${err.code}, message is ${err.message}`);
+    console.log('activateOsAccount failed, error:' + JSON.stringify(err));
   }
   ```
 
@@ -129,7 +129,7 @@ activateOsAccount(localId: number): Promise&lt;void&gt;
 | 12300009 | Account has been activated. |
 
 **示例：** 激活ID为100的系统帐号
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   let localId: number = 100;
@@ -166,7 +166,7 @@ checkMultiOsAccountEnabled(callback: AsyncCallback&lt;boolean&gt;): void
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   try {
@@ -178,7 +178,7 @@ checkMultiOsAccountEnabled(callback: AsyncCallback&lt;boolean&gt;): void
       }
     });
   } catch (err) {
-    console.error(`checkMultiOsAccountEnabled failed, code is ${err.code}, message is ${err.message}`);
+    console.log('checkMultiOsAccountEnabled failed, error:' + JSON.stringify(err));
   }
   ```
 
@@ -204,7 +204,7 @@ checkMultiOsAccountEnabled(): Promise&lt;boolean&gt;
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   try {
     let accountManager = account_osAccount.getAccountManager();
@@ -214,7 +214,7 @@ checkMultiOsAccountEnabled(): Promise&lt;boolean&gt;
       console.error(`checkMultiOsAccountEnabled failed, code is ${err.code}, message is ${err.message}`);
     });
   } catch (err) {
-    console.error(`checkMultiOsAccountEnabled failed, code is ${err.code}, message is ${err.message}`);
+    console.log('checkMultiOsAccountEnabled failed, error:' + JSON.stringify(err));
   }
   ```
 
@@ -245,7 +245,7 @@ checkOsAccountActivated(localId: number, callback: AsyncCallback&lt;boolean&gt;)
 
 **示例：** 判断ID为100的系统帐号是否处于激活状态
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   let localId: number = 100;
@@ -294,7 +294,7 @@ checkOsAccountActivated(localId: number): Promise&lt;boolean&gt;
 
 **示例：** 判断ID为100的系统帐号是否处于激活状态
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   let localId: number = 100;
@@ -337,7 +337,7 @@ checkOsAccountConstraintEnabled(localId: number, constraint: string, callback: A
 
 **示例：** 判断ID为100的系统帐号是否有禁止使用Wi-Fi的约束
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   let localId: number = 100;
@@ -388,7 +388,7 @@ checkOsAccountConstraintEnabled(localId: number, constraint: string): Promise&lt
 
 **示例：** 判断ID为100的系统帐号是否有禁止使用Wi-Fi的约束
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   let localId: number = 100;
@@ -426,7 +426,7 @@ checkOsAccountTestable(callback: AsyncCallback&lt;boolean&gt;): void
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   try {
@@ -464,7 +464,7 @@ checkOsAccountTestable(): Promise&lt;boolean&gt;
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   try {
@@ -500,7 +500,7 @@ checkOsAccountVerified(callback: AsyncCallback&lt;boolean&gt;): void
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   try {
@@ -538,7 +538,7 @@ checkOsAccountVerified(): Promise&lt;boolean&gt;
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   try {
@@ -579,7 +579,7 @@ checkOsAccountVerified(localId: number, callback: AsyncCallback&lt;boolean&gt;):
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   let localId: number = 100;
@@ -628,7 +628,7 @@ checkOsAccountVerified(localId: number): Promise&lt;boolean&gt;
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   let localId: number = 100;
@@ -665,7 +665,7 @@ checkOsAccountVerified(): Promise&lt;boolean&gt;
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   try {
@@ -709,7 +709,7 @@ removeOsAccount(localId: number, callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   let accountName: string = 'testAccountName';
@@ -764,7 +764,7 @@ removeOsAccount(localId: number): Promise&lt;void&gt;
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   let accountName: string = 'testAccountName';
@@ -814,7 +814,7 @@ setOsAccountConstraints(localId: number, constraints: Array&lt;string&gt;, enabl
 
 **示例：** 给ID为100的系统帐号设置禁止使用Wi-Fi的约束
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   let localId: number = 100;
@@ -869,7 +869,7 @@ setOsAccountConstraints(localId: number, constraints: Array&lt;string&gt;, enabl
 
 **示例：** 删除ID为100的系统帐号的禁止使用Wi-Fi的约束
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   let localId: number = 100;
@@ -915,7 +915,7 @@ setOsAccountName(localId: number, localName: string, callback: AsyncCallback&lt;
 
 **示例：** 将ID为100的系统帐号的帐号名设置成demoName
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   let localId: number = 100;
@@ -969,7 +969,7 @@ setOsAccountName(localId: number, localName: string): Promise&lt;void&gt;
 
 **示例：** 将ID为100的系统帐号的帐号名设置成demoName
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   let localId: number = 100;
@@ -1009,7 +1009,7 @@ getOsAccountCount(callback: AsyncCallback&lt;number&gt;): void
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   try {
@@ -1049,7 +1049,7 @@ getOsAccountCount(): Promise&lt;number&gt;
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   try {
@@ -1085,7 +1085,7 @@ getOsAccountLocalId(callback: AsyncCallback&lt;number&gt;): void
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   try {
@@ -1123,7 +1123,7 @@ getOsAccountLocalId(): Promise&lt;number&gt;
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   try {
@@ -1161,7 +1161,7 @@ getOsAccountLocalIdForUid(uid: number, callback: AsyncCallback&lt;number&gt;): v
 
 **示例：** 查询值为12345678的uid所属的系统帐号的帐号ID
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   let uid: number = 12345678;
@@ -1206,7 +1206,7 @@ getOsAccountLocalIdForUid(uid: number): Promise&lt;number&gt;
 
 **示例：** 查询值为12345678的uid所属的系统帐号ID
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   let uid: number = 12345678;
@@ -1286,7 +1286,7 @@ getOsAccountLocalIdForDomain(domainInfo: DomainAccountInfo, callback: AsyncCallb
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let domainInfo: account_osAccount.DomainAccountInfo = {domain: 'testDomain', accountName: 'testAccountName'};
   let accountManager = account_osAccount.getAccountManager();
@@ -1334,7 +1334,7 @@ getOsAccountLocalIdForDomain(domainInfo: DomainAccountInfo): Promise&lt;number&g
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   let domainInfo: account_osAccount.DomainAccountInfo = {domain: 'testDomain', accountName: 'testAccountName'};
@@ -1373,7 +1373,7 @@ queryMaxOsAccountNumber(callback: AsyncCallback&lt;number&gt;): void
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   try {
@@ -1413,7 +1413,7 @@ queryMaxOsAccountNumber(): Promise&lt;number&gt;
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   try {
@@ -1454,7 +1454,7 @@ getOsAccountConstraints(localId: number, callback: AsyncCallback&lt;Array&lt;str
 
 **示例：** 获取ID为100的系统帐号的全部约束
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   let localId: number = 100;
@@ -1503,7 +1503,7 @@ getOsAccountConstraints(localId: number): Promise&lt;Array&lt;string&gt;&gt;
 
 **示例：** 获取ID为100的系统帐号的全部约束
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   let localId: number = 100;
@@ -1544,7 +1544,7 @@ queryAllCreatedOsAccounts(callback: AsyncCallback&lt;Array&lt;OsAccountInfo&gt;&
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   try {
@@ -1583,7 +1583,7 @@ queryAllCreatedOsAccounts(): Promise&lt;Array&lt;OsAccountInfo&gt;&gt;
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   try {
@@ -1619,7 +1619,7 @@ getActivatedOsAccountLocalIds(callback: AsyncCallback&lt;Array&lt;number&gt;&gt;
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   try {
@@ -1657,7 +1657,7 @@ getActivatedOsAccountLocalIds(): Promise&lt;Array&lt;number&gt;&gt;
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   try {
@@ -1703,7 +1703,7 @@ createOsAccount(localName: string, type: OsAccountType, callback: AsyncCallback&
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   try {
@@ -1754,7 +1754,7 @@ createOsAccount(localName: string, type: OsAccountType): Promise&lt;OsAccountInf
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   try {
@@ -1801,7 +1801,7 @@ createOsAccountForDomain(type: OsAccountType, domainInfo: DomainAccountInfo, cal
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   let domainInfo: account_osAccount.DomainAccountInfo =
@@ -1854,7 +1854,7 @@ createOsAccountForDomain(type: OsAccountType, domainInfo: DomainAccountInfo): Pr
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   let domainInfo: account_osAccount.DomainAccountInfo =
@@ -1895,7 +1895,7 @@ getCurrentOsAccount(callback: AsyncCallback&lt;OsAccountInfo&gt;): void
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   try {
@@ -1932,7 +1932,7 @@ getCurrentOsAccount(): Promise&lt;OsAccountInfo&gt;
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   try {
@@ -1975,7 +1975,7 @@ queryOsAccountById(localId: number, callback: AsyncCallback&lt;OsAccountInfo&gt;
 
 **示例：** 查询ID为100的系统帐号信息
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   let localId: number = 100;
@@ -2023,7 +2023,7 @@ queryOsAccountById(localId: number): Promise&lt;OsAccountInfo&gt;
 
 **示例：** 查询ID为100的系统帐号信息
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   let localId: number = 100;
@@ -2060,7 +2060,7 @@ getOsAccountType(callback: AsyncCallback&lt;OsAccountType&gt;): void
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   try {
@@ -2095,7 +2095,7 @@ getOsAccountType(): Promise&lt;OsAccountType&gt;
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   try {
@@ -2133,7 +2133,7 @@ queryDistributedVirtualDeviceId(callback: AsyncCallback&lt;string&gt;): void
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   try {
@@ -2170,7 +2170,7 @@ queryDistributedVirtualDeviceId(): Promise&lt;string&gt;
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   try {
@@ -2213,7 +2213,7 @@ getOsAccountProfilePhoto(localId: number, callback: AsyncCallback&lt;string&gt;)
 
 **示例：** 获取ID为100的系统帐号的头像
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   let localId: number = 100;
@@ -2261,7 +2261,7 @@ getOsAccountProfilePhoto(localId: number): Promise&lt;string&gt;
 
 **示例：** 获取ID为100的系统帐号的头像
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   let localId: number = 100;
@@ -2307,7 +2307,7 @@ setOsAccountProfilePhoto(localId: number, photo: string, callback: AsyncCallback
 
 **示例：** 给ID为100的系统帐号设置头像
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   let localId: number = 100;
@@ -2360,7 +2360,7 @@ setOsAccountProfilePhoto(localId: number, photo: string): Promise&lt;void&gt;
 
 **示例：** 给ID为100的系统帐号设置头像
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   let localId: number = 100;
@@ -2404,7 +2404,7 @@ getOsAccountLocalIdForSerialNumber(serialNumber: number, callback: AsyncCallback
 
 **示例：** 查询与SN码12345关联的系统帐号的ID
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   let serialNumber: number = 12345;
@@ -2448,7 +2448,7 @@ getOsAccountLocalIdForSerialNumber(serialNumber: number): Promise&lt;number&gt;
 
 **示例：** 查询与SN码12345关联的系统帐号的ID
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   let serialNumber: number = 12345;
@@ -2488,7 +2488,7 @@ getSerialNumberForOsAccountLocalId(localId: number, callback: AsyncCallback&lt;n
 
 **示例：** 获取ID为100的系统帐号关联的SN码
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   let localId: number = 100;
@@ -2532,7 +2532,7 @@ getSerialNumberForOsAccountLocalId(localId: number): Promise&lt;number&gt;
 
 **示例：** 获取ID为100的系统帐号关联的SN码
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   let localId: number = 100;
@@ -2576,7 +2576,7 @@ on(type: 'activate' | 'activating', name: string, callback: Callback&lt;number&g
 
 **示例：**
 
-  ```js
+  ```ts
   let accountManager = account_osAccount.getAccountManager();
   function onCallback(receiveLocalId: number){
     console.log('receive localId:' + receiveLocalId);
@@ -2617,7 +2617,7 @@ off(type: 'activate' | 'activating', name: string, callback?: Callback&lt;number
 
 **示例：**
 
-  ```js
+  ```ts
   let accountManager = account_osAccount.getAccountManager();
   function offCallback(){
     console.log('off enter')
@@ -2655,7 +2655,7 @@ getBundleIdForUid(uid: number, callback: AsyncCallback&lt;number&gt;): void
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   let testUid: number = 1000000;
@@ -2700,7 +2700,7 @@ getBundleIdForUid(uid: number): Promise&lt;number&gt;
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   let testUid: number = 1000000;
@@ -2782,7 +2782,7 @@ isMainOsAccount(callback: AsyncCallback&lt;boolean&gt;): void;
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   try {
@@ -2820,7 +2820,7 @@ isMainOsAccount(): Promise&lt;boolean&gt;;
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   try {
@@ -2863,7 +2863,7 @@ getOsAccountConstraintSourceTypes(localId: number, constraint: string, callback:
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   try {
@@ -2912,7 +2912,7 @@ getOsAccountConstraintSourceTypes(localId: number, constraint: string): Promise&
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   try {
@@ -2947,7 +2947,7 @@ isMultiOsAccountEnable(callback: AsyncCallback&lt;boolean&gt;): void
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   accountManager.isMultiOsAccountEnable((err: BusinessError, isEnabled: boolean) => {
@@ -2979,7 +2979,7 @@ isMultiOsAccountEnable(): Promise&lt;boolean&gt;
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   accountManager.isMultiOsAccountEnable().then((isEnabled: boolean) => {
@@ -3013,7 +3013,7 @@ isOsAccountActived(localId: number, callback: AsyncCallback&lt;boolean&gt;): voi
 
 **示例：** 判断ID为100的系统帐号是否处于激活状态
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   let localId: number = 100;
@@ -3054,7 +3054,7 @@ isOsAccountActived(localId: number): Promise&lt;boolean&gt;
 
 **示例：** 判断ID为100的系统帐号是否处于激活状态
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   let localId: number = 100;
@@ -3089,7 +3089,7 @@ isOsAccountConstraintEnable(localId: number, constraint: string, callback: Async
 
 **示例：** 判断ID为100的系统帐号是否有禁止使用Wi-Fi的约束
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   let localId: number = 100;
@@ -3132,7 +3132,7 @@ isOsAccountConstraintEnable(localId: number, constraint: string): Promise&lt;boo
 
 **示例：** 判断ID为100的系统帐号是否有禁止使用Wi-Fi的约束
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   let localId: number = 100;
@@ -3164,7 +3164,7 @@ isTestOsAccount(callback: AsyncCallback&lt;boolean&gt;): void
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   accountManager.isTestOsAccount((err: BusinessError, isTestable: boolean) => {
@@ -3196,7 +3196,7 @@ isTestOsAccount(): Promise&lt;boolean&gt;
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
     accountManager.isTestOsAccount().then((isTestable: boolean) => {
@@ -3228,7 +3228,7 @@ isOsAccountVerified(callback: AsyncCallback&lt;boolean&gt;): void
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   accountManager.isOsAccountVerified((err: BusinessError, isVerified: boolean) => {
@@ -3263,7 +3263,7 @@ isOsAccountVerified(localId: number, callback: AsyncCallback&lt;boolean&gt;): vo
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   let localId: number = 100;
@@ -3304,7 +3304,7 @@ isOsAccountVerified(localId?: number): Promise&lt;boolean&gt;
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   accountManager.isOsAccountVerified(localId).then((isVerified: boolean) => {
@@ -3336,7 +3336,7 @@ getCreatedOsAccountsCount(callback: AsyncCallback&lt;number&gt;): void
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   accountManager.getCreatedOsAccountsCount((err: BusinessError, count: number)=>{
@@ -3370,7 +3370,7 @@ getCreatedOsAccountsCount(): Promise&lt;number&gt;
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   accountManager.getCreatedOsAccountsCount().then((count: number) => {
@@ -3400,7 +3400,7 @@ getOsAccountLocalIdFromProcess(callback: AsyncCallback&lt;number&gt;): void
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   accountManager.getOsAccountLocalIdFromProcess((err: BusinessError, localId: number) => {
@@ -3432,7 +3432,7 @@ getOsAccountLocalIdFromProcess(): Promise&lt;number&gt;
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   accountManager.getOsAccountLocalIdFromProcess().then((localId: number) => {
@@ -3463,7 +3463,7 @@ getOsAccountLocalIdFromUid(uid: number, callback: AsyncCallback&lt;number&gt;): 
 
 **示例：** 查询值为12345678的uid所属的系统帐号ID
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   let uid: number = 12345678;
@@ -3502,7 +3502,7 @@ getOsAccountLocalIdFromUid(uid: number): Promise&lt;number&gt;
 
 **示例：** 查询值为12345678的uid所属的系统帐号ID
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   let uid: number = 12345678;
@@ -3536,9 +3536,9 @@ getOsAccountLocalIdFromDomain(domainInfo: DomainAccountInfo, callback: AsyncCall
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
-  let domainInfo = {domain: 'testDomain', accountName: 'testAccountName'};
+  let domainInfo: account_osAccount.DomainAccountInfo = {domain: 'testDomain', accountName: 'testAccountName'};
   let accountManager = account_osAccount.getAccountManager();
   accountManager.getOsAccountLocalIdFromDomain(domainInfo, (err: BusinessError, localId: number) => {
     if (err) {
@@ -3577,10 +3577,10 @@ getOsAccountLocalIdFromDomain(domainInfo: DomainAccountInfo): Promise&lt;number&
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
-  let domainInfo = {domain: 'testDomain', accountName: 'testAccountName'};
+  let domainInfo: account_osAccount.DomainAccountInfo = {domain: 'testDomain', accountName: 'testAccountName'};
   accountManager.getOsAccountLocalIdFromDomain(domainInfo).then((localId: number) => {
     console.log('getOsAccountLocalIdFromDomain successfully, localId: ' + localId);
   }).catch((err: BusinessError) => {
@@ -3611,7 +3611,7 @@ getOsAccountAllConstraints(localId: number, callback: AsyncCallback&lt;Array&lt;
 
 **示例：** 获取ID为100的系统帐号的全部约束
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   let localId: number = 100;
@@ -3649,7 +3649,7 @@ getOsAccountAllConstraints(localId: number): Promise&lt;Array&lt;string&gt;&gt;
 
 **示例：** 获取ID为100的系统帐号的全部约束
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   let localId: number = 100;
@@ -3680,7 +3680,7 @@ queryActivatedOsAccountIds(callback: AsyncCallback&lt;Array&lt;number&gt;&gt;): 
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   accountManager.queryActivatedOsAccountIds((err: BusinessError, idArray: number[])=>{
@@ -3712,7 +3712,7 @@ queryActivatedOsAccountIds(): Promise&lt;Array&lt;number&gt;&gt;
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   accountManager.queryActivatedOsAccountIds().then((idArray: number[]) => {
@@ -3744,7 +3744,7 @@ queryCurrentOsAccount(callback: AsyncCallback&lt;OsAccountInfo&gt;): void
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   accountManager.queryCurrentOsAccount((err: BusinessError, curAccountInfo: account_osAccount.OsAccountInfo)=>{
@@ -3775,7 +3775,7 @@ queryCurrentOsAccount(): Promise&lt;OsAccountInfo&gt;
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   accountManager.queryCurrentOsAccount().then((accountInfo: account_osAccount.OsAccountInfo) => {
@@ -3805,7 +3805,7 @@ getOsAccountTypeFromProcess(callback: AsyncCallback&lt;OsAccountType&gt;): void
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   accountManager.getOsAccountTypeFromProcess((err: BusinessError, accountType: account_osAccount.OsAccountType) => {
@@ -3834,7 +3834,7 @@ getOsAccountTypeFromProcess(): Promise&lt;OsAccountType&gt;
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   accountManager.getOsAccountTypeFromProcess().then((accountType: account_osAccount.OsAccountType) => {
@@ -3866,7 +3866,7 @@ getDistributedVirtualDeviceId(callback: AsyncCallback&lt;string&gt;): void
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   accountManager.getDistributedVirtualDeviceId((err: BusinessError, virtualID: string) => {
@@ -3897,7 +3897,7 @@ getDistributedVirtualDeviceId(): Promise&lt;string&gt;
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   accountManager.getDistributedVirtualDeviceId().then((virtualID: string) => {
@@ -3928,7 +3928,7 @@ getOsAccountLocalIdBySerialNumber(serialNumber: number, callback: AsyncCallback&
 
 **示例：** 查询与SN码12345关联的系统帐号的ID
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   let serialNumber: number = 12345;
@@ -3964,7 +3964,7 @@ getOsAccountLocalIdBySerialNumber(serialNumber: number): Promise&lt;number&gt;
 
 **示例：** 查询与SN码12345关联的系统帐号的ID
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   let serialNumber: number = 12345;
@@ -3996,7 +3996,7 @@ getSerialNumberByOsAccountLocalId(localId: number, callback: AsyncCallback&lt;nu
 
 **示例：** 获取ID为100的系统帐号关联的SN码
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   let localId: number = 100;
@@ -4032,7 +4032,7 @@ getSerialNumberByOsAccountLocalId(localId: number): Promise&lt;number&gt;
 
 **示例：** 获取ID为100的系统帐号关联的SN码
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   let localId: number = 100;
@@ -4060,7 +4060,7 @@ constructor()
 **系统能力**：SystemCapability.Account.OsAccount
 
 **示例：**  
-  ```js
+  ```ts
   let userAuth = new account_osAccount.UserAuth();
   ```
 
@@ -4081,7 +4081,7 @@ getVersion(): number;
 | number | 返回版本信息。|
 
 **示例：**  
-  ```js
+  ```ts
   let userAuth = new account_osAccount.UserAuth();
   let version: number = userAuth.getVersion();
   console.log('getVersion version = ' + version);
@@ -4120,12 +4120,12 @@ getAvailableStatus(authType: AuthType, authTrustLevel: AuthTrustLevel): number;
 | 12300002 | Invalid authType or authTrustLevel. |
 
 **示例：**  
-  ```js
+  ```ts
   let userAuth = new account_osAccount.UserAuth();
-  let authType = account_osAccount.AuthType.PIN;
-  let authTrustLevel = account_osAccount.AuthTrustLevel.ATL1;
+  let authType: account_osAccount.AuthType = account_osAccount.AuthType.PIN;
+  let authTrustLevel: account_osAccount.AuthTrustLevel = account_osAccount.AuthTrustLevel.ATL1;
   try {
-    let status = userAuth.getAvailableStatus(authType, authTrustLevel);
+    let status: number = userAuth.getAvailableStatus(authType, authTrustLevel);
     console.log('getAvailableStatus status = ' + status);
   } catch (e) {
     console.log('getAvailableStatus exception = ' + JSON.stringify(e));
@@ -4159,10 +4159,10 @@ getProperty(request: GetPropertyRequest, callback: AsyncCallback&lt;ExecutorProp
 | 12300002 | Invalid request. |
 
 **示例：**
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let userAuth = new account_osAccount.UserAuth();
-  let keys = [
+  let keys: Array<account_osAccount.GetPropertyType>  = [
     account_osAccount.GetPropertyType.AUTH_SUB_TYPE,
     account_osAccount.GetPropertyType.REMAIN_TIMES,
     account_osAccount.GetPropertyType.FREEZING_TIME
@@ -4213,10 +4213,10 @@ getProperty(request: GetPropertyRequest): Promise&lt;ExecutorProperty&gt;;
 | 12300002 | Invalid request. |
 
 **示例：**
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let userAuth = new account_osAccount.UserAuth();
-  let keys = [
+  let keys: Array<account_osAccount.GetPropertyType> = [
     account_osAccount.GetPropertyType.AUTH_SUB_TYPE, 
     account_osAccount.GetPropertyType.REMAIN_TIMES,
     account_osAccount.GetPropertyType.FREEZING_TIME
@@ -4263,7 +4263,7 @@ setProperty(request: SetPropertyRequest, callback: AsyncCallback&lt;void&gt;): v
 | 12300002 | Invalid request. |
 
 **示例：**
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let userAuth = new account_osAccount.UserAuth();
   let request: account_osAccount.SetPropertyRequest = {
@@ -4316,16 +4316,16 @@ setProperty(request: SetPropertyRequest): Promise&lt;void&gt;;
 | 12300002 | Invalid request. |
 
 **示例：**
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let userAuth = new account_osAccount.UserAuth();
-  let request2: account_osAccount.SetPropertyRequest = {
+  let request: account_osAccount.SetPropertyRequest = {
     authType: account_osAccount.AuthType.PIN,
     key: account_osAccount.SetPropertyType.INIT_ALGORITHM,
     setInfo: new Uint8Array([0])
   };
   try {
-    userAuth.setProperty(request2).then(() => {
+    userAuth.setProperty(request).then(() => {
       console.log('setProperty successfully');
     }).catch((err: BusinessError) => {
       console.log('setProperty failed, error = ' + JSON.stringify(err));
@@ -4378,14 +4378,14 @@ auth(challenge: Uint8Array, authType: AuthType, authTrustLevel: AuthTrustLevel, 
 | 12300112 | Authentication service is busy. |
 
 **示例：**
-  ```js
+  ```ts
   let userAuth = new account_osAccount.UserAuth();
-  let challenge = new Uint8Array([0]);
-  let authType = account_osAccount.AuthType.PIN;
-  let authTrustLevel = account_osAccount.AuthTrustLevel.ATL1;
+  let challenge: Uint8Array = new Uint8Array([0]);
+  let authType: account_osAccount.AuthType = account_osAccount.AuthType.PIN;
+  let authTrustLevel: account_osAccount.AuthTrustLevel = account_osAccount.AuthTrustLevel.ATL1;
   try {
     userAuth.auth(challenge, authType, authTrustLevel, {
-      onResult: (result,extraInfo) => {
+      onResult: (result: number, extraInfo: account_osAccount.AuthResult) => {
           console.log('auth result = ' + result);
           console.log('auth extraInfo = ' + JSON.stringify(extraInfo));
       }
@@ -4439,12 +4439,12 @@ authUser(userId: number, challenge: Uint8Array, authType: AuthType, authTrustLev
 | 12300112 | Authentication service is busy. |
 
 **示例：**
-  ```js
+  ```ts
   let userAuth = new account_osAccount.UserAuth();
   let userID: number = 100;
-  let challenge = new Uint8Array([0]);
-  let authType = account_osAccount.AuthType.PIN;
-  let authTrustLevel = account_osAccount.AuthTrustLevel.ATL1;
+  let challenge: Uint8Array = new Uint8Array([0]);
+  let authType: account_osAccount.AuthType = account_osAccount.AuthType.PIN;
+  let authTrustLevel: account_osAccount.AuthTrustLevel = account_osAccount.AuthTrustLevel.ATL1;
   try {
     userAuth.authUser(userID, challenge, authType, authTrustLevel, {
       onResult: (result,extraInfo) => {
@@ -4483,11 +4483,11 @@ cancelAuth(contextID: Uint8Array): void;
 | 12300002 | Invalid contextId. |
 
 **示例：**
-  ```js
+  ```ts
   let userAuth = new account_osAccount.UserAuth();
   let pinAuth: account_osAccount.PINAuth = new account_osAccount.PINAuth();
   let challenge = new Uint8Array([0]);
-  let contextId = userAuth.auth(challenge, account_osAccount.AuthType.PIN, account_osAccount.AuthTrustLevel.ATL1, {
+  let contextId: Uint8Array = userAuth.auth(challenge, account_osAccount.AuthType.PIN, account_osAccount.AuthTrustLevel.ATL1, {
     onResult: (result: number, extraInfo: account_osAccount.AuthResult) => {
       console.log('auth result = ' + result);
       console.log('auth extraInfo = ' + JSON.stringify(extraInfo));
@@ -4517,7 +4517,7 @@ constructor()
 **系统能力**：SystemCapability.Account.OsAccount
 
 **示例：**  
-  ```js
+  ```ts
   let pinAuth: account_osAccount.PINAuth = new account_osAccount.PINAuth();
   ```
 
@@ -4548,7 +4548,7 @@ registerInputer(inputer: IInputer): void;
 | 12300103 | Inputer already registered. |
 
 **示例：**
-  ```js
+  ```ts
   let pinAuth: account_osAccount.PINAuth = new account_osAccount.PINAuth();
   let password = new Uint8Array([0, 0, 0, 0, 0]);
   try {
@@ -4576,7 +4576,7 @@ unregisterInputer(): void;
 **需要权限：** ohos.permission.ACCESS_PIN_AUTH
 
 **示例：**
-  ```js
+  ```ts
   let pinAuth: account_osAccount.PINAuth = new account_osAccount.PINAuth();
   pinAuth.unregisterInputer();
   ```
@@ -4614,8 +4614,8 @@ static registerInputer(authType: AuthType, inputer: IInputer): void
 | 12300106 | Unsupported authType. |
 
 **示例：**
-  ```js
-  let authType = account_osAccount.AuthType.DOMAIN;
+  ```ts
+  let authType: account_osAccount.AuthType = account_osAccount.AuthType.DOMAIN;
   let password: Uint8Array = new Uint8Array([0, 0, 0, 0, 0]);
   try {
     account_osAccount.InputerManager.registerInputer(authType, {
@@ -4654,8 +4654,8 @@ static unregisterInputer(authType: AuthType): void
 | 12300002  | Invalid authType. |
 
 **示例：**
-  ```js
-  let authType = account_osAccount.AuthType.DOMAIN;
+  ```ts
+  let authType: account_osAccount.AuthType = account_osAccount.AuthType.DOMAIN;
   try {
     account_osAccount.InputerManager.unregisterInputer(authType);
     console.log('unregisterInputer success.');
@@ -4689,7 +4689,7 @@ auth(domainAccountInfo: DomainAccountInfo, credential: Uint8Array, callback: IUs
 | callback   | [IUserAuthCallback](#iuserauthcallback8)  | 是   | 指示认证结果回调。|
 
 **示例：**
-  ```js
+  ```ts
   import { AsyncCallback } from './@ohos.base';
   let plugin: account_osAccount.DomainPlugin = {
     auth: (domainAccountInfo: account_osAccount.DomainAccountInfo, credential: Uint8Array,
@@ -4720,9 +4720,9 @@ auth(domainAccountInfo: DomainAccountInfo, credential: Uint8Array, callback: IUs
   }
   account_osAccount.DomainAccountManager.registerPlugin(plugin);
   let userAuth = new account_osAccount.UserAuth();
-  let challenge = new Uint8Array([0]);
-  let authType = account_osAccount.AuthType.DOMAIN;
-  let authTrustLevel = account_osAccount.AuthTrustLevel.ATL1;
+  let challenge: Uint8Array = new Uint8Array([0]);
+  let authType: account_osAccount.AuthType = account_osAccount.AuthType.DOMAIN;
+  let authTrustLevel: account_osAccount.AuthTrustLevel = account_osAccount.AuthTrustLevel.ATL1;
   try {
     userAuth.auth(challenge, authType, authTrustLevel, {
       onResult: (resultCode: number, authResult: account_osAccount.AuthResult) => {
@@ -4753,7 +4753,7 @@ authWithPopup(domainAccountInfo: DomainAccountInfo, callback: IUserAuthCallback)
 | callback   | [IUserAuthCallback](#iuserauthcallback8)  | 是   | 指示认证结果回调。|
 
 **示例：**
-  ```js
+  ```ts
   import { AsyncCallback } from './@ohos.base';
   let plugin: account_osAccount.DomainPlugin = {
     auth: (domainAccountInfo: account_osAccount.DomainAccountInfo, credential: Uint8Array,
@@ -4804,7 +4804,7 @@ authWithToken(domainAccountInfo: DomainAccountInfo, token: Uint8Array, callback:
 | callback   | [IUserAuthCallback](#iuserauthcallback8)  | 是   | 指示认证结果回调。|
 
 **示例：**
-  ```js
+  ```ts
   import { AsyncCallback } from './@ohos.base';
   let plugin: account_osAccount.DomainPlugin = {
     auth: (domainAccountInfo: account_osAccount.DomainAccountInfo, credential: Uint8Array,
@@ -4854,7 +4854,7 @@ getAccountInfo(options: GetDomainAccountInfoPluginOptions, callback: AsyncCallba
 | callback   | AsyncCallback&lt;[DomainAccountInfo](#domainaccountinfo8)&gt; | 是   | 指示查询结果回调。|
 
 **示例：**
-  ```js
+  ```ts
   import { AsyncCallback, BusinessError } from '@ohos.base';
   let plugin: account_osAccount.DomainPlugin = {
     auth: (domainAccountInfo: account_osAccount.DomainAccountInfo, credential: Uint8Array,
@@ -4909,7 +4909,7 @@ getAuthStatusInfo(domainAccountInfo: DomainAccountInfo, callback: AsyncCallback&
 | callback   | AsyncCallback&lt;[AuthStatusInfo](#authstatusinfo10)&gt; | 是   | 指示查询结果回调。|
 
 **示例：**
-  ```js
+  ```ts
   import { AsyncCallback, BusinessError } from '@ohos.base';
   let plugin: account_osAccount.DomainPlugin = {
     auth: (domainAccountInfo: account_osAccount.DomainAccountInfo, credential: Uint8Array,
@@ -4961,7 +4961,7 @@ bindAccount(domainAccountInfo: DomainAccountInfo, localId: number, callback: Asy
 | callback   | AsyncCallback&lt;void&gt; | 是   | 指示绑定结果回调。|
 
 **示例：**
-  ```js
+  ```ts
   import { AsyncCallback, BusinessError } from './@ohos.base';
   let plugin: account_osAccount.DomainPlugin = {
     auth: (domainAccountInfo: account_osAccount.DomainAccountInfo, credential: Uint8Array,
@@ -5011,7 +5011,7 @@ unbindAccount(domainAccountInfo: DomainAccountInfo, callback: AsyncCallback&lt;v
 | callback   | AsyncCallback&lt;void&gt; | 是   | 指示绑定结果回调。|
 
 **示例：**
-  ```js
+  ```ts
   import { AsyncCallback, BusinessError } from './@ohos.base';
   let plugin: account_osAccount.DomainPlugin = {
     auth: (domainAccountInfo: account_osAccount.DomainAccountInfo, credential: Uint8Array,
@@ -5062,7 +5062,7 @@ isAccountTokenValid(domainAccountInfo: DomainAccountInfo, token: Uint8Array, cal
 | callback   | AsyncCallback&lt;boolean&gt; | 是   | 指示检查结果回调。|
 
 **示例：**
-  ```js
+  ```ts
   import { AsyncCallback, BusinessError } from './@ohos.base';
   let plugin: account_osAccount.DomainPlugin = {
     auth: (domainAccountInfo: account_osAccount.DomainAccountInfo, credential: Uint8Array,
@@ -5112,7 +5112,7 @@ getAccessToken(options: GetDomainAccessTokenOptions, callback: AsyncCallback&lt;
 | callback   | AsyncCallback&lt;Uint8Array&gt; | 是   | 指示结果回调。|
 
 **示例：**
-  ```js
+  ```ts
   import { AsyncCallback, BusinessError } from './@ohos.base';
   let plugin: account_osAccount.DomainPlugin = {
     auth: (domainAccountInfo: account_osAccount.DomainAccountInfo, credential: Uint8Array,
@@ -5173,7 +5173,7 @@ static registerPlugin(plugin: DomainPlugin): void
 | 12300201 | The domain plugin has been registered. |
 
 **示例：**
-  ```js
+  ```ts
   import { AsyncCallback } from './@ohos.base';
   let plugin: account_osAccount.DomainPlugin = {
     auth: (domainAccountInfo: account_osAccount.DomainAccountInfo, credential: Uint8Array,
@@ -5214,7 +5214,7 @@ static unregisterPlugin(): void
 **需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
 **示例：**
-  ```js
+  ```ts
   try {
     account_osAccount.DomainAccountManager.unregisterPlugin();
     console.log('unregisterPlugin success.');
@@ -5260,7 +5260,7 @@ auth(domainAccountInfo: DomainAccountInfo, credential: Uint8Array, callback: IUs
 | 12300114 | Authentication service exception. |
 
 **示例：**
-  ```js
+  ```ts
   let domainAccountInfo: account_osAccount.DomainAccountInfo = {
     domain: 'CHINA',
     accountName: 'zhangsan'
@@ -5312,7 +5312,7 @@ authWithPopup(callback: IUserAuthCallback): void
 | 12300114 | Authentication service exception. |
 
 **示例：**
-  ```js
+  ```ts
   try {
     account_osAccount.DomainAccountManager.authWithPopup({
       onResult: (resultCode: number, authResult: account_osAccount.AuthResult) => {
@@ -5361,7 +5361,7 @@ authWithPopup(localId: number, callback: IUserAuthCallback): void
 | 12300114 | Authentication service exception. |
 
 **示例：**
-  ```js
+  ```ts
   try {
     account_osAccount.DomainAccountManager.authWithPopup(100, {
       onResult: (resultCode: number, authResult: account_osAccount.AuthResult) => {
@@ -5403,7 +5403,7 @@ hasAccount(domainAccountInfo: DomainAccountInfo, callback: AsyncCallback&lt;bool
 | 12300111 | Operation timeout. |
 
 **示例：**
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let domainAccountInfo: account_osAccount.DomainAccountInfo = {
     domain: 'CHINA',
@@ -5456,7 +5456,7 @@ hasAccount(domainAccountInfo: DomainAccountInfo): Promise&lt;boolean&gt;
 | 12300111 | Operation timeout. |
 
 **示例：**
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let domainAccountInfo: account_osAccount.DomainAccountInfo = {
     domain: 'CHINA',
@@ -5502,7 +5502,7 @@ updateAccountToken(domainAccountInfo: DomainAccountInfo, token: Uint8Array, call
 | 12300003 | Account not found. |
 
 **示例：**
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let domainAccountInfo: account_osAccount.DomainAccountInfo = {
     domain: 'CHINA',
@@ -5557,7 +5557,7 @@ updateAccountToken(domainAccountInfo: DomainAccountInfo, token: Uint8Array): Pro
 | 12300003 | Account not found. |
 
 **示例：**
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let domainAccountInfo: account_osAccount.DomainAccountInfo = {
     domain: 'CHINA',
@@ -5605,7 +5605,7 @@ getAccountInfo(options: GetDomainAccountInfoOptions, callback: AsyncCallback&lt;
 | 12300111 | Operation timeout. |
 
 **示例：**
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let domainAccountInfo: account_osAccount.GetDomainAccountInfoOptions = {
     domain: 'CHINA',
@@ -5659,7 +5659,7 @@ getAccountInfo(options: GetDomainAccountInfoOptions): Promise&lt;DomainAccountIn
 | 12300111 | Operation timeout. |
 
 **示例：**
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let domainAccountInfo: account_osAccount.GetDomainAccountInfoOptions = {
     domain: 'CHINA',
@@ -5694,7 +5694,7 @@ constructor()
 **系统能力**：SystemCapability.Account.OsAccount
 
 **示例：**  
-  ```js
+  ```ts
   let userIDM = new account_osAccount.UserIdentityManager();
   ```
 
@@ -5723,7 +5723,7 @@ openSession(callback: AsyncCallback&lt;Uint8Array&gt;): void;
 | 12300001 | System service exception. |
 
 **示例：**
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let userIDM = new account_osAccount.UserIdentityManager();
   try {
@@ -5761,7 +5761,7 @@ openSession(): Promise&lt;Uint8Array&gt;;
 | 12300001 | System service exception. |
 
 **示例：**
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let userIDM = new account_osAccount.UserIdentityManager();
   try {
@@ -5807,7 +5807,7 @@ addCredential(credentialInfo: CredentialInfo, callback: IIdmCallback): void;
 | 12300115 | The number of credentials reaches the upper limit. |
 
 **示例：**
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let password: Uint8Array = new Uint8Array([0, 0, 0, 0, 0, 0]);
   let pinAuth: account_osAccount.PINAuth = new account_osAccount.PINAuth();
@@ -5868,7 +5868,7 @@ updateCredential(credentialInfo: CredentialInfo, callback: IIdmCallback): void;
 | 12300111 | Operation timeout. |
 
 **示例：**
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let userIDM = new account_osAccount.UserIdentityManager();
   let userAuth: account_osAccount.UserAuth = new account_osAccount.UserAuth();
@@ -5921,7 +5921,7 @@ closeSession(): void;
 **需要权限：** ohos.permission.MANAGE_USER_IDM
 
 **示例：**
-  ```js
+  ```ts
   let userIDM = new account_osAccount.UserIdentityManager();
   userIDM.closeSession();
   ```
@@ -5952,7 +5952,7 @@ cancel(challenge: Uint8Array): void;
 | 12300002 | Invalid challenge. |
 
 **示例：**
-  ```js
+  ```ts
   let userIDM = new account_osAccount.UserIdentityManager();
   let challenge: Uint8Array = new Uint8Array([0]);
   try {
@@ -5989,7 +5989,7 @@ delUser(token: Uint8Array, callback: IIdmCallback): void;
 | 12300101 | Token is invalid. |
 
 **示例：**
-  ```js
+  ```ts
   let userIDM = new account_osAccount.UserIdentityManager();
   let token: Uint8Array = new Uint8Array([0]);
   try {
@@ -6034,7 +6034,7 @@ delCred(credentialId: Uint8Array, token: Uint8Array, callback: IIdmCallback): vo
 | 12300102 | Credential not enrolled. |
 
 **示例：**
-  ```js
+  ```ts
   let userIDM = new account_osAccount.UserIdentityManager();
   let credentialId: Uint8Array = new Uint8Array([0]);
   let token: Uint8Array = new Uint8Array([0]);
@@ -6076,7 +6076,7 @@ getAuthInfo(callback: AsyncCallback&lt;Array&lt;EnrolledCredInfo&gt;&gt;): void;
 | 12300102 | Credential not enrolled. |
 
 **示例：**
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let userIDM = new account_osAccount.UserIdentityManager();
   try {
@@ -6117,7 +6117,7 @@ getAuthInfo(authType: AuthType, callback: AsyncCallback&lt;Array&lt;EnrolledCred
 | 12300102 | Credential not enrolled. |
 
 **示例：**
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let userIDM = new account_osAccount.UserIdentityManager();
   try {
@@ -6164,7 +6164,7 @@ getAuthInfo(authType?: AuthType): Promise&lt;Array&lt;EnrolledCredInfo&gt;&gt;;
 | 12300102 | Credential not enrolled. |
 
 **示例：**
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let userIDM = new account_osAccount.UserIdentityManager();
   try {
@@ -6208,7 +6208,7 @@ onSetData: (authSubType: AuthSubType, data: Uint8Array) => void;
 | 12300002 | Invalid pinSubType. |
 
 **示例：**
-  ```js
+  ```ts
   let password: Uint8Array = new Uint8Array([0, 0, 0, 0, 0, 0]);
   let passwordNumber: Uint8Array = new Uint8Array([1, 2, 3, 4]);
   let inputer: account_osAccount.IInputer = {
@@ -6245,7 +6245,7 @@ onGetData: (authSubType: AuthSubType, callback: IInputData) => void;
 | callback   | [IInputData](#iinputdata8)  | 是   | 指示密码数据回调。|
 
 **示例：**
-  ```js
+  ```ts
   let password: Uint8Array = new Uint8Array([0, 0, 0, 0, 0, 0]);
   let passwordNumber: Uint8Array = new Uint8Array([1, 2, 3, 4]);
   let inputer: account_osAccount.IInputer = {
@@ -6286,7 +6286,7 @@ onResult: (result: number, extraInfo: AuthResult) => void;
 | extraInfo | [AuthResult](#authresult8)  | 是   | 表示不同情况下的具体信息，如果认证通过，则在extrainfo中返回认证令牌，如果身份验证失败，则在extrainfo中返回剩余的身份验证时间，如果身份验证执行器被锁定，冻结时间将在extrainfo中返回。|
 
 **示例：**
-  ```js
+  ```ts
   let authCallback: account_osAccount.IUserAuthCallback = {
     onResult: (result: number, extraInfo: account_osAccount.AuthResult) => {
       console.log('auth result = ' + result);
@@ -6314,7 +6314,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: any) => void;
 | extraInfo | any     | 是   | 保留参数。                     |
 
 **示例：**
-  ```js
+  ```ts
   let authCallback: account_osAccount.IUserAuthCallback = {
     onResult: (result: number, extraInfo: account_osAccount.AuthResult) => {
       console.log('auth result = ' + result)
@@ -6352,7 +6352,7 @@ onResult: (result: number, extraInfo: RequestResult) => void;
 | extraInfo | [RequestResult](#requestresult8)  | 是   | 针对不同情况传递具体信息。|
 
 **示例：**
-  ```js
+  ```ts
   let idmCallback: account_osAccount.IIdmCallback = {
     onResult: (result: number, extraInfo: account_osAccount.RequestResult) => {
       console.log('callback result = ' + result)
@@ -6380,7 +6380,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: any) => void;
 | extraInfo | any     | 是   | 保留参数。                     |
 
 **示例：**
-  ```js
+  ```ts
   let idmCallback: account_osAccount.IIdmCallback = {
     onResult: (result: number, extraInfo: Object) => {
       console.log('callback result = ' + result)
