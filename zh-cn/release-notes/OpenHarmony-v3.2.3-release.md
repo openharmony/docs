@@ -96,7 +96,6 @@
 
 | ISSUE                                                        | 问题描述                                                     |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| [I73TPR](https://gitee.com/open_harmony/dashboard?issue_id=I73TPR) | 【OpenHarmony  3.2.12.3】【RK3568】【压力测试】【ToC】【低概率1/10】【wukong】出现1次，由进程com.ohos.note下的com.ohos.note线程导致libace.z.so出现cppcrash |
 | [I76UCD](https://gitee.com/open_harmony/dashboard?issue_id=I76UCD) | 【OpenHarmony_3.2.12.5】【3.2Release】【多媒体子系统】【ToC】【RK3568】【必现-10/10】录像文件在图库播放最后2秒画面卡住未播放 |
 | [I7B07F](https://e.gitee.com/open_harmony/issues/table/?issue=I7B07F) | 【OpenHarmony_3.2.12.5】【软总线】【发现】【Toc】【rk3568】【必现-3/3】蓝牙发现失败 |
 | [I7BZ4F](https://e.gitee.com/open_harmony/issues/table/?issue=I7BZ4F) | 【OpenHarmony_3.2.13.1】【RK3568】【发现】【Toc】【概率 3/42】coap发现概率失败 |
