@@ -66,6 +66,7 @@ createPixelMap(colors: ArrayBuffer, options: InitializationOptions, callback: As
 **示例：**
 
 ```ts
+import {BusinessError} from '@ohos.base'
 const color : ArrayBuffer = new ArrayBuffer(96);  //96为需要创建的像素buffer大小，取值为：height * width *4
 let bufferArr : Uint8Array = new Uint8Array(color);
 let opts : image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
@@ -860,7 +861,7 @@ crop(region: Region, callback: AsyncCallback\<void>): void
 
 ```ts
 async function Demo() {
-	await pixelmap.crop({ x: 0, y: 0, size: { height: 100, width: 100 } });
+	await pixelmap.crop({ x: 0, y: 0, size: { height: 100, width: 100 } } as image.Region);
 }
 ```
 
@@ -888,7 +889,7 @@ crop(region: Region): Promise\<void>
 
 ```ts
 async function Demo() {
-	await pixelmap.crop({ x: 0, y: 0, size: { height: 100, width: 100 } });
+	await pixelmap.crop({ x: 0, y: 0, size: { height: 100, width: 100 } } as image.Region);
 }
 ```
 
@@ -987,7 +988,7 @@ marshalling(sequence: rpc.MessageSequence): void
 ```ts
 import image from '@ohos.multimedia.image'
 import rpc from '@ohos.rpc'
-class MySequence {
+class MySequence implements rpc.Parcelable {
     pixel_map;
     constructor(pixelmap : image.PixelMap) {
         this.pixel_map = pixelmap;
@@ -1016,13 +1017,15 @@ async function Demo() {
       size: { height: 4, width: 6 },
       alphaType: 1
    }
-   let pixelMap;
+   let pixelMap : image.PixelMap | undefined = undefined;
    await image.createPixelMap(color, opts).then((pixelmap : image.PixelMap) => {
       pixelMap = pixelmap;
    })
-   let parcelable : MySequence = new MySequence(pixelMap);
-   let data : rpc.MessageSequence = rpc.MessageSequence.create();
-   data.writeParcelable(parcelable : rpc.Parcelable);
+   if (pixelMap != undefined) {
+     let parcelable : MySequence = new MySequence(pixelMap);
+     let data : rpc.MessageSequence = rpc.MessageSequence.create();
+     data.writeParcelable(parcelable : rpc.Parcelable);
+   }
 }
 ```
 
@@ -1061,7 +1064,7 @@ unmarshalling(sequence: rpc.MessageSequence): Promise\<PixelMap>
 ```ts
 import image from '@ohos.multimedia.image'
 import rpc from '@ohos.rpc'
-class MySequence {
+class MySequence implements rpc.Parcelable {
     pixel_map;
     constructor(pixelmap : image.PixelMap) {
         this.pixel_map = pixelmap;
@@ -1090,13 +1093,15 @@ async function Demo() {
       size: { height: 4, width: 6 },
       alphaType: 1
    }
-   let pixelMap;
+   let pixelMap : image.PixelMap | undefined = undefined;
    await image.createPixelMap(color, opts).then((pixelmap : image.PixelMap) => {
       pixelMap = pixelmap;
    })
-   let ret : MySequence = new MySequence(pixelMap);
-   let data : rpc.MessageSequence = rpc.MessageSequence.create();
-   await data.readParcelable(ret : rpc.Parcelable);
+   if (pixelMap != undefined) {
+     let ret : MySequence = new MySequence(pixelMap);
+     let data : rpc.MessageSequence = rpc.MessageSequence.create();
+     await data.readParcelable(ret : rpc.Parcelable);
+   }
 }
 ```
 
@@ -1180,7 +1185,7 @@ const imageSourceApi : image.ImageSource = image.createImageSource(path);
 //FA模型
 import featureAbility from '@ohos.ability.featureAbility';
 
-const context : Context = featureAbility.getContext();
+const context : _Context = featureAbility.getContext();
 const path : string = context.getCacheDir() + "/test.jpg";
 const imageSourceApi : image.ImageSource = image.createImageSource(path);
 ```
@@ -2116,7 +2121,7 @@ packing(source: ImageSource, option: PackingOption, callback: AsyncCallback\<Arr
 ```ts
 const imageSourceApi : image.ImageSource = image.createImageSource(0);
 let packOpts : image.PackingOption = { format:"image/jpeg", quality:98 };
-imagePackerApi.packing(imageSourceApi, packOpts, data : ArrayBuffer => {})
+imagePackerApi.packing(imageSourceApi, packOpts, (data : ArrayBuffer) => {})
 ```
 
 ### packing
@@ -2697,7 +2702,7 @@ queueImage(interface: Image): Promise\<void>
 import {BusinessError} from '@ohos.base'
 creator.dequeueImage().then((img : image.Image) => {
     //绘制图片
-    img.getComponent(4).then(component : image.Component => {
+    img.getComponent(4).then((component : image.Component) => {
         let bufferArr : Uint8Array = new Uint8Array(component.byteBuffer);
         for (let i = 0; i < bufferArr.length; i += 4) {
             bufferArr[i] = 0; //B
