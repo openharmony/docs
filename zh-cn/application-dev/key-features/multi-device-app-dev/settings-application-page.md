@@ -60,57 +60,57 @@ struct Index {
 ```
 ```typescript
 //核心代码 SettingList.ets
-class  itemObj {
+class  ItemObj {
   title?: Resource
   tag?: string
   icon?:Resource
 }
-let bluetoothTab:itemObj={
+let bluetoothTab:ItemObj={
   title: $r('app.string.bluetoothTab'),
   tag: $r('app.string.enabled'),
   icon: $r('app.media.blueTooth'),
 }
-let mobileData:itemObj={
+let mobileData:ItemObj={
   title: $r('app.string.mobileData'),
   icon: $r('app.media.mobileData'),
 }
-let brightnessTab:itemObj={
+let brightnessTab:ItemObj={
   title: $r('app.string.brightnessTab'),
   icon: $r('app.media.displayAndBrightness'),
 }
-let volumeControlTab:itemObj={
+let volumeControlTab:ItemObj={
   title: $r('app.string.volumeControlTab'),
   icon: $r('app.media.volume'),
 }
-let biometricsAndPassword:itemObj={
+let biometricsAndPassword:ItemObj={
   title: $r('app.string.biometricsAndPassword'),
   icon: $r('app.media.biometricsAndPassword'),
 }
-let applyTab:itemObj={
+let applyTab:ItemObj={
   title: $r('app.string.applyTab'),
   icon: $r('app.media.application'),
 }
-let storageTab:itemObj={
+let storageTab:ItemObj={
   title: $r('app.string.storageTab'),
   icon: $r('app.media.storage'),
 }
-let security:itemObj={
+let security:ItemObj={
   title: $r('app.string.security'),
   icon: $r('app.media.security'),
 }
-let privacy:itemObj={
+let privacy:ItemObj={
   title: $r('app.string.privacy'),
   icon: $r('app.media.privacy'),
 }
-let usersAccountsTab:itemObj={
+let usersAccountsTab:ItemObj={
   title: $r('app.string.usersAccountsTab'),
   icon: $r('app.media.userAccounts'),
 }
-let systemTab:itemObj={
+let systemTab:ItemObj={
   title: $r('app.string.systemTab'),
   icon: $r('app.media.system'),
 }
-let aboutTab:itemObj={
+let aboutTab:ItemObj={
   title: $r('app.string.aboutTab'),
   icon: $r('app.media.aboutDevice'),
 }
@@ -237,13 +237,13 @@ NavRouter组件默认提供了点击响应处理，不需要开发者自定义�
 结合设置应用的具体场景来看，上图1号小红框是NavRouter的第一个孩子节点，2号红框是NavRouter的第二个孩子节点，相应的核心代码实现如下。
 
 ```typescript
-class  mainItemObj {
+class  MainItemObj {
   title?: Resource
   tag?: string
   icon?:Resource
   label?: string
 }
-let mainItem:mainItemObj={
+let mainItem:MainItemObj={
   title: $r('app.string.wifiTab'),
   tag: 'UX',
   icon: $r('app.media.wlan'),
@@ -295,10 +295,10 @@ NavDestination组件用于实际刷新Navigation组件Content区域的显示。�
 结合具体场景，红框3是一个NavRouter组件，点击后可以控制Navigation组件中的Content区域刷新为红框4对应的NavDestination组件吗，其核心代码实现如下所示。
 
 ```typescript
-class subItemArrowObj{
+class SubItemArrowObj{
   title?: Resource
 }
-let subItemArrow:subItemArrowObj={
+let subItemArrow:SubItemArrowObj={
   title: $r('app.string.moreWlanSettings')
 }
 @Component
