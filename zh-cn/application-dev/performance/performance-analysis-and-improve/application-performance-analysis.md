@@ -2,7 +2,7 @@
 
 ## 简介
 
-本文档介绍OpenHarmony应用性能分析工具CPU Profiler的使用方法，该工具为OpenHarmony应用开发者提供性能采样分析手段，可在不插桩情况下获取调用栈上各层函数的执行时间，并展示在时间轴上。开发者可通过该工具查看TS/JS代码及NAPI代码执行过程中的时序及耗时情况，进而发现热点函数及性能瓶颈，指导开发者进行应用层性能优化。
+本文档介绍应用性能分析工具CPU Profiler的使用方法，该工具为应用开发者提供性能采样分析手段，可在不插桩情况下获取调用栈上各层函数的执行时间，并展示在时间轴上。开发者可通过该工具查看TS/JS代码及NAPI代码执行过程中的时序及耗时情况，进而发现热点函数及性能瓶颈，指导开发者进行应用层性能优化。
 
 ## 性能数据分析视图说明
 
@@ -170,25 +170,9 @@ Chrome浏览器JavaScript Profiler工具默认调用V8引擎提供的Profiler工
 
 #### 采集步骤
 
-1. 启动应用，可通过如下两种命令查看应用线程号。如果要抓Worker线程，列表中会有长线程号（长度是短线程号的两倍），每个Worker线程对应一个长线程号。
+1. 启动应用，可通过使用命令`hdc shell "netstat -anp | grep PandaDebugger"`查看应用线程号。如果要抓Worker线程，列表中会有长线程号（长度是短线程号的两倍），每个Worker线程对应一个长线程号。
 
-    ``` shell
-    # 单框架系统
-    hdc shell "netstat -anp | grep PandaDebugger"
-    # 双框架系统
-    adb shell "netstat -anp | grep PandaDebugger"
-    ```
-
-2. 可使用如下两种方式绑定线程号和端口。多个Worker线程同时采集需各自绑定不同的端口号，打开多个Chrome窗口采集。
-
-    ``` shell
-    # 注：建议选择较大端口号避免冲突，这里以9006为例。每次断开链接或退出进程后需要绑定新的端口号
-
-    # 单框架系统
-    hdc fport tcp:9006 localabstract:2172PandaDebugger
-    # 双框架系统
-    adb forward tcp:9006 localabstract:2172PandaDebugger
-    ```
+2. 使用命令`hdc fport tcp:9006 localabstract:2172PandaDebugger`绑定线程号和端口。多个Worker线程同时采集需各自绑定不同的端口号，打开多个Chrome窗口采集。
 
    ![端口映射](./figures/commandline-eg.png)
 
