@@ -27,7 +27,7 @@ onCreate(): void
 
 UIExtensionAbility创建时回调，执行初始化业务逻辑操作。
 
-**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 ## UIExtensionAbility.onSessionCreate
 
@@ -35,7 +35,7 @@ onSessionCreate(want: Want, session: UIExtensionContentSession): void
 
 当UIExtensionAbility界面内容对象创建后调用。
 
-**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
 
@@ -50,7 +50,7 @@ onSessionDestroy(session: UIExtensionContentSession): void
 
 当UIExtensionAbility界面内容对象销毁后调用。
 
-**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
 
@@ -81,4 +81,4 @@ onDestroy(): void | Promise&lt;void&gt;;
 UIExtensionAbility生命周期回调，在销毁时回调，执行资源清理等操作。
 在执行完onDestroy生命周期回调后，应用可能会退出，从而可能导致onDestroy中的异步函数未能正确执行，比如异步写入数据库。可以使用异步生命周期，以确保异步onDestroy完成后再继续后续的生命周期。
 
-**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
