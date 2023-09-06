@@ -1,10 +1,10 @@
-# TabTitleBar
+# @ohos.arkui.advanced.TabTitleBar（页签型标题栏）
 
 
 页签型标题栏，用于页面之间的切换；仅一级页面适用。
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > 该组件从API Version 10开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
@@ -20,7 +20,7 @@ import { TabTitleBar } from "@ohos.arkui.advanced.TabTitleBar"
 无
 
 
-## 接口
+## TabTitleBar
 
 TabTitleBar({tabItems: Array&lt;TabTitleBarTabItem&gt;, menuItems?: Array&lt;TabTitleBarMenuItem&gt;, swiperContent: () =&gt; void})
 
@@ -30,7 +30,7 @@ TabTitleBar({tabItems: Array&lt;TabTitleBarTabItem&gt;, menuItems?: Array&lt;Tab
 
 **参数：**
 
-| 参数名 | 参数类型 | 必选 | 装饰器类型 | 参数描述 | 
+| 名称 | 类型 | 必填 | 装饰器类型 | 说明 | 
 | -------- | -------- | -------- | -------- | -------- |
 | tabItems | Array&lt;[TabTitleBarTabItem](#tabtitlebartabitem)&gt; | 是 | - | 左侧页签项目列表，定义标题栏左侧的页签项目。 | 
 | menuItems | Array&lt;[TabTitleBarMenuItem](#tabtitlebarmenuitem)&gt; | 否 | - | 右侧菜单项目列表，定义标题栏右侧的菜单项目 | 
@@ -39,7 +39,7 @@ TabTitleBar({tabItems: Array&lt;TabTitleBarTabItem&gt;, menuItems?: Array&lt;Tab
 
 ### TabTitleBarMenuItem
 
-| 名称 | 值 | 是否必填 | 描述 | 
+| 名称 | 类型 | 必填 | 说明 | 
 | -------- | -------- | -------- | -------- |
 | value | [ResourceStr](ts-types.md#resourcestr) | 是 | 图标资源 | 
 | isEnabled | boolean | 是 | 是否启用 | 
@@ -48,7 +48,7 @@ TabTitleBar({tabItems: Array&lt;TabTitleBarTabItem&gt;, menuItems?: Array&lt;Tab
 
 ### TabTitleBarTabItem
 
-| 名称 | 值 | 是否必填 | 描述 | 
+| 名称 | 类型 | 必填 | 说明 | 
 | -------- | -------- | -------- | -------- |
 | title | [ResourceStr](ts-types.md#resourcestr) | 是 | 文字页签 | 
 | icon | [ResourceStr]ts-types.md#resourcestr) | 否 | 图片页签资源 | 
