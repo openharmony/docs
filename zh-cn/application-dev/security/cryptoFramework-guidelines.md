@@ -53,16 +53,17 @@
 
 ```ts
 import cryptoFramework from '@ohos.security.cryptoFramework';
+import { BusinessError } from '@ohos.base';
 
 function generateAsyKey() {
-  // 创建非对称密钥生成器
+  // Create an AsyKeyGenerator instance.
   let rsaGenerator = cryptoFramework.createAsyKeyGenerator('RSA1024|PRIMES_2');
-  // 通过非对称密钥生成器，随机生成非对称密钥
+  // Use the key generator to randomly generate an asymmetric key pair.
   let keyGenPromise = rsaGenerator.generateKeyPair();
   keyGenPromise.then(keyPair => {
     let pubKey = keyPair.pubKey;
     let priKey = keyPair.priKey;
-    // 获取非对称密钥的二进制数据
+    // Obtain the binary data of the asymmetric key pair.
     let pkBlob = pubKey.getEncoded();
     let skBlob = priKey.getEncoded();
     AlertDialog.show({ message: 'pk bin data' + pkBlob.data });
@@ -83,6 +84,7 @@ function generateAsyKey() {
 
 ```ts
 import cryptoFramework from '@ohos.security.cryptoFramework';
+import { BusinessError } from '@ohos.base';
 
 function testGenerateAesKey() {
   // Create a SymKeyGenerator instance.
@@ -106,6 +108,7 @@ function testGenerateAesKey() {
 
 ```ts
 import cryptoFramework from '@ohos.security.cryptoFramework';
+import { BusinessError } from '@ohos.base';
 
 function convertAsyKey() {
   let rsaGenerator = cryptoFramework.createAsyKeyGenerator('RSA1024');
@@ -134,6 +137,7 @@ function convertAsyKey() {
 
 ```ts
 import cryptoFramework from '@ohos.security.cryptoFramework';
+import { BusinessError } from '@ohos.base';
 
 function convertEccAsyKey() {
   let pubKeyArray = new Uint8Array([48, 89, 48, 19, 6, 7, 42, 134, 72, 206, 61, 2, 1, 6, 8, 42, 134, 72, 206, 61, 3, 1, 7, 3, 66, 0, 4, 83, 96, 142, 9, 86, 214, 126, 106, 247, 233, 92, 125, 4, 128, 138, 105, 246, 162, 215, 71, 81, 58, 202, 121, 26, 105, 211, 55, 130, 45, 236, 143, 55, 16, 248, 75, 167, 160, 167, 106, 2, 152, 243, 44, 68, 66, 0, 167, 99, 92, 235, 215, 159, 239, 28, 106, 124, 171, 34, 145, 124, 174, 57, 92]);
@@ -163,6 +167,7 @@ function convertEccAsyKey() {
 
 ```ts
 import cryptoFramework from '@ohos.security.cryptoFramework';
+import { BusinessError } from '@ohos.base';
 
 function genKeyMaterialBlob(): cryptoFramework.DataBlob {
   let arr = [
@@ -214,6 +219,7 @@ function testConvertSymKey() {
 
 ```ts
 import cryptoFramework from '@ohos.security.cryptoFramework';
+import { BusinessError } from '@ohos.base';
 
 function generateSM2Key() {
   // Create an AsyKeyGenerator instance.
@@ -248,6 +254,7 @@ function generateSM2Key() {
 
 ```ts
 import cryptoFramework from '@ohos.security.cryptoFramework';
+import { BusinessError } from '@ohos.base';
 
 function testGenerateSM4Key() {
   // Create a SymKeyGenerator instance.
@@ -275,6 +282,7 @@ function testGenerateSM4Key() {
 
 ```ts
 import cryptoFramework from '@ohos.security.cryptoFramework';
+import { BusinessError } from '@ohos.base';
 
 function convertSM2AsyKey() {
   let pubKeyArray = new Uint8Array([48, 89, 48, 19, 6, 7, 42, 134, 72, 206, 61, 2, 1, 6, 8, 42, 129, 28, 207, 85, 1, 130, 45, 3, 66, 0, 4, 90, 3, 58, 157, 190, 248, 76, 7, 132, 200, 151, 208, 112, 230, 96, 140, 90, 238, 211, 155, 128, 109, 248, 40, 83, 214, 78, 42, 104, 106, 55, 148, 249, 35, 61, 32, 221, 135, 143, 100, 45, 97, 194, 176, 52, 73, 136, 174, 40, 70, 70, 34, 103, 103, 161, 99, 27, 187, 13, 187, 109, 244, 13, 7]);
@@ -334,6 +342,7 @@ function convertSM2AsyKey() {
 
 ```ts
 import cryptoFramework from '@ohos.security.cryptoFramework';
+import { BusinessError } from '@ohos.base';
 
 // Print bigint information.
 function showBigIntInfo(bnName: string, bnValue: bigint | string | number) {
@@ -421,7 +430,8 @@ function showEccSpecDetailInfo(key: cryptoFramework.PubKey | cryptoFramework.Pri
     }
   } catch (error) {
     console.error("getAsyKeySpec error");
-    console.error("error code: " + error.code + ", message is: " + error.message);
+    let e: BusinessError = error as BusinessError;
+    console.error(`getAsyKeySpec failed, ${e.code}, ${e.message}`);
   }
 }
 
@@ -442,7 +452,8 @@ function testEccUseCommKeySpecGet() {
   } catch (error) {
     // Capture parameter errors synchronously here.
     console.error("testEccUseCommSpec error");
-    console.error("error code: " + error.code + ", message is: " + error.message);
+    let e: BusinessError = error as BusinessError;
+    console.error(`ecc comm spec failed, ${e.code}, ${e.message}`);
   }
 }
 ```
@@ -457,6 +468,8 @@ function testEccUseCommKeySpecGet() {
 
 以使用Callback方式根据密钥参数生成RSA公钥为例：
 ```ts
+import cryptoFramework from '@ohos.security.cryptoFramework';
+import { BusinessError } from '@ohos.base';
 // RSA公钥密钥参数生成函数
 function genRsaPubKeySpec(nIn: bigint, eIn: bigint): cryptoFramework.RSAPubKeySpec {
   let rsaCommSpec: cryptoFramework.RSACommonParamsSpec = {
@@ -484,11 +497,11 @@ function genRsa2048PubKeySpec() {
 function compareRsaPubKeyBySpec(rsaKeySpec: cryptoFramework.RSAPubKeySpec, n: bigint | string | number, e: bigint | string | number) {
   if (typeof n === 'string' || typeof e === 'string') {
     console.error('type is string');
-    return;
+    return false;
   }
   if (typeof n === 'number' || typeof e === 'number') {
     console.error('type is number');
-    return;
+    return false;
   }
   if (rsaKeySpec.params.n != n) {
     return false;
@@ -562,6 +575,7 @@ function rsaUsePubKeySpecGetCallback() {
 
 ```ts
 import cryptoFramework from '@ohos.security.cryptoFramework';
+import { BusinessError } from '@ohos.base';
 
 function genGcmParamsSpec() {
   let arr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]; // 12 bytes
@@ -673,6 +687,7 @@ function testAesGcm() {
 
 ```ts
 import cryptoFramework from '@ohos.security.cryptoFramework';
+import { BusinessError } from '@ohos.base';
 
 // Convert strings in plaintext into byte streams.
 function stringToUint8Array(str: string) {
@@ -770,7 +785,8 @@ function test3DesEcb() {
       })
     })
   } catch (error) {
-    console.error(`convertKey failed, ${error.code}, ${error.message}`);
+    let e: BusinessError = error as BusinessError;
+    console.error(`3des failed, ${e.code}, ${e.message}`);
     return;
   }
 }
@@ -789,6 +805,7 @@ function test3DesEcb() {
 
 ```ts
 import cryptoFramework from '@ohos.security.cryptoFramework';
+import { BusinessError } from '@ohos.base';
 
 function genGcmParamsSpec() {
   let arr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]; // 12 bytes
@@ -928,7 +945,8 @@ function testAesMultiUpdate() {
 3. 执行加解密操作。通过调用Cipher对象提供的doFinal接口，执行加密操作生成密文或执行解密操作生成明文。
 
 ```ts
-import cryptoFramework from "@ohos.security.cryptoFramework"
+import cryptoFramework from '@ohos.security.cryptoFramework';
+import { BusinessError } from '@ohos.base';
 
 let plan = "This is cipher test.";
 
@@ -1075,7 +1093,8 @@ function decryptMessageCallback() {
 3. 执行加解密操作。通过调用Cipher对象提供的doFinal接口，执行加密操作生成密文或执行解密操作生成明文，多次调用doFinal实现分段。
 
 ```ts
-import cryptoFramework from "@ohos.security.cryptoFramework"
+import cryptoFramework from '@ohos.security.cryptoFramework';
+import { BusinessError } from '@ohos.base';
 
 // Convert strings in plaintext into byte streams.
 function stringToUint8Array(str: string) {
@@ -1163,7 +1182,6 @@ function encryptLongMessagePromise() {
       console.error(`catch error, ${error.code}, ${error.message}`);
     })
 }
-
 ```
 
 > **说明：**
@@ -1181,7 +1199,8 @@ function encryptLongMessagePromise() {
 3. 执行加解密操作。通过调用Cipher对象提供的doFinal接口，执行加密操作生成密文或执行解密操作生成明文，需要加解密Cipher对象的字节流P一致。
 
 ```ts
-import cryptoFramework from "@ohos.security.cryptoFramework"
+import cryptoFramework from '@ohos.security.cryptoFramework';
+import { BusinessError } from '@ohos.base';
 
 // 可理解的字符串转成字节流
 function stringToUint8Array(str: string) {
@@ -1306,7 +1325,8 @@ function rsaUseSpecDecryptOAEPPromise() {
 3. 执行加解密操作。通过调用Cipher对象提供的doFinal接口，执行加密操作生成密文或执行解密操作生成明文。
 
 ```ts
-import cryptoFramework from "@ohos.security.cryptoFramework"
+import cryptoFramework from '@ohos.security.cryptoFramework';
+import { BusinessError } from '@ohos.base';
 
 let plan = "This is cipher test.";
 
@@ -1434,10 +1454,10 @@ function decryptMessageCallback() {
           decoder.doFinal(cipherData, (err, data) => {
             // Check whether the decrypted data is consistent with the original data.
             if (input.data.toString() === data.data.toString()) {
-              AlertDialog.show({ message: "decrype success" });
+              AlertDialog.show({ message: "decrypt success" });
               return;
             }
-            AlertDialog.show({ message: "decrype fail" });
+            AlertDialog.show({ message: "decrypt fail" });
           });
         });
       });
@@ -1461,6 +1481,7 @@ function decryptMessageCallback() {
 
 ```ts
 import cryptoFramework from '@ohos.security.cryptoFramework';
+import { BusinessError } from '@ohos.base';
 
 // Convert strings in plaintext into byte streams.
 function stringToUint8Array(str: string) {
@@ -1508,10 +1529,10 @@ function testSM4Ecb() {
           decoder.doFinal(cipherData, (err, data) => {
             // Check whether the decrypted data is consistent with the original data.
             if (input.data.toString() === data.data.toString()) {
-              AlertDialog.show({ message: "decrype success" });
+              AlertDialog.show({ message: "decrypt success" });
               return;
             }
-            AlertDialog.show({ message: "decrype fail" });
+            AlertDialog.show({ message: "decrypt fail" });
           });
         });
       });
@@ -1571,7 +1592,8 @@ function testSM4Ecb() {
 5. 执行验签操作。通过Verify类提供的update接口，添加签名数据，并调用verify接口传入签名进行验签。
 
 ```ts
-import cryptoFramework from "@ohos.security.cryptoFramework"
+import cryptoFramework from '@ohos.security.cryptoFramework';
+import { BusinessError } from '@ohos.base';
 
 // 可理解的字符串转成字节流
 function stringToUint8Array(str: string) {
@@ -1602,8 +1624,8 @@ function signMessagePromise() {
   }).then(() => {
     return signer.sign(input2);
   }).then(dataBlob => {
-    SignMessageBlob = dataBlob;
-    console.info("sign output is " + SignMessageBlob.data);
+    signMessageBlob = dataBlob;
+    console.info("sign output is " + signMessageBlob.data);
   });
 }
 
@@ -1614,7 +1636,7 @@ function verifyMessagePromise() {
   verifyInitPromise.then(() => {
     return verifyer.update(input1);
   }).then(() => {
-    return verifyer.verify(input2, SignMessageBlob);
+    return verifyer.verify(input2, signMessageBlob);
   }).then(res => {
     console.log("Verify result is " + res);
   });
@@ -1629,8 +1651,8 @@ function signMessageCallback() {
     signer.init(priKey, err => {
       signer.update(input1, err => {
         signer.sign(input2, (err, data) => {
-          SignMessageBlob = data;
-          console.info("sign output is " + SignMessageBlob.data);
+          signMessageBlob = data;
+          console.info("sign output is " + signMessageBlob.data);
         });
       });
     });
@@ -1642,7 +1664,7 @@ function verifyMessageCallback() {
   let verifyer = cryptoFramework.createVerify("RSA1024|PKCS1|SHA256");
   verifyer.init(globalKeyPair.pubKey, err => {
     verifyer.update(input1, err => {
-      verifyer.verify(input2, SignMessageBlob, (err, data) => {
+      verifyer.verify(input2, signMessageBlob, (err, data) => {
         console.info("verify result is " + data);
       });
     });
@@ -1661,7 +1683,8 @@ function verifyMessageCallback() {
 5. 执行验签操作。通过Verify类提供的update接口，添加签名数据，并调用doFinal接口传入签名进行验签。
 
 ```ts
-import cryptoFramework from "@ohos.security.cryptoFramework"
+import cryptoFramework from '@ohos.security.cryptoFramework';
+import { BusinessError } from '@ohos.base';
 
 // 可理解的字符串转成字节流
 function stringToUint8Array(str: string) {
@@ -1692,8 +1715,8 @@ function signMessagePromise() {
   }).then(() => {
     return signer.sign(input2);
   }).then(dataBlob => {
-    SignMessageBlob = dataBlob;
-    console.info("sign output is " + SignMessageBlob.data);
+    signMessageBlob = dataBlob;
+    console.info("sign output is " + signMessageBlob.data);
   });
 }
 
@@ -1703,7 +1726,7 @@ function verifyMessagePromise() {
   verifyInitPromise.then(() => {
     return verifyer.update(input1);
   }).then(() => {
-    return verifyer.verify(input2, SignMessageBlob);
+    return verifyer.verify(input2, signMessageBlob);
   }).then(res => {
     console.log("Verify result is " + res);
   });
@@ -1718,8 +1741,8 @@ function signMessageCallback() {
     signer.init(priKey, err => {
       signer.update(input1, err => {
         signer.sign(input2, (err, data) => {
-          SignMessageBlob = data;
-          console.info("sign output is " + SignMessageBlob.data);
+          signMessageBlob = data;
+          console.info("sign output is " + signMessageBlob.data);
         });
       });
     });
@@ -1730,7 +1753,7 @@ function verifyMessageCallback() {
   let verifyer = cryptoFramework.createVerify("ECC256|SHA256");
   verifyer.init(globalKeyPair.pubKey, err => {
     verifyer.update(input1, err => {
-      verifyer.verify(input2, SignMessageBlob, (err, data) => {
+      verifyer.verify(input2, signMessageBlob, (err, data) => {
         console.info("verify result is " + data);
       });
     });
@@ -1749,7 +1772,8 @@ function verifyMessageCallback() {
 5. 执行验签操作。多次通过Verify类提供的update接口，添加签名数据，并调用verify接口传入签名进行验签，完成分段验签。
 
 ```ts
-import cryptoFramework from "@ohos.security.cryptoFramework"
+import cryptoFramework from '@ohos.security.cryptoFramework';
+import { BusinessError } from '@ohos.base';
 
 // 可理解的字符串转成字节流
 function stringToUint8Array(str: string) {
@@ -1782,17 +1806,19 @@ function signLongMessagePromise() {
     globalKeyPair = rsaKeyPair; // Save the key pair as a global variable.
     return signer.init(globalKeyPair.priKey);
   })
-    .then(async () => {
+    .then(async (): Promise<void> => {
       // If the plaintext is too large, split the plaintext based on the specified length and cyclically call update() to pass in the plaintext.
       for (let i = 0; i < (globalPlainText.length / textSplitLen); i++) {
         let tempStr = globalPlainText.substr(i * textSplitLen, textSplitLen);
         let tempBlob: cryptoFramework.DataBlob = { data: stringToUint8Array(tempStr) };
         await signer.update(tempBlob);
       }
+    })
+    .then((): Promise<cryptoFramework.DataBlob> => {
       return signer.sign(null);
     })
-    .then(data => {
-      globalSignData = data.data;
+    .then((signData: cryptoFramework.DataBlob): Promise<void> => {
+      globalSignData = signData.data;
       console.info(`globalSignOutput len is ${globalSignData.length}, data is: ${globalSignData.toString()}`);
       return verifier.init(globalKeyPair.pubKey);
     })
@@ -1803,6 +1829,9 @@ function signLongMessagePromise() {
         let tempBlob: cryptoFramework.DataBlob = { data: stringToUint8Array(tempData) };
         await verifier.update(tempBlob);
       }
+      return;
+    })
+    .then((): Promise<boolean> => {
       return verifier.verify(null, { data: globalSignData });
     })
     .then(res => {
@@ -1825,7 +1854,8 @@ function signLongMessagePromise() {
 5. 执行验签操作。通过Verify类提供的update接口，添加签名数据，并调用verify接口传入签名进行验签。
 
 ```ts
-import cryptoFramework from "@ohos.security.cryptoFramework"
+import cryptoFramework from '@ohos.security.cryptoFramework';
+import { BusinessError } from '@ohos.base';
 
 // Convert strings in plaintext into byte streams.
 function stringToUint8Array(str: string) {
@@ -1946,7 +1976,8 @@ function verifyMessageCallbackPSS() {
 5. 执行验签操作。通过Verify类提供的update接口，添加签名数据，并调用doFinal接口传入签名进行验签。
 
 ```ts
-import cryptoFramework from "@ohos.security.cryptoFramework"
+import cryptoFramework from '@ohos.security.cryptoFramework';
+import { BusinessError } from '@ohos.base';
 
 // Convert strings in plaintext into byte streams.
 function stringToUint8Array(str: string) {
@@ -2017,7 +2048,8 @@ function signAndVerify() {
 2. 基于ECC密钥的私钥及公钥执行ECDH操作。
 
 ```ts
-import cryptoFramework from "@ohos.security.cryptoFramework"
+import cryptoFramework from '@ohos.security.cryptoFramework';
+import { BusinessError } from '@ohos.base';
 
 let globalKeyPair: cryptoFramework.KeyPair;
 
@@ -2083,7 +2115,8 @@ function ecdhCallback() {
 4. 获取当前摘要算法名与摘要计算长度。
 
 ```ts
-import cryptoFramework from "@ohos.security.cryptoFramework"
+import cryptoFramework from '@ohos.security.cryptoFramework';
+import { BusinessError } from '@ohos.base';
 
 // Convert strings in plaintext into byte streams.
 function stringToUint8Array(str: string) {
@@ -2150,7 +2183,8 @@ function doMdByCallback() {
 4. 获取当前摘要算法名与摘要计算长度。
 
 ```ts
-import cryptoFramework from "@ohos.security.cryptoFramework"
+import cryptoFramework from '@ohos.security.cryptoFramework';
+import { BusinessError } from '@ohos.base';
 
 // 可理解的字符串转成字节流
 function stringToUint8Array(str: string) {
@@ -2179,7 +2213,8 @@ async function doLoopMdPromise() {
       try {
         await md.update(messageBlob); // Use update() to process data by segment.
       } catch (error) {
-        console.error("await update error code: " + error.code + ", message is: " + error.message);
+        let e: BusinessError = error as BusinessError;
+        console.error(`await update error, ${e.code}, ${e.message}`);
         return;
       }
       messageArr = [];
@@ -2236,7 +2271,8 @@ Mac(message authentication code)可以对消息进行完整性校验，通过使
 5. 获取当前摘要算法名与Mac计算长度。
 
 ```ts
-import cryptoFramework from "@ohos.security.cryptoFramework"
+import cryptoFramework from '@ohos.security.cryptoFramework';
+import { BusinessError } from '@ohos.base';
 
 // 可理解的字符串转成字节流
 function stringToUint8Array(str: string) {
@@ -2336,7 +2372,8 @@ function doHmacByCallback() {
 5. 获取当前摘要算法名与Mac计算长度。
 
 ```ts
-import cryptoFramework from "@ohos.security.cryptoFramework"
+import cryptoFramework from '@ohos.security.cryptoFramework';
+import { BusinessError } from '@ohos.base';
 
 function stringToUint8Array(str: string) {
   let arr = new Uint8Array(str.length);
@@ -2373,7 +2410,8 @@ function doLoopHmacPromise() {
           try {
             await mac.update(messageBlob); // Invoke update() multiple times.
           } catch (error) {
-            console.error("await update error code: " + error.code + ", message is: " + error.message);
+            let e: BusinessError = error as BusinessError;
+            console.error(`await update error, ${e.code}, ${e.message}`);
             return;
           }
           messageArr = [];
@@ -2429,12 +2467,12 @@ function doLoopHmacPromise() {
 3. 接受DataBlob数据，通过接口`setSeed`，为随机数生成池设置种子。
 
 ```ts
-import cryptoFramework from "@ohos.security.cryptoFramework"
+import cryptoFramework from '@ohos.security.cryptoFramework';
+import { BusinessError } from '@ohos.base';
 
 // Generate a random number in promise mode.
 function doRandByPromise() {
   let rand = cryptoFramework.createRandom();
-  ;
   let len = 4; // Generate a 4-byte random number.
   let promiseGenerateRand = rand.generateRandom(len);
   promiseGenerateRand.then(randData => {
@@ -2442,7 +2480,8 @@ function doRandByPromise() {
     try {
       rand.setSeed(randData);
     } catch (error) {
-      console.error("setSeed failed, errCode: " + error.code + ", errMsg: " + error.message);
+      let e: BusinessError = error as BusinessError;
+      console.error(`setSeed failed, ${e.code}, ${e.message}`);
     }
   }).catch((error: BusinessError) => {
     console.error("[Promise]: error: " + error.message);
@@ -2452,7 +2491,6 @@ function doRandByPromise() {
 // Generate a random number in callback mode.
 function doRandByCallback() {
   let rand = cryptoFramework.createRandom();
-  ;
   let len = 4; // Generate a 4-byte random number.
   rand.generateRandom(len, (err, randData) => {
     if (err) {
@@ -2462,7 +2500,8 @@ function doRandByCallback() {
       try {
         rand.setSeed(randData);
       } catch (error) {
-        console.error("setSeed failed, errCode: " + error.code + ", errMsg: " + error.message);
+        let e: BusinessError = error as BusinessError;
+        console.error(`setSeed failed, ${e.code}, ${e.message}`);
       }
     }
   });
@@ -2471,7 +2510,6 @@ function doRandByCallback() {
 // Generate a random number synchronously.
 function doRandBySync() {
   let rand = cryptoFramework.createRandom();
-  ;
   let len = 24; // Generate a 24-byte random number.
   try {
     let randData = rand.generateRandomSync(len);
@@ -2481,7 +2519,8 @@ function doRandBySync() {
       console.error("[Sync]: get rand result fail!");
     }
   } catch (error) {
-    console.error("[Sync]: error: " + error.message);
+    let e: BusinessError = error as BusinessError;
+    console.error(`do rand failed, ${e.code}, ${e.message}`);
   }
 }
 ```
