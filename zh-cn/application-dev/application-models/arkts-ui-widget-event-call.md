@@ -53,27 +53,48 @@
   
   ```ts
   import UIAbility from '@ohos.app.ability.UIAbility';
-  
-  function FunACall(data) {
-    // 获取call事件中传递的所有参数
-    console.info('FunACall param:' + JSON.stringify(data.readString()));
-    return null;
-  }
-  
-  function FunBCall(data) {
-    console.info('FunBCall param:' + JSON.stringify(data.readString()));
-    return null;
+  import Base from '@ohos.base'
+  import rpc from '@ohos.rpc';
+  import Want from '@ohos.app.ability.Want';
+  import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+
+
+  class MyParcelable implements rpc.Parcelable {
+    num: number;
+    str: string;
+    constructor(num: number, str: string) {
+      this.num = num;
+      this.str = str;
+    }
+    marshalling(messageSequence: rpc.MessageSequence): boolean {
+      messageSequence.writeInt(this.num);
+      messageSequence.writeString(this.str);
+      return true;
+    }
+    unmarshalling(messageSequence: rpc.MessageSequence): boolean {
+      this.num = messageSequence.readInt();
+      this.str = messageSequence.readString();
+      return true;
+    }
   }
   
   export default class CameraAbility extends UIAbility {
     // 如果UIAbility第一次启动，在收到call事件后会触发onCreate生命周期回调
-    onCreate(want, launchParam) {
+    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
       try {
         // 监听call事件所需的方法
-        this.callee.on('funA', FunACall);
-        this.callee.on('funB', FunBCall);
+        this.callee.on('funA', (data: rpc.MessageSequence) => {
+          // 获取call事件中传递的所有参数
+          console.info('FunACall param:' + JSON.stringify(data.readString()));
+          return new MyParcelable(1, 'aaa');
+        });
+        this.callee.on('funB', (data: rpc.MessageSequence) => {
+          // 获取call事件中传递的所有参数
+          console.info('FunACall param:' + JSON.stringify(data.readString()));
+          return new MyParcelable(2, 'bbb');
+        });
       } catch (err) {
-        console.error(`Failed to register callee on. Cause: ${JSON.stringify(err)}`);
+        console.error(`Failed to register callee on. Cause: ${JSON.stringify(err as Base.BusinessError)}`);
       }
     }
   
@@ -85,7 +106,7 @@
         this.callee.off('funA');
         this.callee.off('funB');
       } catch (err) {
-        console.error(`Failed to register callee off. Cause: ${JSON.stringify(err)}`);
+        console.error(`Failed to register callee off. Cause: ${JSON.stringify(err as Base.BusinessError)}`);
       }
     }
   };

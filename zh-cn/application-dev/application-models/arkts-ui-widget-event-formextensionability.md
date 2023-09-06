@@ -52,10 +52,10 @@
       let formData = new Map<Object, string>();
       formData.set('title', 'Title Update.'); // 和卡片布局中对应
       formData.set('detail', 'Description update success.'); // 和卡片布局中对应
-      let formInfo = formBindingData.createFormBindingData(formData)
-      formProvider.updateForm(formId, formInfo).then((data) => {
-        console.info('FormAbility updateForm success.' + JSON.stringify(data));
-      })
+      let formInfo: formBindingData.FormBindingData = formBindingData.createFormBindingData(formData);
+      formProvider.updateForm(formId, formInfo).then(() => {
+        console.info('FormAbility updateForm success.');
+      });
     }
 
     ...

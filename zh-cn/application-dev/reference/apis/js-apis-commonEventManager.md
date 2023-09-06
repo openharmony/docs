@@ -10,7 +10,6 @@
 
 ```ts
 import CommonEventManager from '@ohos.commonEventManager';
-import Base from '@ohos.base';
 ```
 
 ## Support
@@ -48,6 +47,8 @@ publish(event: string, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
+import Base from '@ohos.base';
+
 //发布公共事件回调
 function publishCB(err:Base.BusinessError) {
     if (err) {
@@ -96,6 +97,8 @@ publish(event: string, options: CommonEventPublishData, callback: AsyncCallback\
 **示例：**
 
 ```ts
+import Base from '@ohos.base';
+
 //公共事件相关信息
 let options:CommonEventManager.CommonEventPublishData = {
 	code: 0,			 //公共事件的初始代码
@@ -153,6 +156,8 @@ publishAsUser(event: string, userId: number, callback: AsyncCallback\<void>): vo
 **示例：**
 
 ```ts
+import Base from '@ohos.base';
+
 //发布公共事件回调
 function publishCB(err:Base.BusinessError) {
 	if (err) {
@@ -208,6 +213,8 @@ publishAsUser(event: string, userId: number, options: CommonEventPublishData, ca
 
 
 ```ts
+import Base from '@ohos.base';
+
 //公共事件相关信息
 let options:CommonEventManager.CommonEventPublishData = {
 	code: 0,			 //公共事件的初始代码
@@ -253,6 +260,8 @@ createSubscriber(subscribeInfo: CommonEventSubscribeInfo, callback: AsyncCallbac
 **示例：**
 
 ```ts
+import Base from '@ohos.base';
+
 let subscriber:CommonEventManager.CommonEventSubscriber; //用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
 
 //订阅者信息
@@ -301,6 +310,8 @@ createSubscriber(subscribeInfo: CommonEventSubscribeInfo): Promise\<CommonEventS
 **示例：**
 
 ```ts
+import Base from '@ohos.base';
+
 let subscriber:CommonEventManager.CommonEventSubscriber; //用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
 
 //订阅者信息
@@ -340,6 +351,8 @@ createSubscriber的同步接口。
 **示例：**
 
 ```ts
+import Base from '@ohos.base';
+
 let subscriber; //用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
 
 //订阅者信息
@@ -385,6 +398,8 @@ subscribe(subscriber: CommonEventSubscriber, callback: AsyncCallback\<CommonEven
 **示例：**
 
 ```ts
+import Base from '@ohos.base';
+
 //订阅者信息
 let subscriber:CommonEventManager.CommonEventSubscriber; //用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
 
@@ -456,6 +471,8 @@ unsubscribe(subscriber: CommonEventSubscriber, callback?: AsyncCallback\<void>):
 **示例：**
 
 ```ts
+import Base from '@ohos.base';
+
 let subscriber:CommonEventManager.CommonEventSubscriber; //用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
 //订阅者信息
 let subscribeInfo:CommonEventManager.CommonEventSubscribeInfo = {
@@ -543,6 +560,8 @@ removeStickyCommonEvent(event: string, callback: AsyncCallback\<void>): void
 
 
 ```ts
+import Base from '@ohos.base';
+
 CommonEventManager.removeStickyCommonEvent("sticky_event", (err:Base.BusinessError) => {
     if (err) {
         console.info(`Remove sticky event AsyncCallback failed, errCode: ${err.code}, errMes: ${err.message}`);
@@ -590,6 +609,8 @@ removeStickyCommonEvent(event: string): Promise\<void>
 
 
 ```ts
+import Base from '@ohos.base';
+
 CommonEventManager.removeStickyCommonEvent("sticky_event").then(() => {
     console.info(`Remove sticky event AsyncCallback success`);
 }).catch ((err:Base.BusinessError) => {
@@ -627,6 +648,8 @@ setStaticSubscriberState(enable: boolean, callback: AsyncCallback\<void>): void;
 
 
 ```ts
+import Base from '@ohos.base';
+
 CommonEventManager.setStaticSubscriberState(true, (err:Base.BusinessError) => {
     if (!err) {
         console.info(`Set static subscriber state callback failed, err is null.`);
@@ -675,6 +698,8 @@ setStaticSubscriberState(enable: boolean): Promise\<void>;
 
 
 ```ts
+import Base from '@ohos.base';
+
 CommonEventManager.setStaticSubscriberState(false).then(() => {
     console.info(`Set static subscriber state promise success`);
 }).catch ((err:Base.BusinessError) => {
