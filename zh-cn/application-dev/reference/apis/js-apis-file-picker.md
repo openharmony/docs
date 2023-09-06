@@ -14,7 +14,6 @@
 
 ```ts
 import picker from '@ohos.file.picker';
-import { BusinessError } from '@ohos.base';
 ```
 
 ## PhotoViewPicker
@@ -52,6 +51,7 @@ select(option?: PhotoSelectOptions) : Promise&lt;PhotoSelectResult&gt;
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
 async function example01() {
   try {  
     let PhotoSelectOptions = new picker.PhotoSelectOptions();
@@ -88,6 +88,7 @@ select(option: PhotoSelectOptions, callback: AsyncCallback&lt;PhotoSelectResult&
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
 async function example02() {
   try {
     let PhotoSelectOptions = new picker.PhotoSelectOptions();
@@ -125,6 +126,7 @@ select(callback: AsyncCallback&lt;PhotoSelectResult&gt;) : void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
 async function example03() {
   try {
     let photoPicker = new picker.PhotoViewPicker();
@@ -165,6 +167,7 @@ save(option?: PhotoSaveOptions) : Promise&lt;Array&lt;string&gt;&gt;
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
 async function example04() {
   try {
     let PhotoSaveOptions = new picker.PhotoSaveOptions();
@@ -200,6 +203,7 @@ save(option: PhotoSaveOptions, callback: AsyncCallback&lt;Array&lt;string&gt;&gt
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
 async function example05() {
   try {
     let PhotoSaveOptions = new picker.PhotoSaveOptions();
@@ -236,6 +240,7 @@ save(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;) : void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
 async function example06() {
   try {
     let photoPicker = new picker.PhotoViewPicker();
@@ -288,6 +293,7 @@ select(option?: DocumentSelectOptions) : Promise&lt;Array&lt;string&gt;&gt;
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
 async function example07() {
   try {
     let DocumentSelectOptions = new picker.DocumentSelectOptions();
@@ -322,6 +328,7 @@ select(option: DocumentSelectOptions, callback: AsyncCallback&lt;Array&lt;string
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
 async function example08() {
   try {
     let DocumentSelectOptions = new picker.DocumentSelectOptions();
@@ -357,6 +364,7 @@ select(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;) : void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
 async function example09() {
   try {
     let documentPicker = new picker.DocumentViewPicker();
@@ -398,6 +406,7 @@ save(option?: DocumentSaveOptions) : Promise&lt;Array&lt;string&gt;&gt;
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
 async function example10() {
   try {
     let DocumentSaveOptions = new picker.DocumentSaveOptions();
@@ -433,6 +442,7 @@ save(option: DocumentSaveOptions, callback: AsyncCallback&lt;Array&lt;string&gt;
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
 async function example11() {
   try {
     let DocumentSaveOptions = new picker.DocumentSaveOptions();
@@ -469,6 +479,7 @@ save(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;) : void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
 async function example12() {
   try {
     let documentPicker = new picker.DocumentViewPicker();
@@ -521,6 +532,7 @@ select(option?: AudioSelectOptions) : Promise&lt;Array&lt;string&gt;&gt;
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
 async function example13() {
   try {
     let AudioSelectOptions = new picker.AudioSelectOptions();
@@ -555,6 +567,7 @@ select(option: AudioSelectOptions, callback: AsyncCallback&lt;Array&lt;string&gt
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
 async function example14() {
   try {
     let AudioSelectOptions = new picker.AudioSelectOptions();
@@ -590,6 +603,7 @@ select(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;) : void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
 async function example15() {
   try {
     let audioPicker = new picker.AudioViewPicker();
@@ -630,6 +644,7 @@ save(option?: AudioSaveOptions) : Promise&lt;Array&lt;string&gt;&gt;
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
 async function example16() {
   try {
     let AudioSaveOptions = new picker.AudioSaveOptions();
@@ -665,6 +680,7 @@ save(option: AudioSaveOptions, callback: AsyncCallback&lt;Array&lt;string&gt;&gt
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
 async function example17() {
   try {
     let AudioSaveOptions = new picker.AudioSaveOptions();
@@ -701,6 +717,7 @@ save(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;) : void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
 async function example18() {
   try {
     let audioPicker = new picker.AudioViewPicker();
