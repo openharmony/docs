@@ -38,7 +38,7 @@ on(type: 'touch', receiver: TouchEventReceiver): void
 
 ```js
 try {
-  inputMonitor.on('touch', (touchEvent) => {
+  inputMonitor.on('touch', (touchEvent: TouchEvent) => {
     console.log(`Monitor on success ${JSON.stringify(touchEvent)}`);
     return false;
   });
@@ -100,7 +100,7 @@ off(type: 'touch', receiver?: TouchEventReceiver): void
 
 ```js
 // 取消监听单个回调函数
-function callback(touchEvent) {
+let callback = (touchEvent: touchEvent) => {
   console.log(`Monitor on success ${JSON.stringify(touchEvent)}`);
   return false;
 };
@@ -115,7 +115,7 @@ try {
 
 ```js
 // 取消监听所有回调函数
-function callback(touchEvent) {
+let callback = (touchEvent: touchEvent) => {
   console.log(`Monitor on success ${JSON.stringify(touchEvent)}`);
   return false;
 };
@@ -149,7 +149,7 @@ off(type: 'mouse', receiver?: Callback&lt;MouseEvent&gt;): void
 
 ```js
 // 取消监听单个回调函数
-function callback(mouseEvent) {
+let callback = (mouseEvent: MouseEvent) => {
   console.log(`Monitor on success ${JSON.stringify(mouseEvent)}`);
   return false;
 };
@@ -164,7 +164,7 @@ try {
 
 ```js
 // 取消监听所有回调函数
-function callback(mouseEvent) {
+let callback = (mouseEvent: MouseEvent) => {
   console.log(`Monitor on success ${JSON.stringify(mouseEvent)}`);
   return false;
 };
@@ -263,7 +263,7 @@ off(type: 'pinch', receiver?: Callback&lt;[Pinch](js-apis-multimodalinput-gestur
 
 ```js
 // 取消监听单个回调函数
-function callback(pinchEvent) {
+let callback = (pinchEvent: Pinch) => {
   console.log(`Monitor on success ${JSON.stringify(pinchEvent)}`);
   return false;
 };
@@ -278,7 +278,7 @@ try {
 
 ```js
 // 取消监听所有回调函数
-function callback(pinchEvent) {
+let callback = (pinchEvent: Pinch) => {
   console.log(`Monitor on success ${JSON.stringify(pinchEvent)}`);
   return false;
 };
@@ -342,7 +342,7 @@ off(type: 'threeFingersSwipe', receiver?: Callback&lt;[ThreeFingersSwipe](js-api
 
 ```js
 // 取消监听单个回调函数
-function callback(threeFingersSwipe) {
+let callback = (threeFingersSwipe: ThreeFingersSwipe) => {
   console.log(`Monitor on success ${JSON.stringify(threeFingersSwipe)}`);
   return false;
 };
@@ -357,7 +357,7 @@ try {
 
 ```js
 // 取消监听所有回调函数
-function callback(threeFingersSwipe) {
+let callback = (threeFingersSwipe: ThreeFingersSwipe) => {
   console.log(`Monitor on success ${JSON.stringify(threeFingersSwipe)}`);
   return false;
 };
@@ -421,7 +421,7 @@ off(type: 'fourFingersSwipe', receiver?: Callback&lt;[FourFingersSwipe](js-apis-
 
 ```js
 // 取消监听单个回调函数
-function callback(fourFingersSwipe) {
+let callback = (fourFingersSwipe: FourFingersSwipe) => {
   console.log(`Monitor on success ${JSON.stringify(fourFingersSwipe)}`);
   return false;
 };
@@ -436,7 +436,7 @@ try {
 
 ```js
 // 取消监听所有回调函数
-function callback(fourFingersSwipe) {
+let callback = (fourFingersSwipe: FourFingersSwipe) => {
   console.log(`Monitor on success ${JSON.stringify(fourFingersSwipe)}`);
   return false;
 };
