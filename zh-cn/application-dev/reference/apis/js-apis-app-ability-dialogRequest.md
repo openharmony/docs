@@ -331,7 +331,7 @@ getRequestCallback(want: Want): RequestCallback
 | 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | result | [ResultCode](#resultcode) | 是 | 是 | 表示结果码。 |
-| want<sup>10+</sup> | [ResultWant](js-apis-application-want.md)  | 是 | 是 | 表示Want类型信息，如ability名称，包名等。。 |
+| want<sup>10+</sup> | [ResultWant](js-apis-application-want.md)  | 是 | 是 | 表示Want类型信息，如ability名称，包名等。 |
 
 ## RequestCallback
 
