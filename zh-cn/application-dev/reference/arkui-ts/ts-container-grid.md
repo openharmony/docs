@@ -145,6 +145,7 @@ Grid组件根据rowsTemplate、columnsTemplate属性的设置情况，可分为�
 
 ```ts
 // xxx.ets
+// xxx.ets
 @Entry
 @Component
 struct GridExample {
@@ -164,8 +165,8 @@ struct GridExample {
                 .height('100%')
                 .textAlign(TextAlign.Center)
             }
-          }, day => day)
-        }, day => day)
+          }, (day: string) => day)
+        }, (day: string) => day)
       }
       .columnsTemplate('1fr 1fr 1fr 1fr 1fr')
       .rowsTemplate('1fr 1fr 1fr 1fr 1fr')
@@ -187,8 +188,8 @@ struct GridExample {
                 .height(80)
                 .textAlign(TextAlign.Center)
             }
-          }, day => day)
-        }, day => day)
+          }, (day: string) => day)
+        }, (day: string) => day)
       }
       .columnsTemplate('1fr 1fr 1fr 1fr 1fr')
       .columnsGap(10)
@@ -250,7 +251,10 @@ struct GridExample {
   }
 
   changeIndex(index1: number, index2: number) { //交换数组位置
-    [this.numbers[index1], this.numbers[index2]] = [this.numbers[index2], this.numbers[index1]];
+    let temp: string;
+    temp = this.numbers[index1];
+    this.numbers[index1] = this.numbers[index2];
+    this.numbers[index2] = temp;
   }
 
   build() {

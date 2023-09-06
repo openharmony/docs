@@ -204,13 +204,13 @@ struct ListExample {
   build() {
     Column() {
       List({ space: 20, initialIndex: 0 }) {
-        ForEach(this.arr, (item) => {
+        ForEach(this.arr, (item: number) => {
           ListItem() {
             Text('' + item)
               .width('100%').height(100).fontSize(16)
               .textAlign(TextAlign.Center).borderRadius(10).backgroundColor(0xFFFFFF)
           }
-        }, item => item)
+        }, (item: string) => item)
       }
       .listDirection(Axis.Vertical) // 排列方向
       .scrollBar(BarState.Off)
@@ -242,6 +242,7 @@ struct ListExample {
 
 ```ts
 // xxx.ets
+// xxx.ets
 @Entry
 @Component
 struct ListLanesExample {
@@ -251,7 +252,7 @@ struct ListLanesExample {
   build() {
     Column() {
       List({ space: 20, initialIndex: 0 }) {
-        ForEach(this.arr, (item) => {
+        ForEach(this.arr, (item: string) => {
           ListItem() {
             Text('' + item)
               .width('100%')
@@ -262,7 +263,7 @@ struct ListLanesExample {
               .backgroundColor(0xFFFFFF)
           }
           .border({ width: 2, color: Color.Green })
-        }, item => item)
+        }, (item: string) => item)
       }
       .height(300)
       .width("90%")
@@ -295,17 +296,17 @@ struct ListLanesExample {
 // xxx.ets
 @Entry
 @Component
-struct ListExample{
+struct ListExample {
   @State arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
   @State editFlag: boolean = false
 
-  build(){
-    Stack({alignContent: Alignment.TopStart}) {
-      Column(){
-        List({space:20, initialIndex:0}) {
-          ForEach(this.arr, (item, index) => {
+  build() {
+    Stack({ alignContent: Alignment.TopStart }) {
+      Column() {
+        List({ space: 20, initialIndex: 0 }) {
+          ForEach(this.arr, (item: number, index?: number) => {
             ListItem() {
-              Flex({direction: FlexDirection.Row, alignItems: ItemAlign.Center}) {
+              Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center }) {
                 Text('' + item)
                   .width('100%')
                   .height(80)
@@ -319,15 +320,17 @@ struct ListExample{
                     Text("delete").fontSize(16)
                   }.width('30%').height(40)
                   .onClick(() => {
-                    console.info(this.arr[index] + 'Delete')
-                    this.arr.splice(index, 1)
-                    console.info(JSON.stringify(this.arr))
-                    this.editFlag = false
+                    if (index != undefined) {
+                      console.info(this.arr[index] + 'Delete')
+                      this.arr.splice(index, 1)
+                      console.info(JSON.stringify(this.arr))
+                      this.editFlag = false
+                    }
                   }).stateEffect(true)
                 }
               }
             }
-          }, item => item)
+          }, (item: string) => item)
         }.width('90%')
         .scrollBar(BarState.Off)
         .friction(0.6)
@@ -351,14 +354,14 @@ struct ListExample{
 @Entry
 @Component
 struct ListExample {
-  private arr: number[] = Array.apply(this, {length: 20}).map((item, i) => i)
+  private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
   private scrollerForList: Scroller = new Scroller()
 
   build() {
     Column() {
       Row() {
         List({ space: 20, initialIndex: 0, scroller: this.scrollerForList }) {
-          ForEach(this.arr, (item) => {
+          ForEach(this.arr, (item: number) => {
             ListItem() {
               Text('' + item)
                 .width('100%').height(100).fontSize(16)
@@ -367,7 +370,7 @@ struct ListExample {
             .borderRadius(10).backgroundColor(0xFFFFFF)
             .width('60%')
             .height('80%')
-          }, item => item)
+          }, (item: string) => item)
         }
         .chainAnimation(true)
         .edgeEffect(EdgeEffect.Spring)
@@ -383,7 +386,7 @@ struct ListExample {
       .width('100%')
       .height('100%')
       .backgroundColor(0xDCDCDC)
-      .padding({ top: 10})
+      .padding({ top: 10 })
     }
   }
 }
