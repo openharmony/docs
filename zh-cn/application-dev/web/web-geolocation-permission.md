@@ -53,17 +53,23 @@ Web组件提供位置权限管理能力。开发者可以通过[onGeolocationSho
               primaryButton: {
                 value: 'cancel',
                 action: () => {
-                  event.geolocation.invoke(event.origin, false, false);   // 不允许此站点地理位置权限请求
+                  if (event) {
+                    event.geolocation.invoke(event.origin, false, false);   // 不允许此站点地理位置权限请求
+                  }
                 }
               },
               secondaryButton: {
                 value: 'ok',
                 action: () => {
-                  event.geolocation.invoke(event.origin, true, false);    // 允许此站点地理位置权限请求
+                  if (event) {
+                    event.geolocation.invoke(event.origin, true, false);    // 允许此站点地理位置权限请求
+                  }
                 }
               },
               cancel: () => {
-                event.geolocation.invoke(event.origin, false, false);   // 不允许此站点地理位置权限请求
+                if (event) {
+                  event.geolocation.invoke(event.origin, false, false);   // 不允许此站点地理位置权限请求
+                }
               }
             })
           })

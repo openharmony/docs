@@ -51,10 +51,12 @@ Web网页上发起资源加载请求，应用层收到资源请求消息。应�
       Column() {
         Web({ src: $rawfile('example.html'), controller: this.controller })
           .onInterceptRequest((event) => {
-            console.info('url:' + event.request.getRequestUrl());
-            // 拦截页面请求
-            if (event.request.getRequestUrl() !== 'https://www.intercept.com/test.html') {
-              return null;
+            if (event) {
+              console.info('url:' + event.request.getRequestUrl());
+              // 拦截页面请求
+              if (event.request.getRequestUrl() !== 'https://www.intercept.com/test.html') {
+                return this.responseResource;
+              }
             }
             // 构造响应数据
             this.responseResource.setResponseData(this.webData);

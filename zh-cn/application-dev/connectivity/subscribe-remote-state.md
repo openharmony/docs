@@ -98,7 +98,6 @@ import Want from '@ohos.app.ability.Want';
 import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 import window from '@ohos.window';
 
-
 export default class MainAbility extends UIAbility {
     onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
         console.log("[Demo] MainAbility onCreate");
@@ -134,9 +133,9 @@ export default class MainAbility extends UIAbility {
 import Want from '@ohos.app.ability.Want';
 import common from '@ohos.app.ability.common';
 
-let proxy: rpc.RemoteProxy;
+let proxy: rpc.IRemoteObject | undefined = undefined;
 let connect: common.ConnectOptions = {
-    onConnect: (elementName, remoteProxy: rpc.RemoteProxy) => {
+    onConnect: (elementName, remoteProxy) => {
         console.log("RpcClient: js onConnect called.");
         proxy = remoteProxy;
     },

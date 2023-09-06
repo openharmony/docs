@@ -621,7 +621,7 @@ struct Parent {
 
   ```ts
   class Outer {
-    innerArrayProp : ObservedArray<string>;
+    innerArrayProp : ObservedArray<string> = [];
     ...
   }
   ```
@@ -689,7 +689,7 @@ struct ViewB {
         (item: ClassA) => {
           ViewA({ label: `#${item.id}`, a: item })
         },
-        (item: ClassA) => item.id.toString()
+        (item: ClassA): string => { return item.id.toString(); }
       )
 
       Divider().height(10)
@@ -738,7 +738,7 @@ struct ViewB {
 @Component
 struct ViewA {
 
-  @Prop a: ClassA;
+  @Prop a: ClassA = new ClassA(0);
   label : string = "ViewA1";
 
   build() {
@@ -903,7 +903,7 @@ export class ObservedArray<T> extends Array<T> {
    
        @ObjectLink me : Person;
        @ObjectLink contacts : ObservedArray<Person>;
-       @State selectedPerson: Person = undefined;
+       @State selectedPerson: Person = new Person("", "", 0, "", []);
    
        aboutToAppear() {
            this.selectedPerson = this.me;
@@ -919,7 +919,7 @@ export class ObservedArray<T> extends Array<T> {
               ForEach(this.contacts, (contact: Person) => {
                 PersonView({ person: contact, phones: contact.phones as ObservedArray<string>, selectedPerson: this.$selectedPerson })
               },
-                (contact: Person) => contact.id_
+                (contact: Person): string => { return contact.id_; }
               )
 
                Divider().height(8)
@@ -1295,7 +1295,7 @@ export class ObservedArray<T> extends Array<T> {
        ForEach(this.contacts, (contact: Person) => {
          PersonView({ person: contact, phones: contact.phones as ObservedArray<string>, selectedPerson: this.$selectedPerson })
        },
-         (contact: Person) => contact.id_
+         (contact: Person): string => { return contact.id_; }
        )
 
        Divider().height(8)
