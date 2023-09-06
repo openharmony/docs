@@ -104,7 +104,7 @@ isActive(): boolean
 
 ```js
 try {
-    var isActive = power.isActive();
+    let isActive = power.isActive();
     console.info('power is active: ' + isActive);
 } catch(err) {
     console.error('check active status failed, err: ' + err);
@@ -206,7 +206,7 @@ getPowerMode(): DevicePowerMode
 
 ```js
 try {
-    var mode = power.getPowerMode();
+    let mode = power.getPowerMode();
     console.info('power mode: ' + mode);
 } catch(err) {
     console.error('get power mode failed, err: ' + err);
@@ -243,7 +243,7 @@ setPowerMode(mode: DevicePowerMode, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```js
-power.setPowerMode(power.DevicePowerMode.MODE_PERFORMANCE, err => {
+power.setPowerMode(power.DevicePowerMode.MODE_PERFORMANCE, (err: BusinessError<void>) => {
     if (typeof err === 'undefined') {
         console.info('set power mode to MODE_PERFORMANCE');
     } else {
@@ -322,7 +322,7 @@ isStandby(): boolean
 
 ```js
 try {
-    var isStandby = power.isStandby();
+    let isStandby = power.isStandby();
     console.info('device is in standby: ' + isStandby);
 } catch(err) {
     console.error('check isStandby failed, err: ' + err);
@@ -372,7 +372,7 @@ isScreenOn(callback: AsyncCallback&lt;boolean&gt;): void
 **示例：**
 
 ```js
-power.isScreenOn((err, data) => {
+power.isScreenOn((err: BusinessError<void>, data: boolean) => {
     if (typeof err === 'undefined') {
         console.info('screen on status is ' + data);
     } else {
@@ -400,10 +400,10 @@ isScreenOn(): Promise&lt;boolean&gt;
 
 ```js
 power.isScreenOn()
-.then(data => {
+.then((data: boolean) => {
     console.info('screen on status is ' + data);
 })
-.catch(err => {
+.catch((err: { code: number, message: string }) => {
     console.error('check screen status failed, err: ' + err);
 })
 ```
