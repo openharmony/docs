@@ -80,7 +80,7 @@ off(type: 'drag', callback?: Callback&lt;DragState&gt;): void;
 
 **示例**：
 
-```js
+```ts
 // 取消注册单个回调函数
 function single_callback(event : DragState) {
   console.log(`Drag interaction event: ${JSON.stringify(event)}`);
@@ -93,7 +93,7 @@ try {
   console.log(`Execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
-```js
+```ts
 // 取消注册所有回调函数
 function all_callback(event : DragState) {
   console.log(`Drag interaction event: ${JSON.stringify(event)}`);
