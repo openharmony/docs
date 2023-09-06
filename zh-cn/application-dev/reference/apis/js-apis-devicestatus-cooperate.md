@@ -12,7 +12,6 @@
 
 ```ts
 import cooperate from '@ohos.cooperate'
-import BusinessError from '@ohos.base'
 ```
 
 ## cooperate.prepare
@@ -32,6 +31,7 @@ prepare(callback: AsyncCallback&lt;void&gt;): void;
 **示例**：
 
 ```ts
+import BusinessError from '@ohos.base';
 try {
   cooperate.prepare((error: BusinessError) => {
     if (error) {
@@ -64,6 +64,7 @@ prepare(): Promise&lt;void&gt;
 **示例**：
 
 ```ts
+import BusinessError from '@ohos.base';
 try {
   cooperate.prepare().then(() => {
     console.log(`Keyboard mouse crossing prepare success.`);
@@ -91,6 +92,7 @@ unprepare(callback: AsyncCallback&lt;void&gt;): void;
 **示例**：
 
 ```ts
+import BusinessError from '@ohos.base';
 try {
   cooperate.unprepare((error: BusinessError) => {
     if (error) {
@@ -119,6 +121,7 @@ unprepare(): Promise&lt;void&gt;;
 | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
 ```ts
+import BusinessError from '@ohos.base';
 try {
   cooperate.unprepare().then(() => {
     console.log(`Keyboard mouse crossing unprepare success.`);
@@ -158,6 +161,7 @@ activate(targetNetworkId: string, inputDeviceId: number, callback: AsyncCallback
 **示例**：
 
 ```ts
+import BusinessError from '@ohos.base';
 let targetNetworkId = "networkId";
 let inputDeviceId = 0;
 try {
@@ -207,6 +211,7 @@ activate(targetNetworkId: string, inputDeviceId: number): Promise&lt;void&gt;;
 **示例**：
 
 ```ts
+import BusinessError from '@ohos.base';
 let targetNetworkId = "networkId";
 let inputDeviceId = 0;
 try {
@@ -240,6 +245,7 @@ deactivate(isUnchained: boolean, callback: AsyncCallback&lt;void&gt;): void;
 **示例**：
 
 ```ts
+import BusinessError from '@ohos.base';
 try {
   cooperate.deactivate(false, (error: BusinessError) => {
     if (error) {
@@ -280,6 +286,7 @@ deactivate(isUnchained: boolean): Promise&lt;void&gt;;
 **示例**：
 
 ```ts
+import BusinessError from '@ohos.base';
 try {
   cooperate.deactivate(false).then(() => {
     console.log(`Stop Keyboard mouse crossing success.`);
@@ -309,6 +316,7 @@ getCrossingSwitchState(networkId: string, callback: AsyncCallback&lt;boolean&gt;
 **示例**：
 
 ```ts
+import BusinessError from '@ohos.base';
 let deviceDescriptor = "networkId";
 try {
   cooperate.getCrossingSwitchState(deviceDescriptor, (error: BusinessError, data: boolean) => {
@@ -350,6 +358,7 @@ getCrossingSwitchState(networkId: string): Promise&lt;boolean&gt;;
 **示例**：
 
 ```ts
+import BusinessError from '@ohos.base';
 let deviceDescriptor = "networkId";
 try {
   cooperate.getCrossingSwitchState(deviceDescriptor).then((data: boolean) => {
