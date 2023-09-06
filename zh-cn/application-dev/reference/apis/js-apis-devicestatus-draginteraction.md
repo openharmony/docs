@@ -10,11 +10,33 @@
 
 ## 导入模块
 
-```js
+```ts
 import dragInteraction from '@ohos.deviceStatus.dragInteraction'
 ```
 
-## dragInteraction.on
+##  DragState
+
+拖拽状态。
+
+**系统能力**：SystemCapability.Msdp.DeviceStatus.Drag
+
+| 名称                       | 值                             | 说明                              |
+| --------                     |  -----------------               |  -----------------               |
+| MSG_DRAG_STATE_START |  1   | 表示开始拖拽。 |
+| MSG_DRAG_STATE_STOP |  2  |  表示结束拖拽。  |
+| MSG_DRAG_STATE_CANCEL |  3  |  表示取消拖拽。  |
+
+**示例**：
+
+```ts
+enum DragState {
+    MSG_DRAG_STATE_START = 1,
+    MSG_DRAG_STATE_STOP = 2,
+    MSG_DRAG_STATE_CANCEL = 3
+}
+```
+
+## dragInteraction.on('drag')
 
 on(type: 'drag', callback: Callback&lt;DragState&gt;): void;
 
@@ -31,7 +53,7 @@ on(type: 'drag', callback: Callback&lt;DragState&gt;): void;
 
 **示例**：
 
-```js
+```ts
 try {
   dragInteraction.on('drag', (data : DragState) => {
     console.log(`Drag interaction event: ${JSON.stringify(data)}`);
@@ -41,7 +63,7 @@ try {
 }
 ```
 
-## dragInteraction.off
+## dragInteraction.off('drag')
 
 off(type: 'drag', callback?: Callback&lt;DragState&gt;): void;
 
@@ -58,7 +80,7 @@ off(type: 'drag', callback?: Callback&lt;DragState&gt;): void;
 
 **示例**：
 
-```js
+```ts
 // 取消注册单个回调函数
 function single_callback(event : DragState) {
   console.log(`Drag interaction event: ${JSON.stringify(event)}`);
@@ -71,7 +93,7 @@ try {
   console.log(`Execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
-```js
+```ts
 // 取消注册所有回调函数
 function all_callback(event : DragState) {
   console.log(`Drag interaction event: ${JSON.stringify(event)}`);
@@ -85,14 +107,4 @@ try {
 }
 ```
 
-##  DragState
 
-拖拽状态。
-
-**系统能力**：SystemCapability.Msdp.DeviceStatus.Drag
-
-| 名称                       | 值                             | 说明                              |
-| --------                     |  -----------------               |  -----------------               |
-| MSG_DRAG_STATE_START |  1   | 表示开始拖拽。 |
-| MSG_DRAG_STATE_STOP |  2  |  表示结束拖拽。  |
-| MSG_DRAG_STATE_CANCEL |  3  |  表示取消拖拽。  |
