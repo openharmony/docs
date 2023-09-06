@@ -688,7 +688,7 @@ taskpoolExecute();
 
 ```ts
 // b.ets
-export let c: number = 2000;
+export let c: string = "hello";
 ```
 ```ts
 // 引用import变量
@@ -696,7 +696,7 @@ export let c: number = 2000;
 import { c } from "./b";
 
 @Concurrent
-function printArgs(a: number): number {
+function printArgs(a: string): string {
     console.log(a);
     console.log(c);
     return a;
