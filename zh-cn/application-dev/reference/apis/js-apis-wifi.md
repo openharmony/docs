@@ -9,7 +9,7 @@
 
 ## 导入模块
 
-```js
+```ts
 import wifi from '@ohos.wifi';
 ```
 
@@ -33,7 +33,7 @@ enableWifi(): boolean
 
 **示例：**
 
-```js
+```ts
 import wifi from '@ohos.wifi';
 
 try {
@@ -63,7 +63,7 @@ disableWifi(): boolean
 
 **示例：**
 
-```js
+```ts
 import wifi from '@ohos.wifi';
 
 try {
@@ -121,7 +121,7 @@ scan(): boolean
 
 **示例：**
 
-```js
+```ts
 import wifi from '@ohos.wifi';
 
 try {
@@ -166,7 +166,7 @@ getScanInfos(callback: AsyncCallback&lt;Array&lt;WifiScanInfo&gt;&gt;): void
 
 **示例：**
 
-```js
+```ts
 import wifi from '@ohos.wifi';
 
 wifi.getScanInfos((err, result) => {
@@ -175,9 +175,9 @@ wifi.getScanInfos((err, result) => {
         return;
     }
 
-    var len = Object.keys(result).length;
+    let len = Object.keys(result).length;
     console.log("wifi received scan info: " + len);
-    for (var i = 0; i < len; ++i) {
+    for (let i = 0; i < len; ++i) {
         console.info("ssid: " + result[i].ssid);
         console.info("bssid: " + result[i].bssid);
         console.info("capabilities: " + result[i].capabilities);
@@ -191,9 +191,9 @@ wifi.getScanInfos((err, result) => {
 });
 
 wifi.getScanInfos().then(result => {
-    var len = Object.keys(result).length;
+    let len = Object.keys(result).length;
     console.log("wifi received scan info: " + len);
-    for (var i = 0; i < len; ++i) {
+    for (let i = 0; i < len; ++i) {
         console.info("ssid: " + result[i].ssid);
         console.info("bssid: " + result[i].bssid);
         console.info("capabilities: " + result[i].capabilities);
@@ -622,7 +622,7 @@ disconnect(): boolean
   | boolean | true:操作成功，&nbsp;false:操作失败。 |
 
 **示例：**
-```js
+```ts
 import wifi from '@ohos.wifi';
 
 try {
@@ -704,7 +704,7 @@ getLinkedInfo(callback: AsyncCallback&lt;WifiLinkedInfo&gt;): void
   | callback | AsyncCallback&lt;[WifiLinkedInfo](#wifilinkedinfo)&gt; | 是 | 回调函数。当获取成功时，err为0，data表示WLAN连接信息。如果error为非0，表示处理出现错误。 |
 
 **示例：**
-```js
+```ts
 import wifi from '@ohos.wifi';
 
 wifi.getLinkedInfo((err, data) => {
@@ -1001,7 +1001,7 @@ reassociate(): boolean
   | boolean | true:操作成功，&nbsp;false:操作失败。 |
 
 **示例：**
-```js
+```ts
 import wifi from '@ohos.wifi';
 
 try {
@@ -1030,7 +1030,7 @@ reconnect(): boolean
   | boolean | true:操作成功，&nbsp;false:操作失败。 |
 
 **示例：**
-```js
+```ts
 import wifi from '@ohos.wifi';
 
 try {
@@ -1166,7 +1166,7 @@ removeAllNetwork(): boolean
   | boolean | true:操作成功，&nbsp;false:操作失败。 |
 
 **示例：**
-```js
+```ts
 import wifi from '@ohos.wifi';
 
 try {
@@ -1231,7 +1231,7 @@ enableHotspot(): boolean
   | boolean | true:操作成功，&nbsp;false:操作失败。|
 
 **示例：**
-```js
+```ts
 import wifi from '@ohos.wifi';
 
 try {
@@ -1260,7 +1260,7 @@ disableHotspot(): boolean
   | boolean | true:操作成功，&nbsp;false:操作失败。|
 
 **示例：**
-```js
+```ts
 import wifi from '@ohos.wifi';
 
 try {
@@ -1526,7 +1526,7 @@ getP2pLinkedInfo(callback: AsyncCallback&lt;WifiP2pLinkedInfo&gt;): void
   | callback | AsyncCallback&lt;[WifiP2pLinkedInfo](#wifip2plinkedinfo8)&gt; | 是 | 回调函数。当操作成功时，err为0，data表示P2P连接信息。如果error为非0，表示处理出现错误。 |
 
 **示例：**
-```js
+```ts
 import wifi from '@ohos.wifi';
 
 wifi.getP2pLinkedInfo((err, data) => {
@@ -1576,7 +1576,7 @@ getCurrentGroup(callback: AsyncCallback&lt;WifiP2pGroupInfo&gt;): void
   | callback | AsyncCallback&lt;[WifiP2pGroupInfo](#wifip2pgroupinfo8)&gt; | 是 | 回调函数。当操作成功时，err为0，data表示当前组信息。如果error为非0，表示处理出现错误。 |
 
 **示例：**
-```js
+```ts
 import wifi from '@ohos.wifi';
 
 wifi.getCurrentGroup((err, data) => {
@@ -1626,7 +1626,7 @@ getP2pPeerDevices(callback: AsyncCallback&lt;WifiP2pDevice[]&gt;): void
   | callback | AsyncCallback&lt;[WifiP2pDevice[]](#wifip2pdevice8)&gt; | 是 | 回调函数。当操作成功时，err为0，data表示对端设备列表信息。如果error为非0，表示处理出现错误。 |
 
 **示例：**
-```js
+```ts
 import wifi from '@ohos.wifi';
 
 wifi.getP2pPeerDevices((err, data) => {
@@ -1758,7 +1758,7 @@ removeGroup(): boolean
   | boolean | true:操作执行成功，&nbsp;false:操作执行失败。 |
 
 **示例：**
-```js
+```ts
 import wifi from '@ohos.wifi';
 
 try {
@@ -1793,10 +1793,10 @@ p2pConnect(config: WifiP2PConfig): boolean
 
 
 **示例：**
-```js
+```ts
 import wifi from '@ohos.wifi';
 
-var recvP2pConnectionChangeFunc = result => {
+let recvP2pConnectionChangeFunc = result => {
     console.info("p2p connection change receive event: " + JSON.stringify(result));
     wifi.getP2pLinkedInfo((err, data) => {
         if (err) {
@@ -1808,7 +1808,7 @@ var recvP2pConnectionChangeFunc = result => {
 }
 wifi.on("p2pConnectionChange", recvP2pConnectionChangeFunc);
 
-var recvP2pDeviceChangeFunc = result => {
+let recvP2pDeviceChangeFunc = result => {
     console.info("p2p device change receive event: " + JSON.stringify(result));
 }
 wifi.on("p2pDeviceChange", recvP2pDeviceChangeFunc);
@@ -1876,7 +1876,7 @@ p2pCancelConnect(): boolean
   | boolean | true:操作执行成功，&nbsp;false:操作执行失败。 |
 
 **示例：**
-```js
+```ts
 import wifi from '@ohos.wifi';
 
 try {
@@ -1903,7 +1903,7 @@ startDiscoverDevices(): boolean
   | boolean | true:操作执行成功，&nbsp;false:操作执行失败。 |
 
 **示例：**
-```js
+```ts
 import wifi from '@ohos.wifi';
 
 try {
@@ -1930,7 +1930,7 @@ stopDiscoverDevices(): boolean
   | boolean | true:操作执行成功，操作执行失败。 |
 
 **示例：**
-```js
+```ts
 import wifi from '@ohos.wifi';
 
 try {
@@ -1966,7 +1966,7 @@ deletePersistentGroup(netId: number): boolean
   | boolean | true:操作执行成功，操作执行失败。 |
 
 **示例：**
-```js
+```ts
 import wifi from '@ohos.wifi';
 
 try {
@@ -2077,7 +2077,7 @@ off(type: "wifiStateChange", callback?: Callback&lt;number&gt;): void
   | callback | Callback&lt;number&gt; | 否 | 状态改变回调函数。如果callback不填，将取消注册该事件关联的所有回调函数。 |
 
 **示例：**
-```js
+```ts
 import wifi from '@ohos.wifi';
 
 var recvPowerNotifyFunc = result => {
@@ -2135,7 +2135,7 @@ off(type: "wifiConnectionChange", callback?: Callback&lt;number&gt;): void
   | callback | Callback&lt;number&gt; | 否 | 连接状态改变回调函数。如果callback不填，将取消注册该事件关联的所有回调函数。 |
 
 **示例：**
-```js
+```ts
 import wifi from '@ohos.wifi';
 
 var recvWifiConnectionChangeFunc = result => {
@@ -2192,7 +2192,7 @@ off(type: "wifiScanStateChange", callback?: Callback&lt;number&gt;): void
 | callback | Callback&lt;number&gt; | 否 | 状态改变回调函数。如果callback不填，将取消注册该事件关联的所有回调函数。 |
 
 **示例：**
-```js
+```ts
 import wifi from '@ohos.wifi';
 
 var recvWifiScanStateChangeFunc = result => {
@@ -2242,7 +2242,7 @@ off(type: "wifiRssiChange", callback?: Callback&lt;number&gt;): void
   | callback | Callback&lt;number&gt; | 否 | 状态改变回调函数。如果callback不填，将取消注册该事件关联的所有回调函数。 |
 
 **示例：**
-```js
+```ts
 import wifi from '@ohos.wifi';
 
 var recvWifiRssiChangeFunc = result => {
@@ -2295,7 +2295,7 @@ off(type: "streamChange", callback?: Callback&lt;number&gt;): void
 | callback | Callback&lt;number&gt; | 否| 状态改变回调函数，返回0:无，1：向下，2：向上，3：双向。 |
 
 **示例：**
-```js
+```ts
 import wifi from '@ohos.wifi';
 
 var recvStreamChangeFunc = result => {
@@ -2337,7 +2337,7 @@ on(type: "hotspotStateChange", callback: Callback&lt;number&gt;): void
 | 3 | 去激活中。 |
 
 **示例：**
-```js
+```ts
 import wifi from '@ohos.wifi';
 
 var recvHotspotStateChangeFunc = result => {
@@ -2407,7 +2407,7 @@ off(type: "hotspotStaJoin", callback?: Callback&lt;StationInfo&gt;): void
   | callback | Callback&lt;StationInfo&gt; | 否 | 状态改变回调函数。 |
 
   **示例：**
-```js
+```ts
 import wifi from '@ohos.wifi';
 
 var recvHotspotStaJoinFunc = result => {
@@ -2461,7 +2461,7 @@ off(type: "hotspotStaLeave", callback?: Callback&lt;StationInfo&gt;): void
   | callback | Callback&lt;StationInf]&gt; | 否 | 状态改变回调函数。 |
 
   **示例：**
-```js
+```ts
 import wifi from '@ohos.wifi';
 
 var recvHotspotStaLeaveFunc = result => {
@@ -2521,7 +2521,7 @@ off(type: "p2pStateChange", callback?: Callback&lt;number&gt;): void
   | callback | Callback&lt;number&gt; | 否 | 状态改变回调函数。如果callback不填，将取消注册该事件关联的所有回调函数。 |
 
 **示例：**
-```js
+```ts
 import wifi from '@ohos.wifi';
 
 var recvP2pStateChangeFunc = result => {
@@ -2571,7 +2571,7 @@ off(type: "p2pConnectionChange", callback?: Callback&lt;WifiP2pLinkedInfo&gt;): 
   | callback | Callback&lt;[WifiP2pLinkedInfo](#wifip2plinkedinfo8)&gt; | 否 | 状态改变回调函数。如果callback不填，将取消注册该事件关联的所有回调函数。 |
 
 **示例：**
-```js
+```ts
 import wifi from '@ohos.wifi';
 
 var recvP2pConnectionChangeFunc = result => {
@@ -2621,7 +2621,7 @@ off(type: "p2pDeviceChange", callback?: Callback&lt;WifiP2pDevice&gt;): void
   | callback | Callback&lt;[WifiP2pDevice](#wifip2pdevice8)&gt; | 否 | 状态改变回调函数。如果callback不填，将取消注册该事件关联的所有回调函数。 |
 
 **示例：**
-```js
+```ts
 import wifi from '@ohos.wifi';
 
 var recvP2pDeviceChangeFunc = result => {
@@ -2671,7 +2671,7 @@ off(type: "p2pPeerDeviceChange", callback?: Callback&lt;WifiP2pDevice[]&gt;): vo
   | callback | Callback&lt;[WifiP2pDevice[]](#wifip2pdevice8)&gt; | 否 | 状态改变回调函数。如果callback不填，将取消注册该事件关联的所有回调函数。 |
 
 **示例：**
-```js
+```ts
 import wifi from '@ohos.wifi';
 
 var recvP2pPeerDeviceChangeFunc = result => {
@@ -2721,7 +2721,7 @@ off(type: "p2pPersistentGroupChange", callback?: Callback&lt;void&gt;): void
   | callback | Callback&lt;void&gt; | 否 | 状态改变回调函数。如果callback不填，将取消注册该事件关联的所有回调函数。 |
 
 **示例：**
-```js
+```ts
 import wifi from '@ohos.wifi';
 
 var recvP2pPersistentGroupChangeFunc = result => {
@@ -2779,7 +2779,7 @@ off(type: "p2pDiscoveryChange", callback?: Callback&lt;number&gt;): void
   | callback | Callback&lt;number&gt; | 否 | 状态改变回调函数。如果callback不填，将取消注册该事件关联的所有回调函数。 |
 
 **示例：**
-```js
+```ts
 import wifi from '@ohos.wifi';
 
 var recvP2pDiscoveryChangeFunc = result => {
