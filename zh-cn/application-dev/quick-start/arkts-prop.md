@@ -188,7 +188,7 @@ struct ParentComponent {
 ### 父组件\@State到子组件\@Prop简单数据类型同步
 
 
-以下示例是\@State到子组件\@Prop简单数据同步，父组件ParentComponent的状态变量countDownStartValue初始化子组件CountDownComponent中\@Prop装饰的count，点击“Try again”，count的修改仅保留在CountDownComponent 不会同步给父组件CountDownComponent。
+以下示例是\@State到子组件\@Prop简单数据同步，父组件ParentComponent的状态变量countDownStartValue初始化子组件CountDownComponent中\@Prop装饰的count，点击“Try again”，count的修改仅保留在CountDownComponent 不会同步给父组件ParentComponent。
 
 
 ParentComponent的状态变量countDownStartValue的变化将重置CountDownComponent的count。
