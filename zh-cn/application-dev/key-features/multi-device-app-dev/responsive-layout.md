@@ -230,9 +230,15 @@ export class BreakpointSystem {
   }
 
   public unregister() :void{
-    this.smListener.off("change", this.isBreakpointSM)
-    this.mdListener.off("change", this.isBreakpointMD)
-    this.lgListener.off("change", this.isBreakpointLG)
+    if(smListener){
+      this.smListener.off("change", this.isBreakpointSM)
+    }
+    if(mdListener){
+      this.mdListener.off("change", this.isBreakpointMD)
+    }
+    if(lgListener){
+      this.lgListener.off("change", this.isBreakpointLG)
+    }
   }
 }
 
