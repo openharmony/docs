@@ -640,7 +640,7 @@ Unsubscribes from traffic change events.
 | Name  | Type                                   | Mandatory| Description      |
 | -------- | --------------------------------------- | ---- | ---------- |
 | type   | string | Yes  | Event type. This field has a fixed value of **netStatsChange**.|
-| callback | Callback\<{ iface: string, uid?: number }\> | No  | Callback invoked when the traffic changes.<br>**iface**: NIC name.<br>uid: application UID.|
+| callback | Callback\<{ iface: string, uid?: number }\> | No  | Callback invoked when the traffic changes.<br>**iface**: NIC name.<br>**uid**: application UID.|
 
 **Error codes**
 
@@ -708,7 +708,7 @@ For details about the error codes, see [Traffic Management Error Codes](../error
     endTime: 16859485670
   }
 
-  statistics.getTrafficStatsByIface(ifaceInfo), (error, statsInfo) => {
+  statistics.getTrafficStatsByIface((ifaceInfo), (error, statsInfo) => {
     console.log(JSON.stringify(error))
     console.log("getTrafficStatsByIface bytes of received = " + JSON.stringify(statsInfo.rxBytes));
     console.log("getTrafficStatsByIface bytes of sent = " + JSON.stringify(statsInfo.txBytes));
@@ -761,7 +761,7 @@ For details about the error codes, see [Traffic Management Error Codes](../error
     endTime: 16859485670
   }
 
-  statistics.getTrafficStatsByIface().then(function (statsInfo) {
+  statistics.getTrafficStatsByIface(ifaceInfo).then(function (statsInfo) {
     console.log("getTrafficStatsByIface bytes of received = " + JSON.stringify(statsInfo.rxBytes));
     console.log("getTrafficStatsByIface bytes of sent = " + JSON.stringify(statsInfo.txBytes));
     console.log("getTrafficStatsByIface packets of received = " + JSON.stringify(statsInfo.rxPackets));
@@ -814,7 +814,7 @@ For details about the error codes, see [Traffic Management Error Codes](../error
     uid: 20010037
   }
 
-  statistics.getTrafficStatsByUid(uidInfo), (error, statsInfo) => {
+  statistics.getTrafficStatsByUid((uidInfo), (error, statsInfo) => {
     console.log(JSON.stringify(error))
     console.log("getTrafficStatsByUid bytes of received = " + JSON.stringify(statsInfo.rxBytes));
     console.log("getTrafficStatsByUid bytes of sent = " + JSON.stringify(statsInfo.txBytes));

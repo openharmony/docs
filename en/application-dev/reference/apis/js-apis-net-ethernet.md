@@ -28,7 +28,7 @@ Sets the network interface configuration. This API uses an asynchronous callback
 | Name  | Type                                             | Mandatory| Description                                      |
 | -------- | ------------------------------------------------- | ---- | ------------------------------------------ |
 | iface    | string                                            | Yes  | Interface name.                                    |
-| ic       | [InterfaceConfiguration](#interfaceconfiguration) | Yes  | Network interface configuration to set.                  |
+| ic       | [InterfaceConfiguration](#interfaceconfiguration9) | Yes  | Network interface configuration to set.                  |
 | callback | AsyncCallback\<void>                     | Yes  | Callback used to return the result. If the operation is successful, the return result is empty. If the operation fails, an error code is returned.|
 
 **Error codes**
@@ -55,12 +55,7 @@ ethernet.setIfaceConfig("eth0", {
   route: "192.168.xx.xxx",
   gateway: "192.168.xx.xxx",
   netMask: "255.255.255.0",
-  dnsServers: "1.1.1.1",
-  httpProxy: {
-    host: "180.89.xx.xx",
-    port: 8080,
-    exclusionList: {"example.com","192.168.0.1"}
-  }
+  dnsServers: "1.1.1.1"
 }, (error) => {
   if (error) {
     console.log("setIfaceConfig callback error = " + JSON.stringify(error));
@@ -87,7 +82,7 @@ Sets the network interface configuration. This API uses a promise to return the 
 | Name| Type                                             | Mandatory| Description                    |
 | ------ | ------------------------------------------------- | ---- | ------------------------ |
 | iface  | string                                            | Yes  | Interface name.                  |
-| ic     | [InterfaceConfiguration](#interfaceconfiguration) | Yes  | Network interface configuration to set.|
+| ic     | [InterfaceConfiguration](#interfaceconfiguration9) | Yes  | Network interface configuration to set.|
 
 **Return value**
 
@@ -119,12 +114,7 @@ ethernet.setIfaceConfig("eth0", {
   route: "192.168.xx.xxx",
   gateway: "192.168.xx.xxx",
   netMask: "255.255.255.0",
-  dnsServers: "1.1.1.1",
-  httpProxy: {
-    host: "180.89.xx.xx",
-    port: 8080,
-    exclusionList: {"example.com","192.168.0.1"}
-  }
+  dnsServers: "1.1.1.1"
 }).then(() => {
   console.log("setIfaceConfig promise ok ");
 }).catch(error => {
