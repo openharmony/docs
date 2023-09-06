@@ -118,7 +118,7 @@
             .fontWeight(FontWeight.Bold)
             .onClick(() => {
                 const color : ArrayBuffer = new ArrayBuffer(96);
-                let opts : image.InitializationOptions = { alphaType: 0, editable: true, pixelFormat: 4, scaleMode: 1, size: { height: 4, width: 6 } }
+                let opts: image.InitializationOptions = { alphaType: 0, editable: true, pixelFormat: 4, scaleMode: 1, size: { height: 4, width: 6 } }
                 image.createPixelMap(color, opts)
                 .then( (pixelmap : image.PixelMap) => {
                     this._PixelMap = pixelmap;
