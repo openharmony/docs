@@ -8,8 +8,9 @@
 
 ## 导入模块
 
-```js
+```ts
 import pluginComponentManager from '@ohos.pluginComponent'
+import Want from '@ohos.app.ability.Want';
 ```
 
 ## PluginComponentTemplate
@@ -153,8 +154,10 @@ OnPushEventCallback = (source: Want, template: PluginComponentTemplate, data: KV
 
 **示例：**
 
-```js
-function onPushListener(source, template, data, extraData) {
+```ts
+import pluginComponentManager from '@ohos.pluginComponent'
+import Want from '@ohos.app.ability.Want';
+function onPushListener(source: Want, template: PluginComponentTemplate, data: pluginComponentManager.KVObject, extraData: pluginComponentManager.KVObject) {
   console.log("onPushListener template.source=" + template.source)
   console.log("onPushListener source=" + JSON.stringify(source))
   console.log("onPushListener template=" + JSON.stringify(template))
@@ -180,14 +183,16 @@ OnRequestEventCallback = (source: Want, name: string, data: KVObject) => Request
 
 **示例：**
 
-```js
-function onRequestListener(source, name, data) {
+```ts
+import pluginComponentManager from '@ohos.pluginComponent'
+import Want from '@ohos.app.ability.Want';
+function onRequestListener(source:Want, name:string, data:pluginComponentManager.KVObject) {
   console.error("onRequestListener");
   console.log("onRequestListener source=" + JSON.stringify(source));
   console.log("onRequestListener name=" + name);
   console.log("onRequestListener data=" + JSON.stringify(data));
-
-  return { template: "ets/pages/plugin.js", data: data };
+  let RtnData:Record<string,string|pluginComponentManager.KVObject> = { 'template': "ets/pages/plugin.js", 'data': data }
+  return RtnData;
 }
 ```
 
@@ -207,7 +212,8 @@ push(param: PushParameters , callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
-```js
+```ts
+import pluginComponentManager from '@ohos.pluginComponent'
 pluginComponentManager.push(
   {
     want: {
@@ -248,7 +254,8 @@ push(param: PushParameterForStage, callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
-```js
+```ts
+import pluginComponentManager from '@ohos.pluginComponent'
 pluginComponentManager.push(
   {
     owner: {
@@ -296,7 +303,8 @@ request(param: RequestParameters, callback: AsyncCallback&lt;RequestCallbackPara
 
 **示例：**
 
-```js
+```ts
+import pluginComponentManager from '@ohos.pluginComponent'
 pluginComponentManager.request(
   {
     want: {
@@ -339,7 +347,8 @@ request(param: RequestParameterForStage, callback: AsyncCallback&lt;RequestCallb
 
 **示例：**
 
-```js
+```ts
+import pluginComponentManager from '@ohos.pluginComponent'
 pluginComponentManager.request(
   {
     owner: {
@@ -378,21 +387,23 @@ on(eventType: string, callback: OnPushEventCallback | OnRequestEventCallback ): 
 
 **示例：**
 
-```js
-function onPushListener(source, template, data, extraData) {
+```ts
+import pluginComponentManager from '@ohos.pluginComponent'
+import Want from '@ohos.app.ability.Want';
+function onPushListener(source:Want, template:PluginComponentTemplate, data:pluginComponentManager.KVObject, extraData:pluginComponentManager.KVObject) {
   console.log("onPushListener template.source=" + template.source)
   console.log("onPushListener source=" + JSON.stringify(source))
   console.log("onPushListener template=" + JSON.stringify(template))
   console.log("onPushListener data=" + JSON.stringify(data))
   console.log("onPushListener extraData=" + JSON.stringify(extraData))
 }
-function onRequestListener(source, name, data) {
+function onRequestListener(source:Want, name:string, data:pluginComponentManager.KVObject) {
   console.error("onRequestListener");
   console.log("onRequestListener source=" + JSON.stringify(source));
   console.log("onRequestListener name=" + name);
   console.log("onRequestListener data=" + JSON.stringify(data));
-
-  return { template: "ets/pages/plugin.js", data: data };
+  let RtnData:Record<string,string|pluginComponentManager.KVObject> = { 'template': "ets/pages/plugin.js", 'data': data }
+  return RtnData;
 }
 pluginComponentManager.on("push", onPushListener)
 pluginComponentManager.on("request", onRequestListener)
