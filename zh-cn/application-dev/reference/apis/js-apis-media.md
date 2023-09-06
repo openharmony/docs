@@ -1673,7 +1673,7 @@ avPlayer.off('audioInterrupt')
 
 ```ts
 import media from '@ohos.multimedia.media'
-printfItemDescription(obj: media.MediaDescription, key: string) {
+function printfItemDescription(obj: media.MediaDescription, key: string) {
   let property: Object = obj[key];
   console.info('audio key is ' + key); // 通过key值获取对应的value。key值具体可见[MediaDescriptionKey]
   console.info('audio value is ' + property); //对应key值得value。其类型可为任意类型，具体key对应value的类型可参考[MediaDescriptionKey]
@@ -1682,7 +1682,7 @@ printfItemDescription(obj: media.MediaDescription, key: string) {
 avPlayer.getTrackDescription((error: BusinessError, arrList: Array<media.MediaDescription>) => {
   if (arrList != null) {
     for (let i = 0; i < arrList.length; i++) {
-      this.printfItemDescription(arrList[i], media.MediaDescriptionKey.MD_KEY_TRACK_TYPE);  //打印出每条轨道MD_KEY_TRACK_TYPE的值
+      printfItemDescription(arrList[i], media.MediaDescriptionKey.MD_KEY_TRACK_TYPE);  //打印出每条轨道MD_KEY_TRACK_TYPE的值
     }
   } else {
     console.log(`audio getTrackDescription fail, error:${error}`);
@@ -3480,7 +3480,7 @@ createAudioRecorder(): AudioRecorder
 **示例：**
 
 ```ts
-let audioRecorder = media.createAudioRecorder();
+let audioRecorder: media.AudioRecorder = media.createAudioRecorder();
 ```
 
 ## MediaErrorCode<sup>(deprecated)</sup><a name=mediaerrorcode></a>
@@ -3920,7 +3920,7 @@ setDisplaySurface(surfaceId: string, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-let surfaceId: string = null;
+let surfaceId: string = '';
 videoPlayer.setDisplaySurface(surfaceId, (err: BusinessError) => {
   if (err == null) {
     console.info('setDisplaySurface success!');
@@ -3955,7 +3955,7 @@ setDisplaySurface(surfaceId: string): Promise\<void>
 **示例：**
 
 ```ts
-let surfaceId = null;
+let surfaceId: string = '';
 videoPlayer.setDisplaySurface(surfaceId).then(() => {
   console.info('setDisplaySurface success');
 }).catch((error: BusinessError) => {
@@ -4299,7 +4299,7 @@ import media from '@ohos.multimedia.media'
 let seekTime: number = 5000;
 videoPlayer.seek(seekTime).then((seekDoneTime: number) => { // seekDoneTime表示seek完成后的时间点
   console.info('seek success');
-}).catch((error) => {
+}).catch((error: BusinessError) => {
   console.error(`video catchCallback, error:${error}`);
 });
 
