@@ -68,7 +68,7 @@ import { WlanSettingItem } from '../wlan/WlanSettingItem'
         
 class  ItemObj {
   title?: Resource
-  tag?: string
+  tag?: Resource
   icon?:Resource
 }
 let bluetoothTab:ItemObj={
