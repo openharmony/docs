@@ -3,9 +3,9 @@
 为方便UX设计师以及开发者参考使用，本文特提供：
 
 
-- 分层参数的场景、id、参数详细对照表，[OpenHarmony系统资源分层设计表V1.0.xlsm](figures/OpenHarmony_系统资源分层设计表_V1.0.xlsm)
+- [分层参数](visual-basis.md)的场景、id、参数详细对照表，[OpenHarmony系统资源分层设计表V1.0.xlsm](figures/OpenHarmony_系统资源分层设计表_V1.0.xlsm)
 
-- 符合规范的设计交付件样例，[OpenHarmony天气应用UX设计交付件V1.0.zip](figures/OpenHarmony_天气应用UX设计交付件_V1.0.zip)
+- 符合规范的[设计交付件](design-deliverable-overview.md)样例，[OpenHarmony天气应用UX设计交付件V1.0.zip](figures/OpenHarmony_天气应用UX设计交付件_V1.0.zip)
 
 - OpenHarmony[图标](visual-icons.md)资源，[OpenHarmony_Icons.zip](figures/OpenHarmony_Icons.zip)
 
