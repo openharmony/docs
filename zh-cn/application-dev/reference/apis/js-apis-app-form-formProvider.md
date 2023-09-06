@@ -56,7 +56,7 @@ try {
     console.log(`formProvider setFormNextRefreshTime success`);
   });
 } catch (error) {
-  console.error(`catch error, code: ${error.code}, message: ${error.message})`);
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message})`);
 }
 ```
 
@@ -107,7 +107,7 @@ try {
     console.error(`promise error, code: ${error.code}, message: ${error.message})`);
   });
 } catch (error) {
-  console.error(`catch error, code: ${error.code}, message: ${error.message})`);
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message})`);
 }
 ```
 
@@ -148,15 +148,10 @@ import formBindingData from '@ohos.app.form.formBindingData';
 
 let formId: string = '12400633174999288';
 try {
-  class createFormBindingDataParamType {
-    temperature: string
-    time: string
-  }
-  let createFormBindingDataParam: createFormBindingDataParamType = {
-    temperature:'22c',
-    time:'22:00'
-  };
-  let obj = formBindingData.createFormBindingData(createFormBindingDataParam);
+  let obj: formBindingData.FormBindingData = formBindingData.createFormBindingData({
+    temperature: '22c',
+    time: '22:00'
+  });
   formProvider.updateForm(formId, obj, (error: Base.BusinessError) => {
     if (error) {
       console.error(`callback error, code: ${error.code}, message: ${error.message})`);
@@ -165,7 +160,7 @@ try {
     console.log(`formProvider updateForm success`);
   });
 } catch (error) {
-  console.error(`catch error, code: ${error.code}, message: ${error.message})`);
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message})`);
 }
 ```
 
@@ -210,23 +205,18 @@ updateForm(formId: string, formBindingData: formBindingData.FormBindingData): Pr
 import formBindingData from '@ohos.app.form.formBindingData';
 
 let formId: string = '12400633174999288';
-class createFormBindingDataParamType {
-    temperature: string
-    time: string
-  }
-  let createFormBindingDataParam: createFormBindingDataParamType = {
-    temperature:'22c',
-    time:'22:00'
-  };
-let obj = formBindingData.createFormBindingData(createFormBindingDataParam);
+let obj: formBindingData.FormBindingData = formBindingData.createFormBindingData({
+  temperature: '22c',
+  time: '22:00'
+});
 try {
   formProvider.updateForm(formId, obj).then(() => {
     console.log(`formProvider updateForm success`);
   }).catch((error: Base.BusinessError) => {
-    console.error(`promise error, code: ${error.code}, message: ${error.message})`);
+    console.error(`promise error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message})`);
   });
 } catch (error) {
-  console.error(`catch error, code: ${error.code}, message: ${error.message})`);
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message})`);
 }
 ```
 
@@ -267,7 +257,7 @@ try {
     console.log(`formProvider getFormsInfo, data: ${JSON.stringify(data)}`);
   });
 } catch (error) {
-  console.error(`catch error, code: ${error.code}, message: ${error.message})`);
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message})`);
 }
 ```
 ## getFormsInfo
@@ -314,7 +304,7 @@ try {
     console.log(`formProvider getFormsInfo, data: ${JSON.stringify(data)}`);
   });
 } catch (error) {
-  console.error(`catch error, code: ${error.code}, message: ${error.message})`);
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message})`);
 }
 ```
 
@@ -365,7 +355,7 @@ try {
     console.error(`promise error, code: ${error.code}, message: ${error.message})`);
   });
 } catch (error) {
-  console.error(`catch error, code: ${error.code}, message: ${error.message})`);
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message})`);
 }
 ```
 
@@ -414,24 +404,19 @@ let want: Want = {
   }
 };
 try {
-  class createFormBindingDataParamType {
-    temperature: string
-    time: string
-  }
-  let createFormBindingDataParam: createFormBindingDataParamType = {
-    temperature:'22c',
-    time:'22:00'
-  };
-  let obj = formBindingData.createFormBindingData(createFormBindingDataParam);
+  let obj: formBindingData.FormBindingData = formBindingData.createFormBindingData({
+    temperature: '22c',
+    time: '22:00'
+  });
   formProvider.requestPublishForm(want, obj, (error: Base.BusinessError, data: string) => {
     if (error) {
-      console.error(`callback error, code: ${error.code}, message: ${error.message})`);
+      console.error(`callback error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message})`);
       return;
     }
     console.log('formProvider requestPublishForm, form ID is: ${JSON.stringify(data)}');
   });
 } catch (error) {
-  console.error(`catch error, code: ${error.code}, message: ${error.message})`);
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message})`);
 }
 ```
 
@@ -486,7 +471,7 @@ try {
     console.log(`formProvider requestPublishForm, form ID is: ${JSON.stringify(data)}`);
   });
 } catch (error) {
-  console.error(`catch error, code: ${error.code}, message: ${error.message})`);
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message})`);
 }
 ```
 
@@ -545,7 +530,7 @@ try {
     console.error(`promise error, code: ${error.code}, message: ${error.message})`);
   });
 } catch (error) {
-  console.error(`catch error, code: ${error.code}, message: ${error.message})`);
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message})`);
 }
 ```
 
@@ -604,13 +589,13 @@ try {
             console.log(`formProvider requestPublishForm, form ID is: ${JSON.stringify(data)}`);
           });
         } catch (error) {
-          console.error(`catch error, code: ${error.code}, message: ${error.message})`);
+          console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message})`);
         }
       }
     }
   });
 } catch (error) {
-  console.error(`catch error, code: ${error.code}, message: ${error.message})`);
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message})`);
 }
 ```
 
@@ -663,13 +648,13 @@ try {
           console.error(`promise error, code: ${error.code}, message: ${error.message})`);
         });
       } catch (error) {
-        console.error(`catch error, code: ${error.code}, message: ${error.message})`);
+        console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message})`);
       }
     }
   }).catch((error: Base.BusinessError) => {
     console.error(`promise error, code: ${error.code}, message: ${error.message})`);
   });
 } catch (error) {
-  console.error(`catch error, code: ${error.code}, message: ${error.message})`);
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message})`);
 }
 ```
