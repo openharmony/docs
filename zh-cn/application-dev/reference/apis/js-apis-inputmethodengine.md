@@ -512,7 +512,7 @@ let panelInfo: inputMethodEngine.PanelInfo = {
 }
 try {
   inputMethodEngine.getInputMethodAbility()
-    .createPanel(this.context, panelInfo, (err: Error, panel: inputMethodEngine.Panel) => {
+    .createPanel(this.context, panelInfo, (err: BusinessError, panel: inputMethodEngine.Panel) => {
       if (err) {
         console.error(`Failed to createPanel: ${JSON.stringify(err)}`);
         return;
@@ -560,7 +560,7 @@ let panelInfo: inputMethodEngine.PanelInfo = {
 inputMethodEngine.getInputMethodAbility().createPanel(this.context, panelInfo)
   .then((panel: inputMethodEngine.Panel) => {
     console.log('Succeed in creating panel.');
-  }).catch((err: Error) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to create panel: ${JSON.stringify(err)}`);
   })
 ```
@@ -590,7 +590,7 @@ let panelInfo: inputMethodEngine.PanelInfo = {
 let inputPanel: inputMethodEngine.Panel | undefined = undefined;
 try {
   inputMethodEngine.getInputMethodAbility()
-    .createPanel(this.context, panelInfo, (err: Error, panel: inputMethodEngine.Panel) => {
+    .createPanel(this.context, panelInfo, (err: BusinessError, panel: inputMethodEngine.Panel) => {
       if (err) {
         console.error(`Failed to create panel: ${JSON.stringify(err)}`);
         return;
@@ -603,7 +603,7 @@ try {
 }
 try {
   if (inputPanel) {
-    inputMethodEngine.getInputMethodAbility().destroyPanel(inputPanel, (err: Error) => {
+    inputMethodEngine.getInputMethodAbility().destroyPanel(inputPanel, (err: BusinessError) => {
       if (err !== undefined) {
         console.error(`Failed to destroy panel: ${JSON.stringify(err)}`);
         return;
@@ -645,7 +645,7 @@ let panelInfo: inputMethodEngine.PanelInfo = {
 let inputPanel: inputMethodEngine.Panel | undefined = undefined;
 try {
   inputMethodEngine.getInputMethodAbility()
-    .createPanel(this.context, panelInfo, (err: Error, panel: inputMethodEngine.Panel) => {
+    .createPanel(this.context, panelInfo, (err: BusinessError, panel: inputMethodEngine.Panel) => {
       if (err) {
         console.error(`Failed to create panel: ${JSON.stringify(err)}`);
         return;
@@ -661,7 +661,7 @@ try {
   if (inputPanel) {
     inputMethodEngine.getInputMethodAbility().destroyPanel(inputPanel).then(() => {
       console.log('Succeed in destroying panel.');
-    }).catch((err: Error) => {
+    }).catch((err: BusinessError) => {
       console.error(`Failed to destroy panel: ${JSON.stringify(err)}`);
     });
   }
@@ -996,7 +996,7 @@ setUiContent(path: string, callback: AsyncCallback\<void>): void
 
 ```ts
 try {
-  panel.setUiContent('pages/page2/page2', (err: Error) => {
+  panel.setUiContent('pages/page2/page2', (err: BusinessError) => {
     if (err) {
       console.error(`Failed to setUiContent: ${JSON.stringify(err)}`);
       return;
@@ -1034,7 +1034,7 @@ setUiContent(path: string): Promise\<void>
 try {
   panel.setUiContent('pages/page2/page2').then(() => {
     console.log('Succeeded in setting the content.');
-  }).catch((err: Error) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to setUiContent: ${JSON.stringify(err)}`);
   });
 } catch (err) {
@@ -1064,7 +1064,7 @@ setUiContent(path: string, storage: LocalStorage, callback: AsyncCallback\<void>
 let storage = new LocalStorage();
 storage.setOrCreate('storageSimpleProp',121);
 try {
-  panel.setUiContent('pages/page2/page2', storage, (err: Error) => {
+  panel.setUiContent('pages/page2/page2', storage, (err: BusinessError) => {
     if (err) {
       console.error(`Failed to setUiContent: ${JSON.stringify(err)}`);
       return;
@@ -1105,7 +1105,7 @@ storage.setOrCreate('storageSimpleProp',121);
 try {
   panel.setUiContent('pages/page2/page2')then(() => {
     console.log('Succeeded in setting the content.');
-  }).catch((err: Error) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to setUiContent: ${JSON.stringify(err)}`);
   });
 } catch (err) {
@@ -1137,7 +1137,7 @@ resize(width: number, height: number, callback: AsyncCallback\<void>): void
 
 ```ts
 try {
-  panel.resize(500, 1000, (err: Error) => {
+  panel.resize(500, 1000, (err: BusinessError) => {
     if (err) {
       console.error(`Failed to resize panel: ${JSON.stringify(err)}`);
       return;
@@ -1180,7 +1180,7 @@ resize(width: number, height: number): Promise\<void>;
 try {
   panel.resize(500, 1000).then(() => {
     console.log('Succeeded in changing the panel size.');
-  }).catch((err: Error) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to resize panel: ${JSON.stringify(err)}`);
   });
 } catch (err) {
@@ -1208,7 +1208,7 @@ moveTo(x: number, y: number, callback: AsyncCallback\<void>): void
 
 ```ts
 try {
-  panel.moveTo(300, 300, (err: Error) =>{
+  panel.moveTo(300, 300, (err: BusinessError) =>{
     if (err) {
       console.error(`Failed to move panel: ${JSON.stringify(err)}`);
       return;
@@ -1247,7 +1247,7 @@ moveTo(x: number, y: number): Promise\<void>
 try {
   panel.moveTo(300, 300).then(() => {
     console.log('Succeeded in moving the panel.');
-  }).catch((err: Error) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to move panel: ${JSON.stringify(err)}`);
   });
 } catch (err) {
@@ -1272,7 +1272,7 @@ show(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-panel.show((err: Error) => {
+panel.show((err: BusinessError) => {
   if (err) {
     console.error(`Failed to show panel: ${JSON.stringify(err)}`);
     return;
@@ -1300,7 +1300,7 @@ show(): Promise\<void>
 ```ts
 panel.show().then(() => {
   console.log('Succeeded in showing the panel.');
-}).catch((err: Error) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to show panel: ${JSON.stringify(err)}`);
 });
 ```
@@ -1322,7 +1322,7 @@ hide(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-panel.hide((err: Error) => {
+panel.hide((err: BusinessError) => {
   if (err) {
     console.error(`Failed to hide panel: ${JSON.stringify(err)}`);
     return;
@@ -1350,7 +1350,7 @@ hide(): Promise\<void>
 ```ts
 panel.hide().then(() => {
   console.log('Succeeded in hiding the panel.');
-}).catch((err: Error) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to hide panel: ${JSON.stringify(err)}`);
 });
 ```
@@ -1493,7 +1493,7 @@ hide(callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-keyboardController.hide((err: Error) => {
+keyboardController.hide((err: BusinessError) => {
   if (err) {
     console.error(`Failed to hide: ${JSON.stringify(err)}`);
     return;
@@ -1529,7 +1529,7 @@ hide(): Promise&lt;void&gt;
 ```ts
 keyboardController.hide().then(() => {
   console.log('Succeeded in hiding keyboard.');
-}).catch((err: Error) => {
+}).catch((err: BusinessError) => {
   console.log(`Failed to hide: ${JSON.stringify(err)}`);
 });
 ```
@@ -1555,7 +1555,7 @@ hideKeyboard(callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-keyboardController.hideKeyboard((err: Error) => {
+keyboardController.hideKeyboard((err: BusinessError) => {
   if (err) {
     console.error(`Failed to hideKeyboard: ${JSON.stringify(err)}`);
     return;
@@ -1587,7 +1587,7 @@ hideKeyboard(): Promise&lt;void&gt;
 ```ts
 keyboardController.hideKeyboard().then(() => {
   console.log('Succeeded in hiding keyboard.');
-}).catch((err: Error) => {
+}).catch((err: BusinessError) => {
   console.log(`Failed to hideKeyboard: ${JSON.stringify(err)}`);
 });
 ```
@@ -1671,7 +1671,7 @@ sendKeyFunction(action:number, callback: AsyncCallback&lt;boolean&gt;): void
 ```ts
 let action = 1;
 try {
-  inputClient.sendKeyFunction(action, (err: Error, result: boolean) => {
+  inputClient.sendKeyFunction(action, (err: BusinessError, result: boolean) => {
     if (err) {
       console.error(`Failed to sendKeyFunction: ${JSON.stringify(err)}`);
       return;
@@ -1726,7 +1726,7 @@ try {
     } else {
       console.error('Failed to sendKeyFunction.');
     }
-  }).catch((err: Error) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to sendKeyFunction: ${JSON.stringify(err)}`);
   });
 } catch (err) {
@@ -1763,7 +1763,7 @@ getForward(length:number, callback: AsyncCallback&lt;string&gt;): void
 ```ts
 let length = 1;
 try {
-  inputClient.getForward(length, (err: Error, text: string) => {
+  inputClient.getForward(length, (err: BusinessError, text: string) => {
     if (err) {
       console.error(`Failed to getForward: ${JSON.stringify(err)}`);
       return;
@@ -1811,7 +1811,7 @@ let length = 1;
 try {
   inputClient.getForward(length).then((text: string) => {
     console.log('Succeeded in getting forward, text: ' + text);
-  }).catch((err: Error) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to getForward: ${JSON.stringify(err)}`);
   });
 } catch (err) {
@@ -1889,7 +1889,7 @@ getBackward(length:number, callback: AsyncCallback&lt;string&gt;): void
 ```ts
 let length = 1;
 try {
-  inputClient.getBackward(length, (err: Error, text: string) => {
+  inputClient.getBackward(length, (err: BusinessError, text: string) => {
     if (err) {
       console.error(`Failed to getBackward: ${JSON.stringify(err)}`);
       return;
@@ -1937,7 +1937,7 @@ let length = 1;
 try {
   inputClient.getBackward(length).then((text: string) => {
     console.log('Succeeded in getting backward, text: ' + text);
-  }).catch((err: Error) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to getBackward: ${JSON.stringify(err)}`);
   });
 } catch (err) {
@@ -2015,7 +2015,7 @@ deleteForward(length:number, callback: AsyncCallback&lt;boolean&gt;): void
 ```ts
 let length = 1;
 try {
-  inputClient.deleteForward(length, (err: Error, result: boolean) => {
+  inputClient.deleteForward(length, (err: BusinessError, result: boolean) => {
     if (err) {
       console.error(`Failed to deleteForward: ${JSON.stringify(err)}`);
       return;
@@ -2071,7 +2071,7 @@ try {
     } else {
       console.error('Failed to delete Forward.');
     }
-  }).catch((err: Error) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to deleteForward: ${JSON.stringify(err)}`);
   });
 } catch (err) {
@@ -2143,7 +2143,7 @@ deleteBackward(length:number, callback: AsyncCallback&lt;boolean&gt;): void
 ```ts
 let length = 1;
 try {
-  inputClient.deleteBackward(length, (err: Error, result: boolean) => {
+  inputClient.deleteBackward(length, (err: BusinessError, result: boolean) => {
     if (err) {
       console.error(`Failed to deleteBackward: ${JSON.stringify(err)}`);
       return;
@@ -2198,7 +2198,7 @@ inputClient.deleteBackward(length).then((result: boolean) => {
   } else {
     console.error('Failed to deleteBackward.');
   }
-}).catch((err: Error) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to deleteBackward: ${JSON.stringify(err)}`);
 });
 ```
@@ -2265,7 +2265,7 @@ insertText(text:string, callback: AsyncCallback&lt;boolean&gt;): void
 **示例：**
 
 ```ts
-inputClient.insertText('test', (err: Error, result: boolean) => {
+inputClient.insertText('test', (err: BusinessError, result: boolean) => {
   if (err) {
     console.error(`Failed to insertText: ${JSON.stringify(err)}`);
     return;
@@ -2317,7 +2317,7 @@ try {
     } else {
       console.error('Failed to insertText.');
     }
-  }).catch((err: Error) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to insertText: ${JSON.stringify(err)}`);
   });
 } catch (err) {
@@ -2384,7 +2384,7 @@ getEditorAttribute(callback: AsyncCallback&lt;EditorAttribute&gt;): void
 **示例：**
 
 ```ts
-inputClient.getEditorAttribute((err: Error, editorAttribute: inputMethodEngine.EditorAttribute) => {
+inputClient.getEditorAttribute((err: BusinessError, editorAttribute: inputMethodEngine.EditorAttribute) => {
   if (err) {
     console.error(`Failed to getEditorAttribute: ${JSON.stringify(err)}`);
     return;
@@ -2422,7 +2422,7 @@ getEditorAttribute(): Promise&lt;EditorAttribute&gt;
 inputClient.getEditorAttribute().then((editorAttribute: inputMethodEngine.EditorAttribute) => {
   console.log('editorAttribute.inputPattern: ' + JSON.stringify(editorAttribute.inputPattern));
   console.log('editorAttribute.enterKeyType: ' + JSON.stringify(editorAttribute.enterKeyType));
-}).catch((err: Error) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to getEditorAttribute: ${JSON.stringify(err)}`);
 });
 ```
@@ -2487,7 +2487,7 @@ moveCursor(direction: number, callback: AsyncCallback&lt;void&gt;): void
 
 ```ts
 try {
-  inputClient.moveCursor(inputMethodEngine.Direction.CURSOR_UP, (err: Error) => {
+  inputClient.moveCursor(inputMethodEngine.Direction.CURSOR_UP, (err: BusinessError) => {
     if (err) {
       console.error(`Failed to moveCursor: ${JSON.stringify(err)}`);
       return;
@@ -2533,7 +2533,7 @@ moveCursor(direction: number): Promise&lt;void&gt;
 try {
   inputClient.moveCursor(inputMethodEngine.Direction.CURSOR_UP).then(() => {
     console.log('Succeeded in moving cursor.');
-  }).catch((err: Error) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to moveCursor: ${JSON.stringify(err)}`);
   });
 } catch (err) {
@@ -2603,7 +2603,7 @@ selectByRange(range: Range, callback: AsyncCallback&lt;void&gt;): void
 ```ts
 try {
   let range: inputMethodEngine.Range = { start: 0, end: 1 };
-  inputClient.selectByRange(range, (err: Error) => {
+  inputClient.selectByRange(range, (err: BusinessError) => {
     if (err) {
       console.error(`Failed to selectByRange: ${JSON.stringify(err)}`);
       return;
@@ -2651,7 +2651,7 @@ try {
   let range: inputMethodEngine.Range = { start: 0, end: 1 };
   inputClient.selectByRange(range).then(() => {
     console.log('Succeeded in selecting by range.');
-  }).catch((err: Error) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to selectByRange: ${JSON.stringify(err)}`);
   });
 } catch (err) {
@@ -2723,7 +2723,7 @@ selectByMovement(movement: Movement, callback: AsyncCallback&lt;void&gt;): void
 ```ts
 try {
   let movement: inputMethodEngine.Movement = { direction: 1 };
-  inputClient.selectByMovement(movement, (err: Error) => {
+  inputClient.selectByMovement(movement, (err: BusinessError) => {
     if (err) {
       console.error(`Failed to selectByMovement: ${JSON.stringify(err)}`);
       return;
@@ -2771,7 +2771,7 @@ try {
   let movement: inputMethodEngine.Movement = { direction: 1 };
   inputClient.selectByMovement(movement).then(() => {
     console.log('Succeeded in selecting by movement.');
-  }).catch((err: Error) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to selectByMovement: ${JSON.stringify(err)}`);
   });
 } catch (err) {
@@ -2840,7 +2840,7 @@ getTextIndexAtCursor(callback: AsyncCallback&lt;number&gt;): void
 **示例：**
 
 ```ts
-inputClient.getTextIndexAtCursor((err: Error, index: number) => {
+inputClient.getTextIndexAtCursor((err: BusinessError, index: number) => {
   if (err) {
     console.error(`Failed to getTextIndexAtCursor: ${JSON.stringify(err)}`);
     return;
@@ -2877,7 +2877,7 @@ getTextIndexAtCursor(): Promise&lt;number&gt;
 ```ts
 inputClient.getTextIndexAtCursor().then((index: number) => {
   console.log('Succeeded in getTextIndexAtCursor: ' + index);
-}).catch((err: Error) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to getTextIndexAtCursor: ${JSON.stringify(err)}`);
 });
 ```
@@ -2948,7 +2948,7 @@ sendExtendAction(action: ExtendAction, callback: AsyncCallback&lt;void&gt;): voi
 
 ```ts
 try {
-  inputClient.sendExtendAction(inputMethodEngine.ExtendAction.COPY, (err: Error) => {
+  inputClient.sendExtendAction(inputMethodEngine.ExtendAction.COPY, (err: BusinessError) => {
     if (err) {
       console.error(`Failed to sendExtendAction: ${JSON.stringify(err)}`);
       return;
@@ -2999,7 +2999,7 @@ sendExtendAction(action: ExtendAction): Promise&lt;void&gt;
 try {
   inputClient.sendExtendAction(inputMethodEngine.ExtendAction.COPY).then(() => {
     console.log('Succeeded in sending extend action.');
-  }).catch((err: Error) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to sendExtendAction: ${JSON.stringify(err)}`);
   });
 } catch(err) {
@@ -3093,7 +3093,7 @@ getForward(length:number, callback: AsyncCallback&lt;string&gt;): void
 
 ```ts
 let length = 1;
-textInputClient.getForward(length, (err: Error, text: string) => {
+textInputClient.getForward(length, (err: BusinessError, text: string) => {
   if (err) {
     console.error(`Failed to getForward: ${JSON.stringify(err)}`);
     return;
@@ -3132,7 +3132,7 @@ getForward(length:number): Promise&lt;string&gt;
 let length = 1;
 textInputClient.getForward(length).then((text: string) => {
   console.log('Succeeded in getting forward, text: ' + text);
-}).catch((err: Error) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to getForward: ${JSON.stringify(err)}`);
 });
 ```
@@ -3160,7 +3160,7 @@ getBackward(length:number, callback: AsyncCallback&lt;string&gt;): void
 
 ```ts
 let length = 1;
-textInputClient.getBackward(length, (err: Error, text: string) => {
+textInputClient.getBackward(length, (err: BusinessError, text: string) => {
   if (err) {
     console.error(`Failed to getBackward: ${JSON.stringify(err)}`);
     return;
@@ -3199,7 +3199,7 @@ getBackward(length:number): Promise&lt;string&gt;
 let length = 1;
 textInputClient.getBackward(length).then((text: string) => {
   console.log('Succeeded in getting backward: ' + JSON.stringify(text));
-}).catch((err: Error) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to getBackward: ${JSON.stringify(err)}`);
 });
 ```
@@ -3227,7 +3227,7 @@ deleteForward(length:number, callback: AsyncCallback&lt;boolean&gt;): void
 
 ```ts
 let length = 1;
-textInputClient.deleteForward(length, (err: Error, result: boolean) => {
+textInputClient.deleteForward(length, (err: BusinessError, result: boolean) => {
   if (err) {
     console.error(`Failed to deleteForward: ${JSON.stringify(err)}`);
     return;
@@ -3274,7 +3274,7 @@ textInputClient.deleteForward(length).then((result: boolean) => {
   } else {
     console.error('Failed to delete forward.');
   }
-}).catch((err: Error) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to deleteForward: ${JSON.stringify(err)}`);
 });
 ```
@@ -3302,7 +3302,7 @@ deleteBackward(length:number, callback: AsyncCallback&lt;boolean&gt;): void
 
 ```ts
 let length = 1;
-textInputClient.deleteBackward(length, (err: Error, result: boolean) => {
+textInputClient.deleteBackward(length, (err: BusinessError, result: boolean) => {
   if (err) {
     console.error(`Failed to deleteBackward: ${JSON.stringify(err)}`);
     return;
@@ -3349,7 +3349,7 @@ textInputClient.deleteBackward(length).then((result: boolean) => {
   } else {
     console.error('Failed to deleteBackward.');
   }
-}).catch((err: Error) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to deleteBackward: ${JSON.stringify(err)}`);
 });
 ```
@@ -3376,7 +3376,7 @@ sendKeyFunction(action: number, callback: AsyncCallback&lt;boolean&gt;): void
 
 ```ts
 let action = 1;
-textInputClient.sendKeyFunction(action, (err: Error, result: boolean) => {
+textInputClient.sendKeyFunction(action, (err: BusinessError, result: boolean) => {
   if (err) {
     console.error(`Failed to sendKeyFunction: ${JSON.stringify(err)}`);
     return;
@@ -3423,7 +3423,7 @@ textInputClient.sendKeyFunction(action).then((result: boolean) => {
   } else {
     console.error('Failed to sendKeyFunction.');
   }
-}).catch((err: Error) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to sendKeyFunction: ${JSON.stringify(err)}`);
 });
 ```
@@ -3450,7 +3450,7 @@ insertText(text:string, callback: AsyncCallback&lt;boolean&gt;): void
 **示例：**
 
 ```ts
-textInputClient.insertText('test', (err: Error, result: boolean) => {
+textInputClient.insertText('test', (err: BusinessError, result: boolean) => {
   if (err) {
     console.error(`Failed to insertText: ${JSON.stringify(err)}`);
     return;
@@ -3496,7 +3496,7 @@ textInputClient.insertText('test').then((result: boolean) => {
   } else {
     console.error('Failed to insertText.');
   }
-}).catch((err: Error) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to insertText: ${JSON.stringify(err)}`);
 });
 ```
@@ -3522,7 +3522,7 @@ getEditorAttribute(callback: AsyncCallback&lt;EditorAttribute&gt;): void
 **示例：**
 
 ```ts
-textInputClient.getEditorAttribute((err: Error, editorAttribute: inputMethodEngine.EditorAttribute) => {
+textInputClient.getEditorAttribute((err: BusinessError, editorAttribute: inputMethodEngine.EditorAttribute) => {
   if (err) {
     console.error(`Failed to getEditorAttribute: ${JSON.stringify(err)}`);
     return;
@@ -3556,7 +3556,7 @@ getEditorAttribute(): Promise&lt;EditorAttribute&gt;
 textInputClient.getEditorAttribute().then((editorAttribute: inputMethodEngine.EditorAttribute) => {
   console.log('editorAttribute.inputPattern: ' + JSON.stringify(editorAttribute.inputPattern));
   console.log('editorAttribute.enterKeyType: ' + JSON.stringify(editorAttribute.enterKeyType));
-}).catch((err: Error) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to getEditorAttribute: ${JSON.stringify(err)}`);
 });
 ```
