@@ -593,13 +593,8 @@ class EntryAbility extends UIAbility {
 
 | 类型             | 说明                               |
 | ---------------- | ---------------------------------- |
-<<<<<<< HEAD
-| number | 主键的类型可以是number。 |
-|  string | 主键的类型可以是string。 |
-=======
 | number | 主键的类型可以是number |
 | string | 主键的类型可以是string。 |
->>>>>>> 47cb75c33d5460a146af0ead5e8946365240866f
 
 ## UTCTime<sup>10+</sup>
 
