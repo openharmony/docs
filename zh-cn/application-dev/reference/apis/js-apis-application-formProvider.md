@@ -10,7 +10,6 @@ FormProvider模块提供了卡片提供方相关接口的能力，开发者在�
 
 ```ts
 import formProvider from '@ohos.application.formProvider';
-import Base from '@ohos.base'
 ```
 
 ## setFormNextRefreshTime
@@ -32,6 +31,8 @@ setFormNextRefreshTime(formId: string, minute: number, callback: AsyncCallback&l
 **示例：**
 
   ```ts
+  import Base from '@ohos.base'
+
   let formId: string = '12400633174999288';
   formProvider.setFormNextRefreshTime(formId, 5, (error: Base.BusinessError) => {
     if (error.code) {
@@ -64,6 +65,8 @@ setFormNextRefreshTime(formId: string, minute: number): Promise&lt;void&gt;
 **示例：**
 
   ```ts
+  import Base from '@ohos.base'
+
   let formId: string = '12400633174999288';
   formProvider.setFormNextRefreshTime(formId, 5).then(() => {
     console.log('formProvider setFormNextRefreshTime success');
@@ -92,6 +95,7 @@ updateForm(formId: string, formBindingData: formBindingData.FormBindingData,call
 
   ```ts
   import formBindingData from '@ohos.app.form.formBindingData';
+  import Base from '@ohos.base'
 
   let formId = '12400633174999288';
   class createBindingDataType {
@@ -134,6 +138,7 @@ updateForm(formId: string, formBindingData: formBindingData.FormBindingData): Pr
 
   ```ts
   import formBindingData from '@ohos.application.formBindingData';
+  import Base from '@ohos.base'
 
   let formId: string = '12400633174999288';
   class createBindingDataType {
