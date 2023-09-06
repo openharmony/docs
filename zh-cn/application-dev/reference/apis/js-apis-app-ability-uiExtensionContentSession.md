@@ -19,7 +19,7 @@ sendData(data: { [key: string]: Object }): void
 
 发送数据给UIExtensionComponent控件。
 
-**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **系统API**：此接口为系统接口，三方应用不支持调用。
 
@@ -43,7 +43,7 @@ setReceiveDataCallback(callback: (data: { [key: string]: Object }) => void): voi
 
 设置从UIExtensionComponent控件接收数据的回调方法。
 
-**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **系统API**：此接口为系统接口，三方应用不支持调用。
 
@@ -63,11 +63,11 @@ setReceiveDataCallback(callback: (data: { [key: string]: Object }) => void): voi
 
 ## UIExtensionContentSession.loadContent
 
-loadContent(path: string, storage?: LocalStorage): Promise&lt;void&gt;
+loadContent(path: string, storage?: LocalStorage): void;
 
 为当前UIExtensionComponent控件对应的窗口加载与LocalStorage相关联的具体页面内容。
 
-**系统能力：** SystemCapability.Ability.AbilityRuntime.AbilityCore
+**系统能力：** SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
 
@@ -153,7 +153,7 @@ setWindowBackgroundColor(color: string): void
 
 设置UIExtensionAbility加载界面的背景色。该接口需要在[loadContent()](#uiextensioncontentsessionloadcontent)调用生效后使用。
 
-**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **系统API**：此接口为系统接口，三方应用不支持调用。
 
@@ -177,7 +177,7 @@ setWindowPrivacyMode(isPrivacyMode: boolean): Promise&lt;void&gt;
 
 设置窗口是否为隐私模式，使用Promise异步回调。设置为隐私模式的窗口，窗口内容将无法被截屏或录屏。
 
-**系统能力：** SystemCapability.Ability.AbilityRuntime.AbilityCore
+**系统能力：** SystemCapability.Ability.AbilityRuntime.Core
 
 **需要权限：** ohos.permission.PRIVACY_WINDOW
 
@@ -199,7 +199,7 @@ setWindowPrivacyMode(isPrivacyMode: boolean, callback: AsyncCallback&lt;void&gt;
 
 设置窗口是否为隐私模式，使用callback异步回调。设置为隐私模式的窗口，窗口内容将无法被截屏或录屏。
 
-**系统能力：** SystemCapability.Ability.AbilityRuntime.AbilityCore
+**系统能力：** SystemCapability.Ability.AbilityRuntime.Core
 
 **需要权限：** ohos.permission.PRIVACY_WINDOW
 
