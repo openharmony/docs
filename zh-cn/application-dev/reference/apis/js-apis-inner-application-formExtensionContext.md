@@ -66,7 +66,7 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
     };
     this.context.startAbility(want, (error: Base.BusinessError) => {
       if (error) {
-        console.error('FormExtensionContext startAbility, error:${JSON.stringify(error)}');
+        console.error(`FormExtensionContext startAbility, error:${JSON.stringify(error)}`);
       } else {
         console.log('FormExtensionContext startAbility success');
       }
@@ -211,7 +211,7 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
       connection = this.context.connectServiceExtensionAbility(want, options);
     } catch (paramError) {
       // 处理入参错误异常
-      console.error(`error.code: ${paramError.code}, error.message: ${paramError.message}`);
+      console.error(`error.code: ${(paramError as Base.BusinessError).code}, error.message: ${(paramError as Base.BusinessError).message}`);
     }
   }
 };
@@ -272,7 +272,7 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
     } catch (paramError) {
       commRemote = null;
       // 处理入参错误异常
-      console.error(`error.code: ${paramError.code}, error.message: ${paramError.message}`);
+      console.error(`error.code: ${(paramError as Base.BusinessError).code}, error.message: ${(paramError as Base.BusinessError).message}`);
     }
   }
 };
@@ -339,7 +339,7 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
     } catch (paramError) {
       commRemote = null;
       // 处理入参错误异常
-      console.error(`error.code: ${paramError.code}, error.message: ${paramError.message}`);
+      console.error(`error.code: ${(paramError as Base.BusinessError).code}, error.message: ${(paramError as Base.BusinessError).message}`);
     }
   }
 };

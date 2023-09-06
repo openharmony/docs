@@ -27,19 +27,20 @@
    
    ```ts
    import commonEventManager from '@ohos.commonEventManager';
+   import Base from '@ohos.base';
    ```
 
 2. 传入需要发布的事件名称和回调函数，发布事件。
    
    ```ts
    // 发布公共事件
-   commonEventManager.publish("usual.event.SCREEN_OFF", (err) => {
+   commonEventManager.publish("usual.event.SCREEN_OFF", (err: Base.BusinessError) => {
        if (err) {
            console.error(`[CommonEvent] PublishCallBack err=${JSON.stringify(err)}`);
        } else {
            console.info(`[CommonEvent] Publish success`);
        }
-   })
+   });
    ```
 
 
@@ -51,13 +52,14 @@
    
    ```ts
    import commonEventManager from '@ohos.commonEventManager';
+   import Base from '@ohos.base';
    ```
 
 2. 传入需要发布的事件名称和回调函数，发布事件。
    
    ```ts
    // 公共事件相关信息
-   let options = {
+   let options: commonEventManager.CommonEventPublishData = {
        code: 1, // 公共事件的初始代码
        data: "initial data", // 公共事件的初始数据
    }
@@ -67,11 +69,11 @@
    
    ```ts
    // 发布公共事件
-   commonEventManager.publish("usual.event.SCREEN_OFF", options, (err) => {
+   commonEventManager.publish("usual.event.SCREEN_OFF", options, (err: Base.BusinessError) => {
        if (err) {
            console.error('[CommonEvent] PublishCallBack err=' + JSON.stringify(err));
        } else {
            console.info('[CommonEvent] Publish success')
        }
-   })
+   });
    ```
