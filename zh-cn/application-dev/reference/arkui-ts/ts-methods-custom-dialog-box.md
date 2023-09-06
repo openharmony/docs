@@ -116,10 +116,9 @@ struct CustomDialogUser {
     cornerRadius: 10,
   })
 
-  // 在自定义组件即将析构销毁时将dialogControlle删除和置空
+  // 在自定义组件即将析构销毁时将dialogControlle置空
   aboutToDisappear() {
-    delete this.dialogController, // 删除dialogController
-    this.dialogController = undefined // 将dialogController置空
+    this.dialogController = null // 将dialogController置空
   }
 
   onCancel() {
