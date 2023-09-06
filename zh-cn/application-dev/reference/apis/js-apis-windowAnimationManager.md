@@ -9,7 +9,7 @@
 
 ## 导入模块
 
-```js
+```ts
 import windowAnimationManager from '@ohos.animation.windowAnimationManager'
 ```
 
@@ -31,8 +31,8 @@ setController(controller: WindowAnimationController): void
 
 **示例：**
 
-```js
-let controller = {
+```ts
+let controller: WindowAnimationController = {
     onStartAppFromLauncher(startingWindowTarget: windowAnimationManager.WindowAnimationTarget, finishCallback: windowAnimationManager.WindowAnimationFinishedCallback): void {
         console.log('onStartAppFromLauncher, the startingWindowTarget is: ' + startingWindowTarget);
         finishCallback.onAnimationFinish();
@@ -68,7 +68,7 @@ let controller = {
     }
 }
 
-windowAnimationManager.setController(controller)
+windowAnimationManager.setController(controller);
 ```
 
 ## windowAnimationManager.minimizeWindowWithAnimation
@@ -88,9 +88,9 @@ minimizeWindowWithAnimation(windowTarget: WindowAnimationTarget, callback: Async
 
 **示例：**
 
-```js
+```ts
 let target: WindowAnimationTarget = undefined;
-let controller = {
+let controller: WindowAnimationController = {
     onStartAppFromLauncher(startingWindowTarget: windowAnimationManager.WindowAnimationTarget, finishCallback: windowAnimationManager.WindowAnimationFinishedCallback): void {
         console.log('onStartAppFromLauncher, the startingWindowTarget is: ' + startingWindowTarget);
         target = startingWindowTarget;
@@ -133,7 +133,7 @@ let controller = {
     }
 }
 
-windowAnimationManager.setController(controller)
+windowAnimationManager.setController(controller);
 
 let finishedCallback: windowAnimationManager.WindowAnimationFinishedCallback = undefined;
 windowAnimationManager.minimizeWindowWithAnimation(target, (err, data) => {
@@ -171,9 +171,9 @@ minimizeWindowWithAnimation(windowTarget: WindowAnimationTarget): Promise&lt;Win
 
 **示例：**
 
-```js
+```ts
 let target: WindowAnimationTarget = undefined;
-let controller = {
+let controller: WindowAnimationController = {
     onStartAppFromLauncher(startingWindowTarget: windowAnimationManager.WindowAnimationTarget, finishCallback: windowAnimationManager.WindowAnimationFinishedCallback): void {
         console.log('onStartAppFromLauncher, the startingWindowTarget is: ' + startingWindowTarget);
         finishCallback.onAnimationFinish();
@@ -209,7 +209,7 @@ let controller = {
     }
 }
 
-windowAnimationManager.setController(controller)
+windowAnimationManager.setController(controller);
 
 let promise = windowAnimationManager.minimizeWindowWithAnimation(target);
 promise.then((data) => {
