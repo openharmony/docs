@@ -662,7 +662,6 @@ struct TabsAttr {
 
 ```ts
 // xxx.ets
-// xxx.ets
 @Entry
 @Component
 struct TabsTextOverflow {
@@ -722,7 +721,6 @@ struct TabsTextOverflow {
 ### 示例6
 
 ```ts
-// xxx.ets
 // xxx.ets
 @Entry
 @Component

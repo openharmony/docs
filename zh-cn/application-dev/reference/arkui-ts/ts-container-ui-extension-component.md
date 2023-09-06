@@ -131,65 +131,47 @@ onError(callback:[ErrorCallback](../apis/js-apis-base.md#errorcallback))
 
 ```ts
 // 组件使用示例：
-import Want from '@ohos.app.ability.Want';
-
 @Entry
 @Component
 struct Index {
   @State message: string = 'Hello World'
   private myProxy: UIExtensionProxy
-  @State x: XObject = { x: 5678910 }
-  @State bundle: Want = {
-    bundleName: "com.example.uiextensionprovider",
-    abilityName: "UIExtensionProvider",
-    parameters: { x: 12345, y: "data" }
-  }
-
   build() {
     Row() {
       Column() {
         Text(this.message).fontColor(Color.Red)
-        UIExtensionComponent(this.bundle)
-          .size({ width: "100%", height: "100%" })
-          .onRemoteReady((proxy: UIExtensionProxy) => {
+        UIExtensionComponent(
+          {
+            bundleName: "com.example.uiextensionprovider",
+            abilityName: "UIExtensionProvider",
+            parameters: { "x": 12345, "y": "data" }
+          }
+        )
+        .size({ width: "100%", height:"100%" })
+        .onRemoteReady((proxy) => {
             this.message = "remote ready"
             this.myProxy = proxy
-          })
-          .onReceive((data: Object) => {
+        })
+        .onReceive((data) => {
             this.message = JSON.stringify(data)
-          })
-          .onRelease((releaseCode: string) => {
-            this.message = "Release: " + releaseCode
-          })
-          .onResult((data: Object) => {
-            this.message = JSON.stringify(data)
-          })
-          .onError((error: ErrorObject) => {
-            this.message = "onError: " + error.code + ", name: " + error.name + ", message: " + error.message
-          })
+        })
+        .onRelease((releaseCode) => {
+          this.message = "Release: " + releaseCode
+        })
+        .onResult((data) => {
+          this.message = JSON.stringify(data)
+        })
+        .onError((error) => {
+          this.message = "onError: " + error["code"] + ", name: " + error.name + ", message: " + error.message
+        })
         Button("sendData").onClick(() => {
-          this.myProxy.send(this.x)
+          this.myProxy.send({ "x": 5678910 })
         })
       }
       .width("100%")
     }
     .height('100%')
   }
-}
-
-interface XObject {
-  x: number;
-}
-
-interface XYObject {
-  x: number;
-  y: string;
-}
-
-interface ErrorObject {
-  code: number;
-  name: string;
-  message: string;
 }
 ```
 
@@ -231,40 +213,36 @@ export default class UIExtAbility extends UIExtensionAbility {
 ```ts
 // 扩展Ability入口页面文件extension.ets
 import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession'
-
 let storage = LocalStorage.GetShared()
-
 @Entry(storage)
 @Component
 struct Index {
   @State message: string = 'UIExtension'
-  @State message2: string = 'message from comp'
+  @State message2:string = 'message from comp'
   private session: UIExtensionContentSession = storage.get<UIExtensionContentSession>('session');
   controller: TextInputController = new TextInputController()
-
   onPageShow() {
-    this.session.setReceiveDataCallback((data: Object) => {
+    this.session.setReceiveDataCallback((data)=> {
       this.message2 = "data come from comp"
       this.message = JSON.stringify(data)
     })
   }
-
   build() {
     Row() {
       Column() {
         Text(this.message2)
         Text(this.message)
         Button("sendData")
-          .onClick(() => {
-            this.session.sendData({ "xxx": "data from extension" })
+          .onClick(()=>{
+            this.session.sendData({"xxx": "data from extension"})
           })
         Button("terminateSelf")
-          .onClick(() => {
+          .onClick(()=>{
             this.session.terminateSelf();
             storage.clear();
           }).margin(5)
         Button("TerminateSelfWithResult")
-          .onClick(() => {
+          .onClick(()=>{
             this.session.terminateSelfWithResult({
               "resultCode": 0,
               "want": {

@@ -92,8 +92,6 @@ repeat(auto-fill, track-size)
 // WaterFlowDataSource.ets
 
 // 实现IDataSource接口的对象，用于瀑布流组件加载数据
-
-```
 export class WaterFlowDataSource implements IDataSource {
   private dataArray: number[] = []
   private listeners: DataChangeListener[] = []
@@ -207,6 +205,8 @@ export class WaterFlowDataSource implements IDataSource {
     this.notifyDataReload()
   }
 }
+```
+
 ```ts
 // WaterflowDemo.ets
 import { WaterFlowDataSource } from './WaterFlowDataSource'

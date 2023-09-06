@@ -145,7 +145,6 @@ Grid组件根据rowsTemplate、columnsTemplate属性的设置情况，可分为�
 
 ```ts
 // xxx.ets
-// xxx.ets
 @Entry
 @Component
 struct GridExample {

@@ -242,7 +242,6 @@ struct ListExample {
 
 ```ts
 // xxx.ets
-// xxx.ets
 @Entry
 @Component
 struct ListLanesExample {

@@ -481,7 +481,6 @@ struct barBackgroundColorTest {
 
 ```ts
 // xxx.ets
-// xxx.ets
 @Entry
 @Component
 struct TabsExample5 {
@@ -583,7 +582,6 @@ struct TabsExample5 {
 ### 示例6
 
 ```ts
-// xxx.ets
 // xxx.ets
 @Entry
 @Component
