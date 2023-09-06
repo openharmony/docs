@@ -14,6 +14,28 @@
 import dragInteraction from '@ohos.deviceStatus.dragInteraction'
 ```
 
+##  DragState
+
+拖拽状态。
+
+**系统能力**：SystemCapability.Msdp.DeviceStatus.Drag
+
+| 名称                       | 值                             | 说明                              |
+| --------                     |  -----------------               |  -----------------               |
+| MSG_DRAG_STATE_START |  1   | 表示开始拖拽。 |
+| MSG_DRAG_STATE_STOP |  2  |  表示结束拖拽。  |
+| MSG_DRAG_STATE_CANCEL |  3  |  表示取消拖拽。  |
+
+**示例**：
+
+```js
+enum DragState {
+    MSG_DRAG_STATE_START = 1,
+    MSG_DRAG_STATE_STOP = 2,
+    MSG_DRAG_STATE_CANCEL = 3
+}
+```
+
 ## dragInteraction.on('drag')
 
 on(type: 'drag', callback: Callback&lt;DragState&gt;): void;
@@ -85,14 +107,4 @@ try {
 }
 ```
 
-##  DragState
 
-拖拽状态。
-
-**系统能力**：SystemCapability.Msdp.DeviceStatus.Drag
-
-| 名称                       | 值                             | 说明                              |
-| --------                     |  -----------------               |  -----------------               |
-| MSG_DRAG_STATE_START |  1   | 表示开始拖拽。 |
-| MSG_DRAG_STATE_STOP |  2  |  表示结束拖拽。  |
-| MSG_DRAG_STATE_CANCEL |  3  |  表示取消拖拽。  |
