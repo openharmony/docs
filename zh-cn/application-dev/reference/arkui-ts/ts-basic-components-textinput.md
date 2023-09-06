@@ -233,7 +233,7 @@ struct TextInputExample {
         .maxLength(9)
         .showPasswordIcon(true)
       // 内联风格输入框
-      TextInput({ placeholder: 'inline style' })
+      TextInput({ text: 'inline style' })
         .width(400)
         .height(50)
         .margin(20)
