@@ -276,7 +276,7 @@ function onBackClick(): void {
 The **router.showAlertBeforeBackPage()** API receives an object as a parameter. The object contains the following attributes:
 
 **message**: content of the dialog box. The value is of the string type.
-If the API is successfully called, the confirmation dialog box is displayed on the target page. Otherwise, an exception is thrown and the error code and error information is obtained through **err.code** and **err.message**.
+If the API is called successfully, the confirmation dialog box is displayed on the target page. Otherwise, an exception is thrown and the error code and error information is obtained through **err.code** and **err.message**.
 
 When the user clicks the back button, a confirmation dialog box is displayed, prompting the user to confirm their operation. If the user selects Cancel, the application stays on the current page. If the user selects OK, the **router.back()** API is triggered and the redirection is performed based on the parameters.
 
@@ -342,6 +342,7 @@ In the target page in the [shared package](../quick-start/shared-guide.md), name
 
 ```ts
 // library/src/main/ets/pages/Index.ets
+// library is the custom name of the new shared package.
 @Entry({ routeName : 'myPage' })
 @Component
 struct MyComponent {
@@ -353,7 +354,7 @@ When the configuration is successful, import the named route page to the page fr
 ```ts
 // entry/src/main/ets/pages/Index.ets
 import router from '@ohos.router';
-import 'library/src/main/ets/Index.ets' // Import the named route page from the shared package library.
+import'library/src/main/ets/pages/Index' // Import the named route page from the library of the shared package.
 
 @Entry
 @Component
