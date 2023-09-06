@@ -1813,7 +1813,7 @@ let recvP2pDeviceChangeFunc = result => {
 }
 wifi.on("p2pDeviceChange", recvP2pDeviceChangeFunc);
 
-var recvP2pPeerDeviceChangeFunc = result => {
+let recvP2pPeerDeviceChangeFunc = result => {
     console.info("p2p peer device change receive event: " + JSON.stringify(result));
     wifi.getP2pPeerDevices((err, data) => {
         if (err) {
@@ -1821,11 +1821,11 @@ var recvP2pPeerDeviceChangeFunc = result => {
             return;
         }
         console.info("get peer devices: " + JSON.stringify(data));
-        var len = Object.keys(data).length;
-        for (var i = 0; i < len; ++i) {
+        let len = Object.keys(data).length;
+        for (let i = 0; i < len; ++i) {
             if (data[i].deviceName === "my_test_device") {
                 console.info("p2p connect to test device: " + data[i].deviceAddress);
-                var config = {
+                let config = {
                     "deviceAddress":data[i].deviceAddress,
                     "netId":-2,
                     "passphrase":"",
@@ -1839,7 +1839,7 @@ var recvP2pPeerDeviceChangeFunc = result => {
 }
 wifi.on("p2pPeerDeviceChange", recvP2pPeerDeviceChangeFunc);
 
-var recvP2pPersistentGroupChangeFunc = () => {
+let recvP2pPersistentGroupChangeFunc = () => {
     console.info("p2p persistent group change receive event");
 
     wifi.getCurrentGroup((err, data) => {
@@ -2080,7 +2080,7 @@ off(type: "wifiStateChange", callback?: Callback&lt;number&gt;): void
 ```ts
 import wifi from '@ohos.wifi';
 
-var recvPowerNotifyFunc = result => {
+let recvPowerNotifyFunc = result => {
     console.info("Receive power state change event: " + result);
 }
 
@@ -2138,7 +2138,7 @@ off(type: "wifiConnectionChange", callback?: Callback&lt;number&gt;): void
 ```ts
 import wifi from '@ohos.wifi';
 
-var recvWifiConnectionChangeFunc = result => {
+let recvWifiConnectionChangeFunc = result => {
     console.info("Receive wifi connection change event: " + result);
 }
 
@@ -2195,7 +2195,7 @@ off(type: "wifiScanStateChange", callback?: Callback&lt;number&gt;): void
 ```ts
 import wifi from '@ohos.wifi';
 
-var recvWifiScanStateChangeFunc = result => {
+let recvWifiScanStateChangeFunc = result => {
     console.info("Receive Wifi scan state change event: " + result);
 }
 
@@ -2245,7 +2245,7 @@ off(type: "wifiRssiChange", callback?: Callback&lt;number&gt;): void
 ```ts
 import wifi from '@ohos.wifi';
 
-var recvWifiRssiChangeFunc = result => {
+let recvWifiRssiChangeFunc = result => {
     console.info("Receive wifi rssi change event: " + result);
 }
 
@@ -2298,7 +2298,7 @@ off(type: "streamChange", callback?: Callback&lt;number&gt;): void
 ```ts
 import wifi from '@ohos.wifi';
 
-var recvStreamChangeFunc = result => {
+let recvStreamChangeFunc = result => {
     console.info("Receive stream change event: " + result);
 }
 
@@ -2340,7 +2340,7 @@ on(type: "hotspotStateChange", callback: Callback&lt;number&gt;): void
 ```ts
 import wifi from '@ohos.wifi';
 
-var recvHotspotStateChangeFunc = result => {
+let recvHotspotStateChangeFunc = result => {
     console.info("Receive hotspot state change event: " + result);
 }
 
@@ -2410,7 +2410,7 @@ off(type: "hotspotStaJoin", callback?: Callback&lt;StationInfo&gt;): void
 ```ts
 import wifi from '@ohos.wifi';
 
-var recvHotspotStaJoinFunc = result => {
+let recvHotspotStaJoinFunc = result => {
     console.info("Receive hotspot sta join event: " + result);
 }
 
@@ -2464,7 +2464,7 @@ off(type: "hotspotStaLeave", callback?: Callback&lt;StationInfo&gt;): void
 ```ts
 import wifi from '@ohos.wifi';
 
-var recvHotspotStaLeaveFunc = result => {
+let recvHotspotStaLeaveFunc = result => {
     console.info("Receive hotspot sta leave event: " + result);
 }
 
@@ -2524,7 +2524,7 @@ off(type: "p2pStateChange", callback?: Callback&lt;number&gt;): void
 ```ts
 import wifi from '@ohos.wifi';
 
-var recvP2pStateChangeFunc = result => {
+let recvP2pStateChangeFunc = result => {
     console.info("Receive p2p state change event: " + result);
 }
 
@@ -2574,7 +2574,7 @@ off(type: "p2pConnectionChange", callback?: Callback&lt;WifiP2pLinkedInfo&gt;): 
 ```ts
 import wifi from '@ohos.wifi';
 
-var recvP2pConnectionChangeFunc = result => {
+let recvP2pConnectionChangeFunc = result => {
     console.info("Receive p2p connection change event: " + result);
 }
 
@@ -2624,7 +2624,7 @@ off(type: "p2pDeviceChange", callback?: Callback&lt;WifiP2pDevice&gt;): void
 ```ts
 import wifi from '@ohos.wifi';
 
-var recvP2pDeviceChangeFunc = result => {
+let recvP2pDeviceChangeFunc = result => {
     console.info("Receive p2p device change event: " + result);
 }
 
@@ -2674,7 +2674,7 @@ off(type: "p2pPeerDeviceChange", callback?: Callback&lt;WifiP2pDevice[]&gt;): vo
 ```ts
 import wifi from '@ohos.wifi';
 
-var recvP2pPeerDeviceChangeFunc = result => {
+let recvP2pPeerDeviceChangeFunc = result => {
     console.info("Receive p2p peer device change event: " + result);
 }
 
@@ -2724,7 +2724,7 @@ off(type: "p2pPersistentGroupChange", callback?: Callback&lt;void&gt;): void
 ```ts
 import wifi from '@ohos.wifi';
 
-var recvP2pPersistentGroupChangeFunc = result => {
+let recvP2pPersistentGroupChangeFunc = result => {
     console.info("Receive p2p persistent group change event: " + result);
 }
 
@@ -2782,7 +2782,7 @@ off(type: "p2pDiscoveryChange", callback?: Callback&lt;number&gt;): void
 ```ts
 import wifi from '@ohos.wifi';
 
-var recvP2pDiscoveryChangeFunc = result => {
+let recvP2pDiscoveryChangeFunc = result => {
     console.info("Receive p2p discovery change event: " + result);
 }
 
