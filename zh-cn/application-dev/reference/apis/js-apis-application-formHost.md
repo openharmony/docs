@@ -37,9 +37,9 @@ deleteForm(formId: string, callback: AsyncCallback&lt;void&gt;): void
 import formHost from '@ohos.application.formHost';
 
 let formId: string = '12400633174999288';
-formHost.deleteForm(formId, (error, data) => {
+formHost.deleteForm(formId, (error: Base.BusinessError) => {
   if (error.code) {
-    console.error('formHost deleteForm, error: ${JSON.stringify(error)}');
+    console.error(`formHost deleteForm, error: ${JSON.stringify(error)}`);
   }
 });
 ```
@@ -344,7 +344,7 @@ import Base from '@ohos.base';
 let formId: string[] = ['12400633174999288'];
 formHost.notifyVisibleForms(formId, (error: Base.BusinessError) => {
   if (error.code) {
-    console.error('formHost notifyVisibleForms, error: ${JSON.stringify(error)}');
+    console.error(`formHost notifyVisibleForms, error: ${JSON.stringify(error)}`);
   }
 });
 ```
