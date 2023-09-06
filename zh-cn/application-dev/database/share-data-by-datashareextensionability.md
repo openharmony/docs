@@ -62,7 +62,6 @@
    
    ```ts
    import Extension from '@ohos.application.DataShareExtensionAbility';
-   import rdb from '@ohos.data.relationalStore';
    import dataSharePredicates from '@ohos.data.dataSharePredicates';
    import relationalStore from '@ohos.data.relationalStore';
    import Want from '@ohos.app.ability.Want';
@@ -86,9 +85,9 @@
      onCreate(want: Want, callback: Function) {
        result = this.context.cacheDir + '/datashare.txt';
        // 业务实现使用RDB
-       rdb.getRdbStore(this.context, {
+       relationalStore.getRdbStore(this.context, {
          name: DB_NAME,
-         securityLevel: rdb.SecurityLevel.S1
+         securityLevel: relationalStore.SecurityLevel.S1
        }, (err, data) => {
          rdbStore = data;
          rdbStore.executeSql(DDL_TBL_CREATE, [], (err) => {
@@ -220,7 +219,7 @@
 
 4. 获取到接口类对象后，便可利用其提供的接口访问提供方提供的服务，如进行数据的增删改查等。
    
-  ```ts
+   ```ts
    // 构建一条数据
    let key1 = 'name';
    let key2 = 'age';

@@ -55,7 +55,7 @@ let rdbStore: relationalStore.RdbStore;
 
 export default class DataShareExtAbility extends DataShareExtensionAbility {
   onCreate(want: Want, callback: Function) {
-    relationalStore.getRdbStore(globalThis.getContext(), {
+    relationalStore.getRdbStore(this.context, {
       name: DB_NAME,
       securityLevel: relationalStore.SecurityLevel.S1
     }, (err, data) => {
