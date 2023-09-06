@@ -120,7 +120,7 @@ try {
     hichecker.containsCheckRule(hichecker.RULE_THREAD_CHECK_SLOW_PROCESS); // return true;
     hichecker.containsCheckRule(hichecker.RULE_CAUTION_PRINT_LOG); // return false;
 } catch (err) {
-    console.error(`code: ${err.code}, message: ${err.message}`);
+    console.error(`code: ${(err as BusinessError).code}, message: ${(err as BusinessError).message}`);
 }
 ```
 
@@ -232,7 +232,7 @@ contains(rule: bigint): boolean
 
 **示例：**
 
-```js
+```ts
 // 添加一条规则
 hichecker.addRule(hichecker.RULE_THREAD_CHECK_SLOW_PROCESS);
 
