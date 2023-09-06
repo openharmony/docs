@@ -1415,7 +1415,7 @@ netCon.unregister(function (error) {
 
 ### on('netCapabilitiesChange')<sup>8+</sup>
 
-on(type: 'netCapabilitiesChange', callback: Callback<NetCapabilityInfo>): void
+on(type: 'netCapabilitiesChange', callback: Callback\<NetCapabilityInfo>): void
 
 订阅网络能力变化事件。
 
