@@ -53,6 +53,7 @@
 
 ```ts
 import cryptoFramework from '@ohos.security.cryptoFramework';
+import { BusinessError } from '@ohos.base';
 
 function generateAsyKey() {
   // Create an AsyKeyGenerator instance.
@@ -83,6 +84,7 @@ function generateAsyKey() {
 
 ```ts
 import cryptoFramework from '@ohos.security.cryptoFramework';
+import { BusinessError } from '@ohos.base';
 
 function testGenerateAesKey() {
   // Create a SymKeyGenerator instance.
@@ -106,6 +108,7 @@ function testGenerateAesKey() {
 
 ```ts
 import cryptoFramework from '@ohos.security.cryptoFramework';
+import { BusinessError } from '@ohos.base';
 
 function convertAsyKey() {
   let rsaGenerator = cryptoFramework.createAsyKeyGenerator('RSA1024');
@@ -134,6 +137,7 @@ function convertAsyKey() {
 
 ```ts
 import cryptoFramework from '@ohos.security.cryptoFramework';
+import { BusinessError } from '@ohos.base';
 
 function convertEccAsyKey() {
   let pubKeyArray = new Uint8Array([48, 89, 48, 19, 6, 7, 42, 134, 72, 206, 61, 2, 1, 6, 8, 42, 134, 72, 206, 61, 3, 1, 7, 3, 66, 0, 4, 83, 96, 142, 9, 86, 214, 126, 106, 247, 233, 92, 125, 4, 128, 138, 105, 246, 162, 215, 71, 81, 58, 202, 121, 26, 105, 211, 55, 130, 45, 236, 143, 55, 16, 248, 75, 167, 160, 167, 106, 2, 152, 243, 44, 68, 66, 0, 167, 99, 92, 235, 215, 159, 239, 28, 106, 124, 171, 34, 145, 124, 174, 57, 92]);
@@ -163,6 +167,7 @@ function convertEccAsyKey() {
 
 ```ts
 import cryptoFramework from '@ohos.security.cryptoFramework';
+import { BusinessError } from '@ohos.base';
 
 function genKeyMaterialBlob(): cryptoFramework.DataBlob {
   let arr = [
@@ -214,6 +219,7 @@ function testConvertSymKey() {
 
 ```ts
 import cryptoFramework from '@ohos.security.cryptoFramework';
+import { BusinessError } from '@ohos.base';
 
 function generateSM2Key() {
   // Create an AsyKeyGenerator instance.
@@ -248,6 +254,7 @@ function generateSM2Key() {
 
 ```ts
 import cryptoFramework from '@ohos.security.cryptoFramework';
+import { BusinessError } from '@ohos.base';
 
 function testGenerateSM4Key() {
   // Create a SymKeyGenerator instance.
@@ -275,6 +282,7 @@ function testGenerateSM4Key() {
 
 ```ts
 import cryptoFramework from '@ohos.security.cryptoFramework';
+import { BusinessError } from '@ohos.base';
 
 function convertSM2AsyKey() {
   let pubKeyArray = new Uint8Array([48, 89, 48, 19, 6, 7, 42, 134, 72, 206, 61, 2, 1, 6, 8, 42, 129, 28, 207, 85, 1, 130, 45, 3, 66, 0, 4, 90, 3, 58, 157, 190, 248, 76, 7, 132, 200, 151, 208, 112, 230, 96, 140, 90, 238, 211, 155, 128, 109, 248, 40, 83, 214, 78, 42, 104, 106, 55, 148, 249, 35, 61, 32, 221, 135, 143, 100, 45, 97, 194, 176, 52, 73, 136, 174, 40, 70, 70, 34, 103, 103, 161, 99, 27, 187, 13, 187, 109, 244, 13, 7]);
@@ -334,6 +342,7 @@ function convertSM2AsyKey() {
 
 ```ts
 import cryptoFramework from '@ohos.security.cryptoFramework';
+import { BusinessError } from '@ohos.base';
 
 // Print bigint information.
 function showBigIntInfo(bnName: string, bnValue: bigint | string | number) {
@@ -459,6 +468,8 @@ function testEccUseCommKeySpecGet() {
 
 以使用Callback方式根据密钥参数生成RSA公钥为例：
 ```ts
+import cryptoFramework from '@ohos.security.cryptoFramework';
+import { BusinessError } from '@ohos.base';
 // RSA公钥密钥参数生成函数
 function genRsaPubKeySpec(nIn: bigint, eIn: bigint): cryptoFramework.RSAPubKeySpec {
   let rsaCommSpec: cryptoFramework.RSACommonParamsSpec = {
@@ -564,6 +575,7 @@ function rsaUsePubKeySpecGetCallback() {
 
 ```ts
 import cryptoFramework from '@ohos.security.cryptoFramework';
+import { BusinessError } from '@ohos.base';
 
 function genGcmParamsSpec() {
   let arr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]; // 12 bytes
@@ -675,6 +687,7 @@ function testAesGcm() {
 
 ```ts
 import cryptoFramework from '@ohos.security.cryptoFramework';
+import { BusinessError } from '@ohos.base';
 
 // Convert strings in plaintext into byte streams.
 function stringToUint8Array(str: string) {
@@ -792,6 +805,7 @@ function test3DesEcb() {
 
 ```ts
 import cryptoFramework from '@ohos.security.cryptoFramework';
+import { BusinessError } from '@ohos.base';
 
 function genGcmParamsSpec() {
   let arr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]; // 12 bytes
@@ -931,7 +945,8 @@ function testAesMultiUpdate() {
 3. 执行加解密操作。通过调用Cipher对象提供的doFinal接口，执行加密操作生成密文或执行解密操作生成明文。
 
 ```ts
-import cryptoFramework from "@ohos.security.cryptoFramework"
+import cryptoFramework from '@ohos.security.cryptoFramework';
+import { BusinessError } from '@ohos.base';
 
 let plan = "This is cipher test.";
 
@@ -1078,7 +1093,8 @@ function decryptMessageCallback() {
 3. 执行加解密操作。通过调用Cipher对象提供的doFinal接口，执行加密操作生成密文或执行解密操作生成明文，多次调用doFinal实现分段。
 
 ```ts
-import cryptoFramework from "@ohos.security.cryptoFramework"
+import cryptoFramework from '@ohos.security.cryptoFramework';
+import { BusinessError } from '@ohos.base';
 
 // Convert strings in plaintext into byte streams.
 function stringToUint8Array(str: string) {
@@ -1183,7 +1199,8 @@ function encryptLongMessagePromise() {
 3. 执行加解密操作。通过调用Cipher对象提供的doFinal接口，执行加密操作生成密文或执行解密操作生成明文，需要加解密Cipher对象的字节流P一致。
 
 ```ts
-import cryptoFramework from "@ohos.security.cryptoFramework"
+import cryptoFramework from '@ohos.security.cryptoFramework';
+import { BusinessError } from '@ohos.base';
 
 // 可理解的字符串转成字节流
 function stringToUint8Array(str: string) {
@@ -1308,7 +1325,8 @@ function rsaUseSpecDecryptOAEPPromise() {
 3. 执行加解密操作。通过调用Cipher对象提供的doFinal接口，执行加密操作生成密文或执行解密操作生成明文。
 
 ```ts
-import cryptoFramework from "@ohos.security.cryptoFramework"
+import cryptoFramework from '@ohos.security.cryptoFramework';
+import { BusinessError } from '@ohos.base';
 
 let plan = "This is cipher test.";
 
@@ -1463,6 +1481,7 @@ function decryptMessageCallback() {
 
 ```ts
 import cryptoFramework from '@ohos.security.cryptoFramework';
+import { BusinessError } from '@ohos.base';
 
 // Convert strings in plaintext into byte streams.
 function stringToUint8Array(str: string) {
@@ -1573,7 +1592,8 @@ function testSM4Ecb() {
 5. 执行验签操作。通过Verify类提供的update接口，添加签名数据，并调用verify接口传入签名进行验签。
 
 ```ts
-import cryptoFramework from "@ohos.security.cryptoFramework"
+import cryptoFramework from '@ohos.security.cryptoFramework';
+import { BusinessError } from '@ohos.base';
 
 // 可理解的字符串转成字节流
 function stringToUint8Array(str: string) {
@@ -1663,7 +1683,8 @@ function verifyMessageCallback() {
 5. 执行验签操作。通过Verify类提供的update接口，添加签名数据，并调用doFinal接口传入签名进行验签。
 
 ```ts
-import cryptoFramework from "@ohos.security.cryptoFramework"
+import cryptoFramework from '@ohos.security.cryptoFramework';
+import { BusinessError } from '@ohos.base';
 
 // 可理解的字符串转成字节流
 function stringToUint8Array(str: string) {
@@ -1751,7 +1772,8 @@ function verifyMessageCallback() {
 5. 执行验签操作。多次通过Verify类提供的update接口，添加签名数据，并调用verify接口传入签名进行验签，完成分段验签。
 
 ```ts
-import cryptoFramework from "@ohos.security.cryptoFramework"
+import cryptoFramework from '@ohos.security.cryptoFramework';
+import { BusinessError } from '@ohos.base';
 
 // 可理解的字符串转成字节流
 function stringToUint8Array(str: string) {
@@ -1832,7 +1854,8 @@ function signLongMessagePromise() {
 5. 执行验签操作。通过Verify类提供的update接口，添加签名数据，并调用verify接口传入签名进行验签。
 
 ```ts
-import cryptoFramework from "@ohos.security.cryptoFramework"
+import cryptoFramework from '@ohos.security.cryptoFramework';
+import { BusinessError } from '@ohos.base';
 
 // Convert strings in plaintext into byte streams.
 function stringToUint8Array(str: string) {
@@ -1953,7 +1976,8 @@ function verifyMessageCallbackPSS() {
 5. 执行验签操作。通过Verify类提供的update接口，添加签名数据，并调用doFinal接口传入签名进行验签。
 
 ```ts
-import cryptoFramework from "@ohos.security.cryptoFramework"
+import cryptoFramework from '@ohos.security.cryptoFramework';
+import { BusinessError } from '@ohos.base';
 
 // Convert strings in plaintext into byte streams.
 function stringToUint8Array(str: string) {
@@ -2024,7 +2048,8 @@ function signAndVerify() {
 2. 基于ECC密钥的私钥及公钥执行ECDH操作。
 
 ```ts
-import cryptoFramework from "@ohos.security.cryptoFramework"
+import cryptoFramework from '@ohos.security.cryptoFramework';
+import { BusinessError } from '@ohos.base';
 
 let globalKeyPair: cryptoFramework.KeyPair;
 
@@ -2090,7 +2115,8 @@ function ecdhCallback() {
 4. 获取当前摘要算法名与摘要计算长度。
 
 ```ts
-import cryptoFramework from "@ohos.security.cryptoFramework"
+import cryptoFramework from '@ohos.security.cryptoFramework';
+import { BusinessError } from '@ohos.base';
 
 // Convert strings in plaintext into byte streams.
 function stringToUint8Array(str: string) {
@@ -2157,7 +2183,8 @@ function doMdByCallback() {
 4. 获取当前摘要算法名与摘要计算长度。
 
 ```ts
-import cryptoFramework from "@ohos.security.cryptoFramework"
+import cryptoFramework from '@ohos.security.cryptoFramework';
+import { BusinessError } from '@ohos.base';
 
 // 可理解的字符串转成字节流
 function stringToUint8Array(str: string) {
@@ -2244,7 +2271,8 @@ Mac(message authentication code)可以对消息进行完整性校验，通过使
 5. 获取当前摘要算法名与Mac计算长度。
 
 ```ts
-import cryptoFramework from "@ohos.security.cryptoFramework"
+import cryptoFramework from '@ohos.security.cryptoFramework';
+import { BusinessError } from '@ohos.base';
 
 // 可理解的字符串转成字节流
 function stringToUint8Array(str: string) {
@@ -2344,7 +2372,8 @@ function doHmacByCallback() {
 5. 获取当前摘要算法名与Mac计算长度。
 
 ```ts
-import cryptoFramework from "@ohos.security.cryptoFramework"
+import cryptoFramework from '@ohos.security.cryptoFramework';
+import { BusinessError } from '@ohos.base';
 
 function stringToUint8Array(str: string) {
   let arr = new Uint8Array(str.length);
@@ -2438,7 +2467,8 @@ function doLoopHmacPromise() {
 3. 接受DataBlob数据，通过接口`setSeed`，为随机数生成池设置种子。
 
 ```ts
-import cryptoFramework from "@ohos.security.cryptoFramework"
+import cryptoFramework from '@ohos.security.cryptoFramework';
+import { BusinessError } from '@ohos.base';
 
 // Generate a random number in promise mode.
 function doRandByPromise() {
