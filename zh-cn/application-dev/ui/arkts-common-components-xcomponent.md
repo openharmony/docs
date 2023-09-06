@@ -299,3 +299,9 @@ struct Index {
 ```
 
 ![zh-cn_image_0000001511900428](figures/zh-cn_image_0000001511900428.png)
+
+## 相关实例
+
+针对创建新窗口，有以下相关实例可供参考：
+
+- [浏览器（ArkTS）（Full SDK）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Web/Browser)
