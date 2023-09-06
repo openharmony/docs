@@ -33,7 +33,7 @@ on(type: 'drag', callback: Callback&lt;DragState&gt;): void;
 
 ```js
 try {
-  dragInteraction.on('drag', (data) => {
+  dragInteraction.on('drag', (data : DragState) => {
     console.log(`Drag interaction event: ${JSON.stringify(data)}`);
   });
 } catch (error) {
@@ -60,25 +60,25 @@ off(type: 'drag', callback?: Callback&lt;DragState&gt;): void;
 
 ```js
 // 取消注册单个回调函数
-function callback(event) {
+function single_callback(event : DragState) {
   console.log(`Drag interaction event: ${JSON.stringify(event)}`);
   return false;
 }
 try {
-  dragInteraction.on('drag', callback);
-  dragInteraction.off("drag", callback);
+  dragInteraction.on('drag', single_callback);
+  dragInteraction.off("drag", single_callback);
 } catch (error) {
   console.log(`Execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 ```js
 // 取消注册所有回调函数
-function callback(event) {
+function all_callback(event : DragState) {
   console.log(`Drag interaction event: ${JSON.stringify(event)}`);
   return false;
 }
 try {
-  dragInteraction.on('drag', callback);
+  dragInteraction.on('drag', all_callback);
   dragInteraction.off("drag");
 } catch (error) {
   console.log(`Execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
