@@ -138,7 +138,7 @@ async function example() {
 
 save(option?: PhotoSaveOptions) : Promise&lt;Array&lt;string&gt;&gt;
 
-Saves one or more images or videos in a **photoPicker** page. This API uses a promise to return the result. You can pass in **PhotoSaveOptions** to specify the file names of the images or videos to save. The **save()** API saves the file in the file manager, not in the Gallery.
+Saves one or more images or videos in a **photoPicker** page. This API uses a promise to return the result. You can pass in **PhotoSaveOptions** to specify the file names of the images or videos to save. The **save()** API saves files in the file manager, not in **Gallery**.
 
 **System capability**: SystemCapability.FileManagement.UserFileService
 
@@ -177,7 +177,7 @@ async function example() {
 
 save(option: PhotoSaveOptions, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;) : void
 
-Saves one or more images or videos in a **photoPicker** page. This API uses an asynchronous callback to return the result. You can pass in **PhotoSaveOptions** to specify the file names of the images or videos to save. The **save()** API saves the file in the file manager, not in the Gallery.
+Saves one or more images or videos in a **photoPicker** page. This API uses an asynchronous callback to return the result. You can pass in **PhotoSaveOptions** to specify the file names of the images or videos to save. The **save()** API saves files in the file manager, not in **Gallery**.
 
 **System capability**: SystemCapability.FileManagement.UserFileService
 
@@ -213,7 +213,7 @@ async function example() {
 
 save(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;) : void
 
-Saves one or more images or videos in a **photoPicker** page. This API uses an asynchronous callback to return the result. The **save()** API saves the file in the file manager, not in the Gallery.
+Saves one or more images or videos in a **photoPicker** page. This API uses an asynchronous callback to return the result. The **save()** API saves files in the file manager, not in **Gallery**.
 
 **System capability**: SystemCapability.FileManagement.UserFileService
 
@@ -244,7 +244,7 @@ async function example() {
 
 ## DocumentViewPicker
 
-Provides APIs for selecting and saving non-media files, for example, documents in a variety of formats. Before using the APIs of **DocumentViewPicker**, you need to create a **DocumentViewPicker** instance.
+Provides the **DocumentViewPicker** object for selecting and saving documents in different formats. Before using the APIs of **DocumentViewPicker**, you need to create a **DocumentViewPicker** instance.
 
 **System capability**: SystemCapability.FileManagement.UserFileService
 
@@ -715,8 +715,8 @@ Defines the options for selecting images or videos.
 
 | Name                   | Type               | Mandatory| Description                         |
 | ----------------------- | ------------------- | ---- | -------------------------------- |
-| MIMEType?              | [PhotoViewMIMETypes](#photoviewmimetypes)   | No  | Available media file types. **IMAGE_VIDEO_TYPE** is used by default.|
-| maxSelectNumber?       | number | No  | Maximum number of media files to select. The default value is **50**, and the maximum value is **500**.     |
+| MIMEType              | [PhotoViewMIMETypes](#photoviewmimetypes)   | No  | Available media file types. **IMAGE_VIDEO_TYPE** is used by default.|
+| maxSelectNumber       | number | No  | Maximum number of media files to select. The default value is **50**, and the maximum value is **500**.     |
 
 ## PhotoSelectResult
 
@@ -737,13 +737,19 @@ Defines the options for saving images or videos.
 
 | Name                   | Type               | Mandatory|  Description                          |
 | ----------------------- | ------------------- | ---- | ---------------------------- |
-| newFileNames?              | Array&lt;string&gt;    | No | Names of the files to save. If this parameter is not specified, the user needs to enter the file names.|
+| newFileNames              | Array&lt;string&gt;    | No | Names of the files to save. If this parameter is not specified, the user needs to enter the file names.|
 
 ## DocumentSelectOptions
 
-Defines the options for selecting documents. Currently, this parameter cannot be configured.
+Defines the options for selecting documents.
 
 **System capability**: SystemCapability.FileManagement.UserFileService
+
+| Name                   | Type               | Mandatory| Description                         |
+| ----------------------- | ------------------- | ---- | -------------------------------- |
+| maxSelectNumber       | number  | No  | Maximum number of files or directories that can be selected.<br>Value range: 1–500<br>Maximum value: **500**     |
+| defaultFilePathUri    | string  | No  | Path of the file or directory to select.|
+| fileSuffixFilters     | Array&lt;string&gt; | No  | File name extensions of the documents to select.|
 
 ## DocumentSaveOptions
 
@@ -753,7 +759,9 @@ Defines the options for saving documents.
 
 | Name                   | Type               | Mandatory|  Description                          |
 | ----------------------- | ------------------- | ---- | ---------------------------- |
-| newFileNames?            | Array&lt;string&gt;    | No  | Names of the documents to save. If this parameter is not specified, the user needs to enter the document names. |
+| newFileNames            | Array&lt;string&gt;    | No  | Names of the documents to save. If this parameter is not specified, the user needs to enter the document names. |
+| defaultFilePathUri    | string  | No  | Path of the file or directory to save.|
+| fileSuffixChoices     | Array&lt;string&gt; | No  | File name extensions of the documents to save.|
 
 ## AudioSelectOptions
 
@@ -769,4 +777,4 @@ Defines the options for saving audio files.
 
 | Name                   | Type               | Mandatory|  Description                          |
 | ----------------------- | ------------------- | ---- | ---------------------------- |
-| newFileNames?              | Array&lt;string&gt;    | No | Name of the audio files to save. If this parameter is not specified, the user needs to enter the file names.|
+| newFileNames              | Array&lt;string&gt;    | No | Name of the audio files to save. If this parameter is not specified, the user needs to enter the file names.|
