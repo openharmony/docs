@@ -3195,7 +3195,14 @@ function getSupportedBeautyTypes(captureSession: camera.CaptureSession): Array<c
 
 getSupportedBeautyRange(type: BeautyType): Array\<number\>
 
-获取指定美颜效果的范围值。
+获取指定美颜效果的范围值。在不同设备返回的美颜强度有所不同，下表仅做示例。
+
+| 传入参数           | 示例返回值    | 返回值说明     |
+| ----------------| ----  | ---------|
+| AUTO           | [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]     |美颜类型为自动时支持的美颜强度，0表明关闭美颜，其余正值表明自动的美颜强度。    |
+| SKIN_SMOOTH    | [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]     | 美颜类型为光滑时支持的美颜强度，0表明关闭光滑，其余正值表明光滑的美颜强度。    |
+| FACE_SLENDER   | [0, 1, 2, 3, 4, 5]      | 美颜类型为瘦脸时支持的美颜强度，0表明关闭瘦脸，其余正值表明瘦脸的美颜强度。   |
+| SKIN_TONE      | [-1, 16242611]      | 美颜类型为美肤时支持的美颜强度，-1表明关闭美肤，其余非负值为使用RGB表示的美肤美颜强度，<br> 16242611转化为16进制为0xF7D7B3，F7为R通道值，D7为G通道值，B3位B通道值。    |
 
 **系统接口：** 此接口为系统接口。
 
@@ -3238,7 +3245,7 @@ function getSupportedBeautyRange(captureSession: camera.CaptureSession): Array<n
 
 setBeauty(type: BeautyType, value: number): void
 
-设置美颜类型以及对应的美颜强度
+设置美颜类型以及对应的美颜强度。将通过[getSupportedBeautyTypes](#getsupportedbeautytypes)获取得到的[BeautyType](#beautytype)都关闭，表明当前美颜关闭；若有一种美颜类型未关闭，表明当前美颜打开。
 
 **系统接口：** 此接口为系统接口。
 
