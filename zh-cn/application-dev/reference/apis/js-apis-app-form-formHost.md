@@ -11,7 +11,6 @@ formHost模块提供了卡片使用方相关接口的能力，包括对使用方
 
 ```ts
 import formHost from '@ohos.app.form.formHost';
-import Base from '@ohos.base';
 ```
 
 ## deleteForm
@@ -50,6 +49,7 @@ deleteForm(formId: string, callback: AsyncCallback&lt;void&gt;): void
 
 ```ts
 import formHost from '@ohos.app.form.formHost';
+import Base from '@ohos.base';
 
 try {
   let formId: string = '12400633174999288';
@@ -107,6 +107,7 @@ deleteForm(formId: string): Promise&lt;void&gt;
 
 ```ts
 import formHost from '@ohos.app.form.formHost';
+import Base from '@ohos.base';
 
 try {
   let formId: string = '12400633174999288';
@@ -156,6 +157,7 @@ releaseForm(formId: string, callback: AsyncCallback&lt;void&gt;): void
 
 ```ts
 import formHost from '@ohos.app.form.formHost';
+import Base from '@ohos.base';
 
 try {
   let formId: string = '12400633174999288';
@@ -206,6 +208,7 @@ releaseForm(formId: string, isReleaseCache: boolean, callback: AsyncCallback&lt;
 
 ```ts
 import formHost from '@ohos.app.form.formHost';
+import Base from '@ohos.base';
 
 try {
   let formId: string = '12400633174999288';
@@ -261,6 +264,7 @@ releaseForm(formId: string, isReleaseCache?: boolean): Promise&lt;void&gt;
 
 ```ts
 import formHost from '@ohos.app.form.formHost';
+import Base from '@ohos.base';
 
 try {
   let formId: string = '12400633174999288';
@@ -310,6 +314,7 @@ requestForm(formId: string, callback: AsyncCallback&lt;void&gt;): void
 
 ```ts
 import formHost from '@ohos.app.form.formHost';
+import Base from '@ohos.base';
 
 try {
   let formId: string = '12400633174999288';
@@ -364,6 +369,7 @@ requestForm(formId: string): Promise&lt;void&gt;
 
 ```ts
 import formHost from '@ohos.app.form.formHost';
+import Base from '@ohos.base';
 
 try {
   let formId: string = '12400633174999288';
@@ -414,6 +420,7 @@ castToNormalForm(formId: string, callback: AsyncCallback&lt;void&gt;): void
 
 ```ts
 import formHost from '@ohos.app.form.formHost';
+import Base from '@ohos.base';
 
 try {
   let formId: string = '12400633174999288';
@@ -468,6 +475,7 @@ castToNormalForm(formId: string): Promise&lt;void&gt;
 
 ```ts
 import formHost from '@ohos.app.form.formHost';
+import Base from '@ohos.base';
 
 try {
   let formId: string = '12400633174999288';
@@ -515,6 +523,7 @@ notifyVisibleForms(formIds: Array&lt;string&gt;, callback: AsyncCallback&lt;void
 
 ```ts
 import formHost from '@ohos.app.form.formHost';
+import Base from '@ohos.base';
 
 try {
   let formId: string[] = ['12400633174999288'];
@@ -567,6 +576,7 @@ notifyVisibleForms(formIds: Array&lt;string&gt;): Promise&lt;void&gt;
 
 ```ts
 import formHost from '@ohos.app.form.formHost';
+import Base from '@ohos.base';
 
 try {
   let formId: string[] = ['12400633174999288'];
@@ -614,6 +624,7 @@ notifyInvisibleForms(formIds: Array&lt;string&gt;, callback: AsyncCallback&lt;vo
 
 ```ts
 import formHost from '@ohos.app.form.formHost';
+import Base from '@ohos.base';
 
 try {
   let formId: string[] = ['12400633174999288'];
@@ -666,6 +677,7 @@ notifyInvisibleForms(formIds: Array&lt;string&gt;): Promise&lt;void&gt;
 
 ```ts
 import formHost from '@ohos.app.form.formHost';
+import Base from '@ohos.base';
 
 try {
   let formId: string[] = ['12400633174999288'];
@@ -714,6 +726,7 @@ enableFormsUpdate(formIds: Array&lt;string&gt;, callback: AsyncCallback&lt;void&
 
 ```ts
 import formHost from '@ohos.app.form.formHost';
+import Base from '@ohos.base';
 
 try {
   let formId: string[] = ['12400633174999288'];
@@ -767,6 +780,7 @@ enableFormsUpdate(formIds: Array&lt;string&gt;): Promise&lt;void&gt;
 
 ```ts
 import formHost from '@ohos.app.form.formHost';
+import Base from '@ohos.base';
 
 try {
   let formId: string[] = ['12400633174999288'];
@@ -816,6 +830,7 @@ disableFormsUpdate(formIds: Array&lt;string&gt;, callback: AsyncCallback&lt;void
 
 ```ts
 import formHost from '@ohos.app.form.formHost';
+import Base from '@ohos.base';
 
 try {
   let formId: string[] = ['12400633174999288'];
@@ -870,6 +885,7 @@ disableFormsUpdate(formIds: Array&lt;string&gt;): Promise&lt;void&gt;
 
 ```ts
 import formHost from '@ohos.app.form.formHost';
+import Base from '@ohos.base';
 
 try {
   let formId: string[] = ['12400633174999288'];
@@ -910,6 +926,7 @@ isSystemReady(callback: AsyncCallback&lt;void&gt;): void
 
 ```ts
 import formHost from '@ohos.app.form.formHost';
+import Base from '@ohos.base';
 
 try {
   formHost.isSystemReady((error: Base.BusinessError) => {
@@ -948,6 +965,7 @@ isSystemReady(): Promise&lt;void&gt;
 
 ```ts
 import formHost from '@ohos.app.form.formHost';
+import Base from '@ohos.base';
 
 try {
   formHost.isSystemReady().then(() => {
@@ -994,6 +1012,7 @@ getAllFormsInfo(callback: AsyncCallback&lt;Array&lt;formInfo.FormInfo&gt;&gt;): 
 ```ts
 import formHost from '@ohos.app.form.formHost';
 import formInfo from '@ohos.app.form.formInfo';
+import Base from '@ohos.base';
 
 try {
   formHost.getAllFormsInfo((error: Base.BusinessError, data: formInfo.FormInfo[]) => {
@@ -1041,6 +1060,7 @@ getAllFormsInfo(): Promise&lt;Array&lt;formInfo.FormInfo&gt;&gt;
 ```ts
 import formHost from '@ohos.app.form.formHost';
 import formInfo from '@ohos.app.form.formInfo';
+import Base from '@ohos.base';
 
 try {
   formHost.getAllFormsInfo().then((data: formInfo.FormInfo[]) => {
@@ -1089,6 +1109,7 @@ getFormsInfo(bundleName: string, callback: AsyncCallback&lt;Array&lt;formInfo.Fo
 ```ts
 import formHost from '@ohos.app.form.formHost';
 import formInfo from '@ohos.app.form.formInfo';
+import Base from '@ohos.base';
 
 try {
   formHost.getFormsInfo('com.example.ohos.formjsdemo', (error: Base.BusinessError, data: formInfo.FormInfo[]) => {
@@ -1140,6 +1161,7 @@ getFormsInfo(bundleName: string, moduleName: string, callback: AsyncCallback&lt;
 ```ts
 import formHost from '@ohos.app.form.formHost';
 import formInfo from '@ohos.app.form.formInfo';
+import Base from '@ohos.base';
 
 try {
   formHost.getFormsInfo('com.example.ohos.formjsdemo', 'entry', (error: Base.BusinessError, data: formInfo.FormInfo[]) => {
@@ -1196,6 +1218,7 @@ getFormsInfo(bundleName: string, moduleName?: string): Promise&lt;Array&lt;formI
 ```ts
 import formHost from '@ohos.app.form.formHost';
 import formInfo from '@ohos.app.form.formInfo';
+import Base from '@ohos.base';
 
 try {
   formHost.getFormsInfo('com.example.ohos.formjsdemo', 'entry').then((data: formInfo.FormInfo[]) => {
@@ -1242,6 +1265,7 @@ deleteInvalidForms(formIds: Array&lt;string&gt;, callback: AsyncCallback&lt;numb
 
 ```ts
 import formHost from '@ohos.app.form.formHost';
+import Base from '@ohos.base';
 
 try {
   let formIds: string[] = new Array('12400633174999288', '12400633174999289');
@@ -1296,6 +1320,7 @@ deleteInvalidForms(formIds: Array&lt;string&gt;): Promise&lt;number&gt;
 
 ```ts
 import formHost from '@ohos.app.form.formHost';
+import Base from '@ohos.base';
 
 try {
   let formIds: string[] = new Array('12400633174999288', '12400633174999289');
@@ -1346,6 +1371,7 @@ acquireFormState(want: Want, callback: AsyncCallback&lt;formInfo.FormStateInfo&g
 import formHost from '@ohos.app.form.formHost';
 import Want from '@ohos.app.ability.Want';
 import formInfo from '@ohos.app.form.formInfo';
+import Base from '@ohos.base';
 
 let want: Want = {
   'deviceId': '',
@@ -1412,6 +1438,7 @@ acquireFormState(want: Want): Promise&lt;formInfo.FormStateInfo&gt;
 import formHost from '@ohos.app.form.formHost';
 import Want from '@ohos.app.ability.Want';
 import formInfo from '@ohos.app.form.formInfo';
+import Base from '@ohos.base';
 
 let want: Want = {
   'deviceId': '',
@@ -1538,6 +1565,7 @@ notifyFormsVisible(formIds: Array&lt;string&gt;, isVisible: boolean, callback: A
 
 ```ts
 import formHost from '@ohos.app.form.formHost';
+import Base from '@ohos.base';
 
 let formIds: string[] = new Array('12400633174999288', '12400633174999289');
 try {
@@ -1592,6 +1620,7 @@ notifyFormsVisible(formIds: Array&lt;string&gt;, isVisible: boolean): Promise&lt
 
 ```ts
 import formHost from '@ohos.app.form.formHost';
+import Base from '@ohos.base';
 
 let formIds: string[] = new Array('12400633174999288', '12400633174999289');
 try {
@@ -1641,6 +1670,7 @@ notifyFormsEnableUpdate(formIds: Array&lt;string&gt;, isEnableUpdate: boolean, c
 
 ```ts
 import formHost from '@ohos.app.form.formHost';
+import Base from '@ohos.base';
 
 let formIds: string[] = new Array('12400633174999288', '12400633174999289');
 try {
@@ -1695,6 +1725,7 @@ notifyFormsEnableUpdate(formIds: Array&lt;string&gt;, isEnableUpdate: boolean): 
 
 ```ts
 import formHost from '@ohos.app.form.formHost';
+import Base from '@ohos.base';
 
 let formIds: string[] = new Array('12400633174999288', '12400633174999289');
 try {
@@ -1743,6 +1774,7 @@ shareForm(formId: string, deviceId: string, callback: AsyncCallback&lt;void&gt;)
 
 ```ts
 import formHost from '@ohos.app.form.formHost';
+import Base from '@ohos.base';
 
 let formId: string = '12400633174999288';
 let deviceId: string = 'EFC11C0C53628D8CC2F8CB5052477E130D075917034613B9884C55CD22B3DEF2';
@@ -1798,6 +1830,7 @@ shareForm(formId: string, deviceId: string): Promise&lt;void&gt;
 
 ```ts
 import formHost from '@ohos.app.form.formHost';
+import Base from '@ohos.base';
 
 let formId: string = '12400633174999288';
 let deviceId: string = 'EFC11C0C53628D8CC2F8CB5052477E130D075917034613B9884C55CD22B3DEF2';
@@ -1847,6 +1880,7 @@ notifyFormsPrivacyProtected(formIds: Array\<string>, isProtected: boolean, callb
 
 ```ts
 import formHost from '@ohos.app.form.formHost';
+import Base from '@ohos.base';
 
 let formIds: string[] = new Array('12400633174999288', '12400633174999289');
 try {
@@ -1898,6 +1932,7 @@ notifyFormsPrivacyProtected(formIds: Array\<string\>, isProtected: boolean): Pro
 
 ```ts
 import formHost from '@ohos.app.form.formHost';
+import Base from '@ohos.base';
 
 let formIds: string[] = new Array('12400633174999288', '12400633174999289');
 try {
@@ -1996,6 +2031,7 @@ acquireFormData(formId: string): Promise<{[key: string]: Object}>;
 
 ```ts
 import formHost from '@ohos.app.form.formHost';
+import Base from '@ohos.base';
 
 let formId: string = '12400633174999288';
 try {
