@@ -20,6 +20,10 @@
 
    API Version 10: 右边距由24vp变更为0。
 
+**变更原因**
+
+从API Version 9开始，会对Navigation的自定义标题以及自定义Menu添加边距，影响开发者对自定义组件的使用。从4.0.10.6版本对该问题进行优化，针对API Version 10的应用去掉自定义标题标题和自定义Menu的偏移。
+
 **变更影响**
 
 该变更会导致API Version 10中使用Navigation自定义标题位置发生变化，显示会偏左和偏上。针对API Version 9及以下应用无影响。
@@ -120,8 +124,12 @@ API Version 10: NavigationTitleMode.Mini不带返回键标题栏显示
 
    API Version 10：标题栏左间距变更24vp变更为0,标题栏上偏移该为0。
 
+**变更原因**
+
+从API Version 9开始，会对Navigation的自定义标题添加边距，影响开发者对自定义组件的使用。从4.0.10.6版本对该问题进行优化，针对API Version 10的应用去掉自定义标题标题的偏移。
+
 **变更影响**
-1. NavDestination标题栏会移到左上
+NavDestination自定义标题栏会移到左上
 
 **适配方法**
 
