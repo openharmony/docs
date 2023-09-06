@@ -100,7 +100,7 @@
     
 2. 调用Native接口，传入JS的资源对象。示例如下:
 
-    ```js
+    ```ts
     import testNapi from 'libentry.so'
     import image from '@ohos.multimedia.image';
 
@@ -108,7 +108,6 @@
     @Component
     struct Index {
     @State message: string = 'IMAGE'
-    @State _PixelMap: image.PixelMap = undefined
 
     build() {
         Row() {
@@ -117,21 +116,19 @@
             .fontSize(50)
             .fontWeight(FontWeight.Bold)
             .onClick(() => {
-                const color = new ArrayBuffer(96);
-                let opts = { alphaType: 0, editable: true, pixelFormat: 4, scaleMode: 1, size: { height: 4, width: 6 } }
+                const color : ArrayBuffer = new ArrayBuffer(96);
+                let opts: image.InitializationOptions = { alphaType: 0, editable: true, pixelFormat: 4, scaleMode: 1, size: { height: 4, width: 6 } }
                 image.createPixelMap(color, opts)
-                .then( pixelmap => {
-                    this._PixelMap = pixelmap;
+                .then( (pixelmap : image.PixelMap) => {
+                    testNapi.testGetImageInfo(pixelmap);
+                    console.info("Test GetImageInfo success");
+    
+                    testNapi.testAccessPixels(pixelmap);
+                    console.info("Test AccessPixels success");
+    
+                    testNapi.testUnAccessPixels(pixelmap);
+                    console.info("Test UnAccessPixels success");
                 })
-
-                testNapi.testGetImageInfo(this._PixelMap);
-                console.info("Test GetImageInfo success");
-
-                testNapi.testAccessPixels(this._PixelMap);
-                console.info("Test AccessPixels success");
-
-                testNapi.testUnAccessPixels(this._PixelMap);
-                console.info("Test UnAccessPixels success");
             })
         }
         .width('100%')
