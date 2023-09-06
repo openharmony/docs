@@ -972,9 +972,6 @@
       - [@ohos.screen (屏幕)](reference/apis/js-apis-screen.md)
       - [@ohos.screenshot (屏幕截图)](reference/apis/js-apis-screenshot.md)
       - [@ohos.window (窗口)](reference/apis/js-apis-window.md)
-      - webgl
-        - [webgl (WebGL)](reference/apis/js-apis-webgl.md)
-        - [webgl2 (WebGL2)](reference/apis/js-apis-webgl2.md)
     - 媒体
       - [@ohos.app.ability.MediaControlExtensionAbility (播控扩展能力)](reference/apis/js-apis-app-ability-MediaControlExtensionAbility.md)
       - [@ohos.multimedia.audio (音频管理)](reference/apis/js-apis-audio.md)
