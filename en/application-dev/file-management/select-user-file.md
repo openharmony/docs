@@ -1,6 +1,6 @@
 # Selecting User Files
 
-If your application needs to support share and saving of user files (such as images and videos), you can use OpenHarmony [FilePicker](../reference/apis/js-apis-file-picker.md) to implement selection and saving of user files. No permission is required if your application uses **FilePicker** to access files.
+If your application needs to support share and saving of user files (such as images and videos), you can use OpenHarmony [FilePicker](../reference/apis/js-apis-file-picker.md) to implement selection and saving of user files. You do not need to apply for any permission for this type of APIs.
 
 The **FilePicker** provides the following interfaces by file type:
 
@@ -25,24 +25,24 @@ The **FilePicker** provides the following interfaces by file type:
    const photoSelectOptions = new picker.PhotoSelectOptions();
    ```
 
-3. Set the file type and the maximum number of media files to select.<br>
+3. Set the file type and the maximum number of media files to select.
+   
    For example, select a maximum of five images. For details about the media file types, see [PhotoViewMIMETypes](../reference/apis/js-apis-file-picker.md#photoviewmimetypes).
-
    ```ts
    photoSelectOptions.MIMEType = picker.PhotoViewMIMETypes.IMAGE_TYPE; // Select images.
    photoSelectOptions.maxSelectNumber = 5; // Set the maximum number of images to select.
    ```
 
 4. Create a **photoPicker** instance and call [select()](../reference/apis/js-apis-file-picker.md#select) to open the **FilePicker** page for the user to select files. After the files are selected, [PhotoSelectResult](../reference/apis/js-apis-file-picker.md#photoselectresult) is returned.
-   
+
    The permission on the URIs returned by **select()** is read-only. Further file operations can be performed based on the URIs in the **PhotoSelectResult**. Note that the URI cannot be directly used in the **picker** callback to open a file. You need to define a global variable to save the URI and use a button to trigger file opening.
 
    ```ts
-   let uri = null;
+   let uris = null;
    const photoViewPicker = new picker.PhotoViewPicker();
    photoViewPicker.select(photoSelectOptions).then((photoSelectResult) => {
-     uri = photoSelectResult.photoUris[0];
-     console.info('photoViewPicker.select to file succeed and uri is:' + uri);
+     uris = photoSelectResult.photoUris;
+     console.info('photoViewPicker.select to file succeed and uris are:' + uris);
    }).catch((err) => {
      console.error(`Invoke photoViewPicker.select failed, code is ${err.code}, message is ${err.message}`);
    })
@@ -77,6 +77,9 @@ The **FilePicker** provides the following interfaces by file type:
 
    ```ts
    const documentSelectOptions = new picker.DocumentSelectOptions(); 
+   documentSelectOptions.maxSelectNumber = 5; // (Optional) Maximum number of documents to select.
+   documentSelectOptions.defaultFilePathUri = "file://docs/storage/Users/currentUser/test"; // (Optional) Path of the file or directory to select.
+   documentSelectOptions.fileSuffixFilters = ['.png', '.txt', '.mp4']; // (Optional) File name extensions of the documents to select.
    ```
 
 3. Create a **documentViewPicker** instance, and call [**select()**](../reference/apis/js-apis-file-picker.md#select-3) to open the **FilePicker** page for the user to select documents. After the documents are selected, a result set containing the file URIs is returned.
@@ -85,16 +88,12 @@ The **FilePicker** provides the following interfaces by file type:
    
    For example, you can use [file management APIs](../reference/apis/js-apis-file-fs.md) to obtain file attributes, such as the file size, access time, and last modification time, based on the URI. If you need to obtain the file name, use [startAbilityForResult](../../application-dev/application-models/uiability-intra-device-interaction.md).
 
-   > **NOTE**
-   >
-   > Currently, **DocumentSelectOptions** is not configurable. By default, all types of user files are selected.
-
    ```ts
-   let uri = null;
+   let uris = null;
    const documentViewPicker = new picker.DocumentViewPicker(); // Create a documentViewPicker instance.
    documentViewPicker.select(documentSelectOptions).then((documentSelectResult) => {
-     uri = documentSelectResult[0];
-     console.info('documentViewPicker.select to file succeed and uri is:' + uri);
+     uris = documentSelectResult;
+     console.info('documentViewPicker.select to file succeed and uris are:' + uris);
    }).catch((err) => {
      console.error(`Invoke documentViewPicker.select failed, code is ${err.code}, message is ${err.message}`);
    })
@@ -172,7 +171,7 @@ The **FilePicker** provides the following interfaces by file type:
    let uri = null;
    const audioViewPicker = new picker.AudioViewPicker();
    audioViewPicker.select(audioSelectOptions).then(audioSelectResult => {
-     uri = audioSelectOptions[0];
+     uri = audioSelectResult[0];
      console.info('audioViewPicker.select to file succeed and uri is:' + uri);
    }).catch((err) => {
      console.error(`Invoke audioViewPicker.select failed, code is ${err.code}, message is ${err.message}`);
