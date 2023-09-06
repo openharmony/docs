@@ -937,7 +937,7 @@ function preLaunch(context: featureAbility.Context): void {
     cameraManager.prelaunch();
   } catch (error) {
     let err = error as BusinessError;
-    console.error(`prelaunch error. Code: ${error.code}, message: ${error.message}`);
+    console.error(`prelaunch error. Code: ${err.code}, message: ${err.message}`);
   }
 }
 ```
