@@ -10,8 +10,9 @@
 
 ## 导入模块
 
-```js
+```ts
 import cooperate from '@ohos.cooperate'
+import BusinessError from '@ohos.base'
 ```
 
 ## cooperate.prepare
@@ -30,9 +31,9 @@ prepare(callback: AsyncCallback&lt;void&gt;): void;
 
 **示例**：
 
-```js
+```ts
 try {
-  cooperate.prepare((error) => {
+  cooperate.prepare((error: BusinessError) => {
     if (error) {
       console.log(`Keyboard mouse crossing prepare failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
@@ -62,11 +63,11 @@ prepare(): Promise&lt;void&gt;
 
 **示例**：
 
-```js
+```ts
 try {
   cooperate.prepare().then(() => {
     console.log(`Keyboard mouse crossing prepare success.`);
-  }, (error) => {
+  }, (error: BusinessError) => {
     console.log(`Keyboard mouse crossing prepare failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
   });
 } catch (error) {
@@ -89,9 +90,9 @@ unprepare(callback: AsyncCallback&lt;void&gt;): void;
 
 **示例**：
 
-```js
+```ts
 try {
-  cooperate.unprepare((error) => {
+  cooperate.unprepare((error: BusinessError) => {
     if (error) {
       console.log(`Keyboard mouse crossing unprepare failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
@@ -117,11 +118,11 @@ unprepare(): Promise&lt;void&gt;;
 | ------------------- | --------------------------------------------- |
 | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
-```js
+```ts
 try {
   cooperate.unprepare().then(() => {
     console.log(`Keyboard mouse crossing unprepare success.`);
-  }, (error) => {
+  }, (error: BusinessError) => {
     console.log(`Keyboard mouse crossing unprepare failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
   });
 } catch (error) {
@@ -156,11 +157,11 @@ activate(targetNetworkId: string, inputDeviceId: number, callback: AsyncCallback
 
 **示例**：
 
-```js
+```ts
 let targetNetworkId = "networkId";
 let inputDeviceId = 0;
 try {
-  cooperate.activate(targetNetworkId, inputDeviceId, (error) => {
+  cooperate.activate(targetNetworkId, inputDeviceId, (error: BusinessError) => {
     if (error) {
       console.log(`Start Keyboard mouse crossing failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
@@ -205,13 +206,13 @@ activate(targetNetworkId: string, inputDeviceId: number): Promise&lt;void&gt;;
 
 **示例**：
 
-```js
+```ts
 let targetNetworkId = "networkId";
 let inputDeviceId = 0;
 try {
  cooperate.activate(targetNetworkId, inputDeviceId).then(() => {
     console.log(`Start Keyboard mouse crossing success.`);
-  }, (error) => {
+  }, (error: BusinessError) => {
     console.log(`Start Keyboard mouse crossing failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
   });
 } catch (error) {
@@ -238,9 +239,9 @@ deactivate(isUnchained: boolean, callback: AsyncCallback&lt;void&gt;): void;
 
 **示例**：
 
-```js
+```ts
 try {
-  cooperate.deactivate(false, (error) => {
+  cooperate.deactivate(false, (error: BusinessError) => {
     if (error) {
       console.log(`Stop Keyboard mouse crossing failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
@@ -278,11 +279,11 @@ deactivate(isUnchained: boolean): Promise&lt;void&gt;;
 
 **示例**：
 
-```js
+```ts
 try {
   cooperate.deactivate(false).then(() => {
     console.log(`Stop Keyboard mouse crossing success.`);
-  }, (error) => {
+  }, (error: BusinessError) => {
     console.log(`Stop Keyboard mouse crossing failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
   });
 } catch (error) {
@@ -307,10 +308,10 @@ getCrossingSwitchState(networkId: string, callback: AsyncCallback&lt;boolean&gt;
 
 **示例**：
 
-```js
+```ts
 let deviceDescriptor = "networkId";
 try {
-  cooperate.getCrossingSwitchState(deviceDescriptor, (error, data) => {
+  cooperate.getCrossingSwitchState(deviceDescriptor, (error: BusinessError, data: boolean) => {
     if (error) {
       console.log(`Get the status failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
@@ -348,12 +349,12 @@ getCrossingSwitchState(networkId: string): Promise&lt;boolean&gt;;
 
 **示例**：
 
-```js
+```ts
 let deviceDescriptor = "networkId";
 try {
-  cooperate.getCrossingSwitchState(deviceDescriptor).then((data) => {
+  cooperate.getCrossingSwitchState(deviceDescriptor).then((data: boolean) => {
     console.log(`Get the status success, data: ${JSON.stringify(data)}`);
-  }, (error) => {
+  }, (error: BusinessError) => {
     console.log(`Get the status failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
   });
 } catch (error) {
@@ -380,11 +381,13 @@ on(type: 'cooperate', callback: Callback&lt;{ networkId: string, msg: CooperateM
 
 **示例**：
 
-```js
+```ts
+function callback(networkId: string, msg: cooperate.CooperateMsg) {
+  console.log(`Keyboard mouse crossing event: ${JSON.stringify(networkId)}`);
+  return false;
+}
 try {
-  cooperate.on('cooperate', (data) => {
-    console.log(`Keyboard mouse crossing event: ${JSON.stringify(data)}`);
-  });
+  cooperate.on('cooperate', callback);
 } catch (error) {
   console.log(`Register failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
@@ -409,28 +412,32 @@ off(type: 'cooperate', callback?: Callback&lt;void&gt;): void;
 
 **示例**：
 
-```js
+```ts
 // 取消注册单个回调函数
-function callback(event) {
-  console.log(`Keyboard mouse crossing event: ${JSON.stringify(event)}`);
+function callbackOn(networkId: string, msg: cooperate.CooperateMsg) {
+  console.log(`Keyboard mouse crossing event: ${JSON.stringify(networkId)}`);
+  return false;
+}
+function callbackOff() {
+  console.log(`Keyboard mouse crossing event`);
   return false;
 }
 try {
-  cooperate.on('cooperate', callback);
-  cooperate.off("cooperate", callback);
+  cooperate.on('cooperate', callbackOn);
+  cooperate.off('cooperate', callbackOff);
 } catch (error) {
   console.log(`Execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
-```js
+```ts
 // 取消注册所有回调函数
-function callback(event) {
-  console.log(`Keyboard mouse crossing event: ${JSON.stringify(event)}`);
+function callbackOn(networkId: string, msg: cooperate.CooperateMsg) {
+  console.log(`Keyboard mouse crossing event: ${JSON.stringify(networkId)}`);
   return false;
 }
 try {
-  cooperate.on('cooperate', callback);
-  cooperate.off("cooperate");
+  cooperate.on('cooperate', callbackOn);
+  cooperate.off('cooperate');
 } catch (error) {
   console.log(`Execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
