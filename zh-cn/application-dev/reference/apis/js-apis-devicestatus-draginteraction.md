@@ -10,7 +10,7 @@
 
 ## 导入模块
 
-```js
+```ts
 import dragInteraction from '@ohos.deviceStatus.dragInteraction'
 ```
 
@@ -28,7 +28,7 @@ import dragInteraction from '@ohos.deviceStatus.dragInteraction'
 
 **示例**：
 
-```js
+```ts
 enum DragState {
     MSG_DRAG_STATE_START = 1,
     MSG_DRAG_STATE_STOP = 2,
@@ -53,7 +53,7 @@ on(type: 'drag', callback: Callback&lt;DragState&gt;): void;
 
 **示例**：
 
-```js
+```ts
 try {
   dragInteraction.on('drag', (data : DragState) => {
     console.log(`Drag interaction event: ${JSON.stringify(data)}`);
