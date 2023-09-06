@@ -298,7 +298,7 @@ getScanResultsSync(): &nbsp;Array&lt;[WifiScanInfo](#wifiscaninfo)&gt;
 		let len = Object.keys(scanInfoList).length;
         console.log("wifi received scan info: " + len);
 		if(len > 0){
-			for (var i = 0; i < len; ++i) {
+			for (let i = 0; i < len; ++i) {
 				console.info("ssid: " + scanInfoList[i].ssid);
 				console.info("bssid: " + scanInfoList[i].bssid);
 				console.info("capabilities: " + scanInfoList[i].capabilities);
@@ -351,7 +351,7 @@ getScanInfoList(): Array&lt;WifiScanInfo&gt;;
 		let len = Object.keys(scanInfoList).length;
         console.log("wifi received scan info: " + len);
 		if(len > 0){
-			for (var i = 0; i < len; ++i) {
+			for (let i = 0; i < len; ++i) {
 				console.info("ssid: " + scanInfoList[i].ssid);
 				console.info("bssid: " + scanInfoList[i].bssid);
 				console.info("capabilities: " + scanInfoList[i].capabilities);
@@ -1017,7 +1017,7 @@ getCandidateConfigs(): &nbsp;Array&lt;[WifiDeviceConfig](#wifideviceconfig)&gt;
 		let len = Object.keys(configs).length;
         console.log("result len: " + len);
 		if(len > 0){
-			for (var i = 0; i < len; ++i) {
+			for (let i = 0; i < len; ++i) {
 				console.info("ssid: " + configs[i].ssid);
 				console.info("bssid: " + configs[i].bssid);
 			}
