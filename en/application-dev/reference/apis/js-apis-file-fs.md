@@ -314,6 +314,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
       console.info("close file failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("close file success");
+      fs.closeSync(file);
     }
   });
   ```
@@ -460,7 +461,7 @@ Copies a directory to the specified directory. This API uses a promise to return
   | ------ | ------ | ---- | --------------------------- |
   | src | string | Yes   | Application sandbox path of the directory to copy.|
   | dest | string | Yes   | Application sandbox path of the destination directory.|
-  | mode | number | No   | Copy mode. The default value is **0**.<br>- **0**: Throw an exception if a file conflict occurs.<br> Throw an exception if there is a directory with the same name in the destination directory and files with the same name exist in the conflicting directory. All the non-conflicting files in the source directory will be moved to the destination directory, and the non-conflicting files in the destination directory will be retained. The **data** attribute in the error returned provides information about the conflicting files in the Array\<[ConflictFiles](#conflictfiles)> format.<br>- **1**: Forcibly overwrite the files with the same name in the destination directory.<br>If there is a directory with the same name in the destination directory and files with the same name exist in the conflicting directory, all the files with the same name in the destination directory will be overwritten and the non-conflicting files will be retained.|
+  | mode | number | No   | Copy mode. The default value is **0**.<br>- **0**: Throw an exception if a file conflict occurs.<br>Throw an exception if there is a directory with the same name in the destination directory and files with the same name exist in the conflicting directory. All the non-conflicting files in the source directory will be moved to the destination directory, and the non-conflicting files in the destination directory will be retained. The **data** attribute in the error returned provides information about the conflicting files in the Array\<[ConflictFiles](#conflictfiles10)> format.<br>- **1**: Forcibly overwrite the files with the same name in the destination directory. If there is a directory with the same name in the destination directory and files with the same name exist in the conflicting directory, all the files with the same name in the destination directory will be overwritten and the non-conflicting files will be retained.|
 
 **Return value**
 
@@ -494,7 +495,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 ## fs.copyDir<sup>10+</sup>
 
-copyDir(src: string, dest: string, mode?: number, callback: AsyncCallback\<void>): void
+copyDir(src: string, dest: string, mode?: number, callback: AsyncCallback\<void, Array\<ConflictFiles>>): void
 
 Copies a directory to the specified directory. This API uses an asynchronous callback to return the result.
 
@@ -506,8 +507,8 @@ Copies a directory to the specified directory. This API uses an asynchronous cal
   | ------ | ------ | ---- | --------------------------- |
   | src | string | Yes   | Application sandbox path of the directory to copy.|
   | dest | string | Yes   | Application sandbox path of the destination directory.|
-  | mode | number | No   | Copy mode. The default value is **0**.<br>- **0**: Throw an exception if a file conflict occurs.<br> Throw an exception if there is a directory with the same name in the destination directory and files with the same name exist in the conflicting directory. All the non-conflicting files in the source directory will be moved to the destination directory, and the non-conflicting files in the destination directory will be retained. The **data** attribute in the error returned provides information about the conflicting files in the Array\<[ConflictFiles](#conflictfiles)> format.<br>- **1**: Forcibly overwrite the files with the same name in the destination directory.<br>If there is a directory with the same name in the destination directory and files with the same name exist in the conflicting directory, all the files with the same name in the destination directory will be overwritten and the non-conflicting files will be retained.|
-  | callback | AsyncCallback&lt;void&gt; | Yes   | Callback invoked immediately after the directory is copied.             |
+  | mode | number | No   | Copy mode. The default value is **0**.<br>- **0**: Throw an exception if a file conflict occurs.<br>Throw an exception if there is a directory with the same name in the destination directory and files with the same name exist in the conflicting directory. All the non-conflicting files in the source directory will be moved to the destination directory, and the non-conflicting files in the destination directory will be retained. The **data** attribute in the error returned provides information about the conflicting files in the Array\<[ConflictFiles](#conflictfiles10)> format.<br>- **1**: Forcibly overwrite the files with the same name in the destination directory. If there is a directory with the same name in the destination directory and files with the same name exist in the conflicting directory, all the files with the same name in the destination directory will be overwritten and the non-conflicting files will be retained.|
+  | callback | AsyncCallback&lt;void, Array&lt;[ConflictFiles](#conflictfiles10)&gt;&gt; | Yes   | Callback invoked immediately after the directory is copied.             |
 
 **Error codes**
 
@@ -532,6 +533,41 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
     }  
   });
   ```
+
+## fs.dup<sup>10+</sup>
+
+dup(fd: number): File
+
+Opens a **File** object based on the specified FD.
+
+**System capability**: SystemCapability.FileManagement.File.FileIO
+
+**Parameters**
+
+  | Name   | Type    | Mandatory  | Description                         |
+  | ------ | ------ | ---- | --------------------------- |
+  | fd | number | Yes   | FD of the file.|
+
+**Return value**
+
+  | Type                 | Description                          |
+  | ------------------- | ---------------------------- |
+  | [File](#file) | File object opened.|
+
+**Error codes**
+
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+
+**Example**
+
+  ```js
+  // convert fd to file
+  let fd = 0;  // fd comes from other modules
+  let file = fs.dup(fd);
+  console.info("The name of the file is " + file.name);
+  fs.closeSync(file);
+  ```
+
 
 ## fs.mkdir
 
@@ -644,7 +680,7 @@ Opens a file. This API uses a promise to return the result. File uniform resourc
 
   | Type                   | Description         |
   | --------------------- | ----------- |
-  | Promise&lt;[File](#file)&gt; | Promise used to return the file object.|
+  | Promise&lt;[File](#file)&gt; | Promise used to return the **File** object.|
 
 **Error codes**
 
@@ -1566,6 +1602,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
   let file = fs.openSync(filePath);
   fs.fsync(file.fd).then(() => {
       console.info("Data flushed");
+      fs.closeSync(file);
   }).catch((err) => {
       console.info("sync data failed with error message: " + err.message + ", error code: " + err.code);
   });
@@ -1851,7 +1888,7 @@ Lists all files in a folder. This API uses a promise to return the result.<br>Th
 
   | Name   | Type    | Mandatory  | Description                         |
   | ------ | ------ | ---- | --------------------------- |
-  | recursion | boolean | No   | Whether to list all files in subfolders recursively. The default value is **false**.|
+  | recursion | boolean | No   | Whether to list all files in subfolders recursively. The default value is **false**. If **recursion** is **false**, the names of the files and folders that meet the specified conditions in the current directory are returned. If **recursion** is **true**, the relative paths (starting with /) of all files that meet the specified conditions in the directory are returned.|
   | listNum | number | No   | Number of file names to list. The default value **0** means to list all files.|
   | filter | [Filter](#filter) | No   | File filtering options. Currently, only the match by file name extension, fuzzy search by file name, and filter by file size or latest modification time are supported.|
 
@@ -1873,7 +1910,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
     "listNum": 0,
     "filter": {
       "suffix": [".png", ".jpg", ".jpeg"],
-      "displayName": ["%abc", "efg%"],
+      "displayName": ["*abc", "efg*"],
       "fileSizeOver": 1024,
       "lastModifiedAfter": new Date().getTime(),
     }
@@ -1911,7 +1948,7 @@ Lists all files in a folder. This API uses an asynchronous callback to return th
 
   | Name   | Type    | Mandatory  | Description                         |
   | ------ | ------ | ---- | --------------------------- |
-  | recursion | boolean | No   | Whether to list all files in subfolders recursively. The default value is **false**.|
+  | recursion | boolean | No   | Whether to list all files in subfolders recursively. The default value is **false**. If **recursion** is **false**, the names of the files and folders that meet the specified conditions in the current directory are returned. If **recursion** is **true**, the relative paths (starting with /) of all files that meet the specified conditions in the directory are returned.|
   | listNum | number | No   | Number of file names to list. The default value **0** means to list all files.|
   | filter | [Filter](#filter) | No   | File filtering options. Currently, only the match by file name extension, fuzzy search by file name, and filter by file size or latest modification time are supported.|
 
@@ -1927,7 +1964,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
     "listNum": 0,
     "filter": {
       "suffix": [".png", ".jpg", ".jpeg"],
-      "displayName": ["%abc", "efg%"],
+      "displayName": ["*abc", "efg*"],
       "fileSizeOver": 1024,
       "lastModifiedAfter": new Date().getTime(),
     }
@@ -1967,7 +2004,7 @@ Lists all files in a folder synchronously. This API supports recursive listing o
 
   | Name   | Type    | Mandatory  | Description                         |
   | ------ | ------ | ---- | --------------------------- |
-  | recursion | boolean | No   | Whether to list all files in subfolders recursively. The default value is **false**.|
+  | recursion | boolean | No   | Whether to list all files in subfolders recursively. The default value is **false**. If **recursion** is **false**, the names of the files and folders that meet the specified conditions in the current directory are returned. If **recursion** is **true**, the relative paths (starting with /) of all files that meet the specified conditions in the directory are returned.|
   | listNum | number | No   | Number of file names to list. The default value **0** means to list all files.|
   | filter | [Filter](#filter) | No   | File filtering options. Currently, only the match by file name extension, fuzzy search by file name, and filter by file size or latest modification time are supported.|
 
@@ -1989,7 +2026,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
     "listNum": 0,
     "filter": {
       "suffix": [".png", ".jpg", ".jpeg"],
-      "displayName": ["%abc", "efg%"],
+      "displayName": ["*abc", "efg*"],
       "fileSizeOver": 1024,
       "lastModifiedAfter": new Date().getTime(),
     }
@@ -2015,7 +2052,7 @@ Moves a directory. This API uses a promise to return the result.
   | ------ | ------ | ---- | --------------------------- |
   | src | string | Yes   | Application sandbox path of the directory to move.|
   | dest | string | Yes   | Application sandbox path of the destination directory.|
-  | mode | number | No   | Mode for moving the directory. The default value is **0**.<br>- **0**: Throw an exception if a directory conflict occurs.<br> Throw an exception if there is a directory with the same name in the destination directory.<br>- **1**: Throw an exception if a file conflict occurs.<br> Throw an exception if there is a directory with the same name in the destination directory and files with the same name exist in the conflicting directory. All the non-conflicting files in the source directory will be moved to the destination directory, and the non-conflicting files in the destination directory will be retained. The **data** attribute in the error returned provides information about the conflicting files in the Array\<[ConflictFiles](#conflictfiles)> format.<br>- **2**: Forcibly overwrite the conflicting files in the destination directory.<br>If there is a directory with the same name in the destination directory and files with the same name exist in the conflicting directory, all the files with the same name in the destination directory will be overwritten and the non-conflicting files will be retained.<br>- **3**: Forcibly overwrite the conflicting directory.<br> Move the source directory to the destination directory and overwrite the conflicting directory completely. That is, if there is a directory with the same name in the destination directory, all the original files in that directory will not be retained.|
+  | mode | number | No   | Mode for moving the directory. The default value is **0**.<br>- **0**: Throw an exception if a directory conflict occurs.<br>Throw an exception if there is a non-empty directory with the same name in the destination directory.<br>- **1**: Throw an exception if a file conflict occurs.<br>Throw an exception if there is a directory with the same name in the destination directory and files with the same name exist in the conflicting directory. All the non-conflicting files in the source directory will be moved to the destination directory, and the non-conflicting files in the destination directory will be retained. The **data** attribute in the error returned provides information about the conflicting files in the Array\<[ConflictFiles](#conflictfiles10)> format.<br>- **2**: Forcibly overwrite the conflicting files in the destination directory. If there is a directory with the same name in the destination directory and files with the same name exist in the conflicting directory, all the files with the same name in the destination directory will be overwritten and the non-conflicting files will be retained.<br>- **3**: Forcibly overwrite the conflicting directory.<br>Move the source directory to the destination directory and overwrite the conflicting directory completely. That is, if there is a directory with the same name in the destination directory, all the original files in that directory will not be retained.|
 
 **Return value**
 
@@ -2049,7 +2086,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 ## fs.moveDir<sup>10+</sup>
 
-moveDir(src: string, dest: string, mode?: number, callback: AsyncCallback\<void>): void
+moveDir(src: string, dest: string, mode?: number, callback: AsyncCallback\<void, Array\<ConflictFiles>>): void
 
 Moves a directory. This API uses an asynchronous callback to return the result.
 
@@ -2061,8 +2098,8 @@ Moves a directory. This API uses an asynchronous callback to return the result.
   | ------ | ------ | ---- | --------------------------- |
   | src | string | Yes   | Application sandbox path of the source directory.|
   | dest | string | Yes   | Application sandbox path of the destination directory.|
-  | mode | number | No   | Mode for moving the directory. The default value is **0**.<br>- **0**: Throw an exception if a directory conflict occurs.<br> Throw an exception if there is a directory with the same name in the destination directory.<br>- **1**: Throw an exception if a file conflict occurs.<br> Throw an exception if there is a directory with the same name in the destination directory and files with the same name exist in the conflicting directory. All the non-conflicting files in the source directory will be moved to the destination directory, and the non-conflicting files in the destination directory will be retained. The **data** attribute in the error returned provides information about the conflicting files in the Array\<[ConflictFiles](#conflictfiles)> format.<br>- **2**: Forcibly overwrite the conflicting files in the destination directory. If there is a directory with the same name in the destination directory and files with the same name exist in the conflicting directory, all the files with the same name in the destination directory will be overwritten and the non-conflicting files will be retained.<br>- **3**: Forcibly overwrite the conflicting directory.<br> Move the source directory to the destination directory and overwrite the conflicting directory completely. That is, if there is a directory with the same name in the destination directory, all the original files in that directory will not be retained.|
-  | callback | AsyncCallback&lt;void&gt; | Yes   | Callback invoked when the directory is moved.             |
+  | mode | number | No   | Mode for moving the directory. The default value is **0**.<br>- **0**: Throw an exception if a directory conflict occurs.<br>Throw an exception if there is a directory with the same name in the destination directory.<br>- **1**: Throw an exception if a file conflict occurs.<br>Throw an exception if there is a directory with the same name in the destination directory and files with the same name exist in the conflicting directory. All the non-conflicting files in the source directory will be moved to the destination directory, and the non-conflicting files in the destination directory will be retained. The **data** attribute in the error returned provides information about the conflicting files in the Array\<[ConflictFiles](#conflictfiles10)> format.<br>- **2**: Forcibly overwrite the conflicting files in the destination directory. If there is a directory with the same name in the destination directory and files with the same name exist in the conflicting directory, all the files with the same name in the destination directory will be overwritten and the non-conflicting files will be retained.<br>- **3**: Forcibly overwrite the conflicting directory.<br>Move the source directory to the destination directory and overwrite the conflicting directory completely. That is, if there is a directory with the same name in the destination directory, all the original files in that directory will not be retained.|
+  | callback | AsyncCallback&lt;void, Array&lt;[ConflictFiles](#conflictfiles10)&gt;&gt; | Yes   | Callback invoked when the directory is moved.             |
 
 **Error codes**
 
@@ -2288,7 +2325,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 ## fs.createRandomAccessFile<sup>10+</sup>
 
-createRandomAccessFile(file: string|File, mode?: string): Promise&lt;RandomAccessFile&gt;
+createRandomAccessFile(file: string|File, mode?: number): Promise&lt;RandomAccessFile&gt;
 
 Creates a **RandomAccessFile** instance based on the specified file path or file object. This API uses a promise to return the result.
 
@@ -2317,6 +2354,8 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
   let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
   fs.createRandomAccessFile(file).then((randomAccessFile) => {
       console.info("randomAccessFile fd: " + randomAccessFile.fd);
+      randomAccessFile.close();
+      fs.closeSync(file);
   }).catch((err) => {
       console.info("create randomAccessFile failed with error message: " + err.message + ", error code: " + err.code);
   });
@@ -2325,7 +2364,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 ## fs.createRandomAccessFile<sup>10+</sup>
 
-createRandomAccessFile(file: string|File, mode?: string, callback: AsyncCallback&lt;RandomAccessFile&gt;): void
+createRandomAccessFile(file: string|File, mode?: number, callback: AsyncCallback&lt;RandomAccessFile&gt;): void
 
 Creates a **RandomAccessFile** instance based on the specified file path or file object. This API uses an asynchronous callback to return the result.
 
@@ -2352,6 +2391,8 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
           console.info("create randomAccessFile failed with error message: " + err.message + ", error code: " + err.code);
       } else {
           console.info("randomAccessFilefile fd: " + randomAccessFile.fd);
+          randomAccessFile.close();
+          fs.closeSync(file);
       }
   });
   ```
@@ -2359,7 +2400,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 ## fs.createRandomAccessFileSync<sup>10+</sup>
 
-createRandomAccessFileSync(file: string|File, , mode?: string): RandomAccessFile
+createRandomAccessFileSync(file: string|File, mode?: number): RandomAccessFile
 
 Creates a **RandomAccessFile** instance based on the specified file path or file object.
 
@@ -2386,8 +2427,10 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
   ```js
   let filePath = pathDir + "/test.txt";
-  let file = fs.openSync(filePath, fileIO.OpenMode.CREATE | fileIO.OpenMode.READ_WRITE);
-  let randomaccessfile = fileIO.createRandomAccessFileSync(file);
+  let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
+  let randomaccessfile = fs.createRandomAccessFileSync(file);
+  randomaccessfile.close();
+  fs.closeSync(file);
   ```
 
 ## fs.createStream
@@ -3232,7 +3275,7 @@ Synchronously reads data from the stream.
   | Name    | Type         | Mandatory  | Description                                      |
   | ------- | ----------- | ---- | ---------------------------------------- |
   | buffer  | ArrayBuffer | Yes   | Buffer used to store the file read.                             |
-  | options | Object      | No   | The options are as follows:<br>- **length** (number): length of the data to read. This parameter is optional. The default value is the buffer length.<br>- **offset** (number): start position to read the data. This parameter is optional. By default, data is read from the current position.<br> |
+  | options | Object      | No   | The options are as follows:<br>- **length** (number): length of the data to read. This parameter is optional. The default value is the buffer length.<br>- **offset** (number): start position to read the data. This parameter is optional. By default, data is read from the current position.<br>|
 
 **Return value**
 
@@ -3263,6 +3306,8 @@ Represents a **File** object opened by **open()**.
 | Name  | Type  | Readable  | Writable  | Description     |
 | ---- | ------ | ---- | ---- | ------- |
 | fd | number | Yes   | No   | FD of the file.|
+| path<sup>10+</sup> | string | Yes   | No   | Path of the file.|
+| name<sup>10+</sup> | string | Yes   | No   | Name of the file.|
 
 ### lock
 
@@ -3410,6 +3455,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
   let filePath = pathDir + "/test.txt";
   let randomAccessFile = fs.createRandomAccessFileSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
   randomAccessFile.setFilePointer(1);
+  randomAccessFile.close();
   ```
 
 
@@ -3430,7 +3476,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
   ```js
   let filePath = pathDir + "/test.txt";
   let randomAccessFile = fs.createRandomAccessFileSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
-  randomAccessFile.closeSync();
+  randomAccessFile.close();
   ```
 
 ### write<sup>10+</sup>
@@ -3462,11 +3508,13 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
   ```js
   let filePath = pathDir + "/test.txt";
-  let file = fs.openSync(fpath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
+  let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
   let randomaccessfile = fs.createRandomAccessFileSync(file);
   let bufferLength = 4096;
   randomaccessfile.write(new ArrayBuffer(bufferLength), { offset: 1, length: 5 }).then((bytesWritten) => {
       console.info("randomAccessFile bytesWritten: " + bytesWritten);
+      randomaccessfile.close();
+      fs.closeSync(file);
   }).catch((err) => {
       console.info("create randomAccessFile failed with error message: " + err.message + ", error code: " + err.code);
   });
@@ -3497,6 +3545,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
   ```js
   let filePath = pathDir + "/test.txt";
+  let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
   let randomAccessFile = fs.createRandomAccessFileSync(file);
   let bufferLength = 4096;
   randomAccessFile.write(new ArrayBuffer(bufferLength), { offset: 1 }, function(err, bytesWritten) {
@@ -3505,6 +3554,8 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
       } else {
           if (bytesWritten) {
               console.info("write succeed and size is:" + bytesWritten);
+              randomAccessFile.close();
+              fs.closeSync(file);
           }
       }
   });
@@ -3539,8 +3590,10 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
   ```js
   let filePath = pathDir + "/test.txt";
-  let randomaccessfile= fs.createRandomAccessFileSync(filePath,"r+");
+  let randomaccessfile = fs.createRandomAccessFileSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
   let bytesWritten = randomaccessfile.writeSync("hello, world", {offset: 5, length: 5, encoding :'utf-8'});
+  randomaccessfile.close();
+  fs.closeSync(file);
   ```
 
 ### read<sup>10+</sup>
@@ -3577,6 +3630,8 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
   let bufferLength = 4096;
   randomaccessfile.read(new ArrayBuffer(bufferLength), { offset: 1, length: 5 }).then((readLength) => {
       console.info("randomAccessFile readLength: " + readLength);
+      randomaccessfile.close();
+      fs.closeSync(file);
   }).catch((err) => {
       console.info("create randomAccessFile failed with error message: " + err.message + ", error code: " + err.code);
   });
@@ -3607,7 +3662,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
   ```js
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
-  let randomaccessfile = await fileIO.createRandomAccessFile(file);
+  let randomaccessfile = fs.createRandomAccessFileSync(file);
   let length = 20;
   randomaccessfile.read(new ArrayBuffer(length), { offset: 1, length: 5 }, function (err, readLength) {
     if (err) {
@@ -3615,6 +3670,8 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
     } else {
       if (readLength) {
         console.info("read succeed and size is:" + readLength);
+        randomaccessfile.close();
+        fs.closeSync(file);
       }
     }
   });
@@ -3633,7 +3690,7 @@ Synchronously reads data from a file.
   | Name    | Type         | Mandatory  | Description                                      |
   | ------- | ----------- | ---- | ---------------------------------------- |
   | buffer  | ArrayBuffer | Yes   | Buffer used to store the file read.                             |
-  | options | Object      | No   | The options are as follows:<br>- **length** (number): length of the data to read. This parameter is optional. The default value is the buffer length.<br>- **offset** (number): start position to read the data (it is determined by **filePointer** plus **offset**). This parameter is optional. By default, data is read from the **filePointer**.<br> |
+  | options | Object      | No   | The options are as follows:<br>- **length** (number): length of the data to read. This parameter is optional. The default value is the buffer length.<br>- **offset** (number): start position to read the data (it is determined by **filePointer** plus **offset**). This parameter is optional. By default, data is read from the **filePointer**.<br>|
 
 **Return value**
 
@@ -3649,10 +3706,12 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
   ```js
   let filePath = pathDir + "/test.txt";
-  let file = fs.openSync(filePath, fileIO.OpenMode.CREATE | fileIO.OpenMode.READ_WRITE);
+  let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
   let randomaccessfile = fs.createRandomAccessFileSync(file);
   let length = 4096;
   let readLength = randomaccessfile.readSync(new ArrayBuffer(length));
+  randomaccessfile.close();
+  fs.closeSync(file);
   ```
 
 
