@@ -585,7 +585,9 @@ getSystemFontList(): Array\<string>
 ```ts
 import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
 let font:Font|undefined = uiContext.getFont();
-font.getSystemFontList()
+if(font){
+  font.getSystemFontList()
+}
 ```
 
 ### getFontByName
@@ -613,7 +615,9 @@ getFontByName(fontName: string): font.FontInfo
 ```ts
 import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
 let font:Font|undefined = uiContext.getFont();
-font.getFontByName('Sans Italic')
+if(font){
+  font.getFontByName('Sans Italic')
+}
 ```
 
 ## ComponentUtils
@@ -753,7 +757,7 @@ pushUrl(options: router.RouterOptions): Promise&lt;void&gt;
 ```ts
 import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
 import { BusinessError } from '@ohos.base';
-let router = uiContext.getRouter();
+let router:Router = uiContext.getRouter();
 try {
   router.pushUrl({
     url: 'pages/routerpage2',
@@ -801,7 +805,7 @@ pushUrl(options: router.RouterOptions, callback: AsyncCallback&lt;void&gt;): voi
 ```ts
 import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
 import { BusinessError } from '@ohos.base';
-let router = uiContext.getRouter();
+let router:Router = uiContext.getRouter();
 router.pushUrl({
   url: 'pages/routerpage2',
   params: {
@@ -970,7 +974,7 @@ replaceUrl(options: router.RouterOptions): Promise&lt;void&gt;
 ```ts
 import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
 import { BusinessError } from '@ohos.base';
-let router = uiContext.getRouter();
+let router:Router = uiContext.getRouter();
 try {
   router.replaceUrl({
     url: 'pages/detail',
@@ -1014,7 +1018,7 @@ replaceUrl(options: router.RouterOptions, callback: AsyncCallback&lt;void&gt;): 
 ```ts
 import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
 import { BusinessError } from '@ohos.base';
-let router = uiContext.getRouter();
+let router:Router = uiContext.getRouter();
 router.replaceUrl({
   url: 'pages/detail',
   params: {
@@ -1173,7 +1177,7 @@ pushNamedRoute(options: router.NamedRouterOptions): Promise&lt;void&gt;
 ```ts
 import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
 import { BusinessError } from '@ohos.base';
-let router = uiContext.getRouter();
+let router:Router = uiContext.getRouter();
 try {
   router.pushNamedRoute({
     name: 'myPage',
@@ -1221,7 +1225,7 @@ pushNamedRoute(options: router.NamedRouterOptions, callback: AsyncCallback&lt;vo
 ```ts
 import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
 import { BusinessError } from '@ohos.base';
-let router = uiContext.getRouter();
+let router:Router = uiContext.getRouter();
 router.pushNamedRoute({
   name: 'myPage',
   params: {
@@ -1389,7 +1393,7 @@ replaceNamedRoute(options: router.NamedRouterOptions): Promise&lt;void&gt;
 ```ts
 import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
 import { BusinessError } from '@ohos.base';
-let router = uiContext.getRouter();
+let router:Router = uiContext.getRouter();
 try {
   router.replaceNamedRoute({
     name: 'myPage',
@@ -1433,7 +1437,7 @@ replaceNamedRoute(options: router.NamedRouterOptions, callback: AsyncCallback&lt
 ```ts
 import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
 import { BusinessError } from '@ohos.base';
-let router = uiContext.getRouter();
+let router:Router = uiContext.getRouter();
 router.replaceNamedRoute({
   name: 'myPage',
   params: {

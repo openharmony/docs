@@ -10,8 +10,8 @@
 
 ## 导入模块
 
-```javascript
-import emitter from '@ohos.events.emitter'
+```ts
+import emitter from '@ohos.events.emitter';
 ```
 
 ## 权限列表
@@ -35,16 +35,15 @@ on(event: [InnerEvent](#innerevent), callback: Callback\<[EventData](#eventdata)
 
 **示例：**
 
-```javascript
-let innerEvent = {
-    eventId: 1
+```ts
+let innerEvent: emitter.InnerEvent = {
+  eventId: 1
 };
 
-// 收到eventId为1的事件后执行该回调函数
-function emitterCallback() {
-    console.info('callback');
-}
-emitter.on(innerEvent, emitterCallback);
+// 收到eventId为1的事件后执行回调函数
+emitter.on(innerEvent, () => {
+  console.info('callback');
+});
 ```
 
 ## emitter.once
@@ -64,16 +63,15 @@ once(event: [InnerEvent](#innerevent), callback: Callback\<[EventData](#eventdat
 
 **示例：**
 
-```javascript
-let innerEvent = {
+```ts
+let innerEvent: emitter.InnerEvent = {
     eventId: 1
 };
 
 // 收到eventId为1的事件后执行该回调函数
-function emitterCallback() {
+emitter.once(innerEvent, () => {
     console.info('once callback');
-};
-emitter.once(innerEvent, emitterCallback);
+});
 ```
 
 ## emitter.off
@@ -92,7 +90,7 @@ off(eventId: number): void
 
 **示例：**
 
-```javascript
+```ts
 // 取消eventID为1的所有事件回调处理函数
 emitter.off(1);
 ```
@@ -114,13 +112,12 @@ off(eventId: number, callback: Callback\<[EventData](#eventdata)\>): void
 
 **示例：**
 
-```javascript
+```ts
 // 取消eventID为1的事件回调处理函数 emitterCallback
 // 如果该回调处理函数没有被订阅，则不做任何处理
-function emitterCallback() {
-    console.info('callback');
-}
-emitter.off(1, emitterCallback);
+emitter.off(1, () => {
+  console.info('callback');
+});
 ```
 
 ## emitter.emit
@@ -140,15 +137,15 @@ emit(event: [InnerEvent](#innerevent), data?: [EventData](#eventdata)): void
 
 **示例：**
 
-```javascript
-let eventData = {
+```ts
+let eventData: emitter.EventData = {
     data: {
         "content": "c",
         "id": 1,
     }
 };
 
-let innerEvent = {
+let innerEvent: emitter.InnerEvent = {
     eventId: 1,
     priority: emitter.EventPriority.HIGH
 };

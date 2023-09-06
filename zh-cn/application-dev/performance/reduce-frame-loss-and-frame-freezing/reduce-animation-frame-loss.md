@@ -6,7 +6,7 @@
 
 反例：应用使用了自定义动画，动画曲线计算过程很容易引起UI线程高负载，易导致丢帧。
 
-```javascript
+```typescript
 @Entry
 @Component
 struct AttrAnimationExample {
@@ -17,8 +17,8 @@ struct AttrAnimationExample {
   computeSize() {
     let duration = 2000
     let period = 16
-    let widthSizeEnd = undefined
-    let heightSizeEnd = undefined
+    let widthSizeEnd = 0
+    let heightSizeEnd = 0
     if (this.flag) {
       widthSizeEnd = 100
       heightSizeEnd = 50
@@ -56,7 +56,7 @@ struct AttrAnimationExample {
 
 建议：通过系统提供的属性动效API实现上述动效功能。
 
-```javascript
+```typescript
 @Entry
 @Component
 struct AttrAnimationExample {
@@ -67,7 +67,7 @@ struct AttrAnimationExample {
   build() {
     Column() {
       Button('click me')
-        .onClick((event: ClickEvent) => {
+        .onClick((event?: ClickEvent | undefined) => {
           if (this.flag) {
             this.widthSize = 100
             this.heightSize = 50
@@ -96,7 +96,7 @@ struct AttrAnimationExample {
 
 建议：通过系统提供的显式动效API实现上述动效功能。
 
-```javascript
+```typescript
 @Entry
 @Component
 struct AnimateToExample {
@@ -107,7 +107,7 @@ struct AnimateToExample {
   build() {
     Column() {
       Button('click me')
-        .onClick((event: ClickEvent) => {
+        .onClick((event?: ClickEvent | undefined) => {
           if (this.flag) {
             animateTo({
               duration: 2000, // 动画时长

@@ -107,14 +107,12 @@ let phAccessHelper: photoAccessHelper.PhotoAccessHelper = photoAccessHelper.getP
   export default class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage) {
       let list : Array<Permissions> = ['ohos.permission.READ_IMAGEVIDEO', 'ohos.permission.WRITE_IMAGEVIDEO'];
-      let permissionRequestResult;
       let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
       atManager.requestPermissionsFromUser(this.context, list, (err, result) => {
         if (err) {
           console.error('requestPermissionsFromUserError: ' + JSON.stringify(err));
         } else {
-          permissionRequestResult = result;
-          console.info('permissionRequestResult: ' + JSON.stringify(permissionRequestResult));
+          console.info('permissionRequestResult: ' + JSON.stringify(result));
         }
       });
     }

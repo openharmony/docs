@@ -27,53 +27,30 @@ onApplicationForeground(): void;
 import UIAbility from '@ohos.app.ability.UIAbility';
 import ApplicationStateChangeCallback from '@ohos.app.ability.ApplicationStateChangeCallback';
 
-// 构造单例对象
-export class GlobalContext {
-    private constructor() {}
-    private static instance: GlobalContext;
-    private _objects = new Map<string, Object>();
-
-    public static getContext(): GlobalContext {
-        if (!GlobalContext.instance) {
-            GlobalContext.instance = new GlobalContext();
-        }
-        return GlobalContext.instance;
-    }
-
-    getObject(value: string): Object | undefined {
-        return this._objects.get(value);
-    }
-
-    setObject(key: string, objectClass: Object): void {
-        this._objects.set(key, objectClass);
-    }
-}
-
 let applicationStateChangeCallback: ApplicationStateChangeCallback = {
     onApplicationForeground() {
         console.info('applicationStateChangeCallback onApplicationForeground');
+    },
+    onApplicationBackground() {
+        console.info('applicationStateChangeCallback onApplicationBackground');
     }
 }
-GlobalContext.getContext().setObject("applicationStateChangeCallback", applicationStateChangeCallback);
 
 export default class MyAbility extends UIAbility {
     onCreate() {
         console.log('MyAbility onCreate');
-        GlobalContext.getContext().setObject("applicationContext", this.context.getApplicationContext());
         // 1.获取applicationContext
-        let applicationContext = GlobalContext.getContext().getObject("applicationContext");
+        let applicationContext = this.context.getApplicationContext();
         // 2.通过applicationContext注册应用前后台状态监听
         if (applicationContext != undefined) {
-            applicationContext.on('applicationStateChange',
-                GlobalContext.getContext().getObject("applicationStateChangeCallback"));
+            applicationContext.on('applicationStateChange', applicationStateChangeCallback);
         }
     }
     onDestroy() {
-        let applicationContext = GlobalContext.getContext().getObject("applicationContext");
+        let applicationContext = this.context.getApplicationContext();
         // 1.通过applicationContext解除注册应用前后台状态监听
         if (applicationContext != undefined) {
-            applicationContext.off('applicationStateChange',
-                GlobalContext.getContext().getObject("applicationStateChangeCallback"));
+            applicationContext.off('applicationStateChange', applicationStateChangeCallback);
         }
     }
 }
@@ -93,53 +70,31 @@ onApplicationBackground(): void;
 import UIAbility from '@ohos.app.ability.UIAbility';
 import ApplicationStateChangeCallback from '@ohos.app.ability.ApplicationStateChangeCallback';
 
-export class GlobalContext {
-    private constructor() {}
-    private static instance: GlobalContext;
-    private _objects = new Map<string, Object>();
-
-    public static getContext(): GlobalContext {
-        if (!GlobalContext.instance) {
-            GlobalContext.instance = new GlobalContext();
-        }
-        return GlobalContext.instance;
-    }
-
-    getObject(value: string): Object | undefined {
-        return this._objects.get(value);
-    }
-
-    setObject(key: string, objectClass: Object): void {
-        this._objects.set(key, objectClass);
-    }
-}
-
 let applicationStateChangeCallback: ApplicationStateChangeCallback = {
+    onApplicationForeground() {
+        console.info('applicationStateChangeCallback onApplicationForeground');
+    },
     onApplicationBackground() {
         console.info('applicationStateChangeCallback onApplicationBackground');
     }
 }
-GlobalContext.getContext().setObject("applicationStateChangeCallback", applicationStateChangeCallback);
 
 export default class MyAbility extends UIAbility {
     onCreate() {
         console.log('MyAbility onCreate');
-        GlobalContext.getContext().setObject("applicationContext", this.context.getApplicationContext());
         // 1.获取applicationContext
-        let applicationContext = GlobalContext.getContext().getObject("applicationContext");
+        let applicationContext = this.context.getApplicationContext();
         // 2.通过applicationContext注册应用前后台状态监听
         if (applicationContext != undefined) {
-            applicationContext.on('applicationStateChange',
-                GlobalContext.getContext().getObject("applicationStateChangeCallback"));
+            applicationContext.on('applicationStateChange', applicationStateChangeCallback);
         }
         console.log('Resgiter applicationStateChangeCallback');
     }
     onDestroy() {
-        let applicationContext = GlobalContext.getContext().getObject("applicationContext");
+        let applicationContext = this.context.getApplicationContext();
         // 1.通过applicationContext解除注册应用前后台状态监听
         if (applicationContext != undefined) {
-            applicationContext.off('applicationStateChange',
-                GlobalContext.getContext().getObject("applicationStateChangeCallback"));
+            applicationContext.off('applicationStateChange', applicationStateChangeCallback);
         }
     }
 }

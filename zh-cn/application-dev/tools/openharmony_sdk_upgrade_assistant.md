@@ -1,27 +1,28 @@
-# suap工具
-
-SDK upgrade assistance plugin（SDK升级辅助工具插件，简称suap），用于帮助开发者快速解决SDK升级导致的API不兼容问题。
-Beta版本不承诺API稳定性，在SDK升级后，可能存在API不兼容的问题，应用开发者对现在工程切换API版本后，需要适配API接口及其底层行为的变更，存在一定的升级成本；因此OpenHarmony提供了SDK升级辅助工具，可以帮助开发者快速了解升级适配全貌，并通过工具提示快速适配升级，显著提高SDK升级效率。
+# OpenHarmony SDK 升级助手
+## 简介
+OpenHarmony SDK 升级助手，用于帮助开发者快速解决OpenHarmony应用SDK升级导致的API不兼容问题。</br>
+由于OpenHarmony SDK Beta版本不承诺API稳定性，在SDK升级后，可能存在API不兼容的问题，应用开发者对现在工程切换API版本后，需要适配API接口及其底层行为的变更，存在一定的升级成本；因此OpenHarmony提供了SDK升级助手，可以帮助开发者快速了解升级适配全貌，并通过工具提示快速适配升级，显著提高SDK升级效率。
 
 ## 约束与限制
 1. 应用在升级SDK之前，需要将旧版本的SDK文件进行备份，以免被新版本SDK给覆盖掉。
 2. 目前suap工具仅支持OpenHarmony应用升级SDK时使用。
 
-## 工具安装
+## 使用教程
 
-1.主菜单栏中点击 "File" > "Settings..."。
+### 工具安装
+1.在DevEco Studio主菜单栏中点击 "File" > "Settings..."。
 
 ![suap-settings](figures/suap-settings.png)
 
 2.在Settings弹出框界面，选中"Plugins"进入IDE插件模块
 
-3.点击"Installed"选项旁边齿轮状图标，选择"Install Plugin from Disk..."
+3.点击"Marketplace"选项，在下方搜索框中输入"OpenHarmony SDK Upgrade Assistant"
 
-4.在文件选择弹出框中选择插件压缩包所在位置，点击"OK"按钮，重启IDE即安装成功（注意：插件安装完成后需要重启IDE）
+4.点击搜索到的插件右方"Install"按钮进行下载安装，安装完成之后点击"Apply"按钮，重启IDE即安装成功（注意：插件安装完成后需要重启IDE）
 
 ![suap-install](figures/suap-install.png)
 
-## 使用工具
+### 使用工具
 
 辅助升级插件安装好后，打开需要升级的OpenHarmony工程。
 
@@ -41,7 +42,7 @@ Beta版本不承诺API稳定性，在SDK升级后，可能存在API不兼容的�
 
 ![suap-view-report](figures/suap-view-report.png)
 
-## 报告功能点
+### 报告功能点介绍
 
 1. 报告下方总数为因升级SDK导致当前应用出现的问题总数，帮助快速评估修改工作量
 2. 报告的每个标题头都可以单击进行排序
@@ -53,7 +54,7 @@ Beta版本不承诺API稳定性，在SDK升级后，可能存在API不兼容的�
 
 ![suap-changelog](figures/suap-changelog.png)
 
-## 工具源码使用教程
+## 打包构建
 
 1.[interface仓](https://gitee.com/openharmony/interface_sdk-js/tree/master/build-tools)中 clone [api_diff](https://gitee.com/openharmony/interface_sdk-js/tree/master/build-tools/api_diff)工具(对比两个版本SDK里的API差异)和[collect_application_api](https://gitee.com/openharmony/interface_sdk-js/tree/master/build-tools/collect_application_api)工具(用于解析并汇总应用中使用到的API)到本地。
 

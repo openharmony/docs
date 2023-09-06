@@ -10,13 +10,13 @@ For details about the APIs, see [ohos.file.statvfs](../reference/apis/js-apis-fi
 
 | Module| API| Description|
 | -------- | -------- | -------- |
-| \@ohos.file.storageStatistics | getCurrentBundleStats | Obtains the storage space of the current application, in bytes.|
-| \@ohos.file.statvfs | getFreeSize | Obtains the free space of a file system, in bytes.|
-| \@ohos.file.statvfs | getTotalSize | Obtains the total space of a file system, in bytes.|
+| \@ohos.file.storageStatistics | getCurrentBundleStats | Obtains the storage space of the current application, in bytes.| 
+| \@ohos.file.statvfs | getFreeSize | Obtains the free space of a file system, in bytes.| 
+| \@ohos.file.statvfs | getTotalSize | Obtains the total space of a file system, in bytes.| 
 
 **Table 2** Attributes for application space statistics
 
-| BundleStats Attribute| Description| Directory for Statistics|
+| BundleStats Attribute| Description| Directory for Statistics| 
 | -------- | -------- | -------- |
 | appSize | Size of the application installation files, in bytes.| /data/storage/el1/bundle |
 | cacheSize | Size of the application cache files, in bytes.| /data/storage/el1/base/cache<br>/data/storage/el1/base/haps/entry/cache<br>/data/storage/el2/base/cache<br>/data/storage/el2/base/haps/entry/cache |
@@ -25,12 +25,13 @@ For details about the APIs, see [ohos.file.statvfs](../reference/apis/js-apis-fi
 ## Development Example
 
 - Obtain the free space of **/data** of the file system.
-  
+    
   ```ts
   import statvfs from '@ohos.file.statvfs';
+  import { BusinessError } from '@ohos.base';
   
   let path = "/data";
-  statvfs.getFreeSize(path, (err, number) => {
+  statvfs.getFreeSize(path, (err: BusinessError, number: number) => {
     if (err) {
       console.error(`Invoke getFreeSize failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -40,11 +41,12 @@ For details about the APIs, see [ohos.file.statvfs](../reference/apis/js-apis-fi
   ```
 
 - Obtain the space occupied by the current application.
-  
+    
   ```ts
   import storageStatistics from "@ohos.file.storageStatistics";
+  import { BusinessError } from '@ohos.base';
   
-  storageStatistics.getCurrentBundleStats((err, bundleStats) => {
+  storageStatistics.getCurrentBundleStats((err: BusinessError, bundleStats: storageStatistics.BundleStats) => {
     if (err) {
       console.error(`Invoke getCurrentBundleStats failed, code is ${err.code}, message is ${err.message}`);
     } else {

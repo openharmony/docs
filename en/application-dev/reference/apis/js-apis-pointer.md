@@ -31,7 +31,7 @@ Sets the visible status of the mouse pointer. This API uses an asynchronous call
 
 ```js
 try {
-  pointer.setPointerVisible(true, (error) => {
+  pointer.setPointerVisible(true, (error: Error) => {
     if (error) {
       console.log(`Set pointer visible failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
@@ -123,7 +123,7 @@ Checks the visible status of the mouse pointer. This API uses a promise to retur
 
 ```js
 try {
-  pointer.isPointerVisible().then((visible) => {
+  pointer.isPointerVisible().then((visible: boolean) => {
     console.log(`Get pointer visible success, visible: ${JSON.stringify(visible)}`);
   });
 } catch (error) {
@@ -152,7 +152,7 @@ Sets the mouse movement speed. This API uses an asynchronous callback to return 
 
 ```js
 try {
-  pointer.setPointerSpeed(5, (error) => {
+  pointer.setPointerSpeed(5, (error: Error) => {
     if (error) {
       console.log(`Set pointer speed failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
@@ -218,7 +218,7 @@ Obtains the mouse movement speed. This API uses an asynchronous callback to retu
 
 ```js
 try {
-  pointer.getPointerSpeed((error, speed) => {
+  pointer.getPointerSpeed((error: Error, speed：number) => {
     if (error) {
       console.log(`Get pointer speed failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
@@ -250,7 +250,7 @@ Obtains the mouse movement speed. This API uses a promise to return the result.
 
 ```js
 try {
-  pointer.getPointerSpeed().then(speed => {
+  pointer.getPointerSpeed().then(speed: number => {
     console.log(`Get pointer speed success, speed: ${JSON.stringify(speed)}`);
   });
 } catch (error) {
@@ -279,7 +279,7 @@ Sets the status of the mouse hover scroll switch. This API uses an asynchronous 
 
 ```js
 try {
-  pointer.setHoverScrollState(true, (error) => {
+  pointer.setHoverScrollState(true, (error: Error) => {
     if (error) {
       console.log(`Set the mouse hover scroll failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
@@ -345,7 +345,7 @@ Obtains the status of the mouse hover scroll switch. This API uses an asynchrono
 
 ```js
 try {
-  pointer.getHoverScrollState((error, state) => {
+  pointer.getHoverScrollState((error: Error, state: boolean) => {
     console.log(`Get the mouse hover scroll success, state: ${JSON.stringify(state)}`);
   });
 } catch (error) {
@@ -373,7 +373,7 @@ Obtains the status of the mouse hover scroll switch. This API uses a promise to 
 
 ```js
 try {
-  pointer.getHoverScrollState().then((state) => {
+  pointer.getHoverScrollState().then((state: Boolean) => {
     console.log(`Get the mouse hover scroll success, state: ${JSON.stringify(state)}`);
   });
 } catch (error) {
@@ -402,7 +402,7 @@ Sets the primary button of the mouse. This API uses an asynchronous callback to 
 
 ```js
 try {
-  pointer.setMousePrimaryButton(pointer.PrimaryButton.RIGHT, (error) => {
+  pointer.setMousePrimaryButton(pointer.PrimaryButton.RIGHT, (error: Error) => {
     if (error) {
       console.log(`Set mouse primary button failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
@@ -656,9 +656,9 @@ Obtains the mouse pointer style. This API uses an asynchronous callback to retur
 **Example**
 
 ```js
-import window from '@ohos.window';
-
-window.getLastWindow(this.context, (error, win) => {
+import { BusinessError }  from '@ohos.base';
+let context = getContext(this);
+window.getLastWindow(context, (error: BusinessError, win: window.Window) => {
   if (error.code) {
     console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(error));
     return;
@@ -669,7 +669,7 @@ window.getLastWindow(this.context, (error, win) => {
     return;
   }
   try {
-    pointer.getPointerStyle(windowId, (error, style) => {
+    pointer.getPointerStyle(windowId, (error: Error, style: pointer.PointerStyle) => {
       console.log(`Get pointer style success, style: ${JSON.stringify(style)}`);
     });
   } catch (error) {
@@ -701,9 +701,9 @@ Obtains the mouse pointer style. This API uses a promise to return the result.
 **Example**
 
 ```js
-import window from '@ohos.window';
-
-window.getLastWindow(this.context, (error, win) => {
+import { BusinessError }  from '@ohos.base';
+let context = getContext(this);
+window.getLastWindow(context, (error: BusinessError, win: window.Window) => {
   if (error.code) {
     console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(error));
     return;
@@ -714,7 +714,7 @@ window.getLastWindow(this.context, (error, win) => {
     return;
   }
   try {
-    pointer.getPointerStyle(windowId).then((style) => {
+    pointer.getPointerStyle(windowId).then((style: pointer.PointerStyle) => {
       console.log(`Get pointer style success, style: ${JSON.stringify(style)}`);
     });
   } catch (error) {
@@ -875,7 +875,7 @@ Sets the scroll switch of the touchpad. This API uses an asynchronous callback t
 
 ```js
 try {
-  pointer.setTouchpadScrollSwitch(true, (error) => {
+  pointer.setTouchpadScrollSwitch(true, (error: Error) => {
     if (error) {
       console.log(`setTouchpadScrollSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
@@ -941,7 +941,7 @@ Obtains the scroll switch status of the touchpad. This API uses an asynchronous 
 
 ```js
 try {
-  pointer.getTouchpadScrollSwitch ((error, state) => {
+  pointer.getTouchpadScrollSwitch ((error: Error, state: Boolean) => {
     console.log(`getTouchpadScrollSwitch success, state: ${JSON.stringify(state)}`);
   });
 } catch (error) {
@@ -969,7 +969,7 @@ Obtains the scroll switch status of the touchpad. This API uses a promise to ret
 
 ```js
 try {
-  pointer.getTouchpadScrollSwitch().then((state) => {
+  pointer.getTouchpadScrollSwitch().then((state: Boolean) => {
     console.log(`getTouchpadScrollSwitch success, state: ${JSON.stringify(state)}`);
   });
 } catch (error) {
@@ -1064,7 +1064,7 @@ Obtains the scroll direction of the touchpad. This API uses an asynchronous call
 
 ```js
 try {
-  pointer.getTouchpadScrollSwitch ((error, state) => {
+  pointer.getTouchpadScrollSwitch ((error: Error, state: Boolean) => {
     console.log(`getTouchpadScrollDirection success, state: ${JSON.stringify(state)}`);
   });
 } catch (error) {
@@ -1092,7 +1092,7 @@ Obtains the scroll direction of the touchpad. This API uses a promise to return 
 
 ```js
 try {
-  pointer.getTouchpadScrollDirection().then((state) => {
+  pointer.getTouchpadScrollDirection().then((state: Boolean) => {
     console.log(`getTouchpadScrollDirection success, state: ${JSON.stringify(state)}`);
   });
 } catch (error) {
@@ -1121,7 +1121,7 @@ Sets the tap switch of the touchpad. This API uses an asynchronous callback to r
 
 ```js
 try {
-  pointer.setTouchpadTapSwitch(true, (error) => {
+  pointer.setTouchpadTapSwitch(true, (error: Error) => {
     if (error) {
       console.log(`setTouchpadTapSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
@@ -1215,7 +1215,7 @@ Obtains the tap switch status of the touchpad. This API uses a promise to return
 
 ```js
 try {
-  pointer.getTouchpadTapSwitch().then((state) => {
+  pointer.getTouchpadTapSwitch().then((state: Boolean) => {
     console.log(`getTouchpadTapSwitch success, state: ${JSON.stringify(state)}`);
   });
 } catch (error) {
@@ -1310,7 +1310,7 @@ Obtains the cursor moving speed of the touchpad. This API uses an asynchronous c
 
 ```js
 try {
-  pointer.getTouchpadPointerSpeed((error, speed) => {
+  pointer.getTouchpadPointerSpeed((error: Error, speed: number) => {
     console.log(`getTouchpadPointerSpeed success, speed: ${JSON.stringify(speed)}`);
   });
 } catch (error) {
@@ -1338,7 +1338,7 @@ Obtains the cursor moving speed of the touchpad. This API uses a promise to retu
 
 ```js
 try {
-  pointer.getTouchpadPointerSpeed().then((speed) => {
+  pointer.getTouchpadPointerSpeed().then((speed: number) => {
     console.log(`getTouchpadPointerSpeed success, speed: ${JSON.stringify(speed)}`);
   });
 } catch (error) {
@@ -1367,7 +1367,7 @@ Sets the pinch switch of the touchpad. This API uses an asynchronous callback to
 
 ```js
 try {
-  pointer.setTouchpadTapSwitch(true, (error) => {
+  pointer.setTouchpadTapSwitch(true, (error: Error) => {
     if (error) {
       console.log(`setTouchpadPinchSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
@@ -1490,7 +1490,7 @@ Sets the multi-finger swipe switch of the touchpad. This API uses an asynchronou
 
 ```js
 try {
-  pointer.setTouchpadSwipeSwitch(true, (error) => {
+  pointer.setTouchpadSwipeSwitch(true, (error: Error) => {
     if (error) {
       console.log(`setTouchpadSwipeSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
@@ -1584,7 +1584,7 @@ Obtains the multi-finger swipe switch status of the touchpad. This API uses a pr
 
 ```js
 try {
-  pointer.getTouchpadSwipeSwitch().then((state) => {
+  pointer.getTouchpadSwipeSwitch().then((state: boolean) => {
     console.log(`getTouchpadSwipeSwitch success, state: ${JSON.stringify(state)}`);
   });
 } catch (error) {
@@ -1691,7 +1691,7 @@ Obtains the shortcut menu type of the touchpad. This API uses an asynchronous ca
 
 ```js
 try {
-  pointer.getTouchpadRightClickType((error, type) => {
+  pointer.getTouchpadRightClickType((error: Error, type: pointer.RightClickType) => {
     console.log(`getTouchpadRightClickType success, type: ${JSON.stringify(type)}`);
   });
 } catch (error) {
@@ -1869,7 +1869,7 @@ Obtains the pointer size. This API uses a promise to return the result.
 
 ```js
 try {
-  pointer.getPointerSize().then((size) => {
+  pointer.getPointerSize().then((size: number) => {
     console.log(`getPointerSize success, size: ${JSON.stringify(size)}`);
   });
 } catch (error) {
@@ -1925,7 +1925,7 @@ Sets the pointer color. This API uses an asynchronous callback to return the res
 
 ```js
 try {
-  pointer.setPointerColor(0xF6C800, (error) => {
+  pointer.setPointerColor(0xF6C800, (error: Error) => {
     if (error) {
       console.log(`setPointerColor failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;

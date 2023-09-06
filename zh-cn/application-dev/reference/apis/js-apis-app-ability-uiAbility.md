@@ -417,6 +417,32 @@ UIAbility生命周期回调，当系统预关闭开关打开后（配置系统�
   }
   ```
 
+## UIAbility.onBackPressed<sup>10+</sup>
+
+onBackPressed(): boolean;
+
+UIAbility生命周期回调，当UIAbility侧滑返回时触发。根据返回值决定是否销毁UIAbility，默认为销毁UIAbility。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
+
+**返回值：**
+
+| 类型 | 说明 |
+| -- | -- |
+| boolean | 返回true表示UIAbility将会被移到后台不销毁，返回false表示UIAbility将正常销毁。 |
+
+**示例：**
+
+  ```ts
+  import UIAbility from '@ohos.app.ability.UIAbility';
+
+  export default class EntryAbility extends UIAbility {
+    onBackPressed() {
+      return true;
+    }
+  }
+  ```
+
 ## Caller
 
 通用组件Caller通信客户端调用接口, 用来向通用组件服务端发送约定数据。
