@@ -64,7 +64,7 @@ getDeviceList(): Promise&lt;Array&lt;number&gt;&gt;
 
 ```js
 try {
-  inputDevice.getDeviceList().then((ids) => {
+  inputDevice.getDeviceList().then((ids: Array<number>) => {
     console.log(`Device id list: ${JSON.stringify(ids)}`);
   });
 } catch (error) {
@@ -157,9 +157,9 @@ on(type: "change", listener: Callback&lt;DeviceListener&gt;): void
 ```js
 let isPhysicalKeyboardExist = true;
 try {
-  inputDevice.on("change", (data) => {
+  inputDevice.on("change", (data: inputDevice.DeviceListener) => {
     console.log(`Device event info: ${JSON.stringify(data)}`);
-    inputDevice.getKeyboardType(data.deviceId, (err, type) => {
+    inputDevice.getKeyboardType(data.deviceId, (err: Error, type: inputDevice.KeyboardType) => {
       console.log("The keyboard type is: " + type);
       if (type == inputDevice.KeyboardType.ALPHABETIC_KEYBOARD && data.type == 'add') {
         // 监听物理键盘已连接。
@@ -238,7 +238,7 @@ getDeviceIds(callback: AsyncCallback&lt;Array&lt;number&gt;&gt;): void
 **示例**：
 
 ```js
-inputDevice.getDeviceIds((error, ids) => {
+inputDevice.getDeviceIds((error: Error, ids: Array<number>) => {
   if (error) {
     console.log(`Failed to get device id list, error: ${JSON.stringify(error, [`code`, `message`])}`);
     return;
@@ -266,7 +266,7 @@ getDeviceIds(): Promise&lt;Array&lt;number&gt;&gt;
 **示例**：
 
 ```js
-inputDevice.getDeviceIds().then((ids) => {
+inputDevice.getDeviceIds().then((ids: Array<number>) => {
   console.log(`Device id list: ${JSON.stringify(ids)}`);
 });
 ```
@@ -353,7 +353,7 @@ supportKeys(deviceId: number, keys: Array&lt;KeyCode&gt;, callback: AsyncCallbac
 ```js
 // 查询id为1的输入设备对于17、22和2055按键的支持情况。
 try {
-  inputDevice.supportKeys(1, [17, 22, 2055], (error, supportResult) => {
+  inputDevice.supportKeys(1, [17, 22, 2055], (error: Error, supportResult: Array<boolean>) => {
     console.log(`Query result: ${JSON.stringify(supportResult)}`);
   });
 } catch (error) {
@@ -452,7 +452,7 @@ getKeyboardType(deviceId: number): Promise&lt;KeyboardType&gt;
 ```js
 // 示例查询设备id为1的设备键盘类型。
 try {
-  inputDevice.getKeyboardType(1).then((type) => {
+  inputDevice.getKeyboardType(1).then((type: number) => {
     console.log(`Keyboard type: ${JSON.stringify(type)}`);
   });
 } catch (error) {
@@ -547,7 +547,7 @@ getKeyboardRepeatDelay(callback: AsyncCallback&lt;number&gt;): void
 
 ```js
 try {
-  inputDevice.getKeyboardRepeatDelay((error, delay) => {
+  inputDevice.getKeyboardRepeatDelay((error: Error, delay: number) => {
     if (error) {
       console.log(`Get keyboard repeat delay failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
