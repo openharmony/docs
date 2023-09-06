@@ -27,7 +27,7 @@ Actor并发模型作为基于消息通信并发模型的典型代表，不需要
 可转移对象（Transferable object）传输采用地址转移进行序列化，不需要内容拷贝，会将ArrayBuffer的所有权转移给接收该ArrayBuffer的线程，转移后该ArrayBuffer在发送它的线程中变为不可用，不允许再访问。
 
 
-```js
+```ts
 // 定义可转移对象
 let buffer: ArrayBuffer = new ArrayBuffer(100);
 ```
@@ -42,7 +42,7 @@ let buffer: ArrayBuffer = new ArrayBuffer(100);
 SharedArrayBuffer对象存储的数据在同时被修改时，需要通过原子操作保证其同步性，即下个操作开始之前务必需要等到上个操作已经结束。
 
 
-```js
+```ts
 // 定义可共享对象，可以使用Atomics进行操作
 let sharedBuffer: SharedArrayBuffer = new SharedArrayBuffer(1024);
 ```
