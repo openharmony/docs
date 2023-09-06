@@ -191,36 +191,37 @@ This example uses \@LocalStorage as an example to show how to:
 - Use \@LocalStorageLink to create a two-way data synchronization with the given attribute in LocalStorage.
 
   ```ts
-  // Create a new instance and initialize it with the given object.
-  let storage = new LocalStorage({ 'PropA': 47 });
+// Create a new instance and initialize it with the given object.
+let storage = new LocalStorage();
+storage['PropA'] = 47;
 
-  @Component
-  struct Child {
-    // @LocalStorageLink creates a two-way data synchronization with the ProA attribute in LocalStorage.
-    @LocalStorageLink('PropA') storLink2: number = 1;
+@Component
+struct Child {
+  // @LocalStorageLink creates a two-way data synchronization with the PropA attribute in LocalStorage.
+  @LocalStorageLink('PropA') storLink2: number = 1;
 
-    build() {
-      Button(`Child from LocalStorage ${this.storLink2}`)
-        // The changes will be synchronized to ProA in LocalStorage and with Parent.storLink1.
-        .onClick(() => this.storLink2 += 1)
+  build() {
+    Button(`Child from LocalStorage ${this.storLink2}`)
+      // The changes will be synchronized to PropA in LocalStorage and with Parent.storLink1.
+      .onClick(() => this.storLink2 += 1)
+  }
+}
+// Make LocalStorage accessible from the @Component decorated component.
+@Entry(storage)
+@Component
+struct CompA {
+  // @LocalStorageLink creates a two-way data synchronization with the PropA attribute in LocalStorage.
+  @LocalStorageLink('PropA') storLink1: number = 1;
+
+  build() {
+    Column({ space: 15 }) {
+      Button(`Parent from LocalStorage ${this.storLink1}`) // initial value from LocalStorage will be 47, because 'PropA' initialized already
+        .onClick(() => this.storLink1 += 1)
+      // The @Component decorated child component automatically obtains access to the CompA LocalStorage instance.
+      Child()
     }
   }
-  // Make LocalStorage accessible from the @Component decorated component.
-  @Entry(storage)
-  @Component
-  struct CompA {
-    // @LocalStorageLink creates a two-way data synchronization with the ProA attribute in LocalStorage.
-    @LocalStorageLink('PropA') storLink1: number = 1;
-
-    build() {
-      Column({ space: 15 }) {
-        Button(`Parent from LocalStorage ${this.storLink1}`) // initial value from LocalStorage will be 47, because 'PropA' initialized already
-          .onClick(() => this.storLink1 += 1)
-        // The @Component decorated child component automatically obtains access to the CompA LocalStorage instance.
-        Child()
-      }
-    }
-  }
+}
   ```
 
 
@@ -233,37 +234,39 @@ In this example, the **CompA** and **Child** components create local data that i
 - In the **Child** component, the value of **storProp2** bound to **Text** is still 47.
 
   ```ts
-  // Create a new instance and initialize it with the given object.
-  let storage = new LocalStorage({ 'PropA': 47 });
-  // Make LocalStorage accessible from the @Component decorated component.
-  @Entry(storage)
-  @Component
-  struct CompA {
-    // @LocalStorageProp creates a one-way data synchronization with the ProA attribute in LocalStorage.
-    @LocalStorageProp('PropA') storProp1: number = 1;
+// Create a new instance and initialize it with the given object.
+let storage = new LocalStorage();
+storage['PropA'] = 47;
 
-    build() {
-      Column({ space: 15 }) {
-        // The initial value is 47. After the button is clicked, the value is incremented by 1. The change takes effect only in storProp1 in the current component and is not synchronized to LocalStorage.
-        Button(`Parent from LocalStorage ${this.storProp1}`)
-          .onClick(() => this.storProp1 += 1)
-        Child()
-      }
+// Make LocalStorage accessible from the @Component decorated component.
+@Entry(storage)
+@Component
+struct CompA {
+  // @LocalStorageProp creates a one-way data synchronization with the PropA attribute in LocalStorage.
+  @LocalStorageProp('PropA') storProp1: number = 1;
+
+  build() {
+    Column({ space: 15 }) {
+      // The initial value is 47. After the button is clicked, the value is incremented by 1. The change takes effect only in storProp1 in the current component and is not synchronized to LocalStorage.
+      Button(`Parent from LocalStorage ${this.storProp1}`)
+        .onClick(() => this.storProp1 += 1)
+      Child()
     }
   }
+}
 
-  @Component
-  struct Child {
-    // @LocalStorageProp creates a one-way data synchronization with the ProA attribute in LocalStorage.
-    @LocalStorageProp('PropA') storProp2: number = 2;
+@Component
+struct Child {
+  // @LocalStorageProp creates a one-way data synchronization with the PropA attribute in LocalStorage.
+  @LocalStorageProp('PropA') storProp2: number = 2;
 
-    build() {
-      Column({ space: 15 }) {
-        // When CompA changes, the current storProp2 does not change, and 47 is displayed.
-        Text(`Parent from LocalStorage ${this.storProp2}`)
-      }
+  build() {
+    Column({ space: 15 }) {
+      // When CompA changes, the current storProp2 does not change, and 47 is displayed.
+      Text(`Parent from LocalStorage ${this.storProp2}`)
     }
   }
+}
   ```
 
 
@@ -274,9 +277,10 @@ This example shows how to create a two-way data synchronization between an \@Loc
 
 ```ts
 // Create a LocalStorage instance.
-let storage = new LocalStorage({ 'PropA': 47 });
+let storage = new LocalStorage();
+storage['PropA'] = 47;
 // Invoke the link9+ API to create a two-way data synchronization with PropA. linkToPropA is a global variable.
-let linkToPropA = storage.link('PropA');
+let linkToPropA = storage.link<number>('PropA');
 
 @Entry(storage)
 @Component
@@ -388,22 +392,21 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 import window from '@ohos.window';
 
 export default class EntryAbility extends UIAbility {
-  storage: LocalStorage = new LocalStorage({
-    'PropA': 47
-  });
+  storage: LocalStorage = new LocalStorage();
 
   onWindowStageCreate(windowStage: window.WindowStage) {
+    this.storage['PropA'] = 47;
     windowStage.loadContent('pages/Index', this.storage);
   }
 }
 ```
 
-On the page, call the **GetShared** API to obtain the LocalStorage instance shared through **loadContent**.
+On the page, call the **getShared** API to obtain the LocalStorage instance shared through **loadContent**.
 
 
 ```ts
-// Use the GetShared API to obtain the LocalStorage instance shared by stage.
-let storage = LocalStorage.GetShared()
+// Use the getShared API to obtain the LocalStorage instance shared by stage.
+let storage = LocalStorage.getShared()
 
 @Entry(storage)
 @Component

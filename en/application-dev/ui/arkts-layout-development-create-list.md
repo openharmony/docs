@@ -46,7 +46,7 @@ When used in horizontal layout, the list can contain one or more scrollable rows
 
 The main axis direction of a list refers to the direction in which the child component columns are laid out and in which the list scrolls. An axis perpendicular to the main axis is referred to as a cross axis, and the direction of the cross axis is perpendicular to a direction of the main axis.
 
-As shown below, the main axis of a vertical list is in the vertical direction, and the cross axis is in the horizontal direction. The main axis of a horizontal list is in the horizontal direction, and the cross axis is in the horizontal direction.
+As shown below, the main axis of a vertical list is in the vertical direction, and the cross axis is in the horizontal direction. The main axis of a horizontal list is in the horizontal direction, and the cross axis is in the vertical direction.
 
   **Figure 4** Main axis and cross axis of the list 
 
@@ -615,7 +615,7 @@ struct MessageList {
 
 ## Adding a Mark to a List Item
 
-A mark is an intuitive, unintrusive visual indicator to draw attention and convey a specific message. For example, when a new message is received in the message list, a mark is displayed in the upper right corner of the contact's profile picture, indicating that there is a new message from that contact, as shown in the following figure.
+A mark is an intuitive, unobtrusive visual indicator to draw attention and convey a specific message. For example, when a new message is received in the message list, a mark is displayed in the upper right corner of the contact's profile picture, indicating that there is a new message from that contact, as shown in the following figure.
 
   **Figure 16** Adding a mark to a list item 
 
