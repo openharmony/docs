@@ -9,7 +9,6 @@ FormProvider模块提供了卡片提供方相关接口的能力，开发者在�
 
 ```ts
 import formProvider from '@ohos.app.form.formProvider';
-import Base from '@ohos.base';
 ```
 
 ## setFormNextRefreshTime
@@ -46,6 +45,8 @@ setFormNextRefreshTime(formId: string, minute: number, callback: AsyncCallback&l
 **示例：**
 
 ```ts
+import Base from '@ohos.base';
+
 let formId: string = '12400633174999288';
 try {
   formProvider.setFormNextRefreshTime(formId, 5, (error: Base.BusinessError) => {
@@ -99,6 +100,8 @@ setFormNextRefreshTime(formId: string, minute: number): Promise&lt;void&gt;
 **示例：**
 
 ```ts
+import Base from '@ohos.base';
+
 let formId: string = '12400633174999288';
 try {
   formProvider.setFormNextRefreshTime(formId, 5).then(() => {
@@ -145,6 +148,7 @@ updateForm(formId: string, formBindingData: formBindingData.FormBindingData,call
 
 ```ts
 import formBindingData from '@ohos.app.form.formBindingData';
+import Base from '@ohos.base';
 
 let formId: string = '12400633174999288';
 try {
@@ -208,6 +212,7 @@ updateForm(formId: string, formBindingData: formBindingData.FormBindingData): Pr
 
 ```ts
 import formBindingData from '@ohos.app.form.formBindingData';
+import Base from '@ohos.base';
 
 let formId: string = '12400633174999288';
 class createFormBindingDataParamType {
@@ -353,6 +358,7 @@ getFormsInfo(filter?: formInfo.FormInfoFilter): Promise&lt;Array&lt;formInfo.For
 
 ```ts
 import formInfo from '@ohos.app.form.formInfo';
+import Base from '@ohos.base';
 
 const filter: formInfo.FormInfoFilter = {
   // get info of forms belong to module entry.
@@ -404,6 +410,7 @@ requestPublishForm(want: Want, formBindingData: formBindingData.FormBindingData,
 ```ts
 import formBindingData from '@ohos.app.form.formBindingData';
 import Want from '@ohos.app.ability.Want';
+import Base from '@ohos.base';
 
 let want: Want = {
   abilityName: 'FormAbility',
@@ -468,6 +475,7 @@ requestPublishForm(want: Want, callback: AsyncCallback&lt;string&gt;): void
 
 ```ts
 import Want from '@ohos.app.ability.Want';
+import Base from '@ohos.base';
 
 let want: Want = {
   abilityName: 'FormAbility',
@@ -529,6 +537,7 @@ requestPublishForm(want: Want, formBindingData?: formBindingData.FormBindingData
 
 ```ts
 import Want from '@ohos.app.ability.Want';
+import Base from '@ohos.base';
 
 let want: Want = {
   abilityName: 'FormAbility',
@@ -580,6 +589,7 @@ isRequestPublishFormSupported(callback: AsyncCallback&lt;boolean&gt;): void
 
 ```ts
 import Want from '@ohos.app.ability.Want';
+import Base from '@ohos.base';
 
 try {
   formProvider.isRequestPublishFormSupported((error: Base.BusinessError, isSupported: boolean) => {
@@ -644,6 +654,7 @@ isRequestPublishFormSupported(): Promise&lt;boolean&gt;
 
 ```ts
 import Want from '@ohos.app.ability.Want';
+import Base from '@ohos.base';
 
 try {
   formProvider.isRequestPublishFormSupported().then((isSupported: boolean) => {
