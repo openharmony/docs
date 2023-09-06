@@ -443,9 +443,9 @@ notificationSubscribe.remove(hashCode, reason).then(() => {
 	console.info("remove success");
 });
 ```
-## NotificationSubscribe.remove
+## NotificationSubscribe.remove<sup>10+<sup>
 
-remove(hashCodes: Array\<string\>, reason: RemoveReason, callback: AsyncCallback\<void\>): void
+remove(hashCodes: Array\<String\>, reason: RemoveReason, callback: AsyncCallback\<void\>): void
 
 批量删除指定通知（Callback形式）。
 
@@ -459,7 +459,7 @@ remove(hashCodes: Array\<string\>, reason: RemoveReason, callback: AsyncCallback
 
 | 参数名       | 类型                            | 必填 | 说明                                                                                                                                                                                                                                                                                  |
 |-----------|-------------------------------| ---- |-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| hashCodes | Array\<string\>               | 是   | 通知唯一ID数组集合。可以通过[onConsume](js-apis-inner-notification-notificationSubscriber.md#onConsume)回调的入参[SubscribeCallbackData](js-apis-notification.md#subscribecallbackdata)获取其内部[NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest)对象中的hashCode。 |
+| hashCodes | Array\<String\>               | 是   | 通知唯一ID数组集合。可以通过[onConsume](js-apis-inner-notification-notificationSubscriber.md#onConsume)回调的入参[SubscribeCallbackData](js-apis-notification.md#subscribecallbackdata)获取其内部[NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest)对象中的hashCode。 |
 | reason    | [RemoveReason](#removereason) | 是   | 通知删除原因。                                                                                                                                                                                                                                                                             |
 | callback  | AsyncCallback\<void\>         | 是   | 删除指定通知回调函数。                                                                                                                                                                                                                                                                         |
 
@@ -489,9 +489,9 @@ let reason = notificationSubscribe.RemoveReason.CANCEL_REASON_REMOVE;
 notificationSubscribe.remove(hashCodes, reason, removeCallback);
 ```
 
-## NotificationSubscribe.remove
+## NotificationSubscribe.remove<sup>10+<sup>
 
-remove(hashCodes: Array\<string\>, reason: RemoveReason): Promise\<void\>
+remove(hashCodes: Array\<String\>, reason: RemoveReason): Promise\<void\>
 
 批量删除指定通知（Promise形式）。
 
@@ -505,7 +505,7 @@ remove(hashCodes: Array\<string\>, reason: RemoveReason): Promise\<void\>
 
 | 参数名       | 类型                            | 必填 | 说明          |
 |-----------|-------------------------------| ---- |-------------|
-| hashCodes | Array\<string\>               | 是   | 通知唯一ID数组集合。 |
+| hashCodes | Array\<String\>               | 是   | 通知唯一ID数组集合。 |
 | reason    | [RemoveReason](#removereason) | 是   | 通知删除原因。     |
 
 **错误码：**
