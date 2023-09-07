@@ -61,29 +61,30 @@
    
    export default class InputDemoService extends InputMethodExtensionAbility {
    
-     onCreate(want: Want) {
-       keyboardController.onCreate(this.context);  // 初始化窗口并注册对输入法框架的事件监听
+     onCreate(want: Want): void {
+       keyboardController.onCreate(this.context); // 初始化窗口并注册对输入法框架的事件监听
      }
    
-     onDestroy() {
+     onDestroy(): void {
        console.log("onDestroy.");
-       this.keyboardController.onDestroy();  // 销毁窗口并去注册事件监听
+       keyboardController.onDestroy(); // 销毁窗口并去注册事件监听
      }
    }
    ```
-   
+
 2. KeyboardController.ts文件。
 
    ```ts
    import common from '@ohos.app.ability.common';
-   import inputMethodEngine from '@ohos.inputMethodEngine';
    import display from '@ohos.display';
+   import inputMethodEngine from '@ohos.inputMethodEngine';
+   import InputMethodExtensionContext from '@ohos.InputMethodExtensionContext';
    
    // 调用输入法框架的getInputMethodAbility方法获取实例，并由此实例调用输入法框架功能接口
    const inputMethodAbility: inputMethodEngine.InputMethodAbility = inputMethodEngine.getInputMethodAbility();
    
    export class KeyboardController {
-     private mContext: common.ExtensionContext | undefined = undefined; // 保存InputMethodExtensionAbility中的context属性
+     private mContext: InputMethodExtensionContext | undefined = undefined; // 保存InputMethodExtensionAbility中的context属性
      private panel: inputMethodEngine.Panel | undefined = undefined; 
      private textInputClient: inputMethodEngine.InputClient | undefined = undefined; 
      private keyboardController: inputMethodEngine.KeyboardController | undefined = undefined;
@@ -91,19 +92,22 @@
      constructor() {
      }
    
-     public onCreate(context: common.ExtensionContext): void
+     public onCreate(context: InputMethodExtensionContext): void
      {
        this.mContext = context;
-       this.initWindow();				// 初始化窗口
-       this.registerListener();		// 注册对输入法框架的事件监听
+       this.initWindow(); // 初始化窗口
+       this.registerListener(); // 注册对输入法框架的事件监听
      }
    
-     public onDestroy(): void			// 应用生命周期销毁
+     public onDestroy(): void // 应用生命周期销毁
      {
-       this.unRegisterListener();		// 去注册事件监听
+       this.unRegisterListener(); // 去注册事件监听
        if(this.panel) { // 销毁窗口
          this.panel.hide();
          inputMethodAbility.destroyPanel(this.panel);
+       }
+       if(this.mContext) {
+         this.mContext.destroy();
        }
      }
    
@@ -119,7 +123,7 @@
        }
      }
    
-     private initWindow(): void		// 初始化窗口
+     private initWindow(): void // 初始化窗口
      {
        if(this.mContext === undefined) {
          return;
@@ -146,18 +150,18 @@
    
      private registerListener(): void
      {
-       this.registerInputListener();	// 注册对输入法框架服务的监听
+       this.registerInputListener(); // 注册对输入法框架服务的监听
        ...
        // 注册隐藏键盘事件监听等
      }
    
-     private registerInputListener(): void {		// 注册对输入法框架服务的开启及停止事件监听
+     private registerInputListener(): void { // 注册对输入法框架服务的开启及停止事件监听
        inputMethodAbility.on('inputStart', (kbController, textInputClient) => {
-         this.textInputClient = textInputClient;		// 此为输入法客户端实例，由此调用输入法框架提供给输入法应用的功能接口
-         this.boardController = kbController;
+         this.textInputClient = textInputClient; // 此为输入法客户端实例，由此调用输入法框架提供给输入法应用的功能接口
+         this.keyboardController = kbController;
        })
        inputMethodAbility.on('inputStop', () => {
-         this.onDestroy();	// 销毁KeyboardController
+         this.onDestroy(); // 销毁KeyboardController
        });
      }
    
@@ -165,18 +169,6 @@
      {
        inputMethodAbility.off('inputStart');
        inputMethodAbility.off('inputStop', () => {});
-     }
-   
-     private async showHighWindow(): Promise<void> {
-       try {
-         if(this.panel) {
-           await this.panel.resize(this.windowWidth, this.windowHeight);
-           await this.panel.moveTo(0, this.nonBarPosition);
-           await this.panel.show();
-         }
-       } catch (e) {
-         console.log('err occur: ' + JSON.stringify(e));
-       }
      }
    }
    
@@ -240,7 +232,7 @@
    
    @Component
    struct keyItem {
-     private keyValue: sourceListType
+     private keyValue: sourceListType = numberSourceListData[0];
      @State keyBgc: string = "#fff"
      @State keyFontColor: string = "#000"
    
@@ -291,9 +283,9 @@
      build() {
        Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.SpaceEvenly }) {
          Flex({ justifyContent: FlexAlign.SpaceBetween }) {
-           ForEach(this.numberList, (item: sourceListType) => {  // 数字键盘第一行
+           ForEach(this.numberList, (item: sourceListType) => { // 数字键盘第一行
              keyItem({ keyValue: item })
-           }, (item: sourceListType): sourceListType => item.content);
+           }, (item: sourceListType) => item.content);
          }
          .padding({ top: "2%" })
          .width("96%")
@@ -339,7 +331,7 @@
      }
    }
    ```
-   
+
 5. 在工程Module对应的[module.json5配置文件](../quick-start/module-configuration-file.md)中注册InputMethodExtensionAbility，type标签需要设置为“inputMethod”，srcEntry标签表示当前InputMethodExtensionAbility组件所对应的代码路径。
 
    ```json

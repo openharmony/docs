@@ -2821,7 +2821,7 @@ call.off('mmiCodeResult', data => {
 
 ## call.on('audioDeviceChange')<sup>10+</sup>
 
-on\(type: 'audioDeviceChange', callback: Callback\<AudioDeviceInfo\>\): void
+on\(type: 'audioDeviceChange', callback: Callback\<AudioDeviceCallbackInfo\>\): void
 
 Subscribes to audio device change events. This API uses an asynchronous callback to return the result.
 
@@ -2836,7 +2836,7 @@ Subscribes to audio device change events. This API uses an asynchronous callback
 | Name  | Type                                            | Mandatory| Description                                               |
 | -------- | ----------------------------------------------- | ---- | --------------------------------------------------- |
 | type     | string                                          | Yes  | Audio device change. This field has a fixed value of **audioDeviceChange**.|
-| callback | Callback<[AudioDeviceInfo](#audiodeviceinfo10)> | Yes  | Callback used to return the result.                                          |
+| callback | Callback<[AudioDeviceCallbackInfo](#audiodevicecallbackinfo10)> | Yes  | Callback used to return the result.                                          |
 
 **Error codes**
 
@@ -2863,7 +2863,7 @@ call.on('audioDeviceChange', data => {
 
 ## call.off('audioDeviceChange')<sup>10+</sup>
 
-off\(type: 'audioDeviceChange', callback?: Callback\<AudioDeviceInfo\>\): void
+off\(type: 'audioDeviceChange', callback?: Callback\<AudioDeviceCallbackInfo\>\): void
 
 Unsubscribes from **audioDeviceChange** events. This API uses an asynchronous callback to return the result.
 
@@ -2878,7 +2878,7 @@ Unsubscribes from **audioDeviceChange** events. This API uses an asynchronous ca
 | Name  | Type                                                      | Mandatory |                           Description                     |
 | -------- | ---------------------------------------------------------- | ---- | --------------------------------------------------- |
 | type     | string                                                     | Yes  | Audio device change. This field has a fixed value of **audioDeviceChange**.|
-| callback | Callback<[AudioDeviceInfo](#audiodeviceinfo10)>            | No  | Callback used to return the result. If this parameter is not set, no subscription cancellation result will be received.    |
+| callback | Callback<[AudioDeviceCallbackInfo](#audiodevicecallbackinfo10)>            | No  | Callback used to return the result. If this parameter is not set, no subscription cancellation result will be received.    |
 
 **Error codes**
 
@@ -4978,7 +4978,7 @@ Enumerates audio device types.
 | DEVICE_WIRED_HEADSET | 2    | Wired headset device.|
 | DEVICE_BLUETOOTH_SCO | 3    | Bluetooth SCO device. |
 
-## AudioDeviceInfo<sup>10+</sup>
+## AudioDeviceCallbackInfo<sup>10+</sup>
 
 Defines the audio device information.
 

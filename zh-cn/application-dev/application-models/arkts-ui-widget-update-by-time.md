@@ -69,11 +69,12 @@
 
   ```ts
   import formProvider from '@ohos.app.form.formProvider';
+  import Base from '@ohos.base';
 
-  let formId = '123456789'; // 实际业务场景需要使用正确的formId
+  let formId: string = '123456789'; // 实际业务场景需要使用正确的formId
   try {
     // 设置过5分钟后更新卡片内容
-    formProvider.setFormNextRefreshTime(formId, 5, (err, data) => {
+    formProvider.setFormNextRefreshTime(formId, 5, (err: Base.BusinessError) => {
       if (err) {
         console.error(`Failed to setFormNextRefreshTime. Code: ${err.code}, message: ${err.message}`);
         return;
@@ -82,7 +83,7 @@
       }
     });
   } catch (err) {
-    console.error(`Failed to setFormNextRefreshTime. Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to setFormNextRefreshTime. Code: ${(err as Base.BusinessError).code}, message: ${(err as Base.BusinessError).message}`);
   }
   ```
 

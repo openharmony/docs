@@ -6,8 +6,8 @@ UIAbility is an application component that has the UI. The **UIAbility** module 
 - [Callee](#callee): an internal object of UIAbility. The CalleeAbility (callee) uses this object to communicate with the CallerAbility (caller).
 
 > **NOTE**
-> 
-> The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version. 
+>
+> The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 > The APIs of this module can be used only in the stage model.
 
 ## Modules to Import
@@ -29,7 +29,7 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 
 ## UIAbility.onCreate
 
-onCreate(want: Want, param: AbilityConstant.LaunchParam): void;
+onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void;
 
 Called to initialize the service logic when a UIAbility is created.
 
@@ -46,7 +46,7 @@ Called to initialize the service logic when a UIAbility is created.
 
   ```ts
   class MyUIAbility extends UIAbility {
-      onCreate(want, param) {
+      onCreate(want, launchParam) {
           console.log('onCreate, want: ${want.abilityName}');
       }
   }
@@ -68,7 +68,7 @@ Called when a **WindowStage** is created for this UIAbility.
 | windowStage | [window.WindowStage](js-apis-window.md#windowstage9) | Yes| **WindowStage** information.|
 
 **Example**
-    
+
   ```ts
   class MyUIAbility extends UIAbility {
       onWindowStageCreate(windowStage) {
@@ -87,7 +87,7 @@ Called when the **WindowStage** is destroyed for this UIAbility.
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
 **Example**
-    
+
   ```ts
   class MyUIAbility extends UIAbility {
       onWindowStageDestroy() {
@@ -112,7 +112,7 @@ Called when the **WindowStage** is restored during the migration of this UIAbili
 | windowStage | [window.WindowStage](js-apis-window.md#windowstage9) | Yes| **WindowStage** information.|
 
 **Example**
-    
+
   ```ts
   class MyUIAbility extends UIAbility {
       onWindowStageRestore(windowStage) {
@@ -131,7 +131,7 @@ Called when this UIAbility is destroyed to clear resources.
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
 **Example**
-    
+
 
   ```ts
   class MyUIAbility extends UIAbility {
@@ -161,7 +161,7 @@ Called when this UIAbility is switched from the background to the foreground.
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
 **Example**
-    
+
   ```ts
   class MyUIAbility extends UIAbility {
       onForeground() {
@@ -180,7 +180,7 @@ Called when this UIAbility is switched from the foreground to the background.
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
 **Example**
-    
+
   ```ts
   class MyUIAbility extends UIAbility {
       onBackground() {
@@ -211,7 +211,7 @@ Called to save data during the ability migration preparation process.
 | [AbilityConstant.OnContinueResult](js-apis-app-ability-abilityConstant.md#abilityconstantoncontinueresult) | Continuation result.|
 
 **Example**
-    
+
   ```ts
   import AbilityConstant from '@ohos.app.ability.AbilityConstant';
   class MyUIAbility extends UIAbility {
@@ -226,7 +226,7 @@ Called to save data during the ability migration preparation process.
 
 ## UIAbility.onNewWant
 
-onNewWant(want: Want, launchParams: AbilityConstant.LaunchParam): void;
+onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam): void;
 
 Called when a new Want is passed in and this UIAbility is started again.
 
@@ -237,15 +237,15 @@ Called when a new Want is passed in and this UIAbility is started again.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-app-ability-want.md) | Yes| Want information, such as the ability name and bundle name.|
-| launchParams | [AbilityConstant.LaunchParam](js-apis-app-ability-abilityConstant.md#abilityconstantlaunchparam) | Yes| Reason for the UIAbility startup and the last abnormal exit.|
+| launchParam | [AbilityConstant.LaunchParam](js-apis-app-ability-abilityConstant.md#abilityconstantlaunchparam) | Yes| Reason for the UIAbility startup and the last abnormal exit.|
 
 **Example**
-    
+
   ```ts
   class MyUIAbility extends UIAbility {
-      onNewWant(want, launchParams) {
+      onNewWant(want, launchParam) {
           console.log('onNewWant, want: ${want.abilityName}');
-          console.log('onNewWant, launchParams: ${JSON.stringify(launchParams)}');
+          console.log('onNewWant, launchParam: ${JSON.stringify(launchParam)}');
       }
   }
   ```
@@ -265,7 +265,7 @@ Dumps client information.
 | params | Array\<string> | Yes| Parameters in the form of a command.|
 
 **Example**
-    
+
   ```ts
   class MyUIAbility extends UIAbility {
       onDump(params) {
@@ -315,7 +315,7 @@ class MyUIAbility extends UIAbility {
 
 onShare(wantParam:{ [key: string]: Object }): void;
 
-Called by this UIAbility to set data to share. **ohos.extra.param.key.shareUrl** indicates the online address of the service.
+Called by this UIAbility to set data to share in the cross-device sharing scenario.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -323,10 +323,10 @@ Called by this UIAbility to set data to share. **ohos.extra.param.key.shareUrl**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| wantParam | {[key:&nbsp;string]:&nbsp;Object} | Yes| **want** parameter.|
+| wantParam | {[key:&nbsp;string]:&nbsp;Object} | Yes| Data to share.|
 
 **Example**
-    
+
   ```ts
 import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 class MyUIAbility extends UIAbility {
@@ -419,7 +419,7 @@ Sends sequenceable data to the target ability.
 For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
-    
+
   ```ts
   class MyMessageAble{ // Custom parcelable data structure.
     name:''
@@ -569,7 +569,7 @@ Releases the caller interface of the target ability.
 For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
-    
+
   ```ts
   let caller;
   export default class MainUIAbility extends UIAbility {
@@ -615,7 +615,7 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 | callback | [OnReleaseCallback](#onreleasecallback) | Yes| Callback used to return the result.|
 
 **Example**
-    
+
   ```ts
   let caller;
   export default class MainUIAbility extends UIAbility {
@@ -663,7 +663,7 @@ Registers a callback that is invoked when the remote ability state changes in th
 For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
-    
+
   ```ts
   import UIAbility from '@ohos.app.ability.UIAbility';
   import window from '@ohos.window';
@@ -717,7 +717,7 @@ Registers a callback that is invoked when the stub on the target ability is disc
 For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
-    
+
   ```ts
   let caller;
   export default class MainUIAbility extends UIAbility {
@@ -764,7 +764,7 @@ Deregisters a callback that is invoked when the stub on the target ability is di
 | 401 | If the input parameter is not valid parameter. |
 
 **Example**
-    
+
   ```ts
   let caller;
   export default class MainUIAbility extends UIAbility {
@@ -806,7 +806,7 @@ Deregisters a callback that is invoked when the stub on the target ability is di
 | type | string | Yes| Event type. The value is fixed at **release**.|
 
 **Example**
-    
+
   ```ts
   let caller;
   export default class MainUIAbility extends UIAbility {
@@ -823,7 +823,7 @@ Deregisters a callback that is invoked when the stub on the target ability is di
             };
             caller.on('release', onReleaseCallBack);
             caller.off('release');
-          } catch (error) {  
+          } catch (error) {
             console.error('Caller.on or Caller.off catch error, error.code: ${error.code}, error.message: ${error.message}');
           }
       }).catch((err) => {
@@ -929,7 +929,7 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 
 
 **Example**
-    
+
   ```ts
   let method = 'call_Function';
   export default class MainUIAbility extends UIAbility {

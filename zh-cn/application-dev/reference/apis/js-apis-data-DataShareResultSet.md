@@ -24,27 +24,29 @@ import dataShare from '@ohos.data.dataShare';
 import dataSharePredicates from '@ohos.data.dataSharePredicates'
 import { BusinessError } from '@ohos.base'
 
-let dataShareHelper: dataShare.DataShareHelper;
+let dataShareHelper: dataShare.DataShareHelper | undefined = undefined;
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 await dataShare.createDataShareHelper(this.context, uri, (err, data) => {
-	if (err != undefined) {
-        console.error("createDataShareHelper fail, error message : " + err);
-    } else {
-        console.info("createDataShareHelper end, data : " + data);
-        dataShareHelper = data;
-    }
+  if (err != undefined) {
+    console.error("createDataShareHelper fail, error message : " + err);
+  } else {
+    console.info("createDataShareHelper end, data : " + data);
+    dataShareHelper = data;
+  }
 });
 
 let columns = ["*"];
 let da = new dataSharePredicates.DataSharePredicates();
-let resultSet: DataShareResultSet;
+let resultSet: DataShareResultSet | undefined = undefined;
 da.equalTo("name", "ZhangSan");
-dataShareHelper.query(uri, da, columns).then((data: DataShareResultSet) => {
+if (dataShareHelper != undefined) {
+  (dataShareHelper as dataShare.DataShareHelper).query(uri, da, columns).then((data: DataShareResultSet) => {
     console.info("query end, data : " + data);
     resultSet = data;
-}).catch((err: BusinessError) => {
-	console.error("query fail, error message : " + err);
-});
+  }).catch((err: BusinessError) => {
+    console.error("query fail, error message : " + err);
+  });
+}
 ```
 
 ## DataShareResultSet
@@ -78,8 +80,10 @@ goToFirstRow(): boolean
 **示例：**
 
 ```ts
-let isGoTOFirstRow = resultSet.goToFirstRow();
-console.info('resultSet.goToFirstRow: ' + isGoTOFirstRow);
+if (resultSet != undefined) {
+  let isGoToFirstRow = (resultSet as DataShareResultSet).goToFirstRow();
+  console.info('resultSet.goToFirstRow: ' + isGoToFirstRow);
+}
 ```
 
 ### goToLastRow
@@ -99,8 +103,10 @@ goToLastRow(): boolean
 **示例：**
 
 ```ts
-let isGoToLastRow = resultSet.goToLastRow();
-console.info('resultSet.goToLastRow: ' + isGoToLastRow);
+if (resultSet != undefined) {
+  let isGoToLastRow = (resultSet as DataShareResultSet).goToLastRow();
+  console.info('resultSet.goToLastRow: ' + isGoToLastRow);
+}
 ```
 
 ### goToNextRow
@@ -120,8 +126,10 @@ goToNextRow(): boolean
 **示例：**
 
 ```ts
-let isGoToNextRow = resultSet.goToNextRow();
-console.info('resultSet.goToNextRow: ' + isGoToNextRow);
+if (resultSet != undefined) {
+  let isGoToNextRow = (resultSet as DataShareResultSet).goToNextRow();
+  console.info('resultSet.goToNextRow: ' + isGoToNextRow);
+}
 ```
 
 ### goToPreviousRow
@@ -141,8 +149,10 @@ goToPreviousRow(): boolean
 **示例：**
 
 ```ts
-let isGoToPreviousRow = resultSet.goToPreviousRow();
-console.info('resultSet.goToPreviousRow: ' + isGoToPreviousRow);
+if (resultSet != undefined) {
+  let isGoToPreviousRow = (resultSet as DataShareResultSet).goToPreviousRow();
+  console.info('resultSet.goToPreviousRow: ' + isGoToPreviousRow);
+}
 ```
 
 ### goTo
@@ -169,8 +179,10 @@ goTo(offset:number): boolean
 
 ```ts
 let goToNum = 1;
-let isGoTo = resultSet.goTo(goToNum);
-console.info('resultSet.goTo: ' + isGoTo);
+if (resultSet != undefined) {
+  let isGoTo = (resultSet as DataShareResultSet).goTo(goToNum);
+  console.info('resultSet.goTo: ' + isGoTo);
+}
 ```
 
 ### goToRow
@@ -197,8 +209,10 @@ goToRow(position: number): boolean
 
 ```ts
 let goToRowNum = 2;
-let isGoToRow = resultSet.goToRow(goToRowNum);
-console.info('resultSet.goToRow: ' + isGoToRow);
+if (resultSet != undefined) {
+  let isGoToRow = (resultSet as DataShareResultSet).goToRow(goToRowNum);
+  console.info('resultSet.goToRow: ' + isGoToRow);
+}
 ```
 
 ### getBlob
@@ -225,9 +239,11 @@ getBlob(columnIndex: number): Uint8Array
 
 ```ts
 let columnIndex = 1;
-let goToFirstRow = resultSet.goToFirstRow();
-let getBlob = resultSet.getBlob(columnIndex);
-console.info('resultSet.getBlob: ' + getBlob);
+if (resultSet != undefined) {
+  let goToFirstRow = (resultSet as DataShareResultSet).goToFirstRow();
+  let getBlob = (resultSet as DataShareResultSet).getBlob(columnIndex);
+  console.info('resultSet.getBlob: ' + getBlob);
+}
 ```
 
 ### getString
@@ -254,9 +270,11 @@ getString(columnIndex: number): string
 
 ```ts
 let columnIndex = 1;
-let goToFirstRow = resultSet.goToFirstRow();
-let getString = resultSet.getString(columnIndex);
-console.info('resultSet.getString: ' + getString);
+if (resultSet != undefined) {
+  let goToFirstRow = (resultSet as DataShareResultSet).goToFirstRow();
+  let getString = (resultSet as DataShareResultSet).getString(columnIndex);
+  console.info('resultSet.getString: ' + getString);
+}
 ```
 
 ### getLong
@@ -283,9 +301,11 @@ getLong(columnIndex: number): number
 
 ```ts
 let columnIndex = 1;
-let goToFirstRow = resultSet.goToFirstRow();
-let getLong = resultSet.getLong(columnIndex);
-console.info('resultSet.getLong: ' + getLong);
+if (resultSet != undefined) {
+  let goToFirstRow = (resultSet as DataShareResultSet).goToFirstRow();
+  let getLong = (resultSet as DataShareResultSet).getLong(columnIndex);
+  console.info('resultSet.getLong: ' + getLong);
+}
 ```
 
 ### getDouble
@@ -312,9 +332,11 @@ getDouble(columnIndex: number): number
 
 ```ts
 let columnIndex = 1;
-let goToFirstRow = resultSet.goToFirstRow();
-let getDouble = resultSet.getDouble(columnIndex);
-console.info('resultSet.getDouble: ' + getDouble);
+if (resultSet != undefined) {
+  let goToFirstRow = (resultSet as DataShareResultSet).goToFirstRow();
+  let getDouble = (resultSet as DataShareResultSet).getDouble(columnIndex);
+  console.info('resultSet.getDouble: ' + getDouble);
+}
 ```
 
 ### close
@@ -328,7 +350,9 @@ close(): void
 **示例：**
 
 ```ts
-resultSet.close();
+if (resultSet != undefined) {
+  (resultSet as DataShareResultSet).close();
+}
 ```
 
 ### getColumnIndex
@@ -355,8 +379,10 @@ getColumnIndex(columnName: string): number
 
 ```ts
 let ColumnName = "name";
-let getColumnIndex = resultSet.getColumnIndex(ColumnName);
-console.info('resultSet.getColumnIndex: ' + getColumnIndex);
+if (resultSet != undefined) {
+  let getColumnIndex = (resultSet as DataShareResultSet).getColumnIndex(ColumnName);
+  console.info('resultSet.getColumnIndex: ' + getColumnIndex);
+}
 ```
 
 ### getColumnName
@@ -383,8 +409,10 @@ getColumnName(columnIndex: number): string
 
 ```ts
 let columnIndex = 1;
-let getColumnName = resultSet.getColumnName(columnIndex);
-console.info('resultSet.getColumnName: ' + getColumnName);
+if (resultSet != undefined) {
+  let getColumnName = (resultSet as DataShareResultSet).getColumnName(columnIndex);
+  console.info('resultSet.getColumnName: ' + getColumnName);
+}
 ```
 
 ### getDataType
@@ -411,8 +439,10 @@ getDataType(columnIndex: number): DataType
 
 ```ts
 let columnIndex = 1;
-let getDataType = resultSet.getDataType(columnIndex);
-console.info('resultSet.getDataType: ' + getDataType);
+if (resultSet != undefined) {
+  let getDataType = (resultSet as DataShareResultSet).getDataType(columnIndex);
+  console.info('resultSet.getDataType: ' + getDataType);
+}
 ```
 
 ## DataType

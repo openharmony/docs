@@ -221,8 +221,6 @@ try {
 }
 ```
 
-
-
 ## zlib.decompressFile<sup>9+</sup>
 
 decompressFile(inFile: string, outFile: string, options: Options, callback: AsyncCallback\<void>): void;
@@ -237,8 +235,8 @@ decompressFile(inFile: string, outFile: string, options: Options, callback: Asyn
 | ----------------------- | ------------------- | ---- | ------------------------------------------------------------ |
 | inFile                  | string              | 是   | 指定的待解压缩文件的文件路径，文件后缀需要以.zip结尾。文件路径必须为沙箱路径，沙箱路径可以通过context获取，可参考[FA模型](js-apis-inner-app-context.md)，[Stage模型](js-apis-inner-application-context.md)。 |
 | outFile                 | string              | 是   | 指定的解压后的文件夹路径，文件夹目录路径需要在系统中存在，不存在则会解压失败。路径必须为沙箱路径，沙箱路径可以通过context获取，具体方法可参考[application/context（Stage模型）](js-apis-inner-application-context.md)或 [app/context（FA模型）](js-apis-inner-app-context.md)。如果待解压的文件或文件夹在解压后的路径下已经存在，则会直接覆盖同名文件或同名文件夹中的同名文件。 |
-| options                 | [Options](#options) | 否   | 解压的配置参数。                                             |
-| AsyncCallback<**void**> | callback            | 否   | 解压的回调函数。                                             |
+| options                 | [Options](#options) | 是   | 解压的配置参数。                                             |
+| AsyncCallback<**void**> | callback            | 是   | 解压的回调函数。                                             |
 
 **错误码：**
 
@@ -275,7 +273,7 @@ try {
 
 ## zlib.decompressFile<sup>9+</sup>
 
-decompressFile(inFile: string, outFile: string, options: Options): Promise\<void>;
+decompressFile(inFile: string, outFile: string, options?: Options): Promise\<void>;
 
 解压文件，解压的结果通过promise返回，成功时返回null，失败时返回错误码。
 
@@ -317,6 +315,55 @@ try {
     })
 } catch(errData) {
     console.log(`errData is errCode:${errData.code}  message:${errData.message}`);
+}
+```
+
+## zlib.decompressFile<sup>10+</sup>
+
+decompressFile(inFile: string, outFile: string, callback: AsyncCallback\<void\>): void;
+
+解压文件，解压的结果通过callback返回，成功时返回null，失败时返回错误码。
+
+**系统能力：** SystemCapability.BundleManager.Zlib
+
+**参数：**
+
+| 参数名                  | 类型                | 必填 | 说明                                                         |
+| ----------------------- | ------------------- | ---- | ------------------------------------------------------------ |
+| inFile                  | string              | 是   | 指定的待解压缩文件的文件路径，文件后缀需要以.zip结尾。文件路径必须为沙箱路径，沙箱路径可以通过context获取，可参考[FA模型](js-apis-inner-app-context.md)，[Stage模型](js-apis-inner-application-context.md)。 |
+| outFile                 | string              | 是   | 指定的解压后的文件夹路径，文件夹目录路径需要在系统中存在，不存在则会解压失败。路径必须为沙箱路径，沙箱路径可以通过context获取，具体方法可参考[application/context（Stage模型）](js-apis-inner-application-context.md)或 [app/context（FA模型）](js-apis-inner-app-context.md)。如果待解压的文件或文件夹在解压后的路径下已经存在，则会直接覆盖同名文件或同名文件夹中的同名文件。 |
+| AsyncCallback<**void**> | callback            | 是   | 解压的回调函数。                                             |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.zlib错误码](../errorcodes/errorcode-zlib.md)。
+
+| 错误码ID | 错误信息                               |
+| -------- | --------------------------------------|
+| 900001   | The input source file is invalid.      |
+| 900002   | The input destination file is invalid. |
+| 900003 | The input source file is not ZIP format or damaged. |
+
+**示例**
+
+```typescript
+// 【解压缩 例子1】
+// 代码中使用的路径需为应用的沙箱路径，如/data/storage/el2/base/haps,也可以通过context获取
+import zlib from '@ohos.zlib';
+import { BusinessError } from '@ohos.base';
+let inFile = '/xx/xxx.zip';
+let outFileDir = '/xxx';
+
+try {
+    zlib.decompressFile(inFile, outFileDir, (errData: BusinessError) => {
+        if (errData !== null) {
+            console.log(`decompressFile failed. code is ${errData.code}, message is ${errData.message}`);
+        }
+    })
+} catch(errData) {
+    let code = (errData as BusinessError).code;
+    let message = (errData as BusinessError).message;
+    console.log(`decompressFile failed. code is ${code}, message is ${message}`);
 }
 ```
 

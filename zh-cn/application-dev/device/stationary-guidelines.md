@@ -47,6 +47,7 @@
 
    ```ts
    import stationary from '@ohos.stationary';
+   import { BusinessError } from '@ohos.base';
    let reportLatencyNs = 1000000000;
    try {
       stationary.on('still', stationary.ActivityEvent.ENTER, reportLatencyNs, (data) => {
@@ -62,6 +63,7 @@
 
    ```ts
    import stationary from '@ohos.stationary';
+   import { BusinessError } from '@ohos.base';
    try {
       stationary.once('still', (data) => {
          console.log('data='+ JSON.stringify(data));
@@ -76,6 +78,7 @@
 
    ```ts
    import stationary from '@ohos.stationary';
+   import { BusinessError } from '@ohos.base';
    try {
       stationary.off('still', stationary.ActivityEvent.ENTER, (data) => {
          console.log('data='+ JSON.stringify(data));

@@ -240,8 +240,8 @@ struct Index {
           .onDrop((dragEvent?: DragEvent)=>{
             this.getDataFromUdmf((dragEvent as DragEvent), (event:DragEvent) => {
               let records:Array<UDC.UnifiedRecord> = event.getData().getRecords();
-              let detail = (records[0] as UDC.Text).details;
-              this.targetText = detail ? detail['value'] : '';
+              let plainText:UDC.PlainText = records[0] as UDC.PlainText;
+              this.targetText = plainText.textContent;
             })
           })
 

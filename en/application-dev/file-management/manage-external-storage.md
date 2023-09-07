@@ -28,13 +28,13 @@ The following table describes the broadcast related parameters.
 
 **Table 1** Broadcast parameters
 
-| Broadcast| Parameter|
+| Broadcast| Parameter| 
 | -------- | -------- |
-| usual.event.data.VOLUME_REMOVED | **id**: ID of the volume.<br>**diskId**: ID of the disk to which the volume belongs.|
-| usual.event.data.VOLUME_UNMOUNTED | **id**: ID of the volume.<br>**diskId**: ID of the disk to which the volume belongs.<br>**volumeState**: state of the volume.|
-| usual.event.data.VOLUME_MOUNTED | **id**: ID of the volume.<br>**diskId**: ID of the disk to which the volume belongs.<br>**volumeState**: state of the volume.<br>**fsUuid**: universally unique identifier (UUID) of the volume.<br>**path**: path where the volume is mounted.|
-| usual.event.data.VOLUME_BAD_REMOVAL | **id**: ID of the volume.<br>**diskId**: ID of the disk to which the volume belongs.|
-| usual.event.data.VOLUME_EJECT | **id**: ID of the volume.<br>**diskId**: ID of the disk to which the volume belongs.<br>**volumeState**: state of the volume.|
+| usual.event.data.VOLUME_REMOVED | **id**: ID of the volume.<br>**diskId**: ID of the disk to which the volume belongs.| 
+| usual.event.data.VOLUME_UNMOUNTED | **id**: ID of the volume.<br>**diskId**: ID of the disk to which the volume belongs.<br>**volumeState**: state of the volume.| 
+| usual.event.data.VOLUME_MOUNTED | **id**: ID of the volume.<br>**diskId**: ID of the disk to which the volume belongs.<br>**volumeState**: state of the volume.<br>**fsUuid**: universally unique identifier (UUID) of the volume.<br>**path**: path where the volume is mounted.| 
+| usual.event.data.VOLUME_BAD_REMOVAL | **id**: ID of the volume.<br>**diskId**: ID of the disk to which the volume belongs.| 
+| usual.event.data.VOLUME_EJECT | **id**: ID of the volume.<br>**diskId**: ID of the disk to which the volume belongs.<br>**volumeState**: state of the volume.| 
 
 ## How to Develop
 
@@ -55,29 +55,33 @@ You can subscribe to broadcast events to observe the insertion and removal of ex
    ```ts
    import CommonEvent from '@ohos.commonEventManager';
    import volumeManager from '@ohos.file.volumeManager';
-   
-   const subscribeInfo = {
+   import { BusinessError } from '@ohos.base';
+
+   let subscriber: CommonEvent.CommonEventSubscriber;
+   async function example() {
+     const subscribeInfo: CommonEvent.CommonEventSubscribeInfo = {
        events: [
-           "usual.event.data.VOLUME_REMOVED",
-           "usual.event.data.VOLUME_UNMOUNTED",
-           "usual.event.data.VOLUME_MOUNTED",
-           "usual.event.data.VOLUME_BAD_REMOVAL",
-           "usual.event.data.VOLUME_EJECT"
-      ]
-   };
-   let subscriber = await CommonEvent.createSubscriber(subscribeInfo);
+         "usual.event.data.VOLUME_REMOVED",
+         "usual.event.data.VOLUME_UNMOUNTED",
+         "usual.event.data.VOLUME_MOUNTED",
+         "usual.event.data.VOLUME_BAD_REMOVAL",
+         "usual.event.data.VOLUME_EJECT"
+       ]
+     };
+     subscriber = await CommonEvent.createSubscriber(subscribeInfo);
+   }
    ```
 
 3. Obtain volume information from the broadcast.
 
    ```ts
-   CommonEvent.subscribe(subscriber, function (err, data) {
+   CommonEvent.subscribe(subscriber, (err: BusinessError, data: CommonEvent.CommonEventData) => {
      if (data.event === 'usual.event.data.VOLUME_MOUNTED') {
        // Manage the volume device based on the information obtained from the broadcast.
-       let volId = data.parameters.id;
-       volumeManager.getVolumeById(volId, function(error, vol) {
+       let volId: string = data.parameters.id;
+       volumeManager.getVolumeById(volId, (error: BusinessError, vol: volumeManager.Volume) => {
          if (error) {
-           console.error('volumeManager getVolumeById failed');
+           console.error('volumeManager getVolumeById failed for ' + JSON.stringify(error));
          } else {
            console.info('volumeManager getVolumeById successfully, the volume state is ' + vol.state);
          }

@@ -21,10 +21,11 @@
    开发者可以在[`onReceiveEvent()`](../reference/apis/js-apis-application-staticSubscriberExtensionAbility.md#staticsubscriberextensionabilityonreceiveevent)回调中实现业务逻辑。
 
    ```ts
-   import StaticSubscriberExtensionAbility from '@ohos.application.StaticSubscriberExtensionAbility'
+   import StaticSubscriberExtensionAbility from '@ohos.application.StaticSubscriberExtensionAbility';
+   import commonEventManager from '@ohos.commonEventManager';
    
    export default class StaticSubscriber extends StaticSubscriberExtensionAbility {
-     onReceiveEvent(event) {
+     onReceiveEvent(event: commonEventManager.CommonEventData) {
        console.info('onReceiveEvent, event: ' + event.event);
      }
    }

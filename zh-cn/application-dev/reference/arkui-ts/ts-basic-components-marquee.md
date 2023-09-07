@@ -55,7 +55,7 @@ struct MarqueeExample {
   @State start: boolean = false
   private fromStart: boolean = true
   private step: number = 50
-  private loop: number = Infinity
+  private loop: number = Number.POSITIVE_INFINITY
   private src: string = "Running Marquee starts rolling"
 
   build() {

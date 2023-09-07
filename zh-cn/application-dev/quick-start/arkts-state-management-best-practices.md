@@ -507,8 +507,8 @@ incrSubCounter和setSubCounter都是同一个SubCounter的函数。在第一个�
 
 
 ```ts
-@ObjectLink value：ParentCounter;
-@ObjectLink subValue：SubCounter;
+@ObjectLink value：ParentCounter = new ParentCounter(0);
+@ObjectLink subValue：SubCounter = new SubCounter(0);
 ```
 
 该方法使得\@ObjectLink分别代理了ParentCounter和SubCounter的属性，这样对于这两个类的属性的变化都可以观察到，即都会对UI视图进行刷新。即使删除了上面所说的this.counter[0].incrCounter()，UI也会进行正确的刷新。
@@ -715,8 +715,8 @@ struct ParentComp {
 ```ts
 @Component
 struct CounterComp {
-  @Prop value: ParentCounter;
-  @Prop subValue: SubCounter;
+  @Prop value: ParentCounter = new ParentCounter(0);
+  @Prop subValue: SubCounter = new SubCounter(0);
   build() {
     Column({ space: 10 }) {
       Text(`this.subValue.counter: ${this.subValue.counter}`)
@@ -948,8 +948,8 @@ build函数中更改应用状态的行为可能会比上面的示例更加隐蔽
 
   
 ```ts
-@State arr : Array<..> = [ ... ];
-ForEach(this.arr.sort().filter(....), 
+@State arr : Array<...> = [ ... ];
+ForEach(this.arr.sort().filter(...), 
   item => { 
   ...
 })
@@ -959,7 +959,7 @@ ForEach(this.arr.sort().filter(....),
 
   
 ```ts
-ForEach(this.arr.filter(....).sort(), 
+ForEach(this.arr.filter(...).sort(), 
   item => { 
   ...
 })
