@@ -233,7 +233,7 @@ struct TextInputExample {
         .maxLength(9)
         .showPasswordIcon(true)
       // 内联风格输入框
-      TextInput({ placeholder: 'inline style' })
+      TextInput({ text: 'inline style' })
         .width(400)
         .height(50)
         .margin(20)
@@ -254,7 +254,7 @@ struct TextInputExample {
 struct TextInputExample {
   @State PassWordSrc1: Resource = $r('app.media.onIcon')
   @State PassWordSrc2: Resource = $r('app.media.offIcon')
-  @State TextError: string = undefined
+  @State TextError: string = ''
   @State Text: string = ''
   @State NameText: string = 'test'
 
@@ -293,7 +293,7 @@ struct TextInputExample {
         .width(380)
         .height(60)
         .showError('Error')
-        .showUnit(this.itemEnd.bind(this))
+        .showUnit(():void=>this.itemEnd())
 
       Text(`用户名：${this.Text}`)
         .width('95%')
@@ -306,7 +306,7 @@ struct TextInputExample {
         })
         .onSubmit(() => { // 用户名不正确会清空输入框和用户名并提示错误文本
           if (this.Text == this.NameText) {
-            this.TextError = undefined
+            this.TextError = ''
           } else {
             this.TextError = '用户名输入错误'
             this.Text = ''
@@ -338,7 +338,7 @@ struct TextInputExample {
         this.controller.stopEditing()
       })
       Grid() {
-        ForEach([1, 2, 3, 4, 5, 6, 7, 8, 9, '*', 0, '#'], (item) => {
+        ForEach([1, 2, 3, 4, 5, 6, 7, 8, 9, '*', 0, '#'], (item:number|string) => {
           GridItem() {
             Button(item + "")
               .width(110).onClick(() => {

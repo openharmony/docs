@@ -9,7 +9,7 @@
 
 ## 导入模块
 
-```js
+```ts
 import environment from '@ohos.file.environment';
 ```
 
@@ -38,10 +38,11 @@ getStorageDataDir():Promise&lt;string&gt;
 
 **示例：**
 
-  ```js
-  environment.getStorageDataDir().then((path) => {
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  environment.getStorageDataDir().then((path: string) => {
       console.info("getStorageDataDir successfully, Path: " + path);
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
       console.info("getStorageDataDir failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
@@ -71,8 +72,9 @@ getStorageDataDir(callback:AsyncCallback&lt;string&gt;):void
 
 **示例：**
 
-  ```js
-  environment.getStorageDataDir((err, path) => {
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  environment.getStorageDataDir((err: BusinessError, path: string) => {
     if (err) {
       console.info("getStorageDataDir failed with error message: " + err.message + ", error code: " + err.code);
     } else {
@@ -106,10 +108,11 @@ getUserDataDir():Promise&lt;string&gt;
 
 **示例：**
 
-  ```js
-  environment.getUserDataDir().then((path) => {
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  environment.getUserDataDir().then((path: string) => {
     console.info("getUserDataDir successfully, Path: " + path);
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.info("getUserDataDir failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
@@ -139,8 +142,9 @@ getUserDataDir(callback:AsyncCallback&lt;string&gt;): void
 
 **示例：**
 
-  ```js
-  environment.getUserDataDir((err, path) => {
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  environment.getUserDataDir((err: BusinessError, path: string) => {
     if (err) {
       console.info("getUserDataDir failed with error message: " + err.message + ", error code: " + err.code);
     } else {

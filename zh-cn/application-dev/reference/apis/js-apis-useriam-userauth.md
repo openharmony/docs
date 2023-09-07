@@ -1374,7 +1374,7 @@ auth.auth(challenge, userIAM_userAuth.UserAuthType.FACE, userIAM_userAuth.AuthTr
       console.info('auth onResult error = ' + e);
     }
   },
-  onAcquireInfo: (module, acquire, extraInfo) => {
+  onAcquireInfo: (module, acquire, extraInfo : userIAM_userAuth.AuthResult) => {
     try {
       console.info('auth onAcquireInfo module = ' + module);
       console.info('auth onAcquireInfo acquire = ' + acquire);
@@ -1591,12 +1591,14 @@ execute(type : AuthType, level : SecureLevel): Promise&lt;number&gt;
 ```js
 import userIAM_userAuth from '@ohos.userIAM.userAuth';
 
-let authenticator = userIAM_userAuth.getAuthenticator();
-authenticator.execute('FACE_ONLY', 'S2').then((code)=>{
-  console.info('auth success');
-}).catch((error)=>{
+try {
+  let authenticator = userIAM_userAuth.getAuthenticator();
+  authenticator.execute('FACE_ONLY', 'S2').then((code)=>{
+    console.info('auth success');
+  })
+} catch (error) {
   console.error('auth fail, code = ' + error);
-});
+}
 ```
 
 ## AuthenticationResult<sup>(deprecated)</sup>

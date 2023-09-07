@@ -394,6 +394,27 @@ promise.then(data => {
 });
 ```
 
+## call.hasCallSync<sup>10+</sup>
+
+hasCallSync\(\): boolean
+
+Checks whether a call is in progress.
+
+**System capability**: SystemCapability.Telephony.CallManager
+
+**Return value**
+
+| Type                  | Description         |
+| ---------------------- |-------------|
+| boolean | Promise used to return the result.|
+
+**Example**
+
+```js
+let hasCall = call.hasCallSync();
+console.log(`hasCallSync success, has call is ' + hasCall);
+```
+
 
 ## call.getCallState
 
@@ -441,6 +462,27 @@ promise.then(data => {
 }).catch(err => {
     console.error(`getCallState fail, promise: err->${JSON.stringify(err)}`);
 });
+```
+
+## call.getCallStateSync<sup>10+</sup>
+
+getCallStateSync\(\): CallState
+
+Obtains the call status.
+
+**System capability**: SystemCapability.Telephony.CallManager
+
+**Return value**
+
+| Type                                 | Description         |
+| ------------------------------------- |-------------|
+| [CallState](#callstate) | Promise used to return the result.|
+
+**Example**
+
+```js
+let callState = call.getCallStateSync();
+console.log(`the call state is:` + callState);
 ```
 
 ## call.hasVoiceCapability<sup>7+</sup>
@@ -2821,7 +2863,7 @@ call.off('mmiCodeResult', data => {
 
 ## call.on('audioDeviceChange')<sup>10+</sup>
 
-on\(type: 'audioDeviceChange', callback: Callback\<AudioDeviceInfo\>\): void
+on\(type: 'audioDeviceChange', callback: Callback\<AudioDeviceCallbackInfo\>\): void
 
 Subscribes to audio device change events. This API uses an asynchronous callback to return the result.
 
@@ -2836,7 +2878,7 @@ Subscribes to audio device change events. This API uses an asynchronous callback
 | Name  | Type                                            | Mandatory| Description                                               |
 | -------- | ----------------------------------------------- | ---- | --------------------------------------------------- |
 | type     | string                                          | Yes  | Audio device change. This field has a fixed value of **audioDeviceChange**.|
-| callback | Callback<[AudioDeviceInfo](#audiodeviceinfo10)> | Yes  | Callback used to return the result.                                          |
+| callback | Callback<[AudioDeviceCallbackInfo](#audiodevicecallbackinfo10)> | Yes  | Callback used to return the result.                                          |
 
 **Error codes**
 
@@ -2863,7 +2905,7 @@ call.on('audioDeviceChange', data => {
 
 ## call.off('audioDeviceChange')<sup>10+</sup>
 
-off\(type: 'audioDeviceChange', callback?: Callback\<AudioDeviceInfo\>\): void
+off\(type: 'audioDeviceChange', callback?: Callback\<AudioDeviceCallbackInfo\>\): void
 
 Unsubscribes from **audioDeviceChange** events. This API uses an asynchronous callback to return the result.
 
@@ -2878,7 +2920,7 @@ Unsubscribes from **audioDeviceChange** events. This API uses an asynchronous ca
 | Name  | Type                                                      | Mandatory |                           Description                     |
 | -------- | ---------------------------------------------------------- | ---- | --------------------------------------------------- |
 | type     | string                                                     | Yes  | Audio device change. This field has a fixed value of **audioDeviceChange**.|
-| callback | Callback<[AudioDeviceInfo](#audiodeviceinfo10)>            | No  | Callback used to return the result. If this parameter is not set, no subscription cancellation result will be received.    |
+| callback | Callback<[AudioDeviceCallbackInfo](#audiodevicecallbackinfo10)>            | No  | Callback used to return the result. If this parameter is not set, no subscription cancellation result will be received.    |
 
 **Error codes**
 
@@ -4978,7 +5020,7 @@ Enumerates audio device types.
 | DEVICE_WIRED_HEADSET | 2    | Wired headset device.|
 | DEVICE_BLUETOOTH_SCO | 3    | Bluetooth SCO device. |
 
-## AudioDeviceInfo<sup>10+</sup>
+## AudioDeviceCallbackInfo<sup>10+</sup>
 
 Defines the audio device information.
 
@@ -5191,10 +5233,12 @@ Enumerates call ability event IDs.
 
 **System capability**: SystemCapability.Telephony.CallManager
 
-| Name                    | Value  | Description           |
-| ------------------------ | ---- | --------------- |
-| EVENT_DIAL_NO_CARRIER    | 1    | No available carrier during dialing. |
-| EVENT_INVALID_FDN_NUMBER | 2    | Invalid FDN.|
+| Name                                 | Value  | Description           |
+| ------------------------------------- | ---- | --------------- |
+| EVENT_DIAL_NO_CARRIER                 | 1    | No available carrier during dialing. |
+| EVENT_INVALID_FDN_NUMBER              | 2    | Invalid FDN.|
+| EVENT_HOLD_CALL_FAILED<sup>11+</sup>  | 3    | Failed to place the call on hold.|
+| EVENT_SWAP_CALL_FAILED<sup>11+</sup>  | 4    | Failed to place the current call on hold and answer the waiting call.|
 
 ## DialScene<sup>8+</sup>
 

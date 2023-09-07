@@ -9,8 +9,8 @@
 
 ## 导入模块
 
-```js
-import cloudSyncManager from '@ohos.file.cloudSyncManager'
+```ts
+import cloudSyncManager from '@ohos.file.cloudSyncManager';
 ```
 
 ## cloudSyncManager.changeAppCloudSwitch
@@ -47,12 +47,13 @@ changeAppCloudSwitch(accountId: string, bundleName: string, status: boolean): Pr
 
 **示例：**
 
-  ```js
-  let accountId = "testAccount";
-  let bundleName = "com.example.bundle";
-  cloudSyncManager.changeAppCloudSwitch(accountId, bundleName, true).then(function() {
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  let accountId: string = "testAccount";
+  let bundleName: string = "com.example.bundle";
+  cloudSyncManager.changeAppCloudSwitch(accountId, bundleName, true).then(() => {
       console.info("changeAppCloudSwitch successfully");
-  }).catch(function(err) {
+  }).catch((err: BusinessError) => {
       console.info("changeAppCloudSwitch failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
@@ -86,10 +87,11 @@ changeAppCloudSwitch(accountId: string, bundleName: string, status: boolean, cal
 
 **示例：**
 
-  ```js
-  let accountId = "testAccount";
-  let bundleName = "com.example.bundle";
-  cloudSyncManager.changeAppCloudSwitch(accountId, bundleName, true, (err) => {
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  let accountId: string = "testAccount";
+  let bundleName: string = "com.example.bundle";
+  cloudSyncManager.changeAppCloudSwitch(accountId, bundleName, true, (err: BusinessError) => {
     if (err) {
       console.info("changeAppCloudSwitch failed with error message: " + err.message + ", error code: " + err.code);
     } else {
@@ -131,12 +133,13 @@ notifyDataChange(accountId: string, bundleName: string): Promise&lt;void&gt;
 
 **示例：**
 
-  ```js
-  let accountId = "testAccount";
-  let bundleName = "com.example.bundle";
-  cloudSyncManager.notifyDataChange(accountId, bundleName).then(function() {
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  let accountId: string = "testAccount";
+  let bundleName: string = "com.example.bundle";
+  cloudSyncManager.notifyDataChange(accountId, bundleName).then(() => {
       console.info("notifyDataChange successfully");
-  }).catch(function(err) {
+  }).catch((err: BusinessError) => {
       console.info("notifyDataChange failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
@@ -169,10 +172,11 @@ notifyDataChange(accountId: string, bundleName: string, callback: AsyncCallback&
 
 **示例：**
 
-  ```js
-  let accountId = "testAccount";
-  let bundleName = "com.example.bundle";
-  cloudSyncManager.notifyDataChange(accountId, bundleName, (err) => {
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  let accountId: string = "testAccount";
+  let bundleName: string = "com.example.bundle";
+  cloudSyncManager.notifyDataChange(accountId, bundleName, (err: BusinessError) => {
     if (err) {
       console.info("notifyDataChange failed with error message: " + err.message + ", error code: " + err.code);
     } else {
@@ -216,12 +220,13 @@ enableCloud(accountId: string, switches: { [bundleName: string]: boolean }): Pro
 
 **示例：**
 
-  ```js
-  let accountId = "testAccount";
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  let accountId: string = "testAccount";
   let switches = {"com.example.bundleName1": true, "com.example.bundleName2": false};
-  cloudSyncManager.enableCloud(accountId, switches).then(function() {
+  cloudSyncManager.enableCloud(accountId, switches).then(() => {
       console.info("enableCloud successfully");
-  }).catch(function(err) {
+  }).catch((err: BusinessError) => {
       console.info("enableCloud failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
@@ -256,10 +261,14 @@ enableCloud(accountId: string, switches: { [bundleName: string]: boolean }, call
 
 **示例：**
 
-  ```js
-  let accountId = "testAccount";
-  let switches = {"com.example.bundleName1": true, "com.example.bundleName2": false};
-  cloudSyncManager.enableCloud(accountId, switches, (err) => {
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  let accountId: string = "testAccount";
+  let switches: Record<string, boolean> = {
+    'com.example.bundleName1': true,
+    'com.example.bundleName2': false
+  }
+  cloudSyncManager.enableCloud(accountId, switches, (err: BusinessError) => {
     if (err) {
       console.info("enableCloud failed with error message: " + err.message + ", error code: " + err.code);
     } else {
@@ -302,11 +311,12 @@ disableCloud(accountId: string): Promise&lt;void&gt;
 
 **示例：**
 
-  ```js
-  let accountId = "testAccount";
-  cloudSyncManager.disableCloud(accountId).then(function() {
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  let accountId: string = "testAccount";
+  cloudSyncManager.disableCloud(accountId).then(() => {
       console.info("disableCloud successfully");
-  }).catch(function(err) {
+  }).catch((err: BusinessError) => {
       console.info("disableCloud failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
@@ -340,9 +350,10 @@ disableCloud(accountId: string, callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
-  ```js
-  let accountId = "testAccount";
-  cloudSyncManager.disableCloud(accountId, (err) => {
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  let accountId: string = "testAccount";
+  cloudSyncManager.disableCloud(accountId, (err: BusinessError) => {
     if (err) {
       console.info("disableCloud failed with error message: " + err.message + ", error code: " + err.code);
     } else {
@@ -399,13 +410,16 @@ clean(accountId: string, appActions: { [bundleName: string]: Action }): Promise&
 
 **示例：**
 
-  ```js
-  let accountId = "testAccount";
-  let appActions = {"com.example.bundleName1": cloudSyncManager.Action.RETAIN_DATA,
-                    "com.example.bundleName2": cloudSyncManager.Action.CLEAR_DATA};
-  cloudSyncManager.clean(accountId, appActions).then(function() {
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  let accountId: string = "testAccount";
+  let appActions: Record<string, cloudSyncManager.Action> = {
+    'com.example.bundleName1': cloudSyncManager.Action.RETAIN_DATA,
+    'com.example.bundleName2': cloudSyncManager.Action.CLEAR_DATA
+  };
+  cloudSyncManager.clean(accountId, appActions).then(() => {
       console.info("clean successfully");
-  }).catch(function(err) {
+  }).catch((err: BusinessError) => {
       console.info("clean failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
@@ -440,11 +454,14 @@ clean(accountId: string, appActions: { [bundleName: string]: Action }, callback:
 
 **示例：**
 
-  ```js
-  let accountId = "testAccount";
-  let appActions = {"com.example.bundleName1": cloudSyncManager.Action.RETAIN_DATA,
-                    "com.example.bundleName2": cloudSyncManager.Action.CLEAR_DATA};
-  cloudSyncManager.clean(accountId, appActions, (err) => {
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  let accountId: string = "testAccount";
+    let appActions: Record<string, cloudSyncManager.Action> = {
+    'com.example.bundleName1': cloudSyncManager.Action.RETAIN_DATA,
+    'com.example.bundleName2': cloudSyncManager.Action.CLEAR_DATA
+  };
+  cloudSyncManager.clean(accountId, appActions, (err: BusinessError) => {
     if (err) {
       console.info("clean failed with error message: " + err.message + ", error code: " + err.code);
     } else {

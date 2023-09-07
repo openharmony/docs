@@ -86,7 +86,7 @@ export struct share_transition_expand {
   build() {
     Column() {
       List() {
-        ForEach(this.listArray, (item, index) => {
+        ForEach(this.listArray, (item:number, index) => {
           // Customize the expanded component as required.
           if (!this.isExpand || this.curIndex == index) {
             ListItem() {
@@ -128,7 +128,7 @@ export struct share_transition_expand {
               .onClick(() => {
                 // Define the animation parameters for expanding and collapsing.
                 animateTo({ curve: curves.springMotion(0.6, 0.9) }, () => {
-                  this.curIndex = index;
+                  this.curIndex = index as number;
                   this.isExpand = !this.isExpand;
                 })
               })
@@ -216,12 +216,12 @@ export struct share_zIndex_expand {
   @Link isExpand: boolean;
   @Link curIndex: number;
   @State listArray: Array<number> = [1, 2, 3, 4, 5, 6];
-  private parentScroller: Scroller; // Upper-layer scroller controller.
+  private parentScroller: Scroller = new Scroller(); // Upper-layer scroller
 
   build() {
     Column() {
       List() {
-        ForEach(this.listArray, (item, index) => {
+        ForEach(this.listArray, (item: number, index) => {
           // Customize the expanded component as required.
           if (!this.isExpand || this.curIndex == index) {
             ListItem() {
@@ -271,7 +271,7 @@ export struct share_zIndex_expand {
             .onClick(() => {
               // Define the animation parameters for expanding and collapsing.
               animateTo({ curve: curves.springMotion(0.6, 0.9) }, () => {
-                this.curIndex = index;
+                this.curIndex = index as number;
                 this.isExpand = !this.isExpand;
               })
             })
@@ -540,7 +540,7 @@ struct AutoAchieveShareTransitionDemo {
     Stack() {
       Scroll() {
         Column({ space: 20 }) {
-          ForEach(this.items, (item, index) => {
+          ForEach(this.items, (item:string, index) => {
             Row() {
               Column() {
                 Text('Shared element ' + item)
@@ -567,15 +567,7 @@ struct AutoAchieveShareTransitionDemo {
             .onClick(() => {
               // Obtain the position and size of the corresponding component.
               let strJson = getInspectorByKey(item);
-              let obj = JSON.parse(strJson);
-              let rectInfo = JSON.parse('[' + obj.$rect + ']');
-              let rect_left = JSON.parse('[' + rectInfo[0] + ']')[0];
-              let rect_top = JSON.parse('[' + rectInfo[0] + ']')[1];
-              let rect_right = JSON.parse('[' + rectInfo[1] + ']')[0];
-              let rect_bottom = JSON.parse('[' + rectInfo[1] + ']')[1];
-              let rect_value = {
-                "left": rect_left, "top": rect_top, "right": rect_right, "bottom": rect_bottom
-              };
+              let rect_top:number = JSON.parse('[' + JSON.parse('[' + JSON.parse(strJson).$rect + ']')[0] + ']')[1];
 
               // Set the location, content, and status of the shared element.
               this.rect_top = rect_top;

@@ -1186,20 +1186,19 @@ importCredential(credentialInfo: string, callback: AsyncCallback<{resultInfo: st
     deviceId: string,
     version: string,
     devicePk : string,
-    credentialData : CredentialData[]
+    credentialData : CredentialData
   }
 
-  let credentialData: CredentialData = [
-    {
-      credentialType: 2,
-      credentialId: "102",
-      serverPk: "3059301306072A8648CE3D020106082A8648CE3D03",
-      pkInfoSignature : "30440220490BCB4F822004C9A76AB8D97F80041FC0E",
-      pkInfo: "",
-      authCode: "",
-      peerDeviceId: ""
-    }
-  ]
+  let credentialData: CredentialData = {
+    credentialType: 2,
+    credentialId: "102",
+    serverPk: "3059301306072A8648CE3D020106082A8648CE3D03",
+    pkInfoSignature : "30440220490BCB4F822004C9A76AB8D97F80041FC0E",
+    pkInfo: "",
+    authCode: "",
+    peerDeviceId: ""
+  }
+
 
   let credentialInfo: CredentialInfo = {
     processType: 1,
@@ -1375,7 +1374,14 @@ on(type: 'deviceStateChange',  callback: Callback&lt;{ action: DeviceStateChange
 
   class Data {
     action: deviceManager.DeviceStateChangeAction = 0
-    device: deviceManager.DeviceInfo = {}
+    device: deviceManager.DeviceInfo = {
+      deviceId: "",
+      deviceName: "",
+      deviceType: 0,
+      networkId: "",
+      range: 0,
+      authForm:0,
+    }
   }
 
   try {
@@ -1413,7 +1419,14 @@ off(type: 'deviceStateChange', callback?: Callback&lt;{ action: DeviceStateChang
 
   class Data {
     action: deviceManager.DeviceStateChangeAction = 0
-    device: deviceManager.DeviceInfo = {}
+    device: deviceManager.DeviceInfo = {
+      deviceId: "",
+      deviceName: "",
+      deviceType: 0,
+      networkId: "",
+      range: 0,
+      authForm:0,
+    }
   }
 
   try {
@@ -1454,7 +1467,6 @@ on(type: 'deviceFound', callback: Callback&lt;{ subscribeId: number, device: Dev
     device: deviceManager.DeviceInfo = {}
   }
 
-  subscribeId: number, device: DeviceInfo
   try {
     dmInstance.on('deviceFound', (data: Data) => {
       console.info("deviceFound:" + JSON.stringify(data));
@@ -1490,7 +1502,14 @@ off(type: 'deviceFound', callback?: Callback&lt;{ subscribeId: number, device: D
 
   class Data {
     subscribeId: number = 0
-    device: deviceManager.DeviceInfo = {}
+    device: deviceManager.DeviceInfo = {
+      deviceId: "",
+      deviceName: "",
+      deviceType: 0,
+      networkId: "",
+      range: 0,
+      authForm:0,
+    }
   }
 
   try {

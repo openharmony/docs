@@ -199,6 +199,11 @@ struct ImageExample2 {
 
 
 ```ts
+class tmp{
+  width: number = 0
+  height: number = 0
+}
+let msg:tmp = new tmp()
 @Entry
 @Component
 struct ImageExample3 {
@@ -223,9 +228,11 @@ struct ImageExample3 {
             .objectFit(ImageFit.Cover)
             .height(180).width(180)
             // 图片加载完成后，获取图片尺寸。
-            .onComplete((msg: { width: number,height: number }) => {
-              this.widthValue = msg.width
-              this.heightValue = msg.height
+            .onComplete(msg => {
+              if(msg){
+                this.widthValue = msg.width
+                this.heightValue = msg.height
+              }
             })
             .onError(() => {
               console.log('load image fail')

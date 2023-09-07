@@ -7,7 +7,7 @@
 
 ## 导入模块
 
-```js
+```ts
 import uri from '@ohos.uri'  
 ```
 
@@ -47,7 +47,7 @@ import uri from '@ohos.uri'
 
 **URI示例：**
 
-```js
+```ts
 const result1 = new uri.URI("ftp://ftp.aaa.bbb.ccc/dddd/eee.txt");
 console.log(result1.host) // ftp.aaa.bbb.ccc
 console.log(result1.fragment) // null
@@ -118,12 +118,12 @@ constructor是URI的构造函数。
 
 **示例：**
 
-```js
+```ts
 let mm = 'https://username:password@host:8080/directory/file?foo=1&bar=2#fragment';
-new uri.URI(mm); // Output 'https://username:password@host:8080/directory/file?foo=1&bar=2#fragment';
+new uri.URI(mm);
 ```
-```js
-new uri.URI('https://username:password@host:8080'); // Output 'https://username:password@host:8080';
+```ts
+new uri.URI('https://username:password@host:8080');
 ```
 
 
@@ -143,7 +143,7 @@ toString(): string
 
 **示例：**
 
-```js
+```ts
 const result = new uri.URI('https://username:password@host:8080/directory/file?query=pppppp#qwer=da');
 let result1 = result.toString();
 ```
@@ -175,7 +175,7 @@ equals(other: URI): boolean
 
 **示例：**
 
-```js
+```ts
 const uriInstance = new uri.URI('https://username:password@host:8080/directory/file?query=pppppp#qwer=da');
 const uriInstance1 = new uri.URI('https://username:password@host:8080/directory/file?query=pppppp#qwer=da');
 uriInstance.equals(uriInstance1);
@@ -202,7 +202,7 @@ equalsTo(other: URI): boolean
 
 **示例：**
 
-```js
+```ts
 const uriInstance = new uri.URI('https://username:password@host:8080/directory/file?query=pppppp#qwer=da');
 const uriInstance1 = new uri.URI('https://username:password@host:8080/directory/file?query=pppppp#qwer=da');
 let result = uriInstance.equalsTo(uriInstance1);
@@ -224,7 +224,7 @@ checkIsAbsolute(): boolean
 
 **示例：**
 
-```js
+```ts
 const uriInstance = new uri.URI('https://username:password@www.qwer.com:8080?query=pppppp');
 console.log(`${uriInstance.checkIsAbsolute()}`); // true
 const uriInstance1 = new uri.URI('xxx.com/suppliers.htm');
@@ -248,7 +248,7 @@ normalize(): URI
 
 **示例：**
 
-```js
+```ts
 const uriInstance = new uri.URI('https://username:password@www.qwer.com:8080/path/path1/../path2/./path3?query=pppppp');
 console.log(uriInstance.path); // /path/path1/../path2/./path3
 let uriInstance1 = uriInstance.normalize();

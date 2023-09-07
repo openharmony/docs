@@ -202,7 +202,7 @@ class MyDataSource extends BasicDataSource {
 @Component
 struct MyComponent {
   aboutToAppear() {
-    for (var i = 100; i >= 80; i--) {
+    for (let i = 100; i >= 80; i--) {
       this.data.pushData(`Hello ${i}`)
     }
   }
@@ -223,7 +223,7 @@ struct MyComponent {
         .onClick(() => {
           this.data.pushData(`Hello ${this.data.totalCount()}`);
         })
-      }, item => item)
+      }, (item: string) => item)
     }.cachedCount(5)
   }
 }

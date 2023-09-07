@@ -567,8 +567,9 @@ struct BlankExample {
     build() {
       Scroll(this.scroller) {
         Column() {
-          ForEach(this.arr, (item) => {
-            Text(item.toString())
+          ForEach(this.arr, (item?:number|undefined) => {
+            if(item){
+              Text(item.toString())
               .width('90%')
               .height(150)
               .backgroundColor(0xFFFFFF)
@@ -576,7 +577,8 @@ struct BlankExample {
               .fontSize(16)
               .textAlign(TextAlign.Center)
               .margin({ top: 10 })
-          }, item => item)
+            }
+          }, ((item:string):string => item))
         }.width('100%')
       }
       .backgroundColor(0xDCDCDC)
@@ -604,8 +606,9 @@ struct BlankExample {
     build() {
       Scroll(this.scroller) {
         Row() {
-          ForEach(this.arr, (item) => {
-            Text(item.toString())
+          ForEach(this.arr, (item?:number|undefined) => {
+            if(item){
+              Text(item.toString())
               .height('90%')
               .width(150)
               .backgroundColor(0xFFFFFF)
@@ -613,6 +616,7 @@ struct BlankExample {
               .fontSize(16)
               .textAlign(TextAlign.Center)
               .margin({ left: 10 })
+            }
           })
         }.height('100%')
       }

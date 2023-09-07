@@ -21,7 +21,7 @@ GestureGroup(mode: GestureMode, ...gesture: GestureType[])
 
 | 名称        | 描述                                       |
 | --------- | ---------------------------------------- |
-| Sequence  | 顺序识别，按照手势的注册顺序识别手势，直到所有手势识别成功。当有一个手势识别失败时，所有手势识别失败。 |
+| Sequence  | 顺序识别，按照手势的注册顺序识别手势，直到所有手势识别成功。当有一个手势识别失败时，所有手势识别失败。<br>顺序识别手势组仅有最后一个手势可以响应onActionEnd。 |
 | Parallel  | 并发识别，注册的手势同时识别，直到所有手势识别结束，手势识别互相不影响。     |
 | Exclusive | 互斥识别，注册的手势同时识别，若有一个手势识别成功，则结束手势识别。       |
 
@@ -62,23 +62,22 @@ struct GestureGroupExample {
       // 以下组合手势为顺序识别，当长按手势事件未正常触发时则不会触发拖动手势事件
     GestureGroup(GestureMode.Sequence,
     LongPressGesture({ repeat: true })
-      .onAction((event: GestureEvent) => {
-        if (event.repeat) {
+      .onAction((event?: GestureEvent) => {
+        if (event && event.repeat) {
           this.count++
         }
         console.info('LongPress onAction')
-      })
-      .onActionEnd(() => {
-        console.info('LongPress end')
       }),
     PanGesture()
       .onActionStart(() => {
         this.borderStyles = BorderStyle.Dashed
         console.info('pan start')
       })
-      .onActionUpdate((event: GestureEvent) => {
-        this.offsetX = this.positionX + event.offsetX
-        this.offsetY = this.positionY + event.offsetY
+      .onActionUpdate((event?: GestureEvent) => {
+        if (event) {
+          this.offsetX = this.positionX + event.offsetX
+          this.offsetY = this.positionY + event.offsetY
+        }
         console.info('pan update')
       })
       .onActionEnd(() => {

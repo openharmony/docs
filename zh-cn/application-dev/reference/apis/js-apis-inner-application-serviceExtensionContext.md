@@ -770,7 +770,7 @@ startServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\
 
 ## ServiceExtensionContext.startAbilityAsCaller<sup>10+<sup>
 
-starAbilityAsCaller(want: Want, callback: AsyncCallback\<void>): void;
+startAbilityAsCaller(want: Want, callback: AsyncCallback\<void>): void;
 
 使用设置的caller信息启动一个Ability，caller信息由want携带，在系统服务层识别，Ability可以在onCreate生命周期的want参数中获取到caller信息。使用该接口启动一个Ability时，want的caller信息不会被当前自身的应用信息覆盖，系统服务层可获取到初始caller的信息。使用callback异步回调。
 
