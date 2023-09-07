@@ -27,6 +27,7 @@
   - [Media Error Codes](errorcode-media.md)
   - [AVSession Management Error Codes](errorcode-avsession.md)
   - [Camera Error Codes](errorcode-camera.md)
+  - [Image Error Codes](errorcode-image.md)
 - Resource Management
   - [I18N Error Codes](errorcode-i18n.md)
   - [Resource Manager Error Codes](errorcode-resource-manager.md)
