@@ -1340,13 +1340,13 @@ JS测试代码示例如下（仅供参考），如果整个流程能够正常运
 
 1. 引入HUKS模块
 
-   ```js
+   ```ts
    import huks from '@ohos.security.huks'
    ```
 
 2. 使用generateKey接口生成密钥。
 
-   ```js
+   ```ts
     import { BusinessError } from '@ohos.base';
     let aesKeyAlias = 'test_aesKeyAlias';
     let handle = 0;
@@ -1396,7 +1396,7 @@ JS测试代码示例如下（仅供参考），如果整个流程能够正常运
 
 3. 使用huks.initSession，huks.finishSession进行加密。
 
-   ```js
+   ```ts
     let plainText = '123456';
 
     function StringToUint8Array(str: string) {
