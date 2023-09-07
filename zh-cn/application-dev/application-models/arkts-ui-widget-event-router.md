@@ -48,7 +48,7 @@
   }
   ```
 
-- 在UIAbility中接收router事件并获取参数，根据传递的message不同，选择拉起不同的页面。
+- 在UIAbility中接收router事件并获取参数，根据传递的params不同，选择拉起不同的页面。
   
   ```ts
   import UIAbility from '@ohos.app.ability.UIAbility';
