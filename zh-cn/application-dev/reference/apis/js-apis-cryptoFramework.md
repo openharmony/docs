@@ -2061,7 +2061,7 @@ function stringToUint8Array(str) {
 let globalKeyPair;
 let SignMessageBlob;
 let plan1 = "This is Sign test plan1"; // The first segment of data.
-let plan2 = "This is Sign test plan2"; // The second segment of fata.
+let plan2 = "This is Sign test plan2"; // The second segment of data.
 let input1 = { data: stringToUint8Array(plan1) };
 let input2 = { data: stringToUint8Array(plan2) };
 
@@ -2100,7 +2100,7 @@ function stringToUint8Array(str) {
 let globalKeyPair;
 let SignMessageBlob;
 let plan1 = "This is Sign test plan1"; // The first segment of data.
-let plan2 = "This is Sign test plan2"; // The second segment of fata.
+let plan2 = "This is Sign test plan2"; // The second segment of data.
 let input1 = { data: stringToUint8Array(plan1) };
 let input2 = { data: stringToUint8Array(plan2) };
 
