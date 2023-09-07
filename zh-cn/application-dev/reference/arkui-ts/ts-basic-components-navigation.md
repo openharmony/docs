@@ -350,6 +350,10 @@ constructor(name: string, param: unknown)
 
 ```ts
 // xxx.ets
+class A {
+text:string=''
+num:number=0
+}
 @Entry
 @Component
 struct NavigationExample {
@@ -359,15 +363,15 @@ struct NavigationExample {
     {
       text: 'add',
       num: 0
-    },
+    } as A,
     {
       text: 'app',
       num: 1
-    },
+    } as A,
     {
       text: 'collect',
       num: 2
-    }
+    } as A
   ]
 
   @Builder NavigationTitle() {
@@ -404,7 +408,7 @@ struct NavigationExample {
 
   @Builder NavigationToolbar() {
     Row() {
-      ForEach(this.Build, item => {
+      ForEach(this.Build, (item:A) => {
         Column() {
           Image(this.currentIndex == item.num ? 'common/public_icon_selected.svg' : 'common/public_icon.svg')
             .width(24)
@@ -433,7 +437,7 @@ struct NavigationExample {
           .margin({ top: 8 })
 
         List({ space: 12, initialIndex: 0 }) {
-          ForEach(this.arr, (item) => {
+          ForEach(this.arr, (item:number) => {
             ListItem() {
               Text('' + item)
                 .width('90%')
@@ -444,7 +448,7 @@ struct NavigationExample {
                 .fontWeight(500)
                 .textAlign(TextAlign.Center)
             }.editable(true)
-          }, item => item)
+        }, (item:number) => item.toString())
         }
         .height(324)
         .width('100%')

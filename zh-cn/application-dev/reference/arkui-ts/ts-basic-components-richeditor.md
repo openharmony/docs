@@ -416,11 +416,11 @@ struct Index {
             start: this.start,
             end: this.end
           }).forEach(item => {
-            if ("imageStyle" in item) {
-              this.content += item.valueResourceStr;
+            if(typeof(item as RichEditorImageSpanResult)['imageStyle'] != 'undefined'){
+              this.content += (item as RichEditorImageSpanResult).valueResourceStr;
               this.content += "\n"
             } else {
-              this.content += item.value;
+              this.content += (item as RichEditorTextSpanResult).value;
               this.content += "\n"
             }
           })
@@ -468,7 +468,8 @@ struct Index {
               })
           })
           .onSelect((value: RichEditorSelection) => {
-            [this.start, this.end] = value.selection;
+            this.start = value.selection[0];
+            this.end = value.selection[1];
             this.message = "[" + this.start + ", " + this.end + "]"
           })
           .aboutToIMEInput((value: RichEditorInsertValue) => {
@@ -494,10 +495,10 @@ struct Index {
               console.log("spanIndex:" + item.spanPosition.spanIndex)
               console.log("spanRange:[" + item.spanPosition.spanRange[0] + "," + item.spanPosition.spanRange[1] + "]")
               console.log("offsetInSpan:[" + item.offsetInSpan[0] + "," + item.offsetInSpan[1] + "]")
-              if ("imageStyle" in item) {
-                console.log("image:" + item.valueResourceStr)
+              if (typeof(item as RichEditorImageSpanResult)['imageStyle'] != 'undefined') {
+                console.log("image:" + (item as RichEditorImageSpanResult).valueResourceStr)
               } else {
-                console.log("text:" + item.value)
+                console.log("text:" + (item as RichEditorTextSpanResult).value)
               }
             })
             return true;
@@ -533,7 +534,7 @@ struct RichEditorExample {
   @Builder CustomKeyboardBuilder() {
     Column() {
       Grid() {
-        ForEach([1, 2, 3, 4, 5, 6, 7, 8, 9, '*', 0, '#'], (item) => {
+        ForEach([1, 2, 3, 4, 5, 6, 7, 8, 9, '*', 0, '#'], (item: number | string) => {
           GridItem() {
             Button(item + "")
               .width(110).onClick(() => {
