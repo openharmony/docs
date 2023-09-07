@@ -2,7 +2,7 @@
 
 > **NOTE**
 >
-> This guide applies to JS development using OpenHarmony API version 9 and SDK version 3.2.7 or later.
+> This guide applies only to JavaScript development using the SDK of API version 9 or later.
 
 ## Key Generation and Conversion
 
@@ -18,7 +18,7 @@ Typical key generation operations involve the following:
 
 > **NOTE**
 >
-> The key object can be a symmetric key object (**SymKey**) or an asymmetric key pair object (**KeyPair**). The **KeyPair** object consists a public key (**PubKey**) and a private key (**PriKey**). For details about the relationship between keys, see [Crypto Framework](../reference/apis/js-apis-cryptoFramework.md).
+> The key object can be a symmetric key object (**SymKey**) or an asymmetric key pair object (**KeyPair**). The **KeyPair** object consists a public key (**PubKey**) and a private key (**PriKey**). For details about the relationship between the keys, see [Crypto Framework](../reference/apis/js-apis-cryptoFramework.md).
 
 ### Available APIs
 
@@ -1021,7 +1021,7 @@ function encryptMessagePromise() {
   });
 }
 
-// Encrypt the message in callback mode.
+// Encrypt the data in callback mode.
 function encryptMessageCallback() {
   // Create an AsyKeyGenerator instance.
   let rsaGenerator = cryptoFramework.createAsyKeyGenerator("RSA1024|PRIMES_2");
@@ -1042,7 +1042,7 @@ function encryptMessageCallback() {
   })
 }
 
-// Encrypt and decrypt the message in promise mode.
+// Encrypt and decrypt data in promise mode.
 function decryptMessagePromise() {
   // Create an AsyKeyGenerator instance.
   let rsaGenerator = cryptoFramework.createAsyKeyGenerator("RSA1024|PRIMES_2");
@@ -1057,7 +1057,7 @@ function decryptMessagePromise() {
   let input = { data: stringToUint8Array(plan) };
   keyGenPromise.then(rsaKeyPair => {
     keyPair = rsaKeyPair;
-    // Initialize the Cipher instance and use the public key to encrypt the message.
+    // Initialize the Cipher instance and use the public key to encrypt the data.
     return cipher.init(cryptoFramework.CryptoMode.ENCRYPT_MODE, keyPair.pubKey, null);
   })
     .then(() => {
@@ -1069,11 +1069,11 @@ function decryptMessagePromise() {
       console.info("EncryptOutPut is " + dataBlob.data);
       AlertDialog.show({ message: "output" + dataBlob.data });
       cipherDataBlob = dataBlob;
-    // Initialize the Cipher instance and use the private key to decrypt the message.
+      // Initialize the Cipher instance and use the private key to decrypt the data.
       return decoder.init(cryptoFramework.CryptoMode.DECRYPT_MODE, keyPair.priKey, null);
     })
     .then(() => {
-      // Call doFinal() to decrypt the message.
+      // Call doFinal() to decrypt data.
       return decoder.doFinal(cipherDataBlob);
     })
     .then(decodeData => {
@@ -1086,7 +1086,7 @@ function decryptMessagePromise() {
     });
 }
 
-// Encrypt and decrypt the message in callback mode.
+// Encrypt and decrypt data in callback mode.
 function decryptMessageCallback() {
   // Create an AsyKeyGenerator instance.
   let rsaGenerator = cryptoFramework.createAsyKeyGenerator("RSA1024|PRIMES_2");
@@ -1101,16 +1101,16 @@ function decryptMessageCallback() {
   // Generate an asymmetric key pair using the AsyKeyGenerator instance.
   rsaGenerator.generateKeyPair(function (err, newKeyPair) {
     keyPair = newKeyPair;
-    // Initialize the Cipher instance and use the public key to encrypt the message.
+    // Initialize the Cipher instance and use the public key to encrypt the data.
     cipher.init(cryptoFramework.CryptoMode.ENCRYPT_MODE, keyPair.pubKey, null, function (err, data) {
-      // Call doFinal() to encrypt the message.
+      // Call doFinal() to encrypt data.
       cipher.doFinal(input, function (err, data) {
         // Obtain the encrypted information and use it as the input parameter for decryption.
         AlertDialog.show({ message: "EncryptOutPut is " + data.data });
         cipherData = data;
-        // Initialize the Cipher instance and use the private key to decrypt the message.
+        // Initialize the Cipher instance and use the private key to decrypt the data.
         decoder.init(cryptoFramework.CryptoMode.DECRYPT_MODE, keyPair.priKey, null, function (err, data) {
-          // Call doFinal() to decrypt the message.
+          // Call doFinal() to decrypt data.
           decoder.doFinal(cipherData, function (err, data) {
             // Check whether the decrypted data is consistent with the original data.
             if (input.data.toString() === data.data.toString()) {
@@ -1224,7 +1224,7 @@ function encryptLongMessagePromise() {
 > - The RSA encryption has a limit on the length of the plaintext to be encrypted. For details, see [Encryption and Decryption](cryptoFramework-overview.md#encryption-and-decryption).
 > - In RSA decryption, the length of the ciphertext to be decrypted each time is the number of bits of the RSA key divided by 8.
 
-### Using PKCS1_OAEP in RSA Encryption and Decryption 
+### Using PKCS1_OAEP in RSA Encryption and Decryption
 
 Use the PKCS1_OAEP padding mode in RSA encryption and decryption in promise mode.
 
@@ -1377,7 +1377,7 @@ function encryptMessagePromise() {
   let keyGenPromise = sm2Generator.generateKeyPair();
   keyGenPromise.then(sm2KeyPair => {
     let pubKey = sm2KeyPair.pubKey;
-    // Initialize the Cipher instance and use the public key to encrypt the message.
+    // Initialize the Cipher instance and use the public key to encrypt the data.
     return cipher.init(cryptoFramework.CryptoMode.ENCRYPT_MODE, pubKey, null);
   }).then(() => {
     // doFinal
@@ -1389,7 +1389,7 @@ function encryptMessagePromise() {
   });
 }
 
-// Encrypt the message in callback mode.
+// Encrypt the data in callback mode.
 function encryptMessageCallback() {
   // Create an AsyKeyGenerator instance.
   let sm2Generator = cryptoFramework.createAsyKeyGenerator("SM2_256");
@@ -1398,7 +1398,7 @@ function encryptMessageCallback() {
   // Generate an asymmetric key pair using the AsyKeyGenerator instance.
   sm2Generator.generateKeyPair(function (err, keyPair) {
     let pubKey = keyPair.pubKey;
-    // Initialize the Cipher instance and use the public key to encrypt the message.
+    // Initialize the Cipher instance and use the public key to encrypt the data.
     cipher.init(cryptoFramework.CryptoMode.ENCRYPT_MODE, pubKey, null, function (err, data) {
       let input = { data: stringToUint8Array(plan) };
       // doFinal
@@ -1598,7 +1598,7 @@ The following table describes the APIs used in typical signing and signature ver
 |Sign|update(data : DataBlob) : Promise\<void>|Updates the data for signing. This API uses a promise to return the result.|
 |Sign|sign(data : DataBlob, callback : AsyncCallback\<DataBlob>) : void|Signs the data. This API uses an asynchronous callback to return the result.|
 |Sign|sign(data : DataBlob) : Promise\<DataBlob>|Signs the data. This API uses a promise to return the result.|
-|Sign|getSignSpec(itemType: SignSpecItem): string \| number|Obtains the signing specifications. Currently, only the RSA is supported.|
+|Sign|getSignSpec(itemType: SignSpecItem): string \| number|Obtains signing specifications. Currently, only the RSA is supported.|
 |Sign|setSignSpec(itemType: SignSpecItem, itemValue: number): void|Sets signing specifications. Currently, only the RSA is supported.|
 |cryptoFramework|function createVerify(algName : string) : Verify|Creates a **Verify** instance.|
 |Verify|init(pubKey : PubKey, callback : AsyncCallback\<void>) : void|Sets a key and initializes the **Verify** instance. This API uses an asynchronous callback to return the result.|
@@ -1702,7 +1702,7 @@ function verifyMessageCallback() {
 
 ### Signing and Signature Verification Using ECDSA
 
-Use the ECDSA to sign data and verify the signature.
+Use ECDSA to sign data and verify the signature.
 
 1. Generate an ECC key.<br>Call **createAsyKeyGenerator()** to create an **AsyKeyGenerator** instance and generate an ECC asymmetric key pair.
 2. Create a **Sign** instance.<br>Call **createSign()** to create a **Sign** instance, initialize the **Sign** instance, and set a private key for signing.
@@ -2397,7 +2397,7 @@ function doHmacByCallback() {
 
 ### Generating an HMAC by Segment
 
-Generate an HMAC by segment. 
+Generate an HMAC by segment.
 
 1. Use **createMac()** to create a **Mac** instance.
 2. Use **init()** to initialize the **Mac** instance with the symmetric key passed in.
