@@ -894,6 +894,7 @@ function testAesMultiUpdate() {
           messageArr.push(plainText.charCodeAt(i));
         }
       }
+      globalCipherText = { data: tmpCipherText };
       return;
     })
     .then((): Promise<cryptoFramework.DataBlob> => {
