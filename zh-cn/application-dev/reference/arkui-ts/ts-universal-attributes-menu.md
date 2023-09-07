@@ -95,18 +95,18 @@ struct MenuExample {
 
   @Builder MenuBuilder() {
     Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
-      ForEach(this.listData, (item, index) => {
+      ForEach(this.listData, (item:number, index) => {
         Column() {
           Row() {
             Image($r("app.media.icon")).width(20).height(20).margin({ right: 5 })
-            Text(`Menu${index + 1}`).fontSize(20)
+            Text(`Menu${index as number + 1}`).fontSize(20)
           }
           .width('100%')
           .height(30)
           .justifyContent(FlexAlign.Center)
           .align(Alignment.Center)
           .onClick(() => {
-            console.info(`Menu${index + 1} Clicked!`)
+            console.info(`Menu${index as number + 1} Clicked!`)
           })
 
           if (index != this.listData.length - 1) {

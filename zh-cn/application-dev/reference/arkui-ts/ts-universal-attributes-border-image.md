@@ -145,9 +145,9 @@ struct BorderImage {
           Select([{ value: 'Repeat' }, { value: 'Stretch' }, { value: 'Round' }, { value: 'Space' }])
             .value(this.SelectText)
             .selected(this.SelectIndex)
-            .onSelect((index: number, text: string) => {
+            .onSelect((index: number, value?: string) => {
               this.SelectIndex = index
-              this.SelectText = text
+              this.SelectText = value as string
             })
         }
 
