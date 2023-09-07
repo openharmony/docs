@@ -45,6 +45,7 @@ For details about the error codes, see [Background Task Management Error Codes](
 **Example**
 
 ```js
+let resourceTypes = 1;
 try{
 deviceStandby.getExemptedApps(resourceTypes, (err, res) => {
   if (err) {
@@ -100,6 +101,7 @@ For details about the error codes, see [Background Task Management Error Codes](
 **Example**
 
 ```js
+let resourceTypes = 1;
 try{
 deviceStandby.getExemptedApps(resourceTypes).then( res => {
   console.log('DEVICE_STANDBY getExemptedApps promise success.');
