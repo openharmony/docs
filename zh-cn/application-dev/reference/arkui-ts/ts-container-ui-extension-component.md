@@ -146,7 +146,6 @@ struct Index {
   sizeObject: SizeObject = {
     width: "100%", height: "100%"
   }
-  x: XObject = 
 
   build() {
     Row() {
