@@ -2298,7 +2298,7 @@ off(type: "streamChange", callback?: Callback&lt;number&gt;): void
 ```ts
 import wifi from '@ohos.wifi';
 
-let recvStreamChangeFunc = result => {
+let recvStreamChangeFunc = (result:number) => {
     console.info("Receive stream change event: " + result);
 }
 
@@ -2674,7 +2674,7 @@ off(type: "p2pPeerDeviceChange", callback?: Callback&lt;WifiP2pDevice[]&gt;): vo
 ```ts
 import wifi from '@ohos.wifi';
 
-let recvP2pPeerDeviceChangeFunc = (result::wifi.WifiP2pDevice[]) => {
+let recvP2pPeerDeviceChangeFunc = (result:wifi.WifiP2pDevice[]) => {
     console.info("Receive p2p peer device change event: " + result);
 }
 
