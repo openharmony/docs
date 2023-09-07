@@ -108,7 +108,7 @@
    };
    ```
 
-- 在卡片页面通过注册Button的onClick点击事件回调，并在回调中调用**postCardAction**接口触发call事件至UIAbility。
+- 在卡片页面通过注册Button的onClick点击事件回调，并在回调中调用**postCardAction**接口触发call事件拉起UIAbility。
   
   ```ts
   let storage = new LocalStorage();

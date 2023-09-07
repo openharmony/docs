@@ -4,7 +4,7 @@
 在卡片页面中可以通过**postCardAction**接口触发message事件拉起FormExtensionAbility，然后由FormExtensionAbility刷新卡片内容，下面是这种刷新方式的简单示例。
 
 
-- 在卡片页面通过注册Button的onClick点击事件回调，并在回调中调用**postCardAction**接口触发事件至FormExtensionAbility。卡片页面中使用[LocalStorageProp](../quick-start/arkts-localstorage.md#localstorageprop)装饰需要刷新的卡片数据。
+- 在卡片页面通过注册Button的onClick点击事件回调，并在回调中调用**postCardAction**接口触发message事件拉起FormExtensionAbility。卡片页面中使用[LocalStorageProp](../quick-start/arkts-localstorage.md#localstorageprop)装饰需要刷新的卡片数据。
   
   ```ts
   let storage = new LocalStorage();
