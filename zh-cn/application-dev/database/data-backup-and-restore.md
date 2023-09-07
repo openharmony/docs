@@ -26,47 +26,56 @@
    (3) 创建kvStore。
 
      
-   ```js
+   ```ts
    import distributedKVStore from '@ohos.data.distributedKVStore';
+   import { BusinessError } from '@ohos.base';
    
-   let kvManager;
+   let kvManager: distributedKVStore.KVManager;
+   let kvStore: distributedKVStore.SingleKVStore | undefined = undefined;
    let context = getContext(this);
-   const kvManagerConfig = {
+   const kvManagerConfig: distributedKVStore.KVManagerConfig = {
      context: context,
      bundleName: 'com.example.datamanagertest'
    }
    try {
      kvManager = distributedKVStore.createKVManager(kvManagerConfig);
      console.info('Succeeded in creating KVManager.');
+     try {
+       const options: distributedKVStore.Options = {
+         createIfMissing: true,
+         encrypt: true,
+         backup: false,
+         autoSync: true,
+         kvStoreType: distributedKVStore.KVStoreType.SINGLE_VERSION,
+         securityLevel: distributedKVStore.SecurityLevel.S1
+       };
+       kvManager.getKVStore<distributedKVStore.SingleKVStore>('storeId', options, (err, store: distributedKVStore.SingleKVStore) => {
+         if (err) {
+           console.error(`Failed to get KVStore. Code:${err.code},message:${err.message}`);
+           return;
+         }
+         console.info('Succeeded in getting KVStore.');
+         kvStore = store;
+       });
+     } catch (e) {
+       let error = e as BusinessError;
+       console.error(`An unexpected error occurred. Code:${error.code},message:${error.message}`);
+     }
    } catch (e) {
-     console.error(`Failed to create KVManager. Code:${e.code},message:${e.message}`);
+     let error = e as BusinessError;
+     console.error(`Failed to create KVManager. Code:${error.code},message:${error.message}`);
    }
-   let kvStore;
-   try {
-     const options = {
-       createIfMissing: true,
-       encrypt: false,
-       backup: false,
-       autoSync: true,
-       kvStoreType: distributedKVStore.KVStoreType.SINGLE_VERSION,
-       securityLevel: distributedKVStore.SecurityLevel.S2
-     };
-     kvManager.getKVStore('storeId', options, (err, store) => {
-       if (err) {
-         console.error(`Fail to get KVStore. Code:${err.code},message:${err.message}`);
-         return;
-       }
-       console.info('Succeeded in getting KVStore.');
-       kvStore = store;
-     });
-   } catch (e) {
-     console.error(`An unexpected error occurred. Code:${e.code},message:${e.message}`);
+   
+   if (kvStore !== undefined) {
+     kvStore = kvStore as distributedKVStore.SingleKVStore;
+     //进行后续操作
+     //...
    }
    ```
 
 2. 使用put()方法插入数据。
      
-   ```js
+   ```ts
    const KEY_TEST_STRING_ELEMENT = 'key_test_string';
    const VALUE_TEST_STRING_ELEMENT = 'value_test_string';
    try {
@@ -78,13 +87,14 @@
        console.info('Succeeded in putting data.');
      });
    } catch (e) {
-     console.error(`An unexpected error occurred. Code:${e.code},message:${e.message}`);
+     let error = e as BusinessError;
+     console.error(`An unexpected error occurred. Code:${error.code},message:${error.message}`);
    }
    ```
 
 3. 使用backup()方法备份数据。
      
-   ```js
+   ```ts
    let file = 'BK001';
    try {
      kvStore.backup(file, (err) => {
@@ -95,13 +105,14 @@
        }
      });
    } catch (e) {
-     console.error(`An unexpected error occurred. Code:${e.code},message:${e.message}`);
+     let error = e as BusinessError;
+     console.error(`An unexpected error occurred. Code:${error.code},message:${error.message}`);
    }
    ```
 
 4. 使用delete()方法删除数据（模拟意外删除、篡改场景）。
      
-   ```js
+   ```ts
    try {
      kvStore.delete(KEY_TEST_STRING_ELEMENT, (err) => {
        if (err !== undefined) {
@@ -111,13 +122,14 @@
        console.info('Succeeded in deleting data.');
      });
    } catch (e) {
-     console.error(`An unexpected error occurred. Code:${e.code},message:${e.message}`);
+     let error = e as BusinessError;
+     console.error(`An unexpected error occurred. Code:${error.code},message:${error.message}`);
    }
    ```
 
 5. 使用restore()方法恢复数据。
      
-   ```js
+   ```ts
    let file = 'BK001';
    try {
      kvStore.restore(file, (err) => {
@@ -128,23 +140,24 @@
        }
      });
    } catch (e) {
-     console.error(`An unexpected error occurred. Code:${e.code},message:${e.message}`);
+     let error = e as BusinessError;
+     console.error(`An unexpected error occurred. Code:${error.code},message:${error.message}`);
    }
    ```
 
 6. 当本地设备存储空间有限或需要重新备份时，还可使用deleteBackup()方法删除备份，释放存储空间。
      
-   ```js
-   let kvStore;
+   ```ts
    let files = ['BK001'];
    try {
      kvStore.deleteBackup(files).then((data) => {
        console.info(`Succeed in deleting Backup. Data:filename is ${data[0]},result is ${data[1]}.`);
-     }).catch((err) => {
+     }).catch((err: BusinessError) => {
        console.error(`Fail to delete Backup. Code:${err.code},message:${err.message}`);
      })
    } catch (e) {
-     console.error(`An unexpected error occurred. Code:${e.code},message:${e.message}`);
+     let error = e as BusinessError;
+     console.error(`An unexpected error occurred. Code:${error.code},message:${error.message}`);
    }
    ```
 
