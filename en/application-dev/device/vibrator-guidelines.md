@@ -1,7 +1,7 @@
 # Vibrator Development
 
 
-## When to Use
+## Overview
 
 You can set different vibration effects as needed, for example, customizing the vibration intensity, frequency, and duration for button touches, alarm clocks, and incoming calls.
 

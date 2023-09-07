@@ -233,7 +233,7 @@ try {
 }
 ```
 
-## Obtain the calendar information.
+## Obtaining Calendar Information
 
 [Calendar](../reference/apis/js-apis-i18n.md#calendar8) provides APIs to obtain calendar information, for example, localized representation of the calendar, the start day of a week, and the minimum number of days in the first week of a year.
 
