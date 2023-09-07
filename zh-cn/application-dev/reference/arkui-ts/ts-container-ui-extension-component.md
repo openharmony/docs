@@ -146,9 +146,6 @@ struct Index {
   sizeObject: SizeObject = {
     width: "100%", height: "100%"
   }
-  x: XObject = {
-    x: 5678910
-  }
 
   build() {
     Row() {
@@ -156,7 +153,7 @@ struct Index {
         Text(this.message).fontColor(Color.Red)
         UIExtensionComponent(this.want)
           .size(this.sizeObject)
-          .onRemoteReady((proxy: string) => {
+          .onRemoteReady((proxy: UIExtensionProxy) => {
             this.message = "remote ready"
             this.myProxy = proxy
           })
@@ -173,7 +170,7 @@ struct Index {
             this.message = "onError: " + error.code + ", name: " + error.name + ", message: " + error.message
           })
         Button("sendData").onClick(() => {
-          this.myProxy.send(this.x)
+          this.myProxy.send({ "x": 5678910 })
         })
       }
       .width("100%")
@@ -185,10 +182,6 @@ struct Index {
 interface SizeObject {
   width: string;
   height: string;
-}
-
-interface XObject {
-  x: number
 }
 
 interface ErrorObject {
