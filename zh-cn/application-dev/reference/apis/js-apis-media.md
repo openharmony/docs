@@ -44,10 +44,11 @@ createAVPlayer(callback: AsyncCallback\<AVPlayer>): void
 
 **示例：**
 
-```js
-let avPlayer;
+```ts
+import { BusinessError } from '@ohos.base';
 
-media.createAVPlayer((error, video) => {
+let avPlayer: media.AVPlayer;
+media.createAVPlayer((error: BusinessError, video: media.AVPlayer) => {
   if (video != null) {
     avPlayer = video;
     console.info('createAVPlayer success');
@@ -81,17 +82,18 @@ createAVPlayer(): Promise\<AVPlayer>
 
 **示例：**
 
-```js
-let avPlayer;
+```ts
+import { BusinessError } from '@ohos.base';
 
-media.createAVPlayer().then((video) => {
+let avPlayer: media.AVPlayer;
+media.createAVPlayer().then((video: media.AVPlayer) => {
   if (video != null) {
     avPlayer = video;
     console.info('createAVPlayer success');
   } else {
     console.error('createAVPlayer fail');
   }
-}).catch((error) => {
+}).catch((error: BusinessError) => {
   console.error(`AVPlayer catchCallback, error message:${error.message}`);
 });
 ```
@@ -394,8 +396,8 @@ on(type: 'stateChange', callback: (state: AVPlayerState, reason: StateChangeReas
 
 **示例：**
 
-```js
-avPlayer.on('stateChange', async (state, reason) => {
+```ts
+avPlayer.on('stateChange', async (state: string, reason: media.StateChangeReason) => {
   switch (state) {
     case 'idle':
       console.info('state idle called')
@@ -447,7 +449,7 @@ off(type: 'stateChange'): void
 
 **示例：**
 
-```js
+```ts
 avPlayer.off('stateChange')
 ```
 
@@ -482,8 +484,8 @@ AVPlayer回调的**错误分类**<a name = error_info></a>可以分为以下几�
 
 **示例：**
 
-```js
-avPlayer.on('error', (error) => {
+```ts
+avPlayer.on('error', (error: BusinessError) => {
   console.error('error happened,and error message is :' + error.message)
   console.error('error happened,and error code is :' + error.code)
 })
@@ -505,7 +507,7 @@ off(type: 'error'): void
 
 **示例：**
 
-```js
+```ts
 avPlayer.off('error')
 ```
 
@@ -534,8 +536,8 @@ prepare(callback: AsyncCallback\<void>): void
 
 **示例：**
 
-```js
-avPlayer.prepare((err) => {
+```ts
+avPlayer.prepare((err: BusinessError) => {
   if (err == null) {
     console.info('prepare success');
   } else {
@@ -569,10 +571,10 @@ prepare(): Promise\<void>
 
 **示例：**
 
-```js
+```ts
 avPlayer.prepare().then(() => {
   console.info('prepare success');
-}, (err) => {
+}, (err: BusinessError) => {
   console.error('prepare filed,error message is :' + err.message)
 })
 ```
@@ -601,8 +603,8 @@ play(callback: AsyncCallback\<void>): void
 
 **示例：**
 
-```js
-avPlayer.play((err) => {
+```ts
+avPlayer.play((err: BusinessError) => {
   if (err == null) {
     console.info('play success');
   } else {
@@ -635,10 +637,10 @@ play(): Promise\<void>
 
 **示例：**
 
-```js
+```ts
 avPlayer.play().then(() => {
   console.info('play success');
-}, (err) => {
+}, (err: BusinessError) => {
   console.error('play filed,error message is :' + err.message)
 })
 ```
@@ -667,8 +669,8 @@ pause(callback: AsyncCallback\<void>): void
 
 **示例：**
 
-```js
-avPlayer.pause((err) => {
+```ts
+avPlayer.pause((err: BusinessError) => {
   if (err == null) {
     console.info('pause success');
   } else {
@@ -701,10 +703,10 @@ pause(): Promise\<void>
 
 **示例：**
 
-```js
+```ts
 avPlayer.pause().then(() => {
   console.info('pause success');
-}, (err) => {
+}, (err: BusinessError) => {
   console.error('pause filed,error message is :' + err.message)
 })
 ```
@@ -733,8 +735,8 @@ stop(callback: AsyncCallback\<void>): void
 
 **示例：**
 
-```js
-avPlayer.stop((err) => {
+```ts
+avPlayer.stop((err: BusinessError) => {
   if (err == null) {
     console.info('stop success');
   } else {
@@ -767,10 +769,10 @@ stop(): Promise\<void>
 
 **示例：**
 
-```js
+```ts
 avPlayer.stop().then(() => {
   console.info('stop success');
-}, (err) => {
+}, (err: BusinessError) => {
   console.error('stop filed,error message is :' + err.message)
 })
 ```
@@ -799,8 +801,8 @@ reset(callback: AsyncCallback\<void>): void
 
 **示例：**
 
-```js
-avPlayer.reset((err) => {
+```ts
+avPlayer.reset((err: BusinessError) => {
   if (err == null) {
     console.info('reset success');
   } else {
@@ -833,10 +835,10 @@ reset(): Promise\<void>
 
 **示例：**
 
-```js
+```ts
 avPlayer.reset().then(() => {
   console.info('reset success');
-}, (err) => {
+}, (err: BusinessError) => {
   console.error('reset filed,error message is :' + err.message)
 })
 ```
@@ -865,8 +867,8 @@ release(callback: AsyncCallback\<void>): void
 
 **示例：**
 
-```js
-avPlayer.release((err) => {
+```ts
+avPlayer.release((err: BusinessError) => {
   if (err == null) {
     console.info('reset success');
   } else {
@@ -899,10 +901,10 @@ release(): Promise\<void>
 
 **示例：**
 
-```js
+```ts
 avPlayer.release().then(() => {
   console.info('release success');
-}, (err) => {
+}, (err: BusinessError) => {
   console.error('release filed,error message is :' + err.message)
 })
 ```
@@ -931,20 +933,10 @@ getTrackDescription(callback: AsyncCallback\<Array\<MediaDescription>>): void
 
 **示例：**
 
-```js
-function printfDescription(obj) {
-  for (let item in obj) {
-    let property = obj[item];
-    console.info('audio key is ' + item);
-    console.info('audio value is ' + property);
-  }
-}
-
-avPlayer.getTrackDescription((error, arrList) => {
+```ts
+avPlayer.getTrackDescription((error: BusinessError, arrList: Array<media.MediaDescription>) => {
   if ((arrList) != null) {
-    for (let i = 0; i < arrList.length; i++) {
-      printfDescription(arrList[i]);
-    }
+    console.info('getTrackDescription success');
   } else {
     console.log(`video getTrackDescription fail, error:${error}`);
   }
@@ -975,28 +967,12 @@ getTrackDescription(): Promise\<Array\<MediaDescription>>
 
 **示例：**
 
-```js
-let arrayDescription;
-
-function printfDescription(obj) {
-  for (let item in obj) {
-    let property = obj[item];
-    console.info('audio key is ' + item);
-    console.info('audio value is ' + property);
-  }
-}
-avPlayer.getTrackDescription().then((arrList) => {
-  if (arrList != null) {
-    arrayDescription = arrList;
-  } else {
-    console.log('video getTrackDescription fail');
-  }
-}).catch((error) => {
+```ts
+avPlayer.getTrackDescription().then((arrList: Array<media.MediaDescription>) => {
+  console.info('getTrackDescription success');
+}).catch((error: BusinessError) => {
   console.info(`video catchCallback, error:${error}`);
 });
-for (let i = 0; i < arrayDescription.length; i++) {
-  printfDescription(arrayDescription[i]);
-}
 ```
 
 ### seek<sup>9+</sup><a name=avplayer_seek></a>
@@ -1017,8 +993,8 @@ seek(timeMs: number, mode?:SeekMode): void
 
 **示例：**
 
-```js
-let seekTime = 1000
+```ts
+let seekTime: number = 1000
 avPlayer.seek(seekTime, media.SeekMode.SEEK_PREV_SYNC)
 ```
 
@@ -1039,7 +1015,7 @@ on(type: 'seekDone', callback: Callback\<number>): void
 
 **示例：**
 
-```js
+```ts
 avPlayer.on('seekDone', (seekDoneTime:number) => {
   console.info('seekDone success,and seek time is:' + seekDoneTime)
 })
@@ -1061,7 +1037,7 @@ off(type: 'seekDone'): void
 
 **示例：**
 
-```js
+```ts
 avPlayer.off('seekDone')
 ```
 
@@ -1082,7 +1058,7 @@ setSpeed(speed: PlaybackSpeed): void
 
 **示例：**
 
-```js
+```ts
 avPlayer.setSpeed(media.PlaybackSpeed.SPEED_FORWARD_2_00_X)
 ```
 
@@ -1103,7 +1079,7 @@ on(type: 'speedDone', callback: Callback\<number>): void
 
 **示例：**
 
-```js
+```ts
 avPlayer.on('speedDone', (speed:number) => {
   console.info('speedDone success,and speed value is:' + speed)
 })
@@ -1125,7 +1101,7 @@ off(type: 'speedDone'): void
 
 **示例：**
 
-```js
+```ts
 avPlayer.off('speedDone')
 ```
 
@@ -1145,8 +1121,8 @@ setBitrate(bitrate: number): void
 
 **示例：**
 
-```js
-let bitrate = 96000
+```ts
+let bitrate: number = 96000
 avPlayer.setBitrate(bitrate)
 ```
 
@@ -1167,7 +1143,7 @@ on(type: 'bitrateDone', callback: Callback\<number>): void
 
 **示例：**
 
-```js
+```ts
 avPlayer.on('bitrateDone', (bitrate:number) => {
   console.info('bitrateDone success,and bitrate value is:' + bitrate)
 })
@@ -1189,7 +1165,7 @@ off(type: 'bitrateDone'): void
 
 **示例：**
 
-```js
+```ts
 avPlayer.off('bitrateDone')
 ```
 
@@ -1210,7 +1186,7 @@ on(type: 'availableBitrates', callback: (bitrates: Array\<number>) => void): voi
 
 **示例：**
 
-```js
+```ts
 avPlayer.on('availableBitrates', (bitrates: Array<number>) => {
   console.info('availableBitrates success,and availableBitrates length is:' + bitrates.length)
 })
@@ -1232,7 +1208,7 @@ off(type: 'availableBitrates'): void
 
 **示例：**
 
-```js
+```ts
 avPlayer.off('availableBitrates')
 ```
 
@@ -1252,8 +1228,8 @@ setVolume(volume: number): void
 
 **示例：**
 
-```js
-let volume = 1.0
+```ts
+let volume: number = 1.0
 avPlayer.setVolume(volume)
 ```
 
@@ -1274,8 +1250,8 @@ on(type: 'volumeChange', callback: Callback\<number>): void
 
 **示例：**
 
-```js
-avPlayer.on('volumeChange', (vol:number) => {
+```ts
+avPlayer.on('volumeChange', (vol: number) => {
   console.info('volumeChange success,and new volume is :' + vol)
 })
 ```
@@ -1296,7 +1272,7 @@ off(type: 'volumeChange'): void
 
 **示例：**
 
-```js
+```ts
 avPlayer.off('volumeChange')
 ```
 
@@ -1317,7 +1293,7 @@ on(type: 'endOfStream', callback: Callback\<void>): void
 
 **示例：**
 
-```js
+```ts
 avPlayer.on('endOfStream', () => {
   console.info('endOfStream success')
 })
@@ -1339,7 +1315,7 @@ off(type: 'endOfStream'): void
 
 **示例：**
 
-```js
+```ts
 avPlayer.off('endOfStream')
 ```
 
@@ -1361,7 +1337,7 @@ on(type: 'timeUpdate', callback: Callback\<number>): void
 
 **示例：**
 
-```js
+```ts
 avPlayer.on('timeUpdate', (time:number) => {
   console.info('timeUpdate success,and new time is :' + time)
 })
@@ -1383,7 +1359,7 @@ off(type: 'timeUpdate'): void
 
 **示例：**
 
-```js
+```ts
 avPlayer.off('timeUpdate')
 ```
 
@@ -1405,8 +1381,8 @@ on(type: 'durationUpdate', callback: Callback\<number>): void
 
 **示例：**
 
-```js
-avPlayer.on('durationUpdate', (duration) => {
+```ts
+avPlayer.on('durationUpdate', (duration: number) => {
   console.info('durationUpdate success,new duration is :' + duration)
 })
 ```
@@ -1427,7 +1403,7 @@ off(type: 'durationUpdate'): void
 
 **示例：**
 
-```js
+```ts
 avPlayer.off('durationUpdate')
 ```
 
@@ -1448,7 +1424,7 @@ on(type: 'bufferingUpdate', callback: (infoType: BufferingInfoType, value: numbe
 
 **示例：**
 
-```js
+```ts
 avPlayer.on('bufferingUpdate', (infoType: media.BufferingInfoType, value: number) => {
   console.info('bufferingUpdate success,and infoType value is:' + infoType + ', value is :' + value)
 })
@@ -1470,7 +1446,7 @@ off(type: 'bufferingUpdate'): void
 
 **示例：**
 
-```js
+```ts
 avPlayer.off('bufferingUpdate')
 ```
 
@@ -1491,7 +1467,7 @@ on(type: 'startRenderFrame', callback: Callback\<void>): void
 
 **示例：**
 
-```js
+```ts
 avPlayer.on('startRenderFrame', () => {
   console.info('startRenderFrame success')
 })
@@ -1513,7 +1489,7 @@ off(type: 'startRenderFrame'): void
 
 **示例：**
 
-```js
+```ts
 avPlayer.off('startRenderFrame')
 ```
 
@@ -1534,7 +1510,7 @@ on(type: 'videoSizeChange', callback: (width: number, height: number) => void): 
 
 **示例：**
 
-```js
+```ts
 avPlayer.on('videoSizeChange', (width: number, height: number) => {
   console.info('videoSizeChange success,and width is:' + width + ', height is :' + height)
 })
@@ -1556,7 +1532,7 @@ off(type: 'videoSizeChange'): void
 
 **示例：**
 
-```js
+```ts
 avPlayer.off('videoSizeChange')
 ```
 
@@ -1577,7 +1553,7 @@ on(type: 'audioInterrupt', callback: (info: audio.InterruptEvent) => void): void
 
 **示例：**
 
-```js
+```ts
 import audio from '@ohos.multimedia.audio';
 
 avPlayer.on('audioInterrupt', (info: audio.InterruptEvent) => {
@@ -1601,7 +1577,7 @@ off(type: 'audioInterrupt'): void
 
 **示例：**
 
-```js
+```ts
 avPlayer.off('audioInterrupt')
 ```
 
@@ -1695,15 +1671,15 @@ avPlayer.off('audioInterrupt')
 
 **示例：**
 
-```js
+```ts
 import media from '@ohos.multimedia.media'
-function printfItemDescription(obj, key) {
-  let property = obj[key];
+function printfItemDescription(obj: media.MediaDescription, key: string) {
+  let property: Object = obj[key];
   console.info('audio key is ' + key); // 通过key值获取对应的value。key值具体可见[MediaDescriptionKey]
   console.info('audio value is ' + property); //对应key值得value。其类型可为任意类型，具体key对应value的类型可参考[MediaDescriptionKey]
 }
-let audioPlayer = media.createAudioPlayer();
-audioPlayer.getTrackDescription((error, arrList) => {
+
+avPlayer.getTrackDescription((error: BusinessError, arrList: Array<media.MediaDescription>) => {
   if (arrList != null) {
     for (let i = 0; i < arrList.length; i++) {
       printfItemDescription(arrList[i], media.MediaDescriptionKey.MD_KEY_TRACK_TYPE);  //打印出每条轨道MD_KEY_TRACK_TYPE的值
@@ -3411,8 +3387,8 @@ createAudioPlayer(): AudioPlayer
 
 **示例：**
 
-```js
-let audioPlayer = media.createAudioPlayer();
+```ts
+let audioPlayer: media.AudioPlayer = media.createAudioPlayer();
 ```
 
 ## media.createVideoPlayer<sup>(deprecated)</sup><a name=createvideoplayer></a>
@@ -3434,10 +3410,11 @@ createVideoPlayer(callback: AsyncCallback\<VideoPlayer>): void
 
 **示例：**
 
-```js
-let videoPlayer;
+```ts
+import { BusinessError } from '@ohos.base';
 
-media.createVideoPlayer((error, video) => {
+let videoPlayer: media.VideoPlayer;
+media.createVideoPlayer((error: BusinessError, video: media.VideoPlayer) => {
   if (video != null) {
     videoPlayer = video;
     console.info('video createVideoPlayer success');
@@ -3466,17 +3443,18 @@ createVideoPlayer(): Promise\<VideoPlayer>
 
 **示例：**
 
-```js
-let videoPlayer;
+```ts
+import { BusinessError } from '@ohos.base';
 
-media.createVideoPlayer().then((video) => {
+let videoPlayer: media.VideoPlayer;
+media.createVideoPlayer().then((video: media.VideoPlayer) => {
   if (video != null) {
     videoPlayer = video;
     console.info('video createVideoPlayer success');
   } else {
     console.error('video createVideoPlayer fail');
   }
-}).catch((error) => {
+}).catch((error: BusinessError) => {
   console.error(`video catchCallback, error:${error}`);
 });
 ```
@@ -3501,7 +3479,7 @@ createAudioRecorder(): AudioRecorder
 
 **示例：**
 
-```js
+```ts
 let audioRecorder: media.AudioRecorder = media.createAudioRecorder();
 ```
 
@@ -3558,7 +3536,7 @@ play(): void
 
 **示例：**
 
-```js
+```ts
 audioPlayer.on('play', () => {    //设置'play'事件回调
   console.log('audio play success');
 });
@@ -3575,7 +3553,7 @@ pause(): void
 
 **示例：**
 
-```js
+```ts
 audioPlayer.on('pause', () => {    //设置'pause'事件回调
   console.log('audio pause success');
 });
@@ -3592,7 +3570,7 @@ stop(): void
 
 **示例：**
 
-```js
+```ts
 audioPlayer.on('stop', () => {    //设置'stop'事件回调
   console.log('audio stop success');
 });
@@ -3609,7 +3587,7 @@ reset(): void
 
 **示例：**
 
-```js
+```ts
 audioPlayer.on('reset', () => {    //设置'reset'事件回调
   console.log('audio reset success');
 });
@@ -3632,8 +3610,8 @@ seek(timeMs: number): void
 
 **示例：**
 
-```js
-audioPlayer.on('timeUpdate', (seekDoneTime) => {    //设置'timeUpdate'事件回调
+```ts
+audioPlayer.on('timeUpdate', (seekDoneTime: number) => {    //设置'timeUpdate'事件回调
   if (seekDoneTime == null) {
     console.info('audio seek fail');
     return;
@@ -3659,7 +3637,7 @@ setVolume(vol: number): void
 
 **示例：**
 
-```js
+```ts
 audioPlayer.on('volumeChange', () => {    //设置'volumeChange'事件回调
   console.log('audio volumeChange success');
 });
@@ -3676,7 +3654,7 @@ release(): void
 
 **示例：**
 
-```js
+```ts
 audioPlayer.release();
 audioPlayer = undefined;
 ```
@@ -3697,20 +3675,10 @@ getTrackDescription(callback: AsyncCallback\<Array\<MediaDescription>>): void
 
 **示例：**
 
-```js
-function printfDescription(obj) {
-  for (let item in obj) {
-    let property = obj[item];
-    console.info('audio key is ' + item);
-    console.info('audio value is ' + property);
-  }
-}
-
-audioPlayer.getTrackDescription((error, arrList) => {
+```ts
+audioPlayer.getTrackDescription((error: BusinessError, arrList: Array<media.MediaDescription>) => {
   if (arrList != null) {
-    for (let i = 0; i < arrList.length; i++) {
-      printfDescription(arrList[i]);
-    }
+    console.log('audio getTrackDescription success');
   } else {
     console.log(`audio getTrackDescription fail, error:${error}`);
   }
@@ -3733,28 +3701,12 @@ getTrackDescription(): Promise\<Array\<MediaDescription>>
 
 **示例：**
 
-```js
-function printfDescription(obj) {
-  for (let item in obj) {
-    let property = obj[item];
-    console.info('audio key is ' + item);
-    console.info('audio value is ' + property);
-  }
-}
-let arrayDescription = null
-audioPlayer.getTrackDescription().then((arrList) => {
-  if (arrList != null) {
-    arrayDescription = arrList;
-  } else {
-    console.log('audio getTrackDescription fail');
-  }
-}).catch((error) => {
+```ts
+audioPlayer.getTrackDescription().then((arrList: Array<media.MediaDescription>) => {
+  console.log('audio getTrackDescription success');
+}).catch((error: BusinessError) => {
   console.info(`audio catchCallback, error:${error}`);
 });
-
-for (let i = 0; i < arrayDescription.length; i++) {
-  printfDescription(arrayDescription[i]);
-}
 ```
 
 ### on('bufferingUpdate')<sup>8+</sup>
@@ -3774,8 +3726,8 @@ on(type: 'bufferingUpdate', callback: (infoType: BufferingInfoType, value: numbe
 
 **示例：**
 
-```js
-audioPlayer.on('bufferingUpdate', (infoType, value) => {
+```ts
+audioPlayer.on('bufferingUpdate', (infoType: media.BufferingInfoType, value: number) => {
   console.log('audio bufferingInfo type: ' + infoType);
   console.log('audio bufferingInfo value: ' + value);
 });
@@ -3798,10 +3750,11 @@ on(type: 'play' | 'pause' | 'stop' | 'reset' | 'dataLoad' | 'finish' | 'volumeCh
 
 **示例：**
 
-```js
+```ts
 import fs from '@ohos.file.fs';
+import { BusinessError } from '@ohos.base';
 
-let audioPlayer = media.createAudioPlayer();  //创建一个音频播放实例
+let audioPlayer: media.AudioPlayer = media.createAudioPlayer();  //创建一个音频播放实例
 audioPlayer.on('dataLoad', () => {            //设置'dataLoad'事件回调，src属性设置成功后，触发此回调
   console.info('audio set source success');
   audioPlayer.play();                       //开始播放，并触发'play'事件回调
@@ -3819,7 +3772,7 @@ audioPlayer.on('reset', () => {               //设置'reset'事件回调
   audioPlayer.release();                    //释放播放实例资源
   audioPlayer = undefined;
 });
-audioPlayer.on('timeUpdate', (seekDoneTime) => {  //设置'timeUpdate'事件回调
+audioPlayer.on('timeUpdate', (seekDoneTime: number) => {  //设置'timeUpdate'事件回调
   if (seekDoneTime == null) {
     console.info('audio seek fail');
     return;
@@ -3835,7 +3788,7 @@ audioPlayer.on('finish', () => {               //设置'finish'事件回调
   console.info('audio play finish');
   audioPlayer.stop();                        //停止播放，并触发'stop'事件回调
 });
-audioPlayer.on('error', (error) => {           //设置'error'事件回调
+audioPlayer.on('error', (error: BusinessError) => {           //设置'error'事件回调
   console.error(`audio error called, error: ${error}`);
 });
 
@@ -3847,9 +3800,9 @@ fs.open(path).then((file) => {
   fdPath = fdPath + '' + file.fd;
   console.info('open fd success fd is' + fdPath);
   audioPlayer.src = fdPath;  //设置src属性，并触发'dataLoad'事件回调
-}, (err) => {
+}, (err: BusinessError) => {
   console.info('open fd failed err is' + err);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.info('open fd failed err is' + err);
 });
 ```
@@ -3871,8 +3824,8 @@ on(type: 'timeUpdate', callback: Callback\<number>): void
 
 **示例：**
 
-```js
-audioPlayer.on('timeUpdate', (newTime) => {    //设置'timeUpdate'事件回调
+```ts
+audioPlayer.on('timeUpdate', (newTime: number) => {    //设置'timeUpdate'事件回调
   if (newTime == null) {
     console.info('audio timeUpadate fail');
     return;
@@ -3899,8 +3852,8 @@ on(type: 'error', callback: ErrorCallback): void
 
 **示例：**
 
-```js
-audioPlayer.on('error', (error) => {      //设置'error'事件回调
+```ts
+audioPlayer.on('error', (error: BusinessError) => {      //设置'error'事件回调
   console.error(`audio error called, error: ${error}`); 
 });
 audioPlayer.setVolume(3);  //设置volume为无效值，触发'error'事件
@@ -3966,9 +3919,9 @@ setDisplaySurface(surfaceId: string, callback: AsyncCallback\<void>): void
 
 **示例：**
 
-```js
-let surfaceId = null;
-videoPlayer.setDisplaySurface(surfaceId, (err) => {
+```ts
+let surfaceId: string = '';
+videoPlayer.setDisplaySurface(surfaceId, (err: BusinessError) => {
   if (err == null) {
     console.info('setDisplaySurface success!');
   } else {
@@ -4001,11 +3954,11 @@ setDisplaySurface(surfaceId: string): Promise\<void>
 
 **示例：**
 
-```js
-let surfaceId = null;
+```ts
+let surfaceId: string = '';
 videoPlayer.setDisplaySurface(surfaceId).then(() => {
   console.info('setDisplaySurface success');
-}).catch((error) => {
+}).catch((error: BusinessError) => {
   console.error(`video catchCallback, error:${error}`);
 });
 ```
@@ -4026,8 +3979,8 @@ prepare(callback: AsyncCallback\<void>): void
 
 **示例：**
 
-```js
-videoPlayer.prepare((err) => {
+```ts
+videoPlayer.prepare((err: BusinessError) => {
   if (err == null) {
     console.info('prepare success!');
   } else {
@@ -4052,10 +4005,10 @@ prepare(): Promise\<void>
 
 **示例：**
 
-```js
+```ts
 videoPlayer.prepare().then(() => {
   console.info('prepare success');
-}).catch((error) => {
+}).catch((error: BusinessError) => {
   console.error(`video catchCallback, error:${error}`);
 });
 ```
@@ -4076,8 +4029,8 @@ play(callback: AsyncCallback\<void>): void;
 
 **示例：**
 
-```js
-videoPlayer.play((err) => {
+```ts
+videoPlayer.play((err: BusinessError) => {
   if (err == null) {
     console.info('play success!');
   } else {
@@ -4102,10 +4055,10 @@ play(): Promise\<void>;
 
 **示例：**
 
-```js
+```ts
 videoPlayer.play().then(() => {
   console.info('play success');
-}).catch((error) => {
+}).catch((error: BusinessError) => {
   console.error(`video catchCallback, error:${error}`);
 });
 ```
@@ -4126,8 +4079,8 @@ pause(callback: AsyncCallback\<void>): void
 
 **示例：**
 
-```js
-videoPlayer.pause((err) => {
+```ts
+videoPlayer.pause((err: BusinessError) => {
   if (err == null) {
     console.info('pause success!');
   } else {
@@ -4152,10 +4105,10 @@ pause(): Promise\<void>
 
 **示例：**
 
-```js
+```ts
 videoPlayer.pause().then(() => {
   console.info('pause success');
-}).catch((error) => {
+}).catch((error: BusinessError) => {
   console.error(`video catchCallback, error:${error}`);
 });
 ```
@@ -4176,8 +4129,8 @@ stop(callback: AsyncCallback\<void>): void
 
 **示例：**
 
-```js
-videoPlayer.stop((err) => {
+```ts
+videoPlayer.stop((err: BusinessError) => {
   if (err == null) {
     console.info('stop success!');
   } else {
@@ -4202,10 +4155,10 @@ stop(): Promise\<void>
 
 **示例：**
 
-```js
+```ts
 videoPlayer.stop().then(() => {
   console.info('stop success');
-}).catch((error) => {
+}).catch((error: BusinessError) => {
   console.error(`video catchCallback, error:${error}`);
 });
 ```
@@ -4226,8 +4179,8 @@ reset(callback: AsyncCallback\<void>): void
 
 **示例：**
 
-```js
-videoPlayer.reset((err) => {
+```ts
+videoPlayer.reset((err: BusinessError) => {
   if (err == null) {
     console.info('reset success!');
   } else {
@@ -4252,10 +4205,10 @@ reset(): Promise\<void>
 
 **示例：**
 
-```js
+```ts
 videoPlayer.reset().then(() => {
   console.info('reset success');
-}).catch((error) => {
+}).catch((error: BusinessError) => {
   console.error(`video catchCallback, error:${error}`);
 });
 ```
@@ -4277,9 +4230,9 @@ seek(timeMs: number, callback: AsyncCallback\<number>): void
 
 **示例：**
 
-```js
-let seekTime = 5000;
-videoPlayer.seek(seekTime, (err, result) => {
+```ts
+let seekTime: number = 5000;
+videoPlayer.seek(seekTime, (err: BusinessError, result: number) => {
   if (err == null) {
     console.info('seek success!');
   } else {
@@ -4306,10 +4259,10 @@ seek(timeMs: number, mode:SeekMode, callback: AsyncCallback\<number>): void
 
 **示例：**
 
-```js
+```ts
 import media from '@ohos.multimedia.media'
-let seekTime = 5000;
-videoPlayer.seek(seekTime, media.SeekMode.SEEK_NEXT_SYNC, (err, result) => {
+let seekTime: number = 5000;
+videoPlayer.seek(seekTime, media.SeekMode.SEEK_NEXT_SYNC, (err: BusinessError, result: number) => {
   if (err == null) {
     console.info('seek success!');
   } else {
@@ -4341,18 +4294,18 @@ seek(timeMs: number, mode?:SeekMode): Promise\<number>
 
 **示例：**
 
-```js
+```ts
 import media from '@ohos.multimedia.media'
-let seekTime = 5000;
-videoPlayer.seek(seekTime).then((seekDoneTime) => { // seekDoneTime表示seek完成后的时间点
+let seekTime: number = 5000;
+videoPlayer.seek(seekTime).then((seekDoneTime: number) => { // seekDoneTime表示seek完成后的时间点
   console.info('seek success');
-}).catch((error) => {
+}).catch((error: BusinessError) => {
   console.error(`video catchCallback, error:${error}`);
 });
 
-videoPlayer.seek(seekTime, media.SeekMode.SEEK_NEXT_SYNC).then((seekDoneTime) => {
+videoPlayer.seek(seekTime, media.SeekMode.SEEK_NEXT_SYNC).then((seekDoneTime: number) => {
   console.info('seek success');
-}).catch((error) => {
+}).catch((error: BusinessError) => {
   console.error(`video catchCallback, error:${error}`);
 });
 ```
@@ -4374,9 +4327,9 @@ setVolume(vol: number, callback: AsyncCallback\<void>): void
 
 **示例：**
 
-```js
-let vol = 0.5;
-videoPlayer.setVolume(vol, (err, result) => {
+```ts
+let vol: number = 0.5;
+videoPlayer.setVolume(vol, (err: BusinessError) => {
   if (err == null) {
     console.info('setVolume success!');
   } else {
@@ -4407,11 +4360,11 @@ setVolume(vol: number): Promise\<void>
 
 **示例：**
 
-```js
-let vol = 0.5;
+```ts
+let vol: number = 0.5;
 videoPlayer.setVolume(vol).then(() => {
   console.info('setVolume success');
-}).catch((error) => {
+}).catch((error: BusinessError) => {
   console.error(`video catchCallback, error:${error}`);
 });
 ```
@@ -4432,8 +4385,8 @@ release(callback: AsyncCallback\<void>): void
 
 **示例：**
 
-```js
-videoPlayer.release((err) => {
+```ts
+videoPlayer.release((err: BusinessError) => {
   if (err == null) {
     console.info('release success!');
   } else {
@@ -4458,10 +4411,10 @@ release(): Promise\<void>
 
 **示例：**
 
-```js
+```ts
 videoPlayer.release().then(() => {
   console.info('release success');
-}).catch((error) => {
+}).catch((error: BusinessError) => {
   console.error(`video catchCallback, error:${error}`);
 });
 ```
@@ -4482,20 +4435,10 @@ getTrackDescription(callback: AsyncCallback\<Array\<MediaDescription>>): void
 
 **示例：**
 
-```js
-function printfDescription(obj) {
-  for (let item in obj) {
-    let property = obj[item];
-    console.info('video key is ' + item);
-    console.info('video value is ' + property);
-  }
-}
-
-videoPlayer.getTrackDescription((error, arrList) => {
+```ts
+videoPlayer.getTrackDescription((error: BusinessError, arrList: Array<media.MediaDescription>) => {
   if ((arrList) != null) {
-    for (let i = 0; i < arrList.length; i++) {
-      printfDescription(arrList[i]);
-    }
+    console.info('video getTrackDescription success');
   } else {
     console.log(`video getTrackDescription fail, error:${error}`);
   }
@@ -4518,28 +4461,16 @@ getTrackDescription(): Promise\<Array\<MediaDescription>>
 
 **示例：**
 
-```js
-function printfDescription(obj) {
-  for (let item in obj) {
-    let property = obj[item];
-    console.info('video key is ' + item);
-    console.info('video value is ' + property);
-  }
-}
-
-let arrayDescription;
-videoPlayer.getTrackDescription().then((arrList) => {
+```ts
+videoPlayer.getTrackDescription().then((arrList: Array<media.MediaDescription>) => {
   if (arrList != null) {
-    arrayDescription = arrList;
+    console.info('video getTrackDescription success');
   } else {
     console.log('video getTrackDescription fail');
   }
-}).catch((error) => {
+}).catch((error: BusinessError) => {
   console.info(`video catchCallback, error:${error}`);
 });
-for (let i = 0; i < arrayDescription.length; i++) {
-  printfDescription(arrayDescription[i]);
-}
 ```
 
 ### setSpeed<sup>8+</sup>
@@ -4559,11 +4490,11 @@ setSpeed(speed:number, callback: AsyncCallback\<number>): void
 
 **示例：**
 
-```js
+```ts
 import media from '@ohos.multimedia.media'
 let speed = media.PlaybackSpeed.SPEED_FORWARD_2_00_X;
 
-videoPlayer.setSpeed(speed, (err, result) => {
+videoPlayer.setSpeed(speed, (err: BusinessError, result: number) => {
   if (err == null) {
     console.info('setSpeed success!');
   } else {
@@ -4594,13 +4525,13 @@ setSpeed(speed:number): Promise\<number>
 
 **示例：**
 
-```js
+```ts
 import media from '@ohos.multimedia.media'
 let speed = media.PlaybackSpeed.SPEED_FORWARD_2_00_X;
 
-videoPlayer.setSpeed(speed).then(() => {
+videoPlayer.setSpeed(speed).then((result: number) => {
   console.info('setSpeed success');
-}).catch((error) => {
+}).catch((error: BusinessError) => {
   console.error(`video catchCallback, error:${error}`);
 });
 ```
@@ -4622,7 +4553,7 @@ on(type: 'playbackCompleted', callback: Callback\<void>): void
 
 **示例：**
 
-```js
+```ts
 videoPlayer.on('playbackCompleted', () => {
   console.info('playbackCompleted success!');
 });
@@ -4645,8 +4576,8 @@ on(type: 'bufferingUpdate', callback: (infoType: BufferingInfoType, value: numbe
 
 **示例：**
 
-```js
-videoPlayer.on('bufferingUpdate', (infoType, value) => {
+```ts
+videoPlayer.on('bufferingUpdate', (infoType: media.BufferingInfoType, value: number) => {
   console.log('video bufferingInfo type: ' + infoType);
   console.log('video bufferingInfo value: ' + value);
 });
@@ -4669,7 +4600,7 @@ on(type: 'startRenderFrame', callback: Callback\<void>): void
 
 **示例：**
 
-```js
+```ts
 videoPlayer.on('startRenderFrame', () => {
   console.info('startRenderFrame success!');
 });
@@ -4692,8 +4623,8 @@ on(type: 'videoSizeChanged', callback: (width: number, height: number) => void):
 
 **示例：**
 
-```js
-videoPlayer.on('videoSizeChanged', (width, height) => {
+```ts
+videoPlayer.on('videoSizeChanged', (width: number, height: number) => {
   console.log('video width is: ' + width);
   console.log('video height is: ' + height);
 });
@@ -4716,8 +4647,8 @@ on(type: 'error', callback: ErrorCallback): void
 
 **示例：**
 
-```js
-videoPlayer.on('error', (error) => {      // 设置'error'事件回调
+```ts
+videoPlayer.on('error', (error: BusinessError) => {      // 设置'error'事件回调
   console.error(`video error called, error: ${error}`);
 });
 videoPlayer.url = 'fd://error';  //设置错误的播放地址，触发'error'事件

@@ -33,7 +33,7 @@ action参数说明：
 
 `postCardAction()`接口示例代码：
 
-```typescript
+```ts
 Button('跳转')
   .width('40%')
   .height('20%')

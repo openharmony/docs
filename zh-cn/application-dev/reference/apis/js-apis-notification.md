@@ -242,7 +242,7 @@ cancel(id: number, label?: string): Promise\<void\>
 | 参数名  | 类型   | 必填 | 说明     |
 | ----- | ------ | ---- | -------- |
 | id    | number | 是   | 通知ID。   |
-| label | string | 否   | 通知标签。 |
+| label | string | 否   | 通知标签，默认为空。 |
 
 **示例：**
 
@@ -889,7 +889,7 @@ subscribe(subscriber: NotificationSubscriber, info?: NotificationSubscribeInfo):
 | 参数名       | 类型                      | 必填 | 说明         |
 | ---------- | ------------------------- | ---- | ------------ |
 | subscriber | [NotificationSubscriber](js-apis-inner-notification-notificationSubscriber.md#notificationsubscriber)    | 是   | 通知订阅对象。 |
-| info       | [NotificationSubscribeInfo](#notificationsubscribeinfo) | 否   | 通知订阅信息。   |
+| info       | [NotificationSubscribeInfo](#notificationsubscribeinfo) | 否   | 通知订阅信息，默认为空。   |
 
 **示例：**
 
@@ -1833,7 +1833,7 @@ removeAll(bundle?: BundleOption): Promise\<void\>
 
 | 参数名   | 类型         | 必填 | 说明       |
 | ------ | ------------ | ---- | ---------- |
-| bundle | [BundleOption](#bundleoption) | 否   | 指定应用的包信息。 |
+| bundle | [BundleOption](#bundleoption) | 否   | 指定应用的包信息。默认为空，表示删除所有通知。 |
 
 **示例：**
 
@@ -3154,7 +3154,7 @@ Notification.getDeviceRemindType().then((data: Notification.DeviceRemindType) =>
 | 名称   | 类型   | 必填 | 说明   |
 | ------ | ------ | --- |  ------ |
 | bundle | string | 是  | 应用的包信息。 |
-| uid    | number | 否  | 用户ID。 |
+| uid    | number | 否  | 用户ID，默认为0。 |
 
 ## NotificationKey<sup>deprecated</sup>
 

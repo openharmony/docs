@@ -1,4 +1,4 @@
-# Multi-device Collaboration (for System Applications Only)
+# Multi-device Collaboration
 
 
 ## When to Use
@@ -57,29 +57,31 @@ On device A, touch the **Start** button provided by the initiator application to
 3. Obtain the device ID of the target device.
 
    ```ts
-   import deviceManager from '@ohos.distributedHardware.deviceManager';
+   import deviceManager from '@ohos.distributedDeviceManager';
    
-   let dmClass;
+   let dmClass: deviceManager.DeviceManager;
    function initDmClass() {
        // createDeviceManager is a system API.
-       deviceManager.createDeviceManager('ohos.samples.demo', (err, dm) => {
-           if (err) {
-               ...
-               return
-           }
-           dmClass = dm
-       })
+       try{
+           dmClass = deviceManager.createDeviceManager('ohos.samples.demo');
+       } catch(err) {
+           console.error("createDeviceManager errCode:" + err.code + ",errMessage:" + err.message);
+       }
    }
    function getRemoteDeviceId() {
        if (typeof dmClass === 'object' && dmClass !== null) {
-           let list = dmClass.getTrustedDeviceListSync()
+           let list = dmClass.getAvailableDeviceListSync();
            if (typeof (list) === 'undefined' || typeof (list.length) === 'undefined') {
-               console.info('EntryAbility onButtonClick getRemoteDeviceId err: list is null')
+               console.info('getRemoteDeviceId err: list is null');
                return;
            }
-           return list[0].deviceId
+           if (list.length === 0) {
+               console.info("getRemoteDeviceId err: list is empty");
+               return;
+           }
+       	return list[0].networkId;
        } else {
-           console.info('EntryAbility onButtonClick getRemoteDeviceId err: dmClass is null')
+           console.info('getRemoteDeviceId err: dmClass is null');
        }
    }
    ```
@@ -90,8 +92,8 @@ On device A, touch the **Start** button provided by the initiator application to
    let want = {
        deviceId: getRemoteDeviceId(), 
        bundleName: 'com.example.myapplication',
-       abilityName: 'FuncAbility',
-       moduleName: 'module1', // moduleName is optional.
+       abilityName: 'EntryAbility',
+       moduleName: 'entry', // moduleName is optional.
    }
    // context is the AbilityContext of the initiator UIAbility.
    this.context.startAbility(want).then(() => {
@@ -217,7 +219,7 @@ A system application can connect to a service on another device by calling [conn
 
 2. Display a dialog box to ask for authorization from the user when the application is started for the first time. For details, see [Requesting User Authorization](../security/accesstoken-guidelines.md#requesting-user-authorization).
 
-3. (Optional) [Implement a background service](serviceextensionability.md#implementing-a-background-service). Perform this operation only if no background service is available.
+3. (Optional) [Implement a background service](serviceextensionability.md#implementing-a-background-service-for-system-applications-only). Perform this operation only if no background service is available.
 
 4. Connect to the background service.
    - Implement the **IAbilityConnection** class. **IAbilityConnection** provides the following callbacks that you should implement: **onConnect()**, **onDisconnect()**, and **onFailed()**. The **onConnect()** callback is invoked when a service is connected, **onDisconnect()** is invoked when a service is unexpectedly disconnected, and **onFailed()** is invoked when the connection to a service fails.
@@ -477,8 +479,8 @@ The following describes how to implement multi-device collaboration through cros
       
        ```ts
        const MSG_SEND_METHOD: string = 'CallSendMsg';
-       originMsg: string = '';
-       backMsg: string = '';
+       let originMsg: string = '';
+       let backMsg: string = '';
        async onButtonCallWithResult(originMsg, backMsg) {
            try {
                let msg = new MyParcelable(1, originMsg);

@@ -138,7 +138,7 @@ subscribe(subscriber: NotificationSubscriber, info?: NotificationSubscribeInfo):
 | 参数名       | 类型                      | 必填 | 说明         |
 | ---------- | ------------------------- | ---- | ------------ |
 | subscriber | [NotificationSubscriber](js-apis-notification.md#notificationsubscriber)    | 是   | 通知订阅对象。 |
-| info       | [NotificationSubscribeInfo](js-apis-notification.md#notificationsubscribeinfo) | 否   | 通知订阅信息。   |
+| info       | [NotificationSubscribeInfo](js-apis-notification.md#notificationsubscribeinfo) | 否   | 通知订阅信息，默认为空。   |
 
 **错误码：**
 
@@ -670,7 +670,7 @@ removeAll(bundle?: BundleOption): Promise\<void\>
 
 | 参数名   | 类型         | 必填 | 说明       |
 | ------ | ------------ | ---- | ---------- |
-| bundle | [BundleOption](js-apis-inner-notification-notificationCommonDef.md#bundleoption) | 否   | 指定应用的包信息。 |
+| bundle | [BundleOption](js-apis-inner-notification-notificationCommonDef.md#bundleoption) | 否   | 指定应用的包信息。默认为空，表示删除所有通知。 |
 
 **错误码：**
 
@@ -800,7 +800,7 @@ notificationSubscribe.removeAll(userId, removeAllCallback);
 | 名称  | 类型   | 必填 | 说明     |
 | ----- | ------ | --- | -------- |
 | id    | number | 是  | 通知ID。   |
-| label | string | 否  | 通知标签。 |
+| label | string | 否  | 通知标签，默认为空。 |
 
 ## RemoveReason
 

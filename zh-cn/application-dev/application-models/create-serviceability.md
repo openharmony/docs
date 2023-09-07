@@ -15,24 +15,26 @@
        }
      }
      
-     export default class ServiceAbility {
+     class ServiceAbility {
        onStart() {
          console.info('ServiceAbility onStart')
-       };
+       }
        onStop() {
          console.info('ServiceAbility onStop')
-       };
+       }
        onCommand(want: Want, startId: number) {
          console.info('ServiceAbility onCommand')
-       };
+       }
        onConnect(want: Want) {
          console.info('ServiceAbility onConnect' + want)
          return new FirstServiceAbilityStub('test')
-       };
+       }
        onDisconnect(want: Want) {
          console.info('ServiceAbility onDisconnect' + want)
        }
      }
+
+     export default new ServiceAbility()
    ```
 
 2. 注册ServiceAbility。

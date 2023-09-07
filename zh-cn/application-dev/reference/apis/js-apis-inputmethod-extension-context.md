@@ -8,7 +8,7 @@ InputMethodExtensionContext模块是InputMethodExtensionAbility的上下文环�
 
 ## 导入模块
 
-```
+```ts
 import InputMethodExtensionContext from '@ohos.InputMethodExtensionContext';
 ```
 
@@ -16,10 +16,11 @@ import InputMethodExtensionContext from '@ohos.InputMethodExtensionContext';
 
 在使用InputMethodExtensionContext的功能前，需要通过InputMethodExtensionAbility子类实例获取。
 
-```js
+```ts
 import InputMethodExtensionAbility from '@ohos.InputMethodExtensionAbility';
-class EntryAbility extends InputMethodExtensionAbility {
-  onCreate() {
+import Want from '@ohos.app.ability.Want';
+class InputMethodExtnAbility extends InputMethodExtensionAbility {
+  onCreate(want: Want): void {
     let context = this.context;
   }
 }
@@ -41,8 +42,12 @@ destroy(callback: AsyncCallback\<void>): void
 
 **示例：**
 
-```js
-this.context.destroy(() => {
+```ts
+this.context.destroy((err: BusinessError) => {
+  if(err) {
+    console.log('Failed to destroy context.');
+    return;
+  }
   console.log('Succeeded in destroying context.');
 });
 ```
@@ -63,8 +68,10 @@ destroy(): Promise\<void>;
 
 **示例：**
 
-```js
+```ts
 this.context.destroy().then(() => {
   console.log('Succeed in destroying context.');
+}).catch((err: BusinessError)=>{
+  console.log('Failed to destroy context.');
 });
 ```

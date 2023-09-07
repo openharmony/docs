@@ -2652,27 +2652,33 @@ getUIContext(): UIContext
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import window from '@ohos.window';
+import { BusinessError } from '@ohos.base';
+import { UIContext } from '@ohos.arkui.UIContext';
 
 export default class EntryAbility extends UIAbility {
-  onWindowStageCreate(windowStage) {
+  onWindowStageCreate(windowStage: window.WindowStage) {
     // 为主窗口加载对应的目标页面。
-    windowStage.loadContent("pages/page2", (err) => {
-      if (err.code) {
+    windowStage.loadContent("pages/page2", (err: BusinessError) => {
+      let errCode: number = err.code;
+      if (errCode) {
         console.error('Failed to load the content. Cause:' + JSON.stringify(err));
         return;
       }
       console.info('Succeeded in loading the content.');
       // 获取应用主窗口。
-      let windowClass = null;
-      windowStage.getMainWindow((err, data) => {
-        if (err.code) {
+      let windowClass: window.Window | null = null;
+      windowStage.getMainWindow((err: BusinessError, data) => {
+        let errCode: number = err.code;
+        if (errCode) {
           console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(err));
           return;
         }
         windowClass = data;
         console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
         // 获取UIContext实例。
-        globalThis.uiContext = windowClass.getUIContext();
+        let uiContext: UIContext | null = null;
+        uiContext = windowClass.getUIContext();
       })
     });
   }
@@ -2793,20 +2799,37 @@ loadContent(path: string, storage: LocalStorage, callback: AsyncCallback&lt;void
 **示例：**
 
 ```ts
-let storage = new LocalStorage();
-storage.setOrCreate('storageSimpleProp',121);
-console.log('onWindowStageCreate');
-try {
-    windowClass.loadContent('pages/page2', storage, (err) => {
-        if (err.code) {
+import UIAbility from '@ohos.app.ability.UIAbility';
+import window from '@ohos.window';
+import { BusinessError } from '@ohos.base';
+
+export default class EntryAbility extends UIAbility {
+  // ...
+
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    console.log('onWindowStageCreate');
+    let windowClass: window.Window | null = null;
+    let storage: LocalStorage = new LocalStorage();
+    storage.setOrCreate('storageSimpleProp', 121);
+    try {
+      if (!windowClass) {
+        console.info('Failed to load the content. Cause: windowClass is null');
+      }
+      else {
+        (windowClass as window.Window).loadContent('pages/page2', storage, (err: BusinessError) => {
+          const errCode: number = err.code;
+          if (errCode) {
             console.error('Failed to load the content. Cause:' + JSON.stringify(err));
             return;
-        }
-        console.info('Succeeded in loading the content.');
-    });
-} catch (exception) {
-    console.error('Failed to load the content. Cause:' + JSON.stringify(exception));
-}
+          }
+          console.info('Succeeded in loading the content.');
+        });
+      }
+    } catch (exception) {
+      console.error('Failed to load the content. Cause:' + JSON.stringify(exception));
+    }
+  }
+};
 ```
 
 ### loadContent<sup>9+</sup>
@@ -2844,19 +2867,35 @@ loadContent(path: string, storage: LocalStorage): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-let storage = new LocalStorage();
-storage.setOrCreate('storageSimpleProp',121);
-console.log('onWindowStageCreate');
-try {
-    let promise = windowClass.loadContent('pages/page2', storage);
-    promise.then(() => {
-        console.info('Succeeded in loading the content.');
-    }).catch((err) => {
-        console.error('Failed to load the content. Cause:' + JSON.stringify(err));
-    });
-} catch (exception) {
-    console.error('Failed to load the content. Cause:' + JSON.stringify(exception));
-}
+import UIAbility from '@ohos.app.ability.UIAbility';
+import window from '@ohos.window';
+import { BusinessError } from '@ohos.base';
+
+export default class EntryAbility extends UIAbility {
+  // ...
+
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    console.log('onWindowStageCreate');
+    let windowClass: window.Window | null = null;
+    let storage: LocalStorage = new LocalStorage();
+    storage.setOrCreate('storageSimpleProp', 121);
+    try {
+      if (!windowClass) {
+        console.info('Failed to load the content. Cause: windowClass is null');
+      }
+      else {
+        let promise = (windowClass as window.Window).loadContent('pages/page2', storage);
+        promise.then(() => {
+          console.info('Succeeded in loading the content.');
+        }).catch((err: BusinessError) => {
+          console.error('Failed to load the content. Cause:' + JSON.stringify(err));
+        });
+      }
+    } catch (exception) {
+      console.error('Failed to load the content. Cause:' + JSON.stringify(exception));
+    }
+  }
+};
 ```
 
 ### isWindowShowing<sup>9+</sup>
@@ -5170,7 +5209,445 @@ try {
     console.error('Failed to set water mark flag of window. Cause: ' + JSON.stringify(exception));
 }
 ```
+### raiseAboveTarget<sup>10+</sup>
 
+raiseAboveTarget(windowId: number, callback: AsyncCallback&lt;void&gt;): void
+
+将同一个主窗口下的子窗口提升到目标子窗口之上。使用callback异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名   | 类型                      | 必填 | 说明       |
+| -------- | ------------------------- | ---- | ---------- |
+| windowId | number                    | 是   | 目标子窗口的id，通过[getWindowProperties](#getwindowproperties9)接口获取到[properties](#windowproperties)后，再通过properties.id获取 |
+| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ---------------------------------------------- |
+| 1300002 | This window state is abnormal. |
+| 1300003 | This window manager service works abnormally. |
+| 1300004 | Unauthorized operation. |
+| 1300009 | The parent window is invalid. |
+
+**示例：**
+
+```js
+// 将windowClass调整到targetWindow之上
+let properties = targetWindow.getWindowProperties();
+let targetId = properties.id;
+windowClass.raiseAboveTarget(targetId, (err) => {
+    if (err.code) {
+        console.error('Failed to raise the subWindow to target subWindow top. Cause: ' + JSON.stringify(err));
+        return;
+    }
+    console.info('Succeeded in raising the subWindow to target subWindow top.');
+});
+```
+
+### raiseAboveTarget<sup>10+</sup>
+
+raiseAboveTarget(windowId: number): Promise&lt;void&gt;
+
+将同一个主窗下的子窗口提升到目标子窗口之上。使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名   | 类型                      | 必填 | 说明       |
+| -------- | ------------------------- | ---- | ---------- |
+| windowId | number                    | 是   | 目标子窗口的id，通过[getWindowProperties](#getwindowproperties9)接口获取到[properties](#windowproperties)后，再通过properties.id获取 |
+
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ------------------------------ |
+| 1300002 | This window state is abnormal. |
+| 1300003 | This window manager service works abnormally. |
+| 1300004 | Unauthorized operation. |
+| 1300009 | The parent window is invalid. |
+
+**示例：**
+
+```js
+// 将windowClass调整到targetWindow之上
+let properties = targetWindow.getWindowProperties();
+let targetId = properties.id;
+let promise = windowClass.raiseAboveTarget(targetId);
+promise.then(()=> {
+    console.info('Succeeded in raising the subWindow to target subWindow top.');
+}).catch((err)=>{
+    console.error('Failed to raise the subWindow to target subWindow top. Cause: ' + JSON.stringify(err));
+});
+```
+### setRaiseByClickEnabled<sup>10+</sup>
+
+setRaiseByClickEnabled(enable: boolean, callback: AsyncCallback&lt;void&gt;): void
+
+禁止/使能子窗口点击抬升功能。使用callback异步回调。
+
+通常来说，点击一个子窗口，会将该子窗口显示到最上方，如果设置为false，那么点击子窗口的时候，不会将该子窗口显示到最上方，而是保持不变。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名   | 类型                      | 必填 | 说明       |
+| -------- | ------------------------- | ---- | ---------- |
+| enable   | boolean                   | 是   | 设置子窗口点击抬升功能是否使能，true表示使能，false表示禁止。 |
+| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ------------------------------ |
+| 1300002 | This window state is abnormal. |
+| 1300003 | This window manager service works abnormally. |
+| 1300004 | Unauthorized operation. |
+| 1300009 | The parent window is invalid. |
+
+**示例：**
+
+```js
+let enabled = false;
+windowClass.setRaiseByClickEnabled(enabled, (err) => {
+    if (err.code) {
+        console.error('Failed to disable the raise-by-click function. Cause: ' + JSON.stringify(err));
+        return;
+    }
+    console.info('Succeeded in disabling the raise-by-click function.');
+});
+```
+
+### setRaiseByClickEnabled<sup>10+</sup>
+
+setRaiseByClickEnabled(enable: boolean): Promise&lt;void&gt;
+
+禁止/使能子窗点击抬升功能。使用Promise异步回调。
+
+通常来说，点击一个子窗口，会将该子窗口显示到最上方，如果设置为false，那么点击子窗口的时候，不会将该子窗口显示到最上方，而是保持不变。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名   | 类型                      | 必填 | 说明       |
+| -------- | ------------------------- | ---- | ---------- |
+| enable   | boolean                   | 是   | 设置子窗口点击抬升功能是否使能，true表示使能，false表示禁止。 |
+
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ------------------------------ |
+| 1300002 | This window state is abnormal. |
+| 1300003 | This window manager service works abnormally. |
+| 1300004 | Unauthorized operation. |
+| 1300009 | The parent window is invalid. |
+
+**示例：**
+
+```js
+let enabled = false;
+let promise = windowClass.setRaiseByClickEnabled(enabled);
+promise.then(()=> {
+    console.info('Succeeded in disabling the raise-by-click function.');
+}).catch((err)=>{
+    console.error('Failed to disable the raise-by-click function. Cause: ' + JSON.stringify(err));
+});
+```
+### minimize<sup>10+</sup>
+
+minimize(callback: AsyncCallback&lt;void&gt;): void
+
+最小化主窗口。使用callback异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名   | 类型                      | 必填 | 说明       |
+| -------- | ------------------------- | ---- | ---------- |
+| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ------------------------------ |
+| 1300002 | This window state is abnormal. |
+| 1300003 | This window manager service works abnormally. |
+
+**示例：**
+
+```js
+import UIAbility from '@ohos.app.ability.UIAbility';
+
+export default class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage) {
+        // 为主窗口加载对应的目标页面。
+        windowStage.loadContent("pages/page2", (err) => {
+            if (err.code) {
+                console.error('Failed to load the content. Cause:' + JSON.stringify(err));
+                return;
+            }
+            console.info('Succeeded in loading the content.');
+        });
+        // 获取应用主窗口。
+        let mainWindow = null;
+        
+        windowStage.getMainWindow((err, data) => {
+            if (err.code) {
+                console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(err));
+                return;
+            }
+            mainWindow = data;
+            console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
+            // 调用minimize接口。
+            mainWindow.minimize((err) => {
+                if (err.code) {
+                    console.error('Failed to minimize the app main window. Cause: ' + JSON.stringify(err));
+                    return;
+                }
+                console.info('Successfully minimized app main window.');
+            });
+        })
+    }
+};
+```
+
+### minimize<sup>10+</sup>
+
+minimize(): Promise&lt;void&gt;
+
+最小化主窗口。使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ------------------------------ |
+| 1300002 | This window state is abnormal. |
+| 1300003 | This window manager service works abnormally. |
+
+**示例：**
+
+```js
+import UIAbility from '@ohos.app.ability.UIAbility';
+
+export default class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage) {
+        // 为主窗口加载对应的目标页面。
+        windowStage.loadContent("pages/page2", (err) => {
+            if (err.code) {
+                console.error('Failed to load the content. Cause:' + JSON.stringify(err));
+                return;
+            }
+            console.info('Succeeded in loading the content.');
+        });
+        // 获取应用主窗口。
+        let mainWindow = null;
+        
+        windowStage.getMainWindow((err, data) => {
+            if (err.code) {
+                console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(err));
+                return;
+            }
+            mainWindow = data;
+            console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
+            // 获取minimize接口的promise对象。
+            let promise = mainWindow.minimize();
+            promise.then(()=> {
+                console.info('Successfully minimized app main window.');
+            }).catch((err)=>{
+                console.error('Failed to minimize the app main window. Cause: ' + JSON.stringify(err));
+            });
+        })
+    }
+};
+```
+
+### setResizeByDragEnabled<sup>10+</sup>
+
+setResizeByDragEnabled(enable: boolean, callback: AsyncCallback&lt;void&gt;): void
+
+禁止/使能通过拖拽方式缩放主窗口的功能。使用callback异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名   | 类型                      | 必填 | 说明       |
+| -------- | ------------------------- | ---- | ---------- |
+| enable   | boolean                   | 是   | 设置窗口是否使能通过拖拽进行缩放，true表示使能，false表示禁止。 |
+| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ------------------------------ |
+| 1300002 | This window state is abnormal. |
+| 1300003 | This window manager service works abnormally. |
+| 1300004 | Unauthorized operation. |
+
+**示例：**
+
+```js
+import UIAbility from '@ohos.app.ability.UIAbility';
+
+export default class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage) {
+        // 为主窗口加载对应的目标页面。
+        windowStage.loadContent("pages/page2", (err) => {
+            if (err.code) {
+                console.error('Failed to load the content. Cause:' + JSON.stringify(err));
+                return;
+            }
+            console.info('Succeeded in loading the content.');
+        });
+        // 获取应用主窗口。
+        let mainWindow = null;
+        
+        windowStage.getMainWindow((err, data) => {
+            if (err.code) {
+                console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(err));
+                return;
+            }
+            mainWindow = data;
+            console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
+
+            let enabled = false;
+            // 调用setResizeByDragEnabled接口。
+            mainWindow.setResizeByDragEnabled(enabled, (err) => {
+                if (err.code) {
+                    console.error('Failed to set the function of disabling the resize by dragg window. Cause: ' + JSON.stringify(err));
+                    return;
+                }
+                console.info('Succeeded in setting the function of disabling the resize by dragg window.');
+            });
+        })
+    }
+};
+```
+
+### setResizeByDragEnabled<sup>10+</sup>
+
+setResizeByDragEnabled(enable: boolean): Promise&lt;void&gt;
+
+禁止/使能通过拖拽方式缩放主窗口的功能。使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名   | 类型                      | 必填 | 说明       |
+| -------- | ------------------------- | ---- | ---------- |
+| enable   | boolean                   | 是   | 设置窗口是否使能通过拖拽进行缩放，true表示使能，false表示禁止。 |
+
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ------------------------------ |
+| 1300002 | This window state is abnormal. |
+| 1300003 | This window manager service works abnormally. |
+
+**示例：**
+
+```js
+import UIAbility from '@ohos.app.ability.UIAbility';
+
+export default class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage) {
+        // 为主窗口加载对应的目标页面。
+        windowStage.loadContent("pages/page2", (err) => {
+            if (err.code) {
+                console.error('Failed to load the content. Cause:' + JSON.stringify(err));
+                return;
+            }
+            console.info('Succeeded in loading the content.');
+        });
+        // 获取应用主窗口。
+        let mainWindow = null;
+        
+        windowStage.getMainWindow((err, data) => {
+            if (err.code) {
+                console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(err));
+                return;
+            }
+            mainWindow = data;
+            console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
+
+            let enabled = false;
+            // 获取setResizeByDragEnabled接口的promise对象
+            let promise = mainWindow.setResizeByDragEnabled(enabled);
+            promise.then(()=> {
+                console.info('Succeeded in setting the function of disabling the resize by dragg window.');
+            }).catch((err)=>{
+                console.error('Failed to set the function of disabling the resize by dragg window. Cause: ' + JSON.stringify(err));
+            });
+        })
+    }
+};
+```
 ### show<sup>(deprecated)</sup>
 
 show(callback: AsyncCallback&lt;void&gt;): void
@@ -6893,22 +7370,25 @@ getMainWindow(callback: AsyncCallback&lt;Window&gt;): void
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import window from '@ohos.window';
+import { BusinessError } from '@ohos.base';
 
 export default class EntryAbility extends UIAbility {
-    // ...
+  // ...
 
-    onWindowStageCreate(windowStage) {
-        console.log('onWindowStageCreate');
-        let windowClass = null;
-        windowStage.getMainWindow((err, data) => {
-            if (err.code) {
-                console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(err));
-                return;
-            }
-            windowClass = data;
-            console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
-        });
-    }
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    console.log('onWindowStageCreate');
+    let windowClass: window.Window | null = null;
+    windowStage.getMainWindow((err: BusinessError, data) => {
+      const errCode: number = err.code;
+      if (errCode) {
+        console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(err));
+        return;
+      }
+      windowClass = data;
+      console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
+    });
+  }
 };
 ```
 
@@ -6941,21 +7421,23 @@ getMainWindow(): Promise&lt;Window&gt;
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import window from '@ohos.window';
+import { BusinessError } from '@ohos.base';
 
 export default class EntryAbility extends UIAbility {
-    // ...
+  // ...
 
-    onWindowStageCreate(windowStage) {
-        console.log('onWindowStageCreate');
-        let windowClass = null;
-        let promise = windowStage.getMainWindow();
-        promise.then((data) => {
-        windowClass = data;
-            console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
-        }).catch((err) => {
-            console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(err));
-        });
-    }
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    console.log('onWindowStageCreate');
+    let windowClass: window.Window | null = null;
+    let promise = windowStage.getMainWindow();
+    promise.then((data) => {
+      windowClass = data;
+      console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
+    }).catch((err: BusinessError) => {
+      console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(err));
+    });
+  }
 };
 ```
 
@@ -6988,18 +7470,19 @@ getMainWindowSync(): Window
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import window from '@ohos.window';
 
 export default class EntryAbility extends UIAbility {
-    // ...
+  // ...
 
-    onWindowStageCreate(windowStage) {
-        console.log('onWindowStageCreate');
-        try {
-            let windowClass = windowStage.getMainWindowSync();
-        } catch (exception) {
-            console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(exception));
-        };
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    console.log('onWindowStageCreate');
+    try {
+      let windowClass = windowStage.getMainWindowSync();
+    } catch (exception) {
+      console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(exception));
     }
+  }
 };
 ```
 
@@ -7033,27 +7516,30 @@ createSubWindow(name: string, callback: AsyncCallback&lt;Window&gt;): void
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import window from '@ohos.window';
+import { BusinessError } from '@ohos.base';
 
 export default class EntryAbility extends UIAbility {
-    // ...
+  // ...
 
-    onWindowStageCreate(windowStage) {
-        console.log('onWindowStageCreate');
-        let windowClass = null;
-        try {
-            windowStage.createSubWindow('mySubWindow', (err, data) => {
-                if (err.code) {
-                    console.error('Failed to create the subwindow. Cause: ' + JSON.stringify(err));
-                    return;
-                }
-                windowClass = data;
-                console.info('Succeeded in creating the subwindow. Data: ' + JSON.stringify(data));
-                windowClass.resetSize(500, 1000);
-            });
-        } catch (exception) {
-            console.error('Failed to create the subwindow. Cause: ' + JSON.stringify(exception));
-        };
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    console.log('onWindowStageCreate');
+    let windowClass: window.Window | null = null;
+    try {
+      windowStage.createSubWindow('mySubWindow', (err: BusinessError, data) => {
+        const errCode: number = err.code;
+        if (errCode) {
+          console.error('Failed to create the subwindow. Cause: ' + JSON.stringify(err));
+          return;
+        }
+        windowClass = data;
+        console.info('Succeeded in creating the subwindow. Data: ' + JSON.stringify(data));
+        windowClass.resetSize(500, 1000);
+      });
+    } catch (exception) {
+      console.error('Failed to create the subwindow. Cause: ' + JSON.stringify(exception));
     }
+  }
 };
 ```
 ### createSubWindow<sup>9+</sup>
@@ -7091,25 +7577,27 @@ createSubWindow(name: string): Promise&lt;Window&gt;
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import window from '@ohos.window';
+import { BusinessError } from '@ohos.base';
 
 export default class EntryAbility extends UIAbility {
-    // ...
+  // ...
 
-    onWindowStageCreate(windowStage) {
-        console.log('onWindowStageCreate');
-        let windowClass = null;
-        try {
-            let promise = windowStage.createSubWindow('mySubWindow');
-            promise.then((data) => {
-                windowClass = data;
-                console.info('Succeeded in creating the subwindow. Data: ' + JSON.stringify(data));
-            }).catch((err) => {
-                console.error('Failed to create the subwindow. Cause: ' + JSON.stringify(err));
-            });
-        } catch (exception) {
-            console.error('Failed to create the subwindow. Cause: ' + JSON.stringify(exception));
-        };
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    console.log('onWindowStageCreate');
+    let windowClass: window.Window | null = null;
+    try {
+      let promise = windowStage.createSubWindow('mySubWindow');
+      promise.then((data) => {
+        windowClass = data;
+        console.info('Succeeded in creating the subwindow. Data: ' + JSON.stringify(data));
+      }).catch((err: BusinessError) => {
+        console.error('Failed to create the subwindow. Cause: ' + JSON.stringify(err));
+      });
+    } catch (exception) {
+      console.error('Failed to create the subwindow. Cause: ' + JSON.stringify(exception));
     }
+  }
 };
 ```
 
@@ -7141,22 +7629,25 @@ getSubWindow(callback: AsyncCallback&lt;Array&lt;Window&gt;&gt;): void
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import window from '@ohos.window';
+import { BusinessError } from '@ohos.base';
 
 export default class EntryAbility extends UIAbility {
-    // ...
+  // ...
 
-    onWindowStageCreate(windowStage) {
-        console.log('onWindowStageCreate');
-        let windowClass = null;
-        windowStage.getSubWindow((err, data) => {
-            if (err.code) {
-                console.error('Failed to obtain the subwindow. Cause: ' + JSON.stringify(err));
-                return;
-            }
-            windowClass = data;
-            console.info('Succeeded in obtaining the subwindow. Data: ' + JSON.stringify(data));
-        });
-    }
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    console.log('onWindowStageCreate');
+    let windowClass: window.Window[] = [];
+    windowStage.getSubWindow((err: BusinessError, data) => {
+      const errCode: number = err.code;
+      if (errCode) {
+        console.error('Failed to obtain the subwindow. Cause: ' + JSON.stringify(err));
+        return;
+      }
+      windowClass = data;
+      console.info('Succeeded in obtaining the subwindow. Data: ' + JSON.stringify(data));
+    });
+  }
 };
 ```
 ### getSubWindow<sup>9+</sup>
@@ -7187,21 +7678,23 @@ getSubWindow(): Promise&lt;Array&lt;Window&gt;&gt;
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import window from '@ohos.window';
+import { BusinessError } from '@ohos.base';
 
 export default class EntryAbility extends UIAbility {
-    // ...
+  // ...
 
-    onWindowStageCreate(windowStage) {
-        console.log('onWindowStageCreate');
-        let windowClass = null;
-        let promise = windowStage.getSubWindow();
-        promise.then((data) => {
-            windowClass = data;
-            console.info('Succeeded in obtaining the subwindow. Data: ' + JSON.stringify(data));
-        }).catch((err) => {
-            console.error('Failed to obtain the subwindow. Cause: ' + JSON.stringify(err));
-        })
-    }
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    console.log('onWindowStageCreate');
+    let windowClass: window.Window[] = [];
+    let promise = windowStage.getSubWindow();
+    promise.then((data) => {
+      windowClass = data;
+      console.info('Succeeded in obtaining the subwindow. Data: ' + JSON.stringify(data));
+    }).catch((err: BusinessError) => {
+      console.error('Failed to obtain the subwindow. Cause: ' + JSON.stringify(err));
+    })
+  }
 };
 ```
 ### loadContent<sup>9+</sup>
@@ -7235,27 +7728,30 @@ loadContent(path: string, storage: LocalStorage, callback: AsyncCallback&lt;void
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import window from '@ohos.window';
+import { BusinessError } from '@ohos.base';
 
 export default class EntryAbility extends UIAbility {
-    // ...
+  // ...
 
-    storage : LocalStorage
-    onWindowStageCreate(windowStage) {
-        this.storage = new LocalStorage();
-        this.storage.setOrCreate('storageSimpleProp',121);
-        console.log('onWindowStageCreate');
-        try {
-            windowStage.loadContent('pages/page2',this.storage,(err) => {
-                if (err.code) {
-                    console.error('Failed to load the content. Cause:' + JSON.stringify(err));
-                    return;
-                }
-                console.info('Succeeded in loading the content.');
-            });
-        } catch (exception) {
-            console.error('Failed to load the content. Cause:' + JSON.stringify(exception));
-        };
+  storage: LocalStorage = new LocalStorage();
+
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    this.storage.setOrCreate('storageSimpleProp', 121);
+    console.log('onWindowStageCreate');
+    try {
+      windowStage.loadContent('pages/page2', this.storage, (err: BusinessError) => {
+        const errCode: number = err.code;
+        if (errCode) {
+          console.error('Failed to load the content. Cause:' + JSON.stringify(err));
+          return;
+        }
+        console.info('Succeeded in loading the content.');
+      });
+    } catch (exception) {
+      console.error('Failed to load the content. Cause:' + JSON.stringify(exception));
     }
+  }
 };
 ```
 
@@ -7295,26 +7791,29 @@ loadContent(path: string, storage?: LocalStorage): Promise&lt;void&gt;
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import window from '@ohos.window';
+import { BusinessError } from '@ohos.base';
 
 export default class EntryAbility extends UIAbility {
-    // ...
+  // ...
 
-    storage : LocalStorage
-    onWindowStageCreate(windowStage) {
-        this.storage = new LocalStorage();
-        this.storage.setOrCreate('storageSimpleProp',121);
-        console.log('onWindowStageCreate');
-        try {
-            let promise = windowStage.loadContent('pages/page2',this.storage);
-            promise.then(() => {
-                console.info('Succeeded in loading the content.');
-            }).catch((err) => {
-                console.error('Failed to load the content. Cause:' + JSON.stringify(err));
-            });
-        } catch (exception) {
-            console.error('Failed to load the content. Cause:' + JSON.stringify(exception));
-        };
+  storage: LocalStorage = new LocalStorage();
+
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    this.storage.setOrCreate('storageSimpleProp', 121);
+    console.log('onWindowStageCreate');
+    try {
+      let promise = windowStage.loadContent('pages/page2', this.storage);
+      promise.then(() => {
+        console.info('Succeeded in loading the content.');
+      }).catch((err: BusinessError) => {
+        console.error('Failed to load the content. Cause:' + JSON.stringify(err));
+      });
+    } catch (exception) {
+      console.error('Failed to load the content. Cause:' + JSON.stringify(exception));
     }
+    ;
+  }
 };
 ```
 
@@ -7348,24 +7847,27 @@ loadContent(path: string, callback: AsyncCallback&lt;void&gt;): void
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import window from '@ohos.window';
+import { BusinessError } from '@ohos.base';
 
 export default class EntryAbility extends UIAbility {
-    // ...
+  // ...
 
-    onWindowStageCreate(windowStage) {
-        console.log('onWindowStageCreate');
-        try {
-            windowStage.loadContent('pages/page2', (err) => {
-                if (err.code) {
-                    console.error('Failed to load the content. Cause:' + JSON.stringify(err));
-                    return;
-                }
-                console.info('Succeeded in loading the content.');
-            });
-        } catch (exception) {
-            console.error('Failed to load the content. Cause:' + JSON.stringify(exception));
-        };
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    console.log('onWindowStageCreate');
+    try {
+      windowStage.loadContent('pages/page2', (err: BusinessError) => {
+        const errCode: number = err.code;
+        if (errCode) {
+          console.error('Failed to load the content. Cause:' + JSON.stringify(err));
+          return;
+        }
+        console.info('Succeeded in loading the content.');
+      });
+    } catch (exception) {
+      console.error('Failed to load the content. Cause:' + JSON.stringify(exception));
     }
+  }
 };
 ```
 
@@ -7399,22 +7901,23 @@ on(eventType: 'windowStageEvent', callback: Callback&lt;WindowStageEventType&gt;
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import window from '@ohos.window';
 
 export default class EntryAbility extends UIAbility {
-    // ...
+  // ...
 
-    onWindowStageCreate(windowStage) {
-        console.log('onWindowStageCreate');
-        try {
-            windowStage.on('windowStageEvent', (data) => {
-                console.info('Succeeded in enabling the listener for window stage event changes. Data: ' +
-                    JSON.stringify(data));
-            });
-        } catch (exception) {
-            console.error('Failed to enable the listener for window stage event changes. Cause:' +
-                JSON.stringify(exception));
-        };
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    console.log('onWindowStageCreate');
+    try {
+      windowStage.on('windowStageEvent', (data) => {
+        console.info('Succeeded in enabling the listener for window stage event changes. Data: ' +
+        JSON.stringify(data));
+      });
+    } catch (exception) {
+      console.error('Failed to enable the listener for window stage event changes. Cause:' +
+      JSON.stringify(exception));
     }
+  }
 };
 ```
 
@@ -7448,19 +7951,20 @@ off(eventType: 'windowStageEvent', callback?: Callback&lt;WindowStageEventType&g
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import window from '@ohos.window';
 
 export default class EntryAbility extends UIAbility {
-    // ...
+  // ...
 
-    onWindowStageCreate(windowStage) {
-        console.log('onWindowStageCreate');
-        try {
-            windowStage.off('windowStageEvent');
-        } catch (exception) {
-            console.error('Failed to disable the listener for window stage event changes. Cause:' +
-                JSON.stringify(exception));
-        };
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    console.log('onWindowStageCreate');
+    try {
+      windowStage.off('windowStageEvent');
+    } catch (exception) {
+      console.error('Failed to disable the listener for window stage event changes. Cause:' +
+      JSON.stringify(exception));
     }
+  }
 };
 ```
 
@@ -7489,14 +7993,15 @@ disableWindowDecor(): void
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import window from '@ohos.window';
 
 export default class EntryAbility extends UIAbility {
-    // ...
+  // ...
 
-    onWindowStageCreate(windowStage) {
-        console.log('disableWindowDecor');
-        windowStage.disableWindowDecor();
-    }
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    console.log('disableWindowDecor');
+    windowStage.disableWindowDecor();
+  }
 };
 ```
 
@@ -7531,18 +8036,19 @@ setShowOnLockScreen(showOnLockScreen: boolean): void
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import window from '@ohos.window';
 
 export default class EntryAbility extends UIAbility {
-    // ...
+  // ...
 
-    onWindowStageCreate(windowStage) {
-        console.log('onWindowStageCreate');
-        try {
-            windowStage.setShowOnLockScreen(true);
-        } catch (exception) {
-            console.error('Failed to show on lockscreen. Cause:' + JSON.stringify(exception));
-        };
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    console.log('onWindowStageCreate');
+    try {
+      windowStage.setShowOnLockScreen(true);
+    } catch (exception) {
+      console.error('Failed to show on lockscreen. Cause:' + JSON.stringify(exception));
     }
+  }
 };
 ```
 ## TransitionContext<sup>9+</sup>

@@ -304,7 +304,7 @@ cancel(id: number, label?: string): Promise\<void\>
 | 参数名  | 类型   | 必填 | 说明     |
 | ----- | ------ | ---- | -------- |
 | id    | number | 是   | 通知ID。   |
-| label | string | 否   | 通知标签。 |
+| label | string | 否   | 通知标签，默认为空。 |
 
 **错误码：**
 
@@ -3049,16 +3049,23 @@ requestEnableNotification(context: UIAbilityContext, callback: AsyncCallback\<vo
 
 ```ts
 import Base from '@ohos.base';
+import UIAbility from '@ohos.app.ability.UIAbility';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import Want from '@ohos.app.ability.Want';
 
-let requestEnableNotificationCallback = (err: Base.BusinessError): void => {
-    if (err) {
+class MyAbility extends UIAbility {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+    let requestEnableNotificationCallback = (err: Base.BusinessError): void => {
+      if (err) {
         console.error(`requestEnableNotification failed, code is ${err.code}, message is ${err.message}`);
-    } else {
+      } else {
         console.info("requestEnableNotification success");
-    }
-};
+      }
+    };
 
-notificationManager.requestEnableNotification(globalThis.uicontext, requestEnableNotificationCallback);
+    notificationManager.requestEnableNotification(this.context, requestEnableNotificationCallback);
+  }
+}
 ```
 
 ## notificationManager.requestEnableNotification<sup>10+<sup>
@@ -3089,12 +3096,19 @@ requestEnableNotification(context: UIAbilityContext): Promise\<void\>
 
 ```ts
 import Base from '@ohos.base';
+import UIAbility from '@ohos.app.ability.UIAbility';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import Want from '@ohos.app.ability.Want';
 
-notificationManager.requestEnableNotification(globalThis.uicontext).then(() => {
-    console.info("requestEnableNotification success");
-}).catch((err: Base.BusinessError) => {
-    console.error(`requestEnableNotification fail: ${JSON.stringify(err)}`);
-});
+class MyAbility extends UIAbility {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+    notificationManager.requestEnableNotification(this.context).then(() => {
+      console.info("requestEnableNotification success");
+    }).catch((err: Base.BusinessError) => {
+      console.error(`requestEnableNotification fail: ${JSON.stringify(err)}`);
+    });
+  }
+}
 ```
 
 ## notificationManager.setDistributedEnable
@@ -4275,7 +4289,7 @@ off(type: 'checkNotification', callback?: (checkInfo: NotificationCheckInfo) => 
 | 参数名 | 类型                          | 必填 | 说明           |
 | ------ | ----------------------------- | ---- | -------------- |
 | type | string                                                       | 是   | 回调函数类型名，固定为'checkNotification'。 |
-| callback | (checkInfo: [NotificationCheckInfo](#notificationcheckinfo)) =>  [NotificationCheckResult](#notificationcheckresult)  | 否   | 消息验证函数指针。 |
+| callback | (checkInfo: [NotificationCheckInfo](#notificationcheckinfo)) =>  [NotificationCheckResult](#notificationcheckresult)  | 否   | 消息验证函数指针，默认为空。 |
 
 **错误码：**
 

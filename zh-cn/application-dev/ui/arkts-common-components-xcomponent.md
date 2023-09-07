@@ -229,11 +229,19 @@ OpenHarmony上Camera、AVPlayer等符合生产者设计的部件都可以将数�
 
 
 ```ts
+class suf{
+  surfaceId:string = "";
+  mXComponentController: XComponentController = new XComponentController();
+  set(){
+    this.surfaceId = this.mXComponentController.getXComponentSurfaceId()
+  }
+}
 @State surfaceId:string = "";
-mXComponentController: XComponentController = new XComponentController();
+mXComponentController: object = new XComponentController();
 XComponent({ id: '', type: 'surface', controller: this.mXComponentController })
   .onLoad(() => {
-    this.surfaceId = this.mXComponentController.getXComponentSurfaceId()
+    let sufset = new suf()
+    sufset.set()
   })
 ```
 

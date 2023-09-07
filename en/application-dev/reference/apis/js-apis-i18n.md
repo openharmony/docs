@@ -98,7 +98,7 @@ For details about the error codes, see [I18N Error Codes](../errorcodes/errorcod
     let displayLanguage: string = I18n.System.getDisplayLanguage("zh", "en-GB"); // displayLanguage = Chinese
   } catch(error) {
     let err: BusinessError = error as BusinessError;
-    console.error(`call System.getDisplayCountry failed, error code: ${err.code}, message: ${err.message}.`);
+    console.error(`call System.getDisplayLanguage failed, error code: ${err.code}, message: ${err.message}.`);
   }
   ```
 
@@ -132,7 +132,7 @@ For details about the error codes, see [I18N Error Codes](../errorcodes/errorcod
     let systemLanguages: Array<string> = I18n.System.getSystemLanguages(); // [ "en-Latn-US", "zh-Hans" ]
   } catch(error) {
     let err: BusinessError = error as BusinessError;
-    console.error(`call System.getDisplayCountry failed, error code: ${err.code}, message: ${err.message}.`);
+    console.error(`call System.getSystemLanguages failed, error code: ${err.code}, message: ${err.message}.`);
   }
   ```
 
@@ -172,7 +172,7 @@ For details about the error codes, see [I18N Error Codes](../errorcodes/errorcod
     let systemCountries: Array<string> = I18n.System.getSystemCountries('zh'); // systemCountries = [ "ZW", "YT", "YE", ..., "ER", "CN", "DE" ], 240 countries or regions in total
   } catch(error) {
     let err: BusinessError = error as BusinessError;
-    console.error(`call System.getDisplayCountry failed, error code: ${err.code}, message: ${err.message}.`);
+    console.error(`call System.getSystemCountries failed, error code: ${err.code}, message: ${err.message}.`);
   }
   ```
 
@@ -213,7 +213,7 @@ For details about the error codes, see [I18N Error Codes](../errorcodes/errorcod
     let res: boolean = I18n.System.isSuggested('zh', 'CN');  // res = true
   } catch(error) {
     let err: BusinessError = error as BusinessError;
-    console.error(`call System.getDisplayCountry failed, error code: ${err.code}, message: ${err.message}.`);
+    console.error(`call System.isSuggested failed, error code: ${err.code}, message: ${err.message}.`);
   }
   ```
 
@@ -247,7 +247,7 @@ For details about the error codes, see [I18N Error Codes](../errorcodes/errorcod
     let systemLanguage: string = I18n.System.getSystemLanguage();  // systemLanguage indicates the current system language.
   } catch(error) {
     let err: BusinessError = error as BusinessError;
-    console.error(`call System.getDisplayCountry failed, error code: ${err.code}, message: ${err.message}.`);
+    console.error(`call System.getSystemLanguage failed, error code: ${err.code}, message: ${err.message}.`);
   }
   ```
 
@@ -285,7 +285,7 @@ For details about the error codes, see [I18N Error Codes](../errorcodes/errorcod
     I18n.System.setSystemLanguage('zh'); // Set the current system language to zh.
   } catch(error) {
     let err: BusinessError = error as BusinessError;
-    console.error(`call System.getDisplayCountry failed, error code: ${err.code}, message: ${err.message}.`);
+    console.error(`call System.setSystemLanguage failed, error code: ${err.code}, message: ${err.message}.`);
   }
   ```
 
@@ -319,7 +319,7 @@ For details about the error codes, see [I18N Error Codes](../errorcodes/errorcod
     let systemRegion: string = I18n.System.getSystemRegion(); // Obtain the current system region.
   } catch(error) {
     let err: BusinessError = error as BusinessError;
-    console.error(`call System.getDisplayCountry failed, error code: ${err.code}, message: ${err.message}.`);
+    console.error(`call System.getSystemRegion failed, error code: ${err.code}, message: ${err.message}.`);
   }
   ```
 
@@ -357,7 +357,7 @@ For details about the error codes, see [I18N Error Codes](../errorcodes/errorcod
     I18n.System.setSystemRegion('CN'); // Set the current system region to CN.
   } catch(error) {
     let err: BusinessError = error as BusinessError;
-    console.error(`call System.getDisplayCountry failed, error code: ${err.code}, message: ${err.message}.`);
+    console.error(`call System.setSystemRegion failed, error code: ${err.code}, message: ${err.message}.`);
   }
   ```
 
@@ -391,7 +391,7 @@ For details about the error codes, see [I18N Error Codes](../errorcodes/errorcod
     let systemLocale: string = I18n.System.getSystemLocale();  // Obtain the current system locale.
   } catch(error) {
     let err: BusinessError = error as BusinessError;
-    console.error(`call System.getDisplayCountry failed, error code: ${err.code}, message: ${err.message}.`);
+    console.error(`call System.getSystemLocale failed, error code: ${err.code}, message: ${err.message}.`);
   }
   ```
 
@@ -429,7 +429,7 @@ For details about the error codes, see [I18N Error Codes](../errorcodes/errorcod
     I18n.System.setSystemLocale('zh-CN'); // Set the current system locale to zh-CN.
   } catch(error) {
     let err: BusinessError = error as BusinessError;
-    console.error(`call System.getDisplayCountry failed, error code: ${err.code}, message: ${err.message}.`);
+    console.error(`call System.setSystemLocale failed, error code: ${err.code}, message: ${err.message}.`);
   }
   ```
 
@@ -463,7 +463,7 @@ For details about the error codes, see [I18N Error Codes](../errorcodes/errorcod
     let is24HourClock: boolean = I18n.System.is24HourClock();  // Check whether the 24-hour clock is enabled.
   } catch(error) {
     let err: BusinessError = error as BusinessError;
-    console.error(`call System.getDisplayCountry failed, error code: ${err.code}, message: ${err.message}.`);
+    console.error(`call System.is24HourClock failed, error code: ${err.code}, message: ${err.message}.`);
   }
   ```
 
@@ -502,7 +502,7 @@ For details about the error codes, see [I18N Error Codes](../errorcodes/errorcod
     I18n.System.set24HourClock(true);
   } catch(error) {
     let err: BusinessError = error as BusinessError;
-    console.error(`call System.getDisplayCountry failed, error code: ${err.code}, message: ${err.message}.`);
+    console.error(`call System.set24HourClock failed, error code: ${err.code}, message: ${err.message}.`);
   }
   ```
 
@@ -544,7 +544,7 @@ For details about the error codes, see [I18N Error Codes](../errorcodes/errorcod
     I18n.System.addPreferredLanguage(language, index); // Add zh-CN to the first place in the preferred language list.
   } catch(error) {
     let err: BusinessError = error as BusinessError;
-    console.error(`call System.getDisplayCountry failed, error code: ${err.code}, message: ${err.message}.`);
+    console.error(`call System.addPreferredLanguage failed, error code: ${err.code}, message: ${err.message}.`);
   }
   ```
 
@@ -584,7 +584,7 @@ For details about the error codes, see [I18N Error Codes](../errorcodes/errorcod
     I18n.System.removePreferredLanguage(index);
   } catch(error) {
     let err: BusinessError = error as BusinessError;
-    console.error(`call System.getDisplayCountry failed, error code: ${err.code}, message: ${err.message}.`);
+    console.error(`call System.removePreferredLanguage failed, error code: ${err.code}, message: ${err.message}.`);
   }
   ```
 
@@ -618,7 +618,7 @@ For details about the error codes, see [I18N Error Codes](../errorcodes/errorcod
     let preferredLanguageList: Array<string> = I18n.System.getPreferredLanguageList(); // Obtain the current preferred language list.
   } catch(error) {
     let err: BusinessError = error as BusinessError;
-    console.error(`call System.getDisplayCountry failed, error code: ${err.code}, message: ${err.message}.`);
+    console.error(`call System.getPreferredLanguageList failed, error code: ${err.code}, message: ${err.message}.`);
   }
   ```
 
@@ -652,7 +652,7 @@ For details about the error codes, see [I18N Error Codes](../errorcodes/errorcod
     let firstPreferredLanguage: string = I18n.System.getFirstPreferredLanguage();  // Obtain the first language in the preferred language list.
   } catch(error) {
     let err: BusinessError = error as BusinessError;
-    console.error(`call System.getDisplayCountry failed, error code: ${err.code}, message: ${err.message}.`);
+    console.error(`call System.getFirstPreferredLanguage failed, error code: ${err.code}, message: ${err.message}.`);
   }
   ```
 
@@ -686,7 +686,7 @@ For details about the error codes, see [I18N Error Codes](../errorcodes/errorcod
     let appPreferredLanguage: string = I18n.System.getAppPreferredLanguage(); // Obtain the preferred language of an application.
   } catch(error) {
     let err: BusinessError = error as BusinessError;
-    console.error(`call System.getDisplayCountry failed, error code: ${err.code}, message: ${err.message}.`);
+    console.error(`call System.getAppPreferredLanguage failed, error code: ${err.code}, message: ${err.message}.`);
   }
   ```
 
@@ -724,7 +724,7 @@ For details about the error codes, see [I18N Error Codes](../errorcodes/errorcod
     I18n.System.setUsingLocalDigit(true); // Enable the local digit switch.
   } catch(error) {
     let err: BusinessError = error as BusinessError;
-    console.error(`call System.getDisplayCountry failed, error code: ${err.code}, message: ${err.message}.`);
+    console.error(`call System.setUsingLocalDigit failed, error code: ${err.code}, message: ${err.message}.`);
   }
   ```
 
@@ -758,7 +758,7 @@ For details about the error codes, see [I18N Error Codes](../errorcodes/errorcod
     let status: boolean = I18n.System.getUsingLocalDigit();  // Check whether the local digit switch is enabled.
   } catch(error) {
     let err: BusinessError = error as BusinessError;
-    console.error(`call System.getDisplayCountry failed, error code: ${err.code}, message: ${err.message}.`);
+    console.error(`call System.getUsingLocalDigit failed, error code: ${err.code}, message: ${err.message}.`);
   }
   ```
 
@@ -1913,7 +1913,7 @@ Converts the input string from the source format to the target format.
 
 static isDigit(char: string): boolean
 
-Checks whether the input character string is composed of digits.
+Checks whether the input string is composed of digits.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -2121,7 +2121,7 @@ Checks whether the input character is an uppercase letter.
 
 static getType(char: string): string
 
-Obtains the category value of the input character string.
+Obtains the category value of the input string.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -2203,7 +2203,7 @@ Converts one measurement unit into another and formats the unit based on the spe
 
 | Type    | Description                     |
 | ------ | ----------------------- |
-| string | Character string obtained after formatting based on the measurement unit specified by **toUnit**.|
+| string | string obtained after formatting based on the measurement unit specified by **toUnit**.|
 
 **Example**
   ```ts
@@ -2371,7 +2371,7 @@ For details about the error codes, see [I18N Error Codes](../errorcodes/errorcod
       let sortedLanguages: Array<I18n.LocaleItem> = systemLocaleManager.getLanguageInfoArray(languages, sortOptions);
   } catch(error) {
       let err: BusinessError = error as BusinessError;
-      console.error(`call System.getDisplayCountry failed, error code: ${err.code}, message: ${err.message}.`);
+      console.error(`call systemLocaleManager.getLanguageInfoArray failed, error code: ${err.code}, message: ${err.message}.`);
   }
   ```
 
@@ -2420,7 +2420,7 @@ For details about the error codes, see [I18N Error Codes](../errorcodes/errorcod
       let sortedRegions: Array<I18n.LocaleItem> = systemLocaleManager.getRegionInfoArray(regions, sortOptions);
   } catch(error) {
       let err: BusinessError = error as BusinessError;
-      console.error(`call System.getDisplayCountry failed, error code: ${err.code}, message: ${err.message}.`);
+      console.error(`call systemLocaleManager.getRegionInfoArray failed, error code: ${err.code}, message: ${err.message}.`);
   }
   ```
 
@@ -2452,7 +2452,7 @@ Obtains the array of time zone city items after sorting.
     }
   } catch(error) {
     let err: BusinessError = error as BusinessError;
-    console.error(`call System.getDisplayCountry failed, error code: ${err.code}, message: ${err.message}.`);
+    console.error(`call SystemLocaleManager.getTimeZoneCityItemArray failed, error code: ${err.code}, message: ${err.message}.`);
   }
   ```
 
@@ -2837,7 +2837,7 @@ This API is supported since API version 8 and is deprecated since API version 9.
 
 | Type    | Description                     |
 | ------ | ----------------------- |
-| string | Character string obtained after formatting based on the measurement unit specified by **toUnit**.|
+| string | string obtained after formatting based on the measurement unit specified by **toUnit**.|
 
 
 ## Character<sup>(deprecated)</sup>
@@ -2847,7 +2847,7 @@ This API is supported since API version 8 and is deprecated since API version 9.
 
 static isDigit(char: string): boolean
 
-Checks whether the input character string is composed of digits.
+Checks whether the input string is composed of digits.
 
 This API is supported since API version 8 and is deprecated since API version 9. You are advised to use [isDigit](#isdigit9).
 
@@ -3031,7 +3031,7 @@ This API is supported since API version 8 and is deprecated since API version 9.
 
 static getType(char: string): string
 
-Obtains the type of the input character string.
+Obtains the type of the input string.
 
 This API is supported since API version 8 and is deprecated since API version 9. You are advised to use [getType](#gettype9).
 

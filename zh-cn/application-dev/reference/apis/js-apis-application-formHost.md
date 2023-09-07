@@ -72,6 +72,7 @@ deleteForm(formId: string): Promise&lt;void&gt;
 ```ts
 import Base from '@ohos.base';
 import formHost from '@ohos.application.formHost';
+import Base from '@ohos.base';
 
 let formId: string = '12400633174999288';
 formHost.deleteForm(formId).then(() => {
@@ -103,6 +104,7 @@ releaseForm(formId: string, callback: AsyncCallback&lt;void&gt;): void
 ```ts
 import Base from '@ohos.base';
 import formHost from '@ohos.application.formHost';
+import Base from '@ohos.base';
 
 let formId: string = '12400633174999288';
 formHost.releaseForm(formId, (error: Base.BusinessError) => {
@@ -137,6 +139,7 @@ releaseForm(formId: string, isReleaseCache: boolean, callback: AsyncCallback&lt;
 ```ts
 import Base from '@ohos.base';
 import formHost from '@ohos.application.formHost';
+import Base from '@ohos.base';
 
 let formId: string = '12400633174999288';
 formHost.releaseForm(formId, true, (error: Base.BusinessError) => {
@@ -163,7 +166,7 @@ releaseForm(formId: string, isReleaseCache?: boolean): Promise&lt;void&gt;
 | 参数名         | 类型     | 必填 | 说明        |
 | -------------- | ------  | ---- | ----------- |
 | formId         | string  | 是   | 卡片标识。     |
-| isReleaseCache | boolean | 否   | 是否释放缓存。 |
+| isReleaseCache | boolean | 否   | 是否释放缓存，默认为false。 |
 
 **返回值：**
 
@@ -176,6 +179,7 @@ releaseForm(formId: string, isReleaseCache?: boolean): Promise&lt;void&gt;
 ```ts
 import Base from '@ohos.base';
 import formHost from '@ohos.application.formHost';
+import Base from '@ohos.base';
 
 let formId: string = '12400633174999288';
 formHost.releaseForm(formId, true).then(() => {
@@ -207,6 +211,7 @@ requestForm(formId: string, callback: AsyncCallback&lt;void&gt;): void
 ```ts
 import Base from '@ohos.base';
 import formHost from '@ohos.application.formHost';
+import Base from '@ohos.base';
 
 let formId: string = '12400633174999288';
 formHost.requestForm(formId, (error: Base.BusinessError) => {
@@ -243,6 +248,7 @@ requestForm(formId: string): Promise&lt;void&gt;
 ```ts
 import Base from '@ohos.base';
 import formHost from '@ohos.application.formHost';
+import Base from '@ohos.base';
 
 let formId: string = '12400633174999288';
 formHost.requestForm(formId).then(() => {
@@ -274,6 +280,7 @@ castTempForm(formId: string, callback: AsyncCallback&lt;void&gt;): void
 ```ts
 import Base from '@ohos.base';
 import formHost from '@ohos.application.formHost';
+import Base from '@ohos.base';
 
 let formId: string = '12400633174999288';
 formHost.castTempForm(formId, (error: Base.BusinessError) => {
@@ -310,6 +317,7 @@ castTempForm(formId: string): Promise&lt;void&gt;
 ```ts
 import Base from '@ohos.base';
 import formHost from '@ohos.application.formHost';
+import Base from '@ohos.base';
 
 let formId: string = '12400633174999288';
 formHost.castTempForm(formId).then(() => {
@@ -341,6 +349,7 @@ notifyVisibleForms(formIds: Array&lt;string&gt;, callback: AsyncCallback&lt;void
 ```ts
 import Base from '@ohos.base';
 import formHost from '@ohos.application.formHost';
+import Base from '@ohos.base';
 
 let formId: string[] = ['12400633174999288'];
 formHost.notifyVisibleForms(formId, (error: Base.BusinessError) => {
@@ -377,6 +386,7 @@ notifyVisibleForms(formIds: Array&lt;string&gt;): Promise&lt;void&gt;
 ```ts
 import Base from '@ohos.base';
 import formHost from '@ohos.application.formHost';
+import Base from '@ohos.base';
 
 let formId: string[] = ['12400633174999288'];
 formHost.notifyVisibleForms(formId).then(() => {
@@ -408,6 +418,7 @@ notifyInvisibleForms(formIds: Array&lt;string&gt;, callback: AsyncCallback&lt;vo
 ```ts
 import Base from '@ohos.base';
 import formHost from '@ohos.application.formHost';
+import Base from '@ohos.base';
 
 let formId: string[] = ['12400633174999288'];
 formHost.notifyInvisibleForms(formId, (error: Base.BusinessError) => {
@@ -444,6 +455,7 @@ notifyInvisibleForms(formIds: Array&lt;string&gt;): Promise&lt;void&gt;
 ```ts
 import Base from '@ohos.base';
 import formHost from '@ohos.application.formHost';
+import Base from '@ohos.base';
 
 let formId: string[] = ['12400633174999288'];
 formHost.notifyInvisibleForms(formId).then(() => {
@@ -475,6 +487,7 @@ enableFormsUpdate(formIds: Array&lt;string&gt;, callback: AsyncCallback&lt;void&
 ```ts
 import Base from '@ohos.base';
 import formHost from '@ohos.application.formHost';
+import Base from '@ohos.base';
 
 let formId: string[] = ['12400633174999288'];
 formHost.enableFormsUpdate(formId, (error: Base.BusinessError) => {
@@ -511,6 +524,7 @@ enableFormsUpdate(formIds: Array&lt;string&gt;): Promise&lt;void&gt;
 ```ts
 import Base from '@ohos.base';
 import formHost from '@ohos.application.formHost';
+import Base from '@ohos.base';
 
 let formId: string[] = ['12400633174999288'];
 formHost.enableFormsUpdate(formId).then(() => {
@@ -542,6 +556,7 @@ disableFormsUpdate(formIds: Array&lt;string&gt;, callback: AsyncCallback&lt;void
 ```ts
 import Base from '@ohos.base';
 import formHost from '@ohos.application.formHost';
+import Base from '@ohos.base';
 
 let formId: string[] = ['12400633174999288'];
 formHost.disableFormsUpdate(formId, (error: Base.BusinessError) => {
@@ -578,6 +593,7 @@ disableFormsUpdate(formIds: Array&lt;string&gt;): Promise&lt;void&gt;
 ```ts
 import Base from '@ohos.base';
 import formHost from '@ohos.application.formHost';
+import Base from '@ohos.base';
 
 let formId: string[] = ['12400633174999288'];
 formHost.disableFormsUpdate(formId).then(() => {
@@ -606,6 +622,7 @@ isSystemReady(callback: AsyncCallback&lt;void&gt;): void
 ```ts
 import Base from '@ohos.base';
 import formHost from '@ohos.application.formHost';
+import Base from '@ohos.base';
 
 let formId: string = '12400633174999288';
 formHost.isSystemReady((error: Base.BusinessError) => {
@@ -634,6 +651,7 @@ isSystemReady(): Promise&lt;void&gt;
 ```ts
 import Base from '@ohos.base';
 import formHost from '@ohos.application.formHost';
+import Base from '@ohos.base';
 
 let formId: string = '12400633174999288';
 formHost.isSystemReady().then(() => {
@@ -665,6 +683,7 @@ getAllFormsInfo(callback: AsyncCallback&lt;Array&lt;formInfo.FormInfo&gt;&gt;): 
 import Base from '@ohos.base';
 import formHost from '@ohos.application.formHost';
 import formInfo from '@ohos.app.form.formInfo';
+import Base from '@ohos.base';
 
 formHost.getAllFormsInfo((error: Base.BusinessError, data: formInfo.FormInfo[]) => {
   if (error.code) {
@@ -697,6 +716,7 @@ getAllFormsInfo(): Promise&lt;Array&lt;formInfo.FormInfo&gt;&gt;
   import Base from '@ohos.base';
   import formHost from '@ohos.application.formHost';
   import formInfo from '@ohos.app.form.formInfo';
+  import Base from '@ohos.base';
 
   formHost.getAllFormsInfo().then((data: formInfo.FormInfo[]) => {
     console.log('formHost getAllFormsInfo data: ${JSON.stringify(data)}');
@@ -728,6 +748,7 @@ getFormsInfo(bundleName: string, callback: AsyncCallback&lt;Array&lt;formInfo.Fo
 import Base from '@ohos.base';
 import formHost from '@ohos.application.formHost';
 import formInfo from '@ohos.app.form.formInfo';
+import Base from '@ohos.base';
 
 formHost.getFormsInfo('com.example.ohos.formjsdemo', (error: Base.BusinessError, data: formInfo.FormInfo[]) => {
   if (error.code) {
@@ -762,6 +783,7 @@ getFormsInfo(bundleName: string, moduleName: string, callback: AsyncCallback&lt;
 import Base from '@ohos.base';
 import formHost from '@ohos.application.formHost';
 import formInfo from '@ohos.app.form.formInfo';
+import Base from '@ohos.base';
 
 formHost.getFormsInfo('com.example.ohos.formjsdemo', 'entry', (error: Base.BusinessError, data: formInfo.FormInfo[]) => {
   if (error.code) {
@@ -800,6 +822,8 @@ getFormsInfo(bundleName: string, moduleName?: string): Promise&lt;Array&lt;formI
   ```ts
   import Base from '@ohos.base';
   import formHost from '@ohos.application.formHost';
+  import Base from '@ohos.base';
+
 
   formHost.getFormsInfo('com.example.ohos.formjsdemo', 'entry').then((data: formInfo.FormInfo[]) => {
     console.log(`formHost getFormsInfo, data: ${JSON.stringify(data)}`);
@@ -830,6 +854,7 @@ deleteInvalidForms(formIds: Array&lt;string&gt;, callback: AsyncCallback&lt;numb
 ```ts
 import Base from '@ohos.base';
 import formHost from '@ohos.application.formHost';
+import Base from '@ohos.base';
 
 let formIds: string[] = new Array('12400633174999288', '12400633174999289');
 formHost.deleteInvalidForms(formIds, (error: Base.BusinessError, data: number) => {
@@ -868,6 +893,7 @@ deleteInvalidForms(formIds: Array&lt;string&gt;): Promise&lt;number&gt;
 ```ts
 import Base from '@ohos.base';
 import formHost from '@ohos.application.formHost';
+import Base from '@ohos.base';
 
 let formIds: string[] = new Array('12400633174999288', '12400633174999289');
 formHost.deleteInvalidForms(formIds).then((data: number) => {
@@ -901,6 +927,7 @@ import Base from '@ohos.base';
 import formHost from '@ohos.application.formHost';
 import Want from '@ohos.app.ability.Want';
 import formInfo from '@ohos.app.form.formInfo';
+import Base from '@ohos.base';
 
 let want: Want = {
   'deviceId': '',
@@ -950,6 +977,7 @@ import Base from '@ohos.base';
 import formHost from '@ohos.application.formHost';
 import Want from '@ohos.app.ability.Want';
 import formInfo from '@ohos.app.form.formInfo';
+import Base from '@ohos.base';
 
 let want: Want = {
   'deviceId': '',
@@ -1043,6 +1071,7 @@ notifyFormsVisible(formIds: Array&lt;string&gt;, isVisible: boolean, callback: A
 ```ts
 import Base from '@ohos.base';
 import formHost from '@ohos.application.formHost';
+import Base from '@ohos.base';
 
 let formIds: string[]= new Array('12400633174999288', '12400633174999289');
 formHost.notifyFormsVisible(formIds, true, (error: Base.BusinessError) => {
@@ -1080,6 +1109,7 @@ notifyFormsVisible(formIds: Array&lt;string&gt;, isVisible: boolean): Promise&lt
 ```ts
 import Base from '@ohos.base';
 import formHost from '@ohos.application.formHost';
+import Base from '@ohos.base';
 
 let formIds: string[] = new Array('12400633174999288', '12400633174999289');
 formHost.notifyFormsVisible(formIds, true).then(() => {
@@ -1112,6 +1142,7 @@ notifyFormsEnableUpdate(formIds: Array&lt;string&gt;, isEnableUpdate: boolean, c
 ```ts
 import Base from '@ohos.base';
 import formHost from '@ohos.application.formHost';
+import Base from '@ohos.base';
 
 let formIds: string[] = new Array('12400633174999288', '12400633174999289');
 formHost.notifyFormsEnableUpdate(formIds, true, (error: Base.BusinessError) => {
@@ -1149,6 +1180,7 @@ notifyFormsEnableUpdate(formIds: Array&lt;string&gt;, isEnableUpdate: boolean): 
 ```ts
 import Base from '@ohos.base';
 import formHost from '@ohos.application.formHost';
+import Base from '@ohos.base';
 
 let formIds: string[] = new Array('12400633174999288', '12400633174999289');
 formHost.notifyFormsEnableUpdate(formIds, true).then(() => {

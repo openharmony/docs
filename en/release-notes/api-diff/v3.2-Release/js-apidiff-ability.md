@@ -257,7 +257,7 @@
 |Added|NA|Module name: ohos.app.ability.UIAbility<br>Class name: UIAbility<br>Method or attribute name: launchWant: Want;|@ohos.app.ability.UIAbility.d.ts|
 |Added|NA|Module name: ohos.app.ability.UIAbility<br>Class name: UIAbility<br>Method or attribute name: lastRequestWant: Want;|@ohos.app.ability.UIAbility.d.ts|
 |Added|NA|Module name: ohos.app.ability.UIAbility<br>Class name: UIAbility<br>Method or attribute name: callee: Callee;|@ohos.app.ability.UIAbility.d.ts|
-|Added|NA|Module name: ohos.app.ability.UIAbility<br>Class name: UIAbility<br>Method or attribute name: onCreate(want: Want, param: AbilityConstant.LaunchParam): void;|@ohos.app.ability.UIAbility.d.ts|
+|Added|NA|Module name: ohos.app.ability.UIAbility<br>Class name: UIAbility<br>Method or attribute name: onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void;|@ohos.app.ability.UIAbility.d.ts|
 |Added|NA|Module name: ohos.app.ability.UIAbility<br>Class name: UIAbility<br>Method or attribute name: onWindowStageCreate(windowStage: window.WindowStage): void;|@ohos.app.ability.UIAbility.d.ts|
 |Added|NA|Module name: ohos.app.ability.UIAbility<br>Class name: UIAbility<br>Method or attribute name: onWindowStageDestroy(): void;|@ohos.app.ability.UIAbility.d.ts|
 |Added|NA|Module name: ohos.app.ability.UIAbility<br>Class name: UIAbility<br>Method or attribute name: onWindowStageRestore(windowStage: window.WindowStage): void;|@ohos.app.ability.UIAbility.d.ts|
@@ -265,7 +265,7 @@
 |Added|NA|Module name: ohos.app.ability.UIAbility<br>Class name: UIAbility<br>Method or attribute name: onForeground(): void;|@ohos.app.ability.UIAbility.d.ts|
 |Added|NA|Module name: ohos.app.ability.UIAbility<br>Class name: UIAbility<br>Method or attribute name: onBackground(): void;|@ohos.app.ability.UIAbility.d.ts|
 |Added|NA|Module name: ohos.app.ability.UIAbility<br>Class name: UIAbility<br>Method or attribute name: onContinue(wantParam: { [key: string]: Object }): AbilityConstant.OnContinueResult;|@ohos.app.ability.UIAbility.d.ts|
-|Added|NA|Module name: ohos.app.ability.UIAbility<br>Class name: UIAbility<br>Method or attribute name: onNewWant(want: Want, launchParams: AbilityConstant.LaunchParam): void;|@ohos.app.ability.UIAbility.d.ts|
+|Added|NA|Module name: ohos.app.ability.UIAbility<br>Class name: UIAbility<br>Method or attribute name: onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam): void;|@ohos.app.ability.UIAbility.d.ts|
 |Added|NA|Module name: ohos.app.ability.UIAbility<br>Class name: UIAbility<br>Method or attribute name: onDump(params: Array\<string>): Array\<string>;|@ohos.app.ability.UIAbility.d.ts|
 |Added|NA|Module name: ohos.app.ability.UIAbility<br>Class name: UIAbility<br>Method or attribute name: onSaveState(reason: AbilityConstant.StateType, wantParam : {[key: string]: Object}): AbilityConstant.OnSaveResult;|@ohos.app.ability.UIAbility.d.ts|
 |Added|NA|Module name: ohos.app.ability.Want<br>Class name: Want|@ohos.app.ability.Want.d.ts|
