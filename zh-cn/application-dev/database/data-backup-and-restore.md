@@ -170,20 +170,22 @@
      
    ```ts
    import relationalStore from '@ohos.data.relationalStore';
+   import { BusinessError } from '@ohos.base';
    
-   let store;
-   let context = getContext(this);
-   const STORE_CONFIG = {
+   let store: relationalStore.RdbStore | undefined = undefined;
+
+   const STORE_CONFIG: relationalStore.StoreConfig = {
      name: 'RdbTest.db',
      securityLevel: relationalStore.SecurityLevel.S1
    };
-   relationalStore.getRdbStore(context, STORE_CONFIG, (err, rdbStore) => {
+   relationalStore.getRdbStore(this.context, STORE_CONFIG, (err, rdbStore) => {
      store = rdbStore;
      if (err) {
        console.error(`Failed to get RdbStore. Code:${err.code},message:${err.message}`);
        return;
      }
-     store.executeSql("CREATE TABLE IF NOT EXISTS EMPLOYEE (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, age INTEGER, salary INTEGER, codes Uint8Array);", null);
+     store.executeSql("CREATE TABLE IF NOT EXISTS EMPLOYEE (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, age INTEGER, salary INTEGER,  codes Uint8Array);", () => {
+     });
      console.info('Succeeded in getting RdbStore.');
    })
    ```
@@ -191,31 +193,45 @@
 2. 使用insert()方法插入数据。
      
    ```ts
-   const valueBucket = {
-     'NAME': 'Lisa',
-     'AGE': 18,
-     'SALARY': 100.5,
-     'CODES': new Uint8Array([1, 2, 3, 4, 5])
+   import { ValuesBucket } from '@ohos.data.ValuesBucket';
+
+   let key1 = "NAME";
+   let key2 = "AGE";
+   let key3 = "SALARY";
+   let key4 = "CODES";
+   let value1 = "Rose";
+   let value2 = 22;
+   let value3 = 200.5;
+   let value4 = new Uint8Array([1, 2, 3, 4, 5]);
+   const valueBucket: ValuesBucket = {
+     key1: value1,
+     key2: value2,
+     key3: value3,
+     key4: value4,
    };
-   store.insert('EMPLOYEE', valueBucket, relationalStore.ConflictResolution.ON_CONFLICT_REPLACE, (err, rowId) => {
-     if (err) {
-       console.error(`Failed to insert data. Code:${err.code},message:${err.message}`);
-       return;
-     }
-     console.info(`Succeeded in inserting data. rowId:${rowId}`);
-   })
+   if(store != undefined) {
+     (store as relationalStore.RdbStore).insert('EMPLOYEE', valueBucket, relationalStore.ConflictResolution.ON_CONFLICT_REPLACE, (err, rowId) => {
+       if (err) {
+         console.error(`Failed to insert data. Code:${err.code},message:${err.message}`);
+         return;
+       }
+       console.info(`Succeeded in inserting data. rowId:${rowId}`);
+     })
+   }
    ```
 
 3. 使用backup()方法备份数据。
      
    ```ts
-   store.backup('dbBackup.db', (err) => {
-     if (err) {
-       console.error(`Failed to backup data. Code:${err.code},message:${err.message}`);
-       return;
-     }
-     console.info(`Succeeded in backuping data.`);
-   })
+   if(store != undefined) {
+     (store as relationalStore.RdbStore).backup('dbBackup.db', (err) => {
+       if (err) {
+         console.error(`Failed to backup data. Code:${err.code},message:${err.message}`);
+         return;
+       }
+       console.info(`Succeeded in backuping data.`);
+     })
+   }
    ```
 
 4. 使用delete()方法删除数据（模拟意外删除、篡改场景）。
@@ -223,22 +239,26 @@
    ```ts
    let predicates = new relationalStore.RdbPredicates('EMPLOYEE');
    predicates.equalTo('NAME', 'Lisa');
-   let promise = store.delete(predicates);
-   promise.then((rows) => {
-     console.info(`Delete rows: ${rows}`);
-   }).catch((err) => {
-     console.error(`Failed to delete data. Code:${err.code},message:${err.message}`);
-   })
+   if(store != undefined) {
+     let promise: void = (store as relationalStore.RdbStore).delete(predicates);
+     promise.then((rows: number) => {
+       console.info(`Delete rows: ${rows}`);
+     }).catch((err: BusinessError) => {
+       console.error(`Failed to delete data. Code:${err.code},message:${err.message}`);
+     })
+   }
    ```
 
 5. 使用restore()方法恢复数据。
      
    ```ts
-   store.restore('dbBackup.db', (err) => {
-     if (err) {
-       console.error(`Failed to restore data. Code:${err.code},message:${err.message}`);
-       return;
-     }
-     console.info(`Succeeded in restoring data.`);
-   })
+   if(store != undefined) {
+     (store as relationalStore.RdbStore).restore('dbBackup.db', (err) => {
+       if (err) {
+         console.error(`Failed to restore data. Code:${err.code},message:${err.message}`);
+         return;
+       }
+       console.info(`Succeeded in restoring data.`);
+     })
+   }
    ```
