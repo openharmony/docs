@@ -1292,13 +1292,6 @@ on(type: 'deviceAvailable', callback: (device: OutputDeviceInfo) => void): void
 | type     | string               | 是   | 事件回调类型，支持事件`'deviceAvailable'`，有设备被发现时触发回调。 |
 | callback | (device: OutputDeviceInfo) => void | 是   | 回调函数。当监听事件注册成功，err为undefined，否则返回错误对象。                                |
 
-**错误码：**
-以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
-
-| 错误码ID | 错误信息 |
-| -------- | ---------------------------------------- |
-| 6600101  | Session service exception. |
-
 **示例：**
 
 ```ts
@@ -1326,13 +1319,6 @@ off(type: 'deviceAvailable', callback?: (device: OutputDeviceInfo) => void): voi
 | 参数名    | 类型                    | 必填  |      说明                                               |
 | ------   | ---------------------- | ---- | ------------------------------------------------------- |
 | type     | string                 | 是    | 事件回调类型，支持事件`'deviceAvailable'`：设备发现回调。|
-
-**错误码：**
-以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
-
-| 错误码ID | 错误信息 |
-| -------- | ---------------------------------------- |
-| 6600101  | Session service exception. |
 
 **示例：**
 
@@ -2664,10 +2650,10 @@ getAVCastController(callback: AsyncCallback\<AVCastController>): void
 **错误码：**
 以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
 
-| 错误码ID | 错误信息 |
-| -------- | ---------------------------------------- |
-| 6600102  | The session does not exist. |
-| 6600110  | The remote connection is not established. |
+| 错误码ID | 错误信息                                  |
+| -------- |---------------------------------------|
+| 6600102  | The session does not exist.           |
+| 6600110  | The remote connection does not exist. |
 
 **示例：**
 
@@ -2701,9 +2687,9 @@ getAVCastController(): Promise\<AVCastController>;
 以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
 
 | 错误码ID | 错误信息 |
-| -------- | ---------------------------------------- |
+| -------- | --------------------------------------- |
 | 6600102  | The session does not exist. |
-| 6600110  | The remote connection is not established. |
+| 6600110  | The remote connection does not exist. |
 
 **示例：**
 
@@ -4282,6 +4268,7 @@ prepare(item: AVQueueItem, callback: AsyncCallback\<void>): void
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 6600101  | Session service exception. |
+| 6600109  | The remote connection is not established. |
 
 **示例：**
 
@@ -4344,6 +4331,7 @@ prepare(item: AVQueueItem): Promise\<void>
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 6600101  | Session service exception. |
+| 6600109  | The remote connection is not established. |
 
 
 **示例：**
@@ -4398,6 +4386,7 @@ start(item: AVQueueItem, callback: AsyncCallback\<void>): void
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 6600101  | Session service exception. |
+| 6600109  | The remote connection is not established. |
 
 **示例：**
 
@@ -4460,6 +4449,7 @@ start(item: AVQueueItem): Promise\<void>
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 6600101  | Session service exception. |
+| 6600109  | The remote connection is not established. |
 
 
 **示例：**
@@ -4867,8 +4857,16 @@ on(type: 'videoSizeChange', callback: (width:number, height:number) => void): vo
 **参数：**
 
 | 参数名   | 类型         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------- |
 | type     | string      | 是   | 事件回调类型，支持事件`'videoSizeChange'`：当video尺寸更改时，触发该事件。 |
 | callback | (width:number, height:number) => void    | 是   | 回调函数，返回video的宽度和高度     |
+
+**错误码：**
+以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------- |
+| 6600101  | Session service exception. |
 
 **示例：**
 
@@ -4892,7 +4890,15 @@ off(type: 'videoSizeChange'): void
 **参数：**
 
 | 参数名   | 类型     | 必填 | 说明      |
+| -------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------- |
 | type     | string  | 是   | 取消对应的监听事件，支持事件`'videoSizeChange'`。    |
+
+**错误码：**
+以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------- |
+| 6600101  | Session service exception. |
 
 **示例：**
 
@@ -4927,6 +4933,7 @@ on(type: 'error', callback: ErrorCallback): void
 | 5400104  | Time out.      |
 | 5400105  | Service died.         |
 | 5400106  | Unsupport format.     |
+| 6600101  | Session service exception.     |
 
 **示例：**
 
@@ -4965,6 +4972,7 @@ off(type: 'error'): void
 | 5400104  | Time out.      |
 | 5400105  | Service died.         |
 | 5400106  | Unsupport format.     |
+| 6600101  | Session service exception.     |
 
 **示例：**
 
