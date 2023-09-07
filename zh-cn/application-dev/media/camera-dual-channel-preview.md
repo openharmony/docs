@@ -30,10 +30,10 @@
 2. 创建ImageReceiver组件Surface。
 
    ```ts
-   async function getImageReceiverSurfaceId(): Promise<string> {
+   async function getImageReceiverSurfaceId(): Promise<string | undefined> {
      let receiver: image.ImageReceiver = image.createImageReceiver(640, 480, 4, 8);
      console.info('before ImageReceiver check');
-     let ImageReceiverSurfaceId: string;
+     let ImageReceiverSurfaceId: string | undefined = undefined;
      if (receiver !== undefined) {
        console.info('ImageReceiver is ok');
        let ImageReceiverSurfaceId: string = await receiver.getReceivingSurfaceId();
