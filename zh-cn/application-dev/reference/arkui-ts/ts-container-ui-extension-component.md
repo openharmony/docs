@@ -239,9 +239,6 @@ struct Index {
   @State message2: string = 'message from comp'
   private session: UIExtensionContentSession = storage.get<UIExtensionContentSession>('session');
   controller: TextInputController = new TextInputController()
-  xxx: XObject = {
-    xxx: "data from extension"
-  }
 
   onPageShow() {
     this.session.setReceiveDataCallback((data: Object) => {
@@ -257,7 +254,7 @@ struct Index {
         Text(this.message)
         Button("sendData")
           .onClick(() => {
-            this.session.sendData(this.xxx)
+            this.session.sendData({"xxx": "data from extension"})
           })
         Button("terminateSelf")
           .onClick(() => {
@@ -279,9 +276,5 @@ struct Index {
     }
     .height('100%')
   }
-}
-
-interface XObject {
-  xxx: string;
 }
 ```
