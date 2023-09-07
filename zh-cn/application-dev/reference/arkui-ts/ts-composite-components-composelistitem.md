@@ -1,10 +1,10 @@
-# ComposeListItem
+# @ohos.arkui.advanced.ComposeListItem（列表）
 
 
-列表包含一系列相同宽度的列表项。适合连续、多行呈现同类数据，例如图片和文本。
+列表包含一系列相同宽度的列表项。内容包括适合连续、多行呈现同类数据的组合，例如图片和文本。
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > 该组件从API Version 10开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
@@ -20,7 +20,7 @@ import { ComposeListItem } from "@ohos.arkui.advanced.ComposeListItem"
 无
 
 
-## 接口
+## ComposeListItem
 
 ComposeListItem({contentItem?: ContentItem, operateItem?: OperateItem})
 
@@ -32,7 +32,7 @@ ComposeListItem({contentItem?: ContentItem, operateItem?: OperateItem})
 **参数：**
 
 
-| 参数名 | 参数类型 | 必填 | 装饰器类型 | 参数描述 | 
+| 名称 | 类型 | 必填 | 装饰器类型 | 说明 | 
 | -------- | -------- | -------- | -------- | -------- |
 | contentItem | [ContentItem](#contentitem) | 否 | \@Prop | 定义左侧以及中间元素。 | 
 | operateItem | [OperateItem](#operateitem) | 否 | \@Prop | 定义右侧元素。 | 
@@ -40,18 +40,18 @@ ComposeListItem({contentItem?: ContentItem, operateItem?: OperateItem})
 
 ## ContentItem
 
-| 名称 | 值 | 必填 | 描述 | 
+| 名称 | 类型 | 必填 | 说明 | 
 | -------- | -------- | -------- | -------- |
-| iconStyle | [IconType](#icontype枚举说明) | 否 | 左侧元素-图标样式。 | 
-| icon | [ResourceStr](ts-types.md#resourcestr) | 否 | 左侧元素-图标。 | 
-| primaryText | [ResourceStr](ts-types.md#resourcestr) | 否 | 中间元素-标题内容。 | 
-| secondaryText | [ResourceStr](ts-types.md#resourcestr) | 否 | 中间元素-副标题内容。 | 
-| description | [ResourceStr](ts-types.md#resourcestr) | 否 | 中间元素-描述内容。 | 
+| iconStyle | [IconType](#icontype枚举说明) | 否 | 左侧元素的图标样式。 | 
+| icon | [ResourceStr](ts-types.md#resourcestr) | 否 | 左侧元素的图标资源。 | 
+| primaryText | [ResourceStr](ts-types.md#resourcestr) | 否 | 中间元素的标题内容。 | 
+| secondaryText | [ResourceStr](ts-types.md#resourcestr) | 否 | 中间元素的副标题内容。 | 
+| description | [ResourceStr](ts-types.md#resourcestr) | 否 | 中间元素的描述内容。 | 
 
 
-## IconType枚举说明
+## IconType
 
-| 名称 | 描述 | 
+| 名称 | 说明 | 
 | -------- | -------- |
 | BADGE | 左侧图标为badge类型，图标大小为8\*8dp。 | 
 | NORMAL_ICON | 左侧图标为小图标类型，图标大小为16\*16dp。 | 
@@ -65,43 +65,43 @@ ComposeListItem({contentItem?: ContentItem, operateItem?: OperateItem})
 
 ## OperateItem
 
-| 名称 | 值 | 必填 | 描述 | 
+| 名称 | 类型 | 必填 | 说明 | 
 | -------- | -------- | -------- | -------- |
-| arrow | [OperateIcon](#operateicon) | 否 | 右侧元素-箭头，大小为12\*24dp。 | 
-| icon | [OperateIcon](#operateicon) | 否 | 右侧元素-第一个图标，大小为24\*24dp。 | 
-| subIcon | [OperateIcon](#operateicon) | 否 | 右侧元素-第二个图标，大小为24\*24dp。 | 
-| button | [OperateButton](#operatebutton) | 否 | 右侧元素-按钮。 | 
-| switch | [OperateCheck](#switchcheckboxradio-operatecheck) | 否 | 右侧元素-开关。 | 
-| checkbox | [OperateCheck](#switchcheckboxradio-operatecheck) | 否 | 右侧元素-多选框，大小为24\*24dp。 | 
-| radio | [OperateCheck](#switchcheckboxradio-operatecheck) | 否 | 右侧元素-单选，大小为24\*24dp。 | 
-| image | [ResourceStr](ts-types.md#resourcestr) | 否 | 右侧元素-图片，大小为48\*48dp。 | 
-| text | [ResourceStr](ts-types.md#resourcestr) | 否 | 右侧元素-文字。 | 
+| arrow | [OperateIcon](#operateicon) | 否 | 右侧元素为箭头，大小为12\*24dp。 | 
+| icon | [OperateIcon](#operateicon) | 否 | 右侧元素的第一个图标，大小为24\*24dp。 | 
+| subIcon | [OperateIcon](#operateicon) | 否 | 右侧元素的第二个图标，大小为24\*24dp。 | 
+| button | [OperateButton](#operatebutton) | 否 | 右侧元素为按钮。 | 
+| switch | [OperateCheck](#switchcheckboxradio-operatecheck) | 否 | 右侧元素为开关(Switch)。 | 
+| checkbox | [OperateCheck](#switchcheckboxradio-operatecheck) | 否 | 右侧元素为多选框(CheckBox)，大小为24\*24dp。 | 
+| radio | [OperateCheck](#switchcheckboxradio-operatecheck) | 否 | 右侧元素为单选(Radio)，大小为24\*24dp。 | 
+| image | [ResourceStr](ts-types.md#resourcestr) | 否 | 右侧元素为图片，大小为48\*48dp。 | 
+| text | [ResourceStr](ts-types.md#resourcestr) | 否 | 右侧元素为文字。 | 
 
 
 ## OperateIcon
 
-| 名称 | 值 | 必填 | 描述 | 
+| 名称 | 类型 | 必填 | 说明 | 
 | -------- | -------- | -------- | -------- |
-| value | [ResourceStr](ts-types.md#resourcestr) | 是 | 右侧元素-图标/箭头。 | 
-| action | ()=&gt;void | 否 | 右侧元素-图标/箭头点击事件。 | 
+| value | [ResourceStr](ts-types.md#resourcestr) | 是 | 右侧图标/箭头资源。 | 
+| action | ()=&gt;void | 否 | 右侧图标/箭头点击事件。 | 
 
 
 ## OperateButton
 
-| 名称 | 值 | 必填 | 描述 | 
+| 名称 | 类型 | 必填 | 说明 | 
 | -------- | -------- | -------- | -------- |
-| text | [ResourceStr](ts-types.md#resourcestr) | 否 | 右侧元素-按钮文字。 | 
+| text | [ResourceStr](ts-types.md#resourcestr) | 否 | 右侧按钮文字。 | 
 
 
-## Switch/CheckBox/Radio-OperateCheck
+## OperateCheck
 
-| 名称 | 值 | 必填 | 描述 | 
+| 名称 | 类型 | 必填 | 说明 | 
 | -------- | -------- | -------- | -------- |
-| isCheck | boolean | 否 | 右侧元素-右侧Switch/CheckBox/Radio选中状态。 | 
-| onChange | (value:&nbsp;boolean)=&gt;void | 否 | 右侧元素-右侧Switch/CheckBox/Radio选中状态改变时触发回调。 | 
+| isCheck | boolean | 否 | 右侧Switch/CheckBox/Radio选中状态。 | 
+| onChange | (value:&nbsp;boolean)=&gt;void | 否 | 右侧Switch/CheckBox/Radio选中状态改变时触发回调。 | 
 
-
-## 示例1-纯文本
+## 示例
+### 示例1
 
 ```ts
 import { ComposeListItem } from '@ohos.arkui.advanced.ComposeListItem';
@@ -129,7 +129,7 @@ struct ComposeListItemExample {
 ![示例1-纯文本](figures/zh-cn_image_2023072903.PNG)
 
 
-## 示例2-左侧元素+文本
+### 示例2
 
 ```ts
 import { ComposeListItem } from '@ohos.arkui.advanced.ComposeListItem';
@@ -161,7 +161,7 @@ struct ComposeListItemExample {
 ![示例2-左侧元素+文本](figures/zh-cn_image_2023072904.PNG)
 
 
-## 示例3-右侧元素
+### 示例3
 
 ```ts
 import { ComposeListItem } from '@ohos.arkui.advanced.ComposeListItem';
@@ -196,7 +196,7 @@ struct ComposeListItemExample {
 ![示例3-右侧元素](figures/zh-cn_image_2023072905.PNG)
 
 
-## 示例4-左右元素+文本
+### 示例4
 
 ```ts
 import { ComposeListItem } from '@ohos.arkui.advanced.ComposeListItem';

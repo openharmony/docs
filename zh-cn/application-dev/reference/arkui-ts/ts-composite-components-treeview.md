@@ -1,4 +1,4 @@
-# TreeView
+# @ohos.arkui.advanced.TreeView（树视图）
 
 
 树视图作为一种分层显示的列表，适合显示嵌套结构。拥有父列表项和子列表项，可展开或折叠。子列表项支持选中一项或多项。
@@ -7,7 +7,7 @@
 用于效率型应用，如备忘录、电子邮件、图库中的侧边导航栏中。
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > 该组件从API Version 10开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
@@ -35,7 +35,7 @@ TreeView({ treeController: TreeController })
 **参数：**
 
 
-| 参数名 | 参数类型 | 必填 | 参数描述 | 
+| 名称 | 参数类型 | 必填 | 说明 | 
 | -------- | -------- | -------- | -------- |
 | treeController | [TreeController](#treecontroller) | 是 | 树视图节点信息。 | 
 
@@ -64,7 +64,7 @@ addNode(nodeParam?: NodeParam): void
 **参数：**
 
 
-| 参数名 | 参数类型 | 必填 | 参数描述 | 
+| 名称 | 参数类型 | 必填 | 说明 | 
 | -------- | -------- | -------- | -------- |
 | nodeParam | [NodeParam](#nodeparam) | 否 | 节点信息。 | 
 
@@ -98,7 +98,7 @@ refreshNode(parentId: number, parentSubTitle: ResourceStr, currentSubtitle: Reso
 
 **参数：**
 
-| 参数名 | 参数类型 | 必填 | 参数描述 | 
+| 名称 | 参数类型 | 必填 | 说明 | 
 | -------- | -------- | -------- | -------- |
 | parentId | number | 是 | 父节点Id。 | 
 | parentSubTitle | ResourceStr | 是 | 父节点副文本 | 
@@ -107,7 +107,7 @@ refreshNode(parentId: number, parentSubTitle: ResourceStr, currentSubtitle: Reso
 
 ## NodeParam
 
-| 名称 | 值 | 是否必填 | 描述 | 
+| 名称 | 类型 | 必填 | 说明 | 
 | -------- | -------- | -------- | -------- |
 | parentNodeId | number | 否 | 父亲节点 | 
 | currentNodeId | number | 否 | 当前孩子节点 | 
@@ -166,7 +166,7 @@ on(type: TreeListenType, callback: (callbackParam: CallbackParam) =&gt; void): v
 
 **参数：**
 
-| 参数名 | 参数类型 | 必填 | 参数描述 | 
+| 名称 | 参数类型 | 必填 | 说明 | 
 | -------- | -------- | -------- | -------- |
 | type | [TreeListenType](#treelistentype) | 是 | 监听类型 | 
 | nodeParam | [NodeParam](#nodeparam) | 是 | 节点信息。 | 
@@ -180,7 +180,7 @@ once(type: TreeListenType, callback: (callbackParam: CallbackParam) =&gt; void):
 
 **参数：**
 
-| 参数名 | 参数类型 | 必填 | 参数描述 | 
+| 名称 | 参数类型 | 必填 | 说明 | 
 | -------- | -------- | -------- | -------- |
 | type | [TreeListenType](#treelistentype) | 是 | 监听类型 | 
 | nodeParam | [NodeParam](#nodeparam) | 是 | 节点信息。 | 
@@ -198,7 +198,7 @@ off(type: TreeListenType, callback?: (callbackParam: CallbackParam) =&gt; void):
 **参数：**
 
 
-| 参数名 | 参数类型 | 必填 | 参数描述 | 
+| 名称 | 参数类型 | 必填 | 说明 | 
 | -------- | -------- | -------- | -------- |
 | type | [TreeListenType](#treelistentype) | 是 | 监听类型 | 
 | nodeParam | [NodeParam](#nodeparam) | 是 | 节点信息。 | 
@@ -206,7 +206,7 @@ off(type: TreeListenType, callback?: (callbackParam: CallbackParam) =&gt; void):
 
 ## TreeListenType
 
-| 名称 | 描述 | 
+| 名称 | 说明 | 
 | -------- | -------- |
 | NODE_CLICK | 监听节点点击事件 | 
 | NODE_ADD | 监听节点增加事件 | 
@@ -217,7 +217,7 @@ off(type: TreeListenType, callback?: (callbackParam: CallbackParam) =&gt; void):
 
 ## CallbackParam
 
-| 名称 | 值 | 是否必填 | 描述 | 
+| 名称 | 类型 | 必填 | 说明 | 
 | -------- | -------- | -------- | -------- |
 | currentNodeId | number | 是 | 当前孩子节点 | 
 | parentNodeId | number | 否 | 父亲节点表 | 

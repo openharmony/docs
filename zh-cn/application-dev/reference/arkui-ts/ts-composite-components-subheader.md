@@ -1,10 +1,10 @@
-# SubHeader
+# @ohos.arkui.advanced.SubHeader（子标题）
 
 
 子标题，用于列表项顶部，将该组列表划分为一个区块，子标题名称用来概括该区块内容；也可以用于内容项顶部，子标题名称用来概括该区块内容。
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > 该组件从API Version 10开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
@@ -32,7 +32,7 @@ SubHeader({primaryTitle?: ResourceStr, secondaryTitle?: ResourceStr, icon?: Reso
 **参数：**
 
 
-| 参数名 | 参数类型 | 必填 | 装饰器类型 | 参数描述 | 
+| 名称 | 参数类型 | 必填 | 装饰器类型 | 说明 | 
 | -------- | -------- | -------- | -------- | -------- |
 | primaryTitle | [ResourceStr](ts-types.md#resourcestr) | 否 | \@Prop | 标题内容。 | 
 | secondaryTitle | [ResourceStr](ts-types.md#resourcestr) | 否 | \@Prop | 副标题内容。 | 
@@ -44,7 +44,7 @@ SubHeader({primaryTitle?: ResourceStr, secondaryTitle?: ResourceStr, icon?: Reso
 
 ## OperationType枚举说明
 
-| 名称 | 描述 | 
+| 名称 | 说明 | 
 | -------- | -------- |
 | TEXT_ARROW | 文本按钮（带右箭头）。 | 
 | BUTTON | 文本按钮（不带右箭头）。 | 
@@ -54,7 +54,7 @@ SubHeader({primaryTitle?: ResourceStr, secondaryTitle?: ResourceStr, icon?: Reso
 
 ## SelectOptions
 
-| 名称 | 值 | 是否必填 | 描述 | 
+| 名称 | 类型 | 必填 | 说明 | 
 | -------- | -------- | -------- | -------- |
 | options | Array&lt;[SelectOption](ts-basic-components-select.md)&gt; | 是 | 下拉选项内容。 | 
 | selected | number | 否 | 设置下拉菜单初始选项的索引。<br/>第一项的索引为0。<br/>当不设置selected属性时，<br/>默认选择值为-1，菜单项不选中。 | 
@@ -64,13 +64,14 @@ SubHeader({primaryTitle?: ResourceStr, secondaryTitle?: ResourceStr, icon?: Reso
 
 ## OperationOption
 
-| 名称 | 值 | 是否必填 | 描述 | 
+| 名称 | 类型 | 必填 | 说明 | 
 | -------- | -------- | -------- | -------- |
 | value | [ResourceStr](s-types.md#resourcestr) | 是 | 文本内容。 | 
 | action | ()=&gt;void | 否 | 事件。 | 
 
 
 ## 示例
+### 示例1
 
 ```ts
 import promptAction from '@ohos.promptAction'
@@ -98,6 +99,8 @@ struct SubHeaderExample {
 
 ![子标题3](figures/zh-cn_image_202307291.png)
 
+### 示例2
+
 ```ts
 import promptAction from '@ohos.promptAction'
 import { OperationType, SubHeader } from '@ohos.arkui.advanced.SubHeader'
@@ -123,6 +126,8 @@ struct SubHeaderExample {
 ```
 
 ![zh-cn_image_0000001664546481](figures/zh-cn_image_0000001664546481.png)
+
+### 示例3
 
 ```ts
 import promptAction from '@ohos.promptAction'

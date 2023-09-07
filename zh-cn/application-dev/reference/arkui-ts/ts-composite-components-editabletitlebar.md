@@ -30,7 +30,7 @@ EditableTitleBar({leftIconType: EditableLeftIconType, title: ResourceStr, menuIt
 
 **参数：**
 
-| 名称 | 类型 | 必填 | 说明 | 
+| 名称 | 参数类型 | 必填 | 说明 | 
 | -------- | -------- | -------- | -------- |
 | leftIconStyle | [EditableLeftIconType](#editablelefticontype) | 是 | 左侧按钮类型 | 
 | title | [ResourceStr](ts-types.md#resourcestr) | 是 | 标题 | 

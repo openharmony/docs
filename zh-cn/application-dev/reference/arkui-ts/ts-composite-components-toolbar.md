@@ -1,10 +1,10 @@
-# ToolBar
+# @ohos.arkui.advanced.ToolBar（工具栏）
 
 
 工具栏用于展示针对当前界面内容的操作选项，在界面底部显示。底部最多显示5个入口，超过则收纳入“更多”子项中，在最右侧显示。
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > 该组件从API Version 10开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
@@ -30,7 +30,7 @@ Toolbar({toolBarList: ToolBarOptions, activateIndex?: number, controller: TabsCo
 
 **参数：**
 
-| 参数名 | 参数类型 | 必选 | 参数描述 | 
+| 名称 | 参数类型 | 必填 | 说明 | 
 | -------- | -------- | -------- | -------- |
 | toolBarList | [ToolBarOptions](#toolbaroptions) | 是 | 工具栏列表。 | 
 | activateIndex | number | 否 | 激活态的子项。<br/>默认值为-1。 | 
@@ -43,7 +43,7 @@ Toolbar({toolBarList: ToolBarOptions, activateIndex?: number, controller: TabsCo
 
 **ToolBarOption：**
 
-| 名称 | 值 | 是否必填 | 描述 | 
+| 名称 | 类型 | 必填 | 说明 | 
 | -------- | -------- | -------- | -------- |
 | content | [ResourceStr](ts-types.md#resourcestr) | 是 | 工具栏子项的文本。 | 
 | action | void | 否 | 工具栏子项点击事件。 | 
@@ -53,7 +53,7 @@ Toolbar({toolBarList: ToolBarOptions, activateIndex?: number, controller: TabsCo
 
 ## ItemState
 
-| 名称 | 描述 | 
+| 名称 | 说明 | 
 | -------- | -------- |
 | ENABLE | 工具栏子项为正常可点击状态。 | 
 | DISABLE | 工具栏子项为不可点击状态。 | 

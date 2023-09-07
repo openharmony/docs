@@ -1,10 +1,10 @@
-# Filter
+# @ohos.arkui.advanced.Filter（筛选）
 
 
 多条件筛选，帮助用户在大量信息中找到所需内容，应结合具体场景选择合适筛选方式。多条件筛选控件由筛选器与悬浮条构成，悬浮条可下拉展示悬浮筛选器。筛选器样式可分为多行可折叠类型与多行列表类型，并可以在筛选器最后一行附加快捷筛选器。
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > 该组件从API Version 10开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
@@ -31,7 +31,7 @@ Filter({ multiFilters: Array&lt;FilterParams&gt;,  additionFilters: FilterParams
 **参数：**
 
 
-| 参数名 | 参数类型 | 必选 | 装饰器类型 | 参数描述 | 
+| 名称 | 参数类型 | 必填 | 装饰器类型 | 说明 | 
 | -------- | -------- | -------- | -------- | -------- |
 | multiFilters | Array&lt;[FilterParams](#filterparams)&gt; | 是 | \@Prop | 多条件筛选列表。 | 
 | additionFilters | [FilterParams](#filterparams) | 否 | \@Prop | 附加快捷筛选项。 | 
@@ -42,7 +42,7 @@ Filter({ multiFilters: Array&lt;FilterParams&gt;,  additionFilters: FilterParams
 
 ## FilterParams
 
-| 名称 | 值 | 是否必选 | 描述 | 
+| 名称 | 类型 | 必填 | 说明 | 
 | -------- | -------- | -------- | -------- |
 | name | [ResourceStr](ts-types.md#resourcestr) | 是 | 筛选项维度名称。 | 
 | options | Array&lt;[ResourceStr](ts-types.md#resourcestr)&gt; | 是 | 筛选项维度可选项列表。 | 
@@ -50,7 +50,7 @@ Filter({ multiFilters: Array&lt;FilterParams&gt;,  additionFilters: FilterParams
 
 ## FilterType
 
-| 参数名 | 描述 | 
+| 名称 | 说明 | 
 | -------- | -------- |
 | MULTI_LINE_FILTER | 多行可折叠类型筛选器。 | 
 | LIST_FILTER | 多行列表类型筛选器。 | 
@@ -58,7 +58,7 @@ Filter({ multiFilters: Array&lt;FilterParams&gt;,  additionFilters: FilterParams
 
 ## FilterResult
 
-| 名称 | 值 | 是否必选 | 描述 | 
+| 名称 | 类型 | 必填 | 说明 | 
 | -------- | -------- | -------- | -------- |
 | name | [ResourceStr](ts-types.md#resourcestr) | 是 | 筛选项维度名称。 | 
 | index | number | 是 | 该维度筛选项选中项目的索引值。<br/>默认值：-1 | 
@@ -66,8 +66,6 @@ Filter({ multiFilters: Array&lt;FilterParams&gt;,  additionFilters: FilterParams
 
 
 ## 示例
-
-多行可折叠Filter：内容区可完全自定义。
 
 ```ts
 import { Filter, FilterParams, FilterResult, FilterType } from '@ohos.arkui.advanced.Filter'

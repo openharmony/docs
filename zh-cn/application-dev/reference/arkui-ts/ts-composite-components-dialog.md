@@ -1,10 +1,10 @@
-# Dialog
+# @ohos.arkui.advanced.Dialog（弹出框）
 
 
 弹出框是一种模态窗口，通常用于在保持当前的上下文环境时，临时展示用户需关注的信息或待处理的操作，用户在模态弹出框内完成上述交互任务。模态弹出框需要用户进行交互才能够退出模态模式。
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > 该组件从API Version 10开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
@@ -38,7 +38,7 @@ TipsDialog({controller: CustomDialogController, imageRes: Resource, imageSize: S
 **参数：**
 
 
-| 参数名 | 参数类型 | 必填 | 装饰器类型 | 描述 | 
+| 名称 | 参数类型 | 必填 | 装饰器类型 | 说明 | 
 | -------- | -------- | -------- | -------- | -------- |
 | controller | [CustomDialogController](ts-methods-custom-dialog-box.md) | 是 | - | 提示弹出框控制器。 | 
 | imageRes | [Resource](ts-types.md#resource) | 是 | - | 展示的图片。 | 
@@ -63,14 +63,14 @@ SelectDialog({controller: CustomDialogController, title: ResourceStr, content?: 
 
 **参数：**
 
-| 参数名 | 参数类型 | 必填 | 描述 | 
+| 名称 | 参数类型 | 必填 | 说明 | 
 | -------- | -------- | -------- | -------- |
 | controller | CustomDialogController | 是 | 选择弹出框控制器。 | 
 | title | [ResourceStr](ts-types.md/#resourcestr) | 是 | 选择弹出框标题。 | 
 | content | [ResourceStr](ts-types.md/#resourcestr) | 否 | 选择弹出框内容。 | 
 | selectedIndex | number | 否 | 选择弹出框的选中项。 | 
 | confirm | boolean | 否 | 确认按钮。 | 
-| radioContent | Array&lt;[SheetInfo](ts-methods-action-sheet.md)&gt; | 否 | 选择弹出框的子项内容列表，每个选择项支持设置图片、文本和选中的回调事件。 | 
+| radioContent | Array&lt;[SheetInfo](ts-methods-action-sheet.md)&gt; | 否 | 选择弹出框的子项内容列表，每个选择项支持设置文本和选中的回调事件。 | 
 
 
 ## ConfirmDialog
@@ -85,7 +85,7 @@ ConfirmDialog({controller: CustomDialogController, title: ResourceStr, content?:
 
 **参数：**
 
-| 参数名 | 参数类型 | 必选 | 装饰器类型 | 参数描述 | 
+| 名称 | 参数类型 | 必填 | 装饰器类型 | 说明 | 
 | -------- | -------- | -------- | -------- | -------- |
 | controller | CustomDialogController | 是 | - | 确认弹出框控制器。 | 
 | title | [ResourceStr](ts-types.md#resourcestr) | 是 | - | 确认弹出框标题。 | 
@@ -108,7 +108,7 @@ AlertDialog({controller: CustomDialogController, content?: ResourceStr, primaryB
 
 **参数：**
 
-| 参数名 | 参数类型 | 必选 | 参数描述 | 
+| 名称 | 参数类型 | 必填 | 说明 | 
 | -------- | -------- | -------- | -------- |
 | controller | CustomDialogController | 是 | 确认弹出框控制器。 | 
 | content | [ResourceStr](ts-types.md#resourcestr) | 是 | 确认弹出框内容。 | 
@@ -122,7 +122,7 @@ LoadingDialog({controller: CustomDialogController, content?: ResourceStr})
 
 **参数：**
 
-| 参数名 | 参数类型 | 必选 | 参数描述 | 
+| 名称 | 参数类型 | 必填 | 说明 | 
 | -------- | -------- | -------- | -------- |
 | controller | CustomDialogController | 是 | 加载弹出框控制器。 | 
 | content | [ResourceStr](ts-types.md#resourcestr) | 是 | 加载弹出框内容。 | 
@@ -132,7 +132,7 @@ LoadingDialog({controller: CustomDialogController, content?: ResourceStr})
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 类型 | 必填 | 描述 | 
+| 名称 | 类型 | 必填 | 说明 | 
 | -------- | -------- | -------- | -------- |
 | value | [ResourceStr](ts-types.md#resourcestr) | 是 | 按钮的内容。 | 
 | action | ()&nbsp;=&gt;&nbsp;void | 否 | 按钮的点击事件。 | 
@@ -273,7 +273,7 @@ import { ConfirmDialog } from '@ohos.arkui.advanced.Dialog'
 struct Index {
   isChecked = false;
 dialogControllerCheckBox: CustomDialogController = new CustomDialogController({
-  builder: CheckBoxDialog({
+  builder: ConfirmDialog({
     title: '文本标题',
     content: '文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本',
     isChecked: this.isChecked,
@@ -376,7 +376,7 @@ import { LoadingDialog } from '@ohos.arkui.advanced.Dialog'
 @Component
 struct Index {
 dialogControllerProgress: CustomDialogController = new CustomDialogController({
-  builder: ProgressDialog({
+  builder: LoadingDialog({
     content: '文本文本文本文本文本...',
   }),
   autoCancel: true,

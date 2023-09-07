@@ -1,10 +1,10 @@
-# SwipeRefresher
+# @ohos.arkui.advanced.SwipeRefresher（内容加载）
 
 
 内容加载指获取内容并加载出来。
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > 该组件及其子组件从 API Version 10 开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
@@ -20,7 +20,7 @@ import { SwipeRefresher } from '@ohos.arkui.advacned.SwipeRefresher'
 无
 
 
-## 接口
+## SwipeRefresher
 
 SwipeRefresher ({content: string, isLoading: boolean})
 
@@ -30,14 +30,13 @@ SwipeRefresher ({content: string, isLoading: boolean})
 
 **参数：**
 
-| 参数值 | 参数类型 | 必填 | 装饰器类型 | 参数描述 | 
+| 名称 | 参数类型 | 必填 | 装饰器类型 | 说明 | 
 | -------- | -------- | -------- | -------- | -------- |
 | content | string | 否 | \@Prop | 内容加载时显示的文本。 | 
 | isLoading | boolean | 是 | \@Prop | 当前是否正在加载。 | 
 
 
 ## 示例
-
 ```ts
 import { SwipeRefresher } from '@ohos.arkui.advaned.SwipeRefresher';
 

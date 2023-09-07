@@ -30,7 +30,7 @@ ComposeTitleBar({item?: ComposeTitleBarMenuItem, title: ResourceStr, subtitle?: 
 
 **参数：**
 
-| 名称 | 类型 | 必填 | 说明 | 
+| 名称 | 参数类型 | 必填 | 说明 | 
 | -------- | -------- | -------- | -------- |
 | item | [ComposeTitleBarMenuItem](#composetitlebarmenuitem) | 否 | 用于左侧头像的单个菜单项目 | 
 | title | [ResourceStr](ts-types.md#resourcestr) | 是 | 标题 | 
@@ -49,7 +49,7 @@ ComposeTitleBar({item?: ComposeTitleBarMenuItem, title: ResourceStr, subtitle?: 
 
 ## 示例
 
-### 示例 1 - 单行文本
+### 示例 1
 
 ```ts
 import { ComposeTitleBar } from "@ohos.arkui.advanced.ComposeTitleBar"
@@ -72,7 +72,7 @@ struct Index {
 ![zh-cn_image_0000001616913438](figures/zh-cn_image_0000001616913438.jpg)
 
 
-### 示例 2 - 双行文本
+### 示例 2
 
 ```ts
 import { ComposeTitleBar } from "@ohos.arkui.advanced.ComposeTitleBar"
@@ -96,7 +96,7 @@ struct Index {
 ![zh-cn_image_0000001665513149](figures/zh-cn_image_0000001665513149.jpg)
 
 
-### 示例 3 - 双行文本带菜单
+### 示例 3
 
 ```ts
 import { ComposeTitleBar } from "@ohos.arkui.advanced.ComposeTitleBar"
@@ -149,7 +149,7 @@ struct Index {
 ![zh-cn_image_0000001617233250](figures/zh-cn_image_0000001617233250.jpg)
 
 
-### 示例 4 - 头像+双行文本带菜单
+### 示例 4
 
 ```ts
 import { ComposeTitleBar } from "@ohos.arkui.advanced.ComposeTitleBar"

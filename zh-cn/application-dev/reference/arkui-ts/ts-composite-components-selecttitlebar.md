@@ -30,7 +30,7 @@ SelectTitleBar({selected: number, options: Array&lt;SelectOption&gt;, menuItems?
 
 **参数：**
 
-| 名称 | 类型 | 必填 | 装饰器类型 | 说明 |
+| 名称 | 参数类型 | 必填 | 装饰器类型 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | selected | number | 是 | \@Prop | 当前选中项目的索引 |
 | options | Array&lt;[SelectOption](ts-basic-components-select.md#selectoption)&gt; | 是 | - | 下拉菜单中的项目 |
@@ -52,7 +52,7 @@ SelectTitleBar({selected: number, options: Array&lt;SelectOption&gt;, menuItems?
 
 ## 示例
 
-### 示例 1 - 一级页面下拉菜单
+### 示例 1
 
 ```ts
 import { SelectTitleBar } from "@ohos.arkui.advanced.SelectTitleBar"
@@ -83,7 +83,7 @@ struct Index {
 ![zh-cn_image_0000001665793709](figures/zh-cn_image_0000001665793709.png)
 
 
-### 示例 2 - 二级页面下拉菜单
+### 示例 2
 
 ```ts
 import { SelectTitleBar } from "@ohos.arkui.advanced.SelectTitleBar"
@@ -141,7 +141,7 @@ struct Index {
 ![zh-cn_image_0000001617439304](figures/zh-cn_image_0000001617439304.png)
 
 
-### 示例 3 - 新事件标记
+### 示例 3
 
 ```ts
 import { SelectTitleBar } from "@ohos.arkui.advanced.SelectTitleBar"
