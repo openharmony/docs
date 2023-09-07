@@ -279,7 +279,7 @@ export default class EntryAbility extends UIAbility {
   onCreate() {
     console.info("MyAbilityStage onCreate")
     let context = this.context
-    const kvManagerConfig = {
+    const kvManagerConfig: distributedKVStore.KVManagerConfig = {
       context: context,
       bundleName: 'com.example.datamanagertest',
     }
@@ -302,7 +302,7 @@ import { BusinessError } from '@ohos.base';
 
 let kvManager: distributedKVStore.KVManager;
 let context = featureAbility.getContext()
-const kvManagerConfig = {
+const kvManagerConfig: distributedKVStore.KVManagerConfig = {
   context: context,
   bundleName: 'com.example.datamanagertest',
 }
