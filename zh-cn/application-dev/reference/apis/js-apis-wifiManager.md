@@ -231,7 +231,7 @@ getScanResults(callback: AsyncCallback&lt;Array&lt;WifiScanInfo&gt;&gt;): void
           return;
       }
   
-      let len = Object.keys(result).length;
+      let len = result.length;
       console.log("wifi received scan info: " + len);
       for (let i = 0; i < len; ++i) {
           console.info("ssid: " + result[i].ssid);
@@ -247,7 +247,7 @@ getScanResults(callback: AsyncCallback&lt;Array&lt;WifiScanInfo&gt;&gt;): void
   });
   
   wifiManager.getScanResults().then(result => {
-      let len = Object.keys(result).length;
+      let len = result.length;
       console.log("wifi received scan info: " + len);
       for (let i = 0; i < len; ++i) {
           console.info("ssid: " + result[i].ssid);
@@ -295,7 +295,7 @@ getScanResultsSync(): &nbsp;Array&lt;[WifiScanInfo](#wifiscaninfo)&gt;
 	try {
 		let scanInfoList = wifiManager.getScanResultsSync();
 		console.info("scanInfoList:" + JSON.stringify(scanInfoList));
-		let len = Object.keys(scanInfoList).length;
+		let len = scanInfoList.length;
         console.log("wifi received scan info: " + len);
 		if(len > 0){
 			for (let i = 0; i < len; ++i) {
@@ -348,7 +348,7 @@ getScanInfoList(): Array&lt;WifiScanInfo&gt;;
 	try {
 		let scanInfoList = wifiManager.getScanInfoList();
 		console.info("scanInfoList:" + JSON.stringify(scanInfoList));
-		let len = Object.keys(scanInfoList).length;
+		let len = scanInfoList.length;
         console.log("wifi received scan info: " + len);
 		if(len > 0){
 			for (let i = 0; i < len; ++i) {
@@ -598,7 +598,7 @@ addDeviceConfig(config: WifiDeviceConfig): Promise&lt;number&gt;
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
-		let config = {
+		let config:wifiManager.WifiDeviceConfig = {
 			ssid : "****",
 			preSharedKey : "****",
 			securityType : 0
@@ -794,7 +794,7 @@ addDeviceConfig(config: WifiDeviceConfig, callback: AsyncCallback&lt;number&gt;)
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
-		let config = {
+		let config:wifiManager.WifiDeviceConfig = {
 			ssid : "****",
 			preSharedKey : "****",
 			securityType : 0
@@ -842,7 +842,7 @@ addCandidateConfig(config: WifiDeviceConfig): Promise&lt;number&gt;
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
-		let config = {
+		let config:wifiManager.WifiDeviceConfig = {
 			ssid : "****",
 			preSharedKey : "****",
 			securityType : 0
@@ -885,7 +885,7 @@ addCandidateConfig(config: WifiDeviceConfig, callback: AsyncCallback&lt;number&g
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
-		let config = {
+		let config:wifiManager.WifiDeviceConfig = {
 			ssid : "****",
 			preSharedKey : "****",
 			securityType : 0
@@ -1014,7 +1014,7 @@ getCandidateConfigs(): &nbsp;Array&lt;[WifiDeviceConfig](#wifideviceconfig)&gt;
 	try {
 		let configs = wifiManager.getCandidateConfigs();
 		console.info("configs:" + JSON.stringify(configs));
-		let len = Object.keys(configs).length;
+		let len = configs.length;
         console.log("result len: " + len);
 		if(len > 0){
 			for (let i = 0; i < len; ++i) {
@@ -1140,7 +1140,7 @@ connectToDevice(config: WifiDeviceConfig): void
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
-		let config = {
+		let config:wifiManager.WifiDeviceConfig = {
 			ssid : "****",
 			preSharedKey : "****",
 			securityType : 3
@@ -1294,7 +1294,7 @@ getLinkedInfo(callback: AsyncCallback&lt;WifiLinkedInfo&gt;): void
   
   wifiManager.getLinkedInfo().then(data => {
       console.info("get wifi linked info: " + JSON.stringify(data));
-  }).catch(error => {
+  }).catch((error:number) => {
       console.info("get linked info error");
   });
 ```
@@ -1826,7 +1826,7 @@ updateNetwork(config: WifiDeviceConfig): number
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
-		let config = {
+		let config:wifiManager.WifiDeviceConfig = {
 			ssid : "****",
 			preSharedKey : "****",
 			securityType : 3
@@ -2246,7 +2246,7 @@ setHotspotConfig(config: HotspotConfig): void
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
-		let config = {
+		let config:wifiManager.HotspotConfig = {
 			ssid: "****",
 			securityType: 3,
 			band: 0,
@@ -2254,7 +2254,7 @@ setHotspotConfig(config: HotspotConfig): void
 			preSharedKey: "****",
 			maxConn: 0
 		}
-		let ret = wifiManager.setHotspotConfig();
+		let ret = wifiManager.setHotspotConfig(config);
 		console.info("result:" + ret);		
 	}catch(error){
 		console.error("failed:" + JSON.stringify(error));
@@ -2707,14 +2707,14 @@ createGroup(config: WifiP2PConfig): void
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
-		let config = {
+		let config:wifiManager.WifiP2PConfig = {
 			deviceAddress: "****",
 			netId: 0,
 			passphrase: "*****",
 			groupName: "****",
 			goBand: 0
 		}
-		wifiManager.createGroup(config);	
+		wifiManager.createP2pGroup(config);	
 		
 	}catch(error){
 		console.error("failed:" + JSON.stringify(error));
@@ -2807,7 +2807,7 @@ p2pConnect(config: WifiP2PConfig): void
 ```ts
   import wifiManager from '@ohos.wifiManager';
   
-  let recvP2pConnectionChangeFunc = result => {
+  let recvP2pConnectionChangeFunc = (result:wifiManager.WifiP2pLinkedInfo) => {
       console.info("p2p connection change receive event: " + JSON.stringify(result));
       wifiManager.getP2pLinkedInfo((err, data) => {
           if (err) {
@@ -2819,12 +2819,12 @@ p2pConnect(config: WifiP2PConfig): void
   }
   wifiManager.on("p2pConnectionChange", recvP2pConnectionChangeFunc);
   
-  let recvP2pDeviceChangeFunc = result => {
+  let recvP2pDeviceChangeFunc = (result:wifiManager.WifiP2pLinkedInfo) => {
       console.info("p2p device change receive event: " + JSON.stringify(result));
   }
   wifiManager.on("p2pDeviceChange", recvP2pDeviceChangeFunc);
   
-  let recvP2pPeerDeviceChangeFunc = result => {
+  let recvP2pPeerDeviceChangeFunc = (result:wifiManager.WifiP2pLinkedInfo) => {
       console.info("p2p peer device change receive event: " + JSON.stringify(result));
       wifiManager.getP2pPeerDevices((err, data) => {
           if (err) {
@@ -2832,16 +2832,16 @@ p2pConnect(config: WifiP2PConfig): void
               return;
           }
           console.info("get peer devices: " + JSON.stringify(data));
-          let len = Object.keys(data).length;
+          let len = data.length;
           for (let i = 0; i < len; ++i) {
               if (data[i].deviceName === "my_test_device") {
                   console.info("p2p connect to test device: " + data[i].deviceAddress);
-                  let config = {
-                      "deviceAddress":data[i].deviceAddress,
-                      "netId":-2,
-                      "passphrase":"",
-                      "groupName":"",
-                      "goBand":0,
+                  let config:wifiManager.WifiP2PConfig = {
+                      deviceAddress:data[i].deviceAddress,
+                      netId:-2,
+                      passphrase:"",
+                      groupName:"",
+                      goBand:0,
                   }
                   wifiManager.p2pConnect(config);
               }
@@ -3204,7 +3204,7 @@ off(type: "wifiStateChange", callback?: Callback&lt;number&gt;): void
 ```ts
   import wifiManager from '@ohos.wifiManager';
   
-  let recvPowerNotifyFunc = result => {
+  let recvPowerNotifyFunc = (result:number) => {
       console.info("Receive power state change event: " + result);
   }
   
@@ -3277,7 +3277,7 @@ off(type: "wifiConnectionChange", callback?: Callback&lt;number&gt;): void
 ```ts
   import wifiManager from '@ohos.wifiManager';
   
-  let recvWifiConnectionChangeFunc = result => {
+  let recvWifiConnectionChangeFunc = (result:number) => {
       console.info("Receive wifi connection change event: " + result);
   }
   
@@ -3349,7 +3349,7 @@ off(type: "wifiScanStateChange", callback?: Callback&lt;number&gt;): void
 ```ts
   import wifiManager from '@ohos.wifiManager';
   
-  let recvWifiScanStateChangeFunc = result => {
+  let recvWifiScanStateChangeFunc = (result:number) => {
       console.info("Receive Wifi scan state change event: " + result);
   }
   
@@ -3414,7 +3414,7 @@ off(type: "wifiRssiChange", callback?: Callback&lt;number&gt;): void
 ```ts
   import wifiManager from '@ohos.wifiManager';
   
-  let recvWifiRssiChangeFunc = result => {
+  let recvWifiRssiChangeFunc = (result:number) => {
       console.info("Receive wifi rssi change event: " + result);
   }
   
@@ -3466,7 +3466,7 @@ off(type: "streamChange", callback?: Callback&lt;number&gt;): void
 ```ts
 import wifi from '@ohos.wifi';
 
-let recvStreamChangeFunc = result => {
+let recvStreamChangeFunc = (result:number) => {
     console.info("Receive stream change event: " + result);
 }
 
@@ -3515,7 +3515,7 @@ off(type: "deviceConfigChange", callback: Callback&lt;number&gt;): void
 ```ts
 import wifi from '@ohos.wifi';
 
-let recvDeviceConfigChangeFunc = result => {
+let recvDeviceConfigChangeFunc = (result:number) => {
     console.info("Receive device config change event: " + result);
 }
 
@@ -3590,7 +3590,7 @@ off(type: "hotspotStateChange", callback?: Callback&lt;number&gt;): void
 ```ts
   import wifiManager from '@ohos.wifiManager';
   
-  let recvHotspotStateChangeFunc = result => {
+  let recvHotspotStateChangeFunc = (result:number) => {
       console.info("Receive hotspot state change event: " + result);
   }
   
@@ -3643,7 +3643,7 @@ off(type: "hotspotStaJoin", callback?: Callback&lt;StationInfo&gt;): void
 ```ts
 import wifi from '@ohos.wifi';
 
-let recvHotspotStaJoinFunc = result => {
+let recvHotspotStaJoinFunc = (result:number) => {
     console.info("Receive hotspot sta join event: " + result);
 }
 
@@ -3697,7 +3697,7 @@ off(type: "hotspotStaLeave", callback?: Callback&lt;StationInfo&gt;): void
 ```ts
 import wifi from '@ohos.wifi';
 
-let recvHotspotStaLeaveFunc = result => {
+let recvHotspotStaLeaveFunc = (result:number) => {
     console.info("Receive hotspot sta leave event: " + result);
 }
 
@@ -3773,7 +3773,7 @@ off(type: "p2pStateChange", callback?: Callback&lt;number&gt;): void
 ```ts
   import wifiManager from '@ohos.wifiManager';
   
-  let recvP2pStateChangeFunc = result => {
+  let recvP2pStateChangeFunc = (result:number) => {
       console.info("Receive p2p state change event: " + result);
   }
   
@@ -3838,7 +3838,7 @@ off(type: "p2pConnectionChange", callback?: Callback&lt;WifiP2pLinkedInfo&gt;): 
 ```ts
   import wifiManager from '@ohos.wifiManager';
   
-  let recvP2pConnectionChangeFunc = result => {
+  let recvP2pConnectionChangeFunc = (result:number) => {
       console.info("Receive p2p connection change event: " + result);
   }
   
@@ -3903,7 +3903,7 @@ off(type: "p2pDeviceChange", callback?: Callback&lt;WifiP2pDevice&gt;): void
 ```ts
   import wifiManager from '@ohos.wifiManager';
   
-  let recvP2pDeviceChangeFunc = result => {
+  let recvP2pDeviceChangeFunc = (result:number) => {
       console.info("Receive p2p device change event: " + result);
   }
   
@@ -3968,7 +3968,7 @@ off(type: "p2pPeerDeviceChange", callback?: Callback&lt;WifiP2pDevice[]&gt;): vo
 ```ts
   import wifiManager from '@ohos.wifiManager';
   
-  let recvP2pPeerDeviceChangeFunc = result => {
+  let recvP2pPeerDeviceChangeFunc = (result:number) => {
       console.info("Receive p2p peer device change event: " + result);
   }
   
@@ -4033,7 +4033,7 @@ off(type: "p2pPersistentGroupChange", callback?: Callback&lt;void&gt;): void
 ```ts
   import wifiManager from '@ohos.wifiManager';
   
-  let recvP2pPersistentGroupChangeFunc = result => {
+  let recvP2pPersistentGroupChangeFunc = (result:number) => {
       console.info("Receive p2p persistent group change event: " + result);
   }
   
@@ -4105,7 +4105,7 @@ off(type: "p2pDiscoveryChange", callback?: Callback&lt;number&gt;): void
 ```ts
   import wifiManager from '@ohos.wifiManager';
   
-  let recvP2pDiscoveryChangeFunc = result => {
+  let recvP2pDiscoveryChangeFunc = (result:number) => {
       console.info("Receive p2p discovery change event: " + result);
   }
   

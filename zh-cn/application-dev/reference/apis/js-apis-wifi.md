@@ -175,7 +175,7 @@ wifi.getScanInfos((err, result) => {
         return;
     }
 
-    let len = Object.keys(result).length;
+    let len = result.length;
     console.log("wifi received scan info: " + len);
     for (let i = 0; i < len; ++i) {
         console.info("ssid: " + result[i].ssid);
@@ -191,7 +191,7 @@ wifi.getScanInfos((err, result) => {
 });
 
 wifi.getScanInfos().then(result => {
-    let len = Object.keys(result).length;
+    let len = result.length;
     console.log("wifi received scan info: " + len);
     for (let i = 0; i < len; ++i) {
         console.info("ssid: " + result[i].ssid);
@@ -274,7 +274,7 @@ addDeviceConfig(config: WifiDeviceConfig): Promise&lt;number&gt;
 import wifi from '@ohos.wifi';
 
 try {
-	let config = {
+	let config:wifi.WifiDeviceConfig = {
 		ssid : "****",
 		preSharedKey : "****",
 		securityType : 0
@@ -367,7 +367,7 @@ addDeviceConfig(config: WifiDeviceConfig, callback: AsyncCallback&lt;number&gt;)
 import wifi from '@ohos.wifi';
 
 try {
-	let config = {
+	let config:wifi.WifiDeviceConfig = {
 		ssid : "****",
 		preSharedKey : "****",
 		securityType : 0
@@ -406,7 +406,7 @@ addUntrustedConfig(config: WifiDeviceConfig): Promise&lt;boolean&gt;
 import wifi from '@ohos.wifi';
 
 try {
-	let config = {
+	let config:wifi.WifiDeviceConfig = {
 		ssid : "****",
 		preSharedKey : "****",
 		securityType : 0
@@ -441,7 +441,7 @@ addUntrustedConfig(config: WifiDeviceConfig, callback: AsyncCallback&lt;boolean&
 import wifi from '@ohos.wifi';
 
 try {
-	let config = {
+	let config:wifi.WifiDeviceConfig = {
 		ssid : "****",
 		preSharedKey : "****",
 		securityType : 0
@@ -590,7 +590,7 @@ connectToDevice(config: WifiDeviceConfig): boolean
 import wifi from '@ohos.wifi';
 
 try {
-	let config = {
+	let config:wifi.WifiDeviceConfig = {
 		ssid : "****",
 		preSharedKey : "****",
 		securityType : 3
@@ -717,7 +717,7 @@ wifi.getLinkedInfo((err, data) => {
 
 wifi.getLinkedInfo().then(data => {
     console.info("get wifi linked info: " + JSON.stringify(data));
-}).catch(error => {
+}).catch((error:number) => {
     console.info("get linked info error");
 });
 ```
@@ -1099,7 +1099,7 @@ updateNetwork(config: WifiDeviceConfig): number
 import wifi from '@ohos.wifi';
 
 try {
-	let config = {
+	let config:wifi.WifiDeviceConfig = {
 		ssid : "****",
 		preSharedKey : "****",
 		securityType : 3
@@ -1359,7 +1359,7 @@ setHotspotConfig(config: HotspotConfig): boolean
 import wifi from '@ohos.wifi';
 
 try {
-	let config = {
+	let config:wifi.HotspotConfig = {
 		ssid: "****",
 		securityType: 3,
 		band: 0,
@@ -1367,7 +1367,7 @@ try {
 		preSharedKey: "****",
 		maxConn: 0
 	}
-	let ret = wifi.setHotspotConfig();
+	let ret = wifi.setHotspotConfig(config);
 	console.info("result:" + ret);		
 }catch(error){
 	console.error("failed:" + JSON.stringify(error));
@@ -1699,7 +1699,7 @@ createGroup(config: WifiP2PConfig): boolean
 import wifi from '@ohos.wifi';
 
 try {
-	let config = {
+	let config:wifi.WifiP2PConfig = {
 		deviceAddress: "****",
 		netId: 0,
 		passphrase: "*****",
@@ -1796,7 +1796,7 @@ p2pConnect(config: WifiP2PConfig): boolean
 ```ts
 import wifi from '@ohos.wifi';
 
-let recvP2pConnectionChangeFunc = result => {
+let recvP2pConnectionChangeFunc = (result:wifi.WifiP2pLinkedInfo) => {
     console.info("p2p connection change receive event: " + JSON.stringify(result));
     wifi.getP2pLinkedInfo((err, data) => {
         if (err) {
@@ -1808,12 +1808,12 @@ let recvP2pConnectionChangeFunc = result => {
 }
 wifi.on("p2pConnectionChange", recvP2pConnectionChangeFunc);
 
-let recvP2pDeviceChangeFunc = result => {
+let recvP2pDeviceChangeFunc = (result:wifi.WifiP2pLinkedInfo) => {
     console.info("p2p device change receive event: " + JSON.stringify(result));
 }
 wifi.on("p2pDeviceChange", recvP2pDeviceChangeFunc);
 
-let recvP2pPeerDeviceChangeFunc = result => {
+let recvP2pPeerDeviceChangeFunc = (result:wifi.WifiP2pLinkedInfo) => {
     console.info("p2p peer device change receive event: " + JSON.stringify(result));
     wifi.getP2pPeerDevices((err, data) => {
         if (err) {
@@ -1821,16 +1821,16 @@ let recvP2pPeerDeviceChangeFunc = result => {
             return;
         }
         console.info("get peer devices: " + JSON.stringify(data));
-        let len = Object.keys(data).length;
+        let len = data.length;
         for (let i = 0; i < len; ++i) {
             if (data[i].deviceName === "my_test_device") {
                 console.info("p2p connect to test device: " + data[i].deviceAddress);
-                let config = {
-                    "deviceAddress":data[i].deviceAddress,
-                    "netId":-2,
-                    "passphrase":"",
-                    "groupName":"",
-                    "goBand":0,
+                let config:wifi.WifiP2PConfig = {
+                    deviceAddress:data[i].deviceAddress,
+                    netId:-2,
+                    passphrase:"",
+                    groupName:"",
+                    goBand:0,
                 }
                 wifi.p2pConnect(config);
             }
@@ -1852,10 +1852,10 @@ let recvP2pPersistentGroupChangeFunc = () => {
 }
 wifi.on("p2pPersistentGroupChange", recvP2pPersistentGroupChangeFunc);
 
-setTimeout(function() {wifi.off("p2pConnectionChange", recvP2pConnectionChangeFunc);}, 125 * 1000);
-setTimeout(function() {wifi.off("p2pDeviceChange", recvP2pDeviceChangeFunc);}, 125 * 1000);
-setTimeout(function() {wifi.off("p2pPeerDeviceChange", recvP2pPeerDeviceChangeFunc);}, 125 * 1000);
-setTimeout(function() {wifi.off("p2pPersistentGroupChange", recvP2pPersistentGroupChangeFunc);}, 125 * 1000);
+setTimeout(() => {wifi.off("p2pConnectionChange", recvP2pConnectionChangeFunc);}, 125 * 1000);
+setTimeout(() => {wifi.off("p2pDeviceChange", recvP2pDeviceChangeFunc);}, 125 * 1000);
+setTimeout(() => {wifi.off("p2pPeerDeviceChange", recvP2pPeerDeviceChangeFunc);}, 125 * 1000);
+setTimeout(() => {wifi.off("p2pPersistentGroupChange", recvP2pPersistentGroupChangeFunc);}, 125 * 1000);
 console.info("start discover devices -> " + wifi.startDiscoverDevices());
 ```
 
@@ -2080,7 +2080,7 @@ off(type: "wifiStateChange", callback?: Callback&lt;number&gt;): void
 ```ts
 import wifi from '@ohos.wifi';
 
-let recvPowerNotifyFunc = result => {
+let recvPowerNotifyFunc = (result:number) => {
     console.info("Receive power state change event: " + result);
 }
 
@@ -2138,7 +2138,7 @@ off(type: "wifiConnectionChange", callback?: Callback&lt;number&gt;): void
 ```ts
 import wifi from '@ohos.wifi';
 
-let recvWifiConnectionChangeFunc = result => {
+let recvWifiConnectionChangeFunc = (result:number) => {
     console.info("Receive wifi connection change event: " + result);
 }
 
@@ -2195,7 +2195,7 @@ off(type: "wifiScanStateChange", callback?: Callback&lt;number&gt;): void
 ```ts
 import wifi from '@ohos.wifi';
 
-let recvWifiScanStateChangeFunc = result => {
+let recvWifiScanStateChangeFunc = (result:number) => {
     console.info("Receive Wifi scan state change event: " + result);
 }
 
@@ -2245,7 +2245,7 @@ off(type: "wifiRssiChange", callback?: Callback&lt;number&gt;): void
 ```ts
 import wifi from '@ohos.wifi';
 
-let recvWifiRssiChangeFunc = result => {
+let recvWifiRssiChangeFunc = (result:number) => {
     console.info("Receive wifi rssi change event: " + result);
 }
 
@@ -2340,7 +2340,7 @@ on(type: "hotspotStateChange", callback: Callback&lt;number&gt;): void
 ```ts
 import wifi from '@ohos.wifi';
 
-let recvHotspotStateChangeFunc = result => {
+let recvHotspotStateChangeFunc = (result:number) => {
     console.info("Receive hotspot state change event: " + result);
 }
 
@@ -2410,7 +2410,7 @@ off(type: "hotspotStaJoin", callback?: Callback&lt;StationInfo&gt;): void
 ```ts
 import wifi from '@ohos.wifi';
 
-let recvHotspotStaJoinFunc = result => {
+let recvHotspotStaJoinFunc = (result:wifi.StationInfo) => {
     console.info("Receive hotspot sta join event: " + result);
 }
 
@@ -2464,7 +2464,7 @@ off(type: "hotspotStaLeave", callback?: Callback&lt;StationInfo&gt;): void
 ```ts
 import wifi from '@ohos.wifi';
 
-let recvHotspotStaLeaveFunc = result => {
+let recvHotspotStaLeaveFunc = (result:wifi.StationInfo) => {
     console.info("Receive hotspot sta leave event: " + result);
 }
 
@@ -2524,7 +2524,7 @@ off(type: "p2pStateChange", callback?: Callback&lt;number&gt;): void
 ```ts
 import wifi from '@ohos.wifi';
 
-let recvP2pStateChangeFunc = result => {
+let recvP2pStateChangeFunc = (result:number) => {
     console.info("Receive p2p state change event: " + result);
 }
 
@@ -2574,7 +2574,7 @@ off(type: "p2pConnectionChange", callback?: Callback&lt;WifiP2pLinkedInfo&gt;): 
 ```ts
 import wifi from '@ohos.wifi';
 
-let recvP2pConnectionChangeFunc = result => {
+let recvP2pConnectionChangeFunc = (result:wifi.WifiP2pLinkedInfo) => {
     console.info("Receive p2p connection change event: " + result);
 }
 
@@ -2624,7 +2624,7 @@ off(type: "p2pDeviceChange", callback?: Callback&lt;WifiP2pDevice&gt;): void
 ```ts
 import wifi from '@ohos.wifi';
 
-let recvP2pDeviceChangeFunc = result => {
+let recvP2pDeviceChangeFunc = (result:wifi.WifiP2pDevice) => {
     console.info("Receive p2p device change event: " + result);
 }
 
@@ -2674,7 +2674,7 @@ off(type: "p2pPeerDeviceChange", callback?: Callback&lt;WifiP2pDevice[]&gt;): vo
 ```ts
 import wifi from '@ohos.wifi';
 
-let recvP2pPeerDeviceChangeFunc = result => {
+let recvP2pPeerDeviceChangeFunc = (result:wifi.WifiP2pDevice[]) => {
     console.info("Receive p2p peer device change event: " + result);
 }
 
@@ -2724,7 +2724,7 @@ off(type: "p2pPersistentGroupChange", callback?: Callback&lt;void&gt;): void
 ```ts
 import wifi from '@ohos.wifi';
 
-let recvP2pPersistentGroupChangeFunc = result => {
+let recvP2pPersistentGroupChangeFunc = (result:void) => {
     console.info("Receive p2p persistent group change event: " + result);
 }
 
@@ -2782,7 +2782,7 @@ off(type: "p2pDiscoveryChange", callback?: Callback&lt;number&gt;): void
 ```ts
 import wifi from '@ohos.wifi';
 
-let recvP2pDiscoveryChangeFunc = result => {
+let recvP2pDiscoveryChangeFunc = (result:number) => {
     console.info("Receive p2p discovery change event: " + result);
 }
 
