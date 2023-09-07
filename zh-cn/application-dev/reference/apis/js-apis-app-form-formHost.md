@@ -1979,6 +1979,7 @@ acquireFormData(formId: string, callback: AsyncCallback<{[key: string]: Object}>
 
 ```ts
 import formHost from '@ohos.app.form.formHost';
+import Base from '@ohos.base';
 
 let formId: string = '12400633174999288';
 try {

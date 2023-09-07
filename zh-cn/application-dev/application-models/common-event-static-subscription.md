@@ -35,10 +35,9 @@
 
    在完成静态订阅者的代码实现后，需要在[module.json5配置文件](../quick-start/module-configuration-file.md)中进行配置订阅者信息。
 
-   ```ts
+   ```json
    {
      "module": {
-       ...
        "extensionAbilities": [
          {
            "name": "StaticSubscriber",
@@ -56,7 +55,6 @@
            ]
          }
        ]
-       ...
      }
    }
    ```

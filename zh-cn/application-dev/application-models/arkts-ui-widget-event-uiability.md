@@ -56,10 +56,6 @@
     onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
       this.handleFormRouterEvent(want);
     }
-    // 如果UIAbility已在后台运行，在收到Router事件后会触发onNewWant生命周期回调
-    onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam) {
-      this.handleFormRouterEvent(want);
-    }
 
     handleFormRouterEvent(want: Want) {
       console.info('Want:' + JSON.stringify(want));
@@ -79,24 +75,24 @@
       }
     }
     // 如果UIAbility已在后台运行，在收到Router事件后会触发onNewWant生命周期回调
-    onNewWant(want, launchParam) {
+    onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam) {
       console.info('onNewWant Want:' + JSON.stringify(want));
-      if (want.parameters[formInfo.FormParam.IDENTITY_KEY] !== undefined) {
-        let curFormId = want.parameters[formInfo.FormParam.IDENTITY_KEY];
-        let message = JSON.parse(want.parameters.params).detail;
+      if (want.parameters && want.parameters[formInfo.FormParam.IDENTITY_KEY] !== undefined) {
+        let curFormId = JSON.stringify(want.parameters[formInfo.FormParam.IDENTITY_KEY]);
+        let message: string = JSON.parse(JSON.stringify(want.parameters.params)).detail;
         console.info(`UpdateForm formId: ${curFormId}, message: ${message}`);
-        let formData = {
+        let formData: Record<string, string> = {
           "detail": message + ': onNewWant UIAbility.', // 和卡片布局中对应
         };
         let formMsg = formBindingData.createFormBindingData(formData)
         formProvider.updateForm(curFormId, formMsg).then((data) => {
           console.info('updateForm success.' + JSON.stringify(data));
-        }).catch((error) => {
+        }).catch((error: Base.BusinessError) => {
           console.error('updateForm failed:' + JSON.stringify(error));
         })
       }
     }
-  
+    
     ...
   }
   ```
@@ -112,12 +108,10 @@
    
    export default class EntryFormAbility extends FormExtensionAbility {
     onAddForm(want: Want) {
-      let dataObj1: Record<string, string> | undefined;
+      let dataObj1 = new Map<string, string>();
       if (want.parameters && want.parameters["ohos.extra.param.key.form_identity"] != undefined) {
         let formId: string = JSON.parse(JSON.stringify(want.parameters["ohos.extra.param.key.form_identity"]));
-        dataObj1 = {
-          "formId": formId
-        };
+        dataObj1.set("formId", formId);
       }
       let obj1 = formBindingData.createFormBindingData(dataObj1);
       return obj1;
