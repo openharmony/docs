@@ -16,8 +16,6 @@ Web组件提供了在新窗口打开页面的能力，开发者可以通过[mult
 
 - 应用侧代码。
 
-  创建新窗口的方法可参考[Web开发相关例子](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Web/Browser)。
-
   ```ts
   // xxx.ets
   import web_webview from '@ohos.web.webview';
@@ -67,3 +65,8 @@ Web组件提供了在新窗口打开页面的能力，开发者可以通过[mult
   </body>
   </html>
   ```
+## 相关实例
+
+针对创建新窗口，有以下相关实例可供参考：
+
+- [浏览器（ArkTS）（Full SDK）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/monthly_20230815/code/BasicFeature/Web/Browser)
