@@ -140,7 +140,6 @@ struct ListItemExample {
 
 ```ts
 // xxx.ets
-// xxx.ets
 @Entry
 @Component
 struct ListItemExample2 {
