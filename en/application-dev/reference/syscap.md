@@ -93,7 +93,7 @@ By default, the associated SysCap set of an application is the union of multiple
 
 ### Checking Whether an API Is Available
 
-You can use either the ArtTS or native API to determine whether an API is available.
+You can use either the ArkTS or native API to determine whether an API is available.
 
 - ArkTS API
 
