@@ -89,7 +89,7 @@ Obtains file assets (also called files). This API uses an asynchronous callback 
 > **NOTE**
 >
 > - This API is deprecated since API version 9. Use [getAssets](js-apis-photoAccessHelper.md#getassets) instead.
-> - From API version 10, the albums represented by physical directories are replaced by logical albums, which allow multiple files in an album and presence of a file in multiple albums. This design, however, makes **parent**, **albumId**, **albumUri**, and **albumName** incompatible. They cannot be used as parameters of **MediaFetchOptions** in **getFileAssets()**. For details, see [changelogs-mediaLibrary.md](../../../release-notes/changelogs/v4.0-beta2/changelogs-medialibrary.md).
+> - From API version 10, the albums represented by physical directories are replaced by logical albums, which allow multiple files in an album and presence of a file in multiple albums. This design, however, makes **parent**, **albumId**, **albumUri**, and **albumName** incompatible. They cannot be used as parameters of **MediaFetchOptions** in **getFileAssets()**. For details, see [Change of the mediaLibrary Interface Compatibility](../../../release-notes/changelogs/v4.0-beta2/changelogs-medialibrary.md).
 
 **Required permissions**: ohos.permission.READ_MEDIA
 
@@ -162,7 +162,7 @@ Obtains file assets. This API uses a promise to return the result.
 > **NOTE**
 >
 > - This API is deprecated since API version 9. Use [getAssets](js-apis-photoAccessHelper.md#getassets-1) instead.
-> - From API version 10, the albums represented by physical directories are replaced by logical albums, which allow multiple files in an album and presence of a file in multiple albums. This design, however, makes **parent**, **albumId**, **albumUri**, and **albumName** incompatible. They cannot be used as parameters of **MediaFetchOptions** in **getFileAssets()**. For details, see [changelogs-mediaLibrary.md](../../../release-notes/changelogs/v4.0-beta2/changelogs-medialibrary.md).
+> - From API version 10, the albums represented by physical directories are replaced by logical albums, which allow multiple files in an album and presence of a file in multiple albums. This design, however, makes **parent**, **albumId**, **albumUri**, and **albumName** incompatible. They cannot be used as parameters of **MediaFetchOptions** in **getFileAssets()**. For details, see [Change of the mediaLibrary Interface Compatibility](../../../release-notes/changelogs/v4.0-beta2/changelogs-medialibrary.md).
 
 **Required permissions**: ohos.permission.READ_MEDIA
 
@@ -290,7 +290,7 @@ Creates a media asset. This API uses an asynchronous callback to return the resu
 > **NOTE**
 >
 > - This API is deprecated since API version 9. Use [createAsset](js-apis-photoAccessHelper.md#createasset) instead.
-> - From the SDK of API version 10, **relativePath** is no longer associated with an album. After a file is created, the last-level directory of **relativePath** is not displayed. For details, see [changelogs-mediaLibrary.md](../../../release-notes/changelogs/v4.0-beta2/changelogs-medialibrary.md).
+> - From the SDK of API version 10, **relativePath** is no longer associated with an album. After a file is created, the last-level directory of **relativePath** is not displayed. For details, see [Change of the mediaLibrary Interface Compatibility](../../../release-notes/changelogs/v4.0-beta2/changelogs-medialibrary.md).
 
 **Required permissions**: ohos.permission.READ_MEDIA and ohos.permission.WRITE_MEDIA
 
@@ -332,7 +332,7 @@ Creates a media asset. This API uses a promise to return the result.
 > **NOTE**
 >
 > - This API is deprecated since API version 9. Use [createAsset](js-apis-photoAccessHelper.md#createasset-1) instead.
-> - From the SDK of API version 10, **relativePath** is no longer associated with an album. After a file is created, the last-level directory of **relativePath** is not displayed. For details, see [changelogs-mediaLibrary.md](../../../release-notes/changelogs/v4.0-beta2/changelogs-medialibrary.md).
+> - From the SDK of API version 10, **relativePath** is no longer associated with an album. After a file is created, the last-level directory of **relativePath** is not displayed. For details, see [Change of the mediaLibrary Interface Compatibility](../../../release-notes/changelogs/v4.0-beta2/changelogs-medialibrary.md).
 
 **Required permissions**: ohos.permission.READ_MEDIA and ohos.permission.WRITE_MEDIA
 
@@ -344,7 +344,7 @@ Creates a media asset. This API uses a promise to return the result.
 | ------------ | ------------------------ | ---- | ------------------------------------------------------------ |
 | mediaType    | [MediaType](#mediatype8) | Yes  | Media type.                                                    |
 | displayName  | string                   | Yes  | File name to display.                                                  |
-| relativePath | string                   | Yes  | Relative path of the file, which can be obtained by [getPublicDirectory](#getpublicdirectory8).|
+| relativePath | string                   | Yes  | Relative path of the file, which can be obtained by **getPublicDirectory**.|
 
 **Return value**
 
@@ -557,7 +557,7 @@ Obtains albums. This API uses an asynchronous callback to return the result.
 > **NOTE**
 >
 > - This API is deprecated since API version 9. Use [getAlbums](js-apis-photoAccessHelper.md#getalbums) instead.
-> - From the SDK of API version 10, **relativePath** is no longer associated with an album. Therefore, **relativePath** cannot be used as a search criterion in **getAlbums**. Currently, only **Camera** and **ScreenShots** albums are supported. For more details, see [changelogs-mediaLibrary.md](../../../release-notes/changelogs/v4.0-beta2/changelogs-medialibrary.md).
+> - From the SDK of API version 10, **relativePath** is no longer associated with an album and cannot be used in **getAlbums**. Currently, only **Camera** and **ScreenShots** albums are supported. For details, see [Change of the mediaLibrary Interface Compatibility](../../../release-notes/changelogs/v4.0-beta2/changelogs-medialibrary.md).
 
 **Required permissions**: ohos.permission.READ_MEDIA
 
@@ -597,7 +597,7 @@ Obtains albums. This API uses a promise to return the result.
 > **NOTE**
 >
 > - This API is deprecated since API version 9. Use [getAlbums](js-apis-photoAccessHelper.md#getalbums-2) instead.
-> - From the SDK of API version 10, **relativePath** is no longer associated with an album. Therefore, **relativePath** cannot be used as a search criterion in **getAlbums**. Currently, only **Camera** and **ScreenShots** albums are supported. For more details, see [changelogs-mediaLibrary.md](../../../release-notes/changelogs/v4.0-beta2/changelogs-medialibrary.md).
+> - From the SDK of API version 10, **relativePath** is no longer associated with an album and cannot be used in **getAlbums**. Currently, only **Camera** and **ScreenShots** albums are supported. For details, see [Change of the mediaLibrary Interface Compatibility](../../../release-notes/changelogs/v4.0-beta2/changelogs-medialibrary.md).
 
 **Required permissions**: ohos.permission.READ_MEDIA
 
@@ -765,7 +765,7 @@ mediaLibrary.getMediaLibrary().storeMediaAsset(option).then((value) => {
 
 startImagePreview(images: Array&lt;string&gt;, index: number, callback: AsyncCallback&lt;void&gt;): void
 
-Starts image preview, with the first image to preview specified. This API can be used to preview a local image with the specified index (**file://**) or all online images (**https://**). It uses an asynchronous callback to return the result.
+Starts image preview, with the first image to preview specified. This API can be used to preview a local image (**file://**) or all online images (**https://**). It uses an asynchronous callback to return the result.
 
 > **NOTE**
 >
@@ -851,7 +851,7 @@ mediaLibrary.getMediaLibrary().startImagePreview(images, (error) => {
 
 startImagePreview(images: Array&lt;string&gt;, index?: number): Promise&lt;void&gt;
 
-Starts image preview, with the first image to preview specified. This API can be used to preview a local image with the specified index (**file://**) or all online images (**https://**). It uses a promise to return the execution result.
+Starts image preview, with the first image to preview specified. This API can be used to preview a local image (**file://**) or all online images (**https://**). It uses a promise to return the execution result.
 
 > **NOTE**
 >
@@ -1252,7 +1252,7 @@ Commits the modification on the file metadata to the database. This API uses an 
 > **NOTE**
 >
 > - This API is deprecated since API version 9. Use [commitModify](js-apis-photoAccessHelper.md#commitmodify) instead.
-> - Since the SDK of API version 10, **audio** does not have the **orientation** attribute. Therefore, the **orientation** attribute of the audio resource cannot be modified by **commitModify()**. For details, see [changelogs-mediaLibrary.md](../../../release-notes/changelogs/v4.0-beta2/changelogs-medialibrary.md).
+> - Since the SDK of API version 10, **audio** does not have the **orientation** attribute. Therefore, the **orientation** attribute of the audio resource cannot be modified by **commitModify()**. For details, see [Change of the mediaLibrary Interface Compatibility](../../../release-notes/changelogs/v4.0-beta2/changelogs-medialibrary.md).
 
 **Required permissions**: ohos.permission.READ_MEDIA and ohos.permission.WRITE_MEDIA
 
@@ -1294,7 +1294,7 @@ Commits the modification on the file asset to the database. This API uses a prom
 > **NOTE**
 >
 > - This API is deprecated since API version 9. Use [commitModify](js-apis-photoAccessHelper.md#commitmodify-1) instead.
-> Since the SDK of API version 10, **audio** does not have the **orientation** attribute. Therefore, the **orientation** attribute of the audio resource cannot be modified by **commitModify()**. For details, see [changelogs-mediaLibrary.md](../../../release-notes/changelogs/v4.0-beta2/changelogs-medialibrary.md).
+> Since the SDK of API version 10, **audio** does not have the **orientation** attribute. Therefore, the **orientation** attribute of the audio resource cannot be modified by **commitModify()**. For details, see [Change of the mediaLibrary Interface Compatibility](../../../release-notes/changelogs/v4.0-beta2/changelogs-medialibrary.md).
 
 **Required permissions**: ohos.permission.READ_MEDIA and ohos.permission.WRITE_MEDIA
 
@@ -2962,7 +2962,7 @@ Defines the media asset option.
 | Name        | Type  | Readable| Writable| Description                                                        |
 | ------------ | ------ | ---- | ---- | ------------------------------------------------------------ |
 | src          | string | Yes  | Yes  | Application sandbox oath of the local file.                                      |
-| mimeType     | string | Yes  | Yes  | Multipurpose Internet Mail Extensions (MIME) type of the media.<br>The value can be 'image/\*', 'video/\*', 'audio/\*' or 'file/*'. |
+| mimeType     | string | Yes  | Yes  | Multipurpose Internet Mail Extensions (MIME) type of the media.<br>The value can be **'image/\*'**, **'video/\*'**, **'audio/\*'**, or **'file/\*'**.|
 | relativePath | string | Yes  | Yes  | Customized path of media assets, for example, **Pictures/**. If this parameter is unspecified, the default paths of media assets are as follows:<br> Default path of images: **'Pictures/'**<br> Default path of videos: **'Videos/'**<br> Default path of audio files: **'Audios/'**<br> Default path of documents: **'Documents/'** |
 
 ## MediaSelectOption
