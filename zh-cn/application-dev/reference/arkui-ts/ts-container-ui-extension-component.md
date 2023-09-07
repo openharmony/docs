@@ -131,47 +131,70 @@ onError(callback:[ErrorCallback](../apis/js-apis-base.md#errorcallback))
 
 ```ts
 // 组件使用示例：
+import Want from '@ohos.app.ability.Want';
+
 @Entry
 @Component
 struct Index {
   @State message: string = 'Hello World'
   private myProxy: UIExtensionProxy
+  want: Want = {
+    bundleName: "com.example.uiextensionprovider",
+    abilityName: "UIExtensionProvider",
+    parameters: { "x": 12345, "y": "data" }
+  }
+  sizeObject: SizeObject = {
+    width: "100%", height: "100%"
+  }
+  x: XObject = {
+    x: 5678910
+  }
+
   build() {
     Row() {
       Column() {
         Text(this.message).fontColor(Color.Red)
-        UIExtensionComponent(
-          {
-            bundleName: "com.example.uiextensionprovider",
-            abilityName: "UIExtensionProvider",
-            parameters: { "x": 12345, "y": "data" }
-          }
-        )
-        .size({ width: "100%", height:"100%" })
-        .onRemoteReady((proxy) => {
+        UIExtensionComponent(this.want)
+          .size(this.sizeObject)
+          .onRemoteReady((proxy: string) => {
             this.message = "remote ready"
             this.myProxy = proxy
-        })
-        .onReceive((data) => {
+          })
+          .onReceive((data: Object) => {
             this.message = JSON.stringify(data)
-        })
-        .onRelease((releaseCode) => {
-          this.message = "Release: " + releaseCode
-        })
-        .onResult((data) => {
-          this.message = JSON.stringify(data)
-        })
-        .onError((error) => {
-          this.message = "onError: " + error["code"] + ", name: " + error.name + ", message: " + error.message
-        })
+          })
+          .onRelease((releaseCode: number) => {
+            this.message = "Release: " + releaseCode
+          })
+          .onResult((data: Object) => {
+            this.message = JSON.stringify(data)
+          })
+          .onError((error: ErrorObject) => {
+            this.message = "onError: " + error.code + ", name: " + error.name + ", message: " + error.message
+          })
         Button("sendData").onClick(() => {
-          this.myProxy.send({ "x": 5678910 })
+          this.myProxy.send(this.x)
         })
       }
       .width("100%")
     }
     .height('100%')
   }
+}
+
+interface SizeObject {
+  width: string;
+  height: string;
+}
+
+interface XObject {
+  x: number
+}
+
+interface ErrorObject {
+  code: number;
+  name: string;
+  message: string;
 }
 ```
 
@@ -213,36 +236,43 @@ export default class UIExtAbility extends UIExtensionAbility {
 ```ts
 // 扩展Ability入口页面文件extension.ets
 import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession'
+
 let storage = LocalStorage.GetShared()
+
 @Entry(storage)
 @Component
 struct Index {
   @State message: string = 'UIExtension'
-  @State message2:string = 'message from comp'
+  @State message2: string = 'message from comp'
   private session: UIExtensionContentSession = storage.get<UIExtensionContentSession>('session');
   controller: TextInputController = new TextInputController()
+  xxx: XObject = {
+    xxx: "data from extension"
+  }
+
   onPageShow() {
-    this.session.setReceiveDataCallback((data)=> {
+    this.session.setReceiveDataCallback((data: Object) => {
       this.message2 = "data come from comp"
       this.message = JSON.stringify(data)
     })
   }
+
   build() {
     Row() {
       Column() {
         Text(this.message2)
         Text(this.message)
         Button("sendData")
-          .onClick(()=>{
-            this.session.sendData({"xxx": "data from extension"})
+          .onClick(() => {
+            this.session.sendData(this.xxx)
           })
         Button("terminateSelf")
-          .onClick(()=>{
+          .onClick(() => {
             this.session.terminateSelf();
             storage.clear();
           }).margin(5)
         Button("TerminateSelfWithResult")
-          .onClick(()=>{
+          .onClick(() => {
             this.session.terminateSelfWithResult({
               "resultCode": 0,
               "want": {
@@ -256,5 +286,9 @@ struct Index {
     }
     .height('100%')
   }
+}
+
+interface XObject {
+  xxx: string;
 }
 ```
