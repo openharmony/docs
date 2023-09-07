@@ -170,7 +170,7 @@ struct Index {
             this.message = "onError: " + error.code + ", name: " + error.name + ", message: " + error.message
           })
         Button("sendData").onClick(() => {
-          this.myProxy.send({"x": 5678910})
+          this.myProxy.send({ "x": 5678910 })
         })
       }
       .width("100%")
