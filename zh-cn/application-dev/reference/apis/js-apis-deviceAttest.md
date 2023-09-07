@@ -54,7 +54,7 @@ try {
 } catch (error) {
     let code: number = (error as base.BusinessError).code;
     let message: string = (error as base.BusinessError).message;
-    console.info("error code:" + error.code + " message:" + error.message);
+    console.info("error code:" + code + " message:" + message);
 }
 ```
 
@@ -95,7 +95,7 @@ try {
 } catch (error) {
     let code: number = (error as base.BusinessError).code;
     let message: string = (error as base.BusinessError).message;
-    console.info("error code:" + error.code + " message:" + error.message);
+    console.info("error code:" + code + " message:" + message);
 }
 ```
 
@@ -133,7 +133,7 @@ try {
 } catch (error) {
     let code: number = (error as base.BusinessError).code;
     let message: string = (error as base.BusinessError).message;
-    console.info("error code:" + error.code + " message:" + error.message);
+    console.info("error code:" + code + " message:" + message);
 }
 ```
 
