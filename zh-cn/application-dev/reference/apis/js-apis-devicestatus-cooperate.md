@@ -367,7 +367,7 @@ let deviceDescriptor = "networkId";
 try {
   cooperate.getCrossingSwitchState(deviceDescriptor).then((data: boolean) => {
     console.log(`Get the status success, data: ${JSON.stringify(data)}`);
-  }, (error) => {
+  }, (error: BusinessError) => {
     console.log(`Get the status failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
   });
 } catch (error) {
