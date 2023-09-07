@@ -89,9 +89,7 @@ try {
         " roothashResult:" + value.softwareResultDetail[2],
         " PCIDResult:" + value.softwareResultDetail[3],
         " reserver:" + value.softwareResultDetail[4]);
-    }).catch((error) => {
-        let code: number = (error as base.BusinessError).code;
-        let message: string = (error as base.BusinessError).message;
+    }).catch((error: base.BusinessError) => {
         console.info("error code:" + error.code + " message:" + error.message);
     });
 } catch (error) {
