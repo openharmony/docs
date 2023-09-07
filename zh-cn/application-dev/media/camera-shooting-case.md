@@ -42,12 +42,15 @@ async function cameraShootingCase(context: featureAbility.Context, surfaceId: st
   }
 
   // 创建相机输入流
-  let cameraInput: camera.CameraInput;
+  let cameraInput: camera.CameraInput | undefined = undefined;
   try {
     cameraInput = cameraManager.createCameraInput(cameraArray[0]);
   } catch (error) {
     let err = error as BusinessError;
     console.error('Failed to createCameraInput errorCode = ' + err.code);
+  }
+  if (cameraInput === undefined) {
+    return;
   }
 
   // 监听cameraInput错误信息
@@ -78,14 +81,16 @@ async function cameraShootingCase(context: featureAbility.Context, surfaceId: st
   }
 
   // 创建预览输出流,其中参数 surfaceId 参考上文 XComponent 组件，预览流为XComponent组件提供的surface
-  let previewOutput: camera.PreviewOutput;
+  let previewOutput: camera.PreviewOutput | undefined = undefined;
   try {
     previewOutput = cameraManager.createPreviewOutput(previewProfilesArray[0], surfaceId);
   } catch (error) {
     let err = error as BusinessError;
     console.error(`Failed to create the PreviewOutput instance. error code: ${err.code}`);
   }
-
+  if (previewOutput === undefined) {
+    return;
+  }
   // 监听预览输出错误信息
   previewOutput.on('error', (error: BusinessError) => {
     console.info(`Preview output error code: ${error.code}`);
@@ -96,22 +101,27 @@ async function cameraShootingCase(context: featureAbility.Context, surfaceId: st
   // 获取照片显示SurfaceId
   let photoSurfaceId: string = await imageReceiver.getReceivingSurfaceId();
   // 创建拍照输出流
-  let photoOutput: camera.PhotoOutput;
+  let photoOutput: camera.PhotoOutput | undefined = undefined;
   try {
     photoOutput = cameraManager.createPhotoOutput(photoProfilesArray[0], photoSurfaceId);
   } catch (error) {
     let err = error as BusinessError;
     console.error('Failed to createPhotoOutput errorCode = ' + err.code);
   }
+  if (photoOutput === undefined) {
+    return;
+  }
   //创建会话
-  let captureSession: camera.CaptureSession;
+  let captureSession: camera.CaptureSession | undefined = undefined;
   try {
     captureSession = cameraManager.createCaptureSession();
   } catch (error) {
     let err = error as BusinessError;
     console.error('Failed to create the CaptureSession instance. errorCode = ' + err.code);
   }
-
+  if (captureSession === undefined) {
+    return;
+  }
   // 监听session错误信息
   captureSession.on('error', (error: BusinessError) => {
     console.info(`Capture session error code: ${error.code}`);
@@ -157,7 +167,7 @@ async function cameraShootingCase(context: featureAbility.Context, surfaceId: st
     console.info('Promise returned to indicate the session start success.');
   });
   // 判断设备是否支持闪光灯
-  let flashStatus: boolean;
+  let flashStatus: boolean = false;
   try {
     flashStatus = captureSession.hasFlash();
   } catch (error) {
@@ -168,7 +178,7 @@ async function cameraShootingCase(context: featureAbility.Context, surfaceId: st
 
   if (flashStatus) {
     // 判断是否支持自动闪光灯模式
-    let flashModeStatus: boolean;
+    let flashModeStatus: boolean = false;
     try {
       let status: boolean = captureSession.isFlashModeSupported(camera.FlashMode.FLASH_MODE_AUTO);
       flashModeStatus = status;
@@ -188,7 +198,7 @@ async function cameraShootingCase(context: featureAbility.Context, surfaceId: st
   }
 
   // 判断是否支持连续自动变焦模式
-  let focusModeStatus: boolean;
+  let focusModeStatus: boolean = false;
   try {
     let status: boolean = captureSession.isFocusModeSupported(camera.FocusMode.FOCUS_MODE_CONTINUOUS_AUTO);
     focusModeStatus = status;
@@ -208,14 +218,16 @@ async function cameraShootingCase(context: featureAbility.Context, surfaceId: st
   }
 
   // 获取相机支持的可变焦距比范围
-  let zoomRatioRange: Array<number>;
+  let zoomRatioRange: Array<number> = [];
   try {
     zoomRatioRange = captureSession.getZoomRatioRange();
   } catch (error) {
     let err = error as BusinessError;
     console.error('Failed to get the zoom ratio range. errorCode = ' + err.code);
   }
-
+  if (zoomRatioRange.length <= 0) {
+    return;
+  }
   // 设置可变焦距比
   try {
     captureSession.setZoomRatio(zoomRatioRange[0]);
@@ -251,7 +263,7 @@ async function cameraShootingCase(context: featureAbility.Context, surfaceId: st
   captureSession.release();
 
   // 会话置空
-  captureSession = null;
+  captureSession = undefined;
 }
 ```
 
