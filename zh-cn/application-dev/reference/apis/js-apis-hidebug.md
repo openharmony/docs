@@ -169,6 +169,14 @@ getServiceDump(serviceid : number, fd : number, args : Array\<string>) : void
 | fd | number | 是   | 文件描述符，该接口会往该fd中写入数据。|
 | args | Array\<string> | 是   | 系统服务的Dump接口所对应的参数列表。|
 
+**错误码：**
+
+以下错误码的详细介绍请参见[系统事件错误码](../errorcodes/errorcode-hiviewdfx-hidebug.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ----------------------------------------------------------------- |
+| 11400101 | the service id is invalid                                           |
+| 401 | the parameter check failed                                            |
 
 **示例：**
 
@@ -217,6 +225,14 @@ startJsCpuProfiling(filename : string) : void
 | 参数名   | 类型   | 必填 | 说明                                                         |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
 | filename | string | 是   | 用户自定义的profiling文件名，根据传入的`filename`，将在应用的`files`目录生成`filename.json`文件。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[系统事件错误码](../errorcodes/errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ----------------------------------------------------------------- |
+| 401 | the parameter check failed                                            |
 
 **示例：**
 
@@ -277,6 +293,14 @@ dumpJsHeapData(filename : string) : void
 | 参数名   | 类型   | 必填 | 说明                                                         |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
 | filename | string | 是   | 用户自定义的虚拟机堆文件名，根据传入的`filename`，将在应用的`files`目录生成`filename.heapsnapshot`文件。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[系统事件错误码](../errorcodes/errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ----------------------------------------------------------------- |
+| 401 | the parameter check failed                                            |
 
 **示例：**
 
