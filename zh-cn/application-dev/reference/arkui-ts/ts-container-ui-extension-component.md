@@ -137,7 +137,7 @@ import Want from '@ohos.app.ability.Want';
 @Component
 struct Index {
   @State message: string = 'Hello World'
-  private myProxy: UIExtensionProxy
+  private myProxy: UIExtensionProxy | null = null;
   want: Want = {
     bundleName: "com.example.uiextensionprovider",
     abilityName: "UIExtensionProvider",
@@ -170,7 +170,10 @@ struct Index {
             this.message = "onError: " + error.code + ", name: " + error.name + ", message: " + error.message
           })
         Button("sendData").onClick(() => {
-          this.myProxy.send({ "x": 5678910 })
+          if (this.myProxy != null) {
+            let a: Record<string, number> = { "x": 5678910 };
+            this.myProxy.send(a)
+          }
         })
       }
       .width("100%")
@@ -237,14 +240,16 @@ let storage = LocalStorage.GetShared()
 struct Index {
   @State message: string = 'UIExtension'
   @State message2: string = 'message from comp'
-  private session: UIExtensionContentSession = storage.get<UIExtensionContentSession>('session');
+  private session: UIExtensionContentSession | undefined = storage.get<UIExtensionContentSession>('session');
   controller: TextInputController = new TextInputController()
 
   onPageShow() {
-    this.session.setReceiveDataCallback((data: Object) => {
-      this.message2 = "data come from comp"
-      this.message = JSON.stringify(data)
-    })
+    if (this.session != undefined) { 
+      this.session.setReceiveDataCallback((data: Object) => {
+        this.message2 = "data come from comp"
+        this.message = JSON.stringify(data)
+      })
+    }
   }
 
   build() {
@@ -254,22 +259,29 @@ struct Index {
         Text(this.message)
         Button("sendData")
           .onClick(() => {
-            this.session.sendData({"xxx": "data from extension"})
+            if (this.session != undefined) {
+              let a: Record<string, string> = {"xxx": "data from extension"};
+              this.session.sendData(a)
+            }
           })
         Button("terminateSelf")
           .onClick(() => {
-            this.session.terminateSelf();
-            storage.clear();
+            if (this.session != undefined) {
+              this.session.terminateSelf();
+              storage.clear();
+            }
           }).margin(5)
         Button("TerminateSelfWithResult")
           .onClick(() => {
-            this.session.terminateSelfWithResult({
-              "resultCode": 0,
-              "want": {
-                "bundleName": "myName"
-              }
-            });
-            storage.clear();
+            if (this.session != undefined) {
+              this.session.terminateSelfWithResult({
+                "resultCode": 0,
+                "want": {
+                  "bundleName": "myName"
+                }
+              });
+              storage.clear();
+            }
           }).margin(5)
       }
       .width('100%')
