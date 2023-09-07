@@ -38,7 +38,7 @@ try {
 if (kvManager !== undefined) {
   kvManager = kvManager as distributedKVStore.KVManager;
   try {
-    const options = {
+    const options: distributedKVStore.Options = {
       createIfMissing: true,
       // 设置数据库加密
       encrypt: true,
