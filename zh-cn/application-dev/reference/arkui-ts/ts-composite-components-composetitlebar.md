@@ -1,10 +1,10 @@
-# ComposeTitleBar
+# @ohos.arkui.advanced.ComposeTitleBar（头像和单双行文本标题栏）
 
 
-普通型标题栏的一种，支持设置标题、头像（可选）、副标题（可选）；可用于一级页面、二级及其以上界面（配置返回键）。
+一种普通标题栏，支持设置标题、头像（可选）和副标题（可选），可用于一级页面、二级及其以上界面配置返回键。
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > 该组件从API Version 10开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
@@ -20,7 +20,7 @@ import { ComposeTitleBar } from "@ohos.arkui.advanced.ComposeTitleBar"
 无
 
 
-## 接口
+## ComposeTitleBar
 
 ComposeTitleBar({item?: ComposeTitleBarMenuItem, title: ResourceStr, subtitle?: ResourceStr, menuItems?: Array&lt;ComposeTitleBarMenuItem&gt;})
 
@@ -30,7 +30,7 @@ ComposeTitleBar({item?: ComposeTitleBarMenuItem, title: ResourceStr, subtitle?: 
 
 **参数：**
 
-| 参数名 | 参数类型 | 必选 | 参数描述 | 
+| 名称 | 类型 | 必填 | 说明 | 
 | -------- | -------- | -------- | -------- |
 | item | [ComposeTitleBarMenuItem](#composetitlebarmenuitem) | 否 | 用于左侧头像的单个菜单项目 | 
 | title | [ResourceStr](ts-types.md#resourcestr) | 是 | 标题 | 
@@ -40,14 +40,16 @@ ComposeTitleBar({item?: ComposeTitleBarMenuItem, title: ResourceStr, subtitle?: 
 
 ### ComposeTitleBarMenuItem
 
-| 名称 | 值 | 是否必填 | 描述 | 
+| 名称 | 类型 | 必填 | 说明 | 
 | -------- | -------- | -------- | -------- |
 | value | [ResourceStr](ts-types.md#resourcestr) | 是 | 图标资源 | 
 | isEnabled | boolean | 是 | 是否启用，默认启用 | 
 | action | ()&nbsp;=&gt;&nbsp;void | 否 | 触发时的动作闭包 | 
 
 
-## 示例 1 - 单行文本
+## 示例
+
+### 示例 1 - 单行文本
 
 ```ts
 import { ComposeTitleBar } from "@ohos.arkui.advanced.ComposeTitleBar"
@@ -59,7 +61,7 @@ struct Index {
     Row() {
       Column() {
         ComposeTitleBar({
-          title: "标题标题标题标题标题标题标题"
+          title: "标题"
         })
       }.width('100%')
     }.height('100%')
@@ -67,10 +69,10 @@ struct Index {
 }
 ```
 
-![zh-cn_image_0000001616913438](figures/zh-cn_image_0000001616913438.png)
+![zh-cn_image_0000001616913438](figures/zh-cn_image_0000001616913438.jpg)
 
 
-## 示例 2 - 双行文本
+### 示例 2 - 双行文本
 
 ```ts
 import { ComposeTitleBar } from "@ohos.arkui.advanced.ComposeTitleBar"
@@ -82,8 +84,8 @@ struct Index {
     Row() {
       Column() {
         ComposeTitleBar({
-          title: "标题标题标题标题标题标题标题",
-          subtitle: "副标题副标题副标题副标题副标题副标题副标题"
+          title: "标题",
+          subtitle: "副标题"
         })
       }.width('100%')
     }.height('100%')
@@ -91,10 +93,10 @@ struct Index {
 }
 ```
 
-![zh-cn_image_0000001665513149](figures/zh-cn_image_0000001665513149.png)
+![zh-cn_image_0000001665513149](figures/zh-cn_image_0000001665513149.jpg)
 
 
-## 示例 3 - 双行文本带菜单
+### 示例 3 - 双行文本带菜单
 
 ```ts
 import { ComposeTitleBar } from "@ohos.arkui.advanced.ComposeTitleBar"
@@ -121,20 +123,20 @@ struct Index {
       Column() {
         Divider().height(2).color(0xCCCCCC)
         ComposeTitleBar({
-          title: "标题标题标题标题标题标题标题",
-          subtitle: "副标题副标题副标题副标题副标题副标题副标题",
+          title: "标题",
+          subtitle: "副标题",
           menuItems: this.menuItems.slice(0, 1),
         })
         Divider().height(2).color(0xCCCCCC)
         ComposeTitleBar({
-          title: "标题标题标题标题标题标题标题",
-          subtitle: "副标题副标题副标题副标题副标题副标题副标题",
+          title: "标题",
+          subtitle: "副标题",
           menuItems: this.menuItems.slice(0, 2),
         })
         Divider().height(2).color(0xCCCCCC)
         ComposeTitleBar({
-          title: "标题标题标题标题标题标题标题",
-          subtitle: "副标题副标题副标题副标题副标题副标题副标题",
+          title: "标题",
+          subtitle: "副标题",
           menuItems: this.menuItems,
         })
         Divider().height(2).color(0xCCCCCC)
@@ -144,10 +146,10 @@ struct Index {
 }
 ```
 
-![zh-cn_image_0000001617233250](figures/zh-cn_image_0000001617233250.png)
+![zh-cn_image_0000001617233250](figures/zh-cn_image_0000001617233250.jpg)
 
 
-## 示例 4 - 头像+双行文本带菜单
+### 示例 4 - 头像+双行文本带菜单
 
 ```ts
 import { ComposeTitleBar } from "@ohos.arkui.advanced.ComposeTitleBar"
@@ -163,8 +165,8 @@ struct Index {
           menuItems: [ { isEnabled: true, value: $r('app.media.ic_public_save'),
             action: () => prompt.showToast({ message: "show toast index 1" })
           } ],
-          title: "标题标题标题标题标题标题标题",
-          subtitle: "副标题副标题副标题副标题副标题副标题副标题",
+          title: "标题",
+          subtitle: "副标题",
           item: { isEnabled: true, value: $r('app.media.app_icon') } })
       }.width('100%')
     }.height('100%')
@@ -172,4 +174,4 @@ struct Index {
 }
 ```
 
-![zh-cn_image_0000001617393174](figures/zh-cn_image_0000001617393174.png)
+![zh-cn_image_0000001617393174](figures/zh-cn_image_0000001617393174.jpg)

@@ -1,10 +1,10 @@
-# EditableTitleBar
+# @ohos.arkui.advanced.EditableTitleBar（编辑页面标题栏）
 
 
 编辑型标题栏，适用于多选界面或者内容的编辑界面，一般采取左叉右勾的形式。
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > 该组件从API Version 10开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
@@ -20,7 +20,7 @@ import { EditableTitleBar } from "@ohos.arkui.advanced.EditableTitleBar"
 无
 
 
-## 接口
+## EditableTitleBar
 
 EditableTitleBar({leftIconType: EditableLeftIconType, title: ResourceStr, menuItems?: Array&lt;EditableTitleBarMenuItem&gt;, onSave?: () =&gt; void, onCancel?: () =&gt;void})
 
@@ -30,7 +30,7 @@ EditableTitleBar({leftIconType: EditableLeftIconType, title: ResourceStr, menuIt
 
 **参数：**
 
-| 参数名 | 参数类型 | 必选 | 参数描述 | 
+| 名称 | 类型 | 必填 | 说明 | 
 | -------- | -------- | -------- | -------- |
 | leftIconStyle | [EditableLeftIconType](#editablelefticontype) | 是 | 左侧按钮类型 | 
 | title | [ResourceStr](ts-types.md#resourcestr) | 是 | 标题 | 
@@ -41,7 +41,7 @@ EditableTitleBar({leftIconType: EditableLeftIconType, title: ResourceStr, menuIt
 
 ### EditableLeftIconType
 
-| 名称 | 描述 | 
+| 名称 | 说明 | 
 | -------- | -------- |
 | Back | 返回按钮 | 
 | Cancel | 取消按钮 | 
@@ -49,14 +49,16 @@ EditableTitleBar({leftIconType: EditableLeftIconType, title: ResourceStr, menuIt
 
 ### EditableTitleBarMenuItem
 
-| 名称 | 值 | 是否必填 | 描述 | 
+| 名称 | 类型 | 必填 | 说明 | 
 | -------- | -------- | -------- | -------- |
 | value | [ResourceStr](ts-types.md#resourcestr) | 是 | 图标资源 | 
 | isEnabled | boolean | 是 | 是否启用，默认启用 | 
 | action | ()&nbsp;=&gt;&nbsp;void | 否 | 触发时的动作闭包 | 
 
 
-## 示例 1
+## 示例
+
+### 示例 1
 
 ```ts
 import { EditableLeftIconType } from "@ohos.arkui.advanced.EditableTitleBar"
@@ -90,7 +92,7 @@ struct Index {
 ![zh-cn_image_0000001617073302](figures/zh-cn_image_0000001617073302.png)
 
 
-## 示例 2
+### 示例 2
 
 ```ts
 import { EditableLeftIconType } from "@ohos.arkui.advanced.EditableTitleBar"
