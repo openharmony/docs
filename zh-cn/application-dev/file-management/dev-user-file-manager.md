@@ -40,7 +40,7 @@ OpenHarmony预置了FileManager文件管理器。系统应用开发者也可以�
 
    // 创建连接系统内所有文件管理服务端的helper对象
    let fileAccessHelperAllServer: fileAccess.FileAccessHelper;
-   function createFileAccessHelper() {
+   function createFileAccessHelper(): void {
      try {    // this.context是EntryAbility传过来的Context
        fileAccessHelperAllServer = fileAccess.createFileAccessHelper(context);
        if (!fileAccessHelperAllServer) {
@@ -52,7 +52,7 @@ OpenHarmony预置了FileManager文件管理器。系统应用开发者也可以�
      }
    }
    let rootInfos: Array<fileAccess.RootInfo> = [];
-   async function getRoots() {
+   async function getRoots(): Promise<void>{
      let rootIterator: fileAccess.RootIterator;
      let isDone: boolean = false;
      try {
@@ -136,7 +136,7 @@ OpenHarmony预置了FileManager文件管理器。系统应用开发者也可以�
    // 创建文件
    // 示例代码sourceUri是Download目录的fileinfo中的URI
    // 开发者应根据自己实际获取fileinfo的URI进行开发
-   async function creatFile() {
+   async function creatFile(): Promise<void> {
      let sourceUri: string = "file://docs/storage/Users/currentUser/Download";
      let displayName: string = "file1";
      let fileUri: string;
