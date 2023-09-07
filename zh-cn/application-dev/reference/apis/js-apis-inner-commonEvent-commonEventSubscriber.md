@@ -186,7 +186,8 @@ setCode的同步接口
 
 try {
     subscriber.setCodeSync(1);
-} catch (err) {
+} catch (error) {
+    let err:Base.BusinessError = error as Base.BusinessError;
     console.error(`setCodeSync failed, code is ${err.code}, message is ${err.message}`);
 }
 ```
@@ -341,7 +342,8 @@ setData的同步接口。
 ```ts
 try {
     subscriber.setDataSync("publish_data_changed");
-} catch (err) {
+} catch (error) {
+    let err:Base.BusinessError = error as Base.BusinessError;
     console.error(`setDataSync failed, code is ${err.code}, message is ${err.message}`);
 }
 ```
@@ -427,7 +429,8 @@ setCodeAndDataSync(code: number, data: string): void
 ```ts
 try {
     subscriber.setCodeAndDataSync(1, "publish_data_changed");
-} catch (err) {
+} catch (error) {
+    let err:Base.BusinessError = error as Base.BusinessError;
     console.error(`setCodeAndData failed, code is ${err.code}, message is ${err.message}`);
 }
 
