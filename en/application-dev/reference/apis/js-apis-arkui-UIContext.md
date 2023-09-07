@@ -356,7 +356,7 @@ uiContext.showDatePickerDialog({
   selected: selectedDate,
   onAccept: (value: DatePickerResult) => {
     // Use the setFullYear method to set the date when the OK button is touched. In this way, when the date picker dialog box is displayed again, the selected date is the date last confirmed.
-    selectedDate.setFullYear(value.year, value.month, value.day)
+    selectedDate.setFullYear(Number(value.year), Number(value.month), Number(value.day))
     console.info("DatePickerDialog:onAccept()" + JSON.stringify(value))
   },
   onCancel: () => {
@@ -392,12 +392,20 @@ Shows a time picker dialog box.
 **Example**
 
 ```ts
-let selectTime: Date = new Date('2020-12-25T08:30:00')
+class sethours{
+  selectTime: Date = new Date('2020-12-25T08:30:00')
+  hours(h:number,m:number){
+    this.selectTime.setHours(h,m)
+  }
+}
 uiContext.showTimePickerDialog({
   selected: this.selectTime,
   onAccept: (value: TimePickerResult) => {
     // Set selectTime to the time when the OK button is clicked. In this way, when the dialog box is displayed again, the selected time is the time when the operation was confirmed last time.
-    this.selectTime.setHours(value.hour, value.minute)
+    let time = new sethours()
+    if(value.hour&&value.minute){
+      time.hours(value.hour, value.minute)
+    }
     console.info("TimePickerDialog:onAccept()" + JSON.stringify(value))
   },
   onCancel: () => {
@@ -435,14 +443,29 @@ Shows a text picker in the given settings.
 **Example**
 
 ```ts
-let select: number = 2
+{ class setvalue{
+  select: number = 2
+  set(val:number){
+    this.select = val
+  }
+}
+class setvaluearr{
+  select: number[] = []
+  set(val:number[]){
+    this.select = val
+  }
+}
 let fruits: string[] = ['apple1', 'orange2', 'peach3', 'grape4', 'banana5']
 uiContext.showTextPickerDialog({
   range: this.fruits,
   selected: this.select,
   onAccept: (value: TextPickerResult) => {
     // Set select to the index of the item selected when the OK button is touched. In this way, when the text picker dialog box is displayed again, the selected item is the one last confirmed.
-    this.select = value.index
+    let setv = new setvalue()
+    let setvarr = new setvaluearr()
+    if(value.index){
+      value.index instanceof Array?setvarr.set(value.index) : setv.set(value.index)
+    }
     console.info("TextPickerDialog:onAccept()" + JSON.stringify(value))
   },
   onCancel: () => {
@@ -477,7 +500,8 @@ Creates an **Animator** object.
 **Example**
 
 ```ts
-let options = {
+import { AnimatorOptions } from '@ohos.animator';
+let options:AnimatorOptions = {
   duration: 1500,
   easing: "friction",
   delay: 0,
@@ -535,7 +559,8 @@ Registers a custom font with the font manager.
 **Example**
 
 ```ts
-let font = uiContext.getFont();
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+let font:Font = uiContext.getFont();
 font.registerFont({
   familyName: 'medium',
   familySrc: '/font/medium.ttf'
@@ -558,8 +583,11 @@ Obtains the list of supported fonts.
 **Example**
 
 ```ts
-let font = uiContext.getFont();
-font.getSystemFontList()
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+let font:Font|undefined = uiContext.getFont();
+if(font){
+  font.getSystemFontList()
+}
 ```
 
 ### getFontByName
@@ -585,8 +613,11 @@ Obtains information about a system font based on the font name.
 **Example**
 
 ```ts
-let font = uiContext.getFont();
-font.getFontByName('Sans Italic')
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+let font:Font|undefined = uiContext.getFont();
+if(font){
+  font.getFontByName('Sans Italic')
+}
 ```
 
 ## ComponentUtils
@@ -616,7 +647,8 @@ Obtains the size, position, translation, scaling, rotation, and affine matrix in
 **Example**
 
 ```ts
-let componentUtils = uiContext.getComponentUtils();
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+let componentUtils:ComponentUtils = uiContext.getComponentUtils();
 let modePosition = componentUtils.getRectangleById("onClick");
 let localOffsetWidth = modePosition.size.width;
 let localOffsetHeight = modePosition.size.height;
@@ -649,7 +681,8 @@ Creates an observer for the specified component.
 **Example**
 
 ```ts
-let inspector = uiContext.getUIInspector();
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+let inspector:UIInspector = uiContext.getUIInspector();
 let listener = inspector.createComponentObserver('COMPONENT_ID');
 ```
 
@@ -680,7 +713,8 @@ Sets the media query criteria and returns the corresponding listening handle.
 **Example**
 
 ```ts
-let mediaquery = uiContext.getMediaQuery();
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+let mediaquery: MediaQuery = uiContext.getMediaQuery();
 let listener = mediaquery.matchMediaSync('(orientation: landscape)'); // Listen for landscape events.
 ```
 
@@ -721,22 +755,24 @@ For details about the error codes, see [Router Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-let router = uiContext.getRouter();
-router.pushUrl({
-  url: 'pages/routerpage2',
-  params: {
-    data1: 'message',
-    data2: {
-      data3: [123, 456, 789]
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+import { BusinessError } from '@ohos.base';
+let router:Router = uiContext.getRouter();
+try {
+  router.pushUrl({
+    url: 'pages/routerpage2',
+    params: {
+      data1: 'message',
+      data2: {
+        data3: [123, 456, 789]
+      }
     }
-  }
-})
-  .then(() => {
-    // success
   })
-  .catch(err => {
-    console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
-  })
+} catch (err) {
+  let message = (err as BusinessError).message;
+  let code = (err as BusinessError).code;
+  console.error(`pushUrl failed, code is ${code}, message is ${message}`);
+}
 ```
 
 ### pushUrl
@@ -767,7 +803,9 @@ For details about the error codes, see [Router Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-let router = uiContext.getRouter();
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+import { BusinessError } from '@ohos.base';
+let router:Router = uiContext.getRouter();
 router.pushUrl({
   url: 'pages/routerpage2',
   params: {
@@ -776,9 +814,11 @@ router.pushUrl({
       data3: [123, 456, 789]
     }
   }
-}, (err) => {
+}, (err: Error) => {
   if (err) {
-    console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
+    let message = (err as BusinessError).message;
+    let code = (err as BusinessError).code;
+    console.error(`pushUrl failed, code is ${code}, message is ${message}`);
     return;
   }
   console.info('pushUrl success');
@@ -819,22 +859,29 @@ For details about the error codes, see [Router Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-let router = uiContext.getRouter();
-router.pushUrl({
-  url: 'pages/routerpage2',
-  params: {
-    data1: 'message',
-    data2: {
-      data3: [123, 456, 789]
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+import { BusinessError } from '@ohos.base';
+import router from '@ohos.router';
+let routerF:Router = uiContext.getRouter();
+class routerTmp{
+  Standard:router.RouterMode = router.RouterMode.Standard
+}
+let rtm:routerTmp = new routerTmp()
+try {
+  routerF.pushUrl({
+    url: 'pages/routerpage2',
+    params: {
+      data1: 'message',
+      data2: {
+        data3: [123, 456, 789]
+      }
     }
-  }
-}, router.RouterMode.Standard)
-  .then(() => {
-    // success
-  })
-  .catch(err => {
-    console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
-  })
+  }, rtm.Standard)
+} catch (err) {
+  let message = (err as BusinessError).message;
+  let code = (err as BusinessError).code;
+  console.error(`pushUrl failed, code is ${code}, message is ${message}`);
+}
 ```
 
 ### pushUrl
@@ -866,8 +913,15 @@ For details about the error codes, see [Router Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-let router = uiContext.getRouter();
-router.pushUrl({
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+import { BusinessError } from '@ohos.base';
+import router from '@ohos.router';
+let routerF:Router = uiContext.getRouter();
+class routerTmp{
+  Standard:router.RouterMode = router.RouterMode.Standard
+}
+let rtm:routerTmp = new routerTmp()
+routerF.pushUrl({
   url: 'pages/routerpage2',
   params: {
     data1: 'message',
@@ -875,9 +929,11 @@ router.pushUrl({
       data3: [123, 456, 789]
     }
   }
-}, router.RouterMode.Standard, (err) => {
+}, rtm.Standard, (err) => {
   if (err) {
-    console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
+    let message = (err as BusinessError).message;
+    let code = (err as BusinessError).code;
+    console.error(`pushUrl failed, code is ${code}, message is ${message}`);
     return;
   }
   console.info('pushUrl success');
@@ -916,19 +972,21 @@ For details about the error codes, see [Router Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-let router = uiContext.getRouter();
-router.replaceUrl({
-  url: 'pages/detail',
-  params: {
-    data1: 'message'
-  }
-})
-  .then(() => {
-    // success
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+import { BusinessError } from '@ohos.base';
+let router:Router = uiContext.getRouter();
+try {
+  router.replaceUrl({
+    url: 'pages/detail',
+    params: {
+      data1: 'message'
+    }
   })
-  .catch(err => {
-    console.error(`replaceUrl failed, code is ${err.code}, message is ${err.message}`);
-  })
+} catch (err) {
+  let message = (err as BusinessError).message;
+  let code = (err as BusinessError).code;
+  console.error(`replaceUrl failed, code is ${code}, message is ${message}`);
+}
 ```
 
 ### replaceUrl
@@ -958,15 +1016,19 @@ For details about the error codes, see [Router Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-let router = uiContext.getRouter();
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+import { BusinessError } from '@ohos.base';
+let router:Router = uiContext.getRouter();
 router.replaceUrl({
   url: 'pages/detail',
   params: {
     data1: 'message'
   }
-}, (err) => {
+}, (err: Error) => {
   if (err) {
-    console.error(`replaceUrl failed, code is ${err.code}, message is ${err.message}`);
+    let message = (err as BusinessError).message;
+    let code = (err as BusinessError).code;
+    console.error(`replaceUrl failed, code is ${code}, message is ${message}`);
     return;
   }
   console.info('replaceUrl success');
@@ -1006,16 +1068,25 @@ For details about the error codes, see [Router Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-let router = uiContext.getRouter();
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+import { BusinessError } from '@ohos.base';
+import router from '@ohos.router';
+let routerF:Router = uiContext.getRouter();
+class routerTmp{
+  Standard:router.RouterMode = router.RouterMode.Standard
+}
+let rtm:routerTmp = new routerTmp()
 try {
-  router.replaceUrl({
+  routerF.replaceUrl({
     url: 'pages/detail',
     params: {
       data1: 'message'
     }
-  }, router.RouterMode.Standard)
+  }, rtm.Standard)
 } catch (err) {
-  console.error(`replaceUrl failed, code is ${err.code}, message is ${err.message}`);
+  let message = (err as BusinessError).message;
+  let code = (err as BusinessError).code;
+  console.error(`replaceUrl failed, code is ${code}, message is ${message}`);
 }
 ```
 
@@ -1047,15 +1118,24 @@ For details about the error codes, see [Router Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-let router = uiContext.getRouter();
-router.replaceUrl({
+import { ComponentUtils, Font, PromptAction, Router, UIInspector,  MediaQuery } from '@ohos.arkui.UIContext';
+import { BusinessError } from '@ohos.base';
+import router from '@ohos.router';
+let routerF:Router = uiContext.getRouter();
+class routerTmp{
+  Standard:router.RouterMode = router.RouterMode.Standard
+}
+let rtm:routerTmp = new routerTmp()
+routerF.replaceUrl({
   url: 'pages/detail',
   params: {
     data1: 'message'
   }
-}, router.RouterMode.Standard, (err) => {
+}, rtm.Standard, (err: Error) => {
   if (err) {
-    console.error(`replaceUrl failed, code is ${err.code}, message is ${err.message}`);
+    let message = (err as BusinessError).message;
+    let code = (err as BusinessError).code;
+    console.error(`replaceUrl failed, code is ${code}, message is ${message}`);
     return;
   }
   console.info('replaceUrl success');
@@ -1095,22 +1175,24 @@ For details about the error codes, see [Router Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-let router = uiContext.getRouter();
-router.pushNamedRoute({
-  name: 'myPage',
-  params: {
-    data1: 'message',
-    data2: {
-      data3: [123, 456, 789]
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+import { BusinessError } from '@ohos.base';
+let router:Router = uiContext.getRouter();
+try {
+  router.pushNamedRoute({
+    name: 'myPage',
+    params: {
+      data1: 'message',
+      data2: {
+        data3: [123, 456, 789]
+      }
     }
-  }
-})
-  .then(() => {
-    // success
   })
-  .catch(err => {
-    console.error(`pushNamedRoute failed, code is ${err.code}, message is ${err.message}`);
-  })
+} catch (err) {
+  let message = (err as BusinessError).message;
+  let code = (err as BusinessError).code;
+  console.error(`pushNamedRoute failed, code is ${code}, message is ${message}`);
+}
 ```
 
 ### pushNamedRoute
@@ -1141,7 +1223,9 @@ For details about the error codes, see [Router Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-let router = uiContext.getRouter();
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+import { BusinessError } from '@ohos.base';
+let router:Router = uiContext.getRouter();
 router.pushNamedRoute({
   name: 'myPage',
   params: {
@@ -1150,9 +1234,11 @@ router.pushNamedRoute({
       data3: [123, 456, 789]
     }
   }
-}, (err) => {
+}, (err: Error) => {
   if (err) {
-    console.error(`pushNamedRoute failed, code is ${err.code}, message is ${err.message}`);
+    let message = (err as BusinessError).message;
+    let code = (err as BusinessError).code;
+    console.error(`pushNamedRoute failed, code is ${code}, message is ${message}`);
     return;
   }
   console.info('pushNamedRoute success');
@@ -1192,22 +1278,29 @@ For details about the error codes, see [Router Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-let router = uiContext.getRouter();
-router.pushNamedRoute({
-  name: 'myPage',
-  params: {
-    data1: 'message',
-    data2: {
-      data3: [123, 456, 789]
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+import { BusinessError } from '@ohos.base';
+import router from '@ohos.router';
+let routerF:Router = uiContext.getRouter();
+class routerTmp{
+  Standard:router.RouterMode = router.RouterMode.Standard
+}
+let rtm:routerTmp = new routerTmp()
+try {
+  routerF.pushNamedRoute({
+    name: 'myPage',
+    params: {
+      data1: 'message',
+      data2: {
+        data3: [123, 456, 789]
+      }
     }
-  }
-}, router.RouterMode.Standard)
-  .then(() => {
-    // success
-  })
-  .catch(err => {
-    console.error(`pushNamedRoute failed, code is ${err.code}, message is ${err.message}`);
-  })
+  }, rtm.Standard)
+} catch (err) {
+  let message = (err as BusinessError).message;
+  let code = (err as BusinessError).code;
+  console.error(`pushNamedRoute failed, code is ${code}, message is ${message}`);
+}
 ```
 
 ### pushNamedRoute
@@ -1239,8 +1332,15 @@ For details about the error codes, see [Router Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-let router = uiContext.getRouter();
-router.pushNamedRoute({
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+import { BusinessError } from '@ohos.base';
+import router from '@ohos.router';
+let routerF:Router = uiContext.getRouter();
+class routerTmp{
+  Standard:router.RouterMode = router.RouterMode.Standard
+}
+let rtm:routerTmp = new routerTmp()
+routerF.pushNamedRoute({
   name: 'myPage',
   params: {
     data1: 'message',
@@ -1248,9 +1348,11 @@ router.pushNamedRoute({
       data3: [123, 456, 789]
     }
   }
-}, router.RouterMode.Standard, (err) => {
+}, rtm.Standard, (err: Error) => {
   if (err) {
-    console.error(`pushNamedRoute failed, code is ${err.code}, message is ${err.message}`);
+    let message = (err as BusinessError).message;
+    let code = (err as BusinessError).code;
+    console.error(`pushNamedRoute failed, code is ${code}, message is ${message}`);
     return;
   }
   console.info('pushNamedRoute success');
@@ -1289,19 +1391,21 @@ For details about the error codes, see [Router Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-let router = uiContext.getRouter();
-router.replaceNamedRoute({
-  name: 'myPage',
-  params: {
-    data1: 'message'
-  }
-})
-  .then(() => {
-    // success
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+import { BusinessError } from '@ohos.base';
+let router:Router = uiContext.getRouter();
+try {
+  router.replaceNamedRoute({
+    name: 'myPage',
+    params: {
+      data1: 'message'
+    }
   })
-  .catch(err => {
-    console.error(`replaceNamedRoute failed, code is ${err.code}, message is ${err.message}`);
-  })
+} catch (err) {
+  let message = (err as BusinessError).message;
+  let code = (err as BusinessError).code;
+  console.error(`replaceNamedRoute failed, code is ${code}, message is ${message}`);
+}
 ```
 
 ### replaceNamedRoute
@@ -1331,15 +1435,19 @@ For details about the error codes, see [Router Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-let router = uiContext.getRouter();
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+import { BusinessError } from '@ohos.base';
+let router:Router = uiContext.getRouter();
 router.replaceNamedRoute({
   name: 'myPage',
   params: {
     data1: 'message'
   }
-}, (err) => {
+}, (err: Error) => {
   if (err) {
-    console.error(`replaceNamedRoute failed, code is ${err.code}, message is ${err.message}`);
+    let message = (err as BusinessError).message;
+    let code = (err as BusinessError).code;
+    console.error(`replaceNamedRoute failed, code is ${code}, message is ${message}`);
     return;
   }
   console.info('replaceNamedRoute success');
@@ -1380,19 +1488,26 @@ For details about the error codes, see [Router Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-let router = uiContext.getRouter();
-router.replaceNamedRoute({
-  name: 'myPage',
-  params: {
-    data1: 'message'
-  }
-}, router.RouterMode.Standard)
-  .then(() => {
-    // success
-  })
-  .catch(err => {
-    console.error(`replaceNamedRoute failed, code is ${err.code}, message is ${err.message}`);
-  })
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+import { BusinessError } from '@ohos.base';
+import router from '@ohos.router';
+let routerF:Router = uiContext.getRouter();
+class routerTmp{
+  Standard:router.RouterMode = router.RouterMode.Standard
+}
+let rtm:routerTmp = new routerTmp()
+try {
+  routerF.replaceNamedRoute({
+    name: 'myPage',
+    params: {
+      data1: 'message'
+    }
+  }, rtm.Standard)
+} catch (err) {
+  let message = (err as BusinessError).message;
+  let code = (err as BusinessError).code;
+  console.error(`replaceNamedRoute failed, code is ${code}, message is ${message}`);
+}
 ```
 
 ### replaceNamedRoute
@@ -1423,15 +1538,24 @@ For details about the error codes, see [Router Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-let router = uiContext.getRouter();
-router.replaceNamedRoute({
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+import { BusinessError } from '@ohos.base';
+import router from '@ohos.router';
+let routerF:Router = uiContext.getRouter();
+class routerTmp{
+  Standard:router.RouterMode = router.RouterMode.Standard
+}
+let rtm:routerTmp = new routerTmp()
+routerF.replaceNamedRoute({
   name: 'myPage',
   params: {
     data1: 'message'
   }
-}, router.RouterMode.Standard, (err) => {
+}, rtm.Standard, (err: Error) => {
   if (err) {
-    console.error(`replaceNamedRoute failed, code is ${err.code}, message is ${err.message}`);
+    let message = (err as BusinessError).message;
+    let code = (err as BusinessError).code;
+    console.error(`replaceNamedRoute failed, code is ${code}, message is ${message}`);
     return;
   }
   console.info('replaceNamedRoute success');
@@ -1455,7 +1579,9 @@ Returns to the previous page or a specified page.
 **Example**
 
 ```ts
-let router = uiContext.getRouter();
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+import { BusinessError } from '@ohos.base';
+let router: Router = uiContext.getRouter();
 router.back({url:'pages/detail'});    
 ```
 
@@ -1470,7 +1596,9 @@ Clears all historical pages in the stack and retains only the current page at th
 **Example**
 
 ```ts
-let router = uiContext.getRouter();
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+import { BusinessError } from '@ohos.base';
+let router: Router = uiContext.getRouter();
 router.clear();    
 ```
 
@@ -1491,7 +1619,9 @@ Obtains the number of pages in the current stack.
 **Example**
 
 ```ts
-let router = uiContext.getRouter();
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+import { BusinessError } from '@ohos.base';
+let router: Router = uiContext.getRouter();
 let size = router.getLength();        
 console.log('pages stack size = ' + size);    
 ```
@@ -1513,7 +1643,9 @@ Obtains state information about the current page.
 **Example**
 
 ```ts
-let router = uiContext.getRouter();
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+import { BusinessError } from '@ohos.base';
+let router: Router = uiContext.getRouter();
 let page = router.getState();
 console.log('current index = ' + page.index);
 console.log('current name = ' + page.name);
@@ -1545,16 +1677,18 @@ For details about the error codes, see [Router Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-let router = uiContext.getRouter();
-router.showAlertBeforeBackPage({
-  message: 'Message Info'
-});
-  .then(() => {
-    // success
-  })
-  .catch(err => {
-    console.error(`showAlertBeforeBackPage failed, code is ${error.code}, message is ${error.message}`);
-  })
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+import { BusinessError } from '@ohos.base';
+let router: Router = uiContext.getRouter();
+try {
+  router.showAlertBeforeBackPage({            
+    message: 'Message Info'        
+  });
+} catch(error) {
+  let message = (error as BusinessError).message;
+  let code = (error as BusinessError).code;
+  console.error(`showAlertBeforeBackPage failed, code is ${code}, message is ${message}`);
+}
 ```
 
 ### hideAlertBeforeBackPage
@@ -1568,7 +1702,9 @@ Disables the display of a confirm dialog box before returning to the previous pa
 **Example**
 
 ```ts
-let router = uiContext.getRouter();
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+import { BusinessError } from '@ohos.base';
+let router: Router = uiContext.getRouter();
 router.hideAlertBeforeBackPage();    
 ```
 
@@ -1589,7 +1725,9 @@ Obtains the parameters passed from the page that initiates redirection to the cu
 **Example**
 
 ```ts
-let router = uiContext.getRouter();
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+import { BusinessError } from '@ohos.base';
+let router: Router = uiContext.getRouter();
 router.getParams();
 ```
 
@@ -1622,14 +1760,18 @@ For details about the error codes, see [promptAction Error Codes](../errorcodes/
 **Example**
 
 ```ts
-let promptAction = uiContext.getPromptAction();
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+import { BusinessError } from '@ohos.base';
+let promptAction: PromptAction = uiContext.getPromptAction();
 try {
   promptAction.showToast({            
     message: 'Message Info',
     duration: 2000 
   });
 } catch (error) {
-  console.error(`showToast args error code is ${error.code}, message is ${error.message}`);
+  let message = (error as BusinessError).message;
+  let code = (error as BusinessError).code;
+  console.error(`showToast args error code is ${code}, message is ${message}`);
 };
 ```
 
@@ -1659,7 +1801,13 @@ For details about the error codes, see [promptAction Error Codes](../errorcodes/
 **Example**
 
 ```ts
-let promptAction = uiContext.getPromptAction();
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+import { BusinessError } from '@ohos.base';
+class buttonsMoabl {
+  text: string = ""
+  color: string = ""
+}
+let promptAction: PromptAction = uiContext.getPromptAction();
 try {
   promptAction.showDialog({
     title: 'showDialog Title Info',
@@ -1668,11 +1816,11 @@ try {
       {
         text: 'button1',
         color: '#000000'
-      },
+      } as buttonsMoabl,
       {
         text: 'button2',
         color: '#000000'
-      }
+      } as buttonsMoabl
     ]
   }, (err, data) => {
     if (err) {
@@ -1682,7 +1830,9 @@ try {
     console.info('showDialog success callback, click button: ' + data.index);
   });
 } catch (error) {
-  console.error(`showDialog args error code is ${error.code}, message is ${error.message}`);
+  let message = (error as BusinessError).message;
+  let code = (error as BusinessError).code;
+  console.error(`showDialog args error code is ${code}, message is ${message}`);
 };
 ```
 
@@ -1717,7 +1867,9 @@ For details about the error codes, see [promptAction Error Codes](../errorcodes/
 **Example**
 
 ```ts
-let promptAction = uiContext.getPromptAction();
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+import { BusinessError } from '@ohos.base';
+let promptAction: PromptAction = uiContext.getPromptAction();
 try {
   promptAction.showDialog({
     title: 'Title Info',
@@ -1736,11 +1888,13 @@ try {
     .then(data => {
       console.info('showDialog success, click button: ' + data.index);
     })
-    .catch(err => {
+    .catch((err:Error) => {
       console.info('showDialog error: ' + err);
     })
 } catch (error) {
-  console.error(`showDialog args error code is ${error.code}, message is ${error.message}`);
+  let message = (error as BusinessError).message;
+  let code = (error as BusinessError).code;
+  console.error(`showDialog args error code is ${code}, message is ${message}`);
 };
 ```
 
@@ -1770,29 +1924,44 @@ For details about the error codes, see [promptAction Error Codes](../errorcodes/
 **Example**
 
 ```ts
-let promptAction = uiContext.getPromptAction();
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+import promptAction from '@ohos.promptAction';
+import { BusinessError } from '@ohos.base';
+class buttonsMoabl {
+  text: string = ""
+  color: string = ""
+}
+class dataR{
+  err:Error = new Error;
+  data:promptAction.ActionMenuSuccessResponse | undefined = undefined;
+}
+let dataAMSR:dataR = new dataR()
+let promptActionF: PromptAction = uiContext.getPromptAction();
 try {
-  promptAction.showActionMenu({
-    title: 'Title Info',
-    buttons: [
-      {
-        text: 'item1',
-        color: '#666666'
-      },
-      {
-        text: 'item2',
-        color: '#000000'
-      },
-    ]
-  }, (err, data) => {
-    if (err) {
-      console.info('showActionMenu err: ' + err);
-      return;
+  if(dataAMSR.data){
+    promptActionF.showActionMenu({
+      title: 'Title Info',
+      buttons: [
+        {
+          text: 'item1',
+          color: '#666666'
+        } as buttonsMoabl,
+        {
+          text: 'item2',
+          color: '#000000'
+        } as buttonsMoabl
+      ]
+    }, (dataAMSR.data))
+    if (dataAMSR.err) {
+      console.info('showActionMenu err: ' + dataAMSR.err);
+    }else{
+      console.info('showActionMenu success callback, click button: ' + dataAMSR.data.index);
     }
-    console.info('showActionMenu success callback, click button: ' + data.index);
-  })
+  }
 } catch (error) {
-  console.error(`showActionMenu args error code is ${error.code}, message is ${error.message}`);
+  let message = (error as BusinessError).message;
+  let code = (error as BusinessError).code;
+  console.error(`showActionMenu args error code is ${code}, message is ${message}`);
 };
 ```
 
@@ -1827,7 +1996,9 @@ For details about the error codes, see [promptAction Error Codes](../errorcodes/
 **Example**
 
 ```ts
-let promptAction = uiContext.getPromptAction();
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+import { BusinessError } from '@ohos.base';
+let promptAction: PromptAction = uiContext.getPromptAction();
 try {
   promptAction.showActionMenu({
     title: 'showActionMenu Title Info',
@@ -1845,10 +2016,12 @@ try {
     .then(data => {
       console.info('showActionMenu success, click button: ' + data.index);
     })
-    .catch(err => {
+    .catch((err:Error) => {
       console.info('showActionMenu error: ' + err);
     })
 } catch (error) {
-  console.error(`showActionMenu args error code is ${error.code}, message is ${error.message}`);
+  let message = (error as BusinessError).message;
+  let code = (error as BusinessError).code;
+  console.error(`showActionMenu args error code is ${code}, message is ${message}`);
 };
 ```
