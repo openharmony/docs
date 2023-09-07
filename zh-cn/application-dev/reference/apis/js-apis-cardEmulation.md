@@ -223,7 +223,7 @@ sendResponse(responseApdu: number[]): void;
 
 ### transmit<sup>9+</sup>
 
-transmit(response: number[]): Promise<void>;
+transmit(response: number[]): Promise\<void>;
 
 发送APDU数据到对端读卡设备。暂不支持使用，仅做接口声明。
 
@@ -241,7 +241,7 @@ transmit(response: number[]): Promise<void>;
 
 | **类型**  | **说明**                                 |
 | ------- | -------------------------------------- |
-| Promise<void> | 表示异步回调完成。 |
+| Promise\<void> | 表示异步回调完成。 |
 
 **错误码：**
 
@@ -253,7 +253,7 @@ transmit(response: number[]): Promise<void>;
 
 ### transmit<sup>9+</sup>
 
-transmit(response: number[], callback: AsyncCallback<void>): void;
+transmit(response: number[], callback: AsyncCallback\<void>): void;
 
 发送APDU数据到对端读卡设备。暂不支持使用，仅做接口声明。
 
@@ -266,7 +266,7 @@ transmit(response: number[], callback: AsyncCallback<void>): void;
 | 参数名  | 类型     | 必填 | 说明                    |
 | ------- | -------- | ---- | ----------------------- |
 | responseApdu | number[] | 是   | 发送到对端读卡设备的符合APDU协议的数据，每个number十六进制表示，范围是0x00~0xFF。 |
-| callback | AsyncCallback<void> | 是   | 回调函数void |
+| callback | AsyncCallback\<void> | 是   | 回调函数void |
 
 **错误码：**
 

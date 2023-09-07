@@ -149,6 +149,7 @@ updateForm(formId: string, formBindingData: formBindingData.FormBindingData,call
 ```ts
 import Base from '@ohos.base';
 import formBindingData from '@ohos.app.form.formBindingData';
+import Base from '@ohos.base';
 
 let formId: string = '12400633174999288';
 try {
@@ -208,6 +209,7 @@ updateForm(formId: string, formBindingData: formBindingData.FormBindingData): Pr
 ```ts
 import Base from '@ohos.base';
 import formBindingData from '@ohos.app.form.formBindingData';
+import Base from '@ohos.base';
 
 let formId: string = '12400633174999288';
 let obj: formBindingData.FormBindingData = formBindingData.createFormBindingData({
@@ -352,6 +354,7 @@ getFormsInfo(filter?: formInfo.FormInfoFilter): Promise&lt;Array&lt;formInfo.For
 ```ts
 import Base from '@ohos.base';
 import formInfo from '@ohos.app.form.formInfo';
+import Base from '@ohos.base';
 
 const filter: formInfo.FormInfoFilter = {
   // get info of forms belong to module entry.
@@ -404,6 +407,7 @@ requestPublishForm(want: Want, formBindingData: formBindingData.FormBindingData,
 import Base from '@ohos.base';
 import formBindingData from '@ohos.app.form.formBindingData';
 import Want from '@ohos.app.ability.Want';
+import Base from '@ohos.base';
 
 let want: Want = {
   abilityName: 'FormAbility',
@@ -464,6 +468,7 @@ requestPublishForm(want: Want, callback: AsyncCallback&lt;string&gt;): void
 ```ts
 import Base from '@ohos.base';
 import Want from '@ohos.app.ability.Want';
+import Base from '@ohos.base';
 
 let want: Want = {
   abilityName: 'FormAbility',
@@ -526,6 +531,7 @@ requestPublishForm(want: Want, formBindingData?: formBindingData.FormBindingData
 ```ts
 import Base from '@ohos.base';
 import Want from '@ohos.app.ability.Want';
+import Base from '@ohos.base';
 
 let want: Want = {
   abilityName: 'FormAbility',
@@ -578,6 +584,7 @@ isRequestPublishFormSupported(callback: AsyncCallback&lt;boolean&gt;): void
 ```ts
 import Base from '@ohos.base';
 import Want from '@ohos.app.ability.Want';
+import Base from '@ohos.base';
 
 try {
   formProvider.isRequestPublishFormSupported((error: Base.BusinessError, isSupported: boolean) => {
@@ -643,6 +650,7 @@ isRequestPublishFormSupported(): Promise&lt;boolean&gt;
 ```ts
 import Base from '@ohos.base';
 import Want from '@ohos.app.ability.Want';
+import Base from '@ohos.base';
 
 try {
   formProvider.isRequestPublishFormSupported().then((isSupported: boolean) => {

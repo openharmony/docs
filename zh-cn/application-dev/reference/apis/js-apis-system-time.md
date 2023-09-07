@@ -9,7 +9,7 @@
 
 ## 导入模块
 
-```js
+```ts
 import systemTime from '@ohos.systemTime';
 ```
 
@@ -40,19 +40,22 @@ setTime(time : number, callback : AsyncCallback&lt;void&gt;) : void
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 // time对应的时间为2021-01-20 02:36:25
 let time = 1611081385000;
 try {
-  systemTime.setTime(time, (error) => {
+  systemTime.setTime(time, (error: BusinessError) => {
     if (error) {
       console.info(`Failed to setting time. message: ${error.message}, code: ${error.code}`);
       return;
     }
-    }console.info(`Succeeded in setting time`);
+    console.info(`Succeeded in setting time`);
   });
 } catch(e) {
-  console.info(`Failed to set time. message: ${e.message}, code: ${e.code}`);
+  let error = e as BusinessError;
+  console.info(`Failed to set time. message: ${error.message}, code: ${error.code}`);
 }
 ```
 
@@ -88,17 +91,20 @@ setTime(time : number) : Promise&lt;void&gt;
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 // time对应的时间为2021-01-20 02:36:25
 let time = 1611081385000;
 try {
   systemTime.setTime(time).then(() => {
     console.info(`Succeeded in setting time.`);
-  }).catch((error) => {
+  }).catch((error: BusinessError) => {
     console.info(`Failed to setting time. message: ${error.message}, code: ${error.code}`);
   });
 } catch(e) {
-  console.info(`Failed to set time. message: ${e.message}, code: ${e.code}`);
+  let error = e as BusinessError;
+  console.info(`Failed to set time. message: ${error.message}, code: ${error.code}`);
 }
 ```
 
@@ -127,9 +133,11 @@ getCurrentTime(isNano: boolean, callback: AsyncCallback&lt;number&gt;): void
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 try {
-  systemTime.getCurrentTime(true, (error, time) => {
+  systemTime.getCurrentTime(true, (error: BusinessError, time: number) => {
     if (error) {
       console.info(`Failed to getting currentTime. message: ${error.message}, code: ${error.code}`);
       return;
@@ -137,7 +145,8 @@ try {
     console.info(`Succeeded in getting currentTime: ${time}`);
   });
 } catch(e) {
-  console.info(`Failed to get currentTime. message: ${e.message}, code: ${e.code}`);
+  let error = e as BusinessError;
+  console.info(`Failed to get currentTime. message: ${error.message}, code: ${error.code}`);
 }
 ```
 
@@ -165,9 +174,11 @@ getCurrentTime(callback: AsyncCallback&lt;number&gt;): void
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 try {
-  systemTime.getCurrentTime((error, time) => {
+  systemTime.getCurrentTime((error: BusinessError, time: number) => {
     if (error) {
       console.info(`Failed to getting currentTime. message: ${error.message}, code: ${error.code}`);
       return;
@@ -175,7 +186,8 @@ try {
     console.info(`Succeeded in getting currentTime : ${time}`);
   });
 } catch(e) {
-  console.info(`Failed to get currentTime. message: ${e.message}, code: ${e.code}`);
+  let error = e as BusinessError;
+  console.info(`Failed to get currentTime. message: ${error.message}, code: ${error.code}`);
 }
 ```
 
@@ -209,15 +221,18 @@ getCurrentTime(isNano?: boolean): Promise&lt;number&gt;
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 try {
-  systemTime.getCurrentTime().then((time) => {
+  systemTime.getCurrentTime().then((time: number) => {
     console.info(`Succeeded in getting currentTime : ${time}`);
-  }).catch((error) => {
+  }).catch((error: BusinessError) => {
     console.info(`Failed to getting currentTime. message: ${error.message}, code: ${error.code}`);
   });
 } catch(e) {
-  console.info(`Failed to get currentTime. message: ${e.message}, code: ${e.code}`);
+  let error = e as BusinessError;
+  console.info(`Failed to get currentTime. message: ${error.message}, code: ${error.code}`);
 }
 ```
 
@@ -246,9 +261,11 @@ getRealActiveTime(isNano: boolean, callback: AsyncCallback&lt;number&gt;): void
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 try {
-  systemTime.getRealActiveTime(true, (error, time) => {
+  systemTime.getRealActiveTime(true, (error: BusinessError, time: number) => {
     if (error) {
       console.info(`Failed to getting real active time. message: ${error.message}, code: ${error.code}`);
       return;
@@ -256,7 +273,8 @@ try {
     console.info(`Succeeded in getting real active time : ${time}`);
   });
 } catch(e) {
-  console.info(`Failed to get real active time. message: ${e.message}, code: ${e.code}`);
+  let error = e as BusinessError;
+  console.info(`Failed to get real active time. message: ${error.message}, code: ${error.code}`);
 }
 ```
 
@@ -284,9 +302,11 @@ getRealActiveTime(callback: AsyncCallback&lt;number&gt;): void
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 try {
-  systemTime.getRealActiveTime((error, time) => {
+  systemTime.getRealActiveTime((error: BusinessError, time: number) => {
     if (error) {
       console.info(`Failed to getting real active time. message: ${error.message}, code: ${error.code}`);
       return;
@@ -294,7 +314,8 @@ try {
     console.info(`Succeeded in getting real active time : ${time}`);
   });
 } catch(e) {
-  console.info(`Failed to get real active time. message: ${e.message}, code: ${e.code}`);
+  let error = e as BusinessError;
+  console.info(`Failed to get real active time. message: ${error.message}, code: ${error.code}`);
 }
 ```
 
@@ -328,15 +349,18 @@ getRealActiveTime(isNano?: boolean): Promise&lt;number&gt;
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 try {
-  systemTime.getRealActiveTime().then((time) => {
+  systemTime.getRealActiveTime().then((time: number) => {
     console.info(`Succeeded in getting real active time : ${time}`);
-  }).catch((error) => {
+  }).catch((error: BusinessError) => {
     console.info(`Failed to getting real active time. message: ${error.message}, code: ${error.code}`);
   });
 } catch(e) {
-  console.info(`Failed to get real active time. message: ${e.message}, code: ${e.code}`);
+  let error = e as BusinessError;
+  console.info(`Failed to get real active time. message: ${error.message}, code: ${error.code}`);
 }
 ```
 
@@ -365,9 +389,11 @@ getRealTime(isNano: boolean, callback: AsyncCallback&lt;number&gt;): void
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 try {
-  systemTime.getRealTime(true, (error, time) => {
+  systemTime.getRealTime(true, (error: BusinessError, time: number) => {
     if (error) {
       console.info(`Failed to getting real time. message: ${error.message}, code: ${error.code}`);
       return;
@@ -375,7 +401,8 @@ try {
     console.info(`Succeeded in getting real time : ${time}`);
   });
 } catch(e) {
-  console.info(`Failed to get real time. message: ${e.message}, code: ${e.code}`);
+  let error = e as BusinessError;
+  console.info(`Failed to get real time. message: ${error.message}, code: ${error.code}`);
 }
 ```
 
@@ -403,9 +430,11 @@ getRealTime(callback: AsyncCallback&lt;number&gt;): void
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 try {
-  systemTime.getRealTime((error, time) => {
+  systemTime.getRealTime((error: BusinessError, time: number) => {
     if (error) {
       console.info(`Failed to getting real time. message: ${error.message}, code: ${error.code}`);
       return;
@@ -413,7 +442,8 @@ try {
     console.info(`Succeeded in getting real time : ${time}`);
   });
 } catch(e) {
-  console.info(`Failed to get real time. message: ${e.message}, code: ${e.code}`);
+  let error = e as BusinessError;
+  console.info(`Failed to get real time. message: ${error.message}, code: ${error.code}`);
 }
 ```
 
@@ -447,15 +477,18 @@ getRealTime(isNano?: boolean): Promise&lt;number&gt;
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 try {
-  systemTime.getRealTime().then((time) => {
+  systemTime.getRealTime().then((time: number) => {
     console.info(`Succeeded in getting real time : ${time}`);
-  }).catch((error) => {
+  }).catch((error: BusinessError) => {
     console.info(`Failed to getting real time. message: ${error.message}, code: ${error.code}`);
   });
 } catch(e) {
-  console.info(`Failed to get real time. message: ${e.message}, code: ${e.code}`);
+  let error = e as BusinessError;
+  console.info(`Failed to get real time. message: ${error.message}, code: ${error.code}`);
 }
 ```
 
@@ -486,10 +519,12 @@ setDate(date: Date, callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 let date = new Date();
 try {
-  systemTime.setDate(date, (error) => {
+  systemTime.setDate(date, (error: BusinessError) => {
     if (error) {
       console.info(`Failed to setting date. message: ${error.message}, code: ${error.code}`);
       return;
@@ -497,7 +532,8 @@ try {
     console.info(`Succeeded in setting date.`);
   });
 } catch(e) {
-  console.info(`Failed to set date. message: ${e.message}, code: ${e.code}`);
+  let error = e as BusinessError;
+  console.info(`Failed to set date. message: ${error.message}, code: ${error.code}`);
 }
 ```
 
@@ -533,16 +569,19 @@ setDate(date: Date): Promise&lt;void&gt;
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 let date = new Date(); 
 try {
   systemTime.setDate(date).then(() => {
     console.info(`Succeeded in setting date.`);
-  }).catch((error) => {
+  }).catch((error: BusinessError) => {
     console.info(`Failed to setting date. message: ${error.message}, code: ${error.code}`);
   });
 } catch(e) {
-  console.info(`Failed to set date. message: ${e.message}, code: ${e.code}`);
+  let error = e as BusinessError;
+  console.info(`Failed to set date. message: ${error.message}, code: ${error.code}`);
 }
 ```
 
@@ -570,9 +609,11 @@ getDate(callback: AsyncCallback&lt;Date&gt;): void
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 try {
-  systemTime.getDate((error, date) => {
+  systemTime.getDate((error: BusinessError, date: Date) => {
     if (error) {
       console.info(`Failed to get date. message: ${error.message}, code: ${error.code}`);
       return;
@@ -580,7 +621,8 @@ try {
     console.info(`Succeeded in get date : ${date}`);;
   });
 } catch(e) {
-  console.info(`Failed to get date. message: ${e.message}, code: ${e.code}`);
+  let error = e as BusinessError;
+  console.info(`Failed to get date. message: ${error.message}, code: ${error.code}`);
 }
 ```
 
@@ -608,15 +650,18 @@ getDate(): Promise&lt;Date&gt;
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 try {
-  systemTime.getDate().then((date) => {
+  systemTime.getDate().then((date: Date) => {
     console.info(`Succeeded in getting date : ${date}`);
-  }).catch((error) => {
+  }).catch((error: BusinessError) => {
     console.info(`Failed to getting date. message: ${error.message}, code: ${error.code}`);
   });
 } catch(e) {
-  console.info(`Failed to get date. message: ${e.message}, code: ${e.code}`);
+  let error = e as BusinessError;
+  console.info(`Failed to get date. message: ${error.message}, code: ${error.code}`);
 }
 ```
 
@@ -647,9 +692,11 @@ setTimezone(timezone: string, callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 try {
-  systemTime.setTimezone('Asia/Shanghai', (error) => {
+  systemTime.setTimezone('Asia/Shanghai', (error: BusinessError) => {
     if (error) {
       console.info(`Failed to setting timezone. message: ${error.message}, code: ${error.code}`);
       return;
@@ -657,7 +704,8 @@ try {
     console.info(`Succeeded in setting timezone.`);
   });
 } catch(e) {
-  console.info(`Failed to set timezone. message: ${e.message}, code: ${e.code}`);
+  let error = e as BusinessError;
+  console.info(`Failed to set timezone. message: ${error.message}, code: ${error.code}`);
 }
 ```
 
@@ -693,15 +741,18 @@ setTimezone(timezone: string): Promise&lt;void&gt;
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 try {
   systemTime.setTimezone('Asia/Shanghai').then(() => {
     console.info(`Succeeded in setting timezone.`);
-  }).catch((error) => {
+  }).catch((error: BusinessError) => {
     console.info(`Failed to setting timezone. message: ${error.message}, code: ${error.code}`);
   });
 } catch(e) {
-  console.info(`Failed to set timezone. message: ${e.message}, code: ${e.code}`);
+  let error = e as BusinessError;
+  console.info(`Failed to set timezone. message: ${error.message}, code: ${error.code}`);
 }
 ```
 
@@ -729,9 +780,11 @@ getTimezone(callback: AsyncCallback&lt;string&gt;): void
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 try {
-  systemTime.getTimezone((error, data) => {
+  systemTime.getTimezone((error: BusinessError, data: string) => {
     if (error) {
       console.info(`Failed to get timezone. message: ${error.message}, code: ${error.code}`);
       return;
@@ -739,7 +792,8 @@ try {
     console.info(`Succeeded in get timezone : ${data}`);;
   });
 } catch(e) {
-  console.info(`Failed to get timezone. message: ${e.message}, code: ${e.code}`);
+  let error = e as BusinessError;
+  console.info(`Failed to get timezone. message: ${error.message}, code: ${error.code}`);
 }
 ```
 
@@ -767,15 +821,18 @@ getTimezone(): Promise&lt;string&gt;
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 try {
-  systemTime.getTimezone().then((data) => {
+  systemTime.getTimezone().then((data: string) => {
     console.info(`Succeeded in getting timezone: ${data}`);
-  }).catch((error) => {
+  }).catch((error: BusinessError) => {
     console.info(`Failed to getting timezone. message: ${error.message}, code: ${error.code}`);
   });
 } catch(e) {
-  console.info(`Failed to get timezone. message: ${e.message}, code: ${e.code}`);
+  let error = e as BusinessError;
+  console.info(`Failed to get timezone. message: ${error.message}, code: ${error.code}`);
 }
 ```
 

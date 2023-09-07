@@ -10,7 +10,7 @@ When developing a long list, use of loop rendering, as in the code snippet below
 @Entry
 @Component
 struct MyComponent {
-  @State arr: number[] = Array.from(Array(100), (v,k) =>k);  // Construct an array of 0 to 99.
+  @State arr: number[] = Array.from(Array<number>(100), (v,k) =>k);  // Construct an array of 0 to 99.
   build() {
     List() {
       ForEach(this.arr, (item: number) => {
@@ -33,8 +33,8 @@ class BasicDataSource implements IDataSource {
     return 0
   }
 
-  public getData(index: number): any {
-    return undefined
+  public getData(index: number): string {
+    return ''
   }
 
   registerDataChangeListener(listener: DataChangeListener): void {
@@ -90,7 +90,7 @@ class MyDataSource extends BasicDataSource {
     return this.dataArray.length
   }
 
-  public getData(index: number): any {
+  public getData(index: number): string {
     return this.dataArray[index]
   }
 
@@ -121,7 +121,7 @@ struct MyComponent {
         .onClick(() => {
           this.data.pushData('item value: ' + this.data.totalCount())
         })
-      }, item => item)
+      }, (item:string) => item)
     }
   }
 }
@@ -155,8 +155,8 @@ class BasicDataSource implements IDataSource {
     return 0
   }
 
-  public getData(index: number): any {
-    return undefined
+  public getData(index: number): string {
+    return ''
   }
 
   registerDataChangeListener(listener: DataChangeListener): void {
@@ -212,7 +212,7 @@ class MyDataSource extends BasicDataSource {
     return this.dataArray.length
   }
 
-  public getData(index: number): any {
+  public getData(index: number): string {
     return this.dataArray[index]
   }
 
@@ -235,10 +235,10 @@ struct MyComponent {
   build() {
     Scroll() {
       List() {
-        LazyForEach(this.data, (item: string, index: number) => {
+        LazyForEach(this.data, (item: string, index?: number) => {
           ListItem() {
             Row() {
-              Text('item value: ' + item + (index + 1)).fontSize(20).margin(10)
+              Text('item value: ' + item + (index as number + 1)).fontSize(20).margin(10)
             }
           }
         })
@@ -258,8 +258,8 @@ class BasicDataSource implements IDataSource {
     return 0
   }
 
-  public getData(index: number): any {
-    return undefined
+  public getData(index: number): string {
+    return ''
   }
 
   registerDataChangeListener(listener: DataChangeListener): void {
@@ -315,7 +315,7 @@ class MyDataSource extends BasicDataSource {
     return this.dataArray.length
   }
 
-  public getData(index: number): any {
+  public getData(index: number): string {
     return this.dataArray[index]
   }
 
@@ -338,9 +338,9 @@ struct MyComponent {
   build() {
     Scroll() {
       List() {
-        LazyForEach(this.data, (item: string, index: number) => {
+        LazyForEach(this.data, (item: string, index?: number) => {
           ListItem() {
-            Text('item value: ' + item + (index + 1)).fontSize(20).margin(10)
+            Text('item value: ' + item + (index as number + 1)).fontSize(20).margin(10)
           }.width('100%')
         })
       }.width('100%').height(500)
@@ -453,7 +453,7 @@ struct MyComponent {
 
   build() {
     List() {
-      LazyForEach(this.source, item => {
+      LazyForEach(this.source, (item:number) => {
         ListItem() {
           Text("Hello" + item)
             .fontSize(50)
@@ -473,7 +473,7 @@ class MyDataSource implements IDataSource {
     return this.data.length
   }
 
-  public getData(index: number): any {
+  public getData(index: number): number {
     return this.data[index]
   }
 

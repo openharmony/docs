@@ -1,4 +1,4 @@
-| Change Type | Old Version | New Version | d.ts File |
+| Change Type | Old Version | New Version | .d.ts File |
 | ---- | ------ | ------ | -------- |
 |Added|NA|Module name: ohos.app.ability.dataUriUtils<br>Class name: dataUriUtils|@ohos.app.ability.dataUriUtils.d.ts|
 |Added|NA|Module name: ohos.app.ability.dataUriUtils<br>Class name: dataUriUtils<br>Method or attribute name: function getId(uri: string): number|@ohos.app.ability.dataUriUtils.d.ts|
@@ -24,7 +24,7 @@
 |Deleted|Module name: ohos.application.Ability<br>Class name: Ability<br>Method or attribute name: launchWant: Want;|NA|@ohos.application.Ability.d.ts|
 |Deleted|Module name: ohos.application.Ability<br>Class name: Ability<br>Method or attribute name: lastRequestWant: Want;|NA|@ohos.application.Ability.d.ts|
 |Deleted|Module name: ohos.application.Ability<br>Class name: Ability<br>Method or attribute name: callee: Callee;|NA|@ohos.application.Ability.d.ts|
-|Deleted|Module name: ohos.application.Ability<br>Class name: Ability<br>Method or attribute name: onCreate(want: Want, param: AbilityConstant.LaunchParam): void;|NA|@ohos.application.Ability.d.ts|
+|Deleted|Module name: ohos.application.Ability<br>Class name: Ability<br>Method or attribute name: onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void;|NA|@ohos.application.Ability.d.ts|
 |Deleted|Module name: ohos.application.Ability<br>Class name: Ability<br>Method or attribute name: onWindowStageCreate(windowStage: window.WindowStage): void;|NA|@ohos.application.Ability.d.ts|
 |Deleted|Module name: ohos.application.Ability<br>Class name: Ability<br>Method or attribute name: onWindowStageDestroy(): void;|NA|@ohos.application.Ability.d.ts|
 |Deleted|Module name: ohos.application.Ability<br>Class name: Ability<br>Method or attribute name: onWindowStageRestore(windowStage: window.WindowStage): void;|NA|@ohos.application.Ability.d.ts|
@@ -32,7 +32,7 @@
 |Deleted|Module name: ohos.application.Ability<br>Class name: Ability<br>Method or attribute name: onForeground(): void;|NA|@ohos.application.Ability.d.ts|
 |Deleted|Module name: ohos.application.Ability<br>Class name: Ability<br>Method or attribute name: onBackground(): void;|NA|@ohos.application.Ability.d.ts|
 |Deleted|Module name: ohos.application.Ability<br>Class name: Ability<br>Method or attribute name: onContinue(wantParam : {[key: string]: any}): AbilityConstant.OnContinueResult;|NA|@ohos.application.Ability.d.ts|
-|Deleted|Module name: ohos.application.Ability<br>Class name: Ability<br>Method or attribute name: onNewWant(want: Want, launchParams: AbilityConstant.LaunchParam): void;|NA|@ohos.application.Ability.d.ts|
+|Deleted|Module name: ohos.application.Ability<br>Class name: Ability<br>Method or attribute name: onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam): void;|NA|@ohos.application.Ability.d.ts|
 |Deleted|Module name: ohos.application.Ability<br>Class name: Ability<br>Method or attribute name: onConfigurationUpdated(config: Configuration): void;|NA|@ohos.application.Ability.d.ts|
 |Deleted|Module name: ohos.application.Ability<br>Class name: Ability<br>Method or attribute name: dump(params: Array<string>): Array<string>;|NA|@ohos.application.Ability.d.ts|
 |Deleted|Module name: ohos.application.Ability<br>Class name: Ability<br>Method or attribute name: onMemoryLevel(level: AbilityConstant.MemoryLevel): void;|NA|@ohos.application.Ability.d.ts|

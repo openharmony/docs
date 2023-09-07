@@ -3188,6 +3188,7 @@ notificationManager.setDistributedEnable(enable).then(() => {
 });
 ```
 
+## notificationManager.requestEnableNotification<sup>10+<sup>
 
 ## notificationManager.isDistributedEnabled
 

@@ -30,7 +30,7 @@ async function restartAbility() {
 在目标端PageAbility的onNewWant回调中获取包含页面信息的want参数：
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+// GlobalContext.ts 构造单例对象
 export class GlobalContext {
   private constructor() {}
   private static instance: GlobalContext;
@@ -51,6 +51,11 @@ export class GlobalContext {
     this._objects.set(key, objectClass);
   }
 }
+```
+
+```ts
+import Want from '@ohos.application.Want';
+import { GlobalContext } from './GlobalContext';
 
 export default class EntryAbility{  
   onNewWant(want: Want) { 
@@ -63,8 +68,9 @@ export default class EntryAbility{
 在目标端页面的自定义组件中获取包含页面信息的want参数并根据uri做路由处理：
 
 ```ts
+import Want from '@ohos.application.Want';
 import router from '@ohos.router';
-import { GlobalContext } from '../GlobalContext'
+import { GlobalContext } from '../GlobalContext';
 
 @Entry
 @Component
@@ -73,10 +79,12 @@ struct Index {
   
   onPageShow() {
     console.info('Index onPageShow')
-    let newWant: Want = GlobalContext.getContext().getObject("newWant")
-    if (newWant.hasOwnProperty("page")) {
-      router.push({ url: newWant.page });
-      GlobalContext.getContext().setObject("newWant", undefined)
+    let newWant = GlobalContext.getContext().getObject("newWant") as Want
+    if (newWant.parameters) {
+      if (newWant.parameters.page) {
+        router.push({ url: newWant.parameters.page });
+        GlobalContext.getContext().setObject("newWant", undefined)
+      }
     }
   }
 
@@ -160,7 +168,7 @@ export default class EntryAbility {
       if (want.parameters) {
         if (want.parameters.page) {
           router.push({
-            url: want.parameters.page
+            url: want.parameters.page as string
           })
         }
       }

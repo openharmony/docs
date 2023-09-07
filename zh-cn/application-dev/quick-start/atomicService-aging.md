@@ -17,14 +17,15 @@
 ```ts
 import installer from '@ohos.bundle.installer';
 import { BusinessError } from '@ohos.base';
+
 let bundleName = 'com.ohos.demo';
 let installParam: installer.InstallParam = {
     userId: 100
 };
 
 try {
-    installer.getBundleInstaller().then(data => {
-        data.uninstall(bundleName, installParam, err => {
+    installer.getBundleInstaller().then((data: installer.BundleInstaller) => {
+        data.uninstall(bundleName, installParam, (err: BusinessError) => {
             if (err) {
                 console.error('uninstall failed:' + err.message);
             } else {

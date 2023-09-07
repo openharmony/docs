@@ -744,7 +744,7 @@ Subscribes to characteristic write request events.
 
 | Name     | Type                                      | Mandatory  | Description                                    |
 | -------- | ---------------------------------------- | ---- | -------------------------------------- |
-| type     | string                                   | Yes   | Event type. The value **characteristicWrite** indicates a characteristic write request event.|
+| type     | string                                   | Yes   | Event type. The value is **characteristicWrite**, which indicates a characteristic write request event.|
 | callback | Callback&lt;[CharacteristicWriteRequest](#characteristicwriterequest)&gt; | Yes   | Callback invoked to return a characteristic write request from the GATT client.            |
 
 **Example**
@@ -980,6 +980,66 @@ Unsubscribes from BLE connection state changes.
 
 ```js
 gattServer.off('connectionStateChange');
+```
+
+
+### on('BLEMtuChange')
+
+on(type: 'BLEMtuChange', callback: Callback&lt;number&gt;): void
+
+Subscribes to MTU status changes for the server.
+
+**Required permissions**: ohos.permission.ACCESS_BLUETOOTH
+
+**System capability**: SystemCapability.Communication.Bluetooth.Core
+
+**Parameters**
+
+| Name     | Type                                      | Mandatory  | Description                                      |
+| -------- | ---------------------------------------- | ---- | ---------------------------------------- |
+| type     | string                                   | Yes   | Type of event to subscribe to. The value is **BLEMtuChange**, which indicates the MTU status changes. If this parameter is not set correctly, the callback cannot be registered.|
+| callback | Callback&lt;number&gt; | Yes   | Callback invoked to return the number of MTU bytes.|
+
+**Example**
+
+```js
+try {
+    let gattServer = ble.createGattServer();
+    gattServer.on('BLEMtuChange', (mtu) => {
+      console.info('BLEMtuChange, mtu: ' + mtu);
+    });
+} catch (err) {
+    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+}
+```
+
+
+### off('BLEMtuChange')
+
+off(type: 'BLEMtuChange', callback?: Callback&lt;number&gt;): void
+
+Unsubscribes from MTU status changes for the server.
+
+**Required permissions**: ohos.permission.ACCESS_BLUETOOTH
+
+**System capability**: SystemCapability.Communication.Bluetooth.Core
+
+**Parameters**
+
+| Name     | Type                                      | Mandatory  | Description                                      |
+| -------- | ---------------------------------------- | ---- | ---------------------------------------- |
+| type     | string                                   | Yes   | Type of event to unsubscribe from. The value is **BLEMtuChange**, which indicates the MTU status changes. If this parameter is not set correctly, the callback cannot be unregistered.|
+| callback | Callback&lt;number&gt; | No   | Callback for the MTU status changes. If this parameter is not set, this API unsubscribes from all callbacks corresponding to **type**.|
+
+**Example**
+
+```js
+try {
+    let gattServer = ble.createGattServer();
+    gattServer.off('BLEMtuChange');
+} catch (err) {
+    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+}
 ```
 
 
@@ -2179,7 +2239,7 @@ try {
 
 on(type: 'BLEMtuChange', callback: Callback&lt;number&gt;): void
 
-Subscribes to MTU status changes.
+Subscribes to MTU status changes for the client.
 
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
@@ -2189,8 +2249,8 @@ Subscribes to MTU status changes.
 
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| type     | string                                   | Yes   | Event type. The value is **BLEMtuChange**, which indicates a MTU status change event.|
-| callback | Callback&lt;number&gt; | Yes   | Callback invoked to return the MTU status, which can be connected or disconnected.|
+| type     | string                                   | Yes   | Type of event to subscribe to. The value is **BLEMtuChange**, which indicates the MTU status changes. If this parameter is not set correctly, the callback cannot be registered.|
+| callback | Callback&lt;number&gt; | Yes   | Callback invoked to return the number of MTU bytes.|
 
 **Example**
 
@@ -2210,7 +2270,7 @@ try {
 
 off(type: 'BLEMtuChange', callback?: Callback&lt;number&gt;): void
 
-Unsubscribes from MTU status changes.
+Unsubscribes from MTU status changes for the client.
 
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
@@ -2220,8 +2280,8 @@ Unsubscribes from MTU status changes.
 
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| type     | string                                   | Yes   | Event type. The value is **BLEMtuChange**, which indicates a MTU status change event.|
-| callback | Callback&lt;number&gt; | No   | Callback for MTU status changes. If this parameter is not set, this API unsubscribes from all callbacks corresponding to **type**.|
+| type     | string                                   | Yes   | Type of event to unsubscribe from. The value is **BLEMtuChange**, which indicates the MTU status changes. If this parameter is not set correctly, the callback cannot be unregistered.|
+| callback | Callback&lt;number&gt; | No   | Callback for the MTU status changes. If this parameter is not set, this API unsubscribes from all callbacks corresponding to **type**.|
 
 **Example**
 

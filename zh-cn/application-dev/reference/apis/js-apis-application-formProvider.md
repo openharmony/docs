@@ -31,7 +31,7 @@ setFormNextRefreshTime(formId: string, minute: number, callback: AsyncCallback&l
 **示例：**
 
   ```ts
-  import Base from '@ohos.base';
+  import Base from '@ohos.base'
 
   let formId: string = '12400633174999288';
   formProvider.setFormNextRefreshTime(formId, 5, (error: Base.BusinessError) => {
@@ -65,7 +65,7 @@ setFormNextRefreshTime(formId: string, minute: number): Promise&lt;void&gt;
 **示例：**
 
   ```ts
-  import Base from '@ohos.base';
+  import Base from '@ohos.base'
 
   let formId: string = '12400633174999288';
   formProvider.setFormNextRefreshTime(formId, 5).then(() => {
@@ -133,8 +133,8 @@ updateForm(formId: string, formBindingData: formBindingData.FormBindingData): Pr
 **示例：**
 
   ```ts
-  import Base from '@ohos.base';
   import formBindingData from '@ohos.application.formBindingData';
+  import Base from '@ohos.base'
 
   let formId: string = '12400633174999288';
   let obj: formBindingData.FormBindingData = formBindingData.createFormBindingData({
