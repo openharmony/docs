@@ -28,7 +28,8 @@ Column() {
     .scale(this.scaleToggle ? 1 : 0.5)
     // 第三步：通过点击事件改变状态变量值，影响可动画属性值
     .onclick(() => {
-      this.scaleToggle = !this.scaleToggle;
+      let sets = new SetSlt()
+      sets.set()
     })
     // 第四步：通过隐式动画接口开启隐式动画，动画终点值改变时，系统自动添加衔接动画
     .animation(CurAn)
