@@ -1,6 +1,6 @@
 # Location Service Development
 
-## Overview
+## When to Use
 
 People take their mobile devices wherever they go. Mobile devices have become a necessity in people's daily routines, whether it be for looking at the weather forecast, browsing news, hailing a taxi, navigating, or recording data from a workout. All these activities are so much associated with the location services on mobile devices.
 

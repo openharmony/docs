@@ -607,7 +607,7 @@ When a text is displayed in more than one line, use [BreakIterator8](../referenc
    let timezoneDisplayName = timezone.getDisplayName(); // timezoneDisplayName = "New Zealand Standard Time"
    ```
 
-## Obtain the **Transliterator** object.
+## Obtaining the **Transliterator** Object
 
 Call [Transliterator](../reference/apis/js-apis-i18n.md#transliterator9) APIs to create a **Transliterator** object and obtain the transliterated string.
 
