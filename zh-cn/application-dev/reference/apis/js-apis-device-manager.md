@@ -1466,7 +1466,6 @@ on(type: 'deviceFound', callback: Callback&lt;{ subscribeId: number, device: Dev
     device: deviceManager.DeviceInfo = {}
   }
 
-  subscribeId: number, device: DeviceInfo
   try {
     dmInstance.on('deviceFound', (data: Data) => {
       console.info("deviceFound:" + JSON.stringify(data));
