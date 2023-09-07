@@ -13,7 +13,7 @@
 
 ## 导入模块
 
-```js
+```ts
 import window from '@ohos.window';
 ```
 
@@ -337,21 +337,28 @@ createWindow(config: Configuration, callback: AsyncCallback&lt;Window&gt;): void
 
 **示例：**
 
-```js
-let windowClass = null;
-let config = {name: "alertWindow", windowType: window.WindowType.TYPE_SYSTEM_ALERT, ctx: this.context};
+```ts
+import { BusinessError } from '@ohos.base';
+
+let windowClass: window.Window | null = null;
+let config: window.Configuration = {
+  name: "alertWindow",
+  windowType: window.WindowType.TYPE_SYSTEM_ALERT,
+  ctx: this.context
+};
 try {
-    window.createWindow(config, (err, data) => {
-        if (err.code) {
-            console.error('Failed to create the window. Cause: ' + JSON.stringify(err));
-            return;
-        }
-        windowClass = data;
-        console.info('Succeeded in creating the window. Data: ' + JSON.stringify(data));
-        windowClass.resetSize(500, 1000);
-    });
+  window.createWindow(config, (err: BusinessError, data) => {
+    const errCode: number = err.code;
+    if (errCode) {
+      console.error('Failed to create the window. Cause: ' + JSON.stringify(err));
+      return;
+    }
+    windowClass = data;
+    console.info('Succeeded in creating the window. Data: ' + JSON.stringify(data));
+    windowClass.resetSize(500, 1000);
+  });
 } catch (exception) {
-    console.error('Failed to create the window. Cause: ' + JSON.stringify(exception));
+  console.error('Failed to create the window. Cause: ' + JSON.stringify(exception));
 }
 ```
 
@@ -388,19 +395,25 @@ createWindow(config: Configuration): Promise&lt;Window&gt;
 
 **示例：**
 
-```js
-let windowClass = null;
-let config = {name: "alertWindow", windowType: window.WindowType.TYPE_SYSTEM_ALERT, ctx: this.context};
+```ts
+import { BusinessError } from '@ohos.base';
+
+let windowClass: window.Window | null = null;
+let config: window.Configuration = {
+  name: "alertWindow",
+  windowType: window.WindowType.TYPE_SYSTEM_ALERT,
+  ctx: this.context
+};
 try {
-    let promise = window.createWindow(config);
-    promise.then((data)=> {
-        windowClass = data;
-        console.info('Succeeded in creating the window. Data:' + JSON.stringify(data));
-    }).catch((err)=>{
-        console.error('Failed to create the Window. Cause:' + JSON.stringify(err));
-    });
+  let promise = window.createWindow(config);
+  promise.then((data) => {
+    windowClass = data;
+    console.info('Succeeded in creating the window. Data:' + JSON.stringify(data));
+  }).catch((err: BusinessError) => {
+    console.error('Failed to create the Window. Cause:' + JSON.stringify(err));
+  });
 } catch (exception) {
-    console.error('Failed to create the window. Cause: ' + JSON.stringify(exception));
+  console.error('Failed to create the window. Cause: ' + JSON.stringify(exception));
 }
 ```
 
@@ -434,12 +447,12 @@ findWindow(name: string): Window
 
 **示例：**
 
-```js
-let windowClass = null;
+```ts
+let windowClass: window.Window | null = null;
 try {
-    windowClass = window.findWindow('alertWindow');
+  windowClass = window.findWindow('alertWindow');
 } catch (exception) {
-    console.error('Failed to find the Window. Cause: ' + JSON.stringify(exception));
+  console.error('Failed to find the Window. Cause: ' + JSON.stringify(exception));
 }
 ```
 
@@ -469,19 +482,22 @@ getLastWindow(ctx: BaseContext, callback: AsyncCallback&lt;Window&gt;): void
 
 **示例：**
 
-```js
-let windowClass = null;
+```ts
+import { BusinessError } from '@ohos.base';
+
+let windowClass: window.Window | null = null;
 try {
-    window.getLastWindow(this.context, (err, data) => {
-        if (err.code) {
-            console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(err));
-            return;
-        }
-        windowClass = data;
-        console.info('Succeeded in obtaining the top window. Data: ' + JSON.stringify(data));
-    });
+  window.getLastWindow(this.context, (err: BusinessError, data) => {
+    const errCode: number = err.code;
+    if (errCode) {
+      console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(err));
+      return;
+    }
+    windowClass = data;
+    console.info('Succeeded in obtaining the top window. Data: ' + JSON.stringify(data));
+  });
 } catch (exception) {
-    console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(exception));
+  console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(exception));
 }
 ```
 
@@ -516,18 +532,20 @@ getLastWindow(ctx: BaseContext): Promise&lt;Window&gt;
 
 **示例：**
 
-```js
-let windowClass = null;
+```ts
+import { BusinessError } from '@ohos.base';
+
+let windowClass: window.Window | null = null;
 try {
-    let promise = window.getLastWindow(this.context);
-    promise.then((data)=> {
-        windowClass = data;
-        console.info('Succeeded in obtaining the top window. Data: ' + JSON.stringify(data));
-    }).catch((err)=>{
-        console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(err));
-    });
+  let promise = window.getLastWindow(this.context);
+  promise.then((data) => {
+    windowClass = data;
+    console.info('Succeeded in obtaining the top window. Data: ' + JSON.stringify(data));
+  }).catch((err: BusinessError) => {
+    console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(err));
+  });
 } catch (exception) {
-    console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(exception));
+  console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(exception));
 }
 ```
 
@@ -557,26 +575,28 @@ minimizeAll(id: number, callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
-```js
+```ts
 import display from '@ohos.display'
+import { BusinessError } from '@ohos.base';
 
-let displayClass = null;
+let displayClass: display.Display | null = null;
 try {
-    displayClass = display.getDefaultDisplaySync();
+  displayClass = display.getDefaultDisplaySync();
 
-    try {
-        window.minimizeAll(displayClass.id, (err) => {
-            if(err.code) {
-                console.error('Failed to minimize all windows. Cause: ' + JSON.stringify(err));
-                return;
-            }
-            console.info('Succeeded in minimizing all windows.');
-        });
-    } catch (exception) {
-        console.error('Failed to minimize all windows. Cause: ' + JSON.stringify(exception));
-    }
+  try {
+    window.minimizeAll(displayClass.id, (err: BusinessError) => {
+      const errCode: number = err.code;
+      if (errCode) {
+        console.error('Failed to minimize all windows. Cause: ' + JSON.stringify(err));
+        return;
+      }
+      console.info('Succeeded in minimizing all windows.');
+    });
+  } catch (exception) {
+    console.error('Failed to minimize all windows. Cause: ' + JSON.stringify(exception));
+  }
 } catch (exception) {
-    console.error('Failed to obtain the default display object. Code: ' + JSON.stringify(exception));
+  console.error('Failed to obtain the default display object. Code: ' + JSON.stringify(exception));
 }
 ```
 
@@ -611,25 +631,26 @@ minimizeAll(id: number): Promise&lt;void&gt;
 
 **示例：**
 
-```js
+```ts
 import display from '@ohos.display'
+import { BusinessError } from '@ohos.base';
 
-let displayClass = null;
+let displayClass: display.Display | null = null;
 try {
-    displayClass = display.getDefaultDisplaySync();
+  displayClass = display.getDefaultDisplaySync();
 
-    try {
-        let promise = window.minimizeAll(displayClass.id);
-        promise.then(()=> {
-            console.info('Succeeded in minimizing all windows.');
-        }).catch((err)=>{
-            console.error('Failed to minimize all windows. Cause: ' + JSON.stringify(err));
-        });
-    } catch (exception) {
-        console.error('Failed to minimize all windows. Cause: ' + JSON.stringify(exception));
-    }
+  try {
+    let promise = window.minimizeAll(displayClass.id);
+    promise.then(() => {
+      console.info('Succeeded in minimizing all windows.');
+    }).catch((err: BusinessError) => {
+      console.error('Failed to minimize all windows. Cause: ' + JSON.stringify(err));
+    });
+  } catch (exception) {
+    console.error('Failed to minimize all windows. Cause: ' + JSON.stringify(exception));
+  }
 } catch (exception) {
-    console.error('Failed to obtain the default display object. Code: ' + JSON.stringify(exception));
+  console.error('Failed to obtain the default display object. Code: ' + JSON.stringify(exception));
 }
 ```
 
@@ -658,13 +679,16 @@ toggleShownStateForAllAppWindows(callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
-```js
-window.toggleShownStateForAllAppWindows((err) => {
-    if (err.code) {
-        console.error('Failed to toggle shown state for all app windows. Cause: ' + JSON.stringify(err));
-        return;
-    }
-    console.info('Succeeded in toggling shown state for all app windows.');
+```ts
+import { BusinessError } from '@ohos.base';
+
+window.toggleShownStateForAllAppWindows((err: BusinessError) => {
+  const errCode: number = err.code;
+  if (errCode) {
+    console.error('Failed to toggle shown state for all app windows. Cause: ' + JSON.stringify(err));
+    return;
+  }
+  console.info('Succeeded in toggling shown state for all app windows.');
 });
 ```
 
@@ -693,12 +717,14 @@ toggleShownStateForAllAppWindows(): Promise&lt;void&gt;
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 let promise = window.toggleShownStateForAllAppWindows();
-promise.then(()=> {
-    console.info('Succeeded in toggling shown state for all app windows.');
-}).catch((err)=>{
-    console.error('Failed to toggle shown state for all app windows. Cause: ' + JSON.stringify(err));
+promise.then(() => {
+  console.info('Succeeded in toggling shown state for all app windows.');
+}).catch((err: BusinessError) => {
+  console.error('Failed to toggle shown state for all app windows. Cause: ' + JSON.stringify(err));
 });
 ```
 
@@ -728,17 +754,20 @@ setWindowLayoutMode(mode: WindowLayoutMode, callback: AsyncCallback&lt;void&gt;)
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 try {
-    window.setWindowLayoutMode(window.WindowLayoutMode.WINDOW_LAYOUT_MODE_CASCADE, (err) => {
-        if(err.code) {
-            console.error('Failed to set window layout mode. Cause: ' + JSON.stringify(err));
-            return;
-        }
-        console.info('Succeeded in setting window layout mode.');
-    });
+  window.setWindowLayoutMode(window.WindowLayoutMode.WINDOW_LAYOUT_MODE_CASCADE, (err: BusinessError) => {
+    const errCode: number = err.code;
+    if (errCode) {
+      console.error('Failed to set window layout mode. Cause: ' + JSON.stringify(err));
+      return;
+    }
+    console.info('Succeeded in setting window layout mode.');
+  });
 } catch (exception) {
-    console.error('Failed to set window layout mode. Cause: ' + JSON.stringify(exception));
+  console.error('Failed to set window layout mode. Cause: ' + JSON.stringify(exception));
 }
 ```
 
@@ -773,16 +802,18 @@ setWindowLayoutMode(mode: WindowLayoutMode): Promise&lt;void&gt;
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 try {
-    let promise = window.setWindowLayoutMode(window.WindowLayoutMode.WINDOW_LAYOUT_MODE_CASCADE);
-    promise.then(()=> {
-        console.info('Succeeded in setting window layout mode.');
-    }).catch((err)=>{
-        console.error('Failed to set window layout mode. Cause: ' + JSON.stringify(err));
-    });
+  let promise = window.setWindowLayoutMode(window.WindowLayoutMode.WINDOW_LAYOUT_MODE_CASCADE);
+  promise.then(() => {
+    console.info('Succeeded in setting window layout mode.');
+  }).catch((err: BusinessError) => {
+    console.error('Failed to set window layout mode. Cause: ' + JSON.stringify(err));
+  });
 } catch (exception) {
-    console.error('Failed to set window layout mode. Cause: ' + JSON.stringify(exception));
+  console.error('Failed to set window layout mode. Cause: ' + JSON.stringify(exception));
 }
 ```
 
@@ -805,13 +836,13 @@ on(type: 'systemBarTintChange', callback: Callback&lt;SystemBarTintState&gt;): v
 
 **示例：**
 
-```js
+```ts
 try {
-    window.on('systemBarTintChange', (data) => {
-        console.info('Succeeded in enabling the listener for systemBarTint changes. Data: ' + JSON.stringify(data));
-    });
+  window.on('systemBarTintChange', (data) => {
+    console.info('Succeeded in enabling the listener for systemBarTint changes. Data: ' + JSON.stringify(data));
+  });
 } catch (exception) {
-    console.error('Failed to enable the listener for systemBarTint changes. Cause: ' + JSON.stringify(exception));
+  console.error('Failed to enable the listener for systemBarTint changes. Cause: ' + JSON.stringify(exception));
 }
 ```
 
@@ -834,11 +865,11 @@ off(type: 'systemBarTintChange', callback?: Callback&lt;SystemBarTintState &gt;)
 
 **示例：**
 
-```js
+```ts
 try {
-    window.off('systemBarTintChange');
+  window.off('systemBarTintChange');
 } catch (exception) {
-    console.error('Failed to disable the listener for systemBarTint changes. Cause: ' + JSON.stringify(exception));
+  console.error('Failed to disable the listener for systemBarTint changes. Cause: ' + JSON.stringify(exception));
 }
 ```
 
@@ -870,13 +901,13 @@ on(type: 'gestureNavigationEnabledChange', callback: Callback&lt;boolean&gt;): v
 
 **示例：**
 
-```js
+```ts
 try {
-    window.on('gestureNavigationEnabledChange', (data) => {
-        console.info('Succeeded in enabling the listener for gesture navigation status changes. Data: ' + JSON.stringify(data));
-    });
+  window.on('gestureNavigationEnabledChange', (data) => {
+    console.info('Succeeded in enabling the listener for gesture navigation status changes. Data: ' + JSON.stringify(data));
+  });
 } catch (exception) {
-    console.error('Failed to enable the listener for gesture navigation status changes. Cause: ' + JSON.stringify(exception));
+  console.error('Failed to enable the listener for gesture navigation status changes. Cause: ' + JSON.stringify(exception));
 }
 ```
 
@@ -908,11 +939,11 @@ off(type: 'gestureNavigationEnabledChange', callback?: Callback&lt;boolean&gt;):
 
 **示例：**
 
-```js
+```ts
 try {
-    window.off('gestureNavigationEnabledChange');
+  window.off('gestureNavigationEnabledChange');
 } catch (exception) {
-    console.error('Failed to disable the listener for gesture navigation status changes. Cause: ' + JSON.stringify(exception));
+  console.error('Failed to disable the listener for gesture navigation status changes. Cause: ' + JSON.stringify(exception));
 }
 ```
 
@@ -943,7 +974,7 @@ on(type: 'waterMarkFlagChange', callback: Callback&lt;boolean&gt;): void
 
 **示例：**
 
-```js
+```ts
 try {
   window.on('waterMarkFlagChange', (data) => {
     console.info('Succeeded in enabling the listener for watermark flag changes. Data: ' + JSON.stringify(data));
@@ -980,7 +1011,7 @@ off(type: 'waterMarkFlagChange', callback?: Callback&lt;boolean&gt;): void
 
 **示例：**
 
-```js
+```ts
 try {
   window.off('waterMarkFlagChange');
 } catch (exception) {
@@ -1015,17 +1046,20 @@ setGestureNavigationEnabled(enable: boolean, callback: AsyncCallback&lt;void&gt;
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 try {
-    window.setGestureNavigationEnabled(true, (err) => {
-        if(err.code) {
-            console.error('Failed to set gesture navigation enabled. Cause: ' + JSON.stringify(err));
-            return;
-        }
-        console.info('Succeeded in setting gesture navigation enabled.');
-    });
+  window.setGestureNavigationEnabled(true, (err: BusinessError) => {
+    const errCode: number = err.code;
+    if (errCode) {
+      console.error('Failed to set gesture navigation enabled. Cause: ' + JSON.stringify(err));
+      return;
+    }
+    console.info('Succeeded in setting gesture navigation enabled.');
+  });
 } catch (exception) {
-    console.error('Failed to set gesture navigation enabled. Cause: ' + JSON.stringify(exception));
+  console.error('Failed to set gesture navigation enabled. Cause: ' + JSON.stringify(exception));
 }
 ```
 
@@ -1061,16 +1095,18 @@ setGestureNavigationEnabled(enable: boolean): Promise&lt;void&gt;
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 try {
-    let promise = window.setGestureNavigationEnabled(true);
-    promise.then(()=> {
-        console.info('Succeeded in setting gesture navigation enabled.');
-    }).catch((err)=>{
-        console.error('Failed to set gesture navigation enabled. Cause: ' + JSON.stringify(err));
-    });
+  let promise = window.setGestureNavigationEnabled(true);
+  promise.then(() => {
+    console.info('Succeeded in setting gesture navigation enabled.');
+  }).catch((err: BusinessError) => {
+    console.error('Failed to set gesture navigation enabled. Cause: ' + JSON.stringify(err));
+  });
 } catch (exception) {
-    console.error('Failed to set gesture navigation enabled. Cause: ' + JSON.stringify(exception));
+  console.error('Failed to set gesture navigation enabled. Cause: ' + JSON.stringify(exception));
 }
 ```
 
@@ -1101,22 +1137,24 @@ setWaterMarkImage(pixelMap: image.PixelMap, enable: boolean, callback: AsyncCall
 
 **示例：**
 
-```js
+```ts
 import image from '@ohos.multimedia.image';
+import { BusinessError } from '@ohos.base';
 
-let enable = true;
-let color = new ArrayBuffer(0);
-let initializationOptions = {
+let enable: boolean = true;
+let color: ArrayBuffer = new ArrayBuffer(0);
+let initializationOptions: image.InitializationOptions = {
   size: {
     height: 100,
     width: 100
   }
 };
-image.createPixelMap(color, initializationOptions).then((pixelMap) => {
+image.createPixelMap(color, initializationOptions).then((pixelMap: image.PixelMap) => {
   console.info('Succeeded in creating pixelmap.');
   try {
-    window.setWaterMarkImage(pixelMap, enable, (err) => {
-      if (err.code) {
+    window.setWaterMarkImage(pixelMap, enable, (err: BusinessError) => {
+      const errCode: number = err.code;
+      if (errCode) {
         console.error('Failed to show watermark image. Cause: ' + JSON.stringify(err));
         return;
       }
@@ -1125,7 +1163,7 @@ image.createPixelMap(color, initializationOptions).then((pixelMap) => {
   } catch (exception) {
     console.error('Failed to show watermark image. Cause: ' + JSON.stringify(exception));
   }
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error('Failed to create PixelMap. Cause: ' + JSON.stringify(err));
 });
 ```
@@ -1162,30 +1200,31 @@ setWaterMarkImage(pixelMap: image.PixelMap, enable: boolean): Promise&lt;void&gt
 
 **示例：**
 
-```js
+```ts
 import image from '@ohos.multimedia.image';
+import { BusinessError } from '@ohos.base';
 
-let enable = true;
-let color = new ArrayBuffer(0);
-let initializationOptions = {
+let enable: boolean = true;
+let color: ArrayBuffer = new ArrayBuffer(0);
+let initializationOptions: image.InitializationOptions = {
   size: {
     height: 100,
     width: 100
   }
 };
-image.createPixelMap(color, initializationOptions).then((pixelMap) => {
+image.createPixelMap(color, initializationOptions).then((pixelMap: image.PixelMap) => {
   console.info('Succeeded in creating pixelmap.');
   try {
     let promise = window.setWaterMarkImage(pixelMap, enable);
     promise.then(() => {
       console.info('Succeeded in showing watermark image.');
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
       console.error('Failed to show watermark image. Cause: ' + JSON.stringify(err));
     });
   } catch (exception) {
     console.error('Failed to show watermark image. Cause: ' + JSON.stringify(exception));
   }
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error('Failed to create PixelMap. Cause: ' + JSON.stringify(err));
 });
 ```
@@ -1214,15 +1253,18 @@ create(id: string, type: WindowType, callback: AsyncCallback&lt;Window&gt;): voi
 
 **示例：**
 
-```js
-let windowClass = null;
-window.create('first', window.WindowType.TYPE_APP,(err,data) => {
-    if(err.code){
-        console.error('Failed to create the subWindow. Cause: ' + JSON.stringify(err));
-        return;
-    }
-    windowClass = data;
-    console.info('Succeeded in creating the subWindow. Data: ' + JSON.stringify(data));
+```ts
+import { BusinessError } from '@ohos.base';
+
+let windowClass: window.Window | null = null;
+window.create('first', window.WindowType.TYPE_APP, (err: BusinessError, data) => {
+  const errCode: number = err.code;
+  if (errCode) {
+    console.error('Failed to create the subWindow. Cause: ' + JSON.stringify(err));
+    return;
+  }
+  windowClass = data;
+  console.info('Succeeded in creating the subWindow. Data: ' + JSON.stringify(data));
 });
 ```
 
@@ -1255,14 +1297,16 @@ create(id: string, type: WindowType): Promise&lt;Window&gt;
 
 **示例：**
 
-```js
-let windowClass = null;
+```ts
+import { BusinessError } from '@ohos.base';
+
+let windowClass: window.Window | null = null;
 let promise = window.create('first', window.WindowType.TYPE_APP);
-promise.then((data)=> {
-    windowClass = data;
-    console.info('Succeeded in creating the subWindow. Data: ' + JSON.stringify(data));
-}).catch((err)=>{
-    console.error('Failed to create the subWindow. Cause: ' + JSON.stringify(err));
+promise.then((data) => {
+  windowClass = data;
+  console.info('Succeeded in creating the subWindow. Data: ' + JSON.stringify(data));
+}).catch((err: BusinessError) => {
+  console.error('Failed to create the subWindow. Cause: ' + JSON.stringify(err));
 });
 ```
 
@@ -1289,16 +1333,19 @@ create(ctx: BaseContext, id: string, type: WindowType, callback: AsyncCallback&l
 
 **示例：**
 
-```js
-let windowClass = null;
-window.create(this.context, 'alertWindow', window.WindowType.TYPE_SYSTEM_ALERT, (err, data) => {
-    if (err.code) {
-        console.error('Failed to create the window. Cause: ' + JSON.stringify(err));
-        return;
-    }
-    windowClass = data;
-    console.info('Succeeded in creating the window. Data: ' + JSON.stringify(data));
-    windowClass.resetSize(500, 1000);
+```ts
+import { BusinessError } from '@ohos.base';
+
+let windowClass: window.Window | null = null;
+window.create(this.context, 'alertWindow', window.WindowType.TYPE_SYSTEM_ALERT, (err: BusinessError, data) => {
+  const errCode: number = err.code;
+  if (errCode) {
+    console.error('Failed to create the window. Cause: ' + JSON.stringify(err));
+    return;
+  }
+  windowClass = data;
+  console.info('Succeeded in creating the window. Data: ' + JSON.stringify(data));
+  windowClass.resetSize(500, 1000);
 });
 ```
 
@@ -1330,14 +1377,16 @@ create(ctx: BaseContext, id: string, type: WindowType): Promise&lt;Window&gt;
 
 **示例：**
 
-```js
-let windowClass = null;
+```ts
+import { BusinessError } from '@ohos.base';
+
+let windowClass: window.Window | null = null;
 let promise = window.create(this.context, 'alertWindow', window.WindowType.TYPE_SYSTEM_ALERT);
-promise.then((data)=> {
-    windowClass = data;
-    console.info('Succeeded in creating the window. Data:' + JSON.stringify(data));
-}).catch((err)=>{
-    console.error('Failed to create the Window. Cause:' + JSON.stringify(err));
+promise.then((data) => {
+  windowClass = data;
+  console.info('Succeeded in creating the window. Data:' + JSON.stringify(data));
+}).catch((err: BusinessError) => {
+  console.error('Failed to create the Window. Cause:' + JSON.stringify(err));
 });
 ```
 
@@ -1362,15 +1411,18 @@ find(id: string, callback: AsyncCallback&lt;Window&gt;): void
 
 **示例：**
 
-```js
-let windowClass = null;
-window.find('alertWindow', (err, data) => {
-    if (err.code) {
-        console.error('Failed to find the Window. Cause: ' + JSON.stringify(err));
-        return;
-    }
-    windowClass = data;
-    console.info('Succeeded in finding the window. Data: ' + JSON.stringify(data));
+```ts
+import { BusinessError } from '@ohos.base';
+
+let windowClass: window.Window | null = null;
+window.find('alertWindow', (err: BusinessError, data) => {
+  const errCode: number = err.code;
+  if (errCode) {
+    console.error('Failed to find the Window. Cause: ' + JSON.stringify(err));
+    return;
+  }
+  windowClass = data;
+  console.info('Succeeded in finding the window. Data: ' + JSON.stringify(data));
 });
 ```
 
@@ -1400,14 +1452,16 @@ find(id: string): Promise&lt;Window&gt;
 
 **示例：**
 
-```js
-let windowClass = null;
+```ts
+import { BusinessError } from '@ohos.base';
+
+let windowClass: window.Window | null = null;
 let promise = window.find('alertWindow');
-promise.then((data)=> {
-    windowClass = data;
-    console.info('Succeeded in finding the window. Data: ' + JSON.stringify(data));
-}).catch((err)=>{
-    console.error('Failed to find the Window. Cause: ' + JSON.stringify(err));
+promise.then((data) => {
+  windowClass = data;
+  console.info('Succeeded in finding the window. Data: ' + JSON.stringify(data));
+}).catch((err: BusinessError) => {
+  console.error('Failed to find the Window. Cause: ' + JSON.stringify(err));
 });
 ```
 
@@ -1433,15 +1487,18 @@ getTopWindow(callback: AsyncCallback&lt;Window&gt;): void
 
 **示例：**
 
-```js
-let windowClass = null;
-window.getTopWindow((err, data) => {
-    if (err.code) {
-        console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(err));
-        return;
-    }
-    windowClass = data;
-    console.info('Succeeded in obtaining the top window. Data: ' + JSON.stringify(data));
+```ts
+import { BusinessError } from '@ohos.base';
+
+let windowClass: window.Window | null = null;
+window.getTopWindow((err: BusinessError, data) => {
+  const errCode: number = err.code;
+  if (errCode) {
+    console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(err));
+    return;
+  }
+  windowClass = data;
+  console.info('Succeeded in obtaining the top window. Data: ' + JSON.stringify(data));
 });
 ```
 
@@ -1467,13 +1524,15 @@ getTopWindow(): Promise&lt;Window&gt;
 
 **示例：**
 
-```js
-let windowClass = null;
+```ts
+import { BusinessError } from '@ohos.base';
+
+let windowClass: window.Window | null = null;
 let promise = window.getTopWindow();
 promise.then((data)=> {
     windowClass = data;
     console.info('Succeeded in obtaining the top window. Data: ' + JSON.stringify(data));
-}).catch((err)=>{
+}).catch((err: BusinessError)=>{
     console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(err));
 });
 ```
@@ -1499,15 +1558,16 @@ getTopWindow(ctx: BaseContext, callback: AsyncCallback&lt;Window&gt;): void
 
 **示例：**
 
-```js
-let windowClass = null;
-window.getTopWindow(this.context, (err, data) => {
-    if (err.code) {
-        console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(err));
-        return;
-    }
-    windowClass = data;
-    console.info('Succeeded in obtaining the top window. Data: ' + JSON.stringify(data));
+```ts
+import { BusinessError } from '@ohos.base';
+
+let windowClass: window.Window | null = null;
+let promise = window.getTopWindow();
+promise.then((data) => {
+  windowClass = data;
+  console.info('Succeeded in obtaining the top window. Data: ' + JSON.stringify(data));
+}).catch((err: BusinessError) => {
+  console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(err));
 });
 ```
 
@@ -1537,14 +1597,16 @@ getTopWindow(ctx: BaseContext): Promise&lt;Window&gt;
 
 **示例：**
 
-```js
-let windowClass = null;
+```ts
+import { BusinessError } from '@ohos.base';
+
+let windowClass: window.Window | null = null;
 let promise = window.getTopWindow(this.context);
-promise.then((data)=> {
- 	windowClass = data;
-    console.info('Succeeded in obtaining the top window. Data: ' + JSON.stringify(data));
-}).catch((err)=>{
-    console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(err));
+promise.then((data) => {
+  windowClass = data;
+  console.info('Succeeded in obtaining the top window. Data: ' + JSON.stringify(data));
+}).catch((err: BusinessError) => {
+  console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(err));
 });
 ```
 
@@ -1580,13 +1642,17 @@ hide (callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
-```js
-windowClass.hide((err) => {
-    if (err.code) {
-        console.error('Failed to hide the window. Cause: ' + JSON.stringify(err));
-        return;
-    }
-    console.info('Succeeded in hiding the window.');
+```ts
+import { BusinessError } from '@ohos.base';
+
+let windowClass: window.Window | null = null;
+windowClass.hide((err: BusinessError) => {
+  const errCode: number = err.code;
+  if (errCode) {
+    console.error('Failed to hide the window. Cause: ' + JSON.stringify(err));
+    return;
+  }
+  console.info('Succeeded in hiding the window.');
 });
 ```
 
@@ -1616,12 +1682,15 @@ hide(): Promise&lt;void&gt;
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
+let windowClass: window.Window | null = null;
 let promise = windowClass.hide();
-promise.then(()=> {
-    console.info('Succeeded in hiding the window.');
-}).catch((err)=>{
-    console.error('Failed to hide the window. Cause: ' + JSON.stringify(err));
+promise.then(() => {
+  console.info('Succeeded in hiding the window.');
+}).catch((err: BusinessError) => {
+  console.error('Failed to hide the window. Cause: ' + JSON.stringify(err));
 });
 ```
 
@@ -1653,13 +1722,17 @@ hideWithAnimation(callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
-```js
-windowClass.hideWithAnimation((err) => {
-    if (err.code) {
-        console.error('Failed to hide the window with animation. Cause: ' + JSON.stringify(err));
-        return;
-    }
-    console.info('Succeeded in hiding the window with animation.');
+```ts
+import { BusinessError } from '@ohos.base';
+
+let windowClass: window.Window | null = null;
+windowClass.hideWithAnimation((err: BusinessError) => {
+  const errCode: number = err.code;
+  if (errCode) {
+    console.error('Failed to hide the window with animation. Cause: ' + JSON.stringify(err));
+    return;
+  }
+  console.info('Succeeded in hiding the window with animation.');
 });
 ```
 
@@ -1691,12 +1764,15 @@ hideWithAnimation(): Promise&lt;void&gt;
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
+let windowClass: window.Window | null = null;
 let promise = windowClass.hideWithAnimation();
-promise.then(()=> {
-    console.info('Succeeded in hiding the window with animation.');
-}).catch((err)=>{
-    console.error('Failed to hide the window with animation. Cause: ' + JSON.stringify(err));
+promise.then(() => {
+  console.info('Succeeded in hiding the window with animation.');
+}).catch((err: BusinessError) => {
+  console.error('Failed to hide the window with animation. Cause: ' + JSON.stringify(err));
 });
 ```
 
@@ -1724,13 +1800,17 @@ showWindow(callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
-```js
-windowClass.showWindow((err) => {
-    if (err.code) {
-        console.error('Failed to show the window. Cause: ' + JSON.stringify(err));
-        return;
-    }
-    console.info('Succeeded in showing the window.');
+```ts
+import { BusinessError } from '@ohos.base';
+
+let windowClass: window.Window | null = null;
+windowClass.showWindow((err: BusinessError) => {
+  const errCode: number = err.code;
+  if (errCode) {
+    console.error('Failed to show the window. Cause: ' + JSON.stringify(err));
+    return;
+  }
+  console.info('Succeeded in showing the window.');
 });
 ```
 
@@ -1758,12 +1838,16 @@ showWindow(): Promise&lt;void&gt;
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
+let windowClass: window.Window | null = null;
+
 let promise = windowClass.showWindow();
-promise.then(()=> {
-    console.info('Succeeded in showing the window.');
-}).catch((err)=>{
-    console.error('Failed to show the window. Cause: ' + JSON.stringify(err));
+promise.then(() => {
+  console.info('Succeeded in showing the window.');
+}).catch((err: BusinessError) => {
+  console.error('Failed to show the window. Cause: ' + JSON.stringify(err));
 });
 ```
 
@@ -1795,13 +1879,17 @@ showWithAnimation(callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
-```js
-windowClass.showWithAnimation((err) => {
-    if (err.code) {
-        console.error('Failed to show the window with animation. Cause: ' + JSON.stringify(err));
-        return;
-    }
-    console.info('Succeeded in showing the window with animation.');
+```ts
+import { BusinessError } from '@ohos.base';
+
+let windowClass: window.Window | null = null;
+windowClass.showWithAnimation((err: BusinessError) => {
+  const errCode: number = err.code;
+  if (errCode) {
+    console.error('Failed to show the window with animation. Cause: ' + JSON.stringify(err));
+    return;
+  }
+  console.info('Succeeded in showing the window with animation.');
 });
 ```
 
@@ -1833,12 +1921,15 @@ showWithAnimation(): Promise&lt;void&gt;
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
+let windowClass: window.Window | null = null;
 let promise = windowClass.showWithAnimation();
-promise.then(()=> {
-    console.info('Succeeded in showing the window with animation.');
-}).catch((err)=>{
-    console.error('Failed to show the window with animation. Cause: ' + JSON.stringify(err));
+promise.then(() => {
+  console.info('Succeeded in showing the window with animation.');
+}).catch((err: BusinessError) => {
+  console.error('Failed to show the window with animation. Cause: ' + JSON.stringify(err));
 });
 ```
 
@@ -1867,13 +1958,17 @@ destroyWindow(callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
+let windowClass: window.Window | null = null;
 windowClass.destroyWindow((err) => {
-    if (err.code) {
-        console.error('Failed to destroy the window. Cause:' + JSON.stringify(err));
-        return;
-    }
-    console.info('Succeeded in destroying the window.');
+  const errCode: number = err.code;
+  if (errCodee) {
+    console.error('Failed to destroy the window. Cause:' + JSON.stringify(err));
+    return;
+  }
+  console.info('Succeeded in destroying the window.');
 });
 ```
 
@@ -1902,12 +1997,15 @@ destroyWindow(): Promise&lt;void&gt;
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
+let windowClass: window.Window | null = null;
 let promise = windowClass.destroyWindow();
-promise.then(()=> {
-    console.info('Succeeded in destroying the window.');
-}).catch((err)=>{
-    console.error('Failed to destroy the window. Cause: ' + JSON.stringify(err));
+promise.then(() => {
+  console.info('Succeeded in destroying the window.');
+}).catch((err: BusinessError) => {
+  console.error('Failed to destroy the window. Cause: ' + JSON.stringify(err));
 });
 ```
 
@@ -1940,17 +2038,21 @@ moveWindowTo(x: number, y: number, callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
+let windowClass: window.Window | null = null;
 try {
-    windowClass.moveWindowTo(300, 300, (err)=>{
-        if (err.code) {
-            console.error('Failed to move the window. Cause:' + JSON.stringify(err));
-            return;
-        }
-        console.info('Succeeded in moving the window.');
-    });
+  windowClass.moveWindowTo(300, 300, (err: BusinessError) => {
+    const errCode: number = err.code;
+    if (errCode) {
+      console.error('Failed to move the window. Cause:' + JSON.stringify(err));
+      return;
+    }
+    console.info('Succeeded in moving the window.');
+  });
 } catch (exception) {
-    console.error('Failed to move the window. Cause:' + JSON.stringify(exception));
+  console.error('Failed to move the window. Cause:' + JSON.stringify(exception));
 }
 ```
 
@@ -1988,16 +2090,19 @@ moveWindowTo(x: number, y: number): Promise&lt;void&gt;
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
+let windowClass: window.Window | null = null;
 try {
-    let promise = windowClass.moveWindowTo(300, 300);
-    promise.then(()=> {
-        console.info('Succeeded in moving the window.');
-    }).catch((err)=>{
-        console.error('Failed to move the window. Cause: ' + JSON.stringify(err));
-    });
+  let promise = windowClass.moveWindowTo(300, 300);
+  promise.then(() => {
+    console.info('Succeeded in moving the window.');
+  }).catch((err: BusinessError) => {
+    console.error('Failed to move the window. Cause: ' + JSON.stringify(err));
+  });
 } catch (exception) {
-    console.error('Failed to move the window. Cause:' + JSON.stringify(exception));
+  console.error('Failed to move the window. Cause:' + JSON.stringify(exception));
 }
 ```
 
@@ -2036,17 +2141,21 @@ resize(width: number, height: number, callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
+let windowClass: window.Window | null = null;
 try {
-    windowClass.resize(500, 1000, (err) => {
-        if (err.code) {
-            console.error('Failed to change the window size. Cause:' + JSON.stringify(err));
-            return;
-        }
-        console.info('Succeeded in changing the window size.');
-    });
+  windowClass.resize(500, 1000, (err: BusinessError) => {
+    const errCode: number = err.code;
+    if (errCode) {
+      console.error('Failed to change the window size. Cause:' + JSON.stringify(err));
+      return;
+    }
+    console.info('Succeeded in changing the window size.');
+  });
 } catch (exception) {
-    console.error('Failed to change the window size. Cause:' + JSON.stringify(exception));
+  console.error('Failed to change the window size. Cause:' + JSON.stringify(exception));
 }
 ```
 
@@ -2090,16 +2199,19 @@ resize(width: number, height: number): Promise&lt;void&gt;
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
+let windowClass: window.Window | null = null;
 try {
-    let promise = windowClass.resize(500, 1000);
-    promise.then(()=> {
-        console.info('Succeeded in changing the window size.');
-    }).catch((err)=>{
-        console.error('Failed to change the window size. Cause: ' + JSON.stringify(err));
-    });
+  let promise = windowClass.resize(500, 1000);
+  promise.then(() => {
+    console.info('Succeeded in changing the window size.');
+  }).catch((err: BusinessError) => {
+    console.error('Failed to change the window size. Cause: ' + JSON.stringify(err));
+  });
 } catch (exception) {
-    console.error('Failed to change the window size. Cause: ' + JSON.stringify(exception));
+  console.error('Failed to change the window size. Cause: ' + JSON.stringify(exception));
 }
 ```
 
@@ -2131,18 +2243,22 @@ setWindowMode(mode: WindowMode, callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
+let windowClass: window.Window | null = null;
 let mode = window.WindowMode.FULLSCREEN;
 try {
-    windowClass.setWindowMode(mode, (err) => {
-    if (err.code) {
-        console.error('Failed to set the window mode. Cause: ' + JSON.stringify(err));
-        return;
+  windowClass.setWindowMode(mode, (err: BusinessError) => {
+    const errCode: number = err.code;
+    if (errCode) {
+      console.error('Failed to set the window mode. Cause: ' + JSON.stringify(err));
+      return;
     }
     console.info('Succeeded in setting the window mode.');
-    });
+  });
 } catch (exception) {
-    console.error('Failed to set the window mode. Cause: ' + JSON.stringify(exception));
+  console.error('Failed to set the window mode. Cause: ' + JSON.stringify(exception));
 }
 ```
 
@@ -2179,17 +2295,20 @@ setWindowMode(mode: WindowMode): Promise&lt;void&gt;
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
+let windowClass: window.Window | null = null;
 let mode = window.WindowMode.FULLSCREEN;
 try {
-    let promise = windowClass.setWindowMode(mode);
-    promise.then(()=> {
-        console.info('Succeeded in setting the window mode.');
-    }).catch((err)=>{
-        console.error('Failed to set the window mode. Cause: ' + JSON.stringify(err));
-    });
+  let promise = windowClass.setWindowMode(mode);
+  promise.then(() => {
+    console.info('Succeeded in setting the window mode.');
+  }).catch((err: BusinessError) => {
+    console.error('Failed to set the window mode. Cause: ' + JSON.stringify(err));
+  });
 } catch (exception) {
-    console.error('Failed to set the window mode. Cause: ' + JSON.stringify(exception));
+  console.error('Failed to set the window mode. Cause: ' + JSON.stringify(exception));
 }
 ```
 
@@ -2217,11 +2336,12 @@ getWindowProperties(): WindowProperties
 
 **示例：**
 
-```js
+```ts
+let windowClass: window.Window | null = null;
 try {
-    let properties = windowClass.getWindowProperties();
+  let properties = windowClass.getWindowProperties();
 } catch (exception) {
-    console.error('Failed to obtain the window properties. Cause: ' + JSON.stringify(exception));
+  console.error('Failed to obtain the window properties. Cause: ' + JSON.stringify(exception));
 }
 ```
 
@@ -2255,12 +2375,13 @@ getWindowAvoidArea(type: AvoidAreaType): AvoidArea
 
 **示例：**
 
-```js
+```ts
+let windowClass: window.Window | null = null;
 let type = window.AvoidAreaType.TYPE_SYSTEM;
 try {
-    let avoidArea = windowClass.getWindowAvoidArea(type);
+  let avoidArea = windowClass.getWindowAvoidArea(type);
 } catch (exception) {
-    console.error('Failed to obtain the area. Cause:' + JSON.stringify(exception));
+  console.error('Failed to obtain the area. Cause:' + JSON.stringify(exception));
 }
 ```
 
@@ -2292,18 +2413,22 @@ setWindowLayoutFullScreen(isLayoutFullScreen: boolean, callback: AsyncCallback&l
 
 **示例：**
 
-```js
-let isLayoutFullScreen= true;
+```ts
+import { BusinessError } from '@ohos.base';
+
+let windowClass: window.Window | null = null;
+let isLayoutFullScreen = true;
 try {
-    windowClass.setWindowLayoutFullScreen(isLayoutFullScreen, (err) => {
-        if (err.code) {
-            console.error('Failed to set the window layout to full-screen mode. Cause:' + JSON.stringify(err));
-            return;
-        }
-        console.info('Succeeded in setting the window layout to full-screen mode.');
-    });
+  windowClass.setWindowLayoutFullScreen(isLayoutFullScreen, (err: BusinessError) => {
+    const errCode: number = err.code;
+    if (errCode) {
+      console.error('Failed to set the window layout to full-screen mode. Cause:' + JSON.stringify(err));
+      return;
+    }
+    console.info('Succeeded in setting the window layout to full-screen mode.');
+  });
 } catch (exception) {
-    console.error('Failed to set the window layout to full-screen mode. Cause:' + JSON.stringify(exception));
+  console.error('Failed to set the window layout to full-screen mode. Cause:' + JSON.stringify(exception));
 }
 ```
 
@@ -2340,17 +2465,20 @@ setWindowLayoutFullScreen(isLayoutFullScreen: boolean): Promise&lt;void&gt;
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
+let windowClass: window.Window | null = null;
 let isLayoutFullScreen = true;
 try {
-    let promise = windowClass.setWindowLayoutFullScreen(isLayoutFullScreen);
-    promise.then(()=> {
-        console.info('Succeeded in setting the window layout to full-screen mode.');
-    }).catch((err)=>{
-        console.error('Failed to set the window layout to full-screen mode. Cause:' + JSON.stringify(err));
-    });
+  let promise = windowClass.setWindowLayoutFullScreen(isLayoutFullScreen);
+  promise.then(() => {
+    console.info('Succeeded in setting the window layout to full-screen mode.');
+  }).catch((err: BusinessError) => {
+    console.error('Failed to set the window layout to full-screen mode. Cause:' + JSON.stringify(err));
+  });
 } catch (exception) {
-    console.error('Failed to set the window layout to full-screen mode. Cause:' + JSON.stringify(exception));
+  console.error('Failed to set the window layout to full-screen mode. Cause:' + JSON.stringify(exception));
 }
 ```
 
@@ -2380,19 +2508,23 @@ setWindowSystemBarEnable(names: Array<'status' | 'navigation'>, callback: AsyncC
 
 **示例：**
 
-```js
+```ts
 // 此处以不显示导航栏、状态栏为例
-let names = [];
+import { BusinessError } from '@ohos.base';
+
+let windowClass: window.Window | null = null;
+let names: Array<'status' | 'navigation'> = [];
 try {
-    windowClass.setWindowSystemBarEnable(names, (err) => {
-        if (err.code) {
-            console.error('Failed to set the system bar to be invisible. Cause:' + JSON.stringify(err));
-            return;
-        }
-        console.info('Succeeded in setting the system bar to be invisible.');
-    });
+  windowClass.setWindowSystemBarEnable(names, (err: BusinessError) => {
+    const errCode: number = err.code;
+    if (errCode) {
+      console.error('Failed to set the system bar to be invisible. Cause:' + JSON.stringify(err));
+      return;
+    }
+    console.info('Succeeded in setting the system bar to be invisible.');
+  });
 } catch (exception) {
-    console.error('Failed to set the system bar to be invisible. Cause:' + JSON.stringify(exception));
+  console.error('Failed to set the system bar to be invisible. Cause:' + JSON.stringify(exception));
 }
 ```
 
@@ -2427,18 +2559,21 @@ setWindowSystemBarEnable(names: Array<'status' | 'navigation'>): Promise&lt;void
 
 **示例：**
 
-```js
+```ts
 // 此处以不显示导航栏、状态栏为例
-let names = [];
+import { BusinessError } from '@ohos.base';
+
+let windowClass: window.Window | null = null;
+let names: Array<'status' | 'navigation'> = [];
 try {
-    let promise = windowClass.setWindowSystemBarEnable(names);
-    promise.then(()=> {
-        console.info('Succeeded in setting the system bar to be invisible.');
-    }).catch((err)=>{
-        console.error('Failed to set the system bar to be invisible. Cause:' + JSON.stringify(err));
-    });
+  let promise = windowClass.setWindowSystemBarEnable(names);
+  promise.then(() => {
+    console.info('Succeeded in setting the system bar to be invisible.');
+  }).catch((err: BusinessError) => {
+    console.error('Failed to set the system bar to be invisible. Cause:' + JSON.stringify(err));
+  });
 } catch (exception) {
-    console.error('Failed to set the system bar to be invisible. Cause:' + JSON.stringify(exception));
+  console.error('Failed to set the system bar to be invisible. Cause:' + JSON.stringify(exception));
 }
 ```
 
@@ -2468,24 +2603,28 @@ setWindowSystemBarProperties(systemBarProperties: SystemBarProperties, callback:
 
 **示例：**
 
-```js
-let SystemBarProperties = {
-    statusBarColor: '#ff00ff',
-    navigationBarColor: '#00ff00',
-    //以下两个属性从API Version8开始支持
-    statusBarContentColor:'#ffffff',
-    navigationBarContentColor:'#00ffff'
+```ts
+import { BusinessError } from '@ohos.base';
+
+let windowClass: window.Window | null = null;
+let SystemBarProperties: window.SystemBarProperties = {
+  statusBarColor: '#ff00ff',
+  navigationBarColor: '#00ff00',
+  //以下两个属性从API Version8开始支持
+  statusBarContentColor: '#ffffff',
+  navigationBarContentColor: '#00ffff'
 };
 try {
-    windowClass.setWindowSystemBarProperties(SystemBarProperties, (err) => {
-        if (err.code) {
-            console.error('Failed to set the system bar properties. Cause: ' + JSON.stringify(err));
-            return;
-        }
-        console.info('Succeeded in setting the system bar properties.');
-    });
+  windowClass.setWindowSystemBarProperties(SystemBarProperties, (err: BusinessError) => {
+    const errCode: number = err.code;
+    if (errCode) {
+      console.error('Failed to set the system bar properties. Cause: ' + JSON.stringify(err));
+      return;
+    }
+    console.info('Succeeded in setting the system bar properties.');
+  });
 } catch (exception) {
-    console.error('Failed to set the system bar properties. Cause: ' + JSON.stringify(exception));
+  console.error('Failed to set the system bar properties. Cause: ' + JSON.stringify(exception));
 }
 ```
 
@@ -2520,23 +2659,26 @@ setWindowSystemBarProperties(systemBarProperties: SystemBarProperties): Promise&
 
 **示例：**
 
-```js
-let SystemBarProperties = {
-    statusBarColor: '#ff00ff',
-    navigationBarColor: '#00ff00',
-    //以下两个属性从API Version8开始支持
-    statusBarContentColor:'#ffffff',
-    navigationBarContentColor:'#00ffff'
+```ts
+import { BusinessError } from '@ohos.base';
+
+let windowClass: window.Window | null = null;
+let SystemBarProperties: window.SystemBarProperties = {
+  statusBarColor: '#ff00ff',
+  navigationBarColor: '#00ff00',
+  //以下两个属性从API Version8开始支持
+  statusBarContentColor: '#ffffff',
+  navigationBarContentColor: '#00ffff'
 };
 try {
-    let promise = windowClass.setWindowSystemBarProperties(SystemBarProperties);
-    promise.then(()=> {
-        console.info('Succeeded in setting the system bar properties.');
-    }).catch((err)=>{
-        console.error('Failed to set the system bar properties. Cause: ' + JSON.stringify(err));
-    });
+  let promise = windowClass.setWindowSystemBarProperties(SystemBarProperties);
+  promise.then(() => {
+    console.info('Succeeded in setting the system bar properties.');
+  }).catch((err: BusinessError) => {
+    console.error('Failed to set the system bar properties. Cause: ' + JSON.stringify(err));
+  });
 } catch (exception) {
-    console.error('Failed to set the system bar properties. Cause: ' + JSON.stringify(exception));
+  console.error('Failed to set the system bar properties. Cause: ' + JSON.stringify(exception));
 }
 ```
 
@@ -2565,18 +2707,22 @@ setPreferredOrientation(orientation: Orientation, callback: AsyncCallback&lt;voi
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
+let windowClass: window.Window | null = null;
 let orientation = window.Orientation.AUTO_ROTATION;
 try {
-    windowClass.setPreferredOrientation(orientation, (err) => {
-        if (err.code) {
-            console.error('Failed to set window orientation. Cause: ' + JSON.stringify(err));
-            return;
-        }
-        console.info('Succeeded in setting window orientation.');
-    });
+  windowClass.setPreferredOrientation(orientation, (err: BusinessError) => {
+    const errCode: number = err.code;
+    if (errCode) {
+      console.error('Failed to set window orientation. Cause: ' + JSON.stringify(err));
+      return;
+    }
+    console.info('Succeeded in setting window orientation.');
+  });
 } catch (exception) {
-    console.error('Failed to set window orientation. Cause: ' + JSON.stringify(exception));
+  console.error('Failed to set window orientation. Cause: ' + JSON.stringify(exception));
 }
 ```
 
@@ -2610,17 +2756,20 @@ setPreferredOrientation(orientation: Orientation): Promise&lt;void&gt;
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
+let windowClass: window.Window | null = null;
 let orientation = window.Orientation.AUTO_ROTATION;
 try {
-    let promise = windowClass.setPreferredOrientation(orientation);
-    promise.then(()=> {
-        console.info('Succeeded in setting the window orientation.');
-    }).catch((err)=>{
-        console.error('Failed to set the window orientation. Cause: ' + JSON.stringify(err));
-    });
+  let promise = windowClass.setPreferredOrientation(orientation);
+  promise.then(() => {
+    console.info('Succeeded in setting the window orientation.');
+  }).catch((err: BusinessError) => {
+    console.error('Failed to set the window orientation. Cause: ' + JSON.stringify(err));
+  });
 } catch (exception) {
-    console.error('Failed to set window orientation. Cause: ' + JSON.stringify(exception));
+  console.error('Failed to set window orientation. Cause: ' + JSON.stringify(exception));
 }
 ```
 
@@ -2711,17 +2860,21 @@ setUIContent(path: string, callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
+let windowClass: window.Window | null = null;
 try {
-    windowClass.setUIContent('pages/page2/page2', (err) => {
-    if (err.code) {
-            console.error('Failed to load the content. Cause:' + JSON.stringify(err));
-            return;
+  windowClass.setUIContent('pages/page2/page2', (err: BusinessError) => {
+    const errCode: number = err.code;
+    if (errCode) {
+      console.error('Failed to load the content. Cause:' + JSON.stringify(err));
+      return;
     }
     console.info('Succeeded in loading the content.');
-    });
+  });
 } catch (exception) {
-    console.error('Failed to load the content. Cause:' + JSON.stringify(exception));
+  console.error('Failed to load the content. Cause:' + JSON.stringify(exception));
 }
 ```
 
@@ -2756,16 +2909,19 @@ setUIContent(path: string): Promise&lt;void&gt;
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
+let windowClass: window.Window | null = null;
 try {
-    let promise = windowClass.setUIContent('pages/page2/page2');
-    promise.then(()=> {
-        console.info('Succeeded in loading the content.');
-    }).catch((err)=>{
-        console.error('Failed to load the content. Cause: ' + JSON.stringify(err));
-    });
+  let promise = windowClass.setUIContent('pages/page2/page2');
+  promise.then(() => {
+    console.info('Succeeded in loading the content.');
+  }).catch((err: BusinessError) => {
+    console.error('Failed to load the content. Cause: ' + JSON.stringify(err));
+  });
 } catch (exception) {
-    console.error('Failed to load the content. Cause: ' + JSON.stringify(exception));
+  console.error('Failed to load the content. Cause: ' + JSON.stringify(exception));
 }
 ```
 
@@ -2922,12 +3078,13 @@ isWindowShowing(): boolean
 
 **示例：**
 
-```js
+```ts
+let windowClass: window.Window | null = null;
 try {
-    let data = windowClass.isWindowShowing();
-    console.info('Succeeded in checking whether the window is showing. Data: ' + JSON.stringify(data));
+  let data = windowClass.isWindowShowing();
+  console.info('Succeeded in checking whether the window is showing. Data: ' + JSON.stringify(data));
 } catch (exception) {
-    console.error('Failed to check whether the window is showing. Cause: ' + JSON.stringify(exception));
+  console.error('Failed to check whether the window is showing. Cause: ' + JSON.stringify(exception));
 }
 ```
 
@@ -2948,13 +3105,14 @@ on(type:  'windowSizeChange', callback: Callback&lt;Size&gt;): void
 
 **示例：**
 
-```js
+```ts
+let windowClass: window.Window | null = null;
 try {
-    windowClass.on('windowSizeChange', (data) => {
-        console.info('Succeeded in enabling the listener for window size changes. Data: ' + JSON.stringify(data));
-    });
+  windowClass.on('windowSizeChange', (data) => {
+    console.info('Succeeded in enabling the listener for window size changes. Data: ' + JSON.stringify(data));
+  });
 } catch (exception) {
-    console.error('Failed to enable the listener for window size changes. Cause: ' + JSON.stringify(exception));
+  console.error('Failed to enable the listener for window size changes. Cause: ' + JSON.stringify(exception));
 }
 ```
 
@@ -2975,11 +3133,12 @@ off(type: 'windowSizeChange', callback?: Callback&lt;Size&gt;): void
 
 **示例：**
 
-```js
+```ts
+let windowClass: window.Window | null = null;
 try {
-    windowClass.off('windowSizeChange');
+  windowClass.off('windowSizeChange');
 } catch (exception) {
-    console.error('Failed to disable the listener for window size changes. Cause: ' + JSON.stringify(exception));
+  console.error('Failed to disable the listener for window size changes. Cause: ' + JSON.stringify(exception));
 }
 ```
 
@@ -3000,14 +3159,15 @@ on(type: 'avoidAreaChange', callback: Callback&lt;{ type: AvoidAreaType, area: A
 
 **示例：**
 
-```js
+```ts
+let windowClass: window.Window | null = null;
 try {
-    windowClass.on('avoidAreaChange', (data) => {
-        console.info('Succeeded in enabling the listener for system avoid area changes. type:' +
-            JSON.stringify(data.type) + ', area: ' + JSON.stringify(data.area));
-    });
+  windowClass.on('avoidAreaChange', (data) => {
+    console.info('Succeeded in enabling the listener for system avoid area changes. type:' +
+    JSON.stringify(data.type) + ', area: ' + JSON.stringify(data.area));
+  });
 } catch (exception) {
-    console.error('Failed to enable the listener for system avoid area changes. Cause: ' + JSON.stringify(exception));
+  console.error('Failed to enable the listener for system avoid area changes. Cause: ' + JSON.stringify(exception));
 }
 ```
 
@@ -3028,11 +3188,12 @@ off(type: 'avoidAreaChange', callback?: Callback&lt;{ type: AvoidAreaType, area:
 
 **示例：**
 
-```js
+```ts
+let windowClass: window.Window | null = null;
 try {
-    windowClass.off('avoidAreaChange');
+  windowClass.off('avoidAreaChange');
 } catch (exception) {
-    console.error('Failed to disable the listener for system avoid area changes. Cause: ' + JSON.stringify(exception));
+  console.error('Failed to disable the listener for system avoid area changes. Cause: ' + JSON.stringify(exception));
 }
 ```
 
@@ -3053,13 +3214,14 @@ on(type: 'keyboardHeightChange', callback: Callback&lt;number&gt;): void
 
 **示例：**
 
-```js
+```ts
+let windowClass: window.Window | null = null;
 try {
-    windowClass.on('keyboardHeightChange', (data) => {
-        console.info('Succeeded in enabling the listener for keyboard height changes. Data: ' + JSON.stringify(data));
-    });
+  windowClass.on('keyboardHeightChange', (data) => {
+    console.info('Succeeded in enabling the listener for keyboard height changes. Data: ' + JSON.stringify(data));
+  });
 } catch (exception) {
-    console.error('Failed to enable the listener for keyboard height changes. Cause: ' + JSON.stringify(exception));
+  console.error('Failed to enable the listener for keyboard height changes. Cause: ' + JSON.stringify(exception));
 }
 ```
 
@@ -3080,11 +3242,12 @@ off(type: 'keyboardHeightChange', callback?: Callback&lt;number&gt;): void
 
 **示例：**
 
-```js
+```ts
+let windowClass: window.Window | null = null;
 try {
-    windowClass.off('keyboardHeightChange');
+  windowClass.off('keyboardHeightChange');
 } catch (exception) {
-    console.error('Failed to disable the listener for keyboard height changes. Cause: ' + JSON.stringify(exception));
+  console.error('Failed to disable the listener for keyboard height changes. Cause: ' + JSON.stringify(exception));
 }
 ```
 
@@ -3107,13 +3270,14 @@ on(type: 'touchOutside', callback: Callback&lt;void&gt;): void
 
 **示例：**
 
-```js
+```ts
+let windowClass: window.Window | null = null;
 try {
-    windowClass.on('touchOutside', () => {
-        console.info('touch outside');
-    });
+  windowClass.on('touchOutside', () => {
+    console.info('touch outside');
+  });
 } catch (exception) {
-    console.error('Failed to register callback. Cause: ' + JSON.stringify(exception));
+  console.error('Failed to register callback. Cause: ' + JSON.stringify(exception));
 }
 ```
 
@@ -3136,11 +3300,12 @@ off(type: 'touchOutside', callback?: Callback&lt;void&gt;): void
 
 **示例：**
 
-```js
+```ts
+let windowClass: window.Window | null = null;
 try {
-    windowClass.off('touchOutside');
+  windowClass.off('touchOutside');
 } catch (exception) {
-    console.error('Failed to unregister callback. Cause: ' + JSON.stringify(exception));
+  console.error('Failed to unregister callback. Cause: ' + JSON.stringify(exception));
 }
 ```
 
@@ -3161,13 +3326,14 @@ on(type: 'screenshot', callback: Callback&lt;void&gt;): void
 
 **示例：**
 
-```js
+```ts
+let windowClass: window.Window | null = null;
 try {
-    windowClass.on('screenshot', () => {
-        console.info('screenshot happened');
-    });
+  windowClass.on('screenshot', () => {
+    console.info('screenshot happened');
+  });
 } catch (exception) {
-    console.error('Failed to register callback. Cause: ' + JSON.stringify(exception));
+  console.error('Failed to register callback. Cause: ' + JSON.stringify(exception));
 }
 ```
 
@@ -3188,21 +3354,22 @@ off(type: 'screenshot', callback?: Callback&lt;void&gt;): void
 
 **示例：**
 
-```js
+```ts
+let windowClass: window.Window | null = null;
 let callback = () => {
-    console.info('screenshot happened');
+  console.info('screenshot happened');
 };
 try {
-    windowClass.on('screenshot', callback);
+  windowClass.on('screenshot', callback);
 } catch (exception) {
-    console.error('Failed to register callback. Cause: ' + JSON.stringify(exception));
+  console.error('Failed to register callback. Cause: ' + JSON.stringify(exception));
 }
 try {
-    windowClass.off('screenshot', callback);
-    // 如果通过on开启多个callback进行监听，同时关闭所有监听：
-    windowClass.off('screenshot');
+  windowClass.off('screenshot', callback);
+  // 如果通过on开启多个callback进行监听，同时关闭所有监听：
+  windowClass.off('screenshot');
 } catch (exception) {
-    console.error('Failed to unregister callback. Cause: ' + JSON.stringify(exception));
+  console.error('Failed to unregister callback. Cause: ' + JSON.stringify(exception));
 }
 ```
 
@@ -3223,13 +3390,14 @@ on(type: 'dialogTargetTouch', callback: Callback&lt;void&gt;): void
 
 **示例：**
 
-```js
+```ts
+let windowClass: window.Window | null = null;
 try {
-    windowClass.on('dialogTargetTouch', () => {
-        console.info('touch dialog target');
-    });
+  windowClass.on('dialogTargetTouch', () => {
+    console.info('touch dialog target');
+  });
 } catch (exception) {
-    console.error('Failed to register callback. Cause: ' + JSON.stringify(exception));
+  console.error('Failed to register callback. Cause: ' + JSON.stringify(exception));
 }
 ```
 
@@ -3250,11 +3418,12 @@ off(type: 'dialogTargetTouch', callback?: Callback&lt;void&gt;): void
 
 **示例：**
 
-```js
+```ts
+let windowClass: window.Window | null = null;
 try {
-    windowClass.off('dialogTargetTouch');
+  windowClass.off('dialogTargetTouch');
 } catch (exception) {
-    console.error('Failed to unregister callback. Cause: ' + JSON.stringify(exception));
+  console.error('Failed to unregister callback. Cause: ' + JSON.stringify(exception));
 }
 ```
 
@@ -3275,13 +3444,14 @@ on(type: 'windowEvent', callback: Callback&lt;WindowEventType&gt;): void
 
 **示例：**
 
-```js
+```ts
+let windowClass: window.Window | null = null;
 try {
-    windowClass.on('windowEvent', (data) => {
-        console.info('Window event happened. Event:' + JSON.stringify(data));
-    });
+  windowClass.on('windowEvent', (data) => {
+    console.info('Window event happened. Event:' + JSON.stringify(data));
+  });
 } catch (exception) {
-    console.error('Failed to register callback. Cause: ' + JSON.stringify(exception));
+  console.error('Failed to register callback. Cause: ' + JSON.stringify(exception));
 }
 ```
 
@@ -3302,11 +3472,12 @@ off(type: 'windowEvent', callback?: Callback&lt;WindowEventType &gt;): void
 
 **示例：**
 
-```js
+```ts
+let windowClass: window.Window | null = null;
 try {
-    windowClass.off('windowEvent');
+  windowClass.off('windowEvent');
 } catch (exception) {
-    console.error('Failed to unregister callback. Cause: ' + JSON.stringify(exception));
+  console.error('Failed to unregister callback. Cause: ' + JSON.stringify(exception));
 }
 ```
 
@@ -3339,51 +3510,58 @@ bindDialogTarget(token: rpc.RemoteObject, deathCallback: Callback&lt;void&gt;, c
 
 **示例：**
 
-```js
+```ts
 import rpc from '@ohos.rpc';
+import { BusinessError } from '@ohos.base';
 
 class MyDeathRecipient {
-    onRemoteDied() {
-        console.log('server died');
-    }
-}
-class TestRemoteObject extends rpc.RemoteObject {
-    constructor(descriptor) {
-        super(descriptor);
-    }
-    addDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
-        return true;
-    }
-    removeDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
-        return true;
-    }
-    isObjectDead(): boolean {
-        return false;
-    }
+  onRemoteDied() {
+    console.log('server died');
+  }
 }
 
-let token = new TestRemoteObject('testObject');
-let windowClass = null;
-let config = {name: "dialogWindow", windowType: window.WindowType.TYPE_DIALOG, ctx: this.context};
+class TestRemoteObject extends rpc.RemoteObject {
+  constructor(descriptor: string) {
+    super(descriptor);
+  }
+
+  addDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
+    return true;
+  }
+
+  removeDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
+    return true;
+  }
+
+  isObjectDead(): boolean {
+    return false;
+  }
+}
+
+let token: TestRemoteObject = new TestRemoteObject('testObject');
+let windowClass: window.Window | null = null;
+let config: window.Configuration = { name: "dialogWindow", windowType: window.WindowType.TYPE_DIALOG, ctx: this.context };
 try {
-    window.createWindow(config, (err, data) => {
-        if (err.code) {
-            console.error('Failed to create the window. Cause: ' + JSON.stringify(err));
-            return;
-        }
-        windowClass = data;
-    });
-    windowClass.bindDialogTarget(token, () => {
-        console.info('Dialog Window Need Destroy.');
-    }, (err) => {
-        if (err.code) {
-            console.error('Failed to bind dialog target. Cause:' + JSON.stringify(err));
-            return;
-        }
-        console.info('Succeeded in binding dialog target.');
-    });
+  window.createWindow(config, (err: BusinessError, data) => {
+    let errCode: number = err.code;
+    if (errCode) {
+      console.error('Failed to create the window. Cause: ' + JSON.stringify(err));
+      return;
+    }
+    windowClass = data;
+  });
+  windowClass.bindDialogTarget(token, () => {
+    console.info('Dialog Window Need Destroy.');
+  }, (err: BusinessError) => {
+    let errCode: number = err.code;
+    if (errCode) {
+      console.error('Failed to bind dialog target. Cause:' + JSON.stringify(err));
+      return;
+    }
+    console.info('Succeeded in binding dialog target.');
+  });
 } catch (exception) {
-    console.error('Failed to bind dialog target. Cause:' + JSON.stringify(exception));
+  console.error('Failed to bind dialog target. Cause:' + JSON.stringify(exception));
 }
 ```
 
@@ -3421,50 +3599,60 @@ bindDialogTarget(token: rpc.RemoteObject, deathCallback: Callback&lt;void&gt;): 
 
 **示例：**
 
-```js
+```ts
 import rpc from '@ohos.rpc';
+import { BusinessError } from '@ohos.base';
 
 class MyDeathRecipient {
-    onRemoteDied() {
-        console.log('server died');
-    }
-}
-class TestRemoteObject extends rpc.RemoteObject {
-    constructor(descriptor) {
-        super(descriptor);
-    }
-    addDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
-        return true;
-    }
-    removeDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
-        return true;
-    }
-    isObjectDead(): boolean {
-        return false;
-    }
+  onRemoteDied() {
+    console.log('server died');
+  }
 }
 
-let token = new TestRemoteObject('testObject');
-let windowClass = null;
-let config = {name: "dialogWindow", windowType: window.WindowType.TYPE_DIALOG, ctx: this.context};
+class TestRemoteObject extends rpc.RemoteObject {
+  constructor(descriptor: string) {
+    super(descriptor);
+  }
+
+  addDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
+    return true;
+  }
+
+  removeDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
+    return true;
+  }
+
+  isObjectDead(): boolean {
+    return false;
+  }
+}
+
+let token: TestRemoteObject = new TestRemoteObject('testObject');
+let windowClass: window.Window | null = null;
+let config: window.Configuration = {
+  name: "dialogWindow",
+  windowType: window.WindowType.TYPE_DIALOG,
+  ctx: this.context
+};
 try {
-    window.createWindow(config, (err, data) => {
-        if (err.code) {
-            console.error('Failed to create the window. Cause: ' + JSON.stringify(err));
-            return;
-        }
-        windowClass = data;
-    });
-    let promise = windowClass.bindDialogTarget(token, () => {
-        console.info('Dialog Window Need Destroy.');
-    });
-    promise.then(()=> {
-        console.info('Succeeded in binding dialog target.');
-    }).catch((err)=>{
-            console.error('Failed to bind dialog target. Cause:' + JSON.stringify(err));
-    });
+  window.createWindow(config, (err: BusinessError, data) => {
+    const errCode: number = err.code;
+    if (errCode) {
+      console.error('Failed to create the window. Cause: ' + JSON.stringify(err));
+      return;
+    }
+    windowClass = data;
+  });
+  let promise = windowClass.bindDialogTarget(token, () => {
+    console.info('Dialog Window Need Destroy.');
+  });
+  promise.then(() => {
+    console.info('Succeeded in binding dialog target.');
+  }).catch((err: BusinessError) => {
+    console.error('Failed to bind dialog target. Cause:' + JSON.stringify(err));
+  });
 } catch (exception) {
-    console.error('Failed to bind dialog target. Cause:' + JSON.stringify(exception));
+  console.error('Failed to bind dialog target. Cause:' + JSON.stringify(exception));
 }
 ```
 
@@ -3497,38 +3685,43 @@ bindDialogTarget(requestInfo: dialogRequest.RequestInfo, deathCallback: Callback
 
 **示例：**
 
-```js
+```ts
 import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
 import dialogRequest from '@ohos.app.ability.dialogRequest';
-import window from '@ohos.window';
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
 
 export default class ServiceExtAbility extends ServiceExtensionAbility {
-    onRequest(want, startId) {
-        console.info('onRequest');
-        let windowClass = null;
-        let config = {name: "dialogWindow", windowType: window.WindowType.TYPE_DIALOG, ctx: this.context};
-        try {
-            window.createWindow(config, (err, data) => {
-                if (err.code) {
-                    console.error('Failed to create the window. Cause: ' + JSON.stringify(err));
-                    return;
-                }
-                windowClass = data;
-            });
-            let requestInfo = dialogRequest.getRequestInfo(want)
-            windowClass.bindDialogTarget(requestInfo, () => {
-                console.info('Dialog Window Need Destroy.');
-            }, (err) => {
-                if (err.code) {
-                    console.error('Failed to bind dialog target. Cause:' + JSON.stringify(err));
-                    return;
-                }
-                console.info('Succeeded in binding dialog target.');
-            });
-        } catch(err) {
-            console.error('Failed to bind dialog target. Cause:' + JSON.stringify(err))
+  onRequest(want: Want, startId: number) {
+    console.info('onRequest');
+    let windowClass: window.Window | null = null;
+    let config: window.Configuration = {
+      name: "dialogWindow", windowType: window.WindowType.TYPE_DIALOG, ctx: this.context
+    };
+    try {
+      window.createWindow(config, (err: BusinessError, data) => {
+        let errCode: number = err.code;
+        if (errCode) {
+          console.error('Failed to create the window. Cause: ' + JSON.stringify(err));
+          return;
         }
+        windowClass = data;
+      });
+      let requestInfo = dialogRequest.getRequestInfo(want)
+      windowClass.bindDialogTarget(requestInfo, () => {
+        console.info('Dialog Window Need Destroy.');
+      }, (err: BusinessError) => {
+        let errCode: number = err.code;
+        if (errCode) {
+          console.error('Failed to bind dialog target. Cause:' + JSON.stringify(err));
+          return;
+        }
+        console.info('Succeeded in binding dialog target.');
+      });
+    } catch (err) {
+      console.error('Failed to bind dialog target. Cause:' + JSON.stringify(err))
     }
+  }
 }
 ```
 
@@ -3566,37 +3759,41 @@ bindDialogTarget(requestInfo: dialogRequest.RequestInfo, deathCallback: Callback
 
 **示例：**
 
-```js
+```ts
 import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
 import dialogRequest from '@ohos.app.ability.dialogRequest';
-import window from '@ohos.window';
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
 
 export default class ServiceExtAbility extends ServiceExtensionAbility {
-    onRequest(want, startId) {
-        console.info('onRequest');
-        let windowClass = null;
-        let config = {name: "dialogWindow", windowType: window.WindowType.TYPE_DIALOG, ctx: this.context};
-        try {
-            window.createWindow(config, (err, data) => {
-                if (err.code) {
-                    console.error('Failed to create the window. Cause: ' + JSON.stringify(err));
-                    return;
-                }
-                windowClass = data;
-            });
-            let requestInfo = dialogRequest.getRequestInfo(want)
-            let promise = windowClass.bindDialogTarget(requestInfo, () => {
-                console.info('Dialog Window Need Destroy.');
-            });
-            promise.then(()=> {
-                console.info('Succeeded in binding dialog target.');
-            }).catch((err)=>{
-                    console.error('Failed to bind dialog target. Cause:' + JSON.stringify(err));
-            });
-        } catch(err) {
-            console.error('Failed to bind dialog target. Cause:' + JSON.stringify(err))
+  onRequest(want: Want, startId: number) {
+    console.info('onRequest');
+    let windowClass: window.Window | null = null;
+    let config: window.Configuration = {
+      name: "dialogWindow", windowType: window.WindowType.TYPE_DIALOG, ctx: this.context
+    };
+    try {
+      window.createWindow(config, (err: BusinessError, data) => {
+        const errCode: number = err.code;
+        if (errCode) {
+          console.error('Failed to create the window. Cause: ' + JSON.stringify(err));
+          return;
         }
+        windowClass = data;
+      });
+      let requestInfo = dialogRequest.getRequestInfo(want)
+      let promise = windowClass.bindDialogTarget(requestInfo, () => {
+        console.info('Dialog Window Need Destroy.');
+      });
+      promise.then(() => {
+        console.info('Succeeded in binding dialog target.');
+      }).catch((err: BusinessError) => {
+        console.error('Failed to bind dialog target. Cause:' + JSON.stringify(err));
+      });
+    } catch (err) {
+      console.error('Failed to bind dialog target. Cause:' + JSON.stringify(err))
     }
+  }
 }
 ```
 
@@ -3624,13 +3821,17 @@ isWindowSupportWideGamut(callback: AsyncCallback&lt;boolean&gt;): void
 
 **示例：**
 
-```js
-windowClass.isWindowSupportWideGamut((err, data) => {
-    if (err.code) {
-        console.error('Failed to check whether the window support WideGamut. Cause:' + JSON.stringify(err));
-        return;
-    }
-    console.info('Succeeded in checking whether the window support WideGamut Data: ' + JSON.stringify(data));
+```ts
+import { BusinessError } from '@ohos.base';
+
+let windowClass: window.Window | null = null;
+windowClass.isWindowSupportWideGamut((err: BusinessError, data) => {
+  const errCode: number = err.code;
+  if (errCode) {
+    console.error('Failed to check whether the window support WideGamut. Cause:' + JSON.stringify(err));
+    return;
+  }
+  console.info('Succeeded in checking whether the window support WideGamut Data: ' + JSON.stringify(data));
 });
 ```
 
@@ -3658,12 +3859,15 @@ isWindowSupportWideGamut(): Promise&lt;boolean&gt;
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
+let windowClass: window.Window | null = null;
 let promise = windowClass.isWindowSupportWideGamut();
-promise.then((data)=> {
-    console.info('Succeeded in checking whether the window support WideGamut. Data: ' + JSON.stringify(data));
-}).catch((err)=>{
-    console.error('Failed to check whether the window support WideGamut. Cause: ' + JSON.stringify(err));
+promise.then((data) => {
+  console.info('Succeeded in checking whether the window support WideGamut. Data: ' + JSON.stringify(data));
+}).catch((err: BusinessError) => {
+  console.error('Failed to check whether the window support WideGamut. Cause: ' + JSON.stringify(err));
 });
 ```
 
@@ -3692,17 +3896,21 @@ setWindowColorSpace(colorSpace:ColorSpace, callback: AsyncCallback&lt;void&gt;):
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
+let windowClass: window.Window | null = null;
 try {
-    windowClass.setWindowColorSpace(window.ColorSpace.WIDE_GAMUT, (err) => {
-        if (err.code) {
-            console.error('Failed to set window colorspace. Cause:' + JSON.stringify(err));
-            return;
-        }
-        console.info('Succeeded in setting window colorspace.');
-    });
+  windowClass.setWindowColorSpace(window.ColorSpace.WIDE_GAMUT, (err: BusinessError) => {
+    const errCode: number = err.code;
+    if (errCode) {
+      console.error('Failed to set window colorspace. Cause:' + JSON.stringify(err));
+      return;
+    }
+    console.info('Succeeded in setting window colorspace.');
+  });
 } catch (exception) {
-    console.error('Failed to set window colorspace. Cause:' + JSON.stringify(exception));
+  console.error('Failed to set window colorspace. Cause:' + JSON.stringify(exception));
 }
 ```
 
@@ -3736,16 +3944,19 @@ setWindowColorSpace(colorSpace:ColorSpace): Promise&lt;void&gt;
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
+let windowClass: window.Window | null = null;
 try {
-    let promise = windowClass.setWindowColorSpace(window.ColorSpace.WIDE_GAMUT);
-    promise.then(()=> {
-        console.info('Succeeded in setting window colorspace.');
-    }).catch((err)=>{
-        console.error('Failed to set window colorspace. Cause: ' + JSON.stringify(err));
-    });
+  let promise = windowClass.setWindowColorSpace(window.ColorSpace.WIDE_GAMUT);
+  promise.then(() => {
+    console.info('Succeeded in setting window colorspace.');
+  }).catch((err: BusinessError) => {
+    console.error('Failed to set window colorspace. Cause: ' + JSON.stringify(err));
+  });
 } catch (exception) {
-    console.error('Failed to set window colorspace. Cause:' + JSON.stringify(exception));
+  console.error('Failed to set window colorspace. Cause:' + JSON.stringify(exception));
 }
 ```
 
@@ -3773,7 +3984,8 @@ getWindowColorSpace(): ColorSpace
 
 **示例：**
 
-```js
+```ts
+let windowClass: window.Window | null = null;
 let colorSpace = windowClass.getWindowColorSpace();
 ```
 
@@ -3801,12 +4013,13 @@ setWindowBackgroundColor(color: string): void
 
 **示例：**
 
-```js
-let color = '#00ff33';
+```ts
+let windowClass: window.Window | null = null;
+let color: string = '#00ff33';
 try {
-    windowClass.setWindowBackgroundColor(color);
+  windowClass.setWindowBackgroundColor(color);
 } catch (exception) {
-    console.error('Failed to set the background color. Cause: ' + JSON.stringify(exception));
+  console.error('Failed to set the background color. Cause: ' + JSON.stringify(exception));
 }
 ```
 
@@ -3838,18 +4051,22 @@ setWindowBrightness(brightness: number, callback: AsyncCallback&lt;void&gt;): vo
 
 **示例：**
 
-```js
-let brightness = 1;
+```ts
+import { BusinessError } from '@ohos.base';
+
+let windowClass: window.Window | null = null;
+let brightness: number = 1;
 try {
-    windowClass.setWindowBrightness(brightness, (err) => {
-        if (err.code) {
-            console.error('Failed to set the brightness. Cause: ' + JSON.stringify(err));
-            return;
-        }
-        console.info('Succeeded in setting the brightness.');
-    });
+  windowClass.setWindowBrightness(brightness, (err: BusinessError) => {
+    const errCode: number = err.code;
+    if (errCode) {
+      console.error('Failed to set the brightness. Cause: ' + JSON.stringify(err));
+      return;
+    }
+    console.info('Succeeded in setting the brightness.');
+  });
 } catch (exception) {
-    console.error('Failed to set the brightness. Cause: ' + JSON.stringify(exception));
+  console.error('Failed to set the brightness. Cause: ' + JSON.stringify(exception));
 }
 ```
 
@@ -3886,17 +4103,20 @@ setWindowBrightness(brightness: number): Promise&lt;void&gt;
 
 **示例：**
 
-```js
-let brightness = 1;
+```ts
+import { BusinessError } from '@ohos.base';
+
+let windowClass: window.Window | null = null;
+let brightness: number = 1;
 try {
-    let promise = windowClass.setWindowBrightness(brightness);
-    promise.then(()=> {
-        console.info('Succeeded in setting the brightness.');
-    }).catch((err)=>{
-        console.error('Failed to set the brightness. Cause: ' + JSON.stringify(err));
-    });
+  let promise = windowClass.setWindowBrightness(brightness);
+  promise.then(() => {
+    console.info('Succeeded in setting the brightness.');
+  }).catch((err: BusinessError) => {
+    console.error('Failed to set the brightness. Cause: ' + JSON.stringify(err));
+  });
 } catch (exception) {
-    console.error('Failed to set the brightness. Cause: ' + JSON.stringify(exception));
+  console.error('Failed to set the brightness. Cause: ' + JSON.stringify(exception));
 }
 ```
 
@@ -3926,18 +4146,22 @@ setWindowFocusable(isFocusable: boolean, callback: AsyncCallback&lt;void&gt;): v
 
 **示例：**
 
-```js
-let isFocusable = true;
+```ts
+import { BusinessError } from '@ohos.base';
+
+let windowClass: window.Window | null = null;
+let isFocusable: boolean = true;
 try {
-    windowClass.setWindowFocusable(isFocusable, (err) => {
-        if (err.code) {
-            console.error('Failed to set the window to be focusable. Cause:' + JSON.stringify(err));
-            return;
-        }
-        console.info('Succeeded in setting the window to be focusable.');
-    });
+  windowClass.setWindowFocusable(isFocusable, (err: BusinessError) => {
+    const errCode: number = err.code;
+    if (errCode) {
+      console.error('Failed to set the window to be focusable. Cause:' + JSON.stringify(err));
+      return;
+    }
+    console.info('Succeeded in setting the window to be focusable.');
+  });
 } catch (exception) {
-    console.error('Failed to set the window to be focusable. Cause:' + JSON.stringify(exception));
+  console.error('Failed to set the window to be focusable. Cause:' + JSON.stringify(exception));
 }
 ```
 
@@ -3972,17 +4196,20 @@ setWindowFocusable(isFocusable: boolean): Promise&lt;void&gt;
 
 **示例：**
 
-```js
-let isFocusable = true;
+```ts
+import { BusinessError } from '@ohos.base';
+
+let windowClass: window.Window | null = null;
+let isFocusable: boolean = true;
 try {
-    let promise = windowClass.setWindowFocusable(isFocusable);
-    promise.then(()=> {
-        console.info('Succeeded in setting the window to be focusable.');
-    }).catch((err)=>{
-        console.error('Failed to set the window to be focusable. Cause: ' + JSON.stringify(err));
-    });
+  let promise = windowClass.setWindowFocusable(isFocusable);
+  promise.then(() => {
+    console.info('Succeeded in setting the window to be focusable.');
+  }).catch((err: BusinessError) => {
+    console.error('Failed to set the window to be focusable. Cause: ' + JSON.stringify(err));
+  });
 } catch (exception) {
-    console.error('Failed to set the window to be focusable. Cause:' + JSON.stringify(exception));
+  console.error('Failed to set the window to be focusable. Cause:' + JSON.stringify(exception));
 }
 ```
 
@@ -4012,18 +4239,22 @@ setWindowKeepScreenOn(isKeepScreenOn: boolean, callback: AsyncCallback&lt;void&g
 
 **示例：**
 
-```js
-let isKeepScreenOn = true;
+```ts
+import { BusinessError } from '@ohos.base';
+
+let windowClass: window.Window | null = null;
+let isKeepScreenOn: boolean = true;
 try {
-    windowClass.setWindowKeepScreenOn(isKeepScreenOn, (err) => {
-        if (err.code) {
-            console.error('Failed to set the screen to be always on. Cause: ' + JSON.stringify(err));
-            return;
-        }
-        console.info('Succeeded in setting the screen to be always on.');
-    });
+  windowClass.setWindowKeepScreenOn(isKeepScreenOn, (err: BusinessError) => {
+    const errCode: number = err.code;
+    if (errCode) {
+      console.error('Failed to set the screen to be always on. Cause: ' + JSON.stringify(err));
+      return;
+    }
+    console.info('Succeeded in setting the screen to be always on.');
+  });
 } catch (exception) {
-    console.error('Failed to set the screen to be always on. Cause: ' + JSON.stringify(exception));
+  console.error('Failed to set the screen to be always on. Cause: ' + JSON.stringify(exception));
 }
 ```
 
@@ -4058,17 +4289,20 @@ setWindowKeepScreenOn(isKeepScreenOn: boolean): Promise&lt;void&gt;
 
 **示例：**
 
-```js
-let isKeepScreenOn = true;
+```ts
+import { BusinessError } from '@ohos.base';
+
+let windowClass: window.Window | null = null;
+let isKeepScreenOn: boolean = true;
 try {
-    let promise = windowClass.setWindowKeepScreenOn(isKeepScreenOn);
-    promise.then(() => {
-        console.info('Succeeded in setting the screen to be always on.');
-    }).catch((err)=>{
-        console.info('Failed to set the screen to be always on. Cause:  ' + JSON.stringify(err));
-    });
+  let promise = windowClass.setWindowKeepScreenOn(isKeepScreenOn);
+  promise.then(() => {
+    console.info('Succeeded in setting the screen to be always on.');
+  }).catch((err: BusinessError) => {
+    console.info('Failed to set the screen to be always on. Cause:  ' + JSON.stringify(err));
+  });
 } catch (exception) {
-    console.error('Failed to set the screen to be always on. Cause: ' + JSON.stringify(exception));
+  console.error('Failed to set the screen to be always on. Cause: ' + JSON.stringify(exception));
 }
 ```
 
@@ -4099,12 +4333,13 @@ setWakeUpScreen(wakeUp: boolean): void
 
 **示例：**
 
-```js
-let wakeUp = true;
+```ts
+let windowClass: window.Window | null = null;
+let wakeUp: boolean = true;
 try {
-    windowClass.setWakeUpScreen(wakeUp);
+  windowClass.setWakeUpScreen(wakeUp);
 } catch (exception) {
-    console.error('Failed to wake up the screen. Cause: ' + JSON.stringify(exception));
+  console.error('Failed to wake up the screen. Cause: ' + JSON.stringify(exception));
 }
 ```
 
@@ -4135,18 +4370,22 @@ setWindowPrivacyMode(isPrivacyMode: boolean, callback: AsyncCallback&lt;void&gt;
 
 **示例：**
 
-```js
-let isPrivacyMode = true;
+```ts
+import { BusinessError } from '@ohos.base';
+
+let windowClass: window.Window | null = null;
+let isPrivacyMode: boolean = true;
 try {
-    windowClass.setWindowPrivacyMode(isPrivacyMode, (err) => {
-        if (err.code) {
-            console.error('Failed to set the window to privacy mode. Cause:' + JSON.stringify(err));
-            return;
-        }
-        console.info('Succeeded in setting the window to privacy mode.');
-    });
+  windowClass.setWindowPrivacyMode(isPrivacyMode, (err: BusinessError) => {
+    const errCode: number = err.code;
+    if (errCode) {
+      console.error('Failed to set the window to privacy mode. Cause:' + JSON.stringify(err));
+      return;
+    }
+    console.info('Succeeded in setting the window to privacy mode.');
+  });
 } catch (exception) {
-    console.error('Failed to set the window to privacy mode. Cause:' + JSON.stringify(exception));
+  console.error('Failed to set the window to privacy mode. Cause:' + JSON.stringify(exception));
 }
 ```
 
@@ -4182,17 +4421,20 @@ setWindowPrivacyMode(isPrivacyMode: boolean): Promise&lt;void&gt;
 
 **示例：**
 
-```js
-let isPrivacyMode = true;
+```ts
+import { BusinessError } from '@ohos.base';
+
+let windowClass: window.Window | null = null;
+let isPrivacyMode: boolean = true;
 try {
-    let promise = windowClass.setWindowPrivacyMode(isPrivacyMode);
-    promise.then(()=> {
-        console.info('Succeeded in setting the window to privacy mode.');
-    }).catch((err)=>{
-        console.error('Failed to set the window to privacy mode. Cause: ' + JSON.stringify(err));
-    });
+  let promise = windowClass.setWindowPrivacyMode(isPrivacyMode);
+  promise.then(() => {
+    console.info('Succeeded in setting the window to privacy mode.');
+  }).catch((err: BusinessError) => {
+    console.error('Failed to set the window to privacy mode. Cause: ' + JSON.stringify(err));
+  });
 } catch (exception) {
-    console.error('Failed to set the window to privacy mode. Cause:' + JSON.stringify(exception));
+  console.error('Failed to set the window to privacy mode. Cause:' + JSON.stringify(exception));
 }
 ```
 
@@ -4219,13 +4461,14 @@ setSnapshotSkip(isSkip: boolean): void
 | ------- | ------------------------------ |
 | 1300002 | This window state is abnormal. |
 
-```js
-let isSkip = true;
+```ts
+let windowClass: window.Window | null = null;
+let isSkip: boolean = true;
 try {
-    windowClass.setSnapshotSkip(isSkip);
+  windowClass.setSnapshotSkip(isSkip);
 } catch (exception) {
-    console.error('Failed to Skip. Cause: ' + JSON.stringify(exception));
-};
+  console.error('Failed to Skip. Cause: ' + JSON.stringify(exception));
+}
 ```
 
 ### setWindowTouchable<sup>9+</sup>
@@ -4254,18 +4497,22 @@ setWindowTouchable(isTouchable: boolean, callback: AsyncCallback&lt;void&gt;): v
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
+let windowClass: window.Window | null = null;
 let isTouchable = true;
 try {
-    windowClass.setWindowTouchable(isTouchable, (err) => {
-        if (err.code) {
-            console.error('Failed to set the window to be touchable. Cause:' + JSON.stringify(err));
-            return;
-        }
-        console.info('Succeeded in setting the window to be touchable.');
-    });
+  windowClass.setWindowTouchable(isTouchable, (err: BusinessError) => {
+    const errCode: number = err.code;
+    if (errCode) {
+      console.error('Failed to set the window to be touchable. Cause:' + JSON.stringify(err));
+      return;
+    }
+    console.info('Succeeded in setting the window to be touchable.');
+  });
 } catch (exception) {
-    console.error('Failed to set the window to be touchable. Cause:' + JSON.stringify(exception));
+  console.error('Failed to set the window to be touchable. Cause:' + JSON.stringify(exception));
 }
 ```
 
@@ -4300,17 +4547,20 @@ setWindowTouchable(isTouchable: boolean): Promise&lt;void&gt;
 
 **示例：**
 
-```js
-let isTouchable = true;
+```ts
+import { BusinessError } from '@ohos.base';
+
+let windowClass: window.Window | null = null;
+let isTouchable: boolean = true;
 try {
-    let promise = windowClass.setWindowTouchable(isTouchable);
-    promise.then(()=> {
-        console.info('Succeeded in setting the window to be touchable.');
-    }).catch((err)=>{
-        console.error('Failed to set the window to be touchable. Cause: ' + JSON.stringify(err));
-    });
+  let promise = windowClass.setWindowTouchable(isTouchable);
+  promise.then(() => {
+    console.info('Succeeded in setting the window to be touchable.');
+  }).catch((err: BusinessError) => {
+    console.error('Failed to set the window to be touchable. Cause: ' + JSON.stringify(err));
+  });
 } catch (exception) {
-    console.error('Failed to set the window to be touchable. Cause:' + JSON.stringify(exception));
+  console.error('Failed to set the window to be touchable. Cause:' + JSON.stringify(exception));
 }
 ```
 
@@ -4342,18 +4592,22 @@ setForbidSplitMove(isForbidSplitMove: boolean, callback: AsyncCallback&lt;void&g
 
 **示例：**
 
-```js
-let isForbidSplitMove = true;
+```ts
+import { BusinessError } from '@ohos.base';
+
+let windowClass: window.Window | null = null;
+let isForbidSplitMove: boolean = true;
 try {
-    windowClass.setForbidSplitMove(isForbidSplitMove, (err) => {
-        if (err.code) {
-            console.error('Failed to forbid window moving in split screen mode. Cause:' + JSON.stringify(err));
-            return;
-        }
-        console.info('Succeeded in forbidding window moving in split screen mode.');
-    });
+  windowClass.setForbidSplitMove(isForbidSplitMove, (err: BusinessError) => {
+    const errCode: number = err.code;
+    if (errCode) {
+      console.error('Failed to forbid window moving in split screen mode. Cause:' + JSON.stringify(err));
+      return;
+    }
+    console.info('Succeeded in forbidding window moving in split screen mode.');
+  });
 } catch (exception) {
-    console.error('Failed to forbid window moving in split screen mode. Cause:' + JSON.stringify(exception));
+  console.error('Failed to forbid window moving in split screen mode. Cause:' + JSON.stringify(exception));
 }
 ```
 
@@ -4390,17 +4644,20 @@ setForbidSplitMove(isForbidSplitMove: boolean): Promise&lt;void&gt;
 
 **示例：**
 
-```js
-let isForbidSplitMove = true;
+```ts
+import { BusinessError } from '@ohos.base';
+
+let windowClass: window.Window | null = null;
+let isForbidSplitMove: boolean = true;
 try {
-    let promise = windowClass.setForbidSplitMove(isForbidSplitMove);
-    promise.then(()=> {
-        console.info('Succeeded in forbidding window moving in split screen mode.');
-    }).catch((err)=>{
-        console.error('Failed to forbid window moving in split screen mode. Cause: ' + JSON.stringify(err));
-    });
+  let promise = windowClass.setForbidSplitMove(isForbidSplitMove);
+  promise.then(() => {
+    console.info('Succeeded in forbidding window moving in split screen mode.');
+  }).catch((err: BusinessError) => {
+    console.error('Failed to forbid window moving in split screen mode. Cause: ' + JSON.stringify(err));
+  });
 } catch (exception) {
-    console.error('Failed to forbid window moving in split screen mode. Cause:' + JSON.stringify(exception));
+  console.error('Failed to forbid window moving in split screen mode. Cause:' + JSON.stringify(exception));
 }
 ```
 
@@ -4428,14 +4685,19 @@ snapshot(callback: AsyncCallback&lt;image.PixelMap&gt;): void
 
 **示例：**
 
-```js
-windowClass.snapshot((err, pixelMap) => {
-    if (err.code) {
-        console.error('Failed to snapshot window. Cause:' + JSON.stringify(err));
-        return;
-    }
-    console.info('Succeeded in snapshotting window. Pixel bytes number: ' + pixelMap.getPixelBytesNumber());
-    pixelMap.release(); // PixelMap使用完后及时释放内存
+```ts
+import { BusinessError } from '@ohos.base';
+import image from '@ohos.multimedia.image';
+
+let windowClass: window.Window | null = null;
+windowClass.snapshot((err: BusinessError, pixelMap: image.PixelMap) => {
+  const errCode: number = err.code;
+  if (errCode) {
+    console.error('Failed to snapshot window. Cause:' + JSON.stringify(err));
+    return;
+  }
+  console.info('Succeeded in snapshotting window. Pixel bytes number: ' + pixelMap.getPixelBytesNumber());
+  pixelMap.release(); // PixelMap使用完后及时释放内存
 });
 ```
 
@@ -4463,13 +4725,17 @@ snapshot(): Promise&lt;image.PixelMap&gt;
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+import image from '@ohos.multimedia.image';
+
+let windowClass: window.Window | null = null;
 let promise = windowClass.snapshot();
-promise.then((pixelMap)=> {
-    console.info('Succeeded in snapshotting window. Pixel bytes number: ' + pixelMap.getPixelBytesNumber());
-    pixelMap.release(); // PixelMap使用完后及时释放内存
-}).catch((err)=>{
-    console.error('Failed to snapshot window. Cause:' + JSON.stringify(err));
+promise.then((pixelMap: image.PixelMap) => {
+  console.info('Succeeded in snapshotting window. Pixel bytes number: ' + pixelMap.getPixelBytesNumber());
+  pixelMap.release(); // PixelMap使用完后及时释放内存
+}).catch((err: BusinessError) => {
+  console.error('Failed to snapshot window. Cause:' + JSON.stringify(err));
 });
 ```
 
@@ -4500,11 +4766,12 @@ opacity(opacity: number): void
 
 **示例：**
 
-```js
+```ts
+let windowClass: window.Window | null = null;
 try {
-    windowClass.opacity(0.5);
+  windowClass.opacity(0.5);
 } catch (exception) {
-    console.error('Failed to opacity. Cause: ' + JSON.stringify(exception));
+  console.error('Failed to opacity. Cause: ' + JSON.stringify(exception));
 }
 ```
 
@@ -4535,17 +4802,18 @@ scale(scaleOptions: ScaleOptions): void
 
 **示例：**
 
-```js
-let obj : window.ScaleOptions = {
-  x : 2.0,
-  y : 1.0,
-  pivotX : 0.5,
-  pivotY : 0.5
+```ts
+let windowClass: window.Window | null = null;
+let obj: window.ScaleOptions = {
+  x: 2.0,
+  y: 1.0,
+  pivotX: 0.5,
+  pivotY: 0.5
 };
 try {
-    windowClass.scale(obj);
+  windowClass.scale(obj);
 } catch (exception) {
-    console.error('Failed to scale. Cause: ' + JSON.stringify(exception));
+  console.error('Failed to scale. Cause: ' + JSON.stringify(exception));
 }
 ```
 
@@ -4576,18 +4844,19 @@ rotate(rotateOptions: RotateOptions): void
 
 **示例：**
 
-```js
-let obj : window.RotateOptions = {
-  x : 1.0,
-  y : 1.0,
-  z : 45.0,
-  pivotX : 0.5,
-  pivotY : 0.5
+```ts
+let windowClass: window.Window | null = null;
+let obj: window.RotateOptions = {
+  x: 1.0,
+  y: 1.0,
+  z: 45.0,
+  pivotX: 0.5,
+  pivotY: 0.5
 };
 try {
-    windowClass.rotate(obj);
+  windowClass.rotate(obj);
 } catch (exception) {
-    console.error('Failed to rotate. Cause: ' + JSON.stringify(exception));
+  console.error('Failed to rotate. Cause: ' + JSON.stringify(exception));
 }
 ```
 
@@ -4618,16 +4887,17 @@ translate(translateOptions: TranslateOptions): void
 
 **示例：**
 
-```js
-let obj : window.TranslateOptions = {
-  x : 100.0,
-  y : 0.0,
-  z : 0.0
+```ts
+let windowClass: window.Window | null = null;
+let obj: window.TranslateOptions = {
+  x: 100.0,
+  y: 0.0,
+  z: 0.0
 };
 try {
-    windowClass.translate(obj);
+  windowClass.translate(obj);
 } catch (exception) {
-    console.error('Failed to translate. Cause: ' + JSON.stringify(exception));
+  console.error('Failed to translate. Cause: ' + JSON.stringify(exception));
 }
 ```
 
@@ -4658,38 +4928,42 @@ try {
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
+let windowClass: window.Window | null = null;
 let controller = windowClass.getTransitionController(); // 获取属性转换控制器
-controller.animationForHidden = (context : window.TransitionContext) => {
-	let toWindow = context.toWindow;
- 	animateTo({
-    	duration: 1000, // 动画时长
-        tempo: 0.5, // 播放速率
-        curve: Curve.EaseInOut, // 动画曲线
-        delay: 0, // 动画延迟
-        iterations: 1, // 播放次数
-        playMode: PlayMode.Normal, // 动画模式
-        onFinish: ()=> {
-            context.completeTransition(true)
-        }
-      }, () => {
-        let obj : window.TranslateOptions = {
-          x : 100.0,
-          y : 0.0,
-          z : 0.0
-        };
-        toWindow.translate(obj); // 设置动画过程中的属性转换
-        console.info('toWindow translate end');
-      }
-    );
-    console.info('complete transition end');
-};
-windowClass.hideWithAnimation((err, data) => {
-    if (err.code) {
-        console.error('Failed to show the window with animation. Cause: ' + JSON.stringify(err));
-        return;
+controller.animationForHidden = (context: window.TransitionContext) => {
+  let toWindow = context.toWindow;
+  animateTo({
+    duration: 1000, // 动画时长
+    tempo: 0.5, // 播放速率
+    curve: Curve.EaseInOut, // 动画曲线
+    delay: 0, // 动画延迟
+    iterations: 1, // 播放次数
+    playMode: PlayMode.Normal, // 动画模式
+    onFinish: () => {
+      context.completeTransition(true)
     }
-    console.info('Succeeded in showing the window with animation. Data: ' + JSON.stringify(data));
+  }, () => {
+    let obj: window.TranslateOptions = {
+      x: 100.0,
+      y: 0.0,
+      z: 0.0
+    };
+    toWindow.translate(obj); // 设置动画过程中的属性转换
+    console.info('toWindow translate end');
+  }
+  );
+  console.info('complete transition end');
+};
+windowClass.hideWithAnimation((err: BusinessError, data) => {
+  const errCode: number = err.code;
+  if (errCode) {
+    console.error('Failed to show the window with animation. Cause: ' + JSON.stringify(err));
+    return;
+  }
+  console.info('Succeeded in showing the window with animation. Data: ' + JSON.stringify(data));
 });
 ```
 
@@ -4720,11 +4994,12 @@ setBlur(radius: number): void
 
 **示例：**
 
-```js
+```ts
+let windowClass: window.Window | null = null;
 try {
-    windowClass.setBlur(4.0);
+  windowClass.setBlur(4.0);
 } catch (exception) {
-    console.error('Failed to set blur. Cause: ' + JSON.stringify(exception));
+  console.error('Failed to set blur. Cause: ' + JSON.stringify(exception));
 }
 ```
 
@@ -4755,11 +5030,12 @@ setBackdropBlur(radius: number): void
 
 **示例：**
 
-```js
+```ts
+let windowClass: window.Window | null = null;
 try {
-    windowClass.setBackdropBlur(4.0);
+  windowClass.setBackdropBlur(4.0);
 } catch (exception) {
-    console.error('Failed to set backdrop blur. Cause: ' + JSON.stringify(exception));
+  console.error('Failed to set backdrop blur. Cause: ' + JSON.stringify(exception));
 }
 ```
 
@@ -4790,11 +5066,12 @@ setBackdropBlurStyle(blurStyle: BlurStyle): void
 
 **示例：**
 
-```js
+```ts
+let windowClass: window.Window | null = null;
 try {
-    windowClass.setBackdropBlurStyle(window.BlurStyle.THIN);
+  windowClass.setBackdropBlurStyle(window.BlurStyle.THIN);
 } catch (exception) {
-    console.error('Failed to set backdrop blur style. Cause: ' + JSON.stringify(exception));
+  console.error('Failed to set backdrop blur style. Cause: ' + JSON.stringify(exception));
 }
 ```
 
@@ -4828,11 +5105,12 @@ setShadow(radius: number, color?: string, offsetX?: number, offsetY?: number): v
 
 **示例：**
 
-```js
+```ts
+let windowClass: window.Window | null = null;
 try {
-    windowClass.setShadow(4.0, '#FF00FF00', 2, 3);
+  windowClass.setShadow(4.0, '#FF00FF00', 2, 3);
 } catch (exception) {
-    console.error('Failed to set shadow. Cause: ' + JSON.stringify(exception));
+  console.error('Failed to set shadow. Cause: ' + JSON.stringify(exception));
 }
 ```
 
@@ -4863,11 +5141,12 @@ setCornerRadius(cornerRadius: number): void
 
 **示例：**
 
-```js
+```ts
+let windowClass: window.Window | null = null;
 try {
-    windowClass.setCornerRadius(4.0);
+  windowClass.setCornerRadius(4.0);
 } catch (exception) {
-    console.error('Failed to set corner radius. Cause: ' + JSON.stringify(exception));
+  console.error('Failed to set corner radius. Cause: ' + JSON.stringify(exception));
 }
 ```
 
@@ -4900,13 +5179,17 @@ raiseToAppTop(callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
-```js
-windowClass.raiseToAppTop((err) => {
-    if (err.code) {
-        console.error('Failed to raise the window to app top. Cause: ' + JSON.stringify(err));
-        return;
-    }
-    console.info('Succeeded in raising the window to app top.');
+```ts
+import { BusinessError } from '@ohos.base';
+
+let windowClass: window.Window | null = null;
+windowClass.raiseToAppTop((err: BusinessError) => {
+  const errCode: number = err.code;
+  if (errCode) {
+    console.error('Failed to raise the window to app top. Cause: ' + JSON.stringify(err));
+    return;
+  }
+  console.info('Succeeded in raising the window to app top.');
 });
 ```
 
@@ -4939,12 +5222,15 @@ raiseToAppTop(): Promise&lt;void&gt;
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
+let windowClass: window.Window | null = null;
 let promise = windowClass.raiseToAppTop();
-promise.then(()=> {
-    console.info('Succeeded in raising the window to app top.');
-}).catch((err)=>{
-    console.error('Failed to raise the window to app top. Cause: ' + JSON.stringify(err));
+promise.then(() => {
+  console.info('Succeeded in raising the window to app top.');
+}).catch((err: BusinessError) => {
+  console.error('Failed to raise the window to app top. Cause: ' + JSON.stringify(err));
 });
 ```
 ### setAspectRatio<sup>10+</sup>
@@ -4980,17 +5266,20 @@ setAspectRatio(ratio: number): Promise&lt;void&gt;
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
+let windowClass: window.Window | null = null;
 try {
-    let ratio = 1.0;
-    let promise = windowClass.setAspectRatio(ratio);
-    promise.then(()=> {
-        console.info('Succeeded in setting aspect ratio of window.');
-    }).catch((err)=>{
-        console.error('Failed to set the aspect ratio of window. Cause:' + JSON.stringify(err));
-    });
+  let ratio = 1.0;
+  let promise = windowClass.setAspectRatio(ratio);
+  promise.then(() => {
+    console.info('Succeeded in setting aspect ratio of window.');
+  }).catch((err: BusinessError) => {
+    console.error('Failed to set the aspect ratio of window. Cause:' + JSON.stringify(err));
+  });
 } catch (exception) {
-    console.error('Failed to set the aspect ratio of window. Cause: ' + JSON.stringify(exception));
+  console.error('Failed to set the aspect ratio of window. Cause: ' + JSON.stringify(exception));
 }
 ```
 
@@ -5022,18 +5311,22 @@ setAspectRatio(ratio: number, callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
+let windowClass: window.Window | null = null;
 try {
-    let ratio = 1.0;
-    windowClass.setAspectRatio(ratio, (err) => {
-        if (err.code) {
-            console.error('Failed to set the aspect ratio of window. Cause:' + JSON.stringify(err));
-            return;
-        }
-        console.info('Succeeded in setting the aspect ratio of window.');
-    });
+  let ratio = 1.0;
+  windowClass.setAspectRatio(ratio, (err: BusinessError) => {
+    const errCode: number = err.code;
+    if (errCode) {
+      console.error('Failed to set the aspect ratio of window. Cause:' + JSON.stringify(err));
+      return;
+    }
+    console.info('Succeeded in setting the aspect ratio of window.');
+  });
 } catch (exception) {
-    console.error('Failed to set the aspect ratio of window. Cause: ' + JSON.stringify(exception));
+  console.error('Failed to set the aspect ratio of window. Cause: ' + JSON.stringify(exception));
 }
 ```
 
@@ -5064,16 +5357,19 @@ resetAspectRatio(): Promise&lt;void&gt;
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
+let windowClass: window.Window | null = null;
 try {
-    let promise = windowClass.resetAspectRatio();
-    promise.then(()=> {
-        console.info('Succeeded in resetting aspect ratio of window.');
-    }).catch((err)=>{
-        console.error('Failed to reset the aspect ratio of window. Cause:' + JSON.stringify(err));
-    });
+  let promise = windowClass.resetAspectRatio();
+  promise.then(() => {
+    console.info('Succeeded in resetting aspect ratio of window.');
+  }).catch((err: BusinessError) => {
+    console.error('Failed to reset the aspect ratio of window. Cause:' + JSON.stringify(err));
+  });
 } catch (exception) {
-    console.error('Failed to reset the aspect ratio of window. Cause: ' + JSON.stringify(exception));
+  console.error('Failed to reset the aspect ratio of window. Cause: ' + JSON.stringify(exception));
 }
 ```
 
@@ -5104,10 +5400,14 @@ resetAspectRatio(callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
+let windowClass: window.Window | null = null;
 try {
-    windowClass.resetAspectRatio((err) => {
-        if (err.code) {
+    windowClass.resetAspectRatio((err： BusinessError) => {
+        const errCode: number = err.code;
+        if (errCode) {
             console.error('Failed to reset the aspect ratio of window. Cause:' + JSON.stringify(err));
             return;
         }
@@ -5152,17 +5452,20 @@ setWaterMarkFlag(enable: boolean): Promise&lt;void&gt;
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
+let windowClass: window.Window | null = null;
 try {
-    let enable = true;
-    let promise = windowClass.setWaterMarkFlag(enable);
-    promise.then(()=> {
-        console.info('Succeeded in setting water mark flag of window.');
-    }).catch((err)=>{
-        console.error('Failed to set water mark flag of window. Cause:' + JSON.stringify(err));
-    });
+  let enable = true;
+  let promise = windowClass.setWaterMarkFlag(enable);
+  promise.then(() => {
+    console.info('Succeeded in setting water mark flag of window.');
+  }).catch((err: BusinessError) => {
+    console.error('Failed to set water mark flag of window. Cause:' + JSON.stringify(err));
+  });
 } catch (exception) {
-    console.error('Failed to set water mark flag of window. Cause: ' + JSON.stringify(exception));
+  console.error('Failed to set water mark flag of window. Cause: ' + JSON.stringify(exception));
 }
 ```
 
@@ -5195,18 +5498,22 @@ setWaterMarkFlag(enable: boolean, callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
+let windowClass: window.Window | null = null;
 try {
-    let enable = true;
-    windowClass.setWaterMarkFlag(enable, (err) => {
-        if (err.code) {
-            console.error('Failed to set water mark flag of window. Cause:' + JSON.stringify(err));
-            return;
-        }
-        console.info('Succeeded in setting water mark flag of window.');
-    });
+  let enable: boolean = true;
+  windowClass.setWaterMarkFlag(enable, (err: BusinessError) => {
+    const errCode: number = err.code;
+    if (errCode) {
+      console.error('Failed to set water mark flag of window. Cause:' + JSON.stringify(err));
+      return;
+    }
+    console.info('Succeeded in setting water mark flag of window.');
+  });
 } catch (exception) {
-    console.error('Failed to set water mark flag of window. Cause: ' + JSON.stringify(exception));
+  console.error('Failed to set water mark flag of window. Cause: ' + JSON.stringify(exception));
 }
 ```
 ### raiseAboveTarget<sup>10+</sup>
@@ -5668,13 +5975,17 @@ show(callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
-```js
-windowClass.show((err) => {
-    if (err.code) {
-        console.error('Failed to show the window. Cause: ' + JSON.stringify(err));
-        return;
-    }
-    console.info('Succeeded in showing the window.');
+```ts
+import { BusinessError } from '@ohos.base';
+
+let windowClass: window.Window | null = null;
+windowClass.show((err: BusinessError) => {
+  const errCode: number = err.code;
+  if (errCode) {
+    console.error('Failed to show the window. Cause: ' + JSON.stringify(err));
+    return;
+  }
+  console.info('Succeeded in showing the window.');
 });
 ```
 
@@ -5698,12 +6009,15 @@ show(): Promise&lt;void&gt;
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
+let windowClass: window.Window | null = null;
 let promise = windowClass.show();
-promise.then(()=> {
-    console.info('Succeeded in showing the window.');
-}).catch((err)=>{
-    console.error('Failed to show the window. Cause: ' + JSON.stringify(err));
+promise.then(() => {
+  console.info('Succeeded in showing the window.');
+}).catch((err: BusinessError) => {
+  console.error('Failed to show the window. Cause: ' + JSON.stringify(err));
 });
 ```
 
@@ -5727,13 +6041,18 @@ destroy(callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
-```js
-windowClass.destroy((err) => {
-    if (err.code) {
-        console.error('Failed to destroy the window. Cause:' + JSON.stringify(err));
-        return;
-    }
-    console.info('Succeeded in destroying the window.');
+```ts
+import { BusinessError } from '@ohos.base';
+
+let windowClass: window.Window | null = null;
+
+windowClass.destroy((err: BusinessError) => {
+  const errCode: number = err.code;
+  if (err.code) {
+    console.error('Failed to destroy the window. Cause:' + JSON.stringify(err));
+    return;
+  }
+  console.info('Succeeded in destroying the window.');
 });
 ```
 
@@ -5757,12 +6076,15 @@ destroy(): Promise&lt;void&gt;
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
+let windowClass: window.Window | null = null;
 let promise = windowClass.destroy();
-promise.then(()=> {
-    console.info('Succeeded in destroying the window.');
-}).catch((err)=>{
-    console.error('Failed to destroy the window. Cause: ' + JSON.stringify(err));
+promise.then(() => {
+  console.info('Succeeded in destroying the window.');
+}).catch((err: BusinessError) => {
+  console.error('Failed to destroy the window. Cause: ' + JSON.stringify(err));
 });
 ```
 
@@ -5790,13 +6112,17 @@ moveTo(x: number, y: number, callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
-```js
-windowClass.moveTo(300, 300, (err)=>{
-    if (err.code) {
-        console.error('Failed to move the window. Cause:' + JSON.stringify(err));
-        return;
-    }
-    console.info('Succeeded in moving the window.');
+```ts
+import { BusinessError } from '@ohos.base';
+
+let windowClass: window.Window | null = null;
+windowClass.moveTo(300, 300, (err: BusinessError) => {
+  const errCode: number = err.code;
+  if (errCode) {
+    console.error('Failed to move the window. Cause:' + JSON.stringify(err));
+    return;
+  }
+  console.info('Succeeded in moving the window.');
 });
 ```
 
@@ -5829,12 +6155,15 @@ moveTo(x: number, y: number): Promise&lt;void&gt;
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
+let windowClass: window.Window | null = null;
 let promise = windowClass.moveTo(300, 300);
-promise.then(()=> {
-    console.info('Succeeded in moving the window.');
-}).catch((err)=>{
-    console.error('Failed to move the window. Cause: ' + JSON.stringify(err));
+promise.then(() => {
+  console.info('Succeeded in moving the window.');
+}).catch((err: BusinessError) => {
+  console.error('Failed to move the window. Cause: ' + JSON.stringify(err));
 });
 ```
 
@@ -5868,13 +6197,17 @@ resetSize(width: number, height: number, callback: AsyncCallback&lt;void&gt;): v
 
 **示例：**
 
-```js
-windowClass.resetSize(500, 1000, (err) => {
-    if (err.code) {
-        console.error('Failed to change the window size. Cause:' + JSON.stringify(err));
-        return;
-    }
-    console.info('Succeeded in changing the window size.');
+```ts
+import { BusinessError } from '@ohos.base';
+
+let windowClass: window.Window | null = null;
+windowClass.resetSize(500, 1000, (err: BusinessError) => {
+  const errCode: number = err.code;
+  if (errCode) {
+    console.error('Failed to change the window size. Cause:' + JSON.stringify(err));
+    return;
+  }
+  console.info('Succeeded in changing the window size.');
 });
 ```
 
@@ -5913,12 +6246,15 @@ resetSize(width: number, height: number): Promise&lt;void&gt;
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
+let windowClass: window.Window | null = null;
 let promise = windowClass.resetSize(500, 1000);
-promise.then(()=> {
-    console.info('Succeeded in changing the window size.');
-}).catch((err)=>{
-    console.error('Failed to change the window size. Cause: ' + JSON.stringify(err));
+promise.then(() => {
+  console.info('Succeeded in changing the window size.');
+}).catch((err: BusinessError) => {
+  console.error('Failed to change the window size. Cause: ' + JSON.stringify(err));
 });
 ```
 
@@ -5945,12 +6281,16 @@ setWindowType(type: WindowType, callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
+let windowClass: window.Window | null = null;
 let type = window.WindowType.TYPE_APP;
-windowClass.setWindowType(type, (err) => {
-  if (err.code) {
-      console.error('Failed to set the window type. Cause: ' + JSON.stringify(err));
-      return;
+windowClass.setWindowType(type, (err: BusinessError) => {
+  const errCode: number = err.code;
+  if (errCode) {
+    console.error('Failed to set the window type. Cause: ' + JSON.stringify(err));
+    return;
   }
   console.info('Succeeded in setting the window type.');
 });
@@ -5984,13 +6324,16 @@ setWindowType(type: WindowType): Promise&lt;void&gt;
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
+let windowClass: window.Window | null = null;
 let type = window.WindowType.TYPE_APP;
 let promise = windowClass.setWindowType(type);
-promise.then(()=> {
-    console.info('Succeeded in setting the window type.');
-}).catch((err)=>{
-    console.error('Failed to set the window type. Cause: ' + JSON.stringify(err));
+promise.then(() => {
+  console.info('Succeeded in setting the window type.');
+}).catch((err: BusinessError) => {
+  console.error('Failed to set the window type. Cause: ' + JSON.stringify(err));
 });
 ```
 
@@ -6014,13 +6357,17 @@ getProperties(callback: AsyncCallback&lt;WindowProperties&gt;): void
 
 **示例：**
 
-```js
-windowClass.getProperties((err, data) => {
-    if (err.code) {
-        console.error('Failed to obtain the window properties. Cause: ' + JSON.stringify(err));
-        return;
-    }
-    console.info('Succeeded in obtaining the window properties. Data: ' + JSON.stringify(data));
+```ts
+import { BusinessError } from '@ohos.base';
+
+let windowClass: window.Window | null = null;
+windowClass.getProperties((err: BusinessError, data) => {
+  const errCode: number = err.code;
+  if (errCode) {
+    console.error('Failed to obtain the window properties. Cause: ' + JSON.stringify(err));
+    return;
+  }
+  console.info('Succeeded in obtaining the window properties. Data: ' + JSON.stringify(data));
 });
 ```
 
@@ -6044,12 +6391,15 @@ getProperties(): Promise&lt;WindowProperties&gt;
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
+let windowClass: window.Window | null = null;
 let promise = windowClass.getProperties();
-promise.then((data)=> {
-    console.info('Succeeded in obtaining the window properties. Data: ' + JSON.stringify(data));
-}).catch((err)=>{
-    console.error('Failed to obtain the window properties. Cause: ' + JSON.stringify(err));
+promise.then((data) => {
+  console.info('Succeeded in obtaining the window properties. Data: ' + JSON.stringify(data));
+}).catch((err: BusinessError) => {
+  console.error('Failed to obtain the window properties. Cause: ' + JSON.stringify(err));
 });
 ```
 
@@ -6074,14 +6424,18 @@ getAvoidArea(type: [AvoidAreaType](#avoidareatype7), callback: AsyncCallback&lt;
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
+let windowClass: window.Window | null = null;
 let type = window.AvoidAreaType.TYPE_SYSTEM;
-windowClass.getAvoidArea(type, (err, data) => {
-    if (err.code) {
-        console.error('Failed to obtain the area. Cause:' + JSON.stringify(err));
-        return;
-    }
-    console.info('Succeeded in obtaining the area. Data:' + JSON.stringify(data));
+windowClass.getAvoidArea(type, (err: BusinessError, data) => {
+  const errCode: number = err.code;
+  if (errCode) {
+    console.error('Failed to obtain the area. Cause:' + JSON.stringify(err));
+    return;
+  }
+  console.info('Succeeded in obtaining the area. Data:' + JSON.stringify(data));
 });
 ```
 
@@ -6111,13 +6465,16 @@ getAvoidArea(type: [AvoidAreaType](#avoidareatype7)): Promise&lt;[AvoidArea](#av
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
+let windowClass: window.Window | null = null;
 let type = window.AvoidAreaType.TYPE_SYSTEM;
 let promise = windowClass.getAvoidArea(type);
-promise.then((data)=> {
-    console.info('Succeeded in obtaining the area. Data:' + JSON.stringify(data));
-}).catch((err)=>{
-    console.error('Failed to obtain the area. Cause:' + JSON.stringify(err));
+promise.then((data) => {
+  console.info('Succeeded in obtaining the area. Data:' + JSON.stringify(data));
+}).catch((err: BusinessError) => {
+  console.error('Failed to obtain the area. Cause:' + JSON.stringify(err));
 });
 ```
 
@@ -6144,14 +6501,18 @@ setFullScreen(isFullScreen: boolean, callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
-```js
-let isFullScreen = true;
-windowClass.setFullScreen(isFullScreen, (err) => {
-    if (err.code) {
-        console.error('Failed to enable the full-screen mode. Cause: ' + JSON.stringify(err));
-        return;
-    }
-    console.info('Succeeded in enabling the full-screen mode.');
+```ts
+import { BusinessError } from '@ohos.base';
+
+let windowClass: window.Window | null = null;
+let isFullScreen: boolean = true;
+windowClass.setFullScreen(isFullScreen, (err: BusinessError) => {
+  const errCode: number = err.code;
+  if (errCode) {
+    console.error('Failed to enable the full-screen mode. Cause: ' + JSON.stringify(err));
+    return;
+  }
+  console.info('Succeeded in enabling the full-screen mode.');
 });
 ```
 
@@ -6183,13 +6544,16 @@ setFullScreen(isFullScreen: boolean): Promise&lt;void&gt;
 
 **示例：**
 
-```js
-let isFullScreen = true;
+```ts
+import { BusinessError } from '@ohos.base';
+
+let windowClass: window.Window | null = null;
+let isFullScreen: boolean = true;
 let promise = windowClass.setFullScreen(isFullScreen);
-promise.then(()=> {
-    console.info('Succeeded in enabling the full-screen mode.');
-}).catch((err)=>{
-    console.error('Failed to enable the full-screen mode. Cause: ' + JSON.stringify(err));
+promise.then(() => {
+  console.info('Succeeded in enabling the full-screen mode.');
+}).catch((err: BusinessError) => {
+  console.error('Failed to enable the full-screen mode. Cause: ' + JSON.stringify(err));
 });
 ```
 
@@ -6216,14 +6580,18 @@ setLayoutFullScreen(isLayoutFullScreen: boolean, callback: AsyncCallback&lt;void
 
 **示例：**
 
-```js
-let isLayoutFullScreen= true;
-windowClass.setLayoutFullScreen(isLayoutFullScreen, (err) => {
-    if (err.code) {
-        console.error('Failed to set the window layout to full-screen mode. Cause:' + JSON.stringify(err));
-        return;
-    }
-    console.info('Succeeded in setting the window layout to full-screen mode.');
+```ts
+import { BusinessError } from '@ohos.base';
+
+let windowClass: window.Window | null = null;
+let isLayoutFullScreen: boolean = true;
+windowClass.setLayoutFullScreen(isLayoutFullScreen, (err: BusinessError) => {
+  const errCode: number = err.code;
+  if (errCode) {
+    console.error('Failed to set the window layout to full-screen mode. Cause:' + JSON.stringify(err));
+    return;
+  }
+  console.info('Succeeded in setting the window layout to full-screen mode.');
 });
 ```
 
@@ -6255,13 +6623,16 @@ setLayoutFullScreen(isLayoutFullScreen: boolean): Promise&lt;void&gt;
 
 **示例：**
 
-```js
-let isLayoutFullScreen = true;
+```ts
+import { BusinessError } from '@ohos.base';
+
+let windowClass: window.Window | null = null;
+let isLayoutFullScreen: boolean = true;
 let promise = windowClass.setLayoutFullScreen(isLayoutFullScreen);
-promise.then(()=> {
-    console.info('Succeeded in setting the window layout to full-screen mode.');
-}).catch((err)=>{
-    console.error('Failed to set the window layout to full-screen mode. Cause:' + JSON.stringify(err));
+promise.then(() => {
+  console.info('Succeeded in setting the window layout to full-screen mode.');
+}).catch((err: BusinessError) => {
+  console.error('Failed to set the window layout to full-screen mode. Cause:' + JSON.stringify(err));
 });
 ```
 
@@ -6286,15 +6657,19 @@ setSystemBarEnable(names: Array<'status' | 'navigation'>, callback: AsyncCallbac
 
 **示例：**
 
-```js
+```ts
 // 此处以不显示导航栏、状态栏为例
-let names = [];
-windowClass.setSystemBarEnable(names, (err) => {
-    if (err.code) {
-        console.error('Failed to set the system bar to be invisible. Cause:' + JSON.stringify(err));
-        return;
-    }
-    console.info('Succeeded in setting the system bar to be invisible.');
+import { BusinessError } from '@ohos.base';
+
+let windowClass: window.Window | null = null;
+let names: Array<'status' | 'navigation'> = [];
+windowClass.setSystemBarEnable(names, (err: BusinessError) => {
+  const errCode: number = err.code;
+  if (errCode) {
+    console.error('Failed to set the system bar to be invisible. Cause:' + JSON.stringify(err));
+    return;
+  }
+  console.info('Succeeded in setting the system bar to be invisible.');
 });
 ```
 
@@ -6324,14 +6699,17 @@ setSystemBarEnable(names: Array<'status' | 'navigation'>): Promise&lt;void&gt;
 
 **示例：**
 
-```js
+```ts
 // 此处以不显示导航栏、状态栏为例
-let names = [];
+import { BusinessError } from '@ohos.base';
+
+let windowClass: window.Window | null = null;
+let names: Array<'status' | 'navigation'> = [];
 let promise = windowClass.setSystemBarEnable(names);
-promise.then(()=> {
-    console.info('Succeeded in setting the system bar to be invisible.');
-}).catch((err)=>{
-    console.error('Failed to set the system bar to be invisible. Cause:' + JSON.stringify(err));
+promise.then(() => {
+  console.info('Succeeded in setting the system bar to be invisible.');
+}).catch((err: BusinessError) => {
+  console.error('Failed to set the system bar to be invisible. Cause:' + JSON.stringify(err));
 });
 ```
 
@@ -6356,20 +6734,24 @@ setSystemBarProperties(systemBarProperties: SystemBarProperties, callback: Async
 
 **示例：**
 
-```js
-let SystemBarProperties={
-    statusBarColor: '#ff00ff',
-    navigationBarColor: '#00ff00',
-    //以下两个属性从API Version8开始支持
-    statusBarContentColor:'#ffffff',
-    navigationBarContentColor:'#00ffff'
+```ts
+import { BusinessError } from '@ohos.base';
+
+let windowClass: window.Window | null = null;
+let SystemBarProperties: window.SystemBarProperties = {
+  statusBarColor: '#ff00ff',
+  navigationBarColor: '#00ff00',
+  //以下两个属性从API Version8开始支持
+  statusBarContentColor: '#ffffff',
+  navigationBarContentColor: '#00ffff'
 };
 windowClass.setSystemBarProperties(SystemBarProperties, (err) => {
-    if (err.code) {
-        console.error('Failed to set the system bar properties. Cause: ' + JSON.stringify(err));
-        return;
-    }
-    console.info('Succeeded in setting the system bar properties.');
+  const errCode: number = err.code;
+  if (errCode) {
+    console.error('Failed to set the system bar properties. Cause: ' + JSON.stringify(err));
+    return;
+  }
+  console.info('Succeeded in setting the system bar properties.');
 });
 ```
 
@@ -6399,19 +6781,22 @@ setSystemBarProperties(systemBarProperties: SystemBarProperties): Promise&lt;voi
 
 **示例：**
 
-```js
-let SystemBarProperties={
-    statusBarColor: '#ff00ff',
-    navigationBarColor: '#00ff00',
-    //以下两个属性从API Version8开始支持
-    statusBarContentColor:'#ffffff',
-    navigationBarContentColor:'#00ffff'
+```ts
+import { BusinessError } from '@ohos.base';
+
+let windowClass: window.Window | null = null;
+let SystemBarProperties: window.SystemBarProperties = {
+  statusBarColor: '#ff00ff',
+  navigationBarColor: '#00ff00',
+  //以下两个属性从API Version8开始支持
+  statusBarContentColor: '#ffffff',
+  navigationBarContentColor: '#00ffff'
 };
 let promise = windowClass.setSystemBarProperties(SystemBarProperties);
-promise.then(()=> {
-    console.info('Succeeded in setting the system bar properties.');
-}).catch((err)=>{
-    console.error('Failed to set the system bar properties. Cause: ' + JSON.stringify(err));
+promise.then(() => {
+  console.info('Succeeded in setting the system bar properties.');
+}).catch((err: BusinessError) => {
+  console.error('Failed to set the system bar properties. Cause: ' + JSON.stringify(err));
 });
 ```
 
@@ -6436,12 +6821,16 @@ loadContent(path: string, callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
-```js
-windowClass.loadContent('pages/page2/page2', (err) => {
-   if (err.code) {
-         console.error('Failed to load the content. Cause:' + JSON.stringify(err));
-         return;
-   }
+```ts
+import { BusinessError } from '@ohos.base';
+
+let windowClass: window.Window | null = null;
+windowClass.loadContent('pages/page2/page2', (err: BusinessError) => {
+  const errCode: number = err.code;
+  if (errCode) {
+    console.error('Failed to load the content. Cause:' + JSON.stringify(err));
+    return;
+  }
   console.info('Succeeded in loading the content.');
 });
 ```
@@ -6472,12 +6861,15 @@ loadContent(path: string): Promise&lt;void&gt;
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
+let windowClass: window.Window | null = null;
 let promise = windowClass.loadContent('pages/page2/page2');
-promise.then(()=> {
-    console.info('Succeeded in loading the content.');
-}).catch((err)=>{
-    console.error('Failed to load the content. Cause: ' + JSON.stringify(err));
+promise.then(() => {
+  console.info('Succeeded in loading the content.');
+}).catch((err: BusinessError) => {
+  console.error('Failed to load the content. Cause: ' + JSON.stringify(err));
 });
 ```
 
@@ -6501,13 +6893,17 @@ isShowing(callback: AsyncCallback&lt;boolean&gt;): void
 
 **示例：**
 
-```js
-windowClass.isShowing((err, data) => {
-    if (err.code) {
-        console.error('Failed to check whether the window is showing. Cause:' + JSON.stringify(err));
-        return;
-    }
-    console.info('Succeeded in checking whether the window is showing. Data: ' + JSON.stringify(data));
+```ts
+import { BusinessError } from '@ohos.base';
+
+let windowClass: window.Window | null = null;
+windowClass.isShowing((err: BusinessError, data) => {
+  const errCode: number = err.code;
+  if (errCode) {
+    console.error('Failed to check whether the window is showing. Cause:' + JSON.stringify(err));
+    return;
+  }
+  console.info('Succeeded in checking whether the window is showing. Data: ' + JSON.stringify(data));
 });
 ```
 
@@ -6531,12 +6927,15 @@ isShowing(): Promise&lt;boolean&gt;
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
+let windowClass: window.Window | null = null;
 let promise = windowClass.isShowing();
-promise.then((data)=> {
-    console.info('Succeeded in checking whether the window is showing. Data: ' + JSON.stringify(data));
-}).catch((err)=>{
-    console.error('Failed to check whether the window is showing. Cause: ' + JSON.stringify(err));
+promise.then((data) => {
+  console.info('Succeeded in checking whether the window is showing. Data: ' + JSON.stringify(data));
+}).catch((err: BusinessError) => {
+  console.error('Failed to check whether the window is showing. Cause: ' + JSON.stringify(err));
 });
 ```
 
@@ -6561,9 +6960,10 @@ on(type: 'systemAvoidAreaChange', callback: Callback&lt;AvoidArea&gt;): void
 
 **示例：**
 
-```js
+```ts
+let windowClass: window.Window | null = null;
 windowClass.on('systemAvoidAreaChange', (data) => {
-    console.info('Succeeded in enabling the listener for system avoid area changes. Data: ' + JSON.stringify(data));
+  console.info('Succeeded in enabling the listener for system avoid area changes. Data: ' + JSON.stringify(data));
 });
 ```
 
@@ -6588,7 +6988,8 @@ off(type: 'systemAvoidAreaChange', callback?: Callback&lt;AvoidArea&gt;): void
 
 **示例：**
 
-```js
+```ts
+let windowClass: window.Window | null = null;
 windowClass.off('systemAvoidAreaChange');
 ```
 
@@ -6612,13 +7013,17 @@ isSupportWideGamut(callback: AsyncCallback&lt;boolean&gt;): void
 
 **示例：**
 
-```js
-windowClass.isSupportWideGamut((err, data) => {
-    if (err.code) {
-        console.error('Failed to check whether the window support WideGamut. Cause:' + JSON.stringify(err));
-        return;
-    }
-    console.info('Succeeded in checking whether the window support WideGamut Data: ' + JSON.stringify(data));
+```ts
+import { BusinessError } from '@ohos.base';
+
+let windowClass: window.Window | null = null;
+windowClass.isSupportWideGamut((err: BusinessError, data) => {
+  const errCode: number = err.code;
+  if (errCode) {
+    console.error('Failed to check whether the window support WideGamut. Cause:' + JSON.stringify(err));
+    return;
+  }
+  console.info('Succeeded in checking whether the window support WideGamut Data: ' + JSON.stringify(data));
 });
 ```
 
@@ -6642,12 +7047,15 @@ isSupportWideGamut(): Promise&lt;boolean&gt;
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
+let windowClass: window.Window | null = null;
 let promise = windowClass.isSupportWideGamut();
-promise.then((data)=> {
-    console.info('Succeeded in checking whether the window support WideGamut. Data: ' + JSON.stringify(data));
-}).catch((err)=>{
-    console.error('Failed to check whether the window support WideGamut. Cause: ' + JSON.stringify(err));
+promise.then((data) => {
+  console.info('Succeeded in checking whether the window support WideGamut. Data: ' + JSON.stringify(data));
+}).catch((err: BusinessError) => {
+  console.error('Failed to check whether the window support WideGamut. Cause: ' + JSON.stringify(err));
 });
 ```
 
@@ -6672,13 +7080,17 @@ setColorSpace(colorSpace:ColorSpace, callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
-```js
-windowClass.setColorSpace(window.ColorSpace.WIDE_GAMUT, (err) => {
-    if (err.code) {
-        console.error('Failed to set window colorspace. Cause:' + JSON.stringify(err));
-        return;
-    }
-    console.info('Succeeded in setting window colorspace.');
+```ts
+import { BusinessError } from '@ohos.base';
+
+let windowClass: window.Window | null = null;
+windowClass.setColorSpace(window.ColorSpace.WIDE_GAMUT, (err: BusinessError) => {
+  const errCode: number = err.code;
+  if (errCode) {
+    console.error('Failed to set window colorspace. Cause:' + JSON.stringify(err));
+    return;
+  }
+  console.info('Succeeded in setting window colorspace.');
 });
 ```
 
@@ -6708,12 +7120,15 @@ setColorSpace(colorSpace:ColorSpace): Promise&lt;void&gt;
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
+let windowClass: window.Window | null = null;
 let promise = windowClass.setColorSpace(window.ColorSpace.WIDE_GAMUT);
-promise.then(()=> {
-    console.info('Succeeded in setting window colorspace.');
-}).catch((err)=>{
-    console.error('Failed to set window colorspace. Cause: ' + JSON.stringify(err));
+promise.then(() => {
+  console.info('Succeeded in setting window colorspace.');
+}).catch((err: BusinessError) => {
+  console.error('Failed to set window colorspace. Cause: ' + JSON.stringify(err));
 });
 ```
 
@@ -6737,13 +7152,18 @@ getColorSpace(callback: AsyncCallback&lt;ColorSpace&gt;): void
 
 **示例：**
 
-```js
-windowClass.getColorSpace((err, data) => {
-    if (err.code) {
-        console.error('Failed to get window colorspace. Cause:' + JSON.stringify(err));
-        return;
-    }
-    console.info('Succeeded in getting window colorspace. Cause:' + JSON.stringify(data));
+```ts
+import { BusinessError } from '@ohos.base';
+
+let windowClass: window.Window | null = null;
+
+windowClass.getColorSpace((err: BusinessError, data) => {
+  const errCode: number = err.code;
+  if (errCode) {
+    console.error('Failed to get window colorspace. Cause:' + JSON.stringify(err));
+    return;
+  }
+  console.info('Succeeded in getting window colorspace. Cause:' + JSON.stringify(data));
 });
 ```
 
@@ -6767,12 +7187,15 @@ getColorSpace(): Promise&lt;ColorSpace&gt;
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
+let windowClass: window.Window | null = null;
 let promise = windowClass.getColorSpace();
-promise.then((data)=> {
-    console.info('Succeeded in getting window color space. Cause:' + JSON.stringify(data));
-}).catch((err)=>{
-    console.error('Failed to get window colorspace. Cause: ' + JSON.stringify(err));
+promise.then((data) => {
+  console.info('Succeeded in getting window color space. Cause:' + JSON.stringify(data));
+}).catch((err: BusinessError) => {
+  console.error('Failed to get window colorspace. Cause: ' + JSON.stringify(err));
 });
 ```
 
@@ -6797,14 +7220,18 @@ setBackgroundColor(color: string, callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
-```js
-let color = '#00ff33';
-windowClass.setBackgroundColor(color, (err) => {
-    if (err.code) {
-        console.error('Failed to set the background color. Cause: ' + JSON.stringify(err));
-        return;
-    }
-    console.info('Succeeded in setting the background color.');
+```ts
+import { BusinessError } from '@ohos.base';
+
+let windowClass: window.Window | null = null;
+let color: string = '#00ff33';
+windowClass.setBackgroundColor(color, (err: BusinessError) => {
+  const errCode: number = err.code;
+  if (errCode) {
+    console.error('Failed to set the background color. Cause: ' + JSON.stringify(err));
+    return;
+  }
+  console.info('Succeeded in setting the background color.');
 });
 ```
 
@@ -6834,13 +7261,16 @@ setBackgroundColor(color: string): Promise&lt;void&gt;
 
 **示例：**
 
-```js
-let color = '#00ff33';
+```ts
+import { BusinessError } from '@ohos.base';
+
+let windowClass: window.Window | null = null;
+let color: string = '#00ff33';
 let promise = windowClass.setBackgroundColor(color);
-promise.then(()=> {
-    console.info('Succeeded in setting the background color.');
-}).catch((err)=>{
-    console.error('Failed to set the background color. Cause: ' + JSON.stringify(err));
+promise.then(() => {
+  console.info('Succeeded in setting the background color.');
+}).catch((err: BusinessError) => {
+  console.error('Failed to set the background color. Cause: ' + JSON.stringify(err));
 });
 ```
 
@@ -6867,14 +7297,18 @@ setBrightness(brightness: number, callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
-```js
-let brightness = 1;
-windowClass.setBrightness(brightness, (err) => {
-    if (err.code) {
-        console.error('Failed to set the brightness. Cause: ' + JSON.stringify(err));
-        return;
-    }
-    console.info('Succeeded in setting the brightness.');
+```ts
+import { BusinessError } from '@ohos.base';
+
+let windowClass: window.Window | null = null;
+let brightness: number = 1;
+windowClass.setBrightness(brightness, (err: BusinessError) => {
+  const errCode: number = err.code;
+  if (errCode) {
+    console.error('Failed to set the brightness. Cause: ' + JSON.stringify(err));
+    return;
+  }
+  console.info('Succeeded in setting the brightness.');
 });
 ```
 
@@ -6906,13 +7340,16 @@ setBrightness(brightness: number): Promise&lt;void&gt;
 
 **示例：**
 
-```js
-let brightness = 1;
+```ts
+import { BusinessError } from '@ohos.base';
+
+let windowClass: window.Window | null = null;
+let brightness: number = 1;
 let promise = windowClass.setBrightness(brightness);
-promise.then(()=> {
-    console.info('Succeeded in setting the brightness.');
-}).catch((err)=>{
-    console.error('Failed to set the brightness. Cause: ' + JSON.stringify(err));
+promise.then(() => {
+  console.info('Succeeded in setting the brightness.');
+}).catch((err: BusinessError) => {
+  console.error('Failed to set the brightness. Cause: ' + JSON.stringify(err));
 });
 ```
 
@@ -6937,13 +7374,17 @@ setDimBehind(dimBehindValue: number, callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
-```js
-windowClass.setDimBehind(0.5, (err) => {
-    if (err.code) {
-        console.error('Failed to set the dimness. Cause: ' + JSON.stringify(err));
-        return;
-    }
-    console.info('Succeeded in setting the dimness.');
+```ts
+import { BusinessError } from '@ohos.base';
+
+let windowClass: window.Window | null = null;
+windowClass.setDimBehind(0.5, (err: BusinessError) => {
+  const errCode: number = err.code;
+  if (errCode) {
+    console.error('Failed to set the dimness. Cause: ' + JSON.stringify(err));
+    return;
+  }
+  console.info('Succeeded in setting the dimness.');
 });
 ```
 
@@ -6973,12 +7414,15 @@ setDimBehind(dimBehindValue: number): Promise&lt;void&gt;
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
+let windowClass: window.Window | null = null;
 let promise = windowClass.setDimBehind(0.5);
-promise.then(()=> {
-    console.info('Succeeded in setting the dimness.');
-}).catch((err)=>{
-    console.error('Failed to set the dimness. Cause: ' + JSON.stringify(err));
+promise.then(() => {
+  console.info('Succeeded in setting the dimness.');
+}).catch((err: BusinessError) => {
+  console.error('Failed to set the dimness. Cause: ' + JSON.stringify(err));
 });
 ```
 
@@ -7003,14 +7447,18 @@ setFocusable(isFocusable: boolean, callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
-```js
-let isFocusable= true;
-windowClass.setFocusable(isFocusable, (err) => {
-    if (err.code) {
-        console.error('Failed to set the window to be focusable. Cause:' + JSON.stringify(err));
-        return;
-    }
-    console.info('Succeeded in setting the window to be focusable.');
+```ts
+import { BusinessError } from '@ohos.base';
+
+let windowClass: window.Window | null = null;
+let isFocusable: boolean = true;
+windowClass.setFocusable(isFocusable, (err: BusinessError) => {
+  const errCode: number = err.code;
+  if (errCode) {
+    console.error('Failed to set the window to be focusable. Cause:' + JSON.stringify(err));
+    return;
+  }
+  console.info('Succeeded in setting the window to be focusable.');
 });
 ```
 
@@ -7040,13 +7488,16 @@ setFocusable(isFocusable: boolean): Promise&lt;void&gt;
 
 **示例：**
 
-```js
-let isFocusable= true;
+```ts
+import { BusinessError } from '@ohos.base';
+
+let windowClass: window.Window | null = null;
+let isFocusable: boolean = true;
 let promise = windowClass.setFocusable(isFocusable);
-promise.then(()=> {
-    console.info('Succeeded in setting the window to be focusable.');
-}).catch((err)=>{
-    console.error('Failed to set the window to be focusable. Cause: ' + JSON.stringify(err));
+promise.then(() => {
+  console.info('Succeeded in setting the window to be focusable.');
+}).catch((err: BusinessError) => {
+  console.error('Failed to set the window to be focusable. Cause: ' + JSON.stringify(err));
 });
 ```
 
@@ -7071,14 +7522,18 @@ setKeepScreenOn(isKeepScreenOn: boolean, callback: AsyncCallback&lt;void&gt;): v
 
 **示例：**
 
-```js
-let isKeepScreenOn = true;
-windowClass.setKeepScreenOn(isKeepScreenOn, (err) => {
-    if (err.code) {
-        console.error('Failed to set the screen to be always on. Cause: ' + JSON.stringify(err));
-        return;
-    }
-    console.info('Succeeded in setting the screen to be always on.');
+```ts
+import { BusinessError } from '@ohos.base';
+
+let windowClass: window.Window | null = null;
+let isKeepScreenOn: boolean = true;
+windowClass.setKeepScreenOn(isKeepScreenOn, (err: BusinessError) => {
+  const errCode: number = err.code;
+  if (errCode) {
+    console.error('Failed to set the screen to be always on. Cause: ' + JSON.stringify(err));
+    return;
+  }
+  console.info('Succeeded in setting the screen to be always on.');
 });
 ```
 
@@ -7108,13 +7563,16 @@ setKeepScreenOn(isKeepScreenOn: boolean): Promise&lt;void&gt;
 
 **示例：**
 
-```js
-let isKeepScreenOn = true;
+```ts
+import { BusinessError } from '@ohos.base';
+
+let windowClass: window.Window | null = null;
+let isKeepScreenOn: boolean = true;
 let promise = windowClass.setKeepScreenOn(isKeepScreenOn);
 promise.then(() => {
-    console.info('Succeeded in setting the screen to be always on.');
-}).catch((err)=>{
-    console.info('Failed to set the screen to be always on. Cause:  ' + JSON.stringify(err));
+  console.info('Succeeded in setting the screen to be always on.');
+}).catch((err: BusinessError) => {
+  console.info('Failed to set the screen to be always on. Cause:  ' + JSON.stringify(err));
 });
 ```
 
@@ -7139,14 +7597,23 @@ setOutsideTouchable(touchable: boolean, callback: AsyncCallback&lt;void&gt;): vo
 
 **示例：**
 
-```js
-windowClass.setOutsideTouchable(true, (err) => {
-    if (err.code) {
-        console.error('Failed to set the area to be touchable. Cause: ' + JSON.stringify(err));
-        return;
+```ts
+import { BusinessError } from '@ohos.base';
+
+let windowClass: window.Window | null = null;
+if (!windowClass) {
+  console.info('Failed to load the content. Cause: windowClass is null');
+}
+else {
+  (windowClass as window.Window).setOutsideTouchable(true, (err: BusinessError) => {
+    const errCode: number = err.code;
+    if (errCode) {
+      console.error('Failed to set the area to be touchable. Cause: ' + JSON.stringify(err));
+      return;
     }
     console.info('Succeeded in setting the area to be touchable.');
-});
+  });
+}
 ```
 
 ### setOutsideTouchable<sup>(deprecated)</sup>
@@ -7175,13 +7642,21 @@ setOutsideTouchable(touchable: boolean): Promise&lt;void&gt;
 
 **示例：**
 
-```js
-let promise = windowClass.setOutsideTouchable(true);
-promise.then(()=> {
-    console.info('Succeeded in setting the area to be touchable.');
-}).catch((err)=>{
-    console.error('Failed to set the area to be touchable. Cause: ' + JSON.stringify(err));
+```ts
+import { BusinessError } from '@ohos.base';
+
+let windowClass: window.Window | null = null;
+if (!windowClass) {
+  console.info('Failed to load the content. Cause: windowClass is null');
+}
+else {
+let promise = (windowClass as window.Window).setOutsideTouchable(true);
+promise.then(() => {
+  console.info('Succeeded in setting the area to be touchable.');
+}).catch((err: BusinessError) => {
+  console.error('Failed to set the area to be touchable. Cause: ' + JSON.stringify(err));
 });
+}
 ```
 
 ### setPrivacyMode<sup>(deprecated)</sup>
@@ -7205,14 +7680,18 @@ setPrivacyMode(isPrivacyMode: boolean, callback: AsyncCallback&lt;void&gt;): voi
 
 **示例：**
 
-```js
-let isPrivacyMode = true;
-windowClass.setPrivacyMode(isPrivacyMode, (err) => {
-    if (err.code) {
-        console.error('Failed to set the window to privacy mode. Cause:' + JSON.stringify(err));
-        return;
-    }
-    console.info('Succeeded in setting the window to privacy mode.');
+```ts
+import { BusinessError } from '@ohos.base';
+
+let windowClass: window.Window | null = null;
+let isPrivacyMode: boolean = true;
+windowClass.setPrivacyMode(isPrivacyMode, (err: BusinessError) => {
+  const errCode: number = err.code;
+  if (errCode) {
+    console.error('Failed to set the window to privacy mode. Cause:' + JSON.stringify(err));
+    return;
+  }
+  console.info('Succeeded in setting the window to privacy mode.');
 });
 ```
 
@@ -7242,13 +7721,16 @@ setPrivacyMode(isPrivacyMode: boolean): Promise&lt;void&gt;
 
 **示例：**
 
-```js
-let isPrivacyMode = true;
+```ts
+import { BusinessError } from '@ohos.base';
+
+let windowClass: window.Window | null = null;
+let isPrivacyMode: boolean = true;
 let promise = windowClass.setPrivacyMode(isPrivacyMode);
-promise.then(()=> {
-    console.info('Succeeded in setting the window to privacy mode.');
-}).catch((err)=>{
-    console.error('Failed to set the window to privacy mode. Cause: ' + JSON.stringify(err));
+promise.then(() => {
+  console.info('Succeeded in setting the window to privacy mode.');
+}).catch((err: BusinessError) => {
+  console.error('Failed to set the window to privacy mode. Cause: ' + JSON.stringify(err));
 });
 ```
 
@@ -7273,15 +7755,24 @@ setTouchable(isTouchable: boolean, callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
+let windowClass: window.Window | null = null;
 let isTouchable = true;
-windowClass.setTouchable(isTouchable, (err) => {
-    if (err.code) {
-        console.error('Failed to set the window to be touchable. Cause:' + JSON.stringify(err));
-        return;
+if (!windowClass) {
+  console.info('Failed to load the content. Cause: windowClass is null');
+}
+else {
+  (windowClass as window.Window).setTouchable(isTouchable, (err: BusinessError) => {
+    const errCode: number = err.code;
+    if (errCode) {
+      console.error('Failed to set the window to be touchable. Cause:' + JSON.stringify(err));
+      return;
     }
     console.info('Succeeded in setting the window to be touchable.');
-});
+  });
+}
 ```
 
 ### setTouchable<sup>(deprecated)</sup>
@@ -7310,13 +7801,16 @@ setTouchable(isTouchable: boolean): Promise&lt;void&gt;
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
+let windowClass: window.Window | null = null;
 let isTouchable = true;
 let promise = windowClass.setTouchable(isTouchable);
-promise.then(()=> {
-    console.info('Succeeded in setting the window to be touchable.');
-}).catch((err)=>{
-    console.error('Failed to set the window to be touchable. Cause: ' + JSON.stringify(err));
+promise.then(() => {
+  console.info('Succeeded in setting the window to be touchable.');
+}).catch((err: BusinessError) => {
+  console.error('Failed to set the window to be touchable. Cause: ' + JSON.stringify(err));
 });
 ```
 
@@ -7534,8 +8028,14 @@ export default class EntryAbility extends UIAbility {
         }
         windowClass = data;
         console.info('Succeeded in creating the subwindow. Data: ' + JSON.stringify(data));
-        windowClass.resetSize(500, 1000);
+        if (!windowClass) {
+          console.info('Failed to load the content. Cause: windowClass is null');
+        }
+        else {
+          (windowClass as window.Window).resetSize(500, 1000);
+        }
       });
+
     } catch (exception) {
       console.error('Failed to create the subwindow. Cause: ' + JSON.stringify(exception));
     }
@@ -8083,33 +8583,35 @@ completeTransition(isCompleted: boolean): void
 
 **示例：**
 
-```js
-let controller = windowClass.getTransitionController();
-controller.animationForShown = (context : window.TransitionContext) => {
-	let toWindow = context.toWindow;
- 	animateTo({
-    	duration: 1000, // 动画时长
-        tempo: 0.5, // 播放速率
-        curve: Curve.EaseInOut, // 动画曲线
-        delay: 0, // 动画延迟
-        iterations: 1, // 播放次数
-        playMode: PlayMode.Normal, // 动画模式
-      }, () => {
-        let obj : window.TranslateOptions = {
-          x : 100.0,
-          y : 0.0,
-          z : 0.0
-        };
-        toWindow.translate(obj);
-        console.info('toWindow translate end');
-      }
-    );
-    try {
-        context.completeTransition(true)
-    } catch (exception) {
-        console.info('toWindow translate fail. Cause: ' + JSON.stringify(exception));
-    }
-    console.info('complete transition end');
+```ts
+let windowClass: window.Window | null = null;
+
+let controller: window.TransitionController = windowClass.getTransitionController();
+controller.animationForShown = (context: window.TransitionContext) => {
+  let toWindow: window.Window = context.toWindow;
+  animateTo({
+    duration: 1000, // 动画时长
+    tempo: 0.5, // 播放速率
+    curve: Curve.EaseInOut, // 动画曲线
+    delay: 0, // 动画延迟
+    iterations: 1, // 播放次数
+    playMode: PlayMode.Normal, // 动画模式
+  }, () => {
+    let obj: window.TranslateOptions = {
+      x: 100.0,
+      y: 0.0,
+      z: 0.0
+    };
+    toWindow.translate(obj);
+    console.info('toWindow translate end');
+  }
+  );
+  try {
+    context.completeTransition(true)
+  } catch (exception) {
+    console.info('toWindow translate fail. Cause: ' + JSON.stringify(exception));
+  }
+  console.info('complete transition end');
 };
 ```
 
@@ -8135,31 +8637,32 @@ animationForShown(context: TransitionContext): void
 
 **示例：**
 
-```js
-let controller = windowClass.getTransitionController();
+```ts
+let windowClass: window.Window | null = null;
+let controller: window.TransitionController = windowClass.getTransitionController();
 controller.animationForShown = (context : window.TransitionContext) => {
-	let toWindow = context.toWindow;
- 	animateTo({
-    	duration: 1000, // 动画时长
-        tempo: 0.5, // 播放速率
-        curve: Curve.EaseInOut, // 动画曲线
-        delay: 0, // 动画延迟
-        iterations: 1, // 播放次数
-        playMode: PlayMode.Normal, // 动画模式
-        onFinish: ()=> {
-            context.completeTransition(true)
-        }
-      }, () => {
-        let obj : window.TranslateOptions = {
-          x : 100.0,
-          y : 0.0,
-          z : 0.0
-        };
-        toWindow.translate(obj);
-        console.info('toWindow translate end');
-      }
-    );
-    console.info('complete transition end');
+  let toWindow: window.Window = context.toWindow;
+  animateTo({
+    duration: 1000, // 动画时长
+    tempo: 0.5, // 播放速率
+    curve: Curve.EaseInOut, // 动画曲线
+    delay: 0, // 动画延迟
+    iterations: 1, // 播放次数
+    playMode: PlayMode.Normal, // 动画模式
+    onFinish: ()=> {
+      context.completeTransition(true)
+    }
+  }, () => {
+    let obj : window.TranslateOptions = {
+      x : 100.0,
+      y : 0.0,
+      z : 0.0
+    };
+    toWindow.translate(obj);
+    console.info('toWindow translate end');
+  }
+  );
+  console.info('complete transition end');
 };
 ```
 
@@ -8181,30 +8684,31 @@ animationForHidden(context: TransitionContext): void
 
 **示例：**
 
-```js
-let controller = windowClass.getTransitionController();
-controller.animationForHidden = (context : window.TransitionContext) => {
-	let toWindow = context.toWindow;
- 	animateTo({
-    	duration: 1000, // 动画时长
-        tempo: 0.5, // 播放速率
-        curve: Curve.EaseInOut, // 动画曲线
-        delay: 0, // 动画延迟
-        iterations: 1, // 播放次数
-        playMode: PlayMode.Normal, // 动画模式
-        onFinish: ()=> {
-            context.completeTransition(true)
-        }
-      }, () => {
-        let obj : window.TranslateOptions = {
-          x : 100.0,
-          y : 0.0,
-          z : 0.0
-        };
-        toWindow.translate(obj);
-        console.info('toWindow translate end');
-      }
-    )
-    console.info('complete transition end');
+```ts
+let windowClass: window.Window | null = null;
+let controller: window.TransitionController = windowClass.getTransitionController();
+controller.animationForHidden = (context: window.TransitionContext) => {
+  let toWindow: window.Window = context.toWindow;
+  animateTo({
+    duration: 1000, // 动画时长
+    tempo: 0.5, // 播放速率
+    curve: Curve.EaseInOut, // 动画曲线
+    delay: 0, // 动画延迟
+    iterations: 1, // 播放次数
+    playMode: PlayMode.Normal, // 动画模式
+    onFinish: () => {
+      context.completeTransition(true)
+    }
+  }, () => {
+    let obj: window.TranslateOptions = {
+      x: 100.0,
+      y: 0.0,
+      z: 0.0
+    };
+    toWindow.translate(obj);
+    console.info('toWindow translate end');
+  }
+  )
+  console.info('complete transition end');
 };
 ```

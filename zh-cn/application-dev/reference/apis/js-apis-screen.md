@@ -10,7 +10,7 @@
 
 ## 导入模块
 
-```js
+```ts
 import screen from '@ohos.screen';
 ```
 
@@ -38,15 +38,18 @@ getAllScreens(callback: AsyncCallback&lt;Array&lt;Screen&gt;&gt;): void
 
 **示例：**
 
-```js
-let screenClass = null;
-screen.getAllScreens((err, data) => {
-    if (err.code) {
-        console.error('Failed to get all screens. Cause:  ' + JSON.stringify(err));
-        return;
-    }
-    console.info('Succeeded in getting all screens. Data:' + JSON.stringify(data));
-    screenClass = data[0];
+```ts
+import { BusinessError } from '@ohos.base';
+
+let screenClass: screen.Screen | null = null;
+screen.getAllScreens((err: BusinessError, data) => {
+  const errCode: number = err.code;
+  if (errCode) {
+    console.error('Failed to get all screens. Cause:  ' + JSON.stringify(err));
+    return;
+  }
+  console.info('Succeeded in getting all screens. Data:' + JSON.stringify(data));
+  screenClass = data[0];
 });
 ```
 
@@ -74,14 +77,16 @@ getAllScreens(): Promise&lt;Array&lt;Screen&gt;&gt;
 
 **示例：**
 
-```js
-let screenClass = null;
+```ts
+import { BusinessError } from '@ohos.base';
+
+let screenClass: screen.Screen | null = null;
 let promise = screen.getAllScreens();
 promise.then((data) => {
-    screenClass = data[0];
-    console.log('Succeeded in getting all screens. Data:'+ JSON.stringify(data));
-}).catch((err) => {
-    console.log('Failed to get all screens. Cause: ' + JSON.stringify(err));
+  screenClass = data[0];
+  console.log('Succeeded in getting all screens. Data:' + JSON.stringify(data));
+}).catch((err: BusinessError) => {
+  console.log('Failed to get all screens. Cause: ' + JSON.stringify(err));
 });
 ```
 
@@ -102,14 +107,14 @@ on(eventType: 'connect' | 'disconnect' | 'change', callback: Callback&lt;number&
 
 **示例：**
 
-```js
+```ts
 try {
-    let callback = (data) => {
-        console.info('Succeeded in registering the callback for screen changes. Data: ' + JSON.stringify(data))
-    };
-    screen.on('connect', callback);
+  let callback = (data) => {
+    console.info('Succeeded in registering the callback for screen changes. Data: ' + JSON.stringify(data))
+  };
+  screen.on('connect', callback);
 } catch (exception) {
-    console.error('Failed to register the callback for screen changes. Code: ' + JSON.stringify(exception));
+  console.error('Failed to register the callback for screen changes. Code: ' + JSON.stringify(exception));
 };
 ```
 
@@ -130,14 +135,14 @@ off(eventType: 'connect' | 'disconnect' | 'change', callback?: Callback&lt;numbe
 
 **示例：**
 
-```js
+```ts
 try {
-    let callback = (data) => {
-        console.info('Succeeded in unregistering the callback for screen changes. Data: ' + JSON.stringify(data))
-    };
-    screen.off('connect', callback);
+  let callback = (data) => {
+    console.info('Succeeded in unregistering the callback for screen changes. Data: ' + JSON.stringify(data))
+  };
+  screen.off('connect', callback);
 } catch (exception) {
-    console.error('Failed to register the callback for screen changes. Code: ' + JSON.stringify(exception));
+  console.error('Failed to register the callback for screen changes. Code: ' + JSON.stringify(exception));
 };
 ```
 
@@ -166,19 +171,26 @@ makeExpand(options:Array&lt;ExpandOption&gt;, callback: AsyncCallback&lt;number&
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 try {
-    let groupId = null;
-    screen.makeExpand([{screenId: 0, startX: 0, startY: 0}, {screenId: 1, startX: 1080, startY: 0}], (err, data) => {
-      if (err.code) {
-        console.error('Failed to expand the screen. Code:' + JSON.stringify(err));
-        return;
-      }
-      groupId = data;
-      console.info('Succeeded in expanding the screen. Data: ' + JSON.stringify(data));
-    });
+  let groupId: number | null = null;
+  screen.makeExpand([{ screenId: 0, startX: 0, startY: 0 }, {
+    screenId: 1,
+    startX: 1080,
+    startY: 0
+  }], (err: BusinessError, data) => {
+    const errCode: number = err.code;
+    if (errCode) {
+      console.error('Failed to expand the screen. Code:' + JSON.stringify(err));
+      return;
+    }
+    groupId = data;
+    console.info('Succeeded in expanding the screen. Data: ' + JSON.stringify(data));
+  });
 } catch (exception) {
-    console.error('Failed to expand the screen. Code: ' + JSON.stringify(exception));
+  console.error('Failed to expand the screen. Code: ' + JSON.stringify(exception));
 };
 ```
 
@@ -212,15 +224,17 @@ makeExpand(options:Array&lt;ExpandOption&gt;): Promise&lt;number&gt;
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 try {
-    screen.makeExpand([{screenId: 0, startX: 0, startY: 0}, {screenId: 1, startX: 1080, startY: 0}]).then((data) => {
-      console.info('Succeeded in expanding the screen. Data: ' + JSON.stringify(data));
-    }).catch((err) => {
-      console.error('Failed to expand the screen. Code:' + JSON.stringify(err));
-    });
+  screen.makeExpand([{ screenId: 0, startX: 0, startY: 0 }, { screenId: 1, startX: 1080, startY: 0 }]).then((data) => {
+    console.info('Succeeded in expanding the screen. Data: ' + JSON.stringify(data));
+  }).catch((err: BusinessError) => {
+    console.error('Failed to expand the screen. Code:' + JSON.stringify(err));
+  });
 } catch (exception) {
-    console.error('Failed to expand the screen. Code: ' + JSON.stringify(exception));
+  console.error('Failed to expand the screen. Code: ' + JSON.stringify(exception));
 };
 ```
 
@@ -249,18 +263,21 @@ stopExpand(expandScreen:Array&lt;number&gt;, callback: AsyncCallback&lt;void&gt;
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 try {
-    let expandScreenIds = [1, 2, 3];
-    screen.stopExpand(expandScreenIds, (err) => {
-      if (err.code) {
-        console.error('Failed to stop expand screens. Code:' + JSON.stringify(err));
-        return;
-      }
-      console.info('Succeeded in stopping expand screens.');
-    });
+  let expandScreenIds: Array<number> = [1, 2, 3];
+  screen.stopExpand(expandScreenIds, (err) => {
+    const errCode: number = err.code;
+    if (errCode) {
+      console.error('Failed to stop expand screens. Code:' + JSON.stringify(err));
+      return;
+    }
+    console.info('Succeeded in stopping expand screens.');
+  });
 } catch (exception) {
-    console.error('Failed to stop expand screens. Code: ' + JSON.stringify(exception));
+  console.error('Failed to stop expand screens. Code: ' + JSON.stringify(exception));
 };
 ```
 
@@ -294,16 +311,18 @@ stopExpand(expandScreen:Array&lt;number&gt;): Promise&lt;void&gt;
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 try {
-    let expandScreenIds = [1, 2, 3];
-    screen.stopExpand(expandScreenIds).then(() => {
-      console.info('Succeeded in stopping expand screens.');
-    }).catch((err) => {
-      console.error('Failed to stop expand screens. Code:' + JSON.stringify(err));
-    });
+  let expandScreenIds: Array<number> = [1, 2, 3];
+  screen.stopExpand(expandScreenIds).then(() => {
+    console.info('Succeeded in stopping expand screens.');
+  }).catch((err: BusinessError) => {
+    console.error('Failed to stop expand screens. Code:' + JSON.stringify(err));
+  });
 } catch (exception) {
-    console.error('Failed to stop expand screens. Code:' + JSON.stringify(exception));
+  console.error('Failed to stop expand screens. Code:' + JSON.stringify(exception));
 };
 ```
 
@@ -333,19 +352,22 @@ makeMirror(mainScreen:number, mirrorScreen:Array&lt;number&gt;, callback: AsyncC
 
 **示例：**
 
-```js
-let mainScreenId = 0;
-let mirrorScreenIds = [1, 2, 3];
+```ts
+import { BusinessError } from '@ohos.base';
+
+let mainScreenId: number = 0;
+let mirrorScreenIds: Array<number> = [1, 2, 3];
 try {
-    screen.makeMirror(mainScreenId, mirrorScreenIds, (err, data) => {
-      if (err.code) {
-        console.error('Failed to set screen mirroring. Code: ' + JSON.stringify(err));
-        return;
-      }
-      console.info('Succeeded in setting screen mirroring. Data: ' + JSON.stringify(data));
-    });
+  screen.makeMirror(mainScreenId, mirrorScreenIds, (err: BusinessError, data) => {
+    const errCode: number = err.code;
+    if (errCode) {
+      console.error('Failed to set screen mirroring. Code: ' + JSON.stringify(err));
+      return;
+    }
+    console.info('Succeeded in setting screen mirroring. Data: ' + JSON.stringify(data));
+  });
 } catch (exception) {
-    console.error('Failed to set screen mirroring. Code: ' + JSON.stringify(exception));
+  console.error('Failed to set screen mirroring. Code: ' + JSON.stringify(exception));
 };
 ```
 
@@ -380,17 +402,19 @@ makeMirror(mainScreen:number, mirrorScreen:Array&lt;number&gt;): Promise&lt;numb
 
 **示例：**
 
-```js
-let mainScreenId = 0;
-let mirrorScreenIds = [1, 2, 3];
+```ts
+import { BusinessError } from '@ohos.base';
+
+let mainScreenId: number = 0;
+let mirrorScreenIds: Array<number> = [1, 2, 3];
 try {
-    screen.makeMirror(mainScreenId, mirrorScreenIds).then((data) => {
-      console.info('Succeeded in setting screen mirroring. Data: ' + JSON.stringify(data));
-    }).catch((err) => {
-      console.error('Failed to set screen mirroring. Code: ' + JSON.stringify(err));
-    });
+  screen.makeMirror(mainScreenId, mirrorScreenIds).then((data) => {
+    console.info('Succeeded in setting screen mirroring. Data: ' + JSON.stringify(data));
+  }).catch((err: BusinessError) => {
+    console.error('Failed to set screen mirroring. Code: ' + JSON.stringify(err));
+  });
 } catch (exception) {
-    console.error('Failed to set screen mirroring. Code: ' + JSON.stringify(exception));
+  console.error('Failed to set screen mirroring. Code: ' + JSON.stringify(exception));
 };
 ```
 
@@ -419,18 +443,21 @@ stopMirror(mirrorScreen:Array&lt;number&gt;, callback: AsyncCallback&lt;void&gt;
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 try {
-    let mirrorScreenIds = [1, 2, 3];
-    screen.stopMirror(mirrorScreenIds, (err) => {
-      if (err.code) {
-        console.error('Failed to stop mirror screens. Code:' + JSON.stringify(err));
-        return;
-      }
-      console.info('Succeeded in stopping mirror screens.');
-    });
+  let mirrorScreenIds: Array<number> = [1, 2, 3];
+  screen.stopMirror(mirrorScreenIds, (err: BusinessError) => {
+    const errCode: number = err.code;
+    if (errCode) {
+      console.error('Failed to stop mirror screens. Code:' + JSON.stringify(err));
+      return;
+    }
+    console.info('Succeeded in stopping mirror screens.');
+  });
 } catch (exception) {
-    console.error('Failed to stop mirror screens. Code: ' + JSON.stringify(exception));
+  console.error('Failed to stop mirror screens. Code: ' + JSON.stringify(exception));
 };
 ```
 
@@ -464,16 +491,18 @@ stopMirror(mirrorScreen:Array&lt;number&gt;): Promise&lt;void&gt;
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 try {
-    let mirrorScreenIds = [1, 2, 3];
-    screen.stopMirror(mirrorScreenIds).then(() => {
-      console.info('Succeeded in stopping mirror screens.');
-    }).catch((err) => {
-      console.error('Failed to stop mirror screens. Code:' + JSON.stringify(err));
-    });
+  let mirrorScreenIds: Array<number> = [1, 2, 3];
+  screen.stopMirror(mirrorScreenIds).then(() => {
+    console.info('Succeeded in stopping mirror screens.');
+  }).catch((err: BusinessError) => {
+    console.error('Failed to stop mirror screens. Code:' + JSON.stringify(err));
+  });
 } catch (exception) {
-    console.error('Failed to stop mirror screens. Code:' + JSON.stringify(exception));
+  console.error('Failed to stop mirror screens. Code:' + JSON.stringify(exception));
 };
 ```
 
@@ -504,25 +533,28 @@ createVirtualScreen(options:VirtualScreenOption, callback: AsyncCallback&lt;Scre
 
 **示例：**
 
-```js
-let screenClass = null;
+```ts
+import { BusinessError } from '@ohos.base';
+
+let screenClass: screen.Screen | null = null;
 try {
-    screen.createVirtualScreen({
-      name: 'screen01',
-      width: 1080,
-      height: 2340,
-      density: 2,
-      surfaceId: ''
-    }, (err, data) => {
-      if (err.code) {
-        console.error('Failed to create the virtual screen. Code: ' + JSON.stringify(err));
-        return;
-      }
-      screenClass = data;
-      console.info('Succeeded in creating the virtual screen. Data: ' + JSON.stringify(data));
-    });
+  screen.createVirtualScreen({
+    name: 'screen01',
+    width: 1080,
+    height: 2340,
+    density: 2,
+    surfaceId: ''
+  }, (err: BusinessError, data) => {
+    const errCode: number = err.code;
+    if (errCode) {
+      console.error('Failed to create the virtual screen. Code: ' + JSON.stringify(err));
+      return;
+    }
+    screenClass = data;
+    console.info('Succeeded in creating the virtual screen. Data: ' + JSON.stringify(data));
+  });
 } catch (exception) {
-    console.error('Failed to create the virtual screen. Code: ' + JSON.stringify(exception));
+  console.error('Failed to create the virtual screen. Code: ' + JSON.stringify(exception));
 };
 ```
 
@@ -558,23 +590,25 @@ createVirtualScreen(options:VirtualScreenOption): Promise&lt;Screen&gt;
 
 **示例：**
 
-```js
-let screenClass = null;
+```ts
+import { BusinessError } from '@ohos.base';
+
+let screenClass: screen.Screen | null = null;
 try {
-    screen.createVirtualScreen({
-      name: 'screen01',
-      width: 1080,
-      height: 2340,
-      density: 2,
-      surfaceId: ''
-    }).then((data) => {
-      screenClass = data;
-      console.info('Succeeded in creating the virtual screen. Data: ' + JSON.stringify(data));
-    }).catch((err) => {
-      console.error('Failed to create the virtual screen. Code: ' + JSON.stringify(err));
-    });
+  screen.createVirtualScreen({
+    name: 'screen01',
+    width: 1080,
+    height: 2340,
+    density: 2,
+    surfaceId: ''
+  }).then((data) => {
+    screenClass = data;
+    console.info('Succeeded in creating the virtual screen. Data: ' + JSON.stringify(data));
+  }).catch((err: BusinessError) => {
+    console.error('Failed to create the virtual screen. Code: ' + JSON.stringify(err));
+  });
 } catch (exception) {
-    console.error('Failed to create the virtual screen. Code: ' + JSON.stringify(exception));
+  console.error('Failed to create the virtual screen. Code: ' + JSON.stringify(exception));
 };
 ```
 
@@ -603,18 +637,21 @@ destroyVirtualScreen(screenId:number, callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
-```js
-let screenId = 1;
+```ts
+import { BusinessError } from '@ohos.base';
+
+let screenId: number = 1;
 try {
-    screen.destroyVirtualScreen(screenId, (err,data) => {
-      if (err.code) {
-        console.error('Failed to destroy the virtual screen. Code: ' + JSON.stringify(err));
-        return;
-      }
-      console.info('Succeeded in destroying the virtual screen.');
-    });
+  screen.destroyVirtualScreen(screenId, (err: BusinessError, data) => {
+    const errCode: number = err.code;
+    if (errCode) {
+      console.error('Failed to destroy the virtual screen. Code: ' + JSON.stringify(err));
+      return;
+    }
+    console.info('Succeeded in destroying the virtual screen.');
+  });
 } catch (exception) {
-    console.error('Failed to destroy the virtual screen. Code: ' + JSON.stringify(exception));
+  console.error('Failed to destroy the virtual screen. Code: ' + JSON.stringify(exception));
 };
 ```
 
@@ -648,16 +685,18 @@ destroyVirtualScreen(screenId:number): Promise&lt;void&gt;
 
 **示例：**
 
-```js
-let screenId = 1;
+```ts
+import { BusinessError } from '@ohos.base';
+
+let screenId: number = 1;
 try {
-    screen.destroyVirtualScreen(screenId).then((data) => {
-      console.info('Succeeded in destroying the virtual screen.');
-    }).catch((err) => {
-      console.error('Failed to destroy the virtual screen. Code: ' + JSON.stringify(err));
-    });
+  screen.destroyVirtualScreen(screenId).then((data) => {
+    console.info('Succeeded in destroying the virtual screen.');
+  }).catch((err: BusinessError) => {
+    console.error('Failed to destroy the virtual screen. Code: ' + JSON.stringify(err));
+  });
 } catch (exception) {
-    console.error('Failed to destroy the virtual screen. Code: ' + JSON.stringify(exception));
+  console.error('Failed to destroy the virtual screen. Code: ' + JSON.stringify(exception));
 };
 ```
 
@@ -689,19 +728,22 @@ setVirtualScreenSurface(screenId:number, surfaceId: string, callback: AsyncCallb
 
 **示例：**
 
-```js
-let screenId = 1;
-let surfaceId = '2048';
+```ts
+import { BusinessError } from '@ohos.base';
+
+let screenId: number = 1;
+let surfaceId: string = '2048';
 try {
-  screen.setVirtualScreenSurface(screenId, surfaceId, (err,data) => {
-    if (err.code) {
+  screen.setVirtualScreenSurface(screenId, surfaceId, (err: BusinessError, data) => {
+    const errCode: number = err.code;
+    if (errCode) {
       console.error('Failed to set the surface for the virtual screen. Code: ' + JSON.stringify(err));
       return;
     }
     console.info('Succeeded in setting the surface for the virtual screen.');
   });
 } catch (exception) {
-    console.error('Failed to set the surface for the virtual screen. Code: ' + JSON.stringify(exception));
+  console.error('Failed to set the surface for the virtual screen. Code: ' + JSON.stringify(exception));
 };
 ```
 
@@ -738,17 +780,19 @@ setVirtualScreenSurface(screenId:number, surfaceId: string): Promise&lt;void&gt;
 
 **示例：**
 
-```js
-let screenId = 1;
-let surfaceId = '2048';
+```ts
+import { BusinessError } from '@ohos.base';
+
+let screenId: number = 1;
+let surfaceId: string = '2048';
 try {
-    screen.setVirtualScreenSurface(screenId, surfaceId).then((data) => {
-      console.info('Succeeded in setting the surface for the virtual screen.');
-    }).catch((err) => {
-      console.error('Failed to set the surface for the virtual screen. Code: ' + JSON.stringify(err));
-    });
+  screen.setVirtualScreenSurface(screenId, surfaceId).then((data) => {
+    console.info('Succeeded in setting the surface for the virtual screen.');
+  }).catch((err: BusinessError) => {
+    console.error('Failed to set the surface for the virtual screen. Code: ' + JSON.stringify(err));
+  });
 } catch (exception) {
-    console.error('Failed to set the surface for the virtual screen. Code: ' + JSON.stringify(exception));
+  console.error('Failed to set the surface for the virtual screen. Code: ' + JSON.stringify(exception));
 };
 ```
 
@@ -768,10 +812,12 @@ isScreenRotationLocked(): Promise&lt;boolean&gt;
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 screen.isScreenRotationLocked().then((isLocked) => {
-  console.info('Succeeded in getting the screen rotation lock status. isLocked:'+ JSON.stringify(isLocked));
-}).catch((err) => {
+  console.info('Succeeded in getting the screen rotation lock status. isLocked:' + JSON.stringify(isLocked));
+}).catch((err: BusinessError) => {
   console.error('Failed to get the screen rotation lock status. Cause:' + JSON.stringify(err));
 });
 ```
@@ -792,9 +838,12 @@ isScreenRotationLocked(callback: AsyncCallback&lt;boolean&gt;): void
 
 **示例：**
 
-```js
-screen.isScreenRotationLocked((err, isLocked) => {
-  if (err.code) {
+```ts
+import { BusinessError } from '@ohos.base';
+
+screen.isScreenRotationLocked((err: BusinessError, isLocked) => {
+  const errCode: number = err.code;
+  if (errCode) {
     console.error('Failed to get the screen rotation lock status. Cause:' + JSON.stringify(err));
     return;
   }
@@ -824,16 +873,18 @@ setScreenRotationLocked(isLocked: boolean): Promise&lt;void&gt;
 
 **示例：**
 
-```js
-let isLocked = false;
+```ts
+import { BusinessError } from '@ohos.base';
+
+let isLocked: boolean = false;
 try {
-    screen.setScreenRotationLocked(isLocked).then((data) => {
-      console.info('Succeeded in unlocking auto rotate');
-    }).catch((err) => {
-      console.error('Failed to unlock auto rotate. Code: ' + JSON.stringify(err));
-    });
+  screen.setScreenRotationLocked(isLocked).then((data) => {
+    console.info('Succeeded in unlocking auto rotate');
+  }).catch((err: BusinessError) => {
+    console.error('Failed to unlock auto rotate. Code: ' + JSON.stringify(err));
+  });
 } catch (exception) {
-    console.error('Failed to unlock auto rotate. Code: ' + JSON.stringify(exception));
+  console.error('Failed to unlock auto rotate. Code: ' + JSON.stringify(exception));
 };
 ```
 
@@ -854,18 +905,21 @@ setScreenRotationLocked(isLocked: boolean, callback: AsyncCallback&lt;void&gt;):
 
 **示例：**
 
-```js
-let isLocked = false;
+```ts
+import { BusinessError } from '@ohos.base';
+
+let isLocked: boolean = false;
 try {
-    screen.setScreenRotationLocked(isLocked, (err, data) => {
-      if (err.code) {
-        console.error('Failed to unlock auto rotate. Cause:' + JSON.stringify(err));
-        return;
-      }
-      console.info('Succeeded in unlocking auto rotate.');
-    });
+  screen.setScreenRotationLocked(isLocked, (err: BusinessError, data) => {
+    const errCode: number = err.code;
+    if (errCode) {
+      console.error('Failed to unlock auto rotate. Cause:' + JSON.stringify(err));
+      return;
+    }
+    console.info('Succeeded in unlocking auto rotate.');
+  });
 } catch (exception) {
-    console.error('Failed to unlock auto rotate. Code: ' + JSON.stringify(exception));
+  console.error('Failed to unlock auto rotate. Code: ' + JSON.stringify(exception));
 };
 ```
 
@@ -937,17 +991,21 @@ setOrientation(orientation: Orientation, callback: AsyncCallback&lt;void&gt;): v
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
+let screenClass: screen.Screen | null = null;
 try {
-    screenClass.setOrientation(screen.Orientation.VERTICAL, (err, data) => {
-        if (err.code) {
-            console.error('Failed to set the vertical orientation. Code: ' + JSON.stringify(err));
-            return;
-        }
-        console.info('Succeeded in setting the vertical orientation. data: ' + JSON.stringify(data));
-    });
+  screenClass.setOrientation(screen.Orientation.VERTICAL, (err: BusinessError, data) => {
+    const errCode: number = err.code;
+    if (errCode) {
+      console.error('Failed to set the vertical orientation. Code: ' + JSON.stringify(err));
+      return;
+    }
+    console.info('Succeeded in setting the vertical orientation. data: ' + JSON.stringify(data));
+  });
 } catch (exception) {
-    console.error('Failed to set the vertical orientation. Code: ' + JSON.stringify(exception));
+  console.error('Failed to set the vertical orientation. Code: ' + JSON.stringify(exception));
 };
 ```
 
@@ -979,16 +1037,19 @@ setOrientation(orientation: Orientation): Promise&lt;void&gt;
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
+let screenClass: screen.Screen | null = null;
 try {
-    let promise = screenClass.setOrientation(screen.Orientation.VERTICAL);
-    promise.then((data) => {
-        console.info('Succeeded in setting the vertical orientation. Data: ' + JSON.stringify(data));
-    }).catch((err) => {
-        console.error('Failed to set the vertical orientation. Cause: ' + JSON.stringify(err));
-    });
+  let promise = screenClass.setOrientation(screen.Orientation.VERTICAL);
+  promise.then((data) => {
+    console.info('Succeeded in setting the vertical orientation. Data: ' + JSON.stringify(data));
+  }).catch((err: BusinessError) => {
+    console.error('Failed to set the vertical orientation. Cause: ' + JSON.stringify(err));
+  });
 } catch (exception) {
-    console.error('Failed to set the vertical orientation. Code: ' + JSON.stringify(exception));
+  console.error('Failed to set the vertical orientation. Code: ' + JSON.stringify(exception));
 };
 ```
 
@@ -1015,18 +1076,22 @@ setScreenActiveMode(modeIndex: number, callback: AsyncCallback&lt;void&gt;): voi
 
 **示例：**
 
-```js
-let modeIndex = 0;
+```ts
+import { BusinessError } from '@ohos.base';
+
+let screenClass: screen.Screen | null = null;
+let modeIndex: number = 0;
 try {
-    screenClass.setScreenActiveMode(modeIndex, (err, data) => {
-        if (err.code) {
-            console.error('Failed to set screen active mode 0. Code: ' + JSON.stringify(err));
-            return;
-        }
-        console.info('Succeeded in setting screen active mode 0. data: ' + JSON.stringify(data));
-    });
+  screenClass.setScreenActiveMode(modeIndex, (err: BusinessError, data) => {
+    const errCode: number = err.code;
+    if (errCode) {
+      console.error('Failed to set screen active mode 0. Code: ' + JSON.stringify(err));
+      return;
+    }
+    console.info('Succeeded in setting screen active mode 0. data: ' + JSON.stringify(data));
+  });
 } catch (exception) {
-    console.error('Failed to set screen active mode 0. Code: ' + JSON.stringify(exception));
+  console.error('Failed to set screen active mode 0. Code: ' + JSON.stringify(exception));
 };
 ```
 
@@ -1058,17 +1123,20 @@ setScreenActiveMode(modeIndex: number): Promise&lt;void&gt;
 
 **示例：**
 
-```js
-let modeIndex = 0;
+```ts
+import { BusinessError } from '@ohos.base';
+
+let screenClass: screen.Screen | null = null;
+let modeIndex: number = 0;
 try {
-    let promise = screenClass.setScreenActiveMode(modeIndex);
-      promise.then((data) => {
-          console.info('Succeeded in setting screen active mode 0. Data: ' + JSON.stringify(data));
-      }).catch((err) => {
-          console.error('Failed to set screen active mode 0. Code: ' + JSON.stringify(err));
-      });
+  let promise = screenClass.setScreenActiveMode(modeIndex);
+  promise.then((data) => {
+    console.info('Succeeded in setting screen active mode 0. Data: ' + JSON.stringify(data));
+  }).catch((err: BusinessError) => {
+    console.error('Failed to set screen active mode 0. Code: ' + JSON.stringify(err));
+  });
 } catch (exception) {
-    console.error('Failed to set screen active mode 0. Code: ' + JSON.stringify(exception));
+  console.error('Failed to set screen active mode 0. Code: ' + JSON.stringify(exception));
 };
 ```
 
@@ -1095,18 +1163,22 @@ setDensityDpi(densityDpi: number, callback: AsyncCallback&lt;void&gt;): void;
 
 **示例：**
 
-```js
-let densityDpi = 320;
+```ts
+import { BusinessError } from '@ohos.base';
+
+let screenClass: screen.Screen | null = null;
+let densityDpi: number = 320;
 try {
-    screenClass.setDensityDpi(densityDpi, (err, data) => {
-        if (err.code) {
-            console.error('Failed to set the pixel density of the screen to 320. Code: ' + JSON.stringify(err));
-            return;
-        }
-        console.info('Succeed in setting the pixel density of the screen to 320. data: ' + JSON.stringify(data));
-    });
+  screenClass.setDensityDpi(densityDpi, (err: BusinessError, data) => {
+    const errCode: number = err.code;
+    if (errCode) {
+      console.error('Failed to set the pixel density of the screen to 320. Code: ' + JSON.stringify(err));
+      return;
+    }
+    console.info('Succeed in setting the pixel density of the screen to 320. data: ' + JSON.stringify(data));
+  });
 } catch (exception) {
-    console.error('Failed to set the pixel density of the screen to 320. Code: ' + JSON.stringify(exception));
+  console.error('Failed to set the pixel density of the screen to 320. Code: ' + JSON.stringify(exception));
 };
 ```
 
@@ -1138,17 +1210,20 @@ setDensityDpi(densityDpi: number): Promise&lt;void&gt;
 
 **示例：**
 
-```js
-let densityDpi = 320;
+```ts
+import { BusinessError } from '@ohos.base';
+
+let screenClass: screen.Screen | null = null;
+let densityDpi: number = 320;
 try {
-    let promise = screenClass.setDensityDpi(densityDpi);
-    promise.then((data) => {
-        console.info('Succeeded in setting the pixel density of the screen to 320. Data: ' + JSON.stringify(data));
-    }).catch((err) => {
-        console.error('Failed to set the pixel density of the screen to 320. Code: ' + JSON.stringify(err));
-    });
+  let promise = screenClass.setDensityDpi(densityDpi);
+  promise.then((data) => {
+    console.info('Succeeded in setting the pixel density of the screen to 320. Data: ' + JSON.stringify(data));
+  }).catch((err: BusinessError) => {
+    console.error('Failed to set the pixel density of the screen to 320. Code: ' + JSON.stringify(err));
+  });
 } catch (exception) {
-    console.error('Failed to set the pixel density of the screen to 320. Code: ' + JSON.stringify(exception));
+  console.error('Failed to set the pixel density of the screen to 320. Code: ' + JSON.stringify(exception));
 };
 ```
 
