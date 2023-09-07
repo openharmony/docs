@@ -36,11 +36,6 @@ Your application can use the location function only after the user has granted t
 
 Since the location information is considered sensitive, your application still needs to obtain the location access permission from the user even if the user has turned on the location function. The system will provide the location service for your application only after it has been granted the permission to access the device location information.
 
-### Samples
-
-The following sample is provided to help you better understand how to develop location services:
-
-- [`Location`: Location (ArkTS) (API9)] (https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/DeviceManagement/Location)
 
 
 ## Applying for Location Permissions
@@ -411,8 +406,3 @@ After obtaining the **WantAgent** object, call the geofencing API to add a geofe
 
 5. Have the system automatically trigger the action defined for the **WantAgent** object when a device enters or exits the geofence.
 
-## Samples
-
-The following sample is provided to help you better understand how to develop location services:
-
-- [`Location`: Location (ArkTS) (API9)] (https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/DeviceManagement/Location)

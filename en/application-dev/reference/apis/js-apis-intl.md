@@ -11,7 +11,7 @@ The [i18n](js-apis-i18n.md) module provides enhanced i18n capabilities through s
 
 ## Modules to Import
 
-```js
+```ts
 import Intl from '@ohos.intl';
 ```
 
@@ -45,7 +45,7 @@ Creates a **Locale** object.
 **System capability**: SystemCapability.Global.I18n
 
 **Example**
-  ```js
+  ```ts
   // The default constructor uses the current system locale to create a Locale object.
   let locale = new Intl.Locale();
   // Return the current system locale.
@@ -69,7 +69,7 @@ Creates a **Locale** object.
 | options             | [LocaleOptions](#localeoptions6) | No   | Options for creating the **Locale** object.|
 
 **Example**
-  ```js
+  ```ts
   // Create a Locale object named zh-CN.
   let locale = new Intl.Locale("zh-CN");
   let localeID = locale.toString(); // localeID = "zh-CN"
@@ -91,7 +91,7 @@ Obtains the string representation of a **Locale** object.
 | string | String representation of the **Locale** object.|
 
 **Example**
-  ```js
+  ```ts
   // Create a Locale object named en-GB.
   let locale = new Intl.Locale("en-GB");
   let localeID = locale.toString(); // localeID = "en-GB"
@@ -113,7 +113,7 @@ Maximizes information of the **Locale** object. If the script and locale informa
 | [Locale](#locale) | **Locale** object with the maximized information.|
 
 **Example**
-  ```js
+  ```ts
   // Create a Locale object named zh.
   let locale = new Intl.Locale("zh");
   // Complete the script and region of the Locale object.
@@ -143,7 +143,7 @@ Minimizes information of the **Locale** object. If the script and locale informa
 | [Locale](#locale) | **Locale** object with the minimized information.|
 
 **Example**
-  ```js
+  ```ts
   // Create a Locale object named zh-Hans-CN.
   let locale = new Intl.Locale("zh-Hans-CN");
   // Remove the script and region of the Locale object.
@@ -187,7 +187,7 @@ Creates a **DateTimeOptions** object for the specified locale.
 **System capability**: SystemCapability.Global.I18n
 
 **Example**
-  ```js
+  ```ts
   // Use the current system locale to create a DateTimeFormat object.
   let datefmt= new Intl.DateTimeFormat();
   ```
@@ -209,14 +209,14 @@ Creates a **DateTimeOptions** object for the specified locale.
 | options              | [DateTimeOptions](#datetimeoptions6) | No   | Options for creating a **DateTimeFormat** object. If no options are set, the default values of **year**, **month**, and **day** are **numeric**.|
 
 **Example**
-  ```js
+  ```ts
   // Use locale zh-CN to create a DateTimeFormat object. Set dateStyle to full and timeStyle to medium.
   let datefmt= new Intl.DateTimeFormat("zh-CN", { dateStyle: 'full', timeStyle: 'medium' });
   ```
 
 
 **Example**
-  ```js
+  ```ts
   // Use the locale list ["ban", "zh"] to create a DateTimeFormat object. Because ban is an invalid locale ID, locale zh is used to create the DateTimeFormat object.
   let datefmt= new Intl.DateTimeFormat(["ban", "zh"], { dateStyle: 'full', timeStyle: 'medium' });
   ```
@@ -243,7 +243,7 @@ Formats the specified date and time.
 | string | A string containing the formatted date and time.|
 
 **Example**
-  ```js
+  ```ts
   let date = new Date(2021, 11, 17, 3, 24, 0);
   // Use locale en-GB to create a DateTimeFormat object.
   let datefmt = new Intl.DateTimeFormat("en-GB");
@@ -277,7 +277,7 @@ Formats the specified date range.
 | string | A string containing the formatted date and time range.|
 
 **Example**
-  ```js
+  ```ts
   let startDate = new Date(2021, 11, 17, 3, 24, 0);
   let endDate = new Date(2021, 11, 18, 3, 24, 0);
   // Use locale en-GB to create a DateTimeFormat object.
@@ -301,7 +301,7 @@ Obtains the formatting options for **DateTimeFormat** object.
 | [DateTimeOptions](#datetimeoptions6) | Formatting options for **DateTimeFormat** objects.|
 
 **Example**
-  ```js
+  ```ts
   let datefmt = new Intl.DateTimeFormat("en-GB", { dateStyle: 'full', timeStyle: 'medium' });
   // Obtain the options of the DateTimeFormat object.
   let options = datefmt.resolvedOptions();
@@ -352,7 +352,7 @@ Creates a **NumberFormat** object for the specified locale.
 **System capability**: SystemCapability.Global.I18n
 
 **Example**
-  ```js
+  ```ts
   // Use the current system locale to create a NumberFormat object.
   let numfmt = new Intl.NumberFormat();
   ```
@@ -374,7 +374,7 @@ Creates a **NumberFormat** object for the specified locale.
 | options              | [NumberOptions](#numberoptions6) | No   | Options for creating a **NumberFormat** object.               |
 
 **Example**
-  ```js
+  ```ts
   // Use locale en-GB to create a NumberFormat object. Set style to decimal and notation to scientific.
   let numfmt = new Intl.NumberFormat("en-GB", {style:'decimal', notation:"scientific"});
   ```
@@ -402,7 +402,7 @@ Formats a number.
 
 
 **Example**
-  ```js
+  ```ts
   // Use locale list ["en-GB", "zh"] to create a NumberFormat object. Because en-GB is a valid locale ID, it is used to create the NumberFormat object.
   let numfmt = new Intl.NumberFormat(["en-GB", "zh"], {style:'decimal', notation:"scientific"});
   let formattedNumber = numfmt.format(1223); // formattedNumber = 1.223E3
@@ -425,7 +425,7 @@ Obtains the options of the **NumberFormat** object.
 
 
 **Example**
-  ```js
+  ```ts
   let numfmt = new Intl.NumberFormat(["en-GB", "zh"], {style:'decimal', notation:"scientific"});
   // Obtain the options of the NumberFormat object.
   let options = numfmt.resolvedOptions();
@@ -476,7 +476,7 @@ Creates a **Collator** object.
 **System capability**: SystemCapability.Global.I18n
 
 **Example**
-  ```js
+  ```ts
   // Use the system locale to create a Collator object.
   let collator = new Intl.Collator();
   ```
@@ -498,7 +498,7 @@ Creates a **Collator** object.
 | options              | [CollatorOptions](#collatoroptions8) | No   | Options for creating a **Collator** object.      |
 
 **Example**
-  ```js
+  ```ts
   // Use locale zh-CN to create a Collator object. Set localeMatcher to lookup and usage to sort.
   let collator = new Intl.Collator("zh-CN", {localeMatcher: "lookup", usage: "sort"});
   ```
@@ -526,7 +526,7 @@ Compares two strings based on the sorting policy of the **Collator** object.
 | number | Comparison result. If the value is a negative number, the first string is before the second string. If the value of number is **0**, the first string is equal to the second string. If the value of number is a positive number, the first string is after the second string.|
 
 **Example**
-  ```js
+  ```ts
   // Use locale en-GB to create a Collator object.
   let collator = new Intl.Collator("en-GB");
   // Compare the sequence of the first and second strings.
@@ -549,7 +549,7 @@ Returns properties reflecting the locale and collation options of a **Collator**
 | [CollatorOptions](#collatoroptions8) | Properties of the **Collator** object.|
 
 **Example**
-  ```js
+  ```ts
   let collator = new Intl.Collator("zh-Hans", { usage: 'sort', ignorePunctuation: true });
   // Obtain the options of the Collator object.
   let options = collator.resolvedOptions();
@@ -588,7 +588,7 @@ Creates a **PluralRules** object to obtain the singular-plural type of numbers.
 **System capability**: SystemCapability.Global.I18n
 
 **Example**
-  ```js
+  ```ts
   // Use the system locale to create a PluralRules object.
   let pluralRules = new Intl.PluralRules();
   ```
@@ -610,7 +610,7 @@ Creates a **PluralRules** object to obtain the singular-plural type of numbers.
 | options              | [PluralRulesOptions](#pluralrulesoptions8) | No   | Options for creating a **PluralRules** object.      |
 
 **Example**
-  ```js
+  ```ts
   // Use locale zh-CN to create a PluralRules object. Set localeMatcher to lookup and type to cardinal.
   let pluralRules= new Intl.PluralRules("zh-CN", {"localeMatcher": "lookup", "type": "cardinal"});
   ```
@@ -637,7 +637,7 @@ Obtains a string that represents the singular-plural type of the specified numbe
 | string | Singular-plural type. The value can be any of the following: **zero**, **one**, **two**, **few**, **many**, **others**.|
 
 **Example**
-  ```js
+  ```ts
   // Use locale zh-Hans to create a PluralRules object.
   let zhPluralRules = new Intl.PluralRules("zh-Hans");
   // Determine the singular-plural type corresponding to number 1 in locale zh-Hans.
@@ -680,7 +680,7 @@ Creates a **RelativeTimeFormat** object.
 **System capability**: SystemCapability.Global.I18n
 
 **Example**
-  ```js
+  ```ts
   // Use the system locale to create a RelativeTimeFormat object.
   let relativetimefmt = new Intl.RelativeTimeFormat();
   ```
@@ -702,7 +702,7 @@ Creates a **RelativeTimeFormat** object.
 | options              | [RelativeTimeFormatInputOptions](#relativetimeformatinputoptions8) | No   | Options for creating a **RelativeTimeFormat** object.           |
 
 **Example**
-  ```js
+  ```ts
   // Use locale zh-CN to create a RelativeTimeFormat object. Set localeMatcher to lookup, numeric to always, and style to long.
   let relativeTimeFormat = new Intl.RelativeTimeFormat("zh-CN", {"localeMatcher": "lookup", "numeric": "always", "style": "long"});
   ```
@@ -730,7 +730,7 @@ Formats the value and unit based on the specified locale and formatting options.
 | string | Relative time after formatting.|
 
 **Example**
-  ```js
+  ```ts
   // Use locale zh-CN to create a RelativeTimeFormat object.
   let relativetimefmt = new Intl.RelativeTimeFormat("zh-CN");
   // Obtain the localized representation (in unit of quarter) of number 3 in locale zh-CN.
@@ -760,7 +760,7 @@ Obtains an array of RelativeTimeFormat objects in parts for locale-aware formatt
 | Array&lt;object&gt; | An array of **RelativeTimeFormat** objects in parts.|
 
 **Example**
-  ```js
+  ```ts
   // Use locale en to create a RelativeTimeFormat object. Set numeric to auto.
   let relativetimefmt = new Intl.RelativeTimeFormat("en", {"numeric": "auto"});
   let parts = relativetimefmt.formatToParts(10, "seconds"); // parts = [ {type: "literal", value: "in"}, {type: "integer", value: 10, unit: "second"}, {type: "literal", value: "seconds"} ]
@@ -782,7 +782,7 @@ Obtains the formatting options for **RelativeTimeFormat** objects.
 | [RelativeTimeFormatResolvedOptions](#relativetimeformatresolvedoptions8) | Formatting options for **RelativeTimeFormat** objects.|
 
 **Example**
-  ```js
+  ```ts
   // Use locale en-GB to create a RelativeTimeFormat object.
   let relativetimefmt= new Intl.RelativeTimeFormat("en-GB", { style: "short" });
   // Obtain the options of the RelativeTimeFormat object.
