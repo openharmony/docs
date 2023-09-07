@@ -46,6 +46,7 @@ import systemSoundManager from '@ohos.multimedia.systemSoundManager';
 **示例：**
 
 ```ts
+import media from '@ohos.multimedia.media';
 let state: media.AVPlayerState = systemRingtonePlayer.state;
 ```
 
@@ -129,7 +130,7 @@ getAudioRendererInfo(callback: AsyncCallback&lt;audio.AudioRendererInfo&gt;): vo
 import audio from '@ohos.multimedia.audio';
 import { BusinessError } from '@ohos.base';
 
-let audioRendererInfo: audio.AudioRendererInfo = null;
+let audioRendererInfo: audio.AudioRendererInfo | undefined = undefined;
 
 systemRingtonePlayer.getAudioRendererInfo((err: BusinessError, value: audio.AudioRendererInfo) => {
   if (err) {
@@ -163,7 +164,7 @@ getAudioRendererInfo(): Promise&lt;audio.AudioRendererInfo&gt;
 import audio from '@ohos.multimedia.audio';
 import { BusinessError } from '@ohos.base';
 
-let audioRendererInfo: audio.AudioRendererInfo = null;
+let audioRendererInfo: audio.AudioRendererInfo | undefined = undefined;
 
 systemRingtonePlayer.getAudioRendererInfo().then((value: audio.AudioRendererInfo) => {
   console.info(`Promise returned to indicate that the value of the ringtone AudioRendererInfo is obtained ${value}.`);
@@ -196,8 +197,8 @@ configure(options: RingtoneOptions, callback: AsyncCallback&lt;void&gt;): void
 import { BusinessError } from '@ohos.base';
 
 class RingtoneOptions {
-  volume: number;
-  loop: boolean;
+  volume: number = 0;
+  loop: boolean = false;
 }
 let ringtoneOptions: RingtoneOptions = {volume: 0.5, loop: true};
 
@@ -238,8 +239,8 @@ configure(options: RingtoneOptions): Promise&lt;void&gt;
 import { BusinessError } from '@ohos.base';
 
 class RingtoneOptions {
-  volume: number;
-  loop: boolean;
+  volume: number = 0;
+  loop: boolean = false;
 }
 let ringtoneOptions: RingtoneOptions = {volume: 0.5, loop: true};
 
