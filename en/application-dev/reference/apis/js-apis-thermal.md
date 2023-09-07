@@ -59,7 +59,7 @@ Unsubscribes from thermal level changes.
 
 | Name  | Type                | Mandatory| Description                                          |
 | -------- | -------------------- | ---- | ---------------------------------------------- |
-| callback | Callback&lt;void&gt; | No  | Callback that returns no value. If this parameter is not set, this API unsubscribes from all callbacks.|
+| callback | Callback&lt;void&gt; | No  | Callback that returns no value. If this parameter is not set, all callbacks will be unregistered.|
 
 **Error codes**
 
@@ -129,7 +129,7 @@ Subscribes to thermal level changes.
 
 | Name  | Type                             | Mandatory| Description                                                        |
 | -------- | --------------------------------- | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback&lt;ThermalLevel&gt; | Yes  | Callback used to return the result. The return value contains only one parameter, that is, thermal level. If an alarm is generated, you can use `// @ts-ignore` to suppress the alarm.|
+| callback | AsyncCallback&lt;ThermalLevel&gt; | Yes  | Callback used to return the result. The return value contains only one parameter, that is, thermal level.|
 
 **Example**
 
@@ -153,7 +153,7 @@ Unsubscribes from thermal level changes.
 
 | Name  | Type                     | Mandatory| Description                                          |
 | -------- | ------------------------- | ---- | ---------------------------------------------- |
-| callback | AsyncCallback&lt;void&gt; | No  | Callback that returns no value. If this parameter is not set, this API unsubscribes from all callbacks.|
+| callback | AsyncCallback&lt;void&gt; | No  | Callback that returns no value. If this parameter is not set, all callbacks will be unregistered.|
 
 **Example**
 
@@ -177,7 +177,7 @@ Obtains the current thermal level.
 
 | Type          | Description    |
 | ------------ | ------ |
-| ThermalLevel | Thermal level obtained.|
+| ThermalLevel | Thermal level.|
 
 **Example**
 
