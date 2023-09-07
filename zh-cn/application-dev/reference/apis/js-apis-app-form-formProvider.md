@@ -9,7 +9,6 @@ FormProvider模块提供了卡片提供方相关接口的能力，开发者在�
 
 ```ts
 import formProvider from '@ohos.app.form.formProvider';
-import Base from '@ohos.base';
 ```
 
 ## setFormNextRefreshTime
@@ -46,6 +45,8 @@ setFormNextRefreshTime(formId: string, minute: number, callback: AsyncCallback&l
 **示例：**
 
 ```ts
+import Base from '@ohos.base';
+
 let formId: string = '12400633174999288';
 try {
   formProvider.setFormNextRefreshTime(formId, 5, (error: Base.BusinessError) => {
@@ -99,6 +100,8 @@ setFormNextRefreshTime(formId: string, minute: number): Promise&lt;void&gt;
 **示例：**
 
 ```ts
+import Base from '@ohos.base';
+
 let formId: string = '12400633174999288';
 try {
   formProvider.setFormNextRefreshTime(formId, 5).then(() => {
@@ -144,6 +147,7 @@ updateForm(formId: string, formBindingData: formBindingData.FormBindingData,call
 **示例：**
 
 ```ts
+import Base from '@ohos.base';
 import formBindingData from '@ohos.app.form.formBindingData';
 
 let formId: string = '12400633174999288';
@@ -202,6 +206,7 @@ updateForm(formId: string, formBindingData: formBindingData.FormBindingData): Pr
 **示例：**
 
 ```ts
+import Base from '@ohos.base';
 import formBindingData from '@ohos.app.form.formBindingData';
 
 let formId: string = '12400633174999288';
@@ -248,6 +253,8 @@ getFormsInfo(callback: AsyncCallback&lt;Array&lt;formInfo.FormInfo&gt;&gt;): voi
 **示例：**
 
 ```ts
+import Base from '@ohos.base';
+
 try {
   formProvider.getFormsInfo((error, data) => {
     if (error) {
@@ -289,6 +296,7 @@ getFormsInfo(filter: formInfo.FormInfoFilter, callback: AsyncCallback&lt;Array&l
 **示例：**
 
 ```ts
+import Base from '@ohos.base';
 import formInfo from '@ohos.app.form.formInfo';
 
 const filter: formInfo.FormInfoFilter = {
@@ -342,6 +350,7 @@ getFormsInfo(filter?: formInfo.FormInfoFilter): Promise&lt;Array&lt;formInfo.For
 **示例：**
 
 ```ts
+import Base from '@ohos.base';
 import formInfo from '@ohos.app.form.formInfo';
 
 const filter: formInfo.FormInfoFilter = {
@@ -392,6 +401,7 @@ requestPublishForm(want: Want, formBindingData: formBindingData.FormBindingData,
 **示例：**
 
 ```ts
+import Base from '@ohos.base';
 import formBindingData from '@ohos.app.form.formBindingData';
 import Want from '@ohos.app.ability.Want';
 
@@ -452,6 +462,7 @@ requestPublishForm(want: Want, callback: AsyncCallback&lt;string&gt;): void
 **示例：**
 
 ```ts
+import Base from '@ohos.base';
 import Want from '@ohos.app.ability.Want';
 
 let want: Want = {
@@ -513,6 +524,7 @@ requestPublishForm(want: Want, formBindingData?: formBindingData.FormBindingData
 **示例：**
 
 ```ts
+import Base from '@ohos.base';
 import Want from '@ohos.app.ability.Want';
 
 let want: Want = {
@@ -564,6 +576,7 @@ isRequestPublishFormSupported(callback: AsyncCallback&lt;boolean&gt;): void
 **示例：**
 
 ```ts
+import Base from '@ohos.base';
 import Want from '@ohos.app.ability.Want';
 
 try {
@@ -628,6 +641,7 @@ isRequestPublishFormSupported(): Promise&lt;boolean&gt;
 **示例：**
 
 ```ts
+import Base from '@ohos.base';
 import Want from '@ohos.app.ability.Want';
 
 try {
