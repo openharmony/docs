@@ -279,9 +279,9 @@ Creates a custom curve.
 
 ```ts
 import Curves from '@ohos.curves'
-let interpolate = function(fraction) {
-    return Math.sqrt(fraction)
-  }
+let interpolate = (fraction:number):number => {
+  return Math.sqrt(fraction)
+}
 let curve = Curves.customCurve(interpolate) // Create a custom interpolation curve.
 ```
 
