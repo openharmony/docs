@@ -121,8 +121,8 @@ import media from '@ohos.multimedia.media'
 import { BusinessError } from '@ohos.base';
 const TAG = 'VideoRecorderDemo:'
 export class VideoRecorderDemo {
-  private avRecorder: media.AVRecorder;
-  private videoOutSurfaceId: string;
+  private avRecorder: media.AVRecorder | undefined = undefined;
+  private videoOutSurfaceId: string = "";
   private avProfile: media.AVRecorderProfile = {
     fileFormat : media.ContainerFormatType.CFT_MPEG_4, // 视频文件封装格式，只支持MP4
     videoBitrate : 100000, // 视频比特率
@@ -140,14 +140,16 @@ export class VideoRecorderDemo {
 
   // 注册avRecorder回调函数
   setAvRecorderCallback() {
-    // 状态机变化回调函数
-    this.avRecorder.on('stateChange', (state: media.AVRecorderState, reason: media.StateChangeReason) => {
-      console.info(TAG + 'current state is: ' + state);
-    })
-    // 错误上报回调函数
-    this.avRecorder.on('error', (err: BusinessError) => {
-      console.error(TAG + 'error ocConstantSourceNode, error message is ' + err);
-    })
+    if (this.avRecorder != undefined) {
+      // 状态机变化回调函数
+      this.avRecorder.on('stateChange', (state: media.AVRecorderState, reason: media.StateChangeReason) => {
+        console.info(TAG + 'current state is: ' + state);
+      })
+      // 错误上报回调函数
+      this.avRecorder.on('error', (err: BusinessError) => {
+        console.error(TAG + 'error ocConstantSourceNode, error message is ' + err);
+      })
+    }
   }
 
   // 相机相关准备工作
@@ -172,24 +174,26 @@ export class VideoRecorderDemo {
 
   // 开始录制对应的流程
   async startRecordingProcess() {
-    // 1.创建录制实例；
-    this.avRecorder = await media.createAVRecorder();
-    this.setAvRecorderCallback();
-    // 2. 获取录制文件fd；获取到的值传递给avConfig里的url，实现略
-    // 3.配置录制参数完成准备工作
-    await this.avRecorder.prepare(this.avConfig);
-    this.videoOutSurfaceId = await this.avRecorder.getInputSurface(); 
-    // 4.完成相机相关准备工作
-    await this.prepareCamera();
-    // 5.启动相机出流
-    await this.startCameraOutput();
-    // 6. 启动录制
-    await this.avRecorder.start();
+    if (this.avRecorder != undefined) {
+      // 1.创建录制实例；
+      this.avRecorder = await media.createAVRecorder();
+      this.setAvRecorderCallback();
+      // 2. 获取录制文件fd；获取到的值传递给avConfig里的url，实现略
+      // 3.配置录制参数完成准备工作
+      await this.avRecorder.prepare(this.avConfig);
+      this.videoOutSurfaceId = await this.avRecorder.getInputSurface();
+      // 4.完成相机相关准备工作
+      await this.prepareCamera();
+      // 5.启动相机出流
+      await this.startCameraOutput();
+      // 6. 启动录制
+      await this.avRecorder.start();
+    }
   }
 
   // 暂停录制对应的流程
   async pauseRecordingProcess() {
-    if (this.avRecorder.state === 'started') { // 仅在started状态下调用pause为合理状态切换
+    if (this.avRecorder != undefined && this.avRecorder.state === 'started') { // 仅在started状态下调用pause为合理状态切换
       await this.avRecorder.pause();
       await this.stopCameraOutput(); // 停止相机出流
     }
@@ -197,26 +201,28 @@ export class VideoRecorderDemo {
 
   // 恢复录制对应的流程
   async resumeRecordingProcess() {
-    if (this.avRecorder.state === 'paused') { // 仅在paused状态下调用resume为合理状态切换
+    if (this.avRecorder != undefined && this.avRecorder.state === 'paused') { // 仅在paused状态下调用resume为合理状态切换
       await this.startCameraOutput();  // 启动相机出流
       await this.avRecorder.resume();
     }
   }
 
   async stopRecordingProcess() {
-    // 1. 停止录制
-    if (this.avRecorder.state === 'started'
-    || this.avRecorder.state === 'paused' ) { // 仅在started或者paused状态下调用stop为合理状态切换
-      await this.avRecorder.stop();
-      await this.stopCameraOutput();
+    if (this.avRecorder != undefined) {
+      // 1. 停止录制
+      if (this.avRecorder.state === 'started'
+        || this.avRecorder.state === 'paused' ) { // 仅在started或者paused状态下调用stop为合理状态切换
+        await this.avRecorder.stop();
+        await this.stopCameraOutput();
+      }
+      // 2.重置
+      await this.avRecorder.reset();
+      // 3.释放录制实例
+      await this.avRecorder.release();
+      // 4.文件录制完成后，关闭fd,实现略
+      // 5.释放相机相关实例
+      await this.releaseCamera();
     }
-    // 2.重置
-    await this.avRecorder.reset();
-    // 3.释放录制实例
-    await this.avRecorder.release();
-    // 4.文件录制完成后，关闭fd,实现略
-    // 5.释放相机相关实例
-    await this.releaseCamera();
   }
 
   // 一个完整的【开始录制-暂停录制-恢复录制-停止录制】示例
