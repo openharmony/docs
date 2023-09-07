@@ -11,7 +11,6 @@ formHost模块提供了卡片使用方相关接口的能力，包括对使用方
 
 ```ts
 import formHost from '@ohos.app.form.formHost';
-import Base from '@ohos.base';
 ```
 
 ## deleteForm
@@ -49,6 +48,7 @@ deleteForm(formId: string, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
+import Base from '@ohos.base';
 import formHost from '@ohos.app.form.formHost';
 
 try {
@@ -106,6 +106,7 @@ deleteForm(formId: string): Promise&lt;void&gt;
 **参数：**
 
 ```ts
+import Base from '@ohos.base';
 import formHost from '@ohos.app.form.formHost';
 
 try {
@@ -155,6 +156,7 @@ releaseForm(formId: string, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
+import Base from '@ohos.base';
 import formHost from '@ohos.app.form.formHost';
 
 try {
@@ -205,6 +207,7 @@ releaseForm(formId: string, isReleaseCache: boolean, callback: AsyncCallback&lt;
 **示例：**
 
 ```ts
+import Base from '@ohos.base';
 import formHost from '@ohos.app.form.formHost';
 
 try {
@@ -260,6 +263,7 @@ releaseForm(formId: string, isReleaseCache?: boolean): Promise&lt;void&gt;
 **示例：**
 
 ```ts
+import Base from '@ohos.base';
 import formHost from '@ohos.app.form.formHost';
 
 try {
@@ -309,6 +313,7 @@ requestForm(formId: string, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
+import Base from '@ohos.base';
 import formHost from '@ohos.app.form.formHost';
 
 try {
@@ -363,6 +368,7 @@ requestForm(formId: string): Promise&lt;void&gt;
 **示例：**
 
 ```ts
+import Base from '@ohos.base';
 import formHost from '@ohos.app.form.formHost';
 
 try {
@@ -413,6 +419,7 @@ castToNormalForm(formId: string, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
+import Base from '@ohos.base';
 import formHost from '@ohos.app.form.formHost';
 
 try {
@@ -467,6 +474,7 @@ castToNormalForm(formId: string): Promise&lt;void&gt;
 **示例：**
 
 ```ts
+import Base from '@ohos.base';
 import formHost from '@ohos.app.form.formHost';
 
 try {
@@ -514,6 +522,7 @@ notifyVisibleForms(formIds: Array&lt;string&gt;, callback: AsyncCallback&lt;void
 **示例：**
 
 ```ts
+import Base from '@ohos.base';
 import formHost from '@ohos.app.form.formHost';
 
 try {
@@ -566,6 +575,7 @@ notifyVisibleForms(formIds: Array&lt;string&gt;): Promise&lt;void&gt;
 **示例：**
 
 ```ts
+import Base from '@ohos.base';
 import formHost from '@ohos.app.form.formHost';
 
 try {
@@ -613,6 +623,7 @@ notifyInvisibleForms(formIds: Array&lt;string&gt;, callback: AsyncCallback&lt;vo
 **示例：**
 
 ```ts
+import Base from '@ohos.base';
 import formHost from '@ohos.app.form.formHost';
 
 try {
@@ -665,6 +676,7 @@ notifyInvisibleForms(formIds: Array&lt;string&gt;): Promise&lt;void&gt;
 **示例：**
 
 ```ts
+import Base from '@ohos.base';
 import formHost from '@ohos.app.form.formHost';
 
 try {
@@ -713,6 +725,7 @@ enableFormsUpdate(formIds: Array&lt;string&gt;, callback: AsyncCallback&lt;void&
 **示例：**
 
 ```ts
+import Base from '@ohos.base';
 import formHost from '@ohos.app.form.formHost';
 
 try {
@@ -766,6 +779,7 @@ enableFormsUpdate(formIds: Array&lt;string&gt;): Promise&lt;void&gt;
 **示例：**
 
 ```ts
+import Base from '@ohos.base';
 import formHost from '@ohos.app.form.formHost';
 
 try {
@@ -815,6 +829,7 @@ disableFormsUpdate(formIds: Array&lt;string&gt;, callback: AsyncCallback&lt;void
 **示例：**
 
 ```ts
+import Base from '@ohos.base';
 import formHost from '@ohos.app.form.formHost';
 
 try {
@@ -869,6 +884,7 @@ disableFormsUpdate(formIds: Array&lt;string&gt;): Promise&lt;void&gt;
 **示例：**
 
 ```ts
+import Base from '@ohos.base';
 import formHost from '@ohos.app.form.formHost';
 
 try {
@@ -909,6 +925,7 @@ isSystemReady(callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
+import Base from '@ohos.base';
 import formHost from '@ohos.app.form.formHost';
 
 try {
@@ -947,6 +964,7 @@ isSystemReady(): Promise&lt;void&gt;
 **示例：**
 
 ```ts
+import Base from '@ohos.base';
 import formHost from '@ohos.app.form.formHost';
 
 try {
@@ -992,6 +1010,7 @@ getAllFormsInfo(callback: AsyncCallback&lt;Array&lt;formInfo.FormInfo&gt;&gt;): 
 **示例：**
 
 ```ts
+import Base from '@ohos.base';
 import formHost from '@ohos.app.form.formHost';
 import formInfo from '@ohos.app.form.formInfo';
 
@@ -1039,6 +1058,7 @@ getAllFormsInfo(): Promise&lt;Array&lt;formInfo.FormInfo&gt;&gt;
 **示例：**
 
 ```ts
+import Base from '@ohos.base';
 import formHost from '@ohos.app.form.formHost';
 import formInfo from '@ohos.app.form.formInfo';
 
@@ -1087,6 +1107,7 @@ getFormsInfo(bundleName: string, callback: AsyncCallback&lt;Array&lt;formInfo.Fo
 **示例：**
 
 ```ts
+import Base from '@ohos.base';
 import formHost from '@ohos.app.form.formHost';
 import formInfo from '@ohos.app.form.formInfo';
 
@@ -1138,6 +1159,7 @@ getFormsInfo(bundleName: string, moduleName: string, callback: AsyncCallback&lt;
 **示例：**
 
 ```ts
+import Base from '@ohos.base';
 import formHost from '@ohos.app.form.formHost';
 import formInfo from '@ohos.app.form.formInfo';
 
@@ -1194,6 +1216,7 @@ getFormsInfo(bundleName: string, moduleName?: string): Promise&lt;Array&lt;formI
 **示例：**
 
 ```ts
+import Base from '@ohos.base';
 import formHost from '@ohos.app.form.formHost';
 import formInfo from '@ohos.app.form.formInfo';
 
@@ -1241,6 +1264,7 @@ deleteInvalidForms(formIds: Array&lt;string&gt;, callback: AsyncCallback&lt;numb
 **示例：**
 
 ```ts
+import Base from '@ohos.base';
 import formHost from '@ohos.app.form.formHost';
 
 try {
@@ -1295,6 +1319,7 @@ deleteInvalidForms(formIds: Array&lt;string&gt;): Promise&lt;number&gt;
 **示例：**
 
 ```ts
+import Base from '@ohos.base';
 import formHost from '@ohos.app.form.formHost';
 
 try {
@@ -1343,6 +1368,7 @@ acquireFormState(want: Want, callback: AsyncCallback&lt;formInfo.FormStateInfo&g
 **示例：**
 
 ```ts
+import Base from '@ohos.base';
 import formHost from '@ohos.app.form.formHost';
 import Want from '@ohos.app.ability.Want';
 import formInfo from '@ohos.app.form.formInfo';
@@ -1409,6 +1435,7 @@ acquireFormState(want: Want): Promise&lt;formInfo.FormStateInfo&gt;
 **示例：**
 
 ```ts
+import Base from '@ohos.base';
 import formHost from '@ohos.app.form.formHost';
 import Want from '@ohos.app.ability.Want';
 import formInfo from '@ohos.app.form.formInfo';
@@ -1461,6 +1488,7 @@ on(type: 'formUninstall', callback: Callback&lt;string&gt;): void
 **示例：**
 
 ```ts
+import Base from '@ohos.base';
 import formHost from '@ohos.app.form.formHost';
 
 formHost.on('formUninstall', (formId: string) => {
@@ -1495,6 +1523,7 @@ off(type: 'formUninstall', callback?: Callback&lt;string&gt;): void
 **示例：**
 
 ```ts
+import Base from '@ohos.base';
 import formHost from '@ohos.app.form.formHost';
 
 formHost.off('formUninstall', (formId: string) => {
@@ -1537,6 +1566,7 @@ notifyFormsVisible(formIds: Array&lt;string&gt;, isVisible: boolean, callback: A
 **示例：**
 
 ```ts
+import Base from '@ohos.base';
 import formHost from '@ohos.app.form.formHost';
 
 let formIds: string[] = new Array('12400633174999288', '12400633174999289');
@@ -1591,6 +1621,7 @@ notifyFormsVisible(formIds: Array&lt;string&gt;, isVisible: boolean): Promise&lt
 **示例：**
 
 ```ts
+import Base from '@ohos.base';
 import formHost from '@ohos.app.form.formHost';
 
 let formIds: string[] = new Array('12400633174999288', '12400633174999289');
@@ -1640,6 +1671,7 @@ notifyFormsEnableUpdate(formIds: Array&lt;string&gt;, isEnableUpdate: boolean, c
 **示例：**
 
 ```ts
+import Base from '@ohos.base';
 import formHost from '@ohos.app.form.formHost';
 
 let formIds: string[] = new Array('12400633174999288', '12400633174999289');
@@ -1694,6 +1726,7 @@ notifyFormsEnableUpdate(formIds: Array&lt;string&gt;, isEnableUpdate: boolean): 
 **示例：**
 
 ```ts
+import Base from '@ohos.base';
 import formHost from '@ohos.app.form.formHost';
 
 let formIds: string[] = new Array('12400633174999288', '12400633174999289');
@@ -1742,6 +1775,7 @@ shareForm(formId: string, deviceId: string, callback: AsyncCallback&lt;void&gt;)
 **示例：**
 
 ```ts
+import Base from '@ohos.base';
 import formHost from '@ohos.app.form.formHost';
 
 let formId: string = '12400633174999288';
@@ -1797,6 +1831,7 @@ shareForm(formId: string, deviceId: string): Promise&lt;void&gt;
 **示例：**
 
 ```ts
+import Base from '@ohos.base';
 import formHost from '@ohos.app.form.formHost';
 
 let formId: string = '12400633174999288';
@@ -1846,6 +1881,7 @@ notifyFormsPrivacyProtected(formIds: Array\<string>, isProtected: boolean, callb
 **示例：**
 
 ```ts
+import Base from '@ohos.base';
 import formHost from '@ohos.app.form.formHost';
 
 let formIds: string[] = new Array('12400633174999288', '12400633174999289');
@@ -1897,6 +1933,7 @@ notifyFormsPrivacyProtected(formIds: Array\<string\>, isProtected: boolean): Pro
 以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
 
 ```ts
+import Base from '@ohos.base';
 import formHost from '@ohos.app.form.formHost';
 
 let formIds: string[] = new Array('12400633174999288', '12400633174999289');
@@ -1943,6 +1980,7 @@ acquireFormData(formId: string, callback: AsyncCallback<{[key: string]: Object}>
 **示例：**
 
 ```ts
+import Base from '@ohos.base';
 import formHost from '@ohos.app.form.formHost';
 
 let formId: string = '12400633174999288';
@@ -1995,6 +2033,7 @@ acquireFormData(formId: string): Promise<{[key: string]: Object}>;
 以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
 
 ```ts
+import Base from '@ohos.base';
 import formHost from '@ohos.app.form.formHost';
 
 let formId: string = '12400633174999288';
