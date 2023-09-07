@@ -1340,49 +1340,55 @@ JS测试代码示例如下（仅供参考），如果整个流程能够正常运
 
 1. 引入HUKS模块
 
-   ```js
+   ```ts
    import huks from '@ohos.security.huks'
    ```
 
 2. 使用generateKey接口生成密钥。
 
-   ```js
-   
+   ```ts
+    import { BusinessError } from '@ohos.base';
     let aesKeyAlias = 'test_aesKeyAlias';
-    let handle;
+    let handle = 0;
     let IV = '001122334455';
-    let cipherData:Uint8Array;
-    let plainData:Uint8Array;
 
-    
+    class HuksProperties {
+      tag: huks.HuksTag = huks.HuksTag.HUKS_TAG_ALGORITHM;
+      value: huks.HuksKeyAlg | huks.HuksKeySize | huks.HuksKeyPurpose = huks.HuksKeyAlg.HUKS_ALG_ECC;
+    }
+
+    class HuksProperties1 {
+      tag: huks.HuksTag = huks.HuksTag.HUKS_TAG_ALGORITHM;
+      value: huks.HuksKeyAlg | huks.HuksKeySize | huks.HuksKeyPurpose | huks.HuksKeyPadding | huks.HuksCipherMode | Uint8Array = huks.HuksKeyAlg.HUKS_ALG_ECC;
+    }
+
     function GetAesGenerateProperties() {
-      var properties = new Array();
-      var index = 0;
-      properties[index++] = {
-        tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
-        value: huks.HuksKeyAlg.HUKS_ALG_AES
-      };
-      properties[index++] = {
-        tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
-        value: huks.HuksKeySize.HUKS_AES_KEY_SIZE_128
-      };
-      properties[index++] = {
-        tag: huks.HuksTag.HUKS_TAG_PURPOSE,
-        value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT |
-               huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_DECRYPT
-      }
+      let properties: HuksProperties[] = [
+        {
+          tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
+          value: huks.HuksKeyAlg.HUKS_ALG_AES
+        },
+        {
+          tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
+          value: huks.HuksKeySize.HUKS_AES_KEY_SIZE_128
+        },
+        {
+          tag: huks.HuksTag.HUKS_TAG_PURPOSE,
+          value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT |
+          huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_DECRYPT
+        }
+      ];
       return properties;
     }
 
-    
     async function GenerateAesKey() {
-      var genProperties = GetAesGenerateProperties();
-      var options = {
+      let genProperties = GetAesGenerateProperties();
+      let options: huks.HuksOptions = {
         properties: genProperties
       }
       await huks.generateKeyItem(aesKeyAlias, options).then((data) => {
         console.log("generateKeyItem success");
-      }).catch((err)=>{
+      }).catch((error: BusinessError) => {
         console.log("generateKeyItem failed");
       })
     }
@@ -1390,11 +1396,11 @@ JS测试代码示例如下（仅供参考），如果整个流程能够正常运
 
 3. 使用huks.initSession，huks.finishSession进行加密。
 
-   ```js
+   ```ts
     let plainText = '123456';
 
-    function StringToUint8Array(str) {
-      let arr = [];
+    function StringToUint8Array(str: string) {
+      let arr: number[] = [];
       for (let i = 0, j = str.length; i < j; ++i) {
         arr.push(str.charCodeAt(i));
       }
@@ -1402,51 +1408,51 @@ JS测试代码示例如下（仅供参考），如果整个流程能够正常运
     }
 
     function GetAesEncryptProperties() {
-      var properties = new Array();
-      var index = 0;
-      properties[index++] = {
-        tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
-        value: huks.HuksKeyAlg.HUKS_ALG_AES
-      };
-      properties[index++] = {
-        tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
-        value: huks.HuksKeySize.HUKS_AES_KEY_SIZE_128
-      };
-      properties[index++] = {
-        tag: huks.HuksTag.HUKS_TAG_PURPOSE,
-        value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT
-      }
-      properties[index++] = {
-        tag: huks.HuksTag.HUKS_TAG_PADDING,
-        value: huks.HuksKeyPadding.HUKS_PADDING_PKCS7
-      }
-      properties[index++] = {
-        tag: huks.HuksTag.HUKS_TAG_BLOCK_MODE,
-        value: huks.HuksCipherMode.HUKS_MODE_CBC
-      }
-      properties[index++] = {
-        tag: huks.HuksTag.HUKS_TAG_IV,
-        value: StringToUint8Array(IV)
-      }
+      let properties: HuksProperties1[] = [
+        {
+          tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
+          value: huks.HuksKeyAlg.HUKS_ALG_AES
+        },
+        {
+          tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
+          value: huks.HuksKeySize.HUKS_AES_KEY_SIZE_128
+        },
+        {
+          tag: huks.HuksTag.HUKS_TAG_PURPOSE,
+          value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT
+        },
+        {
+          tag: huks.HuksTag.HUKS_TAG_PADDING,
+          value: huks.HuksKeyPadding.HUKS_PADDING_PKCS7
+        },
+        {
+          tag: huks.HuksTag.HUKS_TAG_BLOCK_MODE,
+          value: huks.HuksCipherMode.HUKS_MODE_CBC
+        },
+        {
+          tag: huks.HuksTag.HUKS_TAG_IV,
+          value: StringToUint8Array(IV)
+        }
+      ]
       return properties;
     }
-    
+
     async function EncryptData() {
-        var encryptProperties = GetAesEncryptProperties();
-        var options = {
-            properties:encryptProperties,
-            inData: StringToUint8Array(plainText)
-        }
-        await huks.initSession(aesKeyAlias, options).then((data) => {
-          handle = data.handle;
-        }).catch((err)=>{
-            console.log("initSession failed");
-        })
-        await huks.finishSession(handle, options).then((data) => {
-          console.log("finishSession success");
-          cipherData = data.outData
-        }).catch((err)=>{
-          console.log("finishSession failed");
-        })
+      let encryptProperties = GetAesEncryptProperties();
+      let options: huks.HuksOptions = {
+        properties: encryptProperties,
+        inData: StringToUint8Array(plainText)
+      }
+      await huks.initSession(aesKeyAlias, options).then((data) => {
+        handle = data.handle;
+      }).catch((error: BusinessError) => {
+        console.log("initSession failed");
+      })
+      await huks.finishSession(handle, options).then((data) => {
+        console.log("finishSession success");
+      }).catch((error: BusinessError) => {
+        console.log("finishSession failed");
+      })
     }
+
    ```
