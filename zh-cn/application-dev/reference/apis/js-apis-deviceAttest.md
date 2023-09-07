@@ -90,8 +90,8 @@ try {
         " PCIDResult:" + value.softwareResultDetail[3],
         " reserver:" + value.softwareResultDetail[4]);
     }).catch((error) => {
-        let code: number = error.code;
-        let message: string = error.message;
+        let code: number = (error as base.BusinessError).code;
+        let message: string = (error as base.BusinessError).message;
         console.info("error code:" + error.code + " message:" + error.message);
     });
 } catch (error) {
