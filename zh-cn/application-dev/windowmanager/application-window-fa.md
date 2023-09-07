@@ -24,7 +24,7 @@
 | -------- | -------- | -------- |
 | window静态方法 | createWindow(config: Configuration, callback: AsyncCallback\<Window>): void | 创建子窗口。<br/>-`config`：创建窗口时的参数。 |
 | window静态方法 | findWindow(name: string): Window | 查找`name`所对应的窗口。 |
-| Window | SetUIContent(path: string, callback: AsyncCallback&lt;void&gt;): void | 为当前窗口加载具体页面内容。 |
+| Window | setUIContent(path: string, callback: AsyncCallback&lt;void&gt;): void | 为当前窗口加载具体页面内容。 |
 | Window | moveWindowTo(x: number, y: number, callback: AsyncCallback&lt;void&gt;): void | 移动当前窗口。 |
 | Window | setWindowBackgroundColor(color: string, callback: AsyncCallback&lt;void&gt;): void | 设置窗口的背景色。 |
 | Window | setWindowBrightness(brightness: number, callback: AsyncCallback&lt;void&gt;): void | 设置屏幕亮度值。 |
@@ -96,11 +96,11 @@
 
 3. 加载显示子窗口的具体内容。
 
-   使用`SetUIContent`和`showWindow`接口加载显示子窗口的具体内容。
+   使用`setUIContent`和`showWindow`接口加载显示子窗口的具体内容。
    
    ```js
    // 为子窗口加载对应的目标页面。
-   windowClass.SetUIContent("pages/page2", (err) => {
+   windowClass.setUIContent("pages/page2", (err) => {
        if (err.code) {
            console.error('Failed to load the content. Cause: ' + JSON.stringify(err));
            return;
@@ -207,11 +207,11 @@
 
 3. 加载显示沉浸式窗口的具体内容。
 
-   使用`SetUIContent`和`showWindow`接口加载显示沉浸式窗口的具体内容。
+   使用`setUIContent`和`showWindow`接口加载显示沉浸式窗口的具体内容。
    
    ```js
    // 为沉浸式窗口加载对应的目标页面。
-   mainWindowClass.SetUIContent("pages/page3", (err) => {
+   mainWindowClass.setUIContent("pages/page3", (err) => {
        if (err.code) {
            console.error('Failed to load the content. Cause: ' + JSON.stringify(err));
            return;
