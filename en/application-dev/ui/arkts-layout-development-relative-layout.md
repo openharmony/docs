@@ -26,13 +26,13 @@ A child element does not necessarily adopt the dependency shown above to determi
 
 ### Setting the Anchor
 
-By setting the anchor, you set a position dependency relationship between a child element and its parent element or sibling elements. In the horizontal direction, you can set the left, middle, and right anchors. In the vertical direction, you can set the top, center, and bottom anchors. To specify anchors, you must set IDs for the **\<RelativeContainer>** component and its child elements. The default ID is **container**. The ID is set through the **id** attribute. Child elements whose IDs are not set are not displayed in the **\<RelativeContainer>** component.
+By setting the anchor, you set a position dependency relationship between a child element and its parent element or sibling elements. In the horizontal direction, you can set the left, middle, and right anchors. In the vertical direction, you can set the top, center, and bottom anchors. To specify anchors, you must set IDs for the **\<RelativeContainer>** component and its child elements. The default ID is **__container__**. The ID is set through the **id** attribute. Child elements whose IDs are not set are not displayed in the **\<RelativeContainer>** component.
 
 >**NOTE**
 >
 >When using anchors, pay attention to the relative positions of child elements to avoid misplacement or blocking.
 
-- The ID of the **\<RelativeContainer>** parent component is **container**.
+- The ID of the **\<RelativeContainer>** parent component is **__container__**.
 
   ```ts
   RelativeContainer() {
@@ -81,7 +81,7 @@ Alignment modes in the horizontal direction can be left, center, or right, achie
 
 ![alignment-relative-anchor-horizontal](figures/alignment-relative-anchor-horizontal.png)
 
-Alignment modes in the vertical direction can be top, center, or bottom, achieved by the **HorizontalAlign.Top**, **HorizontalAlign.Center**, and **HorizontalAlign.Bottom** attributes, respectively.
+Alignment modes in the vertical direction can be top, center, or bottom, achieved by the **VerticalAlign.Top**, **VerticalAlign.Center**, and **VerticalAlign.Bottom** attributes, respectively.
 
 ![alignment-relative-anchor-vertical](figures/alignment-relative-anchor-vertical.png)
 
@@ -114,7 +114,7 @@ struct Index {
         .height(100).width(100)
         .alignRules({
           top: { anchor: 'row1', align: VerticalAlign.Bottom },  // Use row1 as the anchor and align with its bottom vertically.
-          left: { anchor: 'row1', align: HorizontalAlign.Start }  // Use row1 as the anchor and align with its left horizontally.
+          left: { anchor: 'row1', align: HorizontalAlign.Start }  // Use row1 as the anchor and align with its start edge horizontally.
         })
         .id('row2') // Set the anchor to row2.
 

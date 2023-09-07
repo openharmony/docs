@@ -333,7 +333,7 @@ import { GlobalContext } from '../GlobalContext'
 export default class MySecondAbility extends UIAbility {
     onDestroy() {
         let applicationContext = this.context.getApplicationContext();
-        let lifecycleId: number = GlobalContext.getContext().getObject("lifecycleId");
+        let lifecycleId = GlobalContext.getContext().getObject("lifecycleId") as number;
         // 3.通过applicationContext注销监听应用内生命周期
         applicationContext.off('abilityLifecycle', lifecycleId, (error) => {
             if (error && error.code !== 0) {

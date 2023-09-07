@@ -62,7 +62,7 @@
     - 应用组件跨设备交互（流转）
       - [流转概述](inter-device-interaction-hop-overview.md)
       - [跨端迁移](hop-cross-device-migration.md)
-      - [多端协同（仅对系统应用开放）](hop-multi-device-collaboration.md)
+      - [多端协同](hop-multi-device-collaboration.md)
     - [订阅系统环境变量的变化](subscribe-system-environment-variable-changes.md)
   - 了解进程模型
     - [进程模型概述](process-model-stage.md)

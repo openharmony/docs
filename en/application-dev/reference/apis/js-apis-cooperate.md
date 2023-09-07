@@ -1,4 +1,4 @@
-# @ohos.multimodalInput.inputDeviceCooperate (Screen Hopping)
+# @ohos.multimodalInput.inputDeviceCooperate (Screen Hopping) (To Be Deprecated Soon)
 
 The **inputDeviceCooperate** module implements screen hopping for two or more networked devices to share the keyboard and mouse for collaborative operations.
 
@@ -108,8 +108,8 @@ For details about the error codes, see [Screen Hopping Error Codes](../errorcode
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 4400001  | This error code is reported if an invalid device descriptor is passed to the screen hopping API.               |
-| 4400002  | This error code is reported if the screen hopping status is abnormal when the screen hopping API is called.               |
+| 4400001  | Incorrect descriptor for the target device.                |
+| 4400002  | Screen hop failed.    |
 
 **Example**
 
@@ -158,8 +158,8 @@ For details about the error codes, see [Screen Hopping Error Codes](../errorcode
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 4400001  | This error code is reported if an invalid device descriptor is passed to the screen hopping API.                |
-| 4400002  | This error code is reported if the screen hopping status is abnormal when the screen hopping API is called.              |
+| 4400001  | Incorrect descriptor for the target device.          |
+| 4400002  | Screen hop failed.               |
 
 **Example**
 

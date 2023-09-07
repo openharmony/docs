@@ -52,16 +52,16 @@
 
    ```ts
    // MainAbility.ts
-   import type window from '@ohos.window'
+   import window from '@ohos.window'
    import display from '@ohos.display'
    import Ability from '@ohos.app.ability.Ability'
    
    export default class MainAbility extends Ability {
-     private windowObj: window.Window
-     private curBp: string
+     private windowObj?: window.Window
+     private curBp: string = ''
      //...
      // 根据当前窗口尺寸更新断点
-     private updateBreakpoint(windowWidth) :void{
+     private updateBreakpoint(windowWidth: number) :void{
        // 将长度的单位由px换算为vp
        let windowWidthVp = windowWidth / (display.getDefaultDisplaySync().densityDPI / 160)
        let newBp: string = ''
@@ -166,7 +166,7 @@ export class BreakpointType<T> {
     this.md = md
     this.lg = lg
   }
-  GetValue(currentBreakpoint: string):T {
+  GetValue(currentBreakpoint: string):T | undefined{
     if (currentBreakpoint === 'sm') {
       return this.sm
     }
@@ -182,9 +182,9 @@ export class BreakpointType<T> {
 
 export class BreakpointSystem {
   private currentBreakpoint: string = 'md'
-  private smListener: mediaquery.MediaQueryListener
-  private mdListener: mediaquery.MediaQueryListener
-  private lgListener: mediaquery.MediaQueryListener
+  private smListener?: mediaquery.MediaQueryListener
+  private mdListener?: mediaquery.MediaQueryListener
+  private lgListener?: mediaquery.MediaQueryListener
 
   private updateCurrentBreakpoint(breakpoint: string) :void{
     if (this.currentBreakpoint !== breakpoint) {
@@ -230,9 +230,15 @@ export class BreakpointSystem {
   }
 
   public unregister() :void{
-    this.smListener.off("change", this.isBreakpointSM)
-    this.mdListener.off("change", this.isBreakpointMD)
-    this.lgListener.off("change", this.isBreakpointLG)
+    if(this.smListener){
+      this.smListener.off("change", this.isBreakpointSM)
+    }
+    if(this.mdListener){
+      this.mdListener.off("change", this.isBreakpointMD)
+    }
+    if(this.lgListener){
+      this.lgListener.off("change", this.isBreakpointLG)
+    }
   }
 }
 

@@ -2606,7 +2606,7 @@
 
 允许应用与用户认证框架交互和注册扩展能力。
 
-**权限级别**: system_basic
+**权限级别**： system_basic
 
 **授权方式**：system_grant
 
@@ -2642,11 +2642,13 @@
 
 允许应用访问智能语音服务接口。
 
-**权限级别**: system_basic
+**权限级别**： system_basic
 
 **授权方式**：system_grant
 
 **ACL使能**：TRUE
+
+**起始版本**：10
 
 ## ohos.permission.INSTALL_ENTERPRISE_MDM_BUNDLE
 
@@ -2761,6 +2763,18 @@
 允许批量查询无障碍节点。
 
 **权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
+## ohos.permission.ACTIVATE_THEME_PACKAGE
+
+允许系统应用设置主题内容，包括壁纸、图标、皮肤、AOD和字体等。
+
+**权限级别**：system_core
 
 **授权方式**：system_grant
 

@@ -40,6 +40,70 @@ export default class EntryAbility extends UIAbility {
 
 For details about how to obtain the FA model context, see [Context](js-apis-inner-app-context.md#context).
 
+## FileUri<sup>10+</sup>
+
+### Attributes
+
+**System capability**: SystemCapability.FileManagement.AppFileService
+
+| Name| Type| Readable| Writable| Description|
+| -------- | -------- | -------- | -------- | -------- |    
+| path<sup>10+</sup> | string | Yes| No| Path of the file corresponding to the URI.|
+| name<sup>10+</sup> | string | Yes| No| Name of the file.|
+
+### constructor<sup>10+</sup>
+
+constructor(uriOrPath: string)
+
+A constructor used to create a **FileUri** instance.
+
+**System capability**: SystemCapability.FileManagement.AppFileService
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| uriOrPath | string | Yes| URI or path. The following types of URIs are available:<br>- Application sandbox URI: **file://\<bundleName>/\<sandboxPath>**<br>- URI of the user's document: **file://docs/storage/Users/currentUser/\<publicPath>**<br>- URI of the user's media asset: **file://media/\<mediaType>/IMG_DATATIME_ID/\<displayName>**|
+
+**Error codes**
+
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+| ID                    | Error Message       |
+| ---------------------------- | ---------- |
+| 13900005 | I/O error |
+| 13900042 | Unknown error |
+
+**Example**
+
+```js
+let path = pathDir + '/test';
+let uri = fileuri.getUriFromPath(filePath);  // file://<packageName>/data/storage/el2/base/haps/entry/files/test
+let fileUriObject = new fileuri.FileUri(uri);
+console.info("The name of FileUri is " + fileUriObject.name);
+```
+
+### toString<sup>10+</sup>
+
+toString(): string
+
+**System capability**: SystemCapability.FileManagement.AppFileService
+
+Obtains the URI of the string type.
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| string | URI of the string type obtained.|
+
+**Example**
+
+```js
+let path = pathDir + '/test';
+let fileUriObject = new fileuri.FileUri(path);
+console.info("The uri of FileUri is " + fileUriObject.toString());
+```
+
 ## fileUri.getUriFromPath
 
 getUriFromPath(path: string): string

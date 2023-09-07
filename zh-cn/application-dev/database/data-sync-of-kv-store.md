@@ -99,7 +99,7 @@
 
 1. 导入模块。
      
-   ```js
+   ```ts
    import distributedKVStore from '@ohos.data.distributedKVStore';
    ```
 
@@ -114,26 +114,29 @@
    2. 创建分布式数据库管理器实例。
 
      
-   ```js
+   ```ts
    // Stage模型获取context
+   import window from '@ohos.window';
    import UIAbility from '@ohos.app.ability.UIAbility';
-   let kvManager;
-   let context = null;
+   import { BusinessError } from '@ohos.base';
+   
+   let kvManager: distributedKVStore.KVManager | undefined = undefined;
    
    class EntryAbility extends UIAbility {
-     onWindowStageCreate(windowStage) {
-       context = this.context;
+     onWindowStageCreate(windowStage:window.WindowStage) {
+       let context = this.context;
      }
    }
-   
-   // FA模型获取context
+    
+    // FA模型获取context
    import featureAbility from '@ohos.ability.featureAbility';
-   
+   import { BusinessError } from '@ohos.base';
+    
    let context = featureAbility.getContext();
    
    // 获取context之后，构造分布式数据库管理类实例
    try {
-     const kvManagerConfig = {
+     const kvManagerConfig: distributedKVStore.KVManagerConfig = {
        bundleName: 'com.example.datamanagertest',
        context: context
      }
@@ -141,7 +144,14 @@
      console.info('Succeeded in creating KVManager.');
      // 继续创建获取数据库
    } catch (e) {
-     console.error(`Failed to create KVManager. Code:${e.code},message:${e.message}`);
+     let error = e as BusinessError;
+     console.error(`Failed to create KVManager. Code:${error.code},message:${error.message}`);
+   }
+   
+   if (kvManager !== undefined) {
+     kvManager = kvManager as distributedKVStore.KVManager;
+     //进行后续操作
+     //...
    }
    ```
 
@@ -151,9 +161,10 @@
    2. 创建分布式数据库，建议关闭自动同步功能（autoSync:false），方便后续对同步功能进行验证，需要同步时主动调用sync接口。
 
      
-   ```js
+   ```ts
+   let kvStore: distributedKVStore.SingleKVStore | undefined = undefined;
    try {
-     const options = {
+     const options: distributedKVStore.Options = {
        createIfMissing: true,
        encrypt: false,
        backup: false,
@@ -163,28 +174,36 @@
        // 多设备协同数据库：kvStoreType: distributedKVStore.KVStoreType.DEVICE_COLLABORATION,
        securityLevel: distributedKVStore.SecurityLevel.S1
      };
-     kvManager.getKVStore('storeId', options, (err, kvStore) => {
+     kvManager.getKVStore<distributedKVStore.SingleKVStore>('storeId', options, (err, store: distributedKVStore.SingleKVStore) => {
        if (err) {
          console.error(`Failed to get KVStore: Code:${err.code},message:${err.message}`);
          return;
        }
        console.info('Succeeded in getting KVStore.');
+       kvStore = store;
        // 请确保获取到键值数据库实例后，再进行相关数据操作
      });
    } catch (e) {
-     console.error(`An unexpected error occurred. Code:${e.code},message:${e.message}`);
+     let error = e as BusinessError;
+     console.error(`An unexpected error occurred. Code:${error.code},message:${error.message}`);
+   }
+   if (kvStore !== undefined) {
+     kvStore = kvStore as distributedKVStore.SingleKVStore;
+       //进行后续操作
+       //...
    }
    ```
 
 5. 订阅分布式数据变化。
      
-   ```js
+   ```ts
    try {
      kvStore.on('dataChange', distributedKVStore.SubscribeType.SUBSCRIBE_TYPE_ALL, (data) => {
        console.info(`dataChange callback call data: ${data}`);
      });
    } catch (e) {
-     console.error(`An unexpected error occurred. code:${e.code},message:${e.message}`);
+     let error = e as BusinessError;
+     console.error(`An unexpected error occurred. code:${error.code},message:${error.message}`);
    }
    ```
 
@@ -194,7 +213,7 @@
    2. 将键值数据写入分布式数据库。
 
      
-   ```js
+   ```ts
    const KEY_TEST_STRING_ELEMENT = 'key_test_string';
    const VALUE_TEST_STRING_ELEMENT = 'value_test_string';
    try {
@@ -206,7 +225,8 @@
        console.info('Succeeded in putting data.');
      });
    } catch (e) {
-     console.error(`An unexpected error occurred. Code:${e.code},message:${e.message}`);
+     let error = e as BusinessError;
+     console.error(`An unexpected error occurred. Code:${error.code},message:${error.message}`);
    }
    ```
 
@@ -216,7 +236,7 @@
    2. 从单版本分布式数据库中获取数据。
 
      
-   ```js
+   ```ts
    const KEY_TEST_STRING_ELEMENT = 'key_test_string';
    const VALUE_TEST_STRING_ELEMENT = 'value_test_string';
    try {
@@ -226,6 +246,7 @@
          return;
        }
        console.info('Succeeded in putting data.');
+       kvStore = kvStore as distributedKVStore.SingleKVStore;
        kvStore.get(KEY_TEST_STRING_ELEMENT, (err, data) => {
          if (err != undefined) {
            console.error(`Failed to get data. Code:${err.code},message:${err.message}`);
@@ -235,7 +256,8 @@
        });
      });
    } catch (e) {
-     console.error(`Failed to get data. Code:${e.code},message:${e.message}`);
+     let error = e as BusinessError;
+     console.error(`Failed to get data. Code:${error.code},message:${error.message}`);
    }
    ```
 
@@ -247,30 +269,32 @@
    >
    > 在手动同步的方式下，其中的deviceIds通过调用[devManager.getAvailableDeviceListSync](../reference/apis/js-apis-distributedDeviceManager.md#getavailabledevicelistsync)方法得到。
 
-   ```js
+   ```ts
    import deviceManager from '@ohos.distributedDeviceManager';
-   
-   let devManager;
+    
+   let devManager: deviceManager.DeviceManager;
    try {
      // create deviceManager
      devManager = deviceManager.createDeviceManager(context.applicationInfo.name);
      // deviceIds由deviceManager调用getAvailableDeviceListSync方法得到
-     let deviceIds = [];
+     let deviceIds: string[] = [];
      if (devManager != null) {
        let devices = devManager.getAvailableDeviceListSync();
        for (let i = 0; i < devices.length; i++) {
-         deviceIds[i] = devices[i].networkId;
+         deviceIds[i] = devices[i].networkId as string;
        }
      }
      try {
        // 1000表示最大延迟时间为1000ms
        kvStore.sync(deviceIds, distributedKVStore.SyncMode.PUSH_ONLY, 1000);
      } catch (e) {
-       console.error(`An unexpected error occurred. Code:${e.code},message:${e.message}`);
+       let error = e as BusinessError;
+       console.error(`An unexpected error occurred. Code:${error.code},message:${error.message}`);
      }
    
    } catch (err) {
-     console.error("createDeviceManager errCode:" + err.code + ",errMessage:" + err.message);
+     let error = err as BusinessError;
+     console.error("createDeviceManager errCode:" + error.code + ",errMessage:" + error.message);
    }
    ```
 
