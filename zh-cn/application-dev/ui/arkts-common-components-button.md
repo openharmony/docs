@@ -133,9 +133,10 @@ Button有三种可选类型，分别为Capsule（胶囊类型）、Circle（圆�
   为删除操作创建一个按钮。
 
   ```ts
+  let MarLeft:Record<string,number> = {'left':20}
   Button({ type: ButtonType.Circle, stateEffect: true }) {
   Image($r('app.media.ic_public_delete_filled')).width(30).height(30) 
-  }.width(55).height(55).margin({ left: 20 }).backgroundColor(0xF55A42)
+  }.width(55).height(55).margin(MarLeft).backgroundColor(0xF55A42)
   ```
 
   ![zh-cn_image_0000001511740436](figures/zh-cn_image_0000001511740436.png)
