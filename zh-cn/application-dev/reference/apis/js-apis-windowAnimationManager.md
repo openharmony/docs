@@ -32,7 +32,7 @@ setController(controller: WindowAnimationController): void
 **示例：**
 
 ```ts
-let controller: WindowAnimationController = {
+let controller: windowAnimationManager.WindowAnimationController = {
     onStartAppFromLauncher(startingWindowTarget: windowAnimationManager.WindowAnimationTarget, finishCallback: windowAnimationManager.WindowAnimationFinishedCallback): void {
         console.log('onStartAppFromLauncher, the startingWindowTarget is: ' + startingWindowTarget);
         finishCallback.onAnimationFinish();
@@ -89,8 +89,10 @@ minimizeWindowWithAnimation(windowTarget: WindowAnimationTarget, callback: Async
 **示例：**
 
 ```ts
-let target: WindowAnimationTarget = undefined;
-let controller: WindowAnimationController = {
+import {BusinessError} from '@ohos.base';
+
+let target: WindowAnimationTarget = null;
+let controller: windowAnimationManager.WindowAnimationController = {
     onStartAppFromLauncher(startingWindowTarget: windowAnimationManager.WindowAnimationTarget, finishCallback: windowAnimationManager.WindowAnimationFinishedCallback): void {
         console.log('onStartAppFromLauncher, the startingWindowTarget is: ' + startingWindowTarget);
         target = startingWindowTarget;
@@ -135,8 +137,8 @@ let controller: WindowAnimationController = {
 
 windowAnimationManager.setController(controller);
 
-let finishedCallback: windowAnimationManager.WindowAnimationFinishedCallback = undefined;
-windowAnimationManager.minimizeWindowWithAnimation(target, (err, data) => {
+let finishedCallback: windowAnimationManager.WindowAnimationFinishedCallback = null;
+windowAnimationManager.minimizeWindowWithAnimation(target, (err: BusinessError, data: windowAnimationManager.WindowAnimationFinishedCallback) => {
     if (err) {
         console.error('Failed to minimize the window target. Cause: ' + JSON.stringify(err));
         return;
@@ -172,8 +174,10 @@ minimizeWindowWithAnimation(windowTarget: WindowAnimationTarget): Promise&lt;Win
 **示例：**
 
 ```ts
-let target: WindowAnimationTarget = undefined;
-let controller: WindowAnimationController = {
+import {BusinessError} from '@ohos.base';
+
+let target: WindowAnimationTarget = null;
+let controller: windowAnimationManager.WindowAnimationController = {
     onStartAppFromLauncher(startingWindowTarget: windowAnimationManager.WindowAnimationTarget, finishCallback: windowAnimationManager.WindowAnimationFinishedCallback): void {
         console.log('onStartAppFromLauncher, the startingWindowTarget is: ' + startingWindowTarget);
         finishCallback.onAnimationFinish();
@@ -211,10 +215,10 @@ let controller: WindowAnimationController = {
 
 windowAnimationManager.setController(controller);
 
-let promise = windowAnimationManager.minimizeWindowWithAnimation(target);
-promise.then((data) => {
+let promise: Promise<WindowAnimationFinishedCallback> = windowAnimationManager.minimizeWindowWithAnimation(target);
+promise.then((data: windowAnimationManager.WindowAnimationFinishedCallback) => {
     data.onAnimationFinish();
-}).catch((err)=>{
+}).catch((err: BusinessError)=>{
     console.error('Failed to minimize the window target. Cause: ' + JSON.stringify(err));
     return;
 });
