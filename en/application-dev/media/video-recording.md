@@ -226,8 +226,8 @@ export class VideoRecorderDemo {
       await this.avRecorder.release();
       // 4. After the file is recorded, close the file descriptor. The implementation is omitted here.
       // 5. Release the camera instance.
+      await this.releaseCamera();
     }
-    await this.releaseCamera();
   }
 
   // Complete sample code for starting, pausing, resuming, and stopping recording.
