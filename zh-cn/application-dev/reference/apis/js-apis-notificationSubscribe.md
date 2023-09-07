@@ -157,6 +157,8 @@ let subscriber = {
 };
 notificationSubscribe.subscribe(subscriber).then(() => {
 	console.info("subscribe success");
+}).catch((error) => {
+    console.error(`subscribe fail, error: ${JSON.stringify(error)}`);
 });
 ```
 
@@ -249,6 +251,8 @@ let subscriber = {
 };
 notificationSubscribe.unsubscribe(subscriber).then(() => {
 	console.info("unsubscribe success");
+}).catch((error) => {
+    console.error(`unsubscribe fail, error: ${JSON.stringify(error)}`);
 });
 ```
 
@@ -353,6 +357,8 @@ let notificationKey = {
 let reason = notificationSubscribe.RemoveReason.CLICK_REASON_REMOVE;
 notificationSubscribe.remove(bundle, notificationKey, reason).then(() => {
 	console.info("remove success");
+}).catch((error) => {
+    console.error(`remove fail, error: ${JSON.stringify(error)}`);
 });
 ```
 
@@ -440,6 +446,8 @@ let hashCode = 'hashCode';
 let reason = notificationSubscribe.RemoveReason.CLICK_REASON_REMOVE;
 notificationSubscribe.remove(hashCode, reason).then(() => {
 	console.info("remove success");
+}).catch((error) => {
+    console.error(`remove fail, error: ${JSON.stringify(error)}`);
 });
 ```
 
@@ -566,6 +574,8 @@ removeAll(bundle?: BundleOption): Promise\<void\>
 // 不指定应用时，删除所有通知
 notificationSubscribe.removeAll().then(() => {
 	console.info("removeAll success");
+}).catch((error) => {
+    console.error(`removeAll fail, error: ${JSON.stringify(error)}`);
 });
 ```
 
