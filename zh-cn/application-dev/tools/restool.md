@@ -3,7 +3,7 @@
 
 ## 简介
 
-restool是一种应用工程资源编译工具，通过编译资源文件创建资源索引、解析资源，然后开发者可以调用[资源管理接口](../reference/apis/js-apis-resource-manager.md)获取到对应资源。restool工具保存在sdk安装目录下的toolchains子目录。
+restool是一种应用工程资源编译工具，通过编译资源文件创建资源索引、解析资源，开发者可以调用[资源管理接口](../reference/apis/js-apis-resource-manager.md)获取到对应资源。restool工具保存在sdk安装目录下的toolchains子目录。
 
 ## 参数说明
 
@@ -25,7 +25,7 @@ restool当前支持以下命令选项:
 | -v | 可缺省 | 不带参数 | 查看工具版本号。 |
 | --ids | 可缺省 | 带参数 | 指定生成id_defined.json的输出目录。 |
 | --defined-ids | 可缺省 | 带参数 | 指定id_defined.json文件路径，一般都是通过--ids生成。<br>id_defined.json包含资源类型、名称及其ID的列表。<br>开发者可以自定义id_defined.json中的资源ID。 |
-| --icon-check | 可缺省 | 不带参数 | 开启icon和startwindows的PNG图片校验功能。 |
+| --icon-check | 可缺省 | 不带参数 | 开启icon和startWindowIcon的PNG图片校验功能。 |
 
 ## 使用实例
 
@@ -48,7 +48,7 @@ entry/src/main
 1、全量资源编译，命令如下：
 
 ```
-restool -i entry/src/main  -j entry/src/main/module.json -p com.ohos.demo -o out -r out/ResourceTable.txt -f
+restool -i entry/src/main -j entry/src/main/module.json -p com.ohos.demo -o out -r out/ResourceTable.txt -f
 ```
 
 2、增量资源编译，具体步骤如下：
@@ -91,7 +91,7 @@ restool -i entry/src/main  -j entry/src/main/module.json -p com.ohos.demo -o out
 }
 ```
 
-步骤二：完成资源ID固定。完成固定的方式有两种，分别为通过命令一完成固定、将自定义的id_definded.json放在resource/base/element/目录下后通过命令二完成固定。
+步骤二：完成资源ID固定。完成固定的方式有两种，通过命令一完成固定或者将自定义的id_definded.json放在resource/base/element/目录下后通过命令二完成固定。
 
 + 命令一：
 ```
