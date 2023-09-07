@@ -1262,7 +1262,7 @@ Obtains the file descriptor of the **TCPSocket** object. This API uses an asynch
 
 ```js
   import socket from "@ohos.net.socket";
-  var tcp = socket.constructTCPSocketInstance();
+  let tcp = socket.constructTCPSocketInstance();
   let tunnelfd = 0
   tcp.bind({
       address: "0.0.0.0",
@@ -1302,7 +1302,7 @@ Obtains the file descriptor of the **TCPSocket** object. This API uses a promise
 
 ```js
   import socket from "@ohos.net.socket";
-  var tcp = socket.constructTCPSocketInstance();
+  let tcp = socket.constructTCPSocketInstance();
   let tunnelfd = 0
   tcp.bind({
       address: "0.0.0.0",
@@ -1715,7 +1715,7 @@ Binds the IP address and port number. The port number can be specified or random
 | 2303109  | Bad file number.                            |
 | 2303111  | Resource temporarily unavailable try again. |
 | 2303198  | Address already in use.                     |
-| 2303199  | Cannot assign requested address.            |
+| 2303199  | Address not available.            |
 
 **Example**
 
@@ -1765,7 +1765,7 @@ Binds the IP address and port number. The port number can be specified or random
 | 2303109  | Bad file number.                            |
 | 2303111  | Resource temporarily unavailable try again. |
 | 2303198  | Address already in use.                     |
-| 2303199  | Cannot assign requested address.            |
+| 2303199  | Address not available.            |
 
 **Example**
 
@@ -1805,7 +1805,7 @@ Obtains the status of the TCPSocketServer connection. This API uses an asynchron
 | 401      | Parameter error.                |
 | 201      | Permission denied.              |
 | 2300002  | System internal error.          |
-| 2303188  | Socket operation on non-socket. |
+| 2303188  | Not a socket. |
 
 **Example**
 
@@ -1852,7 +1852,7 @@ Obtains the status of the TCPSocketServer connection. This API uses a promise to
 | -------- | ------------------------------- |
 | 201      | Permission denied.              |
 | 2300002  | System internal error.          |
-| 2303188  | Socket operation on non-socket. |
+| 2303188  | Not a socket. |
 
 **Example**
 
@@ -1899,7 +1899,7 @@ Sets other properties of the TCPSocketServer connection. This API uses an asynch
 | 401      | Parameter error.                |
 | 201      | Permission denied.              |
 | 2300002  | System internal error.          |
-| 2303188  | Socket operation on non-socket. |
+| 2303188  | Not a socket. |
 
 **Example**
 
@@ -1962,7 +1962,7 @@ Sets other properties of the TCPSocketServer connection. This API uses a promise
 | 401      | Parameter error.                |
 | 201      | Permission denied.              |
 | 2300002  | System internal error.          |
-| 2303188  | Socket operation on non-socket. |
+| 2303188  | Not a socket. |
 
 **Example**
 
@@ -2338,7 +2338,7 @@ Obtains the remote address of a socket connection. This API uses an asynchronous
 | 401      | Parameter error.                |
 | 201      | Permission denied.              |
 | 2300002  | System internal error.          |
-| 2303188  | Socket operation on non-socket. |
+| 2303188  | Not a socket. |
 
 **Example**
 
@@ -2380,7 +2380,7 @@ Obtains the remote address of a socket connection. This API uses a promise to re
 | -------- | ------------------------------- |
 | 201      | Permission denied.              |
 | 2300002  | System internal error.          |
-| 2303188  | Socket operation on non-socket. |
+| 2303188  | Not a socket. |
 
 **Example**
 
@@ -2751,7 +2751,7 @@ Obtains the status of the TLS socket connection. This API uses an asynchronous c
 
 | ID| Error Message                       |
 | ------- | ------------------------------ |
-| 2303188 | Socket operation on non-socket.|
+| 2303188 | Not a socket.|
 | 2300002 | System internal error.         |
 
 **Example**
@@ -2791,7 +2791,7 @@ Obtains the status of the TLS socket connection. This API uses a promise to retu
 
 | ID| Error Message                       |
 | ------- | ------------------------------ |
-| 2303188 | Socket operation on non-socket.|
+| 2303188 | Not a socket.|
 | 2300002 | System internal error.         |
 
 **Example**
@@ -2831,7 +2831,7 @@ Sets other properties of the TCP socket connection after **bind** is successfull
 | ID| Error Message                       |
 | ------- | -----------------------------  |
 | 401     | Parameter error.               |
-| 2303188 | Socket operation on non-socket.|
+| 2303188 | Not a socket.|
 | 2300002 | System internal error.         |
 
 **Example**
@@ -2888,7 +2888,7 @@ Sets other properties of the TCP socket connection after **bind** is successfull
 | ID| Error Message                       |
 | ------- | ------------------------------ |
 | 401     | Parameter error.               |
-| 2303188 | Socket operation on non-socket.|
+| 2303188 | Not a socket.|
 | 2300002 | System internal error.         |
 
 **Example**
@@ -2936,6 +2936,7 @@ Subscribes to **message** events of the TLS socket connection. This API uses an 
 **Example**
 
 ```js
+import socket from '@ohos.net.socket';
 let tls = socket.constructTLSSocketInstance();
 let messageView = '';
 tls.on('message', value => {
@@ -2970,6 +2971,7 @@ Unsubscribes from **message** events of the TLS socket connection. This API uses
 **Example**
 
 ```js
+import socket from '@ohos.net.socket';
 let tls = socket.constructTLSSocketInstance();
 let messageView = '';
 let callback = value => {
@@ -3003,6 +3005,7 @@ Subscribes to **connect** or **close** events of the TLS socket connection. This
 **Example**
 
 ```js
+import socket from '@ohos.net.socket';
 let tls = socket.constructTLSSocketInstance();
 tls.on('connect', () => {
   console.log("on connect success")
@@ -3033,6 +3036,7 @@ Unsubscribes from **connect** or **close** events of the TLS socket connection. 
 **Example**
 
 ```js
+import socket from '@ohos.net.socket';
 let tls = socket.constructTLSSocketInstance();
 let callback1 = () => {
   console.log("on connect success");
@@ -3067,6 +3071,7 @@ Subscribes to **error** events of the TLS socket connection. This API uses an as
 **Example**
 
 ```js
+import socket from '@ohos.net.socket';
 let tls = socket.constructTLSSocketInstance();
 tls.on('error', err => {
   console.log("on error, err:" + JSON.stringify(err))
@@ -3094,6 +3099,7 @@ Unsubscribes from **error** events of the TLS socket connection. This API uses a
 **Example**
 
 ```js
+import socket from '@ohos.net.socket';
 let tls = socket.constructTLSSocketInstance();
 let callback = err => {
   console.log("on error, err:" + JSON.stringify(err));
@@ -3126,10 +3132,10 @@ Sets up a TLS socket connection, and creates and initializes a TLS session after
 | 2303104 | Interrupted system call.                     |
 | 2303109 | Bad file number.                             |
 | 2303111 | Resource temporarily unavailable try again.  |
-| 2303188 | Socket operation on non-socket.              |
+| 2303188 | Not a socket.              |
 | 2303191 | Protocol wrong type for socket.              |
 | 2303198 | Address already in use.                      |
-| 2303199 | Cannot assign requested address.             |
+| 2303199 | Address not available.             |
 | 2303210 | Connection timed out.                        |
 | 2303501 | SSL is null.                                 |
 | 2303502 | Error in tls reading.                        |
@@ -3225,10 +3231,10 @@ Sets up a TLS socket connection, and creates and initializes a TLS session after
 | 2303104 | Interrupted system call.                     |
 | 2303109 | Bad file number.                             |
 | 2303111 | Resource temporarily unavailable try again.  |
-| 2303188 | Socket operation on non-socket.              |
+| 2303188 | Not a socket.              |
 | 2303191 | Protocol wrong type for socket.              |
 | 2303198 | Address already in use.                      |
-| 2303199 | Cannot assign requested address.             |
+| 2303199 | Address not available.             |
 | 2303210 | Connection timed out.                        |
 | 2303501 | SSL is null.                                 |
 | 2303502 | Error in tls reading.                        |
@@ -3316,7 +3322,7 @@ Obtains the remote address of a TLS socket connection. This API uses an asynchro
 
 | ID| Error Message                       |
 | ------- | -----------------------------  |
-| 2303188 | Socket operation on non-socket.|
+| 2303188 | Not a socket.|
 | 2300002 | System internal error.         |
 
 **Example**
@@ -3349,7 +3355,7 @@ Obtains the remote address of a TLS socket connection. This API uses a promise t
 
 | ID| Error Message                       |
 | ------- | ------------------------------ |
-| 2303188 | Socket operation on non-socket.|
+| 2303188 | Not a socket.|
 | 2300002 | System internal error.         |
 
 **Example**
@@ -3937,7 +3943,7 @@ Listens to client connections after **bind** is successfully called. This API us
 | 2303109  | Bad file number.                            |
 | 2303111  | Resource temporarily unavailable try again. |
 | 2303198  | Address already in use.                     |
-| 2303199  | Cannot assign requested address.            |
+| 2303199  | Address not available.            |
 | 2303501  | SSL is null.                                |
 | 2303502  | Error in tls reading.                       |
 | 2303503  | Error in tls writing                        |
@@ -4003,7 +4009,7 @@ Listens to client connections after **bind** is successfully called. This API us
 | 2303109  | Bad file number.                            |
 | 2303111  | Resource temporarily unavailable try again. |
 | 2303198  | Address already in use.                     |
-| 2303199  | Cannot assign requested address.            |
+| 2303199  | Address not available.            |
 | 2303501  | SSL is null.                                |
 | 2303502  | Error in tls reading.                       |
 | 2303503  | Error in tls writing                        |
@@ -4061,7 +4067,7 @@ Obtains the status of the TLS socket server connection upon successful listening
 | ID| Error Message                       |
 | -------- | ------------------------------- |
 | 401      | Parameter error.                |
-| 2303188  | Socket operation on non-socket. |
+| 2303188  | Not a socket. |
 | 2300002  | System internal error.          |
 
 **Example**
@@ -4121,7 +4127,7 @@ Obtains the status of the TLS socket server connection upon successful listening
 
 | ID| Error Message                       |
 | -------- | ------------------------------- |
-| 2303188  | Socket operation on non-socket. |
+| 2303188  | Not a socket. |
 | 2300002  | System internal error.          |
 
 **Example**
@@ -4183,7 +4189,7 @@ Sets other properties of the TLS socket server connection upon successful listen
 | ID| Error Message                       |
 | -------- | ------------------------------- |
 | 401      | Parameter error.                |
-| 2303188  | Socket operation on non-socket. |
+| 2303188  | Not a socket. |
 | 2300002  | System internal error.          |
 
 **Example**
@@ -4258,7 +4264,7 @@ Sets other properties of the TLS socket server connection upon successful listen
 | ID| Error Message                       |
 | -------- | ------------------------------- |
 | 401      | Parameter error.                |
-| 2303188  | Socket operation on non-socket. |
+| 2303188  | Not a socket. |
 | 2300002  | System internal error.          |
 
 **Example**
@@ -4868,7 +4874,7 @@ Sends a message to the server after a TLS socket server connection is establishe
 
 | Name| Type  | Mandatory| Description                                 |
 | ------ | ------ | ---- | ------------------------------------- |
-| data   | string | Yes  | Parameters required for the TLS socket server connection.|
+| data   | string | Yes  | Parameters for sending data over the TLS socket server connection.|
 
 **Return value**
 
@@ -5066,7 +5072,7 @@ Obtains the remote address of a TLS socket server connection. This API uses an a
 | ID| Error Message                       |
 | -------- | ------------------------------- |
 | 401      | Parameter error.                |
-| 2303188  | Socket operation on non-socket. |
+| 2303188  | Not a socket. |
 | 2300002  | System internal error.          |
 
 **Example**
@@ -5124,7 +5130,7 @@ Obtains the remote address of a TLS socket server connection. This API uses a pr
 
 | ID| Error Message                       |
 | -------- | ------------------------------- |
-| 2303188  | Socket operation on non-socket. |
+| 2303188  | Not a socket. |
 | 2300002  | System internal error.          |
 
 **Example**

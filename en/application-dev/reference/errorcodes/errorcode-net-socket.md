@@ -159,7 +159,7 @@ Try again later.
 
 **Error Message**
 
-Socket operation on non-socket.
+Not a socket.
 
 **Description**
 
@@ -214,7 +214,7 @@ Try another network address.
 
 **Error Message**
 
-Cannot assign requested address.
+Address not available.
 
 **Description**
 

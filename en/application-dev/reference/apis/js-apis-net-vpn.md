@@ -43,16 +43,16 @@ For details about the error codes, see [VPN Error Codes](../errorcodes/errorcode
 Stage model:
 
 ```ts
-// Obtain the context.
-import UIAbility from '@ohos.app.ability.UIAbility';
-class EntryAbility extends UIAbility {
-  onWindowStageCreate(windowStage){
-    globalThis.context = this.context;
+  // Obtain the context.
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage){
+      globalThis.context = this.context;
+    }
   }
-}
-let context = globalThis.context;
-VpnConnection = vpn.createVpnConnection(context);
-console.info("vpn onInit: " + JSON.stringify(VpnConnection));
+  let context = globalThis.context;
+  let VpnConnection = vpn.createVpnConnection(context);
+  console.info("vpn onInit: " + JSON.stringify(VpnConnection));
 ```
 
 ## VpnConnection
@@ -89,13 +89,21 @@ For details about the error codes, see [VPN Error Codes](../errorcodes/errorcode
 | 401     | Parameter error.             |
 | 2200001 | Invalid parameter value.             |
 | 2200002 | Operation failed. Cannot connect to service.             |
-| 2200003 | System internal error.         |
+| 2100003 | System internal error.         |
 | 2203001 | VPN creation denied, please check the user type.         |
 | 2203002 | VPN exist already, please execute destroy first.         |
 
 **Example**
 
 ```js
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage){
+      globalThis.context = this.context;
+    }
+  }
+  let VpnConnection = vpn.createVpnConnection(globalThis.context);
+
   let config = {
     addresses: [{
       address: {
@@ -153,13 +161,21 @@ For details about the error codes, see [VPN Error Codes](../errorcodes/errorcode
 | 401     | Parameter error.             |
 | 2200001 | Invalid parameter value.             |
 | 2200002 | Operation failed. Cannot connect to service.             |
-| 2200003 | System internal error.         |
+| 2100003 | System internal error.         |
 | 2203001 | VPN creation denied, please check the user type.         |
 | 2203002 | VPN exist already, please execute destroy first.         |
 
 **Example**
 
 ```js
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage){
+      globalThis.context = this.context;
+    }
+  }
+  let VpnConnection = vpn.createVpnConnection(globalThis.context);
+
   let config = {
     addresses: [{
       address: {
@@ -213,13 +229,21 @@ For details about the error codes, see [VPN Error Codes](../errorcodes/errorcode
 | 401     | Parameter error.       |
 | 2200001 | Invalid parameter value.        |
 | 2200002 | Operation failed. Cannot connect to service.    |
-| 2200003 | System internal error.         |
+| 2100003 | System internal error.         |
 | 2203004 | Invalid socket file descriptor.         |
 
 **Example**
 
 ```js
   import socket from "@ohos.net.socket";
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage){
+      globalThis.context = this.context;
+    }
+  }
+  let VpnConnection = vpn.createVpnConnection(globalThis.context);
+
   var tcp = socket.constructTCPSocketInstance();  
   tcp.bind({
     address: "0.0.0.0",
@@ -276,13 +300,21 @@ For details about the error codes, see [VPN Error Codes](../errorcodes/errorcode
 | 401     | Parameter error.       |
 | 2200001 | Invalid parameter value.        |
 | 2200002 | Operation failed. Cannot connect to service.    |
-| 2200003 | System internal error.         |
+| 2100003 | System internal error.         |
 | 2203004 | Invalid socket file descriptor.         |
 
 **Example**
 
 ```js
   import socket from "@ohos.net.socket";
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage){
+      globalThis.context = this.context;
+    }
+  }
+  let VpnConnection = vpn.createVpnConnection(globalThis.context);
+
   var tcp = socket.constructTCPSocketInstance();  
   tcp.bind({
     address: "0.0.0.0",
@@ -334,11 +366,18 @@ For details about the error codes, see [VPN Error Codes](../errorcodes/errorcode
 | 202     | Non-system applications use system APIs.        |
 | 401     | Parameter error.       |
 | 2200002 | Operation failed. Cannot connect to service.    |
-| 2200003 | System internal error.         |
+| 2100003 | System internal error.         |
 
 **Example**
 
 ```js
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage){
+      globalThis.context = this.context;
+    }
+  }
+  let VpnConnection = vpn.createVpnConnection(globalThis.context);
   VpnConnection.destroy((error) => {
     console.info(JSON.stringify(error));
   })
@@ -371,11 +410,18 @@ For details about the error codes, see [VPN Error Codes](../errorcodes/errorcode
 | 201     | Permission denied.             |
 | 202     | Non-system applications use system APIs.        |
 | 2200002 | Operation failed. Cannot connect to service.    |
-| 2200003 | System internal error.         |
+| 2100003 | System internal error.         |
 
 **Example**
 
 ```js
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage){
+      globalThis.context = this.context;
+    }
+  }
+  let VpnConnection = vpn.createVpnConnection(globalThis.context);
   VpnConnection.destroy().then(() => {
     console.info("destroy success.")
   }).catch(err => {
