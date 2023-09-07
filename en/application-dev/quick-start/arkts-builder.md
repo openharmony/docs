@@ -21,14 +21,14 @@ Syntax:
 
 
 ```ts
-@Builder MyBuilderFunction({ ... })
+@Builder MyBuilderFunction() { ... }
 ```
 
 Usage:
 
 
 ```ts
-this.MyBuilderFunction({ ... })
+this.MyBuilderFunction() { ... }
 ```
 
 - Defining one or more custom builder (\@Builder decorated) functions inside a custom component is allowed. Such a custom builder function can be considered as a private, special type of member functions of that component.
@@ -44,7 +44,7 @@ Syntax:
 
 
 ```ts
-@Builder function MyGlobalBuilderFunction({ ... })
+@Builder function MyGlobalBuilderFunction() { ... }
 ```
 
 Usage:
@@ -82,7 +82,7 @@ class ABuilderParam {
   paramB1: string = ''
 }
 
-ABuilder($$ : ABuilderParam);
+@Builder function ABuilder($$ : ABuilderParam) {...}
 ```
 
 
