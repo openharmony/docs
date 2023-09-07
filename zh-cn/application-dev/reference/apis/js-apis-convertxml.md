@@ -66,7 +66,7 @@ try {
   let result = JSON.stringify(conv.convertToJSObject(xml, options));
   console.log(result);
 } catch (e) {
-  console.log(e.toString());
+  console.log((e as Object).toString());
 }
 // 输出(宽泛型)
 // {"_declaration":{"_attributes":{"version":"1.0","encoding":"utf-8"}},"_elements":[{"_type":"element","_name":"note","_attributes":{"importance":"high","logged":"true"},"_elements":[{"_type":"element","_name":"title","_elements":[{"_type":"text","_text":"Happy"}]},{"_type":"element","_name":"todo","_elements":[{"_type":"text","_text":"Work"}]},{"_type":"element","_name":"todo","_elements":[{"_type":"text","_text":"Play"}]}]}]}
