@@ -2,13 +2,13 @@
 
 ## 简介
 
-OpenHarmony提供原生的分布式AI能力，AI子系统部件包括：
+OpenHarmony提供的原生AI框架，AI子系统部件包括：
 - MindSpore Lite：AI推理框架，为开发者提供统一的AI推理接口；
 - Neural Network Runtime：神经网络运行时，作为中间桥梁连接推理框架和AI硬件。
 
 ## MindSpore Lite
 
-MindSpore Lite是OpenHarnomy内置的AI推理框架，提供面向不同硬件设备的AI模型推理能力，使能全场景智能应用，为开发者提供端到端的解决方案，目前已经在图像分类、目标识别、人脸识别、文字识别等应用中广泛使用。
+MindSpore Lite是OpenHarmony内置的AI推理框架，提供面向不同硬件设备的AI模型推理能力，使能全场景智能应用，为开发者提供端到端的解决方案，目前已经在图像分类、目标识别、人脸识别、文字识别等应用中广泛使用。
 
 **图 1** 使用MindSpore Lite进行模型推理的开发流程
 ![mindspore workflow](figures/mindspore_workflow.png)
