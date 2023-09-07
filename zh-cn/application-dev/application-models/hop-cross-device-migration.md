@@ -340,7 +340,7 @@ public-SDK不支持开发者使用所有的系统API，例如：全局任务中�
 
 ​	c.系统权限设置(以api10目录为例): 将Sdk目录下的openharmony\api版本(如：10)\toolchains\lib\UnsgnedReleasedProfileTemplate.json文件中的"apl":"normal_core"改为"apl":"system_core"。
 
-1. 点击file->Project Structrue。  
+1. 点击file->Project Structure。  
    ![hop-cross-device-migration](figures/hop-cross-device-migration2.png)
 2. 点击Signing Configs  点击OK。  
    ![hop-cross-device-migration](figures/hop-cross-device-migration3.png)
