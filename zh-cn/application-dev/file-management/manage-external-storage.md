@@ -17,7 +17,7 @@
 - 当卷设备处于挂载状态时：
   - **用户选择弹出**：卷状态设备更改为正在弹出状态（EJECTING），并发送COMMON_EVENT_VOLUME_EJECT广播。StorageDaemon进程将卷设备卸载成功后，卷状态更改为卸载状态（UNMOUNTED），并发送COMMON_EVENT_VOLUME_UNMOUNTED广播。
     <br>当卷设备处于卸载状态后，拔出卷设备会删除相关卷设备信息，并发送COMMON_EVENT_VOLUME_REMOVED广播。
-  - **拔出卷设备（外卡）**：卷设备状态同样会经历正在弹出状态（EJECTING）和卸载状态（UNMOUNTED），并发送对应阶段的广播。在拔出后，删除相关卷设备信息，发送COMMON_EVENT_VOLUME_BAD_REMOVAL广播。
+  - **拔出外卡**：卷设备状态同样会经历正在弹出状态（EJECTING）和卸载状态（UNMOUNTED），并发送对应阶段的广播。在拔出后，删除相关卷设备信息，发送COMMON_EVENT_VOLUME_BAD_REMOVAL广播。
 
 ## 接口说明
 
