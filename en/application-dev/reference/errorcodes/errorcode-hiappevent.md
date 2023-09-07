@@ -43,7 +43,7 @@ The specified event domain name does not comply with the following rules:
 
 - The event domain name contains only digits, lowercase letters, and underscores (\_).
 - The event domain name starts with a lowercase letter and does not end with an underscore (\_).
-- The event domain name is not empty and contains a maximum of 32 characters.
+- The event domain name is not empty and contains a maximum of 16 characters.
 
 **Solution**
 
@@ -185,7 +185,7 @@ The specified filtering event domain name does not comply with the following rul
 
 - The event domain name contains only digits, lowercase letters, and underscores (\_).
 - The event domain name starts with a lowercase letter and does not end with an underscore (\_).
-- The event domain name is not empty and contains a maximum of 32 characters.
+- The event domain name is not empty and contains a maximum of 16 characters.
 
 **Solution**
 
