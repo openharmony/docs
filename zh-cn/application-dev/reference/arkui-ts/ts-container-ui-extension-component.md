@@ -170,7 +170,7 @@ struct Index {
             this.message = "onError: " + error.code + ", name: " + error.name + ", message: " + error.message
           })
         Button("sendData").onClick(() => {
-          if (myProxy != null) {
+          if (this.myProxy != null) {
             let a: Record<string, number> = { "x": 5678910 };
             this.myProxy.send(a)
           }
