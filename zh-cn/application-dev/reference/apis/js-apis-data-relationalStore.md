@@ -4545,13 +4545,17 @@ let devices: string | undefined = undefined;
 try {
   if(store != undefined) {
     (store as relationalStore.RdbStore).off('dataChange', relationalStore.SubscribeType.SUBSCRIBE_TYPE_REMOTE, (storeObserver) => {
-      for (let i = 0; i < devices.length; i++) {
-        console.info(`device= ${devices[i]} data changed`);
+      if (devices !=  undefined) {
+        for (let i = 0; i < devices.length; i++) {
+          console.info(`device= ${devices[i]} data changed`);
+        }
       }
     });
   }
 } catch (err) {
-  console.error(`Unregister observer failed, code is ${err.code},message is ${err.message}`);
+  let code = (err as BusinessError).code;
+  let message = (err as BusinessError).message
+  console.error(`Unregister observer failed, code is ${code},message is ${message}`);
 }
 ```
 
