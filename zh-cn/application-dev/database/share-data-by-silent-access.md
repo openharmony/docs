@@ -229,7 +229,7 @@
    let template: dataShare.Template = {
      predicates: {
        key21: value21,
-       key21: value22,
+       key22: value22,
      },
      scheduler: ""
    }
