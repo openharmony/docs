@@ -11,7 +11,6 @@
 
 ```ts
 import cryptoFramework from "@ohos.security.cryptoFramework";
-import { BusinessError } from '@ohos.base';
 ```
 
 ## Result
@@ -606,6 +605,8 @@ generateSymKey(callback: AsyncCallback\<SymKey>): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let symAlgName = '3DES192';
 let symKeyGenerator = cryptoFramework.createSymKeyGenerator(symAlgName);
 symKeyGenerator.generateSymKey((err, symKey) => {
@@ -640,6 +641,8 @@ generateSymKey(): Promise\<SymKey>
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let symAlgName = 'AES128';
 let symKeyGenerator = cryptoFramework.createSymKeyGenerator(symAlgName);
 symKeyGenerator.generateSymKey()
@@ -675,6 +678,8 @@ convertKey(key: DataBlob, callback: AsyncCallback\<SymKey>): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 function genKeyMaterialBlob(): cryptoFramework.DataBlob {
   let arr = [
     0xba, 0x3d, 0xc2, 0x71, 0x21, 0x1e, 0x30, 0x56,
@@ -726,6 +731,8 @@ convertKey(key: DataBlob): Promise\<SymKey>
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 function genKeyMaterialBlob(): cryptoFramework.DataBlob {
   let arr = [
     0xba, 0x3d, 0xc2, 0x71, 0x21, 0x1e, 0x30, 0x56,
@@ -817,6 +824,8 @@ generateKeyPair(callback: AsyncCallback\<KeyPair>): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let asyKeyGenerator = cryptoFramework.createAsyKeyGenerator("ECC256");
 asyKeyGenerator.generateKeyPair((err, keyPair) => {
   if (err) {
@@ -852,6 +861,8 @@ generateKeyPair(): Promise\<KeyPair>
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let asyKeyGenerator = cryptoFramework.createAsyKeyGenerator("ECC256");
 let keyGenPromise = asyKeyGenerator.generateKeyPair();
 keyGenPromise.then( keyPair => {
@@ -888,6 +899,8 @@ convertKey(pubKey: DataBlob, priKey: DataBlob, callback: AsyncCallback\<KeyPair\
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let pubKeyArray = new Uint8Array([48, 89, 48, 19, 6, 7, 42, 134, 72, 206, 61, 2, 1, 6, 8, 42, 134, 72, 206, 61, 3, 1, 7, 3, 66, 0, 4, 83, 96, 142, 9, 86, 214, 126, 106, 247, 233, 92, 125, 4, 128, 138, 105, 246, 162, 215, 71, 81, 58, 202, 121, 26, 105, 211, 55, 130, 45, 236, 143, 55, 16, 248, 75, 167, 160, 167, 106, 2, 152, 243, 44, 68, 66, 0, 167, 99, 92, 235, 215, 159, 239, 28, 106, 124, 171, 34, 145, 124, 174, 57, 92]);
 let priKeyArray = new Uint8Array([48, 49, 2, 1, 1, 4, 32, 115, 56, 137, 35, 207, 0, 60, 191, 90, 61, 136, 105, 210, 16, 27, 4, 171, 57, 10, 61, 123, 40, 189, 28, 34, 207, 236, 22, 45, 223, 10, 189, 160, 10, 6, 8, 42, 134, 72, 206, 61, 3, 1, 7]);
 let pubKeyBlob: cryptoFramework.DataBlob = {data: pubKeyArray}; // Data of the public key.
@@ -934,6 +947,8 @@ convertKey(pubKey: DataBlob, priKey: DataBlob): Promise\<KeyPair>
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let pubKeyArray = new Uint8Array([48, 89, 48, 19, 6, 7, 42, 134, 72, 206, 61, 2, 1, 6, 8, 42, 134, 72, 206, 61, 3, 1, 7, 3, 66, 0, 4, 83, 96, 142, 9, 86, 214, 126, 106, 247, 233, 92, 125, 4, 128, 138, 105, 246, 162, 215, 71, 81, 58, 202, 121, 26, 105, 211, 55, 130, 45, 236, 143, 55, 16, 248, 75, 167, 160, 167, 106, 2, 152, 243, 44, 68, 66, 0, 167, 99, 92, 235, 215, 159, 239, 28, 106, 124, 171, 34, 145, 124, 174, 57, 92]);
 let priKeyArray = new Uint8Array([48, 49, 2, 1, 1, 4, 32, 115, 56, 137, 35, 207, 0, 60, 191, 90, 61, 136, 105, 210, 16, 27, 4, 171, 57, 10, 61, 123, 40, 189, 28, 34, 207, 236, 22, 45, 223, 10, 189, 160, 10, 6, 8, 42, 134, 72, 206, 61, 3, 1, 7]);
 let pubKeyBlob: cryptoFramework.DataBlob = {data: pubKeyArray}; // Data of the public key.
@@ -1049,6 +1064,8 @@ generateKeyPair(callback: AsyncCallback\<KeyPair>): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let asyKeyPairSpec: cryptoFramework.DSAKeyPairSpec; // dsa as example, asyKeyPairSpec specifies full parameters contained in the private and public keys. The generation process is omitted here.
 let asyKeyGeneratorBySpec = cryptoFramework.createAsyKeyGeneratorBySpec(asyKeyPairSpec);
 asyKeyGeneratorBySpec.generateKeyPair((err, keyPair) => {
@@ -1085,6 +1102,8 @@ generateKeyPair(): Promise\<KeyPair>
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let asyKeyPairSpec: cryptoFramework.DSAKeyPairSpec; // dsa as example, asyKeyPairSpec specifies full parameters contained in the private and public keys. The generation process is omitted here.
 let asyKeyGeneratorBySpec = cryptoFramework.createAsyKeyGeneratorBySpec(asyKeyPairSpec);
 let keyGenPromise = asyKeyGeneratorBySpec.generateKeyPair();
@@ -1120,6 +1139,8 @@ generatePriKey(callback: AsyncCallback\<PriKey>): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let asyKeyPairSpec: cryptoFramework.DSAKeyPairSpec; // dsa as example, asyKeyPairSpec specifies full parameters contained in the private and public keys.
 let asyKeyGeneratorBySpec = cryptoFramework.createAsyKeyGeneratorBySpec(asyKeyPairSpec);
 asyKeyGeneratorBySpec.generatePriKey((err, prikey) => {
@@ -1156,6 +1177,8 @@ generatePriKey(): Promise\<PriKey>
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let asyKeyPairSpec: cryptoFramework.DSAKeyPairSpec; // dsa as example, asyKeyPairSpec specifies full parameters contained in the private and public keys.
 let asyKeyGeneratorBySpec = cryptoFramework.createAsyKeyGeneratorBySpec(asyKeyPairSpec);
 let keyGenPromise = asyKeyGeneratorBySpec.generatePriKey();
@@ -1191,6 +1214,8 @@ generatePubKey(callback: AsyncCallback\<PubKey>): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let asyKeyPairSpec: cryptoFramework.DSAKeyPairSpec; // dsa as example, asyKeyPairSpec specifies full parameters contained in the private and public keys. The generation process is omitted here.
 let asyKeyGeneratorBySpec = cryptoFramework.createAsyKeyGeneratorBySpec(asyKeyPairSpec);
 asyKeyGeneratorBySpec.generateKeyPair((err, pubKey) => {
@@ -1227,6 +1252,8 @@ generatePubKey(): Promise\<PubKey>
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let asyKeyPairSpec: cryptoFramework.DSAKeyPairSpec; // dsa as example, asyKeyPairSpec specifies full parameters contained in the private and public keys. The generation process is omitted here.
 let asyKeyGeneratorBySpec = cryptoFramework.createAsyKeyGeneratorBySpec(asyKeyPairSpec);
 let keyGenPromise = asyKeyGeneratorBySpec.generatePubKey();
@@ -1273,6 +1300,8 @@ createCipher(transformation: string): Cipher
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let cipherAlgName = '3DES192|ECB|PKCS7';
 try {
   let cipher = cryptoFramework.createCipher(cipherAlgName);
@@ -1330,6 +1359,8 @@ init(opMode: CryptoMode, key: Key, params: ParamsSpec, callback: AsyncCallback\<
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let symKey: cryptoFramework.SymKey;     // The process of generating the symmetric key is omitted here.
 let cipher: cryptoFramework.Cipher;        // The process of creating a Cipher instance is omitted here.
 
@@ -1377,6 +1408,8 @@ init(opMode: CryptoMode, key: Key, params: ParamsSpec): Promise\<void>
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let symKey: cryptoFramework.SymKey;     // The process of generating the symmetric key is omitted here.
 let cipher: cryptoFramework.Cipher;        // The process of creating a Cipher instance is omitted here.
 cipher.init(cryptoFramework.CryptoMode.ENCRYPT_MODE, symKey, null)
@@ -1423,6 +1456,8 @@ update(data: DataBlob, callback: AsyncCallback\<DataBlob>): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 function stringToUint8Array(str: string) {
   let arr = new Uint8Array(str.length);
   for (let i = 0, j = str.length; i < j; ++i) {
@@ -1487,6 +1522,8 @@ update(data: DataBlob): Promise\<DataBlob>
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 function stringToUint8Array(str: string) {
   let arr = new Uint8Array(str.length);
   for (let i = 0, j = str.length; i < j; ++i) {
@@ -1565,6 +1602,8 @@ doFinal(data: DataBlob, callback: AsyncCallback\<DataBlob>): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let cipher: cryptoFramework.Cipher;        // The process of creating a Cipher instance is omitted here.
 let data: cryptoFramework.DataBlob;           // The process of preparing the data to encrypt or decrypt is omitted here.
 // The init() and update() processes are omitted here.
@@ -1624,6 +1663,8 @@ doFinal(data: DataBlob): Promise\<DataBlob>
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let cipher: cryptoFramework.Cipher;        // The process of creating a Cipher instance is omitted here.
 let data: cryptoFramework.DataBlob;           // The process of preparing the data to encrypt or decrypt is omitted here.
 // The init() and update() processes are omitted here.
@@ -2576,6 +2617,8 @@ generateSecret(priKey: PriKey, pubKey: PubKey): Promise\<DataBlob>
 **callback示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let globalKeyPair: cryptoFramework.KeyPair; // globalKeyPair is an asymmetric key object generated by the asymmetric key generator. The generation process is omitted here.
 let keyAgreement = cryptoFramework.createKeyAgreement("ECC256");
 keyAgreement.generateSecret(globalKeyPair.priKey, globalKeyPair.pubKey, (err, secret) => {
@@ -2590,6 +2633,8 @@ keyAgreement.generateSecret(globalKeyPair.priKey, globalKeyPair.pubKey, (err, se
 **promise示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let globalKeyPair: cryptoFramework.KeyPair; // globalKeyPair is an asymmetric key object generated by the asymmetric key generator. The generation process is omitted here.
 let keyAgreement = cryptoFramework.createKeyAgreement("ECC256");
 let keyAgreementPromise = keyAgreement.generateSecret(globalKeyPair.priKey, globalKeyPair.pubKey);
@@ -2630,6 +2675,8 @@ createMd(algName: string): Md
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
   // Set algName based on the algorithm supported.
   let md = cryptoFramework.createMd("SHA256");
@@ -2680,6 +2727,8 @@ update(input: DataBlob, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let md = cryptoFramework.createMd("SHA256");
 console.info("Md algName is: " + md.algName);
 
@@ -2723,6 +2772,8 @@ update(input: DataBlob): Promise\<void>
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let md = cryptoFramework.createMd("SHA256");
 console.info("Md algName is: " + md.algName);
 
@@ -2757,6 +2808,8 @@ digest(callback: AsyncCallback\<DataBlob>): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let md = cryptoFramework.createMd("SHA256");
 console.info("Md algName is: " + md.algName);
 
@@ -2799,6 +2852,8 @@ digest(): Promise\<DataBlob>
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let md = cryptoFramework.createMd("SHA256");
 console.info("Md algName is: " + md.algName);
 
@@ -2837,6 +2892,8 @@ getMdLength(): number
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let md = cryptoFramework.createMd("SHA256");
 console.info("Md algName is: " + md.algName);
 
@@ -2884,6 +2941,8 @@ createMac(algName: string): Mac
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
   // Set algName based on the algorithm supported.
   let mac = cryptoFramework.createMac("SHA256");
@@ -2930,6 +2989,8 @@ init(key: SymKey, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let mac = cryptoFramework.createMac("SHA256");
 let keyBlob: cryptoFramework.DataBlob;
 let symKeyGenerator = cryptoFramework.createSymKeyGenerator("AES128");
@@ -2975,6 +3036,8 @@ init(key: SymKey): Promise\<void>
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let mac = cryptoFramework.createMac("SHA256");
 console.info("Mac algName is: " + mac.algName);
 
@@ -3019,6 +3082,8 @@ update(input: DataBlob, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let keyBlob: cryptoFramework.DataBlob;
 let mac = cryptoFramework.createMac("SHA256");
 let symKeyGenerator = cryptoFramework.createSymKeyGenerator("AES128");
@@ -3074,6 +3139,8 @@ update(input: DataBlob): Promise\<void>
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let mac = cryptoFramework.createMac("SHA256");
 console.info("Mac algName is: " + mac.algName);
 
@@ -3117,6 +3184,8 @@ doFinal(callback: AsyncCallback\<DataBlob>): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let keyBlob: cryptoFramework.DataBlob;
 let mac = cryptoFramework.createMac("SHA256");
 let symKeyGenerator = cryptoFramework.createSymKeyGenerator("AES128");
@@ -3169,6 +3238,8 @@ doFinal(): Promise\<DataBlob>
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let mac = cryptoFramework.createMac("SHA256");
 console.info("Mac algName is: " + mac.algName);
 let keyBlob: cryptoFramework.DataBlob;
@@ -3214,6 +3285,8 @@ getMacLength(): number
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let mac = cryptoFramework.createMac("SHA256");
 console.info("Mac algName is: " + mac.algName);
 let keyBlob: cryptoFramework.DataBlob;
@@ -3261,6 +3334,8 @@ createRandom(): Random
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
   let rand = cryptoFramework.createRandom();
 } catch (error) {
@@ -3307,6 +3382,8 @@ generateRandom(len: number, callback: AsyncCallback\<DataBlob>): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let rand = cryptoFramework.createRandom();
 rand.generateRandom(12, (err, randData) => {
   if (err) {
@@ -3348,6 +3425,8 @@ generateRandom(len: number): Promise\<DataBlob>
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let rand = cryptoFramework.createRandom();
 let promiseGenerateRand = rand.generateRandom(12);
 promiseGenerateRand.then(randData => {
@@ -3388,6 +3467,8 @@ generateRandomSync(len: number): DataBlob
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let rand = cryptoFramework.createRandom();
 try {
   let randData = rand.generateRandomSync(12);
@@ -3423,6 +3504,8 @@ setSeed(seed: DataBlob): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let rand = cryptoFramework.createRandom();
 rand.generateRandom(12, (err, randData) => {
   if (err) {
