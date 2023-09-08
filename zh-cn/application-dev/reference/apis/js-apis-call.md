@@ -10,7 +10,7 @@
 
 ## 导入模块
 
-```js
+```ts
 import call from '@ohos.telephony.call';
 ```
 
@@ -51,8 +51,10 @@ dialCall\(phoneNumber: string, callback: AsyncCallback\<void\>\): void
 
 **示例：**
 
-```js
-call.dialCall("138xxxxxxxx", (err) => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+call.dialCall("138xxxxxxxx", (err: BusinessError) => {
     console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
@@ -96,13 +98,16 @@ dialCall\(phoneNumber: string, options: DialCallOptions, callback: AsyncCallback
 
 **示例：**
 
-```js
-call.dialCall("138xxxxxxxx", {
+```ts
+import { BusinessError } from '@ohos.base';
+
+let dialCallOptions: call.DialCallOptions = {
     accountId: 0,
     videoState: 0,
     dialScene: 0,
     dialType: 0,
-}, (err) => {
+}
+call.dialCall("138xxxxxxxx", dialCallOptions, (err: BusinessError) => {
     console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
@@ -151,16 +156,19 @@ dialCall\(phoneNumber: string, options?: DialCallOptions\): Promise\<void\>
 
 **示例：**
 
-```js
-let promise = call.dialCall("138xxxxxxxx", {
+```ts
+import { BusinessError } from '@ohos.base';
+
+let dialCallOptions: call.DialCallOptions = {
     accountId: 0,
     videoState: 0,
     dialScene: 0,
     dialType: 0,
-});
+}
+let promise = call.dialCall("138xxxxxxxx", dialCallOptions);
 promise.then(() => {
     console.log(`dialCall success.`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
     console.error(`dialCall fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -188,8 +196,10 @@ dial\(phoneNumber: string, callback: AsyncCallback\<boolean\>\): void
 
 **示例：**
 
-```js
-call.dial("138xxxxxxxx", (err, data) => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+call.dial("138xxxxxxxx", (err: BusinessError, data: boolean) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -219,10 +229,13 @@ dial\(phoneNumber: string, options: DialOptions, callback: AsyncCallback\<boolea
 
 **示例：**
 
-```js
-call.dial("138xxxxxxxx", {
+```ts
+import { BusinessError } from '@ohos.base';
+
+let dialOptions: call.DialOptions = {
     extras: false
-}, (err, data) => {
+}
+call.dial("138xxxxxxxx", dialOptions, (err: BusinessError, data: boolean) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -256,13 +269,16 @@ dial\(phoneNumber: string, options?: DialOptions\): Promise\<boolean\>
 
 **示例：**
 
-```js
-let promise = call.dial("138xxxxxxxx", {
+```ts
+import { BusinessError } from '@ohos.base';
+
+let dialOptions: call.DialOptions = {
     extras: false
-});
-promise.then(data => {
+}
+let promise = call.dial("138xxxxxxxx", dialOptions);
+promise.then((data: boolean) => {
     console.log(`dial success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
     console.error(`dial fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -296,8 +312,10 @@ makeCall\(phoneNumber: string, callback: AsyncCallback\<void\>\): void
 
 **示例：**
 
-```js
-call.makeCall("138xxxxxxxx", err => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+call.makeCall("138xxxxxxxx", (err: BusinessError) => {
     console.log(`makeCall callback: err->${JSON.stringify(err)}`);
 });
 ```
@@ -337,11 +355,13 @@ makeCall\(phoneNumber: string\): Promise\<void\>
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 let promise = call.makeCall("138xxxxxxxx");
 promise.then(() => {
     console.log(`makeCall success`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
     console.error(`makeCall fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -362,8 +382,10 @@ hasCall\(callback: AsyncCallback\<boolean\>\): void
 
 **示例：**
 
-```js
-call.hasCall((err, data) => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+call.hasCall((err: BusinessError, data: boolean) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -385,11 +407,13 @@ hasCall\(\): Promise\<boolean\>
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 let promise = call.hasCall();
-promise.then(data => {
+promise.then((data: boolean) => {
     console.log(`hasCall success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
     console.error(`hasCall fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -410,7 +434,7 @@ hasCallSync\(\): boolean
 
 **示例：**
 
-```js
+```ts
 let hasCall = call.hasCallSync();
 console.log(`hasCallSync success, has call is ' + hasCall);
 ```
@@ -432,8 +456,10 @@ getCallState\(callback: AsyncCallback\<CallState\>\): void
 
 **示例：**
 
-```js
-call.getCallState((err, data) => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+call.getCallState((err: BusinessError, data: call.CallState) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -455,11 +481,13 @@ getCallState\(\): Promise\<CallState\>
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 let promise = call.getCallState();
-promise.then(data => {
+promise.then((data: call.CallState) => {
     console.log(`getCallState success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
     console.error(`getCallState fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -480,7 +508,7 @@ getCallStateSync\(\): CallState
 
 **示例：**
 
-```js
+```ts
 let callState = call.getCallStateSync();
 console.log(`the call state is:` + callState);
 ```
@@ -499,7 +527,7 @@ hasVoiceCapability\(\): boolean
 | ------- | ------------------------------------------------------------ |
 | boolean | 返回true表示设备具备语音通话能力，返回false表示设备不具备语音通话能力。 |
 
-```js
+```ts
 let result = call.hasVoiceCapability(); 
 console.log(`hasVoiceCapability: ${JSON.stringify(result)}`);
 ```
@@ -533,8 +561,10 @@ isEmergencyPhoneNumber\(phoneNumber: string, callback: AsyncCallback\<boolean\>\
 
 **示例：**
 
-```js
-call.isEmergencyPhoneNumber("138xxxxxxxx", (err, data) => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+call.isEmergencyPhoneNumber("138xxxxxxxx", (err: BusinessError, data: boolean) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -570,8 +600,11 @@ isEmergencyPhoneNumber\(phoneNumber: string, options: EmergencyNumberOptions, ca
 
 **示例：**
 
-```js
-call.isEmergencyPhoneNumber("112", {slotId: 1}, (err, data) => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+let options: call.EmergencyNumberOptions = {slotId: 1}
+call.isEmergencyPhoneNumber("112", options, (err: BusinessError, data: boolean) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -612,11 +645,14 @@ isEmergencyPhoneNumber\(phoneNumber: string, options?: EmergencyNumberOptions\):
 
 **示例：**
 
-```js
-let promise = call.isEmergencyPhoneNumber("138xxxxxxxx", {slotId: 1});
-promise.then(data => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+let options: call.EmergencyNumberOptions = {slotId: 1}
+let promise = call.isEmergencyPhoneNumber("138xxxxxxxx", options);
+promise.then((data: boolean) => {
     console.log(`isEmergencyPhoneNumber success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
     console.error(`isEmergencyPhoneNumber fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -652,8 +688,10 @@ formatPhoneNumber\(phoneNumber: string, callback: AsyncCallback\<string\>\): voi
 
 **示例：**
 
-```js
-call.formatPhoneNumber("138xxxxxxxx", (err, data) => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+call.formatPhoneNumber("138xxxxxxxx", (err: BusinessError, data: string) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -690,10 +728,13 @@ formatPhoneNumber\(phoneNumber: string, options: NumberFormatOptions, callback: 
 
 **示例：**
 
-```js
-call.formatPhoneNumber("138xxxxxxxx", {
+```ts
+import { BusinessError } from '@ohos.base';
+
+let options: call.NumberFormatOptions = {
     countryCode: "CN"
-}, (err, data) => {
+}
+call.formatPhoneNumber("138xxxxxxxx", options, (err: BusinessError, data: string) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -736,13 +777,16 @@ formatPhoneNumber\(phoneNumber: string, options?: NumberFormatOptions\): Promise
 
 **示例：**
 
-```js
-let promise = call.formatPhoneNumber("138xxxxxxxx", {
+```ts
+import { BusinessError } from '@ohos.base';
+
+let options: call.NumberFormatOptions = {
     countryCode: "CN"
-});
-promise.then(data => {
+}
+let promise = call.formatPhoneNumber("138xxxxxxxx", options);
+promise.then((data: string) => {
     console.log(`formatPhoneNumber success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
     console.error(`formatPhoneNumber fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -779,8 +823,10 @@ formatPhoneNumberToE164\(phoneNumber: string, countryCode: string, callback: Asy
 
 **示例：**
 
-```js
-call.formatPhoneNumberToE164("138xxxxxxxx", "CN", (err, data) => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+call.formatPhoneNumberToE164("138xxxxxxxx", "CN", (err: BusinessError, data: string) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -825,11 +871,13 @@ formatPhoneNumberToE164\(phoneNumber: string, countryCode: string\): Promise\<st
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 let promise = call.formatPhoneNumberToE164("138xxxxxxxx", "CN");
-promise.then(data => {
+promise.then((data: string) => {
     console.log(`formatPhoneNumberToE164 success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
     console.error(`formatPhoneNumberToE164 fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -868,8 +916,10 @@ muteRinger\(callback: AsyncCallback\<void\>\): void
 
 **示例：**
 
-```js
-call.muteRinger((err) => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+call.muteRinger((err: BusinessError) => {
     console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
@@ -907,10 +957,12 @@ muteRinger\(\): Promise\<void\>
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 call.muteRinger().then(() => {
     console.log(`muteRinger success.`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
     console.error(`muteRinger fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -951,8 +1003,10 @@ answerCall\(callId: number, callback: AsyncCallback\<void\>\): void
 
 **示例：**
 
-```js
-call.answerCall(1, (err) => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+call.answerCall(1, (err: BusinessError) => {
     console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
@@ -998,10 +1052,12 @@ answerCall(callId?: number\): Promise\<void\>
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 call.answerCall(1).then(() => {
     console.log(`answerCall success.`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
     console.error(`answerCall fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -1041,8 +1097,10 @@ answerCall\(callback: AsyncCallback\<void\>\): void
 
 **示例：**
 
-```js
-call.answerCall((err) => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+call.answerCall((err: BusinessError) => {
     console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
@@ -1083,8 +1141,10 @@ hangUpCall\(callId: number, callback: AsyncCallback\<void\>\): void
 
 **示例：**
 
-```js
-call.hangUpCall(1, (err) => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+call.hangUpCall(1, (err: BusinessError) => {
     console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
@@ -1130,10 +1190,12 @@ hangUpCall\(callId?: number\): Promise\<void\>
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 call.hangUpCall(1).then(() => {
     console.log(`hangUpCall success.`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
     console.error(`hangUpCall fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -1174,8 +1236,10 @@ hangUpCall\(callback: AsyncCallback\<void\>\): void
 
 **示例：**
 
-```js
-call.hangUpCall((err) => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+call.hangUpCall((err: BusinessError) => {
     console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
@@ -1217,8 +1281,10 @@ rejectCall\(callId: number, callback: AsyncCallback\<void\>\): void
 
 **示例：**
 
-```js
-call.rejectCall(1, (err) => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+call.rejectCall(1, (err: BusinessError) => {
     console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
@@ -1260,11 +1326,13 @@ rejectCall\(callId: number, options: RejectMessageOptions, callback: AsyncCallba
 
 **示例：**
 
-```js
-let rejectMessageOptions={
+```ts
+import { BusinessError } from '@ohos.base';
+
+let rejectMessageOptions : call.RejectMessageOptions = {
     messageContent: "拦截陌生号码"
 }
-call.rejectCall(1, rejectMessageOptions, (err) => {
+call.rejectCall(1, rejectMessageOptions, (err: BusinessError) => {
     console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
@@ -1311,13 +1379,15 @@ rejectCall\(callId?: number, options?: RejectMessageOptions\): Promise\<void\>
 
 **示例：**
 
-```js
-let rejectMessageOptions={
+```ts
+import { BusinessError } from '@ohos.base';
+
+let rejectMessageOptions: call.RejectMessageOptions = {
     messageContent: "拦截陌生号码"
 }
 call.rejectCall(1, rejectMessageOptions).then(() => {
     console.log(`rejectCall success.`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
     console.error(`rejectCall fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -1357,8 +1427,10 @@ rejectCall\(callback: AsyncCallback\<void\>\): void
 
 **示例：**
 
-```js
-call.rejectCall((err) => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+call.rejectCall((err: BusinessError) => {
     console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
@@ -1399,11 +1471,13 @@ rejectCall\(options: RejectMessageOptions, callback: AsyncCallback\<void\>\): vo
 
 **示例：**
 
-```js
-let rejectMessageOptions={
+```ts
+import { BusinessError } from '@ohos.base';
+
+let rejectMessageOptions: call.RejectMessageOptions = {
     messageContent: "拦截陌生号码"
 }
-call.rejectCall(rejectMessageOptions, (err) => {
+call.rejectCall(rejectMessageOptions, (err: BusinessError) => {
     console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
@@ -1444,8 +1518,10 @@ holdCall\(callId: number, callback: AsyncCallback\<void\>\): void
 
 **示例：**
 
-```js
-call.holdCall(1, (err) => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+call.holdCall(1, (err: BusinessError) => {
     console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
@@ -1491,10 +1567,12 @@ holdCall\(callId: number\): Promise\<void\>
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 call.holdCall(1).then(() => {
     console.log(`holdCall success.`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
     console.error(`holdCall fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -1534,8 +1612,10 @@ unHoldCall\(callId: number, callback: AsyncCallback\<void\>\): void
 
 **示例：**
 
-```js
-call.unHoldCall(1, (err) => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+call.unHoldCall(1, (err: BusinessError) => {
     console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
@@ -1581,10 +1661,12 @@ unHoldCall\(callId: number\): Promise\<void\>
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 call.unHoldCall(1).then(() => {
     console.log(`unHoldCall success.`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
     console.error(`unHoldCall fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -1624,8 +1706,10 @@ switchCall\(callId: number, callback: AsyncCallback\<void\>\): void
 
 **示例：**
 
-```js
-call.switchCall(1, (err) => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+call.switchCall(1, (err: BusinessError) => {
     console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
@@ -1671,10 +1755,12 @@ switchCall\(callId: number\): Promise\<void\>
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 call.switchCall(1).then(() => {
     console.log(`switchCall success.`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
     console.error(`switchCall fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -1710,8 +1796,10 @@ combineConference\(callId: number, callback: AsyncCallback\<void\>\): void
 
 **示例：**
 
-```js
-call.combineConference(1, (err) => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+call.combineConference(1, (err: BusinessError) => {
     console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
@@ -1753,10 +1841,12 @@ combineConference\(callId: number\): Promise\<void\>
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 call.combineConference(1).then(() => {
     console.log(`combineConference success.`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
     console.error(`combineConference fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -1796,8 +1886,10 @@ kickOutFromConference\(callId: number, callback: AsyncCallback\<void\>\): void
 
 **示例：**
 
-```js
-call.kickOutFromConference(1, (err) => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+call.kickOutFromConference(1, (err: BusinessError) => {
     console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
@@ -1842,10 +1934,12 @@ kickOutFromConference\(callId: number\): Promise\<void\>
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 call.kickOutFromConference(1).then(() => {
     console.log(`kickOutFromConference success.`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
     console.error(`kickOutFromConference fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -1882,8 +1976,10 @@ getMainCallId\(callId: number, callback: AsyncCallback\<number\>\): void
 
 **示例：**
 
-```js
-call.getMainCallId(1, (err, data) => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+call.getMainCallId(1, (err: BusinessError, data: number) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -1909,7 +2005,7 @@ getMainCallId\(callId: number\): Promise\<number\>
 
 | 类型                | 说明                            |
 | ------------------- | ------------------------------- |
-| Promise&lt;void&gt; | 以Promise形式异步返回主呼叫Id。 |
+| Promise&lt;number&gt; | 以Promise形式异步返回主呼叫Id。 |
 
 **错误码：**
 
@@ -1926,11 +2022,13 @@ getMainCallId\(callId: number\): Promise\<number\>
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 let promise = call.getMainCallId(1);
-promise.then(data => {
+promise.then((data: number) => {
     console.log(`getMainCallId success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
     console.error(`getMainCallId fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -1966,8 +2064,10 @@ getSubCallIdList\(callId: number, callback: AsyncCallback\<Array\<string\>\>\): 
 
 **示例：**
 
-```js
-call.getSubCallIdList(1, (err, data) => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+call.getSubCallIdList(1, (err: BusinessError, data: string) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -2009,11 +2109,13 @@ getSubCallIdList\(callId: number\): Promise\<Array\<string\>\>
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 let promise = call.getSubCallIdList(1);
-promise.then(data => {
+promise.then((data: string) => {
     console.log(`getSubCallIdList success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
     console.error(`getSubCallIdList fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -2049,8 +2151,10 @@ getCallIdListForConference\(callId: number, callback: AsyncCallback\<Array\<stri
 
 **示例：**
 
-```js
-call.getCallIdListForConference(1, (err, data) => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+call.getCallIdListForConference(1, (err: BusinessError, data: Array<string>) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -2092,11 +2196,13 @@ getCallIdListForConference\(callId: number\): Promise\<Array\<string\>\>
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 let promise = call.getCallIdListForConference(1);
-promise.then(data => {
+promise.then((data: Array<string>) => {
     console.log(`getCallIdListForConference success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
     console.error(`getCallIdListForConference fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -2136,8 +2242,10 @@ getCallWaitingStatus\(slotId: number, callback: AsyncCallback\<CallWaitingStatus
 
 **示例：**
 
-```js
-call.getCallWaitingStatus(0, (err, data) => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+call.getCallWaitingStatus(0, (err: BusinessError, data: call.CallWaitingStatus) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -2183,11 +2291,13 @@ getCallWaitingStatus\(slotId: number\): Promise\<CallWaitingStatus\>
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 let promise = call.getCallWaitingStatus(0);
-promise.then(data => {
+promise.then((data: call.CallWaitingStatus) => {
     console.log(`getCallWaitingStatus success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
     console.error(`getCallWaitingStatus fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -2228,8 +2338,10 @@ setCallWaiting\(slotId: number, activate: boolean, callback: AsyncCallback\<void
 
 **示例：**
 
-```js
-call.setCallWaiting(0, true, (err) => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+call.setCallWaiting(0, true, (err: BusinessError) => {
     console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
@@ -2276,10 +2388,12 @@ setCallWaiting\(slotId: number, activate: boolean\): Promise\<void\>
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 call.setCallWaiting(0, true).then(() => {
     console.log(`setCallWaiting success.`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
     console.error(`setCallWaiting fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -2316,8 +2430,10 @@ startDTMF\(callId: number, character: string, callback: AsyncCallback\<void\>\):
 
 **示例：**
 
-```js
-call.startDTMF(1, "0", (err) => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+call.startDTMF(1, "0", (err: BusinessError) => {
     console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
@@ -2360,10 +2476,12 @@ startDTMF\(callId: number, character: string\): Promise\<void\>
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 call.startDTMF(1, "0").then(() => {
     console.log(`startDTMF success.`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
     console.error(`startDTMF fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -2399,8 +2517,10 @@ stopDTMF\(callId: number, callback: AsyncCallback\<void\>\): void
 
 **示例：**
 
-```js
-call.stopDTMF(1, (err) => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+call.stopDTMF(1, (err: BusinessError) => {
     console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
@@ -2442,10 +2562,12 @@ stopDTMF\(callId: number\): Promise\<void\>
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 call.stopDTMF(1).then(() => {
     console.log(`stopDTMF success.`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
     console.error(`stopDTMF fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -2484,8 +2606,10 @@ isInEmergencyCall\(callback: AsyncCallback\<boolean\>\): void
 
 **示例：**
 
-```js
-call.isInEmergencyCall((err, data) => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+call.isInEmergencyCall((err: BusinessError, data: boolean) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -2523,11 +2647,13 @@ isInEmergencyCall\(\): Promise\<boolean\>
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 let promise = call.isInEmergencyCall();
-promise.then(data => {
+promise.then((data: boolean) => {
     console.log(`isInEmergencyCall success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
     console.error(`isInEmergencyCall fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -2567,8 +2693,8 @@ on\(type: 'callDetailsChange', callback: Callback\<CallAttributeOptions\>\): voi
 
 **示例：**
 
-```js
-call.on('callDetailsChange', data => {
+```ts
+call.on('callDetailsChange', (data: call.CallAttributeOptions) => {
     console.log(`callback: data->${JSON.stringify(data)}`);
 });
 ```
@@ -2608,8 +2734,8 @@ on\(type: 'callEventChange', callback: Callback\<CallEventOptions\>\): void
 
 **示例：**
 
-```js
-call.on('callEventChange', data => {
+```ts
+call.on('callEventChange', (data: call.CallEventOptions) => {
     console.log(`callback: data->${JSON.stringify(data)}`);
 });
 ```
@@ -2649,8 +2775,8 @@ on\(type: 'callDisconnectedCause', callback: Callback\<DisconnectedDetails\>\): 
 
 **示例：**
 
-```js
-call.on('callDisconnectedCause', data => {
+```ts
+call.on('callDisconnectedCause', (data: call.DisconnectedDetails) => {
     console.log(`callback: data->${JSON.stringify(data)}`);
 });
 ```
@@ -2690,8 +2816,8 @@ on\(type: 'mmiCodeResult', callback: Callback\<MmiCodeResults\>\): void
 
 **示例：**
 
-```js
-call.on('mmiCodeResult', data => {
+```ts
+call.on('mmiCodeResult', (data: call.MmiCodeResults) => {
     console.log(`callback: data->${JSON.stringify(data)}`);
 });
 ```
@@ -2731,8 +2857,8 @@ off\(type: 'callDetailsChange', callback?: Callback\<CallAttributeOptions\>\): v
 
 **示例：**
 
-```js
-call.off('callDetailsChange', data => {
+```ts
+call.off('callDetailsChange', (data: call.CallAttributeOptions) => {
     console.log(`callback: data->${JSON.stringify(data)}`);
 });
 ```
@@ -2772,8 +2898,8 @@ off\(type: 'callEventChange', callback?: Callback\<CallEventOptions\>\): void
 
 **示例：**
 
-```js
-call.off('callEventChange', data => {
+```ts
+call.off('callEventChange', (data: call.CallEventOptions) => {
     console.log(`callback: data->${JSON.stringify(data)}`);
 });
 ```
@@ -2813,8 +2939,8 @@ off\(type: 'callDisconnectedCause', callback?: Callback\<DisconnectedDetails\>\)
 
 **示例：**
 
-```js
-call.off('callDisconnectedCause', data => {
+```ts
+call.off('callDisconnectedCause', (data: call.DisconnectedDetails) => {
     console.log(`callback: data->${JSON.stringify(data)}`);
 });
 ```
@@ -2854,8 +2980,8 @@ off\(type: 'mmiCodeResult', callback?: Callback\<MmiCodeResults\>\): void
 
 **示例：**
 
-```js
-call.off('mmiCodeResult', data => {
+```ts
+call.off('mmiCodeResult', (data: call.MmiCodeResults) => {
     console.log(`callback: data->${JSON.stringify(data)}`);
 });
 ```
@@ -2896,8 +3022,8 @@ on\(type: 'audioDeviceChange', callback: Callback\<AudioDeviceCallbackInfo\>\): 
 
 **示例：**
 
-```js
-call.on('audioDeviceChange', data => {
+```ts
+call.on('audioDeviceChange', (data: call.AudioDeviceCallbackInfo) => {
     console.log(`callback: data->${JSON.stringify(data)}`);
 });
 ```
@@ -2938,8 +3064,8 @@ off\(type: 'audioDeviceChange', callback?: Callback\<AudioDeviceCallbackInfo\>\)
 
 **示例：**
 
-```js
-call.off('audioDeviceChange', data => {
+```ts
+call.off('audioDeviceChange', (data: call.AudioDeviceCallbackInfo) => {
     console.log(`callback: data->${JSON.stringify(data)}`);
 });
 ```
@@ -2976,8 +3102,10 @@ isNewCallAllowed\(callback: AsyncCallback\<boolean\>\): void
 
 **示例：**
 
-```js
-call.isNewCallAllowed((err, data) => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+call.isNewCallAllowed((err: BusinessError, data: boolean) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -3012,11 +3140,13 @@ isNewCallAllowed\(\): Promise\<boolean\>
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 let promise = call.isNewCallAllowed();
-promise.then(data => {
+promise.then((data: boolean) => {
     console.log(`isNewCallAllowed success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
     console.error(`isNewCallAllowed fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -3053,8 +3183,10 @@ separateConference\(callId: number, callback: AsyncCallback\<void\>\): void
 
 **示例：**
 
-```js
-call.separateConference(1, (err) => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+call.separateConference(1, (err: BusinessError) => {
     console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
@@ -3097,10 +3229,12 @@ separateConference\(callId: number\): Promise\<void\>
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 call.separateConference(1).then(() => {
     console.log(`separateConference success.`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
     console.error(`separateConference fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -3141,8 +3275,10 @@ getCallRestrictionStatus\(slotId: number, type: CallRestrictionType, callback: A
 
 **示例：**
 
-```js
-call.getCallRestrictionStatus(0, 1, (err, data) => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+call.getCallRestrictionStatus(0, 1, (err: BusinessError, data: call.RestrictionStatus) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -3189,11 +3325,13 @@ getCallRestrictionStatus\(slotId: number, type: CallRestrictionType\): Promise\<
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 let promise = call.getCallRestrictionStatus(0, 1);
-promise.then(data => {
+promise.then((data: call.RestrictionStatus) => {
     console.log(`getCallRestrictionStatus success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
     console.error(`getCallRestrictionStatus fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -3234,13 +3372,15 @@ setCallRestriction\(slotId: number, info: CallRestrictionInfo, callback: AsyncCa
 
 **示例：**
 
-```js
-let callRestrictionInfo={
+```ts
+import { BusinessError } from '@ohos.base';
+
+let callRestrictionInfo: call.CallRestrictionInfo = {
     type: 1,
     password: "123456",
     mode: 1
 }
-call.setCallRestriction(0, callRestrictionInfo, (err) => {
+call.setCallRestriction(0, callRestrictionInfo, (err: BusinessError) => {
     console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
@@ -3287,15 +3427,17 @@ setCallRestriction\(slotId: number, info: CallRestrictionInfo\): Promise\<void\>
 
 **示例：**
 
-```js
-let callRestrictionInfo={
+```ts
+import { BusinessError } from '@ohos.base';
+
+let callRestrictionInfo: call.CallRestrictionInfo = {
     type: 1,
     password: "123456",
     mode: 1
 }
 call.setCallRestriction(0, callRestrictionInfo).then(() => {
     console.log(`setCallRestriction success.`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
     console.error(`setCallRestriction fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -3337,8 +3479,10 @@ setCallRestrictionPassword\(slotId: number, oldPassword: string, newPassword: st
 
 **示例：**
 
-```js
-call.setCallRestrictionPassword(0, "123456", "654321", (err) => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+call.setCallRestrictionPassword(0, "123456", "654321", (err: BusinessError) => {
     console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
@@ -3385,10 +3529,12 @@ setCallRestrictionPassword\(slotId: number, oldPassword: string, newPassword: st
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 call.setCallRestrictionPassword(0, "123456", "654321").then(() => {
     console.log(`setCallRestrictionPassword success.`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
     console.error(`setCallRestrictionPassword fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -3429,8 +3575,10 @@ getCallTransferInfo\(slotId: number, type: CallTransferType, callback: AsyncCall
 
 **示例：**
 
-```js
-call.getCallTransferInfo(0, call.CallTransferType.TRANSFER_TYPE_BUSY, (err, data) => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+call.getCallTransferInfo(0, call.CallTransferType.TRANSFER_TYPE_BUSY, (err: BusinessError, data: call.CallTransferResult) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -3477,11 +3625,13 @@ getCallTransferInfo\(slotId: number, type: CallTransferType\): Promise\<CallTran
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 let promise = call.getCallTransferInfo(0, call.CallTransferType.TRANSFER_TYPE_BUSY);
-promise.then(data => {
+promise.then((data: call.CallTransferResult) => {
     console.log(`getCallTransferInfo success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
     console.error(`getCallTransferInfo fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -3522,13 +3672,15 @@ setCallTransfer\(slotId: number, info: CallTransferInfo, callback: AsyncCallback
 
 **示例：**
 
-```js
-let callTransferInfo={
+```ts
+import { BusinessError } from '@ohos.base';
+
+let callTransferInfo: call.CallTransferInfo = {
     transferNum: "111",
     type: 1,
     settingType: 1
 }
-call.setCallTransfer(0, callTransferInfo, (err) => {
+call.setCallTransfer(0, callTransferInfo, (err: BusinessError) => {
     console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
@@ -3575,15 +3727,17 @@ setCallTransfer\(slotId: number, info: CallTransferInfo\): Promise\<void\>
 
 **示例：**
 
-```js
-let callTransferInfo={
+```ts
+import { BusinessError } from '@ohos.base';
+
+let callTransferInfo: call.CallTransferInfo = {
     transferNum: "111",
     type: 1,
     settingType: 1
 }
 call.setCallTransfer(0, callTransferInfo).then(() => {
     console.log(`setCallTransfer success.`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
     console.error(`setCallTransfer fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -3622,8 +3776,10 @@ isRinging\(callback: AsyncCallback\<boolean\>\): void
 
 **示例：**
 
-```js
-call.isRinging((err, data) => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+call.isRinging((err: BusinessError, data: boolean) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -3661,11 +3817,13 @@ isRinging\(\): Promise\<boolean\>
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 let promise = call.isRinging();
-promise.then(data => {
+promise.then((data: boolean) => {
     console.log(`isRinging success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
     console.error(`isRinging fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -3701,8 +3859,10 @@ setMuted\(callback: AsyncCallback\<void\>\): void
 
 **示例：**
 
-```js
-call.setMuted((err) => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+call.setMuted((err: BusinessError) => {
     console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
@@ -3737,10 +3897,12 @@ setMuted\(\): Promise\<void\>
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 call.setMuted().then(() => {
     console.log(`setMuted success.`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
     console.error(`setMuted fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -3776,8 +3938,10 @@ cancelMuted\(callback: AsyncCallback\<void\>\): void
 
 **示例：**
 
-```js
-call.cancelMuted((err) => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+call.cancelMuted((err: BusinessError) => {
     console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
@@ -3812,10 +3976,12 @@ cancelMuted\(\): Promise\<void\>
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 call.cancelMuted().then(() => {
     console.log(`cancelMuted success.`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
     console.error(`cancelMuted fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -3855,11 +4021,13 @@ setAudioDevice\(device: AudioDevice, callback: AsyncCallback\<void\>\): void
 
 **示例：**
 
-```js
-let audioDevice={
+```ts
+import { BusinessError } from '@ohos.base';
+
+let audioDevice: call.AudioDevice = {
     deviceType: 1
 }
-call.setAudioDevice(audioDevice, (err) => {
+call.setAudioDevice(audioDevice, (err: BusinessError) => {
     console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
@@ -3904,13 +4072,15 @@ setAudioDevice\(device: AudioDevice): Promise\<void\>
 
 **示例：**
 
-```js
-let audioDevice={
+```ts
+import { BusinessError } from '@ohos.base';
+
+let audioDevice: call.AudioDevice = {
     deviceType: 1
 }
 call.setAudioDevice(audioDevice).then(() => {
     console.log(`setAudioDevice success.`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
     console.error(`setAudioDevice fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -3948,11 +4118,13 @@ joinConference\(mainCallId: number, callNumberList: Array\<string\>, callback: A
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 let callNumberList: Array<string> = [
     "138XXXXXXXX"
 ];
-call.joinConference(1, callNumberList, (err) => {
+call.joinConference(1, callNumberList, (err: BusinessError) => {
     console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
@@ -3995,13 +4167,15 @@ joinConference\(mainCallId: number, callNumberList: Array\<string\>\): Promise\<
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 let callNumberList: Array<string> = [
     "138XXXXXXXX"
 ];
 call.joinConference(1, callNumberList).then(() => {
     console.log(`joinConference success.`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
     console.error(`joinConference fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -4039,8 +4213,10 @@ updateImsCallMode\(callId: number, mode: ImsCallMode, callback: AsyncCallback\<v
 
 **示例：**
 
-```js
-call.updateImsCallMode(1, 1, (err) => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+call.updateImsCallMode(1, 1, (err: BusinessError) => {
     console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
@@ -4083,10 +4259,12 @@ updateImsCallMode\(callId: number, mode: ImsCallMode\): Promise\<void\>
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 call.updateImsCallMode(1, 1).then(() => {
     console.log(`updateImsCallMode success.`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
     console.error(`updateImsCallMode fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -4126,8 +4304,10 @@ enableImsSwitch\(slotId: number, callback: AsyncCallback\<void\>\): void
 
 **示例：**
 
-```js
-call.enableImsSwitch(0, (err) => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+call.enableImsSwitch(0, (err: BusinessError) => {
     console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
@@ -4172,10 +4352,12 @@ enableImsSwitch\(slotId: number\): Promise\<void\>
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 call.enableImsSwitch(0).then(() => {
     console.log(`enableImsSwitch success.`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
     console.error(`enableImsSwitch fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -4215,8 +4397,10 @@ disableImsSwitch\(slotId: number, callback: AsyncCallback\<void\>\): void
 
 **示例：**
 
-```js
-call.disableImsSwitch(0, (err) => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+call.disableImsSwitch(0, (err: BusinessError) => {
     console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
@@ -4261,10 +4445,12 @@ disableImsSwitch\(slotId: number\): Promise\<void\>
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 call.disableImsSwitch(0).then(() => {
     console.log(`disableImsSwitch success.`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
     console.error(`disableImsSwitch fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -4301,8 +4487,10 @@ isImsSwitchEnabled\(slotId: number, callback: AsyncCallback\<boolean\>\): void
 
 **示例：**
 
-```js
-call.isImsSwitchEnabled(0, (err, data) => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+call.isImsSwitchEnabled(0, (err: BusinessError, data: boolean) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -4327,7 +4515,7 @@ isImsSwitchEnabled\(slotId: number\): Promise\<boolean\>
 
 | 类型                | 说明                        |
 | ------------------- | --------------------------- |
-| Promise&lt;void&gt; | 以Promise形式异步返回结果。 |
+| Promise&lt;boolean&gt; | 以Promise形式异步返回结果。 |
 
 **错误码：**
 
@@ -4344,11 +4532,13 @@ isImsSwitchEnabled\(slotId: number\): Promise\<boolean\>
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 let promise = call.isImsSwitchEnabled(0);
-promise.then(data => {
+promise.then((data: boolean) => {
     console.log(`isImsSwitchEnabled success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
     console.error(`isImsSwitchEnabled fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -4389,9 +4579,11 @@ closeUnfinishedUssd\(slotId: number, callback: AsyncCallback\<void\>\): void
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 let slotId = 0;
-call.closeUnfinishedUssd(slotId, (err) => {
+call.closeUnfinishedUssd(slotId, (err: BusinessError) => {
     console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
@@ -4436,11 +4628,13 @@ closeUnfinishedUssd\(slotId: number\): Promise\<void\>
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 let slotId = 0;
 call.closeUnfinishedUssd(slotId).then(() => {
     console.log(`closeUnfinishedUssd success.`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
     console.error(`closeUnfinishedUssd fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -4482,11 +4676,13 @@ setVoNRState\(slotId: number, state: VoNRState, callback: AsyncCallback\<void\>\
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 let slotId = 0;
 let state = 1;
-call.setVoNRState(slotId, state, (err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+call.setVoNRState(slotId, state, (err: BusinessError) => {
+    console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -4532,12 +4728,14 @@ setVoNRState\(slotId: number, state: VoNRState\): Promise\<void\>
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 let slotId = 0;
 let state = 1;
-call.setVoNRState(slotId, state).then((data) => {
-    console.log(`setVoNRState success, promise: data->${JSON.stringify(data)}`);
-}).catch((err) => {
+call.setVoNRState(slotId, state).then(() => {
+    console.log(`setVoNRState success`);
+}).catch((err: BusinessError) => {
     console.error(`setVoNRState fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -4578,9 +4776,11 @@ getVoNRState\(slotId: number, callback: AsyncCallback\<VoNRState\>\): void
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 let slotId = 0;
-call.getVoNRState(slotId, (err, data) => {
+call.getVoNRState(slotId, (err: BusinessError, data: call.VoNRState) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -4626,12 +4826,14 @@ getVoNRState\(slotId: number\): Promise\<VoNRState\>
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 let slotId = 0;
 let promise = call.getVoNRState(slotId);
-promise.then(data => {
+promise.then((data: call.VoNRState) => {
     console.log(`getVoNRState success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
     console.error(`getVoNRState fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -4672,9 +4874,11 @@ canSetCallTransferTime\(slotId: number, callback: AsyncCallback\<boolean\>\): vo
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 let slotId = 0;
-call.canSetCallTransferTime(slotId, (err, data) => {
+call.canSetCallTransferTime(slotId, (err: BusinessError, data: boolean) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -4720,11 +4924,13 @@ canSetCallTransferTime\(slotId: number\): Promise\<boolean\>
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 let slotId = 0;
-call.canSetCallTransferTime(slotId).then((data) => {
+call.canSetCallTransferTime(slotId).then((data: boolean) => {
     console.log(`canSetCallTransferTime success, promise: data->${JSON.stringify(data)}`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
     console.error(`canSetCallTransferTime fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -4764,8 +4970,10 @@ inputDialerSpecialCode\(inputCode: string, callback: AsyncCallback\<void\>\): vo
 
 **示例：**
 
-```js
-call.inputDialerSpecialCode('2846579', (err) => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+call.inputDialerSpecialCode('2846579', (err: BusinessError) => {
     console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
@@ -4809,7 +5017,9 @@ inputDialerSpecialCode\(inputCode: string\): Promise\<void\>
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 try {
     call.inputDialerSpecialCode('2846579');
     console.log(`inputDialerSpecialCode success`);
@@ -4852,8 +5062,10 @@ removeMissedIncomingCallNotification\(callback: AsyncCallback\<void\>\): void
 
 **示例：**
 
-```js
-call.removeMissedIncomingCallNotification((err) => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+call.removeMissedIncomingCallNotification((err: BusinessError) => {
     console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
@@ -4891,11 +5103,13 @@ removeMissedIncomingCallNotification\(\): Promise\<void\>
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 let promise = call.removeMissedIncomingCallNotification();
-promise.then(data => {
-    console.log(`removeMissedIncomingCallNotification success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+promise.then(() => {
+    console.log(`removeMissedIncomingCallNotification success`);
+}).catch((err: BusinessError) => {
     console.log(`removeMissedIncomingCallNotification failed, promise: err->${JSON.stringify(err)}`);
 });
 ```

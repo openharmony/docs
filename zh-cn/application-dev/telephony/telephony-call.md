@@ -52,10 +52,11 @@ observer模块为开发者提供订阅和取消订阅通话业务状态的功能
    如果设备支持呼叫能力，则继续跳转到拨号界面，并显示拨号的号码。
 4. 调用dialCall接口，拨打电话。
 5. （可选）订阅通话业务状态变化。
-   ```js
+   ```ts
     // import需要的模块
     import call from '@ohos.telephony.call'
     import observer from '@ohos.telephony.observer'
+    import { BusinessError } from '@ohos.base';
 
     // 调用查询能力接口
     let isSupport = call.hasVoiceCapability();
@@ -64,13 +65,15 @@ observer模块为开发者提供订阅和取消订阅通话业务状态的功能
         return;
     }
     // 如果设备支持呼叫能力，调用以下接口进行拨号
-    call.dialCall("13xxxx", (err, data) => {
-        this.output = this.output + `dial call: ${JSON.stringify(data)}\n`
-        console.log(`callback: dial call err->${JSON.stringify(err)} data->${JSON.stringify(data)}`)
+    call.dialCall("13xxxx", (err: BusinessError) => {
+        console.log(`callback: dial call err->${JSON.stringify(err)}`)
     })
 
     // 订阅通话业务状态变化（可选）
-    observer.on("callStateChange", {slotId: 0}, (data) => {
+    class SlotId: { slotId: number }
+    class CallStateCallback: { state: call.CallState, number: string }
+    let slotId: SlotId = {slotId: 0}
+    observer.on("callStateChange", slotId, (data: CallStateCallback) => {
         console.log("call state change, data is:" + JSON.stringify(data));
     });
    ```
@@ -83,10 +86,11 @@ observer模块为开发者提供订阅和取消订阅通话业务状态的功能
 3. 调用makeCall接口，拉起系统电话应用，拨打电话。
 4. （可选）订阅通话业务状态变化。
 
-   ```js
+   ```ts
     // import需要的模块
     import call from '@ohos.telephony.call'
     import observer from '@ohos.telephony.observer' 
+    import { BusinessError } from '@ohos.base';
    
     // 调用查询能力接口
     let isSupport = call.hasVoiceCapability();
@@ -95,7 +99,7 @@ observer模块为开发者提供订阅和取消订阅通话业务状态的功能
         return;
     }
     // 如果设备支持呼叫能力，则继续跳转到拨号界面，并显示拨号的号码
-    call.makeCall("13xxxx", (err)=> {
+    call.makeCall("13xxxx", (err: BusinessError) => {
         if (!err) {
             console.log("make call success.");
         } else {
@@ -104,7 +108,10 @@ observer模块为开发者提供订阅和取消订阅通话业务状态的功能
     });
 
     // 订阅通话业务状态变化（可选）
-    observer.on("callStateChange", {slotId: 0}, (data) => {
+    class SlotId: { slotId: number }
+    class CallStateCallback: { state: call.CallState, number: string }
+    let slotId: SlotId = {slotId: 0}
+    observer.on("callStateChange", slotId, (data: CallStateCallback) => {
         console.log("call state change, data is:" + JSON.stringify(data));
     });
    ```

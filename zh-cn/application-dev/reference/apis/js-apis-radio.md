@@ -45,9 +45,15 @@ getRadioTech\(slotId: number, callback: AsyncCallback<\{psRadioTech: RadioTechno
 
 **示例：**
 
-```js
-let slotId = 0;
-radio.getRadioTech(slotId, (err, data) => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+let slotId: number = 0;
+class Tech {
+    psRadioTech: radio.RadioTechnology = radio.RadioTechnology.RADIO_TECHNOLOGY_UNKNOWN;
+    csRadioTech: radio.RadioTechnology = radio.RadioTechnology.RADIO_TECHNOLOGY_UNKNOWN;
+}
+radio.getRadioTech(slotId, (err: BusinessError, data: Tech) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -90,12 +96,18 @@ getRadioTech\(slotId: number\): Promise<\{psRadioTech: RadioTechnology, csRadioT
 
 **示例：**
 
-```js
-let slotId = 0;
+```ts
+import { BusinessError } from '@ohos.base';
+
+let slotId: number = 0;
+class Tech {
+    psRadioTech: radio.RadioTechnology = radio.RadioTechnology.RADIO_TECHNOLOGY_UNKNOWN;
+    csRadioTech: radio.RadioTechnology = radio.RadioTechnology.RADIO_TECHNOLOGY_UNKNOWN;
+}
 let promise = radio.getRadioTech(slotId);
-promise.then(data => {
+promise.then((data: Tech) => {
     console.log(`getRadioTech success, data->${JSON.stringify(data)}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
     console.log(`getRadioTech failed, err->${JSON.stringify(err)}`);
 });
 ```
@@ -132,8 +144,10 @@ getNetworkState\(callback: AsyncCallback\<NetworkState\>\): void
 
 **示例：**
 
-```js
-radio.getNetworkState((err, data) => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+radio.getNetworkState((err: BusinessError, data: radio.NetworkState) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -171,9 +185,11 @@ getNetworkState\(slotId: number, callback: AsyncCallback\<NetworkState\>\): void
 
 **示例：**
 
-```js
-let slotId = 0;
-radio.getNetworkState(slotId, (err, data) => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+let slotId: number = 0;
+radio.getNetworkState(slotId, (err: BusinessError, data: radio.NetworkState) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -216,12 +232,14 @@ getNetworkState\(slotId?: number\): Promise\<NetworkState\>
 
 **示例：**
 
-```js
-let slotId = 0;
+```ts
+import { BusinessError } from '@ohos.base';
+
+let slotId: number = 0;
 let promise = radio.getNetworkState(slotId);
-promise.then(data => {
+promise.then((data: radio.NetworkState) => {
     console.log(`getNetworkState success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
     console.log(`getNetworkState failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -256,9 +274,11 @@ getNetworkSelectionMode\(slotId: number, callback: AsyncCallback\<NetworkSelecti
 
 **示例：**
 
-```js
-let slotId = 0;
-radio.getNetworkSelectionMode(slotId, (err, data) => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+let slotId: number = 0;
+radio.getNetworkSelectionMode(slotId, (err: BusinessError, data: radio.NetworkSelectionMode) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -298,12 +318,14 @@ getNetworkSelectionMode\(slotId: number\): Promise\<NetworkSelectionMode\>
 
 **示例：**
 
-```js
-let slotId = 0;
+```ts
+import { BusinessError } from '@ohos.base';
+
+let slotId: number = 0;
 let promise = radio.getNetworkSelectionMode(slotId);
-promise.then(data => {
+promise.then((data: radio.NetworkSelectionMode) => {
     console.log(`getNetworkSelectionMode success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
     console.log(`getNetworkSelectionMode failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -338,9 +360,11 @@ getISOCountryCodeForNetwork\(slotId: number, callback: AsyncCallback\<string\>\)
 
 **示例：**
 
-```js
-let slotId = 0;
-radio.getISOCountryCodeForNetwork(slotId, (err, data) => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+let slotId: number = 0;
+radio.getISOCountryCodeForNetwork(slotId, (err: BusinessError, data: string) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -380,12 +404,14 @@ getISOCountryCodeForNetwork\(slotId: number\): Promise\<string\>
 
 **示例：**
 
-```js
-let slotId = 0;
+```ts
+import { BusinessError } from '@ohos.base';
+
+let slotId: number = 0;
 let promise = radio.getISOCountryCodeForNetwork(slotId);
-promise.then(data => {
+promise.then((data: string) => {
     console.log(`getISOCountryCodeForNetwork success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
     console.log(`getISOCountryCodeForNetwork failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -412,9 +438,11 @@ getISOCountryCodeForNetworkSync\(slotId: number\): string
 
 **示例：**
 
-```js
-let slotId = 0;
-let countryISO = radio.getISOCountryCodeForNetworkSync(slotId);
+```ts
+import { BusinessError } from '@ohos.base';
+
+let slotId: number = 0;
+let countryISO: string = radio.getISOCountryCodeForNetworkSync(slotId);
 console.log(`the country ISO is:` + countryISO);
 ```
 
@@ -447,8 +475,10 @@ getPrimarySlotId\(callback: AsyncCallback\<number\>\): void
 
 **示例：**
 
-```js
-radio.getPrimarySlotId((err, data) => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+radio.getPrimarySlotId((err: BusinessError, data: number) => {
    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -480,11 +510,13 @@ getPrimarySlotId\(\): Promise\<number\>
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 let promise = radio.getPrimarySlotId();
-promise.then(data => {
+promise.then((data: string) => {
     console.log(`getPrimarySlotId success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
     console.error(`getPrimarySlotId failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -519,9 +551,11 @@ getSignalInformation\(slotId: number, callback: AsyncCallback\<Array\<SignalInfo
 
 **示例：**
 
-```js
-let slotId = 0;
-radio.getSignalInformation(slotId, (err, data) => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+let slotId: number = 0;
+radio.getSignalInformation(slotId, (err: BusinessError, data: Array<radio.SignalInformation>) => {
    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -561,12 +595,14 @@ getSignalInformation\(slotId: number\): Promise\<Array\<SignalInformation\>\>
 
 **示例：**
 
-```js
-let slotId = 0;
+```ts
+import { BusinessError } from '@ohos.base';
+
+let slotId: number = 0;
 let promise = radio.getSignalInformation(slotId);
-promise.then(data => {
+promise.then((data: Array<radio.SignalInformation>) => {
     console.log(`getSignalInformation success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
     console.error(`getSignalInformation failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -594,9 +630,11 @@ getSignalInformationSync\(slotId: number\): Array\<SignalInformation\>
 
 **示例：**
 
-```js
-let slotId = 0;
-let signalInfo = radio.getSignalInformationSync(slotId);
+```ts
+import { BusinessError } from '@ohos.base';
+
+let slotId: number = 0;
+let signalInfo: Array<radio.SignalInformation> = radio.getSignalInformationSync(slotId);
 console.log(`signal information size is:` + signalInfo.size());
 ```
 
@@ -620,8 +658,8 @@ isNrSupported\(\): boolean
 
 **示例：**
 
-```js
-let result = radio.isNrSupported();
+```ts
+let result: boolean = radio.isNrSupported();
 console.log("Result: "+ result);
 ```
 
@@ -651,9 +689,9 @@ isNrSupported\(slotId: number\): boolean
 
 **示例：**
 
-```js
-let slotId = 0;
-let result = radio.isNrSupported(slotId);
+```ts
+let slotId: number = 0;
+let result: boolean = radio.isNrSupported(slotId);
 console.log("Result: "+ result);
 ```
 
@@ -674,8 +712,8 @@ isNRSupported\(\): boolean
 
 **示例：**
 
-```js
-let result = radio.isNRSupported();
+```ts
+let result: boolean = radio.isNRSupported();
 console.log("Result: "+ result);
 ```
 
@@ -702,9 +740,9 @@ isNRSupported\(slotId: number\): boolean
 
 **示例：**
 
-```js
-let slotId = 0;
-let result = radio.isNRSupported(slotId);
+```ts
+let slotId: number = 0;
+let result: boolean = radio.isNRSupported(slotId);
 console.log("Result: "+ result);
 ```
 
@@ -740,8 +778,10 @@ isRadioOn\(callback: AsyncCallback\<boolean\>\): void
 
 **示例：**
 
-```js
-radio.isRadioOn((err, data) => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+radio.isRadioOn((err: BusinessError, data: boolean) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -779,9 +819,11 @@ isRadioOn\(slotId: number, callback: AsyncCallback\<boolean\>\): void
 
 **示例：**
 
-```js
-let slotId = 0;
-radio.isRadioOn(slotId, (err, data) => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+let slotId: number = 0;
+radio.isRadioOn(slotId, (err: BusinessError, data: boolean) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -824,12 +866,14 @@ isRadioOn\(slotId?: number\): Promise\<boolean\>
 
 **示例：**
 
-```js
-let slotId = 0;
+```ts
+import { BusinessError } from '@ohos.base';
+
+let slotId: number = 0;
 let promise = radio.isRadioOn(slotId);
-promise.then(data => {
+promise.then((data: boolean) => {
     console.log(`isRadioOn success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
     console.error(`isRadioOn failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -864,9 +908,11 @@ getOperatorName\(slotId: number, callback: AsyncCallback\<string\>\): void
 
 **示例：**
 
-```js
-let slotId = 0;
-radio.getOperatorName(slotId, (err, data) => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+let slotId: number = 0;
+radio.getOperatorName(slotId, (err: BusinessError, data: string) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -906,12 +952,14 @@ getOperatorName\(slotId: number\): Promise\<string\>
 
 **示例：**
 
-```js
-let slotId = 0;
+```ts
+import { BusinessError } from '@ohos.base';
+
+let slotId: number = 0;
 let promise = radio.getOperatorName(slotId);
-promise.then(data => {
+promise.then((data: string) => {
     console.log(`getOperatorName success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
     console.log(`getOperatorName failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -939,9 +987,11 @@ getOperatorNameSync\(slotId: number\): string
 
 **示例：**
 
-```js
-let slotId = 0;
-let operatorName = radio.getOperatorNameSync(slotId);
+```ts
+import { BusinessError } from '@ohos.base';
+
+let slotId: number = 0;
+let operatorName: string = radio.getOperatorNameSync(slotId);
 console.log(`operator name is:` + operatorName);
 ```
 
@@ -981,9 +1031,11 @@ setPrimarySlotId\(slotId: number, callback: AsyncCallback\<void\>\): void
 
 **示例：**
 
-```js
-let slotId = 0;
-radio.setPrimarySlotId(slotId, (err) => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+let slotId: number = 0;
+radio.setPrimarySlotId(slotId, (err: BusinessError) => {
     console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
@@ -1030,12 +1082,14 @@ setPrimarySlotId\(slotId: number\): Promise\<void\>
 
 **示例：**
 
-```js
-let slotId = 0;
+```ts
+import { BusinessError } from '@ohos.base';
+
+let slotId: number = 0;
 let promise = radio.setPrimarySlotId(slotId);
 promise.then(() => {
     console.log(`setPrimarySlotId success.`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
     console.log(`setPrimarySlotId failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -1074,8 +1128,10 @@ getIMEI\(callback: AsyncCallback\<string\>\): void
 
 **示例：**
 
-```js
-radio.getIMEI((err, data) => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+radio.getIMEI((err: BusinessError, data: string) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -1116,9 +1172,11 @@ getIMEI\(slotId: number, callback: AsyncCallback\<string\>\): void
 
 **示例：**
 
-```js
-let slotId = 0;
-radio.getIMEI(slotId, (err, data) => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+let slotId: number = 0;
+radio.getIMEI(slotId, (err: BusinessError, data: string) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -1164,12 +1222,14 @@ getIMEI\(slotId?: number\): Promise\<string\>
 
 **示例：**
 
-```js
-let slotId = 0;
+```ts
+import { BusinessError } from '@ohos.base';
+
+let slotId: number = 0;
 let promise = radio.getIMEI(slotId);
-promise.then(data => {
+promise.then((data: string) => {
     console.log(`getIMEI success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
     console.error(`getIMEI failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -1208,8 +1268,10 @@ getMEID\(callback: AsyncCallback\<string\>\): void
 
 **示例：**
 
-```js
-radio.getMEID((err, data) => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+radio.getMEID((err: BusinessError, data: string) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -1250,9 +1312,11 @@ getMEID\(slotId: number, callback: AsyncCallback\<string\>\): void
 
 **示例：**
 
-```js
-let slotId = 0;
-radio.getMEID(slotId, (err, data) => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+let slotId: number = 0;
+radio.getMEID(slotId, (err: BusinessError, data: string) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -1298,12 +1362,14 @@ getMEID\(slotId?: number\): Promise\<string\>
 
 **示例：**
 
-```js
-let slotId = 0;
+```ts
+import { BusinessError } from '@ohos.base';
+
+let slotId: number = 0;
 let promise = radio.getMEID(slotId);
-promise.then(data => {
+promise.then((data: string) => {
     console.log(`getMEID success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
     console.error(`getMEID failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -1342,8 +1408,10 @@ getUniqueDeviceId\(callback: AsyncCallback\<string\>\): void
 
 **示例：**
 
-```js
-radio.getUniqueDeviceId((err, data) => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+radio.getUniqueDeviceId((err: BusinessError, data: string) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -1384,9 +1452,11 @@ getUniqueDeviceId\(slotId: number, callback: AsyncCallback\<string\>\): void
 
 **示例：**
 
-```js
-let slotId = 0;
-radio.getUniqueDeviceId(slotId, (err, data) => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+let slotId: number = 0;
+radio.getUniqueDeviceId(slotId, (err: BusinessError, data: string) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -1432,12 +1502,14 @@ getUniqueDeviceId\(slotId?: number\): Promise\<string\>
 
 **示例：**
 
-```js
-let slotId = 0;
+```ts
+import { BusinessError } from '@ohos.base';
+
+let slotId: number = 0;
 let promise = radio.getUniqueDeviceId(slotId);
-promise.then(data => {
+promise.then((data: string) => {
     console.log(`getUniqueDeviceId success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
     console.error(`getUniqueDeviceId failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -1476,8 +1548,10 @@ sendUpdateCellLocationRequest\(callback: AsyncCallback\<void\>\): void
 
 **示例：**
 
-```js
-radio.sendUpdateCellLocationRequest((err) => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+radio.sendUpdateCellLocationRequest((err: BusinessError) => {
     console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
@@ -1517,9 +1591,11 @@ sendUpdateCellLocationRequest\(slotId: number, callback: AsyncCallback\<void\>\)
 
 **示例：**
 
-```js
-let slotId = 0;
-radio.sendUpdateCellLocationRequest(slotId, (err) => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+let slotId: number = 0;
+radio.sendUpdateCellLocationRequest(slotId, (err: BusinessError) => {
     console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
@@ -1564,11 +1640,13 @@ sendUpdateCellLocationRequest\(slotId?: number\): Promise\<void\>
 
 **示例：**
 
-```js
-let slotId = 0;
+```ts
+import { BusinessError } from '@ohos.base';
+
+let slotId: number = 0;
 radio.sendUpdateCellLocationRequest(slotId).then(() => {
     console.log(`sendUpdateCellLocationRequest success.`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
     console.log(`sendUpdateCellLocationRequest failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -1607,8 +1685,10 @@ getCellInformation\(callback: AsyncCallback\<Array\<CellInformation\>\>\): void
 
 **示例：**
 
-```js
-radio.getCellInformation((err, data) => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+radio.getCellInformation((err: BusinessError, data: Array<radio.CellInformation>) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -1649,9 +1729,11 @@ getCellInformation\(slotId: number, callback: AsyncCallback\<Array\<CellInformat
 
 **示例：**
 
-```js
-let slotId = 0;
-radio.getCellInformation(slotId, (err, data) => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+let slotId: number = 0;
+radio.getCellInformation(slotId, (err: BusinessError, data: Array<radio.CellInformation>) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -1697,12 +1779,14 @@ getCellInformation\(slotId?: number\): Promise\<Array\<CellInformation\>\>
 
 **示例：**
 
-```js
-let slotId = 0;
+```ts
+import { BusinessError } from '@ohos.base';
+
+let slotId: number = 0;
 let promise = radio.getCellInformation(slotId);
-promise.then(data => {
+promise.then((data: Array<radio.CellInformation>) => {
     console.log(`getCellInformation success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
     console.error(`getCellInformation failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -1742,20 +1826,22 @@ setNetworkSelectionMode\(options: NetworkSelectionModeOptions, callback: AsyncCa
 
 **示例：**
 
-```js
-let networkInformation={
+```ts
+import { BusinessError } from '@ohos.base';
+
+let networkInformation: radio.NetworkInformation = {
     operatorName: "中国移动",
     operatorNumeric: "898600",
     state: radio.NetworkInformationState.NETWORK_AVAILABLE,
     radioTech: "CS"
 }
-let networkSelectionModeOptions={
+let networkSelectionModeOptions: radio.NetworkSelectionModeOptions = {
     slotId: 0,
     selectMode: radio.NetworkSelectionMode.NETWORK_SELECTION_AUTOMATIC,
     networkInformation: networkInformation,
     resumeSelection: true
 }
-radio.setNetworkSelectionMode(networkSelectionModeOptions, (err) => {
+radio.setNetworkSelectionMode(networkSelectionModeOptions, (err: BusinessError) => {
     console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
@@ -1800,14 +1886,16 @@ setNetworkSelectionMode\(options: NetworkSelectionModeOptions\): Promise\<void\>
 
 **示例：**
 
-```js
-let networkInformation={
+```ts
+import { BusinessError } from '@ohos.base';
+
+let networkInformation: radio.NetworkInformation = {
     operatorName: "中国移动",
     operatorNumeric: "898600",
     state: radio.NetworkInformationState.NETWORK_AVAILABLE,
     radioTech: "CS"
 }
-let networkSelectionModeOptions={
+let networkSelectionModeOptions: radio.NetworkSelectionModeOptions = {
     slotId: 0,
     selectMode: radio.NetworkSelectionMode.NETWORK_SELECTION_AUTOMATIC,
     networkInformation: networkInformation,
@@ -1816,7 +1904,7 @@ let networkSelectionModeOptions={
 let promise = radio.setNetworkSelectionMode(networkSelectionModeOptions);
 promise.then(() => {
     console.log(`setNetworkSelectionMode success.`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
     console.log(`setNetworkSelectionMode failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -1856,8 +1944,10 @@ getNetworkSearchInformation\(slotId: number, callback: AsyncCallback\<NetworkSea
 
 **示例：**
 
-```js
-radio.getNetworkSearchInformation(0, (err, data) => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+radio.getNetworkSearchInformation(0, (err: BusinessError, data: radio.NetworkSearchResult) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -1902,11 +1992,13 @@ getNetworkSearchInformation\(slotId: number\): Promise\<NetworkSearchResult\>
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 let promise = radio.getNetworkSearchInformation(0);
-promise.then(data => {
+promise.then((data: radio.NetworkSearchResult) => {
     console.log(`getNetworkSearchInformation success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
     console.log(`getNetworkSearchInformation failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -1946,8 +2038,10 @@ getNrOptionMode\(callback: AsyncCallback\<NrOptionMode\>\): void
 
 **示例：**
 
-```js
-radio.getNrOptionMode((err, data) => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+radio.getNrOptionMode((err: BusinessError, data: radio.NrOptionMode) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -1989,9 +2083,11 @@ getNrOptionMode\(slotId: number, callback: AsyncCallback\<NrOptionMode\>\): void
 
 **示例：**
 
-```js
-let slotId = 0;
-radio.getNrOptionMode(slotId, (err, data) => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+let slotId: number = 0;
+radio.getNrOptionMode(slotId, (err: BusinessError, data: radio.NrOptionMode) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -2038,12 +2134,14 @@ getNrOptionMode\(slotId?: number\): Promise\<NrOptionMode\>
 
 **示例：**
 
-```js
-let slotId = 0;
+```ts
+import { BusinessError } from '@ohos.base';
+
+let slotId: number = 0;
 let promise = radio.getNrOptionMode(slotId);
-promise.then(data => {
+promise.then((data: radio.NrOptionMode) => {
     console.log(`getNrOptionMode success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
     console.error(`getNrOptionMode failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -2082,8 +2180,10 @@ turnOnRadio\(callback: AsyncCallback\<void\>\): void
 
 **示例：**
 
-```js
-radio.turnOnRadio((err) => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+radio.turnOnRadio((err: BusinessError) => {
     console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
@@ -2124,9 +2224,11 @@ turnOnRadio\(slotId: number, callback: AsyncCallback\<void\>\): void
 
 **示例：**
 
-```js
-let slotId = 0;
-radio.turnOnRadio(slotId, (err) => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+let slotId: number = 0;
+radio.turnOnRadio(slotId, (err: BusinessError) => {
     console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
@@ -2172,11 +2274,13 @@ turnOnRadio(slotId?: number): Promise\<void\>
 
 **示例：**
 
-```js
-let slotId = 0;
+```ts
+import { BusinessError } from '@ohos.base';
+
+let slotId: number = 0;
 radio.turnOnRadio(slotId).then(() => {
     console.log(`turnOnRadio success.`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
     console.error(`turnOnRadio failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -2215,8 +2319,10 @@ turnOffRadio\(callback: AsyncCallback\<void\>\): void
 
 **示例：**
 
-```js
-radio.turnOffRadio((err) => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+radio.turnOffRadio((err: BusinessError) => {
     console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
@@ -2257,9 +2363,11 @@ turnOffRadio\(slotId: number, callback: AsyncCallback\<void\>\): void
 
 **示例：**
 
-```js
-let slotId = 0;
-radio.turnOffRadio(slotId, (err) => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+let slotId: number = 0;
+radio.turnOffRadio(slotId, (err: BusinessError) => {
     console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
@@ -2305,11 +2413,13 @@ turnOffRadio\(slotId?: number\): Promise\<void\>
 
 **示例：**
 
-```js
-let slotId = 0;
+```ts
+import { BusinessError } from '@ohos.base';
+
+let slotId: number = 0;
 radio.turnOffRadio(slotId).then(() => {
     console.log(`turnOffRadio success.`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
     console.error(`turnOffRadio failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -2350,9 +2460,12 @@ setPreferredNetwork\(slotId: number, networkMode: PreferredNetworkMode, callback
 
 **示例：**
 
-```js
-let slotId = 0;
-radio.setPreferredNetwork(slotId, radio.PreferredNetworkMode.PREFERRED_NETWORK_MODE_GSM, (err) => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+let slotId: number = 0;
+let mode: radio.PreferredNetworkMode = radio.PreferredNetworkMode.PREFERRED_NETWORK_MODE_GSM;
+radio.setPreferredNetwork(slotId, mode, (err: BusinessError) => {
     console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
@@ -2398,11 +2511,14 @@ setPreferredNetwork\(slotId: number, networkMode: PreferredNetworkMode\): Promis
 
 **示例：**
 
-```js
-let slotId = 0;
-radio.setPreferredNetwork(slotId, radio.PreferredNetworkMode.PREFERRED_NETWORK_MODE_GSM).then(() => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+let slotId: number = 0;
+let mode: radio.PreferredNetworkMode = radio.PreferredNetworkMode.PREFERRED_NETWORK_MODE_GSM;
+radio.setPreferredNetwork(slotId, mode).then(() => {
     console.log(`setPreferredNetwork success.`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
     console.log(`setPreferredNetwork failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -2442,8 +2558,11 @@ getPreferredNetwork\(slotId: number, callback: AsyncCallback\<PreferredNetworkMo
 
 **示例：**
 
-```js
-radio.getPreferredNetwork(0, (err, data) => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+let slotId: number = 0;
+radio.getPreferredNetwork(slotId, (err: BusinessError, data: radio.PreferredNetworkMode) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -2470,7 +2589,7 @@ getPreferredNetwork\(slotId: number\): Promise\<PreferredNetworkMode\>
 
 | 类型            | 说明                    |
 | --------------- | ----------------------- |
-| Promise\<void\> | 以Promise形式返回结果。 |
+| Promise\<[PreferredNetworkMode](#preferrednetworkmode8)\> | 以Promise形式返回结果。 |
 
 **错误码：**
 
@@ -2488,11 +2607,14 @@ getPreferredNetwork\(slotId: number\): Promise\<PreferredNetworkMode\>
 
 **示例：**
 
-```js
-let promise = radio.getPreferredNetwork(0);
-promise.then(data => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+let slotId: number = 0;
+let promise = radio.getPreferredNetwork(slotId);
+promise.then((data: radio.PreferredNetworkMode) => {
     console.log(`getPreferredNetwork success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
     console.log(`getPreferredNetwork failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -2533,8 +2655,12 @@ getImsRegInfo\(slotId: number, imsType: ImsServiceType, callback: AsyncCallback\
 
 **示例：**
 
-```js
-radio.getImsRegInfo(0, radio.ImsServiceType.TYPE_VIDEO, (err, data) => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+let slotId: number = 0;
+let mode: radio.ImsServiceType = radio.ImsServiceType.TYPE_VIDEO;
+radio.getImsRegInfo(slotId, mode, (err: BusinessError, data: radio.ImsRegInfo) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -2580,11 +2706,15 @@ getImsRegInfo\(slotId: number, imsType: ImsServiceType\): Promise\<ImsRegInfo\>
 
 **示例：**
 
-```js
-let promise = radio.getImsRegInfo(0, radio.ImsServiceType.TYPE_VIDEO);
-promise.then(data => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+let slotId: number = 0;
+let mode: radio.ImsServiceType = radio.ImsServiceType.TYPE_VIDEO;
+let promise = radio.getImsRegInfo(slotId, mode);
+promise.then((data: radio.ImsRegInfo) => {
     console.log(`getImsRegInfo success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
     console.log(`getImsRegInfo failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -2626,8 +2756,12 @@ on\(type: 'imsRegStateChange', slotId: number, imsType: ImsServiceType, callback
 
 **示例：**
 
-```js
-radio.on('imsRegStateChange', 0, radio.ImsServiceType.TYPE_VIDEO, data => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+let slotId: number = 0;
+let mode: radio.ImsServiceType = radio.ImsServiceType.TYPE_VIDEO;
+radio.on('imsRegStateChange', slotId, mode, (data: radio.ImsRegInfo) => {
     console.log(`callback: data->${JSON.stringify(data)}`);
 });
 ```
@@ -2669,8 +2803,12 @@ off\(type: 'imsRegStateChange', slotId: number, imsType: ImsServiceType, callbac
 
 **示例：**
 
-```js
-radio.off('imsRegStateChange', 0, radio.ImsServiceType.TYPE_VIDEO, data => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+let slotId: number = 0;
+let mode: radio.ImsServiceType = radio.ImsServiceType.TYPE_VIDEO;
+radio.off('imsRegStateChange', slotId, mode, (data: radio.ImsRegInfo) => {
     console.log(`callback: data->${JSON.stringify(data)}`);
 });
 ```
@@ -2711,9 +2849,11 @@ getBasebandVersion\(slotId: number, callback: AsyncCallback\<string\>\): void
 
 **示例：**
 
-```js
-let slotId = 0;
-radio.getBasebandVersion(slotId, (err, data) => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+let slotId: number = 0;
+radio.getBasebandVersion(slotId, (err: BusinessError, data: string) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -2759,12 +2899,14 @@ getBasebandVersion\(slotId: number\): Promise\<string\>
 
 **示例：**
 
-```js
-let slotId = 0;
+```ts
+import { BusinessError } from '@ohos.base';
+
+let slotId: number = 0;
 let promise = radio.getBasebandVersion(slotId);
-promise.then(data => {
+promise.then((data: string) => {
     console.log(`getBasebandVersion success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
     console.error(`getBasebandVersion failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -2806,10 +2948,13 @@ setNROptionMode\(slotId: number, mode: NROptionMode, callback: AsyncCallback\<vo
 
 **示例：**
 
-```js
-let slotId = 0;
-radio.setNROptionMode(slotId, 1, (err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+```ts
+import { BusinessError } from '@ohos.base';
+
+let slotId: number = 0;
+let mode: radio.NROptionMode = radio.NROptionMode.NR_OPTION_NSA_ONLY;
+radio.setNROptionMode(slotId, mode, (err: BusinessError) => {
+    console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -2855,15 +3000,17 @@ setNROptionMode\(slotId: number, mode: NROptionMode\): Promise\<void\>
 
 **示例：**
 
-```js
-let slotId = 0;
-let promise = radio.setNROptionMode(slotId, 1);
-promise.then(data => {
-    console.log(`setNROptionMode success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+let slotId: number = 0;
+let mode: radio.NROptionMode = radio.NROptionMode.NR_OPTION_NSA_ONLY;
+let promise = radio.setNROptionMode(slotId, mode);
+promise.then(() => {
+    console.log(`setNROptionMode success`);
+}).catch((err: BusinessError) => {
     console.error(`setNROptionMode failed, promise: err->${JSON.stringify(err)}`);
 });
-```
 
 
 ## radio.getNROptionMode<sup>10+</sup>
@@ -2898,9 +3045,11 @@ getNROptionMode\(slotId: number, callback: AsyncCallback\<NROptionMode\>\): void
 
 **示例：**
 
-```js
-let slotId = 0;
-radio.getNROptionMode(slotId, (err, data) => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+let slotId: number = 0;
+radio.getNROptionMode(slotId, (err: BusinessError, data: radio.NROptionMode) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -2943,12 +3092,14 @@ getNROptionMode\(slotId: number\): Promise\<NROptionMode\>
 
 **示例：**
 
-```js
-let slotId = 0;
+```ts
+import { BusinessError } from '@ohos.base';
+
+let slotId: number = 0;
 let promise = radio.getNROptionMode(slotId);
-promise.then(data => {
+promise.then((data: radio.NROptionMode) => {
     console.log(`getNROptionMode success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
     console.error(`getNROptionMode failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -2990,10 +3141,12 @@ getNetworkCapability\(slotId: number, type: NetworkCapabilityType, callback: Asy
 
 **示例：**
 
-```js
-let slotId = 0;
-let type = radio.NetworkCapabilityType.SERVICE_TYPE_NR;
-radio.getNetworkCapability(slotId, type, (err, data) => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+let slotId: number = 0;
+let type: radio.NetworkCapabilityType = radio.NetworkCapabilityType.SERVICE_TYPE_NR;
+radio.getNetworkCapability(slotId, type, (err: BusinessError, data: radio.NetworkCapabilityState) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -3040,13 +3193,15 @@ getNetworkCapability\(slotId: number, type: NetworkCapabilityType\): Promise\<Ne
 
 **示例：**
 
-```js
-let slotId = 0;
-let type = radio.NetworkCapabilityType.SERVICE_TYPE_NR;
+```ts
+import { BusinessError } from '@ohos.base';
+
+let slotId: number = 0;
+let type: radio.NetworkCapabilityType = radio.NetworkCapabilityType.SERVICE_TYPE_NR;
 let promise = radio.getNetworkCapability(slotId, type);
-promise.then(data => {
+promise.then((data: radio.NetworkCapabilityState) => {
     console.log(`getNetworkCapability success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
     console.log(`getNetworkCapability failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -3090,14 +3245,17 @@ setNetworkCapability\(slotId: number, type: NetworkCapabilityType, state: Networ
 
 **示例：**
 
-```js
-let slotId = 0;
-let type = radio.NetworkCapabilityType.SERVICE_TYPE_NR;
-let state = radio.NetworkCapabilityState.SERVICE_CAPABILITY_ON;
-radio.setNetworkCapability(slotId, type, state, (err) => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+let slotId: number = 0;
+let type: radio.NetworkCapabilityType = radio.NetworkCapabilityType.SERVICE_TYPE_NR;
+let state: radio.NetworkCapabilityState = radio.NetworkCapabilityState.SERVICE_CAPABILITY_ON;
+radio.setNetworkCapability(slotId, type, state, (err: BusinessError) => {
     console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
+
 
 ## radio.setNetworkCapability<sup>10+</sup>
 
@@ -3141,14 +3299,16 @@ setNetworkCapability\(slotId: number, type: NetworkCapabilityType, state: Networ
 
 **示例：**
 
-```js
-let slotId = 0;
-let type = radio.NetworkCapabilityType.SERVICE_TYPE_NR;
-let state = radio.NetworkCapabilityState.SERVICE_CAPABILITY_ON;
+```ts
+import { BusinessError } from '@ohos.base';
+
+let slotId: number = 0;
+let type: radio.NetworkCapabilityType = radio.NetworkCapabilityType.SERVICE_TYPE_NR;
+let state: radio.NetworkCapabilityState = radio.NetworkCapabilityState.SERVICE_CAPABILITY_ON;
 let promise = radio.setNetworkCapability(slotId, type, state);
-promise.then(data => {
-    console.log(`setNetworkCapability success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+promise.then(() => {
+    console.log(`setNetworkCapability success`);
+}).catch((err: BusinessError) => {
     console.log(`setNetworkCapability failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
