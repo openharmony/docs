@@ -1030,7 +1030,7 @@ foo(new X())
 foo(new Y())
 ```
 
-### 显式标注泛型函数类型实参，除非可以从参数中推断出类型实参
+### 需要显式标注泛型函数类型实参
 
 **规则：**`arkts-no-inferred-generic-params`
 
@@ -1090,13 +1090,15 @@ let regex: RegExp = /bc*d/
 let regex: RegExp = new RegExp("/bc*d/")
 ```
 
-### 显式标注对象字面量的类型
+### 需要显式标注对象字面量的类型
 
 **规则：**`arkts-no-untyped-obj-literals`
 
 **级别：错误**
 
-显式标注对象字面量的类型，除非编译器可以根据上下文推断出字面量的类型是某些类或者接口。否则，将发生编译时错误。具体来说，在以下上下文中不支持使用字面量初始化类和接口：
+在ArkTS中，需要显式标注对象字面量的类型，否则，将发生编译时错误。在某些场景下，编译器可以根据上下文推断出字面量的类型。
+
+在以下上下文中不支持使用字面量初始化类和接口：
 
 * 初始化具有`any`、`Object`或`object`类型的任何对象
 * 初始化带有方法的类或接口
@@ -1410,6 +1412,65 @@ interface C {
 class C1 implements C {
   foo() {}
 }
+```
+
+### 不支持修改对象的方法
+
+**规则：**`arkts-no-method-reassignment`
+
+**级别：错误**
+
+ArkTS不支持修改对象的方法。在静态语言中，对象的布局是确定的。一个类的所有对象实例享有同一个方法。
+如果需要为某个特定的对象增加方法，可以封装函数或者使用继承的机制。
+
+**TypeScript**
+
+```typescript
+class C {
+    foo() {
+        console.log("foo")
+    }
+}
+
+function bar() {
+    console.log("bar")
+}
+
+let c1 = new C()
+let c2 = new C()
+c2.foo = bar
+
+c1.foo() // foo
+c2.foo() // bar
+```
+
+**ArkTS**
+
+```typescript
+class C {
+    foo() {
+        console.log("foo")
+    }
+}
+
+class Derived extends C {
+    foo() {
+        console.log("Extra")
+        super.foo()
+    }
+}
+
+function bar() {
+    console.log("bar")
+}
+
+let c1 = new C()
+let c2 = new C()
+c1.foo() // foo
+c2.foo() // foo
+
+let c3 = new Derived()
+c3.foo() // Extra foo
 ```
 
 ### 类型转换仅支持`as T`语法
@@ -2108,13 +2169,13 @@ function addNum(a: number, b: number): void {
 }
 ```
 
-### 不支持在函数中使用`this`
+### 不支持在函数和类的静态方法中使用`this`
 
 **规则：**`arkts-no-standalone-this`
 
 **级别：错误**
 
-ArkTS不支持在函数和静态方法中使用`this`。只能在方法中使用`this`。
+ArkTS不支持在函数和类的静态方法中使用`this`。只能在类的实例方法中使用`this`。
 
 **TypeScript**
 
@@ -3250,14 +3311,17 @@ console.log("x = " + x)
 **TypeScript**
 
 ```typescript
-var C = (function() {
-    function C(n: number) {
-        this.p = n // 只有在开启noImplicitThis选项时会产生编译时错误
+const C = (function () {
+    class Cl {
+        static static_value = "static_value";
+        static any_value: any = "any_value";
+        string_field = "string_field";
     }
-    C.staticProperty = 0
-    return C
-})()
-C.staticProperty = 1
+
+    return Cl;
+})();
+
+C.prop = 2;
 ```
 
 **ArkTS**
