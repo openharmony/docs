@@ -506,7 +506,7 @@ off(type: 'audioInterrupt'): void
 
 取消订阅标记事件。
 
-**系统能力：** SystemCapability.Multimedia.Audio.Renderer
+**系统能力：** SystemCapability.Multimedia.SystemSound.Core
 
 **参数：**
 
