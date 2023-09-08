@@ -5024,12 +5024,11 @@ aVCastController.off('error')
 
 | 名称         | 类型                    | 必填  | 说明                     |
 | ------------ | ----------------------- | ---- | ----------------------- |
-| mediaId      | string                  | 是   | 播放列表媒体ID。          |
+| assetId      | string                  | 是   | 播放列表媒体ID。          |
 | title        | string                  | 否   | 播放列表媒体标题。        |
 | subtitle     | string                  | 否   | 播放列表媒体子标题。      |
 | description  | string                  | 否   | 播放列表媒体描述的文本。   |
-| icon         | image.PixelMap          | 否   | 播放列表媒体图片像素数据。 |
-| iconUri      | string                  | 否   | 播放列表媒体图片路径地址。 |
+| mediaImage | image.PixelMap          | 否   | 播放列表媒体图片像素数据。 |
 | extras       | {[key: string]: any}    | 否   | 播放列表媒体额外字段。     |
 | mediaUri     | string                  | 否   | 播放列表媒体URI。         |
 | mediaType     | string                  | 否   | 播放列表媒体类型。         |
