@@ -153,7 +153,7 @@
              return;
            }
            let buffer: ArrayBuffer;
-           if (imgComponent.byteBuffer) {
+           if (imgComponent.byteBuffer as ArrayBuffer) {
              buffer = imgComponent.byteBuffer;
            } else {
              return;
