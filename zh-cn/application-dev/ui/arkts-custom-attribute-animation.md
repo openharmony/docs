@@ -45,7 +45,7 @@ struct AnimatablePropertyExample {
 
 
 ```ts
-declare type Point = [x: number, y: number];
+declare type Point = Object[];
 
 // 定义可动画属性接口的参数类型，实现AnimtableArithmetic<T>接口中加法、减法、乘法和判断相等函数
 class PointClass extends Array<number> {

@@ -1715,7 +1715,7 @@ listen(address: NetAddress, callback: AsyncCallback\<void\>): void
 | 2303109  | Bad file number.                            |
 | 2303111  | Resource temporarily unavailable try again. |
 | 2303198  | Address already in use.                     |
-| 2303199  | Address not available.            |
+| 2303199  | Cannot assign requested address.            |
 
 **示例：**
 
@@ -1765,7 +1765,7 @@ listen(address: NetAddress): Promise\<void\>
 | 2303109  | Bad file number.                            |
 | 2303111  | Resource temporarily unavailable try again. |
 | 2303198  | Address already in use.                     |
-| 2303199  | Address not available.            |
+| 2303199  | Cannot assign requested address.            |
 
 **示例：**
 
@@ -1805,7 +1805,7 @@ getState(callback: AsyncCallback\<SocketStateBase\>): void
 | 401      | Parameter error.                |
 | 201      | Permission denied.              |
 | 2300002  | System internal error.          |
-| 2303188  | Not a socket. |
+| 2303188  | Socket operation on non-socket. |
 
 **示例：**
 
@@ -1852,7 +1852,7 @@ getState(): Promise\<SocketStateBase\>
 | -------- | ------------------------------- |
 | 201      | Permission denied.              |
 | 2300002  | System internal error.          |
-| 2303188  | Not a socket. |
+| 2303188  | Socket operation on non-socket. |
 
 **示例：**
 
@@ -1899,7 +1899,7 @@ setExtraOptions(options: TCPExtraOptions, callback: AsyncCallback\<void\>): void
 | 401      | Parameter error.                |
 | 201      | Permission denied.              |
 | 2300002  | System internal error.          |
-| 2303188  | Not a socket. |
+| 2303188  | Socket operation on non-socket. |
 
 **示例：**
 
@@ -1962,7 +1962,7 @@ setExtraOptions(options: TCPExtraOptions): Promise\<void\>
 | 401      | Parameter error.                |
 | 201      | Permission denied.              |
 | 2300002  | System internal error.          |
-| 2303188  | Not a socket. |
+| 2303188  | Socket operation on non-socket. |
 
 **示例：**
 
@@ -2338,7 +2338,7 @@ getRemoteAddress(callback: AsyncCallback\<NetAddress\>): void
 | 401      | Parameter error.                |
 | 201      | Permission denied.              |
 | 2300002  | System internal error.          |
-| 2303188  | Not a socket. |
+| 2303188  | Socket operation on non-socket. |
 
 **示例：**
 
@@ -2380,7 +2380,7 @@ getRemoteAddress(): Promise\<NetAddress\>
 | -------- | ------------------------------- |
 | 201      | Permission denied.              |
 | 2300002  | System internal error.          |
-| 2303188  | Not a socket. |
+| 2303188  | Socket operation on non-socket. |
 
 **示例：**
 
@@ -2751,7 +2751,7 @@ getState(callback: AsyncCallback\<SocketStateBase\>): void
 
 | 错误码ID | 错误信息                        |
 | ------- | ------------------------------ |
-| 2303188 | Not a socket.|
+| 2303188 | Socket operation on non-socket.|
 | 2300002 | System internal error.         |
 
 **示例：**
@@ -2791,7 +2791,7 @@ getState(): Promise\<SocketStateBase\>
 
 | 错误码ID | 错误信息                        |
 | ------- | ------------------------------ |
-| 2303188 | Not a socket.|
+| 2303188 | Socket operation on non-socket.|
 | 2300002 | System internal error.         |
 
 **示例：**
@@ -2831,7 +2831,7 @@ setExtraOptions(options: TCPExtraOptions, callback: AsyncCallback\<void\>): void
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
 | 401     | Parameter error.               |
-| 2303188 | Not a socket.|
+| 2303188 | Socket operation on non-socket.|
 | 2300002 | System internal error.         |
 
 **示例：**
@@ -2888,7 +2888,7 @@ setExtraOptions(options: TCPExtraOptions): Promise\<void\>
 | 错误码ID | 错误信息                        |
 | ------- | ------------------------------ |
 | 401     | Parameter error.               |
-| 2303188 | Not a socket.|
+| 2303188 | Socket operation on non-socket.|
 | 2300002 | System internal error.         |
 
 **示例：**
@@ -3132,10 +3132,10 @@ connect(options: TLSConnectOptions, callback: AsyncCallback\<void\>): void
 | 2303104 | Interrupted system call.                     |
 | 2303109 | Bad file number.                             |
 | 2303111 | Resource temporarily unavailable try again.  |
-| 2303188 | Not a socket.              |
+| 2303188 | Socket operation on non-socket.              |
 | 2303191 | Protocol wrong type for socket.              |
 | 2303198 | Address already in use.                      |
-| 2303199 | Address not available.             |
+| 2303199 | Cannot assign requested address.             |
 | 2303210 | Connection timed out.                        |
 | 2303501 | SSL is null.                                 |
 | 2303502 | Error in tls reading.                        |
@@ -3231,10 +3231,10 @@ connect(options: TLSConnectOptions): Promise\<void\>
 | 2303104 | Interrupted system call.                     |
 | 2303109 | Bad file number.                             |
 | 2303111 | Resource temporarily unavailable try again.  |
-| 2303188 | Not a socket.              |
+| 2303188 | Socket operation on non-socket.              |
 | 2303191 | Protocol wrong type for socket.              |
 | 2303198 | Address already in use.                      |
-| 2303199 | Address not available.             |
+| 2303199 | Cannot assign requested address.             |
 | 2303210 | Connection timed out.                        |
 | 2303501 | SSL is null.                                 |
 | 2303502 | Error in tls reading.                        |
@@ -3322,7 +3322,7 @@ getRemoteAddress(callback: AsyncCallback\<NetAddress\>): void
 
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
-| 2303188 | Not a socket.|
+| 2303188 | Socket operation on non-socket.|
 | 2300002 | System internal error.         |
 
 **示例：**
@@ -3355,7 +3355,7 @@ getRemoteAddress(): Promise\<NetAddress\>
 
 | 错误码ID | 错误信息                        |
 | ------- | ------------------------------ |
-| 2303188 | Not a socket.|
+| 2303188 | Socket operation on non-socket.|
 | 2300002 | System internal error.         |
 
 **示例：**
@@ -3943,7 +3943,7 @@ listen(options: TLSConnectOptions, callback: AsyncCallback\<void\>): void
 | 2303109  | Bad file number.                            |
 | 2303111  | Resource temporarily unavailable try again. |
 | 2303198  | Address already in use.                     |
-| 2303199  | Address not available.            |
+| 2303199  | Cannot assign requested address.            |
 | 2303501  | SSL is null.                                |
 | 2303502  | Error in tls reading.                       |
 | 2303503  | Error in tls writing                        |
@@ -4009,7 +4009,7 @@ listen(options: TLSConnectOptions): Promise\<void\>
 | 2303109  | Bad file number.                            |
 | 2303111  | Resource temporarily unavailable try again. |
 | 2303198  | Address already in use.                     |
-| 2303199  | Address not available.            |
+| 2303199  | Cannot assign requested address.            |
 | 2303501  | SSL is null.                                |
 | 2303502  | Error in tls reading.                       |
 | 2303503  | Error in tls writing                        |
@@ -4067,7 +4067,7 @@ getState(callback: AsyncCallback\<SocketStateBase\>): void
 | 错误码ID | 错误信息                        |
 | -------- | ------------------------------- |
 | 401      | Parameter error.                |
-| 2303188  | Not a socket. |
+| 2303188  | Socket operation on non-socket. |
 | 2300002  | System internal error.          |
 
 **示例：**
@@ -4127,7 +4127,7 @@ getState(): Promise\<SocketStateBase\>
 
 | 错误码ID | 错误信息                        |
 | -------- | ------------------------------- |
-| 2303188  | Not a socket. |
+| 2303188  | Socket operation on non-socket. |
 | 2300002  | System internal error.          |
 
 **示例：**
@@ -4189,7 +4189,7 @@ setExtraOptions(options: TCPExtraOptions, callback: AsyncCallback\<void\>): void
 | 错误码ID | 错误信息                        |
 | -------- | ------------------------------- |
 | 401      | Parameter error.                |
-| 2303188  | Not a socket. |
+| 2303188  | Socket operation on non-socket. |
 | 2300002  | System internal error.          |
 
 **示例：**
@@ -4264,7 +4264,7 @@ setExtraOptions(options: TCPExtraOptions): Promise\<void\>
 | 错误码ID | 错误信息                        |
 | -------- | ------------------------------- |
 | 401      | Parameter error.                |
-| 2303188  | Not a socket. |
+| 2303188  | Socket operation on non-socket. |
 | 2300002  | System internal error.          |
 
 **示例：**
@@ -5074,7 +5074,7 @@ getRemoteAddress(callback: AsyncCallback\<NetAddress\>): void
 | 错误码ID | 错误信息                        |
 | -------- | ------------------------------- |
 | 401      | Parameter error.                |
-| 2303188  | Not a socket. |
+| 2303188  | Socket operation on non-socket. |
 | 2300002  | System internal error.          |
 
 **示例：**
@@ -5132,7 +5132,7 @@ getRemoteAddress(): Promise\<NetAddress\>
 
 | 错误码ID | 错误信息                        |
 | -------- | ------------------------------- |
-| 2303188  | Not a socket. |
+| 2303188  | Socket operation on non-socket. |
 | 2300002  | System internal error.          |
 
 **示例：**

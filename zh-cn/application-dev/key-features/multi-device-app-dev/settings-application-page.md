@@ -60,9 +60,15 @@ struct Index {
 ```
 ```typescript
 //核心代码 SettingList.ets
+import { MainItem } from '../components/MainItem'
+import { ItemGroup } from '../components/ItemGroup'
+import { SearchBox } from '../components/SearchBox'
+import { MoreConnectionsItem } from '../moreconnections/MoreConnectionsItem'
+import { WlanSettingItem } from '../wlan/WlanSettingItem'
+        
 class  ItemObj {
   title?: Resource
-  tag?: string
+  tag?: Resource
   icon?:Resource
 }
 let bluetoothTab:ItemObj={
@@ -114,13 +120,7 @@ let aboutTab:ItemObj={
   title: $r('app.string.aboutTab'),
   icon: $r('app.media.aboutDevice'),
 }
-
-import { MainItem } from '../components/MainItem'
-import { ItemGroup } from '../components/ItemGroup'
-import { SearchBox } from '../components/SearchBox'
-import { MoreConnectionsItem } from '../moreconnections/MoreConnectionsItem'
-import { WlanSettingItem } from '../wlan/WlanSettingItem'
-
+        
 @Component
 export struct SettingList {
   @Builder

@@ -8,8 +8,9 @@
 
 ## 导入模块
 
-```js
+```ts
 import deviceManager from "@ohos.driver.deviceManager";
+import { BusinessError } from '@ohos.base';
 ```
 
 ## deviceManager.queryDevices
@@ -43,8 +44,8 @@ queryDevices(busType?: number): Array&lt;Readonly&lt;Device&gt;&gt;
 
 ```js
 try {
-  let devices = deviceManager.queryDevices(deviceManager.BusType.USB);
-  for (let item of devices) {
+  let devices : Array<Device> = deviceManager.queryDevices(deviceManager.BusType.USB);
+  for (let item : Device of devices : Array<Device>) {
     console.info('Device id is ${item.deviceId}')
   }
 } catch (error) {
@@ -83,7 +84,7 @@ bindDevice(deviceId: number, onDisconnect: AsyncCallback&lt;number&gt;,
 ```js
 try {
   // 12345678为示例deviceId，应用开发时可通过queryDevices查询到相应设备的deviceId作为入参
-  deviceManager.bindDevice(12345678, (error, data) => {
+  deviceManager.bindDevice(12345678, (error : BusinessError, data : MessageSequence) => {
     console.error('Device is disconnected');
   }, (error, data) => {
     if (error) {
@@ -137,7 +138,7 @@ try {
     console.error('Device is disconnected');
   }).then(data => {
     console.info('bindDevice success');
-  }, error => {
+  }, (error : BusinessError) => {
     console.error('bindDevice async fail. Code is ${error.code}, message is ${error.message}');
   });
 } catch (error) {
@@ -217,7 +218,7 @@ try {
   // 12345678为示例deviceId，应用开发时可通过queryDevices查询到相应设备的deviceId作为入参
   deviceManager.unbindDevice(12345678).then(data => {
     console.info('unbindDevice success');
-  }, error => {
+  }, (error : BusinessError) => {
     console.error('unbindDevice async fail. Code is ${error.code}, message is ${error.message}');
   });
 } catch (error) {

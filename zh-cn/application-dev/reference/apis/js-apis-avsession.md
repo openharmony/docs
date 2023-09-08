@@ -55,7 +55,7 @@ import { BusinessError } from '@ohos.base';
 
 let currentAVSession: avSession.AVSession;
 let tag = "createNewSession";
-let context: Context = this.context;
+let context: Context = getContext(this);
 let sessionId: string;  //供后续函数入参使用
 
 avSession.createAVSession(context, tag, "audio").then((data: avSession.AVSession) => {
@@ -99,7 +99,7 @@ import { BusinessError } from '@ohos.base';
 
 let currentAVSession: avSession.AVSession;
 let tag = "createNewSession";
-let context: Context = this.context;
+let context: Context = getContext(this);
 let sessionId: string;  //供后续函数入参使用
 
 avSession.createAVSession(context, tag, "audio", (err: BusinessError, data: avSession.AVSession) => {
@@ -337,22 +337,24 @@ createController(sessionId: string): Promise\<AVSessionController>
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let currentAVSession: avSession.AVSession;
+let currentAVSession: avSession.AVSession | undefined = undefined;
 let tag = "createNewSession";
-let context: Context = this.context;
-let sessionId: string;  //供后续函数入参使用
+let context: Context = getContext(this);
+let sessionId: string = "";  //供后续函数入参使用
 
 avSession.createAVSession(context, tag, "audio", (err: BusinessError, data: avSession.AVSession) => {
   if (err) {
     console.info(`CreateAVSession BusinessError: code: ${err.code}, message: ${err.message}`);
   } else {
     currentAVSession = data;
-    sessionId = currentAVSession.sessionId;
+    if (currentAVSession !== undefined) {
+      sessionId = currentAVSession.sessionId;
+    }
     console.info(`CreateAVSession : SUCCESS : sessionId = ${sessionId}`);
   }
 });
 
-let currentAVcontroller: avSession.AVSessionController;
+let currentAVcontroller: avSession.AVSessionController | undefined = undefined;
 avSession.createController(sessionId).then((avcontroller: avSession.AVSessionController) => {
   currentAVcontroller = avcontroller;
   console.info('CreateController : SUCCESS ');
@@ -393,22 +395,24 @@ createController(sessionId: string, callback: AsyncCallback\<AVSessionController
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let currentAVSession: avSession.AVSession;
+let currentAVSession: avSession.AVSession | undefined = undefined;
 let tag = "createNewSession";
-let context: Context = this.context;
-let sessionId: string;  //供后续函数入参使用
+let context: Context = getContext(this);
+let sessionId: string = "";  //供后续函数入参使用
 
 avSession.createAVSession(context, tag, "audio", (err: BusinessError, data: avSession.AVSession) => {
   if (err) {
     console.info(`CreateAVSession BusinessError: code: ${err.code}, message: ${err.message}`);
   } else {
     currentAVSession = data;
-    sessionId = currentAVSession.sessionId;
+    if (currentAVSession !== undefined) {
+      sessionId = currentAVSession.sessionId;
+    }
     console.info(`CreateAVSession : SUCCESS : sessionId = ${sessionId}`);
   }
 });
 
-let currentAVcontroller: avSession.AVSessionController;
+let currentAVcontroller: avSession.AVSessionController | undefined = undefined;
 avSession.createController(sessionId, (err: BusinessError, avcontroller: avSession.AVSessionController) => {
   if (err) {
     console.error(`CreateController BusinessError: code: ${err.code}, message: ${err.message}`);
@@ -463,7 +467,7 @@ import { BusinessError } from '@ohos.base';
 
 let audioManager = audio.getAudioManager();
 let audioRoutingManager = audioManager.getRoutingManager();
-let audioDevices: audio.AudioDeviceDescriptors;
+let audioDevices: audio.AudioDeviceDescriptors | undefined = undefined;
 audioRoutingManager.getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG).then((data) => {
   audioDevices = data;
   console.info(`Promise returned to indicate that the device list is obtained.`);
@@ -471,11 +475,13 @@ audioRoutingManager.getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG).then((data)
   console.error(`GetDevices BusinessError: code: ${err.code}, message: ${err.message}`);
 });
 
-avSession.castAudio('all', audioDevices).then(() => {
-  console.info(`CreateController : SUCCESS`);
-}).catch((err: BusinessError) => {
-  console.error(`CreateController BusinessError: code: ${err.code}, message: ${err.message}`);
-});
+if (audioDevices !== undefined) {
+  avSession.castAudio('all', audioDevices as audio.AudioDeviceDescriptors).then(() => {
+    console.info(`CreateController : SUCCESS`);
+  }).catch((err: BusinessError) => {
+    console.error(`CreateController BusinessError: code: ${err.code}, message: ${err.message}`);
+  });
+}
 ```
 
 ## avSession.castAudio
@@ -517,7 +523,7 @@ import { BusinessError } from '@ohos.base';
 
 let audioManager = audio.getAudioManager();
 let audioRoutingManager = audioManager.getRoutingManager();
-let audioDevices: audio.AudioDeviceDescriptors;
+let audioDevices: audio.AudioDeviceDescriptors | undefined = undefined;
 audioRoutingManager.getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG).then((data) => {
   audioDevices = data;
   console.info(`Promise returned to indicate that the device list is obtained.`);
@@ -525,13 +531,15 @@ audioRoutingManager.getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG).then((data)
   console.error(`GetDevices BusinessError: code: ${err.code}, message: ${err.message}`);
 });
 
-avSession.castAudio('all', audioDevices, (err: BusinessError) => {
-  if (err) {
-    console.error(`CastAudio BusinessError: code: ${err.code}, message: ${err.message}`);
-  } else {
-    console.info(`CastAudio : SUCCESS `);
-  }
-});
+if (audioDevices !== undefined) {
+  avSession.castAudio('all', audioDevices as audio.AudioDeviceDescriptors, (err: BusinessError) => {
+    if (err) {
+      console.error(`CastAudio BusinessError: code: ${err.code}, message: ${err.message}`);
+    } else {
+      console.info(`CastAudio : SUCCESS `);
+    }
+  });
+}
 ```
 
 ## SessionToken
@@ -1284,16 +1292,11 @@ on(type: 'deviceAvailable', callback: (device: OutputDeviceInfo) => void): void
 | type     | string               | 是   | 事件回调类型，支持事件`'deviceAvailable'`，有设备被发现时触发回调。 |
 | callback | (device: OutputDeviceInfo) => void | 是   | 回调函数。当监听事件注册成功，err为undefined，否则返回错误对象。                                |
 
-**错误码：**
-以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
-
-| 错误码ID | 错误信息 |
-| -------- | ---------------------------------------- |
-| 6600101  | Session service exception. |
-
 **示例：**
 
 ```ts
+import avSession from '@ohos.multimedia.avsession';
+
 let castDevice: avSession.OutputDeviceInfo;
 avSession.on('deviceAvailable', (device: avSession.OutputDeviceInfo) => {
   castDevice = device;
@@ -1316,13 +1319,6 @@ off(type: 'deviceAvailable', callback?: (device: OutputDeviceInfo) => void): voi
 | 参数名    | 类型                    | 必填  |      说明                                               |
 | ------   | ---------------------- | ---- | ------------------------------------------------------- |
 | type     | string                 | 是    | 事件回调类型，支持事件`'deviceAvailable'`：设备发现回调。|
-
-**错误码：**
-以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
-
-| 错误码ID | 错误信息 |
-| -------- | ---------------------------------------- |
-| 6600101  | Session service exception. |
 
 **示例：**
 
@@ -1362,17 +1358,19 @@ getAVCastController(sessionId: string, callback: AsyncCallback\<AVCastController
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let currentAVSession: avSession.AVSession;
+let currentAVSession: avSession.AVSession | undefined = undefined;
 let tag = "createNewSession";
-let context: Context = this.context;
-let sessionId: string;  //供后续函数入参使用
+let context: Context = getContext(this);
+let sessionId: string = "";  //供后续函数入参使用
 
 avSession.createAVSession(context, tag, "audio", (err: BusinessError, data: avSession.AVSession) => {
   if (err) {
     console.info(`CreateAVSession BusinessError: code: ${err.code}, message: ${err.message}`);
   } else {
     currentAVSession = data;
-    sessionId = currentAVSession.sessionId;
+    if (currentAVSession !== undefined) {
+      sessionId = currentAVSession.sessionId;
+    }
     console.info(`CreateAVSession : SUCCESS : sessionId = ${sessionId}`);
   }
 });
@@ -1425,17 +1423,19 @@ getAVCastController(sessionId: string): Promise\<AVCastController>;
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let currentAVSession: avSession.AVSession;
+let currentAVSession: avSession.AVSession | undefined = undefined;
 let tag = "createNewSession";
-let context: Context = this.context;
-let sessionId: string;  //供后续函数入参使用
+let context: Context = getContext(this);
+let sessionId: string = "";  //供后续函数入参使用
 
 avSession.createAVSession(context, tag, "audio", (err: BusinessError, data: avSession.AVSession) => {
   if (err) {
     console.info(`CreateAVSession BusinessError: code: ${err.code}, message: ${err.message}`);
   } else {
     currentAVSession = data;
-    sessionId = currentAVSession.sessionId;
+    if (currentAVSession !== undefined) {
+      sessionId = currentAVSession.sessionId;
+    }
     console.info(`CreateAVSession : SUCCESS : sessionId = ${sessionId}`);
   }
 });
@@ -1483,17 +1483,19 @@ startCasting(session: SessionToken, device: OutputDeviceInfo, callback: AsyncCal
 import avSession from '@ohos.multimedia.avsession';
 import { BusinessError } from '@ohos.base';
 
-let currentAVSession: avSession.AVSession;
+let currentAVSession: avSession.AVSession | undefined = undefined;
 let tag = "createNewSession";
-let context: Context = this.context;
-let sessionId: string;  //供后续函数入参使用
+let context: Context = getContext(this);
+let sessionId: string = "";  //供后续函数入参使用
 
 avSession.createAVSession(context, tag, "audio", (err: BusinessError, data: avSession.AVSession) => {
   if (err) {
     console.info(`CreateAVSession BusinessError: code: ${err.code}, message: ${err.message}`);
   } else {
     currentAVSession = data;
-    sessionId = currentAVSession.sessionId;
+    if (currentAVSession !== undefined) {
+      sessionId = currentAVSession.sessionId;
+    }
     console.info(`CreateAVSession : SUCCESS : sessionId = ${sessionId}`);
   }
 });
@@ -1501,18 +1503,20 @@ avSession.createAVSession(context, tag, "audio", (err: BusinessError, data: avSe
 let myToken: avSession.SessionToken = {
   sessionId: sessionId,
 }
-let castDevice: avSession.OutputDeviceInfo;
+let castDevice: avSession.OutputDeviceInfo | undefined = undefined;
 avSession.on('deviceAvailable', (device: avSession.OutputDeviceInfo) => {
   castDevice = device;
   console.info(`on deviceAvailable  : ${device} `);
 });
-avSession.startCasting(myToken, castDevice, (err: BusinessError) => {
-  if (err) {
-    console.error(`startCasting BusinessError: code: ${err.code}, message: ${err.message}`);
-  } else {
-    console.info(`startCasting successfully`);
-  }
-});
+if (castDevice !== undefined) {
+  avSession.startCasting(myToken, castDevice, (err: BusinessError) => {
+    if (err) {
+      console.error(`startCasting BusinessError: code: ${err.code}, message: ${err.message}`);
+    } else {
+      console.info(`startCasting successfully`);
+    }
+  });
+}
 ```
 
 ## avSession.startCasting<sup>10+</sup>
@@ -1554,17 +1558,19 @@ startCasting(session: SessionToken, device: OutputDeviceInfo): Promise\<void>
 import avSession from '@ohos.multimedia.avsession';
 import { BusinessError } from '@ohos.base';
 
-let currentAVSession: avSession.AVSession;
+let currentAVSession: avSession.AVSession | undefined = undefined;
 let tag = "createNewSession";
-let context: Context = this.context;
-let sessionId: string;  //供后续函数入参使用
+let context: Context = getContext(this);
+let sessionId: string = "";  //供后续函数入参使用
 
 avSession.createAVSession(context, tag, "audio", (err: BusinessError, data: avSession.AVSession) => {
   if (err) {
     console.info(`CreateAVSession BusinessError: code: ${err.code}, message: ${err.message}`);
   } else {
     currentAVSession = data;
-    sessionId = currentAVSession.sessionId;
+    if (currentAVSession !== undefined) {
+      sessionId = currentAVSession.sessionId;
+    }
     console.info(`CreateAVSession : SUCCESS : sessionId = ${sessionId}`);
   }
 });
@@ -1572,16 +1578,18 @@ avSession.createAVSession(context, tag, "audio", (err: BusinessError, data: avSe
 let myToken: avSession.SessionToken = {
   sessionId: sessionId,
 }
-let castDevice: avSession.OutputDeviceInfo;
+let castDevice: avSession.OutputDeviceInfo | undefined = undefined;
 avSession.on('deviceAvailable', (device: avSession.OutputDeviceInfo) => {
   castDevice = device;
   console.info(`on deviceAvailable  : ${device} `);
 });
-avSession.startCasting(myToken, castDevice).then(() => {
-  console.info(`startCasting successfully`);
-}).catch((err: BusinessError) => {
-  console.error(`startCasting BusinessError: code: ${err.code}, message: ${err.message}`);
-});
+if (castDevice !== undefined) {
+  avSession.startCasting(myToken, castDevice).then(() => {
+    console.info(`startCasting successfully`);
+  }).catch((err: BusinessError) => {
+    console.error(`startCasting BusinessError: code: ${err.code}, message: ${err.message}`);
+  });
+}
 ```
 
 ## avSession.stopCasting<sup>10+</sup>
@@ -1614,17 +1622,19 @@ stopCasting(session: SessionToken, callback: AsyncCallback\<void>): void
 import avSession from '@ohos.multimedia.avsession';
 import { BusinessError } from '@ohos.base';
 
-let currentAVSession: avSession.AVSession;
+let currentAVSession: avSession.AVSession | undefined = undefined;
 let tag = "createNewSession";
-let context: Context = this.context;
-let sessionId: string;  //供后续函数入参使用
+let context: Context = getContext(this);
+let sessionId: string = "";  //供后续函数入参使用
 
 avSession.createAVSession(context, tag, "audio", (err: BusinessError, data: avSession.AVSession) => {
   if (err) {
     console.info(`CreateAVSession BusinessError: code: ${err.code}, message: ${err.message}`);
   } else {
     currentAVSession = data;
-    sessionId = currentAVSession.sessionId;
+    if (currentAVSession !== undefined) {
+      sessionId = currentAVSession.sessionId;
+    }
     console.info(`CreateAVSession : SUCCESS : sessionId = ${sessionId}`);
   }
 });
@@ -1676,17 +1686,19 @@ stopCasting(session: SessionToken): Promise\<void>
 import avSession from '@ohos.multimedia.avsession';
 import { BusinessError } from '@ohos.base';
 
-let currentAVSession: avSession.AVSession;
+let currentAVSession: avSession.AVSession | undefined = undefined;
 let tag = "createNewSession";
-let context: Context = this.context;
-let sessionId: string;  //供后续函数入参使用
+let context: Context = getContext(this);
+let sessionId: string = "";  //供后续函数入参使用
 
 avSession.createAVSession(context, tag, "audio", (err: BusinessError, data: avSession.AVSession) => {
   if (err) {
     console.info(`CreateAVSession BusinessError: code: ${err.code}, message: ${err.message}`);
   } else {
     currentAVSession = data;
-    sessionId = currentAVSession.sessionId;
+    if (currentAVSession !== undefined) {
+      sessionId = currentAVSession.sessionId;
+    }
     console.info(`CreateAVSession : SUCCESS : sessionId = ${sessionId}`);
   }
 });
@@ -1699,6 +1711,7 @@ avSession.stopCasting(myToken).then(() => {
 }).catch((err: BusinessError) => {
   console.error(`stopCasting BusinessError: code: ${err.code}, message: ${err.message}`);
 });
+
 
 ```
 
@@ -1728,6 +1741,8 @@ avSession.stopCasting(myToken).then(() => {
 
 **示例：**
 ```ts
+import avSession from '@ohos.multimedia.avsession';
+
 let sessionId: string = currentAVSession.sessionId;
 let sessionType: avSession.AVSessionType = currentAVSession.sessionType;
 ```
@@ -2115,9 +2130,9 @@ dispatchSessionEvent(event: string, args: {[key: string]: Object}): Promise\<voi
 import avSession from '@ohos.multimedia.avsession';
 import { BusinessError } from '@ohos.base';
 
-let currentAVSession: avSession.AVSession;
+let currentAVSession: avSession.AVSession | undefined = undefined;
 let tag = "createNewSession";
-let context: Context = this.context;
+let context: Context = getContext(this);
 
 avSession.createAVSession(context, tag, "audio", (err: BusinessError, data: avSession.AVSession) => {
   if (err) {
@@ -2127,12 +2142,13 @@ avSession.createAVSession(context, tag, "audio", (err: BusinessError, data: avSe
   }
 });
 let eventName = "dynamic_lyric";
-
-currentAVSession.dispatchSessionEvent(eventName, {lyric : "This is lyric"}).then(() => {
-  console.info(`dispatchSessionEvent successfully`);
-}).catch((err: BusinessError) => {
-  console.info(`dispatchSessionEvent BusinessError: code: ${err.code}, message: ${err.message}`);
-})
+if (currentAVSession !== undefined) {
+  (currentAVSession as avSession.AVSession).dispatchSessionEvent(eventName, {lyric : "This is lyric"}).then(() => {
+    console.info(`dispatchSessionEvent successfully`);
+  }).catch((err: BusinessError) => {
+    console.info(`dispatchSessionEvent BusinessError: code: ${err.code}, message: ${err.message}`);
+  })
+}
 ```
 
 ### dispatchSessionEvent<sup>10+</sup>
@@ -2168,9 +2184,9 @@ dispatchSessionEvent(event: string, args: {[key: string]: Object}, callback: Asy
 import avSession from '@ohos.multimedia.avsession';
 import { BusinessError } from '@ohos.base';
 
-let currentAVSession: avSession.AVSession;
+let currentAVSession: avSession.AVSession | undefined = undefined;
 let tag = "createNewSession";
-let context: Context = this.context;
+let context: Context = getContext(this);
 
 avSession.createAVSession(context, tag, "audio", (err: BusinessError, data: avSession.AVSession) => {
   if (err) {
@@ -2179,12 +2195,14 @@ avSession.createAVSession(context, tag, "audio", (err: BusinessError, data: avSe
     currentAVSession = data;
   }
 });
-let eventName = "dynamic_lyric";
-currentAVSession.dispatchSessionEvent(eventName, {lyric : "This is lyric"}, (err: BusinessError) => {
-  if(err) {
-    console.error(`dispatchSessionEvent BusinessError: code: ${err.code}, message: ${err.message}`);
-  }
-})
+let eventName: string = "dynamic_lyric";
+if (currentAVSession !== undefined) {
+  (currentAVSession as avSession.AVSession).dispatchSessionEvent(eventName, {lyric : "This is lyric"}, (err: BusinessError) => {
+    if(err) {
+      console.error(`dispatchSessionEvent BusinessError: code: ${err.code}, message: ${err.message}`);
+    }
+  })
+}
 ```
 
 ### setAVQueueItems<sup>10+</sup>
@@ -2223,14 +2241,23 @@ import resourceManager from '@ohos.resourceManager';
 import { BusinessError } from '@ohos.base';
 import avSession from '@ohos.multimedia.avsession';
 
-let value: Uint8Array = resourceManager.getRawFileContent('IMAGE_URI');
-let imageSource: image.ImageSource = image.createImageSource(value.buffer);
-let imagePixel: image.PixelMap;
-imageSource.createPixelMap({desiredSize:{width: 150, height: 150}}).then((data) => {
-  imagePixel = data;
-}).catch((err: BusinessError) => {
-  console.error(`createPixelMap BusinessError: code: ${err.code}, message: ${err.message}`);
-})
+let value: Uint8Array | undefined = undefined;
+let imageSource: image.ImageSource | undefined = undefined;
+resourceManager.getSystemResourceManager().getRawFileContent('IMAGE_URI').then((data) => {
+  value = data;
+});
+if (value !== undefined) {
+  imageSource = image.createImageSource((value as Uint8Array).buffer);
+}
+let imagePixel: image.PixelMap | undefined = undefined;
+if (imageSource !== undefined) {
+  (imageSource as image.ImageSource).createPixelMap({desiredSize:{width: 150, height: 150}}).then((data) => {
+    imagePixel = data;
+  }).catch((err: BusinessError) => {
+    console.error(`createPixelMap BusinessError: code: ${err.code}, message: ${err.message}`);
+  })
+}
+
 let queueItemDescription_1: avSession.AVMediaDescription = {
   assetId: '001',
   title: 'music_name',
@@ -2294,14 +2321,22 @@ import resourceManager from '@ohos.resourceManager';
 import { BusinessError } from '@ohos.base';
 import avSession from '@ohos.multimedia.avsession';
 
-let value: Uint8Array = resourceManager.getRawFileContent('IMAGE_URI');
-let imageSource: image.ImageSource = image.createImageSource(value.buffer);
-let imagePixel: image.PixelMap;
-imageSource.createPixelMap({desiredSize:{width: 150, height: 150}}).then((data) => {
-  imagePixel = data;
-}).catch((err: BusinessError) => {
-  console.error(`createPixelMap BusinessError: code: ${err.code}, message: ${err.message}`);
-})
+let value: Uint8Array | undefined = undefined;
+let imageSource: image.ImageSource | undefined = undefined;
+resourceManager.getSystemResourceManager().getRawFileContent('IMAGE_URI').then((data) => {
+  value = data;
+});
+if (value !== undefined) {
+  imageSource = image.createImageSource((value as Uint8Array).buffer);
+}
+let imagePixel: image.PixelMap | undefined = undefined;
+if (imageSource !== undefined) {
+  (imageSource as image.ImageSource).createPixelMap({desiredSize:{width: 150, height: 150}}).then((data) => {
+    imagePixel = data;
+  }).catch((err: BusinessError) => {
+    console.error(`createPixelMap BusinessError: code: ${err.code}, message: ${err.message}`);
+  })
+}
 let queueItemDescription_1: avSession.AVMediaDescription = {
   assetId: '001',
   title: 'music_name',
@@ -2452,9 +2487,9 @@ setExtras(extras: {[key: string]: Object}): Promise\<void>
 import avSession from '@ohos.multimedia.avsession';
 import { BusinessError } from '@ohos.base';
 
-let currentAVSession: avSession.AVSession;
+let currentAVSession: avSession.AVSession | undefined = undefined;
 let tag = "createNewSession";
-let context: Context = this.context;
+let context: Context = getContext(this);
 
 avSession.createAVSession(context, tag, "audio", (err: BusinessError, data: avSession.AVSession) => {
   if (err) {
@@ -2463,9 +2498,13 @@ avSession.createAVSession(context, tag, "audio", (err: BusinessError, data: avSe
     currentAVSession = data;
   }
 });
-currentAVSession.setExtras({"extras" : "This is custom media packet"}).catch((err: BusinessError) => {
-  console.info(`setExtras BusinessError: code: ${err.code}, message: ${err.message}`);
-})
+if (currentAVSession !== undefined) {
+  (currentAVSession as avSession.AVSession).setExtras({extras : "This is custom media packet"}).then(() => {
+    console.info(`setExtras successfully`);
+  }).catch((err: BusinessError) => {
+    console.info(`setExtras BusinessError: code: ${err.code}, message: ${err.message}`);
+  })
+}
 ```
 
 ### setExtras<sup>10+</sup>
@@ -2500,9 +2539,9 @@ setExtras(extras: {[key: string]: Object}, callback: AsyncCallback\<void>): void
 import avSession from '@ohos.multimedia.avsession';
 import { BusinessError } from '@ohos.base';
 
-let currentAVSession: avSession.AVSession;
+let currentAVSession: avSession.AVSession | undefined = undefined;
 let tag = "createNewSession";
-let context: Context = this.context;
+let context: Context = getContext(this);
 
 avSession.createAVSession(context, tag, "audio", (err: BusinessError, data: avSession.AVSession) => {
   if (err) {
@@ -2511,11 +2550,13 @@ avSession.createAVSession(context, tag, "audio", (err: BusinessError, data: avSe
     currentAVSession = data;
   }
 });
-currentAVSession.setExtras({"extras" : "This is custom media packet"}, (err: BusinessError) => {
-  if(err) {
-    console.error(`setExtras BusinessError: code: ${err.code}, message: ${err.message}`);
-  }
-})
+if (currentAVSession !== undefined) {
+  (currentAVSession as avSession.AVSession).setExtras({extras : "This is custom media packet"}, (err: BusinessError) => {
+    if(err) {
+      console.error(`setExtras BusinessError: code: ${err.code}, message: ${err.message}`);
+    }
+  })
+}
 ```
 
 ### getController<sup>10+</sup>
@@ -2609,10 +2650,10 @@ getAVCastController(callback: AsyncCallback\<AVCastController>): void
 **错误码：**
 以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
 
-| 错误码ID | 错误信息 |
-| -------- | ---------------------------------------- |
-| 6600102  | The session does not exist. |
-| 6600110  | The remote connection is not established. |
+| 错误码ID | 错误信息                                  |
+| -------- |---------------------------------------|
+| 6600102  | The session does not exist.           |
+| 6600110  | The remote connection does not exist. |
 
 **示例：**
 
@@ -2646,9 +2687,9 @@ getAVCastController(): Promise\<AVCastController>;
 以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
 
 | 错误码ID | 错误信息 |
-| -------- | ---------------------------------------- |
+| -------- | --------------------------------------- |
 | 6600102  | The session does not exist. |
-| 6600110  | The remote connection is not established. |
+| 6600110  | The remote connection does not exist. |
 
 **示例：**
 
@@ -3415,9 +3456,9 @@ on(type: 'commonCommand', callback: (command: string, args: {[key: string]: Obje
 ```ts
 import { BusinessError } from '@ohos.base';
 import avSession from '@ohos.multimedia.avsession';
-let currentAVSession: avSession.AVSession;
+let currentAVSession: avSession.AVSession | undefined = undefined;
 let tag = "createNewSession";
-let context: Context = this.context;
+let context: Context = getContext(this);
 
 avSession.createAVSession(context, tag, "audio", (err: BusinessError, data: avSession.AVSession) => {
   if (err) {
@@ -3426,9 +3467,11 @@ avSession.createAVSession(context, tag, "audio", (err: BusinessError, data: avSe
     currentAVSession = data;
   }
 });
-currentAVSession.on('commonCommand', (commonCommand, args) => {
-  console.info(`OnCommonCommand, the command is ${commonCommand}, args: ${JSON.stringify(args)}`);
-});
+if (currentAVSession !== undefined) {
+  (currentAVSession as avSession.AVSession).on('commonCommand', (commonCommand, args) => {
+    console.info(`OnCommonCommand, the command is ${commonCommand}, args: ${JSON.stringify(args)}`);
+  });
+}
 ```
 
 ### off('play')<sup>10+</sup>
@@ -4225,6 +4268,7 @@ prepare(item: AVQueueItem, callback: AsyncCallback\<void>): void
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 6600101  | Session service exception. |
+| 6600109  | The remote connection is not established. |
 
 **示例：**
 
@@ -4287,6 +4331,7 @@ prepare(item: AVQueueItem): Promise\<void>
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 6600101  | Session service exception. |
+| 6600109  | The remote connection is not established. |
 
 
 **示例：**
@@ -4341,6 +4386,7 @@ start(item: AVQueueItem, callback: AsyncCallback\<void>): void
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 6600101  | Session service exception. |
+| 6600109  | The remote connection is not established. |
 
 **示例：**
 
@@ -4403,6 +4449,7 @@ start(item: AVQueueItem): Promise\<void>
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 6600101  | Session service exception. |
+| 6600109  | The remote connection is not established. |
 
 
 **示例：**
@@ -4810,8 +4857,16 @@ on(type: 'videoSizeChange', callback: (width:number, height:number) => void): vo
 **参数：**
 
 | 参数名   | 类型         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------- |
 | type     | string      | 是   | 事件回调类型，支持事件`'videoSizeChange'`：当video尺寸更改时，触发该事件。 |
 | callback | (width:number, height:number) => void    | 是   | 回调函数，返回video的宽度和高度     |
+
+**错误码：**
+以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------- |
+| 6600101  | Session service exception. |
 
 **示例：**
 
@@ -4835,7 +4890,15 @@ off(type: 'videoSizeChange'): void
 **参数：**
 
 | 参数名   | 类型     | 必填 | 说明      |
+| -------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------- |
 | type     | string  | 是   | 取消对应的监听事件，支持事件`'videoSizeChange'`。    |
+
+**错误码：**
+以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------- |
+| 6600101  | Session service exception. |
 
 **示例：**
 
@@ -4870,6 +4933,7 @@ on(type: 'error', callback: ErrorCallback): void
 | 5400104  | Time out.      |
 | 5400105  | Service died.         |
 | 5400106  | Unsupport format.     |
+| 6600101  | Session service exception.     |
 
 **示例：**
 
@@ -4908,6 +4972,7 @@ off(type: 'error'): void
 | 5400104  | Time out.      |
 | 5400105  | Service died.         |
 | 5400106  | Unsupport format.     |
+| 6600101  | Session service exception.     |
 
 **示例：**
 
@@ -6141,11 +6206,11 @@ sendCommonCommand(command: string, args: {[key: string]: Object}): Promise\<void
 import avSession from '@ohos.multimedia.avsession';
 import { BusinessError } from '@ohos.base';
 
-let avSessionController: avSession.AVSessionController;
-let currentAVSession: avSession.AVSession;
+let avSessionController: avSession.AVSessionController | undefined = undefined;
+let currentAVSession: avSession.AVSession | undefined = undefined;
 let tag = "createNewSession";
-let context: Context = this.context;
-
+let context: Context = getContext(this);
+let sessionId: string = "";
 avSession.createAVSession(context, tag, "audio", (err: BusinessError, data: avSession.AVSession) => {
   if (err) {
     console.info(`CreateAVSession BusinessError: code: ${err.code}, message: ${err.message}`);
@@ -6153,18 +6218,23 @@ avSession.createAVSession(context, tag, "audio", (err: BusinessError, data: avSe
     currentAVSession = data;
   }
 });
-avSession.createController(currentAVSession.sessionId).then((controller: avSession.AVSessionController) => {
-  avSessionController = controller;
-}).catch((err: BusinessError) => {
-  console.error(`CreateController BusinessError: code: ${err.code}, message: ${err.message}`);
-});
+if (currentAVSession !== undefined) {
+  sessionId = (currentAVSession as avSession.AVSession).sessionId;
+  avSession.createController(sessionId).then((controller: avSession.AVSessionController) => {
+    avSessionController = controller;
+  }).catch((err: BusinessError) => {
+    console.error(`CreateController BusinessError: code: ${err.code}, message: ${err.message}`);
+  });
+}
 
 let commandName = "my_command";
-avSessionController.sendCommonCommand(commandName, {command : "This is my command"}).then(() => {
-  console.info(`SendCommonCommand successfully`);
-}).catch((err: BusinessError) => {
-  console.info(`SendCommonCommand BusinessError: code: ${err.code}, message: ${err.message}`);
-})
+if (avSessionController !== undefined) {
+  (avSessionController as avSession.AVSessionController).sendCommonCommand(commandName, {command : "This is my command"}).then(() => {
+    console.info(`SendCommonCommand successfully`);
+  }).catch((err: BusinessError) => {
+    console.info(`SendCommonCommand BusinessError: code: ${err.code}, message: ${err.message}`);
+  })
+}
 ```
 
 ### sendCommonCommand<sup>10+</sup>
@@ -6203,10 +6273,10 @@ sendCommonCommand(command: string, args: {[key: string]: Object}, callback: Asyn
 ```ts
 import avSession from '@ohos.multimedia.avsession';
 import { BusinessError } from '@ohos.base';
-let avSessionController: avSession.AVSessionController;
-let currentAVSession: avSession.AVSession;
+let avSessionController: avSession.AVSessionController | undefined = undefined;
+let currentAVSession: avSession.AVSession | undefined = undefined;
 let tag = "createNewSession";
-let context: Context = this.context;
+let context: Context = getContext(this);
 
 avSession.createAVSession(context, tag, "audio", (err: BusinessError, data: avSession.AVSession) => {
   if (err) {
@@ -6215,18 +6285,22 @@ avSession.createAVSession(context, tag, "audio", (err: BusinessError, data: avSe
     currentAVSession = data;
   }
 });
-avSession.createController(currentAVSession.sessionId).then((controller: avSession.AVSessionController) => {
-  avSessionController = controller;
-}).catch((err: BusinessError) => {
-  console.error(`CreateController BusinessError: code: ${err.code}, message: ${err.message}`);
-});
+if (currentAVSession !== undefined) {
+  avSession.createController((currentAVSession as avSession.AVSession).sessionId).then((controller: avSession.AVSessionController) => {
+    avSessionController = controller;
+  }).catch((err: BusinessError) => {
+    console.error(`CreateController BusinessError: code: ${err.code}, message: ${err.message}`);
+  });
+}
 
 let commandName = "my_command";
-avSessionController.sendCommonCommand(commandName, {command : "This is my command"}, (err: BusinessError) => {
-  if(err) {
-    console.info(`SendCommonCommand BusinessError: code: ${err.code}, message: ${err.message}`);
-  }
-})
+if (avSessionController !== undefined) {
+  (avSessionController as avSession.AVSessionController).sendCommonCommand(commandName, {command : "This is my command"}, (err: BusinessError) => {
+    if(err) {
+        console.info(`SendCommonCommand BusinessError: code: ${err.code}, message: ${err.message}`);
+    }
+  })
+}
 ```
 
 ### getExtras<sup>10+</sup>
@@ -6259,10 +6333,10 @@ getExtras(): Promise\<{[key: string]: Object}>
 import avSession from '@ohos.multimedia.avsession';
 import { BusinessError } from '@ohos.base';
 
-let avSessionController: avSession.AVSessionController;
-let currentAVSession: avSession.AVSession;
+let avSessionController: avSession.AVSessionController | undefined = undefined;
+let currentAVSession: avSession.AVSession | undefined = undefined;
 let tag = "createNewSession";
-let context: Context = this.context;
+let context: Context = getContext(this);
 
 avSession.createAVSession(context, tag, "audio", (err: BusinessError, data: avSession.AVSession) => {
   if (err) {
@@ -6271,17 +6345,21 @@ avSession.createAVSession(context, tag, "audio", (err: BusinessError, data: avSe
     currentAVSession = data;
   }
 });
-avSession.createController(currentAVSession.sessionId).then((controller: avSession.AVSessionController) => {
-  avSessionController = controller;
-}).catch((err: BusinessError) => {
-  console.error(`CreateController BusinessError: code: ${err.code}, message: ${err.message}`);
-});
+if (currentAVSession !== undefined) {
+  avSession.createController((currentAVSession as avSession.AVSession).sessionId).then((controller: avSession.AVSessionController) => {
+    avSessionController = controller;
+  }).catch((err: BusinessError) => {
+    console.error(`CreateController BusinessError: code: ${err.code}, message: ${err.message}`);
+  });
+}
 
-avSessionController.getExtras().then((extras) => {
-  console.info(`getExtras : SUCCESS : ${extras}`);
-}).catch((err: BusinessError) => {
-  console.info(`getExtras BusinessError: code: ${err.code}, message: ${err.message}`);
-});
+if (avSessionController !== undefined) {
+  (avSessionController as avSession.AVSessionController).getExtras().then((extras) => {
+    console.info(`getExtras : SUCCESS : ${extras}`);
+  }).catch((err: BusinessError) => {
+    console.info(`getExtras BusinessError: code: ${err.code}, message: ${err.message}`);
+  });
+}
 ```
 
 ### getExtras<sup>10+</sup>
@@ -6314,10 +6392,10 @@ getExtras(callback: AsyncCallback\<{[key: string]: Object}>): void
 import avSession from '@ohos.multimedia.avsession';
 import { BusinessError } from '@ohos.base';
 
-let avSessionController: avSession.AVSessionController;
-let currentAVSession: avSession.AVSession;
+let avSessionController: avSession.AVSessionController | undefined = undefined;
+let currentAVSession: avSession.AVSession | undefined = undefined;
 let tag = "createNewSession";
-let context: Context = this.context;
+let context: Context = getContext(this);
 
 avSession.createAVSession(context, tag, "audio", (err: BusinessError, data: avSession.AVSession) => {
   if (err) {
@@ -6326,19 +6404,23 @@ avSession.createAVSession(context, tag, "audio", (err: BusinessError, data: avSe
     currentAVSession = data;
   }
 });
-avSession.createController(currentAVSession.sessionId).then((controller: avSession.AVSessionController) => {
-  avSessionController = controller;
-}).catch((err: BusinessError) => {
-  console.error(`CreateController BusinessError: code: ${err.code}, message: ${err.message}`);
-});
+if (currentAVSession !== undefined) {
+  avSession.createController((currentAVSession as avSession.AVSession).sessionId).then((controller: avSession.AVSessionController) => {
+    avSessionController = controller;
+  }).catch((err: BusinessError) => {
+    console.error(`CreateController BusinessError: code: ${err.code}, message: ${err.message}`);
+  });
+}
 
-avSessionController.getExtras((err, extras) => {
-  if (err) {
-    console.error(`getExtras BusinessError: code: ${err.code}, message: ${err.message}`);
-  } else {
-    console.info(`getExtras : SUCCESS : ${extras}`);
-  }
-});
+if (avSessionController !== undefined) {
+  (avSessionController as avSession.AVSessionController).getExtras((err, extras) => {
+    if (err) {
+      console.error(`getExtras BusinessError: code: ${err.code}, message: ${err.message}`);
+    } else {
+      console.info(`getExtras : SUCCESS : ${extras}`);
+    }
+  });
+}
 ```
 
 ### on('metadataChange')<sup>10+</sup>
@@ -6743,10 +6825,10 @@ on(type: 'sessionEvent', callback: (sessionEvent: string, args: {[key:string]: O
 import avSession from '@ohos.multimedia.avsession';
 import { BusinessError } from '@ohos.base';
 
-let avSessionController: avSession.AVSessionController;
-let currentAVSession: avSession.AVSession;
+let avSessionController: avSession.AVSessionController | undefined = undefined;
+let currentAVSession: avSession.AVSession | undefined = undefined;
 let tag = "createNewSession";
-let context: Context = this.context;
+let context: Context = getContext(this);
 
 avSession.createAVSession(context, tag, "audio", (err: BusinessError, data: avSession.AVSession) => {
   if (err) {
@@ -6755,15 +6837,19 @@ avSession.createAVSession(context, tag, "audio", (err: BusinessError, data: avSe
     currentAVSession = data;
   }
 });
-avSession.createController(currentAVSession.sessionId).then((controller: avSession.AVSessionController) => {
-  avSessionController = controller;
-}).catch((err: BusinessError) => {
-  console.error(`CreateController BusinessError: code: ${err.code}, message: ${err.message}`);
-});
+if (currentAVSession !== undefined) {
+  avSession.createController((currentAVSession as avSession.AVSession).sessionId).then((controller: avSession.AVSessionController) => {
+    avSessionController = controller;
+  }).catch((err: BusinessError) => {
+    console.error(`CreateController BusinessError: code: ${err.code}, message: ${err.message}`);
+  });
+}
 
-avSessionController.on('sessionEvent', (sessionEvent, args) => {
-  console.info(`OnSessionEvent, sessionEvent is ${sessionEvent}, args: ${JSON.stringify(args)}`);
-});
+if (avSessionController !== undefined) {
+  (avSessionController as avSession.AVSessionController).on('sessionEvent', (sessionEvent, args) => {
+    console.info(`OnSessionEvent, sessionEvent is ${sessionEvent}, args: ${JSON.stringify(args)}`);
+  });
+}
 ```
 
 ### off('sessionEvent')<sup>10+</sup>
@@ -6944,10 +7030,10 @@ on(type: 'extrasChange', callback: (extras: {[key:string]: Object}) => void): vo
 import avSession from '@ohos.multimedia.avsession';
 import { BusinessError } from '@ohos.base';
 
-let avSessionController: avSession.AVSessionController;
-let currentAVSession: avSession.AVSession;
+let avSessionController: avSession.AVSessionController | undefined = undefined;
+let currentAVSession: avSession.AVSession | undefined = undefined;
 let tag = "createNewSession";
-let context: Context = this.context;
+let context: Context = getContext(this);
 
 avSession.createAVSession(context, tag, "audio", (err: BusinessError, data: avSession.AVSession) => {
   if (err) {
@@ -6956,15 +7042,19 @@ avSession.createAVSession(context, tag, "audio", (err: BusinessError, data: avSe
     currentAVSession = data;
   }
 });
-avSession.createController(currentAVSession.sessionId).then((controller: avSession.AVSessionController) => {
-  avSessionController = controller;
-}).catch((err: BusinessError) => {
-  console.error(`CreateController BusinessError: code: ${err.code}, message: ${err.message}`);
-});
+if (currentAVSession !== undefined) {
+  avSession.createController((currentAVSession as avSession.AVSession).sessionId).then((controller: avSession.AVSessionController) => {
+    avSessionController = controller;
+  }).catch((err: BusinessError) => {
+    console.error(`CreateController BusinessError: code: ${err.code}, message: ${err.message}`);
+  });
+}
 
-avSessionController.on('extrasChange', (extras) => {
-  console.info(`Caught extrasChange event,the new extra is: ${JSON.stringify(extras)}`);
-});
+if (avSessionController !== undefined) {
+  (avSessionController as avSession.AVSessionController).on('extrasChange', (extras) => {
+    console.info(`Caught extrasChange event,the new extra is: ${JSON.stringify(extras)}`);
+  });
+}
 ```
 
 ### off('extrasChange')<sup>10+</sup>

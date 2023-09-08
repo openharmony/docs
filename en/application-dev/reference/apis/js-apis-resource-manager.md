@@ -20,9 +20,10 @@ For details about how to reference context in the stage model, see [Context in t
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import window from '@ohos.window';
 
 export default class EntryAbility extends UIAbility {
-  onWindowStageCreate(windowStage) {
+  onWindowStageCreate(windowStage: window.WindowStage) {
     let context = this.context;
     let resourceManager = context.resourceManager;
   }
@@ -191,7 +192,9 @@ import { BusinessError } from '@ohos.base';
       console.log("systemResourceManager getStringValue promise error is " + error);
     });
   } catch (error) {
-    console.error(`systemResourceManager getStringValue failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`systemResourceManager getStringValue failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -339,10 +342,14 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 **Example**
   ```ts
+  import { BusinessError } from '@ohos.base';
+
   try {
     this.context.resourceManager.getStringSync($r('app.string.test').id);
   } catch (error) {
-    console.error(`getStringSync failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`getStringSync failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -380,10 +387,14 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 **Example**
   ```ts
+  import { BusinessError } from '@ohos.base';
+
   try {
     this.context.resourceManager.getStringSync($r('app.string.test').id, "format string", 10, 98.78);
   } catch (error) {
-    console.error(`getStringSync failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`getStringSync failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -422,6 +433,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 **Example**
   ```ts
   import resourceManager from '@ohos.resourceManager';
+  import { BusinessError } from '@ohos.base';
 
   let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
@@ -431,7 +443,9 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
   try {
     this.context.resourceManager.getStringSync(resource);
   } catch (error) {
-    console.error(`getStringSync failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`getStringSync failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -472,6 +486,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 **Example**
   ```ts
   import resourceManager from '@ohos.resourceManager';
+  import { BusinessError } from '@ohos.base';
 
   let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
@@ -481,7 +496,9 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
   try {
     this.context.resourceManager.getStringSync(resource, "format string", 10, 98.78);
   } catch (error) {
-    console.error(`getStringSync failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`getStringSync failed, error code: ${code}, message: ${message}.`);
   }
  ```
 
@@ -517,10 +534,14 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 **Example**
   ```ts
+  import { BusinessError } from '@ohos.base';
+
   try {
     this.context.resourceManager.getStringByNameSync("test");
   } catch (error) {
-    console.error(`getStringByNameSync failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`getStringByNameSync failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -558,10 +579,14 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 **Example**
   ```ts
+  import { BusinessError } from '@ohos.base';
+
   try {
     this.context.resourceManager.getStringByNameSync("test", "format string", 10, 98.78);
   } catch (error) {
-    console.error(`getStringByNameSync failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`getStringByNameSync failed, error code: ${code}, message: ${message}.`);
   }
  ```
 
@@ -592,6 +617,8 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 **Example (stage)**
   ```ts
+  import { BusinessError } from '@ohos.base';
+
   try {
     this.context.resourceManager.getStringValue($r('app.string.test').id, (error, value) => {
       if (error != null) {
@@ -601,7 +628,9 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
       }
     });
   } catch (error) {
-    console.error(`callback getStringValue failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`callback getStringValue failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -646,7 +675,9 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
       console.log("getStringValue promise error is " + error);
     });
   } catch (error) {
-    console.error(`promise getStringValue failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`promise getStringValue failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -680,6 +711,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 **Example**
   ```ts
   import resourceManager from '@ohos.resourceManager';
+  import { BusinessError } from '@ohos.base';
 
   let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
@@ -695,7 +727,9 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
       }
     });
   } catch (error) {
-    console.error(`callback getStringValue failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`callback getStringValue failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -748,7 +782,9 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
       console.log("getStringValue promise error is " + error);
     });
   } catch (error) {
-    console.error(`promise getStringValue failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`promise getStringValue failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -779,6 +815,8 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 **Example**
   ```ts
+  import { BusinessError } from '@ohos.base';
+
   try {
     this.context.resourceManager.getStringByName("test", (error, value) => {
       if (error != null) {
@@ -788,7 +826,9 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
       }
     });
   } catch (error) {
-    console.error(`callback getStringByName failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`callback getStringByName failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -833,7 +873,9 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
       console.log("getStringByName promise error is " + error);
     });
   } catch (error) {
-    console.error(`promise getStringByName failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`promise getStringByName failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -869,10 +911,14 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 **Example**
   ```ts
+  import { BusinessError } from '@ohos.base';
+
   try {
     this.context.resourceManager.getStringArrayValueSync($r('app.strarray.test').id);
   } catch (error) {
-    console.error(`getStringArrayValueSync failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`getStringArrayValueSync failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -911,6 +957,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 **Example**
   ```ts
   import resourceManager from '@ohos.resourceManager';
+  import { BusinessError } from '@ohos.base';
 
   let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
@@ -920,7 +967,9 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
   try {
     this.context.resourceManager.getStringArrayValueSync(resource);
   } catch (error) {
-    console.error(`getStringArrayValueSync failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`getStringArrayValueSync failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -959,7 +1008,9 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
   try {
     this.context.resourceManager.getStringArrayByNameSync("test");
   } catch (error) {
-    console.error(`getStringArrayByNameSync failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`getStringArrayByNameSync failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -990,6 +1041,8 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 **Example**
   ```ts
+  import { BusinessError } from '@ohos.base';
+
   try {
     this.context.resourceManager.getStringArrayValue($r('app.strarray.test').id, (error, value) => {
       if (error != null) {
@@ -999,7 +1052,9 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
       }
     });
   } catch (error) {
-    console.error(`callback getStringArrayValue failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`callback getStringArrayValue failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -1044,7 +1099,9 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
       console.log("getStringArrayValue promise error is " + error);
     });
   } catch (error) {
-    console.error(`promise getStringArrayValue failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`promise getStringArrayValue failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -1078,6 +1135,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 **Example**
   ```ts
   import resourceManager from '@ohos.resourceManager';
+  import { BusinessError } from '@ohos.base';
 
   let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
@@ -1093,7 +1151,9 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
       }
     });
   } catch (error) {
-    console.error(`callback getStringArrayValue failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`callback getStringArrayValue failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -1146,7 +1206,9 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
       console.log("getStringArray promise error is " + error);
     });
   } catch (error) {
-    console.error(`promise getStringArrayValue failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`promise getStringArrayValue failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -1177,6 +1239,8 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 **Example**
   ```ts
+  import { BusinessError } from '@ohos.base';
+
   try {
     this.context.resourceManager.getStringArrayByName("test", (error, value) => {
       if (error != null) {
@@ -1186,7 +1250,9 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
       }
     });
   } catch (error) {
-    console.error(`callback getStringArrayByName failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`callback getStringArrayByName failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -1231,7 +1297,9 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
       console.log("getStringArrayByName promise error is " + error);
     });
   } catch (error) {
-    console.error(`promise getStringArrayByName failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`promise getStringArrayByName failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -1268,10 +1336,14 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 **Example**
   ```ts
+  import { BusinessError } from '@ohos.base';
+
   try {
     this.context.resourceManager.getPluralStringValueSync($r('app.plural.test').id, 1);
   } catch (error) {
-    console.error(`getPluralStringValueSync failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`getPluralStringValueSync failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -1311,6 +1383,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 **Example**
   ```ts
   import resourceManager from '@ohos.resourceManager';
+  import { BusinessError } from '@ohos.base';
 
   let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
@@ -1320,7 +1393,9 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
   try {
     this.context.resourceManager.getPluralStringValueSync(resource, 1);
   } catch (error) {
-    console.error(`getPluralStringValueSync failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`getPluralStringValueSync failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -1357,10 +1432,14 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 **Example**
   ```ts
+  import { BusinessError } from '@ohos.base';
+
   try {
     this.context.resourceManager.getPluralStringByNameSync("test", 1);
   } catch (error) {
-    console.error(`getPluralStringByNameSync failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`getPluralStringByNameSync failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -1392,6 +1471,8 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 **Example**
   ```ts
+  import { BusinessError } from '@ohos.base';
+
   try {
     this.context.resourceManager.getPluralStringValue($r("app.plural.test").id, 1, (error, value) => {
       if (error != null) {
@@ -1401,7 +1482,9 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
       }
     });
   } catch (error) {
-    console.error(`callback getPluralStringValue failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`callback getPluralStringValue failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -1447,7 +1530,9 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
       console.log("getPluralStringValue promise error is " + error);
     });
   } catch (error) {
-    console.error(`promise getPluralStringValue failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`promise getPluralStringValue failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -1482,6 +1567,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 **Example**
   ```ts
   import resourceManager from '@ohos.resourceManager';
+  import { BusinessError } from '@ohos.base';
 
   let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
@@ -1497,7 +1583,9 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
       }
     });
   } catch (error) {
-    console.error(`callback getPluralStringValue failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`callback getPluralStringValue failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -1551,7 +1639,9 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
       console.log("getPluralStringValue promise error is " + error);
     });
   } catch (error) {
-    console.error(`promise getPluralStringValue failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`promise getPluralStringValue failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -1583,6 +1673,8 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 **Example**
   ```ts
+  import { BusinessError } from '@ohos.base';
+
   try {
     this.context.resourceManager.getPluralStringByName("test", 1, (error, value) => {
       if (error != null) {
@@ -1592,7 +1684,9 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
       }
     });
   } catch (error) {
-    console.error(`callback getPluralStringByName failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`callback getPluralStringByName failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -1638,7 +1732,9 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
       console.log("getPluralStringByName promise error is " + error);
     });
   } catch (error) {
-    console.error(`promise getPluralStringByName failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`promise getPluralStringByName failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -1674,16 +1770,22 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 **Example**
   ```ts
+  import { BusinessError } from '@ohos.base';
+
   try {
     this.context.resourceManager.getMediaContentSync($r('app.media.test').id); // Default screen density
   } catch (error) {
-    console.error(`getMediaContentSync failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`getMediaContentSync failed, error code: ${code}, message: ${message}.`);
   }
 
   try {
     this.context.resourceManager.getMediaContentSync($r('app.media.test').id, 120); // Specified screen density
   } catch (error) {
-    console.error(`getMediaContentSync failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`getMediaContentSync failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -1722,6 +1824,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 **Example**
   ```ts
   import resourceManager from '@ohos.resourceManager';
+  import { BusinessError } from '@ohos.base';
 
   let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
@@ -1731,13 +1834,17 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
   try {
     this.context.resourceManager.getMediaContentSync(resource); // Default screen density
   } catch (error) {
-    console.error(`getMediaContentSync failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`getMediaContentSync failed, error code: ${code}, message: ${message}.`);
   }
 
   try {
     this.context.resourceManager.getMediaContentSync(resource, 120); // Specified screen density
   } catch (error) {
-    console.error(`getMediaContentSync failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`getMediaContentSync failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -1773,16 +1880,22 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 **Example**
   ```ts
+  import { BusinessError } from '@ohos.base';
+
   try {
     this.context.resourceManager.getMediaByNameSync("test"); // Default screen density
   } catch (error) {
-    console.error(`getMediaByNameSync failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`getMediaByNameSync failed, error code: ${code}, message: ${message}.`);
   }
 
   try {
     this.context.resourceManager.getMediaByNameSync("test", 120); // Specified screen density
   } catch (error) {
-    console.error(`getMediaByNameSync failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`getMediaByNameSync failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -1812,6 +1925,8 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 **Example**
   ```ts
+  import { BusinessError } from '@ohos.base';
+
   try {
     this.context.resourceManager.getMediaContent($r('app.media.test').id, (error, value) => {
       if (error != null) {
@@ -1821,7 +1936,9 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
       }
     });
   } catch (error) {
-    console.error(`callback getMediaContent failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`callback getMediaContent failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -1852,6 +1969,8 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 **Example**
   ```ts
+  import { BusinessError } from '@ohos.base';
+
   try {
     this.context.resourceManager.getMediaContent($r('app.media.test').id, 120, (error, value) => {
       if (error != null) {
@@ -1861,7 +1980,9 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
       }
     });
   } catch (error) {
-    console.error(`callback getMediaContent failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`callback getMediaContent failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -1905,7 +2026,9 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
       console.log("getMediaContent promise error is " + error);
     });
   } catch (error) {
-    console.error(`promise getMediaContent failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`promise getMediaContent failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -1950,7 +2073,9 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
       console.error(`promise getMediaContent failed, error code: ${error.code}, message: ${error.message}.`);
     });
   } catch (error) {
-    console.error(`promise getMediaContent failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`promise getMediaContent failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -1983,6 +2108,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 **Example**
   ```ts
   import resourceManager from '@ohos.resourceManager';
+  import { BusinessError } from '@ohos.base';
 
   let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
@@ -1998,7 +2124,9 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
       }
     });
   } catch (error) {
-    console.error(`callback getMediaContent failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`callback getMediaContent failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -2032,6 +2160,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 **Example**
   ```ts
   import resourceManager from '@ohos.resourceManager';
+  import { BusinessError } from '@ohos.base';
 
   let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
@@ -2047,7 +2176,9 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
       }
     });
   } catch (error) {
-    console.error(`callback getMediaContent failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`callback getMediaContent failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -2099,7 +2230,9 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
       console.log("getMediaContent promise error is " + error);
     });
   } catch (error) {
-    console.error(`promise getMediaContent failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`promise getMediaContent failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -2152,7 +2285,9 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
       console.error(`promise getMediaContent failed, error code: ${error.code}, message: ${error.message}.`);
     });
   } catch (error) {
-    console.error(`promise getMediaContent failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`promise getMediaContent failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -2182,6 +2317,8 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 **Example**
   ```ts
+  import { BusinessError } from '@ohos.base';
+
   try {
     this.context.resourceManager.getMediaByName("test", (error, value) => {
       if (error != null) {
@@ -2191,7 +2328,9 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
       }
     });
   } catch (error) {
-    console.error(`callback getMediaByName failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`callback getMediaByName failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -2222,6 +2361,8 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 **Example**
   ```ts
+  import { BusinessError } from '@ohos.base';
+
   try {
     this.context.resourceManager.getMediaByName("test", 120, (error, value) => {
       if (error != null) {
@@ -2231,7 +2372,9 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
       }
     });
   } catch (error) {
-    console.error(`callback getMediaByName failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`callback getMediaByName failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -2275,7 +2418,9 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
       console.log("getMediaByName promise error is " + error);
     });
   } catch (error) {
-    console.error(`promise getMediaByName failed, error code: ${error.code}, message: ${error.message}.`)
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`promise getMediaByName failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -2320,7 +2465,9 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
       console.error(`promise getMediaByName failed, error code: ${error.code}, message: ${error.message}.`);
     });
   } catch (error) {
-    console.error(`promise getMediaByName failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`promise getMediaByName failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -2356,16 +2503,22 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 **Example**
   ```ts
+  import { BusinessError } from '@ohos.base';
+
   try {
     this.context.resourceManager.getMediaContentBase64Sync($r('app.media.test').id); // Default screen density
   } catch (error) {
-    console.error(`getMediaContentBase64Sync failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`getMediaContentBase64Sync failed, error code: ${code}, message: ${message}.`);
   }
 
   try {
     this.context.resourceManager.getMediaContentBase64Sync($r('app.media.test').id, 120); // Specified screen density
   } catch (error) {
-    console.error(`getMediaContentBase64Sync failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`getMediaContentBase64Sync failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -2404,6 +2557,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 **Example**
   ```ts
   import resourceManager from '@ohos.resourceManager';
+  import { BusinessError } from '@ohos.base';
 
   let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
@@ -2413,13 +2567,17 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
   try {
     this.context.resourceManager.getMediaContentBase64Sync(resource); // Default screen density
   } catch (error) {
-    console.error(`getMediaContentBase64Sync failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`getMediaContentBase64Sync failed, error code: ${code}, message: ${message}.`);
   }
 
   try {
     this.context.resourceManager.getMediaContentBase64Sync(resource, 120); // Specified screen density
   } catch (error) {
-    console.error(`getMediaContentBase64Sync failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`getMediaContentBase64Sync failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -2455,16 +2613,22 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 **Example**
   ```ts
+  import { BusinessError } from '@ohos.base';
+
   try {
     this.context.resourceManager.getMediaBase64ByNameSync("test"); // Default screen density
   } catch (error) {
-    console.error(`getMediaBase64ByNameSync failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`getMediaBase64ByNameSync failed, error code: ${code}, message: ${message}.`);
   }
 
   try {
     this.context.resourceManager.getMediaBase64ByNameSync("test", 120); // Specified screen density
   } catch (error) {
-    console.error(`getMediaBase64ByNameSync failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`getMediaBase64ByNameSync failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -2494,6 +2658,8 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 **Example**
   ```ts
+  import { BusinessError } from '@ohos.base';
+
   try {
     this.context.resourceManager.getMediaContentBase64($r('app.media.test').id, (error, value) => {
       if (error != null) {
@@ -2503,7 +2669,9 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
       }
     });
   } catch (error) {
-    console.error(`callback getMediaContentBase64 failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`callback getMediaContentBase64 failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -2534,6 +2702,8 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 **Example**
   ```ts
+  import { BusinessError } from '@ohos.base';
+
   try {
     this.context.resourceManager.getMediaContentBase64($r('app.media.test').id, 120, (error, value) => {
       if (error != null) {
@@ -2543,7 +2713,9 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
       }
     });
   } catch (error) {
-    console.error(`callback getMediaContentBase64 failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`callback getMediaContentBase64 failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -2587,7 +2759,9 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
       console.log("getMediaContentBase64 promise error is " + error);
     });
   } catch (error) {
-    console.error(`promise getMediaContentBase64 failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`promise getMediaContentBase64 failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -2632,7 +2806,9 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
       console.error(`promise getMediaContentBase64 failed, error code: ${error.code}, message: ${error.message}.`);
     });
   } catch (error) {
-    console.error(`promise getMediaContentBase64 failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`promise getMediaContentBase64 failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -2665,6 +2841,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 **Example**
   ```ts
   import resourceManager from '@ohos.resourceManager';
+  import { BusinessError } from '@ohos.base';
 
   let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
@@ -2680,7 +2857,9 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
       }
     });
   } catch (error) {
-    console.error(`callback getMediaContentBase64 failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`callback getMediaContentBase64 failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -2714,6 +2893,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 **Example**
   ```ts
   import resourceManager from '@ohos.resourceManager';
+  import { BusinessError } from '@ohos.base';
 
   let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
@@ -2729,7 +2909,9 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
       }
     });
   } catch (error) {
-    console.error(`callback getMediaContentBase64 failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`callback getMediaContentBase64 failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -2781,7 +2963,9 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
       console.log("getMediaContentBase64 promise error is " + error);
     });
   } catch (error) {
-    console.error(`promise getMediaContentBase64 failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`promise getMediaContentBase64 failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -2834,7 +3018,9 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
       console.error(`promise getMediaContentBase64 failed, error code: ${error.code}, message: ${error.message}.`);
     });
   } catch (error) {
-    console.error(`promise getMediaContentBase64 failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`promise getMediaContentBase64 failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -2864,6 +3050,8 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 **Example**
   ```ts
+  import { BusinessError } from '@ohos.base';
+
   try {
     this.context.resourceManager.getMediaBase64ByName("test", (error, value) => {
       if (error != null) {
@@ -2873,7 +3061,9 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
       }
     });
   } catch (error) {
-    console.error(`callback getMediaBase64ByName failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`callback getMediaBase64ByName failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -2904,6 +3094,8 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 **Example**
   ```ts
+  import { BusinessError } from '@ohos.base';
+
   try {
     this.context.resourceManager.getMediaBase64ByName("test", 120, (error, value) => {
       if (error != null) {
@@ -2913,7 +3105,9 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
       }
     });
   } catch (error) {
-    console.error(`callback getMediaBase64ByName failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`callback getMediaBase64ByName failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -2957,7 +3151,9 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
       console.log("getMediaBase64ByName promise error is " + error);
     });
   } catch (error) {
-    console.error(`promise getMediaBase64ByName failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`promise getMediaBase64ByName failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -3002,7 +3198,9 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
       console.error(`promise getMediaBase64ByName failed, error code: ${error.code}, message: ${error.message}.`);
     });
   } catch (error) {
-    console.error(`promise getMediaBase64ByName failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`promise getMediaBase64ByName failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -3038,15 +3236,21 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 **Example**
   ```ts
+  import { BusinessError } from '@ohos.base';
+
   try {
     this.context.resourceManager.getDrawableDescriptor($r('app.media.icon').id);
   } catch (error) {
-    console.error(`getDrawableDescriptor failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`getDrawableDescriptor failed, error code: ${code}, message: ${message}.`);
   }
   try {
     this.context.resourceManager.getDrawableDescriptor($r('app.media.icon').id, 120);
   } catch (error) {
-    console.error(`getDrawableDescriptor failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`getDrawableDescriptor failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -3085,6 +3289,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 **Example**
   ```ts
   import resourceManager from '@ohos.resourceManager';
+  import { BusinessError } from '@ohos.base';
 
   let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
@@ -3094,12 +3299,16 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
   try {
     this.context.resourceManager.getDrawableDescriptor(resource);
   } catch (error) {
-    console.error(`getDrawableDescriptor failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`getDrawableDescriptor failed, error code: ${code}, message: ${message}.`);
   }
   try {
     this.context.resourceManager.getDrawableDescriptor(resource, 120);
   } catch (error) {
-    console.error(`getDrawableDescriptor failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`getDrawableDescriptor failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -3135,15 +3344,21 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 **Example**
   ```ts
+  import { BusinessError } from '@ohos.base';
+
   try {
     this.context.resourceManager.getDrawableDescriptorByName('icon');
   } catch (error) {
-    console.error(`getDrawableDescriptorByName failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`getDrawableDescriptorByName failed, error code: ${code}, message: ${message}.`);
   }
   try {
     this.context.resourceManager.getDrawableDescriptorByName('icon', 120);
   } catch (error) {
-    console.error(`getDrawableDescriptorByName failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`getDrawableDescriptorByName failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -3179,10 +3394,14 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 **Example**
   ```ts
+  import { BusinessError } from '@ohos.base';
+
   try {
     this.context.resourceManager.getBoolean($r('app.boolean.boolean_test').id);
   } catch (error) {
-    console.error(`getBoolean failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`getBoolean failed, error code: ${code}, message: ${message}.`);
   }
   ```
 ### getBoolean<sup>9+</sup>
@@ -3220,6 +3439,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 **Example**
   ```ts
   import resourceManager from '@ohos.resourceManager';
+  import { BusinessError } from '@ohos.base';
 
   let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
@@ -3229,7 +3449,9 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
   try {
     this.context.resourceManager.getBoolean(resource);
   } catch (error) {
-    console.error(`getBoolean failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`getBoolean failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -3265,10 +3487,14 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 **Example**
   ```ts
+  import { BusinessError } from '@ohos.base';
+
   try {
     this.context.resourceManager.getBooleanByName("boolean_test");
   } catch (error) {
-    console.error(`getBooleanByName failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`getBooleanByName failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -3304,16 +3530,22 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 **Example**
   ```ts
+  import { BusinessError } from '@ohos.base';
+
   try {
     this.context.resourceManager.getNumber($r('app.integer.integer_test').id); // integer refers to the original value.
   } catch (error) {
-    console.error(`getNumber failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`getNumber failed, error code: ${code}, message: ${message}.`);
   }
 
   try {
     this.context.resourceManager.getNumber($r('app.float.float_test').id); // float refers to the actual pixel value.
   } catch (error) {
-    console.error(`getNumber failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`getNumber failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -3352,6 +3584,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 **Example**
   ```ts
   import resourceManager from '@ohos.resourceManager';
+  import { BusinessError } from '@ohos.base';
 
   let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
@@ -3361,7 +3594,9 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
   try {
     this.context.resourceManager.getNumber(resource);// integer refers to the original value; float refers to the actual pixel value.
   } catch (error) {
-    console.error(`getNumber failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`getNumber failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -3397,16 +3632,22 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 **Example**
   ```ts
+  import { BusinessError } from '@ohos.base';
+
   try {
     this.context.resourceManager.getNumberByName("integer_test");
   } catch (error) {
-    console.error(`getNumberByName failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`getNumberByName failed, error code: ${code}, message: ${message}.`);
   }
 
   try {
     this.context.resourceManager.getNumberByName("float_test");
   } catch (error) {
-    console.error(`getNumberByName failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`getNumberByName failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -3442,10 +3683,14 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 **Example**
   ```ts
+  import { BusinessError } from '@ohos.base';
+
   try {
     this.context.resourceManager.getColorSync($r('app.color.test').id);
   } catch (error) {
-    console.error(`getColorSync failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`getColorSync failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -3484,6 +3729,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 **Example**
   ```ts
   import resourceManager from '@ohos.resourceManager';
+  import { BusinessError } from '@ohos.base';
 
   let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
@@ -3493,7 +3739,9 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
   try {
     this.context.resourceManager.getColorSync(resource);
   } catch (error) {
-    console.error(`getColorSync failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`getColorSync failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -3529,10 +3777,14 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 **Example**
   ```ts
+  import { BusinessError } from '@ohos.base';
+
   try {
     this.context.resourceManager.getColorByNameSync("test");
   } catch (error) {
-    console.error(`getColorByNameSync failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`getColorByNameSync failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -3563,6 +3815,8 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 **Example (stage)**
   ```ts
+  import { BusinessError } from '@ohos.base';
+
   try {
     this.context.resourceManager.getColor($r('app.color.test').id, (error, value) => {
       if (error != null) {
@@ -3572,7 +3826,9 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
       }
     });
   } catch (error) {
-    console.error(`callback getColor failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`callback getColor failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -3617,7 +3873,9 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
       console.log("getColor promise error is " + error);
     });
   } catch (error) {
-    console.error(`promise getColor failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`promise getColor failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -3651,6 +3909,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 **Example**
   ```ts
   import resourceManager from '@ohos.resourceManager';
+  import { BusinessError } from '@ohos.base';
 
   let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
@@ -3666,7 +3925,9 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
       }
     });
   } catch (error) {
-    console.error(`callback getColor failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`callback getColor failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -3719,7 +3980,9 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
       console.log("getColor promise error is " + error);
     });
   } catch (error) {
-    console.error(`promise getColor failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`promise getColor failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -3750,6 +4013,8 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 **Example**
   ```ts
+  import { BusinessError } from '@ohos.base';
+
   try {
     this.context.resourceManager.getColorByName("test", (error, value) => {
       if (error != null) {
@@ -3759,7 +4024,9 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
       }
     });
   } catch (error) {
-    console.error(`callback getColorByName failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`callback getColorByName failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -3804,7 +4071,9 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
       console.log("getColorByName promise error is " + error);
     });
   } catch (error) {
-    console.error(`promise getColorByName failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`promise getColorByName failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -3838,10 +4107,14 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 **Example**
   ```ts
+  import { BusinessError } from '@ohos.base';
+
   try {
     this.context.resourceManager.getRawFileContentSync("test.txt");
   } catch (error) {
-    console.error(`getRawFileContentSync failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`getRawFileContentSync failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -3870,6 +4143,8 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 **Example**
   ```ts
+  import { BusinessError } from '@ohos.base';
+
   try {
     this.context.resourceManager.getRawFileContent("test.txt", (error, value) => {
       if (error != null) {
@@ -3879,7 +4154,9 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
       }
     });
   } catch (error) {
-    console.error(`callback getRawFileContent failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`callback getRawFileContent failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -3922,7 +4199,9 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
       console.log("getRawFileContent promise error is " + error);
     });
   } catch (error) {
-    console.error(`promise getRawFileContent failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`promise getRawFileContent failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -3956,10 +4235,14 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 **Example**
   ```ts
+  import { BusinessError } from '@ohos.base';
+
   try { // Passing "" means to obtain the list of files in the root directory of the raw file.
     this.context.resourceManager.getRawFileListSync("")
   } catch (error) {
-    console.error(`getRawFileListSync failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`getRawFileListSync failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -3988,6 +4271,8 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 **Example**
   ```ts
+  import { BusinessError } from '@ohos.base';
+
   try { // Passing "" means to obtain the list of files in the root directory of the raw file.
     this.context.resourceManager.getRawFileList("", (error, value) => {
       if (error != null) {
@@ -3997,7 +4282,9 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
       }
     });
   } catch (error) {
-    console.error(`callback getRawFileList failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`callback getRawFileList failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -4040,7 +4327,9 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
       console.error(`promise getRawFileList failed, error code: ${error.code}, message: ${error.message}.`);
     });
   } catch (error) {
-    console.error(`promise getRawFileList failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`promise getRawFileList failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -4074,10 +4363,14 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 **Example**
   ```ts
+  import { BusinessError } from '@ohos.base';
+
   try {
     this.context.resourceManager.getRawFdSync("test.txt");
   } catch (error) {
-    console.error(`getRawFdSync failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`getRawFdSync failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -4106,6 +4399,8 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 **Example**
   ```ts
+  import { BusinessError } from '@ohos.base';
+
   try {
     this.context.resourceManager.getRawFd("test.txt", (error, value) => {
       if (error != null) {
@@ -4117,7 +4412,9 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
       }
     });
   } catch (error) {
-    console.error(`callback getRawFd failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`callback getRawFd failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -4162,7 +4459,9 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
       console.log(`promise getRawFd error error code: ${error.code}, message: ${error.message}.`);
     });
   } catch (error) {
-    console.error(`promise getRawFd failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`promise getRawFd failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -4190,10 +4489,14 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 **Example**
   ```ts
+  import { BusinessError } from '@ohos.base';
+
   try {
     this.context.resourceManager.closeRawFdSync("test.txt");
   } catch (error) {
-    console.error(`closeRawFd failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`closeRawFd failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -4222,6 +4525,8 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 **Example**
   ```ts
+  import { BusinessError } from '@ohos.base';
+
   try {
     this.context.resourceManager.closeRawFd("test.txt", (error, value) => {
       if (error != null) {
@@ -4229,7 +4534,9 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
       }
     });
   } catch (error) {
-    console.error(`callback closeRawFd failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`callback closeRawFd failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -4263,10 +4570,14 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 **Example**
   ```ts
+  import { BusinessError } from '@ohos.base';
+
   try {
     this.context.resourceManager.closeRawFd("test.txt");
   } catch (error) {
-    console.error(`promise closeRawFd failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`promise closeRawFd failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -4481,11 +4792,15 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 **Example**
   ```ts
+  import { BusinessError } from '@ohos.base';
+
   let path = getContext().bundleCodeDir + "/library1-default-signed.hsp";
   try {
     this.context.resourceManager.addResource(path);
   } catch (error) {
-    console.error(`addResource failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`addResource failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -4513,11 +4828,15 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 **Example**
   ```ts
+  import { BusinessError } from '@ohos.base';
+
   let path = getContext().bundleCodeDir + "/library1-default-signed.hsp";
   try {
     this.context.resourceManager.removeResource(path);
   } catch (error) {
-    console.error(`removeResource failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`removeResource failed, error code: ${code}, message: ${message}.`);
   }
   ```
 

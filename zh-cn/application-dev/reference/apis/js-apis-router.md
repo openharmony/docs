@@ -1124,7 +1124,8 @@ router.getParams();
 
 ### 基于JS扩展的类Web开发范式
 
-```ts
+以下代码仅适用于javascript文件，不适用于ArkTS文件
+```js
 // 在当前页面中
 export default {
   pushPage() {
@@ -1137,7 +1138,7 @@ export default {
   }
 }
 ```
-```ts
+```js
 // 在detail页面中
 export default {
   onInit() {
@@ -1176,14 +1177,14 @@ class routerParams {
 @Component
 struct Index {
   async routePage() {
-    let options = {
+    let options:router.RouterOptions = {
       url: 'pages/second',
       params: new routerParams('这是第一页的值' ,[12, 45, 78])
     }
     try {
       await router.pushUrl(options)
     } catch (err) {
-      console.info(` fail callback, code: ${(err as BusinessError).code}, msg: ${(err as BusinessError).msg}`)
+      console.info(` fail callback, code: ${(err as BusinessError).code}, msg: ${(err as BusinessError).message}`)
     }
   }
 

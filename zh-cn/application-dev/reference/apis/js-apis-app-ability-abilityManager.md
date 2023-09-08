@@ -485,3 +485,124 @@ try {
     console.error(`error.code: ${JSON.stringify(code)}, error.message: ${JSON.stringify(message)}`);
 }
 ```
+
+## notifySaveAsResult<sup>10+</sup>
+
+notifySaveAsResult(parameter: AbilityResult, requestCode: number, callback: AsyncCallback<void>): void;
+
+该接口仅供DLP（Data Loss Prevention, 数据丢失防护）管理应用使用，其他应用禁止使用，DLP管理应用通过该接口通知沙箱应用另存为结果。使用callback异步回调。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+
+**系统接口**：此接口为系统接口。
+
+**参数**：
+
+| 参数名        | 类型                                       | 必填   | 说明             |
+| --------- | ---------------------------------------- | ---- | -------------- |
+| parameter | [AbilityResult](js-apis-inner-ability-abilityResult.md) | 是 | 返回给调用startAbilityForResult&nbsp;接口调用方的相关信息。 |
+| requestCode | number                                        | 是 | DLP管理应用传入的请求代码。          |
+| callback  | AsyncCallback<void>                             | 是 | 回调函数。当另存为结果通知成功，err为undefined，否则为错误对象。         |
+
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16000050 | Internal error. |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
+**示例**：
+
+```ts
+import abilityManager from '@ohos.app.ability.abilityManager';
+import common from '@ohos.app.ability.common';
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+let want: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility'
+};
+let resultCode = 100;
+// 返回给另存为行为发起方AbilityResult信息
+let abilityResult: common.AbilityResult = {
+    want,
+    resultCode
+};
+let requestCode = 1;
+try {
+  abilityManager.notifySaveAsResult(abilityResult, requestCode, (err) => {
+    if (err && err.code != 0) {
+      console.error(`notifySaveAsResult fail, err: ${JSON.stringify(err)}`);
+    } else {
+      console.log(`notifySaveAsResult success`);
+    }
+  });
+} catch (paramError) {
+  let code = (paramError as BusinessError).code;
+  let message = (paramError as BusinessError).message;
+  console.error(`error.code: ${JSON.stringify(code)}, error.message: ${JSON.stringify(message)}`);
+}
+```
+
+## notifySaveAsResult<sup>10+</sup>
+
+notifySaveAsResult(parameter: AbilityResult, requestCode: number): Promise<void>;
+
+该接口仅供DLP管理应用使用，其他应用禁止使用，DLP管理应用通过该接口通知沙箱应用另存为结果。使用Promise异步回调。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+
+**系统接口**：此接口为系统接口。
+
+**参数**：
+
+| 参数名        | 类型                                       | 必填   | 说明             |
+| --------- | ---------------------------------------- | ---- | -------------- |
+| parameter | [AbilityResult](js-apis-inner-ability-abilityResult.md) | 是 | 返回给调用startAbilityForResult&nbsp;接口调用方的相关信息。 |
+| requestCode | number                                        | 是 | DLP管理应用传入的请求代码。          |
+
+**返回值：**
+
+| 类型                                       | 说明      |
+| ---------------------------------------- | ------- |
+| Promise<void>| Promise对象。无返回结果的Promise对象。 |
+
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16000050 | Internal error. |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
+**示例**：
+
+```ts
+import abilityManager from '@ohos.app.ability.abilityManager';
+import common from '@ohos.app.ability.common';
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+let want: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility'
+};
+let resultCode = 100;
+// 返回给另存为行为发起方AbilityResult信息
+let abilityResult: common.AbilityResult = {
+    want,
+    resultCode
+};
+let requestCode = 1;
+try {
+  abilityManager.notifySaveAsResult(abilityResult, requestCode).catch((err) => {
+    console.error(`notifySaveAsResult fail, err: ${JSON.stringify(err)}`);
+  }).then(() => {
+    console.log(`notifySaveAsResult success`);
+  });
+} catch (paramError) {
+  let code = (paramError as BusinessError).code;
+  let message = (paramError as BusinessError).message;
+  console.error(`error.code: ${JSON.stringify(code)}, error.message: ${JSON.stringify(message)}`);
+}
+```

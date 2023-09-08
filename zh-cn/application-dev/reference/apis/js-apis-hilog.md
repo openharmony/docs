@@ -215,7 +215,7 @@ hilog.fatal(0x0001, "testTag", "%{public}s World %{private}d", "hello", 3);
 
 上述接口中，日志打印的格式化参数需按照如下格式打印：
 
-%[private flag]specifier
+%{[private flag]}specifier
 
 |  隐私标识符（private flag） | 说明 |
 | ------------ | ---- |
@@ -230,10 +230,13 @@ hilog.fatal(0x0001, "testTag", "%{public}s World %{private}d", "hello", 3);
 
 **示例：**
 ```js
-let obj2 = new Object({name:"Jack", age:22});
+let testObj: Record<string, string | number> = {
+    'name': "Jack",
+    'age': 22
+}
 let isBol = true;
 let bigNum = BigInt(1234567890123456789);
-hilog.info(0x0001, "jsHilogTest", "print object: %{public}s", JSON.stringify(obj2));
+hilog.info(0x0001, "jsHilogTest", "print object: %{public}s", JSON.stringify(testObj));
 hilog.info(0x0001, "jsHilogTest", "private flag: %{private}s %s, print null: %{public}s", "hello", "world", null);
 hilog.info(0x0001, "jsHilogTest", "print undefined: %{public}s", undefined);
 hilog.info(0x0001, "jsHilogTest", "print number: %{public}d %{public}i", 123, 456);

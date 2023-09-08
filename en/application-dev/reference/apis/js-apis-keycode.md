@@ -1,6 +1,6 @@
-# @ohos.multimodalInput.keyCode (Key Code)
+# @ohos.multimodalInput.keyCode (Keycode)
 
-The **keyCode** module provides keycodes for a key device.
+The **keyCode** module provides keycode values for key devices, such as the keyboard, power key, camera key, and the like.
 
 > **NOTE**
 > 
@@ -14,14 +14,14 @@ import {KeyCode} from '@ohos.multimodalInput.keyCode';
 
 ## KeyCode
 
-Enumerates keycodes.
+Keycode value.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
 
 | Name                              | Value  |  Description       |
 | -------------------------------- | ------ | --------------------------- |
 | KEYCODE_FN                       |  0 | Function (Fn) key                    |
-| KEYCODE_UNKNOWN                  |  -1 | Unknown key                       |
+| KEYCODE_UNKNOWN                  |  -1 |  Unknown key                       |
 | KEYCODE_HOME                     |  1 | Function (Home) key                 |
 | KEYCODE_BACK                     |  2 | Back key                        |
 | KEYCODE_MEDIA_PLAY_PAUSE         |  10 | Play/Pause key                 |
@@ -50,8 +50,8 @@ Enumerates keycodes.
 | KEYCODE_9                        |  2009 | Key 9                      |
 | KEYCODE_STAR                     |  2010 | Key *                      |
 | KEYCODE_POUND                    |  2011 | Key #                      |
-| KEYCODE_DPAD_UP                  |  2012 | Up key on D-pad                     |
-| KEYCODE_DPAD_DOWN                |  2013 | Down key on D-pad                     |
+| KEYCODE_DPAD_UP                  |  2012 |  Up key on D-pad                     |
+| KEYCODE_DPAD_DOWN                |  2013 |  Down key on D-pad                     |
 | KEYCODE_DPAD_LEFT                |  2014 | Left key on D-pad                     |
 | KEYCODE_DPAD_RIGHT               |  2015 | Right key on D-pad                     |
 | KEYCODE_DPAD_CENTER              |  2016 | Center key on D-pad                    |
@@ -90,8 +90,8 @@ Enumerates keycodes.
 | KEYCODE_TAB                      |  2049 | Tab key                       |
 | KEYCODE_SPACE                    |  2050 | Space key                        |
 | KEYCODE_SYM                      |  2051 | Symbol key                    |
-| KEYCODE_EXPLORER                 |  2052 | Explorer key, which is used to start the explorer application      |
-| KEYCODE_ENVELOPE                 |  2053 | Email key, which is used to start the email application    |
+| KEYCODE_EXPLORER                 |  2052 | Explorer key, used to start the explorer application     |
+| KEYCODE_ENVELOPE                 |  2053 | Email key, used to start the email application   |
 | KEYCODE_ENTER                    |  2054 | Enter key                        |
 | KEYCODE_DEL                      |  2055 | Delete key                        |
 | KEYCODE_GRAVE                    |  2056 | Key `                      |
@@ -106,7 +106,7 @@ Enumerates keycodes.
 | KEYCODE_AT                       |  2065 | Key @                      |
 | KEYCODE_PLUS                     |  2066 | Key +                      |
 | KEYCODE_MENU                     |  2067 | Menu key                        |
-| KEYCODE_PAGE_UP                  |  2068 | Page Up key                      |
+| KEYCODE_PAGE_UP                  |  2068 |  Page Up key                      |
 | KEYCODE_PAGE_DOWN                |  2069 | Page Down key                      |
 | KEYCODE_ESCAPE                   |  2070 | ESC key                       |
 | KEYCODE_FORWARD_DEL              |  2071 | Delete key                        |
@@ -188,7 +188,7 @@ Enumerates keycodes.
 | KEYCODE_FIND                     |  2623 | Find key                        |
 | KEYCODE_CUT                      |  2624 | Cut key                        |
 | KEYCODE_HELP                     |  2625 | Help key                        |
-| KEYCODE_CALC                     |  2626 | Calc key, which is used to start the calculator application       |
+| KEYCODE_CALC                     |  2626 | Calc key, used to start the calculator application       |
 | KEYCODE_FILE                     |  2627 | File key                       |
 | KEYCODE_BOOKMARKS                |  2628 | Bookmarks key                        |
 | KEYCODE_NEXT                     |  2629 | Next key                      |
@@ -274,7 +274,7 @@ Enumerates keycodes.
 | KEYCODE_MESSENGER                |  2710 | Messenger key                        |
 | KEYCODE_BRIGHTNESS_TOGGLE        |  2711 | Brightness Toggle key                      |
 | KEYCODE_SPELLCHECK               |  2712 | Spell Check key                     |
-| KEYCODE_COFFEE                   |  2713 | Coffee key, which is used to launch screen lock or screen saver                 |
+| KEYCODE_COFFEE                   |  2713 | Coffee key, used to launch screen lock or screen saver                 |
 | KEYCODE_MEDIA_REPEAT             |  2714 | Media Repeat key                      |
 | KEYCODE_IMAGES                   |  2715 | Images key                        |
 | KEYCODE_BUTTONCONFIG             |  2716 | Button Configuration key                      |
@@ -293,12 +293,12 @@ Enumerates keycodes.
 | KEYCODE_KBDINPUTASSIST_NEXTGROUP |  2729 | Keyboard Input-assisted Next Group key            |
 | KEYCODE_KBDINPUTASSIST_ACCEPT    |  2730 | Keyboard Input-assisted Accept key          |
 | KEYCODE_KBDINPUTASSIST_CANCEL    |  2731 | Keyboard Input-assisted Cancel key          |
-| KEYCODE_FRONT                    |  2800 | Front key, which is used to launch the windshield defogger                  |
+| KEYCODE_FRONT                    |  2800 | Front key, used to launch the windshield defogger                  |
 | KEYCODE_SETUP                    |  2801 | Setup key                        |
 | KEYCODE_WAKEUP                   |  2802 | Wakeup key                        |
 | KEYCODE_SENDFILE                 |  2803 | Send File key                     |
 | KEYCODE_DELETEFILE               |  2804 | Delete File key                     |
-| KEYCODE_XFER                     |  2805 | XFER key, which is used to start file transfer               |
+| KEYCODE_XFER                     |  2805 | XFER key, used to start file transfer               |
 | KEYCODE_PROG1                    |  2806 | Program key 1                       |
 | KEYCODE_PROG2                    |  2807 | Program key 2                       |
 | KEYCODE_MSDOS                    |  2808 | MS-DOS key           |

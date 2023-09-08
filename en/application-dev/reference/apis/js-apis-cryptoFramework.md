@@ -4,7 +4,8 @@ The **cryptoFramework** module shields underlying hardware and algorithm librari
 
 > **NOTE**
 >
-> The initial APIs of this module are supported since API version 9.
+>- The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+>- The following code snippets apply only to JavaScript development.
 
 ## Modules to Import
 

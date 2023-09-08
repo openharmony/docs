@@ -7,7 +7,7 @@
 
 ## 导入模块
 
-```js
+```ts
 import wifiManager from '@ohos.wifiManager';
 ```
 
@@ -33,7 +33,7 @@ enableWifi(): void
 
 **示例：**
 
-```js
+```ts
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
@@ -65,7 +65,7 @@ disableWifi(): void
 
 **示例：**
 
-```js
+```ts
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
@@ -101,7 +101,7 @@ isWifiActive(): boolean
 
 **示例：**
 
-```js
+```ts
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
@@ -132,7 +132,7 @@ scan(): void
 
 **示例：**
 
-```js
+```ts
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
@@ -164,7 +164,7 @@ startScan(): void
 
 **示例：**
 
-```js
+```ts
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
@@ -222,7 +222,7 @@ getScanResults(callback: AsyncCallback&lt;Array&lt;WifiScanInfo&gt;&gt;): void
 | 2501000  | Operation failed.|
 
 **示例：**
-```js
+```ts
   import wifiManager from '@ohos.wifiManager';
   
   wifiManager.getScanResults((err, result) => {
@@ -231,9 +231,9 @@ getScanResults(callback: AsyncCallback&lt;Array&lt;WifiScanInfo&gt;&gt;): void
           return;
       }
   
-      var len = Object.keys(result).length;
+      let len = result.length;
       console.log("wifi received scan info: " + len);
-      for (var i = 0; i < len; ++i) {
+      for (let i = 0; i < len; ++i) {
           console.info("ssid: " + result[i].ssid);
           console.info("bssid: " + result[i].bssid);
           console.info("capabilities: " + result[i].capabilities);
@@ -247,9 +247,9 @@ getScanResults(callback: AsyncCallback&lt;Array&lt;WifiScanInfo&gt;&gt;): void
   });
   
   wifiManager.getScanResults().then(result => {
-      var len = Object.keys(result).length;
+      let len = result.length;
       console.log("wifi received scan info: " + len);
-      for (var i = 0; i < len; ++i) {
+      for (let i = 0; i < len; ++i) {
           console.info("ssid: " + result[i].ssid);
           console.info("bssid: " + result[i].bssid);
           console.info("capabilities: " + result[i].capabilities);
@@ -289,16 +289,16 @@ getScanResultsSync(): &nbsp;Array&lt;[WifiScanInfo](#wifiscaninfo)&gt;
 
 **示例：**
 
-```js
+```ts
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
 		let scanInfoList = wifiManager.getScanResultsSync();
 		console.info("scanInfoList:" + JSON.stringify(scanInfoList));
-		let len = Object.keys(scanInfoList).length;
+		let len = scanInfoList.length;
         console.log("wifi received scan info: " + len);
 		if(len > 0){
-			for (var i = 0; i < len; ++i) {
+			for (let i = 0; i < len; ++i) {
 				console.info("ssid: " + scanInfoList[i].ssid);
 				console.info("bssid: " + scanInfoList[i].bssid);
 				console.info("capabilities: " + scanInfoList[i].capabilities);
@@ -342,16 +342,16 @@ getScanInfoList(): Array&lt;WifiScanInfo&gt;;
 
 **示例：**
 
-```js
+```ts
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
 		let scanInfoList = wifiManager.getScanInfoList();
 		console.info("scanInfoList:" + JSON.stringify(scanInfoList));
-		let len = Object.keys(scanInfoList).length;
+		let len = scanInfoList.length;
         console.log("wifi received scan info: " + len);
 		if(len > 0){
-			for (var i = 0; i < len; ++i) {
+			for (let i = 0; i < len; ++i) {
 				console.info("ssid: " + scanInfoList[i].ssid);
 				console.info("bssid: " + scanInfoList[i].bssid);
 				console.info("capabilities: " + scanInfoList[i].capabilities);
@@ -510,7 +510,7 @@ setScanAlwaysAllowed(isScanAlwaysAllowed: boolean): void
   | -------- | -------- |
 | 2501000  | Operation failed.|
 
-```js
+```ts
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
@@ -549,7 +549,7 @@ getScanAlwaysAllowed(): boolean
 
 **示例：**
 
-```js
+```ts
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
@@ -594,11 +594,11 @@ addDeviceConfig(config: WifiDeviceConfig): Promise&lt;number&gt;
 
 **示例：**
 
-```js
+```ts
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
-		let config = {
+		let config:wifiManager.WifiDeviceConfig = {
 			ssid : "****",
 			preSharedKey : "****",
 			securityType : 0
@@ -790,11 +790,11 @@ addDeviceConfig(config: WifiDeviceConfig, callback: AsyncCallback&lt;number&gt;)
 
 **示例：**
 
-```js
+```ts
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
-		let config = {
+		let config:wifiManager.WifiDeviceConfig = {
 			ssid : "****",
 			preSharedKey : "****",
 			securityType : 0
@@ -838,11 +838,11 @@ addCandidateConfig(config: WifiDeviceConfig): Promise&lt;number&gt;
 | 2501000  | Operation failed.|
 
 **示例：**
-`````js
+`````ts
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
-		let config = {
+		let config:wifiManager.WifiDeviceConfig = {
 			ssid : "****",
 			preSharedKey : "****",
 			securityType : 0
@@ -881,11 +881,11 @@ addCandidateConfig(config: WifiDeviceConfig, callback: AsyncCallback&lt;number&g
 | 2501000  | Operation failed.|
 
 **示例：**
-`````js
+`````ts
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
-		let config = {
+		let config:wifiManager.WifiDeviceConfig = {
 			ssid : "****",
 			preSharedKey : "****",
 			securityType : 0
@@ -930,7 +930,7 @@ removeCandidateConfig(networkId: number): Promise&lt;void&gt;
 
 **示例：**
 
-```js
+```ts
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
@@ -969,7 +969,7 @@ removeCandidateConfig(networkId: number, callback: AsyncCallback&lt;void&gt;): v
 | 2501000  | Operation failed.|
 
 **示例：**
-```js
+```ts
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
@@ -1008,16 +1008,16 @@ getCandidateConfigs(): &nbsp;Array&lt;[WifiDeviceConfig](#wifideviceconfig)&gt;
 
 **示例：**
 
-`````js
+`````ts
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
 		let configs = wifiManager.getCandidateConfigs();
 		console.info("configs:" + JSON.stringify(configs));
-		let len = Object.keys(configs).length;
+		let len = configs.length;
         console.log("result len: " + len);
 		if(len > 0){
-			for (var i = 0; i < len; ++i) {
+			for (let i = 0; i < len; ++i) {
 				console.info("ssid: " + configs[i].ssid);
 				console.info("bssid: " + configs[i].bssid);
 			}
@@ -1054,7 +1054,7 @@ connectToCandidateConfig(networkId: number): void
 | 2501001  | Wifi is closed.|
 
 **示例：**
-```js
+```ts
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
@@ -1096,7 +1096,7 @@ connectToNetwork(networkId: number): void
 
 **示例：**
 
-```js
+```ts
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
@@ -1136,11 +1136,11 @@ connectToDevice(config: WifiDeviceConfig): void
 | 2501001  | Wifi is closed.|
 
 **示例：**
-```js
+```ts
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
-		let config = {
+		let config:wifiManager.WifiDeviceConfig = {
 			ssid : "****",
 			preSharedKey : "****",
 			securityType : 3
@@ -1174,7 +1174,7 @@ disconnect(): void
 | 2501000  | Operation failed.|
 
 **示例：**
-```js
+```ts
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
@@ -1216,7 +1216,7 @@ getSignalLevel(rssi: number, band: number): number
 | 2501000  | Operation failed.|
 
 **示例：**
-```js
+```ts
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
@@ -1281,7 +1281,7 @@ getLinkedInfo(callback: AsyncCallback&lt;WifiLinkedInfo&gt;): void
 | 2501001  | Wifi is closed.|
 
 **示例：**
-```js
+```ts
   import wifiManager from '@ohos.wifiManager';
   
   wifiManager.getLinkedInfo((err, data) => {
@@ -1294,7 +1294,7 @@ getLinkedInfo(callback: AsyncCallback&lt;WifiLinkedInfo&gt;): void
   
   wifiManager.getLinkedInfo().then(data => {
       console.info("get wifi linked info: " + JSON.stringify(data));
-  }).catch(error => {
+  }).catch((error:number) => {
       console.info("get linked info error");
   });
 ```
@@ -1396,7 +1396,7 @@ isConnected(): boolean
 | 2501000  | Operation failed.|
 
 **示例：**
-```js
+```ts
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
@@ -1450,7 +1450,7 @@ getSupportedFeatures(): number
 | 2401000  | Operation failed.|
 
 **示例：**
-```js
+```ts
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
@@ -1494,7 +1494,7 @@ isFeatureSupported(featureId: number): boolean
 | 2401000  | Operation failed.|
 
 **示例：**
-```js
+```ts
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
@@ -1534,7 +1534,7 @@ getDeviceMacAddress(): string[]
 | 2501000  | Operation failed.|
 
 **示例：**
-```js
+```ts
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
@@ -1571,7 +1571,7 @@ getIpInfo(): IpInfo
 | 2501000  | Operation failed.|
 
 **示例：**
-```js
+```ts
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
@@ -1624,7 +1624,7 @@ getIpv6Info(): Ipv6Info
 | 2501000  | Operation failed.|
 
 **示例：**
-```js
+```ts
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
@@ -1676,7 +1676,7 @@ getCountryCode(): string
 | 2401000  | Operation failed.|
 
 **示例：**
-```js
+```ts
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
@@ -1709,7 +1709,7 @@ reassociate(): void
 | 2501001  | Wifi is closed.|
 
 **示例：**
-```js
+```ts
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
@@ -1741,7 +1741,7 @@ reconnect(): void
 | 2501001  | Wifi is closed.|
 
 **示例：**
-```js
+```ts
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
@@ -1778,7 +1778,7 @@ getDeviceConfigs(): &nbsp;Array&lt;[WifiDeviceConfig](#wifideviceconfig)&gt;
 | 2501000  | Operation failed.|
 
 **示例：**
-```js
+```ts
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
@@ -1822,11 +1822,11 @@ updateNetwork(config: WifiDeviceConfig): number
 | 2501000  | Operation failed.|
 
 **示例：**
-```js
+```ts
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
-		let config = {
+		let config:wifiManager.WifiDeviceConfig = {
 			ssid : "****",
 			preSharedKey : "****",
 			securityType : 3
@@ -1865,7 +1865,7 @@ disableNetwork(netId: number): void
 | 2501000  | Operation failed.|
 
 **示例：**
-```js
+```ts
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
@@ -1897,7 +1897,7 @@ removeAllNetwork(): void
 | 2501000  | Operation failed.|
 
 **示例：**
-```js
+```ts
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
@@ -1934,7 +1934,7 @@ removeDevice(id: number): void
 | 2501000  | Operation failed.|
 
 **示例：**
-```js
+```ts
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
@@ -1976,7 +1976,7 @@ isBandTypeSupported(bandType: WifiBandType): boolean
 | 2501000  | Operation failed.|
 
 **示例：**
-```js
+```ts
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
@@ -2015,7 +2015,7 @@ get5GChannelList(): Array&lt;number&gt;
 | 2501000  | Operation failed.|
 
 **示例：**
-```js
+```ts
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
@@ -2052,7 +2052,7 @@ getDisconnectedReason(): DisconnectedReason
 | DisconnectedReason | 最近断开的原因 |
 
 **示例：**
-```js
+```ts
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
@@ -2098,7 +2098,7 @@ enableHotspot(): void
 | 2601000  | Operation failed.|
 
 **示例：**
-```js
+```ts
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
@@ -2129,7 +2129,7 @@ disableHotspot(): void
 | 2601000  | Operation failed.|
 
 **示例：**
-```js
+```ts
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
@@ -2166,7 +2166,7 @@ isHotspotDualBandSupported(): boolean
 | 2601000  | Operation failed.|
 
 **示例：**
-```js
+```ts
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
@@ -2204,7 +2204,7 @@ isHotspotActive(): boolean
 | 2601000  | Operation failed.|
 
 **示例：**
-```js
+```ts
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
@@ -2242,11 +2242,11 @@ setHotspotConfig(config: HotspotConfig): void
 | 2601000  | Operation failed.|
 
 **示例：**
-```js
+```ts
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
-		let config = {
+		let config:wifiManager.HotspotConfig = {
 			ssid: "****",
 			securityType: 3,
 			band: 0,
@@ -2254,7 +2254,7 @@ setHotspotConfig(config: HotspotConfig): void
 			preSharedKey: "****",
 			maxConn: 0
 		}
-		let ret = wifiManager.setHotspotConfig();
+		let ret = wifiManager.setHotspotConfig(config);
 		console.info("result:" + ret);		
 	}catch(error){
 		console.error("failed:" + JSON.stringify(error));
@@ -2305,7 +2305,7 @@ getHotspotConfig(): HotspotConfig
 | 2601000  | Operation failed.|
 
 **示例：**
-```js
+```ts
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
@@ -2343,7 +2343,7 @@ getStations(): &nbsp;Array&lt;[StationInfo](#stationinfo9)&gt;
 | 2601000  | Operation failed.|
 
 **示例：**
-```js
+```ts
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
@@ -2395,7 +2395,7 @@ getP2pLinkedInfo(): Promise&lt;WifiP2pLinkedInfo&gt;
 | 2801000  | Operation failed.|
 
 **示例：**
-```js
+```ts
 	import wifiManager from '@ohos.wifiManager';
 
 	wifiManager.getP2pLinkedInfo((err, data) => {
@@ -2503,7 +2503,7 @@ getCurrentP2pGroup(callback: AsyncCallback&lt;WifiP2pGroupInfo&gt;): void
 | 2801000  | Operation failed.|
 
 **示例：**
-```js
+```ts
 	import wifiManager from '@ohos.wifiManager';
 
 	wifiManager.getCurrentP2pGroup((err, data) => {
@@ -2568,7 +2568,7 @@ getP2pPeerDevices(callback: AsyncCallback&lt;WifiP2pDevice[]&gt;): void
 | 2801000  | Operation failed.|
 
 **示例：**
-```js
+```ts
 	import wifiManager from '@ohos.wifiManager';
 
 	wifiManager.getP2pPeerDevices((err, data) => {
@@ -2662,7 +2662,7 @@ getP2pLocalDevice(callback: AsyncCallback&lt;WifiP2pDevice&gt;): void
 | 2801000  | Operation failed.|
 
 **示例：**
-```js
+```ts
 	import wifiManager from '@ohos.wifiManager';
 
 	wifiManager.getP2pLocalDevice((err, data) => {
@@ -2703,18 +2703,18 @@ createGroup(config: WifiP2PConfig): void
 | 2801000  | Operation failed.|
 
 **示例：**
-```js
+```ts
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
-		let config = {
+		let config:wifiManager.WifiP2PConfig = {
 			deviceAddress: "****",
 			netId: 0,
 			passphrase: "*****",
 			groupName: "****",
 			goBand: 0
 		}
-		wifiManager.createGroup(config);	
+		wifiManager.createP2pGroup(config);	
 		
 	}catch(error){
 		console.error("failed:" + JSON.stringify(error));
@@ -2769,7 +2769,7 @@ removeGroup(): void
 | 2801000  | Operation failed.|
 
 **示例：**
-```js
+```ts
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
@@ -2804,10 +2804,10 @@ p2pConnect(config: WifiP2PConfig): void
 | 2801000  | Operation failed.|
 
 **示例：**
-```js
+```ts
   import wifiManager from '@ohos.wifiManager';
   
-  var recvP2pConnectionChangeFunc = result => {
+  let recvP2pConnectionChangeFunc = (result:wifiManager.WifiP2pLinkedInfo) => {
       console.info("p2p connection change receive event: " + JSON.stringify(result));
       wifiManager.getP2pLinkedInfo((err, data) => {
           if (err) {
@@ -2819,12 +2819,12 @@ p2pConnect(config: WifiP2PConfig): void
   }
   wifiManager.on("p2pConnectionChange", recvP2pConnectionChangeFunc);
   
-  var recvP2pDeviceChangeFunc = result => {
+  let recvP2pDeviceChangeFunc = (result:wifiManager.WifiP2pLinkedInfo) => {
       console.info("p2p device change receive event: " + JSON.stringify(result));
   }
   wifiManager.on("p2pDeviceChange", recvP2pDeviceChangeFunc);
   
-  var recvP2pPeerDeviceChangeFunc = result => {
+  let recvP2pPeerDeviceChangeFunc = (result:wifiManager.WifiP2pLinkedInfo) => {
       console.info("p2p peer device change receive event: " + JSON.stringify(result));
       wifiManager.getP2pPeerDevices((err, data) => {
           if (err) {
@@ -2832,16 +2832,16 @@ p2pConnect(config: WifiP2PConfig): void
               return;
           }
           console.info("get peer devices: " + JSON.stringify(data));
-          var len = Object.keys(data).length;
-          for (var i = 0; i < len; ++i) {
+          let len = data.length;
+          for (let i = 0; i < len; ++i) {
               if (data[i].deviceName === "my_test_device") {
                   console.info("p2p connect to test device: " + data[i].deviceAddress);
-                  var config = {
-                      "deviceAddress":data[i].deviceAddress,
-                      "netId":-2,
-                      "passphrase":"",
-                      "groupName":"",
-                      "goBand":0,
+                  let config:wifiManager.WifiP2PConfig = {
+                      deviceAddress:data[i].deviceAddress,
+                      netId:-2,
+                      passphrase:"",
+                      groupName:"",
+                      goBand:0,
                   }
                   wifiManager.p2pConnect(config);
               }
@@ -2850,7 +2850,7 @@ p2pConnect(config: WifiP2PConfig): void
   }
   wifiManager.on("p2pPeerDeviceChange", recvP2pPeerDeviceChangeFunc);
   
-  var recvP2pPersistentGroupChangeFunc = () => {
+  let recvP2pPersistentGroupChangeFunc = () => {
       console.info("p2p persistent group change receive event");
   
       wifiManager.getCurrentP2pGroup((err, data) => {
@@ -2863,10 +2863,10 @@ p2pConnect(config: WifiP2PConfig): void
   }
   wifiManager.on("p2pPersistentGroupChange", recvP2pPersistentGroupChangeFunc);
   
-  setTimeout(function() {wifiManager.off("p2pConnectionChange", recvP2pConnectionChangeFunc);}, 125 * 1000);
-  setTimeout(function() {wifiManager.off("p2pDeviceChange", recvP2pDeviceChangeFunc);}, 125 * 1000);
-  setTimeout(function() {wifiManager.off("p2pPeerDeviceChange", recvP2pPeerDeviceChangeFunc);}, 125 * 1000);
-  setTimeout(function() {wifiManager.off("p2pPersistentGroupChange", recvP2pPersistentGroupChangeFunc);}, 125 * 1000);
+  setTimeout(() => {wifiManager.off("p2pConnectionChange", recvP2pConnectionChangeFunc);}, 125 * 1000);
+  setTimeout(() =>  {wifiManager.off("p2pDeviceChange", recvP2pDeviceChangeFunc);}, 125 * 1000);
+  setTimeout(() =>  {wifiManager.off("p2pPeerDeviceChange", recvP2pPeerDeviceChangeFunc);}, 125 * 1000);
+  setTimeout(() =>  {wifiManager.off("p2pPersistentGroupChange", recvP2pPersistentGroupChangeFunc);}, 125 * 1000);
   console.info("start discover devices -> " + wifiManager.startDiscoverDevices());
 ```
 
@@ -2889,7 +2889,7 @@ p2pCancelConnect(): void
 | 2801000  | Operation failed.|
 
 **示例：**
-```js
+```ts
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
@@ -2935,7 +2935,7 @@ startDiscoverDevices(): void
 | 2801000  | Operation failed.|
 
 **示例：**
-```js
+```ts
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
@@ -2964,7 +2964,7 @@ stopDiscoverDevices(): void
 | 2801000  | Operation failed.|
 
 **示例：**
-```js
+```ts
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
@@ -3002,7 +3002,7 @@ deletePersistentGroup(netId: number): void
 | 2801000  | Operation failed.|
 
 **示例：**
-```js
+```ts
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
@@ -3040,7 +3040,7 @@ getP2pGroups(): Promise&lt;Array&lt;WifiP2pGroupInfo&gt;&gt;
 | 2801000  | Operation failed.|
 
 **示例：**
-```js
+```ts
 	import wifiManager from '@ohos.wifiManager';
 
 	wifiManager.getP2pGroups((err, data) => {
@@ -3129,7 +3129,7 @@ setDeviceName(devName: string): void
 | 2801000  | Operation failed.|
 
 **示例：**
-```js
+```ts
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
@@ -3201,10 +3201,10 @@ off(type: "wifiStateChange", callback?: Callback&lt;number&gt;): void
 | 2501000  | Operation failed.|
 
 **示例：**
-```js
+```ts
   import wifiManager from '@ohos.wifiManager';
   
-  var recvPowerNotifyFunc = result => {
+  let recvPowerNotifyFunc = (result:number) => {
       console.info("Receive power state change event: " + result);
   }
   
@@ -3274,10 +3274,10 @@ off(type: "wifiConnectionChange", callback?: Callback&lt;number&gt;): void
 | 2501000  | Operation failed.|
 
 **示例：**
-```js
+```ts
   import wifiManager from '@ohos.wifiManager';
   
-  var recvWifiConnectionChangeFunc = result => {
+  let recvWifiConnectionChangeFunc = (result:number) => {
       console.info("Receive wifi connection change event: " + result);
   }
   
@@ -3346,10 +3346,10 @@ off(type: "wifiScanStateChange", callback?: Callback&lt;number&gt;): void
 | 2501000  | Operation failed.|
 
 **示例：**
-```js
+```ts
   import wifiManager from '@ohos.wifiManager';
   
-  var recvWifiScanStateChangeFunc = result => {
+  let recvWifiScanStateChangeFunc = (result:number) => {
       console.info("Receive Wifi scan state change event: " + result);
   }
   
@@ -3411,10 +3411,10 @@ off(type: "wifiRssiChange", callback?: Callback&lt;number&gt;): void
 | 2501000  | Operation failed.|
 
 **示例：**
-```js
+```ts
   import wifiManager from '@ohos.wifiManager';
   
-  var recvWifiRssiChangeFunc = result => {
+  let recvWifiRssiChangeFunc = (result:number) => {
       console.info("Receive wifi rssi change event: " + result);
   }
   
@@ -3463,10 +3463,10 @@ off(type: "streamChange", callback?: Callback&lt;number&gt;): void
 | callback | Callback&lt;number&gt; | 否 | 状态改变回调函数，返回0:无，1：向下，2：向上，3：双向。 |
 
 **示例：**
-```js
+```ts
 import wifi from '@ohos.wifi';
 
-var recvStreamChangeFunc = result => {
+let recvStreamChangeFunc = (result:number) => {
     console.info("Receive stream change event: " + result);
 }
 
@@ -3512,10 +3512,10 @@ off(type: "deviceConfigChange", callback: Callback&lt;number&gt;): void
 | callback | Callback&lt;number&gt; | 是 | 状态改变回调函数，返回0: 添加配置, 1: 更改配置, 2: 删除配置.|
 
 **示例：**
-```js
+```ts
 import wifi from '@ohos.wifi';
 
-var recvDeviceConfigChangeFunc = result => {
+let recvDeviceConfigChangeFunc = (result:number) => {
     console.info("Receive device config change event: " + result);
 }
 
@@ -3587,10 +3587,10 @@ off(type: "hotspotStateChange", callback?: Callback&lt;number&gt;): void
 | 2601000  | Operation failed.|
 
 **示例：**
-```js
+```ts
   import wifiManager from '@ohos.wifiManager';
   
-  var recvHotspotStateChangeFunc = result => {
+  let recvHotspotStateChangeFunc = (result:number) => {
       console.info("Receive hotspot state change event: " + result);
   }
   
@@ -3640,10 +3640,10 @@ off(type: "hotspotStaJoin", callback?: Callback&lt;StationInfo&gt;): void
 | callback | Callback&lt;StationInfo&gt; | 否 | 状态改变回调函数。 |
 
 **示例：**
-```js
+```ts
 import wifi from '@ohos.wifi';
 
-var recvHotspotStaJoinFunc = result => {
+let recvHotspotStaJoinFunc = (result:number) => {
     console.info("Receive hotspot sta join event: " + result);
 }
 
@@ -3694,10 +3694,10 @@ off(type: "hotspotStaLeave", callback?: Callback&lt;StationInfo&gt;): void
 | callback | Callback&lt;StationInf]&gt; | 是 | 状态改变回调函数。 |
 
 **示例：**
-```js
+```ts
 import wifi from '@ohos.wifi';
 
-var recvHotspotStaLeaveFunc = result => {
+let recvHotspotStaLeaveFunc = (result:number) => {
     console.info("Receive hotspot sta leave event: " + result);
 }
 
@@ -3770,10 +3770,10 @@ off(type: "p2pStateChange", callback?: Callback&lt;number&gt;): void
 | 2801000  | Operation failed.|
 
 **示例：**
-```js
+```ts
   import wifiManager from '@ohos.wifiManager';
   
-  var recvP2pStateChangeFunc = result => {
+  let recvP2pStateChangeFunc = (result:number) => {
       console.info("Receive p2p state change event: " + result);
   }
   
@@ -3835,10 +3835,10 @@ off(type: "p2pConnectionChange", callback?: Callback&lt;WifiP2pLinkedInfo&gt;): 
 | 2801000  | Operation failed.|
 
 **示例：**
-```js
+```ts
   import wifiManager from '@ohos.wifiManager';
   
-  var recvP2pConnectionChangeFunc = result => {
+  let recvP2pConnectionChangeFunc = (result:number) => {
       console.info("Receive p2p connection change event: " + result);
   }
   
@@ -3900,10 +3900,10 @@ off(type: "p2pDeviceChange", callback?: Callback&lt;WifiP2pDevice&gt;): void
 | 2801000  | Operation failed.|
 
 **示例：**
-```js
+```ts
   import wifiManager from '@ohos.wifiManager';
   
-  var recvP2pDeviceChangeFunc = result => {
+  let recvP2pDeviceChangeFunc = (result:number) => {
       console.info("Receive p2p device change event: " + result);
   }
   
@@ -3965,10 +3965,10 @@ off(type: "p2pPeerDeviceChange", callback?: Callback&lt;WifiP2pDevice[]&gt;): vo
 | 2801000  | Operation failed.|
 
 **示例：**
-```js
+```ts
   import wifiManager from '@ohos.wifiManager';
   
-  var recvP2pPeerDeviceChangeFunc = result => {
+  let recvP2pPeerDeviceChangeFunc = (result:number) => {
       console.info("Receive p2p peer device change event: " + result);
   }
   
@@ -4030,10 +4030,10 @@ off(type: "p2pPersistentGroupChange", callback?: Callback&lt;void&gt;): void
 | 2801000  | Operation failed.|
 
 **示例：**
-```js
+```ts
   import wifiManager from '@ohos.wifiManager';
   
-  var recvP2pPersistentGroupChangeFunc = result => {
+  let recvP2pPersistentGroupChangeFunc = (result:number) => {
       console.info("Receive p2p persistent group change event: " + result);
   }
   
@@ -4102,10 +4102,10 @@ off(type: "p2pDiscoveryChange", callback?: Callback&lt;number&gt;): void
 | 2801000  | Operation failed.|
 
 **示例：**
-```js
+```ts
   import wifiManager from '@ohos.wifiManager';
   
-  var recvP2pDiscoveryChangeFunc = result => {
+  let recvP2pDiscoveryChangeFunc = (result:number) => {
       console.info("Receive p2p discovery change event: " + result);
   }
   

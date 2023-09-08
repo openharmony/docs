@@ -67,7 +67,7 @@ struct Index {
         startIcon: this.iconStr,
         content: "菜单选项",
         endIcon: $r("app.media.arrow_right_filled"),
-        builder: this.SubMenu.bind(this)
+        builder: ():void=>this.SubMenu()
       })
       MenuItemGroup({ header: '小标题' }) {
         MenuItem({ content: "菜单选项" })
@@ -81,7 +81,7 @@ struct Index {
           startIcon: $r("app.media.view_list_filled"),
           content: "菜单选项",
           endIcon: $r("app.media.arrow_right_filled"),
-          builder: this.SubMenu.bind(this)
+          builder: ():void=>this.SubMenu()
         })
       }
       MenuItem({
