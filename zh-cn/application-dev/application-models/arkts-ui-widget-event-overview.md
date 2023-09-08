@@ -1,7 +1,7 @@
 # 卡片事件能力说明
 
 针对动态卡片，ArkTS卡片中提供了postCardAction()接口用于卡片内部和提供方应用间的交互，当前支持router、message和call三种类型的事件，仅在卡片中可以调用。
-<br/>针对静态卡片，ArkTS卡片提供了[FormLink](../../application-dev/reference/arkui-ts/ts-container-formlink.md)用于卡片内部和提供方应用间的交互。
+<br/>针对静态卡片，ArkTS卡片提供了[FormLink](../reference/arkui-ts/ts-container-formlink.md)用于卡片内部和提供方应用间的交互。
 
 ## 动态卡片事件能力说明
 ![WidgetPostCardAction](figures/WidgetPostCardAction.png)
@@ -65,4 +65,4 @@ Button('拉至后台')
 ```
 
 ## 静态卡片事件能力说明
-请参见[FormLink](../../application-dev/reference/arkui-ts/ts-container-formlink.md)
+请参见[FormLink](../reference/arkui-ts/ts-container-formlink.md)

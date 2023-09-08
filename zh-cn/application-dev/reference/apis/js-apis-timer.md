@@ -31,8 +31,8 @@ setTimeout(handler: Function | string, delay?: number, ...arguments: any[]): num
 
 **示例：**
 
-  ```js
-  setTimeout(function() {            
+  ```ts
+  setTimeout(() => {
     console.log('delay 1s');
   }, 1000);
   ```
@@ -55,7 +55,7 @@ clearTimeout(timeoutID?: number): void
 **示例：**
 
   ```js    
-  let timeoutID = setTimeout(function() {            
+  let timeoutID = setTimeout(() => {
     console.log('do after 1s delay.');        
   }, 1000);        
   clearTimeout(timeoutID);
@@ -88,7 +88,7 @@ setInterval(handler: Function | string, delay: number, ...arguments: any[]): num
 **示例：**
 
   ```js
-  setInterval(function() {            
+  setInterval(() => {
     console.log('do every 1s.');        
   }, 1000);
   ```
@@ -111,7 +111,7 @@ clearInterval(intervalID?: number): void
 **示例：**
 
   ```js      
-  let intervalID = setInterval(function() {
+  let intervalID = setInterval(() => {
     console.log('do every 1s.');
   }, 1000);
   clearInterval(intervalID);

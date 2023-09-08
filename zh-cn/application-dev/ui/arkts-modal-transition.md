@@ -38,12 +38,12 @@
 3. 通过模态接口调起模态展示界面，通过转场动画或者共享元素动画去实现对应的动画效果。
   
    ```ts
-  class PresentTmp{
-    isPresent: boolean = false;
-    set(){
-      this.isPresent = !this.isPresent;
-    }
-  }
+   class PresentTmp{
+     isPresent: boolean = false;
+     set(){
+       this.isPresent = !this.isPresent;
+     }
+   }
    // 模态转场控制变量
    @State isPresent: boolean = false;
    

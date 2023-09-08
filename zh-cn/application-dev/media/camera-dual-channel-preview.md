@@ -30,10 +30,10 @@
 2. 创建ImageReceiver组件Surface。
 
    ```ts
-   async function getImageReceiverSurfaceId(): Promise<string> {
+   async function getImageReceiverSurfaceId(): Promise<string | undefined> {
      let receiver: image.ImageReceiver = image.createImageReceiver(640, 480, 4, 8);
      console.info('before ImageReceiver check');
-     let ImageReceiverSurfaceId: string;
+     let ImageReceiverSurfaceId: string | undefined = undefined;
      if (receiver !== undefined) {
        console.info('ImageReceiver is ok');
        let ImageReceiverSurfaceId: string = await receiver.getReceivingSurfaceId();
@@ -90,7 +90,7 @@
      let camerasDevices: Array<camera.CameraDevice> = cameraManager.getSupportedCameras(); // 获取支持的相机设备对象
    
      // 获取profile对象
-     let profiles: camera.CameraOutputCapability = await this.cameraManager.getSupportedOutputCapability(camerasDevices[0]); // 获取对应相机设备profiles
+     let profiles: camera.CameraOutputCapability = await cameraManager.getSupportedOutputCapability(camerasDevices[0]); // 获取对应相机设备profiles
      let previewProfiles: Array<camera.Profile> = profiles.previewProfiles;
    
      // 预览流1
@@ -153,7 +153,7 @@
              return;
            }
            let buffer: ArrayBuffer;
-           if (imgComponent.byteBuffer) {
+           if (imgComponent.byteBuffer as ArrayBuffer) {
              buffer = imgComponent.byteBuffer;
            } else {
              return;

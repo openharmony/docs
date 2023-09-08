@@ -759,7 +759,7 @@ textZoomAtio(textZoomAtio: number)
 
 | 参数名           | 参数类型   | 必填   | 默认值  | 参数描述            |
 | ------------- | ------ | ---- | ---- | --------------- |
-| textZoomAtio | number | 是    | 100  | 要设置的页面的文本缩放百分比。 |
+| textZoomAtio | number | 是    | 100  | 要设置的页面的文本缩放百分比。取值范围为(0, +∞)。 |
 
 **示例：**
 
@@ -789,7 +789,7 @@ textZoomRatio(textZoomRatio: number)
 
 | 参数名           | 参数类型   | 必填   | 默认值  | 参数描述            |
 | ------------- | ------ | ---- | ---- | --------------- |
-| textZoomRatio | number | 是    | 100  | 要设置的页面的文本缩放百分比。 |
+| textZoomRatio | number | 是    | 100  | 要设置的页面的文本缩放百分比。取值范围为(0, +∞)。 |
 
 **示例：**
 
@@ -2630,6 +2630,7 @@ onClientAuthenticationRequest(callback: (event: {handler : ClientAuthenticationH
 | issuers  | Array<string>                            | 与私钥匹配的证书可接受颁发者。 |
 
   **示例：**
+  未对接证书管理的双向认证
   ```ts
   // xxx.ets API9
   import web_webview from '@ohos.web.webview'
@@ -2667,12 +2668,41 @@ onClientAuthenticationRequest(callback: (event: {handler : ClientAuthenticationH
   }
   ```
 
+  对接证书管理的双向认证
+
+  1. 构造单例对象GlobalContext。
+  ```ts
+  // GlobalContext.ts
+  export class GlobalContext {
+    private constructor() {}
+    private static instance: GlobalContext;
+    private _objects = new Map<string, Object>();
+
+    public static getContext(): GlobalContext {
+      if (!GlobalContext.instance) {
+        GlobalContext.instance = new GlobalContext();
+      }
+      return GlobalContext.instance;
+    }
+
+    getObject(value: string): Object | undefined {
+      return this._objects.get(value);
+    }
+
+    setObject(key: string, objectClass: Object): void {
+      this._objects.set(key, objectClass);
+    }
+  }
+  ```
+
+  2. 实现双向认证。
   ```ts
   // xxx.ets API10
   import common from '@ohos.app.ability.common';
   import Want from '@ohos.app.ability.Want';
   import web_webview from '@ohos.web.webview'
-  import bundle from '@ohos.bundle'
+  import { BusinessError } from '@ohos.base';
+  import bundleManager from '@ohos.bundle.bundleManager'
   import { GlobalContext } from '../GlobalContext'
 
   let uri = "";
@@ -2680,6 +2710,7 @@ onClientAuthenticationRequest(callback: (event: {handler : ClientAuthenticationH
   export default class CertManagerService {
     private static sInstance: CertManagerService;
     private authUri = "";
+    private appUid = "";
 
     public static getInstance(): CertManagerService {
       if (CertManagerService.sInstance == null) {
@@ -2690,19 +2721,29 @@ onClientAuthenticationRequest(callback: (event: {handler : ClientAuthenticationH
 
     async grantAppPm(callback: (message: string) => void) {
       let message = '';
+      let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_DEFAULT | bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_APPLICATION;
       //注：com.example.myapplication需要写实际应用名称
-      let bundleInfo = await bundle.getBundleInfo("com.example.myapplication", bundle.BundleFlag.GET_BUNDLE_DEFAULT)
-      let clientAppUid = bundleInfo.uid
-      let appUid = clientAppUid.toString()
+      try {
+        bundleManager.getBundleInfoForSelf(bundleFlags).then((data) => {
+          console.info('getBundleInfoForSelf successfully. Data: %{public}s', JSON.stringify(data));
+          this.appUid = data.appInfo.uid.toString();
+        }).catch((err: BusinessError) => {
+          console.error('getBundleInfoForSelf failed. Cause: %{public}s', err.message);
+        });
+      } catch (err) {
+        let message = (err as BusinessError).message;
+        console.error('getBundleInfoForSelf failed: %{public}s', message);
+      }
 
       //注：需要在MainAbility.ts文件的onCreate函数里添加GlobalContext.getContext().setObject("AbilityContext", this.context)
-      await GlobalContext.getContext().getObject("AbilityContext").startAbilityForResult(
+      let abilityContext = GlobalContext.getContext().getObject("AbilityContext") as common.UIAbilityContext
+      await abilityContext.startAbilityForResult(
         {
           bundleName: "com.ohos.certmanager",
           abilityName: "MainAbility",
           uri: "requestAuthorize",
           parameters: {
-            appUid: appUid, //传入申请应用的appUid
+            appUid: this.appUid, //传入申请应用的appUid
           }
         } as Want)
         .then((data: common.AbilityResult) => {

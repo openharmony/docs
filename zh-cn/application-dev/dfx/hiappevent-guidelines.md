@@ -94,7 +94,7 @@ HiAppEvent是在系统层面为应用开发者提供的一种事件打点机制�
 2. 编辑工程中的“entry > src > main > ets  > pages > Index.ets” 文件，添加一个按钮并在其onClick函数中进行事件打点，以记录按钮点击事件，完整示例代码如下：
 
    ```ts
-   import { BusinessError } from 'ohos.base'
+   import { BusinessError } from '@ohos.base'
    import hiAppEvent from '@ohos.hiviewdfx.hiAppEvent'
    import hilog from '@ohos.hilog'
    

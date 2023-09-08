@@ -21,7 +21,7 @@ Refresh\(value: \{ refreshing: boolean, offset?:  number&nbsp;|&nbsp;string , fr
 | 参数         | 参数名                                      | 必填   | 参数描述                                     |
 | ---------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | refreshing | boolean                                  | 是    | 当前组件是否正在刷新。<br/>该参数支持[$$](../../quick-start/arkts-two-way-sync.md)双向绑定变量。 |
-| offset     | string&nbsp;\|&nbsp;number               | 否    | 下拉起点距离组件顶部的距离。<br/>默认值：16，单位vp <br/>**说明：**<br/>不支持百分比，不支持负数 |
+| offset     | string&nbsp;\|&nbsp;number               | 否    | 下拉起点距离组件顶部的距离。<br/>默认值：16，单位vp <br/>**说明：**<br/>offset取值范围[0vp,64vp]。大于64vp按照64vp处理。不支持百分比，不支持负数 |
 | friction   | number&nbsp;\|&nbsp;string               | 否    | 下拉摩擦系数，取值范围为0到100。<br/>默认值：62<br/>-&nbsp;0表示下拉刷新容器不跟随手势下拉而下拉。<br/>-&nbsp;100表示下拉刷新容器紧紧跟随手势下拉而下拉。<br/>-&nbsp;数值越大，下拉刷新容器跟随手势下拉的反应越灵敏。 |
 | builder    | [CustomBuilder](ts-types.md#custombuilder8)<sup>10+</sup> | 否    | 下拉时，自定义刷新样式的组件。                          |
 
