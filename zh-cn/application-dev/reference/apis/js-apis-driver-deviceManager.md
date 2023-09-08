@@ -19,6 +19,8 @@ queryDevices(busType?: number): Array&lt;Readonly&lt;Device&gt;&gt;
 
 获取接入主设备的外部设备列表。如果没有设备接入，那么将会返回一个空的列表。
 
+**需要权限**：ohos.permission.ACCESS_EXTENSIONAL_DEVICE_DRIVER
+
 **系统能力：**  SystemCapability.Driver.ExternalDevice
 
 **参数：**
@@ -61,6 +63,8 @@ bindDevice(deviceId: number, onDisconnect: AsyncCallback&lt;number&gt;,
 根据queryDevices()返回的设备信息绑定设备。
 
 需要调用[deviceManager.queryDevices](#devicemanagerquerydevices)获取设备信息以及device。
+
+**需要权限**：ohos.permission.ACCESS_EXTENSIONAL_DEVICE_DRIVER
 
 **系统能力：**  SystemCapability.Driver.ExternalDevice
 
@@ -107,6 +111,8 @@ bindDevice(deviceId: number, onDisconnect: AsyncCallback&lt;number&gt;): Promise
 
 需要调用[deviceManager.queryDevices](#devicemanagerquerydevices)获取设备信息以及device。
 
+**需要权限**：ohos.permission.ACCESS_EXTENSIONAL_DEVICE_DRIVER
+
 **系统能力：**  SystemCapability.Driver.ExternalDevice
 
 **参数：**
@@ -152,6 +158,8 @@ unbindDevice(deviceId: number, callback: AsyncCallback&lt;number&gt;): void
 
 解除设备绑定。
 
+**需要权限**：ohos.permission.ACCESS_EXTENSIONAL_DEVICE_DRIVER
+
 **系统能力：**  SystemCapability.Driver.ExternalDevice
 
 **参数：**
@@ -189,6 +197,8 @@ try {
 unbindDevice(deviceId: number): Promise&lt;number&gt;
 
 解除设备绑定。
+
+**需要权限**：ohos.permission.ACCESS_EXTENSIONAL_DEVICE_DRIVER
 
 **系统能力：**  SystemCapability.Driver.ExternalDevice
 

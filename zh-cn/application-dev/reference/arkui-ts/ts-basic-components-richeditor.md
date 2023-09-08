@@ -612,7 +612,6 @@ struct SelectionMenu {
             this.controller.addTextSpan(this.message, { style: { fontColor: Color.Orange, fontSize: 30 } })
           })
           .onSelect((value: RichEditorSelection) => {
-            if (value.selection == [-1. - 1]) return
             [this.start, this.end] = value.selection
           })
           .bindSelectionMenu(RichEditorSpanType.TEXT, this.panel(), ResponseType.LongPress, { onDisappear: () => {
@@ -632,7 +631,7 @@ struct SelectionMenu {
     Column() {
       Menu() {
         MenuItem({ builder: this.iconPanel() })
-      }.shadow(ShadowStyle.OUTER_DEFAULT_MD).margin({ bottom: 8 })
+      }.shadow(ShadowStyle.OUTER_DEFAULT_MD).margin({ bottom: 8 }).height(56).width(256)
 
       Menu() {
         if (!this.sliderShow) {
@@ -640,16 +639,15 @@ struct SelectionMenu {
         } else {
           MenuItem({ builder: this.sliderPanel() })
         }
-      }
-      .backgroundColor(Color.Transparent).focusable(true).shadow(ShadowStyle.OUTER_DEFAULT_MD)
-    }
+      }.width(256).shadow(ShadowStyle.OUTER_DEFAULT_MD)
+    }.width(256).backgroundColor(Color.Transparent)
   }
 
   @Builder iconPanel() {
     Column() {
       Row({ space: 2 }) {
         ForEach(this.iconArr, (item, index) => {
-          Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+          Flex({ justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
             Image(item).fillColor($r('sys.color.ohos_id_color_primary')).width(24).height(24).focusable(true)
           }
           .border({ width: this.iconIsFocus[index] ? 2 : 0, color: $r('sys.color.ohos_id_color_focused_outline') })
@@ -711,9 +709,8 @@ struct SelectionMenu {
     }
     .backgroundColor(this.colorTransparent)
     .borderRadius($r('sys.float.ohos_id_corner_radius_card'))
-    .width(256)
-    .height(56)
-    .padding(4)
+    .width(248)
+    .height(48)
   }
 
   @Builder listPanel() {
@@ -820,7 +817,6 @@ struct SelectionMenu {
                       }
                     })
                     break
-                  case 3: // 全选
                 }
               })
           }
@@ -839,8 +835,7 @@ struct SelectionMenu {
       }
     }
     .focusable(true)
-    .width(256)
-    .padding(4)
+    .width(248)
     .backgroundColor(this.colorTransparent)
     .borderRadius($r('sys.float.ohos_id_corner_radius_card'))
   }
@@ -862,9 +857,8 @@ struct SelectionMenu {
     .backgroundColor(this.colorTransparent)
     .borderRadius($r('sys.float.ohos_id_corner_radius_card'))
     .padding(15)
-    .width(256)
-    .height(56)
-    .margin({ bottom: 8 })
+    .width(248)
+    .height(48)
   }
 }
 

@@ -5,7 +5,7 @@
 
 > **说明：**
 >
-> 本文主要介绍动态卡片的事件开发。对于静态卡片，请参见[FormLink](../../application-dev/reference/arkui-ts/ts-container-formlink.md)。
+> 本文主要介绍动态卡片的事件开发。对于静态卡片，请参见[FormLink](../reference/arkui-ts/ts-container-formlink.md)。
 
 ## 通过router事件刷新卡片内容
 
@@ -107,7 +107,7 @@
    };
    ```
 
-- 在卡片页面通过注册Button的onClick点击事件回调，并在回调中调用**postCardAction**接口触发call事件至UIAbility。
+- 在卡片页面通过注册Button的onClick点击事件回调，并在回调中调用**postCardAction**接口触发call事件拉起UIAbility。
   
   ```ts
   let storage = new LocalStorage();

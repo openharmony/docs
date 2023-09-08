@@ -185,7 +185,7 @@ function getListFile() {
     public filter: Filter
   }
   let option = new ListFileOption();
-  option.filter.suffix = ['.png', '.jpg', '.txt'];          // The filen ame extension can be '.png', '.jpg', or '.txt'.
+  option.filter.suffix = ['.png', '.jpg', '.txt'];          // The file name extension can be '.png', '.jpg', or '.txt'.
   option.filter.displayName = ['test%'];                    // The file name starts with 'test'.
   option.filter.fileSizeOver = 0;                           // The file size is greater than or equal to 0.
   option.filter.lastModifiedAfter = new Date(0).getTime();  // The latest modification time of the file is later than January 1, 1970.

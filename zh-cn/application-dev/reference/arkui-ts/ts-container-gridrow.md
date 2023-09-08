@@ -1,5 +1,7 @@
 # GridRow
 
+栅格布局可以为布局提供规律性的结构，解决多尺寸多设备的动态布局问题，保证不同设备上各个模块的布局一致性。
+
 栅格容器组件，仅可以和栅格子组件([GridCol](ts-container-gridcol.md))在栅格布局场景中使用。
 
 >  **说明：**
@@ -21,19 +23,21 @@ GridRow(option?: {columns?: number | GridRowColumnOption, gutter?: Length | Gutt
 
 | 参数名 |类型|必填|说明|
 |-----|-----|----|----|
-|gutter|Length \| GutterOption|   否  |栅格布局间距，x代表水平方向。|
+|gutter|Length \| GutterOption|   否  |栅格布局间距。|
 |columns| number \| GridRowColumnOption |  否  |设置布局列数。|
 |breakpoints|BreakPoints|  否  |设置断点值的断点数列以及基于窗口或容器尺寸的相应参照。|
 |direction|GridRowDirection|   否  |栅格布局排列方向。|
 
 ## GutterOption
 
+栅格布局间距类型，用于描述栅格子组件不同方向的间距。
+
 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 | 参数名   | 参数类型   | 必填   | 参数描述                                     |
 | ----- | ------ | ---- | ---------------------------------------- |
-| x  | Length \| GridRowSizeOption | 否   | 水平gutter option。    |
-| y  | Length \| GridRowSizeOption | 否   | 竖直gutter option。      |
+| x  | Length \| GridRowSizeOption | 否   | 栅格子组件水平方向间距。    |
+| y  | Length \| GridRowSizeOption | 否   | 栅格子组件竖直方向间距。    |
 
 ## GridRowColumnOption
 
@@ -43,12 +47,12 @@ GridRow(option?: {columns?: number | GridRowColumnOption, gutter?: Length | Gutt
 
 | 参数名   | 参数类型   | 必填   | 参数描述                                     |
 | ----- | ------ | ---- | ---------------------------------------- |
-| xs  | number | 否    | 最小宽度类型设备。    |
-| sm  | number | 否    | 小宽度类型设备。      |
-| md  | number | 否    | 中等宽度类型设备。    |
-| lg  | number | 否    | 大宽度类型设备。      |
-| xl  | number | 否    | 特大宽度类型设备。    |
-| xxl | number | 否    | 超大宽度类型设备。    |
+| xs  | number | 否    | 在最小宽度类型设备上，栅格容器组件的栅格列数。    |
+| sm  | number | 否    | 在小宽度类型设备上，栅格容器组件的栅格列数。      |
+| md  | number | 否    | 在中等宽度类型设备上，栅格容器组件的栅格列数。    |
+| lg  | number | 否    | 在大宽度类型设备上，栅格容器组件的栅格列数。      |
+| xl  | number | 否    | 在特大宽度类型设备上，栅格容器组件的栅格列数。    |
+| xxl | number | 否    | 在超大宽度类型设备上，栅格容器组件的栅格列数。    |
 
 ## GridRowSizeOption
 
@@ -58,21 +62,23 @@ GridRow(option?: {columns?: number | GridRowColumnOption, gutter?: Length | Gutt
 
 | 参数名   | 参数类型   | 必填   | 参数描述                                     |
 | ----- | ------ | ---- | ---------------------------------------- |
-| xs  | Length | 否    | 最小宽度类型设备。    |
-| sm  | Length | 否    | 小宽度类型设备。      |
-| md  | Length | 否    | 中等宽度类型设备。    |
-| lg  | Length | 否    | 大宽度类型设备。      |
-| xl  | Length | 否    | 特大宽度类型设备。    |
-| xxl | Length | 否    | 超大宽度类型设备。    |
+| xs  | Length | 否    | 在最小宽度类型设备上，栅格子组件的间距。    |
+| sm  | Length | 否    | 在小宽度类型设备上，栅格子组件的间距。      |
+| md  | Length | 否    | 在中等宽度类型设备上，栅格子组件的间距。    |
+| lg  | Length | 否    | 在大宽度类型设备上，栅格子组件的间距。      |
+| xl  | Length | 否    | 在特大宽度类型设备上，栅格子组件的间距。    |
+| xxl | Length | 否    | 在超大宽度类型设备上，栅格子组件的间距。    |
 
 ## BreakPoints
+
+设置栅格容器组件的断点。
 
 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 | 参数名   | 参数类型   | 必填   | 参数描述                                     |
 | ----- | ------ | ---- | ---------------------------------------- |
 | value  | Array&lt;string&gt; | 否  | 设置断点位置的单调递增数组。<br>默认值：["320vp", "600vp", "840vp"]    |
-| reference  | BreakpointsReference | 否    | 断点切换参照物。 |
+| reference  | BreakpointsReference | 否    | 断点切换参照物。<br>默认值：BreakpointsReference.WindowSize |
 ```ts
   // 启用xs、sm、md共3个断点
   breakpoints: {value: ["100vp", "200vp"]}
@@ -139,13 +145,15 @@ GridRow(option?: {columns?: number | GridRowColumnOption, gutter?: Length | Gutt
 
 onBreakpointChange(callback: (breakpoints: string) => void)
 
+断点发生变化时触发回调。
+
 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **参数：**
 
 | 参数名   | 参数类型   | 必填   | 说明   |
 | ----- | ------ | ---- | ---------------------------------------- |
-|breakpoints| string |是|断点发生变化时触发回调<br>取值为`"xs"`、`"sm"`、`"md"`、`"lg"`、`"xl"`、`"xxl"`。|
+|breakpoints| string |是|取值为`"xs"`、`"sm"`、`"md"`、`"lg"`、`"xl"`、`"xxl"`。|
 
 ## 示例
 
@@ -166,8 +174,8 @@ struct GridRowExample {
           reference: BreakpointsReference.WindowSize },
         direction: GridRowDirection.Row
       }) {
-        ForEach(this.bgColors, (color) => {
-          GridCol({ span: { xs: 1, sm: 2, md: 3, lg: 4 } }) {
+        ForEach(this.bgColors, (color: Color) => {
+          GridCol({ span: { xs: 1, sm: 2, md: 3, lg: 4 }, offset: 0, order: 0 }) {
             Row().width("100%").height("20vp")
           }.borderColor(color).borderWidth(2)
         })

@@ -508,13 +508,22 @@ controlTransfer(pipe: USBDevicePipe, controlparam: USBControlParams, timeout ?: 
 **示例：**
 
 ```ts
-let param: number = {
+class PARA {
+  request: number = 0
+  reqType: USBControlRequestType = 0
+  target: USBRequestTargetType = 0
+  value: number = 0
+  index: number = 0
+  data: Uint8Array = 0
+}
+
+let param: PARA = {
   request: 0,
   reqType: 0,
   target:0,
   value: 0,
   index: 0,
-  data: null
+  data: 0
 };
 
 let devicesList: Array<USBDevice> = usb.getDevices();
@@ -817,7 +826,7 @@ import {BusinessError} from '@ohos.base';
 let portId: number = 1;
 usb.setPortRoles(portId, usb.PowerRoleType.SOURCE, usb.DataRoleType.HOST).then(() => {
     console.info('usb setPortRoles successfully.');
-}).catch(: BusinessError => {
+}).catch(err: BusinessError => {
     console.error('usb setPortRoles failed: ' + err.code + ' message: ' + err.message);
 });
 ```

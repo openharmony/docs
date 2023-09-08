@@ -894,6 +894,7 @@ function testAesMultiUpdate() {
           messageArr.push(plainText.charCodeAt(i));
         }
       }
+      globalCipherText = { data: tmpCipherText };
       return;
     })
     .then((): Promise<cryptoFramework.DataBlob> => {
@@ -1605,7 +1606,7 @@ function stringToUint8Array(str: string) {
 }
 
 let globalKeyPair: cryptoFramework.KeyPair;
-let SignMessageBlob: cryptoFramework.DataBlob;
+let signMessageBlob: cryptoFramework.DataBlob;
 let plan1 = "This is Sign test plan1";
 let plan2 = "This is Sign test plan1";
 let input1: cryptoFramework.DataBlob = { data: stringToUint8Array(plan1) };
@@ -1696,7 +1697,7 @@ function stringToUint8Array(str: string) {
 }
 
 let globalKeyPair: cryptoFramework.KeyPair;
-let SignMessageBlob: cryptoFramework.DataBlob;
+let signMessageBlob: cryptoFramework.DataBlob;
 let plan1 = "This is Sign test plan1";
 let plan2 = "This is Sign test plan1";
 let input1: cryptoFramework.DataBlob = { data: stringToUint8Array(plan1) };

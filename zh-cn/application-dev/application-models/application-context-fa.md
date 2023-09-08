@@ -31,17 +31,22 @@ let context = featureAbility.getContext()
    
    ```ts
     import featureAbility from '@ohos.ability.featureAbility'
-    export function onCreate() {
-      // 获取context并调用相关方法
-      let context = featureAbility.getContext();
-      context.getBundleName((data, bundleName)=>{
-        console.info("ability bundleName:" + bundleName)
-      });
-      console.info('Application onCreate')
+
+    class Entry {
+      onCreate() {
+        // 获取context并调用相关方法
+        let context = featureAbility.getContext();
+        context.getBundleName((data, bundleName)=>{
+          console.info("ability bundleName:" + bundleName)
+        });
+        console.info('Application onCreate')
+      }
+      onDestroy() {
+        console.info('Application onDestroy')
+      }
     }
-    export function onDestroy() {
-      console.info('Application onDestroy')
-    }
+
+    export default new Entry()
    ```
 
 2. 设置当前featureAbility的显示方向。
@@ -50,15 +55,19 @@ let context = featureAbility.getContext()
     import featureAbility from '@ohos.ability.featureAbility'
     import bundleManager from '@ohos.bundle.bundleManager';
 
-    export function onCreate() {
-      // 获取context并调用相关方法
-      let context = featureAbility.getContext();
-      context.setDisplayOrientation(bundleManager.DisplayOrientation.LANDSCAPE).then(() => {
-        console.info("Set display orientation.")
-      })
-      console.info('Application onCreate')
+    class Entry {
+      onCreate() {
+        // 获取context并调用相关方法
+        let context = featureAbility.getContext();
+        context.setDisplayOrientation(bundleManager.DisplayOrientation.LANDSCAPE).then(() => {
+          console.info("Set display orientation.")
+        })
+        console.info('Application onCreate')
+      }
+      onDestroy() {
+        console.info('Application onDestroy')
+      }
     }
-    export function onDestroy() {
-      console.info('Application onDestroy')
-    }
+
+    export default new Entry();
    ```
