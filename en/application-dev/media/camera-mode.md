@@ -1,10 +1,12 @@
-# Camera Photographing Sample
+# Taking Photos in Portrait Mode
 
-## Development Process
+## How to Develop
 
-After obtaining the output stream capabilities supported by the camera, create a photo stream. The development process is as follows:
+Portrait mode depends on the mode manager. After obtaining the mode management capability, you can create photo streams.
 
-![Photographing Development Process](figures/photographing-development-process.png)
+Mode management, as an enhancement to **CameraManager**, is used to manage advanced camera features. The figure below illustrates the mode management development process.
+
+![portraitgraphing Development Process](figures/portrait-capture-development-process.png)
 
 ## Sample Code
 There are multiple [methods for obtaining the context](../application-models/application-context-stage.md).
@@ -13,6 +15,7 @@ import camera from '@ohos.multimedia.camera';
 import image from '@ohos.multimedia.image';
 import media from '@ohos.multimedia.media';
 
+
 // Create a CameraManager instance.
 let context: Context = getContext(this);
 let cameraManager: camera.CameraManager = camera.getCameraManager(context);
@@ -20,12 +23,17 @@ if (!cameraManager) {
   console.error("camera.getCameraManager error");
   return;
 } 
+// Create a ModeManager instance.
+let modeManager: camera.ModeManager = camera.getModeManager(context);
+if (!cameraManager) {
+  console.error("camera.getModeManager error");
+  return;
+} 
 // Listen for camera status changes.
 cameraManager.on('cameraStatus', (err: BusinessError, cameraStatusInfo: camera.CameraStatusInfo) => {
-  console.info(`camera : ${cameraStatusInfo.camera.cameraId}`);
-  console.info(`status: ${cameraStatusInfo.status}`);
+	console.info(`camera : ${cameraStatusInfo.camera.cameraId}`);
+	console.info(`status: ${cameraStatusInfo.status}`);
 });
-
 // Obtain the camera list.
 let cameraArray: Array<camera.CameraDevice> = cameraManager.getSupportedCameras();
 if (cameraArray.length <= 0) {
@@ -34,12 +42,18 @@ if (cameraArray.length <= 0) {
 } 
 
 for (let index = 0; index < cameraArray.length; index++) {
-  console.info('cameraId : ' + cameraArray[index].cameraId);                          // Obtain the camera ID.
-  console.info('cameraPosition : ' + cameraArray[index].cameraPosition);              // Obtain the camera position.
-  console.info('cameraType : ' + cameraArray[index].cameraType);                      // Obtain the camera type.
-  console.info('connectionType : ' + cameraArray[index].connectionType);              // Obtain the camera connection type.
+  console.info('cameraId : ' + cameraArray[index].cameraId); // Obtain the camera ID.
+  console.info('cameraPosition : ' + cameraArray[index].cameraPosition); // Obtain the camera position.
+  console.info('cameraType : ' + cameraArray[index].cameraType); // Obtain the camera type.
+  console.info('connectionType : ' + cameraArray[index].connectionType); // Obtain the camera connection type.
 }
 
+// Obtain the mode list.
+let cameraModeArray: Array<camera.CameraMode> = modeManager.getSupportedModes(cameraArray[0]);
+if (cameraModeArray.length <= 0) {
+  console.error("modeManager.getSupportedModes error");
+  return;
+} 
 // Create a camera input stream.
 let cameraInput: camera.CameraInput;
 try {
@@ -48,7 +62,6 @@ try {
   let err = error as BusinessError;
   console.error('Failed to createCameraInput errorCode = ' + err.code);
 }
-
 // Listen for camera input errors.
 let cameraDevice: camera.CameraDevice = cameraArray[0];
 cameraInput.on('error', cameraDevice, (error: BusinessError) => {
@@ -58,10 +71,10 @@ cameraInput.on('error', cameraDevice, (error: BusinessError) => {
 // Open the camera.
 await cameraInput.open();
 
-// Obtain the output stream capabilities supported by the camera.
-let cameraOutputCap: camera.CameraOutputCapability = cameraManager.getSupportedOutputCapability(cameraArray[0]);
+// Obtain the output stream capabilities supported by the camera in the current mode.
+let cameraOutputCap: camera.CameraOutputCapability = modeManager.getSupportedOutputCapability(cameraArray[0], cameraModeArray[0]);
 if (!cameraOutputCap) {
-  console.error("cameraManager.getSupportedOutputCapability error");
+  console.error("modeManager.getSupportedOutputCapability error");
   return;
 }
 console.info("outputCapability: " + JSON.stringify(cameraOutputCap));
@@ -82,14 +95,12 @@ try {
   previewOutput = cameraManager.createPreviewOutput(previewProfilesArray[0], surfaceId);
 } catch (error) {
   let err = error as BusinessError;
-  console.error(`Failed to create the PreviewOutput instance. error code: ${err.code}`);
+  console.error("Failed to create the PreviewOutput instance. error code:" + err.code);
 }
-
 // Listen for preview output errors.
 previewOutput.on('error', (error: BusinessError) => {
   console.info(`Preview output error code: ${error.code}`);
-});
-
+})
 // Create an ImageReceiver instance and set photographing parameters. Wherein, the resolution must be one of the photographing resolutions supported by the current device, which are obtained from photoProfilesArray.
 let imageReceiver: image.ImageReceiver = image.createImageReceiver(1920, 1080, 4, 8);
 // Obtain the surface ID for displaying photos.
@@ -102,23 +113,23 @@ try {
   let err = error as BusinessError;
   console.error('Failed to createPhotoOutput errorCode = ' + err.code);
 }
-// Create a session.
-let captureSession: camera.CaptureSession;
+// Create a portrait session.
+let portraitSession: camera.CaptureSession;
 try {
-  captureSession = cameraManager.createCaptureSession();
+  portraitSession = modeManager.createCaptureSession(cameraModeArray[0]);
 } catch (error) {
   let err = error as BusinessError;
   console.error('Failed to create the CaptureSession instance. errorCode = ' + err.code);
 }
 
-// Listen for session errors.
-captureSession.on('error', (error: BusinessError) => {
+// Listen for portrait session errors.
+portraitSession.on('error', (error: BusinessError) => {
   console.info(`Capture session error code: ${error.code}`);
 });
 
 // Start configuration for the session.
 try {
-  captureSession.beginConfig();
+  portraitSession.beginConfig();
 } catch (error) {
   let err = error as BusinessError;
   console.error('Failed to beginConfig. errorCode = ' + err.code);
@@ -126,7 +137,7 @@ try {
 
 // Add the camera input stream to the session.
 try {
-  captureSession.addInput(cameraInput);
+  portraitSession.addInput(cameraInput);
 } catch (error) {
   let err = error as BusinessError;
   console.error('Failed to addInput. errorCode = ' + err.code);
@@ -134,7 +145,7 @@ try {
 
 // Add the preview output stream to the session.
 try {
-  captureSession.addOutput(previewOutput);
+  portraitSession.addOutput(previewOutput);
 } catch (error) {
   let err = error as BusinessError;
   console.error('Failed to addOutput(previewOutput). errorCode = ' + err.code);
@@ -142,92 +153,103 @@ try {
 
 // Add the photo output stream to the session.
 try {
-  captureSession.addOutput(photoOutput);
+  portraitSession.addOutput(photoOutput);
 } catch (error) {
   let err = error as BusinessError;
   console.error('Failed to addOutput(photoOutput). errorCode = ' + err.code);
 }
 
 // Commit the session configuration.
-await captureSession.commitConfig();
+await portraitSession.commitConfig();
 
 // Start the session.
-await captureSession.start().then(() => {
+await portraitSession.start().then(() => {
   console.info('Promise returned to indicate the session start success.');
-});
-// Check whether the camera has flash.
-let flashStatus: boolean;
+})
+
+// Obtain the supported beauty types.
+let beautyTypes: Array<camera.BeautyType>;
 try {
-  flashStatus = captureSession.hasFlash();
+  beautyTypes = portraitSession.getSupportedBeautyTypes();
 } catch (error) {
   let err = error as BusinessError;
-  console.error('Failed to hasFlash. errorCode = ' + err.code);
+  console.error('Failed to get the beauty types. errorCode = ' + err.code);
 }
-console.info('Promise returned with the flash light support status:' + flashStatus);
-
-if (flashStatus) {
-  // Check whether the auto flash mode is supported.
-  let flashModeStatus: boolean;
-  try {
-    let status: boolean = captureSession.isFlashModeSupported(camera.FlashMode.FLASH_MODE_AUTO);
-    flashModeStatus = status;
-  } catch (error) {
-    let err = error as BusinessError;
-    console.error('Failed to check whether the flash mode is supported. errorCode = ' + err.code);
-  }
-  if(flashModeStatus) {
-    // Set the flash mode to auto.
-    try {
-      captureSession.setFlashMode(camera.FlashMode.FLASH_MODE_AUTO);
-    } catch (error) {
-      let err = error as BusinessError;
-      console.error('Failed to set the flash mode. errorCode = ' + err.code);
-    }
-  }
-}
-
-// Check whether the continuous auto focus is supported.
-let focusModeStatus: boolean;
+// Obtain the beautify levels of the beauty type.
+let beautyRanges: Array<number>;
 try {
-  let status: boolean = captureSession.isFocusModeSupported(camera.FocusMode.FOCUS_MODE_CONTINUOUS_AUTO);
-  focusModeStatus = status;
+  beautyRanges = portraitSession.getSupportedBeautyRanges(beautyTypes[0]);
 } catch (error) {
   let err = error as BusinessError;
-  console.error('Failed to check whether the focus mode is supported. errorCode = ' + err.code);
+  console.error('Failed to get the beauty types ranges. errorCode = ' + err.code);
 }
-
-if (focusModeStatus) {
-  // Set the focus mode to continuous auto focus.
-  try {
-    captureSession.setFocusMode(camera.FocusMode.FOCUS_MODE_CONTINUOUS_AUTO);
-  } catch (error) {
-    let err = error as BusinessError;
-    console.error('Failed to set the focus mode. errorCode = ' + err.code);
-  }
-}
-
-// Obtain the zoom ratio range supported by the camera.
-let zoomRatioRange: Array<number>;
+// Set the beauty type and its level.
 try {
-  zoomRatioRange = captureSession.getZoomRatioRange();
+  portraitSession.setBeauty(beautyTypes[0], beautyRanges[0]);
 } catch (error) {
   let err = error as BusinessError;
-  console.error('Failed to get the zoom ratio range. errorCode = ' + err.code);
+  console.error('Failed to set the beauty type value. errorCode = ' + err.code);
 }
-
-// Set a zoom ratio.
+// Obtain the beauty level in use.
+let beautyLevel: number;
 try {
-  captureSession.setZoomRatio(zoomRatioRange[0]);
+  beautyLevel = portraitSession.getBeauty(beautyTypes[0]);
 } catch (error) {
   let err = error as BusinessError;
-  console.error('Failed to set the zoom ratio value. errorCode = ' + err.code);
+  console.error('Failed to get the beauty type value. errorCode = ' + err.code);
 }
-let settings: camera.PhotoCaptureSetting = {
-  quality: camera.QualityLevel.QUALITY_LEVEL_HIGH,                                     // Set the photo quality to high.
-  rotation: camera.ImageRotation.ROTATION_0                                            // Set the rotation angle of the photo to 0.
+
+// Obtain the supported filter types.
+let filterTypes: Array<camera.FilterType>;
+try {
+  filterTypes = portraitSession.getSupportedFilters();
+} catch (error) {
+  let err = error as BusinessError;
+  console.error('Failed to get the filter types. errorCode = ' + err.code);
 }
+// Set a filter type.
+try {
+  portraitSession.setFilter(filterTypes[0]);
+} catch (error) {
+  let err = error as BusinessError;
+  console.error('Failed to set the filter type value. errorCode = ' + err.code);
+}
+// Obtain the filter type in use.
+let filter: number;
+try {
+  filter = portraitSession.getFilter();
+} catch (error) {
+  let err = error as BusinessError;
+  console.error('Failed to get the filter type value. errorCode = ' + err.code);
+}
+
+// Obtain the supported portrait types.
+let portraitTypes: Array<camera.PortraitEffect>;
+try {
+  portraitTypes = portraitSession.getSupportedPortraitEffects();
+} catch (error) {
+  let err = error as BusinessError;
+  console.error('Failed to get the portrait effects types. errorCode = ' + err.code);
+}
+// Set a portrait type.
+try {
+  portraitSession.setPortraitEffect(portraitTypes[0]);
+} catch (error) {
+  let err = error as BusinessError;
+  console.error('Failed to set the portrait effects value. errorCode = ' + err.code);
+}
+// Obtain the portrait type in use.
+let effect: camera.PortraitEffect;
+try {
+  effect = portraitSession.getPortraitEffect();
+} catch (error) {
+  let err = error as BusinessError;
+  console.error('Failed to get the portrait effects value. errorCode = ' + err.code);
+}
+
+let captureSettings: camera.PhotoCaptureSetting;
 // Use the current photographing settings to take photos.
-photoOutput.capture(settings, async (err: BusinessError) => {
+photoOutput.capture(captureSettings, async (err: BusinessError) => {
   if (err) {
     console.error('Failed to capture the photo ${err.message}');
     return;
@@ -235,7 +257,7 @@ photoOutput.capture(settings, async (err: BusinessError) => {
   console.info('Callback invoked to indicate the photo capture request success.');
 });
 // Stop the session.
-captureSession.stop();
+portraitSession.stop();
 
 // Release the camera input stream.
 cameraInput.close();
@@ -247,9 +269,8 @@ previewOutput.release();
 photoOutput.release();
 
 // Release the session.
-captureSession.release();
+portraitSession.release();
 
 // Set the session to null.
-captureSession = null;
+portraitSession = null;
 ```
-
