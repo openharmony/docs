@@ -226,7 +226,7 @@ import tag from '@ohos.nfc.tag';
 // the folowing getXXX, can be one of getIsoDep, getNdef, getMifareClassic, ...
 
 try {
-    var isConnected = tag.getIsoDep(tagInfo).isConnected(); 
+    let isConnected = tag.getIsoDep(tagInfo).isConnected(); 
     console.log("tag isConnected = " + isConnected);
 } catch (busiError) {
     console.log("tag isConnected busiError: " + busiError);
@@ -295,7 +295,7 @@ import tag from '@ohos.nfc.tag';
 // the folowing getXXX, can be one of getIsoDep, getNdef, getMifareClassic, ...
 
 try {
-    var maxTransmitSize = tag.getIsoDep(tagInfo).getMaxTransmitSize(); 
+    let maxTransmitSize = tag.getIsoDep(tagInfo).getMaxTransmitSize(); 
     console.log("tag maxTransmitSize = " + maxTransmitSize);
 } catch (busiError) {
     console.log("tag getMaxTransmitSize busiError: " + busiError);
@@ -366,7 +366,7 @@ import tag from '@ohos.nfc.tag';
 // the folowing getXXX, can be one of getIsoDep, getNdef, getMifareClassic, ...
 
 try {
-    var timeout = tag.getIsoDep(tagInfo).getTimeout(); 
+    let timeout = tag.getIsoDep(tagInfo).getTimeout(); 
     console.log("tag timeout = " + timeout);
 } catch (busiError) {
     console.log("tag getTimeout busiError: " + busiError);

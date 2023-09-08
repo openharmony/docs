@@ -499,7 +499,7 @@ isNdefWritable(): boolean;
 import tag from '@ohos.nfc.tag';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'ndefTag' correctly.
-var isWritable = ndefTag.isNdefWritable();
+let isWritable = ndefTag.isNdefWritable();
 console.log("ndef isNdefWritable: " + isWritable);
 ```
 
@@ -744,7 +744,7 @@ canSetReadOnly(): boolean
 import tag from '@ohos.nfc.tag';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'ndefTag' correctly.
-var canSetReadOnly = ndefTag.canSetReadOnly();
+let canSetReadOnly = ndefTag.canSetReadOnly();
 console.log("ndef canSetReadOnly: " + canSetReadOnly);
 ```
 

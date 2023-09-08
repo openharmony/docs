@@ -70,7 +70,7 @@ export default class EntryAbility extends UIAbility {
         // add other code here...
 
         // want is initialized by nfc service, contains tag info for this found tag
-        var tagInfo;
+        let tagInfo;
         try {
             tagInfo = tag.getTagInfo(want);
         } catch (error) {
@@ -82,9 +82,9 @@ export default class EntryAbility extends UIAbility {
         }
 
         // get the supported technologies for this found tag.
-        var isNfcATag =  false;
-        var isIsoDepTag =  false;
-        for (var i = 0; i < tagInfo.technology.length; i++) {
+        let isNfcATag =  false;
+        let isIsoDepTag =  false;
+        for (let i = 0; i < tagInfo.technology.length; i++) {
             if (tagInfo.technology[i] == tag.NFC_A) {
                 isNfcATag = true;
             }
@@ -97,7 +97,7 @@ export default class EntryAbility extends UIAbility {
 
         // use NfcA APIs to access the found tag.
         if (isNfcATag) {
-            var nfcA;
+            let nfcA;
             try {
                 nfcA = tag.getNfcATag(tagInfo);
             } catch (error) {
@@ -108,7 +108,7 @@ export default class EntryAbility extends UIAbility {
 
         // use getIsoDep APIs to access the found tag.
         if (isIsoDepTag) {
-            var isoDep;
+            let isoDep;
             try {
                 isoDep = tag.getIsoDep(tagInfo);
             } catch (error) {
@@ -521,6 +521,8 @@ unregisterForegroundDispatch(elementName: [ElementName](js-apis-bundleManager-el
 ```js
 import UIAbility from '@ohos.app.ability.UIAbility'
 import tag from '@ohos.nfc.tag';
+import { ElementName } from 'bundleManager/ElementName';
+import Want from '@ohos.app.ability.Want'
 
 let elementName = null;
 let discTech = [tag.NFC_A, tag.NFC_B]; // replace with the tech(s) that is needed by foreground ability
