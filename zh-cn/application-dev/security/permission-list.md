@@ -2781,3 +2781,15 @@
 **ACL使能**：TRUE
 
 **起始版本**：11
+
+## ohos.permission.ATTEST_KEY
+
+允许应用获取用于证明密钥合法性的证书链。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
