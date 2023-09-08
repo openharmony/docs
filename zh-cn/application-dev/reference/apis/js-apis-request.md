@@ -620,7 +620,7 @@ remove(callback: AsyncCallback&lt;boolean&gt;): void
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | path | string | 是 | 文件路径 |
-| responseCode | number | 是 | 上传任务返回值 |
+| responseCode | number | 是 | 上传任务返回值，0表示任务成功，其它返回码为失败，具体请查看message上传任务结果描述信息 |
 | message | string | 是 | 上传任务结果描述信息 |
 
 ## File
@@ -3050,10 +3050,10 @@ show(id: string, callback: AsyncCallback&lt;TaskInfo&gt;): void
   ```ts
   request.agent.show("123456", (err: BusinessError, taskInfo: request.agent.TaskInfo) => {
     if (err) {
-      console.error(`Failed to show a unload task, Code: ${err.code}, message: ${err.message}`);
+      console.error(`Failed to show a upload task, Code: ${err.code}, message: ${err.message}`);
       return;
     }
-    console.info(`Succeeded in showing a unload task.`);
+    console.info(`Succeeded in showing a upload task.`);
   });
   ```
 
@@ -3090,9 +3090,9 @@ show(id: string): Promise&lt;TaskInfo&gt;
 
   ```ts
   request.agent.show("123456").then((taskInfo: request.agent.TaskInfo) => {
-    console.info(`Succeeded in showing a unload task.`);
+    console.info(`Succeeded in showing a upload task.`);
   }).catch((err: BusinessError) => {
-    console.error(`Failed to show a unload task, Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to show a upload task, Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -3126,10 +3126,10 @@ touch(id: string, token: string, callback: AsyncCallback&lt;TaskInfo&gt;): void
   ```ts
   request.agent.touch("123456", "token", (err: BusinessError, taskInfo: request.agent.TaskInfo) => {
     if (err) {
-      console.error(`Failed to touch a unload task, Code: ${err.code}, message: ${err.message}`);
+      console.error(`Failed to touch a upload task, Code: ${err.code}, message: ${err.message}`);
       return;
     }
-    console.info(`Succeeded in touching a unload task.`);
+    console.info(`Succeeded in touching a upload task.`);
   });
   ```
 
@@ -3167,12 +3167,44 @@ touch(id: string, token: string): Promise&lt;TaskInfo&gt;
 
   ```ts
   request.agent.touch("123456", "token").then((taskInfo: request.agent.TaskInfo) => {
-    console.info(`Succeeded in touching a unload task. `);
+    console.info(`Succeeded in touching a upload task. `);
   }).catch((err: BusinessError) => {
-    console.error(`Failed to touch a unload task, Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to touch a upload task, Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
+## request.agent.search<sup>10+</sup>
+
+search(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
+
+根据默认[Filter](#filter10)过滤条件查找任务id。使用callback异步回调。
+
+**系统能力**: SystemCapability.Request.FileTransferAgent
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | 是 | 回调函数，返回满足条件任务id。 |
+
+**错误码：**
+以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 13400003 | task service ability error. |
+
+**示例：**
+
+  ```ts
+  request.agent.search((err: BusinessError, data: Array<string>) => {
+    if (err) {
+      console.error(`Failed to search a upload task, Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in searching a upload task. `);
+  });
+  ```
 
 ## request.agent.search<sup>10+</sup>
 
@@ -3206,17 +3238,17 @@ search(filter: Filter, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
   }
   request.agent.search(filter, (err: BusinessError, data: Array<string>) => {
     if (err) {
-      console.error(`Failed to search a unload task, Code: ${err.code}, message: ${err.message}`);
+      console.error(`Failed to search a upload task, Code: ${err.code}, message: ${err.message}`);
       return;
     }
-    console.info(`Succeeded in searching a unload task. `);
+    console.info(`Succeeded in searching a upload task. `);
   });
   ```
 
 
 ## request.agent.search<sup>10+</sup>
 
-search(filter: Filter): Promise&lt;Array&lt;string&gt;&gt;
+search(filter?: Filter): Promise&lt;Array&lt;string&gt;&gt;
 
 根据[Filter](#filter10)过滤条件查找任务id。使用Promise异步回调。
 
@@ -3226,7 +3258,7 @@ search(filter: Filter): Promise&lt;Array&lt;string&gt;&gt;
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | filter | [Filter](#filter10) | 是 | 过滤条件。 |
+  | filter | [Filter](#filter10) | 否 | 过滤条件。 |
 
 **返回值：** 
 
@@ -3250,9 +3282,9 @@ search(filter: Filter): Promise&lt;Array&lt;string&gt;&gt;
     mode: request.agent.Mode.BACKGROUND
   }
   request.agent.search(filter).then((data: Array<string>) => {
-    console.info(`Succeeded in searching a unload task. `);
+    console.info(`Succeeded in searching a upload task. `);
   }).catch((err: BusinessError) => {
-    console.error(`Failed to search a unload task, Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to search a upload task, Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -3289,10 +3321,10 @@ query(id: string, callback: AsyncCallback&lt;TaskInfo&gt;): void
   ```ts
   request.agent.query("123456", (err: BusinessError, taskInfo: request.agent.TaskInfo) => {
     if (err) {
-      console.error(`Failed to query a unload task, Code: ${err.code}, message: ${err.message}`);
+      console.error(`Failed to query a upload task, Code: ${err.code}, message: ${err.message}`);
       return;
     }
-    console.info(`Succeeded in querying a unload task. result: ${taskInfo.uid}`);
+    console.info(`Succeeded in querying a upload task. result: ${taskInfo.uid}`);
   });
   ```
 
@@ -3333,9 +3365,9 @@ query(id: string): Promise&lt;TaskInfo&gt;
 
   ```ts
   request.agent.query("123456",).then((taskInfo: request.agent.TaskInfo) => {
-    console.info(`Succeeded in querying a unload task. result: ${taskInfo.uid}`);
+    console.info(`Succeeded in querying a upload task. result: ${taskInfo.uid}`);
   }).catch((err: BusinessError) => {
-    console.error(`Failed to query a unload task, Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to query a upload task, Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
