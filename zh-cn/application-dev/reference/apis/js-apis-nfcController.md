@@ -205,7 +205,7 @@ try {
 
 // close nfc, require permission: ohos.permission.MANAGE_SECURE_SETTINGS
 if (controller.isNfcOpen()) {
-  var ret = controller.closeNfc();
+  let ret = controller.closeNfc();
   console.log("controller closeNfc ret: " + ret);
 }
 
