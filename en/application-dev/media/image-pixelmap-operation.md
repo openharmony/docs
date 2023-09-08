@@ -14,29 +14,30 @@ Read [Image](../reference/apis/js-apis-image.md#pixelmap7) for APIs related to p
 1. Complete [image decoding](image-decoding.md#how-to-develop) and obtain a **PixelMap** object.
 
 2. Obtain information from the **PixelMap** object.
-   
+     
    ```ts
    // Obtain the total number of bytes of this pixel map.
-   let pixelBytesNumber = pixelMap.getPixelBytesNumber();
+   let pixelBytesNumber : number = pixelMap.getPixelBytesNumber();
    // Obtain the number of bytes per row of this pixel map.
-   let rowCount = pixelMap.getBytesNumberPerRow();
+   let rowCount : number = pixelMap.getBytesNumberPerRow();
    // Obtain the pixel density of the image. Pixel density refers to the number of pixels per inch of an image. A larger value of the pixel density indicates a finer image.
-   let getDensity = pixelMap.getDensity();
+   let getDensity : number = pixelMap.getDensity();
    ```
 
 3. Read and modify the pixel data of the target area, and write the modified data back to the original image.
-   
+     
    ```ts
+   import {BusinessError} from '@ohos.base'
    // Scenario 1: Read the pixel data of the entire image and write the modified data to an array buffer.
    const readBuffer = new ArrayBuffer(pixelBytesNumber);
    pixelMap.readPixelsToBuffer(readBuffer).then(() => {
      console.info('Succeeded in reading image pixel data.');
-   }).catch(error => {
+   }).catch((error : BusinessError) => {
      console.error('Failed to read image pixel data. And the error is: ' + error);
    })
    
    // Scenario 2: Read the pixel data in a specified area and write the modified data to area.pixels.
-   const area = {
+   const area : image.PositionArea = {
      pixels: new ArrayBuffer(8),
      offset: 0,
      stride: 8,
@@ -44,7 +45,7 @@ Read [Image](../reference/apis/js-apis-image.md#pixelmap7) for APIs related to p
    }
    pixelMap.readPixels(area).then(() => {
      console.info('Succeeded in reading the image data in the area.');
-   }).catch(error => {
+   }).catch((error : BusinessError) => {
      console.error('Failed to read the image data in the area. And the error is: ' + error);
    })
    
