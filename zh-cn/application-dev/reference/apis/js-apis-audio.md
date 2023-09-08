@@ -284,8 +284,7 @@ createTonePlayer(options: AudioRendererInfo, callback: AsyncCallback&lt;TonePlay
 import audio from '@ohos.multimedia.audio';
 
 let audioRendererInfo: audio.AudioRendererInfo = {
-  content : audio.ContentType.CONTENT_TYPE_SONIFICATION,
-  usage : audio.StreamUsage.STREAM_USAGE_MEDIA,
+  usage : audio.StreamUsage.STREAM_USAGE_DTMF,
   rendererFlags : 0
 }
 let tonePlayer: audio.TonePlayer;
@@ -330,8 +329,7 @@ import audio from '@ohos.multimedia.audio';
 let tonePlayer: audio.TonePlayer;
 async function createTonePlayerBefore(){
   let audioRendererInfo: audio.AudioRendererInfo = {
-    content : audio.ContentType.CONTENT_TYPE_SONIFICATION,
-    usage : audio.StreamUsage.STREAM_USAGE_MEDIA,
+    usage : audio.StreamUsage.STREAM_USAGE_DTMF,
     rendererFlags : 0
   }
   tonePlayer = await audio.createTonePlayer(audioRendererInfo);
