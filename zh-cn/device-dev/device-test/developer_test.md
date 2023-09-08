@@ -1104,9 +1104,9 @@ OpenHarmony系统开发人员在新增或修改代码之后，希望可以快速
 
 	1. 添加文件头注释信息
 
-		```
-		# Copyright (C) 2023 XXXX Device Co., Ltd.
-		```
+        ```
+        #Copyright (C) 2023 XXXX Device Co., Ltd.
+        ```
 	2. 导入编译模板文件
 
         ```
@@ -1115,23 +1115,21 @@ OpenHarmony系统开发人员在新增或修改代码之后，希望可以快速
         ```
 	3. 指定文件输出路径
 
-		```
-		module_output_path = "developer_test/rust_add_test"
-		```
-		> **说明：** 
-		> 
-		> 此处输出路径为部件/模块名。
+        ```
+        module_output_path = "developer_test/rust_add_test"
+        ```
+        > **说明：**
+        > - 此处输出路径为部件/模块名。
 
 	4. 指定测试用例编译目标输出的文件名称
 
-		```
-		ohos_rust_unittest("rust_add_test") {
-		}
-		```
-		> **说明：** 
-		> 
-		> - 使用模板ohos_rust_unittest定义rust的unittest测试套，注意与C++用例区分。
-		> - 测试套名称必须以rust_开头。
+        ```
+        ohos_rust_unittest("rust_add_test") {
+        }
+        ```
+        > **说明：**
+        > - 使用模板ohos_rust_unittest定义rust的unittest测试套，注意与C++用例区分。
+        > - 测试套名称必须以rust_开头。
         > - 还可以使用模板ohos_rust_systemtest定义rust的systemtest测试套。
 
 **编译入口配置文件bundle.json**
