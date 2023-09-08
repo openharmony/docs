@@ -34,6 +34,8 @@ createCalendar(calendarAccount: CalendarAccount, callback: AsyncCallback\<Calend
 **示例**：
 
 ```typescript
+import { BusinessError } from '@ohos.base';
+
 let calendar : calendarManager.Calendar | undefined = undefined;
 const calendarAccount: calendarManager.CalendarAccount = {
   name: 'MyCalendar',
@@ -77,7 +79,9 @@ createCalendar(calendarAccount: CalendarAccount): Promise\<Calendar>
 
 **示例**：
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 let calendar : calendarManager.Calendar | undefined = undefined;
 const calendarAccount: calendarManager.CalendarAccount = {
   name: 'MyCalendar',
@@ -112,6 +116,8 @@ deleteCalendar(calendar: Calendar, callback: AsyncCallback\<void>): void
 **示例**：
 
 ```typescript
+import { BusinessError } from '@ohos.base';
+
 const calendarAccount: calendarManager.CalendarAccount = {
   name: 'MyCalendar',
   type: calendarManager.CalendarType.LOCAL
@@ -157,6 +163,8 @@ deleteCalendar(calendar: Calendar): Promise\<void>
 **示例**：
 
 ```typescript
+import { BusinessError } from '@ohos.base';
+
 const calendarAccount: calendarManager.CalendarAccount = {
   name: 'MyCalendar',
   type: calendarManager.CalendarType.LOCAL
@@ -192,6 +200,8 @@ getCalendar(callback: AsyncCallback\<Calendar>): void
 **示例**：
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let calendar : calendarManager.Calendar | undefined = undefined;
 calendarManager.getCalendar((err: BusinessError, data:calendarManager.Calendar) => {
   if (err) {
@@ -223,6 +233,8 @@ getCalendar(calendarAccount: CalendarAccount, callback: AsyncCallback\<Calendar>
 **示例**：
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let calendar : calendarManager.Calendar | undefined = undefined;
 const calendarAccount: calendarManager.CalendarAccount = {
   name: 'MyCalendar',
@@ -263,6 +275,8 @@ getCalendar(calendarAccount?: CalendarAccount): Promise\<Calendar>
 **示例**：
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let calendar : calendarManager.Calendar | undefined = undefined;
 calendarManager.getCalendar().then((data) => {
   console.info(`Succeeded in getting calendar data->${JSON.stringify(data)}`);
@@ -291,6 +305,8 @@ getAllCalendars(callback: AsyncCallback\<Calendar[]>): void
 **示例**：
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 calendarManager.getAllCalendars((err: BusinessError, data: calendarManager.Calendar[]) => {
   if (err) {
     console.error(`Failed to get all calendars: err->${JSON.stringify(err)}`);
@@ -322,7 +338,9 @@ getAllCalendars(): Promise\<Calendar[]>
 
 **示例**：
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 calendarManager.getAllCalendars().then((data: calendarManager.Calendar[]) => {
   console.info(`Succeeded in getting all calendars->${JSON.stringify(data)}`);
   data.forEach((calendar) => {
@@ -364,6 +382,8 @@ addEvent(event: Event, callback: AsyncCallback\<number>): void
 **示例**：
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 const date = new Date();
 const event: calendarManager.Event = {
   type: calendarManager.EventType.NORMAL,
@@ -402,6 +422,8 @@ addEvent(event: Event): Promise\<number>
 **示例**：
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 const date = new Date();
 const event: calendarManager.Event = {
   type: calendarManager.EventType.NORMAL,
@@ -432,7 +454,9 @@ addEvents(events: Event[], callback: AsyncCallback\<void>): void
 
 **示例**：
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 const date = new Date();
 const events: calendarManager.Event[] = [
   {
@@ -477,7 +501,9 @@ addEvents(events: Event[]): Promise\<void>
 
 **示例**：
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 const date = new Date();
 const events: calendarManager.Event[] = [
   {
@@ -515,7 +541,9 @@ deleteEvent(id: number, callback: AsyncCallback\<void>): void
 
 **示例**：
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 calendar.deleteEvent(1, (err: BusinessError) => {
   if (err) {
     console.error("Failed to delete event");
@@ -547,7 +575,9 @@ deleteEvent(id: number): Promise\<void>
 
 **示例**：
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 calendar.deleteEvent(1).then(() => {
   console.info("Succeeded in deleting event");
 }).catch((err: BusinessError) => {
@@ -572,7 +602,9 @@ deleteEvents(ids: number[], callback: AsyncCallback\<void>): void
 
 **示例**：
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 calendar.deleteEvents([1, 2], (err: BusinessError) => {
   if (err) {
     console.error("Failed to delete events");
@@ -604,7 +636,9 @@ deleteEvents(ids: number[]): Promise\<void>
 
 **示例**：
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 calendar.deleteEvents([1, 2]).then(() => {
   console.info("Succeeded in deleting events");
 }).catch((err: BusinessError) => {
@@ -630,6 +664,8 @@ updateEvent(event: Event, callback: AsyncCallback\<void>): void
 **示例**：
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 const date = new Date();
 const oriEvent: calendarManager.Event = {
   title: 'update',
@@ -679,6 +715,8 @@ updateEvent(event: Event): Promise\<void>
 **示例**：
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 const filter = calendarManager.EventFilter.filterByTitle('update');
 calendar.getEvents(filter).then((events : calendarManager.Event[]) => {
   console.info(`Succeeded in getEvents`);
@@ -713,7 +751,9 @@ getEvents(callback: AsyncCallback\<Event[]>): void
 
 **示例**：
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 calendar.getEvents((err: BusinessError, data: calendarManager.Event[]) => {
   if (err) {
     console.error("Failed to get events");
@@ -741,7 +781,9 @@ getEvents(eventFilter: EventFilter, eventKey: (keyof Event)[], callback: AsyncCa
 
 **示例**：
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 const filter = calendarManager.EventFilter.filterById([1, 2]);
 calendar.getEvents(filter, ['title', 'type', 'startTime', 'endTime'], (err, data) => {
   if (err) {
@@ -775,7 +817,9 @@ getEvents(eventFilter?: EventFilter, eventKey?: (keyof Event)[]): Promise\<Event
 
 **示例**：
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 const filter = calendarManager.EventFilter.filterByTitle('MyEvent');
 calendar.getEvents(filter).then((data) => {
   console.info("Succeeded in getting events");
@@ -800,7 +844,7 @@ getConfig(): CalendarConfig
 
 **示例**：
 
-```js
+```ts
 const config = calendar.getConfig();
 console.info("get config success");
 ```
@@ -822,7 +866,9 @@ setConfig(config: CalendarConfig, callback: AsyncCallback\<void>): void
 
 **示例**：
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 const config: calendarManager.CalendarConfig = {
   enableReminder: true
 };
@@ -857,7 +903,9 @@ setConfig(config: CalendarConfig): Promise\<void>
 
 **示例**：
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 const config: calendarManager.CalendarConfig = {
   enableReminder: true
 };
@@ -884,7 +932,7 @@ getAccount(): CalendarAccount
 
 **示例**：
 
-```js
+```ts
 const account = calendar.getAccount();
 console.info("get account success");
 ```
@@ -988,7 +1036,9 @@ static filterById(ids: number[]): EventFilter
 
 **示例**：
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 const filter = calendarManager.EventFilter.filterById([1, 2]);
 calendar.getEvents(filter).then((data: calendarManager.Event[]) => {
   console.info("Succeeded in filtering by id");
@@ -1020,7 +1070,9 @@ static filterByTime(start: number, end: number): EventFilter
 
 **示例**：
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 const filter = calendarManager.EventFilter.filterByTime(1686931200000, 1687017600000);
 calendar.getEvents(filter).then((data: calendarManager.Event[]) => {
   console.info("Succeeded in filtering by time");
@@ -1051,7 +1103,9 @@ static filterByTitle(title: string): EventFilter
 
 **示例**：
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 const filter = calendarManager.EventFilter.filterByTitle('MyEvent');
 calendar.getEvents(filter).then((data: calendarManager.Event[]) => {
   console.info("Succeeded in filtering by title");
