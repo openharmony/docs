@@ -16,7 +16,6 @@
 
 ```ts
 import promptAction from '@ohos.promptAction';
-import { BusinessError } from '@ohos.base';
 ```
 
 ## promptAction.showToast

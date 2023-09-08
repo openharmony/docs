@@ -16,7 +16,6 @@
 
 ```ts
 import animator, { AnimatorOptions,AnimatorResult } from '@ohos.animator';
-import { BusinessError } from '@ohos.base';
 ```
 ## create<sup>9+</sup>
 
