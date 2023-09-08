@@ -994,7 +994,6 @@ setOrientation(orientation: Orientation, callback: AsyncCallback&lt;void&gt;): v
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let screenClass: screen.Screen | null = null;
 try {
   screenClass.setOrientation(screen.Orientation.VERTICAL, (err: BusinessError, data) => {
     const errCode: number = err.code;
@@ -1040,7 +1039,6 @@ setOrientation(orientation: Orientation): Promise&lt;void&gt;
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let screenClass: screen.Screen | null = null;
 try {
   let promise = screenClass.setOrientation(screen.Orientation.VERTICAL);
   promise.then((data) => {
@@ -1079,7 +1077,6 @@ setScreenActiveMode(modeIndex: number, callback: AsyncCallback&lt;void&gt;): voi
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let screenClass: screen.Screen | null = null;
 let modeIndex: number = 0;
 try {
   screenClass.setScreenActiveMode(modeIndex, (err: BusinessError, data) => {
@@ -1126,7 +1123,6 @@ setScreenActiveMode(modeIndex: number): Promise&lt;void&gt;
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let screenClass: screen.Screen | null = null;
 let modeIndex: number = 0;
 try {
   let promise = screenClass.setScreenActiveMode(modeIndex);
@@ -1166,7 +1162,6 @@ setDensityDpi(densityDpi: number, callback: AsyncCallback&lt;void&gt;): void;
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let screenClass: screen.Screen | null = null;
 let densityDpi: number = 320;
 try {
   screenClass.setDensityDpi(densityDpi, (err: BusinessError, data) => {
@@ -1213,7 +1208,6 @@ setDensityDpi(densityDpi: number): Promise&lt;void&gt;
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let screenClass: screen.Screen | null = null;
 let densityDpi: number = 320;
 try {
   let promise = screenClass.setDensityDpi(densityDpi);
