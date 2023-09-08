@@ -1,10 +1,10 @@
 # 分布式数据子系统ChangeLog
 
-## cl.data.cloudData修改Action接口改名为clearAction
+## cl.distributeddatamgr.1 cloudData模块修改Action接口改名为clearAction
 
 **变更影响**
 
-基于OpenHarmony4.0.9.3及之后的SDK版本开发的应用，可以使用clearAction接口指定清除本地下载的云端数据的行为枚举。
+@ohos.data.cloudData.d.ts基于OpenHarmony4.0.9.3及之后的SDK版本开发的应用，可以使用clearAction接口指定清除本地下载的云端数据的行为枚举。
 
 **关键接口/组件变更**
 
@@ -26,11 +26,15 @@
   }
  ```
 
-## cl.data.cloudData修改clean接口改名为clear
+**适配指导**
+
+基于OpenHarmony4.0.9.3及之后的SDK版本开发的应用，可以使用clearAction接口指定清除本地下载的云端数据的行为枚举。
+
+## cl.distributeddatamgr.2 cloudData模块修改clean接口改名为clear
 
 **变更影响**
 
-基于OpenHarmony4.0.9.3及之后的SDK版本开发的应用，可以使用clear接口清除本地下载的云端数据。
+@ohos.data.cloudData.d.ts基于OpenHarmony4.0.9.3及之后的SDK版本开发的应用，可以使用clear接口清除本地下载的云端数据。
 
 **关键接口/组件变更**
 
@@ -56,11 +60,15 @@
     static clear(accountId: string, appActions: { [bundleName: string]: ClearAction }): Promise<void>;
  ```
 
-## cl.data.relationalStore修改Statistic中的success为successful
+**适配指导**
+
+基于OpenHarmony4.0.9.3及之后的SDK版本开发的应用，可以使用clear接口清除本地下载的云端数据。
+
+## cl.distributeddatamgr.3 relationalStore模块修改Statistic中的success为successful
 
 **变更影响**
 
-基于OpenHarmony4.0.9.3及之后的SDK版本开发的应用，可以使用Statistic.successful表示数据库表中端云同步成功的行数。
+@ohos.data.cloudData.d.ts基于OpenHarmony4.0.9.3及之后的SDK版本开发的应用，可以使用Statistic.successful表示数据库表中端云同步成功的行数。
 
 **关键接口/组件变更**
 
@@ -88,11 +96,15 @@ Statistic中的枚举项success变更为successful，successful表示数据库�
   }
  ```
 
-## cl.data.relationalStore修改setDistributedTables接口入参type类型由number变为DistributedType
+**适配指导**
+
+基于OpenHarmony4.0.9.3及之后的SDK版本开发的应用，可以使用Statistic.successful表示数据库表中端云同步成功的行数。
+
+## cl.distributeddatamgr.4 relationalStore模块修改setDistributedTables接口入参type类型由number变为DistributedType
 
 **变更影响**
 
-基于OpenHarmony4.0.9.3及之后的SDK版本开发的应用，setDistributedTables接口入参type类型由number变为DistributedType。
+@ohos.data.relationalStore.d.ts基于OpenHarmony4.0.9.3及之后的SDK版本开发的应用，setDistributedTables接口入参type类型由number变为DistributedType。
 
 **关键接口/组件变更**
 
@@ -109,4 +121,6 @@ setDistributedTables(tables: Array<string>, type?: number, config?: DistributedC
 setDistributedTables(tables: Array<string>, type: DistributedType, config: DistributedConfig, callback: AsyncCallback<void>): void;
 setDistributedTables(tables: Array<string>, type?: DistributedType, config?: DistributedConfig): Promise<void>;
  ```
+**适配指导**
 
+基于OpenHarmony4.0.9.3及之后的SDK版本开发的应用，setDistributedTables接口入参type类型由number变为DistributedType。
