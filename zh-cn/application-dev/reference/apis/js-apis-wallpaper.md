@@ -466,6 +466,7 @@ setImage(source: string | image.PixelMap, wallpaperType: WallpaperType, callback
 
 ```ts
 import { BusinessError } from '@ohos.base';
+import image from '@ohos.multimedia.image';
 
 // source类型为string
 let wallpaperPath = "/data/storage/el2/base/haps/entry/files/js.jpeg";
@@ -478,7 +479,6 @@ wallpaper.setImage(wallpaperPath, wallpaper.WallpaperType.WALLPAPER_SYSTEM, (err
 });
   
 // source类型为image.PixelMap
-import image from '@ohos.multimedia.image';
 let imageSource = image.createImageSource("file://" + wallpaperPath);
 let opts: image.DecodingOptions = {
     desiredSize: {
@@ -528,6 +528,7 @@ setImage(source: string | image.PixelMap, wallpaperType: WallpaperType): Promise
 
 ```ts
 import { BusinessError } from '@ohos.base';
+import image from '@ohos.multimedia.image';
 
 // source类型为string
 let wallpaperPath = "/data/storage/el2/base/haps/entry/files/js.jpeg";
@@ -538,7 +539,6 @@ wallpaper.setImage(wallpaperPath, wallpaper.WallpaperType.WALLPAPER_SYSTEM).then
 });
 
 // source类型为image.PixelMap
-import image from '@ohos.multimedia.image';
 let imageSource = image.createImageSource("file://" + wallpaperPath);
 let opts: image.DecodingOptions = {
     desiredSize: {
@@ -1188,6 +1188,7 @@ setWallpaper(source: string | image.PixelMap, wallpaperType: WallpaperType, call
 
 ```ts
 import { BusinessError } from '@ohos.base';
+import image from '@ohos.multimedia.image';
 
 // source类型为string
 let wallpaperPath = "/data/storage/el2/base/haps/entry/files/js.jpeg";
@@ -1200,7 +1201,6 @@ wallpaper.setWallpaper(wallpaperPath, wallpaper.WallpaperType.WALLPAPER_SYSTEM, 
 });
 
 // source类型为image.PixelMap
-import image from '@ohos.multimedia.image';
 let imageSource = image.createImageSource("file://" + wallpaperPath);
 let opts: image.DecodingOptions = {
     desiredSize: {
@@ -1252,6 +1252,7 @@ setWallpaper(source: string | image.PixelMap, wallpaperType: WallpaperType): Pro
 
 ```ts
 import { BusinessError } from '@ohos.base';
+import image from '@ohos.multimedia.image';
 
 // source类型为string
 let wallpaperPath = "/data/storage/el2/base/haps/entry/files/js.jpeg";
@@ -1262,7 +1263,6 @@ wallpaper.setWallpaper(wallpaperPath, wallpaper.WallpaperType.WALLPAPER_SYSTEM).
 });
   
 // source类型为image.PixelMap
-import image from '@ohos.multimedia.image';
 let imageSource = image.createImageSource("file://" + wallpaperPath);
 let opts: image.DecodingOptions = {
     desiredSize: {

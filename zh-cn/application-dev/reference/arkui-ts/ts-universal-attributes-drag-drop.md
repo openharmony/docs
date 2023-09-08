@@ -31,6 +31,7 @@ ArkUI组件默认不支持拖拽。
 // xxx.ets
 import UDC from '@ohos.data.unifiedDataChannel';
 import UTD from '@ohos.data.uniformTypeDescriptor';
+
 @Entry
 @Component
 struct ImageExample {
@@ -69,7 +70,7 @@ struct ImageExample {
             .fontSize('15dp')
             .height('10%')
           List(){
-            ForEach(this.AblockArr, (item, index) => {
+            ForEach(this.AblockArr, (item:string, index) => {
               ListItem() {
                 Image(item)
                   .width(100)
@@ -77,15 +78,14 @@ struct ImageExample {
                   .border({width: 1})
               }
               .margin({ left: 30 , top : 30})
-            }, item => item)
+            }, (item:string) => item)
           }
           .height('90%')
           .width('100%')
-          .allowDrop([UTD.UniformDataType.TEXT])
-          .onDrop((event: DragEvent, extraParams: string) => {
-            let jsonString = JSON.parse(extraParams);
-            this.uri = jsonString.extraInfo;
-            this.AblockArr.splice(jsonString.insertIndex, 0, this.uri);
+          .allowDrop([UTD.UniformDataType.TEXT, UTD.UniformDataType.IMAGE])
+          .onDrop((event?: DragEvent, extraParams?: string) => {
+            this.uri = JSON.parse(extraParams as string).extraInfo;
+            this.AblockArr.splice(JSON.parse(extraParams as string).insertIndex, 0, this.uri);
             console.log("ondrop not udmf data");
           })
           .border({width: 1})
@@ -99,7 +99,7 @@ struct ImageExample {
             .fontSize('15dp')
             .height('10%')
           List(){
-            ForEach(this.BblockArr, (item, index) => {
+            ForEach(this.BblockArr, (item:string, index) => {
               ListItem() {
                 Image(item)
                   .width(100)
@@ -107,23 +107,21 @@ struct ImageExample {
                   .border({width: 1})
               }
               .margin({ left: 30 , top : 30})
-            }, item => item)
+            }, (item:string) => item)
           }
           .border({width: 1})
           .height('90%')
           .width('100%')
           .allowDrop([UTD.UniformDataType.IMAGE])
-          .onDrop((event: DragEvent, extraParams: string) => {
+          .onDrop((event?: DragEvent, extraParams?: string) => {
             console.log("enter onDrop")
-            let dragData = event.getData();
-            let summary = event.getSummary();
+            let dragData:UnifiedData = (event as DragEvent).getData() as UnifiedData;
             if(dragData != undefined) {
-              let arr = dragData.getRecords();
+              let arr:Array<UDC.UnifiedRecord> = dragData.getRecords();
               if(arr.length > 0) {
-                let image = <UDC.Image>(arr[0]);
+                let image = arr[0] as UDC.Image;
                 this.uri = image.imageUri;
-                let jsonString = JSON.parse(extraParams);
-                this.BblockArr.splice(jsonString.insertIndex, 0, this.uri);
+                this.BblockArr.splice(JSON.parse(extraParams as string).insertIndex, 0, this.uri);
               } else {
                 console.log(`dragData arr is null`)
               }

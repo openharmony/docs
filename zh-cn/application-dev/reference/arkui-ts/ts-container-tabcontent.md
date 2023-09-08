@@ -426,6 +426,7 @@ struct TabBarStyleExample {
 
 ```ts
 // xxx.ets
+// xxx.ets
 @Entry
 @Component
 struct TabsAttr {
@@ -442,10 +443,11 @@ struct TabsAttr {
   private heightFlag: boolean = true;
   private borderFlag: boolean = true;
   private spaceFlag: boolean = true;
+
   build() {
     Column() {
-      Button("下划线颜色变化").width('100%').margin({bottom: '12vp'})
-        .onClick((event: ClickEvent) => {
+      Button("下划线颜色变化").width('100%').margin({ bottom: '12vp' })
+        .onClick((event?: ClickEvent) => {
           // 对Button组件的宽高属性进行动画配置
           if (this.colorFlag) {
             animateTo({
@@ -476,8 +478,8 @@ struct TabsAttr {
           }
           this.colorFlag = !this.colorFlag
         })
-      Button("下划线高度变化").width('100%').margin({bottom: '12vp'})
-        .onClick((event: ClickEvent) => {
+      Button("下划线高度变化").width('100%').margin({ bottom: '12vp' })
+        .onClick((event?: ClickEvent) => {
           // 对Button组件的宽高属性进行动画配置
           if (this.heightFlag) {
             animateTo({
@@ -508,8 +510,8 @@ struct TabsAttr {
           }
           this.heightFlag = !this.heightFlag
         })
-      Button("下划线宽度变化").width('100%').margin({bottom: '12vp'})
-        .onClick((event: ClickEvent) => {
+      Button("下划线宽度变化").width('100%').margin({ bottom: '12vp' })
+        .onClick((event?: ClickEvent) => {
           // 对Button组件的宽高属性进行动画配置
           if (this.widthFlag) {
             animateTo({
@@ -540,8 +542,8 @@ struct TabsAttr {
           }
           this.widthFlag = !this.widthFlag
         })
-      Button("下划线圆角半径变化").width('100%').margin({bottom: '12vp'})
-        .onClick((event: ClickEvent) => {
+      Button("下划线圆角半径变化").width('100%').margin({ bottom: '12vp' })
+        .onClick((event?: ClickEvent) => {
           // 对Button组件的宽高属性进行动画配置
           if (this.borderFlag) {
             animateTo({
@@ -572,8 +574,8 @@ struct TabsAttr {
           }
           this.borderFlag = !this.borderFlag
         })
-      Button("下划线间距变化").width('100%').margin({bottom: '12vp'})
-        .onClick((event: ClickEvent) => {
+      Button("下划线间距变化").width('100%').margin({ bottom: '12vp' })
+        .onClick((event?: ClickEvent) => {
           // 对Button组件的宽高属性进行动画配置
           if (this.spaceFlag) {
             animateTo({
@@ -619,30 +621,38 @@ struct TabsAttr {
           .board({ borderRadius: this.subTabBorderRadius })
           .labelStyle({})
         )
+
         TabContent() {
           Column().width('100%').height('100%').backgroundColor(Color.Yellow).borderRadius('12vp')
         }.tabBar('yellow')
+
         TabContent() {
           Column().width('100%').height('100%').backgroundColor(Color.Blue).borderRadius('12vp')
         }.tabBar('blue')
+
         TabContent() {
           Column().width('100%').height('100%').backgroundColor(Color.Green).borderRadius('12vp')
         }.tabBar('green')
+
         TabContent() {
           Column().width('100%').height('100%').backgroundColor(Color.Gray).borderRadius('12vp')
         }.tabBar('gray')
+
         TabContent() {
           Column().width('100%').height('100%').backgroundColor(Color.Orange).borderRadius('12vp')
         }.tabBar('orange')
       }
-      .vertical(false).scrollable(true)
+      .vertical(false)
+      .scrollable(true)
       .barMode(BarMode.Scrollable)
-      .barHeight(140).animationDuration(400)
+      .barHeight(140)
+      .animationDuration(400)
       .onChange((index: number) => {
         console.info(index.toString())
       })
-      .backgroundColor(0xF5F5F5).height(320)
-    }.width('100%').height(250).padding({top: '24vp', left: '24vp', right: '24vp'})
+      .backgroundColor(0xF5F5F5)
+      .height(320)
+    }.width('100%').height(250).padding({ top: '24vp', left: '24vp', right: '24vp' })
   }
 }
 ```
@@ -723,62 +733,107 @@ struct TabContentExample6 {
   @State layoutMode: LayoutMode = LayoutMode.VERTICAL;
   @State verticalAlign: VerticalAlign = VerticalAlign.Center;
 
-
   build() {
     Column() {
       Row() {
-        Button("padding+10 " + this.tabPadding).width('47%').height(50).margin({ top: 5 })
-          .onClick((event: ClickEvent) => {
+        Button("padding+10 " + this.tabPadding)
+          .width('47%')
+          .height(50)
+          .margin({ top: 5 })
+          .onClick((event?: ClickEvent) => {
             this.tabPadding += 10
-          }).margin({ right:'6%', bottom:'12vp'})
-        Button("padding-10 " + this.tabPadding).width('47%').height(50).margin({ top: 5 })
-          .onClick((event: ClickEvent) => {
+          })
+          .margin({ right: '6%', bottom: '12vp' })
+        Button("padding-10 " + this.tabPadding)
+          .width('47%')
+          .height(50)
+          .margin({ top: 5 })
+          .onClick((event?: ClickEvent) => {
             this.tabPadding -= 10
-          }).margin({bottom:'12vp'})
+          })
+          .margin({ bottom: '12vp' })
       }
+
       Row() {
-        Button("文本增加 ").width('47%').height(50).margin({ top: 5 })
-          .onClick((event: ClickEvent) => {
+        Button("文本增加 ")
+          .width('47%')
+          .height(50)
+          .margin({ top: 5 })
+          .onClick((event?: ClickEvent) => {
             this.text += '文本增加'
-          }).margin({ right:'6%', bottom:'12vp'})
-        Button("文本重置").width('47%').height(50).margin({ top: 5 })
-          .onClick((event: ClickEvent) => {
+          })
+          .margin({ right: '6%', bottom: '12vp' })
+        Button("文本重置")
+          .width('47%')
+          .height(50)
+          .margin({ top: 5 })
+          .onClick((event?: ClickEvent) => {
             this.text = "2"
-          }).margin({bottom:'12vp'})
+          })
+          .margin({ bottom: '12vp' })
       }
+
       Row() {
-        Button("symmetricExtensible改变 " + this.symmetricExtensible).width('100%').height(50).margin({ top: 5 })
-          .onClick((event: ClickEvent) => {
+        Button("symmetricExtensible改变 " + this.symmetricExtensible)
+          .width('100%')
+          .height(50)
+          .margin({ top: 5 })
+          .onClick((event?: ClickEvent) => {
             this.symmetricExtensible = !this.symmetricExtensible
-          }).margin({bottom:'12vp'})
+          })
+          .margin({ bottom: '12vp' })
       }
+
       Row() {
-        Button("layoutMode垂直 ").width('47%').height(50).margin({ top: 5 })
-          .onClick((event: ClickEvent) => {
+        Button("layoutMode垂直 ")
+          .width('47%')
+          .height(50)
+          .margin({ top: 5 })
+          .onClick((event?: ClickEvent) => {
             this.layoutMode = LayoutMode.VERTICAL;
-          }).margin({ right:'6%', bottom:'12vp'})
-        Button("layoutMode水平 ").width('47%').height(50).margin({ top: 5 })
-          .onClick((event: ClickEvent) => {
+          })
+          .margin({ right: '6%', bottom: '12vp' })
+        Button("layoutMode水平 ")
+          .width('47%')
+          .height(50)
+          .margin({ top: 5 })
+          .onClick((event?: ClickEvent) => {
             this.layoutMode = LayoutMode.HORIZONTAL;
-          }).margin({bottom:'12vp'})
+          })
+          .margin({ bottom: '12vp' })
       }
+
       Row() {
-        Button("verticalAlign朝上").width('100%').height(50).margin({ top: 5 })
-          .onClick((event: ClickEvent) => {
+        Button("verticalAlign朝上")
+          .width('100%')
+          .height(50)
+          .margin({ top: 5 })
+          .onClick((event?: ClickEvent) => {
             this.verticalAlign = VerticalAlign.Top;
-          }).margin({bottom:'12vp'})
+          })
+          .margin({ bottom: '12vp' })
       }
+
       Row() {
-        Button("verticalAlign居中").width('100%').height(50).margin({ top: 5 })
-          .onClick((event: ClickEvent) => {
+        Button("verticalAlign居中")
+          .width('100%')
+          .height(50)
+          .margin({ top: 5 })
+          .onClick((event?: ClickEvent) => {
             this.verticalAlign = VerticalAlign.Center;
-          }).margin({bottom:'12vp'})
+          })
+          .margin({ bottom: '12vp' })
       }
+
       Row() {
-        Button("verticalAlign朝下").width('100%').height(50).margin({ top: 5 })
-          .onClick((event: ClickEvent) => {
+        Button("verticalAlign朝下")
+          .width('100%')
+          .height(50)
+          .margin({ top: 5 })
+          .onClick((event?: ClickEvent) => {
             this.verticalAlign = VerticalAlign.Bottom;
-          }).margin({bottom:'12vp'})
+          })
+          .margin({ bottom: '12vp' })
       }
 
 
@@ -810,7 +865,6 @@ struct TabContentExample6 {
     .padding('24vp')
   }
 }
-
 ```
 
 ![tabContent4](figures/tabContent5.gif)

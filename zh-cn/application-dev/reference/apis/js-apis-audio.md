@@ -52,7 +52,8 @@ getAudioManager(): AudioManager
 
 **示例：**
 ```ts
-let audioManager: audio.AudioManager = audio.getAudioManager();
+import audio from '@ohos.multimedia.audio';
+let audioManager = audio.getAudioManager();
 ```
 
 ## audio.createAudioRenderer<sup>8+</sup>
@@ -283,8 +284,7 @@ createTonePlayer(options: AudioRendererInfo, callback: AsyncCallback&lt;TonePlay
 import audio from '@ohos.multimedia.audio';
 
 let audioRendererInfo: audio.AudioRendererInfo = {
-  content : audio.ContentType.CONTENT_TYPE_SONIFICATION,
-  usage : audio.StreamUsage.STREAM_USAGE_MEDIA,
+  usage : audio.StreamUsage.STREAM_USAGE_DTMF,
   rendererFlags : 0
 }
 let tonePlayer: audio.TonePlayer;
@@ -329,8 +329,7 @@ import audio from '@ohos.multimedia.audio';
 let tonePlayer: audio.TonePlayer;
 async function createTonePlayerBefore(){
   let audioRendererInfo: audio.AudioRendererInfo = {
-    content : audio.ContentType.CONTENT_TYPE_SONIFICATION,
-    usage : audio.StreamUsage.STREAM_USAGE_MEDIA,
+    usage : audio.StreamUsage.STREAM_USAGE_DTMF,
     rendererFlags : 0
   }
   tonePlayer = await audio.createTonePlayer(audioRendererInfo);
@@ -1142,6 +1141,7 @@ getVolumeManager(): AudioVolumeManager
 **示例：**
 
 ```ts
+import audio from '@ohos.multimedia.audio';
 let audioVolumeManager: audio.AudioVolumeManager = audioManager.getVolumeManager();
 ```
 
@@ -1156,6 +1156,7 @@ getStreamManager(): AudioStreamManager
 **示例：**
 
 ```ts
+import audio from '@ohos.multimedia.audio';
 let audioStreamManager: audio.AudioStreamManager = audioManager.getStreamManager();
 ```
 
@@ -1170,6 +1171,7 @@ getRoutingManager(): AudioRoutingManager
 **示例：**
 
 ```ts
+import audio from '@ohos.multimedia.audio';
 let audioRoutingManager: audio.AudioRoutingManager = audioManager.getRoutingManager();
 ```
 
@@ -2361,14 +2363,13 @@ getVolumeGroupManager(groupId: number\): Promise<AudioVolumeGroupManager\>
 **示例：**
 
 ```ts
+import audio from '@ohos.multimedia.audio';
 let groupid: number = audio.DEFAULT_VOLUME_GROUP_ID;
-let audioVolumeGroupManager: audio.AudioVolumeGroupManager;
-getVolumeGroupManager();
+let audioVolumeGroupManager: audio.AudioVolumeGroupManager | undefined = undefined;
 async function getVolumeGroupManager(){
   audioVolumeGroupManager = await audioVolumeManager.getVolumeGroupManager(groupid);
   console.info('Callback invoked to indicate that the volume group infos list is obtained.');
 }
-
 ```
 
 ### on('volumeChange')<sup>9+</sup>
@@ -4684,18 +4685,19 @@ audioStreamManager.on('audioCapturerChange', (AudioCapturerChangeInfoArray) =>  
 **示例：**
 
 ```ts
+import audio from '@ohos.multimedia.audio';
+
 function displayDeviceProp(value: audio.AudioDeviceDescriptor) {
   deviceRoleValue = value.deviceRole;
   deviceTypeValue = value.deviceType;
 }
 
-let deviceRoleValue: audio.DeviceRole = null;
-let deviceTypeValue: audio.DeviceType = null;
-const promise = audio.getAudioManager().getDevices(1);
-promise.then((value) => {
+let deviceRoleValue: audio.DeviceRole | undefined = undefined;;
+let deviceTypeValue: audio.DeviceType | undefined = undefined;;
+audio.getAudioManager().getDevices(1).then((value: audio.AudioDeviceDescriptors) => {
   console.info('AudioFrameworkTest: Promise: getDevices OUTPUT_DEVICES_FLAG');
   value.forEach(displayDeviceProp);
-  if (deviceTypeValue != null && deviceRoleValue != null){
+  if (deviceTypeValue != undefined && deviceRoleValue != undefined){
     console.info('AudioFrameworkTest: Promise: getDevices : OUTPUT_DEVICES_FLAG :  PASS');
   } else {
     console.error('AudioFrameworkTest: Promise: getDevices : OUTPUT_DEVICES_FLAG :  FAIL');
@@ -4745,6 +4747,7 @@ let outputAudioRendererFilter: audio.AudioRendererFilter = {
 **示例：**
 
 ```ts
+import audio from '@ohos.multimedia.audio';
 let state: audio.AudioState = audioRenderer.state;
 ```
 
@@ -5393,7 +5396,7 @@ audioRenderer.getBufferSize().then((data: number) => {
       try{
         let writeSize: number = await audioRenderer.write(buf);
       } catch(err) {
-        let error: BusinessError = err;
+        let error = err as BusinessError;
         console.error(`audioRenderer.write err: ${error}`);
       }
     }
@@ -6243,6 +6246,7 @@ audioRenderer.off('outputDeviceChange', (deviceInfo: audio.AudioDeviceDescriptor
 **示例：**
 
 ```ts
+import audio from '@ohos.multimedia.audio';
 let state: audio.AudioState = audioCapturer.state;
 ```
 
@@ -6607,7 +6611,7 @@ read(size: number, isBlockingRead: boolean, callback: AsyncCallback<ArrayBuffer\
 
 ```ts
 import { BusinessError } from '@ohos.base';
-let bufferSize: number;
+let bufferSize: number = 0;
 audioCapturer.getBufferSize().then((data: number) => {
   console.info(`AudioFrameworkRecLog: getBufferSize: SUCCESS ${data}`);
   bufferSize = data;
@@ -6646,7 +6650,7 @@ read(size: number, isBlockingRead: boolean): Promise<ArrayBuffer\>
 
 ```ts
 import { BusinessError } from '@ohos.base';
-let bufferSize: number;
+let bufferSize: number = 0;
 audioCapturer.getBufferSize().then((data: number) => {
   console.info(`AudioFrameworkRecLog: getBufferSize: SUCCESS ${data}`);
   bufferSize = data;
@@ -6757,7 +6761,7 @@ getBufferSize(): Promise<number\>
 
 ```ts
 import { BusinessError } from '@ohos.base';
-let bufferSize: number;
+let bufferSize: number = 0;
 audioCapturer.getBufferSize().then((data: number) => {
   console.info(`AudioFrameworkRecLog: getBufferSize :SUCCESS ${data}`);
   bufferSize = data;

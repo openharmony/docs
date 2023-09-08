@@ -166,7 +166,7 @@ struct GridRowExample {
           reference: BreakpointsReference.WindowSize },
         direction: GridRowDirection.Row
       }) {
-        ForEach(this.bgColors, (color) => {
+        ForEach(this.bgColors, (color: Color) => {
           GridCol({ span: { xs: 1, sm: 2, md: 3, lg: 4 } }) {
             Row().width("100%").height("20vp")
           }.borderColor(color).borderWidth(2)

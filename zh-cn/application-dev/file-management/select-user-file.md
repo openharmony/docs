@@ -52,6 +52,7 @@
 5. 待界面从FilePicker返回后，再通过类似一个按钮调用其他函数，使用[fs.openSync](../reference/apis/js-apis-file-fs.md#fsopensync)接口，通过uri打开这个文件得到fd。这里需要注意接口权限参数是fs.OpenMode.READ_ONLY。
 
    ```ts
+   const uri = '';
    let file = fs.openSync(uri, fs.OpenMode.READ_ONLY);
    console.info('file fd: ' + file.fd);
    ```
@@ -107,7 +108,7 @@
    > 目前DocumentSelectOptions功能不完整, 如需获取文件名称，请使用startAbilityForResult接口。
 
    ```ts
-   async function example() {
+   async function example(): Promise<void> {
      let config: Want = {
        action: 'ohos.want.action.OPEN_FILE',
        parameters: {
@@ -115,17 +116,17 @@
        }
      }
      try {
-       let result = await context.startAbilityForResult(config, {windowMode: 1});
+       const result = await context.startAbilityForResult(config, {windowMode: 1});
        if (result.resultCode !== 0) {
          console.error(`documentViewPicker.select failed, code is ${result.resultCode}, message is ${result.want.parameters.message}`);
          return;
        }
        // 获取到文档文件的uri
-       let select_item_list = result.want.parameters.select_item_list;
+       let select_item_list: SomeType[] = result.want.parameters.select_item_list;
        // 获取到文档文件的文件名称
-       let file_name_list = result.want.parameters.file_name_list;
+       let file_name_list: SomeOtherType[] = result.want.parameters.file_name_list;
      } catch (error) {
-        let err: BusinessError = error as BusinessError;
+        const err: BusinessError = error as BusinessError;
        console.error(`Invoke documentViewPicker.select failed, code is ${err.code}, message is ${err.message}`);
      }
    }

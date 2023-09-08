@@ -8,7 +8,7 @@
 
 ## 导入模块
 
-```js
+```ts
 import fileShare from '@ohos.fileshare';
 ```
 
@@ -46,23 +46,24 @@ grantUriPermission(uri: string, bundleName: string, flag: wantConstant.Flags, ca
 
 **示例：**
 
-  ```js
-import wantConstant from '@ohos.app.ability.wantConstant';
-
-
-let uri = 'file://media/image/8';
-let bundleName = 'com.demo.test';
-try {
-    fileShare.grantUriPermission(uri, bundleName, wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION | wantConstant.Flags.FLAG_AUTH_WRITE_URI_PERMISSION, (err) => {
-        if (err) {
-            console.error("grantUriPermission failed with error: " + err);
-            return;
-        }
-        console.info("grantUriPermission success!");
+  ```ts
+  import wantConstant from '@ohos.app.ability.wantConstant';
+  import { BusinessError } from '@ohos.base';
+  let uri: string = 'file://media/image/8';
+  let bundleName: string = 'com.demo.test';
+  try {
+    fileShare.grantUriPermission(uri, bundleName, wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION |
+      wantConstant.Flags.FLAG_AUTH_WRITE_URI_PERMISSION, (err: BusinessError) => {
+      if (err) {
+        console.error("grantUriPermission failed with error: " + JSON.stringify(err));
+        return;
+      }
+      console.info("grantUriPermission success!");
     });
-} catch (error) {
-    console.error("grantUriPermission failed with error:" + error);
-}
+  } catch (err) {
+    let error: BusinessError = err as BusinessError;
+    console.error("grantUriPermission failed with error:" + JSON.stringify(error));
+  }
   ```
 
 ## fileShare.grantUriPermission
@@ -104,19 +105,20 @@ grantUriPermission(uri: string, bundleName: string, flag: wantConstant.Flags): P
 
 **示例：**
 
-  ```js
-import wantConstant from '@ohos.app.ability.wantConstant';
-
-let uri = 'file://media/image/8';
-let bundleName = 'com.demo.test';
-try {
+  ```ts
+  import wantConstant from '@ohos.app.ability.wantConstant';
+  import { BusinessError } from '@ohos.base';
+  let uri: string = 'file://media/image/8';
+  let bundleName: string = 'com.demo.test';
+  try {
     fileShare.grantUriPermission(uri, bundleName, wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION |
-      wantConstant.Flags.FLAG_AUTH_WRITE_URI_PERMISSION).then(function () {
-        console.info("grantUriPermission success!");
-    }).catch(function (error) {
-        console.error("grantUriPermission failed with error:" + error);
+      wantConstant.Flags.FLAG_AUTH_WRITE_URI_PERMISSION).then(() => {
+      console.info("grantUriPermission success!");
+    }).catch((error: BusinessError) => {
+      console.error("grantUriPermission failed with error:" + JSON.stringify(error));
     });
-} catch (error) {
-    console.error("grantUriPermission failed with error:" + error);
-}
+  } catch (err) {
+    let error: BusinessError = err as BusinessError;
+    console.error("grantUriPermission failed with error:" + JSON.stringify(error));
+  }
   ```

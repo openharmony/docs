@@ -91,7 +91,7 @@ minimizeWindowWithAnimation(windowTarget: WindowAnimationTarget, callback: Async
 ```ts
 import {BusinessError} from '@ohos.base';
 
-let target: WindowAnimationTarget = null;
+let target: windowAnimationManager.WindowAnimationTarget | null = null;
 let controller: windowAnimationManager.WindowAnimationController = {
     onStartAppFromLauncher(startingWindowTarget: windowAnimationManager.WindowAnimationTarget, finishCallback: windowAnimationManager.WindowAnimationFinishedCallback): void {
         console.log('onStartAppFromLauncher, the startingWindowTarget is: ' + startingWindowTarget);
@@ -176,7 +176,7 @@ minimizeWindowWithAnimation(windowTarget: WindowAnimationTarget): Promise&lt;Win
 ```ts
 import {BusinessError} from '@ohos.base';
 
-let target: WindowAnimationTarget = null;
+let target: windowAnimationManager.WindowAnimationTarget | null  = null;
 let controller: windowAnimationManager.WindowAnimationController = {
     onStartAppFromLauncher(startingWindowTarget: windowAnimationManager.WindowAnimationTarget, finishCallback: windowAnimationManager.WindowAnimationFinishedCallback): void {
         console.log('onStartAppFromLauncher, the startingWindowTarget is: ' + startingWindowTarget);

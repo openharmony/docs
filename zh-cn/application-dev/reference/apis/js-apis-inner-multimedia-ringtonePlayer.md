@@ -46,6 +46,7 @@ import systemSoundManager from '@ohos.multimedia.systemSoundManager';
 **示例：**
 
 ```ts
+import media from '@ohos.multimedia.media';
 let state: media.AVPlayerState = systemRingtonePlayer.state;
 ```
 
@@ -129,7 +130,7 @@ getAudioRendererInfo(callback: AsyncCallback&lt;audio.AudioRendererInfo&gt;): vo
 import audio from '@ohos.multimedia.audio';
 import { BusinessError } from '@ohos.base';
 
-let audioRendererInfo: audio.AudioRendererInfo = null;
+let audioRendererInfo: audio.AudioRendererInfo | undefined = undefined;
 
 systemRingtonePlayer.getAudioRendererInfo((err: BusinessError, value: audio.AudioRendererInfo) => {
   if (err) {
@@ -163,7 +164,7 @@ getAudioRendererInfo(): Promise&lt;audio.AudioRendererInfo&gt;
 import audio from '@ohos.multimedia.audio';
 import { BusinessError } from '@ohos.base';
 
-let audioRendererInfo: audio.AudioRendererInfo = null;
+let audioRendererInfo: audio.AudioRendererInfo | undefined = undefined;
 
 systemRingtonePlayer.getAudioRendererInfo().then((value: audio.AudioRendererInfo) => {
   console.info(`Promise returned to indicate that the value of the ringtone AudioRendererInfo is obtained ${value}.`);
@@ -196,8 +197,8 @@ configure(options: RingtoneOptions, callback: AsyncCallback&lt;void&gt;): void
 import { BusinessError } from '@ohos.base';
 
 class RingtoneOptions {
-  volume: number;
-  loop: boolean;
+  volume: number = 0;
+  loop: boolean = false;
 }
 let ringtoneOptions: RingtoneOptions = {volume: 0.5, loop: true};
 
@@ -238,8 +239,8 @@ configure(options: RingtoneOptions): Promise&lt;void&gt;
 import { BusinessError } from '@ohos.base';
 
 class RingtoneOptions {
-  volume: number;
-  loop: boolean;
+  volume: number = 0;
+  loop: boolean = false;
 }
 let ringtoneOptions: RingtoneOptions = {volume: 0.5, loop: true};
 
@@ -498,4 +499,32 @@ systemRingtonePlayer.on('audioInterrupt', async(interruptEvent: audio.InterruptE
     }
   }
 });
+```
+### off('audioInterrupt') <sup>10+</sup>
+
+off(type: 'audioInterrupt'): void
+
+取消订阅标记事件。
+
+**系统能力：** SystemCapability.Multimedia.SystemSound.Core
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                              |
+| :----- | :----- | :--- | :------------------------------------------------ |
+| type   | string | 是   | 要取消订阅事件的类型。支持的事件为：'audioInterrupt'。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[音频错误码](../errorcodes/errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401     | if input parameter type or number mismatch  |
+| 6800101 | if input parameter value error              |
+
+**示例：**
+
+```ts
+systemRingtonePlayer.off('audioInterrupt');
 ```

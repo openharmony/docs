@@ -69,9 +69,9 @@ class Spring {
 @Component
 struct Motion {
   @Prop dRotate: number = 0
-  private title: string = ''
-  private subTitle: string = ''
-  private iCurve: ICurve = curves.initCurve()
+  private title: string = ""
+  private subTitle: string = ""
+  private iCurve: ICurve | undefined = undefined
 
   build() {
     Row() {
@@ -128,23 +128,15 @@ struct Motion {
     .alignItems(VerticalAlign.Top)
   }
 }
-
-
 @Entry
 @Component
 export struct SpringDemo {
   @State dRotate: number = 0;
-  private curvelist: ICurve[] = [
-    curves.springMotion(1, 0.25),
-    curves.responsiveSpringMotion(1, 0.25),
-    curves.interpolatingSpring(10, 1, 228, 30),
-    curves.springCurve(10, 1, 228, 30)
-  ];
   private springs: Spring[] = [
-    new Spring('springMotion()', '(springMotion(1, 0.25): \n\n周期2, 阻尼0.25)', this.curvelist[0]),
-    new Spring('responsiveSpringMotion()', 'responsiveSpringMotion(1, 0.25): \n\n默认弹性跟手曲线', this.curvelist[1]),
-    new Spring('interpolatingSpring()', '(interpolatingSpring(10, 1, 228, 30): \n\n初始速度100， 质量1， 剛度228， 阻尼30)', this.curvelist[2]),
-    new Spring('springCurve()', '(springCurve(10, 1, 228, 30): \n\n初始速度100， 质量1， 剛度228， 阻尼30)', this.curvelist[3])
+    new Spring('springMotion()', '(springMotion(1, 0.25): \n\n周期2, 阻尼0.25)', {interpolate: curves.springMotion(1, 0.25).interpolate}),
+    new Spring('responsiveSpringMotion()', 'responsiveSpringMotion(1, 0.25): \n\n默认弹性跟手曲线', {interpolate: curves.responsiveSpringMotion(1, 0.25).interpolate}),
+    new Spring('interpolatingSpring()', '(interpolatingSpring(10, 1, 228, 30): \n\n初始速度100， 质量1， 剛度228， 阻尼30)', {interpolate: curves.interpolatingSpring(10, 1, 228, 30).interpolate}),
+    new Spring('springCurve()', '(springCurve(10, 1, 228, 30): \n\n初始速度100， 质量1， 剛度228， 阻尼30)', {interpolate: curves.springCurve(10, 1, 228, 30).interpolate})
   ];
 
   build() {

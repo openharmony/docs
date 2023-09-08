@@ -1343,6 +1343,8 @@ reset(): Query
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
   let query: distributedKVStore.Query | null = new distributedKVStore.Query();
   query.equalTo("key", "value");
@@ -1379,6 +1381,8 @@ equalTo(field: string, value: number|string|boolean): Query
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
   let query: distributedKVStore.Query | null = new distributedKVStore.Query();
   query.equalTo("field", "value");
@@ -1414,6 +1418,8 @@ notEqualTo(field: string, value: number|string|boolean): Query
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
   let query: distributedKVStore.Query | null = new distributedKVStore.Query();
   query.notEqualTo("field", "value");
@@ -1448,6 +1454,8 @@ greaterThan(field: string, value: number|string|boolean): Query
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
     let query: distributedKVStore.Query | null = new distributedKVStore.Query();
     query.greaterThan("field", "value");
@@ -1484,6 +1492,8 @@ lessThan(field: string, value: number|string): Query
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
     let query: distributedKVStore.Query | null = new distributedKVStore.Query();
     query.lessThan("field", "value");
@@ -1520,6 +1530,8 @@ greaterThanOrEqualTo(field: string, value: number|string): Query
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
     let query: distributedKVStore.Query | null = new distributedKVStore.Query();
     query.greaterThanOrEqualTo("field", "value");
@@ -1556,6 +1568,8 @@ lessThanOrEqualTo(field: string, value: number|string): Query
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
     let query: distributedKVStore.Query | null = new distributedKVStore.Query();
     query.lessThanOrEqualTo("field", "value");
@@ -1590,6 +1604,8 @@ isNull(field: string): Query
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
     let query: distributedKVStore.Query | null = new distributedKVStore.Query();
     query.isNull("field");
@@ -1625,6 +1641,8 @@ inNumber(field: string, valueList: number[]): Query
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
     let query: distributedKVStore.Query | null = new distributedKVStore.Query();
     query.inNumber("field", [0, 1]);
@@ -1660,6 +1678,8 @@ inString(field: string, valueList: string[]): Query
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
     let query: distributedKVStore.Query | null = new distributedKVStore.Query();
     query.inString("field", ['test1', 'test2']);
@@ -1695,6 +1715,8 @@ notInNumber(field: string, valueList: number[]): Query
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
     let query: distributedKVStore.Query | null = new distributedKVStore.Query();
     query.notInNumber("field", [0, 1]);
@@ -1730,6 +1752,8 @@ notInString(field: string, valueList: string[]): Query
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
     let query: distributedKVStore.Query | null = new distributedKVStore.Query();
     query.notInString("field", ['test1', 'test2']);
@@ -1765,6 +1789,8 @@ like(field: string, value: string): Query
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
     let query: distributedKVStore.Query | null = new distributedKVStore.Query();
     query.like("field", "value");
@@ -1800,6 +1826,8 @@ unlike(field: string, value: string): Query
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
     let query: distributedKVStore.Query | null = new distributedKVStore.Query();
     query.unlike("field", "value");
@@ -1828,6 +1856,8 @@ and(): Query
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
     let query: distributedKVStore.Query | null = new distributedKVStore.Query();
     query.notEqualTo("field", "value1");
@@ -1857,6 +1887,8 @@ or(): Query
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
     let query: distributedKVStore.Query | null = new distributedKVStore.Query();
     query.notEqualTo("field", "value1");
@@ -1892,6 +1924,8 @@ orderByAsc(field: string): Query
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
     let query: distributedKVStore.Query | null = new distributedKVStore.Query();
     query.notEqualTo("field", "value");
@@ -1927,6 +1961,8 @@ orderByDesc(field: string): Query
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
     let query: distributedKVStore.Query | null = new distributedKVStore.Query();
     query.notEqualTo("field", "value");
@@ -1963,6 +1999,8 @@ limit(total: number, offset: number): Query
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let total = 10;
 let offset = 1;
 try {
@@ -2000,6 +2038,8 @@ isNotNull(field: string): Query
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
   let query: distributedKVStore.Query | null = new distributedKVStore.Query();
   query.isNotNull("field");
@@ -2028,6 +2068,8 @@ beginGroup(): Query
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
     let query: distributedKVStore.Query | null = new distributedKVStore.Query();
     query.beginGroup();
@@ -2057,6 +2099,8 @@ endGroup(): Query
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
     let query: distributedKVStore.Query | null = new distributedKVStore.Query();
     query.beginGroup();
@@ -2092,6 +2136,8 @@ prefixKey(prefix: string): Query
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
     let query: distributedKVStore.Query | null = new distributedKVStore.Query();
     query.prefixKey("$.name");
@@ -2127,6 +2173,8 @@ setSuggestIndex(index: string): Query
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
     let query: distributedKVStore.Query | null = new distributedKVStore.Query();
     query.setSuggestIndex("$.name");
@@ -2166,6 +2214,8 @@ deviceId(deviceId:string):Query
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
     let query: distributedKVStore.Query | null = new distributedKVStore.Query();
     query.deviceId("deviceId");
@@ -2193,6 +2243,8 @@ getSqlLike():string
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
     let query: distributedKVStore.Query | null = new distributedKVStore.Query();
     let sql1 = query.getSqlLike();
@@ -6238,7 +6290,7 @@ import { BusinessError } from '@ohos.base';
 
 let kvStore: distributedKVStore.DeviceKVStore = xxx;
 try {
-  let resultSet: distributedKVStore.KVStoreResultSet;
+  let resultSet: distributedKVStore.KVStoreResultSet = xxx;
   let entries: distributedKVStore.Entry[] = [];
   for (let i = 0; i < 10; i++) {
     let key = 'batch_test_string_key';
@@ -6514,7 +6566,7 @@ import { BusinessError } from '@ohos.base';
 
 let kvStore: distributedKVStore.DeviceKVStore = xxx;
 try {
-  let resultSet: distributedKVStore.KVStoreResultSet;
+  let resultSet: distributedKVStore.KVStoreResultSet = xxx;
   let entries: distributedKVStore.Entry[] = [];
   for (let i = 0; i < 10; i++) {
     let key = 'batch_test_string_key';

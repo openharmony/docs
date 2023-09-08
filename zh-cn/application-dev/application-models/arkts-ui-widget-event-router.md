@@ -4,8 +4,11 @@
 
 ![WidgerCameraCard](figures/WidgerCameraCard.png)
 
+> **说明：**
+>
+> 本文主要介绍动态卡片的事件开发。对于静态卡片，请参见[FormLink](../../application-dev/reference/arkui-ts/ts-container-formlink.md)。
 
-说明：<br/>  本文主要介绍动态卡片的事件开发。对于静态卡片，请参见[FormLink](../../application-dev/reference/arkui-ts/ts-container-formlink.md)。<br/>
+
 通常使用按钮控件来实现页面拉起，示例代码如下:
 
 
@@ -49,7 +52,7 @@
   }
   ```
 
-- 在UIAbility中接收router事件并获取参数，根据传递的message不同，选择拉起不同的页面。
+- 在UIAbility中接收router事件并获取参数，根据传递的params不同，选择拉起不同的页面。
   
   ```ts
   import UIAbility from '@ohos.app.ability.UIAbility';

@@ -37,11 +37,7 @@ AVCastPicker()
 
 ```ts
 import AVCastPicker from '@ohos.multimedia.avCastPicker'
-class attr {
-width:number= 1
-color:number= Color.Red
-}
-let attrobj: attr = new attr()
+
 @Entry
 @Component
 struct Index {
@@ -51,7 +47,7 @@ struct Index {
         AVCastPicker()
           .width('40vp')
           .height('40vp')
-          .border(attrobj)
+          .border({ width: 1, color: Color.Red })
       }.height('50%')
     }.width('50%')
   }
