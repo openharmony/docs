@@ -20,6 +20,7 @@ Navigation()
 ### Navigation<sup>10+</sup>
 
 Navigation(pathInfos: NavPathStack)
+
 绑定路由栈到Navigation组件。
 
 **参数：**
