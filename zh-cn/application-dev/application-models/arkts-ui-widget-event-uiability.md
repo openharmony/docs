@@ -5,7 +5,7 @@
 
 > **说明：**
 >
-> 本文主要介绍动态卡片的事件开发。对于静态卡片，请参见[FormLink](../../application-dev/reference/arkui-ts/ts-container-formlink.md)。
+> 本文主要介绍动态卡片的事件开发。对于静态卡片，请参见[FormLink](../reference/arkui-ts/ts-container-formlink.md)。
 
 ## 通过router事件刷新卡片内容
 
