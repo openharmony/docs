@@ -226,22 +226,39 @@ export const runDemo: (a:String, b:Object) => number;
 在 **entry/src/ets/MainAbility/pages/index.ets** 中，定义`onClick()`事件，并在事件回调中调用封装的`runDemo()`接口。
 
 ```ts
+import hilog from '@ohos.hilog'
 import msliteNapi from 'libmslite_napi.so' // 导入msliteNapi模块。
+import resManager from '@ohos.resourceManager'
 
-...省略...
+const TAG = 'MSLiteNativeDemo'
 
-// 点击UI中的文本，触发此事件。
-.onClick(() => {
-  resManager.getResourceManager().then(mgr => {
-    hilog.info(0x0000, TAG, '*** Start MSLite Demo ***');
-    let ret: number = 0;
-    ret = msliteNapi.runDemo("", mgr); // 调用runDemo()，执行AI模型推理。
-    if (ret == -1) {
-      hilog.info(0x0000, TAG, 'Error when running MSLite Demo!');
+@Entry
+@Component
+struct Index {
+    @State message: string = 'MindSpore Lite Demo'
+    build() {
+        Row() {
+            Column() {
+                Text(this.message)
+                    .fontSize(30)
+                    .fontWeight(FontWeight.Bold)
+                    .onClick(() => {
+                        resManager.getResourceManager().then(mgr => {
+                            hilog.info(0x0000, TAG, '*** Start MSLite Demo ***');
+                            let ret: number = 0;
+                            ret = msliteNapi.runDemo("", mgr); // 调用runDemo()，执行AI模型推理。
+                            if (ret == -1) {
+                                hilog.info(0x0000, TAG, 'Error when running MSLite Demo!');
+                            }
+                            hilog.info(0x0000, TAG, '*** Finished MSLite Demo ***');
+                        })
+                    })
+            }
+            .width('100%')
+        }
+        .height('100%')
     }
-    hilog.info(0x0000, TAG, '*** Finished MSLite Demo ***');
-  })
-})
+}
 ```
 
 ## 调测验证
