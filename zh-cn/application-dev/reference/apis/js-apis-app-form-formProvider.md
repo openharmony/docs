@@ -147,6 +147,7 @@ updateForm(formId: string, formBindingData: formBindingData.FormBindingData,call
 **示例：**
 
 ```ts
+import Base from '@ohos.base';
 import formBindingData from '@ohos.app.form.formBindingData';
 import Base from '@ohos.base';
 
@@ -206,6 +207,7 @@ updateForm(formId: string, formBindingData: formBindingData.FormBindingData): Pr
 **示例：**
 
 ```ts
+import Base from '@ohos.base';
 import formBindingData from '@ohos.app.form.formBindingData';
 import Base from '@ohos.base';
 
@@ -253,6 +255,8 @@ getFormsInfo(callback: AsyncCallback&lt;Array&lt;formInfo.FormInfo&gt;&gt;): voi
 **示例：**
 
 ```ts
+import Base from '@ohos.base';
+
 try {
   formProvider.getFormsInfo((error, data) => {
     if (error) {
@@ -294,6 +298,7 @@ getFormsInfo(filter: formInfo.FormInfoFilter, callback: AsyncCallback&lt;Array&l
 **示例：**
 
 ```ts
+import Base from '@ohos.base';
 import formInfo from '@ohos.app.form.formInfo';
 
 const filter: formInfo.FormInfoFilter = {
@@ -347,6 +352,7 @@ getFormsInfo(filter?: formInfo.FormInfoFilter): Promise&lt;Array&lt;formInfo.For
 **示例：**
 
 ```ts
+import Base from '@ohos.base';
 import formInfo from '@ohos.app.form.formInfo';
 import Base from '@ohos.base';
 
@@ -398,6 +404,7 @@ requestPublishForm(want: Want, formBindingData: formBindingData.FormBindingData,
 **示例：**
 
 ```ts
+import Base from '@ohos.base';
 import formBindingData from '@ohos.app.form.formBindingData';
 import Want from '@ohos.app.ability.Want';
 import Base from '@ohos.base';
@@ -459,6 +466,7 @@ requestPublishForm(want: Want, callback: AsyncCallback&lt;string&gt;): void
 **示例：**
 
 ```ts
+import Base from '@ohos.base';
 import Want from '@ohos.app.ability.Want';
 import Base from '@ohos.base';
 
@@ -521,6 +529,7 @@ requestPublishForm(want: Want, formBindingData?: formBindingData.FormBindingData
 **示例：**
 
 ```ts
+import Base from '@ohos.base';
 import Want from '@ohos.app.ability.Want';
 import Base from '@ohos.base';
 
@@ -573,6 +582,7 @@ isRequestPublishFormSupported(callback: AsyncCallback&lt;boolean&gt;): void
 **示例：**
 
 ```ts
+import Base from '@ohos.base';
 import Want from '@ohos.app.ability.Want';
 import Base from '@ohos.base';
 
@@ -638,6 +648,7 @@ isRequestPublishFormSupported(): Promise&lt;boolean&gt;
 **示例：**
 
 ```ts
+import Base from '@ohos.base';
 import Want from '@ohos.app.ability.Want';
 import Base from '@ohos.base';
 

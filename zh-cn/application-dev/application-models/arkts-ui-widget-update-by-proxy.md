@@ -200,7 +200,7 @@
     readonly MESSAGE: string = 'add detail';
     readonly FULL_WIDTH_PERCENT: string = '100%';
     readonly FULL_HEIGHT_PERCENT: string = '100%';
-    @LocalStorageProp('list') list: Array<object> = [{"type": "a"}];
+    @LocalStorageProp('list') list: Record<string, string>[] = [{"type": "a"}];
 
     build() {
       Row() {

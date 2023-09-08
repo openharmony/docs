@@ -47,7 +47,7 @@ publish(request: NotificationRequest, callback: AsyncCallback\<void\>): void
 import Base from '@ohos.base';
 
 //publish回调
-let publishCallback = (err: Base.BusinessError) => {
+let publishCallback = (err: Base.BusinessError): void => {
     if (err) {
         console.error(`publish failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -163,7 +163,7 @@ publish(request: NotificationRequest, userId: number, callback: AsyncCallback\<v
 import Base from '@ohos.base';
 
 // publish回调
-let publishCallback = (err: Base.BusinessError) => {
+let publishCallback = (err: Base.BusinessError): void => {
     if (err) {
         console.error(`publish failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -281,7 +281,7 @@ cancel(id: number, label: string, callback: AsyncCallback\<void\>): void
 import Base from '@ohos.base';
 
 // cancel回调
-let cancelCallback = (err: Base.BusinessError) => {
+let cancelCallback = (err: Base.BusinessError): void => {
     if (err) {
         console.error(`cancel failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -361,7 +361,7 @@ cancel(id: number, callback: AsyncCallback\<void\>): void
 import Base from '@ohos.base';
 
 // cancel回调
-let cancelCallback = (err: Base.BusinessError) => {
+let cancelCallback = (err: Base.BusinessError): void => {
     if (err) {
         console.error(`cancel failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -401,7 +401,7 @@ cancelAll(callback: AsyncCallback\<void\>): void
 import Base from '@ohos.base';
 
 // cancel回调
-let cancelAllCallback = (err: Base.BusinessError) => {
+let cancelAllCallback = (err: Base.BusinessError): void => {
     if (err) {
         console.error(`cancelAll failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -477,7 +477,7 @@ addSlot(slot: NotificationSlot, callback: AsyncCallback\<void\>): void
 import Base from '@ohos.base';
 
 // addslot回调
-let addSlotCallBack = (err: Base.BusinessError) => {
+let addSlotCallBack = (err: Base.BusinessError): void => {
     if (err) {
         console.error(`addSlot failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -568,7 +568,7 @@ addSlot(type: SlotType, callback: AsyncCallback\<void\>): void
 import Base from '@ohos.base';
 
 // addslot回调
-let addSlotCallBack = (err: Base.BusinessError) => {
+let addSlotCallBack = (err: Base.BusinessError): void => {
     if (err) {
         console.error(`addSlot failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -651,7 +651,7 @@ addSlots(slots: Array\<NotificationSlot\>, callback: AsyncCallback\<void\>): voi
 import Base from '@ohos.base';
 
 // addSlots回调
-let addSlotsCallBack = (err: Base.BusinessError) => {
+let addSlotsCallBack = (err: Base.BusinessError): void => {
     if (err) {
         console.error(`addSlots failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -749,7 +749,7 @@ getSlot(slotType: SlotType, callback: AsyncCallback\<NotificationSlot\>): void
 import Base from '@ohos.base';
 
 // getSlot回调
-let getSlotCallback = (err: Base.BusinessError, data: notificationManager.NotificationSlot) => {
+let getSlotCallback = (err: Base.BusinessError, data: notificationManager.NotificationSlot): void => {
     if (err) {
         console.error(`getSlot failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -834,7 +834,7 @@ getSlots(callback: AsyncCallback\<Array\<NotificationSlot>>): void
 import Base from '@ohos.base';
 
 // getSlots回调
-let getSlotsCallback = (err: Base.BusinessError, data: Array<notificationManager.NotificationSlot>) => {
+let getSlotsCallback = (err: Base.BusinessError, data: Array<notificationManager.NotificationSlot>): void => {
   if (err) {
     console.error(`getSlots failed, code is ${err.code}, message is ${err.message}`);
   } else {
@@ -911,7 +911,7 @@ removeSlot(slotType: SlotType, callback: AsyncCallback\<void\>): void
 import Base from '@ohos.base';
 
 // removeSlot回调
-let removeSlotCallback = (err: Base.BusinessError) => {
+let removeSlotCallback = (err: Base.BusinessError): void => {
   if (err) {
     console.error(`removeSlot failed, code is ${err.code}, message is ${err.message}`);
   } else {
@@ -988,7 +988,7 @@ removeAllSlots(callback: AsyncCallback\<void\>): void
 ```ts
 import Base from '@ohos.base';
 
-let removeAllCallBack = (err: Base.BusinessError) => {
+let removeAllCallBack = (err: Base.BusinessError): void => {
     if (err) {
         console.error(`removeAllSlots failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -1064,7 +1064,7 @@ setNotificationEnable(bundle: BundleOption, enable: boolean, callback: AsyncCall
 ```ts
 import Base from '@ohos.base';
 
-let setNotificationEnableCallback = (err: Base.BusinessError) => {
+let setNotificationEnableCallback = (err: Base.BusinessError): void => {
     if (err) {
         console.error(`setNotificationEnableCallback failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -1157,7 +1157,7 @@ isNotificationEnabled(bundle: BundleOption, callback: AsyncCallback\<boolean\>):
 ```ts
 import Base from '@ohos.base';
 
-let isNotificationEnabledCallback = (err: Base.BusinessError, data: boolean) => {
+let isNotificationEnabledCallback = (err: Base.BusinessError, data: boolean): void => {
     if (err) {
         console.error(`isNotificationEnabled failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -1255,7 +1255,7 @@ isNotificationEnabled(callback: AsyncCallback\<boolean\>): void
 ```ts
 import Base from '@ohos.base';
 
-let isNotificationEnabledCallback = (err: Base.BusinessError, data: boolean) => {
+let isNotificationEnabledCallback = (err: Base.BusinessError, data: boolean): void => {
     if (err) {
         console.error(`isNotificationEnabled failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -1341,7 +1341,7 @@ isNotificationEnabled(userId: number, callback: AsyncCallback\<boolean\>): void
 ```ts
 import Base from '@ohos.base';
 
-let isNotificationEnabledCallback = (err: Base.BusinessError, data: boolean) => {
+let isNotificationEnabledCallback = (err: Base.BusinessError, data: boolean): void => {
     if (err) {
         console.error(`isNotificationEnabled failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -1439,7 +1439,7 @@ displayBadge(bundle: BundleOption, enable: boolean, callback: AsyncCallback\<voi
 ```ts
 import Base from '@ohos.base';
 
-let displayBadgeCallback = (err: Base.BusinessError) => {
+let displayBadgeCallback = (err: Base.BusinessError): void => {
     if (err) {
         console.error(`displayBadge failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -1532,7 +1532,7 @@ isBadgeDisplayed(bundle: BundleOption, callback: AsyncCallback\<boolean\>): void
 ```ts
 import Base from '@ohos.base';
 
-let isBadgeDisplayedCallback = (err: Base.BusinessError, data: boolean) => {
+let isBadgeDisplayedCallback = (err: Base.BusinessError, data: boolean): void => {
     if (err) {
         console.error(`isBadgeDisplayed failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -1664,7 +1664,7 @@ setBadgeNumber(badgeNumber: number, callback: AsyncCallback\<void\>): void
 ```ts
 import Base from '@ohos.base';
 
-let setBadgeNumberCallback = (err: Base.BusinessError) => {
+let setBadgeNumberCallback = (err: Base.BusinessError): void => {
     if (err) {
         console.info(`displayBadge failed code is ${err.code}, message is ${err.message}`);
     } else {
@@ -1712,7 +1712,7 @@ setSlotByBundle(bundle: BundleOption, slot: NotificationSlot, callback: AsyncCal
 ```ts
 import Base from '@ohos.base';
 
-let setSlotByBundleCallback = (err: Base.BusinessError) => {
+let setSlotByBundleCallback = (err: Base.BusinessError): void => {
     if (err) {
         console.error(`setSlotByBundle failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -1813,7 +1813,7 @@ getSlotsByBundle(bundle: BundleOption, callback: AsyncCallback\<Array\<Notificat
 ```ts
 import Base from '@ohos.base';
 
-let getSlotsByBundleCallback = (err: Base.BusinessError, data: Array<notificationManager.NotificationSlot>) => {
+let getSlotsByBundleCallback = (err: Base.BusinessError, data: Array<notificationManager.NotificationSlot>): void => {
     if (err) {
         console.error(`getSlotByBundle failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -1912,7 +1912,7 @@ getSlotNumByBundle(bundle: BundleOption, callback: AsyncCallback\<number\>): voi
 ```ts
 import Base from '@ohos.base';
 
-let getSlotNumByBundleCallback = (err: Base.BusinessError, data: number) => {
+let getSlotNumByBundleCallback = (err: Base.BusinessError, data: number): void => {
     if (err) {
         console.error(`getSlotByBundle failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -2010,7 +2010,7 @@ getAllActiveNotifications(callback: AsyncCallback\<Array\<NotificationRequest>>)
 ```ts
 import Base from '@ohos.base';
 
-let getAllActiveNotificationsCallback = (err: Base.BusinessError, data: Array<notificationManager.NotificationRequest>) => {
+let getAllActiveNotificationsCallback = (err: Base.BusinessError, data: Array<notificationManager.NotificationRequest>): void => {
     if (err) {
         console.error(`getAllActiveNotifications failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -2090,7 +2090,7 @@ getActiveNotificationCount(callback: AsyncCallback\<number\>): void
 ```ts
 import Base from '@ohos.base';
 
-let getActiveNotificationCountCallback = (err: Base.BusinessError, data: number) => {
+let getActiveNotificationCountCallback = (err: Base.BusinessError, data: number): void => {
     if (err) {
         console.error(`getActiveNotificationCount failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -2166,7 +2166,7 @@ getActiveNotifications(callback: AsyncCallback\<Array\<NotificationRequest>>): v
 ```ts
 import Base from '@ohos.base';
 
-let getActiveNotificationsCallback = (err: Base.BusinessError, data: Array<notificationManager.NotificationRequest>) => {
+let getActiveNotificationsCallback = (err: Base.BusinessError, data: Array<notificationManager.NotificationRequest>): void => {
     if (err) {
         console.error(`getActiveNotifications failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -2243,7 +2243,7 @@ cancelGroup(groupName: string, callback: AsyncCallback\<void\>): void
 ```ts
 import Base from '@ohos.base';
 
-let cancelGroupCallback = (err: Base.BusinessError) => {
+let cancelGroupCallback = (err: Base.BusinessError): void => {
     if (err) {
         console.error(`cancelGroup failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -2329,7 +2329,7 @@ removeGroupByBundle(bundle: BundleOption, groupName: string, callback: AsyncCall
 ```ts
 import Base from '@ohos.base';
 
-let removeGroupByBundleCallback = (err: Base.BusinessError) => {
+let removeGroupByBundleCallback = (err: Base.BusinessError): void => {
     if (err) {
         console.error(`removeGroupByBundle failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -2423,7 +2423,7 @@ setDoNotDisturbDate(date: DoNotDisturbDate, callback: AsyncCallback\<void\>): vo
 ```ts
 import Base from '@ohos.base';
 
-let setDoNotDisturbDateCallback = (err: Base.BusinessError) => {
+let setDoNotDisturbDateCallback = (err: Base.BusinessError): void => {
     if (err) {
         console.error(`setDoNotDisturbDate failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -2524,7 +2524,7 @@ setDoNotDisturbDate(date: DoNotDisturbDate, userId: number, callback: AsyncCallb
 ```ts
 import Base from '@ohos.base';
 
-let setDoNotDisturbDateCallback = (err: Base.BusinessError) => {
+let setDoNotDisturbDateCallback = (err: Base.BusinessError): void => {
     if (err) {
         console.error(`setDoNotDisturbDate failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -2629,7 +2629,7 @@ getDoNotDisturbDate(callback: AsyncCallback\<DoNotDisturbDate\>): void
 ```ts
 import Base from '@ohos.base';
 
-let getDoNotDisturbDateCallback = (err: Base.BusinessError, data: notificationManager.DoNotDisturbDate) => {
+let getDoNotDisturbDateCallback = (err: Base.BusinessError, data: notificationManager.DoNotDisturbDate): void => {
     if (err) {
         console.error(`getDoNotDisturbDate failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -2718,7 +2718,7 @@ getDoNotDisturbDate(userId: number, callback: AsyncCallback\<DoNotDisturbDate\>)
 ```ts
 import Base from '@ohos.base';
 
-let getDoNotDisturbDateCallback = (err: Base.BusinessError, data: notificationManager.DoNotDisturbDate) => {
+let getDoNotDisturbDateCallback = (err: Base.BusinessError, data: notificationManager.DoNotDisturbDate): void => {
     if (err) {
         console.error(`getDoNotDisturbDate failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -2813,7 +2813,7 @@ notificationManager.getDoNotDisturbDate(userId).then((data: notificationManager.
 ```ts
 import Base from '@ohos.base';
 
-let isSupportDoNotDisturbModeCallback = (err: Base.BusinessError, data: boolean) => {
+let isSupportDoNotDisturbModeCallback = (err: Base.BusinessError, data: boolean): void => {
     if (err) {
         console.error(`isSupportDoNotDisturbMode failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -2895,7 +2895,7 @@ isSupportTemplate(templateName: string, callback: AsyncCallback\<boolean\>): voi
 import Base from '@ohos.base';
 
 let templateName: string = 'process';
-let isSupportTemplateCallback = (err: Base.BusinessError, data: boolean) => {
+let isSupportTemplateCallback = (err: Base.BusinessError, data: boolean): void => {
     if (err) {
         console.error(`isSupportTemplate failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -2979,7 +2979,7 @@ requestEnableNotification(callback: AsyncCallback\<void\>): void
 ```ts
 import Base from '@ohos.base';
 
-let requestEnableNotificationCallback = (err: Base.BusinessError) => {
+let requestEnableNotificationCallback = (err: Base.BusinessError): void => {
     if (err) {
         console.error(`requestEnableNotification failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -3049,18 +3049,23 @@ requestEnableNotification(context: UIAbilityContext, callback: AsyncCallback\<vo
 
 ```ts
 import Base from '@ohos.base';
-import common from '@ohos.app.ability.common';
+import UIAbility from '@ohos.app.ability.UIAbility';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import Want from '@ohos.app.ability.Want';
 
-let context:Context = getContext();
-let requestEnableNotificationCallback = (err: Base.BusinessError) => {
-    if (err) {
+class MyAbility extends UIAbility {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+    let requestEnableNotificationCallback = (err: Base.BusinessError): void => {
+      if (err) {
         console.error(`requestEnableNotification failed, code is ${err.code}, message is ${err.message}`);
-    } else {
+      } else {
         console.info("requestEnableNotification success");
-    }
-};
+      }
+    };
 
-notificationManager.requestEnableNotification(context as common.UIAbilityContext, requestEnableNotificationCallback);
+    notificationManager.requestEnableNotification(this.context, requestEnableNotificationCallback);
+  }
+}
 ```
 
 ## notificationManager.requestEnableNotification<sup>10+<sup>
@@ -3091,14 +3096,19 @@ requestEnableNotification(context: UIAbilityContext): Promise\<void\>
 
 ```ts
 import Base from '@ohos.base';
-import common from '@ohos.app.ability.common';
+import UIAbility from '@ohos.app.ability.UIAbility';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import Want from '@ohos.app.ability.Want';
 
-let context:Context = getContext();
-notificationManager.requestEnableNotification(context as common.UIAbilityContext).then(() => {
-    console.info("requestEnableNotification success");
-}).catch((err: Base.BusinessError) => {
-    console.error(`requestEnableNotification fail: ${JSON.stringify(err)}`);
-});
+class MyAbility extends UIAbility {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+    notificationManager.requestEnableNotification(this.context).then(() => {
+      console.info("requestEnableNotification success");
+    }).catch((err: Base.BusinessError) => {
+      console.error(`requestEnableNotification fail: ${JSON.stringify(err)}`);
+    });
+  }
+}
 ```
 
 ## notificationManager.setDistributedEnable
@@ -3136,7 +3146,7 @@ setDistributedEnable(enable: boolean, callback: AsyncCallback\<void\>): void
 ```ts
 import Base from '@ohos.base';
 
-let setDistributedEnableCallback = (err: Base.BusinessError) => {
+let setDistributedEnableCallback = (err: Base.BusinessError): void => {
     if (err) {
         console.error(`setDistributedEnable failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -3223,7 +3233,7 @@ isDistributedEnabled(callback: AsyncCallback\<boolean>): void
 ```ts
 import Base from '@ohos.base';
 
-let isDistributedEnabledCallback = (err: Base.BusinessError, data: boolean) => {
+let isDistributedEnabledCallback = (err: Base.BusinessError, data: boolean): void => {
     if (err) {
         console.error(`isDistributedEnabled failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -3312,7 +3322,7 @@ setDistributedEnableByBundle(bundle: BundleOption, enable: boolean, callback: As
 ```ts
 import Base from '@ohos.base';
 
-let setDistributedEnableByBundleCallback = (err: Base.BusinessError) => {
+let setDistributedEnableByBundleCallback = (err: Base.BusinessError): void => {
     if (err) {
         console.error(`setDistributedEnableByBundle failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -3416,7 +3426,7 @@ isDistributedEnabledByBundle(bundle: BundleOption, callback: AsyncCallback\<bool
 ```ts
 import Base from '@ohos.base';
 
-let isDistributedEnabledByBundleCallback = (err: Base.BusinessError, data: boolean) => {
+let isDistributedEnabledByBundleCallback = (err: Base.BusinessError, data: boolean): void => {
     if (err) {
         console.error(`isDistributedEnabledByBundle failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -3517,7 +3527,7 @@ getDeviceRemindType(callback: AsyncCallback\<DeviceRemindType\>): void
 ```ts
 import Base from '@ohos.base';
 
-let getDeviceRemindTypeCallback = (err: Base.BusinessError, data: notificationManager.DeviceRemindType) => {
+let getDeviceRemindTypeCallback = (err: Base.BusinessError, data: notificationManager.DeviceRemindType): void => {
     if (err) {
         console.error(`getDeviceRemindType failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -3611,7 +3621,7 @@ publishAsBundle(request: NotificationRequest, representativeBundle: string, user
 import Base from '@ohos.base';
 
 //publishAsBundle回调
-let callback = (err: Base.BusinessError) => {
+let callback = (err: Base.BusinessError): void => {
     if (err) {
         console.error(`publishAsBundle failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -3744,7 +3754,7 @@ cancelAsBundle(id: number, representativeBundle: string, userId: number, callbac
 import Base from '@ohos.base';
 
 // cancelAsBundle
-let cancelAsBundleCallback = (err: Base.BusinessError) => {
+let cancelAsBundleCallback = (err: Base.BusinessError): void => {
     if (err) {
         console.error(`cancelAsBundle failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -3848,7 +3858,7 @@ setNotificationEnableSlot(bundle: BundleOption, type: SlotType, enable: boolean,
 import Base from '@ohos.base';
 
 // setNotificationEnableSlot
-let setNotificationEnableSlotCallback = (err: Base.BusinessError) => {
+let setNotificationEnableSlotCallback = (err: Base.BusinessError): void => {
     if (err) {
         console.error(`setNotificationEnableSlot failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -3947,7 +3957,7 @@ isNotificationSlotEnabled(bundle: BundleOption, type: SlotType, callback: AsyncC
 import Base from '@ohos.base';
 
 // isNotificationSlotEnabled
-let getEnableSlotCallback = (err: Base.BusinessError, data: boolean) => {
+let getEnableSlotCallback = (err: Base.BusinessError, data: boolean): void => {
     if (err) {
         console.error(`isNotificationSlotEnabled failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -4051,7 +4061,7 @@ import Base from '@ohos.base';
 let userId: number = 100;
 let enable: boolean = true;
 
-let callback = (err: Base.BusinessError) => {
+let callback = (err: Base.BusinessError): void => {
     if (err) {
         console.error(`setSyncNotificationEnabledWithoutApp failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -4152,7 +4162,7 @@ import Base from '@ohos.base';
 
 let userId: number = 100;
 
-let getSyncNotificationEnabledWithoutAppCallback = (err: Base.BusinessError, data: boolean) => {
+let getSyncNotificationEnabledWithoutAppCallback = (err: Base.BusinessError, data: boolean): void => {
     if (err) {
         console.info('getSyncNotificationEnabledWithoutAppCallback, err:' + err);
     } else {
@@ -4245,7 +4255,7 @@ on(type: 'checkNotification', callback: (checkInfo: NotificationCheckInfo) => No
 ```ts
 import Base from '@ohos.base';
 
-let OnCheckNotification = (info : notificationManager.NotificationCheckInfo) => {
+let OnCheckNotification = (info : notificationManager.NotificationCheckInfo): notificationManager.NotificationCheckResult => {
     console.info(`====>OnCheckNotification info: ${JSON.stringify(info)}`);
     if(info.notificationId == 1){
         let result: notificationManager.NotificationCheckResult =  { code: 1, message: "testMsg1"};
@@ -4258,7 +4268,7 @@ let OnCheckNotification = (info : notificationManager.NotificationCheckInfo) => 
 try{
     notificationManager.on("checkNotification", OnCheckNotification);
 } catch (error){
-    console.info(`notificationManager.on error: ${JSON.stringify(error)}`);
+    console.info(`notificationManager.on error: ${JSON.stringify(error as Base.BusinessError)}`);
 }
 ```
 
@@ -4297,7 +4307,7 @@ import Base from '@ohos.base';
 try{
     notificationManager.off("checkNotification");
 } catch (error){
-    console.info(`notificationManager.off error: ${JSON.stringify(error)}`);
+    console.info(`notificationManager.off error: ${JSON.stringify(error as Base.BusinessError)}`);
 }
 ```
 
