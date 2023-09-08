@@ -46,6 +46,8 @@ getIntelligentVoiceManager(): IntelligentVoiceManager
 **示例：** 
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let intelligentVoiceManager: intelligentVoice.IntelligentVoiceManager | null = null;
 try {
   intelligentVoiceManager = intelligentVoice.getIntelligentVoiceManager();
@@ -84,6 +86,8 @@ createEnrollIntelligentVoiceEngine(descriptor: EnrollIntelligentVoiceEngineDescr
 **示例：** 
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let engineDescriptor: intelligentVoice.EnrollIntelligentVoiceEngineDescriptor = {
   wakeupPhrase: '小华小华',
 }
@@ -133,6 +137,8 @@ createEnrollIntelligentVoiceEngine(descriptor: EnrollIntelligentVoiceEngineDescr
 **示例：** 
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let engineDescriptor: intelligentVoice.EnrollIntelligentVoiceEngineDescriptor = {
   wakeupPhrase: '小华小华',
 }
@@ -175,6 +181,8 @@ createWakeupIntelligentVoiceEngine(descriptor: WakeupIntelligentVoiceEngineDescr
 **示例：** 
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let wakeupEngineDescriptor: intelligentVoice.WakeupIntelligentVoiceEngineDescriptor = {
   needReconfirm: true,
   wakeupPhrase: '小华小华',
@@ -224,6 +232,8 @@ createWakeupIntelligentVoiceEngine(descriptor: WakeupIntelligentVoiceEngineDescr
 **示例：** 
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let wakeupEngineDescriptor: intelligentVoice.WakeupIntelligentVoiceEngineDescriptor = {
   needReconfirm: true,
   wakeupPhrase: '小华小华',
@@ -480,6 +490,8 @@ getSupportedRegions(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let regions: Array<string> | null = null;
 if (enrollIntelligentVoiceEngine != null) {
   (enrollIntelligentVoiceEngine as intelligentVoice.EnrollIntelligentVoiceEngine).getSupportedRegions((err: BusinessError, data: Array<string>) => {
@@ -512,6 +524,8 @@ getSupportedRegions(): Promise&lt;Array&lt;string&gt;&gt;
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let regions: Array<string> | null = null;
 if (enrollIntelligentVoiceEngine != null) {
   (enrollIntelligentVoiceEngine as intelligentVoice.EnrollIntelligentVoiceEngine).getSupportedRegions().then((data: Array<string>) => {
@@ -552,6 +566,8 @@ init(config: EnrollEngineConfig, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let config: intelligentVoice.EnrollEngineConfig = {
   language: 'zh',
   region: 'CN',
@@ -601,6 +617,8 @@ init(config: EnrollEngineConfig): Promise&lt;void&gt;
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let config: intelligentVoice.EnrollEngineConfig = {
   language: 'zh',
   region: 'CN',
@@ -635,6 +653,8 @@ enrollForResult(isLast: boolean, callback: AsyncCallback&lt;EnrollCallbackInfo&g
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let callbackInfo: intelligentVoice.EnrollCallbackInfo | null = null;
 if (enrollIntelligentVoiceEngine != null) {
   (enrollIntelligentVoiceEngine as intelligentVoice.EnrollIntelligentVoiceEngine).enrollForResult(true, (err: BusinessError, data: intelligentVoice.EnrollCallbackInfo) => {
@@ -673,6 +693,8 @@ enrollForResult(isLast: boolean): Promise&lt;EnrollCallbackInfo&gt;
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let callbackInfo: intelligentVoice.EnrollCallbackInfo | null = null;
 if (enrollIntelligentVoiceEngine != null) {
   (enrollIntelligentVoiceEngine as intelligentVoice.EnrollIntelligentVoiceEngine).enrollForResult(true).then((data: intelligentVoice.EnrollCallbackInfo) => {
@@ -701,6 +723,8 @@ stop(callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 if (enrollIntelligentVoiceEngine != null) {
   (enrollIntelligentVoiceEngine as intelligentVoice.EnrollIntelligentVoiceEngine).stop((err: BusinessError) => {
     if (err) {
@@ -731,6 +755,8 @@ stop(): Promise&lt;void&gt;
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 if (enrollIntelligentVoiceEngine != null) {
   (enrollIntelligentVoiceEngine as intelligentVoice.EnrollIntelligentVoiceEngine).stop().then(() => {
     console.info(`Succeeded in stopping enrollIntelligentVoice engine.`);
@@ -767,6 +793,8 @@ commit(callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 if (enrollIntelligentVoiceEngine != null) {
   (enrollIntelligentVoiceEngine as intelligentVoice.EnrollIntelligentVoiceEngine).commit((err: BusinessError) => {
     if (err) {
@@ -805,6 +833,8 @@ commit(): Promise&lt;void&gt;
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 if (enrollIntelligentVoiceEngine != null) {
   (enrollIntelligentVoiceEngine as intelligentVoice.EnrollIntelligentVoiceEngine).commit().then(() => {
     console.info(`Succeeded in committing enroll.`);
@@ -842,6 +872,8 @@ setWakeupHapInfo(info: WakeupHapInfo, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let info: intelligentVoice.WakeupHapInfo = {
   bundleName: 'com.wakeup',
   abilityName: 'WakeUpExtAbility',
@@ -884,6 +916,8 @@ setWakeupHapInfo(info: WakeupHapInfo): Promise\<void\>
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let info: intelligentVoice.WakeupHapInfo = {
   bundleName: 'com.wakeup',
   abilityName: 'WakeUpExtAbility',
@@ -925,6 +959,8 @@ setSensibility(sensibility: SensibilityType, callback: AsyncCallback\<void\>): v
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 if (enrollIntelligentVoiceEngine != null) {
   (enrollIntelligentVoiceEngine as intelligentVoice.EnrollIntelligentVoiceEngine).setSensibility(intelligentVoice.SensibilityType.LOW_SENSIBILITY, (err: BusinessError) => {
     if (err) {
@@ -969,6 +1005,8 @@ setSensibility(sensibility: SensibilityType): Promise\<void\>
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 if (enrollIntelligentVoiceEngine != null) {
   (enrollIntelligentVoiceEngine as intelligentVoice.EnrollIntelligentVoiceEngine).setSensibility(intelligentVoice.SensibilityType.LOW_SENSIBILITY).then(() => {
     console.info(`Succeeded in setting sensibility.`);
@@ -1007,6 +1045,8 @@ setParameter(key: string, value: string, callback: AsyncCallback\<void\>): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 if (enrollIntelligentVoiceEngine != null) {
   (enrollIntelligentVoiceEngine as intelligentVoice.EnrollIntelligentVoiceEngine).setParameter('scene', '0', (err: BusinessError) => {
     if (err) {
@@ -1052,6 +1092,8 @@ setParameter(key: string, value: string): Promise\<void\>
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 if (enrollIntelligentVoiceEngine != null) {
   (enrollIntelligentVoiceEngine as intelligentVoice.EnrollIntelligentVoiceEngine).setParameter('scene', '0').then(() => {
     console.info(`Succeeded in setting parameter`);
@@ -1089,6 +1131,8 @@ getParameter(key: string, callback: AsyncCallback\<string\>): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 if (enrollIntelligentVoiceEngine != null) {
   (enrollIntelligentVoiceEngine as intelligentVoice.EnrollIntelligentVoiceEngine).getParameter('key', (err: BusinessError, data: string) => {
     if (err) {
@@ -1134,6 +1178,8 @@ getParameter(key: string): Promise\<string\>
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 if (enrollIntelligentVoiceEngine != null) {
   (enrollIntelligentVoiceEngine as intelligentVoice.EnrollIntelligentVoiceEngine).getParameter('key').then((data: string) => {
     let param: string = data;
@@ -1163,6 +1209,8 @@ release(callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 if (enrollIntelligentVoiceEngine != null) {
   (enrollIntelligentVoiceEngine as intelligentVoice.EnrollIntelligentVoiceEngine).release((err: BusinessError) => {
     if (err) {
@@ -1193,6 +1241,8 @@ release(): Promise&lt;void&gt;
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 if (enrollIntelligentVoiceEngine != null) {
   (enrollIntelligentVoiceEngine as intelligentVoice.EnrollIntelligentVoiceEngine).release().then(() => {
     console.info(`Succeeded in releasing enrollIntelligentVoice engine.`);
@@ -1223,6 +1273,8 @@ getSupportedRegions(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 if (wakeupIntelligentVoiceEngine != null) {
   (wakeupIntelligentVoiceEngine as intelligentVoice.WakeupIntelligentVoiceEngine).getSupportedRegions((err: BusinessError, data: Array<string>) => {
     if (err) {
@@ -1254,6 +1306,8 @@ getSupportedRegions(): Promise&lt;Array&lt;string&gt;&gt;
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 if (wakeupIntelligentVoiceEngine != null) {
   (wakeupIntelligentVoiceEngine as intelligentVoice.WakeupIntelligentVoiceEngine).getSupportedRegions().then((data: Array<string>) => {
     let regions: Array<string> = data;
@@ -1292,6 +1346,8 @@ setWakeupHapInfo(info: WakeupHapInfo, callback: AsyncCallback\<void\>): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let hapInfo: intelligentVoice.WakeupHapInfo = {
   bundleName: 'com.wakeup',
   abilityName: 'WakeUpExtAbility',
@@ -1341,6 +1397,8 @@ setWakeupHapInfo(info: WakeupHapInfo): Promise\<void\>
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let hapInfo: intelligentVoice.WakeupHapInfo = {
   bundleName: 'com.wakeup',
   abilityName: 'WakeUpExtAbility',
@@ -1382,6 +1440,8 @@ setSensibility(sensibility: SensibilityType, callback: AsyncCallback\<void\>): v
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 if (wakeupIntelligentVoiceEngine != null) {
   (wakeupIntelligentVoiceEngine as intelligentVoice.WakeupIntelligentVoiceEngine).setSensibility(intelligentVoice.SensibilityType.LOW_SENSIBILITY, (err: BusinessError) => {
     if (err) {
@@ -1426,6 +1486,8 @@ setSensibility(sensibility: SensibilityType): Promise\<void\>
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 if (wakeupIntelligentVoiceEngine != null) {
   (wakeupIntelligentVoiceEngine as intelligentVoice.WakeupIntelligentVoiceEngine).setSensibility(intelligentVoice.SensibilityType.LOW_SENSIBILITY).then(() => {
     console.info(`Succeeded in setting sensibility.`);
@@ -1464,6 +1526,8 @@ setParameter(key: string, value: string, callback: AsyncCallback\<void\>): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 if (wakeupIntelligentVoiceEngine != null) {
   (wakeupIntelligentVoiceEngine as intelligentVoice.WakeupIntelligentVoiceEngine).setParameter('scene', '0', (err: BusinessError) => {
     if (err) {
@@ -1509,6 +1573,8 @@ setParameter(key: string, value: string): Promise\<void\>
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 if (wakeupIntelligentVoiceEngine != null) {
   (wakeupIntelligentVoiceEngine as intelligentVoice.WakeupIntelligentVoiceEngine).setParameter('scene', '0').then(() => {
     console.info(`Succeeded in setting parameter`);
@@ -1546,6 +1612,8 @@ getParameter(key: string, callback: AsyncCallback\<string\>): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 if (wakeupIntelligentVoiceEngine != null) {
   (wakeupIntelligentVoiceEngine as intelligentVoice.WakeupIntelligentVoiceEngine).getParameter('key', (err: BusinessError, data: string) => {
     if (err) {
@@ -1620,6 +1688,8 @@ release(callback: AsyncCallback\<void\>): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 if (wakeupIntelligentVoiceEngine != null) {
   (wakeupIntelligentVoiceEngine as intelligentVoice.WakeupIntelligentVoiceEngine).release((err: BusinessError) => {
     if (err) {
@@ -1650,6 +1720,8 @@ release(): Promise\<void\>
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 if (wakeupIntelligentVoiceEngine != null) {
   (wakeupIntelligentVoiceEngine as intelligentVoice.WakeupIntelligentVoiceEngine).release().then(() => {
     console.info(`Succeeded in releasing wakeupIntelligentVoice engine.`);
