@@ -98,10 +98,11 @@ updateForm(formId: string, formBindingData: formBindingData.FormBindingData,call
   import formBindingData from '@ohos.application.formBindingData';
 
   let formId: string = '12400633174999288';
-  let obj: formBindingData.FormBindingData = formBindingData.createFormBindingData({
-    temperature: '22c',
-    time: '22:00'
-  });
+  let param: Record<string, string> = {
+    'temperature': '22c',
+    'time': '22:00'
+  }
+  let obj: formBindingData.FormBindingData = formBindingData.createFormBindingData(param);
   formProvider.updateForm(formId, obj, (error: Base.BusinessError) => {
     if (error.code) {
       console.error(`formProvider updateForm, error: ${JSON.stringify(error)}`);
@@ -137,10 +138,11 @@ updateForm(formId: string, formBindingData: formBindingData.FormBindingData): Pr
   import Base from '@ohos.base'
 
   let formId: string = '12400633174999288';
-  let obj: formBindingData.FormBindingData = formBindingData.createFormBindingData({
-    temperature: '22c',
-    time: '22:00'
-  });
+  let param: Record<string, string> = {
+    'temperature': '22c',
+    'time': '22:00'
+  }
+  let obj: formBindingData.FormBindingData = formBindingData.createFormBindingData(param);
   formProvider.updateForm(formId, obj).then(() => {
     console.log('formProvider updateForm success');
   }).catch((error: Base.BusinessError) => {

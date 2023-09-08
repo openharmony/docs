@@ -112,10 +112,11 @@ import Base from '@ohos.base';
 export default class MyFormExtensionAbility extends FormExtensionAbility {
   onUpdateForm(formId: string) {
     console.log(`FormExtensionAbility onUpdateForm, formId: ${formId}`);
-    let obj2: formBindingData.FormBindingData = formBindingData.createFormBindingData({
-      temperature: '22c',
-      time: '22:00'
-    });
+    let param: Record<string, string> = {
+      'temperature': '22c',
+      'time': '22:00'
+    }
+    let obj2: formBindingData.FormBindingData = formBindingData.createFormBindingData(param);
     formProvider.updateForm(formId, obj2).then(() => {
       console.log(`FormExtensionAbility context updateForm`);
     }).catch((error: Base.BusinessError) => {
@@ -157,10 +158,11 @@ function getObjKeys(obj: Object): string[] {
 export default class MyFormExtensionAbility extends FormExtensionAbility {
   onChangeFormVisibility(newStatus: Record<string, number>) {
     console.log(`FormExtensionAbility onChangeFormVisibility, newStatus: ${newStatus}`);
-    let obj2: formBindingData.FormBindingData = formBindingData.createFormBindingData({
-      temperature: '22c',
-      time: '22:00'
-    });
+    let param: Record<string, string> = {
+      'temperature': '22c',
+      'time': '22:00'
+    }
+    let obj2: formBindingData.FormBindingData = formBindingData.createFormBindingData(param);
 
     let keys: string[] = getObjKeys(newStatus);
 
