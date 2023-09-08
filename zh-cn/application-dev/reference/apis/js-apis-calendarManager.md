@@ -907,10 +907,10 @@ console.info("get account success");
 
 **系统能力**：SystemCapability.Applications.CalendarData
 
-| 名称           | 类型             | 只读 | 必填 | 说明                                                         |
-| -------------- | ---------------- | ---- | ---- | ------------------------------------------------------------ |
-| enableReminder | boolean          | 否   | 否   | 是否打开Calendar下所有Event提醒能力。当取值为true时，该Calendar下所有Event具备提醒能力；当取值为false时，不具备提醒能力，默认具备提醒能力。 |
-| color          | number \| string | 否   | 否   | 设置Calendar颜色。不填时，默认值为'#0A59F7'。                |
+| 名称           | 类型                                                | 只读 | 必填 | 说明                                                         |
+| -------------- | --------------------------------------------------- | ---- | ---- | ------------------------------------------------------------ |
+| enableReminder | boolean                                             | 否   | 否   | 是否打开Calendar下所有Event提醒能力。当取值为true时，该Calendar下所有Event具备提醒能力；当取值为false时，不具备提醒能力，默认具备提醒能力。 |
+| color          | [ResourceColor](../arkui-ts/ts-types.md#resourcecolor) | 否   | 否   | 设置Calendar颜色。不填时，默认值为'#0A59F7'。                |
 
 ## Event
 
