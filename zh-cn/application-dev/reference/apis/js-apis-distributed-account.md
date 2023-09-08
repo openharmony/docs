@@ -8,7 +8,7 @@
 
 ## 导入模块
 
-```js
+```ts
 import account_distributedAccount from '@ohos.account.distributedAccount';
 ```
 
@@ -27,7 +27,7 @@ getDistributedAccountAbility(): DistributedAccountAbility
   | [DistributedAccountAbility](#distributedaccountability) | 返回一个实例，实例提供查询和更新分布式帐号登录状态方法。 |
 
 **示例：**
-  ```js
+  ```ts
   const accountAbility = account_distributedAccount.getDistributedAccountAbility();
   ```
 
@@ -58,7 +58,7 @@ getOsAccountDistributedInfo(callback: AsyncCallback&lt;DistributedInfo&gt;): voi
 | 12300001 | System service exception. |
 
 **示例：**
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
 
   const accountAbility = account_distributedAccount.getDistributedAccountAbility();
@@ -99,7 +99,7 @@ getOsAccountDistributedInfo(): Promise&lt;DistributedInfo&gt;
 | 12300001 | System service exception. |
 
 **示例：**
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
 
   const accountAbility = account_distributedAccount.getDistributedAccountAbility();
@@ -141,7 +141,7 @@ getOsAccountDistributedInfoByLocalId(localId: number, callback: AsyncCallback&lt
 | 12300003 | Account not found. |
 
 **示例：**
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   const accountAbility = account_distributedAccount.getDistributedAccountAbility();
@@ -185,7 +185,7 @@ getOsAccountDistributedInfoByLocalId(localId: number): Promise&lt;DistributedInf
 | 12300003 | Account not found. |
 
 **示例：**
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   const accountAbility = account_distributedAccount.getDistributedAccountAbility();
@@ -221,7 +221,7 @@ queryOsAccountDistributedInfo(callback: AsyncCallback&lt;DistributedInfo&gt;): v
   | callback | AsyncCallback&lt;[DistributedInfo](#distributedinfo)&gt; | 是 | 回调函数。当获取分布式帐号信息成功，err为undefined，data为获取到的分布式帐号信息对象；否则为错误对象。 |
 
 **示例：**
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   const accountAbility = account_distributedAccount.getDistributedAccountAbility();
@@ -256,7 +256,7 @@ queryOsAccountDistributedInfo(): Promise&lt;DistributedInfo&gt;
   | Promise&lt;[DistributedInfo](#distributedinfo)&gt; | Promise对象，返回分布式帐号信息对象。 |
 
 **示例：**
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   const accountAbility = account_distributedAccount.getDistributedAccountAbility();
@@ -293,7 +293,7 @@ setOsAccountDistributedInfo(accountInfo: DistributedInfo, callback: AsyncCallbac
 | 12300003 | Account not found. |
 
 **示例：**
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   const accountAbility = account_distributedAccount.getDistributedAccountAbility();
@@ -343,7 +343,7 @@ setOsAccountDistributedInfo(accountInfo: DistributedInfo): Promise&lt;void&gt;
 | 12300003 | Account not found. |
 
 **示例：**
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   const accountAbility = account_distributedAccount.getDistributedAccountAbility();
@@ -389,7 +389,7 @@ setOsAccountDistributedInfoByLocalId(localId: number, distributedInfo: Distribut
 | 12300008 | Restricted OS account. |
 
 **示例：**
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   const accountAbility = account_distributedAccount.getDistributedAccountAbility();
@@ -443,7 +443,7 @@ setOsAccountDistributedInfoByLocalId(localId: number, distributedInfo: Distribut
 | 12300008 | Restricted OS account. |
 
 **示例：**
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   const accountAbility = account_distributedAccount.getDistributedAccountAbility();
@@ -482,7 +482,7 @@ updateOsAccountDistributedInfo(accountInfo: DistributedInfo, callback: AsyncCall
   | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当更新分布式帐号信息成功时，err为undefined，否则为错误对象。 |
 
 **示例：**
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   const accountAbility = account_distributedAccount.getDistributedAccountAbility();
@@ -522,7 +522,7 @@ updateOsAccountDistributedInfo(accountInfo: DistributedInfo): Promise&lt;void&gt
   | Promise&lt;void&gt; | Promise对象，无返回结果的Promise对象。 |
 
 **示例：**
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   const accountAbility = account_distributedAccount.getDistributedAccountAbility();

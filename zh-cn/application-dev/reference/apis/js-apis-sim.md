@@ -26,7 +26,7 @@ isSimActive\(slotId: number, callback: AsyncCallback\<boolean\>\): void
 | 参数名   | 类型                        | 必填 | 说明                                   |
 | -------- | --------------------------- | ---- | -------------------------------------- |
 | slotId   | number                      | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| callback | AsyncCallback&lt;boolean&gt; | 是   | 回调函数。                             |
+| callback | AsyncCallback&lt;boolean&gt; | 是   | 回调函数。返回指定卡槽是否激活，如果激活返回true。                             |
 
 **示例：**
 
@@ -81,7 +81,7 @@ getDefaultVoiceSlotId\(callback: AsyncCallback\<number\>\): void
 
 | 参数名   | 类型                        | 必填 | 说明       |
 | -------- | --------------------------- | ---- | ---------- |
-| callback | AsyncCallback&lt;number&gt; | 是   | 回调函数。 |
+| callback | AsyncCallback&lt;number&gt; | 是   | 回调函数。<br />- 0：卡槽1<br />- 1：卡槽2<br />- -1：未设置或服务不可用 |
 
 **示例：**
 
@@ -104,7 +104,7 @@ getDefaultVoiceSlotId\(\): Promise\<number\>
 
 | 类型              | 说明                                    |
 | ----------------- | --------------------------------------- |
-| Promise\<number\> | 以Promise形式返回默认语音业务的卡槽ID。 |
+| Promise\<number\> | 以Promise形式返回默认语音业务的卡槽ID。<br />- 0：卡槽1<br />- 1：卡槽2<br />- -1：未设置或服务不可用 |
 
 **示例：**
 
@@ -130,7 +130,7 @@ hasOperatorPrivileges\(slotId: number, callback: AsyncCallback\<boolean\>\): voi
 | 参数名   | 类型                     | 必填 | 说明                                     |
 | -------- | ------------------------ | ---- | ---------------------------------------- |
 | slotId   | number                   | 是   | 卡槽ID。<br />- 0：卡槽1<br />- 1：卡槽2 |
-| callback | AsyncCallback\<boolean\> | 是   | 回调函数。                               |
+| callback | AsyncCallback\<boolean\> | 是   | 回调函数。 返回检查应用（调用者）是否已被授予运营商权限。                              |
 
 **错误码：**
 
@@ -290,7 +290,7 @@ getSimOperatorNumeric\(slotId: number, callback: AsyncCallback\<string\>\): void
 | 参数名   | 类型                    | 必填 | 说明                                   |
 | -------- | ----------------------- | ---- | -------------------------------------- |
 | slotId   | number                  | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| callback | AsyncCallback\<string\> | 是   | 回调函数。                             |
+| callback | AsyncCallback\<string\> | 是   | 回调函数。返回获取指定卡槽SIM卡的归属PLMN号。                          |
 
 **错误码：**
 
@@ -372,7 +372,7 @@ getSimSpn\(slotId: number, callback: AsyncCallback\<string\>\): void
 | 参数名   | 类型                    | 必填 | 说明                                   |
 | -------- | ----------------------- | ---- | -------------------------------------- |
 | slotId   | number                  | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| callback | AsyncCallback\<string\> | 是   | 回调函数。                             |
+| callback | AsyncCallback\<string\> | 是   | 回调函数。返回获取指定卡槽SIM卡的SPN。                             |
 
 **错误码：**
 
@@ -700,7 +700,7 @@ getSimAccountInfo\(slotId: number, callback: AsyncCallback\<IccAccountInfo\>\): 
 | 参数名   | 类型                                                | 必填 | 说明                                   |
 | -------- | --------------------------------------------------- | ---- | -------------------------------------- |
 | slotId   | number                                              | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| callback | AsyncCallback\<[IccAccountInfo](#iccaccountinfo7)\> | 是   | 回调函数。                             |
+| callback | AsyncCallback\<[IccAccountInfo](#iccaccountinfo10)\> | 是   | 回调函数。返回指定卡槽SIM卡的帐户信息。                             |
 
 **错误码：**
 
@@ -749,7 +749,7 @@ getSimAccountInfo\(slotId: number\): Promise\<IccAccountInfo\>
 
 | 类型                                         | 说明                                       |
 | -------------------------------------------- | ------------------------------------------ |
-| Promise<[IccAccountInfo](#iccaccountinfo7)\> | 以Promise形式返回指定卡槽SIM卡的帐户信息。 |
+| Promise<[IccAccountInfo](#iccaccountinfo10)\> | 以Promise形式返回指定卡槽SIM卡的帐户信息。 |
 
 **错误码：**
 
@@ -794,7 +794,7 @@ getActiveSimAccountInfoList\(callback: AsyncCallback\<Array\<IccAccountInfo\>\>\
 
 | 参数名   | 类型                                                        | 必填 | 说明       |
 | -------- | ----------------------------------------------------------- | ---- | ---------- |
-| callback | AsyncCallback\<Array<[IccAccountInfo](#iccaccountinfo7)\>\> | 是   | 回调函数。 |
+| callback | AsyncCallback\<Array<[IccAccountInfo](#iccaccountinfo10)\>\> | 是   | 回调函数。返回活跃SIM卡帐户信息列表。 |
 
 **错误码：**
 
@@ -835,7 +835,7 @@ getActiveSimAccountInfoList\(\): Promise\<Array\<IccAccountInfo\>\>;
 
 | 类型                                                 | 说明                                           |
 | ---------------------------------------------------- | ---------------------------------------------- |
-| Promise<Array<[IccAccountInfo](#iccaccountinfo7)\>\> | 以Promise形式返回活跃卡槽SIM卡的帐户信息列表。 |
+| Promise<Array<[IccAccountInfo](#iccaccountinfo10)\>\> | 以Promise形式返回活跃卡槽SIM卡的帐户信息列表。 |
 
 **错误码：**
 
@@ -1067,7 +1067,7 @@ getShowName\(slotId: number, callback: AsyncCallback\<string\>\): void
 | 参数名   | 类型                        | 必填 | 说明                                   |
 | -------- | --------------------------- | ---- | -------------------------------------- |
 | slotId   | number                      | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| callback | AsyncCallback&lt;string&gt; | 是   | 回调函数。                             |
+| callback | AsyncCallback&lt;string&gt; | 是   | 回调函数。返回指定卡槽SIM卡的名称。                             |
 
 **错误码：**
 
@@ -1257,7 +1257,7 @@ getShowNumber\(slotId: number, callback: AsyncCallback\<string\>): void
 | 参数名   | 类型                        | 必填 | 说明                                   |
 | -------- | --------------------------- | ---- | -------------------------------------- |
 | slotId   | number                      | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| callback | AsyncCallback&lt;string&gt; | 是   | 回调函数。                             |
+| callback | AsyncCallback&lt;string&gt; | 是   | 回调函数。返回指定卡槽的号码。                             |
 
 **错误码：**
 
@@ -4187,11 +4187,9 @@ SIM卡状态。
 | lockType | [PersoLockType](#persolocktype8) |  是  | 定制锁的类型。|
 | password | string                           |  是  | 密码。        |
 
-## IccAccountInfo<sup>7+</sup>
+## IccAccountInfo<sup>10+</sup>
 
 Icc帐户信息。
-
-**系统接口：** 此接口为系统接口。
 
 **系统能力**：SystemCapability.Telephony.CoreService
 

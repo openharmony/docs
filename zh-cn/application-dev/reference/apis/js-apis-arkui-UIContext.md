@@ -356,7 +356,7 @@ uiContext.showDatePickerDialog({
   selected: selectedDate,
   onAccept: (value: DatePickerResult) => {
     // 通过Date的setFullYear方法设置按下确定按钮时的日期，这样当弹窗再次弹出时显示选中的是上一次确定的日期
-    selectedDate.setFullYear(value.year, value.month, value.day)
+    selectedDate.setFullYear(Number(value.year), Number(value.month), Number(value.day))
     console.info("DatePickerDialog:onAccept()" + JSON.stringify(value))
   },
   onCancel: () => {
@@ -500,6 +500,7 @@ createAnimator(options: AnimatorOptions): AnimatorResult
 **示例：**
 
 ```ts
+import { AnimatorOptions } from '@ohos.animator';
 let options:AnimatorOptions = {
   duration: 1500,
   easing: "friction",
@@ -558,6 +559,7 @@ registerFont(options: font.FontOptions): void
 **示例：**
 
 ```ts
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
 let font:Font = uiContext.getFont();
 font.registerFont({
   familyName: 'medium',
@@ -581,8 +583,11 @@ getSystemFontList(): Array\<string>
 **示例：** 
 
 ```ts
-let font:Font = uiContext.getFont();
-font.getSystemFontList()
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+let font:Font|undefined = uiContext.getFont();
+if(font){
+  font.getSystemFontList()
+}
 ```
 
 ### getFontByName
@@ -608,8 +613,11 @@ getFontByName(fontName: string): font.FontInfo
 **示例：** 
 
 ```ts
-let font:Font = uiContext.getFont();
-font.getFontByName('Sans Italic')
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+let font:Font|undefined = uiContext.getFont();
+if(font){
+  font.getFontByName('Sans Italic')
+}
 ```
 
 ## ComponentUtils
@@ -639,10 +647,11 @@ getRectangleById(id: string): componentUtils.ComponentInfo
 **示例：**
 
 ```ts
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
 let componentUtils:ComponentUtils = uiContext.getComponentUtils();
-let modePosition:componentUtils.ComponentInfo = componentUtils.getRectangleById("onClick");
-let localOffsetWidth:object = modePosition.size.width;
-let localOffsetHeight:object = modePosition.size.height;
+let modePosition = componentUtils.getRectangleById("onClick");
+let localOffsetWidth = modePosition.size.width;
+let localOffsetHeight = modePosition.size.height;
 ```
 
 ## UIInspector
@@ -672,6 +681,7 @@ createComponentObserver(id: string): inspector.ComponentObserver
 **示例：**
 
 ```ts
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
 let inspector:UIInspector = uiContext.getUIInspector();
 let listener = inspector.createComponentObserver('COMPONENT_ID');
 ```
@@ -703,6 +713,7 @@ matchMediaSync(condition: string): mediaQuery.MediaQueryListener
 **示例：**
 
 ```ts
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
 let mediaquery: MediaQuery = uiContext.getMediaQuery();
 let listener = mediaquery.matchMediaSync('(orientation: landscape)'); //监听横屏事件
 ```
@@ -744,7 +755,9 @@ pushUrl(options: router.RouterOptions): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-let router = uiContext.getRouter();
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+import { BusinessError } from '@ohos.base';
+let router:Router = uiContext.getRouter();
 try {
   router.pushUrl({
     url: 'pages/routerpage2',
@@ -790,7 +803,9 @@ pushUrl(options: router.RouterOptions, callback: AsyncCallback&lt;void&gt;): voi
 **示例：**
 
 ```ts
-let router = uiContext.getRouter();
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+import { BusinessError } from '@ohos.base';
+let router:Router = uiContext.getRouter();
 router.pushUrl({
   url: 'pages/routerpage2',
   params: {
@@ -801,7 +816,9 @@ router.pushUrl({
   }
 }, (err: Error) => {
   if (err) {
-    console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
+    let message = (err as BusinessError).message;
+    let code = (err as BusinessError).code;
+    console.error(`pushUrl failed, code is ${code}, message is ${message}`);
     return;
   }
   console.info('pushUrl success');
@@ -842,9 +859,16 @@ pushUrl(options: router.RouterOptions, mode: router.RouterMode): Promise&lt;void
 **示例：**
 
 ```ts
-let router = uiContext.getRouter();
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+import { BusinessError } from '@ohos.base';
+import router from '@ohos.router';
+let routerF:Router = uiContext.getRouter();
+class routerTmp{
+  Standard:router.RouterMode = router.RouterMode.Standard
+}
+let rtm:routerTmp = new routerTmp()
 try {
-  router.pushUrl({
+  routerF.pushUrl({
     url: 'pages/routerpage2',
     params: {
       data1: 'message',
@@ -852,7 +876,7 @@ try {
         data3: [123, 456, 789]
       }
     }
-  }, router.RouterMode.Standard)
+  }, rtm.Standard)
 } catch (err) {
   let message = (err as BusinessError).message;
   let code = (err as BusinessError).code;
@@ -889,8 +913,15 @@ pushUrl(options: router.RouterOptions, mode: router.RouterMode, callback: AsyncC
 **示例：**
 
 ```ts
-let router = uiContext.getRouter();
-router.pushUrl({
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+import { BusinessError } from '@ohos.base';
+import router from '@ohos.router';
+let routerF:Router = uiContext.getRouter();
+class routerTmp{
+  Standard:router.RouterMode = router.RouterMode.Standard
+}
+let rtm:routerTmp = new routerTmp()
+routerF.pushUrl({
   url: 'pages/routerpage2',
   params: {
     data1: 'message',
@@ -898,9 +929,11 @@ router.pushUrl({
       data3: [123, 456, 789]
     }
   }
-}, router.RouterMode.Standard, (err) => {
+}, rtm.Standard, (err) => {
   if (err) {
-    console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
+    let message = (err as BusinessError).message;
+    let code = (err as BusinessError).code;
+    console.error(`pushUrl failed, code is ${code}, message is ${message}`);
     return;
   }
   console.info('pushUrl success');
@@ -939,7 +972,9 @@ replaceUrl(options: router.RouterOptions): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-let router = uiContext.getRouter();
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+import { BusinessError } from '@ohos.base';
+let router:Router = uiContext.getRouter();
 try {
   router.replaceUrl({
     url: 'pages/detail',
@@ -981,7 +1016,9 @@ replaceUrl(options: router.RouterOptions, callback: AsyncCallback&lt;void&gt;): 
 **示例：**
 
 ```ts
-let router = uiContext.getRouter();
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+import { BusinessError } from '@ohos.base';
+let router:Router = uiContext.getRouter();
 router.replaceUrl({
   url: 'pages/detail',
   params: {
@@ -989,7 +1026,9 @@ router.replaceUrl({
   }
 }, (err: Error) => {
   if (err) {
-    console.error(`replaceUrl failed, code is ${err.code}, message is ${err.message}`);
+    let message = (err as BusinessError).message;
+    let code = (err as BusinessError).code;
+    console.error(`replaceUrl failed, code is ${code}, message is ${message}`);
     return;
   }
   console.info('replaceUrl success');
@@ -1029,14 +1068,21 @@ replaceUrl(options: router.RouterOptions, mode: router.RouterMode): Promise&lt;v
 **示例：**
 
 ```ts
-let router = uiContext.getRouter();
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+import { BusinessError } from '@ohos.base';
+import router from '@ohos.router';
+let routerF:Router = uiContext.getRouter();
+class routerTmp{
+  Standard:router.RouterMode = router.RouterMode.Standard
+}
+let rtm:routerTmp = new routerTmp()
 try {
-  router.replaceUrl({
+  routerF.replaceUrl({
     url: 'pages/detail',
     params: {
       data1: 'message'
     }
-  }, router.RouterMode.Standard)
+  }, rtm.Standard)
 } catch (err) {
   let message = (err as BusinessError).message;
   let code = (err as BusinessError).code;
@@ -1072,15 +1118,24 @@ replaceUrl(options: router.RouterOptions, mode: router.RouterMode, callback: Asy
 **示例：**
 
 ```ts
-let router = uiContext.getRouter();
-router.replaceUrl({
+import { ComponentUtils, Font, PromptAction, Router, UIInspector,  MediaQuery } from '@ohos.arkui.UIContext';
+import { BusinessError } from '@ohos.base';
+import router from '@ohos.router';
+let routerF:Router = uiContext.getRouter();
+class routerTmp{
+  Standard:router.RouterMode = router.RouterMode.Standard
+}
+let rtm:routerTmp = new routerTmp()
+routerF.replaceUrl({
   url: 'pages/detail',
   params: {
     data1: 'message'
   }
-}, router.RouterMode.Standard, (err: Error) => {
+}, rtm.Standard, (err: Error) => {
   if (err) {
-    console.error(`replaceUrl failed, code is ${err.code}, message is ${err.message}`);
+    let message = (err as BusinessError).message;
+    let code = (err as BusinessError).code;
+    console.error(`replaceUrl failed, code is ${code}, message is ${message}`);
     return;
   }
   console.info('replaceUrl success');
@@ -1120,7 +1175,9 @@ pushNamedRoute(options: router.NamedRouterOptions): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-let router = uiContext.getRouter();
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+import { BusinessError } from '@ohos.base';
+let router:Router = uiContext.getRouter();
 try {
   router.pushNamedRoute({
     name: 'myPage',
@@ -1166,7 +1223,9 @@ pushNamedRoute(options: router.NamedRouterOptions, callback: AsyncCallback&lt;vo
 **示例：**
 
 ```ts
-let router = uiContext.getRouter();
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+import { BusinessError } from '@ohos.base';
+let router:Router = uiContext.getRouter();
 router.pushNamedRoute({
   name: 'myPage',
   params: {
@@ -1177,7 +1236,9 @@ router.pushNamedRoute({
   }
 }, (err: Error) => {
   if (err) {
-    console.error(`pushNamedRoute failed, code is ${err.code}, message is ${err.message}`);
+    let message = (err as BusinessError).message;
+    let code = (err as BusinessError).code;
+    console.error(`pushNamedRoute failed, code is ${code}, message is ${message}`);
     return;
   }
   console.info('pushNamedRoute success');
@@ -1217,9 +1278,16 @@ pushNamedRoute(options: router.NamedRouterOptions, mode: router.RouterMode): Pro
 **示例：**
 
 ```ts
-let router = uiContext.getRouter();
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+import { BusinessError } from '@ohos.base';
+import router from '@ohos.router';
+let routerF:Router = uiContext.getRouter();
+class routerTmp{
+  Standard:router.RouterMode = router.RouterMode.Standard
+}
+let rtm:routerTmp = new routerTmp()
 try {
-  router.pushNamedRoute({
+  routerF.pushNamedRoute({
     name: 'myPage',
     params: {
       data1: 'message',
@@ -1227,7 +1295,7 @@ try {
         data3: [123, 456, 789]
       }
     }
-  }, router.RouterMode.Standard)
+  }, rtm.Standard)
 } catch (err) {
   let message = (err as BusinessError).message;
   let code = (err as BusinessError).code;
@@ -1264,8 +1332,15 @@ pushNamedRoute(options: router.NamedRouterOptions, mode: router.RouterMode, call
 **示例：**
 
 ```ts
-let router = uiContext.getRouter();
-router.pushNamedRoute({
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+import { BusinessError } from '@ohos.base';
+import router from '@ohos.router';
+let routerF:Router = uiContext.getRouter();
+class routerTmp{
+  Standard:router.RouterMode = router.RouterMode.Standard
+}
+let rtm:routerTmp = new routerTmp()
+routerF.pushNamedRoute({
   name: 'myPage',
   params: {
     data1: 'message',
@@ -1273,9 +1348,11 @@ router.pushNamedRoute({
       data3: [123, 456, 789]
     }
   }
-}, router.RouterMode.Standard, (err: Error) => {
+}, rtm.Standard, (err: Error) => {
   if (err) {
-    console.error(`pushNamedRoute failed, code is ${err.code}, message is ${err.message}`);
+    let message = (err as BusinessError).message;
+    let code = (err as BusinessError).code;
+    console.error(`pushNamedRoute failed, code is ${code}, message is ${message}`);
     return;
   }
   console.info('pushNamedRoute success');
@@ -1314,7 +1391,9 @@ replaceNamedRoute(options: router.NamedRouterOptions): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-let router = uiContext.getRouter();
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+import { BusinessError } from '@ohos.base';
+let router:Router = uiContext.getRouter();
 try {
   router.replaceNamedRoute({
     name: 'myPage',
@@ -1356,7 +1435,9 @@ replaceNamedRoute(options: router.NamedRouterOptions, callback: AsyncCallback&lt
 **示例：**
 
 ```ts
-let router = uiContext.getRouter();
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+import { BusinessError } from '@ohos.base';
+let router:Router = uiContext.getRouter();
 router.replaceNamedRoute({
   name: 'myPage',
   params: {
@@ -1364,7 +1445,9 @@ router.replaceNamedRoute({
   }
 }, (err: Error) => {
   if (err) {
-    console.error(`replaceNamedRoute failed, code is ${err.code}, message is ${err.message}`);
+    let message = (err as BusinessError).message;
+    let code = (err as BusinessError).code;
+    console.error(`replaceNamedRoute failed, code is ${code}, message is ${message}`);
     return;
   }
   console.info('replaceNamedRoute success');
@@ -1405,14 +1488,21 @@ replaceNamedRoute(options: router.NamedRouterOptions, mode: router.RouterMode): 
 **示例：**
 
 ```ts
-let router = uiContext.getRouter();
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+import { BusinessError } from '@ohos.base';
+import router from '@ohos.router';
+let routerF:Router = uiContext.getRouter();
+class routerTmp{
+  Standard:router.RouterMode = router.RouterMode.Standard
+}
+let rtm:routerTmp = new routerTmp()
 try {
-  router.replaceNamedRoute({
+  routerF.replaceNamedRoute({
     name: 'myPage',
     params: {
       data1: 'message'
     }
-  }, router.RouterMode.Standard)
+  }, rtm.Standard)
 } catch (err) {
   let message = (err as BusinessError).message;
   let code = (err as BusinessError).code;
@@ -1448,15 +1538,24 @@ replaceNamedRoute(options: router.NamedRouterOptions, mode: router.RouterMode, c
 **示例：**
 
 ```ts
-let router = uiContext.getRouter();
-router.replaceNamedRoute({
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+import { BusinessError } from '@ohos.base';
+import router from '@ohos.router';
+let routerF:Router = uiContext.getRouter();
+class routerTmp{
+  Standard:router.RouterMode = router.RouterMode.Standard
+}
+let rtm:routerTmp = new routerTmp()
+routerF.replaceNamedRoute({
   name: 'myPage',
   params: {
     data1: 'message'
   }
-}, router.RouterMode.Standard, (err: Error) => {
+}, rtm.Standard, (err: Error) => {
   if (err) {
-    console.error(`replaceNamedRoute failed, code is ${err.code}, message is ${err.message}`);
+    let message = (err as BusinessError).message;
+    let code = (err as BusinessError).code;
+    console.error(`replaceNamedRoute failed, code is ${code}, message is ${message}`);
     return;
   }
   console.info('replaceNamedRoute success');
@@ -1480,6 +1579,8 @@ back(options?: router.RouterOptions ): void
 **示例：**
 
 ```ts
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+import { BusinessError } from '@ohos.base';
 let router: Router = uiContext.getRouter();
 router.back({url:'pages/detail'});    
 ```
@@ -1495,6 +1596,8 @@ clear(): void
 **示例：**
 
 ```ts
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+import { BusinessError } from '@ohos.base';
 let router: Router = uiContext.getRouter();
 router.clear();    
 ```
@@ -1516,6 +1619,8 @@ getLength(): string
 **示例：**
 
 ```ts
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+import { BusinessError } from '@ohos.base';
 let router: Router = uiContext.getRouter();
 let size = router.getLength();        
 console.log('pages stack size = ' + size);    
@@ -1538,6 +1643,8 @@ getState(): router.RouterState
 **示例：**
 
 ```ts
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+import { BusinessError } from '@ohos.base';
 let router: Router = uiContext.getRouter();
 let page = router.getState();
 console.log('current index = ' + page.index);
@@ -1570,6 +1677,8 @@ showAlertBeforeBackPage(options: router.EnableAlertOptions): void
 **示例：**
 
 ```ts
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+import { BusinessError } from '@ohos.base';
 let router: Router = uiContext.getRouter();
 try {
   router.showAlertBeforeBackPage({            
@@ -1593,6 +1702,8 @@ hideAlertBeforeBackPage(): void
 **示例：**
 
 ```ts
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+import { BusinessError } from '@ohos.base';
 let router: Router = uiContext.getRouter();
 router.hideAlertBeforeBackPage();    
 ```
@@ -1614,6 +1725,8 @@ getParams(): Object
 **示例：**
 
 ```ts
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+import { BusinessError } from '@ohos.base';
 let router: Router = uiContext.getRouter();
 router.getParams();
 ```
@@ -1647,6 +1760,8 @@ showToast(options: promptAction.ShowToastOptions): void
 **示例：**
 
 ```ts
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+import { BusinessError } from '@ohos.base';
 let promptAction: PromptAction = uiContext.getPromptAction();
 try {
   promptAction.showToast({            
@@ -1686,6 +1801,8 @@ showDialog(options: promptAction.ShowDialogOptions, callback: AsyncCallback&lt;p
 **示例：**
 
 ```ts
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+import { BusinessError } from '@ohos.base';
 class buttonsMoabl {
   text: string = ""
   color: string = ""
@@ -1713,7 +1830,9 @@ try {
     console.info('showDialog success callback, click button: ' + data.index);
   });
 } catch (error) {
-  console.error(`showDialog args error code is ${error.code}, message is ${error.message}`);
+  let message = (error as BusinessError).message;
+  let code = (error as BusinessError).code;
+  console.error(`showDialog args error code is ${code}, message is ${message}`);
 };
 ```
 
@@ -1748,6 +1867,8 @@ showDialog(options: promptAction.ShowDialogOptions): Promise&lt;promptAction.Sho
 **示例：**
 
 ```ts
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+import { BusinessError } from '@ohos.base';
 let promptAction: PromptAction = uiContext.getPromptAction();
 try {
   promptAction.showDialog({
@@ -1803,27 +1924,40 @@ showActionMenu(options: promptAction.ActionMenuOptions, callback:promptAction.Ac
 **示例：**
 
 ```ts
-let promptAction: PromptAction = uiContext.getPromptAction();
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+import promptAction from '@ohos.promptAction';
+import { BusinessError } from '@ohos.base';
+class buttonsMoabl {
+  text: string = ""
+  color: string = ""
+}
+class dataR{
+  err:Error = new Error;
+  data:promptAction.ActionMenuSuccessResponse | undefined = undefined;
+}
+let dataAMSR:dataR = new dataR()
+let promptActionF: PromptAction = uiContext.getPromptAction();
 try {
-  promptAction.showActionMenu({
-    title: 'Title Info',
-    buttons: [
-      {
-        text: 'item1',
-        color: '#666666'
-      },
-      {
-        text: 'item2',
-        color: '#000000'
-      },
-    ]
-  }, (err:Error, data:promptAction.ActionMenuSuccessResponse) => {
-    if (err) {
-      console.info('showActionMenu err: ' + err);
-      return;
+  if(dataAMSR.data){
+    promptActionF.showActionMenu({
+      title: 'Title Info',
+      buttons: [
+        {
+          text: 'item1',
+          color: '#666666'
+        } as buttonsMoabl,
+        {
+          text: 'item2',
+          color: '#000000'
+        } as buttonsMoabl
+      ]
+    }, (dataAMSR.data))
+    if (dataAMSR.err) {
+      console.info('showActionMenu err: ' + dataAMSR.err);
+    }else{
+      console.info('showActionMenu success callback, click button: ' + dataAMSR.data.index);
     }
-    console.info('showActionMenu success callback, click button: ' + data.index);
-  })
+  }
 } catch (error) {
   let message = (error as BusinessError).message;
   let code = (error as BusinessError).code;
@@ -1862,6 +1996,8 @@ showActionMenu(options: promptAction.ActionMenuOptions): Promise&lt;promptAction
 **示例：**
 
 ```ts
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+import { BusinessError } from '@ohos.base';
 let promptAction: PromptAction = uiContext.getPromptAction();
 try {
   promptAction.showActionMenu({

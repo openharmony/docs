@@ -18,15 +18,15 @@ XML解析及转换需要确保传入的XML数据符合标准格式。
 
 1. 引入模块。
 
-   ```js
+   ```ts
    import convertxml from '@ohos.convertxml';
    ```
 
 2. 输入待转换的XML，设置转换选项。
 
-   ```js
+   ```ts
    let xml: string =
-  '<?xml version="1.0" encoding="utf-8"?>' +
+    '<?xml version="1.0" encoding="utf-8"?>' +
     '<note importance="high" logged="true">' +
     '    <title>Happy</title>' +
     '    <todo>Work</todo>' +
@@ -62,7 +62,7 @@ XML解析及转换需要确保传入的XML数据符合标准格式。
 
 3. 调用转换函数，打印结果。
 
-   ```js
+   ```ts
    let conv: convertxml.ConvertXML = new convertxml.ConvertXML();
    let result: object = conv.convertToJSObject(xml, options);
    let strRes: string = JSON.stringify(result); // 将js对象转换为json字符串，用于显式输出
@@ -71,8 +71,7 @@ XML解析及转换需要确保传入的XML数据符合标准格式。
 
    输出结果如下所示：
 
-
-   ```js
+   ```json
    strRes:
    {"_declaration":{"_attributes":{"version":"1.0","encoding":"utf-8"}},"_elements":[{"_type":"element","_name":"note",
     "_attributes":{"importance":"high","logged":"true"},"_elements":[{"_type":"element","_name":"title",

@@ -48,7 +48,7 @@ Swiper(controller?: SwiperController)
 | vertical                              | boolean                                  | 是否为纵向滑动。<br/>默认值：false                   |
 | itemSpace                             | number&nbsp;\|&nbsp;string               | 设置子组件与子组件之间间隙。<br/>默认值：0<br/>**说明：** <br/>不支持设置百分比。 |
 | displayMode                           | SwiperDisplayMode                        | 主轴方向上元素排列的模式，优先以displayCount设置的个数显示，displayCount未设置时本属性生效。<br/>默认值：SwiperDisplayMode.Stretch |
-| cachedCount<sup>8+</sup>              | number                                   | 设置预加载子组件个数。<br/>默认值：1<br/>**说明：** <br/>cachedCount只在Swiper使用[LazyForEach](../../quick-start/arkts-rendering-control-lazyforeach.md)时才生效。 |
+| cachedCount<sup>8+</sup>              | number                                   | 设置预加载子组件个数。<br/>默认值：1 |
 | disableSwipe<sup>8+</sup>             | boolean                                  | 禁用组件滑动切换功能。<br/>默认值：false                |
 | curve<sup>8+</sup>                    | [Curve](ts-appendix-enums.md#curve)  \| string | 设置Swiper的动画曲线，默认为淡入淡出曲线，常用曲线参考[Curve枚举说明](ts-appendix-enums.md#curve)，也可以通过[插值计算](../apis/js-apis-curve.md)模块提供的接口创建自定义的插值曲线对象。<br/>默认值：Curve.Linear |
 | indicatorStyle<sup>(deprecated)</sup> | {<br/>left?:&nbsp;[Length](ts-types.md#length),<br/>top?:&nbsp;[Length](ts-types.md#length),<br/>right?:&nbsp;[Length](ts-types.md#length),<br/>bottom?:&nbsp;[Length](ts-types.md#length),<br/>size?:&nbsp;[Length](ts-types.md#length),<br/>mask?:&nbsp;boolean,<br/>color?:&nbsp;[ResourceColor](ts-types.md),<br/>selectedColor?:&nbsp;[ResourceColor](ts-types.md)<br/>} | 设置导航点样式：<br/>\- left: 设置导航点距离Swiper组件左边的距离。<br/>\- top: 设置导航点距离Swiper组件顶部的距离。<br/>\- right: 设置导航点距离Swiper组件右边的距离。<br/>\- bottom: 设置导航点距离Swiper组件底部的距离。<br/>\- size: 设置导航点的直径，不支持设置百分比。默认值：6vp。<br/>\- mask: 设置是否显示导航点蒙层样式。<br/>\- color: 设置导航点的颜色。<br/>\- selectedColor: 设置选中的导航点的颜色。 <br/>从API version 8开始支持，从API version 10开始不再维护，建议使用[indicator](#indicator10对象说明)代替。 |
@@ -169,7 +169,6 @@ finishAnimation(callback?: () => void): void
 // xxx.ets
 class MyDataSource implements IDataSource {
   private list: number[] = []
-  private listener: DataChangeListener
 
   constructor(list: number[]) {
     this.list = list
@@ -179,12 +178,11 @@ class MyDataSource implements IDataSource {
     return this.list.length
   }
 
-  getData(index: number): any {
+  getData(index: number): number {
     return this.list[index]
   }
 
   registerDataChangeListener(listener: DataChangeListener): void {
-    this.listener = listener
   }
 
   unregisterDataChangeListener() {
@@ -198,9 +196,9 @@ struct SwiperExample {
   private data: MyDataSource = new MyDataSource([])
 
   aboutToAppear(): void {
-    let list = []
-    for (var i = 1; i <= 10; i++) {
-      list.push(i.toString());
+    let list: number[] = []
+    for (let i = 1; i <= 10; i++) {
+      list.push(i);
     }
     this.data = new MyDataSource(list)
   }
@@ -209,8 +207,13 @@ struct SwiperExample {
     Column({ space: 5 }) {
       Swiper(this.swiperController) {
         LazyForEach(this.data, (item: string) => {
-          Text(item).width('90%').height(160).backgroundColor(0xAFEEEE).textAlign(TextAlign.Center).fontSize(30)
-        }, item => item)
+          Text(item)
+            .width('90%')
+            .height(160)
+            .backgroundColor(0xAFEEEE)
+            .textAlign(TextAlign.Center)
+            .fontSize(30)
+        }, (item: string) => item)
       }
       .cachedCount(2)
       .index(1)
@@ -221,12 +224,13 @@ struct SwiperExample {
       .duration(1000)
       .itemSpace(0)
       .displayArrow({
-        showBackground:true,
-        isSidebarMiddle:true,
-        backgroundSize:24,
-        backgroundColor:Color.White,
-        arrowSize:18,
-        arrowColor:Color.Blue},false)
+        showBackground: true,
+        isSidebarMiddle: true,
+        backgroundSize: 24,
+        backgroundColor: Color.White,
+        arrowSize: 18,
+        arrowColor: Color.Blue
+      }, false)
       .curve(Curve.Linear)
       .onChange((index: number) => {
         console.info(index.toString())
@@ -270,7 +274,6 @@ struct SwiperExample {
 // xxx.ets
 class MyDataSource implements IDataSource {
   private list: number[] = []
-  private listener: DataChangeListener
 
   constructor(list: number[]) {
     this.list = list
@@ -280,12 +283,11 @@ class MyDataSource implements IDataSource {
     return this.list.length
   }
 
-  getData(index: number): any {
+  getData(index: number): number {
     return this.list[index]
   }
 
   registerDataChangeListener(listener: DataChangeListener): void {
-    this.listener = listener
   }
 
   unregisterDataChangeListener() {
@@ -299,9 +301,9 @@ struct SwiperExample {
   private data: MyDataSource = new MyDataSource([])
 
   aboutToAppear(): void {
-    let list = []
-    for (var i = 1; i <= 10; i++) {
-      list.push(i.toString());
+    let list: number[] = []
+    for (let i = 1; i <= 10; i++) {
+      list.push(i);
     }
     this.data = new MyDataSource(list)
   }
@@ -310,8 +312,13 @@ struct SwiperExample {
     Column({ space: 5 }) {
       Swiper(this.swiperController) {
         LazyForEach(this.data, (item: string) => {
-          Text(item).width('90%').height(160).backgroundColor(0xAFEEEE).textAlign(TextAlign.Center).fontSize(30)
-        }, item => item)
+          Text(item)
+            .width('90%')
+            .height(160)
+            .backgroundColor(0xAFEEEE)
+            .textAlign(TextAlign.Center)
+            .fontSize(30)
+        }, (item: string) => item)
       }
       .cachedCount(2)
       .index(1)
@@ -327,7 +334,8 @@ struct SwiperExample {
       .loop(true)
       .duration(1000)
       .itemSpace(0)
-      .displayArrow(true,true)
+      .displayArrow(true, true)
+
       Row({ space: 12 }) {
         Button('showNext')
           .onClick(() => {
@@ -350,7 +358,6 @@ struct SwiperExample {
 // xxx.ets
 class MyDataSource implements IDataSource {
   private list: number[] = []
-  private listener: DataChangeListener
 
   constructor(list: number[]) {
     this.list = list
@@ -360,12 +367,11 @@ class MyDataSource implements IDataSource {
     return this.list.length
   }
 
-  getData(index: number): any {
+  getData(index: number): number {
     return this.list[index]
   }
 
   registerDataChangeListener(listener: DataChangeListener): void {
-    this.listener = listener
   }
 
   unregisterDataChangeListener() {
@@ -379,9 +385,9 @@ struct SwiperExample {
   private data: MyDataSource = new MyDataSource([])
 
   aboutToAppear(): void {
-    let list = []
-    for (var i = 1; i <= 10; i++) {
-      list.push(i.toString());
+    let list: number[] = []
+    for (let i = 1; i <= 10; i++) {
+      list.push(i);
     }
     this.data = new MyDataSource(list)
   }
@@ -390,24 +396,30 @@ struct SwiperExample {
     Column({ space: 5 }) {
       Swiper(this.swiperController) {
         LazyForEach(this.data, (item: string) => {
-          Text(item).width('90%').height(160).backgroundColor(0xAFEEEE).textAlign(TextAlign.Center).fontSize(30)
-        }, item => item)
+          Text(item)
+            .width('90%')
+            .height(160)
+            .backgroundColor(0xAFEEEE)
+            .textAlign(TextAlign.Center)
+            .fontSize(30)
+        }, (item: string) => item)
       }
       .cachedCount(2)
       .index(1)
       .autoPlay(true)
       .interval(4000)
       .indicator(Indicator.digit()
-        .right(130)
+        .right("43%")
         .top(200)
         .fontColor(Color.Gray)
         .selectedFontColor(Color.Gray)
-        .digitFont({size:20,weight:FontWeight.Bold})
-        .selectedDigitFont({size:20,weight:FontWeight.Normal}))
+        .digitFont({ size: 20, weight: FontWeight.Bold })
+        .selectedDigitFont({ size: 20, weight: FontWeight.Normal }))
       .loop(true)
       .duration(1000)
       .itemSpace(0)
-      .displayArrow(true,false)
+      .displayArrow(true, false)
+
       Row({ space: 12 }) {
         Button('showNext')
           .onClick(() => {

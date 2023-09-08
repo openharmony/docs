@@ -53,11 +53,13 @@ struct RotationGestureExample {
       // 双指旋转触发该手势事件
       .gesture(
       RotationGesture()
-        .onActionStart((event: GestureEvent) => {
+        .onActionStart((event?: GestureEvent) => {
           console.info('Rotation start')
         })
-        .onActionUpdate((event: GestureEvent) => {
-          this.angle = this.rotateValue + event.angle
+        .onActionUpdate((event?: GestureEvent) => {
+          if (event) {
+            this.angle = this.rotateValue + event.angle
+          }
         })
         .onActionEnd(() => {
           this.rotateValue = this.angle

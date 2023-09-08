@@ -7,7 +7,7 @@
 
 ## 导入模块
 
-```js
+```ts
 import document from '@ohos.document';
 ```
 
@@ -33,8 +33,8 @@ choose(types?: string[]): Promise&lt;string&gt;
 
 **示例：**
 
-  ```js
-  let types = [];
+  ```ts
+  let types: Array<string> = [];
   document.choose(types);
   ```
 ## document.choose<sup>(deprecated)</sup>
@@ -53,10 +53,10 @@ choose(callback:AsyncCallback&lt;string&gt;): void
 
 **示例：**
 
-  ```js
-  let uri = "";
-  document.choose(function(err, uri) {
-        //do something with uri
+  ```ts
+  let uri: string = "";
+  document.choose((err: TypeError, uri: string) => {
+    //do something with uri
   });
   ```
 ## document.choose<sup>(deprecated)</sup>
@@ -76,11 +76,11 @@ choose(types:string[], callback:AsyncCallback&lt;string&gt;): void
 
 **示例：**
 
-  ```js
-  let types = [];
-  let uri = "";
-  document.choose(types, function(err, uri) {
-        //do something with uri
+  ```ts
+  let types: Array<string> = [];
+  let uri: string = "";
+  document.choose(types, (err: TypeError, uri: string) => {
+    //do something with uri
   });
   ```
 
@@ -107,9 +107,9 @@ show(uri:string, type:string):Promise&lt;void&gt;
 
 **示例：**
 
-  ```js
-  let type = "";
-  let uri = "";
+  ```ts
+  let type: string = "";
+  let uri: string = "";
   document.show(uri, type);
   ```
 
@@ -131,11 +131,11 @@ show(uri:string, type:string, callback:AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
-  ```js
-  let type = "";
-  let uri = "";
-  document.show(uri, type, function(err) {
-        //do something
+  ```ts
+  let type: string = "";
+  let uri: string = "";
+  document.show(uri, type, (err: TypeError) => {
+    //do something
   });
   ```
 

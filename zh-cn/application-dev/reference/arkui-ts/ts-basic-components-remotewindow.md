@@ -118,48 +118,54 @@ export default class WindowAnimationControllerImpl implements windowAnimationMan
 ```ts
 // RemoteWindowExample.ets 文件
 import windowAnimationManager from '@ohos.animation.windowAnimationManager';
-import WindowAnimationControllerImpl from '../animation/remoteanimation/WindowAnimationControllerImpl';
+import WindowAnimationControllerImpl from './WindowAnimationControllerImpl';
 
 @Entry
 @Component
 export default struct RemoteWindowExample {
-  @State target: WindowAnimationTarget = undefined // 通过windowAnimationManager获取
-
+  @State target:WindowAnimationTarget | undefined = undefined // 通过windowAnimationManager获取
+  
   aboutToAppear(): void {
-    let controller = new WindowAnimationControllerImpl();
+    let controller: WindowAnimationControllerImpl = new WindowAnimationControllerImpl();
     windowAnimationManager.setController(controller);
 
-    controller.onStartAppFromLauncher = (startingWindowTarget, finishedCallback) => {
+    controller.onStartAppFromLauncher = (startingWindowTarget: WindowAnimationTarget,
+                                         finishedCallback: windowAnimationManager.WindowAnimationFinishedCallback) => {
       console.log(`RemoteWindowExample: remote window animaion onStartAppFromLauncher`);
       this.target = startingWindowTarget;
       finishedCallback.onAnimationFinish();
     }
 
-    controller.onStartAppFromRecent = (startingWindowTarget, finishedCallback) => {
+    controller.onStartAppFromRecent = (startingWindowTarget: WindowAnimationTarget,
+                                       finishedCallback: windowAnimationManager.WindowAnimationFinishedCallback) => {
       console.log(`RemoteWindowExample: remote window animaion onStartAppFromRecent`);
       this.target = startingWindowTarget;
       finishedCallback.onAnimationFinish();
     }
 
-    controller.onStartAppFromOther = (startingWindowTarget, finishedCallback) => {
+    controller.onStartAppFromOther = (startingWindowTarget: WindowAnimationTarget,
+                                      finishedCallback: windowAnimationManager.WindowAnimationFinishedCallback) => {
       console.log(`RemoteWindowExample: remote window animaion onStartAppFromOther`);
       this.target = startingWindowTarget;
       finishedCallback.onAnimationFinish();
     }
 
-    controller.onAppTransition = (fromWindowTarget, toWindowTarget, finishedCallback) => {
+    controller.onAppTransition = (fromWindowTarget: WindowAnimationTarget, toWindowTarget: WindowAnimationTarget,
+                                  finishedCallback: windowAnimationManager.WindowAnimationFinishedCallback) => {
       console.log(`RemoteWindowExample: remote window animaion onAppTransition`);
       this.target = toWindowTarget;
       finishedCallback.onAnimationFinish();
     }
 
-    controller.onMinimizeWindow = (minimizingWindowTarget, finishedCallback) => {
+    controller.onMinimizeWindow = (minimizingWindowTarget: WindowAnimationTarget,
+                                   finishedCallback: windowAnimationManager.WindowAnimationFinishedCallback) => {
       console.log(`RemoteWindowExample: remote window animaion onMinimizeWindow`);
       this.target = minimizingWindowTarget;
       finishedCallback.onAnimationFinish();
     }
 
-    controller.onCloseWindow = (closingWindowTarget, finishedCallback) => {
+    controller.onCloseWindow = (closingWindowTarget: WindowAnimationTarget,
+                                finishedCallback: windowAnimationManager.WindowAnimationFinishedCallback) => {
       console.log(`RemoteWindowExample: remote window animaion onCloseWindow`);
       this.target = closingWindowTarget;
       finishedCallback.onAnimationFinish();
@@ -168,11 +174,13 @@ export default struct RemoteWindowExample {
 
   build() {
     Column() {
-      RemoteWindow(this.target)
-        .scale({ x: 0.5, y: 0.5 }) // 仅用于可见效果的演示目的，正常使用须 .scale({ x: 1, y: 1 })
-      	.position({ x: px2vp(this.target?.windowBounds.left), y: px2vp(this.target?.windowBounds.top) })
-      	.width(px2vp(this.target?.windowBounds.width))
-      	.height(px2vp(this.target?.windowBounds.height))
+      if(this.target){
+        RemoteWindow(this.target)
+          .scale({ x: 0.5, y: 0.5 }) // 仅用于可见效果的演示目的，正常使用须 .scale({ x: 1, y: 1 })
+          .position({ x: px2vp(this.target?.windowBounds.left), y: px2vp(this.target?.windowBounds.top) })
+          .width(px2vp(this.target?.windowBounds.width))
+          .height(px2vp(this.target?.windowBounds.height))
+      }
      }
   }
 }

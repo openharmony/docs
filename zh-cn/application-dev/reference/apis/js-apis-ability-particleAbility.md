@@ -230,7 +230,7 @@ startBackgroundRunning(id: number, request: NotificationRequest, callback: Async
  **示例**：
 
 ```ts
-import notification from '@ohos.notification';
+import notification from '@ohos.notificationManager';
 import particleAbility from '@ohos.ability.particleAbility';
 import wantAgent from '@ohos.app.ability.wantAgent';
 import { BusinessError } from '@ohos.base';
@@ -299,7 +299,7 @@ startBackgroundRunning(id: number, request: NotificationRequest): Promise&lt;voi
 **示例**：
 
 ```ts
-import notification from '@ohos.notification';
+import notification from '@ohos.notificationManager';
 import particleAbility from '@ohos.ability.particleAbility';
 import wantAgent from '@ohos.app.ability.wantAgent';
 import { BusinessError } from '@ohos.base';

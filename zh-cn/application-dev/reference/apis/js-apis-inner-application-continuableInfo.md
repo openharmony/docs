@@ -24,7 +24,7 @@ import distributedMissionManager from '@ohos.distributedMissionManager';
 
 **示例：**
 
-```js
+```ts
 import distributedMissionManager from '@ohos.distributedMissionManager';
 
 try {

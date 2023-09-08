@@ -108,7 +108,7 @@
     @Component
     struct Index {
     @State message: string = 'IMAGE'
-    @State _PixelMap: image.PixelMap = undefined
+    @State _PixelMap : image.PixelMap | undefined = undefined;
 
     build() {
         Row() {
@@ -117,10 +117,10 @@
             .fontSize(50)
             .fontWeight(FontWeight.Bold)
             .onClick(() => {
-                const color = new ArrayBuffer(96);
-                let opts = { alphaType: 0, editable: true, pixelFormat: 4, scaleMode: 1, size: { height: 4, width: 6 } }
+                const color : ArrayBuffer = new ArrayBuffer(96);
+                let opts: image.InitializationOptions = { alphaType: 0, editable: true, pixelFormat: 4, scaleMode: 1, size: { height: 4, width: 6 } }
                 image.createPixelMap(color, opts)
-                .then( pixelmap => {
+                .then( (pixelmap : image.PixelMap) => {
                     this._PixelMap = pixelmap;
                 })
 
