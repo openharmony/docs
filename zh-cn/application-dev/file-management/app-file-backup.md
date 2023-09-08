@@ -196,7 +196,7 @@
           console.info('onFileReady err: ' + JSON.stringify(err));
         }
         // 此处开发者请根据实际场景待恢复文件存放位置进行调整 bundlePath
-        let bundlePath: string;
+        let bundlePath: string = '';
         if (!fs.accessSync(bundlePath)) {
           console.info('onFileReady bundlePath err : ' + bundlePath);
         }
@@ -289,7 +289,7 @@
         if (err) {
           console.info('onFileReady err: ' + JSON.stringify(err));
         }
-        let bundlePath: string;
+        let bundlePath: string = '';
         if( file.uri == "/data/storage/el2/restore/bundle.hap" )
         {
           // 此处开发者请根据实际场景安装包的存放位置进行调整

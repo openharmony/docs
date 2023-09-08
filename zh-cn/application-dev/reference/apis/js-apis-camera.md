@@ -3196,7 +3196,7 @@ getSupportedBeautyTypes(): Array<[BeautyType](#beautytype)>
 **示例：**
 
 ```ts
-getSupportedBeautyTypes(portraitSession: camera.PortraitSession): Array<camera.BeautyType> {
+function getSupportedBeautyTypes(portraitSession: camera.PortraitSession): Array<camera.BeautyType> {
   let beautyTypes: Array<camera.BeautyType> = portraitSession.getSupportedBeautyTypes();
   return beautyTypes;
 }

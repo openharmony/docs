@@ -132,13 +132,13 @@ let options: huks.HuksOptions = {
 try {
     huks.generateKeyItem(keyAlias, options, (error, data) => {
         if (error) {
-            console.error(`callback: generateKeyItem failed, code: ${error.code}, msg: ${error.message}`);
+            console.error(`callback: generateKeyItem failed`);
         } else {
             console.info(`callback: generateKeyItem key success`);
         }
     });
 } catch (error) {
-    console.error(`callback: generateKeyItem input arg invalid, code: ${error.code}, msg: ${error.message}`);
+    console.error(`callback: generateKeyItem input arg invalid`);
 }
 ```
 
@@ -216,10 +216,10 @@ try {
             console.info(`promise: generateKeyItem success`);
         })
         .catch((error: BusinessError) => {
-            console.error(`promise: generateKeyItem failed, code: ${error.code}, msg: ${error.message}`);
+            console.error(`promise: generateKeyItem failed`);
         });
 } catch (error) {
-    console.error(`promise: generateKeyItem input arg invalid, code: ${error.code}, msg: ${error.message}`);
+    console.error(`promise: generateKeyItem input arg invalid`);
 }
 ```
 
@@ -265,13 +265,13 @@ let emptyOptions: huks.HuksOptions = {
 try {
     huks.deleteKeyItem(keyAlias, emptyOptions, (error, data) => {
         if (error) {
-            console.error(`callback: deleteKeyItem failed, code: ${error.code}, msg: ${error.message}`);
+            console.error(`callback: deleteKeyItem failed`);
         } else {
             console.info(`callback: deleteKeyItem key success`);
         }
     });
 } catch (error) {
-    console.error(`callback: deleteKeyItem input arg invalid, code: ${error.code}, msg: ${error.message}`);
+    console.error(`callback: deleteKeyItem input arg invalid`);
 }
 ```
 
@@ -320,10 +320,10 @@ try {
             console.info(`promise: deleteKeyItem key success`);
         })
         .catch((error: BusinessError) => {
-            console.error(`promise: deleteKeyItem failed, code: ${error.code}, msg: ${error.message}`);
+            console.error(`promise: deleteKeyItem failed`);
         });
 } catch (error) {
-    console.error(`promise: deleteKeyItem input arg invalid, code: ${error.code}, msg: ${error.message}`);
+    console.error(`promise: deleteKeyItem input arg invalid`);
 }
 ```
 
@@ -443,13 +443,13 @@ let options: huks.HuksOptions = {
 try {
     huks.importKeyItem(keyAlias, options, (error, data) => {
         if (error) {
-            console.error(`callback: importKeyItem failed, code: ${error.code}, msg: ${error.message}`);
+            console.error(`callback: importKeyItem failed`);
         } else {
             console.info(`callback: importKeyItem success`);
         }
     });
 } catch (error) {
-    console.error(`callback: importKeyItem input arg invalid, code: ${error.code}, msg: ${error.message}`);
+    console.error(`callback: importKeyItem input arg invalid`);
 }
 ```
 
@@ -541,10 +541,10 @@ try {
             console.info(`promise: importKeyItem success`);
         })
         .catch((error: BusinessError) => {
-            console.error(`promise: importKeyItem failed, code: ${error.code}, msg: ${error.message}`);
+            console.error(`promise: importKeyItem failed`);
         });
 } catch (error) {
-    console.error(`promise: importKeyItem input arg invalid, code: ${error.code}, msg: ${error.message}`);
+    console.error(`promise: importKeyItem input arg invalid`);
 }
 ```
 
@@ -670,24 +670,24 @@ async function generateKeyThenattestKey(alias: string) {
     try {
         huks.generateKeyItem(alias, generateOptions, (error, data) => {
             if (error) {
-                console.error(`callback: generateKeyItem failed, code: ${error.code}, msg: ${error.message}`);
+                console.error(`callback: generateKeyItem failed`);
             } else {
                 console.info(`callback: generateKeyItem success`);
                 try {
                     huks.attestKeyItem(aliasString, attestOptions, (error, data) => {
                         if (error) {
-                            console.error(`callback: attestKeyItem failed, code: ${error.code}, msg: ${error.message}`);
+                            console.error(`callback: attestKeyItem failed`);
                         } else {
                             console.info(`callback: attestKeyItem success`);
                         }
                     });
                 } catch (error) {
-                    console.error(`callback: attestKeyItem input arg invalid, code: ${error.code}, msg: ${error.message}`);
+                    console.error(`callback: attestKeyItem input arg invalid`);
                 }
             }
         });
     } catch (error) {
-        console.error(`callback: generateKeyItem input arg invalid, code: ${error.code}, msg: ${error.message}`);
+        console.error(`callback: generateKeyItem input arg invalid`);
     }
 }
 ```
@@ -799,10 +799,10 @@ async function generateKey(alias: string) {
                 console.info(`promise: generateKeyItem success`);
             })
             .catch((error: BusinessError) => {
-                console.error(`promise: generateKeyItem failed, code: ${error.code}, msg: ${error.message}`);
+                console.error(`promise: generateKeyItem failed`);
             });
     } catch (error) {
-        console.error(`promise: generateKeyItem input arg invalid, code: ${error.code}, msg: ${error.message}`);
+        console.error(`promise: generateKeyItem input arg invalid`);
     }
 }
 async function attestKey() {
@@ -836,10 +836,10 @@ async function attestKey() {
                 console.info(`promise: attestKeyItem success`);
             })
             .catch((error: BusinessError) => {
-                console.error(`promise: attestKeyItem failed, code: ${error.code}, msg: ${error.message}`);
+                console.error(`promise: attestKeyItem failed`);
             });
     } catch (error) {
-        console.error(`promise: attestKeyItem input arg invalid, code: ${error.code}, msg: ${error.message}`);
+        console.error(`promise: attestKeyItem input arg invalid`);
     }
 }
 ```
@@ -901,10 +901,10 @@ async function TestGenFunc(alias: string, options: huks.HuksOptions) {
                 console.info(`callback: generateKeyItem success`);
             })
             .catch((error: BusinessError) => {
-                console.error(`callback: generateKeyItem failed, code: ${error.code}, msg: ${error.message}`);
+                console.error(`callback: generateKeyItem failed`);
             });
     } catch (error) {
-        console.error(`callback: generateKeyItem input arg invalid, code: ${error.code}, msg: ${error.message}`);
+        console.error(`callback: generateKeyItem input arg invalid`);
     }
 }
 function genKey(alias: string, options: huks.HuksOptions) {
@@ -929,10 +929,10 @@ async function TestExportFunc(alias: string, options: huks.HuksOptions) {
                 console.info(`callback: exportKeyItem success, data = ${JSON.stringify(data)}`);
             })
             .catch((error: BusinessError) => {
-                console.error(`callback: exportKeyItem failed, code: ${error.code}, msg: ${error.message}`);
+                console.error(`callback: exportKeyItem failed`);
             });
     } catch (error) {
-        console.error(`callback: exportKeyItem input arg invalid, code: ${error.code}, msg: ${error.message}`);
+        console.error(`callback: exportKeyItem input arg invalid`);
     }
 }
 function exportKey(alias: string, options: huks.HuksOptions) {
@@ -957,10 +957,10 @@ async function TestImportWrappedFunc(alias: string, wrappingAlias: string, optio
                 console.info(`callback: importWrappedKeyItem success`);
             })
             .catch((error: BusinessError) => {
-                console.error(`callback: importWrappedKeyItem failed, code: ${error.code}, msg: ${error.message}`);
+                console.error(`callback: importWrappedKeyItem failed`);
             });
     } catch (error) {
-        console.error(`callback: importWrappedKeyItem input arg invalid, code: ${error.code}, msg: ${error.message}`);
+        console.error(`callback: importWrappedKeyItem input arg invalid`);
     }
 }
 function importWrappedKey(alias: string, wrappingAlias: string, options: huks.HuksOptions) {
@@ -1127,10 +1127,10 @@ async function TestImportWrappedFunc(alias: string, wrappingAlias: string, optio
                 console.info(`promise: importWrappedKeyItem success`);
             })
             .catch((error: BusinessError) => {
-                console.error(`promise: importWrappedKeyItem failed, code: ${error.code}, msg: ${error.message}`);
+                console.error(`promise: importWrappedKeyItem failed`);
             });
     } catch (error) {
-        console.error(`promise: importWrappedKeyItem input arg invalid, code: ${error.code}, msg: ${error.message}`);
+        console.error(`promise: importWrappedKeyItem input arg invalid`);
     }
 }
 ```
@@ -1181,13 +1181,13 @@ let emptyOptions: huks.HuksOptions = {
 try {
     huks.exportKeyItem(keyAlias, emptyOptions, (error, data) => {
         if (error) {
-            console.error(`callback: exportKeyItem failed, code: ${error.code}, msg: ${error.message}`);
+            console.error(`callback: exportKeyItem failed`);
         } else {
             console.info(`callback: exportKeyItem success, data = ${JSON.stringify(data)}`);
         }
     });
 } catch (error) {
-    console.error(`callback: exportKeyItem input arg invalid, code: ${error.code}, msg: ${error.message}`);
+    console.error(`callback: exportKeyItem input arg invalid`);
 }
 ```
 
@@ -1246,10 +1246,10 @@ try {
             console.info(`promise: exportKeyItem success, data = ${JSON.stringify(data)}`);
         })
         .catch((error: BusinessError) => {
-            console.error(`promise: exportKeyItem failed, code: ${error.code}, msg: ${error.message}`);
+            console.error(`promise: exportKeyItem failed`);
         });
 } catch (error) {
-    console.error(`promise: exportKeyItem input arg invalid, code: ${error.code}, msg: ${error.message}`);
+    console.error(`promise: exportKeyItem input arg invalid`);
 }
 ```
 
@@ -1299,13 +1299,13 @@ let emptyOptions: huks.HuksOptions = {
 try {
     huks.getKeyItemProperties(keyAlias, emptyOptions, (error, data) => {
         if (error) {
-            console.error(`callback: getKeyItemProperties failed, code: ${error.code}, msg: ${error.message}`);
+            console.error(`callback: getKeyItemProperties failed`);
         } else {
             console.info(`callback: getKeyItemProperties success, data = ${JSON.stringify(data)}`);
         }
     });
 } catch (error) {
-    console.error(`callback: getKeyItemProperties input arg invalid, code: ${error.code}, msg: ${error.message}`);
+    console.error(`callback: getKeyItemProperties input arg invalid`);
 }
 ```
 
@@ -1364,10 +1364,10 @@ try {
             console.info(`promise: getKeyItemProperties success, data = ${JSON.stringify(data)}`);
         })
         .catch((error: BusinessError) => {
-            console.error(`promise: getKeyItemProperties failed, code: ${error.code}, msg: ${error.message}`);
+            console.error(`promise: getKeyItemProperties failed`);
         });
 } catch (error) {
-    console.error(`promise: getKeyItemProperties input arg invalid, code: ${error.code}, msg: ${error.message}`);
+    console.error(`promise: getKeyItemProperties input arg invalid`);
 }
 ```
 
@@ -1421,7 +1421,7 @@ huks.isKeyItemExist(keyAlias, emptyOptions, (error, data) => {
         })
     } else {
         promptAction.showToast({
-            message: "find key failed，error code： " + error.code + " error msg： " + error.message,
+            message: "find key failed",
             duration: 2500,
         })
     }
@@ -1484,7 +1484,7 @@ huks.isKeyItemExist(keyAlias, emptyOptions).then((data) => {
     })
 }).catch((error: BusinessError)=>{
     promptAction.showToast({
-        message: "find key failed, error code： " + error.code + " error message： " + error.message,
+        message: "find key failed",
         duration: 6500,
     })
 })
@@ -1890,13 +1890,13 @@ async function generateKey() {
     try {
         await huks.generateKeyItem(keyAlias, options, (error, data) => {
             if (error) {
-                console.error(`callback: generateKeyItem failed, code: ${error.code}, msg: ${error.message}`);
+                console.error(`callback: generateKeyItem failed`);
             } else {
                 console.info(`callback: generateKeyItem success`);
             }
         });
     } catch (error) {
-        console.error(`callback: generateKeyItem input arg invalid, code: ${error.code}, msg: ${error.message}`);
+        console.error(`callback: generateKeyItem input arg invalid`);
     }
 }
 async function huksInit() {
@@ -1904,14 +1904,14 @@ async function huksInit() {
     try {
         huks.initSession(keyAlias, options, (error, data) => {
             if (error) {
-                console.error(`callback: initSession failed, code: ${error.code}, msg: ${error.message}`);
+                console.error(`callback: initSession failed`);
             } else {
                 console.info(`callback: initSession success, data = ${JSON.stringify(data)}`);
                 handle = data.handle;
             }
         });
     } catch (error) {
-        console.error(`callback: initSession input arg invalid, code: ${error.code}, msg: ${error.message}`);
+        console.error(`callback: initSession input arg invalid`);
     }
 }
 async function huksUpdate() {
@@ -1920,13 +1920,13 @@ async function huksUpdate() {
     try {
         huks.updateSession(handle, options, (error, data) => {
             if (error) {
-                console.error(`callback: updateSession failed, code: ${error.code}, msg: ${error.message}`);
+                console.error(`callback: updateSession failed`);
             } else {
                 console.info(`callback: updateSession success, data = ${JSON.stringify(data)}`);
             }
         });
     } catch (error) {
-        console.error(`callback: updateSession input arg invalid, code: ${error.code}, msg: ${error.message}`);
+        console.error(`callback: updateSession input arg invalid`);
     }
 }
 async function huksFinish() {
@@ -1935,13 +1935,13 @@ async function huksFinish() {
     try {
         huks.finishSession(handle, options, (error, data) => {
             if (error) {
-                console.error(`callback: finishSession failed, code: ${error.code}, msg: ${error.message}`);
+                console.error(`callback: finishSession failed`);
             } else {
                 console.info(`callback: finishSession success, data = ${JSON.stringify(data)}`);
             }
         });
     } catch (error) {
-        console.error(`callback: finishSession input arg invalid, code: ${error.code}, msg: ${error.message}`);
+        console.error(`callback: finishSession input arg invalid`);
     }
 }
 async function huksAbort() {
@@ -1949,13 +1949,13 @@ async function huksAbort() {
     try {
         huks.abortSession(handle, options, (error, data) => {
             if (error) {
-                console.error(`callback: abortSession failed, code: ${error.code}, msg: ${error.message}`);
+                console.error(`callback: abortSession failed`);
             } else {
                 console.info(`callback: abortSession success`);
             }
         });
     } catch (error) {
-        console.error(`callback: abortSession input arg invalid, code: ${error.code}, msg: ${error.message}`);
+        console.error(`callback: abortSession input arg invalid`);
     }
 }
 ```
@@ -2063,10 +2063,10 @@ async function generateKey() {
                 console.info(`promise: generateKeyItem success`);
             })
             .catch((error: BusinessError) => {
-                console.error(`promise: generateKeyItem failed, code: ${error.code}, msg: ${error.message}`);
+                console.error(`promise: generateKeyItem failed`);
             });
     } catch (error) {
-        console.error(`promise: generateKeyItem input arg invalid, code: ${error.code}, msg: ${error.message}`);
+        console.error(`promise: generateKeyItem input arg invalid`);
     }
 }
 
@@ -2079,10 +2079,10 @@ async function huksInit() {
                 handle = data.handle;
             })
             .catch((error: BusinessError) => {
-                console.error(`promise: initSession key failed, code: ${error.code}, msg: ${error.message}`);
+                console.error(`promise: initSession key failed`);
             });
     } catch (error) {
-        console.error(`promise: initSession input arg invalid, code: ${error.code}, msg: ${error.message}`);
+        console.error(`promise: initSession input arg invalid`);
     }
 }
 
@@ -2095,10 +2095,10 @@ async function huksUpdate() {
                 console.info(`promise: updateSession success, data = ${JSON.stringify(data)}`);
             })
             .catch((error: BusinessError) => {
-                console.error(`promise: updateSession failed, code: ${error.code}, msg: ${error.message}`);
+                console.error(`promise: updateSession failed`);
             });
     } catch (error) {
-        console.error(`promise: updateSession input arg invalid, code: ${error.code}, msg: ${error.message}`);
+        console.error(`promise: updateSession input arg invalid`);
     }
 }
 
@@ -2111,10 +2111,10 @@ async function huksFinish() {
                 console.info(`promise: finishSession success, data = ${JSON.stringify(data)}`);
             })
             .catch((error: BusinessError) => {
-                console.error(`promise: finishSession failed, code: ${error.code}, msg: ${error.message}`);
+                console.error(`promise: finishSession failed`);
             });
     } catch (error) {
-        console.error(`promise: finishSession input arg invalid, code: ${error.code}, msg: ${error.message}`);
+        console.error(`promise: finishSession input arg invalid`);
     }
 }
 
@@ -2126,10 +2126,10 @@ async function huksAbort() {
                 console.info(`promise: abortSession success`);
             })
             .catch((error: BusinessError) => {
-                console.error(`promise: abortSession failed, code: ${error.code}, msg: ${error.message}`);
+                console.error(`promise: abortSession failed`);
             });
     } catch (error) {
-        console.error(`promise: abortSession input arg invalid, code: ${error.code}, msg: ${error.message}`);
+        console.error(`promise: abortSession input arg invalid`);
     }
 }
 ```

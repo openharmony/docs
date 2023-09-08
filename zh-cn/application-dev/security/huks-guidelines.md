@@ -23,75 +23,83 @@ HUKS提供为业务安全随机生成密钥的能力。通过HUKS生成的密钥
 
 **代码示例：**
 
-```js
+```ts
 /*
  * 以下以生成DH密钥的Callback操作使用为例
  */
 import huks from '@ohos.security.huks';
+import { BusinessError } from '@ohos.base';
+
+class HuksProperties {
+  tag: huks.HuksTag = huks.HuksTag.HUKS_TAG_ALGORITHM;
+  value: huks.HuksKeyAlg | huks.HuksKeySize | huks.HuksKeyPurpose | huks.HuksKeyDigest = huks.HuksKeyAlg.HUKS_ALG_ECC;
+}
 
 /*
  * 确定密钥别名和封装密钥属性参数集
  */
 let keyAlias = 'dh_key';
-let properties = new Array();
-properties[0] = {
+let properties1: HuksProperties[] = [
+  {
     tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
     value: huks.HuksKeyAlg.HUKS_ALG_DH
-}
-properties[1] = {
+  },
+  {
     tag: huks.HuksTag.HUKS_TAG_PURPOSE,
     value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_AGREE
-}
-properties[2] = {
+  },
+  {
     tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
     value: huks.HuksKeySize.HUKS_DH_KEY_SIZE_2048
-}
-properties[3] = {
+  },
+  {
     tag: huks.HuksTag.HUKS_TAG_DIGEST,
     value: huks.HuksKeyDigest.HUKS_DIGEST_SHA256
-}
-let huksOptions = {
-    properties: properties,
-    inData: new Uint8Array(new Array())
+  }
+];
+
+// let data1 =  new Uint8Array(new Array());
+let huksOptions: huks.HuksOptions = {
+  properties: properties1,
+  inData: new Uint8Array(new Array())
 }
 
 /*
  * 生成密钥
  */
-function generateKeyItem(keyAlias: string, huksOptions: huks.HuksOptions) {
-    return new Promise((resolve, reject) => {
-        try {
-            huks.generateKeyItem(keyAlias, huksOptions, function (error, data) {
-                if (error) {
-                    reject(error);
-                } else {
-                    resolve(data);
-                }
-            });
-        } catch (error) {
-            throw (error);
+function generateKeyItem(keyAlias: string, huksOptions: huks.HuksOptions){
+  return new Promise<void>((resolve, reject) => {
+    try {
+      huks.generateKeyItem(keyAlias, huksOptions, (error, data) => {
+        if (error) {
+          reject(error);
+        } else {
+          resolve(data);
         }
-    });
+      });
+    } catch (error) {
+      throw (error as Error);
+    }
+  });
 }
 
 async function publicGenKeyFunc(keyAlias: string, huksOptions: huks.HuksOptions) {
-    console.info(`enter callback generateKeyItem`);
-    try {
-        await generateKeyItem(keyAlias, huksOptions)
-            .then((data) => {
-                console.info(`callback: generateKeyItem success, data = ${JSON.stringify(data)}`);
-            })
-            .catch(error => {
-                console.error(`callback: generateKeyItem failed, code: ${error.code}, msg: ${error.message}`);
-            });
-    } catch (error) {
-        console.error(`callback: generateKeyItem input arg invalid, code: ${error.code}, msg: ${error.message}`);
-    }
+  console.info(`enter callback generateKeyItem`);
+  try {
+    await generateKeyItem(keyAlias, huksOptions)
+      .then((data) => {
+        console.info(`callback: generateKeyItem success, data = ${JSON.stringify(data)}`);
+      })
+      .catch((error: BusinessError) => {
+        console.error(`callback: generateKeyItem failed`);
+      });
+  } catch (error) {
+    console.error(`callback: generateKeyItem input arg invalid`);
+  }
 }
 
-
 async function TestGenKey() {
-    await publicGenKeyFunc(keyAlias, huksOptions);
+  await publicGenKeyFunc(keyAlias, huksOptions);
 }
 ```
 
@@ -111,15 +119,17 @@ async function TestGenKey() {
 
 **代码示例：**
 
-```js
+```ts
+import huks from '@ohos.security.huks'
+
 /*
  * 以导入AES256密钥为例
  */
- 
+
 /* 密钥 */
 let plainTextSize32 = new Uint8Array([
-  0xfb, 0x8b, 0x9f, 0x12, 0xa0, 0x83, 0x19, 0xbe, 0x6a, 0x6f, 0x63, 0x2a, 0x7c, 0x86, 0xba, 0xca,
-  0x64, 0x0b, 0x88, 0x96, 0xe2, 0xfa, 0x77, 0xbc, 0x71, 0xe3, 0x0f, 0x0f, 0x9e, 0x3c, 0xe5, 0xf9
+    0xfb, 0x8b, 0x9f, 0x12, 0xa0, 0x83, 0x19, 0xbe, 0x6a, 0x6f, 0x63, 0x2a, 0x7c, 0x86, 0xba, 0xca,
+    0x64, 0x0b, 0x88, 0x96, 0xe2, 0xfa, 0x77, 0xbc, 0x71, 0xe3, 0x0f, 0x0f, 0x9e, 0x3c, 0xe5, 0xf9
 ]);
 
 /*
@@ -129,22 +139,28 @@ let keyAlias = 'AES256Alias_sample';
 
 /*
  * 封装密钥属性集和密钥材料
- */ 
-let properties = new Array();
-properties[0] = {
-    tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
-    value: huks.HuksKeyAlg.HUKS_ALG_AES
-};
-properties[1] = {
-    tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
-    value: huks.HuksKeySize.HUKS_AES_KEY_SIZE_256
-};
-properties[2] = {
-    tag: huks.HuksTag.HUKS_TAG_PURPOSE,
-    value:
-    huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT | huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_DECRYPT
-};
-let options = {
+ */
+class propertyType {
+    tag: huks.HuksTag = huks.HuksTag.HUKS_TAG_ALGORITHM;
+    value: huks.HuksKeyAlg | huks.HuksKeySize | huks.HuksKeyPurpose = huks.HuksKeyAlg.HUKS_ALG_RSA;
+}
+
+let properties: propertyType[] = [
+    {
+        tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
+        value:huks.HuksKeyAlg.HUKS_ALG_AES
+    },
+    {
+        tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
+        value: huks.HuksKeySize.HUKS_AES_KEY_SIZE_256
+    },
+    {
+        tag: huks.HuksTag.HUKS_TAG_PURPOSE,
+        value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT | huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_DECRYPT
+    },
+]
+
+let options: huks.HuksOptions = {
     properties: properties,
     inData: plainTextSize32
 };
@@ -153,15 +169,15 @@ let options = {
  * 导入密钥
  */
 try {
-    huks.importKeyItem(keyAlias, options, function (error, data) {
-        if (error) {
-            console.error(`callback: importKeyItem failed, code: ${error.code}, msg: ${error.message}`);
+    huks.importKeyItem(keyAlias, options, (error, data) => {
+         if (error) {
+            console.error(`callback: importKeyItem failed`);
         } else {
             console.info(`callback: importKeyItem success`);
         }
     });
 } catch (error) {
-    console.error(`callback: importKeyItem input arg invalid, code: ${error.code}, msg: ${error.message}`);
+    console.error(`callback: importKeyItem input arg invalid`);
 }
 ```
 
@@ -171,25 +187,32 @@ try {
 
 **代码示例：**
 
-```js
+```ts
 import huks from '@ohos.security.huks';
 
 let keyAlias = 'AES256Alias_sample';
-let isKeyExist;
+let isKeyExist = false;
 
-let keyProperties = new Array();
-keyProperties[0] = {
-    tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
-    value: huks.HuksKeyAlg.HUKS_ALG_AES,
+class keyPropertyType {
+    tag: huks.HuksTag = huks.HuksTag.HUKS_TAG_ALGORITHM;
+    value: huks.HuksKeyAlg = huks.HuksKeyAlg.HUKS_ALG_RSA;
 }
-let huksOptions = {
+
+let keyProperties: keyPropertyType[] = [
+    {
+        tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
+        value: huks.HuksKeyAlg.HUKS_ALG_AES
+    },
+]
+
+let huksOptions: huks.HuksOptions = {
     properties: keyProperties, // 非空填充
     inData: new Uint8Array(new Array()) // 非空填充
 }
 try {
-    huks.isKeyItemExist(keyAlias, huksOptions, function (error, data) {
+    huks.isKeyItemExist(keyAlias, huksOptions, (error, data) => {
         if (error) {
-            console.error(`callback: isKeyItemExist failed, code: ${error.code}, msg: ${error.message}`);
+            console.error(`callback: isKeyItemExist failed`);
         } else {
             if (data !== null && data.valueOf() !== null) {
                 isKeyExist = data.valueOf();
@@ -198,7 +221,7 @@ try {
         }
     });
 } catch (error) {
-    console.error(`callback: isKeyItemExist input arg invalid, code: ${error.code}, msg: ${error.message}`);
+    console.error(`callback: isKeyItemExist input arg invalid`);
 }
 ```
 
@@ -1656,38 +1679,38 @@ HUKS提供了全面完善的密钥访问控制能力，确保存储在HUKS中的
 
 1. 生成或导入密钥时，在密钥属性集中需指定三个参数：用户认证类型[HuksUserAuthType](../reference/apis/js-apis-huks.md#huksuserauthtype9)、授权访问类型[HuksAuthAccessType](../reference/apis/js-apis-huks.md#huksauthaccesstype9)、挑战值类型[HuksChallengeType](../reference/apis/js-apis-huks.md#hukschallengetype9)。
 
-	**表3** 用户认证类型：三种类型的子集
-	| 名称            | 值  | 说明                      |
-	| ------------------------------- |---|------------------------ |
-	| HUKS_USER_AUTH_TYPE_FINGERPRINT |0x0001  | 用户认证类型为指纹，允许和人脸、锁屏密码同时设置  |
-	| HUKS_USER_AUTH_TYPE_FACE     |0x0002   | 用户认证类型为人脸 ，允许和指纹、锁屏密码同时设置 |
-	| HUKS_USER_AUTH_TYPE_PIN      |0x0004  | 用户认证类型为锁屏密码，允许和人脸、指纹同时设置 |
+    **表3** 用户认证类型：三种类型的子集
+    | 名称            | 值  | 说明                      |
+    | ------------------------------- |---|------------------------ |
+    | HUKS_USER_AUTH_TYPE_FINGERPRINT |0x0001  | 用户认证类型为指纹，允许和人脸、锁屏密码同时设置  |
+    | HUKS_USER_AUTH_TYPE_FACE     |0x0002   | 用户认证类型为人脸 ，允许和指纹、锁屏密码同时设置 |
+    | HUKS_USER_AUTH_TYPE_PIN      |0x0004  | 用户认证类型为锁屏密码，允许和人脸、指纹同时设置 |
 
-	**表4** 安全访问类型：二选一
-	| 名称                                    | 值   | 说明             |
-	| --------------------------------------- | ---- | ------------------------------------------------ |
-	| HUKS_AUTH_ACCESS_INVALID_CLEAR_PASSWORD | 1    | 清除锁屏密码后密钥无法访问。       |
-	| HUKS_AUTH_ACCESS_INVALID_NEW_BIO_ENROLL | 2    | 新录入生物特征后密钥无法访问，用户认证类型须包含生物认证类型。 |
+    **表4** 安全访问类型：二选一
+    | 名称                                    | 值   | 说明             |
+    | --------------------------------------- | ---- | ------------------------------------------------ |
+    | HUKS_AUTH_ACCESS_INVALID_CLEAR_PASSWORD | 1    | 清除锁屏密码后密钥无法访问。       |
+    | HUKS_AUTH_ACCESS_INVALID_NEW_BIO_ENROLL | 2    | 新录入生物特征后密钥无法访问，用户认证类型须包含生物认证类型。 |
 
-	**表5** 挑战值类型：三选一
-	| 名称                            | 值   | 说明                        |
-	| ------------------------------- | ---- | ------------------------------ |
-	| HUKS_CHALLENGE_TYPE_NORMAL | 0    | 普通类型，每次密钥的使用需要独立的一次用户认证 |
-	| HUKS_CHALLENGE_TYPE_CUSTOM        | 1    | 自定义类型，支持和多个密钥共享一次用户认证|
-	| HUKS_CHALLENGE_TYPE_NONE         | 2    | 无挑战值类型，用户认证时不需要挑战值 |
+    **表5** 挑战值类型：三选一
+    | 名称                            | 值   | 说明                        |
+    | ------------------------------- | ---- | ------------------------------ |
+    | HUKS_CHALLENGE_TYPE_NORMAL | 0    | 普通类型，每次密钥的使用需要独立的一次用户认证 |
+    | HUKS_CHALLENGE_TYPE_CUSTOM        | 1    | 自定义类型，支持和多个密钥共享一次用户认证|
+    | HUKS_CHALLENGE_TYPE_NONE         | 2    | 无挑战值类型，用户认证时不需要挑战值 |
 
-	> **注意**
-	>
-	> 当指定挑战值类型为**HUKS_CHALLENGE_TYPE_NONE** 时，不需要传递挑战值，但是存在新的限制：在用户身份认证后，一段时间内允许访问该密钥，超时后不能访问，需要重新认证才能访问。因此应用需要额外指定超时时间**HUKS_TAG_AUTH_TIMEOUT**属性（最大60秒）。
+    > **注意**
+    >
+    > 当指定挑战值类型为**HUKS_CHALLENGE_TYPE_NONE** 时，不需要传递挑战值，但是存在新的限制：在用户身份认证后，一段时间内允许访问该密钥，超时后不能访问，需要重新认证才能访问。因此应用需要额外指定超时时间**HUKS_TAG_AUTH_TIMEOUT**属性（最大60秒）。
 
 2. 使用密钥时，先初始化密钥会话，然后根据密钥生成/导入阶段指定的挑战值类型属性是否需要获取挑战值，或组装新的挑战值。
         
     **表6** 使用密钥的接口介绍
-	| 接口名                      | 描述                 |
-	| -------------------------------------- | ----------------------------|
-	|initSession(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<HuksSessionHandle>) : void| 初始化密钥会话，获取挑战值|
-	|updateSession(handle: number, options: HuksOptions, token: Uint8Array, callback: AsyncCallback\<HuksReturnResult>) : void| 分段操作数据，传递认证令牌|
-	|finishSession(handle: number, options: HuksOptions, token: Uint8Array, callback: AsyncCallback\<HuksReturnResult>) : void| 结束密钥会话，传递认证令牌|
+    | 接口名                      | 描述                 |
+    | -------------------------------------- | ----------------------------|
+    |initSession(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<HuksSessionHandle>) : void| 初始化密钥会话，获取挑战值|
+    |updateSession(handle: number, options: HuksOptions, token: Uint8Array, callback: AsyncCallback\<HuksReturnResult>) : void| 分段操作数据，传递认证令牌|
+    |finishSession(handle: number, options: HuksOptions, token: Uint8Array, callback: AsyncCallback\<HuksReturnResult>) : void| 结束密钥会话，传递认证令牌|
 
 **开发步骤**
 
@@ -2087,55 +2110,64 @@ async function testSm4Cipher() {
 
 1. 生成密钥并指定指纹访问控制和相关属性，以及HUKS_TAG_KEY_AUTH_PURPOSE值
 
-```js
+```ts
 import huks from '@ohos.security.huks';
+import { BusinessError } from '@ohos.base';
 
 /*
  * 确定密钥别名和封装密钥属性参数集
  */
 let keyAlias = 'dh_key_fingerprint_access';
-let properties = new Array();
-properties[0] = {
-    tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
-    value: huks.HuksKeyAlg.HUKS_ALG_SM4,
+
+class throwObject {
+    isThrow: boolean = false;
 }
-properties[1] = {
-    tag: huks.HuksTag.HUKS_TAG_PURPOSE,
-    value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT | huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_DECRYPT,
+
+class propertyType {
+    tag: huks.HuksTag = huks.HuksTag.HUKS_TAG_ALGORITHM;
+    value: huks.HuksKeyAlg | huks.HuksKeyPurpose | huks.HuksKeySize | huks.HuksCipherMode | huks.HuksKeyPadding
+    | huks.HuksUserAuthType | huks.HuksAuthAccessType | huks.HuksChallengeType = huks.HuksKeyAlg.HUKS_ALG_SM4
 }
-properties[2] = {
-    tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
-    value: huks.HuksKeySize.HUKS_SM4_KEY_SIZE_128,
-}
-properties[3] = {
-    tag: huks.HuksTag.HUKS_TAG_BLOCK_MODE,
-    value: huks.HuksCipherMode.HUKS_MODE_CBC,
-}
-properties[4] = {
-    tag: huks.HuksTag.HUKS_TAG_PADDING,
-    value: huks.HuksKeyPadding.HUKS_PADDING_NONE,
-}
-// 指定密钥身份认证的类型：指纹
-properties[5] = {
-    tag: huks.HuksTag.HUKS_TAG_USER_AUTH_TYPE,
-    value: huks.HuksUserAuthType.HUKS_USER_AUTH_TYPE_FINGERPRINT
-}
-// 指定密钥安全授权的类型（失效类型）：新录入生物特征（指纹）后无效
-properties[6] = {
-    tag: huks.HuksTag.HUKS_TAG_KEY_AUTH_ACCESS_TYPE,
-    value: huks.HuksAuthAccessType.HUKS_AUTH_ACCESS_INVALID_NEW_BIO_ENROLL
-}
-// 指定挑战值的类型：默认类型
-properties[7] = {
-    tag: huks.HuksTag.HUKS_TAG_CHALLENGE_TYPE,
-    value: huks.HuksChallengeType.HUKS_CHALLENGE_TYPE_NORMAL
-}
-// 指定某种算法用途时需要用户身份认证访问控制：比如解密需要
-properties[8] = {
-    tag: huks.HuksTag.HUKS_TAG_KEY_AUTH_PURPOSE,
-    value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_DECRYPT
-}
-let huksOptions = {
+let properties: propertyType[] = [
+    {
+        tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
+        value: huks.HuksKeyAlg.HUKS_ALG_SM4,
+    },
+    {
+        tag: huks.HuksTag.HUKS_TAG_PURPOSE,
+        value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT | huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_DECRYPT,
+    },
+    {
+        tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
+        value: huks.HuksKeySize.HUKS_SM4_KEY_SIZE_128,
+    },
+    {
+        tag: huks.HuksTag.HUKS_TAG_BLOCK_MODE,
+        value: huks.HuksCipherMode.HUKS_MODE_CBC,
+    },
+    {
+        tag: huks.HuksTag.HUKS_TAG_PADDING,
+        value: huks.HuksKeyPadding.HUKS_PADDING_NONE,
+    },
+    {
+        tag: huks.HuksTag.HUKS_TAG_USER_AUTH_TYPE,
+        value: huks.HuksUserAuthType.HUKS_USER_AUTH_TYPE_FINGERPRINT
+    },
+    {
+        tag: huks.HuksTag.HUKS_TAG_KEY_AUTH_ACCESS_TYPE,
+        value: huks.HuksAuthAccessType.HUKS_AUTH_ACCESS_INVALID_NEW_BIO_ENROLL
+    },
+    {
+        tag: huks.HuksTag.HUKS_TAG_CHALLENGE_TYPE,
+        value: huks.HuksChallengeType.HUKS_CHALLENGE_TYPE_NORMAL
+    },
+    {
+        tag: huks.HuksTag.HUKS_TAG_KEY_AUTH_PURPOSE,
+        value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_DECRYPT
+    }
+]
+
+let huksOptions: huks.HuksOptions = {
     properties: properties,
     inData: new Uint8Array(new Array())
 }
@@ -2143,10 +2175,10 @@ let huksOptions = {
 /*
  * 生成密钥
  */
-async function generateKeyItem(keyAlias, huksOptions, throwObject) {
-    return new Promise((resolve, reject) => {
+async function generateKeyItem(keyAlias: string, huksOptions: huks.HuksOptions, throwObject: throwObject) {
+    return new Promise<void>((resolve, reject) => {
         try {
-            huks.generateKeyItem(keyAlias, huksOptions, function (error, data) {
+            huks.generateKeyItem(keyAlias, huksOptions, (error, data) => {
                 if (error) {
                     reject(error);
                 } else {
@@ -2155,29 +2187,29 @@ async function generateKeyItem(keyAlias, huksOptions, throwObject) {
             });
         } catch (error) {
             throwObject.isThrow = true;
-            throw(error);
+            throw(error as Error);
         }
     });
 }
 
-async function publicGenKeyFunc(keyAlias, huksOptions) {
+async function publicGenKeyFunc(keyAlias: string, huksOptions: huks.HuksOptions) {
     console.info(`enter callback generateKeyItem`);
-    let throwObject = {isThrow: false};
-    try {
-        await generateKeyItem(keyAlias, huksOptions, throwObject)
-            .then((data) => {
-                console.info(`callback: generateKeyItem success, data = ${JSON.stringify(data)}`);
-            })
-            .catch(error => {
-                if (throwObject.isThrow) {
-                    throw(error);
-                } else {
-                    console.error(`callback: generateKeyItem failed, code: ${error.code}, msg: ${error.message}`);
-                }
-            });
-    } catch (error) {
-        console.error(`callback: generateKeyItem input arg invalid, code: ${error.code}, msg: ${error.message}`);
-    }
+    let throwObject: throwObject = {isThrow: false};
+try {
+    await generateKeyItem(keyAlias, huksOptions, throwObject)
+      .then((data) => {
+        console.info(`callback: generateKeyItem success, data = ${JSON.stringify(data)}`);
+      })
+      .catch((error: BusinessError) => {
+        if (throwObject.isThrow) {
+          throw(error as Error);
+        } else {
+          console.error(`callback: generateKeyItem failed`);
+        }
+      });
+  } catch (error) {
+    console.error(`callback: generateKeyItem input arg invalid`);
+}
 }
 
 async function TestGenKeyForFingerprintAccessControl() {
@@ -2187,8 +2219,14 @@ async function TestGenKeyForFingerprintAccessControl() {
 
 2. 使用密钥-加密场景-加密时不需要进行用户身份认证访问控制
 
-```js
-   import huks from '@ohos.security.huks';
+```ts
+import huks from '@ohos.security.huks';
+import { BusinessError } from '@ohos.base';
+
+class HuksProperties {
+  tag: huks.HuksTag = huks.HuksTag.HUKS_TAG_ALGORITHM;
+  value: huks.HuksKeyAlg | huks.HuksKeySize | huks.HuksKeyPurpose | huks.HuksKeyPadding | huks.HuksCipherMode | Uint8Array = huks.HuksKeyAlg.HUKS_ALG_ECC;
+}
 
 /*
  * 确定密钥别名和封装密钥属性参数集
@@ -2196,139 +2234,142 @@ async function TestGenKeyForFingerprintAccessControl() {
 let srcKeyAlias = 'sm4_key_fingerprint_access';
 let cipherInData = 'Hks_SM4_Cipher_Test_101010101010101010110_string'; // 明文数据
 let IV = '1234567890123456';
-let handle;
-let cipherText; // 加密后的密文数据
+let handle = 0;
+let cipherText: Uint8Array; // 加密后的密文数据
 
-function StringToUint8Array(str) {
-    let arr = [];
-    for (let i = 0, j = str.length; i < j; ++i) {
-        arr.push(str.charCodeAt(i));
-    }
-    return new Uint8Array(arr);
+function StringToUint8Array(str: string) {
+  let arr: number[] = [];
+  for (let i = 0, j = str.length; i < j; ++i) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
 }
 
 /* 集成生成密钥参数集 & 加密参数集 */
-let propertiesEncrypt = new Array();
-propertiesEncrypt[0] = {
+let propertiesEncrypt: HuksProperties[] = [
+  {
     tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
     value: huks.HuksKeyAlg.HUKS_ALG_SM4,
-}
-propertiesEncrypt[1] = {
+  },
+  {
     tag: huks.HuksTag.HUKS_TAG_PURPOSE,
     value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT,
-}
-propertiesEncrypt[2] = {
+  },
+  {
     tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
     value: huks.HuksKeySize.HUKS_SM4_KEY_SIZE_128,
-}
-propertiesEncrypt[3] = {
+  },
+  {
     tag: huks.HuksTag.HUKS_TAG_PADDING,
     value: huks.HuksKeyPadding.HUKS_PADDING_NONE,
-}
-propertiesEncrypt[4] = {
+  },
+  {
     tag: huks.HuksTag.HUKS_TAG_BLOCK_MODE,
     value: huks.HuksCipherMode.HUKS_MODE_CBC,
-}
-propertiesEncrypt[5] = {
+  },
+  {
     tag: huks.HuksTag.HUKS_TAG_IV,
     value: StringToUint8Array(IV),
+  }];
+let encryptOptions: huks.HuksOptions = {
+  properties: propertiesEncrypt,
+  inData: new Uint8Array(new Array())
 }
-let encryptOptions = {
-    properties: propertiesEncrypt,
-    inData: new Uint8Array(new Array())
+class throwObject1{
+  isThrow: boolean = false;
 }
-
-function initSession(keyAlias, huksOptions, throwObject) {
-    return new Promise((resolve, reject) => {
-        try {
-            huks.initSession(keyAlias, huksOptions, function (error, data) {
-                if (error) {
-                    reject(error);
-                } else {
-                    resolve(data);
-                }
-            });
-        } catch (error) {
-            throwObject.isThrow = true;
-            throw(error);
-        }
-    });
-}
-
-async function publicInitFunc(keyAlias, huksOptions) {
-    console.info(`enter callback doInit`);
-    let throwObject = {isThrow: false};
+function initSession(keyAlias: string, huksOptions: huks.HuksOptions, throwObject: throwObject1) {
+  return new Promise<huks.HuksSessionHandle>((resolve, reject) => {
     try {
-        await initSession(keyAlias, huksOptions, throwObject)
-            .then ((data) => {
-                console.info(`callback: doInit success, data = ${JSON.stringify(data)}`);
-                handle = data.handle;
-            })
-            .catch((error) => {
-                if (throwObject.isThrow) {
-                    throw(error);
-                } else {
-                    console.error(`callback: doInit failed, code: ${error.code}, msg: ${error.message}`);
-                }
-            });
-    } catch (error) {
-        console.error(`callback: doInit input arg invalid, code: ${error.code}, msg: ${error.message}`);
-    }
-}
-
-function finishSession(handle, huksOptions, throwObject) {
-    return new Promise((resolve, reject) => {
-        try {
-            huks.finishSession(handle, huksOptions, function (error, data) {
-                if (error) {
-                    reject(error);
-                } else {
-                    resolve(data);
-                }
-            });
-        } catch (error) {
-            throwObject.isThrow = true;
-            throw(error);
+      huks.initSession(keyAlias, huksOptions, (error, data) => {
+        if (error) {
+          reject(error);
+        } else {
+          resolve(data);
         }
-    });
+      });
+    } catch (error) {
+      throwObject.isThrow = true;
+      throw (error as Error);
+    }
+  });
 }
 
-async function publicFinishFunc(handle, huksOptions) {
-    console.info(`enter callback doFinish`);
-    let throwObject = {isThrow: false};
+async function publicInitFunc(keyAlias: string, huksOptions: huks.HuksOptions) {
+  console.info(`enter callback doInit`);
+  let throwObject: throwObject1 = { isThrow: false };
+  try {
+    await initSession(keyAlias, huksOptions, throwObject)
+      .then((data) => {
+        console.info(`callback: doInit success, data = ${JSON.stringify(data)}`);
+        handle = data.handle as number;
+      })
+      .catch((error: BusinessError) => {
+        if (throwObject.isThrow) {
+          throw (error as Error);
+        } else {
+          console.error(`callback: doInit failed`);
+        }
+      });
+  } catch (error) {
+    console.error(`callback: doInit input arg invalid`);
+  }
+}
+
+function finishSession(handle: number, huksOptions: huks.HuksOptions, throwObject: throwObject1) {
+  return new Promise<huks.HuksReturnResult>((resolve, reject) => {
     try {
-        await finishSession(handle, huksOptions, throwObject)
-            .then ((data) => {
-                cipherText = data.outData;
-                console.info(`callback: doFinish success, data = ${JSON.stringify(data)}`);
-            })
-            .catch(error => {
-                if (throwObject.isThrow) {
-                    throw(error);
-                } else {
-                    console.error(`callback: doFinish failed, code: ${error.code}, msg: ${error.message}`);
-                }
-            });
+      huks.finishSession(handle, huksOptions, (error, data) => {
+        if (error) {
+          reject(error);
+        } else {
+          resolve(data);
+        }
+      });
     } catch (error) {
-        console.error(`callback: doFinish input arg invalid, code: ${error.code}, msg: ${error.message}`);
+      throwObject.isThrow = true;
+      throw (error as Error);
     }
+  });
+}
+
+async function publicFinishFunc(handle: number, huksOptions: huks.HuksOptions) {
+  console.info(`enter callback doFinish`);
+  let throwObject: throwObject1 = { isThrow: false };
+  try {
+    await finishSession(handle, huksOptions, throwObject)
+      .then((data) => {
+        cipherText = data.outData as Uint8Array;
+        console.info(`callback: doFinish success, data = ${JSON.stringify(data)}`);
+      })
+      .catch((error: BusinessError) => {
+        if (throwObject.isThrow) {
+          throw (error as Error);
+        } else {
+          console.error(`callback: doFinish failed`);
+        }
+      });
+  } catch (error) {
+    console.error(`callback: doFinish input arg invalid`);
+  }
 }
 
 async function testSm4Cipher() {
-    /* 初始化密钥会话获取挑战值 */
-    await publicInitFunc(srcKeyAlias, encryptOptions);
+  /* 初始化密钥会话获取挑战值 */
+  await publicInitFunc(srcKeyAlias, encryptOptions);
 
-    /* 加密 */
-    encryptOptions.inData = StringToUint8Array(cipherInData);
-    await publicFinishFunc(handle, encryptOptions);
+  /* 加密 */
+  encryptOptions.inData = StringToUint8Array(cipherInData);
+  await publicFinishFunc(handle, encryptOptions);
 }
 ```
 
 3. 使用密钥-解密场景-解密时需要进行用户身份认证访问控制
 
-```js
-   import huks from '@ohos.security.huks';
+```ts
+import huks from '@ohos.security.huks';
 import userIAM_userAuth from '@ohos.userIAM.userAuth';
+import { BusinessError } from '@ohos.base';
 
 /*
  * 确定密钥别名和封装密钥属性参数集
@@ -2336,56 +2377,68 @@ import userIAM_userAuth from '@ohos.userIAM.userAuth';
 let srcKeyAlias = 'sm4_key_fingerprint_access';
 let cipherText = 'r56ywtTJUQC6JFJ2VV2kZw=='; // 加密时得到的密文数据, 业务需根据实际加密结果修改
 let IV = '1234567890123456';
-let handle;
-let finishOutData; // 解密后的明文数据
-let fingerAuthToken;
-let challenge;
+let handle: number;
+let finishOutData: Uint8Array; // 解密后的明文数据
+let fingerAuthToken: Uint8Array;
+let challenge: Uint8Array;
 let authType = userIAM_userAuth.UserAuthType.FINGERPRINT;
 let authTrustLevel = userIAM_userAuth.AuthTrustLevel.ATL1;
 
-function StringToUint8Array(str) {
-    let arr = [];
-    for (let i = 0, j = str.length; i < j; ++i) {
-        arr.push(str.charCodeAt(i));
-    }
-    return new Uint8Array(arr);
+class throwObject {
+    isThrow: boolean = false;
+}
+
+function StringToUint8Array(str: string) {
+  let arr: number[] = [];
+  for (let i = 0, j = str.length; i < j; ++i) {
+    arr.push(str.charCodeAt(i));
+  }
+return new Uint8Array(arr);
 }
 
 /* 集成生成密钥参数集 & 加密参数集 */
-let propertiesDecrypt = new Array();
-propertiesDecrypt[0] = {
-    tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
-    value: huks.HuksKeyAlg.HUKS_ALG_SM4,
+class propertyDecryptType {
+    tag: huks.HuksTag = huks.HuksTag.HUKS_TAG_ALGORITHM
+    value: huks.HuksKeyAlg | huks.HuksKeyPurpose | huks.HuksKeySize | huks.HuksKeyPadding | huks.HuksCipherMode
+    | Uint8Array = huks.HuksKeyAlg.HUKS_ALG_SM4
 }
-propertiesDecrypt[1] = {
-    tag: huks.HuksTag.HUKS_TAG_PURPOSE,
-    value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_DECRYPT,
-}
-propertiesDecrypt[2] = {
-    tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
-    value: huks.HuksKeySize.HUKS_SM4_KEY_SIZE_128,
-}
-propertiesDecrypt[3] = {
-    tag: huks.HuksTag.HUKS_TAG_PADDING,
-    value: huks.HuksKeyPadding.HUKS_PADDING_NONE,
-}
-propertiesDecrypt[4] = {
-    tag: huks.HuksTag.HUKS_TAG_BLOCK_MODE,
-    value: huks.HuksCipherMode.HUKS_MODE_CBC,
-}
-propertiesDecrypt[5] = {
-    tag: huks.HuksTag.HUKS_TAG_IV,
-    value: StringToUint8Array(IV),
-}
-let decryptOptions = {
+
+let propertiesDecrypt: propertyDecryptType[] = [
+    {
+        tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
+        value: huks.HuksKeyAlg.HUKS_ALG_SM4,
+    },
+    {
+        tag: huks.HuksTag.HUKS_TAG_PURPOSE,
+        value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_DECRYPT,
+    },
+    {
+        tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
+        value: huks.HuksKeySize.HUKS_SM4_KEY_SIZE_128,
+    },
+    {
+        tag: huks.HuksTag.HUKS_TAG_PADDING,
+        value: huks.HuksKeyPadding.HUKS_PADDING_NONE,
+    },
+    {
+        tag: huks.HuksTag.HUKS_TAG_BLOCK_MODE,
+        value: huks.HuksCipherMode.HUKS_MODE_CBC,
+    },
+    {
+        tag: huks.HuksTag.HUKS_TAG_IV,
+        value: StringToUint8Array(IV),
+    }
+]
+
+let decryptOptions: huks.HuksOptions = {
     properties: propertiesDecrypt,
     inData: new Uint8Array(new Array())
 }
 
-function initSession(keyAlias, huksOptions, throwObject) {
-    return new Promise((resolve, reject) => {
+function initSession(keyAlias: string, huksOptions: huks.HuksOptions, throwObject: throwObject) {
+    return new Promise<huks.HuksSessionHandle>((resolve, reject) => {
         try {
-            huks.initSession(keyAlias, huksOptions, function (error, data) {
+            huks.initSession(keyAlias, huksOptions, (error, data) => {
                 if (error) {
                     reject(error);
                 } else {
@@ -2394,50 +2447,51 @@ function initSession(keyAlias, huksOptions, throwObject) {
             });
         } catch (error) {
             throwObject.isThrow = true;
-            throw(error);
+            throw(error as Error);
         }
     });
 }
 
-async function publicInitFunc(keyAlias, huksOptions) {
+async function publicInitFunc(keyAlias: string, huksOptions: huks.HuksOptions) {
     console.info(`enter callback doInit`);
-    let throwObject = {isThrow: false};
-    try {
-        await initSession(keyAlias, huksOptions, throwObject)
-            .then ((data) => {
-                console.info(`callback: doInit success, data = ${JSON.stringify(data)}`);
-                handle = data.handle;
-                challenge = data.challenge;
-            })
-            .catch((error) => {
-                if (throwObject.isThrow) {
-                    throw(error);
-                } else {
-                    console.error(`callback: doInit failed, code: ${error.code}, msg: ${error.message}`);
-                }
-            });
-    } catch (error) {
-        console.error(`callback: doInit input arg invalid, code: ${error.code}, msg: ${error.message}`);
-    }
+    let throwObject: throwObject = {isThrow: false};
+try {
+    await initSession(keyAlias, huksOptions, throwObject)
+      .then ((data) => {
+        console.info(`callback: doInit success, data = ${JSON.stringify(data)}`);
+        handle = data.handle;
+        challenge = data.challenge as Uint8Array;
+      })
+      .catch((error: BusinessError) => {
+        if (throwObject.isThrow) {
+          throw(error as Error);
+        } else {
+          console.error(`callback: doInit failed`);
+        }
+      });
+  } catch (error) {
+    console.error(`callback: doInit input arg invalid`);
+}
 }
 
-function userIAMAuthFinger(huksChallenge) {
-    // 获取认证对象
-    let auth;
-    try {
-        auth = userIAM_userAuth.getAuthInstance(huksChallenge, authType, authTrustLevel);
-        console.log("get auth instance success");
-    } catch (error) {
-        console.log("get auth instance failed" + error);
-    }
+function userIAMAuthFinger(huksChallenge: Uint8Array) {
+  // 获取认证对象
+  let auth: userIAM_userAuth.AuthInstance ;
+  try {
+    auth = userIAM_userAuth.getAuthInstance(huksChallenge, authType, authTrustLevel);
+    console.log("get auth instance success");
+  } catch (error) {
+    console.log("get auth instance failed" + error);
+    return;
+}
 
-    // 订阅认证结果
-    try {
-        auth.on("result", {
-            callback: (result) => {
-            /* 认证成功获取认证令牌 */
-            fingerAuthToken = result.token;
-        }
+// 订阅认证结果
+try {
+    auth.on("result", {
+        callback: (result) => {
+        /* 认证成功获取认证令牌 */
+        fingerAuthToken = (result as userIAM_userAuth.AuthResultInfo).token as Uint8Array;
+      }
     });
     console.log("subscribe authentication event success");
 } catch (error) {
@@ -2453,10 +2507,10 @@ try {
 }
 }
 
-function finishSession(handle, huksOptions, token, throwObject) {
-    return new Promise((resolve, reject) => {
+function finishSession(handle: number, huksOptions: huks.HuksOptions, token: Uint8Array, throwObject: throwObject) {
+    return new Promise<huks.HuksReturnResult>((resolve, reject) => {
         try {
-            huks.finishSession(handle, huksOptions, token, function (error, data) {
+            huks.finishSession(handle, huksOptions, token, (error, data) => {
                 if (error) {
                     reject(error);
                 } else {
@@ -2465,30 +2519,30 @@ function finishSession(handle, huksOptions, token, throwObject) {
             });
         } catch (error) {
             throwObject.isThrow = true;
-            throw(error);
+            throw(error as Error);
         }
     });
 }
 
-async function publicFinishFunc(handle, token, huksOptions) {
+async function publicFinishFunc(handle: number, token: Uint8Array, huksOptions: huks.HuksOptions) {
     console.info(`enter callback doFinish`);
-    let throwObject = {isThrow: false};
-    try {
-        await finishSession(handle, huksOptions, token, throwObject)
-            .then ((data) => {
-                finishOutData = data.outData;
-                console.info(`callback: doFinish success, data = ${JSON.stringify(data)}`);
-            })
-            .catch(error => {
-                if (throwObject.isThrow) {
-                    throw(error);
-                } else {
-                    console.error(`callback: doFinish failed, code: ${error.code}, msg: ${error.message}`);
-                }
-            });
-    } catch (error) {
-        console.error(`callback: doFinish input arg invalid, code: ${error.code}, msg: ${error.message}`);
-    }
+    let throwObject: throwObject = {isThrow: false};
+try {
+    await finishSession(handle, huksOptions, token, throwObject)
+      .then ((data) => {
+        finishOutData = data.outData as Uint8Array;
+        console.info(`callback: doFinish success, data = ${JSON.stringify(data)}`);
+      })
+      .catch((error: BusinessError) => {
+        if (throwObject.isThrow) {
+          throw(error as Error);
+        } else {
+          console.error(`callback: doFinish failed`);
+        }
+      });
+  } catch (error) {
+    console.error(`callback: doFinish input arg invalid`);
+}
 }
 
 async function testSm4Cipher() {
@@ -2523,11 +2577,12 @@ HUKS为密钥提供合法性证明能力，主要应用于非对称密钥的公�
 
 **开发步骤**
 
-```js
+```ts
 /*
  * 以下以attestKey Callback接口操作验证为例
  */
 import huks from '@ohos.security.huks';
+import { BusinessError } from '@ohos.base';
 
 /*
  * 确定密钥别名和封装密钥属性参数集
@@ -2538,78 +2593,97 @@ let aliasUint8 = StringToUint8Array(keyAliasString);
 let securityLevel = StringToUint8Array('sec_level');
 let challenge = StringToUint8Array('challenge_data');
 let versionInfo = StringToUint8Array('version_info');
-let attestCertChain;
+let attestCertChain: Array<string>;
 
-let genKeyProperties = new Array();
-genKeyProperties[0] = {
-    tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
-    value: huks.HuksKeyAlg.HUKS_ALG_RSA
-};
-genKeyProperties[1] = {
-    tag: huks.HuksTag.HUKS_TAG_KEY_STORAGE_FLAG,
-    value: huks.HuksKeyStorageType.HUKS_STORAGE_PERSISTENT
-};
-genKeyProperties[2] = {
-    tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
-    value: huks.HuksKeySize.HUKS_RSA_KEY_SIZE_2048
-};
-genKeyProperties[3] = {
-    tag: huks.HuksTag.HUKS_TAG_PURPOSE,
-    value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_VERIFY
-};
-genKeyProperties[4] = {
-    tag: huks.HuksTag.HUKS_TAG_DIGEST,
-    value: huks.HuksKeyDigest.HUKS_DIGEST_SHA256
-};
-genKeyProperties[5] = {
-    tag: huks.HuksTag.HUKS_TAG_PADDING,
-    value: huks.HuksKeyPadding.HUKS_PADDING_PSS
-};
-genKeyProperties[6] = {
-    tag: huks.HuksTag.HUKS_TAG_KEY_GENERATE_TYPE,
-    value: huks.HuksKeyGenerateType.HUKS_KEY_GENERATE_TYPE_DEFAULT
-};
-genKeyProperties[7] = {
-    tag: huks.HuksTag.HUKS_TAG_BLOCK_MODE,
-    value: huks.HuksCipherMode.HUKS_MODE_ECB
-};
-let genOptions = {
+class throwObject {
+    isThrow: boolean = false;
+}
+
+class genKeyPropertyType {
+    tag: huks.HuksTag = huks.HuksTag.HUKS_TAG_ALGORITHM;
+    value: huks.HuksKeyAlg | huks.HuksKeyStorageType | huks.HuksKeySize | huks.HuksKeyPurpose | huks.HuksKeyDigest
+    | huks.HuksKeyPadding | huks.HuksKeyGenerateType | huks.HuksCipherMode = huks.HuksKeyAlg.HUKS_ALG_RSA
+}
+
+let genKeyProperties: genKeyPropertyType[] = [
+    {
+        tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
+        value: huks.HuksKeyAlg.HUKS_ALG_RSA
+    },
+    {
+        tag: huks.HuksTag.HUKS_TAG_KEY_STORAGE_FLAG,
+        value: huks.HuksKeyStorageType.HUKS_STORAGE_PERSISTENT
+    },
+    {
+        tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
+        value: huks.HuksKeySize.HUKS_RSA_KEY_SIZE_2048
+    },
+    {
+        tag: huks.HuksTag.HUKS_TAG_PURPOSE,
+        value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_VERIFY
+    },
+    {
+        tag: huks.HuksTag.HUKS_TAG_DIGEST,
+        value: huks.HuksKeyDigest.HUKS_DIGEST_SHA256
+    },
+    {
+        tag: huks.HuksTag.HUKS_TAG_PADDING,
+        value: huks.HuksKeyPadding.HUKS_PADDING_PSS
+    },
+    {
+        tag: huks.HuksTag.HUKS_TAG_KEY_GENERATE_TYPE,
+        value: huks.HuksKeyGenerateType.HUKS_KEY_GENERATE_TYPE_DEFAULT
+    },
+    {
+        tag: huks.HuksTag.HUKS_TAG_BLOCK_MODE,
+        value: huks.HuksCipherMode.HUKS_MODE_ECB
+    }
+]
+
+let genOptions: huks.HuksOptions = {
     properties: genKeyProperties
 };
 
-let attestKeyproperties = new Array();
-attestKeyproperties[0] = {
-    tag: huks.HuksTag.HUKS_TAG_ATTESTATION_ID_SEC_LEVEL_INFO,
-    value: securityLevel
-};
-attestKeyproperties[1] = {
-    tag: huks.HuksTag.HUKS_TAG_ATTESTATION_CHALLENGE,
-    value: challenge
-};
-attestKeyproperties[2] = {
-    tag: huks.HuksTag.HUKS_TAG_ATTESTATION_ID_VERSION_INFO,
-    value: versionInfo
-};
-attestKeyproperties[3] = {
-    tag: huks.HuksTag.HUKS_TAG_ATTESTATION_ID_ALIAS,
-    value: aliasUint8
-};
-let huksOptions = {
+class attestKeypropertyType {
+    tag: huks.HuksTag = huks.HuksTag.HUKS_TAG_ATTESTATION_ID_SEC_LEVEL_INFO;
+    value: Uint8Array = securityLevel;
+}
+
+let attestKeyproperties: attestKeypropertyType[] = [
+    {
+        tag: huks.HuksTag.HUKS_TAG_ATTESTATION_ID_SEC_LEVEL_INFO,
+        value: securityLevel
+    },
+    {
+        tag: huks.HuksTag.HUKS_TAG_ATTESTATION_CHALLENGE,
+        value: challenge
+    },
+    {
+        tag: huks.HuksTag.HUKS_TAG_ATTESTATION_ID_VERSION_INFO,
+        value: versionInfo
+    },
+    {
+        tag: huks.HuksTag.HUKS_TAG_ATTESTATION_ID_ALIAS,
+        value: aliasUint8
+    }
+]
+
+let huksOptions: huks.HuksOptions = {
     properties: attestKeyproperties
 };
 
-function StringToUint8Array(str) {
-    let arr = [];
-    for (let i = 0, j = str.length; i < j; ++i) {
-        arr.push(str.charCodeAt(i));
-    }
-    return new Uint8Array(arr);
+function StringToUint8Array(str: string) {
+  let arr: number[] = [];
+  for (let i = 0, j = str.length; i < j; ++i) {
+    arr.push(str.charCodeAt(i));
+  }
+return new Uint8Array(arr);
 }
 
-function generateKeyItem(keyAlias, huksOptions, throwObject) {
-    return new Promise((resolve, reject) => {
+function generateKeyItem(keyAlias: string, huksOptions: huks.HuksOptions, throwObject: throwObject) {
+    return new Promise<void>((resolve, reject) => {
         try {
-            huks.generateKeyItem(keyAlias, huksOptions, function (error, data) {
+            huks.generateKeyItem(keyAlias, huksOptions, (error, data) => {
                 if (error) {
                     reject(error);
                 } else {
@@ -2618,35 +2692,35 @@ function generateKeyItem(keyAlias, huksOptions, throwObject) {
             });
         } catch (error) {
             throwObject.isThrow = true;
-            throw(error);
+            throw(error as Error);
         }
     });
 }
 
-async function publicGenKeyFunc(keyAlias, huksOptions) {
+async function publicGenKeyFunc(keyAlias: string, huksOptions: huks.HuksOptions) {
     console.info(`enter callback generateKeyItem`);
-    let throwObject = {isThrow: false};
-    try {
-        await generateKeyItem(keyAlias, huksOptions, throwObject)
-            .then((data) => {
-                console.info(`callback: generateKeyItem success, data = ${JSON.stringify(data)}`);
-            })
-            .catch(error => {
-                if (throwObject.isThrow) {
-                    throw(error);
-                } else {
-                    console.error(`callback: generateKeyItem failed, code: ${error.code}, msg: ${error.message}`);
-                }
-            });
-    } catch (error) {
-        console.error(`callback: generateKeyItem input arg invalid, code: ${error.code}, msg: ${error.message}`);
-    }
+    let throwObject: throwObject = {isThrow: false};
+try {
+    await generateKeyItem(keyAlias, huksOptions, throwObject)
+      .then((data) => {
+        console.info(`callback: generateKeyItem success, data = ${JSON.stringify(data)}`);
+      })
+      .catch((error: BusinessError) => {
+        if (throwObject.isThrow) {
+          throw(error as Error);
+        } else {
+          console.error(`callback: generateKeyItem failed`);
+        }
+      });
+  } catch (error) {
+    console.error(`callback: generateKeyItem input arg invalid`);
+}
 }
 
-function attestKeyItem(keyAlias, huksOptions, throwObject) {
-    return new Promise((resolve, reject) => {
+function attestKeyItem(keyAlias: string, huksOptions: huks.HuksOptions, throwObject: throwObject) {
+    return new Promise<huks.HuksReturnResult>((resolve, reject) => {
         try {
-            huks.attestKeyItem(keyAlias, huksOptions, function (error, data) {
+            huks.attestKeyItem(keyAlias, huksOptions, (error, data) => {
                 if (error) {
                     reject(error);
                 } else {
@@ -2655,32 +2729,32 @@ function attestKeyItem(keyAlias, huksOptions, throwObject) {
             });
         } catch (error) {
             throwObject.isThrow = true;
-            throw(error);
+            throw(error as Error);
         }
     });
 }
 
-async function publicAttestKey(keyAlias, huksOptions) {
+async function publicAttestKey(keyAlias: string, huksOptions: huks.HuksOptions) {
     console.info(`enter callback attestKeyItem`);
-    let throwObject = {isThrow: false};
-    try {
-        await attestKeyItem(keyAlias, huksOptions, throwObject)
-            .then ((data) => {
-                console.info(`callback: attestKeyItem success, data = ${JSON.stringify(data)}`);
-                if (data !== null && data.certChains !== null) {
-                    attestCertChain = data.certChains;
-                }
-            })
-            .catch(error => {
-                if (throwObject.isThrow) {
-                    throw(error);
-                } else {
-                    console.error(`callback: attestKeyItem failed, code: ${error.code}, msg: ${error.message}`);
-                }
-            });
-    } catch (error) {
-        console.error(`callback: attestKeyItem input arg invalid, code: ${error.code}, msg: ${error.message}`);
-    }
+    let throwObject: throwObject = {isThrow: false};
+try {
+    await attestKeyItem(keyAlias, huksOptions, throwObject)
+      .then ((data) => {
+        console.info(`callback: attestKeyItem success, data = ${JSON.stringify(data)}`);
+        if (data !== null && data.certChains !== null) {
+          attestCertChain = data.certChains as string[];
+        }
+      })
+      .catch((error: BusinessError) => {
+        if (throwObject.isThrow) {
+          throw(error as Error);
+        } else {
+          console.error(`callback: attestKeyItem failed`);
+        }
+      });
+  } catch (error) {
+    console.error(`callback: attestKeyItem input arg invalid`);
+}
 }
 
 async function AttestKeyTest() {
