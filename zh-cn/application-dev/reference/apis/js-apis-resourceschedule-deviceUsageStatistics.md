@@ -1243,7 +1243,7 @@ registerAppGroupCallBack(groupCallback: Callback&lt;AppGroupCallbackInfo&gt;): P
 **示例**：
 
 ```javascript
-    let onBundleGroupChanged = (res) =>{
+    function onBundleGroupChanged  (res) {
         console.log('BUNDLE_ACTIVE registerAppGroupCallBack RegisterGroupCallBack callback success.');
         console.log('BUNDLE_ACTIVE registerAppGroupCallBack result appOldGroup is : ' + res.appOldGroup);
         console.log('BUNDLE_ACTIVE registerAppGroupCallBack result appNewGroup is : ' + res.appNewGroup);
@@ -1297,8 +1297,7 @@ registerAppGroupCallBack(groupCallback: Callback&lt;AppGroupCallbackInfo&gt;, ca
 **示例**：
 
 ```javascript
-    // @ts-nocheck
-    let onBundleGroupChanged = (err, res) =>{
+    function onBundleGroupChanged (res) {
         console.log('BUNDLE_ACTIVE onBundleGroupChanged RegisterGroupCallBack callback success.');
         console.log('BUNDLE_ACTIVE registerAppGroupCallBack result appOldGroup is : ' + res.appOldGroup);
         console.log('BUNDLE_ACTIVE registerAppGroupCallBack result appNewGroup is : ' + res.appNewGroup);
