@@ -52,9 +52,9 @@ changeAppCloudSwitch(accountId: string, bundleName: string, status: boolean): Pr
   let accountId: string = "testAccount";
   let bundleName: string = "com.example.bundle";
   cloudSyncManager.changeAppCloudSwitch(accountId, bundleName, true).then(() => {
-      console.info("changeAppCloudSwitch successfully");
+    console.info("changeAppCloudSwitch successfully");
   }).catch((err: BusinessError) => {
-      console.info("changeAppCloudSwitch failed with error message: " + err.message + ", error code: " + err.code);
+    console.info("changeAppCloudSwitch failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -138,9 +138,9 @@ notifyDataChange(accountId: string, bundleName: string): Promise&lt;void&gt;
   let accountId: string = "testAccount";
   let bundleName: string = "com.example.bundle";
   cloudSyncManager.notifyDataChange(accountId, bundleName).then(() => {
-      console.info("notifyDataChange successfully");
+    console.info("notifyDataChange successfully");
   }).catch((err: BusinessError) => {
-      console.info("notifyDataChange failed with error message: " + err.message + ", error code: " + err.code);
+    console.info("notifyDataChange failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -223,11 +223,14 @@ enableCloud(accountId: string, switches: { [bundleName: string]: boolean }): Pro
   ```ts
   import { BusinessError } from '@ohos.base';
   let accountId: string = "testAccount";
-  let switches = {"com.example.bundleName1": true, "com.example.bundleName2": false};
+  let switches: Record<string, boolean> = {
+    'com.example.bundleName1': true,
+    'com.example.bundleName2': false
+  }
   cloudSyncManager.enableCloud(accountId, switches).then(() => {
-      console.info("enableCloud successfully");
+    console.info("enableCloud successfully");
   }).catch((err: BusinessError) => {
-      console.info("enableCloud failed with error message: " + err.message + ", error code: " + err.code);
+    console.info("enableCloud failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -315,9 +318,9 @@ disableCloud(accountId: string): Promise&lt;void&gt;
   import { BusinessError } from '@ohos.base';
   let accountId: string = "testAccount";
   cloudSyncManager.disableCloud(accountId).then(() => {
-      console.info("disableCloud successfully");
+    console.info("disableCloud successfully");
   }).catch((err: BusinessError) => {
-      console.info("disableCloud failed with error message: " + err.message + ", error code: " + err.code);
+    console.info("disableCloud failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -418,9 +421,9 @@ clean(accountId: string, appActions: { [bundleName: string]: Action }): Promise&
     'com.example.bundleName2': cloudSyncManager.Action.CLEAR_DATA
   };
   cloudSyncManager.clean(accountId, appActions).then(() => {
-      console.info("clean successfully");
+    console.info("clean successfully");
   }).catch((err: BusinessError) => {
-      console.info("clean failed with error message: " + err.message + ", error code: " + err.code);
+    console.info("clean failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
