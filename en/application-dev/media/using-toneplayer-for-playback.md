@@ -46,12 +46,12 @@ To implement audio playback with the TonePlayer, perform the following steps:
      
    ```ts
    import audio from '@ohos.multimedia.audio';
-   let audioRendererInfo = {
+   let audioRendererInfo: audio.AudioRendererInfo = {
      content : audio.ContentType.CONTENT_TYPE_SONIFICATION,
      usage : audio.StreamUsage.STREAM_USAGE_MEDIA,
      rendererFlags : 0
    };
-   tonePlayerPromise = audio.createTonePlayer(audioRendererInfo);
+   let tonePlayerPromise = audio.createTonePlayer(audioRendererInfo);
    ```
 
 2. Load the DTMF tone configuration of the specified type.
@@ -95,11 +95,11 @@ export class TonelayerDemo {
   private timer : number;
   private timerPro : number;
   // Promise mode.
-  async testTonePlayerPromise(type) {
+  async testTonePlayerPromise(type: audio.ToneType) {
     console.info('testTonePlayerPromise start');
     if (this.timerPro) clearTimeout(this.timerPro);
-    let tonePlayerPromise;
-    let audioRendererInfo = {
+    let tonePlayerPromise: audio.TonePlayer;
+    let audioRendererInfo: audio.AudioRendererInfo = {
       content : audio.ContentType.CONTENT_TYPE_SONIFICATION,
       usage : audio.StreamUsage.STREAM_USAGE_MEDIA,
       rendererFlags : 0

@@ -101,6 +101,7 @@ Read [AVRecorder](../reference/apis/js-apis-media.md#avrecorder9) for the API re
 ```ts
 import media from '@ohos.multimedia.media';
 import { BusinessError } from '@ohos.base';
+
 export class AudioRecorderDemo {
   private avRecorder: media.AVRecorder;
   private avProfile: media.AVRecorderProfile = {
@@ -178,5 +179,3 @@ export class AudioRecorderDemo {
   }
 }
 ```
-
- <!--no_check--> 
