@@ -127,14 +127,14 @@ struct ProgressMaskExample {
 
       // 更新进度遮罩的进度值
       Button('updateProgress')
-        .onClick((event: ClickEvent) => {
+        .onClick((event?: ClickEvent) => {
           this.value += 10;
           this.progress.updateProgress(this.value);
         }).width(200).height(50).margin(20)
 
       // 更新进度遮罩的颜色
       Button('updateColor')
-        .onClick((event: ClickEvent) => {
+        .onClick((event?: ClickEvent) => {
           if (this.progressflag1) {
             this.progress.updateColor(0x9fff0000);
           } else {
@@ -145,7 +145,7 @@ struct ProgressMaskExample {
 
       // 恢复进度遮罩
       Button('click reset!')
-        .onClick((event: ClickEvent) => {
+        .onClick((event?: ClickEvent) => {
           this.value = 0;
           this.progress.updateProgress(this.value);
         }).width(200).height(50).margin(20)
