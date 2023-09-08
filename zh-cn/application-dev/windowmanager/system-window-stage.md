@@ -104,7 +104,7 @@ export default class ServiceExtensionAbility1 extends ExtensionContext {
         }
         console.info('Succeeded in loading the content.');
         // 3.显示音量条窗口。
-        windowClass.showWindow((err: BusinessError) => {
+        (windowClass as window.Window).showWindow((err: BusinessError) => {
           let errCode: number = err.code;
           if (errCode) {
             console.error('Failed to show the window. Cause:' + JSON.stringify(err));
@@ -117,7 +117,7 @@ export default class ServiceExtensionAbility1 extends ExtensionContext {
       // 此处以监听音量条区域外的点击事件为例实现音量条窗口的隐藏。
       windowClass.on('touchOutside', () => {
         console.info('touch outside');
-        windowClass.hide((err: BusinessError) => {
+        (windowClass as window.Window).hide((err: BusinessError) => {
           let errCode: number = err.code;
           if (errCode) {
             console.error('Failed to hide the window. Cause: ' + JSON.stringify(err));
@@ -176,10 +176,10 @@ export default class ServiceExtensionAbility1 extends ExtensionContext {
       windowClass = data;
       // 以下为系统窗口显示动画的开发步骤
       // 1. 获取窗口属性转换控制器
-      let controller = windowClass.getTransitionController();
+      let controller: window.TransitionController = windowClass.getTransitionController();
       // 2. 配置窗口显示时的动画
       controller.animationForShown = (context: window.TransitionContext) => {
-        let toWindow = context.toWindow
+        let toWindow: window.Window = context.toWindow
         // 配置动画参数
         animateTo({
           duration: 1000, // 动画时长
@@ -212,7 +212,7 @@ export default class ServiceExtensionAbility1 extends ExtensionContext {
         }
         console.info('Succeeded in loading the content.');
         // 4.显示当前窗口，过程中播放动画
-        windowClass.showWithAnimation((err: BusinessError) => {
+        (windowClass as window.Window).showWithAnimation((err: BusinessError) => {
           let errCode: number = err.code;
           if (errCode) {
             console.error('Failed to show the window with animation. Cause: ' + JSON.stringify(err));
@@ -233,10 +233,10 @@ export default class ServiceExtensionAbility1 extends ExtensionContext {
     }
     // 以下为系统窗口隐藏动画的开发步骤
     // 1. 获取窗口属性转换控制器
-    let controller: window.TransitionController = windowClass.getTransitionController();
+    let controller: window.TransitionController = (windowClass as window.Window).getTransitionController();
     // 2. 配置窗口显示时的动画
     controller.animationForHidden = (context: window.TransitionContext) => {
-      let toWindow = context.toWindow
+      let toWindow: window.Window = context.toWindow
       // 配置动画参数
       animateTo({
         duration: 1000, // 动画时长
@@ -247,8 +247,8 @@ export default class ServiceExtensionAbility1 extends ExtensionContext {
         playMode: PlayMode.Normal, // 动画模式
         onFinish: () => {
           // 3. 设置属性转换完成
-          context.completeTransition(true)
-          windowClass.destroyWindow((err: BusinessError) => {
+          context.completeTransition(true);
+          (windowClass as window.Window).destroyWindow((err: BusinessError) => {
             let errCode: number = err.code;
             if (errCode) {
               console.error('Failed to destroy the window. Cause:' + JSON.stringify(err));
@@ -263,8 +263,8 @@ export default class ServiceExtensionAbility1 extends ExtensionContext {
       })
       console.info('complete transition end');
     }
-    // 4.隐藏当前窗口，过程中播放动画
-    windowClass.hideWithAnimation((err: BusinessError) => {
+      // 4.隐藏当前窗口，过程中播放动画
+    (windowClass as window.Window).hideWithAnimation((err: BusinessError) => {
       let errCode: number = err.code;
       if (errCode) {
         console.error('Failed to hide the window with animation. Cause: ' + JSON.stringify(err));
