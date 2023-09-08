@@ -14,17 +14,17 @@ LazyForEach(
     keyGenerator?: (item: any) => string // (Optional). ID generation function
 ): void
 interface IDataSource {
-    totalCount(): number;                                             // Get total count of data
-    getData(index: number): any;                                      // Get single data by index
-    registerDataChangeListener(listener: DataChangeListener): void;   // Register listener to listening data changes
-    unregisterDataChangeListener(listener: DataChangeListener): void; // Unregister listener
+    totalCount(): number;                                             // Obtain the total number of data records.
+    getData(index: number): any;                                      // Obtain the data that matches the specified index.
+    registerDataChangeListener(listener: DataChangeListener): void;   // Register a data change listener.
+    unregisterDataChangeListener(listener: DataChangeListener): void; // Deregister the data change listener.
 }
 interface DataChangeListener {
-    onDataReloaded(): void;                      // Called while data reloaded
-    onDataAdd(index: number): void;            // Called while single data added
-    onDataMove(from: number, to: number): void; // Called while single data moved
-    onDataDelete(index: number): void;          // Called while single data deleted
-    onDataChange(index: number): void;          // Called while single data changed
+    onDataReloaded(): void;                      // Invoked when all data is reloaded.
+    onDataAdd(index: number): void;            // Invoked when data is added.
+    onDataMove(from: number, to: number): void; // Invoked when data is moved.
+    onDataDelete(index: number): void;          // Invoked when data is deleted.
+    onDataChange(index: number): void;          // Invoked when data is deleted
 }
 ```
 

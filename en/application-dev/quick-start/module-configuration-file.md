@@ -89,6 +89,7 @@ As shown above, the **module.json5** file contains several tags.
 | [testRunner](#testrunner) | Test runner configuration of the module.| Object| Yes (initial value: left empty)|
 | [atomicService](#atomicservice)| Atomic service configuration.| Object| Yes (initial value: left empty) |
 | [dependencies](#dependencies)| List of shared libraries on which the current module depends during running.| Object array| Yes (initial value: left empty) |
+| libIsolation | Whether to save the .so files of the current HAP to a separate folder (named after the module) in the **libs** directory. This is intended to avoid .so file conflicts between HAPs.<br>- **true**: The .so files of the current HAP are stored in a separate folder (named after the module) in the **libs** directory.<br>- **false**: The .so files of the current HAP are directly stored in the **libs** directory.| Boolean| Yes (initial value: **false**)|
 
 
 ## deviceTypes

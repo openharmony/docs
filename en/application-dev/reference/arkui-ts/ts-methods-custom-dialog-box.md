@@ -104,7 +104,7 @@ struct CustomDialogUser {
     }),
     cancel: this.existApp,
     autoCancel: true,
-    alignment: DialogAlignment.Default,
+    alignment: DialogAlignment.Bottom,
     offset: { dx: 0, dy: -20 },
     gridCount: 4,
     customStyle: false
@@ -141,4 +141,4 @@ struct CustomDialogUser {
 }
 ```
 
-![en-us_image_0000001212058470](figures/en-us_image_0000001212058470.gif)
+![en-us_image_0000001219744203](figures/en-us_image_0000001219744203.gif)

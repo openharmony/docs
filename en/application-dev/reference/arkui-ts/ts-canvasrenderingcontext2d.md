@@ -2734,3 +2734,77 @@ Since API version 9, this API is supported in ArkTS widgets.
 Defines an object created using the **[createPattern](#createpattern)** API.
 
 Since API version 9, this API is supported in ArkTS widgets.
+
+## CanvasDirection
+
+Since API version 9, this API is supported in ArkTS widgets.
+
+| Name       | Description            |
+| -------- | -------------- |
+| inherit | The text direction is inherited from the **\<Canvas>** component.|
+| ltr     | The text direction is from left to right.|
+| rtl     | The text direction is from right to left.|
+
+## CanvasFillRule
+
+Since API version 9, this API is supported in ArkTS widgets.
+
+| Name       | Description            |
+| -------- | -------------- |
+| evenodd  | The inside part of a shape is determined based on whether the counting result is an odd number or not.|
+| nonzero   | The inside part of a shape is determined based on whether the counting result is zero or not.|
+
+## CanvasLineCap
+
+Since API version 9, this API is supported in ArkTS widgets.
+
+| Name       | Description            |
+| -------- | -------------- |
+| butt   | The ends of the line are squared off, and the line does not extend beyond its two endpoints.              |
+| round  | The line is extended at the endpoints by a half circle whose diameter is equal to the line width.           |
+| square | The line is extended at the endpoints by a rectangle whose width is equal to half the line width and height equal to the line width.|
+
+## CanvasLineJoin
+
+Since API version 9, this API is supported in ArkTS widgets.
+
+| Name       | Description            |
+| -------- | -------------- |
+| bevel  | The intersection is a triangle. The rectangular corner of each line is independent.|
+| miter   | The intersection has a miter corner by extending the outside edges of the lines until they meet. You can view the effect of this attribute in **miterLimit**.|
+| round   | The intersection is a sector, whose radius at the rounded corner is equal to the line width.|
+
+## CanvasTextAlign
+
+Since API version 9, this API is supported in ArkTS widgets.
+
+| Name       | Description            |
+| -------- | -------------- |
+| center  | The text is center-aligned.|
+| start   | The text is aligned with the start bound.|
+| end   | The text is aligned with the end bound.|
+| left  | The text is left-aligned.|
+| right   | The text is right-aligned.|
+
+## CanvasTextBaseline
+
+Since API version 9, this API is supported in ArkTS widgets.
+
+| Name       | Description            |
+| -------- | -------------- |
+| alphabetic  | The text baseline is the normal alphabetic baseline.|
+| bottom   | The text baseline is at the bottom of the text bounding box. Its difference from the ideographic baseline is that the ideographic baseline does not consider letters in the next line.|
+| hanging  | The text baseline is a hanging baseline over the text.|
+| ideographic   | The text baseline is the ideographic baseline. If a character exceeds the alphabetic baseline, the ideographic baseline is located at the bottom of the excessive character.|
+| middle   | The text baseline is in the middle of the text bounding box.|
+| top   | The text baseline is on the top of the text bounding box.|
+
+## ImageSmoothingQuality
+
+Since API version 9, this API is supported in ArkTS widgets.
+
+| Name       | Description            |
+| -------- | -------------- |
+| low      | Low quality.|
+| medium   | Medium quality.|
+| high     | High quality.|

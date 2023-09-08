@@ -201,7 +201,7 @@ struct ForEachTransition {
         .width(160)
         .onClick(() => {
           animateTo({ duration: 1000 }, () => {
-            //Insert an element to the array header. As a result, Forach adds the corresponding component to the header.
+            //Insert an element to the array header. As a result, ForEach adds the corresponding component to the header.
             this.numbers.unshift(this.startNumber.toString());
             this.startNumber++;
           })
@@ -211,7 +211,7 @@ struct ForEachTransition {
         .fontSize(16)
         .onClick(() => {
           animateTo({ duration: 1000 }, () => {
-            //Insert an element to the end of the array. As a result, Forach adds the corresponding component to the end.
+            // Insert an element to the end of the array. As a result, ForEach adds the corresponding component to the end.
             this.numbers.push(this.startNumber.toString());
             this.startNumber++;
           })
@@ -221,7 +221,7 @@ struct ForEachTransition {
         .fontSize(16)
         .onClick(() => {
           animateTo({ duration: 1000 }, () => {
-            //Delete the header element of the array. As a result, Forach deletes the header component.
+            // Delete the header element of the array. As a result, ForEach deletes the header component.
             this.numbers.shift();
           })
         })
@@ -230,7 +230,7 @@ struct ForEachTransition {
         .fontSize(16)
         .onClick(() => {
           animateTo({ duration: 1000 }, () => {
-            //Delete the tail element of the array. As a result, Forach deletes the header component.
+            // Delete the tail element of the array. As a result, ForEach deletes the tail component.
             this.numbers.pop();
           })
         })

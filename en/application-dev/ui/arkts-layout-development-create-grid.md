@@ -173,7 +173,7 @@ Grid() {
   }
 }
 .rowsTemplate('1fr 1fr')
-.rowsTemplate('1fr 1fr')
+.columnsTemplate('1fr 1fr')
 ```
 
 For multiple **\<GridItem>** components with similar content structures, you are advised to nest them in **ForEach** statements to reduce repeated code.
@@ -196,7 +196,7 @@ struct OfficeService {
         }, service => service)
       }
       .rowsTemplate('1fr 1fr')
-      .rowsTemplate('1fr 1fr')
+      .columnsTemplate('1fr 1fr')
       ...
     }
     ...

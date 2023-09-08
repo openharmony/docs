@@ -218,7 +218,13 @@ You can implement page redirection through the [page router](../reference/apis/j
            .height('5%')
            // Bind the onClick event to the Next button so that clicking the button redirects the user to the second page.
            .onClick(() => {
-             router.pushUrl({ url: 'pages/Second' })
+             console.info(`Succeeded in clicking the 'Next' button.`)
+            // Go to the second page.
+              router.pushUrl({ url: 'pages/Second' }).then(() => {
+                console.info('Succeeded in jumping to the second page.')
+              }).catch((err) => {
+                console.error(`Failed to jump to the second page.Code is ${err.code}, message is ${err.message}`)
+              })
            })
          }
          .width('100%')
@@ -262,7 +268,14 @@ You can implement page redirection through the [page router](../reference/apis/j
            .height('5%')
            // Bind the onClick event to the Back button so that clicking the button redirects the user back to the first page.
            .onClick(() => {
-             router.back()
+             console.info(`Succeeded in clicking the 'Back' button.`)
+             try {
+               // Return to the first page.
+               router.back()
+               console.info('Succeeded in returning to the first page.')
+             } catch (err) {
+               console.error(`Failed to return to the first page.Code is ${err.code}, message is ${err.message}`)
+             }
            })
          }
          .width('100%')
