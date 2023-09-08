@@ -56,7 +56,7 @@ The major APIs for notification subscription are described as follows. For detai
        console.info(`onCancel callback. req.id: ${req.id}`);
      },
      onUpdate: (data) => {
-       console.info(`onUpdate callback. req.id: ${req.sortedHashCode}`);
+       console.info(`onUpdate callback. req.id: ${data.sortedHashCode}`);
      },
      onConnect: () => {
        console.info(`onConnect callback.}`);

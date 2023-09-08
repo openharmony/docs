@@ -3049,7 +3049,9 @@ requestEnableNotification(context: UIAbilityContext, callback: AsyncCallback\<vo
 
 ```ts
 import Base from '@ohos.base';
+import common from '@ohos.app.ability.common';
 
+let context:Context = getContext();
 let requestEnableNotificationCallback = (err: Base.BusinessError): void => {
     if (err) {
         console.error(`requestEnableNotification failed, code is ${err.code}, message is ${err.message}`);
@@ -3058,7 +3060,7 @@ let requestEnableNotificationCallback = (err: Base.BusinessError): void => {
     }
 };
 
-notificationManager.requestEnableNotification(globalThis.uicontext, requestEnableNotificationCallback);
+notificationManager.requestEnableNotification(context as common.UIAbilityContext, requestEnableNotificationCallback);
 ```
 
 ## notificationManager.requestEnableNotification<sup>10+<sup>
@@ -3089,8 +3091,10 @@ requestEnableNotification(context: UIAbilityContext): Promise\<void\>
 
 ```ts
 import Base from '@ohos.base';
+import common from '@ohos.app.ability.common';
 
-notificationManager.requestEnableNotification(globalThis.uicontext).then(() => {
+let context:Context = getContext();
+notificationManager.requestEnableNotification(context as common.UIAbilityContext).then(() => {
     console.info("requestEnableNotification success");
 }).catch((err: Base.BusinessError) => {
     console.error(`requestEnableNotification fail: ${JSON.stringify(err)}`);
