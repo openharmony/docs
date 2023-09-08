@@ -47,7 +47,7 @@ sppListen(name: string, options: SppOptions, callback: AsyncCallback&lt;number&g
 
 ```js
 let serverNumber = -1;
-function serverSocket(code, number) {
+function serverSocket(code: BusinessError, number: number) {
   console.log('bluetooth error code: ' + code.code);
   if (code.code == 0) {
     console.log('bluetooth serverSocket Number: ' + number);
@@ -55,7 +55,7 @@ function serverSocket(code, number) {
   }
 }
 
-let sppOption = {uuid: '00001810-0000-1000-8000-00805F9B34FB', secure: false, type: 0};
+let sppOption:socket.SppOption = {uuid: '00001810-0000-1000-8000-00805F9B34FB', secure: false, type: 0};
 try {
     socket.sppListen('server1', sppOption, serverSocket);
 } catch (err) {
@@ -94,7 +94,7 @@ sppAccept(serverSocket: number, callback: AsyncCallback&lt;number&gt;): void
 
 ```js
 let serverNumber = -1;
-function serverSocket(code, number) {
+function serverSocket(code: BusinessError, number: number) {
   console.log('bluetooth error code: ' + code.code);
   if (code.code == 0) {
     console.log('bluetooth serverSocket Number: ' + number);
@@ -102,7 +102,7 @@ function serverSocket(code, number) {
   }
 }
 let clientNumber = -1;
-function acceptClientSocket(code, number) {
+function acceptClientSocket(code: BusinessError, number: number) {
   console.log('bluetooth error code: ' + code.code);
   if (code.code == 0) {
     console.log('bluetooth clientSocket Number: ' + number);
@@ -152,7 +152,7 @@ sppConnect(deviceId: string, options: SppOptions, callback: AsyncCallback&lt;num
 ```js
 
 let clientNumber = -1;
-function clientSocket(code, number) {
+function clientSocket(code: BusinessError, number: number) {
   if (code.code != 0) {
     return;
   }
@@ -160,7 +160,7 @@ function clientSocket(code, number) {
   // 获取的clientNumber用作客户端后续读/写操作socket的id。
   clientNumber = number;
 }
-let sppOption = {uuid: '00001810-0000-1000-8000-00805F9B34FB', secure: false, type: 0};
+let sppOption:socket.SppOption = {uuid: '00001810-0000-1000-8000-00805F9B34FB', secure: false, type: 0};
 try {
     socket.sppConnect('XX:XX:XX:XX:XX:XX', sppOption, clientSocket);
 } catch (err) {
@@ -196,7 +196,7 @@ sppCloseServerSocket(socket: number): void
 
 ```js
 let serverNumber = -1;
-function serverSocket(code, number) {
+function serverSocket(code: BusinessError, number: number) {
   console.log('bluetooth error code: ' + code.code);
   if (code.code == 0) {
     console.log('bluetooth serverSocket Number: ' + number);
@@ -238,7 +238,7 @@ sppCloseClientSocket(socket: number): void
 
 ```js
 let clientNumber = -1;
-function clientSocket(code, number) {
+function clientSocket(code: BusinessError, number: number) {
   if (code.code != 0) {
     return;
   }
@@ -282,7 +282,7 @@ sppWrite(clientSocket: number, data: ArrayBuffer): void
 
 ```js
 let clientNumber = -1;
-function clientSocket(code, number) {
+function clientSocket(code: BusinessError, number: number) {
   if (code.code != 0) {
     return;
   }
@@ -330,7 +330,7 @@ on(type: 'sppRead', clientSocket: number, callback: Callback&lt;ArrayBuffer&gt;)
 
 ```js
 let clientNumber = -1;
-function clientSocket(code, number) {
+function clientSocket(code: BusinessError, number: number) {
   if (code.code != 0) {
     return;
   }
@@ -370,7 +370,7 @@ off(type: 'sppRead', clientSocket: number, callback?: Callback&lt;ArrayBuffer&gt
 
 ```js
 let clientNumber = -1;
-function clientSocket(code, number) {
+function clientSocket(code: BusinessError, number: number) {
   if (code.code != 0) {
     return;
   }
