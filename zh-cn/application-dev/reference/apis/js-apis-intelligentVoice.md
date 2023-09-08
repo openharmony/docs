@@ -1659,6 +1659,8 @@ getParameter(key: string): Promise\<string\>
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 if (wakeupIntelligentVoiceEngine != null) {
   (wakeupIntelligentVoiceEngine as intelligentVoice.WakeupIntelligentVoiceEngine).getParameter('key').then((data: string) => {
     let param: string = data;
