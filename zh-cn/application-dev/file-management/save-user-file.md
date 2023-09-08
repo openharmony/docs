@@ -30,7 +30,7 @@ save接口会将文件保存在文件管理器，而不是图库。
    let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 
    let pixelmapArrayBuffer: ArrayBuffer;
-   async function getPixelmap() {
+   async function getPixelmap(): Promise<void> {
       try {
          let predicates = new dataSharePredicates.DataSharePredicates();
          let fetchOption: photoAccessHelper.FetchOptions = {
@@ -63,7 +63,7 @@ save接口会将文件保存在文件管理器，而不是图库。
 
    ```ts  
    let uris: Array<string>;
-   async function photoViewPickerSave() {
+   async function photoViewPickerSave(): Promise<void>{
       try {
          const photoSaveOptions = new picker.PhotoSaveOptions(); // 创建文件管理器保存选项实例
          photoSaveOptions.newFileNames = ["PhotoViewPicker01.png"]; // 保存文件名（可选），方括号里的文件名自定义，每次不能重复，设备里已有这个文件的话，名字就需要改个不一样的，不然接口会报错
@@ -91,7 +91,7 @@ save接口会将文件保存在文件管理器，而不是图库。
    然后，通过fd使用[fs.write](../reference/apis/js-apis-file-fs.md#fswrite)接口对这个文件进行编辑修改，编辑修改完成后关闭fd。
 
    ```ts
-   async function writeOnly(uri: string) {
+   async function writeOnly(uri: string): Promise<void> {
       try {
          let file = fs.openSync(uri, fs.OpenMode.WRITE_ONLY);
          let writeLen = await fs.write(file.fd, pixelmapArrayBuffer);
@@ -140,6 +140,7 @@ save接口会将文件保存在文件管理器，而不是图库。
 4. 待界面从FilePicker返回后，再通过类似一个按钮调用其他函数，使用[fs.openSync](../reference/apis/js-apis-file-fs.md#fsopensync)接口，通过uri打开这个文件得到fd。这里需要注意接口权限参数是fs.OpenMode.READ_WRITE。
 
    ```ts
+   const uri = '';
    let file = fs.openSync(uri, fs.OpenMode.READ_WRITE);
    console.info('file fd: ' + file.fd);
    ```

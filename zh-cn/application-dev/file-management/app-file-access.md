@@ -52,7 +52,7 @@ import buffer from '@ohos.buffer';
 let context = getContext(this) as common.UIAbilityContext;
 let filesDir = context.filesDir;
 
-function createFile() {
+function createFile(): void {
     // 新建并打开文件
   let file = fs.openSync(filesDir + '/test.txt', fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
   // 写入一段内容至文件
@@ -87,7 +87,7 @@ import common from '@ohos.app.ability.common';
 let context = getContext(this) as common.UIAbilityContext;
 let filesDir = context.filesDir;
 
-function readWriteFile() {
+function readWriteFile(): void {
   // 打开文件
   let srcFile = fs.openSync(filesDir + '/test.txt', fs.OpenMode.READ_WRITE);
   let destFile = fs.openSync(filesDir + '/destFile.txt', fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
@@ -131,7 +131,7 @@ import common from '@ohos.app.ability.common';
 let context = getContext(this) as common.UIAbilityContext;
 let filesDir = context.filesDir;
 
-async function readWriteFileWithStream() {
+async function readWriteFileWithStream(): Promise<void> {
   // 打开文件流
   let inputStream = fs.createStreamSync(filesDir + '/test.txt', 'r+');
   let outputStream = fs.createStreamSync(filesDir + '/destFile.txt', "w+");
@@ -176,7 +176,7 @@ let context = getContext(this) as common.UIAbilityContext;
 let filesDir = context.filesDir;
 
 // 查看文件列表
-function getListFile() {
+function getListFile(): void {
   class ListFileOption {
     public recursion: boolean = false;
     public listNum: number = 0;
@@ -185,7 +185,7 @@ function getListFile() {
   let option = new ListFileOption();
   option.filter.suffix = ['.png', '.jpg', '.txt'];          // 匹配文件后缀名为'.png','.jpg','.txt'
   option.filter.displayName = ['test%'];                    // 匹配文件全名以'test'开头
-  option.filter.fileSizeOver = 0;                           // 匹配文件大小大于等于0
+  option.filter.fileSizeOver = 0;                    // 匹配文件全名以'test'开头
   option.filter.lastModifiedAfter = new Date(0).getTime();  // 匹配文件最近修改时间在1970年1月1日之后
   let files = fs.listFileSync(filesDir, option);
   for (let i = 0; i < files.length; i++) {
