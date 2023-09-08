@@ -33,20 +33,24 @@ createCalendar(calendarAccount: CalendarAccount, callback: AsyncCallback\<Calend
 
 **示例**：
 
-```js
-let calendar = null;
+```typescript
+let calendar : calendarManager.Calendar | undefined = undefined;
 const calendarAccount: calendarManager.CalendarAccount = {
   name: 'MyCalendar',
   type: calendarManager.CalendarType.LOCAL
 };
-calendarManager.createCalendar(calendarAccount, (err, data) => {
-  if (err) {
-    console.error("Failed to create calendar");
-  } else {
-    console.info("Succeeded in creating calendar");
-    calendar = data;  
-  }
-});
+try {
+  calendarManager.createCalendar(calendarAccount, (err: BusinessError, data: calendarManager.Calendar) => {
+    if (err) {
+      console.error(`Failed to create calendar: err->${JSON.stringify(err)}`);
+    } else {
+      console.info(`Succeeded in creating calendar data->${JSON.stringify(data)}`);
+      calendar = data;
+    }
+  });
+} catch (error) {
+  console.error(`Failed to create calendar: err->${JSON.stringify(error)}`);
+}
 ```
 
 ## calendarManager.createCalendar
@@ -74,16 +78,17 @@ createCalendar(calendarAccount: CalendarAccount): Promise\<Calendar>
 **示例**：
 
 ```js
-let calendar = null;
+let calendar : calendarManager.Calendar | undefined = undefined;
 const calendarAccount: calendarManager.CalendarAccount = {
   name: 'MyCalendar',
-  type: calendarManager.CalendarType.LOCAL
+  type: calendarManager.CalendarType.LOCAL,
+  displayName : 'MyApplication'
 };
 calendarManager.createCalendar(calendarAccount).then((data) => {
-  console.info("succeeded in creating calendar");
+  console.info(`Succeeded in creating calendar data->${JSON.stringify(data)}`);
   calendar = data;
-}).catch((err) => {
-  console.error("Failed to create calendar");
+}).catch((error : BusinessError) => {
+  console.error(`Failed to create calendar: err->${JSON.stringify(error)}`);
 });
 ```
 
@@ -106,19 +111,19 @@ deleteCalendar(calendar: Calendar, callback: AsyncCallback\<void>): void
 
 **示例**：
 
-```js
+```typescript
 const calendarAccount: calendarManager.CalendarAccount = {
   name: 'MyCalendar',
   type: calendarManager.CalendarType.LOCAL
 };
-calendarManager.getCalendar(calendarAccount, (err, data) => {
+calendarManager.getCalendar(calendarAccount, (err: BusinessError, data: calendarManager.Calendar) => {
   if (err) {
-    console.error("Failed to get calendar");
+    console.error(`Failed to get calendar: err->${JSON.stringify(err)}`);
   } else {
     console.info("Succeeded in getting calendar");
-    calendarManager.deleteCalendar(data, (err) => {
+    calendarManager.deleteCalendar(data, (err: BusinessError) => {
       if (err) {
-        console.error("Failed to delete calendar");
+        console.error(`Failed to delete calendar: err->${JSON.stringify(err)}`);
       } else {
         console.info("Succeeded in deleting calendar");
       }
@@ -151,20 +156,20 @@ deleteCalendar(calendar: Calendar): Promise\<void>
 
 **示例**：
 
-```js
+```typescript
 const calendarAccount: calendarManager.CalendarAccount = {
   name: 'MyCalendar',
   type: calendarManager.CalendarType.LOCAL
 };
-calendarManager.getCalendar(calendarAccount).then((data) => {
+calendarManager.getCalendar(calendarAccount).then((data: calendarManager.Calendar) => {
   console.info("Succeeded in getting calendar");
   calendarManager.deleteCalendar(data).then(() => {
     console.info("Succeeded in deleting calendar");
-  }).catch((err) => {
-    console.error("Failed to delete calendar");
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to delete calendar: err->${JSON.stringify(err)}`);
   });
-}).catch((err) => {
-  console.error("Failed to get calendar");
+}).catch((err: BusinessError) => {
+  console.error(`Failed to get calendar: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -172,7 +177,7 @@ calendarManager.getCalendar(calendarAccount).then((data) => {
 
 getCalendar(callback: AsyncCallback\<Calendar>): void
 
-获取默认Calendar对象，默认Calendar是初始化数据库时创建的，若创建Event时不关注其Calendar归属，无须通过[createCalendar()](#calendarmanagercreatecalendar)创建Calendar，直接使用默认Calendar，使用callback异步回调。
+获取默认Calendar对象，默认Calendar是日历存储首次运行时创建的，若创建Event时不关注其Calendar归属，则无须通过[createCalendar()](#calendarmanagercreatecalendar)创建Calendar，直接使用默认Calendar，使用callback异步回调。
 
 **需要权限**：ohos.permission.READ_CALENDAR or ohos.permission.READ_WHOLE_CALENDAR
 
@@ -186,14 +191,14 @@ getCalendar(callback: AsyncCallback\<Calendar>): void
 
 **示例**：
 
-```js
-let calendar = null;
-calendarManager.getCalendar((err, data) => {
+```ts
+let calendar : calendarManager.Calendar | undefined = undefined;
+calendarManager.getCalendar((err: BusinessError, data:calendarManager.Calendar) => {
   if (err) {
-    console.error("Failed to get calendar");
+    console.error(`Failed to get calendar: err->${JSON.stringify(err)}`);
   } else {
-    console.info("Succeeded in getting calendar");
-    calendar = data;  
+    console.info(`Succeeded in getting calendar data->${JSON.stringify(data)}`);
+    calendar = data;
   }
 });
 ```
@@ -217,17 +222,17 @@ getCalendar(calendarAccount: CalendarAccount, callback: AsyncCallback\<Calendar>
 
 **示例**：
 
-```js
-let calendar = null;
+```ts
+let calendar : calendarManager.Calendar | undefined = undefined;
 const calendarAccount: calendarManager.CalendarAccount = {
   name: 'MyCalendar',
   type: calendarManager.CalendarType.LOCAL
 };
-calendarManager.getCalendar(calendarAccount, (err, data) => {
+calendarManager.getCalendar(calendarAccount, (err: BusinessError, data: calendarManager.Calendar) => {
   if (err) {
-    console.error("Failed to get calendar");
+    console.error(`Failed to get calendar: err->${JSON.stringify(err)}`);
   } else {
-    console.info("Succeeded in getting calendar");
+    console.info(`Succeeded in getting calendar data->${JSON.stringify(data)}`);
     calendar = data;
   }
 });
@@ -257,13 +262,13 @@ getCalendar(calendarAccount?: CalendarAccount): Promise\<Calendar>
 
 **示例**：
 
-```js
-let calendar = null;
+```ts
+let calendar : calendarManager.Calendar | undefined = undefined;
 calendarManager.getCalendar().then((data) => {
-  console.info("Succeeded in getting calendar");
+  console.info(`Succeeded in getting calendar data->${JSON.stringify(data)}`);
   calendar = data;
-}).catch((err) => {
-  console.error("Failed to get calendar");
+}).catch((err: BusinessError) => {
+  console.error(`Failed to get calendar: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -285,12 +290,16 @@ getAllCalendars(callback: AsyncCallback\<Calendar[]>): void
 
 **示例**：
 
-```js
-calendarManager.getAllCalendars((err, data) => {
+```ts
+calendarManager.getAllCalendars((err: BusinessError, data: calendarManager.Calendar[]) => {
   if (err) {
-    console.error("Failed to get all calendars");
+    console.error(`Failed to get all calendars: err->${JSON.stringify(err)}`);
   } else {
-    console.info("Succeeded in getting all calendars");
+    console.info(`Succeeded in getting all calendars->${JSON.stringify(data)}`);
+    data.forEach((calendar) => {
+      const account = calendar.getAccount();
+      console.info(`account->${JSON.stringify(account)}`);
+    })
   }
 });
 ```
@@ -314,10 +323,14 @@ getAllCalendars(): Promise\<Calendar[]>
 **示例**：
 
 ```js
-calendarManager.getAllCalendars().then((data) => {
-  console.info("Succeeded in getting all calendars");
-}).catch((err) => {
-  console.error("Failed to get all calendars");
+calendarManager.getAllCalendars().then((data: calendarManager.Calendar[]) => {
+  console.info(`Succeeded in getting all calendars->${JSON.stringify(data)}`);
+  data.forEach((calendar) => {
+    const account = calendar.getAccount();
+    console.info(`account->${JSON.stringify(account)}`);
+  })
+}).catch((err: BusinessError) => {
+  console.error(`Failed to get all calendars: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -350,18 +363,18 @@ addEvent(event: Event, callback: AsyncCallback\<number>): void
 
 **示例**：
 
-```js
+```ts
 const date = new Date();
 const event: calendarManager.Event = {
   type: calendarManager.EventType.NORMAL,
   startTime: date.getTime(),
   endTime: date.getTime() + 60 * 60 * 1000
 };
-calendar.addEvent(event, (err, data) => {
+calendar.addEvent(event, (err: BusinessError, data: number): void => {
   if (err) {
-    console.error("Failed to add event");
+    console.error(`Failed to addEvent: err->${JSON.stringify(err)}`);
   } else {
-    console.info("Succeeded in adding event");
+    console.info(`Succeeded in adding event id:${data}`);
   }
 });
 ```
@@ -388,17 +401,17 @@ addEvent(event: Event): Promise\<number>
 
 **示例**：
 
-```js
+```ts
 const date = new Date();
 const event: calendarManager.Event = {
   type: calendarManager.EventType.NORMAL,
   startTime: date.getTime(),
   endTime: date.getTime() + 60 * 60 * 1000
 };
-calendar.addEvent(event).then((data) => {
-  console.info("Succeeded in adding event");
-}).catch((err) => {
-  console.error("Failed to add event");
+calendar.addEvent(event).then((data: number) => {
+  console.info(`Succeeded in adding event id:${data}`);
+}).catch((err: BusinessError) => {
+  console.error(`Failed to addEvent: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -433,9 +446,9 @@ const events: calendarManager.Event[] = [
     endTime: date.getTime() + 60 * 60 * 1000
   }
 ];
-calendar.addEvents(events, (err) => {
+calendar.addEvents(events, (err: BusinessError) => {
   if (err) {
-    console.error("Failed to add events");
+    console.error(`Failed to addEvent: err->${JSON.stringify(err)}`);
   } else {
     console.info("Succeeded in adding events");
   }
@@ -480,8 +493,8 @@ const events: calendarManager.Event[] = [
 ];
 calendar.addEvents(events).then(() => {
   console.info("Succeeded in adding events");
-}).catch((err) => {
-  console.error("Failed to add events");
+}).catch((err: BusinessError) => {
+  console.error(`Failed to addEvent: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -503,7 +516,7 @@ deleteEvent(id: number, callback: AsyncCallback\<void>): void
 **示例**：
 
 ```js
-calendar.deleteEvent(1, (err) => {
+calendar.deleteEvent(1, (err: BusinessError) => {
   if (err) {
     console.error("Failed to delete event");
   } else {
@@ -537,7 +550,7 @@ deleteEvent(id: number): Promise\<void>
 ```js
 calendar.deleteEvent(1).then(() => {
   console.info("Succeeded in deleting event");
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error("Failed to delete event");
 });
 ```
@@ -560,7 +573,7 @@ deleteEvents(ids: number[], callback: AsyncCallback\<void>): void
 **示例**：
 
 ```js
-calendar.deleteEvents([1, 2], (err) => {
+calendar.deleteEvents([1, 2], (err: BusinessError) => {
   if (err) {
     console.error("Failed to delete events");
   } else {
@@ -594,7 +607,7 @@ deleteEvents(ids: number[]): Promise\<void>
 ```js
 calendar.deleteEvents([1, 2]).then(() => {
   console.info("Succeeded in deleting events");
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error("Failed to delete events");
 });
 ```
@@ -616,20 +629,29 @@ updateEvent(event: Event, callback: AsyncCallback\<void>): void
 
 **示例**：
 
-```js
+```ts
 const date = new Date();
-const event: calendarManager.Event = {
-  id: 1,
+const oriEvent: calendarManager.Event = {
   title: 'update',
   type: calendarManager.EventType.NORMAL,
+  description: 'updateEventTest',
   startTime: date.getTime(),
   endTime: date.getTime() + 60 * 60 * 1000
 };
-calendar.updateEvent(event, (err) => {
+calendar.addEvent(oriEvent, (err: BusinessError, data: number): void => {
   if (err) {
-    console.error("Failed to update event");
+    console.error(`Failed to addEvent: err->${JSON.stringify(err)}`);
   } else {
-    console.info("Succeeded in updating event");
+    console.info(`Succeeded in adding event id:${data}`);
+    oriEvent.id = data; // must set id
+    oriEvent.title = 'newUpdate';
+    calendar.updateEvent(oriEvent, (err: BusinessError) => {
+      if (err) {
+        console.error(`Failed to updateEvent: err->${JSON.stringify(err)}`);
+      } else {
+        console.info("Succeeded in updating event");
+      }
+    });
   }
 });
 ```
@@ -656,19 +678,22 @@ updateEvent(event: Event): Promise\<void>
 
 **示例**：
 
-```js
-const date = new Date();
-const event: calendarManager.Event = {
-  id: 1,
-  title: 'update',
-  type: calendarManager.EventType.NORMAL,
-  startTime: date.getTime(),
-  endTime: date.getTime() + 60 * 60 * 1000
-};
-calendar.updateEvent(event).then(() => {
-  console.info("Succeeded in updating event");
-}).catch((err) => {
-  console.error("Failed to update event");
+```ts
+const filter = calendarManager.EventFilter.filterByTitle('update');
+calendar.getEvents(filter).then((events : calendarManager.Event[]) => {
+  console.info(`Succeeded in getEvents`);
+  if (events.length < 1) {
+    return;
+  }
+  let newEvent = events[0];
+  newEvent.title = 'newUpdate';
+  calendar.updateEvent(newEvent).then(() => {
+    console.info(`Succeeded in updateEvent`);
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to updateEvent err->${JSON.stringify(err)}`);
+  });
+}).catch((err: BusinessError) => {
+  console.error(`Failed to getEvents err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -689,7 +714,7 @@ getEvents(callback: AsyncCallback\<Event[]>): void
 **示例**：
 
 ```js
-calendar.getEvents((err, data) => {
+calendar.getEvents((err: BusinessError, data: calendarManager.Event[]) => {
   if (err) {
     console.error("Failed to get events");
   } else {
@@ -718,8 +743,7 @@ getEvents(eventFilter: EventFilter, eventKey: (keyof Event)[], callback: AsyncCa
 
 ```js
 const filter = calendarManager.EventFilter.filterById([1, 2]);
-const columns: (keyof calendarManager.Event)[] =  ['title', 'type', 'startTime', 'endTime'];
-calendar.getEvents(filter, columns, (err, data) => {
+calendar.getEvents(filter, ['title', 'type', 'startTime', 'endTime'], (err, data) => {
   if (err) {
     console.error("Failed to get events");
   } else {
@@ -802,7 +826,7 @@ setConfig(config: CalendarConfig, callback: AsyncCallback\<void>): void
 const config: calendarManager.CalendarConfig = {
   enableReminder: true
 };
-calendar.setConfig(config, (err) => {
+calendar.setConfig(config, (err: BusinessError) => {
   if (err) {
     console.error("Failed to set config");
   } else {
@@ -839,7 +863,7 @@ const config: calendarManager.CalendarConfig = {
 };
 calendar.setConfig(config).then(() => {
   console.info("Succeeded in setting config");
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error("Failed to set config");
 });
 ```
@@ -966,9 +990,9 @@ static filterById(ids: number[]): EventFilter
 
 ```js
 const filter = calendarManager.EventFilter.filterById([1, 2]);
-calendar.getEvents(filter).then((data) => {
+calendar.getEvents(filter).then((data: calendarManager.Event[]) => {
   console.info("Succeeded in filtering by id");
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error("Failed to filter by id");
 });
 ```
@@ -998,9 +1022,9 @@ static filterByTime(start: number, end: number): EventFilter
 
 ```js
 const filter = calendarManager.EventFilter.filterByTime(1686931200000, 1687017600000);
-calendar.getEvents(filter).then((data) => {
+calendar.getEvents(filter).then((data: calendarManager.Event[]) => {
   console.info("Succeeded in filtering by time");
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error("Failed to filter by time");
 });
 ```
@@ -1029,9 +1053,9 @@ static filterByTitle(title: string): EventFilter
 
 ```js
 const filter = calendarManager.EventFilter.filterByTitle('MyEvent');
-calendar.getEvents(filter).then((data) => {
+calendar.getEvents(filter).then((data: calendarManager.Event[]) => {
   console.info("Succeeded in filtering by title");
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error("Failed to filter by title");
 });
 ```
