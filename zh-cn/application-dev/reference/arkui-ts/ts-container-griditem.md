@@ -62,9 +62,7 @@ GridItem()
 @Entry
 @Component
 struct GridItemExample {
-  @State numbers: string[] = Array.apply(null, { length: 16 }).map(function (item, i) {
-    return i.toString()
-  })
+  @State numbers: string[] = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15"]
 
   build() {
     Column() {
@@ -78,7 +76,7 @@ struct GridItemExample {
             .textAlign(TextAlign.Center)
         }.rowStart(1).rowEnd(2).columnStart(1).columnEnd(2) // 同时设置合理的行列号
 
-        ForEach(this.numbers, (item) => {
+        ForEach(this.numbers, (item: string) => {
           GridItem() {
             Text(item)
               .fontSize(16)
@@ -87,7 +85,7 @@ struct GridItemExample {
               .height('100%')
               .textAlign(TextAlign.Center)
           }
-        }, item => item)
+        }, (item: string) => item)
 
         GridItem() {
           Text('5')
