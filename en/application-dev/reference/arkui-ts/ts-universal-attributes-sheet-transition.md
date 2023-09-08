@@ -7,6 +7,8 @@ You can bind a sheet to a component through the **bindSheet** attribute. You can
 >  The APIs of this module are supported since API version 10. Updates will be marked with a superscript to indicate their earliest API version.
 >
 >  Switching between landscape and portrait modes is not supported.
+>
+>  Route hopping is not supported.
 
 ## Attributes
 
