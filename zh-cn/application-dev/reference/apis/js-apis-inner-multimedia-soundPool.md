@@ -67,12 +67,10 @@ load(uri: string, callback: AsyncCallback\<number>): void
 let uri:string = "";
 
 //获取fd的uri路径
-await fs.open(globalThis.pathDir + '/test_01.mp3', fs.OpenMode.READ_ONLY).then((file: fs.File) => {
+await fs.open('/test_01.mp3', fs.OpenMode.READ_ONLY).then((file: fs.File) => {
   console.info("file fd: " + file.fd);
   uri = 'fd://' + (file.fd).toString()
-}).catch((err) => {
-  console.info("open file failed with error message: " + err.message + ", error code: " + err.code);
-});
+}); // '/test_01.mp3' 作为样例，使用时需要传入文件对应路径。
 
 soundPool.load(uri, (error, soundId_: number) => {
   if (error) {
@@ -110,12 +108,10 @@ let uri:string = "";
 let soundID: number;
 
 //获取fd的uri路径
-await fs.open(globalThis.pathDir + '/test_01.mp3', fs.OpenMode.READ_ONLY).then((file: fs.File) => {
+await fs.open('/test_01.mp3', fs.OpenMode.READ_ONLY).then((file: fs.File) => {
   console.info("file fd: " + file.fd);
   uri = 'fd://' + (file.fd).toString()
-}).catch((err) => {
-  console.info("open file failed with error message: " + err.message + ", error code: " + err.code);
-});
+}); // '/test_01.mp3' 作为样例，使用时需要传入文件对应路径。
 
 soundPool.load(uri).then((soundId: number) => {
   console.info('soundPool load uri success');
@@ -160,16 +156,13 @@ let fd: number;
 let soundID: number;
 let fileSize: number;
 let maxOffset: number;
-let path: string = globalThis.pathDir + '/test_01.mp3';
 
 //获取fd的描述信息
-fs.open(globalThis.pathDir + path, fs.OpenMode.READ_ONLY).then((file: fs.File) => {
+await fs.open('/test_01.mp3', fs.OpenMode.READ_ONLY).then((file: fs.File) => {
   console.info("file fd: " + file.fd);
-  fd = file.fd;
-}).catch((err) => {
-  console.info("open file failed with error message: " + err.message + ", error code: " + err.code);
-});
-let stat: Stat = await fs.stat(globalThis.pathDir + path);
+  uri = 'fd://' + (file.fd).toString()
+}); // '/test_01.mp3' 作为样例，使用时需要传入文件对应路径。
+let stat: Stat = await fs.stat('/test_01.mp3');
 fileSize = stat.size;
 maxOffset = stat.size;
 
@@ -213,16 +206,13 @@ let fd: number;
 let soundID: number;
 let fileSize: number;
 let maxOffset: number;
-let path: string = globalThis.pathDir + '/test_01.mp3';
 
 //获取fd的描述信息
-fs.open(globalThis.pathDir + path, fs.OpenMode.READ_ONLY).then((file: fs.File) => {
+await fs.open('/test_01.mp3', fs.OpenMode.READ_ONLY).then((file: fs.File) => {
   console.info("file fd: " + file.fd);
-  fd = file.fd;
-}).catch((err) => {
-  console.info("open file failed with error message: " + err.message + ", error code: " + err.code);
-});
-let stat = await fs.stat(globalThis.pathDir + path);
+  uri = 'fd://' + (file.fd).toString()
+}); // '/test_01.mp3' 作为样例，使用时需要传入文件对应路径。
+let stat = await fs.stat('/test_01.mp3');
 fileSize = stat.size;
 maxOffset = stat.size;
 

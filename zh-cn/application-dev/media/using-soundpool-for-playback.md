@@ -33,10 +33,10 @@
 
     ```ts
     let soundID: number;
-    await fs.open(globalThis.pathDir + '/test_01.mp3', fs.OpenMode.READ_ONLY).then((file: fs.File) => {
+    await fs.open('/test_01.mp3', fs.OpenMode.READ_ONLY).then((file: fs.File) => {
       console.info("file fd: " + file.fd);
       uri = 'fd://' + (file.fd).toString()
-    });
+    }); // '/test_01.mp3' 作为样例，使用时需要传入文件对应路径。
     soundPool.load(uri).then((soundId: number) => {
       console.info('soundPool load uri success');
       soundID = soundId;
@@ -226,10 +226,10 @@ struct Soundpool {
     this.finishPlayCallback();
     this.setErrorCallback();
     // 加载音频资源
-    await fs.open(globalThis.pathDir + '/test_01.mp3', fs.OpenMode.READ_ONLY).then((file: fs.File) => {
+    await fs.open('/test_01.mp3', fs.OpenMode.READ_ONLY).then((file: fs.File) => {
       console.info("file fd: " + file.fd);
-      this.uri = 'fd://' + (file.fd).toString()
-    });
+      uri = 'fd://' + (file.fd).toString()
+    }); // '/test_01.mp3' 作为样例，使用时需要传入文件对应路径。
     this.soundId = await this.soundPool.load(this.uri);
   }
   async loadCallback(): Promise<void> {
