@@ -1564,6 +1564,69 @@ class C1 implements C {
 }
 ```
 
+## Recipe: Reassigning object methods is not supported
+
+**Rule `arkts-no-method-reassignment`**
+
+**Severity: error**
+
+ArkTS does not support re-assigning a method for objects. In the statically
+types languages, the layout of objects is fixed and all instances of the same
+object must share the same code of each method.
+
+If you need to add specific behavior for certain objects, you can create
+separate wrapper functions or use inheritance.
+
+**TypeScript**
+
+```typescript
+class C {
+    foo() {
+        console.log("foo")
+    }
+}
+
+function bar() {
+    console.log("bar")
+}
+
+let c1 = new C()
+let c2 = new C()
+c2.foo = bar
+
+c1.foo() // foo
+c2.foo() // bar
+```
+
+**ArkTS**
+
+```typescript
+class C {
+    foo() {
+        console.log("foo")
+    }
+}
+
+class Derived extends C {
+    foo() {
+        console.log("Extra")
+        super.foo()
+    }
+}
+
+function bar() {
+    console.log("bar")
+}
+
+let c1 = new C()
+let c2 = new C()
+c1.foo() // foo
+c2.foo() // foo
+
+let c3 = new Derived()
+c3.foo() // Extra foo
+```
+
 ## Recipe: Only `as T` syntax is supported for type casts
 
 **Rule `arkts-as-casts`**
@@ -3493,14 +3556,17 @@ Use regular syntax for namespaces instead.
 **TypeScript**
 
 ```typescript
-var C = (function() {
-    function C(n: number) {
-        this.p = n // Compile-time error only with noImplicitThis
+const C = (function () {
+    class Cl {
+        static static_value = "static_value";
+        static any_value: any = "any_value";
+        string_field = "string_field";
     }
-    C.staticProperty = 0
-    return C
-})()
-C.staticProperty = 1
+
+    return Cl;
+})();
+
+C.prop = 2;
 ```
 
 **ArkTS**
