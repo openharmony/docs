@@ -143,8 +143,9 @@ createFileAccessHelper(context: Context, wants: Array&lt;Want&gt;) : FileAccessH
     try {
       // context 是EntryAbility 传过来的context
       fileAccessHelper = fileAccess.createFileAccessHelper(context, wantInfos);
-      if (!fileAccessHelper)
+      if (!fileAccessHelper) {
         console.error("createFileAccessHelper interface returns an undefined object");
+      }
     } catch (err) {
       let error: BusinessError = err as BusinessError;
       console.error("createFileAccessHelper failed, errCode:" + error.code + ", errMessage:" + error.message);
@@ -257,7 +258,7 @@ listFile(filter?: Filter) : FileIterator
   import { BusinessError } from '@ohos.base';
   // fileInfoDir 表示某个目录信息
   // let filter = { suffix : [".txt", ".jpg", ".xlsx"] };
-  let fileInfoDir: fileAccess.FileInfo = fileInfos[0];
+  let fileInfoDir: fileAccess.FileInfo; // = fileInfos[0];
   let subfileInfos: Array<fileAccess.FileInfo> = [];
   let isDone: boolean = false;
   try {
@@ -266,14 +267,14 @@ listFile(filter?: Filter) : FileIterator
     // let fileIterator = fileInfoDir.listFile(filter);
     if (!fileIterator) {
       console.error("listFile interface returns an undefined object");
-      return;
     }
     while (!isDone) {
       let result = fileIterator.next();
       console.log("next result = " + JSON.stringify(result));
       isDone = result.done;
-      if (!isDone)
+      if (!isDone) {
         subfileInfos.push(result.value);
+      }
     }
   } catch (err) {
     let error: BusinessError = err as BusinessError;
@@ -315,7 +316,7 @@ scanFile(filter?: Filter) : FileIterator;
   import { BusinessError } from '@ohos.base';
   // fileInfoDir 表示某个目录信息
   // let filter = {suffix : [".txt", ".jpg", ".xlsx"]};
-  let fileInfoDir: fileAccess.FileInfo = fileInfos[0];
+  let fileInfoDir: fileAccess.FileInfo; // = fileInfos[0];
   let subfileInfos: Array<fileAccess.FileInfo> = [];
   let isDone: boolean = false;
   try {
@@ -324,14 +325,14 @@ scanFile(filter?: Filter) : FileIterator;
     // let fileIterator = fileInfoDir.scanFile(filter);
     if (!fileIterator) {
       console.error("scanFile interface returns an undefined object");
-      return;
     }
     while (!isDone) {
       let result = fileIterator.next();
       console.log("next result = " + JSON.stringify(result));
       isDone = result.done;
-      if (!isDone)
+      if (!isDone) {
         subfileInfos.push(result.value);
+      }
     }
   } catch (err) {
     let error: BusinessError = err as BusinessError;
@@ -425,7 +426,7 @@ listFile(filter?: Filter) : FileIterator
   import { BusinessError } from '@ohos.base';
   // rootinfos 从getRoots()获取
   // let filter = {suffix : [".txt", ".jpg", ".xlsx"]};
-  let rootInfo: fileAccess.RootInfo = rootinfos[0];
+  let rootInfo: fileAccess.RootInfo; // = rootinfos[0];
   let fileInfos: Array<fileAccess.FileInfo> = [];
   let isDone: boolean = false;
   try {
@@ -434,14 +435,14 @@ listFile(filter?: Filter) : FileIterator
     // let fileIterator = rootInfo.listFile(filter);
     if (!fileIterator) {
       console.error("listFile interface returns an undefined object");
-      return;
     }
     while (!isDone) {
       let result = fileIterator.next();
       console.log("next result = " + JSON.stringify(result));
       isDone = result.done;
-      if (!isDone)
+      if (!isDone) {
         fileInfos.push(result.value);
+      }
     }
   } catch (err) {
     let error: BusinessError = err as BusinessError;
@@ -483,7 +484,7 @@ scanFile(filter?: Filter) : FileIterator
   import { BusinessError } from '@ohos.base';
   // rootInfos 从 getRoots()获取
   // let filter = {suffix : [".txt", ".jpg", ".xlsx"]};
-  let rootInfo: fileAccess.RootInfo = rootinfos[0];
+  let rootInfo: fileAccess.RootInfo; // = rootinfos[0];
   let fileInfos: Array<fileAccess.FileInfo> = [];
   let isDone: boolean = false;
   try {
@@ -492,14 +493,14 @@ scanFile(filter?: Filter) : FileIterator
     // let fileIterator = rootInfo.scanFile(filter);
     if (!fileIterator) {
       console.error("scanFile interface returns undefined object");
-      return;
     }
     while (!isDone) {
       let result = fileIterator.next();
       console.log("next result = " + JSON.stringify(result));
       isDone = result.done;
-      if (!isDone)
+      if (!isDone) {
         fileInfos.push(result.value);
+      }
     }
   } catch (err) {
     let error: BusinessError = err as BusinessError;
@@ -581,14 +582,14 @@ getRoots() : Promise&lt;RootIterator&gt;
       rootIterator = await fileAccessHelper.getRoots();
       if (!rootIterator) {
         console.error("getRoots interface returns an undefined object");
-        return;
       }
       while (!isDone) {
         let result = rootIterator.next();
         console.log("next result = " + JSON.stringify(result));
         isDone = result.done;
-        if (!isDone)
+        if (!isDone) {
           rootinfos.push(result.value);
+        }
       }
     } catch (err) {
       let error: BusinessError = err as BusinessError;
@@ -630,14 +631,14 @@ callback带回迭代器对象RootIterator，然后通过[next](#next-1)方法返
       fileAccessHelper.getRoots((err: BusinessError, rootIterator: fileAccess.RootIterator) => {
         if (err) {
           console.error("Failed to getRoots in async, errCode:" + err.code + ", errMessage:" + err.message);
-          return;
         }
         while (!isDone) {
           let result = rootIterator.next();
           console.log("next result = " + JSON.stringify(result));
           isDone = result.done;
-          if (!isDone)
+          if (!isDone) {
             rootinfos.push(result.value);
+          }
         }
       });
     } catch (err) {
@@ -682,11 +683,11 @@ createFile(uri: string, displayName: string) : Promise&lt;string&gt;
   // 示例代码sourceUri表示Download目录，该uri是对应的fileInfo中uri
   // 开发者应根据自己实际获取的uri进行开发
   let sourceUri: string = "file://docs/storage/Users/currentUser/Download";
-  let displayName: string = "file1"
+  let displayName: string = "file1";
   let fileUri: string;
   try {
     // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
-    fileUri = await fileAccessHelper.createFile(sourceUri, displayName)
+    fileUri = await fileAccessHelper.createFile(sourceUri, displayName);
     if (!fileUri) {
       console.error("createFile return undefined object");
     }
@@ -694,7 +695,7 @@ createFile(uri: string, displayName: string) : Promise&lt;string&gt;
   } catch (err) {
     let error: BusinessError = err as BusinessError;
     console.error("createFile failed, errCode:" + error.code + ", errMessage:" + error.message);
-  };
+  }
   ```
 
 ### createFile
@@ -740,7 +741,7 @@ createFile(uri: string, displayName: string, callback: AsyncCallback&lt;string&g
   } catch (err) {
     let error: BusinessError = err as BusinessError;
     console.error("createFile failed, errCode:" + error.code + ", errMessage:" + error.message);
-  };
+  }
   ```
 
 ### mkDir
@@ -790,7 +791,7 @@ mkDir(parentUri: string, displayName: string) : Promise&lt;string&gt;
   } catch (err) {
     let error: BusinessError = err as BusinessError;
     console.error("mkDir failed, errCode:" + error.code + ", errMessage:" + error.message);
-  };
+  }
   ```
 
 ### mkDir
@@ -836,7 +837,7 @@ mkDir(parentUri: string, displayName: string, callback: AsyncCallback&lt;string&
   } catch (err) {
     let error: BusinessError = err as BusinessError;
     console.error("mkDir failed, errCode:" + error.code + ", errMessage:" + error.message);
-  };
+  }
   ```
 
 ### openFile
@@ -870,17 +871,19 @@ openFile(uri: string, flags: OPENFLAGS) : Promise&lt;number&gt;
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  // 以内置存储目录为例
-  // 示例代码targetUri表示Download目录下文件，该uri是对应的fileInfo中uri
-  // 开发者应根据自己实际获取的uri进行开发
-  let targetUri: string = "file://docs/storage/Users/currentUser/Download/1.txt";
-  try {
-    // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
-    let fd = await fileAccessHelper.openFile(targetUri, fileAccess.OPENFLAGS.READ);
-  } catch (err) {
-    let error: BusinessError = err as BusinessError;
-    console.error("openFile failed, errCode:" + error.code + ", errMessage:" + error.message);
-  };
+  async function openFile01() {
+    // 以内置存储目录为例
+    // 示例代码targetUri表示Download目录下文件，该uri是对应的fileInfo中uri
+    // 开发者应根据自己实际获取的uri进行开发
+    let targetUri: string = "file://docs/storage/Users/currentUser/Download/1.txt";
+    try {
+      // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
+      let fd = await fileAccessHelper.openFile(targetUri, fileAccess.OPENFLAGS.READ);
+    } catch (err) {
+      let error: BusinessError = err as BusinessError;
+      console.error("openFile failed, errCode:" + error.code + ", errMessage:" + error.message);
+    }
+  }
   ```
 
 ### openFile
@@ -924,7 +927,7 @@ openFile(uri: string, flags: OPENFLAGS, callback: AsyncCallback&lt;number&gt;) :
   } catch (err) {
     let error: BusinessError = err as BusinessError;
     console.error("openFile failed, errCode:" + error.code + ", errMessage:" + error.message);
-  };
+  }
   ```
 
 ### delete
@@ -957,19 +960,21 @@ delete(uri: string) : Promise&lt;number&gt;
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  // 以内置存储目录为例
-  // 示例代码targetUri表示Download目录下文件，该uri是对应的fileInfo中uri
-  // 开发者应根据自己实际获取的uri进行开发
-  let targetUri: string = "file://docs/storage/Users/currentUser/Download/1.txt";
-  try {
-    // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
-    let code = await fileAccessHelper.delete(targetUri);
-    if (code != 0)
-      console.error("delete failed, code " + code);
-  } catch (err) {
-    let error: BusinessError = err as BusinessError;
-    console.error("delete failed, errCode:" + error.code + ", errMessage:" + error.message);
-  };
+  async function deleteFile01() {
+    // 以内置存储目录为例
+    // 示例代码targetUri表示Download目录下文件，该uri是对应的fileInfo中uri
+    // 开发者应根据自己实际获取的uri进行开发
+    let targetUri: string = "file://docs/storage/Users/currentUser/Download/1.txt";
+    try {
+      // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
+      let code = await fileAccessHelper.delete(targetUri);
+      if (code != 0)
+        console.error("delete failed, code " + code);
+    } catch (err) {
+      let error: BusinessError = err as BusinessError;
+      console.error("delete failed, errCode:" + error.code + ", errMessage:" + error.message);
+    }
+  }
   ```
 
 ### delete
@@ -1013,7 +1018,7 @@ delete(uri: string, callback: AsyncCallback&lt;number&gt;) : void
   } catch (err) {
     let error: BusinessError = err as BusinessError;
     console.error("delete failed, errCode:" + error.code + ", errMessage:" + error.message);
-  };
+  }
   ```
 
 ### move
@@ -1047,19 +1052,21 @@ move(sourceFile: string, destFile: string) : Promise&lt;string&gt;
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  // 以内置存储目录为例
-  // 示例代码sourceFile destFile表示Download目录下文件和文件夹，该uri是对应的fileInfo中uri
-  // 开发者应根据自己实际获取的uri进行开发
-  let sourceFile: string = "file://docs/storage/Users/currentUser/Download/1.txt";
-  let destFile: string = "file://docs/storage/Users/currentUser/Download/test";
-  try {
-    // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
-    let fileUri = await fileAccessHelper.move(sourceFile, destFile);
-    console.log("move sucess, fileUri: " + JSON.stringify(fileUri));
-  } catch (err) {
-    let error: BusinessError = err as BusinessError;
-    console.error("move failed, errCode:" + error.code + ", errMessage:" + error.message);
-  };
+  async function moveFile01() {
+    // 以内置存储目录为例
+    // 示例代码sourceFile destFile表示Download目录下文件和文件夹，该uri是对应的fileInfo中uri
+    // 开发者应根据自己实际获取的uri进行开发
+    let sourceFile: string = "file://docs/storage/Users/currentUser/Download/1.txt";
+    let destFile: string = "file://docs/storage/Users/currentUser/Download/test";
+    try {
+      // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
+      let fileUri = await fileAccessHelper.move(sourceFile, destFile);
+      console.log("move sucess, fileUri: " + JSON.stringify(fileUri));
+    } catch (err) {
+      let error: BusinessError = err as BusinessError;
+      console.error("move failed, errCode:" + error.code + ", errMessage:" + error.message);
+    }
+  }
   ```
 
 ### move
@@ -1105,7 +1112,7 @@ move(sourceFile: string, destFile: string, callback: AsyncCallback&lt;string&gt;
   } catch (err) {
     let error: BusinessError = err as BusinessError;
     console.error("move failed, errCode:" + error.code + ", errMessage:" + error.message);
-  };
+  }
   ```
 
 ### rename
@@ -1139,18 +1146,20 @@ rename(uri: string, displayName: string) : Promise&lt;string&gt;
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  // 以内置存储目录为例
-  // 示例代码sourceDir表示Download目录下文件，该uri是对应的fileInfo中uri
-  // 开发者应根据自己实际获取的uri进行开发
-  let sourceDir: string = "file://docs/storage/Users/currentUser/Download/1.txt";
-  try {
-    // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
-    let DestDir = await fileAccessHelper.rename(sourceDir, "testDir");
-    console.log("rename sucess, DestDir: " + JSON.stringify(DestDir));
-  } catch (err) {
-    let error: BusinessError = err as BusinessError;
-    console.error("rename failed, errCode:" + error.code + ", errMessage:" + error.message);
-  };
+  async function renameFile01() {
+    // 以内置存储目录为例
+    // 示例代码sourceDir表示Download目录下文件，该uri是对应的fileInfo中uri
+    // 开发者应根据自己实际获取的uri进行开发
+    let sourceDir: string = "file://docs/storage/Users/currentUser/Download/1.txt";
+    try {
+      // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
+      let DestDir = await fileAccessHelper.rename(sourceDir, "testDir");
+      console.log("rename sucess, DestDir: " + JSON.stringify(DestDir));
+    } catch (err) {
+      let error: BusinessError = err as BusinessError;
+      console.error("rename failed, errCode:" + error.code + ", errMessage:" + error.message);
+    }
+  }
   ```
 
 ### rename
@@ -1194,7 +1203,7 @@ rename(uri: string, displayName: string, callback: AsyncCallback&lt;string&gt;) 
   } catch (err) {
     let error: BusinessError = err as BusinessError;
     console.error("rename failed, errCode:" + error.code + ", errMessage:" + error.message);
-  };
+  }
   ```
 
 ### access
@@ -1243,7 +1252,7 @@ access(sourceFileUri: string) : Promise&lt;boolean&gt;
     } catch (err) {
       let error: BusinessError = err as BusinessError;
       console.error("access failed, errCode:" + error.code + ", errMessage:" + error.message);
-    };
+    }
   }
   ```
 
@@ -1291,7 +1300,7 @@ access(sourceFileUri: string, callback: AsyncCallback&lt;boolean&gt;) : void
   } catch (err) {
     let error: BusinessError = err as BusinessError;
     console.error("access failed, errCode:" + error.code + ", errMessage:" + error.message);
-  };
+  }
   ```
 
 ### getFileInfoFromUri<sup>10+</sup>
@@ -1331,7 +1340,7 @@ getFileInfoFromUri(uri: string) : Promise\<FileInfo>
     } catch (err) {
       let error: BusinessError = err as BusinessError;
       console.error("getFileInfoFromUri failed, errCode:" + error.code + ", errMessage:" + error.message);
-    };
+    }
   }
   ```
 
@@ -1372,7 +1381,7 @@ getFileInfoFromUri(uri: string, callback: AsyncCallback\<FileInfo>) : void
   } catch (err) {
     let error: BusinessError = err as BusinessError;
     console.error("getFileInfoFromUri failed, errCode:" + error.code + ", errMessage:" + error.message);
-  };
+  }
   ```
 
 
@@ -1412,7 +1421,7 @@ getFileInfoFromRelativePath(relativePath: string) : Promise\<FileInfo>
     } catch (err) {
       let error: BusinessError = err as BusinessError;
       console.error("getFileInfoFromRelativePath failed, errCode:" + error.code + ", errMessage:" + error.message);
-    };
+    }
   }
   ```
 
@@ -1452,7 +1461,7 @@ getFileInfoFromRelativePath(relativePath: string, callback: AsyncCallback\<FileI
   } catch (err) {
     let error: BusinessError = err as BusinessError;
     console.error("getFileInfoFromRelativePath failed, errCode:" + error.code + ", errMessage:" + error.message);
-  };
+  }
   ```
 
 ### query<sup>10+</sup>
@@ -1493,7 +1502,7 @@ query(uri:string, metaJson: string) : Promise&lt;string&gt;
     } catch (err) {
       let error: BusinessError = err as BusinessError;
       console.error("query_file_single faf query failed, error.code :" + error.code + ", errorMessage :" + error.message);
-    };
+    }
   }
   ```
 
@@ -1535,7 +1544,7 @@ query(uri:string, metaJson: string, callback: AsyncCallback&lt;string&gt;) : voi
     } catch (err) {
       let error: BusinessError = err as BusinessError;
       console.error("query_file_single faf query failed, error.code :" + error.code + ", errorMessage :" + error.message);
-    };
+    }
   }
   ```
 
@@ -1655,7 +1664,6 @@ copy(sourceUri: string, destUri: string, callback: AsyncCallback&lt;Array&lt;Cop
     fileAccessHelper.copy(sourceFile, destFile, async (err: BusinessError, copyResult: Array<fileAccess.CopyResult>) => {
       if (err) {
         console.error("copy failed, errCode:" + err.code + ", errMessage:" + err.message);
-        return;
       }
       if (copyResult.length === 0) {
         console.log("copy success");
@@ -1707,7 +1715,6 @@ copy(sourceUri: string, destUri: string, force: boolean, callback: AsyncCallback
     fileAccessHelper.copy(sourceFile, destFile, true, async (err: BusinessError, copyResult: Array<fileAccess.CopyResult>) => {
       if (err) {
         console.error("copy failed, errCode:" + err.code + ", errMessage:" + err.message);
-        return;
       }
       if (copyResult.length === 0) {
         console.log("copy success");
