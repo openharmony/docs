@@ -52,64 +52,25 @@
 
 4. 发送SMS消息。
 
-   ```js
-    // import需要的模块
-    import sms from '@ohos.telephony.sms'
-   
-    export default class SmsModel {
-        async createMessage() {
-            const specification = '3gpp'
-            const pdu = [0x08, 0x91] // 以数组的形式显示协议数据单元（PDU），类型为number
-            const shortMessage = await sms.createMessage(pdu, specification)
-            Logger.info(`${TAG}, createMessageCallback: shortMessage = ${JSON.stringify(shortMessage)}`)
-            return shortMessage
-        }
-   
-        sendMessage(slotId, content, destinationHost, serviceCenter, destinationPort, handleSend, handleDelivery) {
-            Logger.info(`${TAG}, sendMessage start ${slotId} ${content} ${destinationHost} ${serviceCenter} ${destinationPort}`)
-            const options =
-            {
-                slotId: slotId,
-                content: content,
-                destinationHost: destinationHost,
-                serviceCenter: serviceCenter,
-                destinationPort: destinationPort,
-                sendCallback(err, data) {
-                    Logger.info(`${TAG}, sendCallback: data = ${JSON.stringify(data)} err = ${JSON.stringify(err)}`)
-                    handleSend(err, data)
-                },
-                deliveryCallback(err, data) {
-                    Logger.info(`${TAG}, deliveryCallback: data = ${JSON.stringify(data)} err = ${JSON.stringify(err)}`)
-                    handleDelivery(err, data)
-                }
-            }
-            // 发送SMS消息
-            sms.sendMessage(options)
-            Logger.info(`${TAG}, sendMessage end`)
-        }
-   
-        // 获取用于发送短信的默认SIM卡
-        async getDefaultSmsSlotId() {
-            const defaultSmsSlotId = await sms.getDefaultSmsSlotId()
-            Logger.info(`${TAG}, getDefaultSmsSlotId: defaultSmsSlotId = ${defaultSmsSlotId}`)
-            return defaultSmsSlotId
-        }
-   
-        // 根据指定的插槽ID设置短信服务中心的地址
-        async setSmscAddr(slotId, smscAddr) {
-            const serviceCenter = await sms.setSmscAddr(slotId, smscAddr)
-            Logger.info(`${TAG}, setSmscAddr: serviceCenter = ${JSON.stringify(serviceCenter)}`)
-            return serviceCenter
-        }
-   
-        // 根据指定的插槽ID获取短信服务中心地址
-        async getSmscAddr(slotId) {
-            const serviceCenter = await sms.getSmscAddr(slotId)
-            Logger.info(`${TAG}, getSmscAddr: serviceCenter = ${JSON.stringify(serviceCenter)}`)
-            return serviceCenter
-        }
-    }
-   ```
+```js
+import sms from '@ohos.telephony.sms'
+import { AsyncCallback } from "./basic";
+import { BusinessError } from '@ohos.base';
+
+let sendCallback: AsyncCallback<sms.ISendShortMessageCallback> = (err: BusinessError, data: sms.ISendShortMessageCallback) => {
+    console.log(`sendCallback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`); 
+}
+let deliveryCallback: AsyncCallback<sms.IDeliveryShortMessageCallback> = (err: BusinessError, data: sms.IDeliveryShortMessageCallback) => {
+    console.log(`deliveryCallback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`); 
+}
+let slotId: number = 0;
+let content: string: string = '短信内容';
+let destinationHost: string = '+861xxxxxxxxxx';
+let serviceCenter: string = '+861xxxxxxxxxx';
+let destinationPort: number = 1000;
+let options: sms.SendMessageOptions = {slotId, content, destinationHost, serviceCenter, destinationPort, sendCallback, deliveryCallback};
+sms.sendMessage(options);
+```
 
 
 ## 相关实例
