@@ -109,7 +109,7 @@ copy(logType: string, logName: string, dest: string): Promise&lt;void&gt;
 
 ```ts
 import logLibrary from '@ohos.logLibrary';
-import { BusinessError } from 'ohos.base';
+import { BusinessError } from '@ohos.base';
 
 try {
     logLibrary.copy('HILOG', 'hiapplogcat-1.zip', ''
@@ -214,7 +214,7 @@ move(logType: string, logName: string, dest: string): Promise&lt;void&gt;
 
 ```ts
 import logLibrary from '@ohos.logLibrary';
-import { BusinessError } from 'ohos.base';
+import { BusinessError } from '@ohos.base';
 
 try {
     logLibrary.move('FAULTLOG', 'fault_log_test.zip', ''
@@ -223,12 +223,12 @@ try {
             // do something here.
         }
     ).catch(
-        (err) => {
+        (err: BusinessError) => {
             // do something here.
         }
     )
-} catch (error: BusinessError) {
-    console.error(`error code: ${error.code}, error msg: ${error.message}`);
+} catch (error) {
+    console.error(`error code: ${error?.code}, error msg: ${error?.message}`);
 }
 ```
 
@@ -314,8 +314,8 @@ remove(logType: string, logName: string): void
 import logLibrary from '@ohos.logLibrary';
 
 try {
-    logLibrary.remove('FAULTLOG', 'fault_log_test.zip');
+  logLibrary.remove('FAULTLOG', 'fault_log_test.zip');
 } catch (error) {
-    console.error(`error code: ${error?.code}, error msg: ${error?.message}`);
+  console.error(`error code: ${error?.code}, error msg: ${error?.message}`);
 }
 ```
