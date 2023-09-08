@@ -523,7 +523,7 @@ let param: PARA = {
   target:0,
   value: 0,
   index: 0,
-  data: null
+  data: 0
 };
 
 let devicesList: Array<USBDevice> = usb.getDevices();
