@@ -262,7 +262,7 @@ media.createVideoRecorder().then((video: media.VideoRecorder) => {
 
 createSoundPool(maxStreams: number, audioRenderInfo: audio.AudioRendererInfo, callback: AsyncCallback\<SoundPool>): void
 
-异步方式创建音频池实例。通过callback方式获取返回值
+创建音频池实例，使用callback方式异步获取返回值。
 
 **系统能力：** SystemCapability.Multimedia.Media.SoundPool
 
@@ -307,7 +307,7 @@ media.createSoundPool(5, audioRendererInfo, (error, soundPool_: media.SoundPool)
 
 createSoundPool(maxStreams: number, audioRenderInfo: audio.AudioRendererInfo): Promise\<SoundPool>
 
-异步方式创建音频池实例。通过Promise方式获取返回值。
+创建音频池实例，使用Promise方式异步获取返回值。
 
 **系统能力：** SystemCapability.Multimedia.Media.SoundPool
 

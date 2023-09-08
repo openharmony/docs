@@ -40,7 +40,7 @@ import audio from '@ohos.multimedia.audio';
 
 load(uri: string, callback: AsyncCallback\<number>): void
 
-异步加载音频资源。通过注册回调获取资源ID，入参uri通过获取文件fd生成以"fd://"开头的文件描述字符串。
+加载音频资源。使用callback方式异步获取资源ID，入参uri通过获取文件fd生成以"fd://"开头的文件描述字符串。
 
 **系统能力：** SystemCapability.Multimedia.Media.SoundPool
 
@@ -87,7 +87,7 @@ soundPool.load(uri, (error, soundId_: number) => {
 
 load(uri: string): Promise\<number>
 
-异步加载音频资源。通过Promise获取资源ID，入参uri通过获取文件fd生成以"fd://"开头的文件描述字符串。
+加载音频资源。使用Promise方式异步获取资源ID，入参uri通过获取文件fd生成以"fd://"开头的文件描述字符串。
 
 **系统能力：** SystemCapability.Multimedia.Media.SoundPool
 
@@ -130,7 +130,7 @@ soundPool.load(uri).then((soundId: number) => {
 
 load(fd: number, offset: number, length: number, callback: AsyncCallback\<number>): void
 
-异步加载音频资源。通过注册回调获取资源ID，入参可手动传入资源信息或通过读取应用内置资源自动获取。
+加载音频资源。使用callback方式异步获取资源ID，入参可手动传入资源信息或通过读取应用内置资源自动获取。
 
 **系统能力：** SystemCapability.Multimedia.Media.SoundPool
 
@@ -188,7 +188,7 @@ soundPool.load(fd, 0, fileSize, (error, soundId_: number) => {
 
 load(fd: number, offset: number, length: number): Promise\<number>
 
-异步加载音频资源。通过Promise获取资源ID，入参可手动传入资源信息或通过读取应用内置资源自动获取。
+加载音频资源。使用Promise方式异步获取资源ID，入参可手动传入资源信息或通过读取应用内置资源自动获取。
 
 **系统能力：** SystemCapability.Multimedia.Media.SoundPool
 
@@ -238,7 +238,7 @@ soundPool.load(fd, 0, fileSize).then((soundId: number) => {
 
 play(soundID: number, params: PlayParameters, callback: AsyncCallback\<number>): void
 
-异步播放音频资源。通过注册回调函数获取音频流streamID。
+播放音频资源。使用callback方式异步获取音频流streamID。
 
 **系统能力：** SystemCapability.Multimedia.Media.SoundPool
 
@@ -285,7 +285,7 @@ soundPool.play(soundID, PlayParameters, (error, streamId: number) => {
 
 play(soundID: number, callback: AsyncCallback\<number>): void
 
-异步播放音频资源。通过注册回调函数获取音频流streamID。
+播放音频资源。使用callback方式异步获取音频流streamID。
 
 **系统能力：** SystemCapability.Multimedia.Media.SoundPool
 
@@ -323,7 +323,7 @@ soundPool.play(soundID,  (error, streamId: number) => {
 
 play(soundID: number, params?: PlayParameters): Promise\<number>
 
-异步播放音频资源。通过Promise获取音频流streamID。
+播放音频资源。使用Promise方式异步获取音频流streamID。
 
 **系统能力：** SystemCapability.Multimedia.Media.SoundPool
 
@@ -366,7 +366,7 @@ soundPool.play(soundID, PlayParameters).then((streamId: number) => {
 
 stop(streamID: number, callback: AsyncCallback\<void>): void
 
-异步停止播放音频资源。通过注册回调获取返回值
+停止播放音频资源。使用callback方式异步获取返回值。
 
 **系统能力：** SystemCapability.Multimedia.Media.SoundPool
 
@@ -404,7 +404,7 @@ soundPool.stop(streamID, (error) => {
 
 stop(streamID: number): Promise\<void>
 
-异步停止streamID对应的音频播放。通过Promise获取返回值。
+停止streamID对应的音频播放。使用Promise方式异步获取返回值。
 
 **系统能力：** SystemCapability.Multimedia.Media.SoundPool
 
@@ -437,7 +437,7 @@ soundPool.stop(streamID).then(() => {
 
 setLoop(streamID: number, loop: number, callback: AsyncCallback\<void>): void;
 
-异步设置循环模式。通过注册回调获取返回值
+设置循环模式。使用callback方式异步获取返回值。
 
 **系统能力：** SystemCapability.Multimedia.Media.SoundPool
 
@@ -477,7 +477,7 @@ soundPool.setLoop(streamID, 2, (error) => {
 
 setLoop(streamID: number, loop: number): Promise\<void>
 
-异步设置循环模式。通过Promise获取返回值。
+设置循环模式。使用Promise方式异步获取返回值。
 
 **系统能力：** SystemCapability.Multimedia.Media.SoundPool
 
@@ -511,7 +511,7 @@ soundPool.setLoop(streamID, 1).then(() => {
 
 setPriority(streamID: number, priority: number, callback: AsyncCallback\<void>): void
 
-异步设置音频流播放的优先级。通过注册回调获取返回值。
+设置音频流播放的优先级。使用callback方式异步获取返回值。
 
 **系统能力：** SystemCapability.Multimedia.Media.SoundPool
 
@@ -552,7 +552,7 @@ soundPool.setPriority(streamID, 1, (error) => {
 
 setPriority(streamID: number, priority: number): Promise\<void>
 
-异步设置音频流优先级。通过Promise获取返回值。
+设置音频流优先级。使用Promise方式异步获取返回值。
 
 **系统能力：** SystemCapability.Multimedia.Media.SoundPool
 
@@ -587,7 +587,7 @@ soundPool.setPriority(streamID, 1).then(() => {
 
 setRate(streamID: number, rate: audio.AudioRendererRate, callback: AsyncCallback\<void>): void
 
-异步设置音频流播放速率。通过注册回调获取返回值。
+设置音频流播放速率。使用callback方式异步获取返回值。
 
 **系统能力：** SystemCapability.Multimedia.Media.SoundPool
 
@@ -629,7 +629,7 @@ soundPool.setRate(streamID, selectedAudioRendererRate, (error) => {
 
 setRate(streamID: number, rate: audio.AudioRendererRate): Promise\<void>
 
-异步设置音频流的播放速率。通过Promise获取返回值。
+设置音频流的播放速率。使用Promise方式异步获取返回值。
 
 **系统能力：** SystemCapability.Multimedia.Media.SoundPool
 
@@ -664,7 +664,7 @@ soundPool.setRate(streamID, selectedAudioRendererRate).then(() => {
 
 setVolume(streamID: number, leftVolume: number, rightVolume: number, callback: AsyncCallback\<void>): void
 
-异步设置音频流播放音量。通过注册回调获取返回值。
+设置音频流播放音量。使用callback方式异步获取返回值。
 
 **系统能力：** SystemCapability.Multimedia.Media.SoundPool
 
@@ -706,7 +706,7 @@ soundPool.setVolume(streamID, 0.5, 0.5, (error) => {
 
 setVolume(streamID: number, leftVolume: number, rightVolume: number): Promise<void>
 
-异步设置音频流的播放音量。通过Promise获取返回值。
+设置音频流的播放音量。使用Promise方式异步获取返回值。
 
 **系统能力：** SystemCapability.Multimedia.Media.SoundPool
 
@@ -742,7 +742,7 @@ soundPool.setVolume(streamID, 0.5, 0.5).then(() => {
 
 unload(soundID: number, callback: AsyncCallback\<void>): void
 
-异步卸载音频资源。通过注册回调获取返回值。
+卸载音频资源。使用callback方式异步获取返回值。
 
 **系统能力：** SystemCapability.Multimedia.Media.SoundPool
 
@@ -782,7 +782,7 @@ soundPool.unload(soundID, (error) => {
 
 unload(soundID: number): Promise\<void>
 
-异步卸载音频资源。通过Promise获取返回值。
+卸载音频资源。使用Promise方式异步获取返回值。
 
 **系统能力：** SystemCapability.Multimedia.Media.SoundPool
 
@@ -815,7 +815,7 @@ soundPool.unload(soundID).then(() => {
 
 release(callback: AsyncCallback\<void>): void
 
-异步释放音频池实例。通过注册回调获取返回值。
+释放音频池实例。使用callback方式异步获取返回值。
 
 **系统能力：** SystemCapability.Multimedia.Media.SoundPool
 
@@ -851,7 +851,7 @@ soundPool.release((error) => {
 
 release(): Promise\<void>
 
-异步释放音频池实例，通过Promise获取返回值。
+释放音频池实例。使用Promise方式异步获取返回值。
 
 **系统能力：** SystemCapability.Multimedia.Media.SoundPool
 
@@ -876,7 +876,7 @@ soundPool.release().then(() => {
 
 on(type: 'loadComplete', callback: Callback<number>): void
 
-音频池资源加载完成监听,返回对应的资源ID。
+音频池资源加载完成监听。
 
 **系统能力：** SystemCapability.Multimedia.Media.SoundPool
 
