@@ -500,3 +500,31 @@ systemRingtonePlayer.on('audioInterrupt', async(interruptEvent: audio.InterruptE
   }
 });
 ```
+### off('audioInterrupt') <sup>10+</sup>
+
+off(type: 'audioInterrupt'): void
+
+取消订阅标记事件。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Renderer
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                              |
+| :----- | :----- | :--- | :------------------------------------------------ |
+| type   | string | 是   | 要取消订阅事件的类型。支持的事件为：'audioInterrupt'。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[音频错误码](../errorcodes/errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401     | if input parameter type or number mismatch  |
+| 6800101 | if input parameter value error              |
+
+**示例：**
+
+```ts
+systemRingtonePlayer.off('audioInterrupt');
+```

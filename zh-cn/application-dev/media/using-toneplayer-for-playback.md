@@ -47,8 +47,7 @@ TonePlayer<sup>9+</sup>提供播放和管理DTMF（Dual Tone Multi Frequency，�
 ```ts
 import audio from '@ohos.multimedia.audio';
 let audioRendererInfo: audio.AudioRendererInfo = {
-  content : audio.ContentType.CONTENT_TYPE_SONIFICATION,
-  usage : audio.StreamUsage.STREAM_USAGE_MEDIA,
+  usage : audio.StreamUsage.STREAM_USAGE_DTMF,
   rendererFlags : 0
 };
 let tonePlayerPromise = audio.createTonePlayer(audioRendererInfo);
@@ -100,8 +99,7 @@ async function testTonePlayerPromise(type: audio.ToneType) {
   if (timerPro) clearTimeout(timerPro);
   let tonePlayerPromise: audio.TonePlayer;
   let audioRendererInfo: audio.AudioRendererInfo = {
-    content : audio.ContentType.CONTENT_TYPE_SONIFICATION,
-    usage : audio.StreamUsage.STREAM_USAGE_MEDIA,
+    usage : audio.StreamUsage.STREAM_USAGE_DTMF,
     rendererFlags : 0
   };
   timerPro = setTimeout(async () => {
