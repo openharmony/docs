@@ -52,15 +52,15 @@
 
 4. 发送SMS消息。
 
-```js
+```ts
 import sms from '@ohos.telephony.sms'
 import { AsyncCallback } from "./basic";
 import { BusinessError } from '@ohos.base';
 
-let sendCallback: AsyncCallback<sms.ISendShortMessageCallback> = function (err: BusinessError, data: sms.ISendShortMessageCallback) {
+let sendCallback: AsyncCallback<sms.ISendShortMessageCallback> = (err: BusinessError, data: sms.ISendShortMessageCallback) => {
     console.log(`sendCallback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`); 
 }
-let deliveryCallback: AsyncCallback<sms.IDeliveryShortMessageCallback> = function (err: BusinessError, data: sms.IDeliveryShortMessageCallback) {
+let deliveryCallback: AsyncCallback<sms.IDeliveryShortMessageCallback> = (err: BusinessError, data: sms.IDeliveryShortMessageCallback) => {
     console.log(`deliveryCallback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`); 
 }
 let slotId: number = 0;
