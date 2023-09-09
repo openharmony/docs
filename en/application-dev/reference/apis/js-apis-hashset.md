@@ -33,7 +33,7 @@ import HashSet from '@ohos.util.HashSet';
 **Example**
 
 ```ts
-let hashSet = new HashSet();
+let hashSet: HashSet<number> = new HashSet();
 hashSet.add(1);
 hashSet.add(2);
 hashSet.add(3);
@@ -61,7 +61,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-let hashSet = new HashSet();
+let hashSet: HashSet<number> = new HashSet();
 ```
 
 
@@ -90,7 +90,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-const hashSet = new HashSet();
+const hashSet: HashSet<number> = new HashSet();
 let result = hashSet.isEmpty();
 ```
 
@@ -126,7 +126,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-let hashSet = new HashSet();
+let hashSet: HashSet<string> = new HashSet();
 hashSet.add("squirrel");
 let result = hashSet.has("squirrel");
 ```
@@ -163,7 +163,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-let hashSet = new HashSet();
+let hashSet: HashSet<string> = new HashSet();
 let result = hashSet.add("squirrel");
 ```
 
@@ -199,7 +199,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-let hashSet = new HashSet();
+let hashSet: HashSet<string> = new HashSet();
 hashSet.add("squirrel");
 hashSet.add("sparrow");
 let result = hashSet.remove("sparrow");
@@ -225,7 +225,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-let hashSet = new HashSet();
+let hashSet: HashSet<string> = new HashSet();
 hashSet.add("squirrel");
 hashSet.add("sparrow");
 hashSet.clear();
@@ -257,14 +257,14 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-let hashSet = new HashSet();
+let hashSet: HashSet<string> = new HashSet();
 hashSet.add("squirrel");
 hashSet.add("sparrow");
 let iter = hashSet.values();
-let temp = iter.next().value;
-while(temp != undefined) {
-  console.log("value:" + temp);
-  temp = iter.next().value;
+let temp = iter.next();
+while(!temp.done) {
+  console.log("value:" + temp.value);
+  temp = iter.next();
 }
 ```
 
@@ -302,11 +302,11 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-let hashSet = new HashSet();
+let hashSet: HashSet<string> = new HashSet();
 hashSet.add("sparrow");
 hashSet.add("squirrel");
-hashSet.forEach((value, key) => {
-    console.log("value:" + value, "key:" + key);
+hashSet.forEach((value?: string, key?: string): void => {
+  console.log("value:" + value, "key:" + key);
 });
 ```
 
@@ -335,15 +335,15 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-let hashSet = new HashSet();
+let hashSet: HashSet<string> = new HashSet();
 hashSet.add("squirrel");
 hashSet.add("sparrow");
 let iter = hashSet.entries();
-let temp = iter.next().value;
-while(temp != undefined) {
-  console.log("key:" + temp[0]);
-  console.log("value:" + temp[1]);
-  temp = iter.next().value;
+let temp: IteratorResult<string> = iter.next();
+while(!temp.done) {
+  console.log("key:" + temp.value[0]);
+  console.log("value:" + temp.value[1]);
+  temp = iter.next();
 }
 ```
 
@@ -373,20 +373,21 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-let hashSet = new HashSet();
+let hashSet: HashSet<string> = new HashSet();
 hashSet.add("squirrel");
 hashSet.add("sparrow");
 
 // Method 1:
-for (let item of hashSet) { 
+let val: Array<string> = Array.from(hashSet.values())
+for (let item of val) {
   console.log("value: " + item);
 }
 
 // Method 2:
 let iter = hashSet[Symbol.iterator]();
-let temp = iter.next().value;
-while(temp != undefined) {
-  console.log("value: " + temp);
-  temp = iter.next().value;
+let temp: IteratorResult<string> = iter.next();
+while(!temp.done) {
+  console.log("value: " + temp.value);
+  temp = iter.next();
 }
 ```

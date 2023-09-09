@@ -51,7 +51,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-let queue = new Queue();
+let queue : Queue<number | string | Object> = new Queue();
 ```
 
 
@@ -86,12 +86,16 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-let queue = new Queue();
+class C1 {
+  name: string = ""
+  age: string = ""
+}
+let queue : Queue<number | string | C1 | number[]> = new Queue();
 let result = queue.add("a");
 let result1 = queue.add(1);
 let b = [1, 2, 3];
 let result2 = queue.add(b);
-let c = {name : "Dylon", age : "13"};
+let c : C1 = {name : "Dylon", age : "13"};
 let result3 = queue.add(c);
 ```
 
@@ -120,7 +124,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-let queue = new Queue();
+let queue : Queue<number> = new Queue();
 queue.add(2);
 queue.add(4);
 queue.add(5);
@@ -154,7 +158,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-let queue = new Queue();
+let queue : Queue<number> = new Queue();
 queue.add(2);
 queue.add(4);
 queue.add(5);
@@ -197,13 +201,13 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-let queue = new Queue();
+let queue : Queue<number> = new Queue();
 queue.add(2);
 queue.add(4);
 queue.add(5);
 queue.add(4);
-queue.forEach((value, index) => {
-    console.log("value:" + value, "index:" + index);
+queue.forEach((value : number, index ?: number) : void => {
+  console.log("value:" + value, "index:" + index);
 });
 ```
 
@@ -231,20 +235,21 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 
 **Example**
 ```ts
-let queue = new Queue();
+let queue : Queue<number> = new Queue();
 queue.add(2);
 queue.add(4);
 queue.add(5);
 queue.add(4);
 
 // Method 1:
-for (let item of queue) { 
-  console.log("value:" + item); 
+while(queue.length) {
+  let item = queue.pop()
+  console.log("value:" + item);
 }
 
 // Method 2:
 let iter = queue[Symbol.iterator]();
-let temp = iter.next().value;
+let temp: IteratorResult<number> = iter.next().value;
 while(temp != undefined) {
   console.log("value:" + temp);
   temp = iter.next().value;
