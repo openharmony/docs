@@ -27,7 +27,7 @@ isSimActive\(slotId: number, callback: AsyncCallback\<boolean\>\): void
 | 参数名   | 类型                        | 必填 | 说明                                   |
 | -------- | --------------------------- | ---- | -------------------------------------- |
 | slotId   | number                      | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| callback | AsyncCallback&lt;boolean&gt; | 是   | 回调函数。                             |
+| callback | AsyncCallback&lt;boolean&gt; | 是   | 回调函数。返回指定卡槽是否激活，如果激活返回true。                             |
 
 **示例：**
 
