@@ -138,7 +138,7 @@ on(type: "stateChange", callback: Callback&lt;BluetoothState&gt;): void
 **示例：**
 
 ```js
-function onReceiveEvent(data) {
+function onReceiveEvent(data: access.BluetoothState) {
     console.info('bluetooth state = '+ JSON.stringify(data));
 }
 try {
@@ -177,7 +177,7 @@ off(type: "stateChange", callback?: Callback&lt;BluetoothState&gt;): void
 **示例：**
 
 ```js
-function onReceiveEvent(data) {
+function onReceiveEvent(data: access.BluetoothState) {
     console.info('bluetooth state = '+ JSON.stringify(data));
 }
 try {
