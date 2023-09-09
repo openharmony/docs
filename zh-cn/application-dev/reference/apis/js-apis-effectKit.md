@@ -92,10 +92,13 @@ let opts : image.InitializationOptions = {
     width: 6
   }
 }
+
 image.createPixelMap(color, opts).then((pixelMap) => {
   effectKit.createColorPicker(pixelMap).then(colorPicker => {
     console.info("color picker=" + colorPicker);
-  }).catch(ex => console.error(".error=" + ex.toString()))
+  }).catch( (reason : BusinessError) => {
+    console.error("error=" + reason.message);
+  })
 })
 ```
 
@@ -135,10 +138,13 @@ let opts : image.InitializationOptions = {
     width: 6
   }
 }
+
 image.createPixelMap(color, opts).then((pixelMap) => {
   effectKit.createColorPicker(pixelMap).then(colorPicker => {
     console.info("color picker=" + colorPicker);
-  }).catch(ex => console.error(".error=" + ex.toString()))
+  }).catch( (reason : BusinessError) => {
+    console.error("error=" + reason.message);
+  })
 })
 ```
 
@@ -482,7 +488,7 @@ isBlackOrWhiteOrGrayColor(color: number): boolean
 
 **示例：**
 
-```ts11
+```ts
 import image from "@ohos.multimedia.image";
 import effectKit from "@ohos.effectKit";
 
@@ -674,3 +680,4 @@ image.createPixelMap(color, opts).then((pixelMap) => {
   console.log('getPixelBytesNumber = ', pixel.getPixelBytesNumber());
 })
 ```
+
