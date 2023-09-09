@@ -582,7 +582,7 @@ queryCurrentBundleEvents(begin: number, end: number): Promise&lt;Array&lt;Bundle
 
 **示例**：
 
-```js
+```ts
 usageStatistics.queryCurrentBundleEvents(0, 20000000000000).then((res: Array<usageStatistics.BundleEvents>) => {
   console.log('BUNDLE_ACTIVE queryCurrentBundleEvents promise success.');
   for (let i = 0; i < res.length; i++) {
