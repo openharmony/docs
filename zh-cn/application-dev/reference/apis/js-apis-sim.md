@@ -671,7 +671,7 @@ getSimState\(slotId: number\): Promise\<SimState\>
 import { BusinessError } from '@ohos.base';
 import sim from '@ohos.telephony.sim';
 
-sim.getSimState(0).then((data: simstate) => {
+sim.getSimState(0).then((data: sim.simstate) => {
     console.log(`getSimState success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
     console.log(`getSimState failed, promise: err->${JSON.stringify(err)}`);
