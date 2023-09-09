@@ -116,7 +116,7 @@
        }
      }
      try {
-       const result = await context.startAbilityForResult(config, {windowMode: 1});
+       let result = await context.startAbilityForResult(config, {windowMode: 1});
        if (result.resultCode !== 0) {
          console.error(`documentViewPicker.select failed, code is ${result.resultCode}, message is ${result.want.parameters.message}`);
          return;
@@ -177,6 +177,7 @@
 
    ```ts
    let uri: string;
+   const uri = '';
    const audioViewPicker = new picker.AudioViewPicker();
    audioViewPicker.select(audioSelectOptions).then((audioSelectResult: Array<string>) => {
      uri = audioSelectResult[0];
