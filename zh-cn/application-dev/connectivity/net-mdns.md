@@ -54,41 +54,48 @@ let context = featureAbility.getContext();
 
 // Stage模型获取context
 import UIAbility from '@ohos.app.ability.UIAbility';
+import { BusinessError } from '@ohos.base';
 class EntryAbility extends UIAbility {
-  onWindowStageCreate(windowStage){
-    globalThis.context = this.context;
+  value:number = 0;
+  onWindowStageCreate(windowStage:string): void{
+    GlobalContext.getContext().setObject("value", this.value);
   }
 }
-let context = globalThis.context;
+let context = GlobalContext.getContext().getObject("value");
 
 // 建立LocalService对象
-let localServiceInfo = {
-  serviceType: "_print._tcp",
-  serviceName: "servicename",
-  port: 5555,
-  host: {
-    address: "10.14.**.***",
-  },
-  serviceAttribute: [{
-    key: "111",
-    value: [1]
-  }]
+class Host {
+  address: string = "10.14.**.***"
 }
 
+class ServiceAttribute {
+  key: string = "111",
+  value: number = 1
+}
+class ServiceInfo {
+  serviceType : string = "_print._tcp",
+  serviceName : string = "servicename",
+  port:number = 5555,
+  host : object = new Host(),
+  serviceAttribute: object = new ServiceAttribute(),
+}
+
+let localServiceInfo = new ServiceInfo();
+
 // addLocalService添加本地服务
-mdns.addLocalService(context, localServiceInfo, function (error, data) {
+mdns.addLocalService(context, localServiceInfo, (error: BusinessError, data: localServiceInfo) =>  {
   console.log(JSON.stringify(error));
   console.log(JSON.stringify(data));
 });
 
 // resolveLocalService解析本地服务对象（非必要，根据需求使用）
-mdns.resolveLocalService(context, localServiceInfo, function (error, data) {
+mdns.resolveLocalService(context, localServiceInfo, (error: BusinessError, data: localServiceInfo) =>  {
   console.log(JSON.stringify(error));
   console.log(JSON.stringify(data));
 });
 
 // removeLocalService移除本地服务
-mdns.removeLocalService(context, localServiceInfo, function (error, data) {
+mdns.removeLocalService(context, localServiceInfo, (error: BusinessError, data: localServiceInfo) =>  {
   console.log(JSON.stringify(error));
   console.log(JSON.stringify(data));
 });
@@ -114,28 +121,30 @@ let context = featureAbility.getContext();
 
 // Stage模型获取context
 import UIAbility from '@ohos.app.ability.UIAbility';
+import { BusinessError } from '@ohos.base';
 class EntryAbility extends UIAbility {
-  onWindowStageCreate(windowStage){
-    globalThis.context = this.context;
+  value:number = 0;
+  onWindowStageCreate(windowStage:string): void{
+    GlobalContext.getContext().setObject("value", this.value);
   }
 }
-let context = globalThis.context;
+let context = GlobalContext.getContext().getObject("value");
 
 // 创建DiscoveryService对象，用于发现指定服务类型的mDNS服务
 let serviceType = "_print._tcp";
 let discoveryService = mdns.createDiscoveryService(context, serviceType);
 
 // 订阅mDNS服务发现相关状态变化
-discoveryService.on('discoveryStart', (data) => {
+discoveryService.on('discoveryStart', (data: localServiceInfo) => {
   console.log(JSON.stringify(data));
 });
-discoveryService.on('discoveryStop', (data) => {
+discoveryService.on('discoveryStop', (data: localServiceInfo) => {
   console.log(JSON.stringify(data));
 });
-discoveryService.on('serviceFound', (data) => {
+discoveryService.on('serviceFound', (data: localServiceInfo) => {
   console.log(JSON.stringify(data));
 });
-discoveryService.on('serviceLost', (data) => {
+discoveryService.on('serviceLost', (data: localServiceInfo) => {
   console.log(JSON.stringify(data));
 });
 
@@ -146,16 +155,16 @@ discoveryService.startSearchingMDNS();
 discoveryService.stopSearchingMDNS();
 
 // 取消订阅的mdns服务
-discoveryService.off('discoveryStart', (data) => {
+discoveryService.off('discoveryStart', (data: localServiceInfo) => {
   console.log(JSON.stringify(data));
 });
-discoveryService.off('discoveryStop', (data) => {
+discoveryService.off('discoveryStop', (data: localServiceInfo) => {
   console.log(JSON.stringify(data));
 });
-discoveryService.off('serviceFound', (data) => {
+discoveryService.off('serviceFound', (data: localServiceInfo) => {
   console.log(JSON.stringify(data));
 });
-discoveryService.off('serviceLost', (data) => {
+discoveryService.off('serviceLost', (data: localServiceInfo) => {
   console.log(JSON.stringify(data));
 });
 ```
