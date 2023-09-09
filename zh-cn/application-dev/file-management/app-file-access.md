@@ -62,7 +62,7 @@ function createFile(): void {
   let arrayBuffer = new ArrayBuffer(1024);
   class Option {
     public offset: number = 0;
-    public length: number;
+    public length: number = 0;
   }
   let option = new Option();
   option.length = arrayBuffer.byteLength;
@@ -76,8 +76,8 @@ function createFile(): void {
 
 ### 读取文件内容并写入到另一个文件
 
-  以下示例代码演示了如何从一个文件读写内容到另一个文件。
-  
+以下示例代码演示了如何从一个文件读写内容到另一个文件。
+
 ```ts
 // pages/xxx.ets
 import fs from '@ohos.file.fs';
@@ -121,7 +121,7 @@ function readWriteFile(): void {
 ### 以流的形式读写文件
 
 以下示例代码演示了如何使用流接口进行文件读写：
-  
+
 ```ts
 // pages/xxx.ets
 import fs from '@ohos.file.fs';
@@ -160,7 +160,7 @@ async function readWriteFileWithStream(): Promise<void> {
 ```
 
 > **说明：**
-> 
+>
 > 使用流接口时，需注意流的及时关闭。同时流的异步接口应严格遵循异步接口使用规范，避免同步、异步接口混用。流接口不支持并发读写。
 
 ### 查看文件列表
@@ -180,7 +180,7 @@ function getListFile(): void {
   class ListFileOption {
     public recursion: boolean = false;
     public listNum: number = 0;
-    public filter: Filter
+    public filter: Filter = {};
   }
   let option = new ListFileOption();
   option.filter.suffix = ['.png', '.jpg', '.txt'];          // 匹配文件后缀名为'.png','.jpg','.txt'
