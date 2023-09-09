@@ -8,7 +8,7 @@
 
 ## 导入模块
 
-```js
+```ts
 import sms from '@ohos.telephony.sms';
 ```
 
@@ -42,11 +42,14 @@ createMessage\(pdu: Array&lt;number&gt;, specification: string, callback: AsyncC
 
 **示例：**
 
-```js
-const specification = '3gpp';
+```ts
+import sms from '@ohos.telephony.sms';
+import { BusinessError } from '@ohos.base';
+
+const specification: string = '3gpp';
 // 以数组的形式显示协议数据单元（PDU），类型为number，例如[0x08, 0x91, ...]
-const pdu = [0x08, 0x91];
-sms.createMessage(pdu, specification, (err, data) => {
+const pdu: Array<number> = [0x08, 0x91];
+sms.createMessage(pdu, specification, (err: BusinessError, data: sms.RemoteAbilityInfo[]) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -87,14 +90,17 @@ createMessage\(pdu: Array&lt;number&gt;, specification: string\): Promise\<Short
 
 **示例：**
 
-```js
-const specification = '3gpp';
+```ts
+import sms from '@ohos.telephony.sms';
+import { BusinessError } from '@ohos.base';
+
+const specification: string = '3gpp';
 // 以数组的形式显示协议数据单元（PDU），类型为number，例如[0x08, 0x91, ...]
-const pdu = [0x08, 0x91];
+const pdu: Array<number> = [0x08, 0x91];
 let promise = sms.createMessage(pdu, specification);
-promise.then(data => {
+promise.then((data: sms.RemoteAbilityInfo[]) => {
     console.log(`createMessage success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
     console.error(`createMessage failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -134,19 +140,25 @@ sendMessage\(options: SendMessageOptions\): void
 
 **示例：**
 
-```js
-let sendCallback = function (err, data) {
+```ts
+import sms from '@ohos.telephony.sms';
+import { BusinessError } from '@ohos.base';
+
+let sendCallback = (err: BusinessError, data: sms.RemoteAbilityInfo[]) => {
     console.log(`sendCallback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`); 
 }
-let deliveryCallback = function (err, data) {
+let deliveryCallback = (err: BusinessError, data: sms.RemoteAbilityInfo[]) => {
     console.log(`deliveryCallback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`); 
 }
-let slotId = 0;
-let content = '短信内容';
-let destinationHost = '+861xxxxxxxxxx';
-let serviceCenter = '+861xxxxxxxxxx';
-let destinationPort = 1000;
-let options = {slotId, content, destinationHost, serviceCenter, destinationPort, sendCallback, deliveryCallback};
+let options: sms.SendMessageOptions = {
+    slotId = 0;
+    content = '短信内容';
+    destinationHost = '+861xxxxxxxxxx';
+    serviceCenter = '+861xxxxxxxxxx';
+    destinationPort = 1000;
+    sendCallback = sendCallback;
+    deliveryCallback = deliveryCallback;
+};
 sms.sendMessage(options);
 ```
 
@@ -182,20 +194,26 @@ sendShortMessage\(options: SendMessageOptions, callback: AsyncCallback&lt;void&g
 
 **示例：**
 
-```js
-let sendCallback = function (err, data) {
+```ts
+import sms from '@ohos.telephony.sms';
+import { BusinessError } from '@ohos.base';
+
+let sendCallback = (err: BusinessError, data: sms.RemoteAbilityInfo[]) => {
     console.log(`sendCallback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 }
-let deliveryCallback = function (err, data) {
+let deliveryCallback = (err: BusinessError, data: sms.RemoteAbilityInfo[]) => {
     console.log(`deliveryCallback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 }
-let slotId = 0;
-let content = '短信内容';
-let destinationHost = '+861xxxxxxxxxx';
-let serviceCenter = '+861xxxxxxxxxx';
-let destinationPort = 1000;
-let options = {slotId, content, destinationHost, serviceCenter, destinationPort, sendCallback, deliveryCallback};
-sms.sendShortMessage(options, (err) => {
+let options: sms.SendMessageOptions = {
+    slotId = 0;
+    content = '短信内容';
+    destinationHost = '+861xxxxxxxxxx';
+    serviceCenter = '+861xxxxxxxxxx';
+    destinationPort = 1000;
+    sendCallback = sendCallback;
+    deliveryCallback = deliveryCallback;
+};
+sms.sendShortMessage(options, (err: BusinessError) => {
     console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
@@ -237,23 +255,29 @@ sendShortMessage\(options: SendMessageOptions\): Promise&lt;void&gt;
 
 **示例：**
 
-```js
-let sendCallback = function (err, data) {
+```ts
+import sms from '@ohos.telephony.sms';
+import { BusinessError } from '@ohos.base';
+
+let sendCallback = (err: BusinessError, data: sms.RemoteAbilityInfo[]) => {
     console.log(`sendCallback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 }
-let deliveryCallback = function (err, data) {
+let deliveryCallback = (err: BusinessError, data: sms.RemoteAbilityInfo[]) => {
     console.log(`deliveryCallback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 }
-let slotId = 0;
-let content = '短信内容';
-let destinationHost = '+861xxxxxxxxxx';
-let serviceCenter = '+861xxxxxxxxxx';
-let destinationPort = 1000;
-let options = {slotId, content, destinationHost, serviceCenter, destinationPort, sendCallback, deliveryCallback};
+let options: sms.SendMessageOptions = {
+    slotId = 0;
+    content = '短信内容';
+    destinationHost = '+861xxxxxxxxxx';
+    serviceCenter = '+861xxxxxxxxxx';
+    destinationPort = 1000;
+    sendCallback = sendCallback;
+    deliveryCallback = deliveryCallback;
+};
 let promise = sms.sendShortMessage(options);
 promise.then(() => {
     console.log(`sendShortMessage success`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
     console.error(`sendShortMessage failed, promise: err->${JSON.stringify(err)}`);
 });
 
@@ -297,31 +321,32 @@ sendMms\(context: Context, mmsParams: MmsParams, callback: AsyncCallback&lt;void
 
 FA模型示例：
 
-```js
+```ts
+import sms from '@ohos.telephony.sms';
+import { BusinessError } from '@ohos.base';
+import type Context from './application/BaseContext';
+
 // 获取context
 import featureAbility from '@ohos.ability.featureAbility';
-let context = featureAbility.getContext();
+let context: Context = featureAbility.getContext();
 
 // 彩信pdu存储路径
-const sandBoxPath = '/data/storage/el2/base/files/';
-let filePath  = sandBoxPath + 'SendReq.mms';
-
-// 彩信用户代理、用户代理描述配置。根据运营商要求配置，默认ua，uaprof
-let mmsConf = {
-  userAgent:'ua',
-  userAgentProfile: 'uaprof'
-};
+const sandBoxPath: string = '/data/storage/el2/base/files/';
+let filePath: string  = sandBoxPath + 'SendReq.mms';
 
 // 发送彩信参数(mmsc以联通卡为例)
-let mmsPars = {
-  slotId : DEFAULT_SLOTID,
+let mmsPars: sms.MmsParams = {
+  slotId : 0,
   mmsc: 'http://mmsc.myuni.com.cn',
   data: filePath,
-  mmsConfig: mmsConf
+  mmsConfig: {
+   userAgent:'ua',
+   userAgentProfile: 'uaprof'
+  }
 };
 
 // 调用发送接口
-mms.sendMms(context, mmsPars, async(err) =>{
+mms.sendMms(context, mmsPars, async(err: BusinessError) =>{
   if (err) {
     console.log(`sendMms fail, err : ${toString(err)}`);
     return;
@@ -409,34 +434,34 @@ sendMms\(context: Context, mmsParams: MmsParams\): Promise&lt;void&gt;
 
 FA模型示例：
 
-```js
+```ts
+import sms from '@ohos.telephony.sms';
+import { BusinessError } from '@ohos.base';
+import type Context from './application/BaseContext';
 // 获取context
 import featureAbility from '@ohos.ability.featureAbility';
-let context = featureAbility.getContext();
+let context: Context = featureAbility.getContext();
 
 // 彩信pdu存储路径
-const sandBoxPath = '/data/storage/el2/base/files/';
-let filePath  = sandBoxPath + 'SendReq.mms';
-
-// 彩信用户代理、用户代理描述配置。根据运营商要求配置，默认ua，uaprof
-let mmsConf = {
-  userAgent:'ua',
-  userAgentProfile: 'uaprof'
-};
+const sandBoxPath: string = '/data/storage/el2/base/files/';
+let filePath: string = sandBoxPath + 'SendReq.mms';
 
 // 发送彩信参数(mmsc以联通卡为例)
-let mmsPars = {
-  slotId : DEFAULT_SLOTID,
+let mmsPars: sms.MmsParams = {
+  slotId: 0,
   mmsc: 'http://mmsc.myuni.com.cn',
   data: filePath,
-  mmsConfig: mmsConf
+  mmsConfig: {
+   userAgent:'ua',
+   userAgentProfile: 'uaprof'
+  }
 };
 
 // 调用发送接口
 let promise = sms.sendMms(context, mmsPars);
 promise.then(() => {
     console.log(`sendMms success`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
     console.error(`sendMms failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -514,34 +539,34 @@ downloadMms\(context: Context, mmsParams: MmsParams, callback: AsyncCallback&lt;
 
 FA模型示例：
 
-```js
+```ts
+import sms from '@ohos.telephony.sms';
+import { BusinessError } from '@ohos.base';
+import type Context from './application/BaseContext';
 // 获取context
 import featureAbility from '@ohos.ability.featureAbility';
-let context = featureAbility.getContext();
+let context: Context = featureAbility.getContext();
 
 // 彩信pdu存储路径
-const sandBoxPath = '/data/storage/el2/base/files/';
-let filePath  = sandBoxPath + 'RetrieveConf.mms';
+const sandBoxPath: string = '/data/storage/el2/base/files/';
+let filePath: string = sandBoxPath + 'RetrieveConf.mms';
 
 // 从WapPush中解析出彩信URL
-let wapPushUrl  = 'URL';
-
-// 彩信用户代理、用户代理描述配置。根据运营商要求配置，默认ua，uaprof
-let mmsConf = {
-  userAgent:'ua',
-  userAgentProfile: 'uaprof'
-};
+let wapPushUrl: string = 'URL';
 
 // 下载彩信参数
-let mmsPars = {
-  slotId : DEFAULT_SLOTID,
+let mmsPars: sms.MmsParams = {
+  slotId: 0,
   mmsc: wapPushUrl,
   data: filePath,
-  mmsConfig: mmsConf
+  mmsConfig: {
+   userAgent:'ua',
+   userAgentProfile: 'uaprof'
+  }
 };
 
 // 调用下载接口
-mms.downloadMms(context, mmsPars, async(err) =>{
+mms.downloadMms(context, mmsPars, async(err: BusinessError) =>{
   if (err) {
     console.log(`downloadMms fail, err : ${toString(err)}`);
     return;
@@ -632,37 +657,37 @@ downloadMms\(context: Context, mmsParams: MmsParams\): Promise&lt;void&gt;
 
 FA模型示例：
 
-```js
+```ts
+import sms from '@ohos.telephony.sms';
+import { BusinessError } from '@ohos.base';
+import type Context from './application/BaseContext';
 // 获取context
 import featureAbility from '@ohos.ability.featureAbility';
-let context = featureAbility.getContext();
+let context: Context = featureAbility.getContext();
 
 // 彩信pdu存储路径
-const sandBoxPath = '/data/storage/el2/base/files/';
-let filePath  = sandBoxPath + 'RetrieveConf.mms';
+const sandBoxPath: string = '/data/storage/el2/base/files/';
+let filePath: string = sandBoxPath + 'RetrieveConf.mms';
 
 // 从WapPush中解析出彩信URL
-let wapPushUrl  = 'URL';
-
-// 彩信用户代理、用户代理描述配置。根据运营商要求配置，默认ua，uaprof
-let mmsConf = {
-  userAgent:'ua',
-  userAgentProfile: 'uaprof'
-};
+let wapPushUrl: string = 'URL';
 
 // 下载彩信参数
-let mmsPars = {
-  slotId : DEFAULT_SLOTID,
+let mmsPars: sms.MmsParams = {
+  slotId: 0,
   mmsc: wapPushUrl,
   data: filePath,
-  mmsConfig: mmsConf
+  mmsConfig: {
+   userAgent:'ua',
+   userAgentProfile: 'uaprof'
+  }
 };
 
 // 调用发送接口
 let promise = sms.downloadMms(context, mmsPars);
 promise.then(() => {
     console.log(`downloadMms success`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
     console.error(`downloadMms failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -721,8 +746,11 @@ getDefaultSmsSlotId\(callback: AsyncCallback&lt;number&gt;\): void
 
 **示例：**
 
-```js
-sms.getDefaultSmsSlotId((err, data) => {
+```ts
+import sms from '@ohos.telephony.sms';
+import { BusinessError } from '@ohos.base';
+
+sms.getDefaultSmsSlotId((err: BusinessError, data: number) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -744,11 +772,13 @@ getDefaultSmsSlotId\(\): Promise&lt;number&gt;
 
 **示例：**
 
-```js
-let promise = sms.getDefaultSmsSlotId();
-promise.then(data => {
+```ts
+import sms from '@ohos.telephony.sms';
+import { BusinessError } from '@ohos.base';
+
+sms.getDefaultSmsSlotId().then((data: number) => {
     console.log(`getDefaultSmsSlotId success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
     console.error(`getDefaultSmsSlotId failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -789,8 +819,11 @@ setDefaultSmsSlotId\(slotId: number, callback: AsyncCallback&lt;void&gt;\): void
 
 **示例：**
 
-```js
-sms.setDefaultSmsSlotId(0, (err) => {
+```ts
+import sms from '@ohos.telephony.sms';
+import { BusinessError } from '@ohos.base';
+
+sms.setDefaultSmsSlotId(0, (err: BusinessError) => {
     console.log(`callback: err->${JSON.stringify(err)}.`);
 });
 ```
@@ -837,11 +870,13 @@ setDefaultSmsSlotId\(slotId: number\): Promise&lt;void&gt;
 
 **示例：**
 
-```js
-let promise = sms.setDefaultSmsSlotId(0);
-promise.then(() => {
+```ts
+import sms from '@ohos.telephony.sms';
+import { BusinessError } from '@ohos.base';
+
+sms.setDefaultSmsSlotId(0).then(() => {
     console.log(`setDefaultSmsSlotId success.`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
     console.error(`setDefaultSmsSlotId failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -882,10 +917,13 @@ setSmscAddr\(slotId: number, smscAddr: string, callback: AsyncCallback\<void\>\)
 
 **示例：**
 
-```js
-let slotId = 0;
-let smscAddr = '+861xxxxxxxxxx';
-sms.setSmscAddr(slotId, smscAddr, (err) => {
+```ts
+import sms from '@ohos.telephony.sms';
+import { BusinessError } from '@ohos.base';
+
+let slotId: number = 0;
+let smscAddr: string = '+861xxxxxxxxxx';
+sms.setSmscAddr(slotId, smscAddr, (err: BusinessError) => {
       console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
@@ -932,13 +970,15 @@ setSmscAddr\(slotId: number, smscAddr: string\): Promise\<void\>
 
 **示例：**
 
-```js
-let slotId = 0;
-let smscAddr = '+861xxxxxxxxxx';
-let promise = sms.setSmscAddr(slotId, smscAddr);
-promise.then(() => {
+```ts
+import sms from '@ohos.telephony.sms';
+import { BusinessError } from '@ohos.base';
+
+let slotId: number = 0;
+let smscAddr: string = '+861xxxxxxxxxx';
+sms.setSmscAddr(slotId, smscAddr).then(() => {
     console.log(`setSmscAddr success.`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
     console.error(`setSmscAddr failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -979,9 +1019,12 @@ getSmscAddr\(slotId: number, callback: AsyncCallback\<string\>\): void
 
 **示例：**
 
-```js
-let slotId = 0;
-sms.getSmscAddr(slotId, (err, data) => {
+```ts
+import sms from '@ohos.telephony.sms';
+import { BusinessError } from '@ohos.base';
+
+let slotId: number = 0;
+sms.getSmscAddr(slotId, (err: BusinessError, data: string) => {
       console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -1027,12 +1070,14 @@ getSmscAddr\(slotId: number\): Promise\<string\>
 
 **示例：**
 
-```js
-let slotId = 0;
-let promise = sms.getSmscAddr(slotId);
-promise.then(data => {
+```ts
+import sms from '@ohos.telephony.sms';
+import { BusinessError } from '@ohos.base';
+
+let slotId: number = 0;
+sms.getSmscAddr(slotId).then((data: string) => {
     console.log(`getSmscAddr success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
     console.error(`getSmscAddr failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -1051,7 +1096,9 @@ hasSmsCapability\(\): boolean
 | ------- | ------------------------------------------------------------ |
 | boolean | - true：设备具备短信发送和接收能力。<br/>- false：设备不具备短信发送和接收能力。 |
 
-```js
+```ts
+import sms from '@ohos.telephony.sms';
+
 let result = sms.hasSmsCapability(); 
 console.log(`hasSmsCapability: ${JSON.stringify(result)}`);
 ```
@@ -1091,9 +1138,12 @@ splitMessage\(content: string, callback: AsyncCallback\<Array\<string\>\>\): voi
 
 **示例：**
 
-```js
-let content = "long message";
-sms.splitMessage(content, (err, data) => {
+```ts
+import sms from '@ohos.telephony.sms';
+import { BusinessError } from '@ohos.base';
+
+let content: string = "long message";
+sms.splitMessage(content, (err: BusinessError, data: string) => {
       console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -1139,12 +1189,15 @@ splitMessage\(content: string\): Promise\<Array\<string\>\>
 
 **示例：**
 
-```js
-let content = "long message";
+```ts
+import sms from '@ohos.telephony.sms';
+import { BusinessError } from '@ohos.base';
+
+let content: string = "long message";
 let promise = sms.splitMessage(content);
-promise.then(data => {
+promise.then((data: string) => {
     console.log(`splitMessage success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
     console.error(`splitMessage failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -1184,14 +1237,17 @@ addSimMessage\(options: SimMessageOptions, callback: AsyncCallback\<void\>\): vo
 
 **示例：**
 
-```js
-let simMessageOptions = {
+```ts
+import sms from '@ohos.telephony.sms';
+import { BusinessError } from '@ohos.base';
+
+let simMessageOptions: sms.SimMessageOptions = {
     slotId: 0,
     smsc: "test",
     pdu: "xxxxxx",
     status: sms.SimMessageStatus.SIM_MESSAGE_STATUS_READ
 };
-sms.addSimMessage(simMessageOptions, (err) => {
+sms.addSimMessage(simMessageOptions, (err: BusinessError) => {
       console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
@@ -1237,17 +1293,19 @@ addSimMessage\(options: SimMessageOptions\): Promise\<void\>
 
 **示例：**
 
-```js
-let simMessageOptions = {
+```ts
+import sms from '@ohos.telephony.sms';
+import { BusinessError } from '@ohos.base';
+
+let simMessageOptions: sms.SimMessageOptions = {
     slotId: 0,
     smsc: "test",
     pdu: "xxxxxx",
     status: sms.SimMessageStatus.SIM_MESSAGE_STATUS_READ
 };
-let promise = sms.addSimMessage(simMessageOptions);
-promise.then(() => {
+sms.addSimMessage(simMessageOptions).then(() => {
     console.log(`addSimMessage success.`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
     console.error(`addSimMessage failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -1288,10 +1346,13 @@ delSimMessage\(slotId: number, msgIndex: number, callback: AsyncCallback\<void\>
 
 **示例：**
 
-```js
-let slotId = 0;
-let msgIndex = 1;
-sms.delSimMessage(slotId, msgIndex, (err) => {
+```ts
+import sms from '@ohos.telephony.sms';
+import { BusinessError } from '@ohos.base';
+
+let slotId: number = 0;
+let msgIndex: number = 1;
+sms.delSimMessage(slotId, msgIndex, (err: BusinessError) => {
       console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
@@ -1338,13 +1399,16 @@ delSimMessage\(slotId: number, msgIndex: number\): Promise\<void\>
 
 **示例：**
 
-```js
-let slotId = 0;
-let msgIndex = 1;
+```ts
+import sms from '@ohos.telephony.sms';
+import { BusinessError } from '@ohos.base';
+
+let slotId: number = 0;
+let msgIndex: number = 1;
 let promise = sms.delSimMessage(slotId, msgIndex);
 promise.then(() => {
     console.log(`delSimMessage success.`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
     console.error(`delSimMessage failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -1384,15 +1448,18 @@ updateSimMessage\(options: UpdateSimMessageOptions, callback: AsyncCallback\<voi
 
 **示例：**
 
-```js
-let updateSimMessageOptions = {
+```ts
+import sms from '@ohos.telephony.sms';
+import { BusinessError } from '@ohos.base';
+
+let updateSimMessageOptions: sms.UpdateSimMessageOptions = {
     slotId: 0,
     msgIndex: 1,
     newStatus: sms.SimMessageStatus.SIM_MESSAGE_STATUS_FREE,
     pdu: "xxxxxxx",
     smsc: "test"
 };
-sms.updateSimMessage(updateSimMessageOptions, (err) => {
+sms.updateSimMessage(updateSimMessageOptions, (err: BusinessError) => {
       console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
@@ -1438,8 +1505,11 @@ updateSimMessage\(options: UpdateSimMessageOptions\): Promise\<void\>
 
 **示例：**
 
-```js
-let updateSimMessageOptions = {
+```ts
+import sms from '@ohos.telephony.sms';
+import { BusinessError } from '@ohos.base';
+
+let updateSimMessageOptions: sms.UpdateSimMessageOptions = {
     slotId: 0,
     msgIndex: 1,
     newStatus: sms.SimMessageStatus.SIM_MESSAGE_STATUS_FREE,
@@ -1449,7 +1519,7 @@ let updateSimMessageOptions = {
 let promise = sms.updateSimMessage(updateSimMessageOptions);
 promise.then(() => {
     console.log(`updateSimMessage success.`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
     console.error(`updateSimMessage failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -1489,9 +1559,12 @@ getAllSimMessages\(slotId: number, callback: AsyncCallback\<Array\<SimShortMessa
 
 **示例：**
 
-```js
-let slotId = 0;
-sms.getAllSimMessages(slotId, (err, data) => {
+```ts
+import sms from '@ohos.telephony.sms';
+import { BusinessError } from '@ohos.base';
+
+let slotId: number = 0;
+sms.getAllSimMessages(slotId, (err: BusinessError, data: sms.SimShortMessage) => {
       console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -1537,12 +1610,15 @@ getAllSimMessages\(slotId: number\): Promise\<Array\<SimShortMessage\>\>
 
 **示例：**
 
-```js
-let slotId = 0;
+```ts
+import sms from '@ohos.telephony.sms';
+import { BusinessError } from '@ohos.base';
+
+let slotId: number = 0;
 let promise = sms.getAllSimMessages(slotId);
-promise.then(data => {
+promise.then((data: sim.SimShortMessage) => {
     console.log(`getAllSimMessages success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
     console.error(`getAllSimMessages failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -1582,15 +1658,18 @@ setCBConfig\(options: CBConfigOptions, callback: AsyncCallback\<void\>\): void
 
 **示例：**
 
-```js
-let cbConfigOptions = {
+```ts
+import sms from '@ohos.telephony.sms';
+import { BusinessError } from '@ohos.base';
+
+let cbConfigOptions: sms.CBConfigOptions = {
     slotId: 0,
     enable: true,
     startMessageId: 100,
     endMessageId: 200,
     ranType: sms.RanType.TYPE_GSM
 };
-sms.setCBConfig(cbConfigOptions, (err) => {
+sms.setCBConfig(cbConfigOptions, (err: BusinessError) => {
       console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
@@ -1636,8 +1715,11 @@ setCBConfig\(options: CBConfigOptions\): Promise\<void\>
 
 **示例：**
 
-```js
-let cbConfigOptions = {
+```ts
+import sms from '@ohos.telephony.sms';
+import { BusinessError } from '@ohos.base';
+
+let cbConfigOptions: sms.CBConfigOptions = {
     slotId: 0,
     enable: true,
     startMessageId: 100,
@@ -1647,7 +1729,7 @@ let cbConfigOptions = {
 let promise = sms.setCBConfig(cbConfigOptions);
 promise.then(() => {
     console.log(`setCBConfig success.`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
     console.error(`setCBConfig failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -1686,9 +1768,12 @@ getSmsSegmentsInfo\(slotId: number, message: string, force7bit: boolean, callbac
 
 **示例：**
 
-```js
-let slotId = 0;
-sms.getSmsSegmentsInfo(slotId, "message", false, (err, data) => {
+```ts
+import sms from '@ohos.telephony.sms';
+import { BusinessError } from '@ohos.base';
+
+let slotId: number = 0;
+sms.getSmsSegmentsInfo(slotId, "message", false, (err: BusinessError, data: sms.SmsSegmentsInfo) => {
       console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -1733,12 +1818,15 @@ getSmsSegmentsInfo\(slotId: number, message: string, force7bit: boolean\): Promi
 
 **示例：**
 
-```js
-let slotId = 0;
+```ts
+import sms from '@ohos.telephony.sms';
+import { BusinessError } from '@ohos.base';
+
+let slotId: number = 0;
 let promise = sms.getSmsSegmentsInfo(slotId, "message", false);
-promise.then(data => {
+promise.then((data: sms.SmsSegmentsInfo) => {
     console.log(`getSmsSegmentsInfo success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
     console.error(`getSmsSegmentsInfo failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -1775,9 +1863,12 @@ isImsSmsSupported\(slotId: number, callback: AsyncCallback\<boolean\>\): void
 
 **示例：**
 
-```js
-let slotId = 0;
-sms.isImsSmsSupported(slotId, (err, data) => {
+```ts
+import sms from '@ohos.telephony.sms';
+import { BusinessError } from '@ohos.base';
+
+let slotId: number = 0;
+sms.isImsSmsSupported(slotId, (err: BusinessError, data: boolean) => {
       console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -1820,12 +1911,15 @@ isImsSmsSupported\(slotId: number\): Promise\<boolean\>
 
 **示例：**
 
-```js
-let slotId = 0;
+```ts
+import sms from '@ohos.telephony.sms';
+import { BusinessError } from '@ohos.base';
+
+let slotId: number = 0;
 let promise = sms.isImsSmsSupported(slotId);
-promise.then(data => {
+promise.then((data: boolean) => {
     console.log(`isImsSmsSupported success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
     console.error(`isImsSmsSupported failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -1861,8 +1955,11 @@ getImsShortMessageFormat\(callback: AsyncCallback\<string\>\): void
 
 **示例：**
 
-```js
-sms.getImsShortMessageFormat((err, data) => {
+```ts
+import sms from '@ohos.telephony.sms';
+import { BusinessError } from '@ohos.base';
+
+sms.getImsShortMessageFormat((err: BusinessError, data: string) => {
       console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -1897,11 +1994,13 @@ getImsShortMessageFormat\(\): Promise\<string\>
 
 **示例：**
 
-```js
-let promise = sms.getImsShortMessageFormat();
-promise.then(data => {
+```ts
+import sms from '@ohos.telephony.sms';
+import { BusinessError } from '@ohos.base';
+
+sms.getImsShortMessageFormat().then((data: string) => {
     console.log(`getImsShortMessageFormat success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
     console.error(`getImsShortMessageFormat failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -1938,9 +2037,12 @@ decodeMms\(mmsFilePathName: string | Array\<number\>, callback: AsyncCallback\<M
 
 **示例：**
 
-```js
-let mmsFilePathName = "filename";
-sms.decodeMms(mmsFilePathName, (err, data) => {
+```ts
+import sms from '@ohos.telephony.sms';
+import { BusinessError } from '@ohos.base';
+
+let mmsFilePathName: string = "filename";
+sms.decodeMms(mmsFilePathName, (err: BusinessError, data: sms.MmsInformation) => {
       console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -1983,12 +2085,15 @@ decodeMms\(mmsFilePathName: string | Array\<number\>\): Promise\<MmsInformation\
 
 **示例：**
 
-```js
-let mmsFilePathName = "filename";
+```ts
+import sms from '@ohos.telephony.sms';
+import { BusinessError } from '@ohos.base';
+
+let mmsFilePathName: string = "filename";
 let promise = sms.decodeMms(mmsFilePathName);
-promise.then(data => {
+promise.then((data: sms.MmsInformation) => {
     console.log(`decodeMms success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
     console.error(`decodeMms failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -2025,17 +2130,20 @@ encodeMms\(mms: MmsInformation, callback: AsyncCallback\<Array\<number\>\>\): vo
 
 **示例：**
 
-```js
-let mmsAcknowledgeInd = {
+```ts
+import sms from '@ohos.telephony.sms';
+import { BusinessError } from '@ohos.base';
+
+let mmsAcknowledgeInd: sms.MmsAcknowledgeInd = {
     transactionId: "100",
     version: sms.MmsVersionType.MMS_VERSION_1_0,
     reportAllowed: sms.ReportType.MMS_YES
 };
-let mmsInformation = {
+let mmsInformation: sms.MmsInformation = {
     messageType: sms.MessageType.TYPE_MMS_ACKNOWLEDGE_IND,
     mmsType: mmsAcknowledgeInd
 };
-sms.encodeMms(mmsInformation, (err, data) => {
+sms.encodeMms(mmsInformation, (err: BusinessError, data: number) => {
       console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -2078,20 +2186,22 @@ encodeMms\(mms: MmsInformation\): Promise\<Array\<number\>\>
 
 **示例：**
 
-```js
-let mmsAcknowledgeInd = {
+```ts
+import sms from '@ohos.telephony.sms';
+import { BusinessError } from '@ohos.base';
+
+let mmsAcknowledgeInd: sms.MmsAcknowledgeInd = {
     transactionId: "100",
     version: sms.MmsVersionType.MMS_VERSION_1_0,
     reportAllowed: sms.ReportType.MMS_YES
 };
-let mmsInformation = {
+let mmsInformation: sms.MmsInformation = {
     messageType: sms.MessageType.TYPE_MMS_ACKNOWLEDGE_IND,
     mmsType: mmsAcknowledgeInd
 };
-let promise = sms.encodeMms(mmsInformation);
-promise.then(data => {
+sms.encodeMms(mmsInformation).then((data: number) => {
     console.log(`encodeMms success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
     console.error(`encodeMms failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -2126,8 +2236,11 @@ getDefaultSmsSimId\(callback: AsyncCallback&lt;number&gt;\): void
 
 **示例：**
 
-```js
-sms.getDefaultSmsSimId((err, data) => {
+```ts
+import sms from '@ohos.telephony.sms';
+import { BusinessError } from '@ohos.base';
+
+sms.getDefaultSmsSimId((err: BusinessError, data: number) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -2162,11 +2275,14 @@ getDefaultSmsSimId\(\): Promise&lt;number&gt;
 
 **示例：**
 
-```js
+```ts
+import sms from '@ohos.telephony.sms';
+import { BusinessError } from '@ohos.base';
+
 let promise = sms.getDefaultSmsSimId();
-promise.then(data => {
+promise.then((data: number) => {
     console.log(`getDefaultSmsSimId success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
     console.error(`getDefaultSmsSimId failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
