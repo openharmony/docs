@@ -185,7 +185,7 @@ function getListFile(): void {
   let option = new ListFileOption();
   option.filter.suffix = ['.png', '.jpg', '.txt'];          // 匹配文件后缀名为'.png','.jpg','.txt'
   option.filter.displayName = ['test%'];                    // 匹配文件全名以'test'开头
-  option.filter.fileSizeOver = 0;                    // 匹配文件全名以'test'开头
+  option.filter.fileSizeOver = 0;                           // 匹配文件大小大于等于0
   option.filter.lastModifiedAfter = new Date(0).getTime();  // 匹配文件最近修改时间在1970年1月1日之后
   let files = fs.listFileSync(filesDir, option);
   for (let i = 0; i < files.length; i++) {

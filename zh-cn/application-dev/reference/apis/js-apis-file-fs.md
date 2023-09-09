@@ -9,7 +9,7 @@
 ## 导入模块
 
 ```ts
-import fs, { Filter } from '@ohos.file.fs';
+import fs, { Filter, ConflictFiles } from '@ohos.file.fs';
 ```
 
 ## 使用说明
@@ -494,14 +494,7 @@ copyDir(src: string, dest: string, mode?: number): Promise\<void>
   fs.copyDir(srcPath, destPath, 0).then(() => {
     console.info("copy directory succeed");
   }).catch((err: BusinessError) => {
-    if (err.code == 13900015) {
-      for (let i = 0; i < err.data.length; i++) {
-        console.info("copy directory failed with conflicting files: " + err.data[i].srcFile +
-          " " + err.data[i].destFile);
-      }
-    } else {
-      console.info("copy directory failed with error message: " + err.message + ", error code: " + err.code);
-    }
+    console.info("copy directory failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -533,11 +526,10 @@ copyDir(src: string, dest: string, mode?: number, callback: AsyncCallback\<void,
   // copy directory from srcPath to destPath
   let srcPath = pathDir + "/srcDir/";
   let destPath = pathDir + "/destDir/";
-  fs.copyDir(srcPath, destPath, 0, (err: BusinessError) => {
+  fs.copyDir(srcPath, destPath, 0, (err: BusinessError, data: Array<ConflictFiles>) => {
     if (err && err.code == 13900015) {
-      for (let i = 0; i < err.data.length; i++) {
-        console.info("copy directory failed with conflicting files: " + err.data[i].srcFile +
-          " " + err.data[i].destFile);
+      for (let i = 0; i < data.length; i++) {
+        console.info("copy directory failed with conflicting files: " + data[i].srcFile + " " + data[i].destFile);
       }
     } else if (err) {
       console.info("copy directory failed with error message: " + err.message + ", error code: " + err.code);
@@ -1973,7 +1965,7 @@ listFile(path: string, options?: {
   class ListFileOption {
     public recursion: boolean = false;
     public listNum: number = 0;
-    public filter: Filter = null;
+    public filter: Filter;
   }
   let option = new ListFileOption();
   option.filter.suffix = [".png", ".jpg", ".jpeg"];
@@ -2028,7 +2020,7 @@ listFile(path: string, options?: {
   class ListFileOption {
     public recursion: boolean = false;
     public listNum: number = 0;
-    public filter: Filter = null;
+    public filter: Filter;
   }
   let option = new ListFileOption();
   option.filter.suffix = [".png", ".jpg", ".jpeg"];
@@ -2090,7 +2082,7 @@ listFileSync(path: string, options?: {
   class ListFileOption {
     public recursion: boolean = false;
     public listNum: number = 0;
-    public filter: Filter = null;
+    public filter: Filter;
   }
   let option = new ListFileOption();
   option.filter.suffix = [".png", ".jpg", ".jpeg"];
@@ -2140,14 +2132,7 @@ moveDir(src: string, dest: string, mode?: number): Promise\<void>
   fs.moveDir(srcPath, destPath, 1).then(() => {
     console.info("move directory succeed");
   }).catch((err: BusinessError) => {
-    if (err.code == 13900015) {
-      for (let i = 0; i < err.data.length; i++) {
-        console.info("move directory failed with conflicting files: " + err.data[i].srcFile +
-          " " + err.data[i].destFile);
-      }
-    } else {
-      console.info("move directory failed with error message: " + err.message + ", error code: " + err.code);
-    }
+    console.info("move directory failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -2179,11 +2164,10 @@ moveDir(src: string, dest: string, mode?: number, callback: AsyncCallback\<void,
   // move directory from srcPath to destPath
   let srcPath = pathDir + "/srcDir/";
   let destPath = pathDir + "/destDir/";
-  fs.moveDir(srcPath, destPath, 1, (err: BusinessError) => {
+  fs.moveDir(srcPath, destPath, 1, (err: BusinessError, data: Array<ConflictFiles>) => {
     if (err && err.code == 13900015) {
-      for (let i = 0; i < err.data.length; i++) {
-        console.info("move directory failed with conflicting files: " + err.data[i].srcFile +
-          " " + err.data[i].destFile);
+      for (let i = 0; i < data.length; i++) {
+        console.info("move directory failed with conflicting files: " + data[i].srcFile + " " + data[i].destFile);
       }
     } else if (err) {
       console.info("move directory failed with error message: " + err.message + ", error code: " + err.code);
