@@ -79,8 +79,8 @@ setConnectionStrategy(deviceId: string, strategy: ConnectionStrategy, callback: 
 import a2dp from '@ohos.bluetooth.a2dp';
 try {
     let a2dpSrc = a2dp.createA2dpSrcProfile();
-    let setRet = a2dpSrc.setConnectionStrategy('XX:XX:XX:XX:XX:XX', 0, (err, data) => {
-        console.info('setConnectionStrategy, err: ' + JSON.stringify(err) + ', data: ' + JSON.stringify(data));
+    let setRet = a2dpSrc.setConnectionStrategy('XX:XX:XX:XX:XX:XX', 0, (err: BusinessError) => {
+        console.info('setConnectionStrategy, err: ' + JSON.stringify(err));
     });
 } catch (err) {
     console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
@@ -129,9 +129,9 @@ setConnectionStrategy(deviceId: string, strategy: ConnectionStrategy): Promise&l
 import a2dp from '@ohos.bluetooth.a2dp';
 try {
     let a2dpSrc = a2dp.createA2dpSrcProfile();
-    let setRet = a2dpSrc.setConnectionStrategy('XX:XX:XX:XX:XX:XX', 1).then((data) => {
+    a2dpSrc.setConnectionStrategy('XX:XX:XX:XX:XX:XX', 1).then(() => {
         console.info('setConnectionStrategy');
-    }, (err) => {
+    }, (err: BusinessError) => {
         console.error('setConnectionStrategy errCode: ' + err.code + ', errMessage: ' + err.message);
     });
 } catch (err) {
@@ -175,7 +175,7 @@ getConnectionStrategy(deviceId: string, callback: AsyncCallback&lt;ConnectionStr
 import a2dp from '@ohos.bluetooth.a2dp';
 try {
     let a2dpSrc = a2dp.createA2dpSrcProfile();
-    let setRet = a2dpSrc.getConnectionStrategy('XX:XX:XX:XX:XX:XX', 0, (err, data) => {
+    a2dpSrc.getConnectionStrategy('XX:XX:XX:XX:XX:XX', 0, (err: BusinessError, data: baseProfile.ConnectionStrategy) => {
         console.info('getConnectionStrategy, err: ' + JSON.stringify(err) + ', data: ' + JSON.stringify(data));
     });
 } catch (err) {
@@ -224,9 +224,9 @@ getConnectionStrategy(deviceId: string): Promise&lt;ConnectionStrategy&gt;
 import a2dp from '@ohos.bluetooth.a2dp';
 try {
     let a2dpSrc = a2dp.createA2dpSrcProfile();
-    let setRet = a2dpSrc.getConnectionStrategy('XX:XX:XX:XX:XX:XX', 1).then((data) => {
+    a2dpSrc.getConnectionStrategy('XX:XX:XX:XX:XX:XX', 1).then((data: baseProfile.ConnectionStrategy) => {
         console.info('getConnectionStrategy');
-    }, (error) => {
+    }, (err: BusinessError) => {
         console.error('getConnectionStrategy errCode: ' + err.code + ', errMessage: ' + err.message);
     });
 } catch (err) {
@@ -343,7 +343,7 @@ on(type: 'connectionStateChange', callback: Callback&lt;StateChangeParam&gt;): v
 ```js
 import a2dp from '@ohos.bluetooth.a2dp';
 try {
-    function onReceiveEvent(data) {
+    function onReceiveEvent(data: baseProfile.StateChangeParam) {
         console.info('a2dp state = '+ JSON.stringify(data));
     }
     let a2dpSrc = a2dp.createA2dpSrcProfile();
@@ -376,7 +376,7 @@ off(type: 'connectionStateChange', callback?: Callback&lt;[StateChangeParam](#St
 ```js
 import a2dp from '@ohos.bluetooth.a2dp';
 try {
-    function onReceiveEvent(data) {
+    function onReceiveEvent(data: baseProfile.StateChangeParam) {
         console.info('a2dp state = '+ JSON.stringify(data));
     }
     let a2dpSrc = a2dp.createA2dpSrcProfile();

@@ -33,7 +33,7 @@ createPanProfile(): PanProfile
 
 ```js
 try {
-    let panProfile = pan.createPanProfile();
+    let panProfile : pan.PanProfile= pan.createPanProfile();
     console.info('pan success');
 } catch (err) {
     console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
@@ -79,7 +79,7 @@ disconnect(deviceId: string): void
 
 ```js
 try {
-    let panProfile = pan.createPanProfile();
+    let panProfile: pan.PanProfile = pan.createPanProfile();
     panProfile.disconnect('XX:XX:XX:XX:XX:XX');
 } catch (err) {
     console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
@@ -120,7 +120,7 @@ setTethering(enable: boolean): void
 
 ```js
 try {
-    let panProfile = pan.createPanProfile();
+    let panProfile: pan.PanProfile = pan.createPanProfile();
     panProfile.setTethering(false);
 } catch (err) {
     console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
@@ -150,7 +150,7 @@ isTetheringOn(): boolean
 
 ```js
 try {
-    let panProfile = pan.createPanProfile();
+    let panProfile: pan.PanProfile = pan.createPanProfile();
     let ret = panProfile.isTetheringOn();
 } catch (err) {
     console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
