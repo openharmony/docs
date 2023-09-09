@@ -75,7 +75,7 @@ create(colorSpaceName: ColorSpace): ColorSpaceManager
 **示例：**
 
 ```js
-let colorSpace = null;
+let colorSpace: colorSpaceManager.ColorSpaceManager;
 try {
     colorSpace = colorSpaceManager.create(colorSpaceManager.ColorSpace.SRGB);
 } catch (err) {
@@ -115,7 +115,7 @@ create(primaries: ColorSpacePrimaries, gamma: number): ColorSpaceManager
 **示例：**
 
 ```js
-let colorSpace = null;
+let colorSpace: colorSpaceManager.ColorSpaceManager;
 try {
     let primaries = {
         redX: 0.1,
