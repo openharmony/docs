@@ -9,7 +9,7 @@
 
 ## 导入模块
 
-```
+```ts
 import radio from '@ohos.telephony.radio';
 ```
 
@@ -104,8 +104,7 @@ class Tech {
     psRadioTech: radio.RadioTechnology = radio.RadioTechnology.RADIO_TECHNOLOGY_UNKNOWN;
     csRadioTech: radio.RadioTechnology = radio.RadioTechnology.RADIO_TECHNOLOGY_UNKNOWN;
 }
-let promise = radio.getRadioTech(slotId);
-promise.then((data: Tech) => {
+radio.getRadioTech(slotId).then((data: Tech) => {
     console.log(`getRadioTech success, data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
     console.log(`getRadioTech failed, err->${JSON.stringify(err)}`);
@@ -236,8 +235,7 @@ getNetworkState\(slotId?: number\): Promise\<NetworkState\>
 import { BusinessError } from '@ohos.base';
 
 let slotId: number = 0;
-let promise = radio.getNetworkState(slotId);
-promise.then((data: radio.NetworkState) => {
+radio.getNetworkState(slotId).then((data: radio.NetworkState) => {
     console.log(`getNetworkState success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
     console.log(`getNetworkState failed, promise: err->${JSON.stringify(err)}`);
@@ -322,8 +320,7 @@ getNetworkSelectionMode\(slotId: number\): Promise\<NetworkSelectionMode\>
 import { BusinessError } from '@ohos.base';
 
 let slotId: number = 0;
-let promise = radio.getNetworkSelectionMode(slotId);
-promise.then((data: radio.NetworkSelectionMode) => {
+radio.getNetworkSelectionMode(slotId).then((data: radio.NetworkSelectionMode) => {
     console.log(`getNetworkSelectionMode success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
     console.log(`getNetworkSelectionMode failed, promise: err->${JSON.stringify(err)}`);
@@ -408,8 +405,7 @@ getISOCountryCodeForNetwork\(slotId: number\): Promise\<string\>
 import { BusinessError } from '@ohos.base';
 
 let slotId: number = 0;
-let promise = radio.getISOCountryCodeForNetwork(slotId);
-promise.then((data: string) => {
+radio.getISOCountryCodeForNetwork(slotId).then((data: string) => {
     console.log(`getISOCountryCodeForNetwork success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
     console.log(`getISOCountryCodeForNetwork failed, promise: err->${JSON.stringify(err)}`);
@@ -482,8 +478,7 @@ getPrimarySlotId\(\): Promise\<number\>
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let promise = radio.getPrimarySlotId();
-promise.then((data: string) => {
+radio.getPrimarySlotId().then((data: string) => {
     console.log(`getPrimarySlotId success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
     console.error(`getPrimarySlotId failed, promise: err->${JSON.stringify(err)}`);
@@ -568,8 +563,7 @@ getSignalInformation\(slotId: number\): Promise\<Array\<SignalInformation\>\>
 import { BusinessError } from '@ohos.base';
 
 let slotId: number = 0;
-let promise = radio.getSignalInformation(slotId);
-promise.then((data: Array<radio.SignalInformation>) => {
+radio.getSignalInformation(slotId).then((data: Array<radio.SignalInformation>) => {
     console.log(`getSignalInformation success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
     console.error(`getSignalInformation failed, promise: err->${JSON.stringify(err)}`);
@@ -808,8 +802,7 @@ isRadioOn\(slotId?: number\): Promise\<boolean\>
 import { BusinessError } from '@ohos.base';
 
 let slotId: number = 0;
-let promise = radio.isRadioOn(slotId);
-promise.then((data: boolean) => {
+radio.isRadioOn(slotId).then((data: boolean) => {
     console.log(`isRadioOn success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
     console.error(`isRadioOn failed, promise: err->${JSON.stringify(err)}`);
@@ -894,8 +887,7 @@ getOperatorName\(slotId: number\): Promise\<string\>
 import { BusinessError } from '@ohos.base';
 
 let slotId: number = 0;
-let promise = radio.getOperatorName(slotId);
-promise.then((data: string) => {
+radio.getOperatorName(slotId).then((data: string) => {
     console.log(`getOperatorName success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
     console.log(`getOperatorName failed, promise: err->${JSON.stringify(err)}`);
@@ -993,8 +985,7 @@ setPrimarySlotId\(slotId: number\): Promise\<void\>
 import { BusinessError } from '@ohos.base';
 
 let slotId: number = 0;
-let promise = radio.setPrimarySlotId(slotId);
-promise.then(() => {
+radio.setPrimarySlotId(slotId).then(() => {
     console.log(`setPrimarySlotId success.`);
 }).catch((err: BusinessError) => {
     console.log(`setPrimarySlotId failed, promise: err->${JSON.stringify(err)}`);
@@ -1133,8 +1124,7 @@ getIMEI\(slotId?: number\): Promise\<string\>
 import { BusinessError } from '@ohos.base';
 
 let slotId: number = 0;
-let promise = radio.getIMEI(slotId);
-promise.then((data: string) => {
+radio.getIMEI(slotId).then((data: string) => {
     console.log(`getIMEI success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
     console.error(`getIMEI failed, promise: err->${JSON.stringify(err)}`);
@@ -1273,8 +1263,7 @@ getMEID\(slotId?: number\): Promise\<string\>
 import { BusinessError } from '@ohos.base';
 
 let slotId: number = 0;
-let promise = radio.getMEID(slotId);
-promise.then((data: string) => {
+radio.getMEID(slotId).then((data: string) => {
     console.log(`getMEID success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
     console.error(`getMEID failed, promise: err->${JSON.stringify(err)}`);
@@ -1413,8 +1402,7 @@ getUniqueDeviceId\(slotId?: number\): Promise\<string\>
 import { BusinessError } from '@ohos.base';
 
 let slotId: number = 0;
-let promise = radio.getUniqueDeviceId(slotId);
-promise.then((data: string) => {
+radio.getUniqueDeviceId(slotId).then((data: string) => {
     console.log(`getUniqueDeviceId success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
     console.error(`getUniqueDeviceId failed, promise: err->${JSON.stringify(err)}`);
@@ -1690,8 +1678,7 @@ getCellInformation\(slotId?: number\): Promise\<Array\<CellInformation\>\>
 import { BusinessError } from '@ohos.base';
 
 let slotId: number = 0;
-let promise = radio.getCellInformation(slotId);
-promise.then((data: Array<radio.CellInformation>) => {
+radio.getCellInformation(slotId).then((data: Array<radio.CellInformation>) => {
     console.log(`getCellInformation success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
     console.error(`getCellInformation failed, promise: err->${JSON.stringify(err)}`);
@@ -1736,15 +1723,16 @@ setNetworkSelectionMode\(options: NetworkSelectionModeOptions, callback: AsyncCa
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let networkSelectionModeOptions: radio.NetworkSelectionModeOptions = {
-    slotId: 0,
-    selectMode: radio.NetworkSelectionMode.NETWORK_SELECTION_AUTOMATIC,
-    networkInformation: {
+let networkInformation: radio.NetworkInformation = {
     operatorName: "中国移动",
     operatorNumeric: "898600",
     state: radio.NetworkInformationState.NETWORK_AVAILABLE,
     radioTech: "CS"
-    },
+}
+let networkSelectionModeOptions: radio.NetworkSelectionModeOptions = {
+    slotId: 0,
+    selectMode: radio.NetworkSelectionMode.NETWORK_SELECTION_AUTOMATIC,
+    networkInformation: networkInformation,
     resumeSelection: true
 }
 radio.setNetworkSelectionMode(networkSelectionModeOptions, (err: BusinessError) => {
@@ -1795,19 +1783,19 @@ setNetworkSelectionMode\(options: NetworkSelectionModeOptions\): Promise\<void\>
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let networkSelectionModeOptions: radio.NetworkSelectionModeOptions = {
-    slotId: 0,
-    selectMode: radio.NetworkSelectionMode.NETWORK_SELECTION_AUTOMATIC,
-    networkInformation: {
+let networkInformation: radio.NetworkInformation = {
     operatorName: "中国移动",
     operatorNumeric: "898600",
     state: radio.NetworkInformationState.NETWORK_AVAILABLE,
     radioTech: "CS"
-    },
+}
+let networkSelectionModeOptions: radio.NetworkSelectionModeOptions = {
+    slotId: 0,
+    selectMode: radio.NetworkSelectionMode.NETWORK_SELECTION_AUTOMATIC,
+    networkInformation: networkInformation,
     resumeSelection: true
 }
-let promise = radio.setNetworkSelectionMode(networkSelectionModeOptions);
-promise.then(() => {
+radio.setNetworkSelectionMode(networkSelectionModeOptions).then(() => {
     console.log(`setNetworkSelectionMode success.`);
 }).catch((err: BusinessError) => {
     console.log(`setNetworkSelectionMode failed, promise: err->${JSON.stringify(err)}`);
@@ -1900,8 +1888,7 @@ getNetworkSearchInformation\(slotId: number\): Promise\<NetworkSearchResult\>
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let promise = radio.getNetworkSearchInformation(0);
-promise.then((data: radio.NetworkSearchResult) => {
+radio.getNetworkSearchInformation(0).then((data: radio.NetworkSearchResult) => {
     console.log(`getNetworkSearchInformation success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
     console.log(`getNetworkSearchInformation failed, promise: err->${JSON.stringify(err)}`);
@@ -2043,8 +2030,7 @@ getNrOptionMode\(slotId?: number\): Promise\<NrOptionMode\>
 import { BusinessError } from '@ohos.base';
 
 let slotId: number = 0;
-let promise = radio.getNrOptionMode(slotId);
-promise.then((data: radio.NrOptionMode) => {
+radio.getNrOptionMode(slotId).then((data: radio.NrOptionMode) => {
     console.log(`getNrOptionMode success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
     console.error(`getNrOptionMode failed, promise: err->${JSON.stringify(err)}`);
@@ -2516,8 +2502,7 @@ getPreferredNetwork\(slotId: number\): Promise\<PreferredNetworkMode\>
 import { BusinessError } from '@ohos.base';
 
 let slotId: number = 0;
-let promise = radio.getPreferredNetwork(slotId);
-promise.then((data: radio.PreferredNetworkMode) => {
+radio.getPreferredNetwork(slotId).then((data: radio.PreferredNetworkMode) => {
     console.log(`getPreferredNetwork success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
     console.log(`getPreferredNetwork failed, promise: err->${JSON.stringify(err)}`);
@@ -2616,8 +2601,7 @@ import { BusinessError } from '@ohos.base';
 
 let slotId: number = 0;
 let mode: radio.ImsServiceType = radio.ImsServiceType.TYPE_VIDEO;
-let promise = radio.getImsRegInfo(slotId, mode);
-promise.then((data: radio.ImsRegInfo) => {
+radio.getImsRegInfo(slotId, mode).then((data: radio.ImsRegInfo) => {
     console.log(`getImsRegInfo success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
     console.log(`getImsRegInfo failed, promise: err->${JSON.stringify(err)}`);
@@ -2808,8 +2792,7 @@ getBasebandVersion\(slotId: number\): Promise\<string\>
 import { BusinessError } from '@ohos.base';
 
 let slotId: number = 0;
-let promise = radio.getBasebandVersion(slotId);
-promise.then((data: string) => {
+radio.getBasebandVersion(slotId).then((data: string) => {
     console.log(`getBasebandVersion success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
     console.error(`getBasebandVersion failed, promise: err->${JSON.stringify(err)}`);
@@ -2910,8 +2893,7 @@ import { BusinessError } from '@ohos.base';
 
 let slotId: number = 0;
 let mode: radio.NROptionMode = radio.NROptionMode.NR_OPTION_NSA_ONLY;
-let promise = radio.setNROptionMode(slotId, mode);
-promise.then(() => {
+radio.setNROptionMode(slotId, mode).then(() => {
     console.log(`setNROptionMode success`);
 }).catch((err: BusinessError) => {
     console.error(`setNROptionMode failed, promise: err->${JSON.stringify(err)}`);
@@ -3001,8 +2983,7 @@ getNROptionMode\(slotId: number\): Promise\<NROptionMode\>
 import { BusinessError } from '@ohos.base';
 
 let slotId: number = 0;
-let promise = radio.getNROptionMode(slotId);
-promise.then((data: radio.NROptionMode) => {
+radio.getNROptionMode(slotId).then((data: radio.NROptionMode) => {
     console.log(`getNROptionMode success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
     console.error(`getNROptionMode failed, promise: err->${JSON.stringify(err)}`);
@@ -3103,8 +3084,7 @@ import { BusinessError } from '@ohos.base';
 
 let slotId: number = 0;
 let type: radio.NetworkCapabilityType = radio.NetworkCapabilityType.SERVICE_TYPE_NR;
-let promise = radio.getNetworkCapability(slotId, type);
-promise.then((data: radio.NetworkCapabilityState) => {
+radio.getNetworkCapability(slotId, type).then((data: radio.NetworkCapabilityState) => {
     console.log(`getNetworkCapability success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
     console.log(`getNetworkCapability failed, promise: err->${JSON.stringify(err)}`);
@@ -3210,8 +3190,7 @@ import { BusinessError } from '@ohos.base';
 let slotId: number = 0;
 let type: radio.NetworkCapabilityType = radio.NetworkCapabilityType.SERVICE_TYPE_NR;
 let state: radio.NetworkCapabilityState = radio.NetworkCapabilityState.SERVICE_CAPABILITY_ON;
-let promise = radio.setNetworkCapability(slotId, type, state);
-promise.then(() => {
+radio.setNetworkCapability(slotId, type, state).then(() => {
     console.log(`setNetworkCapability success`);
 }).catch((err: BusinessError) => {
     console.log(`setNetworkCapability failed, promise: err->${JSON.stringify(err)}`);
