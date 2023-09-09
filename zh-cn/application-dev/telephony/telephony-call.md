@@ -70,8 +70,8 @@ observer模块为开发者提供订阅和取消订阅通话业务状态的功能
     })
 
     // 订阅通话业务状态变化（可选）
-    class SlotId: { slotId: number }
-    class CallStateCallback: { state: call.CallState, number: string }
+    class SlotId {slotId: number }
+    class CallStateCallback { state: call.CallState; number: string }
     let slotId: SlotId = {slotId: 0}
     observer.on("callStateChange", slotId, (data: CallStateCallback) => {
         console.log("call state change, data is:" + JSON.stringify(data));
@@ -108,8 +108,8 @@ observer模块为开发者提供订阅和取消订阅通话业务状态的功能
     });
 
     // 订阅通话业务状态变化（可选）
-    class SlotId: { slotId: number }
-    class CallStateCallback: { state: call.CallState, number: string }
+    class SlotId { slotId: number }
+    class CallStateCallback { state: call.CallState; number: string }
     let slotId: SlotId = {slotId: 0}
     observer.on("callStateChange", slotId, (data: CallStateCallback) => {
         console.log("call state change, data is:" + JSON.stringify(data));

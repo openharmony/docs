@@ -101,12 +101,7 @@ dialCall\(phoneNumber: string, options: DialCallOptions, callback: AsyncCallback
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let dialCallOptions: call.DialCallOptions = {
-    accountId: 0,
-    videoState: 0,
-    dialScene: 0,
-    dialType: 0,
-}
+let dialCallOptions: call.DialCallOptions;
 call.dialCall("138xxxxxxxx", dialCallOptions, (err: BusinessError) => {
     console.log(`callback: err->${JSON.stringify(err)}`);
 });
@@ -159,12 +154,7 @@ dialCall\(phoneNumber: string, options?: DialCallOptions\): Promise\<void\>
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let dialCallOptions: call.DialCallOptions = {
-    accountId: 0,
-    videoState: 0,
-    dialScene: 0,
-    dialType: 0,
-}
+let dialCallOptions: call.DialCallOptions;
 let promise = call.dialCall("138xxxxxxxx", dialCallOptions);
 promise.then(() => {
     console.log(`dialCall success.`);
@@ -232,9 +222,7 @@ dial\(phoneNumber: string, options: DialOptions, callback: AsyncCallback\<boolea
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let dialOptions: call.DialOptions = {
-    extras: false
-}
+let dialOptions: call.DialOptions;
 call.dial("138xxxxxxxx", dialOptions, (err: BusinessError, data: boolean) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
@@ -272,9 +260,7 @@ dial\(phoneNumber: string, options?: DialOptions\): Promise\<boolean\>
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let dialOptions: call.DialOptions = {
-    extras: false
-}
+let dialOptions: call.DialOptions;
 let promise = call.dial("138xxxxxxxx", dialOptions);
 promise.then((data: boolean) => {
     console.log(`dial success, promise: data->${JSON.stringify(data)}`);
@@ -435,7 +421,7 @@ hasCallSync\(\): boolean
 **示例：**
 
 ```ts
-let hasCall = call.hasCallSync();
+let hasCall: boolean = call.hasCallSync();
 console.log(`hasCallSync success, has call is ' + hasCall);
 ```
 
@@ -509,7 +495,7 @@ getCallStateSync\(\): CallState
 **示例：**
 
 ```ts
-let callState = call.getCallStateSync();
+let callState: call.CallState = call.getCallStateSync();
 console.log(`the call state is:` + callState);
 ```
 
@@ -603,7 +589,7 @@ isEmergencyPhoneNumber\(phoneNumber: string, options: EmergencyNumberOptions, ca
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let options: call.EmergencyNumberOptions = {slotId: 1}
+let options: call.EmergencyNumberOptions;
 call.isEmergencyPhoneNumber("112", options, (err: BusinessError, data: boolean) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
@@ -648,7 +634,7 @@ isEmergencyPhoneNumber\(phoneNumber: string, options?: EmergencyNumberOptions\):
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let options: call.EmergencyNumberOptions = {slotId: 1}
+let options: call.EmergencyNumberOptions;
 let promise = call.isEmergencyPhoneNumber("138xxxxxxxx", options);
 promise.then((data: boolean) => {
     console.log(`isEmergencyPhoneNumber success, promise: data->${JSON.stringify(data)}`);
@@ -731,9 +717,7 @@ formatPhoneNumber\(phoneNumber: string, options: NumberFormatOptions, callback: 
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let options: call.NumberFormatOptions = {
-    countryCode: "CN"
-}
+let options: call.NumberFormatOptions;
 call.formatPhoneNumber("138xxxxxxxx", options, (err: BusinessError, data: string) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
@@ -780,9 +764,7 @@ formatPhoneNumber\(phoneNumber: string, options?: NumberFormatOptions\): Promise
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let options: call.NumberFormatOptions = {
-    countryCode: "CN"
-}
+let options: call.NumberFormatOptions;
 let promise = call.formatPhoneNumber("138xxxxxxxx", options);
 promise.then((data: string) => {
     console.log(`formatPhoneNumber success, promise: data->${JSON.stringify(data)}`);
@@ -3376,9 +3358,9 @@ setCallRestriction\(slotId: number, info: CallRestrictionInfo, callback: AsyncCa
 import { BusinessError } from '@ohos.base';
 
 let callRestrictionInfo: call.CallRestrictionInfo = {
-    type: 1,
+    type: call.CallRestrictionType.RESTRICTION_TYPE_ALL_OUTGOING,
     password: "123456",
-    mode: 1
+    mode: call.CallRestrictionMode.RESTRICTION_MODE_ACTIVATION
 }
 call.setCallRestriction(0, callRestrictionInfo, (err: BusinessError) => {
     console.log(`callback: err->${JSON.stringify(err)}`);
@@ -3431,9 +3413,9 @@ setCallRestriction\(slotId: number, info: CallRestrictionInfo\): Promise\<void\>
 import { BusinessError } from '@ohos.base';
 
 let callRestrictionInfo: call.CallRestrictionInfo = {
-    type: 1,
+    type: call.CallRestrictionType.RESTRICTION_TYPE_ALL_INCOMING,
     password: "123456",
-    mode: 1
+    mode: call.CallRestrictionMode.RESTRICTION_MODE_ACTIVATION
 }
 call.setCallRestriction(0, callRestrictionInfo).then(() => {
     console.log(`setCallRestriction success.`);
@@ -3677,8 +3659,8 @@ import { BusinessError } from '@ohos.base';
 
 let callTransferInfo: call.CallTransferInfo = {
     transferNum: "111",
-    type: 1,
-    settingType: 1
+    type: call.CallTransferType.TRANSFER_TYPE_BUSY,
+    settingType: call.CallTransferSettingType.CALL_TRANSFER_ENABLE
 }
 call.setCallTransfer(0, callTransferInfo, (err: BusinessError) => {
     console.log(`callback: err->${JSON.stringify(err)}`);
@@ -3732,8 +3714,8 @@ import { BusinessError } from '@ohos.base';
 
 let callTransferInfo: call.CallTransferInfo = {
     transferNum: "111",
-    type: 1,
-    settingType: 1
+    type: call.CallTransferType.TRANSFER_TYPE_BUSY,
+    settingType: call.CallTransferSettingType.CALL_TRANSFER_ENABLE
 }
 call.setCallTransfer(0, callTransferInfo).then(() => {
     console.log(`setCallTransfer success.`);
@@ -4025,7 +4007,7 @@ setAudioDevice\(device: AudioDevice, callback: AsyncCallback\<void\>\): void
 import { BusinessError } from '@ohos.base';
 
 let audioDevice: call.AudioDevice = {
-    deviceType: 1
+    deviceType: call.AudioDeviceType.DEVICE_EARPIECE
 }
 call.setAudioDevice(audioDevice, (err: BusinessError) => {
     console.log(`callback: err->${JSON.stringify(err)}`);
@@ -4076,7 +4058,7 @@ setAudioDevice\(device: AudioDevice): Promise\<void\>
 import { BusinessError } from '@ohos.base';
 
 let audioDevice: call.AudioDevice = {
-    deviceType: 1
+    deviceType: call.AudioDeviceType.DEVICE_EARPIECE
 }
 call.setAudioDevice(audioDevice).then(() => {
     console.log(`setAudioDevice success.`);

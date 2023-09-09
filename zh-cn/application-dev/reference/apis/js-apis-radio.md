@@ -1829,16 +1829,15 @@ setNetworkSelectionMode\(options: NetworkSelectionModeOptions, callback: AsyncCa
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let networkInformation: radio.NetworkInformation = {
+let networkSelectionModeOptions: radio.NetworkSelectionModeOptions = {
+    slotId: 0,
+    selectMode: radio.NetworkSelectionMode.NETWORK_SELECTION_AUTOMATIC,
+    networkInformation: {
     operatorName: "中国移动",
     operatorNumeric: "898600",
     state: radio.NetworkInformationState.NETWORK_AVAILABLE,
     radioTech: "CS"
-}
-let networkSelectionModeOptions: radio.NetworkSelectionModeOptions = {
-    slotId: 0,
-    selectMode: radio.NetworkSelectionMode.NETWORK_SELECTION_AUTOMATIC,
-    networkInformation: networkInformation,
+    },
     resumeSelection: true
 }
 radio.setNetworkSelectionMode(networkSelectionModeOptions, (err: BusinessError) => {
@@ -1889,16 +1888,15 @@ setNetworkSelectionMode\(options: NetworkSelectionModeOptions\): Promise\<void\>
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let networkInformation: radio.NetworkInformation = {
+let networkSelectionModeOptions: radio.NetworkSelectionModeOptions = {
+    slotId: 0,
+    selectMode: radio.NetworkSelectionMode.NETWORK_SELECTION_AUTOMATIC,
+    networkInformation: {
     operatorName: "中国移动",
     operatorNumeric: "898600",
     state: radio.NetworkInformationState.NETWORK_AVAILABLE,
     radioTech: "CS"
-}
-let networkSelectionModeOptions: radio.NetworkSelectionModeOptions = {
-    slotId: 0,
-    selectMode: radio.NetworkSelectionMode.NETWORK_SELECTION_AUTOMATIC,
-    networkInformation: networkInformation,
+    },
     resumeSelection: true
 }
 let promise = radio.setNetworkSelectionMode(networkSelectionModeOptions);
