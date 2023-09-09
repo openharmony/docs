@@ -16,17 +16,17 @@ Promise has three states: pending, fulfilled, and rejected. After being created,
 The most common usage for Promise is to instantiate a Promise object through a constructor and pass in a function (usually named **executor**) with two parameters. The **executor** function receives two parameters: **resolve** and **reject**, which represent the callback functions that should be called when the asynchronous operation succeeds and fails, respectively. The code snippet below creates a Promise object and simulates an asynchronous operation:
 
 
-```js
-const promise = new Promise((resolve, reject) => {
-  setTimeout(() => {
-    const randomNumber = Math.random();
-    if (randomNumber > 0.5) {
-      resolve(randomNumber);
-    } else {
-      reject(new Error('Random number is too small'));
-    }
-  }, 1000);
-});
+```ts
+const promise: Promise<number> = new Promise((resolve: Function, reject: Function) => {
+setTimeout(() => {
+  const randomNumber: number = Math.random();
+  if (randomNumber > 0.5) {
+    resolve(randomNumber);
+  } else {
+    reject(new Error('Random number is too small'));
+  }
+}, 1000);
+})
 ```
 
 In the preceding code, the **setTimeout** function simulates an asynchronous operation that randomly generates a number one second later. If the random number is greater than 0.5, the **resolve** callback function is executed and the generated random number is passed in as a parameter. Otherwise, the **reject** callback function is executed and an error object is passed in as a parameter.
@@ -34,11 +34,13 @@ In the preceding code, the **setTimeout** function simulates an asynchronous ope
 After the Promise object is created, you can use the **then** and **catch** methods to register the callback functions for the fulfilled and rejected states. The **then** method can receive two parameters: one for processing the fulfilled state and the other for processing the rejected state. If only one parameter is passed in, the callback function is executed as long as the state changes. The **catch** method receives a callback function to process the failure result, that is, capture the exception thrown when the Promise state changes to **rejected** or the operation fails. The code snippet below shows the use of **then** and **catch** methods:
 
 
-```js
-promise.then(result => {
-  console.info(`Random number is ${result}`);
-}).catch(error => {
-  console.error(error.message);
+```ts
+import { BusinessError } from '@ohos.base';
+
+promise.then((result: number) => {
+ console.info(`Random number is ${result}`);
+}).catch((error: BusinessError) => {
+ console.error(error.message);
 });
 ```
 
@@ -54,14 +56,14 @@ The **async** function returns a Promise object to represent an asynchronous ope
 The code snippet below uses async/await to simulate an asynchronous operation that returns a string three seconds later.
 
 
-```js
-async function myAsyncFunction() {
-  const result = await new Promise((resolve) => {
+```ts
+async function myAsyncFunction(): Promise<void> {
+  const result: string = await new Promise((resolve: Function) => {
     setTimeout(() => {
       resolve('Hello, world!');
     }, 3000);
   });
-  console.info(String(result)); // Output: Hello, world!
+  console.info(result); // Output: Hello, world!
 }
 
 myAsyncFunction();
@@ -72,10 +74,10 @@ In the preceding code, the await keyword is used to wait for the parsing of the 
 Note that the entire operation must be packaged in the **async** function because the code needs to wait for the asynchronous operation to complete. In addition to **await**, you can use the try/catch block to capture exceptions in asynchronous operations.
 
 
-```js
-async function myAsyncFunction() {
+```ts
+async function myAsyncFunction(): Promise<void> {
   try {
-    const result = await new Promise((resolve) => {
+    const result: string = await new Promise((resolve: Function) => {
       resolve('Hello, world!');
     });
   } catch (e) {
