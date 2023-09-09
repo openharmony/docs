@@ -23,22 +23,32 @@ import http from '@ohos.net.http';
 let httpRequest = http.createHttp();
 // 用于订阅HTTP响应头，此接口会比request请求先返回。可以根据业务需要订阅此消息
 // 从API 8开始，使用on('headersReceive', Callback)替代on('headerReceive', AsyncCallback)。 8+
-httpRequest.on('headersReceive', (header) => {
+httpRequest.on('headersReceive', (header:String) => {
   console.info('header: ' + JSON.stringify(header));
 });
+class ExtraData {
+  public data: string;
+
+  constructor(data: string) {
+    this.data = data;
+  }
+}
+class Header {
+  public contentType: string;
+
+  constructor(contentType: string) {
+    this.contentType = contentType;
+  }
+}
 httpRequest.request(
   // 填写HTTP请求的URL地址，可以带参数也可以不带参数。URL地址需要开发者自定义。请求的参数可以在extraData中指定
   "EXAMPLE_URL",
   {
     method: http.RequestMethod.POST, // 可选，默认为http.RequestMethod.GET
     // 开发者根据自身业务需要添加header字段
-    header: {
-      'Content-Type': 'application/json'
-    },
+    header: new Header('application/json'),
     // 当使用POST请求时此字段用于传递内容
-    extraData: {
-      "data": "data to send",
-    },
+    extraData: new ExtraData('data to send'),
     expectDataType: http.HttpDataType.STRING, // 可选，指定返回数据的类型
     usingCache: true, // 可选，默认为true
     priority: 1, // 可选，默认为1
@@ -47,24 +57,25 @@ httpRequest.request(
     usingProtocol: http.HttpProtocol.HTTP1_1, // 可选，协议类型默认值由系统自动指定
     usingProxy: false, //可选，默认不使用网络代理，自API 10开始支持该属性
     caPath: "", // 可选，默认使用系统预设CA证书，自API 10开始支持该属性
-  }, (err, data) => {
-    if (!err) {
-      // data.result为HTTP响应内容，可根据业务需要进行解析
-      console.info('Result:' + JSON.stringify(data.result));
-      console.info('code:' + JSON.stringify(data.responseCode));
-      // data.header为HTTP响应头，可根据业务需要进行解析
-      console.info('header:' + JSON.stringify(data.header));
-      console.info('cookies:' + JSON.stringify(data.cookies)); // 8+
-      // 当该请求使用完毕时，调用destroy方法主动销毁
-      httpRequest.destroy();
-    } else {
-      console.info('error:' + JSON.stringify(err));
-      // 取消订阅HTTP响应头事件
-      httpRequest.off('headersReceive');
-      // 当该请求使用完毕时，调用destroy方法主动销毁。
-      httpRequest.destroy();
-    }
+  },
+  (err:Error| null , data:String | UnifiedData ) => {
+  if (!err) {
+    // data.result为HTTP响应内容，可根据业务需要进行解析
+    console.info('Result:' + JSON.stringify(data.result));
+    console.info('code:' + JSON.stringify(data.responseCode));
+    // data.header为HTTP响应头，可根据业务需要进行解析
+    console.info('header:' + JSON.stringify(data.header));
+    console.info('cookies:' + JSON.stringify(data.cookies)); // 8+
+    // 当该请求使用完毕时，调用destroy方法主动销毁
+    httpRequest.destroy();
+  } else {
+    console.info('error:' + JSON.stringify(err));
+    // 取消订阅HTTP响应头事件
+    httpRequest.off('headersReceive');
+    // 当该请求使用完毕时，调用destroy方法主动销毁。
+    httpRequest.destroy();
   }
+}
 );
 ```
 
@@ -163,7 +174,7 @@ request(url: string, callback: AsyncCallback\<HttpResponse\>):void
 **示例：**
 
 ```js
-httpRequest.request("EXAMPLE_URL", (err, data) => {
+httpRequest.request("EXAMPLE_URL", (err:Error| null , data:String | UnifiedData) => {
   if (!err) {
     console.info('Result:' + data.result);
     console.info('code:' + data.responseCode);
@@ -239,12 +250,18 @@ request(url: string, options: HttpRequestOptions, callback: AsyncCallback\<HttpR
 **示例：**
 
 ```js
+class Header {
+  public contentType: string;
+
+  constructor(contentType: string) {
+    this.contentType = contentType;
+  }
+}
+
 httpRequest.request("EXAMPLE_URL",
   {
     method: http.RequestMethod.GET,
-    header: {
-      'Content-Type': 'application/json'
-    },
+    header: new Header('application/json'),
     readTimeout: 60000,
     connectTimeout: 60000
   }, (err, data) => {
@@ -330,13 +347,19 @@ request(url: string, options? : HttpRequestOptions): Promise\<HttpResponse\>
 **示例：**
 
 ```js
+class Header {
+  public contentType: string;
+
+  constructor(contentType: string) {
+    this.contentType = contentType;
+  }
+}
+
 let promise = httpRequest.request("EXAMPLE_URL", {
   method: http.RequestMethod.GET,
   connectTimeout: 60000,
   readTimeout: 60000,
-  header: {
-    'Content-Type': 'application/json'
-  }
+  header: new Header('application/json'),
 });
 promise.then((data) => {
   console.info('Result:' + data.result);
@@ -424,7 +447,7 @@ requestInStream(url: string, callback: AsyncCallback\<number\>): void
 **示例：**
 
 ```js
-httpRequest.requestInStream("EXAMPLE_URL", (err, data) => {
+httpRequest.requestInStream("EXAMPLE_URL", (err:Error| null , data:String | UnifiedData) => {
   if (!err) {
     console.info("requestInStream OK! ResponseCode is " + JSON.stringify(data));
   } else {
@@ -494,15 +517,21 @@ requestInStream(url: string, options: HttpRequestOptions, callback: AsyncCallbac
 **示例：**
 
 ```js
+class Header {
+  public contentType: string;
+
+  constructor(contentType: string) {
+    this.contentType = contentType;
+  }
+}
+
 httpRequest.requestInStream("EXAMPLE_URL",
   {
     method: http.RequestMethod.GET,
-    header: {
-      'Content-Type': 'application/json'
-    },
+    header: new Header('application/json'),
     readTimeout: 60000,
     connectTimeout: 60000
-  }, (err, data) => {
+  }, (err:Error| null , data:String | UnifiedData ) => {
     if (!err) {
       console.info("requestInStream OK! ResponseCode is " + JSON.stringify(data));
     } else {
@@ -577,15 +606,21 @@ requestInStream(url: string, options? : HttpRequestOptions): Promise\<number\>
 **示例：**
 
 ```js
+class Header {
+  public contentType: string;
+
+  constructor(contentType: string) {
+    this.contentType = contentType;
+  }
+}
+
 let promise = httpRequest.requestInStream("EXAMPLE_URL", {
   method: http.RequestMethod.GET,
   connectTimeout: 60000,
   readTimeout: 60000,
-  header: {
-    'Content-Type': 'application/json'
-  }
+  header: new Header('application/json'),
 });
-promise.then((data) => {
+promise.then((data:String) => {
   console.info("requestInStream OK!" + JSON.stringify(data));
 }).catch((err) => {
   console.info("requestInStream ERROR : err = " + JSON.stringify(err));
@@ -613,7 +648,7 @@ on(type: 'headerReceive', callback: AsyncCallback\<Object\>): void
 **示例：**
 
 ```js
-httpRequest.on('headerReceive', (data) => {
+httpRequest.on('headerReceive', (data:String) => {
   console.info('error:' + JSON.stringify(data));
 });
 ```
@@ -663,7 +698,7 @@ on(type: 'headersReceive', callback: Callback\<Object\>): void
 **示例：**
 
 ```js
-httpRequest.on('headersReceive', (header) => {
+httpRequest.on('headersReceive', (header:String) => {
   console.info('header: ' + JSON.stringify(header));
 });
 ```
@@ -710,7 +745,7 @@ once(type: 'headersReceive', callback: Callback\<Object\>): void
 **示例：**
 
 ```js
-httpRequest.once('headersReceive', (header) => {
+httpRequest.once('headersReceive', (header:String) => {
   console.info('header: ' + JSON.stringify(header));
 });
 ```
@@ -736,7 +771,7 @@ on(type: 'dataReceive', callback: Callback\<ArrayBuffer\>): void
 **示例：**
 
 ```js
-httpRequest.on('dataReceive', (data) => {
+httpRequest.on('dataReceive', (data:String | UnifiedData) => {
   console.info('dataReceive length: ' + JSON.stringify(data.byteLength));
 });
 ```
@@ -836,7 +871,7 @@ on(type: 'dataReceiveProgress', callback: Callback\<{ receiveSize: number, total
 **示例：**
 
 ```js
-httpRequest.on('dataReceiveProgress', (data) => {
+httpRequest.on('dataReceiveProgress', (data:String | UnifiedData) => {
   console.info('dataReceiveProgress:' + JSON.stringify(data));
 });
 ```
