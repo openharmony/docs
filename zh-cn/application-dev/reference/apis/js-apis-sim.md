@@ -9,7 +9,7 @@ SIM卡管理模块提供了SIM卡管理的基础能力，包括获取指定卡�
 
 ## 导入模块
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 import sim from '@ohos.telephony.sim';
 ```
@@ -31,7 +31,7 @@ isSimActive\(slotId: number, callback: AsyncCallback\<boolean\>\): void
 
 **示例：**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 import sim from '@ohos.telephony.sim';
 
@@ -63,7 +63,7 @@ isSimActive\(slotId: number\): Promise\<boolean\>
 
 **示例：**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 import sim from '@ohos.telephony.sim';
 
@@ -96,7 +96,7 @@ isSimActiveSync\(slotId: number\): boolean
 
 **示例：**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 import sim from '@ohos.telephony.sim';
 
@@ -121,7 +121,7 @@ getDefaultVoiceSlotId\(callback: AsyncCallback\<number\>\): void
 
 **示例：**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 import sim from '@ohos.telephony.sim';
 
@@ -146,7 +146,7 @@ getDefaultVoiceSlotId\(\): Promise\<number\>
 
 **示例：**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 import sim from '@ohos.telephony.sim';
 
@@ -186,7 +186,7 @@ hasOperatorPrivileges\(slotId: number, callback: AsyncCallback\<boolean\>\): voi
 
 **示例：**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 import sim from '@ohos.telephony.sim';
 
@@ -229,7 +229,7 @@ hasOperatorPrivileges\(slotId: number\): Promise\<boolean\>
 
 **示例：**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 import sim from '@ohos.telephony.sim';
 
@@ -270,7 +270,7 @@ getISOCountryCodeForSim\(slotId: number, callback: AsyncCallback\<string\>\): vo
 
 **示例：**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 import sim from '@ohos.telephony.sim';
 
@@ -315,7 +315,7 @@ getISOCountryCodeForSim\(slotId: number\): Promise\<string\>
 
 **示例：**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 import sim from '@ohos.telephony.sim';
 
@@ -349,7 +349,7 @@ getISOCountryCodeForSimSync\(slotId: number\): string
 
 **示例：**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 import sim from '@ohos.telephony.sim';
 
@@ -388,7 +388,7 @@ getSimOperatorNumeric\(slotId: number, callback: AsyncCallback\<string\>\): void
 
 **示例：**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 import sim from '@ohos.telephony.sim';
 
@@ -433,7 +433,7 @@ getSimOperatorNumeric\(slotId: number\): Promise\<string\>
 
 **示例：**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 import sim from '@ohos.telephony.sim';
 
@@ -467,7 +467,7 @@ getSimOperatorNumericSync\(slotId: number\): string
 
 **示例：**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 import sim from '@ohos.telephony.sim';
 
@@ -506,7 +506,7 @@ getSimSpn\(slotId: number, callback: AsyncCallback\<string\>\): void
 
 **示例：**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 import sim from '@ohos.telephony.sim';
 
@@ -551,7 +551,7 @@ getSimSpn\(slotId: number\): Promise\<string\>
 
 **示例：**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 import sim from '@ohos.telephony.sim';
 
@@ -585,7 +585,7 @@ getSimSpnSync\(slotId: number\): string
 
 **示例：**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 import sim from '@ohos.telephony.sim';
 
@@ -623,7 +623,7 @@ getSimState\(slotId: number, callback: AsyncCallback\<SimState\>\): void
 
 **示例：**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 import sim from '@ohos.telephony.sim';
 
@@ -667,7 +667,7 @@ getSimState\(slotId: number\): Promise\<SimState\>
 
 **示例：**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 import sim from '@ohos.telephony.sim';
 
@@ -701,7 +701,7 @@ getSimStateSync\(slotId: number\): SimState
 
 **示例：**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 import sim from '@ohos.telephony.sim';
 
@@ -739,7 +739,7 @@ getCardType\(slotId: number, callback: AsyncCallback\<CardType\>\): void
 
 **示例：**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 import sim from '@ohos.telephony.sim';
 
@@ -784,7 +784,7 @@ getCardType\(slotId: number\): Promise\<CardType\>
 
 **示例：**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 import sim from '@ohos.telephony.sim';
 
@@ -818,7 +818,7 @@ getCardTypeSync\(slotId: number\): CardType
 
 **示例：**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 import sim from '@ohos.telephony.sim';
 
@@ -856,7 +856,7 @@ hasSimCard\(slotId: number, callback: AsyncCallback\<boolean\>\): void
 
 **示例：**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 import sim from '@ohos.telephony.sim';
 
@@ -900,7 +900,7 @@ hasSimCard\(slotId: number\): Promise\<boolean\>
 
 **示例：**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 import sim from '@ohos.telephony.sim';
 
@@ -933,7 +933,7 @@ hasSimCardSync\(slotId: number\): boolean
 
 **示例：**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 import sim from '@ohos.telephony.sim';
 
@@ -978,7 +978,7 @@ getSimAccountInfo\(slotId: number, callback: AsyncCallback\<IccAccountInfo\>\): 
 
 **示例：**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 import sim from '@ohos.telephony.sim';
 
@@ -1030,7 +1030,7 @@ getSimAccountInfo\(slotId: number\): Promise\<IccAccountInfo\>
 
 **示例：**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 import sim from '@ohos.telephony.sim';
 
@@ -1075,7 +1075,7 @@ getActiveSimAccountInfoList\(callback: AsyncCallback\<Array\<IccAccountInfo\>\>\
 
 **示例：**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 import sim from '@ohos.telephony.sim';
 
@@ -1118,7 +1118,7 @@ getActiveSimAccountInfoList\(\): Promise\<Array\<IccAccountInfo\>\>;
 
 **示例：**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 import sim from '@ohos.telephony.sim';
 
@@ -1166,7 +1166,7 @@ setDefaultVoiceSlotId\(slotId: number, callback: AsyncCallback\<void\>\): void
 
 **示例：**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 import sim from '@ohos.telephony.sim';
 
@@ -1218,7 +1218,7 @@ setDefaultVoiceSlotId\(slotId: number\): Promise\<void\>
 
 **示例：**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 import sim from '@ohos.telephony.sim';
 
@@ -1266,7 +1266,7 @@ setShowName\(slotId: number, name: string, callback: AsyncCallback\<void\>\): vo
 
 **示例：**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 import sim from '@ohos.telephony.sim';
 
@@ -1318,7 +1318,7 @@ setShowName\(slotId: number, name: string\): Promise\<void\>
 
 **示例：**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 import sim from '@ohos.telephony.sim';
 
@@ -1367,7 +1367,7 @@ getShowName\(slotId: number, callback: AsyncCallback\<string\>\): void
 
 **示例：**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 import sim from '@ohos.telephony.sim';
 
@@ -1418,7 +1418,7 @@ getShowName\(slotId: number\): Promise\<string\>
 
 **示例：**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 import sim from '@ohos.telephony.sim';
 
@@ -1466,7 +1466,7 @@ setShowNumber\(slotId: number, number: string, callback: AsyncCallback\<void\>\)
 
 **示例：**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 import sim from '@ohos.telephony.sim';
 
@@ -1519,7 +1519,7 @@ setShowNumber\(slotId: number, number: string\): Promise\<void\>
 
 **示例：**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 import sim from '@ohos.telephony.sim';
 
@@ -1567,7 +1567,7 @@ getShowNumber\(slotId: number, callback: AsyncCallback\<string\>): void
 
 **示例：**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 import sim from '@ohos.telephony.sim';
 
@@ -1618,7 +1618,7 @@ getShowNumber\(slotId: number\): Promise\<string\>
 
 **示例：**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 import sim from '@ohos.telephony.sim';
 
@@ -1665,7 +1665,7 @@ activateSim\(slotId: number, callback: AsyncCallback\<void\>\): void
 
 **示例：**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 import sim from '@ohos.telephony.sim';
 
@@ -1716,7 +1716,7 @@ activateSim\(slotId: number\): Promise\<void\>
 
 **示例：**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 import sim from '@ohos.telephony.sim';
 
@@ -1763,7 +1763,7 @@ deactivateSim\(slotId: number, callback: AsyncCallback\<void\>\): void
 
 **示例：**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 import sim from '@ohos.telephony.sim';
 
@@ -1814,7 +1814,7 @@ deactivateSim\(slotId: number\): Promise\<void\>
 
 **示例：**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 import sim from '@ohos.telephony.sim';
 
@@ -1863,7 +1863,7 @@ setLockState\(slotId: number, options: LockInfo, callback: AsyncCallback\<LockSt
 
 **示例：**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 import sim from '@ohos.telephony.sim';
 
@@ -1921,7 +1921,7 @@ setLockState\(slotId: number, options: LockInfo\): Promise\<LockStatusResponse\>
 
 **示例：**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 import sim from '@ohos.telephony.sim';
 
@@ -1975,7 +1975,7 @@ getLockState\(slotId: number, lockType: LockType, callback: AsyncCallback\<LockS
 
 **示例：**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 import sim from '@ohos.telephony.sim';
 
@@ -2028,7 +2028,7 @@ getLockState\(slotId: number, lockType: LockType\): Promise\<LockState\>
 
 **示例：**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 import sim from '@ohos.telephony.sim';
 
@@ -2078,7 +2078,7 @@ alterPin\(slotId: number, newPin: string, oldPin: string, callback: AsyncCallbac
 
 **示例：**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 import sim from '@ohos.telephony.sim';
 
@@ -2132,7 +2132,7 @@ alterPin\(slotId: number, newPin: string, oldPin: string\): Promise\<LockStatusR
 
 **示例：**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 import sim from '@ohos.telephony.sim';
 
@@ -2182,7 +2182,7 @@ alterPin2\(slotId: number, newPin2: string, oldPin2: string, callback: AsyncCall
 
 **示例：**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 import sim from '@ohos.telephony.sim';
 
@@ -2236,7 +2236,7 @@ alterPin2\(slotId: number, newPin2: string, oldPin2: string\): Promise\<LockStat
 
 **示例：**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 import sim from '@ohos.telephony.sim';
 
@@ -2285,7 +2285,7 @@ unlockPin\(slotId: number, pin: string, callback: AsyncCallback\<LockStatusRespo
 
 **示例：**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 import sim from '@ohos.telephony.sim';
 
@@ -2339,7 +2339,7 @@ unlockPin\(slotId: number, pin: string\): Promise\<LockStatusResponse\>
 
 **示例：**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 import sim from '@ohos.telephony.sim';
 
@@ -2390,7 +2390,7 @@ unlockPuk\(slotId: number, newPin: string, puk: string, callback: AsyncCallback\
 
 **示例：**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 import sim from '@ohos.telephony.sim';
 
@@ -2446,7 +2446,7 @@ unlockPuk\(slotId: number, newPin: string, puk: string\): Promise\<LockStatusRes
 
 **示例：**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 import sim from '@ohos.telephony.sim';
 
@@ -2497,7 +2497,7 @@ unlockPin2\(slotId: number, pin2: string, callback: AsyncCallback\<LockStatusRes
 
 **示例：**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 import sim from '@ohos.telephony.sim';
 
@@ -2551,7 +2551,7 @@ unlockPin2\(slotId: number, pin2: string\): Promise\<LockStatusResponse\>
 
 **示例：**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 import sim from '@ohos.telephony.sim';
 
@@ -2602,7 +2602,7 @@ unlockPuk2\(slotId: number, newPin2: string, puk2: string, callback: AsyncCallba
 
 **示例：**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 import sim from '@ohos.telephony.sim';
 
@@ -2658,7 +2658,7 @@ unlockPuk2\(slotId: number, newPin2: string, puk2: string\): Promise\<LockStatus
 
 **示例：**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 import sim from '@ohos.telephony.sim';
 
@@ -2687,7 +2687,7 @@ getMaxSimCount\(\): number
 
 **示例：**
 
-```js
+```ts
 import sim from '@ohos.telephony.sim';
 
 console.log("Result: "+ sim.getMaxSimCount())
@@ -2729,7 +2729,7 @@ getSimIccId\(slotId: number, callback: AsyncCallback\<string\>\): void
 
 **示例：**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 import sim from '@ohos.telephony.sim';
 
@@ -2780,7 +2780,7 @@ getSimIccId\(slotId: number\): Promise\<string\>
 
 **示例：**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 import sim from '@ohos.telephony.sim';
 
@@ -2827,7 +2827,7 @@ getVoiceMailIdentifier\(slotId: number, callback: AsyncCallback\<string\>\): voi
 
 **示例：**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 import sim from '@ohos.telephony.sim';
 
@@ -2878,7 +2878,7 @@ getVoiceMailIdentifier\(slotId: number\): Promise\<string\>
 
 **示例：**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 import sim from '@ohos.telephony.sim';
 
@@ -2925,7 +2925,7 @@ getVoiceMailNumber\(slotId: number, callback: AsyncCallback\<string\>): void
 
 **示例：**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 import sim from '@ohos.telephony.sim';
 
@@ -2976,7 +2976,7 @@ getVoiceMailNumber\(slotId: number\): Promise\<string\>
 
 **示例：**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 import sim from '@ohos.telephony.sim';
 
@@ -3027,7 +3027,7 @@ setVoiceMailInfo\(slotId: number, mailName: string, mailNumber: string, callback
 
 **示例：**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 import sim from '@ohos.telephony.sim';
 
@@ -3081,7 +3081,7 @@ setVoiceMailInfo\(slotId: number, mailName: string, mailNumber: string\): Promis
 
 **示例：**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 import sim from '@ohos.telephony.sim';
 
@@ -3128,7 +3128,7 @@ getSimTelephoneNumber\(slotId: number, callback: AsyncCallback\<string\>\): void
 
 **示例：**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 import sim from '@ohos.telephony.sim';
 
@@ -3179,7 +3179,7 @@ getSimTelephoneNumber\(slotId: number\): Promise\<string\>
 
 **示例：**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 import sim from '@ohos.telephony.sim';
 
@@ -3226,7 +3226,7 @@ getSimGid1\(slotId: number, callback: AsyncCallback\<string\>\): void
 
 **示例：**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 import sim from '@ohos.telephony.sim';
 
@@ -3277,7 +3277,7 @@ getSimGid1\(slotId: number\): Promise\<string\>
 
 **示例：**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 import sim from '@ohos.telephony.sim';
 
@@ -3324,7 +3324,7 @@ getIMSI\(slotId: number, callback: AsyncCallback\<string\>\): void
 
 **示例：**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 import sim from '@ohos.telephony.sim';
 
@@ -3375,7 +3375,7 @@ getIMSI\(slotId: number\): Promise\<string\>
 
 **示例：**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 import sim from '@ohos.telephony.sim';
 
@@ -3421,7 +3421,7 @@ getOperatorConfigs\(slotId: number, callback: AsyncCallback\<Array\<OperatorConf
 
 **示例：**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 import sim from '@ohos.telephony.sim';
 
@@ -3471,7 +3471,7 @@ getOperatorConfigs\(slotId: number\): Promise\<Array\<OperatorConfig\>\>
 
 **示例：**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 import sim from '@ohos.telephony.sim';
 
@@ -3520,7 +3520,7 @@ queryIccDiallingNumbers\(slotId: number, type: ContactType, callback: AsyncCallb
 
 **示例：**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 import sim from '@ohos.telephony.sim';
 
@@ -3573,7 +3573,7 @@ queryIccDiallingNumbers\(slotId: number, type: ContactType\): Promise\<Array\<Di
 
 **示例：**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 import sim from '@ohos.telephony.sim';
 
@@ -3623,7 +3623,7 @@ addIccDiallingNumbers\(slotId: number, type: ContactType, diallingNumbers: Diall
 
 **示例：**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 import sim from '@ohos.telephony.sim';
 
@@ -3682,7 +3682,7 @@ addIccDiallingNumbers\(slotId: number, type: ContactType, diallingNumbers: Diall
 
 **示例：**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 import sim from '@ohos.telephony.sim';
 
@@ -3736,7 +3736,7 @@ delIccDiallingNumbers\(slotId: number, type: ContactType, diallingNumbers: Diall
 
 **示例：**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 import sim from '@ohos.telephony.sim';
 
@@ -3796,7 +3796,7 @@ delIccDiallingNumbers\(slotId: number, type: ContactType, diallingNumbers: Diall
 
 **示例：**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 import sim from '@ohos.telephony.sim';
 
@@ -3850,7 +3850,7 @@ updateIccDiallingNumbers\(slotId: number, type: ContactType, diallingNumbers: Di
 
 **示例：**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 import sim from '@ohos.telephony.sim';
 
@@ -3910,7 +3910,7 @@ updateIccDiallingNumbers\(slotId: number, type: ContactType, diallingNumbers: Di
 
 **示例：**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 import sim from '@ohos.telephony.sim';
 
@@ -3963,7 +3963,7 @@ sendEnvelopeCmd\(slotId: number, cmd: string, callback: AsyncCallback\<void\>\):
 
 **示例：**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 import sim from '@ohos.telephony.sim';
 
@@ -4015,7 +4015,7 @@ sendEnvelopeCmd\(slotId: number, cmd: string\): Promise\<void\>
 
 **示例：**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 import sim from '@ohos.telephony.sim';
 
@@ -4063,7 +4063,7 @@ sendTerminalResponseCmd\(slotId: number, cmd: string, callback: AsyncCallback\<v
 
 **示例：**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 import sim from '@ohos.telephony.sim';
 
@@ -4115,7 +4115,7 @@ sendTerminalResponseCmd\(slotId: number, cmd: string\): Promise\<void\>
 
 **示例：**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 import sim from '@ohos.telephony.sim';
 
@@ -4165,7 +4165,7 @@ unlockSimLock\(slotId: number, lockInfo: PersoLockInfo, callback: AsyncCallback\
 
 **示例：**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 import sim from '@ohos.telephony.sim';
 
@@ -4222,7 +4222,7 @@ unlockSimLock\(slotId: number, lockInfo: PersoLockInfo\): Promise\<LockStatusRes
 
 **示例：**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 import sim from '@ohos.telephony.sim';
 
@@ -4267,7 +4267,7 @@ getOpKey\(slotId: number, callback: AsyncCallback\<string\>): void
 
 **示例：**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 import sim from '@ohos.telephony.sim';
 
@@ -4320,7 +4320,7 @@ getOpKey\(slotId: number\): Promise\<string\>
 
 **示例：**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 import sim from '@ohos.telephony.sim';
 
@@ -4355,7 +4355,7 @@ getOpKeySync\(slotId: number\): string
 
 **示例：**
 
-```js
+```ts
 import sim from '@ohos.telephony.sim';
 
 let data: string = sim.getOpKeySync(0);
@@ -4392,7 +4392,7 @@ getOpName\(slotId: number, callback: AsyncCallback\<string\>\): void
 
 **示例：**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 import sim from '@ohos.telephony.sim';
 
@@ -4445,7 +4445,7 @@ getOpName\(slotId: number\): Promise\<string\>
 
 **示例：**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 import sim from '@ohos.telephony.sim';
 
@@ -4480,7 +4480,7 @@ getOpNameSync\(slotId: number\): string
 
 **示例：**
 
-```js
+```ts
 import sim from '@ohos.telephony.sim';
 
 let data: string = sim.getOpNameSync(0);
@@ -4517,7 +4517,7 @@ getDefaultVoiceSimId\(callback: AsyncCallback\<number\>\): void
 
 **示例：**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 import sim from '@ohos.telephony.sim';
 
@@ -4555,7 +4555,7 @@ getDefaultVoiceSimId\(\): Promise\<number\>
 
 **示例：**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 import sim from '@ohos.telephony.sim';
 
