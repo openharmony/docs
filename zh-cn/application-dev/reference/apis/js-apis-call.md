@@ -101,7 +101,12 @@ dialCall\(phoneNumber: string, options: DialCallOptions, callback: AsyncCallback
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let dialCallOptions: call.DialCallOptions;
+let dialCallOptions: call.DialCallOptions = {
+    accountId: 0,
+    videoState: 0,
+    dialScene: 0,
+    dialType: 0,
+}
 call.dialCall("138xxxxxxxx", dialCallOptions, (err: BusinessError) => {
     console.log(`callback: err->${JSON.stringify(err)}`);
 });
@@ -154,9 +159,13 @@ dialCall\(phoneNumber: string, options?: DialCallOptions\): Promise\<void\>
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let dialCallOptions: call.DialCallOptions;
-let promise = call.dialCall("138xxxxxxxx", dialCallOptions);
-promise.then(() => {
+let dialCallOptions: call.DialCallOptions = {
+    accountId: 0,
+    videoState: 0,
+    dialScene: 0,
+    dialType: 0,
+}
+call.dialCall("138xxxxxxxx", dialCallOptions).then(() => {
     console.log(`dialCall success.`);
 }).catch((err: BusinessError) => {
     console.error(`dialCall fail, promise: err->${JSON.stringify(err)}`);
@@ -222,7 +231,9 @@ dial\(phoneNumber: string, options: DialOptions, callback: AsyncCallback\<boolea
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let dialOptions: call.DialOptions;
+let dialOptions: call.DialOptions = {
+    extras: false
+}
 call.dial("138xxxxxxxx", dialOptions, (err: BusinessError, data: boolean) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
@@ -260,9 +271,10 @@ dial\(phoneNumber: string, options?: DialOptions\): Promise\<boolean\>
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let dialOptions: call.DialOptions;
-let promise = call.dial("138xxxxxxxx", dialOptions);
-promise.then((data: boolean) => {
+let dialOptions: call.DialOptions = {
+    extras: false
+}
+call.dial("138xxxxxxxx", dialOptions).then((data: boolean) => {
     console.log(`dial success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
     console.error(`dial fail, promise: err->${JSON.stringify(err)}`);
@@ -344,8 +356,7 @@ makeCall\(phoneNumber: string\): Promise\<void\>
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let promise = call.makeCall("138xxxxxxxx");
-promise.then(() => {
+call.makeCall("138xxxxxxxx").then(() => {
     console.log(`makeCall success`);
 }).catch((err: BusinessError) => {
     console.error(`makeCall fail, promise: err->${JSON.stringify(err)}`);
@@ -396,9 +407,8 @@ hasCall\(\): Promise\<boolean\>
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let promise = call.hasCall();
-promise.then((data: boolean) => {
-    console.log(`hasCall success, promise: data->${JSON.stringify(data)}`);
+call.hasCall().then(() => {
+    console.log(`hasCall success`);
 }).catch((err: BusinessError) => {
     console.error(`hasCall fail, promise: err->${JSON.stringify(err)}`);
 });
@@ -470,8 +480,7 @@ getCallState\(\): Promise\<CallState\>
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let promise = call.getCallState();
-promise.then((data: call.CallState) => {
+call.getCallState().then((data: call.CallState) => {
     console.log(`getCallState success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
     console.error(`getCallState fail, promise: err->${JSON.stringify(err)}`);
@@ -514,7 +523,7 @@ hasVoiceCapability\(\): boolean
 | boolean | 返回true表示设备具备语音通话能力，返回false表示设备不具备语音通话能力。 |
 
 ```ts
-let result = call.hasVoiceCapability(); 
+let result: boolean = call.hasVoiceCapability();
 console.log(`hasVoiceCapability: ${JSON.stringify(result)}`);
 ```
 
@@ -589,7 +598,7 @@ isEmergencyPhoneNumber\(phoneNumber: string, options: EmergencyNumberOptions, ca
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let options: call.EmergencyNumberOptions;
+let options: call.EmergencyNumberOptions = {slotId: 1}
 call.isEmergencyPhoneNumber("112", options, (err: BusinessError, data: boolean) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
@@ -634,9 +643,8 @@ isEmergencyPhoneNumber\(phoneNumber: string, options?: EmergencyNumberOptions\):
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let options: call.EmergencyNumberOptions;
-let promise = call.isEmergencyPhoneNumber("138xxxxxxxx", options);
-promise.then((data: boolean) => {
+let options: call.EmergencyNumberOptions = {slotId: 1}
+call.isEmergencyPhoneNumber("138xxxxxxxx", options).then((data: boolean) => {
     console.log(`isEmergencyPhoneNumber success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
     console.error(`isEmergencyPhoneNumber fail, promise: err->${JSON.stringify(err)}`);
@@ -717,7 +725,9 @@ formatPhoneNumber\(phoneNumber: string, options: NumberFormatOptions, callback: 
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let options: call.NumberFormatOptions;
+let options: call.NumberFormatOptions = {
+    countryCode: "CN"
+}
 call.formatPhoneNumber("138xxxxxxxx", options, (err: BusinessError, data: string) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
@@ -764,9 +774,10 @@ formatPhoneNumber\(phoneNumber: string, options?: NumberFormatOptions\): Promise
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let options: call.NumberFormatOptions;
-let promise = call.formatPhoneNumber("138xxxxxxxx", options);
-promise.then((data: string) => {
+let options: call.NumberFormatOptions = {
+    countryCode: "CN"
+}
+call.formatPhoneNumber("138xxxxxxxx", options).then((data: string) => {
     console.log(`formatPhoneNumber success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
     console.error(`formatPhoneNumber fail, promise: err->${JSON.stringify(err)}`);
@@ -856,8 +867,7 @@ formatPhoneNumberToE164\(phoneNumber: string, countryCode: string\): Promise\<st
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let promise = call.formatPhoneNumberToE164("138xxxxxxxx", "CN");
-promise.then((data: string) => {
+call.formatPhoneNumberToE164("138xxxxxxxx", "CN").then((data: string) => {
     console.log(`formatPhoneNumberToE164 success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
     console.error(`formatPhoneNumberToE164 fail, promise: err->${JSON.stringify(err)}`);
@@ -2007,8 +2017,7 @@ getMainCallId\(callId: number\): Promise\<number\>
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let promise = call.getMainCallId(1);
-promise.then((data: number) => {
+call.getMainCallId(1).then((data: number) => {
     console.log(`getMainCallId success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
     console.error(`getMainCallId fail, promise: err->${JSON.stringify(err)}`);
@@ -2094,8 +2103,7 @@ getSubCallIdList\(callId: number\): Promise\<Array\<string\>\>
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let promise = call.getSubCallIdList(1);
-promise.then((data: string) => {
+call.getSubCallIdList(1).then((data: string) => {
     console.log(`getSubCallIdList success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
     console.error(`getSubCallIdList fail, promise: err->${JSON.stringify(err)}`);
@@ -2181,8 +2189,7 @@ getCallIdListForConference\(callId: number\): Promise\<Array\<string\>\>
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let promise = call.getCallIdListForConference(1);
-promise.then((data: Array<string>) => {
+call.getCallIdListForConference(1).then((data: Array<string>) => {
     console.log(`getCallIdListForConference success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
     console.error(`getCallIdListForConference fail, promise: err->${JSON.stringify(err)}`);
@@ -2276,8 +2283,7 @@ getCallWaitingStatus\(slotId: number\): Promise\<CallWaitingStatus\>
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let promise = call.getCallWaitingStatus(0);
-promise.then((data: call.CallWaitingStatus) => {
+call.getCallWaitingStatus(0).then((data: call.CallWaitingStatus) => {
     console.log(`getCallWaitingStatus success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
     console.error(`getCallWaitingStatus fail, promise: err->${JSON.stringify(err)}`);
@@ -2632,8 +2638,7 @@ isInEmergencyCall\(\): Promise\<boolean\>
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let promise = call.isInEmergencyCall();
-promise.then((data: boolean) => {
+call.isInEmergencyCall().then((data: boolean) => {
     console.log(`isInEmergencyCall success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
     console.error(`isInEmergencyCall fail, promise: err->${JSON.stringify(err)}`);
@@ -3125,8 +3130,7 @@ isNewCallAllowed\(\): Promise\<boolean\>
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let promise = call.isNewCallAllowed();
-promise.then((data: boolean) => {
+call.isNewCallAllowed().then((data: boolean) => {
     console.log(`isNewCallAllowed success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
     console.error(`isNewCallAllowed fail, promise: err->${JSON.stringify(err)}`);
@@ -3310,8 +3314,7 @@ getCallRestrictionStatus\(slotId: number, type: CallRestrictionType\): Promise\<
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let promise = call.getCallRestrictionStatus(0, 1);
-promise.then((data: call.RestrictionStatus) => {
+call.getCallRestrictionStatus(0, 1).then((data: call.RestrictionStatus) => {
     console.log(`getCallRestrictionStatus success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
     console.error(`getCallRestrictionStatus fail, promise: err->${JSON.stringify(err)}`);
@@ -3610,8 +3613,7 @@ getCallTransferInfo\(slotId: number, type: CallTransferType\): Promise\<CallTran
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let promise = call.getCallTransferInfo(0, call.CallTransferType.TRANSFER_TYPE_BUSY);
-promise.then((data: call.CallTransferResult) => {
+call.getCallTransferInfo(0, call.CallTransferType.TRANSFER_TYPE_BUSY).then((data: call.CallTransferResult) => {
     console.log(`getCallTransferInfo success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
     console.error(`getCallTransferInfo fail, promise: err->${JSON.stringify(err)}`);
@@ -3802,8 +3804,7 @@ isRinging\(\): Promise\<boolean\>
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let promise = call.isRinging();
-promise.then((data: boolean) => {
+call.isRinging().then((data: boolean) => {
     console.log(`isRinging success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
     console.error(`isRinging fail, promise: err->${JSON.stringify(err)}`);
@@ -4517,8 +4518,7 @@ isImsSwitchEnabled\(slotId: number\): Promise\<boolean\>
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let promise = call.isImsSwitchEnabled(0);
-promise.then((data: boolean) => {
+call.isImsSwitchEnabled(0).then((data: boolean) => {
     console.log(`isImsSwitchEnabled success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
     console.error(`isImsSwitchEnabled fail, promise: err->${JSON.stringify(err)}`);
@@ -4564,7 +4564,7 @@ closeUnfinishedUssd\(slotId: number, callback: AsyncCallback\<void\>\): void
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let slotId = 0;
+let slotId: number = 0;
 call.closeUnfinishedUssd(slotId, (err: BusinessError) => {
     console.log(`callback: err->${JSON.stringify(err)}`);
 });
@@ -4613,7 +4613,7 @@ closeUnfinishedUssd\(slotId: number\): Promise\<void\>
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let slotId = 0;
+let slotId: number = 0;
 call.closeUnfinishedUssd(slotId).then(() => {
     console.log(`closeUnfinishedUssd success.`);
 }).catch((err: BusinessError) => {
@@ -4661,8 +4661,8 @@ setVoNRState\(slotId: number, state: VoNRState, callback: AsyncCallback\<void\>\
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let slotId = 0;
-let state = 1;
+let slotId: number = 0;
+let state: call.VoNRState = call.VoNRState.VONR_STATE_ON;
 call.setVoNRState(slotId, state, (err: BusinessError) => {
     console.log(`callback: err->${JSON.stringify(err)}`);
 });
@@ -4713,8 +4713,8 @@ setVoNRState\(slotId: number, state: VoNRState\): Promise\<void\>
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let slotId = 0;
-let state = 1;
+let slotId: number = 0;
+let state: call.VoNRState = call.VoNRState.VONR_STATE_ON;
 call.setVoNRState(slotId, state).then(() => {
     console.log(`setVoNRState success`);
 }).catch((err: BusinessError) => {
@@ -4761,7 +4761,7 @@ getVoNRState\(slotId: number, callback: AsyncCallback\<VoNRState\>\): void
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let slotId = 0;
+let slotId: number = 0;
 call.getVoNRState(slotId, (err: BusinessError, data: call.VoNRState) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
@@ -4811,9 +4811,8 @@ getVoNRState\(slotId: number\): Promise\<VoNRState\>
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let slotId = 0;
-let promise = call.getVoNRState(slotId);
-promise.then((data: call.VoNRState) => {
+let slotId: number = 0;
+call.getVoNRState(slotId).then((data: call.VoNRState) => {
     console.log(`getVoNRState success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
     console.error(`getVoNRState fail, promise: err->${JSON.stringify(err)}`);
@@ -4859,7 +4858,7 @@ canSetCallTransferTime\(slotId: number, callback: AsyncCallback\<boolean\>\): vo
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let slotId = 0;
+let slotId: number = 0;
 call.canSetCallTransferTime(slotId, (err: BusinessError, data: boolean) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
@@ -4909,7 +4908,7 @@ canSetCallTransferTime\(slotId: number\): Promise\<boolean\>
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let slotId = 0;
+let slotId: number = 0;
 call.canSetCallTransferTime(slotId).then((data: boolean) => {
     console.log(`canSetCallTransferTime success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
@@ -5088,8 +5087,7 @@ removeMissedIncomingCallNotification\(\): Promise\<void\>
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let promise = call.removeMissedIncomingCallNotification();
-promise.then(() => {
+call.removeMissedIncomingCallNotification().then(() => {
     console.log(`removeMissedIncomingCallNotification success`);
 }).catch((err: BusinessError) => {
     console.log(`removeMissedIncomingCallNotification failed, promise: err->${JSON.stringify(err)}`);
