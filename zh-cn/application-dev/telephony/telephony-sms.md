@@ -54,7 +54,7 @@
 
 ```ts
 import sms from '@ohos.telephony.sms'
-import { AsyncCallback } from "./basic";
+import { AsyncCallback } from '@ohos.base';
 import { BusinessError } from '@ohos.base';
 
 let sendCallback: AsyncCallback<sms.ISendShortMessageCallback> = (err: BusinessError, data: sms.ISendShortMessageCallback) => {

@@ -49,7 +49,7 @@ import { BusinessError } from '@ohos.base';
 const specification: string = '3gpp';
 // 以数组的形式显示协议数据单元（PDU），类型为number，例如[0x08, 0x91, ...]
 const pdu: Array<number> = [0x08, 0x91];
-sms.createMessage(pdu, specification, (err: BusinessError, data: sms.RemoteAbilityInfo[]) => {
+sms.createMessage(pdu, specification, (err: BusinessError, data: sms.ShortMessage) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -97,8 +97,7 @@ import { BusinessError } from '@ohos.base';
 const specification: string = '3gpp';
 // 以数组的形式显示协议数据单元（PDU），类型为number，例如[0x08, 0x91, ...]
 const pdu: Array<number> = [0x08, 0x91];
-let promise = sms.createMessage(pdu, specification);
-promise.then((data: sms.RemoteAbilityInfo[]) => {
+sms.createMessage(pdu, specification).then((data: sms.ShortMessage) => {
     console.log(`createMessage success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
     console.error(`createMessage failed, promise: err->${JSON.stringify(err)}`);
@@ -144,10 +143,10 @@ sendMessage\(options: SendMessageOptions\): void
 import sms from '@ohos.telephony.sms';
 import { BusinessError } from '@ohos.base';
 
-let sendCallback = (err: BusinessError, data: sms.RemoteAbilityInfo[]) => {
+let sendCallback: AsyncCallback<sms.ISendShortMessageCallback> = (err: BusinessError, data: sms.ISendShortMessageCallback[]) => {
     console.log(`sendCallback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`); 
 }
-let deliveryCallback = (err: BusinessError, data: sms.RemoteAbilityInfo[]) => {
+let deliveryCallback: AsyncCallback<sms.IDeliveryShortMessageCallback> = (err: BusinessError, data: sms.IDeliveryShortMessageCallback) => {
     console.log(`deliveryCallback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`); 
 }
 let options: sms.SendMessageOptions = {
@@ -196,12 +195,13 @@ sendShortMessage\(options: SendMessageOptions, callback: AsyncCallback&lt;void&g
 
 ```ts
 import sms from '@ohos.telephony.sms';
+import { AsyncCallback } from '@ohos.base';
 import { BusinessError } from '@ohos.base';
 
-let sendCallback = (err: BusinessError, data: sms.RemoteAbilityInfo[]) => {
+let sendCallback: AsyncCallback<sms.ISendShortMessageCallback> = (err: BusinessError, data: sms.ISendShortMessageCallback) => {
     console.log(`sendCallback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 }
-let deliveryCallback = (err: BusinessError, data: sms.RemoteAbilityInfo[]) => {
+let deliveryCallback: AsyncCallback<sms.IDeliveryShortMessageCallback> = (err: BusinessError, data: sms.IDeliveryShortMessageCallback) => {
     console.log(`deliveryCallback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 }
 let options: sms.SendMessageOptions = {
@@ -257,12 +257,13 @@ sendShortMessage\(options: SendMessageOptions\): Promise&lt;void&gt;
 
 ```ts
 import sms from '@ohos.telephony.sms';
+import { AsyncCallback } from '@ohos.base';
 import { BusinessError } from '@ohos.base';
 
-let sendCallback = (err: BusinessError, data: sms.RemoteAbilityInfo[]) => {
+let sendCallback: AsyncCallback<sms.ISendShortMessageCallback> = (err: BusinessError, data: sms.ISendShortMessageCallback) => {
     console.log(`sendCallback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 }
-let deliveryCallback = (err: BusinessError, data: sms.RemoteAbilityInfo[]) => {
+let deliveryCallback: AsyncCallback<sms.IDeliveryShortMessageCallback> = (err: BusinessError, data: sms.IDeliveryShortMessageCallback) => {
     console.log(`deliveryCallback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 }
 let options: sms.SendMessageOptions = {
