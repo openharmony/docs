@@ -166,6 +166,11 @@
   - [OffscreenCanvas](ts-components-offscreencanvas.md)
   - [OffscreenCanvasRenderingContext2D对象](ts-offscreencanvasrenderingcontext2d.md)
   - [Path2D对象](ts-components-canvas-path2d.md)
+- 安全组件
+  - [安全组件通用属性](ts-securitycomponent-attributes.md)
+  - [LocationButton](ts-security-components-locationbutton.md)
+  - [PasteButton](ts-security-components-pastebutton.md)
+  - [SaveButton](ts-security-components-savebutton.md)
 - 高级组件
   - [@ohos.multimedia.avcastpicker (投播组件)](ohos-multimedia-avcastpicker.md)
 - 动画
