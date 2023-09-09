@@ -8,7 +8,7 @@
 
 ## 导入模块
 
-```js
+```ts
 import sms from '@ohos.telephony.sms';
 ```
 
@@ -42,7 +42,7 @@ createMessage\(pdu: Array&lt;number&gt;, specification: string, callback: AsyncC
 
 **示例：**
 
-```js
+```ts
 import sms from '@ohos.telephony.sms';
 import { BusinessError } from '@ohos.base';
 
@@ -90,7 +90,7 @@ createMessage\(pdu: Array&lt;number&gt;, specification: string\): Promise\<Short
 
 **示例：**
 
-```js
+```ts
 import sms from '@ohos.telephony.sms';
 import { BusinessError } from '@ohos.base';
 
@@ -140,7 +140,7 @@ sendMessage\(options: SendMessageOptions\): void
 
 **示例：**
 
-```js
+```ts
 import sms from '@ohos.telephony.sms';
 import { BusinessError } from '@ohos.base';
 
@@ -194,7 +194,7 @@ sendShortMessage\(options: SendMessageOptions, callback: AsyncCallback&lt;void&g
 
 **示例：**
 
-```js
+```ts
 import sms from '@ohos.telephony.sms';
 import { BusinessError } from '@ohos.base';
 
@@ -255,7 +255,7 @@ sendShortMessage\(options: SendMessageOptions\): Promise&lt;void&gt;
 
 **示例：**
 
-```js
+```ts
 import sms from '@ohos.telephony.sms';
 import { BusinessError } from '@ohos.base';
 
@@ -321,7 +321,7 @@ sendMms\(context: Context, mmsParams: MmsParams, callback: AsyncCallback&lt;void
 
 FA模型示例：
 
-```js
+```ts
 import sms from '@ohos.telephony.sms';
 import { BusinessError } from '@ohos.base';
 import type Context from './application/BaseContext';
@@ -437,7 +437,7 @@ sendMms\(context: Context, mmsParams: MmsParams\): Promise&lt;void&gt;
 
 FA模型示例：
 
-```js
+```ts
 import sms from '@ohos.telephony.sms';
 import { BusinessError } from '@ohos.base';
 import type Context from './application/BaseContext';
@@ -545,7 +545,7 @@ downloadMms\(context: Context, mmsParams: MmsParams, callback: AsyncCallback&lt;
 
 FA模型示例：
 
-```js
+```ts
 import sms from '@ohos.telephony.sms';
 import { BusinessError } from '@ohos.base';
 import type Context from './application/BaseContext';
@@ -666,7 +666,7 @@ downloadMms\(context: Context, mmsParams: MmsParams\): Promise&lt;void&gt;
 
 FA模型示例：
 
-```js
+```ts
 import sms from '@ohos.telephony.sms';
 import { BusinessError } from '@ohos.base';
 import type Context from './application/BaseContext';
@@ -758,7 +758,7 @@ getDefaultSmsSlotId\(callback: AsyncCallback&lt;number&gt;\): void
 
 **示例：**
 
-```js
+```ts
 import sms from '@ohos.telephony.sms';
 import { BusinessError } from '@ohos.base';
 
@@ -784,7 +784,7 @@ getDefaultSmsSlotId\(\): Promise&lt;number&gt;
 
 **示例：**
 
-```js
+```ts
 import sms from '@ohos.telephony.sms';
 import { BusinessError } from '@ohos.base';
 
@@ -831,7 +831,7 @@ setDefaultSmsSlotId\(slotId: number, callback: AsyncCallback&lt;void&gt;\): void
 
 **示例：**
 
-```js
+```ts
 import sms from '@ohos.telephony.sms';
 import { BusinessError } from '@ohos.base';
 
@@ -882,7 +882,7 @@ setDefaultSmsSlotId\(slotId: number\): Promise&lt;void&gt;
 
 **示例：**
 
-```js
+```ts
 import sms from '@ohos.telephony.sms';
 import { BusinessError } from '@ohos.base';
 
@@ -929,7 +929,7 @@ setSmscAddr\(slotId: number, smscAddr: string, callback: AsyncCallback\<void\>\)
 
 **示例：**
 
-```js
+```ts
 import sms from '@ohos.telephony.sms';
 import { BusinessError } from '@ohos.base';
 
@@ -982,7 +982,7 @@ setSmscAddr\(slotId: number, smscAddr: string\): Promise\<void\>
 
 **示例：**
 
-```js
+```ts
 import sms from '@ohos.telephony.sms';
 import { BusinessError } from '@ohos.base';
 
@@ -1031,7 +1031,7 @@ getSmscAddr\(slotId: number, callback: AsyncCallback\<string\>\): void
 
 **示例：**
 
-```js
+```ts
 import sms from '@ohos.telephony.sms';
 import { BusinessError } from '@ohos.base';
 
@@ -1082,7 +1082,7 @@ getSmscAddr\(slotId: number\): Promise\<string\>
 
 **示例：**
 
-```js
+```ts
 import sms from '@ohos.telephony.sms';
 import { BusinessError } from '@ohos.base';
 
@@ -1108,7 +1108,7 @@ hasSmsCapability\(\): boolean
 | ------- | ------------------------------------------------------------ |
 | boolean | - true：设备具备短信发送和接收能力。<br/>- false：设备不具备短信发送和接收能力。 |
 
-```js
+```ts
 import sms from '@ohos.telephony.sms';
 
 let result = sms.hasSmsCapability(); 
@@ -1150,7 +1150,7 @@ splitMessage\(content: string, callback: AsyncCallback\<Array\<string\>\>\): voi
 
 **示例：**
 
-```js
+```ts
 import sms from '@ohos.telephony.sms';
 import { BusinessError } from '@ohos.base';
 
@@ -1201,7 +1201,7 @@ splitMessage\(content: string\): Promise\<Array\<string\>\>
 
 **示例：**
 
-```js
+```ts
 import sms from '@ohos.telephony.sms';
 import { BusinessError } from '@ohos.base';
 
@@ -1249,7 +1249,7 @@ addSimMessage\(options: SimMessageOptions, callback: AsyncCallback\<void\>\): vo
 
 **示例：**
 
-```js
+```ts
 import sms from '@ohos.telephony.sms';
 import { BusinessError } from '@ohos.base';
 
@@ -1305,7 +1305,7 @@ addSimMessage\(options: SimMessageOptions\): Promise\<void\>
 
 **示例：**
 
-```js
+```ts
 import sms from '@ohos.telephony.sms';
 import { BusinessError } from '@ohos.base';
 
@@ -1358,7 +1358,7 @@ delSimMessage\(slotId: number, msgIndex: number, callback: AsyncCallback\<void\>
 
 **示例：**
 
-```js
+```ts
 import sms from '@ohos.telephony.sms';
 import { BusinessError } from '@ohos.base';
 
@@ -1411,7 +1411,7 @@ delSimMessage\(slotId: number, msgIndex: number\): Promise\<void\>
 
 **示例：**
 
-```js
+```ts
 import sms from '@ohos.telephony.sms';
 import { BusinessError } from '@ohos.base';
 
@@ -1460,7 +1460,7 @@ updateSimMessage\(options: UpdateSimMessageOptions, callback: AsyncCallback\<voi
 
 **示例：**
 
-```js
+```ts
 import sms from '@ohos.telephony.sms';
 import { BusinessError } from '@ohos.base';
 
@@ -1517,7 +1517,7 @@ updateSimMessage\(options: UpdateSimMessageOptions\): Promise\<void\>
 
 **示例：**
 
-```js
+```ts
 import sms from '@ohos.telephony.sms';
 import { BusinessError } from '@ohos.base';
 
@@ -1571,7 +1571,7 @@ getAllSimMessages\(slotId: number, callback: AsyncCallback\<Array\<SimShortMessa
 
 **示例：**
 
-```js
+```ts
 import sms from '@ohos.telephony.sms';
 import { BusinessError } from '@ohos.base';
 
@@ -1622,7 +1622,7 @@ getAllSimMessages\(slotId: number\): Promise\<Array\<SimShortMessage\>\>
 
 **示例：**
 
-```js
+```ts
 import sms from '@ohos.telephony.sms';
 import { BusinessError } from '@ohos.base';
 
@@ -1670,7 +1670,7 @@ setCBConfig\(options: CBConfigOptions, callback: AsyncCallback\<void\>\): void
 
 **示例：**
 
-```js
+```ts
 import sms from '@ohos.telephony.sms';
 import { BusinessError } from '@ohos.base';
 
@@ -1727,7 +1727,7 @@ setCBConfig\(options: CBConfigOptions\): Promise\<void\>
 
 **示例：**
 
-```js
+```ts
 import sms from '@ohos.telephony.sms';
 import { BusinessError } from '@ohos.base';
 
@@ -1780,7 +1780,7 @@ getSmsSegmentsInfo\(slotId: number, message: string, force7bit: boolean, callbac
 
 **示例：**
 
-```js
+```ts
 import sms from '@ohos.telephony.sms';
 import { BusinessError } from '@ohos.base';
 
@@ -1830,7 +1830,7 @@ getSmsSegmentsInfo\(slotId: number, message: string, force7bit: boolean\): Promi
 
 **示例：**
 
-```js
+```ts
 import sms from '@ohos.telephony.sms';
 import { BusinessError } from '@ohos.base';
 
@@ -1875,7 +1875,7 @@ isImsSmsSupported\(slotId: number, callback: AsyncCallback\<boolean\>\): void
 
 **示例：**
 
-```js
+```ts
 import sms from '@ohos.telephony.sms';
 import { BusinessError } from '@ohos.base';
 
@@ -1923,7 +1923,7 @@ isImsSmsSupported\(slotId: number\): Promise\<boolean\>
 
 **示例：**
 
-```js
+```ts
 import sms from '@ohos.telephony.sms';
 import { BusinessError } from '@ohos.base';
 
@@ -1967,7 +1967,7 @@ getImsShortMessageFormat\(callback: AsyncCallback\<string\>\): void
 
 **示例：**
 
-```js
+```ts
 import sms from '@ohos.telephony.sms';
 import { BusinessError } from '@ohos.base';
 
@@ -2006,7 +2006,7 @@ getImsShortMessageFormat\(\): Promise\<string\>
 
 **示例：**
 
-```js
+```ts
 import sms from '@ohos.telephony.sms';
 import { BusinessError } from '@ohos.base';
 
@@ -2049,7 +2049,7 @@ decodeMms\(mmsFilePathName: string | Array\<number\>, callback: AsyncCallback\<M
 
 **示例：**
 
-```js
+```ts
 import sms from '@ohos.telephony.sms';
 import { BusinessError } from '@ohos.base';
 
@@ -2097,7 +2097,7 @@ decodeMms\(mmsFilePathName: string | Array\<number\>\): Promise\<MmsInformation\
 
 **示例：**
 
-```js
+```ts
 import sms from '@ohos.telephony.sms';
 import { BusinessError } from '@ohos.base';
 
@@ -2142,7 +2142,7 @@ encodeMms\(mms: MmsInformation, callback: AsyncCallback\<Array\<number\>\>\): vo
 
 **示例：**
 
-```js
+```ts
 import sms from '@ohos.telephony.sms';
 import { BusinessError } from '@ohos.base';
 
@@ -2198,7 +2198,7 @@ encodeMms\(mms: MmsInformation\): Promise\<Array\<number\>\>
 
 **示例：**
 
-```js
+```ts
 import sms from '@ohos.telephony.sms';
 import { BusinessError } from '@ohos.base';
 
@@ -2248,7 +2248,7 @@ getDefaultSmsSimId\(callback: AsyncCallback&lt;number&gt;\): void
 
 **示例：**
 
-```js
+```ts
 import sms from '@ohos.telephony.sms';
 import { BusinessError } from '@ohos.base';
 
@@ -2287,7 +2287,7 @@ getDefaultSmsSimId\(\): Promise&lt;number&gt;
 
 **示例：**
 
-```js
+```ts
 import sms from '@ohos.telephony.sms';
 import { BusinessError } from '@ohos.base';
 
@@ -2850,4 +2850,3 @@ SIM卡短消息。
 | encodeCount          | number                                   | 是   | 编码计数     |
 | encodeCountRemaining | number                                   | 是   | 剩余编码计数 |
 | scheme               | [SmsEncodingScheme](#smsencodingscheme8) | 是   | 短信编码方案 |
-
