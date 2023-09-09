@@ -64,7 +64,7 @@ let deliveryCallback: AsyncCallback<sms.IDeliveryShortMessageCallback> = (err: B
     console.log(`deliveryCallback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`); 
 }
 let slotId: number = 0;
-let content: string: string = '短信内容';
+let content: string = '短信内容';
 let destinationHost: string = '+861xxxxxxxxxx';
 let serviceCenter: string = '+861xxxxxxxxxx';
 let destinationPort: number = 1000;
