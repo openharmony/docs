@@ -839,7 +839,7 @@ getDefaultCellularDataSimId(): number
 ```ts
 import data from '@ohos.telephony.data';
 
-console.log("Result: "+ data.getDefaultCellularDataSimId())
+console.log("Result: "+ data.getDefaultCellularDataSimId());
 ```
 
 ## DataFlowType
