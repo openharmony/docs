@@ -47,11 +47,11 @@ isIdleState(bundleName: string, callback: AsyncCallback&lt;boolean&gt;): void
 
 ```ts
 bundleState.isIdleState("com.ohos.camera", (err: BusinessError, res: boolean) => {
-    if (err) {
-      console.log('BUNDLE_ACTIVE isIdleState callback failed, because: ' + err.code);
-    } else {
-      console.log('BUNDLE_ACTIVE isIdleState callback succeeded, result: ' + JSON.stringify(res));
-    }
+  if (err) {
+    console.log('BUNDLE_ACTIVE isIdleState callback failed, because: ' + err.code);
+  } else {
+    console.log('BUNDLE_ACTIVE isIdleState callback succeeded, result: ' + JSON.stringify(res));
+  }
 });
 ```
 
@@ -79,9 +79,9 @@ isIdleState(bundleName: string): Promise&lt;boolean&gt;
 
 ```ts
 bundleState.isIdleState("com.ohos.camera").then((res: boolean) => {
-    console.log('BUNDLE_ACTIVE isIdleState promise succeeded, result: ' + JSON.stringify(res));
-  }).catch((err: BusinessError) => {
-    console.log('BUNDLE_ACTIVE isIdleState promise failed, because: ' + err.code);
+  console.log('BUNDLE_ACTIVE isIdleState promise succeeded, result: ' + JSON.stringify(res));
+}).catch((err: BusinessError) => {
+  console.log('BUNDLE_ACTIVE isIdleState promise failed, because: ' + err.code);
 });
 ```
 
@@ -103,9 +103,9 @@ queryAppUsagePriorityGroup(): Promise&lt;number&gt;
 
 ```ts
 bundleState.queryAppUsagePriorityGroup().then((res: number) => {
-    console.log('BUNDLE_ACTIVE QueryPackageGroup promise succeeded. result: ' + JSON.stringify(res));
-  }).catch((err: BusinessError) => {
-    console.log('BUNDLE_ACTIVE QueryPackageGroup promise failed. because: ' + err.code);
+  console.log('BUNDLE_ACTIVE QueryPackageGroup promise succeeded. result: ' + JSON.stringify(res));
+}).catch((err: BusinessError) => {
+  console.log('BUNDLE_ACTIVE QueryPackageGroup promise failed. because: ' + err.code);
 });
 ```
 
