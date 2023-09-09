@@ -29,6 +29,7 @@
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import photoAccessHelper from '@ohos.file.photoAccessHelper';
 
 async function example() {
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -38,7 +39,7 @@ async function example() {
     predicates: predicates
   };
   try {
-    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await photoAccessHelper.getAssets(fetchOptions);
     let fileAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
     console.info('getAssets fileAsset.displayName : ' + fileAsset.displayName);
     fetchResult.close();
@@ -54,6 +55,7 @@ async function example() {
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import photoAccessHelper from '@ohos.file.photoAccessHelper';
 
 async function example() {
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -64,7 +66,7 @@ async function example() {
   };
 
   try {
-    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await photoAccessHelper.getAssets(fetchOptions);
     let fileAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
     console.info('getAssets fileAsset.uri : ' + fileAsset.uri);
     fetchResult.close();
@@ -80,6 +82,7 @@ async function example() {
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import photoAccessHelper from '@ohos.file.photoAccessHelper';
 
 async function example() {
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -93,7 +96,7 @@ async function example() {
     predicates: predicates
   };
   try {
-    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await photoAccessHelper.getAssets(fetchOptions);
     console.info('getAssets count: ' + fetchResult.getCount());
     let fileAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
     console.info('getAssets fileAsset.displayName : ' + fileAsset.displayName);
@@ -130,6 +133,7 @@ async function example() {
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
 import image from '@ohos.multimedia.image';
+import photoAccessHelper from '@ohos.file.photoAccessHelper';
 
 async function example() {
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -139,7 +143,7 @@ async function example() {
   };
 
   try {
-    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await photoAccessHelper.getAssets(fetchOptions);
     let fileAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
     console.info('getAssets fileAsset.displayName : ' + fileAsset.displayName);
     let size: image.Size = { width: 720, height: 720 };
@@ -179,7 +183,7 @@ async function example() {
       subtype: photoAccessHelper.PhotoSubtype.DEFAULT
     };
 
-    let fileAsset: photoAccessHelper.PhotoAsset = await phAccessHelper.createAsset(displayName, createOption);
+    let fileAsset: photoAccessHelper.PhotoAsset = await photoAccessHelper.createAsset(displayName, createOption);
     console.info('createAsset successfully, file displayName: ' + fileAsset.displayName);
   } catch (err) {
     console.error('createAsset failed, message = ', err);
@@ -212,6 +216,7 @@ async function example() {
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import photoAccessHelper from '@ohos.file.photoAccessHelper';
 
 async function example() {
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -222,7 +227,7 @@ async function example() {
   let newTitle = 'newTestPhoto';
 
   try {
-    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await photoAccessHelper.getAssets(fetchOptions);
     let fileAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
     let title: photoAccessHelper.PhotoKeys = photoAccessHelper.PhotoKeys.TITLE;
     let fileAssetTitle: photoAccessHelper.MemberType = fileAsset.get(title);
@@ -258,6 +263,7 @@ async function example() {
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import photoAccessHelper from '@ohos.file.photoAccessHelper';
 
 async function example() {
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -267,10 +273,10 @@ async function example() {
   };
 
   try {
-    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await photoAccessHelper.getAssets(fetchOptions);
     let fileAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
     console.info('getAssets fileAsset.uri : ' + fileAsset.uri);
-    await phAccessHelper.deleteAssets([fileAsset.uri]);
+    await photoAccessHelper.deleteAssets([fileAsset.uri]);
     fetchResult.close();
   } catch (err) {
     console.error('deleteAssets failed with err: ' + err);

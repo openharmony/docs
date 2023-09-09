@@ -33,6 +33,7 @@ photoAccessHelper提供监听媒体资源变更的接口，供开发者对指定
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import photoAccessHelper from '@ohos.file.photoAccessHelper';
 
 async function example() {
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -42,13 +43,13 @@ async function example() {
     predicates: predicates
   };
   try {
-    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await photoAccessHelper.getAssets(fetchOptions);
     let fileAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
     console.info('getAssets fileAsset.uri : ' + fileAsset.uri);
     let onCallback = (changeData: photoAccessHelper.ChangeData) => {
       console.info('onCallback successfully, changData: ' + JSON.stringify(changeData));
     }
-    phAccessHelper.registerChange(fileAsset.uri, false, onCallback);
+    photoAccessHelper.registerChange(fileAsset.uri, false, onCallback);
     await fileAsset.setFavorite(true);
     fetchResult.close();
   } catch (err) {
@@ -76,6 +77,7 @@ async function example() {
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import photoAccessHelper from '@ohos.file.photoAccessHelper';
 
 async function example() {
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -87,14 +89,14 @@ async function example() {
   };
 
   try {
-    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.USER, photoAccessHelper.AlbumSubtype.USER_GENERIC, fetchOptions);
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await photoAccessHelper.getAlbums(photoAccessHelper.AlbumType.USER, photoAccessHelper.AlbumSubtype.USER_GENERIC, fetchOptions);
     let album: photoAccessHelper.Album = await fetchResult.getFirstObject();
     console.info('getAlbums successfullyfully, albumName: ' + album.albumUri);
 
     let onCallback = (changeData: photoAccessHelper.ChangeData) => {
       console.info('onCallback successfully, changData: ' + JSON.stringify(changeData));
     }
-    phAccessHelper.registerChange(album.albumUri, false, onCallback);
+    photoAccessHelper.registerChange(album.albumUri, false, onCallback);
     album.albumName = 'newAlbumName' + Date.now();
     await album.commitModify();
     fetchResult.close();
@@ -127,19 +129,20 @@ async function example() {
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import photoAccessHelper from '@ohos.file.photoAccessHelper';
 
 async function example() {
   let onCallback = (changeData: photoAccessHelper.ChangeData) => {
     console.info('onCallback successfully, changData: ' + JSON.stringify(changeData));
   }
-  phAccessHelper.registerChange(photoAccessHelper.DefaultChangeUri.DEFAULT_PHOTO_URI, true, onCallback);
+  photoAccessHelper.registerChange(photoAccessHelper.DefaultChangeUri.DEFAULT_PHOTO_URI, true, onCallback);
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOptions: photoAccessHelper.FetchOptions = {
     fetchColumns: [],
     predicates: predicates
   };
   try {
-    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await photoAccessHelper.getAssets(fetchOptions);
     let fileAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
     console.info('getAssets fileAsset.uri : ' + fileAsset.uri);
     await fileAsset.setFavorite(true);
@@ -169,6 +172,7 @@ async function example() {
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import photoAccessHelper from '@ohos.file.photoAccessHelper';
 
 async function example() {
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -178,7 +182,7 @@ async function example() {
     predicates: predicates
   };
   try {
-    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await photoAccessHelper.getAssets(fetchOptions);
     let fileAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
     console.info('getAssets fileAsset.uri : ' + fileAsset.uri);
     let onCallback1 = (changeData: photoAccessHelper.ChangeData) => {
@@ -187,9 +191,9 @@ async function example() {
     let onCallback2 = (changeData: photoAccessHelper.ChangeData) => {
       console.info('onCallback2, changData: ' + JSON.stringify(changeData));
     }
-    phAccessHelper.registerChange(fileAsset.uri, false, onCallback1);
-    phAccessHelper.registerChange(fileAsset.uri, false, onCallback2);
-    phAccessHelper.unRegisterChange(fileAsset.uri, onCallback1);
+    photoAccessHelper.registerChange(fileAsset.uri, false, onCallback1);
+    photoAccessHelper.registerChange(fileAsset.uri, false, onCallback2);
+    photoAccessHelper.unRegisterChange(fileAsset.uri, onCallback1);
     await fileAsset.setFavorite(true);
     fetchResult.close();
   } catch (err) {
