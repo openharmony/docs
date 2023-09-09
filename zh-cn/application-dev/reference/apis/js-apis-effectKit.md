@@ -458,7 +458,7 @@ image.createPixelMap(color, opts).then((pixelMap) => {
       console.log('Failed to create color picker.');
     } else {
       console.log('Succeeded in creating color picker.');
-      let color = colorPicker.AverageColor();
+      let color = colorPicker.getAverageColor();
       console.log('get average color =' + color);
     }
   })
