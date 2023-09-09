@@ -2690,7 +2690,7 @@ getMaxSimCount\(\): number
 ```ts
 import sim from '@ohos.telephony.sim';
 
-console.log("Result: "+ sim.getMaxSimCount())
+console.log("Result: "+ sim.getMaxSimCount());
 ```
 
 ## sim.getSimIccId<sup>7+</sup>
