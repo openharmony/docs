@@ -75,6 +75,7 @@ async function example() {
 2. 对指定Album注册监听。
 3. 将指定用户相册重命名。
 
+
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
 import photoAccessHelper from '@ohos.file.photoAccessHelper';
