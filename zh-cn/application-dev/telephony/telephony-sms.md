@@ -52,7 +52,7 @@
 
 4. 发送SMS消息。
 
-```js
+```ts
 import sms from '@ohos.telephony.sms'
 import { AsyncCallback } from "./basic";
 import { BusinessError } from '@ohos.base';
