@@ -177,6 +177,7 @@
 
    ```ts
    let uri: string;
+   const uri = '';
    const audioViewPicker = new picker.AudioViewPicker();
    audioViewPicker.select(audioSelectOptions).then((audioSelectResult: Array<string>) => {
      uri = audioSelectResult[0];

@@ -139,7 +139,7 @@ OpenHarmony预置了FileManager文件管理器。系统应用开发者也可以�
    async function creatFile(): Promise<void> {
      let sourceUri: string = "file://docs/storage/Users/currentUser/Download";
      let displayName: string = "file1";
-     let fileUri: string;
+     let fileUri: string = "";
      try {
        // fileAccessHelperAllServer 参考 fileAccess.createFileAccessHelper 示例代码获取
        fileUri = await fileAccessHelperAllServer.createFile(sourceUri, displayName);
