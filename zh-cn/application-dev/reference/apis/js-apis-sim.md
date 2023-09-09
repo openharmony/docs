@@ -4327,7 +4327,7 @@ import sim from '@ohos.telephony.sim';
 try {
     let data: string = sim.getOpKey(0);
     console.log(`getOpKey success, promise: data->${JSON.stringify(data)}`);
-} catch (error: BusinessError) {
+} catch (error) {
     console.log(`getOpKey failed, promise: err->${JSON.stringify(error)}`);
 }
 ```
@@ -4452,7 +4452,7 @@ import sim from '@ohos.telephony.sim';
 try {
     let data: string = sim.getOpName(0);
     console.log(`getOpName success, promise: data->${JSON.stringify(data)}`);
-} catch (error:BusinessError) {
+} catch (error) {
     console.log(`getOpName failed, promise: err->${JSON.stringify(error)}`);
 }
 ```
