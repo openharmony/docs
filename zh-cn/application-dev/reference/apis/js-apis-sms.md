@@ -334,18 +334,15 @@ let context: Context = featureAbility.getContext();
 const sandBoxPath: string = '/data/storage/el2/base/files/';
 let filePath: string  = sandBoxPath + 'SendReq.mms';
 
-// 彩信用户代理、用户代理描述配置。根据运营商要求配置，默认ua，uaprof
-let mmsConf: sms.MmsConfig = {
-  userAgent:'ua',
-  userAgentProfile: 'uaprof'
-};
-
 // 发送彩信参数(mmsc以联通卡为例)
 let mmsPars: sms.MmsParams = {
-  slotId : DEFAULT_SLOTID,
+  slotId : 0,
   mmsc: 'http://mmsc.myuni.com.cn',
   data: filePath,
-  mmsConfig: mmsConf
+  mmsConfig: {
+   userAgent:'ua',
+   userAgentProfile: 'uaprof'
+  }
 };
 
 // 调用发送接口
@@ -449,18 +446,15 @@ let context: Context = featureAbility.getContext();
 const sandBoxPath: string = '/data/storage/el2/base/files/';
 let filePath: string = sandBoxPath + 'SendReq.mms';
 
-// 彩信用户代理、用户代理描述配置。根据运营商要求配置，默认ua，uaprof
-let mmsConf: sms.MmsConfig = {
-  userAgent:'ua',
-  userAgentProfile: 'uaprof'
-};
-
 // 发送彩信参数(mmsc以联通卡为例)
 let mmsPars: sms.MmsParams = {
-  slotId : DEFAULT_SLOTID,
+  slotId: 0,
   mmsc: 'http://mmsc.myuni.com.cn',
   data: filePath,
-  mmsConfig: mmsConf
+  mmsConfig: {
+   userAgent:'ua',
+   userAgentProfile: 'uaprof'
+  }
 };
 
 // 调用发送接口
@@ -560,18 +554,15 @@ let filePath: string = sandBoxPath + 'RetrieveConf.mms';
 // 从WapPush中解析出彩信URL
 let wapPushUrl: string = 'URL';
 
-// 彩信用户代理、用户代理描述配置。根据运营商要求配置，默认ua，uaprof
-let mmsConf: sms.MmsConfig = {
-  userAgent:'ua',
-  userAgentProfile: 'uaprof'
-};
-
 // 下载彩信参数
 let mmsPars: sms.MmsParams = {
-  slotId : DEFAULT_SLOTID,
+  slotId: 0,
   mmsc: wapPushUrl,
   data: filePath,
-  mmsConfig: mmsConf
+  mmsConfig: {
+   userAgent:'ua',
+   userAgentProfile: 'uaprof'
+  }
 };
 
 // 调用下载接口
@@ -681,18 +672,15 @@ let filePath: string = sandBoxPath + 'RetrieveConf.mms';
 // 从WapPush中解析出彩信URL
 let wapPushUrl: string = 'URL';
 
-// 彩信用户代理、用户代理描述配置。根据运营商要求配置，默认ua，uaprof
-let mmsConf: sms.MmsConfig = {
-  userAgent:'ua',
-  userAgentProfile: 'uaprof'
-};
-
 // 下载彩信参数
 let mmsPars: sms.MmsParams = {
-  slotId : DEFAULT_SLOTID,
+  slotId: 0,
   mmsc: wapPushUrl,
   data: filePath,
-  mmsConfig: mmsConf
+  mmsConfig: {
+   userAgent:'ua',
+   userAgentProfile: 'uaprof'
+  }
 };
 
 // 调用发送接口
