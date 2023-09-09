@@ -116,7 +116,7 @@
        }
      }
      try {
-       let result = await context.startAbilityForResult(config, {windowMode: 1});
+       const result = await context.startAbilityForResult(config, {windowMode: 1});
        if (result.resultCode !== 0) {
          console.error(`documentViewPicker.select failed, code is ${result.resultCode}, message is ${result.want.parameters.message}`);
          return;
