@@ -31,3 +31,11 @@
   - [减少动画丢帧](reduce-frame-loss-and-frame-freezing/reduce-animation-frame-loss.md)
   
       应用播放动画的流畅度是影响用户体验的重要因素。建议通过使用系统提供的动效API来减少动画丢帧。
+- 优化应用性能
+  - [分析应用耗时](performance-analysis-and-improve/application-performance-analysis.md)
+
+    准确的定位耗时到场景，是优化提高应用性能的前提。建议通过使用系统提供的工具进行抓取分析。
+
+  - [高性能编码规范](performance-analysis-and-improve/high-performance-programming.md)
+
+    使用高性能的规范进行编码，有助于提高应用在JS/TS层面的耗时，降低资源开销，提高用户体验。
