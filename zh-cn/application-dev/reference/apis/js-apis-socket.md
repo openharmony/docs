@@ -3424,7 +3424,7 @@ tlsTwoWay.bind(new NetAddress(), (err: string) => {
 class SecureOptions {
   key: string = "xxxx"
   cert: string = "xxxx"
-  ca: string[] = ["xxxx"],
+  ca: string[] = ["xxxx"]
   password: string = "xxxx"
   protocols: enum = socket.Protocol.TLSv12
   useRemoteCipherPrefer: boolean = true
@@ -3522,7 +3522,7 @@ tlsTwoWay.bind(new NetAddress(), (err: string) => {
 class SecureOptions {
   key: string = "xxxx"
   cert: string = "xxxx"
-  ca: string[] = ["xxxx"],
+  ca: string[] = ["xxxx"]
   password: string = "xxxx"
   protocols: enum = socket.Protocol.TLSv12
   useRemoteCipherPrefer: boolean = true
@@ -4221,7 +4221,7 @@ class NetAddress {
 class SecureOptions {
   key: string = "xxxx"
   cert: string = "xxxx"
-  ca: string[] = ["xxxx"],
+  ca: string[] = ["xxxx"]
   password: string = "xxxx"
   protocols: enum = socket.Protocol.TLSv12
   useRemoteCipherPrefer: boolean = true
@@ -4289,7 +4289,7 @@ class NetAddress {
 class SecureOptions {
   key: string = "xxxx"
   cert: string = "xxxx"
-  ca: string[] = ["xxxx"],
+  ca: string[] = ["xxxx"]
   password: string = "xxxx"
   protocols: enum = socket.Protocol.TLSv12
   useRemoteCipherPrefer: boolean = true
@@ -4345,7 +4345,7 @@ class NetAddress {
 class SecureOptions {
   key: string = "xxxx"
   cert: string = "xxxx"
-  ca: string[] = ["xxxx"],
+  ca: string[] = ["xxxx"]
   password: string = "xxxx"
   protocols: enum = socket.Protocol.TLSv12
   useRemoteCipherPrefer: boolean = true
@@ -4407,7 +4407,7 @@ class NetAddress {
 class SecureOptions {
   key: string = "xxxx"
   cert: string = "xxxx"
-  ca: string[] = ["xxxx"],
+  ca: string[] = ["xxxx"]
   password: string = "xxxx"
   protocols: enum = socket.Protocol.TLSv12
   useRemoteCipherPrefer: boolean = true
@@ -4471,7 +4471,7 @@ class NetAddress {
 class SecureOptions {
   key: string = "xxxx"
   cert: string = "xxxx"
-  ca: string[] = ["xxxx"],
+  ca: string[] = ["xxxx"]
   password: string = "xxxx"
   protocols: enum = socket.Protocol.TLSv12
   useRemoteCipherPrefer: boolean = true
@@ -4553,7 +4553,7 @@ class NetAddress {
 class SecureOptions {
   key: string = "xxxx"
   cert: string = "xxxx"
-  ca: string[] = ["xxxx"],
+  ca: string[] = ["xxxx"]
   password: string = "xxxx"
   protocols: enum = socket.Protocol.TLSv12
   useRemoteCipherPrefer: boolean = true
@@ -4631,7 +4631,7 @@ class NetAddress {
 class SecureOptions {
   key: string = "xxxx"
   cert: string = "xxxx"
-  ca: string[] = ["xxxx"],
+  ca: string[] = ["xxxx"]
   password: string = "xxxx"
   protocols: enum = socket.Protocol.TLSv12
   useRemoteCipherPrefer: boolean = true
@@ -4693,7 +4693,7 @@ class NetAddress {
 class SecureOptions {
   key: string = "xxxx"
   cert: string = "xxxx"
-  ca: string[] = ["xxxx"],
+  ca: string[] = ["xxxx"]
   password: string = "xxxx"
   protocols: enum = socket.Protocol.TLSv12
   useRemoteCipherPrefer: boolean = true
@@ -4756,7 +4756,7 @@ class NetAddress {
 class SecureOptions {
   key: string = "xxxx"
   cert: string = "xxxx"
-  ca: string[] = ["xxxx"],
+  ca: string[] = ["xxxx"]
   password: string = "xxxx"
   protocols: enum = socket.Protocol.TLSv12
   useRemoteCipherPrefer: boolean = true
@@ -4818,7 +4818,7 @@ class NetAddress {
 class SecureOptions {
   key: string = "xxxx"
   cert: string = "xxxx"
-  ca: string[] = ["xxxx"],
+  ca: string[] = ["xxxx"]
   password: string = "xxxx"
   protocols: enum = socket.Protocol.TLSv12
   useRemoteCipherPrefer: boolean = true
@@ -4877,7 +4877,7 @@ class NetAddress {
 class SecureOptions {
   key: string = "xxxx"
   cert: string = "xxxx"
-  ca: string[] = ["xxxx"],
+  ca: string[] = ["xxxx"]
   password: string = "xxxx"
   protocols: enum = socket.Protocol.TLSv12
   useRemoteCipherPrefer: boolean = true
@@ -4938,7 +4938,7 @@ class NetAddress {
 class SecureOptions {
   key: string = "xxxx"
   cert: string = "xxxx"
-  ca: string[] = ["xxxx"],
+  ca: string[] = ["xxxx"]
   password: string = "xxxx"
   protocols: enum = socket.Protocol.TLSv12
   useRemoteCipherPrefer: boolean = true
@@ -4998,7 +4998,7 @@ class NetAddress {
 class SecureOptions {
   key: string = "xxxx"
   cert: string = "xxxx"
-  ca: string[] = ["xxxx"],
+  ca: string[] = ["xxxx"]
   password: string = "xxxx"
   protocols: enum = socket.Protocol.TLSv12
   useRemoteCipherPrefer: boolean = true
@@ -5059,7 +5059,7 @@ class NetAddress {
 class SecureOptions {
   key: string = "xxxx"
   cert: string = "xxxx"
-  ca: string[] = ["xxxx"],
+  ca: string[] = ["xxxx"]
   password: string = "xxxx"
   protocols: enum = socket.Protocol.TLSv12
   useRemoteCipherPrefer: boolean = true
@@ -5136,7 +5136,7 @@ class NetAddress {
 class SecureOptions {
   key: string = "xxxx"
   cert: string = "xxxx"
-  ca: string[] = ["xxxx"],
+  ca: string[] = ["xxxx"]
   password: string = "xxxx"
   protocols: enum = socket.Protocol.TLSv12
   useRemoteCipherPrefer: boolean = true
@@ -5209,7 +5209,7 @@ class NetAddress {
 class SecureOptions {
   key: string = "xxxx"
   cert: string = "xxxx"
-  ca: string[] = ["xxxx"],
+  ca: string[] = ["xxxx"]
   password: string = "xxxx"
   protocols: enum = socket.Protocol.TLSv12
   useRemoteCipherPrefer: boolean = true
@@ -5276,7 +5276,7 @@ class NetAddress {
 class SecureOptions {
   key: string = "xxxx"
   cert: string = "xxxx"
-  ca: string[] = ["xxxx"],
+  ca: string[] = ["xxxx"]
   password: string = "xxxx"
   protocols: enum = socket.Protocol.TLSv12
   useRemoteCipherPrefer: boolean = true
@@ -5338,7 +5338,7 @@ class NetAddress {
 class SecureOptions {
   key: string = "xxxx"
   cert: string = "xxxx"
-  ca: string[] = ["xxxx"],
+  ca: string[] = ["xxxx"]
   password: string = "xxxx"
   protocols: enum = socket.Protocol.TLSv12
   useRemoteCipherPrefer: boolean = true
@@ -5400,7 +5400,7 @@ class NetAddress {
 class SecureOptions {
   key: string = "xxxx"
   cert: string = "xxxx"
-  ca: string[] = ["xxxx"],
+  ca: string[] = ["xxxx"]
   password: string = "xxxx"
   protocols: enum = socket.Protocol.TLSv12
   useRemoteCipherPrefer: boolean = true
@@ -5460,7 +5460,7 @@ class NetAddress {
 class SecureOptions {
   key: string = "xxxx"
   cert: string = "xxxx"
-  ca: string[] = ["xxxx"],
+  ca: string[] = ["xxxx"]
   password: string = "xxxx"
   protocols: enum = socket.Protocol.TLSv12
   useRemoteCipherPrefer: boolean = true
@@ -5521,7 +5521,7 @@ class NetAddress {
 class SecureOptions {
   key: string = "xxxx"
   cert: string = "xxxx"
-  ca: string[] = ["xxxx"],
+  ca: string[] = ["xxxx"]
   password: string = "xxxx"
   protocols: enum = socket.Protocol.TLSv12
   useRemoteCipherPrefer: boolean = true
@@ -5581,7 +5581,7 @@ class NetAddress {
 class SecureOptions {
   key: string = "xxxx"
   cert: string = "xxxx"
-  ca: string[] = ["xxxx"],
+  ca: string[] = ["xxxx"]
   password: string = "xxxx"
   protocols: enum = socket.Protocol.TLSv12
   useRemoteCipherPrefer: boolean = true
@@ -5644,7 +5644,7 @@ class NetAddress {
 class SecureOptions {
   key: string = "xxxx"
   cert: string = "xxxx"
-  ca: string[] = ["xxxx"],
+  ca: string[] = ["xxxx"]
   password: string = "xxxx"
   protocols: enum = socket.Protocol.TLSv12
   useRemoteCipherPrefer: boolean = true
@@ -5706,7 +5706,7 @@ class NetAddress {
 class SecureOptions {
   key: string = "xxxx"
   cert: string = "xxxx"
-  ca: string[] = ["xxxx"],
+  ca: string[] = ["xxxx"]
   password: string = "xxxx"
   protocols: enum = socket.Protocol.TLSv12
   useRemoteCipherPrefer: boolean = true
@@ -5767,7 +5767,7 @@ class NetAddress {
 class SecureOptions {
   key: string = "xxxx"
   cert: string = "xxxx"
-  ca: string[] = ["xxxx"],
+  ca: string[] = ["xxxx"]
   password: string = "xxxx"
   protocols: enum = socket.Protocol.TLSv12
   useRemoteCipherPrefer: boolean = true
@@ -5827,7 +5827,7 @@ class NetAddress {
 class SecureOptions {
   key: string = "xxxx"
   cert: string = "xxxx"
-  ca: string[] = ["xxxx"],
+  ca: string[] = ["xxxx"]
   password: string = "xxxx"
   protocols: enum = socket.Protocol.TLSv12
   useRemoteCipherPrefer: boolean = true
@@ -5887,7 +5887,7 @@ class NetAddress {
 class SecureOptions {
   key: string = "xxxx"
   cert: string = "xxxx"
-  ca: string[] = ["xxxx"],
+  ca: string[] = ["xxxx"]
   password: string = "xxxx"
   protocols: enum = socket.Protocol.TLSv12
   useRemoteCipherPrefer: boolean = true
@@ -5963,7 +5963,7 @@ class NetAddress {
 class SecureOptions {
   key: string = "xxxx"
   cert: string = "xxxx"
-  ca: string[] = ["xxxx"],
+  ca: string[] = ["xxxx"]
   password: string = "xxxx"
   protocols: enum = socket.Protocol.TLSv12
   useRemoteCipherPrefer: boolean = true
@@ -6022,7 +6022,7 @@ class NetAddress {
 class SecureOptions {
   key: string = "xxxx"
   cert: string = "xxxx"
-  ca: string[] = ["xxxx"],
+  ca: string[] = ["xxxx"]
   password: string = "xxxx"
   protocols: enum = socket.Protocol.TLSv12
   useRemoteCipherPrefer: boolean = true
@@ -6084,7 +6084,7 @@ class NetAddress {
 class SecureOptions {
   key: string = "xxxx"
   cert: string = "xxxx"
-  ca: string[] = ["xxxx"],
+  ca: string[] = ["xxxx"]
   password: string = "xxxx"
   protocols: enum = socket.Protocol.TLSv12
   useRemoteCipherPrefer: boolean = true
@@ -6143,7 +6143,7 @@ class NetAddress {
 class SecureOptions {
   key: string = "xxxx"
   cert: string = "xxxx"
-  ca: string[] = ["xxxx"],
+  ca: string[] = ["xxxx"]
   password: string = "xxxx"
   protocols: enum = socket.Protocol.TLSv12
   useRemoteCipherPrefer: boolean = true
@@ -6205,7 +6205,7 @@ class NetAddress {
 class SecureOptions {
   key: string = "xxxx"
   cert: string = "xxxx"
-  ca: string[] = ["xxxx"],
+  ca: string[] = ["xxxx"]
   password: string = "xxxx"
   protocols: enum = socket.Protocol.TLSv12
   useRemoteCipherPrefer: boolean = true
