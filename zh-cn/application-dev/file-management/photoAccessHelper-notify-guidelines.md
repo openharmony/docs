@@ -98,12 +98,7 @@ async function example() {
     let onCallback = (changeData: photoAccessHelper.ChangeData) => {
       console.info('onCallback successfully, changData: ' + JSON.stringify(changeData));
     }
-<<<<<<< HEAD
-    phAccessHelper.registerChange(album.albumUri, false, onCallback);
-
-=======
     photoAccessHelper.registerChange(album.albumUri, false, onCallback);
->>>>>>> 516f5da769 (photo整改)
     album.albumName = 'newAlbumName' + Date.now();
     await album.commitModify();
     fetchResult.close();
@@ -142,12 +137,7 @@ async function example() {
   let onCallback = (changeData: photoAccessHelper.ChangeData) => {
     console.info('onCallback successfully, changData: ' + JSON.stringify(changeData));
   }
-<<<<<<< HEAD
-  phAccessHelper.registerChange(photoAccessHelper.DefaultChangeUri.DEFAULT_PHOTO_URI, true, onCallback);
-
-=======
   photoAccessHelper.registerChange(photoAccessHelper.DefaultChangeUri.DEFAULT_PHOTO_URI, true, onCallback);
->>>>>>> 516f5da769 (photo整改)
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOptions: photoAccessHelper.FetchOptions = {
     fetchColumns: [],
@@ -206,16 +196,9 @@ async function example() {
     let onCallback2 = (changeData: photoAccessHelper.ChangeData) => {
       console.info('onCallback2, changData: ' + JSON.stringify(changeData));
     }
-<<<<<<< HEAD
-    phAccessHelper.registerChange(fileAsset.uri, false, onCallback1);
-    phAccessHelper.registerChange(fileAsset.uri, false, onCallback2);
-    phAccessHelper.unRegisterChange(fileAsset.uri, onCallback1);
-
-=======
     photoAccessHelper.registerChange(fileAsset.uri, false, onCallback1);
     photoAccessHelper.registerChange(fileAsset.uri, false, onCallback2);
     photoAccessHelper.unRegisterChange(fileAsset.uri, onCallback1);
->>>>>>> 516f5da769 (photo整改)
     await fileAsset.setFavorite(true);
     fetchResult.close();
   } catch (err) {
