@@ -7,7 +7,7 @@
 
 ## 接口说明
 注册相关接口包导入：
-```js
+```ts
 import usageStatistics from '@ohos.resourceschedule.usageStatistics';
 ```
 
@@ -31,12 +31,12 @@ import usageStatistics from '@ohos.resourceschedule.usageStatistics';
 | function queryModuleUsageRecords(maxNum: number, callback: AsyncCallback&lt;HapModuleInfo&gt;): void | 根据maxNum，查询FA使用记录，返回不超过maxNum条FA使用记录。 maxNum不超过1000|
 | function queryNotificationEventStats(begin: number, end: number, callback: AsyncCallback&lt;Array&lt;DeviceEventStats&gt;&gt;): void | 通过指定起始和结束时间查询所有应用的通知次数。 |
 | function queryDeviceEventStats(begin: number, end: number, callback: AsyncCallback&lt;Array&lt;DeviceEventStats&gt;&gt;): void | 通过指定起始和结束时间查询系统事件（休眠、唤醒、解锁、锁屏）统计信息。 |
-| function setAppGroup(bundleName : string, newGroup: GroupType, callback: AsyncCallback&gt;boolean&gt;): void | 给应用名是bundleName的应用分组设置成newGroup，返回设置结果是否成功，以callback形式返回。 |
-| function setAppGroup(bundleName : string, newGroup : GroupType): Promise&gt;boolean&gt;; | 给应用名是bundleName的应用分组设置成newGroup，返回设置结果是否成功，以promise形式返回。 |
-| function registerAppGroupCallBack(groupCallback: Callback&gt;AppGroupCallbackInfo&gt;, callback: AsyncCallback&gt;boolean&gt;): void | 注册应用分组变化监听回调，返回注册是否成功，当应用分组发生变化时，会给所有已注册的监听者返回回调信息，以callback形式返回。 |
-| function registerAppGroupCallBack(groupCallback: Callback&gt;AppGroupCallbackInfo&gt;): Promise&gt;boolean&gt;; | 注册应用分组变化监听回调，返回注册是否成功，当应用分组发生变化时，会给所有已注册的监听者返回回调信息，以promise形式返回。 |
-| function unregisterAppGroupCallBack(callback: AsyncCallback&gt;boolean&gt;): void | 解除应用分组监听回调，以callback形式返回。 |
-| function unregisterAppGroupCallBack(): Promise&gt;boolean&gt;; | 解除应用分组监听回调，以promise形式返回。 |
+| function setAppGroup(bundleName : string, newGroup: GroupType, callback: AsyncCallback&lt;void&gt;): void | 给应用名是bundleName的应用分组设置成newGroup，返回设置结果是否成功，以callback形式返回。 |
+| function setAppGroup(bundleName : string, newGroup : GroupType): Promise&lt;void&gt;; | 给应用名是bundleName的应用分组设置成newGroup，返回设置结果是否成功，以promise形式返回。 |
+| function registerAppGroupCallBack(groupCallback: Callback&lt;AppGroupCallbackInfo&gt;, callback: AsyncCallback&lt;void&gt;): void | 注册应用分组变化监听回调，返回注册是否成功，当应用分组发生变化时，会给所有已注册的监听者返回回调信息，以callback形式返回。 |
+| function registerAppGroupCallBack(groupCallback: Callback&lt;AppGroupCallbackInfo&gt;): Promise&lt;void&gt;; | 注册应用分组变化监听回调，返回注册是否成功，当应用分组发生变化时，会给所有已注册的监听者返回回调信息，以promise形式返回。 |
+| function unregisterAppGroupCallBack(callback: AsyncCallback&lt;void&gt;): void | 解除应用分组监听回调，以callback形式返回。 |
+| function unregisterAppGroupCallBack(): Promise&lt;void&gt;; | 解除应用分组监听回调，以promise形式返回。 |
 
 ## 开发步骤
 
@@ -408,19 +408,19 @@ import usageStatistics from '@ohos.resourceschedule.usageStatistics';
 
     // promise
     usageStatistics.unregisterAppGroupCallBack().then( () => {
-    console.log('BUNDLE_ACTIVE unregisterAppGroupCallBack promise succeeded.');
-  }).catch( (err : BusinessError) => {
-    console.log('BUNDLE_ACTIVE unregisterAppGroupCallBack promise failed. code is: ' + err.code + ',message is: ' + err.message);
-  });
+        console.log('BUNDLE_ACTIVE unregisterAppGroupCallBack promise succeeded.');
+    }).catch( (err : BusinessError) => {
+        console.log('BUNDLE_ACTIVE unregisterAppGroupCallBack promise failed. code is: ' + err.code + ',message is: ' + err.message);
+    });
 
-// callback
-  usageStatistics.unregisterAppGroupCallBack((err : BusinessError) => {
-    if(err) {
-      console.log('BUNDLE_ACTIVE unregisterAppGroupCallBack callback failed. code is: ' + err.code + ',message is: ' + err.message);
-    } else {
-      console.log('BUNDLE_ACTIVE unregisterAppGroupCallBack callback success.');
-    }
-  });
+    // callback
+    usageStatistics.unregisterAppGroupCallBack((err : BusinessError) => {
+        if(err) {
+        console.log('BUNDLE_ACTIVE unregisterAppGroupCallBack callback failed. code is: ' + err.code + ',message is: ' + err.message);
+        } else {
+        console.log('BUNDLE_ACTIVE unregisterAppGroupCallBack callback success.');
+        }
+    });
     ```
 ## 相关实例
 
