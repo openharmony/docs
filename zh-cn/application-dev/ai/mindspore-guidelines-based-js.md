@@ -60,13 +60,14 @@ export class GlobalContext {
 ```ts
 import { GlobalContext } from '../GlobalContext';
 import mindSporeLite from '@ohos.ai.mindSporeLite';
+import common from '@ohos.app.ability.common';
 export class Test {
   value:number = 0;
   foo(): void {
     GlobalContext.getContext().setObject("value", this.value);
   }
 }
-let globalContext : Object = GlobalContext.getContext().getObject("value");
+let globalContext = GlobalContext.getContext().getObject("value") as common.UIAbilityContext;
 let inputBuffer : ArrayBuffer | null = null;
 let inputName: string = 'mnet_caffemodel_nhwc.bin';
 
@@ -87,7 +88,7 @@ let modelFile = '/data/storage/el2/base/haps/entry/files/mnet.caffemodel.ms';
 let msLiteModel : mindSporeLite.Model = await mindSporeLite.loadModelFromFile(modelFile, context);
 
 // 3.设置输入数据
-let modelInputs : mindSporeLite.MSTensor = msLiteModel.getInputs();
+let modelInputs : mindSporeLite.MSTensor[] = msLiteModel.getInputs();
 if (inputBuffer != null) {
   modelInputs[0].setData(inputBuffer as ArrayBuffer);
 }
