@@ -65,7 +65,7 @@
    在module.json5配置文件中为需要使用长时任务的UIAbility声明相应的长时任务类型。
 
    
-   ```ts
+   ```json
    "module": {
        "abilities": [
            {
@@ -231,7 +231,7 @@
     });
   }
 
-  class MyParcelable {
+  class MyParcelable implements rpc.Parcelable {
     num: number = 0;
     str: String = '';
 
@@ -324,7 +324,7 @@
    在config.json文件中配置长时任务权限ohos.permission.KEEP_BACKGROUND_RUNNING，配置方式请参见[配置文件声明](../security/accesstoken-guidelines.md#配置文件权限声明)。同时，为需要使用长时任务的ServiceAbility声明相应的长时任务类型。
 
    
-   ```js
+   ```json
    "module": {
        "package": "com.example.myapplication",
        "abilities": [
@@ -426,7 +426,7 @@
   class ServiceAbility {
     onStart(want: Want) {
       console.info('ServiceAbility onStart');
-      mMyStub: MyStub = new MyStub("ServiceAbility-test");
+      let mMyStub: MyStub = new MyStub("ServiceAbility-test");
       // 在执行长时任务前，调用申请接口。
       startContinuousTask();
       processAsyncJobs();
