@@ -280,7 +280,7 @@ transmit(response: number[], callback: AsyncCallback\<void>): void;
 
 ```js
 import cardEmulation from '@ohos.nfc.cardEmulation';
-import { ElementName } from 'bundleManager/ElementName';
+import bundleManager from '@ohos.bundle.bundleManager';
 
 let isHceSupported = cardEmulation.isSupported(cardEmulation.FeatureType.HCE);
 if (!isHceSupported) {
@@ -292,7 +292,7 @@ if (!hasHceCap) {
     console.log('this device hasHceCapability false, ignore it.');
 }
 
-let elementName: ElementName = {
+let elementName: bundleManager.ElementName = {
     bundleName : "com.example.myapplication",
     abilityName : "EntryAbility",
 };
