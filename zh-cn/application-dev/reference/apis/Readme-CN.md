@@ -242,6 +242,7 @@
     - [MediaControlExtensionContext (播控扩展能力上下文)](js-apis-inner-application-MediaControlExtensionContext.md)
   - multimedia
     - [ringtonePlayer (铃声播放器)](js-apis-inner-multimedia-ringtonePlayer.md)
+    - [soundPool (音频池)](js-apis-inner-multimedia-soundPool.md)
 
 - 资源管理
   - [@ohos.i18n (国际化-I18n)](js-apis-i18n.md)
