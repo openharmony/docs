@@ -59,10 +59,8 @@ newSEService(type: 'serviceState', callback: Callback<[ServiceState](#secureelem
 ```js
 import secureElement from '@ohos.secureElement';
 
-let nfcSEService = null;
-
 try {
-    nfcSEService = secureElement.newSEService("serviceState", (state) => {
+    let nfcSEService = secureElement.newSEService("serviceState", (state) => {
         if (state == secureElement.ServiceState.DISCONNECTED) {
             console.log("Service state is Disconnected");
         } else {
@@ -91,14 +89,12 @@ getReaders(): Reader[]
 **示例：**
 
 ```js
+import omapi from '@ohos.secureElement';
 import secureElement from '@ohos.secureElement';
 
-let nfcSEService = null;
-let nfcServiceState = null;
-let nfcOmaReader = null;
-let nfcOmaReaderList = null;
+let nfcSEService : omapi.SEService | null = null;
+let nfcOmaReaderList : omapi.Reader[] | null = null;
 
-// get SEService
 try {
     nfcSEService = secureElement.newSEService("serviceState", (state) => {
         if (state == secureElement.ServiceState.DISCONNECTED) {
@@ -112,14 +108,16 @@ try {
 }
 
 try {
-    nfcOmaReaderList = nfcSEService.getReaders();
+    if(nfcSEService != null) {
+        nfcOmaReaderList = nfcSEService.getReaders();
+    }
     if (nfcOmaReaderList != null && nfcOmaReaderList.length > 0) {
         console.log("get reader successfully");
     } else {
         console.log("get reader failed");
     }
 } catch (e) {
-    console.log("getReaders exception:" + e.message);
+    sconsole.log("getReaders exception:" + e.message);
 }
 ```
 
@@ -140,21 +138,36 @@ isConnected(): boolean
 **示例：**
 
 ```JS
+import omapi from '@ohos.secureElement';
 import secureElement from '@ohos.secureElement';
 
-let nfcSEService = null;
+let nfcSEService : omapi.SEService | null = null;
 
 try {
-    let ret: boolean;
+    nfcSEService = secureElement.newSEService("serviceState", (state) => {
+        if (state == secureElement.ServiceState.DISCONNECTED) {
+            console.log("Service state is Disconnected");
+        } else {
+            console.log("Service state is Connected");
+        }
+    });
+} catch (e) {
+    console.log("newSEService excpetion:" + e.message);
+}
+
+try {
+    let ret: boolean = false;
     // refer to newSEService for this.nfcSEService 
-    ret = nfcSEService.isConnected();
+    if (nfcSEService != null) {
+        ret = nfcSEService.isConnected();
+    }
     if (ret) {
         console.log("get state: connected");
     } else {
         console.log("get state: not connected");
     }
 } catch (e) {
-    console.log("isConnected exception: " + e.message);
+        console.log("isConnected exception: " + e.message);
 }
 ```
 
@@ -169,14 +182,28 @@ shutdown(): void
 **示例：**
 
 ```js
+import omapi from '@ohos.secureElement';
 import secureElement from '@ohos.secureElement';
 
+let nfcSEService : omapi.SEService | null = null;
 
-let nfcSEService = null;
+try {
+    nfcSEService = secureElement.newSEService("serviceState", (state) => {
+        if (state == secureElement.ServiceState.DISCONNECTED) {
+            console.log("Service state is Disconnected");
+        } else {
+            console.log("Service state is Connected");
+        }
+    });
+} catch (e) {
+    console.log("newSEService excpetion:" + e.message);
+}
 
 try {
     // refer to newSEService for this.nfcSEService 
-    nfcSEService.shutdown();
+    if (nfcSEService != null) {
+        nfcSEService.shutdown();
+    }
     console.log("shutdown successfully");
 } catch (e) {
     console.log("shutdown exception:" + e.message);
@@ -200,13 +227,28 @@ getVersion(): string
 **示例：**
 
 ```JS
+import omapi from '@ohos.secureElement';
 import secureElement from '@ohos.secureElement';
 
-let nfcSEService = null;
+let nfcSEService : omapi.SEService | null = null;
+
+try {
+    nfcSEService = secureElement.newSEService("serviceState", (state) => {
+        if (state == secureElement.ServiceState.DISCONNECTED) {
+            console.log("Service state is Disconnected");
+        } else {
+            console.log("Service state is Connected");
+        }
+    });
+} catch (e) {
+    console.log("newSEService excpetion:" + e.message);
+}
 
 try {
     // refer to newSEService for this.nfcSEService 
-    console.log("version: " + nfcSEService.getVersion());
+    if (nfcSEService != null) {
+        console.log("version: " + nfcSEService.getVersion());
+    }
 } catch (e) {
     console.log("getVersion exception:" + e.message);
 }
@@ -229,13 +271,33 @@ getName(): string
 **示例：**
 
 ```js
+import omapi from '@ohos.secureElement';
 import secureElement from '@ohos.secureElement';
 
-let nfcOmaReader = null;
+let nfcSEService : omapi.SEService | null = null;
+let nfcOmaReaderList : omapi.Reader[] | null = null;
 
 try {
-    // refer to SEService.getReaders for this.nfcOmaReader 
-    console.log(nfcOmaReader.getName());
+    nfcSEService = secureElement.newSEService("serviceState", (state) => {
+        if (state == secureElement.ServiceState.DISCONNECTED) {
+            console.log("Service state is Disconnected");
+        } else {
+            console.log("Service state is Connected");
+        }
+    });
+} catch (e) {
+    console.log("newSEService excpetion:" + e.message);
+}
+
+try {
+    if(nfcSEService != null) {
+        nfcOmaReaderList = nfcSEService.getReaders();
+    }
+    if (nfcOmaReaderList != null && nfcOmaReaderList.length > 0) {
+        console.log(nfcOmaReaderList[0].getName());
+    } else {
+        console.log("getName failed");
+    }
 } catch (e) {
     console.log("getName exception:" + e.message);
 }
@@ -266,16 +328,37 @@ isSecureElementPresent(): boolean
 **示例：**
 
 ```js
+
+import omapi from '@ohos.secureElement';
 import secureElement from '@ohos.secureElement';
 
-let nfcOmaReader = null;
+let nfcSEService : omapi.SEService | null = null;
+let nfcOmaReaderList : omapi.Reader[] | null = null;
 
 try {
-    // refer to SEService.getReaders for this.nfcOmaReader
-    if (nfcOmaReader.isSecureElementPresent()) {
-        console.log("isSecureElementPresent TRUE");
+    nfcSEService = secureElement.newSEService("serviceState", (state) => {
+        if (state == secureElement.ServiceState.DISCONNECTED) {
+            console.log("Service state is Disconnected");
+        } else {
+            console.log("Service state is Connected");
+        }
+    });
+} catch (e) {
+    console.log("newSEService excpetion:" + e.message);
+}
+
+try {
+    if(nfcSEService != null) {
+        nfcOmaReaderList = nfcSEService.getReaders();
+    }
+    if (nfcOmaReaderList != null && nfcOmaReaderList.length > 0) {
+        if (nfcOmaReaderList[0].isSecureElementPresent()) {
+            console.log("isSecureElementPresent success");
+        } else {
+            console.log("isSecureElementPresent failed");
+        }
     } else {
-        console.log("isSecureElementPresent FALSE");
+        console.log("isSecureElementPresent failed");
     }
 } catch (e) {
     console.log("isSecureElementPresent exception:" + e.message);
@@ -308,21 +391,39 @@ try {
 **示例：**
 
 ```js
+import omapi from '@ohos.secureElement';
 import secureElement from '@ohos.secureElement';
 
-let nfcOmaReader = null;
-let nfcOmaSession = null;
+let nfcSEService : omapi.SEService | null = null;
+let nfcOmaReaderList : omapi.Reader[] | null = null;
 
 try {
-    // refer to SEService.getReaders for this.nfcOmaReader
-    nfcOmaSession = nfcOmaReader.openSession();
-    if (nfcOmaSession) {
-        console.log("get session successfully");
+    nfcSEService = secureElement.newSEService("serviceState", (state) => {
+        if (state == secureElement.ServiceState.DISCONNECTED) {
+            console.log("Service state is Disconnected");
+        } else {
+            console.log("Service state is Connected");
+        }
+    });
+} catch (e) {
+    console.log("newSEService excpetion:" + e.message);
+}
+
+try {
+    if(nfcSEService != null) {
+        nfcOmaReaderList = nfcSEService.getReaders();
+    }
+    if (nfcOmaReaderList != null && nfcOmaReaderList.length > 0) {
+        if (nfcOmaReaderList[0].openSession()) {
+            console.log("get session successfully");
+        } else {
+            console.log("get session failed");
+        }
     } else {
-        console.log("get session failed");
+        console.log("OpenSession failed");
     }
 } catch (e) {
-    console.log("OpenSession exception: " + e.message);
+    console.log("OpenSession exception:" + e.message);
 }
 ```
 
@@ -345,16 +446,39 @@ try {
 **示例：**
 
 ```js
+import omapi from '@ohos.secureElement';
 import secureElement from '@ohos.secureElement';
 
-let nfcOmaReader = null;
+let nfcSEService : omapi.SEService | null = null;
+let nfcOmaReaderList : omapi.Reader[] | null = null;
 
 try {
-    // refer to SEService.getReaders for this.nfcOmaReader
-    nfcOmaReader.closeSessions();
-    console.log("close Sessions successfully");
+    nfcSEService = secureElement.newSEService("serviceState", (state) => {
+        if (state == secureElement.ServiceState.DISCONNECTED) {
+            console.log("Service state is Disconnected");
+        } else {
+            console.log("Service state is Connected");
+        }
+    });
 } catch (e) {
-    console.log("closeSessions exception:" + e.message);
+    console.log("newSEService excpetion:" + e.message);
+}
+
+try {
+    if(nfcSEService != null) {
+        nfcOmaReaderList = nfcSEService.getReaders();
+    }
+    if (nfcOmaReaderList != null && nfcOmaReaderList.length > 0) {
+        if (nfcOmaReaderList[0].closeSessions()) {
+            console.log("closeSessions successfully");
+        } else {
+            console.log("closeSessions failed");
+        }
+    } else {
+        console.log("closeSessions failed");
+    }
+} catch (e) {
+  console.log("closeSessions exception:" + e.message);
 }
 ```
 
@@ -375,18 +499,38 @@ getReader(): Reader
 **示例：**
 
 ```js
+import omapi from '@ohos.secureElement';
 import secureElement from '@ohos.secureElement';
 
-let nfcOmaReader = null;
-let nfcOmaSession = null;
+let nfcSEService : omapi.SEService | null = null;
+let nfcOmaReaderList : omapi.Reader[] | null = null;
+let omaSession : omapi.Session | null = null;
 
 try {
-    // refer to Reader.openSession for this.nfcOmaSession
-    nfcOmaReader = nfcOmaSession.getReader();
-    if (nfcOmaReader) {
-        console.log("get reader successfully");
+    nfcSEService = secureElement.newSEService("serviceState", (state) => {
+        if (state == secureElement.ServiceState.DISCONNECTED) {
+            console.log("Service state is Disconnected");
+        } else {
+            console.log("Service state is Connected");
+        }
+    });
+} catch (e) {
+    console.log("newSEService excpetion:" + e.message);
+}
+
+try {
+    if(nfcSEService != null) {
+        nfcOmaReaderList = nfcSEService.getReaders();
+    }
+    if (nfcOmaReaderList != null && nfcOmaReaderList.length > 0) {
+        omaSession = nfcOmaReaderList[0].openSession();
+        if (omaSession.getReader() != null) {
+            console.log("get reader successfully");
+        } else {
+            console.log("get reader failed");
+        }
     } else {
-        console.log("get reader failed");
+        console.log("getReader failed");
     }
 } catch (e) {
     console.log("getReader exception:" + e.message);
@@ -418,24 +562,49 @@ getATR(): number[]
 **示例：**
 
 ```js
+import omapi from '@ohos.secureElement';
 import secureElement from '@ohos.secureElement';
 
-let nfcOmaSession = null;
-let str = ""; 
+let nfcSEService : omapi.SEService | null = null;
+let nfcOmaReaderList : omapi.Reader[] | null = null;
+let omaSession : omapi.Session | null = null;
+let omaATR : number[] | null = null;
+let str : string = "";
 
 try {
-    // refer to Reader.openSession for this.nfcOmaSession
-    let ret = nfcOmaSession.getATR();
-    if (ret) {
-       str = 'getATR result:[';
-        for (let i = 0; i < ret.length; ++i) {
-            str += ret[i];
-            str += ' ';
+    nfcSEService = secureElement.newSEService("serviceState", (state) => {
+        if (state == secureElement.ServiceState.DISCONNECTED) {
+            console.log("Service state is Disconnected");
+        } else {
+            console.log("Service state is Connected");
+        }
+    });
+} catch (e) {
+    console.log("newSEService excpetion:" + e.message);
+}
+
+try {
+    if(nfcSEService != null) {
+        nfcOmaReaderList = nfcSEService.getReaders();
+    }
+    if (nfcOmaReaderList != null && nfcOmaReaderList.length > 0) {
+        omaSession = nfcOmaReaderList[0].openSession();
+        if (omaSession != null) {
+            omaATR = omaSession.getATR();
+        } else {
+            console.log("getATR failed");
+        }
+    }
+    if (omaATR != null && omaATR.length > 0) {
+        str = 'getATR result:[';
+        for (let i = 0; i < omaATR.length; ++i) {
+            str += omaATR[i];
+            tr += ' ';
         }
         str += ']';
         console.log(str);
     } else {
-        console.log("getATR result is null");
+        console.log("getATR failed");
     }
 } catch (e) {
     console.log("getATR exception:" + e.message);
@@ -461,17 +630,41 @@ close(): void
 **示例：**
 
 ```js
+import omapi from '@ohos.secureElement';
 import secureElement from '@ohos.secureElement';
 
-let nfcOmaSession = null;
+let nfcSEService : omapi.SEService | null = null;
+let nfcOmaReaderList : omapi.Reader[] | null = null;
+let omaSession : omapi.Session | null = null;
 
 try {
-    // refer to Reader.openSession for this.nfcOmaSession
-    nfcOmaSession.close();
-    console.log("session close successfully");
+    nfcSEService = secureElement.newSEService("serviceState", (state) => {
+        if (state == secureElement.ServiceState.DISCONNECTED) {
+            console.log("Service state is Disconnected");
+        } else {
+            console.log("Service state is Connected");
+        }
+    });
 } catch (e) {
-    console.log("session close exception:" + e.message);
+    console.log("newSEService excpetion:" + e.message);
 }
+
+try {
+    if(nfcSEService != null) {
+        nfcOmaReaderList = nfcSEService.getReaders();
+    }
+    if (nfcOmaReaderList != null && nfcOmaReaderList.length > 0) {
+        omaSession = nfcOmaReaderList[0].openSession();
+        if (omaSession != null) {
+            omaSession.close();
+        } else {
+            console.log("close failed");
+        }
+    }
+} catch (e) {
+    console.log("close exception:" + e.message);
+}
+
 ```
 
 ## Session. isClosed
@@ -495,17 +688,36 @@ isClosed(): boolean
 **示例：**
 
 ```Js
+import omapi from '@ohos.secureElement';
 import secureElement from '@ohos.secureElement';
 
-let nfcOmaSession = null;
+let nfcSEService : omapi.SEService | null = null;
+let nfcOmaReaderList : omapi.Reader[] | null = null;
+let omaSession : omapi.Session | null = null;
 
 try {
-    // refer to Reader.openSession for this.nfcOmaSession
-    let ret = nfcOmaSession.isClosed();
-    if (ret) {
-        console.log("session state is closed");
-    } else {
-        console.log("session state is not closed");
+    nfcSEService = secureElement.newSEService("serviceState", (state) => {
+        if (state == secureElement.ServiceState.DISCONNECTED) {
+            console.log("Service state is Disconnected");
+        } else {
+            console.log("Service state is Connected");
+        }
+    });
+} catch (e) {
+    console.log("newSEService excpetion:" + e.message);
+}
+
+try {
+    if(nfcSEService != null) {
+      nfcOmaReaderList = nfcSEService.getReaders();
+    }
+    if (nfcOmaReaderList != null && nfcOmaReaderList.length > 0) {
+        omaSession = nfcOmaReaderList[0].openSession();
+        if (omaSession != null &&  omaSession.isClosed()) {
+           console.log("isClosed success");
+        } else {
+            console.log("isClosed failed");
+        }
     }
 } catch (e) {
     console.log("isClosed exception:" + e.message);
@@ -531,14 +743,38 @@ closeChannels(): void
 **示例：**
 
 ```js
+import omapi from '@ohos.secureElement';
 import secureElement from '@ohos.secureElement';
 
-let nfcOmaSession = null;
+let nfcSEService : omapi.SEService | null = null;
+let nfcOmaReaderList : omapi.Reader[] | null = null;
+let omaSession : omapi.Session | null = null;
 
 try {
-    // refer to Reader.openSession for this.nfcOmaSession
-    nfcOmaSession.closeChannels();
-    console.log("close Channels successfully");
+    nfcSEService = secureElement.newSEService("serviceState", (state) => {
+        if (state == secureElement.ServiceState.DISCONNECTED) {
+            console.log("Service state is Disconnected");
+        } else {
+            console.log("Service state is Connected");
+        }
+    });
+} catch (e) {
+    console.log("newSEService excpetion:" + e.message);
+}
+
+try {
+    if(nfcSEService != null) {
+      nfcOmaReaderList = nfcSEService.getReaders();
+    }
+    if (nfcOmaReaderList != null && nfcOmaReaderList.length > 0) {
+        omaSession = nfcOmaReaderList[0].openSession();
+        if (omaSession != null) {
+            omaSession.closeChannels();
+            console.log("closeChannels success");
+        } else {
+            console.log("closeChannels failed");
+        }
+    }
 } catch (e) {
     console.log("closeChannels exception:" + e.message);
 }
@@ -578,23 +814,44 @@ openBasicChannel(aid: number[]): Promise\<Channel>
 **示例：**
 
 ```js
+import omapi from '@ohos.secureElement';
 import secureElement from '@ohos.secureElement';
 
-let nfcOmaSession = null;
-let nfcOmaChannel = null;
-let aidArray = [720, 1080];
+let nfcSEService : omapi.SEService | null = null;
+let nfcOmaReaderList : omapi.Reader[] | null = null;
+let omaSession : omapi.Session | null = null;
+let aidArray : number[] = [720, 1080];
+let getPromise : Promise<omapi.Channel> | null = null;
 
 try {
-    // refer to Reader.openSession for this.nfcOmaSession
-    let getPromise = nfcOmaSession.openBasicChannel(aidArray);
-    getPromise.then((channel) => {
-        nfcOmaChannel = channel;
-        console.log("openBasicChannel1 get channel successfully");
-    }).catch ((err) => {
-        console.log("openBasicChannel1 exception:" + err.message);
+    nfcSEService = secureElement.newSEService("serviceState", (state) => {
+        if (state == secureElement.ServiceState.DISCONNECTED) {
+            console.log("Service state is Disconnected");
+        } else {
+            console.log("Service state is Connected");
+        }
     });
 } catch (e) {
-    console.log("OpenBasicChannel1 exception:" + e.message);
+    console.log("newSEService excpetion:" + e.message);
+}
+
+try {
+    if(nfcSEService != null) {
+      nfcOmaReaderList = nfcSEService.getReaders();
+    }
+    if (nfcOmaReaderList != null && nfcOmaReaderList.length > 0) {
+        omaSession = nfcOmaReaderList[0].openSession();
+        if (omaSession != null) {
+            getPromise = omaSession.openBasicChannel(aidArray);
+        } else {
+            console.log("openBasicChannel1 failed");
+        }
+    }
+    if (getPromise != null) {
+        console.log("openBasicChannel1 get channel successfully");
+    }
+} catch (e) {
+    console.log("openBasicChannel1 exception:" + e.message);
 }
 ```
 
@@ -627,22 +884,42 @@ try {
 **示例：**
 
 ```js
+import omapi from '@ohos.secureElement';
 import secureElement from '@ohos.secureElement';
 
-let nfcOmaSession = null;
-let nfcOmaChannel = null;
-let aidArray = [720, 1080];
+let nfcSEService : omapi.SEService | null = null;
+let nfcOmaReaderList : omapi.Reader[] | null = null;
+let omaSession : omapi.Session | null = null;
+let aidArray : number[] = [720, 1080];
 
 try {
-    // refer to Reader.openSession for this.nfcOmaSession
-    nfcOmaSession.openBasicChannel(aidArray, (error, data) => {
-        if (error) {
-            console.log("openBasicChannel2 failed:" + JSON.stringify(error));
-            return;
+    nfcSEService = secureElement.newSEService("serviceState", (state) => {
+        if (state == secureElement.ServiceState.DISCONNECTED) {
+            console.log("Service state is Disconnected");
+        } else {
+            console.log("Service state is Connected");
         }
-        nfcOmaChannel = data;
-        console.log("openBasicChannel2 get channel successfully");
     });
+} catch (e) {
+    console.log("newSEService excpetion:" + e.message);
+}
+
+try {
+    if(nfcSEService != null) {
+      nfcOmaReaderList = nfcSEService.getReaders();
+    }
+    if (nfcOmaReaderList != null && nfcOmaReaderList.length > 0) {
+        omaSession = nfcOmaReaderList[0].openSession();
+        if (omaSession != null) {
+            omaSession.openBasicChannel(aidArray, (error, data) => {
+                if (error) {
+                    console.log("openBasicChannel2 failed:" + JSON.stringify(error));
+                    return;
+                }
+                console.log("openBasicChannel2 get channel successfully");
+            });
+        }
+    }
 } catch (e) {
     console.log("openBasicChannel2 exception:" + e.message);
 }
@@ -683,22 +960,43 @@ openBasicChannel(aid: number[], p2: number): Promise\<Channel>
 **示例：**
 
 ```js
+import omapi from '@ohos.secureElement';
 import secureElement from '@ohos.secureElement';
 
-let nfcOmaSession = null;
-let nfcOmaChannel = null;
-let aidArray = [720, 1080];
-let p2 = 0x00;
+let nfcSEService : omapi.SEService | null = null;
+let nfcOmaReaderList : omapi.Reader[] | null = null;
+let omaSession : omapi.Session | null = null;
+let getPromise : Promise<omapi.Channel> | null = null;
+let nfcOmaChannel : omapi.Channel | null = null;
+let aidArray : number[] = [720, 1080];
+let p2 : number = 0x00;
 
 try {
-    // refer to Reader.openSession for this.nfcOmaSession
-    let getPromise = nfcOmaSession.openBasicChannel(aidArray, p2);
-    getPromise.then((channel) => {
-        nfcOmaChannel = channel;
-        console.log("openBasicChannel3 get channel successfully");
-    }).catch ((err) => {
-        console.log("openBasicChannel3 exception");
+    nfcSEService = secureElement.newSEService("serviceState", (state) => {
+        if (state == secureElement.ServiceState.DISCONNECTED) {
+            console.log("Service state is Disconnected");
+        } else {
+            console.log("Service state is Connected");
+        }
     });
+} catch (e) {
+    console.log("newSEService excpetion:" + e.message);
+}
+
+try {
+    if(nfcSEService != null) {
+      nfcOmaReaderList = nfcSEService.getReaders();
+    }
+    if (nfcOmaReaderList != null && nfcOmaReaderList.length > 0) {
+        omaSession = nfcOmaReaderList[0].openSession();
+    }
+    if (omaSession != null) {
+        getPromise = omaSession.openBasicChannel(aidArray, p2);
+        getPromise.then((channel) => {
+            nfcOmaChannel = channel;
+            console.log("openBasicChannel3 get channel successfully");
+        })
+    }
 } catch (e) {
     console.log("openBasicChannel3 exception:" + e.message);
 }
@@ -734,25 +1032,47 @@ openBasicChannel(aid: number[], p2:number, callback: AsyncCallback\<Channel>): v
 **示例：**
 
 ```js
+import omapi from '@ohos.secureElement';
 import secureElement from '@ohos.secureElement';
 
-let nfcOmaSession = null;
-let nfcOmaChannel = null;
-let aidArray = [720, 1080];
-let p2 = 0x00;
+let nfcSEService : omapi.SEService | null = null;
+let nfcOmaReaderList : omapi.Reader[] | null = null;
+let omaSession : omapi.Session | null = null;
+let nfcOmaChannel : omapi.Channel | null = null;
+let aidArray : number[] = [720, 1080];
+let p2 : number = 0x00;
 
 try {
-    // refer to Reader.openSession for this.nfcOmaSession
-    nfcOmaSession.openBasicChannel(aidArray, p2, (error, data) => {
-        if (error) {
-            console.log("openBasicChannel4 failed:" + JSON.stringify(error));
-            return;
+    nfcSEService = secureElement.newSEService("serviceState", (state) => {
+        if (state == secureElement.ServiceState.DISCONNECTED) {
+            console.log("Service state is Disconnected");
+        } else {
+            console.log("Service state is Connected");
         }
-        nfcOmaChannel = data;
-        console.log("openBasicChannel4 get channel successfully");
     });
 } catch (e) {
-    console.log("openBasicChannel4 exception:" + e.message);
+    console.log("newSEService excpetion:" + e.message);
+}
+
+try {
+  if(nfcSEService != null) {
+    nfcOmaReaderList = nfcSEService.getReaders();
+  }
+  if (nfcOmaReaderList != null && nfcOmaReaderList.length > 0) {
+    omaSession = nfcOmaReaderList[0].openSession();
+  }
+  if (omaSession != null) {
+    omaSession.openBasicChannel(aidArray, p2, (error, data) => {
+      if (error) {
+        console.log("openBasicChannel4 failed:" + JSON.stringify(error));
+        return;
+      }
+      nfcOmaChannel = data;
+      console.log("openBasicChannel4 get channel successfully");
+    });
+  }
+} catch (e) {
+  console.log("openBasicChannel4 exception:" + e.message);
 }
 ```
 
@@ -790,23 +1110,44 @@ openLogicalChannel(aid: number[]): Promise\<Channel>
 **示例：**
 
 ```js
+import omapi from '@ohos.secureElement';
 import secureElement from '@ohos.secureElement';
 
-let nfcOmaSession = null;
-let nfcOmaChannel = null;
-let aidArray = [720, 1080];
+let nfcSEService : omapi.SEService | null = null;
+let nfcOmaReaderList : omapi.Reader[] | null = null;
+let omaSession : omapi.Session | null = null;
+let aidArray : number[] = [720, 1080];
+let getPromise : Promise<omapi.Channel> | null = null;
 
 try {
-    // refer to Reader.openSession for this.nfcOmaSession
-    let getPromise = nfcOmaSession.openLogicalChannel(aidArray)
-    getPromise.then((channel) => {
-        nfcOmaChannel = channel;
-   	    console.log("openLogicChannel1 get channel successfully");
-    }).catch ((err) => {
-        console.log("openLogicChannel1 exception:" + err.message);
+    nfcSEService = secureElement.newSEService("serviceState", (state) => {
+        if (state == secureElement.ServiceState.DISCONNECTED) {
+            console.log("Service state is Disconnected");
+        } else {
+            console.log("Service state is Connected");
+        }
     });
 } catch (e) {
-    console.log("openLogicChannel1 exception:" + e.message);
+    console.log("newSEService excpetion:" + e.message);
+}
+
+try {
+    if(nfcSEService != null) {
+      nfcOmaReaderList = nfcSEService.getReaders();
+    }
+    if (nfcOmaReaderList != null && nfcOmaReaderList.length > 0) {
+        omaSession = nfcOmaReaderList[0].openSession();
+        if (omaSession != null) {
+            getPromise = omaSession.openLogicalChannel(aidArray);
+        } else {
+            console.log("openLogicalChannel1 failed");
+        }
+    }
+    if (getPromise != null) {
+        console.log("openLogicalChannel1 get channel successfully");
+    }
+} catch (e) {
+    console.log("openLogicalChannel1 exception:" + e.message);
 }
 ```
 
@@ -839,24 +1180,44 @@ try {
 **示例：**
 
 ```js
+import omapi from '@ohos.secureElement';
 import secureElement from '@ohos.secureElement';
 
-let nfcOmaSession = null;
-let nfcOmaChannel = null;
-let aidArray = [720, 1080];
+let nfcSEService : omapi.SEService | null = null;
+let nfcOmaReaderList : omapi.Reader[] | null = null;
+let omaSession : omapi.Session | null = null;
+let aidArray : number[] = [720, 1080];
 
 try {
-    // refer to Reader.openSession for this.nfcOmaSession
-    nfcOmaSession.openLogicalChannel(aidArray, (error, data) => {
-        if (error) {
-            console.log("openLogicChannel2 failed:" + JSON.stringify(error));
-            return;
+    nfcSEService = secureElement.newSEService("serviceState", (state) => {
+        if (state == secureElement.ServiceState.DISCONNECTED) {
+            console.log("Service state is Disconnected");
+        } else {
+            console.log("Service state is Connected");
         }
-        nfcOmaChannel = data;
-        console.log("openLogicChannel2 get channel successfully");
     });
 } catch (e) {
-    console.log("openLogicChannel2 exception:" + e.message);
+    console.log("newSEService excpetion:" + e.message);
+}
+
+try {
+    if(nfcSEService != null) {
+      nfcOmaReaderList = nfcSEService.getReaders();
+    }
+    if (nfcOmaReaderList != null && nfcOmaReaderList.length > 0) {
+        omaSession = nfcOmaReaderList[0].openSession();
+    }
+    if (omaSession != null) {
+        omaSession.openLogicalChannel(aidArray, (error, data) => {
+            if (error) {
+                console.log("openLogicalChannel2 failed:" + JSON.stringify(error));
+                return;
+            }
+            console.log("openLogicalChannel2 get channel successfully");
+        });
+    }
+} catch (e) {
+    console.log("openLogicalChannel2 exception:" + e.message);
 }
 ```
 
@@ -895,27 +1256,45 @@ P2通常为0x00。设备应允许P2的任何值，并且应允许以下值： 0x
 **示例：**
 
 ```js
+import omapi from '@ohos.secureElement';
 import secureElement from '@ohos.secureElement';
 
+let nfcSEService : omapi.SEService | null = null;
+let nfcOmaReaderList : omapi.Reader[] | null = null;
+let omaSession : omapi.Session | null = null;
+let getPromise : Promise<omapi.Channel> | null = null;
+let nfcOmaChannel : omapi.Channel | null = null;
+let aidArray : number[] = [720, 1080];
+let p2 : number = 0x00;
 
-let nfcOmaSession = null;
-let nfcOmaChannel = null;
-let aidArray = [720, 1080];
-let p2 = 0x00;
+try {
+    nfcSEService = secureElement.newSEService("serviceState", (state) => {
+        if (state == secureElement.ServiceState.DISCONNECTED) {
+            console.log("Service state is Disconnected");
+        } else {
+            console.log("Service state is Connected");
+        }
+    });
+} catch (e) {
+    console.log("newSEService excpetion:" + e.message);
+}
 
-if (nfcOmaSession) {
-    try {
-    // refer to Reader.openSession for this.nfcOmaSession
-        let getPromise = nfcOmaSession.openLogicalChannel(aidArray, p2);
+try {
+    if(nfcSEService != null) {
+      nfcOmaReaderList = nfcSEService.getReaders();
+    }
+    if (nfcOmaReaderList != null && nfcOmaReaderList.length > 0) {
+        omaSession = nfcOmaReaderList[0].openSession();
+    }
+    if (omaSession != null) {
+        getPromise = omaSession.openLogicalChannel(aidArray, p2);
         getPromise.then((channel) => {
             nfcOmaChannel = channel;
-            console.log("openLogicChannel3 get channel successfully");
-        }).catch ((err) => {
-            console.log("openLogicChannel3 exception");
+            console.log("openLogicalChannel3 get channel successfully");
         })
-    } catch (e) {
-        console.log("openLogicChannel3 exception:" + e.message);
     }
+} catch (e) {
+    console.log("openLogicalChannel3 exception:" + e.message);
 }
 ```
 
@@ -955,25 +1334,47 @@ P2通常为0x00。设备应允许P2的任何值，并且应允许以下值： 0x
 **示例：**
 
 ```js
+import omapi from '@ohos.secureElement';
 import secureElement from '@ohos.secureElement';
 
-let nfcOmaSession = null;
-let nfcOmaChannel = null;
-let aidArray = [720, 1080];
-let p2 = 0x00;
+let nfcSEService : omapi.SEService | null = null;
+let nfcOmaReaderList : omapi.Reader[] | null = null;
+let omaSession : omapi.Session | null = null;
+let nfcOmaChannel : omapi.Channel | null = null;
+let aidArray : number[] = [720, 1080];
+let p2 : number = 0x00;
 
 try {
-    // refer to Reader.openSession for this.nfcOmaSession
-    nfcOmaSession.openLogicalChannel(aidArray, p2, (error, data) => {
-        if (error) {
-            console.log("openLogicChannel4 failed:" + JSON.stringify(error));
-            return;
+    nfcSEService = secureElement.newSEService("serviceState", (state) => {
+        if (state == secureElement.ServiceState.DISCONNECTED) {
+            console.log("Service state is Disconnected");
+        } else {
+            console.log("Service state is Connected");
         }
-        nfcOmaChannel = data;
-        console.log("openLogicChannel4 get channel successfully");
-    })
+    });
 } catch (e) {
-    console.log("openLogicChannel4 exception:" + e.message);
+    console.log("newSEService excpetion:" + e.message);
+}
+
+try {
+  if(nfcSEService != null) {
+    nfcOmaReaderList = nfcSEService.getReaders();
+  }
+  if (nfcOmaReaderList != null && nfcOmaReaderList.length > 0) {
+    omaSession = nfcOmaReaderList[0].openSession();
+  }
+  if (omaSession != null) {
+    omaSession.openLogicalChannel(aidArray, p2, (error, data) => {
+      if (error) {
+        console.log("openLogicalChannel4 failed:" + JSON.stringify(error));
+        return;
+      }
+      nfcOmaChannel = data;
+      console.log("openLogicalChannel4 get channel successfully");
+    });
+  }
+} catch (e) {
+  console.log("openLogicalChannel4 exception:" + e.message);
 }
 ```
 
@@ -994,21 +1395,50 @@ try {
 **示例：**
 
 ```js
+import omapi from '@ohos.secureElement';
 import secureElement from '@ohos.secureElement';
 
-let nfcOmaSession = null;
-let nfcOmaChannel = null;
+let nfcSEService : omapi.SEService | null = null;
+let nfcOmaReaderList : omapi.Reader[] | null = null;
+let omaSession : omapi.Session | null = null;
+let getPromise : Promise<omapi.Channel> | null = null;
+let aidArray : number[] = [720, 1080];
+let p2 : number = 0x00;
+let mySession : omapi.Session | null = null;
 
 try {
-    // refer to Session.openBasicChannel for this.nfcOmaChannel
-    let ret = nfcOmaChannel.getSession();
-    if (ret) {
+    nfcSEService = secureElement.newSEService("serviceState", (state) => {
+        if (state == secureElement.ServiceState.DISCONNECTED) {
+            console.log("Service state is Disconnected");
+        } else {
+            console.log("Service state is Connected");
+        }
+    });
+} catch (e) {
+    console.log("newSEService excpetion:" + e.message);
+}
+
+try {
+    if(nfcSEService != null) {
+      nfcOmaReaderList = nfcSEService.getReaders();
+    }
+    if (nfcOmaReaderList != null && nfcOmaReaderList.length > 0) {
+        omaSession = nfcOmaReaderList[0].openSession();
+    }
+    if (omaSession != null) {
+        getPromise = omaSession.openLogicalChannel(aidArray, p2);
+        getPromise.then((channel) => {
+            mySession = channel.getSession();
+            console.log("openLogicalChannel get channel successfully");
+        })
+    }
+    if (mySession != null) {
         console.log("get session successfully");
     } else {
         console.log("get session failed");
     }
 } catch (e) {
-    console.log("getSession exception:" + e.message);
+    console.log("get session exception:" + e.message);
 }
 ```
 
@@ -1023,15 +1453,42 @@ close(): void
 **示例：**
 
 ```js
+import omapi from '@ohos.secureElement';
 import secureElement from '@ohos.secureElement';
 
-let nfcOmaSession = null;
-let nfcOmaChannel = null;
+let nfcSEService : omapi.SEService | null = null;
+let nfcOmaReaderList : omapi.Reader[] | null = null;
+let omaSession : omapi.Session | null = null;
+let getPromise : Promise<omapi.Channel> | null = null;
+let aidArray : number[] = [720, 1080];
+let p2 : number = 0x00;
 
 try {
-    // refer to Session.openBasicChannel for this.nfcOmaChannel
-    nfcOmaChannel.close();
-    console.log("channel close successfully");
+    nfcSEService = secureElement.newSEService("serviceState", (state) => {
+        if (state == secureElement.ServiceState.DISCONNECTED) {
+            console.log("Service state is Disconnected");
+        } else {
+            console.log("Service state is Connected");
+        }
+    });
+} catch (e) {
+    console.log("newSEService excpetion:" + e.message);
+}
+
+try {
+    if(nfcSEService != null) {
+      nfcOmaReaderList = nfcSEService.getReaders();
+    }
+    if (nfcOmaReaderList != null && nfcOmaReaderList.length > 0) {
+        omaSession = nfcOmaReaderList[0].openSession();
+    }
+    if (omaSession != null) {
+        getPromise = omaSession.openLogicalChannel(aidArray, p2);
+        getPromise.then((channel) => {
+            channel.close();
+            console.log("channel close successfully");
+        })
+    }
 } catch (e) {
     console.log("channel close exception:" + e.message);
 }
@@ -1054,20 +1511,49 @@ isBasicChannel(): boolean
 **示例：**
 
 ```js
+import omapi from '@ohos.secureElement';
 import secureElement from '@ohos.secureElement';
 
-let nfcOmaChannel = null;
+let nfcSEService : omapi.SEService | null = null;
+let nfcOmaReaderList : omapi.Reader[] | null = null;
+let omaSession : omapi.Session | null = null;
+let getPromise : Promise<omapi.Channel> | null = null;
+let aidArray : number[] = [720, 1080];
+let p2 : number = 0x00;
+let ret : boolean = false;
 
 try {
-    // refer to Session.openBasicChannel for this.nfcOmaChannel
-    let ret = nfcOmaChannel.isBasicChannel();
+    nfcSEService = secureElement.newSEService("serviceState", (state) => {
+        if (state == secureElement.ServiceState.DISCONNECTED) {
+            console.log("Service state is Disconnected");
+        } else {
+            console.log("Service state is Connected");
+        }
+    });
+} catch (e) {
+    console.log("newSEService excpetion:" + e.message);
+}
+
+try {
+    if(nfcSEService != null) {
+      nfcOmaReaderList = nfcSEService.getReaders();
+    }
+    if (nfcOmaReaderList != null && nfcOmaReaderList.length > 0) {
+        omaSession = nfcOmaReaderList[0].openSession();
+    }
+    if (omaSession != null) {
+        getPromise = omaSession.openLogicalChannel(aidArray, p2);
+        getPromise.then((channel) => {
+            ret = channel.isBasicChannel();
+        })
+    }
     if (ret) {
         console.log("isBasicChannel TRUE");
     } else {
         console.log("isBasicChannel FALSE");
     }
 } catch (e) {
-    console.log("isBasicChannel异常:" + e.message);
+    console.log("isBasicChannel exception:" + e.message);
 }
 ```
 
@@ -1088,20 +1574,49 @@ isClosed(): boolean
 **示例：**
 
 ```js
+import omapi from '@ohos.secureElement';
 import secureElement from '@ohos.secureElement';
 
-let nfcOmaChannel = null;
+let nfcSEService : omapi.SEService | null = null;
+let nfcOmaReaderList : omapi.Reader[] | null = null;
+let omaSession : omapi.Session | null = null;
+let getPromise : Promise<omapi.Channel> | null = null;
+let aidArray : number[] = [720, 1080];
+let p2 : number = 0x00;
+let ret : boolean = false;
 
 try {
-    // refer to Session.openBasicChannel for this.nfcOmaChannel
-    let ret = nfcOmaChannel.isClosed();
+    nfcSEService = secureElement.newSEService("serviceState", (state) => {
+        if (state == secureElement.ServiceState.DISCONNECTED) {
+            console.log("Service state is Disconnected");
+        } else {
+            console.log("Service state is Connected");
+        }
+    });
+} catch (e) {
+    console.log("newSEService excpetion:" + e.message);
+}
+
+try {
+    if(nfcSEService != null) {
+      nfcOmaReaderList = nfcSEService.getReaders();
+    }
+    if (nfcOmaReaderList != null && nfcOmaReaderList.length > 0) {
+        omaSession = nfcOmaReaderList[0].openSession();
+    }
+    if (omaSession != null) {
+        getPromise = omaSession.openLogicalChannel(aidArray, p2);
+        getPromise.then((channel) => {
+            ret = channel.isClosed();
+        })
+    }
     if (ret) {
         console.log("channel isClosed TRUE");
     } else {
         console.log("channel isClosed False");
     }
 } catch (e) {
-    console.log("Channel isClosed exception:" + e.message);
+    console.log("isBasicChannel exception:" + e.message);
 }
 ```
 
@@ -1126,18 +1641,47 @@ getSelectResponse():number[]
 **示例：**
 
 ```js
+import omapi from '@ohos.secureElement';
 import secureElement from '@ohos.secureElement';
 
-let str = '';
-let nfcOmaChannel = null;
+let nfcSEService : omapi.SEService | null = null;
+let nfcOmaReaderList : omapi.Reader[] | null = null;
+let omaSession : omapi.Session | null = null;
+let getPromise : Promise<omapi.Channel> | null = null;
+let aidArray : number[] = [720, 1080];
+let p2 : number = 0x00;
+let responseArray : number[] = [720, 1080];
+let str : string = "";
 
 try {
-    // refer to Session.openBasicChannel for this.nfcOmaChannel
-    let ret = nfcOmaChannel.getSelectResponse();
-    if (ret) {
+    nfcSEService = secureElement.newSEService("serviceState", (state) => {
+        if (state == secureElement.ServiceState.DISCONNECTED) {
+            console.log("Service state is Disconnected");
+        } else {
+            console.log("Service state is Connected");
+        }
+    });
+} catch (e) {
+    console.log("newSEService excpetion:" + e.message);
+}
+
+try {
+    if(nfcSEService != null) {
+      nfcOmaReaderList = nfcSEService.getReaders();
+    }
+    if (nfcOmaReaderList != null && nfcOmaReaderList.length > 0) {
+        omaSession = nfcOmaReaderList[0].openSession();
+    }
+    if (omaSession != null) {
+        getPromise = omaSession.openLogicalChannel(aidArray, p2);
+        getPromise.then((channel) => {
+            responseArray = channel.getSelectResponse();
+        })
+    }
+    if (responseArray) {
         str = "getSelectResponse result:[";
-        for (let i = 0; i < ret.length; ++i) {
-            str += ret[i];
+        for (let i = 0; i < responseArray.length; ++i) {
+            str += responseArray[i];
             str += ' ';
         }
         str += ']';
@@ -1146,7 +1690,7 @@ try {
         console.log("getSelectResponse result is null");
     }
 } catch (e) {
-    console.log("getSelectResponse exception:" + e.message);
+    console.log("isBasicChannel exception:" + e.message);
 }
 ```
 
@@ -1183,27 +1727,48 @@ transmit(command: number[]): Promise<number[]>
 **示例：**
 
 ```js
-import secureElement from '@ohos.secureElement';
+let nfcSEService : omapi.SEService | null = null;
+let nfcOmaReaderList : omapi.Reader[] | null = null;
+let omaSession : omapi.Session | null = null;
+let getPromise : Promise<omapi.Channel> | null = null;
+let aidArray : number[] = [720, 1080];
+let p2 : number = 0x00;
+let responseArray : Promise<number[]> | null = null;
 
-let nfcOmaChannel = null;
-let str = "";
 try {
-    let command: number[] = [100, 200];
-    // refer to Session.openBasicChannel for this.nfcOmaChannel
-    let getPromise = nfcOmaChannel.transmit(command);
-    getPromise.then((data) => {
-        str = "transmit1 result:[";
-        for (let i = 0; i < data.length; ++i) {
-            str += data[i];
-            str += " ";
+    nfcSEService = secureElement.newSEService("serviceState", (state) => {
+        if (state == secureElement.ServiceState.DISCONNECTED) {
+            console.log("Service state is Disconnected");
+        } else {
+            console.log("Service state is Connected");
         }
-        str += "]";
-        console.log(str);
-    }).catch ((err) => {
-        console.log("transmit1 exception:" + err.code);
-    })
+    });
 } catch (e) {
-    console.log("transit1 exception:" + e.message);
+    console.log("newSEService excpetion:" + e.message);
+}
+
+try {
+    if(nfcSEService != null) {
+      nfcOmaReaderList = nfcSEService.getReaders();
+    }
+    if (nfcOmaReaderList != null && nfcOmaReaderList.length > 0) {
+        omaSession = nfcOmaReaderList[0].openSession();
+    }
+    if (omaSession != null) {
+        getPromise = omaSession.openLogicalChannel(aidArray, p2);
+        getPromise.then((channel) => {
+            let command: number[] = [100, 200];
+            // refer to Session.openBasicChannel for this.nfcOmaChannel
+            responseArray = channel.transmit(command);
+        })
+    }
+    if (responseArray != null) {
+        console.log("transmit1 success");
+    } else {
+        console.log("transmit1 failed");
+    }
+} catch (e) {
+    console.log("transmit1 exception:" + e.message);
 }
 ```
 
@@ -1235,28 +1800,54 @@ transmit(command: number[], callback: AsyncCallback<number[]>): void
 **示例：**
 
 ```js
-import secureElement from '@ohos.secureElement';
-
-let str = "";
-let nfcOmaChannel = null;
+let nfcSEService : omapi.SEService | null = null;
+let nfcOmaReaderList : omapi.Reader[] | null = null;
+let omaSession : omapi.Session | null = null;
+let getPromise : Promise<omapi.Channel> | null = null;
+let aidArray : number[] = [720, 1080];
+let p2 : number = 0x00;
+let str : string = "";
 
 try {
-    let command: number[] = [100, 200];
-    // refer to Session.openBasicChannel for this.nfcOmaChannel
-    nfcOmaChannel.transmit(command, (error, data) => {
-        if (error) {
-            console.log("transmit2 exception:" + JSON.stringify(error));
-            return;
+    nfcSEService = secureElement.newSEService("serviceState", (state) => {
+        if (state == secureElement.ServiceState.DISCONNECTED) {
+            console.log("Service state is Disconnected");
+        } else {
+            console.log("Service state is Connected");
         }
-        str = "transmit2 result:[";
-        for (let i = 0; i < data.length; ++i) {
-            str += data[i];
-            str += " ";
-        }
-        str += "]";
-        console.log(str)
     });
 } catch (e) {
-    console.log("transit2 exception:" + e.message);
+    console.log("newSEService excpetion:" + e.message);
+}
+
+try {
+    if(nfcSEService != null) {
+      nfcOmaReaderList = nfcSEService.getReaders();
+    }
+    if (nfcOmaReaderList != null && nfcOmaReaderList.length > 0) {
+        omaSession = nfcOmaReaderList[0].openSession();
+    }
+    if (omaSession != null) {
+        getPromise = omaSession.openLogicalChannel(aidArray, p2);
+        getPromise.then((channel) => {
+            let command: number[] = [100, 200];
+            // refer to Session.openBasicChannel for this.nfcOmaChannel
+            channel.transmit(command, (error, data) => {
+                if (error) {
+                    console.log("transmit2 exception:" + JSON.stringify(error));
+                    return;
+                }
+                str = "transmit2 result:[";
+                for (let i = 0; i < data.length; ++i) {
+                    str += data[i];
+                    str += " ";
+                }
+                str += "]";
+                console.log(str)
+            });
+        })
+    }
+} catch (e) {
+    console.log("transmit2 exception:" + e.message);
 }
 ```
