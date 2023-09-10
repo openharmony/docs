@@ -400,31 +400,23 @@ off(type: "notify", callback?: Callback&lt;number&gt;): void
 import connectedTag from '@ohos.connectedTag';
 
 // Register event
-connectedTag.on("notify", (err, rfState)=> {
-    if (err) {
-        console.log("connectedTag on Callback err: " + err);
-    } else {
-        console.log("connectedTag on Callback rfState: " + rfState);
-    }
+connectedTag.on("notify", (rfState : number)=> {
+  console.log("connectedTag on Callback rfState: " + rfState);
 });
 
-var initStatus = connectedTag.init();
+let initStatus = connectedTag.init();
 console.log("connectedTag init status: " + initStatus);
 
 // Add nfc connecected tag business oprations here...
 // connectedTag.writeNdefTag(rawData)
 // connectedTag.readNdefTag()
 
-var uninitStatus = connectedTag.uninit();
+let uninitStatus = connectedTag.uninit();
 console.log("connectedTag uninit status: " + uninitStatus);
 
 // Unregister event
-connectedTag.off("notify", (err, rfState)=> {
-    if (err) {
-        console.log("connectedTag off Callback err: " + err);
-    } else {
-        console.log("connectedTag off Callback rfState: " + rfState);
-    }
+connectedTag.off("notify", (rfState : number)=> {
+  console.log("connectedTag off Callback rfState: " + rfState);
 });
 ```
 
