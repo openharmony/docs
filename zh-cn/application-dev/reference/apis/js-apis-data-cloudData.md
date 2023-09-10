@@ -8,7 +8,9 @@
 
 > **说明：** 
 >
-> 本模块首批接口从API version 10开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> - 本模块首批接口从API version 10开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+>
+> - 本模块接口为系统接口。
 
 ## 导入模块
 
@@ -19,8 +21,6 @@ import cloudData from '@ohos.data.cloudData';
 ##   ClearAction
 
 清除本地下载的云端数据的行为枚举。
-
-**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.DistributedDataManager.CloudSync.Config
 
@@ -38,8 +38,6 @@ import cloudData from '@ohos.data.cloudData';
 static enableCloud(accountId: string, switches: {[bundleName: string]: boolean}, callback: AsyncCallback&lt;void&gt;):void
 
 打开端云协同，使用callback异步回调。
-
-**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.CLOUDDATA_CONFIG
 
@@ -79,8 +77,6 @@ try {
 static enableCloud(accountId: string, switches: {[bundleName: string]: boolean}): Promise&lt;void&gt;
 
 打开端云协同，使用Promise异步回调。
-
-**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.CLOUDDATA_CONFIG
 
@@ -124,8 +120,6 @@ static disableCloud(accountId: string, callback: AsyncCallback&lt;void&gt;):void
 
 关闭端云协同，使用callback异步回调。
 
-**系统接口：** 此接口为系统接口。
-
 **需要权限**：ohos.permission.CLOUDDATA_CONFIG
 
 **系统能力：** SystemCapability.DistributedDataManager.CloudSync.Config
@@ -162,8 +156,6 @@ try {
 static disableCloud(accountId: string): Promise&lt;void&gt;
 
 关闭端云协同，使用Promise异步回调。
-
-**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.CLOUDDATA_CONFIG
 
@@ -205,8 +197,6 @@ static changeAppCloudSwitch(accountId: string,bundleName:string,status:boolean, 
 
 修改单个应用端云协同开关，使用callback异步回调。
 
-**系统接口：** 此接口为系统接口。
-
 **需要权限**：ohos.permission.CLOUDDATA_CONFIG
 
 **系统能力：** SystemCapability.DistributedDataManager.CloudSync.Config
@@ -246,8 +236,6 @@ try {
 static changeAppCloudSwitch(accountId: string,bundleName:string,status:boolean): Promise&lt;void&gt;
 
 修改单个应用端云协同开关，使用Promise异步回调。
-
-**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.CLOUDDATA_CONFIG
 
@@ -292,8 +280,6 @@ static notifyDataChange(accountId: string,bundleName:string, callback: AsyncCall
 
 通知云端的数据变更，使用callback异步回调。
 
-**系统接口：** 此接口为系统接口。
-
 **需要权限**：ohos.permission.CLOUDDATA_CONFIG
 
 **系统能力：** SystemCapability.DistributedDataManager.CloudSync.Server
@@ -332,8 +318,6 @@ try {
 static notifyDataChange(accountId: string,bundleName:string): Promise&lt;void&gt;
 
 通知云端的数据变更，使用Promise异步回调。
-
-**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.CLOUDDATA_CONFIG
 
@@ -376,8 +360,6 @@ try {
 static clear(accountId: string, appActions: {[bundleName: string]: ClearAction},  callback: AsyncCallback&lt;void&gt;):void
 
 清除本地下载的云端数据，使用callback异步回调。
-
-**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.CLOUDDATA_CONFIG
 
@@ -422,8 +404,6 @@ try {
 static clear(accountId: string, appActions: {[bundleName: string]: ClearAction}): Promise&lt;void&gt;
 
 清除本地下载的云端数据，使用Promise异步回调。
-
-**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.CLOUDDATA_CONFIG
 
