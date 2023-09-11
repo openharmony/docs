@@ -3,7 +3,7 @@
 
 ## 如何查询设备类型
 
-设备类型分为default（默认设备）、tablet、tv、wearable等，有多种查询设备类型的方式。
+设备类型分为default（默认设备）、tablet、tv、wearable、2in1等，有多种查询设备类型的方式。
 
 1. 通过命令行的方式查询设备类型。
    通过命令行查询指定系统参数（const.product.devicetype）进而确定设备类型，详见[系统参数介绍](../../../device-dev/subsystems/subsys-boot-init-sysparam.md)。
@@ -17,33 +17,6 @@
    ```
 
 2. 在应用开发过程中查询设备类型。
-   - 通过js接口查询指定系统参数（const.product.devicetype）进而确定设备类型，详见[系统属性](../../reference/apis/js-apis-system-parameter.md)。
-     
-      ```typescript
-      import parameter from '@ohos.systemparameter'
-      
-      @Entry
-      @Component
-      struct GetDeviceTypeSample {
-        @State deviceType: string = 'unknown'
-      
-        aboutToAppear() {
-          try {
-            this.deviceType = parameter.getSync("const.product.devicetype")
-          } catch(e) {
-            console.log("getSync unexpected error: " + e)
-          }
-        }
-      
-        build() {
-          Column() {
-            Text(this.deviceType).fontSize(24)
-          }
-          .width('100%')
-          .height('100%')
-        }
-      }
-      ```
    - 通过deviceInfo查询设备类型，deviceInfo中各个字段的含义请参考[设备信息](../../reference/apis/js-apis-device-info.md)。
      
       ```typescript
