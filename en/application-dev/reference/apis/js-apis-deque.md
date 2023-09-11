@@ -51,7 +51,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-let deque = new Deque();
+let deque: Deque<string | number | boolean | Object> = new Deque();
 ```
 
 ### insertFront
@@ -79,12 +79,16 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-let deque = new Deque();
+class C1 {
+  name: string = ""
+  age: string = ""
+}
+let deque: Deque<string | number | boolean | Array<number> | C1> = new Deque();
 deque.insertFront("a");
 deque.insertFront(1);
 let b = [1, 2, 3];
 deque.insertFront(b);
-let c = {name : "Dylon", age : "13"};
+let c: C1 = {name : "Dylon", age : "13"};
 deque.insertFront(c);
 deque.insertFront(false);
 ```
@@ -114,12 +118,17 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-let deque = new Deque();
+class C1 {
+  name: string = ""
+  age: string = ""
+}
+
+let deque: Deque<string | number | boolean | Array<number> | C1> = new Deque();
 deque.insertEnd("a");
 deque.insertEnd(1);
 let b = [1, 2, 3];
 deque.insertEnd(b);
-let c = {name : "Dylon", age : "13"};
+let c: C1 = {name : "Dylon", age : "13"};
 deque.insertEnd(c);
 deque.insertEnd(false);
 ```
@@ -155,7 +164,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-let deque = new Deque();
+let deque: Deque<string> = new Deque();
 deque.insertFront("squirrel");
 let result = deque.has("squirrel");
 ```
@@ -185,7 +194,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-let deque = new Deque();
+let deque: Deque<number> = new Deque();
 deque.insertFront(2);
 deque.insertFront(4);
 deque.insertEnd(5);
@@ -219,7 +228,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-let deque = new Deque();
+let deque: Deque<number> = new Deque();
 deque.insertFront(2);
 deque.insertEnd(4);
 deque.insertFront(5);
@@ -263,13 +272,13 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-let deque = new Deque();
+let deque: Deque<number> = new Deque();
 deque.insertFront(2);
 deque.insertEnd(4);
 deque.insertFront(5);
 deque.insertEnd(4);
-deque.forEach((value, index) => {
-    console.log("value:" + value, "index:" + index);
+deque.forEach((value: number, index?: number | undefined, deque?: Deque<number> | undefined):void => {
+  console.log("value:" + value, "index:" + index);
 });
 ```
 
@@ -298,7 +307,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-let deque = new Deque();
+let deque: Deque<number> = new Deque();
 deque.insertEnd(2);
 deque.insertEnd(4);
 deque.insertFront(5);
@@ -331,7 +340,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-let deque = new Deque();
+let deque: Deque<number> = new Deque();
 deque.insertFront(2);
 deque.insertFront(4);
 deque.insertFront(5);
@@ -363,22 +372,23 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 
 **Example**
 ```ts
-let deque = new Deque();
+let deque: Deque<number> = new Deque();
 deque.insertFront(2);
 deque.insertFront(4);
 deque.insertFront(5);
 deque.insertFront(4);
 
 // Method 1:
-for (let item of deque) { 
-  console.log("value:" + item); 
+let nums: Array<number> = Array.from(deque)
+for (let item of nums) {
+  console.log("value:" + item);
 }
 
 // Method 2:
 let iter = deque[Symbol.iterator]();
-let temp = iter.next().value;
-while(temp != undefined) {
-  console.log("value:" + temp);
-  temp = iter.next().value;
+let temp:IteratorResult<number> = iter.next();
+while(!temp.done) {
+  console.log("value:" + temp.value);
+  temp = iter.next();
 }
 ```

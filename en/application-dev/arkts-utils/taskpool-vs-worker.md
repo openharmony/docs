@@ -1,5 +1,6 @@
 # Comparison Between TaskPool and Worker
 
+
 **TaskPool** and **Worker** provide a multithread running environment for applications to process time-consuming computing tasks or resource intensive tasks, preventing these tasks from blocking the main thread. This maximizes system utilization, reduces overall resource consumption, and improves overall system performance.
 
 
@@ -75,7 +76,7 @@ The thread that creates the worker thread is referred to as the host thread (not
 
 - Parameters of the ArrayBuffer type are transferred in **TaskPool** by default. You can set the transfer list by calling [setTransferList()](../reference/apis/js-apis-taskpool.md#settransferlist10).
 
-- The context objects in different threads are different. Therefore, **TaskPool** worker threads can use only thread-safe libraries, rather than UI-related non-thread-safe libraries.
+- Context objects vary in different threads. Therefore, the worker thread of **TaskPool** can use only a thread-safe library, rather than a non-thread-safe library, for example, UI-related non-thread-safe library.
 
 - A maximum of 16 MB data can be serialized.
 
@@ -90,41 +91,41 @@ The thread that creates the worker thread is referred to as the host thread (not
 
 - When creating a worker thread, the **Worker.ts** file of another module cannot be used. This means that a worker cannot be called across modules.
 
-- The context objects in different threads are different. Therefore, **Worker** threads can use only thread-safe libraries, rather than UI-related non-thread-safe libraries.
+- Context objects vary in different threads. Therefore, a worker thread of **Worker** can use only a thread-safe library, rather than a non-thread-safe library, for example, UI-related non-thread-safe library.
 
 - A maximum of 16 MB data can be serialized.
 
 
 ### Precautions for File Paths
 
-Before calling an API of the **Worker** module, you must create a **Worker** instance. The constructor function varies in different API versions.
+  Before calling an API of the **Worker** module, you must create a **Worker** instance. The constructor function varies in different API versions.
 
-```js
+```ts
 // Use the following function in API version 9 and later versions:
-const worker1 = new worker.ThreadWorker(scriptURL);
+const worker1: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/MyWorker.ts');
 // Use the following function in API version 8 and earlier versions:
-const worker1 = new worker.Worker(scriptURL);
+const worker2: worker.Worker = new worker.Worker('entry/ets/workers/MyWorker.ts');
 ```
 
 The **Worker.ts** file path (specified by **scriptURL**) must be passed in the constructor function. By default, the **workers** directory (upper-level directory of the **Worker.ts** file) is at the same level as the **pages** directory.
 
 **Stage Model**
 
-
 The following is an example of **scriptURL** in the constructor function:
 
-```js
+
+```ts
 // Method 1
 // In the stage model, the workers directory is at the same level as the pages directory in the entry module.
-const worker1 = new worker.ThreadWorker('entry/ets/workers/MyWorker.ts', {name:"first worker in Stage model"});
+const worker1: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/MyWorker.ts', {name:"first worker in Stage model"});
 // In the stage model, the workers directory is a child directory of the pages directory in the entry module.
-const worker2 = new worker.ThreadWorker('entry/ets/pages/workers/MyWorker.ts');
+const worker2: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/pages/workers/MyWorker.ts');
 
 // Method 2
 // In the stage model, the workers directory is at the same level as the pages directory in the entry module, and bundlename is com.example.workerdemo.
-const worker3 = new worker.ThreadWorker('@bundle:com.example.workerdemo/entry/ets/workers/worker');
+const worker3: worker.ThreadWorker = new worker.ThreadWorker('@bundle:com.example.workerdemo/entry/ets/workers/worker');
 // In the stage model, the workers directory is a child directory of the pages directory in the entry module, and bundlename is com.example.workerdemo.
-const worker4 = new worker.ThreadWorker('@bundle:com.example.workerdemo/entry/ets/pages/workers/worker');
+const worker4: worker.ThreadWorker = new worker.ThreadWorker('@bundle:com.example.workerdemo/entry/ets/pages/workers/worker');
 ```
 
 
@@ -144,13 +145,13 @@ const worker4 = new worker.ThreadWorker('@bundle:com.example.workerdemo/entry/et
 **FA Model**
 
 
-The following is an example of **scriptURL** in the constructor function:
+  The following is an example of **scriptURL** in the constructor function:
 
-```js
+```ts
 // In the FA model, the workers directory is at the same level as the pages directory in the entry module.
-const worker1 = new worker.ThreadWorker('workers/worker.js', {name:'first worker in FA model'});
+const worker1: worker.ThreadWorker = new worker.ThreadWorker('workers/worker.js', {name:'first worker in FA model'});
 // In the FA model, the workers directory is at the same level as the parent directory of the pages directory in the entry module.
-const worker2 = new worker.ThreadWorker('../workers/worker.js');
+const worker2: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker.js');
 ```
 
 
