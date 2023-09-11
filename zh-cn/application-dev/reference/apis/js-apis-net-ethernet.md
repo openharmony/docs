@@ -120,7 +120,7 @@ class Config  {
   dnsServers: string = "1.1.1.1"
 };
 
-const setConfigPromise = ethernet.setIfaceConfig("eth0", new Config());
+const setConfigPromise: Object = ethernet.setIfaceConfig("eth0", new Config());
 
 setConfigPromise.then(() => {
   console.log("setIfaceConfig promise ok");
@@ -216,6 +216,7 @@ getIfaceConfig(iface: string): Promise\<InterfaceConfiguration>
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
 ethernet.getIfaceConfig("eth0").then((data: ethernet.InterfaceConfiguration) => {
   console.log("getIfaceConfig promise mode = " + JSON.stringify(data.mode));
   console.log("getIfaceConfig promise ipAddr = " + JSON.stringify(data.ipAddr));
@@ -223,7 +224,7 @@ ethernet.getIfaceConfig("eth0").then((data: ethernet.InterfaceConfiguration) => 
   console.log("getIfaceConfig promise gateway = " + JSON.stringify(data.gateway));
   console.log("getIfaceConfig promise netMask = " + JSON.stringify(data.netMask));
   console.log("getIfaceConfig promise dnsServers = " + JSON.stringify(data.dnsServers));
-}).catch(error => {
+}).catch((error: BusinessError) => {
   console.log("getIfaceConfig promise error = " + JSON.stringify(error));
 });
 ```
@@ -310,9 +311,10 @@ isIfaceActive(iface: string): Promise\<number>
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
 ethernet.isIfaceActive("eth0").then((data: number) => {
   console.log("isIfaceActive promise = " + JSON.stringify(data));
-}).catch(error => {
+}).catch((error: BusinessError) => {
   console.log("isIfaceActive promise error = " + JSON.stringify(error));
 });
 ```
