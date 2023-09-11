@@ -30,6 +30,7 @@ The [universal attributes](ts-universal-attributes-size.md) are supported.
 >  **NOTE**
 >
 > The default value of the **clip** attribute is **true**.
+> The align attribute only supports the alignment of the **top**, **middle**, and **bottom** positions.
 
 | Name                     | Type                                                    | Description                                                        |
 | ------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
