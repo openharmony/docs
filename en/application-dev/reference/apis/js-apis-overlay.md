@@ -179,7 +179,7 @@ Enables or disables a module with the overlay feature in another application. Th
 | bundleName  | string | Yes   | Bundle name of the application.                |
 | moduleName  | string | Yes   | HAP name of the module with the overlay feature.   |
 | isEnabled   | boolean  | Yes | Whether to enable the module with the overlay feature. The value **true** means to enable the module, and **false** means to disable the module.|
-| callback    | AsyncCallback\<void> | Yes   | Callback used to return the result. If the operation is successful, **err** is **undefined** and data is the processing result obtained; otherwise, **err** is an error object.                   |
+| callback    | AsyncCallback\<void> | Yes   | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.                   |
 
 **Error codes**
 
