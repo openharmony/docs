@@ -2572,9 +2572,9 @@ getHolidayInfoItemArray(year?: number): Array&lt;[HolidayInfoItem](#holidayinfoi
 | year            | number          |   是    | 节假日所在年。                   |
 | month           | number          |   是    | 节假日所在月。          |
 | day             | number          |   是    | 节假日所在日。                         |
-| localNames      | Array&lt;[HolidayLocaleName](#holidaylocalename11)&gt;          |   否    | 节假日的本地名称列表。          |
+| localNames      | Array&lt;[HolidayLocalName](#holidaylocalname11)&gt;          |   否    | 节假日的本地名称列表。          |
 
-## HolidayLocaleName<sup>11+</sup>
+## HolidayLocalName<sup>11+</sup>
 
 节假日本地名称。
 
