@@ -77,7 +77,7 @@ The **index.ets** file acts as the entry of the HAR export declaration file and 
 ```
 ### Exporting ArkUI Components
 Use **export** to export the ArkUI components. The code snippet is as follows:
-```js
+```ts
 // library/src/main/ets/components/MainPage/MainPage.ets
 @Component
 export struct MainPage {
@@ -96,13 +96,13 @@ export struct MainPage {
 }
 ```
 In the **index.ets** file, declare the APIs that the HAR exposes to external systems. The code snippet is as follows:
-```js
+```ts
 // library/index.ets
 export { MainPage } from './src/main/ets/components/MainPage/MainPage'
 ```
 ### Exporting TS Classes and Methods
 Use **export** to export TS classes and methods. Multiple TS classes and methods can be exported at the same time. The code snippet is as follows:
-```js
+```ts
 // library/src/main/ts/test.ets
 export class Log {
     static info(msg: string) {
@@ -119,7 +119,7 @@ export function func2() {
 }
 ```
 In the **index.ets** file, declare the APIs that the HAR exposes to external systems. The code snippet is as follows:
-```js
+```ts
 // library/index.ets
 export { Log } from './src/main/ts/test'
 export { func } from './src/main/ts/test'
@@ -137,7 +137,7 @@ To start with, [configure dependency](https://developer.harmonyos.com/cn/docs/do
 ### Reference ArkUI Components in the HAR
 
 After configuring the dependency on the HAR, you can reference ArkUI components exported from the HAR by using **import**. The code snippet is as follows:
-```js
+```ts
 // entry/src/main/ets/pages/index.ets
 import { MainPage } from "library"
 
@@ -162,7 +162,7 @@ struct Index {
 ```
 ### Referencing TS Classes and Methods in the HAR
 To reference the TS classes and methods exported from the HAR, use **import** as follows:
-```js
+```ts
 // entry/src/main/ets/pages/index.ets
 import { Log } from "library"
 import { func } from "library"
@@ -188,7 +188,7 @@ struct Index {
 ```
 ### Referencing Resources in the HAR
 Use **$r** to reference resources in the HAR. For example, add the **name: hello_har** string (defined in the **string.json** file) and **icon_har.png** image to the **src/main/resources** directory of the HAR module, and then reference the string and image in the entry module. The code snippet is as follows:
-```js
+```ts
 // entry/src/main/ets/pages/index.ets
 @Entry
 @Component

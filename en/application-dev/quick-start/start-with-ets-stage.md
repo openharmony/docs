@@ -277,6 +277,7 @@ You can implement page redirection through the [page router](../reference/apis/j
    // Index.ets
    // Import the router module.
    import router from '@ohos.router';
+   import { BusinessError } from '@ohos.base';
    
    @Entry
    @Component
@@ -305,10 +306,10 @@ You can implement page redirection through the [page router](../reference/apis/j
            // Bind the onClick event to the Next button so that clicking the button redirects the user to the second page.
            .onClick(() => {
              console.info(`Succeeded in clicking the 'Next' button.`)
-            // Redirect the user to the second page.
+            // Go to the second page.
               router.pushUrl({ url: 'pages/Second' }).then(() => {
                 console.info('Succeeded in jumping to the second page.')
-              }).catch((err) => {
+              }).catch((err: BusinessError) => {
                 console.error(`Failed to jump to the second page.Code is ${err.code}, message is ${err.message}`)
               })
            })
@@ -328,6 +329,7 @@ You can implement page redirection through the [page router](../reference/apis/j
    // Second.ets
    // Import the router module.
    import router from '@ohos.router';
+   import { BusinessError } from '@ohos.base';
    
    @Entry
    @Component
@@ -356,11 +358,13 @@ You can implement page redirection through the [page router](../reference/apis/j
            .onClick(() => {
              console.info(`Succeeded in clicking the 'Back' button.`)
              try {
-               // Redirect the user back to the first page.
+               // Return to the first page.
                router.back()
                console.info('Succeeded in returning to the first page.')
              } catch (err) {
-               console.error(`Failed to return to the first page.Code is ${err.code}, message is ${err.message}`)
+                let code = (err as BusinessError).code;
+                let message = (err as BusinessError).message;
+               console.error(`Failed to return to the first page.Code is ${code}, message is ${message}`)
              }
            })
          }
