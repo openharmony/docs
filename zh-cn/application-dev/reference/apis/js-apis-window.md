@@ -41,7 +41,7 @@ import window from '@ohos.window';
 | TYPE_VOICE_INTERACTION<sup>9+</sup> | 13      | 表示智慧语音。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。 |
 | TYPE_POINTER<sup>9+</sup> | 14      | 表示鼠标。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。 |
 | TYPE_FLOAT_CAMERA<sup>9+</sup> | 15      | 表示相机类型悬浮窗。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。 |
-| TYPE_DIALOG<sup>9+</sup>  | 16      | 表示模态窗口。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。 |
+| TYPE_DIALOG<sup>10+</sup>  | 16      | 表示模态窗口。<br>**模型约束：** 此接口仅可在Stage模型下使用。 |
 | TYPE_SCREENSHOT<sup>9+</sup>  | 17      | 表示截屏窗口。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。 |
 
 ## Configuration<sup>9+</sup>
