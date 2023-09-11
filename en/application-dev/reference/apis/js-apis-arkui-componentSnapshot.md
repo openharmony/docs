@@ -11,7 +11,7 @@ The **componentSnapshot** module provides APIs for obtaining component snapshots
 
 ## Modules to Import
 
-```js
+```ts
 import componentSnapshot from "@ohos.arkui.componentSnapshot";
 ```
 
@@ -42,14 +42,14 @@ Obtains the snapshot of a component that has been loaded. This API uses an async
 
 **Example**
 
-```js
+```ts
 import componentSnapshot from '@ohos.arkui.componentSnapshot'
 import image from '@ohos.multimedia.image'
 
 @Entry
 @Component
 struct SnapshotExample {
-  @State pixmap: image.PixelMap = undefined
+  @State pixmap: image.PixelMap|undefined = undefined
 
   build() {
     Column() {
@@ -108,14 +108,14 @@ Obtains the snapshot of a component that has been loaded. This API uses a promis
 
 **Example**
 
-```js
+```ts
 import componentSnapshot from '@ohos.arkui.componentSnapshot'
 import image from '@ohos.multimedia.image'
 
 @Entry
 @Component
 struct SnapshotExample {
-  @State pixmap: image.PixelMap = undefined
+  @State pixmap: image.PixelMap|undefined = undefined
 
   build() {
     Column() {
@@ -180,7 +180,7 @@ import image from '@ohos.multimedia.image'
 @Entry
 @Component
 struct OffscreenSnapshotExample {
-  @State pixmap: image.PixelMap = undefined
+  @State pixmap: image.PixelMap | undefined = undefined
 
   @Builder
   RandomBuilder() {
@@ -203,7 +203,7 @@ struct OffscreenSnapshotExample {
     Column() {
       Button("click to generate offscreen UI snapshot")
         .onClick(() => {
-          componentSnapshot.createFromBuilder(this.RandomBuilder.bind(this),
+          componentSnapshot.createFromBuilder(this.RandomBuilder(),
             (error: Error, pixmap: image.PixelMap) => {
               this.pixmap = pixmap
               // save pixmap to file
@@ -257,7 +257,7 @@ import image from '@ohos.multimedia.image'
 @Entry
 @Component
 struct OffscreenSnapshotExample {
-  @State pixmap: image.PixelMap = undefined
+  @State pixmap: image.PixelMap | undefined = undefined
 
   @Builder
   RandomBuilder() {
@@ -280,7 +280,7 @@ struct OffscreenSnapshotExample {
     Column() {
       Button("click to generate offscreen UI snapshot")
         .onClick(() => {
-          componentSnapshot.createFromBuilder(this.RandomBuilder.bind(this))
+          componentSnapshot.createFromBuilder(this.RandomBuilder())
             .then((pixmap: image.PixelMap) => {
               this.pixmap = pixmap
               // save pixmap to file

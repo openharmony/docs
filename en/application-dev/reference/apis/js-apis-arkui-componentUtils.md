@@ -12,7 +12,7 @@ The **componentUtils** module provides API for obtaining the coordinates and siz
 
 ## Modules to Import
 
-```js
+```ts
 import componentUtils from '@ohos.arkui.componentUtils'
 ```
 ## componentUtils.getRectangleById
@@ -37,8 +37,9 @@ Obtains a **ComponentInfo** object based on the component ID.
 
 **Example**
 
-```js
-let modePosition = componentUtils.getRectangleById("onClick");
+```ts
+import componentUtils from '@ohos.arkui.componentUtils';
+let modePosition:componentUtils.ComponentInfo = componentUtils.getRectangleById("onClick");
 ```
 
 ## ComponentInfo
@@ -140,14 +141,14 @@ let modePosition = componentUtils.getRectangleById("onClick");
 
 **Example**
 
-  ```js
+  ```ts
 import matrix4 from '@ohos.matrix4';
 import componentUtils from '@ohos.arkui.componentUtils';
 
 @Entry
 @Component
 struct Utils{
-  private getComponentRect(key) {
+  private getComponentRect(key:string) {
     console.info("Mode Key: " + key);
     let modePosition = componentUtils.getRectangleById(key);
 
