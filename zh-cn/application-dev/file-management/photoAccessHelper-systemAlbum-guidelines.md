@@ -35,7 +35,7 @@ let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 
 async function example() {
   try {
-    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await photoAccessHelper.getAlbums(photoAccessHelper.AlbumType.SYSTEM, photoAccessHelper.AlbumSubtype.FAVORITE);
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.SYSTEM, photoAccessHelper.AlbumSubtype.FAVORITE);
     let album: photoAccessHelper.Album = await fetchResult.getFirstObject();
     console.info('get favorite Album successfully, albumUri: ' + album.albumUri);
     fetchResult.close();
@@ -77,7 +77,7 @@ async function example() {
   };
 
   try {
-    let photoFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await photoAccessHelper.getAssets(fetchOptions);
+    let photoFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
     let fileAsset: photoAccessHelper.PhotoAsset = await photoFetchResult.getFirstObject();
     console.info('getAssets fileAsset.displayName : ' + fileAsset.displayName);
     let favoriteState = true;
@@ -120,7 +120,7 @@ async function example() {
   };
 
   try {
-    let albumFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await photoAccessHelper.getAlbums(photoAccessHelper.AlbumType.SYSTEM, photoAccessHelper.AlbumSubtype.FAVORITE);
+    let albumFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.SYSTEM, photoAccessHelper.AlbumSubtype.FAVORITE);
     let album: photoAccessHelper.Album = await albumFetchResult.getFirstObject();
     console.info('get favorite Album successfully, albumUri: ' + album.albumUri);
 
@@ -167,7 +167,7 @@ async function example() {
   };
 
   try {
-    let albumFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await photoAccessHelper.getAlbums(photoAccessHelper.AlbumType.SYSTEM, photoAccessHelper.AlbumSubtype.FAVORITE);
+    let albumFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.SYSTEM, photoAccessHelper.AlbumSubtype.FAVORITE);
     let album: photoAccessHelper.Album = await albumFetchResult.getFirstObject();
     console.info('get favorite Album successfully, albumUri: ' + album.albumUri);
 
@@ -203,9 +203,13 @@ async function example() {
 2. 调用getAlbums接口获取视频相册。
 
 ```ts
+import photoAccessHelper from '@ohos.file.photoAccessHelper';
+const context = getContext(this);
+let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
+
 async function example() {
   try {
-    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await photoAccessHelper.getAlbums(photoAccessHelper.AlbumType.SYSTEM, photoAccessHelper.AlbumSubtype.VIDEO);
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.SYSTEM, photoAccessHelper.AlbumSubtype.VIDEO);
     let album: photoAccessHelper.Album = await fetchResult.getFirstObject();
     console.info('get video Album successfully, albumUri: ' + album.albumUri);
     fetchResult.close();
@@ -247,7 +251,7 @@ async function example() {
   };
 
   try {
-    let albumFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await photoAccessHelper.getAlbums(photoAccessHelper.AlbumType.SYSTEM, photoAccessHelper.AlbumSubtype.VIDEO);
+    let albumFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.SYSTEM, photoAccessHelper.AlbumSubtype.VIDEO);
     let album: photoAccessHelper.Album = await albumFetchResult.getFirstObject();
     console.info('get video Album successfully, albumUri: ' + album.albumUri);
 
@@ -281,9 +285,13 @@ async function example() {
 2. 调用getAlbums接口获取截屏和录屏相册。
 
 ```ts
+import photoAccessHelper from '@ohos.file.photoAccessHelper';
+const context = getContext(this);
+let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
+
 async function example() {
   try {
-    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await photoAccessHelper.getAlbums(photoAccessHelper.AlbumType.SYSTEM, photoAccessHelper.AlbumSubtype.SCREENSHOT);
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.SYSTEM, photoAccessHelper.AlbumSubtype.SCREENSHOT);
     let album: photoAccessHelper.Album = await fetchResult.getFirstObject();
     console.info('get screenshot Album successfully, albumUri: ' + album.albumUri);
     fetchResult.close();
@@ -325,7 +333,7 @@ async function example() {
   };
 
   try {
-    let albumFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await photoAccessHelper.getAlbums(photoAccessHelper.AlbumType.SYSTEM, photoAccessHelper.AlbumSubtype.SCREENSHOT);
+    let albumFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.SYSTEM, photoAccessHelper.AlbumSubtype.SCREENSHOT);
     let album: photoAccessHelper.Album = await albumFetchResult.getFirstObject();
     console.info('get screenshot album successfully, albumUri: ' + album.albumUri);
 
