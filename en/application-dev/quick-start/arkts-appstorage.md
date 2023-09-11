@@ -44,7 +44,7 @@ By decorating a variable with \@StorageProp(key), a one-way data synchronization
 | ---------- | ---------------------------------------- |
 | Initialization and update from the parent component| Forbidden.|
 | Subnode initialization    | Supported; can be used to initialize an \@State, \@Link, \@Prop, or \@Provide decorated variable in the child component.|
-| Access | None.                                      |
+| Access | Not supported.                                      |
 
 
   **Figure 1** \@StorageProp initialization rule 
@@ -142,23 +142,24 @@ Since AppStorage is a singleton, its APIs are all static ones. How these APIs wo
 
 
 ```ts
-AppStorage.SetOrCreate('PropA', 47);
+AppStorage.setOrCreate('PropA', 47);
 
-let storage: LocalStorage = new LocalStorage({ 'PropA': 17 });
-let propA: number = AppStorage.Get('PropA') // propA in AppStorage == 47, propA in LocalStorage == 17
-var link1: SubscribedAbstractProperty<number> = AppStorage.Link('PropA'); // link1.get() == 47
-var link2: SubscribedAbstractProperty<number> = AppStorage.Link('PropA'); // link2.get() == 47
-var prop: SubscribedAbstractProperty<number> = AppStorage.Prop('PropA'); // prop.get() = 47
+let storage: LocalStorage = new LocalStorage();
+storage['PropA'] = 17;
+let propA: number | undefined = AppStorage.get('PropA') // propA in AppStorage == 47, propA in LocalStorage == 17
+let link1: SubscribedAbstractProperty<number> = AppStorage.link('PropA'); // link1.get() == 47
+let link2: SubscribedAbstractProperty<number> = AppStorage.link('PropA'); // link2.get() == 47
+let prop: SubscribedAbstractProperty<number> = AppStorage.prop('PropA'); // prop.get() = 47
 
 link1.set(48); // two-way sync: link1.get() == link2.get() == prop.get() == 48
 prop.set(1); // one-way sync: prop.get()=1; but link1.get() == link2.get() == 48
 link1.set(49); // two-way sync: link1.get() == link2.get() == prop.get() == 49
 
-storage.get('PropA') // == 17 
+storage.get<number>('PropA') // == 17
 storage.set('PropA', 101);
-storage.get('PropA') // == 101
+storage.get<number>('PropA') // == 101
 
-AppStorage.Get('PropA') // == 49
+AppStorage.get<number>('PropA') // == 49
 link1.get() // == 49
 link2.get() // == 49
 prop.get() // == 49
@@ -171,8 +172,9 @@ prop.get() // == 49
 
 
 ```ts
-AppStorage.SetOrCreate('PropA', 47);
-let storage = new LocalStorage({ 'PropA': 48 });
+AppStorage.setOrCreate('PropA', 47);
+let storage = new LocalStorage();
+storage['PropA'] = 48;
 
 @Entry(storage)
 @Component
@@ -196,7 +198,7 @@ struct CompA {
 
 Compared with the common mechanism for event notification, the two-way synchronization mechanism of @StorageLink and AppStorage is far less cost efficient and therefore not recommended. This is because AppStorage stores UI-related data, and its changes will cause costly UI refresh.
 
-In the following example, any tap event in the **TapImage** component will trigger a change of the **tapIndex** attribute. As @StorageLink establishes a two-way data synchronization with AppStorage, the local change is synchronized to AppStorage. As a result, all visible custom components owning the **tapIndex** attribute bound to AppStorage are notified to refresh the UI.
+In the following example, any tap event in the **TapImage** component will trigger a change of the **tapIndex** attribute. As @StorageLink establishes a two-way data synchronization with AppStorage, the local change is synchronized to AppStorage. As a result, all custom components owning the **tapIndex** attribute bound to AppStorage are notified to refresh the UI.  
 
 
 ```ts
@@ -242,8 +244,13 @@ struct Gallery2 {
 export struct TapImage {
   @StorageLink('tapIndex') @Watch('onTapIndexChange') tapIndex: number = -1;
   @State tapColor: Color = Color.Black;
-  private index: number;
-  private uri: Resource;
+  private index: number = 0;
+  private uri: Resource = {
+    id: 0,
+    type: 0,
+    moduleName: "",
+    bundleName: ""
+  };
 
   // Check whether the component is selected.
   onTapIndexChange() {
@@ -313,9 +320,9 @@ struct Gallery2 {
             if (this.preIndex === item.id) {
               return
             }
-            var innerEvent = { eventId: item.id }
+            let innerEvent: emitter.InnerEvent = { eventId: item.id }
             // Selected: from black to red
-            var eventData = {
+            let eventData: emitter.EventData = {
               data: {
                 "colorTag": 1
               }
@@ -324,9 +331,9 @@ struct Gallery2 {
 
             if (this.preIndex != -1) {
               console.info(`preIndex: ${this.preIndex}, index: ${item.id}, black`)
-              var innerEvent = { eventId: this.preIndex }
+              let innerEvent: emitter.InnerEvent = { eventId: this.preIndex }
               // Deselected: from red to black
-              var eventData = {
+              let eventData: emitter.EventData = {
                 data: {
                   "colorTag": 0
                 }
@@ -335,7 +342,6 @@ struct Gallery2 {
             }
             this.preIndex = item.id
           })
-
         }, (item: ViewData) => JSON.stringify(item))
       }.columnsTemplate('1fr 1fr')
     }
@@ -346,17 +352,26 @@ struct Gallery2 {
 @Component
 export struct TapImage {
   @State tapColor: Color = Color.Black;
-  private index: number;
-  private uri: Resource;
+  private index: number = 0;
+  private uri: Resource = {
+    id: 0,
+    type: 0,
+    moduleName: "",
+    bundleName: ""
+  };
 
   onTapIndexChange(colorTag: emitter.EventData) {
-    this.tapColor = colorTag.data.colorTag ? Color.Red : Color.Black
+    if (colorTag.data != null) {
+      this.tapColor = colorTag.data.colorTag ? Color.Red : Color.Black
+    }
   }
 
   aboutToAppear() {
     // Define the event ID.
-    var innerEvent = { eventId: this.index }
-    emitter.on(innerEvent, this.onTapIndexChange.bind(this))
+    let innerEvent: emitter.InnerEvent = { eventId: this.index }
+    emitter.on(innerEvent, data => {
+    this.onTapIndexChange(data)
+    })
   }
 
   build() {
@@ -414,8 +429,13 @@ struct Gallery2 {
 export struct TapImage {
   @StorageLink('tapIndex') tapIndex: number = -1;
   @State tapColor: Color = Color.Black;
-  private index: number;
-  private uri: Resource;
+  private index: number = 0;
+  private uri: Resource = {
+    id: 0,
+    type: 0,
+    moduleName: "",
+    bundleName: ""
+  };
 
   build() {
     Column() {
@@ -440,9 +460,9 @@ export struct TapImage {
 
 When using AppStorage together with [PersistentStorage](arkts-persiststorage.md) and [Environment](arkts-environment.md), pay attention to the following:
 
-- A call to **PersistentStorage.PersistProp()** after creating the attribute in AppStorage uses the type and value in AppStorage and overwrites any attribute with the same name in PersistentStorage. In light of this, the opposite order of calls is recommended. For an example of incorrect usage, see [Accessing Attribute in AppStorage Before PersistentStorage](arkts-persiststorage.md#accessing-attribute-in-appstorage-before-persistentstorage).
+- A call to **PersistentStorage.persistProp()** after creating the attribute in AppStorage uses the type and value in AppStorage and overwrites any attribute with the same name in PersistentStorage. In light of this, the opposite order of calls is recommended. For an example of incorrect usage, see [Accessing Attribute in AppStorage Before PersistentStorage](arkts-persiststorage.md#accessing-attribute-in-appstorage-before-persistentstorage).
 
-- A call to **Environment.EnvProp()** after creating the attribute in AppStorage will fail. This is because AppStorage already has an attribute with the same name, and the environment variable will not be written into AppStorage. Therefore, you are advised not to use the preset environment variable name in AppStorage.
+- A call to **Environment.envProp()** after creating the attribute in AppStorage will fail. This is because AppStorage already has an attribute with the same name, and the environment variable will not be written into AppStorage. Therefore, you are advised not to use the preset environment variable name in AppStorage.
 
 - Changes to the variables decorated by state decorators will cause UI re-render. If the changes are for message communication, rather than for UI re-render, the emitter mode is recommended. For the example, see [Unrecommended: Using @StorageLink to Implement Event Notification](#unrecommended-using-storagelink-to-implement-event-notification).
 <!--no_check-->

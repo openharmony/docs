@@ -22,9 +22,6 @@ OpenHarmony预置了FileManager文件管理器。系统应用开发者也可以�
    ```ts
    import fileAccess from '@ohos.file.fileAccess';
    import fileExtensionInfo from '@ohos.file.fileExtensionInfo';
-   import { Filter } from '@ohos.file.fs';
-   import common from '@ohos.app.ability.common';
-   import { BusinessError } from '@ohos.base';
    ```
 
    其中fileAccess提供了文件基础操作的API，fileExtensionInfo提供了应用开发的关键结构体。
@@ -35,12 +32,16 @@ OpenHarmony预置了FileManager文件管理器。系统应用开发者也可以�
    在文件访问框架中，使用RootInfo用于表示设备的属性信息。以下示例可以获取所有设备的RootInfo。
 
    ```ts
+   import common from '@ohos.app.ability.common';
+   import { BusinessError } from '@ohos.base';
+   import { Filter } from '@ohos.file.fs';
+
    // 获取应用上下文
    let context = getContext(this) as common.UIAbilityContext;
 
    // 创建连接系统内所有文件管理服务端的helper对象
    let fileAccessHelperAllServer: fileAccess.FileAccessHelper;
-   function createFileAccessHelper() {
+   function createFileAccessHelper(): void {
      try {    // this.context是EntryAbility传过来的Context
        fileAccessHelperAllServer = fileAccess.createFileAccessHelper(context);
        if (!fileAccessHelperAllServer) {
@@ -52,7 +53,7 @@ OpenHarmony预置了FileManager文件管理器。系统应用开发者也可以�
      }
    }
    let rootInfos: Array<fileAccess.RootInfo> = [];
-   async function getRoots() {
+   async function getRoots(): Promise<void>{
      let rootIterator: fileAccess.RootIterator;
      let isDone: boolean = false;
      try {
@@ -81,19 +82,22 @@ OpenHarmony预置了FileManager文件管理器。系统应用开发者也可以�
     listfile和scanfile接口当前支持RootInfo对象调用，可用于支撑遍历下一级文件或过滤整个目录树。同时，接口也支持FileInfo对象调用，用于支撑遍历下一级文件或过滤指定目录。
 
    ```ts
+   import { BusinessError } from '@ohos.base';
+   import { Filter } from '@ohos.file.fs';
+
    // 从根目录开始
-   let rootInfo = rootInfos[0];
+   let rootInfo: Array<fileAccess.RootInfo> = rootInfos[0];
    let fileInfos: Array<fileAccess.FileInfo> = [];
    let isDone: boolean = false;
    let filter: Filter = {suffix : [".txt", ".jpg", ".xlsx"]}; // 设定过滤条件
    try {  
-     let fileIterator = rootInfo.listFile();          // 遍历设备rootinfos[0]的根目录，返回迭代器对象
+     let fileIterator: string = rootInfo.listFile();          // 遍历设备rootinfos[0]的根目录，返回迭代器对象
      // let fileIterator = rootInfo.scanFile(filter); // 过滤设备rootinfos[0]满足指定条件的文件信息，返回迭代对象
      if (!fileIterator) {
        console.error("listFile interface returns an undefined object");
      }
      while (!isDone) {
-       let result = fileIterator.next();
+       let result: boolean = fileIterator.next();
        console.info("next result = " + JSON.stringify(result));
        isDone = result.done;
        if (!isDone)
@@ -105,18 +109,18 @@ OpenHarmony预置了FileManager文件管理器。系统应用开发者也可以�
    }
    
    // 从指定的目录开始
-   let fileInfoDir = fileInfos[0]; // fileInfoDir 表示某个目录信息
+   let fileInfoDir: Array<fileAccess.FileInfo> = fileInfos[0]; // fileInfoDir 表示某个目录信息
    let subFileInfos: Array<fileAccess.FileInfo> = [];
    let isDone02: boolean = false;
    let filter02: Filter = {suffix : [".txt", ".jpg", ".xlsx"]}; // 设定过滤条件
    try {
-     let fileIterator = fileInfoDir.listFile(); // 遍历特定的目录fileinfo，返回迭代器对象
+     let fileIterator: string = fileInfoDir.listFile(); // 遍历特定的目录fileinfo，返回迭代器对象
      // let fileIterator = rootInfo.scanFile(filter02); // 过滤特定的目录fileinfo，返回迭代器对象
      if (!fileIterator) {
        console.error("listFile interface returns an undefined object");
      }
      while (!isDone02) {
-       let result = fileIterator.next();
+       let result: boolean = fileIterator.next();
        console.info("next result = " + JSON.stringify(result));
        isDone02 = result.done;
        if (!isDone02)
@@ -132,14 +136,16 @@ OpenHarmony预置了FileManager文件管理器。系统应用开发者也可以�
    开发者可以集成文件访问框架的接口，完成一些用户行为，比如删除文件（目录）、重命名文件（目录）、新建文件（目录）、移动文件（目录）等。以下示例展示了如何创建一个文件，其他接口请参见[API参考](../reference/apis/js-apis-fileAccess.md)。
 
    ```ts
+   import { BusinessError } from '@ohos.base';
+
    // 以本地设备为例
    // 创建文件
    // 示例代码sourceUri是Download目录的fileinfo中的URI
    // 开发者应根据自己实际获取fileinfo的URI进行开发
-   async function creatFile() {
+   async function creatFile(): Promise<void> {
      let sourceUri: string = "file://docs/storage/Users/currentUser/Download";
      let displayName: string = "file1";
-     let fileUri: string;
+     let fileUri: string = '';
      try {
        // fileAccessHelperAllServer 参考 fileAccess.createFileAccessHelper 示例代码获取
        fileUri = await fileAccessHelperAllServer.createFile(sourceUri, displayName);

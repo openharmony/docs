@@ -124,21 +124,25 @@ If you need to transfer data to the target page during redirection, you can add 
 ```ts
 class DataModelInfo {
   age: number;
+
+  constructor(age: number) {
+    this.age = age;
+  }
 }
 
 class DataModel {
   id: number;
   info: DataModelInfo;
+
+  constructor(id: number, info: DataModelInfo) {
+    this.id = id;
+    this.info = info;
+  }
 }
 
 function onJumpClick(): void {
   // On the Home page
-  let paramsInfo: DataModel = {
-    id: 123,
-    info: {
-      age: 20
-    }
-  };
+  let paramsInfo: DataModel = new DataModel(123, new DataModelInfo(20));
 
   router.pushUrl({
     url: 'pages/Detail', // Target URL.
@@ -157,9 +161,9 @@ On the target page, you can call the [getParams()](../reference/apis/js-apis-rou
 
 
 ```ts
-const params = router.getParams(); // Obtain the passed parameters.
-const id = params['id']; // Obtain the value of the id attribute.
-const age = params['info'].age; // Obtain the value of the age attribute.
+const params:DataModel = router.getParams() as DataModel; // Obtain the passed parameter object.
+const id:number = params.id; // Obtain the value of the id attribute.
+const age:number = params.info.age; // Obtain the value of the age attribute.
 ```
 
 
@@ -204,11 +208,17 @@ You can use any of the following methods to return to a page:
 
 
   ```ts
+  class routerParam {
+    info: string;
+
+    constructor(info: string) {
+      this.info = info;
+    }
+  }
+
   router.back({
     url: 'pages/Home',
-    params: {
-      info:'From Home Page'
-    }
+    params: new routerParam ('From Home Page')
   });
   ```
 
@@ -219,8 +229,8 @@ On the target page, call the **router.getParams()** API at the position where pa
 
 ```ts
 onPageShow() {
-  const params = router.getParams(); // Obtain the passed parameters.
-  const info = params['info']; // Obtain the value of the info attribute.
+  const params = router.getParams() as routerParam; // Obtain the passed parameter object.
+  const info = params.info; // Obtain the value of the info attribute.
 }
 ```
 
@@ -257,6 +267,8 @@ To enable the confirmation dialog box for page return, call the [router.showAler
 
 
 ```ts
+import {BusinessError} from '@ohos.base';
+
 // Define a click event processing function for the back button.
 function onBackClick(): void {
   // Invoke the router.showAlertBeforeBackPage() API to set the information about the confirmation dialog box.
@@ -265,7 +277,7 @@ function onBackClick(): void {
       message: 'Payment not completed yet. Are you sure you want to return?' // Set the content of the confirmation dialog box.
     });
   } catch (err) {
-    console.error(`Invoke showAlertBeforeBackPage failed, code is ${err.code}, message is ${err.message}`);
+    console.error(`Invoke showAlertBeforeBackPage failed, code is ${(err as BusinessError).code}, message is ${(err as BusinessError).message}`);
   }
 
   // Invoke the router.back() API to return to the previous page.
@@ -276,7 +288,7 @@ function onBackClick(): void {
 The **router.showAlertBeforeBackPage()** API receives an object as a parameter. The object contains the following attributes:
 
 **message**: content of the dialog box. The value is of the string type.
-If the API is successfully called, the confirmation dialog box is displayed on the target page. Otherwise, an exception is thrown and the error code and error information is obtained through **err.code** and **err.message**.
+If the API is called successfully, the confirmation dialog box is displayed on the target page. Otherwise, an exception is thrown and the error code and error information is obtained through **err.code** and **err.message**.
 
 When the user clicks the back button, a confirmation dialog box is displayed, prompting the user to confirm their operation. If the user selects Cancel, the application stays on the current page. If the user selects OK, the **router.back()** API is triggered and the redirection is performed based on the parameters.
 
@@ -295,6 +307,9 @@ In the event callback, call the [promptAction.showDialog()](../reference/apis/js
 
 
 ```ts
+import { BusinessError } from '@ohos.base';
+import promptAction from '@ohos.promptAction';
+
 function onBackClick() {
   // Display a custom confirmation dialog box.
   promptAction.showDialog({
@@ -319,7 +334,7 @@ function onBackClick() {
       // Invoke the router.back() API to return to the previous page.
       router.back();
     }
-  }).catch((err) => {
+  }).catch((err:BusinessError) => {
     console.error(`Invoke showDialog failed, code is ${err.code}, message is ${err.message}`);
   })
 }
@@ -342,6 +357,7 @@ In the target page in the [shared package](../quick-start/shared-guide.md), name
 
 ```ts
 // library/src/main/ets/pages/Index.ets
+// library is the custom name of the new shared package.
 @Entry({ routeName : 'myPage' })
 @Component
 struct MyComponent {
@@ -353,7 +369,26 @@ When the configuration is successful, import the named route page to the page fr
 ```ts
 // entry/src/main/ets/pages/Index.ets
 import router from '@ohos.router';
-import 'library/src/main/ets/Index.ets' // Import the named route page from the shared package library.
+import'library/src/main/ets/pages/Index' // Import the named route page from the library of the shared package.
+import { BusinessError } from '@ohos.base';
+
+class innerParams {
+  data3: number[];
+
+  constructor(tuple: number[]) {
+    this.data3 = tuple;
+  }
+}
+
+class routerParams {
+  data1: string;
+  data2: innerParams;
+
+  constructor(data1: string, data2: number[]) {
+    this.data1 = data1;
+    this.data2 = new innerParams(data2);
+  }
+}
 
 @Entry
 @Component
@@ -369,15 +404,10 @@ struct Index {
           try {
             router.pushNamedRoute({
               name: 'myPage',
-              params: {
-                data1: 'message',
-                data2: {
-                  data3: [123, 456, 789]
-                }
-              }
+              params: new routerParams('message', [123, 456, 789])
             })
           } catch (err) {
-            console.error(`pushNamedRoute failed, code is ${err.code}, message is ${err.message}`);
+            console.error(`pushNamedRoute failed, code is ${(err as BusinessError).code}, message is ${(err as BusinessError).message}`);
           }
         })
     }

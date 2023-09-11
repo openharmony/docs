@@ -212,20 +212,21 @@ You are advised to use PlainArray when you need to store KV pairs whose keys are
 Refer to the code snippet below to add, access, and modify elements in **HashMap**, **TreeMap**, **LightWeightMap**, **Stack**, and **PlainArray**.
 
 
-```js
+```ts
 // HashMap
 import HashMap from '@ohos.util.HashMap'; // Import the HashMap module.
 
-let hashMap = new HashMap();
-hashMap.set('a', 123);
-hashMap.set (4, 123);// Add an element.
-console.info(`result: ${hashMap.hasKey(4)}`); // Check whether an element is contained.
-console.info(`result: ${hashMap.get('a')}`); // Access an element.
+let hashMap1: HashMap<string, number> = new HashMap();
+hashMap1.set('a', 123);
+let hashMap2: HashMap<number, number> = new HashMap();
+hashMap2.set(4, 123); // Add an element.
+console.info(`result: ${hashMap2.hasKey(4)}`); // Check whether an element is contained.
+console.info(`result: ${hashMap1.get('a')}`); // Access an element.
 
 // TreeMap
 import TreeMap from '@ohos.util.TreeMap'; // Import the TreeMap module.
 
-let treeMap = new TreeMap();
+let treeMap: TreeMap<string, number> = new TreeMap();
 treeMap.set('a', 123);
 treeMap.set('6', 356); // Add an element.
 console.info(`result: ${treeMap.get('a')}`); // Access an element.
@@ -235,7 +236,7 @@ console.info(`result: ${treeMap.getLastKey()}`); // Access the last element.
 // LightWeightMap
 import LightWeightMap from '@ohos.util.LightWeightMap'; // Import the LightWeightMap module.
 
-let lightWeightMap = new LightWeightMap();
+let lightWeightMap: LightWeightMap<string, number> = new LightWeightMap();
 lightWeightMap.set('x', 123);
 lightWeightMap.set('8', 356); // Add an element.
 console.info(`result: ${lightWeightMap.get('a')}`); // Access an element.
@@ -245,7 +246,7 @@ console.info(`result: ${lightWeightMap.getIndexOfKey('8')}`); // Access an eleme
 // PlainArray
 import PlainArray from '@ohos.util.PlainArray' // Import the PlainArray module.
 
-let plainArray = new PlainArray();
+let plainArray: PlainArray<string> = new PlainArray();
 plainArray.add(1, 'sdd');
 plainArray.add(2,'sff'); // Add an element.
 console.info(`result: ${plainArray.get(1)}`); // Access an element.

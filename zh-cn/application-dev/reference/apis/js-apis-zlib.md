@@ -41,17 +41,19 @@ zipFile(inFile: string, outFile: string, options: Options): Promise&lt;void&gt;
 //【压缩文件 例子1】
 // 代码中使用的路径需为应用的沙箱路径，如/data/storage/el2/base/haps,也可以通过context获取
 import zlib from '@ohos.zlib';
+import { BusinessError } from '@ohos.base';
+
 let inFile = '/xxx/filename.xxx';
 let outFile = '/xxx/xxx.zip';
-let options = {
+let options: zlib.Options = {
   level: zlib.CompressLevel.COMPRESS_LEVEL_DEFAULT_COMPRESSION,
   memLevel: zlib.MemLevel.MEM_LEVEL_DEFAULT,
   strategy: zlib.CompressStrategy.COMPRESS_STRATEGY_DEFAULT_STRATEGY
 };
 
-zlib.zipFile(inFile, outFile, options).then((data) => {
+zlib.zipFile(inFile, outFile, options).then((data: void) => {
     console.log('zipFile result is ' + JSON.stringify(data));
-}).catch((err) => {
+}).catch((err: BusinessError) => {
     console.log('error is ' + JSON.stringify(err));
 });
 ```
@@ -62,17 +64,19 @@ zlib.zipFile(inFile, outFile, options).then((data) => {
 // 【压缩文件夹 例子2】
 // 代码中使用的路径需为应用的沙箱路径，如/data/storage/el2/base/haps,也可以通过context获取
 import zlib from '@ohos.zlib';
+import { BusinessError } from '@ohos.base';
+
 let inFile = '/xxx/xxx';
 let outFile = '/xxx/xxx.zip';
-let options = {
+let options: zlib.Options = {
   level: zlib.CompressLevel.COMPRESS_LEVEL_DEFAULT_COMPRESSION,
   memLevel: zlib.MemLevel.MEM_LEVEL_DEFAULT,
   strategy: zlib.CompressStrategy.COMPRESS_STRATEGY_DEFAULT_STRATEGY
 };
 
-zlib.zipFile(inFile , outFile, options).then((data) => {
+zlib.zipFile(inFile , outFile, options).then((data: void) => {
     console.log('zipFile result is ' + JSON.stringify(data));
-}).catch((err)=>{
+}).catch((err: BusinessError)=>{
     console.log('error is ' + JSON.stringify(err));
 });
 ```
@@ -107,17 +111,19 @@ unzipFile(inFile:string, outFile:string, options: Options): Promise&lt;void&gt;
 // 【解压缩 例子1】
 // 代码中使用的路径需为应用的沙箱路径，如/data/storage/el2/base/haps,也可以通过context获取
 import zlib from '@ohos.zlib';
+import { BusinessError } from '@ohos.base';
+
 let inFile = '/xx/xxx.zip';
 let outFile = '/xxx';
 
-let options = {
+let options: zlib.Options = {
   level: zlib.CompressLevel.COMPRESS_LEVEL_DEFAULT_COMPRESSION,
   memLevel: zlib.MemLevel.MEM_LEVEL_DEFAULT,
   strategy: zlib.CompressStrategy.COMPRESS_STRATEGY_DEFAULT_STRATEGY
 };
-zlib.unzipFile(inFile, outFile, options).then((data) => {
+zlib.unzipFile(inFile, outFile, options).then((data: void) => {
     console.log('unzipFile result is ' + JSON.stringify(data));
-}).catch((err)=>{
+}).catch((err: BusinessError)=>{
     console.log('error is ' + JSON.stringify(err));
 })
 ```
@@ -154,22 +160,26 @@ compressFile(inFile: string, outFile: string, options: Options, callback: AsyncC
 // 【压缩文件 例子1】
 // 代码中使用的路径需为应用的沙箱路径，如/data/storage/el2/base/haps,也可以通过context获取
 import zlib from '@ohos.zlib';
+import { BusinessError } from '@ohos.base';
+
 let inFile = '/xxx/filename.xxx';
 let outFile = '/xxx/xxx.zip';
-let options = {
+let options: zlib.Options = {
   level: zlib.CompressLevel.COMPRESS_LEVEL_DEFAULT_COMPRESSION,
   memLevel: zlib.MemLevel.MEM_LEVEL_DEFAULT,
   strategy: zlib.CompressStrategy.COMPRESS_STRATEGY_DEFAULT_STRATEGY
 };
 
 try {
-    zlib.compressFile(inFile, outFile, options, (errData) => {
+    zlib.compressFile(inFile, outFile, options, (errData: BusinessError) => {
         if (errData !== null) {
             console.log(`errData is errCode:${errData.code}  message:${errData.message}`);
         }
     })
 } catch(errData) {
-    console.log(`errData is errCode:${errData.code}  message:${errData.message}`);
+    let code = (errData as BusinessError).code;
+    let message = (errData as BusinessError).message;
+    console.log(`errData is errCode:${code}  message:${message}`);
 }
 ```
 
@@ -202,26 +212,30 @@ compressFile(inFile: string, outFile: string, options: Options): Promise\<void>;
 // 【压缩文件 例子2】
 // 代码中使用的路径需为应用的沙箱路径，如/data/storage/el2/base/haps,也可以通过context获取
 import zlib from '@ohos.zlib';
+import { BusinessError } from '@ohos.base';
+
 let inFile = '/xxx/filename.xxx';
 let outFile = '/xxx/xxx.zip';
-let options = {
+let options: zlib.Options = {
   level: zlib.CompressLevel.COMPRESS_LEVEL_DEFAULT_COMPRESSION,
   memLevel: zlib.MemLevel.MEM_LEVEL_DEFAULT,
   strategy: zlib.CompressStrategy.COMPRESS_STRATEGY_DEFAULT_STRATEGY
 };
 
 try {
-    zlib.compressFile(inFile, outFile, options).then((data) => {
+    zlib.compressFile(inFile, outFile, options).then((data: void) => {
         console.info('compressFile success');
-    }).catch((errData) => {
+    }).catch((errData: BusinessError) => {
         console.log(`errData is errCode:${errData.code}  message:${errData.message}`);
     })
 } catch(errData) {
-    console.log(`errData is errCode:${errData.code}  message:${errData.message}`);
+    let code = (errData as BusinessError).code;
+    let message = (errData as BusinessError).message;
+    console.log(`errData is errCode:${code}  message:${message}`);
 }
 ```
 
-## zlib.decompressFile<sup>10+</sup>
+## zlib.decompressFile<sup>9+</sup>
 
 decompressFile(inFile: string, outFile: string, options: Options, callback: AsyncCallback\<void>): void;
 
@@ -254,20 +268,24 @@ decompressFile(inFile: string, outFile: string, options: Options, callback: Asyn
 // 【解压缩 例子1】
 // 代码中使用的路径需为应用的沙箱路径，如/data/storage/el2/base/haps,也可以通过context获取
 import zlib from '@ohos.zlib';
+import { BusinessError } from '@ohos.base';
+
 let inFile = '/xx/xxx.zip';
 let outFileDir = '/xxx';
-let options = {
+let options: zlib.Options = {
   level: zlib.CompressLevel.COMPRESS_LEVEL_DEFAULT_COMPRESSION
 };
 
 try {
-    zlib.decompressFile(inFile, outFileDir, options, (errData) => {
+    zlib.decompressFile(inFile, outFileDir, options, (errData: BusinessError) => {
         if (errData !== null) {
             console.log(`errData is errCode:${errData.code}  message:${errData.message}`);
         }
     })
 } catch(errData) {
-    console.log(`errData is errCode:${errData.code}  message:${errData.message}`);
+    let code = (errData as BusinessError).code;
+    let message = (errData as BusinessError).message;
+    console.log(`errData is errCode:${code}  message:${message}`);
 }
 ```
 
@@ -301,20 +319,24 @@ decompressFile(inFile: string, outFile: string, options?: Options): Promise\<voi
 // 【解压缩 例子2】
 // 代码中使用的路径需为应用的沙箱路径，如/data/storage/el2/base/haps,也可以通过context获取
 import zlib from '@ohos.zlib';
+import { BusinessError } from '@ohos.base';
+
 let inFile = '/xx/xxx.zip';
 let outFileDir = '/xxx';
-let options = {
+let options: zlib.Options = {
   level: zlib.CompressLevel.COMPRESS_LEVEL_DEFAULT_COMPRESSION
 };
 
 try {
-    zlib.decompressFile(inFile, outFileDir, options).then((data) => {
+    zlib.decompressFile(inFile, outFileDir, options).then((data: void) => {
         console.info('decompressFile success');
-    }).catch((errData) => {
+    }).catch((errData: BusinessError) => {
         console.log(`errData is errCode:${errData.code}  message:${errData.message}`);
     })
 } catch(errData) {
-    console.log(`errData is errCode:${errData.code}  message:${errData.message}`);
+    let code = (errData as BusinessError).code;
+    let message = (errData as BusinessError).message;
+    console.log(`errData is errCode:${code}  message:${message}`);
 }
 ```
 
@@ -350,17 +372,20 @@ decompressFile(inFile: string, outFile: string, callback: AsyncCallback\<void\>)
 // 【解压缩 例子1】
 // 代码中使用的路径需为应用的沙箱路径，如/data/storage/el2/base/haps,也可以通过context获取
 import zlib from '@ohos.zlib';
+import { BusinessError } from '@ohos.base';
 let inFile = '/xx/xxx.zip';
 let outFileDir = '/xxx';
 
 try {
-    zlib.decompressFile(inFile, outFileDir, (errData) => {
+    zlib.decompressFile(inFile, outFileDir, (errData: BusinessError) => {
         if (errData !== null) {
-            console.log(`errData is errCode:${errData.code}  message:${errData.message}`);
+            console.log(`decompressFile failed. code is ${errData.code}, message is ${errData.message}`);
         }
     })
 } catch(errData) {
-    console.log(`errData is errCode:${errData.code}  message:${errData.message}`);
+    let code = (errData as BusinessError).code;
+    let message = (errData as BusinessError).message;
+    console.log(`decompressFile failed. code is ${code}, message is ${message}`);
 }
 ```
 

@@ -13,7 +13,6 @@ FormExtensionContext模块提供FormExtensionAbility具有的接口和能力。
 
 ```ts
 import common from '@ohos.app.ability.common';
-import Base from '@ohos.base';
 ```
 
 ## FormExtensionContext.startAbility
@@ -51,6 +50,7 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void
 ```ts
 import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
 import Want from '@ohos.app.ability.Want';
+import Base from '@ohos.base';
 
 export default class MyFormExtensionAbility extends FormExtensionAbility {
   onFormEvent(formId: string, message: string) {
@@ -66,7 +66,7 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
     };
     this.context.startAbility(want, (error: Base.BusinessError) => {
       if (error) {
-        console.error('FormExtensionContext startAbility, error:${JSON.stringify(error)}');
+        console.error(`FormExtensionContext startAbility, error:${JSON.stringify(error)}`);
       } else {
         console.log('FormExtensionContext startAbility success');
       }
@@ -115,6 +115,7 @@ startAbility(want: Want): Promise&lt;void&gt;
 ```ts
 import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
 import Want from '@ohos.app.ability.Want';
+import Base from '@ohos.base';
 
 export default class MyFormExtensionAbility extends FormExtensionAbility {
   onFormEvent(formId: string, message: string) {
@@ -212,7 +213,7 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
       connection = this.context.connectServiceExtensionAbility(want, options);
     } catch (paramError) {
       // 处理入参错误异常
-      console.error(`error.code: ${paramError.code}, error.message: ${paramError.message}`);
+      console.error(`error.code: ${(paramError as Base.BusinessError).code}, error.message: ${(paramError as Base.BusinessError).message}`);
     }
   }
 };
@@ -250,6 +251,7 @@ disconnectServiceExtensionAbility(connection: number, callback:AsyncCallback&lt;
 import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
 import rpc from '@ohos.rpc';
 import common from '@ohos.app.ability.common';
+import Base from '@ohos.base';
 
 // commRemote为onConnect回调内返回的remote对象，此处定义为null无任何实际意义，仅作示例
 let commRemote: rpc.IRemoteObject | null = null;
@@ -273,7 +275,7 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
     } catch (paramError) {
       commRemote = null;
       // 处理入参错误异常
-      console.error(`error.code: ${paramError.code}, error.message: ${paramError.message}`);
+      console.error(`error.code: ${(paramError as Base.BusinessError).code}, error.message: ${(paramError as Base.BusinessError).message}`);
     }
   }
 };
@@ -316,6 +318,7 @@ disconnectServiceExtensionAbility(connection: number): Promise&lt;void&gt;;
 import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
 import rpc from '@ohos.rpc';
 import common from '@ohos.app.ability.common';
+import Base from '@ohos.base';
 
 // commRemote为onConnect回调内返回的remote对象，此处定义为null无任何实际意义，仅作示例
 let commRemote: rpc.IRemoteObject | null = null;
@@ -340,7 +343,7 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
     } catch (paramError) {
       commRemote = null;
       // 处理入参错误异常
-      console.error(`error.code: ${paramError.code}, error.message: ${paramError.message}`);
+      console.error(`error.code: ${(paramError as Base.BusinessError).code}, error.message: ${(paramError as Base.BusinessError).message}`);
     }
   }
 };

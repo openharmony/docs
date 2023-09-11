@@ -30,6 +30,7 @@ RichEditor(value: RichEditorOptions)
 >  **说明：**
 >
 > 其中clip属性默认值为true。
+> align属性只支持上方丶中间和下方位置的对齐方式。
 
 | 名称                      | 参数类型                                                     | 描述                                                         |
 | ------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
@@ -416,11 +417,11 @@ struct Index {
             start: this.start,
             end: this.end
           }).forEach(item => {
-            if ("imageStyle" in item) {
-              this.content += item.valueResourceStr;
+            if(typeof(item as RichEditorImageSpanResult)['imageStyle'] != 'undefined'){
+              this.content += (item as RichEditorImageSpanResult).valueResourceStr;
               this.content += "\n"
             } else {
-              this.content += item.value;
+              this.content += (item as RichEditorTextSpanResult).value;
               this.content += "\n"
             }
           })
@@ -468,7 +469,8 @@ struct Index {
               })
           })
           .onSelect((value: RichEditorSelection) => {
-            [this.start, this.end] = value.selection;
+            this.start = value.selection[0];
+            this.end = value.selection[1];
             this.message = "[" + this.start + ", " + this.end + "]"
           })
           .aboutToIMEInput((value: RichEditorInsertValue) => {
@@ -494,10 +496,10 @@ struct Index {
               console.log("spanIndex:" + item.spanPosition.spanIndex)
               console.log("spanRange:[" + item.spanPosition.spanRange[0] + "," + item.spanPosition.spanRange[1] + "]")
               console.log("offsetInSpan:[" + item.offsetInSpan[0] + "," + item.offsetInSpan[1] + "]")
-              if ("imageStyle" in item) {
-                console.log("image:" + item.valueResourceStr)
+              if (typeof(item as RichEditorImageSpanResult)['imageStyle'] != 'undefined') {
+                console.log("image:" + (item as RichEditorImageSpanResult).valueResourceStr)
               } else {
-                console.log("text:" + item.value)
+                console.log("text:" + (item as RichEditorTextSpanResult).value)
               }
             })
             return true;
@@ -533,7 +535,7 @@ struct RichEditorExample {
   @Builder CustomKeyboardBuilder() {
     Column() {
       Grid() {
-        ForEach([1, 2, 3, 4, 5, 6, 7, 8, 9, '*', 0, '#'], (item) => {
+        ForEach([1, 2, 3, 4, 5, 6, 7, 8, 9, '*', 0, '#'], (item: number | string) => {
           GridItem() {
             Button(item + "")
               .width(110).onClick(() => {
@@ -611,7 +613,6 @@ struct SelectionMenu {
             this.controller.addTextSpan(this.message, { style: { fontColor: Color.Orange, fontSize: 30 } })
           })
           .onSelect((value: RichEditorSelection) => {
-            if (value.selection == [-1. - 1]) return
             [this.start, this.end] = value.selection
           })
           .bindSelectionMenu(RichEditorSpanType.TEXT, this.panel(), ResponseType.LongPress, { onDisappear: () => {
@@ -631,7 +632,7 @@ struct SelectionMenu {
     Column() {
       Menu() {
         MenuItem({ builder: this.iconPanel() })
-      }.shadow(ShadowStyle.OUTER_DEFAULT_MD).margin({ bottom: 8 })
+      }.shadow(ShadowStyle.OUTER_DEFAULT_MD).margin({ bottom: 8 }).height(56).width(256)
 
       Menu() {
         if (!this.sliderShow) {
@@ -639,16 +640,15 @@ struct SelectionMenu {
         } else {
           MenuItem({ builder: this.sliderPanel() })
         }
-      }
-      .backgroundColor(Color.Transparent).focusable(true).shadow(ShadowStyle.OUTER_DEFAULT_MD)
-    }
+      }.width(256).shadow(ShadowStyle.OUTER_DEFAULT_MD)
+    }.width(256).backgroundColor(Color.Transparent)
   }
 
   @Builder iconPanel() {
     Column() {
       Row({ space: 2 }) {
         ForEach(this.iconArr, (item, index) => {
-          Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+          Flex({ justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
             Image(item).fillColor($r('sys.color.ohos_id_color_primary')).width(24).height(24).focusable(true)
           }
           .border({ width: this.iconIsFocus[index] ? 2 : 0, color: $r('sys.color.ohos_id_color_focused_outline') })
@@ -710,9 +710,8 @@ struct SelectionMenu {
     }
     .backgroundColor(this.colorTransparent)
     .borderRadius($r('sys.float.ohos_id_corner_radius_card'))
-    .width(256)
-    .height(56)
-    .padding(4)
+    .width(248)
+    .height(48)
   }
 
   @Builder listPanel() {
@@ -819,7 +818,6 @@ struct SelectionMenu {
                       }
                     })
                     break
-                  case 3: // 全选
                 }
               })
           }
@@ -838,8 +836,7 @@ struct SelectionMenu {
       }
     }
     .focusable(true)
-    .width(256)
-    .padding(4)
+    .width(248)
     .backgroundColor(this.colorTransparent)
     .borderRadius($r('sys.float.ohos_id_corner_radius_card'))
   }
@@ -861,9 +858,8 @@ struct SelectionMenu {
     .backgroundColor(this.colorTransparent)
     .borderRadius($r('sys.float.ohos_id_corner_radius_card'))
     .padding(15)
-    .width(256)
-    .height(56)
-    .margin({ bottom: 8 })
+    .width(248)
+    .height(48)
   }
 }
 

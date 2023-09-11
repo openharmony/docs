@@ -29,7 +29,7 @@ Currently, the UDMF provides the public data channel for cross-application data 
 
 ## Available APIs
 
-The following table lists the UDMF APIs. All of them are executed asynchronously in callback or promise mode. In the following table, callback-based APIs are used as an example. For more information about the APIs, see [UDMF](../reference/apis/js-apis-data-udmf.md).
+The following table lists the UDMF APIs. All of them are executed asynchronously in callback or promise mode. In the following table, callback-based APIs are used as an example. For more information about the APIs, see [Unified Data Channel](../reference/apis/js-apis-data-unifiedDataChannel.md) and [Standard Data Definition and Description](../reference/apis/js-apis-data-uniformTypeDescriptor.md).
 
 | API                                                                                   | Description                                         | 
 |-----------------------------------------------------------------------------------------|---------------------------------------------|
@@ -45,121 +45,131 @@ The following example describes how to implement many-to-many data sharing. The 
 
 ### Data Provider
 
-1. Import the **@ohos.data.UDMF** module.
+1. Import the **@ohos.data.unifiedDataChannel** and **@ohos.data.uniformTypeDescriptor** modules.
 
    ```ts
-   import UDMF from '@ohos.data.UDMF';
+   import unifiedDataChannel from '@ohos.data.unifiedDataChannel';
+   import uniformTypeDescriptor from '@ohos.data.uniformTypeDescriptor';
    ```
 2. Create a **UnifiedData** object and insert it into the UDMF public data channel.
 
    ```ts
-   let plainText = new UDMF.PlainText();
+   import { BusinessError } from '@ohos.base';
+   let plainText = new unifiedDataChannel.PlainText();
    plainText.textContent = 'hello world!';
-   let unifiedData = new UDMF.UnifiedData(plainText);
+   let unifiedData = new unifiedDataChannel.UnifiedData(plainText);
    
    // Specify the type of the data channel to which the data is to be inserted.
-   let options = {
-       intention: UDMF.Intention.DATA_HUB
+   let options: unifiedDataChannel.Options = {
+     intention: unifiedDataChannel.Intention.DATA_HUB
    }
    try {
-       UDMF.insertData(options, unifiedData, (err, data) => {
-           if (err === undefined) {
-               console.info(`Succeeded in inserting data. key = ${data}`);
-           } else {
-               console.error(`Failed to insert data. code is ${err.code},message is ${err.message} `);
-           }
-       });
-   } catch(e) {
-       console.error(`Insert data throws an exception. code is ${e.code},message is ${e.message} `);
+     unifiedDataChannel.insertData(options, unifiedData, (err, data) => {
+       if (err === undefined) {
+         console.info(`Succeeded in inserting data. key = ${data}`);
+       } else {
+         console.error(`Failed to insert data. code is ${err.code},message is ${err.message} `);
+       }
+     });
+   } catch (e) {
+     let error: BusinessError = e as BusinessError;
+     console.error(`Insert data throws an exception. code is ${error.code},message is ${error.message} `);
    }
    ```
 3. Update the **UnifiedData** object inserted.
 
    ```ts
-   let plainText = new UDMF.PlainText();
+   import { BusinessError } from '@ohos.base';
+   let plainText = new unifiedDataChannel.PlainText();
    plainText.textContent = 'How are you!';
-   let unifiedData = new UDMF.UnifiedData(plainText);
+   let unifiedData = new unifiedDataChannel.UnifiedData(plainText);
    
    // Specify the URI of the UnifiedData object to update.
-   let options = {
-       key: 'udmf://DataHub/com.ohos.test/0123456789'
+   let options: unifiedDataChannel.Options = {
+     key: 'udmf://DataHub/com.ohos.test/0123456789'
    };
    
    try {
-       UDMF.updateData(options, unifiedData, (err) => {
-           if (err === undefined) {
-               console.info('Succeeded in updating data.');
-           } else {
-               console.error(`Failed to update data. code is ${err.code},message is ${err.message} `);
-           }
-       });
-   } catch(e) {
-       console.error(`Update data throws an exception. code is ${e.code},message is ${e.message} `);
+     unifiedDataChannel.updateData(options, unifiedData, (err) => {
+       if (err === undefined) {
+         console.info('Succeeded in updating data.');
+       } else {
+         console.error(`Failed to update data. code is ${err.code},message is ${err.message} `);
+       }
+     });
+   } catch (e) {
+     let error: BusinessError = e as BusinessError;
+     console.error(`Update data throws an exception. code is ${error.code},message is ${error.message} `);
    }
    ```
 4. Delete the **UnifiedData** object from the UDMF public data channel.
 
    ```ts
+   import { BusinessError } from '@ohos.base';
    // Specify the type of the data channel whose data is to be deleted.
-   let options = {
-    intention: UDMF.Intention.DATA_HUB
+   let options: unifiedDataChannel.Options = {
+     intention: unifiedDataChannel.Intention.DATA_HUB
    };
-   
+
    try {
-       UDMF.deleteData(options, (err, data) => {
-           if (err === undefined) {
-               console.info(`Succeeded in deleting data. size = ${data.length}`);
-               for (let i = 0; i < data.length; i++) {
-                   let records = data[i].getRecords();
-                   for (let j = 0; j < records.length; j++) {
-                       if (records[j].getType() === UDMF.UnifiedDataType.PLAIN_TEXT) {
-                           let text = <UDMF.PlainText>(records[j]);
-                           console.info(`${i + 1}.${text.textContent}`);
-                       }
-                   }
-               }
-           } else {
-               console.error(`Failed to delete data. code is ${err.code},message is ${err.message} `);
+     unifiedDataChannel.deleteData(options, (err, data) => {
+       if (err === undefined) {
+         console.info(`Succeeded in deleting data. size = ${data.length}`);
+         for (let i = 0; i < data.length; i++) {
+           let records = data[i].getRecords();
+           for (let j = 0; j < records.length; j++) {
+             if (records[j].getType() === uniformTypeDescriptor.UniformDataType.PLAIN_TEXT) {
+               let text = records[j] as unifiedDataChannel.PlainText;
+               console.info(`${i + 1}.${text.textContent}`);
+             }
            }
-       });
-   } catch(e) {
-       console.error(`Delete data throws an exception. code is ${e.code},message is ${e.message} `);
+         }
+       } else {
+         console.error(`Failed to delete data. code is ${err.code},message is ${err.message} `);
+       }
+     });
+   } catch (e) {
+     let error: BusinessError = e as BusinessError;
+     console.error(`Delete data throws an exception. code is ${error.code},message is ${error.message} `);
    }
    ```
    
 ### Data Consumer
 
-1. Import the **@ohos.data.UDMF** module.
+1. Import the **@ohos.data.unifiedDataChannel** and **@ohos.data.uniformTypeDescriptor** modules.
 
    ```ts
-   import UDMF from '@ohos.data.UDMF';
+   import unifiedDataChannel from '@ohos.data.unifiedDataChannel';
+   import uniformTypeDescriptor from '@ohos.data.uniformTypeDescriptor';
    ```
 2. Query the **UnifiedData** object in the UDMF public data channel.
 
    ```ts
+   import { BusinessError } from '@ohos.base';
    // Specify the type of the data channel whose data is to be queried.
-   let options = {
-    intention: UDMF.Intention.DATA_HUB
+   let options: unifiedDataChannel.Options = {
+     intention: unifiedDataChannel.Intention.DATA_HUB
    };
-   
+
    try {
-       UDMF.queryData(options, (err, data) => {
-           if (err === undefined) {
-               console.info(`Succeeded in querying data. size = ${data.length}`);
-               for (let i = 0; i < data.length; i++) {
-                   let records = data[i].getRecords();
-                   for (let j = 0; j < records.length; j++) {
-                       if (records[j].getType() === UDMF.UnifiedDataType.PLAIN_TEXT) {
-                           let text = <UDMF.PlainText>(records[j]);
-                           console.info(`${i + 1}.${text.textContent}`);
-                       }
-                   }
-               }
-           } else {
-               console.error(`Failed to query data. code is ${err.code},message is ${err.message} `);
+     unifiedDataChannel.queryData(options, (err, data) => {
+       if (err === undefined) {
+         console.info(`Succeeded in querying data. size = ${data.length}`);
+         for (let i = 0; i < data.length; i++) {
+           let records = data[i].getRecords();
+           for (let j = 0; j < records.length; j++) {
+             if (records[j].getType() === uniformTypeDescriptor.UniformDataType.PLAIN_TEXT) {
+               let text = records[j] as unifiedDataChannel.PlainText;
+               console.info(`${i + 1}.${text.textContent}`);
+             }
            }
-       });
+         }
+       } else {
+         console.error(`Failed to query data. code is ${err.code},message is ${err.message} `);
+       }
+     });
    } catch(e) {
-       console.error(`Query data throws an exception. code is ${e.code},message is ${e.message} `);
+     let error: BusinessError = e as BusinessError;
+     console.error(`Query data throws an exception. code is ${error.code},message is ${error.message} `);
    }
    ```

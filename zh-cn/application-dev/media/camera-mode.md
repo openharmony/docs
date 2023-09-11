@@ -1,4 +1,4 @@
-# 人像模式拍照实现方案
+# 使用人像模式拍照
 
 ## 开发流程
 
@@ -16,7 +16,7 @@ import { BusinessError } from '@ohos.base';
 import image from '@ohos.multimedia.image';
 import featureAbility from '@ohos.ability.featureAbility';
 
-async function cameraModeCase(context: featureAbility.Context, surfaceId: string): Promise<void> {
+async function cameraModeCase(context: common.Context, surfaceId: string): Promise<void> {
   // 创建CameraManager对象
   let cameraManager: camera.CameraManager = camera.getCameraManager(context);
   if (!cameraManager) {
@@ -55,7 +55,7 @@ async function cameraModeCase(context: featureAbility.Context, surfaceId: string
     return;
   }
   // 创建相机输入流
-  let cameraInput: camera.CameraInput;
+  let cameraInput: camera.CameraInput | undefined = undefined;
   try {
     cameraInput = cameraManager.createCameraInput(cameraArray[0]);
   } catch (error) {
@@ -64,6 +64,9 @@ async function cameraModeCase(context: featureAbility.Context, surfaceId: string
   }
   // 监听cameraInput错误信息
   let cameraDevice: camera.CameraDevice = cameraArray[0];
+  if (cameraInput === undefined) {
+    return;
+  }
   cameraInput.on('error', cameraDevice, (error: BusinessError) => {
     console.info(`Camera input error code: ${error.code}`);
   })
@@ -90,12 +93,15 @@ async function cameraModeCase(context: featureAbility.Context, surfaceId: string
   }
 
   // 创建预览输出流,其中参数 surfaceId 参考上文 XComponent 组件，预览流为XComponent组件提供的surface
-  let previewOutput: camera.PreviewOutput;
+  let previewOutput: camera.PreviewOutput | undefined = undefined;
   try {
     previewOutput = cameraManager.createPreviewOutput(previewProfilesArray[0], surfaceId);
   } catch (error) {
     let err = error as BusinessError;
     console.error("Failed to create the PreviewOutput instance. error code:" + err.code);
+  }
+  if (previewOutput === undefined) {
+    return;
   }
   // 监听预览输出错误信息
   previewOutput.on('error', (error: BusinessError) => {
@@ -106,22 +112,27 @@ async function cameraModeCase(context: featureAbility.Context, surfaceId: string
   // 获取照片显示SurfaceId
   let photoSurfaceId: string = await imageReceiver.getReceivingSurfaceId();
   // 创建拍照输出流
-  let photoOutput: camera.PhotoOutput;
+  let photoOutput: camera.PhotoOutput | undefined = undefined;
   try {
     photoOutput = cameraManager.createPhotoOutput(photoProfilesArray[0], photoSurfaceId);
   } catch (error) {
     let err = error as BusinessError;
     console.error('Failed to createPhotoOutput errorCode = ' + err.code);
   }
+  if (photoOutput === undefined) {
+    return;
+  }
   //创建portrait会话
-  let portraitSession: camera.CaptureSession;
+  let portraitSession: camera.CaptureSession | undefined = undefined;
   try {
     portraitSession = modeManager.createCaptureSession(cameraModeArray[0]);
   } catch (error) {
     let err = error as BusinessError;
     console.error('Failed to create the CaptureSession instance. errorCode = ' + err.code);
   }
-
+  if (portraitSession === undefined) {
+    return;
+  }
   // 监听portraitSession错误信息
   portraitSession.on('error', (error: BusinessError) => {
     console.info(`Capture session error code: ${error.code}`);
@@ -168,20 +179,26 @@ async function cameraModeCase(context: featureAbility.Context, surfaceId: string
   })
 
   // 获取支持的美颜类型
-  let beautyTypes: Array<camera.BeautyType>;
+  let beautyTypes: Array<camera.BeautyType> = [];
   try {
     beautyTypes = portraitSession.getSupportedBeautyTypes();
   } catch (error) {
     let err = error as BusinessError;
     console.error('Failed to get the beauty types. errorCode = ' + err.code);
   }
+  if (beautyTypes.length <= 0) {
+    return;
+  }
   // 获取支持的美颜类型对应的美颜强度范围
-  let beautyRanges: Array<number>;
+  let beautyRanges: Array<number> = [];
   try {
-    beautyRanges = portraitSession.getSupportedBeautyRanges(beautyTypes[0]);
+    beautyRanges = portraitSession.getSupportedBeautyRange(beautyTypes[0]);
   } catch (error) {
     let err = error as BusinessError;
     console.error('Failed to get the beauty types ranges. errorCode = ' + err.code);
+  }
+  if (beautyRanges.length <= 0) {
+    return;
   }
   // 设置美颜类型及对应的美颜强度
   try {
@@ -191,7 +208,7 @@ async function cameraModeCase(context: featureAbility.Context, surfaceId: string
     console.error('Failed to set the beauty type value. errorCode = ' + err.code);
   }
   // 获取已经设置的美颜类型对应的美颜强度
-  let beautyLevel: number;
+  let beautyLevel: number = -1;
   try {
     beautyLevel = portraitSession.getBeauty(beautyTypes[0]);
   } catch (error) {
@@ -199,13 +216,19 @@ async function cameraModeCase(context: featureAbility.Context, surfaceId: string
     console.error('Failed to get the beauty type value. errorCode = ' + err.code);
   }
 
+  if (beautyLevel === -1) {
+    return;
+  }
   // 获取支持的滤镜类型
-  let filterTypes: Array<camera.FilterType>;
+  let filterTypes: Array<camera.FilterType> = [];
   try {
     filterTypes = portraitSession.getSupportedFilters();
   } catch (error) {
     let err = error as BusinessError;
     console.error('Failed to get the filter types. errorCode = ' + err.code);
+  }
+  if (filterTypes.length <= 0) {
+    return;
   }
   // 设置滤镜类型
   try {
@@ -215,21 +238,27 @@ async function cameraModeCase(context: featureAbility.Context, surfaceId: string
     console.error('Failed to set the filter type value. errorCode = ' + err.code);
   }
   // 获取已经设置的滤镜类型
-  let filter: number;
+  let filter: number = -1;
   try {
     filter = portraitSession.getFilter();
   } catch (error) {
     let err = error as BusinessError;
     console.error('Failed to get the filter type value. errorCode = ' + err.code);
   }
+  if (filter === -1) {
+    return;
+  }
 
   // 获取支持的虚化类型
-  let portraitTypes: Array<camera.PortraitEffect>;
+  let portraitTypes: Array<camera.PortraitEffect> = [];
   try {
     portraitTypes = portraitSession.getSupportedPortraitEffects();
   } catch (error) {
     let err = error as BusinessError;
     console.error('Failed to get the portrait effects types. errorCode = ' + err.code);
+  }
+  if (portraitTypes.length <= 0) {
+    return;
   }
   // 设置虚化类型
   try {
@@ -239,7 +268,7 @@ async function cameraModeCase(context: featureAbility.Context, surfaceId: string
     console.error('Failed to set the portrait effects value. errorCode = ' + err.code);
   }
   // 获取已经设置的虚化类型
-  let effect: camera.PortraitEffect;
+  let effect: camera.PortraitEffect | undefined = undefined;
   try {
     effect = portraitSession.getPortraitEffect();
   } catch (error) {
@@ -247,7 +276,11 @@ async function cameraModeCase(context: featureAbility.Context, surfaceId: string
     console.error('Failed to get the portrait effects value. errorCode = ' + err.code);
   }
 
-  let captureSettings: camera.PhotoCaptureSetting;
+  let captureSettings: camera.PhotoCaptureSetting = {
+    quality: camera.QualityLevel.QUALITY_LEVEL_HIGH,
+    rotation: camera.ImageRotation.ROTATION_0,
+    mirror: false
+  };
   // 使用当前拍照设置进行拍照
   photoOutput.capture(captureSettings, async (err: BusinessError) => {
     if (err) {
@@ -272,7 +305,6 @@ async function cameraModeCase(context: featureAbility.Context, surfaceId: string
   portraitSession.release();
 
   // 会话置空
-  portraitSession = null;
+  portraitSession = undefined;
 }
-
 ```

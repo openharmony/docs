@@ -18,6 +18,15 @@ Menu()
 
 作为菜单的固定容器，无参数。
 
+> **说明:**
+> 菜单和菜单项宽度计算规则：
+>
+> 布局过程中，期望每个菜单项的宽度一致。若子组件设置了宽度，则以[尺寸计算规则](ts-universal-attributes-size.md#constraintsize取值对widthheight影响)为准。
+>
+> 不设置宽度的情况：菜单组件会对子组件MenuItem、MenuItemGroup设置默认2栅格的宽度，若菜单项内容区比2栅格宽，则会自适应撑开。
+>
+> 设置宽度的情况：菜单组件会对子组件MenuItem、MenuItemGroup设置减去padding后的固定宽度。
+
 ## 属性
 
 除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性:
@@ -58,7 +67,7 @@ struct Index {
         startIcon: this.iconStr,
         content: "菜单选项",
         endIcon: $r("app.media.arrow_right_filled"),
-        builder: this.SubMenu.bind(this)
+        builder: ():void=>this.SubMenu()
       })
       MenuItemGroup({ header: '小标题' }) {
         MenuItem({ content: "菜单选项" })
@@ -72,7 +81,7 @@ struct Index {
           startIcon: $r("app.media.view_list_filled"),
           content: "菜单选项",
           endIcon: $r("app.media.arrow_right_filled"),
-          builder: this.SubMenu.bind(this)
+          builder: ():void=>this.SubMenu()
         })
       }
       MenuItem({

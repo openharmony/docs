@@ -3,8 +3,10 @@
 
 许多应用希望借助卡片的能力，实现和应用在前台时相同的功能。例如音乐卡片，卡片上提供播放、暂停等按钮，点击不同按钮将触发音乐应用的不同功能，进而提高用户的体验。在卡片中使用**postCardAction**接口的call能力，能够将卡片提供方应用的指定的UIAbility拉到后台。同时，call能力提供了调用应用指定方法、传递数据的功能，使应用在后台运行时可以通过卡片上的按钮执行不同的功能。
 
+> **说明：**
+>
+> 本文主要介绍动态卡片的事件开发。对于静态卡片，请参见[FormLink](../reference/arkui-ts/ts-container-formlink.md)。
 
-说明：<br/>  本文主要介绍动态卡片的事件开发。对于静态卡片，请参见[FormLink](../../application-dev/reference/arkui-ts/ts-container-formlink.md)。<br/>
 通常使用按钮控件来触发call事件，示例代码如下：
 
 
@@ -53,27 +55,48 @@
   
   ```ts
   import UIAbility from '@ohos.app.ability.UIAbility';
-  
-  function FunACall(data) {
-    // 获取call事件中传递的所有参数
-    console.info('FunACall param:' + JSON.stringify(data.readString()));
-    return null;
-  }
-  
-  function FunBCall(data) {
-    console.info('FunBCall param:' + JSON.stringify(data.readString()));
-    return null;
+  import Base from '@ohos.base'
+  import rpc from '@ohos.rpc';
+  import Want from '@ohos.app.ability.Want';
+  import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+
+
+  class MyParcelable implements rpc.Parcelable {
+    num: number;
+    str: string;
+    constructor(num: number, str: string) {
+      this.num = num;
+      this.str = str;
+    }
+    marshalling(messageSequence: rpc.MessageSequence): boolean {
+      messageSequence.writeInt(this.num);
+      messageSequence.writeString(this.str);
+      return true;
+    }
+    unmarshalling(messageSequence: rpc.MessageSequence): boolean {
+      this.num = messageSequence.readInt();
+      this.str = messageSequence.readString();
+      return true;
+    }
   }
   
   export default class CameraAbility extends UIAbility {
     // 如果UIAbility第一次启动，在收到call事件后会触发onCreate生命周期回调
-    onCreate(want, launchParam) {
+    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
       try {
         // 监听call事件所需的方法
-        this.callee.on('funA', FunACall);
-        this.callee.on('funB', FunBCall);
+        this.callee.on('funA', (data: rpc.MessageSequence) => {
+          // 获取call事件中传递的所有参数
+          console.info('FunACall param:' + JSON.stringify(data.readString()));
+          return new MyParcelable(1, 'aaa');
+        });
+        this.callee.on('funB', (data: rpc.MessageSequence) => {
+          // 获取call事件中传递的所有参数
+          console.info('FunACall param:' + JSON.stringify(data.readString()));
+          return new MyParcelable(2, 'bbb');
+        });
       } catch (err) {
-        console.error(`Failed to register callee on. Cause: ${JSON.stringify(err)}`);
+        console.error(`Failed to register callee on. Cause: ${JSON.stringify(err as Base.BusinessError)}`);
       }
     }
   
@@ -85,7 +108,7 @@
         this.callee.off('funA');
         this.callee.off('funB');
       } catch (err) {
-        console.error(`Failed to register callee off. Cause: ${JSON.stringify(err)}`);
+        console.error(`Failed to register callee off. Cause: ${JSON.stringify(err as Base.BusinessError)}`);
       }
     }
   };

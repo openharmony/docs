@@ -7,11 +7,13 @@ The **dragController** module provides APIs for initiating drag actions. When re
 > The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
 > You can preview how this component looks on a real device. The preview is not yet available in the DevEco Studio Previewer.
+>
+> **excuteDrag** and [onDragStart](../arkui-ts/ts-universal-events-drag-drop.md# event) cannot be configured at the same time.
 
 
 ## Modules to Import
 
-```js
+```ts
 import dragController from "@ohos.arkui.dragController";
 ```
 
@@ -35,7 +37,7 @@ Initiates a drag action, with the object to be dragged and the drag information 
 
 ```ts
 import dragController from "@ohos.arkui.dragController"
-import UDMF from '@ohos.data.UDMF'
+import UDMF from '@ohos.data.unifiedDataChannel';
 
 @Entry
 @Component
@@ -52,23 +54,30 @@ struct DragControllerPage {
   build() {
     Column() {
       Button('touch to execute drag')
-        .onTouch((event) => {
-          if (event.type == TouchType.Down) {
-            let text = new UDMF.Text()
-            let unifiedData = new UDMF.UnifiedData(text)
+        .onTouch((event?:TouchEvent) => {
+          if(event){
+            if (event.type == TouchType.Down) {
+              let text = new UDMF.Text()
+              let unifiedData = new UDMF.UnifiedData(text)
 
-            let dragInfo: dragController.DragInfo = {
-              pointerId: 0,
-              data: unifiedData,
-              extraParams: ''
-            }
-            dragController.executeDrag(this.DraggingBuilder.bind(this), dragInfo, (err, {event, extraParams}) => {
-              if (event.getResult() == DragResult.DRAG_SUCCESSFUL) {
-                // ...
-              } else if (event.getResult() == DragResult.DRAG_FAILED) {
-                // ...
+              let dragInfo: dragController.DragInfo = {
+                pointerId: 0,
+                data: unifiedData,
+                extraParams: ''
               }
-            })
+              class tmp{
+                event:DragResult|undefined = undefined
+                extraParams:string = ''
+              }
+              let eve:tmp = new tmp()
+              dragController.executeDrag(this.DraggingBuilder(), dragInfo, (err, eve) => {
+                if (eve.event.getResult() == DragResult.DRAG_SUCCESSFUL) {
+                // ...
+                } else if (eve.event.getResult() == DragResult.DRAG_FAILED) {
+                // ...
+                }
+              })
+            }
           }
         })
     }
@@ -101,14 +110,14 @@ Initiates a drag action, with the object to be dragged and the drag information 
 
 ```ts
 import dragController from "@ohos.arkui.dragController"
-import UDMF from '@ohos.data.UDMF';
 import componentSnapshot from '@ohos.arkui.componentSnapshot';
 import image from '@ohos.multimedia.image';
+import UDMF from '@ohos.data.unifiedDataChannel';
 
 @Entry
 @Component
 struct DragControllerPage {
-  @State pixmap: image.PixelMap = null
+  @State pixmap: image.PixelMap|null = null
 
   @Builder DraggingBuilder() {
     Column() {
@@ -131,35 +140,42 @@ struct DragControllerPage {
   build() {
     Column() {
       Button('touch to execute drag')
-        .onTouch((event) => {
-          if (event.type == TouchType.Down) {
-            let text = new UDMF.Text()
-            let unifiedData = new UDMF.UnifiedData(text)
+        .onTouch((event?:TouchEvent) => {
+          if(event){
+            if (event.type == TouchType.Down) {
+              let text = new UDMF.Text()
+              let unifiedData = new UDMF.UnifiedData(text)
 
-            let dragInfo: dragController.DragInfo = {
-              pointerId: 0,
-              data: unifiedData,
-              extraParams: ''
-            }
-            componentSnapshot.createFromBuilder(this.PixmapBuilder.bind(this)).then((pix: image.PixelMap) => {
-              this.pixmap = pix;
-              let dragItemInfo: DragItemInfo = {
-                pixelMap: this.pixmap,
-                builder: this.DraggingBuilder.bind(this),
-                extraInfo: "DragItemInfoTest"
+              let dragInfo: dragController.DragInfo = {
+                pointerId: 0,
+                data: unifiedData,
+                extraParams: ''
               }
+              componentSnapshot.createFromBuilder(this.PixmapBuilder()).then((pix: image.PixelMap) => {
+                this.pixmap = pix;
+                let dragItemInfo: DragItemInfo = {
+                  pixelMap: this.pixmap,
+                  builder: this.DraggingBuilder(),
+                  extraInfo: "DragItemInfoTest"
+                }
 
-              dragController.executeDrag(dragItemInfo, dragInfo)
-                .then(({event, extraParams}) => {
-                  if (event.getResult() == DragResult.DRAG_SUCCESSFUL) {
-                    // ...
-                  } else if (event.getResult() == DragResult.DRAG_FAILED) {
-                    // ...
-                  }
-                })
-                .catch((err) => {
-                })
-            })
+                class tmp{
+                  event:DragResult|undefined = undefined
+                  extraParams:string = ''
+                }
+                let eve:tmp = new tmp()
+                dragController.executeDrag(dragItemInfo, dragInfo)
+                  .then((eve) => {
+                    if (eve.event.getResult() == DragResult.DRAG_SUCCESSFUL) {
+                      // ...
+                    } else if (eve.event.getResult() == DragResult.DRAG_FAILED) {
+                      // ...
+                    }
+                  })
+                  .catch((err:Error) => {
+                  })
+              })
+            }
           }
         })
     }
@@ -178,5 +194,5 @@ Defines the attributes required for initiating a drag action and information car
 | Name       | Type                                                  | Mandatory| Description                                    |
 | ----------- | ------------------------------------------------------ | ---- | ---------------------------------------- |
 | pointerId   | number                                                 | Yes  | ID of the touch point on the screen when dragging is started.        |
-| data        | [UDMF.UnifiedData](./js-apis-data-udmf.md#unifieddata) | No  | Data carried in the dragging process.              |
+| data        | [unifiedDataChannel.UnifiedData](js-apis-data-unifiedDataChannel.md#unifieddata) | No  | Data carried in the dragging process.              |
 | extraParams | string                                                 | No  | Additional information about the drag action. Not supported currently.|

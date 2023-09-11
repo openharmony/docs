@@ -346,7 +346,7 @@ struct ViewB {
         (item: ClassA) => {
           ViewA({ label: `#${item.id}`, a: item })
         },
-        (item: ClassA) => item.id.toString()
+        (item: ClassA): string => item.id.toString()
       )
       // 使用@State装饰的数组的数组项初始化@ObjectLink，其中数组项是被@Observed装饰的ClassA的实例
       ViewA({ label: `ViewA this.arrA[first]`, a: this.arrA[0] })

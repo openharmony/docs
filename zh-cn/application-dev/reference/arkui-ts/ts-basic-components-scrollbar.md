@@ -53,7 +53,7 @@ struct ScrollBarExample {
       Stack({ alignContent: Alignment.End }) {
         Scroll(this.scroller) {
           Flex({ direction: FlexDirection.Column }) {
-            ForEach(this.arr, (item) => {
+            ForEach(this.arr, (item: number) => {
               Row() {
                 Text(item.toString())
                   .width('80%')
@@ -64,7 +64,7 @@ struct ScrollBarExample {
                   .textAlign(TextAlign.Center)
                   .margin({ top: 5 })
               }
-            }, item => item)
+            }, (item:number) => item.toString())
           }.margin({ right: 15 })
         }
         .width('90%')

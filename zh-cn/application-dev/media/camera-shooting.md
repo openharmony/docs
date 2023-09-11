@@ -19,8 +19,8 @@
    通过image的createImageReceiver方法创建ImageReceiver实例，再通过实例的getReceivingSurfaceId方法获取SurfaceId，与拍照输出流相关联，获取拍照输出流的数据。
  
    ```ts
-   async function getImageReceiverSurfaceId(): Promise<string> {
-     let photoSurfaceId: string;
+   async function getImageReceiverSurfaceId(): Promise<string | undefined> {
+     let photoSurfaceId: string | undefined = undefined;
      let receiver: image.ImageReceiver = image.createImageReceiver(640, 480, 4, 8);
      console.info('before ImageReceiver check');
      if (receiver !== undefined) {
@@ -39,12 +39,12 @@
    通过CameraOutputCapability类中的photoProfiles()方法，可获取当前设备支持的拍照输出流，通过createPhotoOutput()方法传入支持的某一个输出流及步骤一获取的SurfaceId创建拍照输出流。
 
    ```ts
-   function getPhotoOutput(cameraManager: camera.CameraManager, cameraOutputCapability: camera.CameraOutputCapability, photoSurfaceId: string): camera.PhotoOutput {
+   function getPhotoOutput(cameraManager: camera.CameraManager, cameraOutputCapability: camera.CameraOutputCapability, photoSurfaceId: string): camera.PhotoOutput | undefined {
      let photoProfilesArray: Array<camera.Profile> = cameraOutputCapability.photoProfiles;
      if (!photoProfilesArray) {
        console.error("createOutput photoProfilesArray == null || undefined");
      }
-     let photoOutput: camera.PhotoOutput;
+     let photoOutput: camera.PhotoOutput | undefined;
      try {
        photoOutput = cameraManager.createPhotoOutput(photoProfilesArray[0], photoSurfaceId);
      } catch (error) {
@@ -62,7 +62,7 @@
    ```ts
    function configuringSession(captureSession: camera.CaptureSession): void {
      // 判断设备是否支持闪光灯
-     let flashStatus: boolean;
+     let flashStatus: boolean = false;
      try {
        flashStatus = captureSession.hasFlash();
      } catch (error) {
@@ -72,7 +72,7 @@
      console.info(`Promise returned with the flash light support status: ${flashStatus}`);
      if (flashStatus) {
        // 判断是否支持自动闪光灯模式
-       let flashModeStatus: boolean;
+       let flashModeStatus: boolean = false;
        try {
          let status: boolean = captureSession.isFlashModeSupported(camera.FlashMode.FLASH_MODE_AUTO);
          flashModeStatus = status;
@@ -91,7 +91,7 @@
        }
      }
      // 判断是否支持连续自动变焦模式
-     let focusModeStatus: boolean;
+     let focusModeStatus: boolean = false;
      try {
        let status: boolean = captureSession.isFocusModeSupported(camera.FocusMode.FOCUS_MODE_CONTINUOUS_AUTO);
        focusModeStatus = status;
@@ -109,12 +109,15 @@
        }
      }
      // 获取相机支持的可变焦距比范围
-     let zoomRatioRange: Array<number>;
+     let zoomRatioRange: Array<number> = [];
      try {
        zoomRatioRange = captureSession.getZoomRatioRange();
      } catch (error) {
        let err = error as BusinessError;
        console.error(`Failed to get the zoom ratio range. error: ${JSON.stringify(err)}`);
+     }
+     if (zoomRatioRange.length <= 0 ) {
+       return;
      }
      // 设置可变焦距比
      try {
@@ -123,7 +126,7 @@
        let err = error as BusinessError;
        console.error(`Failed to set the zoom ratio value. error: ${JSON.stringify(err)}`);
      }
-   }
+}
    ```
 
 5. 触发拍照。

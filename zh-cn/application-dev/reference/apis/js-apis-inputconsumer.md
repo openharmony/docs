@@ -35,10 +35,17 @@ on(type: 'key', keyOptions: KeyOptions, callback: Callback&lt;KeyOptions&gt;): v
 ```js
 let leftAltKey = 2045;
 let tabKey = 2049;
+let keyOptions: inputConsumer.KeyOptions = {
+  preKeys: [ leftAltKey ],
+  finalKey: tabKey,
+  isFinalKeyDown: true,
+  finalKeyDownDuration: 0
+};
+let callback = (keyOptions: inputConsumer.KeyOptions) => {
+  console.log(`keyOptions: ${JSON.stringify(keyOptions)}`);
+}
 try {
-  inputConsumer.on("key", {preKeys: [leftAltKey], finalKey: tabKey, isFinalKeyDown: true, finalKeyDownDuration: 0}, keyOptions => {
-    console.log(`keyOptions: ${JSON.stringify(keyOptions)}`);
-  });
+  inputConsumer.on("key", keyOptions, callback);
 } catch (error) {
   console.log(`Subscribe failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
@@ -67,10 +74,10 @@ off(type: 'key', keyOptions: KeyOptions, callback?: Callback&lt;KeyOptions&gt;):
 let leftAltKey = 2045;
 let tabKey = 2049;
 // 取消订阅单个回调函数
-let callback = function (keyOptions) {
+let callback = (keyOptions: inputConsumer.KeyOptions) => {
   console.log(`keyOptions: ${JSON.stringify(keyOptions)}`);
 }
-let keyOption = {preKeys: [leftAltKey], finalKey: tabKey, isFinalKeyDown: true, finalKeyDownDuration: 0};
+let keyOption: inputConsumer.KeyOptions = {preKeys: [leftAltKey], finalKey: tabKey, isFinalKeyDown: true, finalKeyDownDuration: 0};
 try {
   inputConsumer.on("key", keyOption, callback);
   inputConsumer.off("key", keyOption, callback);
@@ -83,10 +90,10 @@ try {
 let leftAltKey = 2045;
 let tabKey = 2049;
 // 取消订阅所有回调函数
-let callback = function (keyOptions) {
+let callback = (keyOptions: inputConsumer.KeyOptions) => {
   console.log(`keyOptions: ${JSON.stringify(keyOptions)}`);
 }
-let keyOption = {preKeys: [leftAltKey], finalKey: tabKey, isFinalKeyDown: true, finalKeyDownDuration: 0};
+let keyOption: inputConsumer.KeyOptions = {preKeys: [leftAltKey], finalKey: tabKey, isFinalKeyDown: true, finalKeyDownDuration: 0};
 try {
   inputConsumer.on("key", keyOption, callback);
   inputConsumer.off("key", keyOption);

@@ -3,7 +3,7 @@
 
 ## 简介
 
-restool（资源编译工具）是一种资源构建工具。通过编译资源文件创建资源索引、解析资源。restool保存在sdk安装目录下的toolchains子目录。
+restool是一种应用工程资源编译工具，通过编译资源文件创建资源索引、解析资源，开发者可以调用[资源管理接口](../reference/apis/js-apis-resource-manager.md)获取到对应资源。restool工具保存在sdk安装目录下的toolchains子目录。
 
 ## 参数说明
 
@@ -11,7 +11,7 @@ restool当前支持以下命令选项:
 
 | 选项 | 是否可缺省 | 是否存在入参 | 描述 |
 | -------- | -------- | -------- | -------- |
-| -i | 不可缺省 | 带参数 | 指定需要构建的资源目录或者需要构建的资源中间文件目录。同一个命令可以多次指定。 |
+| -i | 不可缺省 | 带参数 | 指定需要构建的[资源目录](#编译资源)或者需要构建的[资源中间文件目录](#编译资源)。同一个命令可以多次指定。 |
 | -j | 不可缺省 | 带参数 | 指定config.json或者module.json文件路径。 |
 | -o | 不可缺省 | 带参数 | 指定已编译资源的输出路径。 |
 | -p | 不可缺省 | 带参数 | 指定编译资源的bundle名称。 |
@@ -25,6 +25,7 @@ restool当前支持以下命令选项:
 | -v | 可缺省 | 不带参数 | 查看工具版本号。 |
 | --ids | 可缺省 | 带参数 | 指定生成id_defined.json的输出目录。 |
 | --defined-ids | 可缺省 | 带参数 | 指定id_defined.json文件路径，一般都是通过--ids生成。<br>id_defined.json包含资源类型、名称及其ID的列表。<br>开发者可以自定义id_defined.json中的资源ID。 |
+| --icon-check | 可缺省 | 不带参数 | 开启icon和startWindowIcon的PNG图片校验功能。 |
 
 ## 使用实例
 
@@ -40,35 +41,64 @@ entry/src/main
 |    |----config.json/module.json
 ```
 
-构建资源全量命令：
+### 编译资源
+
+编译资源的方式有两种，分别是全量资源编译和增量资源编译。
+
+1、全量资源编译，命令如下：
 
 ```
-restool -i entry/src/main  -j entry/src/main/module.json -p com.ohos.demo -o out -r out/ResourceTable.txt -f
+restool -i entry/src/main -j entry/src/main/module.json -p com.ohos.demo -o out -r out/ResourceTable.txt -f
 ```
 
-构建资源增量命令(仅预览模式可用)，具体步骤如下：
+2、增量资源编译，具体步骤如下：
 
-1.生成资源中间件:
+步骤一：生成资源中间件，命令如下:
+
 ```
 restool -x entry/src/main/resource -o out
 ```
-2.编译中间件:
+步骤二：编译资源中间件，命令如下:
+
 ```
 restool -i out1 -i out2 -o out -p com.ohos.demo -r out/ResourceTable.txt -j entry/src/main/module.json -f -z
 ```
 
-固定资源ID的方式有两种，如下：
+### 固定资源ID
 
-方式一：在resource/base/element/目录下存放自定义id_defined.json文件。构建成功后，生成的ID值将会和id_defined.json文件中自定义的ID值保持一致。
+固定资源ID，具体步骤如下：
 
-方式二：通过--ids 命令生成id_defined.json文件。--defined-ids命令指定id_defined.json文件。构建成功后，生成的ID值将会和id_defined.json文件中自定义的ID值保持一致。
+步骤一：创建id_defined.json文件。创建方式有两种，分别是通过命令行和自定义。
 
-生成id_defined.json文件：
++ 方式一：通过命令行生成此文件，命令如下：
+
 ```
-restool -i entry/src/main  -j entry/src/main/module.json -p com.ohos.demo -o out -r out/ResourceTable.txt --ids out/id_defined.json -f
+restool -i entry/src/main -j entry/src/main/module.json -p com.ohos.demo -o out -r out/ResourceTable.txt --ids out/id_defined.json -f
 ```
 
-指定资源ID固定的id_defined.json文件：
++ 方式二：自定义文件，文件名必须是id_defined.json，文件内容如下：
+
 ```
-restool -i entry/src/main  -j entry/src/main/module.json -p com.ohos.demo -o out1 -r out1/ResourceTable.txt --defined-ids out/id_defined.json -f
+{
+    "record" :
+    [
+        {
+            "id" : "0x01000000", // 资源需要固定的ID值
+            "name" : "app_name", // 资源名称
+            "type" : "string" // 资源类型
+        }
+    ]
+}
+```
+
+步骤二：完成资源ID固定。完成固定的方式有两种，通过命令一完成固定或者将自定义的id_definded.json放在resource/base/element/目录下后通过命令二完成固定。
+
++ 命令一：
+```
+restool -i entry/src/main -j entry/src/main/module.json -p com.ohos.demo -o out1 -r out1/ResourceTable.txt --defined-ids out/id_defined.json -f
+```
+
++ 命令二：
+```
+restool -i entry/src/main -j entry/src/main/module.json -p com.ohos.demo -o out1 -r out1/ResourceTable.txt  -f
 ```

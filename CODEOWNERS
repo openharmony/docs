@@ -199,9 +199,9 @@ zh-cn/application-dev/reference/apis/js-apis-appmanager.md @littlejerry1 @RayShi
 zh-cn/application-dev/reference/apis/js-apis-arraylist.md @gongjunsong @ge-yafang @flyingwolf @blackstone-oh
 zh-cn/application-dev/reference/apis/js-apis-audio.md @liuyuehua1 @zengyawen @magekkkk @currydavids
 zh-cn/application-dev/reference/apis/js-apis-backgroundTaskManager.md @chenmingJay @ningningW @nan-xiansen @iceice1001
-zh-cn/application-dev/reference/apis/js-apis-battery-info.md @aqxyjay @zengyawen @aqxyjay @alien0208
+zh-cn/application-dev/reference/apis/js-apis-battery-info.md  @zengyawen  @alien0208
 zh-cn/application-dev/reference/apis/js-apis-bluetooth.md @cheng_guohong @RayShih @cheng_guohong @quanli125
-zh-cn/application-dev/reference/apis/js-apis-brightness.md @aqxyjay @zengyawen @aqxyjay @alien0208
+zh-cn/application-dev/reference/apis/js-apis-brightness.md  @zengyawen  @alien0208
 zh-cn/application-dev/reference/apis/js-apis-buffer.md @gongjunsong @ge-yafang @flyingwolf @blackstone-oh
 zh-cn/application-dev/reference/apis/js-apis-bundle-AbilityInfo.md @shuaytao @RayShih @wangzhen107 @inter515
 zh-cn/application-dev/reference/apis/js-apis-bundle-ApplicationInfo.md @shuaytao @RayShih @wangzhen107 @inter515
@@ -321,7 +321,7 @@ zh-cn/application-dev/reference/apis/js-apis-pasteboard.md @han-zhengshi @ge-yaf
 zh-cn/application-dev/reference/apis/js-apis-permissionrequestresult.md @littlejerry1 @RayShih @gwang2008 @chengxingzhen
 zh-cn/application-dev/reference/apis/js-apis-plainarray.md @gongjunsong @ge-yafang @flyingwolf @blackstone-oh
 zh-cn/application-dev/reference/apis/js-apis-pointer.md @yuanxinying @ningningW @cococoler @alien0208
-zh-cn/application-dev/reference/apis/js-apis-power.md @aqxyjay @zengyawen @aqxyjay @alien0208
+zh-cn/application-dev/reference/apis/js-apis-power.md  @zengyawen  @alien0208
 zh-cn/application-dev/reference/apis/js-apis-privacyManager.md @nianCode @zengyawen @shuqinglin2 @jinhaihw
 zh-cn/application-dev/reference/apis/js-apis-process.md @gongjunsong @ge-yafang @flyingwolf @blackstone-oh
 zh-cn/application-dev/reference/apis/js-apis-processrunninginfo.md @littlejerry1 @RayShih @gwang2008 @chengxingzhen
@@ -334,7 +334,7 @@ zh-cn/application-dev/reference/apis/js-apis-request.md @feng-aiwen @ningningW @
 zh-cn/application-dev/reference/apis/js-apis-resource-manager.md @Buda-Liu @ningningW @mengjingzhimo @yangqing3
 zh-cn/application-dev/reference/apis/js-apis-router.md @HelloCrease @niulihua @tomatodevboy
 zh-cn/application-dev/reference/apis/js-apis-rpc.md @xuepianpian @RayShih @zhaopeng_gitee @vagrant_world
-zh-cn/application-dev/reference/apis/js-apis-runninglock.md @aqxyjay @zengyawen @aqxyjay @alien0208
+zh-cn/application-dev/reference/apis/js-apis-runninglock.md  @zengyawen  @alien0208
 zh-cn/application-dev/reference/apis/js-apis-screen.md @zhangqiang183  @ge-yafang @zhouyaoying @zxg-gitee @nobuggers
 zh-cn/application-dev/reference/apis/js-apis-screenshot.md @zhangqiang183  @ge-yafang @zhouyaoying @zxg-gitee @nobuggers
 zh-cn/application-dev/reference/apis/js-apis-securityLabel.md @panqinxu @zengyawen @bubble_mao @jinhaihw
@@ -349,9 +349,9 @@ zh-cn/application-dev/reference/apis/js-apis-stack.md @gongjunsong @ge-yafang @f
 zh-cn/application-dev/reference/apis/js-apis-statfs.md @panqinxu @zengyawen @bubble_mao @jinhaihw
 zh-cn/application-dev/reference/apis/js-apis-storage-statistics.md @panqinxu @zengyawen @bubble_mao @jinhaihw
 zh-cn/application-dev/reference/apis/js-apis-system-app.md @HelloCrease @niulihua @tomatodevboy
-zh-cn/application-dev/reference/apis/js-apis-system-battery.md @aqxyjay @zengyawen @aqxyjay @alien0208
+zh-cn/application-dev/reference/apis/js-apis-system-battery.md  @zengyawen  @alien0208
 zh-cn/application-dev/reference/apis/js-apis-system-bluetooth.md @cheng_guohong @RayShih @cheng_guohong @quanli125
-zh-cn/application-dev/reference/apis/js-apis-system-brightness.md @aqxyjay @zengyawen @aqxyjay @alien0208
+zh-cn/application-dev/reference/apis/js-apis-system-brightness.md  @zengyawen  @alien0208
 zh-cn/application-dev/reference/apis/js-apis-system-cipher.md @gaoyong @zengyawen @niejiteng @jumozhanjiang
 zh-cn/application-dev/reference/apis/js-apis-system-configuration.md @Buda-Liu @ningningW @budda-wang @tomatodevboy
 zh-cn/application-dev/reference/apis/js-apis-system-date-time.md @feng-aiwen @ningningW @illybyy @murphy1984
@@ -374,7 +374,7 @@ zh-cn/application-dev/reference/apis/js-apis-system-timer.md @feng-aiwen @ningni
 zh-cn/application-dev/reference/apis/js-apis-system-vibrate.md @hellohyh001 @ningningW @butterls @star-wind-snow-and-rain
 zh-cn/application-dev/reference/apis/js-apis-telephony-data.md @zhang-hai-feng @zengyawen @jyh926 @gaoxi785
 zh-cn/application-dev/reference/apis/js-apis-testRunner.md @inter515 @littlejerry1 @RayShih @inter515 @jiyong
-zh-cn/application-dev/reference/apis/js-apis-thermal.md @aqxyjay @zengyawen @aqxyjay @alien0208
+zh-cn/application-dev/reference/apis/js-apis-thermal.md  @zengyawen  @alien0208
 zh-cn/application-dev/reference/apis/js-apis-timer.md @gongjunsong @ge-yafang @flyingwolf @blackstone-oh
 zh-cn/application-dev/reference/apis/js-apis-touchevent.md @mayunteng_1 @ningningW @cococoler @alien0208
 zh-cn/application-dev/reference/apis/js-apis-shortKey.md @mayunteng_1 @ningningW @cococoler @alien0208
@@ -425,7 +425,7 @@ zh-cn/application-dev/reference/apis/js-apis-application-configuration.md @littl
 zh-cn/application-dev/reference/apis/js-apis-application-configurationConstant.md @littlejerry1 @RayShih @gwang2008 @chengxingzhen
 zh-cn/application-dev/reference/apis/js-apis-application-quickFixManager.md @littlejerry1 @RayShih @gwang2008 @chengxingzhen
 zh-cn/application-dev/reference/apis/js-apis-avsession.md @liuyuehua1 @zengyawen @saga2020 @currydavids
-zh-cn/application-dev/reference/apis/js-apis-batteryStatistics.md @aqxyjay @zengyawen @aqxyjay @alien0208
+zh-cn/application-dev/reference/apis/js-apis-batteryStatistics.md  @zengyawen  @alien0208
 zh-cn/application-dev/reference/apis/js-apis-Bundle-BundleStatusCallback.md @shuaytao @RayShih @wangzhen107 @inter515
 zh-cn/application-dev/reference/apis/js-apis-bundleManager-abilityInfo.md @shuaytao @RayShih @wangzhen107 @inter515
 zh-cn/application-dev/reference/apis/js-apis-bundleManager-applicationInfo.md @shuaytao @RayShih @wangzhen107 @inter515

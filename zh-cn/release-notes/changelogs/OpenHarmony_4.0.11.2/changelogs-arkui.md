@@ -32,3 +32,11 @@ PanelHeight枚举的WRAP_CONTENT值从0变为'wrapContent'，接口行为变更�
 4.0.10.2版本之前，焦点tabIndex走焦方式为非循环走焦
 
 4.0.10.2版本及之后，焦点tabIndex走焦方式为循环走焦
+
+## cl.arkui.5 TextInput设置margin属性时，TextInput的Constraint不再减去Margin的值。
+
+**变更影响**
+
+4.0.11.2版本之前，TextInput设置margin时，TextInput的Constraint会减去所设置margin的值。
+
+4.0.11.2版本及之后，TextInput设置margin时，TextInput的Constraint不会减去所设置margin的值。

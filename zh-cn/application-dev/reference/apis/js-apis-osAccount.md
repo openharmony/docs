@@ -90,7 +90,7 @@ activateOsAccount(localId: number, callback: AsyncCallback&lt;void&gt;): void
       }
     });
   } catch (err) {
-    console.error(`activateOsAccount failed, code is ${err.code}, message is ${err.message}`);
+    console.log('activateOsAccount failed, error:' + JSON.stringify(err));
   }
   ```
 
@@ -178,7 +178,7 @@ checkMultiOsAccountEnabled(callback: AsyncCallback&lt;boolean&gt;): void
       }
     });
   } catch (err) {
-    console.error(`checkMultiOsAccountEnabled failed, code is ${err.code}, message is ${err.message}`);
+    console.log('checkMultiOsAccountEnabled failed, error:' + JSON.stringify(err));
   }
   ```
 
@@ -214,7 +214,7 @@ checkMultiOsAccountEnabled(): Promise&lt;boolean&gt;
       console.error(`checkMultiOsAccountEnabled failed, code is ${err.code}, message is ${err.message}`);
     });
   } catch (err) {
-    console.error(`checkMultiOsAccountEnabled failed, code is ${err.code}, message is ${err.message}`);
+    console.log('checkMultiOsAccountEnabled failed, error:' + JSON.stringify(err));
   }
   ```
 
@@ -3538,7 +3538,7 @@ getOsAccountLocalIdFromDomain(domainInfo: DomainAccountInfo, callback: AsyncCall
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  let domainInfo = {domain: 'testDomain', accountName: 'testAccountName'};
+  let domainInfo: account_osAccount.DomainAccountInfo = {domain: 'testDomain', accountName: 'testAccountName'};
   let accountManager = account_osAccount.getAccountManager();
   accountManager.getOsAccountLocalIdFromDomain(domainInfo, (err: BusinessError, localId: number) => {
     if (err) {
@@ -3580,7 +3580,7 @@ getOsAccountLocalIdFromDomain(domainInfo: DomainAccountInfo): Promise&lt;number&
   ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
-  let domainInfo = {domain: 'testDomain', accountName: 'testAccountName'};
+  let domainInfo: account_osAccount.DomainAccountInfo = {domain: 'testDomain', accountName: 'testAccountName'};
   accountManager.getOsAccountLocalIdFromDomain(domainInfo).then((localId: number) => {
     console.log('getOsAccountLocalIdFromDomain successfully, localId: ' + localId);
   }).catch((err: BusinessError) => {
@@ -4122,10 +4122,10 @@ getAvailableStatus(authType: AuthType, authTrustLevel: AuthTrustLevel): number;
 **示例：**  
   ```ts
   let userAuth = new account_osAccount.UserAuth();
-  let authType = account_osAccount.AuthType.PIN;
-  let authTrustLevel = account_osAccount.AuthTrustLevel.ATL1;
+  let authType: account_osAccount.AuthType = account_osAccount.AuthType.PIN;
+  let authTrustLevel: account_osAccount.AuthTrustLevel = account_osAccount.AuthTrustLevel.ATL1;
   try {
-    let status = userAuth.getAvailableStatus(authType, authTrustLevel);
+    let status: number = userAuth.getAvailableStatus(authType, authTrustLevel);
     console.log('getAvailableStatus status = ' + status);
   } catch (e) {
     console.log('getAvailableStatus exception = ' + JSON.stringify(e));
@@ -4162,7 +4162,7 @@ getProperty(request: GetPropertyRequest, callback: AsyncCallback&lt;ExecutorProp
   ```ts
   import { BusinessError } from '@ohos.base';
   let userAuth = new account_osAccount.UserAuth();
-  let keys = [
+  let keys: Array<account_osAccount.GetPropertyType>  = [
     account_osAccount.GetPropertyType.AUTH_SUB_TYPE,
     account_osAccount.GetPropertyType.REMAIN_TIMES,
     account_osAccount.GetPropertyType.FREEZING_TIME
@@ -4216,7 +4216,7 @@ getProperty(request: GetPropertyRequest): Promise&lt;ExecutorProperty&gt;;
   ```ts
   import { BusinessError } from '@ohos.base';
   let userAuth = new account_osAccount.UserAuth();
-  let keys = [
+  let keys: Array<account_osAccount.GetPropertyType> = [
     account_osAccount.GetPropertyType.AUTH_SUB_TYPE, 
     account_osAccount.GetPropertyType.REMAIN_TIMES,
     account_osAccount.GetPropertyType.FREEZING_TIME
@@ -4319,13 +4319,13 @@ setProperty(request: SetPropertyRequest): Promise&lt;void&gt;;
   ```ts
   import { BusinessError } from '@ohos.base';
   let userAuth = new account_osAccount.UserAuth();
-  let request2: account_osAccount.SetPropertyRequest = {
+  let request: account_osAccount.SetPropertyRequest = {
     authType: account_osAccount.AuthType.PIN,
     key: account_osAccount.SetPropertyType.INIT_ALGORITHM,
     setInfo: new Uint8Array([0])
   };
   try {
-    userAuth.setProperty(request2).then(() => {
+    userAuth.setProperty(request).then(() => {
       console.log('setProperty successfully');
     }).catch((err: BusinessError) => {
       console.log('setProperty failed, error = ' + JSON.stringify(err));
@@ -4380,12 +4380,12 @@ auth(challenge: Uint8Array, authType: AuthType, authTrustLevel: AuthTrustLevel, 
 **示例：**
   ```ts
   let userAuth = new account_osAccount.UserAuth();
-  let challenge = new Uint8Array([0]);
-  let authType = account_osAccount.AuthType.PIN;
-  let authTrustLevel = account_osAccount.AuthTrustLevel.ATL1;
+  let challenge: Uint8Array = new Uint8Array([0]);
+  let authType: account_osAccount.AuthType = account_osAccount.AuthType.PIN;
+  let authTrustLevel: account_osAccount.AuthTrustLevel = account_osAccount.AuthTrustLevel.ATL1;
   try {
     userAuth.auth(challenge, authType, authTrustLevel, {
-      onResult: (result,extraInfo) => {
+      onResult: (result: number, extraInfo: account_osAccount.AuthResult) => {
           console.log('auth result = ' + result);
           console.log('auth extraInfo = ' + JSON.stringify(extraInfo));
       }
@@ -4442,9 +4442,9 @@ authUser(userId: number, challenge: Uint8Array, authType: AuthType, authTrustLev
   ```ts
   let userAuth = new account_osAccount.UserAuth();
   let userID: number = 100;
-  let challenge = new Uint8Array([0]);
-  let authType = account_osAccount.AuthType.PIN;
-  let authTrustLevel = account_osAccount.AuthTrustLevel.ATL1;
+  let challenge: Uint8Array = new Uint8Array([0]);
+  let authType: account_osAccount.AuthType = account_osAccount.AuthType.PIN;
+  let authTrustLevel: account_osAccount.AuthTrustLevel = account_osAccount.AuthTrustLevel.ATL1;
   try {
     userAuth.authUser(userID, challenge, authType, authTrustLevel, {
       onResult: (result,extraInfo) => {
@@ -4487,7 +4487,7 @@ cancelAuth(contextID: Uint8Array): void;
   let userAuth = new account_osAccount.UserAuth();
   let pinAuth: account_osAccount.PINAuth = new account_osAccount.PINAuth();
   let challenge = new Uint8Array([0]);
-  let contextId = userAuth.auth(challenge, account_osAccount.AuthType.PIN, account_osAccount.AuthTrustLevel.ATL1, {
+  let contextId: Uint8Array = userAuth.auth(challenge, account_osAccount.AuthType.PIN, account_osAccount.AuthTrustLevel.ATL1, {
     onResult: (result: number, extraInfo: account_osAccount.AuthResult) => {
       console.log('auth result = ' + result);
       console.log('auth extraInfo = ' + JSON.stringify(extraInfo));
@@ -4615,7 +4615,7 @@ static registerInputer(authType: AuthType, inputer: IInputer): void
 
 **示例：**
   ```ts
-  let authType = account_osAccount.AuthType.DOMAIN;
+  let authType: account_osAccount.AuthType = account_osAccount.AuthType.DOMAIN;
   let password: Uint8Array = new Uint8Array([0, 0, 0, 0, 0]);
   try {
     account_osAccount.InputerManager.registerInputer(authType, {
@@ -4655,7 +4655,7 @@ static unregisterInputer(authType: AuthType): void
 
 **示例：**
   ```ts
-  let authType = account_osAccount.AuthType.DOMAIN;
+  let authType: account_osAccount.AuthType = account_osAccount.AuthType.DOMAIN;
   try {
     account_osAccount.InputerManager.unregisterInputer(authType);
     console.log('unregisterInputer success.');
@@ -4720,9 +4720,9 @@ auth(domainAccountInfo: DomainAccountInfo, credential: Uint8Array, callback: IUs
   }
   account_osAccount.DomainAccountManager.registerPlugin(plugin);
   let userAuth = new account_osAccount.UserAuth();
-  let challenge = new Uint8Array([0]);
-  let authType = account_osAccount.AuthType.DOMAIN;
-  let authTrustLevel = account_osAccount.AuthTrustLevel.ATL1;
+  let challenge: Uint8Array = new Uint8Array([0]);
+  let authType: account_osAccount.AuthType = account_osAccount.AuthType.DOMAIN;
+  let authTrustLevel: account_osAccount.AuthTrustLevel = account_osAccount.AuthTrustLevel.ATL1;
   try {
     userAuth.auth(challenge, authType, authTrustLevel, {
       onResult: (resultCode: number, authResult: account_osAccount.AuthResult) => {

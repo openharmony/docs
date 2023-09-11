@@ -8,7 +8,7 @@
 
 ## 导入模块
 
-```js
+```ts
 import screenLock from '@ohos.screenLock';
 ```
 
@@ -68,7 +68,7 @@ isLocked(): boolean
 
 **示例：** 
 
-```js
+```ts
 let isLocked = screenLock.isLocked();
 ```
 
@@ -98,8 +98,10 @@ unlock(callback: AsyncCallback&lt;boolean&gt;): void
 
 **示例：** 
 
-  ```js
-  screenLock.unlock((err, data) => {
+  ```ts
+  import { BusinessError } from '@ohos.base';
+
+  screenLock.unlock((err: BusinessError, data: Boolean) => {
     if (err) {
       console.error(`Failed to unlock the screen, Code: ${err.code}, message: ${err.message}`);
       return;
@@ -134,10 +136,12 @@ unlock(): Promise&lt;boolean&gt;
 
 **示例：** 
 
-  ```js
-  screenLock.unlock().then((data) => {
+  ```ts
+  import { BusinessError } from '@ohos.base';
+
+  screenLock.unlock().then((data: Boolean) => {
     console.info(`Succeeded in unlocking the screen. result: ${data}`);
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to unlock the screen, Code: ${err.code}, message: ${err.message}`);
   });
   ```
@@ -170,8 +174,10 @@ lock(callback: AsyncCallback&lt;boolean&gt;): void
 
 **示例：** 
 
-  ```js
-  screenLock.lock((err, data) => {
+  ```ts
+  import { BusinessError } from '@ohos.base';
+
+  screenLock.lock((err: BusinessError, data: Boolean) => {
     if (err) {
       console.error(`Failed to lock the screen, Code: ${err.code}, message: ${err.message}`);
       return;
@@ -208,10 +214,12 @@ lock(): Promise&lt;boolean&gt;
 
 **示例：** 
 
-  ```js
-  screenLock.lock().then((data) => {
+  ```ts
+  import { BusinessError } from '@ohos.base';
+
+  screenLock.lock().then((data: Boolean) => {
     console.info(`Succeeded in locking the screen. result: ${data}`);
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to lock the screen, Code: ${err.code}, message: ${err.message}`);
   });
   ```
@@ -250,13 +258,14 @@ onSystemEvent(callback: Callback&lt;SystemEvent&gt;): boolean
 
 **示例：** 
 
-  ```js
+  ```ts
   try {
-    let isSuccess = screenLock.onSystemEvent((event) => {
+    let isSuccess = screenLock.onSystemEvent((event: screenLock.SystemEvent) => {
       console.log(`Succeeded in Registering the system event which related to screenlock. eventType: ${event.eventType}`)
     });
   } catch (err) {
-    console.error(`Failed to register the system event which related to screenlock, Code: ${err.code}, message: ${err.message}`)
+    let error = err as BusinessError;
+    console.error(`Failed to register the system event which related to screenlock, Code: ${error.code}, message: ${error.message}`)
   }
   ```
 
@@ -290,8 +299,10 @@ sendScreenLockEvent(event: String, parameter: number, callback: AsyncCallback&lt
 
 **示例：** 
 
-  ```js
-  screenLock.sendScreenLockEvent('unlockScreenResult', 0, (err, result) => {
+  ```ts
+  import { BusinessError } from '@ohos.base';
+
+  screenLock.sendScreenLockEvent('unlockScreenResult', 0, (err: BusinessError, result: Boolean) => {
     if (err) {
       console.error(`Failed to send screenlock event, Code: ${err.code}, message: ${err.message}`);
       return;
@@ -335,10 +346,12 @@ sendScreenLockEvent(event: String, parameter: number): Promise&lt;boolean&gt;
 
 **示例：** 
 
-  ```js
-  screenLock.sendScreenLockEvent('unlockScreenResult', 0).then((result) => {
+  ```ts
+  import { BusinessError } from '@ohos.base';
+
+  screenLock.sendScreenLockEvent('unlockScreenResult', 0).then((result: Boolean) => {
     console.info(`Succeeded in Sending screenlock event. result: ${result}`);
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to send screenlock event, Code: ${err.code}, message: ${err.message}`);
   });
   ```
@@ -363,8 +376,10 @@ isScreenLocked(callback: AsyncCallback&lt;boolean&gt;): void
 
 **示例：**
 
-  ```js
-  screenLock.isScreenLocked((err, data)=>{      
+  ```ts
+  import { BusinessError } from '@ohos.base';
+
+  screenLock.isScreenLocked((err: BusinessError, data: Boolean)=>{      
     if (err) {
       console.error(`Failed to obtain whether the screen is locked, Code: ${err.code}, message: ${err.message}`);
       return;    
@@ -393,10 +408,12 @@ isScreenLocked(): Promise&lt;boolean&gt;
 
 **示例：** 
 
-  ```js
-  screenLock.isScreenLocked().then((data) => {
+  ```ts
+  import { BusinessError } from '@ohos.base';
+
+  screenLock.isScreenLocked().then((data: Boolean) => {
     console.info(`Succeeded in Obtaining whether the screen is locked. result: ${data}`);
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to obtain whether the screen is locked, Code: ${err.code}, message: ${err.message}`);
   });
   ```
@@ -421,8 +438,10 @@ isSecureMode(callback: AsyncCallback&lt;boolean&gt;): void
 
 **示例：** 
 
-  ```js
-  screenLock.isSecureMode((err, data)=>{
+  ```ts
+  import { BusinessError } from '@ohos.base';
+
+  screenLock.isSecureMode((err: BusinessError, data: Boolean)=>{
     if (err) {
       console.error(`Failed to obtain whether the device is in secure mode, Code: ${err.code}, message: ${err.message}`);
       return;
@@ -451,10 +470,12 @@ isSecureMode(): Promise&lt;boolean&gt;
 
 **示例：** 
 
-  ```js
-  screenLock.isSecureMode().then((data) => {
+  ```ts
+  import { BusinessError } from '@ohos.base';
+
+  screenLock.isSecureMode().then((data: Boolean) => {
     console.info(`Succeeded in Obtaining whether the device is in secure mode. result: ${data}`);
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to obtain whether the device is in secure mode, Code: ${err.code}, message: ${err.message}`);
   });
   ```
@@ -479,8 +500,10 @@ unlockScreen(callback: AsyncCallback&lt;void&gt;): void
 
 **示例：** 
 
-  ```js
-  screenLock.unlockScreen((err) => {      
+  ```ts
+  import { BusinessError } from '@ohos.base';
+
+  screenLock.unlockScreen((err: BusinessError) => {      
     if (err) {
       console.error(`Failed to unlock the screen, Code: ${err.code}, message: ${err.message}`);
       return;    
@@ -509,10 +532,12 @@ unlockScreen(): Promise&lt;void&gt;
 
 **示例：** 
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
+
   screenLock.unlockScreen().then(() => {
     console.info('Succeeded unlocking the screen.');
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to unlock the screen, Code: ${err.code}, message: ${err.message}`);
   });
   ```

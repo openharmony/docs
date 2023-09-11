@@ -24,8 +24,8 @@ getFont(): Font
 
 **返回值：**
 
-| 类型  | 说明          |
-| ----- | ----------------- |
+| 类型            | 说明          |
+| ------------- | ----------- |
 | [Font](#font) | 返回Font实例对象。 |
 
 **示例：**
@@ -43,8 +43,8 @@ getComponentUtils(): ComponentUtils
 
 **返回值：**
 
-| 类型  | 说明          |
-| ----- | ----------------- |
+| 类型                                | 说明                    |
+| --------------------------------- | --------------------- |
 | [ComponentUtils](#componentutils) | 返回ComponentUtils实例对象。 |
 
 **示例：**
@@ -63,9 +63,9 @@ getUIInspector(): UIInspector
 
 **返回值：**
 
-| 类型  | 说明          |
-| ----- | ----------------- |
-| [UInspector](#uiinspector) | 返回UIInspector实例对象。 |
+| 类型                          | 说明                 |
+| --------------------------- | ------------------ |
+| [UIInspector](#uiinspector) | 返回UIInspector实例对象。 |
 
 **示例：**
 
@@ -83,8 +83,8 @@ getMediaQuery(): MediaQuery
 
 **返回值：**
 
-| 类型  | 说明          |
-| ----- | ----------------- |
+| 类型                        | 说明                |
+| ------------------------- | ----------------- |
 | [MediaQuery](#mediaquery) | 返回MediaQuery实例对象。 |
 
 **示例：**
@@ -103,8 +103,8 @@ getRouter(): Router
 
 **返回值：**
 
-| 类型  | 说明          |
-| ----- | ----------------- |
+| 类型                | 说明            |
+| ----------------- | ------------- |
 | [Router](#router) | 返回Router实例对象。 |
 
 **示例：**
@@ -123,8 +123,8 @@ getPromptAction(): PromptAction
 
 **返回值：**
 
-| 类型  | 说明          |
-| ----- | ----------------- |
+| 类型                            | 说明                  |
+| ----------------------------- | ------------------- |
 | [PromptAction](#promptaction) | 返回PromptAction实例对象。 |
 
 **示例：**
@@ -145,10 +145,10 @@ animateTo(value: AnimateParam, event: () => void): void
 
 **参数：**
 
-| 参数名            | 类型        |       必填     |        说明        |
-| ---------------- | ------------ | -------------------- | -------------------- |
-| value | [AnimateParam](../arkui-ts/ts-explicit-animation.md#animateparam对象说明) | 是 | 设置动画效果相关参数。 |
-| event | () => void | 是 | 指定显示动效的闭包函数，在闭包函数中导致的状态变化系统会自动插入过渡动画。 |
+| 参数名   | 类型                                       | 必填   | 说明                                    |
+| ----- | ---------------------------------------- | ---- | ------------------------------------- |
+| value | [AnimateParam](../arkui-ts/ts-explicit-animation.md#animateparam对象说明) | 是    | 设置动画效果相关参数。                           |
+| event | () => void                               | 是    | 指定显示动效的闭包函数，在闭包函数中导致的状态变化系统会自动插入过渡动画。 |
 
 **示例：**
 
@@ -222,9 +222,9 @@ showAlertDialog(options: AlertDialogParamWithConfirm | AlertDialogParamWithButto
 
 **参数：**
 
-| 参数名    | 类型  | 必填 | 说明 |
-| ---- | --------------- | -------- | -------- |
-| options | [AlertDialogParamWithConfirm](../arkui-ts/ts-methods-alert-dialog-box.md#alertdialogparamwithconfirm对象说明)&nbsp;\|&nbsp;[AlertDialogParamWithButtons](../arkui-ts/ts-methods-alert-dialog-box.md#alertdialogparamwithbuttons对象说明)&nbsp;\|&nbsp;[AlertDialogParamWithOptions](../arkui-ts/ts-methods-alert-dialog-box.md#alertdialogparamwithoptions10对象说明)  | 是 | 定义并显示AlertDialog组件。 |
+| 参数名     | 类型                                       | 必填   | 说明                  |
+| ------- | ---------------------------------------- | ---- | ------------------- |
+| options | [AlertDialogParamWithConfirm](../arkui-ts/ts-methods-alert-dialog-box.md#alertdialogparamwithconfirm对象说明)&nbsp;\|&nbsp;[AlertDialogParamWithButtons](../arkui-ts/ts-methods-alert-dialog-box.md#alertdialogparamwithbuttons对象说明)&nbsp;\|&nbsp;[AlertDialogParamWithOptions](../arkui-ts/ts-methods-alert-dialog-box.md#alertdialogparamwithoptions10对象说明) | 是    | 定义并显示AlertDialog组件。 |
 
 
 **示例：**
@@ -261,24 +261,24 @@ showActionSheet(value: ActionSheetOptions): void
 
 **ActionSheetOptions参数：**
 
-| 参数名        | 类型                    | 必填  | 说明                        |
-| ---------- | -------------------------- | ------- | ----------------------------- |
-| title      | [Resource](../arkui-ts/ts-types.md#resource)&nbsp;\|&nbsp;string | 是     |  弹窗标题。 |
-| message    | [Resource](../arkui-ts/ts-types.md#resource)&nbsp;\|&nbsp;string | 是     | 弹窗内容。  |
-| autoCancel | boolean                           | 否     | 点击遮障层时，是否关闭弹窗。<br>默认值：true |
-| confirm    | {<br/>value:&nbsp;[ResourceStr](../arkui-ts/ts-types.md#resourcestr),<br/>action:&nbsp;()&nbsp;=&gt;&nbsp;void<br/>} | 否  | 确认按钮的文本内容和点击回调。<br>默认值：<br/>value：按钮文本内容。<br/>action:&nbsp;按钮选中时的回调。 |
-| cancel     | ()&nbsp;=&gt;&nbsp;void           | 否     | 点击遮障层关闭dialog时的回调。   |
-| alignment  | [DialogAlignment](../arkui-ts/ts-methods-alert-dialog-box.md#dialogalignment枚举说明) | 否     |  弹窗在竖直方向上的对齐方式。<br>默认值：DialogAlignment.Bottom |
-| offset     | {<br/>dx:&nbsp;[Length](../arkui-ts/ts-types.md#length),<br/>dy:&nbsp;[Length](../arkui-ts/ts-types.md#length)<br/>} | 否      | 弹窗相对alignment所在位置的偏移量。{<br/>dx:&nbsp;0,<br/>dy:&nbsp;0<br/>} |
-| sheets     | Array&lt;SheetInfo&gt; | 是       | 设置选项内容，每个选择项支持设置图片、文本和选中的回调。 |
+| 参数名        | 类型                                       | 必填   | 说明                                       |
+| ---------- | ---------------------------------------- | ---- | ---------------------------------------- |
+| title      | [Resource](../arkui-ts/ts-types.md#resource)&nbsp;\|&nbsp;string | 是    | 弹窗标题。                                    |
+| message    | [Resource](../arkui-ts/ts-types.md#resource)&nbsp;\|&nbsp;string | 是    | 弹窗内容。                                    |
+| autoCancel | boolean                                  | 否    | 点击遮障层时，是否关闭弹窗。<br>默认值：true               |
+| confirm    | {<br/>value:&nbsp;[ResourceStr](../arkui-ts/ts-types.md#resourcestr),<br/>action:&nbsp;()&nbsp;=&gt;&nbsp;void<br/>} | 否    | 确认按钮的文本内容和点击回调。<br>默认值：<br/>value：按钮文本内容。<br/>action:&nbsp;按钮选中时的回调。 |
+| cancel     | ()&nbsp;=&gt;&nbsp;void                  | 否    | 点击遮障层关闭dialog时的回调。                       |
+| alignment  | [DialogAlignment](../arkui-ts/ts-methods-alert-dialog-box.md#dialogalignment枚举说明) | 否    | 弹窗在竖直方向上的对齐方式。<br>默认值：DialogAlignment.Bottom |
+| offset     | {<br/>dx:&nbsp;[Length](../arkui-ts/ts-types.md#length),<br/>dy:&nbsp;[Length](../arkui-ts/ts-types.md#length)<br/>} | 否    | 弹窗相对alignment所在位置的偏移量。{<br/>dx:&nbsp;0,<br/>dy:&nbsp;0<br/>} |
+| sheets     | Array&lt;SheetInfo&gt;                   | 是    | 设置选项内容，每个选择项支持设置图片、文本和选中的回调。             |
 
 **SheetInfo接口说明：**
 
-| 参数名 | 类型                                                     | 必填 | 说明        |
-| ------ | ------------------------------------------------------------ | ---- | ----------------- |
-| title  | [ResourceStr](../arkui-ts/ts-types.md#resourcestr) | 是   | 选项的文本内容。       |
-| icon   | [ResourceStr](../arkui-ts/ts-types.md#resourcestr) | 否   | 选项的图标，默认无图标显示。     |
-| action | ()=&gt;void                                          | 是   | 选项选中的回调。 |
+| 参数名    | 类型                                       | 必填   | 说明             |
+| ------ | ---------------------------------------- | ---- | -------------- |
+| title  | [ResourceStr](../arkui-ts/ts-types.md#resourcestr) | 是    | 选项的文本内容。       |
+| icon   | [ResourceStr](../arkui-ts/ts-types.md#resourcestr) | 否    | 选项的图标，默认无图标显示。 |
+| action | ()=&gt;void                              | 是    | 选项选中的回调。       |
 
 **示例：**
 
@@ -331,20 +331,20 @@ showDatePickerDialog(options: DatePickerDialogOptions): void
 
 **DatePickerDialogOptions参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| start | Date | 否 | 设置选择器的起始日期。<br/>默认值：Date('1970-1-1') |
-| end | Date | 否 | 设置选择器的结束日期。<br/>默认值：Date('2100-12-31') |
-| selected | Date | 否 | 设置当前选中的日期。<br/>默认值：当前系统日期 |
-| lunar | boolean | 否 | 日期是否显示为农历。<br/>默认值：false |
-| showTime | boolean | 否 | 是否展示时间项。<br/>默认值：false |
-| useMilitaryTime | boolean | 否 | 展示时间是否为24小时制。<br/>默认值：false |
-| disappearTextStyle | [PickerTextStyle](../arkui-ts/ts-basic-components-datepicker.md#pickertextstyle10类型说明) | 否 | 设置所有选项中最上和最下两个选项的文本颜色、字号、字体粗细。 |
-| textStyle | [PickerTextStyle](../arkui-ts/ts-basic-components-datepicker.md#pickertextstyle10类型说明) | 否 | 设置所有选项中除了最上、最下及选中项以外的文本颜色、字号、字体粗细。 |
-| selectedTextStyle | [PickerTextStyle](../arkui-ts/ts-basic-components-datepicker.md#pickertextstyle10类型说明) | 否 | 设置选中项的文本颜色、字号、字体粗细。 |
-| onAccept | (value: [DatePickerResult](../arkui-ts/ts-basic-components-datepicker.md#datepickerresult对象说明)) => void | 否 | 点击弹窗中的“确定”按钮时触发该回调。 |
-| onCancel | () => void | 否 | 点击弹窗中的“取消”按钮时触发该回调。 |
-| onChange | (value: [DatePickerResult](../arkui-ts/ts-basic-components-datepicker.md#datepickerresult对象说明)) => void | 否 | 滑动弹窗中的滑动选择器使当前选中项改变时触发该回调。 |
+| 参数名                | 类型                                       | 必填   | 说明                                     |
+| ------------------ | ---------------------------------------- | ---- | -------------------------------------- |
+| start              | Date                                     | 否    | 设置选择器的起始日期。<br/>默认值：Date('1970-1-1')   |
+| end                | Date                                     | 否    | 设置选择器的结束日期。<br/>默认值：Date('2100-12-31') |
+| selected           | Date                                     | 否    | 设置当前选中的日期。<br/>默认值：当前系统日期              |
+| lunar              | boolean                                  | 否    | 日期是否显示为农历。<br/>默认值：false               |
+| showTime           | boolean                                  | 否    | 是否展示时间项。<br/>默认值：false                 |
+| useMilitaryTime    | boolean                                  | 否    | 展示时间是否为24小时制。<br/>默认值：false            |
+| disappearTextStyle | [PickerTextStyle](../arkui-ts/ts-basic-components-datepicker.md#pickertextstyle10类型说明) | 否    | 设置所有选项中最上和最下两个选项的文本颜色、字号、字体粗细。         |
+| textStyle          | [PickerTextStyle](../arkui-ts/ts-basic-components-datepicker.md#pickertextstyle10类型说明) | 否    | 设置所有选项中除了最上、最下及选中项以外的文本颜色、字号、字体粗细。     |
+| selectedTextStyle  | [PickerTextStyle](../arkui-ts/ts-basic-components-datepicker.md#pickertextstyle10类型说明) | 否    | 设置选中项的文本颜色、字号、字体粗细。                    |
+| onAccept           | (value: [DatePickerResult](../arkui-ts/ts-basic-components-datepicker.md#datepickerresult对象说明)) => void | 否    | 点击弹窗中的“确定”按钮时触发该回调。                    |
+| onCancel           | () => void                               | 否    | 点击弹窗中的“取消”按钮时触发该回调。                    |
+| onChange           | (value: [DatePickerResult](../arkui-ts/ts-basic-components-datepicker.md#datepickerresult对象说明)) => void | 否    | 滑动弹窗中的滑动选择器使当前选中项改变时触发该回调。             |
 
 **示例：**
 
@@ -356,7 +356,7 @@ uiContext.showDatePickerDialog({
   selected: selectedDate,
   onAccept: (value: DatePickerResult) => {
     // 通过Date的setFullYear方法设置按下确定按钮时的日期，这样当弹窗再次弹出时显示选中的是上一次确定的日期
-    selectedDate.setFullYear(value.year, value.month, value.day)
+    selectedDate.setFullYear(Number(value.year), Number(value.month), Number(value.day))
     console.info("DatePickerDialog:onAccept()" + JSON.stringify(value))
   },
   onCancel: () => {
@@ -378,16 +378,16 @@ showTimePickerDialog(options: TimePickerDialogOptions): void
 
 **TimePickerDialogOptions参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| selected | Date | 否 | 设置当前选中的时间。<br/>默认值：当前系统时间 |
-| useMilitaryTime | boolean | 否 | 展示时间是否为24小时制，默认为12小时制。<br/>默认值：false |
-| disappearTextStyle | [PickerTextStyle](../arkui-ts/ts-basic-components-datepicker.md#pickertextstyle10类型说明) | 否 | 设置所有选项中最上和最下两个选项的文本颜色、字号、字体粗细。 |
-| textStyle | [PickerTextStyle](../arkui-ts/ts-basic-components-datepicker.md#pickertextstyle10类型说明) | 否 | 设置所有选项中除了最上、最下及选中项以外的文本颜色、字号、字体粗细。 |
-| selectedTextStyle | [PickerTextStyle](../arkui-ts/ts-basic-components-datepicker.md#pickertextstyle10类型说明) | 否 | 设置选中项的文本颜色、字号、字体粗细。 |
-| onAccept | (value: [TimePickerResult](../arkui-ts/ts-basic-components-timepicker.md#timepickerresult对象说明)) => void | 否 | 点击弹窗中的“确定”按钮时触发该回调。 |
-| onCancel | () => void | 否 | 点击弹窗中的“取消”按钮时触发该回调。 |
-| onChange | (value: [TimePickerResult](../arkui-ts/ts-basic-components-timepicker.md#timepickerresult对象说明)) => void | 否 | 滑动弹窗中的选择器使当前选中时间改变时触发该回调。 |
+| 参数名                | 类型                                       | 必填   | 说明                                   |
+| ------------------ | ---------------------------------------- | ---- | ------------------------------------ |
+| selected           | Date                                     | 否    | 设置当前选中的时间。<br/>默认值：当前系统时间            |
+| useMilitaryTime    | boolean                                  | 否    | 展示时间是否为24小时制，默认为12小时制。<br/>默认值：false |
+| disappearTextStyle | [PickerTextStyle](../arkui-ts/ts-basic-components-datepicker.md#pickertextstyle10类型说明) | 否    | 设置所有选项中最上和最下两个选项的文本颜色、字号、字体粗细。       |
+| textStyle          | [PickerTextStyle](../arkui-ts/ts-basic-components-datepicker.md#pickertextstyle10类型说明) | 否    | 设置所有选项中除了最上、最下及选中项以外的文本颜色、字号、字体粗细。   |
+| selectedTextStyle  | [PickerTextStyle](../arkui-ts/ts-basic-components-datepicker.md#pickertextstyle10类型说明) | 否    | 设置选中项的文本颜色、字号、字体粗细。                  |
+| onAccept           | (value: [TimePickerResult](../arkui-ts/ts-basic-components-timepicker.md#timepickerresult对象说明)) => void | 否    | 点击弹窗中的“确定”按钮时触发该回调。                  |
+| onCancel           | () => void                               | 否    | 点击弹窗中的“取消”按钮时触发该回调。                  |
+| onChange           | (value: [TimePickerResult](../arkui-ts/ts-basic-components-timepicker.md#timepickerresult对象说明)) => void | 否    | 滑动弹窗中的选择器使当前选中时间改变时触发该回调。            |
 
 **示例：**
 
@@ -427,18 +427,18 @@ showTextPickerDialog(options: TextPickerDialogOptions): void
 
 **TextPickerDialogOptions参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- |  -------- |
-| range | string[]&nbsp;\|&nbsp;[Resource](../arkui-ts/ts-types.md#resource)\|[TextPickerRangeContent](../arkui-ts/ts-basic-components-textpicker.md#textpickerrangecontent10类型说明)[] | 是 |  设置文本选择器的选择范围。不可设置为空数组，若设置为空数组，则不弹出弹窗。 |
-| selected | number | 否 |  设置选中项的索引值。<br>默认值：0 |
-| value       | string           | 否    | 设置选中项的文本内容。当设置了selected参数时，该参数不生效。如果设置的value值不在range范围内，则默认取range第一个元素。|
-| defaultPickerItemHeight | number \| string | 否 | 设置选择器中选项的高度。 |
-| disappearTextStyle | [PickerTextStyle](../arkui-ts/ts-basic-components-datepicker.md#pickertextstyle10类型说明) | 否 | 设置所有选项中最上和最下两个选项的文本颜色、字号、字体粗细。 |
-| textStyle | [PickerTextStyle](../arkui-ts/ts-basic-components-datepicker.md#pickertextstyle10类型说明) | 否 | 设置所有选项中除了最上、最下及选中项以外的文本颜色、字号、字体粗细。 |
-| selectedTextStyle | [PickerTextStyle](../arkui-ts/ts-basic-components-datepicker.md#pickertextstyle10类型说明) | 否 | 设置选中项的文本颜色、字号、字体粗细。 |
-| onAccept | (value: [TextPickerResult](../arkui-ts/ts-methods-textpicker-dialog.md#textpickerresult对象说明)) => void | 否 |  点击弹窗中的“确定”按钮时触发该回调。 |
-| onCancel | () => void | 否 | 点击弹窗中的“取消”按钮时触发该回调。 |
-| onChange | (value: [TextPickerResult](../arkui-ts/ts-methods-textpicker-dialog.md#textpickerresult对象说明)) => void | 否 |  滑动弹窗中的选择器使当前选中项改变时触发该回调。 |
+| 参数名                     | 类型                                       | 必填   | 说明                                       |
+| ----------------------- | ---------------------------------------- | ---- | ---------------------------------------- |
+| range                   | string[]&nbsp;\|&nbsp;[Resource](../arkui-ts/ts-types.md#resource)\|[TextPickerRangeContent](../arkui-ts/ts-basic-components-textpicker.md#textpickerrangecontent10类型说明)[] | 是    | 设置文本选择器的选择范围。不可设置为空数组，若设置为空数组，则不弹出弹窗。    |
+| selected                | number                                   | 否    | 设置选中项的索引值。<br>默认值：0                      |
+| value                   | string                                   | 否    | 设置选中项的文本内容。当设置了selected参数时，该参数不生效。如果设置的value值不在range范围内，则默认取range第一个元素。 |
+| defaultPickerItemHeight | number \| string                         | 否    | 设置选择器中选项的高度。                             |
+| disappearTextStyle      | [PickerTextStyle](../arkui-ts/ts-basic-components-datepicker.md#pickertextstyle10类型说明) | 否    | 设置所有选项中最上和最下两个选项的文本颜色、字号、字体粗细。           |
+| textStyle               | [PickerTextStyle](../arkui-ts/ts-basic-components-datepicker.md#pickertextstyle10类型说明) | 否    | 设置所有选项中除了最上、最下及选中项以外的文本颜色、字号、字体粗细。       |
+| selectedTextStyle       | [PickerTextStyle](../arkui-ts/ts-basic-components-datepicker.md#pickertextstyle10类型说明) | 否    | 设置选中项的文本颜色、字号、字体粗细。                      |
+| onAccept                | (value: [TextPickerResult](../arkui-ts/ts-methods-textpicker-dialog.md#textpickerresult对象说明)) => void | 否    | 点击弹窗中的“确定”按钮时触发该回调。                      |
+| onCancel                | () => void                               | 否    | 点击弹窗中的“取消”按钮时触发该回调。                      |
+| onChange                | (value: [TextPickerResult](../arkui-ts/ts-methods-textpicker-dialog.md#textpickerresult对象说明)) => void | 否    | 滑动弹窗中的选择器使当前选中项改变时触发该回调。                 |
 
 **示例：**
 
@@ -487,19 +487,20 @@ createAnimator(options: AnimatorOptions): AnimatorResult
 
 **参数：**
 
-| 参数名     | 类型                                  | 必填   | 说明      |
-| ------- | ----------------------------------- | ---- | ------- |
+| 参数名     | 类型                                       | 必填   | 说明      |
+| ------- | ---------------------------------------- | ---- | ------- |
 | options | [AnimatorOptions](./js-apis-animator.md#animatoroptions) | 是    | 定义动画选项。 |
 
 **返回值：**
 
-| 类型                                | 说明            |
-| --------------------------------- | ------------- |
+| 类型                                       | 说明            |
+| ---------------------------------------- | ------------- |
 | [AnimatorResult](./js-apis-animator.md#animatorresult) | Animator结果接口。 |
 
 **示例：**
 
 ```ts
+import { AnimatorOptions } from '@ohos.animator';
 let options:AnimatorOptions = {
   duration: 1500,
   easing: "friction",
@@ -523,9 +524,9 @@ runScopedTask(callback: () => void): void
 
 **参数：**
 
-| 参数名     | 类型                                  | 必填   | 说明      |
-| ------- | ----------------------------------- | ---- | ------- |
-| callback | () => void            | 是    | 回调函数 |
+| 参数名      | 类型         | 必填   | 说明   |
+| -------- | ---------- | ---- | ---- |
+| callback | () => void | 是    | 回调函数 |
 
 **示例：**
 
@@ -551,13 +552,14 @@ registerFont(options: font.FontOptions): void
 
 **参数：**
 
-| 参数名  | 类型                                            | 必填 | 说明                   |
-| ------- | ----------------------------------------------- | ---- | ---------------------- |
-| options | [font.FontOptions](js-apis-font.md#fontoptions) | 是   | 注册的自定义字体信息。 |
+| 参数名     | 类型                                       | 必填   | 说明          |
+| ------- | ---------------------------------------- | ---- | ----------- |
+| options | [font.FontOptions](js-apis-font.md#fontoptions) | 是    | 注册的自定义字体信息。 |
 
 **示例：**
 
 ```ts
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
 let font:Font = uiContext.getFont();
 font.registerFont({
   familyName: 'medium',
@@ -574,15 +576,18 @@ getSystemFontList(): Array\<string>
 
 **返回值：**
 
-| 类型           | 说明               |
-| -------------- | ------------------ |
+| 类型             | 说明        |
+| -------------- | --------- |
 | Array\<string> | 系统的字体名列表。 |
 
 **示例：** 
 
 ```ts
-let font:Font = uiContext.getFont();
-font.getSystemFontList()
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+let font:Font|undefined = uiContext.getFont();
+if(font){
+  font.getSystemFontList()
+}
 ```
 
 ### getFontByName
@@ -595,21 +600,24 @@ getFontByName(fontName: string): font.FontInfo
 
 **参数：** 
 
-| 参数名   | 类型   | 必填 | 说明           |
-| -------- | ------ | ---- | -------------- |
-| fontName | string | 是   | 系统的字体名。 |
+| 参数名      | 类型     | 必填   | 说明      |
+| -------- | ------ | ---- | ------- |
+| fontName | string | 是    | 系统的字体名。 |
 
 **返回值：** 
 
-| 类型                                 | 说明           |
-| ------------------------------------ | -------------- |
+| 类型                                   | 说明      |
+| ------------------------------------ | ------- |
 | [FontInfo](js-apis-font.md#fontinfo) | 字体的详细信息 |
 
 **示例：** 
 
 ```ts
-let font:Font = uiContext.getFont();
-font.getFontByName('Sans Italic')
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+let font:Font|undefined = uiContext.getFont();
+if(font){
+  font.getFontByName('Sans Italic')
+}
 ```
 
 ## ComponentUtils
@@ -626,23 +634,24 @@ getRectangleById(id: string): componentUtils.ComponentInfo
 
 **参数：**
 
-| 参数名 | 类型   | 必填 | 说明             |
-| ------ | ------ | ---- | ---------------- |
-| id     | string | 是   | 组件唯一标识id。 |
+| 参数名  | 类型     | 必填   | 说明        |
+| ---- | ------ | ---- | --------- |
+| id   | string | 是    | 组件唯一标识id。 |
 
 **返回值：**
 
-| 类型                                                     | 说明                                             |
-| -------------------------------------------------------- | ------------------------------------------------ |
+| 类型                                       | 说明                       |
+| ---------------------------------------- | ------------------------ |
 | [ComponentInfo](js-apis-arkui-componentUtils.md#componentinfo) | 组件大小、位置、平移缩放旋转及仿射矩阵属性信息。 |
 
 **示例：**
 
 ```ts
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
 let componentUtils:ComponentUtils = uiContext.getComponentUtils();
-let modePosition:componentUtils.ComponentInfo = componentUtils.getRectangleById("onClick");
-let localOffsetWidth:object = modePosition.size.width;
-let localOffsetHeight:object = modePosition.size.height;
+let modePosition = componentUtils.getRectangleById("onClick");
+let localOffsetWidth = modePosition.size.width;
+let localOffsetHeight = modePosition.size.height;
 ```
 
 ## UIInspector
@@ -659,19 +668,20 @@ createComponentObserver(id: string): inspector.ComponentObserver
 
 **参数：**
 
-| 参数名     | 类型                          | 必填   | 说明          |
-| ------- | --------------------------- | ---- | ----------- |
-| id | string | 是    | 指定组件id。 |
+| 参数名  | 类型     | 必填   | 说明      |
+| ---- | ------ | ---- | ------- |
+| id   | string | 是    | 指定组件id。 |
 
 **返回值：** 
 
-| 类型                                                         | 说明                                               |
-| ------------------------------------------------------------ | -------------------------------------------------- |
+| 类型                                       | 说明                        |
+| ---------------------------------------- | ------------------------- |
 | [ComponentObserver](js-apis-arkui-inspector.md#componentobserver) | 组件回调事件监听句柄，用于注册和取消注册监听回调。 |
 
 **示例：**
 
 ```ts
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
 let inspector:UIInspector = uiContext.getUIInspector();
 let listener = inspector.createComponentObserver('COMPONENT_ID');
 ```
@@ -703,6 +713,7 @@ matchMediaSync(condition: string): mediaQuery.MediaQueryListener
 **示例：**
 
 ```ts
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
 let mediaquery: MediaQuery = uiContext.getMediaQuery();
 let listener = mediaquery.matchMediaSync('(orientation: landscape)'); //监听横屏事件
 ```
@@ -721,30 +732,32 @@ pushUrl(options: router.RouterOptions): Promise&lt;void&gt;
 
 **参数：**
 
-| 参数名  | 类型                                                    | 必填 | 说明               |
-| ------- | ------------------------------------------------------- | ---- | ------------------ |
-| options | [router.RouterOptions](js-apis-router.md#routeroptions) | 是   | 跳转页面描述信息。 |
+| 参数名     | 类型                                       | 必填   | 说明        |
+| ------- | ---------------------------------------- | ---- | --------- |
+| options | [router.RouterOptions](js-apis-router.md#routeroptions) | 是    | 跳转页面描述信息。 |
 
 **返回值：**
 
-| 类型                | 说明        |
-| ------------------- | --------- |
+| 类型                  | 说明      |
+| ------------------- | ------- |
 | Promise&lt;void&gt; | 异常返回结果。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[ohos.router(页面路由)](../errorcodes/errorcode-router.md)错误码。
 
-| 错误码ID   | 错误信息 |
-| --------- | ------- |
-| 100001    | if UI execution context not found. |
-| 100002    | if the uri is not exist. |
-| 100003    | if the pages are pushed too much. |
+| 错误码ID  | 错误信息                               |
+| ------ | ---------------------------------- |
+| 100001 | if UI execution context not found. |
+| 100002 | if the uri is not exist.           |
+| 100003 | if the pages are pushed too much.  |
 
 **示例：**
 
 ```ts
-let router = uiContext.getRouter();
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+import { BusinessError } from '@ohos.base';
+let router:Router = uiContext.getRouter();
 try {
   router.pushUrl({
     url: 'pages/routerpage2',
@@ -772,25 +785,27 @@ pushUrl(options: router.RouterOptions, callback: AsyncCallback&lt;void&gt;): voi
 
 **参数：**
 
-| 参数名     | 类型                              | 必填   | 说明        |
-| ------- | ------------------------------- | ---- | --------- |
-| options | [router.RouterOptions](js-apis-router.md#routeroptions) | 是    | 跳转页面描述信息。 |
-| callback | AsyncCallback&lt;void&gt;      | 是   | 异常响应回调。   |
+| 参数名      | 类型                                       | 必填   | 说明        |
+| -------- | ---------------------------------------- | ---- | --------- |
+| options  | [router.RouterOptions](js-apis-router.md#routeroptions) | 是    | 跳转页面描述信息。 |
+| callback | AsyncCallback&lt;void&gt;                | 是    | 异常响应回调。   |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[ohos.router(页面路由)](../errorcodes/errorcode-router.md)错误码。
 
-| 错误码ID   | 错误信息 |
-| --------- | ------- |
-| 100001    | if UI execution context not found. |
-| 100002    | if the uri is not exist. |
-| 100003    | if the pages are pushed too much. |
+| 错误码ID  | 错误信息                               |
+| ------ | ---------------------------------- |
+| 100001 | if UI execution context not found. |
+| 100002 | if the uri is not exist.           |
+| 100003 | if the pages are pushed too much.  |
 
 **示例：**
 
 ```ts
-let router = uiContext.getRouter();
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+import { BusinessError } from '@ohos.base';
+let router:Router = uiContext.getRouter();
 router.pushUrl({
   url: 'pages/routerpage2',
   params: {
@@ -801,7 +816,9 @@ router.pushUrl({
   }
 }, (err: Error) => {
   if (err) {
-    console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
+    let message = (err as BusinessError).message;
+    let code = (err as BusinessError).code;
+    console.error(`pushUrl failed, code is ${code}, message is ${message}`);
     return;
   }
   console.info('pushUrl success');
@@ -818,33 +835,40 @@ pushUrl(options: router.RouterOptions, mode: router.RouterMode): Promise&lt;void
 
 **参数：**
 
-| 参数名  | 类型                                                    | 必填 | 说明                 |
-| ------- | ------------------------------------------------------- | ---- | -------------------- |
-| options | [router.RouterOptions](js-apis-router.md#routeroptions) | 是   | 跳转页面描述信息。   |
-| mode    | [router.RouterMode](js-apis-router.md#routermode9)      | 是   | 跳转页面使用的模式。 |
+| 参数名     | 类型                                       | 必填   | 说明         |
+| ------- | ---------------------------------------- | ---- | ---------- |
+| options | [router.RouterOptions](js-apis-router.md#routeroptions) | 是    | 跳转页面描述信息。  |
+| mode    | [router.RouterMode](js-apis-router.md#routermode9) | 是    | 跳转页面使用的模式。 |
 
 **返回值：**
 
-| 类型                | 说明        |
-| ------------------- | --------- |
+| 类型                  | 说明      |
+| ------------------- | ------- |
 | Promise&lt;void&gt; | 异常返回结果。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[ohos.router(页面路由)](../errorcodes/errorcode-router.md)错误码。
 
-| 错误码ID   | 错误信息 |
-| --------- | ------- |
-| 100001    | if UI execution context not found. |
-| 100002    | if the uri is not exist. |
-| 100003    | if the pages are pushed too much. |
+| 错误码ID  | 错误信息                               |
+| ------ | ---------------------------------- |
+| 100001 | if UI execution context not found. |
+| 100002 | if the uri is not exist.           |
+| 100003 | if the pages are pushed too much.  |
 
 **示例：**
 
 ```ts
-let router = uiContext.getRouter();
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+import { BusinessError } from '@ohos.base';
+import router from '@ohos.router';
+let routerF:Router = uiContext.getRouter();
+class routerTmp{
+  Standard:router.RouterMode = router.RouterMode.Standard
+}
+let rtm:routerTmp = new routerTmp()
 try {
-  router.pushUrl({
+  routerF.pushUrl({
     url: 'pages/routerpage2',
     params: {
       data1: 'message',
@@ -852,7 +876,7 @@ try {
         data3: [123, 456, 789]
       }
     }
-  }, router.RouterMode.Standard)
+  }, rtm.Standard)
 } catch (err) {
   let message = (err as BusinessError).message;
   let code = (err as BusinessError).code;
@@ -870,27 +894,34 @@ pushUrl(options: router.RouterOptions, mode: router.RouterMode, callback: AsyncC
 
 **参数：**
 
-| 参数名     | 类型                              | 必填   | 说明         |
-| ------- | ------------------------------- | ---- | ---------- |
-| options | [router.RouterOptions](js-apis-router.md#routeroptions) | 是    | 跳转页面描述信息。  |
-| mode    | [router.RouterMode](js-apis-router.md#routermode9) | 是    | 跳转页面使用的模式。 |
-| callback | AsyncCallback&lt;void&gt;      | 是   | 异常响应回调。   |
+| 参数名      | 类型                                       | 必填   | 说明         |
+| -------- | ---------------------------------------- | ---- | ---------- |
+| options  | [router.RouterOptions](js-apis-router.md#routeroptions) | 是    | 跳转页面描述信息。  |
+| mode     | [router.RouterMode](js-apis-router.md#routermode9) | 是    | 跳转页面使用的模式。 |
+| callback | AsyncCallback&lt;void&gt;                | 是    | 异常响应回调。    |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[ohos.router(页面路由)](../errorcodes/errorcode-router.md)错误码。
 
-| 错误码ID   | 错误信息 |
-| --------- | ------- |
-| 100001    | if UI execution context not found. |
-| 100002    | if the uri is not exist. |
-| 100003    | if the pages are pushed too much. |
+| 错误码ID  | 错误信息                               |
+| ------ | ---------------------------------- |
+| 100001 | if UI execution context not found. |
+| 100002 | if the uri is not exist.           |
+| 100003 | if the pages are pushed too much.  |
 
 **示例：**
 
 ```ts
-let router = uiContext.getRouter();
-router.pushUrl({
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+import { BusinessError } from '@ohos.base';
+import router from '@ohos.router';
+let routerF:Router = uiContext.getRouter();
+class routerTmp{
+  Standard:router.RouterMode = router.RouterMode.Standard
+}
+let rtm:routerTmp = new routerTmp()
+routerF.pushUrl({
   url: 'pages/routerpage2',
   params: {
     data1: 'message',
@@ -898,9 +929,11 @@ router.pushUrl({
       data3: [123, 456, 789]
     }
   }
-}, router.RouterMode.Standard, (err) => {
+}, rtm.Standard, (err) => {
   if (err) {
-    console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
+    let message = (err as BusinessError).message;
+    let code = (err as BusinessError).code;
+    console.error(`pushUrl failed, code is ${code}, message is ${message}`);
     return;
   }
   console.info('pushUrl success');
@@ -917,29 +950,31 @@ replaceUrl(options: router.RouterOptions): Promise&lt;void&gt;
 
 **参数：**
 
-| 参数名  | 类型                                                    | 必填 | 说明               |
-| ------- | ------------------------------------------------------- | ---- | ------------------ |
-| options | [router.RouterOptions](js-apis-router.md#routeroptions) | 是   | 替换页面描述信息。 |
+| 参数名     | 类型                                       | 必填   | 说明        |
+| ------- | ---------------------------------------- | ---- | --------- |
+| options | [router.RouterOptions](js-apis-router.md#routeroptions) | 是    | 替换页面描述信息。 |
 
 **返回值：**
 
-| 类型                | 说明        |
-| ------------------- | --------- |
+| 类型                  | 说明      |
+| ------------------- | ------- |
 | Promise&lt;void&gt; | 异常返回结果。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[ohos.router(页面路由)](../errorcodes/errorcode-router.md)错误码。
 
-| 错误码ID   | 错误信息 |
-| --------- | ------- |
-| 100001    | if UI execution context not found, only throw in standard system. |
-| 200002    | if the uri is not exist. |
+| 错误码ID  | 错误信息                                     |
+| ------ | ---------------------------------------- |
+| 100001 | if UI execution context not found, only throw in standard system. |
+| 200002 | if the uri is not exist.                 |
 
 **示例：**
 
 ```ts
-let router = uiContext.getRouter();
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+import { BusinessError } from '@ohos.base';
+let router:Router = uiContext.getRouter();
 try {
   router.replaceUrl({
     url: 'pages/detail',
@@ -964,24 +999,26 @@ replaceUrl(options: router.RouterOptions, callback: AsyncCallback&lt;void&gt;): 
 
 **参数：**
 
-| 参数名  | 类型                            | 必填 | 说明               |
-| ------- | ------------------------------- | ---- | ------------------ |
-| options | [router.RouterOptions](js-apis-router.md#routeroptions) | 是   | 替换页面描述信息。 |
-| callback | AsyncCallback&lt;void&gt;      | 是   | 异常响应回调。   |
+| 参数名      | 类型                                       | 必填   | 说明        |
+| -------- | ---------------------------------------- | ---- | --------- |
+| options  | [router.RouterOptions](js-apis-router.md#routeroptions) | 是    | 替换页面描述信息。 |
+| callback | AsyncCallback&lt;void&gt;                | 是    | 异常响应回调。   |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[ohos.router(页面路由)](../errorcodes/errorcode-router.md)错误码。
 
-| 错误码ID   | 错误信息 |
-| --------- | ------- |
-| 100001    | if UI execution context not found, only throw in standard system. |
-| 200002    | if the uri is not exist. |
+| 错误码ID  | 错误信息                                     |
+| ------ | ---------------------------------------- |
+| 100001 | if UI execution context not found, only throw in standard system. |
+| 200002 | if the uri is not exist.                 |
 
 **示例：**
 
 ```ts
-let router = uiContext.getRouter();
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+import { BusinessError } from '@ohos.base';
+let router:Router = uiContext.getRouter();
 router.replaceUrl({
   url: 'pages/detail',
   params: {
@@ -989,7 +1026,9 @@ router.replaceUrl({
   }
 }, (err: Error) => {
   if (err) {
-    console.error(`replaceUrl failed, code is ${err.code}, message is ${err.message}`);
+    let message = (err as BusinessError).message;
+    let code = (err as BusinessError).code;
+    console.error(`replaceUrl failed, code is ${code}, message is ${message}`);
     return;
   }
   console.info('replaceUrl success');
@@ -1006,37 +1045,44 @@ replaceUrl(options: router.RouterOptions, mode: router.RouterMode): Promise&lt;v
 
 **参数：**
 
-| 参数名  | 类型                                                    | 必填 | 说明                 |
-| ------- | ------------------------------------------------------- | ---- | -------------------- |
-| options | [router.RouterOptions](js-apis-router.md#routeroptions) | 是   | 替换页面描述信息。   |
-| mode    | [router.RouterMode](js-apis-router.md#routermode9)      | 是   | 跳转页面使用的模式。 |
+| 参数名     | 类型                                       | 必填   | 说明         |
+| ------- | ---------------------------------------- | ---- | ---------- |
+| options | [router.RouterOptions](js-apis-router.md#routeroptions) | 是    | 替换页面描述信息。  |
+| mode    | [router.RouterMode](js-apis-router.md#routermode9) | 是    | 跳转页面使用的模式。 |
 
 **返回值：**
 
-| 类型                | 说明        |
-| ------------------- | --------- |
+| 类型                  | 说明      |
+| ------------------- | ------- |
 | Promise&lt;void&gt; | 异常返回结果。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[ohos.router(页面路由)](../errorcodes/errorcode-router.md)错误码。
 
-| 错误码ID   | 错误信息 |
-| --------- | ------- |
-| 100001    | if can not get the delegate, only throw in standard system. |
-| 200002    | if the uri is not exist. |
+| 错误码ID  | 错误信息                                     |
+| ------ | ---------------------------------------- |
+| 100001 | if can not get the delegate, only throw in standard system. |
+| 200002 | if the uri is not exist.                 |
 
 **示例：**
 
 ```ts
-let router = uiContext.getRouter();
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+import { BusinessError } from '@ohos.base';
+import router from '@ohos.router';
+let routerF:Router = uiContext.getRouter();
+class routerTmp{
+  Standard:router.RouterMode = router.RouterMode.Standard
+}
+let rtm:routerTmp = new routerTmp()
 try {
-  router.replaceUrl({
+  routerF.replaceUrl({
     url: 'pages/detail',
     params: {
       data1: 'message'
     }
-  }, router.RouterMode.Standard)
+  }, rtm.Standard)
 } catch (err) {
   let message = (err as BusinessError).message;
   let code = (err as BusinessError).code;
@@ -1054,33 +1100,42 @@ replaceUrl(options: router.RouterOptions, mode: router.RouterMode, callback: Asy
 
 **参数：**
 
-| 参数名     | 类型                              | 必填   | 说明         |
-| ------- | ------------------------------- | ---- | ---------- |
-| options | [router.RouterOptions](js-apis-router.md#routeroptions) | 是    | 替换页面描述信息。  |
-| mode    | [router.RouterMode](js-apis-router.md#routermode9) | 是    | 跳转页面使用的模式。 |
-| callback | AsyncCallback&lt;void&gt;      | 是   | 异常响应回调。   |
+| 参数名      | 类型                                       | 必填   | 说明         |
+| -------- | ---------------------------------------- | ---- | ---------- |
+| options  | [router.RouterOptions](js-apis-router.md#routeroptions) | 是    | 替换页面描述信息。  |
+| mode     | [router.RouterMode](js-apis-router.md#routermode9) | 是    | 跳转页面使用的模式。 |
+| callback | AsyncCallback&lt;void&gt;                | 是    | 异常响应回调。    |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[ohos.router(页面路由)](../errorcodes/errorcode-router.md)错误码。
 
-| 错误码ID   | 错误信息 |
-| --------- | ------- |
-| 100001    | if UI execution context not found, only throw in standard system. |
-| 200002    | if the uri is not exist. |
+| 错误码ID  | 错误信息                                     |
+| ------ | ---------------------------------------- |
+| 100001 | if UI execution context not found, only throw in standard system. |
+| 200002 | if the uri is not exist.                 |
 
 **示例：**
 
 ```ts
-let router = uiContext.getRouter();
-router.replaceUrl({
+import { ComponentUtils, Font, PromptAction, Router, UIInspector,  MediaQuery } from '@ohos.arkui.UIContext';
+import { BusinessError } from '@ohos.base';
+import router from '@ohos.router';
+let routerF:Router = uiContext.getRouter();
+class routerTmp{
+  Standard:router.RouterMode = router.RouterMode.Standard
+}
+let rtm:routerTmp = new routerTmp()
+routerF.replaceUrl({
   url: 'pages/detail',
   params: {
     data1: 'message'
   }
-}, router.RouterMode.Standard, (err: Error) => {
+}, rtm.Standard, (err: Error) => {
   if (err) {
-    console.error(`replaceUrl failed, code is ${err.code}, message is ${err.message}`);
+    let message = (err as BusinessError).message;
+    let code = (err as BusinessError).code;
+    console.error(`replaceUrl failed, code is ${code}, message is ${message}`);
     return;
   }
   console.info('replaceUrl success');
@@ -1097,30 +1152,32 @@ pushNamedRoute(options: router.NamedRouterOptions): Promise&lt;void&gt;
 
 **参数：**
 
-| 参数名  | 类型                                                         | 必填 | 说明               |
-| ------- | ------------------------------------------------------------ | ---- | ------------------ |
-| options | [router.NamedRouterOptions](js-apis-router.md#namedrouteroptions10) | 是   | 跳转页面描述信息。 |
+| 参数名     | 类型                                       | 必填   | 说明        |
+| ------- | ---------------------------------------- | ---- | --------- |
+| options | [router.NamedRouterOptions](js-apis-router.md#namedrouteroptions10) | 是    | 跳转页面描述信息。 |
 
 **返回值：**
 
-| 类型                | 说明        |
-| ------------------- | --------- |
+| 类型                  | 说明      |
+| ------------------- | ------- |
 | Promise&lt;void&gt; | 异常返回结果。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[ohos.router(页面路由)](../errorcodes/errorcode-router.md)错误码。
 
-| 错误码ID   | 错误信息 |
-| --------- | ------- |
-| 100001    | if UI execution context not found. |
-| 100003    | if the pages are pushed too much. |
-| 100004    | if the named route is not exist. |
+| 错误码ID  | 错误信息                               |
+| ------ | ---------------------------------- |
+| 100001 | if UI execution context not found. |
+| 100003 | if the pages are pushed too much.  |
+| 100004 | if the named route is not exist.   |
 
 **示例：**
 
 ```ts
-let router = uiContext.getRouter();
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+import { BusinessError } from '@ohos.base';
+let router:Router = uiContext.getRouter();
 try {
   router.pushNamedRoute({
     name: 'myPage',
@@ -1148,25 +1205,27 @@ pushNamedRoute(options: router.NamedRouterOptions, callback: AsyncCallback&lt;vo
 
 **参数：**
 
-| 参数名     | 类型                              | 必填   | 说明        |
-| ------- | ------------------------------- | ---- | --------- |
-| options | [router.NamedRouterOptions](js-apis-router.md#namedrouteroptions10) | 是    | 跳转页面描述信息。 |
-| callback | AsyncCallback&lt;void&gt;      | 是   | 异常响应回调。   |
+| 参数名      | 类型                                       | 必填   | 说明        |
+| -------- | ---------------------------------------- | ---- | --------- |
+| options  | [router.NamedRouterOptions](js-apis-router.md#namedrouteroptions10) | 是    | 跳转页面描述信息。 |
+| callback | AsyncCallback&lt;void&gt;                | 是    | 异常响应回调。   |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[ohos.router(页面路由)](../errorcodes/errorcode-router.md)错误码。
 
-| 错误码ID   | 错误信息 |
-| --------- | ------- |
-| 100001    | if UI execution context not found. |
-| 100003    | if the pages are pushed too much. |
-| 100004    | if the named route is not exist. |
+| 错误码ID  | 错误信息                               |
+| ------ | ---------------------------------- |
+| 100001 | if UI execution context not found. |
+| 100003 | if the pages are pushed too much.  |
+| 100004 | if the named route is not exist.   |
 
 **示例：**
 
 ```ts
-let router = uiContext.getRouter();
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+import { BusinessError } from '@ohos.base';
+let router:Router = uiContext.getRouter();
 router.pushNamedRoute({
   name: 'myPage',
   params: {
@@ -1177,7 +1236,9 @@ router.pushNamedRoute({
   }
 }, (err: Error) => {
   if (err) {
-    console.error(`pushNamedRoute failed, code is ${err.code}, message is ${err.message}`);
+    let message = (err as BusinessError).message;
+    let code = (err as BusinessError).code;
+    console.error(`pushNamedRoute failed, code is ${code}, message is ${message}`);
     return;
   }
   console.info('pushNamedRoute success');
@@ -1193,33 +1254,40 @@ pushNamedRoute(options: router.NamedRouterOptions, mode: router.RouterMode): Pro
 
 **参数：**
 
-| 参数名  | 类型                                                         | 必填 | 说明                 |
-| ------- | ------------------------------------------------------------ | ---- | -------------------- |
-| options | [router.NamedRouterOptions](js-apis-router.md#namedrouteroptions10) | 是   | 跳转页面描述信息。   |
-| mode    | [router.RouterMode](js-apis-router.md#routermode9)           | 是   | 跳转页面使用的模式。 |
+| 参数名     | 类型                                       | 必填   | 说明         |
+| ------- | ---------------------------------------- | ---- | ---------- |
+| options | [router.NamedRouterOptions](js-apis-router.md#namedrouteroptions10) | 是    | 跳转页面描述信息。  |
+| mode    | [router.RouterMode](js-apis-router.md#routermode9) | 是    | 跳转页面使用的模式。 |
 
 **返回值：**
 
-| 类型                | 说明        |
-| ------------------- | --------- |
+| 类型                  | 说明      |
+| ------------------- | ------- |
 | Promise&lt;void&gt; | 异常返回结果。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[ohos.router(页面路由)](../errorcodes/errorcode-router.md)错误码。
 
-| 错误码ID   | 错误信息 |
-| --------- | ------- |
-| 100001    | if UI execution context not found. |
-| 100003    | if the pages are pushed too much. |
-| 100004    | if the named route is not exist. |
+| 错误码ID  | 错误信息                               |
+| ------ | ---------------------------------- |
+| 100001 | if UI execution context not found. |
+| 100003 | if the pages are pushed too much.  |
+| 100004 | if the named route is not exist.   |
 
 **示例：**
 
 ```ts
-let router = uiContext.getRouter();
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+import { BusinessError } from '@ohos.base';
+import router from '@ohos.router';
+let routerF:Router = uiContext.getRouter();
+class routerTmp{
+  Standard:router.RouterMode = router.RouterMode.Standard
+}
+let rtm:routerTmp = new routerTmp()
 try {
-  router.pushNamedRoute({
+  routerF.pushNamedRoute({
     name: 'myPage',
     params: {
       data1: 'message',
@@ -1227,7 +1295,7 @@ try {
         data3: [123, 456, 789]
       }
     }
-  }, router.RouterMode.Standard)
+  }, rtm.Standard)
 } catch (err) {
   let message = (err as BusinessError).message;
   let code = (err as BusinessError).code;
@@ -1245,27 +1313,34 @@ pushNamedRoute(options: router.NamedRouterOptions, mode: router.RouterMode, call
 
 **参数：**
 
-| 参数名     | 类型                              | 必填   | 说明         |
-| ------- | ------------------------------- | ---- | ---------- |
-| options | [router.NamedRouterOptions](js-apis-router.md#namedrouteroptions10) | 是    | 跳转页面描述信息。  |
-| mode    | [router.RouterMode](js-apis-router.md#routermode9) | 是    | 跳转页面使用的模式。 |
-| callback | AsyncCallback&lt;void&gt;      | 是   | 异常响应回调。   |
+| 参数名      | 类型                                       | 必填   | 说明         |
+| -------- | ---------------------------------------- | ---- | ---------- |
+| options  | [router.NamedRouterOptions](js-apis-router.md#namedrouteroptions10) | 是    | 跳转页面描述信息。  |
+| mode     | [router.RouterMode](js-apis-router.md#routermode9) | 是    | 跳转页面使用的模式。 |
+| callback | AsyncCallback&lt;void&gt;                | 是    | 异常响应回调。    |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[ohos.router(页面路由)](../errorcodes/errorcode-router.md)错误码。
 
-| 错误码ID   | 错误信息 |
-| --------- | ------- |
-| 100001    | if UI execution context not found. |
-| 100003    | if the pages are pushed too much. |
-| 100004    | if the named route is not exist. |
+| 错误码ID  | 错误信息                               |
+| ------ | ---------------------------------- |
+| 100001 | if UI execution context not found. |
+| 100003 | if the pages are pushed too much.  |
+| 100004 | if the named route is not exist.   |
 
 **示例：**
 
 ```ts
-let router = uiContext.getRouter();
-router.pushNamedRoute({
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+import { BusinessError } from '@ohos.base';
+import router from '@ohos.router';
+let routerF:Router = uiContext.getRouter();
+class routerTmp{
+  Standard:router.RouterMode = router.RouterMode.Standard
+}
+let rtm:routerTmp = new routerTmp()
+routerF.pushNamedRoute({
   name: 'myPage',
   params: {
     data1: 'message',
@@ -1273,9 +1348,11 @@ router.pushNamedRoute({
       data3: [123, 456, 789]
     }
   }
-}, router.RouterMode.Standard, (err: Error) => {
+}, rtm.Standard, (err: Error) => {
   if (err) {
-    console.error(`pushNamedRoute failed, code is ${err.code}, message is ${err.message}`);
+    let message = (err as BusinessError).message;
+    let code = (err as BusinessError).code;
+    console.error(`pushNamedRoute failed, code is ${code}, message is ${message}`);
     return;
   }
   console.info('pushNamedRoute success');
@@ -1292,29 +1369,31 @@ replaceNamedRoute(options: router.NamedRouterOptions): Promise&lt;void&gt;
 
 **参数：**
 
-| 参数名  | 类型                                                         | 必填 | 说明               |
-| ------- | ------------------------------------------------------------ | ---- | ------------------ |
-| options | [router.NamedRouterOptions](js-apis-router.md#namedrouteroptions10) | 是   | 替换页面描述信息。 |
+| 参数名     | 类型                                       | 必填   | 说明        |
+| ------- | ---------------------------------------- | ---- | --------- |
+| options | [router.NamedRouterOptions](js-apis-router.md#namedrouteroptions10) | 是    | 替换页面描述信息。 |
 
 **返回值：**
 
-| 类型                | 说明        |
-| ------------------- | --------- |
+| 类型                  | 说明      |
+| ------------------- | ------- |
 | Promise&lt;void&gt; | 异常返回结果。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[ohos.router(页面路由)](../errorcodes/errorcode-router.md)错误码。
 
-| 错误码ID   | 错误信息 |
-| --------- | ------- |
-| 100001    | if UI execution context not found, only throw in standard system. |
-| 100004    | if the named route is not exist. |
+| 错误码ID  | 错误信息                                     |
+| ------ | ---------------------------------------- |
+| 100001 | if UI execution context not found, only throw in standard system. |
+| 100004 | if the named route is not exist.         |
 
 **示例：**
 
 ```ts
-let router = uiContext.getRouter();
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+import { BusinessError } from '@ohos.base';
+let router:Router = uiContext.getRouter();
 try {
   router.replaceNamedRoute({
     name: 'myPage',
@@ -1339,24 +1418,26 @@ replaceNamedRoute(options: router.NamedRouterOptions, callback: AsyncCallback&lt
 
 **参数：**
 
-| 参数名  | 类型                            | 必填 | 说明               |
-| ------- | ------------------------------- | ---- | ------------------ |
-| options | [router.NamedRouterOptions](js-apis-router.md#namedrouteroptions10) | 是   | 替换页面描述信息。 |
-| callback | AsyncCallback&lt;void&gt;      | 是   | 异常响应回调。   |
+| 参数名      | 类型                                       | 必填   | 说明        |
+| -------- | ---------------------------------------- | ---- | --------- |
+| options  | [router.NamedRouterOptions](js-apis-router.md#namedrouteroptions10) | 是    | 替换页面描述信息。 |
+| callback | AsyncCallback&lt;void&gt;                | 是    | 异常响应回调。   |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[ohos.router(页面路由)](../errorcodes/errorcode-router.md)错误码。
 
-| 错误码ID   | 错误信息 |
-| --------- | ------- |
-| 100001    | if UI execution context not found, only throw in standard system. |
-| 100004    | if the named route is not exist. |
+| 错误码ID  | 错误信息                                     |
+| ------ | ---------------------------------------- |
+| 100001 | if UI execution context not found, only throw in standard system. |
+| 100004 | if the named route is not exist.         |
 
 **示例：**
 
 ```ts
-let router = uiContext.getRouter();
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+import { BusinessError } from '@ohos.base';
+let router:Router = uiContext.getRouter();
 router.replaceNamedRoute({
   name: 'myPage',
   params: {
@@ -1364,7 +1445,9 @@ router.replaceNamedRoute({
   }
 }, (err: Error) => {
   if (err) {
-    console.error(`replaceNamedRoute failed, code is ${err.code}, message is ${err.message}`);
+    let message = (err as BusinessError).message;
+    let code = (err as BusinessError).code;
+    console.error(`replaceNamedRoute failed, code is ${code}, message is ${message}`);
     return;
   }
   console.info('replaceNamedRoute success');
@@ -1381,38 +1464,45 @@ replaceNamedRoute(options: router.NamedRouterOptions, mode: router.RouterMode): 
 
 **参数：**
 
-| 参数名  | 类型                                                         | 必填 | 说明                 |
-| ------- | ------------------------------------------------------------ | ---- | -------------------- |
-| options | [router.NamedRouterOptions](js-apis-router.md#namedrouteroptions10) | 是   | 替换页面描述信息。   |
-| mode    | [router.RouterMode](js-apis-router.md#routermode9)           | 是   | 跳转页面使用的模式。 |
+| 参数名     | 类型                                       | 必填   | 说明         |
+| ------- | ---------------------------------------- | ---- | ---------- |
+| options | [router.NamedRouterOptions](js-apis-router.md#namedrouteroptions10) | 是    | 替换页面描述信息。  |
+| mode    | [router.RouterMode](js-apis-router.md#routermode9) | 是    | 跳转页面使用的模式。 |
 
 
 **返回值：**
 
-| 类型                | 说明        |
-| ------------------- | --------- |
+| 类型                  | 说明      |
+| ------------------- | ------- |
 | Promise&lt;void&gt; | 异常返回结果。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[ohos.router(页面路由)](../errorcodes/errorcode-router.md)错误码。
 
-| 错误码ID   | 错误信息 |
-| --------- | ------- |
-| 100001    | if can not get the delegate, only throw in standard system. |
-| 100004    | if the named route is not exist. |
+| 错误码ID  | 错误信息                                     |
+| ------ | ---------------------------------------- |
+| 100001 | if can not get the delegate, only throw in standard system. |
+| 100004 | if the named route is not exist.         |
 
 **示例：**
 
 ```ts
-let router = uiContext.getRouter();
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+import { BusinessError } from '@ohos.base';
+import router from '@ohos.router';
+let routerF:Router = uiContext.getRouter();
+class routerTmp{
+  Standard:router.RouterMode = router.RouterMode.Standard
+}
+let rtm:routerTmp = new routerTmp()
 try {
-  router.replaceNamedRoute({
+  routerF.replaceNamedRoute({
     name: 'myPage',
     params: {
       data1: 'message'
     }
-  }, router.RouterMode.Standard)
+  }, rtm.Standard)
 } catch (err) {
   let message = (err as BusinessError).message;
   let code = (err as BusinessError).code;
@@ -1430,33 +1520,42 @@ replaceNamedRoute(options: router.NamedRouterOptions, mode: router.RouterMode, c
 
 **参数：**
 
-| 参数名     | 类型                              | 必填   | 说明         |
-| ------- | ------------------------------- | ---- | ---------- |
-| options | [router.NamedRouterOptions](js-apis-router.md#namedrouteroptions10) | 是    | 替换页面描述信息。  |
-| mode    | [router.RouterMode](js-apis-router.md#routermode9) | 是    | 跳转页面使用的模式。 |
-| callback | AsyncCallback&lt;void&gt;      | 是   | 异常响应回调。   |
+| 参数名      | 类型                                       | 必填   | 说明         |
+| -------- | ---------------------------------------- | ---- | ---------- |
+| options  | [router.NamedRouterOptions](js-apis-router.md#namedrouteroptions10) | 是    | 替换页面描述信息。  |
+| mode     | [router.RouterMode](js-apis-router.md#routermode9) | 是    | 跳转页面使用的模式。 |
+| callback | AsyncCallback&lt;void&gt;                | 是    | 异常响应回调。    |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[ohos.router(页面路由)](../errorcodes/errorcode-router.md)错误码。
 
-| 错误码ID   | 错误信息 |
-| --------- | ------- |
-| 100001    | if UI execution context not found, only throw in standard system. |
-| 100004    | if the named route is not exist. |
+| 错误码ID  | 错误信息                                     |
+| ------ | ---------------------------------------- |
+| 100001 | if UI execution context not found, only throw in standard system. |
+| 100004 | if the named route is not exist.         |
 
 **示例：**
 
 ```ts
-let router = uiContext.getRouter();
-router.replaceNamedRoute({
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+import { BusinessError } from '@ohos.base';
+import router from '@ohos.router';
+let routerF:Router = uiContext.getRouter();
+class routerTmp{
+  Standard:router.RouterMode = router.RouterMode.Standard
+}
+let rtm:routerTmp = new routerTmp()
+routerF.replaceNamedRoute({
   name: 'myPage',
   params: {
     data1: 'message'
   }
-}, router.RouterMode.Standard, (err: Error) => {
+}, rtm.Standard, (err: Error) => {
   if (err) {
-    console.error(`replaceNamedRoute failed, code is ${err.code}, message is ${err.message}`);
+    let message = (err as BusinessError).message;
+    let code = (err as BusinessError).code;
+    console.error(`replaceNamedRoute failed, code is ${code}, message is ${message}`);
     return;
   }
   console.info('replaceNamedRoute success');
@@ -1473,13 +1572,15 @@ back(options?: router.RouterOptions ): void
 
 **参数：**
 
-| 参数名  | 类型                                                    | 必填 | 说明                                                         |
-| ------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| options | [router.RouterOptions](js-apis-router.md#routeroptions) | 否   | 返回页面描述信息，其中参数url指路由跳转时会返回到指定url的界面，如果页面栈上没有url页面，则不响应该情况。如果url未设置，则返回上一页，页面不会重新构建，页面栈里面的page不会回收，出栈后会被回收。 |
+| 参数名     | 类型                                       | 必填   | 说明                                       |
+| ------- | ---------------------------------------- | ---- | ---------------------------------------- |
+| options | [router.RouterOptions](js-apis-router.md#routeroptions) | 否    | 返回页面描述信息，其中参数url指路由跳转时会返回到指定url的界面，如果页面栈上没有url页面，则不响应该情况。如果url未设置，则返回上一页，页面不会重新构建，页面栈里面的page不会回收，出栈后会被回收。 |
 
 **示例：**
 
 ```ts
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+import { BusinessError } from '@ohos.base';
 let router: Router = uiContext.getRouter();
 router.back({url:'pages/detail'});    
 ```
@@ -1495,6 +1596,8 @@ clear(): void
 **示例：**
 
 ```ts
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+import { BusinessError } from '@ohos.base';
 let router: Router = uiContext.getRouter();
 router.clear();    
 ```
@@ -1516,6 +1619,8 @@ getLength(): string
 **示例：**
 
 ```ts
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+import { BusinessError } from '@ohos.base';
 let router: Router = uiContext.getRouter();
 let size = router.getLength();        
 console.log('pages stack size = ' + size);    
@@ -1531,13 +1636,15 @@ getState(): router.RouterState
 
 **返回值：**
 
-| 类型                          | 说明      |
-| --------------------------- | ------- |
+| 类型                                       | 说明      |
+| ---------------------------------------- | ------- |
 | [RouterState](js-apis-router.md#routerstate) | 页面状态信息。 |
 
 **示例：**
 
 ```ts
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+import { BusinessError } from '@ohos.base';
 let router: Router = uiContext.getRouter();
 let page = router.getState();
 console.log('current index = ' + page.index);
@@ -1555,21 +1662,23 @@ showAlertBeforeBackPage(options: router.EnableAlertOptions): void
 
 **参数：**
 
-| 参数名  | 类型                                                         | 必填 | 说明               |
-| ------- | ------------------------------------------------------------ | ---- | ------------------ |
-| options | [router.EnableAlertOptions](js-apis-router.md#enablealertoptions) | 是   | 文本弹窗信息描述。 |
+| 参数名     | 类型                                       | 必填   | 说明        |
+| ------- | ---------------------------------------- | ---- | --------- |
+| options | [router.EnableAlertOptions](js-apis-router.md#enablealertoptions) | 是    | 文本弹窗信息描述。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[ohos.router(页面路由)](../errorcodes/errorcode-router.md)错误码。
 
-| 错误码ID   | 错误信息 |
-| --------- | ------- |
-| 100001    | if UI execution context not found. |
+| 错误码ID  | 错误信息                               |
+| ------ | ---------------------------------- |
+| 100001 | if UI execution context not found. |
 
 **示例：**
 
 ```ts
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+import { BusinessError } from '@ohos.base';
 let router: Router = uiContext.getRouter();
 try {
   router.showAlertBeforeBackPage({            
@@ -1593,6 +1702,8 @@ hideAlertBeforeBackPage(): void
 **示例：**
 
 ```ts
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+import { BusinessError } from '@ohos.base';
 let router: Router = uiContext.getRouter();
 router.hideAlertBeforeBackPage();    
 ```
@@ -1607,13 +1718,15 @@ getParams(): Object
 
 **返回值：**
 
-| 类型   | 说明                               |
-| ------ | ---------------------------------- |
+| 类型     | 说明                |
+| ------ | ----------------- |
 | object | 发起跳转的页面往当前页传入的参数。 |
 
 **示例：**
 
 ```ts
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+import { BusinessError } from '@ohos.base';
 let router: Router = uiContext.getRouter();
 router.getParams();
 ```
@@ -1632,21 +1745,23 @@ showToast(options: promptAction.ShowToastOptions): void
 
 **参数：**
 
-| 参数名  | 类型                                                         | 必填 | 说明           |
-| ------- | ------------------------------------------------------------ | ---- | -------------- |
-| options | [promptAction.ShowToastOptions](js-apis-promptAction.md#showtoastoptions) | 是   | 文本弹窗选项。 |
+| 参数名     | 类型                                       | 必填   | 说明      |
+| ------- | ---------------------------------------- | ---- | ------- |
+| options | [promptAction.ShowToastOptions](js-apis-promptAction.md#showtoastoptions) | 是    | 文本弹窗选项。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[ohos.promptAction(弹窗)](../errorcodes/errorcode-promptAction.md)错误码。
 
-| 错误码ID   | 错误信息 |
-| --------- | ------- |
-| 100001    | if UI execution context not found. |
+| 错误码ID  | 错误信息                               |
+| ------ | ---------------------------------- |
+| 100001 | if UI execution context not found. |
 
 **示例：**
 
 ```ts
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+import { BusinessError } from '@ohos.base';
 let promptAction: PromptAction = uiContext.getPromptAction();
 try {
   promptAction.showToast({            
@@ -1670,22 +1785,24 @@ showDialog(options: promptAction.ShowDialogOptions, callback: AsyncCallback&lt;p
 
 **参数：**
 
-| 参数名   | 类型                                                         | 必填 | 说明                     |
-| -------- | ------------------------------------------------------------ | ---- | ------------------------ |
-| options  | [promptAction.ShowDialogOptions](js-apis-promptAction.md#showdialogoptions) | 是   | 页面显示对话框信息描述。 |
-| callback | AsyncCallback&lt;[promptAction.ShowDialogSuccessResponse](js-apis-promptAction.md#showdialogsuccessresponse)&gt; | 是   | 对话框响应结果回调。     |
+| 参数名      | 类型                                       | 必填   | 说明           |
+| -------- | ---------------------------------------- | ---- | ------------ |
+| options  | [promptAction.ShowDialogOptions](js-apis-promptAction.md#showdialogoptions) | 是    | 页面显示对话框信息描述。 |
+| callback | AsyncCallback&lt;[promptAction.ShowDialogSuccessResponse](js-apis-promptAction.md#showdialogsuccessresponse)&gt; | 是    | 对话框响应结果回调。   |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[ohos.promptAction(弹窗)](../errorcodes/errorcode-promptAction.md)错误码。
 
-| 错误码ID   | 错误信息 |
-| --------- | ------- |
-| 100001    | if UI execution context not found. |
+| 错误码ID  | 错误信息                               |
+| ------ | ---------------------------------- |
+| 100001 | if UI execution context not found. |
 
 **示例：**
 
 ```ts
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+import { BusinessError } from '@ohos.base';
 class buttonsMoabl {
   text: string = ""
   color: string = ""
@@ -1713,7 +1830,9 @@ try {
     console.info('showDialog success callback, click button: ' + data.index);
   });
 } catch (error) {
-  console.error(`showDialog args error code is ${error.code}, message is ${error.message}`);
+  let message = (error as BusinessError).message;
+  let code = (error as BusinessError).code;
+  console.error(`showDialog args error code is ${code}, message is ${message}`);
 };
 ```
 
@@ -1727,27 +1846,29 @@ showDialog(options: promptAction.ShowDialogOptions): Promise&lt;promptAction.Sho
 
 **参数：**
 
-| 参数名  | 类型                                                         | 必填 | 说明         |
-| ------- | ------------------------------------------------------------ | ---- | ------------ |
-| options | [promptAction.ShowDialogOptions](js-apis-promptAction.md#showdialogoptions) | 是   | 对话框选项。 |
+| 参数名     | 类型                                       | 必填   | 说明     |
+| ------- | ---------------------------------------- | ---- | ------ |
+| options | [promptAction.ShowDialogOptions](js-apis-promptAction.md#showdialogoptions) | 是    | 对话框选项。 |
 
 **返回值：**
 
-| 类型                                                         | 说明             |
-| ------------------------------------------------------------ | ---------------- |
+| 类型                                       | 说明       |
+| ---------------------------------------- | -------- |
 | Promise&lt;[promptAction.ShowDialogSuccessResponse](js-apis-promptAction.md#showdialogsuccessresponse)&gt; | 对话框响应结果。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[ohos.promptAction(弹窗)](../errorcodes/errorcode-promptAction.md)错误码。
 
-| 错误码ID   | 错误信息 |
-| --------- | ------- |
-| 100001    | if UI execution context not found. |
+| 错误码ID  | 错误信息                               |
+| ------ | ---------------------------------- |
+| 100001 | if UI execution context not found. |
 
 **示例：**
 
 ```ts
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+import { BusinessError } from '@ohos.base';
 let promptAction: PromptAction = uiContext.getPromptAction();
 try {
   promptAction.showDialog({
@@ -1787,43 +1908,56 @@ showActionMenu(options: promptAction.ActionMenuOptions, callback:promptAction.Ac
 
 **参数：**
 
-| 参数名   | 类型                                                         | 必填 | 说明               |
-| -------- | ------------------------------------------------------------ | ---- | ------------------ |
-| options  | [promptAction.ActionMenuOptions](js-apis-promptAction.md#actionmenuoptions) | 是   | 操作菜单选项。     |
-| callback | [promptAction.ActionMenuSuccessResponse](js-apis-promptAction.md#actionmenusuccessresponse) | 是   | 菜单响应结果回调。 |
+| 参数名      | 类型                                       | 必填   | 说明        |
+| -------- | ---------------------------------------- | ---- | --------- |
+| options  | [promptAction.ActionMenuOptions](js-apis-promptAction.md#actionmenuoptions) | 是    | 操作菜单选项。   |
+| callback | [promptAction.ActionMenuSuccessResponse](js-apis-promptAction.md#actionmenusuccessresponse) | 是    | 菜单响应结果回调。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[ohos.promptAction(弹窗)](../errorcodes/errorcode-promptAction.md)错误码。
 
-| 错误码ID   | 错误信息 |
-| --------- | ------- |
-| 100001    | if UI execution context not found. |
+| 错误码ID  | 错误信息                               |
+| ------ | ---------------------------------- |
+| 100001 | if UI execution context not found. |
 
 **示例：**
 
 ```ts
-let promptAction: PromptAction = uiContext.getPromptAction();
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+import promptAction from '@ohos.promptAction';
+import { BusinessError } from '@ohos.base';
+class buttonsMoabl {
+  text: string = ""
+  color: string = ""
+}
+class dataR{
+  err:Error = new Error;
+  data:promptAction.ActionMenuSuccessResponse | undefined = undefined;
+}
+let dataAMSR:dataR = new dataR()
+let promptActionF: PromptAction = uiContext.getPromptAction();
 try {
-  promptAction.showActionMenu({
-    title: 'Title Info',
-    buttons: [
-      {
-        text: 'item1',
-        color: '#666666'
-      },
-      {
-        text: 'item2',
-        color: '#000000'
-      },
-    ]
-  }, (err:Error, data:promptAction.ActionMenuSuccessResponse) => {
-    if (err) {
-      console.info('showActionMenu err: ' + err);
-      return;
+  if(dataAMSR.data){
+    promptActionF.showActionMenu({
+      title: 'Title Info',
+      buttons: [
+        {
+          text: 'item1',
+          color: '#666666'
+        } as buttonsMoabl,
+        {
+          text: 'item2',
+          color: '#000000'
+        } as buttonsMoabl
+      ]
+    }, (dataAMSR.data))
+    if (dataAMSR.err) {
+      console.info('showActionMenu err: ' + dataAMSR.err);
+    }else{
+      console.info('showActionMenu success callback, click button: ' + dataAMSR.data.index);
     }
-    console.info('showActionMenu success callback, click button: ' + data.index);
-  })
+  }
 } catch (error) {
   let message = (error as BusinessError).message;
   let code = (error as BusinessError).code;
@@ -1841,27 +1975,29 @@ showActionMenu(options: promptAction.ActionMenuOptions): Promise&lt;promptAction
 
 **参数：**
 
-| 参数名  | 类型                                                         | 必填 | 说明           |
-| ------- | ------------------------------------------------------------ | ---- | -------------- |
-| options | [promptAction.ActionMenuOptions](js-apis-promptAction.md#actionmenuoptions) | 是   | 操作菜单选项。 |
+| 参数名     | 类型                                       | 必填   | 说明      |
+| ------- | ---------------------------------------- | ---- | ------- |
+| options | [promptAction.ActionMenuOptions](js-apis-promptAction.md#actionmenuoptions) | 是    | 操作菜单选项。 |
 
 **返回值：**
 
-| 类型                                                         | 说明           |
-| ------------------------------------------------------------ | -------------- |
+| 类型                                       | 说明      |
+| ---------------------------------------- | ------- |
 | Promise&lt;[promptAction.ActionMenuSuccessResponse](js-apis-promptAction.md#actionmenusuccessresponse)&gt; | 菜单响应结果。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[ohos.promptAction(弹窗)](../errorcodes/errorcode-promptAction.md)错误码。
 
-| 错误码ID   | 错误信息 |
-| --------- | ------- |
-| 100001    | if UI execution context not found. |
+| 错误码ID  | 错误信息                               |
+| ------ | ---------------------------------- |
+| 100001 | if UI execution context not found. |
 
 **示例：**
 
 ```ts
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+import { BusinessError } from '@ohos.base';
 let promptAction: PromptAction = uiContext.getPromptAction();
 try {
   promptAction.showActionMenu({

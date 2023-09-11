@@ -104,7 +104,7 @@ writeRemoteObject(object: [IRemoteObject](#iremoteobject)): void
 **示例：**
 
   ```ts
-  import { BussinessError } from '@ohos.base';
+  import { BusinessError } from '@ohos.base';
 
   class TestRemoteObject extends rpc.RemoteObject {
       constructor(descriptor: string) {
@@ -116,7 +116,7 @@ writeRemoteObject(object: [IRemoteObject](#iremoteobject)): void
   try {
       data.writeRemoteObject(testRemoteObject);
   } catch(error) {
-      let e: BussinessError = error as BussinessError;
+      let e: BusinessError = error as BusinessError;
       console.info("Rpc write remote object fail, errorCode " + e.code);
       console.info("Rpc write remote object fail, errorMessage " + e.message);
   }
@@ -148,7 +148,7 @@ readRemoteObject(): IRemoteObject
 **示例：**
 
   ```ts
-  import { BussinessError } from '@ohos.base';
+  import { BusinessError } from '@ohos.base';
 
   class TestRemoteObject extends rpc.RemoteObject {
       constructor(descriptor: string) {
@@ -161,7 +161,7 @@ readRemoteObject(): IRemoteObject
       data.writeRemoteObject(testRemoteObject);
       let proxy = data.readRemoteObject();
   } catch(error) {
-      let e: BussinessError = error as BussinessError;
+      let e: BusinessError = error as BusinessError;
       console.info("Rpc write remote object fail, errorCode " + e.code);
       console.info("Rpc write remote object fail, errorMessage " + e.message);
   }
@@ -192,13 +192,13 @@ writeInterfaceToken(token: string): void
 **示例：**
 
   ```ts
-  import { BussinessError } from '@ohos.base';
+  import { BusinessError } from '@ohos.base';
 
   let data = rpc.MessageSequence.create();
   try {
       data.writeInterfaceToken("aaa");
   } catch(error) {
-      let e: BussinessError = error as BussinessError;
+      let e: BusinessError = error as BusinessError;
       console.info("rpc write interface fail, errorCode " + e.code);
       console.info("rpc write interface fail, errorMessage " + e.message);
   }
@@ -229,7 +229,7 @@ readInterfaceToken(): string
 **示例：**
 
 ```ts
-import { BussinessError } from '@ohos.base';
+import { BusinessError } from '@ohos.base';
 
 class Stub extends rpc.RemoteObject {
     onRemoteRequest(code: number, data: rpc.MessageParcel, reply: rpc.MessageParcel, option: rpc.MessageOption): boolean {
@@ -237,7 +237,7 @@ class Stub extends rpc.RemoteObject {
             let interfaceToken = data.readInterfaceToken();
             console.log("RpcServer: interfaceToken is " + interfaceToken);
         } catch(error) {
-            let e: BussinessError = error as BussinessError;
+            let e: BusinessError = error as BusinessError;
             console.info("RpcServer: read interfaceToken failed, errorCode " + e.code);
             console.info("RpcServer: read interfaceToken failed, errorMessage " + e.message);
         }
@@ -307,14 +307,14 @@ setSize(size: number): void
 **示例：**
 
   ```ts
-  import { BussinessError } from '@ohos.base';
+  import { BusinessError } from '@ohos.base';
 
   let data = rpc.MessageSequence.create();
   try {
       data.setSize(16);
       console.log("RpcClient: setSize is " + data.getSize());
   } catch(error) {
-      let e: BussinessError = error as BussinessError;
+      let e: BusinessError = error as BusinessError;
       console.info("rpc set size of MessageSequence fail, errorCode " + e.code);
       console.info("rpc set size of MessageSequence fail, errorMessage " + e.message);
   }
@@ -345,14 +345,14 @@ setCapacity(size: number): void
 **示例：**
 
   ```ts
-  import { BussinessError } from '@ohos.base';
+  import { BusinessError } from '@ohos.base';
 
   let data = rpc.MessageSequence.create();
   try {
       data.setCapacity(100);
       console.log("RpcClient: setCapacity is " + data.getCapacity());
   } catch(error) {
-      let e: BussinessError = error as BussinessError;
+      let e: BusinessError = error as BusinessError;
       console.info("rpc memory alloc fail, errorCode " + e.code);
       console.info("rpc memory alloc fail, errorMessage " + e.message);
   }
@@ -472,7 +472,7 @@ rewindRead(pos: number): void
 **示例：**
 
   ```ts
-  import { BussinessError } from '@ohos.base';
+  import { BusinessError } from '@ohos.base';
 
   let data = rpc.MessageSequence.create();
   data.writeInt(12);
@@ -482,7 +482,7 @@ rewindRead(pos: number): void
   try {
       data.rewindRead(0);
   } catch(error) {
-      let e: BussinessError = error as BussinessError;
+      let e: BusinessError = error as BusinessError;
       console.info("rpc rewind read data fail, errorCode " + e.code);
       console.info("rpc rewind read data fail, errorMessage " + e.message);
   }
@@ -507,14 +507,14 @@ rewindWrite(pos: number): void
 **示例：**
 
   ```ts
-  import { BussinessError } from '@ohos.base';
+  import { BusinessError } from '@ohos.base';
 
   let data = rpc.MessageSequence.create();
   data.writeInt(4);
   try {
       data.rewindWrite(0);
   } catch(error) {
-      let e: BussinessError = error as BussinessError;
+      let e: BusinessError = error as BusinessError;
       console.info("rpc rewind read data fail, errorCode " + e.code);
       console.info("rpc rewind read data fail, errorMessage " + e.message);
   }
@@ -548,13 +548,13 @@ writeByte(val: number): void
 **示例：**
 
   ```ts
-  import { BussinessError } from '@ohos.base';
+  import { BusinessError } from '@ohos.base';
 
   let data = rpc.MessageSequence.create();
   try {
       data.writeByte(2);
   } catch(error) {
-    let e: BussinessError = error as BussinessError;
+    let e: BusinessError = error as BusinessError;
     console.info("rpc write byte fail, errorCode " + e.code);
     console.info("rpc write byte fail, errorMessage" + e.message);
   }
@@ -585,13 +585,13 @@ readByte(): number
 **示例：**
 
   ```ts
-  import { BussinessError } from '@ohos.base';
+  import { BusinessError } from '@ohos.base';
 
   let data = rpc.MessageSequence.create();
   try {
       data.writeByte(2);
   } catch(error) {
-    let e: BussinessError = error as BussinessError;
+    let e: BusinessError = error as BusinessError;
     console.info("rpc write byte fail, errorCode " + e.code);
     console.info("rpc write byte fail, errorMessage" + e.message);
   }
@@ -599,7 +599,7 @@ readByte(): number
       let ret = data.readByte();
       console.log("RpcClient: readByte is: " + ret);
   } catch(error) {
-    let e: BussinessError = error as BussinessError;
+    let e: BusinessError = error as BusinessError;
     console.info("rpc write byte fail, errorCode " + e.code);
     console.info("rpc write byte fail, errorMessage" + e.message);
   }
@@ -630,13 +630,13 @@ writeShort(val: number): void
 **示例：**
 
   ```ts
-  import { BussinessError } from '@ohos.base';
+  import { BusinessError } from '@ohos.base';
 
   let data = rpc.MessageSequence.create();
   try {
       data.writeShort(8);
   } catch(error) {
-      let e: BussinessError = error as BussinessError;
+      let e: BusinessError = error as BusinessError;
       console.info("rpc write short fail, errorCode " + e.code);
       console.info("rpc write short fail, errorMessage" + e.message);
   }
@@ -667,13 +667,13 @@ readShort(): number
 **示例：**
 
   ```ts
-  import { BussinessError } from '@ohos.base';
+  import { BusinessError } from '@ohos.base';
 
   let data = rpc.MessageSequence.create();
   try {
       data.writeShort(8);
   } catch(error) {
-      let e: BussinessError = error as BussinessError;
+      let e: BusinessError = error as BusinessError;
       console.info("rpc write short fail, errorCode " + e.code);
       console.info("rpc write short fail, errorMessage" + e.message);
   }
@@ -681,7 +681,7 @@ readShort(): number
       let ret = data.readShort();
       console.log("RpcClient: readByte is: " + ret);
   } catch(error) {
-      let e: BussinessError = error as BussinessError;
+      let e: BusinessError = error as BusinessError;
       console.info("rpc read short fail, errorCode " + e.code);
       console.info("rpc read short fail, errorMessage" + e.message);
   }
@@ -712,13 +712,13 @@ writeInt(val: number): void
 **示例：**
 
   ```ts
-  import { BussinessError } from '@ohos.base';
+  import { BusinessError } from '@ohos.base';
 
   let data = rpc.MessageSequence.create();
   try {
       data.writeInt(10);
   } catch(error) {
-      let e: BussinessError = error as BussinessError;
+      let e: BusinessError = error as BusinessError;
       console.info("rpc write int fail, errorCode " + e.code);
       console.info("rpc write int fail, errorMessage" + e.message);
   }
@@ -749,13 +749,13 @@ readInt(): number
 **示例：**
 
   ```ts
-  import { BussinessError } from '@ohos.base';
+  import { BusinessError } from '@ohos.base';
 
   let data = rpc.MessageSequence.create();
   try {
       data.writeInt(10);
   } catch(error) {
-      let e: BussinessError = error as BussinessError;
+      let e: BusinessError = error as BusinessError;
       console.info("rpc write int fail, errorCode " + e.code);
       console.info("rpc write int fail, errorMessage" + e.message);
   }
@@ -763,7 +763,7 @@ readInt(): number
       let ret = data.readInt();
       console.log("RpcClient: readInt is " + ret);
   } catch(error) {
-      let e: BussinessError = error as BussinessError;
+      let e: BusinessError = error as BusinessError;
       console.info("rpc read int fail, errorCode " + e.code);
       console.info("rpc read int fail, errorMessage" + e.message);
   }
@@ -794,13 +794,13 @@ writeLong(val: number): void
 **示例：**
 
   ```ts
-  import { BussinessError } from '@ohos.base';
+  import { BusinessError } from '@ohos.base';
 
   let data = rpc.MessageSequence.create();
   try {
       data.writeLong(10000);
   } catch(error) {
-      let e: BussinessError = error as BussinessError;
+      let e: BusinessError = error as BusinessError;
       console.info("rpc write long fail, errorCode " + e.code);
       console.info("rpc write long fail, errorMessage" + e.message);
   }
@@ -831,13 +831,13 @@ readLong(): number
 **示例：**
 
   ```ts
-  import { BussinessError } from '@ohos.base';
+  import { BusinessError } from '@ohos.base';
 
   let data = rpc.MessageSequence.create();
   try {
       data.writeLong(10000);
   } catch(error) {
-      let e: BussinessError = error as BussinessError;
+      let e: BusinessError = error as BusinessError;
       console.info("rpc write long fail, errorCode " + e.code);
       console.info("rpc write long fail, errorMessage" + e.message);
   }
@@ -845,7 +845,7 @@ readLong(): number
       let ret = data.readLong();
       console.log("RpcClient: readLong is " + ret);
   } catch(error) {
-      let e: BussinessError = error as BussinessError;
+      let e: BusinessError = error as BusinessError;
       console.info("rpc read long fail, errorCode " + e.code);
       console.info("rpc read long fail, errorMessage" + e.message);
   }
@@ -876,13 +876,13 @@ writeFloat(val: number): void
 **示例：**
 
   ```ts
-  import { BussinessError } from '@ohos.base';
+  import { BusinessError } from '@ohos.base';
 
   let data = rpc.MessageSequence.create();
   try {
       data.writeFloat(1.2);
   } catch(error) {
-      let e: BussinessError = error as BussinessError;
+      let e: BusinessError = error as BusinessError;
       console.info("rpc write float fail, errorCode " + e.code);
       console.info("rpc write float fail, errorMessage" + e.message);
   }
@@ -913,13 +913,13 @@ readFloat(): number
 **示例：**
 
   ```ts
-  import { BussinessError } from '@ohos.base';
+  import { BusinessError } from '@ohos.base';
 
   let data = rpc.MessageSequence.create();
   try {
       data.writeFloat(1.2);
   } catch(error) {
-      let e: BussinessError = error as BussinessError;
+      let e: BusinessError = error as BusinessError;
       console.info("rpc write float fail, errorCode " + e.code);
       console.info("rpc write float fail, errorMessage" + e.message);
   }
@@ -927,7 +927,7 @@ readFloat(): number
       let ret = data.readFloat();
       console.log("RpcClient: readFloat is " + ret);
   } catch(error) {
-      let e: BussinessError = error as BussinessError;
+      let e: BusinessError = error as BusinessError;
       console.info("rpc read float fail, errorCode " + e.code);
       console.info("rpc read float fail, errorMessage" + e.message);
   }
@@ -958,13 +958,13 @@ writeDouble(val: number): void
 **示例：**
 
   ```ts
-  import { BussinessError } from '@ohos.base';
+  import { BusinessError } from '@ohos.base';
 
   let data = rpc.MessageSequence.create();
   try {
       data.writeDouble(10.2);
   } catch(error) {
-      let e: BussinessError = error as BussinessError;
+      let e: BusinessError = error as BusinessError;
       console.info("rpc read float fail, errorCode " + e.code);
       console.info("rpc read float fail, errorMessage" + e.message);
   }
@@ -995,13 +995,13 @@ readDouble(): number
 **示例：**
 
   ```ts
-  import { BussinessError } from '@ohos.base';
+  import { BusinessError } from '@ohos.base';
 
   let data = rpc.MessageSequence.create();
   try {
       data.writeDouble(10.2);
   } catch(error) {
-      let e: BussinessError = error as BussinessError;
+      let e: BusinessError = error as BusinessError;
       console.info("rpc write double fail, errorCode " + e.code);
       console.info("rpc write double fail, errorMessage" + e.message);
   }
@@ -1009,7 +1009,7 @@ readDouble(): number
       let ret = data.readDouble();
       console.log("RpcClient: readDouble is " + ret);
   } catch(error) {
-      let e: BussinessError = error as BussinessError;
+      let e: BusinessError = error as BusinessError;
       console.info("rpc read double fail, errorCode " + e.code);
       console.info("rpc read double fail, errorMessage" + e.message);
   }
@@ -1040,13 +1040,13 @@ writeBoolean(val: boolean): void
 **示例：**
 
   ```ts
-  import { BussinessError } from '@ohos.base';
+  import { BusinessError } from '@ohos.base';
 
   let data = rpc.MessageSequence.create();
   try {
       data.writeBoolean(false);
   } catch(error) {
-      let e: BussinessError = error as BussinessError;
+      let e: BusinessError = error as BusinessError;
       console.info("rpc write boolean fail, errorCode " + e.code);
       console.info("rpc write boolean fail, errorMessage" + e.message);
   }
@@ -1077,13 +1077,13 @@ readBoolean(): boolean
 **示例：**
 
   ```ts
-  import { BussinessError } from '@ohos.base';
+  import { BusinessError } from '@ohos.base';
 
   let data = rpc.MessageSequence.create();
   try {
       data.writeBoolean(false);
   } catch(error) {
-      let e: BussinessError = error as BussinessError;
+      let e: BusinessError = error as BusinessError;
       console.info("rpc write boolean fail, errorCode " + e.code);
       console.info("rpc write boolean fail, errorMessage" + e.message);
   }
@@ -1091,7 +1091,7 @@ readBoolean(): boolean
       let ret = data.readBoolean();
       console.log("RpcClient: readBoolean is " + ret);
   } catch(error) {
-      let e: BussinessError = error as BussinessError;
+      let e: BusinessError = error as BusinessError;
       console.info("rpc read boolean fail, errorCode " + e.code);
       console.info("rpc read boolean fail, errorMessage" + e.message);
   }
@@ -1122,13 +1122,13 @@ writeChar(val: number): void
 **示例：**
 
   ```ts
-  import { BussinessError } from '@ohos.base';
+  import { BusinessError } from '@ohos.base';
 
   let data = rpc.MessageSequence.create();
   try {
       data.writeChar(97);
   } catch(error) {
-      let e: BussinessError = error as BussinessError;
+      let e: BusinessError = error as BusinessError;
       console.info("rpc write char fail, errorCode " + e.code);
       console.info("rpc write char fail, errorMessage" + e.message);
   }
@@ -1159,13 +1159,13 @@ readChar(): number
 **示例：**
 
   ```ts
-  import { BussinessError } from '@ohos.base';
+  import { BusinessError } from '@ohos.base';
 
   let data = rpc.MessageSequence.create();
   try {
       data.writeChar(97);
   } catch(error) {
-      let e: BussinessError = error as BussinessError;
+      let e: BusinessError = error as BusinessError;
       console.info("rpc write char fail, errorCode " + e.code);
       console.info("rpc write char fail, errorMessage" + e.message);
   }
@@ -1173,7 +1173,7 @@ readChar(): number
       let ret = data.readChar();
       console.log("RpcClient: readChar is " + ret);
   } catch(error) {
-      let e: BussinessError = error as BussinessError;
+      let e: BusinessError = error as BusinessError;
       console.info("rpc read char fail, errorCode " + e.code);
       console.info("rpc read char fail, errorMessage" + e.message);
   }
@@ -1204,13 +1204,13 @@ writeString(val: string): void
 **示例：**
 
   ```ts
-  import { BussinessError } from '@ohos.base';
+  import { BusinessError } from '@ohos.base';
 
   let data = rpc.MessageSequence.create();
   try {
       data.writeString('abc');
   } catch(error) {
-      let e: BussinessError = error as BussinessError;
+      let e: BusinessError = error as BusinessError;
       console.info("rpc write string fail, errorCode " + e.code);
       console.info("rpc write string fail, errorMessage" + e.message);
   }
@@ -1241,13 +1241,13 @@ readString(): string
 **示例：**
 
   ```ts
-  import { BussinessError } from '@ohos.base';
+  import { BusinessError } from '@ohos.base';
 
   let data = rpc.MessageSequence.create();
   try {
       data.writeString('abc');
   } catch(error) {
-      let e: BussinessError = error as BussinessError;
+      let e: BusinessError = error as BusinessError;
       console.info("rpc write string fail, errorCode " + e.code);
       console.info("rpc write string fail, errorMessage" + e.message);
   }
@@ -1255,7 +1255,7 @@ readString(): string
       let ret = data.readString();
       console.log("RpcClient: readString is " + ret);
   } catch(error) {
-      let e: BussinessError = error as BussinessError;
+      let e: BusinessError = error as BusinessError;
       console.info("rpc read string fail, errorCode " + e.code);
       console.info("rpc read string fail, errorMessage" + e.message);
   }
@@ -1286,11 +1286,11 @@ writeParcelable(val: Parcelable): void
 **示例：**
 
   ```ts
-  import { BussinessError } from '@ohos.base';
+  import { BusinessError } from '@ohos.base';
 
   class MyParcelable implements rpc.Parcelable {
-      num: number;
-      str: string;
+      num: number = 0;
+      str: string = '';
       constructor( num: number, str: string) {
           this.num = num;
           this.str = str;
@@ -1311,7 +1311,7 @@ writeParcelable(val: Parcelable): void
   try {
       data.writeParcelable(parcelable);
   } catch(error) {
-      let e: BussinessError = error as BussinessError;
+      let e: BusinessError = error as BusinessError;
       console.info("rpc write parcelable fail, errorCode " + e.code);
       console.info("rpc write parcelable fail, errorMessage" + e.message);
   }
@@ -1343,11 +1343,11 @@ readParcelable(dataIn: Parcelable): void
 **示例：**
 
   ```ts
-  import { BussinessError } from '@ohos.base';
+  import { BusinessError } from '@ohos.base';
 
   class MyParcelable implements rpc.Parcelable {
-      num: number;
-      str: string;
+      num: number = 0;
+      str: string = '';
       constructor(num: number, str: string) {
           this.num = num;
           this.str = str;
@@ -1370,7 +1370,7 @@ readParcelable(dataIn: Parcelable): void
   try {
       data.readParcelable(ret);
   }catch(error) {
-      let e: BussinessError = error as BussinessError;
+      let e: BusinessError = error as BusinessError;
       console.info("rpc read parcelable fail, errorCode " + e.code);
       console.info("rpc read parcelable fail, errorMessage" + e.message);
   }
@@ -1401,14 +1401,14 @@ writeByteArray(byteArray: number[]): void
 **示例：**
 
   ```ts
-  import { BussinessError } from '@ohos.base';
+  import { BusinessError } from '@ohos.base';
 
   let data = rpc.MessageSequence.create();
   let ByteArrayVar = [1, 2, 3, 4, 5];
   try {
       data.writeByteArray(ByteArrayVar);
   } catch(error) {
-      let e: BussinessError = error as BussinessError;
+      let e: BusinessError = error as BusinessError;
       console.info("rpc write byteArray fail, errorCode " + e.code);
       console.info("rpc write byteArray fail, errorMessage" + e.message);
   }
@@ -1439,14 +1439,14 @@ readByteArray(dataIn: number[]): void
 **示例：**
 
   ```ts
-  import { BussinessError } from '@ohos.base';
+  import { BusinessError } from '@ohos.base';
 
   let data = rpc.MessageSequence.create();
   let ByteArrayVar = [1, 2, 3, 4, 5];
   try {
       data.writeByteArray(ByteArrayVar);
   } catch(error) {
-      let e: BussinessError = error as BussinessError;
+      let e: BusinessError = error as BusinessError;
       console.info("rpc write byteArray fail, errorCode " + e.code);
       console.info("rpc write byteArray fail, errorMessage" + e.message);
   }
@@ -1454,7 +1454,7 @@ readByteArray(dataIn: number[]): void
       let array: Array<number> = new Array(5);
       data.readByteArray(array);
   } catch(error) {
-      let e: BussinessError = error as BussinessError;
+      let e: BusinessError = error as BusinessError;
       console.info("rpc write byteArray fail, errorCode " + e.code);
       console.info("rpc write byteArray fail, errorMessage" + e.message);
   }
@@ -1485,14 +1485,14 @@ readByteArray(): number[]
 **示例：**
 
   ```ts
-  import { BussinessError } from '@ohos.base';
+  import { BusinessError } from '@ohos.base';
 
   let data = rpc.MessageSequence.create();
   let byteArrayVar = [1, 2, 3, 4, 5];
   try {
       data.writeByteArray(byteArrayVar);
   } catch(error) {
-      let e: BussinessError = error as BussinessError;
+      let e: BusinessError = error as BusinessError;
       console.info("rpc write byteArray fail, errorCode " + e.code);
       console.info("rpc write byteArray fail, errorMessage" + e.message);
   }
@@ -1500,7 +1500,7 @@ readByteArray(): number[]
       let array = data.readByteArray();
       console.log("RpcClient: readByteArray is " + array);
   } catch(error) {
-      let e: BussinessError = error as BussinessError;
+      let e: BusinessError = error as BusinessError;
       console.info("rpc read byteArray fail, errorCode " + e.code);
       console.info("rpc read byteArray fail, errorMessage" + e.message);
   }
@@ -1531,13 +1531,13 @@ writeShortArray(shortArray: number[]): void
 **示例：**
 
   ```ts
-  import { BussinessError } from '@ohos.base';
+  import { BusinessError } from '@ohos.base';
 
   let data = rpc.MessageSequence.create();
   try {
       data.writeShortArray([11, 12, 13]);
   } catch(error) {
-      let e: BussinessError = error as BussinessError;
+      let e: BusinessError = error as BusinessError;
       console.info("rpc read byteArray fail, errorCode " + e.code);
       console.info("rpc read byteArray fail, errorMessage" + e.message);
   }
@@ -1568,13 +1568,13 @@ readShortArray(dataIn: number[]): void
 **示例：**
 
   ```ts
-  import { BussinessError } from '@ohos.base';
+  import { BusinessError } from '@ohos.base';
 
   let data = rpc.MessageSequence.create();
   try {
       data.writeShortArray([11, 12, 13]);
   } catch(error) {
-      let e: BussinessError = error as BussinessError;
+      let e: BusinessError = error as BusinessError;
       console.info("rpc write shortArray fail, errorCode " + e.code);
       console.info("rpc write shortArray fail, errorMessage" + e.message);
   }
@@ -1582,7 +1582,7 @@ readShortArray(dataIn: number[]): void
       let array: Array<number> = new Array(3);
       data.readShortArray(array);
   } catch(error) {
-      let e: BussinessError = error as BussinessError;
+      let e: BusinessError = error as BusinessError;
       console.info("rpc read shortArray fail, errorCode " + e.code);
       console.info("rpc read shortArray fail, errorMessage" + e.message);
   }
@@ -1613,13 +1613,13 @@ readShortArray(): number[]
 **示例：**
 
   ```ts
-  import { BussinessError } from '@ohos.base';
+  import { BusinessError } from '@ohos.base';
 
   let data = rpc.MessageSequence.create();
   try {
       data.writeShortArray([11, 12, 13]);
   } catch(error) {
-      let e: BussinessError = error as BussinessError;
+      let e: BusinessError = error as BusinessError;
       console.info("rpc write shortArray fail, errorCode " + e.code);
       console.info("rpc write shortArray fail, errorMessage" + e.message);
   }
@@ -1627,7 +1627,7 @@ readShortArray(): number[]
       let array = data.readShortArray();
       console.log("RpcClient: readShortArray is " + array);
   } catch(error) {
-      let e: BussinessError = error as BussinessError;
+      let e: BusinessError = error as BusinessError;
       console.info("rpc read shortArray fail, errorCode " + e.code);
       console.info("rpc read shortArray fail, errorMessage" + e.message);
   }
@@ -1658,13 +1658,13 @@ writeIntArray(intArray: number[]): void
 **示例：**
 
   ```ts
-  import { BussinessError } from '@ohos.base';
+  import { BusinessError } from '@ohos.base';
 
   let data = rpc.MessageSequence.create();
   try {
       data.writeIntArray([100, 111, 112]);
   } catch(error) {
-      let e: BussinessError = error as BussinessError;
+      let e: BusinessError = error as BusinessError;
       console.info("rpc write intArray fail, errorCode " + e.code);
       console.info("rpc write intArray fail, errorMessage" + e.message);
   }
@@ -1695,13 +1695,13 @@ readIntArray(dataIn: number[]): void
 **示例：**
 
   ```ts
-  import { BussinessError } from '@ohos.base';
+  import { BusinessError } from '@ohos.base';
 
   let data = rpc.MessageSequence.create();
   try {
       data.writeIntArray([100, 111, 112]);
   } catch(error) {
-      let e: BussinessError = error as BussinessError;
+      let e: BusinessError = error as BusinessError;
       console.info("rpc write intArray fail, errorCode " + e.code);
       console.info("rpc write intArray fail, errorMessage" + e.message);
   }
@@ -1709,7 +1709,7 @@ readIntArray(dataIn: number[]): void
   try {
       data.readIntArray(array);
   } catch(error) {
-      let e: BussinessError = error as BussinessError;
+      let e: BusinessError = error as BusinessError;
       console.info("rpc read intArray fail, errorCode " + e.code);
       console.info("rpc read intArray fail, errorMessage" + e.message);
   }
@@ -1740,13 +1740,13 @@ readIntArray(): number[]
 **示例：**
 
   ```ts
-  import { BussinessError } from '@ohos.base';
+  import { BusinessError } from '@ohos.base';
 
   let data = rpc.MessageSequence.create();
   try {
       data.writeIntArray([100, 111, 112]);
   } catch(error) {
-      let e: BussinessError = error as BussinessError;
+      let e: BusinessError = error as BusinessError;
       console.info("rpc write intArray fail, errorCode " + e.code);
       console.info("rpc write intArray fail, errorMessage" + e.message);
   }
@@ -1754,7 +1754,7 @@ readIntArray(): number[]
     let array = data.readIntArray();
     console.log("RpcClient: readIntArray is " + array);
   } catch(error) {
-      let e: BussinessError = error as BussinessError;
+      let e: BusinessError = error as BusinessError;
       console.info("rpc read intArray fail, errorCode " + e.code);
       console.info("rpc read intArray fail, errorMessage" + e.message);
   }
@@ -1785,13 +1785,13 @@ writeLongArray(longArray: number[]): void
 **示例：**
 
   ```ts
-  import { BussinessError } from '@ohos.base';
+  import { BusinessError } from '@ohos.base';
 
   let data = rpc.MessageSequence.create();
   try {
       data.writeLongArray([1111, 1112, 1113]);
   }catch(error){
-      let e: BussinessError = error as BussinessError;
+      let e: BusinessError = error as BusinessError;
       console.info("rpc write longArray fail, errorCode " + e.code);
       console.info("rpc write longArray fail, errorMessage" + e.message);
   }
@@ -1822,13 +1822,13 @@ readLongArray(dataIn: number[]): void
 **示例：**
 
   ```ts
-  import { BussinessError } from '@ohos.base';
+  import { BusinessError } from '@ohos.base';
 
   let data = rpc.MessageSequence.create();
   try {
       data.writeLongArray([1111, 1112, 1113]);
   } catch(error) {
-      let e: BussinessError = error as BussinessError;
+      let e: BusinessError = error as BusinessError;
       console.info("rpc write longArray fail, errorCode " + e.code);
       console.info("rpc write longArray fail, errorMessage" + e.message);
   }
@@ -1836,7 +1836,7 @@ readLongArray(dataIn: number[]): void
   try {
       data.readLongArray(array);
   } catch(error) {
-      let e: BussinessError = error as BussinessError;
+      let e: BusinessError = error as BusinessError;
       console.info("rpc read longArray fail, errorCode " + e.code);
       console.info("rpc read longArray fail, errorMessage" + e.message);
   }
@@ -1867,13 +1867,13 @@ readLongArray(): number[]
 **示例：**
 
   ```ts
-  import { BussinessError } from '@ohos.base';
+  import { BusinessError } from '@ohos.base';
 
   let data = rpc.MessageSequence.create();
   try {
       data.writeLongArray([1111, 1112, 1113]);
   } catch(error) {
-      let e: BussinessError = error as BussinessError;
+      let e: BusinessError = error as BusinessError;
       console.info("rpc write longArray fail, errorCode " + e.code);
       console.info("rpc write longArray fail, errorMessage" + e.message);
   }
@@ -1881,7 +1881,7 @@ readLongArray(): number[]
       let array = data.readLongArray();
       console.log("RpcClient: readLongArray is " + array);
   } catch(error) {
-      let e: BussinessError = error as BussinessError;
+      let e: BusinessError = error as BusinessError;
       console.info("rpc read longArray fail, errorCode " + e.code);
       console.info("rpc read longArray fail, errorMessage" + e.message);
   }
@@ -1912,13 +1912,13 @@ writeFloatArray(floatArray: number[]): void
 **示例：**
 
   ```ts
-  import { BussinessError } from '@ohos.base';
+  import { BusinessError } from '@ohos.base';
 
   let data = rpc.MessageSequence.create();
   try {
       data.writeFloatArray([1.2, 1.3, 1.4]);
   } catch(error) {
-      let e: BussinessError = error as BussinessError;
+      let e: BusinessError = error as BusinessError;
       console.info("rpc write floatArray fail, errorCode " + e.code);
       console.info("rpc write floatArray fail, errorMessage" + e.message);
   }
@@ -1949,13 +1949,13 @@ readFloatArray(dataIn: number[]): void
 **示例：**
 
   ```ts
-  import { BussinessError } from '@ohos.base';
+  import { BusinessError } from '@ohos.base';
 
   let data = rpc.MessageSequence.create();
   try {
       data.writeFloatArray([1.2, 1.3, 1.4]);
   }catch(error){
-      let e: BussinessError = error as BussinessError;
+      let e: BusinessError = error as BusinessError;
       console.info("rpc write floatArray fail, errorCode " + e.code);
       console.info("rpc write floatArray fail, errorMessage" + e.message);
   }
@@ -1963,7 +1963,7 @@ readFloatArray(dataIn: number[]): void
   try {
       data.readFloatArray(array);
   } catch(error) {
-      let e: BussinessError = error as BussinessError;
+      let e: BusinessError = error as BusinessError;
       console.info("rpc read floatArray fail, errorCode " + e.code);
       console.info("rpc read floatArray fail, errorMessage" + e.message);
   }
@@ -1994,13 +1994,13 @@ readFloatArray(): number[]
 **示例：**
 
   ```ts
-  import { BussinessError } from '@ohos.base';
+  import { BusinessError } from '@ohos.base';
 
   let data = rpc.MessageSequence.create();
   try {
       data.writeFloatArray([1.2, 1.3, 1.4]);
   } catch(error) {
-      let e: BussinessError = error as BussinessError;
+      let e: BusinessError = error as BusinessError;
       console.info("rpc write floatArray fail, errorCode " + e.code);
       console.info("rpc write floatArray fail, errorMessage" + e.message);
   }
@@ -2008,7 +2008,7 @@ readFloatArray(): number[]
       let array = data.readFloatArray();
       console.log("RpcClient: readFloatArray is " + array);
   } catch(error) {
-      let e: BussinessError = error as BussinessError;
+      let e: BusinessError = error as BusinessError;
       console.info("rpc read floatArray fail, errorCode " + e.code);
       console.info("rpc read floatArray fail, errorMessage" + e.message);
   }
@@ -2039,13 +2039,13 @@ writeDoubleArray(doubleArray: number[]): void
 **示例：**
 
   ```ts
-  import { BussinessError } from '@ohos.base';
+  import { BusinessError } from '@ohos.base';
 
   let data = rpc.MessageSequence.create();
   try {
       data.writeDoubleArray([11.1, 12.2, 13.3]);
   } catch(error) {
-      let e: BussinessError = error as BussinessError;
+      let e: BusinessError = error as BusinessError;
       console.info("rpc write doubleArray fail, errorCode " + e.code);
       console.info("rpc write doubleArray fail, errorMessage" + e.message);
   }
@@ -2076,13 +2076,13 @@ readDoubleArray(dataIn: number[]): void
 **示例：**
 
   ```ts
-  import { BussinessError } from '@ohos.base';
+  import { BusinessError } from '@ohos.base';
 
   let data = rpc.MessageSequence.create();
   try {
       data.writeDoubleArray([11.1, 12.2, 13.3]);
   } catch(error) {
-      let e: BussinessError = error as BussinessError;
+      let e: BusinessError = error as BusinessError;
       console.info("rpc write doubleArray fail, errorCode " + e.code);
       console.info("rpc write doubleArray fail, errorMessage" + e.message);
   }
@@ -2090,7 +2090,7 @@ readDoubleArray(dataIn: number[]): void
   try {
       data.readDoubleArray(array);
   } catch(error) {
-      let e: BussinessError = error as BussinessError;
+      let e: BusinessError = error as BusinessError;
       console.info("rpc read doubleArray fail, errorCode " + e.code);
       console.info("rpc read doubleArray fail, errorMessage" + e.message);
   }
@@ -2121,13 +2121,13 @@ readDoubleArray(): number[]
 **示例：**
 
   ```ts
-  import { BussinessError } from '@ohos.base';
+  import { BusinessError } from '@ohos.base';
 
   let data = rpc.MessageSequence.create();
   try {
       data.writeDoubleArray([11.1, 12.2, 13.3]);
   } catch(error) {
-      let e: BussinessError = error as BussinessError;
+      let e: BusinessError = error as BusinessError;
       console.info("rpc write doubleArray fail, errorCode " + e.code);
       console.info("rpc write doubleArray fail, errorMessage" + e.message);
   }
@@ -2135,7 +2135,7 @@ readDoubleArray(): number[]
       let array = data.readDoubleArray();
       console.log("RpcClient: readDoubleArray is " + array);
   } catch(error) {
-      let e: BussinessError = error as BussinessError;
+      let e: BusinessError = error as BusinessError;
       console.info("rpc read doubleArray fail, errorCode " + e.code);
       console.info("rpc read doubleArray fail, errorMessage" + e.message);
   }
@@ -2166,13 +2166,13 @@ writeBooleanArray(booleanArray: boolean[]): void
 **示例：**
 
   ```ts
-  import { BussinessError } from '@ohos.base';
+  import { BusinessError } from '@ohos.base';
 
   let data = rpc.MessageSequence.create();
   try {
       data.writeBooleanArray([false, true, false]);
   } catch(error) {
-      let e: BussinessError = error as BussinessError;
+      let e: BusinessError = error as BusinessError;
       console.info("rpc write booleanArray fail, errorCode " + e.code);
       console.info("rpc write booleanArray fail, errorMessage" + e.message);
   }
@@ -2203,13 +2203,13 @@ readBooleanArray(dataIn: boolean[]): void
 **示例：**
 
   ```ts
-  import { BussinessError } from '@ohos.base';
+  import { BusinessError } from '@ohos.base';
 
   let data = rpc.MessageSequence.create();
   try {
       data.writeBooleanArray([false, true, false]);
   } catch(error) {
-      let e: BussinessError = error as BussinessError;
+      let e: BusinessError = error as BusinessError;
       console.info("rpc write booleanArray fail, errorCode " + e.code);
       console.info("rpc write booleanArray fail, errorMessage" + e.message);
   }
@@ -2217,7 +2217,7 @@ readBooleanArray(dataIn: boolean[]): void
   try {
       data.readBooleanArray(array);
   } catch(error) {
-      let e: BussinessError = error as BussinessError;
+      let e: BusinessError = error as BusinessError;
       console.info("rpc read booleanArray fail, errorCode " + e.code);
       console.info("rpc read booleanArray fail, errorMessage" + e.message);
   }
@@ -2248,13 +2248,13 @@ readBooleanArray(): boolean[]
 **示例：**
 
   ```ts
-  import { BussinessError } from '@ohos.base';
+  import { BusinessError } from '@ohos.base';
 
   let data = rpc.MessageSequence.create();
   try {
       data.writeBooleanArray([false, true, false]);
   } catch(error) {
-      let e: BussinessError = error as BussinessError;
+      let e: BusinessError = error as BusinessError;
       console.info("rpc write booleanArray fail, errorCode " + e.code);
       console.info("rpc write booleanArray fail, errorMessage" + e.message);
   }
@@ -2262,7 +2262,7 @@ readBooleanArray(): boolean[]
       let array = data.readBooleanArray();
       console.log("RpcClient: readBooleanArray is " + array);
   } catch(error) {
-      let e: BussinessError = error as BussinessError;
+      let e: BusinessError = error as BusinessError;
       console.info("rpc read booleanArray fail, errorCode " + e.code);
       console.info("rpc read booleanArray fail, errorMessage" + e.message);
   }
@@ -2293,13 +2293,13 @@ writeCharArray(charArray: number[]): void
 **示例：**
 
   ```ts
-  import { BussinessError } from '@ohos.base';
+  import { BusinessError } from '@ohos.base';
 
   let data = rpc.MessageSequence.create();
   try {
       data.writeCharArray([97, 98, 88]);
   } catch(error) {
-      let e: BussinessError = error as BussinessError;
+      let e: BusinessError = error as BusinessError;
       console.info("rpc write charArray fail, errorCode " + e.code);
       console.info("rpc write charArray fail, errorMessage" + e.message);
   }
@@ -2330,13 +2330,13 @@ readCharArray(dataIn: number[]): void
 **示例：**
 
   ```ts
-  import { BussinessError } from '@ohos.base';
+  import { BusinessError } from '@ohos.base';
 
   let data = rpc.MessageSequence.create();
   try {
       data.writeCharArray([97, 98, 88]);
   } catch(error) {
-      let e: BussinessError = error as BussinessError;
+      let e: BusinessError = error as BusinessError;
       console.info("rpc write charArray fail, errorCode " + e.code);
       console.info("rpc write charArray fail, errorMessage" + e.message);
   }
@@ -2344,7 +2344,7 @@ readCharArray(dataIn: number[]): void
   try {
       data.readCharArray(array);
   } catch(error) {
-      let e: BussinessError = error as BussinessError;
+      let e: BusinessError = error as BusinessError;
       console.info("rpc read charArray fail, errorCode " + e.code);
       console.info("rpc read charArray fail, errorMessage" + e.message);
   }
@@ -2375,13 +2375,13 @@ readCharArray(): number[]
 **示例：**
 
   ```ts
-  import { BussinessError } from '@ohos.base';
+  import { BusinessError } from '@ohos.base';
 
   let data = rpc.MessageSequence.create();
   try {
       data.writeCharArray([97, 98, 88]);
   } catch(error) {
-      let e: BussinessError = error as BussinessError;
+      let e: BusinessError = error as BusinessError;
       console.info("rpc write charArray fail, errorCode " + e.code);
       console.info("rpc write charArray fail, errorMessage" + e.message);
   }
@@ -2390,7 +2390,7 @@ readCharArray(): number[]
       let array = data.readCharArray();
       console.log("RpcClient: readCharArray is " + array);
   } catch(error) {
-      let e: BussinessError = error as BussinessError;
+      let e: BusinessError = error as BusinessError;
       console.info("rpc read charArray fail, errorCode " + e.code);
       console.info("rpc read charArray fail, errorMessage" + e.message);
   }
@@ -2421,13 +2421,13 @@ writeStringArray(stringArray: string[]): void
 **示例：**
 
   ```ts
-  import { BussinessError } from '@ohos.base';
+  import { BusinessError } from '@ohos.base';
 
   let data = rpc.MessageSequence.create();
   try {
       data.writeStringArray(["abc", "def"]);
   } catch(error) {
-      let e: BussinessError = error as BussinessError;
+      let e: BusinessError = error as BusinessError;
       console.info("rpc write stringArray fail, errorCode " + e.code);
       console.info("rpc write stringArray fail, errorMessage" + e.message);
   }
@@ -2458,13 +2458,13 @@ readStringArray(dataIn: string[]): void
 **示例：**
 
   ```ts
-  import { BussinessError } from '@ohos.base';
+  import { BusinessError } from '@ohos.base';
 
   let data = rpc.MessageSequence.create();
   try {
       data.writeStringArray(["abc", "def"]);
   } catch(error) {
-      let e: BussinessError = error as BussinessError;
+      let e: BusinessError = error as BusinessError;
       console.info("rpc write stringArray fail, errorCode " + e.code);
       console.info("rpc write stringArray fail, errorMessage" + e.message);
   }
@@ -2472,7 +2472,7 @@ readStringArray(dataIn: string[]): void
   try {
       data.readStringArray(array);
   } catch(error) {
-      let e: BussinessError = error as BussinessError;
+      let e: BusinessError = error as BusinessError;
       console.info("rpc read stringArray fail, errorCode " + e.code);
       console.info("rpc read stringArray fail, errorMessage" + e.message);
   }
@@ -2503,13 +2503,13 @@ readStringArray(): string[]
 **示例：**
 
   ```ts
-  import { BussinessError } from '@ohos.base';
+  import { BusinessError } from '@ohos.base';
 
   let data = rpc.MessageSequence.create();
   try {
       data.writeStringArray(["abc", "def"]);
   } catch(error) {
-      let e: BussinessError = error as BussinessError;
+      let e: BusinessError = error as BusinessError;
       console.info("rpc write stringArray fail, errorCode " + e.code);
       console.info("rpc write stringArray fail, errorMessage" + e.message);
   }
@@ -2517,7 +2517,7 @@ readStringArray(): string[]
       let array = data.readStringArray();
       console.log("RpcClient: readStringArray is " + array);
   } catch(error) {
-      let e: BussinessError = error as BussinessError;
+      let e: BusinessError = error as BusinessError;
       console.info("rpc read stringArray fail, errorCode " + e.code);
       console.info("rpc read stringArray fail, errorMessage" + e.message);
   }
@@ -2542,7 +2542,7 @@ writeNoException(): void
 **示例：**
 
   ```ts
-  import { BussinessError } from '@ohos.base';
+  import { BusinessError } from '@ohos.base';
 
   class TestRemoteObject extends rpc.RemoteObject {
       constructor(descriptor: string) {
@@ -2555,7 +2555,7 @@ writeNoException(): void
               try {
                   reply.writeNoException();
               } catch(error) {
-                  let e: BussinessError = error as BussinessError;
+                  let e: BusinessError = error as BusinessError;
                   console.info("rpc write no exception fail, errorCode " + e.code);
                   console.info("rpc write no exception fail, errorMessage" + e.message);
               }
@@ -2593,11 +2593,11 @@ readException(): void
   // import FA from "@ohos.ability.featureAbility";
   import Want from '@ohos.app.ability.Want';
   import common from '@ohos.app.ability.common';
-  import { BussinessError } from '@ohos.base';
+  import { BusinessError } from '@ohos.base';
 
-  let proxy: rpc.RemoteProxy;
+  let proxy: rpc.IRemoteObject | undefined = undefined;
   let connect: common.ConnectOptions = {
-      onConnect: (elementName, remoteProxy: rpc.RemoteProxy) => {
+      onConnect: (elementName, remoteProxy) => {
           console.log("RpcClient: js onConnect called.");
           proxy = remoteProxy;
       },
@@ -2634,7 +2634,7 @@ readException(): void
               try {
                   reply.readException();
               } catch(error) {
-                  let e: BussinessError = error as BussinessError;
+                  let e: BusinessError = error as BusinessError;
                   console.info("rpc read exception fail, errorCode " + e.code);
                   console.info("rpc read no exception fail, errorMessage" + e.message);
               }
@@ -2677,11 +2677,11 @@ writeParcelableArray(parcelableArray: Parcelable[]): void
 **示例：**
 
   ```ts
-  import { BussinessError } from '@ohos.base';
+  import { BusinessError } from '@ohos.base';
 
   class MyParcelable implements rpc.Parcelable {
-      num: number;
-      str: string;
+      num: number = 0;
+      str: string = '';
       constructor(num: number, str: string) {
           this.num = num;
           this.str = str;
@@ -2705,7 +2705,7 @@ writeParcelableArray(parcelableArray: Parcelable[]): void
   try {
       data.writeParcelableArray(a);
   } catch(error) {
-      let e: BussinessError = error as BussinessError;
+      let e: BusinessError = error as BusinessError;
       console.info("rpc write parcelable array fail, errorCode " + e.code);
       console.info("rpc write parcelable array fail, errorMessage" + e.message);
   }
@@ -2737,11 +2737,11 @@ readParcelableArray(parcelableArray: Parcelable[]): void
 **示例：**
 
   ```ts
-  import { BussinessError } from '@ohos.base';
+  import { BusinessError } from '@ohos.base';
 
    class MyParcelable implements rpc.Parcelable {
-      num: number;
-      str: string;
+      num: number = 0;
+      str: string = '';
       constructor(num: number, str: string) {
           this.num = num;
           this.str = str;
@@ -2768,7 +2768,7 @@ readParcelableArray(parcelableArray: Parcelable[]): void
   try {
       data.readParcelableArray(b);
   } catch(error) {
-      let e: BussinessError = error as BussinessError;
+      let e: BusinessError = error as BusinessError;
       console.info("rpc read parcelable array fail, errorCode " + e.code);
       console.info("rpc read parcelable array fail, errorMessage" + e.message);
   }
@@ -2800,7 +2800,7 @@ writeRemoteObjectArray(objectArray: IRemoteObject[]): void
 **示例：**
 
   ```ts
-  import { BussinessError } from '@ohos.base';
+  import { BusinessError } from '@ohos.base';
 
   class TestRemoteObject extends rpc.RemoteObject {
       constructor(descriptor: string) {
@@ -2818,7 +2818,7 @@ writeRemoteObjectArray(objectArray: IRemoteObject[]): void
   try {
       data.writeRemoteObjectArray(a);
   } catch(error) {
-      let e: BussinessError = error as BussinessError;
+      let e: BusinessError = error as BusinessError;
       console.info("rpc write remote object array fail, errorCode " + e.code);
       console.info("rpc write remote object array fail, errorMessage" + e.message);
   }
@@ -2850,7 +2850,7 @@ readRemoteObjectArray(objects: IRemoteObject[]): void
 **示例：**
 
   ```ts
-  import { BussinessError } from '@ohos.base';
+  import { BusinessError } from '@ohos.base';
 
   class MyDeathRecipient implements rpc.DeathRecipient {
       onRemoteDied() {
@@ -2874,7 +2874,7 @@ readRemoteObjectArray(objects: IRemoteObject[]): void
   try {
       data.readRemoteObjectArray(b);
   } catch(error) {
-      let e: BussinessError = error as BussinessError;
+      let e: BusinessError = error as BusinessError;
       console.info("rpc read remote object array fail, errorCode " + e.code);
       console.info("rpc read remote object array fail, errorMessage" + e.message);
   }
@@ -2906,7 +2906,7 @@ readRemoteObjectArray(): IRemoteObject[]
 **示例：**
 
   ```ts
-  import { BussinessError } from '@ohos.base';
+  import { BusinessError } from '@ohos.base';
 
   class TestRemoteObject extends rpc.RemoteObject {
       constructor(descriptor: string) {
@@ -2925,7 +2925,7 @@ readRemoteObjectArray(): IRemoteObject[]
       let b = data.readRemoteObjectArray();
       console.log("RpcClient: readRemoteObjectArray is " + b);
   } catch(error) {
-      let e: BussinessError = error as BussinessError;
+      let e: BusinessError = error as BusinessError;
       console.info("rpc read remote object array fail, errorCode " + e.code);
       console.info("rpc read remote object array fail, errorMessage" + e.message);
   }
@@ -2949,14 +2949,14 @@ static closeFileDescriptor(fd: number): void
 
   ```ts
   import fs from '@ohos.file.fs';
-  import { BussinessError } from '@ohos.base';
+  import { BusinessError } from '@ohos.base';
 
   let filePath = "path/to/file";
   let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
   try {
       rpc.MessageSequence.closeFileDescriptor(file.fd);
   } catch(error) {
-      let e: BussinessError = error as BussinessError;
+      let e: BusinessError = error as BusinessError;
       console.info("rpc close file descriptor fail, errorCode " + e.code);
       console.info("rpc close file descriptor fail, errorMessage" + e.message);
   }
@@ -2994,14 +2994,14 @@ static dupFileDescriptor(fd: number) :number
 
   ```ts
   import fs from '@ohos.file.fs';
-  import { BussinessError } from '@ohos.base';
+  import { BusinessError } from '@ohos.base';
 
   let filePath = "path/to/file";
   let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
   try {
       let newFd = rpc.MessageSequence.dupFileDescriptor(file.fd);
   } catch(error) {
-      let e: BussinessError = error as BussinessError;
+      let e: BusinessError = error as BusinessError;
       console.info("rpc dup file descriptor fail, errorCode " + e.code);
       console.info("rpc dup file descriptor fail, errorMessage" + e.message);
   }
@@ -3025,7 +3025,7 @@ containFileDescriptors(): boolean
 
   ```ts
   import fs from '@ohos.file.fs';
-  import { BussinessError } from '@ohos.base';
+  import { BusinessError } from '@ohos.base';
 
   let sequence = new rpc.MessageSequence();
   let filePath = "path/to/file";
@@ -3034,7 +3034,7 @@ containFileDescriptors(): boolean
   try {
       sequence.writeFileDescriptor(file.fd);
   } catch(error) {
-      let e: BussinessError = error as BussinessError;
+      let e: BusinessError = error as BusinessError;
       console.info("rpc write file descriptor fail, errorCode " + e.code);
       console.info("rpc write file descriptor fail, errorMessage" + e.message);
   }
@@ -3042,7 +3042,7 @@ containFileDescriptors(): boolean
       let containFD = sequence.containFileDescriptors();
       console.log("RpcTest: sequence after write fd containFd result is : " + containFD);
   } catch(error) {
-      let e: BussinessError = error as BussinessError;
+      let e: BusinessError = error as BusinessError;
       console.info("rpc contain file descriptor fail, errorCode " + e.code);
       console.info("rpc contain file descriptor fail, errorMessage" + e.message);
   }
@@ -3074,7 +3074,7 @@ writeFileDescriptor(fd: number): void
 
   ```ts
   import fs from '@ohos.file.fs';
-  import { BussinessError } from '@ohos.base';
+  import { BusinessError } from '@ohos.base';
 
   let sequence = new rpc.MessageSequence();
   let filePath = "path/to/file";
@@ -3082,7 +3082,7 @@ writeFileDescriptor(fd: number): void
   try {
       sequence.writeFileDescriptor(file.fd);
   } catch(error) {
-      let e: BussinessError = error as BussinessError;
+      let e: BusinessError = error as BusinessError;
       console.info("rpc write file descriptor fail, errorCode " + e.code);
       console.info("rpc write file descriptor fail, errorMessage" + e.message);
   }
@@ -3114,7 +3114,7 @@ readFileDescriptor(): number
 
   ```ts
   import fs from '@ohos.file.fs';
-  import { BussinessError } from '@ohos.base';
+  import { BusinessError } from '@ohos.base';
 
   let sequence = new rpc.MessageSequence();
   let filePath = "path/to/file";
@@ -3122,14 +3122,14 @@ readFileDescriptor(): number
   try {
       sequence.writeFileDescriptor(file.fd);
   } catch(error) {
-      let e: BussinessError = error as BussinessError;
+      let e: BusinessError = error as BusinessError;
       console.info("rpc write file descriptor fail, errorCode " + e.code);
       console.info("rpc write file descriptor fail, errorMessage" + e.message);
   }
   try {
       let readFD = sequence.readFileDescriptor();
   } catch(error) {
-      let e: BussinessError = error as BussinessError;
+      let e: BusinessError = error as BusinessError;
       console.info("rpc read file descriptor fail, errorCode " + e.code);
       console.info("rpc read file descriptor fail, errorMessage" + e.message);
   }
@@ -3160,7 +3160,7 @@ writeAshmem(ashmem: Ashmem): void
 **示例：**
 
   ```ts
-  import { BussinessError } from '@ohos.base';
+  import { BusinessError } from '@ohos.base';
 
   let sequence = new rpc.MessageSequence();
   let ashmem: rpc.Ashmem;
@@ -3169,12 +3169,12 @@ writeAshmem(ashmem: Ashmem): void
       try {
           sequence.writeAshmem(ashmem);
       } catch(error) {
-          let e: BussinessError = error as BussinessError;
+          let e: BusinessError = error as BusinessError;
           console.info("rpc write ashmem fail, errorCode " + e.code);
           console.info("rpc write ashmem fail, errorMessage" + e.message);
       }
   } catch(error) {
-      let e: BussinessError = error as BussinessError;
+      let e: BusinessError = error as BusinessError;
       console.info("rpc create ashmem fail, errorCode " + e.code);
       console.info("rpc creat ashmem fail, errorMessage" + e.message);
   }
@@ -3205,7 +3205,7 @@ readAshmem(): Ashmem
 **示例：**
 
   ```ts
-  import { BussinessError } from '@ohos.base';
+  import { BusinessError } from '@ohos.base';
 
   let sequence = new rpc.MessageSequence();
   let ashmem: rpc.Ashmem;
@@ -3214,12 +3214,12 @@ readAshmem(): Ashmem
       try {
           sequence.writeAshmem(ashmem);
       } catch(error) {
-          let e: BussinessError = error as BussinessError;
+          let e: BusinessError = error as BusinessError;
           console.info("rpc write ashmem fail, errorCode " + e.code);
           console.info("rpc write ashmem fail, errorMessage" + e.message);
       }
   } catch(error) {
-      let e: BussinessError = error as BussinessError;
+      let e: BusinessError = error as BusinessError;
       console.info("rpc create ashmem fail, errorCode " + e.code);
       console.info("rpc creat ashmem fail, errorMessage" + e.message);
   }
@@ -3228,7 +3228,7 @@ readAshmem(): Ashmem
       let readAshmem = sequence.readAshmem();
       console.log("RpcTest: read ashmem to result is : " + readAshmem);
   } catch(error) {
-      let e: BussinessError = error as BussinessError;
+      let e: BusinessError = error as BusinessError;
       console.info("rpc read ashmem fail, errorCode " + e.code);
       console.info("rpc read ashmem fail, errorMessage" + e.message);
   }
@@ -3282,14 +3282,14 @@ writeRawData(rawData: number[], size: number): void
 **示例：**
 
   ```ts
-  import { BussinessError } from '@ohos.base';
+  import { BusinessError } from '@ohos.base';
 
   let sequence = new rpc.MessageSequence();
   let arr = [1, 2, 3, 4, 5];
   try {
       sequence.writeRawData(arr, arr.length);
   } catch(error) {
-      let e: BussinessError = error as BussinessError;
+      let e: BusinessError = error as BusinessError;
       console.info("rpc write rawdata fail, errorCode " + e.code);
       console.info("rpc write rawdata fail, errorMessage" + e.message);
   }
@@ -3326,14 +3326,14 @@ readRawData(size: number): number[]
 **示例：**
 
   ```ts
-  import { BussinessError } from '@ohos.base';
+  import { BusinessError } from '@ohos.base';
 
   let sequence = new rpc.MessageSequence();
   let arr = [1, 2, 3, 4, 5];
   try {
       sequence.writeRawData(arr, arr.length);
   } catch(error) {
-      let e: BussinessError = error as BussinessError;
+      let e: BusinessError = error as BusinessError;
       console.info("rpc write rawdata fail, errorCode " + e.code);
       console.info("rpc write rawdata fail, errorMessage" + e.message);
   }
@@ -3341,7 +3341,7 @@ readRawData(size: number): number[]
       let result = sequence.readRawData(5);
       console.log("RpcTest: sequence read raw data result is : " + result);
   } catch(error) {
-      let e: BussinessError = error as BussinessError;
+      let e: BusinessError = error as BusinessError;
       console.info("rpc read rawdata fail, errorCode " + e.code);
       console.info("rpc read rawdata fail, errorMessage" + e.message);
   }
@@ -4285,8 +4285,8 @@ writeSequenceable(val: Sequenceable): boolean
 
   ```ts
   class MySequenceable implements rpc.Sequenceable {
-      num: number;
-      str: string;
+      num: number = 0;
+      str: string = '';
       constructor(num: number, str: string) {
           this.num = num;
           this.str = str;
@@ -4332,8 +4332,8 @@ readSequenceable(dataIn: Sequenceable): boolean
 
   ```ts
   class MySequenceable implements rpc.Sequenceable {
-      num: number;
-      str: string;
+      num: number = 0;
+      str: string = '';
       constructor(num: number, str: string) {
           this.num = num;
           this.str = str;
@@ -5105,9 +5105,9 @@ readException(): void
   import Want from '@ohos.app.ability.Want';
   import common from '@ohos.app.ability.common';
 
-  let proxy: rpc.RemoteProxy;
+  let proxy: rpc.IRemoteObject | undefined = undefined;
   let connect: common.ConnectOptions = {
-      onConnect: (elementName, remoteProxy: rpc.RemoteProxy) => {
+      onConnect: (elementName, remoteProxy) => {
           console.log("RpcClient: js onConnect called.");
           proxy = remoteProxy;
       },
@@ -5180,8 +5180,8 @@ writeSequenceableArray(sequenceableArray: Sequenceable[]): boolean
 
   ```ts
   class MySequenceable implements rpc.Sequenceable {
-      num: number;
-      str: string;
+      num: number = 0;
+      str: string = '';
       constructor(num: number, str: string) {
           this.num = num;
           this.str = str;
@@ -5224,8 +5224,8 @@ readSequenceableArray(sequenceableArray: Sequenceable[]): void
 
   ```ts
   class MySequenceable implements rpc.Sequenceable {
-      num: number;
-      str: string;
+      num: number = 0;
+      str: string = '';
       constructor(num: number, str: string) {
           this.num = num;
           this.str = str;
@@ -5706,8 +5706,8 @@ marshalling(dataOut: MessageSequence): boolean
 
   ```ts
   class MyParcelable implements rpc.Parcelable {
-      num: number;
-      str: string;
+      num: number = 0;
+      str: string = '';
       constructor(num: number, str: string) {
           this.num = num;
           this.str = str;
@@ -5756,8 +5756,8 @@ unmarshalling(dataIn: MessageSequence): boolean
 
   ```ts
   class MyParcelable implements rpc.Parcelable {
-      num: number;
-      str: string;
+      num: number = 0;
+      str: string = '';
       constructor(num: number, str: string) {
           this.num = num;
           this.str = str;
@@ -5812,8 +5812,8 @@ marshalling(dataOut: MessageParcel): boolean
 
   ```ts
   class MySequenceable implements rpc.Sequenceable {
-      num: number;
-      str: string;
+      num: number = 0;
+      str: string = '';
       constructor(num: number, str: string) {
           this.num = num;
           this.str = str;
@@ -5862,8 +5862,8 @@ unmarshalling(dataIn: MessageParcel): boolean
 
   ```ts
   class MySequenceable implements rpc.Sequenceable {
-      num: number;
-      str: string;
+      num: number = 0;
+      str: string = '';
       constructor(num: number, str: string) {
           this.num = num;
           this.str = str;
@@ -5928,9 +5928,9 @@ asObject(): IRemoteObject
   import Want from '@ohos.app.ability.Want';
   import common from '@ohos.app.ability.common';
 
-  let proxy: rpc.RemoteProxy;
+  let proxy: rpc.IRemoteObject | undefined = undefined;
   let connect: common.ConnectOptions = {
-      onConnect: (elementName, remoteProxy: rpc.RemoteProxy) => {
+      onConnect: (elementName, remoteProxy) => {
           console.log("RpcClient: js onConnect called.");
           proxy = remoteProxy;
       },
@@ -6368,9 +6368,9 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
   import Want from '@ohos.app.ability.Want';
   import common from '@ohos.app.ability.common';
 
-  let proxy: rpc.RemoteProxy;
+  let proxy: rpc.IRemoteObject | undefined = undefined;
   let connect: common.ConnectOptions = {
-      onConnect: (elementName, remoteProxy: rpc.RemoteProxy) => {
+      onConnect: (elementName, remoteProxy) => {
           console.log("RpcClient: js onConnect called.");
           proxy = remoteProxy;
       },
@@ -6446,9 +6446,9 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
   import Want from '@ohos.app.ability.Want';
   import common from '@ohos.app.ability.common';
 
-  let proxy: rpc.RemoteProxy;
+  let proxy: rpc.IRemoteObject | undefined = undefined;
   let connect: common.ConnectOptions = {
-      onConnect: (elementName, remoteProxy: rpc.RemoteProxy) => {
+      onConnect: (elementName, remoteProxy) => {
           console.log("RpcClient: js onConnect called.");
           proxy = remoteProxy;
       },
@@ -6532,9 +6532,9 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
   import Want from '@ohos.app.ability.Want';
   import common from '@ohos.app.ability.common';
 
-  let proxy: rpc.RemoteProxy;
+  let proxy: rpc.IRemoteObject | undefined = undefined;
   let connect: common.ConnectOptions = {
-      onConnect: (elementName, remoteProxy: rpc.RemoteProxy) => {
+      onConnect: (elementName, remoteProxy) => {
           console.log("RpcClient: js onConnect called.");
           proxy = remoteProxy;
       },
@@ -6610,11 +6610,11 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
   // import FA from "@ohos.ability.featureAbility";
   import Want from '@ohos.app.ability.Want';
   import common from '@ohos.app.ability.common';
-  import { BussinessError } from '@ohos.base';
+  import { BusinessError } from '@ohos.base';
 
-  let proxy: rpc.RemoteProxy;
+  let proxy: rpc.IRemoteObject | undefined = undefined;
   let connect: common.ConnectOptions = {
-      onConnect: (elementName, remoteProxy: rpc.RemoteProxy) => {
+      onConnect: (elementName, remoteProxy) => {
           console.log("RpcClient: js onConnect called.");
           proxy = remoteProxy;
       },
@@ -6660,7 +6660,7 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
   try {
       proxy.sendMessageRequest(1, data, reply, option, sendRequestCallback);
   } catch(error) {
-      let e: BussinessError = error as BussinessError;
+      let e: BusinessError = error as BusinessError;
       console.info("rpc send sequence request fail, errorCode " + e.code);
       console.info("rpc send sequence request fail, errorMessage " + e.message);
   }
@@ -6696,9 +6696,9 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
   import Want from '@ohos.app.ability.Want';
   import common from '@ohos.app.ability.common';
 
-  let proxy: rpc.RemoteProxy;
+  let proxy: rpc.IRemoteObject | undefined = undefined;
   let connect: common.ConnectOptions = {
-      onConnect: (elementName, remoteProxy: rpc.RemoteProxy) => {
+      onConnect: (elementName, remoteProxy) => {
           console.log("RpcClient: js onConnect called.");
           proxy = remoteProxy;
       },
@@ -6781,11 +6781,11 @@ getLocalInterface(interface: string): IRemoteBroker
   // import FA from "@ohos.ability.featureAbility";
   import Want from '@ohos.app.ability.Want';
   import common from '@ohos.app.ability.common';
-  import { BussinessError } from '@ohos.base';
+  import { BusinessError } from '@ohos.base';
 
-  let proxy: rpc.RemoteProxy;
+  let proxy: rpc.IRemoteObject | undefined = undefined;
   let connect: common.ConnectOptions = {
-      onConnect: (elementName, remoteProxy: rpc.RemoteProxy) => {
+      onConnect: (elementName, remoteProxy) => {
           console.log("RpcClient: js onConnect called.");
           proxy = remoteProxy;
       },
@@ -6814,7 +6814,7 @@ getLocalInterface(interface: string): IRemoteBroker
       let broker: rpc.IRemoteBroker = proxy.getLocalInterface("testObject");
       console.log("RpcClient: getLocalInterface is " + broker);
   } catch(error) {
-       let e: BussinessError = error as BussinessError;
+       let e: BusinessError = error as BusinessError;
       console.info("rpc get local interface fail, errorCode " + e.code);
       console.info("rpc get local interface fail, errorMessage " + e.message);
   }
@@ -6852,9 +6852,9 @@ queryLocalInterface(interface: string): IRemoteBroker
   import Want from '@ohos.app.ability.Want';
   import common from '@ohos.app.ability.common';
 
-  let proxy: rpc.RemoteProxy;
+  let proxy: rpc.IRemoteObject | undefined = undefined;
   let connect: common.ConnectOptions = {
-      onConnect: (elementName, remoteProxy: rpc.RemoteProxy) => {
+      onConnect: (elementName, remoteProxy) => {
           console.log("RpcClient: js onConnect called.");
           proxy = remoteProxy;
       },
@@ -6915,11 +6915,11 @@ registerDeathRecipient(recipient: DeathRecipient, flags: number): void
   // import FA from "@ohos.ability.featureAbility";
   import Want from '@ohos.app.ability.Want';
   import common from '@ohos.app.ability.common';
-  import { BussinessError } from '@ohos.base';
+  import { BusinessError } from '@ohos.base';
 
-  let proxy: rpc.RemoteProxy;
+  let proxy: rpc.IRemoteObject | undefined = undefined;
   let connect: common.ConnectOptions = {
-      onConnect: (elementName, remoteProxy: rpc.RemoteProxy) => {
+      onConnect: (elementName, remoteProxy) => {
           console.log("RpcClient: js onConnect called.");
           proxy = remoteProxy;
       },
@@ -6953,7 +6953,7 @@ registerDeathRecipient(recipient: DeathRecipient, flags: number): void
   try {
       proxy.registerDeathRecipient(deathRecipient, 0);
   } catch(error) {
-      let e: BussinessError = error as BussinessError;
+      let e: BusinessError = error as BusinessError;
       console.info("proxy register deathRecipient fail, errorCode " + e.code);
       console.info("proxy register deathRecipient fail, errorMessage " + e.message);
   }
@@ -6992,9 +6992,9 @@ addDeathRecipient(recipient: DeathRecipient, flags: number): boolean
   import Want from '@ohos.app.ability.Want';
   import common from '@ohos.app.ability.common';
 
-  let proxy: rpc.RemoteProxy;
+  let proxy: rpc.IRemoteObject | undefined = undefined;
   let connect: common.ConnectOptions = {
-      onConnect: (elementName, remoteProxy: rpc.RemoteProxy) => {
+      onConnect: (elementName, remoteProxy) => {
           console.log("RpcClient: js onConnect called.");
           proxy = remoteProxy;
       },
@@ -7060,11 +7060,11 @@ unregisterDeathRecipient(recipient: DeathRecipient, flags: number): void
   // import FA from "@ohos.ability.featureAbility";
   import Want from '@ohos.app.ability.Want';
   import common from '@ohos.app.ability.common';
-  import { BussinessError } from '@ohos.base';
+  import { BusinessError } from '@ohos.base';
 
-  let proxy: rpc.RemoteProxy;
+  let proxy: rpc.IRemoteObject | undefined = undefined;
   let connect: common.ConnectOptions = {
-      onConnect: (elementName, remoteProxy: rpc.RemoteProxy) => {
+      onConnect: (elementName, remoteProxy) => {
           console.log("RpcClient: js onConnect called.");
           proxy = remoteProxy;
       },
@@ -7099,7 +7099,7 @@ unregisterDeathRecipient(recipient: DeathRecipient, flags: number): void
       proxy.registerDeathRecipient(deathRecipient, 0);
       proxy.unregisterDeathRecipient(deathRecipient, 0);
   } catch(error) {
-      let e: BussinessError = error as BussinessError;
+      let e: BusinessError = error as BusinessError;
       console.info("proxy register deathRecipient fail, errorCode " + e.code);
       console.info("proxy register deathRecipient fail, errorMessage " + e.message);
   }
@@ -7138,9 +7138,9 @@ removeDeathRecipient(recipient: DeathRecipient, flags: number): boolean
   import Want from '@ohos.app.ability.Want';
   import common from '@ohos.app.ability.common';
 
-  let proxy: rpc.RemoteProxy;
+  let proxy: rpc.IRemoteObject | undefined = undefined;
   let connect: common.ConnectOptions = {
-      onConnect: (elementName, remoteProxy: rpc.RemoteProxy) => {
+      onConnect: (elementName, remoteProxy) => {
           console.log("RpcClient: js onConnect called.");
           proxy = remoteProxy;
       },
@@ -7207,11 +7207,11 @@ getDescriptor(): string
   // import FA from "@ohos.ability.featureAbility";
   import Want from '@ohos.app.ability.Want';
   import common from '@ohos.app.ability.common';
-  import { BussinessError } from '@ohos.base';
+  import { BusinessError } from '@ohos.base';
 
-  let proxy: rpc.RemoteProxy;
+  let proxy: rpc.IRemoteObject | undefined = undefined;
   let connect: common.ConnectOptions = {
-      onConnect: (elementName, remoteProxy: rpc.RemoteProxy) => {
+      onConnect: (elementName, remoteProxy) => {
           console.log("RpcClient: js onConnect called.");
           proxy = remoteProxy;
       },
@@ -7239,7 +7239,7 @@ getDescriptor(): string
       let descriptor: string = proxy.getDescriptor();
       console.log("RpcClient: descriptor is " + descriptor);
   } catch(error) {
-      let e: BussinessError = error as BussinessError;
+      let e: BusinessError = error as BusinessError;
       console.info("rpc get interface descriptor fail, errorCode " + e.code);
       console.info("rpc get interface descriptor fail, errorMessage " + e.message);
   }
@@ -7271,9 +7271,9 @@ getInterfaceDescriptor(): string
   import Want from '@ohos.app.ability.Want';
   import common from '@ohos.app.ability.common';
 
-  let proxy: rpc.RemoteProxy;
+  let proxy: rpc.IRemoteObject | undefined = undefined;
   let connect: common.ConnectOptions = {
-      onConnect: (elementName, remoteProxy: rpc.RemoteProxy) => {
+      onConnect: (elementName, remoteProxy) => {
           console.log("RpcClient: js onConnect called.");
           proxy = remoteProxy;
       },
@@ -7326,9 +7326,9 @@ isObjectDead(): boolean
   import Want from '@ohos.app.ability.Want';
   import common from '@ohos.app.ability.common';
 
-  let proxy: rpc.RemoteProxy;
+  let proxy: rpc.IRemoteObject | undefined = undefined;
   let connect: common.ConnectOptions = {
-      onConnect: (elementName, remoteProxy: rpc.RemoteProxy) => {
+      onConnect: (elementName, remoteProxy) => {
           console.log("RpcClient: js onConnect called.");
           proxy = remoteProxy;
       },
@@ -7768,7 +7768,7 @@ static flushCmdBuffer(object: IRemoteObject): void
 **示例：**
 
   ```ts
-  import { BussinessError } from '@ohos.base';
+  import { BusinessError } from '@ohos.base';
 
   class TestRemoteObject extends rpc.RemoteObject {
       constructor(descriptor: string) {
@@ -7779,7 +7779,7 @@ static flushCmdBuffer(object: IRemoteObject): void
   try {
       rpc.IPCSkeleton.flushCmdBuffer(remoteObject);
   } catch(error) {
-      let e: BussinessError = error as BussinessError;
+      let e: BusinessError = error as BusinessError;
       console.info("proxy set calling identity fail, errorCode " + e.code);
       console.info("proxy set calling identity fail, errorMessage " + e.message);
   }
@@ -8370,14 +8370,14 @@ sendMessageRequest请求的响应处理函数，服务端在该函数里同步�
           super(descriptor);
       }
 
-      async onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption): boolean | Promise<boolean> {
+      async onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption): Promise<boolean> {
           if (code === 1) {
               console.log("RpcServer: async onRemoteMessageRequest is called");
           } else {
               console.log("RpcServer: unknown code: " + code);
               return false;
           }
-          await new Promise((resolve: (data: rpc.RequestResult) =>void) => {
+          await new Promise((resolve: (data: rpc.RequestResult) => void) => {
             setTimeout(resolve, 100);
           })
           return true;
@@ -8434,14 +8434,14 @@ sendMessageRequest请求的响应处理函数，服务端在该函数里同步�
           }
       }
       // 同时调用仅会执行onRemoteMessageRequest
-      async onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption): boolean | Promise<boolean> {
+      async onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption): Promise<boolean> {
           if (code === 1) {
               console.log("RpcServer: async onRemoteMessageRequest is called");
           } else {
               console.log("RpcServer: unknown code: " + code);
               return false;
           }
-         await new Promise((resolve: (data: rpc.RequestResult) =>void) => {
+         await new Promise((resolve: (data: rpc.RequestResult) => void) => {
             setTimeout(resolve, 100);
           })
           return true;
@@ -8523,7 +8523,7 @@ getLocalInterface(descriptor: string): IRemoteBroker
 **示例：**
 
   ```ts
-  import { BussinessError } from '@ohos.base';
+  import { BusinessError } from '@ohos.base';
 
   class MyDeathRecipient implements rpc.DeathRecipient {
       onRemoteDied() {
@@ -8548,7 +8548,7 @@ getLocalInterface(descriptor: string): IRemoteBroker
   try {
       let broker = testRemoteObject.getLocalInterface("testObject");
   } catch(error) {
-      let e: BussinessError = error as BussinessError;
+      let e: BusinessError = error as BusinessError;
       console.info("rpc get local interface fail, errorCode " + e.code);
       console.info("rpc get local interface fail, errorMessage " + e.message);
   }
@@ -8627,7 +8627,7 @@ getDescriptor(): string
 **示例：**
 
   ```ts
-  import { BussinessError } from '@ohos.base';
+  import { BusinessError } from '@ohos.base';
 
   class MyDeathRecipient implements rpc.DeathRecipient {
       onRemoteDied() {
@@ -8653,7 +8653,7 @@ getDescriptor(): string
   try {
       let descriptor = testRemoteObject.getDescriptor();
   } catch(error) {
-      let e: BussinessError = error as BussinessError;
+      let e: BusinessError = error as BusinessError;
       console.info("rpc get local interface fail, errorCode " + e.code);
       console.info("rpc get local interface fail, errorMessage " + e.message);
   }
@@ -8720,7 +8720,7 @@ modifyLocalInterface(localInterface: IRemoteBroker, descriptor: string): void
 **示例：**
 
   ```ts
-  import { BussinessError } from '@ohos.base';
+  import { BusinessError } from '@ohos.base';
 
   class MyDeathRecipient implements rpc.DeathRecipient {
       onRemoteDied() {
@@ -8733,7 +8733,7 @@ modifyLocalInterface(localInterface: IRemoteBroker, descriptor: string): void
           try {
               this.modifyLocalInterface(this, descriptor);
           } catch(error) {
-              let e: BussinessError = error as BussinessError;
+              let e: BusinessError = error as BusinessError;
               console.info(" rpc attach local interface fail, errorCode " + e.code);
               console.info(" rpc attach local interface fail, errorMessage " + e.message);
           }
@@ -8839,7 +8839,7 @@ static create(name: string, size: number): Ashmem
 **示例：**
 
   ```ts
-  import { BussinessError } from '@ohos.base';
+  import { BusinessError } from '@ohos.base';
 
   let ashmem: rpc.Ashmem;
   try {
@@ -8847,7 +8847,7 @@ static create(name: string, size: number): Ashmem
       let size = ashmem.getAshmemSize();
       console.log("RpcTest: get ashemm by create : " + ashmem + " size is : " + size);
   } catch(error) {
-      let e: BussinessError = error as BussinessError;
+      let e: BusinessError = error as BusinessError;
       console.info("Rpc creat ashmem fail, errorCode " + e.code);
       console.info("Rpc creat ashmem  fail, errorMessage " + e.message);
   }
@@ -8907,7 +8907,7 @@ static create(ashmem: Ashmem): Ashmem
 **示例：**
 
   ```ts
-  import { BussinessError } from '@ohos.base';
+  import { BusinessError } from '@ohos.base';
   let ashmem2: rpc.Ashmem;
   try {
       let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
@@ -8915,7 +8915,7 @@ static create(ashmem: Ashmem): Ashmem
       let size = ashmem2.getAshmemSize();
       console.log("RpcTest: get ashemm by create : " + ashmem2 + " size is : " + size);
   } catch(error) {
-      let e: BussinessError = error as BussinessError;
+      let e: BusinessError = error as BusinessError;
       console.info("Rpc creat ashmem from existing fail, errorCode " + e.code);
       console.info("Rpc creat ashmem from existing  fail, errorMessage " + e.message);
   }
@@ -9029,13 +9029,13 @@ mapTypedAshmem(mapType: number): void
 **示例：**
 
   ```ts
-  import { BussinessError } from '@ohos.base';
+  import { BusinessError } from '@ohos.base';
 
   let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
   try {
       ashmem.mapTypedAshmem(ashmem.PROT_READ | ashmem.PROT_WRITE);
   } catch(error) {
-      let e: BussinessError = error as BussinessError;
+      let e: BusinessError = error as BusinessError;
       console.info("Rpc map ashmem fail, errorCode " + e.code);
       console.info("Rpc map ashmem fail, errorMessage " + e.message);
   }
@@ -9090,13 +9090,13 @@ mapReadWriteAshmem(): void
 **示例：**
 
   ```ts
-  import { BussinessError } from '@ohos.base';
+  import { BusinessError } from '@ohos.base';
 
   let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
   try {
       ashmem.mapReadWriteAshmem();
   } catch(error) {
-      let e: BussinessError = error as BussinessError;
+      let e: BusinessError = error as BusinessError;
       console.info("Rpc map read and write ashmem fail, errorCode " + e.code);
       console.info("Rpc map read and write ashmem fail, errorMessage " + e.message);
   }
@@ -9145,13 +9145,13 @@ mapReadonlyAshmem(): void
 **示例：**
 
   ```ts
-  import { BussinessError } from '@ohos.base';
+  import { BusinessError } from '@ohos.base';
 
   let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
   try {
       ashmem.mapReadonlyAshmem();
   } catch(error) {
-      let e: BussinessError = error as BussinessError;
+      let e: BusinessError = error as BusinessError;
       console.info("Rpc map read and write ashmem fail, errorCode " + e.code);
       console.info("Rpc map read and write ashmem fail, errorMessage " + e.message);
   }
@@ -9206,13 +9206,13 @@ setProtectionType(protectionType: number): void
 **示例：**
 
   ```ts
-  import { BussinessError } from '@ohos.base';
+  import { BusinessError } from '@ohos.base';
 
   let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
   try {
       ashmem.setProtection(ashmem.PROT_READ);
   } catch(error) {
-      let e: BussinessError = error as BussinessError;
+      let e: BusinessError = error as BusinessError;
       console.info("Rpc set protection type fail, errorCode " + e.code);
       console.info("Rpc set protection type fail, errorMessage " + e.message);
   }
@@ -9275,7 +9275,7 @@ writeAshmem(buf: number[], size: number, offset: number): void
 **示例：**
 
   ```ts
-  import { BussinessError } from '@ohos.base';
+  import { BusinessError } from '@ohos.base';
 
   let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
   ashmem.mapReadWriteAshmem();
@@ -9283,7 +9283,7 @@ writeAshmem(buf: number[], size: number, offset: number): void
   try {
       ashmem.writeAshmem(ByteArrayVar, 5, 0);
   } catch(error) {
-      let e: BussinessError = error as BussinessError;
+      let e: BusinessError = error as BusinessError;
       console.info("Rpc write to ashmem fail, errorCode " + e.code);
       console.info("Rpc write to ashmem fail, errorMessage " + e.message);
   }
@@ -9356,7 +9356,7 @@ readAshmem(size: number, offset: number): number[]
 **示例：**
 
   ```ts
-  import { BussinessError } from '@ohos.base';
+  import { BusinessError } from '@ohos.base';
 
   let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
   ashmem.mapReadWriteAshmem();
@@ -9366,7 +9366,7 @@ readAshmem(size: number, offset: number): number[]
       let readResult = ashmem.readAshmem(5, 0);
       console.log("RpcTest: read from Ashmem result is  : " + readResult);
   } catch(error) {
-      let e: BussinessError = error as BussinessError;
+      let e: BusinessError = error as BusinessError;
       console.info("Rpc read from ashmem fail, errorCode " + e.code);
       console.info("Rpc read from ashmem fail, errorMessage " + e.message);
   }

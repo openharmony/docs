@@ -13,7 +13,7 @@ For details about the APIs, see [ohos.file.securityLabel](../reference/apis/js-a
 | setSecurityLabel | Sets a security label for a file.| Method| √ | √ |
 | getSecurityLabel | Obtains the security label of a file.| Method| √ | √ |
 
-> **NOTE**
+> **NOTICE**
 >
 > - In distributed networking, a device can view the files that do not match its security level but cannot access them.
 >
@@ -26,16 +26,18 @@ Obtain the sandbox path of a file and set the data security label. For details a
 
 ```ts
 import securityLabel from '@ohos.file.securityLabel';
+import { BusinessError } from '@ohos.base';
+import common from '@ohos.app.ability.common';
 
 // Obtain the sandbox path of the file.
-let context =...; // Obtain UIAbilityContext information.
+let context = getContext(this) as common.UIAbilityContext; // Obtain UIAbilityContext.
 let pathDir = context.filesDir;
 let filePath = pathDir + '/test.txt';
 
 // Set the data level of the file to S0.
 securityLabel.setSecurityLabel(filePath, 's0').then(() => {
   console.info('Succeeded in setSecurityLabeling.');
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to setSecurityLabel. Code: ${err.code}, message: ${err.message}`);
 });
 ```

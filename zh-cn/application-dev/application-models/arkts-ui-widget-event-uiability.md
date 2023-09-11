@@ -3,9 +3,12 @@
 
 在卡片页面中可以通过**postCardAction**接口触发router事件或者call事件拉起UIAbility，然后由UIAbility刷新卡片内容，下面是这种刷新方式的简单示例。
 
+> **说明：**
+>
+> 本文主要介绍动态卡片的事件开发。对于静态卡片，请参见[FormLink](../reference/arkui-ts/ts-container-formlink.md)。
+
 ## 通过router事件刷新卡片内容
 
-说明：<br/>  本文主要介绍动态卡片的事件开发。对于静态卡片，请参见[FormLink](../../application-dev/reference/arkui-ts/ts-container-formlink.md)。<br/>
 - 在卡片页面通过注册Button的onClick点击事件回调，并在回调中调用**postCardAction**接口触发router事件拉起UIAbility。
   
   ```ts
@@ -44,34 +47,52 @@
   import formBindingData from '@ohos.app.form.formBindingData';
   import formProvider from '@ohos.app.form.formProvider';
   import formInfo from '@ohos.app.form.formInfo';
+  import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+  import Want from '@ohos.app.ability.Want';
+  import Base from '@ohos.base'
   
   export default class EntryAbility extends UIAbility {
     // 如果UIAbility第一次启动，在收到Router事件后会触发onCreate生命周期回调
-    onCreate(want, launchParam) {
-      this.handleFormRouterEvent(want);
-    }
-    // 如果UIAbility已在后台运行，在收到Router事件后会触发onNewWant生命周期回调
-    onNewWant(want, launchParam) {
+    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
       this.handleFormRouterEvent(want);
     }
 
-    handleFormRouterEvent(want) {
+    handleFormRouterEvent(want: Want) {
       console.info('Want:' + JSON.stringify(want));
-      if (want.parameters[formInfo.FormParam.IDENTITY_KEY] !== undefined) {
-        let curFormId = want.parameters[formInfo.FormParam.IDENTITY_KEY];
-        let message = JSON.parse(want.parameters.params).detail;
+      if (want.parameters && want.parameters[formInfo.FormParam.IDENTITY_KEY] !== undefined) {
+        let curFormId = JSON.stringify(want.parameters[formInfo.FormParam.IDENTITY_KEY]);
+        let message: string = JSON.parse(JSON.stringify(want.parameters.params)).detail;
         console.info(`UpdateForm formId: ${curFormId}, message: ${message}`);
-        let formData = {
+        let formData: Record<string, string> = {
           "detail": message + ': UIAbility.', // 和卡片布局中对应
         };
         let formMsg = formBindingData.createFormBindingData(formData)
         formProvider.updateForm(curFormId, formMsg).then((data) => {
           console.info('updateForm success.' + JSON.stringify(data));
-        }).catch((error) => {
+        }).catch((error: Base.BusinessError) => {
           console.error('updateForm failed:' + JSON.stringify(error));
         })
       }
     }
+    // 如果UIAbility已在后台运行，在收到Router事件后会触发onNewWant生命周期回调
+    onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam) {
+      console.info('onNewWant Want:' + JSON.stringify(want));
+      if (want.parameters && want.parameters[formInfo.FormParam.IDENTITY_KEY] !== undefined) {
+        let curFormId = JSON.stringify(want.parameters[formInfo.FormParam.IDENTITY_KEY]);
+        let message: string = JSON.parse(JSON.stringify(want.parameters.params)).detail;
+        console.info(`UpdateForm formId: ${curFormId}, message: ${message}`);
+        let formData: Record<string, string> = {
+          "detail": message + ': onNewWant UIAbility.', // 和卡片布局中对应
+        };
+        let formMsg = formBindingData.createFormBindingData(formData)
+        formProvider.updateForm(curFormId, formMsg).then((data) => {
+          console.info('updateForm success.' + JSON.stringify(data));
+        }).catch((error: Base.BusinessError) => {
+          console.error('updateForm failed:' + JSON.stringify(error));
+        })
+      }
+    }
+    
     ...
   }
   ```
@@ -83,22 +104,23 @@
    ```ts
    import formBindingData from '@ohos.app.form.formBindingData';
    import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
+   import Want from '@ohos.app.ability.Want';
    
    export default class EntryFormAbility extends FormExtensionAbility {
-     onAddForm(want) {
-      let formId = want.parameters["ohos.extra.param.key.form_identity"];
-      let dataObj1 = {
-        "formId": formId
-      };
+    onAddForm(want: Want) {
+      let dataObj1 = new Map<string, string>();
+      if (want.parameters && want.parameters["ohos.extra.param.key.form_identity"] != undefined) {
+        let formId: string = JSON.parse(JSON.stringify(want.parameters["ohos.extra.param.key.form_identity"]));
+        dataObj1.set("formId", formId);
+      }
       let obj1 = formBindingData.createFormBindingData(dataObj1);
       return obj1;
     }
-    
-     ...
+    ...
    };
    ```
 
-- 在卡片页面通过注册Button的onClick点击事件回调，并在回调中调用**postCardAction**接口触发call事件至UIAbility。
+- 在卡片页面通过注册Button的onClick点击事件回调，并在回调中调用**postCardAction**接口触发call事件拉起UIAbility。
   
   ```ts
   let storage = new LocalStorage();
@@ -138,40 +160,63 @@
   import UIAbility from '@ohos.app.ability.UIAbility';
   import formBindingData from '@ohos.app.form.formBindingData';
   import formProvider from '@ohos.app.form.formProvider';
+  import Want from '@ohos.app.ability.Want';
+  import Base from '@ohos.base'
+  import rpc from '@ohos.rpc';
+  import AbilityConstant from '@ohos.app.ability.AbilityConstant';
   
   const MSG_SEND_METHOD: string = 'funA';
-  
+
+  class MyParcelable implements rpc.Parcelable {
+    num: number;
+    str: string;
+    constructor(num: number, str: string) {
+      this.num = num;
+      this.str = str;
+    }
+    marshalling(messageSequence: rpc.MessageSequence): boolean {
+      messageSequence.writeInt(this.num);
+      messageSequence.writeString(this.str);
+      return true;
+    }
+    unmarshalling(messageSequence: rpc.MessageSequence): boolean {
+      this.num = messageSequence.readInt();
+      this.str = messageSequence.readString();
+      return true;
+    }
+  }
+
   // 在收到call事件后会触发callee监听的方法
-  function FunACall(data) {
+  let FunACall = (data: rpc.MessageSequence) => {
     // 获取call事件中传递的所有参数
-    let params = JSON.parse(data.readString())
+    let params: Record<string, string> = JSON.parse(data.readString())
     if (params.formId !== undefined) {
-      let curFormId = params.formId;
-      let message = params.detail;
+      let curFormId: string = params.formId;
+      let message: string = params.detail;
       console.info(`UpdateForm formId: ${curFormId}, message: ${message}`);
-      let formData = {
+      let formData: Record<string, string> = {
         "detail": message
       };
-      let formMsg = formBindingData.createFormBindingData(formData)
+      let formMsg: formBindingData.FormBindingData = formBindingData.createFormBindingData(formData);
       formProvider.updateForm(curFormId, formMsg).then((data) => {
         console.info('updateForm success.' + JSON.stringify(data));
-      }).catch((error) => {
+      }).catch((error: Base.BusinessError) => {
         console.error('updateForm failed:' + JSON.stringify(error));
       })
     }
-    return null;
+    return new MyParcelable(1, 'aaa');
   }
+
   export default class EntryAbility extends UIAbility {
     // 如果UIAbility第一次启动，call事件后会触发onCreate生命周期回调
-    onCreate(want, launchParam) {
+    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
       console.info('Want:' + JSON.stringify(want));
       try {
-         // 监听call事件所需的方法
+        // 监听call事件所需的方法
         this.callee.on(MSG_SEND_METHOD, FunACall);
       } catch (error) {
-        console.info(`${MSG_SEND_METHOD} register failed with error ${JSON.stringify(error)}`)
+        console.info(`${MSG_SEND_METHOD} register failed with error ${JSON.stringify(error as Base.BusinessError)}`)
       }
     }
-    ...
   }
   ```

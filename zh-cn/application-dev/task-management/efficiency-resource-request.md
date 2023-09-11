@@ -55,44 +55,34 @@
 ## 开发步骤
 
 1. 导入模块。
-   
-   ```js
-   import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';  
+
+   ```ts
+   import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';
    ```
 
 2. 申请能效资源。
-   
-   ```js
-   import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';
-   
+
+   ```ts
    // 应用需要在后台保持活动状态，不被挂起。
-   let request = {
-     resourceTypes: backgroundTaskManager.ResourceType.CPU, // 资源类型是CPU资源，保证应用进程不被挂起 
+   let request: backgroundTaskManager.EfficiencyResourcesRequest = {
+     resourceTypes: backgroundTaskManager.ResourceType.CPU, // 资源类型是CPU资源，保证应用进程不被挂起
      isApply: true, // 申请资源
      timeOut: 0, // 超时时间，超过超时时间后资源自动释放
      reason: "apply", // 申请原因
      isPersist: true, // 永久持有资源
      isProcess: false, // 在应用级别申请
    };
-   try {
-     backgroundTaskManager.applyEfficiencyResources(request);
-     console.info("Succeeded in invoking applyEfficiencyResources.");
-   } catch (error) {
-     console.error(`Failed to invoke applyEfficiencyResources. Code is ${error.code} message is ${error.message}`);
-   }
+   backgroundTaskManager.applyEfficiencyResources(request);
+   console.info("Succeeded in invoking applyEfficiencyResources.");
    ```
 
 3. 释放能效资源。应用在后台完成工作后，及时释放资源，支持释放部分资源或全部资源。
-   
-   ```js
+
+   ```ts
    // 应用在后台完成了工作后，全部释放能效资源
-   try {
-     backgroundTaskManager.resetAllEfficiencyResources();
-   } catch (error) {
-     console.error(`Failed to invoke resetAllEfficiencyResources. Code is ${error.code} message is ${error.message}`);
-   }
+   backgroundTaskManager.resetAllEfficiencyResources();
    //应用在后台完成了工作后，部分释放能效资源
-   let request = {
+   let request: backgroundTaskManager.EfficiencyResourcesRequest = {
      resourceTypes: backgroundTaskManager.ResourceType.CPU,
      isApply: false, // 释放资源
      timeOut: 0,
@@ -100,12 +90,8 @@
      isPersist: true,
      isProcess: false, // 在应用级别释放资源
    };
-   try {
-     backgroundTaskManager.applyEfficiencyResources(request);
-     console.info("Succeeded in invoking applyEfficiencyResources.");
-   } catch (error) {
-     console.error(`Failed to invoke applyEfficiencyResources. Code is ${error.code} message is ${error.message}`);
-   }
+   backgroundTaskManager.applyEfficiencyResources(request);
+   console.info("Succeeded in invoking applyEfficiencyResources.");
    ```
 
    > **说明：**
