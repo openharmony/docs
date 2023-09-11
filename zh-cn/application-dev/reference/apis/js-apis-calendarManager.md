@@ -88,7 +88,7 @@ const calendarAccount: calendarManager.CalendarAccount = {
   type: calendarManager.CalendarType.LOCAL,
   displayName : 'MyApplication'
 };
-calendarManager.createCalendar(calendarAccount).then((data) => {
+calendarManager.createCalendar(calendarAccount).then((data: calendarManager.Calendar) => {
   console.info(`Succeeded in creating calendar data->${JSON.stringify(data)}`);
   calendar = data;
 }).catch((error : BusinessError) => {
@@ -278,7 +278,7 @@ getCalendar(calendarAccount?: CalendarAccount): Promise\<Calendar>
 import { BusinessError } from '@ohos.base';
 
 let calendar : calendarManager.Calendar | undefined = undefined;
-calendarManager.getCalendar().then((data) => {
+calendarManager.getCalendar().then((data: calendarManager.Calendar) => {
   console.info(`Succeeded in getting calendar data->${JSON.stringify(data)}`);
   calendar = data;
 }).catch((err: BusinessError) => {
@@ -785,7 +785,7 @@ getEvents(eventFilter: EventFilter, eventKey: (keyof Event)[], callback: AsyncCa
 import { BusinessError } from '@ohos.base';
 
 const filter = calendarManager.EventFilter.filterById([1, 2]);
-calendar.getEvents(filter, ['title', 'type', 'startTime', 'endTime'], (err, data) => {
+calendar.getEvents(filter, ['title', 'type', 'startTime', 'endTime'], (err: BusinessError, data: calendarManager.Event[]) => {
   if (err) {
     console.error("Failed to get events");
   } else {
@@ -821,9 +821,9 @@ getEvents(eventFilter?: EventFilter, eventKey?: (keyof Event)[]): Promise\<Event
 import { BusinessError } from '@ohos.base';
 
 const filter = calendarManager.EventFilter.filterByTitle('MyEvent');
-calendar.getEvents(filter).then((data) => {
+calendar.getEvents(filter).then((data: calendarManager.Event[]) => {
   console.info("Succeeded in getting events");
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error("Failed to get events");
 });
 ```
