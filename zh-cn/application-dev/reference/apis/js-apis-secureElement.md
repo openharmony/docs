@@ -58,6 +58,7 @@ newSEService(type: 'serviceState', callback: Callback<[ServiceState](#secureelem
 
 ```js
 import secureElement from '@ohos.secureElement';
+import { BusinessError } from '@ohos.base';
 
 try {
     let nfcSEService = secureElement.newSEService("serviceState", (state) => {
@@ -68,7 +69,7 @@ try {
         }
     });
 } catch (e) {
-    console.log("newSEService occurs exception:" + e.message);
+    console.log("newSEService occurs " + "exception: ${(e : BusinessError).message}");
 }
 ```
 
@@ -91,6 +92,7 @@ getReaders(): Reader[]
 ```js
 import omapi from '@ohos.secureElement';
 import secureElement from '@ohos.secureElement';
+import { BusinessError } from '@ohos.base';
 
 let nfcSEService : omapi.SEService | null = null;
 let nfcOmaReaderList : omapi.Reader[] | null = null;
@@ -104,7 +106,7 @@ try {
         }
     });
 } catch (e) {
-    console.log("newSEService excpetion:" + e.message);
+    console.log("newSEService " + "excpetion: ${(e : BusinessError).message}");
 }
 
 try {
@@ -117,7 +119,7 @@ try {
         console.log("get reader failed");
     }
 } catch (e) {
-    sconsole.log("getReaders exception:" + e.message);
+    console.log("getReaders " + "exception: ${(e : BusinessError).message}");
 }
 ```
 
@@ -140,6 +142,7 @@ isConnected(): boolean
 ```JS
 import omapi from '@ohos.secureElement';
 import secureElement from '@ohos.secureElement';
+import { BusinessError } from '@ohos.base';
 
 let nfcSEService : omapi.SEService | null = null;
 
@@ -152,7 +155,7 @@ try {
         }
     });
 } catch (e) {
-    console.log("newSEService excpetion:" + e.message);
+    console.log("newSEService" + "exception: ${(e : BusinessError).message}");
 }
 
 try {
@@ -167,7 +170,7 @@ try {
         console.log("get state: not connected");
     }
 } catch (e) {
-        console.log("isConnected exception: " + e.message);
+        console.log("isConnected " + "exception: ${(e : BusinessError).message}");
 }
 ```
 
@@ -184,6 +187,7 @@ shutdown(): void
 ```js
 import omapi from '@ohos.secureElement';
 import secureElement from '@ohos.secureElement';
+import { BusinessError } from '@ohos.base';
 
 let nfcSEService : omapi.SEService | null = null;
 
@@ -196,7 +200,7 @@ try {
         }
     });
 } catch (e) {
-    console.log("newSEService excpetion:" + e.message);
+    console.log("newSEService " + "exception: ${(e : BusinessError).message}");
 }
 
 try {
@@ -206,7 +210,7 @@ try {
     }
     console.log("shutdown successfully");
 } catch (e) {
-    console.log("shutdown exception:" + e.message);
+    console.log("shutdown exception:" + "exception: ${(e : BusinessError).message}");
 }
 ```
 
@@ -229,6 +233,7 @@ getVersion(): string
 ```JS
 import omapi from '@ohos.secureElement';
 import secureElement from '@ohos.secureElement';
+import { BusinessError } from '@ohos.base';
 
 let nfcSEService : omapi.SEService | null = null;
 
@@ -241,7 +246,7 @@ try {
         }
     });
 } catch (e) {
-    console.log("newSEService excpetion:" + e.message);
+    console.log("newSEService " + "exception: ${(e : BusinessError).message}");
 }
 
 try {
@@ -250,7 +255,7 @@ try {
         console.log("version: " + nfcSEService.getVersion());
     }
 } catch (e) {
-    console.log("getVersion exception:" + e.message);
+    console.log("getVersion " + "exception: ${(e : BusinessError).message}");
 }
 ```
 
@@ -273,6 +278,7 @@ getName(): string
 ```js
 import omapi from '@ohos.secureElement';
 import secureElement from '@ohos.secureElement';
+import { BusinessError } from '@ohos.base';
 
 let nfcSEService : omapi.SEService | null = null;
 let nfcOmaReaderList : omapi.Reader[] | null = null;
@@ -286,7 +292,7 @@ try {
         }
     });
 } catch (e) {
-    console.log("newSEService excpetion:" + e.message);
+    console.log("newSEService " + "exception: ${(e : BusinessError).message}");
 }
 
 try {
@@ -299,7 +305,7 @@ try {
         console.log("getName failed");
     }
 } catch (e) {
-    console.log("getName exception:" + e.message);
+    console.log("getName " + "exception: ${(e : BusinessError).message}");
 }
 ```
 
@@ -331,6 +337,7 @@ isSecureElementPresent(): boolean
 
 import omapi from '@ohos.secureElement';
 import secureElement from '@ohos.secureElement';
+import { BusinessError } from '@ohos.base';
 
 let nfcSEService : omapi.SEService | null = null;
 let nfcOmaReaderList : omapi.Reader[] | null = null;
@@ -344,7 +351,7 @@ try {
         }
     });
 } catch (e) {
-    console.log("newSEService excpetion:" + e.message);
+    console.log("newSEService " + "exception: ${(e : BusinessError).message}");
 }
 
 try {
@@ -361,7 +368,7 @@ try {
         console.log("isSecureElementPresent failed");
     }
 } catch (e) {
-    console.log("isSecureElementPresent exception:" + e.message);
+    console.log("isSecureElementPresent " + "exception: ${(e : BusinessError).message}");
 }
 ```
 
@@ -393,6 +400,7 @@ try {
 ```js
 import omapi from '@ohos.secureElement';
 import secureElement from '@ohos.secureElement';
+import { BusinessError } from '@ohos.base';
 
 let nfcSEService : omapi.SEService | null = null;
 let nfcOmaReaderList : omapi.Reader[] | null = null;
@@ -406,7 +414,7 @@ try {
         }
     });
 } catch (e) {
-    console.log("newSEService excpetion:" + e.message);
+    console.log("newSEService " + "exception: ${(e : BusinessError).message}");
 }
 
 try {
@@ -423,7 +431,7 @@ try {
         console.log("OpenSession failed");
     }
 } catch (e) {
-    console.log("OpenSession exception:" + e.message);
+    console.log("OpenSession " + "exception: ${(e : BusinessError).message}");
 }
 ```
 
@@ -448,6 +456,7 @@ try {
 ```js
 import omapi from '@ohos.secureElement';
 import secureElement from '@ohos.secureElement';
+import { BusinessError } from '@ohos.base';
 
 let nfcSEService : omapi.SEService | null = null;
 let nfcOmaReaderList : omapi.Reader[] | null = null;
@@ -461,7 +470,7 @@ try {
         }
     });
 } catch (e) {
-    console.log("newSEService excpetion:" + e.message);
+    console.log("newSEService " + "exception: ${(e : BusinessError).message}");
 }
 
 try {
@@ -478,7 +487,7 @@ try {
         console.log("closeSessions failed");
     }
 } catch (e) {
-  console.log("closeSessions exception:" + e.message);
+  console.log("closeSessions " + "exception: ${(e : BusinessError).message}");
 }
 ```
 
@@ -501,6 +510,7 @@ getReader(): Reader
 ```js
 import omapi from '@ohos.secureElement';
 import secureElement from '@ohos.secureElement';
+import { BusinessError } from '@ohos.base';
 
 let nfcSEService : omapi.SEService | null = null;
 let nfcOmaReaderList : omapi.Reader[] | null = null;
@@ -515,7 +525,7 @@ try {
         }
     });
 } catch (e) {
-    console.log("newSEService excpetion:" + e.message);
+    console.log("newSEService " + "exception: ${(e : BusinessError).message}");
 }
 
 try {
@@ -533,7 +543,7 @@ try {
         console.log("getReader failed");
     }
 } catch (e) {
-    console.log("getReader exception:" + e.message);
+    console.log("getReader " + "exception: ${(e : BusinessError).message}");
 }
 ```
 
@@ -564,6 +574,7 @@ getATR(): number[]
 ```js
 import omapi from '@ohos.secureElement';
 import secureElement from '@ohos.secureElement';
+import { BusinessError } from '@ohos.base';
 
 let nfcSEService : omapi.SEService | null = null;
 let nfcOmaReaderList : omapi.Reader[] | null = null;
@@ -580,7 +591,7 @@ try {
         }
     });
 } catch (e) {
-    console.log("newSEService excpetion:" + e.message);
+    console.log("newSEService " + "exception: ${(e : BusinessError).message}");
 }
 
 try {
@@ -607,7 +618,7 @@ try {
         console.log("getATR failed");
     }
 } catch (e) {
-    console.log("getATR exception:" + e.message);
+    console.log("getATR " + "exception: ${(e : BusinessError).message}");
 }
 ```
 
@@ -632,6 +643,7 @@ close(): void
 ```js
 import omapi from '@ohos.secureElement';
 import secureElement from '@ohos.secureElement';
+import { BusinessError } from '@ohos.base';
 
 let nfcSEService : omapi.SEService | null = null;
 let nfcOmaReaderList : omapi.Reader[] | null = null;
@@ -646,7 +658,7 @@ try {
         }
     });
 } catch (e) {
-    console.log("newSEService excpetion:" + e.message);
+    console.log("newSEService " + "exception: ${(e : BusinessError).message}");
 }
 
 try {
@@ -662,7 +674,7 @@ try {
         }
     }
 } catch (e) {
-    console.log("close exception:" + e.message);
+    console.log("close " + "exception: ${(e : BusinessError).message}");
 }
 
 ```
@@ -690,6 +702,7 @@ isClosed(): boolean
 ```Js
 import omapi from '@ohos.secureElement';
 import secureElement from '@ohos.secureElement';
+import { BusinessError } from '@ohos.base';
 
 let nfcSEService : omapi.SEService | null = null;
 let nfcOmaReaderList : omapi.Reader[] | null = null;
@@ -704,7 +717,7 @@ try {
         }
     });
 } catch (e) {
-    console.log("newSEService excpetion:" + e.message);
+    console.log("newSEService " + "exception: ${(e : BusinessError).message}");
 }
 
 try {
@@ -720,7 +733,7 @@ try {
         }
     }
 } catch (e) {
-    console.log("isClosed exception:" + e.message);
+    console.log("isClosed " + "exception: ${(e : BusinessError).message}");
 }
 ```
 
@@ -745,6 +758,7 @@ closeChannels(): void
 ```js
 import omapi from '@ohos.secureElement';
 import secureElement from '@ohos.secureElement';
+import { BusinessError } from '@ohos.base';
 
 let nfcSEService : omapi.SEService | null = null;
 let nfcOmaReaderList : omapi.Reader[] | null = null;
@@ -759,7 +773,7 @@ try {
         }
     });
 } catch (e) {
-    console.log("newSEService excpetion:" + e.message);
+    console.log("newSEService " + "exception: ${(e : BusinessError).message}");
 }
 
 try {
@@ -776,7 +790,7 @@ try {
         }
     }
 } catch (e) {
-    console.log("closeChannels exception:" + e.message);
+    console.log("closeChannels " + "exception: ${(e : BusinessError).message}");
 }
 ```
 
@@ -816,6 +830,7 @@ openBasicChannel(aid: number[]): Promise\<Channel>
 ```js
 import omapi from '@ohos.secureElement';
 import secureElement from '@ohos.secureElement';
+import { BusinessError } from '@ohos.base';
 
 let nfcSEService : omapi.SEService | null = null;
 let nfcOmaReaderList : omapi.Reader[] | null = null;
@@ -832,7 +847,7 @@ try {
         }
     });
 } catch (e) {
-    console.log("newSEService excpetion:" + e.message);
+    console.log("newSEService " + "exception: ${(e : BusinessError).message}");
 }
 
 try {
@@ -851,7 +866,7 @@ try {
         console.log("openBasicChannel1 get channel successfully");
     }
 } catch (e) {
-    console.log("openBasicChannel1 exception:" + e.message);
+    console.log("openBasicChannel1 " + "exception: ${(e : BusinessError).message}");
 }
 ```
 
@@ -886,6 +901,7 @@ try {
 ```js
 import omapi from '@ohos.secureElement';
 import secureElement from '@ohos.secureElement';
+import { BusinessError } from '@ohos.base';
 
 let nfcSEService : omapi.SEService | null = null;
 let nfcOmaReaderList : omapi.Reader[] | null = null;
@@ -901,7 +917,7 @@ try {
         }
     });
 } catch (e) {
-    console.log("newSEService excpetion:" + e.message);
+    console.log("newSEService " + "exception: ${(e : BusinessError).message}");
 }
 
 try {
@@ -921,7 +937,7 @@ try {
         }
     }
 } catch (e) {
-    console.log("openBasicChannel2 exception:" + e.message);
+    console.log("openBasicChannel2 " + "exception: ${(e : BusinessError).message}");
 }
 ```
 
@@ -962,6 +978,7 @@ openBasicChannel(aid: number[], p2: number): Promise\<Channel>
 ```js
 import omapi from '@ohos.secureElement';
 import secureElement from '@ohos.secureElement';
+import { BusinessError } from '@ohos.base';
 
 let nfcSEService : omapi.SEService | null = null;
 let nfcOmaReaderList : omapi.Reader[] | null = null;
@@ -980,7 +997,7 @@ try {
         }
     });
 } catch (e) {
-    console.log("newSEService excpetion:" + e.message);
+    console.log("newSEService " + "exception: ${(e : BusinessError).message}");
 }
 
 try {
@@ -998,7 +1015,7 @@ try {
         })
     }
 } catch (e) {
-    console.log("openBasicChannel3 exception:" + e.message);
+    console.log("openBasicChannel3 " + "exception: ${(e : BusinessError).message}");
 }
 ```
 
@@ -1034,6 +1051,7 @@ openBasicChannel(aid: number[], p2:number, callback: AsyncCallback\<Channel>): v
 ```js
 import omapi from '@ohos.secureElement';
 import secureElement from '@ohos.secureElement';
+import { BusinessError } from '@ohos.base';
 
 let nfcSEService : omapi.SEService | null = null;
 let nfcOmaReaderList : omapi.Reader[] | null = null;
@@ -1051,7 +1069,7 @@ try {
         }
     });
 } catch (e) {
-    console.log("newSEService excpetion:" + e.message);
+    console.log("newSEService " + "exception: ${(e : BusinessError).message}");
 }
 
 try {
@@ -1062,7 +1080,7 @@ try {
     omaSession = nfcOmaReaderList[0].openSession();
   }
   if (omaSession != null) {
-    omaSession.openBasicChannel(aidArray, p2, (error, data) => {
+    omaSession.openBasicChannel(aidArray, p2, (error , data) => {
       if (error) {
         console.log("openBasicChannel4 failed:" + JSON.stringify(error));
         return;
@@ -1072,7 +1090,7 @@ try {
     });
   }
 } catch (e) {
-  console.log("openBasicChannel4 exception:" + e.message);
+  console.log("openBasicChannel4 " + "exception: ${(e : BusinessError).message}");
 }
 ```
 
@@ -1112,6 +1130,7 @@ openLogicalChannel(aid: number[]): Promise\<Channel>
 ```js
 import omapi from '@ohos.secureElement';
 import secureElement from '@ohos.secureElement';
+import { BusinessError } from '@ohos.base';
 
 let nfcSEService : omapi.SEService | null = null;
 let nfcOmaReaderList : omapi.Reader[] | null = null;
@@ -1128,7 +1147,7 @@ try {
         }
     });
 } catch (e) {
-    console.log("newSEService excpetion:" + e.message);
+    console.log("newSEService " + "exception: ${(e : BusinessError).message}");
 }
 
 try {
@@ -1147,7 +1166,7 @@ try {
         console.log("openLogicalChannel1 get channel successfully");
     }
 } catch (e) {
-    console.log("openLogicalChannel1 exception:" + e.message);
+    console.log("openLogicalChannel1 " + "exception: ${(e : BusinessError).message}");
 }
 ```
 
@@ -1182,6 +1201,7 @@ try {
 ```js
 import omapi from '@ohos.secureElement';
 import secureElement from '@ohos.secureElement';
+import { BusinessError } from '@ohos.base';
 
 let nfcSEService : omapi.SEService | null = null;
 let nfcOmaReaderList : omapi.Reader[] | null = null;
@@ -1197,8 +1217,7 @@ try {
         }
     });
 } catch (e) {
-    console.log("newSEService excpetion:" + e.message);
-}
+    console.log("newSEService " + "exception: ${(e : BusinessError).message}");
 
 try {
     if(nfcSEService != null) {
@@ -1217,7 +1236,7 @@ try {
         });
     }
 } catch (e) {
-    console.log("openLogicalChannel2 exception:" + e.message);
+    console.log("openLogicalChannel2 " + "exception: ${(e : BusinessError).message}");
 }
 ```
 
@@ -1258,6 +1277,7 @@ P2通常为0x00。设备应允许P2的任何值，并且应允许以下值： 0x
 ```js
 import omapi from '@ohos.secureElement';
 import secureElement from '@ohos.secureElement';
+import { BusinessError } from '@ohos.base';
 
 let nfcSEService : omapi.SEService | null = null;
 let nfcOmaReaderList : omapi.Reader[] | null = null;
@@ -1276,7 +1296,7 @@ try {
         }
     });
 } catch (e) {
-    console.log("newSEService excpetion:" + e.message);
+    console.log("newSEService " + "exception: ${(e : BusinessError).message}");
 }
 
 try {
@@ -1294,7 +1314,7 @@ try {
         })
     }
 } catch (e) {
-    console.log("openLogicalChannel3 exception:" + e.message);
+    console.log("openLogicalChannel3 " + "exception: ${(e : BusinessError).message}");
 }
 ```
 
@@ -1336,6 +1356,7 @@ P2通常为0x00。设备应允许P2的任何值，并且应允许以下值： 0x
 ```js
 import omapi from '@ohos.secureElement';
 import secureElement from '@ohos.secureElement';
+import { BusinessError } from '@ohos.base';
 
 let nfcSEService : omapi.SEService | null = null;
 let nfcOmaReaderList : omapi.Reader[] | null = null;
@@ -1353,7 +1374,7 @@ try {
         }
     });
 } catch (e) {
-    console.log("newSEService excpetion:" + e.message);
+    console.log("newSEService " + "exception: ${(e : BusinessError).message}");
 }
 
 try {
@@ -1374,7 +1395,7 @@ try {
     });
   }
 } catch (e) {
-  console.log("openLogicalChannel4 exception:" + e.message);
+  console.log("openLogicalChannel4 " + "exception: ${(e : BusinessError).message}");
 }
 ```
 
@@ -1397,6 +1418,7 @@ try {
 ```js
 import omapi from '@ohos.secureElement';
 import secureElement from '@ohos.secureElement';
+import { BusinessError } from '@ohos.base';
 
 let nfcSEService : omapi.SEService | null = null;
 let nfcOmaReaderList : omapi.Reader[] | null = null;
@@ -1415,7 +1437,7 @@ try {
         }
     });
 } catch (e) {
-    console.log("newSEService excpetion:" + e.message);
+    console.log("newSEService " + "exception: ${(e : BusinessError).message}");
 }
 
 try {
@@ -1438,7 +1460,7 @@ try {
         console.log("get session failed");
     }
 } catch (e) {
-    console.log("get session exception:" + e.message);
+    console.log("get session " + "exception: ${(e : BusinessError).message}");
 }
 ```
 
@@ -1455,6 +1477,7 @@ close(): void
 ```js
 import omapi from '@ohos.secureElement';
 import secureElement from '@ohos.secureElement';
+import { BusinessError } from '@ohos.base';
 
 let nfcSEService : omapi.SEService | null = null;
 let nfcOmaReaderList : omapi.Reader[] | null = null;
@@ -1472,7 +1495,7 @@ try {
         }
     });
 } catch (e) {
-    console.log("newSEService excpetion:" + e.message);
+    console.log("newSEService " + "exception: ${(e : BusinessError).message}");
 }
 
 try {
@@ -1490,7 +1513,7 @@ try {
         })
     }
 } catch (e) {
-    console.log("channel close exception:" + e.message);
+    console.log("channel close " + "exception: ${(e : BusinessError).message}");
 }
 ```
 
@@ -1513,6 +1536,7 @@ isBasicChannel(): boolean
 ```js
 import omapi from '@ohos.secureElement';
 import secureElement from '@ohos.secureElement';
+import { BusinessError } from '@ohos.base';
 
 let nfcSEService : omapi.SEService | null = null;
 let nfcOmaReaderList : omapi.Reader[] | null = null;
@@ -1531,7 +1555,7 @@ try {
         }
     });
 } catch (e) {
-    console.log("newSEService excpetion:" + e.message);
+    console.log("newSEService " + "exception: ${(e : BusinessError).message}");
 }
 
 try {
@@ -1553,7 +1577,7 @@ try {
         console.log("isBasicChannel FALSE");
     }
 } catch (e) {
-    console.log("isBasicChannel exception:" + e.message);
+    console.log("isBasicChannel " + "exception: ${(e : BusinessError).message}");
 }
 ```
 
@@ -1576,6 +1600,7 @@ isClosed(): boolean
 ```js
 import omapi from '@ohos.secureElement';
 import secureElement from '@ohos.secureElement';
+import { BusinessError } from '@ohos.base';
 
 let nfcSEService : omapi.SEService | null = null;
 let nfcOmaReaderList : omapi.Reader[] | null = null;
@@ -1594,7 +1619,7 @@ try {
         }
     });
 } catch (e) {
-    console.log("newSEService excpetion:" + e.message);
+    console.log("newSEService " + "exception: ${(e : BusinessError).message}");
 }
 
 try {
@@ -1616,7 +1641,7 @@ try {
         console.log("channel isClosed False");
     }
 } catch (e) {
-    console.log("isBasicChannel exception:" + e.message);
+    console.log("isBasicChannel " + "exception: ${(e : BusinessError).message}");
 }
 ```
 
@@ -1643,6 +1668,7 @@ getSelectResponse():number[]
 ```js
 import omapi from '@ohos.secureElement';
 import secureElement from '@ohos.secureElement';
+import { BusinessError } from '@ohos.base';
 
 let nfcSEService : omapi.SEService | null = null;
 let nfcOmaReaderList : omapi.Reader[] | null = null;
@@ -1662,7 +1688,7 @@ try {
         }
     });
 } catch (e) {
-    console.log("newSEService excpetion:" + e.message);
+    console.log("newSEService " + "exception: ${(e : BusinessError).message}");
 }
 
 try {
@@ -1690,7 +1716,7 @@ try {
         console.log("getSelectResponse result is null");
     }
 } catch (e) {
-    console.log("isBasicChannel exception:" + e.message);
+    console.log("isBasicChannel " + "exception: ${(e : BusinessError).message}");
 }
 ```
 
@@ -1727,6 +1753,10 @@ transmit(command: number[]): Promise<number[]>
 **示例：**
 
 ```js
+import omapi from '@ohos.secureElement';
+import secureElement from '@ohos.secureElement';
+import { BusinessError } from '@ohos.base';
+
 let nfcSEService : omapi.SEService | null = null;
 let nfcOmaReaderList : omapi.Reader[] | null = null;
 let omaSession : omapi.Session | null = null;
@@ -1744,7 +1774,7 @@ try {
         }
     });
 } catch (e) {
-    console.log("newSEService excpetion:" + e.message);
+    console.log("newSEService " + "exception: ${(e : BusinessError).message}");
 }
 
 try {
@@ -1768,7 +1798,7 @@ try {
         console.log("transmit1 failed");
     }
 } catch (e) {
-    console.log("transmit1 exception:" + e.message);
+    console.log("transmit1 " + "exception: ${(e : BusinessError).message}");
 }
 ```
 
@@ -1800,6 +1830,10 @@ transmit(command: number[], callback: AsyncCallback<number[]>): void
 **示例：**
 
 ```js
+import omapi from '@ohos.secureElement';
+import secureElement from '@ohos.secureElement';
+import { BusinessError } from '@ohos.base';
+
 let nfcSEService : omapi.SEService | null = null;
 let nfcOmaReaderList : omapi.Reader[] | null = null;
 let omaSession : omapi.Session | null = null;
@@ -1817,7 +1851,7 @@ try {
         }
     });
 } catch (e) {
-    console.log("newSEService excpetion:" + e.message);
+    console.log("newSEService " + "exception: ${(e : BusinessError).message}");
 }
 
 try {
@@ -1848,6 +1882,6 @@ try {
         })
     }
 } catch (e) {
-    console.log("transmit2 exception:" + e.message);
+    console.log("transmit2 " + "exception: ${(e : BusinessError).message}");
 }
 ```
