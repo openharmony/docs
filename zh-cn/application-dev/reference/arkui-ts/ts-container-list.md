@@ -351,13 +351,13 @@ struct ListExample{
 @Entry
 @Component
 struct ListExample {
-  private arr: number[] = Array.apply(this, {length: 20}).map((item, i) => i)
+  private arr: number[] = Array.apply(this, { length: 20 }).map((item, i) => i)
   private scrollerForList: Scroller = new Scroller()
 
   build() {
     Column() {
       Row() {
-        List({ space: 20, initialIndex: 0, scroller: this.scrollerForList }) {
+        List({ space: 20, initialIndex: 3, scroller: this.scrollerForList }) {
           ForEach(this.arr, (item) => {
             ListItem() {
               Text('' + item)
@@ -369,6 +369,11 @@ struct ListExample {
             .height('80%')
           }, item => item)
         }
+        .chainAnimationOptions({
+          minSpace: 50,
+          maxSpace: 100,
+          edgeEffect: ChainEdgeEffect.STRETCH
+        })
         .chainAnimation(true)
         .edgeEffect(EdgeEffect.Spring)
         .listDirection(Axis.Horizontal)
@@ -377,16 +382,16 @@ struct ListExample {
         .scrollSnapAlign(ScrollSnapAlign.CENTER)
         .borderRadius(10)
         .backgroundColor(0xDCDCDC)
-        .listDirection(Axis.Horizontal)
         .width('100%')
       }
       .width('100%')
       .height('100%')
       .backgroundColor(0xDCDCDC)
-      .padding({ top: 10})
+      .padding({ top: 10 })
     }
   }
 }
+
 ```
 
 ![list](figures/list4.gif)
