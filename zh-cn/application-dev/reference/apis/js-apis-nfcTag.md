@@ -9,7 +9,7 @@
 ## **声明技术**
 
 开发Tag读写相关应用时，需要在应用的属性配置文件中，声明与NFC相关的属性值，比如，在module.json5文件中，声明下面属性值：
-```js
+```json
 {
     "module": {
         // other declared attributes.
@@ -525,11 +525,11 @@ import Want from '@ohos.app.ability.Want'
 import UIAbility from '@ohos.app.ability.UIAbility'
 import tag from '@ohos.nfc.tag';
 import { BusinessError } from '@ohos.base';
-import { ElementName } from 'bundleManager/ElementName';
+import bundleManager from '@ohos.bundle.bundleManager';
 import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 
 let discTech : number[] = [tag.NFC_A, tag.NFC_B]; // replace with the tech(s) that is needed by foreground ability
-let elementName : ElementName;
+let elementName : bundleManager.ElementName;
 function foregroundCb(err : BusinessError, tagInfo : tag.TagInfo) {
     if (err as BusinessError) {
         if (!err) {
