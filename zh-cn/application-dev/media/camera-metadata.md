@@ -8,37 +8,50 @@ Metadata主要是通过一个TAG（Key），去找对应的Data，用于传递�
 
 详细的API说明请参考[Camera API参考](../reference/apis/js-apis-camera.md)。
 
-1. 调用CameraOutputCapability类中的supportedMetadataObjectTypes()方法，获取当前设备支持的元数据类型，并通过createMetadataOutput()方法创建元数据输出流。
+1. 导入相关接口，导入方法如下。
+   ```ts
+   import camera from '@ohos.multimedia.camera';
+   import { BusinessError } from '@ohos.base';
+   ```
+
+2. 调用CameraOutputCapability类中的supportedMetadataObjectTypes()方法，获取当前设备支持的元数据类型，并通过createMetadataOutput()方法创建元数据输出流。
      
    ```ts
-   let metadataObjectTypes: Array<camera.MetadataObjectType> = cameraOutputCapability.supportedMetadataObjectTypes;
-   let metadataOutput: camera.MetadataOutput;
-   try {
-     metadataOutput = cameraManager.createMetadataOutput(metadataObjectTypes);
-   } catch (error) {
-     let err = error as BusinessError;
-     console.info('Failed to createMetadataOutput, error code: '+ err.code);
+   function getMetadataOutput(cameraManager: camera.CameraManager, cameraOutputCapability: camera.CameraOutputCapability): camera.MetadataOutput | undefined {
+     let metadataObjectTypes: Array<camera.MetadataObjectType> = cameraOutputCapability.supportedMetadataObjectTypes;
+     let metadataOutput: camera.MetadataOutput | undefined = undefined;
+     try {
+       metadataOutput = cameraManager.createMetadataOutput(metadataObjectTypes);
+     } catch (error) {
+       let err = error as BusinessError;
+       console.info('Failed to createMetadataOutput, error code: '+ err.code);
+     }
+     return metadataOutput;
    }
    ```
 
-2. 调用start()方法输出metadata数据，接口调用失败时，会返回相应错误码，错误码类型参见CameraErrorCode。
+3. 调用start()方法输出metadata数据，接口调用失败时，会返回相应错误码，错误码类型参见CameraErrorCode。
      
    ```ts
-   metadataOutput.start().then(() => {
-     console.info('Callback returned with metadataOutput started.');
-   }).catch((err: BusinessError) => {
-     console.info('Failed to metadataOutput start, error code: '+ err.code);
-   });
+   function startMetadataOutput(metadataOutput: camera.MetadataOutput): void {
+     metadataOutput.start().then(() => {
+       console.info('Callback returned with metadataOutput started.');
+     }).catch((err: BusinessError) => {
+       console.info('Failed to metadataOutput start, error code: '+ err.code);
+     });
+   }
    ```
 
-3. 调用stop方法停止输出metadata数据，接口调用失败会返回相应错误码，错误码类型参见CameraErrorCode。
+4. 调用stop方法停止输出metadata数据，接口调用失败会返回相应错误码，错误码类型参见CameraErrorCode。
      
    ```ts
-   metadataOutput.stop().then(() => {
-     console.info('Callback returned with metadataOutput stopped.');
-   }).catch((err: BusinessError) => {
-     console.info('Failed to metadataOutput stop '+ err.code);
-   });
+   function stopMetadataOutput(metadataOutput: camera.MetadataOutput): void {
+     metadataOutput.stop().then(() => {
+       console.info('Callback returned with metadataOutput stopped.');
+     }).catch((err: BusinessError) => {
+       console.info('Failed to metadataOutput stop '+ err.code);
+     });
+   }
    ```
 
 ## 状态监听
@@ -48,9 +61,11 @@ Metadata主要是通过一个TAG（Key），去找对应的Data，用于传递�
 - 通过注册监听获取metadata对象，监听事件固定为metadataObjectsAvailable。检测到有效metadata数据时，callback返回相应的metadata数据信息，metadataOutput创建成功时可监听。
     
   ```ts
-  metadataOutput.on('metadataObjectsAvailable', (err: BusinessError, metadataObjectArr: Array<camera.MetadataObject>) => {
-    console.info(`metadata output metadataObjectsAvailable`);
-  });
+  function onMetadataObjectsAvailable(metadataOutput: camera.MetadataOutput): void {
+    metadataOutput.on('metadataObjectsAvailable', (err: BusinessError, metadataObjectArr: Array<camera.MetadataObject>) => {
+      console.info(`metadata output metadataObjectsAvailable`);
+    });
+  }
   ```
 
   > **说明：**
@@ -60,7 +75,9 @@ Metadata主要是通过一个TAG（Key），去找对应的Data，用于传递�
 - 通过注册回调函数，获取监听metadata流的错误结果，callback返回metadata输出接口使用错误时返回的错误码，错误码类型参见[CameraErrorCode](../reference/apis/js-apis-camera.md#cameraerrorcode)。
     
   ```ts
-  metadataOutput.on('error', (metadataOutputError: BusinessError) => {
-    console.info(`Metadata output error code: ${metadataOutputError.code}`);
-  });
+  function onMetadataError(metadataOutput: camera.MetadataOutput): void {
+    metadataOutput.on('error', (metadataOutputError: BusinessError) => {
+      console.info(`Metadata output error code: ${metadataOutputError.code}`);
+    });
+  }
   ```

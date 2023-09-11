@@ -51,7 +51,7 @@ For details about the error codes, see [DataShare Error Codes](../errorcodes/err
 import UIAbility from '@ohos.app.ability.UIAbility';
 
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
-let dataShareHelper;
+let dataShareHelper: dataShare.DataShareHelper;
 try {
     dataShare.createDataShareHelper(this.context, uri, (err, data) => {
         if (err !== undefined) {
@@ -100,7 +100,7 @@ For details about the error codes, see [DataShare Error Codes](../errorcodes/err
 import UIAbility from '@ohos.app.ability.UIAbility';
 
 let uri = ("datashareproxy://com.samples.datasharetest.DataShare");
-let dataShareHelper;
+let dataShareHelper: dataShare.DataShareHelper;
 try {
     dataShare.createDataShareHelper(this.context, uri, {isProxy : true}, (err, data) => {
         if (err !== undefined) {
@@ -153,14 +153,15 @@ For details about the error codes, see [DataShare Error Codes](../errorcodes/err
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import { BusinessError } from '@ohos.base'
 
 let uri = ("datashareproxy://com.samples.datasharetest.DataShare");
-let dataShareHelper;
+let dataShareHelper: dataShare.DataShareHelper;
 try {
-    dataShare.createDataShareHelper(this.context, uri, {isProxy : true}).then((data) => {
+    dataShare.createDataShareHelper(this.context, uri, {isProxy : true}).then((data: dataShare.DataShareHelper) => {
         console.info("createDataShareHelper succeed, data : " + data);
         dataShareHelper = data;
-    }). catch((err) => {
+    }). catch((err: BusinessError) => {
         console.error(`createDataShareHelper error: code: ${err.code}, message: ${err.message} `);
     });
 } catch (err) {
@@ -268,7 +269,8 @@ Subscribes to changes of the specified data. After an observer is registered, th
 **Example**
 
 ```ts
-function onCallback() {
+let dataShareHelper: dataShare.DataShareHelper;
+let onCallback: () => void = (): void => {
     console.info("**** Observer on callback ****");
 }
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
@@ -294,8 +296,9 @@ Unsubscribes from data changes.
 **Example**
 
 ```ts
-function callback() {
-    console.info("**** Observer callback ****");
+let dataShareHelper: dataShare.DataShareHelper;
+let callback: () => void = (): void => {
+    console.info("**** Observer on callback ****");
 }
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 dataShareHelper.on("dataChange", uri, callback);
@@ -329,12 +332,17 @@ For details about the error codes, see [DataShare Error Codes](../errorcodes/err
 **Example**
 
 ```ts
+let dataShareHelper: dataShare.DataShareHelper;
 let uri = ("datashareproxy://com.samples.datasharetest.DataShare");
 let subscriberId = '11';
-let template = {
+let key1: string = "p1";
+let value1: string = "select cityColumn as city_1, visitedCilumn as visited_1 from citys where like = true";
+let key2: string = "p2";
+let value2: string = "select cityColumn as city_2, visitedCilumn as visited_2 from citys where like = false";
+let template: dataShare.Template = {
     predicates : {
-        "p1" : "select cityColumn as city_1, visitedCilumn as visited_1 from citys where like = true",
-        "p2" : "select cityColumn as city_2, visitedCilumn as visited_2 from citys where like = false",
+    key1 : value1,
+    key2 : value2,
     },
     scheduler : "select remindTimer(time) from TBL00"
 }
@@ -367,12 +375,17 @@ For details about the error codes, see [DataShare Error Codes](../errorcodes/err
 **Example**
 
 ```ts
+let dataShareHelper: dataShare.DataShareHelper;
 let uri = ("datashareproxy://com.samples.datasharetest.DataShare");
 let subscriberId = '11';
-let template = {
+let key1: string = "p1";
+let value1: string = "select cityColumn as city_1, visitedCilumn as visited_1 from citys where like = true";
+let key2: string = "p2";
+let value2: string = "select cityColumn as city_2, visitedCilumn as visited_2 from citys where like = false";
+let template: dataShare.Template = {
     predicates : {
-        "p1" : "select cityColumn as city_1, visitedCilumn as visited_1 from citys where like = true",
-        "p2" : "select cityColumn as city_2, visitedCilumn as visited_2 from citys where like = false",
+        key1 : value1,
+        key2 : value2,
     },
     scheduler : "select remindTimer(time) from TBL00"
 }
@@ -406,7 +419,10 @@ Subscribes to the changes of the data corresponding to the specified URI and tem
 **Example**
 
 ```ts
-function onCallback(err, node:dataShare.RdbDataChangeNode) {
+import { BusinessError } from '@ohos.base'
+
+let dataShareHelper: dataShare.DataShareHelper;
+let onCallback: (err: BusinessError, node: dataShare.RdbDataChangeNode) => void = (err: BusinessError, node:dataShare.RdbDataChangeNode): void => {
     console.info("onCallback " + JSON.stringify(node.uri));
     console.info("onCallback " + JSON.stringify(node.templateId));
     console.info("onCallback " + node.data.length);
@@ -446,6 +462,7 @@ Unsubscribes from the changes of the data corresponding to the specified URI and
 **Example**
 
 ```ts
+let dataShareHelper: dataShare.DataShareHelper;
 let uri = ("datashareproxy://com.samples.datasharetest.DataShare");
 let templateId:dataShare.TemplateId = {subscriberId:"11", bundleNameOfOwner:"com.acts.ohos.data.datasharetest"};
 let result:Array<dataShare.OperationResult> = dataShareHelper.off("rdbDataChange", [uri], templateId);
@@ -477,7 +494,10 @@ Subscribes to the changes of the published data.
 **Example**
 
 ```ts
-function onPublishCallback(err, node:dataShare.PublishedDataChangeNode) {
+import { BusinessError } from '@ohos.base'
+
+let dataShareHelper: dataShare.DataShareHelper;
+let onPublishCallback: (err: BusinessError, node: dataShare.PublishedDataChangeNode) => void = (err: BusinessError, node:dataShare.PublishedDataChangeNode): void => {
     console.info("onPublishCallback node bundleName " + JSON.stringify(node.bundleName));
     console.info("onPublishCallback node data size" + node.data.length);
     for (let i = 0; i < node.data.length; i++) {
@@ -521,7 +541,10 @@ Unsubscribes from the changes of the published data.
 **Example**
 
 ```ts
-function offCallback(err, node:dataShare.PublishedDataChangeNode) {
+import { BusinessError } from '@ohos.base'
+
+let dataShareHelper: dataShare.DataShareHelper;
+let offCallback: (err: BusinessError, node: dataShare.PublishedDataChangeNode) => void = (err: BusinessError, node:dataShare.PublishedDataChangeNode): void => {
     console.info("**** Observer off callback ****");
 }
 let uris:Array<string> = ["city", "datashareproxy://com.acts.ohos.data.datasharetest/appInfo", "key2"];
@@ -557,10 +580,13 @@ For details about the error codes, see [DataShare Error Codes](../errorcodes/err
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base'
+
+let dataShareHelper: dataShare.DataShareHelper;
 let arrayBuffer = new ArrayBuffer(1);
 let version = 1;
 let dataArray : Array<dataShare.PublishedItem> = [{key:"key2", subscriberId:"11", data:arrayBuffer}];
-function publishCallback(err, result: Array<dataShare.OperationResult>) {
+let publishCallback: (err: BusinessError, result: Array<dataShare.OperationResult>) => void = (err: BusinessError, result: Array<dataShare.OperationResult>): void => {
     console.info("publishCallback " + JSON.stringify(result));
 }
 try {
@@ -598,7 +624,10 @@ For details about the error codes, see [DataShare Error Codes](../errorcodes/err
 | 15700012 | The data area is not exist.|
 
 ```ts
-function publishCallback(err, result: Array<dataShare.OperationResult>) {
+import { BusinessError } from '@ohos.base'
+
+let dataShareHelper: dataShare.DataShareHelper;
+let publishCallback: (err: BusinessError, result: Array<dataShare.OperationResult>) => void = (err: BusinessError, result: Array<dataShare.OperationResult>): void => {
     console.info("publishCallback " + JSON.stringify(result));
 }
 let dataArray : Array<dataShare.PublishedItem> = [
@@ -641,11 +670,12 @@ For details about the error codes, see [DataShare Error Codes](../errorcodes/err
 **Example**
 
 ```ts
-let dataArray : Array<dataShare.PublishedItem> = [
+let dataShareHelper: dataShare.DataShareHelper;
+let dataArray: Array<dataShare.PublishedItem> = [
     {key:"city", subscriberId:"11", data:"xian"},
     {key:"datashareproxy://com.acts.ohos.data.datasharetest/appInfo", subscriberId:"11", data:"appinfo is just a test app"},
     {key:"empty", subscriberId:"11", data:"nobody sub"}];
-let result: Array<dataShare.OperationResult> = dataShareHelper.publish(dataArray, "com.acts.ohos.data.datasharetest");
+let result: Promise<Array<dataShare.OperationResult>> = dataShareHelper.publish(dataArray, "com.acts.ohos.data.datasharetest");
 ```
 
 ### getPublishedData<sup>10+</sup>
@@ -674,7 +704,10 @@ For details about the error codes, see [DataShare Error Codes](../errorcodes/err
 **Example**
 
 ```ts
-function publishCallback(err, data: Array<dataShare.PublishedItem>) {
+import { BusinessError } from '@ohos.base'
+
+let dataShareHelper: dataShare.DataShareHelper;
+let publishCallback: (err: BusinessError, data: Array<dataShare.PublishedItem>) => void = (err: BusinessError, result: Array<dataShare.PublishedItem>): void => {
     console.info("**** Observer publish callback ****");
 }
 dataShareHelper.getPublishedData("com.acts.ohos.data.datasharetest", publishCallback);
@@ -711,7 +744,8 @@ For details about the error codes, see [DataShare Error Codes](../errorcodes/err
 **Example**
 
 ```ts 
-let publishedData:Array<dataShare.PublishedItem> = dataShareHelper.getPublishedData("com.acts.ohos.data.datasharetest");
+let dataShareHelper: dataShare.DataShareHelper;
+let publishedData: Promise<Array<dataShare.PublishedItem>> = dataShareHelper.getPublishedData("com.acts.ohos.data.datasharetest");
 ```
 
 ### insert
@@ -733,11 +767,20 @@ Inserts a single data record into the database. This API uses an asynchronous ca
 **Example**
 
 ```ts
+import { ValuesBucket } from '@ohos.data.ValuesBucket'
+
+let dataShareHelper: dataShare.DataShareHelper;
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
-const valueBucket = {
-    "name": "rose",
-    "age": 22,
-    "salary": 200.5,
+let key1: string = "name";
+let value1: string = "rose";
+let key2: string = "age";
+let value2: number = 22;
+let key3: string = "salary";
+let value3: number = 200.5;
+const valueBucket: ValuesBucket = {
+    key1: value1,
+    key2: value2,
+    key3: value3,
 }
 try {
     dataShareHelper.insert(uri, valueBucket, (err, data) => {
@@ -776,16 +819,26 @@ Inserts a single data record into the database. This API uses a promise to retur
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base'
+import { ValuesBucket } from '@ohos.data.ValuesBucket'
+
+let dataShareHelper: dataShare.DataShareHelper;
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
-const valueBucket = {
-    "name": "rose1",
-    "age": 221,
-    "salary": 20.5,
+let key1: string = "name";
+let value1: string = "rose1";
+let key2: string = "age";
+let value2: number = 21;
+let key3: string = "salary";
+let value3: number = 20.5;
+const valueBucket: ValuesBucket = {
+    key1: value1,
+    key2: value2,
+    key3: value3,
 }
 try {
-    dataShareHelper.insert(uri, valueBucket).then((data) => {
+     dataShareHelper.insert(uri, valueBucket).then((data: number) => {
         console.info("insert succeed, data : " + data);
-    }). catch((err) => {
+    }). catch((err: BusinessError) => {
         console.error(`insert error: code: ${err.code}, message: ${err.message} `);
     });
 } catch (err) {
@@ -814,6 +867,7 @@ Deletes one or more data records from the database. This API uses an asynchronou
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
 
+let dataShareHelper: dataShare.DataShareHelper;
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 let da = new dataSharePredicates.DataSharePredicates();
 da.equalTo("name", "ZhangSan");
@@ -855,14 +909,16 @@ Deletes one or more data records from the database. This API uses a promise to r
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { BusinessError } from '@ohos.base'
 
+let dataShareHelper: dataShare.DataShareHelper;
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 let da = new dataSharePredicates.DataSharePredicates();
 da.equalTo("name", "ZhangSan");
 try {
-    dataShareHelper.delete(uri, da).then((data) =>  {
+    dataShareHelper.delete(uri, da).then((data: number) =>  {
         console.info("delete succeed, data : " + data);
-    }). catch((err) => {
+    }). catch((err: BusinessError) => {
         console.error(`delete error: code: ${err.code}, message: ${err.message} `);
     });
 } catch (err) {
@@ -892,6 +948,7 @@ Queries data in the database. This API uses an asynchronous callback to return t
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
 
+let dataShareHelper: dataShare.DataShareHelper;
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 let columns = ["*"];
 let da = new dataSharePredicates.DataSharePredicates();
@@ -935,15 +992,17 @@ Queries data in the database. This API uses a promise to return the result.
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { BusinessError } from '@ohos.base'
 
+let dataShareHelper: dataShare.DataShareHelper;
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 let columns = ["*"];
 let da = new dataSharePredicates.DataSharePredicates();
 da.equalTo("name", "ZhangSan");
 try {
-    dataShareHelper.query(uri, da, columns).then((data) =>  {
+    dataShareHelper.query(uri, da, columns).then((data: DataShareResultSet) =>  {
         console.info("query succeed, rowCount : " + data.rowCount);
-    }). catch((err) => {
+    }). catch((err: BusinessError) => {
         console.error(`query error: code: ${err.code}, message: ${err.message} `);
     });
 } catch (err) {
@@ -972,15 +1031,22 @@ Updates data in the database. This API uses an asynchronous callback to return t
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { ValuesBucket } from '@ohos.data.ValuesBucket'
 
+let dataShareHelper: dataShare.DataShareHelper;
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 let da = new dataSharePredicates.DataSharePredicates();
 da.equalTo("name", "ZhangSan");
-const va = {
-    "name": "roe1",
-    "age": 21,
-    "salary": 20.5,
-   
+let key1: string = "name";
+let value1: string = "roe1"
+let key2: string = "age";
+let value2: number = 21
+let key3: string = "salary";
+let value3: number = 20.5;
+const va: ValuesBucket = {
+    key1: value1,
+    key2: value2,
+    key3: value3,
 }
 try {
     dataShareHelper.update(uri, da, va, (err, data) => {
@@ -1021,20 +1087,28 @@ Updates data in the database. This API uses a promise to return the result.
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { ValuesBucket } from '@ohos.data.ValuesBucket'
+import { BusinessError } from '@ohos.base'
 
+let dataShareHelper: dataShare.DataShareHelper;
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 let da = new dataSharePredicates.DataSharePredicates();
 da.equalTo("name", "ZhangSan");
-const va = {
-    "name": "roe1",
-    "age": 21,
-    "salary": 20.5,
-   
+let key1: string = "name";
+let value1: string = "roe1"
+let key2: string = "age";
+let value2: number = 21
+let key3: string = "salary";
+let value3: number = 20.5;
+const va: ValuesBucket = {
+    key1: value1,
+    key2: value2,
+    key3: value3,
 }
 try {
-    dataShareHelper.update(uri, da, va).then((data) =>  {
+    dataShareHelper.update(uri, da, va).then((data: number) =>  {
         console.info("update succeed, data : " + data);
-    }). catch((err) => {
+    }). catch((err: BusinessError) => {
         console.error(`update error: code: ${err.code}, message: ${err.message} `);
     });
 } catch (err) {
@@ -1061,10 +1135,22 @@ Batch inserts data into the database. This API uses an asynchronous callback to 
 **Example**
 
 ```ts
+import { ValuesBucket } from '@ohos.data.ValuesBucket'
+
+let dataShareHelper: dataShare.DataShareHelper;
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
-let vbs = new Array({"name": "roe11", "age": 21, "salary": 20.5,},
-                     {"name": "roe12", "age": 21, "salary": 20.5,},
-                     {"name": "roe13", "age": 21, "salary": 20.5,})
+let key1: string = "name";
+let value11: string = "roe11"
+let key2: string = "age";
+let value21: number = 21;
+let key3: string = "salary";
+let value31: number = 20.5;
+let valuesBucket1: ValuesBucket = {
+    key1: value11,
+    key2: value21,
+    key3: value31,
+}
+let vbs = new Array(valuesBucket1);
 try {
     dataShareHelper.batchInsert(uri, vbs, (err, data) => {
         if (err !== undefined) {
@@ -1102,14 +1188,27 @@ Batch inserts data into the database. This API uses a promise to return the resu
 **Example**
 
 ```ts
+import { ValuesBucket } from '@ohos.data.ValuesBucket'
+import { BusinessError } from '@ohos.base'
+
+let dataShareHelper: dataShare.DataShareHelper;
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
-let vbs = new Array({"name": "roe11", "age": 21, "salary": 20.5,},
-                     {"name": "roe12", "age": 21, "salary": 20.5,},
-                     {"name": "roe13", "age": 21, "salary": 20.5,})
+let key1: string = "name";
+let value11: string = "roe11"
+let key2: string = "age";
+let value21: number = 21;
+let key3: string = "salary";
+let value31: number = 20.5;
+let valuesBucket1: ValuesBucket = {
+    key1: value11,
+    key2: value21,
+    key3: value31,
+}
+let vbs = new Array(valuesBucket1);
 try {
-    dataShareHelper.batchInsert(uri, vbs).then((data) =>  {
+    dataShareHelper.batchInsert(uri, vbs).then((data: number) =>  {
         console.info("batchInsert succeed, data : " + data);
-    }). catch((err) => {
+    }). catch((err: BusinessError) => {
         console.error(`batchInsert error: code: ${err.code}, message: ${err.message} `);
     });
 } catch (err) {
@@ -1135,6 +1234,7 @@ Normalizes a **DataShare** URI. The **DataShare** URI can be used only by the lo
 **Example**
 
 ```ts
+let dataShareHelper: dataShare.DataShareHelper;
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 dataShareHelper.normalizeUri(uri, (err, data) => {
     if (err !== undefined) {
@@ -1168,10 +1268,13 @@ Normalizes a **DataShare** URI. The **DataShare** URI can be used only by the lo
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base'
+
+let dataShareHelper: dataShare.DataShareHelper;
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
-dataShareHelper.normalizeUri(uri).then((data) => {
+dataShareHelper.normalizeUri(uri).then((data: string) => {
     console.info("normalizeUri = " + data);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
     console.info("normalizeUri failed, error message : " + err);
 });
 ```
@@ -1194,6 +1297,7 @@ Denormalizes a URI. This API uses an asynchronous callback to return the result.
 **Example**
 
 ```ts
+let dataShareHelper: dataShare.DataShareHelper;
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 dataShareHelper.denormalizeUri(uri, (err, data) => {
     if (err !== undefined) {
@@ -1227,10 +1331,13 @@ Denormalizes a URI. This API uses a promise to return the result. Silent access 
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base'
+
+let dataShareHelper: dataShare.DataShareHelper;
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
-dataShareHelper.denormalizeUri(uri).then((data) => {
+dataShareHelper.denormalizeUri(uri).then((data: string) => {
     console.info("denormalizeUri = " + data);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
     console.error("denormalizeUri failed, error message : " + err);
 });
 ```
@@ -1253,6 +1360,7 @@ Notifies the registered observer of data changes. This API uses an asynchronous 
 **Example**
 
 ```ts
+let dataShareHelper: dataShare.DataShareHelper;
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 dataShareHelper.notifyChange(uri, () => {
     console.info("***** notifyChange *****");
@@ -1282,6 +1390,7 @@ Notifies the registered observer of data changes. This API uses a promise to ret
 **Example**
 
 ```ts
+let dataShareHelper: dataShare.DataShareHelper;
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 dataShareHelper.notifyChange(uri);
 ```

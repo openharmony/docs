@@ -8,15 +8,15 @@
 >
 > 应用本身预置的资源文件（即应用在安装前的HAP包中已经存在的资源文件）仅支持本地应用内拖拽。
 
-ArkUI组件默认不支持拖拽。
+ArkUI框架对以下组件实现了默认的拖拽能力，支持对数据的拖出或拖入响应，开发者只需要将这些组件的[draggale](ts-universal-attributes-drag-drop.md)属性设置为true，即可使用默认拖拽能力。
 
-当以下组件的[draggable](ts-universal-attributes-drag-drop.md)属性设置为true时可以响应拖拽事件，此时，组件不需要配置数据传输，即可进行拖拽。其他组件需要开发者将[draggable](ts-universal-attributes-drag-drop.md)属性设置为true且在onDragStart等接口中实现数据传输相关内容，才能完成拖拽。
+- 默认支持拖出能力的组件（可从组件上拖出数据）：Search、TextInput、TextArea、RichEditor、Text、Image、FormComponent、Hyperlink
 
-- 默认支持拖拽（拖入和拖出）的组件：Search、TextInput、TextArea
+- 默认支持拖入能力的组件（目标组件可响应拖入数据）：Search、TextInput、TextArea、Video
 
-- 默认支持拖入的组件：Video
+开发者也可以通过实现通用拖拽事件来自定义拖拽响应。
 
-- 默认支持拖出的组件：Text、List、Grid、FormComponent、Image、Hyperlink
+其他组件需要开发者将draggable属性设置为true，并在onDragStart等接口中实现数据传输相关内容，才能正确处理拖拽。
 
 ## 事件
 
@@ -95,6 +95,8 @@ ArkUI组件默认不支持拖拽。
 import UDC from '@ohos.data.unifiedDataChannel';
 import UTD from '@ohos.data.uniformTypeDescriptor';
 import promptAction from '@ohos.promptAction';
+import { BusinessError } from '@ohos.base';
+
 @Entry
 @Component
 struct Index {
@@ -110,7 +112,7 @@ struct Index {
   getDataFromUdmfRetry(event: DragEvent, callback: (data: DragEvent)=>void)
   {
     try {
-      let data = event.getData();
+      let data:UnifiedData = event.getData();
       if (!data) {
         return false;
       }
@@ -121,7 +123,7 @@ struct Index {
       callback(event);
       return true;
     } catch (e) {
-      console.log("getData failed, code = " + e.code + ", message = " + e.message);
+      console.log("getData failed, code = " + (e as BusinessError).code + ", message = " + (e as BusinessError).message);
       return false;
     }
   }
@@ -181,7 +183,7 @@ struct Index {
           let video: UDC.Video = new UDC.Video();
           video.videoUri = 'resource://RAWFILE/01.mp4';
           let data: UDC.UnifiedData = new UDC.UnifiedData(video);
-          event.setData(data);
+          (event as DragEvent).setData(data);
         })
         Column() {
           Text('this is abstract')
@@ -194,7 +196,7 @@ struct Index {
           let data: UDC.PlainText = new UDC.PlainText();
           data.abstract = 'this is abstract';
           data.textContent = 'this is content this is content';
-          event.setData(new UDC.UnifiedData(data));
+          (event as DragEvent).setData(new UDC.UnifiedData(data));
         })
       }.width('45%')
       .height('100%')
@@ -212,13 +214,13 @@ struct Index {
           .margin({left: 15})
           .border({color: Color.Black, width: 1})
           .allowDrop([UTD.UniformDataType.IMAGE])
-          .onDrop((dragEvent: DragEvent)=> {
-            this.getDataFromUdmf(dragEvent, (event)=>{
+          .onDrop((dragEvent?: DragEvent)=> {
+            this.getDataFromUdmf((dragEvent as DragEvent), (event:DragEvent) => {
               let records: Array<UDC.UnifiedRecord> = event.getData().getRecords();
               let rect: Rectangle = event.getPreviewRect();
               this.imageWidth = Number(rect.width);
               this.imageHeight = Number(rect.height);
-              this.targetImage = (<UDC.Image>(records[0])).imageUri;
+              this.targetImage = (records[0] as UDC.Image).imageUri;
               event.useCustomDropAnimation = false;
               animateTo({duration: 1000}, ()=>{
                 this.imageWidth = 100;
@@ -235,10 +237,11 @@ struct Index {
           .border({color: Color.Black, width: 1})
           .margin(15)
           .allowDrop([UTD.UniformDataType.TEXT])
-          .onDrop((dragEvent: DragEvent)=>{
-            this.getDataFromUdmf(dragEvent, event => {
+          .onDrop((dragEvent?: DragEvent)=>{
+            this.getDataFromUdmf((dragEvent as DragEvent), (event:DragEvent) => {
               let records:Array<UDC.UnifiedRecord> = event.getData().getRecords();
-              this.targetText = (<UDC.Text>(records[0])).details['value'];
+              let plainText:UDC.PlainText = records[0] as UDC.PlainText;
+              this.targetText = plainText.textContent;
             })
           })
 
@@ -253,11 +256,11 @@ struct Index {
           Text(this.textContent).fontSize(15).width('100%')
         }.width('100%').height(100).margin(20).border({color: Color.Black, width: 1})
         .allowDrop([UTD.UniformDataType.PLAIN_TEXT])
-        .onDrop((dragEvent)=>{
-          this.getDataFromUdmf(dragEvent, event=>{
+        .onDrop((dragEvent?: DragEvent)=>{
+          this.getDataFromUdmf((dragEvent as DragEvent), (event:DragEvent) => {
             let records: Array<UDC.UnifiedRecord> = event.getData().getRecords();
-            let plainText: UDC.PlainText = <UDC.PlainText>(records[0]);
-            this.abstractContent = plainText.abstract;
+            let plainText: UDC.PlainText = records[0] as UDC.PlainText;
+            this.abstractContent = plainText.abstract as string;
             this.textContent = plainText.textContent;
           })
         })

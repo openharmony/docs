@@ -3,6 +3,9 @@
 
 There may be cases you want to provide in a widget access to features available in your application running in the foreground, for example, the play, pause, and stop buttons in a music application widget. This is where the **call** capability of the **postCardAction** API comes in handy. This capability, when used in a widget, can start the specified UIAbility of the widget provider in the background. It also allows the widget to call the specified method of the application and transfer data so that the application, while in the background, can behave accordingly in response to touching of the buttons on the widget.
 
+> **NOTE**
+>
+> This topic describes development for dynamic widgets. For static widgets, see [FormLink](../../application-dev/reference/arkui-ts/ts-container-formlink.md).
 
 Typically, the call event is triggered for touching of buttons. Below is an example.
 
@@ -48,7 +51,7 @@ Typically, the call event is triggered for touching of buttons. Below is an exam
   }
   ```
 
-- The UIAbility receives the call event and obtains the transferred parameters. It then executes the target method specified by the **method** parameter. Other data can be obtained in readString mode. Listen for the method required by the call event in the **onCreate** callback of the UIAbility.
+- The UIAbility receives the call event and obtains the transferred parameters. It then executes the target method specified by the **method** parameter. Other data can be obtained through the **[readString](../reference/apis/js-apis-rpc.md#readstring)** method. Listen for the method required by the call event in the **onCreate** callback of the UIAbility.
   
   ```ts
   import UIAbility from '@ohos.app.ability.UIAbility';
@@ -65,7 +68,7 @@ Typically, the call event is triggered for touching of buttons. Below is an exam
   }
   
   export default class CameraAbility extends UIAbility {
-    // If the UIAbility is started for the first time, onCreate is triggered afte the call event is received.
+    // If the UIAbility is started for the first time, onCreate is triggered after the call event is received.
     onCreate(want, launchParam) {
       try {
         // Listen for the method required by the call event.

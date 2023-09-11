@@ -29,7 +29,7 @@ constructUDPSocketInstance(): UDPSocket
 **示例：**
 
 ```js
-let udp = socket.constructUDPSocketInstance();
+let udp: socket = socket.constructUDPSocketInstance();
 ```
 
 ## UDPSocket<sup>7+</sup>
@@ -63,14 +63,20 @@ bind(address: NetAddress, callback: AsyncCallback\<void\>): void
 **示例：**
 
 ```js
-let udp = socket.constructUDPSocketInstance();
-udp.bind({address: '192.168.xx.xxx', port: xxxx, family: 1}, err => {
+let udp: socket = socket.constructUDPSocketInstance();
+class NetAddress {
+  address: string = '192.168.xx.xxx'
+  port: number = 8080
+  family: number = 1
+}
+let netaddress = new NetAddress();
+udp.bind(netaddress, (err: string) => {
   if (err) {
     console.log('bind fail');
     return;
   }
   console.log('bind success');
-})
+});
 ```
 
 ### bind<sup>7+</sup>
@@ -105,11 +111,17 @@ bind(address: NetAddress): Promise\<void\>
 **示例：**
 
 ```js
-let udp = socket.constructUDPSocketInstance();
-let promise = udp.bind({ address: '192.168.xx.xxx', port: 8080, family: 1 });
+let udp: socket = socket.constructUDPSocketInstance();
+class NetAddress {
+  address: string = '192.168.xx.xxx'
+  port: number = 8080
+  family: number = 1
+}
+let netaddress = new NetAddress();
+let promise: socket = udp.bind(netaddress);
 promise.then(() => {
   console.log('bind success');
-}).catch(err => {
+}).catch((err: string) => {
   console.log('bind fail');
 });
 ```
@@ -143,21 +155,25 @@ send(options: UDPSendOptions, callback: AsyncCallback\<void\>): void
 **示例：**
 
 ```js
-let udp = socket.constructUDPSocketInstance();
-udp.send({
-  data: 'Hello, server!',
-  address: {
-    address: '192.168.xx.xxx',
-    port: xxxx,
-    family: 1
-  }
-}, err => {
+let udp: socket = socket.constructUDPSocketInstance();
+class NetAddress {
+  address: string = '192.168.xx.xxx'
+  port: number = 8080
+  family: number = 1
+}
+class UDPSendOptions {
+  data: string = 'Hello, server!'
+  address: Object = new NetAddress()
+}
+
+let udpsendoptions = new UDPSendOptions();
+udp.send(udpsendoptions, (err: string) => {
   if (err) {
     console.log('send fail');
     return;
   }
   console.log('send success');
-})
+});
 ```
 
 ### send<sup>7+</sup>
@@ -194,18 +210,21 @@ send(options: UDPSendOptions): Promise\<void\>
 **示例：**
 
 ```js
-let udp = socket.constructUDPSocketInstance();
-let promise = udp.send({
-  data: 'Hello, server!',
-  address: {
-    address: '192.168.xx.xxx',
-    port: xxxx,
-    family: 1
-  }
-});
+let udp: socket = socket.constructUDPSocketInstance();
+class NetAddress {
+  address: string = '192.168.xx.xxx'
+  port: number = 8080
+  family: number = 1
+}
+class UDPSendOptions {
+  data: string = 'Hello, server!'
+  address: Object = new NetAddress()
+}
+let udpsendoptions = new UDPSendOptions();
+let promise: socket = udp.send(udpsendoptions);
 promise.then(() => {
   console.log('send success');
-}).catch(err => {
+}).catch((err: string) => {
   console.log('send fail');
 });
 ```
@@ -229,8 +248,8 @@ close(callback: AsyncCallback\<void\>): void
 **示例：**
 
 ```js
-let udp = socket.constructUDPSocketInstance();
-udp.close(err => {
+let udp: socket = socket.constructUDPSocketInstance();
+udp.close((err: string) => {
   if (err) {
     console.log('close fail');
     return;
@@ -258,11 +277,11 @@ close(): Promise\<void\>
 **示例：**
 
 ```js
-let udp = socket.constructUDPSocketInstance();
-let promise = udp.close();
+let udp: socket = socket.constructUDPSocketInstance();
+let promise: socket = udp.close();
 promise.then(() => {
   console.log('close success');
-}).catch(err => {
+}).catch((err: string) => {
   console.log('close fail');
 });
 ```
@@ -295,14 +314,20 @@ getState(callback: AsyncCallback\<SocketStateBase\>): void
 **示例：**
 
 ```js
-let udp = socket.constructUDPSocketInstance();
-udp.bind({address: '192.168.xx.xxx', port: xxxx, family: 1}, err => {
+let udp: socket = socket.constructUDPSocketInstance();
+class NetAddress {
+  address: string = '192.168.xx.xxx'
+  port: number = 8080
+  family: number = 1
+}
+let netaddress = new NetAddress();
+udp.bind(netaddress, (err: string) => {
   if (err) {
     console.log('bind fail');
     return;
   }
   console.log('bind success');
-  udp.getState((err, data) => {
+  udp.getState((err: string, data: string) => {
     if (err) {
       console.log('getState fail');
       return;
@@ -334,18 +359,24 @@ getState(): Promise\<SocketStateBase\>
 **示例：**
 
 ```js
-let udp = socket.constructUDPSocketInstance();
-let promise = udp.bind({ address: '192.168.xx.xxx', port: xxxx, family: 1 });
-promise.then(err => {
+let udp: socket = socket.constructUDPSocketInstance();
+class NetAddress {
+  address: string = '192.168.xx.xxx'
+  port: number = 8080
+  family: number = 1
+}
+let netaddress = new NetAddress();
+let promise: socket = udp.bind(netaddress);
+promise.then((err: string) => {
   if (err) {
     console.log('bind fail');
     return;
   }
   console.log('bind success');
-  let promise = udp.getState();
-  promise.then(data => {
+  let promise: socket = udp.getState();
+  promise.then((data: string) => {
     console.log('getState success:' + JSON.stringify(data));
-  }).catch(err => {
+  }).catch((err: string) => {
     console.log('getState fail');
   });
 });
@@ -381,20 +412,28 @@ setExtraOptions(options: UDPExtraOptions, callback: AsyncCallback\<void\>): void
 **示例：**
 
 ```js
-let udp = socket.constructUDPSocketInstance();
-udp.bind({ address: '192.168.xx.xxx', port: xxxx, family: 1 }, err => {
+let udp: socket = socket.constructUDPSocketInstance();
+class NetAddress {
+  address: string = '192.168.xx.xxx'
+  port: number = 8080
+  family: number = 1
+}
+let netaddress = new NetAddress();
+udp.bind(netaddress, (err: string) => {
   if (err) {
     console.log('bind fail');
     return;
   }
   console.log('bind success');
-  udp.setExtraOptions({
-    receiveBufferSize: 1000,
-    sendBufferSize: 1000,
-    reuseAddress: false,
-    socketTimeout: 6000,
-    broadcast: true
-  }, err => {
+  class UDPExtraOptions {
+    receiveBufferSize: number = 1000
+    sendBufferSize: number = 1000
+    reuseAddress: boolean = false
+    socketTimeout: number = 6000
+    broadcast: boolean = true
+  }
+  let udpextraoptions = new UDPExtraOptions();
+  udp.setExtraOptions(udpextraoptions, (err:string) => {
     if (err) {
       console.log('setExtraOptions fail');
       return;
@@ -439,23 +478,31 @@ setExtraOptions(options: UDPExtraOptions): Promise\<void\>
 **示例：**
 
 ```js
-let udp = socket.constructUDPSocketInstance();
-let promise = udp.bind({ address: '192.168.xx.xxx', port: xxxx, family: 1 });
+let udp: socket = socket.constructUDPSocketInstance();
+class NetAddress {
+  address: string = '192.168.xx.xxx'
+  port: number = 8080
+  family: number = 1
+}
+let netaddress = new NetAddress();
+class UDPExtraOptions {
+  receiveBufferSize: number = 1000
+  sendBufferSize: number = 1000
+  reuseAddress: boolean = false
+  socketTimeout: number = 6000
+  broadcast: boolean = true
+}
+let udpextraoptions = new UDPExtraOptions();
+let promise: socket = udp.bind(z);
 promise.then(() => {
   console.log('bind success');
-  let promise1 = udp.setExtraOptions({
-    receiveBufferSize: 1000,
-    sendBufferSize: 1000,
-    reuseAddress: false,
-    socketTimeout: 6000,
-    broadcast: true
-  });
+  let promise1: socket = udp.setExtraOptions(udpextraoptions);
   promise1.then(() => {
     console.log('setExtraOptions success');
-  }).catch(err => {
+  }).catch((err: string) => {
     console.log('setExtraOptions fail');
   });
-}).catch(err => {
+}).catch((err: string) => {
   console.log('bind fail');
 });
 ```
@@ -478,10 +525,10 @@ on(type: 'message', callback: Callback\<{message: ArrayBuffer, remoteInfo: Socke
 **示例：**
 
 ```js
-let udp = socket.constructUDPSocketInstance();
+let udp: socket = socket.constructUDPSocketInstance();
 let messageView = '';
-udp.on('message', value => {
-  for (var i = 0; i < value.message.length; i++) {
+udp.on('message', (value: Object) => {
+  for (let i = 0; i < value.message.length; i++) {
     let messages = value.message[i]
     let message = String.fromCharCode(messages);
     messageView += message;
@@ -512,10 +559,10 @@ off(type: 'message', callback?: Callback\<{message: ArrayBuffer, remoteInfo: Soc
 **示例：**
 
 ```js
-let udp = socket.constructUDPSocketInstance();
+let udp: socket = socket.constructUDPSocketInstance();
 let messageView = '';
-let callback = value => {
-  for (var i = 0; i < value.message.length; i++) {
+let callback = (value: Object) => {
+  for (let i = 0; i < value.message.length; i++) {
     let messages = value.message[i]
     let message = String.fromCharCode(messages);
     messageView += message;
@@ -547,7 +594,7 @@ on(type: 'listening' | 'close', callback: Callback\<void\>): void
 **示例：**
 
 ```js
-let udp = socket.constructUDPSocketInstance();
+let udp: socket = socket.constructUDPSocketInstance();
 udp.on('listening', () => {
   console.log("on listening success");
 });
@@ -577,7 +624,7 @@ off(type: 'listening' | 'close', callback?: Callback\<void\>): void
 **示例：**
 
 ```js
-let udp = socket.constructUDPSocketInstance();
+let udp: socket = socket.constructUDPSocketInstance();
 let callback1 = () => {
   console.log("on listening, success");
 }
@@ -612,8 +659,8 @@ on(type: 'error', callback: ErrorCallback): void
 **示例：**
 
 ```js
-let udp = socket.constructUDPSocketInstance();
-udp.on('error', err => {
+let udp: socket = socket.constructUDPSocketInstance();
+udp.on('error', (err: string) => {
   console.log("on error, err:" + JSON.stringify(err))
 });
 ```
@@ -639,8 +686,8 @@ off(type: 'error', callback?: ErrorCallback): void
 **示例：**
 
 ```js
-let udp = socket.constructUDPSocketInstance();
-let callback = err => {
+let udp: socket = socket.constructUDPSocketInstance();
+let callback = (err: string) => {
   console.log("on error, err:" + JSON.stringify(err));
 }
 udp.on('error', callback);
@@ -734,7 +781,7 @@ constructTCPSocketInstance(): TCPSocket
 **示例：**
 
 ```js
-let tcp = socket.constructTCPSocketInstance();
+let tcp: socket = socket.constructTCPSocketInstance();
 ```
 
 ## TCPSocket<sup>7+</sup>
@@ -771,8 +818,14 @@ bind(address: NetAddress, callback: AsyncCallback\<void\>): void
 **示例：**
 
 ```js
-let tcp = socket.constructTCPSocketInstance();
-tcp.bind({address: '192.168.xx.xxx', port: xxxx, family: 1}, err => {
+let tcp: socket = socket.constructTCPSocketInstance();
+class NetAddress {
+  address: string = '192.168.xx.xxx'
+  port: number = 8080
+  family: number = 1
+}
+let netaddress = new NetAddress();
+tcp.bind(netaddress, (err: string) => {
   if (err) {
     console.log('bind fail');
     return;
@@ -816,11 +869,17 @@ bind(address: NetAddress): Promise\<void\>
 **示例：**
 
 ```js
-let tcp = socket.constructTCPSocketInstance();
-let promise = tcp.bind({ address: '192.168.xx.xxx', port: xxxx, family: 1 });
+let tcp: socket = socket.constructTCPSocketInstance();
+class NetAddress {
+  address: string = '192.168.xx.xxx'
+  port: number = 8080
+  family: number = 1
+}
+let netaddress = new NetAddress();
+let promise: socket = tcp.bind(netaddress);
 promise.then(() => {
   console.log('bind success');
-}).catch(err => {
+}).catch((err: string) => {
   console.log('bind fail');
 });
 ```
@@ -855,8 +914,18 @@ connect(options: TCPConnectOptions, callback: AsyncCallback\<void\>): void
 **示例：**
 
 ```js
-let tcp = socket.constructTCPSocketInstance();
-tcp.connect({ address: { address: '192.168.xx.xxx', port: xxxx, family: 1 }, timeout: 6000 }, err => {
+let tcp: socket = socket.constructTCPSocketInstance();
+class NetAddress {
+  address: string = '192.168.xx.xxx'
+  port: number = 8080
+  family: number = 1
+}
+class TCPConnectOptions {
+  address: Object = new NetAddress()
+  timeout: number = 6000
+}
+let tcpconnectoptions = new TCPConnectOptions();
+tcp.connect(tcpconnectoptions, (err: string) => {
   if (err) {
     console.log('connect fail');
     return;
@@ -897,11 +966,21 @@ connect(options: TCPConnectOptions): Promise\<void\>
 **示例：**
 
 ```js
-let tcp = socket.constructTCPSocketInstance();
-let promise = tcp.connect({ address: { address: '192.168.xx.xxx', port: xxxx, family: 1 }, timeout: 6000 });
+let tcp: socket = socket.constructTCPSocketInstance();
+class NetAddress {
+  address: string = '192.168.xx.xxx'
+  port: number = 8080
+  family: number = 1
+}
+class TCPConnectOptions {
+  address: Object = new NetAddress()
+  timeout: number = 6000
+}
+let tcpconnectoptions = new TCPConnectOptions();
+let promise: socket = tcp.connect(tcpconnectoptions);
 promise.then(() => {
   console.log('connect success')
-}).catch(err => {
+}).catch((err: string) => {
   console.log('connect fail');
 });
 ```
@@ -936,13 +1015,24 @@ send(options: TCPSendOptions, callback: AsyncCallback\<void\>): void
 **示例：**
 
 ```js
-let tcp = socket.constructTCPSocketInstance();
-tcp.connect({ address: { address: '192.168.xx.xxx', port: xxxx, family: 1 }, timeout: 6000 }, () => {
+let tcp: socket = socket.constructTCPSocketInstance();
+class NetAddress {
+  address: string = '192.168.xx.xxx'
+  port: number = 8080
+  family: number = 1
+}
+class TCPConnectOptions {
+  address: Object = new NetAddress()
+  timeout: number = 6000
+}
+let tcpconnectoptions = new TCPConnectOptions();
+class Data {
+  data: string = 'Hello, server!
+}
+let data = new Data();
+tcp.connect(tcpconnectoptions, () => {
   console.log('connect success');
-  tcp.send({
-    data: 'Hello, server!'
-    //此处省略encoding， 默认为utf-8编码格式
-  }, err => {
+  tcp.send(data, (err: string) => {
     if (err) {
       console.log('send fail');
       return;
@@ -987,19 +1077,31 @@ send(options: TCPSendOptions): Promise\<void\>
 **示例：**
 
 ```js
-let tcp = socket.constructTCPSocketInstance();
-let promise1 = tcp.connect({ address: { address: '192.168.xx.xxx', port: xxxx, family: 1 }, timeout: 6000 });
+let tcp: socket = socket.constructTCPSocketInstance();
+class NetAddress {
+  address: string = '192.168.xx.xxx'
+  port: number = 8080
+  family: number = 1
+}
+class TCPConnectOptions {
+  address: Object = new NetAddress()
+  timeout: number = 6000
+}
+let tcpconnectoptions = new TCPConnectOptions();
+class Data {
+  data: string = 'Hello, server!'
+}
+let data = new Data();
+let promise1: socket = tcp.connect(tcpconnectoptions);
 promise1.then(() => {
   console.log('connect success');
-  let promise2 = tcp.send({
-    data: 'Hello, server!'
-  });
+  let promise2: socket = tcp.send(data);
   promise2.then(() => {
     console.log('send success');
-  }).catch(err => {
+  }).catch((err: string) => {
     console.log('send fail');
   });
-}).catch(err => {
+}).catch((err: string) => {
   console.log('connect fail');
 });
 ```
@@ -1029,8 +1131,8 @@ close(callback: AsyncCallback\<void\>): void
 **示例：**
 
 ```js
-let tcp = socket.constructTCPSocketInstance();
-tcp.close(err => {
+let tcp: socket = socket.constructTCPSocketInstance();
+tcp.close((err：string) => {
   if (err) {
     console.log('close fail');
     return;
@@ -1064,11 +1166,11 @@ close(): Promise\<void\>
 **示例：**
 
 ```js
-let tcp = socket.constructTCPSocketInstance();
-let promise = tcp.close();
+let tcp: socket = socket.constructTCPSocketInstance();
+let promise: socket = tcp.close();
 promise.then(() => {
   console.log('close success');
-}).catch(err => {
+}).catch((err: string) => {
   console.log('close fail');
 });
 ```
@@ -1101,10 +1203,20 @@ getRemoteAddress(callback: AsyncCallback\<NetAddress\>): void
 **示例：**
 
 ```js
-let tcp = socket.constructTCPSocketInstance();
-tcp.connect({ address: { address: '192.168.xx.xxx', port: xxxx, family: 1 }, timeout: 6000 }, () => {
+let tcp: socket = socket.constructTCPSocketInstance();
+class NetAddress {
+  address: string = '192.168.xx.xxx'
+  port: number = 8080
+  family: number = 1
+}
+class TCPConnectOptions {
+  address: Object = new NetAddress()
+  timeout: number = 6000
+}
+let tcpconnectoptions = new TCPConnectOptions();
+tcp.connect(tcpconnectoptions, () => {
   console.log('connect success');
-  tcp.getRemoteAddress((err, data) => {
+  tcp.getRemoteAddress((err: string, data: string) => {
     if (err) {
       console.log('getRemoteAddressfail');
       return;
@@ -1142,17 +1254,27 @@ getRemoteAddress(): Promise\<NetAddress\>
 **示例：**
 
 ```js
-let tcp = socket.constructTCPSocketInstance();
-let promise1 = tcp.connect({ address: { address: '192.168.xx.xxx', port: xxxx, family: 1 }, timeout: 6000 });
+let tcp: socket = socket.constructTCPSocketInstance();
+class NetAddress {
+  address: string = '192.168.xx.xxx'
+  port: number = 8080
+  family: number = 1
+}
+class TCPConnectOptions {
+  address: Object = new NetAddress()
+  timeout: number = 6000
+}
+let tcpconnectoptions = new TCPConnectOptions();
+let promise1: socket = tcp.connect(tcpconnectoptions);
 promise1.then(() => {
   console.log('connect success');
-  let promise2 = tcp.getRemoteAddress();
+  let promise2: socket = tcp.getRemoteAddress();
   promise2.then(() => {
     console.log('getRemoteAddress success');
-  }).catch(err => {
+  }).catch((err: string) => {
     console.log('getRemoteAddressfail');
   });
-}).catch(err => {
+}).catch((err: string) => {
   console.log('connect fail');
 });
 ```
@@ -1185,10 +1307,20 @@ getState(callback: AsyncCallback\<SocketStateBase\>): void
 **示例：**
 
 ```js
-let tcp = socket.constructTCPSocketInstance();
-let promise = tcp.connect({ address: { address: '192.168.xx.xxx', port: xxxx, family: 1 }, timeout: 6000 }, () => {
+let tcp: socket = socket.constructTCPSocketInstance();
+class NetAddress {
+  address: string = '192.168.xx.xxx'
+  port: number = 8080
+  family: number = 1
+}
+class TCPConnectOptions {
+  address: Object = new NetAddress()
+  timeout: number = 6000
+}
+let tcpconnectoptions = new TCPConnectOptions();
+let promise: socket = tcp.connect(tcpconnectoptions, () => {
   console.log('connect success');
-  tcp.getState((err, data) => {
+  tcp.getState((err: string, data: string) => {
     if (err) {
       console.log('getState fail');
       return;
@@ -1226,17 +1358,27 @@ getState(): Promise\<SocketStateBase\>
 **示例：**
 
 ```js
-let tcp = socket.constructTCPSocketInstance();
-let promise = tcp.connect({ address: { address: '192.168.xx.xxx', port: xxxx, family: 1 }, timeout: 6000 });
+let tcp: socket = socket.constructTCPSocketInstance();
+class NetAddress {
+  address: string = '192.168.xx.xxx'
+  port: number = 8080
+  family: number = 1
+}
+class TCPConnectOptions {
+  address: Object = new NetAddress()
+  timeout: number = 6000
+}
+let tcpconnectoptions = new TCPConnectOptions();
+let promise: socket = tcp.connect(tcpconnectoptions);
 promise.then(() => {
   console.log('connect success');
-  let promise1 = tcp.getState();
+  let promise1: socket = tcp.getState();
   promise1.then(() => {
     console.log('getState success');
-  }).catch(err => {
+  }).catch((err: string) => {
     console.log('getState fail');
   });
-}).catch(err => {
+}).catch((err: string) => {
   console.log('connect fail');
 });
 ```
@@ -1262,23 +1404,26 @@ getSocketFd(callback: AsyncCallback\<number\>): void
 
 ```js
   import socket from "@ohos.net.socket";
-  var tcp = socket.constructTCPSocketInstance();
+  let tcp: socket = socket.constructTCPSocketInstance();
   let tunnelfd = 0
-  tcp.bind({
-      address: "0.0.0.0",
-      family: 1,
-  })
-  let connectAddress = {
-      address: "192.168.1.11",
-      port: 8888,
-      family: 1
-  };
-  tcp.connect({
-      address: connectAddress, timeout: 6000
-  })
-  tcp.getSocketFd((data) => {
-      console.info("tunenlfd: " + data);
-      tunnelfd = data
+  class Address {
+    address: string = "0.0.0.0"
+    family: number = 1
+  }
+  class NetAddress {
+    address: string = '192.168.1.11'
+    port: number = 8888
+    family: number = 1
+  }
+  class TCPConnectOptions {
+    address: Object = new NetAddress()
+    timeout: number = 6000
+  }
+  tcp.bind(new Address())
+  tcp.connect(new TCPConnectOptions())
+  tcp.getSocketFd((data: string) => {
+    console.info("tunenlfd: " + data);
+    tunnelfd = data
   })
 ```
 ### getSocketFd<sup>10+</sup>
@@ -1302,21 +1447,24 @@ getSocketFd(): Promise\<number\>
 
 ```js
   import socket from "@ohos.net.socket";
-  var tcp = socket.constructTCPSocketInstance();
+  let tcp: socket = socket.constructTCPSocketInstance();
   let tunnelfd = 0
-  tcp.bind({
-      address: "0.0.0.0",
-      family: 1,
-  })
-  let connectAddress = {
-      address: "192.168.1.11",
-      port: 8888,
-      family: 1
-  };
-  tcp.connect({
-      address: connectAddress, timeout: 6000
-  })
-  tcp.getSocketFd().then((data) => {
+  class Address {
+  address: string = "0.0.0.0"
+  family: number = 1
+  }
+  class NetAddress {
+    address: string = '192.168.1.11'
+    port: number = 8888
+    family: number = 1
+  }
+  class TCPConnectOptions {
+    address: Object = new NetAddress()
+    timeout: number = 6000
+  }
+  tcp.bind(new Address())
+  tcp.connect(new TCPConnectOptions())
+  tcp.getSocketFd().then((data: string) => {
       console.info("tunenlfd: " + data);
       tunnelfd = data
   })
@@ -1352,19 +1500,33 @@ setExtraOptions(options: TCPExtraOptions, callback: AsyncCallback\<void\>): void
 **示例：**
 
 ```js
-let tcp = socket.constructTCPSocketInstance();
-let promise = tcp.connect({ address: { address: '192.168.xx.xxx', port: xxxx, family: 1 }, timeout: 6000 }, () => {
+let tcp: socket = socket.constructTCPSocketInstance();
+class NetAddress {
+  address: string = '192.168.xx.xxx'
+  port: number = 8080
+  family: number = 1
+}
+class TCPConnectOptions {
+  address: Object = new NetAddress()
+  timeout: number = 6000
+}
+class Linger {
+  on: boolean = true
+  linger: number = 10
+}
+class TCPExtraOptions {
+  keepAlive: boolean = true
+  OOBInline: boolean = true
+  TCPNoDelay: boolean = true
+  socketLinger: Object = new Linger()
+  receiveBufferSize: number = 1000
+  sendBufferSize: number = 1000
+  reuseAddress: boolean = true
+  socketTimeout: number = 3000
+}
+let promise: socket = tcp.connect(new TCPConnectOptions(), () => {
   console.log('connect success');
-  tcp.setExtraOptions({
-    keepAlive: true,
-    OOBInline: true,
-    TCPNoDelay: true,
-    socketLinger: { on: true, linger: 10 },
-    receiveBufferSize: 1000,
-    sendBufferSize: 1000,
-    reuseAddress: true,
-    socketTimeout: 3000,
-  }, err => {
+  tcp.setExtraOptions(new TCPExtraOptions(), (err: string) => {
     if (err) {
       console.log('setExtraOptions fail');
       return;
@@ -1409,26 +1571,40 @@ setExtraOptions(options: TCPExtraOptions): Promise\<void\>
 **示例：**
 
 ```js
-let tcp = socket.constructTCPSocketInstance();
-let promise = tcp.connect({ address: { address: '192.168.xx.xxx', port: xxxx, family: 1 }, timeout: 6000 });
+let tcp: socket = socket.constructTCPSocketInstance();
+class NetAddress {
+  address: string = '192.168.xx.xxx'
+  port: number = 8080
+  family: number = 1
+}
+class TCPConnectOptions {
+  address: Object = new NetAddress()
+  timeout: number = 6000
+}
+class Linger {
+  on: boolean = true
+  linger: number = 10
+}
+class TCPExtraOptions {
+  keepAlive: boolean = true
+  OOBInline: boolean = true
+  TCPNoDelay: boolean = true
+  socketLinger: Object = new Linger()
+  receiveBufferSize: number = 1000
+  sendBufferSize: number = 1000
+  reuseAddress: boolean = true
+  socketTimeout: number = 3000
+}
+let promise: socket = tcp.connect(new TCPConnectOptions());
 promise.then(() => {
   console.log('connect success');
-  let promise1 = tcp.setExtraOptions({
-    keepAlive: true,
-    OOBInline: true,
-    TCPNoDelay: true,
-    socketLinger: { on: true, linger: 10 },
-    receiveBufferSize: 1000,
-    sendBufferSize: 1000,
-    reuseAddress: true,
-    socketTimeout: 3000,
-  });
+  let promise1: socket = tcp.setExtraOptions(new TCPExtraOptions());
   promise1.then(() => {
     console.log('setExtraOptions success');
-  }).catch(err => {
+  }).catch((err: string) => {
     console.log('setExtraOptions fail');
   });
-}).catch(err => {
+}).catch((err: string) => {
   console.log('connect fail');
 });
 ```
@@ -1451,10 +1627,10 @@ on(type: 'message', callback: Callback<{message: ArrayBuffer, remoteInfo: Socket
 **示例：**
 
 ```js
-let tcp = socket.constructTCPSocketInstance();
+let tcp: socket = socket.constructTCPSocketInstance();
 let messageView = '';
-tcp.on('message', value => {
-  for (var i = 0; i < value.message.length; i++) {
+tcp.on('message', (value: Object) => {
+  for (let i = 0; i < value.message.length; i++) {
     let messages = value.message[i]
     let message = String.fromCharCode(messages);
     messageView += message;
@@ -1485,10 +1661,10 @@ off(type: 'message', callback?: Callback<{message: ArrayBuffer, remoteInfo: Sock
 **示例：**
 
 ```js
-let tcp = socket.constructTCPSocketInstance();
+let tcp: socket = socket.constructTCPSocketInstance();
 let messageView = '';
-let callback = value => {
-  for (var i = 0; i < value.message.length; i++) {
+let callback = (value: Object) => {
+  for (let i = 0; i < value.message.length; i++) {
     let messages = value.message[i]
     let message = String.fromCharCode(messages);
     messageView += message;
@@ -1520,7 +1696,7 @@ on(type: 'connect' | 'close', callback: Callback\<void\>): void
 **示例：**
 
 ```js
-let tcp = socket.constructTCPSocketInstance();
+let tcp: socket = socket.constructTCPSocketInstance();
 tcp.on('connect', () => {
   console.log("on connect success")
 });
@@ -1550,7 +1726,7 @@ off(type: 'connect' | 'close', callback?: Callback\<void\>): void
 **示例：**
 
 ```js
-let tcp = socket.constructTCPSocketInstance();
+let tcp: socket = socket.constructTCPSocketInstance();
 let callback1 = () => {
   console.log("on connect success");
 }
@@ -1585,8 +1761,8 @@ on(type: 'error', callback: ErrorCallback): void
 **示例：**
 
 ```js
-let tcp = socket.constructTCPSocketInstance();
-tcp.on('error', err => {
+let tcp: socket = socket.constructTCPSocketInstance();
+tcp.on('error', (err: string) => {
   console.log("on error, err:" + JSON.stringify(err))
 });
 ```
@@ -1613,7 +1789,7 @@ off(type: 'error', callback?: ErrorCallback): void
 
 ```js
 let tcp = socket.constructTCPSocketInstance();
-let callback = err => {
+let callback = (err: string) => {
   console.log("on error, err:" + JSON.stringify(err));
 }
 tcp.on('error', callback);
@@ -1678,7 +1854,7 @@ constructTCPSocketServerInstance(): TCPSocketServer
 **示例：**
 
 ```js
-let tcpServer = socket.constructTCPSocketServerInstance();
+let tcpServer: socket = socket.constructTCPSocketServerInstance();
 ```
 
 ## TCPSocketServer<sup>10+</sup>
@@ -1720,8 +1896,13 @@ listen(address: NetAddress, callback: AsyncCallback\<void\>): void
 **示例：**
 
 ```js
-let tcpServer = socket.constructTCPSocketServerInstance();
-tcpServer.listen({ address: "192.168.xx.xxx", port: xxxx, family: 1 }, err => {
+let tcpServer: socket = socket.constructTCPSocketServerInstance();
+class NetAddress {
+  address: string = '192.168.xx.xxx'
+  port: number = 8080
+  family: number = 1
+}
+tcpServer.listen(NetAddress(), (err: string) => {
   if (err) {
     console.log("listen fail");
     return;
@@ -1770,11 +1951,16 @@ listen(address: NetAddress): Promise\<void\>
 **示例：**
 
 ```js
-let tcpServer = socket.constructTCPSocketServerInstance();
-let promise = tcpServer.listen({ address: '192.168.xx.xxx', port: xxxx, family: 1 });
+let tcpServer: socket = socket.constructTCPSocketServerInstance();
+class NetAddress {
+  address: string = '192.168.xx.xxx'
+  port: number = 8080
+  family: number = 1
+}
+let promise: socket = tcpServer.listen(new NetAddress());
 promise.then(() => {
   console.log('listen success');
-}).catch(err => {
+}).catch((err: string) => {
   console.log('listen fail');
 });
 ```
@@ -1810,15 +1996,20 @@ getState(callback: AsyncCallback\<SocketStateBase\>): void
 **示例：**
 
 ```js
-let tcpServer = socket.constructTCPSocketServerInstance();
-tcpServer.listen({ address: "192.168.xx.xxx", port: xxxx, family: 1 }, err => {
+let tcpServer: socket = socket.constructTCPSocketServerInstance();
+class NetAddress {
+  address: string = '192.168.xx.xxx'
+  port: number = 8080
+  family: number = 1
+}
+tcpServer.listen(NetAddress(), (err: string) => {
   if (err) {
     console.log("listen fail");
     return;
   }
   console.log("listen success");
 })
-tcpServer.getState((err, data) => {
+tcpServer.getState((err: string, data: string) => {
   if (err) {
     console.log('getState fail');
     return;
@@ -1857,17 +2048,22 @@ getState(): Promise\<SocketStateBase\>
 **示例：**
 
 ```js
-let tcpServer = socket.constructTCPSocketServerInstance();
-let promiseListen = tcpServer.listen({ address: '192.168.xx.xxx', port: xxxx, family: 1 });
+let tcpServer: socket = socket.constructTCPSocketServerInstance();
+class NetAddress {
+  address: string = '192.168.xx.xxx'
+  port: number = 8080
+  family: number = 1
+}
+let promiseListen: socket = tcpServer.listen(NetAddress());
 promiseListen.then(() => {
   console.log('listen success');
-}).catch(err => {
+}).catch((err: string) => {
   console.log('listen fail');
 });
-let promise = tcpServer.getState();
+let promise: socket = tcpServer.getState();
 promise.then(() => {
   console.log('getState success');
-}).catch(err => {
+}).catch((err: string) => {
   console.log('getState fail');
 });
 ```
@@ -1904,24 +2100,34 @@ setExtraOptions(options: TCPExtraOptions, callback: AsyncCallback\<void\>): void
 **示例：**
 
 ```js
-let tcpServer = socket.constructTCPSocketServerInstance();
-tcpServer.listen({ address: "192.168.xx.xxx", port: xxxx, family: 1 }, err => {
+let tcpServer: socket = socket.constructTCPSocketServerInstance();
+class NetAddress {
+  address: string = '192.168.xx.xxx'
+  port: number = 8080
+  family: number = 1
+}
+tcpServer.listen(NetAddress(), (err: string) => {
   if (err) {
     console.log("listen fail");
     return;
   }
   console.log("listen success");
 })
-tcpServer.setExtraOptions({
-  keepAlive: true,
-  OOBInline: true,
-  TCPNoDelay: true,
-  socketLinger: { on: true, linger: 10 },
-  receiveBufferSize: 1000,
-  sendBufferSize: 1000,
-  reuseAddress: true,
-  socketTimeout: 3000,
-}, err => {
+class Linger {
+  on: boolean = true
+  linger: number = 10
+}
+class TCPExtraOptions {
+  keepAlive: boolean = true
+  OOBInline: boolean = true
+  TCPNoDelay: boolean = true
+  socketLinger: Object = new Linger()
+  receiveBufferSize: number = 1000
+  sendBufferSize: number = 1000
+  reuseAddress: boolean = true
+  socketTimeout: number = 3000
+}
+tcpServer.setExtraOptions(new TCPExtraOptions(), (err: string) => {
   if (err) {
     console.log('setExtraOptions fail');
     return;
@@ -1967,26 +2173,36 @@ setExtraOptions(options: TCPExtraOptions): Promise\<void\>
 **示例：**
 
 ```js
-let tcpServer = socket.constructTCPSocketServerInstance();
-let promiseListen = tcpServer.listen({ address: '192.168.xx.xxx', port: xxxx, family: 1 });
+let tcpServer: socket = socket.constructTCPSocketServerInstance();
+class NetAddress {
+  address: string = '192.168.xx.xxx'
+  port: number = 8080
+  family: number = 1
+}
+let promiseListen: socket = tcpServer.listen(new NetAddress());
 promiseListen.then(() => {
   console.log('listen success');
-}).catch(err => {
+}).catch((err: string) => {
   console.log('listen fail');
 });
-let promise = tcpServer.setExtraOptions({
-  keepAlive: true,
-  OOBInline: true,
-  TCPNoDelay: true,
-  socketLinger: { on: true, linger: 10 },
-  receiveBufferSize: 1000,
-  sendBufferSize: 1000,
-  reuseAddress: true,
-  socketTimeout: 3000,
-});
+class Linger {
+  on: boolean = true
+  linger: number = 10
+}
+class TCPExtraOptions {
+  keepAlive: boolean = true
+  OOBInline: boolean = true
+  TCPNoDelay: boolean = true
+  socketLinger: Object = new Linger()
+  receiveBufferSize: number = 1000
+  sendBufferSize: number = 1000
+  reuseAddress: boolean = true
+  socketTimeout: number = 3000
+}
+let promise: socket = tcpServer.setExtraOptions(new TCPExtraOptions());
 promise.then(() => {
   console.log('setExtraOptions success');
-}).catch(err => {
+}).catch((err: string) => {
   console.log('setExtraOptions fail');
 });
 ```
@@ -2018,8 +2234,8 @@ on(type: 'connect', callback: Callback\<TCPSocketConnection\>): void
 **示例：**
 
 ```js
-let tcpServer = socket.constructTCPSocketServerInstance();
-tcpServer.on('connect', function(data) {
+let tcpServer: socket = socket.constructTCPSocketServerInstance();
+tcpServer.on('connect', (data: string) => {
   console.log(JSON.stringify(data))
 });
 ```
@@ -2051,8 +2267,8 @@ off(type: 'connect', callback?: Callback\<TCPSocketConnection\>): void
 **示例：**
 
 ```js
-let tcpServer = socket.constructTCPSocketServerInstance();
-let callback = data => {
+let tcpServer: socket = socket.constructTCPSocketServerInstance();
+let callback = (data: string) => {
   console.log('on connect message: ' + JSON.stringify(data));
 }
 tcpServer.on('connect', callback);
@@ -2088,8 +2304,8 @@ on(type: 'error', callback: ErrorCallback): void
 **示例：**
 
 ```js
-let tcpServer = socket.constructTCPSocketServerInstance();
-tcpServer.on('error', err => {
+let tcpServer: socket = socket.constructTCPSocketServerInstance();
+tcpServer.on('error', (err: string) => {
   console.log("on error, err:" + JSON.stringify(err))
 });
 ```
@@ -2121,8 +2337,8 @@ off(type: 'error', callback?: ErrorCallback): void
 **示例：**
 
 ```js
-let tcpServer = socket.constructTCPSocketServerInstance();
-let callback = err => {
+let tcpServer: socket = socket.constructTCPSocketServerInstance();
+let callback = (err: string) => {
   console.log("on error, err:" + JSON.stringify(err));
 }
 tcpServer.on('error', callback);
@@ -2177,12 +2393,15 @@ send(options: TCPSendOptions, callback: AsyncCallback\<void\>): void
 **示例：**
 
 ```js
-let tcpServer = socket.constructTCPSocketServerInstance();
-tcpServer.on('connect', function(client) {
-  client.send({data: 'Hello, client!'}, err => {
+class Data {
+  data: string = 'Hello, client!'
+}
+let tcpServer: socket = socket.constructTCPSocketServerInstance();
+tcpServer.on('connect', (client: socket) => {
+  client.send(new Data(), (err: string) => {
     if (err) {
-        console.log('send fail');
-        return;
+      console.log('send fail');
+      return;
     }
     console.log('send success');
   });
@@ -2225,12 +2444,15 @@ send(options: TCPSendOptions): Promise\<void\>
 **示例：**
 
 ```js
-let tcpServer = socket.constructTCPSocketServerInstance();
-tcpServer.on('connect', function(client) {
-  let promise = client.send({data: 'Hello, client!'});
+class Data {
+  data: string = 'Hello, client!'
+}
+let tcpServer: socket = socket.constructTCPSocketServerInstance();
+tcpServer.on('connect', (client: socket) => {
+  let promise: socket = client.send(new Data());
   promise.then(() => {
     console.log('send success');
-  }).catch(err => {
+  }).catch((err: string) => {
     console.log('send fail');
   });
 });
@@ -2263,9 +2485,9 @@ close(callback: AsyncCallback\<void\>): void
 **示例：**
 
 ```js
-let tcpServer = socket.constructTCPSocketServerInstance();
-tcpServer.on('connect', function(client) {
-  client.close(err => {
+let tcpServer: socket = socket.constructTCPSocketServerInstance();
+tcpServer.on('connect', (client: socket) => {
+  client.close((err: string) => {
     if (err) {
       console.log('close fail');
       return;
@@ -2301,12 +2523,12 @@ close(): Promise\<void\>
 **示例：**
 
 ```js
-let tcpServer = socket.constructTCPSocketServerInstance();
-tcpServer.on('connect', function(client) {
-  let promise = client.close();
+let tcpServer: socket = socket.constructTCPSocketServerInstance();
+tcpServer.on('connect', (client: socket) => {
+  let promise: socket = client.close();
   promise.then(() => {
   	console.log('close success');
-  }).catch(err => {
+  }).catch((err: string) => {
   	console.log('close fail');
   });
 });
@@ -2343,9 +2565,9 @@ getRemoteAddress(callback: AsyncCallback\<NetAddress\>): void
 **示例：**
 
 ```js
-let tcpServer = socket.constructTCPSocketServerInstance();
-tcpServer.on('connect', function(client) {
-  client.getRemoteAddress((err, data) => {
+let tcpServer: socket = socket.constructTCPSocketServerInstance();
+tcpServer.on('connect', (client: socket) => {
+  client.getRemoteAddress((err: string, data: string) => {
     if (err) {
       console.log('getRemoteAddress fail');
       return;
@@ -2385,12 +2607,12 @@ getRemoteAddress(): Promise\<NetAddress\>
 **示例：**
 
 ```js
-let tcpServer = socket.constructTCPSocketServerInstance();
-tcpServer.on('connect', function(client) {
-  let promise = client.getRemoteAddress();
+let tcpServer: socket = socket.constructTCPSocketServerInstance();
+tcpServer.on('connect', (client: socket) => {
+  let promise: socket = client.getRemoteAddress();
   promise.then(() => {
     console.log('getRemoteAddress success');
-  }).catch(err => {
+  }).catch((err: string) => {
     console.log('getRemoteAddress fail');
   });
 });
@@ -2420,11 +2642,11 @@ on(type: 'message', callback: Callback<{message: ArrayBuffer, remoteInfo: Socket
 **示例：**
 
 ```js
-let tcpServer = socket.constructTCPSocketServerInstance();
-tcpServer.on('connect', function(client) {
-  client.on('message', value => {
+let tcpServer: socket = socket.constructTCPSocketServerInstance();
+tcpServer.on('connect', (client: socket) => {
+  client.on('message', (value: Object) => {
     let messageView = '';
-    for (var i = 0; i < value.message.length; i++) {
+    for (let i = 0; i < value.message.length; i++) {
       let messages = value.message[i];
       let message = String.fromCharCode(messages);
       messageView += message;
@@ -2462,9 +2684,9 @@ off(type: 'message', callback?: Callback<{message: ArrayBuffer, remoteInfo: Sock
 **示例：**
 
 ```js
-let callback = value => {
+let callback = (value: Object) => {
   let messageView = '';
-  for (var i = 0; i < value.message.length; i++) {
+  for (let i = 0; i < value.message.length; i++) {
     let messages = value.message[i];
     let message = String.fromCharCode(messages);
     messageView += message;
@@ -2472,8 +2694,8 @@ let callback = value => {
   console.log('on message message: ' + JSON.stringify(messageView));
   console.log('remoteInfo: ' + JSON.stringify(value.remoteInfo));
 }
-let tcpServer = socket.constructTCPSocketServerInstance();
-tcpServer.on('connect', function(client) {
+let tcpServer: socket = socket.constructTCPSocketServerInstance();
+tcpServer.on('connect', (client: socket) => {
   client.on('message', callback);
   // 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
   client.off('message', callback);
@@ -2505,8 +2727,8 @@ on(type: 'close', callback: Callback\<void\>): void
 **示例：**
 
 ```js
-let tcpServer = socket.constructTCPSocketServerInstance();
-tcpServer.on('connect', function(client) {
+let tcpServer: socket = socket.constructTCPSocketServerInstance();
+tcpServer.on('connect', (client: socket) => {
   client.on('close', () => {
     console.log("on close success")
   });
@@ -2543,8 +2765,8 @@ off(type: 'close', callback?: Callback\<void\>): void
 let callback = () => {
   console.log("on close success");
 }
-let tcpServer = socket.constructTCPSocketServerInstance();
-tcpServer.on('connect', function(client) {
+let tcpServer: socket = socket.constructTCPSocketServerInstance();
+tcpServer.on('connect', (client: socket) => {
   client.on('close', callback);
   // 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
   client.off('close', callback);
@@ -2576,9 +2798,9 @@ on(type: 'error', callback: ErrorCallback): void
 **示例：**
 
 ```js
-let tcpServer = socket.constructTCPSocketServerInstance();
-tcpServer.on('connect', function(client) {
-  client.on('error', err => {
+let tcpServer: socket = socket.constructTCPSocketServerInstance();
+tcpServer.on('connect', (client: socket) => {
+  client.on('error', (err: string) => {
     console.log("on error, err:" + JSON.stringify(err))
   });
 });
@@ -2611,11 +2833,11 @@ off(type: 'error', callback?: ErrorCallback): void
 **示例：**
 
 ```js
-let callback = err => {
+let callback = (err: string) => {
   console.log("on error, err:" + JSON.stringify(err));
 }
-let tcpServer = socket.constructTCPSocketServerInstance();
-tcpServer.on('connect', function(client) {
+let tcpServer: socket = socket.constructTCPSocketServerInstance();
+tcpServer.on('connect', (client: socket) => {
   client.on('error', callback);
   // 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
   client.off('error', callback);
@@ -2646,7 +2868,7 @@ constructTLSSocketInstance(): TLSSocket
 **示例：**
 
 ```js
-let tls = socket.constructTLSSocketInstance();
+let tls: socket = socket.constructTLSSocketInstance();
 ```
 
 ## TLSSocket<sup>9+</sup>
@@ -2682,7 +2904,12 @@ bind(address: NetAddress, callback: AsyncCallback\<void\>): void
 **示例：**
 
 ```js
-tls.bind({ address: '192.168.xx.xxx', port: xxxx, family: 1 }, err => {
+class NetAddress {
+  address: string = '192.168.xx.xxx'
+  port: number = 8080
+  family: number = 1
+}
+tls.bind(new NetAddress(), (err: string) => {
   if (err) {
     console.log('bind fail');
     return;
@@ -2725,10 +2952,15 @@ bind(address: NetAddress): Promise\<void\>
 **示例：**
 
 ```js
-let promise = tls.bind({ address: '192.168.xx.xxx', port: xxxx, family: 1 });
+class NetAddress {
+  address: string = '192.168.xx.xxx'
+  port: number = 8080
+  family: number = 1
+}
+let promise: socket = tls.bind(new NetAddress());
 promise.then(() => {
   console.log('bind success');
-}).catch(err => {
+}).catch((err: string) => {
   console.log('bind fail');
 });
 ```
@@ -2757,14 +2989,19 @@ getState(callback: AsyncCallback\<SocketStateBase\>): void
 **示例：**
 
 ```js
-let promise = tls.bind({ address: '192.168.xx.xxx', port: xxxx, family: 1 }, err => {
+class NetAddress {
+  address: string = '192.168.xx.xxx'
+  port: number = 8080
+  family: number = 1
+}
+let promise: socket = tls.bind(new NetAddress(), (err: string) => {
   if (err) {
     console.log('bind fail');
     return;
   }
   console.log('bind success');
 });
-tls.getState((err, data) => {
+tls.getState((err: string, data: string) => {
   if (err) {
     console.log('getState fail');
     return;
@@ -2797,16 +3034,21 @@ getState(): Promise\<SocketStateBase\>
 **示例：**
 
 ```js
-let promiseBind = tls.bind({ address: '192.168.xx.xxx', port: xxxx, family: 1 });
+class NetAddress {
+  address: string = '192.168.xx.xxx'
+  port: number = 8080
+  family: number = 1
+}
+let promiseBind: socket = tls.bind(new NetAddress());
 promiseBind.then(() => {
   console.log('bind success');
-}).catch((err) => {
+}).catch((err: string) => {
   console.log('bind fail');
 });
-let promise = tls.getState();
+let promise: socket = tls.getState();
 promise.then(() => {
   console.log('getState success');
-}).catch(err => {
+}).catch((err: string) => {
   console.log('getState fail');
 });
 ```
@@ -2831,30 +3073,39 @@ setExtraOptions(options: TCPExtraOptions, callback: AsyncCallback\<void\>): void
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
 | 401     | Parameter error.               |
-| 2303188 | Socket operation on non-socket.|
 | 2300002 | System internal error.         |
+| 2303188 | Socket operation on non-socket.|
 
 **示例：**
 
 ```js
-tls.bind({ address: '192.168.xx.xxx', port: xxxx, family: 1 }, err => {
+class NetAddress {
+  address: string = '192.168.xx.xxx'
+  port: number = 8080
+  family: number = 1
+}
+tls.bind(new NetAddress(), (err: string) => {
   if (err) {
     console.log('bind fail');
     return;
   }
   console.log('bind success');
 });
-
-tls.setExtraOptions({
-  keepAlive: true,
-  OOBInline: true,
-  TCPNoDelay: true,
-  socketLinger: { on: true, linger: 10 },
-  receiveBufferSize: 1000,
-  sendBufferSize: 1000,
-  reuseAddress: true,
-  socketTimeout: 3000,
-}, err => {
+class Linger {
+  on: boolean = true
+  linger: number = 10
+}
+class TCPExtraOptions {
+  keepAlive: boolean = true
+  OOBInline: boolean = true
+  TCPNoDelay: boolean = true
+  socketLinger: Object = new Linger()
+  receiveBufferSize: number = 1000
+  sendBufferSize: number = 1000
+  reuseAddress: boolean = true
+  socketTimeout: number = 3000
+}
+tls.setExtraOptions(new TCPExtraOptions(), (err: string) => {
   if (err) {
     console.log('setExtraOptions fail');
     return;
@@ -2894,26 +3145,36 @@ setExtraOptions(options: TCPExtraOptions): Promise\<void\>
 **示例：**
 
 ```js
-tls.bind({ address: '192.168.xx.xxx', port: xxxx, family: 1 }, err => {
+class NetAddress {
+  address: string = '192.168.xx.xxx'
+  port: number = 8080
+  family: number = 1
+}
+tls.bind(new NetAddress(), (err: string) => {
   if (err) {
     console.log('bind fail');
     return;
   }
   console.log('bind success');
 });
-let promise = tls.setExtraOptions({
-  keepAlive: true,
-  OOBInline: true,
-  TCPNoDelay: true,
-  socketLinger: { on: true, linger: 10 },
-  receiveBufferSize: 1000,
-  sendBufferSize: 1000,
-  reuseAddress: true,
-  socketTimeout: 3000,
-});
+class Linger {
+  on: boolean = true
+  linger: number = 10
+}
+class TCPExtraOptions {
+  keepAlive: boolean = true
+  OOBInline: boolean = true
+  TCPNoDelay: boolean = true
+  socketLinger: Object = new Linger()
+  receiveBufferSize: number = 1000
+  sendBufferSize: number = 1000
+  reuseAddress: boolean = true
+  socketTimeout: number = 3000
+}
+let promise: socket = tls.setExtraOptions(new TCPExtraOptions());
 promise.then(() => {
   console.log('setExtraOptions success');
-}).catch(err => {
+}).catch((err: string) => {
   console.log('setExtraOptions fail');
 });
 ```
@@ -2936,10 +3197,11 @@ on(type: 'message', callback: Callback<{message: ArrayBuffer, remoteInfo: Socket
 **示例：**
 
 ```js
-let tls = socket.constructTLSSocketInstance();
+import socket from '@ohos.net.socket';
+let tls: socket = socket.constructTLSSocketInstance();
 let messageView = '';
-tls.on('message', value => {
-  for (var i = 0; i < value.message.length; i++) {
+tls.on('message', (value: Object) => {
+  for (let i = 0; i < value.message.length; i++) {
     let messages = value.message[i]
     let message = String.fromCharCode(messages);
     messageView += message;
@@ -2970,10 +3232,11 @@ off(type: 'message', callback?: Callback\<{message: ArrayBuffer, remoteInfo: Soc
 **示例：**
 
 ```js
-let tls = socket.constructTLSSocketInstance();
+import socket from '@ohos.net.socket';
+let tls: socket = socket.constructTLSSocketInstance();
 let messageView = '';
-let callback = value => {
-  for (var i = 0; i < value.message.length; i++) {
+let callback = (value: Object) => {
+  for (let i = 0; i < value.message.length; i++) {
     let messages = value.message[i]
     let message = String.fromCharCode(messages);
     messageView += message;
@@ -3003,7 +3266,8 @@ on(type: 'connect' | 'close', callback: Callback\<void\>): void
 **示例：**
 
 ```js
-let tls = socket.constructTLSSocketInstance();
+import socket from '@ohos.net.socket';
+let tls: socket = socket.constructTLSSocketInstance();
 tls.on('connect', () => {
   console.log("on connect success")
 });
@@ -3033,7 +3297,8 @@ off(type: 'connect' | 'close', callback?: Callback\<void\>): void
 **示例：**
 
 ```js
-let tls = socket.constructTLSSocketInstance();
+import socket from '@ohos.net.socket';
+let tls: socket = socket.constructTLSSocketInstance();
 let callback1 = () => {
   console.log("on connect success");
 }
@@ -3067,8 +3332,9 @@ on(type: 'error', callback: ErrorCallback): void
 **示例：**
 
 ```js
-let tls = socket.constructTLSSocketInstance();
-tls.on('error', err => {
+import socket from '@ohos.net.socket';
+let tls: socket = socket.constructTLSSocketInstance();
+tls.on('error', (err: string) => {
   console.log("on error, err:" + JSON.stringify(err))
 });
 ```
@@ -3094,8 +3360,9 @@ off(type: 'error', callback?: ErrorCallback): void
 **示例：**
 
 ```js
-let tls = socket.constructTLSSocketInstance();
-let callback = err => {
+import socket from '@ohos.net.socket';
+let tls: socket = socket.constructTLSSocketInstance();
+let callback = (err: string) => {
   console.log("on error, err:" + JSON.stringify(err));
 }
 tls.on('error', callback);
@@ -3141,57 +3408,56 @@ connect(options: TLSConnectOptions, callback: AsyncCallback\<void\>): void
 **示例：**
 
 ```js
-let tlsTwoWay = socket.constructTLSSocketInstance(); // Two way authentication
-tlsTwoWay.bind({ address: '192.168.xxx.xxx', port: 8080, family: 1 }, err => {
+let tlsTwoWay: socket = socket.constructTLSSocketInstance(); // Two way authentication
+class NetAddress {
+  address: string = '192.168.xx.xxx'
+  port: number = 8080
+  family: number = 1
+}
+tlsTwoWay.bind(new NetAddress(), (err: string) => {
   if (err) {
     console.log('bind fail');
     return;
   }
   console.log('bind success');
 });
-let options = {
-  ALPNProtocols: ["spdy/1", "http/1.1"],
-  address: {
-    address: "192.168.xx.xxx",
-    port: 8080,
-    family: 1,
-  },
-  secureOptions: {
-    key: "xxxx",
-    cert: "xxxx",
-    ca: ["xxxx"],
-    password: "xxxx",
-    protocols: [socket.Protocol.TLSv12],
-    useRemoteCipherPrefer: true,
-    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
-    cipherSuite: "AES256-SHA256",
-  },
+class SecureOptions {
+  key: string = "xxxx"
+  cert: string = "xxxx"
+  ca: string[] = ["xxxx"]
+  password: string = "xxxx"
+  protocols: enum = socket.Protocol.TLSv12
+  useRemoteCipherPrefer: boolean = true
+  signatureAlgorithms: string = "rsa_pss_rsae_sha256:ECDSA+SHA256"
+  cipherSuite: string = "AES256-SHA256"
+}
+class Options {
+  ALPNProtocols: string[] = ["spdy/1", "http/1.1"]
+  address: Object = new NetAddress()
+  secureOptions: Object = new SecureOptions()
 };
-tlsTwoWay.connect(options, (err, data) => {
+tlsTwoWay.connect(new Options(), (err: string, data: string) => {
   console.error("connect callback error" + err);
   console.log(JSON.stringify(data));
 });
 
-let tlsOneWay = socket.constructTLSSocketInstance(); // One way authentication
-tlsOneWay.bind({ address: '192.168.xxx.xxx', port: 8080, family: 1 }, err => {
+let tlsOneWay: socket = socket.constructTLSSocketInstance(); // One way authentication
+tlsOneWay.bind(new NetAddress(), (err: string) => {
   if (err) {
     console.log('bind fail');
     return;
   }
   console.log('bind success');
 });
-let oneWayOptions = {
-  address: {
-    address: "192.168.xxx.xxx",
-    port: 8080,
-    family: 1,
-  },
-  secureOptions: {
-    ca: ["xxxx", "xxxx"],
-    cipherSuite: "AES256-SHA256",
-  },
+class SecureOptions{
+    ca: string[] = ["xxxx", "xxxx"]
+    cipherSuite: string = "AES256-SHA256"
+}
+class OneWayOptions {
+  address: Object = new NetAddress()
+  secureOptions: Object = new SecureOptions()
 };
-tlsOneWay.connect(oneWayOptions, (err, data) => {
+tlsOneWay.connect(new OneWayOptions(), (err: string, data: string) => {
   console.error("connect callback error" + err);
   console.log(JSON.stringify(data));
 });
@@ -3240,60 +3506,59 @@ connect(options: TLSConnectOptions): Promise\<void\>
 **示例：**
 
 ```js
-let tlsTwoWay = socket.constructTLSSocketInstance(); // Two way authentication
-tlsTwoWay.bind({ address: '192.168.xxx.xxx', port: 8080, family: 1 }, err => {
+let tlsTwoWay: socket = socket.constructTLSSocketInstance(); // Two way authentication
+class NetAddress {
+  address: string = '192.168.xx.xxx'
+  port: number = 8080
+  family: number = 1
+}
+tlsTwoWay.bind(new NetAddress(), (err: string) => {
   if (err) {
     console.log('bind fail');
     return;
   }
   console.log('bind success');
 });
-let options = {
-  ALPNProtocols: ["spdy/1", "http/1.1"],
-  address: {
-    address: "xxxx",
-    port: 8080,
-    family: 1,
-  },
-  secureOptions: {
-    key: "xxxx",
-    cert: "xxxx",
-    ca: ["xxxx"],
-    password: "xxxx",
-    protocols: [socket.Protocol.TLSv12],
-    useRemoteCipherPrefer: true,
-    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
-    cipherSuite: "AES256-SHA256",
-  },
+class SecureOptions {
+  key: string = "xxxx"
+  cert: string = "xxxx"
+  ca: string[] = ["xxxx"]
+  password: string = "xxxx"
+  protocols: enum = socket.Protocol.TLSv12
+  useRemoteCipherPrefer: boolean = true
+  signatureAlgorithms: string = "rsa_pss_rsae_sha256:ECDSA+SHA256"
+  cipherSuite: string = "AES256-SHA256"
+}
+class Options {
+  ALPNProtocols: string[] = ["spdy/1", "http/1.1"]
+  address: Object = new NetAddress()
+  secureOptions: Object = new SecureOptions()
 };
-tlsTwoWay.connect(options).then(data => {
+tlsTwoWay.connect(new Options()).then((data: string) => {
   console.log(JSON.stringify(data));
-}).catch(err => {
+}).catch((err: string) => {
   console.error(err);
 });
 
-let tlsOneWay = socket.constructTLSSocketInstance(); // One way authentication
-tlsOneWay.bind({ address: '192.168.xxx.xxx', port: 8080, family: 1 }, err => {
+let tlsOneWay: socket = socket.constructTLSSocketInstance(); // One way authentication
+tlsOneWay.bind(new NetAddress(), (err: string) => {
   if (err) {
     console.log('bind fail');
     return;
   }
   console.log('bind success');
 });
-let oneWayOptions = {
-  address: {
-    address: "192.168.xxx.xxx",
-    port: 8080,
-    family: 1,
-  },
-  secureOptions: {
-    ca: ["xxxx", "xxxx"],
-    cipherSuite: "AES256-SHA256",
-  },
+class SecureOptions{
+  ca: string[] = ["xxxx", "xxxx"]
+  cipherSuite: string = "AES256-SHA256"
+}
+class OneWayOptions {
+  address: Object = new NetAddress()
+  secureOptions: Object = new SecureOptions()
 };
-tlsOneWay.connect(oneWayOptions).then(data => {
+tlsOneWay.connect(new OneWayOptions()).then((data: string) => {
   console.log(JSON.stringify(data));
-}).catch(err => {
+}).catch((err: string) => {
   console.error(err);
 });
 ```
@@ -3322,7 +3587,7 @@ getRemoteAddress(callback: AsyncCallback\<NetAddress\>): void
 **示例：**
 
 ```js
-tls.getRemoteAddress((err, data) => {
+tls.getRemoteAddress((err: string, data: string) => {
   if (err) {
     console.log('getRemoteAddress fail');
     return;
@@ -3355,10 +3620,10 @@ getRemoteAddress(): Promise\<NetAddress\>
 **示例：**
 
 ```js
-let promise = tls.getRemoteAddress();
+let promise: socket = tls.getRemoteAddress();
 promise.then(() => {
   console.log('getRemoteAddress success');
-}).catch(err => {
+}).catch((err: string) => {
   console.log('getRemoteAddress fail');
 });
 ```
@@ -3388,7 +3653,7 @@ getCertificate(callback: AsyncCallback\<[X509CertRawData](#x509certrawdata9)\>):
 **示例：**
 
 ```js
-tls.getCertificate((err, data) => {
+tls.getCertificate((err: string, data: string) => {
   if (err) {
     console.log("getCertificate callback error = " + err);
   } else {
@@ -3422,9 +3687,9 @@ getCertificate():Promise\<[X509CertRawData](#x509certrawdata9)\>
 **示例：**
 
 ```js
-tls.getCertificate().then(data => {
+tls.getCertificate().then((data: string) => {
   console.log(data);
-}).catch(err => {
+}).catch((err: string) => {
   console.error(err);
 });
 ```
@@ -3453,7 +3718,7 @@ getRemoteCertificate(callback: AsyncCallback\<[X509CertRawData](#x509certrawdata
 **示例：**
 
 ```js
-tls.getRemoteCertificate((err, data) => {
+tls.getRemoteCertificate((err: string, data: string) => {
   if (err) {
     console.log("getRemoteCertificate callback error = " + err);
   } else {
@@ -3486,9 +3751,9 @@ getRemoteCertificate():Promise\<[X509CertRawData](#x509certrawdata9)\>
 **示例：**
 
 ```js
-tls.getRemoteCertificate().then(data => {
+tls.getRemoteCertificate().then((data: string) => {
   console.log(data);
-}).catch(err => {
+}).catch((err: string) => {
   console.error(err);
 });
 ```
@@ -3518,7 +3783,7 @@ getProtocol(callback: AsyncCallback\<string\>): void
 **示例：**
 
 ```js
-tls.getProtocol((err, data) => {
+tls.getProtocol((err: string, data: string) => {
   if (err) {
     console.log("getProtocol callback error = " + err);
   } else {
@@ -3552,9 +3817,9 @@ getProtocol():Promise\<string\>
 **示例：**
 
 ```js
-tls.getProtocol().then(data => {
+tls.getProtocol().then((data: string) => {
   console.log(data);
-}).catch(err => {
+}).catch((err: string) => {
   console.error(err);
 });
 ```
@@ -3585,7 +3850,7 @@ getCipherSuite(callback: AsyncCallback\<Array\<string\>\>): void
 **示例：**
 
 ```js
-tls.getCipherSuite((err, data) => {
+tls.getCipherSuite((err: string, data: string) => {
   if (err) {
     console.log("getCipherSuite callback error = " + err);
   } else {
@@ -3620,9 +3885,9 @@ getCipherSuite(): Promise\<Array\<string\>\>
 **示例：**
 
 ```js
-tls.getCipherSuite().then(data => {
+tls.getCipherSuite().then((data: string) => {
   console.log('getCipherSuite success:' + JSON.stringify(data));
-}).catch(err => {
+}).catch((err: string) => {
   console.error(err);
 });
 ```
@@ -3651,7 +3916,7 @@ getSignatureAlgorithms(callback: AsyncCallback\<Array\<string\>\>): void
 **示例：**
 
 ```js
-tls.getSignatureAlgorithms((err, data) => {
+tls.getSignatureAlgorithms((err: string, data: string) => {
   if (err) {
     console.log("getSignatureAlgorithms callback error = " + err);
   } else {
@@ -3684,9 +3949,9 @@ getSignatureAlgorithms(): Promise\<Array\<string\>\>
 **示例：**
 
 ```js
-tls.getSignatureAlgorithms().then(data => {
+tls.getSignatureAlgorithms().then((data: string) => {
   console.log("getSignatureAlgorithms success" + data);
-}).catch(err => {
+}).catch((err: string) => {
   console.error(err);
 });
 ```
@@ -3720,7 +3985,7 @@ send(data: string, callback: AsyncCallback\<void\>): void
 **示例：**
 
 ```js
-tls.send("xxxx", (err) => {
+tls.send("xxxx", (err: string) => {
   if (err) {
     console.log("send callback error = " + err);
   } else {
@@ -3765,7 +4030,7 @@ send(data: string): Promise\<void\>
 ```js
 tls.send("xxxx").then(() => {
   console.log("send success");
-}).catch(err => {
+}).catch((err: string) => {
   console.error(err);
 });
 ```
@@ -3797,7 +4062,7 @@ close(callback: AsyncCallback\<void\>): void
 **示例：**
 
 ```js
-tls.close((err) => {
+tls.close((err: string) => {
   if (err) {
     console.log("close callback error = " + err);
   } else {
@@ -3835,7 +4100,7 @@ close(): Promise\<void\>
 ```js
 tls.close().then(() => {
   console.log("close success");
-}).catch((err) => {
+}).catch((err: string) => {
   console.error(err);
 });
 ```
@@ -3903,7 +4168,7 @@ constructTLSSocketServerInstance(): TLSSocketServer
 **示例：**
 
 ```js
-let tlsServer = socket.constructTLSSocketServerInstance();
+let tlsServer: socket = socket.constructTLSSocketServerInstance();
 ```
 
 ## TLSSocketServer<sup>10+</sup>
@@ -3947,26 +4212,28 @@ listen(options: TLSConnectOptions, callback: AsyncCallback\<void\>): void
 **示例：**
 
 ```js
-let tlsServer = socket.constructTLSSocketServerInstance();
-let options = {
-  ALPNProtocols: ["spdy/1", "http/1.1"],
-  address: {
-    address: "192.168.xx.xxx",
-    port: 8080,
-    family: 1,
-  },
-  secureOptions: {
-    key: "xxxx",
-    cert: "xxxx",
-    ca: ["xxxx"],
-    password: "xxxx",
-    protocols: [socket.Protocol.TLSv12],
-    useRemoteCipherPrefer: true,
-    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
-    cipherSuite: "AES256-SHA256",
-  },
-};
-tlsServer.listen(options, err => {
+let tlsServer: socket = socket.constructTLSSocketServerInstance();
+class NetAddress {
+  address: string = '192.168.xx.xxx'
+  port: number = 8080
+  family: number = 1
+}
+class SecureOptions {
+  key: string = "xxxx"
+  cert: string = "xxxx"
+  ca: string[] = ["xxxx"]
+  password: string = "xxxx"
+  protocols: enum = socket.Protocol.TLSv12
+  useRemoteCipherPrefer: boolean = true
+  signatureAlgorithms: string = "rsa_pss_rsae_sha256:ECDSA+SHA256"
+  cipherSuite: string = "AES256-SHA256"
+}
+class Options {
+  ALPNProtocols: string[] = ["spdy/1", "http/1.1"]
+  address: Object = new NetAddress()
+  secureOptions: Object = new SecureOptions()
+}
+tlsServer.listen(new Options(), (err: string) => {
   console.log("listen callback error" + err);
 });
 ```
@@ -4013,28 +4280,30 @@ listen(options: TLSConnectOptions): Promise\<void\>
 **示例：**
 
 ```js
-let tlsServer = socket.constructTLSSocketServerInstance();
-let options = {
-  ALPNProtocols: ["spdy/1", "http/1.1"],
-  address: {
-    address: "xxxx",
-    port: 8080,
-    family: 1,
-  },
-  secureOptions: {
-    key: "xxxx",
-    cert: "xxxx",
-    ca: ["xxxx"],
-    password: "xxxx",
-    protocols: [socket.Protocol.TLSv12],
-    useRemoteCipherPrefer: true,
-    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
-    cipherSuite: "AES256-SHA256",
-  },
-};
-tlsServer.listen(options).then(() => {
+let tlsServer: socket = socket.constructTLSSocketServerInstance();
+class NetAddress {
+  address: string = '192.168.xx.xxx'
+  port: number = 8080
+  family: number = 1
+}
+class SecureOptions {
+  key: string = "xxxx"
+  cert: string = "xxxx"
+  ca: string[] = ["xxxx"]
+  password: string = "xxxx"
+  protocols: enum = socket.Protocol.TLSv12
+  useRemoteCipherPrefer: boolean = true
+  signatureAlgorithms: string = "rsa_pss_rsae_sha256:ECDSA+SHA256"
+  cipherSuite: string = "AES256-SHA256"
+}
+class Options {
+  ALPNProtocols: string[] = ["spdy/1", "http/1.1"]
+  address: Object = new NetAddress()
+  secureOptions: Object = new SecureOptions()
+}
+tlsServer.listen(new Options()).then(() => {
   console.log("listen callback success");
-}).catch(err => {
+}).catch((err: string) => {
   console.log(err);
 });
 ```
@@ -4067,31 +4336,33 @@ getState(callback: AsyncCallback\<SocketStateBase\>): void
 **示例：**
 
 ```js
-let tlsServer = socket.constructTLSSocketServerInstance();
-let options = {
-  ALPNProtocols: ["spdy/1", "http/1.1"],
-  address: {
-    address: "192.168.xx.xxx",
-    port: 8080,
-    family: 1,
-  },
-  secureOptions: {
-    key: "xxxx",
-    cert: "xxxx",
-    ca: ["xxxx"],
-    password: "xxxx",
-    protocols: [socket.Protocol.TLSv12],
-    useRemoteCipherPrefer: true,
-    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
-    cipherSuite: "AES256-SHA256",
-  },
-};
-tlsServer.listen(options, err => {
+let tlsServer: socket = socket.constructTLSSocketServerInstance();
+class NetAddress {
+  address: string = '192.168.xx.xxx'
+  port: number = 8080
+  family: number = 1
+}
+class SecureOptions {
+  key: string = "xxxx"
+  cert: string = "xxxx"
+  ca: string[] = ["xxxx"]
+  password: string = "xxxx"
+  protocols: enum = socket.Protocol.TLSv12
+  useRemoteCipherPrefer: boolean = true
+  signatureAlgorithms: string = "rsa_pss_rsae_sha256:ECDSA+SHA256"
+  cipherSuite: string = "AES256-SHA256"
+}
+class Options {
+  ALPNProtocols: string[] = ["spdy/1", "http/1.1"]
+  address: Object = new NetAddress()
+  secureOptions: Object = new SecureOptions()
+}
+tlsServer.listen(new Options(), (err: string) => {
   console.log("listen callback error" + err);
   return;
 });
 
-tlsServer.getState((err, data) => {
+tlsServer.getState((err: string, data: string) => {
   if (err) {
     console.log('getState fail');
     return;
@@ -4127,35 +4398,37 @@ getState(): Promise\<SocketStateBase\>
 **示例：**
 
 ```js
-let tlsServer = socket.constructTLSSocketServerInstance();
-let options = {
-  ALPNProtocols: ["spdy/1", "http/1.1"],
-  address: {
-    address: "xxxx",
-    port: 8080,
-    family: 1,
-  },
-  secureOptions: {
-    key: "xxxx",
-    cert: "xxxx",
-    ca: ["xxxx"],
-    password: "xxxx",
-    protocols: [socket.Protocol.TLSv12],
-    useRemoteCipherPrefer: true,
-    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
-    cipherSuite: "AES256-SHA256",
-  },
-};
-tlsServer.listen(options).then(() => {
+let tlsServer: socket = socket.constructTLSSocketServerInstance();
+class NetAddress {
+  address: string = '192.168.xx.xxx'
+  port: number = 8080
+  family: number = 1
+}
+class SecureOptions {
+  key: string = "xxxx"
+  cert: string = "xxxx"
+  ca: string[] = ["xxxx"]
+  password: string = "xxxx"
+  protocols: enum = socket.Protocol.TLSv12
+  useRemoteCipherPrefer: boolean = true
+  signatureAlgorithms: string = "rsa_pss_rsae_sha256:ECDSA+SHA256"
+  cipherSuite: string = "AES256-SHA256"
+}
+class Options {
+  ALPNProtocols: string[] = ["spdy/1", "http/1.1"]
+  address: Object = new NetAddress()
+  secureOptions: Object = new SecureOptions()
+}
+tlsServer.listen(new Options()).then(() => {
   console.log("listen callback success");
-}).catch(err => {
+}).catch((err: string) => {
   console.log(err);
   return;
 });
-let promise = tlsServer.getState();
+let promise: socket = tlsServer.getState();
 promise.then(() => {
   console.log('getState success');
-}).catch(err => {
+}).catch((err: string) => {
   console.log('getState fail');
 });
 ```
@@ -4189,39 +4462,46 @@ setExtraOptions(options: TCPExtraOptions, callback: AsyncCallback\<void\>): void
 **示例：**
 
 ```js
-let tlsServer = socket.constructTLSSocketServerInstance();
-let options = {
-  ALPNProtocols: ["spdy/1", "http/1.1"],
-  address: {
-    address: "192.168.xx.xxx",
-    port: 8080,
-    family: 1,
-  },
-  secureOptions: {
-    key: "xxxx",
-    cert: "xxxx",
-    ca: ["xxxx"],
-    password: "xxxx",
-    protocols: [socket.Protocol.TLSv12],
-    useRemoteCipherPrefer: true,
-    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
-    cipherSuite: "AES256-SHA256",
-  },
-};
-tlsServer.listen(options, err => {
+let tlsServer: socket = socket.constructTLSSocketServerInstance();
+class NetAddress {
+  address: string = '192.168.xx.xxx'
+  port: number = 8080
+  family: number = 1
+}
+class SecureOptions {
+  key: string = "xxxx"
+  cert: string = "xxxx"
+  ca: string[] = ["xxxx"]
+  password: string = "xxxx"
+  protocols: enum = socket.Protocol.TLSv12
+  useRemoteCipherPrefer: boolean = true
+  signatureAlgorithms: string = "rsa_pss_rsae_sha256:ECDSA+SHA256"
+  cipherSuite: string = "AES256-SHA256"
+}
+class Options {
+  ALPNProtocols: string[] = ["spdy/1", "http/1.1"]
+  address: Object = new NetAddress()
+  secureOptions: Object = new SecureOptions()
+}
+tlsServer.listen(new Options(), (err: string) => {
   console.log("listen callback error" + err);
   return;
 });
-tlsServer.setExtraOptions({
-  keepAlive: true,
-  OOBInline: true,
-  TCPNoDelay: true,
-  socketLinger: { on: true, linger: 10 },
-  receiveBufferSize: 1000,
-  sendBufferSize: 1000,
-  reuseAddress: true,
-  socketTimeout: 3000,
-}, err => {
+class Linger {
+  on: boolean = true
+  linger: number = 10
+}
+class TCPExtraOptions {
+  keepAlive: boolean = true
+  OOBInline: boolean = true
+  TCPNoDelay: boolean = true
+  socketLinger: Object = new Linger()
+  receiveBufferSize: number = 1000
+  sendBufferSize: number = 1000
+  reuseAddress: boolean = true
+  socketTimeout: number = 3000
+}
+tlsServer.setExtraOptions(new TCPExtraOptions(), (err: string) => {
   if (err) {
     console.log('setExtraOptions fail');
     return;
@@ -4264,44 +4544,51 @@ setExtraOptions(options: TCPExtraOptions): Promise\<void\>
 **示例：**
 
 ```js
-let tlsServer = socket.constructTLSSocketServerInstance();
-let options = {
-  ALPNProtocols: ["spdy/1", "http/1.1"],
-  address: {
-    address: "xxxx",
-    port: 8080,
-    family: 1,
-  },
-  secureOptions: {
-    key: "xxxx",
-    cert: "xxxx",
-    ca: ["xxxx"],
-    password: "xxxx",
-    protocols: [socket.Protocol.TLSv12],
-    useRemoteCipherPrefer: true,
-    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
-    cipherSuite: "AES256-SHA256",
-  },
-};
-tlsServer.listen(options).then(() => {
+let tlsServer: socket = socket.constructTLSSocketServerInstance();
+class NetAddress {
+  address: string = '192.168.xx.xxx'
+  port: number = 8080
+  family: number = 1
+}
+class SecureOptions {
+  key: string = "xxxx"
+  cert: string = "xxxx"
+  ca: string[] = ["xxxx"]
+  password: string = "xxxx"
+  protocols: enum = socket.Protocol.TLSv12
+  useRemoteCipherPrefer: boolean = true
+  signatureAlgorithms: string = "rsa_pss_rsae_sha256:ECDSA+SHA256"
+  cipherSuite: string = "AES256-SHA256"
+}
+class Options {
+  ALPNProtocols: string[] = ["spdy/1", "http/1.1"]
+  address: Object = new NetAddress()
+  secureOptions: Object = new SecureOptions()
+}
+tlsServer.listen(new Options()).then(() => {
   console.log("listen callback success");
-}).catch(err => {
+}).catch((err: string) => {
   console.log(err);
   return;
 });
-let promise = tlsServer.setExtraOptions({
-  keepAlive: true,
-  OOBInline: true,
-  TCPNoDelay: true,
-  socketLinger: { on: true, linger: 10 },
-  receiveBufferSize: 1000,
-  sendBufferSize: 1000,
-  reuseAddress: true,
-  socketTimeout: 3000,
-});
+class Linger {
+  on: boolean = true
+  linger: number = 10
+}
+class TCPExtraOptions {
+  keepAlive: boolean = true
+  OOBInline: boolean = true
+  TCPNoDelay: boolean = true
+  socketLinger: Object = new Linger()
+  receiveBufferSize: number = 1000
+  sendBufferSize: number = 1000
+  reuseAddress: boolean = true
+  socketTimeout: number = 3000
+}
+let promise: socket = tlsServer.setExtraOptions(new TCPExtraOptions());
 promise.then(() => {
   console.log('setExtraOptions success');
-}).catch(err => {
+}).catch((err: string) => {
   console.log('setExtraOptions fail');
 });
 ```
@@ -4335,30 +4622,32 @@ getCertificate(callback: AsyncCallback\<[X509CertRawData](#x509certrawdata9)\>):
 **示例：**
 
 ```js
-let tlsServer = socket.constructTLSSocketServerInstance();
-let options = {
-  ALPNProtocols: ["spdy/1", "http/1.1"],
-  address: {
-    address: "192.168.xx.xxx",
-    port: 8080,
-    family: 1,
-  },
-  secureOptions: {
-    key: "xxxx",
-    cert: "xxxx",
-    ca: ["xxxx"],
-    password: "xxxx",
-    protocols: [socket.Protocol.TLSv12],
-    useRemoteCipherPrefer: true,
-    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
-    cipherSuite: "AES256-SHA256",
-  },
-};
-tlsServer.listen(options, err => {
+let tlsServer: socket = socket.constructTLSSocketServerInstance();
+class NetAddress {
+  address: string = '192.168.xx.xxx'
+  port: number = 8080
+  family: number = 1
+}
+class SecureOptions {
+  key: string = "xxxx"
+  cert: string = "xxxx"
+  ca: string[] = ["xxxx"]
+  password: string = "xxxx"
+  protocols: enum = socket.Protocol.TLSv12
+  useRemoteCipherPrefer: boolean = true
+  signatureAlgorithms: string = "rsa_pss_rsae_sha256:ECDSA+SHA256"
+  cipherSuite: string = "AES256-SHA256"
+}
+class Options {
+  ALPNProtocols: string[] = ["spdy/1", "http/1.1"]
+  address: Object = new NetAddress()
+  secureOptions: Object = new SecureOptions()
+}
+tlsServer.listen(new Options(), (err: string) => {
   console.log("listen callback error" + err);
   return;
 });
-tlsServer.getCertificate((err, data) => {
+tlsServer.getCertificate((err: string, data: string) => {
   if (err) {
     console.log("getCertificate callback error = " + err);
   } else {
@@ -4395,34 +4684,36 @@ getCertificate():Promise\<[X509CertRawData](#x509certrawdata9)\>
 **示例：**
 
 ```js
-let tlsServer = socket.constructTLSSocketServerInstance();
-let options = {
-  ALPNProtocols: ["spdy/1", "http/1.1"],
-  address: {
-    address: "xxxx",
-    port: 8080,
-    family: 1,
-  },
-  secureOptions: {
-    key: "xxxx",
-    cert: "xxxx",
-    ca: ["xxxx"],
-    password: "xxxx",
-    protocols: [socket.Protocol.TLSv12],
-    useRemoteCipherPrefer: true,
-    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
-    cipherSuite: "AES256-SHA256",
-  },
-};
-tlsServer.listen(options).then(() => {
+let tlsServer: socket = socket.constructTLSSocketServerInstance();
+class NetAddress {
+  address: string = '192.168.xx.xxx'
+  port: number = 8080
+  family: number = 1
+}
+class SecureOptions {
+  key: string = "xxxx"
+  cert: string = "xxxx"
+  ca: string[] = ["xxxx"]
+  password: string = "xxxx"
+  protocols: enum = socket.Protocol.TLSv12
+  useRemoteCipherPrefer: boolean = true
+  signatureAlgorithms: string = "rsa_pss_rsae_sha256:ECDSA+SHA256"
+  cipherSuite: string = "AES256-SHA256"
+}
+class Options {
+  ALPNProtocols: string[] = ["spdy/1", "http/1.1"]
+  address: Object = new NetAddress()
+  secureOptions: Object = new SecureOptions()
+}
+tlsServer.listen(new Options()).then(() => {
   console.log("listen callback success");
-}).catch(err => {
+}).catch((err: string) => {
   console.log(err);
   return;
 });
-tlsServer.getCertificate().then(data => {
+tlsServer.getCertificate().then((data: string) => {
   console.log(data);
-}).catch(err => {
+}).catch((err: string) => {
   console.error(err);
 });
 ```
@@ -4456,30 +4747,32 @@ getProtocol(callback: AsyncCallback\<string\>): void
 **示例：**
 
 ```js
-let tlsServer = socket.constructTLSSocketServerInstance();
-let options = {
-  ALPNProtocols: ["spdy/1", "http/1.1"],
-  address: {
-    address: "192.168.xx.xxx",
-    port: 8080,
-    family: 1,
-  },
-  secureOptions: {
-    key: "xxxx",
-    cert: "xxxx",
-    ca: ["xxxx"],
-    password: "xxxx",
-    protocols: [socket.Protocol.TLSv12],
-    useRemoteCipherPrefer: true,
-    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
-    cipherSuite: "AES256-SHA256",
-  },
-};
-tlsServer.listen(options, err => {
+let tlsServer: socket = socket.constructTLSSocketServerInstance();
+class NetAddress {
+  address: string = '192.168.xx.xxx'
+  port: number = 8080
+  family: number = 1
+}
+class SecureOptions {
+  key: string = "xxxx"
+  cert: string = "xxxx"
+  ca: string[] = ["xxxx"]
+  password: string = "xxxx"
+  protocols: enum = socket.Protocol.TLSv12
+  useRemoteCipherPrefer: boolean = true
+  signatureAlgorithms: string = "rsa_pss_rsae_sha256:ECDSA+SHA256"
+  cipherSuite: string = "AES256-SHA256"
+}
+class Options {
+  ALPNProtocols: string[] = ["spdy/1", "http/1.1"]
+  address: Object = new NetAddress()
+  secureOptions: Object = new SecureOptions()
+}
+tlsServer.listen(new Options(), (err: string) => {
   console.log("listen callback error" + err);
   return;
 });
-tlsServer.getProtocol((err, data) => {
+tlsServer.getProtocol((err: string, data: string) => {
   if (err) {
     console.log("getProtocol callback error = " + err);
   } else {
@@ -4516,32 +4809,34 @@ getProtocol():Promise\<string\>
 **示例：**
 
 ```js
-let tlsServer = socket.constructTLSSocketServerInstance();
-let options = {
-  ALPNProtocols: ["spdy/1", "http/1.1"],
-  address: {
-    address: "192.168.xx.xxx",
-    port: 8080,
-    family: 1,
-  },
-  secureOptions: {
-    key: "xxxx",
-    cert: "xxxx",
-    ca: ["xxxx"],
-    password: "xxxx",
-    protocols: [socket.Protocol.TLSv12],
-    useRemoteCipherPrefer: true,
-    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
-    cipherSuite: "AES256-SHA256",
-  },
-};
-tlsServer.listen(options, err => {
+let tlsServer: socket = socket.constructTLSSocketServerInstance();
+class NetAddress {
+  address: string = '192.168.xx.xxx'
+  port: number = 8080
+  family: number = 1
+}
+class SecureOptions {
+  key: string = "xxxx"
+  cert: string = "xxxx"
+  ca: string[] = ["xxxx"]
+  password: string = "xxxx"
+  protocols: enum = socket.Protocol.TLSv12
+  useRemoteCipherPrefer: boolean = true
+  signatureAlgorithms: string = "rsa_pss_rsae_sha256:ECDSA+SHA256"
+  cipherSuite: string = "AES256-SHA256"
+}
+class Options {
+  ALPNProtocols: string[] = ["spdy/1", "http/1.1"]
+  address: Object = new NetAddress()
+  secureOptions: Object = new SecureOptions()
+}
+tlsServer.listen(new Options(), (err: string) => {
   console.log("listen callback error" + err);
   return;
 });
-tlsServer.getProtocol().then(data => {
+tlsServer.getProtocol().then((data: string) => {
   console.log(data);
-}).catch(err => {
+}).catch((err: string) => {
   console.error(err);
 });
 ```
@@ -4573,30 +4868,32 @@ on(type: 'connect', callback: Callback\<TLSSocketConnection\>): void
 **示例：**
 
 ```js
-let tlsServer = socket.constructTLSSocketServerInstance();
-let options = {
-  ALPNProtocols: ["spdy/1", "http/1.1"],
-  address: {
-    address: "192.168.xx.xxx",
-    port: 8080,
-    family: 1,
-  },
-  secureOptions: {
-    key: "xxxx",
-    cert: "xxxx",
-    ca: ["xxxx"],
-    password: "xxxx",
-    protocols: [socket.Protocol.TLSv12],
-    useRemoteCipherPrefer: true,
-    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
-    cipherSuite: "AES256-SHA256",
-  },
-};
-tlsServer.listen(options, err => {
+let tlsServer: socket = socket.constructTLSSocketServerInstance();
+class NetAddress {
+  address: string = '192.168.xx.xxx'
+  port: number = 8080
+  family: number = 1
+}
+class SecureOptions {
+  key: string = "xxxx"
+  cert: string = "xxxx"
+  ca: string[] = ["xxxx"]
+  password: string = "xxxx"
+  protocols: enum = socket.Protocol.TLSv12
+  useRemoteCipherPrefer: boolean = true
+  signatureAlgorithms: string = "rsa_pss_rsae_sha256:ECDSA+SHA256"
+  cipherSuite: string = "AES256-SHA256"
+}
+class Options {
+  ALPNProtocols: string[] = ["spdy/1", "http/1.1"]
+  address: Object = new NetAddress()
+  secureOptions: Object = new SecureOptions()
+}
+tlsServer.listen(new Options(), (err: string) => {
   console.log("listen callback error" + err);
   return;
 });
-tlsServer.on('connect', function(data) {
+tlsServer.on('connect', (data: string) => {
   console.log(JSON.stringify(data))
 });
 ```
@@ -4629,31 +4926,33 @@ off(type: 'connect', callback?: Callback\<TLSSocketConnection\>): void
 **示例：**
 
 ```js
-let tlsServer = socket.constructTLSSocketServerInstance();
-let callback = data => {
+let tlsServer: socket = socket.constructTLSSocketServerInstance();
+let callback = （data: string) => {
   console.log('on connect message: ' + JSON.stringify(data));
 }
-let options = {
-  ALPNProtocols: ["spdy/1", "http/1.1"],
-  address: {
-    address: "xxxx",
-    port: 8080,
-    family: 1,
-  },
-  secureOptions: {
-    key: "xxxx",
-    cert: "xxxx",
-    ca: ["xxxx"],
-    password: "xxxx",
-    protocols: [socket.Protocol.TLSv12],
-    useRemoteCipherPrefer: true,
-    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
-    cipherSuite: "AES256-SHA256",
-  },
-};
-tlsServer.listen(options).then(() => {
+class NetAddress {
+  address: string = '192.168.xx.xxx'
+  port: number = 8080
+  family: number = 1
+}
+class SecureOptions {
+  key: string = "xxxx"
+  cert: string = "xxxx"
+  ca: string[] = ["xxxx"]
+  password: string = "xxxx"
+  protocols: enum = socket.Protocol.TLSv12
+  useRemoteCipherPrefer: boolean = true
+  signatureAlgorithms: string = "rsa_pss_rsae_sha256:ECDSA+SHA256"
+  cipherSuite: string = "AES256-SHA256"
+}
+class Options {
+  ALPNProtocols: string[] = ["spdy/1", "http/1.1"]
+  address: Object = new NetAddress()
+  secureOptions: Object = new SecureOptions()
+}
+tlsServer.listen(new Options()).then(() => {
   console.log("listen callback success");
-}).catch(err => {
+}).catch((err: string) => {
   console.log(err);
   return;
 });
@@ -4690,30 +4989,32 @@ on(type: 'error', callback: ErrorCallback): void
 **示例：**
 
 ```js
-let tlsServer = socket.constructTLSSocketServerInstance();
-let options = {
-  ALPNProtocols: ["spdy/1", "http/1.1"],
-  address: {
-    address: "192.168.xx.xxx",
-    port: 8080,
-    family: 1,
-  },
-  secureOptions: {
-    key: "xxxx",
-    cert: "xxxx",
-    ca: ["xxxx"],
-    password: "xxxx",
-    protocols: [socket.Protocol.TLSv12],
-    useRemoteCipherPrefer: true,
-    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
-    cipherSuite: "AES256-SHA256",
-  },
-};
-tlsServer.listen(options, err => {
+let tlsServer: socket = socket.constructTLSSocketServerInstance();
+class NetAddress {
+  address: string = '192.168.xx.xxx'
+  port: number = 8080
+  family: number = 1
+}
+class SecureOptions {
+  key: string = "xxxx"
+  cert: string = "xxxx"
+  ca: string[] = ["xxxx"]
+  password: string = "xxxx"
+  protocols: enum = socket.Protocol.TLSv12
+  useRemoteCipherPrefer: boolean = true
+  signatureAlgorithms: string = "rsa_pss_rsae_sha256:ECDSA+SHA256"
+  cipherSuite: string = "AES256-SHA256"
+}
+class Options {
+  ALPNProtocols: string[] = ["spdy/1", "http/1.1"]
+  address: Object = new NetAddress()
+  secureOptions: Object = new SecureOptions()
+}
+tlsServer.listen(new Options(), (err: string) => {
   console.log("listen callback error" + err);
   return;
 });
-tlsServer.on('error', err => {
+tlsServer.on('error', (err: string) => {
   console.log("on error, err:" + JSON.stringify(err))
 });
 ```
@@ -4746,31 +5047,33 @@ off(type: 'error', callback?: ErrorCallback): void
 **示例：**
 
 ```js
-let tlsServer = socket.constructTLSSocketServerInstance();
-let callback = err => {
+let tlsServer: socket = socket.constructTLSSocketServerInstance();
+let callback = (err: string) => {
   console.log("on error, err:" + JSON.stringify(err));
 }
-let options = {
-  ALPNProtocols: ["spdy/1", "http/1.1"],
-  address: {
-    address: "xxxx",
-    port: 8080,
-    family: 1,
-  },
-  secureOptions: {
-    key: "xxxx",
-    cert: "xxxx",
-    ca: ["xxxx"],
-    password: "xxxx",
-    protocols: [socket.Protocol.TLSv12],
-    useRemoteCipherPrefer: true,
-    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
-    cipherSuite: "AES256-SHA256",
-  },
-};
-tlsServer.listen(options).then(() => {
+class NetAddress {
+  address: string = '192.168.xx.xxx'
+  port: number = 8080
+  family: number = 1
+}
+class SecureOptions {
+  key: string = "xxxx"
+  cert: string = "xxxx"
+  ca: string[] = ["xxxx"]
+  password: string = "xxxx"
+  protocols: enum = socket.Protocol.TLSv12
+  useRemoteCipherPrefer: boolean = true
+  signatureAlgorithms: string = "rsa_pss_rsae_sha256:ECDSA+SHA256"
+  cipherSuite: string = "AES256-SHA256"
+}
+class Options {
+  ALPNProtocols: string[] = ["spdy/1", "http/1.1"]
+  address: Object = new NetAddress()
+  secureOptions: Object = new SecureOptions()
+}
+tlsServer.listen(new Options()).then(() => {
   console.log("listen callback success");
-}).catch(err => {
+}).catch((err: string) => {
   console.log(err);
   return;
 });
@@ -4824,31 +5127,36 @@ send(data: string, callback: AsyncCallback\<void\>): void
 **示例：**
 
 ```js
-let tlsServer = socket.constructTLSSocketServerInstance();
-let options = {
-  ALPNProtocols: ["spdy/1", "http/1.1"],
-  address: {
-    address: "192.168.xx.xxx",
-    port: 8080,
-    family: 1,
-  },
-  secureOptions: {
-    key: "xxxx",
-    cert: "xxxx",
-    ca: ["xxxx"],
-    password: "xxxx",
-    protocols: [socket.Protocol.TLSv12],
-    useRemoteCipherPrefer: true,
-    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
-    cipherSuite: "AES256-SHA256",
-  },
-};
-tlsServer.listen(options, err => {
+let tlsServer: socket = socket.constructTLSSocketServerInstance();
+class NetAddress {
+  address: string = '192.168.xx.xxx'
+  port: number = 8080
+  family: number = 1
+}
+class SecureOptions {
+  key: string = "xxxx"
+  cert: string = "xxxx"
+  ca: string[] = ["xxxx"]
+  password: string = "xxxx"
+  protocols: enum = socket.Protocol.TLSv12
+  useRemoteCipherPrefer: boolean = true
+  signatureAlgorithms: string = "rsa_pss_rsae_sha256:ECDSA+SHA256"
+  cipherSuite: string = "AES256-SHA256"
+}
+class Options {
+  ALPNProtocols: string[] = ["spdy/1", "http/1.1"]
+  address: Object = new NetAddress()
+  secureOptions: Object = new SecureOptions()
+}
+tlsServer.listen(new Options(), (err: string) => {
   console.log("listen callback error" + err);
   return;
 });
-tlsServer.on('connect', function(client) {
-  client.send({data: 'Hello, client!'}, err => {
+class Data {
+  data: string = 'Hello, client!'
+}
+tlsServer.on('connect', (client: socket) => {
+  client.send(new Data(), (err: string) => {
     if (err) {
         console.log('send fail');
         return;
@@ -4892,36 +5200,41 @@ send(data: string): Promise\<void\>
 **示例：**
 
 ```js
-let tlsServer = socket.constructTLSSocketServerInstance();
-let options = {
-  ALPNProtocols: ["spdy/1", "http/1.1"],
-  address: {
-    address: "xxxx",
-    port: 8080,
-    family: 1,
-  },
-  secureOptions: {
-    key: "xxxx",
-    cert: "xxxx",
-    ca: ["xxxx"],
-    password: "xxxx",
-    protocols: [socket.Protocol.TLSv12],
-    useRemoteCipherPrefer: true,
-    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
-    cipherSuite: "AES256-SHA256",
-  },
-};
-tlsServer.listen(options).then(() => {
+let tlsServer: socket = socket.constructTLSSocketServerInstance();
+class NetAddress {
+  address: string = '192.168.xx.xxx'
+  port: number = 8080
+  family: number = 1
+}
+class SecureOptions {
+  key: string = "xxxx"
+  cert: string = "xxxx"
+  ca: string[] = ["xxxx"]
+  password: string = "xxxx"
+  protocols: enum = socket.Protocol.TLSv12
+  useRemoteCipherPrefer: boolean = true
+  signatureAlgorithms: string = "rsa_pss_rsae_sha256:ECDSA+SHA256"
+  cipherSuite: string = "AES256-SHA256"
+}
+class Options {
+  ALPNProtocols: string[] = ["spdy/1", "http/1.1"]
+  address: Object = new NetAddress()
+  secureOptions: Object = new SecureOptions()
+}
+tlsServer.listen(new Options()).then(() => {
   console.log("listen callback success");
-}).catch(err => {
+}).catch((err: string) => {
   console.log(err);
   return;
 });
-tlsServer.on('connect', function(client) {
-  let promise = client.send({data: 'Hello, client!'});
+class Data {
+  data: string = 'Hello, client!'
+}
+tlsServer.on('connect', (client: socket) => {
+  let promise: socket = client.send(new Data());
   promise.then(() => {
     console.log('send success');
-  }).catch(err => {
+  }).catch((err: string) => {
     console.log('send fail');
   });
 });
@@ -4954,31 +5267,33 @@ close(callback: AsyncCallback\<void\>): void
 **示例：**
 
 ```js
-let tlsServer = socket.constructTLSSocketServerInstance();
-let options = {
-  ALPNProtocols: ["spdy/1", "http/1.1"],
-  address: {
-    address: "192.168.xx.xxx",
-    port: 8080,
-    family: 1,
-  },
-  secureOptions: {
-    key: "xxxx",
-    cert: "xxxx",
-    ca: ["xxxx"],
-    password: "xxxx",
-    protocols: [socket.Protocol.TLSv12],
-    useRemoteCipherPrefer: true,
-    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
-    cipherSuite: "AES256-SHA256",
-  },
-};
-tlsServer.listen(options, err => {
+let tlsServer: socket = socket.constructTLSSocketServerInstance();
+class NetAddress {
+  address: string = '192.168.xx.xxx'
+  port: number = 8080
+  family: number = 1
+}
+class SecureOptions {
+  key: string = "xxxx"
+  cert: string = "xxxx"
+  ca: string[] = ["xxxx"]
+  password: string = "xxxx"
+  protocols: enum = socket.Protocol.TLSv12
+  useRemoteCipherPrefer: boolean = true
+  signatureAlgorithms: string = "rsa_pss_rsae_sha256:ECDSA+SHA256"
+  cipherSuite: string = "AES256-SHA256"
+}
+class Options {
+  ALPNProtocols: string[] = ["spdy/1", "http/1.1"]
+  address: Object = new NetAddress()
+  secureOptions: Object = new SecureOptions()
+}
+tlsServer.listen(new Options(), (err: string) => {
   console.log("listen callback error" + err);
   return;
 });
-tlsServer.on('connect', function(client) {
-  client.close(err => {
+tlsServer.on('connect', (client: socket) => {
+  client.close((err: string) => {
     if (err) {
       console.log('close fail');
       return;
@@ -5014,36 +5329,38 @@ close(): Promise\<void\>
 **示例：**
 
 ```js
-let tlsServer = socket.constructTLSSocketServerInstance();
-let options = {
-  ALPNProtocols: ["spdy/1", "http/1.1"],
-  address: {
-    address: "xxxx",
-    port: 8080,
-    family: 1,
-  },
-  secureOptions: {
-    key: "xxxx",
-    cert: "xxxx",
-    ca: ["xxxx"],
-    password: "xxxx",
-    protocols: [socket.Protocol.TLSv12],
-    useRemoteCipherPrefer: true,
-    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
-    cipherSuite: "AES256-SHA256",
-  },
-};
-tlsServer.listen(options).then(() => {
+let tlsServer: socket = socket.constructTLSSocketServerInstance();
+class NetAddress {
+  address: string = '192.168.xx.xxx'
+  port: number = 8080
+  family: number = 1
+}
+class SecureOptions {
+  key: string = "xxxx"
+  cert: string = "xxxx"
+  ca: string[] = ["xxxx"]
+  password: string = "xxxx"
+  protocols: enum = socket.Protocol.TLSv12
+  useRemoteCipherPrefer: boolean = true
+  signatureAlgorithms: string = "rsa_pss_rsae_sha256:ECDSA+SHA256"
+  cipherSuite: string = "AES256-SHA256"
+}
+class Options {
+  ALPNProtocols: string[] = ["spdy/1", "http/1.1"]
+  address: Object = new NetAddress()
+  secureOptions: Object = new SecureOptions()
+}
+tlsServer.listen(new Options()).then(() => {
   console.log("listen callback success");
-}).catch(err => {
+}).catch((err: string) => {
   console.log(err);
   return;
 });
-tlsServer.on('connect', function(client) {
-  let promise = client.close();
+tlsServer.on('connect', (client: socket) => {
+  let promise: socket = client.close();
   promise.then(() => {
     console.log('close success');
-  }).catch(err => {
+  }).catch((err: string) => {
     console.log('close fail');
   });
 });
@@ -5074,31 +5391,33 @@ getRemoteAddress(callback: AsyncCallback\<NetAddress\>): void
 **示例：**
 
 ```js
-let tlsServer = socket.constructTLSSocketServerInstance();
-let options = {
-  ALPNProtocols: ["spdy/1", "http/1.1"],
-  address: {
-    address: "192.168.xx.xxx",
-    port: 8080,
-    family: 1,
-  },
-  secureOptions: {
-    key: "xxxx",
-    cert: "xxxx",
-    ca: ["xxxx"],
-    password: "xxxx",
-    protocols: [socket.Protocol.TLSv12],
-    useRemoteCipherPrefer: true,
-    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
-    cipherSuite: "AES256-SHA256",
-  },
-};
-tlsServer.listen(options, err => {
+let tlsServer: socket = socket.constructTLSSocketServerInstance();
+class NetAddress {
+  address: string = '192.168.xx.xxx'
+  port: number = 8080
+  family: number = 1
+}
+class SecureOptions {
+  key: string = "xxxx"
+  cert: string = "xxxx"
+  ca: string[] = ["xxxx"]
+  password: string = "xxxx"
+  protocols: enum = socket.Protocol.TLSv12
+  useRemoteCipherPrefer: boolean = true
+  signatureAlgorithms: string = "rsa_pss_rsae_sha256:ECDSA+SHA256"
+  cipherSuite: string = "AES256-SHA256"
+}
+class Options {
+  ALPNProtocols: string[] = ["spdy/1", "http/1.1"]
+  address: Object = new NetAddress()
+  secureOptions: Object = new SecureOptions()
+}
+tlsServer.listen(new Options(), (err: string) => {
   console.log("listen callback error" + err);
   return;
 });
-tlsServer.on('connect', function(client) {
-  client.getRemoteAddress((err, data) => {
+tlsServer.on('connect', (client: socket) => {
+  client.getRemoteAddress((err: string, data: string) => {
     if (err) {
       console.log('getRemoteAddress fail');
       return;
@@ -5132,35 +5451,37 @@ getRemoteAddress(): Promise\<NetAddress\>
 **示例：**
 
 ```js
-let tlsServer = socket.constructTLSSocketServerInstance();
-let options = {
-  ALPNProtocols: ["spdy/1", "http/1.1"],
-  address: {
-    address: "xxxx",
-    port: 8080,
-    family: 1,
-  },
-  secureOptions: {
-    key: "xxxx",
-    cert: "xxxx",
-    ca: ["xxxx"],
-    password: "xxxx",
-    protocols: [socket.Protocol.TLSv12],
-    useRemoteCipherPrefer: true,
-    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
-    cipherSuite: "AES256-SHA256",
-  },
-};
-tlsServer.listen(options).then(() => {
+let tlsServer: socket = socket.constructTLSSocketServerInstance();
+class NetAddress {
+  address: string = '192.168.xx.xxx'
+  port: number = 8080
+  family: number = 1
+}
+class SecureOptions {
+  key: string = "xxxx"
+  cert: string = "xxxx"
+  ca: string[] = ["xxxx"]
+  password: string = "xxxx"
+  protocols: enum = socket.Protocol.TLSv12
+  useRemoteCipherPrefer: boolean = true
+  signatureAlgorithms: string = "rsa_pss_rsae_sha256:ECDSA+SHA256"
+  cipherSuite: string = "AES256-SHA256"
+}
+class Options {
+  ALPNProtocols: string[] = ["spdy/1", "http/1.1"]
+  address: Object = new NetAddress()
+  secureOptions: Object = new SecureOptions()
+}
+tlsServer.listen(new Options()).then(() => {
   console.log("listen callback success");
-}).catch(err => {
+}).catch((err: string) => {
   console.log(err);
   return;
 });
-tlsServer.on('connect', function(client) {
-  client.getRemoteAddress().then(data => {
+tlsServer.on('connect', (client: socket) => {
+  client.getRemoteAddress().then((data: string) => {
     console.log('getRemoteAddress success:' + JSON.stringify(data));
-  }).catch(err => {
+  }).catch((err: string) => {
     console.error(err);
   });
 });
@@ -5191,31 +5512,33 @@ getRemoteCertificate(callback: AsyncCallback\<[X509CertRawData](#x509certrawdata
 **示例：**
 
 ```js
-let tlsServer = socket.constructTLSSocketServerInstance();
-let options = {
-  ALPNProtocols: ["spdy/1", "http/1.1"],
-  address: {
-    address: "192.168.xx.xxx",
-    port: 8080,
-    family: 1,
-  },
-  secureOptions: {
-    key: "xxxx",
-    cert: "xxxx",
-    ca: ["xxxx"],
-    password: "xxxx",
-    protocols: [socket.Protocol.TLSv12],
-    useRemoteCipherPrefer: true,
-    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
-    cipherSuite: "AES256-SHA256",
-  },
-};
-tlsServer.listen(options, err => {
+let tlsServer: socket = socket.constructTLSSocketServerInstance();
+class NetAddress {
+  address: string = '192.168.xx.xxx'
+  port: number = 8080
+  family: number = 1
+}
+class SecureOptions {
+  key: string = "xxxx"
+  cert: string = "xxxx"
+  ca: string[] = ["xxxx"]
+  password: string = "xxxx"
+  protocols: enum = socket.Protocol.TLSv12
+  useRemoteCipherPrefer: boolean = true
+  signatureAlgorithms: string = "rsa_pss_rsae_sha256:ECDSA+SHA256"
+  cipherSuite: string = "AES256-SHA256"
+}
+class Options {
+  ALPNProtocols: string[] = ["spdy/1", "http/1.1"]
+  address: Object = new NetAddress()
+  secureOptions: Object = new SecureOptions()
+}
+tlsServer.listen(new Options(), (err: string) => {
   console.log("listen callback error" + err);
   return;
 });
-tlsServer.on('connect', function(client) {
-  client.getRemoteCertificate((err, data) => {
+tlsServer.on('connect', (client: socket) => {
+  client.getRemoteCertificate((err: string, data: string) => {
     if (err) {
       console.log("getRemoteCertificate callback error = " + err);
     } else {
@@ -5249,35 +5572,37 @@ getRemoteCertificate():Promise\<[X509CertRawData](#x509certrawdata9)\>
 **示例：**
 
 ```js
-let tlsServer = socket.constructTLSSocketServerInstance();
-let options = {
-  ALPNProtocols: ["spdy/1", "http/1.1"],
-  address: {
-    address: "xxxx",
-    port: 8080,
-    family: 1,
-  },
-  secureOptions: {
-    key: "xxxx",
-    cert: "xxxx",
-    ca: ["xxxx"],
-    password: "xxxx",
-    protocols: [socket.Protocol.TLSv12],
-    useRemoteCipherPrefer: true,
-    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
-    cipherSuite: "AES256-SHA256",
-  },
-};
-tlsServer.listen(options).then(() => {
+let tlsServer: socket = socket.constructTLSSocketServerInstance();
+class NetAddress {
+  address: string = '192.168.xx.xxx'
+  port: number = 8080
+  family: number = 1
+}
+class SecureOptions {
+  key: string = "xxxx"
+  cert: string = "xxxx"
+  ca: string[] = ["xxxx"]
+  password: string = "xxxx"
+  protocols: enum = socket.Protocol.TLSv12
+  useRemoteCipherPrefer: boolean = true
+  signatureAlgorithms: string = "rsa_pss_rsae_sha256:ECDSA+SHA256"
+  cipherSuite: string = "AES256-SHA256"
+}
+class Options {
+  ALPNProtocols: string[] = ["spdy/1", "http/1.1"]
+  address: Object = new NetAddress()
+  secureOptions: Object = new SecureOptions()
+}
+tlsServer.listen(new Options()).then(() => {
   console.log("listen callback success");
-}).catch(err => {
+}).catch((err: string) => {
   console.log(err);
   return;
 });
-tlsServer.on('connect', function(client) {
-  client.getRemoteCertificate().then(data => {
+tlsServer.on('connect', (client: socket) => {
+  client.getRemoteCertificate().then((data: string) => {
     console.log('getRemoteCertificate success:' + JSON.stringify(data));
-  }).catch(err => {
+  }).catch((err: string) => {
     console.error(err);
   });
 });
@@ -5310,31 +5635,33 @@ getCipherSuite(callback: AsyncCallback\<Array\<string\>\>): void
 **示例：**
 
 ```js
-let tlsServer = socket.constructTLSSocketServerInstance();
-let options = {
-  ALPNProtocols: ["spdy/1", "http/1.1"],
-  address: {
-    address: "192.168.xx.xxx",
-    port: 8080,
-    family: 1,
-  },
-  secureOptions: {
-    key: "xxxx",
-    cert: "xxxx",
-    ca: ["xxxx"],
-    password: "xxxx",
-    protocols: [socket.Protocol.TLSv12],
-    useRemoteCipherPrefer: true,
-    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
-    cipherSuite: "AES256-SHA256",
-  },
-};
-tlsServer.listen(options, err => {
+let tlsServer: socket = socket.constructTLSSocketServerInstance();
+class NetAddress {
+  address: string = '192.168.xx.xxx'
+  port: number = 8080
+  family: number = 1
+}
+class SecureOptions {
+  key: string = "xxxx"
+  cert: string = "xxxx"
+  ca: string[] = ["xxxx"]
+  password: string = "xxxx"
+  protocols: enum = socket.Protocol.TLSv12
+  useRemoteCipherPrefer: boolean = true
+  signatureAlgorithms: string = "rsa_pss_rsae_sha256:ECDSA+SHA256"
+  cipherSuite: string = "AES256-SHA256"
+}
+class Options {
+  ALPNProtocols: string[] = ["spdy/1", "http/1.1"]
+  address: Object = new NetAddress()
+  secureOptions: Object = new SecureOptions()
+}
+tlsServer.listen(new Options(), (err: string) => {
   console.log("listen callback error" + err);
   return;
 });
-tlsServer.on('connect', function(client) {
-  client.getCipherSuite((err, data) => {
+tlsServer.on('connect', (client: socket) => {
+  client.getCipherSuite((err: string, data: string) => {
     if (err) {
       console.log("getCipherSuite callback error = " + err);
     } else {
@@ -5370,35 +5697,37 @@ getCipherSuite(): Promise\<Array\<string\>\>
 **示例：**
 
 ```js
-let tlsServer = socket.constructTLSSocketServerInstance();
-let options = {
-  ALPNProtocols: ["spdy/1", "http/1.1"],
-  address: {
-    address: "xxxx",
-    port: 8080,
-    family: 1,
-  },
-  secureOptions: {
-    key: "xxxx",
-    cert: "xxxx",
-    ca: ["xxxx"],
-    password: "xxxx",
-    protocols: [socket.Protocol.TLSv12],
-    useRemoteCipherPrefer: true,
-    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
-    cipherSuite: "AES256-SHA256",
-  },
-};
-tlsServer.listen(options).then(() => {
+let tlsServer: socket = socket.constructTLSSocketServerInstance();
+class NetAddress {
+  address: string = '192.168.xx.xxx'
+  port: number = 8080
+  family: number = 1
+}
+class SecureOptions {
+  key: string = "xxxx"
+  cert: string = "xxxx"
+  ca: string[] = ["xxxx"]
+  password: string = "xxxx"
+  protocols: enum = socket.Protocol.TLSv12
+  useRemoteCipherPrefer: boolean = true
+  signatureAlgorithms: string = "rsa_pss_rsae_sha256:ECDSA+SHA256"
+  cipherSuite: string = "AES256-SHA256"
+}
+class Options {
+  ALPNProtocols: string[] = ["spdy/1", "http/1.1"]
+  address: Object = new NetAddress()
+  secureOptions: Object = new SecureOptions()
+}
+tlsServer.listen(new Options()).then(() => {
   console.log("listen callback success");
-}).catch(err => {
+}).catch((err: string) => {
   console.log(err);
   return;
 });
-tlsServer.on('connect', function(client) {
-  client.getCipherSuite().then(data => {
+tlsServer.on('connect', (client: socket) => {
+  client.getCipherSuite().then((data: string) => {
     console.log('getCipherSuite success:' + JSON.stringify(data));
-  }).catch(err => {
+  }).catch((err: string) => {
     console.error(err);
   });
 });
@@ -5429,31 +5758,33 @@ getSignatureAlgorithms(callback: AsyncCallback\<Array\<string\>\>): void
 **示例：**
 
 ```js
-let tlsServer = socket.constructTLSSocketServerInstance();
-let options = {
-  ALPNProtocols: ["spdy/1", "http/1.1"],
-  address: {
-    address: "192.168.xx.xxx",
-    port: 8080,
-    family: 1,
-  },
-  secureOptions: {
-    key: "xxxx",
-    cert: "xxxx",
-    ca: ["xxxx"],
-    password: "xxxx",
-    protocols: [socket.Protocol.TLSv12],
-    useRemoteCipherPrefer: true,
-    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
-    cipherSuite: "AES256-SHA256",
-  },
-};
-tlsServer.listen(options, err => {
+let tlsServer: socket = socket.constructTLSSocketServerInstance();
+class NetAddress {
+  address: string = '192.168.xx.xxx'
+  port: number = 8080
+  family: number = 1
+}
+class SecureOptions {
+  key: string = "xxxx"
+  cert: string = "xxxx"
+  ca: string[] = ["xxxx"]
+  password: string = "xxxx"
+  protocols: enum = socket.Protocol.TLSv12
+  useRemoteCipherPrefer: boolean = true
+  signatureAlgorithms: string = "rsa_pss_rsae_sha256:ECDSA+SHA256"
+  cipherSuite: string = "AES256-SHA256"
+}
+class Options {
+  ALPNProtocols: string[] = ["spdy/1", "http/1.1"]
+  address: Object = new NetAddress()
+  secureOptions: Object = new SecureOptions()
+}
+tlsServer.listen(new Options(), (err: string) => {
   console.log("listen callback error" + err);
   return;
 });
-tlsServer.on('connect', function(client) {
-  client.getSignatureAlgorithms((err, data) => {
+tlsServer.on('connect', (client: socket) => {
+  client.getSignatureAlgorithms((err: string, data: string) => {
     if (err) {
       console.log("getSignatureAlgorithms callback error = " + err);
     } else {
@@ -5487,35 +5818,37 @@ getSignatureAlgorithms(): Promise\<Array\<string\>\>
 **示例：**
 
 ```js
-let tlsServer = socket.constructTLSSocketServerInstance();
-let options = {
-  ALPNProtocols: ["spdy/1", "http/1.1"],
-  address: {
-    address: "xxxx",
-    port: 8080,
-    family: 1,
-  },
-  secureOptions: {
-    key: "xxxx",
-    cert: "xxxx",
-    ca: ["xxxx"],
-    password: "xxxx",
-    protocols: [socket.Protocol.TLSv12],
-    useRemoteCipherPrefer: true,
-    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
-    cipherSuite: "AES256-SHA256",
-  },
-};
-tlsServer.listen(options).then(() => {
+let tlsServer: socket = socket.constructTLSSocketServerInstance();
+class NetAddress {
+  address: string = '192.168.xx.xxx'
+  port: number = 8080
+  family: number = 1
+}
+class SecureOptions {
+  key: string = "xxxx"
+  cert: string = "xxxx"
+  ca: string[] = ["xxxx"]
+  password: string = "xxxx"
+  protocols: enum = socket.Protocol.TLSv12
+  useRemoteCipherPrefer: boolean = true
+  signatureAlgorithms: string = "rsa_pss_rsae_sha256:ECDSA+SHA256"
+  cipherSuite: string = "AES256-SHA256"
+}
+class Options {
+  ALPNProtocols: string[] = ["spdy/1", "http/1.1"]
+  address: Object = new NetAddress()
+  secureOptions: Object = new SecureOptions()
+}
+tlsServer.listen(new Options()).then(() => {
   console.log("listen callback success");
-}).catch(err => {
+}).catch((err: string) => {
   console.log(err);
   return;
 });
-tlsServer.on('connect', function(client) {
-  client.getSignatureAlgorithms().then(data => {
+tlsServer.on('connect', (client: socket) => {
+  client.getSignatureAlgorithms().then((data: string) => {
     console.log("getSignatureAlgorithms success" + data);
-  }).catch(err => {
+  }).catch((err: string) => {
     console.error(err);
   });
 });
@@ -5545,33 +5878,35 @@ on(type: 'message', callback: Callback<{message: ArrayBuffer, remoteInfo: Socket
 **示例：**
 
 ```js
-let tlsServer = socket.constructTLSSocketServerInstance();
-let options = {
-  ALPNProtocols: ["spdy/1", "http/1.1"],
-  address: {
-    address: "192.168.xx.xxx",
-    port: 8080,
-    family: 1,
-  },
-  secureOptions: {
-    key: "xxxx",
-    cert: "xxxx",
-    ca: ["xxxx"],
-    password: "xxxx",
-    protocols: [socket.Protocol.TLSv12],
-    useRemoteCipherPrefer: true,
-    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
-    cipherSuite: "AES256-SHA256",
-  },
-};
-tlsServer.listen(options, err => {
+let tlsServer: socket = socket.constructTLSSocketServerInstance();
+class NetAddress {
+  address: string = '192.168.xx.xxx'
+  port: number = 8080
+  family: number = 1
+}
+class SecureOptions {
+  key: string = "xxxx"
+  cert: string = "xxxx"
+  ca: string[] = ["xxxx"]
+  password: string = "xxxx"
+  protocols: enum = socket.Protocol.TLSv12
+  useRemoteCipherPrefer: boolean = true
+  signatureAlgorithms: string = "rsa_pss_rsae_sha256:ECDSA+SHA256"
+  cipherSuite: string = "AES256-SHA256"
+}
+class Options {
+  ALPNProtocols: string[] = ["spdy/1", "http/1.1"]
+  address: Object = new NetAddress()
+  secureOptions: Object = new SecureOptions()
+}
+tlsServer.listen(new Options(), (err: string) => {
   console.log("listen callback error" + err);
   return;
 });
-tlsServer.on('connect', function(client) {
-  client.on('message', value => {
+tlsServer.on('connect', (client: socket) => {
+  client.on('message', (value: Object) => {
     let messageView = '';
-    for (var i = 0; i < value.message.length; i++) {
+    for (let i = 0; i < value.message.length; i++) {
       let messages = value.message[i]
       let message = String.fromCharCode(messages);
       messageView += message;
@@ -5609,9 +5944,9 @@ off(type: 'message', callback?: Callback<{message: ArrayBuffer, remoteInfo: Sock
 **示例：**
 
 ```js
-let callback = value => {
+let callback = (value: Object) => {
   let messageView = '';
-  for (var i = 0; i < value.message.length; i++) {
+  for (let i = 0; i < value.message.length; i++) {
     let messages = value.message[i]
     let message = String.fromCharCode(messages);
     messageView += message;
@@ -5619,32 +5954,34 @@ let callback = value => {
   console.log('on message message: ' + JSON.stringify(messageView));
   console.log('remoteInfo: ' + JSON.stringify(value.remoteInfo));
 }
-let tlsServer = socket.constructTLSSocketServerInstance();
-let options = {
-  ALPNProtocols: ["spdy/1", "http/1.1"],
-  address: {
-    address: "xxxx",
-    port: 8080,
-    family: 1,
-  },
-  secureOptions: {
-    key: "xxxx",
-    cert: "xxxx",
-    ca: ["xxxx"],
-    password: "xxxx",
-    protocols: [socket.Protocol.TLSv12],
-    useRemoteCipherPrefer: true,
-    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
-    cipherSuite: "AES256-SHA256",
-  },
-};
-tlsServer.listen(options).then(() => {
+let tlsServer: socket = socket.constructTLSSocketServerInstance();
+class NetAddress {
+  address: string = '192.168.xx.xxx'
+  port: number = 8080
+  family: number = 1
+}
+class SecureOptions {
+  key: string = "xxxx"
+  cert: string = "xxxx"
+  ca: string[] = ["xxxx"]
+  password: string = "xxxx"
+  protocols: enum = socket.Protocol.TLSv12
+  useRemoteCipherPrefer: boolean = true
+  signatureAlgorithms: string = "rsa_pss_rsae_sha256:ECDSA+SHA256"
+  cipherSuite: string = "AES256-SHA256"
+}
+class Options {
+  ALPNProtocols: string[] = ["spdy/1", "http/1.1"]
+  address: Object = new NetAddress()
+  secureOptions: Object = new SecureOptions()
+}
+tlsServer.listen(new Options()).then(() => {
   console.log("listen callback success");
-}).catch(err => {
+}).catch((err: string) => {
   console.log(err);
   return;
 });
-tlsServer.on('connect', function(client) {
+tlsServer.on('connect', (client: socket) => {
   client.on('message', callback);
   // 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
   client.off('message', callback);
@@ -5676,30 +6013,32 @@ on(type: 'close', callback: Callback\<void\>): void
 **示例：**
 
 ```js
-let tlsServer = socket.constructTLSSocketServerInstance();
-let options = {
-  ALPNProtocols: ["spdy/1", "http/1.1"],
-  address: {
-    address: "192.168.xx.xxx",
-    port: 8080,
-    family: 1,
-  },
-  secureOptions: {
-    key: "xxxx",
-    cert: "xxxx",
-    ca: ["xxxx"],
-    password: "xxxx",
-    protocols: [socket.Protocol.TLSv12],
-    useRemoteCipherPrefer: true,
-    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
-    cipherSuite: "AES256-SHA256",
-  },
-};
-tlsServer.listen(options, err => {
+let tlsServer: socket = socket.constructTLSSocketServerInstance();
+class NetAddress {
+  address: string = '192.168.xx.xxx'
+  port: number = 8080
+  family: number = 1
+}
+class SecureOptions {
+  key: string = "xxxx"
+  cert: string = "xxxx"
+  ca: string[] = ["xxxx"]
+  password: string = "xxxx"
+  protocols: enum = socket.Protocol.TLSv12
+  useRemoteCipherPrefer: boolean = true
+  signatureAlgorithms: string = "rsa_pss_rsae_sha256:ECDSA+SHA256"
+  cipherSuite: string = "AES256-SHA256"
+}
+class Options {
+  ALPNProtocols: string[] = ["spdy/1", "http/1.1"]
+  address: Object = new NetAddress()
+  secureOptions: Object = new SecureOptions()
+}
+tlsServer.listen(new Options(), (err: string) => {
   console.log("listen callback error" + err);
   return;
 });
-tlsServer.on('connect', function(client) {
+tlsServer.on('connect', (client: socket) => {
   client.on('close', () => {
     console.log("on close success")
   });
@@ -5736,32 +6075,34 @@ off(type: 'close', callback?: Callback\<void\>): void
 let callback = () => {
   console.log("on close success");
 }
-let tlsServer = socket.constructTLSSocketServerInstance();
-let options = {
-  ALPNProtocols: ["spdy/1", "http/1.1"],
-  address: {
-    address: "xxxx",
-    port: 8080,
-    family: 1,
-  },
-  secureOptions: {
-    key: "xxxx",
-    cert: "xxxx",
-    ca: ["xxxx"],
-    password: "xxxx",
-    protocols: [socket.Protocol.TLSv12],
-    useRemoteCipherPrefer: true,
-    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
-    cipherSuite: "AES256-SHA256",
-  },
-};
-tlsServer.listen(options).then(() => {
+let tlsServer: socket = socket.constructTLSSocketServerInstance();
+class NetAddress {
+  address: string = '192.168.xx.xxx'
+  port: number = 8080
+  family: number = 1
+}
+class SecureOptions {
+  key: string = "xxxx"
+  cert: string = "xxxx"
+  ca: string[] = ["xxxx"]
+  password: string = "xxxx"
+  protocols: enum = socket.Protocol.TLSv12
+  useRemoteCipherPrefer: boolean = true
+  signatureAlgorithms: string = "rsa_pss_rsae_sha256:ECDSA+SHA256"
+  cipherSuite: string = "AES256-SHA256"
+}
+class Options {
+  ALPNProtocols: string[] = ["spdy/1", "http/1.1"]
+  address: Object = new NetAddress()
+  secureOptions: Object = new SecureOptions()
+}
+tlsServer.listen(new Options()).then(() => {
   console.log("listen callback success");
-}).catch(err => {
+}).catch((err: string) => {
   console.log(err);
   return;
 });
-tlsServer.on('connect', function(client) {
+tlsServer.on('connect', (client: socket) => {
   client.on('close', callback);
   // 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
   client.off('close', callback);
@@ -5793,31 +6134,33 @@ on(type: 'error', callback: ErrorCallback): void
 **示例：**
 
 ```js
-let tlsServer = socket.constructTLSSocketServerInstance();
-let options = {
-  ALPNProtocols: ["spdy/1", "http/1.1"],
-  address: {
-    address: "192.168.xx.xxx",
-    port: 8080,
-    family: 1,
-  },
-  secureOptions: {
-    key: "xxxx",
-    cert: "xxxx",
-    ca: ["xxxx"],
-    password: "xxxx",
-    protocols: [socket.Protocol.TLSv12],
-    useRemoteCipherPrefer: true,
-    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
-    cipherSuite: "AES256-SHA256",
-  },
-};
-tlsServer.listen(options, err => {
+let tlsServer: socket = socket.constructTLSSocketServerInstance();
+class NetAddress {
+  address: string = '192.168.xx.xxx'
+  port: number = 8080
+  family: number = 1
+}
+class SecureOptions {
+  key: string = "xxxx"
+  cert: string = "xxxx"
+  ca: string[] = ["xxxx"]
+  password: string = "xxxx"
+  protocols: enum = socket.Protocol.TLSv12
+  useRemoteCipherPrefer: boolean = true
+  signatureAlgorithms: string = "rsa_pss_rsae_sha256:ECDSA+SHA256"
+  cipherSuite: string = "AES256-SHA256"
+}
+class Options {
+  ALPNProtocols: string[] = ["spdy/1", "http/1.1"]
+  address: Object = new NetAddress()
+  secureOptions: Object = new SecureOptions()
+}
+tlsServer.listen(new Options(), (err: string) => {
   console.log("listen callback error" + err);
   return;
 });
-tlsServer.on('connect', function(client) {
-  client.on('error', err => {
+tlsServer.on('connect', (client: socket) => {
+  client.on('error', (err: string) => {
     console.log("on error, err:" + JSON.stringify(err))
   });
 });
@@ -5850,35 +6193,37 @@ off(type: 'error', callback?: ErrorCallback): void
 **示例：**
 
 ```js
-let callback = err => {
+let callback = (err: string) => {
   console.log("on error, err:" + JSON.stringify(err));
 }
-let tlsServer = socket.constructTLSSocketServerInstance();
-let options = {
-  ALPNProtocols: ["spdy/1", "http/1.1"],
-  address: {
-    address: "xxxx",
-    port: 8080,
-    family: 1,
-  },
-  secureOptions: {
-    key: "xxxx",
-    cert: "xxxx",
-    ca: ["xxxx"],
-    password: "xxxx",
-    protocols: [socket.Protocol.TLSv12],
-    useRemoteCipherPrefer: true,
-    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
-    cipherSuite: "AES256-SHA256",
-  },
-};
-tlsServer.listen(options).then(() => {
+let tlsServer: socket = socket.constructTLSSocketServerInstance();
+class NetAddress {
+  address: string = '192.168.xx.xxx'
+  port: number = 8080
+  family: number = 1
+}
+class SecureOptions {
+  key: string = "xxxx"
+  cert: string = "xxxx"
+  ca: string[] = ["xxxx"]
+  password: string = "xxxx"
+  protocols: enum = socket.Protocol.TLSv12
+  useRemoteCipherPrefer: boolean = true
+  signatureAlgorithms: string = "rsa_pss_rsae_sha256:ECDSA+SHA256"
+  cipherSuite: string = "AES256-SHA256"
+}
+class Options {
+  ALPNProtocols: string[] = ["spdy/1", "http/1.1"]
+  address: Object = new NetAddress()
+  secureOptions: Object = new SecureOptions()
+}
+tlsServer.listen(new Options()).then(() => {
   console.log("listen callback success");
-}).catch(err => {
+}).catch((err: string) => {
   console.log(err);
   return;
 });
-tlsServer.on('connect', function(client) {
+tlsServer.on('connect', (client: socket) => {
   client.on('error', callback);
   // 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
   client.off('error', callback);

@@ -15,7 +15,7 @@ This module provides the following common audio-related functions:
 
 ## Modules to Import
 
-```js
+```ts
 import audio from '@ohos.multimedia.audio';
 ```
 
@@ -29,7 +29,7 @@ import audio from '@ohos.multimedia.audio';
 
 **Example**
 
-```js
+```ts
 import audio from '@ohos.multimedia.audio';
 
 const localNetworkId = audio.LOCAL_NETWORK_ID;
@@ -52,7 +52,8 @@ Obtains an **AudioManager** instance.
 | [AudioManager](#audiomanager) | **AudioManager** instance.|
 
 **Example**
-```js
+```ts
+import audio from '@ohos.multimedia.audio';
 let audioManager = audio.getAudioManager();
 ```
 
@@ -73,25 +74,24 @@ Creates an **AudioRenderer** instance. This API uses an asynchronous callback to
 
 **Example**
 
-```js
-import featureAbility from '@ohos.ability.featureAbility';
+```ts
 import fs from '@ohos.file.fs';
 import audio from '@ohos.multimedia.audio';
 
-let audioStreamInfo = {
+let audioStreamInfo: audio.AudioStreamInfo = {
   samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
   channels: audio.AudioChannel.CHANNEL_1,
   sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE,
   encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW
 }
 
-let audioRendererInfo = {
+let audioRendererInfo: audio.AudioRendererInfo = {
   content: audio.ContentType.CONTENT_TYPE_SPEECH,
   usage: audio.StreamUsage.STREAM_USAGE_VOICE_COMMUNICATION,
   rendererFlags: 0
 }
 
-let audioRendererOptions = {
+let audioRendererOptions: audio.AudioRendererOptions = {
   streamInfo: audioStreamInfo,
   rendererInfo: audioRendererInfo
 }
@@ -128,34 +128,34 @@ Creates an **AudioRenderer** instance. This API uses a promise to return the res
 
 **Example**
 
-```js
-import featureAbility from '@ohos.ability.featureAbility';
+```ts
 import fs from '@ohos.file.fs';
 import audio from '@ohos.multimedia.audio';
+import { BusinessError } from '@ohos.base';
 
-let audioStreamInfo = {
+let audioStreamInfo: audio.AudioStreamInfo = {
   samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
   channels: audio.AudioChannel.CHANNEL_1,
   sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE,
   encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW
 }
 
-let audioRendererInfo = {
+let audioRendererInfo: audio.AudioRendererInfo = {
   content: audio.ContentType.CONTENT_TYPE_SPEECH,
   usage: audio.StreamUsage.STREAM_USAGE_VOICE_COMMUNICATION,
   rendererFlags: 0
 }
 
-let audioRendererOptions = {
+let audioRendererOptions: audio.AudioRendererOptions = {
   streamInfo: audioStreamInfo,
   rendererInfo: audioRendererInfo
 }
 
-let audioRenderer;
+let audioRenderer: audio.AudioRenderer;
 audio.createAudioRenderer(audioRendererOptions).then((data) => {
   audioRenderer = data;
   console.info('AudioFrameworkRenderLog: AudioRenderer Created : Success : Stream Type: SUCCESS');
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error(`AudioFrameworkRenderLog: AudioRenderer Created : ERROR : ${err}`);
 });
 ```
@@ -179,21 +179,21 @@ Creates an **AudioCapturer** instance. This API uses an asynchronous callback to
 
 **Example**
 
-```js
+```ts
 import audio from '@ohos.multimedia.audio';
-let audioStreamInfo = {
+let audioStreamInfo: audio.AudioStreamInfo = {
   samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
   channels: audio.AudioChannel.CHANNEL_2,
   sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE,
   encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW
 }
 
-let audioCapturerInfo = {
+let audioCapturerInfo: audio.AudioCapturerInfo = {
   source: audio.SourceType.SOURCE_TYPE_MIC,
   capturerFlags: 0
 }
 
-let audioCapturerOptions = {
+let audioCapturerOptions: audio.AudioCapturerOptions = {
   streamInfo: audioStreamInfo,
   capturerInfo: audioCapturerInfo
 }
@@ -232,31 +232,32 @@ Creates an **AudioCapturer** instance. This API uses a promise to return the res
 
 **Example**
 
-```js
+```ts
 import audio from '@ohos.multimedia.audio';
+import { BusinessError } from '@ohos.base';
 
-let audioStreamInfo = {
+let audioStreamInfo: audio.AudioStreamInfo = {
   samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
   channels: audio.AudioChannel.CHANNEL_2,
   sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE,
   encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW
 }
 
-let audioCapturerInfo = {
+let audioCapturerInfo: audio.AudioCapturerInfo = {
   source: audio.SourceType.SOURCE_TYPE_MIC,
   capturerFlags: 0
 }
 
-let audioCapturerOptions = {
+let audioCapturerOptions:audio.AudioCapturerOptions = {
   streamInfo: audioStreamInfo,
   capturerInfo: audioCapturerInfo
 }
 
-let audioCapturer;
+let audioCapturer: audio.AudioCapturer;
 audio.createAudioCapturer(audioCapturerOptions).then((data) => {
   audioCapturer = data;
   console.info('AudioCapturer Created : Success : Stream Type: SUCCESS');
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error(`AudioCapturer Created : ERROR : ${err}`);
 });
 ```
@@ -280,15 +281,14 @@ Creates a **TonePlayer** instance. This API uses an asynchronous callback to ret
 
 **Example**
 
-```js
+```ts
 import audio from '@ohos.multimedia.audio';
 
-let audioRendererInfo = {
-  content : audio.ContentType.CONTENT_TYPE_SONIFICATION,
-  usage : audio.StreamUsage.STREAM_USAGE_MEDIA,
+let audioRendererInfo: audio.AudioRendererInfo = {
+  usage : audio.StreamUsage.STREAM_USAGE_DTMF,
   rendererFlags : 0
 }
-let tonePlayer;
+let tonePlayer: audio.TonePlayer;
 
 audio.createTonePlayer(audioRendererInfo, (err, data) => {
   console.info(`callback call createTonePlayer: audioRendererInfo: ${audioRendererInfo}`);
@@ -325,13 +325,12 @@ Creates a **TonePlayer** instance. This API uses a promise to return the result.
 
 **Example**
 
-```js
+```ts
 import audio from '@ohos.multimedia.audio';
-let tonePlayer;
+let tonePlayer: audio.TonePlayer;
 async function createTonePlayerBefore(){
-  let audioRendererInfo = {
-    content : audio.ContentType.CONTENT_TYPE_SONIFICATION,
-    usage : audio.StreamUsage.STREAM_USAGE_MEDIA,
+  let audioRendererInfo: audio.AudioRendererInfo = {
+    usage : audio.StreamUsage.STREAM_USAGE_DTMF,
     rendererFlags : 0
   }
   tonePlayer = await audio.createTonePlayer(audioRendererInfo);
@@ -674,7 +673,7 @@ Describes audio renderer information.
 | ------------- | --------------------------- | ---- | ---------------- |
 | content       | [ContentType](#contenttype) | No  | Audio content type.<br>This parameter is mandatory in API versions 8 and 9 and optional since API version 10.|
 | usage         | [StreamUsage](#streamusage) | Yes  | Audio stream usage.|
-| rendererFlags | number                      | Yes  | Audio renderer flags.|
+| rendererFlags | number                      | Yes  | Audio renderer flags.<br>The value **0** means a common audio renderer, and **1** means a low-latency audio renderer. Currently, the JS APIs do not support the low-latency audio renderer.|
 
 ## InterruptResult<sup>9+</sup>
 
@@ -813,7 +812,7 @@ Describes audio capturer configurations.
 | ----------------------------------- | --------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | streamInfo                          | [AudioStreamInfo](#audiostreaminfo8)                      | Yes  | Audio stream information.<br>**System capability**: SystemCapability.Multimedia.Audio.Capturer  |
 | capturerInfo                        | [AudioCapturerInfo](#audiocapturerinfo)                   | Yes  | Audio capturer information.<br>**System capability**: SystemCapability.Multimedia.Audio.Capturer       |
-| playbackCaptureConfig<sup>10+</sup> | [AudioPlaybackCaptureConfig](#audioplaybackcaptureconfig) | No  | Configuration of internal audio recording.<br>**System capability**: SystemCapability.Multimedia.Audio.PlaybackCapture |
+| playbackCaptureConfig<sup>10+</sup> | [AudioPlaybackCaptureConfig](#audioplaybackcaptureconfig) | No  | Configuration of internal audio recording.<br>**System capability**: SystemCapability.Multimedia.Audio.PlaybackCapture|
 
 ## AudioCapturerInfo<sup>8+</sup><a name="audiocapturerinfo"></a>
 
@@ -835,7 +834,8 @@ Enumerates the audio source types.
 | SOURCE_TYPE_INVALID                          | -1     | Invalid audio source.<br>**System capability**: SystemCapability.Multimedia.Audio.Core |
 | SOURCE_TYPE_MIC                              | 0      | Mic source.<br>**System capability**: SystemCapability.Multimedia.Audio.Core|
 | SOURCE_TYPE_VOICE_RECOGNITION<sup>9+</sup>   | 1      | Voice recognition source.<br>**System capability**: SystemCapability.Multimedia.Audio.Core |
-| SOURCE_TYPE_PLAYBACK_CAPTURE<sup>10+</sup> | 2 | Internal audio recording source.<br>**System capability**: SystemCapability.Multimedia.Audio.PlaybackCapture |
+| SOURCE_TYPE_PLAYBACK_CAPTURE<sup>10+</sup>   | 2 | Internal audio recording source.<br>**System capability**: SystemCapability.Multimedia.Audio.PlaybackCapture|
+| SOURCE_TYPE_WAKEUP <sup>10+</sup>            | 3 | Audio recording source in voice wakeup scenarios.<br>**System capability**: SystemCapability.Multimedia.Audio.Core<br>**Required permissions**: ohos.permission.MANAGE_INTELLIGENT_VOICE <br> This is a system API.|
 | SOURCE_TYPE_VOICE_COMMUNICATION              | 7      | Voice communication source.<br>**System capability**: SystemCapability.Multimedia.Audio.Core|
 
 ## AudioPlaybackCaptureConfig<sup>10+</sup><a name="audioplaybackcaptureconfig"></a>
@@ -912,8 +912,9 @@ This API is used to extend the audio configuration based on the hardware capabil
 
 **Example**
 
-```js
-audioManager.setAudioParameter('key_example', 'value_example', (err) => {
+```ts
+import { BusinessError } from '@ohos.base';
+audioManager.setAudioParameter('key_example', 'value_example', (err: BusinessError) => {
   if (err) {
     console.error(`Failed to set the audio parameter. ${err}`);
     return;
@@ -949,7 +950,7 @@ This API is used to extend the audio configuration based on the hardware capabil
 
 **Example**
 
-```js
+```ts
 audioManager.setAudioParameter('key_example', 'value_example').then(() => {
   console.info('Promise returned to indicate a successful setting of the audio parameter.');
 });
@@ -974,8 +975,9 @@ This API is used to extend the audio configuration based on the hardware capabil
 
 **Example**
 
-```js
-audioManager.getAudioParameter('key_example', (err, value) => {
+```ts
+import { BusinessError } from '@ohos.base';
+audioManager.getAudioParameter('key_example', (err: BusinessError, value: string) => {
   if (err) {
     console.error(`Failed to obtain the value of the audio parameter. ${err}`);
     return;
@@ -1008,8 +1010,8 @@ This API is used to extend the audio configuration based on the hardware capabil
 
 **Example**
 
-```js
-audioManager.getAudioParameter('key_example').then((value) => {
+```ts
+audioManager.getAudioParameter('key_example').then((value: string) => {
   console.info(`Promise returned to indicate that the value of the audio parameter is obtained ${value}.`);
 });
 ```
@@ -1033,8 +1035,9 @@ Sets an audio scene. This API uses an asynchronous callback to return the result
 
 **Example**
 
-```js
-audioManager.setAudioScene(audio.AudioScene.AUDIO_SCENE_PHONE_CALL, (err) => {
+```ts
+import { BusinessError } from '@ohos.base';
+audioManager.setAudioScene(audio.AudioScene.AUDIO_SCENE_PHONE_CALL, (err: BusinessError) => {
   if (err) {
     console.error(`Failed to set the audio scene mode.​ ${err}`);
     return;
@@ -1067,10 +1070,11 @@ Sets an audio scene. This API uses a promise to return the result.
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
 audioManager.setAudioScene(audio.AudioScene.AUDIO_SCENE_PHONE_CALL).then(() => {
   console.info('Promise returned to indicate a successful setting of the audio scene mode.');
-}).catch ((err) => {
+}).catch ((err: BusinessError) => {
   console.error(`Failed to set the audio scene mode ${err}`);
 });
 ```
@@ -1091,8 +1095,9 @@ Obtains the audio scene. This API uses an asynchronous callback to return the re
 
 **Example**
 
-```js
-audioManager.getAudioScene((err, value) => {
+```ts
+import { BusinessError } from '@ohos.base';
+audioManager.getAudioScene((err: BusinessError, value: audio.AudioScene) => {
   if (err) {
     console.error(`Failed to obtain the audio scene mode.​ ${err}`);
     return;
@@ -1117,10 +1122,11 @@ Obtains the audio scene. This API uses a promise to return the result.
 
 **Example**
 
-```js
-audioManager.getAudioScene().then((value) => {
+```ts
+import { BusinessError } from '@ohos.base';
+audioManager.getAudioScene().then((value: audio.AudioScene) => {
   console.info(`Promise returned to indicate that the audio scene mode is obtained ${value}.`);
-}).catch ((err) => {
+}).catch ((err: BusinessError) => {
   console.error(`Failed to obtain the audio scene mode ${err}`);
 });
 ```
@@ -1135,8 +1141,9 @@ Obtains an **AudioVolumeManager** instance.
 
 **Example**
 
-```js
-let audioVolumeManager = audioManager.getVolumeManager();
+```ts
+import audio from '@ohos.multimedia.audio';
+let audioVolumeManager: audio.AudioVolumeManager = audioManager.getVolumeManager();
 ```
 
 ### getStreamManager<sup>9+</sup>
@@ -1149,8 +1156,9 @@ Obtains an **AudioStreamManager** instance.
 
 **Example**
 
-```js
-let audioStreamManager = audioManager.getStreamManager();
+```ts
+import audio from '@ohos.multimedia.audio';
+let audioStreamManager: audio.AudioStreamManager = audioManager.getStreamManager();
 ```
 
 ### getRoutingManager<sup>9+</sup>
@@ -1163,8 +1171,9 @@ Obtains an **AudioRoutingManager** instance.
 
 **Example**
 
-```js
-let audioRoutingManager = audioManager.getRoutingManager();
+```ts
+import audio from '@ohos.multimedia.audio';
+let audioRoutingManager: audio.AudioRoutingManager = audioManager.getRoutingManager();
 ```
 
 ### setVolume<sup>(deprecated)</sup>
@@ -1193,8 +1202,9 @@ This permission is required only for muting or unmuting the ringer when **volume
 
 **Example**
 
-```js
-audioManager.setVolume(audio.AudioVolumeType.MEDIA, 10, (err) => {
+```ts
+import { BusinessError } from '@ohos.base';
+audioManager.setVolume(audio.AudioVolumeType.MEDIA, 10, (err: BusinessError) => {
   if (err) {
     console.error(`Failed to set the volume. ${err}`);
     return;
@@ -1234,7 +1244,7 @@ This permission is required only for muting or unmuting the ringer when **volume
 
 **Example**
 
-```js
+```ts
 audioManager.setVolume(audio.AudioVolumeType.MEDIA, 10).then(() => {
   console.info('Promise returned to indicate a successful volume setting.');
 });
@@ -1261,8 +1271,9 @@ Obtains the volume of a stream. This API uses an asynchronous callback to return
 
 **Example**
 
-```js
-audioManager.getVolume(audio.AudioVolumeType.MEDIA, (err, value) => {
+```ts
+import { BusinessError } from '@ohos.base';
+audioManager.getVolume(audio.AudioVolumeType.MEDIA, (err: BusinessError, value: number) => {
   if (err) {
     console.error(`Failed to obtain the volume. ${err}`);
     return;
@@ -1297,8 +1308,8 @@ Obtains the volume of a stream. This API uses a promise to return the result.
 
 **Example**
 
-```js
-audioManager.getVolume(audio.AudioVolumeType.MEDIA).then((value) => {
+```ts
+audioManager.getVolume(audio.AudioVolumeType.MEDIA).then((value: number) => {
   console.info(`Promise returned to indicate that the volume is obtained ${value} .`);
 });
 ```
@@ -1324,8 +1335,9 @@ Obtains the minimum volume allowed for a stream. This API uses an asynchronous c
 
 **Example**
 
-```js
-audioManager.getMinVolume(audio.AudioVolumeType.MEDIA, (err, value) => {
+```ts
+import { BusinessError } from '@ohos.base';
+audioManager.getMinVolume(audio.AudioVolumeType.MEDIA, (err: BusinessError, value: number) => {
   if (err) {
     console.error(`Failed to obtain the minimum volume. ${err}`);
     return;
@@ -1360,8 +1372,8 @@ Obtains the minimum volume allowed for a stream. This API uses a promise to retu
 
 **Example**
 
-```js
-audioManager.getMinVolume(audio.AudioVolumeType.MEDIA).then((value) => {
+```ts
+audioManager.getMinVolume(audio.AudioVolumeType.MEDIA).then((value: number) => {
   console.info(`Promised returned to indicate that the minimum volume is obtained. ${value}`);
 });
 ```
@@ -1387,8 +1399,9 @@ Obtains the maximum volume allowed for a stream. This API uses an asynchronous c
 
 **Example**
 
-```js
-audioManager.getMaxVolume(audio.AudioVolumeType.MEDIA, (err, value) => {
+```ts
+import { BusinessError } from '@ohos.base';
+audioManager.getMaxVolume(audio.AudioVolumeType.MEDIA, (err: BusinessError, value: number) => {
   if (err) {
     console.error(`Failed to obtain the maximum volume. ${err}`);
     return;
@@ -1423,8 +1436,8 @@ Obtains the maximum volume allowed for a stream. This API uses a promise to retu
 
 **Example**
 
-```js
-audioManager.getMaxVolume(audio.AudioVolumeType.MEDIA).then((data) => {
+```ts
+audioManager.getMaxVolume(audio.AudioVolumeType.MEDIA).then((data: number) => {
   console.info('Promised returned to indicate that the maximum volume is obtained.');
 });
 ```
@@ -1451,8 +1464,9 @@ Mutes or unmutes a stream. This API uses an asynchronous callback to return the 
 
 **Example**
 
-```js
-audioManager.mute(audio.AudioVolumeType.MEDIA, true, (err) => {
+```ts
+import { BusinessError } from '@ohos.base';
+audioManager.mute(audio.AudioVolumeType.MEDIA, true, (err: BusinessError) => {
   if (err) {
     console.error(`Failed to mute the stream. ${err}`);
     return;
@@ -1489,7 +1503,7 @@ Mutes or unmutes a stream. This API uses a promise to return the result.
 **Example**
 
 
-```js
+```ts
 audioManager.mute(audio.AudioVolumeType.MEDIA, true).then(() => {
   console.info('Promise returned to indicate that the stream is muted.');
 });
@@ -1516,8 +1530,9 @@ Checks whether a stream is muted. This API uses an asynchronous callback to retu
 
 **Example**
 
-```js
-audioManager.isMute(audio.AudioVolumeType.MEDIA, (err, value) => {
+```ts
+import { BusinessError } from '@ohos.base';
+audioManager.isMute(audio.AudioVolumeType.MEDIA, (err: BusinessError, value: boolean) => {
   if (err) {
     console.error(`Failed to obtain the mute status. ${err}`);
     return;
@@ -1552,8 +1567,8 @@ Checks whether a stream is muted. This API uses a promise to return the result.
 
 **Example**
 
-```js
-audioManager.isMute(audio.AudioVolumeType.MEDIA).then((value) => {
+```ts
+audioManager.isMute(audio.AudioVolumeType.MEDIA).then((value: boolean) => {
   console.info(`Promise returned to indicate that the mute status of the stream is obtained ${value}.`);
 });
 ```
@@ -1579,8 +1594,9 @@ Checks whether a stream is active. This API uses an asynchronous callback to ret
 
 **Example**
 
-```js
-audioManager.isActive(audio.AudioVolumeType.MEDIA, (err, value) => {
+```ts
+import { BusinessError } from '@ohos.base';
+audioManager.isActive(audio.AudioVolumeType.MEDIA, (err: BusinessError, value: boolean) => {
   if (err) {
     console.error(`Failed to obtain the active status of the stream. ${err}`);
     return;
@@ -1615,8 +1631,8 @@ Checks whether a stream is active. This API uses a promise to return the result.
 
 **Example**
 
-```js
-audioManager.isActive(audio.AudioVolumeType.MEDIA).then((value) => {
+```ts
+audioManager.isActive(audio.AudioVolumeType.MEDIA).then((value: boolean) => {
   console.info(`Promise returned to indicate that the active status of the stream is obtained ${value}.`);
 });
 ```
@@ -1646,8 +1662,9 @@ This permission is required only for muting or unmuting the ringer.
 
 **Example**
 
-```js
-audioManager.setRingerMode(audio.AudioRingMode.RINGER_MODE_NORMAL, (err) => {
+```ts
+import { BusinessError } from '@ohos.base';
+audioManager.setRingerMode(audio.AudioRingMode.RINGER_MODE_NORMAL, (err: BusinessError) => {
   if (err) {
     console.error(`Failed to set the ringer mode.​ ${err}`);
     return;
@@ -1687,7 +1704,7 @@ This permission is required only for muting or unmuting the ringer.
 
 **Example**
 
-```js
+```ts
 audioManager.setRingerMode(audio.AudioRingMode.RINGER_MODE_NORMAL).then(() => {
   console.info('Promise returned to indicate a successful setting of the ringer mode.');
 });
@@ -1713,8 +1730,9 @@ Obtains the ringer mode. This API uses an asynchronous callback to return the re
 
 **Example**
 
-```js
-audioManager.getRingerMode((err, value) => {
+```ts
+import { BusinessError } from '@ohos.base';
+audioManager.getRingerMode((err: BusinessError, value: audio.AudioRingMode) => {
   if (err) {
     console.error(`Failed to obtain the ringer mode.​ ${err}`);
     return;
@@ -1743,8 +1761,8 @@ Obtains the ringer mode. This API uses a promise to return the result.
 
 **Example**
 
-```js
-audioManager.getRingerMode().then((value) => {
+```ts
+audioManager.getRingerMode().then((value: audio.AudioRingMode) => {
   console.info(`Promise returned to indicate that the ringer mode is obtained ${value}.`);
 });
 ```
@@ -1769,8 +1787,9 @@ Obtains the audio devices with a specific flag. This API uses an asynchronous ca
 | callback   | AsyncCallback&lt;[AudioDeviceDescriptors](#audiodevicedescriptors)&gt; | Yes  | Callback used to return the device list.|
 
 **Example**
-```js
-audioManager.getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG, (err, value) => {
+```ts
+import { BusinessError } from '@ohos.base';
+audioManager.getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG, (err: BusinessError, value: audio.AudioDeviceDescriptors) => {
   if (err) {
     console.error(`Failed to obtain the device list. ${err}`);
     return;
@@ -1805,8 +1824,8 @@ Obtains the audio devices with a specific flag. This API uses a promise to retur
 
 **Example**
 
-```js
-audioManager.getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG).then((data) => {
+```ts
+audioManager.getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG).then((data: audio.AudioDeviceDescriptors) => {
   console.info('Promise returned to indicate that the device list is obtained.');
 });
 ```
@@ -1833,8 +1852,9 @@ Sets a device to the active state. This API uses an asynchronous callback to ret
 
 **Example**
 
-```js
-audioManager.setDeviceActive(audio.ActiveDeviceType.SPEAKER, true, (err) => {
+```ts
+import { BusinessError } from '@ohos.base';
+audioManager.setDeviceActive(audio.ActiveDeviceType.SPEAKER, true, (err: BusinessError) => {
   if (err) {
     console.error(`Failed to set the active status of the device. ${err}`);
     return;
@@ -1871,7 +1891,7 @@ Sets a device to the active state. This API uses a promise to return the result.
 **Example**
 
 
-```js
+```ts
 audioManager.setDeviceActive(audio.ActiveDeviceType.SPEAKER, true).then(() => {
   console.info('Promise returned to indicate that the device is set to the active status.');
 });
@@ -1898,8 +1918,9 @@ Checks whether a device is active. This API uses an asynchronous callback to ret
 
 **Example**
 
-```js
-audioManager.isDeviceActive(audio.ActiveDeviceType.SPEAKER, (err, value) => {
+```ts
+import { BusinessError } from '@ohos.base';
+audioManager.isDeviceActive(audio.ActiveDeviceType.SPEAKER, (err: BusinessError, value: boolean) => {
   if (err) {
     console.error(`Failed to obtain the active status of the device. ${err}`);
     return;
@@ -1934,8 +1955,8 @@ Checks whether a device is active. This API uses a promise to return the result.
 
 **Example**
 
-```js
-audioManager.isDeviceActive(audio.ActiveDeviceType.SPEAKER).then((value) => {
+```ts
+audioManager.isDeviceActive(audio.ActiveDeviceType.SPEAKER).then((value: boolean) => {
   console.info(`Promise returned to indicate that the active status of the device is obtained ${value}.`);
 });
 ```
@@ -1963,8 +1984,9 @@ Mutes or unmutes the microphone. This API uses an asynchronous callback to retur
 
 **Example**
 
-```js
-audioManager.setMicrophoneMute(true, (err) => {
+```ts
+import { BusinessError } from '@ohos.base';
+audioManager.setMicrophoneMute(true, (err: BusinessError) => {
   if (err) {
     console.error(`Failed to mute the microphone. ${err}`);
     return;
@@ -2001,7 +2023,7 @@ Mutes or unmutes the microphone. This API uses a promise to return the result.
 
 **Example**
 
-```js
+```ts
 audioManager.setMicrophoneMute(true).then(() => {
   console.info('Promise returned to indicate that the microphone is muted.');
 });
@@ -2029,8 +2051,9 @@ Checks whether the microphone is muted. This API uses an asynchronous callback t
 
 **Example**
 
-```js
-audioManager.isMicrophoneMute((err, value) => {
+```ts
+import { BusinessError } from '@ohos.base';
+audioManager.isMicrophoneMute((err: BusinessError, value: boolean) => {
   if (err) {
     console.error(`Failed to obtain the mute status of the microphone. ${err}`);
     return;
@@ -2061,8 +2084,8 @@ Checks whether the microphone is muted. This API uses a promise to return the re
 
 **Example**
 
-```js
-audioManager.isMicrophoneMute().then((value) => {
+```ts
+audioManager.isMicrophoneMute().then((value: boolean) => {
   console.info(`Promise returned to indicate that the mute status of the microphone is obtained ${value}.`);
 });
 ```
@@ -2092,8 +2115,8 @@ Currently, when multiple **AudioManager** instances are used in a single process
 
 **Example**
 
-```js
-audioManager.on('volumeChange', (volumeEvent) => {
+```ts
+audioManager.on('volumeChange', (volumeEvent: audio.VolumeEvent) => {
   console.info(`VolumeType of stream: ${volumeEvent.volumeType} `);
   console.info(`Volume level: ${volumeEvent.volume} `);
   console.info(`Whether to updateUI: ${volumeEvent.updateUi} `);
@@ -2123,8 +2146,8 @@ Subscribes to ringer mode change events.
 
 **Example**
 
-```js
-audioManager.on('ringerModeChange', (ringerMode) => {
+```ts
+audioManager.on('ringerModeChange', (ringerMode: audio.AudioRingMode) => {
   console.info(`Updated ringermode: ${ringerMode}`);
 });
 ```
@@ -2150,8 +2173,8 @@ Subscribes to device change events. When a device is connected or disconnected, 
 
 **Example**
 
-```js
-audioManager.on('deviceChange', (deviceChanged) => {
+```ts
+audioManager.on('deviceChange', (deviceChanged: audio.DeviceChangeAction) => {
   console.info(`device change type : ${deviceChanged.type} `);
   console.info(`device descriptor size : ${deviceChanged.deviceDescriptors.length} `);
   console.info(`device change descriptor : ${deviceChanged.deviceDescriptors[0].deviceRole} `);
@@ -2180,7 +2203,7 @@ Unsubscribes from device change events.
 
 **Example**
 
-```js
+```ts
 audioManager.off('deviceChange');
 ```
 
@@ -2204,13 +2227,14 @@ Same as [on('audioInterrupt')](#onaudiointerrupt9), this API is used to listen f
 
 **Example**
 
-```js
-let interAudioInterrupt = {
+```ts
+import audio from '@ohos.multimedia.audio';
+let interAudioInterrupt: audio.AudioInterrupt = {
   streamUsage:2,
   contentType:0,
   pauseWhenDucked:true
 };
-audioManager.on('interrupt', interAudioInterrupt, (InterruptAction) => {
+audioManager.on('interrupt', interAudioInterrupt, (InterruptAction: audio.InterruptAction) => {
   if (InterruptAction.actionType === 0) {
     console.info('An event to gain the audio focus starts.');
     console.info(`Focus gain event: ${InterruptAction} `);
@@ -2240,16 +2264,17 @@ Unsubscribes from audio interruption events.
 
 **Example**
 
-```js
-let interAudioInterrupt = {
+```ts
+import audio from '@ohos.multimedia.audio';
+let interAudioInterrupt: audio.AudioInterrupt = {
   streamUsage:2,
   contentType:0,
   pauseWhenDucked:true
 };
-audioManager.off('interrupt', interAudioInterrupt, (InterruptAction) => {
+audioManager.off('interrupt', interAudioInterrupt, (InterruptAction: audio.InterruptAction) => {
   if (InterruptAction.actionType === 0) {
-      console.info('An event to release the audio focus starts.');
-      console.info(`Focus release event: ${InterruptAction} `);
+    console.info('An event to release the audio focus starts.');
+    console.info(`Focus release event: ${InterruptAction} `);
   }
 });
 ```
@@ -2276,8 +2301,9 @@ Obtains the volume groups. This API uses an asynchronous callback to return the 
 | callback  | AsyncCallback&lt;[VolumeGroupInfos](#volumegroupinfos9)&gt; | Yes  | Callback used to return the volume group information array.|
 
 **Example**
-```js
-audioVolumeManager.getVolumeGroupInfos(audio.LOCAL_NETWORK_ID, (err, value) => {
+```ts
+import { BusinessError } from '@ohos.base';
+audioVolumeManager.getVolumeGroupInfos(audio.LOCAL_NETWORK_ID, (err: BusinessError, value: audio.VolumeGroupInfos) => {
   if (err) {
     console.error(`Failed to obtain the volume group infos list. ${err}`);
     return;
@@ -2310,9 +2336,9 @@ Obtains the volume groups. This API uses a promise to return the result.
 
 **Example**
 
-```js
+```ts
 async function getVolumeGroupInfos(){
-  let volumegroupinfos = await audio.getAudioManager().getVolumeManager().getVolumeGroupInfos(audio.LOCAL_NETWORK_ID);
+  let volumegroupinfos: audio.VolumeGroupInfos = await audio.getAudioManager().getVolumeManager().getVolumeGroupInfos(audio.LOCAL_NETWORK_ID);
   console.info('Promise returned to indicate that the volumeGroup list is obtained.'+JSON.stringify(volumegroupinfos))
 }
 ```
@@ -2334,9 +2360,10 @@ Obtains the audio group manager. This API uses an asynchronous callback to retur
 
 **Example**
 
-```js
-let groupid = audio.DEFAULT_VOLUME_GROUP_ID;
-audioVolumeManager.getVolumeGroupManager(groupid, (err, value) => {
+```ts
+import { BusinessError } from '@ohos.base';
+let groupid: number = audio.DEFAULT_VOLUME_GROUP_ID;
+audioVolumeManager.getVolumeGroupManager(groupid, (err: BusinessError, value: audio.AudioVolumeGroupManager) => {
   if (err) {
     console.error(`Failed to obtain the volume group infos list. ${err}`);
     return;
@@ -2368,15 +2395,14 @@ Obtains the audio group manager. This API uses a promise to return the result.
 
 **Example**
 
-```js
-let groupid = audio.DEFAULT_VOLUME_GROUP_ID;
-let audioVolumeGroupManager;
-getVolumeGroupManager();
+```ts
+import audio from '@ohos.multimedia.audio';
+let groupid: number = audio.DEFAULT_VOLUME_GROUP_ID;
+let audioVolumeGroupManager: audio.AudioVolumeGroupManager | undefined = undefined;
 async function getVolumeGroupManager(){
   audioVolumeGroupManager = await audioVolumeManager.getVolumeGroupManager(groupid);
   console.info('Callback invoked to indicate that the volume group infos list is obtained.');
 }
-
 ```
 
 ### on('volumeChange')<sup>9+</sup>
@@ -2404,8 +2430,8 @@ For details about the error codes, see [Audio Error Codes](../errorcodes/errorco
 
 **Example**
 
-```js
-audioVolumeManager.on('volumeChange', (volumeEvent) => {
+```ts
+audioVolumeManager.on('volumeChange', (volumeEvent: audio.VolumeEvent) => {
   console.info(`VolumeType of stream: ${volumeEvent.volumeType} `);
   console.info(`Volume level: ${volumeEvent.volume} `);
   console.info(`Whether to updateUI: ${volumeEvent.updateUi} `);
@@ -2440,8 +2466,9 @@ This permission is required only for muting or unmuting the ringer when **volume
 
 **Example**
 
-```js
-audioVolumeGroupManager.setVolume(audio.AudioVolumeType.MEDIA, 10, (err) => {
+```ts
+import { BusinessError } from '@ohos.base';
+audioVolumeGroupManager.setVolume(audio.AudioVolumeType.MEDIA, 10, (err: BusinessError) => {
   if (err) {
     console.error(`Failed to set the volume. ${err}`);
     return;
@@ -2479,7 +2506,7 @@ This permission is required only for muting or unmuting the ringer when **volume
 
 **Example**
 
-```js
+```ts
 audioVolumeGroupManager.setVolume(audio.AudioVolumeType.MEDIA, 10).then(() => {
   console.info('Promise returned to indicate a successful volume setting.');
 });
@@ -2502,8 +2529,9 @@ Obtains the volume of a stream. This API uses an asynchronous callback to return
 
 **Example**
 
-```js
-audioVolumeGroupManager.getVolume(audio.AudioVolumeType.MEDIA, (err, value) => {
+```ts
+import { BusinessError } from '@ohos.base';
+audioVolumeGroupManager.getVolume(audio.AudioVolumeType.MEDIA, (err: BusinessError, value: number) => {
   if (err) {
     console.error(`Failed to obtain the volume. ${err}`);
     return;
@@ -2534,8 +2562,8 @@ Obtains the volume of a stream. This API uses a promise to return the result.
 
 **Example**
 
-```js
-audioVolumeGroupManager.getVolume(audio.AudioVolumeType.MEDIA).then((value) => {
+```ts
+audioVolumeGroupManager.getVolume(audio.AudioVolumeType.MEDIA).then((value: number) => {
   console.info(`Promise returned to indicate that the volume is obtained ${value}.`);
 });
 ```
@@ -2557,8 +2585,9 @@ Obtains the minimum volume allowed for a stream. This API uses an asynchronous c
 
 **Example**
 
-```js
-audioVolumeGroupManager.getMinVolume(audio.AudioVolumeType.MEDIA, (err, value) => {
+```ts
+import { BusinessError } from '@ohos.base';
+audioVolumeGroupManager.getMinVolume(audio.AudioVolumeType.MEDIA, (err: BusinessError, value: number) => {
   if (err) {
     console.error(`Failed to obtain the minimum volume. ${err}`);
     return;
@@ -2589,8 +2618,8 @@ Obtains the minimum volume allowed for a stream. This API uses a promise to retu
 
 **Example**
 
-```js
-audioVolumeGroupManager.getMinVolume(audio.AudioVolumeType.MEDIA).then((value) => {
+```ts
+audioVolumeGroupManager.getMinVolume(audio.AudioVolumeType.MEDIA).then((value: number) => {
   console.info(`Promised returned to indicate that the minimum volume is obtained ${value}.`);
 });
 ```
@@ -2612,8 +2641,9 @@ Obtains the maximum volume allowed for a stream. This API uses an asynchronous c
 
 **Example**
 
-```js
-audioVolumeGroupManager.getMaxVolume(audio.AudioVolumeType.MEDIA, (err, value) => {
+```ts
+import { BusinessError } from '@ohos.base';
+audioVolumeGroupManager.getMaxVolume(audio.AudioVolumeType.MEDIA, (err: BusinessError, value: number) => {
   if (err) {
     console.error(`Failed to obtain the maximum volume. ${err}`);
     return;
@@ -2644,8 +2674,8 @@ Obtains the maximum volume allowed for a stream. This API uses a promise to retu
 
 **Example**
 
-```js
-audioVolumeGroupManager.getMaxVolume(audio.AudioVolumeType.MEDIA).then((data) => {
+```ts
+audioVolumeGroupManager.getMaxVolume(audio.AudioVolumeType.MEDIA).then((data: number) => {
   console.info('Promised returned to indicate that the maximum volume is obtained.');
 });
 ```
@@ -2674,8 +2704,9 @@ This permission is required only for muting or unmuting the ringer when **volume
 
 **Example**
 
-```js
-audioVolumeGroupManager.mute(audio.AudioVolumeType.MEDIA, true, (err) => {
+```ts
+import { BusinessError } from '@ohos.base';
+audioVolumeGroupManager.mute(audio.AudioVolumeType.MEDIA, true, (err: BusinessError) => {
   if (err) {
     console.error(`Failed to mute the stream. ${err}`);
     return;
@@ -2713,7 +2744,7 @@ This permission is required only for muting or unmuting the ringer when **volume
 
 **Example**
 
-```js
+```ts
 audioVolumeGroupManager.mute(audio.AudioVolumeType.MEDIA, true).then(() => {
   console.info('Promise returned to indicate that the stream is muted.');
 });
@@ -2736,8 +2767,9 @@ Checks whether a stream is muted. This API uses an asynchronous callback to retu
 
 **Example**
 
-```js
-audioVolumeGroupManager.isMute(audio.AudioVolumeType.MEDIA, (err, value) => {
+```ts
+import { BusinessError } from '@ohos.base';
+audioVolumeGroupManager.isMute(audio.AudioVolumeType.MEDIA, (err: BusinessError, value: boolean) => {
   if (err) {
     console.error(`Failed to obtain the mute status. ${err}`);
     return;
@@ -2768,8 +2800,8 @@ Checks whether a stream is muted. This API uses a promise to return the result.
 
 **Example**
 
-```js
-audioVolumeGroupManager.isMute(audio.AudioVolumeType.MEDIA).then((value) => {
+```ts
+audioVolumeGroupManager.isMute(audio.AudioVolumeType.MEDIA).then((value: boolean) => {
   console.info(`Promise returned to indicate that the mute status of the stream is obtained ${value}.`);
 });
 ```
@@ -2797,8 +2829,9 @@ This permission is required only for muting or unmuting the ringer.
 
 **Example**
 
-```js
-audioVolumeGroupManager.setRingerMode(audio.AudioRingMode.RINGER_MODE_NORMAL, (err) => {
+```ts
+import { BusinessError } from '@ohos.base';
+audioVolumeGroupManager.setRingerMode(audio.AudioRingMode.RINGER_MODE_NORMAL, (err: BusinessError) => {
   if (err) {
     console.error(`Failed to set the ringer mode.​ ${err}`);
     return;
@@ -2835,7 +2868,7 @@ This permission is required only for muting or unmuting the ringer.
 
 **Example**
 
-```js
+```ts
 audioVolumeGroupManager.setRingerMode(audio.AudioRingMode.RINGER_MODE_NORMAL).then(() => {
   console.info('Promise returned to indicate a successful setting of the ringer mode.');
 });
@@ -2857,8 +2890,9 @@ Obtains the ringer mode. This API uses an asynchronous callback to return the re
 
 **Example**
 
-```js
-audioVolumeGroupManager.getRingerMode((err, value) => {
+```ts
+import { BusinessError } from '@ohos.base';
+audioVolumeGroupManager.getRingerMode((err: BusinessError, value: audio.AudioRingMode) => {
   if (err) {
     console.error(`Failed to obtain the ringer mode.​ ${err}`);
     return;
@@ -2883,8 +2917,8 @@ Obtains the ringer mode. This API uses a promise to return the result.
 
 **Example**
 
-```js
-audioVolumeGroupManager.getRingerMode().then((value) => {
+```ts
+audioVolumeGroupManager.getRingerMode().then((value: audio.AudioRingMode) => {
   console.info(`Promise returned to indicate that the ringer mode is obtained ${value}.`);
 });
 ```
@@ -2914,8 +2948,8 @@ For details about the error codes, see [Audio Error Codes](../errorcodes/errorco
 
 **Example**
 
-```js
-audioVolumeGroupManager.on('ringerModeChange', (ringerMode) => {
+```ts
+audioVolumeGroupManager.on('ringerModeChange', (ringerMode: audio.AudioRingMode) => {
   console.info(`Updated ringermode: ${ringerMode}`);
 });
 ```
@@ -2938,8 +2972,9 @@ Mutes or unmutes the microphone. This API uses an asynchronous callback to retur
 
 **Example**
 
-```js
-audioVolumeGroupManager.setMicrophoneMute(true, (err) => {
+```ts
+import { BusinessError } from '@ohos.base';
+audioVolumeGroupManager.setMicrophoneMute(true, (err: BusinessError) => {
   if (err) {
     console.error(`Failed to mute the microphone. ${err}`);
     return;
@@ -2972,7 +3007,7 @@ Mutes or unmutes the microphone. This API uses a promise to return the result.
 
 **Example**
 
-```js
+```ts
 audioVolumeGroupManager.setMicrophoneMute(true).then(() => {
   console.info('Promise returned to indicate that the microphone is muted.');
 });
@@ -2994,8 +3029,9 @@ Checks whether the microphone is muted. This API uses an asynchronous callback t
 
 **Example**
 
-```js
-audioVolumeGroupManager.isMicrophoneMute((err, value) => {
+```ts
+import { BusinessError } from '@ohos.base';
+audioVolumeGroupManager.isMicrophoneMute((err: BusinessError, value: boolean) => {
   if (err) {
     console.error(`Failed to obtain the mute status of the microphone. ${err}`);
     return;
@@ -3020,8 +3056,8 @@ Checks whether the microphone is muted. This API uses a promise to return the re
 
 **Example**
 
-```js
-audioVolumeGroupManager.isMicrophoneMute().then((value) => {
+```ts
+audioVolumeGroupManager.isMicrophoneMute().then((value: boolean) => {
   console.info(`Promise returned to indicate that the mute status of the microphone is obtained ${value}.`);
 });
 ```
@@ -3053,8 +3089,8 @@ For details about the error codes, see [Audio Error Codes](../errorcodes/errorco
 
 **Example**
 
-```js
-audioVolumeGroupManager.on('micStateChange', (micStateChange) => {
+```ts
+audioVolumeGroupManager.on('micStateChange', (micStateChange: audio.MicStateChangeEvent) => {
   console.info(`Current microphone status is: ${micStateChange.mute} `);
 });
 ```
@@ -3075,8 +3111,8 @@ Checks whether the fixed volume mode is enabled. When the fixed volume mode is e
 
 **Example**
 
-```js
-let volumeAdjustSwitch = audioVolumeGroupManager.isVolumeUnadjustable();
+```ts
+let volumeAdjustSwitch: boolean = audioVolumeGroupManager.isVolumeUnadjustable();
 console.info(`Whether it is volume unadjustable: ${volumeAdjustSwitch}.`);
 ```
 
@@ -3112,8 +3148,9 @@ For details about the error codes, see [Audio Error Codes](../errorcodes/errorco
 
 **Example**
 
-```js
-audioVolumeGroupManager.adjustVolumeByStep(audio.VolumeAdjustType.VOLUME_UP, (err) => {
+```ts
+import { BusinessError } from '@ohos.base';
+audioVolumeGroupManager.adjustVolumeByStep(audio.VolumeAdjustType.VOLUME_UP, (err: BusinessError) => {
   if (err) {
     console.error(`Failed to adjust the volume by step. ${err}`);
     return;
@@ -3159,10 +3196,11 @@ For details about the error codes, see [Audio Error Codes](../errorcodes/errorco
 
 **Example**
 
-```js
-audioVolumeGroupManager.adjustVolumeByStep(audio.VolumeAdjustType.VOLUME_UP).then((value) => {
+```ts
+import { BusinessError } from '@ohos.base';
+audioVolumeGroupManager.adjustVolumeByStep(audio.VolumeAdjustType.VOLUME_UP).then(() => {
   console.info('Success to adjust the volume by step.');
-}).catch((error) => {
+}).catch((error: BusinessError) => {
   console.error('Fail to adjust the volume by step.');
 });
 ```
@@ -3200,8 +3238,9 @@ For details about the error codes, see [Audio Error Codes](../errorcodes/errorco
 
 **Example**
 
-```js
-audioVolumeGroupManager.adjustSystemVolumeByStep(audio.AudioVolumeType.MEDIA, audio.VolumeAdjustType.VOLUME_UP, (err) => {
+```ts
+import { BusinessError } from '@ohos.base';
+audioVolumeGroupManager.adjustSystemVolumeByStep(audio.AudioVolumeType.MEDIA, audio.VolumeAdjustType.VOLUME_UP, (err: BusinessError) => {
   if (err) {
     console.error(`Failed to adjust the system volume by step ${err}`);
   } else {
@@ -3247,10 +3286,11 @@ For details about the error codes, see [Audio Error Codes](../errorcodes/errorco
 
 **Example**
 
-```js
-audioVolumeGroupManager.adjustSystemVolumeByStep(audio.AudioVolumeType.MEDIA, audio.VolumeAdjustType.VOLUME_UP).then((value) => {
+```ts
+import { BusinessError } from '@ohos.base';
+audioVolumeGroupManager.adjustSystemVolumeByStep(audio.AudioVolumeType.MEDIA, audio.VolumeAdjustType.VOLUME_UP).then(() => {
   console.info('Success to adjust the system volume by step.');
-}).catch((error) => {
+}).catch((error: BusinessError) => {
   console.error('Fail to adjust the system volume by step.');
 });
 ```
@@ -3283,8 +3323,9 @@ For details about the error codes, see [Audio Error Codes](../errorcodes/errorco
 
 **Example**
 
-```js
-audioVolumeGroupManager.getSystemVolumeInDb(audio.AudioVolumeType.MEDIA, 3, audio.DeviceType.SPEAKER, (err, dB) => {
+```ts
+import { BusinessError } from '@ohos.base';
+audioVolumeGroupManager.getSystemVolumeInDb(audio.AudioVolumeType.MEDIA, 3, audio.DeviceType.SPEAKER, (err: BusinessError, dB: number) => {
   if (err) {
     console.error(`Failed to get the volume DB. ${err}`);
   } else {
@@ -3325,10 +3366,11 @@ For details about the error codes, see [Audio Error Codes](../errorcodes/errorco
 
 **Example**
 
-```js
-audioVolumeGroupManager.getSystemVolumeInDb(audio.AudioVolumeType.MEDIA, 3, audio.DeviceType.SPEAKER).then((value) => {
+```ts
+import { BusinessError } from '@ohos.base';
+audioVolumeGroupManager.getSystemVolumeInDb(audio.AudioVolumeType.MEDIA, 3, audio.DeviceType.SPEAKER).then((value: number) => {
   console.info(`Success to get the volume DB. ${value}`);
-}).catch((error) => {
+}).catch((error: BusinessError) => {
   console.error(`Fail to adjust the system volume by step. ${error}`);
 });
 ```
@@ -3353,21 +3395,22 @@ Obtains the information about the current audio renderer. This API uses an async
 
 **Example**
 
-```js
-audioStreamManager.getCurrentAudioRendererInfoArray(async (err, AudioRendererChangeInfoArray) => {
+```ts
+import { BusinessError } from '@ohos.base';
+audioStreamManager.getCurrentAudioRendererInfoArray(async (err: BusinessError, AudioRendererChangeInfoArray: audio.AudioRendererChangeInfoArray) => {
   console.info('getCurrentAudioRendererInfoArray **** Get Callback Called ****');
   if (err) {
     console.error(`getCurrentAudioRendererInfoArray :ERROR: ${err}`);
   } else {
     if (AudioRendererChangeInfoArray != null) {
       for (let i = 0; i < AudioRendererChangeInfoArray.length; i++) {
-        let AudioRendererChangeInfo = AudioRendererChangeInfoArray[i];
+        let AudioRendererChangeInfo: audio.AudioRendererChangeInfo = AudioRendererChangeInfoArray[i];
         console.info(`StreamId for ${i} is: ${AudioRendererChangeInfo.streamId}`);
         console.info(`ClientUid for ${i} is: ${AudioRendererChangeInfo.clientUid}`);
         console.info(`Content ${i} is: ${AudioRendererChangeInfo.rendererInfo.content}`);
         console.info(`Stream ${i} is: ${AudioRendererChangeInfo.rendererInfo.usage}`);
-        console.info(`Flag ${i} is: ${AudioRendererChangeInfo.rendererInfo.rendererFlags}`); 
-        console.info(`State for ${i} is: ${AudioRendererChangeInfo.rendererState}`);  
+        console.info(`Flag ${i} is: ${AudioRendererChangeInfo.rendererInfo.rendererFlags}`);
+        console.info(`State for ${i} is: ${AudioRendererChangeInfo.rendererState}`);
         for (let j = 0;j < AudioRendererChangeInfo.deviceDescriptors.length; j++) {
           console.info(`Id: ${i} : ${AudioRendererChangeInfo.deviceDescriptors[j].id}`);
           console.info(`Type: ${i} : ${AudioRendererChangeInfo.deviceDescriptors[j].deviceType}`);
@@ -3400,19 +3443,20 @@ Obtains the information about the current audio renderer. This API uses a promis
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
 async function getCurrentAudioRendererInfoArray(){
-  await audioStreamManager.getCurrentAudioRendererInfoArray().then( function (AudioRendererChangeInfoArray) {
+  await audioStreamManager.getCurrentAudioRendererInfoArray().then((AudioRendererChangeInfoArray: audio.AudioRendererChangeInfoArray) => {
     console.info(`getCurrentAudioRendererInfoArray ######### Get Promise is called ##########`);
     if (AudioRendererChangeInfoArray != null) {
       for (let i = 0; i < AudioRendererChangeInfoArray.length; i++) {
-        let AudioRendererChangeInfo = AudioRendererChangeInfoArray[i];
+        let AudioRendererChangeInfo: audio.AudioRendererChangeInfo = AudioRendererChangeInfoArray[i];
         console.info(`StreamId for ${i} is: ${AudioRendererChangeInfo.streamId}`);
         console.info(`ClientUid for ${i} is: ${AudioRendererChangeInfo.clientUid}`);
         console.info(`Content ${i} is: ${AudioRendererChangeInfo.rendererInfo.content}`);
         console.info(`Stream ${i} is: ${AudioRendererChangeInfo.rendererInfo.usage}`);
-        console.info(`Flag ${i} is: ${AudioRendererChangeInfo.rendererInfo.rendererFlags}`); 
-        console.info(`State for ${i} is: ${AudioRendererChangeInfo.rendererState}`);  
+        console.info(`Flag ${i} is: ${AudioRendererChangeInfo.rendererInfo.rendererFlags}`);
+        console.info(`State for ${i} is: ${AudioRendererChangeInfo.rendererState}`);
         for (let j = 0;j < AudioRendererChangeInfo.deviceDescriptors.length; j++) {
           console.info(`Id: ${i} : ${AudioRendererChangeInfo.deviceDescriptors[j].id}`);
           console.info(`Type: ${i} : ${AudioRendererChangeInfo.deviceDescriptors[j].deviceType}`);
@@ -3425,7 +3469,7 @@ async function getCurrentAudioRendererInfoArray(){
         }
       }
     }
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.error(`getCurrentAudioRendererInfoArray :ERROR: ${err}`);
   });
 }
@@ -3447,8 +3491,9 @@ Obtains the information about the current audio capturer. This API uses an async
 
 **Example**
 
-```js
-audioStreamManager.getCurrentAudioCapturerInfoArray(async (err, AudioCapturerChangeInfoArray) => {
+```ts
+import { BusinessError } from '@ohos.base';
+audioStreamManager.getCurrentAudioCapturerInfoArray(async (err: BusinessError, AudioCapturerChangeInfoArray: audio.AudioCapturerChangeInfoArray) => {
   console.info('getCurrentAudioCapturerInfoArray **** Get Callback Called ****');
   if (err) {
     console.error(`getCurrentAudioCapturerInfoArray :ERROR: ${err}`);
@@ -3459,7 +3504,7 @@ audioStreamManager.getCurrentAudioCapturerInfoArray(async (err, AudioCapturerCha
         console.info(`ClientUid for ${i} is: ${AudioCapturerChangeInfoArray[i].clientUid}`);
         console.info(`Source for ${i} is: ${AudioCapturerChangeInfoArray[i].capturerInfo.source}`);
         console.info(`Flag  ${i} is: ${AudioCapturerChangeInfoArray[i].capturerInfo.capturerFlags}`);
-        console.info(`State for ${i} is: ${AudioCapturerChangeInfoArray[i].capturerState}`);  
+        console.info(`State for ${i} is: ${AudioCapturerChangeInfoArray[i].capturerState}`);
         for (let j = 0; j < AudioCapturerChangeInfoArray[i].deviceDescriptors.length; j++) {
           console.info(`Id: ${i} : ${AudioCapturerChangeInfoArray[i].deviceDescriptors[j].id}`);
           console.info(`Type: ${i} : ${AudioCapturerChangeInfoArray[i].deviceDescriptors[j].deviceType}`);
@@ -3492,9 +3537,10 @@ Obtains the information about the current audio capturer. This API uses a promis
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
 async function getCurrentAudioCapturerInfoArray(){
-  await audioStreamManager.getCurrentAudioCapturerInfoArray().then( function (AudioCapturerChangeInfoArray) {
+  await audioStreamManager.getCurrentAudioCapturerInfoArray().then((AudioCapturerChangeInfoArray: audio.AudioCapturerChangeInfoArray) => {
     console.info('getCurrentAudioCapturerInfoArray **** Get Promise Called ****');
     if (AudioCapturerChangeInfoArray != null) {
       for (let i = 0; i < AudioCapturerChangeInfoArray.length; i++) {
@@ -3502,7 +3548,7 @@ async function getCurrentAudioCapturerInfoArray(){
         console.info(`ClientUid for ${i} is: ${AudioCapturerChangeInfoArray[i].clientUid}`);
         console.info(`Source for ${i} is: ${AudioCapturerChangeInfoArray[i].capturerInfo.source}`);
         console.info(`Flag  ${i} is: ${AudioCapturerChangeInfoArray[i].capturerInfo.capturerFlags}`);
-        console.info(`State for ${i} is: ${AudioCapturerChangeInfoArray[i].capturerState}`);  
+        console.info(`State for ${i} is: ${AudioCapturerChangeInfoArray[i].capturerState}`);
         for (let j = 0; j < AudioCapturerChangeInfoArray[i].deviceDescriptors.length; j++) {
           console.info(`Id: ${i} : ${AudioCapturerChangeInfoArray[i].deviceDescriptors[j].id}`);
           console.info(`Type: ${i} : ${AudioCapturerChangeInfoArray[i].deviceDescriptors[j].deviceType}`);
@@ -3515,7 +3561,7 @@ async function getCurrentAudioCapturerInfoArray(){
         }
       }
     }
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.error(`getCurrentAudioCapturerInfoArray :ERROR: ${err}`);
   });
 }
@@ -3546,17 +3592,17 @@ For details about the error codes, see [Audio Error Codes](../errorcodes/errorco
 
 **Example**
 
-```js
-audioStreamManager.on('audioRendererChange',  (AudioRendererChangeInfoArray) => {
+```ts
+audioStreamManager.on('audioRendererChange',  (AudioRendererChangeInfoArray: audio.AudioRendererChangeInfoArray) => {
   for (let i = 0; i < AudioRendererChangeInfoArray.length; i++) {
-    let AudioRendererChangeInfo = AudioRendererChangeInfoArray[i];
+    let AudioRendererChangeInfo: audio.AudioRendererChangeInfo = AudioRendererChangeInfoArray[i];
     console.info(`## RendererChange on is called for ${i} ##`);
     console.info(`StreamId for ${i} is: ${AudioRendererChangeInfo.streamId}`);
     console.info(`ClientUid for ${i} is: ${AudioRendererChangeInfo.clientUid}`);
     console.info(`Content ${i} is: ${AudioRendererChangeInfo.rendererInfo.content}`);
     console.info(`Stream ${i} is: ${AudioRendererChangeInfo.rendererInfo.usage}`);
-    console.info(`Flag ${i} is: ${AudioRendererChangeInfo.rendererInfo.rendererFlags}`); 
-    console.info(`State for ${i} is: ${AudioRendererChangeInfo.rendererState}`);  
+    console.info(`Flag ${i} is: ${AudioRendererChangeInfo.rendererInfo.rendererFlags}`);
+    console.info(`State for ${i} is: ${AudioRendererChangeInfo.rendererState}`);
     for (let j = 0;j < AudioRendererChangeInfo.deviceDescriptors.length; j++) {
       console.info(`Id: ${i} : ${AudioRendererChangeInfo.deviceDescriptors[j].id}`);
       console.info(`Type: ${i} : ${AudioRendererChangeInfo.deviceDescriptors[j].deviceType}`);
@@ -3595,7 +3641,7 @@ For details about the error codes, see [Audio Error Codes](../errorcodes/errorco
 
 **Example**
 
-```js
+```ts
 audioStreamManager.off('audioRendererChange');
 console.info('######### RendererChange Off is called #########');
 ```
@@ -3625,16 +3671,16 @@ For details about the error codes, see [Audio Error Codes](../errorcodes/errorco
 
 **Example**
 
-```js
-audioStreamManager.on('audioCapturerChange', (AudioCapturerChangeInfoArray) =>  {
+```ts
+audioStreamManager.on('audioCapturerChange', (AudioCapturerChangeInfoArray: audio.AudioCapturerChangeInfoArray) =>  {
   for (let i = 0; i < AudioCapturerChangeInfoArray.length; i++) {
     console.info(`## CapChange on is called for element ${i} ##`);
     console.info(`StreamId for ${i} is: ${AudioCapturerChangeInfoArray[i].streamId}`);
     console.info(`ClientUid for ${i} is: ${AudioCapturerChangeInfoArray[i].clientUid}`);
     console.info(`Source for ${i} is: ${AudioCapturerChangeInfoArray[i].capturerInfo.source}`);
     console.info(`Flag  ${i} is: ${AudioCapturerChangeInfoArray[i].capturerInfo.capturerFlags}`);
-    console.info(`State for ${i} is: ${AudioCapturerChangeInfoArray[i].capturerState}`);  
-    let devDescriptor = AudioCapturerChangeInfoArray[i].deviceDescriptors;
+    console.info(`State for ${i} is: ${AudioCapturerChangeInfoArray[i].capturerState}`);
+    let devDescriptor: audio.AudioCapturerChangeInfo = AudioCapturerChangeInfoArray[i].deviceDescriptors;
     for (let j = 0; j < AudioCapturerChangeInfoArray[i].deviceDescriptors.length; j++) {
       console.info(`Id: ${i} : ${AudioCapturerChangeInfoArray[i].deviceDescriptors[j].id}`);
       console.info(`Type: ${i} : ${AudioCapturerChangeInfoArray[i].deviceDescriptors[j].deviceType}`);
@@ -3673,7 +3719,7 @@ For details about the error codes, see [Audio Error Codes](../errorcodes/errorco
 
 **Example**
 
-```js
+```ts
 audioStreamManager.off('audioCapturerChange');
 console.info('######### CapturerChange Off is called #########');
 
@@ -3696,12 +3742,13 @@ Checks whether a stream is active. This API uses an asynchronous callback to ret
 
 **Example**
 
-```js
-audioStreamManager.isActive(audio.AudioVolumeType.MEDIA, (err, value) => {
-  if (err) {
-    console.error(`Failed to obtain the active status of the stream. ${err}`);
-    return;
-  }
+```ts
+import { BusinessError } from '@ohos.base';
+audioStreamManager.isActive(audio.AudioVolumeType.MEDIA, (err: BusinessError, value: boolean) => {
+if (err) {
+  console.error(`Failed to obtain the active status of the stream. ${err}`);
+  return;
+}
   console.info(`Callback invoked to indicate that the active status of the stream is obtained ${value}.`);
 });
 ```
@@ -3728,8 +3775,8 @@ Checks whether a stream is active. This API uses a promise to return the result.
 
 **Example**
 
-```js
-audioStreamManager.isActive(audio.AudioVolumeType.MEDIA).then((value) => {
+```ts
+audioStreamManager.isActive(audio.AudioVolumeType.MEDIA).then((value: boolean) => {
   console.info(`Promise returned to indicate that the active status of the stream is obtained ${value}.`);
 });
 ```
@@ -3759,8 +3806,9 @@ For details about the error codes, see [Audio Error Codes](../errorcodes/errorco
 
 **Example**
 
-```js
-audioStreamManager.getAudioEffectInfoArray(audio.StreamUsage.STREAM_USAGE_MEDIA, async (err, audioEffectInfoArray) => {
+```ts
+import { BusinessError } from '@ohos.base';
+audioStreamManager.getAudioEffectInfoArray(audio.StreamUsage.STREAM_USAGE_MEDIA, async (err: BusinessError, audioEffectInfoArray: audio.AudioEffectInfoArray) => {
   console.info('getAudioEffectInfoArray **** Get Callback Called ****');
   if (err) {
     console.error(`getAudioEffectInfoArray :ERROR: ${err}`);
@@ -3801,11 +3849,12 @@ For details about the error codes, see [Audio Error Codes](../errorcodes/errorco
 
 **Example**
 
-```js
-audioStreamManager.getAudioEffectInfoArray(audio.StreamUsage.STREAM_USAGE_MEDIA).then((audioEffectInfoArray) => {
+```ts
+import { BusinessError } from '@ohos.base';
+audioStreamManager.getAudioEffectInfoArray(audio.StreamUsage.STREAM_USAGE_MEDIA).then((audioEffectInfoArray: audio.AudioEffectInfoArray) => {
   console.info('getAudioEffectInfoArray ######### Get Promise is called ##########');
   console.info(`The effect modes are: ${audioEffectInfoArray}`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error(`getAudioEffectInfoArray :ERROR: ${err}`);
 });
 ```
@@ -3831,8 +3880,9 @@ Obtains the audio devices with a specific flag. This API uses an asynchronous ca
 
 **Example**
 
-```js
-audioRoutingManager.getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG, (err, value) => {
+```ts
+import { BusinessError } from '@ohos.base';
+audioRoutingManager.getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG, (err: BusinessError, value: audio.AudioDeviceDescriptors) => {
   if (err) {
     console.error(`Failed to obtain the device list. ${err}`);
     return;
@@ -3863,8 +3913,8 @@ Obtains the audio devices with a specific flag. This API uses a promise to retur
 
 **Example**
 
-```js
-audioRoutingManager.getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG).then((data) => {
+```ts
+audioRoutingManager.getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG).then((data: audio.AudioDeviceDescriptors) => {
   console.info('Promise returned to indicate that the device list is obtained.');
 });
 ```
@@ -3895,8 +3945,8 @@ For details about the error codes, see [Audio Error Codes](../errorcodes/errorco
 
 **Example**
 
-```js
-audioRoutingManager.on('deviceChange', audio.DeviceFlag.OUTPUT_DEVICES_FLAG, (deviceChanged) => {
+```ts
+audioRoutingManager.on('deviceChange', audio.DeviceFlag.OUTPUT_DEVICES_FLAG, (deviceChanged: audio.DeviceChangeAction) => {
   console.info('device change type : ' + deviceChanged.type);
   console.info('device descriptor size : ' + deviceChanged.deviceDescriptors.length);
   console.info('device change descriptor : ' + deviceChanged.deviceDescriptors[0].deviceRole);
@@ -3929,7 +3979,7 @@ For details about the error codes, see [Audio Error Codes](../errorcodes/errorco
 
 **Example**
 
-```js
+```ts
 audioRoutingManager.off('deviceChange');
 ```
 
@@ -3951,28 +4001,31 @@ Selects an audio input device. Only one input device can be selected. This API u
 | callback                    | AsyncCallback&lt;void&gt;                                    | Yes  | Callback used to return the result.|
 
 **Example**
-```js
-let inputAudioDeviceDescriptor = [{
-    deviceRole : audio.DeviceRole.INPUT_DEVICE,
-    deviceType : audio.DeviceType.EARPIECE,
-    id : 1,
-    name : "",
-    address : "",
-    sampleRates : [44100],
-    channelCounts : [2],
-    channelMasks : [0],
-    networkId : audio.LOCAL_NETWORK_ID,
-    interruptGroupId : 1,
-    volumeGroupId : 1,
-    displayName : "",
+```ts
+import audio from '@ohos.multimedia.audio';
+import { BusinessError } from '@ohos.base';
+let inputAudioDeviceDescriptor: audio.AudioDeviceDescriptors = [{
+  deviceRole : audio.DeviceRole.INPUT_DEVICE,
+  deviceType : audio.DeviceType.EARPIECE,
+  id : 1,
+  name : "",
+  address : "",
+  sampleRates : [44100],
+  channelCounts : [2],
+  channelMasks : [0],
+  networkId : audio.LOCAL_NETWORK_ID,
+  interruptGroupId : 1,
+  volumeGroupId : 1,
+  displayName : "",
 }];
 
 async function selectInputDevice(){
-  audioRoutingManager.selectInputDevice(inputAudioDeviceDescriptor, (err) => {
+  audioRoutingManager.selectInputDevice(inputAudioDeviceDescriptor, (err: BusinessError) => {
     if (err) {
       console.error(`Result ERROR: ${err}`);
     } else {
-      console.info('Select input devices result callback: SUCCESS'); }
+      console.info('Select input devices result callback: SUCCESS');
+    }
   });
 }
 ```
@@ -4001,28 +4054,30 @@ Selects an audio input device. Only one input device can be selected. This API u
 
 **Example**
 
-```js
-let inputAudioDeviceDescriptor = [{
-    deviceRole : audio.DeviceRole.INPUT_DEVICE,
-    deviceType : audio.DeviceType.EARPIECE,
-    id : 1,
-    name : "",
-    address : "",
-    sampleRates : [44100],
-    channelCounts : [2],
-    channelMasks : [0],
-    networkId : audio.LOCAL_NETWORK_ID,
-    interruptGroupId : 1,
-    volumeGroupId : 1,
-    displayName : "",
+```ts
+import audio from '@ohos.multimedia.audio';
+import { BusinessError } from '@ohos.base';
+let inputAudioDeviceDescriptor: audio.AudioDeviceDescriptors = [{
+  deviceRole : audio.DeviceRole.INPUT_DEVICE,
+  deviceType : audio.DeviceType.EARPIECE,
+  id : 1,
+  name : "",
+  address : "",
+  sampleRates : [44100],
+  channelCounts : [2],
+  channelMasks : [0],
+  networkId : audio.LOCAL_NETWORK_ID,
+  interruptGroupId : 1,
+  volumeGroupId : 1,
+  displayName : "",
 }];
 
 async function getRoutingManager(){
-    audioRoutingManager.selectInputDevice(inputAudioDeviceDescriptor).then(() => {
-      console.info('Select input devices result promise: SUCCESS');
-    }).catch((err) => {
-      console.error(`Result ERROR: ${err}`);
-    });
+  audioRoutingManager.selectInputDevice(inputAudioDeviceDescriptor).then(() => {
+    console.info('Select input devices result promise: SUCCESS');
+  }).catch((err: BusinessError) => {
+    console.error(`Result ERROR: ${err}`);
+  });
 }
 ```
 
@@ -4044,8 +4099,9 @@ Sets a communication device to the active state. This API uses an asynchronous c
 
 **Example**
 
-```js
-audioRoutingManager.setCommunicationDevice(audio.CommunicationDeviceType.SPEAKER, true, (err) => {
+```ts
+import { BusinessError } from '@ohos.base';
+audioRoutingManager.setCommunicationDevice(audio.CommunicationDeviceType.SPEAKER, true, (err: BusinessError) => {
   if (err) {
     console.error(`Failed to set the active status of the device. ${err}`);
     return;
@@ -4077,7 +4133,7 @@ Sets a communication device to the active state. This API uses a promise to retu
 
 **Example**
 
-```js
+```ts
 audioRoutingManager.setCommunicationDevice(audio.CommunicationDeviceType.SPEAKER, true).then(() => {
   console.info('Promise returned to indicate that the device is set to the active status.');
 });
@@ -4100,8 +4156,9 @@ Checks whether a communication device is active. This API uses an asynchronous c
 
 **Example**
 
-```js
-audioRoutingManager.isCommunicationDeviceActive(audio.CommunicationDeviceType.SPEAKER, (err, value) => {
+```ts
+import { BusinessError } from '@ohos.base';
+audioRoutingManager.isCommunicationDeviceActive(audio.CommunicationDeviceType.SPEAKER, (err: BusinessError, value: boolean) => {
   if (err) {
     console.error(`Failed to obtain the active status of the device. ${err}`);
     return;
@@ -4132,8 +4189,8 @@ Checks whether a communication device is active. This API uses a promise to retu
 
 **Example**
 
-```js
-audioRoutingManager.isCommunicationDeviceActive(audio.CommunicationDeviceType.SPEAKER).then((value) => {
+```ts
+audioRoutingManager.isCommunicationDeviceActive(audio.CommunicationDeviceType.SPEAKER).then((value: boolean) => {
   console.info(`Promise returned to indicate that the active status of the device is obtained ${value}.`);
 });
 ```
@@ -4156,24 +4213,26 @@ Selects an audio output device. Currently, only one output device can be selecte
 | callback                    | AsyncCallback&lt;void&gt;                                    | Yes  | Callback used to return the result.|
 
 **Example**
-```js
-let outputAudioDeviceDescriptor = [{
-    deviceRole : audio.DeviceRole.OUTPUT_DEVICE,
-    deviceType : audio.DeviceType.SPEAKER,
-    id : 1,
-    name : "",
-    address : "",
-    sampleRates : [44100],
-    channelCounts : [2],
-    channelMasks : [0],
-    networkId : audio.LOCAL_NETWORK_ID,
-    interruptGroupId : 1,
-    volumeGroupId : 1,
-    displayName : "",
+```ts
+import audio from '@ohos.multimedia.audio';
+import { BusinessError } from '@ohos.base';
+let outputAudioDeviceDescriptor: audio.AudioDeviceDescriptors = [{
+  deviceRole : audio.DeviceRole.OUTPUT_DEVICE,
+  deviceType : audio.DeviceType.SPEAKER,
+  id : 1,
+  name : "",
+  address : "",
+  sampleRates : [44100],
+  channelCounts : [2],
+  channelMasks : [0],
+  networkId : audio.LOCAL_NETWORK_ID,
+  interruptGroupId : 1,
+  volumeGroupId : 1,
+  displayName : "",
 }];
 
 async function selectOutputDevice(){
-  audioRoutingManager.selectOutputDevice(outputAudioDeviceDescriptor, (err) => {
+  audioRoutingManager.selectOutputDevice(outputAudioDeviceDescriptor, (err: BusinessError) => {
     if (err) {
       console.error(`Result ERROR: ${err}`);
     } else {
@@ -4206,26 +4265,28 @@ Selects an audio output device. Currently, only one output device can be selecte
 
 **Example**
 
-```js
-let outputAudioDeviceDescriptor = [{
-    deviceRole : audio.DeviceRole.OUTPUT_DEVICE,
-    deviceType : audio.DeviceType.SPEAKER,
-    id : 1,
-    name : "",
-    address : "",
-    sampleRates : [44100],
-    channelCounts : [2],
-    channelMasks : [0],
-    networkId : audio.LOCAL_NETWORK_ID,
-    interruptGroupId : 1,
-    volumeGroupId : 1,
-    displayName : "",
+```ts
+import audio from '@ohos.multimedia.audio';
+import { BusinessError } from '@ohos.base';
+let outputAudioDeviceDescriptor: audio.AudioDeviceDescriptors = [{
+  deviceRole : audio.DeviceRole.OUTPUT_DEVICE,
+  deviceType : audio.DeviceType.SPEAKER,
+  id : 1,
+  name : "",
+  address : "",
+  sampleRates : [44100],
+  channelCounts : [2],
+  channelMasks : [0],
+  networkId : audio.LOCAL_NETWORK_ID,
+  interruptGroupId : 1,
+  volumeGroupId : 1,
+  displayName : "",
 }];
 
 async function selectOutputDevice(){
   audioRoutingManager.selectOutputDevice(outputAudioDeviceDescriptor).then(() => {
     console.info('Select output devices result promise: SUCCESS');
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.error(`Result ERROR: ${err}`);
   });
 }
@@ -4250,32 +4311,36 @@ Selects an audio output device based on the filter criteria. Currently, only one
 | callback                    | AsyncCallback&lt;void&gt;                                    | Yes  | Callback used to return the result.|
 
 **Example**
-```js
-let outputAudioRendererFilter = {
+```ts
+import audio from '@ohos.multimedia.audio';
+import { BusinessError } from '@ohos.base';
+let outputAudioRendererFilter: audio.AudioRendererFilter = {
   uid : 20010041,
   rendererInfo : {
     content : audio.ContentType.CONTENT_TYPE_MUSIC,
     usage : audio.StreamUsage.STREAM_USAGE_MEDIA,
-    rendererFlags : 0 },
-  rendererId : 0 };
-  
-let outputAudioDeviceDescriptor = [{
-    deviceRole : audio.DeviceRole.OUTPUT_DEVICE,
-    deviceType : audio.DeviceType.SPEAKER,
-    id : 1,
-    name : "",
-    address : "",
-    sampleRates : [44100],
-    channelCounts : [2],
-    channelMasks : [0],
-    networkId : audio.LOCAL_NETWORK_ID,
-    interruptGroupId : 1,
-    volumeGroupId : 1,
-    displayName : "",
+    rendererFlags : 0
+  },
+  rendererId : 0
+};
+
+let outputAudioDeviceDescriptor: audio.AudioDeviceDescriptors = [{
+  deviceRole : audio.DeviceRole.OUTPUT_DEVICE,
+  deviceType : audio.DeviceType.SPEAKER,
+  id : 1,
+  name : "",
+  address : "",
+  sampleRates : [44100],
+  channelCounts : [2],
+  channelMasks : [0],
+  networkId : audio.LOCAL_NETWORK_ID,
+  interruptGroupId : 1,
+  volumeGroupId : 1,
+  displayName : "",
 }];
 
 async function selectOutputDeviceByFilter(){
-  audioRoutingManager.selectOutputDeviceByFilter(outputAudioRendererFilter, outputAudioDeviceDescriptor, (err) => {
+  audioRoutingManager.selectOutputDeviceByFilter(outputAudioRendererFilter, outputAudioDeviceDescriptor, (err: BusinessError) => {
     if (err) {
       console.error(`Result ERROR: ${err}`);
     } else {
@@ -4309,34 +4374,38 @@ Selects an audio output device based on the filter criteria. Currently, only one
 
 **Example**
 
-```js
-let outputAudioRendererFilter = {
+```ts
+import audio from '@ohos.multimedia.audio';
+import { BusinessError } from '@ohos.base';
+let outputAudioRendererFilter: audio.AudioRendererFilter = {
   uid : 20010041,
   rendererInfo : {
     content : audio.ContentType.CONTENT_TYPE_MUSIC,
     usage : audio.StreamUsage.STREAM_USAGE_MEDIA,
-    rendererFlags : 0 },
-  rendererId : 0 };
+    rendererFlags : 0
+  },
+  rendererId : 0
+};
 
-let outputAudioDeviceDescriptor = [{
-    deviceRole : audio.DeviceRole.OUTPUT_DEVICE,
-    deviceType : audio.DeviceType.SPEAKER,
-    id : 1,
-    name : "",
-    address : "",
-    sampleRates : [44100],
-    channelCounts : [2],
-    channelMasks : [0],
-    networkId : audio.LOCAL_NETWORK_ID,
-    interruptGroupId : 1,
-    volumeGroupId : 1,
-    displayName : "",
+let outputAudioDeviceDescriptor: audio.AudioDeviceDescriptors = [{
+  deviceRole : audio.DeviceRole.OUTPUT_DEVICE,
+  deviceType : audio.DeviceType.SPEAKER,
+  id : 1,
+  name : "",
+  address : "",
+  sampleRates : [44100],
+  channelCounts : [2],
+  channelMasks : [0],
+  networkId : audio.LOCAL_NETWORK_ID,
+  interruptGroupId : 1,
+  volumeGroupId : 1,
+  displayName : "",
 }];
 
 async function selectOutputDeviceByFilter(){
   audioRoutingManager.selectOutputDeviceByFilter(outputAudioRendererFilter, outputAudioDeviceDescriptor).then(() => {
     console.info('Select output devices by filter result promise: SUCCESS');
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.error(`Result ERROR: ${err}`);
   })
 }
@@ -4357,15 +4426,27 @@ Obtains the output device with the highest priority based on the audio renderer 
 | rendererInfo                | [AudioRendererInfo](#audiorendererinfo8)                     | Yes  | Audio renderer information.            |
 | callback                    | AsyncCallback&lt;[AudioDeviceDescriptors](#audiodevicedescriptors)&gt;  | Yes  | Callback used to return the information about the output device with the highest priority.|
 
+**Error codes**
+
+For details about the error codes, see [Audio Error Codes](../errorcodes/errorcode-audio.md).
+
+| ID| Error Message                                          |
+| ------- |--------------------------------------------------|
+| 6800101 | Input parameter value error. Return by callback. |
+| 6800301 | System error. Return by callback.                |
+
 **Example**
-```js
-let rendererInfo = {
-    content : audio.ContentType.CONTENT_TYPE_MUSIC,
-    usage : audio.StreamUsage.STREAM_USAGE_MEDIA,
-    rendererFlags : 0 }
+```ts
+import audio from '@ohos.multimedia.audio';
+import { BusinessError } from '@ohos.base';
+let rendererInfo: audio.AudioRendererInfo = {
+  content : audio.ContentType.CONTENT_TYPE_MUSIC,
+  usage : audio.StreamUsage.STREAM_USAGE_MEDIA,
+  rendererFlags : 0
+}
 
 async function getPreferOutputDevice() {
-  audioRoutingManager.getPreferOutputDeviceForRendererInfo(rendererInfo, (err, desc) => {
+  audioRoutingManager.getPreferOutputDeviceForRendererInfo(rendererInfo, (err: BusinessError, desc: audio.AudioDeviceDescriptors) => {
     if (err) {
       console.error(`Result ERROR: ${err}`);
     } else {
@@ -4398,22 +4479,26 @@ Obtains the output device with the highest priority based on the audio renderer 
 
 For details about the error codes, see [Audio Error Codes](../errorcodes/errorcode-audio.md).
 
-| ID| Error Message|
-| ------- | --------------------------------------------|
-| 6800101 | if input parameter value error              |
+| ID| Error Message                                         |
+| ------- |-------------------------------------------------|
+| 6800101 | Input parameter value error. Return by promise. |
+| 6800301 | System error. Return by promise.                |
 
 **Example**
 
-```js
-let rendererInfo = {
-    content : audio.ContentType.CONTENT_TYPE_MUSIC,
-    usage : audio.StreamUsage.STREAM_USAGE_MEDIA,
-    rendererFlags : 0 }
+```ts
+import audio from '@ohos.multimedia.audio';
+import { BusinessError } from '@ohos.base';
+let rendererInfo: audio.AudioRendererInfo = {
+  content : audio.ContentType.CONTENT_TYPE_MUSIC,
+  usage : audio.StreamUsage.STREAM_USAGE_MEDIA,
+  rendererFlags : 0
+}
 
 async function getPreferOutputDevice() {
-  audioRoutingManager.getPreferOutputDeviceForRendererInfo(rendererInfo).then((desc) => {
+  audioRoutingManager.getPreferOutputDeviceForRendererInfo(rendererInfo).then((desc: audio.AudioDeviceDescriptors) => {
     console.info(`device descriptor: ${desc}`);
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.error(`Result ERROR: ${err}`);
   })
 }
@@ -4445,13 +4530,15 @@ For details about the error codes, see [Audio Error Codes](../errorcodes/errorco
 
 **Example**
 
-```js
-let rendererInfo = {
-    content : audio.ContentType.CONTENT_TYPE_MUSIC,
-    usage : audio.StreamUsage.STREAM_USAGE_MEDIA,
-    rendererFlags : 0 }
+```ts
+import audio from '@ohos.multimedia.audio';
+let rendererInfo: audio.AudioRendererInfo = {
+  content : audio.ContentType.CONTENT_TYPE_MUSIC,
+  usage : audio.StreamUsage.STREAM_USAGE_MEDIA,
+  rendererFlags : 0
+}
 
-audioRoutingManager.on('preferOutputDeviceChangeForRendererInfo', rendererInfo, (desc) => {
+audioRoutingManager.on('preferOutputDeviceChangeForRendererInfo', rendererInfo, (desc: audio.AudioDeviceDescriptors) => {
   console.info(`device descriptor: ${desc}`);
 });
 ```
@@ -4481,7 +4568,7 @@ For details about the error codes, see [Audio Error Codes](../errorcodes/errorco
 
 **Example**
 
-```js
+```ts
 audioRoutingManager.off('preferOutputDeviceChangeForRendererInfo');
 ```
 
@@ -4507,8 +4594,7 @@ Describes the audio renderer change event.
 
 **Example**
 
-```js
-
+```ts
 import audio from '@ohos.multimedia.audio';
 
 const audioManager = audio.getAudioManager();
@@ -4524,17 +4610,17 @@ audioStreamManager.on('audioRendererChange',  (AudioRendererChangeInfoArray) => 
     console.info(`Stream for ${i} is: ${AudioRendererChangeInfoArray[i].rendererInfo.usage}`);
     console.info(`Flag ${i} is: ${AudioRendererChangeInfoArray[i].rendererInfo.rendererFlags}`);
     console.info(`State for ${i} is: ${AudioRendererChangeInfoArray[i].rendererState}`);
-  	let devDescriptor = AudioRendererChangeInfoArray[i].deviceDescriptors;
-  	for (let j = 0; j < AudioRendererChangeInfoArray[i].deviceDescriptors.length; j++) {
-  	  console.info(`Id: ${i} : ${AudioRendererChangeInfoArray[i].deviceDescriptors[j].id}`);
-  	  console.info(`Type: ${i} : ${AudioRendererChangeInfoArray[i].deviceDescriptors[j].deviceType}`);
-  	  console.info(`Role: ${i} : ${AudioRendererChangeInfoArray[i].deviceDescriptors[j].deviceRole}`);
-  	  console.info(`Name: ${i} : ${AudioRendererChangeInfoArray[i].deviceDescriptors[j].name}`);
-  	  console.info(`Addr: ${i} : ${AudioRendererChangeInfoArray[i].deviceDescriptors[j].address}`);
-  	  console.info(`SR: ${i} : ${AudioRendererChangeInfoArray[i].deviceDescriptors[j].sampleRates[0]}`);
-  	  console.info(`C ${i} : ${AudioRendererChangeInfoArray[i].deviceDescriptors[j].channelCounts[0]}`);
-  	  console.info(`CM: ${i} : ${AudioRendererChangeInfoArray[i].deviceDescriptors[j].channelMasks}`);
-  	}
+    let devDescriptor = AudioRendererChangeInfoArray[i].deviceDescriptors;
+    for (let j = 0; j < AudioRendererChangeInfoArray[i].deviceDescriptors.length; j++) {
+      console.info(`Id: ${i} : ${AudioRendererChangeInfoArray[i].deviceDescriptors[j].id}`);
+      console.info(`Type: ${i} : ${AudioRendererChangeInfoArray[i].deviceDescriptors[j].deviceType}`);
+      console.info(`Role: ${i} : ${AudioRendererChangeInfoArray[i].deviceDescriptors[j].deviceRole}`);
+      console.info(`Name: ${i} : ${AudioRendererChangeInfoArray[i].deviceDescriptors[j].name}`);
+      console.info(`Addr: ${i} : ${AudioRendererChangeInfoArray[i].deviceDescriptors[j].address}`);
+      console.info(`SR: ${i} : ${AudioRendererChangeInfoArray[i].deviceDescriptors[j].sampleRates[0]}`);
+      console.info(`C ${i} : ${AudioRendererChangeInfoArray[i].deviceDescriptors[j].channelCounts[0]}`);
+      console.info(`CM: ${i} : ${AudioRendererChangeInfoArray[i].deviceDescriptors[j].channelMasks}`);
+    }
     if (AudioRendererChangeInfoArray[i].rendererState == 1 && devDescriptor != null) {
       resultFlag = true;
       console.info(`ResultFlag for ${i} is: ${resultFlag}`);
@@ -4566,7 +4652,7 @@ Describes the audio capturer change event.
 
 **Example**
 
-```js
+```ts
 import audio from '@ohos.multimedia.audio';
 
 const audioManager = audio.getAudioManager();
@@ -4631,21 +4717,20 @@ Describes an audio device.
 
 **Example**
 
-```js
+```ts
 import audio from '@ohos.multimedia.audio';
 
-function displayDeviceProp(value) {
+function displayDeviceProp(value: audio.AudioDeviceDescriptor) {
   deviceRoleValue = value.deviceRole;
   deviceTypeValue = value.deviceType;
 }
 
-let deviceRoleValue = null;
-let deviceTypeValue = null;
-const promise = audio.getAudioManager().getDevices(1);
-promise.then(function (value) {
+let deviceRoleValue: audio.DeviceRole | undefined = undefined;;
+let deviceTypeValue: audio.DeviceType | undefined = undefined;;
+audio.getAudioManager().getDevices(1).then((value: audio.AudioDeviceDescriptors) => {
   console.info('AudioFrameworkTest: Promise: getDevices OUTPUT_DEVICES_FLAG');
   value.forEach(displayDeviceProp);
-  if (deviceTypeValue != null && deviceRoleValue != null){
+  if (deviceTypeValue != undefined && deviceRoleValue != undefined){
     console.info('AudioFrameworkTest: Promise: getDevices : OUTPUT_DEVICES_FLAG :  PASS');
   } else {
     console.error('AudioFrameworkTest: Promise: getDevices : OUTPUT_DEVICES_FLAG :  FAIL');
@@ -4667,14 +4752,17 @@ Implements filter criteria. Before calling **selectOutputDeviceByFilter**, you m
 
 **Example**
 
-```js
-let outputAudioRendererFilter = {
-  "uid":20010041,
-  "rendererInfo": {
-    "contentType":audio.ContentType.CONTENT_TYPE_MUSIC,
-    "streamUsage":audio.StreamUsage.STREAM_USAGE_MEDIA,
-    "rendererFlags":0 },
-  "rendererId":0 };
+```ts
+import audio from '@ohos.multimedia.audio';
+let outputAudioRendererFilter: audio.AudioRendererFilter = {
+  uid : 20010041,
+  rendererInfo : {
+    content : audio.ContentType.CONTENT_TYPE_MUSIC,
+    usage : audio.StreamUsage.STREAM_USAGE_MEDIA,
+    rendererFlags : 0
+  },
+  rendererId : 0
+};
 ```
 
 ## AudioRenderer<sup>8+</sup>
@@ -4691,8 +4779,9 @@ Provides APIs for audio rendering. Before calling any API in **AudioRenderer**, 
 
 **Example**
 
-```js
-let state = audioRenderer.state;
+```ts
+import audio from '@ohos.multimedia.audio';
+let state: audio.AudioState = audioRenderer.state;
 ```
 
 ### getRendererInfo<sup>8+</sup>
@@ -4711,8 +4800,9 @@ Obtains the renderer information of this **AudioRenderer** instance. This API us
 
 **Example**
 
-```js
-audioRenderer.getRendererInfo((err, rendererInfo) => {
+```ts
+import { BusinessError } from '@ohos.base';
+audioRenderer.getRendererInfo((err: BusinessError, rendererInfo: audio.AudioRendererInfo) => {
   console.info('Renderer GetRendererInfo:');
   console.info(`Renderer content: ${rendererInfo.content}`);
   console.info(`Renderer usage: ${rendererInfo.usage}`);
@@ -4736,13 +4826,14 @@ Obtains the renderer information of this **AudioRenderer** instance. This API us
 
 **Example**
 
-```js
-audioRenderer.getRendererInfo().then((rendererInfo) => {
+```ts
+import { BusinessError } from '@ohos.base';
+audioRenderer.getRendererInfo().then((rendererInfo: audio.AudioRendererInfo) => {
   console.info('Renderer GetRendererInfo:');
   console.info(`Renderer content: ${rendererInfo.content}`);
   console.info(`Renderer usage: ${rendererInfo.usage}`);
   console.info(`Renderer flags: ${rendererInfo.rendererFlags}`)
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error(`AudioFrameworkRenderLog: RendererInfo :ERROR: ${err}`);
 });
 ```
@@ -4763,8 +4854,9 @@ Obtains the stream information of this **AudioRenderer** instance. This API uses
 
 **Example**
 
-```js
-audioRenderer.getStreamInfo((err, streamInfo) => {
+```ts
+import { BusinessError } from '@ohos.base';
+audioRenderer.getStreamInfo((err: BusinessError, streamInfo: audio.AudioStreamInfo) => {
   console.info('Renderer GetStreamInfo:');
   console.info(`Renderer sampling rate: ${streamInfo.samplingRate}`);
   console.info(`Renderer channel: ${streamInfo.channels}`);
@@ -4789,14 +4881,15 @@ Obtains the stream information of this **AudioRenderer** instance. This API uses
 
 **Example**
 
-```js
-audioRenderer.getStreamInfo().then((streamInfo) => {
+```ts
+import { BusinessError } from '@ohos.base';
+audioRenderer.getStreamInfo().then((streamInfo: audio.AudioStreamInfo) => {
   console.info('Renderer GetStreamInfo:');
   console.info(`Renderer sampling rate: ${streamInfo.samplingRate}`);
   console.info(`Renderer channel: ${streamInfo.channels}`);
   console.info(`Renderer format: ${streamInfo.sampleFormat}`);
   console.info(`Renderer encoding type: ${streamInfo.encodingType}`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error(`ERROR: ${err}`);
 });
 ```
@@ -4817,8 +4910,9 @@ Obtains the stream ID of this **AudioRenderer** instance. This API uses an async
 
 **Example**
 
-```js
-audioRenderer.getAudioStreamId((err, streamid) => {
+```ts
+import { BusinessError } from '@ohos.base';
+audioRenderer.getAudioStreamId((err: BusinessError, streamid: number) => {
   console.info(`Renderer GetStreamId: ${streamid}`);
 });
 ```
@@ -4839,10 +4933,11 @@ Obtains the stream ID of this **AudioRenderer** instance. This API uses a promis
 
 **Example**
 
-```js
-audioRenderer.getAudioStreamId().then((streamid) => {
+```ts
+import { BusinessError } from '@ohos.base';
+audioRenderer.getAudioStreamId().then((streamid: number) => {
   console.info(`Renderer getAudioStreamId: ${streamid}`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error(`ERROR: ${err}`);
 });
 ```
@@ -4862,10 +4957,19 @@ Sets an audio effect mode. This API uses an asynchronous callback to return the 
 | mode     | [AudioEffectMode](#audioeffectmode10)    | Yes  | Audio effect mode to set.              |
 | callback | AsyncCallback\<void>                     | Yes  | Callback used to return the result. |
 
+**Error codes**
+
+For details about the error codes, see [Audio Error Codes](../errorcodes/errorcode-audio.md).
+
+| ID| Error Message|
+| ------- | ----------------------------------------------|
+| 6800101 | Invalid parameter error. Return by callback.  |
+
 **Example**
 
-```js
-audioRenderer.setAudioEffectMode(audio.AudioEffectMode.EFFECT_DEFAULT, (err) => {
+```ts
+import { BusinessError } from '@ohos.base';
+audioRenderer.setAudioEffectMode(audio.AudioEffectMode.EFFECT_DEFAULT, (err: BusinessError) => {
   if (err) {
     console.error('Failed to set params');
   } else {
@@ -4894,12 +4998,21 @@ Sets an audio effect mode. This API uses a promise to return the result.
 | -------------- | ------------------------- |
 | Promise\<void> | Promise used to return the result.|
 
+**Error codes**
+
+For details about the error codes, see [Audio Error Codes](../errorcodes/errorcode-audio.md).
+
+| ID| Error Message|
+| ------- | ---------------------------------------------|
+| 6800101 | Invalid parameter error. Return by promise.  |
+
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
 audioRenderer.setAudioEffectMode(audio.AudioEffectMode.EFFECT_DEFAULT).then(() => {
   console.info('setAudioEffectMode SUCCESS');
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error(`ERROR: ${err}`);
 });
 ```
@@ -4920,8 +5033,9 @@ Obtains the audio effect mode in use. This API uses an asynchronous callback to 
 
 **Example**
 
-```js
-audioRenderer.getAudioEffectMode((err, effectmode) => {
+```ts
+import { BusinessError } from '@ohos.base';
+audioRenderer.getAudioEffectMode((err: BusinessError, effectmode: audio.AudioEffectMode) => {
   if (err) {
     console.error('Failed to get params');
   } else {
@@ -4946,10 +5060,11 @@ Obtains the audio effect mode in use. This API uses a promise to return the resu
 
 **Example**
 
-```js
-audioRenderer.getAudioEffectMode().then((effectmode) => {
+```ts
+import { BusinessError } from '@ohos.base';
+audioRenderer.getAudioEffectMode().then((effectmode: audio.AudioEffectMode) => {
   console.info(`getAudioEffectMode: ${effectmode}`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error(`ERROR: ${err}`);
 });
 ```
@@ -4970,8 +5085,9 @@ Starts the renderer. This API uses an asynchronous callback to return the result
 
 **Example**
 
-```js
-audioRenderer.start((err) => {
+```ts
+import { BusinessError } from '@ohos.base';
+audioRenderer.start((err: BusinessError) => {
   if (err) {
     console.error('Renderer start failed.');
   } else {
@@ -4996,10 +5112,11 @@ Starts the renderer. This API uses a promise to return the result.
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
 audioRenderer.start().then(() => {
   console.info('Renderer started');
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error(`ERROR: ${err}`);
 });
 ```
@@ -5020,8 +5137,9 @@ Pauses rendering. This API uses an asynchronous callback to return the result.
 
 **Example**
 
-```js
-audioRenderer.pause((err) => {
+```ts
+import { BusinessError } from '@ohos.base';
+audioRenderer.pause((err: BusinessError) => {
   if (err) {
     console.error('Renderer pause failed');
   } else {
@@ -5046,10 +5164,11 @@ Pauses rendering. This API uses a promise to return the result.
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
 audioRenderer.pause().then(() => {
   console.info('Renderer paused');
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error(`ERROR: ${err}`);
 });
 ```
@@ -5070,8 +5189,9 @@ Drains the playback buffer. This API uses an asynchronous callback to return the
 
 **Example**
 
-```js
-audioRenderer.drain((err) => {
+```ts
+import { BusinessError } from '@ohos.base';
+audioRenderer.drain((err: BusinessError) => {
   if (err) {
     console.error('Renderer drain failed');
   } else {
@@ -5096,10 +5216,11 @@ Drains the playback buffer. This API uses a promise to return the result.
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
 audioRenderer.drain().then(() => {
   console.info('Renderer drained successfully');
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error(`ERROR: ${err}`);
 });
 ```
@@ -5120,8 +5241,9 @@ Stops rendering. This API uses an asynchronous callback to return the result.
 
 **Example**
 
-```js
-audioRenderer.stop((err) => {
+```ts
+import { BusinessError } from '@ohos.base';
+audioRenderer.stop((err: BusinessError) => {
   if (err) {
     console.error('Renderer stop failed');
   } else {
@@ -5146,10 +5268,11 @@ Stops rendering. This API uses a promise to return the result.
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
 audioRenderer.stop().then(() => {
   console.info('Renderer stopped successfully');
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error(`ERROR: ${err}`);
 });
 ```
@@ -5170,8 +5293,9 @@ Releases the renderer. This API uses an asynchronous callback to return the resu
 
 **Example**
 
-```js
-audioRenderer.release((err) => {
+```ts
+import { BusinessError } from '@ohos.base';
+audioRenderer.release((err: BusinessError) => {
   if (err) {
     console.error('Renderer release failed');
   } else {
@@ -5196,10 +5320,11 @@ Releases the renderer. This API uses a promise to return the result.
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
 audioRenderer.release().then(() => {
   console.info('Renderer released successfully');
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error(`ERROR: ${err}`);
 });
 ```
@@ -5221,41 +5346,42 @@ Writes the buffer. This API uses an asynchronous callback to return the result.
 
 **Example**
 
-```js
-let bufferSize;
-audioRenderer.getBufferSize().then((data)=> {
+```ts
+import { BusinessError } from '@ohos.base';
+let bufferSize: number;
+class Options {
+  offset?: number;
+  length?: number;
+}
+audioRenderer.getBufferSize().then((data: number)=> {
   console.info(`AudioFrameworkRenderLog: getBufferSize: SUCCESS ${data}`);
   bufferSize = data;
-  }).catch((err) => {
-  console.error(`AudioFrameworkRenderLog: getBufferSize: ERROR: ${err}`);
-  });
-console.info(`Buffer size: ${bufferSize}`);
-let context = featureAbility.getContext();
-let path;
-async function getCacheDir(){
-  path = await context.getCacheDir();
-}
-let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
-let file = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
-fs.stat(path).then((stat) => {
-  let buf = new ArrayBuffer(bufferSize);
-  let len = stat.size % bufferSize == 0 ? Math.floor(stat.size / bufferSize) : Math.floor(stat.size / bufferSize + 1);
-  for (let i = 0;i < len; i++) {
-    let options = {
-      offset: i * bufferSize,
-      length: bufferSize
-    }
-    let readsize = await fs.read(file.fd, buf, options)
-    let writeSize = await new Promise((resolve,reject)=>{
-      audioRenderer.write(buf,(err,writeSize)=>{
-        if(err){
-          reject(err)
-        }else{
-          resolve(writeSize)
-        }
+  console.info(`Buffer size: ${bufferSize}`);
+  let path = getContext().cacheDir;
+  let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
+  let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
+  fs.stat(filePath).then(async (stat: fs.Stat) => {
+    let buf = new ArrayBuffer(bufferSize);
+    let len = stat.size % bufferSize == 0 ? Math.floor(stat.size / bufferSize) : Math.floor(stat.size / bufferSize + 1);
+    for (let i = 0;i < len; i++) {
+      let options: Options = {
+        offset: i * bufferSize,
+        length: bufferSize
+      }
+      let readsize: number = await fs.read(file.fd, buf, options)
+      let writeSize: number = await new Promise((resolve,reject)=>{
+        audioRenderer.write(buf,(err: BusinessError, writeSize: number)=>{
+          if(err){
+            reject(err)
+          }else{
+            resolve(writeSize)
+          }
+        })
       })
-    })	  
-  }
+    }
+  });
+  }).catch((err: BusinessError) => {
+    console.error(`AudioFrameworkRenderLog: getBufferSize: ERROR: ${err}`);
 });
 
 
@@ -5277,37 +5403,39 @@ Writes the buffer. This API uses a promise to return the result.
 
 **Example**
 
-```js
-let bufferSize;
-audioRenderer.getBufferSize().then((data) => {
+```ts
+import { BusinessError } from '@ohos.base';
+let bufferSize: number;
+class Options {
+  offset?: number;
+  length?: number;
+}
+audioRenderer.getBufferSize().then((data: number) => {
   console.info(`AudioFrameworkRenderLog: getBufferSize: SUCCESS ${data}`);
   bufferSize = data;
-  }).catch((err) => {
-  console.info(`AudioFrameworkRenderLog: getBufferSize: ERROR: ${err}`);
-  });
-console.info(`BufferSize: ${bufferSize}`);
-let context = featureAbility.getContext();
-let path;
-async function getCacheDir(){
-  path = await context.getCacheDir();
-}
-let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
-let file = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
-fs.stat(path).then((stat) => {
-  let buf = new ArrayBuffer(bufferSize);
-  let len = stat.size % bufferSize == 0 ? Math.floor(stat.size / bufferSize) : Math.floor(stat.size / bufferSize + 1);
-  for (let i = 0;i < len; i++) {
-      let options = {
+  console.info(`BufferSize: ${bufferSize}`);
+  let path = getContext().cacheDir;
+  let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
+  let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
+  fs.stat(filePath).then(async (stat: fs.Stat) => {
+    let buf = new ArrayBuffer(bufferSize);
+    let len = stat.size % bufferSize == 0 ? Math.floor(stat.size / bufferSize) : Math.floor(stat.size / bufferSize + 1);
+    for (let i = 0;i < len; i++) {
+      let options: Options = {
         offset: i * bufferSize,
         length: bufferSize
       }
-      let readsize = await fs.read(file.fd, buf, options)
+      let readsize: number = await fs.read(file.fd, buf, options)
       try{
-         let writeSize = await audioRenderer.write(buf);
+        let writeSize: number = await audioRenderer.write(buf);
       } catch(err) {
-         console.error(`audioRenderer.write err: ${err}`);
-      }   
-  }
+        let error = err as BusinessError;
+        console.error(`audioRenderer.write err: ${error}`);
+      }
+    }
+  });
+  }).catch((err: BusinessError) => {
+    console.info(`AudioFrameworkRenderLog: getBufferSize: ERROR: ${err}`);
 });
 ```
 
@@ -5327,8 +5455,9 @@ Obtains the number of nanoseconds elapsed from the Unix epoch (January 1, 1970).
 
 **Example**
 
-```js
-audioRenderer.getAudioTime((err, timestamp) => {
+```ts
+import { BusinessError } from '@ohos.base';
+audioRenderer.getAudioTime((err: BusinessError, timestamp: number) => {
   console.info(`Current timestamp: ${timestamp}`);
 });
 ```
@@ -5349,10 +5478,11 @@ Obtains the number of nanoseconds elapsed from the Unix epoch (January 1, 1970).
 
 **Example**
 
-```js
-audioRenderer.getAudioTime().then((timestamp) => {
+```ts
+import { BusinessError } from '@ohos.base';
+audioRenderer.getAudioTime().then((timestamp: number) => {
   console.info(`Current timestamp: ${timestamp}`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error(`ERROR: ${err}`);
 });
 ```
@@ -5373,10 +5503,15 @@ Obtains a reasonable minimum buffer size in bytes for rendering. This API uses a
 
 **Example**
 
-```js
-let bufferSize = audioRenderer.getBufferSize(async(err, bufferSize) => {
+```ts
+import { BusinessError } from '@ohos.base';
+let bufferSize: number;
+audioRenderer.getBufferSize((err: BusinessError, data: number) => {
   if (err) {
     console.error('getBufferSize error');
+  } else {
+    console.info(`AudioFrameworkRenderLog: getBufferSize: SUCCESS ${data}`);
+    bufferSize = data;
   }
 });
 ```
@@ -5397,12 +5532,13 @@ Obtains a reasonable minimum buffer size in bytes for rendering. This API uses a
 
 **Example**
 
-```js
-let bufferSize;
-audioRenderer.getBufferSize().then((data) => {
+```ts
+import { BusinessError } from '@ohos.base';
+let bufferSize: number;
+audioRenderer.getBufferSize().then((data: number) => {
   console.info(`AudioFrameworkRenderLog: getBufferSize: SUCCESS ${data}`);
   bufferSize = data;
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error(`AudioFrameworkRenderLog: getBufferSize: ERROR: ${err}`);
 });
 ```
@@ -5424,8 +5560,9 @@ Sets the render rate. This API uses an asynchronous callback to return the resul
 
 **Example**
 
-```js
-audioRenderer.setRenderRate(audio.AudioRendererRate.RENDER_RATE_NORMAL, (err) => {
+```ts
+import { BusinessError } from '@ohos.base';
+audioRenderer.setRenderRate(audio.AudioRendererRate.RENDER_RATE_NORMAL, (err: BusinessError) => {
   if (err) {
     console.error('Failed to set params');
   } else {
@@ -5456,10 +5593,11 @@ Sets the render rate. This API uses a promise to return the result.
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
 audioRenderer.setRenderRate(audio.AudioRendererRate.RENDER_RATE_NORMAL).then(() => {
   console.info('setRenderRate SUCCESS');
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error(`ERROR: ${err}`);
 });
 ```
@@ -5480,8 +5618,9 @@ Obtains the current render rate. This API uses an asynchronous callback to retur
 
 **Example**
 
-```js
-audioRenderer.getRenderRate((err, renderrate) => {
+```ts
+import { BusinessError } from '@ohos.base';
+audioRenderer.getRenderRate((err: BusinessError, renderrate: audio.AudioRendererRate) => {
   console.info(`getRenderRate: ${renderrate}`);
 });
 ```
@@ -5502,10 +5641,11 @@ Obtains the current render rate. This API uses a promise to return the result.
 
 **Example**
 
-```js
-audioRenderer.getRenderRate().then((renderRate) => {
+```ts
+import { BusinessError } from '@ohos.base';
+audioRenderer.getRenderRate().then((renderRate: audio.AudioRendererRate) => {
   console.info(`getRenderRate: ${renderRate}`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error(`ERROR: ${err}`);
 });
 ```
@@ -5531,11 +5671,12 @@ Sets the audio interruption mode for the application. This API uses a promise to
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
 let mode = 0;
-audioRenderer.setInterruptMode(mode).then(data=>{
+audioRenderer.setInterruptMode(mode).then(() => {
   console.info('setInterruptMode Success!');
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error(`setInterruptMode Fail: ${err}`);
 });
 ```
@@ -5556,9 +5697,10 @@ Sets the audio interruption mode for the application. This API uses an asynchron
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
 let mode = 1;
-audioRenderer.setInterruptMode(mode, (err, data)=>{
+audioRenderer.setInterruptMode(mode, (err: BusinessError) => {
   if(err){
     console.error(`setInterruptMode Fail: ${err}`);
   }
@@ -5588,10 +5730,11 @@ Sets the volume for the application. This API uses a promise to return the resul
 
 **Example**
 
-```js
-audioRenderer.setVolume(0.5).then(data=>{
+```ts
+import { BusinessError } from '@ohos.base';
+audioRenderer.setVolume(0.5).then(() => {
   console.info('setVolume Success!');
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error(`setVolume Fail: ${err}`);
 });
 ```
@@ -5612,8 +5755,9 @@ Sets the volume for the application. This API uses an asynchronous callback to r
 
 **Example**
 
-```js
-audioRenderer.setVolume(0.5, (err, data)=>{
+```ts
+import { BusinessError } from '@ohos.base';
+audioRenderer.setVolume(0.5, (err: BusinessError) => {
   if(err){
     console.error(`setVolume Fail: ${err}`);
   }
@@ -5637,8 +5781,9 @@ Obtains the minimum volume of the application from the perspective of an audio s
 
 **Example**
 
-```js
-audioRenderer.getMinStreamVolume((err, minVolume) => {
+```ts
+import { BusinessError } from '@ohos.base';
+audioRenderer.getMinStreamVolume((err: BusinessError, minVolume: number) => {
   if (err) {
     console.error(`getMinStreamVolume error: ${err}`);
   } else {
@@ -5662,10 +5807,11 @@ Obtains the minimum volume of the application from the perspective of an audio s
 
 **Example**
 
-```js
-audioRenderer.getMinStreamVolume().then((value) => {
+```ts
+import { BusinessError } from '@ohos.base';
+audioRenderer.getMinStreamVolume().then((value: number) => {
   console.info(`Get min stream volume Success! ${value}`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error(`Get min stream volume Fail: ${err}`);
 });
 ```
@@ -5686,8 +5832,9 @@ Obtains the maximum volume of the application from the perspective of an audio s
 
 **Example**
 
-```js
-audioRenderer.getMaxStreamVolume((err, maxVolume) => {
+```ts
+import { BusinessError } from '@ohos.base';
+audioRenderer.getMaxStreamVolume((err: BusinessError, maxVolume: number) => {
   if (err) {
     console.error(`getMaxStreamVolume Fail: ${err}`);
   } else {
@@ -5711,10 +5858,11 @@ Obtains the maximum volume of the application from the perspective of an audio s
 
 **Example**
 
-```js
-audioRenderer.getMaxStreamVolume().then((value) => {
+```ts
+import { BusinessError } from '@ohos.base';
+audioRenderer.getMaxStreamVolume().then((value: number) => {
   console.info(`Get max stream volume Success! ${value}`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error(`Get max stream volume Fail: ${err}`);
 });
 ```
@@ -5735,8 +5883,9 @@ Obtains the number of underflow audio frames in the audio stream that is being p
 
 **Example**
 
-```js
-audioRenderer.getUnderflowCount((err, underflowCount) => {
+```ts
+import { BusinessError } from '@ohos.base';
+audioRenderer.getUnderflowCount((err: BusinessError, underflowCount: number) => {
   if (err) {
     console.error(`getUnderflowCount Fail: ${err}`);
   } else {
@@ -5760,10 +5909,11 @@ Obtains the number of underflow audio frames in the audio stream that is being p
 
 **Example**
 
-```js
-audioRenderer.getUnderflowCount().then((value) => {
+```ts
+import { BusinessError } from '@ohos.base';
+audioRenderer.getUnderflowCount().then((value: number) => {
   console.info(`Get underflow count Success! ${value}`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error(`Get underflow count Fail: ${err}`);
 });
 ```
@@ -5784,19 +5934,20 @@ Obtains the output device descriptors of the audio streams. This API uses an asy
 
 **Example**
 
-```js
-audioRenderer.getCurrentOutputDevices((err, deviceInfo) => {
+```ts
+import { BusinessError } from '@ohos.base';
+audioRenderer.getCurrentOutputDevices((err: BusinessError, deviceInfo: audio.AudioDeviceDescriptors) => {
   if (err) {
     console.error(`getCurrentOutputDevices Fail: ${err}`);
   } else {
-    console.info(`DeviceInfo id: ${deviceInfo.id}`);
-    console.info(`DeviceInfo type: ${deviceInfo.deviceType}`);
-    console.info(`DeviceInfo role: ${deviceInfo.deviceRole}`);
-    console.info(`DeviceInfo name: ${deviceInfo.name}`);
-    console.info(`DeviceInfo address: ${deviceInfo.address}`);
-    console.info(`DeviceInfo samplerates: ${deviceInfo.sampleRates[0]}`);
-    console.info(`DeviceInfo channelcounts: ${deviceInfo.channelCounts[0]}`);
-    console.info(`DeviceInfo channelmask: ${deviceInfo.channelMasks}`);
+    console.info(`DeviceInfo id: ${deviceInfo[0].id}`);
+    console.info(`DeviceInfo type: ${deviceInfo[0].deviceType}`);
+    console.info(`DeviceInfo role: ${deviceInfo[0].deviceRole}`);
+    console.info(`DeviceInfo name: ${deviceInfo[0].name}`);
+    console.info(`DeviceInfo address: ${deviceInfo[0].address}`);
+    console.info(`DeviceInfo samplerates: ${deviceInfo[0].sampleRates[0]}`);
+    console.info(`DeviceInfo channelcounts: ${deviceInfo[0].channelCounts[0]}`);
+    console.info(`DeviceInfo channelmask: ${deviceInfo[0].channelMasks}`);
   }
 });
 ```
@@ -5816,17 +5967,18 @@ Obtains the output device descriptors of the audio streams. This API uses a prom
 
 **Example**
 
-```js
-audioRenderer.getCurrentOutputDevices().then((deviceInfo) => {
-  console.info(`DeviceInfo id: ${deviceInfo.id}`);
-  console.info(`DeviceInfo type: ${deviceInfo.deviceType}`);
-  console.info(`DeviceInfo role: ${deviceInfo.deviceRole}`);
-  console.info(`DeviceInfo name: ${deviceInfo.name}`);
-  console.info(`DeviceInfo address: ${deviceInfo.address}`);
-  console.info(`DeviceInfo samplerates: ${deviceInfo.sampleRates[0]}`);
-  console.info(`DeviceInfo channelcounts: ${deviceInfo.channelCounts[0]}`);
-  console.info(`DeviceInfo channelmask: ${deviceInfo.channelMasks}`);
-}).catch((err) => {
+```ts
+import { BusinessError } from '@ohos.base';
+audioRenderer.getCurrentOutputDevices().then((deviceInfo: audio.AudioDeviceDescriptors) => {
+  console.info(`DeviceInfo id: ${deviceInfo[0].id}`);
+  console.info(`DeviceInfo type: ${deviceInfo[0].deviceType}`);
+  console.info(`DeviceInfo role: ${deviceInfo[0].deviceRole}`);
+  console.info(`DeviceInfo name: ${deviceInfo[0].name}`);
+  console.info(`DeviceInfo address: ${deviceInfo[0].address}`);
+  console.info(`DeviceInfo samplerates: ${deviceInfo[0].sampleRates[0]}`);
+  console.info(`DeviceInfo channelcounts: ${deviceInfo[0].channelCounts[0]}`);
+  console.info(`DeviceInfo channelmask: ${deviceInfo[0].channelMasks}`);
+}).catch((err: BusinessError) => {
   console.error(`Get current output devices Fail: ${err}`);
 });
 ```
@@ -5858,13 +6010,15 @@ For details about the error codes, see [Audio Error Codes](../errorcodes/errorco
 
 **Example**
 
-```js
-let isPlaying; // An identifier specifying whether rendering is in progress.
-let isDucked; // An identifier specifying whether the audio volume is reduced.
+```ts
+import audio from '@ohos.multimedia.audio';
+
+let isPlaying: boolean; // An identifier specifying whether rendering is in progress.
+let isDucked: boolean; // An identifier specifying whether the audio volume is reduced.
 onAudioInterrupt();
 
 async function onAudioInterrupt(){
-  audioRenderer.on('audioInterrupt', async(interruptEvent) => {
+  audioRenderer.on('audioInterrupt', (interruptEvent: audio.InterruptEvent) => {
     if (interruptEvent.forceType == audio.InterruptForceType.INTERRUPT_FORCE) {
       // The system forcibly interrupts audio rendering. The application must update the status and displayed content accordingly.
       switch (interruptEvent.hintType) {
@@ -5923,7 +6077,7 @@ async function onAudioInterrupt(){
         default:
           break;
       }
-   }
+    }
   });
 }
 ```
@@ -5946,8 +6100,8 @@ Subscribes to mark reached events. When the number of frames rendered reaches th
 
 **Example**
 
-```js
-audioRenderer.on('markReach', 1000, (position) => {
+```ts
+audioRenderer.on('markReach', 1000, (position: number) => {
   if (position == 1000) {
     console.info('ON Triggered successfully');
   }
@@ -5971,7 +6125,7 @@ Unsubscribes from mark reached events.
 
 **Example**
 
-```js
+```ts
 audioRenderer.off('markReach');
 ```
 
@@ -5993,8 +6147,8 @@ Subscribes to period reached events. When the number of frames rendered reaches 
 
 **Example**
 
-```js
-audioRenderer.on('periodReach', 1000, (position) => {
+```ts
+audioRenderer.on('periodReach', 1000, (position: number) => {
   if (position == 1000) {
     console.info('ON Triggered successfully');
   }
@@ -6017,7 +6171,7 @@ Unsubscribes from period reached events.
 
 **Example**
 
-```js
+```ts
 audioRenderer.off('periodReach')
 ```
 
@@ -6038,8 +6192,8 @@ Subscribes to state change events.
 
 **Example**
 
-```js
-audioRenderer.on('stateChange', (state) => {
+```ts
+audioRenderer.on('stateChange', (state: audio.AudioState) => {
   if (state == 1) {
     console.info('audio renderer state is: STATE_PREPARED');
   }
@@ -6072,13 +6226,11 @@ Subscribes to audio output device change events.
 
 **Example**
 
-```js
-audioRenderer.on('outputDeviceChange', (err, deviceChangeInfo) => {
-  if (err) {
-    console.error(`Subscribes output device change event callback Fail: ${err}`);
-  } else {
-    console.info(`Subscribes output device change event callback Success!`);
-  }
+```ts
+audioRenderer.on('outputDeviceChange', (deviceInfo: audio.AudioDeviceDescriptors) => {
+  console.info(`DeviceInfo id: ${deviceInfo[0].id}`);
+  console.info(`DeviceInfo name: ${deviceInfo[0].name}`);
+  console.info(`DeviceInfo address: ${deviceInfo[0].address}`);
 });
 ```
 ### off('outputDeviceChange') <sup>10+</sup>
@@ -6104,13 +6256,11 @@ Unsubscribes from audio output device event changes.
 
 **Example**
 
-```js
-audioRenderer.off('outputDeviceChange', (err,deviceChangeInfo) => {
-  if (err) {
-    console.error(`Unsubscribes output device change event callback Fail: ${err}`);
-  } else {
-    console.info(`Unsubscribes output device change event callback Success!`);
-  }
+```ts
+audioRenderer.off('outputDeviceChange', (deviceInfo: audio.AudioDeviceDescriptors) => {
+  console.info(`DeviceInfo id: ${deviceInfo[0].id}`);
+  console.info(`DeviceInfo name: ${deviceInfo[0].name}`);
+  console.info(`DeviceInfo address: ${deviceInfo[0].address}`);
 });
 ```
 
@@ -6128,8 +6278,9 @@ Provides APIs for audio capture. Before calling any API in **AudioCapturer**, yo
 
 **Example**
 
-```js
-let state = audioCapturer.state;
+```ts
+import audio from '@ohos.multimedia.audio';
+let state: audio.AudioState = audioCapturer.state;
 ```
 
 ### getCapturerInfo<sup>8+</sup>
@@ -6148,8 +6299,9 @@ Obtains the capturer information of this **AudioCapturer** instance. This API us
 
 **Example**
 
-```js
-audioCapturer.getCapturerInfo((err, capturerInfo) => {
+```ts
+import { BusinessError } from '@ohos.base';
+audioCapturer.getCapturerInfo((err: BusinessError, capturerInfo: audio.AudioCapturerInfo) => {
   if (err) {
     console.error('Failed to get capture info');
   } else {
@@ -6177,8 +6329,9 @@ Obtains the capturer information of this **AudioCapturer** instance. This API us
 
 **Example**
 
-```js
-audioCapturer.getCapturerInfo().then((audioParamsGet) => {
+```ts
+import { BusinessError } from '@ohos.base';
+audioCapturer.getCapturerInfo().then((audioParamsGet: audio.AudioCapturerInfo) => {
   if (audioParamsGet != undefined) {
     console.info('AudioFrameworkRecLog: Capturer CapturerInfo:');
     console.info(`AudioFrameworkRecLog: Capturer SourceType: ${audioParamsGet.source}`);
@@ -6187,9 +6340,9 @@ audioCapturer.getCapturerInfo().then((audioParamsGet) => {
     console.info(`AudioFrameworkRecLog: audioParamsGet is : ${audioParamsGet}`);
     console.info('AudioFrameworkRecLog: audioParams getCapturerInfo are incorrect');
   }
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error(`AudioFrameworkRecLog: CapturerInfo :ERROR: ${err}`);
-});
+})
 ```
 
 ### getStreamInfo<sup>8+</sup>
@@ -6208,8 +6361,9 @@ Obtains the stream information of this **AudioCapturer** instance. This API uses
 
 **Example**
 
-```js
-audioCapturer.getStreamInfo((err, streamInfo) => {
+```ts
+import { BusinessError } from '@ohos.base';
+audioCapturer.getStreamInfo((err: BusinessError, streamInfo: audio.AudioStreamInfo) => {
   if (err) {
     console.error('Failed to get stream info');
   } else {
@@ -6238,14 +6392,15 @@ Obtains the stream information of this **AudioCapturer** instance. This API uses
 
 **Example**
 
-```js
-audioCapturer.getStreamInfo().then((audioParamsGet) => {
+```ts
+import { BusinessError } from '@ohos.base';
+audioCapturer.getStreamInfo().then((audioParamsGet: audio.AudioStreamInfo) => {
   console.info('getStreamInfo:');
   console.info(`sampleFormat: ${audioParamsGet.sampleFormat}`);
   console.info(`samplingRate: ${audioParamsGet.samplingRate}`);
   console.info(`channels: ${audioParamsGet.channels}`);
   console.info(`encodingType: ${audioParamsGet.encodingType}`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error(`getStreamInfo :ERROR: ${err}`);
 });
 ```
@@ -6266,8 +6421,9 @@ Obtains the stream ID of this **AudioCapturer** instance. This API uses an async
 
 **Example**
 
-```js
-audioCapturer.getAudioStreamId((err, streamid) => {
+```ts
+import { BusinessError } from '@ohos.base';
+audioCapturer.getAudioStreamId((err: BusinessError, streamid: number) => {
   console.info(`audioCapturer GetStreamId: ${streamid}`);
 });
 ```
@@ -6288,10 +6444,11 @@ Obtains the stream ID of this **AudioCapturer** instance. This API uses a promis
 
 **Example**
 
-```js
-audioCapturer.getAudioStreamId().then((streamid) => {
+```ts
+import { BusinessError } from '@ohos.base';
+audioCapturer.getAudioStreamId().then((streamid: number) => {
   console.info(`audioCapturer getAudioStreamId: ${streamid}`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error(`ERROR: ${err}`);
 });
 ```
@@ -6312,8 +6469,9 @@ Starts capturing. This API uses an asynchronous callback to return the result.
 
 **Example**
 
-```js
-audioCapturer.start((err) => {
+```ts
+import { BusinessError } from '@ohos.base';
+audioCapturer.start((err: BusinessError) => {
   if (err) {
     console.error('Capturer start failed.');
   } else {
@@ -6339,7 +6497,8 @@ Starts capturing. This API uses a promise to return the result.
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
 audioCapturer.start().then(() => {
   console.info('AudioFrameworkRecLog: ---------START---------');
   console.info('AudioFrameworkRecLog: Capturer started: SUCCESS');
@@ -6348,7 +6507,7 @@ audioCapturer.start().then(() => {
   if ((audioCapturer.state == audio.AudioState.STATE_RUNNING)) {
     console.info('AudioFrameworkRecLog: AudioCapturer is in Running State');
   }
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.info(`AudioFrameworkRecLog: Capturer start :ERROR : ${err}`);
 });
 ```
@@ -6369,8 +6528,9 @@ Stops capturing. This API uses an asynchronous callback to return the result.
 
 **Example**
 
-```js
-audioCapturer.stop((err) => {
+```ts
+import { BusinessError } from '@ohos.base';
+audioCapturer.stop((err: BusinessError) => {
   if (err) {
     console.error('Capturer stop failed');
   } else {
@@ -6396,14 +6556,15 @@ Stops capturing. This API uses a promise to return the result.
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
 audioCapturer.stop().then(() => {
   console.info('AudioFrameworkRecLog: ---------STOP RECORD---------');
   console.info('AudioFrameworkRecLog: Capturer stopped: SUCCESS');
   if ((audioCapturer.state == audio.AudioState.STATE_STOPPED)){
     console.info('AudioFrameworkRecLog: State is Stopped:');
   }
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.info(`AudioFrameworkRecLog: Capturer stop: ERROR: ${err}`);
 });
 ```
@@ -6424,8 +6585,9 @@ Releases this **AudioCapturer** instance. This API uses an asynchronous callback
 
 **Example**
 
-```js
-audioCapturer.release((err) => {
+```ts
+import { BusinessError } from '@ohos.base';
+audioCapturer.release((err: BusinessError) => {
   if (err) {
     console.error('capturer release failed');
   } else {
@@ -6451,14 +6613,13 @@ Releases this **AudioCapturer** instance. This API uses a promise to return the 
 
 **Example**
 
-```js
-let stateFlag;
+```ts
+import { BusinessError } from '@ohos.base';
 audioCapturer.release().then(() => {
   console.info('AudioFrameworkRecLog: ---------RELEASE RECORD---------');
   console.info('AudioFrameworkRecLog: Capturer release : SUCCESS');
   console.info(`AudioFrameworkRecLog: AudioCapturer : STATE : ${audioCapturer.state}`);
-  console.info(`AudioFrameworkRecLog: stateFlag : ${stateFlag}`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.info(`AudioFrameworkRecLog: Capturer stop: ERROR: ${err}`);
 });
 ```
@@ -6481,15 +6642,16 @@ Reads the buffer. This API uses an asynchronous callback to return the result.
 
 **Example**
 
-```js
-let bufferSize;
-audioCapturer.getBufferSize().then((data) => {
+```ts
+import { BusinessError } from '@ohos.base';
+let bufferSize: number = 0;
+audioCapturer.getBufferSize().then((data: number) => {
   console.info(`AudioFrameworkRecLog: getBufferSize: SUCCESS ${data}`);
   bufferSize = data;
-  }).catch((err) => {
-    console.error(`AudioFrameworkRecLog: getBufferSize: ERROR: ${err}`);
-  });
-audioCapturer.read(bufferSize, true, async(err, buffer) => {
+}).catch((err: BusinessError) => {
+  console.error(`AudioFrameworkRecLog: getBufferSize: ERROR: ${err}`);
+});
+audioCapturer.read(bufferSize, true, (err: BusinessError, buffer: number) => {
   if (!err) {
     console.info('Success in reading the buffer data');
   }
@@ -6519,18 +6681,19 @@ Reads the buffer. This API uses a promise to return the result.
 
 **Example**
 
-```js
-let bufferSize;
-audioCapturer.getBufferSize().then((data) => {
+```ts
+import { BusinessError } from '@ohos.base';
+let bufferSize: number = 0;
+audioCapturer.getBufferSize().then((data: number) => {
   console.info(`AudioFrameworkRecLog: getBufferSize: SUCCESS ${data}`);
   bufferSize = data;
-  }).catch((err) => {
+}).catch((err: BusinessError) => {
   console.info(`AudioFrameworkRecLog: getBufferSize: ERROR ${err}`);
-  });
+});
 console.info(`Buffer size: ${bufferSize}`);
-audioCapturer.read(bufferSize, true).then((buffer) => {
+audioCapturer.read(bufferSize, true).then((buffer: number) => {
   console.info('buffer read successfully');
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.info(`ERROR : ${err}`);
 });
 ```
@@ -6551,8 +6714,9 @@ Obtains the number of nanoseconds elapsed from the Unix epoch (January 1, 1970).
 
 **Example**
 
-```js
-audioCapturer.getAudioTime((err, timestamp) => {
+```ts
+import { BusinessError } from '@ohos.base';
+audioCapturer.getAudioTime((err: BusinessError, timestamp: number) => {
   console.info(`Current timestamp: ${timestamp}`);
 });
 ```
@@ -6573,10 +6737,11 @@ Obtains the number of nanoseconds elapsed from the Unix epoch (January 1, 1970).
 
 **Example**
 
-```js
-audioCapturer.getAudioTime().then((audioTime) => {
+```ts
+import { BusinessError } from '@ohos.base';
+audioCapturer.getAudioTime().then((audioTime: number) => {
   console.info(`AudioFrameworkRecLog: AudioCapturer getAudioTime : Success ${audioTime}`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.info(`AudioFrameworkRecLog: AudioCapturer Created : ERROR : ${err}`);
 });
 ```
@@ -6597,13 +6762,14 @@ Obtains a reasonable minimum buffer size in bytes for capturing. This API uses a
 
 **Example**
 
-```js
-audioCapturer.getBufferSize((err, bufferSize) => {
+```ts
+import { BusinessError } from '@ohos.base';
+audioCapturer.getBufferSize((err: BusinessError, bufferSize: number) => {
   if (!err) {
     console.info(`BufferSize : ${bufferSize}`);
-    audioCapturer.read(bufferSize, true).then((buffer) => {
+    audioCapturer.read(bufferSize, true).then((buffer: number) => {
       console.info(`Buffer read is ${buffer}`);
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
       console.error(`AudioFrameworkRecLog: AudioCapturer Created : ERROR : ${err}`);
     });
   }
@@ -6626,12 +6792,13 @@ Obtains a reasonable minimum buffer size in bytes for capturing. This API uses a
 
 **Example**
 
-```js
-let bufferSize;
-audioCapturer.getBufferSize().then((data) => {
+```ts
+import { BusinessError } from '@ohos.base';
+let bufferSize: number = 0;
+audioCapturer.getBufferSize().then((data: number) => {
   console.info(`AudioFrameworkRecLog: getBufferSize :SUCCESS ${data}`);
   bufferSize = data;
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.info(`AudioFrameworkRecLog: getBufferSize :ERROR : ${err}`);
 });
 ```
@@ -6663,12 +6830,13 @@ For details about the error codes, see [Audio Error Codes](../errorcodes/errorco
 
 **Example**
 
-```js
-let isCapturing; // An identifier specifying whether capturing is in progress.
+```ts
+import audio from '@ohos.multimedia.audio';
+let isCapturing: boolean; // An identifier specifying whether capturing is in progress.
 onAudioInterrupt();
 
 async function onAudioInterrupt(){
-  audioCapturer.on('audioInterrupt', async(interruptEvent) => {
+  audioCapturer.on('audioInterrupt', (interruptEvent: audio.InterruptEvent) => {
     if (interruptEvent.forceType == audio.InterruptForceType.INTERRUPT_FORCE) {
       // The system forcibly interrupts audio capturing. The application must update the status and displayed content accordingly.
       switch (interruptEvent.hintType) {
@@ -6707,7 +6875,7 @@ async function onAudioInterrupt(){
         default:
           break;
       }
-   }
+    }
   });
 }
 ```
@@ -6736,7 +6904,7 @@ For details about the error codes, see [Audio Error Codes](../errorcodes/errorco
 
 **Example**
 
-```js
+```ts
 audioCapturer.off('audioInterrupt');
 ```
 
@@ -6759,8 +6927,8 @@ Subscribes to mark reached events. When the number of frames captured reaches th
 
 **Example**
 
-```js
-audioCapturer.on('markReach', 1000, (position) => {
+```ts
+audioCapturer.on('markReach', 1000, (position: number) => {
   if (position == 1000) {
     console.info('ON Triggered successfully');
   }
@@ -6783,7 +6951,7 @@ Unsubscribes from mark reached events.
 
 **Example**
 
-```js
+```ts
 audioCapturer.off('markReach');
 ```
 
@@ -6805,8 +6973,8 @@ Subscribes to period reached events. When the number of frames captured reaches 
 
 **Example**
 
-```js
-audioCapturer.on('periodReach', 1000, (position) => {
+```ts
+audioCapturer.on('periodReach', 1000, (position: number) => {
   if (position == 1000) {
     console.info('ON Triggered successfully');
   }
@@ -6829,7 +6997,7 @@ Unsubscribes from period reached events.
 
 **Example**
 
-```js
+```ts
 audioCapturer.off('periodReach')
 ```
 
@@ -6850,8 +7018,8 @@ Subscribes to state change events.
 
 **Example**
 
-```js
-audioCapturer.on('stateChange', (state) => {
+```ts
+audioCapturer.on('stateChange', (state: audio.AudioState) => {
   if (state == 1) {
     console.info('audio capturer state is: STATE_PREPARED');
   }
@@ -6924,8 +7092,9 @@ Loads the DTMF tone configuration. This API uses an asynchronous callback to ret
 
 **Example**
 
-```js
-tonePlayer.load(audio.ToneType.TONE_TYPE_DIAL_5, (err) => {
+```ts
+import { BusinessError } from '@ohos.base';
+tonePlayer.load(audio.ToneType.TONE_TYPE_DIAL_5, (err: BusinessError) => {
   if (err) {
     console.error(`callback call load failed error: ${err.message}`);
     return;
@@ -6959,7 +7128,7 @@ Loads the DTMF tone configuration. This API uses a promise to return the result.
 
 **Example**
 
-```js
+```ts
 tonePlayer.load(audio.ToneType.TONE_TYPE_DIAL_1).then(() => {
   console.info('promise call load ');
 }).catch(() => {
@@ -6985,8 +7154,9 @@ Starts DTMF tone playing. This API uses an asynchronous callback to return the r
 
 **Example**
 
-```js
-tonePlayer.start((err) => {
+```ts
+import { BusinessError } from '@ohos.base';
+tonePlayer.start((err: BusinessError) => {
   if (err) {
     console.error(`callback call start failed error: ${err.message}`);
     return;
@@ -7014,7 +7184,7 @@ Starts DTMF tone playing. This API uses a promise to return the result.
 
 **Example**
 
-```js
+```ts
 tonePlayer.start().then(() => {
   console.info('promise call start');
 }).catch(() => {
@@ -7040,8 +7210,9 @@ Stops the tone that is being played. This API uses an asynchronous callback to r
 
 **Example**
 
-```js
-tonePlayer.stop((err) => {
+```ts
+import { BusinessError } from '@ohos.base';
+tonePlayer.stop((err: BusinessError) => {
   if (err) {
     console.error(`callback call stop error: ${err.message}`);
     return;
@@ -7069,7 +7240,7 @@ Stops the tone that is being played. This API uses a promise to return the resul
 
 **Example**
 
-```js
+```ts
 tonePlayer.stop().then(() => {
   console.info('promise call stop finish');
 }).catch(() => {
@@ -7095,8 +7266,9 @@ Releases the resources associated with the **TonePlayer** instance. This API use
 
 **Example**
 
-```js
-tonePlayer.release((err) => {
+```ts
+import { BusinessError } from '@ohos.base';
+tonePlayer.release((err: BusinessError) => {
   if (err) {
     console.error(`callback call release failed error: ${err.message}`);
     return;
@@ -7124,7 +7296,7 @@ Releases the resources associated with the **TonePlayer** instance. This API use
 
 **Example**
 
-```js
+```ts
 tonePlayer.release().then(() => {
   console.info('promise call release');
 }).catch(() => {

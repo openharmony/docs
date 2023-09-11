@@ -476,7 +476,7 @@ context.startAbility(want).then(() => {
 
 ### 目标UIAbility冷启动
 
-目标UIAbility冷启动时，在目标UIAbility的`onWindowStageCreate()`生命周期回调中，解析EntryAbility传递过来的want参数，获取到需要加载的页面信息url，传入`windowStage.loadContent()`方法。
+目标UIAbility冷启动时，在目标UIAbility的`onCreate()`生命周期回调中，接收调用方传过来的参数。然后在目标UIAbility的`onWindowStageCreate()`生命周期回调中，解析EntryAbility传递过来的want参数，获取到需要加载的页面信息url，传入`windowStage.loadContent()`方法。
 
 
 ```ts
@@ -541,18 +541,20 @@ export default class FuncAbility extends UIAbility {
 
      onWindowStageCreate(windowStage: window.WindowStage) {
        // Main window is created, set main page for this ability
-       // ...
+       let url = 'pages/Index';
+       if (this.funcAbilityWant?.parameters?.router && this.funcAbilityWant.parameters.router === 'funcA') {
+         url = 'pages/Second';
+       }
 
-       let windowClass: window.Window;
-       windowStage.getMainWindow((err, data) => {
+       windowStage.loadContent(url, (err, data) => {
          if (err.code) {
            return;
          }
-   
+
          let windowClass: window.Window;
          windowStage.getMainWindow((err, data) => {
            if (err.code) {
-             console.error(TAG, `Failed to obtain the main window. Code is ${err.code}, message is ${err.message}`);
+             console.error(`Failed to obtain the main window. Code is ${err.code}, message is ${err.message}`);
              return;
            }
            windowClass = data;

@@ -116,13 +116,13 @@ Use chainable event methods to configure events supported by built-in components
     })
   ```
 
-- Example of using an anonymous function expression to configure the event of a component (**bind** must be used to ensure that the current components are referenced by **this **in the function body):
+- Example of using an anonymous function expression to configure the event of a component (**() => {...}** must be used to ensure that the function is bound to the component and complies with the ArkTS syntax specifications):
 
   ```ts
   Button('add counter')
-    .onClick(function(){
+    .onClick(() => {
       this.counter += 2;
-    }.bind(this))
+    })
   ```
 
 - Example of using a component's member function to configure the event of the component:
@@ -133,7 +133,7 @@ Use chainable event methods to configure events supported by built-in components
   }
   ...
   Button('add counter')
-    .onClick(this.myClickHandler.bind(this))
+    .onClick(this.myClickHandler)
   ```
 
 

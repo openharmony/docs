@@ -37,7 +37,7 @@ The following table lists the APIs used to configure information such as the sys
 ### How to Develop
 1. Import the **i18n** module.
 
-   ```js
+   ```ts
    import I18n from '@ohos.i18n';
    ```
 
@@ -46,12 +46,15 @@ The following table lists the APIs used to configure information such as the sys
    Call **setSystemLanguage** to set the system language. (This is a system API and can be called only by system applications with the **UPDATE_CONFIGURATION** permission.)
    Call the **getSystemLanguage** API to obtain the system language.
    
-   ```js
+   ```ts
+   import { BusinessError } from '@ohos.base';
+   
    try {
       I18n.System.setSystemLanguage("en"); // Set the system language to en.
       let language = I18n.System.getSystemLanguage(); // language = "en"
    } catch(error) {
-      console.error(`call i18n.System interface failed, error code: ${error.code}, message: ${error.message}`);
+      let err: BusinessError = error as BusinessError;
+      console.error(`call i18n.System interface failed, error code: ${err.code}, message: ${err.message}`);
    }
    ```
 
@@ -60,12 +63,15 @@ The following table lists the APIs used to configure information such as the sys
    Call **setSystemRegion** to set the system country or region. (This is a system API and can be called only by system applications with the **UPDATE_CONFIGURATION** permission.)
    Call **getSystemRegion** to obtain the system country or region.
 
-   ```js
+   ```ts
+   import { BusinessError } from '@ohos.base';
+   
    try {
       I18n.System.setSystemRegion("CN"); // Set the system country to CN.
       let region = I18n.System.getSystemRegion(); // region = "CN"
    } catch(error) {
-      console.error(`call i18n.System interface failed, error code: ${error.code}, message: ${error.message}`);
+      let err: BusinessError = error as BusinessError;
+      console.error(`call i18n.System interface failed, error code: ${err.code}, message: ${err.message}`);
    }
    ```
 
@@ -74,12 +80,15 @@ The following table lists the APIs used to configure information such as the sys
    Call **setSystemLocale** to set the system locale. (This is a system API and can be called only by system applications with the **UPDATE_CONFIGURATION** permission.) For details about how to set a locale, see [Setting Locale Information](../internationalization/intl-guidelines.md#setting-locale-information).
    Call **getSystemLocale** to obtain the system locale.
 
-   ```js
+   ```ts
+   import { BusinessError } from '@ohos.base';
+   
    try {
       I18n.System.setSystemLocale("zh-Hans-CN"); // Set the system locale to zh-Hans-CN.
       let locale = I18n.System.getSystemLocale(); // locale = "zh-Hans-CN"
    } catch(error) {
-      console.error(`call i18n.System interface failed, error code: ${error.code}, message: ${error.message}`);
+      let err: BusinessError = error as BusinessError;
+      console.error(`call i18n.System interface failed, error code: ${err.code}, message: ${err.message}`);
    }
    ```
 
@@ -87,12 +96,15 @@ The following table lists the APIs used to configure information such as the sys
 
    Call **isRTL** to check whether the locale uses an RTL language.
 
-   ```js
+   ```ts
+   import { BusinessError } from '@ohos.base';
+   
    try {
       let rtl = I18n.isRTL("zh-CN"); // rtl = false
       rtl = I18n.isRTL("ar"); // rtl = true
    } catch(error) {
-      console.error(`call i18n.System interface failed, error code: ${error.code}, message: ${error.message}`);
+      let err: BusinessError = error as BusinessError;
+      console.error(`call i18n.System interface failed, error code: ${err.code}, message: ${err.message}`);
    }
    ```
 
@@ -101,12 +113,15 @@ The following table lists the APIs used to configure information such as the sys
    Call **set24HourClock** to enable the 24-hour clock.
    Call **is24HourClock** to check whether the 24-hour clock is enabled.
 
-   ```js
+   ```ts
+   import { BusinessError } from '@ohos.base';
+   
    try {
       I18n.System.set24HourClock(true);
       let hourClock = I18n.System.is24HourClock(); // hourClock = true
    } catch(error) {
-      console.error(`call i18n.System interface failed, error code: ${error.code}, message: ${error.message}`);
+      let err: BusinessError = error as BusinessError;
+      console.error(`call i18n.System interface failed, error code: ${err.code}, message: ${err.message}`);
    }
    ```
 
@@ -114,14 +129,17 @@ The following table lists the APIs used to configure information such as the sys
 
    Call **getDisplayLanguage** to obtain the localized representation of a language. **language** indicates the language to be localized, **locale** indicates the locale, and **sentenceCase** indicates whether the first letter of the result must be capitalized.
 
-   ```js
+   ```ts
+   import { BusinessError } from '@ohos.base';
+   
    try {
       let language = "en";
       let locale = "zh-CN";
       let sentenceCase = false;
       let localizedLanguage = I18n.System.getDisplayLanguage(language, locale, sentenceCase); // localizedLanguage = "English"
    } catch(error) {
-      console.error(`call i18n.System interface failed, error code: ${error.code}, message: ${error.message}`);
+      let err: BusinessError = error as BusinessError;
+      console.error(`call i18n.System interface failed, error code: ${err.code}, message: ${err.message}`);
    }
    ```
 
@@ -129,14 +147,17 @@ The following table lists the APIs used to configure information such as the sys
 
    Call **getDisplayCountry** to obtain the localized representation of a country. **country** indicates the country to be localized, **locale** indicates the locale, and **sentenceCase** indicates whether the first letter of the result must be capitalized.
 
-   ```js
+   ```ts
+   import { BusinessError } from '@ohos.base';
+   
    try {
       let country = "US";
       let locale = "zh-CN";
       let sentenceCase = false;
       let localizedCountry = I18n.System.getDisplayCountry(country, locale, sentenceCase); // localizedCountry = "U.S."
    } catch(error) {
-      console.error(`call i18n.System interface failed, error code: ${error.code}, message: ${error.message}`);
+      let err: BusinessError = error as BusinessError;
+      console.error(`call i18n.System interface failed, error code: ${err.code}, message: ${err.message}`);
    }
    ```
 
@@ -144,13 +165,15 @@ The following table lists the APIs used to configure information such as the sys
 
    Call **getSystemLanguages** to obtain the list of system languages.
    Call **getSystemCountries** to obtain the list of countries and regions supported by a system language.
-   ```js
+   ```ts
+   import { BusinessError } from '@ohos.base';
    
    try {
       let languageList = I18n.System.getSystemLanguages();  // languageList = ["en-Latn-US", "zh-Hans"]
       let countryList = I18n.System.getSystemCountries("zh"); // countryList = ["ZW", "YT", ..., "CN", "DE"], 240 countries and regions in total
    } catch(error) {
-      console.error(`call i18n.System interface failed, error code: ${error.code}, message: ${error.message}`);
+      let err: BusinessError = error as BusinessError;
+      console.error(`call i18n.System interface failed, error code: ${err.code}, message: ${err.message}`);
    }
    ```
 
@@ -158,11 +181,14 @@ The following table lists the APIs used to configure information such as the sys
 
    Call **isSuggested** to check whether the language matches a country or region.
    
-   ```js
+   ```ts
+   import { BusinessError } from '@ohos.base';
+   
    try {
       let isSuggest = I18n.System.isSuggested("zh", "CN"); // isSuggest = true
    } catch(error) {
-      console.error(`call i18n.System interface failed, error code: ${error.code}, message: ${error.message}`);
+      let err: BusinessError = error as BusinessError;
+      console.error(`call i18n.System interface failed, error code: ${err.code}, message: ${err.message}`);
    }
    ```
 
@@ -174,7 +200,9 @@ The following table lists the APIs used to configure information such as the sys
    Call **getFirstPreferredLanguage** to obtain the first preferred language in the preferred language list.
    Call **getAppPreferredLanguageList** to obtain the preferred language of the application. It is the first language that matches the application resource in the preferred language list.
    
-   ```js
+   ```ts
+   import { BusinessError } from '@ohos.base';
+   
    try {
       I18n.System.addPreferredLanguage("en-GB", 0); // Set the first language in the preferred language list to en-GB.
       let list = I18n.System.getPreferredLanguageList(); // Obtain the preferred language list. Example: list = ["en-GB", ...]
@@ -182,7 +210,8 @@ The following table lists the APIs used to configure information such as the sys
       let firstPreferredLanguage = I18n.System.getFirstPreferredLanguage(); // firstPreferredLanguage = "en-GB"
       let appPreferredLanguage = I18n.System.getAppPreferredLanguage(); // Set the preferred language of the application to en-GB if the application contains en-GB resources.
    } catch(error) {
-      console.error(`call i18n.System interface failed, error code: ${error.code}, message: ${error.message}`);
+      let err: BusinessError = error as BusinessError;
+      console.error(`call i18n.System interface failed, error code: ${err.code}, message: ${err.message}`);
    }
    ```
 
@@ -192,16 +221,19 @@ The following table lists the APIs used to configure information such as the sys
    Call **getUsingLocalDigit** to check whether the local digit switch is enabled.
    Currently, use of local digits is supported only for the following languages: **ar**, **as**, **bn**, **fa**, **mr**, **my**, **ne**, **ur**.
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 try {
    I18n.System.setUsingLocalDigit(true); // Enable the local digit switch.
    let status = I18n.System.getUsingLocalDigit(); // status = true
 } catch(error) {
-   console.error(`call i18n.System interface failed, error code: ${error.code}, message: ${error.message}`);
+   let err: BusinessError = error as BusinessError;
+   console.error(`call i18n.System interface failed, error code: ${err.code}, message: ${err.message}`);
 }
 ```
 
-## Obtain the calendar information.
+## Obtaining Calendar Information
 
 [Calendar](../reference/apis/js-apis-i18n.md#calendar8) provides APIs to obtain calendar information, for example, localized representation of the calendar, the start day of a week, and the minimum number of days in the first week of a year.
 
@@ -226,7 +258,7 @@ try {
 
 1. Import the **i18n** module.
 
-   ```js
+   ```ts
    import I18n from '@ohos.i18n';
    ```
 
@@ -234,7 +266,7 @@ try {
 
    Call **getCalendar** to obtain the time zone object of a specific locale and type (**i18n** is the name of the imported module). **type** indicates the valid calendar type, for example, **buddhist**, **chinese**, **coptic**, **ethiopic**, **hebrew**, **gregory**, **indian**, **islamic_civil**, **islamic_tbla**, **islamic_umalqura**, **japanese**, and **persian**. If **type** is left unspecified, the default calendar type of the locale is used.
 
-   ```js
+   ```ts
    let calendar = I18n.getCalendar("zh-CN", "chinese"); // Create the Calendar object for the Chinese lunar calendar.
    ```
 
@@ -242,7 +274,7 @@ try {
 
      Call **setTime** to set the time of the **Calendar** object. Two types of parameters are supported. One is a **Date** object, and the other is a value indicating the number of milliseconds elapsed since January 1, 1970, 00:00:00 GMT.
 
-   ```js
+   ```ts
    let date1 = new Date();
    calendar.setTime(date1);
    let date2 = 1000;
@@ -253,7 +285,7 @@ try {
 
      Call **set** to set the year, month, day, hour, minute, and second for the **Calendar** object.
 
-   ```js
+   ```ts
    calendar.set(2021, 12, 21, 6, 0, 0);
    ```
 
@@ -261,7 +293,7 @@ try {
 
    Call **setTimeZone** and **getTimeZone** to set and obtain the time zone of the **Calendar** object. Note that **setTimeZone** requires an input string to indicate the time zone to be set.
 
-   ```js
+   ```ts
    calendar.setTimeZone("Asia/Shanghai");
    let timezone = calendar.getTimeZone();  // timezone = "China Standard Time"
    ```
@@ -270,7 +302,7 @@ try {
 
    Call **setFirstDayOfWeek** and **getFirstDayOfWeek** to set and obtain the start day of a week for the **Calendar** object. **setFirstDayOfWeek** must be set to a value indicating the first day of a week. The value **1** indicates Sunday, and the value **7** indicates Saturday.
 
-   ```js
+   ```ts
    calendar.setFirstDayOfWeek(1);
    let firstDayOfWeek = calendar.getFirstDayOfWeek(); // firstDayOfWeek = 1
    ```
@@ -278,7 +310,7 @@ try {
 7. Set and obtain the minimum count of days in the first week for the **Calendar** object.
      Call **setMinimalDaysInFirstWeek** and **getMinimalDaysInFirstWeek** to set and obtain the minimum number of days in the first week for the **Calendar** object.
 
-   ```js
+   ```ts
    calendar.setMinimalDaysInFirstWeek(3);
    let minimalDaysInFirstWeek = calendar.getMinimalDaysInFirstWeek(); // minimalDaysInFirstWeek = 3
    ```
@@ -286,7 +318,7 @@ try {
 8. Obtain the localized representation of the **Calendar** object.
    Call **getDisplayName** to obtain the localized representation of the **Calendar** object.
 
-   ```js
+   ```ts
    let localizedName = calendar.getDisplayName("zh-CN"); // localizedName = " Lunar Calendar"
    ```
 
@@ -294,7 +326,7 @@ try {
 
    Call **isWeekend** to determine whether the input date is a weekend.
 
-   ```js
+   ```ts
    let date = new Date(2022, 12, 12, 12, 12, 12);
    let weekend = calendar.isWeekend(date); // weekend = false
    ```
@@ -316,7 +348,7 @@ try {
 
 1. Import the **i18n** module.
 
-   ```js
+   ```ts
    import I18n from '@ohos.i18n';
    ```
 
@@ -324,7 +356,7 @@ try {
 
    Call the **PhoneNumberFormat** constructor to instantiate a **PhoneNumberFormat** object. The country code and formatting options of the phone number need to be passed into this constructor. The formatting options are optional, including a style option. Values of this option include: **E164**, **INTERNATIONAL**, **NATIONAL**, and **RFC3966**.
 
-   ```js
+   ```ts
    let phoneNumberFormat = new I18n.PhoneNumberFormat("CN", {type: "E164"});
    ```
 
@@ -332,7 +364,7 @@ try {
 
      Call **isValidNumber** to check whether the format of the input phone number is correct.
 
-   ```js
+   ```ts
    let validNumber = phoneNumberFormat.isValidNumber("15812341234"); // validNumber = true
    ```
 
@@ -340,7 +372,7 @@ try {
 
      Call **format** to format the input phone number.
 
-   ```js
+   ```ts
    let formattedNumber = phoneNumberFormat.format("15812341234"); // formattedNumber = "+8615812341234"
    ```
 
@@ -358,7 +390,7 @@ The **I18NUtil** class provides an API to implement measurement conversion.
 
 1. Import the **i18n** module.
 
-   ```js
+   ```ts
    import I18n from '@ohos.i18n';
    ```
 
@@ -366,9 +398,9 @@ The **I18NUtil** class provides an API to implement measurement conversion.
 
    Call [unitConvert](../reference/apis/js-apis-i18n.md#unitconvert9) to convert a measurement unit and format the display result.
 
-   ```js
-   let fromUnit = {unit: "cup", measureSystem: "US"};
-   let toUnit = {unit: "liter", measureSystem: "SI"};
+   ```ts
+   let fromUnit: I18n.UnitInfo = {unit: "cup", measureSystem: "US"};
+   let toUnit: I18n.UnitInfo = {unit: "liter", measureSystem: "SI"};
    let number = 1000;
    let locale = "en-US";
    let style = "long";
@@ -392,7 +424,7 @@ The **I18NUtil** class provides an API to implement measurement conversion.
 
 1. Import the **i18n** module.
 
-   ```js
+   ```ts
    import I18n from '@ohos.i18n';
    ```
 
@@ -401,7 +433,7 @@ The **I18NUtil** class provides an API to implement measurement conversion.
    Call **getInstance** to instantiate an **IndexUtil** object for a specific locale. When the **locale** parameter is empty, instantiate an **IndexUtil** object of the default locale.
 
 
-   ```js
+   ```ts
    let indexUtil = I18n.getInstance("zh-CN");
    ```
 
@@ -409,7 +441,7 @@ The **I18NUtil** class provides an API to implement measurement conversion.
 
      Call **getIndexList** to obtain the alphabet index list of the current locale.
 
-   ```js
+   ```ts
    let indexList = indexUtil.getIndexList(); // indexList = ["...", "A", "B", "C", ..., "X", "Y", "Z", "..."]
    ```
 
@@ -417,7 +449,7 @@ The **I18NUtil** class provides an API to implement measurement conversion.
 
      Call **addLocale** to add the alphabet index of a new locale to the current index list.
 
-   ```js
+   ```ts
    indexUtil.addLocale("ar");
    ```
 
@@ -425,7 +457,7 @@ The **I18NUtil** class provides an API to implement measurement conversion.
 
      Call **getIndex** to obtain the alphabet index of a string.
 
-   ```js
+   ```ts
    let text = "access index";
    let index = indexUtil.getIndex(text); // index = "A"
    ```
@@ -453,7 +485,7 @@ When a text is displayed in more than one line, use [BreakIterator8](../referenc
 
 1. Import the **i18n** module.
 
-   ```js
+   ```ts
    import I18n from '@ohos.i18n';
    ```
 
@@ -461,7 +493,7 @@ When a text is displayed in more than one line, use [BreakIterator8](../referenc
 
    Call **getLineInstance** to instantiate a **BreakIterator** object.
 
-   ```js
+   ```ts
    let locale = "en-US";
    let breakIterator = I18n.getLineInstance(locale);
    ```
@@ -470,7 +502,7 @@ When a text is displayed in more than one line, use [BreakIterator8](../referenc
 
    Call **setLineBreakText** and **getLineBreakText** to set and access the text that requires line breaking.
 
-   ```js
+   ```ts
    let text = "Apple is my favorite fruit";
    breakIterator.setLineBreakText(text);
    let breakText = breakIterator.getLineBreakText();  // breakText = "Apple is my favorite fruit"
@@ -480,7 +512,7 @@ When a text is displayed in more than one line, use [BreakIterator8](../referenc
 
    Call **current** to obtain the current position of the **BreakIterator** object in the text being processed.
 
-   ```js
+   ```ts
    let pos = breakIterator.current(); // pos = 0
    ```
 
@@ -488,7 +520,7 @@ When a text is displayed in more than one line, use [BreakIterator8](../referenc
 
    The following APIs are provided to adjust the **first**, **last**, **next**, **previous**, or **following** position of the **BreakIterator** object in the text to be processed.
 
-   ```js
+   ```ts
    let firstPos = breakIterator.first(); // Set a BreakIterator object to the first break point, that is, the start position of the text (firstPos = 0).
    let lastPos = breakIterator.last(); // Sets a BreakIterator object to the last break point, that is, the position after the text end (lastPos = 26).
    // Move a BreakIterator object forward or backward by a certain number of break points.
@@ -504,7 +536,7 @@ When a text is displayed in more than one line, use [BreakIterator8](../referenc
 
    Call **isBoundary** to determine whether a position is a break point. If yes, **true** is returned and the **BreakIterator** object is moved to this position. If no, **false** is returned and the **BreakIterator** object is moved to a break point after this position.
 
-   ```js
+   ```ts
    let isboundary = breakIterator.isBoundary(5); // isboundary = false
    ```
 
@@ -530,7 +562,7 @@ When a text is displayed in more than one line, use [BreakIterator8](../referenc
 
 1. Import the **i18n** module.
 
-   ```js
+   ```ts
    import I18n from '@ohos.i18n';
    ```
 
@@ -538,13 +570,13 @@ When a text is displayed in more than one line, use [BreakIterator8](../referenc
 
    Call **getTimeZone** to obtain the **TimeZone** object.
 
-   ```js
+   ```ts
    let timezone = I18n.getTimeZone(); // If you use the default settings, you'll obtain the TimeZone object corresponding to the system time zone.
    ```
 
    Obtain the time zone ID, localized representation, time zone offset, and time zone offset at a certain time point.
    
-   ```js
+   ```ts
    let timezoneID = timezone.getID(); // timezoneID = "Asia/Shanghai"
    let timezoneDisplayName = timezone.getDisplayName(); // timezoneDisplayName = "China Standard Time"
    let rawOffset = timezone.getRawOffset(); // rawOffset = 28800000
@@ -556,7 +588,7 @@ When a text is displayed in more than one line, use [BreakIterator8](../referenc
    Call **getAvailableIDs** to obtain the list of time zone IDs supported by the system.
    You can use the time zone ID in the time zone ID list as an input parameter of the **getTimeZone** API to create a **TimeZone** object.
 
-   ```js
+   ```ts
    let timezoneIDs = I18n.TimeZone.getAvailableIDs(); // timezoneIDs = ["America/Adak", ...], which contains 24 time zone IDs in total
    let timezone = I18n.getTimeZone(timezoneIDs[0]);
    let timezoneDisplayName = timezone.getDisplayName(); // timezoneDisplayName = "Hawaii-Aleutian Standard Time"
@@ -568,14 +600,14 @@ When a text is displayed in more than one line, use [BreakIterator8](../referenc
    Call **getCityDisplayName** to obtain the localized representation of the time zone city ID.
    Call **getTimezoneFromCity** to create a **TimeZone** object based on the time zone city ID.
 
-   ```js
+   ```ts
    let zoneCityIDs = I18n.TimeZone.getAvailableZoneCityIDs(); // ["Auckland", "Magadan", ...]
    let cityDisplayName = I18n.TimeZone.getCityDisplayName(zoneCityIDs[0], "zh-Hans"); // cityDisplayName = "Auckland (New Zealand)"
    let timezone = I18n.TimeZone.getTimezoneFromCity(zoneCityIDs[0]);
    let timezoneDisplayName = timezone.getDisplayName(); // timezoneDisplayName = "New Zealand Standard Time"
    ```
 
-## Obtain the **Transliterator** object.
+## Obtaining the **Transliterator** Object
 
 Call [Transliterator](../reference/apis/js-apis-i18n.md#transliterator9) APIs to create a **Transliterator** object and obtain the transliterated string.
 
@@ -591,7 +623,7 @@ Call [Transliterator](../reference/apis/js-apis-i18n.md#transliterator9) APIs to
 
 1. Import the **i18n** module.
 
-   ```js
+   ```ts
    import I18n from '@ohos.i18n';
    ```
 
@@ -600,7 +632,7 @@ Call [Transliterator](../reference/apis/js-apis-i18n.md#transliterator9) APIs to
    Call **getAvailableIDs** to obtain the transliterator ID list.
    An ID is in the **source-destination** format. For example, **ASCII-Latin** means to convert the transliterator ID from ASCII to Latin.
 
-   ```js
+   ```ts
    let ids = I18n.Transliterator.getAvailableIDs(); // ids = ["ASCII-Latin", "Accents-Any", ... ], 671 languages in total
    ```
 
@@ -609,7 +641,7 @@ Call [Transliterator](../reference/apis/js-apis-i18n.md#transliterator9) APIs to
    You can use the ID in the transliterator ID list as an input parameter of the **getInstance** API to create a **Transliterator** object.
    Call **transform** to obtain the transliterated string.
 
-   ```js
+   ```ts
    let transliterator = I18n.Transliterator.getInstance("Any-Latin"); // Any-Latin means to convert any text to Latin text.
    let transformText = transliterator.transform ("Hello"); // transformText = "nǐ hǎo"
    let transliterator2 = I18n.Transliterator.getInstance("Latin-ASCII"); // Latin-ASCII means to convert Latin text to ASCII text.
@@ -638,64 +670,64 @@ Call [Transliterator](../reference/apis/js-apis-i18n.md#transliterator9) APIs to
 
 1. Import the **i18n** module.
 
-   ```js
+   ```ts
    import I18n from '@ohos.i18n';
    ```
 
 2. Check the input character has a certain attribute.
 
-   Check whether the input character is a digit.
+   Checks whether the input character is a digit.
 
-   ```js
+   ```ts
    let isDigit = I18n.Unicode.isDigit("1"); // isDigit = true
    isDigit = I18n.Unicode.isDigit("a"); // isDigit = false
    ```
 
-   Check whether the input character is a space.
+   Checks whether the input character is a space.
 
-   ```js
+   ```ts
    let isSpaceChar = I18n.Unicode.isSpaceChar(" "); // isSpaceChar = true
    isSpaceChar = I18n.Unicode.isSpaceChar("\n"); // isSpaceChar = false
    ```
 
-   Check whether the input character is a white space.
+   Checks whether the input character is a white space.
 
-   ```js
+   ```ts
    let isWhitespace = I18n.Unicode.isWhitespace(" "); // isWhitespace = true
    isWhitespace = I18n.Unicode.isWhitespace("\n"); // isWhitespace = true
    ```
 
    Check whether the input character is of the RTL language.
 
-   ```js
+   ```ts
    let isRTL = I18n.Unicode.isRTL(""); // isRTL = true (Arabic characters are written from left to right.)
    isRTL = I18n.Unicode.isRTL("a"); // isRTL = false
    ```
 
-   Check whether the input character is an ideographic character.
+   Checks whether the input character is an ideographic character.
 
-   ```js
+   ```ts
    let isIdeograph = I18n.Unicode.isIdeograph("Hello"); // isIdeograph = true
    isIdeograph = I18n.Unicode.isIdeograph("a"); // isIdeograph = false
    ```
 
-   Check whether the input character is a letter.
+   Checks whether the input character is a letter.
 
-   ```js
+   ```ts
    let isLetter = I18n.Unicode.isLetter("a"); // isLetter = true
    isLetter = I18n.Unicode.isLetter("."); // isLetter = false
    ```
 
-   Check whether the input character is a lowercase letter.
+   Checks whether the input character is a lowercase letter.
 
-   ```js
+   ```ts
    let isLowerCase = I18n.Unicode.isLowerCase("a"); // isLetter = true
    isLowerCase = I18n.Unicode.isLowerCase("A"); // isLetter = false
    ```
 
-   Check whether the input character is an uppercase letter.
+   Checks whether the input character is an uppercase letter.
 
-   ```js
+   ```ts
    let isUpperCase = I18n.Unicode.isUpperCase("a"); // isUpperCase = false
    isUpperCase = I18n.Unicode.isUpperCase("A"); // isUpperCase = true
    ```
@@ -704,7 +736,7 @@ Call [Transliterator](../reference/apis/js-apis-i18n.md#transliterator9) APIs to
 
    Call **getType** to obtain the character type.
 
-   ```js
+   ```ts
    let type = I18n.Unicode.getType("a"); // type = U_LOWER_CASE_LETTER
    ```
 
@@ -720,7 +752,7 @@ Call [Transliterator](../reference/apis/js-apis-i18n.md#transliterator9) APIs to
 
 1. Import the **i18n** module.
 
-   ```js
+   ```ts
    import I18n from '@ohos.i18n';
    ```
 
@@ -729,6 +761,7 @@ Call [Transliterator](../reference/apis/js-apis-i18n.md#transliterator9) APIs to
    Call **getDateOrder** to obtain the sequence of year, month, and day in the date of the specified locale.
    The API returns a string consisting of three parts, **y**, **L**, and **d**, which indicate the year, month, and day, respectively. The three parts are separated by using a hyphen (-), for example, **y-L-d**.
 
-   ```js
+   ```ts
    let order = I18n.I18NUtil.getDateOrder("zh-CN"); // order = "y-L-d" indicates that the sequence of year, month, and day in Chinese is year-month-day.
    ```
+

@@ -17,7 +17,7 @@
 
 ## 导入模块
 
-```js
+```ts
 import backgroundTaskManager from '@ohos.backgroundTaskManager';  
 ```
 
@@ -47,7 +47,7 @@ requestSuspendDelay(reason: string, callback: Callback&lt;void&gt;): DelaySuspen
 
 **示例**：
 
-  ```js
+  ```ts
   import backgroundTaskManager from '@ohos.backgroundTaskManager';
 
   let myReason = 'test requestSuspendDelay';
@@ -79,11 +79,12 @@ getRemainingDelayTime(requestId: number, callback: AsyncCallback&lt;number&gt;):
 
 **示例**：
 
-  ```js
+  ```ts
   import backgroundTaskManager from '@ohos.backgroundTaskManager';
+  import { BusinessError } from '@ohos.base';
 
   let delayInfo = backgroundTaskManager.requestSuspendDelay("test", () => {});
-  backgroundTaskManager.getRemainingDelayTime(delayInfo.requestId, (err, res) => {
+  backgroundTaskManager.getRemainingDelayTime(delayInfo.requestId, (err: BusinessError, res: number) => {
       if(err) {
           console.log('callback => Operation getRemainingDelayTime failed. Cause: ' + err.code);
       } else {
@@ -115,7 +116,10 @@ getRemainingDelayTime(requestId: number): Promise&lt;number&gt;
 
 **示例**：
 
-```js
+```ts
+import backgroundTaskManager from '@ohos.backgroundTaskManager';
+import { BusinessError } from '@ohos.base';
+
 let delayInfo = backgroundTaskManager.requestSuspendDelay("test", () => {});
     backgroundTaskManager.getRemainingDelayTime(delayInfo.requestId).then((res:number) => {
     console.log('promise => Operation getRemainingDelayTime succeeded. Data: ' + JSON.stringify(res));
@@ -141,7 +145,9 @@ cancelSuspendDelay(requestId: number): void
 
 **示例**：
 
-  ```js
+  ```ts
+  import backgroundTaskManager from '@ohos.backgroundTaskManager';
+
   let delayInfo = backgroundTaskManager.requestSuspendDelay("test", () => {});
   backgroundTaskManager.cancelSuspendDelay(delayInfo.requestId);
   ```
@@ -210,6 +216,8 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 import backgroundTaskManager from '@ohos.backgroundTaskManager';
 import wantAgent, { WantAgent } from '@ohos.app.ability.wantAgent';
 import { BusinessError } from '@ohos.base';
+import Want from '@ohos.app.ability.Want';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 
 function callback(err: BusinessError, data: void) {
   if (err) {
@@ -267,7 +275,7 @@ startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: Want
 
 **示例**：
 
-FA模型示例：
+FA模型示例（需使用js代码开发）：
 
 ```js
 import backgroundTaskManager from '@ohos.backgroundTaskManager';
@@ -304,6 +312,8 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 import backgroundTaskManager from '@ohos.backgroundTaskManager';
 import wantAgent, { WantAgent } from '@ohos.app.ability.wantAgent';
 import { BusinessError } from '@ohos.base';
+import Want from '@ohos.app.ability.Want';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
@@ -348,7 +358,7 @@ stopBackgroundRunning(context: Context, callback: AsyncCallback&lt;void&gt;): vo
 
 **示例**：
 
-FA模型示例：
+FA模型示例（需使用js代码开发）：
 
 ```js
 import backgroundTaskManager from '@ohos.backgroundTaskManager';
@@ -373,6 +383,8 @@ Stage模型示例：
 import UIAbility from '@ohos.app.ability.UIAbility';
 import backgroundTaskManager from '@ohos.backgroundTaskManager';
 import { BusinessError } from '@ohos.base';
+import Want from '@ohos.app.ability.Want';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 
 function callback(err: BusinessError, data: void) {
   if (err) {
@@ -432,6 +444,8 @@ Stage模型示例：
 import UIAbility from '@ohos.app.ability.UIAbility';
 import backgroundTaskManager from '@ohos.backgroundTaskManager';
 import { BusinessError } from '@ohos.base';
+import Want from '@ohos.app.ability.Want';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {

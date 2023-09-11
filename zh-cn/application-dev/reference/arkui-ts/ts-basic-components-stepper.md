@@ -132,8 +132,10 @@ struct StepperExample {
       // 此处可处理点击跳过时的逻辑，例如动态修改Stepper的index值使其跳转到某一步骤页等
       console.info('onSkip')
     })
-    .onChange((prevIndex: number, index: number) => {
-      this.currentIndex = index
+    .onChange((prevIndex?: number, index?: number) => {
+      if(index){
+        this.currentIndex = index
+      }
     })
   }
 }

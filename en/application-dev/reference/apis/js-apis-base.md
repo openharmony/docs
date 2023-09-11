@@ -40,7 +40,7 @@ ErrorCallback\<T extends Error = BusinessError> {
 
 Defines a common callback that carries an error parameter.
 
-The error parameter is of the [BusinessError](#businesserror) type.
+The information returned by the callback is of the [BusinessError](#businesserror) type.
 
 **System capability**: SystemCapability.Base
 
@@ -68,7 +68,7 @@ The type of the asynchronous return value is defined by the developer.
 
 | Name| Type                                                        | Mandatory| Description                        |
 | ---- | ------------------------------------------------------------ | ---- | ---------------------------- |
-| err  | [BusinessError](https://gitee.com/openharmony/docs/pulls/20172/files#businesserror) | Yes  | Common error information about the API invoking failure.|
+| err  | [BusinessError](#businesserror) | Yes  | Common error information about the API invoking failure.|
 | data | T                                                            | Yes  | Common callback information.  |
 
 ## BusinessError

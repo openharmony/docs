@@ -57,7 +57,7 @@ You can debug HAP files using the methods:
 When your application package meets the release requirements, you can package and build it into an App Pack and release it to the application market on the cloud. The application market verifies the signature of the App Pack. If the signature verification is successful, the application market obtains the HAP files from the App Pack, signs them, and distributes the signed HAP files.
 
 ## Deployment
-The application market on the cloud distributes the applications to application market clients. These applications can contain one or more HAP files. After the user selects an application to download, the application market downloads all the HAP files contained in this application.
+The application market on the cloud distributes the applications to application market clients. These applications can contain one or more HAP files. After the user selects an application to download, the application market downloads all the HAP files contained in this application whose **deliveryWithInstall** field is set to **true**.
 
 ## Installation on a Device
 After the download is complete, the application market client calls the installation API of the bundle manager service in the system to install the downloaded HAP files. The bundle manager service deploys HAP files by application in the specified directory to complete the application installation.

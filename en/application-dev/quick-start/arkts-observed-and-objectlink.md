@@ -35,7 +35,7 @@ Using \@Observed to decorate a class changes the original prototype chain of the
 | ----------------- | ---------------------------------------- |
 | Decorator parameters            | None.                                       |
 | Synchronization type             | No synchronization with the parent component.                        |
-| Allowed variable types        | Objects of \@Observed decorated classes. The type must be specified.<br>Simple type variables are not supported. Use [\@Prop](arkts-prop.md) instead.<br>An \@ObjectLink decorated variable accepts changes to its attributes, but assignment is not allowed. In other words, an \@ObjectLink decorated variable is read-only and cannot be changed.|
+| Allowed variable types        | Objects of \@Observed decorated classes. The type must be specified.<br>Simple type variables are not supported. Use [\@Prop](arkts-prop.md) instead.<br>Instances of classes that inherit **Date** or **Array** are supported. For details, see [Observed Changes](#observed-changes).<br>An \@ObjectLink decorated variable accepts changes to its attributes, but assignment is not allowed. In other words, an \@ObjectLink decorated variable is read-only and cannot be changed.|
 | Initial value for the decorated variable        | Not allowed.                                    |
 
 Example of a read-only \@ObjectLink decorated variable:
@@ -120,6 +120,67 @@ this.b.a.c = 5
 - Value changes of the attributes that **Object.keys(observedObject)** returns. For details, see [Nested Object](#nested-object).
 
 - Replacement of array items for the data source of an array and changes of class attributes for the data source of a class. For details, see [Object Array](#object-array).
+
+For an instance of the class that inherits **Date**, the value assignment of **Date** can be observed. In addition, you can call the following APIs to update the attributes of **Date**: setFullYear, setMonth, setDate, setHours, setMinutes, setSeconds, setMilliseconds, setTime, setUTCFullYear, setUTCMonth, setUTCDate, setUTCHours, setUTCMinutes, setUTCSeconds, setUTCMilliseconds.
+
+```ts
+@Observed
+class DateClass extends Date {
+  constructor(args: number | string) {
+    super(args)
+  }
+}
+
+@Observed
+class ClassB {
+  public a: DateClass;
+
+  constructor(a: DateClass) {
+    this.a = a;
+  }
+}
+
+@Component
+struct ViewA {
+  label: string = 'date';
+  @ObjectLink a: DateClass;
+
+  build() {
+    Column() {
+      Button(`child increase the day by 1`)
+        .onClick(() => {
+          this.a.setDate(this.a.getDate() + 1);
+        })
+      DatePicker({
+        start: new Date('1970-1-1'),
+        end: new Date('2100-1-1'),
+        selected: this.a
+      })
+    }
+  }
+}
+
+@Entry
+@Component
+struct ViewB {
+  @State b: ClassB = new ClassB(new DateClass('2023-1-1'));
+
+  build() {
+    Column() {
+      ViewA({ label: 'date', a: this.b.a })
+
+      Button(`parent update the new date`)
+        .onClick(() => {
+          this.b.a = new DateClass('2023-07-07');
+        })
+      Button(`ViewB: this.b = new ClassB(new DateClass('2023-08-20'))`)
+        .onClick(() => {
+          this.b = new ClassB(new DateClass('2023-08-20'));
+        })
+    }
+  }
+}
+```
 
 
 ### Framework Behavior
@@ -282,10 +343,10 @@ struct ViewB {
   build() {
     Column() {
       ForEach(this.arrA,
-        (item) => {
+        (item: ClassA) => {
           ViewA({ label: `#${item.id}`, a: item })
         },
-        (item) => item.id.toString()
+        (item: ClassA): string => item.id.toString()
       )
       // Initialize the @ObjectLink decorated variable using the array item in the @State decorated array, which is an instance of ClassA decorated by @Observed.
       ViewA({ label: `ViewA this.arrA[first]`, a: this.arrA[0] })
@@ -358,11 +419,11 @@ struct ItemPage {
         .width(100).height(100)
 
       ForEach(this.itemArr,
-        item => {
+        (item: string | Resource) => {
           Text(item)
             .width(100).height(100)
         },
-        item => item
+        (item: string) => item
       )
     }
   }
@@ -378,14 +439,14 @@ struct IndexPage {
       ItemPage({ itemArr: this.arr[0] })
       ItemPage({ itemArr: this.arr[1] })
       ItemPage({ itemArr: this.arr[2] })
-
       Divider()
 
+
       ForEach(this.arr,
-        itemArr => {
+        (itemArr: StringArray) => {
           ItemPage({ itemArr: itemArr })
         },
-        itemArr => itemArr[0]
+        (itemArr: string) => itemArr[0]
       )
 
       Divider()
@@ -393,7 +454,7 @@ struct IndexPage {
       Button('update')
         .onClick(() => {
           console.error('Update all items in arr');
-          if (this.arr[0][0] !== undefined) {
+          if ((this.arr[0] as Array<String>)[0] !== undefined) {
             // We should have a real ID to use with ForEach, but we do no.
             // Therefore, we need to make sure the pushed strings are unique.
             this.arr[0].push(`${this.arr[0].slice(-1).pop()}${this.arr[0].slice(-1).pop()}`);

@@ -181,40 +181,36 @@ off(type: "nfcStateChange", callback?: Callback&lt;[NfcState](#nfcstate)&gt;): v
 import controller from '@ohos.nfc.controller';
 
 // register callback to receive the nfc state changed notification
-controller.on("nfcStateChange", (err, nfcState)=> {
-  if (err) {
-      console.log("controller on callback err: " + err);
-  } else {
-      console.log("controller on callback nfcState: " + nfcState);
-  }
+controller.on("nfcStateChange", (nfcState : number)=> {
+  console.log("controller on callback nfcState: " + nfcState);
 });
 
 // open nfc, require permission: ohos.permission.MANAGE_SECURE_SETTINGS
 if (!controller.isNfcOpen()) {
-  var ret = controller.openNfc();
+  let ret = controller.openNfc();
   console.log("controller openNfc ret: " + ret);
 }
 
 // from api9, use 'enableNfc' to open nfc.
 try {
-    controller.enableNfc();
-    console.log("controller enableNfc success");
+  controller.enableNfc();
+  console.log("controller enableNfc success");
 } catch (busiError) {
-    console.log("controller enableNfc busiError: " + busiError);
+  console.log("controller enableNfc busiError: " + busiError);
 }
 
 // close nfc, require permission: ohos.permission.MANAGE_SECURE_SETTINGS
 if (controller.isNfcOpen()) {
-  var ret = controller.closeNfc();
+  let ret = controller.closeNfc();
   console.log("controller closeNfc ret: " + ret);
 }
 
 // from api9, use 'disableNfc' to close nfc.
 try {
-    controller.disableNfc();
-    console.log("controller disableNfc success");
+  controller.disableNfc();
+  console.log("controller disableNfc success");
 } catch (busiError) {
-    console.log("controller disableNfc busiError: " + busiError);
+  console.log("controller disableNfc busiError: " + busiError);
 }
 
 // unregister callback

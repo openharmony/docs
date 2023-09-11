@@ -561,9 +561,9 @@ import matrix4 from '@ohos.matrix4'
 @Entry
 @Component
 struct Test {
-  private originPoint: [number, number] = [50, 50]
+  private originPoint: number[] = [50, 50]
   private matrix_1 = matrix4.identity().translate({ x: 150, y: -50 })
-  private transformPoint = this.matrix_1.transformPoint(this.originPoint)
+  private transformPoint = this.matrix_1.transformPoint([this.originPoint[0], this.originPoint[1]])
   private matrix_2 = matrix4.identity().translate({ x: this.transformPoint[0], y: this.transformPoint[1] })
 
   build() {

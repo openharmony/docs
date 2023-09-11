@@ -35,7 +35,7 @@ injectEvent({KeyEvent: KeyEvent}): void
 
 ```js
 try {
-  let backKeyDown = {
+  let backKeyDown: inputEventClient.KeyEvent = {
     isPressed: true,
     keyCode: 2,
     keyDownDuration: 0,
@@ -43,7 +43,7 @@ try {
   }
   inputEventClient.injectEvent({ KeyEvent: backKeyDown });
 
-  let backKeyUp = {
+  let backKeyUp: inputEventClient.KeyEvent = {
     isPressed: false,
     keyCode: 2,
     keyDownDuration: 0,

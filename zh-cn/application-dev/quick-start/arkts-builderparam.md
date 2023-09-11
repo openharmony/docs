@@ -36,7 +36,11 @@
   ```ts
   @Component
   struct Child {
-    @BuilderParam aBuilder0: () => void;
+    @Builder componentBuilder() {
+      Text(`Parent builder `)
+    }
+
+    @BuilderParam aBuilder0: () => void = this.componentBuilder;
 
     build() {
       Column() {
@@ -72,9 +76,13 @@
   ```ts
   @Component
   struct Child {
+    @Builder componentBuilder() {
+      Text(`Child builder `)
+    }
+
     label: string = `Child`
-    @BuilderParam aBuilder0: () => void;
-    @BuilderParam aBuilder1: () => void;
+    @BuilderParam aBuilder0: () => void = this.componentBuilder;
+    @BuilderParam aBuilder1: () => void = this.componentBuilder;
 
     build() {
       Column() {
@@ -96,7 +104,7 @@
     build() {
       Column() {
         this.componentBuilder()
-        Child({ aBuilder0: this.componentBuilder, aBuilder1: this.componentBuilder.bind(this) })
+        Child({ aBuilder0: this.componentBuilder, aBuilder1: this.componentBuilder })
       }
     }
   }
@@ -112,7 +120,11 @@
 
 
 ```ts
-@Builder function GlobalBuilder1($$ : {label: string }) {
+class GlobalBuilderParam {
+  label: string = ""
+}
+
+@Builder function GlobalBuilder1($$ : GlobalBuilderParam) {
   Text($$.label)
     .width(400)
     .height(50)
@@ -121,11 +133,15 @@
 
 @Component
 struct Child {
+  @Builder componentBuilder() {
+    Text(`Child builder `)
+  }
+
   label: string = 'Child'
   // 无参数类，指向的componentBuilder也是无参数类型
-  @BuilderParam aBuilder0: () => void;
+  @BuilderParam aBuilder0: () => void = this.componentBuilder;
   // 有参数类型，指向的GlobalBuilder1也是有参数类型的方法
-  @BuilderParam aBuilder1: ($$ : { label : string}) => void;
+  @BuilderParam aBuilder1: ($$ : GlobalBuilderParam) => void = this.componentBuilder;
 
   build() {
     Column() {
@@ -167,10 +183,17 @@ struct Parent {
 
 ```ts
 // xxx.ets
+class CustomContainerParam {
+  header: string = '';
+}
 @Component
 struct CustomContainer {
-  @Prop header: string;
-  @BuilderParam closer: () => void
+  @Builder componentCloser() {
+    Text(`Custom closer `)
+  }
+
+  @Prop header: string = '';
+  @BuilderParam closer: () => void = this.componentCloser;
 
   build() {
     Column() {
@@ -194,12 +217,15 @@ struct CustomContainer {
 @Component
 struct CustomContainerUser {
   @State text: string = 'header';
+  param: CustomContainerParam = {
+    header: this.text
+  };
 
   build() {
     Column() {
       // 创建CustomContainer，在创建CustomContainer时，通过其后紧跟一个大括号“{}”形成尾随闭包
       // 作为传递给子组件CustomContainer @BuilderParam closer: () => void的参数
-      CustomContainer({ header: this.text }) {
+      CustomContainer(this.param) {
         Column() {
           specificParam('testA', 'testB')
         }.backgroundColor(Color.Yellow)

@@ -12,9 +12,9 @@ ForEach基于数组类型数据执行循环渲染。
 
 ```ts
 ForEach(
-  arr: any[], 
-  itemGenerator: (item: any, index?: number) => void,
-  keyGenerator?: (item: any, index?: number) => string 
+  arr: Array,
+  itemGenerator: (item: Array, index?: number) => void,
+  keyGenerator?: (item: Array, index?: number): string => string
 )
 ```
 
@@ -36,14 +36,21 @@ ForEach(
 
 - itemGenerator函数的调用顺序不一定和数组中的数据项相同，在开发过程中不要假设itemGenerator和keyGenerator函数是否执行及其执行顺序。例如，以下示例可能无法正确运行：
 
-  ```ts
-  ForEach(anArray.map((item1, index1) => { return { i: index1 + 1, data: item1 }; }), 
-    item => Text(`${item.i}. item.data.label`),
-    item => item.data.id.toString())
-  ```
+    ```ts
+    let obj: Object
+    ForEach(anArray.map((item1: Object, index1: number): Object => {
+        obj.i = index1 + 1
+        obj.data = item1
+        return obj;
+      }),
+    (item: string) => Text(`${item.i}. item.data.label`),
+    (item: string): string => {
+        return item.data.id.toString()
+    })
+    ```
 
 
-## 开发者的建议
+## 开发建议
 
 - 建议开发者不要假设项构造函数的执行顺序。执行顺序可能不能是数组中项的排列顺序。
 
@@ -90,7 +97,7 @@ struct MyComponent {
 ```ts
 @Component
 struct CounterView {
-  label: string;
+  @State label: string = "";
   @State count: number = 0;
 
   build() {
@@ -147,10 +154,10 @@ struct MainView {
         })
         .width(300).height(40)
       ForEach(this.arr,
-        (item) => {
+        (item: string) => {
           CounterView({ label: item.toString() })
         },
-        (item) => item.toString()
+        (item: string) => item.toString()
       )
     }
   }
@@ -175,9 +182,11 @@ MainView拥有一个\@State装饰的数字数组。添加、删除和替换数�
 如前所述，id生成函数是可选的。以下是不带项索引函数的ForEach：
 
   ```ts
-  ForEach(this.arr,
-    (item) => {
-      CounterView({ label: item.toString() })
+let list: Object
+ForEach(this.arr,
+    (item: Object): string => {
+      list.label = item.toString();
+      CounterView(list)
     }
   )
   ```
@@ -228,10 +237,10 @@ struct MainView {
   build() {
     Column() {
       ForEach(this.counters.slice(this.firstIndex, this.firstIndex + 3),
-        (item) => {
+        (item: MyCounter) => {
           CounterView({ label: `Counter item #${item.id}`, counter: item })
         },
-        (item) => item.id.toString()
+        (item: MyCounter) => item.id.toString()
       )
       Button(`Counters: shift up`)
         .width(200).height(50)
@@ -266,7 +275,7 @@ class Month {
   month: number;
   days: number[];
 
-  constructor(year: number, month: number, days: number[]) {
+  constructor(year: number, month: number, ...days: number[]) {
     this.year = year;
     this.month = month;
     this.days = days;
@@ -275,13 +284,16 @@ class Month {
 @Component
 struct CalendarExample {
   // 模拟6个月
+   arr28: Array<number> = Array(31).fill(0).map((_: number, i: number): number => i + 1);
+   arr30: Array<number> = Array(31).fill(0).map((_: number, i: number): number => i + 1);
+   arr31: Array<number> = Array(31).fill(0).map((_: number, i: number): number => i + 1);
   @State calendar : Month[] = [
-    new Month(2020, 1, [...Array(31).keys()]),
-    new Month(2020, 2, [...Array(28).keys()]),
-    new Month(2020, 3, [...Array(31).keys()]),
-    new Month(2020, 4, [...Array(30).keys()]),
-    new Month(2020, 5, [...Array(31).keys()]),
-    new Month(2020, 6, [...Array(30).keys()])
+    new Month(2020, 1, ...(this.arr31)),
+    new Month(2020, 2, ...(this.arr28)),
+    new Month(2020, 3, ...(this.arr31)),
+    new Month(2020, 4, ...(this.arr30)),
+    new Month(2020, 5, ...(this.arr31)),
+    new Month(2020, 6, ...(this.arr30))
   ]
   build() {
     Column() {
@@ -289,7 +301,7 @@ struct CalendarExample {
         Text('next month')
       }.onClick(() => {
         this.calendar.shift()
-        this.calendar.push(new Month(year: 2020, month: 7, days: [...Array(31).keys()]))
+        this.calendar.push(new Month(2020, 7, ...(this.arr31)))
       })
       ForEach(this.calendar,
         (item: Month) => {
@@ -330,11 +342,11 @@ struct ForEachWithIndex {
   build() {
     Column() {
       ForEach(this.arr,
-        (it, indx) => {
-          Text(`Item: ${indx} - ${it}`)
+        (it: number, index) => {
+          Text(`Item: ${index} - ${it}`)
         },
-        (it, indx) => {
-          return `${indx} - ${it}`
+        (it: number, index) => {
+          return `${index} - ${it}`
         }
       )
     }

@@ -12,9 +12,9 @@
 
 ```ts
 ForEach(
-  arr: any[], 
-  itemGenerator: (item: any, index?: number) => void,
-  keyGenerator?: (item: any, index?: number) => string 
+  arr: Array,
+  itemGenerator: (item: Array, index?: number) => void,
+  keyGenerator?: (item: Array, index?: number): string => string
 )
 ```
 
@@ -30,20 +30,27 @@ ForEach(
 
 - **ForEach** must be used in container components.
 
-- The type of the child component must be the one allowed inside the parent container component of **ForEach**.
+- The type of the child component must be the one allowed inside the parent container component of **ForEach**. 
 
 - The **itemGenerator** function can contain an **if/else** statement, and an **if/else** statement can contain **ForEach**.
 
 - The call sequence of **itemGenerator** functions may be different from that of the data items in the array. During the development, do not assume whether or when the **itemGenerator** and **keyGenerator** functions are executed. For example, the following example may not run properly:
 
-  ```ts
-  ForEach(anArray.map((item1, index1) => { return { i: index1 + 1, data: item1 }; }), 
-    item => Text(`${item.i}. item.data.label`),
-    item => item.data.id.toString())
-  ```
+    ```ts
+    let obj: Object
+    ForEach(anArray.map((item1: Object, index1: number): Object => {
+        obj.i = index1 + 1
+        obj.data = item1
+        return obj;
+      }),
+    (item: string) => Text(`${item.i}. item.data.label`),
+    (item: string): string => {
+        return item.data.id.toString()
+    })
+    ```
 
 
-## Recommendations
+## Development Guidelines
 
 - Make no assumption on the order of item build functions. The execution order may not be the order of items inside the array.
 
@@ -90,7 +97,7 @@ struct MyComponent {
 ```ts
 @Component
 struct CounterView {
-  label: string;
+  @State label: string = "";
   @State count: number = 0;
 
   build() {
@@ -147,10 +154,10 @@ struct MainView {
         })
         .width(300).height(40)
       ForEach(this.arr,
-        (item) => {
+        (item: string) => {
           CounterView({ label: item.toString() })
         },
-        (item) => item.toString()
+        (item: string) => item.toString()
       )
     }
   }
@@ -175,9 +182,11 @@ If the array item value changes, the ID must be changed.
 As mentioned earlier, the ID generation function is optional. The following example shows **ForEach** without the item index function:
 
   ```ts
-  ForEach(this.arr,
-    (item) => {
-      CounterView({ label: item.toString() })
+let list: Object
+ForEach(this.arr,
+    (item: Object): string => {
+      list.label = item.toString();
+      CounterView(list)
     }
   )
   ```
@@ -228,10 +237,10 @@ struct MainView {
   build() {
     Column() {
       ForEach(this.counters.slice(this.firstIndex, this.firstIndex + 3),
-        (item) => {
+        (item: MyCounter) => {
           CounterView({ label: `Counter item #${item.id}`, counter: item })
         },
-        (item) => item.id.toString()
+        (item: MyCounter) => item.id.toString()
       )
       Button(`Counters: shift up`)
         .width(200).height(50)
@@ -266,7 +275,7 @@ class Month {
   month: number;
   days: number[];
 
-  constructor(year: number, month: number, days: number[]) {
+  constructor(year: number, month: number, ...days: number[]) {
     this.year = year;
     this.month = month;
     this.days = days;
@@ -275,13 +284,16 @@ class Month {
 @Component
 struct CalendarExample {
   // Simulate with six months.
+   arr28: Array<number> = Array(31).fill(0).map((_: number, i: number): number => i + 1);
+   arr30: Array<number> = Array(31).fill(0).map((_: number, i: number): number => i + 1);
+   arr31: Array<number> = Array(31).fill(0).map((_: number, i: number): number => i + 1);
   @State calendar : Month[] = [
-    new Month(2020, 1, [...Array(31).keys()]),
-    new Month(2020, 2, [...Array(28).keys()]),
-    new Month(2020, 3, [...Array(31).keys()]),
-    new Month(2020, 4, [...Array(30).keys()]),
-    new Month(2020, 5, [...Array(31).keys()]),
-    new Month(2020, 6, [...Array(30).keys()])
+    new Month(2020, 1, ...(this.arr31)),
+    new Month(2020, 2, ...(this.arr28)),
+    new Month(2020, 3, ...(this.arr31)),
+    new Month(2020, 4, ...(this.arr30)),
+    new Month(2020, 5, ...(this.arr31)),
+    new Month(2020, 6, ...(this.arr30))
   ]
   build() {
     Column() {
@@ -289,7 +301,7 @@ struct CalendarExample {
         Text('next month')
       }.onClick(() => {
         this.calendar.shift()
-        this.calendar.push(new Month(year: 2020, month: 7, days: [...Array(31).keys()]))
+        this.calendar.push(new Month(2020, 7, ...(this.arr31)))
       })
       ForEach(this.calendar,
         (item: Month) => {
@@ -330,11 +342,11 @@ struct ForEachWithIndex {
   build() {
     Column() {
       ForEach(this.arr,
-        (it, indx) => {
-          Text(`Item: ${indx} - ${it}`)
+        (it: number, index) => {
+          Text(`Item: ${index} - ${it}`)
         },
-        (it, indx) => {
-          return `${indx} - ${it}`
+        (it: number, index) => {
+          return `${index} - ${it}`
         }
       )
     }

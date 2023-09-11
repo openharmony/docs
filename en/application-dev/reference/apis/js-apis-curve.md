@@ -279,9 +279,9 @@ Creates a custom curve.
 
 ```ts
 import Curves from '@ohos.curves'
-let interpolate = function(fraction) {
-    return Math.sqrt(fraction)
-  }
+let interpolate = (fraction:number):number => {
+  return Math.sqrt(fraction)
+}
 let curve = Curves.customCurve(interpolate) // Create a custom interpolation curve.
 ```
 
@@ -316,7 +316,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 ```ts
 import Curves from '@ohos.curves'
-let curve = Curves.initCurve(Curve.EaseIn) // Create an ease-in curve.
+let curveValue = Curves.initCurve(Curve.EaseIn) // Create an ease-in curve.
 let value: number = curve.interpolate(0.5) // Calculate the interpolation for half of the time.
 ```
 

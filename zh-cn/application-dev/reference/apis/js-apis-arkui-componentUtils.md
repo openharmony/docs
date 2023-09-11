@@ -12,7 +12,7 @@
 
 ## 导入模块
 
-```js
+```ts
 import componentUtils from '@ohos.arkui.componentUtils'
 ```
 ## componentUtils.getRectangleById
@@ -37,8 +37,9 @@ getRectangleById(id: string): ComponentInfo
 
 **示例：**
 
-```js
-let modePosition = componentUtils.getRectangleById("onClick");
+```ts
+import componentUtils from '@ohos.arkui.componentUtils';
+let modePosition:componentUtils.ComponentInfo = componentUtils.getRectangleById("onClick");
 ```
 
 ## ComponentInfo
@@ -140,14 +141,14 @@ let modePosition = componentUtils.getRectangleById("onClick");
 
 **示例：**
 
-  ```js
+  ```ts
 import matrix4 from '@ohos.matrix4';
 import componentUtils from '@ohos.arkui.componentUtils';
 
 @Entry
 @Component
 struct Utils{
-  private getComponentRect(key) {
+  private getComponentRect(key:string) {
     console.info("Mode Key: " + key);
     let modePosition = componentUtils.getRectangleById(key);
 

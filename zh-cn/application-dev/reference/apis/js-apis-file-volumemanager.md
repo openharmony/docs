@@ -44,9 +44,10 @@ getAllVolumes(): Promise&lt;Array&lt;Volume&gt;&gt;
 **示例：**
 
   ```js
-  volumemanager.getAllVolumes().then(function(volumes){
-      // do something
-  }).catch(function(error){
+  import { BusinessError } from '@ohos.base';
+  volumemanager.getAllVolumes().then((volumes: volumemanager.Volume) => {
+    // do something
+  }).catch((error: BusinessError) => {
     console.info("getAllVolumes failed");
   });
   ```
@@ -82,9 +83,10 @@ getAllVolumes(callback: AsyncCallback&lt;Array&lt;Volume&gt;&gt;): void
 **示例：**
 
   ```js
-  let uuid = "";
-  volumemanager.getAllVolumes(function(error, volumes){
-      // do something
+  import { BusinessError } from '@ohos.base';
+  let uuid: string = "";
+  volumemanager.getAllVolumes((error: BusinessError, volumes: volumemanager.Volume) => {
+    // do something
   });
   ```
 
@@ -129,10 +131,11 @@ mount(volumeId: string): Promise&lt;void&gt;
 **示例：**
 
   ```js
-  let volumeId = "";
-  volumemanager.mount(volumeId).then(function(){
-      // do something
-  }).catch(function(error){
+  import { BusinessError } from '@ohos.base';
+  let volumeId: string = "";
+  volumemanager.mount(volumeId).then(() => {
+    // do something
+  }).catch((error: BusinessError) => {
     console.info("mount failed");
   });
   ```
@@ -173,9 +176,10 @@ mount(volumeId: string, callback:AsyncCallback&lt;void&gt;):void
 **示例：**
 
   ```js
-  let volumeId = "";
-  volumemanager.mount(volumeId, function(error){
-      // do something
+  import { BusinessError } from '@ohos.base';
+  let volumeId: string = "";
+  volumemanager.mount(volumeId, (error: BusinessError) => {
+    // do something
   });
   ```
 
@@ -220,10 +224,11 @@ unmount(volumeId: string): Promise&lt;void&gt;
 **示例：**
 
   ```js
-  let volumeId = "";
-  volumemanager.unmount(volumeId).then(function(){
-      // do something
-  }).catch(function(error){
+  import { BusinessError } from '@ohos.base';
+  let volumeId: string = "";
+  volumemanager.unmount(volumeId).then(() => {
+    // do something
+  }).catch((error: BusinessError) => {
     console.info("mount failed");
   });
   ```
@@ -264,9 +269,10 @@ unmount(volumeId: string, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
   ```js
-  let volumeId = "";
-  volumemanager.unmount(volumeId, function(error){
-      // do something
+  import { BusinessError } from '@ohos.base';
+  let volumeId: string = "";
+  volumemanager.unmount(volumeId, (error: BusinessError) => {
+    // do something
   });
   ```
 
@@ -308,11 +314,12 @@ getVolumeByUuid(uuid: string): Promise&lt;Volume&gt;
 **示例：**
 
   ```js
-  let uuid = "";
-  volumemanager.getVolumeByUuid(uuid).then(function(volume) {
-      console.info("getVolumeByUuid successfully:" + JSON.stringify(volume));
-  }).catch(function(error){
-      console.info("getVolumeByUuid failed with error:"+ error);
+  import { BusinessError } from '@ohos.base';
+  let uuid: string = "";
+  volumemanager.getVolumeByUuid(uuid).then((volume: volumemanager.Volume) => {
+    console.info("getVolumeByUuid successfully:" + JSON.stringify(volume));
+  }).catch((error: BusinessError) => {
+    console.info("getVolumeByUuid failed with error:"+ error);
   });
   ```
 
@@ -349,9 +356,10 @@ getVolumeByUuid(uuid: string, callback: AsyncCallback&lt;Volume&gt;): void
 **示例：**
 
   ```js
-  let uuid = "";
-  volumemanager.getVolumeByUuid(uuid, (error, volume) => {
-      // do something    
+  import { BusinessError } from '@ohos.base';
+  let uuid: string = "";
+  volumemanager.getVolumeByUuid(uuid, (error: BusinessError, volume: volumemanager.Volume) => {
+    // do something
   });
   ```
 
@@ -393,11 +401,11 @@ getVolumeById(volumeId: string): Promise&lt;Volume&gt;
 **示例：**
 
   ```js
-  let volumeId = "";
-  volumemanager.getVolumeById(volumeId).then(function(volume) {
-      console.info("getVolumeById successfully:" + JSON.stringify(volume));
-  }).catch(function(error){
-      console.info("getVolumeById failed with error:"+ error);
+  let volumeId: string = "";
+  volumemanager.getVolumeById(volumeId).then((volume: volumemanager.Volume) => {
+    console.info("getVolumeById successfully:" + JSON.stringify(volume));
+  }).catch((error: BusinessError) => {
+    console.info("getVolumeById failed with error:"+ error);
   });
   ```
 
@@ -434,9 +442,10 @@ getVolumeById(volumeId: string, callback: AsyncCallback&lt;Volume&gt;): void
 **示例：**
 
   ```js
-  let volumeId = "";
-  volumemanager.getVolumeById(volumeId, (error, volume) => {
-      // do something    
+  import { BusinessError } from '@ohos.base';
+  let volumeId: string = "";
+  volumemanager.getVolumeById(volumeId, (error: BusinessError, volume: volumemanager.Volume) => {
+    // do something
   });
   ```
 
@@ -481,12 +490,13 @@ setVolumeDescription(uuid: string, description: string): Promise&lt;void&gt;
 **示例：**
 
   ```js
-  let uuid = "";
-  let description = "";
-  volumemanager.setVolumeDescription(uuid, description).then(function() {
-      console.info("setVolumeDescription successfully");
-  }).catch(function(error){
-      console.info("setVolumeDescription failed with error:"+ error);
+  import { BusinessError } from '@ohos.base';
+  let uuid: string = "";
+  let description: string = "";
+  volumemanager.setVolumeDescription(uuid, description).then(() => {
+    console.info("setVolumeDescription successfully");
+  }).catch((error: BusinessError) => {
+    console.info("setVolumeDescription failed with error:"+ error);
   });
   ```
 
@@ -526,10 +536,11 @@ setVolumeDescription(uuid: string, description: string, callback: AsyncCallback&
 **示例：**
 
   ```js
-  let uuid = "";
-  let description = "";
-  volumemanager.setVolumeDescription(uuid, description, (error) => {
-      // do something    
+  import { BusinessError } from '@ohos.base';
+  let uuid: string = "";
+  let description: string = "";
+  volumemanager.setVolumeDescription(uuid, description, (error: BusinessError) => {
+    // do something
   });
   ```
 
@@ -574,12 +585,13 @@ format(volumeId: string, fsType: string): Promise&lt;void&gt;
 **示例：**
 
   ```js
-  let volumeId = "";
-  let fsType = "";
-  volumemanager.format(volumeId, fsType).then(function() {
-      console.info("format successfully");
-  }).catch(function(error){
-      console.info("format failed with error:"+ error);
+  import { BusinessError } from '@ohos.base';
+  let volumeId: string = "";
+  let fsType: string = "";
+  volumemanager.format(volumeId, fsType).then(() => {
+    console.info("format successfully");
+  }).catch((error: BusinessError) => {
+    console.info("format failed with error:"+ error);
   });
   ```
 
@@ -619,10 +631,11 @@ format(volumeId: string, fsType: string, callback: AsyncCallback&lt;void&gt;): v
 **示例：**
 
   ```js
-  let volumeId = "";
-  let fsType = "";
-  volumemanager.format(volumeId, fsType, (error) => {
-      // do something    
+  import { BusinessError } from '@ohos.base';
+  let volumeId: string = "";
+  let fsType: string = "";
+  volumemanager.format(volumeId, fsType, (error: BusinessError) => {
+    // do something
   });
   ```
 
@@ -665,12 +678,13 @@ partition(diskId: string, type: number): Promise&lt;void&gt;
 **示例：**
 
   ```js
-  let diskId = "";
-  let type = 0;
-  volumemanager.partition(diskId, type).then(function() {
-      console.info("partition successfully");
-  }).catch(function(error){
-      console.info("partition failed with error:"+ error);
+  import { BusinessError } from '@ohos.base';
+  let diskId: string = "";
+  let type: number = 0;
+  volumemanager.partition(diskId, type).then(() => {
+    console.info("partition successfully");
+  }).catch((error: BusinessError) => {
+    console.info("partition failed with error:"+ error);
   });
   ```
 
@@ -708,10 +722,11 @@ partition(diskId: string, type: number, callback: AsyncCallback&lt;void&gt;): vo
 **示例：**
 
   ```js
-  let diskId = "";
-  let type = 0;
-  volumemanager.partition(diskId, type, (error) => {
-      // do something    
+  import { BusinessError } from '@ohos.base';
+  let diskId: string = "";
+  let type: number = 0;
+  volumemanager.partition(diskId, type, (error: BusinessError) => {
+    // do something
   });
   ```
 

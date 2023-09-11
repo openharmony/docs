@@ -98,7 +98,7 @@ static getDisplayLanguage(language: string, locale: string, sentenceCase?: boole
     let displayLanguage: string = I18n.System.getDisplayLanguage("zh", "en-GB"); // displayLanguage = Chinese
   } catch(error) {
     let err: BusinessError = error as BusinessError;
-    console.error(`call System.getDisplayCountry failed, error code: ${err.code}, message: ${err.message}.`);
+    console.error(`call System.getDisplayLanguage failed, error code: ${err.code}, message: ${err.message}.`);
   }
   ```
 
@@ -116,14 +116,6 @@ static getSystemLanguages(): Array&lt;string&gt;
 | ------------------- | ------------ |
 | Array&lt;string&gt; | 系统支持的语言ID列表。 |
 
-**错误码：**
-
-以下错误码的详细介绍请参见[ohos.i18n错误码](../errorcodes/errorcode-i18n.md)。
-
-| 错误码ID  | 错误信息                   |
-| ------ | ---------------------- |
-| 890001 | param value not valid |
-
 **示例：**
   ```ts
   import { BusinessError } from '@ohos.base';
@@ -132,7 +124,7 @@ static getSystemLanguages(): Array&lt;string&gt;
     let systemLanguages: Array<string> = I18n.System.getSystemLanguages(); // [ "en-Latn-US", "zh-Hans" ]
   } catch(error) {
     let err: BusinessError = error as BusinessError;
-    console.error(`call System.getDisplayCountry failed, error code: ${err.code}, message: ${err.message}.`);
+    console.error(`call System.getSystemLanguages failed, error code: ${err.code}, message: ${err.message}.`);
   }
   ```
 
@@ -172,7 +164,7 @@ static getSystemCountries(language: string): Array&lt;string&gt;
     let systemCountries: Array<string> = I18n.System.getSystemCountries('zh'); // systemCountries = [ "ZW", "YT", "YE", ..., "ER", "CN", "DE" ]，共计240个国家或地区
   } catch(error) {
     let err: BusinessError = error as BusinessError;
-    console.error(`call System.getDisplayCountry failed, error code: ${err.code}, message: ${err.message}.`);
+    console.error(`call System.getSystemCountries failed, error code: ${err.code}, message: ${err.message}.`);
   }
   ```
 
@@ -213,7 +205,7 @@ static isSuggested(language: string, region?: string): boolean
     let res: boolean = I18n.System.isSuggested('zh', 'CN');  // res = true
   } catch(error) {
     let err: BusinessError = error as BusinessError;
-    console.error(`call System.getDisplayCountry failed, error code: ${err.code}, message: ${err.message}.`);
+    console.error(`call System.isSuggested failed, error code: ${err.code}, message: ${err.message}.`);
   }
   ```
 
@@ -231,14 +223,6 @@ static getSystemLanguage(): string
 | ------ | ------- |
 | string | 系统语言ID。 |
 
-**错误码：**
-
-以下错误码的详细介绍请参见[ohos.i18n错误码](../errorcodes/errorcode-i18n.md)。
-
-| 错误码ID  | 错误信息                   |
-| ------ | ---------------------- |
-| 890001 | param value not valid |
-
 **示例：**
   ```ts
   import { BusinessError } from '@ohos.base';
@@ -247,7 +231,7 @@ static getSystemLanguage(): string
     let systemLanguage: string = I18n.System.getSystemLanguage();  // systemLanguage为当前系统语言
   } catch(error) {
     let err: BusinessError = error as BusinessError;
-    console.error(`call System.getDisplayCountry failed, error code: ${err.code}, message: ${err.message}.`);
+    console.error(`call System.getSystemLanguage failed, error code: ${err.code}, message: ${err.message}.`);
   }
   ```
 
@@ -285,7 +269,7 @@ static setSystemLanguage(language: string): void
     I18n.System.setSystemLanguage('zh'); // 设置系统当前语言为 "zh"
   } catch(error) {
     let err: BusinessError = error as BusinessError;
-    console.error(`call System.getDisplayCountry failed, error code: ${err.code}, message: ${err.message}.`);
+    console.error(`call System.setSystemLanguage failed, error code: ${err.code}, message: ${err.message}.`);
   }
   ```
 
@@ -303,14 +287,6 @@ static getSystemRegion(): string
 | ------ | ------- |
 | string | 系统地区ID。 |
 
-**错误码：**
-
-以下错误码的详细介绍请参见[ohos.i18n错误码](../errorcodes/errorcode-i18n.md)。
-
-| 错误码ID  | 错误信息                   |
-| ------ | ---------------------- |
-| 890001 | param value not valid |
-
 **示例：**
   ```ts
   import { BusinessError } from '@ohos.base';
@@ -319,7 +295,7 @@ static getSystemRegion(): string
     let systemRegion: string = I18n.System.getSystemRegion(); // 获取系统当前地区设置
   } catch(error) {
     let err: BusinessError = error as BusinessError;
-    console.error(`call System.getDisplayCountry failed, error code: ${err.code}, message: ${err.message}.`);
+    console.error(`call System.getSystemRegion failed, error code: ${err.code}, message: ${err.message}.`);
   }
   ```
 
@@ -357,7 +333,7 @@ static setSystemRegion(region: string): void
     I18n.System.setSystemRegion('CN');  // 设置系统当前地区为 "CN"
   } catch(error) {
     let err: BusinessError = error as BusinessError;
-    console.error(`call System.getDisplayCountry failed, error code: ${err.code}, message: ${err.message}.`);
+    console.error(`call System.setSystemRegion failed, error code: ${err.code}, message: ${err.message}.`);
   }
   ```
 
@@ -375,14 +351,6 @@ static getSystemLocale(): string
 | ------ | ------- |
 | string | 系统区域ID。 |
 
-**错误码：**
-
-以下错误码的详细介绍请参见[ohos.i18n错误码](../errorcodes/errorcode-i18n.md)。
-
-| 错误码ID  | 错误信息                   |
-| ------ | ---------------------- |
-| 890001 | param value not valid |
-
 **示例：**
   ```ts
   import { BusinessError } from '@ohos.base';
@@ -391,7 +359,7 @@ static getSystemLocale(): string
     let systemLocale: string = I18n.System.getSystemLocale();  // 获取系统当前Locale
   } catch(error) {
     let err: BusinessError = error as BusinessError;
-    console.error(`call System.getDisplayCountry failed, error code: ${err.code}, message: ${err.message}.`);
+    console.error(`call System.getSystemLocale failed, error code: ${err.code}, message: ${err.message}.`);
   }
   ```
 
@@ -429,7 +397,7 @@ static setSystemLocale(locale: string): void
     I18n.System.setSystemLocale('zh-CN');  // 设置系统当前Locale为 "zh-CN"
   } catch(error) {
     let err: BusinessError = error as BusinessError;
-    console.error(`call System.getDisplayCountry failed, error code: ${err.code}, message: ${err.message}.`);
+    console.error(`call System.setSystemLocale failed, error code: ${err.code}, message: ${err.message}.`);
   }
   ```
 
@@ -447,14 +415,6 @@ static is24HourClock(): boolean
 | ------- | ---------------------------------------- |
 | boolean | 返回true，表示系统24小时开关开启；返回false，表示系统24小时开关关闭。 |
 
-**错误码：**
-
-以下错误码的详细介绍请参见[ohos.i18n错误码](../errorcodes/errorcode-i18n.md)。
-
-| 错误码ID  | 错误信息                   |
-| ------ | ---------------------- |
-| 890001 | param value not valid |
-
 **示例：**
   ```ts
   import { BusinessError } from '@ohos.base';
@@ -463,7 +423,7 @@ static is24HourClock(): boolean
     let is24HourClock: boolean = I18n.System.is24HourClock();  // 系统24小时开关是否开启
   } catch(error) {
     let err: BusinessError = error as BusinessError;
-    console.error(`call System.getDisplayCountry failed, error code: ${err.code}, message: ${err.message}.`);
+    console.error(`call System.is24HourClock failed, error code: ${err.code}, message: ${err.message}.`);
   }
   ```
 
@@ -502,7 +462,7 @@ static set24HourClock(option: boolean): void
     I18n.System.set24HourClock(true);
   } catch(error) {
     let err: BusinessError = error as BusinessError;
-    console.error(`call System.getDisplayCountry failed, error code: ${err.code}, message: ${err.message}.`);
+    console.error(`call System.set24HourClock failed, error code: ${err.code}, message: ${err.message}.`);
   }
   ```
 
@@ -544,7 +504,7 @@ static addPreferredLanguage(language: string, index?: number): void
     I18n.System.addPreferredLanguage(language, index); // 将zh-CN添加到系统偏好语言列表的第1位
   } catch(error) {
     let err: BusinessError = error as BusinessError;
-    console.error(`call System.getDisplayCountry failed, error code: ${err.code}, message: ${err.message}.`);
+    console.error(`call System.addPreferredLanguage failed, error code: ${err.code}, message: ${err.message}.`);
   }
   ```
 
@@ -584,7 +544,7 @@ static removePreferredLanguage(index: number): void
     I18n.System.removePreferredLanguage(index);
   } catch(error) {
     let err: BusinessError = error as BusinessError;
-    console.error(`call System.getDisplayCountry failed, error code: ${err.code}, message: ${err.message}.`);
+    console.error(`call System.removePreferredLanguage failed, error code: ${err.code}, message: ${err.message}.`);
   }
   ```
 
@@ -602,14 +562,6 @@ static getPreferredLanguageList(): Array&lt;string&gt;
 | ------------------- | --------- |
 | Array&lt;string&gt; | 系统偏好语言列表。 |
 
-**错误码：**
-
-以下错误码的详细介绍请参见[ohos.i18n错误码](../errorcodes/errorcode-i18n.md)。
-
-| 错误码ID  | 错误信息                   |
-| ------ | ---------------------- |
-| 890001 | param value not valid |
-
 **示例：**
   ```ts
   import { BusinessError } from '@ohos.base';
@@ -618,7 +570,7 @@ static getPreferredLanguageList(): Array&lt;string&gt;
     let preferredLanguageList: Array<string> = I18n.System.getPreferredLanguageList(); // 获取系统当前偏好语言列表
   } catch(error) {
     let err: BusinessError = error as BusinessError;
-    console.error(`call System.getDisplayCountry failed, error code: ${err.code}, message: ${err.message}.`);
+    console.error(`call System.getPreferredLanguageList failed, error code: ${err.code}, message: ${err.message}.`);
   }
   ```
 
@@ -636,14 +588,6 @@ static getFirstPreferredLanguage(): string
 | ------ | -------------- |
 | string | 偏好语言列表中的第一个语言。 |
 
-**错误码：**
-
-以下错误码的详细介绍请参见[ohos.i18n错误码](../errorcodes/errorcode-i18n.md)。
-
-| 错误码ID  | 错误信息                   |
-| ------ | ---------------------- |
-| 890001 | param value not valid |
-
 **示例：**
   ```ts
   import { BusinessError } from '@ohos.base';
@@ -652,7 +596,7 @@ static getFirstPreferredLanguage(): string
     let firstPreferredLanguage: string = I18n.System.getFirstPreferredLanguage();  // 获取系统当前偏好语言列表中的第一个偏好语言
   } catch(error) {
     let err: BusinessError = error as BusinessError;
-    console.error(`call System.getDisplayCountry failed, error code: ${err.code}, message: ${err.message}.`);
+    console.error(`call System.getFirstPreferredLanguage failed, error code: ${err.code}, message: ${err.message}.`);
   }
   ```
 
@@ -670,14 +614,6 @@ static getAppPreferredLanguage(): string
 | ------ | -------- |
 | string | 应用的偏好语言。 |
 
-**错误码：**
-
-以下错误码的详细介绍请参见[ohos.i18n错误码](../errorcodes/errorcode-i18n.md)。
-
-| 错误码ID  | 错误信息                   |
-| ------ | ---------------------- |
-| 890001 | param value not valid |
-
 **示例：**
   ```ts
   import { BusinessError } from '@ohos.base';
@@ -686,7 +622,7 @@ static getAppPreferredLanguage(): string
     let appPreferredLanguage: string = I18n.System.getAppPreferredLanguage(); // 获取应用偏好语言
   } catch(error) {
     let err: BusinessError = error as BusinessError;
-    console.error(`call System.getDisplayCountry failed, error code: ${err.code}, message: ${err.message}.`);
+    console.error(`call System.getAppPreferredLanguage failed, error code: ${err.code}, message: ${err.message}.`);
   }
   ```
 
@@ -724,7 +660,7 @@ static setUsingLocalDigit(flag: boolean): void
     I18n.System.setUsingLocalDigit(true); // 打开本地化数字开关
   } catch(error) {
     let err: BusinessError = error as BusinessError;
-    console.error(`call System.getDisplayCountry failed, error code: ${err.code}, message: ${err.message}.`);
+    console.error(`call System.setUsingLocalDigit failed, error code: ${err.code}, message: ${err.message}.`);
   }
   ```
 
@@ -742,14 +678,6 @@ static getUsingLocalDigit(): boolean
 | ------- | ---------------------------------------- |
 | boolean | true表示系统当前已打开本地数字开关，false表示系统当前未打开本地数字开关。 |
 
-**错误码：**
-
-以下错误码的详细介绍请参见[ohos.i18n错误码](../errorcodes/errorcode-i18n.md)。
-
-| 错误码ID  | 错误信息                   |
-| ------ | ---------------------- |
-| 890001 | param value not valid |
-
 **示例：**
   ```ts
   import { BusinessError } from '@ohos.base';
@@ -758,7 +686,7 @@ static getUsingLocalDigit(): boolean
     let status: boolean = I18n.System.getUsingLocalDigit();  // 判断本地化数字开关是否打开
   } catch(error) {
     let err: BusinessError = error as BusinessError;
-    console.error(`call System.getDisplayCountry failed, error code: ${err.code}, message: ${err.message}.`);
+    console.error(`call System.getUsingLocalDigit failed, error code: ${err.code}, message: ${err.message}.`);
   }
   ```
 
@@ -1819,6 +1747,14 @@ static getTimezonesByLocation(longitude: number, latitude: number): Array&lt;Tim
 | -------- | ----------- |
 | Array&lt;[TimeZone](#timezone)&gt; | 时区对象的数组 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.i18n错误码](../errorcodes/errorcode-i18n.md)。
+
+| 错误码ID  | 错误信息                   |
+| ------ | ---------------------- |
+| 890001 | param value not valid |
+
 **示例：**
   ```ts
   let timezoneArray: Array<I18n.TimeZone> = I18n.TimeZone.getTimezonesByLocation(-118.1, 34.0);
@@ -2371,7 +2307,7 @@ getLanguageInfoArray(languages: Array&lt;string&gt;, options?: SortOptions): Arr
       let sortedLanguages: Array<I18n.LocaleItem> = systemLocaleManager.getLanguageInfoArray(languages, sortOptions);
   } catch(error) {
       let err: BusinessError = error as BusinessError;
-      console.error(`call System.getDisplayCountry failed, error code: ${err.code}, message: ${err.message}.`);
+      console.error(`call systemLocaleManager.getLanguageInfoArray failed, error code: ${err.code}, message: ${err.message}.`);
   }
   ```
 
@@ -2420,7 +2356,7 @@ getRegionInfoArray(regions: Array&lt;string&gt;, options?: SortOptions): Array&l
       let sortedRegions: Array<I18n.LocaleItem> = systemLocaleManager.getRegionInfoArray(regions, sortOptions);
   } catch(error) {
       let err: BusinessError = error as BusinessError;
-      console.error(`call System.getDisplayCountry failed, error code: ${err.code}, message: ${err.message}.`);
+      console.error(`call systemLocaleManager.getRegionInfoArray failed, error code: ${err.code}, message: ${err.message}.`);
   }
   ```
 
@@ -2452,7 +2388,7 @@ static getTimeZoneCityItemArray(): Array&lt;TimeZoneCityItem&gt;
     }
   } catch(error) {
     let err: BusinessError = error as BusinessError;
-    console.error(`call System.getDisplayCountry failed, error code: ${err.code}, message: ${err.message}.`);
+    console.error(`call SystemLocaleManager.getTimeZoneCityItemArray failed, error code: ${err.code}, message: ${err.message}.`);
   }
   ```
 

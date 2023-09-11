@@ -35,6 +35,12 @@ Button('click for Menu')
 
 
 ```ts
+class Tmp{
+  iconStr2: ResourceStr = $r("app.media.view_list_filled")
+  set(val:Resource){
+    this.iconStr2 = val
+  }
+}
 @State select: boolean = true
 private iconStr: ResourceStr = $r("app.media.view_list_filled")
 private iconStr2: ResourceStr = $r("app.media.view_list_filled")
@@ -63,8 +69,9 @@ MyMenu(){
         .selectIcon(true)
         .selected(this.select)
         .onChange((selected) => {
-	   console.info("menuItem select" + selected);
-	   this.iconStr2 = $r("app.media.icon");
+           console.info("menuItem select" + selected);
+            let Str:Tmp = new Tmp()
+            Str.set($r("app.media.icon"))
         })
       MenuItem({
         startIcon: $r("app.media.view_list_filled"),
@@ -80,7 +87,6 @@ MyMenu(){
     })
   }
 }
-  
 ```
 
 

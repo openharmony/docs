@@ -47,7 +47,7 @@ import tag from '@ohos.nfc.tag';
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', tagInfo is an Object given by nfc service when tag is dispatched.
 // the folowing getXXX, can be one of getIsoDep, getNdef, getMifareClassic, ...
 
-let tagInfo = tag.getIsoDep(tagInfo).getTagInfo(); 
+let tagInfo : TagInfo = tag.getIsoDep(tagInfo).getTagInfo();
 console.log("tag tagInfo: " + tagInfo);
 ```
 
@@ -78,7 +78,7 @@ import tag from '@ohos.nfc.tag';
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', tagInfo is an Object given by nfc service when tag is dispatched.
 // the folowing getXXX, can be one of getIsoDep, getNdef, getMifareClassic, ...
 
-let connectStatus = tag.getIsoDep(tagInfo).connectTag(); 
+let connectStatus : boolean = tag.getIsoDep(tagInfo).connectTag();
 console.log("connectStatus: " + connectStatus);
 ```
 
@@ -226,7 +226,7 @@ import tag from '@ohos.nfc.tag';
 // the folowing getXXX, can be one of getIsoDep, getNdef, getMifareClassic, ...
 
 try {
-    var isConnected = tag.getIsoDep(tagInfo).isConnected(); 
+    let isConnected = tag.getIsoDep(tagInfo).isConnected(); 
     console.log("tag isConnected = " + isConnected);
 } catch (busiError) {
     console.log("tag isConnected busiError: " + busiError);
@@ -295,7 +295,7 @@ import tag from '@ohos.nfc.tag';
 // the folowing getXXX, can be one of getIsoDep, getNdef, getMifareClassic, ...
 
 try {
-    var maxTransmitSize = tag.getIsoDep(tagInfo).getMaxTransmitSize(); 
+    let maxTransmitSize = tag.getIsoDep(tagInfo).getMaxTransmitSize(); 
     console.log("tag maxTransmitSize = " + maxTransmitSize);
 } catch (busiError) {
     console.log("tag getMaxTransmitSize busiError: " + busiError);
@@ -366,7 +366,7 @@ import tag from '@ohos.nfc.tag';
 // the folowing getXXX, can be one of getIsoDep, getNdef, getMifareClassic, ...
 
 try {
-    var timeout = tag.getIsoDep(tagInfo).getTimeout(); 
+    let timeout = tag.getIsoDep(tagInfo).getTimeout(); 
     console.log("tag timeout = " + timeout);
 } catch (busiError) {
     console.log("tag getTimeout busiError: " + busiError);
@@ -481,23 +481,24 @@ sendData(data: number[]): Promise<number[]>
 
 ```js
 import tag from '@ohos.nfc.tag';
+import { BusinessError } from '@ohos.base';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', tagInfo is an Object given by nfc service when tag is dispatched.
 // the folowing getXXX, can be one of getIsoDep, getNdef, getMifareClassic, ...
 
 // connect the tag at first if not connected.
 if (!tag.getIsoDep(tagInfo).isTagConnected()) {
-    if (!tag.getIsoDep(tagInfo).connectTag()) {
-        console.log("tagSession connectTag failed.");
-        return;
-    }
+  if (!tag.getIsoDep(tagInfo).connectTag()) {
+    console.log("tagSession connectTag failed.");
+    return;
+  }
 }
 
 let cmdData = [0x01, 0x02, 0x03, 0x04]; // change the raw data to be correct.
 tag.getIsoDep(tagInfo).sendData(cmdData).then((response) => {
-    console.log("tagSession sendData Promise response: " + response);
-}).catch((err)=> {
-    console.log("tagSession sendData Promise err: " + err);
+  console.log("tagSession sendData Promise response: " + response);
+}).catch((err : BusinessError)=> {
+  console.log("tagSession sendData Promise err: " + err);
 });
 ```
 
@@ -581,30 +582,31 @@ transmit(data: number[]): Promise<number[]>
 
 ```js
 import tag from '@ohos.nfc.tag';
+import { BusinessError } from '@ohos.base';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', tagInfo is an Object given by nfc service when tag is dispatched.
 // the folowing getXXX, can be one of getIsoDep, getNdef, getMifareClassic, ...
 
 // connect the tag at first if not connected.
 try {
-    if (!tag.getIsoDep(tagInfo).isConnected()) {
-        tag.getIsoDep(tagInfo).connect();
-    }
+  if (!tag.getIsoDep(tagInfo).isConnected()) {
+    tag.getIsoDep(tagInfo).connect();
+  }
 } catch (busiError) {
-    console.log("tag connect busiError: " + busiError);
-    return;
+  console.log("tag connect busiError: " + busiError);
+  return;
 }
 
 let cmdData = [0x01, 0x02, 0x03, 0x04]; // change the raw data to be correct.
 try {
-    tag.getIsoDep(tagInfo).transmit(cmdData).then((response) => {
-        console.log("tagSession transmit Promise response: " + response);
-    }).catch((err)=> {
-        console.log("tagSession transmit Promise err: " + err);
-    });
+  tag.getIsoDep(tagInfo).transmit(cmdData).then((response) => {
+    console.log("tagSession transmit Promise response: " + response);
+  }).catch((err : BusinessError)=> {
+    console.log("tagSession transmit Promise err: " + err);
+  });
 } catch (busiError) {
-    console.log("tag transmit busiError: " + busiError);
-    return;
+  console.log("tag transmit busiError: " + busiError);
+  return;
 }
 ```
 

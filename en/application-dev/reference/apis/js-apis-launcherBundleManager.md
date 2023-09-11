@@ -51,9 +51,11 @@ For details about the error codes, see [Bundle Error Codes](../errorcodes/errorc
 
 ```ts
 import launcherBundleManager from '@ohos.bundle.launcherBundleManager';
+import { BusinessError } from '@ohos.base';
 
 try {
-    launcherBundleManager.getLauncherAbilityInfo('com.example.demo', 100, (errData, data) => {
+    launcherBundleManager.getLauncherAbilityInfo('com.example.demo', 100,
+        (errData: BusinessError, data: launcherBundleManager.LauncherAbilityInfo[]) => {
         if (errData !== null) {
             console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
         } else {
@@ -61,7 +63,9 @@ try {
         }
     })
 } catch (errData) {
-    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+    let code = (errData as BusinessError).code;
+    let message = (errData as BusinessError).message;
+    console.error(`errData is errCode:${code}  message:${message}`);
 }
 ```
 
@@ -101,17 +105,21 @@ For details about the error codes, see [Bundle Error Codes](../errorcodes/errorc
 
 **Example**
 
-```typescript
+```ts
 import launcherBundleManager from '@ohos.bundle.launcherBundleManager';
+import { BusinessError } from '@ohos.base';
 
 try {
-    launcherBundleManager.getLauncherAbilityInfo("com.example.demo", 100).then(data => {
+    launcherBundleManager.getLauncherAbilityInfo("com.example.demo", 100)
+        .then((data: launcherBundleManager.LauncherAbilityInfo[]) => {
         console.log("data is " + JSON.stringify(data));
-    }).catch (errData => {
+    }).catch ((errData: BusinessError) => {
         console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
     })
 } catch (errData) {
-    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+    let code = (errData as BusinessError).code;
+    let message = (errData as BusinessError).message;
+    console.error(`errData is errCode:${code}  message:${message}`);
 }
 ```
 
@@ -151,9 +159,11 @@ Example
 
 ```ts
 import launcherBundleManager from '@ohos.bundle.launcherBundleManager';
+import { BusinessError } from '@ohos.base';
 
 try {
-    launcherBundleManager.getAllLauncherAbilityInfo(100, (errData, data) => {
+    launcherBundleManager.getAllLauncherAbilityInfo(100,
+        (errData: BusinessError, data: launcherBundleManager.LauncherAbilityInfo[]) => {
         if (errData !== null) {
             console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
         } else {
@@ -161,7 +171,9 @@ try {
         }
     });
 } catch (errData) {
-    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+    let code = (errData as BusinessError).code;
+    let message = (errData as BusinessError).message;
+    console.error(`errData is errCode:${code}  message:${message}`);
 }
 ```
 ## launcherBundlemanager.getAllLauncherAbilityInfo<sup>9+</sup>
@@ -200,15 +212,19 @@ For details about the error codes, see [Bundle Error Codes](../errorcodes/errorc
 
 ```ts
 import launcherBundleManager from '@ohos.bundle.launcherBundleManager';
+import { BusinessError } from '@ohos.base';
 
 try {
-    launcherBundleManager.getAllLauncherAbilityInfo(100).then(data => {
+    launcherBundleManager.getAllLauncherAbilityInfo(100)
+        .then((data: launcherBundleManager.LauncherAbilityInfo[]) => {
         console.log("data is " + JSON.stringify(data));
-    }).catch (errData => {
+    }).catch ((errData: BusinessError) => {
         console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
     });
 } catch (errData) {
-    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+    let code = (errData as BusinessError).code;
+    let message = (errData as BusinessError).message;
+    console.error(`errData is errCode:${code}  message:${message}`);
 }
 ```
 
@@ -246,9 +262,11 @@ For details about the error codes, see [Bundle Error Codes](../errorcodes/errorc
 
 ```ts
 import launcherBundleManager from '@ohos.bundle.launcherBundleManager';
+import { BusinessError } from '@ohos.base';
 
 try {
-    launcherBundleManager.getShortcutInfo("com.example.demo", (errData, data) => {
+    launcherBundleManager.getShortcutInfo("com.example.demo",
+        (errData: BusinessError, data: launcherBundleManager.ShortcutInfo[]) => {
         if (errData !== null) {
             console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
         } else {
@@ -256,7 +274,9 @@ try {
         }
     });
 } catch (errData) {
-    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+    let code = (errData as BusinessError).code;
+    let message = (errData as BusinessError).message;
+    console.error(`errData is errCode:${code}  message:${message}`);
 }
 ```
 
@@ -294,14 +314,18 @@ For details about the error codes, see [Bundle Error Codes](../errorcodes/errorc
 
 ```ts
 import launcherBundleManager from '@ohos.bundle.launcherBundleManager';
+import { BusinessError } from '@ohos.base';
 
 try {
-    launcherBundleManager.getShortcutInfo("com.example.demo").then(data => {
+    launcherBundleManager.getShortcutInfo("com.example.demo")
+        .then((data: launcherBundleManager.ShortcutInfo[]) => {
         console.log("data is " + JSON.stringify(data));
-    }).catch (errData => {
+    }).catch ((errData: BusinessError) => {
         console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
     });
 } catch (errData) {
-    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+    let code = (errData as BusinessError).code;
+    let message = (errData as BusinessError).message;
+    console.error(`errData is errCode:${code}  message:${message}`);
 }
 ```

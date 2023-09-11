@@ -37,7 +37,7 @@ Then, equip yourself for developing the key features, with the following guideli
 - [Telephony Service](telephony/telephony-overview.md)
 - [Data Management](database/data-mgmt-overview.md)
 - [File Management](file-management/file-management-overview.md)
-- [Task Management](task-management/background-task-overview.md)
+- [Background Task Management](task-management/background-task-overview.md)
 - [Device Management](device/usb-overview.md)
 - [Device Usage Statistics](device-usage-statistics/device-usage-statistics-overview.md)
 - [DFX](dfx/hiappevent-guidelines.md)

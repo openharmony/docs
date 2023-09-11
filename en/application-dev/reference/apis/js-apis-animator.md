@@ -14,8 +14,9 @@ The **Animator** module provides APIs for applying animation effects, including 
 
 ## Modules to Import
 
-```js
-import animator from '@ohos.animator';
+```ts
+import animator, { AnimatorOptions,AnimatorResult } from '@ohos.animator';
+import { BusinessError } from '@ohos.base';
 ```
 ## create<sup>9+</sup>
 
@@ -39,10 +40,9 @@ Creates an **Animator** object.
 
 **Example**
 
-  ```js
-import animator, { AnimatorOptions } from '@ohos.animator';
-
-let options: AnimatorOptions = { // The explicit type AnimatorOptions does not need to be emphasized in the xxx.js file.
+  ```ts
+import animator, { AnimatorOptions,AnimatorResult } from '@ohos.animator';
+let options: AnimatorOptions = {
   duration: 1500,
   easing: "friction",
   delay: 0,
@@ -84,8 +84,10 @@ For details about the error codes, see [Animator Error Codes](../errorcodes/erro
 
 **Example**
 
-```js
-let options: AnimatorOptions = { // The explicit type AnimatorOptions does not need to be emphasized in the xxx.js file.
+```ts
+import animator, { AnimatorOptions,AnimatorResult } from '@ohos.animator';
+import { BusinessError } from '@ohos.base';
+let options: AnimatorOptions = {
   duration: 1500,
   easing: "friction",
   delay: 0,
@@ -98,7 +100,9 @@ let options: AnimatorOptions = { // The explicit type AnimatorOptions does not n
 try {
   animator.reset(options);
 } catch(error) {
-  console.error(`Animator reset failed, error code: ${error.code}, message: ${error.message}.`);
+  let message = (error as BusinessError).message
+  let code = (error as BusinessError).code
+  console.error(`Animator reset failed, error code: ${code}, message: ${message}.`);
 }
 ```
 
@@ -112,7 +116,7 @@ Plays this animation. The animation retains the previous playback state. For exa
 
 **Example**
 
-```js
+```ts
 animator.play();
 ```
 
@@ -126,7 +130,7 @@ Ends this animation.
 
 **Example**
 
-```js
+```ts
 animator.finish();
 ```
 
@@ -140,7 +144,7 @@ Pauses this animation.
 
 **Example**
 
-```js
+```ts
 animator.pause();
 ```
 
@@ -154,7 +158,7 @@ Cancels this animation.
 
 **Example**
 
-```js
+```ts
 animator.cancel();
 ```
 
@@ -168,7 +172,7 @@ Plays this animation in reverse order.
 
 **Example**
 
-```js
+```ts
 animator.reverse();
 ```
 
@@ -188,9 +192,10 @@ Called when a frame is received.
 
 **Example**
 
-```js
-let animatorResult = animator.create(options)
-animatorResult.onframe = function(value) {
+```ts
+import animator, { AnimatorResult } from '@ohos.animator';
+let animatorResult:AnimatorResult|undefined = animator.create(options)
+animatorResult.onframe = (value)=> {
   console.info("onframe callback")
 }
 ```
@@ -205,9 +210,10 @@ Called when this animation is finished.
 
 **Example**
 
-```js
-let animatorResult = animator.create(options)
-animatorResult.onfinish = function() {
+```ts
+import animator, { AnimatorResult } from '@ohos.animator';
+let animatorResult:AnimatorResult|undefined = animator.create(options)
+animatorResult.onfinish = ()=> {
   console.info("onfinish callback")
 }
 ```
@@ -222,9 +228,10 @@ Called when this animation is canceled.
 
 **Example**
 
-```js
-let animatorResult = animator.create(options)
-animatorResult.oncancel = function() {
+```ts
+import animator, { AnimatorResult } from '@ohos.animator';
+let animatorResult:AnimatorResult|undefined = animator.create(options)
+animatorResult.oncancel = ()=> {
   console.info("oncancel callback")
 }
 ```
@@ -239,9 +246,10 @@ Called when this animation repeats.
 
 **Example**
 
-```js
-let animatorResult = animator.create(options)
-animatorResult.onrepeat = function() {
+```ts
+import animator, { AnimatorResult } from '@ohos.animator';
+let animatorResult:AnimatorResult|undefined = animator.create(options)
+animatorResult.onrepeat = ()=> {
   console.info("onrepeat callback")
 }
 ```
@@ -277,15 +285,28 @@ Defines animator options.
 </div>
 ```
 
-```js
-export default {
-  data: {
-    divWidth: 200,
-    divHeight: 200,
-    animator: null
-  },
+```ts
+import animator, { AnimatorOptions,AnimatorResult } from '@ohos.animator';
+import { BusinessError } from '@ohos.base';
+let DataTmp:Record<string,animator> = {
+  'divWidth': 200,
+  'divHeight': 200,
+  'animator': animator
+}
+class Tmp{
+  data:animator = DataTmp
+  onInit:Function = ()=>{}
+  Show:Function = ()=>{}
+}
+class DateT{
+  divWidth:number = 0
+  divHeight:number = 0
+  animator:AnimatorResult | null = null
+}
+(Fn:(v:Tmp) => void) => {Fn({
+  data: DataTmp,
   onInit() {
-    let options = {
+    let options:AnimatorOptions = {
       duration: 1500,
       easing: "friction",
       delay: 0,
@@ -295,10 +316,15 @@ export default {
       begin: 200.0,
       end: 400.0
     };
-    this.animator = animator.create(options);
+    let DataTmp:DateT = {
+      divWidth: 200,
+      divHeight: 200,
+      animator: null
+    }
+    DataTmp.animator = animator.create(options);
   },
   Show() {
-    let options1 = {
+    let options1:AnimatorOptions = {
       duration: 1500,
       easing: "friction",
       delay: 0,
@@ -308,19 +334,29 @@ export default {
       begin: 0,
       end: 400.0,
     };
-    try {
-      this.animator.reset(options1);
-    } catch(error) {
-      console.error(`Animator reset failed, error code: ${error.code}, message: ${error.message}.`);
+    let DataTmp:DateT = {
+      divWidth: 200,
+      divHeight: 200,
+      animator: null
     }
-    let _this = this;
-    this.animator.onframe = function(value) {
-      _this.divWidth = value;
-      _this.divHeight = value;
-    };
-    this.animator.play();
+    try {
+      DataTmp.animator = animator.create(options1);
+      DataTmp.animator.reset(options1);
+    } catch(error) {
+      let message = (error as BusinessError).message
+      let code = (error as BusinessError).code
+      console.error(`Animator reset failed, error code: ${code}, message: ${message}.`);
+    }
+    let _this = DataTmp;
+    if(DataTmp.animator){
+      DataTmp.animator.onframe = (value:number)=> {
+        _this.divWidth = value;
+        _this.divHeight = value;
+      };
+      DataTmp.animator.play();
+    }
   }
-}
+})}
 ```
 
   ![en-us_image_00007](figures/en-us_image_00007.gif)
@@ -328,13 +364,13 @@ export default {
 ### ArkTS-based Declarative Development Paradigm
 
 ```ts
-import animator from '@ohos.animator';
+import animator, { AnimatorResult } from '@ohos.animator';
 
 @Entry
 @Component
 struct AnimatorTest {
   private TAG: string = '[AnimatorTest]'
-  private backAnimator: any = undefined
+  private backAnimator: AnimatorResult | undefined = undefined
   private flag: boolean = false
   @State wid: number = 100
   @State hei: number = 100
@@ -351,17 +387,17 @@ struct AnimatorTest {
       begin: 100,
       end: 200
     })
-    this.backAnimator.onfinish = function () {
+    this.backAnimator.onfinish = ()=> {
       _this.flag = true
       console.info(_this.TAG, 'backAnimator onfinish')
     }
-    this.backAnimator.onrepeat = function () {
+    this.backAnimator.onrepeat = ()=> {
       console.info(_this.TAG, 'backAnimator repeat')
     }
-    this.backAnimator.oncancel = function () {
+    this.backAnimator.oncancel = ()=> {
       console.info(_this.TAG, 'backAnimator cancel')
     }
-    this.backAnimator.onframe = function (value) {
+    this.backAnimator.onframe = (value:number)=> {
       _this.wid = value
       _this.hei = value
     }
@@ -395,7 +431,9 @@ struct AnimatorTest {
             .fontColor(Color.Black)
             .onClick(() => {
               this.flag = false
-              this.backAnimator.play()
+              if(this.backAnimator){
+                this.backAnimator.play()
+              }
             })
         }
         .padding(10)
@@ -405,7 +443,9 @@ struct AnimatorTest {
             .fontSize(30)
             .fontColor(Color.Black)
             .onClick(() => {
-              this.backAnimator.pause()
+              if(this.backAnimator){
+                this.backAnimator.pause()
+              }
             })
         }
         .padding(10)
@@ -416,7 +456,9 @@ struct AnimatorTest {
             .fontColor(Color.Black)
             .onClick(() => {
               this.flag = true
-              this.backAnimator.finish()
+              if(this.backAnimator){
+                this.backAnimator.finish()
+              }
             })
         }
         .padding(10)
@@ -427,7 +469,9 @@ struct AnimatorTest {
             .fontColor(Color.Black)
             .onClick(() => {
               this.flag = false
-              this.backAnimator.reverse()
+              if(this.backAnimator){
+                this.backAnimator.reverse()
+              }
             })
         }
         .padding(10)
@@ -437,7 +481,9 @@ struct AnimatorTest {
             .fontSize(30)
             .fontColor(Color.Black)
             .onClick(() => {
-              this.backAnimator.cancel()
+              if(this.backAnimator){
+                this.backAnimator.cancel()
+              }
             })
         }
         .padding(10)
@@ -449,16 +495,18 @@ struct AnimatorTest {
             .onClick(() => {
               if (this.flag) {
                 this.flag = false
-                this.backAnimator.reset({
-                  duration: 5000,
-                  easing: "ease-in",
-                  delay: 0,
-                  fill: "none",
-                  direction: "normal",
-                  iterations: 4,
-                  begin: 100,
-                  end: 300
-                })
+                if(this.backAnimator){
+                  this.backAnimator.reset({
+                    duration: 5000,
+                    easing: "ease-in",
+                    delay: 0,
+                    fill: "none",
+                    direction: "normal",
+                    iterations: 4,
+                    begin: 100,
+                    end: 300
+                  })
+                }
               } else {
                 console.info(this.TAG, 'Animation not ended')
               }
@@ -489,7 +537,7 @@ This API is deprecated since API version 9. You are advised to use [reset<sup>9+
 
 **Example**
 
-```js
+```ts
 animator.update(options);
 ```
 
@@ -517,7 +565,8 @@ This API is deprecated since API version 9. You are advised to use [create<sup>9
 
 **Example**
 
-```js
+```ts
+import animator, { AnimatorOptions,AnimatorResult } from '@ohos.animator';
 let options: AnimatorOptions = { // The explicit type AnimatorOptions does not need to be emphasized in the xxx.js file.
   duration: 1500,
   easing: "friction",

@@ -8,8 +8,9 @@ The **PluginComponentManager** module provides APIs for the **PluginComponent** 
 
 ## Modules to Import
 
-```js
+```ts
 import pluginComponentManager from '@ohos.pluginComponent'
+import Want from '@ohos.app.ability.Want';
 ```
 
 ## PluginComponentTemplate
@@ -153,8 +154,10 @@ Registers the listener for the push event.
 
 **Example**
 
-```js
-function onPushListener(source, template, data, extraData) {
+```ts
+import pluginComponentManager from '@ohos.pluginComponent'
+import Want from '@ohos.app.ability.Want';
+function onPushListener(source: Want, template: PluginComponentTemplate, data: pluginComponentManager.KVObject, extraData: pluginComponentManager.KVObject) {
   console.log("onPushListener template.source=" + template.source)
   console.log("onPushListener source=" + JSON.stringify(source))
   console.log("onPushListener template=" + JSON.stringify(template))
@@ -180,14 +183,16 @@ Registers the listener for the request event.
 
 **Example**
 
-```js
-function onRequestListener(source, name, data) {
+```ts
+import pluginComponentManager from '@ohos.pluginComponent'
+import Want from '@ohos.app.ability.Want';
+function onRequestListener(source:Want, name:string, data:pluginComponentManager.KVObject) {
   console.error("onRequestListener");
   console.log("onRequestListener source=" + JSON.stringify(source));
   console.log("onRequestListener name=" + name);
   console.log("onRequestListener data=" + JSON.stringify(data));
-
-  return { template: "ets/pages/plugin.js", data: data };
+  let RtnData:Record<string,string|pluginComponentManager.KVObject> = { 'template': "ets/pages/plugin.js", 'data': data }
+  return RtnData;
 }
 ```
 
@@ -207,7 +212,8 @@ Pushes the component and data to the component user.
 
 **Example**
 
-```js
+```ts
+import pluginComponentManager from '@ohos.pluginComponent'
 pluginComponentManager.push(
   {
     want: {
@@ -248,7 +254,8 @@ Pushes the component and data to the component user.
 
 **Example**
 
-```js
+```ts
+import pluginComponentManager from '@ohos.pluginComponent'
 pluginComponentManager.push(
   {
     owner: {
@@ -292,11 +299,12 @@ Requests the component from the component provider.
 | Name     | Type                                      | Mandatory  | Description                                 |
 | -------- | ---------------------------------------- | ---- | ----------------------------------- |
 | param    | [RequestParameters](#requestparameters)  | Yes   | Information about the component request.                       |
-| callback | AsyncCallback&lt;[RequestCallbackParameters](#requestcallbackparameters)&nbsp;\|&nbsp;void&gt; | Yes   | Asynchronous callback used to return the requested data.|
+| callback | AsyncCallback&lt;[RequestCallbackParameters](#requestcallbackparameters) \| void&gt; | Yes   | Asynchronous callback used to return the requested data.|
 
 **Example**
 
-```js
+```ts
+import pluginComponentManager from '@ohos.pluginComponent'
 pluginComponentManager.request(
   {
     want: {
@@ -335,11 +343,12 @@ Requests the component from the component provider.
 | Name     | Type                                      | Mandatory  | Description                                 |
 | -------- | ---------------------------------------- | ---- | ----------------------------------- |
 | param    | [RequestParameterForStage](#requestparameterforstage) | Yes   | Information about the component request.                       |
-| callback | AsyncCallback&lt;[RequestCallbackParameters](#requestcallbackparameters)&nbsp;\|&nbsp;void&gt; | Yes   | Asynchronous callback used to return the requested data.|
+| callback | AsyncCallback&lt;[RequestCallbackParameters](#requestcallbackparameters) \| void&gt; | Yes   | Asynchronous callback used to return the requested data.|
 
 **Example**
 
-```js
+```ts
+import pluginComponentManager from '@ohos.pluginComponent'
 pluginComponentManager.request(
   {
     owner: {
@@ -374,25 +383,27 @@ Listens for events of the request type and returns the requested data, or listen
 | Name      | Type                                      | Mandatory  | Description                                      |
 | --------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | eventType | string                                   | Yes   | Type of the event to listen for. The options are as follows:<br>**"push"**: The component provider pushes data to the component consumer.<br>**"request"**: The component consumer proactively requests data from the component provider.|
-| callback  | [OnPushEventCallback](#onpusheventcallback)&nbsp;\|&nbsp;[OnRequestEventCallback](#onrequesteventcallback) | Yes   | Callback used to return the result. The type is [OnPushEventCallback](#onpusheventcallback) for the push event and [OnRequestEventCallback](#onrequesteventcallback) for the request event.|
+| callback  | [OnPushEventCallback](#onpusheventcallback) \| [OnRequestEventCallback](#onrequesteventcallback) | Yes   | Callback used to return the result. The type is [OnPushEventCallback](#onpusheventcallback) for the push event and [OnRequestEventCallback](#onrequesteventcallback) for the request event.|
 
 **Example**
 
-```js
-function onPushListener(source, template, data, extraData) {
+```ts
+import pluginComponentManager from '@ohos.pluginComponent'
+import Want from '@ohos.app.ability.Want';
+function onPushListener(source:Want, template:PluginComponentTemplate, data:pluginComponentManager.KVObject, extraData:pluginComponentManager.KVObject) {
   console.log("onPushListener template.source=" + template.source)
   console.log("onPushListener source=" + JSON.stringify(source))
   console.log("onPushListener template=" + JSON.stringify(template))
   console.log("onPushListener data=" + JSON.stringify(data))
   console.log("onPushListener extraData=" + JSON.stringify(extraData))
 }
-function onRequestListener(source, name, data) {
+function onRequestListener(source:Want, name:string, data:pluginComponentManager.KVObject) {
   console.error("onRequestListener");
   console.log("onRequestListener source=" + JSON.stringify(source));
   console.log("onRequestListener name=" + name);
   console.log("onRequestListener data=" + JSON.stringify(data));
-
-  return { template: "ets/pages/plugin.js", data: data };
+  let RtnData:Record<string,string|pluginComponentManager.KVObject> = { 'template': "ets/pages/plugin.js", 'data': data }
+  return RtnData;
 }
 pluginComponentManager.on("push", onPushListener)
 pluginComponentManager.on("request", onRequestListener)

@@ -178,9 +178,11 @@ In the preceding example, the **Index** page contains two custom components. One
 
 - When **push to next page** is clicked, the **router.pushUrl** API is called to jump to the next page. As a result, the **Index** page is hidden, and the **Index onPageHide** callback is invoked. As the called API is **router.pushUrl**, which results in the Index page being hidden, but not destroyed, only the **onPageHide** callback is invoked. After a new page is displayed, the process of initializing the lifecycle of the new page is executed.
 
-- If **router.replaceUrl** is called, the **Index** page is destroyed. In this case, the execution of lifecycle callbacks changes to: Index onPageHide -> MyComponent aboutToDisappear -> Child aboutToDisappear. As aforementioned, a component is destroyed by directly removing it from the component tree. Therefore, **aboutToDisappear** of the parent component is called first, followed by **aboutToDisAppear** of the child component, and then the process of initializing the lifecycle of the new page is executed.
+- If **router.replaceUrl** is called, the **Index** page is destroyed. In this case, the execution of lifecycle callbacks changes to: Index onPageHide -> MyComponent aboutToDisappear -> Child aboutToDisappear. As aforementioned, a component is destroyed by directly removing it from the component tree. Therefore, **aboutToDisappear** of the parent component is called first, followed by **aboutToDisappear** of the child component, and then the process of initializing the lifecycle of the new page is executed.
 
-- When the Back button is clicked, the **Index onBackPress** callback is invoked. When the application is minimized or switched to the background, the **Index onPageHide** callback is invoked. The application is not destroyed in these two states. Therefore, the **aboutToDisappear** callback of the component is not executed. When the application returns to the foreground, the **Index onPageShow** callback is invoked.
+- When the Back button is clicked, the **Index onBackPress** callback is invoked, and the current **Index** page is destroyed.
+
+- When the application is minimized or switched to the background, the **Index onPageHide** callback is invoked. As the current **Index** page is not destroyed, **aboutToDisappear** of the component is not executed. When the application returns to the foreground, the **Index onPageShow** callback is invoked.
 
 
 - When the application exits, the following callbacks are executed in order: Index onPageHide -> MyComponent aboutToDisappear -> Child aboutToDisappear.

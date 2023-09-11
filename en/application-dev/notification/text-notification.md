@@ -38,6 +38,8 @@ The following table describes the APIs for notification publishing. You specify 
    
    ```ts
    import notificationManager from '@ohos.notificationManager';
+   import Base from '@ohos.base';
+   import image from '@ohos.multimedia.image';
    ```
 
 3. Create a **NotificationRequest** object and publish a progress notification.
@@ -56,7 +58,7 @@ The following table describes the APIs for notification publishing. You specify 
         }
       };
       
-      notificationManager.publish(notificationRequest, (err) => {
+      notificationManager.publish(notificationRequest, (err:Base.BusinessError) => {
         if (err) {
           console.error(`Failed to publish notification. Code is ${err.code}, message is ${err.message}`);
           return;
@@ -86,7 +88,7 @@ The following table describes the APIs for notification publishing. You specify 
       };
       
       // Publish the notification.
-      notificationManager.publish(notificationRequest, (err) => {
+      notificationManager.publish(notificationRequest, (err:Base.BusinessError) => {
         if (err) {
           console.error(`Failed to publish notification. Code is ${err.code}, message is ${err.message}`);
           return;
@@ -115,7 +117,7 @@ The following table describes the APIs for notification publishing. You specify 
       };
       
       // Publish the notification.
-      notificationManager.publish(notificationRequest, (err) => {
+      notificationManager.publish(notificationRequest, (err:Base.BusinessError) => {
         if (err) {
           console.error(`Failed to publish notification. Code is ${err.code}, message is ${err.message}`);
           return;
@@ -129,7 +131,7 @@ The following table describes the APIs for notification publishing. You specify 
    - In addition to the parameters in the normal text notification, the picture-attached text notification provides the **picture**, **briefText**, and **expandedTitle** parameters. The value of **picture** is a [PixelMap](../reference/apis/js-apis-image.md#pixelmap7) object that does not exceed 2 MB.
      
       ```ts
-      let imagePixelMap: PixelMap = undefined; // Obtain the PixelMap information.
+      let imagePixelMap: PixelMap; // Obtain the PixelMap information.
       let notificationRequest: notificationManager.NotificationRequest = {
         id: 1,
         content: {
@@ -146,7 +148,7 @@ The following table describes the APIs for notification publishing. You specify 
       };
       
       // Publish the notification.
-      notificationManager.publish(notificationRequest, (err) => {
+      notificationManager.publish(notificationRequest, (err:Base.BusinessError) => {
         if (err) {
           console.error(`Failed to publish notification. Code is ${err.code}, message is ${err.message}`);
           return;

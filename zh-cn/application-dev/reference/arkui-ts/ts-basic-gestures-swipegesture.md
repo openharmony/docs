@@ -59,9 +59,11 @@ struct SwipeGestureExample {
       // 单指竖直方向滑动时触发该事件
       .gesture(
       SwipeGesture({ direction: SwipeDirection.Vertical })
-        .onAction((event: GestureEvent) => {
-          this.speed = event.speed
-          this.rotateAngle = event.angle
+        .onAction((event?: GestureEvent) => {
+          if (event) {
+            this.speed = event.speed
+            this.rotateAngle = event.angle
+          }
         })
       )
     }.width('100%')

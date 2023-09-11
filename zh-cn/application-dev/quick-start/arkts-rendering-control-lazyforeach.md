@@ -9,9 +9,9 @@ LazyForEach从提供的数据源中按需迭代数据，并在每次迭代过程
 
 ```ts
 LazyForEach(
-    dataSource: IDataSource,             // 需要进行数据迭代的数据源 
-    itemGenerator: (item: any) => void,  // 子组件生成函数
-    keyGenerator?: (item: any) => string // (可选) .键值生成函数
+    dataSource: IDataSource,             // 需要进行数据迭代的数据源
+    itemGenerator: (item: Object) => void,  // 需要进行数据迭代的数据源
+    keyGenerator?: (item: Object): string => string // 需要进行数据迭代的数据源
 ): void
 interface IDataSource {
     totalCount(): number;                                             // 获得数据总数
@@ -44,7 +44,7 @@ interface DataChangeListener {
 ```ts
 interface IDataSource {
     totalCount(): number;
-    getData(index: number): any; 
+    getData(index: number): Object;
     registerDataChangeListener(listener: DataChangeListener): void;
     unregisterDataChangeListener(listener: DataChangeListener): void;
 }
@@ -109,8 +109,8 @@ interface DataChangeListener {
 
   ```ts
   LazyForEach(dataSource, 
-    item => Text(`${item.i}. item.data.label`),
-    item => item.data.id.toString())
+    (item: Object) => Text(`${item.i}. item.data.label`),
+    (item: Object): string => item.data.id.toString())
   ```
 
 
@@ -126,7 +126,7 @@ class BasicDataSource implements IDataSource {
     return 0;
   }
 
-  public getData(index: number): any {
+  public getData(index: number): undefined {
     return undefined;
   }
 
@@ -183,7 +183,7 @@ class MyDataSource extends BasicDataSource {
     return this.dataArray.length;
   }
 
-  public getData(index: number): any {
+  public getData(index: number): Object {
     return this.dataArray[index];
   }
 
@@ -202,7 +202,7 @@ class MyDataSource extends BasicDataSource {
 @Component
 struct MyComponent {
   aboutToAppear() {
-    for (var i = 100; i >= 80; i--) {
+    for (let i = 100; i >= 80; i--) {
       this.data.pushData(`Hello ${i}`)
     }
   }
@@ -223,7 +223,7 @@ struct MyComponent {
         .onClick(() => {
           this.data.pushData(`Hello ${this.data.totalCount()}`);
         })
-      }, item => item)
+      }, (item: string) => item)
     }.cachedCount(5)
   }
 }

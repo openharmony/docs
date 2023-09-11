@@ -9,7 +9,7 @@
 
 ## 导入模块
 
-```
+```ts
 import observer from '@ohos.telephony.observer';
 ```
 
@@ -45,8 +45,8 @@ on\(type: \'networkStateChange\', callback: Callback\<NetworkState\>\): void;
 
 **示例：**
 
-```js
-observer.on('networkStateChange', data => {
+```ts
+observer.on('networkStateChange', (data: observer.NetworkState) => {
     console.log("on networkStateChange, data:" + JSON.stringify(data));
 });
 ```
@@ -85,8 +85,12 @@ on\(type: \'networkStateChange\', options: { slotId: number }, callback: Callbac
 
 **示例：**
 
-```js
-observer.on('networkStateChange', {slotId: 0}, data => {
+```ts
+class SlotId {
+    slotId: number = 0
+}
+let id: SlotId = {slotId: 0}
+observer.on('networkStateChange', id, (data: observer.NetworkState) => {
     console.log("on networkStateChange, data:" + JSON.stringify(data));
 });
 ```
@@ -125,8 +129,8 @@ off\(type: \'networkStateChange\', callback?: Callback\<NetworkState\>\): void;
 
 **示例：**
 
-```js
-let callback = data => {
+```ts
+let callback: (data: observer.NetworkState) => void = (data: observer.NetworkState) => {
     console.log("on networkStateChange, data:" + JSON.stringify(data));
 }
 observer.on('networkStateChange', callback);
@@ -164,8 +168,10 @@ on\(type: \'signalInfoChange\', callback: Callback\<Array\<SignalInformation\>\>
 
 **示例：**
 
-```js
-observer.on('signalInfoChange', data => {
+```ts
+import radio from '@ohos.telephony.radio';
+
+observer.on('signalInfoChange', (data: Array<radio.SignalInformation>) => {
     console.log("on signalInfoChange, data:" + JSON.stringify(data));
 });
 ```
@@ -201,8 +207,14 @@ on\(type: \'signalInfoChange\', options: { slotId: number }, callback: Callback\
 
 **示例：**
 
-```js
-observer.on('signalInfoChange', {slotId: 0}, data => {
+```ts
+import radio from '@ohos.telephony.radio';
+
+class SlotId {
+    slotId: number = 0
+}
+let id: SlotId = {slotId: 0}
+observer.on('signalInfoChange', id, (data: Array<radio.SignalInformation>) => {
     console.log("on signalInfoChange, data:" + JSON.stringify(data));
 });
 ```
@@ -241,8 +253,10 @@ off\(type: \'signalInfoChange\', callback?: Callback\<Array\<SignalInformation\>
 
 **示例：**
 
-```js
-let callback = data => {
+```ts
+import radio from '@ohos.telephony.radio';
+
+let callback: (data: Array<radio.SignalInformation>) => void = (data: Array<radio.SignalInformation>) => {
     console.log("on signalInfoChange, data:" + JSON.stringify(data));
 }
 observer.on('signalInfoChange', callback);
@@ -286,8 +300,10 @@ on\(type: \'cellInfoChange\', callback: Callback\<Array\<CellInformation\>\>\): 
 
 **示例：**
 
-```js
-observer.on('cellInfoChange', data => {
+```ts
+import radio from '@ohos.telephony.radio';
+
+observer.on('cellInfoChange', (data: Array<radio.CellInformation>) => {
     console.log("on cellInfoChange, data:" + JSON.stringify(data));
 });
 ```
@@ -329,8 +345,14 @@ on\(type: \'cellInfoChange\', options: { slotId: number }, callback: Callback\<A
 
 **示例：**
 
-```js
-observer.on('cellInfoChange', {slotId: 0}, data => {
+```ts
+import radio from '@ohos.telephony.radio';
+
+class SlotId {
+    slotId: number = 0
+}
+let id: SlotId = {slotId: 0}
+observer.on('cellInfoChange', id, (data: Array<radio.CellInformation>) => {
     console.log("on cellInfoChange, data:" + JSON.stringify(data));
 });
 ```
@@ -372,8 +394,10 @@ off\(type: \'cellInfoChange\', callback?: Callback\<Array\<CellInformation\>\>\)
 
 **示例：**
 
-```js
-let callback = data => {
+```ts
+import radio from '@ohos.telephony.radio';
+
+let callback: (data: Array<radio.CellInformation>) => void = (data: Array<radio.CellInformation>) => {
     console.log("on cellInfoChange, data:" + JSON.stringify(data));
 }
 observer.on('cellInfoChange', callback);
@@ -411,8 +435,14 @@ on(type: 'callStateChange', callback: Callback\<{ state: CallState, number: stri
 
 **示例：**
 
-```js
-observer.on('callStateChange', value => {
+```ts
+import call from '@ohos.telephony.call';
+
+class Value {
+    state: call.CallState = call.CallState.CALL_STATE_UNKNOWN
+    number: string = ""
+}
+observer.on('callStateChange', (value: Value) => {
     console.log("on callStateChange, state:" + value.state + ", number:" + value.number);
 });
 ```
@@ -448,8 +478,18 @@ on(type: 'callStateChange', options: { slotId: number }, callback: Callback<{ st
 
 **示例：**
 
-```js
-observer.on('callStateChange', {slotId: 0}, value => {
+```ts
+import call from '@ohos.telephony.call';
+
+class Value {
+    state: call.CallState = call.CallState.CALL_STATE_UNKNOWN
+    number: string = ""
+}
+class SlotId {
+    slotId: number = 0
+}
+let id: SlotId = {slotId: 0}
+observer.on('callStateChange', id, (value: Value) => {
     console.log("on callStateChange, state:" + value.state + ", number:" + value.number);
 });
 ```
@@ -488,8 +528,14 @@ off(type: 'callStateChange', callback?: Callback<{ state: CallState, number: str
 
 **示例：**
 
-```js
-let callback = value => {
+```ts
+import call from '@ohos.telephony.call';
+
+class Value {
+    state: call.CallState = call.CallState.CALL_STATE_UNKNOWN
+    number: string = ""
+}
+let callback: (value: Value) => void = (value: Value) => {
     console.log("on callStateChange, state:" + value.state + ", number:" + value.number);
 }
 observer.on('callStateChange', callback);
@@ -528,8 +574,15 @@ on\(type: 'cellularDataConnectionStateChange', callback: Callback\<{ state: Data
 
 **示例：**
 
-```js
-observer.on('cellularDataConnectionStateChange', value => {
+```ts
+import data from '@ohos.telephony.data';
+import radio from '@ohos.telephony.radio';
+
+class Value {
+    state: data.DataConnectState = data.DataConnectState.DATA_STATE_UNKNOWN
+    network: radio.RadioTechnology = radio.RadioTechnology.RADIO_TECHNOLOGY_UNKNOWN
+}
+observer.on('cellularDataConnectionStateChange', (value: Value) => {
     console.log("on cellularDataConnectionStateChange, state:" + value.state + ", network:" + value.network);
 });
 ```
@@ -565,8 +618,19 @@ on\(type: 'cellularDataConnectionStateChange', options: { slotId: number }, call
 
 **示例：**
 
-```js
-observer.on('cellularDataConnectionStateChange', {slotId: 0}, value => {
+```ts
+import data from '@ohos.telephony.data';
+import radio from '@ohos.telephony.radio';
+
+class Value {
+    state: data.DataConnectState = data.DataConnectState.DATA_STATE_UNKNOWN
+    network: radio.RadioTechnology = radio.RadioTechnology.RADIO_TECHNOLOGY_UNKNOWN
+}
+class SlotId {
+    slotId: number = 0
+}
+let id: SlotId = {slotId: 0}
+observer.on('cellularDataConnectionStateChange', id, (value: Value) => {
     console.log("on cellularDataConnectionStateChange, state:" + value.state + ", network:" + value.network);
 });
 ```
@@ -605,8 +669,15 @@ off\(type: 'cellularDataConnectionStateChange',  callback?: Callback\<{ state: D
 
 **示例：**
 
-```js
-let callback = value => {
+```ts
+import data from '@ohos.telephony.data';
+import radio from '@ohos.telephony.radio';
+
+class Value {
+    state: data.DataConnectState = data.DataConnectState.DATA_STATE_UNKNOWN
+    network: radio.RadioTechnology = radio.RadioTechnology.RADIO_TECHNOLOGY_UNKNOWN
+}
+let callback: (value: Value) => void = (value: Value) => {
     console.log("on cellularDataConnectionStateChange, state:" + value.state + ", network:" + value.network);
 }
 observer.on('cellularDataConnectionStateChange', callback);
@@ -645,8 +716,10 @@ on\(type: 'cellularDataFlowChange', callback: Callback\<DataFlowType\>\): void;
 
 **示例：**
 
-```js
-observer.on('cellularDataFlowChange', data => {
+```ts
+import data from '@ohos.telephony.data';
+
+observer.on('cellularDataFlowChange', (data: data.DataFlowType) => {
     console.log("on networkStateChange, data:" + JSON.stringify(data));
 });
 ```
@@ -682,8 +755,14 @@ on\(type: 'cellularDataFlowChange', options: { slotId: number },  callback: Call
 
 **示例：**
 
-```js
-observer.on('cellularDataFlowChange', {slotId: 0}, data => {
+```ts
+import data from '@ohos.telephony.data';
+
+class SlotId {
+    slotId: number = 0
+}
+let id: SlotId = {slotId: 0}
+observer.on('cellularDataFlowChange', id, (data: data.DataFlowType) => {
     console.log("on cellularDataFlowChange, data:" + JSON.stringify(data));
 });
 ```
@@ -722,8 +801,10 @@ off\(type: 'cellularDataFlowChange', callback?: Callback\<DataFlowType\>\): void
 
 **示例：**
 
-```js
-let callback = data => {
+```ts
+import data from '@ohos.telephony.data';
+
+let callback: (data: data.DataFlowType) => void = (data: data.DataFlowType) => {
     console.log("on cellularDataFlowChange, data:" + JSON.stringify(data));
 }
 observer.on('cellularDataFlowChange', callback);
@@ -762,8 +843,8 @@ on\(type: 'simStateChange', callback: Callback\<SimStateData\>\): void;
 
 **示例：**
 
-```js
-observer.on('simStateChange', data => {
+```ts
+observer.on('simStateChange', (data: observer.SimStateData) => {
     console.log("on simStateChange, data:" + JSON.stringify(data));
 });
 ```
@@ -800,7 +881,11 @@ on\(type: 'simStateChange', options: { slotId: number }, callback: Callback\<Sim
 **示例：**
 
 ```js
-observer.on('simStateChange', {slotId: 0}, data => {
+class SlotId {
+    slotId: number = 0
+}
+let id: SlotId = {slotId: 0}
+observer.on('simStateChange', id, (data: observer.SimStateData) => {
     console.log("on simStateChange, data:" + JSON.stringify(data));
 });
 ```
@@ -840,7 +925,7 @@ off\(type: 'simStateChange', callback?: Callback\<SimStateData\>\): void;
 **示例：**
 
 ```js
-let callback = data => {
+let callback: (data: observer.SimStateData) => void = (data: observer.SimStateData) => {
     console.log("on simStateChange, data:" + JSON.stringify(data));
 }
 observer.on('simStateChange', callback);
@@ -877,9 +962,9 @@ on\(type: 'iccAccountInfoChange', callback: Callback\<void\>\): void;
 
 **示例：**
 
-```js
-observer.on('iccAccountInfoChange', error => {
-    console.log("on iccAccountInfoChange, error:" + JSON.stringify(error));
+```ts
+observer.on('iccAccountInfoChange', () => {
+    console.log("on iccAccountInfoChange success");
 });
 ```
 
@@ -916,9 +1001,9 @@ off\(type: 'iccAccountInfoChange', callback?: Callback\<void\>\): void;
 
 **示例：**
 
-```js
-let callback = data => {
-    console.log("on iccAccountInfoChange, data:" + JSON.stringify(data));
+```ts
+let callback: () => void = () => {
+    console.log("on iccAccountInfoChange success");
 }
 observer.on('iccAccountInfoChange', callback);
 // 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。

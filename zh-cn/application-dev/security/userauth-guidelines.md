@@ -33,6 +33,7 @@ userIAM_userAuth模块提供了用户认证的相关方法，包括查询认证�
 | ATL2                       | FRR=10%时，FAR≤0.002%，7%<SAR≤20% | 能精确识别用户个体，有一定的活体检测能力，如基于普通测距和佩戴检测的手表作为可信持有物的认证。 | 维持设备解锁状态、应用登录                           |
 | ATL1                       | FRR=10%时，FAR≤1%，7%<SAR≤20%     | 能识别用户个体，有一定的活体检测能力，如声纹认证。           | 业务风控、一般个人数据查询、精准业务推荐、个性化服务 |
 
+
 ## 查询当前设备是否支持相应的认证能力
 
 ### 开发步骤
@@ -47,9 +48,9 @@ userIAM_userAuth模块提供了用户认证的相关方法，包括查询认证�
     // 查询认证能力是否支持
     try {
         userIAM_userAuth.getAvailableStatus(userIAM_userAuth.UserAuthType.FACE, userIAM_userAuth.AuthTrustLevel.ATL1);
-        console.info("current auth trust level is supported");
+        console.info('current auth trust level is supported');
     } catch (error) {
-        console.info("current auth trust level is not supported, error = " + error);
+        console.info('current auth trust level is not supported, error = ' + error);
     }
     ```
 
@@ -70,43 +71,37 @@ userIAM_userAuth模块提供了用户认证的相关方法，包括查询认证�
     ```js
     import userIAM_userAuth from '@ohos.userIAM.userAuth';
     
-    const authParam = {
-        challenge: new Uint8Array([49, 49, 49, 49, 49, 49]),
-        authType: [userAuth.UserAuthType.PIN],
-        authTrustLevel: 10000,
+    const authParam : userIAM_userAuth.AuthParam = {
+      challenge: new Uint8Array([49, 49, 49, 49, 49, 49]),
+      authType: [userIAM_userAuth.UserAuthType.PIN],
+      authTrustLevel: userIAM_userAuth.AuthTrustLevel.ATL1,
     };
-    const widgetParam = {
-    	title: '请输入密码',
-    	navigationButtonText: '返回',
-        windowMode: userAuth.WindowModeType.DIALOG_BOX,
+    const widgetParam : userIAM_userAuth.WidgetParam = {
+      title: '请输入密码',
+      navigationButtonText: '返回',
     };
-    let userAuthInstance;
     try {
-        //获取认证对象
-        userAuthInstance = userIAM_userAuth.getUserAuthInstance(authParam, widgetParam);
-        console.log('get userAuth instance success');
-        //订阅认证结果
-        userAuthInstance.on('result', {
-            onResult (result) {
-                console.log('userAuthInstance callback result = ' + JSON.stringify(result));
-            }
-        });
-        console.log('auth on success');
-        userAuthInstance.start();
-        console.log('auth start success');
+      //获取认证对象
+      let userAuthInstance = userIAM_userAuth.getUserAuthInstance(authParam, widgetParam);
+      console.log('get userAuth instance success');
+      //订阅认证结果
+      userAuthInstance.on('result', {
+        onResult (result) {
+          console.log('userAuthInstance callback result = ' + JSON.stringify(result));
+        }
+      });
+      console.log('auth on success');
+      userAuthInstance.start();
+      console.log('auth start success');
+      //取消订阅认证结果
+      userAuthInstance.off('result', {
+        onResult (result) {
+          console.log('auth off result: ' + JSON.stringify(result));
+        }
+      });
+      console.log('auth off success');
     } catch (error) {
-        console.log('auth on catch error: ' + JSON.stringify(error));
-    }
-    //取消订阅认证结果
-    try {
-    	userAuthInstance.off('result', {
-            onResult (result) {
-                console.log('auth off result: ' + JSON.stringify(result));
-            }
-        });
-        console.log('auth off success');
-    } catch (error) {
-        console.log('auth catch error: ' + JSON.stringify(error));
+      console.log('auth catch error: ' + JSON.stringify(error));
     }
     ```
 
@@ -125,33 +120,26 @@ userIAM_userAuth模块提供了用户认证的相关方法，包括查询认证�
     ```js
     import userIAM_userAuth from '@ohos.userIAM.userAuth';
     
-    const authParam = {
-        challenge: new Uint8Array([49, 49, 49, 49, 49, 49]),
-        authType: [userAuth.UserAuthType.PIN],
-        authTrustLevel: 10000,
+    const authParam : userIAM_userAuth.AuthParam = {
+      challenge: new Uint8Array([49, 49, 49, 49, 49, 49]),
+      authType: [userIAM_userAuth.UserAuthType.PIN],
+      authTrustLevel: userIAM_userAuth.AuthTrustLevel.ATL1,
     };
-    const widgetParam = {
-    	title: '请输入密码',
-    	navigationButtonText: '返回',
-        windowMode: userAuth.WindowModeType.DIALOG_BOX,
+    const widgetParam : userIAM_userAuth.WidgetParam = {
+      title: '请输入密码',
+      navigationButtonText: '返回',
     };
-    let userAuthInstance;
     try {
-        //获取认证对象
-        userAuthInstance = userIAM_userAuth.getUserAuthInstance(authParam, widgetParam);
-        console.log('get userAuth instance success');
-        //开始认证
-        userAuthInstance.start();
-        console.log('auth start success');
+      //获取认证对象
+      let userAuthInstance = userIAM_userAuth.getUserAuthInstance(authParam, widgetParam);
+      console.log('get userAuth instance success');
+      //开始认证
+      userAuthInstance.start();
+      console.log('auth start success');
+      // 取消认证
+      userAuthInstance.cancel();
+      console.log('auth cancel success');
     } catch (error) {
-        console.log('auth catch error: ' + JSON.stringify(error));
-    }
-    
-    // 取消认证
-    try {
-        userAuthInstance.cancel();
-        console.log('auth cancel success');
-    } catch (error) {
-        console.log('auth catch error: ' + JSON.stringify(error));
+      console.log('auth catch error: ' + JSON.stringify(error));
     }
     ```

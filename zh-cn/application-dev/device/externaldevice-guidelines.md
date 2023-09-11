@@ -34,7 +34,7 @@
   import deviceManager from '@ohos.driver.deviceManager';
   import { BusinessError } from '@ohos.base';
 
-  let matchDevice : deviceManager.USBDevice = null;
+  let matchDevice : deviceManager.USBDevice | null = null;
   try {
     let devices : Array<Device> = deviceManager.queryDevices(deviceManager.BusType.USB);
     for (let item : Device of devices : Array<Device>) {
@@ -45,7 +45,7 @@
         break;
       }
     }
-  } catch (error : BusinessError) {
+  } catch (error) {
     let errCode = (error as BusinessError).code;
     let message = (error as BusinessError).message;
     console.error(`Failed to query device. Code is ${errCode}, message is ${message}`);
@@ -62,19 +62,19 @@
   import deviceManager from '@ohos.driver.deviceManager';
   import { BusinessError } from '@ohos.base';
 
-  let remoteObject : Object;
+  let remoteObject : IRemoteObject;
   try {
-    deviceManager.bindDevice(matchDevice.deviceId, ((error : BusinessError), (data : Object)) => {
+    deviceManager.bindDevice(matchDevice.deviceId, (error : BusinessError, data : MessageSequence) => {
       console.error('Device is disconnected');
-    }, ((error : BusinessError), (data : Object)) => {
-      if (error) {
+    }, (error : BusinessError, data : MessageSequence) => {
+      if (error : BusinessError) {
         console.error(`bindDevice async fail. Code is ${error.code}, message is ${error.message}`);
         return;
       }
       console.info('bindDevice success');
       remoteObject = data.remote;
     });
-  } catch (error : BusinessError) {
+  } catch (error) {
     let errCode = (error as BusinessError).code;
     let message = (error as BusinessError).message;
     console.error(`bindDevice fail. Code is ${errCode}, message is ${message}`);
@@ -94,7 +94,7 @@
   let code = 1;
   // code和data内容取决于驱动提供的接口
   remoteObject.sendMessageRequest(code, data, reply, option)
-    .then((result : string) => {
+    .then((result : number) => {
       console.info('sendMessageRequest finish.');
     }).catch((error : BusinessError) => {
       let errCode = (error as BusinessError).code;
@@ -109,7 +109,7 @@
   import { BusinessError } from '@ohos.base';
 
   try {
-    deviceManager.unbindDevice(matchDevice.deviceId, (error : BusinessError, data : Object) => {
+    deviceManager.unbindDevice(matchDevice.deviceId, (error : BusinessError, data : MessageSequence) => {
       if (error : BusinessError) {
         let errCode = (error as BusinessError).code;
         let message = (error as BusinessError).message;
@@ -118,7 +118,7 @@
       }
       console.info('unbindDevice success');
     });
-  } catch (error : BusinessError) {
+  } catch (error) {
     let errCode = (error as BusinessError).code;
     let message = (error as BusinessError).message;
     console.error('unbindDevice fail. Code is ${errCode}, message is ${message}');

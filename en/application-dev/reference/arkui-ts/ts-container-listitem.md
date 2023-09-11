@@ -15,7 +15,9 @@ This component can contain a single child component.
 
 Since API version 9, this API is supported in ArkTS widgets.
 
-**API 1**: ListItem(value?: ListItemOptions)<sup>10+</sup>
+### ListItem<sup>10+</sup>
+
+ListItem(value?: ListItemOptions)
 
 **Parameters**
 
@@ -23,15 +25,17 @@ Since API version 9, this API is supported in ArkTS widgets.
 | ------ | --------------------------------------------- | ---- | ------------------------------------------------------------ |
 | value  | [ListItemOptions](#listitemoptions10) | No  | Value of the list item, containing the **style** parameter of the **ListItemStyle**enum type.|
 
-**API 2**: ListItem(value?: string)<sup>(deprecated)</sup>
+### ListItem<sup>(deprecated)</sup>
 
-This API is deprecated since API version 10. You are advised to use API 1 instead.
+ListItem(value?: string)
+
+This API is deprecated since API version 10. You are advised to use [ListItem<sup>10+</sup>](#listitem10) instead.
 
 **Parameters**
 
 | Name| Type                     | Mandatory| Description|
 | ------ | ----------------------------- | ---- | -------- |
-| value  | string<sup>(deprecated)</sup> | No  | N/A      |
+| value  | string | No  | N/A      |
 
 ## Attributes
 
@@ -85,7 +89,7 @@ For a list in horizontal layout, it refers to the delete item displayed below (o
 
 | Name | Type                                 | Mandatory| Description                                                        |
 | ----- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| style | [ListItemStyle](#listitemstyle10) | No  | Style of the list item.<br>Default value: **ListItemStyle.NONE**<br>If this parameter is set to **ListItemStyle.NONE**, no style is applied.<br>If this parameter is set to **ListItemStyle.CARD**, the default card style is applied, but only when **ListItemGroupStyle.CARD** is set for [\<ListItemGroup>](ts-container-listitemgroup.md).<br>In the default card style, the list item has a 48 vp height and 100% width. It can be in focus, hover, press, selected, or disable style depending on the state.<br>**NOTE**<br>In the default card style, the list has its **listDirection** attribute fixed at **Axis.Vertical** and **alignListItem** attribute at **ListItemAlign.Center**. |
+| style | [ListItemStyle](#listitemstyle10) | No  | Style of the list item.<br>Default value: **ListItemStyle.NONE**<br>If this parameter is set to **ListItemStyle.NONE**, no style is applied.<br>If this parameter is set to **ListItemStyle.CARD**, the default card style is applied, but only when **ListItemGroupStyle.CARD** is set for [\<ListItemGroup>](ts-container-listitemgroup.md).<br>In the default card style, the list item has a 48 vp height and 100% width. It can be in focus, hover, press, selected, or disable style depending on the state.<br>**NOTE**<br>In the default card style, the list has its **listDirection** attribute fixed at **Axis.Vertical** and **alignListItem** attribute at **ListItemAlign.Center**.|
 
 ## ListItemStyle<sup>10+</sup>
 
@@ -173,7 +177,7 @@ struct ListItemExample2 {
                   this.arr.splice(index, 1)
                 })
               },
-              actionAreaDistance: 80,
+              actionAreaDistance: 56,
               onEnterActionArea: () => {
                 this.enterEndDeleteAreaString = "enterEndDeleteArea"
                 this.exitEndDeleteAreaString = "not exitEndDeleteArea"

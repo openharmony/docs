@@ -80,8 +80,8 @@ insertFront(element: T): void
 
 ```ts
 class C1 {
-  name: string
-  age: string
+  name: string = ""
+  age: string = ""
 }
 let deque: Deque<string | number | boolean | Array<number> | C1> = new Deque();
 deque.insertFront("a");
@@ -119,8 +119,8 @@ insertEnd(element: T): void
 
 ```ts
 class C1 {
-  name: string
-  age: string
+  name: string = ""
+  age: string = ""
 }
 
 let deque: Deque<string | number | boolean | Array<number> | C1> = new Deque();
@@ -277,7 +277,7 @@ deque.insertFront(2);
 deque.insertEnd(4);
 deque.insertFront(5);
 deque.insertEnd(4);
-deque.forEach((value: number, index: number) => {
+deque.forEach((value: number, index?: number | undefined, deque?: Deque<number> | undefined):void => {
   console.log("value:" + value, "index:" + index);
 });
 ```
@@ -386,9 +386,9 @@ for (let item of nums) {
 
 // 使用方法二：
 let iter = deque[Symbol.iterator]();
-let temp = iter.next().value;
-while(temp != undefined) {
-  console.log("value:" + temp);
-  temp = iter.next().value;
+let temp:IteratorResult<number> = iter.next();
+while(!temp.done) {
+  console.log("value:" + temp.value);
+  temp = iter.next();
 }
 ```

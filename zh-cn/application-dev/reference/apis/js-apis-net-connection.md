@@ -74,7 +74,7 @@ getDefaultNet(callback: AsyncCallback\<NetHandle>): void
 **示例：**
 
 ```js
-connection.getDefaultNet(function (error, data) {
+connection.getDefaultNet(error: BusinessError, data: connection.NetHandle) => {
   console.log(JSON.stringify(error))
   console.log(JSON.stringify(data))
 })
@@ -108,7 +108,7 @@ getDefaultNet(): Promise\<NetHandle>
 **示例：**
 
 ```js
-connection.getDefaultNet().then(function (data) {
+connection.getDefaultNet().then((data: connection.NetHandle) => {
   console.log(JSON.stringify(data))
 })
 ```
@@ -172,7 +172,7 @@ getGlobalHttpProxy(callback: AsyncCallback\<HttpProxy>): void
 **示例：**
 
 ```js
-connection.getGlobalHttpProxy((error, data) => {
+connection.getGlobalHttpProxy((error: BusinessError, data: connection.HttpProxy) => {
   console.info(JSON.stringify(error));
   console.info(JSON.stringify(data));
 })
@@ -206,9 +206,9 @@ getGlobalHttpProxy(): Promise\<HttpProxy>;
 **示例：**
 
 ```js
-connection.getGlobalHttpProxy().then((data) => {
+connection.getGlobalHttpProxy().then((data: connection.HttpProxy) => {
   console.info(JSON.stringify(data));
-}).catch(error => {
+}).catch((error: BusinessError) => {
   console.info(JSON.stringify(error));
 })
 ```
@@ -246,14 +246,16 @@ setGlobalHttpProxy(httpProxy: HttpProxy, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
+
 let exclusionStr = "192.168,baidu.com"
 let exclusionArray = exclusionStr.split(',');
-let httpProxy = {
+let httpProxy: connection.HttpProxy = {
   host: "192.168.xx.xxx",
   port: 8080,
   exclusionList: exclusionArray
 }
-connection.setGlobalHttpProxy(httpProxy, (error) => {
+connection.setGlobalHttpProxy(httpProxy, (error: BusinessError) => {
   console.info(JSON.stringify(error));
 });
 ```
@@ -296,16 +298,18 @@ setGlobalHttpProxy(httpProxy: HttpProxy): Promise\<void>;
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
+
 let exclusionStr = "192.168,baidu.com"
 let exclusionArray = exclusionStr.split(',');
-let httpProxy = {
+let httpProxy: connection.HttpProxy = {
   host: "192.168.xx.xxx",
   port: 8080,
   exclusionList: exclusionArray
 }
 connection.setGlobalHttpProxy(httpProxy).then(() => {
   console.info("success");
-}).catch(error => {
+}).catch((error: BusinessError) => {
   console.info(JSON.stringify(error));
 })
 ```
@@ -336,7 +340,7 @@ getDefaultHttpProxy(callback: AsyncCallback\<HttpProxy>): void
 **示例：**
 
 ```js
-connection.getDefaultHttpProxy((error, data) => {
+connection.getDefaultHttpProxy((error: BusinessError, data: connection.HttpProxy) => {
   console.info(JSON.stringify(error));
   console.info(JSON.stringify(data));
 })
@@ -368,9 +372,9 @@ getDefaultHttpProxy(): Promise\<HttpProxy>;
 **示例：**
 
 ```js
-connection.getDefaultHttpProxy().then((data) => {
+connection.getDefaultHttpProxy().then((data: connection.HttpProxy) => {
   console.info(JSON.stringify(data));
-}).catch(error => {
+}).catch((error: BusinessError) => {
   console.info(JSON.stringify(error));
 })
 ```
@@ -400,7 +404,7 @@ getAppNet(callback: AsyncCallback\<NetHandle>): void
 **示例：**
 
 ```js
-connection.getAppNet(function (error, data) {
+connection.getAppNet((error: BusinessError, data: connection.NetHandle) => {
   console.log(JSON.stringify(error))
   console.log(JSON.stringify(data))
 })
@@ -431,9 +435,9 @@ getAppNet(): Promise\<NetHandle>;
 **示例：**
 
 ```js
-connection.getAppNet().then((data) => {
+connection.getAppNet().then((data: connection.NetHandle) => {
   console.info(JSON.stringify(data));
-}).catch(error => {
+}).catch((error: BusinessError) => {
   console.info(JSON.stringify(error));
 })
 ```
@@ -468,8 +472,8 @@ setAppNet(netHandle: NetHandle, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```js
-connection.getDefaultNet(function (error, netHandle) {
-  connection.setAppNet(netHandle, (error, data) => {
+connection.getDefaultNet((error: BusinessError, netHandle: connection.NetHandle) => {
+  connection.setAppNet(netHandle, (error: BusinessError, data: void) => {
     console.log(JSON.stringify(error))
     console.log(JSON.stringify(data))
   });
@@ -511,10 +515,10 @@ setAppNet(netHandle: NetHandle): Promise\<void>;
 **示例：**
 
 ```js
-connection.getDefaultNet().then(function (netHandle) {
+connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   connection.setAppNet(netHandle).then(() => {
     console.log("success")
-  }).catch(error => {
+  }).catch((error: BusinessError) => {
     console.log(JSON.stringify(error))
   })
 })
@@ -548,10 +552,10 @@ getAllNets(callback: AsyncCallback&lt;Array&lt;NetHandle&gt;&gt;): void
 **示例：**
 
 ```js
-connection.getAllNets(function (error, data) {
+connection.getAllNets((error: BusinessError, data: connection.NetHandle[]) => {
   console.log(JSON.stringify(error))
   console.log(JSON.stringify(data))
-});
+}); 
 ```
 
 ## connection.getAllNets<sup>8+</sup>
@@ -582,7 +586,7 @@ getAllNets(): Promise&lt;Array&lt;NetHandle&gt;&gt;
 **示例：**
 
 ```js
-connection.getAllNets().then(function (data) {
+connection.getAllNets().then((data: connection.NetHandle[]) => {
   console.log(JSON.stringify(data))
 });
 ```
@@ -617,8 +621,8 @@ getConnectionProperties(netHandle: NetHandle, callback: AsyncCallback\<Connectio
 **示例：**
 
 ```js
-connection.getDefaultNet().then(function (netHandle) {
-  connection.getConnectionProperties(netHandle, function (error, data) {
+connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
+  connection.getConnectionProperties(netHandle, (error: BusinessError, data: connection.ConnectionProperties) => {
     console.log(JSON.stringify(error))
     console.log(JSON.stringify(data))
   })
@@ -660,8 +664,8 @@ getConnectionProperties(netHandle: NetHandle): Promise\<ConnectionProperties>
 **示例：**
 
 ```js
-connection.getDefaultNet().then(function (netHandle) {
-  connection.getConnectionProperties(netHandle).then(function (data) {
+connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
+  connection.getConnectionProperties(netHandle).then((data: connection.ConnectionProperties) => {
     console.log(JSON.stringify(data))
   })
 })
@@ -697,8 +701,8 @@ getNetCapabilities(netHandle: NetHandle, callback: AsyncCallback\<NetCapabilitie
 **示例：**
 
 ```js
-connection.getDefaultNet().then(function (netHandle) {
-  connection.getNetCapabilities(netHandle, function (error, data) {
+connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
+  connection.getNetCapabilities(netHandle, (error: BusinessError, data: connection.NetCapabilities) => {
     console.log(JSON.stringify(error))
     console.log(JSON.stringify(data))
   })
@@ -740,8 +744,8 @@ getNetCapabilities(netHandle: NetHandle): Promise\<NetCapabilities>
 **示例：**
 
 ```js
-connection.getDefaultNet().then(function (netHandle) {
-  connection.getNetCapabilities(netHandle).then(function (data) {
+connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
+  connection.getNetCapabilities(netHandle).then((datadata: connection.NetCapabilities) => {
     console.log(JSON.stringify(data))
   })
 })
@@ -775,7 +779,7 @@ isDefaultNetMetered(callback: AsyncCallback\<boolean>): void
 **示例：**
 
 ```js
-connection.isDefaultNetMetered(function (error, data) {
+connection.isDefaultNetMetered((errorerror: BusinessError, data: boolean) => {
   console.log(JSON.stringify(error))
   console.log('data: ' + data)
 })
@@ -809,7 +813,7 @@ isDefaultNetMetered(): Promise\<boolean>
 **示例：**
 
 ```js
-connection.isDefaultNetMetered().then(function (data) {
+connection.isDefaultNetMetered().then((data: boolean) => {
   console.log('data: ' + data)
 })
 ```
@@ -842,7 +846,7 @@ hasDefaultNet(callback: AsyncCallback\<boolean>): void
 **示例：**
 
 ```js
-connection.hasDefaultNet(function (error, data) {
+connection.hasDefaultNet((error: BusinessError, data: boolean) => {
   console.log(JSON.stringify(error))
   console.log('data: ' + data)
 })
@@ -876,7 +880,7 @@ hasDefaultNet(): Promise\<boolean>
 **示例：**
 
 ```js
-connection.hasDefaultNet().then(function (data) {
+connection.hasDefaultNet().then((data: boolean) => {
   console.log('data: ' + data)
 })
 ```
@@ -912,7 +916,7 @@ enableAirplaneMode(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```js
-connection.enableAirplaneMode(function (error) {
+connection.enableAirplaneMode((error: BusinessError) => {
   console.log(JSON.stringify(error))
 })
 ```
@@ -948,7 +952,7 @@ enableAirplaneMode(): Promise\<void>
 **示例：**
 
 ```js
-connection.enableAirplaneMode().then(function (error) {
+connection.enableAirplaneMode().then((error: BusinessError) => {
   console.log(JSON.stringify(error))
 })
 ```
@@ -984,7 +988,7 @@ disableAirplaneMode(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```js
-connection.disableAirplaneMode(function (error) {
+connection.disableAirplaneMode((error: BusinessError) => {
   console.log(JSON.stringify(error))
 })
 ```
@@ -1020,7 +1024,7 @@ disableAirplaneMode(): Promise\<void>
 **示例：**
 
 ```js
-connection.disableAirplaneMode().then(function (error) {
+connection.disableAirplaneMode().then((error: BusinessError) => {
   console.log(JSON.stringify(error))
 })
 ```
@@ -1055,8 +1059,8 @@ reportNetConnected(netHandle: NetHandle, callback: AsyncCallback&lt;void&gt;): v
 **示例：**
 
 ```js
-connection.getDefaultNet().then(function (netHandle) {
-  connection.reportNetConnected(netHandle, function (error) {
+connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
+  connection.reportNetConnected(netHandle, (error: BusinessError) => {
     console.log(JSON.stringify(error))
   });
 });
@@ -1096,8 +1100,8 @@ reportNetConnected(netHandle: NetHandle): Promise&lt;void&gt;
 **示例：**
 
 ```js
-connection.getDefaultNet().then(function (netHandle) {
-  connection.reportNetConnected(netHandle).then(function () {
+connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
+  connection.reportNetConnected(netHandle).then(() => {
     console.log(`report success`)
   });
 });
@@ -1133,9 +1137,9 @@ reportNetDisconnected(netHandle: NetHandle, callback: AsyncCallback&lt;void&gt;)
 **示例：**
 
 ```js
-connection.getDefaultNet().then(function (netHandle) {
-  connection.reportNetDisconnected(netHandle, function (error) {
-    console.log(JSON.stringify(error))
+connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
+  connection.reportNetDisconnected(netHandle).then( () => {
+    console.log(`report success`)
   });
 });
 ```
@@ -1174,8 +1178,8 @@ reportNetDisconnected(netHandle: NetHandle): Promise&lt;void&gt;
 **示例：**
 
 ```js
-connection.getDefaultNet().then(function (netHandle) {
-  connection.reportNetDisconnected(netHandle).then(function () {
+connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
+  connection.reportNetDisconnected(netHandle).then( () => {
     console.log(`report success`)
   });
 });
@@ -1212,7 +1216,7 @@ getAddressesByName(host: string, callback: AsyncCallback\<Array\<NetAddress>>): 
 
 ```js
 let host = "xxxx";
-connection.getAddressesByName(host, function (error, data) {
+connection.getAddressesByName(host, (error: BusinessError, data: connection.NetAddress[]) => {
   console.log(JSON.stringify(error))
   console.log(JSON.stringify(data))
 })
@@ -1254,7 +1258,7 @@ getAddressesByName(host: string): Promise\<Array\<NetAddress>>
 
 ```js
 let host = "xxxx";
-connection.getAddressesByName(host).then(function (data) {
+connection.getAddressesByName(host).then((data: connection.NetAddress[]) => {
   console.log(JSON.stringify(data))
 })
 ```
@@ -1298,7 +1302,7 @@ register(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```js
-netConnection.register(function (error) {
+netConnection.register((error: BusinessError) => {
   console.log(JSON.stringify(error))
 })
 ```
@@ -1330,7 +1334,7 @@ unregister(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```js
-netConnection.unregister(function (error) {
+netConnection.unregister((error: BusinessError) => {
   console.log(JSON.stringify(error))
 })
 ```
@@ -1359,17 +1363,17 @@ on(type: 'netAvailable', callback: Callback\<NetHandle>): void
 let netCon = connection.createNetConnection()
 
 // 先使用register接口注册订阅事件
-netCon.register(function (error) {
+netCon.register((error: BusinessError) => {
   console.log(JSON.stringify(error))
 })
 
 // 订阅网络可用事件。调用register后，才能接收到此事件通知
-netCon.on('netAvailable', function (data) {
+netCon.on('netAvailable', (data: connection.NetHandle) => {
   console.log(JSON.stringify(data))
 })
 
 // 使用unregister接口取消订阅
-netCon.unregister(function (error) {
+netCon.unregister((error: BusinessError) => {
   console.log(JSON.stringify(error))
 })
 ```
@@ -1398,24 +1402,24 @@ on(type: 'netBlockStatusChange', callback: Callback&lt;{ netHandle: NetHandle, b
 let netCon = connection.createNetConnection()
 
 // 先使用register接口注册订阅事件
-netCon.register(function (error) {
+netCon.register((error: BusinessError) => {
   console.log(JSON.stringify(error))
 })
 
 // 订阅网络阻塞状态事件。调用register后，才能接收到此事件通知
-netCon.on('netBlockStatusChange', function (data) {
+netCon.on('netBlockStatusChange', (data: object) => {
   console.log(JSON.stringify(data))
 })
 
 // 使用unregister接口取消订阅
-netCon.unregister(function (error) {
+netCon.unregister((error: BusinessError) => {
   console.log(JSON.stringify(error))
 })
 ```
 
 ### on('netCapabilitiesChange')<sup>8+</sup>
 
-on(type: 'netCapabilitiesChange', callback: Callback<NetCapabilityInfo>): void
+on(type: 'netCapabilitiesChange', callback: Callback\<NetCapabilityInfo>): void
 
 订阅网络能力变化事件。
 
@@ -1437,17 +1441,17 @@ on(type: 'netCapabilitiesChange', callback: Callback<NetCapabilityInfo>): void
 let netCon = connection.createNetConnection()
 
 // 先使用register接口注册订阅事件
-netCon.register(function (error) {
+netCon.register((error: BusinessError) => {
   console.log(JSON.stringify(error))
 })
 
 // 订阅网络能力变化事件。调用register后，才能接收到此事件通知
-netCon.on('netCapabilitiesChange', function (data) {
+netCon.on('netCapabilitiesChange', (data: connection.NetCapabilityInfo) => {
   console.log(JSON.stringify(data))
 })
 
-// 使用unregister接口取消订阅
-netCon.unregister(function (error) {
+  // 使用unregister接口取消订阅
+netCon.unregister((error: BusinessError) => {
   console.log(JSON.stringify(error))
 })
 ```
@@ -1477,17 +1481,17 @@ ConnectionProperties }>): void
 let netCon = connection.createNetConnection()
 
 // 先使用register接口注册订阅事件
-netCon.register(function (error) {
+netCon.register((error: BusinessError) => {
   console.log(JSON.stringify(error))
 })
 
 // 订阅网络连接信息变化事件。调用register后，才能接收到此事件通知
-netCon.on('netConnectionPropertiesChange', function (data) {
+netCon.on('netConnectionPropertiesChange', (data: object) => {
   console.log(JSON.stringify(data))
 })
 
 // 使用unregister接口取消订阅
-netCon.unregister(function (error) {
+netCon.unregister((error: BusinessError) => {
   console.log(JSON.stringify(error))
 })
 ```
@@ -1516,17 +1520,17 @@ on(type: 'netLost', callback: Callback\<NetHandle>): void
 let netCon = connection.createNetConnection()
 
 // 先使用register接口注册订阅事件
-netCon.register(function (error) {
+netCon.register((error: BusinessError) => {
   console.log(JSON.stringify(error))
 })
 
 // 订阅网络丢失事件。调用register后，才能接收到此事件通知
-netCon.on('netLost', function (data) {
+netCon.on('netLost', (data: connection.NetHandle) => {
   console.log(JSON.stringify(data))
 })
 
 // 使用unregister接口取消订阅
-netCon.unregister(function (error) {
+netCon.unregister((error: BusinessError) => {
   console.log(JSON.stringify(error))
 })
 ```
@@ -1555,17 +1559,17 @@ on(type: 'netUnavailable', callback: Callback\<void>): void
 let netCon = connection.createNetConnection()
 
 // 先使用register接口注册订阅事件
-netCon.register(function (error) {
+netCon.register((error: BusinessError) => {
   console.log(JSON.stringify(error))
 })
 
 // 订阅网络不可用事件。调用register后，才能接收到此事件通知
-netCon.on('netUnavailable', function (data) {
+netCon.on('netUnavailable', (data: void) => {
   console.log(JSON.stringify(data))
 })
 
 // 使用unregister接口取消订阅
-netCon.unregister(function (error) {
+netCon.unregister((error: BusinessError) => {
   console.log(JSON.stringify(error))
 })
 ```
@@ -1613,19 +1617,23 @@ bindSocket(socketParam: TCPSocket \| UDPSocket, callback: AsyncCallback\<void>):
 ```js
 import socket from "@ohos.net.socket";
 
-connection.getDefaultNet().then((netHandle) => {
-  var tcp = socket.constructTCPSocketInstance();
-  var udp = socket.constructUDPSocketInstance();
+class DeviceInfo{
+  address: '192.168.xx.xxx'
+  port: 8080
+  family: 1
+}
+
+connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
+  let tcp = socket.constructTCPSocketInstance();
+  let udp = socket.constructUDPSocketInstance();
   let socketType = "TCPSocket";
   if (socketType == "TCPSocket") {
-    tcp.bind({
-      address: '192.168.xx.xxx', port: 8080, family: 1
-    }, error => {
+    tcp.bind(new DeviceInfo(), (error: BusinessError) => {
       if (error) {
         console.log('bind fail');
         return;
       }
-      netHandle.bindSocket(tcp, (error, data) => {
+      netHandle.bindSocket(tcp, (error: BusinessError, data: void) => {
         if (error) {
           console.log(JSON.stringify(error));
         } else {
@@ -1634,21 +1642,19 @@ connection.getDefaultNet().then((netHandle) => {
       })
     })
   } else {
-    let callback = value => {
+    let callback: void = value:String => {
       console.log("on message, message:" + value.message + ", remoteInfo:" + value.remoteInfo);
     }
     udp.on('message', callback);
-    udp.bind({
-      address: '192.168.xx.xxx', port: 8080, family: 1
-    }, error => {
+    udp.bind(new DeviceInfo(), (error: BusinessError) => {
       if (error) {
         console.log('bind fail');
         return;
       }
-      udp.on('message', (data) => {
+      udp.on('message', (data: string) => {
         console.log(JSON.stringify(data))
       });
-      netHandle.bindSocket(udp, (error, data) => {
+      netHandle.bindSocket(udp, (error: BusinessError, data: void) => {
         if (error) {
           console.log(JSON.stringify(error));
         } else {
@@ -1693,43 +1699,44 @@ bindSocket(socketParam: TCPSocket \| UDPSocket): Promise\<void>;
 
 ```js
 import socket from "@ohos.net.socket";
+class DeviceInfo{
+  address: '192.168.xx.xxx'
+  port: 8080
+  family: 1
+}
 
-connection.getDefaultNet().then((netHandle) => {
-  var tcp = socket.constructTCPSocketInstance();
-  var udp = socket.constructUDPSocketInstance();
+connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
+  let tcp = socket.constructTCPSocketInstance();
+  let udp = socket.constructUDPSocketInstance();
   let socketType = "TCPSocket";
   if (socketType == "TCPSocket") {
-    tcp.bind({
-      address: '192.168.xx.xxx', port: 8080, family: 1
-    }, error => {
+    tcp.bind(new DeviceInfo(), (error: BusinessError) => {
       if (error) {
         console.log('bind fail');
         return;
       }
-      netHandle.bindSocket(tcp).then((data) => {
+      netHandle.bindSocket(tcp).then((data: void) => {
         console.log(JSON.stringify(data));
-      }).catch(error => {
+      }).catch((error: BusinessError) => {
         console.log(JSON.stringify(error));
       })
     })
   } else {
-    let callback = value => {
+    let callback: void = value: String => {
       console.log("on message, message:" + value.message + ", remoteInfo:" + value.remoteInfo);
     }
     udp.on('message', callback);
-    udp.bind({
-      address: '192.168.xx.xxx', port: 8080, family: 1
-    }, error => {
+    udp.bind(new DeviceInfo(), (error: BusinessError) => {
       if (error) {
         console.log('bind fail');
         return;
       }
-      udp.on('message', (data) => {
+      udp.on('message', (data: string) => {
         console.log(JSON.stringify(data));
       })
-      netHandle.bindSocket(udp).then((data) => {
+      netHandle.bindSocket(udp).then((data: void) => {
         console.log(JSON.stringify(data));
-      }).catch(error => {
+      }).catch((error: BusinessError) => {
         console.log(JSON.stringify(error));
       })
     })
@@ -1767,9 +1774,9 @@ getAddressesByName(host: string, callback: AsyncCallback\<Array\<NetAddress>>): 
 **示例：**
 
 ```js
-connection.getDefaultNet().then(function (netHandle) {
+connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   let host = "xxxx";
-  netHandle.getAddressesByName(host, function (error, data) {
+  netHandle.getAddressesByName(host, (error: BusinessError, data: connection.NetAddress[]) => {
     console.log(JSON.stringify(error))
     console.log(JSON.stringify(data))
   })
@@ -1811,9 +1818,9 @@ getAddressesByName(host: string): Promise\<Array\<NetAddress>>
 **示例：**
 
 ```js
-connection.getDefaultNet().then(function (netHandle) {
+connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   let host = "xxxx";
-  netHandle.getAddressesByName(host).then(function (data) {
+  netHandle.getAddressesByName(host).then((data: connection.NetAddress[]) => {
     console.log(JSON.stringify(data))
   })
 })
@@ -1849,13 +1856,13 @@ getAddressByName(host: string, callback: AsyncCallback\<NetAddress>): void
 **示例：**
 
 ```js
-connection.getDefaultNet().then(function (netHandle) {
+connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   let host = "xxxx";
-  netHandle.getAddressByName(host, function (error, data) {
+  netHandle.getAddressByName(host, (error: BusinessError, data: connection.NetAddress) => {
     console.log(JSON.stringify(error))
     console.log(JSON.stringify(data))
   })
-})
+}) 
 ```
 
 ### getAddressByName<sup>8+</sup>
@@ -1893,9 +1900,9 @@ getAddressByName(host: string): Promise\<NetAddress>
 **示例：**
 
 ```js
-connection.getDefaultNet().then(function (netHandle) {
+connection.getDefaultNet().then((netHandle: connection.NetHandl) => {
   let host = "xxxx";
-  netHandle.getAddressByName(host).then(function (data) {
+  netHandle.getAddressByName(host).then((data: connection.NetAddress) => {
     console.log(JSON.stringify(data))
   })
 })
@@ -1969,8 +1976,8 @@ connection.getDefaultNet().then(function (netHandle) {
 
 | 名称                  | 类型                                | 必填 | 说明                     |
 | --------------------- | ---------------------------------- | --- | ------------------------ |
-| linkUpBandwidthKbps   | number                             |  否 |  上行（设备到网络）带宽。  |
-| linkDownBandwidthKbps | number                             |  否 |  下行（网络到设备）带宽。   |
+| linkUpBandwidthKbps   | number                             |  否 |  上行（设备到网络）带宽，0表示无法评估当前网络带宽。  |
+| linkDownBandwidthKbps | number                             |  否 |  下行（网络到设备）带宽，0表示无法评估当前网络带宽。   |
 | networkCap            | Array\<[NetCap](#netcap)>           |  否 |  网络具体能力。           |
 | bearerTypes           | Array\<[NetBearType](#netbeartype)> |  是 |  网络类型。               |
 

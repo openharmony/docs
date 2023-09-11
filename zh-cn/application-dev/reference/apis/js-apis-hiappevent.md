@@ -10,7 +10,7 @@
 
 ## 导入模块
 
-```js
+```ts
 import hiAppEvent from '@ohos.hiAppEvent';
 ```
 
@@ -64,16 +64,21 @@ write(eventName: string, eventType: EventType, keyValues: object, callback: Asyn
 
 **示例：**
 
-```js
-hiAppEvent.write("test_event", hiAppEvent.EventType.FAULT, {"int_data":100, "str_data":"strValue"}, (err, value) => {
-    if (err) {
-        // 事件写入异常：事件存在异常参数时忽略异常参数后继续写入，或者事件校验失败时不执行写入
-        console.error(`failed to write event because ${err.code}`);
-        return;
-    }
+```ts
+import { BusinessError } from '@ohos.base'
 
-    // 事件写入正常
-    console.log(`success to write event: ${value}`);
+let eventParams: Record<string, number | string> = {
+  "int_data": 100,
+  "str_data": "strValue",
+};
+hiAppEvent.write("test_event", hiAppEvent.EventType.FAULT, eventParams, (err: BusinessError) => {
+  if (err) {
+    // 事件写入异常：事件存在异常参数时忽略异常参数后继续写入，或者事件校验失败时不执行写入
+    console.error(`failed to write event, code=${err.code}`);
+    return;
+  }
+  // 事件写入正常
+  console.log(`success to write event`);
 });
 ```
 
@@ -102,15 +107,20 @@ write(eventName: string, eventType: EventType, keyValues: object): Promise&lt;vo
 
 **示例：**
 
-```js
-hiAppEvent.write("test_event", hiAppEvent.EventType.FAULT, {"int_data":100, "str_data":"strValue"})
-    .then((value) => {
-        // 事件写入正常
-        console.log(`success to write event: ${value}`);
-    }).catch((err) => {
-        // 事件写入异常：事件存在异常参数时忽略异常参数后继续写入，或者事件校验失败时不执行写入
-        console.error(`failed to write event because ${err.code}`);
-    });
+```ts
+import { BusinessError } from '@ohos.base'
+
+let eventParams: Record<string, number | string> = {
+  "int_data": 100,
+  "str_data": "strValue",
+};
+hiAppEvent.write("test_event", hiAppEvent.EventType.FAULT, eventParams).then(() => {
+  // 事件写入正常
+  console.log(`success to write event`);
+}).catch((err: BusinessError) => {
+  // 事件写入异常：事件存在异常参数时忽略异常参数后继续写入，或者事件校验失败时不执行写入
+  console.error(`failed to write event, code=${err.code}`);
+});
 ```
 
 ## hiAppEvent.configure
@@ -135,16 +145,18 @@ configure(config: ConfigOption): boolean
 
 **示例：**
 
-```js
+```ts
 // 配置应用事件打点功能开关
-hiAppEvent.configure({
-    disable: true
-});
+let config1: hiAppEvent.ConfigOption = {
+  disable: true,
+};
+hiAppEvent.configure(config1);
 
 // 配置事件文件目录存储限额大小
-hiAppEvent.configure({
-    maxStorage: '100M'
-});
+let config2: hiAppEvent.ConfigOption = {
+  maxStorage: '100M',
+};
+hiAppEvent.configure(config2);
 ```
 
 ## ConfigOption

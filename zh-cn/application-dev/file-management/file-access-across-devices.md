@@ -15,6 +15,7 @@
    ```ts
    import fs from '@ohos.file.fs';
    import common from '@ohos.app.ability.common';
+   import { BusinessError } from '@ohos.base';
 
    let context = getContext(this) as common.UIAbilityContext; // 获取设备A的UIAbilityContext信息
    let pathDir: string = context.distributedFilesDir;
@@ -41,6 +42,7 @@
    import fs from '@ohos.file.fs';
    import common from '@ohos.app.ability.common';
    import buffer from '@ohos.buffer';
+   import { BusinessError } from '@ohos.base';
    
    let context = getContext(this) as common.UIAbilityContext; // 获取设备B的UIAbilityContext信息
    let pathDir: string = context.distributedFilesDir;
@@ -53,9 +55,13 @@
      // 定义接收读取数据的缓存
      let arrayBuffer = new ArrayBuffer(4096);
      // 读取文件的内容，返回值是读取到的字节个数
-     let num = fs.readSync(file.fd, arrayBuffer, {
-       offset: 0
-     });
+     class Option {
+        public offset: number = 0;
+        public length: number = 0;
+     }
+     let option = new Option();
+     option.length = arrayBuffer.byteLength;
+     let num = fs.readSync(file.fd, arrayBuffer, option);
      // 打印读取到的文件数据
      let buf = buffer.from(arrayBuffer, 0, num);
      console.info('read result: ' + buf.toString());

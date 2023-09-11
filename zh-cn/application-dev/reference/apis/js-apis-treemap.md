@@ -302,7 +302,7 @@ treeMap.set("sparrow", 356);
 let map : TreeMap<string, number> = new TreeMap();
 map.set("demo", 12);
 map.setAll(treeMap); // 将treeMap中的所有元素添加到map中
-map.forEach((value : number, key : string) : void => {
+map.forEach((value ?: number, key ?: string) : void => {
   console.log("value" + value, "key" + key); // 打印结果 12 demo、356 sparrow、123 squirrel
 })
 ```
@@ -553,9 +553,9 @@ let treeMap : TreeMap<string, number> = new TreeMap();
 treeMap.set("squirrel", 123);
 treeMap.set("sparrow", 356);
 let it = treeMap.values();
-let t = it.next();
+let t: IteratorResult<number> = it.next();
 while(!t.done) {
-  console.log(t.value);
+  console.log("TreeMap" + t.value);
   t = it.next()
 }
 ```
@@ -590,9 +590,9 @@ let treeMap : TreeMap<string, number> = new TreeMap();
 treeMap.set("squirrel", 123);
 treeMap.set("sparrow", 356);
 let it = treeMap.values();
-let t = it.next();
+let t: IteratorResult<number> = it.next();
 while(!t.done) {
-  console.log(t.value);
+  console.log("TreeMap" + t.value);
   t = it.next()
 }
 ```
@@ -634,7 +634,7 @@ callbackFn的参数说明：
 let treeMap : TreeMap<string, number> = new TreeMap();
 treeMap.set("sparrow", 123);
 treeMap.set("gull", 357);
-treeMap.forEach((value : number, key : string) : void => {
+treeMap.forEach((value ?: number, key ?: string) : void => {
   console.log("value:" + value, "key:" + key);
 });
 ```
@@ -669,9 +669,9 @@ let treeMap : TreeMap<string, number> = new TreeMap();
 treeMap.set("squirrel", 123);
 treeMap.set("sparrow", 356);
 let it = treeMap.entries();
-let t = it.next();
+let t: IteratorResult<Object[]> = it.next();
 while(!t.done) {
-  console.log(t.value);
+  console.log("TreeMap" + t.value);
   t = it.next()
 }
 ```
@@ -707,14 +707,14 @@ treeMap.set("sparrow", 356);
 
 // 使用方法一：
 let it = treeMap.entries();
-let t = it.next();
+let t: IteratorResult<Object[]> = it.next();
 while(!t.done) {
-  console.log(t.value);
+  console.log("TreeMap" + t.value);
   t = it.next()
 
 // 使用方法二：
 let iter = treeMap[Symbol.iterator]();
-let temp = iter.next().value;
+let temp: IteratorResult<Object[]> = iter.next().value;
 while(temp != undefined) {
   console.log("key:" + temp[0]);
   console.log("value:" + temp[1]);

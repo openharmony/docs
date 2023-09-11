@@ -126,7 +126,7 @@ this.b.a.c = 5
 ```ts
 @Observed
 class DateClass extends Date {
-  constructor(args: any) {
+  constructor(args: number | string) {
     super(args)
   }
 }
@@ -343,10 +343,10 @@ struct ViewB {
   build() {
     Column() {
       ForEach(this.arrA,
-        (item) => {
+        (item: ClassA) => {
           ViewA({ label: `#${item.id}`, a: item })
         },
-        (item) => item.id.toString()
+        (item: ClassA): string => item.id.toString()
       )
       // 使用@State装饰的数组的数组项初始化@ObjectLink，其中数组项是被@Observed装饰的ClassA的实例
       ViewA({ label: `ViewA this.arrA[first]`, a: this.arrA[0] })
@@ -419,11 +419,11 @@ struct ItemPage {
         .width(100).height(100)
 
       ForEach(this.itemArr,
-        item => {
+        (item: string | Resource) => {
           Text(item)
             .width(100).height(100)
         },
-        item => item
+        (item: string) => item
       )
     }
   }
@@ -439,14 +439,14 @@ struct IndexPage {
       ItemPage({ itemArr: this.arr[0] })
       ItemPage({ itemArr: this.arr[1] })
       ItemPage({ itemArr: this.arr[2] })
-
       Divider()
 
+
       ForEach(this.arr,
-        itemArr => {
+        (itemArr: StringArray) => {
           ItemPage({ itemArr: itemArr })
         },
-        itemArr => itemArr[0]
+        (itemArr: string) => itemArr[0]
       )
 
       Divider()
@@ -454,7 +454,7 @@ struct IndexPage {
       Button('update')
         .onClick(() => {
           console.error('Update all items in arr');
-          if (this.arr[0][0] !== undefined) {
+          if ((this.arr[0] as Array<String>)[0] !== undefined) {
             // 正常情况下需要有一个真实的ID来与ForEach一起使用，但此处没有
             // 因此需要确保推送的字符串是唯一的。
             this.arr[0].push(`${this.arr[0].slice(-1).pop()}${this.arr[0].slice(-1).pop()}`);

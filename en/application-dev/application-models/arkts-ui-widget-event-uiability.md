@@ -5,6 +5,10 @@ On the widget page, the **postCardAction** API can be used to trigger a router o
 
 ## Updating Widget Content Through the router Event
 
+> **NOTE**
+>
+> This topic describes development for dynamic widgets. For static widgets, see [FormLink](../../application-dev/reference/arkui-ts/ts-container-formlink.md).
+
 - On the widget page, register the **onClick** event callback of the button and call the **postCardAction** API in the callback to trigger the router event to the FormExtensionAbility.
   
   ```ts
@@ -108,7 +112,7 @@ On the widget page, the **postCardAction** API can be used to trigger a router o
    };
    ```
 
-- On the widget page, register the **onClick** event callback of the button and call the **postCardAction** API in the callback to trigger the event to the UIAbility.
+- On the widget page, register the **onClick** event callback of the button and call the **postCardAction** API in the callback to trigger the event to start the UIAbility.
   
   ```ts
   let storage = new LocalStorage();

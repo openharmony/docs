@@ -142,23 +142,24 @@ AppStorage是单例，它的所有API都是静态的，使用方法类似于中L
 
 
 ```ts
-AppStorage.SetOrCreate('PropA', 47);
+AppStorage.setOrCreate('PropA', 47);
 
-let storage: LocalStorage = new LocalStorage({ 'PropA': 17 });
-let propA: number = AppStorage.Get('PropA') // propA in AppStorage == 47, propA in LocalStorage == 17
-var link1: SubscribedAbstractProperty<number> = AppStorage.Link('PropA'); // link1.get() == 47
-var link2: SubscribedAbstractProperty<number> = AppStorage.Link('PropA'); // link2.get() == 47
-var prop: SubscribedAbstractProperty<number> = AppStorage.Prop('PropA'); // prop.get() = 47
+let storage: LocalStorage = new LocalStorage();
+storage['PropA'] = 17;
+let propA: number | undefined = AppStorage.get('PropA') // propA in AppStorage == 47, propA in LocalStorage == 17
+let link1: SubscribedAbstractProperty<number> = AppStorage.link('PropA'); // link1.get() == 47
+let link2: SubscribedAbstractProperty<number> = AppStorage.link('PropA'); // link2.get() == 47
+let prop: SubscribedAbstractProperty<number> = AppStorage.prop('PropA'); // prop.get() = 47
 
 link1.set(48); // two-way sync: link1.get() == link2.get() == prop.get() == 48
 prop.set(1); // one-way sync: prop.get()=1; but link1.get() == link2.get() == 48
 link1.set(49); // two-way sync: link1.get() == link2.get() == prop.get() == 49
 
-storage.get('PropA') // == 17 
+storage.get<number>('PropA') // == 17
 storage.set('PropA', 101);
-storage.get('PropA') // == 101
+storage.get<number>('PropA') // == 101
 
-AppStorage.Get('PropA') // == 49
+AppStorage.get<number>('PropA') // == 49
 link1.get() // == 49
 link2.get() // == 49
 prop.get() // == 49
@@ -171,8 +172,9 @@ prop.get() // == 49
 
 
 ```ts
-AppStorage.SetOrCreate('PropA', 47);
-let storage = new LocalStorage({ 'PropA': 48 });
+AppStorage.setOrCreate('PropA', 47);
+let storage = new LocalStorage();
+storage['PropA'] = 48;
 
 @Entry(storage)
 @Component
@@ -242,8 +244,13 @@ struct Gallery2 {
 export struct TapImage {
   @StorageLink('tapIndex') @Watch('onTapIndexChange') tapIndex: number = -1;
   @State tapColor: Color = Color.Black;
-  private index: number;
-  private uri: Resource;
+  private index: number = 0;
+  private uri: Resource = {
+    id: 0,
+    type: 0,
+    moduleName: "",
+    bundleName: ""
+  };
 
   // 判断是否被选中
   onTapIndexChange() {
@@ -313,9 +320,9 @@ struct Gallery2 {
             if (this.preIndex === item.id) {
               return
             }
-            var innerEvent = { eventId: item.id }
+            let innerEvent: emitter.InnerEvent = { eventId: item.id }
             // 选中态：黑变红
-            var eventData = {
+            let eventData: emitter.EventData = {
               data: {
                 "colorTag": 1
               }
@@ -324,9 +331,9 @@ struct Gallery2 {
 
             if (this.preIndex != -1) {
               console.info(`preIndex: ${this.preIndex}, index: ${item.id}, black`)
-              var innerEvent = { eventId: this.preIndex }
+              let innerEvent: emitter.InnerEvent = { eventId: this.preIndex }
               // 取消选中态：红变黑
-              var eventData = {
+              let eventData: emitter.EventData = {
                 data: {
                   "colorTag": 0
                 }
@@ -335,7 +342,6 @@ struct Gallery2 {
             }
             this.preIndex = item.id
           })
-
         }, (item: ViewData) => JSON.stringify(item))
       }.columnsTemplate('1fr 1fr')
     }
@@ -346,17 +352,26 @@ struct Gallery2 {
 @Component
 export struct TapImage {
   @State tapColor: Color = Color.Black;
-  private index: number;
-  private uri: Resource;
+  private index: number = 0;
+  private uri: Resource = {
+    id: 0,
+    type: 0,
+    moduleName: "",
+    bundleName: ""
+  };
 
   onTapIndexChange(colorTag: emitter.EventData) {
-    this.tapColor = colorTag.data.colorTag ? Color.Red : Color.Black
+    if (colorTag.data != null) {
+      this.tapColor = colorTag.data.colorTag ? Color.Red : Color.Black
+    }
   }
 
   aboutToAppear() {
     //定义事件ID
-    var innerEvent = { eventId: this.index }
-    emitter.on(innerEvent, this.onTapIndexChange.bind(this))
+    let innerEvent: emitter.InnerEvent = { eventId: this.index }
+    emitter.on(innerEvent, data => {
+    this.onTapIndexChange(data)
+    })
   }
 
   build() {
@@ -414,8 +429,13 @@ struct Gallery2 {
 export struct TapImage {
   @StorageLink('tapIndex') tapIndex: number = -1;
   @State tapColor: Color = Color.Black;
-  private index: number;
-  private uri: Resource;
+  private index: number = 0;
+  private uri: Resource = {
+    id: 0,
+    type: 0,
+    moduleName: "",
+    bundleName: ""
+  };
 
   build() {
     Column() {
@@ -440,9 +460,9 @@ export struct TapImage {
 
 AppStorage与[PersistentStorage](arkts-persiststorage.md)以及[Environment](arkts-environment.md)配合使用时，需要注意以下几点：
 
-- 在AppStorage中创建属性后，调用PersistentStorage.PersistProp()接口时，会使用在AppStorage中已经存在的值，并覆盖PersistentStorage中的同名属性，所以建议要使用相反的调用顺序，反例可见[在PersistentStorage之前访问AppStorage中的属性](arkts-persiststorage.md#在persistentstorage之前访问appstorage中的属性)；
+- 在AppStorage中创建属性后，调用PersistentStorage.persistProp()接口时，会使用在AppStorage中已经存在的值，并覆盖PersistentStorage中的同名属性，所以建议要使用相反的调用顺序，反例可见[在PersistentStorage之前访问AppStorage中的属性](arkts-persiststorage.md#在persistentstorage之前访问appstorage中的属性)；
 
-- 如果在AppStorage中已经创建属性后，再调用Environment.EnvProp()创建同名的属性，会调用失败。因为AppStorage已经有同名属性，Environment环境变量不会再写入AppStorage中，所以建议AppStorage中属性不要使用Environment预置环境变量名。
+- 如果在AppStorage中已经创建属性后，再调用Environment.envProp()创建同名的属性，会调用失败。因为AppStorage已经有同名属性，Environment环境变量不会再写入AppStorage中，所以建议AppStorage中属性不要使用Environment预置环境变量名。
 
 - 状态装饰器装饰的变量，改变会引起UI的渲染更新，如果改变的变量不是用于UI更新，只是用于消息传递，推荐使用 emitter方式。例子可见[以持久化方式订阅某个事件并接收事件回调](#以持久化方式订阅某个事件并接收事件回调)。
 <!--no_check-->
