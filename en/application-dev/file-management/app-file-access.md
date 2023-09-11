@@ -8,29 +8,29 @@ You can use [ohos.file.fs](../reference/apis/js-apis-file-fs.md) to implement ac
 
 **Table 1** APIs for basic application file operations
 
-| API| Description| Type| Synchronous Programming| Asynchronous Programming|
+| API| Description| Type| Synchronous Programming| Asynchronous Programming| 
 | -------- | -------- | -------- | -------- | -------- |
-| access | Checks whether a file exists.| Method| √ | √ |
-| close | Closes a file.| Method| √ | √ |
-| copyFile | Copies a file.| Method| √ | √ |
-| createStream | Creates a stream based on the specified file path.| Method| √ | √ |
-| listFile | Lists all files in a directory.| Method| √ | √ |
-| mkdir | Creates a directory.| Method| √ | √ |
-| moveFile | Moves a file.| Method| √ | √ |
-| open | Opens a file.| Method| √ | √ |
-| read | Reads data from a file.| Method| √ | √ |
-| rename | Renames a file or folder.| Method| √ | √ |
-| rmdir | Deletes a directory.| Method| √ | √ |
-| stat | Obtains detailed file information.| Method| √ | √ |
-| unlink | Deletes a single file.| Method| √ | √ |
-| write | Writes data to a file.| Method| √ | √ |
-| Stream.close | Closes a stream.| Method| √ | √ |
-| Stream.flush | Flushes all data from this stream.| Method| √ | √ |
-| Stream.write | Writes data to a stream.| Method| √ | √ |
-| Stream.read | Reads data from a stream.| Method| √ | √ |
-| File.fd | Defines a file descriptor.| Attribute| √ | × |
-| OpenMode | Defines the mode for opening a file.| Attribute| √ | × |
-| Filter | Defines the options for setting the file filter.| Type| × | × |
+| access | Checks whether a file exists.| Method| √ | √ | 
+| close | Closes a file.| Method| √ | √ | 
+| copyFile | Copies a file.| Method| √ | √ | 
+| createStream | Creates a stream based on the specified file path.| Method| √ | √ | 
+| listFile | Lists all files in a directory.| Method| √ | √ | 
+| mkdir | Creates a directory.| Method| √ | √ | 
+| moveFile | Moves a file.| Method| √ | √ | 
+| open | Opens a file.| Method| √ | √ | 
+| read | Reads data from a file.| Method| √ | √ | 
+| rename | Renames a file or folder.| Method| √ | √ | 
+| rmdir | Deletes a directory.| Method| √ | √ | 
+| stat | Obtains detailed file information.| Method| √ | √ | 
+| unlink | Deletes a single file.| Method| √ | √ | 
+| write | Writes data to a file.| Method| √ | √ | 
+| Stream.close | Closes a stream.| Method| √ | √ | 
+| Stream.flush | Flushes all data from this stream.| Method| √ | √ | 
+| Stream.write | Writes data to a stream.| Method| √ | √ | 
+| Stream.read | Reads data from a stream.| Method| √ | √ | 
+| File.fd | Defines a file descriptor.| Attribute| √ | × | 
+| OpenMode | Defines the mode for opening a file.| Attribute| √ | × | 
+| Filter | Defines the options for setting the file filter.| Type| × | × | 
 
 ## Development Example
 
@@ -52,7 +52,7 @@ import buffer from '@ohos.buffer';
 let context = getContext(this) as common.UIAbilityContext;
 let filesDir = context.filesDir;
 
-function createFile() {
+function createFile(): void {
     // Create a file and open it.
   let file = fs.openSync(filesDir + '/test.txt', fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
   // Write data to the file.
@@ -62,7 +62,7 @@ function createFile() {
   let arrayBuffer = new ArrayBuffer(1024);
   class Option {
     public offset: number = 0;
-    public length: number;
+    public length: number = 0;
   }
   let option = new Option();
   option.length = arrayBuffer.byteLength;
@@ -76,7 +76,7 @@ function createFile() {
 
 ### Copying Data to Another File
 
-  The following example demonstrates how to read data from a file and write it to another file.
+The following example demonstrates how to read data from a file and write it to another file.
 
 ```ts
 // pages/xxx.ets
@@ -87,7 +87,7 @@ import common from '@ohos.app.ability.common';
 let context = getContext(this) as common.UIAbilityContext;
 let filesDir = context.filesDir;
 
-function readWriteFile() {
+function readWriteFile(): void {
   // Open the source and destination files.
   let srcFile = fs.openSync(filesDir + '/test.txt', fs.OpenMode.READ_WRITE);
   let destFile = fs.openSync(filesDir + '/destFile.txt', fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
@@ -131,7 +131,7 @@ import common from '@ohos.app.ability.common';
 let context = getContext(this) as common.UIAbilityContext;
 let filesDir = context.filesDir;
 
-async function readWriteFileWithStream() {
+async function readWriteFileWithStream(): Promise<void> {
   // Open the file streams.
   let inputStream = fs.createStreamSync(filesDir + '/test.txt', 'r+');
   let outputStream = fs.createStreamSync(filesDir + '/destFile.txt', "w+");
@@ -178,11 +178,11 @@ let context = getContext(this) as common.UIAbilityContext;
 let filesDir = context.filesDir;
 
 // List files that meet the specified conditions.
-function getListFile() {
+function getListFile(): void {
   class ListFileOption {
     public recursion: boolean = false;
     public listNum: number = 0;
-    public filter: Filter
+    public filter: Filter = {};
   }
   let option = new ListFileOption();
   option.filter.suffix = ['.png', '.jpg', '.txt'];          // The file name extension can be '.png', '.jpg', or '.txt'.
