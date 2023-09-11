@@ -28,113 +28,111 @@ The **xml** module provides the **XmlPullParser** class to parse XML files. The 
 ## Parsing XML Tags and Tag Values
 
 1. Import the modules.
-   
-   ```js
-   import xml from '@ohos.xml';
-   import util from '@ohos.util'; // Use the API provided by the util module to encode the file.
-   ```
+
+    ```ts
+    import xml from '@ohos.xml';
+    import util from '@ohos.util'; // Use the API provided by the util module to encode the file.
+    ```
 
 2. Create an **XmlPullParser** object.
 
    The **XmlPullParser** object can be created based on an object of the ArrayBuffer or DataView type.
 
+    ```ts
+    let strXml: string =
+    '<?xml version="1.0" encoding="utf-8"?>' +
+      '<note importance="high" logged="true">' +
+      '<title>Play</title>' +
+      '<lens>Work</lens>' +
+      '</note>';
+    let textEncoder: util.TextEncoder = new util.TextEncoder();
+    let arrBuffer: Uint8Array = textEncoder.encodeInto(strXml); // Encode the data to prevent garbled characters.
+    // 1. Create an XmlPullParser object based on an object of the ArrayBuffer type.
+    let that: xml.XmlPullParser = new xml.XmlPullParser(arrBuffer.buffer, 'UTF-8');
    
-   ```js
-   let strXml =
-     '<?xml version="1.0" encoding="utf-8"?>' +
-       '<note importance="high" logged="true">' +
-       '<title>Play</title>' +
-       '<lens>Work</lens>' +
-       '</note>';
-   let textEncoder = new util.TextEncoder();
-   let arrBuffer = textEncoder.encodeInto(strXml); // Encode the data to prevent garbled characters.
-   // 1. Create an XmlPullParser object based on an object of the ArrayBuffer type.
-   let that = new xml.XmlPullParser(arrBuffer.buffer, 'UTF-8');
-   
-   // 2. Create an XmlPullParser object based on an object of the DataView type.
-   let dataView = new DataView(arrBuffer.buffer);
-   let that = new xml.XmlPullParser(dataView, 'UTF-8');
-   ```
+    // 2. Create an XmlPullParser object based on an object of the DataView type.
+    let dataView: DataView = new DataView(arrBuffer.buffer);
+    let that: xml.XmlPullParser = new xml.XmlPullParser(dataView, 'UTF-8');
+    ```
 
 3. Customize a callback function. In this example, the tag and tag value are directly printed.
-   
-   ```js
-   let str = '';
-   function func(name, value){
-     str = name + value;
-     console.info(str);
-     return true; // The value true means to continue parsing, and false means to stop parsing.
-   }
-   ```
+
+    ```ts
+    let str: string = '';
+    function func(name: string, value: string): boolean {
+      str = name + value;
+      console.info(str);
+      return true; // The value true means to continue parsing, and false means to stop parsing.
+    }
+    ```
 
 4. Set parsing options and call the **parse()** function.
-   
-   ```js
-   let options = {supportDoctype:true, ignoreNameSpace:true, tagValueCallbackFunction:func};
-   that.parse(options);
-   ```
 
-   The output is as follows:
+    ```ts
+    let options: xml.ParseOptions = {supportDoctype:true, ignoreNameSpace:true, tagValueCallbackFunction:func};
+    that.parse(options);
+    ```
 
-   
-   ```js
-   note
-   title
-   Play
-   title
-   lens
-   Work
-   lens
-   note
-   ```
+	The output is as follows:
+
+	```
+	note
+	title
+	Play
+	title
+	lens
+	Work
+	lens
+	note
+	```
+
+
 
 
 ## Parsing XML Attributes and Attribute Values
 
 1. Import the modules.
-   
-   ```js
-   import xml from '@ohos.xml';
-   import util from '@ohos.util'; // Use the API provided by the util module to encode the file.
-   ```
+
+    ```ts
+    import xml from '@ohos.xml';
+    import util from '@ohos.util'; // Use the API provided by the util module to encode the file.
+    ```
 
 2. Create an **XmlPullParser** object.
-   
-   ```js
-   let strXml =
-     '<?xml version="1.0" encoding="utf-8"?>' +
-       '<note importance="high" logged="true">' +
-       '    <title>Play</title>' +
-       '    <title>Happy</title>' +
-       '    <lens>Work</lens>' +
-       '</note>';
-   let textEncoder = new util.TextEncoder();
-   let arrBuffer = textEncoder.encodeInto(strXml); // Encode the data to prevent garbled characters.
-   let that = new xml.XmlPullParser(arrBuffer.buffer, 'UTF-8');
-   ```
+
+    ```ts
+    let strXml: string =
+      '<?xml version="1.0" encoding="utf-8"?>' +
+        '<note importance="high" logged="true">' +
+        '    <title>Play</title>' +
+        '    <title>Happy</title>' +
+        '    <lens>Work</lens>' +
+        '</note>';
+    let textEncoder: util.TextEncoder = new util.TextEncoder();
+    let arrBuffer: Uint8Array = textEncoder.encodeInto(strXml); // Encode the data to prevent garbled characters.
+    let that: xml.XmlPullParser = new xml.XmlPullParser(arrBuffer.buffer, 'UTF-8');
+    ```
 
 3. Customize a callback function. In this example, the attribute and attribute value are directly printed.
-   
-   ```js
-   let str = '';
-   function func(name, value){
-     str += name + ' ' + value + ' ';
-     return true; // The value true means to continue parsing, and false means to stop parsing.
-   }
-   ```
+
+    ```ts
+    let str: string = '';
+    function func(name: string, value: string): boolean {
+      str += name + ' ' + value + ' ';
+      return true; // The value true means to continue parsing, and false means to stop parsing.
+    }
+    ```
 
 4. Set parsing options and call the **parse()** function.
-   
-   ```js
-   let options = {supportDoctype:true, ignoreNameSpace:true, attributeValueCallbackFunction:func};
-   that.parse(options);
-   console.info(str); // Print all attributes and their values at a time.
-   ```
+
+    ```ts
+    let options: xml.ParseOptions = {supportDoctype:true, ignoreNameSpace:true, attributeValueCallbackFunction:func};
+    that.parse(options);
+    console.info(str); // Print all attributes and their values at a time.
+    ```
 
    The output is as follows:
-
-   
-   ```js
+   ```
    importance high logged true // Attributes and attribute values of the note node
    ```
 
@@ -142,55 +140,56 @@ The **xml** module provides the **XmlPullParser** class to parse XML files. The 
 ## Parsing XML Event Types and Element Depths
 
 1. Import the modules.
-   
-   ```js
-   import xml from '@ohos.xml';
-   import util from '@ohos.util'; // Use the API provided by the util module to encode the file.
-   ```
+
+    ```ts
+    import xml from '@ohos.xml';
+    import util from '@ohos.util'; // Use the API provided by the util module to encode the file.
+    ```
 
 2. Create an **XmlPullParser** object.
-   
-   ```js
-   let strXml =
-     '<?xml version="1.0" encoding="utf-8"?>' +
-     '<note importance="high" logged="true">' +
-     '<title>Play</title>' +
-     '</note>';
-   let textEncoder = new util.TextEncoder();
-   let arrBuffer = textEncoder.encodeInto(strXml); // Encode the data to prevent garbled characters.
-   let that = new xml.XmlPullParser(arrBuffer.buffer, 'UTF-8');
-   ```
+
+    ```ts
+    let strXml: string =
+      '<?xml version="1.0" encoding="utf-8"?>' +
+      '<note importance="high" logged="true">' +
+      '<title>Play</title>' +
+      '</note>';
+    let textEncoder: util.TextEncoder = new util.TextEncoder();
+    let arrBuffer: Uint8Array = textEncoder.encodeInto(strXml); // Encode the data to prevent garbled characters.
+    let that: xml.XmlPullParser = new xml.XmlPullParser(arrBuffer.buffer, 'UTF-8');
+    ```
 
 3. Customize a callback function. In this example, the event type and element depth are directly printed.
-   
-   ```js
-   let str = '';
-   function func(name, value){
-     str = name +' ' + value.getDepth(); // getDepth is called to obtain the element depth.
-     console.info(str)
-     return true; // The value true means to continue parsing, and false means to stop parsing.
-   }
-   ```
+
+    ```ts
+    let str: string  = '';
+    function func(name: xml.EventType, value: xml.ParseInfo): boolean {
+      str = name +' ' + value.getDepth(); // getDepth is called to obtain the element depth.
+      console.info(str)
+      return true; // The value true means to continue parsing, and false means to stop parsing.
+    }
+    ```
 
 4. Set parsing options and call the **parse()** function.
-   
-   ```js
-   let options = {supportDoctype:true, ignoreNameSpace:true, tokenValueCallbackFunction:func};
-   that.parse(options);
-   ```
+
+     ```ts
+     let options: xml.ParseOptions = {supportDoctype:true, ignoreNameSpace:true, tokenValueCallbackFunction:func};
+     that.parse(options);
+     ```
 
    The output is as follows:
 
-   
-   ```js
-   0 0 // 0: <?xml version="1.0" encoding="utf-8"?>. The event type value of START_DOCUMENT is 0. 0: The depth is 0.
-   2 1 // 2: <note importance="high" logged="true">. The event type value of START_TAG is 2. 1: The depth is 1.
-   2 2 // 2: <title>. The event type value of START_TAG is 2. 2: The depth is 2.
-   4 2 // 4: Play. The event type value of TEXT is 4. 2: The depth is 2.
-   3 2 // 3: </title>. The event type value of END_TAG is 3. 2: The depth is 2.
-   3 1 // 3: </note>. The event type value of END_TAG is 3. 1: The depth is 1 (corresponding to <note>).
-   1 0 // 1: The event type value of END_DOCUMENT is 1. 0: The depth is 0.
-   ```
+	```
+	 0 0 // 0: <?xml version="1.0" encoding="utf-8"?>. The event type value of START_DOCUMENT is 0. 0: The depth is 0.
+	 2 1 // 2: <note importance="high" logged="true">. The event type value of START_TAG is 2. 1: The depth is 1.
+	 2 2 // 2: <title>. The event type value of START_TAG is 2. 2: The depth is 2.
+	 4 2 // 4: Play. The event type value of TEXT is 4. 2: The depth is 2.
+	 3 2 // 3: </title>. The event type value of END_TAG is 3. 2: The depth is 2.
+	 3 1 // 3: </note>. The event type value of END_TAG is 3. 1: The depth is 1 (corresponding to <note>).
+	 1 0 // 1: The event type value of END_DOCUMENT is 1. 0: The depth is 0.
+	```
+
+
 
 
 ## Example Scenario
@@ -198,40 +197,40 @@ The **xml** module provides the **XmlPullParser** class to parse XML files. The 
 The following uses invoking all parsing options as an example to describe how to parse XML tags, attributes, and event types.
 
 
-```js
+```ts
 import xml from '@ohos.xml';
 import util from '@ohos.util';
 
-let strXml =
+let strXml: string =
   '<?xml version="1.0" encoding="UTF-8"?>' +
     '<book category="COOKING">' +
     '<title lang="en">Everyday</title>' +
     '<author>Giada</author>' +
     '</book>';
-let textEncoder = new util.TextEncoder();
-let arrBuffer = textEncoder.encodeInto(strXml);
-let that = new xml.XmlPullParser(arrBuffer.buffer, 'UTF-8');
-let str = '';
+let textEncoder: util.TextEncoder = new util.TextEncoder();
+let arrBuffer: Uint8Array = textEncoder.encodeInto(strXml);
+let that: xml.XmlPullParser = new xml.XmlPullParser(arrBuffer.buffer, 'UTF-8');
+let str: string = '';
 
-function tagFunc(name, value) {
+function tagFunc(name: string, value: string): boolean {
   str = name + value;
   console.info('tag-' + str);
   return true;
 }
 
-function attFunc(name, value) {
+function attFunc(name: xml.EventType, value: string): boolean {
   str = name + ' ' + value;
   console.info('attri-' + str);
   return true;
 }
 
-function tokenFunc(name, value) {
+function tokenFunc(name: xml.EventType, value: xml.ParseInfo): boolean {
   str = name + ' ' + value.getDepth();
   console.info('token-' + str);
   return true;
 }
 
-let options = {
+let options: xml.ParseOptions = {
   supportDocType: true,
   ignoreNameSpace: true,
   tagValueCallbackFunction: tagFunc,
@@ -239,33 +238,31 @@ let options = {
   tokenValueCallbackFunction: tokenFunc
 };
 that.parse(options);
-
 ```
 
 The output is as follows:
 
-
-```js
-tag-
-token-0 0
-tag-book
-attri-category COOKING
-token-2 1
-tag-title
-attri-lang en
-token-2 2
-tag-Everyday
-token-4 2
-tag-title
-token-3 2
-tag-author
-token-2 2
-tag-Giada
-token-4 2
-tag-author
-token-3 2
-tag-book
-token-3 1
-tag-
-token-1 0
-```
+   ```
+   tag-
+   token-0 0
+   tag-book
+   attri-category COOKING
+   token-2 1
+   tag-title
+   attri-lang en
+   token-2 2
+   tag-Everyday
+   token-4 2
+   tag-title
+   token-3 2
+   tag-author
+   token-2 2
+   tag-Giada
+   token-4 2
+   tag-author
+   token-3 2
+   tag-book
+   token-3 1
+   tag-
+   token-1 0
+   ```
