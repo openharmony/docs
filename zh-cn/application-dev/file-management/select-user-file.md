@@ -23,6 +23,8 @@
 2. 创建图库选择选项实例。
 
    ```ts
+   import picker from '@ohos.file.picker';
+   
    const photoSelectOptions = new picker.PhotoSelectOptions();
    ```
 
@@ -30,6 +32,8 @@
    以下示例以图片选择为例，媒体文件类型请参见[PhotoViewMIMETypes](../reference/apis/js-apis-file-picker.md#photoviewmimetypes)。
 
    ```ts
+   import picker from '@ohos.file.picker';
+   
    photoSelectOptions.MIMEType = picker.PhotoViewMIMETypes.IMAGE_TYPE; // 过滤选择媒体文件类型为IMAGE
    photoSelectOptions.maxSelectNumber = 5; // 选择媒体文件的最大数目
    ```
@@ -39,7 +43,10 @@
    </br>select返回的uri权限是只读权限，可以根据结果集中uri进行读取文件数据操作。注意不能在picker的回调里直接使用此uri进行打开文件操作，需要定义一个全局变量保存uri，使用类似一个按钮去触发打开文件。
 
    ```ts
-   let uris: Array<string>;
+   import picker from '@ohos.file.picker';
+   import { BusinessError } from '@ohos.base';
+   
+   let uris: Array<string> = [];
    const photoViewPicker = new picker.PhotoViewPicker();
    photoViewPicker.select(photoSelectOptions).then((photoSelectResult: picker.PhotoSelectResult) => {
      uris = photoSelectResult.photoUris;
@@ -52,7 +59,9 @@
 5. 待界面从FilePicker返回后，再通过类似一个按钮调用其他函数，使用[fs.openSync](../reference/apis/js-apis-file-fs.md#fsopensync)接口，通过uri打开这个文件得到fd。这里需要注意接口权限参数是fs.OpenMode.READ_ONLY。
 
    ```ts
-   const uri = '';
+   import fs from '@ohos.file.fs';
+   
+   let uri: string = '';
    let file = fs.openSync(uri, fs.OpenMode.READ_ONLY);
    console.info('file fd: ' + file.fd);
    ```
@@ -60,6 +69,8 @@
 6. 通过fd使用[fs.readSync](../reference/apis/js-apis-file-fs.md#readsync)接口读取这个文件内的数据，读取完成后关闭fd。
 
    ```ts
+   import fs from '@ohos.file.fs';
+   
    let buffer = new ArrayBuffer(4096);
    let readLen = fs.readSync(file.fd, buffer);
    console.info('readSync data to file succeed and buffer size is:' + readLen);
@@ -80,6 +91,8 @@
 2. 创建文档选择选项实例。
 
    ```ts
+   import picker from '@ohos.file.picker';
+   
    const documentSelectOptions = new picker.DocumentSelectOptions(); 
    documentSelectOptions.maxSelectNumber = 5; // 选择文档的最大数目（可选）
    documentSelectOptions.defaultFilePathUri = "file://docs/storage/Users/currentUser/test"; // 指定选择的文件或者目录路径（可选）
@@ -93,7 +106,10 @@
    </br>例如通过[文件管理接口](../reference/apis/js-apis-file-fs.md)根据uri获取部分文件属性信息，比如文件大小、访问时间、修改时间等。如有获取文件名称需求，请暂时使用[startAbilityForResult](../../application-dev/application-models/uiability-intra-device-interaction.md)获取。
 
    ```ts
-   let uris: Array<string>;
+   import picker from '@ohos.file.picker';
+   import { BusinessError } from '@ohos.base';
+   
+   let uris: Array<string> = [];
    const documentViewPicker = new picker.DocumentViewPicker(); // 创建文件选择器实例
    documentViewPicker.select(documentSelectOptions).then((documentSelectResult: Array<string>) => {
      uris = documentSelectResult;
@@ -108,6 +124,8 @@
    > 目前DocumentSelectOptions功能不完整, 如需获取文件名称，请使用startAbilityForResult接口。
 
    ```ts
+   import { BusinessError } from '@ohos.base';
+   
    async function example(): Promise<void> {
      let config: Want = {
        action: 'ohos.want.action.OPEN_FILE',
@@ -135,6 +153,9 @@
 4. 待界面从FilePicker返回后，再通过类似一个按钮调用其他函数，使用[fs.openSync](../reference/apis/js-apis-file-fs.md#fsopensync)接口，通过uri打开这个文件得到fd。这里需要注意接口权限参数是fs.OpenMode.READ_ONLY。
 
    ```ts
+   import fs from '@ohos.file.fs';
+   
+   let uri: string = '';
    let file = fs.openSync(uri, fs.OpenMode.READ_ONLY);
    console.info('file fd: ' + file.fd);
    ```
@@ -142,6 +163,8 @@
 5. 通过fd使用[fs.readSync](../reference/apis/js-apis-file-fs.md#readsync)接口读取这个文件内的数据，读取完成后关闭fd。
 
    ```ts
+   import fs from '@ohos.file.fs';
+   
    let buffer = new ArrayBuffer(4096);
    let readLen = fs.readSync(file.fd, buffer);
    console.info('readSync data to file succeed and buffer size is:' + readLen);
@@ -162,6 +185,8 @@
 2. 创建音频选择选项实例。
 
    ```ts
+   import picker from '@ohos.file.picker';
+   
    const audioSelectOptions = new picker.AudioSelectOptions();
    ```
 
@@ -176,8 +201,9 @@
    > 目前AudioSelectOptions不支持参数配置，默认可以选择所有类型的用户文件。
 
    ```ts
-   let uri: string;
-   const uri = '';
+   import picker from '@ohos.file.picker';
+   
+   let uri: string = '';
    const audioViewPicker = new picker.AudioViewPicker();
    audioViewPicker.select(audioSelectOptions).then((audioSelectResult: Array<string>) => {
      uri = audioSelectResult[0];
@@ -190,6 +216,9 @@
 4. 待界面从FilePicker返回后，再通过类似一个按钮调用其他函数，使用[fs.openSync](../reference/apis/js-apis-file-fs.md#fsopensync)接口，通过uri打开这个文件得到fd。这里需要注意接口权限参数是fs.OpenMode.READ_ONLY。
 
    ```ts
+   import fs from '@ohos.file.fs';
+   
+   let uri: string = '';
    let file = fs.openSync(uri, fs.OpenMode.READ_ONLY);
    console.info('file fd: ' + file.fd);
    ```
@@ -197,6 +226,8 @@
 5. 通过fd使用[fs.readSync](../reference/apis/js-apis-file-fs.md#readsync)接口读取这个文件内的数据，读取完成后关闭fd。
 
    ```ts
+   import fs from '@ohos.file.fs';
+   
    let buffer = new ArrayBuffer(4096);
    let readLen = fs.readSync(file.fd, buffer);
    console.info('readSync data to file succeed and buffer size is:' + readLen);
