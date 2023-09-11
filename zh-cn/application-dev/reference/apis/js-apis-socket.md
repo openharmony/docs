@@ -1032,7 +1032,7 @@ send(options: TCPSendOptions, callback: AsyncCallback\<void\>): void
 ```js
 import socket from "@ohos.net.socket";
 let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
-let ipAddr : socket.NetAddress
+let ipAddr : socket.NetAddress = {} as socket.NetAddress
 ipAddr.address = '192.168.xx.xxx'
 ipAddr.port = 8080
 
@@ -1091,15 +1091,15 @@ send(options: TCPSendOptions): Promise\<void\>
 import socket from "@ohos.net.socket";
 let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
 
-let ipAddr : socket.NetAddress
+let ipAddr : socket.NetAddress = {} as socket.NetAddress
 ipAddr.address = '192.168.xx.xxx'
 ipAddr.port = 8080
-let tcpconnectoptions : socket.TCPConnectOptions
+let tcpconnectoptions : socket.TCPConnectOptions = {} as socket.TCPConnectOptions
 tcpconnectoptions.address = ipAddr
 tcpconnectoptions.timeout = 6000
 tcp.connect(tcpconnectoptions).then(() => {
   console.log('connect success');
-  let tcpSendOptions : socket.TCPSendOptions
+  let tcpSendOptions : socket.TCPSendOptions = {} as socket.TCPSendOptions
   tcpSendOptions.data = 'Hello, server!'
   tcp.send(tcpSendOptions).then(() => {
     console.log('send success');
