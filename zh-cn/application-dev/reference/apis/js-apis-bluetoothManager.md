@@ -2589,7 +2589,7 @@ serviceValueBuffer[2] = 7;
 serviceValueBuffer[3] = 8;
 console.info('manufactureValueBuffer = '+ JSON.stringify(manufactureValueBuffer));
 console.info('serviceValueBuffer = '+ JSON.stringify(serviceValueBuffer));
-let gattServer : bluetooth.GattServer = bluetoothManager.BLE.createGattServer();
+let gattServer = bluetoothManager.BLE.createGattServer();
 try {
     
 ble.startAdvertising();
@@ -2649,7 +2649,7 @@ stopAdvertising(): void
 **示例：**
 
 ```js
-let server : bluetooth.GattServer = bluetoothManager.BLE.createGattServer();
+let server = bluetoothManager.BLE.createGattServer();
 try {
     server.stopAdvertising();
 } catch (err) {
@@ -2714,7 +2714,7 @@ characteristics[0] = characteristic;
 // 创建gattService
 let gattService: bluetoothManager.GattService = {serviceUuid:'00001810-0000-1000-8000-00805F9B34FB', isPrimary: true, characteristics:characteristics, includeServices:[]};
 
-let gattServer : bluetooth.GattServer = bluetoothManager.BLE.createGattServer();
+let gattServer = bluetoothManager.BLE.createGattServer();
 try {
     gattServer.addService(gattService);
 } catch (err) {
