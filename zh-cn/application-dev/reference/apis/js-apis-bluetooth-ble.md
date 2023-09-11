@@ -695,7 +695,7 @@ function ReadCharacteristicReq(characteristicReadRequest: ble.CharacteristicRead
     let deviceId: string = characteristicReadRequest.deviceId;
     let transId: number = characteristicReadRequest.transId;
     let offset: number = characteristicReadRequest.offset;
-    let characteristicUuid: string: = characteristicReadRequest.characteristicUuid;
+    let characteristicUuid: string = characteristicReadRequest.characteristicUuid;
 
     let serverResponse: ble.ServerResponse = {deviceId: deviceId, transId: transId, status: 0, offset: offset, value:arrayBufferCCC};
 
@@ -912,7 +912,7 @@ function WriteDescriptorReq(descriptorWriteRequest: ble.DescriptorWriteRequest) 
         console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
     }
 }
-gattServer.on('descriptorRead', WriteDescriptorReq);
+gattServer.on('descriptorWrite', WriteDescriptorReq);
 ```
 
 
