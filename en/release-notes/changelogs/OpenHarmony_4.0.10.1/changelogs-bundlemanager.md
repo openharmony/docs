@@ -70,3 +70,20 @@ The definition of **APP_ACCOUNT_AUTHORIZATION** is deleted.
 **Adaptation Guide**
 
 Update the code so that the deprecated API is not used.
+
+## cl.bundlemanager.2 Struct BusinessAbilityInfo Moved from bundleManager to application
+
+The **BusinessAbilityInfo** struct is moved from the **bundleManager** folder to the **application** folder.
+
+
+**Change Impact**
+
+The file path of a level-2 module is changed. It has no impact on existing code.
+
+**Key API/Component Changes**
+
+The file path of the **BusinessAbilityInfo** struct is changed from **bundleManager/BusinessAbilityInfo** to **application/BusinessAbilityInfo**.
+
+**Adaptation Guide**
+
+No required.
