@@ -73,9 +73,10 @@ Read [AVPlayer](../reference/apis/js-apis-media.md#avplayer9) for the API refere
 import media from '@ohos.multimedia.media';
 import fs from '@ohos.file.fs';
 import common from '@ohos.app.ability.common';
+import { BusinessError } from '@ohos.base';
 
 export class AVPlayerDemo {
-  private avPlayer;
+  private avPlayer: media.AVPlayer;
   private count: number = 0;
   private surfaceID: string; // The surfaceID parameter specifies the window used to display the video. Its value is obtained through the XComponent.
   private isSeek: boolean = true; // Specify whether the seek operation is supported.
@@ -84,29 +85,25 @@ export class AVPlayerDemo {
   // Set AVPlayer callback functions.
   setAVPlayerCallback() {
     // Callback function for the seek operation.
-    this.avPlayer.on('seekDone', (seekDoneTime) => {
+    this.avPlayer.on('seekDone', (seekDoneTime: number) => {
       console.info(`AVPlayer seek succeeded, seek time is ${seekDoneTime}`);
     })
     // Callback function for errors. If an error occurs during the operation on the AVPlayer, reset() is called to reset the AVPlayer.
-    this.avPlayer.on('error', (err) => {
+    this.avPlayer.on('error', (err: BusinessError) => {
       console.error(`Invoke avPlayer failed, code is ${err.code}, message is ${err.message}`);
       this.avPlayer.reset(); // Call reset() to reset the AVPlayer, which enters the idle state.
     })
     // Callback function for state changes.
-    this.avPlayer.on('stateChange', async (state, reason) => {
+    this.avPlayer.on('stateChange', async (state: string, reason: media.StateChangeReason) => {
       switch (state) {
         case 'idle': // This state is reported upon a successful callback of reset().
           console.info('AVPlayer state idle called.');
           this.avPlayer.release(); // Call release() to release the instance.
           break;
         case 'initialized': // This state is reported when the AVPlayer sets the playback source.
-          console.info('AVPlayerstate initialized called.');
+          console.info('AVPlayer state initialized called.');
           this.avPlayer.surfaceId = this.surfaceID // Set the window to display the video. This setting is not required when a pure audio asset is to be played.
-          this.avPlayer.prepare().then(() => {
-            console.info('AVPlayer prepare succeeded.');
-          }, (err) => {
-            console.error(`Invoke prepare failed, code is ${err.code}, message is ${err.message}`);
-          });
+          this.avPlayer.prepare();
           break;
         case 'prepared': // This state is reported upon a successful callback of prepare().
           console.info('AVPlayer state prepared called.');
@@ -177,9 +174,11 @@ export class AVPlayerDemo {
     // The return type is {fd,offset,length}, where fd indicates the file descriptor address of the HAP file, offset indicates the media asset offset, and length indicates the duration of the media asset to play.
     let context = getContext(this) as common.UIAbilityContext;
     let fileDescriptor = await context.resourceManager.getRawFd('H264_AAC.mp4');
+    let avFileDescriptor: media.AVFileDescriptor =
+      { fd: fileDescriptor.fd, offset: fileDescriptor.offset, length: fileDescriptor.length };
     this.isSeek = true; // The seek operation is supported.
     // Assign a value to fdSrc to trigger the reporting of the initialized state.
-    this.avPlayer.fdSrc = fileDescriptor;
+    this.avPlayer.fdSrc = avFileDescriptor;
   }
 
   // The following demo shows how to use the file system to open the sandbox address, obtain the media file address, and play the media file with the seek operation using the dataSrc attribute.
@@ -189,9 +188,9 @@ export class AVPlayerDemo {
     // Set a callback function for state changes.
     this.setAVPlayerCallback();
     // dataSrc indicates the playback source address. When the seek operation is supported, fileSize indicates the size of the file to be played. The following describes how to assign a value to fileSize.
-    let src = {
+    let src: media.AVDataSrcDescriptor = {
       fileSize: -1,
-      callback: (buf, length, pos) => {
+      callback: (buf: ArrayBuffer, length: number, pos: number) => {
         let num = 0;
         if (buf == undefined || length == undefined || pos == undefined) {
           return -1;
@@ -207,7 +206,7 @@ export class AVPlayerDemo {
     // Obtain the sandbox address filesDir through UIAbilityContext. The stage model is used as an example.
     let pathDir = context.filesDir;
     let path = pathDir + '/H264_AAC.mp4';
-    await fs.open(path).then((file) => {
+    await fs.open(path).then((file: fs.File) => {
       this.fd = file.fd;
     })
     // Obtain the size of the file to be played.
@@ -224,9 +223,9 @@ export class AVPlayerDemo {
     // Set a callback function for state changes.
     this.setAVPlayerCallback();
     let context = getContext(this) as common.UIAbilityContext;
-    let src: object = {
+    let src: media.AVDataSrcDescriptor = {
       fileSize: -1,
-      callback: (buf, length, pos) => {
+      callback: (buf: ArrayBuffer, length: number) => {
         let num = 0;
         if (buf == undefined || length == undefined) {
           return -1;
@@ -241,7 +240,7 @@ export class AVPlayerDemo {
     // Obtain the sandbox address filesDir through UIAbilityContext. The stage model is used as an example.
     let pathDir = context.filesDir;
     let path = pathDir + '/H264_AAC.mp4';
-    await fs.open(path).then((file) => {
+    await fs.open(path).then((file: fs.File) => {
       this.fd = file.fd;
     })
     this.isSeek = false; // The seek operation is not supported.
@@ -260,4 +259,3 @@ export class AVPlayerDemo {
 }
 ```
 
- <!--no_check--> 
