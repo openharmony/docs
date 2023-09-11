@@ -91,7 +91,7 @@ setBackgroundAllowed(isAllowed: boolean): Promise\<void>
 ```js
 policy.setBackgroundAllowed(true).then(() => {
   console.log("setBackgroundAllowed success");
-}).catch(error: BusinessError => {
+}).catch((error: BusinessError) => {
   console.log(JSON.stringify(error));
 });
 ```
@@ -551,14 +551,15 @@ setNetQuotaPolicies(quotaPolicies: Array\<NetQuotaPolicy>, callback: AsyncCallba
 
 ```js
 import connection from '@ohos.net.connection';
+import { BusinessError } from '@ohos.base';
 
-let netQuotaPolicyList = [];
+let netQuotaPolicyList: Array = [];
 class Netquotapolicy {
   networkMatchRule: NetworkMatchRule = new NetworkMatchRule();
   quotaPolicy: QuotaPolicy = new QuotaPolicy();
 }
 class NetworkMatchRule {
-  netType: connection.NetBearType.BEARER_CELLULAR;
+  netType: enum = connection.NetBearType.BEARER_CELLULAR;
   identity: string = '';
   simId: string = '1';
 }
@@ -574,7 +575,7 @@ let netquotapolicy = new Netquotapolicy();
 
 netQuotaPolicyList.push(netquotapolicy);
 
-policy.setNetQuotaPolicies(netQuotaPolicyList, (error) => {
+policy.setNetQuotaPolicies(netQuotaPolicyList, (error: BusinessError) => {
   console.log(JSON.stringify(error));
 });
 ```
@@ -618,14 +619,15 @@ setNetQuotaPolicies(quotaPolicies: Array\<NetQuotaPolicy>): Promise\<void>;
 
 ```js
 import connection from '@ohos.net.connection';
+import { BusinessError } from '@ohos.base';
 
-let netQuotaPolicyList = [];
+let netQuotaPolicyList: Array = [];
 class Netquotapolicy {
   networkMatchRule: NetworkMatchRule = new NetworkMatchRule();
   quotaPolicy: QuotaPolicy = new QuotaPolicy();
 }
 class NetworkMatchRule {
-  netType: connection.NetBearType.BEARER_CELLULAR;
+  netType: enum = connection.NetBearType.BEARER_CELLULAR;
   identity: string = '';
   simId: string = '1';
 }
@@ -646,7 +648,7 @@ policy
   .then(() => {
     console.log('setNetQuotaPolicies success');
   })
-  .catch((error) => {
+  .catch((error: BusinessError) => {
     console.log(JSON.stringify(error));
   });
 ```
