@@ -60,6 +60,14 @@ void *ReadModelFile(NativeResourceManager *nativeResourceManager, const std::str
 (2). 创建上下文，设置线程数、设备类型等参数，并加载模型。
 
 ```c++
+void DestroyModelBuffer(void **buffer) {
+    if (buffer == nullptr) {
+        return;
+    }
+    free(*buffer);
+    *buffer = nullptr;
+}
+
 OH_AI_ModelHandle CreateMSLiteModel(void *modelBuffer, size_t modelSize) {
     // 创建上下文
     auto context = OH_AI_ContextCreate();
