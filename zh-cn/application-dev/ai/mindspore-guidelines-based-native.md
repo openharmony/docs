@@ -60,6 +60,14 @@ void *ReadModelFile(NativeResourceManager *nativeResourceManager, const std::str
 (2). 创建上下文，设置线程数、设备类型等参数，并加载模型。
 
 ```c++
+void DestroyModelBuffer(void **buffer) {
+    if (buffer == nullptr) {
+        return;
+    }
+    free(*buffer);
+    *buffer = nullptr;
+}
+
 OH_AI_ModelHandle CreateMSLiteModel(void *modelBuffer, size_t modelSize) {
     // 创建上下文
     auto context = OH_AI_ContextCreate();
@@ -93,7 +101,25 @@ OH_AI_ModelHandle CreateMSLiteModel(void *modelBuffer, size_t modelSize) {
 
 (3). 设置模型输入数据，执行模型推理并获取输出数据。
 
-```js
+```c++
+constexpr int RANDOM_RANGE = 128;
+
+void FillTensorWithRandom(OH_AI_TensorHandle msTensor) {
+    auto size = OH_AI_TensorGetDataSize(msTensor);
+    char *data = (char *)OH_AI_TensorGetMutableData(msTensor);
+    for (size_t i = 0; i < size; i++) {
+        data[i] = (char)(rand() / RANDOM_RANGE);
+    }
+}
+
+// fill data to inputs tensor
+int FillInputTensors(OH_AI_TensorHandleArray &inputs) {
+    for (size_t i = 0; i < inputs.handle_num; i++) {
+        FillTensorWithRandom(inputs.handle_list[i]);
+    }
+    return OH_AI_STATUS_SUCCESS;
+}
+
 void RunMSLiteModel(OH_AI_ModelHandle model) {
     // 设置模型输入数据
     auto inputs = OH_AI_ModelGetInputs(model);
