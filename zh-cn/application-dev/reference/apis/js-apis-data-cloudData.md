@@ -12,7 +12,7 @@
 
 ## 导入模块
 
-```js
+```ts
 import cloudData from '@ohos.data.cloudData';
 ```
 
@@ -55,7 +55,7 @@ static enableCloud(accountId: string, switches: {[bundleName: string]: boolean},
 
 **示例：**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 
 let account = 'test_id';
@@ -101,7 +101,7 @@ static enableCloud(accountId: string, switches: {[bundleName: string]: boolean})
 
 **示例：**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 
 let account = 'test_id';
@@ -222,7 +222,7 @@ static changeAppCloudSwitch(accountId: string,bundleName:string,status:boolean, 
 
 **示例：**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 
 let account = 'test_id';
@@ -269,7 +269,7 @@ static changeAppCloudSwitch(accountId: string,bundleName:string,status:boolean):
 
 **示例：**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 
 let account = 'test_id';
@@ -308,7 +308,7 @@ static notifyDataChange(accountId: string,bundleName:string, callback: AsyncCall
 
 **示例：**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 
 let account = 'test_id';
@@ -393,7 +393,7 @@ static clear(accountId: string, appActions: {[bundleName: string]: ClearAction},
 
 **示例：**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 
 let action = cloudData.ClearAction;
@@ -444,7 +444,7 @@ static clear(accountId: string, appActions: {[bundleName: string]: ClearAction})
 
 **示例：**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 
 let action = cloudData.ClearAction;
