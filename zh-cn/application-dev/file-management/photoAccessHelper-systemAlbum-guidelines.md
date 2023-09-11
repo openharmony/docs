@@ -30,6 +30,9 @@ photoAccessHelper仅提供开发者对收藏夹、视频相册、截屏和录屏
 
 ```ts
 import photoAccessHelper from '@ohos.file.photoAccessHelper';
+const context = getContext(this);
+let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
+
 async function example() {
   try {
     let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await photoAccessHelper.getAlbums(photoAccessHelper.AlbumType.SYSTEM, photoAccessHelper.AlbumSubtype.FAVORITE);
@@ -62,6 +65,8 @@ async function example() {
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
 import photoAccessHelper from '@ohos.file.photoAccessHelper';
+const context = getContext(this);
+let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 
 async function example() {
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -104,6 +109,8 @@ async function example() {
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
 import photoAccessHelper from '@ohos.file.photoAccessHelper';
+const context = getContext(this);
+let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 
 async function example() {
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -149,6 +156,8 @@ async function example() {
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
 import photoAccessHelper from '@ohos.file.photoAccessHelper';
+const context = getContext(this);
+let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 
 async function example() {
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -227,6 +236,8 @@ async function example() {
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
 import photoAccessHelper from '@ohos.file.photoAccessHelper';
+const context = getContext(this);
+let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 
 async function example() {
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -303,6 +314,8 @@ async function example() {
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
 import photoAccessHelper from '@ohos.file.photoAccessHelper';
+const context = getContext(this);
+let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 
 async function example() {
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
