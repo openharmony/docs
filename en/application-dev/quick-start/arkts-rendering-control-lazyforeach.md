@@ -9,22 +9,22 @@
 
 ```ts
 LazyForEach(
-    dataSource: IDataSource,             // Data source to iterate over
-    itemGenerator: (item: any) => void,  // Child component generation function
-    keyGenerator?: (item: any) => string // (Optional). ID generation function
+    dataSource: IDataSource,             // Data source to iterate over.
+    itemGenerator: (item: Object) => void,  // Data source to iterate over.
+    keyGenerator?: (item: Object): string => string // Data source to iterate over.
 ): void
 interface IDataSource {
-    totalCount(): number;                                             // Get total count of data
-    getData(index: number): any;                                      // Get single data by index
-    registerDataChangeListener(listener: DataChangeListener): void;   // Register listener to listening data changes
-    unregisterDataChangeListener(listener: DataChangeListener): void; // Unregister listener
+    totalCount(): number;                                             // Obtain the total number of data records.
+    getData(index: number): any;                                      // Obtain the data that matches the specified index.
+    registerDataChangeListener(listener: DataChangeListener): void;   // Register a data change listener.
+    unregisterDataChangeListener(listener: DataChangeListener): void; // Deregister the data change listener.
 }
 interface DataChangeListener {
-    onDataReloaded(): void;                      // Called while data reloaded
-    onDataAdd(index: number): void;            // Called while single data added
-    onDataMove(from: number, to: number): void; // Called while single data moved
-    onDataDelete(index: number): void;          // Called while single data deleted
-    onDataChange(index: number): void;          // Called while single data changed
+    onDataReloaded(): void;                      // Invoked when all data is reloaded.
+    onDataAdd(index: number): void;            // Invoked when data is added.
+    onDataMove(from: number, to: number): void; // Invoked when data is moved.
+    onDataDelete(index: number): void;          // Invoked when data is deleted.
+    onDataChange(index: number): void;          // Invoked when data is deleted
 }
 ```
 
@@ -44,7 +44,7 @@ interface DataChangeListener {
 ```ts
 interface IDataSource {
     totalCount(): number;
-    getData(index: number): any; 
+    getData(index: number): Object;
     registerDataChangeListener(listener: DataChangeListener): void;
     unregisterDataChangeListener(listener: DataChangeListener): void;
 }
@@ -109,8 +109,8 @@ interface DataChangeListener {
 
   ```ts
   LazyForEach(dataSource, 
-    item => Text(`${item.i}. item.data.label`),
-    item => item.data.id.toString())
+    (item: Object) => Text(`${item.i}. item.data.label`),
+    (item: Object): string => item.data.id.toString())
   ```
 
 
@@ -126,7 +126,7 @@ class BasicDataSource implements IDataSource {
     return 0;
   }
 
-  public getData(index: number): any {
+  public getData(index: number): undefined {
     return undefined;
   }
 
@@ -183,7 +183,7 @@ class MyDataSource extends BasicDataSource {
     return this.dataArray.length;
   }
 
-  public getData(index: number): any {
+  public getData(index: number): Object {
     return this.dataArray[index];
   }
 
@@ -202,7 +202,7 @@ class MyDataSource extends BasicDataSource {
 @Component
 struct MyComponent {
   aboutToAppear() {
-    for (var i = 100; i >= 80; i--) {
+    for (let i = 100; i >= 80; i--) {
       this.data.pushData(`Hello ${i}`)
     }
   }
@@ -223,7 +223,7 @@ struct MyComponent {
         .onClick(() => {
           this.data.pushData(`Hello ${this.data.totalCount()}`);
         })
-      }, item => item)
+      }, (item: string) => item)
     }.cachedCount(5)
   }
 }

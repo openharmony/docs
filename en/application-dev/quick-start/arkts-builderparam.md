@@ -34,34 +34,34 @@ An \@BuildParam decorated method can be initialized only by an \@Builder functio
 - Initialization from the parent component
 
   ```ts
-@Component
-struct Child {
-  @Builder componentBuilder() {
-    Text(`Parent builder `)
-  }
+  @Component
+  struct Child {
+    @Builder componentBuilder() {
+      Text(`Parent builder `)
+    }
 
-  @BuilderParam aBuilder0: () => void = this.componentBuilder;
+    @BuilderParam aBuilder0: () => void = this.componentBuilder;
 
-  build() {
-    Column() {
-      this.aBuilder0()
+    build() {
+      Column() {
+        this.aBuilder0()
+      }
     }
   }
-}
 
-@Entry
-@Component
-struct Parent {
-  @Builder componentBuilder() {
-    Text(`Parent builder `)
-  }
+  @Entry
+  @Component
+  struct Parent {
+    @Builder componentBuilder() {
+      Text(`Parent builder `)
+    }
 
-  build() {
-    Column() {
-      Child({ aBuilder0: this.componentBuilder })
+    build() {
+      Column() {
+        Child({ aBuilder0: this.componentBuilder })
+      }
     }
   }
-}
   ```
 
 
@@ -74,40 +74,40 @@ struct Parent {
    >  Exercise caution when using **bind** to change the context of function invoking, which may cause **this** to point to an incorrect object.
 
   ```ts
-@Component
-struct Child {
-  @Builder componentBuilder() {
-    Text(`Child builder `)
-  }
+  @Component
+  struct Child {
+    @Builder componentBuilder() {
+      Text(`Child builder `)
+    }
 
-  label: string = `Child`
-  @BuilderParam aBuilder0: () => void = this.componentBuilder;
-  @BuilderParam aBuilder1: () => void = this.componentBuilder;
+    label: string = `Child`
+    @BuilderParam aBuilder0: () => void = this.componentBuilder;
+    @BuilderParam aBuilder1: () => void = this.componentBuilder;
 
-  build() {
-    Column() {
-      this.aBuilder0()
-      this.aBuilder1()
+    build() {
+      Column() {
+        this.aBuilder0()
+        this.aBuilder1()
+      }
     }
   }
-}
 
-@Entry
-@Component
-struct Parent {
-  label: string = `Parent`
+  @Entry
+  @Component
+  struct Parent {
+    label: string = `Parent`
 
-  @Builder componentBuilder() {
-    Text(`${this.label}`)
-  }
+    @Builder componentBuilder() {
+      Text(`${this.label}`)
+    }
 
-  build() {
-    Column() {
-      this.componentBuilder()
-      Child({ aBuilder0: this.componentBuilder, aBuilder1: this.componentBuilder })
+    build() {
+      Column() {
+        this.componentBuilder()
+        Child({ aBuilder0: this.componentBuilder, aBuilder1: this.componentBuilder })
+      }
     }
   }
-}
   ```
 
 

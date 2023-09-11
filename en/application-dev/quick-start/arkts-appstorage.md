@@ -44,7 +44,7 @@ By decorating a variable with \@StorageProp(key), a one-way data synchronization
 | ---------- | ---------------------------------------- |
 | Initialization and update from the parent component| Forbidden.|
 | Subnode initialization    | Supported; can be used to initialize an \@State, \@Link, \@Prop, or \@Provide decorated variable in the child component.|
-| Access | None.                                      |
+| Access | Not supported.                                      |
 
 
   **Figure 1** \@StorageProp initialization rule 
