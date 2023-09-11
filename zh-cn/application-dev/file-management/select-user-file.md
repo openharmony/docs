@@ -125,6 +125,7 @@
 
    ```ts
    import { BusinessError } from '@ohos.base';
+   import fs from '@ohos.file.fs';
    
    async function example(): Promise<void> {
      let config: Want = {

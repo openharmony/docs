@@ -97,7 +97,7 @@ OpenHarmony预置了FileManager文件管理器。系统应用开发者也可以�
        console.error("listFile interface returns an undefined object");
      }
      while (!isDone) {
-       let result: boolen = fileIterator.next();
+       let result: boolean = fileIterator.next();
        console.info("next result = " + JSON.stringify(result));
        isDone = result.done;
        if (!isDone)
@@ -120,7 +120,7 @@ OpenHarmony预置了FileManager文件管理器。系统应用开发者也可以�
        console.error("listFile interface returns an undefined object");
      }
      while (!isDone02) {
-       let result: boolen = fileIterator.next();
+       let result: boolean = fileIterator.next();
        console.info("next result = " + JSON.stringify(result));
        isDone02 = result.done;
        if (!isDone02)
