@@ -57,7 +57,7 @@
      // 读取文件的内容，返回值是读取到的字节个数
      class Option {
         public offset: number = 0;
-        public length: number;
+        public length: number = 0;
      }
      let option = new Option();
      option.length = arrayBuffer.byteLength;
