@@ -41,7 +41,7 @@ let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 async function example() {
   try {
     let albumName = 'albumName';
-    let album: photoAccessHelper.Album = await photoAccessHelper.createAlbum(albumName);
+    let album: photoAccessHelper.Album = await phAccessHelper.createAlbum(albumName);
     console.info('createAlbum successfully, album: ' + album.albumName + ' album uri: ' + album.albumUri);
   } catch (err) {
     console.error('createAlbum failed with err: ' + err);
@@ -82,7 +82,7 @@ async function example() {
   };
 
   try {
-    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await photoAccessHelper.getAlbums(photoAccessHelper.AlbumType.USER, photoAccessHelper.AlbumSubtype.USER_GENERIC, fetchOptions);
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.USER, photoAccessHelper.AlbumSubtype.USER_GENERIC, fetchOptions);
     let album: photoAccessHelper.Album = await fetchResult.getFirstObject();
     console.info('getAlbums successfully, albumName: ' + album.albumName);
     fetchResult.close();
@@ -133,7 +133,7 @@ async function example() {
   };
 
   try {
-    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await photoAccessHelper.getAlbums(photoAccessHelper.AlbumType.USER, photoAccessHelper.AlbumSubtype.USER_GENERIC, fetchOptions);
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.USER, photoAccessHelper.AlbumSubtype.USER_GENERIC, fetchOptions);
     let album: photoAccessHelper.Album = await fetchResult.getFirstObject();
     console.info('getAlbums successfully, albumName: ' + album.albumName);
     album.albumName = 'newAlbumName';
@@ -188,10 +188,10 @@ async function example() {
   };
 
   try {
-    let albumFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await photoAccessHelper.getAlbums(photoAccessHelper.AlbumType.USER, photoAccessHelper.AlbumSubtype.USER_GENERIC, albumFetchOptions);
+    let albumFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.USER, photoAccessHelper.AlbumSubtype.USER_GENERIC, albumFetchOptions);
     let album: photoAccessHelper.Album = await albumFetchResult.getFirstObject();
     console.info('getAlbums successfully, albumName: ' + album.albumName);
-    let photoFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await photoAccessHelper.getAssets(photoFetchOptions);
+    let photoFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(photoFetchOptions);
     let fileAsset: photoAccessHelper.PhotoAsset = await photoFetchResult.getFirstObject();
     console.info('getAssets successfully, albumName: ' + fileAsset.displayName);
     await album.addAssets([fileAsset]);
@@ -245,7 +245,7 @@ async function example() {
   };
 
   try {
-    let albumFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await photoAccessHelper.getAlbums(photoAccessHelper.AlbumType.USER, photoAccessHelper.AlbumSubtype.USER_GENERIC, albumFetchOptions);
+    let albumFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.USER, photoAccessHelper.AlbumSubtype.USER_GENERIC, albumFetchOptions);
     let album: photoAccessHelper.Album = await albumFetchResult.getFirstObject();
     console.info('getAlbums successfully, albumName: ' + album.albumName);
     let photoFetchResult = await album.getAssets(photoFetchOptions);
@@ -304,7 +304,7 @@ async function example() {
   };
 
   try {
-    let albumFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await photoAccessHelper.getAlbums(photoAccessHelper.AlbumType.USER, photoAccessHelper.AlbumSubtype.USER_GENERIC, albumFetchOptions);
+    let albumFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.USER, photoAccessHelper.AlbumSubtype.USER_GENERIC, albumFetchOptions);
     let album: photoAccessHelper.Album = await albumFetchResult.getFirstObject();
     console.info('getAlbums successfully, albumName: ' + album.albumName);
     let photoFetchResult = await album.getAssets(photoFetchOptions);
@@ -353,10 +353,10 @@ async function example() {
   };
 
   try {
-    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await photoAccessHelper.getAlbums(photoAccessHelper.AlbumType.USER, photoAccessHelper.AlbumSubtype.USER_GENERIC, fetchOptions);
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.USER, photoAccessHelper.AlbumSubtype.USER_GENERIC, fetchOptions);
     let album: photoAccessHelper.Album = await fetchResult.getFirstObject();
     console.info('getAlbums successfully, albumName: ' + album.albumName);
-    photoAccessHelper.deleteAlbums([album]);
+    phAccessHelper.deleteAlbums([album]);
     fetchResult.close();
   } catch (err) {
     console.error('deleteAlbums failed with err: ' + err);
