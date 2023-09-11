@@ -342,10 +342,10 @@ on(type: 'connectionStateChange', callback: Callback&lt;StateChangeParam&gt;): v
 
 ```js
 import a2dp from '@ohos.bluetooth.a2dp';
+function onReceiveEvent(data: baseProfile.StateChangeParam) {
+    console.info('a2dp state = '+ JSON.stringify(data));
+}
 try {
-    function onReceiveEvent(data: baseProfile.StateChangeParam) {
-        console.info('a2dp state = '+ JSON.stringify(data));
-    }
     let a2dpSrc = a2dp.createA2dpSrcProfile();
     a2dpSrc.on('connectionStateChange', onReceiveEvent);
 } catch (err) {
@@ -375,11 +375,10 @@ off(type: 'connectionStateChange', callback?: Callback&lt;[StateChangeParam](#St
 
 ```js
 import a2dp from '@ohos.bluetooth.a2dp';
+function onReceiveEvent(data: baseProfile.StateChangeParam) {
+    console.info('a2dp state = '+ JSON.stringify(data));
+}
 try {
-    function onReceiveEvent(data: baseProfile.StateChangeParam) {
-        console.info('a2dp state = '+ JSON.stringify(data));
-    }
-    let a2dpSrc = a2dp.createA2dpSrcProfile();
     a2dpSrc.on('connectionStateChange', onReceiveEvent);
     a2dpSrc.off('connectionStateChange', onReceiveEvent);
 } catch (err) {

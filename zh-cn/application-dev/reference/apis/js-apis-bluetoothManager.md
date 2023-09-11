@@ -2939,7 +2939,7 @@ function ReadCharacteristicReq(characteristicReadRequest: bluetoothManager.Chara
     let deviceId: string = characteristicReadRequest.deviceId;
     let transId: number = characteristicReadRequest.transId;
     let offset: number = characteristicReadRequest.offset;
-    let characteristicUuid: string: = characteristicReadRequest.characteristicUuid;
+    let characteristicUuid: string = characteristicReadRequest.characteristicUuid;
 
     let serverResponse: bluetoothManager.ServerResponse = {deviceId: deviceId, transId: transId, status: 0, offset: offset, value:arrayBufferCCC};
 
@@ -3179,7 +3179,7 @@ function WriteDescriptorReq(descriptorWriteRequest: bluetoothManager.DescriptorW
 }
 
 let gattServer = bluetoothManager.BLE.createGattServer();
-gattServer.on("descriptorRead", WriteDescriptorReq);
+gattServer.on("descriptorWrite", WriteDescriptorReq);
 ```
 
 
