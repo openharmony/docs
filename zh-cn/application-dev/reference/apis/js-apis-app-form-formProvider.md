@@ -147,16 +147,16 @@ updateForm(formId: string, formBindingData: formBindingData.FormBindingData,call
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
 import formBindingData from '@ohos.app.form.formBindingData';
 import Base from '@ohos.base';
 
 let formId: string = '12400633174999288';
 try {
-  let obj: formBindingData.FormBindingData = formBindingData.createFormBindingData({
-    temperature: '22c',
-    time: '22:00'
-  });
+  let param: Record<string, string> = {
+    'temperature': '22c',
+    'time': '22:00'
+  }
+  let obj: formBindingData.FormBindingData = formBindingData.createFormBindingData(param);
   formProvider.updateForm(formId, obj, (error: Base.BusinessError) => {
     if (error) {
       console.error(`callback error, code: ${error.code}, message: ${error.message})`);
@@ -207,15 +207,15 @@ updateForm(formId: string, formBindingData: formBindingData.FormBindingData): Pr
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
 import formBindingData from '@ohos.app.form.formBindingData';
 import Base from '@ohos.base';
 
 let formId: string = '12400633174999288';
-let obj: formBindingData.FormBindingData = formBindingData.createFormBindingData({
-  temperature: '22c',
-  time: '22:00'
-});
+let param: Record<string, string> = {
+  'temperature': '22c',
+  'time': '22:00'
+}
+let obj: formBindingData.FormBindingData = formBindingData.createFormBindingData(param);
 try {
   formProvider.updateForm(formId, obj).then(() => {
     console.log(`formProvider updateForm success`);
@@ -352,7 +352,6 @@ getFormsInfo(filter?: formInfo.FormInfoFilter): Promise&lt;Array&lt;formInfo.For
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
 import formInfo from '@ohos.app.form.formInfo';
 import Base from '@ohos.base';
 
@@ -404,7 +403,6 @@ requestPublishForm(want: Want, formBindingData: formBindingData.FormBindingData,
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
 import formBindingData from '@ohos.app.form.formBindingData';
 import Want from '@ohos.app.ability.Want';
 import Base from '@ohos.base';
@@ -418,10 +416,11 @@ let want: Want = {
   }
 };
 try {
-  let obj: formBindingData.FormBindingData = formBindingData.createFormBindingData({
-    temperature: '22c',
-    time: '22:00'
-  });
+  let param: Record<string, string> = {
+    'temperature': '22c',
+    'time': '22:00'
+  }
+  let obj: formBindingData.FormBindingData = formBindingData.createFormBindingData(param);
   formProvider.requestPublishForm(want, obj, (error: Base.BusinessError, data: string) => {
     if (error) {
       console.error(`callback error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message})`);
@@ -466,7 +465,6 @@ requestPublishForm(want: Want, callback: AsyncCallback&lt;string&gt;): void
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
 import Want from '@ohos.app.ability.Want';
 import Base from '@ohos.base';
 
@@ -529,7 +527,6 @@ requestPublishForm(want: Want, formBindingData?: formBindingData.FormBindingData
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
 import Want from '@ohos.app.ability.Want';
 import Base from '@ohos.base';
 
@@ -582,7 +579,6 @@ isRequestPublishFormSupported(callback: AsyncCallback&lt;boolean&gt;): void
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
 import Want from '@ohos.app.ability.Want';
 import Base from '@ohos.base';
 
@@ -648,7 +644,6 @@ isRequestPublishFormSupported(): Promise&lt;boolean&gt;
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
 import Want from '@ohos.app.ability.Want';
 import Base from '@ohos.base';
 
