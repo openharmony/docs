@@ -172,8 +172,8 @@ import ethernet from '@ohos.net.ethernet'
 
 // 订阅interfaceStateChange事件
 class EthernetData{
-  iface: string
-  active: boolean
+  iface: string = ""
+  active: boolean = false
 }
 
 ethernet.on('interfaceStateChange', (data: EthernetData) => {
