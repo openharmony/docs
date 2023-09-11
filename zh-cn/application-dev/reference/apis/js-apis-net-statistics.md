@@ -619,8 +619,8 @@ on(type: 'netStatsChange', callback: Callback\<{ iface: string, uid?: number }>)
 
 ```js
  class IFace {
-    iFace: string
-    uid?: number
+    iFace: string = ""
+    uid?: number = 0
   }
  statistics.on('netStatsChange', (data:IFace) => {
   console.log('on netStatsChange' + JSON.stringify(data));
@@ -662,8 +662,8 @@ off(type: 'netStatsChange', callback?: Callback\<{ iface: string, uid?: number }
 
 ```js
  class IFace {
-    iFace: string
-    uid?: number
+    iFace: string = ""
+    uid?: number = 0
   }
 let callback =( data:IFace) => {
     console.log("on netStatsChange, data:" + JSON.stringify(data));
@@ -927,7 +927,7 @@ getTrafficStatsByUid(uidInfo: UidInfo): Promise\<NetStatsInfo>;
   }
   let  uidInfo=new UidInfo()
 
-  statistics.getTrafficStatsByUid(uidInfo).then( ((statsInfo:NetStatsInfo))=> {
+  statistics.getTrafficStatsByUid(uidInfo).then((statsInfo:NetStatsInfo) => {
     console.log("getTrafficStatsByUid bytes of received = " + JSON.stringify(statsInfo.rxBytes));
     console.log("getTrafficStatsByUid bytes of sent = " + JSON.stringify(statsInfo.txBytes));
     console.log("getTrafficStatsByUid packets of received = " + JSON.stringify(statsInfo.rxPackets));

@@ -49,7 +49,7 @@ struct Index {
   @State message: string = 'Test VPN'
 
   private context = getContext(this) as common.UIAbilityContext;
-  private VpnConnection: Object = vpn.createVpnConnection(this.context)
+  private VpnConnection: vpn.VpnConnection = vpn.createVpnConnection(this.context)
 
   //1. 建立一个VPN的网络隧道，下面以UDP隧道为例。
   CreateTunnel() {
@@ -66,18 +66,18 @@ struct Index {
   }
 
   SetupVpn() {
-    let tunAddr : vpn.LinkAddress
+    let tunAddr : vpn.LinkAddress = {} as vpn.LinkAddress
     tunAddr.address.address = "10.0.0.5"
     tunAddr.address.family = 1
 
-    let config : vpn.VpnConfig
+    let config : vpn.VpnConfig = {} as vpn.VpnConfig
     config.addresses.push(tunAddr)
     config.mtu = 1400
     config.dnsAddresses = ["114.114.114.114"]
 
     try {
       //3. 建立一个VPN网络。
-      this.VpnConnection.setUp(config, (error: BusinessError, data: object) => {
+      this.VpnConnection.setUp(config, (error: BusinessError, data: number) => {
         console.info("tunfd: " + JSON.stringify(data));
         //4. 处理虚拟网卡的数据，如：读写操作。
         vpn_client.startVpn(data, TunnelFd)
