@@ -161,7 +161,7 @@ struct Index {
         Button('Button')
           .onClick(()=>{
             // 引用HAR的native方法
-            nativeMulti();
+            nativeMulti(1, 2);
         })
       }
       .width('100%')
