@@ -2714,7 +2714,7 @@ characteristics[0] = characteristic;
 // 创建gattService
 let gattService: bluetoothManager.GattService = {serviceUuid:'00001810-0000-1000-8000-00805F9B34FB', isPrimary: true, characteristics:characteristics, includeServices:[]};
 
-let gattServer = bluetoothManager.BLE.createGattServer();
+let gattServer  = bluetoothManager.BLE.createGattServer();
 try {
     gattServer.addService(gattService);
 } catch (err) {
@@ -2946,7 +2946,7 @@ function ReadCharacteristicReq(characteristicReadRequest: bluetoothManager.Chara
     try {
         gattServer.sendResponse(serverResponse);
     } catch (err) {
-        console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+        console.error('errCode: ' + (err as BusinessError).code + ",errMessage:" + (err as BusinessError).message);
     }
 }
 
@@ -4196,7 +4196,7 @@ client获取远端蓝牙低功耗设备的信号强度 (Received Signal Strength
 try {
     let gattClient = bluetoothManager.BLE.createGattClientDevice("XX:XX:XX:XX:XX:XX");
     gattClient.connect();
-    let rssi = gattClient.getRssiValue((err, data)=> {
+    let rssi = gattClient.getRssiValue((err: BusinessError, data: number)=> {
         console.info('rssi err ' + JSON.stringify(err));
         console.info('rssi value' + JSON.stringify(data));
     })
@@ -4239,7 +4239,7 @@ client获取远端蓝牙低功耗设备的信号强度 (Received Signal Strength
 // promise
 try {
     let gattClient = bluetoothManager.BLE.createGattClientDevice("XX:XX:XX:XX:XX:XX");
-    let rssi = gattClient.getRssiValue().then((data) => {
+    let rssi = gattClient.getRssiValue().then((data: number) => {
         console.info('rssi' + JSON.stringify(data));
     })
 } catch (err) {
