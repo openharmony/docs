@@ -63,7 +63,6 @@ bind(address: NetAddress, callback: AsyncCallback\<void\>): void
 **示例：**
 
 ```js
-let udp: socket = socket.constructUDPSocketInstance();
 class NetAddress {
   address: string = '192.168.xx.xxx'
   port: number = 8080
@@ -111,7 +110,6 @@ bind(address: NetAddress): Promise\<void\>
 **示例：**
 
 ```js
-let udp: socket = socket.constructUDPSocketInstance();
 class NetAddress {
   address: string = '192.168.xx.xxx'
   port: number = 8080
@@ -155,7 +153,6 @@ send(options: UDPSendOptions, callback: AsyncCallback\<void\>): void
 **示例：**
 
 ```js
-let udp: socket = socket.constructUDPSocketInstance();
 class NetAddress {
   address: string = '192.168.xx.xxx'
   port: number = 8080
@@ -210,7 +207,6 @@ send(options: UDPSendOptions): Promise\<void\>
 **示例：**
 
 ```js
-let udp: socket = socket.constructUDPSocketInstance();
 class NetAddress {
   address: string = '192.168.xx.xxx'
   port: number = 8080
@@ -248,7 +244,6 @@ close(callback: AsyncCallback\<void\>): void
 **示例：**
 
 ```js
-let udp: socket = socket.constructUDPSocketInstance();
 udp.close((err: string) => {
   if (err) {
     console.log('close fail');
@@ -277,7 +272,6 @@ close(): Promise\<void\>
 **示例：**
 
 ```js
-let udp: socket = socket.constructUDPSocketInstance();
 let promise: socket = udp.close();
 promise.then(() => {
   console.log('close success');
@@ -314,7 +308,6 @@ getState(callback: AsyncCallback\<SocketStateBase\>): void
 **示例：**
 
 ```js
-let udp: socket = socket.constructUDPSocketInstance();
 class NetAddress {
   address: string = '192.168.xx.xxx'
   port: number = 8080
@@ -359,7 +352,6 @@ getState(): Promise\<SocketStateBase\>
 **示例：**
 
 ```js
-let udp: socket = socket.constructUDPSocketInstance();
 class NetAddress {
   address: string = '192.168.xx.xxx'
   port: number = 8080
@@ -412,7 +404,6 @@ setExtraOptions(options: UDPExtraOptions, callback: AsyncCallback\<void\>): void
 **示例：**
 
 ```js
-let udp: socket = socket.constructUDPSocketInstance();
 class NetAddress {
   address: string = '192.168.xx.xxx'
   port: number = 8080
@@ -478,7 +469,6 @@ setExtraOptions(options: UDPExtraOptions): Promise\<void\>
 **示例：**
 
 ```js
-let udp: socket = socket.constructUDPSocketInstance();
 class NetAddress {
   address: string = '192.168.xx.xxx'
   port: number = 8080
@@ -525,7 +515,6 @@ on(type: 'message', callback: Callback\<{message: ArrayBuffer, remoteInfo: Socke
 **示例：**
 
 ```js
-let udp: socket = socket.constructUDPSocketInstance();
 let messageView = '';
 udp.on('message', (value: Object) => {
   for (let i = 0; i < value.message.length; i++) {
@@ -559,7 +548,6 @@ off(type: 'message', callback?: Callback\<{message: ArrayBuffer, remoteInfo: Soc
 **示例：**
 
 ```js
-let udp: socket = socket.constructUDPSocketInstance();
 let messageView = '';
 let callback = (value: Object) => {
   for (let i = 0; i < value.message.length; i++) {
@@ -594,7 +582,6 @@ on(type: 'listening' | 'close', callback: Callback\<void\>): void
 **示例：**
 
 ```js
-let udp: socket = socket.constructUDPSocketInstance();
 udp.on('listening', () => {
   console.log("on listening success");
 });
@@ -624,7 +611,6 @@ off(type: 'listening' | 'close', callback?: Callback\<void\>): void
 **示例：**
 
 ```js
-let udp: socket = socket.constructUDPSocketInstance();
 let callback1 = () => {
   console.log("on listening, success");
 }
@@ -659,7 +645,6 @@ on(type: 'error', callback: ErrorCallback): void
 **示例：**
 
 ```js
-let udp: socket = socket.constructUDPSocketInstance();
 udp.on('error', (err: string) => {
   console.log("on error, err:" + JSON.stringify(err))
 });
@@ -686,7 +671,6 @@ off(type: 'error', callback?: ErrorCallback): void
 **示例：**
 
 ```js
-let udp: socket = socket.constructUDPSocketInstance();
 let callback = (err: string) => {
   console.log("on error, err:" + JSON.stringify(err));
 }
@@ -792,10 +776,12 @@ TCPSocket连接。在调用TCPSocket的方法前，需要先通过[socket.constr
 
 bind(address: NetAddress, callback: AsyncCallback\<void\>): void
 
-绑定IP地址和端口，端口可以指定或由系统随机分配。使用callback方法作为异步方法。
+绑定IP地址和端口，端口可以指定为0由系统随机分配或指定为其它非0端口。使用callback方法作为异步方法。
 
 > **说明：**
-> bind方法失败会由系统随机分配端口号。
+> bind方法如果因为端口冲突而执行失败，则会由系统随机分配端口号。
+> TCP客户端可先调用该接口(tcp.bind)显式绑定IP地址和端口号，再调用tcp.connect完成与服务端的连接；也可直接调用tcp.connect由系统自动绑定IP地址和端口号，完成与服务端的连接。
+> bind的IP为'localhost'或'127.0.0.1'时，只允许本地回环接口的连接，即服务端和客户端运行在同一台机器上。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -818,7 +804,6 @@ bind(address: NetAddress, callback: AsyncCallback\<void\>): void
 **示例：**
 
 ```js
-let tcp: socket = socket.constructTCPSocketInstance();
 class NetAddress {
   address: string = '192.168.xx.xxx'
   port: number = 8080
@@ -838,10 +823,12 @@ tcp.bind(netaddress, (err: string) => {
 
 bind(address: NetAddress): Promise\<void\>
 
-绑定IP地址和端口，端口可以指定或由系统随机分配。使用Promise方法作为异步方法。
+绑定IP地址和端口，端口可以指定为0由系统随机分配或指定为其它非0端口。使用Promise方法作为异步方法。
 
 > **说明：**
-> bind方法失败会由系统随机分配端口号。
+> bind方法如果因为端口冲突而执行失败，则会由系统随机分配端口号。
+> TCP客户端可先调用该接口(tcp.bind)显式绑定IP地址和端口号，再调用tcp.connect完成与服务端的连接；也可直接调用tcp.connect由系统自动绑定IP地址和端口号，完成与服务端的连接。
+> bind的IP为'localhost'或'127.0.0.1'时，只允许本地回环接口的连接，即服务端和客户端运行在同一台机器上。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -869,7 +856,6 @@ bind(address: NetAddress): Promise\<void\>
 **示例：**
 
 ```js
-let tcp: socket = socket.constructTCPSocketInstance();
 class NetAddress {
   address: string = '192.168.xx.xxx'
   port: number = 8080
@@ -891,7 +877,7 @@ connect(options: TCPConnectOptions, callback: AsyncCallback\<void\>): void
 连接到指定的IP地址和端口。使用callback方法作为异步方法。
 
 > **说明：**
-> bind方法调用成功后，才可调用此方法。
+> 在没有执行tcp.bind的情况下，也可以直接调用该接口完成与TCP服务端的连接。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -914,7 +900,6 @@ connect(options: TCPConnectOptions, callback: AsyncCallback\<void\>): void
 **示例：**
 
 ```js
-let tcp: socket = socket.constructTCPSocketInstance();
 class NetAddress {
   address: string = '192.168.xx.xxx'
   port: number = 8080
@@ -939,6 +924,9 @@ tcp.connect(tcpconnectoptions, (err: string) => {
 connect(options: TCPConnectOptions): Promise\<void\>
 
 连接到指定的IP地址和端口。使用promise方法作为异步方法。
+
+> **说明：**
+> 在没有执行tcp.bind的情况下，也可以直接调用该接口完成与TCP服务端的连接。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -966,7 +954,6 @@ connect(options: TCPConnectOptions): Promise\<void\>
 **示例：**
 
 ```js
-let tcp: socket = socket.constructTCPSocketInstance();
 class NetAddress {
   address: string = '192.168.xx.xxx'
   port: number = 8080
@@ -1015,7 +1002,6 @@ send(options: TCPSendOptions, callback: AsyncCallback\<void\>): void
 **示例：**
 
 ```js
-let tcp: socket = socket.constructTCPSocketInstance();
 class NetAddress {
   address: string = '192.168.xx.xxx'
   port: number = 8080
@@ -1077,7 +1063,6 @@ send(options: TCPSendOptions): Promise\<void\>
 **示例：**
 
 ```js
-let tcp: socket = socket.constructTCPSocketInstance();
 class NetAddress {
   address: string = '192.168.xx.xxx'
   port: number = 8080
@@ -1131,7 +1116,6 @@ close(callback: AsyncCallback\<void\>): void
 **示例：**
 
 ```js
-let tcp: socket = socket.constructTCPSocketInstance();
 tcp.close((err：string) => {
   if (err) {
     console.log('close fail');
@@ -1166,7 +1150,6 @@ close(): Promise\<void\>
 **示例：**
 
 ```js
-let tcp: socket = socket.constructTCPSocketInstance();
 let promise: socket = tcp.close();
 promise.then(() => {
   console.log('close success');
@@ -1203,7 +1186,7 @@ getRemoteAddress(callback: AsyncCallback\<NetAddress\>): void
 **示例：**
 
 ```js
-let tcp: socket = socket.constructTCPSocketInstance();
+
 class NetAddress {
   address: string = '192.168.xx.xxx'
   port: number = 8080
@@ -1254,7 +1237,7 @@ getRemoteAddress(): Promise\<NetAddress\>
 **示例：**
 
 ```js
-let tcp: socket = socket.constructTCPSocketInstance();
+
 class NetAddress {
   address: string = '192.168.xx.xxx'
   port: number = 8080
@@ -1307,7 +1290,7 @@ getState(callback: AsyncCallback\<SocketStateBase\>): void
 **示例：**
 
 ```js
-let tcp: socket = socket.constructTCPSocketInstance();
+
 class NetAddress {
   address: string = '192.168.xx.xxx'
   port: number = 8080
@@ -1358,7 +1341,7 @@ getState(): Promise\<SocketStateBase\>
 **示例：**
 
 ```js
-let tcp: socket = socket.constructTCPSocketInstance();
+
 class NetAddress {
   address: string = '192.168.xx.xxx'
   port: number = 8080
@@ -1403,8 +1386,6 @@ getSocketFd(callback: AsyncCallback\<number\>): void
 **示例：**
 
 ```js
-  import socket from "@ohos.net.socket";
-  let tcp: socket = socket.constructTCPSocketInstance();
   let tunnelfd = 0
   class Address {
     address: string = "0.0.0.0"
@@ -1446,8 +1427,6 @@ getSocketFd(): Promise\<number\>
 **示例：**
 
 ```js
-  import socket from "@ohos.net.socket";
-  let tcp: socket = socket.constructTCPSocketInstance();
   let tunnelfd = 0
   class Address {
   address: string = "0.0.0.0"
@@ -1500,7 +1479,7 @@ setExtraOptions(options: TCPExtraOptions, callback: AsyncCallback\<void\>): void
 **示例：**
 
 ```js
-let tcp: socket = socket.constructTCPSocketInstance();
+
 class NetAddress {
   address: string = '192.168.xx.xxx'
   port: number = 8080
@@ -1571,7 +1550,7 @@ setExtraOptions(options: TCPExtraOptions): Promise\<void\>
 **示例：**
 
 ```js
-let tcp: socket = socket.constructTCPSocketInstance();
+
 class NetAddress {
   address: string = '192.168.xx.xxx'
   port: number = 8080
@@ -1627,7 +1606,7 @@ on(type: 'message', callback: Callback<{message: ArrayBuffer, remoteInfo: Socket
 **示例：**
 
 ```js
-let tcp: socket = socket.constructTCPSocketInstance();
+
 let messageView = '';
 tcp.on('message', (value: Object) => {
   for (let i = 0; i < value.message.length; i++) {
@@ -1661,7 +1640,7 @@ off(type: 'message', callback?: Callback<{message: ArrayBuffer, remoteInfo: Sock
 **示例：**
 
 ```js
-let tcp: socket = socket.constructTCPSocketInstance();
+
 let messageView = '';
 let callback = (value: Object) => {
   for (let i = 0; i < value.message.length; i++) {
@@ -1696,7 +1675,7 @@ on(type: 'connect' | 'close', callback: Callback\<void\>): void
 **示例：**
 
 ```js
-let tcp: socket = socket.constructTCPSocketInstance();
+
 tcp.on('connect', () => {
   console.log("on connect success")
 });
@@ -1726,7 +1705,7 @@ off(type: 'connect' | 'close', callback?: Callback\<void\>): void
 **示例：**
 
 ```js
-let tcp: socket = socket.constructTCPSocketInstance();
+
 let callback1 = () => {
   console.log("on connect success");
 }
@@ -1761,7 +1740,7 @@ on(type: 'error', callback: ErrorCallback): void
 **示例：**
 
 ```js
-let tcp: socket = socket.constructTCPSocketInstance();
+
 tcp.on('error', (err: string) => {
   console.log("on error, err:" + JSON.stringify(err))
 });
@@ -1788,7 +1767,6 @@ off(type: 'error', callback?: ErrorCallback): void
 **示例：**
 
 ```js
-let tcp = socket.constructTCPSocketInstance();
 let callback = (err: string) => {
   console.log("on error, err:" + JSON.stringify(err));
 }
@@ -1896,7 +1874,7 @@ listen(address: NetAddress, callback: AsyncCallback\<void\>): void
 **示例：**
 
 ```js
-let tcpServer: socket = socket.constructTCPSocketServerInstance();
+
 class NetAddress {
   address: string = '192.168.xx.xxx'
   port: number = 8080
@@ -1951,7 +1929,7 @@ listen(address: NetAddress): Promise\<void\>
 **示例：**
 
 ```js
-let tcpServer: socket = socket.constructTCPSocketServerInstance();
+
 class NetAddress {
   address: string = '192.168.xx.xxx'
   port: number = 8080
@@ -1996,7 +1974,7 @@ getState(callback: AsyncCallback\<SocketStateBase\>): void
 **示例：**
 
 ```js
-let tcpServer: socket = socket.constructTCPSocketServerInstance();
+
 class NetAddress {
   address: string = '192.168.xx.xxx'
   port: number = 8080
@@ -2048,7 +2026,7 @@ getState(): Promise\<SocketStateBase\>
 **示例：**
 
 ```js
-let tcpServer: socket = socket.constructTCPSocketServerInstance();
+
 class NetAddress {
   address: string = '192.168.xx.xxx'
   port: number = 8080
@@ -2100,7 +2078,7 @@ setExtraOptions(options: TCPExtraOptions, callback: AsyncCallback\<void\>): void
 **示例：**
 
 ```js
-let tcpServer: socket = socket.constructTCPSocketServerInstance();
+
 class NetAddress {
   address: string = '192.168.xx.xxx'
   port: number = 8080
@@ -2173,7 +2151,7 @@ setExtraOptions(options: TCPExtraOptions): Promise\<void\>
 **示例：**
 
 ```js
-let tcpServer: socket = socket.constructTCPSocketServerInstance();
+
 class NetAddress {
   address: string = '192.168.xx.xxx'
   port: number = 8080
@@ -2234,7 +2212,7 @@ on(type: 'connect', callback: Callback\<TCPSocketConnection\>): void
 **示例：**
 
 ```js
-let tcpServer: socket = socket.constructTCPSocketServerInstance();
+
 tcpServer.on('connect', (data: string) => {
   console.log(JSON.stringify(data))
 });
@@ -2267,7 +2245,7 @@ off(type: 'connect', callback?: Callback\<TCPSocketConnection\>): void
 **示例：**
 
 ```js
-let tcpServer: socket = socket.constructTCPSocketServerInstance();
+
 let callback = (data: string) => {
   console.log('on connect message: ' + JSON.stringify(data));
 }
@@ -2304,7 +2282,7 @@ on(type: 'error', callback: ErrorCallback): void
 **示例：**
 
 ```js
-let tcpServer: socket = socket.constructTCPSocketServerInstance();
+
 tcpServer.on('error', (err: string) => {
   console.log("on error, err:" + JSON.stringify(err))
 });
@@ -2337,7 +2315,7 @@ off(type: 'error', callback?: ErrorCallback): void
 **示例：**
 
 ```js
-let tcpServer: socket = socket.constructTCPSocketServerInstance();
+
 let callback = (err: string) => {
   console.log("on error, err:" + JSON.stringify(err));
 }
@@ -2396,7 +2374,7 @@ send(options: TCPSendOptions, callback: AsyncCallback\<void\>): void
 class Data {
   data: string = 'Hello, client!'
 }
-let tcpServer: socket = socket.constructTCPSocketServerInstance();
+
 tcpServer.on('connect', (client: socket) => {
   client.send(new Data(), (err: string) => {
     if (err) {
@@ -2447,7 +2425,7 @@ send(options: TCPSendOptions): Promise\<void\>
 class Data {
   data: string = 'Hello, client!'
 }
-let tcpServer: socket = socket.constructTCPSocketServerInstance();
+
 tcpServer.on('connect', (client: socket) => {
   let promise: socket = client.send(new Data());
   promise.then(() => {
@@ -2485,7 +2463,7 @@ close(callback: AsyncCallback\<void\>): void
 **示例：**
 
 ```js
-let tcpServer: socket = socket.constructTCPSocketServerInstance();
+
 tcpServer.on('connect', (client: socket) => {
   client.close((err: string) => {
     if (err) {
@@ -2523,7 +2501,7 @@ close(): Promise\<void\>
 **示例：**
 
 ```js
-let tcpServer: socket = socket.constructTCPSocketServerInstance();
+
 tcpServer.on('connect', (client: socket) => {
   let promise: socket = client.close();
   promise.then(() => {
@@ -2565,7 +2543,7 @@ getRemoteAddress(callback: AsyncCallback\<NetAddress\>): void
 **示例：**
 
 ```js
-let tcpServer: socket = socket.constructTCPSocketServerInstance();
+
 tcpServer.on('connect', (client: socket) => {
   client.getRemoteAddress((err: string, data: string) => {
     if (err) {
@@ -2607,7 +2585,7 @@ getRemoteAddress(): Promise\<NetAddress\>
 **示例：**
 
 ```js
-let tcpServer: socket = socket.constructTCPSocketServerInstance();
+
 tcpServer.on('connect', (client: socket) => {
   let promise: socket = client.getRemoteAddress();
   promise.then(() => {
@@ -2642,7 +2620,7 @@ on(type: 'message', callback: Callback<{message: ArrayBuffer, remoteInfo: Socket
 **示例：**
 
 ```js
-let tcpServer: socket = socket.constructTCPSocketServerInstance();
+
 tcpServer.on('connect', (client: socket) => {
   client.on('message', (value: Object) => {
     let messageView = '';
@@ -2694,7 +2672,7 @@ let callback = (value: Object) => {
   console.log('on message message: ' + JSON.stringify(messageView));
   console.log('remoteInfo: ' + JSON.stringify(value.remoteInfo));
 }
-let tcpServer: socket = socket.constructTCPSocketServerInstance();
+
 tcpServer.on('connect', (client: socket) => {
   client.on('message', callback);
   // 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
@@ -2727,7 +2705,7 @@ on(type: 'close', callback: Callback\<void\>): void
 **示例：**
 
 ```js
-let tcpServer: socket = socket.constructTCPSocketServerInstance();
+
 tcpServer.on('connect', (client: socket) => {
   client.on('close', () => {
     console.log("on close success")
@@ -2765,7 +2743,7 @@ off(type: 'close', callback?: Callback\<void\>): void
 let callback = () => {
   console.log("on close success");
 }
-let tcpServer: socket = socket.constructTCPSocketServerInstance();
+
 tcpServer.on('connect', (client: socket) => {
   client.on('close', callback);
   // 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
@@ -2798,7 +2776,7 @@ on(type: 'error', callback: ErrorCallback): void
 **示例：**
 
 ```js
-let tcpServer: socket = socket.constructTCPSocketServerInstance();
+
 tcpServer.on('connect', (client: socket) => {
   client.on('error', (err: string) => {
     console.log("on error, err:" + JSON.stringify(err))
@@ -2836,7 +2814,7 @@ off(type: 'error', callback?: ErrorCallback): void
 let callback = (err: string) => {
   console.log("on error, err:" + JSON.stringify(err));
 }
-let tcpServer: socket = socket.constructTCPSocketServerInstance();
+
 tcpServer.on('connect', (client: socket) => {
   client.on('error', callback);
   // 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
@@ -3197,8 +3175,6 @@ on(type: 'message', callback: Callback<{message: ArrayBuffer, remoteInfo: Socket
 **示例：**
 
 ```js
-import socket from '@ohos.net.socket';
-let tls: socket = socket.constructTLSSocketInstance();
 let messageView = '';
 tls.on('message', (value: Object) => {
   for (let i = 0; i < value.message.length; i++) {
@@ -3232,8 +3208,6 @@ off(type: 'message', callback?: Callback\<{message: ArrayBuffer, remoteInfo: Soc
 **示例：**
 
 ```js
-import socket from '@ohos.net.socket';
-let tls: socket = socket.constructTLSSocketInstance();
 let messageView = '';
 let callback = (value: Object) => {
   for (let i = 0; i < value.message.length; i++) {
@@ -3266,8 +3240,6 @@ on(type: 'connect' | 'close', callback: Callback\<void\>): void
 **示例：**
 
 ```js
-import socket from '@ohos.net.socket';
-let tls: socket = socket.constructTLSSocketInstance();
 tls.on('connect', () => {
   console.log("on connect success")
 });
@@ -3297,8 +3269,6 @@ off(type: 'connect' | 'close', callback?: Callback\<void\>): void
 **示例：**
 
 ```js
-import socket from '@ohos.net.socket';
-let tls: socket = socket.constructTLSSocketInstance();
 let callback1 = () => {
   console.log("on connect success");
 }
@@ -3332,8 +3302,6 @@ on(type: 'error', callback: ErrorCallback): void
 **示例：**
 
 ```js
-import socket from '@ohos.net.socket';
-let tls: socket = socket.constructTLSSocketInstance();
 tls.on('error', (err: string) => {
   console.log("on error, err:" + JSON.stringify(err))
 });
@@ -3360,8 +3328,6 @@ off(type: 'error', callback?: ErrorCallback): void
 **示例：**
 
 ```js
-import socket from '@ohos.net.socket';
-let tls: socket = socket.constructTLSSocketInstance();
 let callback = (err: string) => {
   console.log("on error, err:" + JSON.stringify(err));
 }
@@ -4212,7 +4178,6 @@ listen(options: TLSConnectOptions, callback: AsyncCallback\<void\>): void
 **示例：**
 
 ```js
-let tlsServer: socket = socket.constructTLSSocketServerInstance();
 class NetAddress {
   address: string = '192.168.xx.xxx'
   port: number = 8080
@@ -4280,7 +4245,6 @@ listen(options: TLSConnectOptions): Promise\<void\>
 **示例：**
 
 ```js
-let tlsServer: socket = socket.constructTLSSocketServerInstance();
 class NetAddress {
   address: string = '192.168.xx.xxx'
   port: number = 8080
@@ -4336,7 +4300,6 @@ getState(callback: AsyncCallback\<SocketStateBase\>): void
 **示例：**
 
 ```js
-let tlsServer: socket = socket.constructTLSSocketServerInstance();
 class NetAddress {
   address: string = '192.168.xx.xxx'
   port: number = 8080
@@ -4398,7 +4361,6 @@ getState(): Promise\<SocketStateBase\>
 **示例：**
 
 ```js
-let tlsServer: socket = socket.constructTLSSocketServerInstance();
 class NetAddress {
   address: string = '192.168.xx.xxx'
   port: number = 8080
@@ -4462,7 +4424,6 @@ setExtraOptions(options: TCPExtraOptions, callback: AsyncCallback\<void\>): void
 **示例：**
 
 ```js
-let tlsServer: socket = socket.constructTLSSocketServerInstance();
 class NetAddress {
   address: string = '192.168.xx.xxx'
   port: number = 8080
@@ -4544,7 +4505,6 @@ setExtraOptions(options: TCPExtraOptions): Promise\<void\>
 **示例：**
 
 ```js
-let tlsServer: socket = socket.constructTLSSocketServerInstance();
 class NetAddress {
   address: string = '192.168.xx.xxx'
   port: number = 8080
@@ -4622,7 +4582,6 @@ getCertificate(callback: AsyncCallback\<[X509CertRawData](#x509certrawdata9)\>):
 **示例：**
 
 ```js
-let tlsServer: socket = socket.constructTLSSocketServerInstance();
 class NetAddress {
   address: string = '192.168.xx.xxx'
   port: number = 8080
@@ -4684,7 +4643,6 @@ getCertificate():Promise\<[X509CertRawData](#x509certrawdata9)\>
 **示例：**
 
 ```js
-let tlsServer: socket = socket.constructTLSSocketServerInstance();
 class NetAddress {
   address: string = '192.168.xx.xxx'
   port: number = 8080
@@ -4747,7 +4705,7 @@ getProtocol(callback: AsyncCallback\<string\>): void
 **示例：**
 
 ```js
-let tlsServer: socket = socket.constructTLSSocketServerInstance();
+
 class NetAddress {
   address: string = '192.168.xx.xxx'
   port: number = 8080
@@ -4809,7 +4767,7 @@ getProtocol():Promise\<string\>
 **示例：**
 
 ```js
-let tlsServer: socket = socket.constructTLSSocketServerInstance();
+
 class NetAddress {
   address: string = '192.168.xx.xxx'
   port: number = 8080
@@ -4868,7 +4826,7 @@ on(type: 'connect', callback: Callback\<TLSSocketConnection\>): void
 **示例：**
 
 ```js
-let tlsServer: socket = socket.constructTLSSocketServerInstance();
+
 class NetAddress {
   address: string = '192.168.xx.xxx'
   port: number = 8080
@@ -4926,7 +4884,7 @@ off(type: 'connect', callback?: Callback\<TLSSocketConnection\>): void
 **示例：**
 
 ```js
-let tlsServer: socket = socket.constructTLSSocketServerInstance();
+
 let callback = （data: string) => {
   console.log('on connect message: ' + JSON.stringify(data));
 }
@@ -4989,7 +4947,7 @@ on(type: 'error', callback: ErrorCallback): void
 **示例：**
 
 ```js
-let tlsServer: socket = socket.constructTLSSocketServerInstance();
+
 class NetAddress {
   address: string = '192.168.xx.xxx'
   port: number = 8080
@@ -5047,7 +5005,7 @@ off(type: 'error', callback?: ErrorCallback): void
 **示例：**
 
 ```js
-let tlsServer: socket = socket.constructTLSSocketServerInstance();
+
 let callback = (err: string) => {
   console.log("on error, err:" + JSON.stringify(err));
 }
@@ -5127,7 +5085,7 @@ send(data: string, callback: AsyncCallback\<void\>): void
 **示例：**
 
 ```js
-let tlsServer: socket = socket.constructTLSSocketServerInstance();
+
 class NetAddress {
   address: string = '192.168.xx.xxx'
   port: number = 8080
@@ -5200,7 +5158,7 @@ send(data: string): Promise\<void\>
 **示例：**
 
 ```js
-let tlsServer: socket = socket.constructTLSSocketServerInstance();
+
 class NetAddress {
   address: string = '192.168.xx.xxx'
   port: number = 8080
@@ -5267,7 +5225,7 @@ close(callback: AsyncCallback\<void\>): void
 **示例：**
 
 ```js
-let tlsServer: socket = socket.constructTLSSocketServerInstance();
+
 class NetAddress {
   address: string = '192.168.xx.xxx'
   port: number = 8080
@@ -5329,7 +5287,7 @@ close(): Promise\<void\>
 **示例：**
 
 ```js
-let tlsServer: socket = socket.constructTLSSocketServerInstance();
+
 class NetAddress {
   address: string = '192.168.xx.xxx'
   port: number = 8080
@@ -5391,7 +5349,7 @@ getRemoteAddress(callback: AsyncCallback\<NetAddress\>): void
 **示例：**
 
 ```js
-let tlsServer: socket = socket.constructTLSSocketServerInstance();
+
 class NetAddress {
   address: string = '192.168.xx.xxx'
   port: number = 8080
@@ -5451,7 +5409,7 @@ getRemoteAddress(): Promise\<NetAddress\>
 **示例：**
 
 ```js
-let tlsServer: socket = socket.constructTLSSocketServerInstance();
+
 class NetAddress {
   address: string = '192.168.xx.xxx'
   port: number = 8080
@@ -5512,7 +5470,7 @@ getRemoteCertificate(callback: AsyncCallback\<[X509CertRawData](#x509certrawdata
 **示例：**
 
 ```js
-let tlsServer: socket = socket.constructTLSSocketServerInstance();
+
 class NetAddress {
   address: string = '192.168.xx.xxx'
   port: number = 8080
@@ -5572,7 +5530,7 @@ getRemoteCertificate():Promise\<[X509CertRawData](#x509certrawdata9)\>
 **示例：**
 
 ```js
-let tlsServer: socket = socket.constructTLSSocketServerInstance();
+
 class NetAddress {
   address: string = '192.168.xx.xxx'
   port: number = 8080
@@ -5635,7 +5593,7 @@ getCipherSuite(callback: AsyncCallback\<Array\<string\>\>): void
 **示例：**
 
 ```js
-let tlsServer: socket = socket.constructTLSSocketServerInstance();
+
 class NetAddress {
   address: string = '192.168.xx.xxx'
   port: number = 8080
@@ -5697,7 +5655,7 @@ getCipherSuite(): Promise\<Array\<string\>\>
 **示例：**
 
 ```js
-let tlsServer: socket = socket.constructTLSSocketServerInstance();
+
 class NetAddress {
   address: string = '192.168.xx.xxx'
   port: number = 8080
@@ -5758,7 +5716,7 @@ getSignatureAlgorithms(callback: AsyncCallback\<Array\<string\>\>): void
 **示例：**
 
 ```js
-let tlsServer: socket = socket.constructTLSSocketServerInstance();
+
 class NetAddress {
   address: string = '192.168.xx.xxx'
   port: number = 8080
@@ -5818,7 +5776,7 @@ getSignatureAlgorithms(): Promise\<Array\<string\>\>
 **示例：**
 
 ```js
-let tlsServer: socket = socket.constructTLSSocketServerInstance();
+
 class NetAddress {
   address: string = '192.168.xx.xxx'
   port: number = 8080
@@ -5878,7 +5836,7 @@ on(type: 'message', callback: Callback<{message: ArrayBuffer, remoteInfo: Socket
 **示例：**
 
 ```js
-let tlsServer: socket = socket.constructTLSSocketServerInstance();
+
 class NetAddress {
   address: string = '192.168.xx.xxx'
   port: number = 8080
@@ -5954,7 +5912,7 @@ let callback = (value: Object) => {
   console.log('on message message: ' + JSON.stringify(messageView));
   console.log('remoteInfo: ' + JSON.stringify(value.remoteInfo));
 }
-let tlsServer: socket = socket.constructTLSSocketServerInstance();
+
 class NetAddress {
   address: string = '192.168.xx.xxx'
   port: number = 8080
@@ -6013,7 +5971,7 @@ on(type: 'close', callback: Callback\<void\>): void
 **示例：**
 
 ```js
-let tlsServer: socket = socket.constructTLSSocketServerInstance();
+
 class NetAddress {
   address: string = '192.168.xx.xxx'
   port: number = 8080
@@ -6075,7 +6033,7 @@ off(type: 'close', callback?: Callback\<void\>): void
 let callback = () => {
   console.log("on close success");
 }
-let tlsServer: socket = socket.constructTLSSocketServerInstance();
+
 class NetAddress {
   address: string = '192.168.xx.xxx'
   port: number = 8080
@@ -6134,7 +6092,7 @@ on(type: 'error', callback: ErrorCallback): void
 **示例：**
 
 ```js
-let tlsServer: socket = socket.constructTLSSocketServerInstance();
+
 class NetAddress {
   address: string = '192.168.xx.xxx'
   port: number = 8080
@@ -6196,7 +6154,7 @@ off(type: 'error', callback?: ErrorCallback): void
 let callback = (err: string) => {
   console.log("on error, err:" + JSON.stringify(err));
 }
-let tlsServer: socket = socket.constructTLSSocketServerInstance();
+
 class NetAddress {
   address: string = '192.168.xx.xxx'
   port: number = 8080
