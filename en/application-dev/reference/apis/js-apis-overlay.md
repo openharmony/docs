@@ -74,7 +74,7 @@ Enables or disables a module with the overlay feature in the current application
 | ----------- | ------ | ---- | --------------------------------------- |
 | moduleName  | string | Yes   | HAP name of the module with the overlay feature.              |
 | isEnabled   | boolean  | Yes | Whether to enable the module with the overlay feature. The value **true** means to enable the module, and **false** means to disable the module.|
-| callback    | AsyncCallback\<void> | Yes   | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.|
+| callback    | AsyncCallback\<void> | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**; otherwise, **err** is an error object. |
 
 **Error codes**
 
@@ -179,7 +179,7 @@ Enables or disables a module with the overlay feature in another application. Th
 | bundleName  | string | Yes   | Bundle name of the application.                |
 | moduleName  | string | Yes   | HAP name of the module with the overlay feature.   |
 | isEnabled   | boolean  | Yes | Whether to enable the module with the overlay feature. The value **true** means to enable the module, and **false** means to disable the module.|
-| callback    | AsyncCallback\<void> | Yes   | Callback used to return the result. If the operation is successful, **err** is **undefined** and data is the processing result obtained; otherwise, **err** is an error object.                   |
+| callback    | AsyncCallback\<void> | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**; otherwise, **err** is an error object.               |
 
 **Error codes**
 
@@ -270,7 +270,7 @@ Obtains the information about a module with the overlay feature in the current a
 | Name      | Type    | Mandatory  | Description                                   |
 | ----------- | ------ | ---- | --------------------------------------- |
 | moduleName | string | Yes   | HAP name of the module with the overlay feature.    |
-| callback    | AsyncCallback\<OverlayModuleInfo> | Yes   | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.                  |
+| callback    | AsyncCallback\<OverlayModuleInfo> | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**; otherwise, **err** is an error object.              |
 
 **Error codes**
 
@@ -356,7 +356,7 @@ Obtains the information about modules with the overlay feature in the current ap
 | Name      | Type    | Mandatory  | Description                                   |
 | ----------- | ------ | ---- | --------------------------------------- |
 | targetModuleName | string | Yes   | HAP name of the target module specified by modules with the overlay feature.    |
-| callback    | AsyncCallback\<Array\<OverlayModuleInfo>> | Yes   | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.                  |
+| callback    | AsyncCallback\<Array\<OverlayModuleInfo>> | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**; otherwise, **err** is an error object.              |
 
 **Error codes**
 
@@ -454,7 +454,7 @@ Obtains the information about a module with the overlay feature in another appli
 | ----------- | ------ | ---- | --------------------------------------- |
 | bundleName | string | Yes   | Bundle name of the application.                   |
 | moduleName | string | Yes   | HAP name of the module with the overlay feature. If this parameter is not specified, the API obtains the information of all modules with the overlay feature in that application.    |
-| callback    | AsyncCallback\<Array\<OverlayModuleInfo>> | Yes   | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.                  |
+| callback    | AsyncCallback\<Array\<OverlayModuleInfo>> | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**; otherwise, **err** is an error object.              |
 
 **Error codes**
 
@@ -503,7 +503,7 @@ Obtains the information about all modules with the overlay feature in another ap
 | Name      | Type    | Mandatory  | Description                                   |
 | ----------- | ------ | ---- | --------------------------------------- |
 | bundleName | string | Yes   | Bundle name of the application.                   |
-| callback    | AsyncCallback\<Array\<OverlayModuleInfo>> | Yes   | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.                  |
+| callback    | AsyncCallback\<Array\<OverlayModuleInfo>> | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**; otherwise, **err** is an error object.              |
 
 **Error codes**
 
@@ -602,7 +602,7 @@ Obtains the information about modules with the overlay feature in another applic
 | ----------- | ------ | ---- | --------------------------------------- |
 | targetBundleName | string | Yes   | Bundle name of the application.                   |
 | moduleName | string | Yes   | HAP name of the target module, which is **targetModuleName** specified by modules with the overlay feature. If this parameter is not specified, the API obtains the information associated with all modules in that application.    |
-| callback    | AsyncCallback\<Array\<OverlayModuleInfo>> | Yes   | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.                  |
+| callback    | AsyncCallback\<Array\<OverlayModuleInfo>> | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**; otherwise, **err** is an error object.              |
 
 **Error codes**
 
@@ -651,7 +651,7 @@ Obtains the information about all modules with the overlay feature in another ap
 | Name      | Type    | Mandatory  | Description                                   |
 | ----------- | ------ | ---- | --------------------------------------- |
 | targetBundleName | string | Yes   | Bundle name of the application.                   |
-| callback    | AsyncCallback\<Array\<OverlayModuleInfo>> | Yes   | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.                  |
+| callback    | AsyncCallback\<Array\<OverlayModuleInfo>> | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**; otherwise, **err** is an error object.              |
 
 **Error codes**
 

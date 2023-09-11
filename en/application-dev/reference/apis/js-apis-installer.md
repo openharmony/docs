@@ -34,7 +34,7 @@ Obtains a **BundleInstaller** object. This API uses an asynchronous callback to 
 
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback\<[BundleInstaller](js-apis-installer.md#BundleInstaller)> | Yes  | Callback used to return the result. If the operation is successful, **err** is undefined and **data** is the **BundleInstaller** object obtained; otherwise, **err** is an error object.|
+| callback | AsyncCallback\<[BundleInstaller](js-apis-installer.md#BundleInstaller)> | Yes  | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the **BundleInstaller** object obtained; otherwise, **err** is an error object. |
 
 **Example**
 
@@ -102,7 +102,7 @@ Installs a bundle. This API uses an asynchronous callback to return the result.
 | --------------- | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | hapFilePaths | Array&lt;string&gt;                                  | Yes  | Paths where the HAP files of the bundle are stored, which are the data directories. If only one directory is passed, the HAP files in the directory must belong to the same bundle and have the same signature.|
 | installParam           | [InstallParam](#installparam)                        | Yes  | Parameters required for the installation.                                    |
-| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is undefined; otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **null**; otherwise, **err** is an error object. |
 
 **Error codes**
 
@@ -170,7 +170,7 @@ Installs a bundle. This API uses an asynchronous callback to return the result.
 | Name          | Type                                                | Mandatory| Description                                                        |
 | --------------- | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | hapFilePaths | Array&lt;string&gt;                                  | Yes  | Paths where the HAP files of the bundle are stored, which are the data directories. If only one directory is passed, the HAP files in the directory must belong to the same bundle and have the same signature.|
-| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is undefined; otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **null**; otherwise, **err** is an error object. |
 
 **Error codes**
 
@@ -310,7 +310,7 @@ Uninstalls a bundle. This API uses an asynchronous callback to return the result
 | ---------- | ---------------------------------------------------- | ---- | ---------------------------------------------- |
 | bundleName | string                                               | Yes  | Name of the target bundle.                                          |
 | installParam      | [InstallParam](#installparam)                        | Yes  | Parameters required for the uninstall.                      |
-| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is undefined; otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **null**; otherwise, **err** is an error object. |
 
 **Error codes**
 
@@ -369,7 +369,7 @@ Uninstalls a bundle. This API uses an asynchronous callback to return the result
 | Name     | Type                                                | Mandatory| Description                                          |
 | ---------- | ---------------------------------------------------- | ---- | ---------------------------------------------- |
 | bundleName | string                                               | Yes  | Name of the target bundle.                                          |
-| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is undefined; otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **null**; otherwise, **err** is an error object. |
 
 **Error codes**
 
@@ -485,7 +485,7 @@ Rolls back a bundle to the initial installation state. This API uses an asynchro
 | ---------- | ---------------------------------------------------- | ---- | ---------------------------------------------- |
 | bundleName | string                                               | Yes  | Name of the target bundle.                                          |
 | installParam      | [InstallParam](#installparam)                        | Yes  | Parameters required for the recovery.                      |
-| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is undefined; otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **null**; otherwise, **err** is an error object. |
 
 **Error codes**
 
@@ -542,7 +542,7 @@ Rolls back a bundle to the initial installation state. This API uses an asynchro
 | Name     | Type                                                | Mandatory| Description                                          |
 | ---------- | ---------------------------------------------------- | ---- | ---------------------------------------------- |
 | bundleName | string                                               | Yes  | Name of the target bundle.                              |
-| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is undefined; otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **null**; otherwise, **err** is an error object. |
 
 **Error codes**
 
@@ -652,7 +652,7 @@ Uninstalls a shared bundle. This API uses an asynchronous callback to return the
 | Name        | Type                               | Mandatory| Description                                                    |
 | -------------- | ----------------------------------- | ---- | -------------------------------------------------------- |
 | uninstallParam | [UninstallParam](#uninstallparam10) | Yes  | Parameters required for the uninstall.                            |
-| callback       | AsyncCallback&lt;void&gt;           | Yes  | Callback used to return the result. If the operation is successful, **err** is undefined; otherwise, **err** is an error object.|
+| callback       | AsyncCallback&lt;void&gt;           | Yes  | Callback used to return the result. If the operation is successful, **err** is **null**; otherwise, **err** is an error object. |
 
 **Error codes**
 
