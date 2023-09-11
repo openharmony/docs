@@ -557,7 +557,7 @@ export default class MainAbility extends UIAbility {
         try {
             tag.registerForegroundDispatch(elementName, discTech, foregroundCb);
         } catch (e) {
-            console.log("registerForegroundDispatch error: " + e.message);
+            console.log("registerForegroundDispatch error: " + (e as BusinessError).message);
         }
     }
 
@@ -566,7 +566,7 @@ export default class MainAbility extends UIAbility {
         try {
             tag.unregisterForegroundDispatch(elementName);
         } catch (e) {
-            console.log("registerForegroundDispatch error: " + e.message);
+            console.log("registerForegroundDispatch error: " + (e as BusinessError).message);
         }
     }
 
@@ -575,7 +575,7 @@ export default class MainAbility extends UIAbility {
         try {
             tag.unregisterForegroundDispatch(elementName);
         } catch (e) {
-            console.log("registerForegroundDispatch error: " + e.message);
+            console.log("registerForegroundDispatch error: " + (e as BusinessError).message);
         }
     }
 
