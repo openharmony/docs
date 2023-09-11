@@ -55,7 +55,7 @@ function serverSocket(code: BusinessError, number: number) {
   }
 }
 
-let sppOption:socket.SppOption = {uuid: '00001810-0000-1000-8000-00805F9B34FB', secure: false, type: 0};
+let sppOption:socket.SppOptions = {uuid: '00001810-0000-1000-8000-00805F9B34FB', secure: false, type: 0};
 try {
     socket.sppListen('server1', sppOption, serverSocket);
 } catch (err) {
@@ -160,7 +160,7 @@ function clientSocket(code: BusinessError, number: number) {
   // 获取的clientNumber用作客户端后续读/写操作socket的id。
   clientNumber = number;
 }
-let sppOption:socket.SppOption = {uuid: '00001810-0000-1000-8000-00805F9B34FB', secure: false, type: 0};
+let sppOption:socket.SppOptions = {uuid: '00001810-0000-1000-8000-00805F9B34FB', secure: false, type: 0};
 try {
     socket.sppConnect('XX:XX:XX:XX:XX:XX', sppOption, clientSocket);
 } catch (err) {
@@ -338,7 +338,7 @@ function clientSocket(code: BusinessError, number: number) {
   // 获取的clientNumber用作客户端后续读/写操作socket的id。
   clientNumber = number;
 }
-function dataRead(dataBuffer) {
+function dataRead(dataBuffer: ArrayBuffer) {
   let data = new Uint8Array(dataBuffer);
   console.log('bluetooth data is: ' + data[0]);
 }
