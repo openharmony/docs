@@ -16,23 +16,25 @@ After the session configuration is complete, the application must commit the con
 ## How to Develop
 
 1. Call **createCaptureSession()** in the **CameraManager** class to create a session.
-   
+     
    ```ts
-   let captureSession;
+   let captureSession: camera.CaptureSession;
    try {
-       captureSession = cameraManager.createCaptureSession();
+     captureSession = cameraManager.createCaptureSession();
    } catch (error) {
-       console.error('Failed to create the CaptureSession instance. errorCode = ' + error.code);
+     let err = error as BusinessError;
+     console.error('Failed to create the CaptureSession instance. errorCode = ' + err.code);
    }
    ```
 
 2. Call **beginConfig()** in the **CaptureSession** class to start configuration for the session.
-   
+     
    ```ts
    try {
-       captureSession.beginConfig();
+     captureSession.beginConfig();
    } catch (error) {
-       console.error('Failed to beginConfig. errorCode = ' + error.code);
+     let err = error as BusinessError;
+     console.error('Failed to beginConfig. errorCode = ' + err.code);
    }
    ```
 
@@ -42,45 +44,51 @@ After the session configuration is complete, the application must commit the con
      
    ```ts
    try {
-       captureSession.addInput(cameraInput);
+     captureSession.addInput(cameraInput);
    } catch (error) {
-       console.error('Failed to addInput. errorCode = ' + error.code);
+     let err = error as BusinessError;
+     console.error('Failed to addInput. errorCode = ' + err.code);
    }
    try {
-       captureSession.addOutput(previewOutput);
+     captureSession.addOutput(previewOutput);
    } catch (error) {
-       console.error('Failed to addOutput(previewOutput). errorCode = ' + error.code);
+     let err = error as BusinessError;
+     console.error('Failed to addOutput(previewOutput). errorCode = ' + err.code);
    }
    try {
-       captureSession.addOutput(photoOutput);
+     captureSession.addOutput(photoOutput);
    } catch (error) {
-       console.error('Failed to addOutput(photoOutput). errorCode = ' + error.code);
+     let err = error as BusinessError;
+     console.error('Failed to addOutput(photoOutput). errorCode = ' + err.code);
    }
-   await captureSession.commitConfig() ;
+   await captureSession.commitConfig();
    await captureSession.start().then(() => {
-       console.info('Promise returned to indicate the session start success.');
-   })
+     console.info('Promise returned to indicate the session start success.');
+   });
    ```
 
 4. Control the session. You can call **stop()** in the **CaptureSession** class to stop the session, and call **removeOutput()** and **addOutput()** in this class to switch to another session. The code snippet below uses removing the photo stream **photoOutput** and adding the video stream **videoOutput** as an example to complete the switching from photographing to recording.
-   
+     
    ```ts
    await captureSession.stop();
    try {
-       captureSession.beginConfig();
+     captureSession.beginConfig();
    } catch (error) {
-       console.error('Failed to beginConfig. errorCode = ' + error.code);
+     let err = error as BusinessError;
+     console.error('Failed to beginConfig. errorCode = ' + err.code);
    } 
    // Remove the photo output stream from the session.
    try {
-       captureSession.removeOutput(photoOutput);
+     captureSession.removeOutput(photoOutput);
    } catch (error) {
-       console.error('Failed to removeOutput(photoOutput). errorCode = ' + error.code);
+     let err = error as BusinessError;
+     console.error('Failed to removeOutput(photoOutput). errorCode = ' + err.code);
    } 
    // Add the video output stream to the session.
    try {
-       captureSession.addOutput(videoOutput);
+     captureSession.addOutput(videoOutput);
    } catch (error) {
-       console.error('Failed to addOutput(videoOutput). errorCode = ' + error.code);
+     let err = error as BusinessError;
+     console.error('Failed to addOutput(videoOutput). errorCode = ' + err.code);
    }
    ```
