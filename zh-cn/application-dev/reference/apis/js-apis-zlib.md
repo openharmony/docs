@@ -51,7 +51,7 @@ let options: zlib.Options = {
   strategy: zlib.CompressStrategy.COMPRESS_STRATEGY_DEFAULT_STRATEGY
 };
 
-zlib.zipFile(inFile, outFile, options).then((data) => {
+zlib.zipFile(inFile, outFile, options).then((data: void) => {
     console.log('zipFile result is ' + JSON.stringify(data));
 }).catch((err: BusinessError) => {
     console.log('error is ' + JSON.stringify(err));
