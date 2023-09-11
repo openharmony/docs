@@ -2,13 +2,13 @@
 
 终端用户有时需要分享、保存一些图片、视频等用户文件，开发者需要在应用中支持此类使用场景。此时，开发者可以使用OpenHarmony系统预置的[文件选择器（FilePicker）](../reference/apis/js-apis-file-picker.md)，实现用户文件选择及保存能力。通过Picker访问相关文件，无需申请权限。
 
-根据用户文件的常见类型，文件选择器（FilePicker）分别提供以下接口：
+根据用户文件的常见类型，选择器（FilePicker）分别提供以下接口：
 
-- [PhotoViewPicker](../reference/apis/js-apis-file-picker.md#photoviewpicker)：适用于图片或视频类文件的选择与保存。
+- [PhotoViewPicker](../reference/apis/js-apis-file-picker.md#photoviewpicker)：适用于图片或视频类型文件的选择与保存。
 
-- [DocumentViewPicker](../reference/apis/js-apis-file-picker.md#documentviewpicker)：适用于文档类文件的选择与保存。
+- [DocumentViewPicker](../reference/apis/js-apis-file-picker.md#documentviewpicker)：适用于文件类型文件的选择与保存。
 
-- [AudioViewPicker](../reference/apis/js-apis-file-picker.md#audioviewpicker)：适用于音频类文件的选择与保存。
+- [AudioViewPicker](../reference/apis/js-apis-file-picker.md#audioviewpicker)：适用于音频类型文件的选择与保存。
 
 ## 选择图片或视频类文件
 
@@ -20,7 +20,7 @@
    import { BusinessError } from '@ohos.base';
    ```
 
-2. 创建图库选择选项实例。
+2. 创建图片-音频类型文件选择选项实例。
 
    ```ts
    import picker from '@ohos.file.picker';
@@ -38,9 +38,11 @@
    photoSelectOptions.maxSelectNumber = 5; // 选择媒体文件的最大数目
    ```
 
-4. 创建图库选择器实例，调用[select()](../reference/apis/js-apis-file-picker.md#select)接口拉起FilePicker界面进行文件选择。文件选择成功后，返回[PhotoSelectResult](../reference/apis/js-apis-file-picker.md#photoselectresult)结果集。
+4. 创建图库选择器实例，调用[select()](../reference/apis/js-apis-file-picker.md#select)接口拉起图库界面进行文件选择。文件选择成功后，返回[PhotoSelectResult](../reference/apis/js-apis-file-picker.md#photoselectresult)结果集。
    
    </br>select返回的uri权限是只读权限，可以根据结果集中uri进行读取文件数据操作。注意不能在picker的回调里直接使用此uri进行打开文件操作，需要定义一个全局变量保存uri，使用类似一个按钮去触发打开文件。
+
+   </br>如有获取元数据需求，可以通过[文件管理接口](../reference/apis/js-apis-file-fs.md)和[文件URI](../reference/apis/js-apis-file-fileuri.md)根据uri获取部分文件属性信息，比如文件大小、访问时间、修改时间、文件名、文件路径等。
 
    ```ts
    import picker from '@ohos.file.picker';
@@ -56,7 +58,7 @@
    })
    ```
 
-5. 待界面从FilePicker返回后，再通过类似一个按钮调用其他函数，使用[fs.openSync](../reference/apis/js-apis-file-fs.md#fsopensync)接口，通过uri打开这个文件得到fd。这里需要注意接口权限参数是fs.OpenMode.READ_ONLY。
+5. 待界面从图库返回后，再通过类似一个按钮调用其他函数，使用[fs.openSync](../reference/apis/js-apis-file-fs.md#fsopensync)接口，通过uri打开这个文件得到fd。这里需要注意接口权限参数是fs.OpenMode.READ_ONLY。
 
    ```ts
    import fs from '@ohos.file.fs';
@@ -88,7 +90,7 @@
    import { BusinessError } from '@ohos.base';
    ```
 
-2. 创建文档选择选项实例。
+2. 创建文件类型文件选择选项实例。
 
    ```ts
    import picker from '@ohos.file.picker';
@@ -99,11 +101,11 @@
    documentSelectOptions.fileSuffixFilters = ['.png', '.txt', '.mp4']; // 选择文件的后缀类型（可选）
    ```
 
-3. 创建文档选择器实例。调用[select()](../reference/apis/js-apis-file-picker.md#select-3)接口拉起FilePicker界面进行文件选择。文件选择成功后，返回被选中文档的uri结果集。
+3. 创建文件选择器实例。调用[select()](../reference/apis/js-apis-file-picker.md#select-3)接口拉起FilePicker应用界面进行文件选择。文件选择成功后，返回被选中文档的uri结果集。
    
    </br>select返回的uri权限是只读权限，开发者可以根据结果集中uri做进一步的处理。注意不能在picker的回调里直接使用此uri进行打开文件操作，需要定义一个全局变量保存uri，使用类似一个按钮去触发打开文件。
    
-   </br>例如通过[文件管理接口](../reference/apis/js-apis-file-fs.md)根据uri获取部分文件属性信息，比如文件大小、访问时间、修改时间等。如有获取文件名称需求，请暂时使用[startAbilityForResult](../../application-dev/application-models/uiability-intra-device-interaction.md)获取。
+   </br>如有获取元数据需求，可以通过[文件管理接口](../reference/apis/js-apis-file-fs.md)和[文件URI](../reference/apis/js-apis-file-fileuri.md)根据uri获取部分文件属性信息，比如文件大小、访问时间、修改时间、文件名、文件路径等。
 
    ```ts
    import picker from '@ohos.file.picker';
@@ -117,38 +119,6 @@
    }).catch((err: BusinessError) => {
      console.error(`Invoke documentViewPicker.select failed, code is ${err.code}, message is ${err.message}`);
    })
-   ```
-
-   > **说明：**
-   >
-   > 目前DocumentSelectOptions功能不完整, 如需获取文件名称，请使用startAbilityForResult接口。
-
-   ```ts
-   import { BusinessError } from '@ohos.base';
-   import fs from '@ohos.file.fs';
-   
-   async function example(): Promise<void> {
-     let config: Want = {
-       action: 'ohos.want.action.OPEN_FILE',
-       parameters: {
-         startMode: 'choose',
-       }
-     }
-     try {
-       let result = await context.startAbilityForResult(config, {windowMode: 1});
-       if (result.resultCode !== 0) {
-         console.error(`documentViewPicker.select failed, code is ${result.resultCode}, message is ${result.want.parameters.message}`);
-         return;
-       }
-       // 获取到文档文件的uri
-       let select_item_list: SomeType[] = result.want.parameters.select_item_list;
-       // 获取到文档文件的文件名称
-       let file_name_list: SomeOtherType[] = result.want.parameters.file_name_list;
-     } catch (error) {
-        const err: BusinessError = error as BusinessError;
-       console.error(`Invoke documentViewPicker.select failed, code is ${err.code}, message is ${err.message}`);
-     }
-   }
    ```
 
 4. 待界面从FilePicker返回后，再通过类似一个按钮调用其他函数，使用[fs.openSync](../reference/apis/js-apis-file-fs.md#fsopensync)接口，通过uri打开这个文件得到fd。这里需要注意接口权限参数是fs.OpenMode.READ_ONLY。
@@ -183,7 +153,7 @@
    import { BusinessError } from '@ohos.base';
    ```
 
-2. 创建音频选择选项实例。
+2. 创建音频类型文件选择选项实例。
 
    ```ts
    import picker from '@ohos.file.picker';
@@ -191,7 +161,7 @@
    const audioSelectOptions = new picker.AudioSelectOptions();
    ```
 
-3. 创建音频选择器实例。调用[select()](../reference/apis/js-apis-file-picker.md#select-6)接口拉起FilePicker界面进行文件选择。文件选择成功后，返回被选中音频的uri结果集。
+3. 创建音频选择器实例。调用[select()](../reference/apis/js-apis-file-picker.md#select-6)接口拉起FilePicker应用界面进行文件选择。文件选择成功后，返回被选中音频的uri结果集。
    
    </br>select返回的uri权限是只读权限，开发者可以根据结果集中uri做读取文件数据操作。注意不能在  picker的回调里直接使用此uri进行打开文件操作，需要定义一个全局变量保存uri，使用类似一个按钮去触发打开文件。
    
