@@ -103,42 +103,41 @@ statistics.getUidTxBytes(uid, (error: BusinessError, stats: number) => {
 2. 获取指定应用历史流量信息。
 
 ```js
-let ifaceInfo = {
-    iface: "wlan0",
-    startTime: 1685948465,
-    endTime: 16859485670
+class IfaceInfo {
+  iface: string = "wlan0",
+  startTime: number = 1685948465,
+  endTime: number = 16859485670
 }
 //获取指定网卡历史流量信息。
-statistics.getTrafficStatsByIface(ifaceInfo), (error: BusinessError, statsInfo: object) => {
-    console.log(JSON.stringify(error))
-    console.log("getTrafficStatsByIface bytes of received = " + JSON.stringify(statsInfo.rxBytes));
-    console.log("getTrafficStatsByIface bytes of sent = " + JSON.stringify(statsInfo.txBytes));
-    console.log("getTrafficStatsByIface packets of received = " + JSON.stringify(statsInfo.rxPackets));
-    console.log("getTrafficStatsByIface packets of sent = " + JSON.stringify(statsInfo.txPackets));
+statistics.getTrafficStatsByIface(new IfaceInfo(), (error: BusinessError, statsInfo: object) => {
+  console.log(JSON.stringify(error))
+  console.log("getTrafficStatsByIface bytes of received = " + JSON.stringify(statsInfo.rxBytes));
+  console.log("getTrafficStatsByIface bytes of sent = " + JSON.stringify(statsInfo.txBytes));
+  console.log("getTrafficStatsByIface packets of received = " + JSON.stringify(statsInfo.rxPackets));
+  console.log("getTrafficStatsByIface packets of sent = " + JSON.stringify(statsInfo.txPackets));
 });
 
 class UidInfo {
-    uid: number = 20010037
-    ifaceInfo: IfaceInfo = new IfaceInfo()
+  uid: number = 20010037
+  ifaceInfo: IfaceInfo = new IfaceInfo()
 }
 
 class IfaceInfo {
-    iface: string = "wlan0"
-    startTime: number = 1685948465
-    endTime: number = 16859485670
+  iface: string = "wlan0"
+  startTime: number = 1685948465
+  endTime: number = 16859485670
 }
 
 let uidInfo = new UidInfo()
 
 //获取指定应用历史流量信息。
-statistics.getTrafficStatsByUid(uidInfo), (error: BusinessError, statsInfo: object) => {
-    console.log(JSON.stringify(error))
-    console.log("getTrafficStatsByUid bytes of received = " + JSON.stringify(statsInfo.rxBytes));
-    console.log("getTrafficStatsByUid bytes of sent = " + JSON.stringify(statsInfo.txBytes));
-    console.log("getTrafficStatsByUid packets of received = " + JSON.stringify(statsInfo.rxPackets));
-    console.log("getTrafficStatsByUid packets of sent = " + JSON.stringify(statsInfo.txPackets));
+statistics.getTrafficStatsByUid(uidInfo, (error: BusinessError, statsInfo: object) => {
+  console.log(JSON.stringify(error))
+  console.log("getTrafficStatsByUid bytes of received = " + JSON.stringify(statsInfo.rxBytes));
+  console.log("getTrafficStatsByUid bytes of sent = " + JSON.stringify(statsInfo.txBytes));
+  console.log("getTrafficStatsByUid packets of received = " + JSON.stringify(statsInfo.rxPackets));
+  console.log("getTrafficStatsByUid packets of sent = " + JSON.stringify(statsInfo.txPackets));
 });
-
 ```
 
 ## 订阅流量变化事件
@@ -147,7 +146,12 @@ statistics.getTrafficStatsByUid(uidInfo), (error: BusinessError, statsInfo: obje
 2. 取消订阅流量改变事件通知。
 
 ```js
-let callback = (data: { iface: string, uid?: number }) => {
+class Data {
+  iface: string = "",
+  uid?: number = ""
+}
+let callbackData = new Data()
+let callback = (data: callbackData) => {
   console.log('on netStatsChange, data:' + JSON.stringify(data));
 };
 //订阅流量改变事件通知。
