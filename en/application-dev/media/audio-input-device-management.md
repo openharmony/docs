@@ -9,6 +9,8 @@ Before using **AudioRoutingManager** to manage audio devices, import the audio m
 ```ts
 import audio from '@ohos.multimedia.audio'; // Import the audio module.
 
+import { BusinessError } from '@ohos.base'; // Import BusinessError.
+
 let audioManager = audio.getAudioManager(); // Create an AudioManager instance.
 
 let audioRoutingManager = audioManager.getRoutingManager(); // Call an API of AudioManager to create an AudioRoutingManager instance.
@@ -30,7 +32,7 @@ The table below lists the supported audio input devices.
 Use **getDevices()** to obtain information about all the input devices.
 
 ```ts
-audioRoutingManager.getDevices(audio.DeviceFlag.INPUT_DEVICES_FLAG).then((data) => {
+audioRoutingManager.getDevices(audio.DeviceFlag.INPUT_DEVICES_FLAG).then((data: audio.AudioDeviceDescriptors) => {
   console.info('Promise returned to indicate that the device list is obtained.');
 });
 ```
@@ -41,7 +43,7 @@ Set a listener to listen for changes of the device connection state. When a devi
 
 ```ts
 // Listen for connection state changes of audio devices.
-audioRoutingManager.on('deviceChange', audio.DeviceFlag.INPUT_DEVICES_FLAG, (deviceChanged) => {
+audioRoutingManager.on('deviceChange', audio.DeviceFlag.INPUT_DEVICES_FLAG, (deviceChanged: audio.DeviceChangeAction) => {
   console.info('device change type: ' + deviceChanged.type); // Device connection state change. The value 0 means that the device is connected and 1 means that the device is disconnected.
   console.info('device descriptor size : ' + deviceChanged.deviceDescriptors.length);
   console.info('device change descriptor: ' + deviceChanged.deviceDescriptors[0].deviceRole); // Device role.
@@ -49,7 +51,7 @@ audioRoutingManager.on('deviceChange', audio.DeviceFlag.INPUT_DEVICES_FLAG, (dev
 });
 
 // Cancel the listener for the connection state changes of audio devices.
-audioRoutingManager.off('deviceChange', (deviceChanged) => {
+audioRoutingManager.off('deviceChange', (deviceChanged: audio.DeviceChangeAction) => {
   console.info('Should be no callback.');
 });
 ```
@@ -63,7 +65,8 @@ Currently, only one input device can be selected, and the device ID is used as t
 > The user can connect to a group of audio devices (for example, a pair of Bluetooth headsets), but the system treats them as one device (a group of devices that share the same device ID).
 
 ```ts
-let inputAudioDeviceDescriptor = [{
+import audio from '@ohos.multimedia.audio';
+let inputAudioDeviceDescriptor: audio.AudioDeviceDescriptors = [{
     deviceRole : audio.DeviceRole.INPUT_DEVICE,
     deviceType : audio.DeviceType.EARPIECE,
     id : 1,
@@ -75,12 +78,13 @@ let inputAudioDeviceDescriptor = [{
     networkId : audio.LOCAL_NETWORK_ID,
     interruptGroupId : 1,
     volumeGroupId : 1,
+    displayName : ""
 }];
 
-async function getRoutingManager(){
+async function getRoutingManager() {
     audioRoutingManager.selectInputDevice(inputAudioDeviceDescriptor).then(() => {
       console.info('Invoke selectInputDevice succeeded.');
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
       console.error(`Invoke selectInputDevice failed, code is ${err.code}, message is ${err.message}`);
     });
 }
