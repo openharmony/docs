@@ -51,14 +51,14 @@ setIfaceConfig(iface: string, ic: InterfaceConfiguration, callback: AsyncCallbac
 ```ts
 class Config  {
   mode: number= 0,
-  ipAddr: string = "192.168.xx.xxx",
-  route: string = "192.168.xx.xxx",
-  gateway:string = "192.168.xx.xxx",
-  netMask:string = "255.255.255.0",
+  ipAddr: string = "192.168.xx.xxx"
+  route: string = "192.168.xx.xxx"
+  gateway:string = "192.168.xx.xxx"
+  netMask:string = "255.255.255.0"
   dnsServers: string = "1.1.1.1"
 };
 
-ethernet.setIfaceConfig("eth0", new Config(), (error: Error | null) => {
+ethernet.setIfaceConfig("eth0", new Config(), (error: BusinessError) => {
   if (error) {
     console.log("setIfaceConfig callback error = " + JSON.stringify(error));
   } else {
@@ -113,10 +113,10 @@ setIfaceConfig(iface: string, ic: InterfaceConfiguration): Promise\<void>
 ```ts
 class Config  {
   mode: number= 0,
-  ipAddr: string = "192.168.xx.xxx",
-  route: string = "192.168.xx.xxx",
-  gateway:string = "192.168.xx.xxx",
-  netMask:string = "255.255.255.0",
+  ipAddr: string = "192.168.xx.xxx"
+  route: string = "192.168.xx.xxx"
+  gateway:string = "192.168.xx.xxx"
+  netMask:string = "255.255.255.0"
   dnsServers: string = "1.1.1.1"
 };
 
@@ -124,7 +124,7 @@ const setConfigPromise = ethernet.setIfaceConfig("eth0", new Config());
 
 setConfigPromise.then(() => {
   console.log("setIfaceConfig promise ok");
-}).catch((error : Error | null)  => {
+}).catch((error: BusinessError)  => {
   console.log("setIfaceConfig promise error = " + JSON.stringify(error));
 });
 ```
@@ -163,7 +163,7 @@ getIfaceConfig(iface: string, callback: AsyncCallback\<InterfaceConfiguration>):
 **示例：**
 
 ```ts
-ethernet.getIfaceConfig("eth0", (error:Error, value:UnifiedData) => {
+ethernet.getIfaceConfig("eth0", (error: BusinessError, value: ethernet.InterfaceConfiguration) => {
   if (error) {
     console.log("getIfaceConfig  callback error = " + JSON.stringify(error));
   } else {
@@ -216,7 +216,7 @@ getIfaceConfig(iface: string): Promise\<InterfaceConfiguration>
 **示例：**
 
 ```ts
-ethernet.getIfaceConfig("eth0").then((data:String|UnifiedData) => {
+ethernet.getIfaceConfig("eth0").then((data: ethernet.InterfaceConfiguration) => {
   console.log("getIfaceConfig promise mode = " + JSON.stringify(data.mode));
   console.log("getIfaceConfig promise ipAddr = " + JSON.stringify(data.ipAddr));
   console.log("getIfaceConfig promise route = " + JSON.stringify(data.route));
@@ -262,7 +262,7 @@ isIfaceActive(iface: string, callback: AsyncCallback\<number>): void
 **示例：**
 
 ```ts
-ethernet.isIfaceActive("eth0", (error:Error, value:UnifiedData) => {
+ethernet.isIfaceActive("eth0", (error: BusinessError, value: number) => {
   if (error) {
     console.log("whether2Activate callback error = " + JSON.stringify(error));
   } else {
@@ -310,7 +310,7 @@ isIfaceActive(iface: string): Promise\<number>
 **示例：**
 
 ```ts
-ethernet.isIfaceActive("eth0").then((data:String | UnifiedData) => {
+ethernet.isIfaceActive("eth0").then((data: number) => {
   console.log("isIfaceActive promise = " + JSON.stringify(data));
 }).catch(error => {
   console.log("isIfaceActive promise error = " + JSON.stringify(error));
@@ -347,7 +347,7 @@ getAllActiveIfaces(callback: AsyncCallback\<Array\<string>>): void
 **示例：**
 
 ```ts
-ethernet.getAllActiveIfaces((error:Error, value:UnifiedData) => {
+ethernet.getAllActiveIfaces((error: BusinessError, value: string[]) => {
   if (error) {
     console.log("getAllActiveIfaces callback error = " + JSON.stringify(error));
   } else {
@@ -389,12 +389,12 @@ getAllActiveIfaces(): Promise\<Array\<string>>
 **示例：**
 
 ```ts
-ethernet.getAllActiveIfaces().then((data:String|UnifiedData) => {
+ethernet.getAllActiveIfaces().then((data: string[]) => {
   console.log("getAllActiveIfaces promise data.length = " + JSON.stringify(data.length));
   for (let i = 0; i < data.length; i++) {
     console.log("getAllActiveIfaces promise  = " + JSON.stringify(data[i]));
   }
-}).catch(error:Error => {
+}).catch((error:BusinessError) => {
   console.log("getAllActiveIfaces promise error = " + JSON.stringify(error));
 });
 ```
@@ -429,7 +429,7 @@ on(type: 'interfaceStateChange', callback: Callback\<{ iface: string, active: bo
 **示例：**
 
 ```ts
- ethernet.on('interfaceStateChange', (data:String|UnifiedData) => {
+ethernet.on('interfaceStateChange', (data: object) => {
   console.log('on interfaceSharingStateChange：' + JSON.stringify(data));
 });
 ```

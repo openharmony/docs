@@ -1,4 +1,4 @@
-# @ohos.net.http (数据请求)
+git# @ohos.net.http (数据请求)
 
 本模块提供HTTP数据请求能力。应用可以通过HTTP发起一个数据请求，支持常见的GET、POST、OPTIONS、HEAD、PUT、DELETE、TRACE、CONNECT方法。
 
@@ -58,7 +58,7 @@ httpRequest.request(
     usingProxy: false, //可选，默认不使用网络代理，自API 10开始支持该属性
     caPath: "", // 可选，默认使用系统预设CA证书，自API 10开始支持该属性
   },
-  (err:Error| null , data:String | UnifiedData ) => {
+  (err: BusinessError, data: http.HttpResponse ) => {
   if (!err) {
     // data.result为HTTP响应内容，可根据业务需要进行解析
     console.info('Result:' + JSON.stringify(data.result));
@@ -174,7 +174,7 @@ request(url: string, callback: AsyncCallback\<HttpResponse\>):void
 **示例：**
 
 ```js
-httpRequest.request("EXAMPLE_URL", (err:Error| null , data:String | UnifiedData) => {
+httpRequest.request("EXAMPLE_URL", (err: BusinessError, data: http.HttpResponse) => {
   if (!err) {
     console.info('Result:' + data.result);
     console.info('code:' + data.responseCode);
@@ -264,7 +264,7 @@ httpRequest.request("EXAMPLE_URL",
     header: new Header('application/json'),
     readTimeout: 60000,
     connectTimeout: 60000
-  }, (err, data) => {
+  }, (err: BusinessError, data: http.HttpResponse) => {
     if (!err) {
       console.info('Result:' + data.result);
       console.info('code:' + data.responseCode);
@@ -447,7 +447,7 @@ requestInStream(url: string, callback: AsyncCallback\<number\>): void
 **示例：**
 
 ```js
-httpRequest.requestInStream("EXAMPLE_URL", (err:Error| null , data:String | UnifiedData) => {
+httpRequest.requestInStream("EXAMPLE_URL", (err: BusinessError, data: number) => {
   if (!err) {
     console.info("requestInStream OK! ResponseCode is " + JSON.stringify(data));
   } else {
@@ -531,7 +531,7 @@ httpRequest.requestInStream("EXAMPLE_URL",
     header: new Header('application/json'),
     readTimeout: 60000,
     connectTimeout: 60000
-  }, (err:Error| null , data:String | UnifiedData ) => {
+  }, (err: BusinessError<void> , data: number) => {
     if (!err) {
       console.info("requestInStream OK! ResponseCode is " + JSON.stringify(data));
     } else {
@@ -620,7 +620,7 @@ let promise = httpRequest.requestInStream("EXAMPLE_URL", {
   readTimeout: 60000,
   header: new Header('application/json'),
 });
-promise.then((data:String) => {
+promise.then((data: http.HttpResponse) => {
   console.info("requestInStream OK!" + JSON.stringify(data));
 }).catch((err) => {
   console.info("requestInStream ERROR : err = " + JSON.stringify(err));
@@ -648,7 +648,7 @@ on(type: 'headerReceive', callback: AsyncCallback\<Object\>): void
 **示例：**
 
 ```js
-httpRequest.on('headerReceive', (data:String) => {
+httpRequest.on('headerReceive', (data: BusinessError) => {
   console.info('error:' + JSON.stringify(data));
 });
 ```
@@ -698,7 +698,7 @@ on(type: 'headersReceive', callback: Callback\<Object\>): void
 **示例：**
 
 ```js
-httpRequest.on('headersReceive', (header:String) => {
+httpRequest.on('headersReceive', (header: Object) => {
   console.info('header: ' + JSON.stringify(header));
 });
 ```
@@ -745,7 +745,7 @@ once(type: 'headersReceive', callback: Callback\<Object\>): void
 **示例：**
 
 ```js
-httpRequest.once('headersReceive', (header:String) => {
+httpRequest.once('headersReceive', (header: Object) => {
   console.info('header: ' + JSON.stringify(header));
 });
 ```
@@ -771,7 +771,7 @@ on(type: 'dataReceive', callback: Callback\<ArrayBuffer\>): void
 **示例：**
 
 ```js
-httpRequest.on('dataReceive', (data:String | UnifiedData) => {
+httpRequest.on('dataReceive', (data: ArrayBuffer) => {
   console.info('dataReceive length: ' + JSON.stringify(data.byteLength));
 });
 ```
@@ -871,7 +871,12 @@ on(type: 'dataReceiveProgress', callback: Callback\<{ receiveSize: number, total
 **示例：**
 
 ```js
-httpRequest.on('dataReceiveProgress', (data:String | UnifiedData) => {
+class RequestData{
+  receiveSize: number;
+  totalSize: number;
+}
+
+httpRequest.on('dataReceiveProgress', (data: RequestData) => {
   console.info('dataReceiveProgress:' + JSON.stringify(data));
 });
 ```
@@ -1044,7 +1049,7 @@ flush(callback: AsyncCallback\<void\>): void
 **示例：**
 
 ```js
-httpResponseCache.flush(err => {
+httpResponseCache.flush((err: BusinessError) => {
   if (err) {
     console.info('flush fail');
     return;
@@ -1072,7 +1077,7 @@ flush(): Promise\<void\>
 ```js
 httpResponseCache.flush().then(() => {
   console.info('flush success');
-}).catch(err => {
+}).catch((err: BusinessError) => {
   console.info('flush fail');
 });
 ```
@@ -1094,7 +1099,7 @@ delete(callback: AsyncCallback\<void\>): void
 **示例：**
 
 ```js
-httpResponseCache.delete(err => {
+httpResponseCache.delete((err: BusinessError) => {
   if (err) {
     console.info('delete fail');
     return;
@@ -1122,7 +1127,7 @@ delete(): Promise\<void\>
 ```js
 httpResponseCache.delete().then(() => {
   console.info('delete success');
-}).catch(err => {
+}).catch((err: BusinessError) => {
   console.info('delete fail');
 });
 ```

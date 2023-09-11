@@ -50,25 +50,20 @@ FA模型示例：
 import featureAbility from '@ohos.ability.featureAbility';
 let context = featureAbility.getContext();
 
-class Host {
-  address: string = "10.14.**.***"
+let localServiceInfo: mdns.LocalServiceInfo = {
+  serviceType: "_print._tcp",
+  serviceName: "servicename",
+  port: 5555,
+  host: {
+    address: "10.14.**.***",
+  },
+  serviceAttribute: [{
+    key: "111",
+    value: [1]
+  }]
 }
 
-class ServiceAttribute {
-  key: string = "111",
-  value: number = 1
-}
-class ServiceInfo {
-  serviceType : string = "_print._tcp",
-  serviceName : string = "servicename",
-  port:number = 5555,
-  host : object = new Host(),
-  serviceAttribute: object = new ServiceAttribute(),
-}
-
-let localServiceInfo = new ServiceInfo();
-
-mdns.addLocalService(context, localServiceInfo, (error: BusinessError, data: localServiceInfo) => {
+mdns.addLocalService(context, localServiceInfo, (error: BusinessError, data: mdns.LocalServiceInfo) => {
   console.log(JSON.stringify(error));
   console.log(JSON.stringify(data));
 });
@@ -111,23 +106,18 @@ class EntryAbility extends UIAbility {
 }
 let context = GlobalContext.getContext().getObject("value");
 
-class Host {
-  address: string = "10.14.**.***"
+let localServiceInfo: mdns.LocalServiceInfo = {
+  serviceType: "_print._tcp",
+  serviceName: "servicename",
+  port: 5555,
+  host: {
+    address: "10.14.**.***",
+  },
+  serviceAttribute: [{
+    key: "111",
+    value: [1]
+  }]
 }
-
-class ServiceAttribute {
-  key: string = "111",
-  value: number = 1
-}
-class ServiceInfo {
-  serviceType : string = "_print._tcp",
-  serviceName : string = "servicename",
-  port:number = 5555,
-  host : object = new Host(),
-  serviceAttribute: object = new ServiceAttribute(),
-}
-
-let localServiceInfo = new ServiceInfo();
 
 mdns.addLocalService(context, localServiceInfo, (error:BusinessError, data:localServiceInfo) =>  {
   console.log(JSON.stringify(error));
@@ -179,25 +169,20 @@ FA模型示例：
 import featureAbility from '@ohos.ability.featureAbility';
 let context = featureAbility.getContext();
 
-class Host {
-  address: string = "10.14.**.***"
+let localServiceInfo: mdns.LocalServiceInfo = {
+  serviceType: "_print._tcp",
+  serviceName: "servicename",
+  port: 5555,
+  host: {
+    address: "10.14.**.***",
+  },
+  serviceAttribute: [{
+    key: "111",
+    value: [1]
+  }]
 }
 
-class ServiceAttribute {
-  key: string = "111",
-  value: number = 1
-}
-class ServiceInfo {
-  serviceType : string = "_print._tcp",
-  serviceName : string = "servicename",
-  port:number = 5555,
-  host : object = new Host(),
-  serviceAttribute: object = new ServiceAttribute(),
-}
-
-let localServiceInfo = new ServiceInfo();
-
-mdns.addLocalService(context, localServiceInfo).then((data: localServiceInfo) => {
+mdns.addLocalService(context, localServiceInfo).then((data: mdns.LocalServiceInfo) => {
   console.log(JSON.stringify(data));
 });
 ```
@@ -216,24 +201,19 @@ class EntryAbility extends UIAbility {
 }
 let context = GlobalContext.getContext().getObject("value");
 
-class Host {
-  address: string = "10.14.**.***"
+let localServiceInfo: mdns.LocalServiceInfo = {
+  serviceType: "_print._tcp",
+  serviceName: "servicename",
+  port: 5555,
+  host: {
+    address: "10.14.**.***",
+  },
+  serviceAttribute: [{
+    key: "111",
+    value: [1]
+  }]
 }
-
-class ServiceAttribute {
-  key: string = "111",
-  value: number = 1
-}
-class ServiceInfo {
-  serviceType : string = "_print._tcp",
-  serviceName : string = "servicename",
-  port:number = 5555,
-  host : object = new Host(),
-  serviceAttribute: object = new ServiceAttribute(),
-}
-
-let localServiceInfo = new ServiceInfo();
-mdns.addLocalService(context, localServiceInfo).then((data: localServiceInfo) => {
+mdns.addLocalService(context, localServiceInfo).then((data: mdns.LocalServiceInfo) => {
   console.log(JSON.stringify(data));
 });
 ```
@@ -277,25 +257,20 @@ FA模型示例：
 import featureAbility from '@ohos.ability.featureAbility';
 let context = featureAbility.getContext();
 
-class Host {
-  address: string = "10.14.**.***"
+let localServiceInfo: mdns.LocalServiceInfo = {
+  serviceType: "_print._tcp",
+  serviceName: "servicename",
+  port: 5555,
+  host: {
+    address: "10.14.**.***",
+  },
+  serviceAttribute: [{
+    key: "111",
+    value: [1]
+  }]
 }
 
-class ServiceAttribute {
-  key: string = "111",
-  value: number = 1
-}
-class ServiceInfo {
-  serviceType : string = "_print._tcp",
-  serviceName : string = "servicename",
-  port:number = 5555,
-  host : object = new Host(),
-  serviceAttribute: object = new ServiceAttribute(),
-}
-
-let localServiceInfo = new ServiceInfo();
-
-mdns.removeLocalService(context, localServiceInfo, (error: BusinessError, data: localServiceInfo) =>  {
+mdns.removeLocalService(context, localServiceInfo, (error: BusinessError, data: mdns.LocalServiceInfo) =>  {
   console.log(JSON.stringify(error));
   console.log(JSON.stringify(data));
 });
@@ -315,25 +290,20 @@ class EntryAbility extends UIAbility {
 }
 let context = GlobalContext.getContext().getObject("value");
 
-class Host {
-  address: string = "10.14.**.***"
+let localServiceInfo: mdns.LocalServiceInfo = {
+  serviceType: "_print._tcp",
+  serviceName: "servicename",
+  port: 5555,
+  host: {
+    address: "10.14.**.***",
+  },
+  serviceAttribute: [{
+    key: "111",
+    value: [1]
+  }]
 }
 
-class ServiceAttribute {
-  key: string = "111",
-  value: number = 1
-}
-class ServiceInfo {
-  serviceType : string = "_print._tcp",
-  serviceName : string = "servicename",
-  port:number = 5555,
-  host : object = new Host(),
-  serviceAttribute: object = new ServiceAttribute(),
-}
-
-let localServiceInfo = new ServiceInfo();
-
-mdns.removeLocalService(context, localServiceInfo, (error: BusinessError, data: localServiceInfo) =>  {
+mdns.removeLocalService(context, localServiceInfo, (error: BusinessError, data: mdns.LocalServiceInfo) =>  {
   console.log(JSON.stringify(error));
   console.log(JSON.stringify(data));
 });
@@ -383,25 +353,20 @@ FA模型示例：
 import featureAbility from '@ohos.ability.featureAbility';
 let context = featureAbility.getContext();
 
-class Host {
-  address: string = "10.14.**.***"
+let localServiceInfo: mdns.LocalServiceInfo = {
+  serviceType: "_print._tcp",
+  serviceName: "servicename",
+  port: 5555,
+  host: {
+    address: "10.14.**.***",
+  },
+  serviceAttribute: [{
+    key: "111",
+    value: [1]
+  }]
 }
 
-class ServiceAttribute {
-  key: string = "111",
-  value: number = 1
-}
-class ServiceInfo {
-  serviceType : string = "_print._tcp",
-  serviceName : string = "servicename",
-  port:number = 5555,
-  host : object = new Host(),
-  serviceAttribute: object = new ServiceAttribute(),
-}
-
-let localServiceInfo = new ServiceInfo();
-
-mdns.removeLocalService(context, localServiceInfo).then((data: localServiceInfo) => {
+mdns.removeLocalService(context, localServiceInfo).then((data: mdns.LocalServiceInfo) => {
   console.log(JSON.stringify(data));
 });
 ```
@@ -420,25 +385,20 @@ class EntryAbility extends UIAbility {
 }
 let context = GlobalContext.getContext().getObject("value");
 
-class Host {
-  address: string = "10.14.**.***"
+let localServiceInfo: mdns.LocalServiceInfo = {
+  serviceType: "_print._tcp",
+  serviceName: "servicename",
+  port: 5555,
+  host: {
+    address: "10.14.**.***",
+  },
+  serviceAttribute: [{
+    key: "111",
+    value: [1]
+  }]
 }
 
-class ServiceAttribute {
-  key: string = "111",
-  value: number = 1
-}
-class ServiceInfo {
-  serviceType : string = "_print._tcp",
-  serviceName : string = "servicename",
-  port:number = 5555,
-  host : object = new Host(),
-  serviceAttribute: object = new ServiceAttribute(),
-}
-
-let localServiceInfo = new ServiceInfo();
-
-mdns.removeLocalService(context, localServiceInfo).then((data: localServiceInfo) => {
+mdns.removeLocalService(context, localServiceInfo).then((data: mdns.LocalServiceInfo) => {
   console.log(JSON.stringify(data));
 });
 ```
@@ -540,25 +500,20 @@ FA模型示例：
 import featureAbility from '@ohos.ability.featureAbility';
 let context = featureAbility.getContext();
 
-class Host {
-  address: string = "10.14.**.***"
+let localServiceInfo: mdns.LocalServiceInfo = {
+  serviceType: "_print._tcp",
+  serviceName: "servicename",
+  port: 5555,
+  host: {
+    address: "10.14.**.***",
+  },
+  serviceAttribute: [{
+    key: "111",
+    value: [1]
+  }]
 }
 
-class ServiceAttribute {
-  key: string = "111",
-  value: number = 1
-}
-class ServiceInfo {
-  serviceType : string = "_print._tcp",
-  serviceName : string = "servicename",
-  port:number = 5555,
-  host : object = new Host(),
-  serviceAttribute: object = new ServiceAttribute(),
-}
-
-let localServiceInfo = new ServiceInfo();
-
-mdns.resolveLocalService(context, localServiceInfo, (error: BusinessError, data: localServiceInfo) =>  {
+mdns.resolveLocalService(context, localServiceInfo, (error: BusinessError, data: mdns.LocalServiceInfo) =>  {
   console.log(JSON.stringify(error));
   console.log(JSON.stringify(data));
 });
@@ -578,25 +533,20 @@ class EntryAbility extends UIAbility {
 }
 let context = GlobalContext.getContext().getObject("value");
 
-class Host {
-  address: string = "10.14.**.***"
+let localServiceInfo: mdns.LocalServiceInfo = {
+  serviceType: "_print._tcp",
+  serviceName: "servicename",
+  port: 5555,
+  host: {
+    address: "10.14.**.***",
+  },
+  serviceAttribute: [{
+    key: "111",
+    value: [1]
+  }]
 }
 
-class ServiceAttribute {
-  key: string = "111",
-  value: number = 1
-}
-class ServiceInfo {
-  serviceType : string = "_print._tcp",
-  serviceName : string = "servicename",
-  port:number = 5555,
-  host : object = new Host(),
-  serviceAttribute: object = new ServiceAttribute(),
-}
-
-let localServiceInfo = new ServiceInfo();
-
-mdns.resolveLocalService(context, localServiceInfo, (error: BusinessError, data: localServiceInfo) =>  {
+mdns.resolveLocalService(context, localServiceInfo, (error: BusinessError, data: mdns.LocalServiceInfo) =>  {
   console.log(JSON.stringify(error));
   console.log(JSON.stringify(data));
 });
@@ -646,25 +596,20 @@ FA模型示例：
 import featureAbility from '@ohos.ability.featureAbility';
 let context = featureAbility.getContext();
 
-class Host {
-  address: string = "10.14.**.***"
+let localServiceInfo: mdns.LocalServiceInfo = {
+  serviceType: "_print._tcp",
+  serviceName: "servicename",
+  port: 5555,
+  host: {
+    address: "10.14.**.***",
+  },
+  serviceAttribute: [{
+    key: "111",
+    value: [1]
+  }]
 }
 
-class ServiceAttribute {
-  key: string = "111",
-  value: number = 1
-}
-class ServiceInfo {
-  serviceType : string = "_print._tcp",
-  serviceName : string = "servicename",
-  port:number = 5555,
-  host : object = new Host(),
-  serviceAttribute: object = new ServiceAttribute(),
-}
-
-let localServiceInfo = new ServiceInfo();
-
-mdns.resolveLocalService(context, localServiceInfo).then((data: localServiceInfo) => {
+mdns.resolveLocalService(context, localServiceInfo).then((data: mdns.LocalServiceInfo) => {
   console.log(JSON.stringify(data));
 });
 ```
@@ -683,25 +628,20 @@ class EntryAbility extends UIAbility {
 }
 let context = GlobalContext.getContext().getObject("value");
 
-class Host {
-  address: string = "10.14.**.***"
+let localServiceInfo: mdns.LocalServiceInfo = {
+  serviceType: "_print._tcp",
+  serviceName: "servicename",
+  port: 5555,
+  host: {
+    address: "10.14.**.***",
+  },
+  serviceAttribute: [{
+    key: "111",
+    value: [1]
+  }]
 }
 
-class ServiceAttribute {
-  key: string = "111",
-  value: number = 1
-}
-class ServiceInfo {
-  serviceType : string = "_print._tcp",
-  serviceName : string = "servicename",
-  port:number = 5555,
-  host : object = new Host(),
-  serviceAttribute: object = new ServiceAttribute(),
-}
-
-let localServiceInfo = new ServiceInfo();
-
-mdns.resolveLocalService(context, localServiceInfo).then((data: localServiceInfo) => {
+mdns.resolveLocalService(context, localServiceInfo).then((data: mdns.LocalServiceInfo) => {
   console.log(JSON.stringify(data));
 });
 ```
@@ -806,12 +746,16 @@ on(type: 'discoveryStart', callback: Callback<{serviceInfo: LocalServiceInfo, er
 
 ```js
 // 参考mdns.createDiscoveryService
+class DataServiceInfo{
+  serviceInfo: mdns.LocalServiceInfo
+  errorCode?: mdns.MdnsError
+}
 let context = GlobalContext.getContext().getObject("value");
 let serviceType = "_print._tcp";
 let discoveryService = mdns.createDiscoveryService(context, serviceType);
 discoveryService.startSearchingMDNS();
 
-discoveryService.on('discoveryStart', (data: localServiceInfo) => {
+discoveryService.on('discoveryStart', (data: DataServiceInfo) => {
   console.log(JSON.stringify(data));
 });
 
@@ -842,13 +786,13 @@ let serviceType = "_print._tcp";
 let discoveryService = mdns.createDiscoveryService(context, serviceType);
 discoveryService.startSearchingMDNS();
 
-discoveryService.on('discoveryStart', (data: localServiceInfo) => {
+discoveryService.on('discoveryStart', (data: mdns.LocalServiceInfo) => {
   console.log(JSON.stringify(data));
 });
 
 discoveryService.stopSearchingMDNS();
 
-discoveryService.off('discoveryStart', (data: localServiceInfo) => {
+discoveryService.off('discoveryStart', (data: mdns.LocalServiceInfo) => {
   console.log(JSON.stringify(data));
 });
 ```
@@ -877,7 +821,7 @@ let serviceType = "_print._tcp";
 let discoveryService = mdns.createDiscoveryService(context, serviceType);
 discoveryService.startSearchingMDNS();
 
-discoveryService.on('discoveryStop', (data: localServiceInfo) => {
+discoveryService.on('discoveryStop', (data: DataServiceInfo) => {
   console.log(JSON.stringify(data));
 });
 
@@ -908,13 +852,13 @@ let serviceType = "_print._tcp";
 let discoveryService = mdns.createDiscoveryService(context, serviceType);
 discoveryService.startSearchingMDNS();
 
-discoveryService.on('discoveryStop', (data: localServiceInfo) => {
+discoveryService.on('discoveryStop', (data: DataServiceInfo) => {
   console.log(JSON.stringify(data));
 });
 
 discoveryService.stopSearchingMDNS();
 
-discoveryService.off('discoveryStop', (data: localServiceInfo) => {
+discoveryService.off('discoveryStop', (data: DataServiceInfo) => {
   console.log(JSON.stringify(data));
 });
 ```
@@ -943,7 +887,7 @@ let serviceType = "_print._tcp";
 let discoveryService = mdns.createDiscoveryService(context, serviceType);
 discoveryService.startSearchingMDNS();
 
-discoveryService.on('serviceFound', (data: localServiceInfo) => {
+discoveryService.on('serviceFound', (data: DataServiceInfo) => {
   console.log(JSON.stringify(data));
 });
 
@@ -974,13 +918,13 @@ let serviceType = "_print._tcp";
 let discoveryService = mdns.createDiscoveryService(context, serviceType);
 discoveryService.startSearchingMDNS();
 
-discoveryService.on('serviceFound', (data: localServiceInfo) => {
+discoveryService.on('serviceFound', (data: DataServiceInfo) => {
   console.log(JSON.stringify(data));
 });
 
 discoveryService.stopSearchingMDNS();
 
-discoveryService.off('serviceFound', (data: localServiceInfo) => {
+discoveryService.off('serviceFound', (data: DataServiceInfo) => {
   console.log(JSON.stringify(data));
 });
 ```
@@ -1009,7 +953,7 @@ let serviceType = "_print._tcp";
 let discoveryService = mdns.createDiscoveryService(context, serviceType);
 discoveryService.startSearchingMDNS();
 
-discoveryService.on('serviceLost', (data: localServiceInfo) => {
+discoveryService.on('serviceLost', (data: DataServiceInfo) => {
   console.log(JSON.stringify(data));
 });
 
@@ -1040,13 +984,13 @@ let serviceType = "_print._tcp";
 let discoveryService = mdns.createDiscoveryService(context, serviceType);
 discoveryService.startSearchingMDNS();
 
-discoveryService.on('serviceLost', (data: localServiceInfo) => {
+discoveryService.on('serviceLost', (data: DataServiceInfo) => {
   console.log(JSON.stringify(data));
 });
 
 discoveryService.stopSearchingMDNS();
 
-discoveryService.off('serviceLost', (data: localServiceInfo) => {
+discoveryService.off('serviceLost', (data: DataServiceInfo) => {
   console.log(JSON.stringify(data));
 });
 ```
