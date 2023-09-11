@@ -684,9 +684,7 @@ OpenHarmony系统开发人员在新增或修改代码之后，希望可以快速
            }
         }
     	```
-        > ![icon-note.gif](public_sys-resources/icon-note.gif) **注意：**
-	    > 
-	    > [cfg(test)]属性将测试代码标记为测试模块，并使用#[test]属性标记测试函数，这样才能被Rust的测试框架识别为测试函数
+        > **注意：** #[cfg(test)]属性将测试代码标记为测试模块，并使用#[test]属性标记测试函数，这样才能被Rust的测试框架识别为测试函数
 
 **Fuzzing安全测试**
 
@@ -1120,8 +1118,7 @@ OpenHarmony系统开发人员在新增或修改代码之后，希望可以快速
         ```
         module_output_path = "developer_test/rust_add_test"
         ```
-        > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-	    > 
+        > **说明：**
         > 此处输出路径为部件/模块名。
 
 	4. 指定测试用例编译目标输出的文件名称
@@ -1130,8 +1127,7 @@ OpenHarmony系统开发人员在新增或修改代码之后，希望可以快速
         ohos_rust_unittest("rust_add_test") {
         }
         ```
-        > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-	    > 
+        > **说明：**
         > - 使用模板ohos_rust_unittest定义rust的unittest测试套，注意与C++用例区分。
         > - 测试套名称必须以rust_开头。
         > - 还可以使用模板ohos_rust_systemtest定义rust的systemtest测试套。
