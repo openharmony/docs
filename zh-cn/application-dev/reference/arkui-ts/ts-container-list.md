@@ -353,14 +353,14 @@ struct ListExample {
 @Entry
 @Component
 struct ListExample {
-  private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
+  private arr: number[] = Array.apply(this, { length: 20 }).map((item, i) => i)
   private scrollerForList: Scroller = new Scroller()
 
   build() {
     Column() {
       Row() {
-        List({ space: 20, initialIndex: 0, scroller: this.scrollerForList }) {
-          ForEach(this.arr, (item: number) => {
+        List({ space: 20, initialIndex: 3, scroller: this.scrollerForList }) {
+          ForEach(this.arr, (item) => {
             ListItem() {
               Text('' + item)
                 .width('100%').height(100).fontSize(16)
@@ -369,8 +369,13 @@ struct ListExample {
             .borderRadius(10).backgroundColor(0xFFFFFF)
             .width('60%')
             .height('80%')
-          }, (item: string) => item)
+          }, item => item)
         }
+        .chainAnimationOptions({
+          minSpace: 50,
+          maxSpace: 100,
+          edgeEffect: ChainEdgeEffect.STRETCH
+        })
         .chainAnimation(true)
         .edgeEffect(EdgeEffect.Spring)
         .listDirection(Axis.Horizontal)
@@ -379,7 +384,6 @@ struct ListExample {
         .scrollSnapAlign(ScrollSnapAlign.CENTER)
         .borderRadius(10)
         .backgroundColor(0xDCDCDC)
-        .listDirection(Axis.Horizontal)
         .width('100%')
       }
       .width('100%')
@@ -389,6 +393,7 @@ struct ListExample {
     }
   }
 }
+
 ```
 
 ![list](figures/list4.gif)
