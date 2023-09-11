@@ -196,12 +196,12 @@ This example uses \@LocalStorage as an example to show how to:
 
   @Component
   struct Child {
-    // @LocalStorageLink creates a two-way data synchronization with the ProA attribute in LocalStorage.
+    // @LocalStorageLink creates a two-way data synchronization with the PropA attribute in LocalStorage.
     @LocalStorageLink('PropA') storLink2: number = 1;
 
     build() {
       Button(`Child from LocalStorage ${this.storLink2}`)
-        // The changes will be synchronized to ProA in LocalStorage and with Parent.storLink1.
+        // The changes will be synchronized to PropA in LocalStorage and with Parent.storLink1.
         .onClick(() => this.storLink2 += 1)
     }
   }
@@ -209,7 +209,7 @@ This example uses \@LocalStorage as an example to show how to:
   @Entry(storage)
   @Component
   struct CompA {
-    // @LocalStorageLink creates a two-way data synchronization with the ProA attribute in LocalStorage.
+    // @LocalStorageLink creates a two-way data synchronization with the PropA attribute in LocalStorage.
     @LocalStorageLink('PropA') storLink1: number = 1;
 
     build() {
@@ -239,7 +239,7 @@ In this example, the **CompA** and **Child** components create local data that i
   @Entry(storage)
   @Component
   struct CompA {
-    // @LocalStorageProp creates a one-way data synchronization with the ProA attribute in LocalStorage.
+    // @LocalStorageProp creates a one-way data synchronization with the PropA attribute in LocalStorage.
     @LocalStorageProp('PropA') storProp1: number = 1;
 
     build() {
@@ -254,7 +254,7 @@ In this example, the **CompA** and **Child** components create local data that i
 
   @Component
   struct Child {
-    // @LocalStorageProp creates a one-way data synchronization with the ProA attribute in LocalStorage.
+    // @LocalStorageProp creates a one-way data synchronization with the PropA attribute in LocalStorage.
     @LocalStorageProp('PropA') storProp2: number = 2;
 
     build() {
@@ -398,12 +398,12 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-On the page, call the **GetShared** API to obtain the LocalStorage instance shared through **loadContent**.
+On the page, call the **getShared** API to obtain the LocalStorage instance shared through **loadContent**.
 
 
 ```ts
-// Use the GetShared API to obtain the Storage instance shared by stage.
-let storage = LocalStorage.GetShared()
+// Use the getShared API to obtain the LocalStorage instance shared by stage.
+let storage = LocalStorage.getShared()
 
 @Entry(storage)
 @Component

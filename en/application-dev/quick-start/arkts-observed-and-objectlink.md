@@ -35,7 +35,7 @@ Using \@Observed to decorate a class changes the original prototype chain of the
 | ----------------- | ---------------------------------------- |
 | Decorator parameters            | None.                                       |
 | Synchronization type             | No synchronization with the parent component.                        |
-| Allowed variable types        | Objects of \@Observed decorated classes. The type must be specified.<br>Simple type variables are not supported. Use [\@Prop](arkts-prop.md) instead.<br>An \@ObjectLink decorated variable accepts changes to its attributes, but assignment is not allowed. In other words, an \@ObjectLink decorated variable is read-only and cannot be changed.|
+| Allowed variable types        | Objects of \@Observed decorated classes. The type must be specified.<br>Simple type variables are not supported. Use [\@Prop](arkts-prop.md) instead.<br>Instances of classes that inherit **Date** or **Array** are supported. For details, see [Observed Changes](#observed-changes).<br>An \@ObjectLink decorated variable accepts changes to its attributes, but assignment is not allowed. In other words, an \@ObjectLink decorated variable is read-only and cannot be changed.|
 | Initial value for the decorated variable        | Not allowed.                                    |
 
 Example of a read-only \@ObjectLink decorated variable:
@@ -121,6 +121,67 @@ this.b.a.c = 5
 
 - Replacement of array items for the data source of an array and changes of class attributes for the data source of a class. For details, see [Object Array](#object-array).
 
+For an instance of the class that inherits **Date**, the value assignment of **Date** can be observed. In addition, you can call the following APIs to update the attributes of **Date**: setFullYear, setMonth, setDate, setHours, setMinutes, setSeconds, setMilliseconds, setTime, setUTCFullYear, setUTCMonth, setUTCDate, setUTCHours, setUTCMinutes, setUTCSeconds, setUTCMilliseconds.
+
+```ts
+@Observed
+class DateClass extends Date {
+  constructor(args: any) {
+    super(args)
+  }
+}
+
+@Observed
+class ClassB {
+  public a: DateClass;
+
+  constructor(a: DateClass) {
+    this.a = a;
+  }
+}
+
+@Component
+struct ViewA {
+  label: string = 'date';
+  @ObjectLink a: DateClass;
+
+  build() {
+    Column() {
+      Button(`child increase the day by 1`)
+        .onClick(() => {
+          this.a.setDate(this.a.getDate() + 1);
+        })
+      DatePicker({
+        start: new Date('1970-1-1'),
+        end: new Date('2100-1-1'),
+        selected: this.a
+      })
+    }
+  }
+}
+
+@Entry
+@Component
+struct ViewB {
+  @State b: ClassB = new ClassB(new DateClass('2023-1-1'));
+
+  build() {
+    Column() {
+      ViewA({ label: 'date', a: this.b.a })
+
+      Button(`parent update the new date`)
+        .onClick(() => {
+          this.b.a = new DateClass('2023-07-07');
+        })
+      Button(`ViewB: this.b = new ClassB(new DateClass('2023-08-20'))`)
+        .onClick(() => {
+          this.b = new ClassB(new DateClass('2023-08-20'));
+        })
+    }
+  }
+}
+```
+
 
 ### Framework Behavior
 
@@ -162,6 +223,26 @@ class ClassB {
     this.a = a;
   }
 }
+
+@Observed
+class ClassD {
+  public c: ClassC;
+
+  constructor(c: ClassC) {
+    this.c = c;
+  }
+}
+
+@Observed
+class ClassC extends ClassA {
+  public k: number;
+
+  constructor(k: number) {
+    // Invoke the parent class method to process k.
+    super(k);
+    this.k = k;
+  }
+}
 ```
 
 
@@ -169,60 +250,64 @@ class ClassB {
 
 ```ts
 @Component
-struct ViewA {
-  label: string = 'ViewA1';
-  @ObjectLink a: ClassA;
+struct ViewC {
+  label: string = 'ViewC1';
+  @ObjectLink c: ClassC;
 
   build() {
     Row() {
-      Button(`ViewA [${this.label}] this.a.c=${this.a.c} +1`)
-        .onClick(() => {
-          this.a.c += 1;
-        })
-    }
+      Column() {
+        Text(`ViewC [${this.label}] this.a.c = ${this.c.c}`)
+          .fontColor('#ffffffff')
+          .backgroundColor('#ff3fc4c4')
+          .height(50)
+          .borderRadius(25)
+        Button(`ViewC: this.c.c add 1`)
+          .backgroundColor('#ff7fcf58')
+          .onClick(() => {
+            this.c.c += 1;
+            console.log('this.c.c:' + this.c.c)
+          })
+      }
+    .width(300)
   }
+}
 }
 
 @Entry
 @Component
 struct ViewB {
   @State b: ClassB = new ClassB(new ClassA(0));
-
+  @State child : ClassD = new ClassD(new ClassC(0));
   build() {
     Column() {
-      ViewA({ label: 'ViewA #1', a: this.b.a })
-      ViewA({ label: 'ViewA #2', a: this.b.a })
-
-      Button(`ViewB: this.b.a.c+= 1`)
+      ViewC({ label: 'ViewC #3', c: this.child.c})
+      Button(`ViewC: this.child.c.c add 10`)
+        .backgroundColor('#ff7fcf58')
         .onClick(() => {
-          this.b.a.c += 1;
-        })
-      Button(`ViewB: this.b.a = new ClassA(0)`)
-        .onClick(() => {
-          this.b.a = new ClassA(0);
-        })
-      Button(`ViewB: this.b = new ClassB(ClassA(0))`)
-        .onClick(() => {
-          this.b = new ClassB(new ClassA(0));
+          this.child.c.c += 10
+          console.log('this.child.c.c:' + this.child.c.c)
         })
     }
   }
 }
 ```
 
+The @Observed decorated **ClassC** class can observe changes in attributes inherited from the base class.
+
 
 Event handlers in **ViewB**:
 
 
-- this.b.a = new ClassA(0) and this.b = new ClassB(new ClassA(0)): Change to the \@State decorated variable **b** and its attributes.
+- this.child.c = new ClassA(0) and this.b = new ClassB(new ClassA(0)): Change to the \@State decorated variable **b** and its attributes.
 
-- this.b.a.c = ... : Change at the second layer. Though [@State](arkts-state.md#observed-changes) cannot observe the change at the second layer, the change of an attribute of \@Observed decorated ClassA, which is attribute **c** in this example, can be observed by \@ObjectLink.
-
-
-Event handlers in **ViewA**:
+- this.child.c.c = ... : Change at the second layer. Though [@State](arkts-state.md#observed-changes) cannot observe the change at the second layer, the change of an attribute of \@Observed decorated ClassA, which is attribute **c** in this example, can be observed by \@ObjectLink.
 
 
-- this.a.c += 1: Changes to the \@ObjectLink decorated variable cause the button label to be updated. Unlike \@Prop, \@ObjectLink does not have a copy of its source. Instead, \@ObjectLink creates a reference to its source.
+Event handle in **ViewC**:
+
+
+- this.c.c += 1: Changes to the \@ObjectLink decorated variable **a** cause the button label to be updated. Unlike \@Prop, \@ObjectLink does not have a copy of its source. Instead, \@ObjectLink creates a reference to its source.
 
 - The \@ObjectLink decorated variable is read-only. Assigning **this.a = new ClassA(...)** is not allowed. Once value assignment occurs, the reference to the data source is reset and the synchronization is interrupted.
 
@@ -297,7 +382,7 @@ struct ViewB {
   2. ViewA({ label: ViewA this.arrA[first], a: this.arrA[0] }): The preceding update changes the first element in the array. Therefore, the **ViewA** component instance bound to **this.arrA[0]** is updated.
 
 - this.arrA.push(new ClassA(0)): The change of this state variable triggers two updates with different effects.
-  1. ForEach: The newly added Class A object is unknown to the **ForEach** [itemGenerator](arkts-rendering-control-foreach.md#api-description). The item builder of **ForEach** will be executed to create a **View A** component instance.
+  1. ForEach: The newly added **ClassA** object is unknown to the **ForEach** [itemGenerator](arkts-rendering-control-foreach.md#api-description). The item builder of **ForEach** will be executed to create a **ViewA** component instance.
   2. ViewA({ label: ViewA this.arrA[last], a: this.arrA[this.arrA.length-1] }): The last item of the array is changed. As a result, the second **View A** component instance is changed. For **ViewA({ label: ViewA this.arrA[first], a: this.arrA[0] })**, a change to the array does not trigger a change to the array item, so the first **View A** component instance is not refreshed.
 
 - this.arrA[Math.floor (this.arrA.length/2)].c: [@State](arkts-state.md#observed-changes) cannot observe changes at the second layer. However, as **ClassA** is decorated by \@Observed, the change of its attributes will be observed by \@ObjectLink.

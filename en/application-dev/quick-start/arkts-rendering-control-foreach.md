@@ -43,7 +43,7 @@ ForEach(
   ```
 
 
-## Recommendations
+## Development Guidelines
 
 - Make no assumption on the order of item build functions. The execution order may not be the order of items inside the array.
 
