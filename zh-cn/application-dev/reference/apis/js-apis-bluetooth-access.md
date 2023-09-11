@@ -184,7 +184,7 @@ try {
     access.on('stateChange', onReceiveEvent);
     access.off('stateChange', onReceiveEvent);
 } catch (err) {
-    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
 

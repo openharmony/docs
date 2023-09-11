@@ -59,7 +59,7 @@ let sppOption:socket.SppOption = {uuid: '00001810-0000-1000-8000-00805F9B34FB', 
 try {
     socket.sppListen('server1', sppOption, serverSocket);
 } catch (err) {
-    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
 
@@ -113,7 +113,7 @@ function acceptClientSocket(code: BusinessError, number: number) {
 try {
     socket.sppAccept(serverNumber, acceptClientSocket);
 } catch (err) {
-    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
 
@@ -164,7 +164,7 @@ let sppOption:socket.SppOption = {uuid: '00001810-0000-1000-8000-00805F9B34FB', 
 try {
     socket.sppConnect('XX:XX:XX:XX:XX:XX', sppOption, clientSocket);
 } catch (err) {
-    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
 
@@ -206,7 +206,7 @@ function serverSocket(code: BusinessError, number: number) {
 try {
     socket.sppCloseServerSocket(serverNumber);
 } catch (err) {
-    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
 
@@ -249,7 +249,7 @@ function clientSocket(code: BusinessError, number: number) {
 try {
     socket.sppCloseClientSocket(clientNumber);
 } catch (err) {
-    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
 
@@ -296,7 +296,7 @@ data[0] = 123;
 try {
     socket.sppWrite(clientNumber, arrayBuffer);
 } catch (err) {
-    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
 
@@ -345,7 +345,7 @@ function dataRead(dataBuffer) {
 try {
     socket.on('sppRead', clientNumber, dataRead);
 } catch (err) {
-    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
 
@@ -381,7 +381,7 @@ function clientSocket(code: BusinessError, number: number) {
 try {
     socket.off('sppRead', clientNumber);
 } catch (err) {
-    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
 

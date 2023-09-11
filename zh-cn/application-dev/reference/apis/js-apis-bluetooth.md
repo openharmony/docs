@@ -89,7 +89,7 @@ getLocalName(): string
 **示例：**
 
 ```js
-let localName string = bluetooth.getLocalName();
+let localName : string = bluetooth.getLocalName();
 ```
 
 
@@ -2362,7 +2362,7 @@ function WriteDescriptorReq(DescriptorWriteReq : bluetooth.DescriptorWriteReq) {
 }
 
 let gattServer : bluetooth.GattServer = bluetooth.BLE.createGattServer();
-gattServer.on("descriptorRead", WriteDescriptorReq);
+gattServer.on("descriptorWrite", WriteDescriptorReq);
 ```
 
 
@@ -3095,9 +3095,9 @@ client端订阅蓝牙低功耗设备的连接状态变化事件。
 **示例：**
 
 ```js
-function ConnectStateChanged(state : bluetooth.BLEConnectStateChanged) {
+function ConnectStateChanged(state : bluetooth.BLEConnectChangedState) {
   console.log('bluetooth connect state changed');
-  let connectState = state.state;
+  let connectState : bluetooth.ProfileConnectionState = state.state;
 }
 let device : bluetooth.GattClientDevice = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
 device.on('BLEConnectionStateChange', ConnectStateChanged);
