@@ -1,4 +1,4 @@
-# @ohos.ability.BackupExtensionAbility (BackupExtensionAbility)
+# @ohos.application.BackupExtensionAbility (BackupExtensionAbility)
 
 BackupExtensionAbility模块提供备份恢复服务相关扩展能力，为应用提供扩展的备份恢复能力。
 
@@ -11,7 +11,7 @@ BackupExtensionAbility模块提供备份恢复服务相关扩展能力，为应�
 ## 导入模块
 
 ```ts
-import BackupExtension from '@ohos.ability.BackupExtensionAbility';
+import BackupExtension from '@ohos.application.BackupExtensionAbility';
 ```
 
 ## BundleVersion
