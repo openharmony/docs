@@ -600,13 +600,12 @@ setDevicePairingConfirmation(deviceId: string, accept: boolean): void
 **示例：**
 
 ```js
-
+// 订阅“pinRequired”配对请求事件，收到远端配对请求后设置配对确认
+function onReceivePinRequiredEvent(data: connection.PinRequiredParam) { // data为配对请求的入参，配对请求参数
+    console.info('pin required  = '+ JSON.stringify(data));
+    connection.setDevicePairingConfirmation(data.deviceId, true);
+}
 try {
-    // 订阅“pinRequired”配对请求事件，收到远端配对请求后设置配对确认
-    function onReceivePinRequiredEvent(data: connection.PinRequiredParam) { // data为配对请求的入参，配对请求参数
-        console.info('pin required  = '+ JSON.stringify(data));
-        connection.setDevicePairingConfirmation(data.deviceId, true);
-    }
     connection.on('pinRequired', onReceivePinRequiredEvent);
 } catch (err) {
     console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
