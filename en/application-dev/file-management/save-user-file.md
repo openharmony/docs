@@ -30,7 +30,7 @@ For example, select an image from **Gallery** and save it to the file manager.
    let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 
    let pixelmapArrayBuffer: ArrayBuffer;
-   async function getPixelmap() {
+   async function getPixelmap(): Promise<void> {
       try {
          let predicates = new dataSharePredicates.DataSharePredicates();
          let fetchOption: photoAccessHelper.FetchOptions = {
@@ -63,7 +63,7 @@ For example, select an image from **Gallery** and save it to the file manager.
 
    ```ts  
    let uris: Array<string>;
-   async function photoViewPickerSave() {
+   async function photoViewPickerSave(): Promise<void>{
       try {
          const photoSaveOptions = new picker.PhotoSaveOptions(); // Create a photoSaveOptions instance.
          photoSaveOptions.newFileNames = ["PhotoViewPicker01.png"]; // (Optional) Name of the file to be saved. The file name in the square brackets can be customized and must be unique. If the file name already exists on the device, change the file name. Otherwise, an error will be returned.
@@ -91,7 +91,7 @@ For example, select an image from **Gallery** and save it to the file manager.
    Then, use [fs.write](../reference/apis/js-apis-file-fs.md#fswrite) to modify the file based on the FD, and close the FD after the modification is complete.
 
    ```ts
-   async function writeOnly(uri: string) {
+   async function writeOnly(uri: string): Promise<void> {
       try {
          let file = fs.openSync(uri, fs.OpenMode.WRITE_ONLY);
          let writeLen = await fs.write(file.fd, pixelmapArrayBuffer);
@@ -140,6 +140,7 @@ For example, select an image from **Gallery** and save it to the file manager.
 4. After the UI is returned from the **FilePicker** page, use a button to trigger API calling. Use [fs.openSync()](../reference/apis/js-apis-file-fs.md#fsopensync) to open the file based on the URI and obtain the FD. Note that the **mode** parameter of **fs.openSync()** must be **fs.OpenMode.READ_WRITE**.
 
    ```ts
+   const uri = '';
    let file = fs.openSync(uri, fs.OpenMode.READ_WRITE);
    console.info('file fd: ' + file.fd);
    ```
