@@ -1053,7 +1053,7 @@
       - [@ohos.request (上传下载)](reference/apis/js-apis-request.md)
     - 通信与连接
       - [@ohos.bluetooth (蓝牙)(待停用)](reference/apis/js-apis-bluetooth.md)
-      - [@ohos.bluetoothManager (蓝牙)(待停用)](reference/apis/js-apis-bluetoothManager.md)
+      - [@ohos.bluetoothManager (蓝牙)(推荐)](reference/apis/js-apis-bluetoothManager.md)
       - [@ohos.connectedTag (有源标签)](reference/apis/js-apis-connectedTag.md)
       - [@ohos.nfc.cardEmulation (标准NFC-cardEmulation)](reference/apis/js-apis-cardEmulation.md)
       - [@ohos.nfc.controller (标准NFC)](reference/apis/js-apis-nfcController.md)
