@@ -11,8 +11,7 @@ OpenHarmony JS和TS三方组件使用的是OpenHarmony静态共享包，即HAR(H
 
 
 
-2. 访问[OpenHarmony官网](https://growing.openharmony.cn/mainPlay/tpc)，通过类型，分类，以及关键字搜索需要的三方组件。
-   ![official-website.png](official-website.png)
+2. 访问[OpenHarmony三方库中心仓](https://ohpm.openharmony.cn/)，搜索需要的三方组件。
 
 
 
