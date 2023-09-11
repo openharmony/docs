@@ -24,6 +24,7 @@ The **module** tag contains the HAP configuration.
 |commonEvents        | Information about the common event static subscriber, which must contain the subscriber name, required permissions, and list of the common events subscribed to. When a subscribed event is sent, the static subscriber is started. Unlike the dynamic subscriber, the static subscriber does not need to proactively call the common event subscription API in the service code, and may not be running when the common event is published.| Object array| Yes (initial value: left empty)|
 | entryTheme         | Keyword of an OpenHarmony internal theme. Set it to the resource index of the name.| String| Yes (initial value: left empty)|
 |testRunner          | Test runner configuration.| Object| Yes (initial value: left empty)|
+|libIsolation |Whether to save the .so files of the current HAP to a separate folder (named after the module) in the **libs** directory. This is intended to avoid .so file conflicts between HAPs.<br>- **true**: The .so files of the current HAP are stored in a separate folder (named after the module) in the **libs** directory.<br>- **false**: The .so files of the current HAP are directly stored in the **libs** directory.|Boolean|Yes (initial value: **false**)|
 
 Example of the **module** tag structure:
 
