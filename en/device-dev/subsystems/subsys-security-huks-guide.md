@@ -4,7 +4,7 @@
 
 ### HUKS
 
-OpenHarmony Universal KeyStore (HUKS) provides lifecycle key management from key generation, storage, use to destruction and attestation for the keys stored in the HUKS. In the HUKS hierarchical architecture, the HUKS core layer (HUKS Core) at the bottom implements key management functions and runs in a secure hardware environment, such as a Trusted Execution Environment (TEE) or secure chipset. The implementation of the HUKS core layer varies depending on the secure hardware environment of the vendor. To ensure consistency of the architecture and interfaces between the service layer and application layer, the HUKS core layer defines a set of Hardware Device Interface (HDI) APIs. 
+OpenHarmony Universal KeyStore (HUKS) provides lifecycle key management capabilities, including generating, storing, and destroying keys, and provides attestation for the keys stored in the HUKS. In the HUKS hierarchical architecture, the HUKS core layer (HUKS Core) at the bottom implements key management functions and runs in a secure hardware environment, such as a Trusted Execution Environment (TEE) or secure chipset. The implementation of the HUKS core layer varies depending on the secure hardware environment of the vendor. To ensure consistency of the architecture and interfaces between the service layer and application layer, the HUKS core layer defines a set of Hardware Device Interface (HDI) APIs. 
 
 This document describes how to develop the HUKS core layer functions using the HUKS HDI APIs.
 
@@ -41,7 +41,6 @@ The HUKS core layer is supposed to support the following functions:
 ## Working Principles
 
 The HUKS is divided into the following layers:
-
 - Application layer: provides APIs for applications.
 - Service layer: processes key management requests from applications and performs key ciphertext management, identity verification, and key session management.
 - Core layer: implements core functions, such as key generation, key operations, key access control, and key attestation.
@@ -63,7 +62,6 @@ The HUKS is divided into the following layers:
 - Strict access control over keys
 
   Only authorized services can access keys. For security-critical services, user identity authentication can be enabled for key access.
-  
 - Key attestation
 
   The HUKS provides attestation for hardware-backed key storage. It proves that the key has not been tampered with, is stored in the hardware-backed HUKS Core, and has correct key properties.
@@ -79,8 +77,6 @@ The HUKS is divided into the following layers:
   ![CertChain format](figures/HUKS-CertChain.png)
 
 - KeyBlob
-  
-
 The key returned by the APIs must be assembled into a **KeyBlob** based on the key storage status. For details about the APIs that must comply with this constraint, see [Available APIs](#available-apis).
 
   ![KeyBlob format](figures/HUKS-KeyBlob.png)
@@ -99,11 +95,11 @@ The HUKS Core provides KeyStore capabilities for applications, including key man
 | ------------------------------------------------------------ | ---------------------------------------- | ----------------------------- | ------------------------------------------------------------ |
 | [ModuleInit()](#moduleinit)                   | Initializes the HUKS Core.                           |  N/A                          | N/A|
 | [ModuleDestroy()](#moduledestroy)                   | Destroys the HUKS Core.                           |  N/A                          | N/A|
-| [GenerateKey()](#generatekey)                  | Generates a key based on the cryptographic algorithm parameters.                               |  The key output must be in the **KeyBlob** format.   |generateKey(keyAlias: string, options: HuksOptions)|
-| [ImportKey()](#importkey)                     | Imports a key in plaintext.                    |  The key output must be in the **KeyBlob** format.    | importKey(keyAlias: string, options: HuksOptions)|
-| [ImportWrappedKey()](#importwrappedkey)        |Imports a wrapped (encrypted) key.                             |  The key output must be in the **KeyBlob** format.  | importWrappedKey(keyAlias: string, wrappingKeyAlias: string, options: HuksOptions)|
+| [GenerateKey()](#generatekey)                  | Generates a key based on the cryptographic algorithm parameters.                               |  The key output must be in the **KeyBlob** format.         |generateKey(keyAlias: string, options: HuksOptions)|
+| [ImportKey()](#importkey)                     | Imports a key in plaintext.                           |  The key output must be in the **KeyBlob** format.          | importKey(keyAlias: string, options: HuksOptions)|
+| [ImportWrappedKey()](#importwrappedkey)        |Imports a wrapped (encrypted) key.                             |  The key output must be in the **KeyBlob** format.         | importWrappedKey(keyAlias: string, wrappingKeyAlias: string, options: HuksOptions)|
 | [ExportPublicKey()](#exportpublickey)         | Exports the public key of a key pair.                                |N/A                            | exportKey(keyAlias: string, options: HuksOptions) |
-| [Init()](#init)                              | Initializes a key session. This API returns a key session handle and an authentication token (optional). |N/A                             | init(keyAlias: string, options: HuksOptions) |
+| [Init()](#init)                              | Initializes a key session. This API returns a key session handle and an authentication token (optional).                      |N/A                             | init(keyAlias: string, options: HuksOptions) |
 | [Update()](#update)                           | Updates key operation data.                    |The input parameters for signature verification must be the raw data.         | update(handle: number, token?: Uint8Array, options: HuksOptions) |
 | [Finish()](#finish)                           | Finishes a key session.                    |The input parameter for signature verification must be the signed data.       | finish(handle: number, options: HuksOptions) |
 | [Abort()](#abort)                         | Aborts a key session.                              |N/A                            | abort(handle: number, options: HuksOptions) |
@@ -207,7 +203,6 @@ Generate a key based on the **paramSet**.
   Pointer to the key generated in ciphertext. It holds the **paramSet** and the key ciphertext in the KeyBlob format.
   </pre>
 </details>
-
 <br></br>
 
 <details>
@@ -329,7 +324,6 @@ Imports a wrapped key.
   Pointer to the imported key material (ciphertext) in the KeyBlob format.
   </pre>
 </details>
-
 <br></br>
 
 <details>
@@ -425,11 +419,11 @@ Initializes a key session. You need to pass in the key material in ciphertext. T
   Pointer to the authentication token generated for key access control (if required).
   </pre>
 </details>
-
 <br></br>
 
 <details>
   <summary><strong>Constraints</strong></summary>
+
 This API must be used with **Update()**, **Finish()**, and **Abort()** together.
 
 </details>
@@ -565,14 +559,14 @@ Aborts the key session. When an error occurs in any of the **Init**, **Update**,
   Pointer to the handle of the key session.
   <br></br>
   <strong>const struct HuksParamSet *paramSet</strong>
-  Pointer to the parameters of the Abort() operation.
+  Pointer to the parameters of the **Abort** operation.
   </pre>
 </details>
-
 <br></br>
 
 <details>
   <summary><strong>Constraints</strong></summary>
+
 This API must be used with **Init()**, **Update()**, and **Finish()** together.
 
 </details>
@@ -653,6 +647,7 @@ Attests a key.
 
 <details>
   <summary><strong>Constraints</strong></summary>
+
 **certChain** must comply with the certificate chain described in [Constraints](#constraints).
 
 </details>
@@ -694,11 +689,11 @@ Exports the public key of a chipset key pair.
   Pointer to the raw data of ECC P-256 x-axis and y-axis values, each of which are of 32 bytes.
   </pre>
 </details>
-
 <br></br>
 
 <details>
   <summary><strong>Constraints</strong></summary>
+
 The input parameter **salt** must be of 16 bytes, and the content of the last byte will be ignored and filled by HUKS based on **scene**.
 Currently, the chipset key pairs of HUKS are implemented by software. An ECC P-256 key pair is hard-coded, and the **salt** value is ignored. That is, the derived keys are the same regardless of the **salt**. In the hardware-based implementation of chipset key pairs, **salt** is a factor used to derive the key. That is, the key pair derived varies with the **salt** value.
 
@@ -760,7 +755,6 @@ Updates the key file when the key file version is earlier than the latest versio
 Generates a random number.
 
 **Prototype**
-
 <pre><code>int32_t GenerateRandom(struct IHuks *self, const struct HuksParamSet *paramSet, struct HuksBlob *random);</code></pre>
 <details>
   <summary><strong>Parameters</strong></summary>
@@ -775,7 +769,6 @@ Generates a random number.
   Pointer to the random number generated.
   </pre>
 </details>
-
 <br></br>
 
 <details>
@@ -1096,15 +1089,15 @@ The code of the HUKS Core software implementation is in the following directory.
 
 ```undefined
 //base/security/huks/services/huks_standard/huks_engine
-├── BUILD.gn        # Build script.
-├── core_dependency # HUKS Core dependency.
-└── core            # Software implementation of the HUKS Core.
-    ├── BUILD.gn    # Build script.
+├── BUILD.gn                       # Build script.
+├── core_dependency                # HUKS Core dependency.
+└── core                           # Software implementation of the HUKS Core.
+    ├── BUILD.gn                   # Build script.
     ├── include 
     └── src
-        ├── hks_core_interfaces.c   # Adaptation of the HDI to the HUKS Core.
-        └── hks_core_service.c      # HUKS Core implementation.
-        └── ...                     # Code of other functions.
+        ├── hks_core_interfaces.c  # Adaptation of the HDI to the HUKS Core.
+        └── hks_core_service.c     # HUKS Core implementation.
+        └── ...                    # Code of other functions.
 ```
 **CAUTION**
 
@@ -1347,49 +1340,55 @@ The following JS test code is for reference only. If the entire process goes pro
 
 1. Import the HUKS module.
 
-   ```js
+   ```ts
    import huks from '@ohos.security.huks'
    ```
 
 2. Use **generateKey()** to generate a key.
 
-   ```js
-   
+   ```ts
+    import { BusinessError } from '@ohos.base';
     let aesKeyAlias = 'test_aesKeyAlias';
-    let handle;
+    let handle = 0;
     let IV = '001122334455';
-    let cipherData:Uint8Array;
-    let plainData:Uint8Array;
 
-    
+    class HuksProperties {
+      tag: huks.HuksTag = huks.HuksTag.HUKS_TAG_ALGORITHM;
+      value: huks.HuksKeyAlg | huks.HuksKeySize | huks.HuksKeyPurpose = huks.HuksKeyAlg.HUKS_ALG_ECC;
+    }
+
+    class HuksProperties1 {
+      tag: huks.HuksTag = huks.HuksTag.HUKS_TAG_ALGORITHM;
+      value: huks.HuksKeyAlg | huks.HuksKeySize | huks.HuksKeyPurpose | huks.HuksKeyPadding | huks.HuksCipherMode | Uint8Array = huks.HuksKeyAlg.HUKS_ALG_ECC;
+    }
+
     function GetAesGenerateProperties() {
-      var properties = new Array();
-      var index = 0;
-      properties[index++] = {
-        tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
-        value: huks.HuksKeyAlg.HUKS_ALG_AES
-      };
-      properties[index++] = {
-        tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
-        value: huks.HuksKeySize.HUKS_AES_KEY_SIZE_128
-      };
-      properties[index++] = {
-        tag: huks.HuksTag.HUKS_TAG_PURPOSE,
-        value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT |
-               huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_DECRYPT
-      }
+      let properties: HuksProperties[] = [
+        {
+          tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
+          value: huks.HuksKeyAlg.HUKS_ALG_AES
+        },
+        {
+          tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
+          value: huks.HuksKeySize.HUKS_AES_KEY_SIZE_128
+        },
+        {
+          tag: huks.HuksTag.HUKS_TAG_PURPOSE,
+          value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT |
+          huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_DECRYPT
+        }
+      ];
       return properties;
     }
 
-    
     async function GenerateAesKey() {
-      var genProperties = GetAesGenerateProperties();
-      var options = {
+      let genProperties = GetAesGenerateProperties();
+      let options: huks.HuksOptions = {
         properties: genProperties
       }
       await huks.generateKeyItem(aesKeyAlias, options).then((data) => {
         console.log("generateKeyItem success");
-      }).catch((err)=>{
+      }).catch((error: BusinessError) => {
         console.log("generateKeyItem failed");
       })
     }
@@ -1397,11 +1396,11 @@ The following JS test code is for reference only. If the entire process goes pro
 
 3. Use **huks.initSession** and **huks.finishSession** to encrypt data.
 
-   ```js
+   ```ts
     let plainText = '123456';
 
-    function StringToUint8Array(str) {
-      let arr = [];
+    function StringToUint8Array(str: string) {
+      let arr: number[] = [];
       for (let i = 0, j = str.length; i < j; ++i) {
         arr.push(str.charCodeAt(i));
       }
@@ -1409,51 +1408,51 @@ The following JS test code is for reference only. If the entire process goes pro
     }
 
     function GetAesEncryptProperties() {
-      var properties = new Array();
-      var index = 0;
-      properties[index++] = {
-        tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
-        value: huks.HuksKeyAlg.HUKS_ALG_AES
-      };
-      properties[index++] = {
-        tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
-        value: huks.HuksKeySize.HUKS_AES_KEY_SIZE_128
-      };
-      properties[index++] = {
-        tag: huks.HuksTag.HUKS_TAG_PURPOSE,
-        value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT
-      }
-      properties[index++] = {
-        tag: huks.HuksTag.HUKS_TAG_PADDING,
-        value: huks.HuksKeyPadding.HUKS_PADDING_PKCS7
-      }
-      properties[index++] = {
-        tag: huks.HuksTag.HUKS_TAG_BLOCK_MODE,
-        value: huks.HuksCipherMode.HUKS_MODE_CBC
-      }
-      properties[index++] = {
-        tag: huks.HuksTag.HUKS_TAG_IV,
-        value: StringToUint8Array(IV)
-      }
+      let properties: HuksProperties1[] = [
+        {
+          tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
+          value: huks.HuksKeyAlg.HUKS_ALG_AES
+        },
+        {
+          tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
+          value: huks.HuksKeySize.HUKS_AES_KEY_SIZE_128
+        },
+        {
+          tag: huks.HuksTag.HUKS_TAG_PURPOSE,
+          value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT
+        },
+        {
+          tag: huks.HuksTag.HUKS_TAG_PADDING,
+          value: huks.HuksKeyPadding.HUKS_PADDING_PKCS7
+        },
+        {
+          tag: huks.HuksTag.HUKS_TAG_BLOCK_MODE,
+          value: huks.HuksCipherMode.HUKS_MODE_CBC
+        },
+        {
+          tag: huks.HuksTag.HUKS_TAG_IV,
+          value: StringToUint8Array(IV)
+        }
+      ]
       return properties;
     }
-    
+
     async function EncryptData() {
-        var encryptProperties = GetAesEncryptProperties();
-        var options = {
-            properties:encryptProperties,
-            inData: StringToUint8Array(plainText)
-        }
-        await huks.initSession(aesKeyAlias, options).then((data) => {
-          handle = data.handle;
-        }).catch((err)=>{
-            console.log("initSession failed");
-        })
-        await huks.finishSession(handle, options).then((data) => {
-          console.log("finishSession success");
-          cipherData = data.outData
-        }).catch((err)=>{
-          console.log("finishSession failed");
-        })
+      let encryptProperties = GetAesEncryptProperties();
+      let options: huks.HuksOptions = {
+        properties: encryptProperties,
+        inData: StringToUint8Array(plainText)
+      }
+      await huks.initSession(aesKeyAlias, options).then((data) => {
+        handle = data.handle;
+      }).catch((error: BusinessError) => {
+        console.log("initSession failed");
+      })
+      await huks.finishSession(handle, options).then((data) => {
+        console.log("finishSession success");
+      }).catch((error: BusinessError) => {
+        console.log("finishSession failed");
+      })
     }
+
    ```
