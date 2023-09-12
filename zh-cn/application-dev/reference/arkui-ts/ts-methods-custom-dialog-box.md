@@ -36,8 +36,8 @@ CustomDialogController(value:{builder: CustomDialog, cancel?: () =&gt; void, aut
 
 ### 导入对象
 
-```
-dialogController : CustomDialogController = new CustomDialogController(value:{builder: CustomDialog, cancel?: () => void, autoCancel?: boolean})
+```ts
+let dialogController : CustomDialogController = new CustomDialogController({builder: CustomDialog, cancel?: () => void, autoCancel?: true})
 ```
 **说明**：CustomDialogController仅在作为@CustomDialog和@Component struct的成员变量，且在@Component struct内部定义时赋值才有效，具体用法可看下方示例。
 
@@ -63,7 +63,7 @@ close(): void
 struct CustomDialogExample {
   @Link textValue: string
   @Link inputValue: string
-  controller: CustomDialogController
+  controller: CustomDialogController | null = null;
   // 若尝试在CustomDialog中传入多个其他的Controller，以实现在CustomDialog中打开另一个或另一些CustomDialog，那么此处需要将指向自己的controller放在最后
   cancel: () => void = () => {}
   confirm: () => void = () => {}
