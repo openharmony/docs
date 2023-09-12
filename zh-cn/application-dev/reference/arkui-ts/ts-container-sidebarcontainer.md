@@ -112,7 +112,7 @@ struct SideBarContainerExample {
   build() {
     SideBarContainer(SideBarContainerType.Embed) {
       Column() {
-        ForEach(this.arr, (item: number, index: number) => {
+        ForEach(this.arr, (item: number) => {
           Column({ space: 5 }) {
             Image(this.current === item ? this.selectedIcon : this.normalIcon).width(64).height(64)
             Text("Index0" + item)
