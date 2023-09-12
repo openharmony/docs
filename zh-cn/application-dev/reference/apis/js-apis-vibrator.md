@@ -217,7 +217,7 @@ try {
 
 try {
   // 按照VIBRATOR_STOP_MODE_TIME模式停止振动
-  vibrator.stopVibration(vibrator.VibratorStopMode.VIBRATOR_STOP_MODE_PRESET).then(() => {
+  vibrator.stopVibration(vibrator.VibratorStopMode.VIBRATOR_STOP_MODE_TIME).then(() => {
     console.info('Succeed in stopping vibration');
   }, (error) => {
     console.error(`Failed to stop vibration. Code: ${error.code}, message: ${error.message}`);
