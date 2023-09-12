@@ -68,8 +68,8 @@ import socket from '@ohos.net.socket';
 import { BusinessError } from '@ohos.base';
 
 let udp: socket.UDPSocket = socket.constructUDPSocketInstance();
-let bindAddr : socket.NetAddress = {
-  address : '192.168.xx.xxx',
+let bindAddr: socket.NetAddress = {
+  address: '192.168.xx.xxx',
   port: 1234
 }
 udp.bind(bindAddr, (err: BusinessError) => {
@@ -117,8 +117,8 @@ import socket from '@ohos.net.socket';
 import { BusinessError } from '@ohos.base';
 
 let udp: socket.UDPSocket = socket.constructUDPSocketInstance();
-let bindAddr : socket.NetAddress = {
-  address : '192.168.xx.xxx',
+let bindAddr: socket.NetAddress = {
+  address: '192.168.xx.xxx',
   port: 8080
 }
 udp.bind(bindAddr).then(() => {
@@ -162,10 +162,10 @@ import { BusinessError } from '@ohos.base';
 
 let udp: socket.UDPSocket = socket.constructUDPSocketInstance();
 
-let sendOptions : socket.UDPSendOptions = {
-  data : 'Hello, server!',
-  address : {
-    address : '192.168.xx.xxx',
+let sendOptions: socket.UDPSendOptions = {
+  data: 'Hello, server!',
+  address: {
+    address: '192.168.xx.xxx',
     port: 8080
   }
 }
@@ -217,10 +217,10 @@ import { BusinessError } from '@ohos.base';
 
 let udp: socket.UDPSocket = socket.constructUDPSocketInstance();
 
-let sendOptions : socket.UDPSendOptions = {
-  data : 'Hello, server!',
-  address : {
-    address : '192.168.xx.xxx',
+let sendOptions: socket.UDPSendOptions = {
+  data: 'Hello, server!',
+  address: {
+    address: '192.168.xx.xxx',
     port: 8080
   }
 }
@@ -325,8 +325,8 @@ import socket from '@ohos.net.socket';
 import { BusinessError } from '@ohos.base';
 
 let udp: socket.UDPSocket = socket.constructUDPSocketInstance();
-let bindAddr : socket.NetAddress = {
-  address : '192.168.xx.xxx',
+let bindAddr: socket.NetAddress = {
+  address: '192.168.xx.xxx',
   port: 8080
 }
 udp.bind(bindAddr, (err: BusinessError) => {
@@ -371,8 +371,8 @@ import socket from '@ohos.net.socket';
 import { BusinessError } from '@ohos.base';
 
 let udp: socket.UDPSocket = socket.constructUDPSocketInstance();
-let bindAddr : socket.NetAddress = {
-  address : '192.168.xx.xxx',
+let bindAddr: socket.NetAddress = {
+  address: '192.168.xx.xxx',
   port: 8080
 }
 udp.bind(bindAddr, (err: BusinessError) => {
@@ -424,8 +424,8 @@ import { BusinessError } from '@ohos.base';
 
 let udp: socket.UDPSocket = socket.constructUDPSocketInstance();
 
-let bindAddr : socket.NetAddress = {
-  address : '192.168.xx.xxx',
+let bindAddr: socket.NetAddress = {
+  address: '192.168.xx.xxx',
   port: 8080
 }
 udp.bind(bindAddr, (err: BusinessError) => {
@@ -434,7 +434,7 @@ udp.bind(bindAddr, (err: BusinessError) => {
     return;
   }
   console.log('bind success');
-  let udpextraoptions : socket.UDPExtraOptions = {
+  let udpextraoptions: socket.UDPExtraOptions = {
     receiveBufferSize: 1000,
     sendBufferSize: 1000,
     reuseAddress: false,
@@ -491,8 +491,8 @@ import { BusinessError } from '@ohos.base';
 
 let udp: socket.UDPSocket = socket.constructUDPSocketInstance();
 
-let bindAddr : socket.NetAddress = {
-  address : '192.168.xx.xxx',
+let bindAddr: socket.NetAddress = {
+  address: '192.168.xx.xxx',
   port: 8080
 }
 udp.bind(bindAddr, (err: BusinessError) => {
@@ -501,7 +501,7 @@ udp.bind(bindAddr, (err: BusinessError) => {
     return;
   }
   console.log('bind success');
-  let udpextraoptions : socket.UDPExtraOptions = {
+  let udpextraoptions: socket.UDPExtraOptions = {
     receiveBufferSize: 1000,
     sendBufferSize: 1000,
     reuseAddress: false,
@@ -544,8 +544,8 @@ class SocketInfo {
 }
 let messageView = '';
 udp.on('message', (value: SocketInfo) => {
-  for (let i : number = 0; i < value.message.byteLength; i++) {
-    let messages : number = value.message.i
+  for (let i: number = 0; i < value.message.byteLength; i++) {
+    let messages: number = value.message.i
     let message = String.fromCharCode(messages);
     messageView += message;
   }
@@ -584,8 +584,8 @@ class SocketInfo {
 let udp: socket.UDPSocket = socket.constructUDPSocketInstance();
 let messageView = '';
 let callback = (value: SocketInfo) => {
-  for (let i : number = 0; i < value.message.byteLength; i++) {
-    let messages : number = value.message.i
+  for (let i: number = 0; i < value.message.byteLength; i++) {
+    let messages: number = value.message.i
     let message = String.fromCharCode(messages);
     messageView += message;
   }
@@ -852,8 +852,8 @@ bind(address: NetAddress, callback: AsyncCallback\<void\>): void
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
-let bindAddr : socket.NetAddress = {
-  address : '192.168.xx.xxx',
+let bindAddr: socket.NetAddress = {
+  address: '192.168.xx.xxx',
   port: 8080
 }
 tcp.bind(bindAddr, (err: BusinessError) => {
@@ -903,8 +903,8 @@ bind(address: NetAddress): Promise\<void\>
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
-let bindAddr : socket.NetAddress = {
-  address : '192.168.xx.xxx',
+let bindAddr: socket.NetAddress = {
+  address: '192.168.xx.xxx',
   port: 8080
 }
 tcp.bind(bindAddr).then(() => {
@@ -948,12 +948,12 @@ import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
 
-let tcpconnectoptions : socket.TCPConnectOptions = {
-  address : {
-    address : '192.168.xx.xxx',
-    port : 8080
+let tcpconnectoptions: socket.TCPConnectOptions = {
+  address: {
+    address: '192.168.xx.xxx',
+    port: 8080
   },
-  timeout : 6000
+  timeout: 6000
 }
 tcp.connect(tcpconnectoptions, (err: BusinessError) => {
   if (err) {
@@ -1000,12 +1000,12 @@ import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
 
-let tcpconnectoptions : socket.TCPConnectOptions = {
-  address : {
-    address : '192.168.xx.xxx',
-    port : 8080
+let tcpconnectoptions: socket.TCPConnectOptions = {
+  address: {
+    address: '192.168.xx.xxx',
+    port: 8080
   },
-  timeout : 6000
+  timeout: 6000
 }
 tcp.connect(tcpconnectoptions).then(() => {
   console.log('connect success')
@@ -1048,17 +1048,17 @@ import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
 
-let tcpconnectoptions : socket.TCPConnectOptions = {
-  address : {
-    address : '192.168.xx.xxx',
-    port : 8080
+let tcpconnectoptions: socket.TCPConnectOptions = {
+  address: {
+    address: '192.168.xx.xxx',
+    port: 8080
   },
-  timeout : 6000
+  timeout: 6000
 }
 tcp.connect(tcpconnectoptions, () => {
   console.log('connect success');
-  let tcpSendOptions : socket.TCPSendOptions = {
-    data : 'Hello, server!'
+  let tcpSendOptions: socket.TCPSendOptions = {
+    data: 'Hello, server!'
   }
   tcp.send(tcpSendOptions, (err: BusinessError) => {
     if (err) {
@@ -1109,17 +1109,17 @@ import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
 
-let tcpconnectoptions : socket.TCPConnectOptions = {
-  address : {
-    address : '192.168.xx.xxx',
-    port : 8080
+let tcpconnectoptions: socket.TCPConnectOptions = {
+  address: {
+    address: '192.168.xx.xxx',
+    port: 8080
   },
-  timeout : 6000
+  timeout: 6000
 }
 tcp.connect(tcpconnectoptions, () => {
   console.log('connect success');
-  let tcpSendOptions : socket.TCPSendOptions = {
-    data : 'Hello, server!'
+  let tcpSendOptions: socket.TCPSendOptions = {
+    data: 'Hello, server!'
   }
   tcp.send(tcpSendOptions).then(() => {
     console.log('send success');
@@ -1158,7 +1158,7 @@ import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
 
-tcp.close((err：BusinessError) => {
+tcp.close((err: BusinessError) => {
   if (err) {
     console.log('close fail');
     return;
@@ -1234,12 +1234,12 @@ import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
 
-let tcpconnectoptions : socket.TCPConnectOptions = {
-  address : {
-    address : '192.168.xx.xxx',
-    port : 8080
+let tcpconnectoptions: socket.TCPConnectOptions = {
+  address: {
+    address: '192.168.xx.xxx',
+    port: 8080
   },
-  timeout : 6000
+  timeout: 6000
 }
 tcp.connect(tcpconnectoptions, () => {
   console.log('connect success');
@@ -1285,12 +1285,12 @@ import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
 
-let tcpconnectoptions : socket.TCPConnectOptions = {
-  address : {
-    address : '192.168.xx.xxx',
-    port : 8080
+let tcpconnectoptions: socket.TCPConnectOptions = {
+  address: {
+    address: '192.168.xx.xxx',
+    port: 8080
   },
-  timeout : 6000
+  timeout: 6000
 }
 tcp.connect(tcpconnectoptions).then(() => {
   console.log('connect success');
@@ -1336,12 +1336,12 @@ import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
 
-let tcpconnectoptions : socket.TCPConnectOptions = {
-  address : {
-    address : '192.168.xx.xxx',
-    port : 8080
+let tcpconnectoptions: socket.TCPConnectOptions = {
+  address: {
+    address: '192.168.xx.xxx',
+    port: 8080
   },
-  timeout : 6000
+  timeout: 6000
 }
 tcp.connect(tcpconnectoptions, () => {
   console.log('connect success');
@@ -1387,12 +1387,12 @@ import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
 
-let tcpconnectoptions : socket.TCPConnectOptions = {
-  address : {
-    address : '192.168.xx.xxx',
-    port : 8080
+let tcpconnectoptions: socket.TCPConnectOptions = {
+  address: {
+    address: '192.168.xx.xxx',
+    port: 8080
   },
-  timeout : 6000
+  timeout: 6000
 }
 tcp.connect(tcpconnectoptions).then(() => {
   console.log('connect success');
@@ -1429,16 +1429,16 @@ getSocketFd(callback: AsyncCallback\<number\>): void
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
-let bindAddr : socket.NetAddress = {
-  address : '0.0.0.0'
+let bindAddr: socket.NetAddress = {
+  address: '0.0.0.0'
 }
 tcp.bind(bindAddr)
-let tcpconnectoptions : socket.TCPConnectOptions = {
-  address : {
-    address : '192.168.xx.xxx',
-    port : 8080
+let tcpconnectoptions: socket.TCPConnectOptions = {
+  address: {
+    address: '192.168.xx.xxx',
+    port: 8080
   },
-  timeout : 6000
+  timeout: 6000
 }
 tcp.connect(tcpconnectoptions)
 tcp.getSocketFd((err: BusinessError, data: number) => {
@@ -1469,16 +1469,16 @@ getSocketFd(): Promise\<number\>
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
-let bindAddr : socket.NetAddress = {
-  address : '0.0.0.0'
+let bindAddr: socket.NetAddress = {
+  address: '0.0.0.0'
 }
 tcp.bind(bindAddr)
-let tcpconnectoptions : socket.TCPConnectOptions = {
-  address : {
-    address : '192.168.xx.xxx',
-    port : 8080
+let tcpconnectoptions: socket.TCPConnectOptions = {
+  address: {
+    address: '192.168.xx.xxx',
+    port: 8080
   },
-  timeout : 6000
+  timeout: 6000
 }
 tcp.connect(tcpconnectoptions)
 tcp.getSocketFd().then((data: number) => {
@@ -1519,16 +1519,16 @@ setExtraOptions(options: TCPExtraOptions, callback: AsyncCallback\<void\>): void
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
-let tcpconnectoptions : socket.TCPConnectOptions = {
-  address : {
-    address : '192.168.xx.xxx',
-    port : 8080
+let tcpconnectoptions: socket.TCPConnectOptions = {
+  address: {
+    address: '192.168.xx.xxx',
+    port: 8080
   },
-  timeout : 6000
+  timeout: 6000
 }
 tcp.connect(tcpconnectoptions, () => {
   console.log('connect success');
-  let tcpExtraOptions : socket.TCPExtraOptions = {
+  let tcpExtraOptions: socket.TCPExtraOptions = {
     keepAlive: true,
     OOBInline: true,
     TCPNoDelay: true,
@@ -1586,16 +1586,16 @@ setExtraOptions(options: TCPExtraOptions): Promise\<void\>
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
-let tcpconnectoptions : socket.TCPConnectOptions = {
-  address : {
-    address : '192.168.xx.xxx',
-    port : 8080
+let tcpconnectoptions: socket.TCPConnectOptions = {
+  address: {
+    address: '192.168.xx.xxx',
+    port: 8080
   },
-  timeout : 6000
+  timeout: 6000
 }
 tcp.connect(tcpconnectoptions, () => {
   console.log('connect success');
-  let tcpExtraOptions : socket.TCPExtraOptions = {
+  let tcpExtraOptions: socket.TCPExtraOptions = {
     keepAlive: true,
     OOBInline: true,
     TCPNoDelay: true,
@@ -1640,8 +1640,8 @@ class SocketInfo {
 }
 let messageView = '';
 tcp.on('message', (value: SocketInfo) => {
-  for (let i : number = 0; i < value.message.byteLength; i++) {
-    let messages : number = value.message.i
+  for (let i: number = 0; i < value.message.byteLength; i++) {
+    let messages: number = value.message.i
     let message = String.fromCharCode(messages);
     messageView += message;
   }
@@ -1680,8 +1680,8 @@ class SocketInfo {
 }
 let messageView = '';
 let callback = (value: SocketInfo) => {
-  for (let i : number = 0; i < value.message.byteLength; i++) {
-    let messages : number = value.message.i
+  for (let i: number = 0; i < value.message.byteLength; i++) {
+    let messages: number = value.message.i
     let message = String.fromCharCode(messages);
     messageView += message;
   }
@@ -1924,7 +1924,7 @@ listen(address: NetAddress, callback: AsyncCallback\<void\>): void
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
-let listenAddr : socket.NetAddress = {
+let listenAddr: socket.NetAddress = {
   address:  '192.168.xx.xxx',
   port: 8080,
   family: 1
@@ -1981,7 +1981,7 @@ listen(address: NetAddress): Promise\<void\>
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
-let listenAddr : socket.NetAddress = {
+let listenAddr: socket.NetAddress = {
   address:  '192.168.xx.xxx',
   port: 8080,
   family: 1
@@ -2027,7 +2027,7 @@ getState(callback: AsyncCallback\<SocketStateBase\>): void
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
-let listenAddr : socket.NetAddress = {
+let listenAddr: socket.NetAddress = {
   address:  '192.168.xx.xxx',
   port: 8080,
   family: 1
@@ -2081,7 +2081,7 @@ getState(): Promise\<SocketStateBase\>
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
-let listenAddr : socket.NetAddress = {
+let listenAddr: socket.NetAddress = {
   address:  '192.168.xx.xxx',
   port: 8080,
   family: 1
@@ -2135,7 +2135,7 @@ setExtraOptions(options: TCPExtraOptions, callback: AsyncCallback\<void\>): void
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
-let listenAddr : socket.NetAddress = {
+let listenAddr: socket.NetAddress = {
   address:  '192.168.xx.xxx',
   port: 8080,
   family: 1
@@ -2148,7 +2148,7 @@ tcpServer.listen(listenAddr, (err: BusinessError) => {
   console.log("listen success");
 })
 
-let tcpExtraOptions : socket.TCPExtraOptions = {
+let tcpExtraOptions: socket.TCPExtraOptions = {
   keepAlive: true,
   OOBInline: true,
   TCPNoDelay: true,
@@ -2207,7 +2207,7 @@ setExtraOptions(options: TCPExtraOptions): Promise\<void\>
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
-let listenAddr : socket.NetAddress = {
+let listenAddr: socket.NetAddress = {
   address:  '192.168.xx.xxx',
   port: 8080,
   family: 1
@@ -2220,7 +2220,7 @@ tcpServer.listen(listenAddr, (err: BusinessError) => {
   console.log("listen success");
 })
 
-let tcpExtraOptions : socket.TCPExtraOptions = {
+let tcpExtraOptions: socket.TCPExtraOptions = {
   keepAlive: true,
   OOBInline: true,
   TCPNoDelay: true,
@@ -2432,9 +2432,9 @@ send(options: TCPSendOptions, callback: AsyncCallback\<void\>): void
 import socket from "@ohos.net.socket";
 let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
 
-tcpServer.on('connect', (client : socket.TCPSocketConnection) => {
-  let tcpSendOption : socket.TCPSendOptions = {
-    data : 'Hello, client!'
+tcpServer.on('connect', (client: socket.TCPSocketConnection) => {
+  let tcpSendOption: socket.TCPSendOptions = {
+    data: 'Hello, client!'
   }
   client.send(tcpSendOption, () => {
     console.log('send success');
@@ -2483,8 +2483,8 @@ import { BusinessError } from '@ohos.base';
 let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
 
 tcpServer.on('connect', (client: socket.TCPSocketConnection) => {
-  let tcpSendOption : socket.TCPSendOptions = {
-    data : 'Hello, client!'
+  let tcpSendOption: socket.TCPSendOptions = {
+    data: 'Hello, client!'
   }
   client.send(tcpSendOption).then(() => {
     console.log('send success');
@@ -2695,8 +2695,8 @@ class SocketInfo {
 tcpServer.on('connect', (client: socket.TCPSocketConnection) => {
   client.on('message', (value: SocketInfo) => {
     let messageView = '';
-    for (let i : number = 0; i < value.message.byteLength; i++) {
-      let messages : number = value.message.i
+    for (let i: number = 0; i < value.message.byteLength; i++) {
+      let messages: number = value.message.i
       let message = String.fromCharCode(messages);
       messageView += message;
     }
@@ -2742,8 +2742,8 @@ class SocketInfo {
 }
 let callback = (value: SocketInfo) => {
   let messageView = '';
-  for (let i : number = 0; i < value.message.byteLength; i++) {
-    let messages : number = value.message.i
+  for (let i: number = 0; i < value.message.byteLength; i++) {
+    let messages: number = value.message.i
     let message = String.fromCharCode(messages);
     messageView += message;
   }
@@ -2970,7 +2970,7 @@ bind(address: NetAddress, callback: AsyncCallback\<void\>): void
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
-let bindAddr : socket.NetAddress = {
+let bindAddr: socket.NetAddress = {
   address: '192.168.xx.xxx',
   port: 8080
 }
@@ -3020,7 +3020,7 @@ bind(address: NetAddress): Promise\<void\>
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
-let bindAddr : socket.NetAddress = {
+let bindAddr: socket.NetAddress = {
   address: '192.168.xx.xxx',
   port: 8080
 }
@@ -3058,7 +3058,7 @@ getState(callback: AsyncCallback\<SocketStateBase\>): void
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
-let bindAddr : socket.NetAddress = {
+let bindAddr: socket.NetAddress = {
   address: '192.168.xx.xxx',
   port: 8080
 }
@@ -3105,7 +3105,7 @@ getState(): Promise\<SocketStateBase\>
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
-let bindAddr : socket.NetAddress = {
+let bindAddr: socket.NetAddress = {
   address: '192.168.xx.xxx',
   port: 8080
 }
@@ -3152,7 +3152,7 @@ setExtraOptions(options: TCPExtraOptions, callback: AsyncCallback\<void\>): void
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
-let bindAddr : socket.NetAddress = {
+let bindAddr: socket.NetAddress = {
   address: '192.168.xx.xxx',
   port: 8080
 }
@@ -3164,7 +3164,7 @@ tls.bind(bindAddr, (err: BusinessError) => {
   console.log('bind success');
 });
 
-let tcpExtraOptions : socket.TCPExtraOptions = {
+let tcpExtraOptions: socket.TCPExtraOptions = {
   keepAlive: true,
   OOBInline: true,
   TCPNoDelay: true,
@@ -3217,7 +3217,7 @@ setExtraOptions(options: TCPExtraOptions): Promise\<void\>
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
-let bindAddr : socket.NetAddress = {
+let bindAddr: socket.NetAddress = {
   address: '192.168.xx.xxx',
   port: 8080
 }
@@ -3229,7 +3229,7 @@ tls.bind(bindAddr, (err: BusinessError) => {
   console.log('bind success');
 });
 
-let tcpExtraOptions : socket.TCPExtraOptions = {
+let tcpExtraOptions: socket.TCPExtraOptions = {
   keepAlive: true,
   OOBInline: true,
   TCPNoDelay: true,
@@ -3273,8 +3273,8 @@ class SocketInfo {
 }
 let messageView = '';
 tls.on('message', (value: SocketInfo) => {
-  for (let i : number = 0; i < value.message.byteLength; i++) {
-    let messages : number = value.message.i
+  for (let i: number = 0; i < value.message.byteLength; i++) {
+    let messages: number = value.message.i
     let message = String.fromCharCode(messages);
     messageView += message;
   }
@@ -3313,8 +3313,8 @@ class SocketInfo {
 }
 let messageView = '';
 let callback = (value: SocketInfo) => {
-  for (let i : number = 0; i < value.message.byteLength; i++) {
-    let messages : number = value.message.i
+  for (let i: number = 0; i < value.message.byteLength; i++) {
+    let messages: number = value.message.i
     let message = String.fromCharCode(messages);
     messageView += message;
   }
@@ -3492,7 +3492,7 @@ connect(options: TLSConnectOptions, callback: AsyncCallback\<void\>): void
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tlsTwoWay: socket.TLSSocket = socket.constructTLSSocketInstance();  // Two way authentication
-let bindAddr : socket.NetAddress = {
+let bindAddr: socket.NetAddress = {
   address: '0.0.0.0',
 }
 tlsTwoWay.bind(bindAddr, (err: BusinessError) => {
@@ -3503,12 +3503,12 @@ tlsTwoWay.bind(bindAddr, (err: BusinessError) => {
   console.log('bind success');
 });
 
-let tlsConnectOptions : socket.TLSConnectOptions = {
-  address : {
+let tlsConnectOptions: socket.TLSConnectOptions = {
+  address: {
     address: '192.168.xx.xxx',
     port: 8080
   },
-  secureOptions : {
+  secureOptions: {
     key: "xxxx",
     cert: "xxxx",
     ca: ["xxxx"],
@@ -3534,12 +3534,12 @@ tlsOneWay.bind(bindAddr, (err: BusinessError) => {
   console.log('bind success');
 });
 
-let tlsOneWayConnectOptions : socket.TLSConnectOptions = {
-  address : {
+let tlsOneWayConnectOptions: socket.TLSConnectOptions = {
+  address: {
     address: '192.168.xx.xxx',
     port: 8080
   },
-  secureOptions : {
+  secureOptions: {
     ca: ["xxxx", "xxxx"],
     cipherSuite: "AES256-SHA256"
   }
@@ -3595,7 +3595,7 @@ connect(options: TLSConnectOptions): Promise\<void\>
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tlsTwoWay: socket.TLSSocket = socket.constructTLSSocketInstance();  // Two way authentication
-let bindAddr : socket.NetAddress = {
+let bindAddr: socket.NetAddress = {
   address: '0.0.0.0',
 }
 tlsTwoWay.bind(bindAddr, (err: BusinessError) => {
@@ -3606,12 +3606,12 @@ tlsTwoWay.bind(bindAddr, (err: BusinessError) => {
   console.log('bind success');
 });
 
-let tlsConnectOptions : socket.TLSConnectOptions = {
-  address : {
+let tlsConnectOptions: socket.TLSConnectOptions = {
+  address: {
     address: '192.168.xx.xxx',
     port: 8080
   },
-  secureOptions : {
+  secureOptions: {
     key: "xxxx",
     cert: "xxxx",
     ca: ["xxxx"],
@@ -3639,12 +3639,12 @@ tlsOneWay.bind(bindAddr, (err: BusinessError) => {
   console.log('bind success');
 });
 
-let tlsOneWayConnectOptions : socket.TLSConnectOptions = {
-  address : {
+let tlsOneWayConnectOptions: socket.TLSConnectOptions = {
+  address: {
     address: '192.168.xx.xxx',
     port: 8080
   },
-  secureOptions : {
+  secureOptions: {
     ca: ["xxxx", "xxxx"],
     cipherSuite: "AES256-SHA256"
   }
@@ -4358,12 +4358,12 @@ import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
 
-let tlsConnectOptions : socket.TLSConnectOptions = {
-  address : {
+let tlsConnectOptions: socket.TLSConnectOptions = {
+  address: {
     address: '192.168.xx.xxx',
     port: 8080
   },
-  secureOptions : {
+  secureOptions: {
     key: "xxxx",
     cert: "xxxx",
     ca: ["xxxx"],
@@ -4426,12 +4426,12 @@ import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
 
-let tlsConnectOptions : socket.TLSConnectOptions = {
-  address : {
+let tlsConnectOptions: socket.TLSConnectOptions = {
+  address: {
     address: '192.168.xx.xxx',
     port: 8080
   },
-  secureOptions : {
+  secureOptions: {
     key: "xxxx",
     cert: "xxxx",
     ca: ["xxxx"],
@@ -4446,7 +4446,7 @@ let tlsConnectOptions : socket.TLSConnectOptions = {
 tlsServer.listen(tlsConnectOptions).then(() => {
   console.log("listen callback success");
 }).catch((err: BusinessError) => {
-  console.log(err);
+  console.log("failed: " + JSON.stringify(err));
 });
 ```
 
@@ -4481,12 +4481,12 @@ getState(callback: AsyncCallback\<SocketStateBase\>): void
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
-let tlsConnectOptions : socket.TLSConnectOptions = {
-  address : {
+let tlsConnectOptions: socket.TLSConnectOptions = {
+  address: {
     address: '192.168.xx.xxx',
     port: 8080
   },
-  secureOptions : {
+  secureOptions: {
     key: "xxxx",
     cert: "xxxx",
     ca: ["xxxx"],
@@ -4501,7 +4501,7 @@ let tlsConnectOptions : socket.TLSConnectOptions = {
 tlsServer.listen(tlsConnectOptions).then(() => {
   console.log("listen callback success");
 }).catch((err: BusinessError) => {
-  console.log(err);
+  console.log("failed: " + JSON.stringify(err));
 });
 tlsServer.getState((err: BusinessError, data: socket.SocketStateBase) => {
   if (err) {
@@ -4542,12 +4542,12 @@ getState(): Promise\<SocketStateBase\>
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
-let tlsConnectOptions : socket.TLSConnectOptions = {
-  address : {
+let tlsConnectOptions: socket.TLSConnectOptions = {
+  address: {
     address: '192.168.xx.xxx',
     port: 8080
   },
-  secureOptions : {
+  secureOptions: {
     key: "xxxx",
     cert: "xxxx",
     ca: ["xxxx"],
@@ -4562,7 +4562,7 @@ let tlsConnectOptions : socket.TLSConnectOptions = {
 tlsServer.listen(tlsConnectOptions).then(() => {
   console.log("listen callback success");
 }).catch((err: BusinessError) => {
-  console.log(err);
+  console.log("failed: " + JSON.stringify(err));
 });
 tlsServer.getState().then(() => {
   console.log('getState success');
@@ -4603,12 +4603,12 @@ setExtraOptions(options: TCPExtraOptions, callback: AsyncCallback\<void\>): void
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
-let tlsConnectOptions : socket.TLSConnectOptions = {
-  address : {
+let tlsConnectOptions: socket.TLSConnectOptions = {
+  address: {
     address: '192.168.xx.xxx',
     port: 8080
   },
-  secureOptions : {
+  secureOptions: {
     key: "xxxx",
     cert: "xxxx",
     ca: ["xxxx"],
@@ -4623,10 +4623,10 @@ let tlsConnectOptions : socket.TLSConnectOptions = {
 tlsServer.listen(tlsConnectOptions).then(() => {
   console.log("listen callback success");
 }).catch((err: BusinessError) => {
-  console.log(err);
+  console.log("failed: " + JSON.stringify(err));
 });
 
-let tcpExtraOptions : socket.TCPExtraOptions = {
+let tcpExtraOptions: socket.TCPExtraOptions = {
   keepAlive: true,
   OOBInline: true,
   TCPNoDelay: true,
@@ -4682,12 +4682,12 @@ setExtraOptions(options: TCPExtraOptions): Promise\<void\>
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
-let tlsConnectOptions : socket.TLSConnectOptions = {
-  address : {
+let tlsConnectOptions: socket.TLSConnectOptions = {
+  address: {
     address: '192.168.xx.xxx',
     port: 8080
   },
-  secureOptions : {
+  secureOptions: {
     key: "xxxx",
     cert: "xxxx",
     ca: ["xxxx"],
@@ -4702,10 +4702,10 @@ let tlsConnectOptions : socket.TLSConnectOptions = {
 tlsServer.listen(tlsConnectOptions).then(() => {
   console.log("listen callback success");
 }).catch((err: BusinessError) => {
-  console.log(err);
+  console.log("failed: " + JSON.stringify(err));
 });
 
-let tcpExtraOptions : socket.TCPExtraOptions = {
+let tcpExtraOptions: socket.TCPExtraOptions = {
   keepAlive: true,
   OOBInline: true,
   TCPNoDelay: true,
@@ -4754,12 +4754,12 @@ getCertificate(callback: AsyncCallback\<[X509CertRawData](#x509certrawdata9)\>):
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
-let tlsConnectOptions : socket.TLSConnectOptions = {
-  address : {
+let tlsConnectOptions: socket.TLSConnectOptions = {
+  address: {
     address: '192.168.xx.xxx',
     port: 8080
   },
-  secureOptions : {
+  secureOptions: {
     key: "xxxx",
     cert: "xxxx",
     ca: ["xxxx"],
@@ -4774,7 +4774,7 @@ let tlsConnectOptions : socket.TLSConnectOptions = {
 tlsServer.listen(tlsConnectOptions).then(() => {
   console.log("listen callback success");
 }).catch((err: BusinessError) => {
-  console.log(err);
+  console.log("failed: " + JSON.stringify(err));
 });
 tlsServer.getCertificate((err: BusinessError, data: socket.X509CertRawData) => {
   if (err) {
@@ -4816,12 +4816,12 @@ getCertificate():Promise\<[X509CertRawData](#x509certrawdata9)\>
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
-let tlsConnectOptions : socket.TLSConnectOptions = {
-  address : {
+let tlsConnectOptions: socket.TLSConnectOptions = {
+  address: {
     address: '192.168.xx.xxx',
     port: 8080
   },
-  secureOptions : {
+  secureOptions: {
     key: "xxxx",
     cert: "xxxx",
     ca: ["xxxx"],
@@ -4836,7 +4836,7 @@ let tlsConnectOptions : socket.TLSConnectOptions = {
 tlsServer.listen(tlsConnectOptions).then(() => {
   console.log("listen callback success");
 }).catch((err: BusinessError) => {
-  console.log(err);
+  console.log("failed: " + JSON.stringify(err));
 });
 tlsServer.getCertificate().then((data: socket.x509certrawdata9) => {
   console.log(data);
@@ -4877,12 +4877,12 @@ getProtocol(callback: AsyncCallback\<string\>): void
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
-let tlsConnectOptions : socket.TLSConnectOptions = {
-  address : {
+let tlsConnectOptions: socket.TLSConnectOptions = {
+  address: {
     address: '192.168.xx.xxx',
     port: 8080
   },
-  secureOptions : {
+  secureOptions: {
     key: "xxxx",
     cert: "xxxx",
     ca: ["xxxx"],
@@ -4897,7 +4897,7 @@ let tlsConnectOptions : socket.TLSConnectOptions = {
 tlsServer.listen(tlsConnectOptions).then(() => {
   console.log("listen callback success");
 }).catch((err: BusinessError) => {
-  console.log(err);
+  console.log("failed: " + JSON.stringify(err));
 });
 tlsServer.getProtocol((err: BusinessError, data: string) => {
   if (err) {
@@ -4939,12 +4939,12 @@ getProtocol():Promise\<string\>
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
-let tlsConnectOptions : socket.TLSConnectOptions = {
-  address : {
+let tlsConnectOptions: socket.TLSConnectOptions = {
+  address: {
     address: '192.168.xx.xxx',
     port: 8080
   },
-  secureOptions : {
+  secureOptions: {
     key: "xxxx",
     cert: "xxxx",
     ca: ["xxxx"],
@@ -4959,7 +4959,7 @@ let tlsConnectOptions : socket.TLSConnectOptions = {
 tlsServer.listen(tlsConnectOptions).then(() => {
   console.log("listen callback success");
 }).catch((err: BusinessError) => {
-  console.log(err);
+  console.log("failed: " + JSON.stringify(err));
 });
 tlsServer.getProtocol().then((data: string) => {
   console.log(data);
@@ -4998,12 +4998,12 @@ on(type: 'connect', callback: Callback\<TLSSocketConnection\>): void
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
-let tlsConnectOptions : socket.TLSConnectOptions = {
-  address : {
+let tlsConnectOptions: socket.TLSConnectOptions = {
+  address: {
     address: '192.168.xx.xxx',
     port: 8080
   },
-  secureOptions : {
+  secureOptions: {
     key: "xxxx",
     cert: "xxxx",
     ca: ["xxxx"],
@@ -5018,7 +5018,7 @@ let tlsConnectOptions : socket.TLSConnectOptions = {
 tlsServer.listen(tlsConnectOptions).then(() => {
   console.log("listen callback success");
 }).catch((err: BusinessError) => {
-  console.log(err);
+  console.log("failed: " + JSON.stringify(err));
 });
 tlsServer.on('connect', (data: socket.TLSSocketConnection) => {
   console.log(JSON.stringify(data))
@@ -5056,12 +5056,12 @@ off(type: 'connect', callback?: Callback\<TLSSocketConnection\>): void
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
-let tlsConnectOptions : socket.TLSConnectOptions = {
-  address : {
+let tlsConnectOptions: socket.TLSConnectOptions = {
+  address: {
     address: '192.168.xx.xxx',
     port: 8080
   },
-  secureOptions : {
+  secureOptions: {
     key: "xxxx",
     cert: "xxxx",
     ca: ["xxxx"],
@@ -5076,7 +5076,7 @@ let tlsConnectOptions : socket.TLSConnectOptions = {
 tlsServer.listen(tlsConnectOptions).then(() => {
   console.log("listen callback success");
 }).catch((err: BusinessError) => {
-  console.log(err);
+  console.log("failed: " + JSON.stringify(err));
 });
 
 let callback = (data: socket.TLSSocketConnection) => {
@@ -5118,12 +5118,12 @@ on(type: 'error', callback: ErrorCallback): void
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
-let tlsConnectOptions : socket.TLSConnectOptions = {
-  address : {
+let tlsConnectOptions: socket.TLSConnectOptions = {
+  address: {
     address: '192.168.xx.xxx',
     port: 8080
   },
-  secureOptions : {
+  secureOptions: {
     key: "xxxx",
     cert: "xxxx",
     ca: ["xxxx"],
@@ -5138,7 +5138,7 @@ let tlsConnectOptions : socket.TLSConnectOptions = {
 tlsServer.listen(tlsConnectOptions).then(() => {
   console.log("listen callback success");
 }).catch((err: BusinessError) => {
-  console.log(err);
+  console.log("failed: " + JSON.stringify(err));
 });
 tlsServer.on('error', (err: BusinessError) => {
   console.log("on error, err:" + JSON.stringify(err))
@@ -5176,12 +5176,12 @@ off(type: 'error', callback?: ErrorCallback): void
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
-let tlsConnectOptions : socket.TLSConnectOptions = {
-  address : {
+let tlsConnectOptions: socket.TLSConnectOptions = {
+  address: {
     address: '192.168.xx.xxx',
     port: 8080
   },
-  secureOptions : {
+  secureOptions: {
     key: "xxxx",
     cert: "xxxx",
     ca: ["xxxx"],
@@ -5196,7 +5196,7 @@ let tlsConnectOptions : socket.TLSConnectOptions = {
 tlsServer.listen(tlsConnectOptions).then(() => {
   console.log("listen callback success");
 }).catch((err: BusinessError) => {
-  console.log(err);
+  console.log("failed: " + JSON.stringify(err));
 });
 
 let callback = (err: BusinessError) => {
@@ -5255,12 +5255,12 @@ send(data: string, callback: AsyncCallback\<void\>): void
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
-let tlsConnectOptions : socket.TLSConnectOptions = {
-  address : {
+let tlsConnectOptions: socket.TLSConnectOptions = {
+  address: {
     address: '192.168.xx.xxx',
     port: 8080
   },
-  secureOptions : {
+  secureOptions: {
     key: "xxxx",
     cert: "xxxx",
     ca: ["xxxx"],
@@ -5326,12 +5326,12 @@ send(data: string): Promise\<void\>
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
-let tlsConnectOptions : socket.TLSConnectOptions = {
-  address : {
+let tlsConnectOptions: socket.TLSConnectOptions = {
+  address: {
     address: '192.168.xx.xxx',
     port: 8080
   },
-  secureOptions : {
+  secureOptions: {
     key: "xxxx",
     cert: "xxxx",
     ca: ["xxxx"],
@@ -5388,12 +5388,12 @@ close(callback: AsyncCallback\<void\>): void
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
-let tlsConnectOptions : socket.TLSConnectOptions = {
-  address : {
+let tlsConnectOptions: socket.TLSConnectOptions = {
+  address: {
     address: '192.168.xx.xxx',
     port: 8080
   },
-  secureOptions : {
+  secureOptions: {
     key: "xxxx",
     cert: "xxxx",
     ca: ["xxxx"],
@@ -5451,12 +5451,12 @@ close(): Promise\<void\>
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
-let tlsConnectOptions : socket.TLSConnectOptions = {
-  address : {
+let tlsConnectOptions: socket.TLSConnectOptions = {
+  address: {
     address: '192.168.xx.xxx',
     port: 8080
   },
-  secureOptions : {
+  secureOptions: {
     key: "xxxx",
     cert: "xxxx",
     ca: ["xxxx"],
@@ -5510,12 +5510,12 @@ getRemoteAddress(callback: AsyncCallback\<NetAddress\>): void
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
-let tlsConnectOptions : socket.TLSConnectOptions = {
-  address : {
+let tlsConnectOptions: socket.TLSConnectOptions = {
+  address: {
     address: '192.168.xx.xxx',
     port: 8080
   },
-  secureOptions : {
+  secureOptions: {
     key: "xxxx",
     cert: "xxxx",
     ca: ["xxxx"],
@@ -5570,12 +5570,12 @@ getRemoteAddress(): Promise\<NetAddress\>
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
-let tlsConnectOptions : socket.TLSConnectOptions = {
-  address : {
+let tlsConnectOptions: socket.TLSConnectOptions = {
+  address: {
     address: '192.168.xx.xxx',
     port: 8080
   },
-  secureOptions : {
+  secureOptions: {
     key: "xxxx",
     cert: "xxxx",
     ca: ["xxxx"],
@@ -5629,12 +5629,12 @@ getRemoteCertificate(callback: AsyncCallback\<[X509CertRawData](#x509certrawdata
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
-let tlsConnectOptions : socket.TLSConnectOptions = {
-  address : {
+let tlsConnectOptions: socket.TLSConnectOptions = {
+  address: {
     address: '192.168.xx.xxx',
     port: 8080
   },
-  secureOptions : {
+  secureOptions: {
     key: "xxxx",
     cert: "xxxx",
     ca: ["xxxx"],
@@ -5689,12 +5689,12 @@ getRemoteCertificate():Promise\<[X509CertRawData](#x509certrawdata9)\>
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
-let tlsConnectOptions : socket.TLSConnectOptions = {
-  address : {
+let tlsConnectOptions: socket.TLSConnectOptions = {
+  address: {
     address: '192.168.xx.xxx',
     port: 8080
   },
-  secureOptions : {
+  secureOptions: {
     key: "xxxx",
     cert: "xxxx",
     ca: ["xxxx"],
@@ -5750,12 +5750,12 @@ getCipherSuite(callback: AsyncCallback\<Array\<string\>\>): void
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
-let tlsConnectOptions : socket.TLSConnectOptions = {
-  address : {
+let tlsConnectOptions: socket.TLSConnectOptions = {
+  address: {
     address: '192.168.xx.xxx',
     port: 8080
   },
-  secureOptions : {
+  secureOptions: {
     key: "xxxx",
     cert: "xxxx",
     ca: ["xxxx"],
@@ -5812,12 +5812,12 @@ getCipherSuite(): Promise\<Array\<string\>\>
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
-let tlsConnectOptions : socket.TLSConnectOptions = {
-  address : {
+let tlsConnectOptions: socket.TLSConnectOptions = {
+  address: {
     address: '192.168.xx.xxx',
     port: 8080
   },
-  secureOptions : {
+  secureOptions: {
     key: "xxxx",
     cert: "xxxx",
     ca: ["xxxx"],
@@ -5871,12 +5871,12 @@ getSignatureAlgorithms(callback: AsyncCallback\<Array\<string\>\>): void
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
-let tlsConnectOptions : socket.TLSConnectOptions = {
-  address : {
+let tlsConnectOptions: socket.TLSConnectOptions = {
+  address: {
     address: '192.168.xx.xxx',
     port: 8080
   },
-  secureOptions : {
+  secureOptions: {
     key: "xxxx",
     cert: "xxxx",
     ca: ["xxxx"],
@@ -5931,12 +5931,12 @@ getSignatureAlgorithms(): Promise\<Array\<string\>\>
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
-let tlsConnectOptions : socket.TLSConnectOptions = {
-  address : {
+let tlsConnectOptions: socket.TLSConnectOptions = {
+  address: {
     address: '192.168.xx.xxx',
     port: 8080
   },
-  secureOptions : {
+  secureOptions: {
     key: "xxxx",
     cert: "xxxx",
     ca: ["xxxx"],
@@ -5989,12 +5989,12 @@ on(type: 'message', callback: Callback<{message: ArrayBuffer, remoteInfo: Socket
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
-let tlsConnectOptions : socket.TLSConnectOptions = {
-  address : {
+let tlsConnectOptions: socket.TLSConnectOptions = {
+  address: {
     address: '192.168.xx.xxx',
     port: 8080
   },
-  secureOptions : {
+  secureOptions: {
     key: "xxxx",
     cert: "xxxx",
     ca: ["xxxx"],
@@ -6019,8 +6019,8 @@ class SocketInfo {
 tlsServer.on('connect', (client: socket.TLSSocketConnection) => {
   client.on('message', (value: SocketInfo) => {
     let messageView = '';
-    for (let i : number = 0; i < value.message.byteLength; i++) {
-      let messages : number = value.message.i
+    for (let i: number = 0; i < value.message.byteLength; i++) {
+      let messages: number = value.message.i
       let message = String.fromCharCode(messages);
       messageView += message;
     }
@@ -6060,12 +6060,12 @@ off(type: 'message', callback?: Callback<{message: ArrayBuffer, remoteInfo: Sock
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
-let tlsConnectOptions : socket.TLSConnectOptions = {
-  address : {
+let tlsConnectOptions: socket.TLSConnectOptions = {
+  address: {
     address: '192.168.xx.xxx',
     port: 8080
   },
-  secureOptions : {
+  secureOptions: {
     key: "xxxx",
     cert: "xxxx",
     ca: ["xxxx"],
@@ -6089,8 +6089,8 @@ class SocketInfo {
 }
 let callback = (value: SocketInfo) => {
   let messageView = '';
-  for (let i : number = 0; i < value.message.byteLength; i++) {
-    let messages : number = value.message.i
+  for (let i: number = 0; i < value.message.byteLength; i++) {
+    let messages: number = value.message.i
     let message = String.fromCharCode(messages);
     messageView += message;
   }
@@ -6132,12 +6132,12 @@ on(type: 'close', callback: Callback\<void\>): void
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
-let tlsConnectOptions : socket.TLSConnectOptions = {
-  address : {
+let tlsConnectOptions: socket.TLSConnectOptions = {
+  address: {
     address: '192.168.xx.xxx',
     port: 8080
   },
-  secureOptions : {
+  secureOptions: {
     key: "xxxx",
     cert: "xxxx",
     ca: ["xxxx"],
@@ -6191,12 +6191,12 @@ off(type: 'close', callback?: Callback\<void\>): void
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
-let tlsConnectOptions : socket.TLSConnectOptions = {
-  address : {
+let tlsConnectOptions: socket.TLSConnectOptions = {
+  address: {
     address: '192.168.xx.xxx',
     port: 8080
   },
-  secureOptions : {
+  secureOptions: {
     key: "xxxx",
     cert: "xxxx",
     ca: ["xxxx"],
@@ -6252,12 +6252,12 @@ on(type: 'error', callback: ErrorCallback): void
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
-let tlsConnectOptions : socket.TLSConnectOptions = {
-  address : {
+let tlsConnectOptions: socket.TLSConnectOptions = {
+  address: {
     address: '192.168.xx.xxx',
     port: 8080
   },
-  secureOptions : {
+  secureOptions: {
     key: "xxxx",
     cert: "xxxx",
     ca: ["xxxx"],
@@ -6312,12 +6312,12 @@ off(type: 'error', callback?: ErrorCallback): void
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
-let tlsConnectOptions : socket.TLSConnectOptions = {
-  address : {
+let tlsConnectOptions: socket.TLSConnectOptions = {
+  address: {
     address: '192.168.xx.xxx',
     port: 8080
   },
-  secureOptions : {
+  secureOptions: {
     key: "xxxx",
     cert: "xxxx",
     ca: ["xxxx"],
