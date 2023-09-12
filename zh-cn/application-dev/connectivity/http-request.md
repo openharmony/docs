@@ -62,9 +62,7 @@ httpRequest.request(
       'Content-Type': 'application/json'
     }],
     // 当使用POST请求时此字段用于传递内容
-    extraData: [{
-      "data": "data to send",
-    }],
+    extraData: "data to send",
     expectDataType: http.HttpDataType.STRING, // 可选，指定返回数据的类型
     usingCache: true, // 可选，默认为true
     priority: 1, // 可选，默认为1
