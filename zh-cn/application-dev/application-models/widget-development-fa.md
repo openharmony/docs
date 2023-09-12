@@ -290,10 +290,10 @@ let storeFormInfo = async (formId: string, formName: string, tempFlag: boolean, 
     const storage = await dataPreferences.getPreferences(context, DATA_STORAGE_PATH);
     // put form info
     await storage.put(formId, JSON.stringify(formInfo));
-    console.info(storeFormInfo, put form info successfully, formId: ${formId});
+    console.info(`storeFormInfo, put form info successfully, formId: ${formId}`);
     await storage.flush();
   } catch (err) {
-    console.error(failed to storeFormInfo, err: ${JSON.stringify(err as Error)});
+    console.error(`failed to storeFormInfo, err: ${JSON.stringify(err as Error)}`);
   }
 }
 
@@ -330,10 +330,10 @@ let deleteFormInfo = async (formId: string, context: Context) => {
     const storage = await dataPreferences.getPreferences(context, DATA_STORAGE_PATH);
     // del form info
     await storage.delete(formId);
-    console.info(deleteFormInfo, del form info successfully, formId: ${formId});
+    console.info(`deleteFormInfo, del form info successfully, formId: ${formId}`);
     await storage.flush();
   } catch (err) {
-    console.error(failed to deleteFormInfo, err: ${JSON.stringify(err)});
+    console.error(`failed to deleteFormInfo, err: ${JSON.stringify(err)}`);
   }
 }
 
