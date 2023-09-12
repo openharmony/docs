@@ -240,7 +240,7 @@ The following table lists the APIs used for mutual conversion between coordinate
 
 ### How to Develop
 
-> **NOTE**
+> **NOTE**<br>
 > The **GeoConvert** instance needs to access backend services to obtain information. Therefore, before performing the following steps, ensure that your device is connected to the network.
 
 1. Import the **geoLocationManager** module by which you can implement all APIs related to the geocoding and reverse geocoding conversion capabilities.
@@ -404,4 +404,5 @@ After obtaining the **WantAgent** object, call the geofencing API to add a geofe
    ```
 
 5. Have the system automatically trigger the action defined for the **WantAgent** object when a device enters or exits the geofence.
+
 
