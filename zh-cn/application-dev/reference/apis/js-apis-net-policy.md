@@ -10,7 +10,6 @@
 
 ```js
 import policy from '@ohos.net.policy';
-import { BusinessError } from '@ohos.base';
 ```
 
 ## policy.setBackgroundAllowed<sup>10+</sup>
