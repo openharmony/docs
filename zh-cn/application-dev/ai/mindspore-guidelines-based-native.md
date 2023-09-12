@@ -2,7 +2,7 @@
 
 ## 使用场景
 
-开发者可使用MindSpore Lite提供的Native API来部署AI算法，并提供高层接口供UI层调用，进行AI模型推理。典型场景如：AI套件SDK开发。
+开发者可使用[MindSpore Lite提供的Native API](../reference/native-apis/_mind_spore.md)来部署AI算法，并提供高层接口供UI层调用，进行AI模型推理。典型场景如：AI套件SDK开发。
 
 ## 基本概念
 
