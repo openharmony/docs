@@ -103,7 +103,7 @@ struct CustomDialogExample {
 struct CustomDialogUser {
   @State textValue: string = ''
   @State inputValue: string = 'click me'
-  dialogController: CustomDialogController | null = new CustomDialogController({
+  dialogController: null | CustomDialogController = new CustomDialogController({
     builder: CustomDialogExample({
       cancel: this.onCancel,
       confirm: this.onAccept,
