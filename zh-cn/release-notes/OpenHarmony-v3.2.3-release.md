@@ -96,32 +96,31 @@
 
 | ISSUE                                                        | 问题描述                                                     |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| [I76UCD](https://gitee.com/open_harmony/dashboard?issue_id=I76UCD) | 【OpenHarmony_3.2.12.5】【3.2Release】【多媒体子系统】【ToC】【RK3568】【必现-10/10】录像文件在图库播放最后2秒画面卡住未播放 |
-| [I7B07F](https://e.gitee.com/open_harmony/issues/table/?issue=I7B07F) | 【OpenHarmony_3.2.12.5】【软总线】【发现】【Toc】【rk3568】【必现-3/3】蓝牙发现失败 |
-| [I7BZ4F](https://e.gitee.com/open_harmony/issues/table/?issue=I7BZ4F) | 【OpenHarmony_3.2.13.1】【RK3568】【发现】【Toc】【概率 3/42】coap发现概率失败 |
-| [I7C98S](https://e.gitee.com/open_harmony/issues/table/?issue=I7C98S) | 【OpenHarmony 3.2.13.1】【RK3568】【压力测试】【ToC】【低概率2/10】【wukong】出现2次，  com.ohos.photos下出现jscrash问题，栈名：initializeConsume |
-| [I7FO8I](https://e.gitee.com/open_harmony/issues/table/?issue=I7FO8I) | [Bug]: 【OpenHarmony 3.2  0620daily】【RK3568】【压力测试】【ToC】【低概率1/10】【wukong】出现1次  进com.ohos.adminprovisioning下的IPC_3_14056线程导致libabilitykit_native.z.so出现cppcrash |
-| [I7FR03](https://e.gitee.com/open_harmony/issues/table/?issue=I7FR03) | [Bug]: 【OpenHarmony 3.2  0620daily】【RK3568】【压力测试】【ToC】【低概率1/10】【wukong】出现1次  由进程com.ohos.note下的RSRenderThread线程出现Rosenweb on  consumer导致libmali-bifrost-g52-g2p0-ohos.so出现cppcrash |
-| [I7O80Z](https://e.gitee.com/open_harmony/dashboard?issue=I7O80Z) | 【3.2】打包l0的hap失败 |
+| [I76UCD](https://gitee.com/open_harmony/dashboard?issue_id=I76UCD) | 【OpenHarmony_3.2.12.5】【3.2Release】【多媒体子系统】【RK3568】【必现-10/10】录像文件在图库播放最后2秒画面卡住未播放 |
+| [I7B07F](https://e.gitee.com/open_harmony/issues/table/?issue=I7B07F) | 【OpenHarmony_3.2.12.5】【软总线】【发现】【rk3568】【必现-3/3】蓝牙发现失败 |
+| [I7BZ4F](https://e.gitee.com/open_harmony/issues/table/?issue=I7BZ4F) | 【OpenHarmony_3.2.13.1】【RK3568】【发现】【概率 3/42】coap发现概率失败 |
+| [I7C98S](https://e.gitee.com/open_harmony/issues/table/?issue=I7C98S) | 【OpenHarmony 3.2.13.1】【RK3568】【压力测试】【低概率2/10】【wukong】出现2次，  com.ohos.photos下出现jscrash问题，栈名：initializeConsume |
+| [I7FO8I](https://e.gitee.com/open_harmony/issues/table/?issue=I7FO8I) | 【OpenHarmony 3.2  0620daily】【RK3568】【压力测试】【低概率1/10】【wukong】出现1次  进com.ohos.adminprovisioning下的IPC_3_14056线程导致libabilitykit_native.z.so出现cppcrash |
+| [I7FR03](https://e.gitee.com/open_harmony/issues/table/?issue=I7FR03) | 【OpenHarmony 3.2  0620daily】【RK3568】【压力测试】【低概率1/10】【wukong】出现1次  由进程com.ohos.note下的RSRenderThread线程出现Rosenweb on  consumer导致libmali-bifrost-g52-g2p0-ohos.so出现cppcrash |
 | [I7WJ2I](https://gitee.com/open_harmony/dashboard?issue_id=I7WJ2I) | 【Openharmony-master】【驱动子系统】【rk3568】【必现-5/5】修复动态配流失败问题（cherry-pick 3.2release） |
 | [I6UYP6](https://gitee.com/open_harmony/dashboard?issue_id=I6UYP6) | 【3.2 Release】调用put和putSync接口设置key值长度和value值长度超过最大字节数，接口响应未进异常 |
-| [I72P5E](https://gitee.com/open_harmony/dashboard?issue_id=I72P5E) | 【OpenHarmony 3.2.12.2】【RK3568】【压力测试】【ToC】【必现10/10】反复进入大图浏览界面后返回，导致libace.z.so出现内存泄露 |
-| [I72P5I](https://gitee.com/open_harmony/dashboard?issue_id=I72P5I) | 【OpenHarmony 3.2.12.2】【RK3568】【压力测试】【ToC】【必现10/10】反复进入某相册的图片宫格浏览界面，导致libace.z.so出现内存泄露 |
-| [I76N0Y](https://gitee.com/open_harmony/dashboard?issue_id=I76N0Y) | 【OpenHarmony 3.2.12.2】【RK3568】【压力测试】【ToC】【必现10/10】反复在dock栏添加/移除应用，导致libace.z.so出现内存泄露 |
-| [I7FNXR](https://gitee.com/open_harmony/dashboard?issue_id=I7FNXR) | [Bug]: 【OpenHarmony 3.2.13.5】【RK3568】【压力测试】【ToC】【低概率1/10】【wukong】出现1次 进camera_service下的IPC_7_15380线程导致libipc_core.z.so出现cppcrash |
-| [I7GATH](https://gitee.com/open_harmony/dashboard?issue_id=I7GATH) | [Bug]:【OpenHarmony 3.2.13.5】【输入法】【必现-5/5】执行DevecoTesting服务接口注入测试后输入法选择框有cppcrash |
-| [I7HDQP](https://gitee.com/open_harmony/dashboard?issue_id=I7HDQP) | [Bug]: 【OpenHarmony 3.2.13.5】【应用子系统】【RK3568】【必现_5/5】切换英文后，桌面上应用名称仍中文显示，重启后才英文显示 |
-| [I7HFEO](https://gitee.com/open_harmony/dashboard?issue_id=I7HFEO) | [Bug]: 【OpenHarmony 3.2.14.1】【测试子系统】【3861】【必现-5/5】ActsUiTest模块执行一条fail项 |
-| [I7HX8E](https://gitee.com/open_harmony/dashboard?issue_id=I7HX8E) | [Bug]: 【OpenHarmony 3.2.14.1】【RK3568】【xts压力测试】【ToC】【低概率】出现2次 由进程com.ohos.rpctest下的jsThread-1线程导致librpc.z.so出现cppcrash |
-| [I7IV88](https://gitee.com/open_harmony/dashboard?issue_id=I7IV88) | [Bug]: 【OpenHarmony 3.2.14.1】【RK3568】【压力测试】【ToC】【低概率】【wukong】出现4次 由关键进程com.ohos.mms下的clickToGroupDetail 出现jscrash |
-| [I7KZKQ](https://gitee.com/open_harmony/dashboard?issue_id=I7KZKQ) | [Bug]: 【OpenHarmony 3.2.14.2】【RK3568】【压力测试】【ToC】【低概率】【wukong】出现13次 由关键进程com.ohos.mms下的clickInfoToConversation 出现jscrash |
-| [I7KZLX](https://gitee.com/open_harmony/dashboard?issue_id=I7KZLX) | [Bug]: 【OpenHarmony 3.2.14.2】【RK3568】【压力测试】【ToC】【低概率】【wukong】出现1次 由应用com.ohos.mms下的dealSessionDraft出现jscrash |
-| [I7KZN7](https://gitee.com/open_harmony/dashboard?issue_id=I7KZN7) | [Bug]: 【OpenHarmony 3.2.14.2】【RK3568】【压力测试】【ToC】【低概率】【wukong】出现18次 由关键进程com.ohos.contact下的menuChange 出现jscrash |
-| [I7PAL6](https://gitee.com/open_harmony/dashboard?issue_id=I7PAL6) | [Bug]: 【OpenHarmony 3.2.14.5】【RK3568】【压力测试】【ToC】【低概率】【wukong】出现1次 进/system/bin/installs下的IPC_1_643线程导致libhap_restorecon.z.so出现cppcrash |
-| [I7Q85E](https://gitee.com/open_harmony/dashboard?issue_id=I7Q85E) | [Bug]: 【OpenHarmony 3.2.14.5】【RK3568】【压力测试】【wukong】 wukong压力测试内存占用过高 |
-| [I7VAB8](https://gitee.com/open_harmony/dashboard?issue_id=I7VAB8) | [Bug]: 【OpenHarmony 3.2.14.6】【RK3568】【压力测试】【ToC】【低概率】【wukong】出现24次 进程com.ohos.camera下的com.ohos.camera线程导致libcamera_napi.z.so出现cppcrash |
-| [I7VBCV](https://gitee.com/open_harmony/dashboard?issue_id=I7VBCV) | 【OpenHarmony 3.2.14.6】【RK3568】【压力测试】【ToC】【低频率】出现3次，进程ohos.samples.distributedmusicplayer下出现jscrash，栈名：cancelTimer |
-| [I7BL13](https://gitee.com/open_harmony/dashboard?issue_id=I7BL13) | 【OpenHarmony-release3.2】【电源子系统】【ToC】【rk3568】【必现-5/5】使用局部变量创建了全局线程 |
+| [I72P5E](https://gitee.com/open_harmony/dashboard?issue_id=I72P5E) | 【OpenHarmony 3.2.12.2】【RK3568】【压力测试】【必现10/10】反复进入大图浏览界面后返回，导致libace.z.so出现内存泄露 |
+| [I72P5I](https://gitee.com/open_harmony/dashboard?issue_id=I72P5I) | 【OpenHarmony 3.2.12.2】【RK3568】【压力测试】【必现10/10】反复进入某相册的图片宫格浏览界面，导致libace.z.so出现内存泄露 |
+| [I76N0Y](https://gitee.com/open_harmony/dashboard?issue_id=I76N0Y) | 【OpenHarmony 3.2.12.2】【RK3568】【压力测试】【必现10/10】反复在dock栏添加/移除应用，导致libace.z.so出现内存泄露 |
+| [I7FNXR](https://gitee.com/open_harmony/dashboard?issue_id=I7FNXR) | 【OpenHarmony 3.2.13.5】【RK3568】【压力测试】【低概率1/10】【wukong】出现1次 进camera_service下的IPC_7_15380线程导致libipc_core.z.so出现cppcrash |
+| [I7GATH](https://gitee.com/open_harmony/dashboard?issue_id=I7GATH) | 【OpenHarmony 3.2.13.5】【输入法】【必现-5/5】执行DevecoTesting服务接口注入测试后输入法选择框有cppcrash |
+| [I7HDQP](https://gitee.com/open_harmony/dashboard?issue_id=I7HDQP) | 【OpenHarmony 3.2.13.5】【应用子系统】【RK3568】【必现_5/5】切换英文后，桌面上应用名称仍中文显示，重启后才英文显示 |
+| [I7HFEO](https://gitee.com/open_harmony/dashboard?issue_id=I7HFEO) | 【OpenHarmony 3.2.14.1】【测试子系统】【3861】【必现-5/5】ActsUiTest模块执行一条fail项 |
+| [I7HX8E](https://gitee.com/open_harmony/dashboard?issue_id=I7HX8E) | 【OpenHarmony 3.2.14.1】【RK3568】【xts压力测试】【低概率】出现2次 由进程com.ohos.rpctest下的jsThread-1线程导致librpc.z.so出现cppcrash |
+| [I7IV88](https://gitee.com/open_harmony/dashboard?issue_id=I7IV88) | 【OpenHarmony 3.2.14.1】【RK3568】【压力测试】【低概率】【wukong】出现4次 由关键进程com.ohos.mms下的clickToGroupDetail 出现jscrash |
+| [I7KZKQ](https://gitee.com/open_harmony/dashboard?issue_id=I7KZKQ) | 【OpenHarmony 3.2.14.2】【RK3568】【压力测试】【低概率】【wukong】出现13次 由关键进程com.ohos.mms下的clickInfoToConversation 出现jscrash |
+| [I7KZLX](https://gitee.com/open_harmony/dashboard?issue_id=I7KZLX) | 【OpenHarmony 3.2.14.2】【RK3568】【压力测试】【低概率】【wukong】出现1次 由应用com.ohos.mms下的dealSessionDraft出现jscrash |
+| [I7KZN7](https://gitee.com/open_harmony/dashboard?issue_id=I7KZN7) | 【OpenHarmony 3.2.14.2】【RK3568】【压力测试】【低概率】【wukong】出现18次 由关键进程com.ohos.contact下的menuChange 出现jscrash |
+| [I7PAL6](https://gitee.com/open_harmony/dashboard?issue_id=I7PAL6) | 【OpenHarmony 3.2.14.5】【RK3568】【压力测试】【低概率】【wukong】出现1次 进/system/bin/installs下的IPC_1_643线程导致libhap_restorecon.z.so出现cppcrash |
+| [I7Q85E](https://gitee.com/open_harmony/dashboard?issue_id=I7Q85E) | 【OpenHarmony 3.2.14.5】【RK3568】【压力测试】【wukong】 wukong压力测试内存占用过高 |
+| [I7VAB8](https://gitee.com/open_harmony/dashboard?issue_id=I7VAB8) | 【OpenHarmony 3.2.14.6】【RK3568】【压力测试】【低概率】【wukong】出现24次 进程com.ohos.camera下的com.ohos.camera线程导致libcamera_napi.z.so出现cppcrash |
+| [I7VBCV](https://gitee.com/open_harmony/dashboard?issue_id=I7VBCV) | 【OpenHarmony 3.2.14.6】【RK3568】【压力测试】【低频率】出现3次，进程ohos.samples.distributedmusicplayer下出现jscrash，栈名：cancelTimer |
+| [I7BL13](https://gitee.com/open_harmony/dashboard?issue_id=I7BL13) | 【OpenHarmony-release3.2】【电源子系统】【rk3568】【必现-5/5】使用局部变量创建了全局线程 |
 | [I7BY2N](https://gitee.com/open_harmony/dashboard?issue_id=I7BY2N) | [3.2-release] 支持编译空文件 |
 | [I7CREK](https://gitee.com/open_harmony/dashboard?issue_id=I7CREK) | [3.2release]json参数校验调整 | 
 
@@ -226,7 +225,7 @@
 
 | ISSUE | 问题描述 | 影响 | 计划解决日期 |
 | ----- | -------- | ---- | ------------ |
-| [I7HW2C](https://e.gitee.com/open_harmony/dashboard?issue=I7E931) | [Bug]: 【OpenHarmony 3.2.14.1】【RK3568】【压力测试】【ToC】【低概率】【wukong】出现20次 由关键进程com.ohos.note下的com.ohos.note线程导致libace.z.so出现cppcrash| 对北向应用开发（特别是API）和用户体验的影响评估社区note应用在部分场景可能会崩溃，发生概率多台设备压测10000小时出现15次；对hilog日志分析大概率为极端场景跑出的问题，正常使用影响不大；对南向芯片平台&子系统社区无影响 | 2023年10月31日 |
+| [I7HW2C](https://e.gitee.com/open_harmony/dashboard?issue=I7E931) | 【OpenHarmony 3.2.14.1】【RK3568】【压力测试】【低概率】【wukong】出现20次 由关键进程com.ohos.note下的com.ohos.note线程导致libace.z.so出现cppcrash| 对北向应用开发（特别是API）和用户体验的影响评估社区note应用在部分场景可能会崩溃，发生概率多台设备压测10000小时出现15次；对hilog日志分析大概率为极端场景跑出的问题，正常使用影响不大；对南向芯片平台&子系统社区无影响 | 2023年10月31日 |
 | [I7E931](https://e.gitee.com/open_harmony/dashboard?issue=I7E931) | 调试3.2内存泄漏问题 | JS应用需要IPC需要建立NAPIRemoteObject对象进程通信，创建一次可以循环使用，建立一次后泄露1.2kb，应用不需要反复创建新对象，泄露量可控，应用进程退出会释放掉 | 2023年10月31日 |
-| [I7P9VS](https://e.gitee.com/open_harmony/issues/table/?issue=I7P9VS) | [Bug]: 【OpenHarmony 3.2.14.5】【RK3568】【压力测试】【必现10/10】反复进入大图浏览界面后返回，ElementRegister::ClearRemovedItems处出现内存泄露 | 问题从KB修复到泄露72字节，对系统影响较小 | 2023年10月31日 |
-| [I7P9T5](https://e.gitee.com/open_harmony/issues/table/?issue=I7P9T5) | [Bug]: 【OpenHarmony 3.2.14.5】【RK3568】【压力测试】【必现10/10】反复进入某相册的图片宫格浏览界面，ElementRegister::RemoveItem 和ElementRegister::ClearRemovedItems出现内存泄露 | 问题从KB修复到泄露144字节，对系统影响较小 | 2023年10月31日 |
+| [I7P9VS](https://e.gitee.com/open_harmony/issues/table/?issue=I7P9VS) |【OpenHarmony 3.2.14.5】【RK3568】【压力测试】【必现10/10】反复进入大图浏览界面后返回，ElementRegister::ClearRemovedItems处出现内存泄露 | 问题从KB修复到泄露72字节，对系统影响较小 | 2023年10月31日 |
+| [I7P9T5](https://e.gitee.com/open_harmony/issues/table/?issue=I7P9T5) |【OpenHarmony 3.2.14.5】【RK3568】【压力测试】【必现10/10】反复进入某相册的图片宫格浏览界面，ElementRegister::RemoveItem 和ElementRegister::ClearRemovedItems出现内存泄露 | 问题从KB修复到泄露144字节，对系统影响较小 | 2023年10月31日 |
