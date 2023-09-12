@@ -44,40 +44,20 @@ createVpnConnection(context: AbilityContext): VpnConnection
 Stage 模型示例：
 
 ```ts
-// 获取context
-import UIAbility from "@ohos.app.ability.UIAbility";
+import vpn from '@ohos.net.vpn';
+import common from '@ohos.app.ability.common';
 
-// 构造单例对象
-export class GlobalContext {
-  private constructor() {}
-  private static instance: GlobalContext;
-  private _objects = new Map<string, Object>();
-
-  public static getContext(): GlobalContext {
-    if (!GlobalContext.instance) {
-      GlobalContext.instance = new GlobalContext();
-    }
-    return GlobalContext.instance;
+@Entry
+@Component
+struct Index {
+  private context = getContext(this) as common.UIAbilityContext;
+  private VpnConnection: vpn.VpnConnection = vpn.createVpnConnection(this.context);
+  functiontest()
+  {
+    console.info("vpn createVpnConnection: " + JSON.stringify(this.VpnConnection));
   }
-
-  getObject(value: string): Object | undefined {
-    return this._objects.get(value);
-  }
-
-  setObject(key: string, objectClass: Object): void {
-    this._objects.set(key, objectClass);
-  }
+  build() {  }
 }
-
-class EntryAbility extends UIAbility {
-  value: number = 0;
-  onWindowStageCreate(windowStage: string): void {
-    GlobalContext.getContext().setObject("value", this.value);
-  }
-}
-let context = GlobalContext.getContext().getObject("value");
-let VpnConnection: Object = vpn.createVpnConnection(context);
-console.info("vpn onInit: " + JSON.stringify(VpnConnection));
 ```
 
 ## VpnConnection
@@ -121,59 +101,33 @@ setUp(config: VpnConfig, callback: AsyncCallback\<number\>): void
 **示例：**
 
 ```js
-import UIAbility from "@ohos.app.ability.UIAbility";
+import vpn from '@ohos.net.vpn';
+import common from '@ohos.app.ability.common';
+import { BusinessError } from "@ohos.base";
 
-// 构造单例对象
-export class GlobalContext {
-  private constructor() {}
-  private static instance: GlobalContext;
-  private _objects = new Map<string, Object>();
+@Entry
+@Component
+struct Index {
+  private context = getContext(this) as common.UIAbilityContext;
+  private VpnConnection: vpn.VpnConnection = vpn.createVpnConnection(this.context);
+  SetUp()
+  {
+    let tunAddr : vpn.LinkAddress = {} as vpn.LinkAddress
+    tunAddr.address.address = "10.0.0.5"
+    tunAddr.address.family = 1
 
-  public static getContext(): GlobalContext {
-    if (!GlobalContext.instance) {
-      GlobalContext.instance = new GlobalContext();
-    }
-    return GlobalContext.instance;
+    let config : vpn.VpnConfig = {} as vpn.VpnConfig
+    config.addresses.push(tunAddr)
+    config.mtu = 1400
+    config.dnsAddresses = ["114.114.114.114"]
+
+    this.VpnConnection.setUp(config, (error: BusinessError, data: number) => {
+      console.info(JSON.stringify(error));
+      console.info("tunfd: " + JSON.stringify(data));
+    });
   }
-
-  getObject(value: string): Object | undefined {
-    return this._objects.get(value);
-  }
-
-  setObject(key: string, objectClass: Object): void {
-    this._objects.set(key, objectClass);
-  }
+  build() { }
 }
-
-class EntryAbility extends UIAbility {
- value: number = 0;
-  onWindowStageCreate(windowStage: string): void {
-    GlobalContext.getContext().setObject("value", this.value);
-  }
-}
-let context = GlobalContext.getContext().getObject("value");
-let VpnConnection: Object = vpn.createVpnConnection(context);
-class Address {
-  address: string = "10.0.0.5"
-  family: number = 1
-}
-class AddressesClass {
-  address: object = new Address()
-  prefixLength: number = 24
-}
-class ConfigClass {
-  addresses: object = new AddressesClass()
-  routes: Array<Object> = []
-  mtu: number = 1400
-  dnsAddresses: Array<string> = ["114.114.114.114"]
-  trustedApplications: Array<Object> = []
-  blockedApplications: Array<Object> = []
-}
-let config = new ConfigClass()
-VpnConnection.setUp(config, (error: BusinessError, data: number) => {
-  console.info(JSON.stringify(error));
-  console.info("tunfd: " + JSON.stringify(data));
-});
 ```
 
 ### setUp
@@ -218,66 +172,34 @@ setUp(config: VpnConfig): Promise\<number\>
 **示例：**
 
 ```js
-import UIAbility from "@ohos.app.ability.UIAbility";
+import vpn from '@ohos.net.vpn';
+import common from '@ohos.app.ability.common';
+import { BusinessError } from "@ohos.base";
 
-// 构造单例对象
-export class GlobalContext {
-  private constructor() {}
-  private static instance: GlobalContext;
-  private _objects = new Map<string, Object>();
+@Entry
+@Component
+struct Index {
+  private context = getContext(this) as common.UIAbilityContext;
+  private VpnConnection: vpn.VpnConnection = vpn.createVpnConnection(this.context);
+  SetUp()
+  {
+    let tunAddr : vpn.LinkAddress = {} as vpn.LinkAddress
+    tunAddr.address.address = "10.0.0.5"
+    tunAddr.address.family = 1
 
-  public static getContext(): GlobalContext {
-    if (!GlobalContext.instance) {
-      GlobalContext.instance = new GlobalContext();
-    }
-    return GlobalContext.instance;
+    let config : vpn.VpnConfig = {} as vpn.VpnConfig
+    config.addresses.push(tunAddr)
+    config.mtu = 1400
+    config.dnsAddresses = ["114.114.114.114"]
+
+    this.VpnConnection.setUp(config).then((data: number) => {
+      console.info("setUp success, tunfd: " + JSON.stringify(data));
+    }).catch((err: BusinessError) => {
+      console.info("setUp fail" + JSON.stringify(err));
+    });
   }
-
-  getObject(value: string): Object | undefined {
-    return this._objects.get(value);
-  }
-
-  setObject(key: string, objectClass: Object): void {
-    this._objects.set(key, objectClass);
-  }
+  build() { }
 }
-
-class EntryAbility extends UIAbility {
-  value: number = 0;
-  onWindowStageCreate(windowStage: string): void {
-    GlobalContext.getContext().setObject("value", this.value);
-  }
-}
-let context = GlobalContext.getContext().getObject("value");
-let VpnConnection: Object = vpn.createVpnConnection(context);
-
-class Address {
-  address: string = "10.0.0.5";
-  family: number = 1;
-}
-
-class AddressesClass {
-  address: object = new Address();
-  prefixLength: number = 24;
-}
-
-class ConfigClass {
-  addresses: object = new AddressesClass();
-  routes: Array<Object> = [];
-  mtu: number = 1400;
-  dnsAddresses: Array<string> = ["114.114.114.114"];
-  trustedApplications: Array<Object> = [];
-  blockedApplications: Array<Object> = [];
-}
-
-let config = new ConfigClass();
-VpnConnection.setUp(config)
-  .then((data: number) => {
-    console.info(TAG + "setUp success, tunfd: " + JSON.stringify(data));
-  })
-  .catch((err: BusinessError) => {
-    console.info(TAG + "setUp fail" + JSON.stringify(err));
-  });
 ```
 
 ### protect
@@ -317,62 +239,41 @@ protect(socketFd: number, callback: AsyncCallback\<void\>): void
 
 ```js
 import socket from "@ohos.net.socket";
-import UIAbility from "@ohos.app.ability.UIAbility";
-import { BusinessError } from '@ohos.base';
+import vpn from '@ohos.net.vpn';
+import common from '@ohos.app.ability.common';
+import { BusinessError } from "@ohos.base";
 
-// 构造单例对象
-export class GlobalContext {
-  private constructor() {}
-  private static instance: GlobalContext;
-  private _objects = new Map<string, Object>();
+@Entry
+@Component
+struct Index {
+  private context = getContext(this) as common.UIAbilityContext;
+  private VpnConnection: vpn.VpnConnection = vpn.createVpnConnection(this.context);
 
-  public static getContext(): GlobalContext {
-    if (!GlobalContext.instance) {
-      GlobalContext.instance = new GlobalContext();
-    }
-    return GlobalContext.instance;
+  Protect() {
+    let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
+    let ipAddress : socket.NetAddress = {} as socket.NetAddress;
+    ipAddress.address = "0.0.0.0";
+    ipAddress.port = 1234;
+    tcp.bind(ipAddress);
+
+    let connectAddress : socket.NetAddress = {} as socket.NetAddress;
+    connectAddress.address = "192.168.1.11";
+    connectAddress.port = 8888;
+
+    let addressConnect : socket.TCPConnectOptions = {} as socket.TCPConnectOptions;
+    addressConnect.address = connectAddress;
+    addressConnect.timeout = 6000;
+    tcp.connect(addressConnect);
+
+    tcp.getSocketFd().then((tunnelfd: number) => {
+      console.info("tunenlfd: " + tunnelfd);
+      this.VpnConnection.protect(tunnelfd, (error: BusinessError) => {
+        console.info(JSON.stringify(error));
+      });
+    });
   }
-
-  getObject(value: string): Object | undefined {
-    return this._objects.get(value);
-  }
-
-  setObject(key: string, objectClass: Object): void {
-    this._objects.set(key, objectClass);
-  }
+  build() { }
 }
-
-class EntryAbility extends UIAbility {
-  value: number = 0;
-  onWindowStageCreate(windowStage: string): void {
-    GlobalContext.getContext().setObject("value", this.value);
-  }
-}
-let context = GlobalContext.getContext().getObject("value");
-let VpnConnection：Object = vpn.createVpnConnection(context);
-let tcp = socket.constructTCPSocketInstance();
-let ipAddress : socket.NetAddress;
-ipAddress.address = "0.0.0.0";
-ipAddress.port = 1;
-
-tcp.bind(ipAddress);
-
-let connectAddress : socket.NetAddress;
-connectAddress.address = "192.168.1.11";
-connectAddress.port = 8888;
-connectAddress.family = 1;
-
-let addressConnect : socket.TCPConnectOptions;
-addressConnect.address = connectAddress;
-addressConnect.timeout = 6000;
-tcp.connect(addressConnect);
-
-tcp.getSocketFd().then((tunnelfd: number) => {
-  console.info("tunenlfd: " + tunnelfd);
-  VpnConnection.protect(tunnelfd, (error: BusinessError) => {
-    console.info(JSON.stringify(error));
-  });
-});
 ```
 
 ### protect
@@ -417,66 +318,43 @@ protect(socketFd: number): Promise\<void\>
 
 ```js
 import socket from "@ohos.net.socket";
-import UIAbility from "@ohos.app.ability.UIAbility";
-import { BusinessError } from '@ohos.base';
+import vpn from '@ohos.net.vpn';
+import common from '@ohos.app.ability.common';
+import { BusinessError } from "@ohos.base";
 
-// 构造单例对象
-export class GlobalContext {
-  private constructor() {}
-  private static instance: GlobalContext;
-  private _objects = new Map<string, Object>();
+@Entry
+@Component
+struct Index {
+  private context = getContext(this) as common.UIAbilityContext;
+  private VpnConnection: vpn.VpnConnection = vpn.createVpnConnection(this.context);
 
-  public static getContext(): GlobalContext {
-    if (!GlobalContext.instance) {
-      GlobalContext.instance = new GlobalContext();
-    }
-    return GlobalContext.instance;
-  }
+  Protect() {
+    let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
+    let ipAddress : socket.NetAddress = {} as socket.NetAddress;
+    ipAddress.address = "0.0.0.0";
+    ipAddress.port = 1234;
+    tcp.bind(ipAddress);
 
-  getObject(value: string): Object | undefined {
-    return this._objects.get(value);
-  }
+    let connectAddress : socket.NetAddress = {} as socket.NetAddress;
+    connectAddress.address = "192.168.1.11";
+    connectAddress.port = 8888;
 
-  setObject(key: string, objectClass: Object): void {
-    this._objects.set(key, objectClass);
-  }
-}
+    let addressConnect : socket.TCPConnectOptions = {} as socket.TCPConnectOptions;
+    addressConnect.address = connectAddress;
+    addressConnect.timeout = 6000;
+    tcp.connect(addressConnect);
 
-class EntryAbility extends UIAbility {
-  value: number = 0;
-  onWindowStageCreate(windowStage: string): void {
-    GlobalContext.getContext().setObject("value", this.value);
-  }
-}
-let context = GlobalContext.getContext().getObject("value");
-let VpnConnection: Object = vpn.createVpnConnection(context);
-let tcp = socket.constructTCPSocketInstance();
-
-let ipAddress : socket.NetAddress;
-ipAddress.address = "0.0.0.0";
-ipAddress.port = 1;
-
-tcp.bind(ipAddress);
-
-let connectAddress : socket.NetAddress;
-connectAddress.address = "192.168.1.11";
-connectAddress.port = 8888;
-connectAddress.family = 1;
-
-let addressConnect : socket.TCPConnectOptions;
-addressConnect.address = connectAddress;
-addressConnect.timeout = 6000;
-tcp.connect(addressConnect);
-tcp.getSocketFd().then((tunnelfd: number) => {
-  console.info("tunenlfd: " + tunnelfd);
-  VpnConnection.protect(tunnelfd)
-    .then(() => {
-      console.info("protect success.");
-    })
-    .catch((err: BusinessError) => {
-      console.info("protect fail" + JSON.stringify(err));
+    tcp.getSocketFd().then((tunnelfd: number) => {
+      console.info("tunenlfd: " + tunnelfd);
+      this.VpnConnection.protect(tunnelfd).then(() => {
+        console.info("protect success.");
+      }).catch((err: BusinessError) => {
+        console.info("protect fail" + JSON.stringify(err));
+      });
     });
-});
+  }
+  build() { }
+}
 ```
 
 ### destroy
@@ -512,42 +390,23 @@ destroy(callback: AsyncCallback\<void\>): void
 **示例：**
 
 ```js
-import UIAbility from "@ohos.app.ability.UIAbility";
+import vpn from '@ohos.net.vpn';
+import common from '@ohos.app.ability.common';
+import { BusinessError } from "@ohos.base";
 
-// 构造单例对象
-export class GlobalContext {
-  public netList: connection.NetHandle[] = [];
-  private constructor() {}
-  private static instance: GlobalContext;
-  private _objects = new Map<string, Object>();
-
-  public static getContext(): GlobalContext {
-    if (!GlobalContext.instance) {
-      GlobalContext.instance = new GlobalContext();
-    }
-    return GlobalContext.instance;
+@Entry
+@Component
+struct Index {
+  private context = getContext(this) as common.UIAbilityContext;
+  private VpnConnection: vpn.VpnConnection = vpn.createVpnConnection(this.context);
+  Destroy()
+  {
+    this.VpnConnection.destroy((error: BusinessError) => {
+      console.info(JSON.stringify(error));
+    });
   }
-
-  getObject(value: string): Object | undefined {
-    return this._objects.get(value);
-  }
-
-  setObject(key: string, objectClass: Object): void {
-    this._objects.set(key, objectClass);
-  }
+  build() { }
 }
-
-class EntryAbility extends UIAbility {
-  value: number = 0;
-  onWindowStageCreate(windowStage: string): void {
-    GlobalContext.getContext().setObject("value", this.value);
-  }
-}
-let context = GlobalContext.getContext().getObject("value");
-let VpnConnection: Object = vpn.createVpnConnection(context);
-VpnConnection.destroy((error: BusinessError) => {
-  console.info(JSON.stringify(error));
-});
 ```
 
 ### destroy
@@ -582,45 +441,25 @@ destroy(): Promise\<void\>
 **示例：**
 
 ```js
-import UIAbility from "@ohos.app.ability.UIAbility";
+import vpn from '@ohos.net.vpn';
+import common from '@ohos.app.ability.common';
+import { BusinessError } from "@ohos.base";
 
-// 构造单例对象
-export class GlobalContext {
-  public netList: connection.NetHandle[] = [];
-  private constructor() {}
-  private static instance: GlobalContext;
-  private _objects = new Map<string, Object>();
-
-  public static getContext(): GlobalContext {
-    if (!GlobalContext.instance) {
-      GlobalContext.instance = new GlobalContext();
-    }
-    return GlobalContext.instance;
+@Entry
+@Component
+struct Index {
+  private context = getContext(this) as common.UIAbilityContext;
+  private VpnConnection: vpn.VpnConnection = vpn.createVpnConnection(this.context);
+  Destroy()
+  {
+    this.VpnConnection.destroy().then(() => {
+      console.info("destroy success.");
+    }).catch((err: BusinessError) => {
+      console.info("destroy fail" + JSON.stringify(err));
+    });
   }
-
-  getObject(value: string): Object | undefined {
-    return this._objects.get(value);
-  }
-
-  setObject(key: string, objectClass: Object): void {
-    this._objects.set(key, objectClass);
-  }
+  build() { }
 }
-
-class EntryAbility extends UIAbility {
-  value: number = 0;
-  onWindowStageCreate(windowStage: string): void {
-    GlobalContext.getContext().setObject("value", this.value);
-  }
-}
-let VpnConnection: Object = vpn.createVpnConnection(context);
-VpnConnection.destroy()
-  .then(() => {
-    console.info("destroy success.");
-  })
-  .catch((err: BusinessError) => {
-    console.info("destroy fail" + JSON.stringify(err));
-  });
 ```
 
 ## VpnConfig
