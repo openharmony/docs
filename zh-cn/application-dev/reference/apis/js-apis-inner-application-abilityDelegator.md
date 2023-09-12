@@ -135,7 +135,7 @@ addAbilityMonitorSync(monitor: AbilityMonitor): void;
 
 | 错误码ID | 错误信息 |
 | ------- | -------- |
-| 16000100 | AddAbilityMonitor failed. |
+| 16000100 | AddAbilityMonitorSync failed. |
 | 401  | If the input parameter is not valid parameter. |
 
 以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
@@ -276,7 +276,7 @@ removeAbilityMonitorSync(monitor: AbilityMonitor): void;
 
 | 错误码ID | 错误信息 |
 | ------- | -------- |
-| 16000100 | RemoveAbilityMonitor failed. |
+| 16000100 | RemoveAbilityMonitorSync failed. |
 | 401  | If the input parameter is not valid parameter. |
 
 以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
@@ -1279,7 +1279,7 @@ addAbilityStageMonitorSync(monitor: AbilityStageMonitor): void;
 
 | 错误码ID | 错误信息 |
 | ------- | -------- |
-| 16000100 | AddAbilityStageMonitor failed. |
+| 16000100 | AddAbilityStageMonitorSync failed. |
 | 401 | If the input parameter is not valid parameter. |
 
 以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
@@ -1400,7 +1400,7 @@ removeAbilityStageMonitorSync(monitor: AbilityStageMonitor): void;
 
 | 错误码ID | 错误信息 |
 | ------- | -------- |
-| 16000100 | RemoveAbilityStageMonitor failed. |
+| 16000100 | removeAbilityStageMonitorSync failed. |
 | 401 | If the input parameter is not valid parameter. |
 
 以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
