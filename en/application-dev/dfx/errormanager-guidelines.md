@@ -23,7 +23,8 @@ When an asynchronous callback is used, the return value can be processed directl
 
 | API                        | Description                                                        |
 | ------------------------------ | ------------------------------------------------------------ |
-| onUnhandledException(errMsg: string): void | Called when an application generates an uncaught exception after being registered.|
+| onUnhandledException(errMsg: string): void | Called when an uncaught exception is reported after the application is registered.|
+| onException?(errObject: Error): void | Called when an application exception is reported to the JavaScript layer after the application is registered.|
 
 
 ### Result Codes for Unregistering an Observer
@@ -37,20 +38,31 @@ When an asynchronous callback is used, the return value can be processed directl
 ## Development Example
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 import errorManager from '@ohos.app.ability.errorManager';
+import Want from '@ohos.app.ability.Want';
+import window from '@ohos.window';
 
 let registerId = -1;
-let callback = {
-    onUnhandledException: function (errMsg) {
+let callback: errorManager.ErrorObserver = {
+    onUnhandledException: (errMsg) => {
         console.log(errMsg);
+    },
+    onException: (errorObj) => {
+        console.log('onException, name: ', errorObj.name);
+        console.log('onException, message: ', errorObj.message);
+        if (typeof(errorObj.stack) === 'string') {
+            console.log('onException, stack: ', errorObj.stack);
+        }
     }
 }
+let abilityWant: Want;
 
 export default class EntryAbility extends UIAbility {
-    onCreate(want, launchParam) {
+    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
         console.log("[Demo] EntryAbility onCreate")
         registerId = errorManager.on("error", callback);
-        globalThis.abilityWant = want;
+        abilityWant = want;
     }
 
     onDestroy() {
@@ -60,7 +72,7 @@ export default class EntryAbility extends UIAbility {
         });
     }
 
-    onWindowStageCreate(windowStage) {
+    onWindowStageCreate(windowStage: window.WindowStage) {
         // Main window is created for this ability.
         console.log("[Demo] EntryAbility onWindowStageCreate")
 

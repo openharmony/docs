@@ -110,7 +110,7 @@ Service configuration allows you to configure services on demand to create diffe
   
 - Scheduled startup
 
-  Scheduled startup means to start a service at the specified time. If the service has been started, it will not be started again. For details about the command, see [Description of begetctl Commands](subsys-boot-init-plugin.md#parameters).
+  Scheduled startup means to start a service at the specified time. If the service has been started, it will not be started again. For details about the command, see [Description of begetctl Commands](subsys-boot-init-plugin.md).
   ```
   timer_start servicename timeout
   ```
