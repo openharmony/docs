@@ -85,21 +85,20 @@
 import connection from '@ohos.net.connection'
 import { BusinessError } from '@ohos.base';
 
-class NetCap {
+let netSpecifier: connection.NetSpecifier = {
+  netCapabilities: {
   // 假设当前默认网络是WiFi，需要创建蜂窝网络连接，可指定网络类型为蜂窝网
-  bearerTypes: number =  connection.NetBearType.BEARER_CELLULAR
+  bearerTypes: connection.NetBearType.BEARER_CELLULAR,
   // 指定网络能力为Internet
-  networkCap: number =  connection.NetCap.NET_CAPABILITY_INTERNET
-};
-class NetSpec {
-  netCapabilities: object =  NetCap
+  networkCap: connection.NetCap.NET_CAPABILITY_INTERNET
+  },
 };
 
 // 指定超时时间为10s(默认值为0)
 let timeout = 10 * 1000;
 
 // 创建NetConnection对象
-let conn = connection.createNetConnection(new NetCap(), new NetSpec());
+let conn = connection.createNetConnection(netSpecifier, timeout);
 
 // 订阅事件，如果当前指定网络可用，通过on_netAvailable通知用户
 conn.on('netAvailable', ((data: connection.NetHandle) => {
@@ -131,14 +130,37 @@ conn.unregister((err: BusinessError, data: void) => {
 ```js
 // 引入包名
 import connection from '@ohos.net.connection'
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@ohos.base'
+
+// 构造单例对象
+export class GlobalContext {
+  public netList: connection.NetHandle[] = [];
+  private constructor() {}
+  private static instance: GlobalContext;
+  private _objects = new Map<string, Object>();
+
+  public static getContext(): GlobalContext {
+    if (!GlobalContext.instance) {
+      GlobalContext.instance = new GlobalContext();
+    }
+    return GlobalContext.instance;
+  }
+
+  getObject(value: string): Object | undefined {
+    return this._objects.get(value);
+  }
+
+  setObject(key: string, objectClass: Object): void {
+    this._objects.set(key, objectClass);
+  }
+}
 
 // 获取所有处于连接状态的网络列表
-connection.getAllNets((err: BusinessError, data: connection.NetHandle[]) => {
+connection.getAllNets((err: BusinessError, data: connection.NetHandle) => {
   console.log(JSON.stringify(err));
   console.log(JSON.stringify(data));
   if (data) {
-    this.netList = data;
+    GlobalContext.getContext().netList = data;
   }
 })
 ```
@@ -160,12 +182,35 @@ import connection from '@ohos.net.connection'
 import { BusinessError } from '@ohos.base';
 import data from '@ohos.telephony.data';
 
+// 构造单例对象
+export class GlobalContext {
+  public netList: connection.NetHandle[] = [];
+  private constructor() {}
+  private static instance: GlobalContext;
+  private _objects = new Map<string, Object>();
+
+  public static getContext(): GlobalContext {
+    if (!GlobalContext.instance) {
+      GlobalContext.instance = new GlobalContext();
+    }
+    return GlobalContext.instance;
+  }
+
+  getObject(value: string): Object | undefined {
+    return this._objects.get(value);
+  }
+
+  setObject(key: string, objectClass: Object): void {
+    this._objects.set(key, objectClass);
+  }
+}
+
 // 调用getDefaultNet方法，获取默认的数据网络(NetHandle)
 connection.getDefaultNet((err: BusinessError, data:connection.NetHandle) => {
   console.log(JSON.stringify(err));
   console.log(JSON.stringify(data));
   if (data) {
-    this.netHandle = data;
+    GlobalContext.getContext().netHandle = data;
   }
 })
 
@@ -174,7 +219,9 @@ connection.getNetCapabilities(this.netHandle, (err: BusinessError, data: connect
   console.log(JSON.stringify(err));
 
   // 获取网络类型(bearerTypes)
-  for (let item of data.bearerTypes) {
+  let bearerTypes: Set<number> = data.bearerTypes;
+  let bearerTypesNum = Array.from(bearerTypes.values());
+  for (let item of bearerTypesNum) {
     if (item == 0) {
       // 蜂窝网
       console.log(JSON.stringify("BEARER_CELLULAR"));
@@ -188,7 +235,7 @@ connection.getNetCapabilities(this.netHandle, (err: BusinessError, data: connect
   }
 
   // 获取网络具体能力(networkCap)
-  let itemNumber : Set<data.networkCap> = new Set([0, 11, 12, 15, 16]);
+  let itemNumber : Set<number> = new Set([0, 11, 12, 15, 16]);
   let dataNumber = Array.from(itemNumber.values());
   for (let item of dataNumber) {
     if (item == 0) {
@@ -221,11 +268,11 @@ connection.getAllNets((err: BusinessError, data: connection.NetHandle[]) => {
   console.log(JSON.stringify(err));
   console.log(JSON.stringify(data));
   if (data) {
-    this.netList = data;
+    GlobalContext.getContext().netList = data;
   }
 })
 
-let itemNumber : Set<data> = new Set(this.netList);
+let itemNumber : Set<number> = new Set(this.netList);
 let dataNumber = Array.from(itemNumber.values());
 for (let item of dataNumber) {
   // 循环获取网络列表每个netHandle对应网络的能力信息

@@ -49,23 +49,25 @@ setIfaceConfig(iface: string, ic: InterfaceConfiguration, callback: AsyncCallbac
 **示例：**
 
 ```ts
-class Config  {
-  mode: number= 0,
-  ipAddr: string = "192.168.xx.xxx"
-  route: string = "192.168.xx.xxx"
-  gateway:string = "192.168.xx.xxx"
-  netMask:string = "255.255.255.0"
-  dnsServers: string = "1.1.1.1"
+import ethernet from '@ohos.net.ethernet'
+import { BusinessError } from '@ohos.base'
+
+let config: ethernet.InterfaceConfiguration = {
+  mode: 0,
+  ipAddr: "192.168.xx.xxx"
+  route: "192.168.xx.xxx"
+  gateway: "192.168.xx.xxx"
+  netMask: "255.255.255.0"
+  dnsServers: "1.1.1.1"
 };
 
-ethernet.setIfaceConfig("eth0", new Config(), (error: BusinessError) => {
+ethernet.setIfaceConfig("eth0", config, (error: BusinessError) => {
   if (error) {
     console.log("setIfaceConfig callback error = " + JSON.stringify(error));
   } else {
     console.log("setIfaceConfig callback ok");
   }
 });
-
 ```
 
 ## ethernet.setIfaceConfig<sup>9+</sup>
@@ -120,7 +122,7 @@ class Config  {
   dnsServers: string = "1.1.1.1"
 };
 
-const setConfigPromise = ethernet.setIfaceConfig("eth0", new Config());
+const setConfigPromise: Object = ethernet.setIfaceConfig("eth0", new Config());
 
 setConfigPromise.then(() => {
   console.log("setIfaceConfig promise ok");
@@ -216,6 +218,7 @@ getIfaceConfig(iface: string): Promise\<InterfaceConfiguration>
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
 ethernet.getIfaceConfig("eth0").then((data: ethernet.InterfaceConfiguration) => {
   console.log("getIfaceConfig promise mode = " + JSON.stringify(data.mode));
   console.log("getIfaceConfig promise ipAddr = " + JSON.stringify(data.ipAddr));
@@ -223,7 +226,7 @@ ethernet.getIfaceConfig("eth0").then((data: ethernet.InterfaceConfiguration) => 
   console.log("getIfaceConfig promise gateway = " + JSON.stringify(data.gateway));
   console.log("getIfaceConfig promise netMask = " + JSON.stringify(data.netMask));
   console.log("getIfaceConfig promise dnsServers = " + JSON.stringify(data.dnsServers));
-}).catch(error => {
+}).catch((error: BusinessError) => {
   console.log("getIfaceConfig promise error = " + JSON.stringify(error));
 });
 ```
@@ -310,9 +313,10 @@ isIfaceActive(iface: string): Promise\<number>
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
 ethernet.isIfaceActive("eth0").then((data: number) => {
   console.log("isIfaceActive promise = " + JSON.stringify(data));
-}).catch(error => {
+}).catch((error: BusinessError) => {
   console.log("isIfaceActive promise error = " + JSON.stringify(error));
 });
 ```

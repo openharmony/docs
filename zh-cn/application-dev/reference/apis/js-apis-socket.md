@@ -29,7 +29,8 @@ constructUDPSocketInstance(): UDPSocket
 **示例：**
 
 ```js
-let udp: socket = socket.constructUDPSocketInstance();
+import socket from '@ohos.net.socket';
+let udp: socket.UDPSocket = socket.constructUDPSocketInstance();
 ```
 
 ## UDPSocket<sup>7+</sup>
@@ -63,14 +64,15 @@ bind(address: NetAddress, callback: AsyncCallback\<void\>): void
 **示例：**
 
 ```js
-let udp: socket = socket.constructUDPSocketInstance();
-class NetAddress {
-  address: string = '192.168.xx.xxx'
-  port: number = 8080
-  family: number = 1
+import socket from '@ohos.net.socket';
+import { BusinessError } from '@ohos.base';
+
+let udp: socket.UDPSocket = socket.constructUDPSocketInstance();
+let bindAddr : socket.NetAddress = {
+  address : '192.168.xx.xxx',
+  port: 1234
 }
-let netaddress = new NetAddress();
-udp.bind(netaddress, (err: string) => {
+udp.bind(bindAddr, (err: BusinessError) => {
   if (err) {
     console.log('bind fail');
     return;
@@ -111,17 +113,17 @@ bind(address: NetAddress): Promise\<void\>
 **示例：**
 
 ```js
-let udp: socket = socket.constructUDPSocketInstance();
-class NetAddress {
-  address: string = '192.168.xx.xxx'
-  port: number = 8080
-  family: number = 1
+import socket from '@ohos.net.socket';
+import { BusinessError } from '@ohos.base';
+
+let udp: socket.UDPSocket = socket.constructUDPSocketInstance();
+let bindAddr : socket.NetAddress = {
+  address : '192.168.xx.xxx',
+  port: 8080
 }
-let netaddress = new NetAddress();
-let promise: socket = udp.bind(netaddress);
-promise.then(() => {
+udp.bind(bindAddr).then(() => {
   console.log('bind success');
-}).catch((err: string) => {
+}).catch((err: BusinessError) => {
   console.log('bind fail');
 });
 ```
@@ -155,19 +157,19 @@ send(options: UDPSendOptions, callback: AsyncCallback\<void\>): void
 **示例：**
 
 ```js
-let udp: socket = socket.constructUDPSocketInstance();
-class NetAddress {
-  address: string = '192.168.xx.xxx'
-  port: number = 8080
-  family: number = 1
-}
-class UDPSendOptions {
-  data: string = 'Hello, server!'
-  address: Object = new NetAddress()
-}
+import socket from '@ohos.net.socket';
+import { BusinessError } from '@ohos.base';
 
-let udpsendoptions = new UDPSendOptions();
-udp.send(udpsendoptions, (err: string) => {
+let udp: socket.UDPSocket = socket.constructUDPSocketInstance();
+
+let sendOptions : socket.UDPSendOptions = {
+  data : 'Hello, server!',
+  address : {
+    address : '192.168.xx.xxx',
+    port: 8080
+  }
+}
+udp.send(sendOptions, (err: BusinessError) => {
   if (err) {
     console.log('send fail');
     return;
@@ -210,21 +212,21 @@ send(options: UDPSendOptions): Promise\<void\>
 **示例：**
 
 ```js
-let udp: socket = socket.constructUDPSocketInstance();
-class NetAddress {
-  address: string = '192.168.xx.xxx'
-  port: number = 8080
-  family: number = 1
+import socket from '@ohos.net.socket';
+import { BusinessError } from '@ohos.base';
+
+let udp: socket.UDPSocket = socket.constructUDPSocketInstance();
+
+let sendOptions : socket.UDPSendOptions = {
+  data : 'Hello, server!',
+  address : {
+    address : '192.168.xx.xxx',
+    port: 8080
+  }
 }
-class UDPSendOptions {
-  data: string = 'Hello, server!'
-  address: Object = new NetAddress()
-}
-let udpsendoptions = new UDPSendOptions();
-let promise: socket = udp.send(udpsendoptions);
-promise.then(() => {
+udp.send(sendOptions).then(() => {
   console.log('send success');
-}).catch((err: string) => {
+}).catch((err: BusinessError) => {
   console.log('send fail');
 });
 ```
@@ -248,8 +250,11 @@ close(callback: AsyncCallback\<void\>): void
 **示例：**
 
 ```js
-let udp: socket = socket.constructUDPSocketInstance();
-udp.close((err: string) => {
+import socket from '@ohos.net.socket';
+import { BusinessError } from '@ohos.base';
+
+let udp: socket.UDPSocket = socket.constructUDPSocketInstance();
+udp.close((err: BusinessError) => {
   if (err) {
     console.log('close fail');
     return;
@@ -277,11 +282,13 @@ close(): Promise\<void\>
 **示例：**
 
 ```js
-let udp: socket = socket.constructUDPSocketInstance();
-let promise: socket = udp.close();
-promise.then(() => {
+import socket from '@ohos.net.socket';
+import { BusinessError } from '@ohos.base';
+
+let udp: socket.UDPSocket = socket.constructUDPSocketInstance();
+udp.close().then(() => {
   console.log('close success');
-}).catch((err: string) => {
+}).catch((err: BusinessError) => {
   console.log('close fail');
 });
 ```
@@ -314,20 +321,21 @@ getState(callback: AsyncCallback\<SocketStateBase\>): void
 **示例：**
 
 ```js
-let udp: socket = socket.constructUDPSocketInstance();
-class NetAddress {
-  address: string = '192.168.xx.xxx'
-  port: number = 8080
-  family: number = 1
+import socket from '@ohos.net.socket';
+import { BusinessError } from '@ohos.base';
+
+let udp: socket.UDPSocket = socket.constructUDPSocketInstance();
+let bindAddr : socket.NetAddress = {
+  address : '192.168.xx.xxx',
+  port: 8080
 }
-let netaddress = new NetAddress();
-udp.bind(netaddress, (err: string) => {
+udp.bind(bindAddr, (err: BusinessError) => {
   if (err) {
     console.log('bind fail');
     return;
   }
   console.log('bind success');
-  udp.getState((err: string, data: string) => {
+  udp.getState((err: BusinessError, data: socket.SocketStateBase) => {
     if (err) {
       console.log('getState fail');
       return;
@@ -359,25 +367,24 @@ getState(): Promise\<SocketStateBase\>
 **示例：**
 
 ```js
-let udp: socket = socket.constructUDPSocketInstance();
-class NetAddress {
-  address: string = '192.168.xx.xxx'
-  port: number = 8080
-  family: number = 1
+import socket from '@ohos.net.socket';
+import { BusinessError } from '@ohos.base';
+
+let udp: socket.UDPSocket = socket.constructUDPSocketInstance();
+let bindAddr : socket.NetAddress = {
+  address : '192.168.xx.xxx',
+  port: 8080
 }
-let netaddress = new NetAddress();
-let promise: socket = udp.bind(netaddress);
-promise.then((err: string) => {
+udp.bind(bindAddr, (err: BusinessError) => {
   if (err) {
     console.log('bind fail');
     return;
   }
   console.log('bind success');
-  let promise: socket = udp.getState();
-  promise.then((data: string) => {
+  udp.getState().then((data: socket.SocketStateBase) => {
     console.log('getState success:' + JSON.stringify(data));
-  }).catch((err: string) => {
-    console.log('getState fail');
+  }).catch((err: BusinessError) => {
+    console.log('getState fail' + JSON.stringify(err));
   });
 });
 ```
@@ -412,28 +419,29 @@ setExtraOptions(options: UDPExtraOptions, callback: AsyncCallback\<void\>): void
 **示例：**
 
 ```js
-let udp: socket = socket.constructUDPSocketInstance();
-class NetAddress {
-  address: string = '192.168.xx.xxx'
-  port: number = 8080
-  family: number = 1
+import socket from '@ohos.net.socket';
+import { BusinessError } from '@ohos.base';
+
+let udp: socket.UDPSocket = socket.constructUDPSocketInstance();
+
+let bindAddr : socket.NetAddress = {
+  address : '192.168.xx.xxx',
+  port: 8080
 }
-let netaddress = new NetAddress();
-udp.bind(netaddress, (err: string) => {
+udp.bind(bindAddr, (err: BusinessError) => {
   if (err) {
     console.log('bind fail');
     return;
   }
   console.log('bind success');
-  class UDPExtraOptions {
-    receiveBufferSize: number = 1000
-    sendBufferSize: number = 1000
-    reuseAddress: boolean = false
-    socketTimeout: number = 6000
-    broadcast: boolean = true
+  let udpextraoptions : socket.UDPExtraOptions = {
+    receiveBufferSize: 1000,
+    sendBufferSize: 1000,
+    reuseAddress: false,
+    socketTimeout: 6000,
+    broadcast: true
   }
-  let udpextraoptions = new UDPExtraOptions();
-  udp.setExtraOptions(udpextraoptions, (err:string) => {
+  udp.setExtraOptions(udpextraoptions, (err: BusinessError) => {
     if (err) {
       console.log('setExtraOptions fail');
       return;
@@ -478,33 +486,34 @@ setExtraOptions(options: UDPExtraOptions): Promise\<void\>
 **示例：**
 
 ```js
-let udp: socket = socket.constructUDPSocketInstance();
-class NetAddress {
-  address: string = '192.168.xx.xxx'
-  port: number = 8080
-  family: number = 1
+import socket from '@ohos.net.socket';
+import { BusinessError } from '@ohos.base';
+
+let udp: socket.UDPSocket = socket.constructUDPSocketInstance();
+
+let bindAddr : socket.NetAddress = {
+  address : '192.168.xx.xxx',
+  port: 8080
 }
-let netaddress = new NetAddress();
-class UDPExtraOptions {
-  receiveBufferSize: number = 1000
-  sendBufferSize: number = 1000
-  reuseAddress: boolean = false
-  socketTimeout: number = 6000
-  broadcast: boolean = true
-}
-let udpextraoptions = new UDPExtraOptions();
-let promise: socket = udp.bind(z);
-promise.then(() => {
+udp.bind(bindAddr, (err: BusinessError) => {
+  if (err) {
+    console.log('bind fail');
+    return;
+  }
   console.log('bind success');
-  let promise1: socket = udp.setExtraOptions(udpextraoptions);
-  promise1.then(() => {
+  let udpextraoptions : socket.UDPExtraOptions = {
+    receiveBufferSize: 1000,
+    sendBufferSize: 1000,
+    reuseAddress: false,
+    socketTimeout: 6000,
+    broadcast: true
+  }
+  udp.setExtraOptions(udpextraoptions).then(() => {
     console.log('setExtraOptions success');
-  }).catch((err: string) => {
+  }).catch((err: BusinessError) => {
     console.log('setExtraOptions fail');
   });
-}).catch((err: string) => {
-  console.log('bind fail');
-});
+})
 ```
 
 ### on('message')<sup>7+</sup>
@@ -525,11 +534,18 @@ on(type: 'message', callback: Callback\<{message: ArrayBuffer, remoteInfo: Socke
 **示例：**
 
 ```js
-let udp: socket = socket.constructUDPSocketInstance();
+import socket from "@ohos.net.socket";
+import { BusinessError } from '@ohos.base';
+let udp: socket.UDPSocket = socket.constructUDPSocketInstance();
+
+class SocketInfo {
+  message: ArrayBuffer = new ArrayBuffer(1);
+  remoteInfo: socket.SocketRemoteInfo = {} as socket.SocketRemoteInfo;
+}
 let messageView = '';
-udp.on('message', (value: Object) => {
-  for (let i = 0; i < value.message.length; i++) {
-    let messages = value.message[i]
+udp.on('message', (value: SocketInfo) => {
+  for (let i : number = 0; i < value.message.byteLength; i++) {
+    let messages : number = value.message.i
     let message = String.fromCharCode(messages);
     messageView += message;
   }
@@ -559,11 +575,17 @@ off(type: 'message', callback?: Callback\<{message: ArrayBuffer, remoteInfo: Soc
 **示例：**
 
 ```js
-let udp: socket = socket.constructUDPSocketInstance();
+import socket from "@ohos.net.socket";
+import { BusinessError } from '@ohos.base';
+class SocketInfo {
+  message: ArrayBuffer = new ArrayBuffer(1);
+  remoteInfo: socket.SocketRemoteInfo = {} as socket.SocketRemoteInfo;
+}
+let udp: socket.UDPSocket = socket.constructUDPSocketInstance();
 let messageView = '';
-let callback = (value: Object) => {
-  for (let i = 0; i < value.message.length; i++) {
-    let messages = value.message[i]
+let callback = (value: SocketInfo) => {
+  for (let i : number = 0; i < value.message.byteLength; i++) {
+    let messages : number = value.message.i
     let message = String.fromCharCode(messages);
     messageView += message;
   }
@@ -594,7 +616,9 @@ on(type: 'listening' | 'close', callback: Callback\<void\>): void
 **示例：**
 
 ```js
-let udp: socket = socket.constructUDPSocketInstance();
+import socket from "@ohos.net.socket";
+import { BusinessError } from '@ohos.base';
+let udp: socket.UDPSocket = socket.constructUDPSocketInstance();
 udp.on('listening', () => {
   console.log("on listening success");
 });
@@ -624,7 +648,9 @@ off(type: 'listening' | 'close', callback?: Callback\<void\>): void
 **示例：**
 
 ```js
-let udp: socket = socket.constructUDPSocketInstance();
+import socket from "@ohos.net.socket";
+import { BusinessError } from '@ohos.base';
+let udp: socket.UDPSocket = socket.constructUDPSocketInstance();
 let callback1 = () => {
   console.log("on listening, success");
 }
@@ -659,8 +685,10 @@ on(type: 'error', callback: ErrorCallback): void
 **示例：**
 
 ```js
-let udp: socket = socket.constructUDPSocketInstance();
-udp.on('error', (err: string) => {
+import socket from "@ohos.net.socket";
+import { BusinessError } from '@ohos.base';
+let udp: socket.UDPSocket = socket.constructUDPSocketInstance();
+udp.on('error', (err: BusinessError) => {
   console.log("on error, err:" + JSON.stringify(err))
 });
 ```
@@ -686,8 +714,10 @@ off(type: 'error', callback?: ErrorCallback): void
 **示例：**
 
 ```js
-let udp: socket = socket.constructUDPSocketInstance();
-let callback = (err: string) => {
+import socket from "@ohos.net.socket";
+import { BusinessError } from '@ohos.base';
+let udp: socket.UDPSocket = socket.constructUDPSocketInstance();
+let callback = (err: BusinessError) => {
   console.log("on error, err:" + JSON.stringify(err));
 }
 udp.on('error', callback);
@@ -781,7 +811,8 @@ constructTCPSocketInstance(): TCPSocket
 **示例：**
 
 ```js
-let tcp: socket = socket.constructTCPSocketInstance();
+import socket from "@ohos.net.socket";
+let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
 ```
 
 ## TCPSocket<sup>7+</sup>
@@ -818,14 +849,14 @@ bind(address: NetAddress, callback: AsyncCallback\<void\>): void
 **示例：**
 
 ```js
-let tcp: socket = socket.constructTCPSocketInstance();
-class NetAddress {
-  address: string = '192.168.xx.xxx'
-  port: number = 8080
-  family: number = 1
+import socket from "@ohos.net.socket";
+import { BusinessError } from '@ohos.base';
+let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
+let bindAddr : socket.NetAddress = {
+  address : '192.168.xx.xxx',
+  port: 8080
 }
-let netaddress = new NetAddress();
-tcp.bind(netaddress, (err: string) => {
+tcp.bind(bindAddr, (err: BusinessError) => {
   if (err) {
     console.log('bind fail');
     return;
@@ -869,17 +900,16 @@ bind(address: NetAddress): Promise\<void\>
 **示例：**
 
 ```js
-let tcp: socket = socket.constructTCPSocketInstance();
-class NetAddress {
-  address: string = '192.168.xx.xxx'
-  port: number = 8080
-  family: number = 1
+import socket from "@ohos.net.socket";
+import { BusinessError } from '@ohos.base';
+let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
+let bindAddr : socket.NetAddress = {
+  address : '192.168.xx.xxx',
+  port: 8080
 }
-let netaddress = new NetAddress();
-let promise: socket = tcp.bind(netaddress);
-promise.then(() => {
+tcp.bind(bindAddr).then(() => {
   console.log('bind success');
-}).catch((err: string) => {
+}).catch((err: BusinessError) => {
   console.log('bind fail');
 });
 ```
@@ -914,18 +944,18 @@ connect(options: TCPConnectOptions, callback: AsyncCallback\<void\>): void
 **示例：**
 
 ```js
-let tcp: socket = socket.constructTCPSocketInstance();
-class NetAddress {
-  address: string = '192.168.xx.xxx'
-  port: number = 8080
-  family: number = 1
+import socket from "@ohos.net.socket";
+import { BusinessError } from '@ohos.base';
+let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
+
+let tcpconnectoptions : socket.TCPConnectOptions = {
+  address : {
+    address : '192.168.xx.xxx',
+    port : 8080
+  },
+  timeout : 6000
 }
-class TCPConnectOptions {
-  address: Object = new NetAddress()
-  timeout: number = 6000
-}
-let tcpconnectoptions = new TCPConnectOptions();
-tcp.connect(tcpconnectoptions, (err: string) => {
+tcp.connect(tcpconnectoptions, (err: BusinessError) => {
   if (err) {
     console.log('connect fail');
     return;
@@ -966,21 +996,20 @@ connect(options: TCPConnectOptions): Promise\<void\>
 **示例：**
 
 ```js
-let tcp: socket = socket.constructTCPSocketInstance();
-class NetAddress {
-  address: string = '192.168.xx.xxx'
-  port: number = 8080
-  family: number = 1
+import socket from "@ohos.net.socket";
+import { BusinessError } from '@ohos.base';
+let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
+
+let tcpconnectoptions : socket.TCPConnectOptions = {
+  address : {
+    address : '192.168.xx.xxx',
+    port : 8080
+  },
+  timeout : 6000
 }
-class TCPConnectOptions {
-  address: Object = new NetAddress()
-  timeout: number = 6000
-}
-let tcpconnectoptions = new TCPConnectOptions();
-let promise: socket = tcp.connect(tcpconnectoptions);
-promise.then(() => {
+tcp.connect(tcpconnectoptions).then(() => {
   console.log('connect success')
-}).catch((err: string) => {
+}).catch((err: BusinessError) => {
   console.log('connect fail');
 });
 ```
@@ -1015,24 +1044,23 @@ send(options: TCPSendOptions, callback: AsyncCallback\<void\>): void
 **示例：**
 
 ```js
-let tcp: socket = socket.constructTCPSocketInstance();
-class NetAddress {
-  address: string = '192.168.xx.xxx'
-  port: number = 8080
-  family: number = 1
+import socket from "@ohos.net.socket";
+import { BusinessError } from '@ohos.base';
+let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
+
+let tcpconnectoptions : socket.TCPConnectOptions = {
+  address : {
+    address : '192.168.xx.xxx',
+    port : 8080
+  },
+  timeout : 6000
 }
-class TCPConnectOptions {
-  address: Object = new NetAddress()
-  timeout: number = 6000
-}
-let tcpconnectoptions = new TCPConnectOptions();
-class Data {
-  data: string = 'Hello, server!
-}
-let data = new Data();
 tcp.connect(tcpconnectoptions, () => {
   console.log('connect success');
-  tcp.send(data, (err: string) => {
+  let tcpSendOptions : socket.TCPSendOptions = {
+    data : 'Hello, server!'
+  }
+  tcp.send(tcpSendOptions, (err: BusinessError) => {
     if (err) {
       console.log('send fail');
       return;
@@ -1077,33 +1105,28 @@ send(options: TCPSendOptions): Promise\<void\>
 **示例：**
 
 ```js
-let tcp: socket = socket.constructTCPSocketInstance();
-class NetAddress {
-  address: string = '192.168.xx.xxx'
-  port: number = 8080
-  family: number = 1
+import socket from "@ohos.net.socket";
+import { BusinessError } from '@ohos.base';
+let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
+
+let tcpconnectoptions : socket.TCPConnectOptions = {
+  address : {
+    address : '192.168.xx.xxx',
+    port : 8080
+  },
+  timeout : 6000
 }
-class TCPConnectOptions {
-  address: Object = new NetAddress()
-  timeout: number = 6000
-}
-let tcpconnectoptions = new TCPConnectOptions();
-class Data {
-  data: string = 'Hello, server!'
-}
-let data = new Data();
-let promise1: socket = tcp.connect(tcpconnectoptions);
-promise1.then(() => {
+tcp.connect(tcpconnectoptions, () => {
   console.log('connect success');
-  let promise2: socket = tcp.send(data);
-  promise2.then(() => {
+  let tcpSendOptions : socket.TCPSendOptions = {
+    data : 'Hello, server!'
+  }
+  tcp.send(tcpSendOptions).then(() => {
     console.log('send success');
-  }).catch((err: string) => {
+  }).catch((err: BusinessError) => {
     console.log('send fail');
   });
-}).catch((err: string) => {
-  console.log('connect fail');
-});
+})
 ```
 
 ### close<sup>7+</sup>
@@ -1131,8 +1154,11 @@ close(callback: AsyncCallback\<void\>): void
 **示例：**
 
 ```js
-let tcp: socket = socket.constructTCPSocketInstance();
-tcp.close((err：string) => {
+import socket from "@ohos.net.socket";
+import { BusinessError } from '@ohos.base';
+let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
+
+tcp.close((err：BusinessError) => {
   if (err) {
     console.log('close fail');
     return;
@@ -1166,11 +1192,12 @@ close(): Promise\<void\>
 **示例：**
 
 ```js
-let tcp: socket = socket.constructTCPSocketInstance();
-let promise: socket = tcp.close();
-promise.then(() => {
+import socket from "@ohos.net.socket";
+let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
+
+tcp.close().then(() => {
   console.log('close success');
-}).catch((err: string) => {
+}).catch((err: BusinessError) => {
   console.log('close fail');
 });
 ```
@@ -1203,20 +1230,20 @@ getRemoteAddress(callback: AsyncCallback\<NetAddress\>): void
 **示例：**
 
 ```js
-let tcp: socket = socket.constructTCPSocketInstance();
-class NetAddress {
-  address: string = '192.168.xx.xxx'
-  port: number = 8080
-  family: number = 1
+import socket from "@ohos.net.socket";
+import { BusinessError } from '@ohos.base';
+let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
+
+let tcpconnectoptions : socket.TCPConnectOptions = {
+  address : {
+    address : '192.168.xx.xxx',
+    port : 8080
+  },
+  timeout : 6000
 }
-class TCPConnectOptions {
-  address: Object = new NetAddress()
-  timeout: number = 6000
-}
-let tcpconnectoptions = new TCPConnectOptions();
 tcp.connect(tcpconnectoptions, () => {
   console.log('connect success');
-  tcp.getRemoteAddress((err: string, data: string) => {
+  tcp.getRemoteAddress((err: BusinessError, data: socket.NetAddress) => {
     if (err) {
       console.log('getRemoteAddressfail');
       return;
@@ -1254,27 +1281,25 @@ getRemoteAddress(): Promise\<NetAddress\>
 **示例：**
 
 ```js
-let tcp: socket = socket.constructTCPSocketInstance();
-class NetAddress {
-  address: string = '192.168.xx.xxx'
-  port: number = 8080
-  family: number = 1
+import socket from "@ohos.net.socket";
+import { BusinessError } from '@ohos.base';
+let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
+
+let tcpconnectoptions : socket.TCPConnectOptions = {
+  address : {
+    address : '192.168.xx.xxx',
+    port : 8080
+  },
+  timeout : 6000
 }
-class TCPConnectOptions {
-  address: Object = new NetAddress()
-  timeout: number = 6000
-}
-let tcpconnectoptions = new TCPConnectOptions();
-let promise1: socket = tcp.connect(tcpconnectoptions);
-promise1.then(() => {
+tcp.connect(tcpconnectoptions).then(() => {
   console.log('connect success');
-  let promise2: socket = tcp.getRemoteAddress();
-  promise2.then(() => {
+  tcp.getRemoteAddress().then(() => {
     console.log('getRemoteAddress success');
-  }).catch((err: string) => {
+  }).catch((err: BusinessError) => {
     console.log('getRemoteAddressfail');
   });
-}).catch((err: string) => {
+}).catch((err: BusinessError) => {
   console.log('connect fail');
 });
 ```
@@ -1307,20 +1332,20 @@ getState(callback: AsyncCallback\<SocketStateBase\>): void
 **示例：**
 
 ```js
-let tcp: socket = socket.constructTCPSocketInstance();
-class NetAddress {
-  address: string = '192.168.xx.xxx'
-  port: number = 8080
-  family: number = 1
+import socket from "@ohos.net.socket";
+import { BusinessError } from '@ohos.base';
+let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
+
+let tcpconnectoptions : socket.TCPConnectOptions = {
+  address : {
+    address : '192.168.xx.xxx',
+    port : 8080
+  },
+  timeout : 6000
 }
-class TCPConnectOptions {
-  address: Object = new NetAddress()
-  timeout: number = 6000
-}
-let tcpconnectoptions = new TCPConnectOptions();
-let promise: socket = tcp.connect(tcpconnectoptions, () => {
+tcp.connect(tcpconnectoptions, () => {
   console.log('connect success');
-  tcp.getState((err: string, data: string) => {
+  tcp.getState((err: BusinessError, data: socket.SocketStateBase) => {
     if (err) {
       console.log('getState fail');
       return;
@@ -1358,27 +1383,25 @@ getState(): Promise\<SocketStateBase\>
 **示例：**
 
 ```js
-let tcp: socket = socket.constructTCPSocketInstance();
-class NetAddress {
-  address: string = '192.168.xx.xxx'
-  port: number = 8080
-  family: number = 1
+import socket from "@ohos.net.socket";
+import { BusinessError } from '@ohos.base';
+let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
+
+let tcpconnectoptions : socket.TCPConnectOptions = {
+  address : {
+    address : '192.168.xx.xxx',
+    port : 8080
+  },
+  timeout : 6000
 }
-class TCPConnectOptions {
-  address: Object = new NetAddress()
-  timeout: number = 6000
-}
-let tcpconnectoptions = new TCPConnectOptions();
-let promise: socket = tcp.connect(tcpconnectoptions);
-promise.then(() => {
+tcp.connect(tcpconnectoptions).then(() => {
   console.log('connect success');
-  let promise1: socket = tcp.getState();
-  promise1.then(() => {
+  tcp.getState().then(() => {
     console.log('getState success');
-  }).catch((err: string) => {
+  }).catch((err: BusinessError) => {
     console.log('getState fail');
   });
-}).catch((err: string) => {
+}).catch((err: BusinessError) => {
   console.log('connect fail');
 });
 ```
@@ -1403,28 +1426,25 @@ getSocketFd(callback: AsyncCallback\<number\>): void
 **示例：**
 
 ```js
-  import socket from "@ohos.net.socket";
-  let tcp: socket = socket.constructTCPSocketInstance();
-  let tunnelfd = 0
-  class Address {
-    address: string = "0.0.0.0"
-    family: number = 1
-  }
-  class NetAddress {
-    address: string = '192.168.1.11'
-    port: number = 8888
-    family: number = 1
-  }
-  class TCPConnectOptions {
-    address: Object = new NetAddress()
-    timeout: number = 6000
-  }
-  tcp.bind(new Address())
-  tcp.connect(new TCPConnectOptions())
-  tcp.getSocketFd((data: string) => {
-    console.info("tunenlfd: " + data);
-    tunnelfd = data
-  })
+import socket from "@ohos.net.socket";
+import { BusinessError } from '@ohos.base';
+let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
+let bindAddr : socket.NetAddress = {
+  address : '0.0.0.0'
+}
+tcp.bind(bindAddr)
+let tcpconnectoptions : socket.TCPConnectOptions = {
+  address : {
+    address : '192.168.xx.xxx',
+    port : 8080
+  },
+  timeout : 6000
+}
+tcp.connect(tcpconnectoptions)
+tcp.getSocketFd((err: BusinessError, data: number) => {
+  console.info("getSocketFd failed: " + err);
+  console.info("tunenlfd: " + data);
+})
 ```
 ### getSocketFd<sup>10+</sup>
 
@@ -1446,28 +1466,24 @@ getSocketFd(): Promise\<number\>
 **示例：**
 
 ```js
-  import socket from "@ohos.net.socket";
-  let tcp: socket = socket.constructTCPSocketInstance();
-  let tunnelfd = 0
-  class Address {
-  address: string = "0.0.0.0"
-  family: number = 1
-  }
-  class NetAddress {
-    address: string = '192.168.1.11'
-    port: number = 8888
-    family: number = 1
-  }
-  class TCPConnectOptions {
-    address: Object = new NetAddress()
-    timeout: number = 6000
-  }
-  tcp.bind(new Address())
-  tcp.connect(new TCPConnectOptions())
-  tcp.getSocketFd().then((data: string) => {
-      console.info("tunenlfd: " + data);
-      tunnelfd = data
-  })
+import socket from "@ohos.net.socket";
+import { BusinessError } from '@ohos.base';
+let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
+let bindAddr : socket.NetAddress = {
+  address : '0.0.0.0'
+}
+tcp.bind(bindAddr)
+let tcpconnectoptions : socket.TCPConnectOptions = {
+  address : {
+    address : '192.168.xx.xxx',
+    port : 8080
+  },
+  timeout : 6000
+}
+tcp.connect(tcpconnectoptions)
+tcp.getSocketFd().then((data: number) => {
+  console.info("tunenlfd: " + data);
+})
 ```
 
 ### setExtraOptions<sup>7+</sup>
@@ -1500,33 +1516,29 @@ setExtraOptions(options: TCPExtraOptions, callback: AsyncCallback\<void\>): void
 **示例：**
 
 ```js
-let tcp: socket = socket.constructTCPSocketInstance();
-class NetAddress {
-  address: string = '192.168.xx.xxx'
-  port: number = 8080
-  family: number = 1
+import socket from "@ohos.net.socket";
+import { BusinessError } from '@ohos.base';
+let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
+let tcpconnectoptions : socket.TCPConnectOptions = {
+  address : {
+    address : '192.168.xx.xxx',
+    port : 8080
+  },
+  timeout : 6000
 }
-class TCPConnectOptions {
-  address: Object = new NetAddress()
-  timeout: number = 6000
-}
-class Linger {
-  on: boolean = true
-  linger: number = 10
-}
-class TCPExtraOptions {
-  keepAlive: boolean = true
-  OOBInline: boolean = true
-  TCPNoDelay: boolean = true
-  socketLinger: Object = new Linger()
-  receiveBufferSize: number = 1000
-  sendBufferSize: number = 1000
-  reuseAddress: boolean = true
-  socketTimeout: number = 3000
-}
-let promise: socket = tcp.connect(new TCPConnectOptions(), () => {
+tcp.connect(tcpconnectoptions, () => {
   console.log('connect success');
-  tcp.setExtraOptions(new TCPExtraOptions(), (err: string) => {
+  let tcpExtraOptions : socket.TCPExtraOptions = {
+    keepAlive: true,
+    OOBInline: true,
+    TCPNoDelay: true,
+    socketLinger: { on: true, linger: 10 },
+    receiveBufferSize: 1000,
+    sendBufferSize: 1000,
+    reuseAddress: true,
+    socketTimeout: 3000
+  }
+  tcp.setExtraOptions(tcpExtraOptions, (err: BusinessError) => {
     if (err) {
       console.log('setExtraOptions fail');
       return;
@@ -1571,41 +1583,33 @@ setExtraOptions(options: TCPExtraOptions): Promise\<void\>
 **示例：**
 
 ```js
-let tcp: socket = socket.constructTCPSocketInstance();
-class NetAddress {
-  address: string = '192.168.xx.xxx'
-  port: number = 8080
-  family: number = 1
+import socket from "@ohos.net.socket";
+import { BusinessError } from '@ohos.base';
+let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
+let tcpconnectoptions : socket.TCPConnectOptions = {
+  address : {
+    address : '192.168.xx.xxx',
+    port : 8080
+  },
+  timeout : 6000
 }
-class TCPConnectOptions {
-  address: Object = new NetAddress()
-  timeout: number = 6000
-}
-class Linger {
-  on: boolean = true
-  linger: number = 10
-}
-class TCPExtraOptions {
-  keepAlive: boolean = true
-  OOBInline: boolean = true
-  TCPNoDelay: boolean = true
-  socketLinger: Object = new Linger()
-  receiveBufferSize: number = 1000
-  sendBufferSize: number = 1000
-  reuseAddress: boolean = true
-  socketTimeout: number = 3000
-}
-let promise: socket = tcp.connect(new TCPConnectOptions());
-promise.then(() => {
+tcp.connect(tcpconnectoptions, () => {
   console.log('connect success');
-  let promise1: socket = tcp.setExtraOptions(new TCPExtraOptions());
-  promise1.then(() => {
+  let tcpExtraOptions : socket.TCPExtraOptions = {
+    keepAlive: true,
+    OOBInline: true,
+    TCPNoDelay: true,
+    socketLinger: { on: true, linger: 10 },
+    receiveBufferSize: 1000,
+    sendBufferSize: 1000,
+    reuseAddress: true,
+    socketTimeout: 3000
+  }
+  tcp.setExtraOptions(tcpExtraOptions).then(() => {
     console.log('setExtraOptions success');
-  }).catch((err: string) => {
+  }).catch((err: BusinessError) => {
     console.log('setExtraOptions fail');
   });
-}).catch((err: string) => {
-  console.log('connect fail');
 });
 ```
 
@@ -1627,11 +1631,17 @@ on(type: 'message', callback: Callback<{message: ArrayBuffer, remoteInfo: Socket
 **示例：**
 
 ```js
-let tcp: socket = socket.constructTCPSocketInstance();
+import socket from "@ohos.net.socket";
+import { BusinessError } from '@ohos.base';
+let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
+class SocketInfo {
+  message: ArrayBuffer = new ArrayBuffer(1);
+  remoteInfo: socket.SocketRemoteInfo = {} as socket.SocketRemoteInfo;
+}
 let messageView = '';
-tcp.on('message', (value: Object) => {
-  for (let i = 0; i < value.message.length; i++) {
-    let messages = value.message[i]
+tcp.on('message', (value: SocketInfo) => {
+  for (let i : number = 0; i < value.message.byteLength; i++) {
+    let messages : number = value.message.i
     let message = String.fromCharCode(messages);
     messageView += message;
   }
@@ -1661,11 +1671,17 @@ off(type: 'message', callback?: Callback<{message: ArrayBuffer, remoteInfo: Sock
 **示例：**
 
 ```js
-let tcp: socket = socket.constructTCPSocketInstance();
+import socket from "@ohos.net.socket";
+import { BusinessError } from '@ohos.base';
+let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
+class SocketInfo {
+  message: ArrayBuffer = new ArrayBuffer(1);
+  remoteInfo: socket.SocketRemoteInfo = {} as socket.SocketRemoteInfo;
+}
 let messageView = '';
-let callback = (value: Object) => {
-  for (let i = 0; i < value.message.length; i++) {
-    let messages = value.message[i]
+let callback = (value: SocketInfo) => {
+  for (let i : number = 0; i < value.message.byteLength; i++) {
+    let messages : number = value.message.i
     let message = String.fromCharCode(messages);
     messageView += message;
   }
@@ -1696,7 +1712,9 @@ on(type: 'connect' | 'close', callback: Callback\<void\>): void
 **示例：**
 
 ```js
-let tcp: socket = socket.constructTCPSocketInstance();
+import socket from "@ohos.net.socket";
+import { BusinessError } from '@ohos.base';
+let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
 tcp.on('connect', () => {
   console.log("on connect success")
 });
@@ -1726,7 +1744,9 @@ off(type: 'connect' | 'close', callback?: Callback\<void\>): void
 **示例：**
 
 ```js
-let tcp: socket = socket.constructTCPSocketInstance();
+import socket from "@ohos.net.socket";
+import { BusinessError } from '@ohos.base';
+let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
 let callback1 = () => {
   console.log("on connect success");
 }
@@ -1761,8 +1781,10 @@ on(type: 'error', callback: ErrorCallback): void
 **示例：**
 
 ```js
-let tcp: socket = socket.constructTCPSocketInstance();
-tcp.on('error', (err: string) => {
+import socket from "@ohos.net.socket";
+import { BusinessError } from '@ohos.base';
+let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
+tcp.on('error', (err: BusinessError) => {
   console.log("on error, err:" + JSON.stringify(err))
 });
 ```
@@ -1788,8 +1810,10 @@ off(type: 'error', callback?: ErrorCallback): void
 **示例：**
 
 ```js
-let tcp = socket.constructTCPSocketInstance();
-let callback = (err: string) => {
+import socket from "@ohos.net.socket";
+import { BusinessError } from '@ohos.base';
+let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
+let callback = (err: BusinessError) => {
   console.log("on error, err:" + JSON.stringify(err));
 }
 tcp.on('error', callback);
@@ -1854,7 +1878,8 @@ constructTCPSocketServerInstance(): TCPSocketServer
 **示例：**
 
 ```js
-let tcpServer: socket = socket.constructTCPSocketServerInstance();
+import socket from "@ohos.net.socket";
+let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
 ```
 
 ## TCPSocketServer<sup>10+</sup>
@@ -1896,13 +1921,15 @@ listen(address: NetAddress, callback: AsyncCallback\<void\>): void
 **示例：**
 
 ```js
-let tcpServer: socket = socket.constructTCPSocketServerInstance();
-class NetAddress {
-  address: string = '192.168.xx.xxx'
-  port: number = 8080
-  family: number = 1
+import socket from "@ohos.net.socket";
+import { BusinessError } from '@ohos.base';
+let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
+let listenAddr : socket.NetAddress = {
+  address:  '192.168.xx.xxx',
+  port: 8080,
+  family: 1
 }
-tcpServer.listen(NetAddress(), (err: string) => {
+tcpServer.listen(listenAddr, (err: BusinessError) => {
   if (err) {
     console.log("listen fail");
     return;
@@ -1951,16 +1978,17 @@ listen(address: NetAddress): Promise\<void\>
 **示例：**
 
 ```js
-let tcpServer: socket = socket.constructTCPSocketServerInstance();
-class NetAddress {
-  address: string = '192.168.xx.xxx'
-  port: number = 8080
-  family: number = 1
+import socket from "@ohos.net.socket";
+import { BusinessError } from '@ohos.base';
+let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
+let listenAddr : socket.NetAddress = {
+  address:  '192.168.xx.xxx',
+  port: 8080,
+  family: 1
 }
-let promise: socket = tcpServer.listen(new NetAddress());
-promise.then(() => {
+tcpServer.listen(listenAddr).then(() => {
   console.log('listen success');
-}).catch((err: string) => {
+}).catch((err: BusinessError) => {
   console.log('listen fail');
 });
 ```
@@ -1996,20 +2024,22 @@ getState(callback: AsyncCallback\<SocketStateBase\>): void
 **示例：**
 
 ```js
-let tcpServer: socket = socket.constructTCPSocketServerInstance();
-class NetAddress {
-  address: string = '192.168.xx.xxx'
-  port: number = 8080
-  family: number = 1
+import socket from "@ohos.net.socket";
+import { BusinessError } from '@ohos.base';
+let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
+let listenAddr : socket.NetAddress = {
+  address:  '192.168.xx.xxx',
+  port: 8080,
+  family: 1
 }
-tcpServer.listen(NetAddress(), (err: string) => {
+tcpServer.listen(listenAddr, (err: BusinessError) => {
   if (err) {
     console.log("listen fail");
     return;
   }
   console.log("listen success");
 })
-tcpServer.getState((err: string, data: string) => {
+tcpServer.getState((err: BusinessError, data: socket.SocketStateBase) => {
   if (err) {
     console.log('getState fail');
     return;
@@ -2048,22 +2078,24 @@ getState(): Promise\<SocketStateBase\>
 **示例：**
 
 ```js
-let tcpServer: socket = socket.constructTCPSocketServerInstance();
-class NetAddress {
-  address: string = '192.168.xx.xxx'
-  port: number = 8080
-  family: number = 1
+import socket from "@ohos.net.socket";
+import { BusinessError } from '@ohos.base';
+let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
+let listenAddr : socket.NetAddress = {
+  address:  '192.168.xx.xxx',
+  port: 8080,
+  family: 1
 }
-let promiseListen: socket = tcpServer.listen(NetAddress());
-promiseListen.then(() => {
-  console.log('listen success');
-}).catch((err: string) => {
-  console.log('listen fail');
-});
-let promise: socket = tcpServer.getState();
-promise.then(() => {
-  console.log('getState success');
-}).catch((err: string) => {
+tcpServer.listen(listenAddr, (err: BusinessError) => {
+  if (err) {
+    console.log("listen fail");
+    return;
+  }
+  console.log("listen success");
+})
+tcpServer.getState().then((data: socket.SocketStateBase) => {
+  console.log('getState success' + JSON.stringify(data));
+}).catch((err: BusinessError) => {
   console.log('getState fail');
 });
 ```
@@ -2100,34 +2132,33 @@ setExtraOptions(options: TCPExtraOptions, callback: AsyncCallback\<void\>): void
 **示例：**
 
 ```js
-let tcpServer: socket = socket.constructTCPSocketServerInstance();
-class NetAddress {
-  address: string = '192.168.xx.xxx'
-  port: number = 8080
-  family: number = 1
+import socket from "@ohos.net.socket";
+import { BusinessError } from '@ohos.base';
+let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
+let listenAddr : socket.NetAddress = {
+  address:  '192.168.xx.xxx',
+  port: 8080,
+  family: 1
 }
-tcpServer.listen(NetAddress(), (err: string) => {
+tcpServer.listen(listenAddr, (err: BusinessError) => {
   if (err) {
     console.log("listen fail");
     return;
   }
   console.log("listen success");
 })
-class Linger {
-  on: boolean = true
-  linger: number = 10
+
+let tcpExtraOptions : socket.TCPExtraOptions = {
+  keepAlive: true,
+  OOBInline: true,
+  TCPNoDelay: true,
+  socketLinger: { on: true, linger: 10 },
+  receiveBufferSize: 1000,
+  sendBufferSize: 1000,
+  reuseAddress: true,
+  socketTimeout: 3000
 }
-class TCPExtraOptions {
-  keepAlive: boolean = true
-  OOBInline: boolean = true
-  TCPNoDelay: boolean = true
-  socketLinger: Object = new Linger()
-  receiveBufferSize: number = 1000
-  sendBufferSize: number = 1000
-  reuseAddress: boolean = true
-  socketTimeout: number = 3000
-}
-tcpServer.setExtraOptions(new TCPExtraOptions(), (err: string) => {
+tcpServer.setExtraOptions(tcpExtraOptions, (err: BusinessError) => {
   if (err) {
     console.log('setExtraOptions fail');
     return;
@@ -2173,36 +2204,35 @@ setExtraOptions(options: TCPExtraOptions): Promise\<void\>
 **示例：**
 
 ```js
-let tcpServer: socket = socket.constructTCPSocketServerInstance();
-class NetAddress {
-  address: string = '192.168.xx.xxx'
-  port: number = 8080
-  family: number = 1
+import socket from "@ohos.net.socket";
+import { BusinessError } from '@ohos.base';
+let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
+let listenAddr : socket.NetAddress = {
+  address:  '192.168.xx.xxx',
+  port: 8080,
+  family: 1
 }
-let promiseListen: socket = tcpServer.listen(new NetAddress());
-promiseListen.then(() => {
-  console.log('listen success');
-}).catch((err: string) => {
-  console.log('listen fail');
-});
-class Linger {
-  on: boolean = true
-  linger: number = 10
+tcpServer.listen(listenAddr, (err: BusinessError) => {
+  if (err) {
+    console.log("listen fail");
+    return;
+  }
+  console.log("listen success");
+})
+
+let tcpExtraOptions : socket.TCPExtraOptions = {
+  keepAlive: true,
+  OOBInline: true,
+  TCPNoDelay: true,
+  socketLinger: { on: true, linger: 10 },
+  receiveBufferSize: 1000,
+  sendBufferSize: 1000,
+  reuseAddress: true,
+  socketTimeout: 3000
 }
-class TCPExtraOptions {
-  keepAlive: boolean = true
-  OOBInline: boolean = true
-  TCPNoDelay: boolean = true
-  socketLinger: Object = new Linger()
-  receiveBufferSize: number = 1000
-  sendBufferSize: number = 1000
-  reuseAddress: boolean = true
-  socketTimeout: number = 3000
-}
-let promise: socket = tcpServer.setExtraOptions(new TCPExtraOptions());
-promise.then(() => {
+tcpServer.setExtraOptions(tcpExtraOptions).then(() => {
   console.log('setExtraOptions success');
-}).catch((err: string) => {
+}).catch((err: BusinessError) => {
   console.log('setExtraOptions fail');
 });
 ```
@@ -2234,8 +2264,9 @@ on(type: 'connect', callback: Callback\<TCPSocketConnection\>): void
 **示例：**
 
 ```js
-let tcpServer: socket = socket.constructTCPSocketServerInstance();
-tcpServer.on('connect', (data: string) => {
+import socket from "@ohos.net.socket";
+let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
+tcpServer.on('connect', (data: socket.TCPSocketConnection) => {
   console.log(JSON.stringify(data))
 });
 ```
@@ -2267,8 +2298,9 @@ off(type: 'connect', callback?: Callback\<TCPSocketConnection\>): void
 **示例：**
 
 ```js
-let tcpServer: socket = socket.constructTCPSocketServerInstance();
-let callback = (data: string) => {
+import socket from "@ohos.net.socket";
+let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
+let callback = (data: socket.TCPSocketConnection) => {
   console.log('on connect message: ' + JSON.stringify(data));
 }
 tcpServer.on('connect', callback);
@@ -2304,8 +2336,10 @@ on(type: 'error', callback: ErrorCallback): void
 **示例：**
 
 ```js
-let tcpServer: socket = socket.constructTCPSocketServerInstance();
-tcpServer.on('error', (err: string) => {
+import socket from "@ohos.net.socket";
+import { BusinessError } from '@ohos.base';
+let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
+tcpServer.on('error', (err: BusinessError) => {
   console.log("on error, err:" + JSON.stringify(err))
 });
 ```
@@ -2337,8 +2371,10 @@ off(type: 'error', callback?: ErrorCallback): void
 **示例：**
 
 ```js
-let tcpServer: socket = socket.constructTCPSocketServerInstance();
-let callback = (err: string) => {
+import socket from "@ohos.net.socket";
+import { BusinessError } from '@ohos.base';
+let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
+let callback = (err: BusinessError) => {
   console.log("on error, err:" + JSON.stringify(err));
 }
 tcpServer.on('error', callback);
@@ -2393,16 +2429,14 @@ send(options: TCPSendOptions, callback: AsyncCallback\<void\>): void
 **示例：**
 
 ```js
-class Data {
-  data: string = 'Hello, client!'
-}
-let tcpServer: socket = socket.constructTCPSocketServerInstance();
-tcpServer.on('connect', (client: socket) => {
-  client.send(new Data(), (err: string) => {
-    if (err) {
-      console.log('send fail');
-      return;
-    }
+import socket from "@ohos.net.socket";
+let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
+
+tcpServer.on('connect', (client : socket.TCPSocketConnection) => {
+  let tcpSendOption : socket.TCPSendOptions = {
+    data : 'Hello, client!'
+  }
+  client.send(tcpSendOption, () => {
     console.log('send success');
   });
 });
@@ -2444,15 +2478,17 @@ send(options: TCPSendOptions): Promise\<void\>
 **示例：**
 
 ```js
-class Data {
-  data: string = 'Hello, client!'
-}
-let tcpServer: socket = socket.constructTCPSocketServerInstance();
-tcpServer.on('connect', (client: socket) => {
-  let promise: socket = client.send(new Data());
-  promise.then(() => {
+import socket from "@ohos.net.socket";
+import { BusinessError } from '@ohos.base';
+let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
+
+tcpServer.on('connect', (client: socket.TCPSocketConnection) => {
+  let tcpSendOption : socket.TCPSendOptions = {
+    data : 'Hello, client!'
+  }
+  client.send(tcpSendOption).then(() => {
     console.log('send success');
-  }).catch((err: string) => {
+  }).catch((err: BusinessError) => {
     console.log('send fail');
   });
 });
@@ -2485,9 +2521,12 @@ close(callback: AsyncCallback\<void\>): void
 **示例：**
 
 ```js
-let tcpServer: socket = socket.constructTCPSocketServerInstance();
-tcpServer.on('connect', (client: socket) => {
-  client.close((err: string) => {
+import socket from "@ohos.net.socket";
+import { BusinessError } from '@ohos.base';
+let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
+
+tcpServer.on('connect', (client: socket.TCPSocketConnection) => {
+  client.close((err: BusinessError) => {
     if (err) {
       console.log('close fail');
       return;
@@ -2523,12 +2562,12 @@ close(): Promise\<void\>
 **示例：**
 
 ```js
-let tcpServer: socket = socket.constructTCPSocketServerInstance();
-tcpServer.on('connect', (client: socket) => {
-  let promise: socket = client.close();
-  promise.then(() => {
+import socket from "@ohos.net.socket";
+let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
+tcpServer.on('connect', (client: socket.TCPSocketConnection) => {
+  client.close().then(() => {
   	console.log('close success');
-  }).catch((err: string) => {
+  }).catch((err: BusinessError) => {
   	console.log('close fail');
   });
 });
@@ -2565,9 +2604,11 @@ getRemoteAddress(callback: AsyncCallback\<NetAddress\>): void
 **示例：**
 
 ```js
-let tcpServer: socket = socket.constructTCPSocketServerInstance();
-tcpServer.on('connect', (client: socket) => {
-  client.getRemoteAddress((err: string, data: string) => {
+import socket from "@ohos.net.socket";
+import { BusinessError } from '@ohos.base';
+let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
+tcpServer.on('connect', (client: socket.TCPSocketConnection) => {
+  client.getRemoteAddress((err: BusinessError, data: socket.NetAddress) => {
     if (err) {
       console.log('getRemoteAddress fail');
       return;
@@ -2607,12 +2648,13 @@ getRemoteAddress(): Promise\<NetAddress\>
 **示例：**
 
 ```js
-let tcpServer: socket = socket.constructTCPSocketServerInstance();
-tcpServer.on('connect', (client: socket) => {
-  let promise: socket = client.getRemoteAddress();
-  promise.then(() => {
+import socket from "@ohos.net.socket";
+import { BusinessError } from '@ohos.base';
+let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
+tcpServer.on('connect', (client: socket.TCPSocketConnection) => {
+  client.getRemoteAddress().then(() => {
     console.log('getRemoteAddress success');
-  }).catch((err: string) => {
+  }).catch((err: BusinessError) => {
     console.log('getRemoteAddress fail');
   });
 });
@@ -2642,12 +2684,19 @@ on(type: 'message', callback: Callback<{message: ArrayBuffer, remoteInfo: Socket
 **示例：**
 
 ```js
-let tcpServer: socket = socket.constructTCPSocketServerInstance();
-tcpServer.on('connect', (client: socket) => {
-  client.on('message', (value: Object) => {
+import socket from "@ohos.net.socket";
+import { BusinessError } from '@ohos.base';
+let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
+
+class SocketInfo {
+  message: ArrayBuffer = new ArrayBuffer(1);
+  remoteInfo: socket.SocketRemoteInfo = {} as socket.SocketRemoteInfo;
+}
+tcpServer.on('connect', (client: socket.TCPSocketConnection) => {
+  client.on('message', (value: SocketInfo) => {
     let messageView = '';
-    for (let i = 0; i < value.message.length; i++) {
-      let messages = value.message[i];
+    for (let i : number = 0; i < value.message.byteLength; i++) {
+      let messages : number = value.message.i
       let message = String.fromCharCode(messages);
       messageView += message;
     }
@@ -2684,18 +2733,24 @@ off(type: 'message', callback?: Callback<{message: ArrayBuffer, remoteInfo: Sock
 **示例：**
 
 ```js
-let callback = (value: Object) => {
+import socket from "@ohos.net.socket";
+import { BusinessError } from '@ohos.base';
+let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
+class SocketInfo {
+  message: ArrayBuffer = new ArrayBuffer(1);
+  remoteInfo: socket.SocketRemoteInfo = {} as socket.SocketRemoteInfo;
+}
+let callback = (value: SocketInfo) => {
   let messageView = '';
-  for (let i = 0; i < value.message.length; i++) {
-    let messages = value.message[i];
+  for (let i : number = 0; i < value.message.byteLength; i++) {
+    let messages : number = value.message.i
     let message = String.fromCharCode(messages);
     messageView += message;
   }
   console.log('on message message: ' + JSON.stringify(messageView));
   console.log('remoteInfo: ' + JSON.stringify(value.remoteInfo));
 }
-let tcpServer: socket = socket.constructTCPSocketServerInstance();
-tcpServer.on('connect', (client: socket) => {
+tcpServer.on('connect', (client: socket.TCPSocketConnection) => {
   client.on('message', callback);
   // 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
   client.off('message', callback);
@@ -2727,8 +2782,10 @@ on(type: 'close', callback: Callback\<void\>): void
 **示例：**
 
 ```js
-let tcpServer: socket = socket.constructTCPSocketServerInstance();
-tcpServer.on('connect', (client: socket) => {
+import socket from "@ohos.net.socket";
+import { BusinessError } from '@ohos.base';
+let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
+tcpServer.on('connect', (client: socket.TCPSocketConnection) => {
   client.on('close', () => {
     console.log("on close success")
   });
@@ -2762,11 +2819,12 @@ off(type: 'close', callback?: Callback\<void\>): void
 **示例：**
 
 ```js
+import socket from "@ohos.net.socket";
+let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
 let callback = () => {
   console.log("on close success");
 }
-let tcpServer: socket = socket.constructTCPSocketServerInstance();
-tcpServer.on('connect', (client: socket) => {
+tcpServer.on('connect', (client: socket.TCPSocketConnection) => {
   client.on('close', callback);
   // 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
   client.off('close', callback);
@@ -2798,9 +2856,11 @@ on(type: 'error', callback: ErrorCallback): void
 **示例：**
 
 ```js
-let tcpServer: socket = socket.constructTCPSocketServerInstance();
-tcpServer.on('connect', (client: socket) => {
-  client.on('error', (err: string) => {
+import socket from "@ohos.net.socket";
+import { BusinessError } from '@ohos.base';
+let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
+tcpServer.on('connect', (client: socket.TCPSocketConnection) => {
+  client.on('error', (err: BusinessError) => {
     console.log("on error, err:" + JSON.stringify(err))
   });
 });
@@ -2833,11 +2893,13 @@ off(type: 'error', callback?: ErrorCallback): void
 **示例：**
 
 ```js
-let callback = (err: string) => {
+import socket from "@ohos.net.socket";
+import { BusinessError } from '@ohos.base';
+let callback = (err: BusinessError) => {
   console.log("on error, err:" + JSON.stringify(err));
 }
 let tcpServer: socket = socket.constructTCPSocketServerInstance();
-tcpServer.on('connect', (client: socket) => {
+tcpServer.on('connect', (client: socket.TCPSocketConnection) => {
   client.on('error', callback);
   // 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
   client.off('error', callback);
@@ -2868,7 +2930,8 @@ constructTLSSocketInstance(): TLSSocket
 **示例：**
 
 ```js
-let tls: socket = socket.constructTLSSocketInstance();
+import socket from "@ohos.net.socket";
+let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
 ```
 
 ## TLSSocket<sup>9+</sup>
@@ -2904,12 +2967,14 @@ bind(address: NetAddress, callback: AsyncCallback\<void\>): void
 **示例：**
 
 ```js
-class NetAddress {
-  address: string = '192.168.xx.xxx'
-  port: number = 8080
-  family: number = 1
+import socket from "@ohos.net.socket";
+import { BusinessError } from '@ohos.base';
+let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
+let bindAddr : socket.NetAddress = {
+  address: '192.168.xx.xxx',
+  port: 8080
 }
-tls.bind(new NetAddress(), (err: string) => {
+tls.bind(bindAddr, (err: BusinessError) => {
   if (err) {
     console.log('bind fail');
     return;
@@ -2952,15 +3017,16 @@ bind(address: NetAddress): Promise\<void\>
 **示例：**
 
 ```js
-class NetAddress {
-  address: string = '192.168.xx.xxx'
-  port: number = 8080
-  family: number = 1
+import socket from "@ohos.net.socket";
+import { BusinessError } from '@ohos.base';
+let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
+let bindAddr : socket.NetAddress = {
+  address: '192.168.xx.xxx',
+  port: 8080
 }
-let promise: socket = tls.bind(new NetAddress());
-promise.then(() => {
+tls.bind(bindAddr).then(() => {
   console.log('bind success');
-}).catch((err: string) => {
+}).catch((err: BusinessError) => {
   console.log('bind fail');
 });
 ```
@@ -2989,19 +3055,21 @@ getState(callback: AsyncCallback\<SocketStateBase\>): void
 **示例：**
 
 ```js
-class NetAddress {
-  address: string = '192.168.xx.xxx'
-  port: number = 8080
-  family: number = 1
+import socket from "@ohos.net.socket";
+import { BusinessError } from '@ohos.base';
+let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
+let bindAddr : socket.NetAddress = {
+  address: '192.168.xx.xxx',
+  port: 8080
 }
-let promise: socket = tls.bind(new NetAddress(), (err: string) => {
+tls.bind(bindAddr, (err: BusinessError) => {
   if (err) {
     console.log('bind fail');
     return;
   }
   console.log('bind success');
 });
-tls.getState((err: string, data: string) => {
+tls.getState((err: BusinessError, data: socket.SocketStateBase) => {
   if (err) {
     console.log('getState fail');
     return;
@@ -3034,21 +3102,23 @@ getState(): Promise\<SocketStateBase\>
 **示例：**
 
 ```js
-class NetAddress {
-  address: string = '192.168.xx.xxx'
-  port: number = 8080
-  family: number = 1
+import socket from "@ohos.net.socket";
+import { BusinessError } from '@ohos.base';
+let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
+let bindAddr : socket.NetAddress = {
+  address: '192.168.xx.xxx',
+  port: 8080
 }
-let promiseBind: socket = tls.bind(new NetAddress());
-promiseBind.then(() => {
+tls.bind(bindAddr, (err: BusinessError) => {
+  if (err) {
+    console.log('bind fail');
+    return;
+  }
   console.log('bind success');
-}).catch((err: string) => {
-  console.log('bind fail');
 });
-let promise: socket = tls.getState();
-promise.then(() => {
+tls.getState().then(() => {
   console.log('getState success');
-}).catch((err: string) => {
+}).catch((err: BusinessError) => {
   console.log('getState fail');
 });
 ```
@@ -3079,33 +3149,32 @@ setExtraOptions(options: TCPExtraOptions, callback: AsyncCallback\<void\>): void
 **示例：**
 
 ```js
-class NetAddress {
-  address: string = '192.168.xx.xxx'
-  port: number = 8080
-  family: number = 1
+import socket from "@ohos.net.socket";
+import { BusinessError } from '@ohos.base';
+let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
+let bindAddr : socket.NetAddress = {
+  address: '192.168.xx.xxx',
+  port: 8080
 }
-tls.bind(new NetAddress(), (err: string) => {
+tls.bind(bindAddr, (err: BusinessError) => {
   if (err) {
     console.log('bind fail');
     return;
   }
   console.log('bind success');
 });
-class Linger {
-  on: boolean = true
-  linger: number = 10
+
+let tcpExtraOptions : socket.TCPExtraOptions = {
+  keepAlive: true,
+  OOBInline: true,
+  TCPNoDelay: true,
+  socketLinger: { on: true, linger: 10 },
+  receiveBufferSize: 1000,
+  sendBufferSize: 1000,
+  reuseAddress: true,
+  socketTimeout: 3000
 }
-class TCPExtraOptions {
-  keepAlive: boolean = true
-  OOBInline: boolean = true
-  TCPNoDelay: boolean = true
-  socketLinger: Object = new Linger()
-  receiveBufferSize: number = 1000
-  sendBufferSize: number = 1000
-  reuseAddress: boolean = true
-  socketTimeout: number = 3000
-}
-tls.setExtraOptions(new TCPExtraOptions(), (err: string) => {
+tls.setExtraOptions(tcpExtraOptions, (err: BusinessError) => {
   if (err) {
     console.log('setExtraOptions fail');
     return;
@@ -3145,36 +3214,34 @@ setExtraOptions(options: TCPExtraOptions): Promise\<void\>
 **示例：**
 
 ```js
-class NetAddress {
-  address: string = '192.168.xx.xxx'
-  port: number = 8080
-  family: number = 1
+import socket from "@ohos.net.socket";
+import { BusinessError } from '@ohos.base';
+let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
+let bindAddr : socket.NetAddress = {
+  address: '192.168.xx.xxx',
+  port: 8080
 }
-tls.bind(new NetAddress(), (err: string) => {
+tls.bind(bindAddr, (err: BusinessError) => {
   if (err) {
     console.log('bind fail');
     return;
   }
   console.log('bind success');
 });
-class Linger {
-  on: boolean = true
-  linger: number = 10
+
+let tcpExtraOptions : socket.TCPExtraOptions = {
+  keepAlive: true,
+  OOBInline: true,
+  TCPNoDelay: true,
+  socketLinger: { on: true, linger: 10 },
+  receiveBufferSize: 1000,
+  sendBufferSize: 1000,
+  reuseAddress: true,
+  socketTimeout: 3000
 }
-class TCPExtraOptions {
-  keepAlive: boolean = true
-  OOBInline: boolean = true
-  TCPNoDelay: boolean = true
-  socketLinger: Object = new Linger()
-  receiveBufferSize: number = 1000
-  sendBufferSize: number = 1000
-  reuseAddress: boolean = true
-  socketTimeout: number = 3000
-}
-let promise: socket = tls.setExtraOptions(new TCPExtraOptions());
-promise.then(() => {
+tls.setExtraOptions(tcpExtraOptions).then(() => {
   console.log('setExtraOptions success');
-}).catch((err: string) => {
+}).catch((err: BusinessError) => {
   console.log('setExtraOptions fail');
 });
 ```
@@ -3197,12 +3264,17 @@ on(type: 'message', callback: Callback<{message: ArrayBuffer, remoteInfo: Socket
 **示例：**
 
 ```js
-import socket from '@ohos.net.socket';
-let tls: socket = socket.constructTLSSocketInstance();
+import socket from "@ohos.net.socket";
+import { BusinessError } from '@ohos.base';
+let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
+class SocketInfo {
+  message: ArrayBuffer = new ArrayBuffer(1);
+  remoteInfo: socket.SocketRemoteInfo = {} as socket.SocketRemoteInfo;
+}
 let messageView = '';
-tls.on('message', (value: Object) => {
-  for (let i = 0; i < value.message.length; i++) {
-    let messages = value.message[i]
+tls.on('message', (value: SocketInfo) => {
+  for (let i : number = 0; i < value.message.byteLength; i++) {
+    let messages : number = value.message.i
     let message = String.fromCharCode(messages);
     messageView += message;
   }
@@ -3232,12 +3304,17 @@ off(type: 'message', callback?: Callback\<{message: ArrayBuffer, remoteInfo: Soc
 **示例：**
 
 ```js
-import socket from '@ohos.net.socket';
-let tls: socket = socket.constructTLSSocketInstance();
+import socket from "@ohos.net.socket";
+import { BusinessError } from '@ohos.base';
+let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
+class SocketInfo {
+  message: ArrayBuffer = new ArrayBuffer(1);
+  remoteInfo: socket.SocketRemoteInfo = {} as socket.SocketRemoteInfo;
+}
 let messageView = '';
-let callback = (value: Object) => {
-  for (let i = 0; i < value.message.length; i++) {
-    let messages = value.message[i]
+let callback = (value: SocketInfo) => {
+  for (let i : number = 0; i < value.message.byteLength; i++) {
+    let messages : number = value.message.i
     let message = String.fromCharCode(messages);
     messageView += message;
   }
@@ -3266,8 +3343,9 @@ on(type: 'connect' | 'close', callback: Callback\<void\>): void
 **示例：**
 
 ```js
-import socket from '@ohos.net.socket';
-let tls: socket = socket.constructTLSSocketInstance();
+import socket from "@ohos.net.socket";
+import { BusinessError } from '@ohos.base';
+let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
 tls.on('connect', () => {
   console.log("on connect success")
 });
@@ -3297,8 +3375,9 @@ off(type: 'connect' | 'close', callback?: Callback\<void\>): void
 **示例：**
 
 ```js
-import socket from '@ohos.net.socket';
-let tls: socket = socket.constructTLSSocketInstance();
+import socket from "@ohos.net.socket";
+import { BusinessError } from '@ohos.base';
+let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
 let callback1 = () => {
   console.log("on connect success");
 }
@@ -3332,9 +3411,10 @@ on(type: 'error', callback: ErrorCallback): void
 **示例：**
 
 ```js
-import socket from '@ohos.net.socket';
-let tls: socket = socket.constructTLSSocketInstance();
-tls.on('error', (err: string) => {
+import socket from "@ohos.net.socket";
+import { BusinessError } from '@ohos.base';
+let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
+tls.on('error', (err: BusinessError) => {
   console.log("on error, err:" + JSON.stringify(err))
 });
 ```
@@ -3360,9 +3440,10 @@ off(type: 'error', callback?: ErrorCallback): void
 **示例：**
 
 ```js
-import socket from '@ohos.net.socket';
-let tls: socket = socket.constructTLSSocketInstance();
-let callback = (err: string) => {
+import socket from "@ohos.net.socket";
+import { BusinessError } from '@ohos.base';
+let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
+let callback = (err: BusinessError) => {
   console.log("on error, err:" + JSON.stringify(err));
 }
 tls.on('error', callback);
@@ -3408,58 +3489,63 @@ connect(options: TLSConnectOptions, callback: AsyncCallback\<void\>): void
 **示例：**
 
 ```js
-let tlsTwoWay: socket = socket.constructTLSSocketInstance(); // Two way authentication
-class NetAddress {
-  address: string = '192.168.xx.xxx'
-  port: number = 8080
-  family: number = 1
+import socket from "@ohos.net.socket";
+import { BusinessError } from '@ohos.base';
+let tlsTwoWay: socket.TLSSocket = socket.constructTLSSocketInstance();  // Two way authentication
+let bindAddr : socket.NetAddress = {
+  address: '0.0.0.0',
 }
-tlsTwoWay.bind(new NetAddress(), (err: string) => {
+tlsTwoWay.bind(bindAddr, (err: BusinessError) => {
   if (err) {
     console.log('bind fail');
     return;
   }
   console.log('bind success');
-});
-class SecureOptions {
-  key: string = "xxxx"
-  cert: string = "xxxx"
-  ca: string[] = ["xxxx"]
-  password: string = "xxxx"
-  protocols: enum = socket.Protocol.TLSv12
-  useRemoteCipherPrefer: boolean = true
-  signatureAlgorithms: string = "rsa_pss_rsae_sha256:ECDSA+SHA256"
-  cipherSuite: string = "AES256-SHA256"
-}
-class Options {
-  ALPNProtocols: string[] = ["spdy/1", "http/1.1"]
-  address: Object = new NetAddress()
-  secureOptions: Object = new SecureOptions()
-};
-tlsTwoWay.connect(new Options(), (err: string, data: string) => {
-  console.error("connect callback error" + err);
-  console.log(JSON.stringify(data));
 });
 
-let tlsOneWay: socket = socket.constructTLSSocketInstance(); // One way authentication
-tlsOneWay.bind(new NetAddress(), (err: string) => {
+let tlsConnectOptions : socket.TLSConnectOptions = {
+  address : {
+    address: '192.168.xx.xxx',
+    port: 8080
+  },
+  secureOptions : {
+    key: "xxxx",
+    cert: "xxxx",
+    ca: ["xxxx"],
+    password: "xxxx",
+    protocols: socket.Protocol.TLSv12,
+    useRemoteCipherPrefer: true,
+    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+    cipherSuite: "AES256-SHA256"
+  },
+  ALPNProtocols: ["spdy/1", "http/1.1"]
+}
+
+tlsTwoWay.connect(tlsConnectOptions, (err: BusinessError) => {
+  console.error("connect callback error" + err);
+});
+
+let tlsOneWay: socket.TLSSocket = socket.constructTLSSocketInstance(); // One way authentication
+tlsOneWay.bind(bindAddr, (err: BusinessError) => {
   if (err) {
     console.log('bind fail');
     return;
   }
   console.log('bind success');
 });
-class SecureOptions{
-    ca: string[] = ["xxxx", "xxxx"]
-    cipherSuite: string = "AES256-SHA256"
+
+let tlsOneWayConnectOptions : socket.TLSConnectOptions = {
+  address : {
+    address: '192.168.xx.xxx',
+    port: 8080
+  },
+  secureOptions : {
+    ca: ["xxxx", "xxxx"],
+    cipherSuite: "AES256-SHA256"
+  }
 }
-class OneWayOptions {
-  address: Object = new NetAddress()
-  secureOptions: Object = new SecureOptions()
-};
-tlsOneWay.connect(new OneWayOptions(), (err: string, data: string) => {
+tlsOneWay.connect(tlsOneWayConnectOptions, (err: BusinessError) => {
   console.error("connect callback error" + err);
-  console.log(JSON.stringify(data));
 });
 ```
 
@@ -3506,60 +3592,67 @@ connect(options: TLSConnectOptions): Promise\<void\>
 **示例：**
 
 ```js
-let tlsTwoWay: socket = socket.constructTLSSocketInstance(); // Two way authentication
-class NetAddress {
-  address: string = '192.168.xx.xxx'
-  port: number = 8080
-  family: number = 1
+import socket from "@ohos.net.socket";
+import { BusinessError } from '@ohos.base';
+let tlsTwoWay: socket.TLSSocket = socket.constructTLSSocketInstance();  // Two way authentication
+let bindAddr : socket.NetAddress = {
+  address: '0.0.0.0',
 }
-tlsTwoWay.bind(new NetAddress(), (err: string) => {
+tlsTwoWay.bind(bindAddr, (err: BusinessError) => {
   if (err) {
     console.log('bind fail');
     return;
   }
   console.log('bind success');
-});
-class SecureOptions {
-  key: string = "xxxx"
-  cert: string = "xxxx"
-  ca: string[] = ["xxxx"]
-  password: string = "xxxx"
-  protocols: enum = socket.Protocol.TLSv12
-  useRemoteCipherPrefer: boolean = true
-  signatureAlgorithms: string = "rsa_pss_rsae_sha256:ECDSA+SHA256"
-  cipherSuite: string = "AES256-SHA256"
-}
-class Options {
-  ALPNProtocols: string[] = ["spdy/1", "http/1.1"]
-  address: Object = new NetAddress()
-  secureOptions: Object = new SecureOptions()
-};
-tlsTwoWay.connect(new Options()).then((data: string) => {
-  console.log(JSON.stringify(data));
-}).catch((err: string) => {
-  console.error(err);
 });
 
-let tlsOneWay: socket = socket.constructTLSSocketInstance(); // One way authentication
-tlsOneWay.bind(new NetAddress(), (err: string) => {
+let tlsConnectOptions : socket.TLSConnectOptions = {
+  address : {
+    address: '192.168.xx.xxx',
+    port: 8080
+  },
+  secureOptions : {
+    key: "xxxx",
+    cert: "xxxx",
+    ca: ["xxxx"],
+    password: "xxxx",
+    protocols: socket.Protocol.TLSv12,
+    useRemoteCipherPrefer: true,
+    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+    cipherSuite: "AES256-SHA256"
+  },
+  ALPNProtocols: ["spdy/1", "http/1.1"]
+}
+
+tlsTwoWay.connect(tlsConnectOptions).then(() => {
+  console.log("connect successfully");
+}).catch((err: BusinessError) => {
+  console.log("connect failed " + JSON.stringify(err));
+});
+
+let tlsOneWay: socket.TLSSocket = socket.constructTLSSocketInstance(); // One way authentication
+tlsOneWay.bind(bindAddr, (err: BusinessError) => {
   if (err) {
     console.log('bind fail');
     return;
   }
   console.log('bind success');
 });
-class SecureOptions{
-  ca: string[] = ["xxxx", "xxxx"]
-  cipherSuite: string = "AES256-SHA256"
+
+let tlsOneWayConnectOptions : socket.TLSConnectOptions = {
+  address : {
+    address: '192.168.xx.xxx',
+    port: 8080
+  },
+  secureOptions : {
+    ca: ["xxxx", "xxxx"],
+    cipherSuite: "AES256-SHA256"
+  }
 }
-class OneWayOptions {
-  address: Object = new NetAddress()
-  secureOptions: Object = new SecureOptions()
-};
-tlsOneWay.connect(new OneWayOptions()).then((data: string) => {
-  console.log(JSON.stringify(data));
-}).catch((err: string) => {
-  console.error(err);
+tlsOneWay.connect(tlsOneWayConnectOptions).then(() => {
+  console.log("connect successfully");
+}).catch((err: BusinessError) => {
+  console.log("connect failed " + JSON.stringify(err));
 });
 ```
 
@@ -3587,7 +3680,10 @@ getRemoteAddress(callback: AsyncCallback\<NetAddress\>): void
 **示例：**
 
 ```js
-tls.getRemoteAddress((err: string, data: string) => {
+import socket from "@ohos.net.socket";
+import { BusinessError } from '@ohos.base';
+let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
+tls.getRemoteAddress((err: BusinessError, data: socket.NetAddress) => {
   if (err) {
     console.log('getRemoteAddress fail');
     return;
@@ -3620,10 +3716,12 @@ getRemoteAddress(): Promise\<NetAddress\>
 **示例：**
 
 ```js
-let promise: socket = tls.getRemoteAddress();
-promise.then(() => {
+import socket from "@ohos.net.socket";
+import { BusinessError } from '@ohos.base';
+let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
+tls.getRemoteAddress().then(() => {
   console.log('getRemoteAddress success');
-}).catch((err: string) => {
+}).catch((err: BusinessError) => {
   console.log('getRemoteAddress fail');
 });
 ```
@@ -3653,7 +3751,10 @@ getCertificate(callback: AsyncCallback\<[X509CertRawData](#x509certrawdata9)\>):
 **示例：**
 
 ```js
-tls.getCertificate((err: string, data: string) => {
+import socket from "@ohos.net.socket";
+import { BusinessError } from '@ohos.base';
+let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
+tls.getCertificate((err: BusinessError, data: socket.X509CertRawData) => {
   if (err) {
     console.log("getCertificate callback error = " + err);
   } else {
@@ -3687,9 +3788,12 @@ getCertificate():Promise\<[X509CertRawData](#x509certrawdata9)\>
 **示例：**
 
 ```js
-tls.getCertificate().then((data: string) => {
+import socket from "@ohos.net.socket";
+import { BusinessError } from '@ohos.base';
+let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
+tls.getCertificate().then((data: socket.X509CertRawData) => {
   console.log(data);
-}).catch((err: string) => {
+}).catch((err: BusinessError) => {
   console.error(err);
 });
 ```
@@ -3718,7 +3822,10 @@ getRemoteCertificate(callback: AsyncCallback\<[X509CertRawData](#x509certrawdata
 **示例：**
 
 ```js
-tls.getRemoteCertificate((err: string, data: string) => {
+import socket from "@ohos.net.socket";
+import { BusinessError } from '@ohos.base';
+let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
+tls.getRemoteCertificate((err: BusinessError, data: socket.X509CertRawData) => {
   if (err) {
     console.log("getRemoteCertificate callback error = " + err);
   } else {
@@ -3751,9 +3858,12 @@ getRemoteCertificate():Promise\<[X509CertRawData](#x509certrawdata9)\>
 **示例：**
 
 ```js
-tls.getRemoteCertificate().then((data: string) => {
+import socket from "@ohos.net.socket";
+import { BusinessError } from '@ohos.base';
+let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
+tls.getRemoteCertificate().then((data: socket.X509CertRawData) => {
   console.log(data);
-}).catch((err: string) => {
+}).catch((err: BusinessError) => {
   console.error(err);
 });
 ```
@@ -3783,7 +3893,10 @@ getProtocol(callback: AsyncCallback\<string\>): void
 **示例：**
 
 ```js
-tls.getProtocol((err: string, data: string) => {
+import socket from "@ohos.net.socket";
+import { BusinessError } from '@ohos.base';
+let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
+tls.getProtocol((err: BusinessError, data: string) => {
   if (err) {
     console.log("getProtocol callback error = " + err);
   } else {
@@ -3817,9 +3930,12 @@ getProtocol():Promise\<string\>
 **示例：**
 
 ```js
+import socket from "@ohos.net.socket";
+import { BusinessError } from '@ohos.base';
+let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
 tls.getProtocol().then((data: string) => {
   console.log(data);
-}).catch((err: string) => {
+}).catch((err: BusinessError) => {
   console.error(err);
 });
 ```
@@ -3850,7 +3966,10 @@ getCipherSuite(callback: AsyncCallback\<Array\<string\>\>): void
 **示例：**
 
 ```js
-tls.getCipherSuite((err: string, data: string) => {
+import socket from "@ohos.net.socket";
+import { BusinessError } from '@ohos.base';
+let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
+tls.getCipherSuite((err: BusinessError, data: Array<string>) => {
   if (err) {
     console.log("getCipherSuite callback error = " + err);
   } else {
@@ -3885,9 +4004,12 @@ getCipherSuite(): Promise\<Array\<string\>\>
 **示例：**
 
 ```js
-tls.getCipherSuite().then((data: string) => {
+import socket from "@ohos.net.socket";
+import { BusinessError } from '@ohos.base';
+let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
+tls.getCipherSuite().then((data: Array<string>) => {
   console.log('getCipherSuite success:' + JSON.stringify(data));
-}).catch((err: string) => {
+}).catch((err: BusinessError) => {
   console.error(err);
 });
 ```
@@ -3916,7 +4038,10 @@ getSignatureAlgorithms(callback: AsyncCallback\<Array\<string\>\>): void
 **示例：**
 
 ```js
-tls.getSignatureAlgorithms((err: string, data: string) => {
+import socket from "@ohos.net.socket";
+import { BusinessError } from '@ohos.base';
+let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
+tls.getSignatureAlgorithms((err: BusinessError, data: Array<string>) => {
   if (err) {
     console.log("getSignatureAlgorithms callback error = " + err);
   } else {
@@ -3949,9 +4074,12 @@ getSignatureAlgorithms(): Promise\<Array\<string\>\>
 **示例：**
 
 ```js
-tls.getSignatureAlgorithms().then((data: string) => {
+import socket from "@ohos.net.socket";
+import { BusinessError } from '@ohos.base';
+let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
+tls.getSignatureAlgorithms().then((data: Array<string>) => {
   console.log("getSignatureAlgorithms success" + data);
-}).catch((err: string) => {
+}).catch((err: BusinessError) => {
   console.error(err);
 });
 ```
@@ -3985,7 +4113,10 @@ send(data: string, callback: AsyncCallback\<void\>): void
 **示例：**
 
 ```js
-tls.send("xxxx", (err: string) => {
+import socket from "@ohos.net.socket";
+import { BusinessError } from '@ohos.base';
+let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
+tls.send("xxxx", (err: BusinessError) => {
   if (err) {
     console.log("send callback error = " + err);
   } else {
@@ -4028,9 +4159,12 @@ send(data: string): Promise\<void\>
 **示例：**
 
 ```js
+import socket from "@ohos.net.socket";
+import { BusinessError } from '@ohos.base';
+let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
 tls.send("xxxx").then(() => {
   console.log("send success");
-}).catch((err: string) => {
+}).catch((err: BusinessError) => {
   console.error(err);
 });
 ```
@@ -4062,7 +4196,10 @@ close(callback: AsyncCallback\<void\>): void
 **示例：**
 
 ```js
-tls.close((err: string) => {
+import socket from "@ohos.net.socket";
+import { BusinessError } from '@ohos.base';
+let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
+tls.close((err: BusinessError) => {
   if (err) {
     console.log("close callback error = " + err);
   } else {
@@ -4098,9 +4235,12 @@ close(): Promise\<void\>
 **示例：**
 
 ```js
+import socket from "@ohos.net.socket";
+import { BusinessError } from '@ohos.base';
+let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
 tls.close().then(() => {
   console.log("close success");
-}).catch((err: string) => {
+}).catch((err: BusinessError) => {
   console.error(err);
 });
 ```
@@ -4168,7 +4308,9 @@ constructTLSSocketServerInstance(): TLSSocketServer
 **示例：**
 
 ```js
-let tlsServer: socket = socket.constructTLSSocketServerInstance();
+import socket from "@ohos.net.socket";
+import { BusinessError } from '@ohos.base';
+let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
 ```
 
 ## TLSSocketServer<sup>10+</sup>
@@ -4212,28 +4354,28 @@ listen(options: TLSConnectOptions, callback: AsyncCallback\<void\>): void
 **示例：**
 
 ```js
-let tlsServer: socket = socket.constructTLSSocketServerInstance();
-class NetAddress {
-  address: string = '192.168.xx.xxx'
-  port: number = 8080
-  family: number = 1
+import socket from "@ohos.net.socket";
+import { BusinessError } from '@ohos.base';
+let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
+
+let tlsConnectOptions : socket.TLSConnectOptions = {
+  address : {
+    address: '192.168.xx.xxx',
+    port: 8080
+  },
+  secureOptions : {
+    key: "xxxx",
+    cert: "xxxx",
+    ca: ["xxxx"],
+    password: "xxxx",
+    protocols: socket.Protocol.TLSv12,
+    useRemoteCipherPrefer: true,
+    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+    cipherSuite: "AES256-SHA256"
+  },
+  ALPNProtocols: ["spdy/1", "http/1.1"]
 }
-class SecureOptions {
-  key: string = "xxxx"
-  cert: string = "xxxx"
-  ca: string[] = ["xxxx"]
-  password: string = "xxxx"
-  protocols: enum = socket.Protocol.TLSv12
-  useRemoteCipherPrefer: boolean = true
-  signatureAlgorithms: string = "rsa_pss_rsae_sha256:ECDSA+SHA256"
-  cipherSuite: string = "AES256-SHA256"
-}
-class Options {
-  ALPNProtocols: string[] = ["spdy/1", "http/1.1"]
-  address: Object = new NetAddress()
-  secureOptions: Object = new SecureOptions()
-}
-tlsServer.listen(new Options(), (err: string) => {
+tlsServer.listen(tlsConnectOptions, (err: BusinessError) => {
   console.log("listen callback error" + err);
 });
 ```
@@ -4280,30 +4422,30 @@ listen(options: TLSConnectOptions): Promise\<void\>
 **示例：**
 
 ```js
-let tlsServer: socket = socket.constructTLSSocketServerInstance();
-class NetAddress {
-  address: string = '192.168.xx.xxx'
-  port: number = 8080
-  family: number = 1
+import socket from "@ohos.net.socket";
+import { BusinessError } from '@ohos.base';
+let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
+
+let tlsConnectOptions : socket.TLSConnectOptions = {
+  address : {
+    address: '192.168.xx.xxx',
+    port: 8080
+  },
+  secureOptions : {
+    key: "xxxx",
+    cert: "xxxx",
+    ca: ["xxxx"],
+    password: "xxxx",
+    protocols: socket.Protocol.TLSv12,
+    useRemoteCipherPrefer: true,
+    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+    cipherSuite: "AES256-SHA256"
+  },
+  ALPNProtocols: ["spdy/1", "http/1.1"]
 }
-class SecureOptions {
-  key: string = "xxxx"
-  cert: string = "xxxx"
-  ca: string[] = ["xxxx"]
-  password: string = "xxxx"
-  protocols: enum = socket.Protocol.TLSv12
-  useRemoteCipherPrefer: boolean = true
-  signatureAlgorithms: string = "rsa_pss_rsae_sha256:ECDSA+SHA256"
-  cipherSuite: string = "AES256-SHA256"
-}
-class Options {
-  ALPNProtocols: string[] = ["spdy/1", "http/1.1"]
-  address: Object = new NetAddress()
-  secureOptions: Object = new SecureOptions()
-}
-tlsServer.listen(new Options()).then(() => {
+tlsServer.listen(tlsConnectOptions).then(() => {
   console.log("listen callback success");
-}).catch((err: string) => {
+}).catch((err: BusinessError) => {
   console.log(err);
 });
 ```
@@ -4336,33 +4478,32 @@ getState(callback: AsyncCallback\<SocketStateBase\>): void
 **示例：**
 
 ```js
-let tlsServer: socket = socket.constructTLSSocketServerInstance();
-class NetAddress {
-  address: string = '192.168.xx.xxx'
-  port: number = 8080
-  family: number = 1
+import socket from "@ohos.net.socket";
+import { BusinessError } from '@ohos.base';
+let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
+let tlsConnectOptions : socket.TLSConnectOptions = {
+  address : {
+    address: '192.168.xx.xxx',
+    port: 8080
+  },
+  secureOptions : {
+    key: "xxxx",
+    cert: "xxxx",
+    ca: ["xxxx"],
+    password: "xxxx",
+    protocols: socket.Protocol.TLSv12,
+    useRemoteCipherPrefer: true,
+    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+    cipherSuite: "AES256-SHA256"
+  },
+  ALPNProtocols: ["spdy/1", "http/1.1"]
 }
-class SecureOptions {
-  key: string = "xxxx"
-  cert: string = "xxxx"
-  ca: string[] = ["xxxx"]
-  password: string = "xxxx"
-  protocols: enum = socket.Protocol.TLSv12
-  useRemoteCipherPrefer: boolean = true
-  signatureAlgorithms: string = "rsa_pss_rsae_sha256:ECDSA+SHA256"
-  cipherSuite: string = "AES256-SHA256"
-}
-class Options {
-  ALPNProtocols: string[] = ["spdy/1", "http/1.1"]
-  address: Object = new NetAddress()
-  secureOptions: Object = new SecureOptions()
-}
-tlsServer.listen(new Options(), (err: string) => {
-  console.log("listen callback error" + err);
-  return;
+tlsServer.listen(tlsConnectOptions).then(() => {
+  console.log("listen callback success");
+}).catch((err: BusinessError) => {
+  console.log(err);
 });
-
-tlsServer.getState((err: string, data: string) => {
+tlsServer.getState((err: BusinessError, data: socket.SocketStateBase) => {
   if (err) {
     console.log('getState fail');
     return;
@@ -4398,37 +4539,34 @@ getState(): Promise\<SocketStateBase\>
 **示例：**
 
 ```js
-let tlsServer: socket = socket.constructTLSSocketServerInstance();
-class NetAddress {
-  address: string = '192.168.xx.xxx'
-  port: number = 8080
-  family: number = 1
+import socket from "@ohos.net.socket";
+import { BusinessError } from '@ohos.base';
+let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
+let tlsConnectOptions : socket.TLSConnectOptions = {
+  address : {
+    address: '192.168.xx.xxx',
+    port: 8080
+  },
+  secureOptions : {
+    key: "xxxx",
+    cert: "xxxx",
+    ca: ["xxxx"],
+    password: "xxxx",
+    protocols: socket.Protocol.TLSv12,
+    useRemoteCipherPrefer: true,
+    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+    cipherSuite: "AES256-SHA256"
+  },
+  ALPNProtocols: ["spdy/1", "http/1.1"]
 }
-class SecureOptions {
-  key: string = "xxxx"
-  cert: string = "xxxx"
-  ca: string[] = ["xxxx"]
-  password: string = "xxxx"
-  protocols: enum = socket.Protocol.TLSv12
-  useRemoteCipherPrefer: boolean = true
-  signatureAlgorithms: string = "rsa_pss_rsae_sha256:ECDSA+SHA256"
-  cipherSuite: string = "AES256-SHA256"
-}
-class Options {
-  ALPNProtocols: string[] = ["spdy/1", "http/1.1"]
-  address: Object = new NetAddress()
-  secureOptions: Object = new SecureOptions()
-}
-tlsServer.listen(new Options()).then(() => {
+tlsServer.listen(tlsConnectOptions).then(() => {
   console.log("listen callback success");
-}).catch((err: string) => {
+}).catch((err: BusinessError) => {
   console.log(err);
-  return;
 });
-let promise: socket = tlsServer.getState();
-promise.then(() => {
+tlsServer.getState().then(() => {
   console.log('getState success');
-}).catch((err: string) => {
+}).catch((err: BusinessError) => {
   console.log('getState fail');
 });
 ```
@@ -4462,46 +4600,43 @@ setExtraOptions(options: TCPExtraOptions, callback: AsyncCallback\<void\>): void
 **示例：**
 
 ```js
-let tlsServer: socket = socket.constructTLSSocketServerInstance();
-class NetAddress {
-  address: string = '192.168.xx.xxx'
-  port: number = 8080
-  family: number = 1
+import socket from "@ohos.net.socket";
+import { BusinessError } from '@ohos.base';
+let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
+let tlsConnectOptions : socket.TLSConnectOptions = {
+  address : {
+    address: '192.168.xx.xxx',
+    port: 8080
+  },
+  secureOptions : {
+    key: "xxxx",
+    cert: "xxxx",
+    ca: ["xxxx"],
+    password: "xxxx",
+    protocols: socket.Protocol.TLSv12,
+    useRemoteCipherPrefer: true,
+    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+    cipherSuite: "AES256-SHA256"
+  },
+  ALPNProtocols: ["spdy/1", "http/1.1"]
 }
-class SecureOptions {
-  key: string = "xxxx"
-  cert: string = "xxxx"
-  ca: string[] = ["xxxx"]
-  password: string = "xxxx"
-  protocols: enum = socket.Protocol.TLSv12
-  useRemoteCipherPrefer: boolean = true
-  signatureAlgorithms: string = "rsa_pss_rsae_sha256:ECDSA+SHA256"
-  cipherSuite: string = "AES256-SHA256"
-}
-class Options {
-  ALPNProtocols: string[] = ["spdy/1", "http/1.1"]
-  address: Object = new NetAddress()
-  secureOptions: Object = new SecureOptions()
-}
-tlsServer.listen(new Options(), (err: string) => {
-  console.log("listen callback error" + err);
-  return;
+tlsServer.listen(tlsConnectOptions).then(() => {
+  console.log("listen callback success");
+}).catch((err: BusinessError) => {
+  console.log(err);
 });
-class Linger {
-  on: boolean = true
-  linger: number = 10
+
+let tcpExtraOptions : socket.TCPExtraOptions = {
+  keepAlive: true,
+  OOBInline: true,
+  TCPNoDelay: true,
+  socketLinger: { on: true, linger: 10 },
+  receiveBufferSize: 1000,
+  sendBufferSize: 1000,
+  reuseAddress: true,
+  socketTimeout: 3000
 }
-class TCPExtraOptions {
-  keepAlive: boolean = true
-  OOBInline: boolean = true
-  TCPNoDelay: boolean = true
-  socketLinger: Object = new Linger()
-  receiveBufferSize: number = 1000
-  sendBufferSize: number = 1000
-  reuseAddress: boolean = true
-  socketTimeout: number = 3000
-}
-tlsServer.setExtraOptions(new TCPExtraOptions(), (err: string) => {
+tlsServer.setExtraOptions(tcpExtraOptions, (err: BusinessError) => {
   if (err) {
     console.log('setExtraOptions fail');
     return;
@@ -4544,51 +4679,45 @@ setExtraOptions(options: TCPExtraOptions): Promise\<void\>
 **示例：**
 
 ```js
-let tlsServer: socket = socket.constructTLSSocketServerInstance();
-class NetAddress {
-  address: string = '192.168.xx.xxx'
-  port: number = 8080
-  family: number = 1
+import socket from "@ohos.net.socket";
+import { BusinessError } from '@ohos.base';
+let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
+let tlsConnectOptions : socket.TLSConnectOptions = {
+  address : {
+    address: '192.168.xx.xxx',
+    port: 8080
+  },
+  secureOptions : {
+    key: "xxxx",
+    cert: "xxxx",
+    ca: ["xxxx"],
+    password: "xxxx",
+    protocols: socket.Protocol.TLSv12,
+    useRemoteCipherPrefer: true,
+    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+    cipherSuite: "AES256-SHA256"
+  },
+  ALPNProtocols: ["spdy/1", "http/1.1"]
 }
-class SecureOptions {
-  key: string = "xxxx"
-  cert: string = "xxxx"
-  ca: string[] = ["xxxx"]
-  password: string = "xxxx"
-  protocols: enum = socket.Protocol.TLSv12
-  useRemoteCipherPrefer: boolean = true
-  signatureAlgorithms: string = "rsa_pss_rsae_sha256:ECDSA+SHA256"
-  cipherSuite: string = "AES256-SHA256"
-}
-class Options {
-  ALPNProtocols: string[] = ["spdy/1", "http/1.1"]
-  address: Object = new NetAddress()
-  secureOptions: Object = new SecureOptions()
-}
-tlsServer.listen(new Options()).then(() => {
+tlsServer.listen(tlsConnectOptions).then(() => {
   console.log("listen callback success");
-}).catch((err: string) => {
+}).catch((err: BusinessError) => {
   console.log(err);
-  return;
 });
-class Linger {
-  on: boolean = true
-  linger: number = 10
+
+let tcpExtraOptions : socket.TCPExtraOptions = {
+  keepAlive: true,
+  OOBInline: true,
+  TCPNoDelay: true,
+  socketLinger: { on: true, linger: 10 },
+  receiveBufferSize: 1000,
+  sendBufferSize: 1000,
+  reuseAddress: true,
+  socketTimeout: 3000
 }
-class TCPExtraOptions {
-  keepAlive: boolean = true
-  OOBInline: boolean = true
-  TCPNoDelay: boolean = true
-  socketLinger: Object = new Linger()
-  receiveBufferSize: number = 1000
-  sendBufferSize: number = 1000
-  reuseAddress: boolean = true
-  socketTimeout: number = 3000
-}
-let promise: socket = tlsServer.setExtraOptions(new TCPExtraOptions());
-promise.then(() => {
+tlsServer.setExtraOptions(tcpExtraOptions).then(() => {
   console.log('setExtraOptions success');
-}).catch((err: string) => {
+}).catch((err: BusinessError) => {
   console.log('setExtraOptions fail');
 });
 ```
@@ -4622,32 +4751,32 @@ getCertificate(callback: AsyncCallback\<[X509CertRawData](#x509certrawdata9)\>):
 **示例：**
 
 ```js
-let tlsServer: socket = socket.constructTLSSocketServerInstance();
-class NetAddress {
-  address: string = '192.168.xx.xxx'
-  port: number = 8080
-  family: number = 1
+import socket from "@ohos.net.socket";
+import { BusinessError } from '@ohos.base';
+let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
+let tlsConnectOptions : socket.TLSConnectOptions = {
+  address : {
+    address: '192.168.xx.xxx',
+    port: 8080
+  },
+  secureOptions : {
+    key: "xxxx",
+    cert: "xxxx",
+    ca: ["xxxx"],
+    password: "xxxx",
+    protocols: socket.Protocol.TLSv12,
+    useRemoteCipherPrefer: true,
+    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+    cipherSuite: "AES256-SHA256"
+  },
+  ALPNProtocols: ["spdy/1", "http/1.1"]
 }
-class SecureOptions {
-  key: string = "xxxx"
-  cert: string = "xxxx"
-  ca: string[] = ["xxxx"]
-  password: string = "xxxx"
-  protocols: enum = socket.Protocol.TLSv12
-  useRemoteCipherPrefer: boolean = true
-  signatureAlgorithms: string = "rsa_pss_rsae_sha256:ECDSA+SHA256"
-  cipherSuite: string = "AES256-SHA256"
-}
-class Options {
-  ALPNProtocols: string[] = ["spdy/1", "http/1.1"]
-  address: Object = new NetAddress()
-  secureOptions: Object = new SecureOptions()
-}
-tlsServer.listen(new Options(), (err: string) => {
-  console.log("listen callback error" + err);
-  return;
+tlsServer.listen(tlsConnectOptions).then(() => {
+  console.log("listen callback success");
+}).catch((err: BusinessError) => {
+  console.log(err);
 });
-tlsServer.getCertificate((err: string, data: string) => {
+tlsServer.getCertificate((err: BusinessError, data: socket.X509CertRawData) => {
   if (err) {
     console.log("getCertificate callback error = " + err);
   } else {
@@ -4684,36 +4813,34 @@ getCertificate():Promise\<[X509CertRawData](#x509certrawdata9)\>
 **示例：**
 
 ```js
-let tlsServer: socket = socket.constructTLSSocketServerInstance();
-class NetAddress {
-  address: string = '192.168.xx.xxx'
-  port: number = 8080
-  family: number = 1
+import socket from "@ohos.net.socket";
+import { BusinessError } from '@ohos.base';
+let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
+let tlsConnectOptions : socket.TLSConnectOptions = {
+  address : {
+    address: '192.168.xx.xxx',
+    port: 8080
+  },
+  secureOptions : {
+    key: "xxxx",
+    cert: "xxxx",
+    ca: ["xxxx"],
+    password: "xxxx",
+    protocols: socket.Protocol.TLSv12,
+    useRemoteCipherPrefer: true,
+    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+    cipherSuite: "AES256-SHA256"
+  },
+  ALPNProtocols: ["spdy/1", "http/1.1"]
 }
-class SecureOptions {
-  key: string = "xxxx"
-  cert: string = "xxxx"
-  ca: string[] = ["xxxx"]
-  password: string = "xxxx"
-  protocols: enum = socket.Protocol.TLSv12
-  useRemoteCipherPrefer: boolean = true
-  signatureAlgorithms: string = "rsa_pss_rsae_sha256:ECDSA+SHA256"
-  cipherSuite: string = "AES256-SHA256"
-}
-class Options {
-  ALPNProtocols: string[] = ["spdy/1", "http/1.1"]
-  address: Object = new NetAddress()
-  secureOptions: Object = new SecureOptions()
-}
-tlsServer.listen(new Options()).then(() => {
+tlsServer.listen(tlsConnectOptions).then(() => {
   console.log("listen callback success");
-}).catch((err: string) => {
+}).catch((err: BusinessError) => {
   console.log(err);
-  return;
 });
-tlsServer.getCertificate().then((data: string) => {
+tlsServer.getCertificate().then((data: socket.x509certrawdata9) => {
   console.log(data);
-}).catch((err: string) => {
+}).catch((err: BusinessError) => {
   console.error(err);
 });
 ```
@@ -4747,32 +4874,32 @@ getProtocol(callback: AsyncCallback\<string\>): void
 **示例：**
 
 ```js
-let tlsServer: socket = socket.constructTLSSocketServerInstance();
-class NetAddress {
-  address: string = '192.168.xx.xxx'
-  port: number = 8080
-  family: number = 1
+import socket from "@ohos.net.socket";
+import { BusinessError } from '@ohos.base';
+let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
+let tlsConnectOptions : socket.TLSConnectOptions = {
+  address : {
+    address: '192.168.xx.xxx',
+    port: 8080
+  },
+  secureOptions : {
+    key: "xxxx",
+    cert: "xxxx",
+    ca: ["xxxx"],
+    password: "xxxx",
+    protocols: socket.Protocol.TLSv12,
+    useRemoteCipherPrefer: true,
+    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+    cipherSuite: "AES256-SHA256"
+  },
+  ALPNProtocols: ["spdy/1", "http/1.1"]
 }
-class SecureOptions {
-  key: string = "xxxx"
-  cert: string = "xxxx"
-  ca: string[] = ["xxxx"]
-  password: string = "xxxx"
-  protocols: enum = socket.Protocol.TLSv12
-  useRemoteCipherPrefer: boolean = true
-  signatureAlgorithms: string = "rsa_pss_rsae_sha256:ECDSA+SHA256"
-  cipherSuite: string = "AES256-SHA256"
-}
-class Options {
-  ALPNProtocols: string[] = ["spdy/1", "http/1.1"]
-  address: Object = new NetAddress()
-  secureOptions: Object = new SecureOptions()
-}
-tlsServer.listen(new Options(), (err: string) => {
-  console.log("listen callback error" + err);
-  return;
+tlsServer.listen(tlsConnectOptions).then(() => {
+  console.log("listen callback success");
+}).catch((err: BusinessError) => {
+  console.log(err);
 });
-tlsServer.getProtocol((err: string, data: string) => {
+tlsServer.getProtocol((err: BusinessError, data: string) => {
   if (err) {
     console.log("getProtocol callback error = " + err);
   } else {
@@ -4809,34 +4936,34 @@ getProtocol():Promise\<string\>
 **示例：**
 
 ```js
-let tlsServer: socket = socket.constructTLSSocketServerInstance();
-class NetAddress {
-  address: string = '192.168.xx.xxx'
-  port: number = 8080
-  family: number = 1
+import socket from "@ohos.net.socket";
+import { BusinessError } from '@ohos.base';
+let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
+let tlsConnectOptions : socket.TLSConnectOptions = {
+  address : {
+    address: '192.168.xx.xxx',
+    port: 8080
+  },
+  secureOptions : {
+    key: "xxxx",
+    cert: "xxxx",
+    ca: ["xxxx"],
+    password: "xxxx",
+    protocols: socket.Protocol.TLSv12,
+    useRemoteCipherPrefer: true,
+    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+    cipherSuite: "AES256-SHA256"
+  },
+  ALPNProtocols: ["spdy/1", "http/1.1"]
 }
-class SecureOptions {
-  key: string = "xxxx"
-  cert: string = "xxxx"
-  ca: string[] = ["xxxx"]
-  password: string = "xxxx"
-  protocols: enum = socket.Protocol.TLSv12
-  useRemoteCipherPrefer: boolean = true
-  signatureAlgorithms: string = "rsa_pss_rsae_sha256:ECDSA+SHA256"
-  cipherSuite: string = "AES256-SHA256"
-}
-class Options {
-  ALPNProtocols: string[] = ["spdy/1", "http/1.1"]
-  address: Object = new NetAddress()
-  secureOptions: Object = new SecureOptions()
-}
-tlsServer.listen(new Options(), (err: string) => {
-  console.log("listen callback error" + err);
-  return;
+tlsServer.listen(tlsConnectOptions).then(() => {
+  console.log("listen callback success");
+}).catch((err: BusinessError) => {
+  console.log(err);
 });
 tlsServer.getProtocol().then((data: string) => {
   console.log(data);
-}).catch((err: string) => {
+}).catch((err: BusinessError) => {
   console.error(err);
 });
 ```
@@ -4868,32 +4995,32 @@ on(type: 'connect', callback: Callback\<TLSSocketConnection\>): void
 **示例：**
 
 ```js
-let tlsServer: socket = socket.constructTLSSocketServerInstance();
-class NetAddress {
-  address: string = '192.168.xx.xxx'
-  port: number = 8080
-  family: number = 1
+import socket from "@ohos.net.socket";
+import { BusinessError } from '@ohos.base';
+let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
+let tlsConnectOptions : socket.TLSConnectOptions = {
+  address : {
+    address: '192.168.xx.xxx',
+    port: 8080
+  },
+  secureOptions : {
+    key: "xxxx",
+    cert: "xxxx",
+    ca: ["xxxx"],
+    password: "xxxx",
+    protocols: socket.Protocol.TLSv12,
+    useRemoteCipherPrefer: true,
+    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+    cipherSuite: "AES256-SHA256"
+  },
+  ALPNProtocols: ["spdy/1", "http/1.1"]
 }
-class SecureOptions {
-  key: string = "xxxx"
-  cert: string = "xxxx"
-  ca: string[] = ["xxxx"]
-  password: string = "xxxx"
-  protocols: enum = socket.Protocol.TLSv12
-  useRemoteCipherPrefer: boolean = true
-  signatureAlgorithms: string = "rsa_pss_rsae_sha256:ECDSA+SHA256"
-  cipherSuite: string = "AES256-SHA256"
-}
-class Options {
-  ALPNProtocols: string[] = ["spdy/1", "http/1.1"]
-  address: Object = new NetAddress()
-  secureOptions: Object = new SecureOptions()
-}
-tlsServer.listen(new Options(), (err: string) => {
-  console.log("listen callback error" + err);
-  return;
+tlsServer.listen(tlsConnectOptions).then(() => {
+  console.log("listen callback success");
+}).catch((err: BusinessError) => {
+  console.log(err);
 });
-tlsServer.on('connect', (data: string) => {
+tlsServer.on('connect', (data: socket.TLSSocketConnection) => {
   console.log(JSON.stringify(data))
 });
 ```
@@ -4926,36 +5053,35 @@ off(type: 'connect', callback?: Callback\<TLSSocketConnection\>): void
 **示例：**
 
 ```js
-let tlsServer: socket = socket.constructTLSSocketServerInstance();
-let callback = （data: string) => {
+import socket from "@ohos.net.socket";
+import { BusinessError } from '@ohos.base';
+let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
+let tlsConnectOptions : socket.TLSConnectOptions = {
+  address : {
+    address: '192.168.xx.xxx',
+    port: 8080
+  },
+  secureOptions : {
+    key: "xxxx",
+    cert: "xxxx",
+    ca: ["xxxx"],
+    password: "xxxx",
+    protocols: socket.Protocol.TLSv12,
+    useRemoteCipherPrefer: true,
+    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+    cipherSuite: "AES256-SHA256"
+  },
+  ALPNProtocols: ["spdy/1", "http/1.1"]
+}
+tlsServer.listen(tlsConnectOptions).then(() => {
+  console.log("listen callback success");
+}).catch((err: BusinessError) => {
+  console.log(err);
+});
+
+let callback = (data: socket.TLSSocketConnection) => {
   console.log('on connect message: ' + JSON.stringify(data));
 }
-class NetAddress {
-  address: string = '192.168.xx.xxx'
-  port: number = 8080
-  family: number = 1
-}
-class SecureOptions {
-  key: string = "xxxx"
-  cert: string = "xxxx"
-  ca: string[] = ["xxxx"]
-  password: string = "xxxx"
-  protocols: enum = socket.Protocol.TLSv12
-  useRemoteCipherPrefer: boolean = true
-  signatureAlgorithms: string = "rsa_pss_rsae_sha256:ECDSA+SHA256"
-  cipherSuite: string = "AES256-SHA256"
-}
-class Options {
-  ALPNProtocols: string[] = ["spdy/1", "http/1.1"]
-  address: Object = new NetAddress()
-  secureOptions: Object = new SecureOptions()
-}
-tlsServer.listen(new Options()).then(() => {
-  console.log("listen callback success");
-}).catch((err: string) => {
-  console.log(err);
-  return;
-});
 tlsServer.on('connect', callback);
 // 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
 tlsServer.off('connect', callback);
@@ -4989,32 +5115,32 @@ on(type: 'error', callback: ErrorCallback): void
 **示例：**
 
 ```js
-let tlsServer: socket = socket.constructTLSSocketServerInstance();
-class NetAddress {
-  address: string = '192.168.xx.xxx'
-  port: number = 8080
-  family: number = 1
+import socket from "@ohos.net.socket";
+import { BusinessError } from '@ohos.base';
+let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
+let tlsConnectOptions : socket.TLSConnectOptions = {
+  address : {
+    address: '192.168.xx.xxx',
+    port: 8080
+  },
+  secureOptions : {
+    key: "xxxx",
+    cert: "xxxx",
+    ca: ["xxxx"],
+    password: "xxxx",
+    protocols: socket.Protocol.TLSv12,
+    useRemoteCipherPrefer: true,
+    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+    cipherSuite: "AES256-SHA256"
+  },
+  ALPNProtocols: ["spdy/1", "http/1.1"]
 }
-class SecureOptions {
-  key: string = "xxxx"
-  cert: string = "xxxx"
-  ca: string[] = ["xxxx"]
-  password: string = "xxxx"
-  protocols: enum = socket.Protocol.TLSv12
-  useRemoteCipherPrefer: boolean = true
-  signatureAlgorithms: string = "rsa_pss_rsae_sha256:ECDSA+SHA256"
-  cipherSuite: string = "AES256-SHA256"
-}
-class Options {
-  ALPNProtocols: string[] = ["spdy/1", "http/1.1"]
-  address: Object = new NetAddress()
-  secureOptions: Object = new SecureOptions()
-}
-tlsServer.listen(new Options(), (err: string) => {
-  console.log("listen callback error" + err);
-  return;
+tlsServer.listen(tlsConnectOptions).then(() => {
+  console.log("listen callback success");
+}).catch((err: BusinessError) => {
+  console.log(err);
 });
-tlsServer.on('error', (err: string) => {
+tlsServer.on('error', (err: BusinessError) => {
   console.log("on error, err:" + JSON.stringify(err))
 });
 ```
@@ -5047,36 +5173,35 @@ off(type: 'error', callback?: ErrorCallback): void
 **示例：**
 
 ```js
-let tlsServer: socket = socket.constructTLSSocketServerInstance();
-let callback = (err: string) => {
+import socket from "@ohos.net.socket";
+import { BusinessError } from '@ohos.base';
+let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
+let tlsConnectOptions : socket.TLSConnectOptions = {
+  address : {
+    address: '192.168.xx.xxx',
+    port: 8080
+  },
+  secureOptions : {
+    key: "xxxx",
+    cert: "xxxx",
+    ca: ["xxxx"],
+    password: "xxxx",
+    protocols: socket.Protocol.TLSv12,
+    useRemoteCipherPrefer: true,
+    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+    cipherSuite: "AES256-SHA256"
+  },
+  ALPNProtocols: ["spdy/1", "http/1.1"]
+}
+tlsServer.listen(tlsConnectOptions).then(() => {
+  console.log("listen callback success");
+}).catch((err: BusinessError) => {
+  console.log(err);
+});
+
+let callback = (err: BusinessError) => {
   console.log("on error, err:" + JSON.stringify(err));
 }
-class NetAddress {
-  address: string = '192.168.xx.xxx'
-  port: number = 8080
-  family: number = 1
-}
-class SecureOptions {
-  key: string = "xxxx"
-  cert: string = "xxxx"
-  ca: string[] = ["xxxx"]
-  password: string = "xxxx"
-  protocols: enum = socket.Protocol.TLSv12
-  useRemoteCipherPrefer: boolean = true
-  signatureAlgorithms: string = "rsa_pss_rsae_sha256:ECDSA+SHA256"
-  cipherSuite: string = "AES256-SHA256"
-}
-class Options {
-  ALPNProtocols: string[] = ["spdy/1", "http/1.1"]
-  address: Object = new NetAddress()
-  secureOptions: Object = new SecureOptions()
-}
-tlsServer.listen(new Options()).then(() => {
-  console.log("listen callback success");
-}).catch((err: string) => {
-  console.log(err);
-  return;
-});
 tlsServer.on('error', callback);
 // 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
 tlsServer.off('error', callback);
@@ -5127,39 +5252,37 @@ send(data: string, callback: AsyncCallback\<void\>): void
 **示例：**
 
 ```js
-let tlsServer: socket = socket.constructTLSSocketServerInstance();
-class NetAddress {
-  address: string = '192.168.xx.xxx'
-  port: number = 8080
-  family: number = 1
+import socket from "@ohos.net.socket";
+import { BusinessError } from '@ohos.base';
+let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
+let tlsConnectOptions : socket.TLSConnectOptions = {
+  address : {
+    address: '192.168.xx.xxx',
+    port: 8080
+  },
+  secureOptions : {
+    key: "xxxx",
+    cert: "xxxx",
+    ca: ["xxxx"],
+    password: "xxxx",
+    protocols: socket.Protocol.TLSv12,
+    useRemoteCipherPrefer: true,
+    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+    cipherSuite: "AES256-SHA256"
+  },
+  ALPNProtocols: ["spdy/1", "http/1.1"]
 }
-class SecureOptions {
-  key: string = "xxxx"
-  cert: string = "xxxx"
-  ca: string[] = ["xxxx"]
-  password: string = "xxxx"
-  protocols: enum = socket.Protocol.TLSv12
-  useRemoteCipherPrefer: boolean = true
-  signatureAlgorithms: string = "rsa_pss_rsae_sha256:ECDSA+SHA256"
-  cipherSuite: string = "AES256-SHA256"
-}
-class Options {
-  ALPNProtocols: string[] = ["spdy/1", "http/1.1"]
-  address: Object = new NetAddress()
-  secureOptions: Object = new SecureOptions()
-}
-tlsServer.listen(new Options(), (err: string) => {
-  console.log("listen callback error" + err);
-  return;
+tlsServer.listen(tlsConnectOptions).then(() => {
+  console.log("listen callback success");
+}).catch((err: BusinessError) => {
+  console.log("failed" + err);
 });
-class Data {
-  data: string = 'Hello, client!'
-}
-tlsServer.on('connect', (client: socket) => {
-  client.send(new Data(), (err: string) => {
+
+tlsServer.on('connect', (client: socket.TLSSocketConnection) => {
+  client.send('Hello, client!', (err: BusinessError) => {
     if (err) {
-        console.log('send fail');
-        return;
+      console.log('send fail');
+      return;
     }
     console.log('send success');
   });
@@ -5200,41 +5323,36 @@ send(data: string): Promise\<void\>
 **示例：**
 
 ```js
-let tlsServer: socket = socket.constructTLSSocketServerInstance();
-class NetAddress {
-  address: string = '192.168.xx.xxx'
-  port: number = 8080
-  family: number = 1
+import socket from "@ohos.net.socket";
+import { BusinessError } from '@ohos.base';
+let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
+let tlsConnectOptions : socket.TLSConnectOptions = {
+  address : {
+    address: '192.168.xx.xxx',
+    port: 8080
+  },
+  secureOptions : {
+    key: "xxxx",
+    cert: "xxxx",
+    ca: ["xxxx"],
+    password: "xxxx",
+    protocols: socket.Protocol.TLSv12,
+    useRemoteCipherPrefer: true,
+    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+    cipherSuite: "AES256-SHA256"
+  },
+  ALPNProtocols: ["spdy/1", "http/1.1"]
 }
-class SecureOptions {
-  key: string = "xxxx"
-  cert: string = "xxxx"
-  ca: string[] = ["xxxx"]
-  password: string = "xxxx"
-  protocols: enum = socket.Protocol.TLSv12
-  useRemoteCipherPrefer: boolean = true
-  signatureAlgorithms: string = "rsa_pss_rsae_sha256:ECDSA+SHA256"
-  cipherSuite: string = "AES256-SHA256"
-}
-class Options {
-  ALPNProtocols: string[] = ["spdy/1", "http/1.1"]
-  address: Object = new NetAddress()
-  secureOptions: Object = new SecureOptions()
-}
-tlsServer.listen(new Options()).then(() => {
+tlsServer.listen(tlsConnectOptions).then(() => {
   console.log("listen callback success");
-}).catch((err: string) => {
-  console.log(err);
-  return;
+}).catch((err: BusinessError) => {
+  console.log("failed" + err);
 });
-class Data {
-  data: string = 'Hello, client!'
-}
-tlsServer.on('connect', (client: socket) => {
-  let promise: socket = client.send(new Data());
-  promise.then(() => {
+
+tlsServer.on('connect', (client: socket.TLSSocketConnection) => {
+  client.send('Hello, client!').then(() => {
     console.log('send success');
-  }).catch((err: string) => {
+  }).catch((err: BusinessError) => {
     console.log('send fail');
   });
 });
@@ -5267,33 +5385,34 @@ close(callback: AsyncCallback\<void\>): void
 **示例：**
 
 ```js
-let tlsServer: socket = socket.constructTLSSocketServerInstance();
-class NetAddress {
-  address: string = '192.168.xx.xxx'
-  port: number = 8080
-  family: number = 1
+import socket from "@ohos.net.socket";
+import { BusinessError } from '@ohos.base';
+let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
+let tlsConnectOptions : socket.TLSConnectOptions = {
+  address : {
+    address: '192.168.xx.xxx',
+    port: 8080
+  },
+  secureOptions : {
+    key: "xxxx",
+    cert: "xxxx",
+    ca: ["xxxx"],
+    password: "xxxx",
+    protocols: socket.Protocol.TLSv12,
+    useRemoteCipherPrefer: true,
+    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+    cipherSuite: "AES256-SHA256"
+  },
+  ALPNProtocols: ["spdy/1", "http/1.1"]
 }
-class SecureOptions {
-  key: string = "xxxx"
-  cert: string = "xxxx"
-  ca: string[] = ["xxxx"]
-  password: string = "xxxx"
-  protocols: enum = socket.Protocol.TLSv12
-  useRemoteCipherPrefer: boolean = true
-  signatureAlgorithms: string = "rsa_pss_rsae_sha256:ECDSA+SHA256"
-  cipherSuite: string = "AES256-SHA256"
-}
-class Options {
-  ALPNProtocols: string[] = ["spdy/1", "http/1.1"]
-  address: Object = new NetAddress()
-  secureOptions: Object = new SecureOptions()
-}
-tlsServer.listen(new Options(), (err: string) => {
-  console.log("listen callback error" + err);
-  return;
+tlsServer.listen(tlsConnectOptions).then(() => {
+  console.log("listen callback success");
+}).catch((err: BusinessError) => {
+  console.log("failed" + err);
 });
-tlsServer.on('connect', (client: socket) => {
-  client.close((err: string) => {
+
+tlsServer.on('connect', (client: socket.TLSSocketConnection) => {
+  client.close((err: BusinessError) => {
     if (err) {
       console.log('close fail');
       return;
@@ -5329,38 +5448,35 @@ close(): Promise\<void\>
 **示例：**
 
 ```js
-let tlsServer: socket = socket.constructTLSSocketServerInstance();
-class NetAddress {
-  address: string = '192.168.xx.xxx'
-  port: number = 8080
-  family: number = 1
+import socket from "@ohos.net.socket";
+import { BusinessError } from '@ohos.base';
+let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
+let tlsConnectOptions : socket.TLSConnectOptions = {
+  address : {
+    address: '192.168.xx.xxx',
+    port: 8080
+  },
+  secureOptions : {
+    key: "xxxx",
+    cert: "xxxx",
+    ca: ["xxxx"],
+    password: "xxxx",
+    protocols: socket.Protocol.TLSv12,
+    useRemoteCipherPrefer: true,
+    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+    cipherSuite: "AES256-SHA256"
+  },
+  ALPNProtocols: ["spdy/1", "http/1.1"]
 }
-class SecureOptions {
-  key: string = "xxxx"
-  cert: string = "xxxx"
-  ca: string[] = ["xxxx"]
-  password: string = "xxxx"
-  protocols: enum = socket.Protocol.TLSv12
-  useRemoteCipherPrefer: boolean = true
-  signatureAlgorithms: string = "rsa_pss_rsae_sha256:ECDSA+SHA256"
-  cipherSuite: string = "AES256-SHA256"
-}
-class Options {
-  ALPNProtocols: string[] = ["spdy/1", "http/1.1"]
-  address: Object = new NetAddress()
-  secureOptions: Object = new SecureOptions()
-}
-tlsServer.listen(new Options()).then(() => {
+tlsServer.listen(tlsConnectOptions).then(() => {
   console.log("listen callback success");
-}).catch((err: string) => {
-  console.log(err);
-  return;
+}).catch((err: BusinessError) => {
+  console.log("failed" + err);
 });
-tlsServer.on('connect', (client: socket) => {
-  let promise: socket = client.close();
-  promise.then(() => {
+tlsServer.on('connect', (client: socket.TLSSocketConnection) => {
+  client.close().then(() => {
     console.log('close success');
-  }).catch((err: string) => {
+  }).catch((err: BusinessError) => {
     console.log('close fail');
   });
 });
@@ -5391,33 +5507,33 @@ getRemoteAddress(callback: AsyncCallback\<NetAddress\>): void
 **示例：**
 
 ```js
-let tlsServer: socket = socket.constructTLSSocketServerInstance();
-class NetAddress {
-  address: string = '192.168.xx.xxx'
-  port: number = 8080
-  family: number = 1
+import socket from "@ohos.net.socket";
+import { BusinessError } from '@ohos.base';
+let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
+let tlsConnectOptions : socket.TLSConnectOptions = {
+  address : {
+    address: '192.168.xx.xxx',
+    port: 8080
+  },
+  secureOptions : {
+    key: "xxxx",
+    cert: "xxxx",
+    ca: ["xxxx"],
+    password: "xxxx",
+    protocols: socket.Protocol.TLSv12,
+    useRemoteCipherPrefer: true,
+    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+    cipherSuite: "AES256-SHA256"
+  },
+  ALPNProtocols: ["spdy/1", "http/1.1"]
 }
-class SecureOptions {
-  key: string = "xxxx"
-  cert: string = "xxxx"
-  ca: string[] = ["xxxx"]
-  password: string = "xxxx"
-  protocols: enum = socket.Protocol.TLSv12
-  useRemoteCipherPrefer: boolean = true
-  signatureAlgorithms: string = "rsa_pss_rsae_sha256:ECDSA+SHA256"
-  cipherSuite: string = "AES256-SHA256"
-}
-class Options {
-  ALPNProtocols: string[] = ["spdy/1", "http/1.1"]
-  address: Object = new NetAddress()
-  secureOptions: Object = new SecureOptions()
-}
-tlsServer.listen(new Options(), (err: string) => {
-  console.log("listen callback error" + err);
-  return;
+tlsServer.listen(tlsConnectOptions).then(() => {
+  console.log("listen callback success");
+}).catch((err: BusinessError) => {
+  console.log("failed" + err);
 });
-tlsServer.on('connect', (client: socket) => {
-  client.getRemoteAddress((err: string, data: string) => {
+tlsServer.on('connect', (client: socket.TLSSocketConnection) => {
+  client.getRemoteAddress((err: BusinessError, data: socket.NetAddress) => {
     if (err) {
       console.log('getRemoteAddress fail');
       return;
@@ -5451,37 +5567,35 @@ getRemoteAddress(): Promise\<NetAddress\>
 **示例：**
 
 ```js
-let tlsServer: socket = socket.constructTLSSocketServerInstance();
-class NetAddress {
-  address: string = '192.168.xx.xxx'
-  port: number = 8080
-  family: number = 1
+import socket from "@ohos.net.socket";
+import { BusinessError } from '@ohos.base';
+let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
+let tlsConnectOptions : socket.TLSConnectOptions = {
+  address : {
+    address: '192.168.xx.xxx',
+    port: 8080
+  },
+  secureOptions : {
+    key: "xxxx",
+    cert: "xxxx",
+    ca: ["xxxx"],
+    password: "xxxx",
+    protocols: socket.Protocol.TLSv12,
+    useRemoteCipherPrefer: true,
+    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+    cipherSuite: "AES256-SHA256"
+  },
+  ALPNProtocols: ["spdy/1", "http/1.1"]
 }
-class SecureOptions {
-  key: string = "xxxx"
-  cert: string = "xxxx"
-  ca: string[] = ["xxxx"]
-  password: string = "xxxx"
-  protocols: enum = socket.Protocol.TLSv12
-  useRemoteCipherPrefer: boolean = true
-  signatureAlgorithms: string = "rsa_pss_rsae_sha256:ECDSA+SHA256"
-  cipherSuite: string = "AES256-SHA256"
-}
-class Options {
-  ALPNProtocols: string[] = ["spdy/1", "http/1.1"]
-  address: Object = new NetAddress()
-  secureOptions: Object = new SecureOptions()
-}
-tlsServer.listen(new Options()).then(() => {
+tlsServer.listen(tlsConnectOptions).then(() => {
   console.log("listen callback success");
-}).catch((err: string) => {
-  console.log(err);
-  return;
+}).catch((err: BusinessError) => {
+  console.log("failed" + err);
 });
-tlsServer.on('connect', (client: socket) => {
-  client.getRemoteAddress().then((data: string) => {
+tlsServer.on('connect', (client: socket.TLSSocketConnection) => {
+  client.getRemoteAddress().then((data: socket.NetAddress) => {
     console.log('getRemoteAddress success:' + JSON.stringify(data));
-  }).catch((err: string) => {
+  }).catch((err: BusinessError) => {
     console.error(err);
   });
 });
@@ -5512,33 +5626,33 @@ getRemoteCertificate(callback: AsyncCallback\<[X509CertRawData](#x509certrawdata
 **示例：**
 
 ```js
-let tlsServer: socket = socket.constructTLSSocketServerInstance();
-class NetAddress {
-  address: string = '192.168.xx.xxx'
-  port: number = 8080
-  family: number = 1
+import socket from "@ohos.net.socket";
+import { BusinessError } from '@ohos.base';
+let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
+let tlsConnectOptions : socket.TLSConnectOptions = {
+  address : {
+    address: '192.168.xx.xxx',
+    port: 8080
+  },
+  secureOptions : {
+    key: "xxxx",
+    cert: "xxxx",
+    ca: ["xxxx"],
+    password: "xxxx",
+    protocols: socket.Protocol.TLSv12,
+    useRemoteCipherPrefer: true,
+    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+    cipherSuite: "AES256-SHA256"
+  },
+  ALPNProtocols: ["spdy/1", "http/1.1"]
 }
-class SecureOptions {
-  key: string = "xxxx"
-  cert: string = "xxxx"
-  ca: string[] = ["xxxx"]
-  password: string = "xxxx"
-  protocols: enum = socket.Protocol.TLSv12
-  useRemoteCipherPrefer: boolean = true
-  signatureAlgorithms: string = "rsa_pss_rsae_sha256:ECDSA+SHA256"
-  cipherSuite: string = "AES256-SHA256"
-}
-class Options {
-  ALPNProtocols: string[] = ["spdy/1", "http/1.1"]
-  address: Object = new NetAddress()
-  secureOptions: Object = new SecureOptions()
-}
-tlsServer.listen(new Options(), (err: string) => {
-  console.log("listen callback error" + err);
-  return;
+tlsServer.listen(tlsConnectOptions).then(() => {
+  console.log("listen callback success");
+}).catch((err: BusinessError) => {
+  console.log("failed" + err);
 });
-tlsServer.on('connect', (client: socket) => {
-  client.getRemoteCertificate((err: string, data: string) => {
+tlsServer.on('connect', (client: socket.TLSSocketConnection) => {
+  client.getRemoteCertificate((err: BusinessError, data: socket.X509CertRawData) => {
     if (err) {
       console.log("getRemoteCertificate callback error = " + err);
     } else {
@@ -5572,37 +5686,35 @@ getRemoteCertificate():Promise\<[X509CertRawData](#x509certrawdata9)\>
 **示例：**
 
 ```js
-let tlsServer: socket = socket.constructTLSSocketServerInstance();
-class NetAddress {
-  address: string = '192.168.xx.xxx'
-  port: number = 8080
-  family: number = 1
+import socket from "@ohos.net.socket";
+import { BusinessError } from '@ohos.base';
+let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
+let tlsConnectOptions : socket.TLSConnectOptions = {
+  address : {
+    address: '192.168.xx.xxx',
+    port: 8080
+  },
+  secureOptions : {
+    key: "xxxx",
+    cert: "xxxx",
+    ca: ["xxxx"],
+    password: "xxxx",
+    protocols: socket.Protocol.TLSv12,
+    useRemoteCipherPrefer: true,
+    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+    cipherSuite: "AES256-SHA256"
+  },
+  ALPNProtocols: ["spdy/1", "http/1.1"]
 }
-class SecureOptions {
-  key: string = "xxxx"
-  cert: string = "xxxx"
-  ca: string[] = ["xxxx"]
-  password: string = "xxxx"
-  protocols: enum = socket.Protocol.TLSv12
-  useRemoteCipherPrefer: boolean = true
-  signatureAlgorithms: string = "rsa_pss_rsae_sha256:ECDSA+SHA256"
-  cipherSuite: string = "AES256-SHA256"
-}
-class Options {
-  ALPNProtocols: string[] = ["spdy/1", "http/1.1"]
-  address: Object = new NetAddress()
-  secureOptions: Object = new SecureOptions()
-}
-tlsServer.listen(new Options()).then(() => {
+tlsServer.listen(tlsConnectOptions).then(() => {
   console.log("listen callback success");
-}).catch((err: string) => {
-  console.log(err);
-  return;
+}).catch((err: BusinessError) => {
+  console.log("failed" + err);
 });
-tlsServer.on('connect', (client: socket) => {
-  client.getRemoteCertificate().then((data: string) => {
+tlsServer.on('connect', (client: socket.TLSSocketConnection) => {
+  client.getRemoteCertificate().then((data: socket.X509CertRawData) => {
     console.log('getRemoteCertificate success:' + JSON.stringify(data));
-  }).catch((err: string) => {
+  }).catch((err: BusinessError) => {
     console.error(err);
   });
 });
@@ -5635,33 +5747,33 @@ getCipherSuite(callback: AsyncCallback\<Array\<string\>\>): void
 **示例：**
 
 ```js
-let tlsServer: socket = socket.constructTLSSocketServerInstance();
-class NetAddress {
-  address: string = '192.168.xx.xxx'
-  port: number = 8080
-  family: number = 1
+import socket from "@ohos.net.socket";
+import { BusinessError } from '@ohos.base';
+let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
+let tlsConnectOptions : socket.TLSConnectOptions = {
+  address : {
+    address: '192.168.xx.xxx',
+    port: 8080
+  },
+  secureOptions : {
+    key: "xxxx",
+    cert: "xxxx",
+    ca: ["xxxx"],
+    password: "xxxx",
+    protocols: socket.Protocol.TLSv12,
+    useRemoteCipherPrefer: true,
+    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+    cipherSuite: "AES256-SHA256"
+  },
+  ALPNProtocols: ["spdy/1", "http/1.1"]
 }
-class SecureOptions {
-  key: string = "xxxx"
-  cert: string = "xxxx"
-  ca: string[] = ["xxxx"]
-  password: string = "xxxx"
-  protocols: enum = socket.Protocol.TLSv12
-  useRemoteCipherPrefer: boolean = true
-  signatureAlgorithms: string = "rsa_pss_rsae_sha256:ECDSA+SHA256"
-  cipherSuite: string = "AES256-SHA256"
-}
-class Options {
-  ALPNProtocols: string[] = ["spdy/1", "http/1.1"]
-  address: Object = new NetAddress()
-  secureOptions: Object = new SecureOptions()
-}
-tlsServer.listen(new Options(), (err: string) => {
-  console.log("listen callback error" + err);
-  return;
+tlsServer.listen(tlsConnectOptions).then(() => {
+  console.log("listen callback success");
+}).catch((err: BusinessError) => {
+  console.log("failed" + err);
 });
-tlsServer.on('connect', (client: socket) => {
-  client.getCipherSuite((err: string, data: string) => {
+tlsServer.on('connect', (client: socket.TLSSocketConnection) => {
+  client.getCipherSuite((err: string, data: Array<string>) => {
     if (err) {
       console.log("getCipherSuite callback error = " + err);
     } else {
@@ -5697,37 +5809,35 @@ getCipherSuite(): Promise\<Array\<string\>\>
 **示例：**
 
 ```js
-let tlsServer: socket = socket.constructTLSSocketServerInstance();
-class NetAddress {
-  address: string = '192.168.xx.xxx'
-  port: number = 8080
-  family: number = 1
+import socket from "@ohos.net.socket";
+import { BusinessError } from '@ohos.base';
+let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
+let tlsConnectOptions : socket.TLSConnectOptions = {
+  address : {
+    address: '192.168.xx.xxx',
+    port: 8080
+  },
+  secureOptions : {
+    key: "xxxx",
+    cert: "xxxx",
+    ca: ["xxxx"],
+    password: "xxxx",
+    protocols: socket.Protocol.TLSv12,
+    useRemoteCipherPrefer: true,
+    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+    cipherSuite: "AES256-SHA256"
+  },
+  ALPNProtocols: ["spdy/1", "http/1.1"]
 }
-class SecureOptions {
-  key: string = "xxxx"
-  cert: string = "xxxx"
-  ca: string[] = ["xxxx"]
-  password: string = "xxxx"
-  protocols: enum = socket.Protocol.TLSv12
-  useRemoteCipherPrefer: boolean = true
-  signatureAlgorithms: string = "rsa_pss_rsae_sha256:ECDSA+SHA256"
-  cipherSuite: string = "AES256-SHA256"
-}
-class Options {
-  ALPNProtocols: string[] = ["spdy/1", "http/1.1"]
-  address: Object = new NetAddress()
-  secureOptions: Object = new SecureOptions()
-}
-tlsServer.listen(new Options()).then(() => {
+tlsServer.listen(tlsConnectOptions).then(() => {
   console.log("listen callback success");
-}).catch((err: string) => {
-  console.log(err);
-  return;
+}).catch((err: BusinessError) => {
+  console.log("failed" + err);
 });
-tlsServer.on('connect', (client: socket) => {
-  client.getCipherSuite().then((data: string) => {
+tlsServer.on('connect', (client: socket.TLSSocketConnection) => {
+  client.getCipherSuite().then((data: Array<string>) => {
     console.log('getCipherSuite success:' + JSON.stringify(data));
-  }).catch((err: string) => {
+  }).catch((err: BusinessError) => {
     console.error(err);
   });
 });
@@ -5758,33 +5868,33 @@ getSignatureAlgorithms(callback: AsyncCallback\<Array\<string\>\>): void
 **示例：**
 
 ```js
-let tlsServer: socket = socket.constructTLSSocketServerInstance();
-class NetAddress {
-  address: string = '192.168.xx.xxx'
-  port: number = 8080
-  family: number = 1
+import socket from "@ohos.net.socket";
+import { BusinessError } from '@ohos.base';
+let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
+let tlsConnectOptions : socket.TLSConnectOptions = {
+  address : {
+    address: '192.168.xx.xxx',
+    port: 8080
+  },
+  secureOptions : {
+    key: "xxxx",
+    cert: "xxxx",
+    ca: ["xxxx"],
+    password: "xxxx",
+    protocols: socket.Protocol.TLSv12,
+    useRemoteCipherPrefer: true,
+    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+    cipherSuite: "AES256-SHA256"
+  },
+  ALPNProtocols: ["spdy/1", "http/1.1"]
 }
-class SecureOptions {
-  key: string = "xxxx"
-  cert: string = "xxxx"
-  ca: string[] = ["xxxx"]
-  password: string = "xxxx"
-  protocols: enum = socket.Protocol.TLSv12
-  useRemoteCipherPrefer: boolean = true
-  signatureAlgorithms: string = "rsa_pss_rsae_sha256:ECDSA+SHA256"
-  cipherSuite: string = "AES256-SHA256"
-}
-class Options {
-  ALPNProtocols: string[] = ["spdy/1", "http/1.1"]
-  address: Object = new NetAddress()
-  secureOptions: Object = new SecureOptions()
-}
-tlsServer.listen(new Options(), (err: string) => {
-  console.log("listen callback error" + err);
-  return;
+tlsServer.listen(tlsConnectOptions).then(() => {
+  console.log("listen callback success");
+}).catch((err: BusinessError) => {
+  console.log("failed" + err);
 });
-tlsServer.on('connect', (client: socket) => {
-  client.getSignatureAlgorithms((err: string, data: string) => {
+tlsServer.on('connect', (client: socket.TLSSocketConnection) => {
+  client.getSignatureAlgorithms((err: BusinessError, data: Array<string>) => {
     if (err) {
       console.log("getSignatureAlgorithms callback error = " + err);
     } else {
@@ -5818,37 +5928,35 @@ getSignatureAlgorithms(): Promise\<Array\<string\>\>
 **示例：**
 
 ```js
-let tlsServer: socket = socket.constructTLSSocketServerInstance();
-class NetAddress {
-  address: string = '192.168.xx.xxx'
-  port: number = 8080
-  family: number = 1
+import socket from "@ohos.net.socket";
+import { BusinessError } from '@ohos.base';
+let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
+let tlsConnectOptions : socket.TLSConnectOptions = {
+  address : {
+    address: '192.168.xx.xxx',
+    port: 8080
+  },
+  secureOptions : {
+    key: "xxxx",
+    cert: "xxxx",
+    ca: ["xxxx"],
+    password: "xxxx",
+    protocols: socket.Protocol.TLSv12,
+    useRemoteCipherPrefer: true,
+    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+    cipherSuite: "AES256-SHA256"
+  },
+  ALPNProtocols: ["spdy/1", "http/1.1"]
 }
-class SecureOptions {
-  key: string = "xxxx"
-  cert: string = "xxxx"
-  ca: string[] = ["xxxx"]
-  password: string = "xxxx"
-  protocols: enum = socket.Protocol.TLSv12
-  useRemoteCipherPrefer: boolean = true
-  signatureAlgorithms: string = "rsa_pss_rsae_sha256:ECDSA+SHA256"
-  cipherSuite: string = "AES256-SHA256"
-}
-class Options {
-  ALPNProtocols: string[] = ["spdy/1", "http/1.1"]
-  address: Object = new NetAddress()
-  secureOptions: Object = new SecureOptions()
-}
-tlsServer.listen(new Options()).then(() => {
+tlsServer.listen(tlsConnectOptions).then(() => {
   console.log("listen callback success");
-}).catch((err: string) => {
-  console.log(err);
-  return;
+}).catch((err: BusinessError) => {
+  console.log("failed" + err);
 });
-tlsServer.on('connect', (client: socket) => {
-  client.getSignatureAlgorithms().then((data: string) => {
+tlsServer.on('connect', (client: socket.TLSSocketConnection) => {
+  client.getSignatureAlgorithms().then((data: Array<string>) => {
     console.log("getSignatureAlgorithms success" + data);
-  }).catch((err: string) => {
+  }).catch((err: BusinessError) => {
     console.error(err);
   });
 });
@@ -5878,36 +5986,41 @@ on(type: 'message', callback: Callback<{message: ArrayBuffer, remoteInfo: Socket
 **示例：**
 
 ```js
-let tlsServer: socket = socket.constructTLSSocketServerInstance();
-class NetAddress {
-  address: string = '192.168.xx.xxx'
-  port: number = 8080
-  family: number = 1
+import socket from "@ohos.net.socket";
+import { BusinessError } from '@ohos.base';
+let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
+let tlsConnectOptions : socket.TLSConnectOptions = {
+  address : {
+    address: '192.168.xx.xxx',
+    port: 8080
+  },
+  secureOptions : {
+    key: "xxxx",
+    cert: "xxxx",
+    ca: ["xxxx"],
+    password: "xxxx",
+    protocols: socket.Protocol.TLSv12,
+    useRemoteCipherPrefer: true,
+    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+    cipherSuite: "AES256-SHA256"
+  },
+  ALPNProtocols: ["spdy/1", "http/1.1"]
 }
-class SecureOptions {
-  key: string = "xxxx"
-  cert: string = "xxxx"
-  ca: string[] = ["xxxx"]
-  password: string = "xxxx"
-  protocols: enum = socket.Protocol.TLSv12
-  useRemoteCipherPrefer: boolean = true
-  signatureAlgorithms: string = "rsa_pss_rsae_sha256:ECDSA+SHA256"
-  cipherSuite: string = "AES256-SHA256"
-}
-class Options {
-  ALPNProtocols: string[] = ["spdy/1", "http/1.1"]
-  address: Object = new NetAddress()
-  secureOptions: Object = new SecureOptions()
-}
-tlsServer.listen(new Options(), (err: string) => {
-  console.log("listen callback error" + err);
-  return;
+tlsServer.listen(tlsConnectOptions).then(() => {
+  console.log("listen callback success");
+}).catch((err: BusinessError) => {
+  console.log("failed" + err);
 });
-tlsServer.on('connect', (client: socket) => {
-  client.on('message', (value: Object) => {
+
+class SocketInfo {
+  message: ArrayBuffer = new ArrayBuffer(1);
+  remoteInfo: socket.SocketRemoteInfo = {} as socket.SocketRemoteInfo;
+}
+tlsServer.on('connect', (client: socket.TLSSocketConnection) => {
+  client.on('message', (value: SocketInfo) => {
     let messageView = '';
-    for (let i = 0; i < value.message.length; i++) {
-      let messages = value.message[i]
+    for (let i : number = 0; i < value.message.byteLength; i++) {
+      let messages : number = value.message.i
       let message = String.fromCharCode(messages);
       messageView += message;
     }
@@ -5944,44 +6057,47 @@ off(type: 'message', callback?: Callback<{message: ArrayBuffer, remoteInfo: Sock
 **示例：**
 
 ```js
-let callback = (value: Object) => {
+import socket from "@ohos.net.socket";
+import { BusinessError } from '@ohos.base';
+let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
+let tlsConnectOptions : socket.TLSConnectOptions = {
+  address : {
+    address: '192.168.xx.xxx',
+    port: 8080
+  },
+  secureOptions : {
+    key: "xxxx",
+    cert: "xxxx",
+    ca: ["xxxx"],
+    password: "xxxx",
+    protocols: socket.Protocol.TLSv12,
+    useRemoteCipherPrefer: true,
+    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+    cipherSuite: "AES256-SHA256"
+  },
+  ALPNProtocols: ["spdy/1", "http/1.1"]
+}
+tlsServer.listen(tlsConnectOptions).then(() => {
+  console.log("listen callback success");
+}).catch((err: BusinessError) => {
+  console.log("failed" + err);
+});
+
+class SocketInfo {
+  message: ArrayBuffer = new ArrayBuffer(1);
+  remoteInfo: socket.SocketRemoteInfo = {} as socket.SocketRemoteInfo;
+}
+let callback = (value: SocketInfo) => {
   let messageView = '';
-  for (let i = 0; i < value.message.length; i++) {
-    let messages = value.message[i]
+  for (let i : number = 0; i < value.message.byteLength; i++) {
+    let messages : number = value.message.i
     let message = String.fromCharCode(messages);
     messageView += message;
   }
   console.log('on message message: ' + JSON.stringify(messageView));
   console.log('remoteInfo: ' + JSON.stringify(value.remoteInfo));
 }
-let tlsServer: socket = socket.constructTLSSocketServerInstance();
-class NetAddress {
-  address: string = '192.168.xx.xxx'
-  port: number = 8080
-  family: number = 1
-}
-class SecureOptions {
-  key: string = "xxxx"
-  cert: string = "xxxx"
-  ca: string[] = ["xxxx"]
-  password: string = "xxxx"
-  protocols: enum = socket.Protocol.TLSv12
-  useRemoteCipherPrefer: boolean = true
-  signatureAlgorithms: string = "rsa_pss_rsae_sha256:ECDSA+SHA256"
-  cipherSuite: string = "AES256-SHA256"
-}
-class Options {
-  ALPNProtocols: string[] = ["spdy/1", "http/1.1"]
-  address: Object = new NetAddress()
-  secureOptions: Object = new SecureOptions()
-}
-tlsServer.listen(new Options()).then(() => {
-  console.log("listen callback success");
-}).catch((err: string) => {
-  console.log(err);
-  return;
-});
-tlsServer.on('connect', (client: socket) => {
+tlsServer.on('connect', (client: socket.TLSSocketConnection) => {
   client.on('message', callback);
   // 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
   client.off('message', callback);
@@ -6013,32 +6129,32 @@ on(type: 'close', callback: Callback\<void\>): void
 **示例：**
 
 ```js
-let tlsServer: socket = socket.constructTLSSocketServerInstance();
-class NetAddress {
-  address: string = '192.168.xx.xxx'
-  port: number = 8080
-  family: number = 1
+import socket from "@ohos.net.socket";
+import { BusinessError } from '@ohos.base';
+let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
+let tlsConnectOptions : socket.TLSConnectOptions = {
+  address : {
+    address: '192.168.xx.xxx',
+    port: 8080
+  },
+  secureOptions : {
+    key: "xxxx",
+    cert: "xxxx",
+    ca: ["xxxx"],
+    password: "xxxx",
+    protocols: socket.Protocol.TLSv12,
+    useRemoteCipherPrefer: true,
+    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+    cipherSuite: "AES256-SHA256"
+  },
+  ALPNProtocols: ["spdy/1", "http/1.1"]
 }
-class SecureOptions {
-  key: string = "xxxx"
-  cert: string = "xxxx"
-  ca: string[] = ["xxxx"]
-  password: string = "xxxx"
-  protocols: enum = socket.Protocol.TLSv12
-  useRemoteCipherPrefer: boolean = true
-  signatureAlgorithms: string = "rsa_pss_rsae_sha256:ECDSA+SHA256"
-  cipherSuite: string = "AES256-SHA256"
-}
-class Options {
-  ALPNProtocols: string[] = ["spdy/1", "http/1.1"]
-  address: Object = new NetAddress()
-  secureOptions: Object = new SecureOptions()
-}
-tlsServer.listen(new Options(), (err: string) => {
-  console.log("listen callback error" + err);
-  return;
+tlsServer.listen(tlsConnectOptions).then(() => {
+  console.log("listen callback success");
+}).catch((err: BusinessError) => {
+  console.log("failed" + err);
 });
-tlsServer.on('connect', (client: socket) => {
+tlsServer.on('connect', (client: socket.TLSSocketConnection) => {
   client.on('close', () => {
     console.log("on close success")
   });
@@ -6072,37 +6188,36 @@ off(type: 'close', callback?: Callback\<void\>): void
 **示例：**
 
 ```js
+import socket from "@ohos.net.socket";
+import { BusinessError } from '@ohos.base';
+let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
+let tlsConnectOptions : socket.TLSConnectOptions = {
+  address : {
+    address: '192.168.xx.xxx',
+    port: 8080
+  },
+  secureOptions : {
+    key: "xxxx",
+    cert: "xxxx",
+    ca: ["xxxx"],
+    password: "xxxx",
+    protocols: socket.Protocol.TLSv12,
+    useRemoteCipherPrefer: true,
+    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+    cipherSuite: "AES256-SHA256"
+  },
+  ALPNProtocols: ["spdy/1", "http/1.1"]
+}
+tlsServer.listen(tlsConnectOptions).then(() => {
+  console.log("listen callback success");
+}).catch((err: BusinessError) => {
+  console.log("failed" + err);
+});
+
 let callback = () => {
   console.log("on close success");
 }
-let tlsServer: socket = socket.constructTLSSocketServerInstance();
-class NetAddress {
-  address: string = '192.168.xx.xxx'
-  port: number = 8080
-  family: number = 1
-}
-class SecureOptions {
-  key: string = "xxxx"
-  cert: string = "xxxx"
-  ca: string[] = ["xxxx"]
-  password: string = "xxxx"
-  protocols: enum = socket.Protocol.TLSv12
-  useRemoteCipherPrefer: boolean = true
-  signatureAlgorithms: string = "rsa_pss_rsae_sha256:ECDSA+SHA256"
-  cipherSuite: string = "AES256-SHA256"
-}
-class Options {
-  ALPNProtocols: string[] = ["spdy/1", "http/1.1"]
-  address: Object = new NetAddress()
-  secureOptions: Object = new SecureOptions()
-}
-tlsServer.listen(new Options()).then(() => {
-  console.log("listen callback success");
-}).catch((err: string) => {
-  console.log(err);
-  return;
-});
-tlsServer.on('connect', (client: socket) => {
+tlsServer.on('connect', (client: socket.TLSSocketConnection) => {
   client.on('close', callback);
   // 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
   client.off('close', callback);
@@ -6134,33 +6249,34 @@ on(type: 'error', callback: ErrorCallback): void
 **示例：**
 
 ```js
-let tlsServer: socket = socket.constructTLSSocketServerInstance();
-class NetAddress {
-  address: string = '192.168.xx.xxx'
-  port: number = 8080
-  family: number = 1
+import socket from "@ohos.net.socket";
+import { BusinessError } from '@ohos.base';
+let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
+let tlsConnectOptions : socket.TLSConnectOptions = {
+  address : {
+    address: '192.168.xx.xxx',
+    port: 8080
+  },
+  secureOptions : {
+    key: "xxxx",
+    cert: "xxxx",
+    ca: ["xxxx"],
+    password: "xxxx",
+    protocols: socket.Protocol.TLSv12,
+    useRemoteCipherPrefer: true,
+    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+    cipherSuite: "AES256-SHA256"
+  },
+  ALPNProtocols: ["spdy/1", "http/1.1"]
 }
-class SecureOptions {
-  key: string = "xxxx"
-  cert: string = "xxxx"
-  ca: string[] = ["xxxx"]
-  password: string = "xxxx"
-  protocols: enum = socket.Protocol.TLSv12
-  useRemoteCipherPrefer: boolean = true
-  signatureAlgorithms: string = "rsa_pss_rsae_sha256:ECDSA+SHA256"
-  cipherSuite: string = "AES256-SHA256"
-}
-class Options {
-  ALPNProtocols: string[] = ["spdy/1", "http/1.1"]
-  address: Object = new NetAddress()
-  secureOptions: Object = new SecureOptions()
-}
-tlsServer.listen(new Options(), (err: string) => {
-  console.log("listen callback error" + err);
-  return;
+tlsServer.listen(tlsConnectOptions).then(() => {
+  console.log("listen callback success");
+}).catch((err: BusinessError) => {
+  console.log("failed" + err);
 });
-tlsServer.on('connect', (client: socket) => {
-  client.on('error', (err: string) => {
+
+tlsServer.on('connect', (client: socket.TLSSocketConnection) => {
+  client.on('error', (err: BusinessError) => {
     console.log("on error, err:" + JSON.stringify(err))
   });
 });
@@ -6193,37 +6309,36 @@ off(type: 'error', callback?: ErrorCallback): void
 **示例：**
 
 ```js
-let callback = (err: string) => {
+import socket from "@ohos.net.socket";
+import { BusinessError } from '@ohos.base';
+let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
+let tlsConnectOptions : socket.TLSConnectOptions = {
+  address : {
+    address: '192.168.xx.xxx',
+    port: 8080
+  },
+  secureOptions : {
+    key: "xxxx",
+    cert: "xxxx",
+    ca: ["xxxx"],
+    password: "xxxx",
+    protocols: socket.Protocol.TLSv12,
+    useRemoteCipherPrefer: true,
+    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+    cipherSuite: "AES256-SHA256"
+  },
+  ALPNProtocols: ["spdy/1", "http/1.1"]
+}
+tlsServer.listen(tlsConnectOptions).then(() => {
+  console.log("listen callback success");
+}).catch((err: BusinessError) => {
+  console.log("failed" + err);
+});
+
+let callback = (err: BusinessError) => {
   console.log("on error, err:" + JSON.stringify(err));
 }
-let tlsServer: socket = socket.constructTLSSocketServerInstance();
-class NetAddress {
-  address: string = '192.168.xx.xxx'
-  port: number = 8080
-  family: number = 1
-}
-class SecureOptions {
-  key: string = "xxxx"
-  cert: string = "xxxx"
-  ca: string[] = ["xxxx"]
-  password: string = "xxxx"
-  protocols: enum = socket.Protocol.TLSv12
-  useRemoteCipherPrefer: boolean = true
-  signatureAlgorithms: string = "rsa_pss_rsae_sha256:ECDSA+SHA256"
-  cipherSuite: string = "AES256-SHA256"
-}
-class Options {
-  ALPNProtocols: string[] = ["spdy/1", "http/1.1"]
-  address: Object = new NetAddress()
-  secureOptions: Object = new SecureOptions()
-}
-tlsServer.listen(new Options()).then(() => {
-  console.log("listen callback success");
-}).catch((err: string) => {
-  console.log(err);
-  return;
-});
-tlsServer.on('connect', (client: socket) => {
+tlsServer.on('connect', (client: socket.TLSSocketConnection) => {
   client.on('error', callback);
   // 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
   client.off('error', callback);

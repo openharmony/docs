@@ -36,27 +36,20 @@ VPN 即虚拟专网（VPN-Virtual Private Network）在公用网络上建立专�
 主要功能：实现业务逻辑，如：创建隧道、建立 VPN 网络、保护 VPN 网络、销毁 VPN 网络
 
 ```js
-import hilog from '@ohos.hilog';
 import vpn from '@ohos.net.vpn';
-import UIAbility from '@ohos.app.ability.UIAbility';
+import common from '@ohos.app.ability.common';
 import vpn_client from "libvpn_client.so"
 import { BusinessError } from '@ohos.base';
-class EntryAbility extends UIAbility {
-  value: number = 0;
-
-  onWindowStageCreate(windowStage: string): void {
-    GlobalContext.getContext().setObject("value", this.value);
-  }
-}
 
 let TunnelFd: number = -1
-let context = GlobalContext.getContext().getObject("value");
-let VpnConnection = vpn.createVpnConnection(context)
 
 @Entry
 @Component
 struct Index {
   @State message: string = 'Test VPN'
+
+  private context = getContext(this) as common.UIAbilityContext;
+  private VpnConnection: vpn.VpnConnection = vpn.createVpnConnection(this.context)
 
   //1. 建立一个VPN的网络隧道，下面以UDP隧道为例。
   CreateTunnel() {
@@ -65,7 +58,7 @@ struct Index {
 
   //2. 保护前一步建立的UDP隧道。
   Protect() {
-    VpnConnection.protect(TunnelFd).then(() => {
+    this.VpnConnection.protect(TunnelFd).then(() => {
       console.info("vpn Protect Success.")
     }).catch((err: BusinessError) => {
       console.info("vpn Protect Failed " + JSON.stringify(err))
@@ -73,29 +66,18 @@ struct Index {
   }
 
   SetupVpn() {
-    class Address {
-      address: string = "10.0.0.5"
-      family: number = 1
-    }
+    let tunAddr : vpn.LinkAddress = {} as vpn.LinkAddress
+    tunAddr.address.address = "10.0.0.5"
+    tunAddr.address.family = 1
 
-    class addressesClass {
-      address: object = new Address()
-      prefixLength: number = 24
-    }
+    let config : vpn.VpnConfig = {} as vpn.VpnConfig
+    config.addresses.push(tunAddr)
+    config.mtu = 1400
+    config.dnsAddresses = ["114.114.114.114"]
 
-    class configClass {
-      addresses: object = new addressesClass()
-      routes: Array<Object> = []
-      mtu: number = 1400
-      dnsAddresses: Array<string> = ["114.114.114.114"]
-      trustedApplications: Array<Object> = []
-      blockedApplications: Array<Object> = []
-    }
-
-    let config = new configClass()
     try {
       //3. 建立一个VPN网络。
-      VpnConnection.setUp(config, (error: BusinessError, data: object) => {
+      this.VpnConnection.setUp(config, (error: BusinessError, data: number) => {
         console.info("tunfd: " + JSON.stringify(data));
         //4. 处理虚拟网卡的数据，如：读写操作。
         vpn_client.startVpn(data, TunnelFd)
@@ -108,7 +90,7 @@ struct Index {
   //5.销毁VPN网络。
   Destroy() {
     vpn_client.stopVpn(TunnelFd)
-    VpnConnection.destroy().then(() => {
+    this.VpnConnection.destroy().then(() => {
       console.info("vpn Destroy Success.")
     }).catch((err: BusinessError) => {
       console.info("vpn Destroy Failed " + JSON.stringify(err))

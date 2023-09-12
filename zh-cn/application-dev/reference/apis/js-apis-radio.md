@@ -2991,6 +2991,7 @@ radio.setNROptionMode(slotId, mode).then(() => {
 }).catch((err: BusinessError) => {
     console.error(`setNROptionMode failed, promise: err->${JSON.stringify(err)}`);
 });
+```
 
 
 ## radio.getNROptionMode<sup>10+</sup>

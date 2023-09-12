@@ -48,7 +48,7 @@ Navigation(pathInfos: NavPathStack)
 | navBarPosition<sup>9+</sup>        | [NavBarPosition](#navbarposition枚举说明)    | 导航栏位置。<br/>默认值：NavBarPosition.Start<br/>**说明：** <br/>仅在Navigation组件分栏时生效。 |
 | mode<sup>9+</sup>                  | [NavigationMode](#navigationmode枚举说明)    | 导航栏的显示模式。<br/>默认值：NavigationMode.Auto<br/>自适应：基于组件宽度自适应单栏和双栏。<br/>**说明：** <br/>支持Stack、Split与Auto模式。 |
 | backButtonIcon<sup>9+</sup>        | string \| [PixelMap](../apis/js-apis-image.md#pixelmap7) \| [Resource](ts-types.md#resource) | 设置导航栏返回图标。不支持隐藏NavDestination组件标题栏中的返回图标。 |
-| hideNavBar<sup>9+</sup>            | boolean                                  | 是否显示导航栏（仅在mode为NavigationMode.Split时生效）。 |
+| hideNavBar<sup>9+</sup>            | boolean                                  | 是否显示导航栏。 |
 | navDestination<sup>10+</sup>       | builder: (name: string, param: unknown) => void | 创建NavDestination组件。<br/>**说明：** <br/>使用builder函数，基于name和param构造NavDestination组件。builder中允许在NavDestination组件外包含一层自定义组件， 但自定义组件不允许设置属性和事件，否则仅显示空白。 |
 | navBarWidthRange<sup>10+</sup>     | [[Dimension](ts-types.md#dimension10), [Dimension](ts-types.md#dimension10)] | 导航栏最小和最大宽度（双栏模式下生效）。<br/>默认值：最小默认值 240，最大默认值为组件宽度的40% ，且不大于 432。<br/>单位：vp<br/>规则：<br/>开发者设置优先级 > 默认值<br/>最小值优先级 > 最大值<br/>navBar 优先级 > content优先级<br/>开发者设置多个值冲突，以全局数值优先，局部最小值跟随容器大小。 |
 | minContentWidth<sup>10+</sup>      | [Dimension](ts-types.md#dimension10)     | 导航栏内容区最小宽度（双栏模式下生效）。<br/>默认值：360<br/>单位：vp<br/>规则：<br/>开发者设置优先级 > 默认值<br/>最小值优先级 > 最大值<br/>navBar优先级 > content优先级<br/>开发者设置多个值冲突，以全局数值优先，局部最小值跟随容器大小。<br/>Auto模式断点计算：默认600vp，minNavBarWidth(240vp) + minContentWidth (360vp) |
@@ -477,9 +477,9 @@ struct NavigationExample {
 ### 示例2
 ```ts
 // Index.ets
-
-import { pageOne } from './pageOne'
-import { pageTwo } from './pageTwo'
+import { pageOneTmp } from './pageOne'
+import { pageTwoTmp } from './pageTwo'
+import { pages }  from './pageTwo'
 
 @Entry
 @Component
@@ -487,11 +487,11 @@ struct NavigationExample {
   @Provide('pageInfos') pageInfos: NavPathStack = new NavPathStack()
 
   @Builder
-  PageMap(name: string, param: unknown) {
+  PageMap(name: string) {
     if (name === 'pageOne') {
-      pageOne()
+      pageOneTmp()
     } else if (name === 'pageTwo') {
-      pageTwo({ names: name, values: this.pageInfos })
+      pageTwoTmp({ names: name, values: this.pageInfos } as pages)
     }
   }
 
@@ -512,9 +512,11 @@ struct NavigationExample {
 ```
 ```ts
 // pageOne.ets
-
+class tmpClass{
+  count:number=10
+}
 @Component
-export struct pageOne {
+export struct pageOneTmp {
   @Consume('pageInfos') pageInfos: NavPathStack;
 
   build() {
@@ -525,7 +527,8 @@ export struct pageOne {
           .height(40)
           .margin(20)
           .onClick(() => {
-            this.pageInfos.pushPathByName('pageTwo', { count: 10 }) //将name指定的NavDestination页面信息入栈，传递的数据为param
+            let tmp = new tmpClass()
+            this.pageInfos.pushPathByName('pageTwo', tmp) //将name指定的NavDestination页面信息入栈，传递的数据为param
           })
         Button('popToname', { stateEffect: true, type: ButtonType.Capsule })
           .width('80%')
@@ -592,17 +595,12 @@ export struct pageOne {
 // pageTwo.ets
 
 export class pages {
-  names: string
-  values: NavPathStack
-
-  constructor(name: string, param: NavPathStack) {
-    this.names = name
-    this.values = param
-  }
+  names: string = ""
+  values: NavPathStack | null = null
 }
 
 @Builder
-export function pageTwo(info: pages) {
+export function pageTwoTmp(info: pages) {
   NavDestination() {
     Column() {
       Button('pushPathByName', { stateEffect: true, type: ButtonType.Capsule })
@@ -610,12 +608,12 @@ export function pageTwo(info: pages) {
         .height(40)
         .margin(20)
         .onClick(() => {
-          info.values.pushPathByName('pageOne', {})
+          (info.values as NavPathStack).pushPathByName('pageOne', null)
         })
     }.width('100%').height('100%')
   }.title('pageTwo')
   .onBackPressed(() => {
-    info.values.pop()
+    (info.values as NavPathStack).pop()
     return true
   })
 }

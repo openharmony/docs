@@ -82,7 +82,7 @@ struct ImageExample {
           }
           .height('90%')
           .width('100%')
-          .allowDrop([UTD.UniformDataType.TEXT, UTD.UniformDataType.IMAGE])
+          .allowDrop([UTD.UniformDataType.TEXT])
           .onDrop((event?: DragEvent, extraParams?: string) => {
             this.uri = JSON.parse(extraParams as string).extraInfo;
             this.AblockArr.splice(JSON.parse(extraParams as string).insertIndex, 0, this.uri);

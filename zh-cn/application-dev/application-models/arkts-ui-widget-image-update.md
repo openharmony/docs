@@ -61,10 +61,11 @@
   export default class EntryFormAbility extends FormExtensionAbility {
     // 在卡片页面触发message事件时，下载一个网络图片，并将网络图片内容传递给卡片页面显示
     onFormEvent(formId: string, message: string) {
-      let formInfo = formBindingData.createFormBindingData({
+      let param: Record<string, string> = {
         'text': '刷新中...'
-      })
-      formProvider.updateForm(formId, formInfo)
+      };
+      let formInfo: formBindingData.FormBindingData = formBindingData.createFormBindingData(param);
+      formProvider.updateForm(formId, formInfo);
       // 注意：FormExtensionAbility在触发生命周期回调时被拉起，仅能在后台存在5秒
       // 建议下载能快速下载完成的小文件，如在5秒内未下载完成，则此次网络图片无法刷新至卡片页面上
       let netFile = 'https://xxxx/xxxx.png'; // 需要在此处使用真实的网络图片下载链接
@@ -99,10 +100,11 @@
         })
         task.on('fail', (err: number) => {
           console.info('ArkTSCard download task failed. Cause:' + err);
-          let formInfo = formBindingData.createFormBindingData({
+          let param: Record<string, string> = {
             'text': '刷新失败'
-          })
-          formProvider.updateForm(formId, formInfo)
+          };
+          let formInfo: formBindingData.FormBindingData = formBindingData.createFormBindingData(param);
+          formProvider.updateForm(formId, formInfo);
         });
       }).catch((err: Base.BusinessError) => {
         console.error('Failed to request the download. Cause: ' + JSON.stringify(err));

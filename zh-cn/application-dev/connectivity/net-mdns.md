@@ -47,14 +47,33 @@ MDNS管理的典型场景有：
 ```js
 // 从@ohos.net.mdns中导入mdns命名空间
 import mdns from '@ohos.net.mdns'
-
-// FA模型获取context
-import featureAbility from '@ohos.ability.featureAbility';
-let context = featureAbility.getContext();
-
-// Stage模型获取context
 import UIAbility from '@ohos.app.ability.UIAbility';
 import { BusinessError } from '@ohos.base';
+import featureAbility from '@ohos.ability.featureAbility';
+
+// 构造单例对象
+export class GlobalContext {
+  private constructor() {}
+  private static instance: GlobalContext;
+  private _objects = new Map<string, Object>();
+
+  public static getContext(): GlobalContext {
+    if (!GlobalContext.instance) {
+      GlobalContext.instance = new GlobalContext();
+    }
+    return GlobalContext.instance;
+  }
+
+  getObject(value: string): Object | undefined {
+    return this._objects.get(value);
+  }
+
+  setObject(key: string, objectClass: Object): void {
+    this._objects.set(key, objectClass);
+  }
+}
+
+// Stage模型获取context
 class EntryAbility extends UIAbility {
   value:number = 0;
   onWindowStageCreate(windowStage:string): void{
@@ -63,18 +82,20 @@ class EntryAbility extends UIAbility {
 }
 let context = GlobalContext.getContext().getObject("value");
 
+class ServiceAttribute {
+  key: string = "111"
+  value: Array = [1]
+}
+
 // 建立LocalService对象
 let localServiceInfo: mdns.LocalServiceInfo = {
-  serviceType: "_print._tcp",
-  serviceName: "servicename",
-  port: 5555,
+  serviceType: "_print._tcp"
+  serviceName: "servicename"
+  port: 5555
   host: {
-    address: "10.14.**.***",
-  },
-  serviceAttribute: [{
-    key: "111",
-    value: [1]
-  }]
+    address: "10.14.**.***"
+  }
+  serviceAttribute: [{key: "111", value: [1]}]
 }
 
 // addLocalService添加本地服务
@@ -109,14 +130,33 @@ mdns.removeLocalService(context, localServiceInfo, (error: BusinessError, data: 
 ```js
 // 从@ohos.net.mdns中导入mdns命名空间
 import mdns from '@ohos.net.mdns'
-
-// FA模型获取context
-import featureAbility from '@ohos.ability.featureAbility';
-let context = featureAbility.getContext();
-
-// Stage模型获取context
 import UIAbility from '@ohos.app.ability.UIAbility';
 import { BusinessError } from '@ohos.base';
+import featureAbility from '@ohos.ability.featureAbility';
+
+// 构造单例对象
+export class GlobalContext {
+  private constructor() {}
+  private static instance: GlobalContext;
+  private _objects = new Map<string, Object>();
+
+  public static getContext(): GlobalContext {
+    if (!GlobalContext.instance) {
+      GlobalContext.instance = new GlobalContext();
+    }
+    return GlobalContext.instance;
+  }
+
+  getObject(value: string): Object | undefined {
+    return this._objects.get(value);
+  }
+
+  setObject(key: string, objectClass: Object): void {
+    this._objects.set(key, objectClass);
+  }
+}
+
+// Stage模型获取context
 class EntryAbility extends UIAbility {
   value:number = 0;
   onWindowStageCreate(windowStage:string): void{
@@ -127,11 +167,11 @@ let context = GlobalContext.getContext().getObject("value");
 
 // 创建DiscoveryService对象，用于发现指定服务类型的mDNS服务
 let serviceType = "_print._tcp";
-let discoveryService = mdns.createDiscoveryService(context, serviceType);
+let discoveryService: Object = mdns.createDiscoveryService(context, serviceType);
 
 class DataServiceInfo{
-  serviceInfo: mdns.LocalServiceInfo
-  errorCode?: mdns.MdnsError
+  serviceInfo: mdns.LocalServiceInfo = {}
+  errorCode?: mdns.MdnsError = INTERNAL_ERROR
 }
 // 订阅mDNS服务发现相关状态变化
 discoveryService.on('discoveryStart', (data: DataServiceInfo) => {

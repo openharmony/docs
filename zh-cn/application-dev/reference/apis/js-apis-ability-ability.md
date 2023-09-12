@@ -24,7 +24,7 @@ AbilityResult:SystemCapability.Ability.AbilityBase
 ConnectOptions:SystemCapability.Ability.AbilityRuntime.Core
 StartAbilityParameter:SystemCapability.Ability.AbilityRuntime.FAModel
 
-**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+**系统能力：** SystemCapability.Ability.AbilityRuntime.AbilityCore
 
 | 名称         | 类型                 | 描述                                                         |
 | ----------- | -------------------- | ------------------------------------------------------------ |

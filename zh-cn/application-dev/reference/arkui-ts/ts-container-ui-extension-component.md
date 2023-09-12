@@ -197,6 +197,8 @@ interface ErrorObject {
 ```ts
 // 扩展入口文件UIExtensionProvider.ts
 import UIExtensionAbility from '@ohos.app.ability.UIExtensionAbility'
+import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession'
+import Want from '@ohos.app.ability.Want';
 const TAG: string = '[UIExtAbility]'
 export default class UIExtAbility extends UIExtensionAbility {
   onCreate() {
@@ -215,7 +217,7 @@ export default class UIExtAbility extends UIExtensionAbility {
     console.log(TAG, `UIExtAbility onDestroy`)
   }
 
-  onSessionCreate(want, session) {
+  onSessionCreate(want: Want, session: UIExtensionContentSession) {
     console.log(TAG, `UIExtAbility onSessionCreate, want: ${JSON.stringify(want)}`)
     let storage: LocalStorage = new LocalStorage({
       'session': session
@@ -223,7 +225,7 @@ export default class UIExtAbility extends UIExtensionAbility {
     session.loadContent('pages/extension', storage);
   }
 
-  onSessionDestroy(session) {
+  onSessionDestroy(session: UIExtensionContentSession) {
     console.log(TAG, `UIExtAbility onSessionDestroy`)
   }
 }
