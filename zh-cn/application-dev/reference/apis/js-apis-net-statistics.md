@@ -9,7 +9,6 @@
 
 ```js
 import statistics from "@ohos.net.statistics";
-import { BusinessError } from "@ohos.base";
 ```
 
 ## statistics.getIfaceRxBytes<sup>10+</sup>
