@@ -43,6 +43,7 @@ getIfaceRxBytes(nic: string, callback: AsyncCallback\<number>): void;
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 statistics.getIfaceRxBytes("wlan0", (error: BusinessError, stats: number) => {
   console.log(JSON.stringify(error));
   console.log(JSON.stringify(stats));
@@ -120,6 +121,7 @@ getIfaceTxBytes(nic: string, callback: AsyncCallback\<number>): void;
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 statistics.getIfaceTxBytes("wlan0", (error: BusinessError, stats: number) => {
   console.log(JSON.stringify(error));
   console.log(JSON.stringify(stats));
@@ -195,6 +197,7 @@ getCellularRxBytes(callback: AsyncCallback\<number>): void;
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 statistics.getCellularRxBytes((error: BusinessError, stats: number) => {
   console.log(JSON.stringify(error));
   console.log(JSON.stringify(stats));
@@ -263,6 +266,7 @@ getCellularTxBytes(callback: AsyncCallback\<number>): void;
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 statistics.getCellularTxBytes((error: BusinessError, stats: number) => {
   console.log(JSON.stringify(error));
   console.log(JSON.stringify(stats));
@@ -330,6 +334,7 @@ getAllRxBytes(callback: AsyncCallback\<number>): void;
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 statistics.getAllRxBytes((error: BusinessError, stats: number) => {
   console.log(JSON.stringify(error));
   console.log(JSON.stringify(stats));
@@ -396,6 +401,7 @@ getAllTxBytes(callback: AsyncCallback\<number>): void;
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 statistics.getAllTxBytes((error: BusinessError, stats: number) => {
   console.log(JSON.stringify(error));
   console.log(JSON.stringify(stats));
@@ -464,6 +470,7 @@ getUidRxBytes(uid: number, callback: AsyncCallback\<number>): void;
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 statistics.getUidRxBytes(20010038, (error: BusinessError, stats: number) => {
   console.log(JSON.stringify(error));
   console.log(JSON.stringify(stats));
@@ -539,6 +546,7 @@ getUidTxBytes(uid: number, callback: AsyncCallback\<number>): void;
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 statistics.getUidTxBytes(20010038, (error: BusinessError, stats: number) => {
   console.log(JSON.stringify(error));
   console.log(JSON.stringify(stats));
@@ -710,6 +718,7 @@ getTrafficStatsByIface(ifaceInfo: IfaceInfo, callback: AsyncCallback\<NetStatsIn
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 class IFaceInfo {
   iFace: string = "wlan0";
   startTime: number = 1685948465;
@@ -838,6 +847,7 @@ getTrafficStatsByUid(uidInfo: UidInfo, callback: AsyncCallback\<NetStatsInfo>): 
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 class IFaceInfoClass {
   iFace: string = "wlan0";
   startTime: number = 1685948465;
