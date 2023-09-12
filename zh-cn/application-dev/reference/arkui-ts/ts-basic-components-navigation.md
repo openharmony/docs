@@ -477,9 +477,9 @@ struct NavigationExample {
 ### 示例2
 ```ts
 // Index.ets
-
-import { pageOne } from './pageOne'
-import { pageTwo } from './pageTwo'
+import { pageOneTmp } from './pageOne'
+import { pageTwoTmp } from './pageTwo'
+import { pages }  from './pageTwo'
 
 @Entry
 @Component
@@ -489,9 +489,9 @@ struct NavigationExample {
   @Builder
   PageMap(name: string) {
     if (name === 'pageOne') {
-      pageOneClass()
+      pageOneTmp()
     } else if (name === 'pageTwo') {
-       pageTwoFun({ names: name, values: this.pageInfos })
+      pageTwoTmp({ names: name, values: this.pageInfos } as pages)
     }
   }
 
@@ -512,9 +512,11 @@ struct NavigationExample {
 ```
 ```ts
 // pageOne.ets
-
+class tmpClass{
+  count:number=10
+}
 @Component
-export struct pageOneClass {
+export struct pageOneTmp {
   @Consume('pageInfos') pageInfos: NavPathStack;
 
   build() {
@@ -525,7 +527,8 @@ export struct pageOneClass {
           .height(40)
           .margin(20)
           .onClick(() => {
-            this.pageInfos.pushPathByName('pageTwo', { count: 10 }) //将name指定的NavDestination页面信息入栈，传递的数据为param
+            let tmp = new tmpClass()
+            this.pageInfos.pushPathByName('pageTwo', tmp) //将name指定的NavDestination页面信息入栈，传递的数据为param
           })
         Button('popToname', { stateEffect: true, type: ButtonType.Capsule })
           .width('80%')
@@ -597,7 +600,7 @@ export class pages {
 }
 
 @Builder
-export function pageTwoFun(info: pages) {
+export function pageTwoTmp(info: pages) {
   NavDestination() {
     Column() {
       Button('pushPathByName', { stateEffect: true, type: ButtonType.Capsule })
@@ -605,7 +608,7 @@ export function pageTwoFun(info: pages) {
         .height(40)
         .margin(20)
         .onClick(() => {
-          (info.values as NavPathStack).pushPathByName('pageOne', {})
+          (info.values as NavPathStack).pushPathByName('pageOne', null)
         })
     }.width('100%').height('100%')
   }.title('pageTwo')
