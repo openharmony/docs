@@ -9,7 +9,6 @@ VPN 管理模块，支持 VPN 的启动和停止功能。
 
 ```js
 import vpn from "@ohos.net.vpn";
-import { BusinessError } from "@ohos.base";
 ```
 
 ## vpn.createVpnConnection
@@ -110,17 +109,18 @@ import { BusinessError } from "@ohos.base";
 struct Index {
   private context = getContext(this) as common.UIAbilityContext;
   private VpnConnection: vpn.VpnConnection = vpn.createVpnConnection(this.context);
-  SetUp()
-  {
-    let tunAddr : vpn.LinkAddress = {} as vpn.LinkAddress
-    tunAddr.address.address = "10.0.0.5"
-    tunAddr.address.family = 1
-
-    let config : vpn.VpnConfig = {} as vpn.VpnConfig
-    config.addresses.push(tunAddr)
-    config.mtu = 1400
-    config.dnsAddresses = ["114.114.114.114"]
-
+  SetUp(): void {
+    let config: vpn.VpnConfig = {
+      addresses: [{
+        address: {
+          address: "10.0.0.5",
+          family: 1
+        },
+        prefixLength: 24
+      }],
+      mtu: 1400,
+      dnsAddresses: ["114.114.114.114"]
+    }
     this.VpnConnection.setUp(config, (error: BusinessError, data: number) => {
       console.info(JSON.stringify(error));
       console.info("tunfd: " + JSON.stringify(data));
@@ -181,17 +181,18 @@ import { BusinessError } from "@ohos.base";
 struct Index {
   private context = getContext(this) as common.UIAbilityContext;
   private VpnConnection: vpn.VpnConnection = vpn.createVpnConnection(this.context);
-  SetUp()
-  {
-    let tunAddr : vpn.LinkAddress = {} as vpn.LinkAddress
-    tunAddr.address.address = "10.0.0.5"
-    tunAddr.address.family = 1
-
-    let config : vpn.VpnConfig = {} as vpn.VpnConfig
-    config.addresses.push(tunAddr)
-    config.mtu = 1400
-    config.dnsAddresses = ["114.114.114.114"]
-
+  SetUp(): void {
+    let config: vpn.VpnConfig = {
+      addresses: [{
+        address: {
+          address: "10.0.0.5",
+          family: 1
+        },
+        prefixLength: 24
+      }],
+      mtu: 1400,
+      dnsAddresses: ["114.114.114.114"]
+    }
     this.VpnConnection.setUp(config).then((data: number) => {
       console.info("setUp success, tunfd: " + JSON.stringify(data));
     }).catch((err: BusinessError) => {
@@ -249,22 +250,20 @@ struct Index {
   private context = getContext(this) as common.UIAbilityContext;
   private VpnConnection: vpn.VpnConnection = vpn.createVpnConnection(this.context);
 
-  Protect() {
+  Protect(): void {
     let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
-    let ipAddress : socket.NetAddress = {} as socket.NetAddress;
-    ipAddress.address = "0.0.0.0";
-    ipAddress.port = 1234;
+    let ipAddress: socket.NetAddress = {
+      address: "0.0.0.0"
+    }
     tcp.bind(ipAddress);
-
-    let connectAddress : socket.NetAddress = {} as socket.NetAddress;
-    connectAddress.address = "192.168.1.11";
-    connectAddress.port = 8888;
-
-    let addressConnect : socket.TCPConnectOptions = {} as socket.TCPConnectOptions;
-    addressConnect.address = connectAddress;
-    addressConnect.timeout = 6000;
+    let addressConnect: socket.TCPConnectOptions = {
+      address: {
+        address: "192.168.1.11",
+        port: 8888
+      },
+      timeout: 6000
+    }
     tcp.connect(addressConnect);
-
     tcp.getSocketFd().then((tunnelfd: number) => {
       console.info("tunenlfd: " + tunnelfd);
       this.VpnConnection.protect(tunnelfd, (error: BusinessError) => {
@@ -328,22 +327,20 @@ struct Index {
   private context = getContext(this) as common.UIAbilityContext;
   private VpnConnection: vpn.VpnConnection = vpn.createVpnConnection(this.context);
 
-  Protect() {
+  Protect(): void {
     let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
-    let ipAddress : socket.NetAddress = {} as socket.NetAddress;
-    ipAddress.address = "0.0.0.0";
-    ipAddress.port = 1234;
+    let ipAddress: socket.NetAddress = {
+      address: "0.0.0.0"
+    }
     tcp.bind(ipAddress);
-
-    let connectAddress : socket.NetAddress = {} as socket.NetAddress;
-    connectAddress.address = "192.168.1.11";
-    connectAddress.port = 8888;
-
-    let addressConnect : socket.TCPConnectOptions = {} as socket.TCPConnectOptions;
-    addressConnect.address = connectAddress;
-    addressConnect.timeout = 6000;
+    let addressConnect: socket.TCPConnectOptions = {
+      address: {
+        address: "192.168.1.11",
+        port: 8888
+      },
+      timeout: 6000
+    }
     tcp.connect(addressConnect);
-
     tcp.getSocketFd().then((tunnelfd: number) => {
       console.info("tunenlfd: " + tunnelfd);
       this.VpnConnection.protect(tunnelfd).then(() => {
@@ -399,8 +396,7 @@ import { BusinessError } from "@ohos.base";
 struct Index {
   private context = getContext(this) as common.UIAbilityContext;
   private VpnConnection: vpn.VpnConnection = vpn.createVpnConnection(this.context);
-  Destroy()
-  {
+  Destroy(): void {
     this.VpnConnection.destroy((error: BusinessError) => {
       console.info(JSON.stringify(error));
     });
@@ -450,8 +446,7 @@ import { BusinessError } from "@ohos.base";
 struct Index {
   private context = getContext(this) as common.UIAbilityContext;
   private VpnConnection: vpn.VpnConnection = vpn.createVpnConnection(this.context);
-  Destroy()
-  {
+  Destroy(): void {
     this.VpnConnection.destroy().then(() => {
       console.info("destroy success.");
     }).catch((err: BusinessError) => {
@@ -471,15 +466,15 @@ VPN 配置参数。
 **系统能力**：SystemCapability.Communication.NetManager.Vpn
 
 | 名称                | 类型                                                           | 必填 | 说明                                |
-| ------------------- | -------------------------------------------------------------- | ---- | ----------------------------------- | --- |
+| ------------------- | -------------------------------------------------------------- | ---- | ----------------------------------- |
 | addresses           | Array\<[LinkAddress](js-apis-net-connection.md#linkaddress8)\> | 是   | VPN 虚拟网卡的 IP 地址。            |
 | routes              | Array\<[RouteInfo](js-apis-net-connection.md#routeinfo8)\>     | 否   | VPN 虚拟网卡的路由信息。            |
 | dnsAddresses        | Array\<string\>                                                | 否   | DNS 服务器地址信息。                |
 | searchDomains       | Array\<string\>                                                | 否   | DNS 的搜索域列表。                  |
-| mtu                 | number                                                         | 否   | 最大传输单元 MTU 值(单位:字节)。    |
+| mtu                 | number                                                         | 否   | 最大传输单元 MTU 值(单位:字节)。     |
 | isIPv4Accepted      | boolean                                                        | 否   | 是否支持 IPV4, 默认值为 true。      |
-| isIPv6Accepted      | boolean                                                        | 否   | 是否支持 IPV6, 默认值为 flase。     |     |
-| isLegacy            | boolean                                                        | 否   | 是否支持内置 VPN, 默认值为 flase。  |
-| isBlocking          | boolean                                                        | 否   | 是否阻塞模式, 默认值为 flase。      |
-| trustedApplications | Array\<string\>                                                | 否   | 白名单信息, string 类型表示的包名。 |
-| blockedApplications | Array\<string\>                                                | 否   | 黑名单信息, string 类型表示的包名。 |
+| isIPv6Accepted      | boolean                                                        | 否   | 是否支持 IPV6, 默认值为 flase。     |
+| isLegacy            | boolean                                                        | 否   | 是否支持内置 VPN, 默认值为 flase。   |
+| isBlocking          | boolean                                                        | 否   | 是否阻塞模式, 默认值为 flase。       |
+| trustedApplications | Array\<string\>                                                | 否   | 白名单信息, string 类型表示的包名。  |
+| blockedApplications | Array\<string\>                                                | 否   | 黑名单信息, string 类型表示的包名。  |
