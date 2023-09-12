@@ -148,7 +148,7 @@ struct FlexExample2 {
 // xxx.ets
 @Component
 struct JustifyContentFlex {
-  justifyContent : number
+  justifyContent : number = 0;
 
   build() {
     Flex({ justifyContent: this.justifyContent }) {
