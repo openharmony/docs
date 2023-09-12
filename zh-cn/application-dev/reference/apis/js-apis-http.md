@@ -1,4 +1,4 @@
-git# @ohos.net.http (数据请求)
+# @ohos.net.http (数据请求)
 
 本模块提供HTTP数据请求能力。应用可以通过HTTP发起一个数据请求，支持常见的GET、POST、OPTIONS、HEAD、PUT、DELETE、TRACE、CONNECT方法。
 
@@ -259,14 +259,15 @@ class Header {
     this.contentType = contentType;
   }
 }
-class RequestOptions{
-  method: string =  http.RequestMethod.GET
-  connectTimeout:number = 60000
-  readTimeout: number = 60000
-  header:Header=new Header('application/json')
-}
 
-let promise:RequestOptions = httpRequest.request("EXAMPLE_URL", RequestOptions);
+let httpRequest = http.createHttp();
+let promise:RequestOptions = httpRequest.request("EXAMPLE_URL", {
+  method: http.RequestMethod.GET,
+  connectTimeout: 60000,
+  readTimeout: 60000,
+  header: new Header('application/json')
+});
+
 promise.then((data:http.HttpResponse) => {
   console.info('Result:' + data.result);
   console.info('code:' + data.responseCode);
@@ -360,21 +361,21 @@ class Header {
   }
 }
 
-class RequestOptions{
-  method: string =  http.RequestMethod.GET
-  connectTimeout:number = 60000
-  readTimeout: number = 60000
-  header:Header=new Header('application/json')
-}
-let promise:RequestOptions = httpRequest.request("EXAMPLE_URL", RequestOptions);
-promise.then((data) => {
+let httpRequest = http.createHttp();
+let promise:RequestOptions = httpRequest.request("EXAMPLE_URL", {
+  method: http.RequestMethod.GET,
+  connectTimeout: 60000,
+  readTimeout: 60000,
+  header: new Header('application/json')
+});
+promise.then((data:http.HttpResponse) => {
   console.info('Result:' + data.result);
   console.info('code:' + data.responseCode);
   console.info('header:' + JSON.stringify(data.header));
   console.info('cookies:' + data.cookies); // 8+
-  console.info('header.Content-Type:' + data.header['Content-Type']);
-  console.info('header.Status-Line:' + data.header['Status-Line']);
-}).catch((err) => {
+  console.info('header.Content-Type:' + data.header.Content-Type);
+  console.info('header.Status-Line:' + data.header.Status-Line);
+}).catch((err:Error) => {
   console.info('error:' + JSON.stringify(err));
 });
 ```
@@ -535,14 +536,9 @@ class Header {
     this.contentType = contentType;
   }
 }
-class RequestOptions{
-  method: string =  http.RequestMethod.GET
-  connectTimeout:number = 60000
-  readTimeout: number = 60000
-  header:Header=new Header('application/json')
-}
 
-httpRequest.requestInStream("EXAMPLE_URL",RequestOptions, (err: BusinessError<void> , data: number) => {
+let httpRequest = http.createHttp();
+httpRequest.requestInStream("EXAMPLE_URL", (err: BusinessError<void> , data: number) => {
     if (!err) {
       console.info("requestInStream OK! ResponseCode is " + JSON.stringify(data));
     } else {
@@ -627,16 +623,16 @@ class Header {
   }
 }
 
-class RequestOptions{
-  method: string =  http.RequestMethod.GET
-  connectTimeout:number = 60000
-  readTimeout: number = 60000
-  header:Header=new Header('application/json')
-}
-let promise:RequestOptions = httpRequest.request("EXAMPLE_URL", RequestOptions);
+let httpRequest = http.createHttp();
+let promise:RequestOptions = httpRequest.request("EXAMPLE_URL", {
+  method: http.RequestMethod.GET,
+  connectTimeout: 60000,
+  readTimeout: 60000,
+  header: new Header('application/json')
+});
 promise.then((data: http.HttpResponse) => {
   console.info("requestInStream OK!" + JSON.stringify(data));
-}).catch((err) => {
+}).catch((err: Error) => {
   console.info("requestInStream ERROR : err = " + JSON.stringify(err));
 });
 ```
