@@ -487,11 +487,11 @@ struct NavigationExample {
   @Provide('pageInfos') pageInfos: NavPathStack = new NavPathStack()
 
   @Builder
-  PageMap(name: string, param: unknown) {
+  PageMap(name: string) {
     if (name === 'pageOne') {
-      pageOne()
+      pageOneClass()
     } else if (name === 'pageTwo') {
-      pageTwo({ names: name, values: this.pageInfos })
+       pageTwoFun({ names: name, values: this.pageInfos })
     }
   }
 
@@ -514,7 +514,7 @@ struct NavigationExample {
 // pageOne.ets
 
 @Component
-export struct pageOne {
+export struct pageOneClass {
   @Consume('pageInfos') pageInfos: NavPathStack;
 
   build() {
@@ -592,17 +592,12 @@ export struct pageOne {
 // pageTwo.ets
 
 export class pages {
-  names: string
-  values: NavPathStack
-
-  constructor(name: string, param: NavPathStack) {
-    this.names = name
-    this.values = param
-  }
+  names: string = ""
+  values: NavPathStack | null = null
 }
 
 @Builder
-export function pageTwo(info: pages) {
+export function pageTwoFun(info: pages) {
   NavDestination() {
     Column() {
       Button('pushPathByName', { stateEffect: true, type: ButtonType.Capsule })
@@ -610,12 +605,12 @@ export function pageTwo(info: pages) {
         .height(40)
         .margin(20)
         .onClick(() => {
-          info.values.pushPathByName('pageOne', {})
+          (info.values as NavPathStack).pushPathByName('pageOne', {})
         })
     }.width('100%').height('100%')
   }.title('pageTwo')
   .onBackPressed(() => {
-    info.values.pop()
+    (info.values as NavPathStack).pop()
     return true
   })
 }
