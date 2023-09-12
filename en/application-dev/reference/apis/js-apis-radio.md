@@ -3003,7 +3003,7 @@ Obtains the NR option mode of the SIM card in the specified slot. This API uses 
 
 **System capability**: SystemCapability.Telephony.CoreService
 
-** Parameter: **
+**Parameters**
 
 | Name   | Type                                              | Mandatory | Description                                   |
 | -------- | ------------------------------------------------ | ---- | -------------------------------------- |
