@@ -258,15 +258,13 @@ setGlobalHttpProxy(httpProxy: HttpProxy, callback: AsyncCallback\<void>): void
 import connection from '@ohos.net.connection'
 import { BusinessError } from '@ohos.base';
 
-class HttpProxy {
-  host: string = "192.168.xx.xxx"
-  port: number = 8080
-  exclusionList: Array<string>= exclusionArray
-}
 let exclusionStr = "192.168,baidu.com"
 let exclusionArray = exclusionStr.split(',');
-let httpProxy: connection.HttpProxy = new HttpProxy()
-connection.setGlobalHttpProxy(httpProxy).then(() => {
+connection.setGlobalHttpProxy({
+  host: "192.168.xx.xxx",
+  port: 8080,
+  exclusionList: exclusionArray
+} as connection.HttpProxy).then(() => {
   console.info("success");
 }).catch((error: BusinessError) => {
   console.info(JSON.stringify(error));
@@ -314,15 +312,13 @@ setGlobalHttpProxy(httpProxy: HttpProxy): Promise\<void>;
 import connection from '@ohos.net.connection'
 import { BusinessError } from '@ohos.base';
 
-class HttpProxy {
-  host: string = "192.168.xx.xxx"
-  port: number = 8080
-  exclusionList: Array<string>= exclusionArray
-}
 let exclusionStr = "192.168,baidu.com"
 let exclusionArray = exclusionStr.split(',');
-let httpProxy: connection.HttpProxy = new HttpProxy() 
-connection.setGlobalHttpProxy(httpProxy).then(() => {
+connection.setGlobalHttpProxy({
+  host: "192.168.xx.xxx",
+  port: 8080,
+  exclusionList: exclusionArray
+} as connection.HttpProxy).then(() => {
   console.info("success");
 }).catch((error: BusinessError) => {
   console.info(JSON.stringify(error));
@@ -806,7 +802,7 @@ getConnectionPropertiesSync(netHandle: NetHandle): ConnectionProperties
 ```ts
 import connection from '@ohos.net.connection'
 
-let netHandle = connection.getDefaultNetsSync();
+let netHandle = connection.getDefaultNetSync();
 let connectionproperties = connection.getConnectionPropertiesSync(netHandle);
 ```
 
@@ -931,7 +927,7 @@ getNetCapabilitiesSync(netHandle: NetHandle): NetCapabilities
 ```ts
 import connection from '@ohos.net.connection'
 
-let netHandle = connection.getDefaultNetsSync();
+let netHandle = connection.getDefaultNetSync();
 let getNetCapabilitiesSync = connection.getNetCapabilitiesSync(netHandle);
 ```
 
@@ -1478,8 +1474,9 @@ getAddressesByName(host: string, callback: AsyncCallback\<Array\<NetAddress>>): 
 **示例：**
 
 ```ts
-let host = "xxxx";
-connection.getAddressesByName(host, (error: BusinessError, data: connection.NetAddress[]) => {
+import connection from '@ohos.net.connection'
+import { BusinessError } from "@ohos.base"
+connection.getAddressesByName("xxxx", (error: BusinessError, data: connection.NetAddress[]) => {
   console.log(JSON.stringify(error))
   console.log(JSON.stringify(data))
 })
@@ -1520,8 +1517,8 @@ getAddressesByName(host: string): Promise\<Array\<NetAddress>>
 **示例：**
 
 ```ts
-let host = "xxxx";
-connection.getAddressesByName(host).then((data: connection.NetAddress[]) => {
+import connection from '@ohos.net.connection'
+connection.getAddressesByName("xxxx").then((data: connection.NetAddress[]) => {
   console.log(JSON.stringify(data))
 })
 ```
@@ -1900,11 +1897,9 @@ connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   let udp = socket.constructUDPSocketInstance();
   let socketType = "TCPSocket";
   if (socketType == "TCPSocket") {
-  let tcpAddress : socket.NetAddress
-      tcpAddress.address = "192.168.xxx.xxx"
-      tcpAddress.port = 8080
-      tcpAddress.family = 1
-    tcp.bind(tcpAddress, (error: Error) => {
+    tcp.bind({address:"192.168.xxx.xxx",
+              port:8080,
+              family:1} as socket.NetAddress, (error: Error) => {
       if (error) {
         console.log('bind fail');
         return;
@@ -1921,27 +1916,25 @@ connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
     let callback: (value: string) => void = (value: string) => {
       console.log("on message, message:" + value.message + ", remoteInfo:" + value.remoteInfo);
     }
-  let udpAddress : socket.NetAddress
-      udpAddress.address = "192.168.xxx.xxx"
-      udpAddress.port = 8080
-      udpAddress.family = 1
-  udp.bind(udpAddress, (error: BusinessError) => {
-    if (error) {
-      console.log('bind fail');
-      return;
-    }
-    udp.on('message', (data: string) => {
-      console.log(JSON.stringify(data))
-    });
-    netHandle.bindSocket(udp, (error: BusinessError, data: void) => {
+    udp.bind({address:"192.168.xxx.xxx",
+              port:8080,
+              family:1} as socket.NetAddress, (error: BusinessError) => {
       if (error) {
-        console.log(JSON.stringify(error));
-      } else {
-        console.log(JSON.stringify(data));
+        console.log('bind fail');
+        return;
       }
+      udp.on('message', (data: string) => {
+        console.log(JSON.stringify(data))
+      });
+      netHandle.bindSocket(udp, (error: BusinessError, data: void) => {
+        if (error) {
+          console.log(JSON.stringify(error));
+        } else {
+          console.log(JSON.stringify(data));
+        }
+      })
     })
-  })
-}
+  }
 })
 ```
 
@@ -1986,11 +1979,9 @@ connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   let udp = socket.constructUDPSocketInstance();
   let socketType = "TCPSocket";
   if (socketType == "TCPSocket") {
-  let tcpAddress : socket.NetAddress
-      tcpAddress.address = "192.168.xxx.xxx"
-      tcpAddress.port = 8080
-      tcpAddress.family = 1
-    tcp.bind(tcpAddress, (error: Error) => {
+    tcp.bind({address:"192.168.xxx.xxx",
+              port:8080,
+              family:1} as socket.NetAddress, (error: Error) => {
       if (error) {
         console.log('bind fail');
         return;
@@ -2007,11 +1998,9 @@ connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
     let callback: (value: string) => void = (value: string) => {
       console.log("on message, message:" + value.message + ", remoteInfo:" + value.remoteInfo);
     }
-  let udpAddress : socket.NetAddress
-      udpAddress.address = "192.168.xxx.xxx"
-      udpAddress.port = 8080
-      udpAddress.family = 1
-  udp.bind(udpAddress, (error: BusinessError) => {
+    udp.bind({address:"192.168.xxx.xxx",
+              port:8080,
+              family:1} as socket.NetAddress, (error: BusinessError) => {
     if (error) {
       console.log('bind fail');
       return;
