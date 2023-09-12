@@ -76,7 +76,7 @@ Video(value: {src?: string | Resource, currentProgressRate?: number | string | P
 ### 导入对象
 
 ```ts
-controller: VideoController = new VideoController()
+let controller: VideoController = new VideoController()
 ```
 
 
