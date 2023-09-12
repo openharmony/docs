@@ -169,6 +169,7 @@ struct PluginProviderExample {
 
 #### FA模型
 ```js
+//当前示例代码仅适用于js源文件
 //plugin_component.js
 import pluginComponentManager from '@ohos.pluginComponent'
 
@@ -257,6 +258,7 @@ export default {
 
 #### Stage模型
 ```js
+//当前示例代码仅适用于js源文件
 //plugin_component.js
 import pluginComponentManager from '@ohos.pluginComponent'
 
