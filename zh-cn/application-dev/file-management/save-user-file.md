@@ -11,7 +11,7 @@ save接口会将文件保存在文件管理器，而不是图库。
 
 本例展示了从图库中选择一张图片，保存到文件管理器的示例代码。
 
-1. 导入[选择器](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-file-picker.md)、[文件管理](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-file-fs.md)、[相册管理](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-photoAccessHelper.md)、[数据共享谓词](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-data-dataSharePredicates.md)模块。
+1. 导入[选择器](../reference/apis/js-apis-file-picker.md)、[文件管理](../reference/apis/js-apis-file-fs.md)、[相册管理](../reference/apis/js-apis-photoAccessHelper.md)、[数据共享谓词](../reference/apis/js-apis-data-dataSharePredicates.md)模块。
 
    ```ts
    import picker from '@ohos.file.picker';
