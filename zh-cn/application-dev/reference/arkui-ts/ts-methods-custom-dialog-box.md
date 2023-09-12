@@ -79,14 +79,14 @@ struct CustomDialogExample {
       Flex({ justifyContent: FlexAlign.SpaceAround }) {
         Button('cancel')
           .onClick(() => {
-            if (controller != null) {
+            if (this.controller != null) {
               this.controller.close()
               this.cancel()
             }
           }).backgroundColor(0xffffff).fontColor(Color.Black)
         Button('confirm')
           .onClick(() => {
-            if (controller != null) {
+            if (this.controller != null) {
               this.inputValue = this.textValue
               this.controller.close()
               this.confirm()
