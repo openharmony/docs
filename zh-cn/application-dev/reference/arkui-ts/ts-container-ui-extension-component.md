@@ -143,16 +143,13 @@ struct Index {
     abilityName: "UIExtensionProvider",
     parameters: { "x": 12345, "y": "data" }
   }
-  sizeObject: SizeObject = {
-    width: "100%", height: "100%"
-  }
 
   build() {
     Row() {
       Column() {
         Text(this.message).fontColor(Color.Red)
         UIExtensionComponent(this.want)
-          .size(this.sizeObject)
+          .size({ width: "100%", height: "100%" })
           .onRemoteReady((proxy: UIExtensionProxy) => {
             this.message = "remote ready"
             this.myProxy = proxy
@@ -180,11 +177,6 @@ struct Index {
     }
     .height('100%')
   }
-}
-
-interface SizeObject {
-  width: string;
-  height: string;
 }
 
 interface ErrorObject {
@@ -219,9 +211,10 @@ export default class UIExtAbility extends UIExtensionAbility {
 
   onSessionCreate(want: Want, session: UIExtensionContentSession) {
     console.log(TAG, `UIExtAbility onSessionCreate, want: ${JSON.stringify(want)}`)
-    let storage: LocalStorage = new LocalStorage({
+    let param: Record<string, UIExtensionContentSession> = {
       'session': session
-    });
+    }
+    let storage: LocalStorage = new LocalStorage(param);
     session.loadContent('pages/extension', storage);
   }
 

@@ -36,8 +36,8 @@ CustomDialogController(value:{builder: CustomDialog, cancel?: () =&gt; void, aut
 
 ### 导入对象
 
-```ts
-let dialogController : CustomDialogController = new CustomDialogController(value:{builder: CustomDialog, cancel?: () => void, autoCancel?: boolean})
+```
+dialogController : CustomDialogController = new CustomDialogController(value:{builder: CustomDialog, cancel?: () => void, autoCancel?: boolean})
 ```
 **说明**：CustomDialogController仅在作为@CustomDialog和@Component struct的成员变量，且在@Component struct内部定义时赋值才有效，具体用法可看下方示例。
 
@@ -103,7 +103,7 @@ struct CustomDialogExample {
 struct CustomDialogUser {
   @State textValue: string = ''
   @State inputValue: string = 'click me'
-  dialogController: CustomDialogController = new CustomDialogController({
+  dialogController: CustomDialogController | null = new CustomDialogController({
     builder: CustomDialogExample({
       cancel: this.onCancel,
       confirm: this.onAccept,
@@ -141,7 +141,7 @@ struct CustomDialogUser {
     Column() {
       Button(this.inputValue)
         .onClick(() => {
-          if (this.dialogController != undefined) {
+          if (this.dialogController != null) {
             this.dialogController.open()
           }
         }).backgroundColor(0x317aff)
