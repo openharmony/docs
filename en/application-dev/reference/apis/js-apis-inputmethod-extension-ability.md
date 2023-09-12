@@ -8,7 +8,7 @@ The **InputMethodExtensionAbility** module provides APIs for developing input me
 
 ## Modules to Import
 
-```js
+```ts
 import InputMethodExtensionAbility from '@ohos.InputMethodExtensionAbility';
 ```
 
@@ -36,9 +36,11 @@ Called when the **InputMethodExtension** ability is started to implement initial
 
 **Example**
 
-```js
+```ts
+import InputMethodExtensionAbility from '@ohos.InputMethodExtensionAbility';
+import Want from '@ohos.app.ability.Want';
 class InputMethodExt extends InputMethodExtensionAbility {
-  onCreate(want) {
+  onCreate(want: Want): void {
     console.log('onCreate, want:' + want.abilityName);
   }
 }
@@ -54,9 +56,10 @@ Called when this **InputMethodExtension** ability is destroyed to clear resource
 
 **Example**
 
-```js
+```ts
+import InputMethodExtensionAbility from '@ohos.InputMethodExtensionAbility';
 class InputMethodExt extends InputMethodExtensionAbility {
-  onDestroy() {
+  onDestroy(): void {
     console.log('onDestroy');
   }
 }
