@@ -37,7 +37,7 @@ CustomDialogController(value:{builder: CustomDialog, cancel?: () =&gt; void, aut
 ### 导入对象
 
 ```ts
-dialogController : CustomDialogController = new CustomDialogController(value:{builder: CustomDialog, cancel?: () => void, autoCancel?: boolean})
+let dialogController : CustomDialogController = new CustomDialogController(value:{builder: CustomDialog, cancel?: () => void, autoCancel?: boolean})
 ```
 **说明**：CustomDialogController仅在作为@CustomDialog和@Component struct的成员变量，且在@Component struct内部定义时赋值才有效，具体用法可看下方示例。
 
@@ -65,8 +65,8 @@ struct CustomDialogExample {
   @Link inputValue: string
   controller: CustomDialogController
   // 若尝试在CustomDialog中传入多个其他的Controller，以实现在CustomDialog中打开另一个或另一些CustomDialog，那么此处需要将指向自己的controller放在最后
-  cancel: () => void
-  confirm: () => void
+  cancel: () => void = () => {}
+  confirm: () => void = () => {}
 
   build() {
     Column() {
@@ -79,14 +79,18 @@ struct CustomDialogExample {
       Flex({ justifyContent: FlexAlign.SpaceAround }) {
         Button('cancel')
           .onClick(() => {
-            this.controller.close()
-            this.cancel()
+            if (this.controller != null) {
+              this.controller.close()
+              this.cancel()
+            }
           }).backgroundColor(0xffffff).fontColor(Color.Black)
         Button('confirm')
           .onClick(() => {
-            this.inputValue = this.textValue
-            this.controller.close()
-            this.confirm()
+            if (this.controller != null) {
+              this.inputValue = this.textValue
+              this.controller.close()
+              this.confirm()
+            }
           }).backgroundColor(0xffffff).fontColor(Color.Red)
       }.margin({ bottom: 10 })
     }.borderRadius(10)

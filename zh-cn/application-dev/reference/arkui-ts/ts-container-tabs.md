@@ -107,7 +107,7 @@ Tabs组件的控制器，用于控制Tabs组件进行页签切换。不支持一
 ### 导入对象
 
 ```ts
-controller: TabsController = new TabsController()
+let controller: TabsController = new TabsController()
 ```
 
 ### changeIndex
