@@ -77,7 +77,7 @@ getDefaultNet(callback: AsyncCallback\<NetHandle>): void
 
 ```ts
 import connection from '@ohos.net.connection'
-connection.getDefaultNet(error: BusinessError, data: connection.NetHandle) => {
+connection.getDefaultNet((error: BusinessError, data: connection.NetHandle) => {
   console.log(JSON.stringify(error))
   console.log(JSON.stringify(data))
 })
