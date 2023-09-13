@@ -181,7 +181,7 @@ Obtains a **dataAbilityHelper** object.
 
 Observe the following when using this API:
  - To access a DataAbility of another application, the target application must be configured with associated startup (**AssociateWakeUp** set to **true**).
- - If an application running in the background needs to call this API to access a DataAbility, it must have the **ohos.permission.START_ABILITIES_FROM_BACKGROUND** permission.
+ - If an application running in the background needs to call this API to access a DataAbility, it must have the **ohos.permission.START_ABILITIES_FROM_BACKGROUND** permission. (Applications developed using the SDK of API version 8 or earlier are not restricted by this restriction when accessing the DataAbility.)
  - If **visible** of the target ability is **false** in cross-application scenarios, the caller must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
  - For details about the startup rules for the components in the FA model, see [Component Startup Rules (FA Model)](../../application-models/component-startup-rules-fa.md).
 
@@ -230,7 +230,7 @@ Requests a continuous task from the system. This API uses an asynchronous callba
  **Example**
 
 ```ts
-import notification from '@ohos.notification';
+import notification from '@ohos.notificationManager';
 import particleAbility from '@ohos.ability.particleAbility';
 import wantAgent from '@ohos.app.ability.wantAgent';
 
@@ -299,7 +299,7 @@ Requests a continuous task from the system. This API uses a promise to return th
 **Example**
 
 ```ts
-import notification from '@ohos.notification';
+import notification from '@ohos.notificationManager';
 import particleAbility from '@ohos.ability.particleAbility';
 import wantAgent from '@ohos.app.ability.wantAgent';
 
@@ -404,7 +404,7 @@ Connects this ability to a specific ServiceAbility.
 
 Observe the following when using this API:
  - To connect to a ServiceAbility of another application, the target application must be configured with associated startup (**AssociateWakeUp** set to **true**)..
- - If an application running in the background needs to call this API to connect to a ServiceAbility, it must have the **ohos.permission.START_ABILITIES_FROM_BACKGROUND** permission.
+ - If an application running in the background needs to call this API to connect to a ServiceAbility, it must have the **ohos.permission.START_ABILITIES_FROM_BACKGROUND** permission. (Applications developed using the SDK of API version 8 or earlier are not restricted by this restriction when connecting to the ServiceAbility.)
  - If **visible** of the target ability is **false** in cross-application scenarios, the caller must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
  - For details about the startup rules for the components in the FA model, see [Component Startup Rules (FA Model)](../../application-models/component-startup-rules-fa.md).
 

@@ -159,7 +159,7 @@ Releases a widget. After this API is called, the application can no longer use t
 | Name        | Type    | Mandatory| Description       |
 | -------------- | ------  | ---- | ----------- |
 | formId         | string  | Yes  | Widget ID.    |
-| isReleaseCache | boolean | No  | Whether to release the cache.|
+| isReleaseCache | boolean | No  | Whether to release the cache. The default value is **false**.|
 
 **Return value**
 

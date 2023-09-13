@@ -692,6 +692,40 @@ DAHelper.delete('dataability:///com.example.DataAbility', da).then((data) => {
 });
 ```
 
+## DataAbilityHelper.delete
+
+delete(uri: string, callback: AsyncCallback\<number>): void
+
+Uses a custom processing logic to delete data records from the database. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
+
+**Parameters**
+
+| Name        | Type                             | Mandatory| Description                                            |
+| ------------ | --------------------------------- | ---- | ------------------------------------------------ |
+| uri          | string                            | Yes  | URI of the data to delete.                        |
+| callback     | AsyncCallback\<number>            | Yes  | Callback used to return the number of deleted data records.              |
+
+**Example**
+
+```ts
+import ability from '@ohos.ability.ability';
+import featureAbility from '@ohos.ability.featureAbility';
+import ohos_data_ability from '@ohos.data.dataAbility';
+
+let DAHelper: ability.DataAbilityHelper = featureAbility.acquireDataAbilityHelper(
+    'dataability:///com.example.DataAbility'
+);
+DAHelper.delete('dataability:///com.example.DataAbility', (error, data) => {
+    if (error && error.code !== 0) {
+        console.error('delete fail, error: ${JSON.stringify(error)}');
+    } else {
+        console.log('delete success, data: ${JSON.stringify(data)}');
+    }
+});
+```
+
 ## DataAbilityHelper.update
 
 update(uri: string, valuesBucket: rdb.ValuesBucket, predicates: dataAbility.DataAbilityPredicates, callback: AsyncCallback\<number>): void
@@ -775,6 +809,48 @@ DAHelper.update('dataability:///com.example.DataAbility', va, da).then((data) =>
 });
 ```
 
+## DataAbilityHelper.update
+
+update(uri: string, valuesBucket: rdb.ValuesBucket, callback: AsyncCallback\<number>): void
+
+Uses a custom processing logic to update data records in the database. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
+
+**Parameters**
+
+| Name        | Type                             | Mandatory| Description                                            |
+| ------------ | --------------------------------- | ---- | ------------------------------------------------ |
+| uri          | string                            | Yes  | URI of the data to update.                        |
+| valuesBucket | rdb.ValuesBucket                  | Yes  | New values.                              |
+| callback     | AsyncCallback\<number>            | Yes  | Callback used to return the number of updated data records.                |
+
+**Example**
+
+```ts
+import ability from '@ohos.ability.ability';
+import featureAbility from '@ohos.ability.featureAbility';
+import ohos_data_ability from '@ohos.data.dataAbility';
+import rdb from '@ohos.data.rdb';
+
+let DAHelper: ability.DataAbilityHelper = featureAbility.acquireDataAbilityHelper(
+    'dataability:///com.example.DataAbility'
+);
+const va: rdb.ValuesBucket = {
+    'name': 'roe1',
+    'age': 21,
+    'salary': 20.5,
+    'blobType': 'u8',
+};
+DAHelper.update('dataability:///com.example.DataAbility', va, (error, data) => {
+    if (error && error.code !== 0) {
+        console.error('update fail, error: ${JSON.stringify(error)}');
+    } else {
+        console.log('update success, data: ${JSON.stringify(data)}');
+    }
+});
+```
+
 ## DataAbilityHelper.query
 
 query(uri: string, columns: Array\<string>, predicates: dataAbility.DataAbilityPredicates, callback: AsyncCallback\<ResultSet>): void
@@ -811,7 +887,111 @@ DAHelper.query('dataability:///com.example.DataAbility', cars, da, (error, data)
 });
 ```
 
+## DataAbilityHelper.query
 
+query(uri: string, callback: AsyncCallback<ResultSet>): void
+
+Uses a custom processing logic to query data records in the database. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
+
+**Parameters**
+
+| Name      | Type                             | Mandatory| Description                                            |
+| ---------- | --------------------------------- | ---- | ------------------------------------------------ |
+| uri        | string                            | Yes  | URI of the data to query.                        |
+| callback   | AsyncCallback\<ResultSet>         | Yes  | Callback used to return the data queried.                        |
+
+**Example**
+
+```ts
+import ability from '@ohos.ability.ability';
+import featureAbility from '@ohos.ability.featureAbility';
+import ohos_data_ability from '@ohos.data.dataAbility';
+
+let DAHelper: ability.DataAbilityHelper = featureAbility.acquireDataAbilityHelper(
+    'dataability:///com.example.DataAbility'
+);
+DAHelper.query('dataability:///com.example.DataAbility', (error, data) => {
+    if (error && error.code !== 0) {
+        console.error('query fail, error: ${JSON.stringify(error)}');
+    } else {
+        console.log('query success, data: ${JSON.stringify(data)}');
+    }
+});
+```
+
+## DataAbilityHelper.query
+
+query(uri: string, columns: Array\<string>, callback: AsyncCallback\<ResultSet>): void
+
+Uses a custom processing logic to query data records in the database. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
+
+**Parameters**
+
+| Name      | Type                             | Mandatory| Description                                            |
+| ---------- | --------------------------------- | ---- | ------------------------------------------------ |
+| uri        | string                            | Yes  | URI of the data to query.                        |
+| columns    | Array\<string>                | Yes  | Columns to query. If this parameter is **null**, all columns will be queried.  |
+| callback   | AsyncCallback\<ResultSet>         | Yes  | Callback used to return the data queried.                        |
+
+**Example**
+
+```ts
+import ability from '@ohos.ability.ability';
+import featureAbility from '@ohos.ability.featureAbility';
+import ohos_data_ability from '@ohos.data.dataAbility';
+
+let DAHelper: ability.DataAbilityHelper = featureAbility.acquireDataAbilityHelper(
+    'dataability:///com.example.DataAbility'
+);
+let cars = new Array('value1', 'value2', 'value3', 'value4');
+DAHelper.query('dataability:///com.example.DataAbility', cars, (error, data) => {
+    if (error && error.code !== 0) {
+        console.error('query fail, error: ${JSON.stringify(error)}');
+    } else {
+        console.log('query success, data: ${JSON.stringify(data)}');
+    }
+});
+```
+
+## DataAbilityHelper.query
+
+query(uri: string, predicates: dataAbility.DataAbilityPredicates, callback: AsyncCallback\<ResultSet>): void
+
+Uses a custom processing logic to query data records in the database. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
+
+**Parameters**
+
+| Name      | Type                             | Mandatory| Description                                            |
+| ---------- | --------------------------------- | ---- | ------------------------------------------------ |
+| uri        | string                            | Yes  | URI of the data to query.                        |
+| predicates | dataAbility.DataAbilityPredicates | Yes  | Filter criteria. You should define the processing logic when this parameter is **null**.|
+| callback   | AsyncCallback\<ResultSet>         | Yes  | Callback used to return the data queried.                        |
+
+**Example**
+
+```ts
+import ability from '@ohos.ability.ability';
+import featureAbility from '@ohos.ability.featureAbility';
+import ohos_data_ability from '@ohos.data.dataAbility';
+
+let DAHelper: ability.DataAbilityHelper = featureAbility.acquireDataAbilityHelper(
+    'dataability:///com.example.DataAbility'
+);
+let da = new ohos_data_ability.DataAbilityPredicates();
+DAHelper.query('dataability:///com.example.DataAbility', da, (error, data) => {
+    if (error && error.code !== 0) {
+        console.error('query fail, error: ${JSON.stringify(error)}');
+    } else {
+        console.log('query success, data: ${JSON.stringify(data)}');
+    }
+});
+```
 
 ## DataAbilityHelper.query
 

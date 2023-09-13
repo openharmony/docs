@@ -1066,7 +1066,7 @@ Switches a given mission to the foreground, with the startup parameters for the 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | missionId | number | Yes| Mission ID.|
-  | options | [StartOptions](js-apis-app-ability-startOptions.md) | No| Startup parameters, which are used to specify the window mode and device ID for switching the mission to the foreground.|
+  | options | [StartOptions](js-apis-app-ability-startOptions.md) | No| Startup parameters, which are used to specify the window mode and device ID for switching the mission to the foreground. By default, no value is passed in, indicating that the default startup parameters are used.|
 
 **Return value**
 
@@ -1243,7 +1243,7 @@ Switches a batch of missions to the foreground, and moves the mission with the s
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | missionIds | Array&lt;number&gt; | Yes| Array holding the mission IDs.|
-  | topMission | number | No| ID of the mission to be moved to the top.|
+  | topMission | number | No| ID of the mission to be moved to the top. The default value is **-1**, indicating that the default mission is moved to the top.|
 
 **Return value**
 
