@@ -4,7 +4,8 @@ Applications can call **photoAccessHelper** APIs to manage media assets (images 
 
 > **NOTE**
 >
-> Before you start, you need to obtain a **PhotoAccessHelper** instance and apply for required permissions. For details, see [photoAccessHelper Overview](photoAccessHelper-overview.md).<br>
+> Before you start, you need to obtain a **PhotoAccessHelper** instance and apply for required permissions. For details, see [photoAccessHelper Overview](photoAccessHelper-overview.md).
+>
 > By default, the **PhotoAccessHelper** instance obtained in [photoAccessHelper Overview](photoAccessHelper-overview.md) is used when **photoAccessHelper** APIs are used. If the code for obtaining the **PhotoAccessHelper** instance is not added, an error indicating that **photoAccessHelper** is not defined is reported.
 
 To ensure application running efficiency, most **photoAccessHelper** APIs are asynchronously implemented in callback or promise mode. The following code samples use promise-based APIs. For details about the APIs, see [Album Management](../reference/apis/js-apis-photoAccessHelper.md).
@@ -27,34 +28,27 @@ To obtain the object at the specified position (for example, the first, the last
 
 Example: Obtain the image **test.jpg**.
 
-**How to Develop**
-
-1. Create a **FetchOptions** object and specify **test.jpg**.
-
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
 import photoAccessHelper from '@ohos.file.photoAccessHelper';
+const context = getContext(this);
+let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 
-let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
-predicates.equalTo(photoAccessHelper.PhotoKeys.DISPLAY_NAME, 'test.jpg');
-let fetchOptions: photoAccessHelper.FetchOptions = {
-  fetchColumns: [],
-  predicates: predicates
-};
-```
-
-2. Call **PhotoAccessHelper.getAssets** to obtain image assets.
-
-```ts
-import photoAccessHelper from '@ohos.file.photoAccessHelper';
-
-try {
-  let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
-  let fileAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
-  console.info('getAssets fileAsset.displayName : ' + fileAsset.displayName);
-  fetchResult.close();
-} catch (err) {
-  console.error('getAssets failed with err: ' + err);
+async function example() {
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  predicates.equalTo(photoAccessHelper.PhotoKeys.DISPLAY_NAME, 'test.jpg');
+  let fetchOptions: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
+  try {
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
+    let fileAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+    console.info('getAssets fileAsset.displayName : ' + fileAsset.displayName);
+    fetchResult.close();
+  } catch (err) {
+    console.error('getAssets failed with err: ' + err);
+  }
 }
 ```
 
@@ -65,30 +59,27 @@ Example: Obtain the image with the file URI **file://media/Photo/1**.
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
 import photoAccessHelper from '@ohos.file.photoAccessHelper';
+const context = getContext(this);
+let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 
-let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
-predicates.equalTo(photoAccessHelper.PhotoKeys.URI, 'file://media/Photo/1');
-let fetchOptions: photoAccessHelper.FetchOptions = {
-  fetchColumns: [],
-  predicates: predicates
-};
-```
+async function example() {
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  predicates.equalTo(photoAccessHelper.PhotoKeys.URI, 'file://media/Photo/1');
+  let fetchOptions: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
 
-Call **PhotoAccessHelper.getAssets** to obtain image assets.
-
-```ts
-import photoAccessHelper from '@ohos.file.photoAccessHelper';
-
-try {
-  let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
-  let fileAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
-  console.info('getAssets fileAsset.uri : ' + fileAsset.uri);
-  fetchResult.close();
-} catch (err) {
-  console.error('getAssets failed with err: ' + err);
+  try {
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
+    let fileAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+    console.info('getAssets fileAsset.uri : ' + fileAsset.uri);
+    fetchResult.close();
+  } catch (err) {
+    console.error('getAssets failed with err: ' + err);
+  }
 }
 ```
-
 
 ### Obtaining Images or Videos by Time
 
@@ -97,32 +88,29 @@ Example: Obtain the media assets added between 2022-06-01 and 2023-06-01.
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
 import photoAccessHelper from '@ohos.file.photoAccessHelper';
+const context = getContext(this);
+let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 
-let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
-let startTime: Number = Date.parse(new Date('2022-06-01').toString()) / 1000; // The value of the start time is the number of seconds elapsed since the Epoch time.
-let endTime: Number = Date.parse(new Date('2023-06-01').toString()) / 1000;  // The value of the end time is the number of seconds elapsed since the Epoch time.
-let date_added: photoAccessHelper.PhotoKeys = photoAccessHelper.PhotoKeys.DATE_ADDED;
-predicates.between(date_added, startTime, endTime);
-predicates.orderByDesc(date_added); // Sort the obtained records in descending order.
-let fetchOptions: photoAccessHelper.FetchOptions = {
-  fetchColumns: [date_added], // The date_added attribute is not a default option and needs to be added.
-  predicates: predicates
-};
-```
-
-Call **PhotoAccessHelper.getAssets** to obtain image assets.
-
-```ts
-import photoAccessHelper from '@ohos.file.photoAccessHelper';
-
-try {
-  let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
-  console.info('getAssets count: ' + fetchResult.getCount());
-  let fileAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
-  console.info('getAssets fileAsset.displayName : ' + fileAsset.displayName);
-  fetchResult.close();
-} catch (err) {
-  console.error('getAssets failed with err: ' + err);
+async function example() {
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let startTime = Date.parse(new Date('2022-06-01').toString()) / 1000; // The value of the start time is the number of seconds elapsed since the Epoch time.
+  let endTime = Date.parse(new Date('2023-06-01').toString()) / 1000;   // The value of the end time is the number of seconds elapsed since the Epoch time.
+  let date_added: photoAccessHelper.PhotoKeys = photoAccessHelper.PhotoKeys.DATE_ADDED;
+  predicates.between(date_added, startTime, endTime);
+  predicates.orderByDesc(date_added);                                   // Sort the obtained records in descending order.
+  let fetchOptions: photoAccessHelper.FetchOptions = {
+    fetchColumns: [date_added],                                         // The date_added attribute is not a default option and needs to be added.
+    predicates: predicates
+  };
+  try {
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
+    console.info('getAssets count: ' + fetchResult.getCount());
+    let fileAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+    console.info('getAssets fileAsset.displayName : ' + fileAsset.displayName);
+    fetchResult.close();
+  } catch (err) {
+    console.error('getAssets failed with err: ' + err);
+  }
 }
 ```
 
@@ -151,26 +139,30 @@ Example: Obtain the thumbnail of 720 x 720 of an image.
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
-import photoAccessHelper from '@ohos.file.photoAccessHelper';
 import image from '@ohos.multimedia.image';
+import photoAccessHelper from '@ohos.file.photoAccessHelper';
+const context = getContext(this);
+let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 
-let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
-let fetchOptions: photoAccessHelper.FetchOptions = {
-  fetchColumns: [],
-  predicates: predicates
-};
+async function example() {
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOptions: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
 
-try {
-  let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
-  let fileAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
-  console.info('getAssets fileAsset.displayName : ' + fileAsset.displayName);
-  let size: image.Size = { width: 720, height: 720 };
-  let pixelMap: image.PixelMap =  await fileAsset.getThumbnail(size);
-  let imageInfo: image.ImageInfo = await pixelMap.getImageInfo()
-  console.info('getThumbnail successful, pixelMap ImageInfo size: ' + JSON.stringify(imageInfo.size));
-  fetchResult.close();
-} catch (err) {
-  console.error('getThumbnail failed with err: ' + err);
+  try {
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
+    let fileAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+    console.info('getAssets fileAsset.displayName : ' + fileAsset.displayName);
+    let size: image.Size = { width: 720, height: 720 };
+    let pixelMap: image.PixelMap =  await fileAsset.getThumbnail(size);
+    let imageInfo: image.ImageInfo = await pixelMap.getImageInfo()
+    console.info('getThumbnail successful, pixelMap ImageInfo size: ' + JSON.stringify(imageInfo.size));
+    fetchResult.close();
+  } catch (err) {
+    console.error('getThumbnail failed with err: ' + err);
+  }
 }
 ```
 
@@ -194,27 +186,31 @@ Example: Create an image asset.
 
 ```ts
 import photoAccessHelper from '@ohos.file.photoAccessHelper';
+const context = getContext(this);
+let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 
-try {
-  let displayName: string = 'testPhoto' + Date.now() + '.jpg';
-  let createOption: photoAccessHelper.CreateOptions = {
-    subType: photoAccessHelper.PhotoSubtype.DEFAULT
-  };
+async function example() {
+  try {
+    let displayName: string = 'testPhoto' + Date.now() + '.jpg';
+    let createOption: photoAccessHelper.PhotoCreateOptions = {
+      subtype: photoAccessHelper.PhotoSubtype.DEFAULT
+    };
 
-  let fileAsset: photoAccessHelper.PhotoAsset = await phAccessHelper.createAsset(displayName, createOption);
-  console.info('createAsset successfully, file displayName: ' + fileAsset.displayName);
-} catch (err) {
-  console.error('createAsset failed, message = ', err);
+    let fileAsset: photoAccessHelper.PhotoAsset = await phAccessHelper.createAsset(displayName, createOption);
+    console.info('createAsset successfully, file displayName: ' + fileAsset.displayName);
+  } catch (err) {
+    console.error('createAsset failed, message = ', err);
+  }
 }
 ```
 
 ## Renaming a Media Asset
 
-Before renaming a file, use [FetchResult](../reference/apis/js-apis-photoAccessHelper.md#fetchresult) to obtain the file.
-
 Set the **FileAsset.displayName** attribute to modify the file name (including the file name extension) displayed.
 
 After the modification, use [FileAsset.commitModify](../reference/apis/js-apis-photoAccessHelper.md#commitmodify) to update the modification to the database.
+
+Before renaming a file, use [FetchResult](../reference/apis/js-apis-photoAccessHelper.md#fetchresult) to obtain the file.
 
 **Prerequisites**
 
@@ -234,25 +230,29 @@ Example: Rename the first file in the obtained image assets.
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
 import photoAccessHelper from '@ohos.file.photoAccessHelper';
+const context = getContext(this);
+let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 
-let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
-let fetchOptions: photoAccessHelper.FetchOptions = {
-  fetchColumns: ['title'],
-  predicates: predicates
-};
-let newTitle = 'newTestPhoto';
+async function example() {
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOptions: photoAccessHelper.FetchOptions = {
+    fetchColumns: ['title'],
+    predicates: predicates
+  };
+  let newTitle = 'newTestPhoto';
 
-try {
-  let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
-  let fileAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
-  let title: photoAccessHelper.PhotoKeys = photoAccessHelper.PhotoKeys.TITLE;
-  let fileAssetTitle: photoAccessHelper.MemberType = fileAsset.get(title);
-  console.info('getAssets fileAsset.title : ' + fileAssetTitle);
-  fileAsset.set(title, newTitle);
-  await fileAsset.commitModify();
-  fetchResult.close();
-} catch (err) {
-  console.error('commitModify failed with err: ' + err);
+  try {
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
+    let fileAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+    let title: photoAccessHelper.PhotoKeys = photoAccessHelper.PhotoKeys.TITLE;
+    let fileAssetTitle: photoAccessHelper.MemberType = fileAsset.get(title);
+    console.info('getAssets fileAsset.title : ' + fileAssetTitle);
+    fileAsset.set(title, newTitle);
+    await fileAsset.commitModify();
+    fetchResult.close();
+  } catch (err) {
+    console.error('commitModify failed with err: ' + err);
+  }
 }
 ```
 
@@ -279,20 +279,24 @@ Example: Move the first file in the result set to the trash.
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
 import photoAccessHelper from '@ohos.file.photoAccessHelper';
+const context = getContext(this);
+let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 
-let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
-let fetchOptions: photoAccessHelper.FetchOptions = {
-  fetchColumns: [],
-  predicates: predicates
-};
+async function example() {
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOptions: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
 
-try {
-  let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
-  let fileAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
-  console.info('getAssets fileAsset.uri : ' + fileAsset.uri);
-  await phAccessHelper.deleteAssets([fileAsset.uri]);
-  fetchResult.close();
-} catch (err) {
-  console.error('deleteAssets failed with err: ' + err);
+  try {
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
+    let fileAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+    console.info('getAssets fileAsset.uri : ' + fileAsset.uri);
+    await phAccessHelper.deleteAssets([fileAsset.uri]);
+    fetchResult.close();
+  } catch (err) {
+    console.error('deleteAssets failed with err: ' + err);
+  }
 }
 ```
