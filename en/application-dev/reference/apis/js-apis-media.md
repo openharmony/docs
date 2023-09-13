@@ -2486,9 +2486,16 @@ Unsubscribes from AVRecorder errors. After the unsubscription, your application 
 For details about the error codes, see [Media Error Codes](../errorcodes/errorcode-media.md).
 
 | ID| Error Message                         |
-| -------- | --------------------------------- |
-| 5400103  | IO error. Return by callback.     |
-| 5400105  | Service died. Return by callback. |
+| -------- | ------------------------------------------------   |
+| 201      | Permission denied. Return by callback.             |
+| 401      | The parameter check failed. Return by callback.    |
+| 801      | Capability not supported. Return by callback.      |
+| 5400101  | No memory. Return by callback.                     |
+| 5400102  | Operation not allowed. Return by callback.         |
+| 5400103  | IO error. Return by callback.                      |
+| 5400104  | Time out. Return by callback.                      |
+| 5400105  | Service died. Return by callback.                  |
+| 5400106  | Unsupport format. Return by callback.              |
 
 **Example**
 
