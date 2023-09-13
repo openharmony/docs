@@ -30,16 +30,6 @@ register(callback: AsyncCallback\<number>): void;
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback\<number> | 是 | AsyncCallback形式返回流转管理服务连接后生成的token。 |
 
-**错误码：**
-
-以下错误码的详细介绍请参见[分布式调度错误码](../errorcodes/errorcode-DistributedSchedule.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | -------------------------------------------- |
-| 3 | Failed to flatten the object. |
-| 7 | The object is null. |
-| 29360207 | The number of registrations has reached the upper limit. |
-
 **示例：**
 
   ```ts
@@ -71,17 +61,6 @@ register(options: ContinuationExtraParams, callback: AsyncCallback\<number>): vo
   | -------- | -------- | -------- | -------- |
   | options | [ContinuationExtraParams](js-apis-continuation-continuationExtraParams.md) | 是 | 过滤可选择设备列表的额外参数。 |
   | callback | AsyncCallback\<number> | 是 | AsyncCallback形式返回流转管理服务连接后生成的token。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[分布式调度错误码](../errorcodes/errorcode-DistributedSchedule.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | -------------------------------------------- |
-| 3 | Failed to flatten the object. |
-| 7 | The object is null. |
-| 29360207 | The number of registrations has reached the upper limit. |
-| 29360216 | Invalid continuation mode. |
 
 **示例：**
 
@@ -123,17 +102,6 @@ register(options?: ContinuationExtraParams): Promise\<number>;
 | 类型                        | 说明                 |
 | ------------------------- | ------------------ |
 | Promise\<number> | Promise形式返回流转管理服务连接后生成的token。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[分布式调度错误码](../errorcodes/errorcode-DistributedSchedule.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | -------------------------------------------- |
-| 3 | Failed to flatten the object |
-| 7 | The object is null. |
-| 29360207 | The number of registrations has reached the upper limit. |
-| 29360216 | Invalid continuation mode. |
 
 **示例：**
 
@@ -313,18 +281,6 @@ on(type: "deviceConnect", callback: Callback\<ContinuationResult>): void;
   | type | string | 是 | 监听的事件类型，固定值"deviceConnect"。 |
   | callback | Callback\<[ContinuationResult](js-apis-continuation-continuationResult.md)> | 是 | 当用户从设备选择模块中选择设备时调用，返回设备ID、设备类型和设备名称供开发者使用。 |
 
-**错误码：**
-
-以下错误码的详细介绍请参见[分布式调度错误码](../errorcodes/errorcode-DistributedSchedule.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | -------------------------------------------- |
-| 3 | Failed to flatten the object |
-| 7 | The object is null | 7 |
-| 29360208 | The token is not registered. |
-| 29360209 | The callback has been registered. |
-| 29360214 | The type of callback is not supported. |
-
 **示例：**
 
   ```ts
@@ -353,18 +309,6 @@ on(type: "deviceDisconnect", callback: Callback\<string>): void;
   | type | string | 是 | 监听的事件类型，固定值"deviceDisconnect"。 |
   | callback | Callback\<string> | 是 | 当用户从设备选择模块中断开设备时调用，返回设备ID供开发者使用。 |
 
-**错误码：**
-
-以下错误码的详细介绍请参见[分布式调度错误码](../errorcodes/errorcode-DistributedSchedule.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | -------------------------------------------- |
-| 3 | Failed to flatten the object. |
-| 7 | The object is null. |
-| 29360208 | The token is not registered. |
-| 29360209 | The callback has been registered. |
-| 29360214 | The type of callback is not supported. |
-
 **示例：**
 
   ```ts
@@ -390,18 +334,6 @@ off(type: "deviceConnect", callback?: Callback\<ContinuationResult>): void;
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 取消监听的事件类型，固定值"deviceConnect"。 |
   | callback | Callback\<[ContinuationResult](js-apis-continuation-continuationResult.md)> | 否 | 当用户从设备选择模块中选择设备时调用，返回设备ID、设备类型和设备名称供开发者使用。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[分布式调度错误码](../errorcodes/errorcode-DistributedSchedule.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | -------------------------------------------- |
-| 3 | Failed to flatten the object. |
-| 7 | The object is null. |
-| 29360208 | The token is not registered. |
-| 29360210 | The callback is not registered. |
-| 29360214 | The type of callback is not supported. |
 
 **示例：**
 
@@ -430,18 +362,6 @@ off(type: "deviceDisconnect", callback?: Callback\<string>): void;
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 取消监听的事件类型，固定值"deviceDisconnect"。 |
   | callback | Callback\<string> | 否 | 当用户从设备选择模块中断开设备时调用，返回设备ID供开发者使用。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[分布式调度错误码](../errorcodes/errorcode-DistributedSchedule.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | -------------------------------------------- |
-| 3 | Failed to flatten the object. |
-| 7 | The object is null. |
-| 29360208 | The token is not registered. |
-| 29360210 | The callback is not registered. |
-| 29360214 | The type of callback is not supported. |
 
 **示例：**
 
@@ -642,19 +562,6 @@ startDeviceManager(token: number, callback: AsyncCallback\<void>): void;
   | token | number | 是 | 注册后的token。 |
   | callback | AsyncCallback\<void> | 是 | AsyncCallback形式返回接口调用结果。 |
 
-**错误码：**
-
-以下错误码的详细介绍请参见[分布式调度错误码](../errorcodes/errorcode-DistributedSchedule.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | -------------------------------------------- |
-| 3 | Failed to flatten the object. |
-| 7 | The object is null. |
-| 29360208 | The token is not registered. |
-| 29360210 | The callback is not registered. |
-| 29360211 | Failed to connect to the ability. |
-| 29360216 | Invalid continuation mode. |
-
 **示例：**
 
   ```ts
@@ -686,19 +593,6 @@ startDeviceManager(token: number, options: ContinuationExtraParams, callback: As
   | token | number | 是 | 注册后的token。 |
   | options | [ContinuationExtraParams](js-apis-continuation-continuationExtraParams.md) | 是 | 过滤可选择设备列表的额外参数。 |
   | callback | AsyncCallback\<void> | 是 | AsyncCallback形式返回接口调用结果。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[分布式调度错误码](../errorcodes/errorcode-DistributedSchedule.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | -------------------------------------------- |
-| 3 | Failed to flatten the object |
-| 7 | The object is null |
-| 29360208 | The token is not registered. |
-| 29360210 | The callback is not registered. |
-| 29360211 | Failed to connect to the ability. |
-| 29360216 | Invalid continuation mode. |
 
 **示例：**
 
@@ -741,19 +635,6 @@ startDeviceManager(token: number, options?: ContinuationExtraParams): Promise\<v
 | 类型                        | 说明                 |
 | ------------------------- | ------------------ |
 | Promise\<void> | Promise形式返回接口调用结果。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[分布式调度错误码](../errorcodes/errorcode-DistributedSchedule.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | -------------------------------------------- |
-| 3 | Failed to flatten the object |
-| 7 | The object is null |
-| 29360208 | The token is not registered. |
-| 29360210 | The callback is not registered. |
-| 29360211 | Failed to connect to the ability. |
-| 29360216 | Invalid continuation mode. |
 
 **示例：**
 
@@ -938,19 +819,6 @@ updateConnectStatus(token: number, deviceId: string, status: DeviceConnectState,
   | status | [DeviceConnectState](#deviceconnectstate) | 是 | 设备连接状态。 |
   | callback | AsyncCallback\<void> | 是 | AsyncCallback形式返回接口调用结果。 |
 
-**错误码：**
-
-以下错误码的详细介绍请参见[分布式调度错误码](../errorcodes/errorcode-DistributedSchedule.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | -------------------------------------------- |
-| 3 | Failed to flatten the object. |
-| 7 | The object is null. |
-| 29360208 | The token is not registered. |
-| 29360210 | The callback is not registered. |
-| 29360211 | Failed to connect to the ability. |
-| 29360215 | Invalid connection state. |
-
 **示例：**
 
   ```ts
@@ -989,19 +857,6 @@ updateConnectStatus(token: number, deviceId: string, status: DeviceConnectState)
 | 类型                        | 说明                 |
 | ------------------------- | ------------------ |
 | Promise\<void> | Promise形式返回接口调用结果。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[分布式调度错误码](../errorcodes/errorcode-DistributedSchedule.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | -------------------------------------------- |
-| 3 | Failed to flatten the object. |
-| 7 | The object is null. |
-| 29360208 | The token is not registered. |
-| 29360210 | The callback is not registered. |
-| 29360211 | Failed to connect to the ability. |
-| 29360215 | Invalid connection state. |
 
 **示例：**
 
@@ -1137,16 +992,6 @@ unregister(token: number, callback: AsyncCallback\<void>): void;
   | token | number | 是 | 注册后的token。 |
   | callback | AsyncCallback\<void> | 是 | AsyncCallback形式返回接口调用结果。 |
 
-**错误码：**
-
-以下错误码的详细介绍请参见[分布式调度错误码](../errorcodes/errorcode-DistributedSchedule.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | -------------------------------------------- |
-| 3 | Failed to flatten the object. |
-| 7 | The object is null. |
-| 29360208 | The token is not registered. |
-
 **示例：**
 
   ```ts
@@ -1182,16 +1027,6 @@ unregister(token: number): Promise\<void>;
 | 类型                        | 说明                 |
 | ------------------------- | ------------------ |
 | Promise\<void> | Promise形式返回接口调用结果。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[分布式调度错误码](../errorcodes/errorcode-DistributedSchedule.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | -------------------------------------------- |
-| 3 | Failed to flatten the object. |
-| 7 | The object is null. |
-| 29360208 | The token is not registered. |
 
 **示例：**
 
