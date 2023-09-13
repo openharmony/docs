@@ -24,11 +24,11 @@ The following table describes the fields in the configuration file.
 | Field     | Mandatory| Description                                                        |
 | --------- | -------- | ------------------------------------------------------------ |
 | name      | Yes      | Name of the permission.                                                  |
-| reason    | No      | Reason for applying for the permission. For details, see [Specifications for reason](#specifications-for-reason).<br>This parameter is mandatory when a user_grant permission is required. |
-| usedScene | No      | Application scenario of the permission.<br>This parameter is mandatory when a user_grant permission is required. |
+| reason    | No      | Reason for applying for the permission. For details, see [Specifications for reason](#specifications-for-reason).<br>This parameter is mandatory when a user_grant permission is required.|
+| usedScene | No      | Application scenario of the permission.<br>This parameter is mandatory when a user_grant permission is required.|
 | abilities | No      | Abilities that require the permission. The value is an array.<br>**Applicable model**: stage|
 | ability   | No      | Abilities that require the permission. The value is an array.<br>**Applicable model**: FA|
-| when      | No      | Time when the permission is required. <br>Value:<br>- **inuse**: The permission is required only when the application is in use.<br>- **always**: The permission is required no matter whether the application is in use. |
+| when      | No      | Time when the permission is required. <br>Value:<br>- **inuse**: The permission is required only when the application is in use.<br>- **always**: The permission is required no matter whether the application is in use.|
 
 ### Stage Model
 
@@ -168,28 +168,31 @@ Example: Apply for the permission for an application to access the Calendar.
 
    Use [checkAccessToken()](../reference/apis/js-apis-abilityAccessCtrl.md#checkaccesstoken9) to check whether the user has granted the permission. If yes, the application can access the Calendar. Otherwise, user authorization is required.
 
-   ```ts
+   ```typescript
    import bundleManager from '@ohos.bundle.bundleManager';
    import abilityAccessCtrl, { Permissions } from '@ohos.abilityAccessCtrl';
+   import { BusinessError } from '@ohos.base';
    
    async function checkAccessToken(permission: Permissions): Promise<abilityAccessCtrl.GrantStatus> {
      let atManager = abilityAccessCtrl.createAtManager();
-     let grantStatus: abilityAccessCtrl.GrantStatus;
+     let grantStatus: abilityAccessCtrl.GrantStatus = abilityAccessCtrl.GrantStatus.PERMISSION_DENIED;
    
      // Obtain the access token ID of the application.
-     let tokenId: number;
+     let tokenId: number = 0;
      try {
        let bundleInfo: bundleManager.BundleInfo = await bundleManager.getBundleInfoForSelf(bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_APPLICATION);
        let appInfo: bundleManager.ApplicationInfo = bundleInfo.appInfo;
        tokenId = appInfo.accessTokenId;
-     } catch (err) {
+     } catch (error) {
+       let err: BusinessError = error as BusinessError;
        console.error(`Failed to get bundle info for self. Code is ${err.code}, message is ${err.message}`);
      }
    
      // Check whether the user has granted the permission.
      try {
        grantStatus = await atManager.checkAccessToken(tokenId, permission);
-     } catch (err) {
+     } catch (error) {
+       let err: BusinessError = error as BusinessError;
        console.error(`Failed to check access token. Code is ${err.code}, message is ${err.message}`);
      }
    
@@ -220,35 +223,34 @@ Example: Apply for the permission for an application to access the Calendar.
    import UIAbility from '@ohos.app.ability.UIAbility';
    import window from '@ohos.window';
    import abilityAccessCtrl, { Permissions } from '@ohos.abilityAccessCtrl';
-   
+   import { BusinessError } from '@ohos.base';
+
    const permissions: Array<Permissions> = ['ohos.permission.READ_CALENDAR'];
-   
    export default class EntryAbility extends UIAbility {
-     // ...
-   
-     onWindowStageCreate(windowStage: window.WindowStage) {
-       // Main window is created. Set the main page for this ability.
-       let context = this.context;
-       let atManager = abilityAccessCtrl.createAtManager();
-       // The return value of requestPermissionsFromUser determines whether to display a dialog box to request user authorization.
-   
-       atManager.requestPermissionsFromUser(context, permissions).then((data) => {
-         let grantStatus: Array<number> = data.authResults;
-         let length: number = grantStatus.length;
-         for (let i = 0; i < length; i++) {
-           if (grantStatus[i] === 0) {
-             // If the user has granted the permission, the application can access the Calendar.
-           } else {
-             // If the user has not granted the permission, display a message indicating that user authorization is required, and direct the user to the Settings page to set the permission.
-             return;
-           }
-         }
-         // The authorization is successful.
-       }).catch((err) => {
-         console.error(`Failed to request permissions from user. Code is ${err.code}, message is ${err.message}`);
-       })
-       // ...
-     }
+    // ...
+    onWindowStageCreate(windowStage: window.WindowStage) {
+      // Main window is created. Set the main page for this ability.
+      let context = this.context;
+      let atManager = abilityAccessCtrl.createAtManager();
+      // The return value of requestPermissionsFromUser determines whether to display a dialog box to request user authorization.
+
+      atManager.requestPermissionsFromUser(context, permissions).then((data) => {
+        let grantStatus: Array<number> = data.authResults;
+        let length: number = grantStatus.length;
+        for (let i = 0; i < length; i++) {
+          if (grantStatus[i] === 0) {
+            // If the user has granted the permission, the application can access the Calendar.
+          } else {
+            // If the user has not granted the permission, display a message indicating that user authorization is required, and direct the user to the Settings page to set the permission.
+            return;
+          }
+        }
+        // The authorization is successful.
+      }).catch((err: BusinessError) => {
+        console.error(`Failed to request permissions from user. Code is ${err.code}, message is ${err.message}`);
+      })
+      // ...
+    }
    }
    ```
 
@@ -257,37 +259,38 @@ Example: Apply for the permission for an application to access the Calendar.
    ```typescript
    import abilityAccessCtrl, { Permissions } from '@ohos.abilityAccessCtrl';
    import common from '@ohos.app.ability.common';
-   
+   import { BusinessError } from '@ohos.base';
+
    const permissions: Array<Permissions> = ['ohos.permission.READ_CALENDAR'];
-   
+
    @Entry
    @Component
    struct Index {
-     reqPermissionsFromUser(permissions: Array<Permissions>): void {
-       let context = getContext(this) as common.UIAbilityContext;
-       let atManager = abilityAccessCtrl.createAtManager();
-       // The return value of requestPermissionsFromUser determines whether to display a dialog box to request user authorization.
-       atManager.requestPermissionsFromUser(context, permissions).then((data) => {
-         let grantStatus: Array<number> = data.authResults;
-         let length: number = grantStatus.length;
-         for (let i = 0; i < length; i++) {
-           if (grantStatus[i] === 0) {
-             // If the user has granted the permission, the application can access the Calendar.
-           } else {
-             // If the user has not granted the permission, display a message indicating that user authorization is required, and direct the user to the Settings page to set the permission.
-             return;
-           }
-         }
-         // The authorization is successful.
-       }).catch((err) => {
-         console.error(`Failed to request permissions from user. Code is ${err.code}, message is ${err.message}`);
-       })
-     }
-   
-     // Page display.
-     build() {
-       // ...
-     }
+    reqPermissionsFromUser(permissions: Array<Permissions>): void {
+      let context = getContext(this) as common.UIAbilityContext;
+      let atManager = abilityAccessCtrl.createAtManager();
+      // The return value of requestPermissionsFromUser determines whether to display a dialog box to request user authorization.
+      atManager.requestPermissionsFromUser(context, permissions).then((data) => {
+        let grantStatus: Array<number> = data.authResults;
+        let length: number = grantStatus.length;
+        for (let i = 0; i < length; i++) {
+          if (grantStatus[i] === 0) {
+            // If the user has granted the permission, the application can access the Calendar.
+          } else {
+            // If the user has not granted the permission, display a message indicating that user authorization is required, and direct the user to the Settings page to set the permission.
+            return;
+          }
+        }
+        // The authorization is successful.
+      }).catch((err: BusinessError) => {
+        console.error(`Failed to request permissions from user. Code is ${err.code}, message is ${err.message}`);
+      })
+    }
+
+    // Page display.
+    build() {
+      // ...
+    }
    }
    ```
 
@@ -295,10 +298,59 @@ Example: Apply for the permission for an application to access the Calendar.
 
    After [requestPermissionsFromUser()](../reference/apis/js-apis-abilityAccessCtrl.md#requestpermissionsfromuser9) is called, the application waits for the user authorization result. If the user has granted the permission, the application can access the Calendar. If the user has not granted the permission, a message will be displayed indicating that user authorization is required, and the user is directed to **Settings** to set the permission.
 
-   ```ts
+   The ArkTS syntax does not support direct use of **globalThis**. A singleton map is required to pass **globalThis**. You need to perform the following operations:
+
+   a. Import the created singleton object **GlobalThis** to **EntryAbility.ets**.
+      ```typescript
+       import {GlobalThis} from '../utils/globalThis'; // Set based on the path of globalThis.ets.
+      ```
+   b. Add the following to **onCreate**:
+      ```typescript
+       GlobalThis.getInstance().setContext('context', this.context);
+      ```
+
+   > **NOTE**
+   >
+   > An alert will be generated when a **.ets** file is imported to a TS file. To prevent the alert, you need to change the file name extension of **EntryAbility.ts** to **EntryAbility.ets** and modify the file name extension in **module.json5**.
+
+   The sample code of **globalThis.ets** is as follows:
+   ```typescript
+   import common from '@ohos.app.ability.common';
+
+   // Construct a singleton object.
+   export class GlobalThis {
+     private constructor() {}
+     private static instance: GlobalThis;
+     private _uiContexts = new Map<string, common.UIAbilityContext>();
+
+     public static getInstance(): GlobalThis {
+       if (!GlobalThis.instance) {
+         GlobalThis.instance = new GlobalThis();
+       }
+       return GlobalThis.instance;
+     }
+
+     getContext(key: string): common.UIAbilityContext | undefined {
+       return this._uiContexts.get(key);
+     }
+
+     setContext(key: string, value: common.UIAbilityContext): void {
+       this._uiContexts.set(key, value);
+     }
+
+     // Set other content to be passed in the same way.
+   }
+   ```
+
+   ```typescript
+   import { BusinessError } from '@ohos.base';
+   import Want from '@ohos.app.ability.Want';
+   import { GlobalThis } from '../utils/globalThis';
+   import common from '@ohos.app.ability.common';
+
    function openPermissionsInSystemSettings(): void {
-     let context = getContext(this) as common.UIAbilityContext;
-     let wantInfo = {
+     let context: common.UIAbilityContext = GlobalThis.getInstance().getContext('context');
+     let wantInfo: Want = {
        action: 'action.settings.app.info',
        parameters: {
          settingsParamBundleName: 'com.example.myapplication' // Open the Details page of the application.
@@ -306,7 +358,7 @@ Example: Apply for the permission for an application to access the Calendar.
      }
      context.startAbility(wantInfo).then(() => {
        // ...
-     }).catch((err) => {
+     }).catch((err: BusinessError) => {
        // ...
      })
    }
@@ -316,18 +368,19 @@ Example: Apply for the permission for an application to access the Calendar.
 
 Call [requestPermissionsFromUser()](../reference/apis/js-apis-inner-app-context.md#contextrequestpermissionsfromuser7) to request user authorization.
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
 import featureAbility from '@ohos.ability.featureAbility';
 
 reqPermissions() {
     let context = featureAbility.getContext();
     let array:Array<string> = ["ohos.permission.PERMISSION2"];
     // The return value of requestPermissionsFromUser determines whether to display a dialog box to request user authorization.
-    context.requestPermissionsFromUser(array, 1).then(function(data) {
+    context.requestPermissionsFromUser(array, 1).then(data => {
         console.log("data:" + JSON.stringify(data));
         console.log("data permissions:" + JSON.stringify(data.permissions));
         console.log("data result:" + JSON.stringify(data.authResults));
-    }, (err) => {
+    }, (err: BusinessError) => {
         console.error('Failed to start ability', err.code);
     });
 }
@@ -335,7 +388,7 @@ reqPermissions() {
 
 ## Pre-authorizing user_grant Permissions
 
-The user_grant permissions can be pre-authorized in the [**install_list_permission.json** file]( https://gitee.com/openharmony/vendor_hihope/blob/master/rk3568/preinstall-config/install_list_permissions.json) in the **/system/etc/app/** directory of the device. When the device starts, it loads the **install_list_permission.json** file. When the applications are installed, the user_grant permissions are authorized. 
+The user_grant permissions can be pre-authorized in the [**install_list_permission.json** file](https://gitee.com/openharmony/vendor_hihope/blob/master/rk3568/preinstall-config/install_list_permissions.json) in the **/system/etc/app/** directory of the device. When the device starts, it loads the **install_list_permission.json** file. When the applications are installed, the user_grant permissions are authorized. 
 
 The **install_list_permissions.json** file contains the following fields:
 
@@ -362,4 +415,3 @@ The **install_list_permissions.json** file contains the following fields:
   }
 ]
 ```
-
