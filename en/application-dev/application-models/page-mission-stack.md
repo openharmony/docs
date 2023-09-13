@@ -48,5 +48,5 @@ The mission startup relationship recorded by the MissionList may be broken in th
 - A user deletes a mission in the MissionList.
   ![mission-chain2](figures/mission-chain2.png)
 
-- A UIAbility singleton is repeatedly started by different missions. For example, AbilityB in the figure below is a singleton.
+- A UIAbility singleton is repeatedly started by different missions (including other abilities or the home screen). For example, AbilityB in the figure below is a singleton.
   ![mission-chain3](figures/mission-chain3.png)

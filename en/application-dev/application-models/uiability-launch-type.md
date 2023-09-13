@@ -23,7 +23,7 @@ Each time [startAbility()](../reference/apis/js-apis-inner-application-uiAbility
 
 > **NOTE**
 >
-> If [startAbility()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability) is called to start an existing UIAbility instance in singleton mode, that instance is started, and no new UIAbility instance is created. In this case, the [onNewWant()](../reference/apis/js-apis-app-ability-uiAbility.md#abilityonnewwant) callback is invoked, but the [onCreate()](../reference/apis/js-apis-app-ability-uiAbility.md#uiabilityoncreate) and [onWindowStageCreate()](../reference/apis/js-apis-app-ability-uiAbility.md#uiabilityonwindowstagecreate) callbacks are not.
+> If [startAbility()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability) is called to start an existing UIAbility instance in singleton mode, that instance is started, and no new UIAbility instance is created. In this case, the [onNewWant()](../reference/apis/js-apis-app-ability-uiAbility.md#uiabilityonnewwant) callback is invoked, but the [onCreate()](../reference/apis/js-apis-app-ability-uiAbility.md#uiabilityoncreate) and [onWindowStageCreate()](../reference/apis/js-apis-app-ability-uiAbility.md#uiabilityonwindowstagecreate) callbacks are not.
 
 To use the singleton mode, set **launchType** in the [module.json5 file](../quick-start/module-configuration-file.md) to **singleton**.
 
@@ -100,24 +100,28 @@ In the following example, there are two UIAbility components: EntryAbility and S
    ```ts
    // Configure a unique key for each UIAbility instance.
    // For example, in the document usage scenario, use the document path as the key.
+   import common from '@ohos.app.ability.common';
+   import Want from '@ohos.app.ability.Want';
+   import { BusinessError } from '@ohos.base';
+
    function getInstance() {
-     ...
+     return 'key';
    }
    
-   let context =...; // context is the UIAbilityContext of the initiator UIAbility.
-   let want = {
+   let context:common.UIAbilityContext = ...; // context is the UIAbilityContext of the initiator UIAbility.
+   let want: Want = {
      deviceId: '', // An empty deviceId indicates the local device.
      bundleName: 'com.example.myapplication',
      abilityName: 'SpecifiedAbility',
      moduleName: 'specified', // moduleName is optional.
-     parameters: {// Custom information.
+     parameters: { // Custom information.
        instanceKey: getInstance(),
      },
    }
    
    context.startAbility(want).then(() => {
      console.info('Succeeded in starting ability.');
-   }).catch((err) => {
+   }).catch((err: BusinessError) => {
      console.error(`Failed to start ability. Code is ${err.code}, message is ${err.message}`);
    })
    ```
@@ -128,14 +132,17 @@ In the following example, there are two UIAbility components: EntryAbility and S
 
    ```ts
    import AbilityStage from '@ohos.app.ability.AbilityStage';
+   import Want from '@ohos.app.ability.Want';
    
    export default class MyAbilityStage extends AbilityStage {
-     onAcceptWant(want): string {
+     onAcceptWant(want: Want): string {
        // In the AbilityStage instance of the callee, a key string corresponding to a UIAbility instance is returned for UIAbility whose launch type is specified.
        // In this example, SpecifiedAbility of module1 is returned.
        if (want.abilityName === 'SpecifiedAbility') {
          // The returned key string is a custom string.
-         return `SpecifiedAbilityInstance_${want.parameters.instanceKey}`;
+         if (want.parameters) {
+           return `SpecifiedAbilityInstance_${want.parameters.instanceKey}`;
+         }
        }
    
        return '';

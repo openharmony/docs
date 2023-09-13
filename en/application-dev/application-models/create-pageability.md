@@ -4,29 +4,31 @@
 When you create a PageAbility on DevEco Studio, DevEco Studio automatically generates the **onCreate()** and **onDestroy()** callbacks in **app.js** and **app.ets**. You need to implement the other lifecycle callbacks in **app.js** and **app.ets**. The following code snippet shows how to create a PageAbility:
 
 ```ts
-export default {
+class EntryAbility {
   onCreate() {
     console.info('Application onCreate')
-  },
+  }
   onDestroy() {
     console.info('Application onDestroy')
-  },
+  }
   onShow() {
     console.info('Application onShow')
-  },
+  }
   onHide() {
     console.info('Application onHide')
-  },
+  }
   onActive() {
     console.info('Application onActive')
-  },
+  }
   onInactive() {
     console.info('Application onInactive')
-  },
+  }
   onNewWant() {
     console.info('Application onNewWant')
-  },
+  }
 }
+
+export default new EntryAbility()
 ```
 
 
@@ -66,7 +68,7 @@ After the PageAbility is created, its abilities-related configuration items are 
 In the FA model, you can call **getContext** of **featureAbility** to obtain the application context and then use the capabilities provided by the context.
 
 
-**Table 1** featureAbility APIs
+  **Table 1** featureAbility APIs
 
 | API| Description|
 | -------- | -------- |
@@ -84,14 +86,13 @@ import fs from '@ohos.file.fs';
   try {
     console.info('Begin to getOrCreateDistributedDir');
     dir = await featureAbility.getContext().getOrCreateDistributedDir();
-    console.info('distribute dir is ' + dir)
+    console.info('distribute dir is ' + dir);
+    let fd: number;
+    let path = dir + "/a.txt";
+    fd = fs.openSync(path, fs.OpenMode.READ_WRITE).fd;
+    fs.close(fd);
   } catch (error) {
     console.error('getOrCreateDistributedDir failed with ' + error);
   }
-
-  let fd: number;
-  let path = dir + "/a.txt";
-  fd = fs.openSync(path, fs.OpenMode.READ_WRITE).fd;
-  fs.close(fd);
 })()
 ```

@@ -18,7 +18,7 @@ The **visible** field under **abilities** in the **config.json** file specifies 
 
 To enable an ability to be called by any application, configure the **config.json** file as follows:
 
-```ts
+```json
 {
   "module": {
     ...
