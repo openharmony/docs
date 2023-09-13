@@ -3978,6 +3978,40 @@ currentAVSession.stopCasting().then(() => {
 });
 ```
 
+### getOutputDeviceSync<sup>10+</sup>
+
+getOutputDeviceSync(): OutputDeviceInfo
+
+使用同步方法获取当前输出设备信息。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.Core
+
+**返回值：**
+
+| 类型                                            | 说明                              |
+| ----------------------------------------------- | --------------------------------- |
+| [OutputDeviceInfo](#outputdeviceinfo10) | 当前输出设备信息。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 6600101  | Session service exception. |
+| 6600103  | The session controller does not exist. |
+
+**示例：**
+```ts
+import { BusinessError } from '@ohos.base';
+
+try {
+  let currentOutputDevice: avSession.OutputDeviceInfo = currentAVSession.getOutputDeviceSync();
+} catch (err: BusinessError) {
+  console.info(`getOutputDeviceSync error, error code: ${err.code}, error message: ${err.message}`);
+}
+```
+
 ## AVCastControlCommandType<sup>10+</sup>
 
 投播控制器可传递的命令。
@@ -7083,6 +7117,245 @@ off(type: 'extrasChange', callback?: (extras: {[key:string]: Object}) => void): 
 
 ```ts
 avsessionController.off('extrasChange');
+```
+
+### getAVPlaybackStateSync<sup>10+</sup>
+
+getAVPlaybackStateSync(): AVPlaybackState;
+
+使用同步方法获取当前会话的播放状态。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
+
+**返回值：**
+
+| 类型                                                        | 说明                                                         |
+| --------- | ------------------------------------------------------------ |
+| [AVPlaybackState](#avplaybackstate10)  | 当前会话的播放状态。 |
+
+**错误码：**
+以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 6600101  | Session service exception |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+try {
+  let playbackState: avsession.AVPlaybackState = avsessionController.getAVPlaybackStateSync();
+} catch (err: BusinessError) {
+  console.info(`getAVPlaybackStateSync error, error code: ${err.code}, error message: ${err.message}`);
+}
+```
+
+### getAVMetadataSync<sup>10+</sup>
+
+getAVMetadataSync(): AVMetadata
+
+使用同步方法获取会话元数据。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.Core
+
+**返回值：**
+
+| 类型                                | 说明                          |
+| ----------------------------------- | ----------------------------- |
+| [AVMetadata](#avmetadata10) | 会话元数据。 |
+
+**错误码：**
+以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
+| 6600103  | The session controller does not exist. |
+
+**示例：**
+```ts
+import { BusinessError } from '@ohos.base';
+
+try {
+  let metaData: avsession.AVMetadata = avsessionController.getAVMetadataSync();
+} catch (err: BusinessError) {
+  console.info(`getAVMetadataSync error, error code: ${err.code}, error message: ${err.message}`);
+}
+```
+
+### getAVQueueTitleSync<sup>10+</sup>
+
+getAVQueueTitleSync(): string
+
+使用同步方法获取当前会话播放列表的名称。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.Core
+
+**返回值：**
+
+| 类型             | 说明                           |
+| ---------------- | ----------------------------- |
+| string | 当前会话播放列表名称。 |
+
+**错误码：**
+以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
+| 6600103  | The session controller does not exist. |
+
+**示例：**
+```ts
+import { BusinessError } from '@ohos.base';
+
+try {
+  let currentQueueTitle: string = avsessionController.getAVQueueTitleSync();
+} catch (err: BusinessError) {
+  console.info(`getAVQueueTitleSync error, error code: ${err.code}, error message: ${err.message}`);
+}
+```
+
+### getAVQueueItemsSync<sup>10+</sup>
+
+getAVQueueItemsSync(): \<Array\<AVQueueItem\>\>
+
+使用同步方法获取当前会话播放列表相关信息。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.Core
+
+**返回值：**
+
+| 类型                                          | 说明                           |
+| --------------------------------------------- | ----------------------------- |
+| Array<[AVQueueItem](#avqueueitem10)\> | 当前会话播放列表队列。 |
+
+**错误码：**
+以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
+| 6600103  | The session controller does not exist. |
+
+**示例：**
+```ts
+import { BusinessError } from '@ohos.base';
+
+try {
+  let currentQueueItems: Array<avsession.AVQueueItem> = avsessionController.getAVQueueItemsSync();
+} catch (err: BusinessError) {
+  console.info(`getAVQueueItemsSync error, error code: ${err.code}, error message: ${err.message}`);
+}
+```
+
+### getOutputDeviceSync<sup>10+</sup>
+
+getOutputDeviceSync(): OutputDeviceInfo
+
+使用同步方法获取当前输出设备信息。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.Core
+
+**返回值：**
+
+| 类型                                            | 说明                              |
+| ----------------------------------------------- | --------------------------------- |
+| [OutputDeviceInfo](#outputdeviceinfo10) | 当前输出设备信息。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 6600101  | Session service exception. |
+| 6600103  | The session controller does not exist. |
+
+**示例：**
+```ts
+import { BusinessError } from '@ohos.base';
+
+try {
+  let currentOutputDevice: avSession.OutputDeviceInfo = avsessionController.getOutputDeviceSync();
+} catch (err: BusinessError) {
+  console.info(`getOutputDeviceSync error, error code: ${err.code}, error message: ${err.message}`);
+}
+```
+
+### isActiveSync<sup>10+</sup>
+
+isActiveSync(): boolean
+
+使用同步方法判断会话是否被激活。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.Core
+
+**返回值：**
+
+| 类型              | 说明                                                         |
+| ----------------- | ------------------------------------------------------------ |
+| boolean | 会话是否为激活状态，true表示被激活，false表示禁用。 |
+
+**错误码：**
+以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
+| 6600103  | The session controller does not exist. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+try {
+  let isActive: boolean = avsessionController.isActiveSync();
+} catch (err: BusinessError) {
+  console.info(`isActiveSync error, error code: ${err.code}, error message: ${err.message}`);
+}
+```
+
+### getValidCommandsSync<sup>10+</sup>
+
+getValidCommandsSync(): Array\<AVControlCommandType\>
+
+使用同步方法获取会话支持的有效命令。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.Core
+
+**返回值：**
+
+| 类型                                                         | 说明                              |
+| ------------------------------------------------------------ | --------------------------------- |
+| Array<[AVControlCommandType](#avcontrolcommandtype10)\> | 会话支持的有效命令的集合。 |
+
+**错误码：**
+以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
+| 6600103  | The session controller does not exist. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+try {
+  let validCommands: Array<avSession.AVControlCommandType> = avsessionController.getValidCommandsSync();
+} catch (err: BusinessError) {
+  console.info(`getValidCommandsSync error, error code: ${err.code}, error message: ${err.message}`);
+}
 ```
 
 ## AVControlCommandType<sup>10+</sup>
