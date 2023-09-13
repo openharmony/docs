@@ -7017,7 +7017,9 @@ setOutsideTouchable(touchable: boolean, callback: AsyncCallback&lt;void&gt;): vo
 
 > **说明：**
 >
-> 该接口不支持使用。从 API version 7开始支持，从API version 9开始废弃。
+> 从 API version 7开始支持，从API version 9开始废弃。
+> 
+> 从 API version 9开始，系统默认允许点击子窗口之外的区域，此接口不再支持使用，也不再提供替代接口。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -7056,7 +7058,9 @@ setOutsideTouchable(touchable: boolean): Promise&lt;void&gt;
 
 > **说明：**
 >
-> 该接口不支持使用。从 API version 7开始支持，从API version 9开始废弃。
+> 从 API version 7开始支持，从API version 9开始废弃。
+> 
+> 从 API version 9开始，系统默认允许点击子窗口之外的区域，此接口不再支持使用，也不再提供替代接口。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
