@@ -1117,7 +1117,7 @@ format(number: string): string
 **示例：** 
   ```js
   let phonenumberfmt = new I18n.PhoneNumberFormat("CN");
-  let formattedPhoneNumber = phonenumberfmt.format("158****2312"); // formattedPhoneNumber = "158 1231 2312"
+  let formattedPhoneNumber = phonenumberfmt.format("158****2312"); // formattedPhoneNumber = "158 **** 2312"
   ```
 
 
