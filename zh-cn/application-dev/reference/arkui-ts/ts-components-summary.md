@@ -327,3 +327,13 @@
 - [UIExtensionComponent](ts-container-ui-extension-component.md)
 
     在页面中嵌入显示带UI界面的Ability扩展的容器组件。
+
+- [LocationButton](ts-security-components-locationbutton.md)
+
+    安全组件的位置按钮，用户通过点击该位置按钮，可以临时获取精准定位权限，而不需要权限弹框授权确认。
+- [PasteButton](ts-security-components-pastebutton.md)
+
+    安全组件的粘贴按钮，用户通过点击该粘贴按钮，可以临时获取读取剪贴板权限，而不会触发toast提示。
+- [SaveButton](ts-security-components-savebutton.md)
+
+    安全组件的保存按钮，用户通过点击该保存按钮，可以临时获取存储权限，而不需要权限弹框授权确认。
