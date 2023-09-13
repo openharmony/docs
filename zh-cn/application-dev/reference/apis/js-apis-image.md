@@ -1034,8 +1034,7 @@ async function Demo() {
 
 
      // 反序列化 rpc获取到data
-     let pixelMap2 : image.PixelMap | undefined = undefined;
-     let ret : MySequece = new MySequence(pixelMap2);
+     let ret : MySequece = new MySequence(pixelMap);
      data.readParcelable(ret);
    }
 }
@@ -1122,8 +1121,7 @@ async function Demo() {
 
 
      // 反序列化 rpc获取到data
-     let pixelMap2 : image.PixelMap | undefined = undefined;
-     let ret : MySequece = new MySequence(pixelMap2);
+     let ret : MySequece = new MySequence(pixelMap);
      data.readParcelable(ret);
    }
 }
