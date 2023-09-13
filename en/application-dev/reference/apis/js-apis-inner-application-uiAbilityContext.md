@@ -2241,5 +2241,5 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 
   ```ts
   let isTerminating = this.context.isTerminating();
-  console.log('ability state :' + isTerminating);
+  console.log(`ability state is ${isTerminating}`);
   ```
