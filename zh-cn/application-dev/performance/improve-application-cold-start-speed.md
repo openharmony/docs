@@ -6,7 +6,7 @@
 
 OpenHarmony的应用冷启动过程大致可分成以下四个阶段：应用进程创建&初始化、Application&Ability初始化、Ability生命周期、加载绘制首页，如下图：
 
-![输入图片说明](../figure/application-cold-start.png)
+![输入图片说明](figures/application-cold-start.png)
 
 ## 1、缩短应用进程创建&初始化阶段耗时
 
@@ -57,7 +57,7 @@ OpenHarmony的应用冷启动过程大致可分成以下四个阶段：应用进
 
 在应用启动流程中，系统会执行Ability的生命周期回调函数。因此，不建议在这些回调函数中执行耗时过长的操作，耗时操作建议通过异步任务延迟处理或者放到其他线程执行。
 
-在这些生命周期回调里，推荐开发者只做必要的操作，详情可以参考：[UIAbility组件生命周期](../../application-models/uiability-lifecycle.md)
+在这些生命周期回调里，推荐开发者只做必要的操作，详情可以参考：[UIAbility组件生命周期](../application-models/uiability-lifecycle.md)
 
 ## 4、缩短加载绘制首页阶段耗时
 
