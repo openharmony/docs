@@ -995,14 +995,19 @@ class MySequence implements rpc.Parcelable {
     }
     marshalling(messageSequence : rpc.MessageSequence) {
         this.pixel_map.marshalling(messageSequence);
+        console.log('marshalling');
         return true;
     }
     unmarshalling(messageSequence : rpc.MessageSequence) {
-        let pixelParcel : image.PixelMap = await image.createPixelMap(new ArrayBuffer(96), {size: { height:4, width: 6}});
-        await pixelParcel.unmarshalling(messageSequence).then(async (pixelMap : image.PixelMap) => {
-            this.pixel_map = pixelMap;
+      image.createPixelMap(new ArrayBuffer(96), {size: { height:4, width: 6}}).then((pixelParcel : image.PixelMap) => {
+        pixelParcel.unmarshalling(messageSequence).then(async (pixelMap : image.PixelMap) => {
+          this.pixel_map = pixelMap;
+          await pixelMap.getImageInfo().then((imageInfo : image.ImageInfo) => {
+            console.log("unmarshalling information h:" + imageInfo.size.height + "w:" + imageInfo.size.width);
+          })
         })
-        return true;
+      });
+      return true;
     }
 }
 async function Demo() {
@@ -1013,18 +1018,25 @@ async function Demo() {
    }
    let opts : image.InitializationOptions = {
       editable: true,
-      pixelFormat: 2,
+      pixelFormat: 4,
       size: { height: 4, width: 6 },
-      alphaType: 1
+      alphaType: 3
    }
    let pixelMap : image.PixelMap | undefined = undefined;
    await image.createPixelMap(color, opts).then((pixelmap : image.PixelMap) => {
       pixelMap = pixelmap;
    })
    if (pixelMap != undefined) {
+     // 序列化
      let parcelable : MySequence = new MySequence(pixelMap);
      let data : rpc.MessageSequence = rpc.MessageSequence.create();
-     data.writeParcelable(parcelable : rpc.Parcelable);
+     data.writeParcelable(parcelable);
+
+
+     // 反序列化 rpc获取到data
+     let pixelMap2 : image.PixelMap | undefined = undefined;
+     let ret : MySequece = new MySequence(pixelMap2);
+     data.readParcelable(ret);
    }
 }
 ```
@@ -1071,14 +1083,19 @@ class MySequence implements rpc.Parcelable {
     }
     marshalling(messageSequence : rpc.MessageSequence) {
         this.pixel_map.marshalling(messageSequence);
+        console.log('marshalling');
         return true;
     }
     unmarshalling(messageSequence : rpc.MessageSequence) {
-        let pixelParcel : image.PixelMap = await image.createPixelMap(new ArrayBuffer(96), {size: { height:4, width: 6}});
-        await pixelParcel.unmarshalling(messageSequence).then(async (pixelMap : image.PixelMap) => {
-            this.pixel_map = pixelMap;
+      image.createPixelMap(new ArrayBuffer(96), {size: { height:4, width: 6}}).then((pixelParcel : image.PixelMap) => {
+        pixelParcel.unmarshalling(messageSequence).then(async (pixelMap : image.PixelMap) => {
+          this.pixel_map = pixelMap;
+          await pixelMap.getImageInfo().then((imageInfo : image.ImageInfo) => {
+            console.log("unmarshalling information h:" + imageInfo.size.height + "w:" + imageInfo.size.width);
+          })
         })
-        return true;
+      });
+      return true;
     }
 }
 async function Demo() {
@@ -1089,18 +1106,25 @@ async function Demo() {
    }
    let opts : image.InitializationOptions = {
       editable: true,
-      pixelFormat: 2,
+      pixelFormat: 4,
       size: { height: 4, width: 6 },
-      alphaType: 1
+      alphaType: 3
    }
    let pixelMap : image.PixelMap | undefined = undefined;
    await image.createPixelMap(color, opts).then((pixelmap : image.PixelMap) => {
       pixelMap = pixelmap;
    })
    if (pixelMap != undefined) {
-     let ret : MySequence = new MySequence(pixelMap);
+     // 序列化
+     let parcelable : MySequence = new MySequence(pixelMap);
      let data : rpc.MessageSequence = rpc.MessageSequence.create();
-     await data.readParcelable(ret : rpc.Parcelable);
+     data.writeParcelable(parcelable);
+
+
+     // 反序列化 rpc获取到data
+     let pixelMap2 : image.PixelMap | undefined = undefined;
+     let ret : MySequece = new MySequence(pixelMap2);
+     data.readParcelable(ret);
    }
 }
 ```
