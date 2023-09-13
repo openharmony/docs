@@ -289,7 +289,7 @@ struct ParentComponent {
   }
   ```
 
-- 不允许switch语法，如果需要使用条件判断，请使用if。反例如下。
+- 不允许使用switch语法，如果需要使用条件判断，请使用if。反例如下。
 
   ```ts
   build() {
