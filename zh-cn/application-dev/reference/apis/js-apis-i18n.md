@@ -1081,7 +1081,7 @@ getTimeInMillis(): number
 
 compareDays(date: Date): number
 
-比较日历和给定日期相差的天数（按毫秒级的精度，不足一天将按一天进行计算）。
+比较日历和指定日期相差的天数（按毫秒级的精度，不足一天将按一天进行计算）。
 
 **系统能力**：SystemCapability.Global.I18n
 
