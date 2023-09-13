@@ -2485,7 +2485,7 @@ Unsubscribes from AVRecorder errors. After the unsubscription, your application 
 
 For details about the error codes, see [Media Error Codes](../errorcodes/errorcode-media.md).
 
-| ID| Error Message                         |
+| ID| Error Message                                             |
 | -------- | ------------------------------------------------   |
 | 201      | Permission denied. Return by callback.             |
 | 401      | The parameter check failed. Return by callback.    |
