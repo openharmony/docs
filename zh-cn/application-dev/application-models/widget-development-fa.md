@@ -110,85 +110,85 @@ FA卡片开发，即基于[FA模型](fa-model-development-overview.md)的卡片�
 
 1. 在form.ts中，导入相关模块
    
-   ```ts
-   import formBindingData from '@ohos.app.form.formBindingData';
-   import formInfo from '@ohos.app.form.formInfo';
-   import formProvider from '@ohos.app.form.formProvider';
-   import dataPreferences from '@ohos.data.preferences';
-   import Want from '@ohos.app.ability.Want';
-   ```
+  ```ts
+  import formBindingData from '@ohos.app.form.formBindingData';
+  import formInfo from '@ohos.app.form.formInfo';
+  import formProvider from '@ohos.app.form.formProvider';
+  import dataPreferences from '@ohos.data.preferences';
+  import Want from '@ohos.app.ability.Want';
+  ```
 
 2. 在form.ts中，实现卡片生命周期接口
    
-   ```ts
-   class lifeCycle {
-     onCreate: (want: Want) => formBindingData.FormBindingData = (want) => ({ data: '' })
-     onCastToNormal: (formId: string) => void = (formId) => {}
-     onUpdate: (formId: string) => void = (formId) => {}
-     onVisibilityChange: (newStatus: Record<string, number>) => void = (newStatus) => {
-       let obj: Record<string, number> = {
-         'test': 1
-       };
-       return obj;
-     }
-     onEvent: (formId: string, message: string) => void = (formId, message) => {}
-     onDestroy: (formId: string) => void = (formId) => {}
-     onAcquireFormState?: (want: Want) => formInfo.FormState = (want) => (0)
-     onShare?: (formId: string) => Record<string, number | string | boolean | object | undefined | null> = (formId) => {
-       let obj: Record<string, number> = {
-         'test': 1
-       };
-       return obj;
-     }
-   }
+  ```ts
+  class lifeCycle {
+    onCreate: (want: Want) => formBindingData.FormBindingData = (want) => ({ data: '' })
+    onCastToNormal: (formId: string) => void = (formId) => {}
+    onUpdate: (formId: string) => void = (formId) => {}
+    onVisibilityChange: (newStatus: Record<string, number>) => void = (newStatus) => {
+      let obj: Record<string, number> = {
+        'test': 1
+      };
+      return obj;
+    }
+    onEvent: (formId: string, message: string) => void = (formId, message) => {}
+    onDestroy: (formId: string) => void = (formId) => {}
+    onAcquireFormState?: (want: Want) => formInfo.FormState = (want) => (0)
+    onShare?: (formId: string) => Record<string, number | string | boolean | object | undefined | null> = (formId) => {
+      let obj: Record<string, number> = {
+        'test': 1
+      };
+      return obj;
+    }
+  }
 
-   let obj: lifeCycle = {
-     onCreate(want: Want) {
-       console.info('FormAbility onCreate');
-       // 使用方创建卡片时触发，提供方需要返回卡片数据绑定类
-       let obj: Record<string, string> = {
-         "title": "titleOnCreate",
-         "detail": "detailOnCreate"
-       };
-       let formData: formBindingData.FormBindingData = formBindingData.createFormBindingData(obj);
-       return formData;
-     },
-     onCastToNormal(formId: string) {
-       // 使用方将临时卡片转换为常态卡片触发，提供方需要做相应的处理
-       console.info('FormAbility onCastToNormal');
-     },
-     onUpdate(formId: string) {
-       // 若卡片支持定时更新/定点更新/卡片使用方主动请求更新功能，则提供方需要重写该方法以支持数据更新
-       console.info('FormAbility onUpdate');
-       let obj: Record<string, string> = {
-         "title": "titleOnUpdate",
-         "detail": "detailOnUpdate"
-       };
-       let formData: formBindingData.FormBindingData = formBindingData.createFormBindingData(obj);
-       formProvider.updateForm(formId, formData).catch((error: Error) => {
-         console.info('FormAbility updateForm, error:' + JSON.stringify(error));
-       });
-     },
-     onVisibilityChange(newStatus: Record<string, number>) {
-       // 使用方发起可见或者不可见通知触发，提供方需要做相应的处理，仅系统应用生效
-       console.info('FormAbility onVisibilityChange');
-     },
-     onEvent(formId: string, message: string) {
-       // 若卡片支持触发事件，则需要重写该方法并实现对事件的触发
-       console.info('FormAbility onEvent');
-     },
-     onDestroy(formId: string) {
-       // 删除卡片实例数据
-       console.info('FormAbility onDestroy');
-     },
-     onAcquireFormState(want: Want) {
-       console.info('FormAbility onAcquireFormState');
-       return formInfo.FormState.READY;
-     },
-   }
+  let obj: lifeCycle = {
+    onCreate(want: Want) {
+      console.info('FormAbility onCreate');
+      // 使用方创建卡片时触发，提供方需要返回卡片数据绑定类
+      let obj: Record<string, string> = {
+        "title": "titleOnCreate",
+        "detail": "detailOnCreate"
+      };
+      let formData: formBindingData.FormBindingData = formBindingData.createFormBindingData(obj);
+      return formData;
+    },
+    onCastToNormal(formId: string) {
+      // 使用方将临时卡片转换为常态卡片触发，提供方需要做相应的处理
+      console.info('FormAbility onCastToNormal');
+    },
+    onUpdate(formId: string) {
+      // 若卡片支持定时更新/定点更新/卡片使用方主动请求更新功能，则提供方需要重写该方法以支持数据更新
+      console.info('FormAbility onUpdate');
+      let obj: Record<string, string> = {
+        "title": "titleOnUpdate",
+        "detail": "detailOnUpdate"
+      };
+      let formData: formBindingData.FormBindingData = formBindingData.createFormBindingData(obj);
+      formProvider.updateForm(formId, formData).catch((error: Error) => {
+        console.info('FormAbility updateForm, error:' + JSON.stringify(error));
+      });
+    },
+    onVisibilityChange(newStatus: Record<string, number>) {
+      // 使用方发起可见或者不可见通知触发，提供方需要做相应的处理，仅系统应用生效
+      console.info('FormAbility onVisibilityChange');
+    },
+    onEvent(formId: string, message: string) {
+      // 若卡片支持触发事件，则需要重写该方法并实现对事件的触发
+      console.info('FormAbility onEvent');
+    },
+    onDestroy(formId: string) {
+      // 删除卡片实例数据
+      console.info('FormAbility onDestroy');
+    },
+    onAcquireFormState(want: Want) {
+      console.info('FormAbility onAcquireFormState');
+      return formInfo.FormState.READY;
+    },
+  }
 
-   export default obj;
-  ```
+  export default obj;
+```
 
 > **说明：**
 > FormAbility不能常驻后台，即在卡片生命周期回调函数中无法处理长时间的任务。
