@@ -2,7 +2,7 @@
 
 > **NOTE**
 >
-> This development guide applies to JS development using API version 9 and OpenHarmony SDK 3.2.9 or later.
+> This guide applies only to JavaScript development using the SDK of API version 9 or later.
 
 ## Using Certificates
 
@@ -362,7 +362,7 @@ function crlSample() {
             }
         });
 
-        // Create an X509Cert instance by using createX509Cert() of cryptoFramework.
+        // Create an X509Cert instance by using createX509Cert() of cryptoFramework. The process is omitted here.
         let x509Cert = null;
         // Check whether the certificate is revoked.
         try {
@@ -424,7 +424,7 @@ Example: Create a **CertChainValidator** instance and verify the certificate cha
 ```javascript
 import cryptoCert from '@ohos.security.cert';
 
-// CA certificate data, which is only an example. The CA certificate data varies with the service.
+// CA certificate data, which is only an example. The certificate data varies with the service.
 let caCertData = "-----BEGIN CERTIFICATE-----\n"
 + "...\n"
 + "...\n"
@@ -447,7 +447,7 @@ function stringToUint8Array(str) {
     return new Uint8Array(arr);
 }
 
-// Certificate chain validator example. In this example, a two-level certificate chain is verified.
+// Certificate chain validator example: In this example, a two-level certificate chain is verified. The code may vary with the service requirements.
 function certChainValidatorSample() {
     // Certificate chain validator algorithm. Currently, only PKIX is supported.
     let algorithm = "PKIX";
@@ -496,10 +496,10 @@ function certChainValidatorSample() {
     // Verify the certificate chain.
     validator.validate(certChainData, function (err, data) {
         if (err != null) {
-            // The operation fails.
+            // Failed to verify the certificate chain.
             console.log("validate failed, errCode: " + err.code + ", errMsg: " + err.message);
         } else {
-            // The operation is successful.
+            // The certificate chain verification is successful.
             console.log("validate success");
         }
 	});
@@ -539,10 +539,10 @@ import cryptoCert from '@ohos.security.cert';
 
 // Example of a revoked certificate.
 function crlEntrySample() {
-    // Create an **X509Crl** instance by using createX509Crl() of cryptoFramework.
+    // Create an X509Crl object by using createX509Crl() of the cryptoFramework. The process is omitted here.
     let x509Crl = null;
     
-    // Obtain a revoked certificate instance. In this example, the instance is obtained by using getRevokedCert().
+    // Obtain a revoked certificate instance. The service needs to call the X509Crl interface to obtain the revoked certificate object. In this example, getRevokedCert() is used to obtain the revoked certificate instance.
     let serialNumber = 1000;
     let crlEntry = null;
     try {
