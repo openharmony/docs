@@ -4,7 +4,7 @@
 
 本文参考业界标准，并结合应用TS/JS部分的性能优化实践经验，从应用编程指南、高性能编程实践、性能优化调试工具等维度，为应用开发者提供参考指导，助力开发者开发出高性能的应用。
 
-本文主要提供高性能编程实践的相关建议，应用开发的具体编程指导可见[《OpenHarmony应用TS&JS编程指南》](../../../contribute/OpenHarmony-Application-Typescript-JavaScript-coding-guide.md)。
+本文主要提供高性能编程实践的相关建议，应用开发的具体编程指导可见[《OpenHarmony应用TS&JS编程指南》](../contribute/OpenHarmony-Application-Typescript-JavaScript-coding-guide.md)。
 
 ## 应用TS&JS高性能编程实践
 
@@ -58,7 +58,7 @@ delete对象的某一个属性会改变其布局，影响运行时优化效果�
 
 > **说明：**
 >
-> 不建议直接使用delete删除对象的任何属性，如果有需要，建议使用map和set或者引擎实现的[高性能容器类](../../arkts-utils/container-overview.md)。
+> 不建议直接使用delete删除对象的任何属性，如果有需要，建议使用map和set或者引擎实现的[高性能容器类](../arkts-utils/container-overview.md)。
 
 【反例】
 
@@ -137,7 +137,7 @@ setInfo(info) {
 }
 ```
 
-代码可以进行如下修改，除了使用引擎中提供的标准内置map之外，还可以使用ArkTS提供的[高性能容器类](../../arkts-utils/container-overview.md)。
+代码可以进行如下修改，除了使用引擎中提供的标准内置map之外，还可以使用ArkTS提供的[高性能容器类](../arkts-utils/container-overview.md)。
 
 【正例】
 
@@ -551,13 +551,13 @@ function foo(f: boolean) {
 
 工具使用介绍：
 
-1. 针对应用开发者，推荐使用自带的[Smartperf工具](../../../device-dev/device-test/smartperf-host.md)来进行辅助分析，可以从宏观角度查看应用各个阶段耗时分布情况，快速找到待分析优化模块。
+1. 针对应用开发者，推荐使用自带的[Smartperf工具](../../device-dev/device-test/smartperf-host.md)来进行辅助分析，可以从宏观角度查看应用各个阶段耗时分布情况，快速找到待分析优化模块。
 2. 针对第一步分析得到的待优化模块，需要进行进一步分析确认耗时点是在TS/JS部分还是C++部分。C++部分耗时模块细化分析建议使用hiperf工具；针对TS/JS部分耗时，可以使用[CPU Profiler工具](application-performance-analysis.md)。
 3. 针对虚拟机开发者，如果需要进一步拆分细化，推荐使用虚拟机提供的RUNTIME_STAT工具。
 
 ### Smartperf工具使用指导
 
-以如下某个应用场景使用过程的trace为例，可以通过[Smartperf工具](../../../device-dev/device-test/smartperf-host.md)抓取到应用使用阶段的耗时信息，其中大部分为GC（Garbage Collection，垃圾回收）等操作。如果此接口大部分是应用开发者通过TS/JS实现，并且在trace中体现此阶段比较耗时，则可以继续使用[CPU Profiler工具](application-performance-analysis.md)来进一步分析TS/JS部分耗时情况。
+以如下某个应用场景使用过程的trace为例，可以通过[Smartperf工具](../../device-dev/device-test/smartperf-host.md)抓取到应用使用阶段的耗时信息，其中大部分为GC（Garbage Collection，垃圾回收）等操作。如果此接口大部分是应用开发者通过TS/JS实现，并且在trace中体现此阶段比较耗时，则可以继续使用[CPU Profiler工具](application-performance-analysis.md)来进一步分析TS/JS部分耗时情况。
 
 除了可以查看系统的trace之外，还可以在应用的源码的关键流程中加入一些trace点，用于做性能分析。startTrace用于记录trace起点，finishTrace用于记录trace终点，在应用中增加trace点的方式如下：
 
