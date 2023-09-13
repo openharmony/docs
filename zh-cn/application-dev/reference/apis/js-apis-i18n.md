@@ -1031,6 +1031,81 @@ isWeekend(date?: Date): boolean
   ```
 
 
+### add<sup>11+</sup>
+
+add(field: string, amount: number): void
+
+在日历的给定字段进行加减操作。
+
+**系统能力**：SystemCapability.Global.I18n
+
+**参数：**
+
+| 参数名  | 类型   | 必填   | 说明                                       |
+| ---- | ---- | ---- | ---------------------------------------- |
+| field | string | 是    | 指定进行操作的日历字段，目前支持的field值有&nbsp;year,&nbsp;month,&nbsp;week_of_year,&nbsp;week_of_month,&nbsp;date,&nbsp;day_of_year,&nbsp;day_of_week,&nbsp;day_of_week_in_month,&nbsp;hour,&nbsp;hour_of_day,&nbsp;minute,&nbsp;second,&nbsp;millisecond。 |
+| amount | number | 是    | 进行加减操作的具体数值。 |
+
+**示例：**
+  ```ts
+  let calendar: I18n.Calendar = I18n.getCalendar("zh-Hans");
+  calendar.set(2021, 11, 11, 8, 0, 0); // set time to 2021.11.11 08:00:00
+  calendar.add("year", 8); // 2021 + 8
+  let year: number = calendar.get("year"); // year = 2029
+  ```
+
+
+### getTimeInMillis<sup>11+</sup>
+
+getTimeInMillis(): number
+
+获取当前日历的UTC毫秒数。
+
+**系统能力**：SystemCapability.Global.I18n
+
+**返回值：**
+
+| 类型      | 说明                                  |
+| ------- | ----------------------------------- |
+| number | 当前日历的UTC毫秒数。 |
+
+**示例：**
+  ```ts
+  let calendar: I18n.Calendar = I18n.getCalendar("zh-Hans");
+  calendar.setTime(5000);
+  let millisecond: number = calendar.getTimeInMillis(); // millisecond = 5000
+  ```
+
+
+### compareDays<sup>11+</sup>
+
+compareDays(date: Date): number
+
+比较日历和指定日期相差的天数（按毫秒级的精度，不足一天将按一天进行计算）。
+
+**系统能力**：SystemCapability.Global.I18n
+
+**参数：**
+
+| 参数名  | 类型   | 必填   | 说明                                       |
+| ---- | ---- | ---- | ---------------------------------------- |
+| date | Date | 是    | 指定的日期。 |
+
+**返回值：**
+
+| 类型      | 说明                                  |
+| ------- | ----------------------------------- |
+| number | 相差的天数，正数代表日历时间更早，负数代表日历时间更晚。 |
+
+**示例：**
+  ```ts
+  let calendar: I18n.Calendar = I18n.getCalendar("zh-Hans");
+  calendar.setTime(5000);
+  let date: Date = new Date(6000);
+  let diff: number = calendar.compareDays(date); // diff = 1
+  ```
+
+
 ## PhoneNumberFormat<sup>8+</sup>
 
 
@@ -2172,6 +2247,33 @@ static getDateOrder(locale: string): string
 **示例：**
   ```ts
   let order: string = I18n.I18NUtil.getDateOrder("zh-CN");  // order = "y-L-d"
+  ```
+
+
+### getTimePeriodName<sup>11+</sup>
+
+static getTimePeriodName(hour:number, locale?: string): string
+
+获取该区域指定时间的本地化表达。
+
+**系统能力**：SystemCapability.Global.I18n
+
+**参数：**
+
+| 参数名    | 类型     | 必填   | 说明                        |
+| ------ | ------ | ---- | ------------------------- |
+| hour | number | 是    | 指定的时间，如：16。 |
+| locale | string | 否    | 指定区域的参数，默认采用当前APP的区域，如：zh-Hans-CN。 |
+
+**返回值：**
+
+| 类型     | 说明                  |
+| ------ | ------------------- |
+| string | 返回该区域指定时间的本地化表达。 |
+
+**示例：**
+  ```ts
+  let name: string = I18n.I18NUtil.getTimePeriodName(2, "zh-CN");  // name = "凌晨"
   ```
 
 
