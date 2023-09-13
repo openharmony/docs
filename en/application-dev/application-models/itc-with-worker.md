@@ -6,9 +6,9 @@
 To develop the Worker mode, perform the following steps:
 
 
-1. Configure the **buildOption** field in the [module-level build-profile.json5](https://developer.harmonyos.com/en/docs/documentation/doc-guides/ohos-building-configuration-0000001218440654#section6887184182020) file of the project.
+1. Configure the **buildOption** field in the module-level **build-profile.json5** file of the project.
 
-   ```ts
+   ```json
    "buildOption": {
      "sourceOption": {
        "workers": [
@@ -26,7 +26,7 @@ To develop the Worker mode, perform the following steps:
    let parent = worker.workerPort;
 
    // Process messages from the main thread.
-   parent.onmessage = function(message) {
+   parent.onmessage = (message) => {
      console.info("onmessage: " + message)
      // Send a message to the main thread.
      parent.postMessage("message from worker thread.")
@@ -45,7 +45,7 @@ To develop the Worker mode, perform the following steps:
       wk.postMessage("message from main thread.")
 
       // Process messages from the worker thread.
-      wk.onmessage = function(message) {
+      wk.onmessage = (message) => {
         console.info("message from worker: " + message)
 
         // Stop the worker thread based on service requirements.
@@ -64,7 +64,7 @@ To develop the Worker mode, perform the following steps:
       wk.postMessage("message from main thread.")
       
       // Process messages from the worker thread.
-      wk.onmessage = function(message) {
+      wk.onmessage = (message) => {
         console.info("message from worker: " + message)
       
         // Stop the worker thread based on service requirements.

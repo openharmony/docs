@@ -17,11 +17,11 @@ export default class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
     // Main window is created. Set a main page for this ability.
     windowStage.loadContent('pages/Index', (err, data) => {
-      ...
+      // ...
     });
   }
 
-  ...
+  // ...
 }
 ```
 
@@ -38,9 +38,11 @@ The UIAbility class has its own context, which is an instance of the [UIAbilityC
   
   ```ts
   import UIAbility from '@ohos.app.ability.UIAbility';
+  import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+  import Want from '@ohos.app.ability.Want';
   
   export default class EntryAbility extends UIAbility {
-    onCreate(want, launchParam) {
+    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
       // Obtain the context of the UIAbility instance.
       let context = this.context;
       ...
@@ -52,6 +54,7 @@ The UIAbility class has its own context, which is an instance of the [UIAbilityC
   
   ```ts
   import common from '@ohos.app.ability.common';
+  import Want from '@ohos.app.ability.Want';
   
   @Entry
   @Component
@@ -59,7 +62,7 @@ The UIAbility class has its own context, which is an instance of the [UIAbilityC
     private context = getContext(this) as common.UIAbilityContext;
   
     startAbilityTest() {
-      let want = {
+      let want: Want = {
         // Want parameter information.
       };
       this.context.startAbility(want);
@@ -77,6 +80,7 @@ The UIAbility class has its own context, which is an instance of the [UIAbilityC
   
   ```ts
   import common from '@ohos.app.ability.common';
+  import Want from '@ohos.app.ability.Want';
   
   @Entry
   @Component
@@ -84,7 +88,7 @@ The UIAbility class has its own context, which is an instance of the [UIAbilityC
   
     startAbilityTest() {
       let context = getContext(this) as common.UIAbilityContext;
-      let want = {
+      let want: Want = {
         // Want parameter information.
       };
       context.startAbility(want);

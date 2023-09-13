@@ -8,17 +8,16 @@ The following example shows how to use **startAbility()** to start the ServiceAb
 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility'
+import Want from '@ohos.app.ability.Want';
 
 async function startServiceAbility() {
   try {
     console.info('Begin to start ability')
-    let param = {
-      want: {
-        bundleName: "com.example.myapplication",
-        abilityName: "com.example.myapplication.ServiceAbility"
-      }
+    let want: Want = {
+      bundleName: "com.example.myapplication",
+      abilityName: "com.example.myapplication.ServiceAbility"
     }
-    await featureAbility.startAbility(param)
+    await featureAbility.startAbility({want})
     console.info(`Start ability succeed`)
   } catch (error) {
     console.error('Start ability failed with ' + error)

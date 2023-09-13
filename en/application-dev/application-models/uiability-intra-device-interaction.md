@@ -31,8 +31,12 @@ Assume that your application has two UIAbility components: EntryAbility and Func
 1. In EntryAbility, call [startAbility()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability) and pass the [want](../reference/apis/js-apis-app-ability-want.md) parameter to start the UIAbility instance. In the **want** parameter, **bundleName** indicates the bundle name of the application to start; **abilityName** indicates the name of the UIAbility to start; **moduleName** is required only when the target UIAbility belongs to a different module from EntryAbility; **parameters** is used to carry custom information. For details about how to obtain the context in the example, see [Obtaining the Context of UIAbility](uiability-usage.md#obtaining-the-context-of-uiability).
 
    ```ts
-   let context = ...; // UIAbilityContext
-   let want = {
+   import common from '@ohos.app.ability.common';
+   import Want from '@ohos.app.ability.Want';
+   import { BusinessError } from '@ohos.base';
+
+   let context: common.UIAbilityContext = ...; // UIAbilityContext
+   let want: Want = {
      deviceId: '', // An empty deviceId indicates the local device.
      bundleName: 'com.example.myapplication',
      moduleName: 'func', // moduleName is optional.
@@ -44,7 +48,7 @@ Assume that your application has two UIAbility components: EntryAbility and Func
    // context is the UIAbilityContext of the initiator UIAbility.
    context.startAbility(want).then(() => {
      console.info('Succeeded in starting ability.');
-   }).catch((err) => {
+   }).catch((err: BusinessError) => {
      console.error(`Failed to start ability. Code is ${err.code}, message is ${err.message}`);
    })
    ```
@@ -53,13 +57,15 @@ Assume that your application has two UIAbility components: EntryAbility and Func
 
    ```ts
    import UIAbility from '@ohos.app.ability.UIAbility';
+   import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+   import Want from '@ohos.app.ability.Want';
 
    export default class FuncAbility extends UIAbility {
-     onCreate(want, launchParam) {
+     onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
        // Receive the parameters passed by the initiator UIAbility.
        let funcAbilityWant = want;
        let info = funcAbilityWant?.parameters?.info;
-       ...
+       // ...
      }
    }
    ```
@@ -71,7 +77,9 @@ Assume that your application has two UIAbility components: EntryAbility and Func
 3. To stop the **UIAbility** instance after the FuncAbility service is not needed, call [terminateSelf()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateself) in FuncAbility.
 
    ```ts
-   let context = ...; // UIAbilityContext
+   import common from '@ohos.app.ability.common';
+
+   let context: common.UIAbilityContext = ...; // UIAbilityContext
 
    // context is the UIAbilityContext of the UIAbility instance to stop.
    context.terminateSelf((err) => {
@@ -96,8 +104,12 @@ When starting FuncAbility from EntryAbility, you may want the result to be retur
 1. In EntryAbility, call [startAbilityForResult()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult) to start FuncAbility. Use **data** in the asynchronous callback to receive information returned after FuncAbility stops itself. For details about how to obtain the context in the example, see [Obtaining the Context of UIAbility](uiability-usage.md#obtaining-the-context-of-uiability).
 
    ```ts
-   let context = ...; // UIAbilityContext
-   let want = {
+   import common from '@ohos.app.ability.common';
+   import Want from '@ohos.app.ability.Want';
+   import { BusinessError } from '@ohos.base';
+
+   let context: common.UIAbilityContext = ...; // UIAbilityContext
+   let want: Want = {
      deviceId: '', // An empty deviceId indicates the local device.
      bundleName: 'com.example.myapplication',
      moduleName: 'func', // moduleName is optional.
@@ -108,8 +120,8 @@ When starting FuncAbility from EntryAbility, you may want the result to be retur
    }
    // context is the UIAbilityContext of the initiator UIAbility.
    context.startAbilityForResult(want).then((data) => {
-     ...
-   }).catch((err) => {
+     // ...
+   }).catch((err: BusinessError) => {
      console.error(`Failed to start ability for result. Code is ${err.code}, message is ${err.message}`);
    })
    ```
@@ -117,9 +129,12 @@ When starting FuncAbility from EntryAbility, you may want the result to be retur
 2. Call [terminateSelfWithResult()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult) to stop FuncAbility. Use the input parameter **abilityResult** to carry the information that FuncAbility needs to return to EntryAbility.
 
    ```ts
-   let context = ...; // UIAbilityContext
+   import common from '@ohos.app.ability.common';
+   import Want from '@ohos.app.ability.Want';
+
+   let context: common.UIAbilityContext = ...; // UIAbilityContext
    const RESULT_CODE: number = 1001;
-   let abilityResult = {
+   let abilityResult: common.AbilityResult = {
      resultCode: RESULT_CODE,
      want: {
        bundleName: 'com.example.myapplication',
@@ -142,19 +157,28 @@ When starting FuncAbility from EntryAbility, you may want the result to be retur
 3. After FuncAbility stops itself, EntryAbility uses [startAbilityForResult()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult) to receive the information returned by FuncAbility. The value of **RESULT_CODE** must be the same as that specified in the preceding step.
 
    ```ts
-   let context = ...; // UIAbilityContext
+   import common from '@ohos.app.ability.common';
+   import Want from '@ohos.app.ability.Want';
+   import { BusinessError } from '@ohos.base';
+
+   let context: common.UIAbilityContext = ...; // UIAbilityContext
    const RESULT_CODE: number = 1001;
 
-   ...
+   let want: Want = {
+     deviceId: '', // An empty deviceId indicates the local device.
+     bundleName: 'com.example.myapplication',
+     moduleName: 'func', // moduleName is optional.
+     abilityName: 'FuncAbility',
+   }
 
    // context is the UIAbilityContext of the initiator UIAbility.
    context.startAbilityForResult(want).then((data) => {
      if (data?.resultCode === RESULT_CODE) {
        // Parse the information returned by the target UIAbility.
        let info = data.want?.parameters?.info;
-       ...
+       // ...
      }
-   }).catch((err) => {
+   }).catch((err: BusinessError) => {
      console.error(`Failed to start ability for result. Code is ${err.code}, message is ${err.message}`);
    })
    ```
@@ -201,8 +225,12 @@ The following example describes how to start the UIAbility of another applicatio
 2. Include **entities** and **actions** of the initiator UIAbility's **want** parameter into **entities** and **actions** under **skills** of the target UIAbility. After the system identifies the UIAbility instances that match the **entities** and **actions** information, a dialog box is displayed, showing the list of matching UIAbility instances for users to select. For details about how to obtain the context in the example, see [Obtaining the Context of UIAbility](uiability-usage.md#obtaining-the-context-of-uiability).
 
    ```ts
-   let context = ...; // UIAbilityContext
-   let want = {
+   import common from '@ohos.app.ability.common';
+   import Want from '@ohos.app.ability.Want';
+   import { BusinessError } from '@ohos.base';
+
+   let context: common.UIAbilityContext = ...; // UIAbilityContext
+   let want: Want = {
      deviceId: '', // An empty deviceId indicates the local device.
      // Uncomment the line below if you want to implicitly query data only in the specific bundle.
      // bundleName: 'com.example.myapplication',
@@ -214,7 +242,7 @@ The following example describes how to start the UIAbility of another applicatio
    // context is the UIAbilityContext of the initiator UIAbility.
    context.startAbility(want).then(() => {
      console.info('Succeeded in starting ability.');
-   }).catch((err) => {
+   }).catch((err: BusinessError) => {
      console.error(`Failed to start ability. Code is ${err.code}, message is ${err.message}`);
    })
    ```
@@ -226,7 +254,9 @@ The following example describes how to start the UIAbility of another applicatio
 3. To stop the **UIAbility** instance when the document application is not in use, call [terminateSelf()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateself).
 
    ```ts
-   let context = ...; // UIAbilityContext
+   import common from '@ohos.app.ability.common';
+
+   let context: common.UIAbilityContext = ...; // UIAbilityContext
 
    // context is the UIAbilityContext of the UIAbility instance to stop.
    context.terminateSelf((err) => {
@@ -271,8 +301,12 @@ If you want to obtain the return result when using implicit Want to start the UI
 2. Call [startAbilityForResult()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult) to start the UIAbility of the payment application. Include **entities** and **actions** of the initiator UIAbility's **want** parameter into **entities** and **actions** under **skills** of the target UIAbility. Use **data** in the asynchronous callback to receive the information returned to the initiator UIAbility after the payment UIAbility stops itself. After the system identifies the UIAbility instances that match the **entities** and **actions** information, a dialog box is displayed, showing the list of matching UIAbility instances for users to select.
 
    ```ts
-   let context = ...; // UIAbilityContext
-   let want = {
+   import common from '@ohos.app.ability.common';
+   import Want from '@ohos.app.ability.Want';
+   import { BusinessError } from '@ohos.base';
+
+   let context: common.UIAbilityContext = ...; // UIAbilityContext
+   let want:Want = {
      deviceId: '', // An empty deviceId indicates the local device.
      // Uncomment the line below if you want to implicitly query data only in the specific bundle.
      // bundleName: 'com.example.myapplication',
@@ -283,8 +317,8 @@ If you want to obtain the return result when using implicit Want to start the UI
 
    // context is the UIAbilityContext of the initiator UIAbility.
    context.startAbilityForResult(want).then((data) => {
-     ...
-   }).catch((err) => {
+     // ...
+   }).catch((err: BusinessError) => {
      console.error(`Failed to start ability for result. Code is ${err.code}, message is ${err.message}`);
    })
    ```
@@ -292,9 +326,12 @@ If you want to obtain the return result when using implicit Want to start the UI
 3. After the payment is finished, call [terminateSelfWithResult()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult) to stop the payment UIAbility and return the **abilityResult** parameter.
 
    ```ts
-   let context = ...; // UIAbilityContext
+   import common from '@ohos.app.ability.common';
+   import Want from '@ohos.app.ability.Want';
+
+   let context: common.UIAbilityContext = ...; // UIAbilityContext
    const RESULT_CODE: number = 1001;
-   let abilityResult = {
+   let abilityResult: common.AbilityResult = {
      resultCode: RESULT_CODE,
      want: {
        bundleName: 'com.example.funcapplication',
@@ -317,10 +354,14 @@ If you want to obtain the return result when using implicit Want to start the UI
 4. Receive the information returned by the payment application in the callback of the [startAbilityForResult()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult) method. The value of **RESULT_CODE** must be the same as that returned by [terminateSelfWithResult()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult).
 
    ```ts
-   let context = ...; // UIAbilityContext
+   import common from '@ohos.app.ability.common';
+   import Want from '@ohos.app.ability.Want';
+   import { BusinessError } from '@ohos.base';
+
+   let context: common.UIAbilityContext = ...; // UIAbilityContext
    const RESULT_CODE: number = 1001;
 
-   let want = {
+   let want: Want = {
      // Want parameter information.
    };
 
@@ -329,9 +370,9 @@ If you want to obtain the return result when using implicit Want to start the UI
      if (data?.resultCode === RESULT_CODE) {
        // Parse the information returned by the target UIAbility.
        let payResult = data.want?.parameters?.payResult;
-       ...
+       // ...
      }
-   }).catch((err) => {
+   }).catch((err: BusinessError) => {
      console.error(`Failed to start ability for result. Code is ${err.code}, message is ${err.message}`);
    })
    ```
@@ -362,9 +403,13 @@ For details about how to obtain the context in the example, see [Obtaining the C
 
 ```ts
 import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import common from '@ohos.app.ability.common';
+import Want from '@ohos.app.ability.Want';
+import StartOptions from '@ohos.app.ability.StartOptions';
+import { BusinessError } from '@ohos.base';
 
-let context = ...; // UIAbilityContext
-let want = {
+let context: common.UIAbilityContext = ...; // UIAbilityContext
+let want: Want = {
   deviceId: '', // An empty deviceId indicates the local device.
   bundleName: 'com.example.myapplication',
   moduleName: 'func', // moduleName is optional.
@@ -373,13 +418,13 @@ let want = {
     info: 'From the Index page of EntryAbility',
   },
 }
-let options = {
+let options: StartOptions = {
   windowMode: AbilityConstant.WindowMode.WINDOW_MODE_FLOATING
 };
 // context is the UIAbilityContext of the initiator UIAbility.
 context.startAbility(want, options).then(() => {
   console.info('Succeeded in starting ability.');
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to start ability. Code is ${err.code}, message is ${err.message}`);
 })
 ```
@@ -390,7 +435,16 @@ The display effect is shown below.
 
 ## Starting a Specified Page of UIAbility
 
-A UIAbility component can have multiple pages that each display in specific scenarios. This section describes how to specify a startup page and start the specified page when the target UIAbility is started for the first time or when the target UIAbility is not started for the first time.
+### Overview
+
+A UIAbility component can have multiple pages that each display in specific scenarios.
+
+A UIAbility component can be started in two modes:
+
+- Cold start: The UIAbility instance is totally closed before being started. This requires that the code and resources of the UIAbility instance be completely loaded and initialized.
+- Hot start: The UIAbility instance has been started, running in the foreground, and then switched to the background before being started again. In this case, the status of the UIAbility instance can be quickly restored.
+
+This section describes how to start a specified page in both modes: [cold start](#cold-starting-uiability) and [hot start](#hot-starting-uiability). Before starting a specified page, you will learn how to specify a startup page on the initiator UIAbility.
 
 
 ### Specifying a Startup Page
@@ -399,8 +453,12 @@ When the initiator UIAbility starts another UIAbility, it usually needs to redir
 
 
 ```ts
-let context = ...; // UIAbilityContext
-let want = {
+import common from '@ohos.app.ability.common';
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+
+let context: common.UIAbilityContext = ...; // UIAbilityContext
+let want: Want = {
   deviceId: '', // An empty deviceId indicates the local device.
   bundleName: 'com.example.funcapplication',
   moduleName: 'entry', // moduleName is optional.
@@ -412,15 +470,15 @@ let want = {
 // context is the UIAbilityContext of the initiator UIAbility.
 context.startAbility(want).then(() => {
   console.info('Succeeded in starting ability.');
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to start ability. Code is ${err.code}, message is ${err.message}`);
 })
 ```
 
 
-### Starting a Page When the Target UIAbility Is Started for the First Time
+### Cold Starting UIAbility
 
-When the target UIAbility is started for the first time, in the **onWindowStageCreate()** callback of the target UIAbility, parse the **want** parameter passed by EntryAbility to obtain the URL of the page to be loaded, and pass the URL to the **windowStage.loadContent()** method.
+In cold start mode, obtain the parameters from the initiator UIAbility through the **onCreate()** callback of the target UIAbility. Then, in the **onWindowStageCreate()** callback of the target UIAbility, parse the **want** parameter passed by the EntryAbility to obtain the URL of the page to be loaded, and pass the URL to the **windowStage.loadContent()** method.
 
 
 ```ts
@@ -430,7 +488,7 @@ import Want from '@ohos.app.ability.Want';
 import window from '@ohos.window';
 
 export default class FuncAbility extends UIAbility {
-  funcAbilityWant: Want;
+  funcAbilityWant: Want | undefined = undefined;
 
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
     // Receive the parameters passed by the initiator UIAbility.
@@ -444,13 +502,13 @@ export default class FuncAbility extends UIAbility {
       url = 'pages/Second';
     }
     windowStage.loadContent(url, (err, data) => {
-      ...
+      // ...
     });
   }
 }
 ```
 
-### Starting a Page When the Target UIAbility Is Not Started for the First Time
+### Hot Starting UIAbility
 
 If the target UIAbility has been started, the initialization logic is not executed again. Instead, the **onNewWant()** lifecycle callback is directly triggered. To implement redirection, parse the required parameters in **onNewWant()**.
 
@@ -462,26 +520,12 @@ An example scenario is as follows:
 4. The user touches the SMS button next to the contact. The UIAbility instance of the SMS application is restarted.
 5. Since the UIAbility instance of the SMS application has been started, the **onNewWant()** callback of the UIAbility is triggered, and the initialization logic such as **onCreate()** and **onWindowStageCreate()** is skipped.
 
-```mermaid
-sequenceDiagram
-Participant U as User
-Participant S as SMS app
-Participant C as Contacts app
-
-U->>S: Open the SMS app.
-S-->>U: The home page of the SMS app is displayed.
-U->>S: Return to the home screen.
-S->>S: The SMS app enters the background.
-U->>C: Open the Contacts app.
-C-->>U: The page of the Contact app is displayed.
-U->>C: Touch the SMS button next to a contact.
-C->>S: Start the SMS app with Want.
-S-->>U: The page for sending an SMS message to the contact is displayed.
-```
+Figure 1 Hot starting the target UIAbility 
+![](figures/uiability-hot-start.png)
 
 The development procedure is as follows:
 
-1. When the UIAbility instance of the SMS application is started for the first time, call [getUIContext()](../reference/apis/js-apis-window.md#getuicontext10) in the **onWindowStageCreate()** lifecycle callback to obtain the [UIContext](../reference/apis/js-apis-arkui-UIContext.md).
+1. When the UIAbility instance of the SMS application is cold started, call [getUIContext()](../reference/apis/js-apis-window.md#getuicontext10) in the **onWindowStageCreate()** lifecycle callback to obtain the [UIContext](../reference/apis/js-apis-arkui-UIContext.md).
 
    ```ts
    import AbilityConstant from '@ohos.app.ability.AbilityConstant';
@@ -492,24 +536,33 @@ The development procedure is as follows:
    import { Router, UIContext } from '@ohos.arkui.UIContext';
 
    export default class EntryAbility extends UIAbility {
-     funcAbilityWant: Want;
-     uiContext: UIContext;
+     funcAbilityWant: Want | undefined = undefined;
+     uiContext: UIContext | undefined = undefined;
 
-     ...
+     // ...
 
      onWindowStageCreate(windowStage: window.WindowStage) {
        // Main window is created. Set a main page for this UIAbility.
-       ...
+       let url = 'pages/Index';
+       if (this.funcAbilityWant?.parameters?.router && this.funcAbilityWant.parameters.router === 'funcA') {
+         url = 'pages/Second';
+       }
 
-       let windowClass: window.Window;
-       windowStage.getMainWindow((err, data) => {
+       windowStage.loadContent(url, (err, data) => {
          if (err.code) {
-           console.error(`Failed to obtain the main window. Code is ${err.code}, message is ${err.message}`);
            return;
          }
-         windowClass = data;
-         this.uiContext = windowClass.getUIContext();
-       })
+
+         let windowClass: window.Window;
+         windowStage.getMainWindow((err, data) => {
+           if (err.code) {
+             console.error(`Failed to obtain the main window. Code is ${err.code}, message is ${err.message}`);
+             return;
+           }
+           windowClass = data;
+           this.uiContext = windowClass.getUIContext();
+         })
+       });
      }
    }
    ```
@@ -517,23 +570,31 @@ The development procedure is as follows:
 2. Parse the **want** parameter passed in the **onNewWant()** callback of the UIAbility of the SMS application, call [getRouter()](../reference/apis/js-apis-arkui-UIContext.md#getrouter) in the **UIContext** class to obtain a [Router](../reference/apis/js-apis-arkui-UIContext.md#router) instance, and specify the target page. When the UIAbility instance of the SMS application is started again, the specified page of the UIAbility instance of the SMS application is displayed.
 
    ```ts
+   import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+   import UIAbility from '@ohos.app.ability.UIAbility';
+   import Want from '@ohos.app.ability.Want';
+   import { Router, UIContext } from '@ohos.arkui.UIContext';
+   import { BusinessError } from '@ohos.base';
+
    export default class EntryAbility extends UIAbility {
-     funcAbilityWant: Want;
-     uiContext: UIContext;
+     funcAbilityWant: Want | undefined = undefined;
+     uiContext: UIContext | undefined = undefined;
 
      onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam) {
        if (want?.parameters?.router && want.parameters.router === 'funcA') {
          let funcAUrl = 'pages/Second';
-         let router: Router = this.uiContext.getRouter();
-         router.pushUrl({
-           url: funcAUrl
-         }).catch((err) => {
-           console.error(`Failed to push url. Code is ${err.code}, message is ${err.message}`);
-         })
+         if (this.uiContext) {
+           let router: Router = this.uiContext.getRouter();
+           router.pushUrl({
+             url: funcAUrl
+           }).catch((err: BusinessError) => {
+             console.error(`Failed to push url. Code is ${err.code}, message is ${err.message}`);
+           })
+         }
        }
      }
 
-     ...
+     // ...
    }
    ```
 
@@ -572,7 +633,7 @@ The following figure shows the call process.
 
 **Figure 1** Call process
 
-![call](figures/call.png)  
+![call](figures/call.png)
 
 - The CallerAbility uses **startAbilityByCall** to obtain a caller object and uses **call()** of the caller object to send data to the CalleeAbility.
 
@@ -628,69 +689,84 @@ For the CalleeAbility, implement the callback to receive data and the methods to
    The data formats sent and received by the CallerAbility and CalleeAbility must be consistent. In the following example, the data formats are number and string.
    
    
-   ```ts
-   export default class MyParcelable {
-     num: number = 0;
-     str: string = '';
-     constructor(num, string) {
-       this.num = num;
-       this.str = string;
-     }
+      ```ts
+      import rpc from '@ohos.rpc';
    
-     marshalling(messageSequence) {
-       messageSequence.writeInt(this.num);
-       messageSequence.writeString(this.str);
-       return true;
-     }
+      export default class MyParcelable {
+        num: number = 0;
+        str: string = '';
    
-     unmarshalling(messageSequence) {
-       this.num = messageSequence.readInt();
-       this.str = messageSequence.readString();
-       return true;
-     }
-   }
-   ```
+        constructor(num: number, string: string) {
+          this.num = num;
+          this.str = string;
+        }
+   
+        marshalling(messageSequence: rpc.MessageSequence) {
+          messageSequence.writeInt(this.num);
+          messageSequence.writeString(this.str);
+          return true;
+        }
+   
+        unmarshalling(messageSequence: rpc.MessageSequence) {
+          this.num = messageSequence.readInt();
+          this.str = messageSequence.readString();
+          return true;
+        }
+      }
+      ```
    
 4. Implement **Callee.on** and **Callee.off**.
 
    The time to register a listener for the CalleeAbility depends on your application. The data sent and received before the listener is registered and that after the listener is deregistered are not processed. In the following example, the **MSG_SEND_METHOD** listener is registered in **onCreate** of the UIAbility and deregistered in **onDestroy**. After receiving parcelable data, the application processes the data and returns the data result. You need to implement processing based on service requirements. The sample code is as follows:
-   
-   
-   ```ts
-   const TAG: string = '[CalleeAbility]';
-   const MSG_SEND_METHOD: string = 'CallSendMsg';
-   
-   function sendMsgCallback(data) {
-     console.info('CalleeSortFunc called');
-   
-     // Obtain the parcelable data sent by the CallerAbility.
-     let receivedData = new MyParcelable(0, '');
-     data.readParcelable(receivedData);
-     console.info(`receiveData[${receivedData.num}, ${receivedData.str}]`);
-   
-     // Process the data.
-     // Return the parcelable data result to the CallerAbility.
-     return new MyParcelable(receivedData.num + 1, `send ${receivedData.str} succeed`);
-   }
-   
-   export default class CalleeAbility extends UIAbility {
-     onCreate(want, launchParam) {
-       try {
-         this.callee.on(MSG_SEND_METHOD, sendMsgCallback);
-       } catch (err) {
-         console.error(`Failed to register. Code is ${err.code}, message is ${err.message}`);
-       }
-     }
-   
-     onDestroy() {
-       try {
-         this.callee.off(MSG_SEND_METHOD);
-       } catch (err) {
-         console.error(`Failed to unregister. Code is ${err.code}, message is ${err.message}`);
-       }
-     }
-   }
-   ```
+
+
+      ```ts
+      import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+      import UIAbility from '@ohos.app.ability.UIAbility';
+      import Want from '@ohos.app.ability.Want';
+      import rpc from '@ohos.rpc';
+      import { BusinessError } from '@ohos.base';
+      import MyParcelable from './MyParcelable';
+       
+      const TAG: string = '[CalleeAbility]';
+      const MSG_SEND_METHOD: string = 'CallSendMsg';
+       
+      function sendMsgCallback(data: rpc.MessageSequence) {
+        console.info('CalleeSortFunc called');
+       
+        // Obtain the parcelable data sent by the CallerAbility.
+        let receivedData: MyParcelable = new MyParcelable(0, '');
+        data.readParcelable(receivedData);
+        console.info(`receiveData[${receivedData.num}, ${receivedData.str}]`);
+        let num: number = receivedData.num;
+       
+        // Process the data.
+        // Return the parcelable data result to the CallerAbility.
+        return new MyParcelable(num + 1, `send ${receivedData.str} succeed`) as rpc.Parcelable;
+      }
+       
+      export default class CalleeAbility extends UIAbility {
+        onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+          try {
+            this.callee.on(MSG_SEND_METHOD, sendMsgCallback);
+          } catch (err) {
+            let code = (err as BusinessError).code;
+            let message = (err as BusinessError).message;
+            console.error(`Failed to register. Code is ${code}, message is ${message}`);
+          }
+        }
+       
+        onDestroy() {
+          try {
+            this.callee.off(MSG_SEND_METHOD);
+          } catch (err) {
+            let code = (err as BusinessError).code;
+            let message = (err as BusinessError).message;
+            console.error(`Failed to unregister. Code is ${code}, message is ${message}`);
+          }
+        }
+      }
+      ```
 
 
 ### Accessing the CalleeAbility
@@ -704,35 +780,47 @@ For the CalleeAbility, implement the callback to receive data and the methods to
 2. Obtain the caller interface.
 
    The **UIAbilityContext** attribute implements **startAbilityByCall** to obtain the caller object for communication. The following example uses **this.context** to obtain the **UIAbilityContext**, uses **startAbilityByCall** to start the CalleeAbility, obtain the caller object, and register the **onRelease** listener of the CallerAbility. You need to implement processing based on service requirements.
-
    
-   ```ts
-   // Register the onRelease() listener of the CallerAbility.
-   private regOnRelease(caller) {
-     try {
-       caller.on('release', (msg) => {
-         console.info(`caller onRelease is called ${msg}`);
-       })
-       console.info('Succeeded in registering on release.');
-     } catch (err) {
-       console.err(`Failed to caller register on release. Code is ${err.code}, message is ${err.message}`);
-     }
-   }
    
-   async onButtonGetCaller() {
-     try {
-       this.caller = await context.startAbilityByCall({
-         bundleName: 'com.samples.CallApplication',
-         abilityName: 'CalleeAbility'
-       });
-       if (this.caller === undefined) {
-         console.info('get caller failed')
-         return;
-       }
-       console.info('get caller success')
-       this.regOnRelease(this.caller)
-     } (err) {
-       console.err(`Failed to get caller. Code is ${err.code}, message is ${err.message}`);
-     }
-   }
-   ```
+      ```ts
+      import UIAbility from '@ohos.app.ability.UIAbility';
+      import { Caller } from '@ohos.app.ability.UIAbility';
+      import { BusinessError } from '@ohos.base';
+   
+      export default class CallerAbility extends UIAbility {
+        caller: Caller | undefined = undefined;
+   
+        // Register the onRelease() listener of the CallerAbility.
+        private regOnRelease(caller: Caller) {
+          try {
+            caller.on('release', (msg: string) => {
+              console.info(`caller onRelease is called ${msg}`);
+            })
+            console.info('Succeeded in registering on release.');
+          } catch (err) {
+            let code = (err as BusinessError).code;
+            let message = (err as BusinessError).message;
+            console.error(`Failed to caller register on release. Code is ${code}, message is ${message}`);
+          }
+        }
+   
+        async onButtonGetCaller() {
+          try {
+            this.caller = await this.context.startAbilityByCall({
+              bundleName: 'com.samples.CallApplication',
+              abilityName: 'CalleeAbility'
+            });
+            if (this.caller === undefined) {
+              console.info('get caller failed')
+              return;
+            }
+            console.info('get caller success')
+            this.regOnRelease(this.caller)
+          } catch (err) {
+            let code = (err as BusinessError).code;
+            let message = (err as BusinessError).message;
+            console.error(`Failed to get caller. Code is ${code}, message is ${message}`);
+          }
+        }
+      }
+      ```

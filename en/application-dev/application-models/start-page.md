@@ -8,9 +8,10 @@ In **app.ets** or **page** of the caller PageAbility, use **startAbility()** to 
 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
+import Want from '@ohos.app.ability.Want';
 
 async function restartAbility() {
-    let wantInfo = {
+    let wantInfo: Want = {
         bundleName: "com.sample.MyApplication",
         abilityName: "EntryAbility",
         parameters: {
@@ -29,29 +30,63 @@ async function restartAbility() {
 Obtain the **want** parameter that contains the page information from the **onNewWant()** callback of the target PageAbility.
 
 ```ts
-export default {  
-    onNewWant(want) {    
-        globalThis.newWant = want  
+// Construct a singleton object in GlobalContext.ts.
+export class GlobalContext {
+  private constructor() {}
+  private static instance: GlobalContext;
+  private _objects = new Map<string, Object>();
+
+  public static getContext(): GlobalContext {
+    if (!GlobalContext.instance) {
+      GlobalContext.instance = new GlobalContext();
     }
+    return GlobalContext.instance;
+  }
+
+  getObject(value: string): Object | undefined {
+    return this._objects.get(value);
+  }
+
+  setObject(key: string, objectClass: Object): void {
+    this._objects.set(key, objectClass);
+  }
 }
+```
+
+```ts
+import Want from '@ohos.application.Want';
+import { GlobalContext } from './GlobalContext';
+
+class EntryAbility {  
+  onNewWant(want: Want) { 
+    GlobalContext.getContext().setObject("newWant", want);  
+  }
+}
+
+export default new EntryAbility()
 ```
 
 
 Obtain the **want** parameter that contains the page information from the custom component of the target PageAbility and process the route based on the URI.
 
 ```ts
-import router from '@ohos.router'
+import Want from '@ohos.application.Want';
+import router from '@ohos.router';
+import { GlobalContext } from '../GlobalContext';
+
 @Entry
 @Component
 struct Index {
   @State message: string = 'Router Page'
-  newWant = undefined
+  
   onPageShow() {
     console.info('Index onPageShow')
-    let newWant = globalThis.newWant
-    if (newWant.hasOwnProperty("page")) {
-      router.push({ url: newWant.page });
-      globalThis.newWant = undefined
+    let newWant = GlobalContext.getContext().getObject("newWant") as Want
+    if (newWant.parameters) {
+      if (newWant.parameters.page) {
+        router.push({ url: newWant.parameters.page });
+        GlobalContext.getContext().setObject("newWant", undefined)
+      }
     }
   }
 
@@ -76,43 +111,47 @@ When a PageAbility in multiton mode is started or when the PageAbility in single
 When a user touches the button on the page of the caller PageAbility, the **startAbility()** method is called to start the target PageAbility. The **want** parameter in **startAbility()** carries the specified page information.
 
 ```ts
-import featureAbility from '@ohos.ability.featureAbility'
+import featureAbility from '@ohos.ability.featureAbility';
+import { BusinessError } from '@ohos.base';
+
 @Entry
 @Component
 struct Index {
   @State message: string = 'Hello World'
 
   build() {
-    ...
-    Button("startAbility")
-      .onClick(() => {
-        featureAbility.startAbility({
-          want: {
-            bundleName: "com.exm.myapplication",
-            abilityName: "com.exm.myapplication.EntryAbility",
-            parameters: { page: "pages/page1" }
-          }
-        }).then((data) => {
-          console.info("startAbility finish");
-        }).catch((err) => {
-          console.info("startAbility failed errcode:" + err.code)
+    Row() {
+      Button("startAbility")
+        .onClick(() => {
+          featureAbility.startAbility({
+            want: {
+              bundleName: "com.exm.myapplication",
+              abilityName: "com.exm.myapplication.EntryAbility",
+              parameters: { page: "pages/page1" }
+            }
+          }).then((data) => {
+            console.info("startAbility finish");
+          }).catch((err: BusinessError) => {
+            console.info("startAbility failed errcode:" + err.code)
+          })
         })
-      })
-    ...
-    Button("page2")
-      .onClick(() => {
-        featureAbility.startAbility({
-          want: {
-            bundleName: "com.exm.myapplication",
-            abilityName: "com.exm.myapplication.EntryAbility",
-            parameters: { page: "pages/page2" }
-          }
-        }).then((data) => {
-          console.info("startAbility finish");
-        }).catch((err) => {
-          console.info("startAbility failed errcode:" + err.code)
+      ...
+      Button("page2")
+        .onClick(() => {
+          featureAbility.startAbility({
+            want: {
+              bundleName: "com.exm.myapplication",
+              abilityName: "com.exm.myapplication.EntryAbility",
+              parameters: { page: "pages/page2" }
+            }
+          }).then((data) => {
+            console.info("startAbility finish");
+          }).catch((err: BusinessError) => {
+            console.info("startAbility failed errcode:" + err.code)
+          })
         })
-      })
+      ...
+    }
     ...
   }
 }
@@ -125,18 +164,22 @@ In the **onCreate()** callback of the target PageAbility, use the **featureAbili
 import featureAbility from '@ohos.ability.featureAbility';
 import router from '@ohos.router';
 
-export default {
+class EntryAbility {
   onCreate() {
     featureAbility.getWant().then((want) => {
-      if (want.parameters.page) {
-        router.push({
-          url: want.parameters.page
-        })
+      if (want.parameters) {
+        if (want.parameters.page) {
+          router.push({
+            url: want.parameters.page as string
+          })
+        }
       }
     })
-  },
+  }
   onDestroy() {
-    ...
-  },
+    // ...
+  }
 }
+
+export default new EntryAbility()
 ```

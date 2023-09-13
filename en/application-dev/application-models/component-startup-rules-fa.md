@@ -28,6 +28,10 @@ In view of this, OpenHarmony formulates a set of component startup rules, as fol
   - For details, see [Component Visible Configuration](../quick-start/module-configuration-file.md#abilities).
 
 - **Before starting a component of a background application, verify the BACKGROUND permission.**
+  > **NOTE**
+  > 
+  > Applications developed using the SDK of API version 8 or earlier are not restricted by this restriction when starting the ServiceAbility or DataAbility.
+
   - An application is considered as a foreground application only when the application process gains focus or its UIAbility component is running in the foreground.
   - Verify the **ohos.permission.START_ABILITIES_FROM_BACKGROUND** permission.
 
@@ -66,4 +70,3 @@ In view of this, OpenHarmony formulates a set of component startup rules, as fol
 - Starting a ServiceAbility
 
 ![component-startup-rules](figures/component-startup-inter-fa.png)
-

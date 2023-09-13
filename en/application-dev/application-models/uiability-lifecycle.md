@@ -22,18 +22,20 @@ The **Create** state is triggered when the UIAbility instance is created during 
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import Want from '@ohos.app.ability.Want';
 
 export default class EntryAbility extends UIAbility {
-  onCreate(want, launchParam) {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
     // Initialize the application.
   }
-  ...
+  // ...
 }
 ```
 
 > **NOTE**
 >
-> The [want](../reference/apis/js-apis-app-ability-want.md) parameter in the **onCreate()** callback is used as the carrier to transfer information between application components. For details, see [Want](want-overview.md).
+> [Want](../reference/apis/js-apis-app-ability-want.md) is used as the carrier to transfer information between application components. For details, see [Want](want-overview.md).
 
 ### WindowStageCreate and WindowStageDestory
 
@@ -50,7 +52,7 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 import window from '@ohos.window';
 
 export default class EntryAbility extends UIAbility {
-  ...
+  // ...
 
   onWindowStageCreate(windowStage: window.WindowStage) {
     // Subscribe to the WindowStage events (having or losing focus, or becoming visible or invisible).
@@ -81,7 +83,7 @@ export default class EntryAbility extends UIAbility {
 
     // Set the page to be loaded.
     windowStage.loadContent('pages/Index', (err, data) => {
-      ...
+      // ...
     });
   }
 }
@@ -97,23 +99,28 @@ Before the UIAbility instance is destroyed, the **onWindowStageDestroy()** callb
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
 import window from '@ohos.window';
+import { BusinessError } from '@ohos.base';
 
 export default class EntryAbility extends UIAbility {
-  windowStage: window.WindowStage;
-  ...
+  windowStage: window.WindowStage | undefined = undefined;
+  // ...
 
   onWindowStageCreate(windowStage: window.WindowStage) {
     this.windowStage = windowStage;
-    ...
+    // ...
   }
 
   onWindowStageDestroy() {
     // Release UIresources.
     // Unsubscribe from the WindowStage events such as having or losing focus in the onWindowStageDestroy() callback.
     try {
-      this.windowStage.off('windowStageEvent');
+      if (this.windowStage) {
+        this.windowStage.off('windowStageEvent');
+      }
     } catch (err) {
-      console.error(`Failed to disable the listener for window stage event changes. Code is ${err.code}, message is ${err.message}`);
+      let code = (err as BusinessError).code;
+      let message = (err as BusinessError).message;
+      console.error(`Failed to disable the listener for windowStageEvent. Code is ${code}, message is ${message}`);
     };
   }
 }
@@ -137,7 +144,7 @@ When the application is switched to the background, you can disable location in 
 import UIAbility from '@ohos.app.ability.UIAbility';
 
 export default class EntryAbility extends UIAbility {
-  ...
+  // ...
 
   onForeground() {
     // Apply for the resources required by the system or re-apply for the resources released in onBackground().
@@ -161,7 +168,7 @@ The UIAbility instance is destroyed when **terminateSelf()** is called or the us
 import UIAbility from '@ohos.app.ability.UIAbility';
 
 export default class EntryAbility extends UIAbility {
-  ...
+  // ...
 
   onDestroy() {
     // Release system resources and save data.
