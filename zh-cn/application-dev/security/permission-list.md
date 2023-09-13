@@ -2793,3 +2793,27 @@
 **ACL使能**：TRUE
 
 **起始版本**：11
+
+## ohos.permission.WAKEUP_VOICE
+
+允许应用访问语音助手唤醒组件。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
+## ohos.permission.WAKEUP_VISION
+
+允许应用访问语音助手视觉组件。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
