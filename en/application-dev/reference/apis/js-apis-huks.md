@@ -6,6 +6,7 @@ The keys managed by OpenHarmony Universal KeyStore (HUKS) can be imported by app
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> The following code snippets apply only to JavaScript development.
 
 ## Modules to Import
 
@@ -896,7 +897,7 @@ async function TestExportFunc(alias, options) {
     }
 }
 
-function exportKey(alias, options) : Promise<huks.HuksReturnResult> {
+function exportKey(alias, options) {
     return new Promise((resolve, reject) => {
         try {
             huks.exportKeyItem(alias, options, function (error, data) {
@@ -1110,7 +1111,7 @@ Exports a key. This API uses an asynchronous callback to return the result.
 | -------- | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | keyAlias | string                                               | Yes  | Key alias, which must be the same as the alias used when the key was generated.                |
 | options  | [HuksOptions](#huksoptions)                          | Yes  | Empty object (leave this parameter empty).                                    |
-| callback | AsyncCallback<[HuksReturnResult](#huksreturnresult9)> | Yes  | Callback invoked to return the result. If the operation is successful, no **err** value is returned; otherwise, an error code is returned. **outData** contains the public key exported.|
+| callback | AsyncCallback<[HuksReturnResult](#huksreturnresult9)> | Yes  | Callback invoked to return the result. If the operation is successful, no **err** value is returned and **outData** contains the public key exported. If the operation fails, an error code is returned. |
 
 **Error codes**
 
@@ -1652,7 +1653,6 @@ Completes the key operation and releases resources. This API uses an asynchronou
 | -------- | ---------------------------------------------------- | ---- | -------------------------------------------- |
 | handle   | number                                               | Yes  | Handle for the **finishSession** operation.                        |
 | options  | [HuksOptions](#huksoptions)                          | Yes  | Parameter set used for the **finishSession** operation.                          |
-| token    | Uint8Array                                           | Yes  | Token of the **finishSession** operation.                         |
 | callback | AsyncCallback<[HuksReturnResult](#huksreturnresult9)> | Yes  | Callback invoked to return the **finishSession** operation result.|
 
 **Error codes**
@@ -2220,7 +2220,7 @@ Enumerates the key algorithms.
 | HUKS_ALG_HKDF             | 51   | HKDF<br>**System capability**: SystemCapability.Security.Huks.Extension|
 | HUKS_ALG_PBKDF2           | 52   | PBKDF2<br>**System capability**: SystemCapability.Security.Huks.Extension|
 | HUKS_ALG_ECDH             | 100  | ECDH<br>**System capability**: SystemCapability.Security.Huks.Extension|
-| HUKS_ALG_X25519           | 101  | X25519<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_ALG_X25519           | 101  | X25519 <br>**System capability**: SystemCapability.Security.Huks.Extension|
 | HUKS_ALG_ED25519          | 102  | ED25519<br>**System capability**: SystemCapability.Security.Huks.Extension|
 | HUKS_ALG_DH               | 103  | DH<br>**System capability**: SystemCapability.Security.Huks.Extension|
 | HUKS_ALG_SM2<sup>9+</sup> | 150  | SM2<br>**System capability**: SystemCapability.Security.Huks.Extension|
@@ -2427,7 +2427,7 @@ Enumerates the tags used to invoke parameters.
 | HUKS_TAG_ALL_USERS                           | HuksTagType.HUKS_TAG_TYPE_BOOL \| 301      | Reserved.<br>**System capability**: SystemCapability.Security.Huks.Extension|
 | HUKS_TAG_USER_ID                             | HuksTagType.HUKS_TAG_TYPE_UINT \| 302    | ID of the user to which the key belongs.<br>**System capability**: SystemCapability.Security.Huks.Extension|
 | HUKS_TAG_NO_AUTH_REQUIRED                    | HuksTagType.HUKS_TAG_TYPE_BOOL \| 303    | Reserved.<br>**System capability**: SystemCapability.Security.Huks.Extension|
-| HUKS_TAG_USER_AUTH_TYPE                      | HuksTagType.HUKS_TAG_TYPE_UINT \| 304    | User authentication type. For details, see [HuksUserAuthType](#huksuserauthtype9). This parameter must be set together with [HuksAuthAccessType](#huksauthaccesstype9). You can set a maximum of two user authentication types at a time. For example, if **HuksAuthAccessType** is **HKS_SECURE_ACCESS_INVALID_NEW_BIO_ENROLL**, you can set two of **HKS_USER_AUTH_TYPE_FACE**, **HKS_USER_AUTH_TYPE_FINGERPRINT**, and **HKS_USER_AUTH_TYPE_FACE\**.| HKS_USER_AUTH_TYPE_FINGERPRINT<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_TAG_USER_AUTH_TYPE                      | HuksTagType.HUKS_TAG_TYPE_UINT \| 304    | User authentication type. For details, see [HuksUserAuthType](#huksuserauthtype9). This parameter must be set together with [HuksAuthAccessType](#huksauthaccesstype9). You can set a maximum of two user authentication types at a time. For example, if **HuksAuthAccessType** is **HKS_SECURE_ACCESS_INVALID_NEW_BIO_ENROLL**, you can set two of **HKS_USER_AUTH_TYPE_FACE**, **HKS_USER_AUTH_TYPE_FINGERPRINT**, and **HKS_USER_AUTH_TYPE_FACE\**.| HKS_USER_AUTH_TYPE_FINGERPRINT   <br>**System capability**: SystemCapability.Security.Huks.Extension|
 | HUKS_TAG_AUTH_TIMEOUT                        | HuksTagType.HUKS_TAG_TYPE_UINT \| 305    | Timeout period of an authentication token.<br>**System capability**: SystemCapability.Security.Huks.Extension|
 | HUKS_TAG_AUTH_TOKEN                          | HuksTagType.HUKS_TAG_TYPE_BYTES \| 306   | Used to pass in the authentication token.<br>**System capability**: SystemCapability.Security.Huks.Extension|
 | HUKS_TAG_KEY_AUTH_ACCESS_TYPE<sup>9+</sup> | HuksTagType.HUKS_TAG_TYPE_UINT \| 307 | Access control type. For details, see [HuksAuthAccessType](#huksauthaccesstype9). This parameter must be set together with [HuksUserAuthType](#huksuserauthtype9).<br>**System capability**: SystemCapability.Security.Huks.Extension|
@@ -2905,7 +2905,7 @@ Obtains key properties. This API uses a promise to return the result.
 
 | Type              | Description                                                        |
 | ------------------ | ------------------------------------------------------------ |
-| Promise\<[HuksResult](#huksoptions)> | Promise used to return the result. If the operation is successful, **errorCode** is **HUKS_SUCCESS** and **properties** returns the parameters required for generating the key. If the operation fails, an error code is returned.|
+| Promise\<[HuksResult](#huksoptions)> | Promise used to return the result. If the operation is successful, **errorCode** is **HUKS_SUCCESS** and **properties** contains the parameters required for generating the key. If the operation fails, an error code is returned.|
 
 **Example**
 
