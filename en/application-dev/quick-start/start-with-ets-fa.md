@@ -3,8 +3,6 @@
 
 >  **NOTE**
 >
->  To use ArkTS, your DevEco Studio must be V3.0.0.601 Beta1 or later.
->
 >  For best possible results, use [DevEco Studio 3.1 Beta2](https://developer.harmonyos.com/cn/develop/deveco-studio) for your development.
 
 

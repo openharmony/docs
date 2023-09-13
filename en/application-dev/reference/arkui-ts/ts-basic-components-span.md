@@ -56,6 +56,12 @@ struct SpanExample {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start, justifyContent: FlexAlign.SpaceBetween }) {
       Text('Basic Usage').fontSize(9).fontColor(0xCCCCCC)
       Text() {
+        Span('In Line')
+        Span(' Component')
+        Span(' !')
+      }
+
+      Text() {
         Span('This is the Span component').fontSize(12).textCase(TextCase.Normal)
           .decoration({ type: TextDecorationType.None, color: Color.Red })
       }
@@ -115,4 +121,4 @@ struct SpanExample {
 }
 ```
 
-![span](figures/span.png)
+![Span](figures/span.png)
