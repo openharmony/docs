@@ -83,7 +83,7 @@ export default class MyAbilityStage extends AbilityStage {
 
 restartApp(): void;
 
-Restarts the current process and starts the first ability that is displayed when the application is started. If the state of this ability is saved, the saved state data is passed into the **wantParam** attribute in the **want** parameter of the **OnCreate** lifecycle callback of the ability.
+Restarts the current process and starts the first ability that is displayed when the application is started. If the state of this ability is saved, the saved state data is passed into the **wantParam** attribute in the **want** parameter of the **onCreate** lifecycle callback of the ability.
 
 In API version 10, the ability specified by [setRestartWant](#apprecoverysetrestartwant) is started. If no ability is specified, the following rules are used:
 - If the ability of the current application running in the foreground supports recovery, that ability is started.
@@ -101,7 +101,7 @@ This API can be used together with the APIs of [errorManager](js-apis-app-abilit
 import appRecovery from '@ohos.app.ability.appRecovery';
 import errorManager from '@ohos.app.ability.errorManager';
 
-let observer = {
+let observer: errorManager.ErrorObserver = {
     onUnhandledException(errorMsg) {
         console.log('onUnhandledException, errorMsg: ', errorMsg);
         appRecovery.restartApp();
@@ -135,7 +135,7 @@ Saves the application state. This API can be used together with the APIs of [err
 import appRecovery from '@ohos.app.ability.appRecovery';
 import errorManager from '@ohos.app.ability.errorManager';
 
-let observer = {
+let observer: errorManager.ErrorObserver = {
     onUnhandledException(errorMsg) {
         console.log('onUnhandledException, errorMsg: ', errorMsg);
         appRecovery.saveAppState();
@@ -175,7 +175,7 @@ Saves the ability state, which will be used for recovery. This API can be used t
 import appRecovery from '@ohos.app.ability.appRecovery';
 import errorManager from '@ohos.app.ability.errorManager';
 
-let observer = {
+let observer: errorManager.ErrorObserver = {
     onUnhandledException(errorMsg) {
         console.log('onUnhandledException, errorMsg: ', errorMsg);
         appRecovery.saveAppState(this.context);
@@ -207,12 +207,14 @@ Sets an ability that will be recovered. The ability must be a UIAbility in the c
 
 ```ts
 import appRecovery from '@ohos.app.ability.appRecovery';
+import Want from '@ohos.app.ability.Want';
+
 Button ("Start to Recover Ability")
     .fontSize(40)
     .fontWeight(FontWeight.Bold)
     .onClick(()=> {
         // set restart want
-        let want = {
+        let want: Want = {
             bundleName: "ohos.samples.recovery",
             abilityName: "RecoveryAbility"
         };

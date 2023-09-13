@@ -31,8 +31,10 @@ Sets the next refresh time for a widget. This API uses an asynchronous callback 
 **Example**
 
   ```ts
-  let formId = '12400633174999288';
-  formProvider.setFormNextRefreshTime(formId, 5, (error, data) => {
+  import Base from '@ohos.base'
+
+  let formId: string = '12400633174999288';
+  formProvider.setFormNextRefreshTime(formId, 5, (error: Base.BusinessError) => {
     if (error.code) {
       console.error('formProvider setFormNextRefreshTime, error: ${JSON.stringify(error)}');
     }
@@ -63,11 +65,13 @@ Sets the next refresh time for a widget. This API uses a promise to return the r
 **Example**
 
   ```ts
-  let formId = '12400633174999288';
+  import Base from '@ohos.base'
+
+  let formId: string = '12400633174999288';
   formProvider.setFormNextRefreshTime(formId, 5).then(() => {
     console.log('formProvider setFormNextRefreshTime success');
-  }).catch((error) => {
-    console.error('formProvider setFormNextRefreshTime, error: ${JSON.stringify(error)}');
+  }).catch((error: Base.BusinessError) => {
+    console.error(`formProvider setFormNextRefreshTime, error: ${JSON.stringify(error)}`);
   });
   ```
 
@@ -90,13 +94,18 @@ Updates a widget. This API uses an asynchronous callback to return the result.
 **Example**
 
   ```ts
-  import formBindingData from '@ohos.app.form.formBindingData';
+  import Base from '@ohos.base';
+  import formBindingData from '@ohos.application.formBindingData';
 
-  let formId = '12400633174999288';
-  let obj = formBindingData.createFormBindingData({temperature:'22c', time:'22:00'});
-  formProvider.updateForm(formId, obj, (error, data) => {
+  let formId: string = '12400633174999288';
+  let param: Record<string, string> = {
+    'temperature': '22c',
+    'time': '22:00'
+  }
+  let obj: formBindingData.FormBindingData = formBindingData.createFormBindingData(param);
+  formProvider.updateForm(formId, obj, (error: Base.BusinessError) => {
     if (error.code) {
-      console.error('formProvider updateForm, error: ${JSON.stringify(error)}');
+      console.error(`formProvider updateForm, error: ${JSON.stringify(error)}`);
     }
   });
   ```
@@ -126,12 +135,19 @@ Updates a widget. This API uses a promise to return the result.
 
   ```ts
   import formBindingData from '@ohos.application.formBindingData';
+  import Base from '@ohos.base'
 
-  let formId = '12400633174999288';
-  let obj = formBindingData.createFormBindingData({temperature:'22c', time:'22:00'});
+  let formId: string = '12400633174999288';
+  let param: Record<string, string> = {
+    'temperature': '22c',
+    'time': '22:00'
+  }
+  let obj: formBindingData.FormBindingData = formBindingData.createFormBindingData(param);
   formProvider.updateForm(formId, obj).then(() => {
     console.log('formProvider updateForm success');
-  }).catch((error) => {
-    console.error('formProvider updateForm, error: ${JSON.stringify(error)}');
+  }).catch((error: Base.BusinessError) => {
+    console.error(`formProvider updateForm, error: ${JSON.stringify(error)}`);
   });
   ```
+
+

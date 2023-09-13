@@ -33,13 +33,15 @@ import Want from '@ohos.application.Want';
 - Basic usage (called in a UIAbility object, where context in the example is the context object of the UIAbility).
 
   ```ts
-    let want = {
+    import Want from '@ohos.application.Want';
+    import { BusinessError } from '@ohos.base';
+
+    let want: Want = {
         'deviceId': '', // An empty deviceId indicates the local device.
         'bundleName': 'com.example.myapplication',
         'abilityName': 'EntryAbility',
-        'moduleName': 'entry' // moduleName is optional.
     };
-    this.context.startAbility(want, (error) => {
+    this.context.startAbility(want, (error: BusinessError) => {
         // Start an ability explicitly. The bundleName, abilityName, and moduleName parameters work together to uniquely identify an ability.
         console.error('error.code = ${error.code}');
     });
@@ -49,7 +51,9 @@ import Want from '@ohos.application.Want';
 
     * String
         ```ts
-        let want = {
+        import Want from '@ohos.application.Want';
+
+        let want: Want = {
             bundleName: 'com.example.myapplication',
             abilityName: 'EntryAbility',
             parameters: {
@@ -59,7 +63,9 @@ import Want from '@ohos.application.Want';
         ```
     * Number
         ```ts
-        let want = {
+        import Want from '@ohos.application.Want';
+
+        let want: Want = {
             bundleName: 'com.example.myapplication',
             abilityName: 'EntryAbility',
             parameters: {
@@ -70,7 +76,9 @@ import Want from '@ohos.application.Want';
         ```
     * Boolean
         ```ts
-        let want = {
+        import Want from '@ohos.application.Want';
+
+        let want: Want = {
             bundleName: 'com.example.myapplication',
             abilityName: 'EntryAbility',
             parameters: {
@@ -80,7 +88,9 @@ import Want from '@ohos.application.Want';
         ```
     * Object
         ```ts
-        let want = {
+        import Want from '@ohos.application.Want';
+
+        let want: Want = {
             bundleName: 'com.example.myapplication',
             abilityName: 'EntryAbility',
             parameters: {
@@ -95,7 +105,9 @@ import Want from '@ohos.application.Want';
         ```
     * Array
         ```ts
-        let want = {
+        import Want from '@ohos.application.Want';
+
+        let want: Want = {
             bundleName: 'com.example.myapplication',
             abilityName: 'EntryAbility',
             parameters: {
@@ -109,27 +121,29 @@ import Want from '@ohos.application.Want';
     * File descriptor (FD)
         ```ts
             import fs from '@ohos.file.fs';
-            let fd;
+            import Want from '@ohos.application.Want';
+            import { BusinessError } from '@ohos.base';
+
+            let fd: number = 0;
             try {
                 fd = fs.openSync('/data/storage/el2/base/haps/pic.png').fd;
             } catch(e) {
                 console.error('openSync fail: ${JSON.stringify(e)}');
             }
-            let want = {
-                'deviceId': '', // An empty deviceId indicates the local device.
-                'bundleName': 'com.example.myapplication',
-                'abilityName': 'EntryAbility',
-                'moduleName': 'entry', // moduleName is optional.
-                'parameters': {
+            let want: Want = {
+                deviceId: '', // An empty deviceId indicates the local device.
+                bundleName: 'com.example.myapplication',
+                abilityName: 'EntryAbility',
+                parameters: {
                     'keyFd':{'type':'FD', 'value':fd}
                 }
             };
-            this.context.startAbility(want, (error) => {
+            this.context.startAbility(want, (error: BusinessError) => {
                 // Start an ability explicitly. The bundleName, abilityName, and moduleName parameters work together to uniquely identify an ability.
                 console.error('error.code = ${error.code}');
             });
         ```
 
-- For more details and examples, see [Application Model](../../application-models/application-model-composition.md).
+- For more details and examples, see [Want](../../application-models/want-overview.md).
 
   <!--no_check-->

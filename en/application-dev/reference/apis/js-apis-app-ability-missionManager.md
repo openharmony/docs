@@ -45,46 +45,57 @@ Registers a listener to observe the mission status.
 ```ts
 import missionManager from '@ohos.app.ability.missionManager';
 import UIAbility from '@ohos.app.ability.UIAbility';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import common from '@ohos.app.ability.common';
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+import window from '@ohos.window';
 
-let listener = {
-    onMissionCreated: function (mission) {console.log('--------onMissionCreated-------');},
-    onMissionDestroyed: function (mission) {console.log('--------onMissionDestroyed-------');},
-    onMissionSnapshotChanged: function (mission) {console.log('--------onMissionSnapshotChanged-------');},
-    onMissionMovedToFront: function (mission) {console.log('--------onMissionMovedToFront-------');},
-    onMissionIconUpdated: function (mission, icon) {console.log('--------onMissionIconUpdated-------');},
-    onMissionClosed: function (mission) {console.log('--------onMissionClosed-------');},
-    onMissionLabelUpdated: function (mission) {console.log('--------onMissionLabelUpdated-------');}
+let listener: missionManager.MissionListener = {
+    onMissionCreated: (mission) => {console.log('--------onMissionCreated-------');},
+    onMissionDestroyed: (mission) => {console.log('--------onMissionDestroyed-------');},
+    onMissionSnapshotChanged: (mission) => {console.log('--------onMissionSnapshotChanged-------');},
+    onMissionMovedToFront: (mission) => {console.log('--------onMissionMovedToFront-------');},
+    onMissionIconUpdated: (mission, icon) => {console.log('--------onMissionIconUpdated-------');},
+    onMissionClosed: (mission) => {console.log('--------onMissionClosed-------');},
+    onMissionLabelUpdated: (mission) => {console.log('--------onMissionLabelUpdated-------');}
 };
 
 let listenerId = -1;
+let abilityWant: Want;
+let context: common.UIAbilityContext;
 
 export default class EntryAbility extends UIAbility {
-    onCreate(want, launchParam) {
+    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
         console.log('[Demo] EntryAbility onCreate');
-        globalThis.abilityWant = want;
-        globalThis.context = this.context;
+        abilityWant = want;
+        context = this.context;
     }
 
     onDestroy() {
         try {
             if (listenerId !== -1) {
-                missionManager.off('mission', listenerId).catch(function (err) {
+                missionManager.off('mission', listenerId).catch((err: BusinessError) => {
                     console.log(err);
                 });
             }
         } catch (paramError) {
-            console.error('error: ${paramError.code}, ${paramError.message}');
+            let code = (paramError as BusinessError).code;
+            let message = (paramError as BusinessError).message;
+            console.error(`error: ${code}, ${message} `);
         }
         console.log('[Demo] EntryAbility onDestroy');
     }
 
-    onWindowStageCreate(windowStage) {
+    onWindowStageCreate(windowStage: window.WindowStage) {
         // The main window is created. Set a main page for this ability.
         console.log('[Demo] EntryAbility onWindowStageCreate');
         try {
             listenerId = missionManager.on('mission', listener);
         } catch (paramError) {
-            console.error('error: ${paramError.code}, ${paramError.message}');
+            let code = (paramError as BusinessError).code;
+            let message = (paramError as BusinessError).message;
+            console.error(`error: ${code}, ${message} `);
         }
 
         windowStage.loadContent('pages/index', (err, data) => {
@@ -94,10 +105,6 @@ export default class EntryAbility extends UIAbility {
             }
             console.info('Succeeded in loading the content. Data: ${JSON.stringify(data)}');
         });
-
-        if (globalThis.flag) {
-            return;
-        }
     }
 };
 ```
@@ -135,59 +142,66 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 ```ts
 import missionManager from '@ohos.app.ability.missionManager';
 import UIAbility from '@ohos.app.ability.UIAbility';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import common from '@ohos.app.ability.common';
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+import window from '@ohos.window';
 
-let listener = {
-    onMissionCreated: function (mission) {console.log('--------onMissionCreated-------');},
-    onMissionDestroyed: function (mission) {console.log('--------onMissionDestroyed-------');},
-    onMissionSnapshotChanged: function (mission) {console.log('--------onMissionSnapshotChanged-------');},
-    onMissionMovedToFront: function (mission) {console.log('--------onMissionMovedToFront-------');},
-    onMissionIconUpdated: function (mission, icon) {console.log('--------onMissionIconUpdated-------');},
-    onMissionClosed: function (mission) {console.log('--------onMissionClosed-------');},
-    onMissionLabelUpdated: function (mission) {console.log('--------onMissionLabelUpdated-------');}
+let listener: missionManager.MissionListener = {
+    onMissionCreated: (mission) => {console.log('--------onMissionCreated-------');},
+    onMissionDestroyed: (mission) => {console.log('--------onMissionDestroyed-------');},
+    onMissionSnapshotChanged: (mission) => {console.log('--------onMissionSnapshotChanged-------');},
+    onMissionMovedToFront: (mission) => {console.log('--------onMissionMovedToFront-------');},
+    onMissionIconUpdated: (mission, icon) => {console.log('--------onMissionIconUpdated-------');},
+    onMissionClosed: (mission) => {console.log('--------onMissionClosed-------');},
+    onMissionLabelUpdated: (mission) => {console.log('--------onMissionLabelUpdated-------');}
 };
 
 let listenerId = -1;
+let abilityWant: Want;
+let context: common.UIAbilityContext;
 
 export default class EntryAbility extends UIAbility {
-    onCreate(want, launchParam) {
+    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
         console.log('[Demo] EntryAbility onCreate');
-        globalThis.abilityWant = want;
-        globalThis.context = this.context;
+        abilityWant = want;
+        context = this.context;
     }
 
     onDestroy() {
         try {
             if (listenerId !== -1) {
                 missionManager.off('mission', listenerId, (err) => {
-                    console.log(err);
+                    console.log('$(err.code)');
                 });
             }
         } catch (paramError) {
-            console.error('error: ${paramError.code}, ${paramError.message}');
+            let code = (paramError as BusinessError).code;
+            let message = (paramError as BusinessError).message;
+            console.error(`error: ${code}, ${message} `);
         }
         console.log('[Demo] EntryAbility onDestroy');
     }
 
-    onWindowStageCreate(windowStage) {
+    onWindowStageCreate(windowStage: window.WindowStage) {
         // The main window is created. Set a main page for this ability.
         console.log('[Demo] EntryAbility onWindowStageCreate');
         try {
             listenerId = missionManager.on('mission', listener);
         } catch (paramError) {
-            console.error('error: ${paramError.code}, ${paramError.message}');
+            let code = (paramError as BusinessError).code;
+            let message = (paramError as BusinessError).message;
+            console.error(`error: ${code}, ${message} `);
         }
 
-        windowStage.loadContent('pages/index', (err, data) => {
+        windowStage.loadContent('pages/index', (err: BusinessError, data) => {
             if (err.code) {
                 console.error('Failed to load the content. Cause: ${JSON.stringify(err)}');
                 return;
             }
             console.info('Succeeded in loading the content. Data: ${JSON.stringify(data)}');
         });
-
-        if (globalThis.flag) {
-            return;
-        }
     }
 };
 ```
@@ -230,59 +244,66 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 ```ts
 import missionManager from '@ohos.app.ability.missionManager';
 import UIAbility from '@ohos.app.ability.UIAbility';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import common from '@ohos.app.ability.common';
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+import window from '@ohos.window';
 
-let listener = {
-    onMissionCreated: function (mission) {console.log('--------onMissionCreated-------');},
-    onMissionDestroyed: function (mission) {console.log('--------onMissionDestroyed-------');},
-    onMissionSnapshotChanged: function (mission) {console.log('--------onMissionSnapshotChanged-------');},
-    onMissionMovedToFront: function (mission) {console.log('--------onMissionMovedToFront-------');},
-    onMissionIconUpdated: function (mission, icon) {console.log('--------onMissionIconUpdated-------');},
-    onMissionClosed: function (mission) {console.log('--------onMissionClosed-------');},
-    onMissionLabelUpdated: function (mission) {console.log('--------onMissionLabelUpdated-------');}
+let listener: missionManager.MissionListener = {
+    onMissionCreated: (mission) => {console.log('--------onMissionCreated-------');},
+    onMissionDestroyed: (mission) => {console.log('--------onMissionDestroyed-------');},
+    onMissionSnapshotChanged: (mission) => {console.log('--------onMissionSnapshotChanged-------');},
+    onMissionMovedToFront: (mission) => {console.log('--------onMissionMovedToFront-------');},
+    onMissionIconUpdated: (mission, icon) => {console.log('--------onMissionIconUpdated-------');},
+    onMissionClosed: (mission) => {console.log('--------onMissionClosed-------');},
+    onMissionLabelUpdated: (mission) => {console.log('--------onMissionLabelUpdated-------');}
 };
 
 let listenerId = -1;
+let abilityWant: Want;
+let context: common.UIAbilityContext;
 
 export default class EntryAbility extends UIAbility {
-    onCreate(want, launchParam) {
+    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
         console.log('[Demo] EntryAbility onCreate');
-        globalThis.abilityWant = want;
-        globalThis.context = this.context;
+        abilityWant = want;
+        context = this.context;
     }
 
     onDestroy() {
         try {
             if (listenerId !== -1) {
-                missionManager.off('mission', listenerId).catch(function (err) {
-                    console.log(err);
+                missionManager.off('mission', listenerId).catch((err: BusinessError) => {
+                    console.log('$(err.code)');
                 });
             }
         } catch (paramError) {
-            console.error('error: ${paramError.code}, ${paramError.message}');
+            let code = (paramError as BusinessError).code;
+            let message = (paramError as BusinessError).message;
+            console.error(`error: ${code}, ${message} `);
         }
         console.log('[Demo] EntryAbility onDestroy');
     }
 
-    onWindowStageCreate(windowStage) {
+    onWindowStageCreate(windowStage: window.WindowStage) {
         // The main window is created. Set a main page for this ability.
         console.log('[Demo] EntryAbility onWindowStageCreate');
         try {
             listenerId = missionManager.on('mission', listener);
         } catch (paramError) {
-            console.error('error: ${paramError.code}, ${paramError.message}');
+            let code = (paramError as BusinessError).code;
+            let message = (paramError as BusinessError).message;
+            console.error(`error: ${code}, ${message} `);
         }
 
-        windowStage.loadContent('pages/index', (err, data) => {
+        windowStage.loadContent('pages/index', (err: BusinessError, data) => {
             if (err.code) {
                 console.error('Failed to load the content. Cause: ${JSON.stringify(err)}');
                 return;
             }
             console.info('Succeeded in loading the content. Data: ${JSON.stringify(data)}');
         });
-
-        if (globalThis.flag) {
-            return;
-        }
     }
 };
 ```
@@ -312,6 +333,7 @@ Obtains the information about a given mission. This API uses an asynchronous cal
 
   ```ts
     import missionManager from '@ohos.app.ability.missionManager';
+    import { BusinessError } from '@ohos.base';
 
     let testMissionId = 1;
 
@@ -335,10 +357,12 @@ Obtains the information about a given mission. This API uses an asynchronous cal
             }
         });
         } catch (paramError) {
-        console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
+            let code = (paramError as BusinessError).code;
+            let message = (paramError as BusinessError).message;
+            console.error(`error: ${code}, ${message} `);
         }
     })
-    .catch(function(err){console.log(err);});
+    .catch((err: BusinessError) => {console.log('$(err.code)');});
   ```
 
 ## missionManager.getMissionInfo
@@ -370,12 +394,13 @@ Obtains the information about a given mission. This API uses a promise to return
 
 ```ts
 import missionManager from '@ohos.app.ability.missionManager';
+import { BusinessError } from '@ohos.base';
 
 let testMissionId = 1;
 try {
     missionManager.getMissionInfo('', testMissionId).then((data) => {
         console.info('getMissionInfo successfully. Data: ${JSON.stringify(data)}');
-    }).catch(error => {
+    }).catch((error: BusinessError) => {
         console.error('getMissionInfo failed. Cause: ${error.message}');
     });
 } catch (error) {
@@ -407,6 +432,7 @@ Obtains information about all missions. This API uses an asynchronous callback t
 
   ```ts
   import missionManager from '@ohos.app.ability.missionManager';
+  import { BusinessError } from '@ohos.base';
 
   try {
     missionManager.getMissionInfos('', 10, (error, missions) => {
@@ -418,7 +444,9 @@ Obtains information about all missions. This API uses an asynchronous callback t
       }
     });
   } catch (paramError) {
-    console.error('error: ${paramError.code}, ${paramError.message}');
+        let code = (paramError as BusinessError).code;
+        let message = (paramError as BusinessError).message;
+        console.error(`error: ${code}, ${message} `);
   }
   ```
 
@@ -452,11 +480,12 @@ Obtains information about all missions. This API uses a promise to return the re
 
 ```ts
 import missionManager from '@ohos.app.ability.missionManager';
+import { BusinessError } from '@ohos.base';
 
 try {
     missionManager.getMissionInfos('', 10).then((data) => {
         console.info('getMissionInfos successfully. Data: ${JSON.stringify(data)}');
-    }).catch(error => {
+    }).catch((error: BusinessError) => {
         console.error('getMissionInfos failed. Cause: ${error.message}');
     });
 } catch (error) {
@@ -530,12 +559,13 @@ Obtains the snapshot of a given mission. This API uses a promise to return the r
 **Example**
 ```ts
 import missionManager from '@ohos.app.ability.missionManager';
+import { BusinessError } from '@ohos.base';
 
 let testMissionId = 2;
 try {
     missionManager.getMissionSnapShot('', testMissionId).then((data) => {
         console.info('getMissionSnapShot successfully. Data: ${JSON.stringify(data)}');
-    }).catch(error => {
+    }).catch((error: BusinessError) => {
         console.error('getMissionSnapShot failed. Cause: ${error.message}');
     });
 } catch (error) {
@@ -610,12 +640,13 @@ Obtains the low-resolution snapshot of a given mission. This API uses a promise 
 
 ```ts
 import missionManager from '@ohos.app.ability.missionManager';
+import { BusinessError } from '@ohos.base';
 
 let testMissionId = 2;
 try {
     missionManager.getLowResolutionMissionSnapShot('', testMissionId).then((data) => {
         console.info('getLowResolutionMissionSnapShot successfully. Data: ${JSON.stringify(data)}');
-    }).catch(error => {
+    }).catch((error: BusinessError) => {
         console.error('getLowResolutionMissionSnapShot failed. Cause: ${error.message}');
     });
 } catch (error) {
@@ -705,12 +736,13 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 **Example**
 ```ts
 import missionManager from '@ohos.app.ability.missionManager';
+import { BusinessError } from '@ohos.base';
 
 let testMissionId = 2;
 try {
     missionManager.lockMission(testMissionId).then((data) => {
         console.info('lockMission successfully. Data: ${JSON.stringify(data)}');
-    }).catch(error => {
+    }).catch((error: BusinessError) => {
         console.error('lockMission failed. Cause: ${error.message}');
     });
 } catch (error) {
@@ -799,12 +831,13 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 
 ```ts
 import missionManager from '@ohos.app.ability.missionManager';
+import { BusinessError } from '@ohos.base';
 
 let testMissionId = 2;
 try {
     missionManager.unlockMission(testMissionId).then((data) => {
         console.info('unlockMission successfully. Data: ${JSON.stringify(data)}');
-    }).catch(error => {
+    }).catch((error: BusinessError) => {
         console.error('unlockMission failed. Cause: ${error.message}');
     });
 } catch (error) {
@@ -879,12 +912,13 @@ Clears a given mission, regardless of whether it is locked. This API uses a prom
 
 ```ts
 import missionManager from '@ohos.app.ability.missionManager';
+import { BusinessError } from '@ohos.base';
 
 let testMissionId = 2;
 try {
     missionManager.clearMission(testMissionId).then((data) => {
         console.info('clearMission successfully. Data: ${JSON.stringify(data)}');
-    }).catch(error => {
+    }).catch((error: BusinessError) => {
         console.error('clearMission failed. Cause: ${error.message}');
     });
 } catch (error) {
@@ -944,11 +978,12 @@ Clears all unlocked missions. This API uses a promise to return the result.
 
 ```ts
 import missionManager from '@ohos.app.ability.missionManager';
+import { BusinessError } from '@ohos.base';
 
 try {
     missionManager.clearAllMissions().then((data) => {
         console.info('clearAllMissions successfully. Data: ${JSON.stringify(data)}');
-    }).catch(err => {
+    }).catch((err: BusinessError) => {
         console.error('clearAllMissions failed: ${err.message}');
     });
 } catch (err) {
@@ -1066,7 +1101,7 @@ Switches a given mission to the foreground, with the startup parameters for the 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | missionId | number | Yes| Mission ID.|
-  | options | [StartOptions](js-apis-app-ability-startOptions.md) | No| Startup parameters, which are used to specify the window mode and device ID for switching the mission to the foreground.|
+  | options | [StartOptions](js-apis-app-ability-startOptions.md) | No| Startup parameters, which are used to specify the window mode and device ID for switching the mission to the foreground. By default, no value is passed in, indicating that the default startup parameters are used.|
 
 **Return value**
 
@@ -1086,12 +1121,13 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 
 ```ts
 import missionManager from '@ohos.app.ability.missionManager';
+import { BusinessError } from '@ohos.base';
 
 let testMissionId = 2;
 try {
     missionManager.moveMissionToFront(testMissionId).then((data) => {
         console.info('moveMissionToFront successfully. Data: ${JSON.stringify(data)}');
-    }).catch(error => {
+    }).catch((error: BusinessError) => {
         console.error('moveMissionToFront failed. Cause: ${error.message}');
     });
 } catch (error) {
@@ -1131,6 +1167,7 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 ```ts
 import abilityManager from '@ohos.app.ability.abilityManager';
 import missionManager from '@ohos.app.ability.missionManager';
+import { BusinessError } from '@ohos.base';
 
 try {
     missionManager.getMissionInfos("", 10, (error, missionInfos) => {
@@ -1157,7 +1194,9 @@ try {
         });
     });
 } catch (paramError) {
-    console.log("error: " + paramError.code + ", " + paramError.message);
+    let code = (paramError as BusinessError).code;
+    let message = (paramError as BusinessError).message;
+    console.error(`error: ${code}, ${message} `);
 }
 
 ```
@@ -1195,6 +1234,7 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 ```ts
 import abilityManager from '@ohos.app.ability.abilityManager';
 import missionManager from '@ohos.app.ability.missionManager';
+import { BusinessError } from '@ohos.base';
 
 try {
     missionManager.getMissionInfos("", 10, (error, missionInfos) => {
@@ -1221,7 +1261,9 @@ try {
         });
     });
 } catch (paramError) {
-    console.log("error: " + paramError.code + ", " + paramError.message);
+    let code = (paramError as BusinessError).code;
+    let message = (paramError as BusinessError).message;
+    console.error(`error: ${code}, ${message} `);
 }
 
 ```
@@ -1243,7 +1285,7 @@ Switches a batch of missions to the foreground, and moves the mission with the s
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | missionIds | Array&lt;number&gt; | Yes| Array holding the mission IDs.|
-  | topMission | number | No| ID of the mission to be moved to the top.|
+  | topMission | number | No| ID of the mission to be moved to the top. The default value is **-1**, indicating that the default mission is moved to the top.|
 
 **Return value**
 
@@ -1264,6 +1306,7 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 ```ts
 import abilityManager from '@ohos.app.ability.abilityManager';
 import missionManager from '@ohos.app.ability.missionManager';
+import { BusinessError } from '@ohos.base';
 
 try {
     missionManager.getMissionInfos("", 10, (error, missionInfos) => {
@@ -1286,7 +1329,9 @@ try {
         });
     });
 } catch (paramError) {
-    console.log("error: " + paramError.code + ", " + paramError.message);
+    let code = (paramError as BusinessError).code;
+    let message = (paramError as BusinessError).message;
+    console.error(`error: ${code}, ${message} `);
 }
 
 ```
@@ -1323,6 +1368,7 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 ```ts
 import abilityManager from '@ohos.app.ability.abilityManager';
 import missionManager from '@ohos.app.ability.missionManager';
+import { BusinessError } from '@ohos.base';
 
 try {
     missionManager.getMissionInfos("", 10, (error, missionInfos) => {
@@ -1346,7 +1392,9 @@ try {
         });
     });
 } catch (paramError) {
-    console.log("error: " + paramError.code + ", " + paramError.message);
+    let code = (paramError as BusinessError).code;
+    let message = (paramError as BusinessError).message;
+    console.error(`error: ${code}, ${message} `);
 }
 ```
 
@@ -1387,6 +1435,7 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 ```ts
 import abilityManager from '@ohos.app.ability.abilityManager';
 import missionManager from '@ohos.app.ability.missionManager';
+import { BusinessError } from '@ohos.base';
 
 try {
     missionManager.getMissionInfos("", 10, (error, missionInfos) => {
@@ -1406,7 +1455,9 @@ try {
         });
     });
 } catch (paramError) {
-    console.log("error: " + paramError.code + ", " + paramError.message);
+    let code = (paramError as BusinessError).code;
+    let message = (paramError as BusinessError).message;
+    console.error(`error: ${code}, ${message} `);
 }
 
 ```

@@ -34,12 +34,13 @@ Deletes a widget. After this API is called, the application can no longer use th
 **Example**
 
 ```ts
+import Base from '@ohos.base';
 import formHost from '@ohos.application.formHost';
 
-let formId = '12400633174999288';
-formHost.deleteForm(formId, (error, data) => {
+let formId: string = '12400633174999288';
+formHost.deleteForm(formId, (error: Base.BusinessError) => {
   if (error.code) {
-    console.error('formHost deleteForm, error: ${JSON.stringify(error)}');
+    console.error(`formHost deleteForm, error: ${JSON.stringify(error)}`);
   }
 });
 ```
@@ -69,12 +70,14 @@ Deletes a widget. After this API is called, the application can no longer use th
 **Example**
 
 ```ts
+import Base from '@ohos.base';
 import formHost from '@ohos.application.formHost';
+import Base from '@ohos.base';
 
-let formId = '12400633174999288';
+let formId: string = '12400633174999288';
 formHost.deleteForm(formId).then(() => {
   console.log('formHost deleteForm success');
-}).catch((error) => {
+}).catch((error: Base.BusinessError) => {
   console.error('formHost deleteForm, error: ${JSON.stringify(error)}');
 });
 ```
@@ -99,10 +102,12 @@ Releases a widget. After this API is called, the application can no longer use t
 **Example**
 
 ```ts
+import Base from '@ohos.base';
 import formHost from '@ohos.application.formHost';
+import Base from '@ohos.base';
 
-let formId = '12400633174999288';
-formHost.releaseForm(formId, (error, data) => {
+let formId: string = '12400633174999288';
+formHost.releaseForm(formId, (error: Base.BusinessError) => {
   if (error.code) {
     console.error('formHost releaseForm, error: ${JSON.stringify(error)}');
   } else {
@@ -132,10 +137,12 @@ Releases a widget. After this API is called, the application can no longer use t
 **Example**
 
 ```ts
+import Base from '@ohos.base';
 import formHost from '@ohos.application.formHost';
+import Base from '@ohos.base';
 
-let formId = '12400633174999288';
-formHost.releaseForm(formId, true, (error, data) => {
+let formId: string = '12400633174999288';
+formHost.releaseForm(formId, true, (error: Base.BusinessError) => {
   if (error.code) {
     console.error('formHost releaseForm, error: ${JSON.stringify(error)}');
   } else {
@@ -159,7 +166,7 @@ Releases a widget. After this API is called, the application can no longer use t
 | Name        | Type    | Mandatory| Description       |
 | -------------- | ------  | ---- | ----------- |
 | formId         | string  | Yes  | Widget ID.    |
-| isReleaseCache | boolean | No  | Whether to release the cache.|
+| isReleaseCache | boolean | No  | Whether to release the cache. The default value is **false**.|
 
 **Return value**
 
@@ -170,12 +177,14 @@ Releases a widget. After this API is called, the application can no longer use t
 **Example**
 
 ```ts
+import Base from '@ohos.base';
 import formHost from '@ohos.application.formHost';
+import Base from '@ohos.base';
 
-let formId = '12400633174999288';
+let formId: string = '12400633174999288';
 formHost.releaseForm(formId, true).then(() => {
   console.log('formHost releaseForm success');
-}).catch((error) => {
+}).catch((error: Base.BusinessError) => {
   console.error('formHost releaseForm, error: ${JSON.stringify(error)}');
 });
 ```
@@ -200,10 +209,12 @@ Requests a widget update. This API uses an asynchronous callback to return the r
 **Example**
 
 ```ts
+import Base from '@ohos.base';
 import formHost from '@ohos.application.formHost';
+import Base from '@ohos.base';
 
-let formId = '12400633174999288';
-formHost.requestForm(formId, (error, data) => {
+let formId: string = '12400633174999288';
+formHost.requestForm(formId, (error: Base.BusinessError) => {
   if (error.code) {
     console.error('formHost requestForm, error: ${JSON.stringify(error)}');
   }
@@ -235,12 +246,14 @@ Requests a widget update. This API uses a promise to return the result.
 **Example**
 
 ```ts
+import Base from '@ohos.base';
 import formHost from '@ohos.application.formHost';
+import Base from '@ohos.base';
 
-let formId = '12400633174999288';
+let formId: string = '12400633174999288';
 formHost.requestForm(formId).then(() => {
   console.log('formHost requestForm success');
-}).catch((error) => {
+}).catch((error: Base.BusinessError) => {
   console.error('formHost requestForm, error: ${JSON.stringify(error)}');
 });
 ```
@@ -265,10 +278,12 @@ Converts a temporary widget to a normal one. This API uses an asynchronous callb
 **Example**
 
 ```ts
+import Base from '@ohos.base';
 import formHost from '@ohos.application.formHost';
+import Base from '@ohos.base';
 
-let formId = '12400633174999288';
-formHost.castTempForm(formId, (error, data) => {
+let formId: string = '12400633174999288';
+formHost.castTempForm(formId, (error: Base.BusinessError) => {
   if (error.code) {
     console.error('formHost castTempForm, error: ${JSON.stringify(error)}');
   }
@@ -300,12 +315,14 @@ Converts a temporary widget to a normal one. This API uses a promise to return t
 **Example**
 
 ```ts
+import Base from '@ohos.base';
 import formHost from '@ohos.application.formHost';
+import Base from '@ohos.base';
 
-let formId = '12400633174999288';
+let formId: string = '12400633174999288';
 formHost.castTempForm(formId).then(() => {
   console.log('formHost castTempForm success');
-}).catch((error) => {
+}).catch((error: Base.BusinessError) => {
   console.error('formHost castTempForm, error: ${JSON.stringify(error)}');
 });
 ```
@@ -330,12 +347,14 @@ Instructs the widget framework to make a widget visible. After this API is calle
 **Example**
 
 ```ts
+import Base from '@ohos.base';
 import formHost from '@ohos.application.formHost';
+import Base from '@ohos.base';
 
-let formId = ['12400633174999288'];
-formHost.notifyVisibleForms(formId, (error, data) => {
+let formId: string[] = ['12400633174999288'];
+formHost.notifyVisibleForms(formId, (error: Base.BusinessError) => {
   if (error.code) {
-    console.error('formHost notifyVisibleForms, error: ${JSON.stringify(error)}');
+    console.error(`formHost notifyVisibleForms, error: ${JSON.stringify(error)}`);
   }
 });
 ```
@@ -365,12 +384,14 @@ Instructs the widget framework to make a widget visible. After this API is calle
 **Example**
 
 ```ts
+import Base from '@ohos.base';
 import formHost from '@ohos.application.formHost';
+import Base from '@ohos.base';
 
-let formId = ['12400633174999288'];
+let formId: string[] = ['12400633174999288'];
 formHost.notifyVisibleForms(formId).then(() => {
   console.log('formHost notifyVisibleForms success');
-}).catch((error) => {
+}).catch((error: Base.BusinessError) => {
   console.error('formHost notifyVisibleForms, error: ${JSON.stringify(error)}');
 });
 ```
@@ -395,10 +416,12 @@ Instructs the widget framework to make a widget invisible. After this API is cal
 **Example**
 
 ```ts
+import Base from '@ohos.base';
 import formHost from '@ohos.application.formHost';
+import Base from '@ohos.base';
 
-let formId = ['12400633174999288'];
-formHost.notifyInvisibleForms(formId, (error, data) => {
+let formId: string[] = ['12400633174999288'];
+formHost.notifyInvisibleForms(formId, (error: Base.BusinessError) => {
   if (error.code) {
     console.error('formHost notifyInvisibleForms, error: ${JSON.stringify(error)}');
   }
@@ -430,12 +453,14 @@ Instructs the widget framework to make a widget invisible. After this API is cal
 **Example**
 
 ```ts
+import Base from '@ohos.base';
 import formHost from '@ohos.application.formHost';
+import Base from '@ohos.base';
 
-let formId = ['12400633174999288'];
+let formId: string[] = ['12400633174999288'];
 formHost.notifyInvisibleForms(formId).then(() => {
   console.log('formHost notifyInvisibleForms success');
-}).catch((error) => {
+}).catch((error: Base.BusinessError) => {
   console.error('formHost notifyInvisibleForms, error: ${JSON.stringify(error)}');
 });
 ```
@@ -460,10 +485,12 @@ Instructs the widget framework to make a widget updatable. After this API is cal
 **Example**
 
 ```ts
+import Base from '@ohos.base';
 import formHost from '@ohos.application.formHost';
+import Base from '@ohos.base';
 
-let formId = ['12400633174999288'];
-formHost.enableFormsUpdate(formId, (error, data) => {
+let formId: string[] = ['12400633174999288'];
+formHost.enableFormsUpdate(formId, (error: Base.BusinessError) => {
   if (error.code) {
     console.error('formHost enableFormsUpdate, error: ${JSON.stringify(error)}');
   }
@@ -495,12 +522,14 @@ Instructs the widget framework to make a widget updatable. After this API is cal
 **Example**
 
 ```ts
+import Base from '@ohos.base';
 import formHost from '@ohos.application.formHost';
+import Base from '@ohos.base';
 
-let formId = ['12400633174999288'];
+let formId: string[] = ['12400633174999288'];
 formHost.enableFormsUpdate(formId).then(() => {
   console.log('formHost enableFormsUpdate success');
-}).catch((error) => {
+}).catch((error: Base.BusinessError) => {
   console.error('formHost enableFormsUpdate, error: ${JSON.stringify(error)}');
 });
 ```
@@ -525,10 +554,12 @@ Instructs the widget framework to make a widget not updatable. After this API is
 **Example**
 
 ```ts
+import Base from '@ohos.base';
 import formHost from '@ohos.application.formHost';
+import Base from '@ohos.base';
 
-let formId = ['12400633174999288'];
-formHost.disableFormsUpdate(formId, (error, data) => {
+let formId: string[] = ['12400633174999288'];
+formHost.disableFormsUpdate(formId, (error: Base.BusinessError) => {
   if (error.code) {
     console.error('formHost disableFormsUpdate, error: ${JSON.stringify(error)}');
   }
@@ -560,12 +591,14 @@ Instructs the widget framework to make a widget not updatable. After this API is
 **Example**
 
 ```ts
+import Base from '@ohos.base';
 import formHost from '@ohos.application.formHost';
+import Base from '@ohos.base';
 
-let formId = ['12400633174999288'];
+let formId: string[] = ['12400633174999288'];
 formHost.disableFormsUpdate(formId).then(() => {
   console.log('formHost disableFormsUpdate success');
-}).catch((error) => {
+}).catch((error: Base.BusinessError) => {
   console.error('formHost disableFormsUpdate, error: ${JSON.stringify(error)}');
 });
 ```
@@ -587,10 +620,12 @@ Checks whether the system is ready. This API uses an asynchronous callback to re
 **Example**
 
 ```ts
+import Base from '@ohos.base';
 import formHost from '@ohos.application.formHost';
+import Base from '@ohos.base';
 
-let formId = '12400633174999288';
-formHost.isSystemReady((error, data) => {
+let formId: string = '12400633174999288';
+formHost.isSystemReady((error: Base.BusinessError) => {
   if (error.code) {
     console.error('formHost isSystemReady, error: ${JSON.stringify(error)}');
   }
@@ -614,12 +649,14 @@ Checks whether the system is ready. This API uses a promise to return the result
 **Example**
 
 ```ts
+import Base from '@ohos.base';
 import formHost from '@ohos.application.formHost';
+import Base from '@ohos.base';
 
-let formId = '12400633174999288';
+let formId: string = '12400633174999288';
 formHost.isSystemReady().then(() => {
   console.log('formHost isSystemReady success');
-}).catch((error) => {
+}).catch((error: Base.BusinessError) => {
   console.error('formHost isSystemReady, error: ${JSON.stringify(error)}');
 });
 ```
@@ -643,9 +680,12 @@ Obtains the widget information provided by all applications on the device. This 
 **Example**
 
 ```ts
+import Base from '@ohos.base';
 import formHost from '@ohos.application.formHost';
+import formInfo from '@ohos.app.form.formInfo';
+import Base from '@ohos.base';
 
-formHost.getAllFormsInfo((error, data) => {
+formHost.getAllFormsInfo((error: Base.BusinessError, data: formInfo.FormInfo[]) => {
   if (error.code) {
     console.error('formHost getAllFormsInfo, error: ${JSON.stringify(error)}');
   } else {
@@ -673,11 +713,14 @@ Obtains the widget information provided by all applications on the device. This 
 **Example**
 
   ```ts
+  import Base from '@ohos.base';
   import formHost from '@ohos.application.formHost';
+  import formInfo from '@ohos.app.form.formInfo';
+  import Base from '@ohos.base';
 
-  formHost.getAllFormsInfo().then((data) => {
+  formHost.getAllFormsInfo().then((data: formInfo.FormInfo[]) => {
     console.log('formHost getAllFormsInfo data: ${JSON.stringify(data)}');
-  }).catch((error) => {
+  }).catch((error: Base.BusinessError) => {
     console.error('formHost getAllFormsInfo, error: ${JSON.stringify(error)}');
   });
   ```
@@ -702,13 +745,16 @@ Obtains the widget information provided by a given application on the device. Th
 **Example**
 
 ```ts
+import Base from '@ohos.base';
 import formHost from '@ohos.application.formHost';
+import formInfo from '@ohos.app.form.formInfo';
+import Base from '@ohos.base';
 
-formHost.getFormsInfo('com.example.ohos.formjsdemo', (error, data) => {
+formHost.getFormsInfo('com.example.ohos.formjsdemo', (error: Base.BusinessError, data: formInfo.FormInfo[]) => {
   if (error.code) {
-    console.error('formHost getFormsInfo, error: ${JSON.stringify(error)}');
+    console.error(`formHost getFormsInfo, error: ${JSON.stringify(error)}`);
   } else {
-    console.log('formHost getFormsInfo, data: ${JSON.stringify(data)}');
+    console.log(`formHost getFormsInfo, data: ${JSON.stringify(data)}`);
   }
 });
 ```
@@ -734,9 +780,12 @@ Obtains the widget information provided by a given application on the device. Th
 **Example**
 
 ```ts
+import Base from '@ohos.base';
 import formHost from '@ohos.application.formHost';
+import formInfo from '@ohos.app.form.formInfo';
+import Base from '@ohos.base';
 
-formHost.getFormsInfo('com.example.ohos.formjsdemo', 'entry', (error, data) => {
+formHost.getFormsInfo('com.example.ohos.formjsdemo', 'entry', (error: Base.BusinessError, data: formInfo.FormInfo[]) => {
   if (error.code) {
     console.error('formHost getFormsInfo, error: ${JSON.stringify(error)}');
   } else {
@@ -771,12 +820,15 @@ Obtains the widget information provided by a given application on the device. Th
 **Example**
 
   ```ts
+  import Base from '@ohos.base';
   import formHost from '@ohos.application.formHost';
+  import Base from '@ohos.base';
 
-  formHost.getFormsInfo('com.example.ohos.formjsdemo', 'entry').then((data) => {
-    console.log('formHost getFormsInfo, data: ${JSON.stringify(data)}');
-  }).catch((error) => {
-    console.error('formHost getFormsInfo, error: ${JSON.stringify(error)}');
+
+  formHost.getFormsInfo('com.example.ohos.formjsdemo', 'entry').then((data: formInfo.FormInfo[]) => {
+    console.log(`formHost getFormsInfo, data: ${JSON.stringify(data)}`);
+  }).catch((error: Base.BusinessError) => {
+    console.error(`formHost getFormsInfo, error: ${JSON.stringify(error)}`);
   });
   ```
 
@@ -800,14 +852,16 @@ Deletes invalid widgets from the list. This API uses an asynchronous callback to
 **Example**
 
 ```ts
+import Base from '@ohos.base';
 import formHost from '@ohos.application.formHost';
+import Base from '@ohos.base';
 
-let formIds = new Array('12400633174999288', '12400633174999289');
-formHost.deleteInvalidForms(formIds, (error, data) => {
+let formIds: string[] = new Array('12400633174999288', '12400633174999289');
+formHost.deleteInvalidForms(formIds, (error: Base.BusinessError, data: number) => {
   if (error.code) {
-    console.error('formHost deleteInvalidForms, error: ${JSON.stringify(error)}');
+    console.error(`formHost deleteInvalidForms, error: ${JSON.stringify(error)}`);
   } else {
-    console.log('formHost deleteInvalidForms, data: ${JSON.stringify(data)}');
+    console.log(`formHost deleteInvalidForms, data: ${JSON.stringify(data)}`);
   }
 });
 ```
@@ -837,13 +891,15 @@ Deletes invalid widgets from the list. This API uses a promise to return the res
 **Example**
 
 ```ts
+import Base from '@ohos.base';
 import formHost from '@ohos.application.formHost';
+import Base from '@ohos.base';
 
-let formIds = new Array('12400633174999288', '12400633174999289');
-formHost.deleteInvalidForms(formIds).then((data) => {
-  console.log('formHost deleteInvalidForms, data: ${JSON.stringify(data)}');
-}).catch((error) => {
-  console.error('formHost deleteInvalidForms, error: ${JSON.stringify(error)}');
+let formIds: string[] = new Array('12400633174999288', '12400633174999289');
+formHost.deleteInvalidForms(formIds).then((data: number) => {
+  console.log(`formHost deleteInvalidForms, data: ${JSON.stringify(data)}`);
+}).catch((error: Base.BusinessError) => {
+  console.error(`formHost deleteInvalidForms, error: ${JSON.stringify(error)}`);
 });
 ```
 
@@ -867,9 +923,13 @@ Obtains the widget state. This API uses an asynchronous callback to return the r
 **Example**
 
 ```ts
+import Base from '@ohos.base';
 import formHost from '@ohos.application.formHost';
+import Want from '@ohos.app.ability.Want';
+import formInfo from '@ohos.app.form.formInfo';
+import Base from '@ohos.base';
 
-let want = {
+let want: Want = {
   'deviceId': '',
   'bundleName': 'ohos.samples.FormApplication',
   'abilityName': 'FormAbility',
@@ -879,11 +939,11 @@ let want = {
     'ohos.extra.param.key.form_dimension': 2
   }
 };
-formHost.acquireFormState(want, (error, data) => {
+formHost.acquireFormState(want, (error:Base.BusinessError, data: formInfo.FormStateInfo) => {
   if (error.code) {
-    console.error('formHost acquireFormState, error: ${JSON.stringify(error)}');
+    console.error(`formHost acquireFormState, error: ${JSON.stringify(error)}`);
   } else {
-    console.log('formHost acquireFormState, data: ${JSON.stringify(data)}');
+    console.log(`formHost acquireFormState, data: ${JSON.stringify(data)}`);
   }
 });
 ```
@@ -913,9 +973,13 @@ Obtains the widget state. This API uses a promise to return the result.
 **Example**
 
 ```ts
+import Base from '@ohos.base';
 import formHost from '@ohos.application.formHost';
+import Want from '@ohos.app.ability.Want';
+import formInfo from '@ohos.app.form.formInfo';
+import Base from '@ohos.base';
 
-let want = {
+let want: Want = {
   'deviceId': '',
   'bundleName': 'ohos.samples.FormApplication',
   'abilityName': 'FormAbility',
@@ -925,10 +989,10 @@ let want = {
     'ohos.extra.param.key.form_dimension': 2
   }
 };
-formHost.acquireFormState(want).then((data) => {
-  console.log('formHost acquireFormState, data: ${JSON.stringify(data)}');
-}).catch((error) => {
-  console.error('formHost acquireFormState, error: ${JSON.stringify(error)}');
+formHost.acquireFormState(want).then((data: formInfo.FormStateInfo) => {
+  console.log(`formHost acquireFormState, data: ${JSON.stringify(data)}`);
+}).catch((error: Base.BusinessError) => {
+  console.error(`formHost acquireFormState, error: ${JSON.stringify(error)}`);
 });
 ```
 
@@ -950,12 +1014,12 @@ Subscribes to widget uninstall events. This API uses an asynchronous callback to
 **Example**
 
 ```ts
+import Base from '@ohos.base';
 import formHost from '@ohos.application.formHost';
 
-let callback = function(formId) {
-  console.log('formHost on formUninstall, formId: ${formId}');
-};
-formHost.on('formUninstall', callback);
+formHost.on('formUninstall', (formId: string) => {
+  console.log(`formHost on formUninstall, formId: ${formId}`);
+});
 ```
 
 ## off('formUninstall')
@@ -976,12 +1040,12 @@ Unsubscribes from widget uninstall events. This API uses an asynchronous callbac
 **Example**
 
 ```ts
+import Base from '@ohos.base';
 import formHost from '@ohos.application.formHost';
 
-let callback = function(formId) {
-  console.log('formHost on formUninstall, formId: ${formId}');
-};
-formHost.off('formUninstall', callback);
+formHost.off('formUninstall', (formId: string) => {
+  console.log(`formHost on formUninstall, formId: ${formId}`);
+});
 ```
 
 ## notifyFormsVisible
@@ -1005,12 +1069,14 @@ Instructs the widgets to make themselves visible. This API uses an asynchronous 
 **Example**
 
 ```ts
+import Base from '@ohos.base';
 import formHost from '@ohos.application.formHost';
+import Base from '@ohos.base';
 
-let formIds = new Array('12400633174999288', '12400633174999289');
-formHost.notifyFormsVisible(formIds, true, (error, data) => {
+let formIds: string[]= new Array('12400633174999288', '12400633174999289');
+formHost.notifyFormsVisible(formIds, true, (error: Base.BusinessError) => {
   if (error.code) {
-    console.error('formHost notifyFormsVisible, error: ${JSON.stringify(error)}');
+    console.error(`formHost notifyFormsVisible, error: ${JSON.stringify(error)}`);
   }
 });
 ```
@@ -1041,13 +1107,15 @@ Instructs the widgets to make themselves visible. This API uses a promise to ret
 **Example**
 
 ```ts
+import Base from '@ohos.base';
 import formHost from '@ohos.application.formHost';
+import Base from '@ohos.base';
 
-let formIds = new Array('12400633174999288', '12400633174999289');
+let formIds: string[] = new Array('12400633174999288', '12400633174999289');
 formHost.notifyFormsVisible(formIds, true).then(() => {
   console.log('formHost notifyFormsVisible success');
-}).catch((error) => {
-  console.error('formHost notifyFormsVisible, error: ${JSON.stringify(error)}');
+}).catch((error: Base.BusinessError) => {
+  console.error(`formHost notifyFormsVisible, error: ${JSON.stringify(error)}`);
 });
 ```
 
@@ -1072,10 +1140,12 @@ Instructs the widgets to enable or disable updates. This API uses an asynchronou
 **Example**
 
 ```ts
+import Base from '@ohos.base';
 import formHost from '@ohos.application.formHost';
+import Base from '@ohos.base';
 
-let formIds = new Array('12400633174999288', '12400633174999289');
-formHost.notifyFormsEnableUpdate(formIds, true, (error, data) => {
+let formIds: string[] = new Array('12400633174999288', '12400633174999289');
+formHost.notifyFormsEnableUpdate(formIds, true, (error: Base.BusinessError) => {
   if (error.code) {
     console.error('formHost notifyFormsEnableUpdate, error: ${JSON.stringify(error)}');
   }
@@ -1108,12 +1178,14 @@ Instructs the widgets to enable or disable updates. This API uses a promise to r
 **Example**
 
 ```ts
+import Base from '@ohos.base';
 import formHost from '@ohos.application.formHost';
+import Base from '@ohos.base';
 
-let formIds = new Array('12400633174999288', '12400633174999289');
+let formIds: string[] = new Array('12400633174999288', '12400633174999289');
 formHost.notifyFormsEnableUpdate(formIds, true).then(() => {
   console.log('formHost notifyFormsEnableUpdate success');
-}).catch((error) => {
-  console.error('formHost notifyFormsEnableUpdate, error: ${JSON.stringify(error)}');
+}).catch((error: Base.BusinessError) => {
+  console.error(`formHost notifyFormsEnableUpdate, error: ${JSON.stringify(error)}`);
 });
 ```

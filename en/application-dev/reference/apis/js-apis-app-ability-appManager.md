@@ -22,9 +22,9 @@ Checks whether this application is undergoing a stability test. This API uses an
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description| 
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;boolean&gt; | Yes|Callback used to return the API call result and the result **true** or **false**. You can perform error handling or custom processing in this callback. The value **true** means that the application is undergoing a stability test, and **false** means the opposite. | 
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| callback | AsyncCallback&lt;boolean&gt; | Yes|Callback used to return the API call result and the result **true** or **false**. You can perform error handling or custom processing in this callback. The value **true** means that the application is undergoing a stability test, and **false** means the opposite. |
 
 **Error codes**
 
@@ -59,9 +59,9 @@ Checks whether this application is undergoing a stability test. This API uses a 
 
 **Return value**
 
-  | Type| Description| 
-  | -------- | -------- |
-  | Promise&lt;boolean&gt; | Promise used to return the API call result and the result **true** or **false**. You can perform error handling or custom processing in this callback. The value **true** means that the application is undergoing a stability test, and **false** means the opposite.| 
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;boolean&gt; | Promise used to return the API call result and the result **true** or **false**. You can perform error handling or custom processing in this callback. The value **true** means that the application is undergoing a stability test, and **false** means the opposite.|
 
 **Error codes**
 
@@ -75,10 +75,11 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 
 ```ts
 import appManager from '@ohos.app.ability.appManager';
+import { BusinessError } from '@ohos.base';
 
 appManager.isRunningInStabilityTest().then((flag) => {
     console.log(`The result of isRunningInStabilityTest is: ${JSON.stringify(flag)}`);
-}).catch((error) => {
+}).catch((error: BusinessError) => {
     console.error(`error: ${JSON.stringify(error)}`);
 });
 ```
@@ -94,9 +95,9 @@ Checks whether this application is running on a RAM constrained device. This API
 
 **Return value**
 
-  | Type| Description| 
-  | -------- | -------- |
-  | Promise&lt;boolean&gt; | Promise used to return the API call result and the result **true** or **false**. You can perform error handling or custom processing in this callback. The value **true** means that the application is running on a RAM constrained device, and **false** means the opposite.| 
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;boolean&gt; | Promise used to return the API call result and the result **true** or **false**. You can perform error handling or custom processing in this callback. The value **true** means that the application is running on a RAM constrained device, and **false** means the opposite.|
 
 **Error codes**
 
@@ -110,10 +111,11 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 
 ```ts
 import appManager from '@ohos.app.ability.appManager';
+import { BusinessError } from '@ohos.base';
 
 appManager.isRamConstrainedDevice().then((data) => {
     console.log(`The result of isRamConstrainedDevice is: ${JSON.stringify(data)}`);
-}).catch((error) => {
+}).catch((error: BusinessError) => {
     console.error(`error: ${JSON.stringify(error)}`);
 });
 ```
@@ -128,9 +130,9 @@ Checks whether this application is running on a RAM constrained device. This API
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description| 
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;boolean&gt; | Yes|Callback used to return the API call result and the result **true** or **false**. You can perform error handling or custom processing in this callback. The value **true** means that the application is running on a RAM constrained device, and **false** means the opposite. | 
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| callback | AsyncCallback&lt;boolean&gt; | Yes|Callback used to return the API call result and the result **true** or **false**. You can perform error handling or custom processing in this callback. The value **true** means that the application is running on a RAM constrained device, and **false** means the opposite. |
 
 **Error codes**
 
@@ -164,9 +166,9 @@ Obtains the memory size of this application. This API uses a promise to return t
 
 **Return value**
 
-  | Type| Description| 
-  | -------- | -------- |
-  | Promise&lt;number&gt; | Promise used to return the API call result and the memory size. You can perform error handling or custom processing in this callback.| 
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;number&gt; | Promise used to return the API call result and the memory size. You can perform error handling or custom processing in this callback.|
 
 **Error codes**
 
@@ -180,10 +182,11 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 
 ```ts
 import appManager from '@ohos.app.ability.appManager';
+import { BusinessError} from '@ohos.base'
 
 appManager.getAppMemorySize().then((data) => {
     console.log(`The size of app memory is: ${JSON.stringify(data)}`);
-}).catch((error) => {
+}).catch((error: BusinessError) => {
     console.error(`error: ${JSON.stringify(error)}`);
 });
 ```
@@ -198,9 +201,9 @@ Obtains the memory size of this application. This API uses an asynchronous callb
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description| 
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;number&gt; | Yes|Callback used to return the API call result and the memory size. You can perform error handling or custom processing in this callback.| 
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| callback | AsyncCallback&lt;number&gt; | Yes|Callback used to return the API call result and the memory size. You can perform error handling or custom processing in this callback.|
 
 **Error codes**
 
@@ -252,10 +255,11 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 
 ```ts
 import appManager from '@ohos.app.ability.appManager';
+import { BusinessError } from '@ohos.base';
 
 appManager.getRunningProcessInformation().then((data) => {
     console.log(`The running process information is: ${JSON.stringify(data)}`);
-}).catch((error) => {
+}).catch((error: BusinessError) => {
     console.error(`error: ${JSON.stringify(error)}`);
 });
 ```
@@ -272,9 +276,9 @@ Obtains information about the running processes. This API uses an asynchronous c
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description| 
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback\<Array\<[ProcessInformation](js-apis-inner-application-processInformation.md)>>  | Yes|Callback used to return the API call result and the process running information. You can perform error handling or custom processing in this callback.| 
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| callback | AsyncCallback\<Array\<[ProcessInformation](js-apis-inner-application-processInformation.md)>>  | Yes|Callback used to return the API call result and the process running information. You can perform error handling or custom processing in this callback.|
 
 **Error codes**
 
@@ -335,12 +339,13 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 
 ```ts
 import appManager from '@ohos.app.ability.appManager';
+import { BusinessError } from '@ohos.base';
 
 const bundleName = "this is a bundleName";
 const versionCode = 1;
 appManager.isSharedBundleRunning(bundleName, versionCode).then((data) => {
     console.log(`The shared bundle running is: ${JSON.stringify(data)}`);
-}).catch((error) => {
+}).catch((error: BusinessError) => {
     console.error(`error: ${JSON.stringify(error)}`);
 });
 ```
@@ -389,11 +394,11 @@ appManager.isSharedBundleRunning(bundleName, versionCode, (err, data) => {
 });
 ```
 
-## appManager.on
+## appManager.on(type: 'applicationState', observer: ApplicationStateObserver)<sup>(deprecated)</sup>
 
 on(type: 'applicationState', observer: ApplicationStateObserver): number;
 
-Registers an observer to listen for the state changes of all applications.
+ע��ȫ��Ӧ�ó����״̬�۲�����
 
 **Required permissions**: ohos.permission.RUNNING_STATE_OBSERVER
 
@@ -426,8 +431,9 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 
 ```ts
 import appManager from '@ohos.app.ability.appManager';
+import { BusinessError } from '@ohos.base';
 
-let applicationStateObserver = {
+let applicationStateObserver: appManager.ApplicationStateObserver = {
     onForegroundApplicationChanged(appStateData) {
         console.log(`[appManager] onForegroundApplicationChanged: ${JSON.stringify(appStateData)}`);
     },
@@ -448,7 +454,9 @@ try {
     const observerId = appManager.on('applicationState', applicationStateObserver);
     console.log(`[appManager] observerCode: ${observerId}`);
 } catch (paramError) {
-    console.error(`[appManager] error: ${paramError.code}, ${paramError.message} `);
+    let code = (paramError as BusinessError).code;
+    let message = (paramError as BusinessError).message;
+    console.error(`[appManager] error: ${code}, ${message} `);
 }
 ```
 
@@ -490,8 +498,9 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 
 ```ts
 import appManager from '@ohos.app.ability.appManager';
+import { BusinessError } from '@ohos.base';
 
-let applicationStateObserver = {
+let applicationStateObserver: appManager.ApplicationStateObserver = {
     onForegroundApplicationChanged(appStateData) {
         console.log(`[appManager] onForegroundApplicationChanged: ${JSON.stringify(appStateData)}`);
     },
@@ -513,7 +522,9 @@ try {
     const observerId = appManager.on('applicationState', applicationStateObserver, bundleNameList);
     console.log(`[appManager] observerCode: ${observerId}`);
 } catch (paramError) {
-    console.error(`[appManager] error: ${paramError.code}, ${paramError.message} `);
+    let code = (paramError as BusinessError).code;
+    let message = (paramError as BusinessError).message;
+    console.error(`[appManager] error: ${code}, ${message} `);
 }
 ```
 
@@ -549,11 +560,12 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 
 ```ts
 import appManager from '@ohos.app.ability.appManager';
+import { BusinessError } from '@ohos.base';
 
 let observerId = 0;
 
 // 1. Register an application state observer.
-let applicationStateObserver = {
+let applicationStateObserver: appManager.ApplicationStateObserver = {
     onForegroundApplicationChanged(appStateData) {
         console.log(`[appManager] onForegroundApplicationChanged: ${JSON.stringify(appStateData)}`);
     },
@@ -575,11 +587,13 @@ try {
     observerId = appManager.on('applicationState', applicationStateObserver, bundleNameList);
     console.log(`[appManager] observerCode: ${observerId}`);
 } catch (paramError) {
-    console.error(`[appManager] error: ${paramError.code}, ${paramError.message} `);
+    let code = (paramError as BusinessError).code;
+    let message = (paramError as BusinessError).message;
+    console.error(`[appManager] error: ${code}, ${message} `);
 }
 
 // 2. Deregister the application state observer.
-function unregisterApplicationStateObserverCallback(err) {
+function unregisterApplicationStateObserverCallback(err: BusinessError) {
     if (err) {
         console.error(`unregisterApplicationStateObserverCallback fail, err: ${JSON.stringify(err)}`);
     } else {
@@ -589,7 +603,9 @@ function unregisterApplicationStateObserverCallback(err) {
 try {
     appManager.off('applicationState', observerId, unregisterApplicationStateObserverCallback);
 } catch (paramError) {
-    console.error(`error: ${paramError.code}, ${paramError.message}`);
+    let code = (paramError as BusinessError).code;
+    let message = (paramError as BusinessError).message;
+    console.error(`[appManager] error: ${code}, ${message} `);
 }
 ```
 
@@ -630,11 +646,12 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 
 ```ts
 import appManager from '@ohos.app.ability.appManager';
+import { BusinessError } from '@ohos.base';
 
 let observerId = 0;
 
 // 1. Register an application state observer.
-let applicationStateObserver = {
+let applicationStateObserver: appManager.ApplicationStateObserver = {
     onForegroundApplicationChanged(appStateData) {
         console.log(`[appManager] onForegroundApplicationChanged: ${JSON.stringify(appStateData)}`);
     },
@@ -654,20 +671,23 @@ let applicationStateObserver = {
 let bundleNameList = ['bundleName1', 'bundleName2'];
 try {
     observerId = appManager.on('applicationState', applicationStateObserver, bundleNameList);
-    console.log(`[appManager] observerCode: ${observerId}`);
 } catch (paramError) {
-    console.error(`[appManager] error: ${paramError.code}, ${paramError.message} `);
+    let code = (paramError as BusinessError).code;
+    let message = (paramError as BusinessError).message;
+    console.error(`[appManager] error: ${code}, ${message} `);
 }
     
 // 2. Deregister the application state observer.
 try {
     appManager.off('applicationState', observerId).then((data) => {
         console.log(`unregisterApplicationStateObserver success, data: ${JSON.stringify(data)}`);
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
         console.error(`unregisterApplicationStateObserver fail, err: ${JSON.stringify(err)}`);
     });
 } catch (paramError) {
-    console.error(`error: ${paramError.code}, ${paramError.message}`);
+    let code = (paramError as BusinessError).code;
+    let message = (paramError as BusinessError).message;
+    console.error(`[appManager] error: ${code}, ${message} `);
 }
 ```
 
@@ -701,8 +721,9 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 
 ```ts
 import appManager from '@ohos.app.ability.appManager';
+import { BusinessError } from '@ohos.base';
 
-function getForegroundApplicationsCallback(err, data) {
+function getForegroundApplicationsCallback(err: BusinessError, data: Array<appManager.AppStateData>) {
     if (err) {
         console.error(`getForegroundApplicationsCallback fail, err: ${JSON.stringify(err)}`);
     } else {
@@ -712,7 +733,9 @@ function getForegroundApplicationsCallback(err, data) {
 try {
     appManager.getForegroundApplications(getForegroundApplicationsCallback);
 } catch (paramError) {
-    console.error(`error: ${paramError.code}, ${paramError.message}`);
+    let code = (paramError as BusinessError).code;
+    let message = (paramError as BusinessError).message;
+    console.error(`[appManager] error: ${code}, ${message} `);
 }
 ```
 
@@ -746,10 +769,11 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 
 ```ts
 import appManager from '@ohos.app.ability.appManager';
+import { BusinessError } from '@ohos.base';
 
 appManager.getForegroundApplications().then((data) => {
     console.log(`getForegroundApplications success, data: ${JSON.stringify(data)}`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
     console.error(`getForegroundApplications fail, err: ${JSON.stringify(err)}`);
 });
 ```
@@ -789,17 +813,20 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 
 ```ts
 import appManager from '@ohos.app.ability.appManager';
+import { BusinessError } from '@ohos.base';
 
 let bundleName = 'bundleName';
 let accountId = 0;
 try {
     appManager.killProcessWithAccount(bundleName, accountId).then(() => {
         console.log('killProcessWithAccount success');
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
         console.error(`killProcessWithAccount fail, err: ${JSON.stringify(err)}`);
     });
 } catch (paramError) {
-    console.error(`error: ${paramError.code}, ${paramError.message}`);
+    let code = (paramError as BusinessError).code;
+    let message = (paramError as BusinessError).message;
+    console.error(`[appManager] error: ${code}, ${message} `);
 }
 ```
 
@@ -822,11 +849,11 @@ Kills a process by bundle name and account ID. This API uses an asynchronous cal
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description| 
-  | -------- | -------- | -------- | -------- |
-  | bundleName | string | Yes| Bundle name.| 
-  | accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountlocalidfromprocess).| 
-  | callback | AsyncCallback\<void\> | Yes| Callback used to return the API call result. You can perform error handling or custom processing in this callback.| 
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| bundleName | string | Yes| Bundle name.|
+| accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountlocalidfromprocess).|
+| callback | AsyncCallback\<void\> | Yes| Callback used to return the API call result. You can perform error handling or custom processing in this callback.|
 
 **Error codes**
 
@@ -840,10 +867,11 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 
 ```ts
 import appManager from '@ohos.app.ability.appManager';
+import { BusinessError } from '@ohos.base';
 
 let bundleName = 'bundleName';
 let accountId = 0;
-function killProcessWithAccountCallback(err, data) {
+function killProcessWithAccountCallback(err: BusinessError) {
     if (err) {
         console.error(`killProcessWithAccountCallback fail, err: ${JSON.stringify(err)}`);
     } else {
@@ -884,9 +912,10 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 
 ```ts
 import appManager from '@ohos.app.ability.appManager';
+import { BusinessError } from '@ohos.base';
 
 let bundleName = 'bundleName';
-function killProcessesByBundleNameCallback(err, data) {
+function killProcessesByBundleNameCallback(err: BusinessError) {
     if (err) {
         console.error(`killProcessesByBundleNameCallback fail, err: ${JSON.stringify(err)}`);
     } else {
@@ -896,7 +925,9 @@ function killProcessesByBundleNameCallback(err, data) {
 try {
     appManager.killProcessesByBundleName(bundleName, killProcessesByBundleNameCallback);
 } catch (paramError) {
-    console.error(`error: ${paramError.code}, ${paramError.message}`);
+    let code = (paramError as BusinessError).code;
+    let message = (paramError as BusinessError).message;
+    console.error(`[appManager] error: ${code}, ${message} `);
 }
 ```
 
@@ -936,16 +967,19 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 
 ```ts
 import appManager from '@ohos.app.ability.appManager';
+import { BusinessError } from '@ohos.base';
 
 let bundleName = 'bundleName';
 try {
     appManager.killProcessesByBundleName(bundleName).then((data) => {
         console.log('killProcessesByBundleName success.');
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
         console.error(`killProcessesByBundleName fail, err: ${JSON.stringify(err)}`);
     });
 } catch (paramError) {
-    console.error(`error: ${paramError.code}, ${paramError.message}`);
+    let code = (paramError as BusinessError).code;
+    let message = (paramError as BusinessError).message;
+    console.error(`[appManager] error: ${code}, ${message} `);
 }
 ```
 
@@ -980,9 +1014,10 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 
 ```ts
 import appManager from '@ohos.app.ability.appManager';
+import { BusinessError } from '@ohos.base';
 
 let bundleName = 'bundleName';
-function clearUpApplicationDataCallback(err, data) {
+function clearUpApplicationDataCallback(err: BusinessError) {
     if (err) {
         console.error(`clearUpApplicationDataCallback fail, err: ${JSON.stringify(err)}`);
     } else {
@@ -992,7 +1027,9 @@ function clearUpApplicationDataCallback(err, data) {
 try {
     appManager.clearUpApplicationData(bundleName, clearUpApplicationDataCallback);
 } catch (paramError) {
-    console.error(`error: ${paramError.code}, ${paramError.message}`);
+    let code = (paramError as BusinessError).code;
+    let message = (paramError as BusinessError).message;
+    console.error(`[appManager] error: ${code}, ${message} `);
 }
 ```
 
@@ -1032,16 +1069,19 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 
 ```ts
 import appManager from '@ohos.app.ability.appManager';
+import { BusinessError } from '@ohos.base';
 
 let bundleName = 'bundleName';
 try {
     appManager.clearUpApplicationData(bundleName).then((data) => {
         console.log('clearUpApplicationData success.');
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
         console.error(`clearUpApplicationData fail, err: ${JSON.stringify(err)}`);
     });
 } catch (paramError) {
-    console.error(`error: ${paramError.code}, ${paramError.message}`);
+    let code = (paramError as BusinessError).code;
+    let message = (paramError as BusinessError).message;
+    console.error(`[appManager] error: ${code}, ${message} `);
 }
 ```
 
@@ -1074,9 +1114,10 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 
 ```ts
 import appManager from '@ohos.app.ability.appManager';
+import { BusinessError } from '@ohos.base';
 
 let pid = 0;
-function getProcessMemoryByPidCallback(err, data) {
+function getProcessMemoryByPidCallback(err: BusinessError, data: number) {
     if (err) {
         console.error(`getProcessMemoryByPidCallback fail, err: ${JSON.stringify(err)}`);
     } else {
@@ -1086,7 +1127,9 @@ function getProcessMemoryByPidCallback(err, data) {
 try {
     appManager.getProcessMemoryByPid(pid, getProcessMemoryByPidCallback);
 } catch (paramError) {
-    console.error(`error: ${paramError.code}, ${paramError.message}`);
+    let code = (paramError as BusinessError).code;
+    let message = (paramError as BusinessError).message;
+    console.error(`[appManager] error: ${code}, ${message} `);
 }
 ```
 
@@ -1124,16 +1167,19 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 
 ```ts
 import appManager from '@ohos.app.ability.appManager';
+import { BusinessError } from '@ohos.base';
 
 let pid = 0;
 try {
     appManager.getProcessMemoryByPid(pid).then((data) => {
         console.log('getProcessMemoryByPid success.');
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
         console.error(`getProcessMemoryByPid fail, err: ${JSON.stringify(err)}`);
     });
 } catch (paramError) {
-    console.error(`error: ${paramError.code}, ${paramError.message}`);
+    let code = (paramError as BusinessError).code;
+    let message = (paramError as BusinessError).message;
+    console.error(`[appManager] error: ${code}, ${message} `);
 }
 ```
 
@@ -1166,9 +1212,10 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 
 ```ts
 import appManager from '@ohos.app.ability.appManager';
+import { BusinessError } from '@ohos.base';
 
 let bundleName = "bundleName";
-function getRunningProcessInfoByBundleNameCallback(err, data) {
+function getRunningProcessInfoByBundleNameCallback(err: BusinessError, data: appManager.Array<ProcessInformation>) {
     if (err) {
         console.error(`getRunningProcessInfoByBundleNameCallback fail, err: ${JSON.stringify(err)}`);
     } else {
@@ -1178,7 +1225,9 @@ function getRunningProcessInfoByBundleNameCallback(err, data) {
 try {
     appManager.getRunningProcessInfoByBundleName(bundleName, getRunningProcessInfoByBundleNameCallback);
 } catch (paramError) {
-    console.error(`error: ${paramError.code}, ${paramError.message}`);
+    let code = (paramError as BusinessError).code;
+    let message = (paramError as BusinessError).message;
+    console.error(`[appManager] error: ${code}, ${message} `);
 }
 ```
 
@@ -1216,16 +1265,19 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 
 ```ts
 import appManager from '@ohos.app.ability.appManager';
+import { BusinessError } from '@ohos.base';
 
 let bundleName = "bundleName";
 try {
     appManager.getRunningProcessInfoByBundleName(bundleName).then((data) => {
         console.log('getRunningProcessInfoByBundleName success.');
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
         console.error(`getRunningProcessInfoByBundleName fail, err: ${JSON.stringify(err)}`);
     });
 } catch (paramError) {
-    console.error(`error: ${paramError.code}, ${paramError.message}`);
+    let code = (paramError as BusinessError).code;
+    let message = (paramError as BusinessError).message;
+    console.error(`[appManager] error: ${code}, ${message} `);
 }
 ```
 
@@ -1259,10 +1311,11 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 
 ```ts
 import appManager from '@ohos.app.ability.appManager';
+import { BusinessError } from '@ohos.base';
 
 let bundleName = "bundleName";
 let userId = 0;
-function getRunningProcessInfoByBundleNameCallback(err, data) {
+function getRunningProcessInfoByBundleNameCallback(err: BusinessError, data: Array<appManager.ProcessInformation>) {
     if (err) {
         console.error(`getRunningProcessInfoByBundleNameCallback fail, err: ${JSON.stringify(err)}`);
     } else {
@@ -1272,7 +1325,9 @@ function getRunningProcessInfoByBundleNameCallback(err, data) {
 try {
     appManager.getRunningProcessInfoByBundleName(bundleName, userId, getRunningProcessInfoByBundleNameCallback);
 } catch (paramError) {
-    console.error(`error: ${paramError.code}, ${paramError.message}`);
+    let code = (paramError as BusinessError).code;
+    let message = (paramError as BusinessError).message;
+    console.error(`[appManager] error: ${code}, ${message} `);
 }
 ```
 
@@ -1311,17 +1366,20 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 
 ```ts
 import appManager from '@ohos.app.ability.appManager';
+import { BusinessError } from '@ohos.base';
 
 let bundleName = "bundleName";
 let userId = 0;
 try {
     appManager.getRunningProcessInfoByBundleName(bundleName, userId).then((data) => {
         console.log('getRunningProcessInfoByBundleName success.');
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
         console.error(`getRunningProcessInfoByBundleName fail, err: ${JSON.stringify(err)}`);
     });
 } catch (paramError) {
-    console.error(`error: ${paramError.code}, ${paramError.message}`);
+    let code = (paramError as BusinessError).code;
+    let message = (paramError as BusinessError).message;
+    console.error(`[appManager] error: ${code}, ${message} `);
 }
 ```
 
@@ -1341,18 +1399,18 @@ Enumerates the application states. This enum can be used together with [AbilityS
 | STATE_BACKGROUND        | 4   |       State indicating that the application is running in the background.          |
 | STATE_DESTROY        | 5   |           State indicating that the application is destroyed.      |
 
-## ProcessState
+## ProcessState<sup>10+</sup>
 
 Enumerates the process states. This enum can be used together with [ProcessData](js-apis-inner-application-processData.md) to return the process state.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-**System API**: This is a system API and cannot be called by third-party applications.
-
 | Name                | Value | Description                              |
 | -------------------- | --- | --------------------------------- |
-| STATE_CREATE    | 1   |      State indicating that the process is being created.      |
-| STATE_FOREGROUND          | 2   |            State indicating that the process is running in the foreground.     |
-| STATE_ACTIVE  | 3   |          State indicating that the process is active.  |
-| STATE_BACKGROUND        | 4   |       State indicating that the process is running in the background.          |
-| STATE_DESTROY        | 5   |         State indicating that the process is destroyed.        |
+| STATE_CREATE    | 0   |      State indicating that the process is being created.      |
+| STATE_FOREGROUND          | 1   |            State indicating that the process is running in the foreground.     |
+| STATE_ACTIVE  | 2   |          State indicating that the process is active.  |
+| STATE_BACKGROUND        | 3   |       State indicating that the process is running in the background.          |
+| STATE_DESTROY        | 4   |         State indicating that the process is destroyed.        |
+
+ <!--no_check--> 

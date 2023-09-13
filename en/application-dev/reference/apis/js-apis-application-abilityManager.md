@@ -49,7 +49,10 @@ Updates the configuration. This API uses an asynchronous callback to return the 
 **Example**
 
 ```ts
-let config = {
+import abilityManager from '@ohos.application.abilityManager';
+import { Configuration } from '@ohos.application.Configuration';
+
+let config: Configuration = {
   language: 'chinese' 
 };
 
@@ -83,13 +86,17 @@ Updates the configuration. This API uses a promise to return the result.
 **Example**
 
 ```ts
-let config = {
+import abilityManager from '@ohos.application.abilityManager';
+import { Configuration } from '@ohos.application.Configuration';
+import { BusinessError } from '@ohos.base';
+
+let config: Configuration = {
   language: 'chinese' 
 };
 
 abilityManager.updateConfiguration(config).then(() => {
   console.log('updateConfiguration success');
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error('updateConfiguration fail');
 });
 ```
@@ -113,6 +120,8 @@ Obtains the ability running information. This API uses an asynchronous callback 
 **Example**
 
 ```ts
+import abilityManager from '@ohos.application.abilityManager';
+
 abilityManager.getAbilityRunningInfos((err,data) => { 
     console.log('getAbilityRunningInfos err: ${err}, data: ${JSON.stringify(data)}');
 });
@@ -137,9 +146,12 @@ Obtains the ability running information. This API uses a promise to return the r
 **Example**
 
 ```ts
+import abilityManager from '@ohos.application.abilityManager';
+import { BusinessError } from '@ohos.base';
+
 abilityManager.getAbilityRunningInfos().then((data) => {
     console.log('getAbilityRunningInfos  data: ${JSON.stringify(data)}');
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error('getAbilityRunningInfos err: ${JSON.stringify(err)}');
 });
 ```
