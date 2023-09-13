@@ -1081,7 +1081,7 @@ getTimeInMillis(): number
 
 compareDays(date: Date): number
 
-比较日历和给定时间相差的天数（按毫秒级的精度，不足一天将按一天进行计算）。
+比较日历和给定日期相差的天数（按毫秒级的精度，不足一天将按一天进行计算）。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -1089,7 +1089,7 @@ compareDays(date: Date): number
 
 | 参数名  | 类型   | 必填   | 说明                                       |
 | ---- | ---- | ---- | ---------------------------------------- |
-| date | Date | 否    | 指定的日期。 |
+| date | Date | 是    | 指定的日期。 |
 
 **返回值：**
 
@@ -2262,14 +2262,14 @@ static getTimePeriodName(hour:number, locale?: string): string
 
 | 参数名    | 类型     | 必填   | 说明                        |
 | ------ | ------ | ---- | ------------------------- |
-| hour | number | 是    | 指定的小时，如：16。 |
-| locale | string | 否    | 使用的区域参数，默认采用当前APP的区域，如：zh-Hans-CN。 |
+| hour | number | 是    | 指定的时间，如：16。 |
+| locale | string | 否    | 指定区域的参数，默认采用当前APP的区域，如：zh-Hans-CN。 |
 
 **返回值：**
 
 | 类型     | 说明                  |
 | ------ | ------------------- |
-| string | 返回该区域给定时间的本地化表达。 |
+| string | 返回该区域指定时间的本地化表达。 |
 
 **示例：**
   ```ts
