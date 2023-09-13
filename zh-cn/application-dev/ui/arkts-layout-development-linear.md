@@ -578,7 +578,7 @@ struct BlankExample {
               .textAlign(TextAlign.Center)
               .margin({ top: 10 })
             }
-          }, ((item:string):string => item))
+          }, (item:number) => item.toString())
         }.width('100%')
       }
       .backgroundColor(0xDCDCDC)

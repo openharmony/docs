@@ -517,7 +517,7 @@ struct SwiperExample {
           .borderWidth(2)
           .borderColor(Color.Gray)
           .backgroundColor(Color.White)
-        }, ((item:string):string => item))
+        }, (item:string):string => item)
       }
       .cachedCount(2)
       .index(0)
@@ -853,7 +853,7 @@ struct SwiperExample {
           .borderColor(Color.Gray)
           .backgroundColor(Color.White)
           .tabIndex(1)
-        }, ((item:string):string => item))
+        }, (item:string):string => item)
       }
       .cachedCount(2)
       .index(0)
