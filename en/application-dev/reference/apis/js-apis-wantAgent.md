@@ -32,14 +32,15 @@ Obtains the Want in a **WantAgent** object. This API uses an asynchronous callba
 **Example**
 
 ```ts
-import WantAgent from '@ohos.wantAgent';
-
+import WantAgent, { WantAgent as _WantAgent} from '@ohos.wantAgent';
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
 
 // WantAgent object
-let wantAgent;
+let wantAgent: _WantAgent;
 
 // getWantAgent callback
-function getWantAgentCallback(err, data) {
+function getWantAgentCallback(err: BusinessError, data: _WantAgent) {
 	console.info('==========================>getWantAgentCallback=======================>');
     if (err.code == 0) {
     	wantAgent = data;
@@ -49,13 +50,13 @@ function getWantAgentCallback(err, data) {
     }
 
     // getWant callback
-    function getWantCallback(err, data) {
+    let getWantCallback = (err: BusinessError, data: Want) => {
         console.info('==========================>getWantCallback=======================>');
     }
     WantAgent.getWant(wantAgent, getWantCallback);
 }
-// WantAgentInfo object
-let wantAgentInfo = {
+
+WantAgent.getWantAgent({
     wants: [
         {
             deviceId: 'deviceId',
@@ -80,9 +81,7 @@ let wantAgentInfo = {
     operationType: WantAgent.OperationType.START_ABILITIES,
     requestCode: 0,
     wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
-};
-
-WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback);
+}, getWantAgentCallback);
 ```
 
 ## WantAgent.getWant
@@ -110,14 +109,13 @@ Obtains the Want in a **WantAgent** object. This API uses a promise to return th
 **Example**
 
 ```ts
-import WantAgent from '@ohos.wantAgent';
-
+import WantAgent, { WantAgent as _WantAgent} from '@ohos.wantAgent';
+import { BusinessError } from '@ohos.base';
 
 // WantAgent object
-let wantAgent;
+let wantAgent: _WantAgent;
 
-// WantAgentInfo object
-let wantAgentInfo = {
+WantAgent.getWantAgent({
     wants: [
         {
             deviceId: 'deviceId',
@@ -142,9 +140,7 @@ let wantAgentInfo = {
     operationType: WantAgent.OperationType.START_ABILITIES,
     requestCode: 0,
     wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
-}
-
-WantAgent.getWantAgent(wantAgentInfo).then((data) => {
+}).then((data) => {
 	console.info('==========================>getWantAgentCallback=======================>');
     wantAgent = data;
     if (wantAgent) {        
@@ -167,24 +163,25 @@ Creates a **WantAgent** object. This API uses an asynchronous callback to return
 
 | Name    | Type                      | Mandatory| Description                   |
 | -------- | -------------------------- | ---- | ----------------------- |
-| info     | [WantAgentInfo](js-apis-inner-wantAgent-wantAgentInfo.md)              | Yes  | Information about the **WantAgent** object.          |
+| info     | [WantAgentInfo](js-apis-inner-wantAgent-wantAgentInfo.md)              | Yes  | **WantAgent** object.          |
 | callback | AsyncCallback\<WantAgent\> | Yes  | Callback used to return the **WantAgent** object.|
 
 **Example**
 
 ```ts
-import WantAgent from '@ohos.wantAgent';
+import WantAgent, { WantAgent as _WantAgent} from '@ohos.wantAgent';
+import { BusinessError } from '@ohos.base';
 
 // getWantAgent callback
-function getWantAgentCallback(err, data) {
+function getWantAgentCallback(err: BusinessError, data: _WantAgent) {
     if (err.code) {
         console.info('getWantAgent Callback err:' + JSON.stringify(err))
     } else { 
         console.info('getWantAgent Callback success')
     }
 }
-// WantAgentInfo object
-let wantAgentInfo = {
+
+WantAgent.getWantAgent({
     wants: [
         {
             deviceId: 'deviceId',
@@ -209,9 +206,7 @@ let wantAgentInfo = {
     operationType: WantAgent.OperationType.START_ABILITIES,
     requestCode: 0,
     wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
-}
-
-WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback);
+}, getWantAgentCallback);
 ```
 
 ## WantAgent.getWantAgent
@@ -226,7 +221,7 @@ Creates a **WantAgent** object. This API uses a promise to return the result. If
 
 | Name| Type         | Mandatory| Description         |
 | ---- | ------------- | ---- | ------------- |
-| info | [WantAgentInfo](js-apis-inner-wantAgent-wantAgentInfo.md) | Yes  | Information about the **WantAgent** object.|
+| info | [WantAgentInfo](js-apis-inner-wantAgent-wantAgentInfo.md) | Yes  | **WantAgent** object.|
 
 **Return value**
 
@@ -237,11 +232,9 @@ Creates a **WantAgent** object. This API uses a promise to return the result. If
 **Example**
 
 ```ts
-import WantAgent from '@ohos.wantAgent';
+import WantAgent, { WantAgent as _WantAgent} from '@ohos.wantAgent';
 
-
-// WantAgentInfo object
-let wantAgentInfo = {
+WantAgent.getWantAgent({
     wants: [
         {
             deviceId: 'deviceId',
@@ -266,9 +259,7 @@ let wantAgentInfo = {
     operationType: WantAgent.OperationType.START_ABILITIES,
     requestCode: 0,
     wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
-}
-
-WantAgent.getWantAgent(wantAgentInfo).then((data) => {
+}).then((data: _WantAgent) => {
 	console.info('==========================>getWantAgentCallback=======================>');
 });
 ```
@@ -285,20 +276,20 @@ Obtains the bundle name of a **WantAgent** object. This API uses an asynchronous
 
 | Name    | Type                   | Mandatory| Description                             |
 | -------- | ----------------------- | ---- | --------------------------------- |
-| agent    | WantAgent               | Yes  | Target **WantAgent** object.                    |
+| agent    | WantAgent               | Yes  | **WantAgent** object.                    |
 | callback | AsyncCallback\<string\> | Yes  | Callback used to return the bundle name.|
 
 **Example**
 
 ```ts
-import WantAgent from '@ohos.wantAgent';
-
+import WantAgent, { WantAgent as _WantAgent} from '@ohos.wantAgent';
+import { BusinessError } from '@ohos.base';
 
 // WantAgent object
-let wantAgent;
+let wantAgent: _WantAgent;
 
 // getWantAgent callback
-function getWantAgentCallback(err, data) {
+function getWantAgentCallback(err: BusinessError, data: _WantAgent) {
 	console.info('==========================>getWantAgentCallback=======================>');
     if (err.code == 0) {
     	wantAgent = data;
@@ -308,13 +299,13 @@ function getWantAgentCallback(err, data) {
     }
 
     // getBundleName callback
-    function getBundleNameCallback(err, data) {
+    let getBundleNameCallback = (err: BusinessError, data: string) => {
         console.info('==========================>getBundleNameCallback=======================>');
     }
     WantAgent.getBundleName(wantAgent, getBundleNameCallback);
 }
-// WantAgentInfo object
-let wantAgentInfo = {
+
+WantAgent.getWantAgent({
     wants: [
         {
             deviceId: 'deviceId',
@@ -339,9 +330,7 @@ let wantAgentInfo = {
     operationType: WantAgent.OperationType.START_ABILITIES,
     requestCode: 0,
     wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
-}
-
-WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback)
+}, getWantAgentCallback)
 ```
 
 
@@ -358,7 +347,7 @@ Obtains the bundle name of a **WantAgent** object. This API uses a promise to re
 
 | Name | Type     | Mandatory| Description         |
 | ----- | --------- | ---- | ------------- |
-| agent | WantAgent | Yes  | Target **WantAgent** object.|
+| agent | WantAgent | Yes  | **WantAgent** object.|
 
 **Return value**
 
@@ -369,13 +358,12 @@ Obtains the bundle name of a **WantAgent** object. This API uses a promise to re
 **Example**
 
 ```ts
-import WantAgent from '@ohos.wantAgent';
+import WantAgent, { WantAgent as _WantAgent} from '@ohos.wantAgent';
 
 // WantAgent object
-let wantAgent;
+let wantAgent: _WantAgent;
 
-// WantAgentInfo object
-let wantAgentInfo = {
+WantAgent.getWantAgent({
     wants: [
         {
             deviceId: 'deviceId',
@@ -400,9 +388,7 @@ let wantAgentInfo = {
     operationType: WantAgent.OperationType.START_ABILITIES,
     requestCode: 0,
     wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
-}
-
-WantAgent.getWantAgent(wantAgentInfo).then((data) => {
+}).then((data: _WantAgent) => {
 	console.info('==========================>getWantAgentCallback=======================>');
     wantAgent = data;
     if (wantAgent) {
@@ -427,20 +413,20 @@ Obtains the user ID of a **WantAgent** object. This API uses an asynchronous cal
 
 | Name    | Type                   | Mandatory| Description                               |
 | -------- | ----------------------- | ---- | ----------------------------------- |
-| agent    | WantAgent               | Yes  | Target **WantAgent** object.                      |
+| agent    | WantAgent               | Yes  | **WantAgent** object.                      |
 | callback | AsyncCallback\<number\> | Yes  | Callback used to return the user ID.|
 
 **Example**
 
 ```ts
-import WantAgent from '@ohos.wantAgent';
-
+import WantAgent, { WantAgent as _WantAgent} from '@ohos.wantAgent';
+import { BusinessError } from '@ohos.base';
 
 // WantAgent object
-let wantAgent;
+let wantAgent: _WantAgent;
 
 // getWantAgent callback
-function getWantAgentCallback(err, data) {
+function getWantAgentCallback(err: BusinessError, data: _WantAgent) {
 	console.info('==========================>getWantAgentCallback=======================>');
     if (err.code == 0) {
     	wantAgent = data;
@@ -450,13 +436,13 @@ function getWantAgentCallback(err, data) {
     }
 
     // getUid callback
-    function getUidCallback(err, data) {
+    let getUidCallback = (err: BusinessError, data: number) => {
         console.info('==========================>getUidCallback=======================>');
     }
     WantAgent.getUid(wantAgent, getUidCallback);
 }
-// WantAgentInfo object
-let wantAgentInfo = {
+
+WantAgent.getWantAgent({
     wants: [
         {
             deviceId: 'deviceId',
@@ -481,9 +467,7 @@ let wantAgentInfo = {
     operationType: WantAgent.OperationType.START_ABILITIES,
     requestCode: 0,
     wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
-}
-
-WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback)
+}, getWantAgentCallback)
 ```
 
 
@@ -500,7 +484,7 @@ Obtains the user ID of a **WantAgent** object. This API uses a promise to return
 
 | Name | Type     | Mandatory| Description         |
 | ----- | --------- | ---- | ------------- |
-| agent | WantAgent | Yes  | Target **WantAgent** object.|
+| agent | WantAgent | Yes  | **WantAgent** object.|
 
 **Return value**
 
@@ -511,14 +495,12 @@ Obtains the user ID of a **WantAgent** object. This API uses a promise to return
 **Example**
 
 ```ts
-import WantAgent from '@ohos.wantAgent';
-
+import WantAgent, { WantAgent as _WantAgent} from '@ohos.wantAgent';
 
 // WantAgent object
-let wantAgent;
+let wantAgent: _WantAgent;
 
-// WantAgentInfo object
-let wantAgentInfo = {
+WantAgent.getWantAgent({
     wants: [
         {
             deviceId: 'deviceId',
@@ -543,9 +525,7 @@ let wantAgentInfo = {
     operationType: WantAgent.OperationType.START_ABILITIES,
     requestCode: 0,
     wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
-}
-
-WantAgent.getWantAgent(wantAgentInfo).then((data) => {
+}).then((data) => {
 	console.info('==========================>getWantAgentCallback=======================>');
     wantAgent = data;
     if (wantAgent) {
@@ -569,20 +549,20 @@ Cancels a **WantAgent** object. This API uses an asynchronous callback to return
 
 | Name    | Type                 | Mandatory| Description                       |
 | -------- | --------------------- | ---- | --------------------------- |
-| agent    | WantAgent             | Yes  | Target **WantAgent** object.              |
+| agent    | WantAgent             | Yes  | **WantAgent** object.              |
 | callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
 
 **Example**
 
 ```ts
-import WantAgent from '@ohos.wantAgent';
-
+import WantAgent, { WantAgent as _WantAgent} from '@ohos.wantAgent';
+import { BusinessError } from '@ohos.base';
 
 // WantAgent object
-let wantAgent;
+let wantAgent: _WantAgent;
 
 // getWantAgent callback
-function getWantAgentCallback(err, data) {
+function getWantAgentCallback(err: BusinessError, data: _WantAgent) {
 	console.info('==========================>getWantAgentCallback=======================>');
     if (err.code == 0) {
     	wantAgent = data;
@@ -592,13 +572,13 @@ function getWantAgentCallback(err, data) {
     }
 
     // cancel callback
-    function cancelCallback(err, data) {
+    let cancelCallback = (err: BusinessError) => {
         console.info('==========================>cancelCallback=======================>');
     }
     WantAgent.cancel(wantAgent, cancelCallback);
 }
-// WantAgentInfo object
-let wantAgentInfo = {
+
+WantAgent.getWantAgent({
     wants: [
         {
             deviceId: 'deviceId',
@@ -623,9 +603,7 @@ let wantAgentInfo = {
     operationType: WantAgent.OperationType.START_ABILITIES,
     requestCode: 0,
     wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
-}
-
-WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback)
+}, getWantAgentCallback)
 ```
 
 
@@ -642,7 +620,7 @@ Cancels a **WantAgent** object. This API uses a promise to return the result.
 
 | Name | Type     | Mandatory| Description         |
 | ----- | --------- | ---- | ------------- |
-| agent | WantAgent | Yes  | Target **WantAgent** object.|
+| agent | WantAgent | Yes  | **WantAgent** object.|
 
 **Return value**
 
@@ -653,41 +631,38 @@ Cancels a **WantAgent** object. This API uses a promise to return the result.
 **Example**
 
 ```ts
-import WantAgent from '@ohos.wantAgent';
-
+import WantAgent, { WantAgent as _WantAgent} from '@ohos.wantAgent';
+import { BusinessError } from '@ohos.base';
 
 // WantAgent object
-let wantAgent;
+let wantAgent: _WantAgent;
 
-// WantAgentInfo object
-let wantAgentInfo = {
+WantAgent.getWantAgent({
     wants: [
+    {
+        deviceId: 'deviceId',
+        bundleName: 'com.neu.setResultOnAbilityResultTest1',
+        abilityName: 'com.example.test.EntryAbility',
+        action: 'action1',
+        entities: ['entity1'],
+        type: 'MIMETYPE',
+        uri: 'key={true,true,false}',
+        parameters:
         {
-            deviceId: 'deviceId',
-            bundleName: 'com.neu.setResultOnAbilityResultTest1',
-            abilityName: 'com.example.test.EntryAbility',
-            action: 'action1',
-            entities: ['entity1'],
-            type: 'MIMETYPE',
-            uri: 'key={true,true,false}',
-            parameters:
-            {
-                mykey0: 2222,
-                mykey1: [1, 2, 3],
-                mykey2: '[1, 2, 3]',
-                mykey3: 'ssssssssssssssssssssssssss',
-                mykey4: [false, true, false],
-                mykey5: ['qqqqq', 'wwwwww', 'aaaaaaaaaaaaaaaaa'],
-                mykey6: true,
-            }
+            mykey0: 2222,
+            mykey1: [1, 2, 3],
+            mykey2: '[1, 2, 3]',
+            mykey3: 'ssssssssssssssssssssssssss',
+            mykey4: [false, true, false],
+            mykey5: ['qqqqq', 'wwwwww', 'aaaaaaaaaaaaaaaaa'],
+            mykey6: true,
         }
-    ],
+    }
+],
     operationType: WantAgent.OperationType.START_ABILITIES,
     requestCode: 0,
     wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
-}
-
-WantAgent.getWantAgent(wantAgentInfo).then((data) => {
+}).then((data) => {
 	console.info('==========================>getWantAgentCallback=======================>');
     wantAgent = data;
     if (wantAgent) {        
@@ -712,21 +687,21 @@ Triggers a **WantAgent** object. This API uses an asynchronous callback to retur
 
 | Name       | Type                         | Mandatory| Description                           |
 | ----------- | ----------------------------- | ---- | ------------------------------- |
-| agent       | WantAgent                     | Yes  | Target **WantAgent** object.                  |
+| agent       | WantAgent                     | Yes  | **WantAgent** object.                  |
 | triggerInfo | [TriggerInfo](js-apis-inner-wantAgent-triggerInfo.md)                     | Yes  | **TriggerInfo** object.                |
 | callback    | AsyncCallback\<CompleteData\> | No  | Callback used to return the result.|
 
 **Example**
 
 ```ts
-import WantAgent from '@ohos.wantAgent';
-
+import WantAgent, { WantAgent as _WantAgent} from '@ohos.wantAgent';
+import { BusinessError } from '@ohos.base';
 
 // WantAgent object
-let wantAgent;
+let wantAgent: _WantAgent;
 
 // getWantAgent callback
-function getWantAgentCallback(err, data) {
+function getWantAgentCallback(err: BusinessError, data: _WantAgent) {
 	console.info('==========================>getWantAgentCallback=======================>');
     if (err.code == 0) {
     	wantAgent = data;
@@ -736,17 +711,14 @@ function getWantAgentCallback(err, data) {
     }
 
     // trigger callback
-    function triggerCallback(data) {
+    let triggerCallback = (data: WantAgent.CompleteData) => {
         console.info('==========================>triggerCallback=======================>');
     }
 
-    var triggerInfo = {
-        code:0
-    }
-    WantAgent.trigger(wantAgent, triggerInfo, triggerCallback)
+    WantAgent.trigger(wantAgent, {code:0}, triggerCallback)
 }
-// WantAgentInfo object
-let wantAgentInfo = {
+
+WantAgent.getWantAgent({
     wants: [
         {
             deviceId: 'deviceId',
@@ -771,9 +743,7 @@ let wantAgentInfo = {
     operationType: WantAgent.OperationType.START_ABILITIES,
     requestCode: 0,
     wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
-}
-
-WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback)
+}, getWantAgentCallback)
 ```
 
 
@@ -797,15 +767,15 @@ Checks whether two **WantAgent** objects are equal to determine whether the same
 **Example**
 
 ```ts
-import WantAgent from '@ohos.wantAgent';
-
+import WantAgent, { WantAgent as _WantAgent} from '@ohos.wantAgent';
+import { BusinessError } from '@ohos.base';
 
 // WantAgent object
-let wantAgent1;
-let wantAgent2;
+let wantAgent1: _WantAgent;
+let wantAgent2: _WantAgent;
 
 // getWantAgent callback
-function getWantAgentCallback(err, data) {
+function getWantAgentCallback(err: BusinessError, data: _WantAgent) {
 	console.info('==========================>getWantAgentCallback=======================>');
     if (err.code == 0) {
     	wantAgent1 = data;
@@ -816,13 +786,13 @@ function getWantAgentCallback(err, data) {
     }
 
     // equal callback
-    function equalCallback(err, data) {
+    let equalCallback = (err: BusinessError, data: boolean) => {
         console.info('==========================>equalCallback=======================>');
     }
     WantAgent.equal(wantAgent1, wantAgent2, equalCallback)
 }
-// WantAgentInfo object
-let wantAgentInfo = {
+
+WantAgent.getWantAgent({
     wants: [
         {
             deviceId: 'deviceId',
@@ -847,9 +817,7 @@ let wantAgentInfo = {
     operationType: WantAgent.OperationType.START_ABILITIES,
     requestCode: 0,
     wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
-}
-
-WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback)
+}, getWantAgentCallback)
 ```
 
 
@@ -878,15 +846,15 @@ Checks whether two **WantAgent** objects are equal to determine whether the same
 **Example**
 
 ```ts
-import WantAgent from '@ohos.wantAgent';
+import WantAgent, { WantAgent as _WantAgent} from '@ohos.wantAgent';
+import { BusinessError } from '@ohos.base';
 
 
 // WantAgent object
-let wantAgent1;
-let wantAgent2;
+let wantAgent1: _WantAgent;
+let wantAgent2: _WantAgent;
 
-// WantAgentInfo object
-let wantAgentInfo = {
+WantAgent.getWantAgent({
     wants: [
         {
             deviceId: 'deviceId',
@@ -911,9 +879,7 @@ let wantAgentInfo = {
     operationType: WantAgent.OperationType.START_ABILITIES,
     requestCode: 0,
     wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
-}
-
-WantAgent.getWantAgent(wantAgentInfo).then((data) => {
+}).then((data) => {
 	console.info('==========================>getWantAgentCallback=======================>');
     wantAgent1 = data;
     wantAgent2 = data;
@@ -922,10 +888,6 @@ WantAgent.getWantAgent(wantAgentInfo).then((data) => {
             console.info('==========================>equalCallback=======================>');
         });
     }
-});
-
-WantAgent.equal(wantAgent1, wantAgent2).then((data) => {
-	console.info('==========================>equalCallback=======================>');
 });
 ```
 

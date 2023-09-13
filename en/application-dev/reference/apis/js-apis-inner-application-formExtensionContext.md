@@ -49,12 +49,14 @@ For details about the error codes, see [Form Error Codes](../errorcodes/errorcod
 
 ```ts
 import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
+import Want from '@ohos.app.ability.Want';
+import Base from '@ohos.base';
 
 export default class MyFormExtensionAbility extends FormExtensionAbility {
-  onFormEvent(formId, message) {
+  onFormEvent(formId: string, message: string) {
     // Call startAbility() when the message event is triggered.
-    console.log('FormExtensionAbility onFormEvent, formId: ${formId}, message:${message}');
-    let want = {
+    console.log(`FormExtensionAbility onFormEvent, formId: ${formId}, message:${message}`);
+    let want: Want = {
       deviceId: '',
       bundleName: 'com.example.formstartability',
       abilityName: 'EntryAbility',
@@ -62,9 +64,9 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
         'message': message
       }
     };
-    this.context.startAbility(want, (error) => {
+    this.context.startAbility(want, (error: Base.BusinessError) => {
       if (error) {
-        console.error('FormExtensionContext startAbility, error:${JSON.stringify(error)}');
+        console.error(`FormExtensionContext startAbility, error:${JSON.stringify(error)}`);
       } else {
         console.log('FormExtensionContext startAbility success');
       }
@@ -112,12 +114,14 @@ For details about the error codes, see [Form Error Codes](../errorcodes/errorcod
 
 ```ts
 import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
+import Want from '@ohos.app.ability.Want';
+import Base from '@ohos.base';
 
 export default class MyFormExtensionAbility extends FormExtensionAbility {
-  onFormEvent(formId, message) {
+  onFormEvent(formId: string, message: string) {
     // Call startAbility() when the message event is triggered.
-    console.log('FormExtensionAbility onFormEvent, formId:${formId}, message:${message}');
-    let want = {
+    console.log(`FormExtensionAbility onFormEvent, formId:${formId}, message:${message}`);
+    let want: Want = {
       deviceId: '',
       bundleName: 'com.example.formstartability',
       abilityName: 'EntryAbility',
@@ -127,7 +131,7 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
     };
     this.context.startAbility(want).then(() => {
       console.info('StartAbility Success');
-    }).catch((error) => {
+    }).catch((error: Base.BusinessError) => {
       console.error('StartAbility failed');
     });
   }
@@ -164,6 +168,7 @@ Connects this ability to a ServiceExtensionAbility.
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
+| 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
 | 16000053 | The ability is not on the top of the UI. |
@@ -175,41 +180,43 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 
 **Example**
 
-  ```ts
-  import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
+```ts
+import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
+import Want from '@ohos.app.ability.Want';
+import rpc from '@ohos.rpc';
 
-  let commRemote = null;
-  export default class MyFormExtensionAbility extends FormExtensionAbility {
-    onFormEvent(formId, message) {
-      // Call connectServiceExtensionAbility() when the message event is triggered.
-      console.log(`FormExtensionAbility onFormEvent, formId:${formId}, message:${message}`);
-      let want = {
-        deviceId: '',
-        bundleName: 'com.example.formstartability',
-        abilityName: 'EntryAbility',
-        parameters: {
-          'message': message
-        }
-      };
-      let options = {
-        onConnect(elementName, remote) { 
-          commRemote = remote; // remote is used to communicate with the ServiceExtensionAbility.
-          console.log('----------- onConnect -----------'); 
-        },
-        onDisconnect(elementName) { console.log('----------- onDisconnect -----------') },
-        onFailed(code) { console.error('----------- onFailed -----------') }
-      };
-
-      let connection = null;
-      try {
-        connection = this.context.connectServiceExtensionAbility(want, options);
-      } catch (paramError) {
-        // Process input parameter errors.
-        console.error(`error.code: ${paramError.code}, error.message: ${paramError.message}`);
+let commRemote: rpc.IRemoteObject | null = null;
+export default class MyFormExtensionAbility extends FormExtensionAbility {
+  onFormEvent(formId: string, message: string) {
+    // Call connectServiceExtensionAbility() when the message event is triggered.
+    console.log(`FormExtensionAbility onFormEvent, formId:${formId}, message:${message}`);
+    let want: Want = {
+      deviceId: '',
+      bundleName: 'com.example.formstartability',
+      abilityName: 'EntryAbility',
+      parameters: {
+        'message': message
       }
+    };
+    let options: common.ConnectOptions = {
+      onConnect(elementName, remote) { 
+        commRemote = remote; // remote is used to communicate with the ServiceExtensionAbility.
+        console.log('----------- onConnect -----------'); 
+      },
+      onDisconnect(elementName) { console.log('----------- onDisconnect -----------') },
+      onFailed(code) { console.error('----------- onFailed -----------') }
+    };
+
+    let connection: number | null = null;
+    try {
+      connection = this.context.connectServiceExtensionAbility(want, options);
+    } catch (paramError) {
+      // Process input parameter errors.
+      console.error(`error.code: ${(paramError as Base.BusinessError).code}, error.message: ${(paramError as Base.BusinessError).message}`);
     }
-  };
-  ```
+  }
+};
+```
 
 ## FormExtensionContext.disconnectServiceExtensionAbility<sup>10+</sup>
 
@@ -239,36 +246,38 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 
 **Example**
 
-  ```ts
-  import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
+```ts
+import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
+import rpc from '@ohos.rpc';
+import Base from '@ohos.base';
 
-  // commRemote is the remote object returned in the onConnect() callback. The value null is meaningless and is only an example.
-  let commRemote = null;
-  export default class MyFormExtensionAbility extends FormExtensionAbility {
-    onFormEvent(formId, message) {
-      // In actual use, connection is the return value of connectServiceExtensionAbility(). The value 1 is meaningless and is only an example.
-      let connection = 1;
+// commRemote is the remote object returned in the onConnect() callback. The value null is meaningless and is only an example.
+let commRemote: rpc.IRemoteObject | null = null;
+export default class MyFormExtensionAbility extends FormExtensionAbility {
+  onFormEvent(formId: string, message: string) {
+    // In actual use, connection is the return value of connectServiceExtensionAbility(). The value 1 is meaningless and is only an example.
+    let connection: number = 1;
 
-      try {
-        this.context.disconnectServiceExtensionAbility(connection, (error) => {
-          commRemote = null;
-          if (error.code) {
-            // Process service logic errors.
-            console.error(
-              `disconnectServiceExtensionAbility failed, error.code: ${error.code}, error.message: ${error.message}`);
-            return;
-          }
-          // Carry out normal service processing.
-          console.log('disconnectServiceExtensionAbility succeed');
-        });
-      } catch (paramError) {
+    try {
+      this.context.disconnectServiceExtensionAbility(connection, (error: Base.BusinessError) => {
         commRemote = null;
-        // Process input parameter errors.
-        console.error(`error.code: ${paramError.code}, error.message: ${paramError.message}`);
-      }
+        if (error.code) {
+          // Process service logic errors.
+          console.error(
+            `disconnectServiceExtensionAbility failed, error.code: ${error.code}, error.message: ${error.message}`);
+          return;
+        }
+        // Carry out normal service processing.
+        console.log('disconnectServiceExtensionAbility succeed');
+      });
+    } catch (paramError) {
+      commRemote = null;
+      // Process input parameter errors.
+      console.error(`error.code: ${(paramError as Base.BusinessError).code}, error.message: ${(paramError as Base.BusinessError).message}`);
     }
-  };
-  ```
+  }
+};
+```
 
 ## FormExtensionContext.disconnectServiceExtensionAbility<sup>10+</sup>
 
@@ -303,34 +312,36 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 
 **Example**
 
-  ```ts
-  import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
+```ts
+import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
+import rpc from '@ohos.rpc';
+import Base from '@ohos.base';
 
-  // commRemote is the remote object returned in the onConnect() callback. The value null is meaningless and is only an example.
-  let commRemote = null;
-  export default class MyFormExtensionAbility extends FormExtensionAbility {
-    onFormEvent(formId, message) {
-      //In actual use, connection is the return value of connectServiceExtensionAbility(). The value 1 is meaningless and is only an example.
-      let connection = 1;
+// commRemote is the remote object returned in the onConnect() callback. The value null is meaningless and is only an example.
+let commRemote: rpc.IRemoteObject | null = null;
+export default class MyFormExtensionAbility extends FormExtensionAbility {
+  onFormEvent(formId: string, message: string) {
+    // In actual use, connection is the return value of connectServiceExtensionAbility(). The value 1 is meaningless and is only an example.
+    let connection: number = 1;
 
-      try {
-        this.context.disconnectServiceExtensionAbility(connection)
-          .then((data) => {
-            commRemote = null;
-            // Carry out normal service processing.
-            console.log('disconnectServiceExtensionAbility succeed');
-          })
-          .catch((error) => {
-            commRemote = null;
-            // Process service logic errors.
-            console.error(
-              `disconnectServiceExtensionAbility failed, error.code: ${error.code}, error.message: ${error.message}`);
-          });
-      } catch (paramError) {
-        commRemote = null;
-        // Process input parameter errors.
-        console.error(`error.code: ${paramError.code}, error.message: ${paramError.message}`);
-      }
+    try {
+      this.context.disconnectServiceExtensionAbility(connection)
+        .then(() => {
+          commRemote = null;
+          // Carry out normal service processing.
+          console.log('disconnectServiceExtensionAbility succeed');
+        })
+        .catch((error: Base.BusinessError) => {
+          commRemote = null;
+          // Process service logic errors.
+          console.error(
+            `disconnectServiceExtensionAbility failed, error.code: ${error.code}, error.message: ${error.message}`);
+        });
+    } catch (paramError) {
+      commRemote = null;
+      // Process input parameter errors.
+      console.error(`error.code: ${(paramError as Base.BusinessError).code}, error.message: ${(paramError as Base.BusinessError).message}`);
     }
-  };
-  ```
+  }
+};
+```

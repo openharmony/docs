@@ -27,20 +27,22 @@ import Want from '@ohos.app.ability.Want';
 | action      | string               | No  | Action to take, such as viewing and sharing application details. In implicit Want, you can define this field and use it together with **uri** or **parameters** to specify the operation to be performed on the data. For details, see [action](js-apis-ability-wantConstant.md#wantconstantaction). For details about the definition and matching rules of implicit Want, see [Matching Rules of Explicit Want and Implicit Want](../../application-models/explicit-implicit-want-mappings.md).                          |
 | parameters   | {[key: string]: Object} | No  | Want parameters in the form of custom key-value (KV) pairs. By default, the following keys are carried:<br>- **ohos.aafwk.callerPid**: PID of the caller.<br>- **ohos.aafwk.param.callerToken**: token of the caller.<br>- **ohos.aafwk.param.callerUid**: UID in [bundleInfo](js-apis-bundle-BundleInfo.md#bundleinfo), that is, the application UID in the bundle information.<br>- **component.startup.newRules**: whether to enable the new control rule.<br>- **moduleName**: module name of the caller. No matter what this field is set to, the correct module name will be sent to the peer.<br>- **ohos.dlp.params.sandbox**: available only for DLP files.                                      |
 | entities    | Array\<string>       | No  | Additional category information (such as browser and video player) of the target ability. It is a supplement to **action** in implicit Want and is used to filter ability types. For details, see [entity](js-apis-app-ability-wantConstant.md#wantconstantentity).                                   |
-| moduleName<sup>10+</sup> | string | No   | Module to which the ability belongs.|
 
 **Example**
 
 - Basic usage (called in a UIAbility object, where context in the example is the context object of the UIAbility).
 
   ```ts
-  let want = {
-      'deviceId': '', // An empty deviceId indicates the local device.
-      'bundleName': 'com.example.myapplication',
-      'abilityName': 'EntryAbility',
-      'moduleName': 'entry' // moduleName is optional.
+  import Want from '@ohos.app.ability.Want';
+  import { BusinessError } from '@ohos.base';
+
+  let want: Want = {
+    deviceId: '', // An empty deviceId indicates the local device.
+    bundleName: 'com.example.myapplication',
+    abilityName: 'EntryAbility',
+    moduleName: 'entry', // moduleName is optional.
   };
-  this.context.startAbility(want, (error) => {
+  this.context.startAbility(want, (error: BusinessError) => {
       // Start an ability explicitly. The bundleName, abilityName, and moduleName parameters work together to uniquely identify an ability.
       console.error('error.code = ${error.code}');
   });
@@ -50,24 +52,25 @@ import Want from '@ohos.app.ability.Want';
 
   ```ts
   import fs from '@ohos.file.fs';
-  
+  import Want from '@ohos.app.ability.Want';
+  import { BusinessError } from '@ohos.base';
   // ...
-  let fd;
+  let fd: number = 0;
   try {
       fd = fs.openSync('/data/storage/el2/base/haps/pic.png').fd;
   } catch(e) {
       console.error('openSync fail: ${JSON.stringify(e)}');
   }
-  let want = {
-      'deviceId': '', // An empty deviceId indicates the local device.
-      'bundleName': 'com.example.myapplication',
-      'abilityName': 'EntryAbility',
-      'moduleName': 'entry', // moduleName is optional.
-      'parameters': {
+  let want: Want = {
+    deviceId: '', // An empty deviceId indicates the local device.
+    bundleName: 'com.example.myapplication',
+    abilityName: 'EntryAbility',
+    moduleName: 'entry', // moduleName is optional.
+    parameters: {
           'keyFd':{'type':'FD', 'value':fd}
       }
   };
-  this.context.startAbility(want, (error) => {
+  this.context.startAbility(want, (error: BusinessError) => {
       // Start an ability explicitly. The bundleName, abilityName, and moduleName parameters work together to uniquely identify an ability.
       console.error('error.code = ${error.code}');
   });

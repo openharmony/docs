@@ -35,6 +35,8 @@ Obtains the ID attached to the end of a given URI.
 **Example**
 
 ```ts
+import dataUriUtils from '@ohos.app.ability.dataUriUtils';
+
 try {
     let id = dataUriUtils.getId('com.example.dataUriUtils/1221');
     console.info('get id: ${id}');
@@ -69,6 +71,8 @@ Attaches an ID to the end of a given URI.
 **Example**
 
 ```ts
+import dataUriUtils from '@ohos.app.ability.dataUriUtils';
+
 let id = 1122;
 try {
     let uri = dataUriUtils.attachId(
@@ -107,6 +111,8 @@ Deletes the ID from the end of a given URI.
 **Example**
 
 ```ts
+import dataUriUtils from '@ohos.app.ability.dataUriUtils';
+
 try {
     let uri = dataUriUtils.deleteId('com.example.dataUriUtils/1221');
     console.info('delete id with the uri is: ${uri}');
@@ -142,6 +148,7 @@ Updates the ID in a given URI.
 **Example**
 
 ```ts
+import dataUriUtils from '@ohos.app.ability.dataUriUtils';
 
 try {
     let id = 1122;
