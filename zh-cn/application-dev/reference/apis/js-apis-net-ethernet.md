@@ -49,23 +49,25 @@ setIfaceConfig(iface: string, ic: InterfaceConfiguration, callback: AsyncCallbac
 **示例：**
 
 ```ts
-class Config  {
-  mode: number= 0,
-  ipAddr: string = "192.168.xx.xxx"
-  route: string = "192.168.xx.xxx"
-  gateway:string = "192.168.xx.xxx"
-  netMask:string = "255.255.255.0"
-  dnsServers: string = "1.1.1.1"
+import ethernet from '@ohos.net.ethernet'
+import { BusinessError } from '@ohos.base'
+
+let config: ethernet.InterfaceConfiguration = {
+  mode: 0,
+  ipAddr: "192.168.xx.xxx"
+  route: "192.168.xx.xxx"
+  gateway: "192.168.xx.xxx"
+  netMask: "255.255.255.0"
+  dnsServers: "1.1.1.1"
 };
 
-ethernet.setIfaceConfig("eth0", new Config(), (error: BusinessError) => {
+ethernet.setIfaceConfig("eth0", config, (error: BusinessError) => {
   if (error) {
     console.log("setIfaceConfig callback error = " + JSON.stringify(error));
   } else {
     console.log("setIfaceConfig callback ok");
   }
 });
-
 ```
 
 ## ethernet.setIfaceConfig<sup>9+</sup>

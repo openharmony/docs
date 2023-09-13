@@ -43,6 +43,7 @@ HTTP数据请求功能主要由http模块提供。
 ```js
 // 引入包名
 import http from '@ohos.net.http';
+import { BusinessError } from '@ohos.base';
 
 // 每一个httpRequest对应一个HTTP请求任务，不可复用
 let httpRequest = http.createHttp();
@@ -57,13 +58,11 @@ httpRequest.request(
   {
     method: http.RequestMethod.POST, // 可选，默认为http.RequestMethod.GET
     // 开发者根据自身业务需要添加header字段
-    header: {
+    header: [{
       'Content-Type': 'application/json'
-    },
+    }],
     // 当使用POST请求时此字段用于传递内容
-    extraData: {
-      "data": "data to send",
-    },
+    extraData: "data to send",
     expectDataType: http.HttpDataType.STRING, // 可选，指定返回数据的类型
     usingCache: true, // 可选，默认为true
     priority: 1, // 可选，默认为1
@@ -71,7 +70,7 @@ httpRequest.request(
     readTimeout: 60000, // 可选，默认为60000ms
     usingProtocol: http.HttpProtocol.HTTP1_1, // 可选，协议类型默认值由系统自动指定
     usingProxy: false, //可选，默认不使用网络代理，自API 10开始支持该属性
-  }, (err, data) => {
+  }, (err: BusinessError, data: http.HttpResponse) => {
     if (!err) {
       // data.result为HTTP响应内容，可根据业务需要进行解析
       console.info('Result:' + JSON.stringify(data.result));
@@ -104,7 +103,6 @@ httpRequest.request(
 
 ```js
 // 引入包名
-// 引入包名
 import http from '@ohos.net.http'
 import ArrayList from '@ohos.util.ArrayList';
 
@@ -129,22 +127,20 @@ httpRequest.on('dataReceiveProgress', (data: Object) => {
   console.log("dataReceiveProgress receiveSize:" + data.receiveSize + ", totalSize:" + data.totalSize);
 });
 
-class StreamInfo {
-  method: enum = http.RequestMethod.POST, // 可选，默认为http.RequestMethod.GET
+let streamInfo: http.HttpRequestOptions = {
+  method: http.RequestMethod.POST,  // 可选，默认为http.RequestMethod.GET
   // 开发者根据自身业务需要添加header字段
-  header: Object = new Map<string, string>(),
+  header: ['Content-Type', 'application/json'],
   // 当使用POST请求时此字段用于传递内容
-  extraData: Object = new Map<string, string>(),
-  expectDataType: enum = http.HttpDataType.STRING, // 可选，指定返回数据的类型
-  usingCache: boolean = true, // 可选，默认为true
-  priority: number = 1, // 可选，默认为1
-  connectTimeout: number = 60000, // 可选，默认为60000ms
-  readTimeout: number = 60000, // 可选，默认为60000ms。若传输的数据较大，需要较长的时间，建议增大该参数以保证数据传输正常终止
-  usingProtocol: enum = http.HttpProtocol.HTTP1_1, // 可选，协议类型默认值由系统自动指定
+  extraData: ["data", "data to send"],
+  expectDataType:  http.HttpDataType.STRING,// 可选，指定返回数据的类型
+  usingCache: true, // 可选，默认为true
+  priority: 1, // 可选，默认为1
+  connectTimeout: 60000, // 可选，默认为60000ms
+  readTimeout: 60000, // 可选，默认为60000ms。若传输的数据较大，需要较长的时间，建议增大该参数以保证数据传输正常终止
+  usingProtocol: http.HttpProtocol.HTTP1_1 // 可选，协议类型默认值由系统自动指定
 }
-let streamInfo = new StreamInfo();
-streamInfo.header.set('Content-Type', 'application/json');
-streamInfo.extraData.set("data", "data to send");
+
 httpRequest.requestInStream(
   // 填写HTTP请求的URL地址，可以带参数也可以不带参数。URL地址需要开发者自定义。请求的参数可以在extraData中指定
   "EXAMPLE_URL",

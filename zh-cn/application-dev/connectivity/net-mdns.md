@@ -49,10 +49,10 @@ MDNS管理的典型场景有：
 import mdns from '@ohos.net.mdns'
 import UIAbility from '@ohos.app.ability.UIAbility';
 import { BusinessError } from '@ohos.base';
+import featureAbility from '@ohos.ability.featureAbility';
 
 // 构造单例对象
 export class GlobalContext {
-  public netList: connection.NetHandle[];
   private constructor() {}
   private static instance: GlobalContext;
   private _objects = new Map<string, Object>();
@@ -73,10 +73,6 @@ export class GlobalContext {
   }
 }
 
-// FA模型获取context
-import featureAbility from '@ohos.ability.featureAbility';
-let context = featureAbility.getContext();
-
 // Stage模型获取context
 class EntryAbility extends UIAbility {
   value:number = 0;
@@ -87,23 +83,20 @@ class EntryAbility extends UIAbility {
 let context = GlobalContext.getContext().getObject("value");
 
 class ServiceAttribute {
-  key: string = "111",
+  key: string = "111"
   value: Array = [1]
-}
-class Host {
-  address: string = "10.14.**.***"
-}
-class LocalServiceInfo {
-  serviceType: string = "_print._tcp",
-  serviceName: string = "servicename",
-  port: number = 5555,
-  host: Object = new Host(),
-  serviceAttribute: Array<serviceAttribute> = new ServiceAttribute()
 }
 
 // 建立LocalService对象
-let localServiceInfo: mdns.LocalServiceInfo;
-let localServiceInfo = new LocalServiceInfo();
+let localServiceInfo: mdns.LocalServiceInfo = {
+  serviceType: "_print._tcp"
+  serviceName: "servicename"
+  port: 5555
+  host: {
+    address: "10.14.**.***"
+  }
+  serviceAttribute: [{key: "111", value: [1]}]
+}
 
 // addLocalService添加本地服务
 mdns.addLocalService(context, localServiceInfo, (error: BusinessError, data: mdns.LocalServiceInfo) =>  {
@@ -139,10 +132,10 @@ mdns.removeLocalService(context, localServiceInfo, (error: BusinessError, data: 
 import mdns from '@ohos.net.mdns'
 import UIAbility from '@ohos.app.ability.UIAbility';
 import { BusinessError } from '@ohos.base';
+import featureAbility from '@ohos.ability.featureAbility';
 
 // 构造单例对象
 export class GlobalContext {
-  public netList: connection.NetHandle[];
   private constructor() {}
   private static instance: GlobalContext;
   private _objects = new Map<string, Object>();
@@ -163,10 +156,6 @@ export class GlobalContext {
   }
 }
 
-// FA模型获取context
-import featureAbility from '@ohos.ability.featureAbility';
-let context = featureAbility.getContext();
-
 // Stage模型获取context
 class EntryAbility extends UIAbility {
   value:number = 0;
@@ -181,8 +170,8 @@ let serviceType = "_print._tcp";
 let discoveryService: Object = mdns.createDiscoveryService(context, serviceType);
 
 class DataServiceInfo{
-  serviceInfo: mdns.LocalServiceInfo
-  errorCode?: mdns.MdnsError
+  serviceInfo: mdns.LocalServiceInfo = {}
+  errorCode?: mdns.MdnsError = INTERNAL_ERROR
 }
 // 订阅mDNS服务发现相关状态变化
 discoveryService.on('discoveryStart', (data: DataServiceInfo) => {
