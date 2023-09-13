@@ -1077,7 +1077,7 @@ isValidNumber(number: string): boolean
 | boolean | 返回true表示电话号码的格式正确，返回false表示电话号码的格式错误。 |
 
 **示例：** 
-  ```js
+  ```ts
   let phonenumberfmt = new I18n.PhoneNumberFormat("CN");
   let isValidNumber = phonenumberfmt.isValidNumber("158****2312"); // isValidNumber = true
   ```
@@ -1104,7 +1104,7 @@ format(number: string): string
 | string | 格式化后的电话号码。 |
 
 **示例：** 
-  ```js
+  ```ts
   let phonenumberfmt = new I18n.PhoneNumberFormat("CN");
   let formattedPhoneNumber = phonenumberfmt.format("158****2312"); // formattedPhoneNumber = "158 **** 2312"
   ```
@@ -1132,7 +1132,7 @@ getLocationName(number: string, locale: string): string
 | string | 电话号码归属地。 |
 
 **示例：** 
-  ```js
+  ```ts
   let phonenumberfmt = new I18n.PhoneNumberFormat("CN");
   let locationName = phonenumberfmt.getLocationName("158****2345", "zh-CN"); // locationName = "广东省湛江市"
   ```
@@ -2474,7 +2474,7 @@ constructor(icsPath: string)
 | icsPath   | string | 是   | 在设备上有应用读取权限的iCalendar格式的ics文件路径  |
 
 **示例：**
-  ```js
+  ```ts
   let holidayManager= new I18n.HolidayManager("/system/lib/US.ics");
   ```
 
@@ -2510,7 +2510,7 @@ isHoliday(date?: Date): boolean;
 | 401       | check param failed         |
 
 **示例：**
-  ```js
+  ```ts
   try {
     let holidayManager= new I18n.HolidayManager("/system/lib/US.ics");
     let isHoliday = holidayManager.isHoliday();
@@ -2554,7 +2554,7 @@ getHolidayInfoItemArray(year?: number): Array&lt;[HolidayInfoItem](#holidayinfoi
 | 890001 | param value not valid  |
 
 **示例：**
-  ```js
+  ```ts
   try {
     let holidayManager= new I18n.HolidayManager("/system/lib/US.ics");
     let holidayInfoItemArray = holidayManager.getHolidayInfoItemArray(2023);
