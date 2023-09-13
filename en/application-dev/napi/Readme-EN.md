@@ -18,3 +18,6 @@
   - [Purgeable Memory Development](purgeable-memory-guidelines.md)
 - Device Management
   - [USB DDK Development](usb-ddk-guidelines.md)
+- Data Management
+  - [RelationalStore Development](native-relational-store-guidelines.md)
+

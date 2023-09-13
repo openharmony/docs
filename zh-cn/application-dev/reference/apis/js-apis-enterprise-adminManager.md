@@ -12,7 +12,7 @@
 
 ## 导入模块
 
-```js
+```ts
 import adminManager from '@ohos.enterprise.adminManager';
 ```
 
@@ -49,12 +49,13 @@ enableAdmin(admin: Want, enterpriseInfo: EnterpriseInfo, type: AdminType, callba
 
 **示例**：
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let enterpriseInfo = {
+let enterpriseInfo: adminManager.EnterpriseInfo = {
   name: 'enterprise name',
   description: 'enterprise description'
 }
@@ -102,12 +103,13 @@ enableAdmin(admin: Want, enterpriseInfo: EnterpriseInfo, type: AdminType, userId
 
 **示例**：
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let enterpriseInfo = {
+let enterpriseInfo: adminManager.EnterpriseInfo = {
   name: 'enterprise name',
   description: 'enterprise description'
 }
@@ -160,19 +162,22 @@ enableAdmin(admin: Want, enterpriseInfo: EnterpriseInfo, type: AdminType, userId
 
 **示例**：
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let enterpriseInfo = {
+let enterpriseInfo: adminManager.EnterpriseInfo = {
   name: 'enterprise name',
   description: 'enterprise description'
 }
 
-adminManager.enableAdmin(wantTemp, enterpriseInfo, adminManager.AdminType.ADMIN_TYPE_NORMAL, 100).catch((err) => {
-  console.error(`Failed to enable admin. Code: ${err.code}, message: ${err.message}`);
-});
+adminManager.enableAdmin(wantTemp, enterpriseInfo, adminManager.AdminType.ADMIN_TYPE_NORMAL, 100).catch(
+  (err: BusinessError) => {
+    console.error(`Failed to enable admin. Code: ${err.code}, message: ${err.message}`);
+  });
 ```
 
 ## adminManager.disableAdmin
@@ -204,8 +209,9 @@ disableAdmin(admin: Want, callback: AsyncCallback\<void>): void
 
 **示例**：
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
   bundleName: 'bundleName',
   abilityName: 'abilityName',
 };
@@ -249,8 +255,9 @@ disableAdmin(admin: Want, userId: number, callback: AsyncCallback\<void>): void
 
 **示例**：
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
   bundleName: 'bundleName',
   abilityName: 'abilityName',
 };
@@ -299,13 +306,15 @@ disableAdmin(admin: Want, userId?: number): Promise\<void>
 
 **示例**：
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+let wantTemp: Want = {
   bundleName: 'bundleName',
   abilityName: 'abilityName',
 };
 
-adminManager.disableAdmin(wantTemp, 100).catch((err) => {
+adminManager.disableAdmin(wantTemp, 100).catch((err: BusinessError) => {
   console.error(`Failed to disable admin. Code: ${err.code}, message: ${err.message}`);
 });
 ```
@@ -339,8 +348,9 @@ disableSuperAdmin(bundleName: String, callback: AsyncCallback\<void>): void
 
 **示例**：
 
-```js
-let bundleName = 'com.example.myapplication';
+```ts
+import Want from '@ohos.app.ability.Want';
+let bundleName: string = 'com.example.myapplication';
 
 adminManager.disableSuperAdmin(bundleName, (err) => {
   if (err) {
@@ -385,10 +395,12 @@ disableSuperAdmin(bundleName: String): Promise\<void>
 
 **示例**：
 
-```js
-let bundleName = 'com.example.myapplication';
+```ts
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+let bundleName: string = 'com.example.myapplication';
 
-adminManager.disableSuperAdmin(bundleName).catch((err) => {
+adminManager.disableSuperAdmin(bundleName).catch((err: BusinessError) => {
   console.error(`Failed to disable super admin. Code: ${err.code}, message: ${err.message}`);
 });
 ```
@@ -412,8 +424,9 @@ isAdminEnabled(admin: Want, callback: AsyncCallback\<boolean>): void
 
 **示例**：
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
   bundleName: 'bundleName',
   abilityName: 'abilityName',
 };
@@ -447,8 +460,9 @@ isAdminEnabled(admin: Want, userId: number, callback: AsyncCallback\<boolean>): 
 
 **示例**：
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
   bundleName: 'bundleName',
   abilityName: 'abilityName',
 };
@@ -487,15 +501,17 @@ isAdminEnabled(admin: Want, userId?: number): Promise\<boolean>
 
 **示例**：
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+let wantTemp: Want = {
   bundleName: 'bundleName',
   abilityName: 'abilityName',
 };
 
 adminManager.isAdminEnabled(wantTemp, 100).then((result) => {
   console.info(`Succeeded in querying admin is enabled or not, result : ${result}`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to query admin is enabled or not. Code: ${err.code}, message: ${err.message}`);
 });
 ```
@@ -519,8 +535,9 @@ isSuperAdmin(bundleName: String, callback: AsyncCallback\<boolean>): void
 
 **示例**：
 
-```js
-let bundleName = 'com.example.myapplication';
+```ts
+import Want from '@ohos.app.ability.Want';
+let bundleName: string = 'com.example.myapplication';
 
 adminManager.isSuperAdmin(bundleName, (err, result) => {
   if (err) {
@@ -555,12 +572,14 @@ isSuperAdmin(bundleName: String): Promise\<boolean>
 
 **示例**：
 
-```js
-let bundleName = 'com.example.myapplication';
+```ts
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+let bundleName: string = 'com.example.myapplication';
 
 adminManager.isSuperAdmin(bundleName).then((result) => {
   console.info(`Succeeded in querying admin is super admin or not, result : ${result}`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to query admin is super admin or not. Code: ${err.code}, message: ${err.message}`);
 });
 ```
@@ -595,12 +614,13 @@ setEnterpriseInfo(admin: Want, enterpriseInfo: EnterpriseInfo, callback: AsyncCa
 
 **示例：**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let enterpriseInfo = {
+let enterpriseInfo: adminManager.EnterpriseInfo = {
   name: 'enterprise name',
   description: 'enterprise description'
 }
@@ -649,17 +669,19 @@ setEnterpriseInfo(admin: Want, enterpriseInfo: EnterpriseInfo): Promise\<void>;
 
 **示例：**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let enterpriseInfo = {
+let enterpriseInfo: adminManager.EnterpriseInfo = {
   name: 'enterprise name',
   description: 'enterprise description'
 }
 
-adminManager.setEnterpriseInfo(wantTemp, enterpriseInfo).catch((err) => {
+adminManager.setEnterpriseInfo(wantTemp, enterpriseInfo).catch((err: BusinessError) => {
   console.error(`Failed to set enterprise info. Code: ${err.code}, message: ${err.message}`);
 });
 ```
@@ -691,8 +713,9 @@ getEnterpriseInfo(admin: Want, callback: AsyncCallback&lt;EnterpriseInfo&gt;): v
 
 **示例：**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
@@ -738,15 +761,17 @@ getEnterpriseInfo(admin: Want): Promise&lt;EnterpriseInfo&gt;
 
 **示例：**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
 
 adminManager.getEnterpriseInfo(wantTemp).then((result) => {
   console.info(`Succeeded in getting enterprise info, enterprise name : ${result.name}, enterprise description : ${result.description}`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to get enterprise info. Code: ${err.code}, message: ${err.message}`);
 });
 ```
@@ -782,12 +807,13 @@ subscribeManagedEvent(admin: Want, managedEvents: Array\<ManagedEvent>, callback
 
 **示例：**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
   bundleName: 'bundleName',
   abilityName: 'abilityName',
 };
-let events = [0, 1];
+let events: Array<adminManager.ManagedEvent> = [0, 1];
 
 adminManager.subscribeManagedEvent(wantTemp, events, (err) => {
   if (err) {
@@ -834,15 +860,17 @@ subscribeManagedEvent(admin: Want, managedEvents: Array\<ManagedEvent>): Promise
 
 **示例：**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+let wantTemp: Want = {
   bundleName: 'bundleName',
   abilityName: 'abilityName',
 };
-let events = [0, 1];
+let events: Array<adminManager.ManagedEvent> = [0, 1];
 
 adminManager.subscribeManagedEvent(wantTemp, events).then(() => {
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to subscribe managed event. Code: ${err.code}, message: ${err.message}`);
 })
 ```
@@ -878,12 +906,13 @@ unsubscribeManagedEvent(admin: Want, managedEvents: Array\<ManagedEvent>, callba
 
 **示例：**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
   bundleName: 'bundleName',
   abilityName: 'abilityName',
 };
-let events = [0, 1];
+let events: Array<adminManager.ManagedEvent> = [0, 1];
 
 adminManager.unsubscribeManagedEvent(wantTemp, events, (err) => {
   if (err) {
@@ -930,16 +959,119 @@ unsubscribeManagedEvent(admin: Want, managedEvents: Array\<ManagedEvent>): Promi
 
 **示例：**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+let wantTemp: Want = {
   bundleName: 'bundleName',
   abilityName: 'abilityName',
 };
-let events = [0, 1];
+let events: Array<adminManager.ManagedEvent> = [0, 1];
 
 adminManager.unsubscribeManagedEvent(wantTemp, events).then(() => {
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to unsubscribe managed event. Code: ${err.code}, message: ${err.message}`);
+})
+```
+
+## adminManager.authorizeAdmin<sup>10+</sup>
+
+authorizeAdmin(admin: Want, bundleName: string, callback: AsyncCallback&lt;void&gt;): void
+
+设备管理应用授予指定应用管理员权限。使用callback异步回调。
+
+**需要权限：** ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**系统API**: 此接口为系统接口。
+
+**参数：**
+
+| 参数名   | 类型                                  | 必填   | 说明      |
+| ----- | ----------------------------------- | ---- | ------- |
+| admin | [Want](js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
+| bundleName  | string | 是 | 被授予管理员权限应用的包名。 |
+| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，当接口调用成功，err为null，否则为错误对象。 |
+
+**错误码**：
+
+以下的错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-enterpriseDeviceManager.md)
+
+| 错误码ID | 错误信息                                               |
+| ------- | ----------------------------------------------------- |
+| 9200001 | the application is not an administrator of the device. |
+| 9200002 | the administrator application does not have permission to manage the device.          |
+| 9200009 | authorize permission to the application failed.          |
+
+**示例：**
+
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
+  bundleName: 'bundleName',
+  abilityName: 'abilityName',
+};
+let bundleName: string = "com.example.application";
+
+adminManager.authorizeAdmin(wantTemp, bundleName, (err) => {
+  if (err) {
+    console.error(`Failed to authorize permission to the application. Code: ${err.code}, message: ${err.message}`);
+    return;
+  }
+  console.info('Successfully authorized permission to the application');
+});
+```
+
+## adminManager.authorizeAdmin<sup>10+</sup>
+
+authorizeAdmin(admin: Want, bundleName: string): Promise&lt;void&gt;
+
+设备管理应用授予指定应用管理员权限。使用Promise异步回调。
+
+**需要权限：** ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**系统API**: 此接口为系统接口。
+
+**参数：**
+
+| 参数名   | 类型                                  | 必填   | 说明      |
+| ----- | ----------------------------------- | ---- | ------- |
+| admin | [Want](js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
+| bundleName  | string | 是 | 被授予管理员权限应用的包名。 |
+
+**返回值：**
+
+| 类型   | 说明                                  |
+| ----- | ----------------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。当设备管理应用授予指定应用管理员权限失败时，抛出错误对象。 |
+
+**错误码**：
+
+以下的错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-enterpriseDeviceManager.md)
+
+| 错误码ID | 错误信息                                               |
+| ------- | ----------------------------------------------------- |
+| 9200001 | the application is not an administrator of the device. |
+| 9200002 | the administrator application does not have permission to manage the device.          |
+| 9200009 | authorize permission to the application failed.          |
+
+**示例：**
+
+```ts
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+let wantTemp: Want = {
+  bundleName: 'bundleName',
+  abilityName: 'abilityName',
+};
+let bundleName: string = "com.example.application";
+
+adminManager.authorizeAdmin(wantTemp, bundleName).then(() => {
+}).catch((err: BusinessError) => {
+  console.error(`Failed to authorize permission to the application. Code: ${err.code}, message: ${err.message}`);
 })
 ```
 

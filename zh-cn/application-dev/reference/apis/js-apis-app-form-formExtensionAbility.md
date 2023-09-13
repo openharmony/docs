@@ -46,18 +46,19 @@ onAddForm(want: Want): formBindingData.FormBindingData
 ```ts
 import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
 import formBindingData from '@ohos.app.form.formBindingData';
+import Want from '@ohos.app.ability.Want';
 
 export default class MyFormExtensionAbility extends FormExtensionAbility {
-  onAddForm(want) {
+  onAddForm(want: Want) {
     console.log(`FormExtensionAbility onAddForm, want: ${want.abilityName}`);
-    let dataObj1 = {
-      temperature: '11c',
-      'time': '11:00'
-    };
-    let obj1 = formBindingData.createFormBindingData(dataObj1);
+    let dataObj1 = new Map<string, string>();
+    dataObj1.set('temperature', '11c');
+    dataObj1.set('time', '11:00');
+
+    let obj1: formBindingData.FormBindingData = formBindingData.createFormBindingData(dataObj1);
     return obj1;
   }
-};
+}
 ```
 
 ## onCastToNormalForm
@@ -80,7 +81,7 @@ onCastToNormalForm(formId: string): void
 import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
 
 export default class MyFormExtensionAbility extends FormExtensionAbility {
-  onCastToNormalForm(formId) {
+  onCastToNormalForm(formId: string) {
     console.log(`FormExtensionAbility onCastToNormalForm, formId: ${formId}`);
   }
 };
@@ -106,18 +107,20 @@ onUpdateForm(formId: string): void
 import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
 import formBindingData from '@ohos.app.form.formBindingData';
 import formProvider from '@ohos.app.form.formProvider';
+import Base from '@ohos.base';
 
 export default class MyFormExtensionAbility extends FormExtensionAbility {
-  onUpdateForm(formId) {
+  onUpdateForm(formId: string) {
     console.log(`FormExtensionAbility onUpdateForm, formId: ${formId}`);
-    let obj2 = formBindingData.createFormBindingData({
-      temperature: '22c',
-      time: '22:00'
-    });
-    formProvider.updateForm(formId, obj2).then((data) => {
-      console.log(`FormExtensionAbility context updateForm, data: ${data}`);
-    }).catch((error) => {
-      console.error(`Operation updateForm failed. Cause: ${error}`);
+    let param: Record<string, string> = {
+      'temperature': '22c',
+      'time': '22:00'
+    }
+    let obj2: formBindingData.FormBindingData = formBindingData.createFormBindingData(param);
+    formProvider.updateForm(formId, obj2).then(() => {
+      console.log(`FormExtensionAbility context updateForm`);
+    }).catch((error: Base.BusinessError) => {
+      console.error(`FormExtensionAbility context updateForm failed, data: ${error}`);
     });
   }
 };
@@ -143,21 +146,32 @@ onChangeFormVisibility(newStatus: { [key: string]: number }): void
 import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
 import formBindingData from '@ohos.app.form.formBindingData';
 import formProvider from '@ohos.app.form.formProvider';
+import Base from '@ohos.base';
+
+// 由于arkTs中无Object.keys，且无法使用for..in...
+// 若报arkTs问题，请将此方法单独抽离至一个ts文件中并暴露，在需要用到的ets文件中引入使用
+function getObjKeys(obj: Object): string[] {
+  let keys = Object.keys(obj);
+  return keys;
+}
 
 export default class MyFormExtensionAbility extends FormExtensionAbility {
-  onChangeFormVisibility(newStatus) {
+  onChangeFormVisibility(newStatus: Record<string, number>) {
     console.log(`FormExtensionAbility onChangeFormVisibility, newStatus: ${newStatus}`);
-    let obj2 = formBindingData.createFormBindingData({
-      temperature: '22c',
-      time: '22:00'
-    });
+    let param: Record<string, string> = {
+      'temperature': '22c',
+      'time': '22:00'
+    }
+    let obj2: formBindingData.FormBindingData = formBindingData.createFormBindingData(param);
 
-    for (let key in newStatus) {
-      console.log(`FormExtensionAbility onChangeFormVisibility, key: ${key}, value= ${newStatus[key]}`);
-      formProvider.updateForm(key, obj2).then((data) => {
-        console.log(`FormExtensionAbility context updateForm, data: ${data}`);
-      }).catch((error) => {
-        console.error(`Operation updateForm failed. Cause: ${error}`);
+    let keys: string[] = getObjKeys(newStatus);
+
+    for (let i: number = 0; i < keys.length; i++) {
+      console.log(`FormExtensionAbility onChangeFormVisibility, key: ${keys[i]}, value= ${newStatus[keys[i]]}`);
+      formProvider.updateForm(keys[i], obj2).then(() => {
+        console.log(`FormExtensionAbility context updateForm`);
+      }).catch((error: Base.BusinessError) => {
+        console.error(`Operation updateForm failed. Cause: ${JSON.stringify(error)}`);
       });
     }
   }
@@ -185,7 +199,7 @@ onFormEvent(formId: string, message: string): void
 import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
 
 export default class MyFormExtensionAbility extends FormExtensionAbility {
-  onFormEvent(formId, message) {
+  onFormEvent(formId: string, message: string) {
     console.log(`FormExtensionAbility onFormEvent, formId: ${formId}, message: ${message}`);
   }
 };
@@ -211,7 +225,7 @@ onRemoveForm(formId: string): void
 import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
 
 export default class MyFormExtensionAbility extends FormExtensionAbility {
-  onRemoveForm(formId) {
+  onRemoveForm(formId: string) {
     console.log(`FormExtensionAbility onRemoveForm, formId: ${formId}`);
   }
 };
@@ -235,9 +249,10 @@ onConfigurationUpdate(newConfig: Configuration): void;
 
 ```ts
 import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
+import { Configuration } from '@ohos.app.ability.Configuration';
 
 export default class MyFormExtensionAbility extends FormExtensionAbility {
-  onConfigurationUpdate(config) {
+  onConfigurationUpdate(config: Configuration) {
     console.log(`onConfigurationUpdate, config: ${JSON.stringify(config)}`);
   }
 };
@@ -262,9 +277,10 @@ onAcquireFormState?(want: Want): formInfo.FormState;
 ```ts
 import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
 import formInfo from '@ohos.app.form.formInfo';
+import Want from '@ohos.app.ability.Want';
 
 export default class MyFormExtensionAbility extends FormExtensionAbility {
-  onAcquireFormState(want) {
+  onAcquireFormState(want: Want) {
     console.log(`FormExtensionAbility onAcquireFormState, want: ${want}`);
     return formInfo.FormState.UNKNOWN;
   }
@@ -299,9 +315,9 @@ onShareForm?(formId: string): { [key: string]: Object }
 import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
 
 export default class MyFormExtensionAbility extends FormExtensionAbility {
-  onShareForm(formId) {
+  onShareForm(formId: string) {
     console.log(`FormExtensionAbility onShareForm, formId: ${formId}`);
-    let wantParams = {
+    let wantParams: Record<string, Object> = {
       'temperature': '20',
       'time': '2022-8-8 09:59',
     };
@@ -338,9 +354,9 @@ onAcquireFormData?(formId: string): { [key: string]: Object }
 import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
 
 export default class MyFormExtensionAbility extends FormExtensionAbility {
-  onAcquireFormData(formId) {
-    console.log('FormExtensionAbility onAcquireFormData, formId: ${formId}');
-    let wantParams = {
+  onAcquireFormData(formId: string) {
+    console.log(`FormExtensionAbility onAcquireFormData, formId: ${formId}`);
+    let wantParams: Record<string, Object> = {
       'temperature': '20',
       'time': '2022-8-8 09:59',
     };

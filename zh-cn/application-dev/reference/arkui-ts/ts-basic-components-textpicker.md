@@ -68,6 +68,10 @@ TextPicker(options?: {range: string[] | string[][] | Resource | TextPickerRangeC
 
 ```ts
 // xxx.ets
+class bottom {
+  bottom:number = 50
+}
+let bott:bottom = new bottom()
 @Entry
 @Component
 struct TextPickerExample {
@@ -98,14 +102,14 @@ struct TextPickerExample {
     Column() {
 
       TextPicker({ range: this.apfruits, selected: this.select })
-        .onChange((value: string, index: number) => {
+        .onChange((value: string | string[], index: number | number[]) => {
           console.info('Picker item changed, value: ' + value + ', index: ' + index)
-        }).margin({ bottom: 50 })
+        }).margin(bott)
 
       TextPicker({ range: this.multi })
         .onChange((value: string | string[], index: number | number[]) => {
           console.info('TextPicker 多列:onChange ' + JSON.stringify(value) + ', ' + 'index: ' + JSON.stringify(index))
-        }).margin({ bottom: 50 })
+        }).margin(bott)
 
       TextPicker({ range: this.cascade })
         .onChange((value: string | string[], index: number | number[]) => {
@@ -129,7 +133,7 @@ struct TextPickerExample {
   build() {
     Column() {
       TextPicker({ range: this.fruits, selected: this.select })
-        .onChange((value: string, index: number) => {
+        .onChange((value: string | string[], index: number | number[]) => {
           console.info('Picker item changed, value: ' + value + ', index: ' + index)
         })
         .disappearTextStyle({color: Color.Red, font: {size: 15, weight: FontWeight.Lighter}})

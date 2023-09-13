@@ -1,58 +1,55 @@
-# VPN管理
+# VPN 管理
 
 ## 简介
 
-VPN即虚拟专网（VPN-Virtual Private Network）在公用网络上建立专用网络的技术。整个VPN网络的任意两个节点之间的连接并没有传统专网所需的端到端的物理链路，而是架构在公用网络服务商所提供的网络平台（如Internet）之上的逻辑网络，用户数据在逻辑链路中传输。
+VPN 即虚拟专网（VPN-Virtual Private Network）在公用网络上建立专用网络的技术。整个 VPN 网络的任意两个节点之间的连接并没有传统专网所需的端到端的物理链路，而是架构在公用网络服务商所提供的网络平台（如 Internet）之上的逻辑网络，用户数据在逻辑链路中传输。
 
 > **说明：**
-> 为了保证应用的运行效率，大部分API调用都是异步的，对于异步调用的API均提供了callback和Promise两种方式，以下示例均采用callback函数，更多方式可以查阅[API参考](../reference/apis/js-apis-net-vpn.md)。
+> 为了保证应用的运行效率，大部分 API 调用都是异步的，对于异步调用的 API 均提供了 callback 和 Promise 两种方式，以下示例均采用 callback 函数，更多方式可以查阅[API 参考](../reference/apis/js-apis-net-vpn.md)。
 
 以下分别介绍具体开发方式。
 
 ## 接口说明
 
-完整的JS API说明以及实例代码请参考：[VPN API参考](../reference/apis/js-apis-net-vpn.md)。
+完整的 JS API 说明以及实例代码请参考：[VPN API 参考](../reference/apis/js-apis-net-vpn.md)。
 
-| 类型 | 接口 | 功能说明 |
-| ---- | ---- | ---- |
-| ohos.net.vpn | setUp(config: VpnConfig, callback: AsyncCallback\<number\>): void | 建立一个VPN网络，使用callback方式作为异步方法。 |
-| ohos.net.vpn | protect(socketFd: number, callback: AsyncCallback\<void\>): void | 保护VPN的隧道，使用callback方式作为异步方法。 |
-| ohos.net.vpn | destroy(callback: AsyncCallback\<void\>): void | 销毁一个VPN网络，使用callback方式作为异步方法。 |
+| 类型         | 接口                                                              | 功能说明                                            |
+| ------------ | ----------------------------------------------------------------- | --------------------------------------------------- |
+| ohos.net.vpn | setUp(config: VpnConfig, callback: AsyncCallback\<number\>): void | 建立一个 VPN 网络，使用 callback 方式作为异步方法。 |
+| ohos.net.vpn | protect(socketFd: number, callback: AsyncCallback\<void\>): void  | 保护 VPN 的隧道，使用 callback 方式作为异步方法。   |
+| ohos.net.vpn | destroy(callback: AsyncCallback\<void\>): void                    | 销毁一个 VPN 网络，使用 callback 方式作为异步方法。 |
 
-## 启动VPN的流程
+## 启动 VPN 的流程
 
-1. 建立一个VPN的网络隧道，下面以UDP隧道为例。
-2. 保护前一步建立的UDP隧道。
-3. 建立一个VPN网络。
+1. 建立一个 VPN 的网络隧道，下面以 UDP 隧道为例。
+2. 保护前一步建立的 UDP 隧道。
+3. 建立一个 VPN 网络。
 4. 处理虚拟网卡的数据，如：读写操作。
-5. 销毁VPN网络。
+5. 销毁 VPN 网络。
 
-本示例通过 Native C++ 的方式开发应用程序，Native C++ 可参考: [简易Native C++ 示例（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/NativeAPI/NativeTemplateDemo)
+本示例通过 Native C++ 的方式开发应用程序，Native C++ 可参考: [简易 Native C++ 示例（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/NativeAPI/NativeTemplateDemo)
 
-示例程序主要包含两个部分：js功能代码和C++功能代码
+示例程序主要包含两个部分：js 功能代码和 C++功能代码
 
-## VPN示例源码(js部分)
-主要功能：实现业务逻辑，如：创建隧道、建立VPN网络、保护VPN网络、销毁VPN网络
+## VPN 示例源码(js 部分)
+
+主要功能：实现业务逻辑，如：创建隧道、建立 VPN 网络、保护 VPN 网络、销毁 VPN 网络
 
 ```js
-import hilog from '@ohos.hilog';
 import vpn from '@ohos.net.vpn';
-import UIAbility from '@ohos.app.ability.UIAbility';
+import common from '@ohos.app.ability.common';
 import vpn_client from "libvpn_client.so"
+import { BusinessError } from '@ohos.base';
 
-class EntryAbility extends UIAbility {
-  onWindowStageCreate(windowStage) {
-    globalThis.context = this.context;
-  }
-}
-
-let TunnelFd = -1
-let VpnConnection = vpn.createVpnConnection(globalThis.context)
+let TunnelFd: number = -1
 
 @Entry
 @Component
 struct Index {
   @State message: string = 'Test VPN'
+
+  private context = getContext(this) as common.UIAbilityContext;
+  private VpnConnection: vpn.VpnConnection = vpn.createVpnConnection(this.context)
 
   //1. 建立一个VPN的网络隧道，下面以UDP隧道为例。
   CreateTunnel() {
@@ -61,34 +58,26 @@ struct Index {
 
   //2. 保护前一步建立的UDP隧道。
   Protect() {
-    VpnConnection.protect(TunnelFd).then(function () {
+    this.VpnConnection.protect(TunnelFd).then(() => {
       console.info("vpn Protect Success.")
-    }).catch(function (err) {
+    }).catch((err: BusinessError) => {
       console.info("vpn Protect Failed " + JSON.stringify(err))
     })
   }
 
   SetupVpn() {
-    let config = {
-      addresses: [{
-        address: {
-          address: "10.0.0.5",
-          family: 1
-        },
-        prefixLength: 24,
-      }],
-      routes: [],
-      mtu: 1400,
-      dnsAddresses: [
-        "114.114.114.114"
-      ],
-      acceptedApplications: [],
-      refusedApplications: []
-    }
+    let tunAddr : vpn.LinkAddress = {} as vpn.LinkAddress
+    tunAddr.address.address = "10.0.0.5"
+    tunAddr.address.family = 1
+
+    let config : vpn.VpnConfig = {} as vpn.VpnConfig
+    config.addresses.push(tunAddr)
+    config.mtu = 1400
+    config.dnsAddresses = ["114.114.114.114"]
 
     try {
       //3. 建立一个VPN网络。
-      VpnConnection.setUp(config, (error, data) => {
+      this.VpnConnection.setUp(config, (error: BusinessError, data: number) => {
         console.info("tunfd: " + JSON.stringify(data));
         //4. 处理虚拟网卡的数据，如：读写操作。
         vpn_client.startVpn(data, TunnelFd)
@@ -101,9 +90,9 @@ struct Index {
   //5.销毁VPN网络。
   Destroy() {
     vpn_client.stopVpn(TunnelFd)
-    VpnConnection.destroy().then(function () {
+    this.VpnConnection.destroy().then(() => {
       console.info("vpn Destroy Success.")
-    }).catch(function (err) {
+    }).catch((err: BusinessError) => {
       console.info("vpn Destroy Failed " + JSON.stringify(err))
     })
   }
@@ -137,8 +126,9 @@ struct Index {
 }
 ```
 
-## VPN示例源码(c++部分)
-主要功能：具体业务的底层实现，如：UDP隧道Client端的实现、虚拟网卡读写数据的实现
+## VPN 示例源码(c++部分)
+
+主要功能：具体业务的底层实现，如：UDP 隧道 Client 端的实现、虚拟网卡读写数据的实现
 
 ```c++
 #include "napi/native_api.h"
@@ -179,7 +169,7 @@ struct Index {
 struct FdInfo {
     int32_t tunFd = 0;
     int32_t tunnelFd = 0;
-    struct sockaddr_in serverAddr; 
+    struct sockaddr_in serverAddr;
 };
 
 static FdInfo fdInfo;

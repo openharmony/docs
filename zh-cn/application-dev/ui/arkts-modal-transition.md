@@ -38,6 +38,12 @@
 3. 通过模态接口调起模态展示界面，通过转场动画或者共享元素动画去实现对应的动画效果。
   
    ```ts
+   class PresentTmp{
+     isPresent: boolean = false;
+     set(){
+       this.isPresent = !this.isPresent;
+     }
+   }
    // 模态转场控制变量
    @State isPresent: boolean = false;
    
@@ -46,7 +52,8 @@
      .bindContentCover($$this.isPresent, this.MyBuilder, ModalTransition.None)
      .onClick(() => {
        // 改变状态变量，让模态界面显示
-       this.isPresent = !this.isPresent;
+       let setPre:PresentTmp = new PresentTmp()
+       setPre.set()
      })
    ```
 
@@ -147,7 +154,7 @@ struct BindContentCoverDemo {
 struct BindSheetDemo {
 
   // 半模态转场高度控制变量
-  @State sheetHeight: number = 300;
+  @State sheetHeight: number|SheetSize|null|undefined = 300;
   // 半模态转场控制条控制变量
   @State showDragBar: boolean = true;
 
@@ -190,7 +197,8 @@ struct BindSheetDemo {
 
   build() {
     Column() {
-      Button("Click to present sheet view")
+      if(this.sheetHeight){
+        Button("Click to present sheet view")
         .onClick(() => {
           // 改变状态变量，让模态界面显示
           this.isPresent = !this.isPresent;
@@ -199,6 +207,7 @@ struct BindSheetDemo {
         .margin(10)
           // 通过选定的半模态接口，绑定模态展示界面，style中包含两个参数，一个是设置半模态的高度，不设置时默认高度是Large,一个是是否显示控制条DragBar,默认是true显示控制条
         .bindSheet($$this.isPresent, this.myBuilder(), { height: this.sheetHeight, dragBar: this.showDragBar })
+      }
     }
     .justifyContent(FlexAlign.Center)
     .width('100%')
@@ -216,6 +225,10 @@ struct BindSheetDemo {
 
 
 ```ts
+class BMD{
+  value:string = ''
+  action:Function|undefined = undefined
+}
 @Entry
 @Component
 struct BindMenuDemo {
@@ -227,13 +240,13 @@ struct BindMenuDemo {
       action: () => {
         console.info('handle Menu1 select')
       }
-    },
+    } as BMD,
     {
       value: '菜单项2',
       action: () => {
         console.info('handle Menu2 select')
       }
-    },
+    } as BMD,
   ]
 
   build() {
@@ -271,16 +284,18 @@ struct BindContextMenuDemo {
   @Builder MyMenu() {
     Row() {
       Column() {
-        ForEach(this.num, (item: number, index: number) => {
-          Row() {
-            Text(item.toString())
-              .fontSize(20)
-              .fontColor(Color.White)
+        ForEach(this.num, (item: number, index?: number|undefined) => {
+          if(index){
+            Row() {
+              Text(item.toString())
+                .fontSize(20)
+                .fontColor(Color.White)
+            }
+            .backgroundColor(this.colors[index])
+            .width('100%')
+            .aspectRatio(2)
+            .justifyContent(FlexAlign.Center)
           }
-          .backgroundColor(this.colors[index])
-          .width('100%')
-          .aspectRatio(2)
-          .justifyContent(FlexAlign.Center)
         })
       }
       .width('100%')

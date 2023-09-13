@@ -2,23 +2,64 @@
 A Harmony Archive (HAR) is a static shared package that can contain code, C++ libraries, resources, and configuration files. It enables modules and projects to share code related to ArkUI components, resources, and more. Unlike a Harmony Ability Package (HAP), a HAR cannot be independently installed on a device. Instead, it can be referenced only as the dependency of an application module.
 
 ## Creating a HAR Module
-You can [create a HAR module in DevEco Studio](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/creating_har_api9-0000001518082393-V3#section143510369612). To better protect your source code, enable obfuscation for the HAR module so that DevEco Studio compiles, obfuscates, and compresses code during HAR building. To enable obfuscation, open the **build-profile.json5** file of the HAR module and set **artifactType** to **obfuscation** as follows:
+You can [create a HAR module in DevEco Studio](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/creating_har_api9-0000001518082393-V3#section143510369612).
 
-```json
-{
-  "apiType": "stageMode",
-  "buildOption": {
-      "artifactType": "obfuscation"
-  }
-}
-```
-The value options of **artifactType** are as follows, with the default value being **original**:
-- **original**: Code is not obfuscated.
-- **obfuscation**: Code is obfuscated using Uglify.
-
+To better protect your source code, enable obfuscation for the HAR module so that DevEco Studio compiles, obfuscates, and compresses code during HAR building.
 > **NOTE**
 >
-> Obfuscation is available only in the stage model. Therefore, if **artifactType** is set to **obfuscation**, **apiType** must be set to **stageMode**.
+> Obfuscation is only available for ArkTS projects in the stage model.
+
+Whether obfuscation is enabled by default varies by version.
+
+- In API version 9, obfuscation is disabled by default, and can be enabled by setting **artifactType** to **obfuscation** in the **build-profile.json5** file of the HAR module. The configuration is as follows:
+
+  ```json
+  {
+    "apiType": "stageMode",
+    "buildOption": {
+        "artifactType": "obfuscation"
+    }
+  }
+  ```
+  The value options of **artifactType** are as follows, with the default value being **original**:
+  - **original**: Code is not obfuscated.
+  - **obfuscation**: Code is obfuscated using Uglify.
+
+- In API version 10, obfuscation is enabled by default, and can be set through the **enable** field under **ruleOptions** in the **build-profile.json5** file of the HAR module. The configuration is as follows:
+
+  ```json
+  {
+    "apiType": "stageMode",
+    "buildOption": {
+    },
+    "buildOptionSet": [
+      {
+        "name": "release",
+        "arkOptions": {
+          "obfuscation": {
+            "ruleOptions": {
+              "enable": true,
+              "files": [
+                "./obfuscation-rules.txt"
+              ]
+            },
+            "consumerFiles": [
+              "./consumer-rules.txt"
+            ]
+          }
+        }
+      },
+    ],
+    "targets": [
+      {
+        "name": "default"
+      }
+    ]
+  }
+  ```
+### Adaptation Guide
+
+The **artifactType** field is forward compatible, and the original function is not affected. Yet, it is deprecated since API version 10, and you are advised to use the substitute as soon as possible.
 
 ## Precautions for HAR Development
 - The HAR does not support the declaration of **abilities** and **extensionAbilities** in its configuration file.
@@ -36,7 +77,7 @@ The **index.ets** file acts as the entry of the HAR export declaration file and 
 ```
 ### Exporting ArkUI Components
 Use **export** to export the ArkUI components. The code snippet is as follows:
-```js
+```ts
 // library/src/main/ets/components/MainPage/MainPage.ets
 @Component
 export struct MainPage {
@@ -55,16 +96,16 @@ export struct MainPage {
 }
 ```
 In the **index.ets** file, declare the APIs that the HAR exposes to external systems. The code snippet is as follows:
-```js
+```ts
 // library/index.ets
 export { MainPage } from './src/main/ets/components/MainPage/MainPage'
 ```
 ### Exporting TS Classes and Methods
 Use **export** to export TS classes and methods. Multiple TS classes and methods can be exported at the same time. The code snippet is as follows:
-```js
+```ts
 // library/src/main/ts/test.ets
 export class Log {
-    static info(msg) {
+    static info(msg: string) {
         console.info(msg);
     }
 }
@@ -78,7 +119,7 @@ export function func2() {
 }
 ```
 In the **index.ets** file, declare the APIs that the HAR exposes to external systems. The code snippet is as follows:
-```js
+```ts
 // library/index.ets
 export { Log } from './src/main/ts/test'
 export { func } from './src/main/ts/test'
@@ -95,10 +136,10 @@ To start with, [configure dependency](https://developer.harmonyos.com/cn/docs/do
 
 ### Reference ArkUI Components in the HAR
 
-After configuring the dependency on the HAR, you can reference ArkUI components exported from the HAR by using **import**. The sample code is as follows:
-```js
+After configuring the dependency on the HAR, you can reference ArkUI components exported from the HAR by using **import**. The code snippet is as follows:
+```ts
 // entry/src/main/ets/pages/index.ets
-import { MainPage } from "@ohos/library"
+import { MainPage } from "library"
 
 @Entry
 @Component
@@ -121,10 +162,10 @@ struct Index {
 ```
 ### Referencing TS Classes and Methods in the HAR
 To reference the TS classes and methods exported from the HAR, use **import** as follows:
-```js
+```ts
 // entry/src/main/ets/pages/index.ets
-import { Log } from "@ohos/library"
-import { func } from "@ohos/library"
+import { Log } from "library"
+import { func } from "library"
 
 @Entry
 @Component
@@ -147,7 +188,7 @@ struct Index {
 ```
 ### Referencing Resources in the HAR
 Use **$r** to reference resources in the HAR. For example, add the **name: hello_har** string (defined in the **string.json** file) and **icon_har.png** image to the **src/main/resources** directory of the HAR module, and then reference the string and image in the entry module. The code snippet is as follows:
-```js
+```ts
 // entry/src/main/ets/pages/index.ets
 @Entry
 @Component

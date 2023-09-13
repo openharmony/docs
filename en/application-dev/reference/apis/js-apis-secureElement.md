@@ -66,7 +66,7 @@ try {
         if (state == secureElement.ServiceState.DISCONNECTED) {
             console.log("Service state is Disconnected");
         } else {
-            console.log.("Service state is Connected");
+            console.log("Service state is Connected");
         }
     });
 } catch (e) {
@@ -114,7 +114,6 @@ try {
 try {
     nfcOmaReaderList = nfcSEService.getReaders();
     if (nfcOmaReaderList != null && nfcOmaReaderList.length > 0) {
-        nfcOmaReader = this.nfcOmaReaderList[0];
         console.log("get reader successfully");
     } else {
         console.log("get reader failed");
@@ -205,7 +204,6 @@ import secureElement from '@ohos.secureElement';
 
 let nfcSEService = null;
 
-this.result = "version: "
 try {
     // refer to newSEService for this.nfcSEService 
     console.log("version: " + nfcSEService.getVersion());
@@ -263,7 +261,7 @@ For details about error codes, see [SE Error Codes](../errorcodes/errorcode-se.m
 
 | ID| Error Message                        |
 | -------- | -------------------------------- |
-| 3300101  | Illegal service state exception. |
+| 3300101  | IllegalStateError, service state exception. |
 
 **Example**
 
@@ -304,8 +302,8 @@ For details about error codes, see [SE Error Codes](../errorcodes/errorcode-se.m
 
 | ID| Error Message                        |
 | -------- | -------------------------------- |
-| 3300101  | Illegal service state exception. |
-| 3300104  | Secure element IO exception.     |
+| 3300101  | IllegalStateError, service state exception. |
+| 3300104  | IOError, there is a communication problem to the reader or the SE.     |
 
 **Example**
 
@@ -342,14 +340,14 @@ For details about error codes, see [SE Error Codes](../errorcodes/errorcode-se.m
 
 | ID| Error Message                        |
 | -------- | -------------------------------- |
-| 3300101  | Illegal service state exception. |
+| 3300101  | IllegalStateError, service state exception. |
 
 **Example**
 
 ```js
 import secureElement from '@ohos.secureElement';
 
-nfcOmaReader = null;
+let nfcOmaReader = null;
 
 try {
     // refer to SEService.getReaders for this.nfcOmaReader
@@ -415,7 +413,7 @@ For details about error codes, see [SE Error Codes](../errorcodes/errorcode-se.m
 
 | ID| Error Message                        |
 | -------- | -------------------------------- |
-| 3300101  | Illegal service state exception. |
+| 3300101  | IllegalStateError, service state exception. |
 
 **Example**
 
@@ -458,7 +456,7 @@ For details about error codes, see [SE Error Codes](../errorcodes/errorcode-se.m
 
 | ID| Error Message                        |
 | -------- | -------------------------------- |
-| 3300101  | Illegal service state exception. |
+| 3300101  | IllegalStateError, service state exception. |
 
 **Example**
 
@@ -528,7 +526,7 @@ For details about error codes, see [SE Error Codes](../errorcodes/errorcode-se.m
 
 | ID| Error Message                        |
 | -------- | -------------------------------- |
-| 3300101  | Illegal service state exception. |
+| 3300101  | IllegalStateError, service state exception. |
 
 **Example**
 
@@ -572,10 +570,10 @@ For details about error codes, see [SE Error Codes](../errorcodes/errorcode-se.m
 
 | ID| Error Message                        |
 | -------- | -------------------------------- |
-| 3300101  | Illegal service state exception. |
-| 3300102  | No such element exception.       |
-| 3300103  | Illegal access rule exception.   |
-| 3300104  | Secure element IO exception.     |
+| 3300101  | IllegalStateError, an attempt is made to use an SE session that has been closed. |
+| 3300102  | NoSuchElementError, the AID on the SE is not available or cannot be selected.       |
+| 3300103  | SecurityError, the calling application cannot be granted access to this AID or the default applet on this session.   |
+| 3300104  | IOError, there is a communication problem to the reader or the SE.     |
 
 **Example**
 
@@ -584,10 +582,11 @@ import secureElement from '@ohos.secureElement';
 
 let nfcOmaSession = null;
 let nfcOmaChannel = null;
+let aidArray = [720, 1080];
 
 try {
     // See Reader.openSession for this.nfcOmaSession.
-    let getPromise = nfcOmaSession.openBasicChannel(this.aidArray);
+    let getPromise = nfcOmaSession.openBasicChannel(aidArray);
     getPromise.then((channel) => {
         nfcOmaChannel = channel;
         console.log("openBasicChannel1 get channel successfully");
@@ -620,10 +619,10 @@ For details about error codes, see [SE Error Codes](../errorcodes/errorcode-se.m
 
 | ID| Error Message                        |
 | -------- | -------------------------------- |
-| 3300101  | Illegal service state exception. |
-| 3300102  | No such element exception.       |
-| 3300103  | Illegal access rule exception.   |
-| 3300104  | Secure element IO exception.     |
+| 3300101  | IllegalStateError, an attempt is made to use an SE session that has been closed. |
+| 3300102  | NoSuchElementError, the AID on the SE is not available or cannot be selected.       |
+| 3300103  | SecurityError, the calling application cannot be granted access to this AID or the default applet on this session.   |
+| 3300104  | IOError, there is a communication problem to the reader or the SE.     |
 
 **Example**
 
@@ -676,10 +675,10 @@ For details about error codes, see [SE Error Codes](../errorcodes/errorcode-se.m
 
 | ID| Error Message                        |
 | -------- | -------------------------------- |
-| 3300101  | Illegal service state exception. |
-| 3300102  | No such element exception.       |
-| 3300103  | Illegal access rule exception.   |
-| 3300104  | Secure element IO exception.     |
+| 3300101  | IllegalStateError, an attempt is made to use an SE session that has been closed. |
+| 3300102  | NoSuchElementError, the AID on the SE is not available or cannot be selected.       |
+| 3300103  | SecurityError, the calling application cannot be granted access to this AID or the default applet on this session.   |
+| 3300104  | IOError, there is a communication problem to the reader or the SE.     |
 
 **Example**
 
@@ -727,16 +726,15 @@ For details about error codes, see [SE Error Codes](../errorcodes/errorcode-se.m
 
 | ID| Error Message                        |
 | -------- | -------------------------------- |
-| 3300101  | Illegal service state exception. |
-| 3300102  | No such element exception.       |
-| 3300103  | Illegal access rule exception.   |
-| 3300104  | Secure element IO exception.     |
+| 3300101  | IllegalStateError, an attempt is made to use an SE session that has been closed. |
+| 3300102  | NoSuchElementError, the AID on the SE is not available or cannot be selected.      |
+| 3300103  | SecurityError, the calling application cannot be granted access to this AID or the default applet on this session.   |
+| 3300104  | IOError, there is a communication problem to the reader or the SE.     |
 
 **Example**
 
 ```js
 import secureElement from '@ohos.secureElement';
-
 
 let nfcOmaSession = null;
 let nfcOmaChannel = null;
@@ -784,10 +782,10 @@ For details about error codes, see [SE Error Codes](../errorcodes/errorcode-se.m
 
 | ID| Error Message                        |
 | -------- | -------------------------------- |
-| 3300101  | Illegal service state exception. |
-| 3300102  | No such element exception.       |
-| 3300103  | Illegal access rule exception.   |
-| 3300104  | Secure element IO exception.     |
+| 3300101  | IllegalStateError, an attempt is made to use an SE session that has been closed. |
+| 3300102  | NoSuchElementError, the AID on the SE is not available or cannot be selected.       |
+| 3300103  | SecurityError, the calling application cannot be granted access to this AID or the default applet on this session.   |
+| 3300104  | IOError, there is a communication problem to the reader or the SE.     |
 
 **Example**
 
@@ -833,10 +831,10 @@ For details about error codes, see [SE Error Codes](../errorcodes/errorcode-se.m
 
 | ID| Error Message                        |
 | -------- | -------------------------------- |
-| 3300101  | Illegal service state exception. |
-| 3300102  | No such element exception.       |
-| 3300103  | Illegal access rule exception.   |
-| 3300104  | Secure element IO exception.     |
+| 3300101  | IllegalStateError, an attempt is made to use an SE session that has been closed. |
+| 3300102  | NoSuchElementError, the AID on the SE is not available or cannot be selected.      |
+| 3300103  | SecurityError, the calling application cannot be granted access to this AID or the default applet on this session.   |
+| 3300104  | IOError, there is a communication problem to the reader or the SE.    |
 
 **Example**
 
@@ -889,10 +887,10 @@ For details about error codes, see [SE Error Codes](../errorcodes/errorcode-se.m
 
 | ID| Error Message                        |
 | -------- | -------------------------------- |
-| 3300101  | Illegal service state exception. |
-| 3300102  | No such element exception.       |
-| 3300103  | Illegal access rule exception.   |
-| 3300104  | Secure element IO exception.     |
+| 3300101  | IllegalStateError, an attempt is made to use an SE session that has been closed. |
+| 3300102  | NoSuchElementError, the AID on the SE is not available or cannot be selected.      |
+| 3300103  | SecurityError, the calling application cannot be granted access to this AID or the default applet on this session.   |
+| 3300104  | IOError, there is a communication problem to the reader or the SE.     |
 
 **Example**
 
@@ -915,8 +913,9 @@ if (nfcOmaSession) {
         }).catch ((err) => {
             console.log("openLogicChannel3 exception");
         })
-} catch (e) {
-    console.log("openLogicChannel3 exception:" + e.message);
+    } catch (e) {
+        console.log("openLogicChannel3 exception:" + e.message);
+    }
 }
 ```
 
@@ -948,10 +947,10 @@ For details about error codes, see [SE Error Codes](../errorcodes/errorcode-se.m
 
 | ID| Error Message                        |
 | -------- | -------------------------------- |
-| 3300101  | Illegal service state exception. |
-| 3300102  | No such element exception.       |
-| 3300103  | Illegal access rule exception.   |
-| 3300104  | Secure element IO exception.     |
+| 3300101  | IllegalStateError, an attempt is made to use an SE session that has been closed. |
+| 3300102  | NoSuchElementError, the AID on the SE is not available or cannot be selected.       |
+| 3300103  | SecurityError, the calling application cannot be granted access to this AID or the default applet on this session.   |
+| 3300104  | IOError, there is a communication problem to the reader or the SE.     |
 
 **Example**
 
@@ -1177,9 +1176,9 @@ For details about error codes, see [SE Error Codes](../errorcodes/errorcode-se.m
 
 | ID| Error Message                        |
 | -------- | -------------------------------- |
-| 3300101  | Illegal service state exception. |
-| 3300103  | Illegal access rule exception.   |
-| 3300104  | Secure element IO exception.     |
+| 3300101  | IllegalStateError, an attempt is made to use an SE session or channel that has been closed. |
+| 3300103  | SecurityError, the command is filtered by the security policy. |
+| 3300104  | IOError, there is a communication problem to the reader or the SE.     |
 
 **Example**
 
@@ -1229,9 +1228,9 @@ For details about error codes, see [SE Error Codes](../errorcodes/errorcode-se.m
 
 | ID| Error Message                        |
 | -------- | -------------------------------- |
-| 3300101  | Illegal service state exception. |
-| 3300103  | Illegal access rule exception.   |
-| 3300104  | Secure element IO exception.     |
+| 3300101  | IllegalStateError, an attempt is made to use an SE session or channel that has been closed. |
+| 3300103  | SecurityError, the command is filtered by the security policy. |
+| 3300104  | IOError, there is a communication problem to the reader or the SE.     |
 
 **Example**
 

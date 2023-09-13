@@ -61,7 +61,7 @@ The rules of \@State also apply to \@Provide. The difference is that \@Provide a
 
 | \@Provide Transfer/Access| Description                                      |
 | -------------- | ---------------------------------------- |
-| Initialization and update from the parent component    | Optional. An \@Provide decorated variable can be initialized from a regular variable or an \@State, \@Link, \@Prop, \@Provide, \@Consume, \@ObjectLink, \@StorageLink, \@StorageProp, \@LocalStorageLink, or \@LocalStorageProp decorated variable in its parent component.|
+| Initialization and update from the parent component    | Optional. An @Provide decorated variable can be initialized from a regular variable (whose change does not trigger UI refresh) or an @State, @Link, @Prop, @Provide, @Consume, @ObjectLink, @StorageLink, @StorageProp, @LocalStorageLink, or @LocalStorageProp decorated variable in its parent component.|
 | Subnode initialization      | Supported; can be used to initialize an \@State, \@Link, \@Prop, or \@Provide decorated variable in the child component.|
 | Synchronization with the parent component        | None.                                      |
 | Synchronization with descendant components       | Two-way with @Consume decorated variables in descendant components.                         |

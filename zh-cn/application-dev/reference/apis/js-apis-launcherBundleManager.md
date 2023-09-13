@@ -51,9 +51,11 @@ getLauncherAbilityInfo(bundleName: string, userId: number, callback: AsyncCallba
 
 ```ts
 import launcherBundleManager from '@ohos.bundle.launcherBundleManager';
+import { BusinessError } from '@ohos.base';
 
 try {
-    launcherBundleManager.getLauncherAbilityInfo('com.example.demo', 100, (errData, data) => {
+    launcherBundleManager.getLauncherAbilityInfo('com.example.demo', 100,
+        (errData: BusinessError, data: launcherBundleManager.LauncherAbilityInfo[]) => {
         if (errData !== null) {
             console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
         } else {
@@ -61,7 +63,9 @@ try {
         }
     })
 } catch (errData) {
-    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+    let code = (errData as BusinessError).code;
+    let message = (errData as BusinessError).message;
+    console.error(`errData is errCode:${code}  message:${message}`);
 }
 ```
 
@@ -101,17 +105,71 @@ getLauncherAbilityInfo(bundleName: string, userId: number) : Promise<Array\<[Lau
 
 **示例：**
 
-```typescript
+```ts
 import launcherBundleManager from '@ohos.bundle.launcherBundleManager';
+import { BusinessError } from '@ohos.base';
 
 try {
-    launcherBundleManager.getLauncherAbilityInfo("com.example.demo", 100).then(data => {
+    launcherBundleManager.getLauncherAbilityInfo("com.example.demo", 100)
+        .then((data: launcherBundleManager.LauncherAbilityInfo[]) => {
         console.log("data is " + JSON.stringify(data));
-    }).catch (errData => {
+    }).catch ((errData: BusinessError) => {
         console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
     })
 } catch (errData) {
-    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+    let code = (errData as BusinessError).code;
+    let message = (errData as BusinessError).message;
+    console.error(`errData is errCode:${code}  message:${message}`);
+}
+```
+
+## launcherBundlemanager.getLauncherAbilityInfoSync<sup>10+</sup>
+
+getLauncherAbilityInfoSync(bundleName: string, userId: number) : Array\<[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo.md)>;
+
+查询指定bundleName及用户的[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo.md)。
+
+**需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+
+**系统接口：** 此接口为系统接口
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Launcher
+
+**参数：**
+
+| 参数名     | 类型   | 必填 | 说明         |
+| ---------- | ------ | ---- | -------------- |
+| bundleName | string | 是   | 应用Bundle名称。 |
+| userId     | number | 是   | 被查询的用户id。 |
+
+**返回值：**
+
+| 类型                          | 说明                                               |
+| ----------------------------- | -------------------------------------------------- |
+| Array\<[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo.md)> | Array形式返回bundle包含的[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo.md)信息。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
+
+| 错误码ID | 错误信息                                 |
+| -------- | ---------------------------------------- |
+| 17700001 | The specified bundle name is not found.  |
+| 17700004 | The specified user ID is not found.       |
+
+**示例：**
+
+```ts
+import launcherBundleManager from '@ohos.bundle.launcherBundleManager';
+import { BusinessError } from '@ohos.base';
+
+try {
+    let data = launcherBundleManager.getLauncherAbilityInfoSync("com.example.demo", 100);
+    console.log("data is " + JSON.stringify(data));
+} catch (errData) {
+    let code = (errData as BusinessError).code;
+    let message = (errData as BusinessError).message;
+    console.error(`errData is errCode:${code}  message:${message}`);
 }
 ```
 
@@ -151,9 +209,11 @@ getAllLauncherAbilityInfo(userId: number, callback: AsyncCallback<Array\<[Launch
 
 ```ts
 import launcherBundleManager from '@ohos.bundle.launcherBundleManager';
+import { BusinessError } from '@ohos.base';
 
 try {
-    launcherBundleManager.getAllLauncherAbilityInfo(100, (errData, data) => {
+    launcherBundleManager.getAllLauncherAbilityInfo(100,
+        (errData: BusinessError, data: launcherBundleManager.LauncherAbilityInfo[]) => {
         if (errData !== null) {
             console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
         } else {
@@ -161,7 +221,9 @@ try {
         }
     });
 } catch (errData) {
-    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+    let code = (errData as BusinessError).code;
+    let message = (errData as BusinessError).message;
+    console.error(`errData is errCode:${code}  message:${message}`);
 }
 ```
 ## launcherBundlemanager.getAllLauncherAbilityInfo<sup>9+</sup>
@@ -200,15 +262,19 @@ getAllLauncherAbilityInfo(userId: number) : Promise<Array\<[LauncherAbilityInfo]
 
 ```ts
 import launcherBundleManager from '@ohos.bundle.launcherBundleManager';
+import { BusinessError } from '@ohos.base';
 
 try {
-    launcherBundleManager.getAllLauncherAbilityInfo(100).then(data => {
+    launcherBundleManager.getAllLauncherAbilityInfo(100)
+        .then((data: launcherBundleManager.LauncherAbilityInfo[]) => {
         console.log("data is " + JSON.stringify(data));
-    }).catch (errData => {
+    }).catch ((errData: BusinessError) => {
         console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
     });
 } catch (errData) {
-    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+    let code = (errData as BusinessError).code;
+    let message = (errData as BusinessError).message;
+    console.error(`errData is errCode:${code}  message:${message}`);
 }
 ```
 
@@ -246,9 +312,11 @@ getShortcutInfo(bundleName :string, callback: AsyncCallback<Array\<[ShortcutInfo
 
 ```ts
 import launcherBundleManager from '@ohos.bundle.launcherBundleManager';
+import { BusinessError } from '@ohos.base';
 
 try {
-    launcherBundleManager.getShortcutInfo("com.example.demo", (errData, data) => {
+    launcherBundleManager.getShortcutInfo("com.example.demo",
+        (errData: BusinessError, data: launcherBundleManager.ShortcutInfo[]) => {
         if (errData !== null) {
             console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
         } else {
@@ -256,7 +324,9 @@ try {
         }
     });
 } catch (errData) {
-    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+    let code = (errData as BusinessError).code;
+    let message = (errData as BusinessError).message;
+    console.error(`errData is errCode:${code}  message:${message}`);
 }
 ```
 
@@ -294,14 +364,64 @@ getShortcutInfo(bundleName : string) : Promise<Array\<[ShortcutInfo](js-apis-bun
 
 ```ts
 import launcherBundleManager from '@ohos.bundle.launcherBundleManager';
+import { BusinessError } from '@ohos.base';
 
 try {
-    launcherBundleManager.getShortcutInfo("com.example.demo").then(data => {
+    launcherBundleManager.getShortcutInfo("com.example.demo")
+        .then((data: launcherBundleManager.ShortcutInfo[]) => {
         console.log("data is " + JSON.stringify(data));
-    }).catch (errData => {
+    }).catch ((errData: BusinessError) => {
         console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
     });
 } catch (errData) {
-    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+    let code = (errData as BusinessError).code;
+    let message = (errData as BusinessError).message;
+    console.error(`errData is errCode:${code}  message:${message}`);
+}
+```
+
+## launcherBundlemanager.getShortcutInfoSync<sup>10+</sup>
+
+getShortcutInfoSync(bundleName : string) : Array\<[ShortcutInfo](js-apis-bundleManager-shortcutInfo.md)>;
+
+查询当前用户下指定应用的[ShortcutInfo](js-apis-bundleManager-shortcutInfo.md)。
+
+**需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+
+**系统接口：** 此接口为系统接口
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Launcher
+
+| 参数名     | 类型   | 必填 | 说明         |
+| ---------- | ------ | ---- | -------------- |
+| bundleName | string | 是   | 应用Bundle名称。 |
+
+**返回值：**
+
+| 类型                   | 说明                                            |
+| ---------------------- | ----------------------------------------------- |
+| Array\<[ShortcutInfo](js-apis-bundleManager-shortcutInfo.md)> | Array形式返回当前用户下指定应用的[ShortcutInfo](js-apis-bundleManager-shortcutInfo.md)。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
+
+| 错误码ID | 错误信息                                |
+| -------- | ---------------------------------------- |
+| 17700001 | The specified bundle name is not found.  |
+
+**示例：**
+
+```ts
+import launcherBundleManager from '@ohos.bundle.launcherBundleManager';
+import { BusinessError } from '@ohos.base';
+
+try {
+    let data = launcherBundleManager.getShortcutInfoSync("com.example.demo");
+    console.log("data is " + JSON.stringify(data));
+} catch (errData) {
+    let code = (errData as BusinessError).code;
+    let message = (errData as BusinessError).message;
+    console.error(`errData is errCode:${code}  message:${message}`);
 }
 ```

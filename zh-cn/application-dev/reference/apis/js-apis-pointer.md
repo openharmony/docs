@@ -31,7 +31,7 @@ setPointerVisible(visible: boolean, callback: AsyncCallback&lt;void&gt;): void
 
 ```js
 try {
-  pointer.setPointerVisible(true, (error) => {
+  pointer.setPointerVisible(true, (error: Error) => {
     if (error) {
       console.log(`Set pointer visible failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
@@ -123,7 +123,7 @@ isPointerVisible(): Promise&lt;boolean&gt;
 
 ```js
 try {
-  pointer.isPointerVisible().then((visible) => {
+  pointer.isPointerVisible().then((visible: boolean) => {
     console.log(`Get pointer visible success, visible: ${JSON.stringify(visible)}`);
   });
 } catch (error) {
@@ -279,7 +279,7 @@ setHoverScrollState(state: boolean, callback: AsyncCallback&lt;void&gt;): void
 
 ```js
 try {
-  pointer.setHoverScrollState(true, (error) => {
+  pointer.setHoverScrollState(true, (error: Error) => {
     if (error) {
       console.log(`Set the mouse hover scroll failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
@@ -402,7 +402,7 @@ setMousePrimaryButton(primary: PrimaryButton, callback: AsyncCallback&lt;void&gt
 
 ```js
 try {
-  pointer.setMousePrimaryButton(pointer.PrimaryButton.RIGHT, (error) => {
+  pointer.setMousePrimaryButton(pointer.PrimaryButton.RIGHT, (error: Error) => {
     if (error) {
       console.log(`Set mouse primary button failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
@@ -656,9 +656,11 @@ getPointerStyle(windowId: number, callback: AsyncCallback&lt;PointerStyle&gt;): 
 **示例**：
 
 ```js
+import { BusinessError }  from '@ohos.base';
 import window from '@ohos.window';
 
-window.getLastWindow(this.context, (error, win) => {
+let context = getContext(this);
+window.getLastWindow(context, (error: BusinessError, win: window.Window) => {
   if (error.code) {
     console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(error));
     return;
@@ -669,7 +671,7 @@ window.getLastWindow(this.context, (error, win) => {
     return;
   }
   try {
-    pointer.getPointerStyle(windowId, (error, style) => {
+    pointer.getPointerStyle(windowId, (error: Error, style: pointer.PointerStyle) => {
       console.log(`Get pointer style success, style: ${JSON.stringify(style)}`);
     });
   } catch (error) {
@@ -702,8 +704,10 @@ getPointerStyle(windowId: number): Promise&lt;PointerStyle&gt;
 
 ```js
 import window from '@ohos.window';
+import { BusinessError }  from '@ohos.base';
 
-window.getLastWindow(this.context, (error, win) => {
+let context = getContext(this);
+window.getLastWindow(context, (error: BusinessError, win: window.Window) => {
   if (error.code) {
     console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(error));
     return;
@@ -714,7 +718,7 @@ window.getLastWindow(this.context, (error, win) => {
     return;
   }
   try {
-    pointer.getPointerStyle(windowId).then((style) => {
+    pointer.getPointerStyle(windowId).then((style: pointer.PointerStyle) => {
       console.log(`Get pointer style success, style: ${JSON.stringify(style)}`);
     });
   } catch (error) {
@@ -853,6 +857,8 @@ window.getLastWindow(this.context, (error, win) => {
 | HORIZONTAL_TEXT_CURSOR<sup>10+</sup> | 39 | 垂直文本选择 |![Horizontal_Text_Cursor.png](./figures/Horizontal_Text_Cursor.png)|
 | CURSOR_CROSS<sup>10+</sup> | 40 | 十字光标 |![Cursor_Cross.png](./figures/Cursor_Cross.png)|
 | CURSOR_CIRCLE<sup>10+</sup> | 41 | 圆形光标 |![Cursor_Circle.png](./figures/Cursor_Circle.png)|
+| LOADING<sup>10+</sup> | 42 | 正在载入动画光标 |![Loading.png](./figures/Loading.png)|
+| RUNNING<sup>10+</sup> | 43 | 后台运行中动画光标 |![Running.png](./figures/Running.png)|
 
 ## pointer.setTouchpadScrollSwitch<sup>10+</sup>
 
@@ -875,7 +881,7 @@ setTouchpadScrollSwitch(state: boolean, callback: AsyncCallback\<void>): void
 
 ```js
 try {
-  pointer.setTouchpadScrollSwitch(true, (error) => {
+  pointer.setTouchpadScrollSwitch(true, (error: Error) => {
     if (error) {
       console.log(`setTouchpadScrollSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
@@ -941,7 +947,7 @@ getTouchpadScrollSwitch(callback:  AsyncCallback\<boolean>): void
 
 ```js
 try {
-  pointer.getTouchpadScrollSwitch ((error, state) => {
+  pointer.getTouchpadScrollSwitch ((error: Error, state: Boolean) => {
     console.log(`getTouchpadScrollSwitch success, state: ${JSON.stringify(state)}`);
   });
 } catch (error) {
@@ -1064,7 +1070,7 @@ getTouchpadScrollDirection(callback:  AsyncCallback\<boolean>): void
 
 ```js
 try {
-  pointer.getTouchpadScrollSwitch ((error, state) => {
+  pointer.getTouchpadScrollSwitch ((error: Error, state: boolean) => {
     console.log(`getTouchpadScrollDirection success, state: ${JSON.stringify(state)}`);
   });
 } catch (error) {
@@ -1215,7 +1221,7 @@ getTouchpadTapSwitch(): Promise\<boolean>
 
 ```js
 try {
-  pointer.getTouchpadTapSwitch().then((state) => {
+  pointer.getTouchpadTapSwitch().then((state: Boolean) => {
     console.log(`getTouchpadTapSwitch success, state: ${JSON.stringify(state)}`);
   });
 } catch (error) {
@@ -1310,7 +1316,7 @@ getTouchpadPointerSpeed(callback: AsyncCallback\<number>): void
 
 ```js
 try {
-  pointer.getTouchpadPointerSpeed((error, speed) => {
+  pointer.getTouchpadPointerSpeed((error: Error, speed: number) => {
     console.log(`getTouchpadPointerSpeed success, speed: ${JSON.stringify(speed)}`);
   });
 } catch (error) {
@@ -1338,7 +1344,7 @@ getTouchpadPointerSpeed(): Promise\<number>
 
 ```js
 try {
-  pointer.getTouchpadPointerSpeed().then((speed) => {
+  pointer.getTouchpadPointerSpeed().then((speed: number) => {
     console.log(`getTouchpadPointerSpeed success, speed: ${JSON.stringify(speed)}`);
   });
 } catch (error) {
@@ -1367,7 +1373,7 @@ setTouchpadPinchSwitch(state: boolean, callback: AsyncCallback\<void>): void
 
 ```js
 try {
-  pointer.setTouchpadTapSwitch(true, (error) => {
+  pointer.setTouchpadTapSwitch(true, (error: Error) => {
     if (error) {
       console.log(`setTouchpadPinchSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
@@ -1490,7 +1496,7 @@ setTouchpadSwipeSwitch(state: boolean, callback: AsyncCallback\<void>): void
 
 ```js
 try {
-  pointer.setTouchpadSwipeSwitch(true, (error) => {
+  pointer.setTouchpadSwipeSwitch(true, (error: Error) => {
     if (error) {
       console.log(`setTouchpadSwipeSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
@@ -1584,7 +1590,7 @@ getTouchpadSwipeSwitch(): Promise\<boolean>
 
 ```js
 try {
-  pointer.getTouchpadSwipeSwitch().then((state) => {
+  pointer.getTouchpadSwipeSwitch().then((state: boolean) => {
     console.log(`getTouchpadSwipeSwitch success, state: ${JSON.stringify(state)}`);
   });
 } catch (error) {
@@ -1691,7 +1697,7 @@ getTouchpadRightClickType(callback: AsyncCallback\<RightClickType>): void
 
 ```js
 try {
-  pointer.getTouchpadRightClickType((error, type) => {
+  pointer.getTouchpadRightClickType((error: Error, type: pointer.RightClickType) => {
     console.log(`getTouchpadRightClickType success, type: ${JSON.stringify(type)}`);
   });
 } catch (error) {
@@ -1724,5 +1730,359 @@ try {
   });
 } catch (error) {
   console.log(`getTouchpadRightClickType failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## pointer.setPointerSize<sup>10+</sup>
+
+setPointerSize(size: number, callback: AsyncCallback&lt;void&gt;): void
+
+设置鼠标光标大小，使用AsyncCallback异步方式返回结果。
+
+**系统能力**：SystemCapability.MultimodalInput.Input.Pointer
+
+**系统API**: 此接口为系统接口。
+
+**参数**：
+
+| 参数名       | 类型                        | 必填   | 说明                                    |
+| -------- | ------------------------- | ---- | ------------------------------------- |
+| size     | number                    | 是    | 鼠标光标大小，范围为[1-7]，默认为1。   |
+| callback | AsyncCallback&lt;void&gt; | 是    | 回调函数，当设置成功时，err为undefined，否则为错误对象。 |
+
+**示例**：
+
+```js
+try {
+  pointer.setPointerSize(1, (error) => {
+    if (error) {
+      console.log(`setPointerSize failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+      return;
+    }
+    console.log(`setPointerSize success`);
+  });
+} catch (error) {
+  console.log(`setPointerSize failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## pointer.setPointerSize<sup>10+</sup>
+
+setPointerSize(size: number): Promise&lt;void&gt;
+
+设置鼠标光标大小，使用Promise异步方式返回结果。
+
+**系统能力**：SystemCapability.MultimodalInput.Input.Pointer
+
+**系统API**: 此接口为系统接口。
+
+**参数**：
+
+| 参数名    | 类型     | 必填   | 说明                                  |
+| ----- | ------ | ---- | ----------------------------------- |
+| size  | number | 是    | 鼠标光标大小，范围为[1-7]，默认为1。 |
+
+**返回值**：
+
+| 参数                  | 说明               |
+| ------------------- | ---------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**示例**：
+
+```js
+try {
+  pointer.setPointerSize(3).then(() => {
+    console.log(`setPointerSize success`);
+  });
+} catch (error) {
+  console.log(`setPointerSize failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## pointer.setPointerSizeSync<sup>10+</sup>
+
+setPointerSizeSync(size: number): void;
+
+设置鼠标光标大小，使用同步方式进行设置。
+
+**系统能力**：SystemCapability.MultimodalInput.Input.Pointer
+
+**系统API**: 此接口为系统接口。
+
+**参数**：
+
+| 参数名    | 类型     | 必填   | 说明                                  |
+| ----- | ------ | ---- | ----------------------------------- |
+| size  | number | 是    | 鼠标光标大小，范围为[1-7]，默认为1。 |
+
+**示例**：
+
+```js
+try {
+  pointer.setPointerSizeSync(5);
+  console.log(`setPointerSizeSync success`);
+} catch (error) {
+  console.log(`setPointerSizeSync failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## pointer.getPointerSize<sup>10+</sup>
+
+getPointerSize(callback: AsyncCallback&lt;number&gt;): void
+
+获取鼠标光标大小，使用AsyncCallback异步方式返回结果。
+
+**系统能力**：SystemCapability.MultimodalInput.Input.Pointer
+
+**系统API**: 此接口为系统接口。
+
+**参数**：
+
+| 参数名       | 类型                          | 必填   | 说明             |
+| -------- | --------------------------- | ---- | -------------- |
+| callback | AsyncCallback&lt;number&gt; | 是    | 回调函数，异步返回鼠标光标大小。 |
+
+**示例**：
+
+```js
+try {
+  pointer.getPointerSize((error, size) => {
+    console.log(`getPointerSize success, size: ${JSON.stringify(size)}`);
+  });
+} catch (error) {
+  console.log(`getPointerSize failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## pointer.getPointerSize<sup>10+</sup>
+
+getPointerSize(): Promise&lt;number&gt;
+
+获取当前鼠标光标大小，使用Promise异步方式返回结果。
+
+**系统能力**：SystemCapability.MultimodalInput.Input.Pointer
+
+**系统API**: 此接口为系统接口。
+
+**返回值**：
+
+| 参数                    | 说明                  |
+| --------------------- | ------------------- |
+| Promise&lt;number&gt; | Promise对象，异步返回鼠标光标大小。 |
+
+**示例**：
+
+```js
+try {
+  pointer.getPointerSize().then((size: number) => {
+    console.log(`getPointerSize success, size: ${JSON.stringify(size)}`);
+  });
+} catch (error) {
+  console.log(`getPointerSize failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## pointer.getPointerSizeSync<sup>10+</sup>
+
+getPointerSizeSync(): number
+
+获取鼠标光标大小，使用同步方式返回结果。
+
+**系统能力**：SystemCapability.MultimodalInput.Input.Pointer
+
+**系统API**: 此接口为系统接口。
+
+**返回值**：
+
+| 参数                    | 说明                  |
+| --------------------- | ------------------- |
+| number | 鼠标光标大小。 |
+
+**示例**：
+
+```js
+try {
+  let pointerSize = pointer.getPointerSizeSync();
+  console.log(`getPointerSizeSync success, pointerSize: ${JSON.stringify(pointerSize)}`);
+} catch (error) {
+  console.log(`getPointerSizeSync failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## pointer.setPointerColor<sup>10+</sup>
+
+setPointerColor(color: number, callback: AsyncCallback&lt;void&gt;): void
+
+设置鼠标光标颜色，使用AsyncCallback异步方式返回结果。
+
+**系统能力**：SystemCapability.MultimodalInput.Input.Pointer
+
+**系统API**: 此接口为系统接口。
+
+**参数**：
+
+| 参数名       | 类型                        | 必填   | 说明                                    |
+| -------- | ------------------------- | ---- | ------------------------------------- |
+| color     | number                    | 是    | 鼠标光标颜色，默认为黑色：0x000000。   |
+| callback | AsyncCallback&lt;void&gt; | 是    | 回调函数，当设置成功时，err为undefined，否则为错误对象。 |
+
+**示例**：
+
+```js
+try {
+  pointer.setPointerColor(0xF6C800, (error: Error) => {
+    if (error) {
+      console.log(`setPointerColor failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+      return;
+    }
+    console.log(`setPointerColor success`);
+  });
+} catch (error) {
+  console.log(`setPointerColor failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## pointer.setPointerColor<sup>10+</sup>
+
+setPointerColor(color: number): Promise&lt;void&gt;
+
+设置鼠标光标颜色，使用Promise异步方式返回结果。
+
+**系统能力**：SystemCapability.MultimodalInput.Input.Pointer
+
+**系统API**: 此接口为系统接口。
+
+**参数**：
+
+| 参数名    | 类型     | 必填   | 说明                                  |
+| ----- | ------ | ---- | ----------------------------------- |
+| color  | number | 是    | 鼠标光标颜色，默认为黑色：0x000000。 |
+
+**返回值**：
+
+| 参数                  | 说明               |
+| ------------------- | ---------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**示例**：
+
+```js
+try {
+  pointer.setPointerColor(0xF6C800).then(() => {
+    console.log(`setPointerColor success`);
+  });
+} catch (error) {
+  console.log(`setPointerColor failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## pointer.setPointerColorSync<sup>10+</sup>
+
+setPointerColorSync(color: number): void;
+
+设置鼠标光标颜色，使用同步方式进行设置。
+
+**系统能力**：SystemCapability.MultimodalInput.Input.Pointer
+
+**系统API**: 此接口为系统接口。
+
+**参数**：
+
+| 参数名    | 类型     | 必填   | 说明                                  |
+| ----- | ------ | ---- | ----------------------------------- |
+| color  | number | 是    | 鼠标光标颜色，默认为黑色：0x000000。 |
+
+**示例**：
+
+```js
+try {
+  pointer.setPointerColorSync(0xF6C800);
+  console.log(`setPointerColorSync success`);
+} catch (error) {
+  console.log(`setPointerColorSync failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## pointer.getPointerColor<sup>10+</sup>
+
+getPointerColor(callback: AsyncCallback&lt;number&gt;): void
+
+获取鼠标光标颜色，使用AsyncCallback异步方式返回结果。
+
+**系统能力**：SystemCapability.MultimodalInput.Input.Pointer
+
+**系统API**: 此接口为系统接口。
+
+**参数**：
+
+| 参数名       | 类型                          | 必填   | 说明             |
+| -------- | --------------------------- | ---- | -------------- |
+| callback | AsyncCallback&lt;number&gt; | 是    | 回调函数，异步返回鼠标光标颜色。 |
+
+**示例**：
+
+```js
+try {
+  pointer.getPointerColor((error, color) => {
+    console.log(`getPointerColor success, color: ${JSON.stringify(color)}`);
+  });
+} catch (error) {
+  console.log(`getPointerColor failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## pointer.getPointerColor<sup>10+</sup>
+
+getPointerColor(): Promise&lt;number&gt;
+
+获取当前鼠标光标颜色，使用Promise异步方式返回结果。
+
+**系统能力**：SystemCapability.MultimodalInput.Input.Pointer
+
+**系统API**: 此接口为系统接口。
+
+**返回值**：
+
+| 参数                    | 说明                  |
+| --------------------- | ------------------- |
+| Promise&lt;number&gt; | Promise对象，异步返回鼠标光标颜色。 |
+
+**示例**：
+
+```js
+try {
+  pointer.getPointerColor().then((color) => {
+    console.log(`getPointerColor success, color: ${JSON.stringify(color)}`);
+  });
+} catch (error) {
+  console.log(`getPointerColor failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## pointer.getPointerColorSync<sup>10+</sup>
+
+getPointerColorSync(): number
+
+获取鼠标光标颜色，使用同步方式返回结果。
+
+**系统能力**：SystemCapability.MultimodalInput.Input.Pointer
+
+**系统API**: 此接口为系统接口。
+
+**返回值**：
+
+| 参数                    | 说明                  |
+| --------------------- | ------------------- |
+| number | 鼠标光标颜色。 |
+
+**示例**：
+
+```js
+try {
+  let pointerColor = pointer.getPointerColorSync();
+  console.log(`getPointerColorSync success, pointerColor: ${JSON.stringify(pointerColor)}`);
+} catch (error) {
+  console.log(`getPointerColorSync failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```

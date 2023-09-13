@@ -93,17 +93,20 @@ result = object->RemoveDeathRecipient(deathRecipient); // 移除消亡通知
 Stage模型在连接服务前需要先获取context
 
 ```ts
-import Ability from "@ohos.app.ability.UIAbility";
+import UIAbility from '@ohos.app.ability.UIAbility';
+import Want from '@ohos.app.ability.Want';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import window from '@ohos.window';
 
-export default class MainAbility extends Ability {
-    onCreate(want, launchParam) {
+export default class MainAbility extends UIAbility {
+    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
         console.log("[Demo] MainAbility onCreate");
-        globalThis.context = this.context;
+        let context = this.context;
     }
     onDestroy() {
         console.log("[Demo] MainAbility onDestroy");
     }
-    onWindowStageCreate(windowStage) {
+    onWindowStageCreate(windowStage: window.WindowStage) {
         // Main window is created, set main page for this ability
         console.log("[Demo] MainAbility onWindowStageCreate");
     }
@@ -127,36 +130,42 @@ export default class MainAbility extends Ability {
 ```ts
 // 仅FA模型需要导入@ohos.ability.featureAbility
 // import FA from "@ohos.ability.featureAbility";
+import Want from '@ohos.app.ability.Want';
+import common from '@ohos.app.ability.common';
 
-let proxy;
-let connect = {
-    onConnect: function(elementName, remoteProxy) {
+let proxy: rpc.IRemoteObject | undefined = undefined;
+let connect: common.ConnectOptions = {
+    onConnect: (elementName, remoteProxy) => {
         console.log("RpcClient: js onConnect called.");
         proxy = remoteProxy;
     },
-    onDisconnect: function(elementName) {
+    onDisconnect: (elementName) => {
         console.log("RpcClient: onDisconnect");
     },
-    onFailed: function() {
+    onFailed: () => {
         console.log("RpcClient: onFailed");
     }
 };
-let want = {
-    "bundleName": "com.ohos.server",
-    "abilityName": "com.ohos.server.EntryAbility",
+let want: Want = {
+    bundleName: "com.ohos.server",
+    abilityName: "com.ohos.server.EntryAbility",
 };
 // FA模型通过此方法连接服务
 // FA.connectAbility(want, connect);
 
-globalThis.context.connectServiceExtensionAbility(want, connect);
+this.context.connectServiceExtensionAbility(want, connect);
+```
 
-class MyDeathRecipient {
+上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的unregisterDeathRecipient接口方法注销死亡回调
+
+```ts
+class MyDeathRecipient implements rpc.DeathRecipient{
     onRemoteDied() {
         console.log("server died");
     }
 }
 let deathRecipient = new MyDeathRecipient();
-proxy.registerDeathRecippient(deathRecipient, 0);
+proxy.registerDeathRecipient(deathRecipient, 0);
 proxy.unregisterDeathRecipient(deathRecipient, 0);
 ```
 

@@ -198,56 +198,63 @@ Stack进行增、删、改、查操作的常用API如下：
 此处列举常用的线性容器ArrayList、Vector、Deque、Stack、List的使用示例，包括导入模块、增加元素、访问元素及修改等操作。示例代码如下所示：
 
 
-```js
+```ts
 // ArrayList
 import ArrayList from '@ohos.util.ArrayList'; // 导入ArrayList模块
 
-let arrayList = new ArrayList();
-arrayList.add('a');
-arrayList.add(1); // 增加元素
-console.info(`result: ${arrayList[0]}`); // 访问元素
-arrayList[0] = 'one'; // 修改元素
-console.info(`result: ${arrayList[0]}`);
+let arrayList1: ArrayList<string> = new ArrayList();
+arrayList1.add('a');
+let arrayList2: ArrayList<number> = new ArrayList();
+arrayList2.add(1); // 增加元素
+console.info(`result: ${arrayList2[0]}`); // 访问元素
+arrayList1[0] = 'one'; // 修改元素
+console.info(`result: ${arrayList1[0]}`);
 
 // Vector
 import Vector from '@ohos.util.Vector'; // 导入Vector模块
 
-let vector = new Vector();
-vector.add('a');
+let vector1: Vector<string> = new Vector();
+vector1.add('a');
+let vector2: Vector<Array<number>> = new Vector();
 let b1 = [1, 2, 3];
-vector.add(b1);
-vector.add(false); // 增加元素
-console.info(`result: ${vector[0]}`); // 访问元素
-console.info(`result: ${vector.getFirstElement()}`); // 访问元素
+vector2.add(b1);
+let vector3: Vector<boolean> = new Vector();
+vector3.add(false); // 增加元素
+console.info(`result: ${vector1[0]}`); // 访问元素
+console.info(`result: ${vector2.getFirstElement()}`); // 访问元素
 
 // Deque
 import Deque from '@ohos.util.Deque'; // 导入Deque模块
 
-let deque = new Deque;
-deque.insertFront('a');
-deque.insertFront(1); // 增加元素
-console.info(`result: ${deque[0]}`); // 访问元素
-deque[0] = 'one'; // 修改元素
-console.info(`result: ${deque[0]}`);
+let deque1: Deque<string> = new Deque;
+deque1.insertFront('a');
+let deque2: Deque<number> = new Deque;
+deque2.insertFront(1); // 增加元素
+console.info(`result: ${deque1[0]}`); // 访问元素
+deque1[0] = 'one'; // 修改元素
+console.info(`result: ${deque2[0]}`);
 
 // Stack
-import Stack from '@ohos.util.Stack'; // 导入Stack模块 
+import Stack from '@ohos.util.Stack'; // 导入Stack模块
 
-let stack = new Stack();
-stack.push('a');
-stack.push(1); // 增加元素
-console.info(`result: ${stack[0]}`); // 访问元素
-stack.pop(); // 弹出元素
-console.info(`result: ${stack.length}`);
+let stack1: Stack<string> = new Stack();
+stack1.push('a');
+let stack2: Stack<number> = new Stack();
+stack2.push(1); // 增加元素
+console.info(`result: ${stack1[0]}`); // 访问元素
+stack2.pop(); // 弹出元素
+console.info(`result: ${stack2.length}`);
 
 // List
 import List from '@ohos.util.List'; // 导入List模块
 
-let list = new List;
-list.add('a');
-list.add(1);
+let list1: List<string> = new List;
+list1.add('a');
+let list2: List<number> = new List;
+list2.add(1);
+let list3: List<Array<number>> = new List;
 let b2 = [1, 2, 3];
-list.add(b2); // 增加元素
-console.info(`result: ${list[0]}`); // 访问元素
-console.info(`result: ${list.get(0)}`); // 访问元素
+list3.add(b2); // 增加元素
+console.info(`result: ${list1[0]}`); // 访问元素
+console.info(`result: ${list3.get(0)}`); // 访问元素
 ```

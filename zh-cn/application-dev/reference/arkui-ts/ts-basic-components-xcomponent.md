@@ -14,7 +14,9 @@
 
 ## 接口
 
-**方法1：**  XComponent(value: {id: string, type: string, libraryname?: string, controller?: XComponentController})
+### XComponent
+
+XComponent(value: {id: string, type: string, libraryname?: string, controller?: XComponentController})
 
 **参数:** 
 
@@ -25,7 +27,9 @@
 | libraryname | string                                        | 否   | 应用Native层编译输出动态库名称，仅XComponent类型为"surface"时有效。 |
 | controller  | [XComponentcontroller](#xcomponentcontroller) | 否   | 给组件绑定一个控制器，通过控制器调用组件方法，仅XComponent类型为"surface"时有效。 |
 
-**方法2：**  XComponent(value: {id: string, type: XComponentType, libraryname?: string, controller?: XComponentController})<sup>10+</sup>
+### XComponent<sup>10+</sup>
+
+XComponent(value: {id: string, type: XComponentType, libraryname?: string, controller?: XComponentController})
 
 **参数:** 
 
@@ -58,14 +62,14 @@
 > 内部所写的非UI逻辑需要封装在一个或多个函数内。
 
 ## 属性
-- XComponent显示的内容，可由开发者自定义绘制，通用属性中的[背景设置](./ts-universal-attributes-background.md)、[透明度设置](./ts-universal-attributes-opacity.md)和[图像效果](./ts-universal-attributes-image-effect.md)按照type类型有限支持。
-- type为SURFACE("surface")时上述通用属性均不支持，建议使用EGL/OpenGLES提供的接口设置相关内容。
-- type为COMPONENT("component")时上述通用属性均不支持，建议使用挂载子组件的方式进行设置相关内容。
-- type为TEXTURE时通用属性可以支持[背景颜色设置](./ts-universal-attributes-background.md)和[透明度设置](./ts-universal-attributes-opacity.md)，[除颜色外的背景设置](./ts-universal-attributes-background.md)和[图像效果](./ts-universal-attributes-image-effect.md)暂不支持，建议使用EGL/OpenGLES提供的接口设置相关内容。
+- XComponent显示的内容，可由开发者自定义绘制，通用属性中的[背景设置](ts-universal-attributes-background.md)、[透明度设置](ts-universal-attributes-opacity.md)和[图像效果](ts-universal-attributes-image-effect.md)按照type类型有限支持。
+- type为SURFACE("surface")时仅支持[图像效果](ts-universal-attributes-image-effect.md)中的shadow属性，建议使用EGL/OpenGLES提供的接口设置相关内容。
+- type为COMPONENT("component")时仅支持[图像效果](ts-universal-attributes-image-effect.md)中的shadow属性，建议使用挂载子组件的方式进行设置相关内容。
+- type为TEXTURE时通用属性可以支持[背景颜色设置](ts-universal-attributes-background.md)、[透明度设置](ts-universal-attributes-opacity.md)和[图像效果](ts-universal-attributes-image-effect.md)中的shadow属性，[除颜色外的背景设置](ts-universal-attributes-background.md)和其他[图像效果](ts-universal-attributes-image-effect.md)暂不支持，建议使用EGL/OpenGLES提供的接口设置相关内容。
 
 ## 事件
 
-仅type为SURFACE("surface")或TEXTURE时以下事件有效。不支持[通用事件](ts-universal-events-click.md)和[手势](ts-gesture-settings.md)。
+仅type为SURFACE("surface")或TEXTURE时以下事件有效。不支持[通用事件](ts-universal-events-click.md)。
 
 ### onLoad
 

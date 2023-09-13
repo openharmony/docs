@@ -355,6 +355,7 @@ struct SideBarSample {
   @StorageLink('currentBreakpoint') private currentBreakpoint: string = "md";
   private breakpointSystem: BreakpointSystem = new BreakpointSystem()
   @State selectIndex: number = 0;
+  @State showSideBar:boolean=false;
 
   aboutToAppear() {
     this.breakpointSystem.register() 
@@ -375,7 +376,10 @@ struct SideBarSample {
       .width(180)
       .height(36)
       .onClick(() => {
-        this.selectIndex = index
+        this.selectIndex = index;
+        if(this.currentBreakpoint === 'sm'){
+          this.showSideBar=false
+        }
       })
   }
 
@@ -403,8 +407,11 @@ struct SideBarSample {
     .maxSideBarWidth(this.currentBreakpoint === 'sm' ? '100%' : '33.33%')
     .showControlButton(this.currentBreakpoint === 'sm')
     .autoHide(false)
+    .showSideBar(this.currentBreakpoint !== 'sm'||this.showSideBar)
     .onChange((isBarShow: boolean) => {
-      
+      if(this.currentBreakpoint === 'sm'){
+          this.showSideBar=isBarShow
+        }         
     })
   }
 }
@@ -499,14 +506,81 @@ struct NavigationSample {
 | -------------------------------------------- | --------------------------------------- | --------------------------------------- |
 | 单栏显示。<br> 点击侧边栏控制按钮控制侧边栏的显示/隐藏。<br> 点击首页的选项可以进入到内容区，内容区点击返回按钮可返回首页。| 双栏显示。<br> 点击侧边栏控制按钮控制侧边栏的显示/隐藏。<br> 点击左侧导航区不同的选项可以刷新右侧内容区的显示。 | 三分栏显示。<br> 点击侧边栏控制按钮控制侧边栏的显示/隐藏，来回切换二分/三分栏显示。<br> 点击左侧导航区不同的选项可以刷新右侧内容区的显示。<br> 窗口宽度变化时，优先变化右侧内容区的宽度大小。 |
 | ![](figures/tripleColumn_sm.png)            | ![](figures/tripleColumn_md.png)       | ![](figures/tripleColumn_lg.png)       |
+| ![](figures/TripleColumn.gif)
+
+**场景说明**
+
+为充分利用设备的屏幕尺寸优势，应用在平板和PC等大屏设备上常常有二分栏或三分栏的设计，即“A+C”，“B+C”或“A+B+C”的组合，其中A是侧边导航区，B是列表导航区，C是内容区。在用户动态改变窗口宽度时，当窗口宽度大于或等于840vp时页面呈现A+B+C三列，放大缩小优先变化C列；当窗口宽度小于840vp大于等于600vp时呈现B+C列，放大缩小时优先变化C列；当窗口宽度小于600vp大于等于360vp时，仅呈现C列。
 
 **实现方案**
 
-三分栏场景可以组合使用[SideBarContainer](../../reference/arkui-ts/ts-container-sidebarcontainer.md)组件与[Navigation组件](../../reference/arkui-ts/ts-basic-components-navigation.md)实现，SideBarContainer组件可以通过侧边栏控制按钮控制显示/隐藏，Navigation组件可以根据窗口宽度自动切换该组件内单/双栏显示，结合响应式布局能力，在不同断点下为SiderBarConContainer组件的sideBarWidth、minContentWidth与Navigation组件的navBarWidth、minContentWidth等属性配置不同的值，即可实现目标效果。
+三分栏场景可以组合使用[SideBarContainer](../../reference/arkui-ts/ts-container-sidebarcontainer.md)组件与[Navigation组件](../../reference/arkui-ts/ts-basic-components-navigation.md)实现，SideBarContainer组件可以通过侧边栏控制按钮控制显示/隐藏，Navigation组件可以根据窗口宽度自动切换该组件内单/双栏显示，结合响应式布局能力，在不同断点下为SiderBarConContainer组件的minContentWidth属性配置不同的值，即可实现目标效果。设置minContentWidth属性的值可以通过[断点](../multi-device-app-dev/responsive-layout.md#断点)监听窗口尺寸变化的同时设置不同的值并储存成一个全局对象。
 
 **参考代码**
 
 ```
+// MainAbility.ts
+import window from '@ohos.window'
+import display from '@ohos.display'
+
+export default class MainAbility extends Ability {
+  private windowObj: window.Window
+  private curBp: string
+  private myWidth: number
+  ...
+  // 根据当前窗口尺寸更新断点
+  private updateBreakpoint(windowWidth) {
+    // 将长度的单位由px换算为vp
+    let windowWidthVp = windowWidth / (display.getDefaultDisplaySync().densityDPI / 160)
+    let newBp: string = ''
+    let newWd: number
+    if (windowWidthVp < 320) {
+      newBp = 'xs'
+      newWd = 360
+    } else if (windowWidthVp < 600) {
+      newBp = 'sm'
+      newWd = 360
+    } else if (windowWidthVp < 840) {
+      newBp = 'md'
+      newWd = 600
+    } else {
+      newBp = 'lg'
+      newWd = 600
+    }
+    if (this.curBp !== newBp) {
+      this.curBp = newBp
+      this.myWidth = newWd
+      // 使用状态变量记录当前断点值
+      AppStorage.SetOrCreate('currentBreakpoint', this.curBp)
+      // 使用状态变量记录当前minContentWidth值
+      AppStorage.SetOrCreate('myWidth', this.myWidth)
+    }
+  }
+
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    windowStage.getMainWindow().then((windowObj) => {
+      this.windowObj = windowObj
+      // 获取应用启动时的窗口尺寸
+      this.updateBreakpoint(windowObj.getWindowProperties().windowRect.width)
+      // 注册回调函数，监听窗口尺寸变化
+      windowObj.on('windowSizeChange', (windowSize)=>{
+        this.updateBreakpoint(windowSize.width)
+      })
+    });
+    ...
+  }
+    
+  // 窗口销毁时，取消窗口尺寸变化监听
+  onWindowStageDestroy() {
+    if (this.windowObj) {
+      this.windowObj.off('windowSizeChange')
+    }
+  }
+  ...
+}
+
+
+// tripleColumn.ets
 @Component
 struct Details {
   private imageSrc: Resource
@@ -551,6 +625,7 @@ struct Item {
 @Component
 struct TripleColumnSample {
   @State arr: number[] = [1, 2, 3]
+  @StorageProp('myWidth') myWidth: number = 360
 
   @Builder NavigationTitle() {
     Column() {
@@ -587,25 +662,23 @@ struct TripleColumnSample {
           List(){
             ListItem() {
               Column() {
-                Item({ label: 'B1', imageSrc: $r('app.media.right') })
-                Item({ label: 'B2', imageSrc: $r('app.media.wrong') })
+                Item({ label: 'B1', imageSrc: $r('app.media.icon') })
+                Item({ label: 'B2', imageSrc: $r('app.media.icon') })
               }
             }.width('100%')
           }
         }
         .mode(NavigationMode.Auto)
+        .minContentWidth(360)
+        .navBarWidth(240)
         .backgroundColor('#FFFFFF')
         .height('100%')
         .width('100%')
-        .navBarWidth(240)
         .hideToolBar(true)
         .title(this.NavigationTitle)
-        .minContentWidth(600-240)
       }.width('100%').height('100%')
     }.sideBarWidth(240)
-    .minSideBarWidth(50)
-    .maxSideBarWidth(300)
-    .minContentWidth(840-240)
+    .minContentWidth(this.myWidth)
   }
 }
 ```
@@ -618,7 +691,7 @@ struct TripleColumnSample {
 
 | sm                                           | md                                      | lg                                      |
 | -------------------------------------------- | --------------------------------------- | --------------------------------------- |
-| 弹窗居中显示，<br>与窗口左右两侧各间距24vp。 | 弹窗居中显示，其宽度约为窗口宽度的1/2。 | 弹窗居中显示，其宽度约为窗口宽度的1/3。 |
+| 弹窗横向居中，纵向位于底部显示，与窗口左右两侧各间距24vp。 | 弹窗居中显示，其宽度约为窗口宽度的1/2。 | 弹窗居中显示，其宽度约为窗口宽度的1/3。 |
 | ![](figures/custom_dialog_sm.png)            | ![](figures/custom_dialog_md.png)       | ![](figures/custom_dialog_lg.png)       |
 
 **实现方案**

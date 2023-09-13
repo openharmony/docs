@@ -6,6 +6,7 @@ The **bundleManager** module provides APIs for bundle management, including addi
 >
 > - The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
+> - The APIs of this module can be used only in the stage model.
 >
 > - The APIs provided by this module can be called only by a [device administrator application](enterpriseDeviceManagement-overview.md#basic-concepts) that is [enabled](js-apis-enterprise-adminManager.md#adminmanagerenableadmin).
 
@@ -19,7 +20,7 @@ import bundleManager from '@ohos.enterprise.bundleManager';
 
 addAllowedInstallBundles(admin: Want, appIds: Array\<string>, callback: AsyncCallback&lt;void&gt;): void;
 
-Adds a list of bundles that are allowed to be installed by the current user through the specified device administrator application. This API uses an asynchronous callback to return the result.
+Adds the applications that can be installed by the current user through the specified device administrator application. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.ENTERPRISE_SET_BUNDLE_INSTALL_POLICY
 
@@ -32,7 +33,7 @@ Adds a list of bundles that are allowed to be installed by the current user thro
 | Name     | Type                                      | Mandatory  | Description                      |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
 | admin    | [Want](js-apis-app-ability-want.md)     | Yes   | Device administrator application.                 |
-| appIds    | Array&lt;string&gt;                | Yes   | Bundles to be added.                 |
+| appIds    | Array&lt;string&gt;                | Yes   | IDs of the applications to add.                 |
 | callback | AsyncCallback&lt;void&gt;            | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
 
 **Error codes**
@@ -66,7 +67,7 @@ bundleManager.addAllowedInstallBundles(wantTemp, appIds, (err) => {
 
 addAllowedInstallBundles(admin: Want, appIds: Array\<string>, userId: number, callback: AsyncCallback&lt;void&gt;): void;
 
-Adds a list of bundles that are allowed to be installed by the given user (specified by **userId**) through the specified device administrator application. This API uses an asynchronous callback to return the result.
+Adds the applications that can be installed by the specified user through the specified device administrator application. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.ENTERPRISE_SET_BUNDLE_INSTALL_POLICY
 
@@ -79,8 +80,8 @@ Adds a list of bundles that are allowed to be installed by the given user (speci
 | Name  | Type                                 | Mandatory  | Description     |
 | ----- | ----------------------------------- | ---- | ------- |
 | admin    | [Want](js-apis-app-ability-want.md)     | Yes   | Device administrator application.                 |
-| appIds    | Array&lt;string&gt;                | Yes   | Bundles to be added.                 |
-| userId     | number                             | Yes   | User ID. The default value is the user ID of the caller. The user ID must be greater than or equal to **0**.|
+| appIds    | Array&lt;string&gt;                | Yes   | IDs of the applications to add.                 |
+| userId     | number                             | Yes   | User ID, which must be greater than or equal to 0.|
 | callback | AsyncCallback&lt;void&gt;            | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
 
 **Error codes**
@@ -114,7 +115,7 @@ bundleManager.addAllowedInstallBundles(wantTemp, appIds, 100, (err) => {
 
 addAllowedInstallBundles(admin: Want, appIds: Array\<string>, userId?: number): Promise&lt;void&gt;;
 
-Adds a list of bundles that are allowed to be installed by the current user (if **userId** is not passed in) or the given user (if **userId** is passed in) through the specified device administrator application. This API uses a promise to return the result.
+Adds the applications that can be installed by the current or specified user through the specified device administrator application. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.ENTERPRISE_SET_BUNDLE_INSTALL_POLICY
 
@@ -127,14 +128,14 @@ Adds a list of bundles that are allowed to be installed by the current user (if 
 | Name  | Type                                 | Mandatory  | Description     |
 | ----- | ----------------------------------- | ---- | ------- |
 | admin    | [Want](js-apis-app-ability-want.md)     | Yes   | Device administrator application.                 |
-| appIds    | Array&lt;string&gt;                | Yes   | Bundles to be added.                 |
-| userId     | number                             | No   | User ID. The default value is the user ID of the caller. The user ID must be greater than or equal to **0**.|
+| appIds    | Array&lt;string&gt;                | Yes   | IDs of the applications to add.                 |
+| userId     | number                             | No   |User ID, which must be greater than or equal to 0.<br> - If **userId** is passed in, the applications can be installed by the specified user.<br> - If **userId** is not passed in, the applications can be installed by the current user.|
 
 **Return value**
 
 | Type                  | Description                     |
 | --------------------- | ------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value. If the operation fails, an error object is thrown. |
+| Promise&lt;void&gt; | Promise that returns no value. If the operation fails, an error object will be thrown. |
 
 **Error codes**
 
@@ -165,7 +166,7 @@ bundleManager.addAllowedInstallBundles(wantTemp, appIds, 100).then(() => {
 
 removeAllowedInstallBundles(admin: Want, appIds: Array\<string>, callback: AsyncCallback&lt;void&gt;): void;
 
-Removes a list of bundles that are allowed to be installed by the current user through the specified device administrator application. The bundles removed from the list can no longer be installed. This API uses an asynchronous callback to return the result.
+Removes the applications that can be installed by the current user through the specified device administrator application. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.ENTERPRISE_SET_BUNDLE_INSTALL_POLICY
 
@@ -178,7 +179,7 @@ Removes a list of bundles that are allowed to be installed by the current user t
 | Name     | Type                                      | Mandatory  | Description                      |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
 | admin    | [Want](js-apis-app-ability-want.md)     | Yes   | Device administrator application.                 |
-| appIds    | Array&lt;string&gt;                | Yes   | Bundles to be removed.                 |
+| appIds    | Array&lt;string&gt;                | Yes   | IDs of the applications to remove.                 |
 | callback | AsyncCallback&lt;void&gt;            | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
 
 **Error codes**
@@ -212,7 +213,7 @@ bundleManager.removeAllowedInstallBundles(wantTemp, appIds, (err) => {
 
 removeAllowedInstallBundles(admin: Want, appIds: Array\<string>, userId: number, callback: AsyncCallback&lt;void&gt;): void;
 
-Removes a list of bundles that are allowed to be installed by the given user (specified by **userId**) through the specified device administrator application. The bundles removed from the list can no longer be installed. This API uses an asynchronous callback to return the result.
+Removes the applications that can be installed by the specified user through the specified device administrator application. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.ENTERPRISE_SET_BUNDLE_INSTALL_POLICY
 
@@ -225,8 +226,8 @@ Removes a list of bundles that are allowed to be installed by the given user (sp
 | Name  | Type                                 | Mandatory  | Description     |
 | ----- | ----------------------------------- | ---- | ------- |
 | admin    | [Want](js-apis-app-ability-want.md)     | Yes   | Device administrator application.                 |
-| appIds    | Array&lt;string&gt;                | Yes   | Bundles to be removed.                 |
-| userId     | number                             | Yes   | User ID. The default value is the user ID of the caller. The user ID must be greater than or equal to **0**.|
+| appIds    | Array&lt;string&gt;                | Yes   | IDs of the applications to remove.                 |
+| userId     | number                             | Yes   | User ID, which must be greater than or equal to 0.|
 | callback | AsyncCallback&lt;void&gt;            | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
 
 **Error codes**
@@ -260,7 +261,7 @@ bundleManager.removeAllowedInstallBundles(wantTemp, appIds, 100, (err) => {
 
 removeAllowedInstallBundles(admin: Want, appIds: Array\<string>, userId?: number): Promise&lt;void&gt;;
 
-Removes a list of bundles that are allowed to be installed by the current user (if **userId** is not passed in) or the given user (if **userId** is passed in) through the specified device administrator application. The bundles removed from the list can no longer be installed. This API uses a promise to return the result.
+Removes the applications that can be installed by the current or specified user through the specified device administrator application. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.ENTERPRISE_SET_BUNDLE_INSTALL_POLICY
 
@@ -273,14 +274,14 @@ Removes a list of bundles that are allowed to be installed by the current user (
 | Name  | Type                                 | Mandatory  | Description     |
 | ----- | ----------------------------------- | ---- | ------- |
 | admin    | [Want](js-apis-app-ability-want.md)     | Yes   | Device administrator application.                 |
-| appIds    | Array\&lt;string&gt;                | Yes   | Bundles to be removed.                 |
-| userId     | number                             | No   | User ID. The default value is the user ID of the caller. The user ID must be greater than or equal to **0**.|
+| appIds    | Array\&lt;string&gt;                | Yes   | IDs of the applications to remove.                 |
+| userId     | number                             | No   | User ID, which must be greater than or equal to 0.<br> - If **userId** is passed in, the applications can be installed by the specified user.<br> - If **userId** is not passed in, the applications can be installed by the current user.|
 
 **Return value**
 
 | Type                  | Description                     |
 | --------------------- | ------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value. If the operation fails, an error object is thrown. |
+| Promise&lt;void&gt; | Promise that returns no value. If the operation fails, an error object will be thrown. |
 
 **Error codes**
 
@@ -311,7 +312,7 @@ bundleManager.removeAllowedInstallBundles(wantTemp, appIds, 100).then(() => {
 
 getAllowedInstallBundles(admin: Want, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void;
 
-Obtains the list of bundles that are allowed to be installed by the current user through the specified device administrator application. This API uses an asynchronous callback to return the result.
+Obtains the applications that can be installed by the current user through the specified device administrator application. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.ENTERPRISE_SET_BUNDLE_INSTALL_POLICY
 
@@ -356,7 +357,7 @@ bundleManager.getAllowedInstallBundles(wantTemp, (err, result) => {
 
 getAllowedInstallBundles(admin: Want, userId: number, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void;
 
-Obtains the list of bundles that are allowed to be installed by the given user (specified by **userId**) through the specified device administrator application. This API uses an asynchronous callback to return the result.
+Obtains the applications that can be installed by the specified user through the specified device administrator application. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.ENTERPRISE_SET_BUNDLE_INSTALL_POLICY
 
@@ -369,7 +370,7 @@ Obtains the list of bundles that are allowed to be installed by the given user (
 | Name     | Type                                      | Mandatory  | Description                      |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
 | admin    | [Want](js-apis-app-ability-want.md)     | Yes   | Device administrator application.                 |
-| userId     | number                             | Yes   | User ID. The default value is the user ID of the caller. The user ID must be greater than or equal to **0**.|
+| userId     | number                             | Yes   | User ID, which must be greater than or equal to 0.|
 | callback | AsyncCallback&lt;Array&lt;string&gt;&gt;       | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.      |
 
 **Error codes**
@@ -402,7 +403,7 @@ bundleManager.getAllowedInstallBundles(wantTemp, 100, (err, result) => {
 
 getAllowedInstallBundles(admin: Want, userId?: number): Promise&lt;Array&lt;string&gt;&gt;;
 
-Obtains the list of bundles that are allowed to be installed by the current user (if **userId** is not passed in) or the given user (if **userId** is passed in) through the specified device administrator application. This API uses a promise to return the result.
+Obtains the applications that can be installed by the current or specified user through the specified device administrator application. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.ENTERPRISE_SET_BUNDLE_INSTALL_POLICY
 
@@ -415,7 +416,7 @@ Obtains the list of bundles that are allowed to be installed by the current user
 | Name  | Type                                 | Mandatory  | Description     |
 | ----- | ----------------------------------- | ---- | ------- |
 | admin | [Want](js-apis-app-ability-want.md) | Yes   | Device administrator application.|
-| userId     | number                             | No   | User ID. The default value is the user ID of the caller. The user ID must be greater than or equal to **0**.|
+| userId     | number                             | No   | User ID, which must be greater than or equal to 0.<br> - If **userId** is passed in, the applications can be installed by the specified user.<br> - If **userId** is not passed in, the applications can be installed by the current user.|
 
 **Return value**
 
@@ -451,7 +452,7 @@ bundleManager.getAllowedInstallBundles(wantTemp, 100).then((result) => {
 
 addDisallowedInstallBundles(admin: Want, appIds: Array\<string>, callback: AsyncCallback&lt;void&gt;): void;
 
-Adds a list of bundles that are not allowed to be installed by the current user through the specified device administrator application. This API uses an asynchronous callback to return the result.
+Adds the applications that cannot be installed by the current user through the specified device administrator application. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.ENTERPRISE_SET_BUNDLE_INSTALL_POLICY
 
@@ -464,7 +465,7 @@ Adds a list of bundles that are not allowed to be installed by the current user 
 | Name     | Type                                      | Mandatory  | Description                      |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
 | admin    | [Want](js-apis-app-ability-want.md)     | Yes   | Device administrator application.                 |
-| appIds    | Array&lt;string&gt;                | Yes   | Bundles to be added.                 |
+| appIds    | Array&lt;string&gt;                | Yes   | IDs of the applications to add.                 |
 | callback | AsyncCallback&lt;void&gt;            | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
 
 **Error codes**
@@ -498,7 +499,7 @@ bundleManager.addDisallowedInstallBundles(wantTemp, appIds, (err) => {
 
 addDisallowedInstallBundles(admin: Want, appIds: Array\<string>, userId: number, callback: AsyncCallback&lt;void&gt;): void;
 
-Adds a list of bundles that are not allowed to be installed by the given user (specified by **userId**) through the specified device administrator application. This API uses an asynchronous callback to return the result.
+Adds the applications that cannot be installed by the specified user through the specified device administrator application. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.ENTERPRISE_SET_BUNDLE_INSTALL_POLICY
 
@@ -511,8 +512,8 @@ Adds a list of bundles that are not allowed to be installed by the given user (s
 | Name  | Type                                 | Mandatory  | Description     |
 | ----- | ----------------------------------- | ---- | ------- |
 | admin    | [Want](js-apis-app-ability-want.md)     | Yes   | Device administrator application.                 |
-| appIds    | Array&lt;string&gt;                | Yes   | Bundles to be added.                 |
-| userId     | number                             | Yes   | User ID. The default value is the user ID of the caller. The user ID must be greater than or equal to **0**.|
+| appIds    | Array&lt;string&gt;                | Yes   | IDs of the applications to add.                 |
+| userId     | number                             | Yes   | User ID, which must be greater than or equal to 0.|
 | callback | AsyncCallback&lt;void&gt;            | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
 
 **Error codes**
@@ -546,7 +547,7 @@ bundleManager.addDisallowedInstallBundles(wantTemp, appIds, 100, (err) => {
 
 addDisallowedInstallBundles(admin: Want, appIds: Array\<string>, userId?: number): Promise&lt;void&gt;;
 
-Adds a list of bundles that are not allowed to be installed by the current user (if **userId** is not passed in) or the given user (if **userId** is passed in) through the specified device administrator application. This API uses a promise to return the result.
+Adds the applications that cannot be installed by the current or specified user through the specified device administrator application. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.ENTERPRISE_SET_BUNDLE_INSTALL_POLICY
 
@@ -559,14 +560,14 @@ Adds a list of bundles that are not allowed to be installed by the current user 
 | Name  | Type                                 | Mandatory  | Description     |
 | ----- | ----------------------------------- | ---- | ------- |
 | admin    | [Want](js-apis-app-ability-want.md)     | Yes   | Device administrator application.                 |
-| appIds    | Array&lt;string&gt;                | Yes   | Bundles to be added.                 |
-| userId     | number                             | No   | User ID. The default value is the user ID of the caller. The user ID must be greater than or equal to **0**.|
+| appIds    | Array&lt;string&gt;                | Yes   | IDs of the applications to add.                 |
+| userId     | number                             | No   | User ID, which must be greater than or equal to 0.<br> - If **userId** is passed in, the applications cannot be installed by the specified user.<br> - If **userId** is not passed in, the applications cannot be installed by the current user.|
 
 **Return value**
 
 | Type                  | Description                     |
 | --------------------- | ------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value. If the operation fails, an error object is thrown. |
+| Promise&lt;void&gt; | Promise that returns no value. If the operation fails, an error object will be thrown. |
 
 **Error codes**
 
@@ -597,7 +598,7 @@ bundleManager.addDisallowedInstallBundles(wantTemp, appIds, 100).then(() => {
 
 removeDisallowedInstallBundles(admin: Want, appIds: Array\<string>, callback: AsyncCallback&lt;void&gt;): void;
 
-Removes a list of bundles that are not allowed to be installed by the current user through the specified device administrator application. This API uses an asynchronous callback to return the result.
+Removes the applications that cannot be installed by the current user through the specified device administrator application. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.ENTERPRISE_SET_BUNDLE_INSTALL_POLICY
 
@@ -610,7 +611,7 @@ Removes a list of bundles that are not allowed to be installed by the current us
 | Name     | Type                                      | Mandatory  | Description                      |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
 | admin    | [Want](js-apis-app-ability-want.md)     | Yes   | Device administrator application.                 |
-| appIds    | Array&lt;string&gt;                | Yes   | Bundles to be removed.                 |
+| appIds    | Array&lt;string&gt;                | Yes   | IDs of the applications to remove.                 |
 | callback | AsyncCallback&lt;void&gt;            | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
 
 **Error codes**
@@ -642,9 +643,9 @@ bundleManager.removeDisallowedInstallBundles(wantTemp, appIds, (err) => {
 
 ## bundleManager.removeDisallowedInstallBundles
 
-removeAllowedInstallBundles(admin: Want, appIds: Array\<string>, userId: number, callback: AsyncCallback&lt;void&gt;): void;
+removeDisallowedInstallBundles(admin: Want, appIds: Array\<string>, userId: number, callback: AsyncCallback&lt;void&gt;): void;
 
-Removes a list of bundles that are not allowed to be installed by the given user (specified by **userId**) through the specified device administrator application. This API uses an asynchronous callback to return the result.
+Removes the applications that cannot be installed by the specified user through the specified device administrator application. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.ENTERPRISE_SET_BUNDLE_INSTALL_POLICY
 
@@ -657,8 +658,8 @@ Removes a list of bundles that are not allowed to be installed by the given user
 | Name  | Type                                 | Mandatory  | Description     |
 | ----- | ----------------------------------- | ---- | ------- |
 | admin    | [Want](js-apis-app-ability-want.md)     | Yes   | Device administrator application.                 |
-| appIds    | Array&lt;string&gt;                | Yes   | Bundles to be added.                 |
-| userId     | number                             | Yes   | User ID. The default value is the user ID of the caller. The user ID must be greater than or equal to **0**.|
+| appIds    | Array&lt;string&gt;                | Yes   | IDs of the applications to remove.                 |
+| userId     | number                             | Yes   | User ID, which must be greater than or equal to 0.|
 | callback | AsyncCallback&lt;void&gt;            | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
 
 **Error codes**
@@ -692,7 +693,7 @@ bundleManager.removeDisallowedInstallBundles(wantTemp, appIds, 100, (err) => {
 
 removeDisallowedInstallBundles(admin: Want, appIds: Array\<string>, userId?: number): Promise&lt;void&gt;;
 
-Removes a list of bundles that are not allowed to be installed by the current user (if **userId** is not passed in) or the given user (if **userId** is passed in) through the specified device administrator application. This API uses a promise to return the result.
+Removes the applications that cannot be installed by the current or specified user through the specified device administrator application. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.ENTERPRISE_SET_BUNDLE_INSTALL_POLICY
 
@@ -705,14 +706,14 @@ Removes a list of bundles that are not allowed to be installed by the current us
 | Name  | Type                                 | Mandatory  | Description     |
 | ----- | ----------------------------------- | ---- | ------- |
 | admin    | [Want](js-apis-app-ability-want.md)     | Yes   | Device administrator application.                 |
-| appIds    | Array\&lt;string&gt;                | Yes   | Bundles to be removed.                 |
-| userId     | number                             | No   | User ID. The default value is the user ID of the caller. The user ID must be greater than or equal to **0**.|
+| appIds    | Array\&lt;string&gt;                | Yes   | IDs of the applications to remove.                 |
+| userId     | number                             | No   | User ID, which must be greater than or equal to 0.<br> - If **userId** is passed in, the applications cannot be installed by the specified user.<br> - If **userId** is not passed in, the applications cannot be installed by the current user.|
 
 **Return value**
 
 | Type                  | Description                     |
 | --------------------- | ------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value. If the operation fails, an error object is thrown. |
+| Promise&lt;void&gt; | Promise that returns no value. If the operation fails, an error object will be thrown. |
 
 **Error codes**
 
@@ -743,7 +744,7 @@ bundleManager.removeDisallowedInstallBundles(wantTemp, appIds, 100).then(() => {
 
 getDisallowedInstallBundles(admin: Want, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void;
 
-Obtains the list of bundles that are not allowed to be installed by the current user through the specified device administrator application. This API uses an asynchronous callback to return the result.
+Obtains the applications that cannot be installed by the current user through the specified device administrator application. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.ENTERPRISE_SET_BUNDLE_INSTALL_POLICY
 
@@ -788,7 +789,7 @@ bundleManager.getDisallowedInstallBundles(wantTemp, (err, result) => {
 
 getDisallowedInstallBundles(admin: Want, userId: number, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void;
 
-Obtains the list of bundles that are not allowed to be installed by the given user (specified by **userId**) through the specified device administrator application. This API uses an asynchronous callback to return the result.
+Obtains the applications that cannot be installed by the specified user through the specified device administrator application. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.ENTERPRISE_SET_BUNDLE_INSTALL_POLICY
 
@@ -801,7 +802,7 @@ Obtains the list of bundles that are not allowed to be installed by the given us
 | Name     | Type                                      | Mandatory  | Description                      |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
 | admin    | [Want](js-apis-app-ability-want.md)     | Yes   | Device administrator application.                 |
-| userId     | number                             | Yes   | User ID. The default value is the user ID of the caller. The user ID must be greater than or equal to **0**.|
+| userId     | number                             | Yes   | User ID, which must be greater than or equal to 0.|
 | callback | AsyncCallback&lt;Array&lt;string&gt;&gt;       | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.      |
 
 **Error codes**
@@ -834,7 +835,7 @@ bundleManager.getDisallowedInstallBundles(wantTemp, 100, (err, result) => {
 
 getDisallowedInstallBundles(admin: Want, userId?: number): Promise&lt;Array&lt;string&gt;&gt;;
 
-Obtains the list of bundles that are not allowed to be installed by the current user (if **userId** is not passed in) or the given user (if **userId** is passed in) through the specified device administrator application. This API uses a promise to return the result.
+Obtains the applications that cannot be installed by the current or specified user through the specified device administrator application. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.ENTERPRISE_SET_BUNDLE_INSTALL_POLICY
 
@@ -847,7 +848,7 @@ Obtains the list of bundles that are not allowed to be installed by the current 
 | Name  | Type                                 | Mandatory  | Description     |
 | ----- | ----------------------------------- | ---- | ------- |
 | admin | [Want](js-apis-app-ability-want.md) | Yes   | Device administrator application.|
-| userId     | number                             | No   | User ID. The default value is the user ID of the caller. The user ID must be greater than or equal to **0**.|
+| userId     | number                             | No   | User ID, which must be greater than or equal to 0.<br> - If **userId** is passed in, the applications cannot be installed by the specified user.<br> - If **userId** is not passed in, the applications cannot be installed by the current user.|
 
 **Return value**
 
@@ -883,7 +884,7 @@ bundleManager.getDisallowedInstallBundles(wantTemp, 100).then((result) => {
 
 addDisallowedUninstallBundles(admin: Want, appIds: Array\<string>, callback: AsyncCallback&lt;void&gt;): void
 
-Adds a list of bundles that are not allowed to be uninstalled by the current user through the specified device administrator application. This API uses an asynchronous callback to return the result.
+Adds the applications that cannot be uninstalled by the current user through the specified device administrator application. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.ENTERPRISE_SET_BUNDLE_INSTALL_POLICY
 
@@ -896,7 +897,7 @@ Adds a list of bundles that are not allowed to be uninstalled by the current use
 | Name     | Type                                      | Mandatory  | Description                      |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
 | admin    | [Want](js-apis-app-ability-want.md)     | Yes   | Device administrator application.                 |
-| appIds    | Array&lt;string&gt;                | Yes   | Bundles to be added.                 |
+| appIds    | Array&lt;string&gt;                | Yes   | IDs of the applications to add.                 |
 | callback | AsyncCallback&lt;void&gt;            | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
 
 **Error codes**
@@ -930,7 +931,7 @@ bundleManager.addDisallowedUninstallBundles(wantTemp, appIds, (err) => {
 
 addDisallowedUninstallBundles(admin: Want, appIds: Array\<string>, userId: number, callback: AsyncCallback&lt;void&gt;): void
 
-Adds a list of bundles that are not allowed to be uninstalled by the given user (specified by **userId**) through the specified device administrator application. This API uses an asynchronous callback to return the result.
+Adds the applications that cannot be uninstalled by the specified user through the specified device administrator application. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.ENTERPRISE_SET_BUNDLE_INSTALL_POLICY
 
@@ -943,8 +944,8 @@ Adds a list of bundles that are not allowed to be uninstalled by the given user 
 | Name  | Type                                 | Mandatory  | Description     |
 | ----- | ----------------------------------- | ---- | ------- |
 | admin    | [Want](js-apis-app-ability-want.md)     | Yes   | Device administrator application.                 |
-| appIds    | Array&lt;string&gt;                | Yes   | Bundles to be added.                 |
-| userId     | number                             | Yes   | User ID. The default value is the user ID of the caller. The user ID must be greater than or equal to **0**.|
+| appIds    | Array&lt;string&gt;                | Yes   | IDs of the applications to add.                 |
+| userId     | number                             | Yes   | User ID, which must be greater than or equal to 0.|
 | callback | AsyncCallback&lt;void&gt;            | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
 
 **Error codes**
@@ -978,7 +979,7 @@ bundleManager.addDisallowedUninstallBundles(wantTemp, appIds, 100, (err) => {
 
 addDisallowedUninstallBundles(admin: Want, appIds: Array\<string>, userId?: number): Promise&lt;void&gt;
 
-Adds a list of bundles that are not allowed to be uninstalled by the current user (if **userId** is not passed in) or the given user (if **userId** is passed in) through the specified device administrator application. This API uses a promise to return the result.
+Adds the applications that cannot be uninstalled by the current or specified user through the specified device administrator application. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.ENTERPRISE_SET_BUNDLE_INSTALL_POLICY
 
@@ -991,14 +992,14 @@ Adds a list of bundles that are not allowed to be uninstalled by the current use
 | Name  | Type                                 | Mandatory  | Description     |
 | ----- | ----------------------------------- | ---- | ------- |
 | admin    | [Want](js-apis-app-ability-want.md)     | Yes   | Device administrator application.                 |
-| appIds    | Array&lt;string&gt;                | Yes   | Bundles to be added.                 |
-| userId     | number                             | No   | User ID. The default value is the user ID of the caller. The user ID must be greater than or equal to **0**.|
+| appIds    | Array&lt;string&gt;                | Yes   | IDs of the applications to add.                 |
+| userId     | number                             | No   | User ID, which must be greater than or equal to 0.<br> - If **userId** is passed in, the applications cannot be uninstalled by the specified user.<br> - If **userId** is not passed in, the applications cannot be uninstalled by the current user.|
 
 **Return value**
 
 | Type                  | Description                     |
 | --------------------- | ------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value. If the operation fails, an error object is thrown. |
+| Promise&lt;void&gt; | Promise that returns no value. If the operation fails, an error object will be thrown. |
 
 **Error codes**
 
@@ -1029,7 +1030,7 @@ bundleManager.addDisallowedUninstallBundles(wantTemp, appIds, 100).then(() => {
 
 removeDisallowedUninstallBundles(admin: Want, appIds: Array\<string>, callback: AsyncCallback&lt;void&gt;): void
 
-Removes a list of bundles that are not allowed to be uninstalled by the current user through the specified device administrator application. This API uses an asynchronous callback to return the result.
+Removes the applications that cannot be uninstalled by the current user through the specified device administrator application. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.ENTERPRISE_SET_BUNDLE_INSTALL_POLICY
 
@@ -1042,7 +1043,7 @@ Removes a list of bundles that are not allowed to be uninstalled by the current 
 | Name     | Type                                      | Mandatory  | Description                      |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
 | admin    | [Want](js-apis-app-ability-want.md)     | Yes   | Device administrator application.                 |
-| appIds    | Array&lt;string&gt;                | Yes   | Bundles to be added.                 |
+| appIds    | Array&lt;string&gt;                | Yes   | IDs of the applications to remove.                 |
 | callback | AsyncCallback&lt;void&gt;            | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
 
 **Error codes**
@@ -1076,7 +1077,7 @@ bundleManager.removeDisallowedUninstallBundles(wantTemp, appIds, (err) => {
 
 removeDisallowedUninstallBundles(admin: Want, appIds: Array\<string>, userId: number, callback: AsyncCallback&lt;void&gt;): void
 
-Removes a list of bundles that are not allowed to be uninstalled by the given user (specified by **userId**) through the specified device administrator application. This API uses an asynchronous callback to return the result.
+Removes the applications that cannot be uninstalled by the specified user through the specified device administrator application. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.ENTERPRISE_SET_BUNDLE_INSTALL_POLICY
 
@@ -1089,8 +1090,8 @@ Removes a list of bundles that are not allowed to be uninstalled by the given us
 | Name  | Type                                 | Mandatory  | Description     |
 | ----- | ----------------------------------- | ---- | ------- |
 | admin    | [Want](js-apis-app-ability-want.md)     | Yes   | Device administrator application.                 |
-| appIds    | Array&lt;string&gt;                | Yes   | Bundles to be removed.                 |
-| userId     | number                             | Yes   | User ID. The default value is the user ID of the caller. The user ID must be greater than or equal to **0**.|
+| appIds    | Array&lt;string&gt;                | Yes   | IDs of the applications to remove.                 |
+| userId     | number                             | Yes   | User ID, which must be greater than or equal to 0.|
 | callback | AsyncCallback&lt;void&gt;            | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
 
 **Error codes**
@@ -1124,7 +1125,7 @@ bundleManager.removeDisallowedUninstallBundles(wantTemp, appIds, 100, (err) => {
 
 removeDisallowedUninstallBundles(admin: Want, appIds: Array\<string>, userId?: number): Promise&lt;void&gt;
 
-Removes a list of bundles that are not allowed to be uninstalled by the current user (if **userId** is not passed in) or the given user (if **userId** is passed in) through the specified device administrator application. This API uses a promise to return the result.
+Removes the applications that cannot be uninstalled by the current or specified user through the specified device administrator application. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.ENTERPRISE_SET_BUNDLE_INSTALL_POLICY
 
@@ -1137,14 +1138,14 @@ Removes a list of bundles that are not allowed to be uninstalled by the current 
 | Name  | Type                                 | Mandatory  | Description     |
 | ----- | ----------------------------------- | ---- | ------- |
 | admin    | [Want](js-apis-app-ability-want.md)     | Yes   | Device administrator application.                 |
-| appIds    | Array\&lt;string&gt;                | Yes   | Bundles to be removed.                 |
-| userId     | number                             | No   | User ID. The default value is the user ID of the caller. The user ID must be greater than or equal to **0**.|
+| appIds    | Array\&lt;string&gt;                | Yes   | IDs of the applications to remove.                 |
+| userId     | number                             | No   | User ID, which must be greater than or equal to 0.<br> - If **userId** is passed in, the applications cannot be uninstalled by the specified user.<br> - If **userId** is not passed in, the applications cannot be uninstalled by the current user.|
 
 **Return value**
 
 | Type                  | Description                     |
 | --------------------- | ------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value. If the operation fails, an error object is thrown. |
+| Promise&lt;void&gt; | Promise that returns no value. If the operation fails, an error object will be thrown. |
 
 **Error codes**
 
@@ -1175,7 +1176,7 @@ bundleManager.removeDisallowedUninstallBundles(wantTemp, appIds, 100).then(() =>
 
 getDisallowedUninstallBundles(admin: Want, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
-Obtains the list of bundles that are not allowed to be uninstalled by the current user through the specified device administrator application. This API uses an asynchronous callback to return the result.
+Obtains the applications that cannot be uninstalled by the current user through the specified device administrator application. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.ENTERPRISE_SET_BUNDLE_INSTALL_POLICY
 
@@ -1220,7 +1221,7 @@ bundleManager.getDisallowedUninstallBundles(wantTemp, (err, result) => {
 
 getDisallowedUninstallBundles(admin: Want, userId: number, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
-Obtains the list of bundles that are not allowed to be uninstalled by the given user (specified by **userId**) through the specified device administrator application. This API uses an asynchronous callback to return the result.
+Obtains the applications that cannot be uninstalled by the specified user through the specified device administrator application. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.ENTERPRISE_SET_BUNDLE_INSTALL_POLICY
 
@@ -1233,7 +1234,7 @@ Obtains the list of bundles that are not allowed to be uninstalled by the given 
 | Name     | Type                                      | Mandatory  | Description                      |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
 | admin    | [Want](js-apis-app-ability-want.md)     | Yes   | Device administrator application.                 |
-| userId     | number                             | Yes   | User ID. The default value is the user ID of the caller. The user ID must be greater than or equal to **0**.|
+| userId     | number                             | Yes   | User ID, which must be greater than or equal to 0.|
 | callback | AsyncCallback&lt;Array&lt;string&gt;&gt;       | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.      |
 
 **Error codes**
@@ -1266,7 +1267,7 @@ bundleManager.getDisallowedUninstallBundles(wantTemp, 100, (err, result) => {
 
 getDisallowedUninstallBundles(admin: Want, userId?: number): Promise&lt;Array&lt;string&gt;&gt;
 
-Obtains the list of bundles that are not allowed to be uninstalled by the current user (if **userId** is not passed in) or the given user (if **userId** is passed in) through the specified device administrator application. This API uses a promise to return the result.
+Obtains the applications that cannot be uninstalled by the current or specified user through the specified device administrator application. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.ENTERPRISE_SET_BUNDLE_INSTALL_POLICY
 
@@ -1279,7 +1280,7 @@ Obtains the list of bundles that are not allowed to be uninstalled by the curren
 | Name  | Type                                 | Mandatory  | Description     |
 | ----- | ----------------------------------- | ---- | ------- |
 | admin | [Want](js-apis-app-ability-want.md) | Yes   | Device administrator application.|
-| userId     | number                             | No   | User ID. The default value is the user ID of the caller. The user ID must be greater than or equal to **0**.|
+| userId     | number                             | No   | User ID, which must be greater than or equal to 0.<br> - If **userId** is passed in, the applications cannot be uninstalled by the specified user.<br> - If **userId** is not passed in, the applications cannot be uninstalled by the current user.|
 
 **Return value**
 
@@ -1315,7 +1316,7 @@ bundleManager.getDisallowedUninstallBundles(wantTemp, 100).then((result) => {
 
 uninstall(admin: Want, bundleName: string, callback: AsyncCallback&lt;void&gt;): void
 
-Uninstalls the given bundle of the current user without retaining the bundle data through the specified device administrator application. This API uses an asynchronous callback to return the result.
+Uninstalls an application of the current user without retaining the bundle data through the specified device administrator application. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.ENTERPRISE_INSTALL_BUNDLE
 
@@ -1328,7 +1329,7 @@ Uninstalls the given bundle of the current user without retaining the bundle dat
 | Name     | Type                                      | Mandatory  | Description                      |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
 | admin    | [Want](js-apis-app-ability-want.md)     | Yes   | Device administrator application.                 |
-| bundleName     | string                             | Yes   | Bundle name.|
+| bundleName     | string                             | Yes   | Name of the bundle to uninstall.|
 | callback | AsyncCallback&lt;void&gt;       | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.      |
 
 **Error codes**
@@ -1360,7 +1361,7 @@ bundleManager.uninstall(wantTemp, 'bundleName', (err) => {
 
 uninstall(admin: Want, bundleName: string, userId: number, callback: AsyncCallback&lt;void&gt;): void
 
-Uninstalls the given bundle of the user specified by **userId** without retaining the bundle data through the specified device administrator application. This API uses an asynchronous callback to return the result.
+Uninstalls an application of the specified user without retaining the bundle data through the specified device administrator application. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.ENTERPRISE_INSTALL_BUNDLE
 
@@ -1373,8 +1374,8 @@ Uninstalls the given bundle of the user specified by **userId** without retainin
 | Name     | Type                                      | Mandatory  | Description                      |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
 | admin    | [Want](js-apis-app-ability-want.md)     | Yes   | Device administrator application.                 |
-| bundleName     | string                             | Yes   | Bundle name.|
-| userId     | number                             | Yes   | User ID. The default value is the user ID of the caller. The user ID must be greater than or equal to **0**.|
+| bundleName     | string                             | Yes   | Name of the bundle to uninstall.|
+| userId     | number                             | Yes   | User ID, which must be greater than or equal to 0.|
 | callback | AsyncCallback&lt;void&gt;       | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.      |
 
 **Error codes**
@@ -1406,7 +1407,7 @@ bundleManager.uninstall(wantTemp, 'bundleName', 100, (err) => {
 
 uninstall(admin: Want, bundleName: string, isKeepData: boolean, callback: AsyncCallback&lt;void&gt;): void
 
-Uninstalls the given bundle of the current user through the specified device administrator application. This API uses an asynchronous callback to return the result. If **isKeepData** is **false**, the bundle data is not retained.
+Uninstalls an application of the current user through the specified device administrator application. The **isKeepData** parameter specifies whether to retain the bundle data. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.ENTERPRISE_INSTALL_BUNDLE
 
@@ -1419,7 +1420,7 @@ Uninstalls the given bundle of the current user through the specified device adm
 | Name     | Type                                      | Mandatory  | Description                      |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
 | admin    | [Want](js-apis-app-ability-want.md)     | Yes   | Device administrator application.                 |
-| bundleName     | string                             | Yes   | Bundle name.|
+| bundleName     | string                             | Yes   | Name of the bundle to uninstall.|
 | isKeepData     | boolean                             | Yes   | Whether to retain the bundle data. The value **true** means to retain the bundle data; the value **false** means the opposite.|
 | callback | AsyncCallback&lt;void&gt;       | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.      |
 
@@ -1452,7 +1453,7 @@ bundleManager.uninstall(wantTemp, 'bundleName', true, (err) => {
 
 uninstall(admin: Want, bundleName: string, userId: number, isKeepData: boolean, callback: AsyncCallback&lt;void&gt;): void
 
-Uninstalls the given bundle of the user specified by **userId** through the specified device administrator application. This API uses an asynchronous callback to return the result. If **isKeepData** is **false**, the bundle data is not retained.
+Uninstalls an application of the specified user through the specified device administrator application. The **isKeepData** parameter specifies whether to retain the bundle data. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.ENTERPRISE_INSTALL_BUNDLE
 
@@ -1465,8 +1466,8 @@ Uninstalls the given bundle of the user specified by **userId** through the spec
 | Name     | Type                                      | Mandatory  | Description                      |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
 | admin    | [Want](js-apis-app-ability-want.md)     | Yes   | Device administrator application.                 |
-| bundleName     | string                             | Yes   | Bundle name.|
-| userId     | number                             | Yes   | User ID. The default value is the user ID of the caller. The user ID must be greater than or equal to **0**.|
+| bundleName     | string                             | Yes   | Name of the bundle to uninstall.|
+| userId     | number                             | Yes   | User ID, which must be greater than or equal to 0.|
 | isKeepData     | boolean                             | Yes   | Whether to retain the bundle data. The value **true** means to retain the bundle data; the value **false** means the opposite.|
 | callback | AsyncCallback&lt;void&gt;       | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.      |
 
@@ -1499,7 +1500,7 @@ bundleManager.uninstall(wantTemp, 'bundleName', 100, true, (err) => {
 
 uninstall(admin: Want, bundleName: string, userId?: number, isKeepData?: boolean): Promise&lt;void&gt;
 
-Uninstalls the given bundle of the current user (if **userId** is not passed in) or the given user (if **userId** is passed in) through the specified device administrator application. This API uses a promise to return the result. If **isKeepData** is not passed in, the default value **false** is used, which means the bundle data will not be retained.
+Uninstalls an application of the current or specified user through the specified device administrator application. The **isKeepData** parameter specifies whether to retain the bundle data. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.ENTERPRISE_INSTALL_BUNDLE
 
@@ -1512,8 +1513,8 @@ Uninstalls the given bundle of the current user (if **userId** is not passed in)
 | Name  | Type                                 | Mandatory  | Description     |
 | ----- | ----------------------------------- | ---- | ------- |
 | admin | [Want](js-apis-app-ability-want.md) | Yes   | Device administrator application.|
-| bundleName     | string                             | Yes   | Bundle name.|
-| userId     | number                             | No   | User ID. The default value is the user ID of the caller. The user ID must be greater than or equal to **0**.|
+| bundleName     | string                             | Yes   | Name of the bundle to uninstall.|
+| userId     | number                             | No   | User ID, which must be greater than or equal to 0.<br> - If **userId** is passed in, the application of the specified user is uninstalled.<br> - If **userId** is not passed in, the application of the current user is uninstalled.|
 | isKeepData     | boolean                             | No   | Whether to retain the bundle data. The value **true** means to retain the bundle data; the value **false** means the opposite.|
 
 **Return value**
@@ -1545,3 +1546,168 @@ bundleManager.uninstall(wantTemp, 'bundleName', 100, true).then(() => {
   console.error(`Failed to uninstall bundles. Code is ${err.code}, message is ${err.message}`);
 });
 ```
+
+## bundleManager.install
+
+install(admin: Want, hapFilePaths: Array\<string>, callback: AsyncCallback\<void>): void
+
+Installs applications through the specified device administrator application. This API uses an asynchronous callback to return the result.
+
+**Required permissions**: ohos.permission.ENTERPRISE_INSTALL_BUNDLE
+
+**System capability**: SystemCapability.Customization.EnterpriseDeviceManager
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name     | Type                                      | Mandatory  | Description                      |
+| -------- | ---------------------------------------- | ---- | ------------------------------- |
+| admin    | [Want](js-apis-app-ability-want.md)     | Yes   | Device administrator application.                 |
+| hapFilePaths     | Array\<string>                           | Yes   | Applications to install.|
+| callback | AsyncCallback&lt;void&gt;       | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.      |
+
+**Error codes**
+
+For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
+
+| ID| Error Message                                                                      |
+| ------- | ---------------------------------------------------------------------------- |
+| 9200001 | the application is not an administrator of the device.                              |
+| 9200002 | the administrator application does not have permission to manage the device.                                |
+| 9201002 | the application install failed.                                |
+
+**Example**
+
+```js
+let wantTemp = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
+};
+let hapFilePaths = ['/data/storage/el2/base/haps/entry/testinstall/ExtensionTest.hap']
+
+bundleManager.install(wantTemp, hapFilePaths, (err) => {
+  if (err) {
+    console.error(`Failed to install bundles. Code is ${err.code}, message is ${err.message}`);
+  }
+  console.info('Succeeded in installing bundles');
+});
+```
+
+## bundleManager.install
+
+install(admin: Want, hapFilePaths: Array\<string>, installParam: InstallParam, callback: AsyncCallback\<void>): void
+
+Installs applications with specified parameters through the specified device administrator application. This API uses an asynchronous callback to return the result.
+
+**Required permissions**: ohos.permission.ENTERPRISE_INSTALL_BUNDLE
+
+**System capability**: SystemCapability.Customization.EnterpriseDeviceManager
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name     | Type                                      | Mandatory  | Description                      |
+| -------- | ---------------------------------------- | ---- | ------------------------------- |
+| admin    | [Want](js-apis-app-ability-want.md)     | Yes   | Device administrator application.                 |
+| hapFilePaths     | Array\<string>                       | Yes   | Applications to install.|
+| installParam     | [InstallParam](#installparam)        | Yes   | Application installation parameters.|
+| callback | AsyncCallback&lt;void&gt;       | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.      |
+
+**Error codes**
+
+For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
+
+| ID| Error Message                                                                      |
+| ------- | ---------------------------------------------------------------------------- |
+| 9200001 | the application is not an administrator of the device.                              |
+| 9200002 | the administrator application does not have permission to manage the device.                                |
+| 9201002 | the application install failed.                                |
+
+**Example**
+
+```js
+let wantTemp = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
+};
+let hapFilePaths = ['/data/storage/el2/base/haps/entry/testinstall/ExtensionTest.hap']
+let installParam = {
+  userId: 100,
+  installFlag: 1,
+};
+
+bundleManager.install(wantTemp, hapFilePaths, installParam, (err) => {
+  if (err) {
+    console.error(`Failed to install bundles. Code is ${err.code}, message is ${err.message}`);
+  }
+  console.info('Succeeded in installing bundles');
+});
+```
+
+## bundleManager.install
+
+install(admin: Want, hapFilePaths: Array\<string>, installParam?: InstallParam): Promise\<void>
+
+Installs applications through the specified device administrator application. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.ENTERPRISE_INSTALL_BUNDLE
+
+**System capability**: SystemCapability.Customization.EnterpriseDeviceManager
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name  | Type                                 | Mandatory  | Description     |
+| ----- | ----------------------------------- | ---- | ------- |
+| admin | [Want](js-apis-app-ability-want.md) | Yes   | Device administrator application.|
+| hapFilePaths     | Array\<string>                       | Yes   | Applications to install.|
+| installParam     | [InstallParam](#installparam)        | No   | Application installation parameters.|
+
+**Return value**
+
+| Type                  | Description                     |
+| --------------------- | ------------------------- |
+| Promise&lt;void&gt; | Promise that returns no value. If the operation fails, an error object will be thrown.|
+
+**Error codes**
+
+For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
+
+| ID| Error Message                                                                    |
+| ------- | ---------------------------------------------------------------------------- |
+| 9200001 | the application is not an administrator of the device.                              |
+| 9200002 | the administrator application does not have permission to manage the device.                                          |
+| 9201002 | the application install failed.                                |
+
+**Example**
+
+```js
+let wantTemp = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
+};
+let hapFilePaths = ['/data/storage/el2/base/haps/entry/testinstall/ExtensionTest.hap']
+
+bundleManager.install(wantTemp, hapFilePaths).then(() => {
+  console.info('Succeeded in installing bundles');
+}).catch((err) => {
+  console.error(`Failed to install bundles. Code is ${err.code}, message is ${err.message}`);
+});
+```
+
+## InstallParam
+
+Defines the parameters specified for installing applications.
+
+ **System capability**: SystemCapability.Customization.EnterpriseDeviceManager
+
+ **System API**: This is a system API.
+
+| Name                       | Type                          | Mandatory                        | Description              |
+| ------------------------------ | ------------------------------ | ------------------ | ------------------ |
+| userId                         | number                         | No                       | User ID, which must be greater than or equal to 0. The default value is the user ID of the caller. |
+| installFlag                    | number                         | No                       | Installation flag.<br>- **0**: initial installation.<br>- **1**: overwrite installation.<br>- **2**: installation-free.<br>Default value: **0** |
+

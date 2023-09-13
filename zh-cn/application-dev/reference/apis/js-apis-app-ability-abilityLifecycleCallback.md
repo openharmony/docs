@@ -29,7 +29,9 @@ onAbilityCreate(ability: UIAbility): void;
 
 **示例：**
 ```ts
-let abilityLifecycleCallback =  {
+import AbilityLifecycleCallback from '@ohos.app.ability.AbilityLifecycleCallback';
+
+let abilityLifecycleCallback: AbilityLifecycleCallback =  {
     onAbilityCreate(ability){
         console.log('AbilityLifecycleCallback onAbilityCreate.');  
     }
@@ -53,7 +55,9 @@ onWindowStageCreate(ability: UIAbility, windowStage: window.WindowStage): void;
 
 **示例：**
 ```ts
-let abilityLifecycleCallback =  {
+import AbilityLifecycleCallback from '@ohos.app.ability.AbilityLifecycleCallback';
+
+let abilityLifecycleCallback: AbilityLifecycleCallback =  {
     onWindowStageCreate(ability, windowStage){
         console.log('AbilityLifecycleCallback onWindowStageCreate.');
     }
@@ -77,7 +81,9 @@ onWindowStageActive(ability: UIAbility, windowStage: window.WindowStage): void;
 
 **示例：**
 ```ts
-let abilityLifecycleCallback =  {
+import AbilityLifecycleCallback from '@ohos.app.ability.AbilityLifecycleCallback';
+
+let abilityLifecycleCallback: AbilityLifecycleCallback =  {
     onWindowStageActive(ability, windowStage){
         console.log('AbilityLifecycleCallback onWindowStageActive.');
     }
@@ -101,7 +107,9 @@ onWindowStageInactive(ability: UIAbility, windowStage: window.WindowStage): void
 
 **示例：**
 ```ts
-let abilityLifecycleCallback =  {
+import AbilityLifecycleCallback from '@ohos.app.ability.AbilityLifecycleCallback';
+
+let abilityLifecycleCallback: AbilityLifecycleCallback =  {
     onWindowStageInactive(ability, windowStage){
         console.log('AbilityLifecycleCallback onWindowStageInactive.');
     }
@@ -125,7 +133,9 @@ onWindowStageDestroy(ability: UIAbility, windowStage: window.WindowStage): void;
 
 **示例：**
 ```ts
-let abilityLifecycleCallback =  {
+import AbilityLifecycleCallback from '@ohos.app.ability.AbilityLifecycleCallback';
+
+let abilityLifecycleCallback: AbilityLifecycleCallback =  {
     onWindowStageDestroy(ability, windowStage){
         console.log('AbilityLifecycleCallback onWindowStageDestroy.');
     }
@@ -148,7 +158,9 @@ onAbilityDestroy(ability: UIAbility): void;
 
 **示例：**
 ```ts
-let abilityLifecycleCallback =  {
+import AbilityLifecycleCallback from '@ohos.app.ability.AbilityLifecycleCallback';
+
+let abilityLifecycleCallback: AbilityLifecycleCallback =  {
     onAbilityDestroy(ability){
         console.log('AbilityLifecycleCallback onAbilityDestroy.');
     }
@@ -171,7 +183,9 @@ onAbilityForeground(ability: UIAbility): void;
 
 **示例：**
 ```ts
-let abilityLifecycleCallback =  {
+import AbilityLifecycleCallback from '@ohos.app.ability.AbilityLifecycleCallback';
+
+let abilityLifecycleCallback: AbilityLifecycleCallback =  {
     onAbilityForeground(ability){
         console.log('AbilityLifecycleCallback onAbilityForeground.');
     }
@@ -194,7 +208,9 @@ onAbilityBackground(ability: UIAbility): void;
 
 **示例：**
 ```ts
-let abilityLifecycleCallback =  {
+import AbilityLifecycleCallback from '@ohos.app.ability.AbilityLifecycleCallback';
+
+let abilityLifecycleCallback: AbilityLifecycleCallback =  {
     onAbilityBackground(ability){
         console.log('AbilityLifecycleCallback onAbilityBackground.');
     }
@@ -217,7 +233,9 @@ onAbilityContinue(ability: UIAbility): void;
 
 **示例：**
 ```ts
-let abilityLifecycleCallback =  {
+import AbilityLifecycleCallback from '@ohos.app.ability.AbilityLifecycleCallback';
+
+let abilityLifecycleCallback: AbilityLifecycleCallback =  {
     onAbilityContinue(ability){
         console.log('AbilityLifecycleCallback onAbilityContinue.');
     }
@@ -227,15 +245,40 @@ let abilityLifecycleCallback =  {
 ## AbilityLifecycleCallback使用
 
 **示例：**
+GlobalContext.ts
+```ts
+// 构造单例对象
+export class GlobalContext {
+  private constructor() {}
+  private static instance: GlobalContext;
+  private _objects = new Map<string, Object>();
+
+  public static getContext(): GlobalContext {
+    if (!GlobalContext.instance) {
+      GlobalContext.instance = new GlobalContext();
+    }
+    return GlobalContext.instance;
+  }
+
+  getObject(value: string): Object | undefined {
+    return this._objects.get(value);
+  }
+
+  setObject(key: string, objectClass: Object): void {
+    this._objects.set(key, objectClass);
+  }
+}
+```
 
 MyFirstAbility.ts
 ```ts
 import AbilityLifecycleCallback from '@ohos.app.ability.AbilityLifecycleCallback';
 import AbilityStage from '@ohos.app.ability.AbilityStage';
 import UIAbility from '@ohos.app.ability.UIAbility';
+import { GlobalContext } from '../GlobalContext'
 
 // 声明ability生命周期回调，需配置所有回调后才可以在applicationContext注册
-let abilityLifecycleCallback = {
+let abilityLifecycleCallback: AbilityLifecycleCallback = {
     onAbilityCreate(ability){
         console.log('AbilityLifecycleCallback onAbilityCreate.');  
     },
@@ -272,7 +315,8 @@ export default class MyFirstAbility extends UIAbility {
         let applicationContext = this.context.getApplicationContext();
         // 2.通过applicationContext注册监听应用内生命周期
         try {
-            globalThis.lifecycleId = applicationContext.on('abilityLifecycle', abilityLifecycleCallback);
+            let lifecycleId = applicationContext.on('abilityLifecycle', abilityLifecycleCallback);
+            GlobalContext.getContext().setObject("lifecycleId", lifecycleId);
             console.log('registerAbilityLifecycleCallback lifecycleId: ${globalThis.lifecycleId}');
         } catch (paramError) {
             console.error('error: ${paramError.code}, ${paramError.message}');
@@ -284,12 +328,14 @@ export default class MyFirstAbility extends UIAbility {
 MySecondAbility.ts
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import { GlobalContext } from '../GlobalContext'
 
 export default class MySecondAbility extends UIAbility {
     onDestroy() {
         let applicationContext = this.context.getApplicationContext();
+        let lifecycleId = GlobalContext.getContext().getObject("lifecycleId") as number;
         // 3.通过applicationContext注销监听应用内生命周期
-        applicationContext.off('abilityLifecycle', globalThis.lifecycleId, (error) => {
+        applicationContext.off('abilityLifecycle', lifecycleId, (error) => {
             if (error && error.code !== 0) {
                 console.error('unregisterAbilityLifecycleCallback fail, error: ${JSON.stringify(error)}');
             } else {

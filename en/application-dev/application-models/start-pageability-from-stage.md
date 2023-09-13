@@ -8,6 +8,10 @@ This topic describes how the two application components of the stage model start
 
 A UIAbility starts a PageAbility in the same way as it starts another UIAbility.
 
+> **NOTE**
+> 
+> In the FA model, **abilityName** consists of **bundleName** and **AbilityName**. For details, see the code snippet below.
+
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
 
@@ -25,7 +29,7 @@ export default class EntryAbility extends UIAbility {
         });
         let want = {
             bundleName: "com.ohos.fa",
-            abilityName: "EntryAbility",
+            abilityName: "com.ohos.fa.EntryAbility",
         };
         this.context.startAbility(want).then(() => {
             console.info('Start Ability successfully.');

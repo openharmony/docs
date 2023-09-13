@@ -36,34 +36,35 @@
 
    ```ts
    import missionManager from '@ohos.app.ability.missionManager'
+   import { BusinessError } from '@ohos.base';
    
-   let listener = {
+   let listener: missionManager.MissionListener = {
      // 任务创建
-     onMissionCreated: function (mission) {
+     onMissionCreated: (mission) => {
        console.info("--------onMissionCreated-------")
      },
      // 任务销毁
-     onMissionDestroyed: function (mission) {
+     onMissionDestroyed: (mission) => {
        console.info("--------onMissionDestroyed-------")
      },
      // 任务快照变化
-     onMissionSnapshotChanged: function (mission) {
+     onMissionSnapshotChanged: (mission) => {
        console.info("--------onMissionSnapshotChanged-------")
      },
      // 任务被移动到前台
-     onMissionMovedToFront: function (mission) {
+     onMissionMovedToFront: (mission) => {
        console.info("--------onMissionMovedToFront-------")
      },
      // 任务图标变化
-     onMissionIconUpdated: function (mission, icon) {
+     onMissionIconUpdated: (mission, icon) => {
        console.info("--------onMissionIconUpdated-------")
      },
      // 任务名称变化
-     onMissionLabelUpdated: function (mission) {
+     onMissionLabelUpdated: (mission) => {
        console.info("--------onMissionLabelUpdated-------")
      },
      // 任务实例被关闭
-     onMissionClosed: function (mission) {
+     onMissionClosed: (mission) => {
        console.info("--------onMissionClosed-------")
      }
    };
@@ -80,8 +81,8 @@
    
    // 3.获取单个任务的详细信息()
    let missionId = 11; // 11只是示例，实际是从系统中获取的任务id，下面类似
-   let mission = missionManager.getMissionInfo("", missionId).catch(function (err) {
-     console.info(err);
+   let mission = missionManager.getMissionInfo("", missionId).catch((err: BusinessError) => {
+     console.info('${err.code}');
    });
    
    // 4.获取任务快照
@@ -116,8 +117,8 @@
    });
    
    // 9.删除全部任务
-   missionManager.clearAllMissions().catch(function (err) {
-     console.info(err);
+   missionManager.clearAllMissions().catch((err: BusinessError) => {
+     console.info('${err.code}');
    });
    
    // 10.解注册任务变化通知
@@ -126,4 +127,8 @@
    })
    ```
 
-   
+## 相关实例
+
+针对任务管理开发，有以下相关实例可供参考：
+
+- [任务管理（ArkTS）（Full SDK）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/ApplicationModels/MissionManager)

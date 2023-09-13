@@ -106,7 +106,7 @@ The following uses the GPIO as an example to describe how to port the platform d
 3. Create a build entry for the SoC driver.
    
    ```
-   #File: device/vendor_name/soc_name/drivers/lite.mk
+   # File: device/vendor_name/soc_name/drivers/lite.mk
    
    SOC_DRIVER_ROOT := $(LITEOSTOPDIR)/../../device/$(SOC_VENDOR_NAME)/$(SOC_NAME)/drivers/
    
@@ -151,9 +151,8 @@ The following uses the GPIO as an example to describe how to port the platform d
 
    > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
    >
-> The value of **moduleName** must be the same as that defined in the driver.
-   
-   
+   > The value of **moduleName** must be the same as that defined in the driver.
+
    ```
    root {
        ...

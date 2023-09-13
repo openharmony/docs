@@ -204,8 +204,8 @@ Indicates that user switching is in progress.
 - Value: **usual.event.USER_STARTING**
 - Required subscriber permissions: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
-## COMMON_EVENT_USER_UNLOCKED
-(Reserved, not supported yet) Indicates that the credential-encrypted storage has been unlocked for the current user after the device is restarted.
+## [COMMON_EVENT_USER_UNLOCKED](./common_event/commonEvent-account.md)
+Indicates that the credential-encrypted storage has been unlocked for the current user after the device is restarted.
 - Value: **usual.event.USER_UNLOCKED**
 - Required subscriber permissions: none
 

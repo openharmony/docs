@@ -28,6 +28,7 @@ After a notification is read, the count on the badge is decremented by 1. If the
 
    ```ts
    import notificationManager from '@ohos.notificationManager';
+   import Base from '@ohos.base';
    ```
 
 2. Increase the count on the badge.
@@ -37,7 +38,7 @@ After a notification is read, the count on the badge is decremented by 1. If the
    In this example, the **setBadgeNumber** API is called to add a badge. This API is called after a new notification is published.
    
    ```ts
-   function setBadgeNumberCallback(err) {
+   function setBadgeNumberCallback(err:Base.BusinessError) {
      if (err) {
        console.error(`Failed to set badge number. Code is ${err.code}, message is ${err.message}`);
        return;
@@ -54,7 +55,7 @@ After a notification is read, the count on the badge is decremented by 1. If the
    After a notification is read, the application needs to call the API to set the number of remaining unread notifications. The badge is then updated.
 
    ```ts
-   function setBadgeNumberCallback(err) {
+   function setBadgeNumberCallback(err:Base.BusinessError) {
      if (err) {
        console.error(`Failed to set badge number. Code is ${err.code}, message is ${err.message}`);
        return;

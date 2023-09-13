@@ -26,7 +26,7 @@ For details about the requirements on the Linux environment, see [Quick Start](.
 
 The following uses [DAYU200](https://gitee.com/openharmony/vendor_hihope/tree/master/rk3568) as an example to illustrate thermal log customization.
 
-1. Create the thermal folder in the product directory [/vendor/hihope/rk3568](https://gitee.com/openharmony/vendor_hihope/tree/master/rk3568).
+1. Create the `thermal` folder in the product directory [/vendor/hihope/rk3568](https://gitee.com/openharmony/vendor_hihope/tree/master/rk3568).
 
 2. Create a target folder by referring to the [default thermal log configuration folder](https://gitee.com/openharmony/drivers_peripheral/tree/master/thermal/interfaces/hdi_service/profile), and install it in `//vendor/hihope/rk3568/thermal`. The content is as follows:
      
@@ -50,6 +50,8 @@ The following uses [DAYU200](https://gitee.com/openharmony/vendor_hihope/tree/ma
 
     | Configuration Item| Description| Data Type| Value Range|
     | -------- | -------- | -------- | -------- |
+    | interval | Interval for recording temperature tracing logs, in ms.| int | >0 |
+    | width | Width of the temperature tracing log, in characters.| int | >0 |
     | outpath | Path for storing temperature tracing logs.| string | N/A|
 
     **Table 2** Description of the node configuration
@@ -61,7 +63,7 @@ The following uses [DAYU200](https://gitee.com/openharmony/vendor_hihope/tree/ma
     | value | path | Path for obtaining the thermal zone temperature.|
 
     ```shell
-    <tracing outpath="/data/log/thermal-log">
+    <tracing interval="5000" width="20" outpath="/data/log/thermal-log">
         <node>
             <title path="sys/class/thermal/thermal_zone0/type"/>
             <value path="sys/class/thermal/thermal_zone0/temp"/>
@@ -84,10 +86,10 @@ The following uses [DAYU200](https://gitee.com/openharmony/vendor_hihope/tree/ma
 
     thermal.para.dac:
     ```text
-    persist.thermal.log.="power_host:power_host:500" # Configure access permissions.
+    persist.thermal.log.="power_host:power_host:600" # Configure access permissions.
     ```
 
-6. Write the `BUILD.gn` file by referring to the [BUILD.gn](https://gitee.com/openharmony/drivers_peripheral/blob/master/thermal/interfaces/hdi_service/profile/BUILD.gn) file in the default thermal log configuration folder to pack the thermal_hdi_config.xml file to the `//vendor/etc/thermal_config/hdf` directory. The configuration is as follows:
+6. Write the `BUILD.gn` file by referring to the [BUILD.gn](https://gitee.com/openharmony/drivers_peripheral/blob/master/thermal/interfaces/hdi_service/profile/BUILD.gn) file in the default thermal log configuration folder to pack the `thermal_hdi_config.xml` file to the `//vendor/etc/thermal_config/hdf` directory. The configuration is as follows:
 
     ```shell
     import("//build/ohos.gni")
@@ -95,7 +97,7 @@ The following uses [DAYU200](https://gitee.com/openharmony/vendor_hihope/tree/ma
     ohos_prebuilt_etc("thermal_hdf_config") {
         source = "thermal_hdi_config.xml"
         relative_install_dir = "thermal_config/hdf"
-        install_images = [ chipset_base_dir ]       # Required configuration for installing the thermal_service_config.xml file in the vendor directory.
+        install_images = [ chipset_base_dir ]       # Required configuration for installing the thermal_hdi_config.xml file in the vendor directory.
         part_name = "product_rk3568"                # Set part_name to product_rk3568 for subsequent build. You can change it as required.
     }
     ```
@@ -149,7 +151,7 @@ The following uses [DAYU200](https://gitee.com/openharmony/vendor_hihope/tree/ma
         "subsystem": "product_hihope"
     }
     ```
-    In the preceding code, //vendor/hihope/rk3568/thermal/ is the folder path, profile and etc are folder names, and thermal_hdf_config and param_files are the build targets.
+    In the preceding code, `//vendor/hihope/rk3568/thermal/` is the folder path, `profile` and `etc` are folder names, and `thermal_hdf_config` and `param_files` are the build targets.
 
 9. Build the customized version by referring to [Quick Start](../quick-start/quickstart-overview.md).
 

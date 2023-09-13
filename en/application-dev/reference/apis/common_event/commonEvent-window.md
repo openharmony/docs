@@ -1,7 +1,7 @@
 # Common Events of the Window Management Subsystem
 This document lists the common system events provided by the window management subsystem to applications. Applications can use [APIs](../js-apis-commonEventManager.md) to subscribe to common system events.
 
-### COMMON_EVENT_SPLIT_SCREEN<sup>10+</sup>
+## COMMON_EVENT_SPLIT_SCREEN<sup>10+</sup>
 Indicates a screen splitting action.
 
 - Value: usual.event.SPLIT_SCREEN

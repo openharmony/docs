@@ -142,4 +142,4 @@ export default {
 }
 ```
 
-![picker-view](figures/picker-view.png)
+![picker-view](figures/picker-view-lite.png)

@@ -223,7 +223,7 @@ The following is a demo debugging process, where the **StartTrace** and **Finish
      external_deps = [ "hitrace:hitrace_meter" ]
    
      subsystem_name = "hiviewdfx"
-     part_name = "hitrace"
+     part_name = "hitrace_native"
    }
    
    group("hitrace_target") {

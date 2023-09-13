@@ -54,7 +54,7 @@ struct FontExample {
     // familyName和familySrc都支持string
     font.registerFont({
       familyName: 'medium',
-      familySrc: '/font/medium.ttf'
+      familySrc: '/font/medium.ttf' // font文件与pages目录同级
     })
 
     // familyName和familySrc都支持系统Resource
@@ -104,7 +104,7 @@ import font from '@ohos.font';
 @Entry
 @Component
 struct FontExample {
-  fontList: Array<string>;
+  fontList: Array<string> = new Array<string>();
   build() {
     Column() {
       Button("getSystemFontList")
@@ -164,8 +164,8 @@ import font from '@ohos.font';
 @Entry
 @Component
 struct FontExample {
-  fontList: Array<string>;
-  fontInfo: font.FontInfo;
+  fontList: Array<string> = new Array<string>();
+  fontInfo: font.FontInfo = font.getFontByName('');
   build() {
     Column() {
       Button("getFontByName")

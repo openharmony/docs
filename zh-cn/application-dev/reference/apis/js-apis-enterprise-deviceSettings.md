@@ -12,7 +12,7 @@
 
 ## 导入模块
 
-```js
+```ts
 import deviceSettings from '@ohos.enterprise.deviceSettings';
 ```
 
@@ -46,8 +46,9 @@ getScreenOffTime(admin: Want, callback: AsyncCallback&lt;number&gt;): void
 
 **示例：**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
@@ -96,15 +97,17 @@ getScreenOffTime(admin: Want): Promise&lt;number&gt;
 
 **示例：**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
 
 deviceSettings.getScreenOffTime(wantTemp).then((result) => {
   console.info(`Succeeded in getting screen off time, result : ${result}`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to get screen off time. Code: ${err.code}, message: ${err.message}`);
 });
 ```
@@ -141,30 +144,28 @@ installUserCertificate(admin: Want, certificate: CertBlob, callback: AsyncCallba
 
 **示例：**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-var certFileArray: Uint8Array;
+let certFileArray: Uint8Array = new Uint8Array();
 // The variable context needs to be initialized in MainAbility's onCreate callback function
 // test.cer needs to be placed in the rawfile directory
-await globalThis.context.resourceManager.getRawFileContent("test.cer")
-  .then(value => {
-    certFileArray = value
-  })
-  .catch(error => {
-    console.error(`Failed to get row file content. message: ${error.message}`);
-    return
-  });
-new Promise((resolve, reject) => {
-  deviceSettings.installUserCertificate(wantTemp, {inData: certFileArray, alias: "cert_alias_xts"}, (err, result) => {
+getContext().resourceManager.getRawFileContent("test.cer").then((value) => {
+  certFileArray = value;
+  deviceSettings.installUserCertificate(wantTemp, { inData: certFileArray, alias: "cert_alias_xts" }, (err, result) => {
     if (err) {
       console.error(`Failed to install user certificate. Code: ${err.code}, message: ${err.message}`);
-    } else{
+    } else {
       console.info(`Succeeded in installing user certificate, result : ${JSON.stringify(result)}`);
     }
   });
+}).catch((error: BusinessError) => {
+  console.error(`Failed to get row file content. message: ${error.message}`);
+  return
 });
 ```
 
@@ -205,27 +206,28 @@ installUserCertificate(admin: Want, certificate: CertBlob): Promise&lt;string&gt
 
 **示例：**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-var certFileArray: Uint8Array
+let certFileArray: Uint8Array = new Uint8Array();
 // The variable context needs to be initialized in MainAbility's onCreate callback function
 // test.cer needs to be placed in the rawfile directory
-await globalThis.context.resourceManager.getRawFileContent("test.cer")
-  .then(data => {
-    certFileArray = data
-  }).catch(error => {
-    console.log('getRawFileContent error' + error)
-    return
-  })
-deviceSettings.installUserCertificate(wantTemp, { inData: certFileArray, alias: "cert_alias_xts" })
-  .then((result) => {
-    console.info(`Succeeded in installing user certificate, result : ${JSON.stringify(result)}`);
-  }).catch(err => {
+getContext().resourceManager.getRawFileContent("test.cer").then((value) => {
+  certFileArray = value
+  deviceSettings.installUserCertificate(wantTemp, { inData: certFileArray, alias: "cert_alias_xts" })
+    .then((result) => {
+      console.info(`Succeeded in installing user certificate, result : ${JSON.stringify(result)}`);
+    }).catch((err: BusinessError) => {
     console.error(`Failed to install user certificate. Code: ${err.code}, message: ${err.message}`);
   })
+}).catch((error: BusinessError) => {
+  console.error(`Failed to get row file content. message: ${error.message}`);
+  return
+});
 ```
 
 ## CertBlob
@@ -273,8 +275,9 @@ uninstallUserCertificate(admin: Want, certUri: string, callback: AsyncCallback&l
 
 **示例：**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
@@ -325,15 +328,17 @@ uninstallUserCertificate(admin: Want, certUri: string): Promise&lt;void&gt;
 
 **示例：**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
 let aliasStr = "certName"
 deviceSettings.uninstallUserCertificate(wantTemp, aliasStr).then(() => {
   console.info(`Succeeded in uninstalling user certificate`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to uninstall user certificate. Code is ${err.code}, message is ${err.message}`);
 });
 ```

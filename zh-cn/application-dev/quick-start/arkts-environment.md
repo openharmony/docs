@@ -12,15 +12,14 @@ Environment是ArkUI框架在应用程序启动时创建的单例对象。它为A
 
 ### 从UI中访问Environment参数
 
-- 使用Environment.EnvProp将设备运行的环境变量存入AppStorage中：
+- 使用Environment.envProp将设备运行的环境变量存入AppStorage中：
 
   ```ts
   // 将设备的语言code存入AppStorage，默认值为en
-  // 后续设备的语言设置切换，都将同步到AppStorage中
-  Environment.EnvProp('languageCode', 'en');
+  Environment.envProp('languageCode', 'en');
   ```
 
-- 可以使用\@StorageProp链接到Component中。Component会根据设备运行环境的变化而更新：
+- 可以使用\@StorageProp链接到Component中。
 
   ```ts
   @StorageProp('languageCode') lang : string = 'en';
@@ -35,8 +34,8 @@ Environment是ArkUI框架在应用程序启动时创建的单例对象。它为A
 
 ```ts
 // 将设备languageCode存入AppStorage中
-Environment.EnvProp('languageCode', 'en');
-let enable = AppStorage.Get('languageCode');
+Environment.envProp('languageCode', 'en');
+let enable: undefined = AppStorage.get<undefined>('languageCode');
 
 @Entry
 @Component
@@ -60,13 +59,39 @@ struct Index {
 
 ```ts
 // 使用Environment.EnvProp将设备运行languageCode存入AppStorage中；
-Environment.EnvProp('languageCode', 'en');
+Environment.envProp('languageCode', 'en');
 // 从AppStorage获取单向绑定的languageCode的变量
-const lang: SubscribedAbstractProperty<string> = AppStorage.Prop('languageCode');
+const lang: SubscribedAbstractProperty<string> = AppStorage.prop('languageCode');
 
 if (lang.get() === 'zh') {
   console.info('你好');
 } else {
   console.info('Hello!');
+}
+```
+
+
+## 限制条件
+
+
+Environment和UIContext相关联，需要在[UIContext](../reference/apis/js-apis-arkui-UIContext.md#uicontext)明确的时候才可以调用。可以通过在[runScopedTask](../reference/apis/js-apis-arkui-UIContext.md#runscopedtask)里明确上下文。如果没有在UIContext明确的地方调用，将导致无法查询到设备环境数据。
+
+
+```ts
+// EntryAbility.ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+import window from '@ohos.window';
+
+export default class EntryAbility extends UIAbility {
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    windowStage.loadContent('pages/Index');
+    let window = windowStage.getMainWindow()
+    window.then(window => {
+      let uicontext = window.getUIContext()
+      uicontext.runScopedTask(() => {
+        Environment.envProp('languageCode', 'en');
+      })
+    })
+  }
 }
 ```

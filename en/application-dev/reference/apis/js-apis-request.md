@@ -103,10 +103,9 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
 
 **Example**
 
-  ```js
-  let uploadTask;
-  let context;
-  let uploadConfig = {
+  ```ts
+  let uploadTask: request.UploadTask;
+  let uploadConfig: request.UploadConfig = {
     url: 'http://patch',
     header: { key1: "value1", key2: "value2" },
     method: "POST",
@@ -114,13 +113,13 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
     data: [{ name: "name123", value: "123" }],
   };
   try {
-    request.uploadFile(context, uploadConfig).then((data) => {
+    request.uploadFile(this.context, uploadConfig).then((data: request.UploadTask) => {
       uploadTask = data;
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
       console.error(`Failed to request the upload. Code: ${err.code}, message: ${err.message}`);
     });
   } catch (err) {
-    console.error(`Failed to request the upload. Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to request the upload. err: ${JSON.stringify(err)}`);
   }
   ```
 
@@ -157,10 +156,9 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
 
 **Example**
 
-  ```js
-  let uploadTask;
-  let context;
-  let uploadConfig = {
+  ```ts
+  let uploadTask: request.UploadTask;
+  let uploadConfig: request.UploadConfig = {
     url: 'http://patch',
     header: { key1: "value1", key2: "value2" },
     method: "POST",
@@ -168,7 +166,7 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
     data: [{ name: "name123", value: "123" }],
   };
   try {
-    request.uploadFile(context, uploadConfig, (err, data) => {
+    request.uploadFile(this.context, uploadConfig, (err: BusinessError, data: request.UploadTask) => {
       if (err) {
         console.error(`Failed to request the upload. Code: ${err.code}, message: ${err.message}`);
         return;
@@ -176,7 +174,7 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
       uploadTask = data;
     });
   } catch (err) {
-    console.error(`Failed to request the upload. Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to request the upload. err: ${JSON.stringify(err)}`);
   }
   ```
 
@@ -194,7 +192,7 @@ Uploads files. This API uses a promise to return the result.
 
 >  **NOTE**
 >
->  This API is deprecated since API version 9. You are advised to use [request.uploadFile<sup>9+</sup>](#requestuploadfile9).
+>  This API is deprecated since API version 9. You are advised to use [request.uploadFile<sup>9+</sup>](#requestuploadfile9) instead.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -241,7 +239,7 @@ Uploads files. This API uses an asynchronous callback to return the result.
 
 >  **NOTE**
 >
->  This API is deprecated since API version 9. You are advised to use [request.uploadFile<sup>9+</sup>](#requestuploadfile9-1).
+>  This API is deprecated since API version 9. You are advised to use [request.uploadFile<sup>9+</sup>](#requestuploadfile9-1) instead.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -286,6 +284,10 @@ on(type: 'progress', callback:(uploadedSize: number, totalSize: number) =&gt; vo
 
 Subscribes to upload progress events. This API uses a callback to return the result synchronously.
 
+> **NOTE**
+>
+> To maintain a balance between power consumption and performance, this API cannot be called when the application is running in the background.
+
 **Required permissions**: ohos.permission.INTERNET
 
 **System capability**: SystemCapability.MiscServices.Upload
@@ -306,8 +308,8 @@ Subscribes to upload progress events. This API uses a callback to return the res
 
 **Example**
 
-  ```js
-  let upProgressCallback = (uploadedSize, totalSize) => {
+  ```ts
+  let upProgressCallback = (uploadedSize: number, totalSize: number) => {
     console.info("upload totalSize:" + totalSize + "  uploadedSize:" + uploadedSize);
   };
   uploadTask.on('progress', upProgressCallback);
@@ -339,8 +341,8 @@ Subscribes to HTTP header events for an upload task. This API uses a callback to
 
 **Example**
 
-  ```js
-  let headerCallback = (headers) => {
+  ```ts
+  let headerCallback = (headers: object) => {
     console.info("upOnHeader headers:" + JSON.stringify(headers));
   };
   uploadTask.on('headerReceive', headerCallback);
@@ -372,16 +374,16 @@ Subscribes to upload completion or failure events. This API uses a callback to r
 
 **Example**
 
-  ```js
-  let upCompleteCallback = (taskStates) => {
-    for (let i = 0; i < taskStates.length; i++ ) {
+  ```ts
+  let upCompleteCallback = (taskStates: Array<request.TaskState>) => {
+    for (let i = 0; i < taskStates.length; i++) {
       console.info("upOnComplete taskState:" + JSON.stringify(taskStates[i]));
     }
   };
   uploadTask.on('complete', upCompleteCallback);
 
-  let upFailCallback = (taskStates) => {
-    for (let i = 0; i < taskStates.length; i++ ) {
+  let upFailCallback = (taskStates: Array<request.TaskState>) => {
+    for (let i = 0; i < taskStates.length; i++) {
       console.info("upOnFail taskState:" + JSON.stringify(taskStates[i]));
     }
   };
@@ -408,8 +410,8 @@ Unsubscribes from upload progress events. This API uses a callback to return the
 
 **Example**
 
-  ```js
-  let upProgressCallback = (uploadedSize, totalSize) => {
+  ```ts
+  let upProgressCallback = (uploadedSize: number, totalSize: number) => {
     console.info('Upload delete progress notification.' + 'totalSize:' + totalSize + 'uploadedSize:' + uploadedSize);
   };
   uploadTask.off('progress', upProgressCallback);
@@ -435,8 +437,8 @@ Unsubscribes from HTTP header events for an upload task. This API uses a callbac
 
 **Example**
 
-  ```js
-  let headerCallback = (header) => {
+  ```ts
+  let headerCallback = (header: object) => {
     console.info(`Upload delete headerReceive notification. header: ${JSON.stringify(header)}`);
   };
   uploadTask.off('headerReceive', headerCallback);
@@ -461,18 +463,18 @@ Unsubscribes from upload completion or failure events. This API uses a callback 
 
 **Example**
 
-  ```js
-  let upCompleteCallback = (taskStates) => {
+  ```ts
+  let upCompleteCallback = (taskStates: Array<request.TaskState>) => {
     console.info('Upload delete complete notification.');
-    for (let i = 0; i < taskStates.length; i++ ) {
+    for (let i = 0; i < taskStates.length; i++) {
       console.info('taskState:' + JSON.stringify(taskStates[i]));
     }
   };
   uploadTask.off('complete', upCompleteCallback);
 
-  let upFailCallback = (taskStates) => {
+  let upFailCallback = (taskStates: Array<request.TaskState>) => {
     console.info('Upload delete fail notification.');
-    for (let i = 0; i < taskStates.length; i++ ) {
+    for (let i = 0; i < taskStates.length; i++) {
       console.info('taskState:' + JSON.stringify(taskStates[i]));
     }
   };
@@ -496,14 +498,10 @@ Deletes this upload task. This API uses a promise to return the result.
 
 **Example**
 
-  ```js
-  uploadTask.delete().then((result) => {
-    if (result) {
-      console.info('Succeeded in deleting the upload task.');
-    } else {
-      console.error(`Failed to delete the upload task. Code: ${err.code}, message: ${err.message}`);
-    }
-  }).catch((err) => {
+  ```ts
+  uploadTask.delete().then((result: boolean) => {
+    console.info('Succeeded in deleting the upload task.');
+  }).catch((err: BusinessError) => {
     console.error(`Failed to delete the upload task. Code: ${err.code}, message: ${err.message}`);
   });
   ```
@@ -527,17 +525,13 @@ Deletes this upload task. This API uses an asynchronous callback to return the r
 
 **Example**
 
-  ```js
-  uploadTask.delete((err, result) => {
+  ```ts
+  uploadTask.delete((err: BusinessError, result: boolean) => {
     if (err) {
       console.error(`Failed to delete the upload task. Code: ${err.code}, message: ${err.message}`);
       return;
     }
-    if (result) {
-      console.info('Succeeded in deleting the upload task.');
-    } else {
-      console.error(`Failed to delete the upload task. Code: ${err.code}, message: ${err.message}`);
-    }
+    console.info('Succeeded in deleting the upload task.');
   });
   ```
 
@@ -550,7 +544,7 @@ Removes this upload task. This API uses a promise to return the result.
 
 >  **NOTE**
 >
->  This API is deprecated since API version 9. You are advised to use [delete<sup>9+</sup>](#delete9).
+>  This API is deprecated since API version 9. You are advised to use [delete<sup>9+</sup>](#delete9) instead.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -566,11 +560,7 @@ Removes this upload task. This API uses a promise to return the result.
 
   ```js
   uploadTask.remove().then((result) => {
-    if (result) {
-      console.info('Succeeded in removing the upload task.');
-    } else {
-      console.error(`Failed to remove the upload task. Code: ${err.code}, message: ${err.message}`);
-    }
+    console.info('Succeeded in removing the upload task.');
   }).catch((err) => {
     console.error(`Failed to remove the upload task. Code: ${err.code}, message: ${err.message}`);
   });
@@ -585,7 +575,7 @@ Removes this upload task. This API uses an asynchronous callback to return the r
 
 >  **NOTE**
 >
->  This API is deprecated since API version 9. You are advised to use [delete<sup>9+</sup>](#delete9-1).
+>  This API is deprecated since API version 9. You are advised to use [delete<sup>9+</sup>](#delete9-1) instead.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -638,7 +628,7 @@ Implements a **TaskState** object, which is the callback parameter of the [on('c
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | path | string | Yes| File path.|
-| responseCode | number | Yes| Return value of an upload task.|
+| responseCode | number | Yes| Return value of an upload task. The value **0** means that the task is successful, and other values means that the task fails. For details about the task result, see **message**.|
 | message | string | Yes| Description of the upload task result.|
 
 ## File
@@ -704,17 +694,16 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
 
 **Example**
 
-  ```js
-  let downloadTask;
-  let context;
+  ```ts
+  let downloadTask: request.DownloadTask;
   try {
-    request.downloadFile(context, { url: 'https://xxxx/xxxx.hap' }).then((data) => {
+    request.downloadFile(this.context, { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
       downloadTask = data;
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
       console.error(`Failed to request the download. Code: ${err.code}, message: ${err.message}`);
     })
   } catch (err) {
-    console.error(`Failed to request the download. Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to request the download. err: ${JSON.stringify(err)}`);
   }
   ```
 
@@ -754,12 +743,13 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
 
 **Example**
 
-  ```js
-  let downloadTask;
-  let context;
+  ```ts
+  let downloadTask: request.DownloadTask;
   try {
-    request.downloadFile(context, { url: 'https://xxxx/xxxxx.hap', 
-    filePath: 'xxx/xxxxx.hap'}, (err, data) => {
+    request.downloadFile(this.context, {
+      url: 'https://xxxx/xxxxx.hap',
+      filePath: 'xxx/xxxxx.hap'
+    }, (err: BusinessError, data: request.DownloadTask) => {
       if (err) {
         console.error(`Failed to request the download. Code: ${err.code}, message: ${err.message}`);
         return;
@@ -767,7 +757,7 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
       downloadTask = data;
     });
   } catch (err) {
-    console.error(`Failed to request the download. Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to request the download. err: ${JSON.stringify(err)}`);
   }
   ```
 
@@ -783,7 +773,7 @@ Downloads files. This API uses a promise to return the result.
 
 >  **NOTE**
 >
->  This API is deprecated since API version 9. You are advised to use [request.downloadFile<sup>9+</sup>](#requestdownloadfile9).
+>  This API is deprecated since API version 9. You are advised to use [request.downloadFile<sup>9+</sup>](#requestdownloadfile9) instead.
 
 **Model restriction**: This API can be used only in the FA model.
 
@@ -823,7 +813,7 @@ Downloads files. This API uses an asynchronous callback to return the result.
 
 >  **NOTE**
 >
->  This API is deprecated since API version 9. You are advised to use [request.downloadFile<sup>9+</sup>](#requestdownloadfile9-1).
+>  This API is deprecated since API version 9. You are advised to use [request.downloadFile<sup>9+</sup>](#requestdownloadfile9-1) instead.
 
 **Model restriction**: This API can be used only in the FA model.
 
@@ -863,6 +853,10 @@ on(type: 'progress', callback:(receivedSize: number, totalSize: number) =&gt; vo
 
 Subscribes to download progress events. This API uses a callback to return the result synchronously.
 
+> **NOTE**
+>
+> To maintain a balance between power consumption and performance, this API cannot be called when the application is running in the background.
+
 **Required permissions**: ohos.permission.INTERNET
 
 **System capability**: SystemCapability.MiscServices.Download
@@ -883,8 +877,8 @@ Subscribes to download progress events. This API uses a callback to return the r
 
 **Example**
 
-  ```js
-  let progresCallback = (receivedSize, totalSize) => {
+  ```ts
+  let progresCallback = (receivedSize: number, totalSize: number) => {
     console.info("download receivedSize:" + receivedSize + " totalSize:" + totalSize);
   };
   downloadTask.on('progress', progresCallback);
@@ -910,8 +904,8 @@ Unsubscribes from download progress events. This API uses a callback to return t
 
 **Example**
 
-  ```js
-  let progresCallback = (receivedSize, totalSize) => {
+  ```ts
+  let progresCallback = (receivedSize: number, totalSize: number) => {
     console.info('Download delete progress notification.' + 'receivedSize:' + receivedSize + 'totalSize:' + totalSize);
   };
   downloadTask.off('progress', progresCallback);
@@ -937,7 +931,7 @@ Subscribes to download events. This API uses an asynchronous callback to return 
 
 **Example**
 
-  ```js
+  ```ts
   let completeCallback = () => {
     console.info('Download task completed.');
   };
@@ -974,7 +968,7 @@ Unsubscribes from download events. This API uses a callback to return the result
 
 **Example**
 
-  ```js
+  ```ts
   let completeCallback = () => {
     console.info('Download delete complete notification.');
   };
@@ -1017,8 +1011,8 @@ Subscribes to download failure events. This API uses a callback to return the re
 
 **Example**
 
-  ```js
-  let failCallback = (err) => {
+  ```ts
+  let failCallback = (err: BusinessError) => {
     console.error(`Failed to download the task. Code: ${err.code}, message: ${err.message}`);
   };
   downloadTask.on('fail', failCallback);
@@ -1044,8 +1038,8 @@ Unsubscribes from download failure events. This API uses a callback to return th
 
 **Example**
 
-  ```js
-  let failCallback = (err) => {
+  ```ts
+  let failCallback = (err: BusinessError) => {
     console.error(`Failed to download the task. Code: ${err.code}, message: ${err.message}`);
   };
   downloadTask.off('fail', failCallback);
@@ -1069,14 +1063,10 @@ Removes this download task. This API uses a promise to return the result.
 
 **Example**
 
-  ```js
-  downloadTask.delete().then((result) => {
-  if (result) {
+  ```ts
+  downloadTask.delete().then((result: boolean) => {
     console.info('Succeeded in removing the download task.');
-  } else {
-    console.error(`Failed to remove the download task. Code: ${err.code}, message: ${err.message}`);
-  }
-  }).catch ((err) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to remove the download task. Code: ${err.code}, message: ${err.message}`);
   });
   ```
@@ -1100,17 +1090,13 @@ Deletes this download task. This API uses an asynchronous callback to return the
 
 **Example**
 
-  ```js
-  downloadTask.delete((err, result)=>{
-    if(err) {
+  ```ts
+  downloadTask.delete((err: BusinessError, result: boolean) => {
+    if (err) {
       console.error(`Failed to remove the download task. Code: ${err.code}, message: ${err.message}`);
       return;
-    } 
-    if (result) {
-      console.info('Succeeded in removing the download task.');
-    } else {
-      console.error(`Failed to remove the download task. Code: ${err.code}, message: ${err.message}`);
-    } 
+    }
+    console.info('Succeeded in removing the download task.');
   });
   ```
 
@@ -1133,10 +1119,10 @@ Obtains the information about this download task. This API uses a promise to ret
 
 **Example**
 
-  ```js
-  downloadTask.getTaskInfo().then((downloadInfo) => {    
+  ```ts
+  downloadTask.getTaskInfo().then((downloadInfo: request.DownloadInfo) => {
     console.info('Succeeded in querying the download task')
-  }) .catch((err) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to query the download task. Code: ${err.code}, message: ${err.message}`)
   });
   ```
@@ -1160,9 +1146,9 @@ Obtains the information about this download task. This API uses an asynchronous 
 
 **Example**
 
-  ```js
-  downloadTask.getTaskInfo((err, downloadInfo)=>{
-    if(err) {
+  ```ts
+  downloadTask.getTaskInfo((err: BusinessError, downloadInfo: request.DownloadInfo) => {
+    if (err) {
       console.error(`Failed to query the download mimeType. Code: ${err.code}, message: ${err.message}`);
     } else {
       console.info('Succeeded in querying the download mimeType');
@@ -1189,10 +1175,10 @@ Obtains the **MimeType** of this download task. This API uses a promise to retur
 
 **Example**
 
-  ```js
-  downloadTask.getTaskMimeType().then((data) => {    
+  ```ts
+  downloadTask.getTaskMimeType().then((data: string) => {
     console.info('Succeeded in querying the download MimeType');
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to query the download MimeType. Code: ${err.code}, message: ${err.message}`)
   });
   ```
@@ -1216,9 +1202,9 @@ Obtains the **MimeType** of this download task. This API uses an asynchronous ca
 
 **Example**
 
-  ```js
-  downloadTask.getTaskMimeType((err, data)=>{
-    if(err) {
+  ```ts
+  downloadTask.getTaskMimeType((err: BusinessError, data: string) => {
+    if (err) {
       console.error(`Failed to query the download mimeType. Code: ${err.code}, message: ${err.message}`);
     } else {
       console.info('Succeeded in querying the download mimeType');
@@ -1245,14 +1231,10 @@ Pauses this download task. This API uses a promise to return the result.
 
 **Example**
 
-  ```js
-  downloadTask.suspend().then((result) => {    
-    if (result) {
-      console.info('Succeeded in pausing the download task.');
-    } else {
-      console.error(`Failed to pause the download task. Code: ${err.code}, message: ${err.message}`);
-    }
-  }).catch((err) => {
+  ```ts
+  downloadTask.suspend().then((result: boolean) => {
+    console.info('Succeeded in pausing the download task.');
+  }).catch((err: BusinessError) => {
     console.error(`Failed to pause the download task. Code: ${err.code}, message: ${err.message}`);
   });
   ```
@@ -1276,17 +1258,13 @@ Pauses this download task. This API uses an asynchronous callback to return the 
 
 **Example**
 
-  ```js
-  downloadTask.suspend((err, result)=>{
-    if(err) {
+  ```ts
+  downloadTask.suspend((err: BusinessError, result: boolean) => {
+    if (err) {
       console.error(`Failed to pause the download task. Code: ${err.code}, message: ${err.message}`);
       return;
     }
-    if (result) {
-      console.info('Succeeded in pausing the download task.');
-    } else {
-      console.error(`Failed to pause the download task. Code: ${err.code}, message: ${err.message}`);
-    }
+    console.info('Succeeded in pausing the download task.');
   });
   ```
 
@@ -1309,15 +1287,10 @@ Resumes this download task. This API uses a promise to return the result.
 
 **Example**
 
-  ```js
-  downloadTask.restore().then((result) => {
-    if (result) {
-      console.info('Succeeded in resuming the download task.')
-    } else {
-      console.error(`Failed to resume the download task. Code: ${err.code}, message: ${err.message}`);
-    }
+  ```ts
+  downloadTask.restore().then((result: boolean) => {
     console.info('Succeeded in resuming the download task.')
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to resume the download task. Code: ${err.code}, message: ${err.message}`);
   });
   ```
@@ -1341,17 +1314,13 @@ Resumes this download task. This API uses an asynchronous callback to return the
 
 **Example**
 
-  ```js
-  downloadTask.restore((err, result)=>{
+  ```ts
+  downloadTask.restore((err: BusinessError, result: boolean) => {
     if (err) {
       console.error(`Failed to resume the download task. Code: ${err.code}, message: ${err.message}`);
       return;
-    } 
-    if (result) {
-      console.info('Succeeded in resuming the download task.');
-    } else {
-      console.error(`Failed to resume the download task. Code: ${err.code}, message: ${err.message}`);
     }
+    console.info('Succeeded in resuming the download task.');
   });
   ```
 
@@ -1364,7 +1333,7 @@ Removes this download task. This API uses a promise to return the result.
 
 >  **NOTE**
 >
->  This API is deprecated since API version 9. You are advised to use [delete<sup>9+</sup>](#delete9-2).
+>  This API is deprecated since API version 9. You are advised to use [delete<sup>9+</sup>](#delete9-2) instead.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -1380,11 +1349,7 @@ Removes this download task. This API uses a promise to return the result.
 
   ```js
   downloadTask.remove().then((result) => {
-    if (result) {
-      console.info('Succeeded in removing the download task.');
-    } else {
-      console.error(`Failed to remove the download task. Code: ${err.code}, message: ${err.message}`);
-    }
+    console.info('Succeeded in removing the download task.');
   }).catch ((err) => {
     console.error(`Failed to remove the download task. Code: ${err.code}, message: ${err.message}`);
   });
@@ -1399,7 +1364,7 @@ Removes this download task. This API uses an asynchronous callback to return the
 
 >  **NOTE**
 >
->  This API is deprecated since API version 9. You are advised to use [delete<sup>9+</sup>](#delete9-3).
+>  This API is deprecated since API version 9. You are advised to use [delete<sup>9+</sup>](#delete9-3) instead.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -1418,12 +1383,8 @@ Removes this download task. This API uses an asynchronous callback to return the
     if(err) {
       console.error(`Failed to remove the download task. Code: ${err.code}, message: ${err.message}`);
       return;
-    } 
-    if (result) {
-      console.info('Succeeded in removing the download task.');
-    } else {
-      console.error(`Failed to remove the download task. Code: ${err.code}, message: ${err.message}`);
-    } 
+    }
+    console.info('Succeeded in removing the download task.');
   });
   ```
 
@@ -1436,7 +1397,7 @@ Queries this download task. This API uses a promise to return the result.
 
 >  **NOTE**
 >
->  This API is supported since API version 7 and is deprecated since API version 9. You are advised to use [getTaskInfo<sup>9+</sup>](#gettaskinfo9).
+>  This API is supported since API version 7 and is deprecated since API version 9. You are advised to use [getTaskInfo<sup>9+</sup>](#gettaskinfo9) instead.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -1467,7 +1428,7 @@ Queries this download task. This API uses an asynchronous callback to return the
 
 >  **NOTE**
 >
->  This API is supported since API version 7 and is deprecated since API version 9. You are advised to use [getTaskInfo<sup>9+</sup>](#gettaskinfo9-1).
+>  This API is supported since API version 7 and is deprecated since API version 9. You are advised to use [getTaskInfo<sup>9+</sup>](#gettaskinfo9-1) instead.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -1500,7 +1461,7 @@ Queries the **MimeType** of this download task. This API uses a promise to retur
 
 >  **NOTE**
 >
->  This API is supported since API version 7 and is deprecated since API version 9. You are advised to use [getTaskMimeType<sup>9+</sup>](#gettaskmimetype9).
+>  This API is supported since API version 7 and is deprecated since API version 9. You are advised to use [getTaskMimeType<sup>9+</sup>](#gettaskmimetype9) instead.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -1531,7 +1492,7 @@ Queries the **MimeType** of this download task. This API uses an asynchronous ca
 
 >  **NOTE**
 >
->  This API is supported since API version 7 and is deprecated since API version 9. You are advised to use [getTaskMimeType<sup>9+</sup>](#gettaskmimetype9-1).
+>  This API is supported since API version 7 and is deprecated since API version 9. You are advised to use [getTaskMimeType<sup>9+</sup>](#gettaskmimetype9-1) instead.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -1564,7 +1525,7 @@ Pauses this download task. This API uses a promise to return the result.
 
 >  **NOTE**
 >
->  This API is supported since API version 7 and is deprecated since API version 9. You are advised to use [suspend<sup>9+</sup>](#suspend9).
+>  This API is supported since API version 7 and is deprecated since API version 9. You are advised to use [suspend<sup>9+</sup>](#suspend9) instead.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -1580,11 +1541,7 @@ Pauses this download task. This API uses a promise to return the result.
 
   ```js
   downloadTask.pause().then((result) => {    
-    if (result) {
-      console.info('Succeeded in pausing the download task.');
-    } else {
-      console.error(`Failed to pause the download task. Code: ${err.code}, message: ${err.message}`);
-    }
+    console.info('Succeeded in pausing the download task.');
   }).catch((err) => {
     console.error(`Failed to pause the download task. Code: ${err.code}, message: ${err.message}`);
   });
@@ -1597,7 +1554,7 @@ pause(callback: AsyncCallback&lt;void&gt;): void
 
 >  **NOTE**
 >
->  This API is supported since API version 7 and is deprecated since API version 9. You are advised to use [suspend<sup>9+</sup>](#suspend9-1).
+>  This API is supported since API version 7 and is deprecated since API version 9. You are advised to use [suspend<sup>9+</sup>](#suspend9-1) instead.
 
 Pauses this download task. This API uses an asynchronous callback to return the result.
 
@@ -1619,11 +1576,7 @@ Pauses this download task. This API uses an asynchronous callback to return the 
       console.error(`Failed to pause the download task. Code: ${err.code}, message: ${err.message}`);
       return;
     }
-    if (result) {
-      console.info('Succeeded in pausing the download task.');
-    } else {
-      console.error(`Failed to pause the download task. Code: ${err.code}, message: ${err.message}`);
-    }
+    console.info('Succeeded in pausing the download task.');
   });
   ```
 
@@ -1636,7 +1589,7 @@ Resumes this download task. This API uses a promise to return the result.
 
 >  **NOTE**
 >
->  This API is supported since API version 7 and is deprecated since API version 9. You are advised to use [restore<sup>9+</sup>](#restore9).
+>  This API is supported since API version 7 and is deprecated since API version 9. You are advised to use [restore<sup>9+</sup>](#restore9) instead.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -1652,11 +1605,6 @@ Resumes this download task. This API uses a promise to return the result.
 
   ```js
   downloadTask.resume().then((result) => {
-    if (result) {
-      console.info('Succeeded in resuming the download task.')
-    } else {
-      console.error(`Failed to resume the download task. Code: ${err.code}, message: ${err.message}`);
-    }
     console.info('Succeeded in resuming the download task.')
   }).catch((err) => {
     console.error(`Failed to resume the download task. Code: ${err.code}, message: ${err.message}`);
@@ -1670,7 +1618,7 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 
 >  **NOTE**
 >
->  This API is supported since API version 7 and is deprecated since API version 9. You are advised to use [restore<sup>9+</sup>](#restore9-1).
+>  This API is supported since API version 7 and is deprecated since API version 9. You are advised to use [restore<sup>9+</sup>](#restore9-1) instead.
 
 Resumes this download task. This API uses an asynchronous callback to return the result.
 
@@ -1692,11 +1640,7 @@ Resumes this download task. This API uses an asynchronous callback to return the
       console.error(`Failed to resume the download task. Code: ${err.code}, message: ${err.message}`);
       return;
     }
-    if (result) {
-      console.info('Succeeded in resuming the download task.');
-    } else {
-      console.error(`Failed to resume the download task. Code: ${err.code}, message: ${err.message}`);
-    }
+    console.info('Succeeded in resuming the download task.');
   });
   ```
 
@@ -1800,7 +1744,7 @@ Describes the form item of a task.
 | value | string \| [FileSpec](#filespec10) \| Array&lt;[FileSpec](#filespec10)&gt; | Yes| Form parameter value.|
 
 
-## Conf<sup>10+</sup> 
+## Config<sup>10+</sup> 
 Provides the configuration information of an upload or download task.
 
 **System capability**: SystemCapability.Request.FileTransferAgent
@@ -1809,26 +1753,26 @@ Provides the configuration information of an upload or download task.
 | -------- | -------- | -------- | -------- |
 | action | [Action](#action10) | Yes| Task action.<br>- **UPLOAD**<br>- **DOWNLOAD**|
 | url | string | Yes| Resource URL. The value contains a maximum of 2048 characters.|
-| title | string | No| Task title. The value contains a maximum of 256 characters. This parameter is left blank by default.|
+| title | string | No| Task title. The value contains a maximum of 256 characters. The default value is a null string.|
 | description | string | No| Task description. The value contains a maximum of 1024 characters. The default value is a null string.|
 | mode | [Mode](#mode10) | No| Task mode. The default mode is background.<br>- For a foreground task, a callback is used for notification.<br>- For a background task, the system notification and network connection features (detection, recovery, and automatic retry) are provided.|
 | overwrite | boolean | No| Whether to overwrite an existing file during the download. The default value is **false**.<br>- **true**: Overwrite the existing file.<br>- **false**: Do not overwrite the existing file. In this case, the download fails.|
 | method | string | No| Standard HTTP method for the task. The value can be **GET**, **POST**, or **PUT**, which is case-insensitive.<br>- If the task is an upload, use **PUT** or **POST**. The default value is **PUT**.<br>- If the task is a download, use **GET** or **POST**. The default value is **GET**.|
 | headers | object | No| HTTPS headers to be included in the task.<br>- If the task is an upload, the default **Content-Type** is **multipart/form-data**.<br>- If the task is a download, the default **Content-Type** is **application/json**.|
 | data | string \| Array&lt;[FormItem](#formitem10)&gt; | No| Task data.<br>- If the task is a download, the value is a string, typically in JSON format (an object will be converted to a JSON string); the default value is null.<br>- If the task is an upload, the value is Array<[FormItem](#formitem10)>; the default value is null.|
-| saveas | string | No| Path for storing downloaded files. The options are as follows:<br>- Relative path in the cache folder of the invoker, for example, ./xxx/yyy/zzz.html and xxx/yyy/zzz.html.<br>- URI (applicable when the application has the permission to access the URI), for example, **"datashare://bundle/xxx/yyy/zzz.html"**. Currently, this type is not supported.<br>The default value is a relative path in the cache folder of the application.|
+| saveas | string | No| Path for storing downloaded files. The options are as follows:<br>- Relative path in the cache folder of the invoker, for example, **"./xxx/yyy/zzz.html"** and **"xxx/yyy/zzz.html"**.<br>- URI (applicable when the application has the permission to access the URI), for example, **"datashare://bundle/xxx/yyy/zzz.html"**. This option is not supported currently.<br>The default value is a relative path in the cache folder of the application.|
 | network | [Network](#network10) | No| Network used for the task. The default value is **ANY** (Wi-Fi or cellular).|
-| metered | boolean | No| Whether the task is allowed on a metered connection. The default value is **false**.|
-| roaming | boolean | No| Whether the task is allowed on a roaming network. The default value is **true**.|
-| retry | boolean | No| Whether automatic retry is enabled for background tasks. The default value is **true**.|
-| redirect | boolean | No| Whether redirection is allowed. The default value is **true**.|
+| metered | boolean | No| Whether the task is allowed on a metered connection. The default value is **false**.<br>- **true**: The task is allowed on a metered connection.<br>- **false**: The task is not allowed on a metered connection.|
+| roaming | boolean | No| Whether the task is allowed on a roaming network. The default value is **true**.<br>- **true**: The task is allowed on a roaming network.<br>- **false**: The task is not allowed on a roaming network.|
+| retry | boolean | No| Whether automatic retry is enabled for the task. This parameter is only applicable to background tasks. The default value is **true**.<br>- **true**: Automatic retry is enabled for the task.<br>- **-false**: Automatic retry is not enabled for the task.|
+| redirect | boolean | No| Whether redirection is allowed. The default value is **true**.<br>- **true**: Redirection is allowed.<br>- **false**: Redirection is not allowed.|
 | index | number | No| Path index of the task. It is usually used for resumable downloads. The default value is **0**.|
 | begins | number | No| File start point of the task. It is usually used for resumable downloads. The default value is **0**. The value is a closed interval.<br>- If the task is a download, the value is obtained by sending an HTTP range request to read the start position when the server starts to download files.<br>- If the task is an upload, the value is obtained at the beginning of the upload.|
 | ends | number | No| File end point of the task. It is usually used for resumable downloads. The default value is **-1**. The value is a closed interval.<br>- If the task is a download, the value is obtained by sending an HTTP range request to read the end position when the server starts to download files.<br>- If the task is an upload, the value is obtained at the end of the upload.|
 | gauge | boolean | No| Whether to send progress notifications. This parameter applies only to background tasks. The default value is **false**.<br>- **false**: Progress notifications are not sent. This means that a notification is sent only to indicate the result of the total task.<br>- **true**: Progress notifications are sent to indicate the result of each file.|
 | precise | boolean | No| - If this parameter is set to **true**, the task fails when the file size cannot be obtained.<br>- If this parameter is set to **false**, the task continues when the file size is set to **-1**.<br>The default value is **false**.|
 | token | string | No| Token of the task. If the task has a token configured, this token is required for query of the task. The value contains 8 to 2048 bytes. This parameter is left empty by default.|
-| extras | object | No| Additional information of the task. This parameter is left blank by default.|
+| extras | object | No| Additional information of the task. This parameter is left empty by default.|
 
 ## State<sup>10+</sup>  
 
@@ -1838,7 +1782,7 @@ Defines the current task status.
 
 | Name| Value|Description|
 | -------- | -------- |-------- |
-| INITIALIZED | 0x00 |The task is initialized based on the configuration specified in [Conf](#conf10).|
+| INITIALIZED | 0x00 |The task is initialized based on the configuration specified in [Conf](#config10).|
 | WAITING | 0x10 |The task lacks resources for running or the resources for retries do not match the network status.|
 | RUNNING | 0x20 |The task is being executed.|
 | RETRYING | 0x21 |The task has failed at least once and is being executed again.|
@@ -1863,7 +1807,7 @@ Describes the data structure of the task progress.
 | extras | object | No| Extra information of the task, for example, the header and body of the response from the server.|
 
 
-## Broken<sup>10+</sup>  
+## Faults<sup>10+</sup>  
 
 Defines the cause of a task failure.
 
@@ -1878,8 +1822,22 @@ Defines the cause of a task failure.
 | FSIO | 0x40 |File system I/O error, for example, an error that occurs during the open, search, read, write, or close operation.|
 
 
+## Filter<sup>10+</sup>
+Defines the filter criteria.
+
+**System capability**: SystemCapability.Request.FileTransferAgent
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| bundle | string | No| Bundle name of an application.<br>**System API**: This is a system API.|
+| before | number | No| Unix timestamp of the end time, in milliseconds. The default value is the invoking time.|
+| after | number | No| Unix timestamp of the start time, in milliseconds. The default value is the invoking time minus 24 hours.|
+| state | [State](#state10) | No| Task state.|
+| action | [Action](#action10) | No| Task action.<br>- **UPLOAD**<br>- **DOWNLOAD**|
+| mode | [Mode](#mode10) | No| Task mode.<br>- **FOREGROUND**<br>- **BACKGROUND**|
+
 ## TaskInfo<sup>10+</sup> 
-Defines the data structure of the task information for query. The fields available varies depends on the query type.
+Defines the data structure of the task information for query. The fields available vary depending on the query type.
 
 **System capability**: SystemCapability.Request.FileTransferAgent
 
@@ -1887,8 +1845,9 @@ Defines the data structure of the task information for query. The fields availab
 | -------- | -------- | -------- | -------- |
 | uid | string | No| UID of the application. It is only available for query by system applications.<br>**System API**: This is a system API.|
 | bundle | string | No| Bundle name of the application. It is only available for query by system applications.<br>**System API**: This is a system API.|
-| url | string | No| Task URL. It is only available for query by non-system applications. An empty string is returned for query by system applications.|
-| data | string \| Array&lt;[FormItem](#formitem10)&gt; | No| Task value.|
+| saveas | string | No| Path for storing downloaded files. The options are as follows:<br>- Relative path in the cache folder of the invoker, for example, **"./xxx/yyy/zzz.html"** and **"xxx/yyy/zzz.html"**.<br>- URI (applicable when the application has the permission to access the URI), for example, **"datashare://bundle/xxx/yyy/zzz.html"**. This option is not supported currently.<br>The default value is a relative path in the cache folder of the application.|
+| url | string | No| Task URL.<br>- It can be obtained through [request.agent.show<sup>10+</sup>](#requestagentshow10-1), [request.agent.touch<sup>10+</sup>](#requestagenttouch10-1), or [request.agent.query<sup>10+</sup>](#requestagentquery10-1). When [request.agent.query<sup>10+</sup>](#requestagentquery10-1) is used, an empty string is returned.|
+| data | string \| Array&lt;[FormItem](#formitem10)&gt; | No| Task value.<br>- It can be obtained through [request.agent.show<sup>10+</sup>](#requestagentshow10-1), [request.agent.touch<sup>10+</sup>](#requestagenttouch10-1), or [request.agent.query<sup>10+</sup>](#requestagentquery10-1). When [request.agent.query<sup>10+</sup>](#requestagentquery10-1) is used, an empty string is returned.|
 | tid | string | Yes| Task ID.|
 | title | string | Yes| Task title.|
 | description | string | Yes| Task description.|
@@ -1897,11 +1856,11 @@ Defines the data structure of the task information for query. The fields availab
 | mimeType | string | Yes| MIME type in the task configuration.|
 | progress | [Progress](#progress10) | Yes| Task progress.|
 | gauge | boolean | Yes| Whether to send progress notifications. This parameter applies only to background tasks.|
-| ctime | string | Yes| Date and time when a task is created in UTC mode. The value is generated by the system of the current device.|
-| mtime | string | Yes| Date and time when a task is modified in UTC mode. The value is generated by the system of the current device.|
+| ctime | number | Yes| Unix timestamp when the task is created, in milliseconds. The value is generated by the system of the current device.<br>Note: When [request.agent.search<sup>10+</sup>](#requestagentsearch10-1) is used for query, this value must be within the range of [after,before] for the task ID to be obtained. For details about **before** and **after**, see [Filter](#filter10).
+| mtime | number | Yes| Unix timestamp when the task state changes, in milliseconds. The value is generated by the system of the current device.|
 | retry | boolean | Yes| Whether automatic retry is enabled for the task. This parameter applies only to background tasks.|
 | tries | number | Yes| Number of retries of the task.|
-| broken | [Broken](#broken10) | Yes| Failure cause of the task.<br>- **OTHERS**: other fault.<br>- **DISCONNECT**: network disconnection.<br>- **TIMEOUT**: timeout.<br>- **PROTOCOL**: protocol error.<br>- **FSIO**: file system I/O error.|
+| faults | [Faults](#faults10) | Yes| Failure cause of the task.<br>- **OTHERS**: other fault.<br>- **DISCONNECT**: network disconnection.<br>- **TIMEOUT**: timeout.<br>- **PROTOCOL**: protocol error.<br>- **FSIO**: file system I/O error.|
 | reason | string | Yes| Reason why the task is waiting, failed, stopped, or paused.|
 | extras | string | No| Extra information of the task|
 
@@ -1917,14 +1876,14 @@ Task attributes include the task ID and task configuration.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | tid | string | Yes| Task ID, which is unique in the system and is automatically generated by the system.|
-| conf | [Conf](#conf10) | Yes| Task configuration.|
+| config | [Config](#config10) | Yes| Task configuration.|
 
 
 ### on('progress')<sup>10+</sup>
 
 on(event: 'progress', callback: (progress: Progress) =&gt; void): void
 
-Subscribes to task progress events.
+Subscribes to foreground task progress changes.
 
 **System capability**: SystemCapability.Request.FileTransferAgent
 
@@ -1945,22 +1904,21 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
 
 **Example**
 
-  ```js
-  let context;
-  let attachments = [{
-                       name: "taskOnTest",
-                       value: {
-                         filename: "taskOnTest.avi",
-                         mimetype: "application/octet-stream",
-                         path: "./taskOnTest.avi",
-                       }
-                     }];
-  let conf = {
+  ```ts
+  let attachments: Array<request.agent.FormItem> = [{
+    name: "taskOnTest",
+    value: {
+      filename: "taskOnTest.avi",
+      mimeType: "application/octet-stream",
+      path: "./taskOnTest.avi",
+    }
+  }];
+  let config: request.agent.Config = {
     action: request.agent.Action.UPLOAD,
     url: 'http://127.0.0.1',
     title: 'taskOnTest',
     description: 'Sample code for event listening',
-    mode: request.agent.Mode.BACKGROUND,
+    mode: request.agent.Mode.FOREGROUND,
     overwrite: false,
     method: "PUT",
     data: attachments,
@@ -1977,13 +1935,13 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
     precise: false,
     token: "it is a secret"
   };
-  let createOnCallback = (progress) => {
-    console.info('upload task completed.');
+  let createOnCallback = (progress: request.agent.Progress) => {
+    console.info('upload task progress.');
   };
-  request.agent.create(context, conf).then((task)=> {
+  request.agent.create(this.context, config).then((task: request.agent.Task) => {
     task.on('progress', createOnCallback);
     console.info(`Succeeded in creating a upload task. result: ${task.tid}`);
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to create a upload task, Code: ${err.code}, message: ${err.message}`);
   });
   ```
@@ -1996,7 +1954,7 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
 
 on(event: 'completed', callback: (progress: Progress) =&gt; void): void
 
-Subscribes to task completion events.
+Subscribes to the foreground task completion event.
 
 **System capability**: SystemCapability.Request.FileTransferAgent
 
@@ -2017,22 +1975,21 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
 
 **Example**
 
-  ```js
-  let context;
-  let attachments = [{
-                       name: "taskOnTest",
-                       value: {
-                         filename: "taskOnTest.avi",
-                         mimetype: "application/octet-stream",
-                         path: "./taskOnTest.avi",
-                       }
-                     }];
-  let conf = {
+  ```ts
+  let attachments: Array<request.agent.FormItem> = [{
+    name: "taskOnTest",
+    value: {
+      filename: "taskOnTest.avi",
+      mimeType: "application/octet-stream",
+      path: "./taskOnTest.avi",
+    }
+  }];
+  let config: request.agent.Config = {
     action: request.agent.Action.UPLOAD,
     url: 'http://127.0.0.1',
     title: 'taskOnTest',
     description: 'Sample code for event listening',
-    mode: request.agent.Mode.BACKGROUND,
+    mode: request.agent.Mode.FOREGROUND,
     overwrite: false,
     method: "PUT",
     data: attachments,
@@ -2049,13 +2006,13 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
     precise: false,
     token: "it is a secret"
   };
-  let createOnCallback = (progress) => {
+  let createOnCallback = (progress: request.agent.Progress) => {
     console.info('upload task completed.');
   };
-  request.agent.create(context, conf).then((task)=> {
+  request.agent.create(this.context, config).then((task: request.agent.Task) => {
     task.on('completed', createOnCallback);
     console.info(`Succeeded in creating a upload task. result: ${task.tid}`);
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to create a upload task, Code: ${err.code}, message: ${err.message}`);
   });
   ```
@@ -2068,7 +2025,7 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
 
 on(event: 'failed', callback: (progress: Progress) =&gt; void): void
 
-Subscribes to task failure events.
+Subscribes to the foreground task failure event.
 
 **System capability**: SystemCapability.Request.FileTransferAgent
 
@@ -2089,22 +2046,21 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
 
 **Example**
 
-  ```js
-  let context;
-  let attachments = [{
-                       name: "taskOnTest",
-                       value: {
-                         filename: "taskOnTest.avi",
-                         mimetype: "application/octet-stream",
-                         path: "./taskOnTest.avi",
-                       }
-                     }];
-  let conf = {
+  ```ts
+  let attachments: Array<request.agent.FormItem> = [{
+    name: "taskOnTest",
+    value: {
+      filename: "taskOnTest.avi",
+      mimeType: "application/octet-stream",
+      path: "./taskOnTest.avi",
+    }
+  }];
+  let config: request.agent.Config = {
     action: request.agent.Action.UPLOAD,
     url: 'http://127.0.0.1',
     title: 'taskOnTest',
     description: 'Sample code for event listening',
-    mode: request.agent.Mode.BACKGROUND,
+    mode: request.agent.Mode.FOREGROUND,
     overwrite: false,
     method: "PUT",
     data: attachments,
@@ -2121,13 +2077,13 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
     precise: false,
     token: "it is a secret"
   };
-  let createOnCallback = (progress) => {
-    console.info('upload task completed.');
+  let createOnCallback = (progress: request.agent.Progress) => {
+    console.info('upload task failed.');
   };
-  request.agent.create(context, conf).then((task)=> {
+  request.agent.create(this.context, config).then((task: request.agent.Task) => {
     task.on('failed', createOnCallback);
     console.info(`Succeeded in creating a upload task. result: ${task.tid}`);
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to create a upload task, Code: ${err.code}, message: ${err.message}`);
   });
   ```
@@ -2141,7 +2097,7 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
 
 off(event: 'progress', callback?: (progress: Progress) =&gt; void): void
 
-Unsubscribes from task progress events.
+Unsubscribes from foreground task progress changes.
 
 **System capability**: SystemCapability.Request.FileTransferAgent
 
@@ -2162,22 +2118,21 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
 
 **Example**
 
-  ```js
-  let context;
-  let attachments = [{
-                       name: "taskOffTest",
-                       value: {
-                         filename: "taskOffTest.avi",
-                         mimetype: "application/octet-stream",
-                         path: "./taskOffTest.avi",
-                       }
-                     }];
-  let conf = {
+  ```ts
+  let attachments: Array<request.agent.FormItem> = [{
+    name: "taskOffTest",
+    value: {
+      filename: "taskOffTest.avi",
+      mimeType: "application/octet-stream",
+      path: "./taskOffTest.avi",
+    }
+  }];
+  let config: request.agent.Config = {
     action: request.agent.Action.UPLOAD,
     url: 'http://127.0.0.1',
     title: 'taskOffTest',
     description: 'Sample code for event listening',
-    mode: request.agent.Mode.BACKGROUND,
+    mode: request.agent.Mode.FOREGROUND,
     overwrite: false,
     method: "PUT",
     data: attachments,
@@ -2194,14 +2149,14 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
     precise: false,
     token: "it is a secret"
   };
-  let createOffCallback = (progress) => {
-    console.info('upload task completed.');
+  let createOffCallback = (progress: request.agent.Progress) => {
+    console.info('upload task progress.');
   };
-  request.agent.create(context, conf).then((task)=> {
+  request.agent.create(this.context, config).then((task: request.agent.Task) => {
     task.on('progress', createOffCallback);
     task.off('progress', createOffCallback);
     console.info(`Succeeded in creating a upload task. result: ${task.tid}`);
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to create a upload task, Code: ${err.code}, message: ${err.message}`);
   });
   ```
@@ -2214,7 +2169,7 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
 
 off(event: 'completed', callback?: (progress: Progress) =&gt; void): void
 
-Unsubscribes from task completion events.
+Unsubscribes from the foreground task completion event.
 
 **System capability**: SystemCapability.Request.FileTransferAgent
 
@@ -2235,22 +2190,21 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
 
 **Example**
 
-  ```js
-  let context;
-  let attachments = [{
-                       name: "taskOffTest",
-                       value: {
-                         filename: "taskOffTest.avi",
-                         mimetype: "application/octet-stream",
-                         path: "./taskOffTest.avi",
-                       }
-                     }];
-  let conf = {
+  ```ts
+  let attachments: Array<request.agent.FormItem> = [{
+    name: "taskOffTest",
+    value: {
+      filename: "taskOffTest.avi",
+      mimeType: "application/octet-stream",
+      path: "./taskOffTest.avi",
+    }
+  }];
+  let config: request.agent.Config = {
     action: request.agent.Action.UPLOAD,
     url: 'http://127.0.0.1',
     title: 'taskOffTest',
     description: 'Sample code for event listening',
-    mode: request.agent.Mode.BACKGROUND,
+    mode: request.agent.Mode.FOREGROUND,
     overwrite: false,
     method: "PUT",
     data: attachments,
@@ -2267,14 +2221,14 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
     precise: false,
     token: "it is a secret"
   };
-  let createOffCallback = (progress) => {
+  let createOffCallback = (progress: request.agent.Progress) => {
     console.info('upload task completed.');
   };
-  request.agent.create(context, conf).then((task)=> {
+  request.agent.create(this.context, config).then((task: request.agent.Task) => {
     task.on('completed', createOffCallback);
     task.off('completed', createOffCallback);
     console.info(`Succeeded in creating a upload task. result: ${task.tid}`);
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to create a upload task, Code: ${err.code}, message: ${err.message}`);
   });
   ```
@@ -2287,7 +2241,7 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
 
 off(event: 'failed', callback?: (progress: Progress) =&gt; void): void
 
-Unsubscribes from task failure events.
+Unsubscribes from the foreground task failure event.
 
 **System capability**: SystemCapability.Request.FileTransferAgent
 
@@ -2308,22 +2262,21 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
 
 **Example**
 
-  ```js
-  let context;
-  let attachments = [{
-                       name: "taskOffTest",
-                       value: {
-                         filename: "taskOffTest.avi",
-                         mimetype: "application/octet-stream",
-                         path: "./taskOffTest.avi",
-                       }
-                     }];
-  let conf = {
+  ```ts
+  let attachments: Array<request.agent.FormItem> = [{
+    name: "taskOffTest",
+    value: {
+      filename: "taskOffTest.avi",
+      mimeType: "application/octet-stream",
+      path: "./taskOffTest.avi",
+    }
+  }];
+  let config: request.agent.Config = {
     action: request.agent.Action.UPLOAD,
     url: 'http://127.0.0.1',
     title: 'taskOffTest',
     description: 'Sample code for event listening',
-    mode: request.agent.Mode.BACKGROUND,
+    mode: request.agent.Mode.FOREGROUND,
     overwrite: false,
     method: "PUT",
     data: attachments,
@@ -2340,14 +2293,14 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
     precise: false,
     token: "it is a secret"
   };
-  let createOffCallback = (progress) => {
-    console.info('upload task completed.');
+  let createOffCallback = (progress: request.agent.Progress) => {
+    console.info('upload task failed.');
   };
-  request.agent.create(context, conf).then((task)=> {
+  request.agent.create(this.context, config).then((task: request.agent.Task) => {
     task.on('failed', createOffCallback);
     task.off('failed', createOffCallback);
     console.info(`Succeeded in creating a upload task. result: ${task.tid}`);
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to create a upload task, Code: ${err.code}, message: ${err.message}`);
   });
   ```
@@ -2383,9 +2336,8 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
 
 **Example**
 
-  ```js
-  let context;
-  let conf = {
+  ```ts
+  let config: request.agent.Config = {
     action: request.agent.Action.DOWNLOAD,
     url: 'http://127.0.0.1',
     title: 'taskStartTest',
@@ -2407,8 +2359,8 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
     precise: false,
     token: "it is a secret"
   };
-  request.agent.create(context, conf).then((task) => {
-    task.start((err) => {
+  request.agent.create(this.context, config).then((task: request.agent.Task) => {
+    task.start((err: BusinessError) => {
       if (err) {
         console.error(`Failed to start the download task, Code: ${err.code}, message: ${err.message}`);
         return;
@@ -2416,7 +2368,7 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
       console.info(`Succeeded in starting a download task.`);
     });
     console.info(`Succeeded in creating a download task. result: ${task.tid}`);
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to create a download task, Code: ${err.code}, message: ${err.message}`);
   });
   ```
@@ -2452,9 +2404,8 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
 
 **Example**
 
-  ```js
-  let context;
-  let conf = {
+  ```ts
+  let config: request.agent.Config = {
     action: request.agent.Action.DOWNLOAD,
     url: 'http://127.0.0.1',
     title: 'taskStartTest',
@@ -2476,14 +2427,14 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
     precise: false,
     token: "it is a secret"
   };
-  request.agent.create(context, conf).then((task) => {
+  request.agent.create(this.context, config).then((task: request.agent.Task) => {
     task.start().then(() => {
       console.info(`Succeeded in starting a download task.`);
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
       console.error(`Failed to start the download task, Code: ${err.code}, message: ${err.message}`);
     });
     console.info(`Succeeded in creating a download task. result: ${task.tid}`);
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to create a download task, Code: ${err.code}, message: ${err.message}`);
   });
   ```
@@ -2518,9 +2469,8 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
 
 **Example**
 
-  ```js
-  let context;
-  let conf = {
+  ```ts
+  let config: request.agent.Config = {
     action: request.agent.Action.DOWNLOAD,
     url: 'http://127.0.0.1',
     title: 'taskPauseTest',
@@ -2542,8 +2492,8 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
     precise: false,
     token: "it is a secret"
   };
-  request.agent.create(context, conf).then((task) => {
-    task.pause((err) => {
+  request.agent.create(this.context, config).then((task: request.agent.Task) => {
+    task.pause((err: BusinessError) => {
       if (err) {
         console.error(`Failed to pause the download task, Code: ${err.code}, message: ${err.message}`);
         return;
@@ -2551,7 +2501,7 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
       console.info(`Succeeded in pausing a download task. `);
     });
     console.info(`Succeeded in creating a download task. result: ${task.tid}`);
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to create a download task, Code: ${err.code}, message: ${err.message}`);
   });
   ```
@@ -2583,9 +2533,8 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
 
 **Example**
 
-  ```js
-  let context;
-  let conf = {
+  ```ts
+  let config: request.agent.Config = {
     action: request.agent.Action.DOWNLOAD,
     url: 'http://127.0.0.1',
     title: 'taskPauseTest',
@@ -2607,14 +2556,14 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
     precise: false,
     token: "it is a secret"
   };
-  request.agent.create(context, conf).then((task) => {
+  request.agent.create(this.context, config).then((task: request.agent.Task) => {
     task.pause().then(() => {
       console.info(`Succeeded in pausing a download task. `);
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
       console.error(`Failed to pause the upload task, Code: ${err.code}, message: ${err.message}`);
     });
     console.info(`Succeeded in creating a download task. result: ${task.tid}`);
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to create a upload task, Code: ${err.code}, message: ${err.message}`);
   });
   ```
@@ -2648,9 +2597,8 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
 
 **Example**
 
-  ```js
-  let context;
-  let conf = {
+  ```ts
+  let config: request.agent.Config = {
     action: request.agent.Action.DOWNLOAD,
     url: 'http://127.0.0.1',
     title: 'taskResumeTest',
@@ -2672,8 +2620,8 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
     precise: false,
     token: "it is a secret"
   };
-  request.agent.create(context, conf).then((task) => {
-    task.resume((err) => {
+  request.agent.create(this.context, config).then((task: request.agent.Task) => {
+    task.resume((err: BusinessError) => {
       if (err) {
         console.error(`Failed to resume the download task, Code: ${err.code}, message: ${err.message}`);
         return;
@@ -2681,7 +2629,7 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
       console.info(`Succeeded in resuming a download task. `);
     });
     console.info(`Succeeded in creating a download task. result: ${task.tid}`);
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to create a download task, Code: ${err.code}, message: ${err.message}`);
   });
   ```
@@ -2715,9 +2663,8 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
 
 **Example**
 
-  ```js
-  let context;
-  let conf = {
+  ```ts
+  let config: request.agent.Config = {
     action: request.agent.Action.DOWNLOAD,
     url: 'http://127.0.0.1',
     title: 'taskResumeTest',
@@ -2739,14 +2686,14 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
     precise: false,
     token: "it is a secret"
   };
-  request.agent.create(context, conf).then((task) => {
+  request.agent.create(this.context, config).then((task: request.agent.Task) => {
     task.resume().then(() => {
       console.info(`Succeeded in resuming a download task. `);
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
       console.error(`Failed to resume the download task, Code: ${err.code}, message: ${err.message}`);
     });
     console.info(`Succeeded in creating a download task. result: ${task.tid}`);
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to create a download task, Code: ${err.code}, message: ${err.message}`);
   });
   ```
@@ -2777,9 +2724,8 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
 
 **Example**
 
-  ```js
-  let context;
-  let conf = {
+  ```ts
+  let config: request.agent.Config = {
     action: request.agent.Action.DOWNLOAD,
     url: 'http://127.0.0.1',
     title: 'taskStopTest',
@@ -2801,8 +2747,8 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
     precise: false,
     token: "it is a secret"
   };
-  request.agent.create(context, conf).then((task) => {
-    task.stop((err) => {
+  request.agent.create(this.context, config).then((task: request.agent.Task) => {
+    task.stop((err: BusinessError) => {
       if (err) {
         console.error(`Failed to stop the download task, Code: ${err.code}, message: ${err.message}`);
         return;
@@ -2810,7 +2756,7 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
       console.info(`Succeeded in stopping a download task. `);
     });
     console.info(`Succeeded in creating a download task. result: ${task.tid}`);
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to create a download task, Code: ${err.code}, message: ${err.message}`);
   });
   ```
@@ -2841,9 +2787,8 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
 
 **Example**
 
-  ```js
-  let context;
-  let conf = {
+  ```ts
+  let config: request.agent.Config = {
     action: request.agent.Action.DOWNLOAD,
     url: 'http://127.0.0.1',
     title: 'taskStopTest',
@@ -2865,21 +2810,21 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
     precise: false,
     token: "it is a secret"
   };
-  request.agent.create(context, conf).then((task) => {
+  request.agent.create(this.context, config).then((task: request.agent.Task) => {
     task.stop().then(() => {
       console.info(`Succeeded in stopping a download task. `);
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
       console.error(`Failed to stop the download task, Code: ${err.code}, message: ${err.message}`);
     });
     console.info(`Succeeded in creating a download task. result: ${task.tid}`);
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to create a download task, Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
 ## request.agent.create<sup>10+</sup>
 
-create(context: BaseContext, conf: Conf, callback: AsyncCallback&lt;Task&gt;): void
+create(context: BaseContext, config: Config, callback: AsyncCallback&lt;Task&gt;): void
 
 Creates an upload or download task and adds it to the queue. An application can create a maximum of 10 tasks, and a maximum of 300 tasks can be carried. This API uses an asynchronous callback to return the result.
 
@@ -2892,7 +2837,7 @@ Creates an upload or download task and adds it to the queue. An application can 
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| conf | [Conf](#conf10) | Yes| Task configuration.|
+| config | [Config](#config10) | Yes| Task configuration.|
 | context | [BaseContext](js-apis-inner-application-baseContext.md) | Yes| Application-based context.|
 | callback | AsyncCallback&lt;[Task](#task10)&gt; | Yes| Callback used to return the configuration about the created task.|
 
@@ -2909,17 +2854,16 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
 
 **Example**
 
-  ```js
-  let context;
-  let attachments = [{
-                       name: "reeateTest",
-                       value: {
-                         filename: "reeateTest.avi",
-                         mimetype: "application/octet-stream",
-                         path: "./reeateTest.avi",
-                       }
-                     }];
-  let conf = {
+  ```ts
+  let attachments: Array<request.agent.FormItem> = [{
+    name: "reeateTest",
+    value: {
+      filename: "reeateTest.avi",
+      mimeType: "application/octet-stream",
+      path: "./reeateTest.avi",
+    }
+  }];
+  let config: request.agent.Config = {
     action: request.agent.Action.UPLOAD,
     url: 'http://127.0.0.1',
     title: 'reeateTest',
@@ -2941,12 +2885,12 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
     precise: false,
     token: "it is a secret"
   };
-  request.agent.create(context, conf, (err, task) => {
+  request.agent.create(this.context, config, (err: BusinessError, task: request.agent.Task) => {
     if (err) {
       console.error(`Failed to create a download task, Code: ${err.code}, message: ${err.message}`);
       return;
     }
-    console.info(`Succeeded in creating a download task. result: ${task.conf}`);
+    console.info(`Succeeded in creating a download task. result: ${task.config}`);
   });
   ```
 
@@ -2956,7 +2900,7 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
 
 ## request.agent.create<sup>10+</sup>
 
-create(context: BaseContext, conf: Conf): Promise&lt;Task&gt;
+create(context: BaseContext, config: Config): Promise&lt;Task&gt;
 
 Creates an upload or download task and adds it to the queue. An application can create a maximum of 10 tasks, and a maximum of 300 tasks can be carried. This API uses a promise to return the result.
 
@@ -2970,7 +2914,7 @@ Creates an upload or download task and adds it to the queue. An application can 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | context | [BaseContext](js-apis-inner-application-baseContext.md) | Yes| Application-based context.|
-| conf | [Conf](#conf10) | Yes| Task configuration.|
+| config | [Config](#config10) | Yes| Task configuration.|
 
 **Return value**
 
@@ -2991,17 +2935,16 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
 
 **Example**
 
-  ```js
-  let context;
-  let attachments = [{
-                       name: "reeateTest",
-                       value: {
-                         filename: "reeateTest.avi",
-                         mimetype: "application/octet-stream",
-                         path: "./reeateTest.avi",
-                       }
-                     }];
-  let conf = {
+  ```ts
+  let attachments: Array<request.agent.FormItem> = [{
+    name: "reeateTest",
+    value: {
+      filename: "reeateTest.avi",
+      mimeType: "application/octet-stream",
+      path: "./reeateTest.avi",
+    }
+  }];
+  let config: request.agent.Config = {
     action: request.agent.Action.UPLOAD,
     url: 'http://127.0.0.1',
     title: 'reeateTest',
@@ -3023,8 +2966,8 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
     precise: false,
     token: "it is a secret"
   };
-  request.agent.create(context, conf).then((task)=> {
-    console.info(`Succeeded in creating a download task. result: ${task.conf}`);
+  request.agent.create(this.context, config).then((task: request.agent.Task) => {
+    console.info(`Succeeded in creating a download task. result: ${task.config}`);
   }).catch((err) => {
     console.error(`Failed to create a download task, Code: ${err.code}, message: ${err.message}`);
   });
@@ -3060,8 +3003,8 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
 
 **Example**
 
-  ```js
-  request.agent.remove("id", (err) => {
+  ```ts
+  request.agent.remove("id", (err: BusinessError) => {
     if (err) {
       console.error(`Failed to removing a download task, Code: ${err.code}, message: ${err.message}`);
       return;
@@ -3102,11 +3045,361 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
 
 **Example**
 
-  ```js
+  ```ts
   request.agent.remove("id").then(() => {
     console.info(`Succeeded in removing a download task. `);
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to remove a download task, Code: ${err.code}, message: ${err.message}`);
+  });
+  ```
+
+
+## request.agent.show<sup>10+</sup>
+
+show(id: string, callback: AsyncCallback&lt;TaskInfo&gt;): void
+
+Shows the task details based on the task ID. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Request.FileTransferAgent
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| id | string | Yes| Task ID.|
+| callback | AsyncCallback&lt;[TaskInfo](#taskinfo10)&gt; | Yes| Callback used to return task details.|
+
+**Error codes**
+For details about the error codes, see [Upload and Download Error Codes](../errorcodes/errorcode-request.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 13400003 | task service ability error. |
+| 21900006 | task not found error. |
+
+**Example**
+
+  ```ts
+  request.agent.show("123456", (err: BusinessError, taskInfo: request.agent.TaskInfo) => {
+    if (err) {
+      console.error(`Failed to show a upload task, Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in showing a upload task.`);
+  });
+  ```
+
+
+## request.agent.show<sup>10+</sup>
+
+show(id: string): Promise&lt;TaskInfo&gt;
+
+Queries a task details based on the task ID. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Request.FileTransferAgent
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| id | string | Yes| Task ID.|
+
+**Return value**
+
+| Type               | Description                     |
+| ------------------- | ------------------------- |
+| Promise&lt;[TaskInfo](#taskinfo10)&gt; | Promise Promise used to return task details.|
+
+**Error codes**
+For details about the error codes, see [Upload and Download Error Codes](../errorcodes/errorcode-request.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 13400003 | task service ability error. |
+| 21900006 | task not found error. |
+
+**Example**
+
+  ```ts
+  request.agent.show("123456").then((taskInfo: request.agent.TaskInfo) => {
+    console.info(`Succeeded in showing a upload task.`);
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to show a upload task, Code: ${err.code}, message: ${err.message}`);
+  });
+  ```
+
+
+## request.agent.touch<sup>10+</sup>
+
+touch(id: string, token: string, callback: AsyncCallback&lt;TaskInfo&gt;): void
+
+Queries the task details based on the task ID and token. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Request.FileTransferAgent
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| id | string | Yes| Task ID.|
+| token | string | Yes| Token for task query.|
+| callback | AsyncCallback&lt;[TaskInfo](#taskinfo10)&gt; | Yes| Callback used to return task details.|
+
+**Error codes**
+For details about the error codes, see [Upload and Download Error Codes](../errorcodes/errorcode-request.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 13400003 | task service ability error. |
+| 21900006 | task not found error. |
+
+**Example**
+
+  ```ts
+  request.agent.touch("123456", "token", (err: BusinessError, taskInfo: request.agent.TaskInfo) => {
+    if (err) {
+      console.error(`Failed to touch a upload task, Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in touching a upload task.`);
+  });
+  ```
+
+
+## request.agent.touch<sup>10+</sup>
+
+touch(id: string, token: string): Promise&lt;TaskInfo&gt;
+
+Queries the task details based on the task ID and token. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Request.FileTransferAgent
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| id | string | Yes| Task ID.|
+| token | string | Yes| Token for task query.|
+
+**Return value**
+
+| Type               | Description                     |
+| ------------------- | ------------------------- |
+| Promise&lt;[TaskInfo](#taskinfo10)&gt; | Promise Promise used to return task details.|
+
+**Error codes**
+For details about the error codes, see [Upload and Download Error Codes](../errorcodes/errorcode-request.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 13400003 | task service ability error. |
+| 21900006 | task not found error. |
+
+**Example**
+
+  ```ts
+  request.agent.touch("123456", "token").then((taskInfo: request.agent.TaskInfo) => {
+    console.info(`Succeeded in touching a upload task. `);
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to touch a upload task, Code: ${err.code}, message: ${err.message}`);
+  });
+  ```
+
+## request.agent.search<sup>10+</sup>
+
+search(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
+
+Searches for task IDs based on [Filter](#filter10). This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Request.FileTransferAgent
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | Yes| Callback used to return task ID matches.|
+
+**Error codes**
+For details about the error codes, see [Upload and Download Error Codes](../errorcodes/errorcode-request.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 13400003 | task service ability error. |
+
+**Example**
+
+  ```ts
+  request.agent.search((err: BusinessError, data: Array<string>) => {
+    if (err) {
+      console.error(`Upload task search failed. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Upload task search succeeded. `);
+  });
+  ```
+
+## request.agent.search<sup>10+</sup>
+
+search(filter: Filter, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
+
+Searches for task IDs based on [Filter](#filter10). This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Request.FileTransferAgent
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| filter | [Filter](#filter10) | Yes| Filter criteria.|
+| callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | Yes| Callback used to return task ID matches.|
+
+**Error codes**
+For details about the error codes, see [Upload and Download Error Codes](../errorcodes/errorcode-request.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 13400003 | task service ability error. |
+
+**Example**
+
+  ```ts
+  let filter: request.agent.Filter = {
+    bundle: "com.example.myapplication",
+    action: request.agent.Action.UPLOAD,
+    mode: request.agent.Mode.BACKGROUND
+  }
+  request.agent.search(filter, (err: BusinessError, data: Array<string>) => {
+    if (err) {
+      console.error(`Upload task search failed. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Upload task search succeeded. `);
+  });
+  ```
+
+
+## request.agent.search<sup>10+</sup>
+
+search(filter?: Filter): Promise&lt;Array&lt;string&gt;&gt;
+
+Searches for task IDs based on [Filter](#filter10). This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Request.FileTransferAgent
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| filter | [Filter](#filter10) | No| Filter criteria.|
+
+**Return value**
+
+| Type               | Description                     |
+| ------------------- | ------------------------- |
+| Promise&lt;Array&lt;string&gt;&gt; | Promise Promise used to return task ID matches.|
+
+**Error codes**
+For details about the error codes, see [Upload and Download Error Codes](../errorcodes/errorcode-request.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 13400003 | task service ability error. |
+
+**Example**
+
+  ```ts
+  let filter: request.agent.Filter = {
+    bundle: "com.example.myapplication",
+    action: request.agent.Action.UPLOAD,
+    mode: request.agent.Mode.BACKGROUND
+  }
+  request.agent.search(filter).then((data: Array<string>) => {
+    console.info(`Upload task search succeeded. `);
+  }).catch((err: BusinessError) => {
+    console.error(`Upload task search failed. Code: ${err.code}, message: ${err.message}`);
+  });
+  ```
+
+
+## request.agent.query<sup>10+</sup>
+
+query(id: string, callback: AsyncCallback&lt;TaskInfo&gt;): void
+
+Queries a task details based on the task ID. This API uses an asynchronous callback to return the result.
+
+**Required permissions**: ohos.permission.DOWNLOAD_SESSION_MANAGER or ohos.permission.UPLOAD_SESSION_MANAGER
+
+**System capability**: SystemCapability.Request.FileTransferAgent
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| id | string | Yes| Task ID.|
+| callback | AsyncCallback&lt;[TaskInfo](#taskinfo10)&gt; | Yes| Callback used to return task details.|
+
+**Error codes**
+For details about the error codes, see [Upload and Download Error Codes](../errorcodes/errorcode-request.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 13400003 | task service ability error. |
+| 21900006 | task not found error. |
+
+**Example**
+
+  ```ts
+  request.agent.query("123456", (err: BusinessError, taskInfo: request.agent.TaskInfo) => {
+    if (err) {
+      console.error(`Failed to query a upload task, Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in querying the upload task. Result: ${taskInfo.uid}`);
+  });
+  ```
+
+
+## request.agent.query<sup>10+</sup>
+
+query(id: string): Promise&lt;TaskInfo&gt;
+
+Queries a task details based on the task ID. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.DOWNLOAD_SESSION_MANAGER or ohos.permission.UPLOAD_SESSION_MANAGER
+
+**System capability**: SystemCapability.Request.FileTransferAgent
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| id | string | Yes| Task ID.|
+
+**Return value**
+
+| Type               | Description                     |
+| ------------------- | ------------------------- |
+| Promise&lt;[TaskInfo](#taskinfo10)&gt; | Promise Promise used to return task details.|
+
+**Error codes**
+For details about the error codes, see [Upload and Download Error Codes](../errorcodes/errorcode-request.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 13400003 | task service ability error. |
+| 21900006 | task not found error. |
+
+**Example**
+
+  ```ts
+  request.agent.query("123456",).then((taskInfo: request.agent.TaskInfo) => {
+    console.info(`Succeeded in querying the upload task. Result: ${taskInfo.uid}`);
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to query the upload task. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 

@@ -185,9 +185,9 @@ The package parsing APIs are used to parse an HAP, APP, or HSP file and obtain i
 | appName                        | String  | Label of the ability displayed on the home screen.                                                       | NA          |
 | appNameEN                      | String  | Label of the ability displayed on the home screen.                                                       | NA          |
 | releaseType                    | String  | Release type of the target API version required for running the application.                                                          | NA          |
-| shellVersionCode               | String  | API version in HarmonyOS.                                                           | NA          |
-| shellVersionName               | String  | API version name in HarmonyOS.                                                         | NA          |
-| multiFrameworkBundle           | String  | Bundle name of the application in the dual-framework scenario.                                                         | NA          |
+| shellVersionCode               | String  | API version number of the application.                                                         | NA          |
+| shellVersionName               | String  | API version name of the application.                                                         | NA          |
+| multiFrameworkBundle           | boolean | Application framework.                                                        | NA          |
 | debug                          | boolean | Whether the application can be debugged.                                                                    | NA          |
 | icon                           | String  | Path of the application icon.                                                                    | NA          |
 | label                          | String  | Label of the application.                                                                   | NA          |

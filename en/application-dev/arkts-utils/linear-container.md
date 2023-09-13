@@ -44,14 +44,14 @@ The APIs provided by **Vector** are deprecated since API version 9. You are advi
 | Accessing elements| Use **vec\[index]** to obtain the value at a given position (specified by **index**).|
 | Accessing elements| Use **get(index: number)** to obtain the element at a given position (specified by **index**).|
 | Accessing elements| Use **getLastElement()** to obtain the last element in this container.|
-| Accessing elements| Use **getlndexOf(element: T)** to obtain the index of the first occurrence of the specified element.|
-| Accessing elements| Use **getLastlndexOf(element: T)** to obtain the index of the last occurrence of the specified element.|
+| Accessing elements| Use **getIndexOf(element: T)** to obtain the index of the first occurrence of the specified element.|
+| Accessing elements| Use **getLastIndexOf(element: T)** to obtain the index of the last occurrence of the specified element.|
 | Accessing elements| Use **forEach(callbackFn: (value: T, index?: number, Vector?: Vector&lt;T&gt;) =&gt; void, thisArg?: Object)** to traverse the elements in this container.|
 | Accessing elements| Use **\[Symbol.iterator]():IterableIterator&lt;T&gt;** for data access.|
 | Modifying elements| Use **vec\[index]=xxx** to change the value at a given position (specified by **index**).|
 | Modifying elements| Use **set(index: number, element: T)** to replace an element at a given position (specified by **index**) with a given element.|
 | Modifying elements| Use **setLength(newSize: number)** to set the size of this container.|
-| Deleting elements| Use **removeBylndex(index: number)** to remove the value at a given position (specified by **index**).|
+| Deleting elements| Use **removeByIndex(index: number)** to remove the value at a given position (specified by **index**).|
 | Deleting elements| Use **remove(element: T)** to remove the first occurrence of the specified element.|
 | Deleting elements| Use **removeByRange(fromIndex: number, toIndex: number)** to remove all of the elements within a range.|
 
@@ -74,14 +74,14 @@ You are advised to use **List** for frequent insertion and removal operations.
 | Accessing elements| Use **get(index: number)** to obtain the element at a given position (specified by **index**).|
 | Accessing elements| Use **getFirst()** to obtain the first element in this container.|
 | Accessing elements| Use **getLast()** to obtain the last element in this container.|
-| Accessing elements| Use **getlndexOf(element: T)** to obtain the index of the first occurrence of the specified element.|
-| Accessing elements| Use **getLastlndexOf(element: T)** to obtain the index of the last occurrence of the specified element.|
+| Accessing elements| Use **getIndexOf(element: T)** to obtain the index of the first occurrence of the specified element.|
+| Accessing elements| Use **getLastIndexOf(element: T)** to obtain the index of the last occurrence of the specified element.|
 | Accessing elements| Use **forEach(callbackfn: (value: T, index?: number, list?: List&lt;T&gt;)=&gt; void, thisArg?: Object)** to traverse the elements in this container.|
 | Accessing elements| Use **\[Symbol.iterator]():IterableIterator&lt;T&gt;** for data access.|
 | Modifying elements| Use **list\[index] = xxx** to change the value at a given position (specified by **index**).|
 | Modifying elements| Use **set(index: number, element: T)** to replace an element at a given position (specified by **index**) with a given element.|
 | Modifying elements| Use **replaceAllElements(callbackFn:(value: T,index?: number,list?: List&lt;T&gt;)=&gt;T,thisArg?: Object)** to replace all elements in this container with new elements.|
-| Deleting elements| Use **removeBylndex(index: number)** to remove the value at a given position (specified by **index**).|
+| Deleting elements| Use **removeByIndex(index: number)** to remove the value at a given position (specified by **index**).|
 | Deleting elements| Use **remove(element: T)** to remove the first occurrence of the specified element.|
 
 
@@ -105,13 +105,13 @@ You are advised to use **LinkedList** for frequent insertion and removal operati
 | Accessing elements| Use **get(index: number)** to obtain the element at a given position (specified by **index**).|
 | Accessing elements| Use **getFirst()** to obtain the first element in this container.|
 | Accessing elements| Use **getLast()** to obtain the last element in this container.|
-| Accessing elements| Use **getlndexOf(element: T)** to obtain the index of the first occurrence of the specified element.|
-| Accessing elements| Use **getLastlndexOf(element: T)** to obtain the index of the last occurrence of the specified element.|
+| Accessing elements| Use **getIndexOf(element: T)** to obtain the index of the first occurrence of the specified element.|
+| Accessing elements| Use **getLastIndexOf(element: T)** to obtain the index of the last occurrence of the specified element.|
 | Accessing elements| Use **forEach(callbackFn: (value: T, index?: number, list?: LinkedList&lt;T&gt;) =&gt; void, thisArg?: Object)** to traverse the elements in this container.|
 | Accessing elements| Use **\[Symbol.iterator]():IterableIterator&lt;T&gt;** for data access.|
 | Modifying elements| Use **list\[index]=xxx** to change the value at a given position (specified by **index**).|
 | Modifying elements| Use **set(index: number, element: T)** to replace an element at a given position (specified by **index**) with a given element.|
-| Deleting elements| Use **removeBylndex(index: number)** to remove the value at a given position (specified by **index**).|
+| Deleting elements| Use **removeByIndex(index: number)** to remove the value at a given position (specified by **index**).|
 | Deleting elements| Use **remove(element: T)** to remove the first occurrence of the specified element.|
 
 
@@ -198,56 +198,63 @@ You are advised to use **Stack** in LOFI scenarios.
 Refer to the code snippet below to add, access, and modify elements in **ArrayList**, **Vector**, **Deque**, **Stack**, and **List**.  
 
 
-```js
+```ts
 // ArrayList
 import ArrayList from '@ohos.util.ArrayList'; // Import the ArrayList module.
 
-let arrayList = new ArrayList();
-arrayList.add('a');
-arrayList.add(1); // Add an element.
-console.info(`result: ${arrayList[0]}`); // Access an element.
-arrayList[0] = 'one'; // Modify an element.
-console.info(`result: ${arrayList[0]}`);
+let arrayList1: ArrayList<string> = new ArrayList();
+arrayList1.add('a');
+let arrayList2: ArrayList<number> = new ArrayList();
+arrayList2.add(1); // Add an element.
+console.info(`result: ${arrayList2[0]}`); // Access an element.
+arrayList1[0] = 'one'; // Modify an element.
+console.info(`result: ${arrayList1[0]}`);
 
 // Vector
 import Vector from '@ohos.util.Vector'; // Import the Vector module.
 
-let vector = new Vector();
-vector.add('a');
+let vector1: Vector<string> = new Vector();
+vector1.add('a');
+let vector2: Vector<Array<number>> = new Vector();
 let b1 = [1, 2, 3];
-vector.add(b1);
-vector.add(false); // Add an element.
-console.info(`result: ${vector[0]}`); // Access an element.
-console.info(`result: ${vector.getFirstElement()}`); // Access an element.
+vector2.add(b1);
+let vector3: Vector<boolean> = new Vector();
+vector3.add(false); // Add an element.
+console.info(`result: ${vector1[0]}`); // Access an element.
+console.info(`result: ${vector2.getFirstElement()}`); // Access an element.
 
 // Deque
 import Deque from '@ohos.util.Deque'; // Import the Deque module.
 
-let deque = new Deque;
-deque.insertFront('a');
-deque.insertFront(1); // Add an element.
-console.info(`result: ${deque[0]}`); // Access an element.
-deque[0] = 'one'; // Modify an element.
-console.info(`result: ${deque[0]}`);
+let deque1: Deque<string> = new Deque;
+deque1.insertFront('a');
+let deque2: Deque<number> = new Deque;
+deque2.insertFront(1); // Add an element.
+console.info(`result: ${deque1[0]}`); // Access an element.
+deque1[0] = 'one'; // Modify an element.
+console.info(`result: ${deque2[0]}`);
 
 // Stack
 import Stack from '@ohos.util.Stack'; // Import the Stack module.
 
-let stack = new Stack();
-stack.push('a');
-stack.push(1); // Add an element.
-console.info(`result: ${stack[0]}`); // Access an element.
-stack.pop(); // Remove an element.
-console.info(`result: ${stack.length}`);
+let stack1: Stack<string> = new Stack();
+stack1.push('a');
+let stack2: Stack<number> = new Stack();
+stack2.push(1); // Add an element.
+console.info(`result: ${stack1[0]}`); // Access an element.
+stack2.pop(); // Remove an element.
+console.info(`result: ${stack2.length}`);
 
 // List
 import List from '@ohos.util.List'; // Import the List module.
 
-let list = new List;
-list.add('a');
-list.add(1);
+let list1: List<string> = new List;
+list1.add('a');
+let list2: List<number> = new List;
+list2.add(1);
+let list3: List<Array<number>> = new List;
 let b2 = [1, 2, 3];
-list.add(b2); // Add an element.
-console.info(`result: ${list[0]}`); // Access an element.
-console.info(`result: ${list.get(0)}`); // Access an element.
+list3.add(b2); // Add an element.
+console.info(`result: ${list1[0]}`); // Access an element.
+console.info(`result: ${list3.get(0)}`); // Access an element.
 ```

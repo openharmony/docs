@@ -50,18 +50,20 @@ show(options?: ShowNotificationOptions): void
 | options | ShowNotificationOptions | 否 | 通知标题。 |
 
 **示例：**
-```javascript
-export default {
-    show() {
-        notification.show({
-            contentTitle: 'title info',
-            contentText: 'text',
-            clickAction: {
-                bundleName: 'com.example.testapp',
-                abilityName: 'notificationDemo',
-                uri: '/path/to/notification'
-            }
-        });
-    }
+```ts
+let notificationObj: notification = {
+  show() {
+    notification.show({
+      contentTitle: 'title info',
+      contentText: 'text',
+      clickAction: {
+        bundleName: 'com.example.testapp',
+        abilityName: 'notificationDemo',
+        uri: '/path/to/notification'
+      }
+    });
+  }
 }
+
+export default notificationObj
 ```

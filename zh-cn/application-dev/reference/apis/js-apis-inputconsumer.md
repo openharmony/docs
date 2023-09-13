@@ -8,18 +8,15 @@
 >
 > - 本模块接口为系统接口。
 
-
 ## 导入模块
-
 
 ```js
 import inputConsumer from '@ohos.multimodalInput.inputConsumer';
 ```
 
-
 ## inputConsumer.on
 
-on(type: "key", keyOptions: KeyOptions, callback: Callback&lt;KeyOptions&gt;): void
+on(type: 'key', keyOptions: KeyOptions, callback: Callback&lt;KeyOptions&gt;): void
 
 订阅组合按键，当满足条件的组合按键输入事件发生时，使用Callback异步方式上报组合按键数据。
 
@@ -29,7 +26,7 @@ on(type: "key", keyOptions: KeyOptions, callback: Callback&lt;KeyOptions&gt;): v
 
 | 参数名         | 类型                         | 必填   | 说明                                       |
 | ---------- | -------------------------- | ---- | ---------------------------------------- |
-| type       | string                     | 是    | 事件类型，目前只支持”key“。                       |
+| type       | string                     | 是    | 事件类型，目前仅支持'key'。                       |
 | keyOptions | [KeyOptions](#keyoptions)  | 是    | 组合键选项。                 |
 | callback   | Callback&lt;KeyOptions&gt; | 是    | 回调函数，当满足条件的组合按键输入事件发生时，异步上报组合按键数据。 |
 
@@ -38,10 +35,17 @@ on(type: "key", keyOptions: KeyOptions, callback: Callback&lt;KeyOptions&gt;): v
 ```js
 let leftAltKey = 2045;
 let tabKey = 2049;
+let keyOptions: inputConsumer.KeyOptions = {
+  preKeys: [ leftAltKey ],
+  finalKey: tabKey,
+  isFinalKeyDown: true,
+  finalKeyDownDuration: 0
+};
+let callback = (keyOptions: inputConsumer.KeyOptions) => {
+  console.log(`keyOptions: ${JSON.stringify(keyOptions)}`);
+}
 try {
-  inputConsumer.on("key", {preKeys: [leftAltKey], finalKey: tabKey, isFinalKeyDown: true, finalKeyDownDuration: 0}, keyOptions => {
-    console.log(`keyOptions: ${JSON.stringify(keyOptions)}`);
-  });
+  inputConsumer.on("key", keyOptions, callback);
 } catch (error) {
   console.log(`Subscribe failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
@@ -50,7 +54,7 @@ try {
 
 ## inputConsumer.off
 
-off(type: "key", keyOptions: KeyOptions, callback?: Callback&lt;KeyOptions&gt;): void
+off(type: 'key', keyOptions: KeyOptions, callback?: Callback&lt;KeyOptions&gt;): void
 
 取消订阅组合按键。
 
@@ -60,9 +64,9 @@ off(type: "key", keyOptions: KeyOptions, callback?: Callback&lt;KeyOptions&gt;):
 
 | 参数名         | 类型                         | 必填   | 说明                              |
 | ---------- | -------------------------- | ---- | ------------------------------- |
-| type       | string                     | 是    | 事件类型，当前只支持”key“。              |
+| type       | string                     | 是    | 事件类型，当前仅支持 'key'。              |
 | keyOptions | [KeyOptions](#keyoptions)  | 是    | 组合键选项。             |
-| callback   | Callback&lt;KeyOptions&gt; | 否    | 需要取消订阅的回调函数，若无此参数，则取消当前应用的组合键选项已订阅的所有回调函数。 |
+| callback   | Callback&lt;KeyOptions&gt; | 否    | 需要取消订阅的回调函数。若不填，则取消当前应用组合键选项已订阅的所有回调函数。 |
 
 **示例：** 
 
@@ -70,10 +74,10 @@ off(type: "key", keyOptions: KeyOptions, callback?: Callback&lt;KeyOptions&gt;):
 let leftAltKey = 2045;
 let tabKey = 2049;
 // 取消订阅单个回调函数
-let callback = function (keyOptions) {
+let callback = (keyOptions: inputConsumer.KeyOptions) => {
   console.log(`keyOptions: ${JSON.stringify(keyOptions)}`);
 }
-let keyOption = {preKeys: [leftAltKey], finalKey: tabKey, isFinalKeyDown: true, finalKeyDownDuration: 0};
+let keyOption: inputConsumer.KeyOptions = {preKeys: [leftAltKey], finalKey: tabKey, isFinalKeyDown: true, finalKeyDownDuration: 0};
 try {
   inputConsumer.on("key", keyOption, callback);
   inputConsumer.off("key", keyOption, callback);
@@ -86,10 +90,10 @@ try {
 let leftAltKey = 2045;
 let tabKey = 2049;
 // 取消订阅所有回调函数
-let callback = function (keyOptions) {
+let callback = (keyOptions: inputConsumer.KeyOptions) => {
   console.log(`keyOptions: ${JSON.stringify(keyOptions)}`);
 }
-let keyOption = {preKeys: [leftAltKey], finalKey: tabKey, isFinalKeyDown: true, finalKeyDownDuration: 0};
+let keyOption: inputConsumer.KeyOptions = {preKeys: [leftAltKey], finalKey: tabKey, isFinalKeyDown: true, finalKeyDownDuration: 0};
 try {
   inputConsumer.on("key", keyOption, callback);
   inputConsumer.off("key", keyOption);
@@ -99,7 +103,6 @@ try {
 }
 ```
 
-
 ## KeyOptions
 
 组合键选项。
@@ -108,7 +111,7 @@ try {
 
 | 名称        | 类型   | 可读   | 可写   | 说明      |
 | --------- | ------ | ---- | ---- | ------- |
-| preKeys              | Array\<number>   | 是    | 否 | 前置按键集合，数量范围[0, 4]，前置按键无顺序要求。 |
-| finalKey             | number  | 是    |  否 | 最终按键，此项必填，最终按键触发上报回调函数。 |
-| isFinalKeyDown       | boolean | 是    |  否 | 最终按键状态。 |
-| finalKeyDownDuration | number  | 是    |  否 | 最终按键保持按下持续时间，为0时立即触发回调函数，大于0时，当isFinalKeyDown为true，则最终按键按下超过此时长后触发回调函数，当isFinalKeyDown为false，则最终按键按下到抬起时间小于此时长时触发回调函数。   |
+| preKeys    | Array\<number>   | 是    | 否 | 前置按键集合，数量范围[0, 4]，前置按键无顺序要求。<br>如组合按键Ctrl+Alt+A中，Ctrl+Alt称为前置按键。 |
+| finalKey             | number  | 是    |  否 | 最终按键，此项必填，最终按键触发上报回调函数。<br>如组合按键Ctrl+Alt+A中，A称为最终按键按键。 |
+| isFinalKeyDown       | boolean | 是    |  否 | 最终按键状态。<br>ture表示按键按下，false表示按键抬起。 |
+| finalKeyDownDuration | number  | 是    |  否 | 最终按键保持按下持续时间，单位为微秒（μs）。<br>当finalKeyDownDuration为0时，立即触发回调函数。<br>当finalKeyDownDuration大于0时，isFinalKeyDown为true，则最终按键按下超过设置时长后触发回调函数；isFinalKeyDown为false，则最终按键按下到抬起时间小于设置时长时触发回调函数。   |

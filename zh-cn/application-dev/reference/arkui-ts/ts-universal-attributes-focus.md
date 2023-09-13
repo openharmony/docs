@@ -123,6 +123,7 @@ struct FocusableExample {
             .onChange((value: string) => {
               this.inputValue = value
             })
+            .width(156)
             .defaultFocus(true)             // 该TextInput组件为页面的初始默认焦点
           Button('Group3')
             .width(165)
@@ -252,7 +253,7 @@ struct RequestFocusExample {
         Button("RequestFocus")
           .width(200).height(70).fontColor(Color.White)
           .onClick(() => {
-            var res = focusControl.requestFocus(this.selectId)      // 使选中的this.selectId的组件获焦
+            let res = focusControl.requestFocus(this.selectId)      // 使选中的this.selectId的组件获焦
             if (res) {
               promptAction.showToast({message: 'Request success'})
             } else {

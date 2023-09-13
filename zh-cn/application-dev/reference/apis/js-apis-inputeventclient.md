@@ -8,20 +8,17 @@
 >
 > - 本模块接口为系统接口。
 
-
 ## 导入模块
-
 
 ```js
 import inputEventClient from '@ohos.multimodalInput.inputEventClient';
 ```
 
-
 ## inputEventClient.injectEvent
 
 injectEvent({KeyEvent: KeyEvent}): void
 
-按键注入，当前仅支持返回键（键值2）注入。
+按键注入，当前仅支持返回键/KEYCODE_BACK（键码值2）注入。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.InputSimulator
 
@@ -35,7 +32,7 @@ injectEvent({KeyEvent: KeyEvent}): void
 
 ```js
 try {
-  let backKeyDown = {
+  let backKeyDown: inputEventClient.KeyEvent = {
     isPressed: true,
     keyCode: 2,
     keyDownDuration: 0,
@@ -43,7 +40,7 @@ try {
   }
   inputEventClient.injectEvent({ KeyEvent: backKeyDown });
 
-  let backKeyUp = {
+  let backKeyUp: inputEventClient.KeyEvent = {
     isPressed: false,
     keyCode: 2,
     keyDownDuration: 0,
@@ -55,7 +52,6 @@ try {
 }
 ```
 
-
 ## KeyEvent
 
 按键注入描述信息。
@@ -64,8 +60,8 @@ try {
 
 | 名称        | 类型   | 可读   | 可写   | 说明      |
 | --------- | ------ | ---- | ---- | ------- |
-| isPressed       | boolean | 是    |  否 | 按键是否按下。               |
-| keyCode         | number  | 是    |  否 | 按键键值，当前只支持back键。 |
-| keyDownDuration | number  | 是    |  否 | 按键按下持续时间。           |
-| isIntercepted   | boolean | 是    |  否 | 按键是否可以被拦截。         |
+| isPressed       | boolean | 是    |  否 | 按键是否按下。<br>ture表示按键按下，false表示按键抬起。   |
+| keyCode         | number  | 是    |  否 | 按键键码值。当前仅支持返回键/KEYCODE_BACK键。 |
+| keyDownDuration | number  | 是    |  否 | 按键按下持续时间，单位为微秒（μs）。           |
+| isIntercepted   | boolean | 是    |  否 | 按键是否可以被拦截。<br>ture表示可以被拦截，false表示不可被拦截。 |
 

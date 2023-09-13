@@ -21,14 +21,14 @@ Syntax:
 
 
 ```ts
-@Builder myBuilderFunction({ ... })
+@Builder MyBuilderFunction() { ... }
 ```
 
 Usage:
 
 
 ```ts
-this.myBuilderFunction({ ... })
+this.MyBuilderFunction() { ... }
 ```
 
 - Defining one or more custom builder (\@Builder decorated) functions inside a custom component is allowed. Such a custom builder function can be considered as a private, special type of member functions of that component.
@@ -44,7 +44,7 @@ Syntax:
 
 
 ```ts
-@Builder function MyGlobalBuilderFunction({ ... })
+@Builder function MyGlobalBuilderFunction() { ... }
 ```
 
 Usage:
@@ -66,7 +66,7 @@ There are two types of parameter passing for custom builder functions: [by-value
 
 - The parameter type must be the same as the declared parameter type. The **undefined** or **null** constants as well as expressions evaluating to these values are not allowed.
 
-- All parameters are immutable inside the custom builder function. If mutability and synchronization of the mutation is required, the custom builder should be replaced by a custom component with a [@Link](arkts-link.md) decorated variable.
+- All parameters are immutable inside the @Builder decorated function.
 
 - The \@Builder function body follows the same [syntax rules](arkts-create-custom-components.md#build-function) as the **build** function.
 
@@ -77,13 +77,22 @@ In by-reference parameter passing, the passed parameters can be state variables,
 
 
 ```ts
-ABuilder( $$ : { paramA1: string, paramB1 : string } );
+class ABuilderParam {
+  paramA1: string = ''
+  paramB1: string = ''
+}
+
+@Builder function ABuilder($$ : ABuilderParam) {...}
 ```
 
 
 
 ```ts
-@Builder function ABuilder($$: { paramA1: string }) {
+class ABuilderParam {
+  paramA1: string = ''
+}
+
+@Builder function ABuilder($$: ABuilderParam) {
   Row() {
     Text(`UseStateVarByReference: ${$$.paramA1} `)
   }

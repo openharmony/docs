@@ -100,6 +100,18 @@
 
 **起始版本**：8
 
+## ohos.permission.GET_PHONE_NUMBERS
+
+允许应用读取设备的本机号码。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：10
+
 ## ohos.permission.REQUIRE_FORM
 
 允许应用获取Ability Form。
@@ -2594,7 +2606,7 @@
 
 允许应用与用户认证框架交互和注册扩展能力。
 
-**权限级别**: system_basic
+**权限级别**： system_basic
 
 **授权方式**：system_grant
 
@@ -2630,11 +2642,13 @@
 
 允许应用访问智能语音服务接口。
 
-**权限级别**: system_basic
+**权限级别**： system_basic
 
 **授权方式**：system_grant
 
 **ACL使能**：TRUE
+
+**起始版本**：10
 
 ## ohos.permission.INSTALL_ENTERPRISE_MDM_BUNDLE
 
@@ -2719,3 +2733,63 @@
 **ACL使能**：TRUE
 
 **起始版本**：10
+
+## ohos.permission.GET_DOMAIN_ACCOUNTS
+
+允许应用查询域帐号信息。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：10
+
+## ohos.permission.SET_UNREMOVABLE_NOTIFICATION
+
+允许应用发布不可被移除通知。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
+## ohos.permission.QUERY_ACCESSIBILITY_ELEMENT
+
+允许批量查询无障碍节点。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
+## ohos.permission.ACTIVATE_THEME_PACKAGE
+
+允许系统应用设置主题内容，包括壁纸、图标、皮肤、AOD和字体等。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
+## ohos.permission.ATTEST_KEY
+
+允许应用获取用于证明密钥合法性的证书链。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11

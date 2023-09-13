@@ -52,6 +52,51 @@ An application can request to be notified whenever the value of the \@Watch deco
 
 ## Application Scenarios
 
+### \@Watch and Custom Component Update
+
+This example is used to clarify the processing steps of custom component updates and \@Watch. **count** is decorated by \@State in **CountModifier** and \@Prop in **TotalView**.
+
+
+```ts
+@Component
+struct TotalView {
+  @Prop @Watch('onCountUpdated') count: number = 0;
+  @State total: number = 0;
+  // @Watch cb
+  onCountUpdated(propName: string): void {
+    this.total += this.count;
+  }
+
+  build() {
+    Text(`Total: ${this.total}`)
+  }
+}
+
+@Entry
+@Component
+struct CountModifier {
+  @State count: number = 0;
+
+  build() {
+    Column() {
+      Button('add to basket')
+        .onClick(() => {
+          this.count++
+        })
+      TotalView({ count: this.count })
+    }
+  }
+}
+```
+
+Processing steps:
+
+1. The click event **Button.onClick** of the **CountModifier** custom component increases the value of **count**.
+
+2. In response to the change of the @State decorated variable **count**, \@Prop in the child component **TotalView** is updated, and its **\@Watch('onCountUpdated')** callback is triggered, which updates the **total** variable in **TotalView**.
+
+3. The **Text** component in the child component **TotalView** is re-rendered.
+
 
 ### Combination of \@Watch and \@Link
 
@@ -91,10 +136,10 @@ struct BasketViewer {
   build() {
     Column() {
       ForEach(this.shopBasket,
-        (item) => {
+        (item:PurchaseItem) => {
           Text(`Price: ${item.price.toFixed(2)} €`)
         },
-        item => item.id.toString()
+        (item:PurchaseItem) => item.id.toString()
       )
       Text(`Total: ${this.totalPurchase.toFixed(2)} €`)
     }
@@ -124,52 +169,6 @@ The processing procedure is as follows:
 
 2. The value of the \@Link decorated variable **BasketViewer shopBasket** changes.
 
-3. The state management framework calls the \@Watch callback **BasketViewer onBasketUpdated** to update the value of **BaketViewer TotalPurchase**.
+3. The state management framework calls the \@Watch callback **BasketViewer onBasketUpdated** to update the value of **BasketViewer TotalPurchase**.
 
 4. Because \@Link decorated shopBasket changes (a new item is added), the ForEach component executes the item Builder to render and build the new item. Because the @State decorated totalPurchase variables changes, the **Text** component is also re-rendered. Re-rendering happens asynchronously.
-
-
-### \@Watch and Custom Component Update
-
-This example is used to clarify the processing steps of custom component updates and \@Watch. **count** is decorated by \@State in **CountModifier** and \@Prop in **TotalView**.
-
-
-```ts
-@Component
-struct TotalView {
-  @Prop @Watch('onCountUpdated') count: number;
-  @State total: number = 0;
-  // @Watch cb
-  onCountUpdated(propName: string): void {
-    this.total += this.count;
-  }
-
-  build() {
-    Text(`Total: ${this.total}`)
-  }
-}
-
-@Entry
-@Component
-struct CountModifier {
-  @State count: number = 0;
-
-  build() {
-    Column() {
-      Button('add to basket')
-        .onClick(() => {
-          this.count++
-        })
-      TotalView({ count: this.count })
-    }
-  }
-}
-```
-
-Processing steps:
-
-1. The click event **Button.onClick** of the **CountModifier** custom component increases the value of **count**.
-
-2. In response to the change of the @State decorated variable **count**, \@Prop in the child component **TotalView** is updated, and its **\@Watch('onCountUpdated')** callback is triggered, which updates the **total** variable in **TotalView**.
-
-3. The **Text** component in the child component **TotalView** is re-rendered.

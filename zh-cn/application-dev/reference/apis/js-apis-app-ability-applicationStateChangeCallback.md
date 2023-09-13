@@ -25,26 +25,33 @@ onApplicationForeground(): void;
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import ApplicationStateChangeCallback from '@ohos.app.ability.ApplicationStateChangeCallback';
 
-globalThis.applicationStateChangeCallback = {
+let applicationStateChangeCallback: ApplicationStateChangeCallback = {
     onApplicationForeground() {
         console.info('applicationStateChangeCallback onApplicationForeground');
+    },
+    onApplicationBackground() {
+        console.info('applicationStateChangeCallback onApplicationBackground');
     }
 }
 
 export default class MyAbility extends UIAbility {
     onCreate() {
         console.log('MyAbility onCreate');
-        globalThis.applicationContext = this.context.getApplicationContext();
         // 1.获取applicationContext
-        let applicationContext = globalThis.applicationContext;
+        let applicationContext = this.context.getApplicationContext();
         // 2.通过applicationContext注册应用前后台状态监听
-        applicationContext.on('applicationStateChange', globalThis.ApplicationStateChangeCallback);
+        if (applicationContext != undefined) {
+            applicationContext.on('applicationStateChange', applicationStateChangeCallback);
+        }
     }
     onDestroy() {
-        let applicationContext = globalThis.applicationContext;
+        let applicationContext = this.context.getApplicationContext();
         // 1.通过applicationContext解除注册应用前后台状态监听
-        applicationContext.off('applicationStateChange', globalThis.ApplicationStateChangeCallback);
+        if (applicationContext != undefined) {
+            applicationContext.off('applicationStateChange', applicationStateChangeCallback);
+        }
     }
 }
 ```
@@ -61,8 +68,12 @@ onApplicationBackground(): void;
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import ApplicationStateChangeCallback from '@ohos.app.ability.ApplicationStateChangeCallback';
 
-globalThis.applicationStateChangeCallback = {
+let applicationStateChangeCallback: ApplicationStateChangeCallback = {
+    onApplicationForeground() {
+        console.info('applicationStateChangeCallback onApplicationForeground');
+    },
     onApplicationBackground() {
         console.info('applicationStateChangeCallback onApplicationBackground');
     }
@@ -71,17 +82,20 @@ globalThis.applicationStateChangeCallback = {
 export default class MyAbility extends UIAbility {
     onCreate() {
         console.log('MyAbility onCreate');
-        globalThis.applicationContext = this.context.getApplicationContext();
         // 1.获取applicationContext
-        let applicationContext = globalThis.applicationContext;
+        let applicationContext = this.context.getApplicationContext();
         // 2.通过applicationContext注册应用前后台状态监听
-        applicationContext.on('applicationStateChange', globalThis.ApplicationStateChangeCallback);
+        if (applicationContext != undefined) {
+            applicationContext.on('applicationStateChange', applicationStateChangeCallback);
+        }
         console.log('Resgiter applicationStateChangeCallback');
     }
     onDestroy() {
-        let applicationContext = globalThis.applicationContext;
+        let applicationContext = this.context.getApplicationContext();
         // 1.通过applicationContext解除注册应用前后台状态监听
-        applicationContext.off('applicationStateChange', globalThis.ApplicationStateChangeCallback);
+        if (applicationContext != undefined) {
+            applicationContext.off('applicationStateChange', applicationStateChangeCallback);
+        }
     }
 }
 ```

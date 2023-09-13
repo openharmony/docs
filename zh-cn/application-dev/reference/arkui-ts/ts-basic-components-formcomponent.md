@@ -12,10 +12,6 @@
 
 ## 权限
 
-ohos.permission.GET_BUNDLE_INFO
-
-ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
-
 ohos.permission.REQUIRE_FORM
 
 
@@ -76,7 +72,7 @@ FormComponent(value: {
 | 名称                                                                                                                | 功能描述                                                                                                       |
 | ------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- |
 | onAcquired(callback:&nbsp;(info:&nbsp;{&nbsp;id:&nbsp;number&nbsp;})&nbsp;=&gt;&nbsp;void)                          | 获取到卡片后触发，返回卡片的id.                                                                                |
-| onError(callback:&nbsp;(info:&nbsp;{&nbsp;errcode:&nbsp;number,&nbsp;msg:&nbsp;string&nbsp;})&nbsp;=&gt;&nbsp;void) | 组件加载错误回调。<br/>errcode:&nbsp;错误码。<br/>msg:&nbsp;错误信息。                                         |
+| onError(callback:&nbsp;(info:&nbsp;{&nbsp;errcode:&nbsp;number,&nbsp;msg:&nbsp;string&nbsp;})&nbsp;=&gt;&nbsp;void) | 组件加载错误回调。<br/>errcode:&nbsp;错误码。<br/>msg:&nbsp;错误信息。<br/>具体可参考[卡片错误码说明文档](../errorcodes/errorcode-form.md)  |
 | onRouter(callback:&nbsp;(info:&nbsp;any)&nbsp;=&gt;&nbsp;void)                                                      | 组件路由事件回调,返回[routerEvent](../js-service-widget-ui/js-service-widget-syntax-hml.md#事件绑定)中的信息。 |
 | onUninstall(callback:&nbsp;(info:&nbsp;{&nbsp;id:&nbsp;number&nbsp;})&nbsp;=&gt;&nbsp;void)                         | 组件卸载回调，返回卸载卡片的id.                                                                                |
 

@@ -10,7 +10,7 @@
 
 ## 导入模块
 
-```js
+```ts
 import inspector from '@ohos.arkui.inspector'
 ```
 
@@ -36,8 +36,8 @@ createComponentObserver(id: string): ComponentObserver
 
 **示例：** 
 
-```js
-let listener = inspector.createComponentObserver('COMPONENT_ID'); //监听id为COMPONENT_ID的组件回调事件
+```ts
+let listener:inspector = inspector.createComponentObserver('COMPONENT_ID'); //监听id为COMPONENT_ID的组件回调事件
 ```
 
 ## ComponentObserver
@@ -126,22 +126,20 @@ off(type: 'draw', callback?: () => void): void
       }.height(320).width(360).padding({ right: 10, top: 10 })
     }
 
-    listener = inspector.createComponentObserver('IMAGE_ID')
+    listener:inspector.ComponentObserver = inspector.createComponentObserver('IMAGE_ID')
 
     aboutToAppear() {
-      let FuncLayout = this.onLayoutComplete.bind(this) // bind current js instance
-      let FuncDraw = this.onDrawComplete.bind(this) // bind current js instance
+      let onLayoutComplete:()=>void=():void=>{
+          // do something here
+      }
+      let onDrawComplete:()=>void=():void=>{
+          // do something here
+      }
+      let FuncLayout = onLayoutComplete // bind current js instance
+      let FuncDraw = onDrawComplete // bind current js instance
 
       this.listener.on('layout', FuncLayout)
       this.listener.on('draw', FuncDraw)
-    }
-
-    onLayoutComplete() {
-      // do something here
-    }
-
-    onDrawComplete() {
-      // do something here
     }
   }
   ```

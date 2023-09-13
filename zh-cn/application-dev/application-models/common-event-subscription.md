@@ -12,7 +12,7 @@
 
 | 接口名 | 接口描述 |
 | -------- | -------- |
-| createSubscriber(subscribeInfo:&nbsp;[CommonEventSubscribeInfo](../reference/apis/js-apis-commonEventManager.md#commoneventsubscribeinfo),&nbsp;callback:&nbsp;AsyncCallback&lt;[CommonEventData](../reference/apis/js-apis-commonEventManager.md#commoneventdata)&gt;):&nbsp;void | 创建订阅者对象（callback） |
+| createSubscriber(subscribeInfo:&nbsp;[CommonEventSubscribeInfo](../reference/apis/js-apis-commonEventManager.md#commoneventsubscribeinfo),&nbsp;callback:&nbsp;AsyncCallback&lt;[CommonEventSubscriber](../reference/apis/js-apis-inner-commonEvent-commonEventSubscriber.md#使用说明)&gt;):&nbsp;void | 创建订阅者对象（callback） |
 | createSubscriber(subscribeInfo:&nbsp;CommonEventSubscribeInfo):&nbsp;Promise&lt;CommonEventSubscriber&gt; | 创建订阅者对象（promise） |
 | subscribe(subscriber:&nbsp;CommonEventSubscriber,&nbsp;callback:&nbsp;AsyncCallback):&nbsp;void | 订阅公共事件 |
 
@@ -23,15 +23,16 @@
    
    ```ts
    import commonEventManager from '@ohos.commonEventManager';
+   import Base from '@ohos.base';
    ```
 
 2. 创建订阅者信息，详细的订阅者信息数据类型及包含的参数请见[CommonEventSubscribeInfo](../reference/apis/js-apis-commonEventManager.md#commoneventsubscribeinfo)文档介绍。
    
    ```ts
    // 用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
-   let subscriber = null;
+   let subscriber: commonEventManager.CommonEventSubscriber | null = null;
    // 订阅者信息
-   let subscribeInfo = {
+   let subscribeInfo: commonEventManager.CommonEventSubscribeInfo = {
      events: ["usual.event.SCREEN_OFF"], // 订阅灭屏公共事件
    }
    ```
@@ -40,7 +41,7 @@
    
    ```ts
    // 创建订阅者回调
-   commonEventManager.createSubscriber(subscribeInfo, (err, data) => {
+   commonEventManager.createSubscriber(subscribeInfo, (err: Base.BusinessError, data: commonEventManager.CommonEventSubscriber) => {
      if (err) {
        console.error(`Failed to create subscriber. Code is ${err.code}, message is ${err.message}`);
        return;
@@ -56,7 +57,7 @@
    ```ts
    // 订阅公共事件回调
    if (subscriber !== null) {
-     commonEventManager.subscribe(subscriber, (err, data) => {
+     commonEventManager.subscribe(subscriber, (err: Base.BusinessError, data: commonEventManager.CommonEventData) => {
        if (err) {
          console.error(`Failed to subscribe common event. Code is ${err.code}, message is ${err.message}`);
          return;

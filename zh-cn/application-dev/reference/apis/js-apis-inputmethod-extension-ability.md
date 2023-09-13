@@ -1,6 +1,6 @@
 # @ohos.InputMethodExtensionAbility (InputMethodExtensionAbility)
 
-开发者可通过继承本模块开发自己的输入法应用并管理输入法应用生命周期。
+本模块支持开发者自行开发输入法应用，以及管理输入法应用的生命周期。
 
 > **说明：**
 >
@@ -8,7 +8,7 @@
 
 ## 导入模块
 
-```js
+```ts
 import InputMethodExtensionAbility from '@ohos.InputMethodExtensionAbility';
 ```
 
@@ -18,7 +18,7 @@ import InputMethodExtensionAbility from '@ohos.InputMethodExtensionAbility';
 
 | 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| context | [InputMethodExtensionContext](js-apis-inputmethod-extension-context.md) | 是 | 否 | InputMethodExtension的上下文环境，继承自ExtensionContext。 |
+| context | [InputMethodExtensionContext](js-apis-inputmethod-extension-context.md) | 是 | 否 | InputMethodExtension的上下文环境，继承于ExtensionContext。 |
 
 ## InputMethodExtensionAbility.onCreate
 
@@ -36,9 +36,11 @@ Extension生命周期回调，在拉起Extension输入法应用时调用，执�
 
 **示例：**
 
-```js
+```ts
+import InputMethodExtensionAbility from '@ohos.InputMethodExtensionAbility';
+import Want from '@ohos.app.ability.Want';
 class InputMethodExt extends InputMethodExtensionAbility {
-  onCreate(want) {
+  onCreate(want: Want): void {
     console.log('onCreate, want:' + want.abilityName);
   }
 }
@@ -54,9 +56,10 @@ Extension生命周期回调，在销毁输入法应用时回调，执行资源�
 
 **示例：**
 
-```js
+```ts
+import InputMethodExtensionAbility from '@ohos.InputMethodExtensionAbility';
 class InputMethodExt extends InputMethodExtensionAbility {
-  onDestroy() {
+  onDestroy(): void {
     console.log('onDestroy');
   }
 }

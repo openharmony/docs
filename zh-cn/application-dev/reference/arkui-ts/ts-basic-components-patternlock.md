@@ -50,7 +50,7 @@ PatternLock组件的控制器，可以通过它进行组件状态重置。
 ### 导入对象
 
 ```typescript
-patternLockController: PatternLockController = new PatternLockController()
+let patternLockController: PatternLockController = new PatternLockController()
 ```
 
 ### reset

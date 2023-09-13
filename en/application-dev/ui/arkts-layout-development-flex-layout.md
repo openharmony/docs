@@ -532,7 +532,7 @@ When the size of the container in the flex layout is not large enough, the follo
 
     Text('flexBasis(100)')
       .flexBasis(100)
-      .width(200) // When width is set to 200 and flexBasis 100, the width is 100 vp, which means that the settings of flexBasis take precedence.
+      .width(200) // When both width and flexBasis are set, flexBasis take precedence, and the width is 100 vp.
       .height(100)
       .backgroundColor(0xD2B48C)
   }.width('90%').height(120).padding(10).backgroundColor(0xAFEEEE)
@@ -546,7 +546,7 @@ When the size of the container in the flex layout is not large enough, the follo
   ```ts
   Flex() {
     Text('flexGrow(1)')
-      .flexGrow(2) 
+      .flexGrow(1) 
       .width(100)
       .height(100)
       .backgroundColor(0xF5DEB3)

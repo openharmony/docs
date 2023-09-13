@@ -76,7 +76,7 @@ TaskPool支持开发者在主线程封装任务抛给任务队列，系统选择
 
 - ArrayBuffer参数在TaskPool中默认转移，需要设置转移列表的话可通过接口[setTransferList()](../reference/apis/js-apis-taskpool.md#settransferlist10)设置。
 
-- 由于不同线程中上下文对象是不同的，因此TaskPool工作线程只能使用线程安全的库，例如UI相关的非线程安全库不能使用。
+- 由于不同线程中上下文对象是不同的，因此TaskPool工作线程只能使用线程安全的库，例如UI相关的非线程安全库不能使用，具体请见[多线程安全注意事项](#多线程安全注意事项)。
 
 - 序列化传输的数据量大小限制为16MB。
 
@@ -91,7 +91,7 @@ TaskPool支持开发者在主线程封装任务抛给任务队列，系统选择
 
 - 创建Worker不支持使用其他Module的Worker.ts文件，即不支持跨模块调用Worker。
 
-- 由于不同线程中上下文对象是不同的，因此Worker线程只能使用线程安全的库，例如UI相关的非线程安全库不能使用。
+- 由于不同线程中上下文对象是不同的，因此Worker线程只能使用线程安全的库，例如UI相关的非线程安全库不能使用，具体请见[多线程安全注意事项](#多线程安全注意事项)。
 
 - 序列化传输的数据量大小限制为16MB。
 
@@ -100,34 +100,32 @@ TaskPool支持开发者在主线程封装任务抛给任务队列，系统选择
 
   当使用Worker模块具体功能时，均需先构造Worker实例对象，其构造函数与API版本相关。
 
-```js
+```ts
 // API 9及之后版本使用：
-const worker1 = new worker.ThreadWorker(scriptURL);
+const worker1: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/MyWorker.ts');
 // API 8及之前版本使用：
-const worker1 = new worker.Worker(scriptURL);
+const worker2: worker.Worker = new worker.Worker('entry/ets/workers/MyWorker.ts');
 ```
 
 构造函数需要传入Worker的路径（scriptURL），Worker文件存放位置默认路径为Worker文件所在目录与pages目录属于同级。
 
 **Stage模型**
 
-
 构造函数中的scriptURL示例如下：
 
 
-
-```js
+```ts
 // 写法一
 // Stage模型-目录同级（entry模块下，workers目录与pages目录同级）
-const worker1 = new worker.ThreadWorker('entry/ets/workers/MyWorker.ts', {name:"first worker in Stage model"});
+const worker1: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/MyWorker.ts', {name:"first worker in Stage model"});
 // Stage模型-目录不同级（entry模块下，workers目录是pages目录的子目录）
-const worker2 = new worker.ThreadWorker('entry/ets/pages/workers/MyWorker.ts');
+const worker2: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/pages/workers/MyWorker.ts');
 
 // 写法二
 // Stage模型-目录同级（entry模块下，workers目录与pages目录同级），假设bundlename是com.example.workerdemo
-const worker3 = new worker.ThreadWorker('@bundle:com.example.workerdemo/entry/ets/workers/worker');
+const worker3: worker.ThreadWorker = new worker.ThreadWorker('@bundle:com.example.workerdemo/entry/ets/workers/worker');
 // Stage模型-目录不同级（entry模块下，workers目录是pages目录的子目录），假设bundlename是com.example.workerdemo
-const worker4 = new worker.ThreadWorker('@bundle:com.example.workerdemo/entry/ets/pages/workers/worker');
+const worker4: worker.ThreadWorker = new worker.ThreadWorker('@bundle:com.example.workerdemo/entry/ets/pages/workers/worker');
 ```
 
 
@@ -149,11 +147,11 @@ const worker4 = new worker.ThreadWorker('@bundle:com.example.workerdemo/entry/et
 
   构造函数中的scriptURL示例如下：
 
-```js
+```ts
 // FA模型-目录同级（entry模块下，workers目录与pages目录同级）
-const worker1 = new worker.ThreadWorker('workers/worker.js', {name:'first worker in FA model'});
+const worker1: worker.ThreadWorker = new worker.ThreadWorker('workers/worker.js', {name:'first worker in FA model'});
 // FA模型-目录不同级（entry模块下，workers目录与pages目录的父目录同级）
-const worker2 = new worker.ThreadWorker('../workers/worker.js');
+const worker2: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker.js');
 ```
 
 
@@ -165,3 +163,63 @@ const worker2 = new worker.ThreadWorker('../workers/worker.js');
 - Worker存在数量限制，支持最多同时存在8个Worker。
   - 在API version 8及之前的版本，当Worker数量超出限制时，会抛出“Too many workers, the number of workers exceeds the maximum.”错误。
   - 从API version 9开始，当Worker数量超出限制时，会抛出“Worker initialization failure, the number of workers exceeds the maximum.”错误。
+
+## 多线程安全注意事项
+多线程安全是指多个线程同时访问或修改共享资源时，能够保证程序的正确性和可靠性。
+
+开发者选择TaskPool或Worker进行多线程开发时，在TaskPool和Worker的工作线程中导入的API和模块需要支持多线程安全，否则可能会导致多线程数据竞争问题，造成应用程序异常或崩溃。
+
+在TaskPool或Worker的工作线程中支持使用以下模块，其他模块在使用时需要验证是否满足线程安全。
+
+ - console
+ - setInterval
+ - setTimeout
+ - clearInterval
+ - clearTimeout
+ - @ohos.buffer
+ - @ohos.convertxml
+ - @ohos.file
+   - @ohos.file.backup
+   - @ohos.file.cloudSync
+   - @ohos.file.cloudSyncManager
+   - @ohos.file.environment
+   - @ohos.file.fileAccess
+   - @ohos.file.fileExtensionInfo
+   - @ohos.file.fileuri
+   - @ohos.file.fs
+   - @ohos.file.hash
+   - @ohos.file.photoAccessHelper
+   - @ohos.file.picker
+   - @ohos.file.securityLabel
+   - @ohos.file.statvfs
+   - @ohos.file.storageStatistics
+   - @ohos.file.volumeManager
+ - @ohos.fileio
+ - @ohos.hilog
+ - @ohos.multimedia
+   - @ohos.multimedia.image
+ - @ohos.net
+   - @ohos.net.http
+ - @ohos.pasteboard
+ - @ohos.systemDateTime
+ - @ohos.systemTimer
+ - @ohos.taskpool
+ - @ohos.uri
+ - @ohos.url
+ - @ohos.util
+   - @ohos.util.ArrayList
+   - @ohos.util.Deque
+   - @ohos.util.HashMap
+   - @ohos.util.HashSet
+   - @ohos.util.LightWeightMap
+   - @ohos.util.LightWeightSet
+   - @ohos.util.LinkedList
+   - @ohos.util.List
+   - @ohos.util.PlainArray
+   - @ohos.util.Queue
+   - @ohos.util.Stack
+   - @ohos.util.TreeMap
+   - @ohos.util.TreeSet
+   - @ohos.util
+ - @ohos.worker
+ - @ohos.xml

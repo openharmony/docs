@@ -1,6 +1,6 @@
 # Widget Data Interaction
 
-The ArkTS widget framework provides the **updateForm()** and **requestForm()** APIs to proactively trigger widget updates.
+The ArkTS widget framework provides the **updateForm()** and **requestForm()** APIs to proactively trigger widget updates. You can use [LocalStorageProp](../quick-start/arkts-localstorage.md#localstorageprop) to check the widget data to be updated.
 
 ![WidgetLocalStorageProp](figures/WidgetLocalStorageProp.png)
 

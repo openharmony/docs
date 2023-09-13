@@ -72,17 +72,20 @@ queryBusinessAbilityInfo(filter: BusinessAbilityFilter, callback: AsyncCallback\
 
 ```ts
 import businessAbilityRouter from '@ohos.app.businessAbilityRouter';
-let filter = {businessType: businessAbilityRouter.BusinessType.SHARE};
+import { BusinessError } from '@ohos.base';
+
+let filter: businessAbilityRouter.BusinessAbilityFilter = {businessType: businessAbilityRouter.BusinessType.SHARE};
 
 try {
     businessAbilityRouter.queryBusinessAbilityInfo(filter)
         .then(() => {
             console.info('queryBusinessAbilityInfo success');
-        }).catch((error) => {
+        }).catch((error: BusinessError) => {
             console.error('queryBusinessAbilityInfo failed ' + error.message);
         });
 } catch (error) {
-    console.error('queryBusinessAbilityInfo failed ' + error.message);
+    let message = (error as BusinessError).message;
+    console.error('queryBusinessAbilityInfo failed ' + message);
 }
 ```
 
@@ -114,7 +117,9 @@ queryBusinessAbilityInfo(filter: BusinessAbilityFilter): Promise\<Array\<Busines
 
 ```ts
 import businessAbilityRouter from '@ohos.app.businessAbilityRouter';
-let filter = {businessType: businessAbilityRouter.BusinessType.SHARE};
+import { BusinessError } from '@ohos.base';
+
+let filter: businessAbilityRouter.BusinessAbilityFilter = {businessType: businessAbilityRouter.BusinessType.SHARE};
 
 try {
     businessAbilityRouter.queryBusinessAbilityInfo(filter, (error, data) => {
@@ -125,6 +130,7 @@ try {
         console.info('queryBusinessAbilityInfo success');
     });
 } catch (error) {
-    console.error('queryBusinessAbilityInfo failed ' + error.message);
+    let message = (error as BusinessError).message;
+    console.error('queryBusinessAbilityInfo failed ' + message);
 }
 ```

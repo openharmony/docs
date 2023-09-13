@@ -24,7 +24,7 @@
 | window静态方法    | createWindow(config: Configuration, callback: AsyncCallback\<Window>): void | 创建子窗口或系统窗口。<br/>-`config`：创建窗口时的参数。     |
 | Window            | resize(width: number, height: number, callback: AsyncCallback&lt;void&gt;): void | 改变当前窗口大小。                                           |
 | Window            | moveWindowTo(x: number, y: number, callback: AsyncCallback&lt;void&gt;): void | 移动当前窗口位置。                                           |
-| Window            | SetUIContent(path: string, callback: AsyncCallback&lt;void&gt;): void | 为当前窗口加载具体页面。                                     |
+| Window            | setUIContent(path: string, callback: AsyncCallback&lt;void&gt;): void | 为当前窗口加载具体页面。                                     |
 | Window            | showWindow(callback: AsyncCallback\<void>): void             | 显示当前窗口。                                               |
 | Window            | on(type: 'touchOutside', callback: Callback&lt;void&gt;): void | 开启本窗口区域外的点击事件的监听。                           |
 | Window            | hide (callback: AsyncCallback\<void>): void                  | 隐藏当前窗口。此接口为系统接口。                             |
@@ -51,7 +51,7 @@
 
 3. 加载显示系统窗口的具体内容。
 
-   通过`SetUIContent`和`showWindow`接口加载显示音量条窗口的具体内容。
+   通过`setUIContent`和`showWindow`接口加载显示音量条窗口的具体内容。
 
 4. 隐藏/销毁系统窗口。
 
@@ -60,65 +60,74 @@
 ```ts
 import ExtensionContext from '@ohos.app.ability.ServiceExtensionAbility';
 import window from '@ohos.window';
+import { BusinessError } from '@ohos.base';
+import Want from '@ohos.app.ability.Want';
 
 export default class ServiceExtensionAbility1 extends ExtensionContext {
-    onCreate(want) {
-        globalThis.abilityWant = want;
-        // 1.创建音量条窗口。
-        let windowClass = null;
-        let config = {name: "volume", windowType: window.WindowType.TYPE_VOLUME_OVERLAY, ctx: this.context};
-        window.createWindow(config, (err, data) => {
-            if (err.code) {
-                console.error('Failed to create the volume window. Cause:' + JSON.stringify(err));
-                return;
-            }
-            console.info('Succeeded in creating the volume window.')
-            windowClass = data;
-            // 2.创建音量条窗口成功之后，可以改变其大小、位置或设置背景色、亮度等属性。
-            windowClass.moveWindowTo(300, 300, (err) => {
-                if (err.code) {
-                    console.error('Failed to move the window. Cause:' + JSON.stringify(err));
-                    return;
-                }
-                console.info('Succeeded in moving the window.');
-            });
-            windowClass.resize(500, 500, (err) => {
-                if (err.code) {
-                    console.error('Failed to change the window size. Cause:' + JSON.stringify(err));
-                    return;
-                }
-                console.info('Succeeded in changing the window size.');
-            });
-            // 3.为音量条窗口加载对应的目标页面。
-            windowClass.setUIContent("pages/page_volume", (err) => {
-                if (err.code) {
-                    console.error('Failed to load the content. Cause:' + JSON.stringify(err));
-                    return;
-                }
-                console.info('Succeeded in loading the content.');
-                // 3.显示音量条窗口。
-                windowClass.showWindow((err) => {
-                    if (err.code) {
-                        console.error('Failed to show the window. Cause:' + JSON.stringify(err));
-                        return;
-                    }
-                    console.info('Succeeded in showing the window.');
-                });
-            });
-            // 4.隐藏/销毁音量条窗口。当不再需要音量条时，可根据具体实现逻辑，对其进行隐藏或销毁。
-            // 此处以监听音量条区域外的点击事件为例实现音量条窗口的隐藏。
-            windowClass.on('touchOutside', () => {
-                console.info('touch outside');
-                windowClass.hide((err) => {
-                    if (err.code) {
-                        console.error('Failed to hide the window. Cause: ' + JSON.stringify(err));
-                        return;
-                    }
-                    console.info('Succeeded in hidinging the window.');
-                });
-            });
+  onCreate(want: Want) {
+    // 1.创建音量条窗口。
+    let windowClass: window.Window | null = null;
+    let config: window.Configuration = {
+      name: "volume", windowType: window.WindowType.TYPE_VOLUME_OVERLAY, ctx: this.context
+    };
+    window.createWindow(config, (err: BusinessError, data) => {
+      let errCode: number = err.code;
+      if (errCode) {
+        console.error('Failed to create the volume window. Cause:' + JSON.stringify(err));
+        return;
+      }
+      console.info('Succeeded in creating the volume window.')
+      windowClass = data;
+      // 2.创建音量条窗口成功之后，可以改变其大小、位置或设置背景色、亮度等属性。
+      windowClass.moveWindowTo(300, 300, (err: BusinessError) => {
+        let errCode: number = err.code;
+        if (errCode) {
+          console.error('Failed to move the window. Cause:' + JSON.stringify(err));
+          return;
+        }
+        console.info('Succeeded in moving the window.');
+      });
+      windowClass.resize(500, 500, (err: BusinessError) => {
+        let errCode: number = err.code;
+        if (errCode) {
+          console.error('Failed to change the window size. Cause:' + JSON.stringify(err));
+          return;
+        }
+        console.info('Succeeded in changing the window size.');
+      });
+      // 3.为音量条窗口加载对应的目标页面。
+      windowClass.setUIContent("pages/page_volume", (err: BusinessError) => {
+        let errCode: number = err.code;
+        if (errCode) {
+          console.error('Failed to load the content. Cause:' + JSON.stringify(err));
+          return;
+        }
+        console.info('Succeeded in loading the content.');
+        // 3.显示音量条窗口。
+        (windowClass as window.Window).showWindow((err: BusinessError) => {
+          let errCode: number = err.code;
+          if (errCode) {
+            console.error('Failed to show the window. Cause:' + JSON.stringify(err));
+            return;
+          }
+          console.info('Succeeded in showing the window.');
         });
-    }
+      });
+      // 4.隐藏/销毁音量条窗口。当不再需要音量条时，可根据具体实现逻辑，对其进行隐藏或销毁。
+      // 此处以监听音量条区域外的点击事件为例实现音量条窗口的隐藏。
+      windowClass.on('touchOutside', () => {
+        console.info('touch outside');
+        (windowClass as window.Window).hide((err: BusinessError) => {
+          let errCode: number = err.code;
+          if (errCode) {
+            console.error('Failed to hide the window. Cause: ' + JSON.stringify(err));
+            return;
+          }
+          console.info('Succeeded in hidinging the window.');
+        });
+      });
+    });
+  }
 };
 ```
 
@@ -147,113 +156,122 @@ export default class ServiceExtensionAbility1 extends ExtensionContext {
 ```ts
 import ExtensionContext from '@ohos.app.ability.ServiceExtensionAbility';
 import window from '@ohos.window';
+import { BusinessError } from '@ohos.base';
+import Want from '@ohos.app.ability.Want';
 
 export default class ServiceExtensionAbility1 extends ExtensionContext {
-    onCreate(want) {
-        globalThis.abilityWant = want;
-        // 创建音量条窗口。
-        let windowClass = null;
-        let config = {name: "volume", windowType: window.WindowType.TYPE_VOLUME_OVERLAY, ctx: this.context};
-        window.createWindow(config, (err, data) => {
-            if (err.code) {
-                console.error('Failed to create the volume window. Cause:' + JSON.stringify(err));
-                return;
-            }
-            console.info('Succeeded in creating the volume window.')
-            windowClass = data;
-            // 以下为系统窗口显示动画的开发步骤
-            // 1. 获取窗口属性转换控制器
-            let controller = windowClass.getTransitionController();
-            // 2. 配置窗口显示时的动画
-            controller.animationForShown = (context : window.TransitionContext) => {
-                let toWindow = context.toWindow
-                // 配置动画参数
-                animateTo({
-                    duration: 1000, // 动画时长
-                    tempo: 0.5, // 播放速率
-                    curve: Curve.EaseInOut, // 动画曲线
-                    delay: 0, // 动画延迟
-                    iterations: 1, // 播放次数
-                    playMode: PlayMode.Normal, // 动画模式
-                    onFinish: ()=> {
-                        // 3. 设置属性转换完成
-                        context.completeTransition(true)
-                    }
-                }, () => {
-                    let obj : window.TranslateOptions = {
-                        x : 100.0,
-                        y : 0.0,
-                        z : 0.0
-                    }
-                    toWindow.translate(obj);
-                    console.info('toWindow translate end');
-                })
-                console.info('complete transition end');
-            }
+  onCreate(want: Want) {
+    // 创建音量条窗口。
+    let windowClass: window.Window | null = null;
+    let config: window.Configuration = {
+      name: "volume", windowType: window.WindowType.TYPE_VOLUME_OVERLAY, ctx: this.context
+    };
+    window.createWindow(config, (err: BusinessError, data) => {
+      let errCode: number = err.code;
+      if (errCode) {
+        console.error('Failed to create the volume window. Cause:' + JSON.stringify(err));
+        return;
+      }
+      console.info('Succeeded in creating the volume window.')
+      windowClass = data;
+      // 以下为系统窗口显示动画的开发步骤
+      // 1. 获取窗口属性转换控制器
+      let controller: window.TransitionController = windowClass.getTransitionController();
+      // 2. 配置窗口显示时的动画
+      controller.animationForShown = (context: window.TransitionContext) => {
+        let toWindow: window.Window = context.toWindow
+        // 配置动画参数
+        animateTo({
+          duration: 1000, // 动画时长
+          tempo: 0.5, // 播放速率
+          curve: Curve.EaseInOut, // 动画曲线
+          delay: 0, // 动画延迟
+          iterations: 1, // 播放次数
+          playMode: PlayMode.Normal, // 动画模式
+          onFinish: () => {
+            // 3. 设置属性转换完成
+            context.completeTransition(true)
+          }
+        }, () => {
+          let obj: window.TranslateOptions = {
+            x: 100.0,
+            y: 0.0,
+            z: 0.0
+          }
+          toWindow.translate(obj);
+          console.info('toWindow translate end');
+        })
+        console.info('complete transition end');
+      }
 
-            windowClass.loadContent("pages/page_volume", (err) => {
-                if (err.code) {
-                    console.error('Failed to load the content. Cause:' + JSON.stringify(err));
-                    return;
-                }
-                console.info('Succeeded in loading the content.');
-                // 4.显示当前窗口，过程中播放动画
-                windowClass.showWithAnimation((err) => {
-                    if (err.code) {
-                        console.error('Failed to show the window with animation. Cause: ' + JSON.stringify(err));
-                        return;
-                    }
-                    console.info('Succeeded in showing the window with animation.');
-                })
-            });
-        });
+      windowClass.loadContent("pages/page_volume", (err: BusinessError) => {
+        let errCode: number = err.code;
+        if (errCode) {
+          console.error('Failed to load the content. Cause:' + JSON.stringify(err));
+          return;
+        }
+        console.info('Succeeded in loading the content.');
+        // 4.显示当前窗口，过程中播放动画
+        (windowClass as window.Window).showWithAnimation((err: BusinessError) => {
+          let errCode: number = err.code;
+          if (errCode) {
+            console.error('Failed to show the window with animation. Cause: ' + JSON.stringify(err));
+            return;
+          }
+          console.info('Succeeded in showing the window with animation.');
+        })
+      });
+    });
+  }
+
+  onDestroy() {
+    let windowClass: window.Window | null = null;
+    try {
+      windowClass = window.findWindow('volume');
+    } catch (exception) {
+      console.error('Failed to find the Window. Cause: ' + JSON.stringify(exception));
     }
-    onDestroy() {
-        let windowClass = null;
-        try {
-            windowClass = window.findWindow('volume');
-        } catch (exception) {
-            console.error('Failed to find the Window. Cause: ' + JSON.stringify(exception));
-        }
-        // 以下为系统窗口隐藏动画的开发步骤
-        // 1. 获取窗口属性转换控制器
-        let controller = windowClass.getTransitionController();
-        // 2. 配置窗口显示时的动画
-        controller.animationForHidden = (context : window.TransitionContext) => {
-            let toWindow = context.toWindow
-            // 配置动画参数
-            animateTo({
-                duration: 1000, // 动画时长
-                tempo: 0.5, // 播放速率
-                curve: Curve.EaseInOut, // 动画曲线
-                delay: 0, // 动画延迟
-                iterations: 1, // 播放次数
-                playMode: PlayMode.Normal, // 动画模式
-                onFinish: ()=> {
-                    // 3. 设置属性转换完成
-                    context.completeTransition(true)
-                    windowClass.destroyWindow((err) => {
-                        if (err.code) {
-                            console.error('Failed to destroy the window. Cause:' + JSON.stringify(err));
-                            return;
-                        }
-                        console.info('Succeeded in destroying the window.');
-                    });
-                }
-            }, () => {
-                toWindow.opacity(0.0);
-                console.info('toWindow opacity end');
-            })
-            console.info('complete transition end');
-        }
-        // 4.隐藏当前窗口，过程中播放动画
-        windowClass.hideWithAnimation((err) => {
-            if (err.code) {
-                console.error('Failed to hide the window with animation. Cause: ' + JSON.stringify(err));
-                return;
+    // 以下为系统窗口隐藏动画的开发步骤
+    // 1. 获取窗口属性转换控制器
+    let controller: window.TransitionController = (windowClass as window.Window).getTransitionController();
+    // 2. 配置窗口显示时的动画
+    controller.animationForHidden = (context: window.TransitionContext) => {
+      let toWindow: window.Window = context.toWindow
+      // 配置动画参数
+      animateTo({
+        duration: 1000, // 动画时长
+        tempo: 0.5, // 播放速率
+        curve: Curve.EaseInOut, // 动画曲线
+        delay: 0, // 动画延迟
+        iterations: 1, // 播放次数
+        playMode: PlayMode.Normal, // 动画模式
+        onFinish: () => {
+          // 3. 设置属性转换完成
+          context.completeTransition(true);
+          (windowClass as window.Window).destroyWindow((err: BusinessError) => {
+            let errCode: number = err.code;
+            if (errCode) {
+              console.error('Failed to destroy the window. Cause:' + JSON.stringify(err));
+              return;
             }
-            console.info('Succeeded in hiding the window with animation.');
-        });
+            console.info('Succeeded in destroying the window.');
+          });
+        }
+      }, () => {
+        toWindow.opacity(0.0);
+        console.info('toWindow opacity end');
+      })
+      console.info('complete transition end');
     }
+      // 4.隐藏当前窗口，过程中播放动画
+    (windowClass as window.Window).hideWithAnimation((err: BusinessError) => {
+      let errCode: number = err.code;
+      if (errCode) {
+        console.error('Failed to hide the window with animation. Cause: ' + JSON.stringify(err));
+        return;
+      }
+      console.info('Succeeded in hiding the window with animation.');
+    });
+  }
 };
 ```

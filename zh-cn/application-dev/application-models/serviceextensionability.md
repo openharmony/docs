@@ -134,27 +134,29 @@ export default class ServiceExtImpl extends IdlServiceExtStub {
    ```ts
    import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
    import ServiceExtImpl from '../IdlServiceExt/idl_service_ext_impl';
+   import Want from '@ohos.app.ability.Want';
+   import rpc from '@ohos.rpc';
    
    const TAG: string = "[ServiceExtAbility]";
    
    export default class ServiceExtAbility extends ServiceExtensionAbility {
-     serviceExtImpl = new ServiceExtImpl("ExtImpl");
+     serviceExtImpl: ServiceExtImpl = new ServiceExtImpl("ExtImpl");
 
-     onCreate(want) {
+     onCreate(want: Want) {
        console.info(TAG, `onCreate, want: ${want.abilityName}`);
      }
    
-     onRequest(want, startId) {
+     onRequest(want: Want, startId: number) {
        console.info(TAG, `onRequest, want: ${want.abilityName}`);
      }
    
-     onConnect(want) {
+     onConnect(want: Want) {
        console.info(TAG, `onConnect, want: ${want.abilityName}`);
        // 返回ServiceExtImpl对象，客户端获取后便可以与ServiceExtensionAbility进行通信
-       return this.serviceExtImpl;
+       return this.serviceExtImpl as rpc.RemoteObject;
      }
    
-     onDisconnect(want) {
+     onDisconnect(want: Want) {
        console.info(TAG, `onDisconnect, want: ${want.abilityName}`);
      }
    
@@ -194,15 +196,19 @@ export default class ServiceExtImpl extends IdlServiceExtStub {
 1. 在系统应用中启动一个新的ServiceExtensionAbility。示例中的context的获取方式请参见[获取UIAbility的上下文信息](uiability-usage.md#获取uiability的上下文信息)。
 
    ```ts
-   let context = ...; // UIAbilityContext
-   let want = {
-     "deviceId": "",
-     "bundleName": "com.example.myapplication",
-     "abilityName": "ServiceExtAbility"
+   import common from '@ohos.app.ability.common';
+   import Want from '@ohos.app.ability.Want';
+   import { BusinessError } from '@ohos.base';
+
+   let context: common.UIAbilityContext = ...; // UIAbilityContext
+   let want: Want = {
+     deviceId: "",
+     bundleName: "com.example.myapplication",
+     abilityName: "ServiceExtAbility"
    };
    context.startServiceExtensionAbility(want).then(() => {
      console.info('Succeeded in starting ServiceExtensionAbility.');
-   }).catch((err) => {
+   }).catch((err: BusinessError) => {
      console.error(`Failed to start ServiceExtensionAbility. Code is ${err.code}, message is ${err.message}`);
    })
    ```
@@ -210,15 +216,19 @@ export default class ServiceExtImpl extends IdlServiceExtStub {
 2. 在系统应用中停止一个已启动的ServiceExtensionAbility。
 
    ```ts
-   let context = ...; // UIAbilityContext
-   let want = {
-     "deviceId": "",
-     "bundleName": "com.example.myapplication",
-     "abilityName": "ServiceExtAbility"
+   import common from '@ohos.app.ability.common';
+   import Want from '@ohos.app.ability.Want';
+   import { BusinessError } from '@ohos.base';
+
+   let context: common.UIAbilityContext = ...; // UIAbilityContext
+   let want: Want = {
+     deviceId: "",
+     bundleName: "com.example.myapplication",
+     abilityName: "ServiceExtAbility"
    };
    context.stopServiceExtensionAbility(want).then(() => {
      console.info('Succeeded in stopping ServiceExtensionAbility.');
-   }).catch((err) => {
+   }).catch((err: BusinessError) => {
      console.error(`Failed to stop ServiceExtensionAbility. Code is ${err.code}, message is ${err.message}`);
    })
    ```
@@ -226,10 +236,13 @@ export default class ServiceExtImpl extends IdlServiceExtStub {
 3. 已启动的ServiceExtensionAbility停止自身。
 
    ```ts
-   let context = ...; // ServiceExtensionContext
+   import common from '@ohos.app.ability.common';
+   import { BusinessError } from '@ohos.base';
+
+   let context: common.ServiceExtensionContext = ...; // ServiceExtensionContext
    context.terminateSelf().then(() => {
      console.info('Succeeded in terminating self.');
-   }).catch((err) => {
+   }).catch((err: BusinessError) => {
      console.error(`Failed to terminate self. Code is ${err.code}, message is ${err.message}`);
    })
    ```
@@ -250,12 +263,15 @@ ServiceExtensionAbility服务组件在[onConnect()](../reference/apis/js-apis-ap
 - 使用connectServiceExtensionAbility()建立与后台服务的连接。示例中的context的获取方式请参见[获取UIAbility的上下文信息](uiability-usage.md#获取uiability的上下文信息)。
   
   ```ts
-  let want = {
-    "deviceId": "",
-    "bundleName": "com.example.myapplication",
-    "abilityName": "ServiceExtAbility"
+  import common from '@ohos.app.ability.common';
+  import Want from '@ohos.app.ability.Want';
+
+  let want: Want = {
+    deviceId: "",
+    bundleName: "com.example.myapplication",
+    abilityName: "ServiceExtAbility"
   };
-  let options = {
+  let options: common.ConnectOptions = {
     onConnect(elementName, remote) {
       /* 此处的入参remote为ServiceExtensionAbility在onConnect生命周期回调中返回的对象,
        * 开发者通过这个对象便可以与ServiceExtensionAbility进行通信，具体通信方式见下文
@@ -274,16 +290,17 @@ ServiceExtensionAbility服务组件在[onConnect()](../reference/apis/js-apis-ap
     }
   }
   // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
-  let connectionId = this.context.connectServiceExtensionAbility(want, options);
+  let connectionId: number = this.context.connectServiceExtensionAbility(want, options);
   ```
 
 - 使用disconnectServiceExtensionAbility()断开与后台服务的连接。
   
   ```ts
+  import { BusinessError } from '@ohos.base';
   // connectionId为调用connectServiceExtensionAbility接口时的返回值，需开发者自行维护
-  this.context.disconnectServiceExtensionAbility(connectionId).then((data) => {
+  this.context.disconnectServiceExtensionAbility(connectionId).then(() => {
     console.info('disconnectServiceExtensionAbility success');
-  }).catch((error) => {
+  }).catch((error: BusinessError) => {
     console.error('disconnectServiceExtensionAbility failed');
   })
   ```
@@ -297,20 +314,21 @@ ServiceExtensionAbility服务组件在[onConnect()](../reference/apis/js-apis-ap
   ```ts
   // 客户端需要将服务端对外提供的idl_service_ext_proxy.ts导入到本地工程中
   import IdlServiceExtProxy from '../IdlServiceExt/idl_service_ext_proxy';
+  import common from '@ohos.app.ability.common';
 
-  let options = {
+  let options: common.ConnectOptions = {
     onConnect(elementName, remote) {
       console.info('onConnect callback');
       if (remote === null) {
         console.info(`onConnect remote is null`);
         return;
       }
-      let serviceExtProxy = new IdlServiceExtProxy(remote);
+      let serviceExtProxy: IdlServiceExtProxy = new IdlServiceExtProxy(remote);
       // 通过接口调用的方式进行通信，屏蔽了RPC通信的细节，简洁明了
-      serviceExtProxy.processData(1, (errorCode, retVal) => {
+      serviceExtProxy.processData(1, (errorCode: number, retVal: number) => {
         console.info(`processData, errorCode: ${errorCode}, retVal: ${retVal}`);
       });
-      serviceExtProxy.insertDataToMap('theKey', 1, (errorCode) => {
+      serviceExtProxy.insertDataToMap('theKey', 1, (errorCode: number) => {
         console.info(`insertDataToMap, errorCode: ${errorCode}`);
       })
     },
@@ -327,9 +345,11 @@ ServiceExtensionAbility服务组件在[onConnect()](../reference/apis/js-apis-ap
 
   ```ts
   import rpc from '@ohos.rpc';
-  
+  import common from '@ohos.app.ability.common';
+  import { BusinessError } from '@ohos.base';
+
   const REQUEST_CODE = 1;
-  let options = {
+  let options: common.ConnectOptions = {
     onConnect(elementName, remote) {
       console.info('onConnect callback');
       if (remote === null) {
@@ -351,7 +371,7 @@ ServiceExtensionAbility服务组件在[onConnect()](../reference/apis/js-apis-ap
       remote.sendMessageRequest(REQUEST_CODE, data, reply, option).then((ret) => {
         let msg = reply.readInt();
         console.info(`sendMessageRequest ret:${ret} msg:${msg}`);
-      }).catch((error) => {
+      }).catch((error: BusinessError) => {
         console.info('sendMessageRequest failed');
       });
     },
@@ -374,6 +394,7 @@ ServiceExtensionAbility服务组件在[onConnect()](../reference/apis/js-apis-ap
 
   ```ts
   import rpc from '@ohos.rpc';
+  import { BusinessError } from '@ohos.base';
   import bundleManager from '@ohos.bundle.bundleManager';
   import { processDataCallback } from './i_idl_service_ext';
   import { insertDataToMapCallback } from './i_idl_service_ext';
@@ -396,7 +417,7 @@ ServiceExtensionAbility服务组件在[onConnect()](../reference/apis/js-apis-ap
           return;
         }
         // 识别通过，执行正常业务逻辑
-      }).catch(err => {
+      }).catch((err: BusinessError) => {
         console.info(TAG, 'getBundleNameByUid failed: ' + err.message);
       });
     }
@@ -453,5 +474,8 @@ ServiceExtensionAbility服务组件在[onConnect()](../reference/apis/js-apis-ap
 
 针对ServiceExtensionAbility开发，有以下相关实例可供参考：
 
-- [`AbilityConnectServiceExtension`：Ability与ServiceExtensionAbility通信（ArkTS）（API9）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/IDL/AbilityConnectServiceExtension)
-- [`StageModel`：Stage模型（ArkTS）（API9）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/ApplicationModels/StageModel)
+- [跨任务链返回（ArkTS）（Full SDK）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/ApplicationModels/TestRely/LauncherTest/CrossChainBack)
+
+- [Ability与ServiceExtensionAbility通信（ArkTS）（Full SDK）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/IDL/AbilityConnectServiceExtension)
+
+- [Stage模型（ArkTS）（Full SDK）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/ApplicationModels/StageModel)

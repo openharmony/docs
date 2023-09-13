@@ -46,7 +46,7 @@ RenderingContextSettings(antialias?: boolean)
 | [lineCap](#linecap)                      | CanvasLineCap                            | 指定线端点的样式，可选值为：<br/>-&nbsp;'butt'：线端点以方形结束。<br/>-&nbsp;'round'：线端点以圆形结束。<br/>-&nbsp;'square'：线端点以方形结束，该样式下会增加一个长度和线段厚度相同，宽度是线段厚度一半的矩形。<br/>默认值：'butt'<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | [lineJoin](#linejoin)                    | CanvasLineJoin                           | 指定线段间相交的交点样式，可选值为：<br/>-&nbsp;'round'：在线段相连处绘制一个扇形，扇形的圆角半径是线段的宽度。<br/>-&nbsp;'bevel'：在线段相连处使用三角形为底填充，&nbsp;每个部分矩形拐角独立。<br/>-&nbsp;'miter'：在相连部分的外边缘处进行延伸，使其相交于一点，形成一个菱形区域，该属性可以通过设置miterLimit属性展现效果。<br/>默认值：'miter'<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | [miterLimit](#miterlimit)                | number                                   | 设置斜接面限制值，该值指定了线条相交处内角和外角的距离。  <br/>默认值：10<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| [font](#font)                            | string                                   | 设置文本绘制中的字体样式。<br/>语法：ctx.font='font-size&nbsp;font-family'<br/>-&nbsp;font-size(可选)，指定字号和行高，单位只支持px。<br/>-&nbsp;font-family(可选)，指定字体系列。<br/>语法：ctx.font='font-style&nbsp;font-weight&nbsp;font-size&nbsp;font-family'<br/>-&nbsp;font-style(可选)，用于指定字体样式，支持如下几种样式：'normal','italic'。<br/>-&nbsp;font-weight(可选)，用于指定字体的粗细，支持如下几种类型：'normal',&nbsp;'bold',&nbsp;'bolder',&nbsp;'lighter',&nbsp;100,&nbsp;200,&nbsp;300,&nbsp;400,&nbsp;500,&nbsp;600,&nbsp;700,&nbsp;800,&nbsp;900。<br/>-&nbsp;font-size(可选)，指定字号和行高，单位支持px、vp。使用时需要添加单位。<br/>-&nbsp;font-family(可选)，指定字体系列，支持如下几种类型：'sans-serif',&nbsp;'serif',&nbsp;'monospace'。<br/>默认值：'normal normal 14px sans-serif'<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| [font](#font)                            | string                                   | 设置文本绘制中的字体样式。<br/>语法：ctx.font='font-size&nbsp;font-family'<br/>-&nbsp;font-size(可选)，指定字号和行高，单位支持px和vp。<br/>-&nbsp;font-family(可选)，指定字体系列。<br/>语法：ctx.font='font-style&nbsp;font-weight&nbsp;font-size&nbsp;font-family'<br/>-&nbsp;font-style(可选)，用于指定字体样式，支持如下几种样式：'normal','italic'。<br/>-&nbsp;font-weight(可选)，用于指定字体的粗细，支持如下几种类型：'normal',&nbsp;'bold',&nbsp;'bolder',&nbsp;'lighter',&nbsp;100,&nbsp;200,&nbsp;300,&nbsp;400,&nbsp;500,&nbsp;600,&nbsp;700,&nbsp;800,&nbsp;900。<br/>-&nbsp;font-size(可选)，指定字号和行高，单位支持px、vp。使用时需要添加单位。<br/>-&nbsp;font-family(可选)，指定字体系列，支持如下几种类型：'sans-serif',&nbsp;'serif',&nbsp;'monospace'。<br/>默认值：'normal normal 14px sans-serif'<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | [textAlign](#textalign)                  | CanvasTextAlign                          | 设置文本绘制中的文本对齐方式，可选值为：<br/>-&nbsp;'left'：文本左对齐。<br/>-&nbsp;'right'：文本右对齐。<br/>-&nbsp;'center'：文本居中对齐。<br/>-&nbsp;'start'：文本对齐界线开始的地方。<br/>-&nbsp;'end'：文本对齐界线结束的地方。<br/>ltr布局模式下'start'和'left'一致，rtl布局模式下'start'和'right'一致·。<br/>默认值：'left'<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | [textBaseline](#textbaseline)            | CanvasTextBaseline                       | 设置文本绘制中的水平对齐方式，可选值为：<br/>-&nbsp;'alphabetic'：文本基线是标准的字母基线。<br/>-&nbsp;'top'：文本基线在文本块的顶部。<br/>-&nbsp;'hanging'：文本基线是悬挂基线。<br/>-&nbsp;'middle'：文本基线在文本块的中间。<br/>-&nbsp;'ideographic'：文字基线是表意字基线；如果字符本身超出了alphabetic基线，那么ideograhpic基线位置在字符本身的底部。<br/>-&nbsp;'bottom'：文本基线在文本块的底部。&nbsp;与ideographic基线的区别在于ideographic基线不需要考虑下行字母。<br/>默认值：'alphabetic'<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | [globalAlpha](#globalalpha)              | number                                   | 设置透明度，0.0为完全透明，1.0为完全不透明。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
@@ -273,7 +273,7 @@ struct MiterLimit {
 struct Fonts {
   private settings: RenderingContextSettings = new RenderingContextSettings(true)
   private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-  
+
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
       Canvas(this.context)
@@ -282,8 +282,10 @@ struct Fonts {
         .backgroundColor('#ffff00')
         .onReady(() =>{
           this.context.font = '30px sans-serif'
-          this.context.fillText("Hello World", 20, 60)
-      })
+          this.context.fillText("Hello px", 20, 60)
+          this.context.font = '30vp sans-serif'
+          this.context.fillText("Hello vp", 20, 100)
+        })
     }
     .width('100%')
     .height('100%')
@@ -1423,8 +1425,10 @@ createPattern(image: ImageBitmap, repetition: string | null): CanvasPattern | nu
           .height('100%')
           .backgroundColor('#ffff00')
           .onReady(() =>{
-            var pattern = this.context.createPattern(this.img, 'repeat')
-            this.context.fillStyle = pattern
+            let pattern = this.context.createPattern(this.img, 'repeat')
+            if (pattern) {
+              this.context.fillStyle = pattern
+            }
             this.context.fillRect(0, 0, 200, 200)
           })
       }
@@ -2421,7 +2425,7 @@ getImageData(sx: number, sy: number, sw: number, sh: number): ImageData
           .backgroundColor('#ffff00')
           .onReady(() =>{
             this.context.drawImage(this.img,0,0,130,130)
-            var imagedata = this.context.getImageData(50,50,130,130)
+            let imagedata = this.context.getImageData(50,50,130,130)
             this.context.putImageData(imagedata,150,150)
           })
       }
@@ -2473,8 +2477,8 @@ putImageData(imageData: ImageData, dx: number | string, dy: number | string, dir
           .height('100%')
           .backgroundColor('#ffff00')
           .onReady(() =>{
-            var imageData = this.context.createImageData(100, 100)
-            for (var i = 0; i < imageData.data.length; i += 4) {
+            let imageData = this.context.createImageData(100, 100)
+            for (let i = 0; i < imageData.data.length; i += 4) {
               imageData.data[i + 0] = 255
               imageData.data[i + 1] = 0
               imageData.data[i + 2] = 255
@@ -2626,15 +2630,15 @@ transferFromImageBitmap(bitmap: ImageBitmap): void
           .height('100%')
           .backgroundColor('#ffff00')
           .onReady(() =>{
-            var imageData = this.offContext.createImageData(100, 100)
-            for (var i = 0; i < imageData.data.length; i += 4) {
+            let imageData = this.offContext.createImageData(100, 100)
+            for (let i = 0; i < imageData.data.length; i += 4) {
               imageData.data[i + 0] = 255
               imageData.data[i + 1] = 0
               imageData.data[i + 2] = 255
               imageData.data[i + 3] = 255
             }
             this.offContext.putImageData(imageData, 10, 10)
-            var image = this.offContext.transferToImageBitmap()
+            let image = this.offContext.transferToImageBitmap()
             this.context.transferFromImageBitmap(image)
           })
       }
@@ -2684,7 +2688,7 @@ toDataURL(type?: string, quality?: number): string
           .height('100%')
           .backgroundColor('#ffff00')
           .onReady(() =>{
-            var dataURL = this.context.toDataURL()
+            let dataURL = this.context.toDataURL()
           })
       }
       .width('100%')
@@ -2808,7 +2812,7 @@ createLinearGradient(x0: number, y0: number, x1: number, y1: number): void
           .height('100%')
           .backgroundColor('#ffff00')
           .onReady(() =>{
-            var grad = this.context.createLinearGradient(50,0, 300,100)
+            let grad = this.context.createLinearGradient(50,0, 300,100)
             grad.addColorStop(0.0, '#ff0000')
             grad.addColorStop(0.5, '#ffffff')
             grad.addColorStop(1.0, '#00ff00')
@@ -2861,7 +2865,7 @@ createRadialGradient(x0: number, y0: number, r0: number, x1: number, y1: number,
           .height('100%')
           .backgroundColor('#ffff00')
           .onReady(() =>{
-            var grad = this.context.createRadialGradient(200,200,50, 200,200,200)
+            let grad = this.context.createRadialGradient(200,200,50, 200,200,200)
             grad.addColorStop(0.0, '#ff0000')
             grad.addColorStop(0.5, '#ffffff')
             grad.addColorStop(1.0, '#00ff00')
@@ -2908,7 +2912,7 @@ struct CanvasExample {
         .height('100%')
         .backgroundColor('#ffffff')
         .onReady(() => {
-          var grad = this.context.createConicGradient(0, 50, 80)
+          let grad = this.context.createConicGradient(0, 50, 80)
           grad.addColorStop(0.0, '#ff0000')
           grad.addColorStop(0.5, '#ffffff')
           grad.addColorStop(1.0, '#00ff00')
@@ -2923,3 +2927,78 @@ struct CanvasExample {
 ```
 
   ![zh-cn_image_0000001239032419](figures/zh-cn_image_0000001239032420.png)
+
+
+## CanvasDirection
+
+从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+| 名称        | 描述             |
+| -------- | -------------- |
+| inherit | 继承canvas组件已设定的文本方向。 |
+| ltr     | 从左往右。 |
+| rtl     | 从右往左。 |
+
+## CanvasFillRule
+
+从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+| 名称        | 描述             |
+| -------- | -------------- |
+| evenodd  | 奇偶规则。 |
+| nonzero   | 非零规则。 |
+
+## CanvasLineCap
+
+从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+| 名称        | 描述             |
+| -------- | -------------- |
+| butt   | 线条两端为平行线，不额外扩展。               |
+| round  | 在线条两端延伸半个圆，直径等于线宽。            |
+| square | 在线条两端延伸一个矩形，宽度等于线宽的一半，高度等于线宽。 |
+
+## CanvasLineJoin
+
+从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+| 名称        | 描述             |
+| -------- | -------------- |
+| bevel  | 在线段相连处使用三角形为底填充， 每个部分矩形拐角独立。 |
+| miter   | 在相连部分的外边缘处进行延伸，使其相交于一点，形成一个菱形区域，该属性可以通过设置miterLimit属性展现效果。 |
+| round   | 在线段相连处绘制一个扇形，扇形的圆角半径是线段的宽度。 |
+
+## CanvasTextAlign
+
+从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+| 名称        | 描述             |
+| -------- | -------------- |
+| center  | 文本居中对齐。 |
+| start   | 文本对齐界线开始的地方。 |
+| end   | 文本对齐界线结束的地方。 |
+| left  | 文本左对齐。 |
+| right   | 文本右对齐。 |
+
+## CanvasTextBaseline
+
+从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+| 名称        | 描述             |
+| -------- | -------------- |
+| alphabetic  | 文本基线是标准的字母基线。 |
+| bottom   | 文本基线在文本块的底部。 与ideographic基线的区别在于ideographic基线不需要考虑下行字母。 |
+| hanging  | 文本基线是悬挂基线。 |
+| ideographic   | 文字基线是表意字基线；如果字符本身超出了alphabetic基线，那么ideograhpic基线位置在字符本身的底部。 |
+| middle   | 文本基线在文本块的中间。 |
+| top   | 文本基线在文本块的顶部。 |
+
+## ImageSmoothingQuality
+
+从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+| 名称        | 描述             |
+| -------- | -------------- |
+| low      | 低画质 |
+| medium   | 中画质 |
+| high     | 高画质 |

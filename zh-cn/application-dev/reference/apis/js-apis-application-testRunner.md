@@ -25,6 +25,8 @@ onPrepare(): void
 **示例：**
 
 ```ts
+import TestRunner from '@ohos.application.testRunner';
+
 export default class UserTestRunner implements TestRunner {
     onPrepare() {
         console.log('Trigger onPrepare');
@@ -46,6 +48,8 @@ onRun(): void
 **示例：**
 
 ```ts
+import TestRunner from '@ohos.application.testRunner';
+
 export default class UserTestRunner implements TestRunner {
     onPrepare() {}
     onRun() {

@@ -4,55 +4,57 @@ HAR（Harmony Archive）是静态共享包，可以包含代码、C++库、资�
 ## 创建HAR模块
 通过DevEco Studio创建一个HAR模块，创建方式可[参考](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/creating_har_api9-0000001518082393-V3#section143510369612)。
 
-需要对代码资产进行保护时，建议开启混淆能力，混淆能力开启后，DevEco Studio在构建HAR时，会对代码进行编译、混淆及压缩处理，保护代码资产。
-注意：仅Stage模型的ArkTS工程支持混淆。
+需要对代码资产进行保护时，建议开启混淆能力。混淆能力开启后，DevEco Studio在构建HAR时，会对代码进行编译、混淆及压缩处理，保护代码资产。
+> 注意：仅Stage模型的ArkTS工程支持混淆。
 
-### 在API9中，HAR模块默认不开启混淆能力，开启混淆能力，需要把HAR模块的build-profile.json5文件中的artifactType字段设置为obfuscation，配置如下所示：
+混淆功能在不同版本默认开启情况不同：
 
-```json
-{
-  "apiType": "stageMode",
-  "buildOption": {
-      "artifactType": "obfuscation"
-  }
-}
-```
-artifactType字段有以下两种取值，默认缺省为original。
-- original：不混淆。
-- obfuscation：混淆，目前仅支持uglify混淆。
+- 在API 9中，HAR模块默认不开启混淆能力，开启混淆能力，需要把HAR模块的build-profile.json5文件中的artifactType字段设置为obfuscation，配置如下所示：
 
-### 在API10中，HAR模块默认开启混淆能力，可以在HAR模块的build-profile.json5文件中的ruleOptions字段下的enable进行设置，配置如下所示：
-
-```json
-{
-  "apiType": "stageMode",
-  "buildOption": {
-  },
-  "buildOptionSet": [
-    {
-      "name": "release",
-      "arkOptions": {
-        "obfuscation": {
-          "ruleOptions": {
-            "enable": true,
-            "files": [
-              "./obfuscation-rules.txt"
-            ]
-          },
-          "consumerFiles": [
-            "./consumer-rules.txt"
-          ]
-        }
-      }
-    },
-  ],
-  "targets": [
-    {
-      "name": "default"
+  ```json
+  {
+    "apiType": "stageMode",
+    "buildOption": {
+        "artifactType": "obfuscation"
     }
-  ]
-}
-```
+  }
+  ```
+  artifactType字段有以下两种取值，默认缺省为original。
+  - original：不混淆。
+  - obfuscation：混淆，目前仅支持uglify混淆。
+
+- 在API10中，HAR模块默认开启混淆能力，可以在HAR模块的build-profile.json5文件中的ruleOptions字段下的enable进行设置，配置如下所示：
+
+  ```json
+  {
+    "apiType": "stageMode",
+    "buildOption": {
+    },
+    "buildOptionSet": [
+      {
+        "name": "release",
+        "arkOptions": {
+          "obfuscation": {
+            "ruleOptions": {
+              "enable": true,
+              "files": [
+                "./obfuscation-rules.txt"
+              ]
+            },
+            "consumerFiles": [
+              "./consumer-rules.txt"
+            ]
+          }
+        }
+      },
+    ],
+    "targets": [
+      {
+        "name": "default"
+      }
+    ]
+  }
+  ```
 ### 适配指导
 
 该字段配置前向兼容，原有功能暂时不受影响。API10后续将逐步废弃，建议尽快用新的配置方式。
@@ -73,7 +75,7 @@ index.ets文件是HAR导出声明文件的入口，HAR需要导出的接口，�
 ```
 ### 导出ArkUI组件
 ArkUI组件的导出方式与ts的导出方式一致，通过`export`导出ArkUI组件，示例如下：
-```js
+```ts
 // library/src/main/ets/components/MainPage/MainPage.ets
 @Component
 export struct MainPage {
@@ -92,16 +94,16 @@ export struct MainPage {
 }
 ```
 HAR对外暴露的接口，在index.ets导出文件中声明如下所示：
-```js
+```ts
 // library/index.ets
 export { MainPage } from './src/main/ets/components/MainPage/MainPage'
 ```
 ### 导出ts类和方法
 通过`export`导出ts类和方法，支持导出多个ts类和方法，示例如下所示：
-```js
+```ts
 // library/src/main/ts/test.ets
 export class Log {
-    static info(msg) {
+    static info(msg: string) {
         console.info(msg);
     }
 }
@@ -115,7 +117,7 @@ export function func2() {
 }
 ```
 HAR对外暴露的接口，在index.ets导出文件中声明如下所示：
-```js
+```ts
 // library/index.ets
 export { Log } from './src/main/ts/test'
 export { func } from './src/main/ts/test'
@@ -133,9 +135,9 @@ HAR模块编译打包时会把资源打包到HAR中。在编译构建HAP时，De
 ### 引用HAR的ArkUI组件
 
 HAR的依赖配置成功后，可以引用HAR的ArkUI组件。ArkUI组件的导入方式与ts的导入方式一致，通过`import`引入HAR导出的ArkUI组件，示例如下所示：
-```js
+```ts
 // entry/src/main/ets/pages/index.ets
-import { MainPage } from "@ohos/library"
+import { MainPage } from "library"
 
 @Entry
 @Component
@@ -158,10 +160,10 @@ struct Index {
 ```
 ### 引用HAR的类和方法
 通过`import`引用HAR导出的ts类和方法，示例如下所示：
-```js
+```ts
 // entry/src/main/ets/pages/index.ets
-import { Log } from "@ohos/library"
-import { func } from "@ohos/library"
+import { Log } from "library"
+import { func } from "library"
 
 @Entry
 @Component
@@ -184,7 +186,7 @@ struct Index {
 ```
 ### 引用HAR的资源
 通过`$r`引用HAR中的资源，例如在HAR模块的`src/main/resources`里添加字符串资源（在string.json中定义，name：hello_har）和图片资源（icon_har.png），然后在Entry模块中引用该字符串和图片资源的示例如下所示：
-```js
+```ts
 // entry/src/main/ets/pages/index.ets
 @Entry
 @Component

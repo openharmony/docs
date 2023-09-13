@@ -17,3 +17,13 @@
 - 相机（camera）：提供精确控制相机镜头，采集视觉信息的接口与服务。
 
 - 图片（image）：提供图片编解码、图片处理接口与服务。
+
+## 相关实例
+
+针对媒体开发，有以下相关实例可供参考：
+
+- [媒体管理合集（ArkTS）（Full SDK）(API9)](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/FileManagement/MediaCollections)
+
+- [相机和媒体库（ArkTS）（Full SDK）(API9)](https://gitee.com/openharmony/applications_app_samples/tree/master/code/Solutions/Media/MultiMedia)
+
+- [二维码扫描（ArkTS）（Full SDK）(API9)](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Media/QRCodeScan)

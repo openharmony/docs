@@ -12,9 +12,9 @@ ForEach基于数组类型数据执行循环渲染。
 
 ```ts
 ForEach(
-  arr: any[], 
-  itemGenerator: (item: any, index?: number) => void,
-  keyGenerator?: (item: any, index?: number) => string 
+  arr: Array,
+  itemGenerator: (item: Array, index?: number) => void,
+  keyGenerator?: (item: Array, index?: number): string => string
 )
 ```
 
@@ -22,7 +22,7 @@ ForEach(
 | 参数名           | 参数类型                                     | 必填   | 参数描述                                     |
 | ------------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | arr           | Array                                    | 是    | 必须是数组，允许设置为空数组，空数组场景下将不会创建子组件。同时允许设置返回值为数组类型的函数，例如arr.slice(1,&nbsp;3)，设置的函数不得改变包括数组本身在内的任何状态变量，如Array.splice、Array.sort或Array.reverse这些改变原数组的函数。 |
-| itemGenerator | (item:&nbsp;any,&nbsp;index?:&nbsp;number)&nbsp;=&gt;&nbsp;void | 是    | 生成子组件的lambda函数，为数组中的每一个数据项创建一个或多个子组件，单个子组件或子组件列表必须包括在大括号“{...}”中。<br/>**说明：**<br/>-&nbsp;子组件的类型必须是ForEach的父容器组件所允许的（例如，只有当ForEach父级为List组件时，才允许LitemItem子组件）。<br/>-&nbsp;允许子类构造函数返回if或另一个ForEach。ForEach可以在if内的任意位置。<br/>-&nbsp;可选index参数如在函数体中使用，则必须仅在函数签名中指定。 |
+| itemGenerator | (item:&nbsp;any,&nbsp;index?:&nbsp;number)&nbsp;=&gt;&nbsp;void | 是    | 生成子组件的lambda函数，为数组中的每一个数据项创建一个或多个子组件，单个子组件或子组件列表必须包括在大括号“{...}”中。<br/>**说明：**<br/>-&nbsp;子组件的类型必须是ForEach的父容器组件所允许的（例如，只有当ForEach父级为List组件时，才允许ListItem子组件）。<br/>-&nbsp;允许子类构造函数返回if或另一个ForEach。ForEach可以在if内的任意位置。<br/>-&nbsp;可选index参数如在函数体中使用，则必须仅在函数签名中指定。 |
 | keyGenerator  | (item:&nbsp;any,&nbsp;index?:&nbsp;number)&nbsp;=&gt;&nbsp;string | 否    | 匿名函数，用于给数组中的每一个数据项生成唯一且固定的键值。键值生成器的功能是可选的，但是，为了使开发框架能够更好地识别数组更改，提高性能，建议提供。如将数组反向时，如果没有提供键值生成器，则ForEach中的所有节点都将重建。<br/>**说明：**<br/>-&nbsp;同一数组中的不同项绝对不能计算出相同的ID。<br/>-&nbsp;如果未使用index参数，则项在数组中的位置变动不得改变项的键值。如果使用了index参数，则当项在数组中的位置有变动时，键值必须更改。<br/>-&nbsp;当某个项目被新项替换（值不同）时，被替换的项键值和新项的键值必须不同。<br/>-&nbsp;在构造函数中使用index参数时，键值生成函数也必须使用该参数。<br>-&nbsp;键值生成函数不允许改变任何组件状态。 |
 
 
@@ -36,14 +36,21 @@ ForEach(
 
 - itemGenerator函数的调用顺序不一定和数组中的数据项相同，在开发过程中不要假设itemGenerator和keyGenerator函数是否执行及其执行顺序。例如，以下示例可能无法正确运行：
 
-  ```ts
-  ForEach(anArray.map((item1, index1) => { return { i: index1 + 1, data: item1 }; }), 
-    item => Text(`${item.i}. item.data.label`),
-    item => item.data.id.toString())
-  ```
+    ```ts
+    let obj: Object
+    ForEach(anArray.map((item1: Object, index1: number): Object => {
+        obj.i = index1 + 1
+        obj.data = item1
+        return obj;
+      }),
+    (item: string) => Text(`${item.i}. item.data.label`),
+    (item: string): string => {
+        return item.data.id.toString()
+    })
+    ```
 
 
-## 开发者的建议
+## 开发建议
 
 - 建议开发者不要假设项构造函数的执行顺序。执行顺序可能不能是数组中项的排列顺序。
 
@@ -90,7 +97,7 @@ struct MyComponent {
 ```ts
 @Component
 struct CounterView {
-  label: string;
+  @State label: string = "";
   @State count: number = 0;
 
   build() {
@@ -147,10 +154,10 @@ struct MainView {
         })
         .width(300).height(40)
       ForEach(this.arr,
-        (item) => {
+        (item: string) => {
           CounterView({ label: item.toString() })
         },
-        (item) => item.toString()
+        (item: string) => item.toString()
       )
     }
   }
@@ -175,9 +182,11 @@ MainView拥有一个\@State装饰的数字数组。添加、删除和替换数�
 如前所述，id生成函数是可选的。以下是不带项索引函数的ForEach：
 
   ```ts
-  ForEach(this.arr,
-    (item) => {
-      CounterView({ label: item.toString() })
+let list: Object
+ForEach(this.arr,
+    (item: Object): string => {
+      list.label = item.toString();
+      CounterView(list)
     }
   )
   ```
@@ -228,10 +237,10 @@ struct MainView {
   build() {
     Column() {
       ForEach(this.counters.slice(this.firstIndex, this.firstIndex + 3),
-        (item) => {
+        (item: MyCounter) => {
           CounterView({ label: `Counter item #${item.id}`, counter: item })
         },
-        (item) => item.id.toString()
+        (item: MyCounter) => item.id.toString()
       )
       Button(`Counters: shift up`)
         .width(200).height(50)
@@ -266,7 +275,7 @@ class Month {
   month: number;
   days: number[];
 
-  constructor(year: number, month: number, days: number[]) {
+  constructor(year: number, month: number, ...days: number[]) {
     this.year = year;
     this.month = month;
     this.days = days;
@@ -275,13 +284,16 @@ class Month {
 @Component
 struct CalendarExample {
   // 模拟6个月
+   arr28: Array<number> = Array(31).fill(0).map((_: number, i: number): number => i + 1);
+   arr30: Array<number> = Array(31).fill(0).map((_: number, i: number): number => i + 1);
+   arr31: Array<number> = Array(31).fill(0).map((_: number, i: number): number => i + 1);
   @State calendar : Month[] = [
-    new Month(2020, 1, [...Array(31).keys()]),
-    new Month(2020, 2, [...Array(28).keys()]),
-    new Month(2020, 3, [...Array(31).keys()]),
-    new Month(2020, 4, [...Array(30).keys()]),
-    new Month(2020, 5, [...Array(31).keys()]),
-    new Month(2020, 6, [...Array(30).keys()])
+    new Month(2020, 1, ...(this.arr31)),
+    new Month(2020, 2, ...(this.arr28)),
+    new Month(2020, 3, ...(this.arr31)),
+    new Month(2020, 4, ...(this.arr30)),
+    new Month(2020, 5, ...(this.arr31)),
+    new Month(2020, 6, ...(this.arr30))
   ]
   build() {
     Column() {
@@ -289,7 +301,7 @@ struct CalendarExample {
         Text('next month')
       }.onClick(() => {
         this.calendar.shift()
-        this.calendar.push(new Month(year: 2020, month: 7, days: [...Array(31).keys()]))
+        this.calendar.push(new Month(2020, 7, ...(this.arr31)))
       })
       ForEach(this.calendar,
         (item: Month) => {
@@ -330,11 +342,11 @@ struct ForEachWithIndex {
   build() {
     Column() {
       ForEach(this.arr,
-        (it, indx) => {
-          Text(`Item: ${indx} - ${it}`)
+        (it: number, index) => {
+          Text(`Item: ${index} - ${it}`)
         },
-        (it, indx) => {
-          return `${indx} - ${it}`
+        (it: number, index) => {
+          return `${index} - ${it}`
         }
       )
     }

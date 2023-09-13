@@ -111,7 +111,6 @@
   - [Web](ts-basic-components-web.md)
   - [XComponent](ts-basic-components-xcomponent.md)
 - Container Components
-  - [AbilityComponent](ts-container-ability-component.md)
   - [Badge](ts-container-badge.md)
   - [Column](ts-container-column.md)
   - [ColumnSplit](ts-container-columnsplit.md)
@@ -123,6 +122,7 @@
   - [GridRow](ts-container-gridrow.md)
   - [Grid](ts-container-grid.md)
   - [GridItem](ts-container-griditem.md)
+  - [Hyperlink](ts-container-hyperlink.md)
   - [List](ts-container-list.md)
   - [ListItem](ts-container-listitem.md)
   - [ListItemGroup](ts-container-listitemgroup.md)
@@ -138,6 +138,7 @@
   - [Swiper](ts-container-swiper.md)
   - [Tabs](ts-container-tabs.md)
   - [TabContent](ts-container-tabcontent.md)
+  - [UIExtensionComponent](ts-container-ui-extension-component.md)
   - [WaterFlow](ts-container-waterflow.md)
 - Media Components
   - [Video](ts-media-components-video.md)
@@ -187,6 +188,7 @@
 - [Enums](ts-appendix-enums.md)
 - [Types](ts-types.md)
 - Components No Longer Maintained
+  - [AbilityComponent](ts-container-ability-component.md)
   - [GridContainer](ts-container-gridcontainer.md)
 - APIs No Longer Maintained
   - [Click Control](ts-universal-attributes-click.md)

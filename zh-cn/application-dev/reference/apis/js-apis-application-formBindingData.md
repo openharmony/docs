@@ -50,15 +50,18 @@ createFormBindingData(obj?: Object | string): FormBindingData
 ```ts
 import formBindingData from '@ohos.application.formBindingData';
 import fs from '@ohos.file.fs';
+import Base from '@ohos.base';
 
 try {
   let fd = fs.openSync('/path/to/form.png');
-  let obj = {
-    'temperature': '21°',
-    'formImages': { 'image': fd }
-  };
-  formBindingData.createFormBindingData(obj);
+  let createFormBindingDataParam = new Map<Object, string | object>();
+  let formImagesParam = new Map<Object, object>();
+  formImagesParam.set('image', fd);
+  createFormBindingDataParam.set("name", '21°');
+  createFormBindingDataParam.set('formImages', formImagesParam);
+
+  formBindingData.createFormBindingData(createFormBindingDataParam);
 } catch (error) {
-  console.error('catch error, error: ${JSON.stringify(error)}');
+  console.error(`catch error, error: ${JSON.stringify(error as Base.BusinessError)}`);
 }
 ```

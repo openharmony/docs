@@ -12,15 +12,14 @@ Environment is a singleton object created by the ArkUI framework at application 
 
 ### Accessing Environment Parameters from UI
 
-- Use **Environment.EnvProp** to save the environment variables of the device to AppStorage.
+- Use **Environment.envProp** to save the environment variables of the device to AppStorage.
 
   ```ts
-  // Save the language code of the device to AppStorage. The default value is en.
-  // Whenever its value changes in the device environment, it will update its value in AppStorage.
-  Environment.EnvProp('languageCode', 'en');
+  // Save languageCode to AppStorage. The default value is en.
+  Environment.envProp('languageCode', 'en');
   ```
 
-- To keep a component variable updated with changes in the device environment, this variable should be decorated with \@StorageProp.
+- Decorate the variables with \@StorageProp to link them with components.
 
   ```ts
   @StorageProp('languageCode') lang : string = 'en';
@@ -29,13 +28,14 @@ Environment is a singleton object created by the ArkUI framework at application 
 The chain of updates is as follows: Environment > AppStorage > Component.
 
 > **NOTE**
+>
 > An \@StorageProp decorated variable can be locally modified, but the change will not be updated to AppStorage. This is because the environment variable parameters are read-only to the application.
 
 
 ```ts
 // Save the device language code to AppStorage.
-Environment.EnvProp('languageCode', 'en');
-let enable = AppStorage.Get('languageCode');
+Environment.envProp('languageCode', 'en');
+let enable: undefined = AppStorage.get<undefined>('languageCode');
 
 @Entry
 @Component
@@ -59,13 +59,39 @@ struct Index {
 
 ```ts
 // Use Environment.EnvProp to save the device language code to AppStorage.
-Environment.EnvProp('languageCode', 'en');
+Environment.envProp('languageCode', 'en');
 // Obtain the one-way bound languageCode variable from AppStorage.
-const lang: SubscribedAbstractProperty<string> = AppStorage.Prop('languageCode');
+const lang: SubscribedAbstractProperty<string> = AppStorage.prop('languageCode');
 
 if (lang.get() === 'en') {
   console.info('Hi');
 } else {
   console.info('Hello!');
+}
+```
+
+
+## Restrictions
+
+
+Environment can be called only when the [UIContext](../reference/apis/js-apis-arkui-UIContext.md#uicontext), which can be obtained through [runScopedTask](../reference/apis/js-apis-arkui-UIContext.md#runscopedtask), is specified. If Environment is called otherwise, no device environment data can be obtained.
+
+
+```ts
+// EntryAbility.ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+import window from '@ohos.window';
+
+export default class EntryAbility extends UIAbility {
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    windowStage.loadContent('pages/Index');
+    let window = windowStage.getMainWindow()
+    window.then(window => {
+      let uicontext = window.getUIContext()
+      uicontext.runScopedTask(() => {
+        Environment.envProp('languageCode', 'en');
+      })
+    })
+  }
 }
 ```

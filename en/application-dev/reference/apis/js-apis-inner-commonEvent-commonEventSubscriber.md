@@ -10,16 +10,18 @@ Before using the **CommonEventSubscriber** module, you must obtain a **subscribe
 
 ```ts
 import CommonEvent from '@ohos.commonEvent';
-let subscriber; // Used to save the created subscriber object for subsequent subscription and unsubscription.
+import CommonEventManager from '@ohos.commonEventManager';
+import Base from '@ohos.base';
+let subscriber:CommonEventManager.CommonEventSubscriber; // Used to save the created subscriber object for subsequent subscription and unsubscription.
 
 // Subscriber information.
-let subscribeInfo = {
+let subscribeInfo:CommonEventManager.CommonEventSubscribeInfo = {
 	events: ["event"]
 };
 
 // Callback for subscriber creation.
-function createCB(err, commonEventSubscriber) {
-    if (err.code) {
+function createCB(err:Base.BusinessError, commonEventSubscriber:CommonEventManager.CommonEventSubscriber) {
+    if (err.code !== undefined && err.code != null) {
         console.error(`createSubscriber failed, code is ${err.code}`);
     } else {
         console.info("createSubscriber");
@@ -49,8 +51,8 @@ Obtains the code of this common event. This API uses an asynchronous callback to
 
 ```ts
 // Callback for result code obtaining of an ordered common event.
-function getCodeCB(err, code) {
-    if (err.code) {
+function getCodeCB(err:Base.BusinessError, code:number) {
+    if (err.code !== undefined && err.code != null) {
         console.error(`getCode failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("getCode " + JSON.stringify(code));
@@ -76,9 +78,9 @@ Obtains the code of this common event. This API uses a promise to return the res
 **Example**
 
 ```ts
-subscriber.getCode().then((code) => {
+subscriber.getCode().then((code:number) => {
     console.info("getCode " + JSON.stringify(code));
-}).catch((err) => {
+}).catch((err:Base.BusinessError) => {
     console.error(`getCode failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
@@ -102,8 +104,8 @@ Sets the code for this common event. This API uses an asynchronous callback to r
 
 ```ts
 // Callback for result code setting of an ordered common event.
-function setCodeCB(err) {
-    if (err.code) {
+function setCodeCB(err:Base.BusinessError) {
+    if (err.code !== undefined && err.code != null) {
         console.error(`setCode failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("setCode");
@@ -137,7 +139,7 @@ Sets the code for this common event. This API uses a promise to return the resul
 ```ts
 subscriber.setCode(1).then(() => {
     console.info("setCode");
-}).catch((err) => {
+}).catch((err:Base.BusinessError) => {
     console.error(`setCode failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
@@ -160,8 +162,8 @@ Obtains the data of this common event. This API uses an asynchronous callback to
 
 ```ts
 // Callback for result data obtaining of an ordered common event.
-function getDataCB(err, data) {
-    if (err.code) {
+function getDataCB(err:Base.BusinessError, data:string) {
+    if (err.code !== undefined && err.code != null) {
         console.error(`getData failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("getData " + JSON.stringify(data));
@@ -187,9 +189,9 @@ Obtains the data of this common event. This API uses a promise to return the res
 **Example**
 
 ```ts
-subscriber.getData().then((data) => {
+subscriber.getData().then((data:string) => {
     console.info("getData " + JSON.stringify(data));
-}).catch((err) => {
+}).catch((err:Base.BusinessError) => {
     console.error(`getData failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
@@ -213,8 +215,8 @@ Sets the data for this common event. This API uses an asynchronous callback to r
 
 ```ts
 // Callback for result data setting of an ordered common event
-function setDataCB(err) {
-    if (err.code) {
+function setDataCB(err:Base.BusinessError) {
+    if (err.code !== undefined && err.code != null) {
         console.error(`setCode failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("setData");
@@ -248,7 +250,7 @@ Sets the data for this common event. This API uses a promise to return the resul
 ```ts
 subscriber.setData("publish_data_changed").then(() => {
     console.info("setData");
-}).catch((err) => {
+}).catch((err:Base.BusinessError) => {
     console.error(`setCode failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
@@ -273,8 +275,8 @@ Sets the code and data for this common event. This API uses an asynchronous call
 
 ```ts
 // Callback for code and data setting of an ordered common event.
-function setCodeDataCB(err) {
-    if (err.code) {
+function setCodeDataCB(err:Base.BusinessError) {
+    if (err.code !== undefined && err.code != null) {
         console.error(`setCodeAndData failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("setCodeDataCallback");
@@ -309,7 +311,7 @@ Sets the code and data for this common event. This API uses a promise to return 
 ```ts
 subscriber.setCodeAndData(1, "publish_data_changed").then(() => {
     console.info("setCodeAndData");
-}).catch((err) => {
+}).catch((err:Base.BusinessError) => {
     console.error(`setCodeAndData failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
@@ -332,8 +334,8 @@ Checks whether this common event is an ordered one. This API uses an asynchronou
 
 ```ts
 // Callback for checking whether the current common event is an ordered one.
-function isOrderedCB(err, isOrdered) {
-    if (err.code) {
+function isOrderedCB(err:Base.BusinessError, isOrdered:boolean) {
+    if (err.code !== undefined && err.code != null) {
         console.error(`isOrderedCommonEvent failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("isOrdered " + JSON.stringify(isOrdered));
@@ -359,9 +361,9 @@ Checks whether this common event is an ordered one. This API uses a promise to r
 **Example**
 
 ```ts
-subscriber.isOrderedCommonEvent().then((isOrdered) => {
+subscriber.isOrderedCommonEvent().then((isOrdered:boolean) => {
     console.info("isOrdered " + JSON.stringify(isOrdered));
-}).catch((err) => {
+}).catch((err:Base.BusinessError) => {
     console.error(`isOrdered failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
@@ -384,8 +386,8 @@ Checks whether this common event is a sticky one. This API uses an asynchronous 
 
 ```ts
 // Callback for checking whether the current common event is a sticky one.
-function isStickyCB(err, isSticky) {
-    if (err.code) {
+function isStickyCB(err:Base.BusinessError, isSticky:boolean) {
+    if (err.code !== undefined && err.code != null) {
         console.error(`isStickyCommonEvent failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("isSticky " + JSON.stringify(isSticky));
@@ -411,9 +413,9 @@ Checks whether this common event is a sticky one. This API uses a promise to ret
 **Example**
 
 ```ts
-subscriber.isStickyCommonEvent().then((isSticky) => {
+subscriber.isStickyCommonEvent().then((isSticky:boolean) => {
     console.info("isSticky " + JSON.stringify(isSticky));
-}).catch((err) => {
+}).catch((err:Base.BusinessError) => {
     console.error(`isSticky failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
@@ -436,8 +438,8 @@ Aborts this common event. After the abort, the common event is not sent to the n
 
 ```ts
 // Callback for common event aborting.
-function abortCB(err) {
-    if (err.code) {
+function abortCB(err:Base.BusinessError) {
+    if (err.code !== undefined && err.code != null) {
 		console.error(`abortCommonEvent failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("abortCommonEvent");
@@ -465,7 +467,7 @@ Aborts this common event. After the abort, the common event is not sent to the n
 ```ts
 subscriber.abortCommonEvent().then(() => {
     console.info("abortCommonEvent");
-}).catch((err) => {
+}).catch((err:Base.BusinessError) => {
     console.error(`abortCommonEvent failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
@@ -488,8 +490,8 @@ Clears the aborted state of this common event. This API takes effect only for or
 
 ```ts
 // Callback for clearing the aborted state of the current common event.
-function clearAbortCB(err) {
-    if (err.code) {
+function clearAbortCB(err:Base.BusinessError) {
+    if (err.code !== undefined && err.code != null) {
         console.error(`clearAbortCommonEvent failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("clearAbortCommonEvent");
@@ -517,7 +519,7 @@ Clears the aborted state of this common event. This API takes effect only for or
 ```ts
 subscriber.clearAbortCommonEvent().then(() => {
     console.info("clearAbortCommonEvent");
-}).catch((err) => {
+}).catch((err:Base.BusinessError) => {
     console.error(`clearAbortCommonEvent failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
@@ -540,8 +542,8 @@ Checks whether this common event is in the aborted state. This API takes effect 
 
 ```ts
 // Callback for checking whether the current common event is in the aborted state.
-function getAbortCB(err, abortEvent) {
-    if (err.code) {
+function getAbortCB(err:Base.BusinessError, abortEvent:boolean) {
+    if (err.code !== undefined && err.code != null) {
         console.error(`getAbortCommonEvent failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("abortCommonEvent " + abortEvent)
@@ -567,9 +569,9 @@ Checks whether this common event is in the aborted state. This API takes effect 
 **Example**
 
 ```ts
-subscriber.getAbortCommonEvent().then((abortEvent) => {
+subscriber.getAbortCommonEvent().then((abortEvent:boolean) => {
     console.info("abortCommonEvent " + JSON.stringify(abortEvent));
-}).catch((err) => {
+}).catch((err:Base.BusinessError) => {
     console.error(`getAbortCommonEvent failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
@@ -592,8 +594,8 @@ Obtains the subscriber information. This API uses an asynchronous callback to re
 
 ```ts
 // Callback for subscriber information obtaining.
-function getCB(err, subscribeInfo) {
-    if (err.code) {
+function getCB(err:Base.BusinessError, subscribeInfo:CommonEventManager.CommonEventSubscribeInfo) {
+    if (err.code !== undefined && err.code != null) {
         console.error(`getSubscribeInfo failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("subscribeInfo " + JSON.stringify(subscribeInfo));
@@ -619,9 +621,9 @@ Obtains the subscriber information. This API uses a promise to return the result
 **Example**
 
 ```ts
-subscriber.getSubscribeInfo().then((subscribeInfo) => {
+subscriber.getSubscribeInfo().then((subscribeInfo:CommonEventManager.CommonEventSubscribeInfo) => {
     console.info("subscribeInfo " + JSON.stringify(subscribeInfo));
-}).catch((err) => {
+}).catch((err:Base.BusinessError) => {
     console.error(`getSubscribeInfo failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
@@ -644,8 +646,8 @@ Finishes this common event. This API takes effect only for ordered common events
 
 ```ts
 // Callback for ordered common event finishing.
-function finishCB(err) {
-  if (err.code) {
+function finishCB(err:Base.BusinessError) {
+  if (err.code !== undefined && err.code != null) {
     console.error(`finishCommonEvent failed, code is ${err.code}, message is ${err.message}`);
   } else {
     console.info("FinishCommonEvent");
@@ -674,7 +676,7 @@ Finishes this common event. This API takes effect only for ordered common events
 ```ts
 subscriber.finishCommonEvent().then(() => {
     console.info("FinishCommonEvent");
-}).catch((err) => {
+}).catch((err:Base.BusinessError) => {
     console.error(`finishCommonEvent failed, code is ${err.code}, message is ${err.message}`);
 });
 ```

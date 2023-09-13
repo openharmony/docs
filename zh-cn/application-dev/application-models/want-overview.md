@@ -18,7 +18,9 @@
     显式Want通常用于在当前应用中启动已知的目标应用组件，通过提供目标应用组件所在应用的Bundle名称信息（bundleName）并在Want对象内指定abilityName来启动目标应用组件。当有明确处理请求的对象时，显式Want是一种简单有效的启动目标应用组件的方式。
   
   ```ts
-  let wantInfo = {
+  import Want from '@ohos.app.ability.Want';
+
+  let wantInfo: Want = {
     deviceId: '', // deviceId为空表示本设备
     bundleName: 'com.example.myapplication',
     abilityName: 'FuncAbility',
@@ -31,7 +33,9 @@
   
   
   ```ts
-  let wantInfo = {
+  import Want from '@ohos.app.ability.Want';
+
+  let wantInfo: Want = {
     // uncomment line below if wish to implicitly query only in the specific bundle.
     // bundleName: 'com.example.myapplication',
     action: 'ohos.want.action.search',
@@ -48,6 +52,6 @@
   >   - 匹配到一个满足条件的应用组件：直接启动该应用组件。
   >   - 匹配到多个满足条件的应用组件（UIAbility）：弹出选择框让用户选择。
   > 
-  > - 调用方传入的want参数中不带有abilityName和bundleName，则不允许通过隐式Want启动所有应用的ServiceExtensionAbility。
-  > 
-  > - 调用方传入的want参数中带有bundleName，则允许使用startServiceExtensionAbility()方法隐式Want启动ServiceExtensionAbility，默认返回优先级最高的ServiceExtensionAbility，如果优先级相同，返回第一个。
+  > - 对于启动ServiceExtensionAbility的场景：
+  >   - 调用方传入的want参数中带有abilityName，则不允许通过隐式Want启动ServiceExtensionAbility。
+  >   - 调用方传入的want参数中带有bundleName，则允许使用startServiceExtensionAbility()方法隐式Want启动ServiceExtensionAbility，默认返回优先级最高的ServiceExtensionAbility，如果优先级相同，返回第一个。

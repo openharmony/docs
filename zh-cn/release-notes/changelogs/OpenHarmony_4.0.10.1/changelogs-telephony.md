@@ -70,3 +70,52 @@ promise.then(() => {
 });
 
 ```
+
+## cl.telephony.2 sim模块接口变更
+
+getSimTelephoneNumber接口权限变更，由ohos.permission.GET_TELEPHONY_STATE变更为ohos.permission.GET_PHONE_NUMBERS。
+
+**变更影响**
+
+从API version 10开始，getSimTelephoneNumber接口权限变更为ohos.permission.GET_PHONE_NUMBERS。
+
+应用需要修改为申请权限ohos.permission.GET_PHONE_NUMBERS。接口功能不变。
+
+**关键的接口/组件变更**
+
+修改前的接口原型：
+
+```js
+  @permission ohos.permission.GET_TELEPHONY_STATE
+  function getSimTelephoneNumber(slotId: number, callback: AsyncCallback<string>): void;
+
+  @permission ohos.permission.GET_TELEPHONY_STATE
+  function getSimTelephoneNumber(slotId: number): Promise<string>;
+```
+
+修改后的接口原型：
+
+```js
+  @permission ohos.permission.GET_PHONE_NUMBERS
+  function getSimTelephoneNumber(slotId: number, callback: AsyncCallback<string>): void;
+  
+  @permission ohos.permission.GET_PHONE_NUMBERS
+  function getSimTelephoneNumber(slotId: number): Promise<string>;
+```
+
+
+
+**适配指导**
+
+使用变更后的接口，示例代码如下：
+
+module.json中申请权限需要更换或者添加ohos.permission.GET_PHONE_NUMBERS。
+
+```js
+"requestPermissions" : [
+    {
+        "name": "ohos.permission.GET_PHONE_NUMBERS",
+        "reason": "$string:GET_PHONE_NUMBERS"
+       }
+]
+```

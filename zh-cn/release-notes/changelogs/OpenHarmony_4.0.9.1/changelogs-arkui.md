@@ -130,3 +130,47 @@ searchButton属性中类型SearchButtonOption修改为SearchButtonOptions。
 **适配指导**
 
 SearchButtonOption修改为SearchButtonOptions。
+
+## cl.arkui.5 Overlay组件的BindSheet属性中SheetStyle修改为SheetOptions
+
+**变更影响**
+
+如果显式地使用了SheetStyle类型，编译无法通过。
+
+**关键的接口/组件变更**
+
+BindSheet属性中类型SheetStyle修改为SheetOptions。
+
+**适配指导**
+
+SheetStyle修改为SheetOptions。
+
+## cl.arkui.6 自定义组件生命周期接口onBackPress的接口返回值由void变更为void | boolean
+
+**示例：**
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct Index {
+  async onBackPress() {}    // 编译报错
+  build() {
+    Column() {
+
+    }
+  }
+}
+```
+
+**变更影响**
+
+自定义组件生命周期函数onBackPress被修饰成async时，编译无法通过。
+
+**关键的接口/组件变更**
+
+onBackPress?(): void 变更为 onBackPress?(): void | boolean。
+
+**适配指导**
+
+自定义组件生命周期接口为系统适当时机回调的同步接口，需按照SDK定义的同步接口规格使用。应用开发者只需关注在接口中实现业务能力，使用async之类的标识修改接口本身规格是不合理的。

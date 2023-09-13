@@ -32,7 +32,7 @@ The underlying devices manage the data by device. The device KV stores support d
 The **DatamgrService** provides the following synchronization types:
 
 
-- Manual synchronization: The application calls **sync()** to trigger a synchronization. The list of devices to be synchronized and the synchronization mode must be specified. The synchronization mode can be **PULL_ONLY** (pulling remote data to the local end), **PUSH_ONLY** (pushing local data to the remote end), or **PUSH_PULL** (pushing local data to the remote end and pulling remote data to the local end). You can use the [**sync()** with the **query** parameter](../reference/apis/js-apis-distributedKVStore.md#sync-1) to synchronize the data that meets the specified conditions. The manual synchronization is available only for system applications.
+- Manual synchronization: The application calls **sync()** to trigger a synchronization. The list of devices to be synchronized and the synchronization mode must be specified. The synchronization mode can be **PULL_ONLY** (pulling remote data to the local end), **PUSH_ONLY** (pushing local data to the remote end), or **PUSH_PULL** (pushing local data to the remote end and pulling remote data to the local end). You can use the [**sync()** with the **query** parameter](../reference/apis/js-apis-distributedKVStore.md#sync-1) to synchronize the data that meets the specified conditions.
 
 - Automatic synchronization: The distributed database automatically pushes local data to the remote end and pulls remote data to the local end. An automatic synchronization is triggered when a device goes online or an application updates data.
 
@@ -71,8 +71,6 @@ When data is added, deleted, or modified, a notification is sent to the subscrib
 - A maximum of 16 KV stores can be opened simultaneously for an application.
 
 - Each KV store supports a maximum of eight callbacks for subscription of data change notifications.
-
-- The manual synchronization is available only for system applications.
 
 
 ## Available APIs
@@ -171,7 +169,7 @@ The following uses a single KV store as an example to describe how to implement 
          return;
        }
        console.info('Succeeded in getting KVStore.');
-       // Perform related data operations.
+       // Before performing related data operations, obtain a KV store instance.
      });
    } catch (e) {
      console.error(`An unexpected error occurred. Code:${e.code},message:${e.message}`);
@@ -247,32 +245,31 @@ The following uses a single KV store as an example to describe how to implement 
 
    > **NOTE**
    >
-   > If manual synchronization is used, **deviceIds** is obtained by using [devManager.getTrustedDeviceListSync](../reference/apis/js-apis-device-manager.md#gettrusteddevicelistsync). The APIs of the **deviceManager** module are all system interfaces and available only to system applications.
+   > If manual synchronization is used, **deviceIds** can be obtained by [devManager.getAvailableDeviceListSync](../reference/apis/js-apis-distributedDeviceManager.md#getavailabledevicelistsync).
 
-     
    ```js
-   import deviceManager from '@ohos.distributedHardware.deviceManager';
+   import deviceManager from '@ohos.distributedDeviceManager';
    
    let devManager;
-   // create deviceManager
-   deviceManager.createDeviceManager('bundleName', (err, value) => {
-     if (!err) {
-       devManager = value;
-       // deviceIds is obtained by devManager.getTrustedDeviceListSync.
-       let deviceIds = [];
-       if (devManager !== null) {
-         // The ohos.permission.ACCESS_SERVICE_DM permission is required. This permission is available only for system applications.
-         let devices = devManager.getTrustedDeviceListSync();
-         for (let i = 0; i < devices.length; i++) {
-           deviceIds[i] = devices[i].deviceId;
-         }
-       }
-       try {
-         // 1000 indicates the maximum delay, in ms.
-         kvStore.sync(deviceIds, distributedKVStore.SyncMode.PUSH_ONLY, 1000);
-       } catch (e) {
-         console.error(`An unexpected error occurred. Code:${e.code},message:${e.message}`);
+   try {
+     // create deviceManager
+     devManager = deviceManager.createDeviceManager(context.applicationInfo.name);
+     // deviceIds is obtained by devManager.getAvailableDeviceListSync.
+     let deviceIds = [];
+     if (devManager != null) {
+       let devices = devManager.getAvailableDeviceListSync();
+       for (let i = 0; i < devices.length; i++) {
+         deviceIds[i] = devices[i].networkId;
        }
      }
-   });
+     try {
+       // 1000 indicates the maximum delay, in ms.
+       kvStore.sync(deviceIds, distributedKVStore.SyncMode.PUSH_ONLY, 1000);
+     } catch (e) {
+       console.error(`An unexpected error occurred. Code:${e.code},message:${e.message}`);
+     }
+   
+   } catch (err) {
+     console.error("createDeviceManager errCode:" + err.code + ",errMessage:" + err.message);
+   }
    ```

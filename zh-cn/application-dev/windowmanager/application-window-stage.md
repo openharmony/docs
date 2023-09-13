@@ -68,37 +68,42 @@
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import window from '@ohos.window';
+import { BusinessError } from '@ohos.base';
 
 export default class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage) {
-        // 1.获取应用主窗口。
-        let windowClass = null;
-        windowStage.getMainWindow((err, data) => {
-            if (err.code) {
-                console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(err));
-                return;
-            }
-            windowClass = data;
-            console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
-            // 2.设置主窗口属性。以设置"是否可触"属性为例。
-            let isTouchable = true;
-            windowClass.setWindowTouchable(isTouchable, (err) => {
-                if (err.code) {
-                    console.error('Failed to set the window to be touchable. Cause:' + JSON.stringify(err));
-                    return;
-                }
-                console.info('Succeeded in setting the window to be touchable.');
-            })
-        })
-        // 3.为主窗口加载对应的目标页面。
-        windowStage.loadContent("pages/page2", (err) => {
-            if (err.code) {
-                console.error('Failed to load the content. Cause:' + JSON.stringify(err));
-                return;
-            }
-            console.info('Succeeded in loading the content.');
-        });
-    }
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    // 1.获取应用主窗口。
+    let windowClass: window.Window | null = null;
+    windowStage.getMainWindow((err: BusinessError, data) => {
+      let errCode: number = err.code;
+      if (errCode) {
+        console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(err));
+        return;
+      }
+      windowClass = data;
+      console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
+      // 2.设置主窗口属性。以设置"是否可触"属性为例。
+      let isTouchable: boolean = true;
+      windowClass.setWindowTouchable(isTouchable, (err: BusinessError) => {
+        let errCode: number = err.code;
+        if (errCode) {
+          console.error('Failed to set the window to be touchable. Cause:' + JSON.stringify(err));
+          return;
+        }
+        console.info('Succeeded in setting the window to be touchable.');
+      })
+    })
+    // 3.为主窗口加载对应的目标页面。
+    windowStage.loadContent("pages/page2", (err: BusinessError) => {
+      let errCode: number = err.code;
+      if (errCode) {
+        console.error('Failed to load the content. Cause:' + JSON.stringify(err));
+        return;
+      }
+      console.info('Succeeded in loading the content.');
+    });
+  }
 };
 ```
 
@@ -126,58 +131,71 @@ export default class EntryAbility extends UIAbility {
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import window from '@ohos.window';
+import { BusinessError } from '@ohos.base';
 
-let windowStage_ = null;
-let sub_windowClass = null;
+let windowStage_: window.WindowStage | null = null;
+let sub_windowClass: window.Window | null = null;
 
 export default class EntryAbility extends UIAbility {
   showSubWindow() {
     // 1.创建应用子窗口。
-    windowStage_.createSubWindow("mySubWindow", (err, data) => {
-      if (err.code) {
-        console.error('Failed to create the subwindow. Cause: ' + JSON.stringify(err));
-        return;
-      }
-      sub_windowClass = data;
-      console.info('Succeeded in creating the subwindow. Data: ' + JSON.stringify(data));
-      // 2.子窗口创建成功后，设置子窗口的位置、大小及相关属性等。
-      sub_windowClass.moveWindowTo(300, 300, (err) => {
-        if (err.code) {
-          console.error('Failed to move the window. Cause:' + JSON.stringify(err));
+    if (windowStage_ == null) {
+      console.error('Failed to create the subwindow. Cause: windowStage_ is null');
+    }
+    else {
+      windowStage_.createSubWindow("mySubWindow", (err: BusinessError, data) => {
+        let errCode: number = err.code;
+        if (errCode) {
+          console.error('Failed to create the subwindow. Cause: ' + JSON.stringify(err));
           return;
         }
-        console.info('Succeeded in moving the window.');
-      });
-      sub_windowClass.resize(500, 500, (err) => {
-        if (err.code) {
-          console.error('Failed to change the window size. Cause:' + JSON.stringify(err));
-          return;
-        }
-        console.info('Succeeded in changing the window size.');
-      });
-      // 3.为子窗口加载对应的目标页面。
-      sub_windowClass.setUIContent("pages/page3", (err) => {
-        if (err.code) {
-          console.error('Failed to load the content. Cause:' + JSON.stringify(err));
-          return;
-        }
-        console.info('Succeeded in loading the content.');
-        // 3.显示子窗口。
-        sub_windowClass.showWindow((err) => {
-          if (err.code) {
-            console.error('Failed to show the window. Cause: ' + JSON.stringify(err));
+        sub_windowClass = data;
+        console.info('Succeeded in creating the subwindow. Data: ' + JSON.stringify(data));
+        // 2.子窗口创建成功后，设置子窗口的位置、大小及相关属性等。
+        sub_windowClass.moveWindowTo(300, 300, (err: BusinessError) => {
+          let errCode: number = err.code;
+          if (errCode) {
+            console.error('Failed to move the window. Cause:' + JSON.stringify(err));
             return;
           }
-          console.info('Succeeded in showing the window.');
+          console.info('Succeeded in moving the window.');
         });
-      });
-    })
+        sub_windowClass.resize(500, 500, (err: BusinessError) => {
+          let errCode: number = err.code;
+          if (errCode) {
+            console.error('Failed to change the window size. Cause:' + JSON.stringify(err));
+            return;
+          }
+          console.info('Succeeded in changing the window size.');
+        });
+        // 3.为子窗口加载对应的目标页面。
+        sub_windowClass.setUIContent("pages/page3", (err: BusinessError) => {
+          let errCode: number = err.code;
+          if (errCode) {
+            console.error('Failed to load the content. Cause:' + JSON.stringify(err));
+            return;
+          }
+          console.info('Succeeded in loading the content.');
+          // 3.显示子窗口。
+          (sub_windowClass as window.Window).showWindow((err: BusinessError) => {
+            let errCode: number = err.code;
+            if (errCode) {
+              console.error('Failed to show the window. Cause: ' + JSON.stringify(err));
+              return;
+            }
+            console.info('Succeeded in showing the window.');
+          });
+        });
+      })
+    }
   }
 
   destroySubWindow() {
     // 4.销毁子窗口。当不再需要子窗口时，可根据具体实现逻辑，使用destroy对其进行销毁。
-    sub_windowClass.destroyWindow((err) => {
-      if (err.code) {
+    (sub_windowClass as window.Window).destroyWindow((err: BusinessError) => {
+      let errCode: number = err.code;
+      if (errCode) {
         console.error('Failed to destroy the window. Cause: ' + JSON.stringify(err));
         return;
       }
@@ -185,7 +203,7 @@ export default class EntryAbility extends UIAbility {
     });
   }
 
-  onWindowStageCreate(windowStage) {
+  onWindowStageCreate(windowStage: window.WindowStage) {
     windowStage_ = windowStage;
     // 开发者可以在适当的时机，如主窗口上按钮点击事件等，创建子窗口。并不一定需要在onWindowStageCreate调用，这里仅作展示
     this.showSubWindow();
@@ -221,13 +239,16 @@ export default class EntryAbility extends UIAbility {
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import window from '@ohos.window';
+import { BusinessError } from '@ohos.base';
 
 export default class EntryAbility extends UIAbility {
-  onWindowStageCreate(windowStage) {
+  onWindowStageCreate(windowStage: window.WindowStage) {
     // 1.获取应用主窗口。
-    let windowClass = null;
-    windowStage.getMainWindow((err, data) => {
-      if (err.code) {
+    let windowClass: window.Window | null = null;
+    windowStage.getMainWindow((err: BusinessError, data) => {
+      let errCode: number = err.code;
+      if (errCode) {
         console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(err));
         return;
       }
@@ -235,9 +256,10 @@ export default class EntryAbility extends UIAbility {
       console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
 
       // 2.实现沉浸式效果。方式一：设置导航栏、状态栏不显示。
-      let names = [];
-      windowClass.setWindowSystemBarEnable(names, (err) => {
-        if (err.code) {
+      let names: Array<'status' | 'navigation'> = [];
+      windowClass.setWindowSystemBarEnable(names, (err: BusinessError) => {
+        let errCode: number = err.code;
+        if (errCode) {
           console.error('Failed to set the system bar to be visible. Cause:' + JSON.stringify(err));
           return;
         }
@@ -245,22 +267,24 @@ export default class EntryAbility extends UIAbility {
       });
       // 2.实现沉浸式效果。方式二：设置窗口为全屏布局，配合设置导航栏、状态栏的透明度、背景/文字颜色及高亮图标等属性，与主窗口显示保持协调一致。
       let isLayoutFullScreen = true;
-      windowClass.setWindowLayoutFullScreen(isLayoutFullScreen, (err) => {
-        if (err.code) {
+      windowClass.setWindowLayoutFullScreen(isLayoutFullScreen, (err: BusinessError) => {
+        let errCode: number = err.code;
+        if (errCode) {
           console.error('Failed to set the window layout to full-screen mode. Cause:' + JSON.stringify(err));
           return;
         }
         console.info('Succeeded in setting the window layout to full-screen mode.');
       });
-      let sysBarProps = {
+      let sysBarProps: window.SystemBarProperties = {
         statusBarColor: '#ff00ff',
         navigationBarColor: '#00ff00',
         // 以下两个属性从API Version 8开始支持
         statusBarContentColor: '#ffffff',
         navigationBarContentColor: '#ffffff'
       };
-      windowClass.setWindowSystemBarProperties(sysBarProps, (err) => {
-        if (err.code) {
+      windowClass.setWindowSystemBarProperties(sysBarProps, (err: BusinessError) => {
+        let errCode: number = err.code;
+        if (errCode) {
           console.error('Failed to set the system bar properties. Cause: ' + JSON.stringify(err));
           return;
         }
@@ -268,8 +292,9 @@ export default class EntryAbility extends UIAbility {
       });
     })
     // 3.为沉浸式窗口加载对应的目标页面。
-    windowStage.loadContent("pages/page2", (err) => {
-      if (err.code) {
+    windowStage.loadContent("pages/page2", (err: BusinessError) => {
+      let errCode: number = err.code;
+      if (errCode) {
         console.error('Failed to load the content. Cause:' + JSON.stringify(err));
         return;
       }
@@ -307,46 +332,52 @@ export default class EntryAbility extends UIAbility {
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
 import window from '@ohos.window';
+import { BusinessError } from '@ohos.base';
 
 export default class EntryAbility extends UIAbility {
-  onWindowStageCreate(windowStage) {
+  onWindowStageCreate(windowStage: window.WindowStage) {
     // 1.创建悬浮窗。
-    let windowClass = null;
-    let config = {
+    let windowClass: window.Window | null = null;
+    let config: window.Configuration = {
       name: "floatWindow", windowType: window.WindowType.TYPE_FLOAT, ctx: this.context
     };
-    window.createWindow(config, (err, data) => {
-      if (err.code) {
+    window.createWindow(config, (err: BusinessError, data) => {
+      let errCode: number = err.code;
+      if (errCode) {
         console.error('Failed to create the floatWindow. Cause: ' + JSON.stringify(err));
         return;
       }
       console.info('Succeeded in creating the floatWindow. Data: ' + JSON.stringify(data));
       windowClass = data;
       // 2.悬浮窗窗口创建成功后，设置悬浮窗的位置、大小及相关属性等。
-      windowClass.moveWindowTo(300, 300, (err) => {
-        if (err.code) {
+      windowClass.moveWindowTo(300, 300, (err: BusinessError) => {
+        let errCode: number = err.code;
+        if (errCode) {
           console.error('Failed to move the window. Cause:' + JSON.stringify(err));
           return;
         }
         console.info('Succeeded in moving the window.');
       });
-      windowClass.resize(500, 500, (err) => {
-        if (err.code) {
+      windowClass.resize(500, 500, (err: BusinessError) => {
+        let errCode: number = err.code;
+        if (errCode) {
           console.error('Failed to change the window size. Cause:' + JSON.stringify(err));
           return;
         }
         console.info('Succeeded in changing the window size.');
       });
       // 3.为悬浮窗加载对应的目标页面。
-      windowClass.setUIContent("pages/page4", (err) => {
-        if (err.code) {
+      windowClass.setUIContent("pages/page4", (err: BusinessError) => {
+        let errCode: number = err.code;
+        if (errCode) {
           console.error('Failed to load the content. Cause:' + JSON.stringify(err));
           return;
         }
         console.info('Succeeded in loading the content.');
         // 3.显示悬浮窗。
-        windowClass.showWindow((err) => {
-          if (err.code) {
+        (windowClass as window.Window).showWindow((err: BusinessError) => {
+          let errCode: number = err.code;
+          if (errCode) {
             console.error('Failed to show the window. Cause: ' + JSON.stringify(err));
             return;
           }
@@ -354,8 +385,9 @@ export default class EntryAbility extends UIAbility {
         });
       });
       // 4.销毁悬浮窗。当不再需要悬浮窗时，可根据具体实现逻辑，使用destroy对其进行销毁。
-      windowClass.destroyWindow((err) => {
-        if (err.code) {
+      windowClass.destroyWindow((err: BusinessError) => {
+        let errCode: number = err.code;
+        if (errCode) {
           console.error('Failed to destroy the window. Cause: ' + JSON.stringify(err));
           return;
         }
@@ -372,4 +404,6 @@ export default class EntryAbility extends UIAbility {
 
 - [`Window`：一多设置典型页面（Settings）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/MultiDeviceAppDev/Settings)
 
-- [`WindowManage`：窗口管理（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/WindowManagement/WindowManage)
+- [窗口管理（ArkTS）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/WindowManagement/WindowManage)
+
+- [窗口（ArkTS）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/WindowManagement/WindowRatio)

@@ -9,6 +9,8 @@
 ```ts
 import audio from '@ohos.multimedia.audio';  // 导入audio模块
 
+import { BusinessError } from '@ohos.base'; // 导入BusinessError
+
 let audioManager = audio.getAudioManager();  // 需要先创建AudioManager实例
 
 let audioRoutingManager = audioManager.getRoutingManager();  // 再调用AudioManager的方法创建AudioRoutingManager实例
@@ -30,7 +32,7 @@ let audioRoutingManager = audioManager.getRoutingManager();  // 再调用AudioMa
 使用getDevices()方法可以获取当前所有输入设备的信息。
 
 ```ts
-audioRoutingManager.getDevices(audio.DeviceFlag.INPUT_DEVICES_FLAG).then((data) => {
+audioRoutingManager.getDevices(audio.DeviceFlag.INPUT_DEVICES_FLAG).then((data: audio.AudioDeviceDescriptors) => {
   console.info('Promise returned to indicate that the device list is obtained.');
 });
 ```
@@ -41,7 +43,7 @@ audioRoutingManager.getDevices(audio.DeviceFlag.INPUT_DEVICES_FLAG).then((data) 
 
 ```ts
 // 监听音频设备状态变化
-audioRoutingManager.on('deviceChange', audio.DeviceFlag.INPUT_DEVICES_FLAG, (deviceChanged) => {
+audioRoutingManager.on('deviceChange', audio.DeviceFlag.INPUT_DEVICES_FLAG, (deviceChanged: audio.DeviceChangeAction) => {
   console.info('device change type : ' + deviceChanged.type);  // 设备连接状态变化，0为连接，1为断开连接
   console.info('device descriptor size : ' + deviceChanged.deviceDescriptors.length);
   console.info('device change descriptor : ' + deviceChanged.deviceDescriptors[0].deviceRole);  // 设备角色
@@ -49,7 +51,7 @@ audioRoutingManager.on('deviceChange', audio.DeviceFlag.INPUT_DEVICES_FLAG, (dev
 });
 
 // 取消监听音频设备状态变化
-audioRoutingManager.off('deviceChange', (deviceChanged) => {
+audioRoutingManager.off('deviceChange', (deviceChanged: audio.DeviceChangeAction) => {
   console.info('Should be no callback.');
 });
 ```
@@ -63,7 +65,8 @@ audioRoutingManager.off('deviceChange', (deviceChanged) => {
 > 用户可以选择连接一组音频设备（如一对蓝牙耳机），但系统侧只感知为一个设备，该组设备共用一个设备id。
 
 ```ts
-let inputAudioDeviceDescriptor = [{
+import audio from '@ohos.multimedia.audio';
+let inputAudioDeviceDescriptor: audio.AudioDeviceDescriptors = [{
     deviceRole : audio.DeviceRole.INPUT_DEVICE,
     deviceType : audio.DeviceType.EARPIECE,
     id : 1,
@@ -75,12 +78,13 @@ let inputAudioDeviceDescriptor = [{
     networkId : audio.LOCAL_NETWORK_ID,
     interruptGroupId : 1,
     volumeGroupId : 1,
+    displayName : ""
 }];
 
-async function getRoutingManager(){
+async function getRoutingManager() {
     audioRoutingManager.selectInputDevice(inputAudioDeviceDescriptor).then(() => {
       console.info('Invoke selectInputDevice succeeded.');
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
       console.error(`Invoke selectInputDevice failed, code is ${err.code}, message is ${err.message}`);
     });
 }

@@ -37,3 +37,9 @@
 ## 跨设备同步访问控制机制
 
 数据跨设备同步时，数据管理基于设备等级和数据安全标签进行访问控制，具体可见[跨设备同步访问控制机制](access-control-by-device-and-data-level.md#跨设备同步访问控制机制)。
+
+## 相关实例
+
+针对分布式开发，有以下相关实例可供参考：
+
+- [分布式组网认证（ArkTS）（Full SDK）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/DistributedAppDev/DistributedAuthentication)

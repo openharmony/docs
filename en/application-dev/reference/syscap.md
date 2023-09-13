@@ -93,7 +93,7 @@ By default, the associated SysCap set of an application is the union of multiple
 
 ### Checking Whether an API Is Available
 
-You can use either the ArtTS or native API to determine whether an API is available.
+You can use either the ArkTS or native API to determine whether an API is available.
 
 - ArkTS API
 
@@ -110,11 +110,11 @@ You can use either the ArtTS or native API to determine whether an API is availa
   - Method 2: Import a module using the **import** API. If the current device does not support the module, the import result is **undefined**. Before using an API, you must make sure the API is available.
 
 	```ts
-	import geolocation from '@ohos.geolocation';
+	import geolocationManager from '@ohos.geoLocationManager';
 
-	if (geolocation) {
-	geolocation.getCurrentLocation((location) => {
-		console.log(location.latitude, location.longitude);
+	if (geolocationManager) {
+	geolocationManager.getCurrentLocation((location) => {
+		console.log('current location: ' + JSON.stringify(location));
 	});
 	} else {
 	console.log('This device does not support location information.');

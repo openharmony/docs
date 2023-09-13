@@ -2,7 +2,7 @@
 
 - [Full SDK Compilation](full-sdk-compile-guide.md)
 - [Switching to Full SDK](full-sdk-switch-guide.md)
-- [Using Native APIs (NDK) of the OpenHarmony SDK in a CMake Project](cmake-with-ndk.md)
+- [Using NDK in a CMake Project](cmake-with-ndk.md)
 - [Application Model Development](faqs-ability.md)
 - ArkUI Development (ArkTS)
   - [ArkTS Syntax Usage](faqs-arkui-arkts.md)

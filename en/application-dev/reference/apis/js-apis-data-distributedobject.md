@@ -23,10 +23,10 @@ Creates a distributed data object.
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | context | Context | Yes| Application context.<br>For details about the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](js-apis-inner-application-uiAbilityContext.md).|
-  | source | object | Yes| Attributes of the distributed data object.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| context | Context | Yes| Application context.<br>For details about the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](js-apis-inner-application-uiAbilityContext.md).|
+| source | object | Yes| Attributes of the distributed data object.|
 
 **Return value**
 
@@ -42,10 +42,20 @@ FA model:
 // Import the module.
 import distributedObject from '@ohos.data.distributedDataObject';
 import featureAbility from '@ohos.ability.featureAbility';
+import { BusinessError } from '@ohos.base';
 // Obtain the context.
 let context = featureAbility.getContext();
-// Create a distributed data object, which contains attributes of the string, number, boolean, and object types.
-let g_object = distributedObject.create(context, {name:"Amy", age:18, isVis:false, parent:{mother:"jack mom",father:"jack Dad"}});
+interface sourceObject{
+    name: string,
+    age: number,
+    isVis: boolean
+}
+let source: sourceObject = {
+    name: "amy",
+    age:18,
+    isVis:false
+}
+let g_object: distributedObject.DataObject = distributedObject.create(context, source);
 ```
 
 Stage model:
@@ -54,13 +64,23 @@ Stage model:
 // Import the module.
 import distributedObject from '@ohos.data.distributedDataObject';
 import UIAbility from '@ohos.app.ability.UIAbility';
+import { BusinessError } from '@ohos.base';
+import window from '@ohos.window';
 
-let g_object = null;
-
+let g_object: distributedObject.DataObject = null;
+interface sourceObject{
+    name: string,
+    age: number,
+    isVis: boolean
+}
 class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage){
-        // Create a distributed data object, which has attributes of the string, number, boolean, and object types.
-        g_object = distributedObject.create(this.context, {name:"Amy", age:18, isVis:false, parent:{mother:"jack mom",father:"jack Dad"}});
+    onWindowStageCreate(windowStage: window.WindowStage) {
+        let source: sourceObject = {
+            name: "amy",
+            age:18,
+            isVis:false
+        }
+        g_object = distributedObject.create(this.context, source);
     }
 }
 ```
@@ -75,15 +95,15 @@ Creates a random session ID.
 
 **Return value**
 
-  | Type| Description|
-  | -------- | -------- |
-  | string | Session ID created.|
+| Type| Description|
+| -------- | -------- |
+| string | Session ID created.|
 
 **Example**
 
 ```js
 import distributedObject from '@ohos.data.distributedDataObject';
-let sessionId = distributedObject.genSessionId();
+let sessionId: string = distributedObject.genSessionId();
 ```
 
 ## SaveSuccessResponse<sup>9+</sup>
@@ -124,18 +144,18 @@ Sets a session ID for synchronization. Automatic synchronization is performed fo
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | sessionId | string | Yes| ID of a distributed data object on a trusted network.|
-  | callback | AsyncCallback&lt;void&gt; | Yes| Asynchronous callback invoked when the session ID is successfully set.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| sessionId | string | Yes| ID of a distributed data object on a trusted network.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Asynchronous callback invoked when the session ID is successfully set.|
 
 **Error codes**
 
   For details about the error codes, see [Distributed Data Object Error Codes](../errorcodes/errorcode-distributed-dataObject.md).
 
-  | ID| Error Message|
-  | -------- | -------- |
-  | 15400001 | Create table failed.|
+| ID| Error Message|
+| -------- | -------- |
+| 15400001 | Create table failed.|
 
 **Example**
 
@@ -158,17 +178,17 @@ Exits all joined sessions.
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;void&gt; | Yes| Asynchronous callback invoked when the distributed data object exits all joined sessions.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| callback | AsyncCallback&lt;void&gt; | Yes| Asynchronous callback invoked when the distributed data object exits all joined sessions.|
 
 **Error codes**
 
   For details about the error codes, see [Distributed Data Object Error Codes](../errorcodes/errorcode-distributed-dataObject.md).
 
-  | ID| Error Message|
-  | -------- | -------- |
-  | 15400001 | Create table failed.|
+| ID| Error Message|
+| -------- | -------- |
+| 15400001 | Create table failed.|
 
 **Example**
 
@@ -179,7 +199,7 @@ g_object.setSessionId(distributedObject.genSessionId(), ()=>{
 });
 // Exit the distributed network.
 g_object.setSessionId(() => {
-    console.info("leave all lession.");
+    console.info("leave all session.");
 });
 ```
 
@@ -195,9 +215,9 @@ Sets a session ID for synchronization. Automatic synchronization is performed fo
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | sessionId | string | No| ID of a distributed data object on a trusted network. To remove a distributed data object from the network, set this parameter to "" or leave it empty.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| sessionId | string | No| ID of a distributed data object on a trusted network. To remove a distributed data object from the network, set this parameter to "" or leave it empty.|
 
 **Return value**
 
@@ -209,9 +229,9 @@ Sets a session ID for synchronization. Automatic synchronization is performed fo
 
   For details about the error codes, see [Distributed Data Object Error Codes](../errorcodes/errorcode-distributed-dataObject.md).
 
-  | ID| Error Message|
-  | -------- | -------- |
-  | 15400001 | Create table failed.|
+| ID| Error Message|
+| -------- | -------- |
+| 15400001 | Create table failed.|
 
 **Example**
 
@@ -219,13 +239,13 @@ Sets a session ID for synchronization. Automatic synchronization is performed fo
 // Add g_object to the distributed network.
 g_object.setSessionId(distributedObject.genSessionId()).then (()=>{
     console.info("join session.");
-    }).catch((error)=>{
+    }).catch((error: BusinessError)=>{
         console.info("error:" + error.code + error.message);
 });
 // Exit the distributed network.
 g_object.setSessionId().then (()=>{
-    console.info("leave all lession.");
-    }).catch((error)=>{
+    console.info("leave all session.");
+    }).catch((error: BusinessError)=>{
         console.info("error:" + error.code + error.message);
 });
 ```
@@ -240,23 +260,26 @@ Subscribes to data changes of this distributed data object.
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Event type to subscribe to. The value is **change**, which indicates data changes.|
-  | callback | Callback<{ sessionId: string, fields: Array&lt;string&gt; }> | Yes| Callback invoked to return the changes of the distributed data object.<br>**sessionId** indicates the session ID of the distributed data object.<br>**fields** indicates the changed attributes of the distributed data object.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| type | string | Yes| Event type to subscribe to. The value is **change**, which indicates data changes.|
+| callback | Callback<{ sessionId: string, fields: Array&lt;string&gt; }> | Yes| Callback invoked to return the changes of the distributed data object.<br>**sessionId** indicates the session ID of the distributed data object.<br>**fields** indicates the changed attributes of the distributed data object.|
 
 **Example**
 
 ```js
-globalThis.changeCallback = (sessionId, changeData) => {
-    console.info("change" + sessionId);
-    if (changeData != null && changeData != undefined) {
-        changeData.forEach(element => {
-        console.info("changed !" + element + " " + g_object[element]);
-        });
-    }
+interface ChangeCallback {
+  sessionId: string,
+  fields: Array<string>
 }
-g_object.on("change", globalThis.changeCallback);
+g_object.on("change", (changeData: ChangeCallback) => {
+    console.info("change" + changeData.sessionId);
+    if (changeData.fields != null && changeData.fields != undefined) {
+        for (let index: number = 0; index < changeData.fields.length; index++) {
+            console.info("changed !" + changeData.fields[index] + " " + g_object[changeData.fields[index]]);
+        }
+    }
+});
 ```
 
 ### off('change')<sup>9+</sup>
@@ -269,17 +292,24 @@ Unsubscribes from the data changes of this distributed data object.
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
 | type | string | Yes| Event type to unsubscribe from. The value is **change**, which indicates data changes.|
-  | callback | Callback<{ sessionId: string, fields: Array&lt;string&gt; }> | No| Callback for data changes. If this parameter is not specified, all data change callbacks of this distributed data object will be unregistered.<br>**sessionId** indicates the session ID of the distributed data object.<br>**fields** indicates the changed attributes of the distributed data object.|
+| callback | Callback<{ sessionId: string, fields: Array&lt;string&gt; }> | No| Callback for data changes. If this parameter is not specified, all data change callbacks of this distributed data object will be unregistered.<br>**sessionId** indicates the session ID of the distributed data object.<br>**fields** indicates the changed attributes of the distributed data object.|
 
 
 **Example**
 
 ```js
 // Unregister the specified data change callback.
-g_object.off("change", globalThis.changeCallback);
+g_object.off("change", (changeData:ChangeCallback) => {
+    console.info("change" + changeData.sessionId);
+    if (changeData.fields != null && changeData.fields != undefined) {
+        for (let index: number = 0; index < changeData.fields.length; index++) {
+            console.info("changed !" + changeData.fields[index] + " " + g_object[changeData.fields[index]]);
+        }
+    }
+});
 // Unregister all data change callbacks.
 g_object.off("change");
 ```
@@ -294,18 +324,23 @@ Subscribes to status changes of this distributed data object.
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Event type to subscribe to. The value is **status**, which indicates the status change (online or offline) of the distributed data object.|
-  | callback | Callback<{ sessionId: string, networkId: string, status: 'online' \| 'offline' }> | Yes| Callback invoked to return the status change.<br>**sessionId** indicates the session ID of the distributed data object.<br>**networkId** indicates the object device ID, that is, **deviceId**.<br>**status** indicates the object status, which can be online or offline.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| type | string | Yes| Event type to subscribe to. The value is **status**, which indicates the status change (online or offline) of the distributed data object.|
+| callback | Callback<{ sessionId: string, networkId: string, status: 'online' \| 'offline' }> | Yes| Callback invoked to return the status change.<br>**sessionId** indicates the session ID of the distributed data object.<br>**networkId** indicates the object device ID, that is, **deviceId**.<br>**status** indicates the object status, which can be online or offline.|
 
 **Example**
 
 ```js
-globalThis.statusCallback = (sessionId, networkId, status) => {
-    globalThis.response += "status changed " + sessionId + " " + status + " " + networkId;
+interface onStatusCallback {
+    sessionId: string,
+    networkId: string,
+    status: 'online' | 'offline'
 }
-g_object.on("status", globalThis.statusCallback);
+
+g_object.on("status", (statusCallback:onStatusCallback) => {
+    console.info("status changed " + statusCallback.sessionId + " " + statusCallback.status + " " + statusCallback.networkId);
+});
 ```
 
 ### off('status')<sup>9+</sup>
@@ -318,20 +353,24 @@ Unsubscribes from the status change of this distributed data object.
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
 | type | string | Yes| Event type to unsubscribe from. The value is **status**, which indicates the status change (online or offline) of the distributed data object.|
-  | callback | Callback<{ sessionId: string, deviceId: string, status: 'online' \| 'offline' }> | No| Callback for status changes. If this parameter is not specified, all status change callbacks of this distributed data object will be unsubscribed from.<br>**sessionId** indicates the session ID of the distributed data object.<br>**deviceId** indicates the device ID of the distributed data object.<br>**status** indicates the object status, which can be online or offline.|
+| callback | Callback<{ sessionId: string, deviceId: string, status: 'online' \| 'offline' }> | No| Callback for status changes. If this parameter is not specified, all status change callbacks of this distributed data object will be unsubscribed from.<br>**sessionId** indicates the session ID of the distributed data object.<br>**deviceId** indicates the device ID of the distributed data object.<br>**status** indicates the object status, which can be online or offline.|
 
 
 **Example**
 
 ```js
-globalThis.statusCallback = (sessionId, networkId, status) => {
-    globalThis.response += "status changed " + sessionId + " " + status + " " + networkId;
+interface offStatusCallback {
+    sessionId: string,
+    networkId: string,
+    status: 'online' | 'offline'
 }
 // Unregister the specified status change callback.
-g_object.off("status",globalThis.statusCallback);
+g_object.off("status", (statusCallback:StatusCallback) => {
+    console.info("status changed " + statusCallback.sessionId + " " + statusCallback.status + " " + statusCallback.networkId);
+});
 // Unregister all status change callbacks.
 g_object.off("status");
 ```
@@ -354,16 +393,16 @@ The saved data will be released in the following cases:
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | deviceId | string | Yes| ID of the device where data is stored. The value **local** indicates the local device.|
-  | callback | AsyncCallback&lt;[SaveSuccessResponse](#savesuccessresponse9)&gt; | Yes| Callback invoked to return **SaveSuccessResponse**, which contains information such as session ID, version, and device ID.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| deviceId | string | Yes| ID of the device where data is stored. The value **local** indicates the local device.|
+| callback | AsyncCallback&lt;[SaveSuccessResponse](#savesuccessresponse9)&gt; | Yes| Callback invoked to return **SaveSuccessResponse**, which contains information such as session ID, version, and device ID.|
 
 **Example**
 
 ```ts
 g_object.setSessionId("123456");
-g_object.save("local", (err, result) => {
+g_object.save("local", (err: BusinessError, result:distributedObject.SaveSuccessResponse) => {
     if (err) {
         console.info("save failed, error code = " + err.code);
         console.info("save failed, error message: " + err.message);
@@ -394,26 +433,26 @@ The saved data will be released in the following cases:
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | deviceId | string | Yes| ID of the device where the data is saved. The default value is **local**, which indicates the local device. |
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| deviceId | string | Yes| ID of the device where the data is saved. The default value is **local**, which indicates the local device. |
 
 **Return value**
 
-  | Type| Description|
-  | -------- | -------- |
-  | Promise&lt;[SaveSuccessResponse](#savesuccessresponse9)&gt; | Promise used to return **SaveSuccessResponse**, which contains information such as session ID, version, and device ID.|
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;[SaveSuccessResponse](#savesuccessresponse9)&gt; | Promise used to return **SaveSuccessResponse**, which contains information such as session ID, version, and device ID.|
 
 **Example**
 
 ```js
 g_object.setSessionId("123456");
-g_object.save("local").then((result) => {
+g_object.save("local").then((result: distributedObject.SaveSuccessResponse) => {
     console.info("save callback");
     console.info("save sessionId " + result.sessionId);
     console.info("save version " + result.version);
     console.info("save deviceId " + result.deviceId);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
     console.info("save failed, error code = " + err.code);
     console.info("save failed, error message: " + err.message);
 });
@@ -432,16 +471,16 @@ If the object is stored on another device, the data on the local device will be 
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;[RevokeSaveSuccessResponse](#revokesavesuccessresponse9)&gt; | Yes| Callback invoked to return **RevokeSaveSuccessResponse**, which contains the session ID.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| callback | AsyncCallback&lt;[RevokeSaveSuccessResponse](#revokesavesuccessresponse9)&gt; | Yes| Callback invoked to return **RevokeSaveSuccessResponse**, which contains the session ID.|
 
 **Example**
 
 ```js
 g_object.setSessionId("123456");
 // Save data for persistence. 
-g_object.save("local", (err, result) => {
+g_object.save("local", (err: BusinessError, result: distributedObject.SaveSuccessResponse) => {
     if (err) {
         console.info("save failed, error code = " + err.code);
         console.info("save failed, error message: " + err.message);
@@ -453,7 +492,7 @@ g_object.save("local", (err, result) => {
     console.info("save deviceId:  " + result.deviceId);
 });
 // Delete the persistence data.
-g_object.revokeSave((err, result) => {
+g_object.revokeSave((err: BusinessError, result: distributedObject.RevokeSaveSuccessResponse) => {
     if (err) {
       console.info("revokeSave failed, error code = " + err.code);
       console.info("revokeSave failed, error message: " + err.message);
@@ -477,29 +516,29 @@ If the object is stored on another device, the data on the local device will be 
 
 **Return value**
 
-  | Type| Description|
-  | -------- | -------- |
-  | Promise&lt;[RevokeSaveSuccessResponse](#revokesavesuccessresponse9)&gt; | Promise used to return **RevokeSaveSuccessResponse**, which contains the session ID.|
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;[RevokeSaveSuccessResponse](#revokesavesuccessresponse9)&gt; | Promise used to return **RevokeSaveSuccessResponse**, which contains the session ID.|
 
 **Example**
 
 ```ts
 g_object.setSessionId("123456");
-// Save data for persistence.
-g_object.save("local").then((result) => {
+// Save data for persistence. 
+g_object.save("local").then((result: distributedObject.SaveSuccessResponse) => {
     console.info("save callback");
     console.info("save sessionId " + result.sessionId);
     console.info("save version " + result.version);
     console.info("save deviceId " + result.deviceId);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
     console.info("save failed, error code = " + err.code);
     console.info("save failed, error message: " + err.message);
 });
 // Delete the persistence data.
-g_object.revokeSave().then((result) => {
+g_object.revokeSave().then((result: distributedObject.RevokeSaveSuccessResponse) => {
     console.info("revokeSave callback");
     console.info("sessionId" + result.sessionId);
-}).catch((err)=> {
+}).catch((err: BusinessError)=> {
     console.info("revokeSave failed, error code = " + err.code);
     console.info("revokeSave failed, error message = " + err.message);
 });
@@ -520,9 +559,9 @@ Creates a distributed data object.
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | source | object | Yes| Attributes of the distributed data object.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| source | object | Yes| Attributes of the distributed data object.|
 
 **Return value**
 
@@ -534,8 +573,17 @@ Creates a distributed data object.
 
 ```js
 import distributedObject from '@ohos.data.distributedDataObject';
-// Create a distributed data object, which contains attributes of the string, number, boolean, and object types.
-let g_object = distributedObject.createDistributedObject({name:"Amy", age:18, isVis:false, parent:{mother:"jack mom",father:"jack Dad"}});
+interface sourceObject{
+    name: string,
+    age: number,
+    isVis: boolean
+}
+let source: sourceObject = {
+    name: "amy",
+    age:18,
+    isVis:false
+}
+let g_object: distributedObject.DistributedObject = distributedObject.createDistributedObject(source);
 ```
 
 ## DistributedObject<sup>(deprecated)</sup>
@@ -558,21 +606,31 @@ Sets a session ID for synchronization. Automatic synchronization is performed fo
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | sessionId | string | No| ID of a distributed data object on a trusted network. To remove a distributed data object from the network, set this parameter to "" or leave it empty.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| sessionId | string | No| ID of a distributed data object on a trusted network. To remove a distributed data object from the network, set this parameter to "" or leave it empty.|
 
 **Return value**
 
-  | Type| Description|
-  | -------- | -------- |
-  | boolean | Returns **true** if the session ID is set successfully;<br>returns **false** otherwise. |
+| Type| Description|
+| -------- | -------- |
+| boolean | Returns **true** if the session ID is set successfully;<br>returns **false** otherwise. |
 
 **Example**
 
 ```js
 import distributedObject from '@ohos.data.distributedDataObject';
-let g_object = distributedObject.createDistributedObject({name:"Amy", age:18, isVis:false, parent:{mother:"jack mom",father:"jack Dad"}});;
+interface sourceObject{
+    name: string,
+    age: number,
+    isVis: boolean
+}
+let source: sourceObject = {
+    name: "amy",
+    age:18,
+    isVis:false
+}
+let g_object: distributedObject.DistributedObject = distributedObject.createDistributedObject(source);
 // Add g_object to the distributed network.
 g_object.setSessionId(distributedObject.genSessionId());
 // Remove g_object from the distributed network.
@@ -593,25 +651,38 @@ Subscribes to data changes of this distributed data object.
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Event type to subscribe to. The value is **change**, which indicates data changes.|
-  | callback | Callback<{ sessionId: string, fields: Array&lt;string&gt; }> | Yes| Callback invoked to return the changes of the distributed data object.<br>**sessionId** indicates the session ID of the distributed data object.<br>**fields** indicates the changed attributes of the distributed data object.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| type | string | Yes| Event type to subscribe to. The value is **change**, which indicates data changes.|
+| callback | Callback<{ sessionId: string, fields: Array&lt;string&gt; }> | Yes| Callback invoked to return the changes of the distributed data object.<br>**sessionId** indicates the session ID of the distributed data object.<br>**fields** indicates the changed attributes of the distributed data object.|
 
 **Example**
 
 ```js
 import distributedObject from '@ohos.data.distributedDataObject';
-let g_object = distributedObject.createDistributedObject({name:"Amy", age:18, isVis:false, parent:{mother:"jack mom",father:"jack Dad"}});
-globalThis.changeCallback = (sessionId, changeData) => {
-    console.info("change" + sessionId);
-    if (changeData != null && changeData != undefined) {
-        changeData.forEach(element => {
-        console.info("changed !" + element + " " + g_object[element]);
-        });
-    }
+interface sourceObject{
+    name: string,
+    age: number,
+    isVis: boolean
 }
-g_object.on("change", globalThis.changeCallback);
+interface ChangeCallback {
+    sessionId: string,
+    fields: Array<string>
+}
+let source: sourceObject = {
+    name: "amy",
+    age:18,
+    isVis:false
+}
+let g_object: distributedObject.DistributedObject = distributedObject.createDistributedObject(source);
+g_object.on("change", (changeData:ChangeCallback) => {
+    console.info("change" + changeData.sessionId);
+    if (changeData.fields != null && changeData.fields != undefined) {
+        for (let index: number = 0; index < changeData.fields.length; index++) {
+            console.info("changed !" + changeData.fields[index] + " " + g_object[changeData.fields[index]]);
+        }
+    }
+});
 ```
 
 ### off('change')<sup>(deprecated)</sup>
@@ -628,19 +699,40 @@ Unsubscribes from the data changes of this distributed data object.
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
 | type | string | Yes| Event type to unsubscribe from. The value is **change**, which indicates data changes.|
-  | callback | Callback<{ sessionId: string, fields: Array&lt;string&gt; }> | No| Callback for data changes. If this parameter is not specified, all data change callbacks of this distributed data object will be unregistered.<br>**sessionId** indicates the session ID of the distributed data object.<br>**fields** indicates the changed attributes of the distributed data object.|
+| callback | Callback<{ sessionId: string, fields: Array&lt;string&gt; }> | No| Callback for data changes. If this parameter is not specified, all data change callbacks of this distributed data object will be unregistered.<br>**sessionId** indicates the session ID of the distributed data object.<br>**fields** indicates the changed attributes of the distributed data object.|
 
 
 **Example**
 
 ```js
 import distributedObject from '@ohos.data.distributedDataObject';
-let g_object = distributedObject.createDistributedObject({name:"Amy", age:18, isVis:false, parent:{mother:"jack mom",father:"jack Dad"}});
+interface sourceObject{
+    name: string,
+    age: number,
+    isVis: boolean
+}
+interface ChangeCallback {
+    sessionId: string,
+    fields: Array<string>
+}
+let source: sourceObject = {
+    name: "amy",
+    age:18,
+    isVis:false
+}
+let g_object: distributedObject.DistributedObject = distributedObject.createDistributedObject(source);
 // Unregister the specified data change callback.
-g_object.off("change", globalThis.changeCallback);
+g_object.off("change", (changeData:ChangeCallback) => {
+    console.info("change" + changeData.sessionId);
+    if (changeData.fields != null && changeData.fields != undefined) {
+        for (let index: number = 0; index < changeData.fields.length; index++) {
+            console.info("changed !" + changeData.fields[index] + " " + g_object[changeData.fields[index]]);
+        }
+    }
+});
 // Unregister all data change callbacks.
 g_object.off("change");
 ```
@@ -659,20 +751,36 @@ Subscribes to status changes of this distributed data object.
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Event type to subscribe to. The value is **status**, which indicates the status change (online or offline) of the distributed data object.|
-  | callback | Callback<{ sessionId: string, networkId: string, status: 'online' \| 'offline' }> | Yes| Callback invoked to return the status change.<br>**sessionId** indicates the session ID of the distributed data object.<br>**networkId** indicates the object device ID, that is, **deviceId**.<br>**status** indicates the object status, which can be online or offline.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| type | string | Yes| Event type to subscribe to. The value is **status**, which indicates the status change (online or offline) of the distributed data object.|
+| callback | Callback<{ sessionId: string, networkId: string, status: 'online' \| 'offline' }> | Yes| Callback invoked to return the status change.<br>**sessionId** indicates the session ID of the distributed data object.<br>**networkId** indicates the object device ID, that is, **deviceId**.<br>**status** indicates the object status, which can be online or offline.|
 
 **Example**
 
 ```js
 import distributedObject from '@ohos.data.distributedDataObject';
-globalThis.statusCallback = (sessionId, networkId, status) => {
-    globalThis.response += "status changed " + sessionId + " " + status + " " + networkId;
+
+interface sourceObject{
+    name: string,
+    age: number,
+    isVis: boolean
 }
-let g_object = distributedObject.createDistributedObject({name:"Amy", age:18, isVis:false, parent:{mother:"jack mom",father:"jack Dad"}});
-g_object.on("status", globalThis.statusCallback);
+interface StatusCallback {
+    sessionId: string,
+    networkId: string,
+    status: 'online' | 'offline'
+}
+let source: sourceObject = {
+    name: "amy",
+    age:18,
+    isVis:false
+}
+let g_object: distributedObject.DistributedObject = distributedObject.createDistributedObject(source);
+
+g_object.on("status", (statusCallback:StatusCallback) => {
+    console.info("status changed " + statusCallback.sessionId + " " + statusCallback.status + " " + statusCallback.networkId);
+});
 ```
 
 ### off('status')<sup>(deprecated)</sup>
@@ -689,8 +797,8 @@ Unsubscribes from the status change of this distributed data object.
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
 | type | string | Yes| Event type to unsubscribe from. The value is **status**, which indicates the status change (online or offline) of the distributed data object.|
 | callback | Callback<{ sessionId: string, deviceId: string, status: 'online' \| 'offline' }> | No| Callback for status changes. If this parameter is not specified, all status change callbacks of this distributed data object will be unregistered.<br>**sessionId** indicates the session ID of the distributed data object.<br>**deviceId** indicates the device ID of the distributed data object.<br>**status** indicates the object status, which can be online or offline.|
 
@@ -699,12 +807,26 @@ Unsubscribes from the status change of this distributed data object.
 
 ```js
 import distributedObject from '@ohos.data.distributedDataObject';
-let g_object = distributedObject.createDistributedObject({name:"Amy", age:18, isVis:false, parent:{mother:"jack mom",father:"jack Dad"}});
-globalThis.statusCallback = (sessionId, networkId, status) => {
-    globalThis.response += "status changed " + sessionId + " " + status + " " + networkId;
+interface sourceObject{
+    name: string,
+    age: number,
+    isVis: boolean
 }
+interface offStatusCallback {
+    sessionId: string,
+    deviceId: string,
+    status: 'online' | 'offline'
+}
+let source: sourceObject = {
+    name: "amy",
+    age:18,
+    isVis:false
+}
+let g_object: distributedObject.DistributedObject = distributedObject.createDistributedObject(source);
 // Unregister the specified status change callback.
-g_object.off("status",globalThis.statusCallback);
+g_object.off("status", (statusCallback:offStatusCallback) => {
+    console.info("status changed " + statusCallback.sessionId + " " + statusCallback.status + " " + statusCallback.deviceId);
+});
 // Unregister all status change callbacks.
 g_object.off("status");
 ```

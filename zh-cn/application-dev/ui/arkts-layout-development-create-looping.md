@@ -19,7 +19,7 @@ Swiper作为一个容器组件，在自身尺寸属性未被设置时，会自�
 
 ```ts
 ...
-private swiperController: SwiperController = new SwiperController()
+export let swiperController: SwiperController = new SwiperController()
 ...
 Swiper(this.swiperController) {
   Text("0")
@@ -156,6 +156,7 @@ Swiper(this.swiperController) {
   自定义导航点样式（示例：导航点直径设为30VP，左边距为0，导航点颜色设为红色）：
 
 ```ts
+let swco:Record<string,number|Color> = {'size':30,'left':0,'color':Color.Red}
 Swiper(this.swiperController) {
   Text("0")
     .width('90%')
@@ -178,11 +179,7 @@ Swiper(this.swiperController) {
     .textAlign(TextAlign.Center)
     .fontSize(30)
 }
-.indicatorStyle({
-  size: 30,
-  left: 0,
-  color: Color.Red
-})
+.indicatorStyle(swco)
 ```
 
 ![ind](figures/ind.PNG)
@@ -316,3 +313,11 @@ Swiper(this.swiperController) {
 ```
 
 ![two](figures/two.PNG)
+
+## 相关实例
+
+针对Swiper组件开发，有以下相关实例可供参考：
+
+- [电子相册（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/ElectronicAlbum)
+
+- [Swiper的使用（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/SwiperArkTS)

@@ -16,7 +16,7 @@
 
 为便于理解，通过以下例子具体说明单层和多层状态变化：
 ```ts
-class ClassA {
+class ClassB {
   public c: number;
 
   constructor(c: number) {
@@ -24,20 +24,20 @@ class ClassA {
   }
 }
 
-class ClassB {
-  // ClassB成员变量的类型为ClassA，ClassA为被嵌套类
-  public a: ClassA;
+class ClassA {
+  // ClassA成员变量的类型为ClassB，ClassB为被嵌套类
+  public b: ClassB;
 
-  constructor(a: ClassA) {
-    this.a = a;
+  constructor(b: ClassB) {
+    this.b = b;
   }
 }
 
-b: ClassB
-// 变量a为ClassB的成员变量，为第一层变量，所以变量a的状态变化即为第一层状态变化
-this.b.a = new ClassA(0)
-// 变量c为被嵌套类ClassA的成员变量，变量c的状态变化即为第二层状态变化
-this.b.a.c = 5
+a: ClassA
+// 变量b为ClassA的成员变量，为第一层变量，所以变量b的状态变化即为第一层状态变化
+this.a.b = new ClassB(0)
+// 变量c为被嵌套类ClassB的成员变量，变量c的状态变化即为第二层状态变化
+this.a.b.c = 5
 ```
 
 ## 监听第一层状态变化

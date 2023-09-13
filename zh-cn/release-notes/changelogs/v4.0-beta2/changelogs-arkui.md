@@ -76,3 +76,10 @@ API Version 10: Free模式显示位置与Full模式显示位置相同
 
 **变更影响**
 1. 将sphericalEffect、lightUpEffect与pixelStretchEffect三个高阶动效接口由public接口修改为systemapi接口，不对外部开发者暴露
+
+## cl.arkui.4 onClick事件规格变更
+
+**变更影响**
+1. 若组件同时绑定onClick/TapGesture和PanGesture，当手指滑动超出距离时，响应PanGesture不响应onClick/TapGesture
+2. 若组件绑定onClick/TapGesture未绑定PanGesture，当手指在组件范围内滑动时，手指抬起响应onClick/TapGesture
+3. 若组件绑定onClick/TapGesture未绑定PanGesture，当手指滑动超出组件范围时，手指抬起不响应onClick/TapGesture

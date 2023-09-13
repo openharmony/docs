@@ -12,21 +12,21 @@
 ```ts
 import distributedMissionManager from '@ohos.distributedMissionManager';
 
-let missionDeviceInfo = {
-    deviceId: '123456'
-};
-let missionCallback = {
-    notifyMissionsChanged: function (deviceId) {
-        console.log('notifyMissionsChanged deviceId: ${JSON.stringify(deviceId)}');
+distributedMissionManager.registerMissionListener(
+    {
+        deviceId: '123456'
     },
-    notifySnapshot: function (mission, deviceId) {
-        console.log('notifySnapshot mission: ${JSON.stringify(mission)}');
-        console.log('notifySnapshot deviceId: ${JSON.stringify(deviceId)}');
-    },
-    notifyNetDisconnect: function (mission, state) {
-        console.log('notifyNetDisconnect mission: ${JSON.stringify(mission)}');
-        console.log('notifyNetDisconnect state: ${JSON.stringify(state)}');
-    }
-};
-distributedMissionManager.registerMissionListener(missionDeviceInfo, missionCallback);
+    {
+        notifyMissionsChanged: (deviceId) => {
+            console.log('notifyMissionsChanged deviceId: ${JSON.stringify(deviceId)}');
+        },
+        notifySnapshot: (mission, deviceId) => {
+            console.log('notifySnapshot mission: ${JSON.stringify(mission)}');
+            console.log('notifySnapshot deviceId: ${JSON.stringify(deviceId)}');
+        },
+        notifyNetDisconnect: (mission, state) => {
+            console.log('notifyNetDisconnect mission: ${JSON.stringify(mission)}');
+            console.log('notifyNetDisconnect state: ${JSON.stringify(state)}');
+        }
+    });
 ```

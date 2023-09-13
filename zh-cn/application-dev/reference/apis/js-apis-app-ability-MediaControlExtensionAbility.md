@@ -1,6 +1,6 @@
 # @ohos.app.ability.MediaControlExtensionAbility (播控扩展能力)
 
-MediaControlExtensionAbility模块提供播放控制的扩展能力，继承自[UIExtensionAbility](js-apis-app-ability-uiExtensionAbility.md)，无其他新增接口。在实际开发时，需要开发者实现父类中的接口，使用UIExtensiton的生命周期和能力，不支持直接调用基类。
+MediaControlExtensionAbility模块提供播放控制的扩展能力，继承自[UIExtensionAbility](js-apis-app-ability-uiExtensionAbility.md)，无其他新增接口。在实际开发时，需要开发者实现父类中的接口，使用UIExtension的生命周期和能力，不支持直接调用基类。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
@@ -13,5 +13,5 @@ MediaControlExtensionAbility模块提供播放控制的扩展能力，继承自[
 ## 导入模块
 
 ```js
-import MediaControlExtensionAbility from @ohos.app.ability.MediaControlExtensionAbility;
+import MediaControlExtensionAbility from '@ohos.app.ability.MediaControlExtensionAbility';
 ```

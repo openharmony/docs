@@ -107,32 +107,31 @@ Web(options: { src: ResourceStr, controller: WebviewController | WebController})
   ```
 
   2. Modify the **EntryAbility.ts** file.
+    The following uses **filesDir** as an example to describe how to obtain the path of the sandbox. For details about how to obtain other paths, see [Obtaining Application File Paths](../../application-models/application-context-stage.md#obtaining-application-file-paths).
+  ```ts
+  // xxx.ts
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  import web_webview from '@ohos.web.webview';
 
-     The following uses **filesDir** as an example to describe how to obtain the path of the sandbox. For details about how to obtain other paths, see [Obtaining Application File Paths](../../application-models/application-context-stage.md#obtaining-application-file-paths).
-     ```ts
-     // xxx.ts
-     import UIAbility from '@ohos.app.ability.UIAbility';
-     import web_webview from '@ohos.web.webview';
+  export default class EntryAbility extends UIAbility {
+      onCreate(want, launchParam) {
+          // Bind filesDir to the globalThis object to implement data synchronization between the UIAbility component and the UI.
+          globalThis.filesDir = this.context.filesDir
+          console.log("Sandbox path is " + globalThis.filesDir)
+      }
+  }
+  ```
 
-     export default class EntryAbility extends UIAbility {
-         onCreate(want, launchParam) {
-             // Bind filesDir to the globalThis object to implement data synchronization between the UIAbility component and the UI.
-             globalThis.filesDir = this.context.filesDir
-             console.log("Sandbox path is " + globalThis.filesDir)
-         }
-     }
-     ```
-
-     HTML file to be loaded:
-     ```html
-     <!-- index.html -->
-     <!DOCTYPE html>
-     <html>
-         <body>
-             <p>Hello World</p>
-         </body>
-     </html>
-     ```
+  HTML file to be loaded:
+  ```html
+  <!-- index.html -->
+  <!DOCTYPE html>
+  <html>
+      <body>
+          <p>Hello World</p>
+      </body>
+  </html>
+  ```
 
 ## Attributes
 
@@ -672,11 +671,15 @@ Sets whether to display the vertical scrollbar, including the default system scr
   </html>
   ```
 
-### password
+### password<sup>(deprecated)</sup>
 
 password(password: boolean)
 
 Sets whether the password should be saved. This API is a void API.
+
+> **NOTE**
+>
+> This API is deprecated since API version 10, and no new API is provided as a substitute.
 
 ### cacheMode
 
@@ -806,11 +809,15 @@ Sets the scale factor of the entire page. The default value is 100%.
   }
   ```
 
-### userAgent
+### userAgent<sup>(deprecated)</sup>
 
 userAgent(userAgent: string)
 
 Sets the user agent.
+
+> **NOTE**
+>
+> This API is supported since API version 8 and deprecated since API version 10. You are advised to use [setCustomUserAgent](../apis/js-apis-webview.md#setcustomuseragent10)<sup>10+</sup> instead.
 
 **Parameters**
 
@@ -992,7 +999,6 @@ Sets the minimum logical font size for the web page.
     }
   }
   ```
-
 
 ### webFixedFont<sup>9+</sup>
 
@@ -1244,17 +1250,25 @@ Sets whether to enable forcible dark mode for the web page. By default, this fea
   }
   ```
 
-### tableData
+### tableData<sup>(deprecated)</sup>
 
 tableData(tableData: boolean)
 
 Sets whether form data should be saved. This API is a void API.
 
-### wideViewModeAccess
+> **NOTE**
+>
+> This API is deprecated since API version 10, and no new API is provided as a substitute.
+
+### wideViewModeAccess<sup>(deprecated)</sup>
 
 wideViewModeAccess(wideViewModeAccess: boolean)
 
 Sets whether to support the viewport attribute of the HTML **\<meta>** tag. This API is a void API.
+
+> **NOTE**
+>
+> This API is deprecated since API version 10, and no new API is provided as a substitute.
 
 ### pinchSmooth<sup>9+</sup>
 
@@ -1385,7 +1399,6 @@ Sets the web-based media playback policy, including the validity period for auto
 | options | [WebMediaOptions](#webmediaoptions10) | Yes  | {resumeInterval: 0, audioExclusive: true} | Web-based media playback policy. The default value of **resumeInterval** is **0**, indicating that the playback is not automatically resumed.|
 
 **Example**
-
 
   ```ts
   // xxx.ets
@@ -1941,7 +1954,6 @@ Called when an HTTP error (the response code is greater than or equal to 400) oc
 
 onPageBegin(callback: (event?: { url: string }) => void)
 
-
 Called when the web page starts to be loaded. This API is called only for the main frame content, and not for the iframe or frameset content.
 
 **Parameters**
@@ -1975,7 +1987,6 @@ Called when the web page starts to be loaded. This API is called only for the ma
 ### onPageEnd
 
 onPageEnd(callback: (event?: { url: string }) => void)
-
 
 Called when the web page loading is complete. This API takes effect only for the main frame content.
 
@@ -2187,7 +2198,8 @@ Called to process an HTML form whose input type is **file**, in response to the 
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import web_webview from '@ohos.web.webview';
+  import picker from '@ohos.file.picker';
 
   @Entry
   @Component
@@ -2196,30 +2208,37 @@ Called to process an HTML form whose input type is **file**, in response to the 
 
     build() {
       Column() {
-        Web({ src: 'www.example.com', controller: this.controller })
+        Web({ src: $rawfile('index.html'), controller: this.controller })
           .onShowFileSelector((event) => {
-            AlertDialog.show({
-              title: event.fileSelector.getTitle(),
-              message: 'isCapture:' + event.fileSelector.isCapture() + " mode:" + event.fileSelector.getMode() + 'acceptType:' + event.fileSelector.getAcceptType(),
-              confirm: {
-                value: 'upload',
-                action: () => {
-                  let fileList: Array<string> = [
-                    '/data/storage/el2/base/test',
-                  ]
-                  event.result.handleFileList(fileList)
-                }
-              },
-              cancel: () => {
-                let fileList: Array<string> = []
-                event.result.handleFileList(fileList)
-              }
+            console.log('MyFileUploader onShowFileSelector invoked')
+            const documentSelectOptions = new picker.DocumentSelectOptions();
+            let uri = null;
+            const documentViewPicker = new picker.DocumentViewPicker();
+            documentViewPicker.select(documentSelectOptions).then((documentSelectResult) => {
+              uri = documentSelectResult[0];
+              console.info('documentViewPicker.select to file succeed and uri is:' + uri);
+              event.result.handleFileList([uri]);
+            }).catch((err) => {
+              console.error(`Invoke documentViewPicker.select failed, code is ${err.code}, message is ${err.message}`);
             })
             return true
           })
       }
     }
   }
+  ```
+
+  HTML file to be loaded:
+  ```html
+  <!DOCTYPE html>
+  <html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8">
+  </head>
+  <body>
+    <form id="upload-form" enctype="multipart/form-data">
+      <input type="file" id="upload" name="upload"/>
+  </body>
   ```
 
 ### onResourceLoad<sup>9+</sup>
@@ -2979,7 +2998,7 @@ If opening a new window is not needed, set the parameter to **null** when callin
   ```ts
   // xxx.ets
   import web_webview from '@ohos.web.webview'
-  
+
   // There are two <Web> components on the same page. When the WebComponent object opens a new window, the NewWebViewComp object is displayed. 
   @CustomDialog
   struct NewWebViewComp {
@@ -3335,8 +3354,8 @@ Called when the web page content is first rendered.
       Column() {
         Web({ src:'www.example.com', controller: this.controller })
           .onFirstContentfulPaint(event => {
-            console.log("onFirstContentfulPaint:" + "[navigationStartTick]:" + 
-              event.navigationStartTick + ", [firstContentfulPaintMs]:" + 
+            console.log("onFirstContentfulPaint:" + "[navigationStartTick]:" +
+              event.navigationStartTick + ", [firstContentfulPaintMs]:" +
               event.firstContentfulPaintMs)
           })
       }
@@ -3415,7 +3434,157 @@ Called when the **\<Web>** component obtains the focus.
     }
   }
   ```
+### onScreenCaptureRequest<sup>10+</sup>
 
+onScreenCaptureRequest(callback: (event?: { handler: ScreenCaptureHandler }) => void)
+
+Called when a screen capture request is received.
+
+**Parameters**
+
+| Name    | Type                                    | Description          |
+| ------- | ---------------------------------------- | -------------- |
+| handler | [ScreenCaptureHandler](#screencapturehandler10) | User operation.|
+
+**Example**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+          .onScreenCaptureRequest((event) => {
+            AlertDialog.show({
+              title: 'title: ' + event.handler.getOrigin(),
+              message: 'text',
+              primaryButton: {
+                value: 'deny',
+                action: () => {
+                  event.handler.deny()
+                }
+              },
+              secondaryButton: {
+                value: 'onConfirm',
+                action: () => {
+                  event.handler.grant({ captureMode: WebCaptureMode.HOME_SCREEN })
+                }
+              },
+              cancel: () => {
+                event.handler.deny()
+              }
+            })
+          })
+      }
+    }
+  }
+  ```
+
+### onOverScroll<sup>10+</sup>
+
+onOverScroll(callback: (event: {xOffset: number, yOffset: number}) => void)
+
+Called to indicate the offset by which the  web page overscrolls.
+
+**Parameters**
+
+| Name    | Type  | Description        |
+| ------- | ------ | ------------ |
+| xOffset | number | Horizontal overscroll offset based on the leftmost edge of the web page.|
+| yOffset | number | Vertical overscroll offset based on the top edge of the web page.|
+
+**Example**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+        .onOverScroll((event) => {
+            console.info("x = " + event.xOffset)
+            console.info("y = " + event.yOffset)
+        })
+      }
+    }
+  }
+  ```
+
+### onControllerAttached<sup>10+</sup>
+
+onControllerAttached(callback: () => void)
+
+Called when the controller is successfully bound to the **\<Web>** component. The controller must be WebviewController.
+
+As the web page is not yet loaded when this callback is called, APIs for operating the web page cannot be used in the callback, for example, [zoomIn](../apis/js-apis-webview.md#zoomin) and [zoomOut](../apis/js-apis-webview.md#zoomout). Other APIs, such as [loadUrl](../apis/js-apis-webview.md#loadurl) and [getWebId](../apis/js-apis-webview.md#getwebid), which do not involve web page operations, can be used properly.
+
+**Example**
+
+The following example uses **loadUrl** in the callback to load the web page.
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+
+    build() {
+      Column() {
+        Web({ src: '', controller: this.controller })
+          .onControllerAttached(() => {
+            this.controller.loadUrl($rawfile("index.html"));
+          })
+      }
+    }
+  }
+  ```
+The following example uses **getWebId** in the callback
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+
+    build() {
+      Column() {
+        Web({ src: $rawfile("index.html"), controller: this.controller })
+          .onControllerAttached(() => {
+            try {
+                let id = this.controller.getWebId();
+                console.log("id: " + id);
+            } catch (error) {
+                console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+            }
+          })
+      }
+    }
+  }
+  ```
+  HTML file to be loaded:
+  ```html
+  <!-- index.html -->
+  <!DOCTYPE html>
+  <html>
+      <body>
+          <p>Hello World</p>
+      </body>
+  </html>
+  ```
 ## ConsoleMessage
 
 Implements the **ConsoleMessage** object. For the sample code, see [onConsole](#onconsole).
@@ -3470,7 +3639,7 @@ Obtains the path and name of the web page source file.
 
 ## JsResult
 
-Implements the **JsResult** object, which indicates the result returned to the **\<Web>** component to indicate the user operation performed in the dialog box. For the sample code, see [onAlert](#onalert).
+Implements the **JsResult** object, which indicates the result returned to the **\<Web>** component to indicate the user operation performed in the dialog box. For the sample code, see [onAlert Event](#onalert).
 
 ### handleCancel
 
@@ -3634,7 +3803,6 @@ Describes the request/response header returned by the **\<Web>** component.
 | ----------- | ------ | ------------- |
 | headerKey   | string | Key of the request/response header.  |
 | headerValue | string | Value of the request/response header.|
-
 
 ## WebResourceResponse
 
@@ -4010,6 +4178,42 @@ Grants the permission for resources requested by the web page.
 | --------- | --------------- | ---- | ---- | ------------- |
 | resources | Array\<string\> | Yes   | -    | List of resources that can be requested by the web page with the permission to grant.|
 
+## ScreenCaptureHandler<sup>10+</sup>
+
+Implements the **ScreenCaptureHandler** object for accepting or rejecting a screen capture request. For the sample code, see [onScreenCaptureRequest Event](#onscreencapturerequest10).
+
+### deny<sup>10+</sup>
+
+deny(): void
+
+Rejects this screen capture request.
+
+### getOrigin<sup>10+</sup>
+
+getOrigin(): string
+
+Obtains the origin of this web page.
+
+**Return value**
+
+| Type    | Description          |
+| ------ | ------------ |
+| string | Origin of the web page that requests the permission.|
+
+### grant<sup>10+</sup>
+
+grant(config: ScreenCaptureConfig): void
+
+**Required permissions**: ohos.permission.MICROPHONE, ohos.permission.CAPTURE_SCREEN
+
+Grants the screen capture permission.
+
+**Parameters**
+
+| Name      | Type           | Mandatory  | Default Value | Description         |
+| --------- | --------------- | ---- | ---- | ------------- |
+| config | [ScreenCaptureConfig](#screencaptureconfig10) | Yes   | -    | Screen capture configuration.|
+
 ## ContextMenuSourceType<sup>9+</sup>
 | Name                  | Description        |
 | -------------------- | ---------- |
@@ -4327,6 +4531,7 @@ Enumerates the error codes returned by **onSslErrorEventReceive** API.
 | --------- | ------------- | -------------------------- |
 | MidiSysex | MIDI SYSEX resource.| Currently, only permission events can be reported. MIDI devices are not yet supported.|
 | VIDEO_CAPTURE<sup>10+</sup> | Video capture resource, such as a camera.| |
+| AUDIO_CAPTURE<sup>10+</sup> | Audio capture resource, such as a microphone.| |
 
 ## WebDarkMode<sup>9+</sup>
 | Name     | Description                                  |
@@ -4334,6 +4539,12 @@ Enumerates the error codes returned by **onSslErrorEventReceive** API.
 | Off     | The web dark mode is disabled.                    |
 | On      | The web dark mode is enabled.                    |
 | Auto    | The web dark mode setting follows the system settings.                |
+
+## WebCaptureMode<sup>10+</sup>
+
+| Name       | Description           |
+| --------- | ------------- |
+| HOME_SCREEN | Capture of the home screen.|
 
 ## WebMediaOptions<sup>10+</sup>
 
@@ -4343,6 +4554,14 @@ Describes the web-based media playback policy.
 | -------------- | --------- | ---- | ---- | --- | ---------------------------- |
 | resumeInterval |  number   |  Yes | Yes  |  No |Validity period for automatically resuming a paused web audio, in seconds. The maximum validity period is 60 seconds. Due to the approximate value, the validity period may have a deviation of less than 1 second.|
 | audioExclusive |  boolean  |  Yes | Yes  |  No | Whether the audio of multiple **\<Web>** instances in an application is exclusive.   |
+
+## ScreenCaptureConfig<sup>10+</sup>
+
+Provides the web screen capture configuration.
+
+| Name          | Type      | Readable| Writable| Mandatory| Description                        |
+| -------------- | --------- | ---- | ---- | --- | ---------------------------- |
+| captureMode |  [WebCaptureMode](#webcapturemode10)  |  Yes | Yes |  Yes | Web screen capture mode.|
 
 ## DataResubmissionHandler<sup>9+</sup>
 
@@ -4653,7 +4872,7 @@ This API is deprecated since API version 9. You are advised to use [forward<sup>
 
 deleteJavaScriptRegister(name: string)
 
-Deletes a specific application JavaScript object that is registered with the window through **registerJavaScriptProxy**. The deletion takes effect immediately, with no need for invoking the[refresh](#refreshdeprecated) API.
+Deletes a specific application JavaScript object that is registered with the window through **registerJavaScriptProxy**. The deletion takes effect immediately, with no need for invoking the [refresh](#refreshdeprecated) API.
 
 This API is deprecated since API version 9. You are advised to use [deleteJavaScriptRegister<sup>9+</sup>](../apis/js-apis-webview.md#deletejavascriptregister) instead.
 

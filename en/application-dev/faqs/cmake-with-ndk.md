@@ -1,4 +1,4 @@
-# Using Native APIs (NDK) of the OpenHarmony SDK in a CMake Project
+# Using NDK in a CMake Project
 
 ## What Is Native API
 
@@ -10,34 +10,34 @@ You download the Native API Development Kit (NDK) by downloading the OHOS SDK, w
 
 - (Recommended) Acquire source code from mirrors for an officially released version. For details, see [release notes](../../release-notes/OpenHarmony-v3.2-release.md).
 - Download the SDK from the SDK Manager in DevEco Studio.
-- Download the SDK from the [daily build](http://ci.openharmony.cn/dailys/dailybuilds), by clicking the download link to the **ohos-sdk-full** component.
+- Download the SDK from the [daily build](http://ci.openharmony.cn/workbench/cicd/dailybuild/dailylist), by clicking the download link to the **ohos-sdk-full** component.
 
-![Download from Daily Build](figures/ci_download.png)
+![](figures/ci_download.png)
 
 ## Decompressing the NDK
 
 Place the downloaded NDK in a folder you prefer and decompress it. Below shows the directory structure after decompression.
-![SDK Directory Structure](figures/sdk-structure.png)
+![](figures/sdk-structure.png)
 
 Configure the Linux environment as follows: (Skip them if the NDK is downloaded from DevEco Studio.)
 
-1. Add the CMake tool that comes with the NDK to the environment variables.
+Add the CMake tool that comes with the NDK to the environment variables.
 
 ```
     # Open the .bashrc file.
     vim ~/.bashrc
-    # Append the custom CMake path to the file. Save the file and exit.
+    # Append the custom CMake path to the file.
     export PATH=~/ohos-sdk/ohos-sdk/linux/native/build-tools/cmake/bin:$PATH
     # Run the source ~/.bashrc command to make the environment variables take effect.
     source ~/.bashrc
 ```
 
-2. Check the default CMake path.
+Check the default CMake path.
 
 ```
     # Run the which cmake command.
     which cmake
-    # The result should be the same as the custom path previously appended to the file.
+    # The result should be the same as the custom path previously appended to the .bashrc file.
     ~/ohos-sdk/ohos-sdk/linux/native/build-tools/cmake/bin/cmake
 ```
 

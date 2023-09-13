@@ -36,4 +36,4 @@ It provides APIs to access the result set obtained by querying the RDB store.
 | [getReal](_r_d_b.md#getreal) | Pointer to the function used to obtain the value of the double type based on the specified column and the current row.|
 | [getBlob](_r_d_b.md#getblob) | Pointer to the function used to obtain the value in the form of a byte array based on the specified column and the current row.|
 | [isNull](_r_d_b.md#isnull-12) | Pointer to the function used to check whether the value in the specified column is null.|
-| [close](_r_d_b.md#close) | Pointer to the function used to close a result set.|
+| [destroy](_r_d_b.md#destroy-14) | Pointer to the function used to close a result set.|

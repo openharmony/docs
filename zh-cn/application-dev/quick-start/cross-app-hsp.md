@@ -82,7 +82,8 @@ export function foo2() {
 import native from "libnative.so"
 
 export function nativeMulti(a: number, b: number) {
-    return native.multi(a, b);
+    let result: number = native.multi(a, b);
+    return result;
 }
 ```
 
@@ -160,7 +161,7 @@ struct Index {
         Button('Button')
           .onClick(()=>{
             // 引用HAR的native方法
-            nativeMulti();
+            nativeMulti(1, 2);
         })
       }
       .width('100%')

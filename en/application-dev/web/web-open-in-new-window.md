@@ -31,7 +31,7 @@ In the following example, when a user clicks the **Open Page in New Window** but
         .multiWindowAccess(true)
         .onWindowNew((event) => {
           console.info("onWindowNew...");
-          var popController: web_webview.WebviewController = new web_webview.WebviewController();
+          let popController: web_webview.WebviewController = new web_webview.WebviewController();
           // Create a window, associate it with popController, and have popController returned to the Web component. If you do not need to open a new window, set the return value to event.handler.setWebController(null).
           event.handler.setWebController(popController);
         })

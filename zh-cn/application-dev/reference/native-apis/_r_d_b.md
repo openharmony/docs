@@ -148,6 +148,7 @@
 | [OH_VBucket::destroy](#destroy-34) | 销毁[OH_VBucket](_o_h___v_bucket.md)对象，并回收该对象占用的内存。 |
 | [OH_Rdb_Config::selfSize](#selfsize) | 该结构体的大小。 |
 | [OH_Rdb_Config::dataBaseDir](#databasedir) | 数据库文件路径。 |
+| [OH_Rdb_Config::storeName](#storename) | 数据库名称。 |
 | [OH_Rdb_Config::bundleName](#bundlename) | 应用包名。 |
 | [OH_Rdb_Config::moduleName](#modulename) | 应用模块名。 |
 | [OH_Rdb_Config::isEncrypt](#isencrypt) | 指定数据库是否加密。 |
@@ -732,7 +733,7 @@ OH_Cursor* OH_Rdb_Query (OH_Rdb_Store * store, OH_Predicates * predicates, const
 | store | 表示指向[OH_Rdb_Store](_o_h___rdb___store.md)实例的指针。 |
 | predicates | 表示指向[OH_Predicates](_o_h___predicates.md)实例的指针，指定查询条件。 |
 | columnNames | 表示要查询的列。如果值为空，则查询应用于所有列。 |
-| length | 表示columnNames数组的长度。 |
+| length | 表示columnNames数组的长度。若length大于columnNames数组的实际长度，则会访问越界。 |
 
 **返回:**
 
@@ -932,6 +933,15 @@ OH_Predicates*(* OH_Predicates::between) (OH_Predicates *predicates, const char 
 
 [OH_Predicates](_o_h___predicates.md), [OH_VObject](_o_h___v_object.md).
 
+### storeName
+
+```
+const char* OH_Rdb_Config::storeName
+```
+
+**描述:**
+
+数据库名称。
 
 ### bundleName
 

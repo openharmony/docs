@@ -8,7 +8,7 @@
 
 ## 导入模块
 
-```js
+```ts
 import account_distributedAccount from '@ohos.account.distributedAccount';
 ```
 
@@ -27,7 +27,7 @@ getDistributedAccountAbility(): DistributedAccountAbility
   | [DistributedAccountAbility](#distributedaccountability) | 返回一个实例，实例提供查询和更新分布式帐号登录状态方法。 |
 
 **示例：**
-  ```js
+  ```ts
   const accountAbility = account_distributedAccount.getDistributedAccountAbility();
   ```
 
@@ -58,16 +58,19 @@ getOsAccountDistributedInfo(callback: AsyncCallback&lt;DistributedInfo&gt;): voi
 | 12300001 | System service exception. |
 
 **示例：**
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
+
   const accountAbility = account_distributedAccount.getDistributedAccountAbility();
   try {
-    accountAbility.getOsAccountDistributedInfo((err, data) => {
-      if (err) {
-        console.log('getOsAccountDistributedInfo exception: ' + JSON.stringify(err));
-      } else {
-        console.log('distributed information: ' + JSON.stringify(data));
-      }
-    });
+    accountAbility.getOsAccountDistributedInfo(
+      (err: BusinessError, data: account_distributedAccount.DistributedInfo) => {
+        if (err) {
+          console.log('getOsAccountDistributedInfo exception: ' + JSON.stringify(err));
+        } else {
+          console.log('distributed information: ' + JSON.stringify(data));
+        }
+      });
   } catch (err) {
     console.log('getOsAccountDistributedInfo exception: ' + JSON.stringify(err));
   }
@@ -96,12 +99,14 @@ getOsAccountDistributedInfo(): Promise&lt;DistributedInfo&gt;
 | 12300001 | System service exception. |
 
 **示例：**
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
+
   const accountAbility = account_distributedAccount.getDistributedAccountAbility();
   try {
-    accountAbility.getOsAccountDistributedInfo().then((data) => {
+    accountAbility.getOsAccountDistributedInfo().then((data: account_distributedAccount.DistributedInfo) => {
         console.log('distributed information: ' + JSON.stringify(data));
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
         console.log('getOsAccountDistributedInfo exception: '  + JSON.stringify(err));
     });
   } catch (err) {
@@ -136,16 +141,19 @@ getOsAccountDistributedInfoByLocalId(localId: number, callback: AsyncCallback&lt
 | 12300003 | Account not found. |
 
 **示例：**
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  
   const accountAbility = account_distributedAccount.getDistributedAccountAbility();
   try {
-    accountAbility.getOsAccountDistributedInfoByLocalId(100, (err, data) => {
-      if (err) {
-        console.log('getOsAccountDistributedInfoByLocalId exception: ' + JSON.stringify(err));
-      } else {
-        console.log('distributed information: ' + JSON.stringify(data));
-      }
-    });
+    accountAbility.getOsAccountDistributedInfoByLocalId(100,
+      (err: BusinessError, data: account_distributedAccount.DistributedInfo) => {
+        if (err) {
+          console.log('getOsAccountDistributedInfoByLocalId exception: ' + JSON.stringify(err));
+        } else {
+          console.log('distributed information: ' + JSON.stringify(data));
+        }
+      });
   } catch (err) {
     console.log('getOsAccountDistributedInfoByLocalId exception: ' + JSON.stringify(err));
   }
@@ -177,16 +185,19 @@ getOsAccountDistributedInfoByLocalId(localId: number): Promise&lt;DistributedInf
 | 12300003 | Account not found. |
 
 **示例：**
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  
   const accountAbility = account_distributedAccount.getDistributedAccountAbility();
   try {
-    accountAbility.getOsAccountDistributedInfoByLocalId(100).then((data) => {
-        console.log('distributed information: ' + JSON.stringify(data));
-    }).catch((err) => {
-        console.log('getOsAccountDistributedInfoByLocalId exception: '  + JSON.stringify(err));
+    accountAbility.getOsAccountDistributedInfoByLocalId(100).then((
+      data: account_distributedAccount.DistributedInfo) => {
+      console.log('distributed information: ' + JSON.stringify(data));
+    }).catch((err: BusinessError) => {
+      console.log('getOsAccountDistributedInfoByLocalId exception: '  + JSON.stringify(err));
     });
   } catch (err) {
-      console.log('getOsAccountDistributedInfoByLocalId exception: ' + JSON.stringify(err));
+    console.log('getOsAccountDistributedInfoByLocalId exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -210,15 +221,18 @@ queryOsAccountDistributedInfo(callback: AsyncCallback&lt;DistributedInfo&gt;): v
   | callback | AsyncCallback&lt;[DistributedInfo](#distributedinfo)&gt; | 是 | 回调函数。当获取分布式帐号信息成功，err为undefined，data为获取到的分布式帐号信息对象；否则为错误对象。 |
 
 **示例：**
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  
   const accountAbility = account_distributedAccount.getDistributedAccountAbility();
-  accountAbility.queryOsAccountDistributedInfo((err, data) => {
-    if (err) {
-      console.log('queryOsAccountDistributedInfo exception: ' + JSON.stringify(err));
-    } else {
-      console.log('distributed information: ' + JSON.stringify(data));
-    }
-  });
+  accountAbility.queryOsAccountDistributedInfo(
+    (err: BusinessError, data: account_distributedAccount.DistributedInfo) => {
+      if (err) {
+        console.log('queryOsAccountDistributedInfo exception: ' + JSON.stringify(err));
+      } else {
+        console.log('distributed information: ' + JSON.stringify(data));
+      }
+    });
   ```
 
 ### queryOsAccountDistributedInfo<sup>(deprecated)</sup>
@@ -242,11 +256,13 @@ queryOsAccountDistributedInfo(): Promise&lt;DistributedInfo&gt;
   | Promise&lt;[DistributedInfo](#distributedinfo)&gt; | Promise对象，返回分布式帐号信息对象。 |
 
 **示例：**
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  
   const accountAbility = account_distributedAccount.getDistributedAccountAbility();
-  accountAbility.queryOsAccountDistributedInfo().then((data) => {
+  accountAbility.queryOsAccountDistributedInfo().then((data: account_distributedAccount.DistributedInfo) => {
       console.log('distributed information: ' + JSON.stringify(data));
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
       console.log('queryOsAccountDistributedInfo exception: '  + JSON.stringify(err));
   });
   ```
@@ -277,11 +293,14 @@ setOsAccountDistributedInfo(accountInfo: DistributedInfo, callback: AsyncCallbac
 | 12300003 | Account not found. |
 
 **示例：**
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  
   const accountAbility = account_distributedAccount.getDistributedAccountAbility();
-  let accountInfo = {id: '12345', name: 'ZhangSan', event: 'Ohos.account.event.LOGIN'};
+  let accountInfo: account_distributedAccount.DistributedInfo =
+    {id: '12345', name: 'ZhangSan', event: 'Ohos.account.event.LOGIN'};
   try {
-    accountAbility.setOsAccountDistributedInfo(accountInfo, (err) => {
+    accountAbility.setOsAccountDistributedInfo(accountInfo, (err: BusinessError) => {
       if (err) {
         console.log('setOsAccountDistributedInfo exception: ' + JSON.stringify(err));
       } else {
@@ -324,13 +343,16 @@ setOsAccountDistributedInfo(accountInfo: DistributedInfo): Promise&lt;void&gt;
 | 12300003 | Account not found. |
 
 **示例：**
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  
   const accountAbility = account_distributedAccount.getDistributedAccountAbility();
-  let accountInfo = {id: '12345', name: 'ZhangSan', event: 'Ohos.account.event.LOGIN'};
+  let accountInfo: account_distributedAccount.DistributedInfo =
+    {id: '12345', name: 'ZhangSan', event: 'Ohos.account.event.LOGIN'};
   try {
     accountAbility.setOsAccountDistributedInfo(accountInfo).then(() => {
         console.log('setOsAccountDistributedInfo successfully');
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
         console.log('setOsAccountDistributedInfo exception: '  + JSON.stringify(err));
     });
   } catch (err) {
@@ -367,11 +389,14 @@ setOsAccountDistributedInfoByLocalId(localId: number, distributedInfo: Distribut
 | 12300008 | Restricted OS account. |
 
 **示例：**
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  
   const accountAbility = account_distributedAccount.getDistributedAccountAbility();
-  let accountInfo = {id: '12345', name: 'ZhangSan', event: 'Ohos.account.event.LOGIN'};
+  let accountInfo: account_distributedAccount.DistributedInfo =
+    {id: '12345', name: 'ZhangSan', event: 'Ohos.account.event.LOGIN'};
   try {
-    accountAbility.setOsAccountDistributedInfoByLocalId(100, accountInfo, (err) => {
+    accountAbility.setOsAccountDistributedInfoByLocalId(100, accountInfo, (err: BusinessError) => {
       if (err) {
         console.log('setOsAccountDistributedInfoByLocalId exception: ' + JSON.stringify(err));
       } else {
@@ -418,13 +443,16 @@ setOsAccountDistributedInfoByLocalId(localId: number, distributedInfo: Distribut
 | 12300008 | Restricted OS account. |
 
 **示例：**
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  
   const accountAbility = account_distributedAccount.getDistributedAccountAbility();
-  let accountInfo = {id: '12345', name: 'ZhangSan', event: 'Ohos.account.event.LOGIN'};
+  let accountInfo: account_distributedAccount.DistributedInfo =
+    {id: '12345', name: 'ZhangSan', event: 'Ohos.account.event.LOGIN'};
   try {
     accountAbility.setOsAccountDistributedInfoByLocalId(100, accountInfo).then(() => {
         console.log('setOsAccountDistributedInfoByLocalId successfully');
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
         console.log('setOsAccountDistributedInfoByLocalId exception: '  + JSON.stringify(err));
     });
   } catch (err) {
@@ -454,10 +482,13 @@ updateOsAccountDistributedInfo(accountInfo: DistributedInfo, callback: AsyncCall
   | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当更新分布式帐号信息成功时，err为undefined，否则为错误对象。 |
 
 **示例：**
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  
   const accountAbility = account_distributedAccount.getDistributedAccountAbility();
-  let accountInfo = {id: '12345', name: 'ZhangSan', event: 'Ohos.account.event.LOGIN'};
-  accountAbility.updateOsAccountDistributedInfo(accountInfo, (err) => {
+  let accountInfo: account_distributedAccount.DistributedInfo =
+    {id: '12345', name: 'ZhangSan', event: 'Ohos.account.event.LOGIN'};
+  accountAbility.updateOsAccountDistributedInfo(accountInfo, (err: BusinessError) => {
     if (err) {
       console.log('queryOsAccountDistributedInfo exception: ' + JSON.stringify(err));
     } else {
@@ -491,12 +522,15 @@ updateOsAccountDistributedInfo(accountInfo: DistributedInfo): Promise&lt;void&gt
   | Promise&lt;void&gt; | Promise对象，无返回结果的Promise对象。 |
 
 **示例：**
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  
   const accountAbility = account_distributedAccount.getDistributedAccountAbility();
-  let accountInfo = {id: '12345', name: 'ZhangSan', event: 'Ohos.account.event.LOGIN'};
+  let accountInfo: account_distributedAccount.DistributedInfo =
+    {id: '12345', name: 'ZhangSan', event: 'Ohos.account.event.LOGIN'};
   accountAbility.updateOsAccountDistributedInfo(accountInfo).then(() => {
       console.log('updateOsAccountDistributedInfo successfully');
-   }).catch((err) => {
+   }).catch((err: BusinessError) => {
       console.log('updateOsAccountDistributedInfo exception: '  + JSON.stringify(err));
   });
   ```

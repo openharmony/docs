@@ -21,14 +21,14 @@
 
 
 ```ts
-@Builder MyBuilderFunction({ ... })
+@Builder MyBuilderFunction() { ... }
 ```
 
 使用方法：
 
 
 ```ts
-this.MyBuilderFunction({ ... })
+this.MyBuilderFunction() { ... }
 ```
 
 - 允许在自定义组件内定义一个或多个自定义构建函数，该函数被认为是该组件的私有、特殊类型的成员函数。
@@ -44,7 +44,7 @@ this.MyBuilderFunction({ ... })
 
 
 ```ts
-@Builder function MyGlobalBuilderFunction({ ... })
+@Builder function MyGlobalBuilderFunction() { ... }
 ```
 
 使用方法：
@@ -66,7 +66,7 @@ MyGlobalBuilderFunction()
 
 - 参数的类型必须与参数声明的类型一致，不允许undefined、null和返回undefined、null的表达式。
 
-- 在自定义构建函数内部，不允许改变参数值。如果需要改变参数值，且同步回调用点，建议使用[@Link](arkts-link.md)。
+- 在@Builder修饰的函数内部，不允许改变参数值。
 
 - \@Builder内UI语法遵循[UI语法规则](arkts-create-custom-components.md#build函数)。
 
@@ -77,13 +77,22 @@ MyGlobalBuilderFunction()
 
 
 ```ts
-ABuilder( $$ : { paramA1: string, paramB1 : string } );
+class ABuilderParam {
+  paramA1: string = ''
+  paramB1: string = ''
+}
+
+@Builder function ABuilder($$ : ABuilderParam) {...}
 ```
 
 
 
 ```ts
-@Builder function ABuilder($$: { paramA1: string }) {
+class ABuilderParam {
+  paramA1: string = ''
+}
+
+@Builder function ABuilder($$: ABuilderParam) {
   Row() {
     Text(`UseStateVarByReference: ${$$.paramA1} `)
   }
@@ -94,10 +103,10 @@ struct Parent {
   @State label: string = 'Hello';
   build() {
     Column() {
-      // 在Parent组件中调用ABuilder的时候，将this.label引用传递给ABuilder
+      // Pass the this.label reference to the ABuilder component when the ABuilder component is called in the Parent component.
       ABuilder({ paramA1: this.label })
       Button('Click me').onClick(() => {
-        // 点击“Click me”后，UI从“Hello”刷新为“ArkUI”
+        // After Click me is clicked, the UI text changes from Hello to ArkUI.
         this.label = 'ArkUI';
       })
     }

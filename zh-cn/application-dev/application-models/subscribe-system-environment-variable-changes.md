@@ -21,22 +21,24 @@
 
    ```ts
    import common from '@ohos.app.ability.common';
+   import { Configuration } from '@ohos.app.ability.Configuration';
+   import EnvironmentCallback from '@ohos.app.ability.EnvironmentCallback';
    
    @Entry
    @Component
    struct Index {
      private context = getContext(this) as common.UIAbilityContext;
-     private callbackId: number; // 注册订阅系统环境变化的ID
+     private callbackId: number = 0; // 注册订阅系统环境变化的ID
    
      subscribeConfigurationUpdate() {
-       let systemLanguage: string = this.context.config.language; // 获取系统当前语言
+       let systemLanguage: string | undefined = this.context.config.language; // 获取系统当前语言
    
        // 1.获取ApplicationContext
        let applicationContext = this.context.getApplicationContext();
    
        // 2.通过applicationContext订阅环境变量变化
-       let environmentCallback = {
-         onConfigurationUpdated(newConfig) {
+       let environmentCallback: EnvironmentCallback = {
+         onConfigurationUpdated(newConfig: Configuration) {
            console.info(`onConfigurationUpdated systemLanguage is ${systemLanguage}, newConfig: ${JSON.stringify(newConfig)}`);
    
            if (this.systemLanguage !== newConfig.language) {
@@ -68,7 +70,7 @@
    @Component
    struct Index {
      private context = getContext(this) as common.UIAbilityContext;
-     private callbackId: number; // 注册订阅系统环境变化的ID
+     private callbackId: number = 0; // 注册订阅系统环境变化的ID
    
      unsubscribeConfigurationUpdate() {
        let applicationContext = this.context.getApplicationContext();
@@ -95,8 +97,9 @@
 
 ```ts
 import AbilityStage from '@ohos.app.ability.AbilityStage';
+import { Configuration } from '@ohos.app.ability.Configuration';
 
-let systemLanguage: string; // 系统当前语言
+let systemLanguage: string | undefined; // 系统当前语言
 
 export default class MyAbilityStage extends AbilityStage {
   onCreate() {
@@ -104,7 +107,7 @@ export default class MyAbilityStage extends AbilityStage {
     console.info(`systemLanguage is ${systemLanguage} `);
   }
 
-  onConfigurationUpdate(newConfig) {
+  onConfigurationUpdate(newConfig: Configuration) {
     console.info(`onConfigurationUpdated systemLanguage is ${systemLanguage}, newConfig: ${JSON.stringify(newConfig)}`);
 
     if (systemLanguage !== newConfig.language) {
@@ -127,16 +130,19 @@ UIAbility组件提供了`UIAbility.onConfigurationUpdate()`回调方法用于订
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import Want from '@ohos.app.ability.Want';
+import { Configuration } from '@ohos.app.ability.Configuration';
 
-let systemLanguage: string; // 系统当前语言
+let systemLanguage: string | undefined; // 系统当前语言
 
 export default class EntryAbility extends UIAbility {
-  onCreate(want, launchParam) {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
     systemLanguage = this.context.config.language; // UIAbility实例首次加载时，获取系统当前语言
     console.info(`systemLanguage is ${systemLanguage} `);
   }
 
-  onConfigurationUpdate(newConfig) {
+  onConfigurationUpdate(newConfig: Configuration) {
     console.info(`onConfigurationUpdated systemLanguage is ${systemLanguage}, newConfig: ${JSON.stringify(newConfig)}`);
 
     if (systemLanguage !== newConfig.language) {
@@ -145,7 +151,7 @@ export default class EntryAbility extends UIAbility {
     }
   }
 
-  ...
+  // ...
 }
 ```
 
@@ -161,12 +167,13 @@ ExtensionAbility组件提供了`onConfigurationUpdate()`回调方法用于订阅
 
 ```ts
 import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
+import { Configuration } from '@ohos.app.ability.Configuration';
 
 export default class EntryFormAbility extends FormExtensionAbility {
-  onConfigurationUpdate(newConfig) {
+  onConfigurationUpdate(newConfig: Configuration) {
     console.info(`newConfig is ${JSON.stringify(newConfig)}`);
   }
 
-  ...
+  // ...
 }
 ```

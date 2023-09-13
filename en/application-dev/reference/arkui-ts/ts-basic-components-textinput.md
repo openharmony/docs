@@ -21,7 +21,7 @@ TextInput(value?:{placeholder?: ResourceStr, text?: ResourceStr, controller?: Te
 | Name                    | Type                                    | Mandatory  | Description           |
 | ----------------------- | ---------------------------------------- | ---- | --------------- |
 | placeholder   | [ResourceStr](ts-types.md#resourcestr)       | No   | Text displayed when there is no input.     |
-| text          | [ResourceStr](ts-types.md#resourcestr)       | No   | Current text input.<br>If the component has [stateStyles](ts-universal-attributes-polymorphic-style.md) or any other attribute that may trigger updating configured, you are advised to bind the state variable to the text in real time through the **onChange** event, so as to prevent display errors when the component is updated.<br>Since API version 10, this parameter supports two-way binding through [$$](../../quick-start/arkts-two-way-sync.md).|
+| text          | [ResourceStr](ts-types.md#resourcestr)       | No   | Current text input.<br>If the component has [stateStyles](ts-universal-attributes-polymorphic-style.md) or any other attribute that may trigger updating configured, you are advised to bind the state variable to the text in real time through the **onChange** event, so as to prevent display errors when the component is updated.<br>Since API version 10, this parameter supports two-way binding through [$$](../../quick-start/arkts-two-way-sync.md). |
 | controller<sup>8+</sup> | [TextInputController](#textinputcontroller8) | No   | Text input controller.|
 
 
@@ -45,16 +45,20 @@ Among the [universal attributes](ts-universal-attributes-size.md) and [universal
 | selectedBackgroundColor<sup>10+</sup> | [ResourceColor](ts-types.md#resourcecolor) | Background color of the selected text.<br>If the opacity is not set, the color is opaque. For example, **0x80000000** indicates black with 50% opacity.|
 | caretStyle<sup>10+</sup> | {<br>width: [Length](ts-types.md#length)<br>} | Caret style.                                       |
 | caretPosition<sup>10+</sup> | number | Caret position.|
-| showUnit<sup>10+</sup>                |  [CustomBuilder](ts-types.md#CustomBuilder8)         | Unit for content in the component.<br>By default, there is no unit.|
-| showError<sup>10+</sup> | string \| undefined | Error text displayed when an error occurs.<br>By default, no error text is displayed.|
+| showUnit<sup>10+</sup>                | [CustomBuilder](ts-types.md#CustomBuilder8)         | Unit for content in the component.<br>By default, there is no unit.|
+| showError<sup>10+</sup> | string \| undefined | Error message displayed when an error occurs.<br>By default, no error message is displayed.<br>**NOTE**<br>If the parameter type is string and the input content does not comply with specifications, the error message is displayed. If the parameter type is undefined, no error message is displayed. See [Example 2](#example-2).|
 | showUnderline<sup>10+</sup> | boolean | Whether to show an underline.<br>Default value: **false**|
 | passwordIcon<sup>10+</sup> | [PasswordIcon](#passwordicon10) | Password icon to display at the end of the password text box.<br>By default, the system-provided icon is used.|
 | enableKeyboardOnFocus<sup>10+</sup> | boolean | Whether to enable the input method when the component obtains focus.<br>Default value: **true**  |
 | selectionMenuHidden<sup>10+</sup> | boolean | Whether to display the text selection menu when the text box is long-pressed or right-clicked.<br>Default value: **false**|
-
+| barState<sup>10+</sup> | [BarState](ts-appendix-enums.md#BarState) | Scrollbar state when the inline input style is used.<br>Default value: **BarState.Auto**|
+| maxLines<sup>10+</sup> | number | Maximum number of lines that can be displayed when the inline input style is used.<br>Default value: **3**|
+| customKeyboard<sup>10+</sup> | [CustomBuilder](ts-types.md#custombuilder8) | Custom keyboard.<br>**NOTE**<br>When a custom keyboard is set, activating the text box opens the specified custom component, instead of the system input method, and the **enterKeyType** attribute setting for the system keyboard will not take effect.<br>The custom keyboard's height can be set through the **height** attribute of the custom component's root node, and its width is fixed at the default value.<br>The custom keyboard is displayed on top of the current page, without compressing or raising the page.<br>The custom keyboard cannot obtain the focus, but it blocks gesture events.<br>By default, the custom keyboard is closed when the input component loses the focus. You can also use the [TextInputController](#textinputcontroller8).[stopEditing](#stopediting10) API to close the keyboard.|
 >  **NOTE**
 >
->  The default value of the universal attribute [padding](ts-universal-attributes-size.md) is as follows: <br>{<br> top: 8 vp,<br> right: 16 vp,<br> bottom: 8 vp,<br> left: 16 vp<br> }
+>  The default value of the universal attribute [padding](ts-universal-attributes-size.md) is as follows: <br>{<br> top: 8 vp,<br> right: 16 vp,<br> bottom: 8 vp,<br> left: 16 vp<br> } 
+>
+>  Since API version 10, .**width('auto')** can be set for the **\<TextInput>** component. Under this setting, the component auto-adapts its width to the text width, while respecting the **constraintSize** configuration and the maximum and minimum width restrictions received by the parent container. For details, see [Size](ts-universal-attributes-size.md#attributes).     
 
 ## EnterKeyType
 
@@ -71,7 +75,7 @@ Among the [universal attributes](ts-universal-attributes-size.md) and [universal
 | Name                | Description           |
 | ------------------ | ------------- |
 | Normal   | Normal input mode.<br>The value can contain digits, letters, underscores (_), spaces, and special characters.|
-| Password | Password input mode. The value can contain digits, letters, underscores (_), spaces, and special characters. An eye icon is used to show or hide the password, and the password is hidden behind dots by default.|
+| Password | Password input mode. The value can contain digits, letters, underscores (_), spaces, and special characters. An eye icon is used to show or hide the password, and the password is hidden behind dots by default. The password input mode does not support underlines.|
 | Email    | Email address input mode. The value can contain digits, letters, underscores (_), and at signs (@). Only one at sign (@) is allowed.|
 | Number   | Digit input mode.     |
 | PhoneNumber<sup>9+</sup> | Phone number input mode.<br>The value can contain digits, plus signs (+), hyphens (-), asterisks (*), and number signs (#). The length is not limited.|
@@ -81,7 +85,7 @@ Among the [universal attributes](ts-universal-attributes-size.md) and [universal
 | Name                | Description           |
 | ------------------ | ------------- |
 | Default   | Default style. The caret width is fixed at 1.5 vp, and the caret height is subject to the background height and font size of the selected text.  |
-| Inline    | Inline input style. The background height of the selected text is the same as the height of the text box.     |
+| Inline    | Inline input style. The background height of the selected text is the same as the height of the text box.<br>This style is used in scenarios where editing and non-editing states are obvious, for example, renaming in the file list view.|
 
 ## PasswordIcon<sup>10+</sup>
 
@@ -127,7 +131,7 @@ Sets the position of the caret.
 | value  | number   | Yes  | Length from the start of the string to the position where the caret is located.|
 ### setTextSelection<sup>10+</sup>
 
-setTextSelection(selectionStart: number, selectionStart: number): void
+setTextSelection(selectionStart: number, selectionEnd: number): void
 
 Sets the text selection area, which will be highlighted.
 
@@ -230,7 +234,7 @@ struct TextInputExample {
         .maxLength(9)
         .showPasswordIcon(true)
       // Inline-style text box.
-      TextInput({ placeholder: 'inline style' })
+      TextInput({ text: 'inline style' })
         .width(400)
         .height(50)
         .margin(20)
@@ -241,22 +245,25 @@ struct TextInputExample {
 }
 ```
 
-![textInput](figures/textInput.gif)
+![TextInput](figures/TextInput.png)
 
 ### Example 2
 
 ```ts
-// xxx.ets
 @Entry
 @Component
 struct TextInputExample {
-  @State PassWordSrc1:Resource=$r('app.media.icon')
-  @State PassWordSrc2:Resource=$r('app.media.icon')
+  @State PassWordSrc1: Resource = $r('app.media.onIcon')
+  @State PassWordSrc2: Resource = $r('app.media.offIcon')
+  @State TextError: string = ''
+  @State Text: string = ''
+  @State NameText: string = 'test'
+
   @Builder itemEnd() {
     Select([{ value: 'KB' },
       { value: 'MB' },
-      { value: 'GB'},
-      { value: 'TB',}])
+      { value: 'GB' },
+      { value: 'TB', }])
       .height("48vp")
       .borderRadius(0)
       .selected(2)
@@ -267,30 +274,91 @@ struct TextInputExample {
       .selectedOptionFont({ size: 20, weight: 400 })
       .optionFont({ size: 20, weight: 400 })
       .backgroundColor(Color.Transparent)
-      .responseRegion({height:"40vp",width:"80%",x:'10%',y:'6vp'})
+      .responseRegion({ height: "40vp", width: "80%", x: '10%', y: '6vp' })
       .onSelect((index: number) => {
         console.info('Select:' + index)
       })
   }
 
   build() {
-    Column() {
+    Column({ space: 20 }) {
       // Customize the password icon.
-      TextInput({ placeholder: 'user define password icon' })
+      TextInput({ placeholder: 'Custom password icon' })
         .type(InputType.Password)
-        .width(400)
+        .width(380)
         .height(60)
-        .passwordIcon({onIconSrc:this.PassWordSrc1,offIconSrc : this.PassWordSrc2})
+        .passwordIcon({ onIconSrc: this.PassWordSrc1, offIconSrc: this.PassWordSrc2 })
       // Show an underline.
-      TextInput({ placeholder: 'underline style' })
+      TextInput({ placeholder: 'Underline style' })
         .showUnderline(true)
-        .width(400)
+        .width(380)
         .height(60)
         .showError('Error')
-        .showUnit(this.itemEnd.bind(this))
+        .showUnit(():void=>this.itemEnd())
+
+      Text (`User name: ${this.Text}`)
+        .width('95%')
+      TextInput({ placeholder: 'Enter user name', text: this.Text })
+        .showUnderline(true)
+        .width(380)
+        .showError(this.TextError)
+        .onChange((value: string) => {
+          this.Text = value
+        })
+        .onSubmit(() => {// If the entered user name is incorrect, the text box will be cleared and the error message will be displayed.
+          if (this.Text == this.NameText) {
+            this.TextError = ''
+          } else {
+            this.TextError ='Incorrect user name.'
+            this.Text = ''
+          }
+        })
+
     }.width('100%')
   }
 }
 ```
 
-![showUnit](figures/showUnit.png)
+![TextInputError](figures/TextInputError.png)
+
+### Example 3
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct TextInputExample {
+  controller: TextInputController = new TextInputController()
+  @State inputValue: string = ""
+
+  // Create a custom keyboard component.
+  @Builder CustomKeyboardBuilder() {
+    Column() {
+      Button('x').onClick(() => {
+        // Disable the custom keyboard.
+        this.controller.stopEditing()
+      })
+      Grid() {
+        ForEach([1, 2, 3, 4, 5, 6, 7, 8, 9, '*', 0, '#'], (item:number|string) => {
+          GridItem() {
+            Button(item + "")
+              .width(110).onClick(() => {
+              this.inputValue += item
+            })
+          }
+        })
+      }.maxCount(3).columnsGap(10).rowsGap(10).padding(5)
+    }.backgroundColor(Color.Gray)
+  }
+
+  build() {
+    Column() {
+      TextInput({ controller: this.controller, text: this.inputValue })
+        // Bind the custom keyboard.
+        .customKeyboard(this.CustomKeyboardBuilder()).margin(10).border({ width: 1 })
+    }
+  }
+}
+```
+
+![customKeyboard](figures/textInputCustomKeyboard.png)

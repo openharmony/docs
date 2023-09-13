@@ -76,7 +76,7 @@ Video(value: {src?: string | Resource, currentProgressRate?: number | string | P
 ### 导入对象
 
 ```ts
-controller: VideoController = new VideoController()
+let controller: VideoController = new VideoController()
 ```
 
 
@@ -173,7 +173,9 @@ struct VideoCreateComponent {
         previewUri: this.previewUri,
         currentProgressRate: this.curRate,
         controller: this.controller
-      }).width('100%').height(600)
+      })
+        .width('100%')
+        .height(600)
         .autoPlay(this.isAutoPlay)
         .controls(this.showControls)
         .onStart(() => {
@@ -188,19 +190,27 @@ struct VideoCreateComponent {
         .onError(() => {
           console.info('onError')
         })
-        .onPrepared((e) => {
-          console.info('onPrepared is ' + e.duration)
+        .onPrepared((e?: DurationObject) => {
+          if (e != undefined) {
+            console.info('onPrepared is ' + e.duration)
+          }
         })
-        .onSeeking((e) => {
-          console.info('onSeeking is ' + e.time)
+        .onSeeking((e?: TimeObject) => {
+          if (e != undefined) {
+            console.info('onSeeking is ' + e.time)
+          }
         })
-        .onSeeked((e) => {
-          console.info('onSeeked is ' + e.time)
+        .onSeeked((e?: TimeObject) => {
+          if (e != undefined) {
+            console.info('onSeeked is ' + e.time)
+          }
         })
-        .onUpdate((e) => {
-          console.info('onUpdate is ' + e.time)
+        .onUpdate((e?: TimeObject) => {
+          if (e != undefined) {
+            console.info('onUpdate is ' + e.time)
+          }
         })
-      
+
       Row() {
         Button('src').onClick(() => {
           this.videoSrc = $rawfile('video2.mp4') // 切换视频源
@@ -241,5 +251,13 @@ struct VideoCreateComponent {
       }
     }
   }
+}
+
+interface DurationObject {
+  duration: number;
+}
+
+interface TimeObject {
+  time: number;
 }
 ```

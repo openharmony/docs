@@ -8,19 +8,19 @@
 
 > **说明：** 
 >
-> 本模块首批接口从API version 10开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> - 本模块首批接口从API version 10开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+>
+> - 本模块接口为系统接口。
 
 ## 导入模块
 
-```js
+```ts
 import cloudData from '@ohos.data.cloudData';
 ```
 
 ##   ClearAction
 
 清除本地下载的云端数据的行为枚举。
-
-**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.DistributedDataManager.CloudSync.Config
 
@@ -39,8 +39,6 @@ static enableCloud(accountId: string, switches: {[bundleName: string]: boolean},
 
 打开端云协同，使用callback异步回调。
 
-**系统接口：** 此接口为系统接口。
-
 **需要权限**：ohos.permission.CLOUDDATA_CONFIG
 
 **系统能力：** SystemCapability.DistributedDataManager.CloudSync.Config
@@ -55,19 +53,22 @@ static enableCloud(accountId: string, switches: {[bundleName: string]: boolean},
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 let account = 'test_id';
-let switches = { 'test_bundleName1': true, 'test_bundleName2': false };
+let switches: Record<string, boolean> = { 'test_bundleName1': true, 'test_bundleName2': false };
 try {
-    cloudData.Config.enableCloud(account, switches, function (err) {
-        if (err === undefined) {
-            console.info('Succeeded in enabling cloud');
-        } else {
-            console.error(`Failed to enable.Code: ${err.code}, message: ${err.message}`);
-        }
-    });
-} catch (error) {
-    console.error(`An unexpected error occurred. Code: ${error.code}, message: ${error.message}`);
+  cloudData.Config.enableCloud(account, switches, (err) => {
+    if (err === undefined) {
+      console.info('Succeeded in enabling cloud');
+    } else {
+      console.error(`Failed to enable.Code: ${err.code}, message: ${err.message}`);
+    }
+  });
+} catch (e) {
+  let error = e as BusinessError;
+  console.error(`An unexpected error occurred. Code: ${error.code}, message: ${error.message}`);
 }
 ```
 
@@ -76,8 +77,6 @@ try {
 static enableCloud(accountId: string, switches: {[bundleName: string]: boolean}): Promise&lt;void&gt;
 
 打开端云协同，使用Promise异步回调。
-
-**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.CLOUDDATA_CONFIG
 
@@ -98,17 +97,20 @@ static enableCloud(accountId: string, switches: {[bundleName: string]: boolean})
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 let account = 'test_id';
-let switches = { 'test_bundleName1': true, 'test_bundleName2': false };
+let switches: Record<string, boolean> = { 'test_bundleName1': true, 'test_bundleName2': false };
 try {
-    cloudData.Config.enableCloud(account, switches).then(() => {
-        console.info('Succeeded in enabling cloud');
-    }).catch((err) => {
-        console.error(`Failed to enable.Code: ${err.code}, message: ${err.message}`);
-    });
-} catch (error) {
-    console.error(`An unexpected error occurred. Code: ${error.code}, message: ${error.message}`);
+  cloudData.Config.enableCloud(account, switches).then(() => {
+    console.info('Succeeded in enabling cloud');
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to enable.Code: ${err.code}, message: ${err.message}`);
+  });
+} catch (e) {
+  let error = e as BusinessError;
+  console.error(`An unexpected error occurred. Code: ${error.code}, message: ${error.message}`);
 }
 ```
 
@@ -117,8 +119,6 @@ try {
 static disableCloud(accountId: string, callback: AsyncCallback&lt;void&gt;):void
 
 关闭端云协同，使用callback异步回调。
-
-**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.CLOUDDATA_CONFIG
 
@@ -133,18 +133,21 @@ static disableCloud(accountId: string, callback: AsyncCallback&lt;void&gt;):void
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 let account = 'test_id';
 try {
-    cloudData.Config.disableCloud(account, function (err) {
-        if (err === undefined) {
-            console.info('Succeeded in disabling cloud');
-        } else {
-            console.error(`Failed to disableCloud. Code: ${err.code}, message: ${err.message}`);
-        }
-    });
-} catch (error) {
-    console.error(`An unexpected error occurred. Code: ${error.code}, message: ${error.message}`);
+  cloudData.Config.disableCloud(account, (err) => {
+    if (err === undefined) {
+      console.info('Succeeded in disabling cloud');
+    } else {
+      console.error(`Failed to disableCloud. Code: ${err.code}, message: ${err.message}`);
+    }
+  });
+} catch (e) {
+  let error = e as BusinessError;
+  console.error(`An unexpected error occurred. Code: ${error.code}, message: ${error.message}`);
 }
 ```
 
@@ -153,8 +156,6 @@ try {
 static disableCloud(accountId: string): Promise&lt;void&gt;
 
 关闭端云协同，使用Promise异步回调。
-
-**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.CLOUDDATA_CONFIG
 
@@ -174,16 +175,19 @@ static disableCloud(accountId: string): Promise&lt;void&gt;
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 let account = 'test_id';
 try {
-    cloudData.Config.disableCloud(account).then(() => {
-        console.info('Succeeded in disabling cloud');
-    }).catch((err) => {
-        console.error(`Failed to disableCloud. Code: ${err.code}, message: ${err.message}`);
-    });
-} catch (error) {
-    console.error(`An unexpected error occurred. Code: ${error.code}, message: ${error.message}`);
+  cloudData.Config.disableCloud(account).then(() => {
+    console.info('Succeeded in disabling cloud');
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to disableCloud. Code: ${err.code}, message: ${err.message}`);
+  });
+} catch (e) {
+  let error = e as BusinessError;
+  console.error(`An unexpected error occurred. Code: ${error.code}, message: ${error.message}`);
 }
 ```
 
@@ -192,8 +196,6 @@ try {
 static changeAppCloudSwitch(accountId: string,bundleName:string,status:boolean, callback: AsyncCallback&lt;void&gt;):void
 
 修改单个应用端云协同开关，使用callback异步回调。
-
-**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.CLOUDDATA_CONFIG
 
@@ -210,19 +212,22 @@ static changeAppCloudSwitch(accountId: string,bundleName:string,status:boolean, 
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 let account = 'test_id';
 let bundleName = 'test_bundleName';
 try {
-    cloudData.Config.changeAppCloudSwitch(account, bundleName, true, function (err) {
-        if (err === undefined) {
-            console.info('Succeeded in changing App cloud switch');
-        } else {
-            console.error(`Failed to change App cloud switch. Code: ${err.code}, message: ${err.message}`);
-        }
-    });
-} catch (error) {
-    console.error(`An unexpected error occurred. Code: ${error.code}, message: ${error.message}`);
+  cloudData.Config.changeAppCloudSwitch(account, bundleName, true, (err) => {
+    if (err === undefined) {
+      console.info('Succeeded in changing App cloud switch');
+    } else {
+      console.error(`Failed to change App cloud switch. Code: ${err.code}, message: ${err.message}`);
+    }
+  });
+} catch (e) {
+  let error = e as BusinessError;
+  console.error(`An unexpected error occurred. Code: ${error.code}, message: ${error.message}`);
 }
 ```
 
@@ -231,8 +236,6 @@ try {
 static changeAppCloudSwitch(accountId: string,bundleName:string,status:boolean): Promise&lt;void&gt;
 
 修改单个应用端云协同开关，使用Promise异步回调。
-
-**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.CLOUDDATA_CONFIG
 
@@ -254,17 +257,20 @@ static changeAppCloudSwitch(accountId: string,bundleName:string,status:boolean):
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 let account = 'test_id';
 let bundleName = 'test_bundleName';
 try {
-    cloudData.Config.changeAppCloudSwitch(account, bundleName, true).then(() => {
-        console.info('Succeeded in changing App cloud switch');
-    }).catch((err) => {
-        console.error(`Failed to change App cloud switch. Code is ${err.code}, message is ${err.message}`);
-    });
-} catch (error) {
-    console.error(`An unexpected error occurred. Code: ${error.code}, message: ${error.message}`);
+  cloudData.Config.changeAppCloudSwitch(account, bundleName, true).then(() => {
+    console.info('Succeeded in changing App cloud switch');
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to change App cloud switch. Code is ${err.code}, message is ${err.message}`);
+  });
+} catch (e) {
+  let error = e as BusinessError;
+  console.error(`An unexpected error occurred. Code: ${error.code}, message: ${error.message}`);
 }
 ```
 
@@ -273,8 +279,6 @@ try {
 static notifyDataChange(accountId: string,bundleName:string, callback: AsyncCallback&lt;void&gt;):void
 
 通知云端的数据变更，使用callback异步回调。
-
-**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.CLOUDDATA_CONFIG
 
@@ -290,19 +294,22 @@ static notifyDataChange(accountId: string,bundleName:string, callback: AsyncCall
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 let account = 'test_id';
 let bundleName = 'test_bundleName';
 try {
-    cloudData.Config.notifyDataChange(account, bundleName, function (err) {
-        if (err === undefined) {
-            console.info('Succeeded in notifying the change of data');
-        } else {
-            console.error(`Failed to notify the change of data. Code: ${err.code}, message: ${err.message}`);
-        }
-    });
-} catch (error) {
-    console.error(`An unexpected error occurred. Code: ${error.code}, message: ${error.message}`);
+  cloudData.Config.notifyDataChange(account, bundleName, (err) => {
+    if (err === undefined) {
+      console.info('Succeeded in notifying the change of data');
+    } else {
+      console.error(`Failed to notify the change of data. Code: ${err.code}, message: ${err.message}`);
+    }
+  });
+} catch (e) {
+  let error = e as BusinessError;
+  console.error(`An unexpected error occurred. Code: ${error.code}, message: ${error.message}`);
 }
 ```
 
@@ -311,8 +318,6 @@ try {
 static notifyDataChange(accountId: string,bundleName:string): Promise&lt;void&gt;
 
 通知云端的数据变更，使用Promise异步回调。
-
-**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.CLOUDDATA_CONFIG
 
@@ -333,17 +338,20 @@ static notifyDataChange(accountId: string,bundleName:string): Promise&lt;void&gt
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 let account = 'test_id';
 let bundleName = 'test_bundleName';
 try {
-    cloudData.Config.notifyDataChange(account, bundleName).then(() => {
-        console.info('Succeeded in notifying the change of data');
-    }).catch((err) => {
-        console.error(`Failed to notify the change of data. Code: ${err.code}, message: ${err.message}`);
-    });
-} catch (error) {
-    console.error(`An unexpected error occurred. Code: ${error.code}, message: ${error.message}`);
+  cloudData.Config.notifyDataChange(account, bundleName).then(() => {
+    console.info('Succeeded in notifying the change of data');
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to notify the change of data. Code: ${err.code}, message: ${err.message}`);
+  });
+} catch (e) {
+  let error = e as BusinessError;
+  console.error(`An unexpected error occurred. Code: ${error.code}, message: ${error.message}`);
 }
 ```
 
@@ -352,8 +360,6 @@ try {
 static clear(accountId: string, appActions: {[bundleName: string]: ClearAction},  callback: AsyncCallback&lt;void&gt;):void
 
 清除本地下载的云端数据，使用callback异步回调。
-
-**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.CLOUDDATA_CONFIG
 
@@ -369,21 +375,26 @@ static clear(accountId: string, appActions: {[bundleName: string]: ClearAction},
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 let action = cloudData.ClearAction;
 let account = "test_id";
-let bundleName1 = "test_bundleName1";
-let bundleName2 = "test_bundleName2";
-let appActions = { [bundleName1]: action.CLEAR_CLOUD_INFO, [bundleName2]: action.CLEAR_CLOUD_DATA_AND_INFO };
+type dataType = Record<string, cloudData.ClearAction>
+let appActions: dataType = {
+  'test_bundleName1': action.CLEAR_CLOUD_INFO,
+  'test_bundleName2': action.CLEAR_CLOUD_DATA_AND_INFO
+};
 try {
-  cloudData.Config.clear(account, appActions, function (err) {
+  cloudData.Config.clear(account, appActions, (err) => {
     if (err === undefined) {
       console.info('Succeeding in clearing cloud data');
     } else {
       console.error(`Failed to clear cloud data. Code: ${err.code}, message: ${err.message}`);
     }
   });
-} catch (error) {
+} catch (e) {
+  let error = e as BusinessError;
   console.error(`An unexpected error occurred. Code: ${error.code}, message: ${error.message}`);
 }
 ```
@@ -393,8 +404,6 @@ try {
 static clear(accountId: string, appActions: {[bundleName: string]: ClearAction}): Promise&lt;void&gt;
 
 清除本地下载的云端数据，使用Promise异步回调。
-
-**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.CLOUDDATA_CONFIG
 
@@ -415,19 +424,24 @@ static clear(accountId: string, appActions: {[bundleName: string]: ClearAction})
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 let action = cloudData.ClearAction;
 let account = "test_id";
-let bundleName1 = "test_bundleName1";
-let bundleName2 = "test_bundleName2";
-let appActions = { [bundleName1]: action.CLEAR_CLOUD_INFO, [bundleName2]: action.CLEAR_CLOUD_DATA_AND_INFO };
+type dataType = Record<string, cloudData.ClearAction>;
+let appActions: dataType = {
+  'test_bundleName1': action.CLEAR_CLOUD_INFO,
+  'test_bundleName2': action.CLEAR_CLOUD_DATA_AND_INFO
+};
 try {
   cloudData.Config.clear(account, appActions).then(() => {
     console.info('Succeeding in clearing cloud data');
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to clear cloud data. Code: ${err.code}, message: ${err.message}`);
   });
-} catch (error) {
+} catch (e) {
+  let error = e as BusinessError;
   console.error(`An unexpected error occurred. Code: ${error.code}, message: ${error.message}`);
 }
 ```

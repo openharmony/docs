@@ -15,7 +15,9 @@ This component can contain a single child component.
 
 Since API version 9, this API is supported in ArkTS widgets.
 
-**API 1**: ListItem(value?: ListItemOptions)<sup>10+</sup>
+### ListItem<sup>10+</sup>
+
+ListItem(value?: ListItemOptions)
 
 **Parameters**
 
@@ -23,15 +25,17 @@ Since API version 9, this API is supported in ArkTS widgets.
 | ------ | --------------------------------------------- | ---- | ------------------------------------------------------------ |
 | value  | [ListItemOptions](#listitemoptions10) | No  | Value of the list item, containing the **style** parameter of the **ListItemStyle**enum type.|
 
-**API 2**: ListItem(value?: string)<sup>(deprecated)</sup>
+### ListItem<sup>(deprecated)</sup>
 
-This API is deprecated since API version 10. You are advised to use API 1 instead.
+ListItem(value?: string)
+
+This API is deprecated since API version 10. You are advised to use [ListItem<sup>10+</sup>](#listitem10) instead.
 
 **Parameters**
 
 | Name| Type                     | Mandatory| Description|
 | ------ | ----------------------------- | ---- | -------- |
-| value  | string<sup>(deprecated)</sup> | No  | N/A      |
+| value  | string | No  | N/A      |
 
 ## Attributes
 
@@ -76,17 +80,16 @@ For a list in horizontal layout, it refers to the delete item displayed below (o
 
 | Name                | Type                                                    | Mandatory| Description                                                        |
 | -------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| deleteAreaDistance | [Length](ts-types.md#length) | No| Swipe distance threshold for deleting the list item.<br>Default value: **56vp**<br>**NOTE**<br>This parameter cannot be set in percentage.<br>If the value is greater than the list item width minus the width of **swipeAction**, or is less than or equal to 0, the delete area will not be set.|
-| onDelete | () => void | No| Callback invoked when the list item is released while in the delete area.<br>**NOTE**<br> This callback is invoked only when the list item is released in a position that meets or goes beyond the specified swipe distance threshold (which must be valid) for deleting the list item.|
-| onEntryDeleteArea | () => void | No| Callback invoked each time the list item enters the delete area.|
-| onExitDeleteArea | () => void | No|Callback invoked each time the list item exits the delete area.|
+| actionAreaDistance | [Length](ts-types.md#length) | No| Swipe distance threshold for deleting the list item.<br>Default value: **56vp**<br>**NOTE**<br>This parameter cannot be set in percentage.<br>If the value is greater than the list item width minus the width of **swipeAction**, or is less than or equal to 0, the delete area will not be set.|
+| onAction | () => void | No| Callback invoked when the list item is released while in the delete area.<br>**NOTE**<br> This callback is invoked only when the list item is released in a position that meets or goes beyond the specified swipe distance threshold (which must be valid) for deleting the list item.|
+| onEnterActionArea | () => void | No| Callback invoked each time the list item enters the delete area.|
+| onExitActionArea | () => void | No|Callback invoked each time the list item exits the delete area.|
 | builder |  CustomBuilder | No|Swipe action item displayed when the list item is swiped left or right (in vertical list layout) or up or down (in horizontal list layout).|
-| useDefaultDeleteAnimation | boolean | No|Whether to use the default delete animation.<br>Default value: **true**|
 ## ListItemOptions<sup>10+</sup>
 
 | Name | Type                                 | Mandatory| Description                                                        |
 | ----- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| style | [ListItemStyle](#listitemstyle10) | No  | Style of the list item.<br>Default value: **ListItemStyle.NONE**<br>If this parameter is set to **ListItemStyle.NONE**, no style is applied.<br>If this parameter is set to **ListItemStyle.CARD**, the default card style is applied, but only when **ListItemGroupStyle.CARD** is set for [\<ListItemGroup>](ts-container-listitemgroup.md).<br>In the default card style, the list item has a 48 vp height and 100% width. It can be in focus, hover, press, selected, or disable style depending on the state.<br>**NOTE**<br>In the default card style, the list has its **listDirection** attribute fixed at **Axis.Vertical** and **alignListItem** attribute at **ListItemAlign.Center**. |
+| style | [ListItemStyle](#listitemstyle10) | No  | Style of the list item.<br>Default value: **ListItemStyle.NONE**<br>If this parameter is set to **ListItemStyle.NONE**, no style is applied.<br>If this parameter is set to **ListItemStyle.CARD**, the default card style is applied, but only when **ListItemGroupStyle.CARD** is set for [\<ListItemGroup>](ts-container-listitemgroup.md).<br>In the default card style, the list item has a 48 vp height and 100% width. It can be in focus, hover, press, selected, or disable style depending on the state.<br>**NOTE**<br>In the default card style, the list has its **listDirection** attribute fixed at **Axis.Vertical** and **alignListItem** attribute at **ListItemAlign.Center**.|
 
 ## ListItemStyle<sup>10+</sup>
 
@@ -101,8 +104,9 @@ For a list in horizontal layout, it refers to the delete item displayed below (o
 | -------- | -------- |
 | onSelect(event: (isSelected: boolean) =&gt; void)<sup>8+</sup> | Triggered when the selected state of the **\<ListItem>** changes.<br>**isSelected**: Returns **true** if the **\<ListItem>** is selected by mouse drag; returns **false** otherwise.|
 
-
 ## Example
+
+### Example 1
 
 ```ts
 // xxx.ets
@@ -129,6 +133,8 @@ struct ListItemExample {
 ```
 
 ![en-us_image_0000001219864159](figures/en-us_image_0000001219864159.gif)
+
+### Example 2
 
 
 ```ts
@@ -165,19 +171,18 @@ struct ListItemExample2 {
           .swipeAction({
             end: {
               builder: this.itemEnd.bind(this, item),
-              useDefaultDeleteAnimation: true,
-              onDelete: () => {
+              onAction: () => {
                 animateTo({ duration: 1000 }, () => {
                   let index = this.arr.indexOf(item)
                   this.arr.splice(index, 1)
                 })
               },
-              deleteAreaDistance: 80,
-              onEnterDeleteArea: () => {
+              actionAreaDistance: 56,
+              onEnterActionArea: () => {
                 this.enterEndDeleteAreaString = "enterEndDeleteArea"
                 this.exitEndDeleteAreaString = "not exitEndDeleteArea"
               },
-              onExitDeleteArea: () => {
+              onExitActionArea: () => {
                 this.enterEndDeleteAreaString = "not enterEndDeleteArea"
                 this.exitEndDeleteAreaString = "exitEndDeleteArea"
               }
@@ -196,3 +201,43 @@ struct ListItemExample2 {
 }
 ```
 ![deleteListItem](figures/deleteListItem.gif)
+
+### Example 3
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct ListItemExample3 {
+ private arr: any = [ListItemStyle.CARD, ListItemStyle.CARD,ListItemStyle.NONE]
+ build() {
+  Column() {
+   List({ space: "4vp", initialIndex: 0 }) {
+    ListItemGroup({style:ListItemGroupStyle.CARD}){
+     ForEach(this.arr, (itemStyle,index) => {
+      ListItem({style:itemStyle}) {
+       Text(""+index)
+        .width("100%")
+        .textAlign(TextAlign.Center)
+      }
+     })
+    }
+    ForEach(this.arr, (itemStyle,index) => {
+     ListItem({style:itemStyle}) {
+      Text(""+index)
+       .width("100%")
+       .textAlign(TextAlign.Center)
+     }
+    })
+   }
+   .width('100%')
+   .multiSelectable(true)
+   .backgroundColor(0xDCDCDC) // List in light blue
+  }
+  .width('100%')
+  .padding({ top: 5 })
+ }
+}
+
+```
+![ListItemStyle](figures/listItem3.jpeg)

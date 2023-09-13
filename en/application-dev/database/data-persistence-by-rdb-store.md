@@ -50,7 +50,7 @@ The following table lists the APIs used for RDB data persistence. Most of the AP
 
 ## How to Develop
 
-1. Obtain an **RdbStore** instance.<br> Example:
+1. Obtain an **RdbStore** instance.<br>Example:
 
    Stage model:
    
@@ -97,7 +97,7 @@ The following table lists the APIs used for RDB data persistence. Most of the AP
           store.version = 3;
         }
 
-         // Perform operations such as adding, deleting, modifying, and querying data in the RDB store.
+         // Before performing data operations on the database, obtain an RdbStore instance.
 
        });
      }
@@ -151,7 +151,7 @@ The following table lists the APIs used for RDB data persistence. Most of the AP
         store.version = 3;
      }
    
-     // Perform operations such as adding, deleting, modifying, and querying data in the RDB store.
+     // Before performing data operations on the database, obtain an RdbStore instance.
    
    });
    ```
@@ -256,7 +256,9 @@ The following table lists the APIs used for RDB data persistence. Most of the AP
 
 5. Delete the RDB store.
 
-   Use **deleteRdbStore()** to delete the RDB store and related database files.
+   Use **deleteRdbStore()** to delete the RDB store and related database files. 
+
+   Example:
 
    > **NOTE**
    >

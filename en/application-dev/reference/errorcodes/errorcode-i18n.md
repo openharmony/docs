@@ -1,4 +1,4 @@
-# i18n Error Codes
+# I18N Error Codes
 
 > **NOTE**
 >
@@ -8,7 +8,7 @@
 
 **Error Message**
 
-Unspported para value.
+param value not valid
 
 **Description**
 
@@ -17,25 +17,7 @@ This error code is reported if an I18N API is called with invalid parameter valu
 **Possible Causes**
 
 Invalid parameter values are probably due to incorrect parameter types.
-
+ 
 **Solution**
 
-Check whether the parameter type is correct.
-
-## 890002 Incorrect Configuration Option
-
-**Error Message**
-
-param value not valid
-
-**Description**
-
-This error code is reported if an I18N API is called with invalid option values specified.
-
-**Possible Causes**
-
-Invalid option values are probably due to incorrect option types.
-
-**Solution**
-
-Check whether the option type is correct.
+Check whether the parameter types are correct.

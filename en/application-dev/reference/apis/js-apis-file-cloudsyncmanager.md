@@ -426,7 +426,7 @@ Clears the cloud data locally. This API uses an asynchronous callback to return 
 | ---------- | ------ | ---- | ---- |
 | accountId | string | Yes  | Account ID.|
 | appActions | object | Yes  | Action to take. **bundleName** indicates the application bundle to clear, and [Action](#action) indicates the action to take.|
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result.|
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to clear the cloud data locally.|
 
 **Error codes**
 

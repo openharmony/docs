@@ -14,11 +14,13 @@
 
    ```ts
    import fs from '@ohos.file.fs';
-   
-   let context = ...; // 获取设备A的UIAbilityContext信息
-   let pathDir = context.distributedFilesDir;
+   import common from '@ohos.app.ability.common';
+   import { BusinessError } from '@ohos.base';
+
+   let context = getContext(this) as common.UIAbilityContext; // 获取设备A的UIAbilityContext信息
+   let pathDir: string = context.distributedFilesDir;
    // 获取分布式目录的文件路径
-   let filePath = pathDir + '/test.txt';
+   let filePath: string = pathDir + '/test.txt';
    
    try {
      // 在分布式目录下创建文件
@@ -28,7 +30,8 @@
      fs.writeSync(file.fd, 'content');
      // 关闭文件
      fs.closeSync(file.fd);
-   } catch (err) {
+   } catch (error) {
+     let err: BusinessError = error as BusinessError;
      console.error(`Failed to openSync / writeSync / closeSync. Code: ${err.code}, message: ${err.message}`);
    }
    ```
@@ -37,24 +40,33 @@
 
    ```ts
    import fs from '@ohos.file.fs';
+   import common from '@ohos.app.ability.common';
+   import buffer from '@ohos.buffer';
+   import { BusinessError } from '@ohos.base';
    
-   let context = ...; // 获取设备B的UIAbilityContext信息
-   let pathDir = context.distributedFilesDir;
+   let context = getContext(this) as common.UIAbilityContext; // 获取设备B的UIAbilityContext信息
+   let pathDir: string = context.distributedFilesDir;
    // 获取分布式目录的文件路径
-   let filePath = pathDir + '/test.txt';
+   let filePath: string = pathDir + '/test.txt';
    
    try {
      // 打开分布式目录下的文件
      let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE);
      // 定义接收读取数据的缓存
-     let buffer = new ArrayBuffer(4096);
+     let arrayBuffer = new ArrayBuffer(4096);
      // 读取文件的内容，返回值是读取到的字节个数
-     let num = fs.readSync(file.fd, buffer, {
-       offset: 0
-     });
+     class Option {
+        public offset: number = 0;
+        public length: number = 0;
+     }
+     let option = new Option();
+     option.length = arrayBuffer.byteLength;
+     let num = fs.readSync(file.fd, arrayBuffer, option);
      // 打印读取到的文件数据
-     console.info('read result: ' + String.fromCharCode.apply(null, new Uint8Array(buffer.slice(0, num))));
-   } catch (err) {
+     let buf = buffer.from(arrayBuffer, 0, num);
+     console.info('read result: ' + buf.toString());
+   } catch (error) {
+     let err: BusinessError = error as BusinessError;
      console.error(`Failed to openSync / readSync. Code: ${err.code}, message: ${err.message}`);
    }
    ```

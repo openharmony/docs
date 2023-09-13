@@ -157,8 +157,9 @@ You must install **Node.js** and HPM on your local PC. The installation procedur
 
 2. Learn more about the distribution.
    1. Read carefully the information about the distribution to learn its application scenarios, features, components, usage, and customization methods.
-   2. Click **Download** if you want to download the distribution to your local PC.
-   3. Click **Device component tailoring** if you want to add or delete components of the distribution.
+   2. Use either of the following modes to obtain the source code:
+      - Click **Download** if you want to download the distribution to your local PC.
+      - Click **Device component tailoring** if you want to add or delete components of the distribution.
 
          **Figure 2** Example distribution
 
@@ -200,12 +201,12 @@ The table below provides only the sites for downloading the latest OpenHarmony L
 | Hi3516 solution-Linux (binary)| 3.0 | [Download](https://repo.huaweicloud.com/openharmony/os/3.0/hispark_taurus_linux.tar.gz)| [Download](https://repo.huaweicloud.com/openharmony/os/3.0/hispark_taurus_linux.tar.gz.sha256) | 418.1 MB |
 | RELEASE-NOTES | 3.0 | [Download](https://gitee.com/openharmony/docs/blob/OpenHarmony-3.0-LTS/en/release-notes/OpenHarmony-v3.0-LTS.md)| - | - |
 | **Source Code of the Latest Release**| **Version**| **Site**| **SHA-256 Checksum**| **Software Package Size**|
-| Full code base (for mini, small, and standard systems)       | 4.0 Beta1    | [Download](https://repo.huaweicloud.com/openharmony/os/4.0-Beta1/code-v4.0-Beta1.tar.gz)| [Download](https://repo.huaweicloud.com/openharmony/os/4.0-Beta1/code-v4.0-Beta1.tar.gz.sha256)| 26.2 GB |
-| Hi3861 solution (binary)       | 4.0 Beta1    | [Download](https://repo.huaweicloud.com/openharmony/os/4.0-Beta1/hispark_pegasus.tar.gz) | [Download](https://repo.huaweicloud.com/openharmony/os/4.0-Beta1/hispark_pegasus.tar.gz.sha256)| 25.1 MB |
-| Hi3516 solution-LiteOS (binary)| 4.0 Beta1    | [Download](https://repo.huaweicloud.com/openharmony/os/4.0-Beta1/hispark_taurus_LiteOS.tar.gz)| [Download](https://repo.huaweicloud.com/openharmony/os/4.0-Beta1/hispark_taurus_LiteOS.tar.gz.sha256)| 287.6 MB |
-| Hi3516 solution-Linux (binary) | 4.0 Beta1    | [Download](https://repo.huaweicloud.com/openharmony/os/4.0-Beta1/hispark_taurus_Linux.tar.gz)| [Download](https://repo.huaweicloud.com/openharmony/os/4.0-Beta1/hispark_taurus_Linux.tar.gz.sha256)| 186.4 MB |
-| RK3568 standard system solution (binary)       | 4.0 Beta1    | [Download](https://repo.huaweicloud.com/openharmony/os/4.0-Beta1/dayu200_standard_arm32.tar.gz)| [Download](https://repo.huaweicloud.com/openharmony/os/4.0-Beta1/dayu200_standard_arm32.tar.gz.sha256)| 4.5 GB |
-| RELEASE-NOTES | 4.0 Beta1 | [Download](../../release-notes/OpenHarmony-v4.0-beta1.md)| - | - |
+| Full code base (for mini, small, and standard systems)       | 4.0 Beta2    | [Download](https://repo.huaweicloud.com/openharmony/os/4.0-Beta2/code-v4.0-Beta2.tar.gz)| [Download](https://repo.huaweicloud.com/openharmony/os/4.0-Beta2/code-v4.0-Beta2.tar.gz.sha256)| 27.7 GB |
+| Hi3861 solution (binary)       | 4.0 Beta2    | [Download](https://repo.huaweicloud.com/openharmony/os/4.0-Beta2/hispark_pegasus.tar.gz)| [Download](https://repo.huaweicloud.com/openharmony/os/4.0-Beta2/hispark_pegasus.tar.gz.sha256)| 27.5 MB |
+| Hi3516 solution-LiteOS (binary)| 4.0 Beta2    | [Download](https://repo.huaweicloud.com/openharmony/os/4.0-Beta2/hispark_taurus_LiteOS.tar.gz)| [Download](https://repo.huaweicloud.com/openharmony/os/4.0-Beta2/hispark_taurus_LiteOS.tar.gz.sha256)| 300.9 MB |
+| Hi3516 solution-Linux (binary) | 4.0 Beta2    | [Download](https://repo.huaweicloud.com/openharmony/os/4.0-Beta2/hispark_taurus_Linux.tar.gz)| [Download](https://repo.huaweicloud.com/openharmony/os/4.0-Beta2/hispark_taurus_Linux.tar.gz.sha256)| 192.4 MB |
+| RK3568 standard system solution (binary)       | 4.0 Beta2    | [Download](https://repo.huaweicloud.com/openharmony/os/4.0-Beta2/dayu200_standard_arm32.tar.gz)| [Download](https://repo.huaweicloud.com/openharmony/os/4.0-Beta2/dayu200_standard_arm32.tar.gz.sha256)| 	5.2 GB |
+| RELEASE-NOTES | 4.0 Beta1 | [Download](../../release-notes/OpenHarmony-v4.0-beta2.md) | - | - |
 | **Compiler Toolchain**| **Version**| **Site**| **SHA-256 Checksum**| **Software Package Size**|
 | Compiler toolchain| - | [Download](https://repo.huaweicloud.com/openharmony/os/2.0/tool_chain/)| - | - |
 

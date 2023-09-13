@@ -4,8 +4,12 @@
 
 ![WidgerCameraCard](figures/WidgerCameraCard.png)
 
+> **说明：**
+>
+> 本文主要介绍动态卡片的事件开发。对于静态卡片，请参见[FormLink](../reference/arkui-ts/ts-container-formlink.md)。
 
-通常使用按钮控件来实现页面拉起，示例代码如下：
+
+通常使用按钮控件来实现页面拉起，示例代码如下:
 
 
 - 在卡片页面中布局两个按钮，点击其中一个按钮时调用postCardAction向指定UIAbility发送router事件，并在事件内定义需要传递的内容。
@@ -48,31 +52,34 @@
   }
   ```
 
-- 在UIAbility中接收router事件并获取参数，根据传递的message不同，选择拉起不同的页面。
+- 在UIAbility中接收router事件并获取参数，根据传递的params不同，选择拉起不同的页面。
   
   ```ts
   import UIAbility from '@ohos.app.ability.UIAbility';
   import window from '@ohos.window';
+  import Want from '@ohos.app.ability.Want';
+  import Base from '@ohos.base';
+  import AbilityConstant from '@ohos.app.ability.AbilityConstant';
   
-  let selectPage = "";
-  let currentWindowStage = null;
-  
+  let selectPage: string = "";
+  let currentWindowStage: window.WindowStage | null = null;
+
   export default class EntryAbility extends UIAbility {
     // 如果UIAbility第一次启动，在收到Router事件后会触发onCreate生命周期回调
-    onCreate(want, launchParam) {
+    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
       // 获取router事件中传递的targetPage参数
       console.info("onCreate want:" + JSON.stringify(want));
-      if (want.parameters.params !== undefined) {
-        let params = JSON.parse(want.parameters.params);
+      if (want.parameters?.params !== undefined) {
+        let params: Record<string, string> = JSON.parse(JSON.stringify(want.parameters?.params));
         console.info("onCreate router targetPage:" + params.targetPage);
         selectPage = params.targetPage;
       }
     }
     // 如果UIAbility已在后台运行，在收到Router事件后会触发onNewWant生命周期回调
-    onNewWant(want, launchParam) {
+    onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam) {
       console.info("onNewWant want:" + JSON.stringify(want));
-      if (want.parameters.params !== undefined) {
-        let params = JSON.parse(want.parameters.params);
+      if (want.parameters?.params !== undefined) {
+        let params: Record<string, string> = JSON.parse(JSON.stringify(want.parameters?.params));
         console.info("onNewWant router targetPage:" + params.targetPage);
         selectPage = params.targetPage;
       }
@@ -80,9 +87,9 @@
         this.onWindowStageCreate(currentWindowStage);
       }
     }
-  
+
     onWindowStageCreate(windowStage: window.WindowStage) {
-      let targetPage;
+      let targetPage: string;
       // 根据传递的targetPage不同，选择拉起不同的页面
       switch (selectPage) {
         case 'funA':
@@ -97,7 +104,7 @@
       if (currentWindowStage === null) {
         currentWindowStage = windowStage;
       }
-      windowStage.loadContent(targetPage, (err, data) => {
+      windowStage.loadContent(targetPage, (err: Base.BusinessError) => {
         if (err && err.code) {
           console.info('Failed to load the content. Cause: %{public}s', JSON.stringify(err));
           return;

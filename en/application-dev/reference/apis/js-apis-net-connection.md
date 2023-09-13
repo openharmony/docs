@@ -158,7 +158,7 @@ Obtains the global HTTP proxy configuration of the network. This API uses an asy
 
 | Name  | Type                                   | Mandatory| Description                                                        |
 | -------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback\<[HttpProxy](#httpproxy)> | Yes  | Callback used to return the result. If the global HTTP proxy configuration of the network is obtained successfully, **error** is **undefined** and **data** is the global HTTP proxy configuration. Otherwise, **error** is an error object.|
+| callback | AsyncCallback\<[HttpProxy](#httpproxy10)> | Yes  | Callback used to return the result. If the global HTTP proxy configuration of the network is obtained successfully, **error** is **undefined** and **data** is the global HTTP proxy configuration. Otherwise, **error** is an error object.|
 
 **Error codes**
 
@@ -192,7 +192,7 @@ Obtains the global HTTP proxy configuration of the network. This API uses a prom
 
 | Type                             | Description                                 |
 | --------------------------------- | ------------------------------------- |
-| Promise\<[HttpProxy](#httpproxy)> | Promise used to return the result.|
+| Promise\<[HttpProxy](#httpproxy10)> | Promise used to return the result.|
 
 **Error codes**
 
@@ -229,7 +229,7 @@ Sets the global HTTP proxy configuration of the network. This API uses an asynch
 
 | Name   | Type                   | Mandatory| Description                                                        |
 | --------- | ----------------------- | ---- | ------------------------------------------------------------ |
-| httpProxy | [HttpProxy](#httpproxy) | Yes  | Global HTTP proxy configuration of the network.                                    |
+| httpProxy | [HttpProxy](#httpproxy10) | Yes  | Global HTTP proxy configuration of the network.                                    |
 | callback  | AsyncCallback\<void>    | Yes  | Callback used to return the result. If the global HTTP proxy configuration of the network is set successfully, **error** is **undefined**. Otherwise, **error** is an error object.|
 
 **Error codes**
@@ -274,7 +274,7 @@ Sets the global HTTP proxy configuration of the network. This API uses a promise
 
 | Name   | Type                                                        | Mandatory| Description            |
 | --------- | ------------------------------------------------------------ | ---- | ---------------- |
-| httpProxy | [HttpProxy](#httpproxy)                                      | Yes  | Global HTTP proxy configuration of the network.|
+| httpProxy | [HttpProxy](#httpproxy10)                                      | Yes  | Global HTTP proxy configuration of the network.|
 
 **Return value**
 
@@ -324,7 +324,7 @@ This API uses an asynchronous callback to return the result.
 
 | Name  | Type                                  | Mandatory| Description                                                        |
 | -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback<[HttpProxy](#httpproxy)> | Yes  | Callback used to return the result. If the global HTTP proxy configuration of the network is obtained successfully, **error** is **undefined** and **data** is the global HTTP proxy configuration. Otherwise, **error** is an error object.|
+| callback | AsyncCallback<[HttpProxy](#httpproxy10)> | Yes  | Callback used to return the result. If the global HTTP proxy configuration of the network is obtained successfully, **error** is **undefined** and **data** is the global HTTP proxy configuration. Otherwise, **error** is an error object.|
 
 **Error codes**
 
@@ -346,8 +346,8 @@ connection.getDefaultHttpProxy((error, data) => {
 
 getDefaultHttpProxy(): Promise\<HttpProxy>;
 
-Obtains the default proxy configuration of the network.
-If the global proxy is set, the global proxy configuration is returned. If [setAppNet](#connectionsetappnet) is used to bind the application to the network specified by [NetHandle](#nethandle), the proxy configuration of this network is returned. In other cases, the HTTP proxy configuration of the default network is returned.
+Obtains the default HTTP proxy configuration of the network.
+If the global proxy is set, the global HTTP proxy configuration is returned. If [setAppNet](#connectionsetappnet) is used to bind the application to the network specified by [NetHandle](#nethandle), the HTTP proxy configuration of this network is returned. In other cases, the HTTP proxy configuration of the default network is returned.
 This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Communication.NetManager.Core
@@ -356,7 +356,7 @@ This API uses a promise to return the result.
 
 | Type                            | Description                                     |
 | -------------------------------- | ----------------------------------------- |
-| Promise<[HttpProxy](#httpproxy)> | Promise used to return the result.|
+| Promise<[HttpProxy](#httpproxy10)> | Promise used to return the result.|
 
 **Error codes**
 
@@ -436,6 +436,34 @@ connection.getAppNet().then((data) => {
 }).catch(error => {
   console.info(JSON.stringify(error));
 })
+```
+
+## connection.getAppNetSync<sup>10+</sup>
+
+getAppNetSync(): NetHandle
+
+Obtains information about the network bound to an application. This API returns the result synchronously.
+
+**System capability**: SystemCapability.Communication.NetManager.Core
+
+**Return value**
+
+| Type     | Description                              |
+| --------- | ---------------------------------- |
+| [NetHandle](#nethandle8) | Handle of the data network bound to the application.|
+
+**Error codes**
+
+| ID| Error Message                       |
+| ------- | -----------------------------  |
+| 401     | Parameter error.             |
+| 2100002 | Operation failed. Cannot connect to service.|
+| 2100003 | System internal error.         |
+
+**Example**
+
+```js
+let netHandle = connection.getAppNetSync();
 ```
 
 ## connection.SetAppNet<sup>9+</sup>
@@ -587,6 +615,37 @@ connection.getAllNets().then(function (data) {
 });
 ```
 
+## connection.getAllNetsSync<sup>10+</sup>
+
+getAllNetsSync(): Array&lt;NetHandle&gt;
+
+Obtains the list of all connected networks. This API returns the result synchronously.
+
+**Required permission**: ohos.permission.GET_NETWORK_INFO
+
+**System capability**: SystemCapability.Communication.NetManager.Core
+
+**Return value**
+
+| Type     | Description                              |
+| --------- | ---------------------------------- |
+| Array&lt;[NetHandle](#nethandle8)&gt; | List of all activated data networks.|
+
+**Error codes**
+
+| ID| Error Message                       |
+| ------- | -----------------------------  |
+| 201     | Permission denied.             |
+| 401     | Parameter error.             |
+| 2100002 | Operation failed. Cannot connect to service.|
+| 2100003 | System internal error.         |
+
+**Example**
+
+```js
+let netHandle = connection.getAllNetsSync();
+```
+
 ## connection.getConnectionProperties<sup>8+</sup>
 
 getConnectionProperties(netHandle: NetHandle, callback: AsyncCallback\<ConnectionProperties>): void
@@ -665,6 +724,45 @@ connection.getDefaultNet().then(function (netHandle) {
     console.log(JSON.stringify(data))
   })
 })
+```
+
+## connection.getConnectionPropertiesSync<sup>10+</sup>
+
+getConnectionPropertiesSync(netHandle: NetHandle): ConnectionProperties
+
+Obtains network connection information based on the specified **netHandle**.
+
+**Required permission**: ohos.permission.GET_NETWORK_INFO
+
+**System capability**: SystemCapability.Communication.NetManager.Core
+
+**Parameters**
+
+| Name   | Type                   | Mandatory| Description            |
+| --------- | ----------------------- | ---- | ---------------- |
+| netHandle | [NetHandle](#nethandle8) | Yes  | Handle of the data network.|
+
+**Return value**
+
+| Type                                                   | Description                             |
+| ------------------------------------------------------- | --------------------------------- |
+| [ConnectionProperties](#connectionproperties8) | Network connection information.|
+
+**Error codes**
+
+| ID| Error Message                       |
+| ------- | -----------------------------  |
+| 201     | Permission denied.             |
+| 401     | Parameter error.               |
+| 2100001 | Invalid parameter value.                |
+| 2100002 | Operation failed. Cannot connect to service.|
+| 2100003 | System internal error.         |
+
+**Example**
+
+```js
+let netHandle = connection.getDefaultNetsSync();
+let connectionproperties = connection.getConnectionPropertiesSync(netHandle);
 ```
 
 ## connection.getNetCapabilities<sup>8+</sup>
@@ -747,6 +845,45 @@ connection.getDefaultNet().then(function (netHandle) {
 })
 ```
 
+## connection.getNetCapabilitiesSync<sup>10+</sup>
+
+getNetCapabilitiesSync(netHandle: NetHandle): NetCapabilities
+
+Obtains capability information of the network corresponding to the **netHandle**. This API returns the result synchronously.
+
+**Required permission**: ohos.permission.GET_NETWORK_INFO
+
+**System capability**: SystemCapability.Communication.NetManager.Core
+
+**Parameters**
+
+| Name   | Type                   | Mandatory| Description            |
+| --------- | ----------------------- | ---- | ---------------- |
+| netHandle | [NetHandle](#nethandle8) | Yes  | Handle of the data network.|
+
+**Return value**
+
+| Type                                         | Description                             |
+| --------------------------------------------- | --------------------------------- |
+| [NetCapabilities](#netcapabilities8) | Network capability information.|
+
+**Error codes**
+
+| ID| Error Message                       |
+| ------- | -----------------------------  |
+| 201     | Permission denied.             |
+| 401     | Parameter error.               |
+| 2100001 | Invalid parameter value.                |
+| 2100002 | Operation failed. Cannot connect to service.|
+| 2100003 | System internal error.         |
+
+**Example**
+
+```js
+let netHandle = connection.getDefaultNetsSync();
+let getNetCapabilitiesSync = connection.getNetCapabilitiesSync(netHandle);
+```
+
 ## connection.isDefaultNetMetered<sup>9+</sup>
 
 isDefaultNetMetered(callback: AsyncCallback\<boolean>): void
@@ -814,6 +951,37 @@ connection.isDefaultNetMetered().then(function (data) {
 })
 ```
 
+## connection.isDefaultNetMeteredSync<sup>10+</sup>
+
+isDefaultNetMeteredSync(): boolean
+
+Checks whether the data traffic usage on the current network is metered. This API returns the result synchronously.
+
+**Required permission**: ohos.permission.GET_NETWORK_INFO
+
+**System capability**: SystemCapability.Communication.NetManager.Core
+
+**Return value**
+
+| Type             | Description                                           |
+| ----------------- | ----------------------------------------------- |
+| boolean | The value **true** indicates the data traffic usage is metered.|
+
+**Error codes**
+
+| ID| Error Message                       |
+| ------- | -----------------------------  |
+| 201     | Permission denied.             |
+| 401     | Parameter error.               |
+| 2100002 | Operation failed. Cannot connect to service.|
+| 2100003 | System internal error.         |
+
+**Example**
+
+```js
+let isMetered = connection.isDefaultNetMeteredSync();
+```
+
 ## connection.hasDefaultNet<sup>8+</sup>
 
 hasDefaultNet(callback: AsyncCallback\<boolean>): void
@@ -879,6 +1047,37 @@ Checks whether the default data network is activated. This API uses a promise to
 connection.hasDefaultNet().then(function (data) {
   console.log('data: ' + data)
 })
+```
+
+## connection.hasDefaultNetSync<sup>10+</sup>
+
+hasDefaultNetSync(): boolean
+
+Checks whether the default data network is activated. This API returns the result synchronously.
+
+**Required permission**: ohos.permission.GET_NETWORK_INFO
+
+**System capability**: SystemCapability.Communication.NetManager.Core
+
+**Return value**
+
+| Type             | Description                                           |
+| ----------------- | ----------------------------------------------- |
+| boolean | The value **true** indicates the default data network is activated.|
+
+**Error codes**
+
+| ID| Error Message                       |
+| ------- | -----------------------------  |
+| 201     | Permission denied.             |
+| 401     | Parameter error.               |
+| 2100002 | Operation failed. Cannot connect to service.|
+| 2100003 | System internal error.         |
+
+**Example**
+
+```js
+let isDefaultNet = connection.hasDefaultNetSync();
 ```
 
 ## connection.enableAirplaneMode<sup>8+</sup>
@@ -1349,7 +1548,7 @@ Registers a listener for **netAvailable** events.
 
 | Name  | Type                              | Mandatory| Description                                                        |
 | -------- | ---------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                             | Yes  | Event type. The value is fixed to **netAvailable**.<br>**netAvailable**: event indicating that the data network is available.|
+| type     | string                             | Yes  | Event type. This field has a fixed value of **netAvailable**.<br>**netAvailable**: event indicating that the data network is available.|
 | callback | Callback\<[NetHandle](#nethandle)> | Yes  | Callback used to return the network handle.|
 
 **Example**
@@ -1388,7 +1587,7 @@ Registers a listener for **netBlockStatusChange** events. This API uses an async
 
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | Yes  | Event type. The value is fixed to **netBlockStatusChange**.<br>**netBlockStatusChange**: event indicating a change in the network blocking status.|
+| type     | string                                                       | Yes  | Event type. This field has a fixed value of **netBlockStatusChange**.<br>**netBlockStatusChange**: event indicating a change in the network blocking status.|
 | callback | Callback&lt;{&nbsp;netHandle:&nbsp;[NetHandle](#nethandle),&nbsp;blocked:&nbsp;boolean&nbsp;}&gt; | Yes  | Callback used to return the network handle (**netHandle**) and network status (**blocked**).|
 
 **Example**
@@ -1415,7 +1614,7 @@ netCon.unregister(function (error) {
 
 ### on('netCapabilitiesChange')<sup>8+</sup>
 
-on(type: 'netCapabilitiesChange', callback: Callback<{ netHandle: NetHandle, netCap: NetCapabilities }>): void
+on(type: 'netCapabilitiesChange', callback: Callback\<NetCapabilityInfo>): void
 
 Registers a listener for **netCapabilitiesChange** events.
 
@@ -1427,8 +1626,8 @@ Registers a listener for **netCapabilitiesChange** events.
 
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | Yes  | Event type. The value is fixed to **netCapabilitiesChange**.<br>**netCapabilitiesChange**: event indicating that the network capabilities have changed.|
-| callback | Callback<{ netHandle: [NetHandle](#nethandle), netCap: [NetCapabilities](#netcapabilities) }> | Yes  | Callback used to return the network handle (**netHandle**) and capability information (**netCap**).|
+| type     | string                                                       | Yes  | Event type. This field has a fixed value of **netCapabilitiesChange**.<br>**netCapabilitiesChange**: event indicating that the network capabilities have changed.|
+| callback | Callback<[NetCapabilityInfo](#netcapabilityinfo)> | Yes  | Callback used to return the network handle (**netHandle**) and capability information (**netCap**).|
 
 **Example**
 
@@ -1467,7 +1666,7 @@ Registers a listener for **netConnectionPropertiesChange** events.
 
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | Yes  | Event type. The value is fixed to **netConnectionPropertiesChange**.<br>**netConnectionPropertiesChange**: event indicating that network connection properties have changed.|
+| type     | string                                                       | Yes  | Event type. This field has a fixed value of **netConnectionPropertiesChange**.<br>**netConnectionPropertiesChange**: event indicating that network connection properties have changed.|
 | callback | Callback<{ netHandle: [NetHandle](#nethandle), connectionProperties: [ConnectionProperties](#connectionproperties) }> | Yes  | Callback used to return the network handle (**netHandle**) and connection information (**connectionProperties**).|
 
 **Example**
@@ -1506,7 +1705,7 @@ Registers a listener for **netLost** events.
 
 | Name  | Type                              | Mandatory| Description                                                        |
 | -------- | ---------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                             | Yes  | Event type. The value is fixed to **netLost**.<br>netLost: event indicating that the network is interrupted or normally disconnected.|
+| type     | string                             | Yes  | Event type. This field has a fixed value of **netLost**.<br>netLost: event indicating that the network is interrupted or normally disconnected.|
 | callback | Callback\<[NetHandle](#nethandle)> | Yes  | Callback used to return the network handle (**netHandle**).|
 
 **Example**
@@ -1545,7 +1744,7 @@ Registers a listener for **netUnavailable** events.
 
 | Name  | Type           | Mandatory| Description                                                        |
 | -------- | --------------- | ---- | ------------------------------------------------------------ |
-| type     | string          | Yes  | Event type. The value is fixed to **netUnavailable**.<br>**netUnavailable**: event indicating that the network is unavailable.|
+| type     | string          | Yes  | Event type. This field has a fixed value of **netUnavailable**.<br>**netUnavailable**: event indicating that the network is unavailable.|
 | callback | Callback\<void> | Yes  | Callback used to return the result, which is empty.|
 
 **Example**
@@ -1949,6 +2148,17 @@ Provides an instance that bears data network capabilities.
 | ----------------------- | ----------------------------------- | ---- | ------------------------------------------------------------ |
 | netCapabilities         | [NetCapabilities](#netcapabilities) |  Yes | Network transmission capabilities and bearer types of the data network.                               |
 | bearerPrivateIdentifier | string                              |  No |  Network identifier. The identifier of a Wi-Fi network is **wifi**, and that of a cellular network is **slot0** (corresponding to SIM card 1).|
+
+## NetCapabilityInfo<sup>10+</sup>
+
+Provides an instance that bears data network capabilities.
+
+**System capability**: SystemCapability.Communication.NetManager.Core
+
+| Name                    | Type                               | Mandatory | Description                                                        |
+| ----------------------- | ----------------------------------- | ---- | ------------------------------------------------------------ |
+| netHandle         | [NetHandle](#nethandle) |  Yes | Handle of the data network.                               |
+| netCap |  [NetCapabilities](#netcapabilities)       |  No |  Network transmission capabilities and bearer types of the data network.|
 
 ## NetCapabilities<sup>8+</sup>
 

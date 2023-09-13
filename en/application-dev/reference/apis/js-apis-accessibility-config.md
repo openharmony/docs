@@ -31,8 +31,8 @@ import config from '@ohos.accessibility.config';
 | shortkeyTarget | [Config](#config)\<string>| Yes| Yes| Target application for the accessibility extension shortcut key. The value format is 'bundleName/abilityName'.|
 | captions | [Config](#config)\<boolean>| Yes| Yes| Whether to enable captions.|
 | captionsStyle | [Config](#config)\<[accessibility.CaptionsStyle](js-apis-accessibility.md#captionsstyle8)>| Yes| Yes| Captions style.|
-| audioMono| [Config](#config)\<boolean>| Yes| Yes| Whether to enable mono audio. The value **True** means to enable mono audio, and **False** means the opposite.|
-| audioBalance| [Config](#config)\<number>| Yes| Yes| Audio balance for the left and right audio channels. The value ranges from -1.0 to 1.0.|
+| audioMono<sup>10+</sup>| [Config](#config)\<boolean>| Yes| Yes| Whether to enable mono audio. The value **True** means to enable mono audio, and **False** means the opposite.|
+| audioBalance<sup>10+</sup>| [Config](#config)\<number>| Yes| Yes| Audio balance for the left and right audio channels. The value ranges from -1.0 to 1.0.|
 
 ## enableAbility
 

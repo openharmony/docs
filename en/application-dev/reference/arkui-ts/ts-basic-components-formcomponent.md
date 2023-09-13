@@ -12,10 +12,6 @@ The **FormComponent** is used to display widgets.
 
 ## Required Permissions
 
-ohos.permission.GET_BUNDLE_INFO
-
-ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
-
 ohos.permission.REQUIRE_FORM
 
 
@@ -42,7 +38,7 @@ Creates a **FormComponent** instance to display the provided widget.
 
 | Name   | Type                       | Mandatory| Description                                                               |
 | --------- | ------------------------------- | ---- | ----------------------------------------------------------------------- |
-| id        | number                          | Yes  | Widget ID. Set this parameter to **0** for a new widget.                                              |
+| id        | number                          | Yes  | Widget ID. Set this parameter to **0** for a new widget.<br>**NOTE**<br>Different widget hosts cannot use the same ID.<br>If a widget host uses the same ID for two widgets, the one added later is displayed.                                       |
 | name      | string                          | Yes  | Widget name.                                                             |
 | bundle    | string                          | Yes  | Bundle name of the widget.                                                         |
 | ability   | string                          | Yes  | Ability name of the widget.                                                  |
@@ -76,7 +72,7 @@ Creates a **FormComponent** instance to display the provided widget.
 | Name                                                                                                               | Description                                                                                                      |
 | ------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- |
 | onAcquired(callback: (info: { id: number }) =&gt; void)                          | Triggered when a widget is obtained. This API returns the ID of the obtained widget.                                                                               |
-| onError(callback: (info: { errcode: number, msg: string }) =&gt; void) | Triggered when an error occurs during component loading.<br>**errcode**: error code.<br>**msg**: error information.                                        |
+| onError(callback: (info: { errcode: number, msg: string }) =&gt; void) | Triggered when an error occurs during component loading.<br>**errcode**: error code.<br>**msg**: error information.<br>For details, see [Form Error Codes](../errorcodes/errorcode-form.md). |
 | onRouter(callback: (info: any) =&gt; void)                                                      | Triggered when routing occurs for the widget. This API returns information in [routerEvent](../js-service-widget-ui/js-service-widget-syntax-hml.md#event-binding).|
 | onUninstall(callback: (info: { id: number }) =&gt; void)                         | Triggered when a widget is uninstalled. This API returns the ID of the uninstalled widget.                                                                               |
 

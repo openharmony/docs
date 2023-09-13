@@ -11,10 +11,9 @@ The [i18n](js-apis-i18n.md) module provides enhanced i18n capabilities through s
 
 ## Modules to Import
 
-```js
+```ts
 import Intl from '@ohos.intl';
 ```
-Importing an incorrect bundle can lead to unexpected API behavior.
 
 ## Locale
 
@@ -34,7 +33,7 @@ Importing an incorrect bundle can lead to unexpected API behavior.
 | collation       | string  | Yes   | No   | Rule for sorting regions. The value can be any of the following: **big5han**, **compat**, **dict**, **direct**, **ducet**, **eor**, **gb2312**, **phonebk**, **phonetic**, **pinyin**, **reformed**, **searchjl**, **stroke**, **trad**, **unihan**, **zhuyin**.|
 | hourCycle       | string  | Yes   | No   | Time system for the locale. The value can be any of the following: **h12**, **h23**, **h11**, or **h24**.|
 | numberingSystem | string  | Yes   | No   | Numbering system for the locale. The value can be any of the following: **adlm**, **ahom**, **arab**, **arabext**, **bali**, **beng**, **bhks**, **brah**, **cakm**, **cham**, **deva**, **diak**, **fullwide**, **gong**, **gonm**, **gujr**, **guru**, **hanidec**, **hmng**, **hmnp**, **java**, **kali**, **khmr**, **knda**, **lana**, **lanatham**, **laoo**, **latn**, **lepc**, **limb**, **mathbold**, **mathdbl**, **mathmono**, **mathsanb**, **mathsans**, **mlym**, **modi**, **mong**, **mroo**, **mtei**, **mymr**, **mymrshan**, **mymrtlng**, **newa**, **nkoo**, **olck**, **orya**, **osma**, **rohg**, **saur**, **segment**, **shrd**, **sind**, **sinh**, **sora**, **sund**, **takr**, **talu**, **tamldec**, **telu**, **thai**, **tibt**, **tirh**, **vaii**, **wara**, **wcho**.|
-| numeric         | boolean | Yes   | No   | Whether to apply special collation rules for numeric characters.                     |
+| numeric         | boolean | Yes   | No   | Whether to apply special collation rules for numeric characters. The default value is **false**.                     |
 
 
 ### constructor<sup>8+</sup>
@@ -46,7 +45,7 @@ Creates a **Locale** object.
 **System capability**: SystemCapability.Global.I18n
 
 **Example**
-  ```js
+  ```ts
   // The default constructor uses the current system locale to create a Locale object.
   let locale = new Intl.Locale();
   // Return the current system locale.
@@ -67,10 +66,10 @@ Creates a **Locale** object.
 | Name                 | Type                              | Mandatory  | Description                          |
 | -------------------- | -------------------------------- | ---- | ---------------------------- |
 | locale               | string                           | Yes   | A string containing locale information, including the language, optional script, and region. For details about the international standards and combination modes for the language, script, and country or region, see [intl Development](../../internationalization/intl-guidelines.md#setting-locale-information).|
-| options             | [LocaleOptions](#localeoptions6) | No   | Options for creating the **Locale** object.                |
+| options             | [LocaleOptions](#localeoptions6) | No   | Options for creating the **Locale** object.|
 
 **Example**
-  ```js
+  ```ts
   // Create a Locale object named zh-CN.
   let locale = new Intl.Locale("zh-CN");
   let localeID = locale.toString(); // localeID = "zh-CN"
@@ -92,7 +91,7 @@ Obtains the string representation of a **Locale** object.
 | string | String representation of the **Locale** object.|
 
 **Example**
-  ```js
+  ```ts
   // Create a Locale object named en-GB.
   let locale = new Intl.Locale("en-GB");
   let localeID = locale.toString(); // localeID = "en-GB"
@@ -114,7 +113,7 @@ Maximizes information of the **Locale** object. If the script and locale informa
 | [Locale](#locale) | **Locale** object with the maximized information.|
 
 **Example**
-  ```js
+  ```ts
   // Create a Locale object named zh.
   let locale = new Intl.Locale("zh");
   // Complete the script and region of the Locale object.
@@ -144,7 +143,7 @@ Minimizes information of the **Locale** object. If the script and locale informa
 | [Locale](#locale) | **Locale** object with the minimized information.|
 
 **Example**
-  ```js
+  ```ts
   // Create a Locale object named zh-Hans-CN.
   let locale = new Intl.Locale("zh-Hans-CN");
   // Remove the script and region of the Locale object.
@@ -162,7 +161,7 @@ Minimizes information of the **Locale** object. If the script and locale informa
 ## LocaleOptions<sup>6+</sup>
 
 Represents the locale options.
-In API version 9, the attributes in **LocaleOptions** are optional.
+Since API version 9, the attributes in **LocaleOptions** are optional.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -172,7 +171,7 @@ In API version 9, the attributes in **LocaleOptions** are optional.
 | collation       | string  | Yes   | Yes   | Collation rule. The value can be any of the following: **big5han**, **compat**, **dict**, **direct**, **ducet**, **emoji**, **eor**, **gb2312**, **phonebk**, **phonetic**, **pinyin**, **reformed**, **search**, **searchjl**, **standard**, **stroke**, **trad**, **unihan**, **zhuyin**.|
 | hourCycle       | string  | Yes   | Yes   | Time system for the locale. The value can be any of the following: **h11**, **h12**, **h23**, or **h24**.|
 | numberingSystem | string  | Yes   | Yes   | Numbering system for the locale. The value can be any of the following: **adlm**, **ahom**, **arab**, **arabext**, **bali**, **beng**, **bhks**, **brah**, **cakm**, **cham**, **deva**, **diak**, **fullwide**, **gong**, **gonm**, **gujr**, **guru**, **hanidec**, **hmng**, **hmnp**, **java**, **kali**, **khmr**, **knda**, **lana**, **lanatham**, **laoo**, **latn**, **lepc**, **limb**, **mathbold**, **mathdbl**, **mathmono**, **mathsanb**, **mathsans**, **mlym**, **modi**, **mong**, **mroo**, **mtei**, **mymr**, **mymrshan**, **mymrtlng**, **newa**, **nkoo**, **olck**, **orya**, **osma**, **rohg**, **saur**, **segment**, **shrd**, **sind**, **sinh**, **sora**, **sund**, **takr**, **talu**, **tamldec**, **telu**, **thai**, **tibt**, **tirh**, **vaii**, **wara**, **wcho**.|
-| numeric         | boolean | Yes   | Yes   | Whether to use the 12-hour clock.                              |
+| numeric         | boolean | Yes   | Yes   | Whether to use the 12-hour clock. The default value is **false**.                              |
 | caseFirst       | string  | Yes   | Yes   | Whether upper case or lower case is sorted first. The value can be **upper**, **lower**, or **false**.|
 
 
@@ -188,7 +187,7 @@ Creates a **DateTimeOptions** object for the specified locale.
 **System capability**: SystemCapability.Global.I18n
 
 **Example**
-  ```js
+  ```ts
   // Use the current system locale to create a DateTimeFormat object.
   let datefmt= new Intl.DateTimeFormat();
   ```
@@ -207,17 +206,17 @@ Creates a **DateTimeOptions** object for the specified locale.
 | Name                 | Type                                  | Mandatory  | Description                          |
 | -------------------- | ------------------------------------ | ---- | ---------------------------- |
 | locale               | string \| Array&lt;string&gt;        | Yes   | A string containing locale information, including the language, optional script, and region.|
-| options              | [DateTimeOptions](#datetimeoptions6) | No   | Options for creating a **DateTimeFormat** object.             |
+| options              | [DateTimeOptions](#datetimeoptions6) | No   | Options for creating a **DateTimeFormat** object. If no options are set, the default values of **year**, **month**, and **day** are **numeric**.|
 
 **Example**
-  ```js
+  ```ts
   // Use locale zh-CN to create a DateTimeFormat object. Set dateStyle to full and timeStyle to medium.
   let datefmt= new Intl.DateTimeFormat("zh-CN", { dateStyle: 'full', timeStyle: 'medium' });
   ```
 
 
 **Example**
-  ```js
+  ```ts
   // Use the locale list ["ban", "zh"] to create a DateTimeFormat object. Because ban is an invalid locale ID, locale zh is used to create the DateTimeFormat object.
   let datefmt= new Intl.DateTimeFormat(["ban", "zh"], { dateStyle: 'full', timeStyle: 'medium' });
   ```
@@ -244,7 +243,7 @@ Formats the specified date and time.
 | string | A string containing the formatted date and time.|
 
 **Example**
-  ```js
+  ```ts
   let date = new Date(2021, 11, 17, 3, 24, 0);
   // Use locale en-GB to create a DateTimeFormat object.
   let datefmt = new Intl.DateTimeFormat("en-GB");
@@ -278,7 +277,7 @@ Formats the specified date range.
 | string | A string containing the formatted date and time range.|
 
 **Example**
-  ```js
+  ```ts
   let startDate = new Date(2021, 11, 17, 3, 24, 0);
   let endDate = new Date(2021, 11, 18, 3, 24, 0);
   // Use locale en-GB to create a DateTimeFormat object.
@@ -302,7 +301,7 @@ Obtains the formatting options for **DateTimeFormat** object.
 | [DateTimeOptions](#datetimeoptions6) | Formatting options for **DateTimeFormat** objects.|
 
 **Example**
-  ```js
+  ```ts
   let datefmt = new Intl.DateTimeFormat("en-GB", { dateStyle: 'full', timeStyle: 'medium' });
   // Obtain the options of the DateTimeFormat object.
   let options = datefmt.resolvedOptions();
@@ -314,7 +313,7 @@ Obtains the formatting options for **DateTimeFormat** object.
 ## DateTimeOptions<sup>6+</sup>
 
 Provides the options for the **DateTimeFormat** object.
-In API version 9, the attributes in **DateTimeOptions** are optional.
+Since API version 9, the attributes in **DateTimeOptions** are optional.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -326,7 +325,7 @@ In API version 9, the attributes in **DateTimeOptions** are optional.
 | hourCycle       | string  | Yes   | Yes   | Time system for the locale. The value can be any of the following: **h11**, **h12**, **h23**, or **h24**.|
 | timeZone        | string  | Yes   | Yes   | Time zone represented by a valid IANA time zone ID.                     |
 | numberingSystem | string  | Yes   | Yes   | Numbering system for the locale. The value can be any of the following: **adlm**, **ahom**, **arab**, **arabext**, **bali**, **beng**, **bhks**, **brah**, **cakm**, **cham**, **deva**, **diak**, **fullwide**, **gong**, **gonm**, **gujr**, **guru**, **hanidec**, **hmng**, **hmnp**, **java**, **kali**, **khmr**, **knda**, **lana**, **lanatham**, **laoo**, **latn**, **lepc**, **limb**, **mathbold**, **mathdbl**, **mathmono**, **mathsanb**, **mathsans**, **mlym**, **modi**, **mong**, **mroo**, **mtei**, **mymr**, **mymrshan**, **mymrtlng**, **newa**, **nkoo**, **olck**, **orya**, **osma**, **rohg**, **saur**, **segment**, **shrd**, **sind**, **sinh**, **sora**, **sund**, **takr**, **talu**, **tamldec**, **telu**, **thai**, **tibt**, **tirh**, **vaii**, **wara**, **wcho**.|
-| hour12          | boolean | Yes   | Yes   | Whether to use the 12-hour clock.                              |
+| hour12          | boolean | Yes   | Yes   | Whether to use the 12-hour clock. If **hour12** and **hourCycle** are not set and the 24-hour clock is turned on, the default value of **hour12** is **false**.        |
 | weekday         | string  | Yes   | Yes   | Workday display format. The value can be **long**, **short**, or **narrow**.|
 | era             | string  | Yes   | Yes   | Era display format. The value can be **long**, **short**, or **narrow**.|
 | year            | string  | Yes   | Yes   | Year display format. The value can be **numeric** or **2-digit**.  |
@@ -353,7 +352,7 @@ Creates a **NumberFormat** object for the specified locale.
 **System capability**: SystemCapability.Global.I18n
 
 **Example**
-  ```js
+  ```ts
   // Use the current system locale to create a NumberFormat object.
   let numfmt = new Intl.NumberFormat();
   ```
@@ -375,7 +374,7 @@ Creates a **NumberFormat** object for the specified locale.
 | options              | [NumberOptions](#numberoptions6) | No   | Options for creating a **NumberFormat** object.               |
 
 **Example**
-  ```js
+  ```ts
   // Use locale en-GB to create a NumberFormat object. Set style to decimal and notation to scientific.
   let numfmt = new Intl.NumberFormat("en-GB", {style:'decimal', notation:"scientific"});
   ```
@@ -403,7 +402,7 @@ Formats a number.
 
 
 **Example**
-  ```js
+  ```ts
   // Use locale list ["en-GB", "zh"] to create a NumberFormat object. Because en-GB is a valid locale ID, it is used to create the NumberFormat object.
   let numfmt = new Intl.NumberFormat(["en-GB", "zh"], {style:'decimal', notation:"scientific"});
   let formattedNumber = numfmt.format(1223); // formattedNumber = 1.223E3
@@ -426,7 +425,7 @@ Obtains the options of the **NumberFormat** object.
 
 
 **Example**
-  ```js
+  ```ts
   let numfmt = new Intl.NumberFormat(["en-GB", "zh"], {style:'decimal', notation:"scientific"});
   // Obtain the options of the NumberFormat object.
   let options = numfmt.resolvedOptions();
@@ -438,31 +437,31 @@ Obtains the options of the **NumberFormat** object.
 ## NumberOptions<sup>6+</sup>
 
 Defines the device capability.
-In API version 9, the attributes in **NumberOptions** are optional.
+Since API version 9, the attributes in **NumberOptions** are optional.
 
 **System capability**: SystemCapability.Global.I18n
 
 | Name                      | Type     | Readable  | Writable  | Description                                      |
 | ------------------------ | ------- | ---- | ---- | ---------------------------------------- |
-| locale                   | string  | Yes   | No   | Locale, for example, **zh-Hans-CN**.              |
+| locale                   | string  | Yes   | No   | Locale, for example, **zh-Hans-CN**. The default value is the system locale.              |
 | currency                 | string  | Yes   | Yes   | Currency unit, for example, **EUR**, **CNY**, or **USD**.        |
-| currencySign             | string  | Yes   | Yes   | Currency unit symbol. The value can be **symbol**, **narrowSymbol**, **code**, or **name**.|
-| currencyDisplay          | string  | Yes   | Yes   | Currency display mode. The value can be **symbol**, **narrowSymbol**, **code**, or **name**.|
+| currencySign             | string  | Yes   | Yes   | Currency unit symbol. The value can be **symbol**, **narrowSymbol**, **code**, or **name**. The default value is **symbol**.|
+| currencyDisplay          | string  | Yes   | Yes   | Currency display mode. The value can be **symbol**, **narrowSymbol**, **code**, or **name**. The default value is **symbol**.|
 | unit                     | string  | Yes   | Yes   | Unit name, for example, **meter**, **inch**, or **hectare**.       |
-| unitDisplay              | string  | Yes   | Yes   | Unit display format. The value can be **long**, **short**, or **narrow**.|
-| unitUsage<sup>8+</sup>   | string  | Yes   | Yes   | Unit usage scenario. The value can be any of the following: **default**, **area-land-agricult**, **area-land-commercl**, **area-land-residntl**, **length-person**, **length-person-small**, **length-rainfall**, **length-road**, **length-road-small**, **length-snowfall**, **length-vehicle**, **length-visiblty**, **length-visiblty-small**, **length-person-informal**, **length-person-small-informal**, **length-road-informal**, **speed-road-travel**, **speed-wind**, **temperature-person**, **temperature-weather**, **volume-vehicle-fuel**.|
-| signDisplay              | string  | Yes   | Yes   | Number sign display format. The value can be **auto**, **never**, **always**, or **expectZero**.|
-| compactDisplay           | string  | Yes   | Yes   | Compact display format. The value can be **long** or **short**.     |
-| notation                 | string  | Yes   | Yes   | Number formatting specification. The value can be **standard**, **scientific**, **engineering**, or **compact**.|
-| localeMatcher            | string  | Yes   | Yes   | Locale matching algorithm. The value can be **lookup** or **best fit**.|
-| style                    | string  | Yes   | Yes   | Number display format. The value can be **decimal**, **currency**, **percent**, or **unit**.|
-| numberingSystem          | string  | Yes   | Yes   | Numbering system for the locale. The value can be any of the following: **adlm**, **ahom**, **arab**, **arabext**, **bali**, **beng**, **bhks**, **brah**, **cakm**, **cham**, **deva**, **diak**, **fullwide**, **gong**, **gonm**, **gujr**, **guru**, **hanidec**, **hmng**, **hmnp**, **java**, **kali**, **khmr**, **knda**, **lana**, **lanatham**, **laoo**, **latn**, **lepc**, **limb**, **mathbold**, **mathdbl**, **mathmono**, **mathsanb**, **mathsans**, **mlym**, **modi**, **mong**, **mroo**, **mtei**, **mymr**, **mymrshan**, **mymrtlng**, **newa**, **nkoo**, **olck**, **orya**, **osma**, **rohg**, **saur**, **segment**, **shrd**, **sind**, **sinh**, **sora**, **sund**, **takr**, **talu**, **tamldec**, **telu**, **thai**, **tibt**, **tirh**, **vaii**, **wara**, **wcho**.|
-| useGrouping              | boolean | Yes   | Yes   | Whether to use grouping for display.                                 |
-| minimumIntegerDigits     | number  | Yes   | Yes   | Minimum number of digits allowed in the integer part of a number. The value ranges from **1** to **21**.                 |
-| minimumFractionDigits    | number  | Yes   | Yes   | Minimum number of digits in the fraction part of a number. The value ranges from **0** to **20**.                 |
-| maximumFractionDigits    | number  | Yes   | Yes   | Maximum number of digits in the fraction part of a number. The value ranges from **1** to **21**.                 |
-| minimumSignificantDigits | number  | Yes   | Yes   | Minimum number of the least significant digits. The value ranges from **1** to **21**.                 |
-| maximumSignificantDigits | number  | Yes   | Yes   | Maximum number of the least significant digits. The value ranges from **1** to **21**.                 |
+| unitDisplay              | string  | Yes   | Yes   | Unit display format. The value can be **long**, **short**, or **narrow**. The default value is **short**.|
+| unitUsage<sup>8+</sup>   | string  | Yes   | Yes   | Unit usage scenario. The value can be any of the following: **default**, **area-land-agricult**, **area-land-commercl**, **area-land-residntl**, **length-person**, **length-person-small**, **length-rainfall**, **length-road**, **length-road-small**, **length-snowfall**, **length-vehicle**, **length-visiblty**, **length-visiblty-small**, **length-person-informal**, **length-person-small-informal**, **length-road-informal**, **speed-road-travel**, **speed-wind**, **temperature-person**, **temperature-weather**, **volume-vehicle-fuel**. The default value is **default**.|
+| signDisplay              | string  | Yes   | Yes   | Number sign display format. The value can be **auto**, **never**, **always**, or **expectZero**. The default value is **auto**.|
+| compactDisplay           | string  | Yes   | Yes   | Compact display format. The value can be **long** or **short**. The default value is **short**.     |
+| notation                 | string  | Yes   | Yes   | Number formatting specification. The value can be **standard**, **scientific**, **engineering**, or **compact**. The default value is **standard**.|
+| localeMatcher            | string  | Yes   | Yes   | Locale matching algorithm. The value can be **lookup** or **best fit**. The default value is **best fit**.|
+| style                    | string  | Yes   | Yes   | Number display format. The value can be **decimal**, **currency**, **percent**, or **unit**. The default value is **decimal**.|
+| numberingSystem          | string  | Yes   | Yes   | Numbering system for the locale. The value can be any of the following: **adlm**, **ahom**, **arab**, **arabext**, **bali**, **beng**, **bhks**, **brah**, **cakm**, **cham**, **deva**, **diak**, **fullwide**, **gong**, **gonm**, **gujr**, **guru**, **hanidec**, **hmng**, **hmnp**, **java**, **kali**, **khmr**, **knda**, **lana**, **lanatham**, **laoo**, **latn**, **lepc**, **limb**, **mathbold**, **mathdbl**, **mathmono**, **mathsanb**, **mathsans**, **mlym**, **modi**, **mong**, **mroo**, **mtei**, **mymr**, **mymrshan**, **mymrtlng**, **newa**, **nkoo**, **olck**, **orya**, **osma**, **rohg**, **saur**, **segment**, **shrd**, **sind**, **sinh**, **sora**, **sund**, **takr**, **talu**, **tamldec**, **telu**, **thai**, **tibt**, **tirh**, **vaii**, **wara**, **wcho**. The default value is the default numbering system of the specified locale.|
+| useGrouping              | boolean | Yes   | Yes   | Whether to use grouping for display. The default value is **auto**.                                 |
+| minimumIntegerDigits     | number  | Yes   | Yes   | Minimum number of digits allowed in the integer part of a number. The value ranges from **1** to **21**. The default value of is **1**.                 |
+| minimumFractionDigits    | number  | Yes   | Yes   | Minimum number of digits in the fraction part of a number. The value ranges from **0** to **20**. The default value is **0**.                 |
+| maximumFractionDigits    | number  | Yes   | Yes   | Maximum number of digits in the fraction part of a number. The value ranges from **1** to **21**. The default value is **3**.                 |
+| minimumSignificantDigits | number  | Yes   | Yes   | Minimum number of the least significant digits. The value ranges from **1** to **21**. The default value of is **1**.                 |
+| maximumSignificantDigits | number  | Yes   | Yes   | Maximum number of the least significant digits. The value ranges from **1** to **21**. The default value is **21**.                 |
 
 
 ## Collator<sup>8+</sup>
@@ -477,7 +476,7 @@ Creates a **Collator** object.
 **System capability**: SystemCapability.Global.I18n
 
 **Example**
-  ```js
+  ```ts
   // Use the system locale to create a Collator object.
   let collator = new Intl.Collator();
   ```
@@ -496,10 +495,10 @@ Creates a **Collator** object.
 | Name                 | Type                                  | Mandatory  | Description                          |
 | -------------------- | ------------------------------------ | ---- | ---------------------------- |
 | locale               | string \| Array&lt;string&gt;        | Yes   | A string containing locale information, including the language, optional script, and region.|
-| options              | [CollatorOptions](#collatoroptions8) | No   | Options for creating a **Collator** object.                |
+| options              | [CollatorOptions](#collatoroptions8) | No   | Options for creating a **Collator** object.      |
 
 **Example**
-  ```js
+  ```ts
   // Use locale zh-CN to create a Collator object. Set localeMatcher to lookup and usage to sort.
   let collator = new Intl.Collator("zh-CN", {localeMatcher: "lookup", usage: "sort"});
   ```
@@ -527,7 +526,7 @@ Compares two strings based on the sorting policy of the **Collator** object.
 | number | Comparison result. If the value is a negative number, the first string is before the second string. If the value of number is **0**, the first string is equal to the second string. If the value of number is a positive number, the first string is after the second string.|
 
 **Example**
-  ```js
+  ```ts
   // Use locale en-GB to create a Collator object.
   let collator = new Intl.Collator("en-GB");
   // Compare the sequence of the first and second strings.
@@ -550,7 +549,7 @@ Returns properties reflecting the locale and collation options of a **Collator**
 | [CollatorOptions](#collatoroptions8) | Properties of the **Collator** object.|
 
 **Example**
-  ```js
+  ```ts
   let collator = new Intl.Collator("zh-Hans", { usage: 'sort', ignorePunctuation: true });
   // Obtain the options of the Collator object.
   let options = collator.resolvedOptions();
@@ -562,19 +561,19 @@ Returns properties reflecting the locale and collation options of a **Collator**
 ## CollatorOptions<sup>8+</sup>
 
 Represents the properties of a **Collator** object.
-In API version 9, the attributes in **CollatorOptions** are optional.
+Since API version 9, the attributes in **CollatorOptions** are optional.
 
 **System capability**: SystemCapability.Global.I18n
 
 | Name               | Type     | Readable  | Writable  | Description                                      |
 | ----------------- | ------- | ---- | ---- | ---------------------------------------- |
-| localeMatcher     | string  | Yes   | Yes   | Locale matching algorithm. The value can be **lookup** or **best fit**.|
-| usage             | string  | Yes   | Yes   | Whether the comparison is for sorting or for searching. The value can be **sort** or **search**.       |
-| sensitivity       | string  | Yes   | Yes   | Differences in the strings that lead to non-zero return values. The value can be **base**, **accent**, **case**, or **letiant**.|
-| ignorePunctuation | boolean | Yes   | Yes   | Whether punctuation is ignored. The value can be **true** or **false**.       |
-| collation         | string  | Yes   | Yes   | Rule for sorting regions. The value can be any of the following: **big5han**, **compat**, **dict**, **direct**, **ducet**, **eor**, **gb2312**, **phonebk**, **phonetic**, **pinyin**, **reformed**, **searchjl**, **stroke**, **trad**, **unihan**, **zhuyin**.|
-| numeric           | boolean | Yes   | Yes   | Whether numeric collation is used. The value can be **true** or **false**.         |
-| caseFirst         | string  | Yes   | Yes   | Whether upper case or lower case is sorted first. The value can be **upper**, **lower**, or **false**.|
+| localeMatcher     | string  | Yes   | Yes   | Locale matching algorithm. The value can be **lookup** or **best fit**. The default value is **best fit**.|
+| usage             | string  | Yes   | Yes   | Whether the comparison is for sorting or for searching. The value can be **sort** or **search**. The default value is **sort**.       |
+| sensitivity       | string  | Yes   | Yes   | Differences in the strings that lead to non-zero return values. The value can be **base**, **accent**, **case**, or **letiant**. The default value is **variant**.|
+| ignorePunctuation | boolean | Yes   | Yes   | Whether punctuation is ignored. The value can be **true** or **false**. The default value is **false**.       |
+| collation         | string  | Yes   | Yes   | Rule for sorting regions. The value can be any of the following: **big5han**, **compat**, **dict**, **direct**, **ducet**, **eor**, **gb2312**, **phonebk**, **phonetic**, **pinyin**, **reformed**, **searchjl**, **stroke**, **trad**, **unihan**, **zhuyin**. The default value is **default**.|
+| numeric           | boolean | Yes   | Yes   | Whether numeric collation is used. The value can be **true** or **false**. The default value is **false**.         |
+| caseFirst         | string  | Yes   | Yes   | Whether upper case or lower case is sorted first. The value can be **upper**, **lower**, or **false**. The default value is **false**.|
 
 
 ## PluralRules<sup>8+</sup>
@@ -589,7 +588,7 @@ Creates a **PluralRules** object to obtain the singular-plural type of numbers.
 **System capability**: SystemCapability.Global.I18n
 
 **Example**
-  ```js
+  ```ts
   // Use the system locale to create a PluralRules object.
   let pluralRules = new Intl.PluralRules();
   ```
@@ -608,10 +607,10 @@ Creates a **PluralRules** object to obtain the singular-plural type of numbers.
 | Name                 | Type                                      | Mandatory  | Description                          |
 | -------------------- | ---------------------------------------- | ---- | ---------------------------- |
 | locale               | string \| Array&lt;string&gt;            | Yes   | A string containing locale information, including the language, optional script, and region.|
-| options              | [PluralRulesOptions](#pluralrulesoptions8) | No   | Options for creating a **PluralRules** object.               |
+| options              | [PluralRulesOptions](#pluralrulesoptions8) | No   | Options for creating a **PluralRules** object.      |
 
 **Example**
-  ```js
+  ```ts
   // Use locale zh-CN to create a PluralRules object. Set localeMatcher to lookup and type to cardinal.
   let pluralRules= new Intl.PluralRules("zh-CN", {"localeMatcher": "lookup", "type": "cardinal"});
   ```
@@ -638,7 +637,7 @@ Obtains a string that represents the singular-plural type of the specified numbe
 | string | Singular-plural type. The value can be any of the following: **zero**, **one**, **two**, **few**, **many**, **others**.|
 
 **Example**
-  ```js
+  ```ts
   // Use locale zh-Hans to create a PluralRules object.
   let zhPluralRules = new Intl.PluralRules("zh-Hans");
   // Determine the singular-plural type corresponding to number 1 in locale zh-Hans.
@@ -654,19 +653,19 @@ Obtains a string that represents the singular-plural type of the specified numbe
 ## PluralRulesOptions<sup>8+</sup>
 
 Represents the properties of a **PluralRules** object.
-In API version 9, the attributes in **PluralRulesOptions** are optional.
+Since API version 9, the attributes in **PluralRulesOptions** are optional.
 
 **System capability**: SystemCapability.Global.I18n
 
 | Name                      | Type    | Readable  | Writable  | Description                                      |
 | ------------------------ | ------ | ---- | ---- | ---------------------------------------- |
-| localeMatcher            | string | Yes   | Yes   | Locale matching algorithm. The value can be **lookup** or **best fit**.|
-| type                     | string | Yes   | Yes   | Sorting type. The value can be **cardinal** or **ordinal**.  |
-| minimumIntegerDigits     | number | Yes   | Yes   | Minimum number of digits allowed in the integer part of a number. The value ranges from **1** to **21**.                 |
-| minimumFractionDigits    | number | Yes   | Yes   | Minimum number of digits in the fraction part of a number. The value ranges from **0** to **20**.                 |
-| maximumFractionDigits    | number | Yes   | Yes   | Maximum number of digits in the fraction part of a number. The value ranges from **1** to **21**.                 |
-| minimumSignificantDigits | number | Yes   | Yes   | Minimum number of the least significant digits. The value ranges from **1** to **21**.                 |
-| maximumSignificantDigits | number | Yes   | Yes   | Maximum number of the least significant digits. The value ranges from **1** to **21**.                 |
+| localeMatcher            | string | Yes   | Yes   | Locale matching algorithm. The value can be **lookup** or **best fit**. The default value is **best fit**.|
+| type                     | string | Yes   | Yes   | Sorting type. The value can be **cardinal** or **ordinal**. The default value is **cardinal**.  |
+| minimumIntegerDigits     | number | Yes   | Yes   | Minimum number of digits allowed in the integer part of a number. The value ranges from **1** to **21**. The default value of is **1**.                 |
+| minimumFractionDigits    | number | Yes   | Yes   | Minimum number of digits in the fraction part of a number. The value ranges from **0** to **20**. The default value is **0**.                 |
+| maximumFractionDigits    | number | Yes   | Yes   | Maximum number of digits in the fraction part of a number. The value ranges from **1** to **21**. The default value is **3**.                 |
+| minimumSignificantDigits | number | Yes   | Yes   | Minimum number of the least significant digits. The value ranges from **1** to **21**. The default value of is **1**.                 |
+| maximumSignificantDigits | number | Yes   | Yes   | Maximum number of the least significant digits. The value ranges from **1** to **21**. The default value is **21**.                 |
 
 
 ## RelativeTimeFormat<sup>8+</sup>
@@ -681,7 +680,7 @@ Creates a **RelativeTimeFormat** object.
 **System capability**: SystemCapability.Global.I18n
 
 **Example**
-  ```js
+  ```ts
   // Use the system locale to create a RelativeTimeFormat object.
   let relativetimefmt = new Intl.RelativeTimeFormat();
   ```
@@ -703,7 +702,7 @@ Creates a **RelativeTimeFormat** object.
 | options              | [RelativeTimeFormatInputOptions](#relativetimeformatinputoptions8) | No   | Options for creating a **RelativeTimeFormat** object.           |
 
 **Example**
-  ```js
+  ```ts
   // Use locale zh-CN to create a RelativeTimeFormat object. Set localeMatcher to lookup, numeric to always, and style to long.
   let relativeTimeFormat = new Intl.RelativeTimeFormat("zh-CN", {"localeMatcher": "lookup", "numeric": "always", "style": "long"});
   ```
@@ -731,7 +730,7 @@ Formats the value and unit based on the specified locale and formatting options.
 | string | Relative time after formatting.|
 
 **Example**
-  ```js
+  ```ts
   // Use locale zh-CN to create a RelativeTimeFormat object.
   let relativetimefmt = new Intl.RelativeTimeFormat("zh-CN");
   // Obtain the localized representation (in unit of quarter) of number 3 in locale zh-CN.
@@ -761,7 +760,7 @@ Obtains an array of RelativeTimeFormat objects in parts for locale-aware formatt
 | Array&lt;object&gt; | An array of **RelativeTimeFormat** objects in parts.|
 
 **Example**
-  ```js
+  ```ts
   // Use locale en to create a RelativeTimeFormat object. Set numeric to auto.
   let relativetimefmt = new Intl.RelativeTimeFormat("en", {"numeric": "auto"});
   let parts = relativetimefmt.formatToParts(10, "seconds"); // parts = [ {type: "literal", value: "in"}, {type: "integer", value: 10, unit: "second"}, {type: "literal", value: "seconds"} ]
@@ -783,7 +782,7 @@ Obtains the formatting options for **RelativeTimeFormat** objects.
 | [RelativeTimeFormatResolvedOptions](#relativetimeformatresolvedoptions8) | Formatting options for **RelativeTimeFormat** objects.|
 
 **Example**
-  ```js
+  ```ts
   // Use locale en-GB to create a RelativeTimeFormat object.
   let relativetimefmt= new Intl.RelativeTimeFormat("en-GB", { style: "short" });
   // Obtain the options of the RelativeTimeFormat object.
@@ -795,15 +794,14 @@ Obtains the formatting options for **RelativeTimeFormat** objects.
 ## RelativeTimeFormatInputOptions<sup>8+</sup>
 
 Represents the properties of a **RelativeTimeFormat** object.
-In API version 9, the attributes in **RelativeTimeFormatInputOptions** are optional.
+Since API version 9, the attributes in **RelativeTimeFormatInputOptions** are optional.
 
 **System capability**: SystemCapability.Global.I18n
-
 | Name           | Type    | Readable  | Writable  | Description                                      |
 | ------------- | ------ | ---- | ---- | ---------------------------------------- |
-| localeMatcher | string | Yes   | Yes   | Locale matching algorithm. The value can be **lookup** or **best fit**.|
-| numeric       | string | Yes   | Yes   | Format of the output message. The value can be **always** or **auto**.     |
-| style         | string | Yes   | Yes   | Length of an internationalized message. The value can be **long**, **short**, or **narrow**.|
+| localeMatcher | string | Yes   | Yes   | Locale matching algorithm. The value can be **lookup** or **best fit**. The default value is **best fit**.|
+| numeric       | string | Yes   | Yes   | Format of the output message. The value can be **always** or **auto**. The default value is **always**.     |
+| style         | string | Yes   | Yes   | Length of an internationalized message. The value can be **long**, **short**, or **narrow**. The default value is **long**.|
 
 
 ## RelativeTimeFormatResolvedOptions<sup>8+</sup>

@@ -21,10 +21,11 @@
    开发者可以在[`onReceiveEvent()`](../reference/apis/js-apis-application-staticSubscriberExtensionAbility.md#staticsubscriberextensionabilityonreceiveevent)回调中实现业务逻辑。
 
    ```ts
-   import StaticSubscriberExtensionAbility from '@ohos.application.StaticSubscriberExtensionAbility'
+   import StaticSubscriberExtensionAbility from '@ohos.application.StaticSubscriberExtensionAbility';
+   import commonEventManager from '@ohos.commonEventManager';
    
    export default class StaticSubscriber extends StaticSubscriberExtensionAbility {
-     onReceiveEvent(event) {
+     onReceiveEvent(event: commonEventManager.CommonEventData) {
        console.info('onReceiveEvent, event: ' + event.event);
      }
    }
@@ -34,10 +35,9 @@
 
    在完成静态订阅者的代码实现后，需要在[module.json5配置文件](../quick-start/module-configuration-file.md)中进行配置订阅者信息。
 
-   ```ts
+   ```json
    {
      "module": {
-       ...
        "extensionAbilities": [
          {
            "name": "StaticSubscriber",
@@ -55,7 +55,6 @@
            ]
          }
        ]
-       ...
      }
    }
    ```
@@ -118,5 +117,5 @@
 
 针对StaticSubscriberExtensionAbility开发，可参考如下实例：
 
-- [StaticSubscriber：静态订阅（ArkTS）（API9）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/ApplicationModels/StaticSubscriber)
+- [静态订阅（ArkTS）（Full SDK）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/ApplicationModels/StaticSubscriber)
 

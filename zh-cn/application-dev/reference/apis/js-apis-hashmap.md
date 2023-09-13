@@ -53,7 +53,7 @@ HashMap的构造函数。
 **示例：**
 
 ```ts
-let hashMap = new HashMap();
+let hashMap: HashMap<string, number> = new HashMap();
 ```
 
 
@@ -82,7 +82,7 @@ isEmpty(): boolean
 **示例：**
 
 ```ts
-const hashMap = new HashMap();
+const hashMap: HashMap<string, number> = new HashMap();
 let result = hashMap.isEmpty();
 ```
 
@@ -118,7 +118,7 @@ hasKey(key: K): boolean
 **示例：**
 
 ```ts
-let hashMap = new HashMap();
+const hashMap: HashMap<string, number> = new HashMap();
 hashMap.set("squirrel", 123);
 let result = hashMap.hasKey("squirrel");
 ```
@@ -155,7 +155,7 @@ hasValue(value: V): boolean
 **示例：**
 
 ```ts
-let hashMap = new HashMap();
+const hashMap: HashMap<string, number> = new HashMap();
 hashMap.set("squirrel", 123);
 let result = hashMap.hasValue(123);
 ```
@@ -192,7 +192,7 @@ get(key: K): V
 **示例：**
 
 ```ts
-let hashMap = new HashMap();
+const hashMap: HashMap<string, number> = new HashMap();
 hashMap.set("squirrel", 123);
 hashMap.set("sparrow", 356);
 let result = hashMap.get("sparrow");
@@ -224,10 +224,10 @@ setAll(map: HashMap<K, V>): void
 **示例：**
 
 ```ts
-let hashMap = new HashMap();
+const hashMap: HashMap<string, number> = new HashMap();
 hashMap.set("squirrel", 123);
 hashMap.set("sparrow", 356);
-let newHashMap = new HashMap();
+let newHashMap: HashMap<string, number> = new HashMap();
 newHashMap.set("newMap", 99);
 hashMap.setAll(newHashMap);
 ```
@@ -265,7 +265,7 @@ set(key: K, value: V): Object
 **示例：**
 
 ```ts
-let hashMap = new HashMap();
+let hashMap: HashMap<string, number> = new HashMap();
 let result = hashMap.set("squirrel", 123);
 ```
 
@@ -301,7 +301,7 @@ remove(key: K): V
 **示例：**
 
 ```ts
-let hashMap = new HashMap();
+let hashMap: HashMap<string, number> = new HashMap();
 hashMap.set("squirrel", 123);
 hashMap.set("sparrow", 356);
 let result = hashMap.remove("sparrow");
@@ -327,7 +327,7 @@ clear(): void
 **示例：**
 
 ```ts
-let hashMap = new HashMap();
+let hashMap: HashMap<string, number> = new HashMap();
 hashMap.set("squirrel", 123);
 hashMap.set("sparrow", 356);
 hashMap.clear();
@@ -359,14 +359,14 @@ keys(): IterableIterator&lt;K&gt;
 **示例：**
 
 ```ts
-let hashMap = new HashMap();
+let hashMap: HashMap<string, number> = new HashMap();
 hashMap.set("squirrel", 123);
 hashMap.set("sparrow", 356);
 let iter = hashMap.keys();
-let temp = iter.next().value;
-while(temp != undefined) {
-  console.log("value:" + temp);
-  temp = iter.next().value;
+let temp: IteratorResult<string,number> = iter.next();
+while(!temp.done) {
+  console.log("value:" + temp.value);
+  temp = iter.next();
 }
 ```
 
@@ -396,14 +396,14 @@ values(): IterableIterator&lt;V&gt;
 **示例：**
 
 ```ts
-let hashMap = new HashMap();
+let hashMap: HashMap<string, number> = new HashMap();
 hashMap.set("squirrel", 123);
 hashMap.set("sparrow", 356);
 let iter = hashMap.values();
-let temp = iter.next().value;
-while(temp != undefined) {
-  console.log("value:" + temp);
-  temp = iter.next().value;
+let temp: IteratorResult<number> = iter.next();
+while(!temp.done) {
+  console.log("value:" + temp.value);
+  temp = iter.next();
 }
 ```
 
@@ -440,7 +440,7 @@ replace(key: K, newValue: V): boolean
 **示例：**
 
 ```ts
-let hashMap = new HashMap();
+let hashMap: HashMap<string, number> = new HashMap();
 hashMap.set("sparrow", 123);
 let result = hashMap.replace("sparrow", 357);
 ```
@@ -479,11 +479,11 @@ callbackfn的参数说明：
 **示例：**
 
 ```ts
-let hashMap = new HashMap();
+let hashMap: HashMap<string, number> = new HashMap();
 hashMap.set("sparrow", 123);
 hashMap.set("gull", 357);
-hashMap.forEach((value, key) => {
-    console.log("value:" + value, "key:" + key);
+hashMap.forEach((value?: number, key?: string) => {
+  console.log("value:" + value, "key:" + key);
 });
 ```
 
@@ -513,15 +513,15 @@ entries(): IterableIterator&lt;[K, V]&gt;
 **示例：**
 
 ```ts
-let hashMap = new HashMap();
+let hashMap: HashMap<string, number> = new HashMap();
 hashMap.set("squirrel", 123);
 hashMap.set("sparrow", 356);
 let iter = hashMap.entries();
-let temp = iter.next().value;
-while(temp != undefined) {
-  console.log("key:" + temp[0]);
-  console.log("value:" + temp[1]);
-  temp = iter.next().value;
+let temp: IteratorResult<Object[]> = iter.next();
+while(!temp.done) {
+  console.log("key:" + temp.value[0]);
+  console.log("value:" + temp.value[1]);
+  temp = iter.next();
 }
 ```
 
@@ -550,19 +550,19 @@ while(temp != undefined) {
 
 **示例：**
 ```ts
-let hashMap = new HashMap();
+let hashMap: HashMap<string, number> = new HashMap();
 hashMap.set("squirrel", 123);
 hashMap.set("sparrow", 356);
 
 // 使用方法一：
-for (let item of hashMap) { 
-  console.log("key:" + item[0]);
-  console.log("value:" + item[1]);
+for (let key of keys) {
+  console.log("key:" + key);
+  console.log("value:" + hashMap.get(key));
 }
 
 // 使用方法二：
 let iter = hashMap[Symbol.iterator]();
-let temp = iter.next().value;
+let temp: IteratorResult<Object[]> = iter.next().value;
 while(temp != undefined) {
   console.log("key:" + temp[0]);
   console.log("value:" + temp[1]);

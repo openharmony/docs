@@ -30,91 +30,91 @@ AudioRenderer是音频渲染器，用于播放PCM（Pulse Code Modulation）音�
 
 1. 配置音频渲染参数并创建AudioRenderer实例，音频渲染参数的详细信息可以查看[AudioRendererOptions](../reference/apis/js-apis-audio.md#audiorendereroptions8)。
      
-   ```ts
-   import audio from '@ohos.multimedia.audio';
-   
-   let audioStreamInfo = {
-     samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
-     channels: audio.AudioChannel.CHANNEL_1,
-     sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE,
-     encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW
-   };
-   
-   let audioRendererInfo = {
-     content: audio.ContentType.CONTENT_TYPE_SPEECH,
-     usage: audio.StreamUsage.STREAM_USAGE_VOICE_COMMUNICATION,
-     rendererFlags: 0
-   };
-   
-   let audioRendererOptions = {
-     streamInfo: audioStreamInfo,
-     rendererInfo: audioRendererInfo
-   };
-   
-   audio.createAudioRenderer(audioRendererOptions, (err, data) => {
-     if (err) {
-       console.error(`Invoke createAudioRenderer failed, code is ${err.code}, message is ${err.message}`);
-       return;
-     } else {
-       console.info('Invoke createAudioRenderer succeeded.');
-       let audioRenderer = data;
-     }
-   });
-   ```
+```ts
+import audio from '@ohos.multimedia.audio';
+
+let audioStreamInfo: audio.AudioStreamInfo = {
+  samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
+  channels: audio.AudioChannel.CHANNEL_1,
+  sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE,
+  encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW
+};
+
+let audioRendererInfo: audio.AudioRendererInfo = {
+  content: audio.ContentType.CONTENT_TYPE_SPEECH,
+  usage: audio.StreamUsage.STREAM_USAGE_VOICE_COMMUNICATION,
+  rendererFlags: 0
+};
+
+let audioRendererOptions: audio.AudioRendererOptions = {
+  streamInfo: audioStreamInfo,
+  rendererInfo: audioRendererInfo
+};
+
+audio.createAudioRenderer(audioRendererOptions, (err, data) => {
+  if (err) {
+   console.error(`Invoke createAudioRenderer failed, code is ${err.code}, message is ${err.message}`);
+   return;
+  } else {
+   console.info('Invoke createAudioRenderer succeeded.');
+   let audioRenderer = data;
+  }
+});
+```
 
 2. 调用start()方法进入running状态，开始渲染音频。
      
-   ```ts
-   audioRenderer.start((err) => {
-     if (err) {
-       console.error(`Renderer start failed, code is ${err.code}, message is ${err.message}`);
-     } else {
-       console.info('Renderer start success.');
-     }
-   });
-   ```
+```ts
+audioRenderer.start((err: BusinessError) => {
+  if (err) {
+    console.error(`Renderer start failed, code is ${err.code}, message is ${err.message}`);
+  } else {
+    console.info('Renderer start success.');
+  }
+});
+```
 
 3. 指定待渲染文件地址，打开文件调用write()方法向缓冲区持续写入音频数据进行渲染播放。如果需要对音频数据进行处理以实现个性化的播放，在写入之前操作即可。
      
-   ```ts
-   const bufferSize = await audioRenderer.getBufferSize();
-   let file = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
-   let buf = new ArrayBuffer(bufferSize);
-   let readsize = await fs.read(file.fd, buf);
-   let writeSize = await new Promise((resolve, reject) => {
-     audioRenderer.write(buf, (err, writeSize) => {
-       if (err) {
-         reject(err);
-       } else {
-         resolve(writeSize);
-       }
-     });
-   });
-   ```
+```ts
+import fs from '@ohos.file.fs';
+
+let context = getContext(this);
+async function read() {
+  const bufferSize: number = await audioRenderer.getBufferSize();
+  let path = context.filesDir;
+  
+  const filePath = path + '/voice_call_data.wav';
+  let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
+  let buf = new ArrayBuffer(bufferSize);
+  let readsize: number = await fs.read(file.fd, buf);
+  let writeSize: number = await audioRenderer.write(buf);
+}
+```
 
 4. 调用stop()方法停止渲染。
      
-   ```ts
-   audioRenderer.stop((err) => {
-     if (err) {
-       console.error(`Renderer stop failed, code is ${err.code}, message is ${err.message}`);
-     } else {
-       console.info('Renderer stopped.');
-     }
-   });
-   ```
+```ts
+audioRenderer.stop((err: BusinessError) => {
+  if (err) {
+    console.error(`Renderer stop failed, code is ${err.code}, message is ${err.message}`);
+  } else {
+    console.info('Renderer stopped.');
+  }
+});
+```
 
 5. 调用release()方法销毁实例，释放资源。
      
-   ```ts
-   audioRenderer.release((err) => {
-     if (err) {
-       console.error(`Renderer release failed, code is ${err.code}, message is ${err.message}`);
-     } else {
-       console.info('Renderer released.');
-     }
-   });
-   ```
+```ts
+audioRenderer.release((err: BusinessError) => {
+  if (err) {
+    console.error(`Renderer release failed, code is ${err.code}, message is ${err.message}`);
+  } else {
+    console.info('Renderer released.');
+  } 
+});
+```
 
 ### 完整示例
 
@@ -126,134 +126,139 @@ import fs from '@ohos.file.fs';
 
 const TAG = 'AudioRendererDemo';
 
-export default class AudioRendererDemo {
-  private renderModel = undefined;
-  private audioStreamInfo = {
-    samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_48000, // 采样率
-    channels: audio.AudioChannel.CHANNEL_2, // 通道
-    sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE, // 采样格式
-    encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW // 编码格式
-  }
-  private audioRendererInfo = {
-    content: audio.ContentType.CONTENT_TYPE_MUSIC, // 媒体类型
-    usage: audio.StreamUsage.STREAM_USAGE_MEDIA, // 音频流使用类型
-    rendererFlags: 0 // 音频渲染器标志
-  }
-  private audioRendererOptions = {
-    streamInfo: this.audioStreamInfo,
-    rendererInfo: this.audioRendererInfo
-  }
+let context = getContext(this);
+let renderModel: audio.AudioRenderer | undefined = undefined;
+let audioStreamInfo: audio.AudioStreamInfo = {
+  samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_48000, // 采样率
+  channels: audio.AudioChannel.CHANNEL_2, // 通道
+  sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE, // 采样格式
+  encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW // 编码格式
+}
+let audioRendererInfo: audio.AudioRendererInfo = {
+  content: audio.ContentType.CONTENT_TYPE_MUSIC, // 媒体类型
+  usage: audio.StreamUsage.STREAM_USAGE_MEDIA, // 音频流使用类型
+  rendererFlags: 0 // 音频渲染器标志
+}
+let audioRendererOptions: audio.AudioRendererOptions = {
+  streamInfo: audioStreamInfo,
+  rendererInfo: audioRendererInfo
+}
 
-  // 初始化，创建实例，设置监听事件
-  init() {
-    audio.createAudioRenderer(this.audioRendererOptions, (err, renderer) => { // 创建AudioRenderer实例
-      if (!err) {
-        console.info(`${TAG}: creating AudioRenderer success`);
-        this.renderModel = renderer;
-        this.renderModel.on('stateChange', (state) => { // 设置监听事件，当转换到指定的状态时触发回调
+// 初始化，创建实例，设置监听事件
+async function init() {
+  audio.createAudioRenderer(audioRendererOptions, (err, renderer) => { // 创建AudioRenderer实例
+    if (!err) {
+      console.info(`${TAG}: creating AudioRenderer success`);
+      renderModel = renderer;
+      if (renderModel !== undefined) {
+        (renderModel as audio.AudioRenderer).on('stateChange', (state: audio.AudioState) => { // 设置监听事件，当转换到指定的状态时触发回调
           if (state == 2) {
             console.info('audio renderer state is: STATE_RUNNING');
           }
         });
-        this.renderModel.on('markReach', 1000, (position) => { // 订阅markReach事件，当渲染的帧数达到1000帧时触发回调
+        (renderModel as audio.AudioRenderer).on('markReach', 1000, (position: number) => { // 订阅markReach事件，当渲染的帧数达到1000帧时触发回调
           if (position == 1000) {
             console.info('ON Triggered successfully');
           }
         });
-      } else {
-        console.info(`${TAG}: creating AudioRenderer failed, error: ${err.message}`);
       }
-    });
-  }
+    } else {
+      console.info(`${TAG}: creating AudioRenderer failed, error: ${err.message}`);
+    }
+  });
+}
 
-  // 开始一次音频渲染
-  async start() {
+// 开始一次音频渲染
+async function start() {
+  if (renderModel !== undefined) {
     let stateGroup = [audio.AudioState.STATE_PREPARED, audio.AudioState.STATE_PAUSED, audio.AudioState.STATE_STOPPED];
-    if (stateGroup.indexOf(this.renderModel.state) === -1) { // 当且仅当状态为prepared、paused和stopped之一时才能启动渲染
+    if (stateGroup.indexOf((renderModel as audio.AudioRenderer).state.valueOf()) === -1) { // 当且仅当状态为prepared、paused和stopped之一时才能启动渲染
       console.error(TAG + 'start failed');
       return;
     }
-    await this.renderModel.start(); // 启动渲染
-
-    const bufferSize = await this.renderModel.getBufferSize();
-    let context = getContext(this);
+    await (renderModel as audio.AudioRenderer).start(); // 启动渲染
+    
+    const bufferSize = await (renderModel as audio.AudioRenderer).getBufferSize();
+    
     let path = context.filesDir;
     const filePath = path + '/test.wav'; // 使用沙箱路径获取文件，实际路径为/data/storage/el2/base/haps/entry/files/test.wav
-
+    
     let file = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
     let stat = await fs.stat(filePath);
     let buf = new ArrayBuffer(bufferSize);
     let len = stat.size % bufferSize === 0 ? Math.floor(stat.size / bufferSize) : Math.floor(stat.size / bufferSize + 1);
+    class Options {
+      offset: number = 0;
+      length: number = 0
+    }
     for (let i = 0; i < len; i++) {
-      let options = {
+      let options: Options = {
         offset: i * bufferSize,
         length: bufferSize
       };
       let readsize = await fs.read(file.fd, buf, options);
-
+      
       // buf是要写入缓冲区的音频数据，在调用AudioRenderer.write()方法前可以进行音频数据的预处理，实现个性化的音频播放功能，AudioRenderer会读出写入缓冲区的音频数据进行渲染
-
-      let writeSize = await new Promise((resolve, reject) => {
-        this.renderModel.write(buf, (err, writeSize) => {
-          if (err) {
-            reject(err);
-          } else {
-            resolve(writeSize);
-          }
-        });
-      });
-      if (this.renderModel.state === audio.AudioState.STATE_RELEASED) { // 如果渲染器状态为released，停止渲染
+      
+      let writeSize: number = await (renderModel as audio.AudioRenderer).write(buf);
+        if ((renderModel as audio.AudioRenderer).state.valueOf() === audio.AudioState.STATE_RELEASED) { // 如果渲染器状态为released，停止渲染
         fs.close(file);
-        await this.renderModel.stop();
+        await (renderModel as audio.AudioRenderer).stop();
       }
-      if (this.renderModel.state === audio.AudioState.STATE_RUNNING) {
+      if ((renderModel as audio.AudioRenderer).state.valueOf() === audio.AudioState.STATE_RUNNING) {
         if (i === len - 1) { // 如果音频文件已经被读取完，停止渲染
           fs.close(file);
-          await this.renderModel.stop();
+          await (renderModel as audio.AudioRenderer).stop();
         }
       }
     }
   }
+}
 
-  // 暂停渲染
-  async pause() {
+// 暂停渲染
+async function pause() {
+  if (renderModel !== undefined) {
     // 只有渲染器状态为running的时候才能暂停
-    if (this.renderModel.state !== audio.AudioState.STATE_RUNNING) {
+    if ((renderModel as audio.AudioRenderer).state.valueOf() !== audio.AudioState.STATE_RUNNING) {
       console.info('Renderer is not running');
       return;
     }
-    await this.renderModel.pause(); // 暂停渲染
-    if (this.renderModel.state === audio.AudioState.STATE_PAUSED) {
+    await (renderModel as audio.AudioRenderer).pause(); // 暂停渲染
+    if ((renderModel as audio.AudioRenderer).state.valueOf() === audio.AudioState.STATE_PAUSED) {
       console.info('Renderer is paused.');
     } else {
       console.error('Pausing renderer failed.');
     }
   }
+}
 
-  // 停止渲染
-  async stop() {
+// 停止渲染
+async function stop() {
+  if (renderModel !== undefined) {
     // 只有渲染器状态为running或paused的时候才可以停止
-    if (this.renderModel.state !== audio.AudioState.STATE_RUNNING && this.renderModel.state !== audio.AudioState.STATE_PAUSED) {
+    if ((renderModel as audio.AudioRenderer).state.valueOf() !== audio.AudioState.STATE_RUNNING && (renderModel as audio.AudioRenderer).state.valueOf() !== audio.AudioState.STATE_PAUSED) {
       console.info('Renderer is not running or paused.');
       return;
     }
-    await this.renderModel.stop(); // 停止渲染
-    if (this.renderModel.state === audio.AudioState.STATE_STOPPED) {
+    await (renderModel as audio.AudioRenderer).stop(); // 停止渲染
+    if ((renderModel as audio.AudioRenderer).state.valueOf() === audio.AudioState.STATE_STOPPED) {
       console.info('Renderer stopped.');
     } else {
       console.error('Stopping renderer failed.');
     }
   }
+}
 
-  // 销毁实例，释放资源
-  async release() {
+// 销毁实例，释放资源
+async function release() {
+  if (renderModel !== undefined) {
     // 渲染器状态不是released状态，才能release
-    if (this.renderModel.state === audio.AudioState.STATE_RELEASED) {
+    if (renderModel.state.valueOf() === audio.AudioState.STATE_RELEASED) {
       console.info('Renderer already released');
       return;
     }
-    await this.renderModel.release(); // 释放资源
-    if (this.renderModel.state === audio.AudioState.STATE_RELEASED) {
+    await renderModel.release(); // 释放资源
+    if (renderModel.state.valueOf() === audio.AudioState.STATE_RELEASED) {
       console.info('Renderer released');
     } else {
       console.error('Renderer release failed.');

@@ -14,31 +14,34 @@
    import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
    import request from '@ohos.request';
    import fs from '@ohos.file.fs';
+   import Want from '@ohos.app.ability.Want';
+   import Base from '@ohos.base';
+   import fileFs from '@ohos.file.fs';
    
    export default class EntryFormAbility extends FormExtensionAbility {
      ...
      // 在添加卡片时，打开一个本地图片并将图片内容传递给卡片页面显示
-     onAddForm(want) {
-       // 假设在当前卡片应用的tmp目录下有一个本地图片：head.PNG
-       let tempDir = this.context.getApplicationContext().tempDir;
-       // 打开本地图片并获取其打开后的fd
-       let file;
-       try {
-         file = fs.openSync(tempDir + '/' + 'head.PNG');
-       } catch (e) {
-         console.error(`openSync failed: ${JSON.stringify(e)}`);
-       }
-       let formData = {
-         'text': 'Image: Bear',
-         'imgName': 'imgBear',
-         'formImages': {
-           'imgBear': file.fd
-         },
-         'loaded': true
-       }
-       // 将fd封装在formData中并返回至卡片页面
-       return formBindingData.createFormBindingData(formData);
-     }
+    onAddForm(want: Want) {
+      // 假设在当前卡片应用的tmp目录下有一个本地图片：head.PNG
+      let tempDir = this.context.getApplicationContext().tempDir;
+      // 打开本地图片并获取其打开后的fd
+      let file: fileFs.File;
+      let formData = new Map<string, Object>();
+      formData.set('text', 'Image: Bear');
+      formData.set('imgName', 'imgBear');
+      formData.set('loaded', true);
+      try {
+        file = fs.openSync(tempDir + '/' + 'head.PNG');
+        let imgBear: Record<string, number> = {
+          'imgBear': file.fd
+        }
+        formData.set('formImages', imgBear);
+      } catch (e) {
+        console.error(`openSync failed: ${JSON.stringify(e as Base.BusinessError)}`);
+      }
+      // 将fd封装在formData中并返回至卡片页面
+      return formBindingData.createFormBindingData(formData);
+    }
    
      ...
    }
@@ -46,67 +49,69 @@
 
 3. 在EntryFormAbility中的onFormEvent生命周期回调中实现网络文件的刷新
    
-   ```ts
-   import formBindingData from '@ohos.app.form.formBindingData';
-   import formProvider from '@ohos.app.form.formProvider';
-   import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
-   import request from '@ohos.request';
-   import fs from '@ohos.file.fs';
+  ```ts
+  import formBindingData from '@ohos.app.form.formBindingData';
+  import formProvider from '@ohos.app.form.formProvider';
+  import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
+  import request from '@ohos.request';
+  import fs from '@ohos.file.fs';
+  import Base from '@ohos.base';
+  import fileFs from '@ohos.file.fs';
    
-   export default class EntryFormAbility extends FormExtensionAbility {
-     // 在卡片页面触发message事件时，下载一个网络图片，并将网络图片内容传递给卡片页面显示
-     onFormEvent(formId, message) {
-       let formInfo = formBindingData.createFormBindingData({
-         'text': '刷新中...'
-       })
-       formProvider.updateForm(formId, formInfo)
-       // 注意：FormExtensionAbility在触发生命周期回调时被拉起，仅能在后台存在5秒
-       // 建议下载能快速下载完成的小文件，如在5秒内未下载完成，则此次网络图片无法刷新至卡片页面上
-       let netFile = 'https://xxxx/xxxx.png'; // 需要在此处使用真实的网络图片下载链接
-       let tempDir = this.context.getApplicationContext().tempDir;
-       let fileName = 'file' + Date.now();
-       let tmpFile = tempDir + '/' + fileName;
-       request.downloadFile(this.context, {
-         url: netFile, filePath: tmpFile, enableMetered: true, enableRoaming: true
-       }).then((task) => {
-         task.on('complete', function callback() {
-           console.info('ArkTSCard download complete:' + tmpFile);
-           let file;
-           try {
-             file = fs.openSync(tmpFile);
-           } catch (e) {
-             console.error(`openSync failed: ${JSON.stringify(e)}`);
-           }
-           let fileInfo = {};
-           fileInfo[fileName] = file.fd;
-           let formData = {
-             'text': 'Image:' + fileName,
-             'imgName': fileName,
-             'formImages': fileInfo,
-             'loaded': true
-           };
-           let formInfo = formBindingData.createFormBindingData(formData)
-           formProvider.updateForm(formId, formInfo).then((data) => {
-             console.info('FormAbility updateForm success.' + JSON.stringify(data));
-           }).catch((error) => {
-             console.error('FormAbility updateForm failed: ' + JSON.stringify(error));
-           })
-         })
-         task.on('fail', function callBack(err) {
-           console.info('ArkTSCard download task failed. Cause:' + err);
-           let formInfo = formBindingData.createFormBindingData({
-             'text': '刷新失败'
-           })
-           formProvider.updateForm(formId, formInfo)
-         });
-       }).catch((err) => {
-         console.error('Failed to request the download. Cause: ' + JSON.stringify(err));
-       });
-     }
-   
-     ...
-   };
-   ```
+  export default class EntryFormAbility extends FormExtensionAbility {
+    // 在卡片页面触发message事件时，下载一个网络图片，并将网络图片内容传递给卡片页面显示
+    onFormEvent(formId: string, message: string) {
+      let param: Record<string, string> = {
+        'text': '刷新中...'
+      };
+      let formInfo: formBindingData.FormBindingData = formBindingData.createFormBindingData(param);
+      formProvider.updateForm(formId, formInfo);
+      // 注意：FormExtensionAbility在触发生命周期回调时被拉起，仅能在后台存在5秒
+      // 建议下载能快速下载完成的小文件，如在5秒内未下载完成，则此次网络图片无法刷新至卡片页面上
+      let netFile = 'https://xxxx/xxxx.png'; // 需要在此处使用真实的网络图片下载链接
+      let tempDir = this.context.getApplicationContext().tempDir;
+      let fileName = 'file' + Date.now();
+      let tmpFile = tempDir + '/' + fileName;
+      request.downloadFile(this.context, {
+        url: netFile, filePath: tmpFile, enableMetered: true, enableRoaming: true
+      }).then((task) => {
+        task.on('complete', () => {
+          console.info('ArkTSCard download complete:' + tmpFile);
+          let file: fileFs.File;
+          let formData = new Map<string, Object>();
+          try {
+            file = fs.openSync(tmpFile);
+            formData.set('text', 'Image: Bear' + fileName);
+            formData.set('imgName', 'imgBear' + fileName);
+            formData.set('loaded', true);
+            let imgBear: Record<string, number> = {
+              'imgBear': file.fd
+            };
+            formData.set('formImages', imgBear);
+          } catch (e) {
+            console.error(`openSync failed: ${JSON.stringify(e as Base.BusinessError)}`);
+          }
+          let formInfo = formBindingData.createFormBindingData(formData);
+          formProvider.updateForm(formId, formInfo).then(() => {
+            console.info('FormAbility updateForm success.');
+          }).catch((error: Base.BusinessError) => {
+            console.error('FormAbility updateForm failed: ' + JSON.stringify(error));
+          });
+        })
+        task.on('fail', (err: number) => {
+          console.info('ArkTSCard download task failed. Cause:' + err);
+          let param: Record<string, string> = {
+            'text': '刷新失败'
+          };
+          let formInfo: formBindingData.FormBindingData = formBindingData.createFormBindingData(param);
+          formProvider.updateForm(formId, formInfo);
+        });
+      }).catch((err: Base.BusinessError) => {
+        console.error('Failed to request the download. Cause: ' + JSON.stringify(err));
+      });
+    }
+  };
+  ```
 
 4. 在卡片页面通过Image组件展示EntryFormAbility传递过来的卡片内容。
 

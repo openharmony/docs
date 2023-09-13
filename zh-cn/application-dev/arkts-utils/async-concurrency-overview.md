@@ -16,17 +16,17 @@ Promise有三种状态：pending（进行中）、fulfilled（已完成）和rej
 最基本的用法是通过构造函数实例化一个Promise对象，同时传入一个带有两个参数的函数，通常称为executor函数。executor函数接收两个参数：resolve和reject，分别表示异步操作成功和失败时的回调函数。例如，以下代码创建了一个Promise对象并模拟了一个异步操作：
 
 
-```js
-const promise = new Promise((resolve, reject) => {
-  setTimeout(() => {
-    const randomNumber = Math.random();
-    if (randomNumber > 0.5) {
-      resolve(randomNumber);
-    } else {
-      reject(new Error('Random number is too small'));
-    }
-  }, 1000);
-});
+```ts
+const promise: Promise<number> = new Promise((resolve: Function, reject: Function) => {
+setTimeout(() => {
+  const randomNumber: number = Math.random();
+  if (randomNumber > 0.5) {
+    resolve(randomNumber);
+  } else {
+    reject(new Error('Random number is too small'));
+  }
+}, 1000);
+})
 ```
 
 上述代码中，setTimeout函数模拟了一个异步操作，并在1秒钟后随机生成一个数字。如果随机数大于0.5，则执行resolve回调函数并将随机数作为参数传递；否则执行reject回调函数并传递一个错误对象作为参数。
@@ -34,11 +34,13 @@ const promise = new Promise((resolve, reject) => {
 Promise对象创建后，可以使用then方法和catch方法指定fulfilled状态和rejected状态的回调函数。then方法可接受两个参数，一个处理fulfilled状态的函数，另一个处理rejected状态的函数。只传一个参数则表示状态改变就执行，不区分状态结果。使用catch方法注册一个回调函数，用于处理“失败”的结果，即捕获Promise的状态改变为rejected状态或操作失败抛出的异常。例如：
 
 
-```js
-promise.then(result => {
-  console.info(`Random number is ${result}`);
-}).catch(error => {
-  console.error(error.message);
+```ts
+import { BusinessError } from '@ohos.base';
+
+promise.then((result: number) => {
+ console.info(`Random number is ${result}`);
+}).catch((error: BusinessError) => {
+ console.error(error.message);
 });
 ```
 
@@ -54,14 +56,14 @@ async函数是一个返回Promise对象的函数，用于表示一个异步操�
 下面是一个使用async/await的例子，其中模拟了一个异步操作，该操作会在3秒钟后返回一个字符串。
 
 
-```js
-async function myAsyncFunction() {
-  const result = await new Promise((resolve) => {
+```ts
+async function myAsyncFunction(): Promise<void> {
+  const result: string = await new Promise((resolve: Function) => {
     setTimeout(() => {
       resolve('Hello, world!');
     }, 3000);
   });
-  console.info(String(result)); // 输出： Hello, world!
+  console.info(result); // 输出： Hello, world!
 }
 
 myAsyncFunction();
@@ -72,10 +74,10 @@ myAsyncFunction();
 需要注意的是，由于要等待异步操作完成，因此需要将整个操作包在async函数中。除了在async函数中使用await外，还可以使用try/catch块来捕获异步操作中的异常。
 
 
-```js
-async function myAsyncFunction() {
+```ts
+async function myAsyncFunction(): Promise<void> {
   try {
-    const result = await new Promise((resolve) => {
+    const result: string = await new Promise((resolve: Function) => {
       resolve('Hello, world!');
     });
   } catch (e) {

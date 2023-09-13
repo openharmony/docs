@@ -261,3 +261,91 @@ struct TextInputExample {
 **适配指导**
 
 变更后margin的百分比参照固定为父组件的宽减去父组件的padding且不会减去第一次margin的计算结果，其百分比参照比变更前稍大，建议调整margin百分比的数值。
+
+## cl.arkui.5 ListItem长距离划动接口修改
+
+将ListItem长距离划动接口SwipeActionItem命名中的“Delete”替换为“Action”，同时删除useDefaultDeleteAnimation接口。
+
+**变更影响**
+
+使用OpenHarmony_4.0.9.3以后的SDK版本编译时，需使用变更后接口。
+
+**关键接口/组件变更**
+
+| 变更前接口     |  变更后接口     |
+| ------ | ------------------------------ |
+| deleteAreaDistance   | actionAreaDistance |
+| onDelete   |  onAction |
+| onEnterDeleteArea   | onEnterActionArea |
+| onExitDeleteArea   | onExitActionArea |
+| useDefaultDeleteAnimation | 删除 |
+
+**适配指导**
+
+在使用OpenHarmony_4.0.9.3及以后的SDK版本时，SwipeActionItem需使用变更后接口。OpenHarmony_4.0.9.2及之前版本，SwipeActionItem仍遵循变更前规则。
+
+参考代码如下：
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct ListItemExample2 {
+  @State message: string = 'Hello World'
+  @State arr: number[] = [0, 1, 2, 3, 4]
+  @State enterEndDeleteAreaString: string = "not enterEndDeleteArea"
+  @State exitEndDeleteAreaString: string = "not exitEndDeleteArea"
+
+  @Builder itemEnd() {
+    Row() {
+      Button("Delete").margin("4vp")
+      Button("Set").margin("4vp")
+    }.padding("4vp").justifyContent(FlexAlign.SpaceEvenly)
+  }
+
+  build() {
+    Column() {
+      List({ space: 10 }) {
+        ForEach(this.arr, (item) => {
+          ListItem() {
+            Text("item" + item)
+              .width('100%')
+              .height(100)
+              .fontSize(16)
+              .textAlign(TextAlign.Center)
+              .borderRadius(10)
+              .backgroundColor(0xFFFFFF)
+          }
+          .transition({ type: TransitionType.Delete, opacity: 0 })
+          .swipeAction({
+            end: {
+              builder: this.itemEnd.bind(this, item),
+              onAction: () => {
+                animateTo({ duration: 1000 }, () => {
+                  let index = this.arr.indexOf(item)
+                  this.arr.splice(index, 1)
+                })
+              },
+              actionAreaDistance: 80,
+              onEnterActionArea: () => {
+                this.enterEndDeleteAreaString = "enterEndDeleteArea"
+                this.exitEndDeleteAreaString = "not exitEndDeleteArea"
+              },
+              onExitActionArea: () => {
+                this.enterEndDeleteAreaString = "not enterEndDeleteArea"
+                this.exitEndDeleteAreaString = "exitEndDeleteArea"
+              }
+            }
+          })
+        }, item => item)
+      }
+      Text(this.enterEndDeleteAreaString).fontSize(20)
+      Text(this.exitEndDeleteAreaString).fontSize(20)
+    }
+    .padding(10)
+    .backgroundColor(0xDCDCDC)
+    .width('100%')
+    .height('100%')
+  }
+}
+```

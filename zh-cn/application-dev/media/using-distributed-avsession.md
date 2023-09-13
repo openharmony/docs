@@ -22,31 +22,39 @@
 
 1. 导入模块接口。由于在进行投播之前，需要从audio模块获取音频设备描述符AudioDeviceDescriptor，所以除了导入AVSessionManager模块外，还需要导入audio模块。
      
-   ```ts
-   import AVSessionManager from '@ohos.multimedia.avsession';
-   import audio from '@ohos.multimedia.audio';
-   ```
+```ts
+import AVSessionManager from '@ohos.multimedia.avsession';
+import audio from '@ohos.multimedia.audio';
+```
 
 2. 通过AVSessionManager的castAudio接口将当前设备所有会话投播到其他设备。
      
-   ```ts
-   // 投播到其他设备
-   let audioManager = audio.getAudioManager();
-   let audioRoutingManager = audioManager.getRoutingManager();
-   let audioDevices;
-   await audioRoutingManager.getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG).then((data) => {
-      audioDevices = data;
-      console.info(`Promise returned to indicate that the device list is obtained.`);
-   }).catch((err) => {
-      console.error(`Failed to get devices. Code: ${err.code}, message: ${err.message}`);
-   });
-   
-   AVSessionManager.castAudio('all', audioDevices).then(() => {
+```ts
+import AVSessionManager from '@ohos.multimedia.avsession';
+import audio from '@ohos.multimedia.audio';
+import { BusinessError } from '@ohos.base';
+
+async function castAudio() {
+  // 投播到其他设备
+  let audioManager = audio.getAudioManager();
+  let audioRoutingManager = audioManager.getRoutingManager();
+  let audioDevices: audio.AudioDeviceDescriptors | undefined = undefined;
+  audioRoutingManager.getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG).then((data) => {
+    audioDevices = data;
+    console.info(`Promise returned to indicate that the device list is obtained.`);
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to get devices. Code: ${err.code}, message: ${err.message}`);
+  });
+  if (audioDevices !== undefined) {
+    AVSessionManager.castAudio('all', audioDevices as audio.AudioDeviceDescriptors).then(() => {
       console.info(`createController : SUCCESS`);
-   }).catch((err) => {
+    }).catch((err: BusinessError) => {
       console.error(`Failed to cast audio. Code: ${err.code}, message: ${err.message}`);
-   });
-   ```
+    });
+  }
+}
+
+```
 
    系统应用在投播主控端发起投播后，媒体会话框架会通知远端设备的AVSession服务创建远端媒体会话。投播主控端的媒体会话变化时（例如媒体信息变化、播放状态变化等），媒体会话框架会自动同步变化到远端设备。
 

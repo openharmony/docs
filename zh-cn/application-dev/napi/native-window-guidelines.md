@@ -2,7 +2,7 @@
 
 ## 场景介绍
 
-NativeWindow是`OpenHarmony`**本地平台化窗口**，表示图形队列的生产者端。开发者可以通过`NativeWindow`接口进行申请和提交`Buffer`，配置`Buffer`属性信息。
+NativeWindow是**本地平台化窗口**，表示图形队列的生产者端。开发者可以通过`NativeWindow`接口进行申请和提交`Buffer`，配置`Buffer`属性信息。
 针对NativeWindow，常见的开发场景如下：
 
 * 通过`NativeWindow`提供的Native API接口申请图形`Buffer`，并将生产图形内容写入图形`Buffer`，最终提交`Buffer`到图形队列
@@ -20,7 +20,7 @@ NativeWindow是`OpenHarmony`**本地平台化窗口**，表示图形队列的生
 
 ## 开发步骤
 
-以下步骤描述了在**OpenHarmony**中如何使用`NativeWindow`提供的Native API接口，申请图形`Buffer`，并将生产图形内容写入图形`Buffer`后，最终提交`Buffer`到图形队列。
+以下步骤描述了如何使用`NativeWindow`提供的Native API接口，申请图形`Buffer`，并将生产图形内容写入图形`Buffer`后，最终提交`Buffer`到图形队列。
 
 **添加动态链接库**
 
@@ -53,6 +53,10 @@ libnative_window.so
         OH_NativeXComponent *nativeXComponent = nullptr;
         // 通过napi_unwrap接口，解析出NativeXComponent的实例指针
         napi_unwrap(env, exportInstance, reinterpret_cast<void**>(&nativeXComponent));
+        // 获取XComponentId
+        char idStr[OH_XCOMPONENT_ID_LEN_MAX + 1] = {};
+        uint64_t idSize = OH_XCOMPONENT_ID_LEN_MAX + 1;
+        OH_NativeXComponent_GetXComponentId(nativeXComponent, idStr, &idSize);
         ```
     3. 定义 OH_NativeXComponent_Callback。
         ```c++
@@ -104,10 +108,6 @@ libnative_window.so
     int32_t height = 0x100;
     // 这里的nativeWindow是从上一步骤中的回调函数中获得的
     int32_t ret = OH_NativeWindow_NativeWindowHandleOpt(nativeWindow, code, width, height);
-    // 设置 OHNativeWindowBuffer 的步长
-    code = SET_STRIDE;
-    int32_t stride = 0x8;
-    ret = OH_NativeWindow_NativeWindowHandleOpt(nativeWindow, code, stride);
     ```
 
 3. **从图形队列申请OHNativeWindowBuffer**。

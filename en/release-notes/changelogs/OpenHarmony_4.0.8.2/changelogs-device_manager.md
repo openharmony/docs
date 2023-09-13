@@ -5,11 +5,11 @@ Added permission verification for some APIs.
 
 **Change Impact**
 
-Applications developed in versions later than OpenHarmony 4.0.8.2 must have the specific permission to call the APIs.
+The apps developed using OpenHarmony 4.0.8.2 or later must have the corresponding permissions. Otherwise, the related APIs cannot be called.
 
 **Key API/Component Changes**
 
-| Module                   | Class               | Method/Attribute/Enum/Constant                                         | New Permission|
+| Module                   | Class               | Method/Attribute/Enum/Constant                                         | Added Permission|
 | ------------------------- | ------------------- | ------------------------------------------------------------ | -------- |
 | @ohos.distributedHardware.deviceManager       | deviceManager        | **function** release(): void | ohos.permission.ACCESS_SERVICE_DM     |
 | @ohos.distributedHardware.deviceManager       | deviceManager        | **function** getTrustedDeviceListSync(): Array&lt;DeviceInfo&gt; | ohos.permission.ACCESS_SERVICE_DM     |
@@ -50,7 +50,7 @@ Applications developed in versions later than OpenHarmony 4.0.8.2 must have the 
 
 **Adaptation Guide**
 
-Apply for the corresponding permission to call these APIs.
+Apply for the corresponding permissions for your application before these APIs are called.
 
 
 ## cl.device_manager.2 Permission Verification for All System APIs
@@ -65,7 +65,7 @@ Non-system applications and applications without system API permission cannot ca
 
 System API permission verification is performed on all APIs. The table below describes the APIs.
 
-| API/Enum/Variable| Type| Is System API|
+| API/Enum/Variable| Type| System API|
 | -------- | -------- | ------- |
 | createDeviceManager(bundleName: string, callback: AsyncCallback&lt;DeviceManager&gt;): void;                 | interface | Yes|
 | release(): void                                                                                        | interface | Yes|
@@ -107,4 +107,4 @@ System API permission verification is performed on all APIs. The table below des
 
 **Adaptation Guide**
 
-Make sure the caller of the preceding APIs is a system application or an application that has the system API permission.
+The caller must be a system application or an application with the system API permission.

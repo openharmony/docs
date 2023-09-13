@@ -17,22 +17,22 @@ XML解析及转换需要确保传入的XML数据符合标准格式。
 此处以XML转为JavaScript对象后获取其标签值为例，说明转换效果。
 
 1. 引入模块。
-   
-   ```js
+
+   ```ts
    import convertxml from '@ohos.convertxml';
    ```
 
 2. 输入待转换的XML，设置转换选项。
-   
-   ```js
-   let xml =
-     '<?xml version="1.0" encoding="utf-8"?>' +
-       '<note importance="high" logged="true">' +
-       '    <title>Happy</title>' +
-       '    <todo>Work</todo>' +
-       '    <todo>Play</todo>' +
-       '</note>';
-   let options = {
+
+   ```ts
+   let xml: string =
+    '<?xml version="1.0" encoding="utf-8"?>' +
+    '<note importance="high" logged="true">' +
+    '    <title>Happy</title>' +
+    '    <todo>Work</todo>' +
+    '    <todo>Play</todo>' +
+    '</note>';
+   let options: convertxml.ConvertOptions = {
      // trim: false 转换后是否删除文本前后的空格，否
      // declarationKey: "_declaration" 转换后文件声明使用_declaration来标识
      // instructionKey: "_instruction" 转换后指令使用_instruction标识
@@ -51,7 +51,7 @@ XML解析及转换需要确保传入的XML数据符合标准格式。
      attributesKey: "_attributes",
      textKey: "_text",
      cdataKey: "_cdata",
-     docTypeKey: "_doctype",
+     doctypeKey: "_doctype",
      commentKey: "_comment",
      parentKey: "_parent",
      typeKey: "_type",
@@ -61,32 +61,21 @@ XML解析及转换需要确保传入的XML数据符合标准格式。
    ```
 
 3. 调用转换函数，打印结果。
-   
-   ```js
-   let conv = new convertxml.ConvertXML();
-   let result = conv.convertToJSObject(xml, options);
-   let strRes = JSON.stringify(result); // 将js对象转换为json字符串，用于显式输出
+
+   ```ts
+   let conv: convertxml.ConvertXML = new convertxml.ConvertXML();
+   let result: object = conv.convertToJSObject(xml, options);
+   let strRes: string = JSON.stringify(result); // 将js对象转换为json字符串，用于显式输出
    console.info(strRes);
-   // 也可以直接处理转换后的JS对象，获取标签值
-   let title = result['_elements'][0]['_elements'][0]['_elements'][0]['_text']; // 解析<title>标签对应的值
-   let todo = result['_elements'][0]['_elements'][1]['_elements'][0]['_text']; // 解析<todo>标签对应的值
-   let todo2 = result['_elements'][0]['_elements'][2]['_elements'][0]['_text']; // 解析<todo>标签对应的值
-   console.info(title); // Happy
-   console.info(todo); // Work
-   console.info(todo2); // Play
    ```
 
    输出结果如下所示：
 
-   
-   ```js
+   ```json
    strRes:
    {"_declaration":{"_attributes":{"version":"1.0","encoding":"utf-8"}},"_elements":[{"_type":"element","_name":"note",
     "_attributes":{"importance":"high","logged":"true"},"_elements":[{"_type":"element","_name":"title",
     "_elements":[{"_type":"text","_text":"Happy"}]},{"_type":"element","_name":"todo",
     "_elements":[{"_type":"text","_text":"Work"}]},{"_type":"element","_name":"todo",
     "_elements":[{"_type":"text","_text":"Play"}]}]}]}
-   title:Happy
-   todo:Work
-   todo2:Play
    ```

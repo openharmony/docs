@@ -90,7 +90,7 @@ struct AttrAnimationExample {
 }
 ```
 
-For more details, see [Property Animator](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/arkui-ts/ts-animatorproperty.md).
+For more details, see [Property Animation](../../reference/arkui-ts/ts-animatorproperty.md).
 
 ## Using System-Provided Explicit Animation APIs
 
@@ -139,4 +139,4 @@ struct AnimateToExample {
 }
 ```
 
-For more details, see [Explicit Animation](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/arkui-ts/ts-explicit-animation.md).
+For more details, see [Explicit Animation](../../reference/arkui-ts/ts-explicit-animation.md).

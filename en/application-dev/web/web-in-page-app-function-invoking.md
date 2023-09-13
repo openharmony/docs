@@ -16,16 +16,21 @@ The following example registers the **test()** function with the frontend page. 
   // xxx.ets
   import web_webview from '@ohos.web.webview';
 
+  class testObj {
+    constructor() {
+    }
+
+    test(): string {
+      return 'ArkTS Hello World!';
+    }
+  }
+
   @Entry
   @Component
   struct WebComponent {
     webviewController: web_webview.WebviewController = new web_webview.WebviewController();
     // Declare the object to be registered.
-    testObj = {
-      test: () => {
-        return 'ArkTS Hello World!';
-      }
-    }
+    @State testObjtest: testObj = new testObj();
 
     build() {
       Column() {
@@ -33,7 +38,7 @@ The following example registers the **test()** function with the frontend page. 
         Web({ src: $rawfile('index.html'), controller: this.webviewController})
           // Inject the object to the web client.
           .javaScriptProxy({
-            object: this.testObj,
+            object: this.testObjtest,
             name: "testObjName",
             methodList: ["test"],
             controller: this.webviewController
@@ -49,19 +54,26 @@ The following example registers the **test()** function with the frontend page. 
   ```ts
   // xxx.ets
   import web_webview from '@ohos.web.webview';
+  import business_error from '@ohos.base';
+
+  class testObj {
+    constructor() {
+    }
+  
+    test(): string {
+      return "ArkUI Web Component";
+    }
+  
+    toString(): void {
+      console.log('Web Component toString');
+    }
+  }
 
   @Entry
   @Component
   struct Index {
     webviewController: web_webview.WebviewController = new web_webview.WebviewController();
-    testObj = {
-      test: (data) => {
-        return "ArkUI Web Component";
-      },
-      toString: () => {
-        console.info('Web Component toString');
-      }
-    }
+    @State testObjtest: testObj = new testObj();
 
     build() {
       Column() {
@@ -70,15 +82,17 @@ The following example registers the **test()** function with the frontend page. 
             try {
               this.webviewController.refresh();
             } catch (error) {
-              console.error(`Errorcode: ${error.code}, Message: ${error.message}`);
+              let e: business_error.BusinessError = error as business_error.BusinessError;
+              console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
             }
           })
         Button('Register JavaScript To Window')
           .onClick(() => {
             try {
-              this.webviewController.registerJavaScriptProxy(this.testObj, "objName", ["test", "toString"]);
+              this.webviewController.registerJavaScriptProxy(this.testObjtest, "objName", ["test", "toString"]);
             } catch (error) {
-              console.error(`Errorcode: ${error.code}, Message: ${error.message}`);
+              let e: business_error.BusinessError = error as business_error.BusinessError;
+              console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
             }
           })
         Web({ src: $rawfile('index.html'), controller: this.webviewController })
@@ -89,7 +103,7 @@ The following example registers the **test()** function with the frontend page. 
 
   > **NOTE**
   >
-  > If you use [registerJavaScriptProxy()](../reference/apis/js-apis-webview.md#registerjavascriptproxy) to register a function, call **[refresh()]**(../reference/apis/js-apis-webview.md#refresh) for the function to take effect.
+  > If you use [registerJavaScriptProxy()](../reference/apis/js-apis-webview.md#registerjavascriptproxy) to register a function, call [refresh()](../reference/apis/js-apis-webview.md#refresh) for the function to take effect.
 
 
 - Sample code for invoking application functions on the **index.html** frontend page:
@@ -103,7 +117,7 @@ The following example registers the **test()** function with the frontend page. 
   <p id="demo"></p>
   <script>
       function callArkTS() {
-          let str = testObjName.test();
+          let str = objName.test();
           document.getElementById("demo").innerHTML = str;
           console.info('ArkTS Hello World! :' + str);
       }

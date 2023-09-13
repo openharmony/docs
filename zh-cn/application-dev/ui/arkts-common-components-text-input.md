@@ -147,3 +147,10 @@ struct TextInputSample {
 
 
 ![TextInputGIF](figures/TextInputGIF.gif)
+
+
+## 相关实例
+
+针对文本输入开发，有以下相关实例可供参考：
+
+- [简易计算器（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/SimpleCalculator)

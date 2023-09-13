@@ -1,4 +1,4 @@
-# 如何在CMake工程中使用OpenHarmony SDK的Native API(NDK)
+# 如何在CMake工程中使用NDK
 
 ## 什么是Native API
 

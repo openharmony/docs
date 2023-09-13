@@ -1,10 +1,10 @@
 # Accessing Application Files
 
-This topic describes how to view, create, read, write, delete, move, or copy a file in the application file directory and obtain the file information.
+This topic describes how to enable an application to view, create, read, write, delete, move, or copy an application and obtain file information.
 
 ## Available APIs
 
-You can use [ohos.file.fs](../reference/apis/js-apis-file-fs.md) to implement the application file access capabilities. The following table describes the APIs. 
+You can use [ohos.file.fs](../reference/apis/js-apis-file-fs.md) to implement access to application files. The following table describes the APIs.
 
 **Table 1** APIs for basic application file operations
 
@@ -34,9 +34,9 @@ You can use [ohos.file.fs](../reference/apis/js-apis-file-fs.md) to implement th
 
 ## Development Example
 
-Obtain the [application file path](../application-models/application-context-stage.md#obtaining-the-application-development-path). The following example shows how to obtain a HAP file path using **UIAbilityContext**. For details about how to obtain **UIAbilityContext**, see [Obtaining the Context of UIAbility](../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+First, obtain the [application file path](../application-models/application-context-stage.md#obtaining-application-file-paths). The following example shows how to obtain a HAP file path using **UIAbilityContext**. For details about how to obtain **UIAbilityContext**, see [Obtaining the Context of UIAbility](../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
 
-The following describes common file operations.
+Then, perform file operations.
 
 ### Creating, Reading, and Writing a File
 
@@ -46,21 +46,29 @@ The following example demonstrates how to create a file, read data from it, and 
 // pages/xxx.ets
 import fs from '@ohos.file.fs';
 import common from '@ohos.app.ability.common';
+import buffer from '@ohos.buffer';
 
-function createFile() {
-  // Obtain the application file path.
-  let context = getContext(this) as common.UIAbilityContext;
-  let filesDir = context.filesDir;
+// Obtain the application file path.
+let context = getContext(this) as common.UIAbilityContext;
+let filesDir = context.filesDir;
 
-  // Create a file and open it.
+function createFile(): void {
+    // Create a file and open it.
   let file = fs.openSync(filesDir + '/test.txt', fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
   // Write data to the file.
   let writeLen = fs.writeSync(file.fd, "Try to write str.");
   console.info("The length of str is: " + writeLen);
   // Read data from the file.
-  let buf = new ArrayBuffer(1024);
-  let readLen = fs.readSync(file.fd, buf, { offset: 0 });
-  console.info("the content of file: " + String.fromCharCode.apply(null, new Uint8Array(buf.slice(0, readLen))));
+  let arrayBuffer = new ArrayBuffer(1024);
+  class Option {
+    public offset: number = 0;
+    public length: number = 0;
+  }
+  let option = new Option();
+  option.length = arrayBuffer.byteLength;
+  let readLen = fs.readSync(file.fd, arrayBuffer, option);
+  let buf = buffer.from(arrayBuffer, 0, readLen);
+  console.info("the content of file: " + buf.toString());
   // Close the file.
   fs.closeSync(file);
 }
@@ -68,18 +76,18 @@ function createFile() {
 
 ### Copying Data to Another File
 
-  The following example demonstrates how to write the data read from a file to another file.
-  
+The following example demonstrates how to read data from a file and write it to another file.
+
 ```ts
 // pages/xxx.ets
 import fs from '@ohos.file.fs';
 import common from '@ohos.app.ability.common';
 
-function readWriteFile() {
-  // Obtain the application file path.
-  let context = getContext(this) as common.UIAbilityContext;
-  let filesDir = context.filesDir;
+// Obtain the application file path.
+let context = getContext(this) as common.UIAbilityContext;
+let filesDir = context.filesDir;
 
+function readWriteFile(): void {
   // Open the source and destination files.
   let srcFile = fs.openSync(filesDir + '/test.txt', fs.OpenMode.READ_WRITE);
   let destFile = fs.openSync(filesDir + '/destFile.txt', fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
@@ -87,11 +95,18 @@ function readWriteFile() {
   let bufSize = 4096;
   let readSize = 0;
   let buf = new ArrayBuffer(bufSize);
-  let readLen = fs.readSync(srcFile.fd, buf, { offset: readSize });
+  class Option {
+    public offset: number = 0;
+    public length: number = bufSize;
+  }
+  let option = new Option();
+  option.offset = readSize;
+  let readLen = fs.readSync(srcFile.fd, buf, option);
   while (readLen > 0) {
     readSize += readLen;
     fs.writeSync(destFile.fd, buf);
-    readLen = fs.readSync(srcFile.fd, buf, { offset: readSize });
+    option.offset = readSize;
+    readLen = fs.readSync(srcFile.fd, buf, option);
   }
   // Close the files.
   fs.closeSync(srcFile);
@@ -101,22 +116,22 @@ function readWriteFile() {
 
 > **NOTE**
 >
-> When using **read()** or **write()**, pay attention to the optional parameter **offset**. For a file that has been read or written, the offset pointer is at the end position of the last read or write operation by default.
+> When using **read()** or **write()**, pay attention to the optional parameter **offset**. For a file that has been read or written, **offset** points to the end position of the last read or write operation by default.
 
 ### Reading and Writing Files in a Stream
 
 The following example demonstrates how to read and write file data using a stream.
-  
+
 ```ts
 // pages/xxx.ets
 import fs from '@ohos.file.fs';
 import common from '@ohos.app.ability.common';
 
-async function readWriteFileWithStream() {
-  // Obtain the application file path.
-  let context = getContext(this) as common.UIAbilityContext;
-  let filesDir = context.filesDir;
+// Obtain the application file path.
+let context = getContext(this) as common.UIAbilityContext;
+let filesDir = context.filesDir;
 
+async function readWriteFileWithStream(): Promise<void> {
   // Open the file streams.
   let inputStream = fs.createStreamSync(filesDir + '/test.txt', 'r+');
   let outputStream = fs.createStreamSync(filesDir + '/destFile.txt', "w+");
@@ -124,11 +139,18 @@ async function readWriteFileWithStream() {
   let bufSize = 4096;
   let readSize = 0;
   let buf = new ArrayBuffer(bufSize);
-  let readLen = await inputStream.read(buf, { offset: readSize });
+  class Option {
+    public offset: number = 0;
+    public length: number = bufSize;
+  }
+  let option = new Option();
+  option.offset = readSize;
+  let readLen = await inputStream.read(buf, option);
   readSize += readLen;
   while (readLen > 0) {
     await outputStream.write(buf);
-    readLen = await inputStream.read(buf, { offset: readSize });
+    option.offset = readSize;
+    readLen = await inputStream.read(buf, option);
     readSize += readLen;
   }
   // Close the streams.
@@ -138,16 +160,17 @@ async function readWriteFileWithStream() {
 ```
 
 > **NOTE**
-> 
-> Close the stream that is no longer used in a timely manner. <br>Comply with the related programming specifications for **Stream** APIs in asynchronous mode and avoid mixed use of the APIs in synchronous mode and asynchronous mode. <br>The **Stream** APIs do not support concurrent read and write operations.
+>
+> - Close the stream that is no longer used in a timely manner. 
+> - Comply with the programming specifications for **Stream** APIs in asynchronous mode and avoid mixed use of the APIs in synchronous mode and asynchronous mode.
+> - The **Stream** APIs do not support concurrent read and write operations.
 
 ### Listing Files
 
-The following example demonstrates how to list files.
+The following example demonstrates how to list files that meet the specified conditions.
 
 ```ts
-// List files.
-import fs from '@ohos.file.fs';
+import fs, { Filter } from '@ohos.file.fs';
 import common from '@ohos.app.ability.common';
 
 // Obtain the application file path.
@@ -155,18 +178,20 @@ let context = getContext(this) as common.UIAbilityContext;
 let filesDir = context.filesDir;
 
 // List files that meet the specified conditions.
-let options = {
-  recursion: false,
-  listNum: 0,
-  filter: {
-    suffix: ['.png', '.jpg', '.txt'],          // The filename extension can be '.png', '.jpg', or '.txt'.
-    displayName: ['test%'],                    // The filename starts with 'test'.
-    fileSizeOver: 0,                           // The file size is greater than or equal to 0.
-    lastModifiedAfter: new Date(0).getTime(), // The latest modification time of the file is later than January 1, 1970.
-  },
-}
-let files = fs.listFileSync(filesDir, options);
-for (let i = 0; i < files.length; i++) {
-  console.info(`The name of file: ${files[i]}`);
+function getListFile(): void {
+  class ListFileOption {
+    public recursion: boolean = false;
+    public listNum: number = 0;
+    public filter: Filter = {};
+  }
+  let option = new ListFileOption();
+  option.filter.suffix = ['.png', '.jpg', '.txt'];          // The file name extension can be '.png', '.jpg', or '.txt'.
+  option.filter.displayName = ['test%'];                    // The file name starts with 'test'.
+  option.filter.fileSizeOver = 0;                           // The file size is greater than or equal to 0.
+  option.filter.lastModifiedAfter = new Date(0).getTime();  // The latest modification time of the file is later than January 1, 1970.
+  let files = fs.listFileSync(filesDir, option);
+  for (let i = 0; i < files.length; i++) {
+    console.info(`The name of file: ${files[i]}`);
+  }
 }
 ```
