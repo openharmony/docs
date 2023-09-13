@@ -445,7 +445,7 @@ resolvedOptions(): NumberOptions
 | ------------------------ | ------- | ---- | ---- | ---------------------------------------- |
 | locale                   | string  | 是    | 否    | 区域参数，&nbsp;如："zh-Hans-CN"。locale属性默认值为系统Locale。               |
 | currency                 | string  | 是    | 是    | 货币单位，&nbsp;如："EUR"，"CNY"，"USD"等。         |
-| currencySign             | string  | 是    | 是    | 货币单位的符号显示，取值包括：&nbsp;"symbol"，"narrowSymbol"，"code"，"name"&nbsp;。currencySign属性默认值为standard。 |
+| currencySign             | string  | 是    | 是    | 货币单位的符号显示，取值包括：&nbsp;"standard"，"accounting"。currencySign属性默认值为standard。 |
 | currencyDisplay          | string  | 是    | 是    | 货币的显示方式，取值包括："symbol",&nbsp;"narrowSymbol",&nbsp;"code",&nbsp;"name"。currencyDisplay属性默认值为symbol。 |
 | unit                     | string  | 是    | 是    | 单位名称，如："meter"，"inch"，“hectare”等。        |
 | unitDisplay              | string  | 是    | 是    | 单位的显示格式，取值包括："long",&nbsp;"short",&nbsp;"narrow"。unitDisplay属性默认值为short。 |
