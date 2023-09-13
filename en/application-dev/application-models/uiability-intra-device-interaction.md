@@ -390,7 +390,16 @@ The display effect is shown below.
 
 ## Starting a Specified Page of UIAbility
 
-A UIAbility component can have multiple pages that each display in specific scenarios. This section describes how to specify a startup page and start the specified page when the target UIAbility is started for the first time or when the target UIAbility is not started for the first time.
+### Overview
+
+A UIAbility component can have multiple pages that each display in specific scenarios.
+
+A UIAbility component can be started in two modes:
+
+- Cold start: The UIAbility instance is totally closed before being started. This requires that the code and resources of the UIAbility instance be completely loaded and initialized.
+- Hot start: The UIAbility instance has been started, running in the foreground, and then switched to the background before being started again. In this case, the status of the UIAbility instance can be quickly restored.
+
+This section describes how to start a specified page in both modes: [cold start](#cold-starting-uiability) and [hot start](#hot-starting-uiability). Before starting a specified page, you will learn how to specify a startup page on the initiator UIAbility.
 
 
 ### Specifying a Startup Page
@@ -418,9 +427,9 @@ context.startAbility(want).then(() => {
 ```
 
 
-### Starting a Page When the Target UIAbility Is Started for the First Time
+### Cold Starting UIAbility
 
-When the target UIAbility is started for the first time, in the **onWindowStageCreate()** callback of the target UIAbility, parse the **want** parameter passed by EntryAbility to obtain the URL of the page to be loaded, and pass the URL to the **windowStage.loadContent()** method.
+In cold start mode, obtain the parameters from the initiator UIAbility through the **onCreate()** callback of the target UIAbility. Then, in the **onWindowStageCreate()** callback of the target UIAbility, parse the **want** parameter passed by the EntryAbility to obtain the URL of the page to be loaded, and pass the URL to the **windowStage.loadContent()** method.
 
 
 ```ts
@@ -450,7 +459,7 @@ export default class FuncAbility extends UIAbility {
 }
 ```
 
-### Starting a Page When the Target UIAbility Is Not Started for the First Time
+### Hot Starting UIAbility
 
 If the target UIAbility has been started, the initialization logic is not executed again. Instead, the **onNewWant()** lifecycle callback is directly triggered. To implement redirection, parse the required parameters in **onNewWant()**.
 
@@ -462,26 +471,13 @@ An example scenario is as follows:
 4. The user touches the SMS button next to the contact. The UIAbility instance of the SMS application is restarted.
 5. Since the UIAbility instance of the SMS application has been started, the **onNewWant()** callback of the UIAbility is triggered, and the initialization logic such as **onCreate()** and **onWindowStageCreate()** is skipped.
 
-```mermaid
-sequenceDiagram
-Participant U as User
-Participant S as SMS app
-Participant C as Contacts app
+Figure 1 Hot starting the target UIAbility
 
-U->>S: Open the SMS app.
-S-->>U: The home page of the SMS app is displayed.
-U->>S: Return to the home screen.
-S->>S: The SMS app enters the background.
-U->>C: Open the Contacts app. 
-C-->>U: The page of the Contact app is displayed.
-U->>C: Touch the SMS button next to a contact.
-C->>S: Start the SMS app with Want.
-S-->>U: The page for sending an SMS message to the contact is displayed.
-```
+![](figures/uiability-hot-start.png)
 
 The development procedure is as follows:
 
-1. When the UIAbility instance of the SMS application is started for the first time, call [getUIContext()](../reference/apis/js-apis-window.md#getuicontext10) in the **onWindowStageCreate()** lifecycle callback to obtain the [UIContext](../reference/apis/js-apis-arkui-UIContext.md).
+1. When the UIAbility instance of the SMS application is cold started, call [getUIContext()](../reference/apis/js-apis-window.md#getuicontext10) in the **onWindowStageCreate()** lifecycle callback to obtain the [UIContext](../reference/apis/js-apis-arkui-UIContext.md).
 
    ```ts
    import AbilityConstant from '@ohos.app.ability.AbilityConstant';
@@ -501,15 +497,21 @@ The development procedure is as follows:
        // Main window is created. Set a main page for this UIAbility.
        ...
    
-       let windowClass: window.Window;
-       windowStage.getMainWindow((err, data) => {
+       windowStage.loadContent(url, (err, data) => {
          if (err.code) {
-           console.error(`Failed to obtain the main window. Code is ${err.code}, message is ${err.message}`);
            return;
          }
-         windowClass = data;
-         this.uiContext = windowClass.getUIContext();
-       })
+   
+         let windowClass: window.Window;
+         windowStage.getMainWindow((err, data) => {
+           if (err.code) {
+             console.error(TAG, `Failed to obtain the main window. Code is ${err.code}, message is ${err.message}`);
+             return;
+           }
+           windowClass = data;
+           this.uiContext = windowClass.getUIContext();
+         })
+       });
      }
    }
    ```
@@ -521,7 +523,7 @@ The development procedure is as follows:
      funcAbilityWant: Want;
      uiContext: UIContext;
    
-     onNewWant(want: Want, launchParams: AbilityConstant.LaunchParam) {
+     onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam) {
        if (want?.parameters?.router && want.parameters.router === 'funcA') {
          let funcAUrl = 'pages/Second';
          let router: Router = this.uiContext.getRouter();
