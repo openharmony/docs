@@ -12,48 +12,53 @@
 
    ```ts
    @CustomDialog
-   struct CustomDialogExample1 {
-     controller: CustomDialogController | undefined
+   struct CustomDialogExample {
+     controller: CustomDialogController = new CustomDialogController({
+       builder: CustomDialogExample({}),
+     })
+   
      build() {
        Column() {
          Text('我是内容')
-         .fontSize(20)
-         .margin({ top: 10, bottom: 10 })
+           .fontSize(20)
+           .margin({ top: 10, bottom: 10 })
        }
      }
    }
    ```
-
+   
 3. 创建构造器，与装饰器呼应相连。
 
    ```ts
-   let bud:Record<string,string> = {}
-   let obj:object|undefined = undefined
-   dialogController: obj = new CustomDialogController({
-       builder: CustomDialogExample(bud),
-   })
+    @Entry
+    @Component
+    struct CustomDialogUser {
+      dialogController: CustomDialogController = new CustomDialogController({
+        builder: CustomDialogExample(),
+      })
+    }
    ```
-
+   
 4. 点击与onClick事件绑定的组件使弹窗弹出
 
-  ```ts
-  class dialogc{
-    dialogController:CustomDialogController|undefined = undefined
-    open(){
-      if(this.dialogController){
-        this.dialogController.open()
-      }
-    }
-  }
-  Flex({justifyContent:FlexAlign.Center}){
-    Button('click me')
-      .onClick(() => {
-        let dia = new dialogc();
-        dia.open()
-      })
-  }.width('100%')
-  ```
-
+   ```ts
+   @Entry
+   @Component
+   struct CustomDialogUser {dialogController: CustomDialogController = new CustomDialogController({
+       builder: CustomDialogExample(),
+     })
+   
+     build() {
+       Column() {
+         Button('click me')
+           .onClick(() => {
+             this.dialogController.open()
+           })
+       }.width('100%').margin({ top: 5 })
+     }
+   }
+   ```
+   
    ![zh-cn_image_0000001562700493](figures/zh-cn_image_0000001562700493.png)
 
 
@@ -65,32 +70,34 @@
 1. 在\@CustomDialog装饰器内添加按钮操作，同时添加数据函数的创建。
 
   ```ts
-  class cancelconfirmF{
-    cancel():void{}
-    confirm():void{}
-  }
   @CustomDialog
   struct CustomDialogExample {
-    controller: CustomDialogController | undefined
+    cancel: () => void = () => {
+      console.info('Callback when the first button is clicked')
+    }
+    confirm: () => void = () => {
+      console.info('Callback when the second button is clicked')
+    }
+    controller: CustomDialogController = new CustomDialogController({
+      builder: CustomDialogExample({
+        cancel: this.cancel,
+        confirm: this.confirm,
+      }),
+    })
+  
     build() {
       Column() {
         Text('我是内容').fontSize(20).margin({ top: 10, bottom: 10 })
         Flex({ justifyContent: FlexAlign.SpaceAround }) {
           Button('cancel')
             .onClick(() => {
-              if(this.controller){
               this.controller.close()
-              }
-              let canf = new cancelconfirmF()
-              canf.cancel()
+              this.cancel()
             }).backgroundColor(0xffffff).fontColor(Color.Black)
           Button('confirm')
             .onClick(() => {
-                if(this.controller){
-                  this.controller.close()
-                }
-                let conf = new cancelconfirmF()
-                conf.confirm()
+              this.controller.close()
+              this.confirm()
             }).backgroundColor(0xffffff).fontColor(Color.Red)
         }.margin({ bottom: 10 })
       }
@@ -100,23 +107,81 @@
 
 2. 页面内需要在构造器内进行接收，同时创建相应的函数操作。
 
-    ```ts
-    dialogController: object = new CustomDialogController({
-      builder: CustomDialogExample({
-        cancel: this.onCancel,
-        confirm: this.onAccept,
-      }),
-      alignment: DialogAlignment.Default,  // 可设置dialog的对齐方式，设定显示在底部或中间等，默认为底部显示
+  ```ts
+  @Entry
+  @Component
+  struct CustomDialogUser {
+    @State bud: Record<string, Function | void> = { 'cancel': this.onCancel(), 'confirm': this.onAccept() }
+    dialogController: CustomDialogController = new CustomDialogController({
+      builder: CustomDialogExample(this.bud),
     })
+  
     onCancel() {
       console.info('Callback when the first button is clicked')
     }
+  
     onAccept() {
       console.info('Callback when the second button is clicked')
     }
-    ```
-
+  
+    build() {
+      Column() {
+        Button('click me')
+          .onClick(() => {
+            this.dialogController.open()
+          })
+      }.width('100%').margin({ top: 5 })
+    }
+  }
+  ```
+   
    ![zh-cn_image_0000001511421320](figures/zh-cn_image_0000001511421320.png)
+
+## 完整示例
+
+```ts
+// xxx.ets
+@CustomDialog
+struct CustomDialogExample {
+  controller: CustomDialogController = new CustomDialogController({
+    builder: CustomDialogExample({})
+  })
+
+  build() {
+    Column() {
+      Text('我是内容')
+        .fontSize(20)
+        .margin({ top: 10, bottom: 10 })
+    }
+  }
+}
+
+@Entry
+@Component
+struct CustomDialogUser {
+  @State bud: Record<string, Function | void> = { 'cancel': this.onCancel(), 'confirm': this.onAccept() }
+  dialogController: CustomDialogController = new CustomDialogController({
+    builder: CustomDialogExample(this.bud),
+  })
+
+  onCancel() {
+    console.info('Callback when the first button is clicked')
+  }
+
+  onAccept() {
+    console.info('Callback when the second button is clicked')
+  }
+
+  build() {
+    Column() {
+      Button('click me')
+        .onClick(() => {
+          this.dialogController.open()
+        })
+    }.width('100%').margin({ top: 5 })
+  }
+}
+```
 
 ## 相关实例
 
