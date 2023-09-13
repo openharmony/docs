@@ -79,33 +79,34 @@ Hardware: PC connected to an OpenHarmony device, such as the RK3568 development 
 
 The following sample code is used to start the test page to check whether the page displayed on the device is the expected page.
 
-```TS
-import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
+```js
+import { describe, it, expect } from '@ohos/hypium';
 import abilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import { BusinessError } from '@ohos.base';
+import UIAbility from '@ohos.app.ability.UIAbility';
 
 const delegator = abilityDelegatorRegistry.getAbilityDelegator()
+function sleep(time: number) {
+  return new Promise<void>((resolve: Function) => setTimeout(resolve, time));
+}
 export default function abilityTest() {
-  describe('ActsAbilityTest', function () {
-    it('testUiExample',0, async function (done) {
+    describe('ActsAbilityTest', () =>{
+    it('testUiExample',0, async (done: Function) => {
       console.info("uitest: TestUiExample begin");
       //start tested ability
-      await delegator.executeShellCommand('aa start -b com.ohos.uitest -a EntryAbility').then(result =>{
+      await delegator.executeShellCommand('aa start -b com.ohos.uitest -a EntryAbility').then((result: abilityDelegatorRegistry.ShellCmdResult) =>{
         console.info('Uitest, start ability finished:' + result)
-      }).catch(err => {
+      }).catch((err: BusinessError) => {
         console.info('Uitest, start ability failed: ' + err)
       })
       await sleep(1000);
-      //check top display ability
-      await delegator.getCurrentTopAbility().then((Ability)=>{
+      // Check the top display ability.
+      await delegator.getCurrentTopAbility().then((Ability: UIAbility)=>{
         console.info("get top ability");
         expect(Ability.context.abilityInfo.name).assertEqual('EntryAbility');
       })
       done();
     })
-
-    function sleep(time) {
-      return new Promise((resolve) => setTimeout(resolve, time));
-    }
   })
 }
 ```
@@ -117,34 +118,44 @@ The UI test is based on the unit test. The UI test script adds the invoking of t
 1. Import the dependency.
 
 ```js
-import {Driver,ON,Component,MatchPattern} from '@ohos.uitest'
+import { Driver, ON } from '@ohos.UiTest'
 ```
 
 2. Write test code.
 
 ```js
+import { describe, it, expect } from '@ohos/hypium';
+import abilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import { Driver, ON } from '@ohos.UiTest'
+import { BusinessError } from '@ohos.base';
+import UIAbility from '@ohos.app.ability.UIAbility';
+
+const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator()
+function sleep(time: number) {
+  return new Promise<void>((resolve: Function) => setTimeout(resolve, time));
+}
 export default function abilityTest() {
-  describe('ActsAbilityTest', function () {
-    it('testUiExample',0, async function (done) {
+  describe('ActsAbilityTest', () => {
+    it('testUiExample',0, async (done: Function) => {
       console.info("uitest: TestUiExample begin");
       //start tested ability
-      await delegator.executeShellCommand('aa start -b com.ohos.uitest -a EntryAbility').then(result =>{
+      await delegator.executeShellCommand('aa start -b com.ohos.uitest -a EntryAbility').then((result: abilityDelegatorRegistry.ShellCmdResult) =>{
         console.info('Uitest, start ability finished:' + result)
-      }).catch(err => {
+      }).catch((err: BusinessError) => {
         console.info('Uitest, start ability failed: ' + err)
       })
       await sleep(1000);
       // Check the top display ability.
-      await delegator.getCurrentTopAbility().then((Ability)=>{
+      await delegator.getCurrentTopAbility().then((Ability: UIAbility)=>{
         console.info("get top ability");
         expect(Ability.context.abilityInfo.name).assertEqual('EntryAbility');
       })
       // UI test code
       // Initialize the driver.
-      var driver = await Driver.create();
+      let driver = await Driver.create();
       await driver.delayMs(1000);
       // Find the button on text 'Next'.
-      var button = await driver.findComponent(ON.text('Next'));
+      let button = await driver.findComponent(ON.text('Next'));
       // Click the button.
       await button.click();
       await driver.delayMs(1000);
@@ -153,10 +164,6 @@ export default function abilityTest() {
       await driver.pressBack();
       done();
     })
-
-    function sleep(time) {
-      return new Promise((resolve) => setTimeout(resolve, time));
-    }
   })
 }
 ```
