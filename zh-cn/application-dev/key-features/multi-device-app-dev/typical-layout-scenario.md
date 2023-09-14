@@ -507,13 +507,21 @@ struct NavigationSample {
 | 单栏显示。<br> 点击侧边栏控制按钮控制侧边栏的显示/隐藏。<br> 点击首页的选项可以进入到内容区，内容区点击返回按钮可返回首页。| 双栏显示。<br> 点击侧边栏控制按钮控制侧边栏的显示/隐藏。<br> 点击左侧导航区不同的选项可以刷新右侧内容区的显示。 | 三分栏显示。<br> 点击侧边栏控制按钮控制侧边栏的显示/隐藏，来回切换二分/三分栏显示。<br> 点击左侧导航区不同的选项可以刷新右侧内容区的显示。<br> 窗口宽度变化时，优先变化右侧内容区的宽度大小。 |
 | ![](figures/tripleColumn_sm.png)            | ![](figures/tripleColumn_md.png)       | ![](figures/tripleColumn_lg.png)       |
 
+**场景说明**
+
+为充分利用设备的屏幕尺寸优势，应用在平板和PC等大屏设备上常常有二分栏或三分栏的设计，即“A+C”，“B+C”或“A+B+C”的组合，其中A是侧边导航区，B是列表导航区，C是内容区。在用户动态改变窗口宽度时，当窗口宽度大于或等于840vp时页面呈现A+B+C三列，放大缩小优先变化C列；当窗口宽度小于840vp大于等于600vp时呈现B+C列，放大缩小时优先变化C列；当窗口宽度小于600vp大于等于360vp时，仅呈现C列。
+![](figures/TripleColumn.gif)
+
 **实现方案**
 
-三分栏场景可以组合使用[SideBarContainer](../../reference/arkui-ts/ts-container-sidebarcontainer.md)组件与[Navigation组件](../../reference/arkui-ts/ts-basic-components-navigation.md)实现，SideBarContainer组件可以通过侧边栏控制按钮控制显示/隐藏，Navigation组件可以根据窗口宽度自动切换该组件内单/双栏显示，结合响应式布局能力，在不同断点下为SiderBarConContainer组件的sideBarWidth、minContentWidth与Navigation组件的navBarWidth、minContentWidth等属性配置不同的值，即可实现目标效果。
+三分栏场景可以组合使用[SideBarContainer](../../reference/arkui-ts/ts-container-sidebarcontainer.md)组件与[Navigation组件](../../reference/arkui-ts/ts-basic-components-navigation.md)实现，SideBarContainer组件可以通过侧边栏控制按钮控制显示/隐藏，Navigation组件可以根据窗口宽度自动切换该组件内单/双栏显示，结合响应式布局能力，通过断点/媒体查询/栅格能力的其中一种来监听当前窗口大小，下面的代码示例使用了媒体查询来监听窗口大小，开发者也可以使用另外两种方式，在此不再赘述。另外，设置lg窗口时的showSideBar属性为true，即lg窗口大小时显现SideBar侧边栏，其余窗口大小不显示，另外需要注意设置SideBarContainerType的AUTO属性，使其在不同窗口大小时SideBar侧边栏的布局表现不同。
 
 **参考代码**
 
 ```
+// TripleColumn.ets
+import { BreakpointSystem, BreakpointType } from '../common/breakpointsystem'
+
 @Component
 struct Details {
   private imageSrc: Resource
@@ -558,6 +566,16 @@ struct Item {
 @Component
 struct TripleColumnSample {
   @State arr: number[] = [1, 2, 3]
+  @StorageLink('currentBreakpoint') private currentBreakpoint: string = "md";
+  private breakpointSystem: BreakpointSystem = new BreakpointSystem()
+
+  aboutToAppear() {
+    this.breakpointSystem.register()
+  }
+
+  aboutToDisappear() {
+    this.breakpointSystem.unregister()
+  }
 
   @Builder NavigationTitle() {
     Column() {
@@ -572,7 +590,7 @@ struct TripleColumnSample {
   }
 
   build() {
-    SideBarContainer() {
+    SideBarContainer(SideBarContainerType.AUTO) {
       Column() {
         List() {
           ForEach(this.arr, (item, index) => {
@@ -610,9 +628,7 @@ struct TripleColumnSample {
         .minContentWidth(600-240)
       }.width('100%').height('100%')
     }.sideBarWidth(240)
-    .minSideBarWidth(50)
-    .maxSideBarWidth(300)
-    .minContentWidth(840-240)
+    .showSideBar(this.currentBreakpoint === 'lg')
   }
 }
 ```
