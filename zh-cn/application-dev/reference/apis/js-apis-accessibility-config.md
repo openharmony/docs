@@ -263,7 +263,7 @@ off(type: 'enabledAccessibilityExtensionListChange', callback?: Callback&lt;void
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | type |  string | 是 | 参数固定为enabledAccessibilityExtensionListChange，监听启用的辅助扩展的列表变化。 |
-| callback | Callback&lt;void&gt; | 否 | 取消指定callback对象的事件响应。 |
+| callback | Callback&lt;void&gt; | 否 | 取消指定callback对象的事件响应。需与on('enabledAccessibilityExtensionListChange')的callback一致。缺省时，表示注销所有已注册事件。 |
 
 **示例：**
 
@@ -456,7 +456,7 @@ off(callback?: Callback&lt;T&gt;): void;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| callback | Callback&lt;T&gt; | 否 | 取消指定callback对象的事件响应。 |
+| callback | Callback&lt;T&gt; | 否 | 取消指定callback对象的事件响应。需与on()的callback一致。缺省时，表示注销所有已注册事件。 |
 
 **示例：**
 
