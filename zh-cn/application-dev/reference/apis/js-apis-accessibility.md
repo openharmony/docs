@@ -228,10 +228,10 @@ off(type: 'enableChange', callback?: Callback&lt;boolean&gt;): void;
 
 **参数：**
 
-| 参数名      | 类型                      | 必填   | 说明                                       |
-| -------- | ----------------------- | ---- | ---------------------------------------- |
-| type     | string                  | 是    | 取消监听的事件名，固定为‘enableChange’，即字幕配置启用状态变化事件。 |
-| callback | Callback&lt;boolean&gt; | 否    | 回调函数，取消指定callback对象的事件响应。           |
+| 参数名   | 类型                    | 必填 | 说明                                                         |
+| -------- | ----------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                  | 是   | 取消监听的事件名，固定为‘enableChange’，即字幕配置启用状态变化事件。 |
+| callback | Callback&lt;boolean&gt; | 否   | 回调函数，取消指定callback对象的事件响应。需与on('enableChange')的callback一致。缺省时，表示注销所有已注册事件。 |
 
 **示例：**
 
@@ -258,10 +258,10 @@ off(type: 'styleChange', callback?: Callback&lt;CaptionsStyle&gt;): void;
 
 **参数：**
 
-| 参数名      | 类型                                       | 必填   | 说明                                   |
-| -------- | ---------------------------------------- | ---- | ------------------------------------ |
-| type     | string                                   | 是    | 取消监听的事件名，固定为‘styleChange’，即字幕风格变化事件。 |
-| callback | Callback&lt;[CaptionsStyle](#captionsstyle8)&gt; | 否    | 回调函数，回调函数，取消指定callback对象的事件响应。              |
+| 参数名   | 类型                                             | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                           | 是   | 取消监听的事件名，固定为‘styleChange’，即字幕风格变化事件。  |
+| callback | Callback&lt;[CaptionsStyle](#captionsstyle8)&gt; | 否   | 回调函数，取消指定callback对象的事件响应。需与on('styleChange')的callback一致。缺省时，表示注销所有已注册事件。 |
 
 **示例：**
 
@@ -669,10 +669,10 @@ off(type: 'accessibilityStateChange', callback?: Callback&lt;boolean&gt;): void
 
 **参数：**
 
-| 参数名      | 类型                      | 必填   | 说明                                       |
-| -------- | ----------------------- | ---- | ---------------------------------------- |
-| type     | string                  | 是    | 取消监听的事件名，固定为‘accessibilityStateChange’，即辅助应用启用状态变化事件。 |
-| callback | Callback&lt;boolean&gt; | 否    | 回调函数，取消指定callback对象的事件响应。           |
+| 参数名   | 类型                    | 必填 | 说明                                                         |
+| -------- | ----------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                  | 是   | 取消监听的事件名，固定为‘accessibilityStateChange’，即辅助应用启用状态变化事件。 |
+| callback | Callback&lt;boolean&gt; | 否   | 回调函数，取消指定callback对象的事件响应。需与accessibility.on('accessibilityStateChange')的callback一致。缺省时，表示注销所有已注册事件。 |
 
 **示例：**
 
@@ -698,10 +698,10 @@ off(type: 'touchGuideStateChange', callback?: Callback&lt;boolean&gt;): void
 
 **参数：**
 
-| 参数名      | 类型                      | 必填   | 说明                                       |
-| -------- | ----------------------- | ---- | ---------------------------------------- |
-| type     | string                  | 是    | 取消监听的事件名，固定为‘touchGuideStateChange’，即触摸浏览启用状态变化事件。 |
-| callback | Callback&lt;boolean&gt; | 否    | 回调函数，取消指定callback对象的事件响应。           |
+| 参数名   | 类型                    | 必填 | 说明                                                         |
+| -------- | ----------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                  | 是   | 取消监听的事件名，固定为‘touchGuideStateChange’，即触摸浏览启用状态变化事件。 |
+| callback | Callback&lt;boolean&gt; | 否   | 回调函数，取消指定callback对象的事件响应。需与accessibility.on('touchGuideStateChange')的callback一致。缺省时，表示注销所有已注册事件。 |
 
 **示例：**
 
@@ -717,7 +717,7 @@ try {
 }
 ```
 
-## accessibility.isOpenAccessibility
+## accessibility.isOpenAccessibility<sup>(deprecated)</sup>
 
 isOpenAccessibility(): Promise&lt;boolean&gt;
 
@@ -743,7 +743,7 @@ accessibility.isOpenAccessibility().then((data: boolean) => {
 });
 ```
 
-## accessibility.isOpenAccessibility
+## accessibility.isOpenAccessibility<sup>(deprecated)</sup>
 
 isOpenAccessibility(callback: AsyncCallback&lt;boolean&gt;): void
 
@@ -772,7 +772,34 @@ accessibility.isOpenAccessibility((err: BusinessError<void>, data: boolean) => {
 });
 ```
 
-## accessibility.isOpenTouchGuide
+## accessibility.isOpenAccessibilitySync
+
+isOpenAccessibilitySync(): boolean
+
+是否启用了辅助功能。
+
+**系统能力**：SystemCapability.BarrierFree.Accessibility.Core
+
+**返回值：**
+
+| 类型        | 说明                                  |
+| ----------- | ------------------------------------- |
+| boolean&gt; | 启用辅助功能返回true，否则返回false。 |
+
+**示例：**
+
+```ts
+import accessibility from '@ohos.accessibility';
+import { BusinessError } from '@ohos.base';
+
+try {
+    let status: boolean = accessibility.isOpenAccessibilitySync();
+} catch (exception) {
+    console.error('failed to isOpenAccessibilitySync because ' + JSON.stringify(exception));
+}
+```
+
+## accessibility.isOpenTouchGuide<sup>(deprecated)</sup>
 
 isOpenTouchGuide(): Promise&lt;boolean&gt;
 
@@ -798,7 +825,7 @@ accessibility.isOpenTouchGuide().then((data: boolean) => {
 });
 ```
 
-## accessibility.isOpenTouchGuide
+## accessibility.isOpenTouchGuide<sup>(deprecated)</sup>
 
 isOpenTouchGuide(callback: AsyncCallback&lt;boolean&gt;): void
 
@@ -825,6 +852,33 @@ accessibility.isOpenTouchGuide((err: BusinessError<void>, data: boolean) => {
     }
     console.info('success data:isOpenTouchGuide : ' + JSON.stringify(data))
 });
+```
+
+## accessibility.isOpenTouchGuideSync
+
+isOpenTouchGuideSync(): boolean
+
+是否开启了触摸浏览模式。
+
+**系统能力**：SystemCapability.BarrierFree.Accessibility.Core
+
+**返回值：**
+
+| 类型    | 说明                                  |
+| ------- | ------------------------------------- |
+| boolean | 启用辅助功能返回true，否则返回false。 |
+
+**示例：**
+
+```ts
+import accessibility from '@ohos.accessibility';
+import { BusinessError } from '@ohos.base';
+
+try {
+    let status: boolean = accessibility.isOpenTouchGuideSync();
+} catch (exception) {
+    console.error('failed to isOpenTouchGuideSync because ' + JSON.stringify(exception));
+}
 ```
 
 ## accessibility.sendEvent<sup>(deprecated)</sup>
