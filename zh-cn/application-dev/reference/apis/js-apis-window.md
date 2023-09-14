@@ -1954,7 +1954,7 @@ import { BusinessError } from '@ohos.base';
 
 windowClass.destroyWindow((err) => {
   const errCode: number = err.code;
-  if (errCodee) {
+  if (errCode) {
     console.error('Failed to destroy the window. Cause:' + JSON.stringify(err));
     return;
   }
@@ -5324,7 +5324,7 @@ resetAspectRatio(callback: AsyncCallback&lt;void&gt;): void
 import { BusinessError } from '@ohos.base';
 
 try {
-    windowClass.resetAspectRatio((err： BusinessError) => {
+    windowClass.resetAspectRatio((err: BusinessError) => {
         const errCode: number = err.code;
         if (errCode) {
             console.error('Failed to reset the aspect ratio of window. Cause:' + JSON.stringify(err));
