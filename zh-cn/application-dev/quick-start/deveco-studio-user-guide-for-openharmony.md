@@ -4,7 +4,7 @@
 
 HUAWEI DevEco Studio For OpenHarmony（以下简称DevEco Studio）是基于IntelliJ IDEA Community开源版本打造，面向OpenHarmony全场景多设备的一站式集成开发环境（IDE），为开发者提供工程模板创建、开发、编译、调试、发布等E2E的OpenHarmony应用/服务开发。
 
-[DevEco Studio](https://developer.harmonyos.com/cn/develop/deveco-studio/) 作为支撑OpenHarmony应用和服务开发的IDE，具有以下能力特点：
+[DevEco Studio](../../release-notes/OpenHarmony-v4.0-beta2.md#配套关系)作为支撑OpenHarmony应用和服务开发的IDE，具有以下能力特点：
 
 - **高效智能代码编辑**：支持ArkTS、JavaScript、C/C++等语言的代码高亮、代码智能补齐、代码错误检查、代码自动跳转、代码格式化、代码查找等功能，提升代码编写效率。更多详细信息，请参考[编辑器使用技巧](https://developer.harmonyos.com/cn/docs/documentation/doc-guides/ohos-editor-usage-tips-0000001263360493)。
 - **低代码可视化开发**：丰富的UI界面编辑能力，支持自由拖拽组件和可视化数据绑定，可快速预览效果，所见即所得；同时支持卡片的零代码开发，降低开发门槛和提升界面开发效率。更多详细信息，请参考使用[低代码开发应用/服务](https://developer.harmonyos.com/cn/docs/documentation/doc-guides/ohos-low-code-development-0000001218440652)。
