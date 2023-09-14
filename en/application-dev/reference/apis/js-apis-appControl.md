@@ -1,6 +1,6 @@
 # @ohos.bundle.appControl (appControl)
 
-The **appControl** module provides APIs for setting, obtaining, and deleting the disposed status of an application. An application in the disposed state is forbidden to run. When a user clicks the application icon on the home screen, the corresponding page is displayed based on the disposal intent.  
+The **appControl** module provides APIs for setting, obtaining, and deleting the disposed status of an application. An application in the disposed status is forbidden to run. When a user clicks the application icon on the home screen, the corresponding page is displayed based on the disposal intent.  
 
 > **NOTE**
 >
@@ -195,7 +195,7 @@ Obtains the disposed status of an application. This API uses an asynchronous cal
 | Name      | Type    | Mandatory  | Description                                 |
 | ----------- | ------ | ---- | --------------------------------------- |
 | appId  | string | Yes   | ID of the target application.<br> **appId** is the unique identifier of an application and is determined by the bundle name and signature information of the application. For details about how to obtain **appId**, see [Obtaining appId of an Application](#obtaining-appid-of-an-application). |
-| callback    | AsyncCallback\<Want> | Yes   | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the disposed status obtained; otherwise, **err** is an error object.    |
+| callback    | AsyncCallback\<Want> | Yes   | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the disposed status obtained; otherwise, **err** is an error object.                   |
 
 **Error codes**
 
