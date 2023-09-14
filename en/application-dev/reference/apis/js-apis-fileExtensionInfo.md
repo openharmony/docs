@@ -9,7 +9,7 @@ The **fileExtensionInfo** module defines attributes in **RootInfo** and **FileIn
 
 ## Modules to Import
 
-```js
+```ts
 import fileExtensionInfo from '@ohos.file.fileExtensionInfo';
 ```
 

@@ -1,20 +1,15 @@
 # @ohos.file.picker (File Picker)
 
+**Picker** encapsulates the system applications such as **PhotoViewPicker**, **DocumentViewPicker** and **AudioViewPicker** to provide capabilities of selecting and saving files of different types. The application can select the picker as required.
+
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
-**Picker** encapsulates the system applications such as **PhotoViewPicker**, **DocumentViewPicker** and **AudioViewPicker** to provide capabilities of selecting and saving files of different types. The application can select the picker as required.
-
 ## Modules to Import
-
-> **NOTE**
->
-> You need to import the **BusinessError** module if **BusinessError** is used in the sample code.
 
 ```ts
 import picker from '@ohos.file.picker';
-import { BusinessError } from '@ohos.base';
 ```
 
 ## PhotoViewPicker
@@ -52,6 +47,7 @@ Selects one or more images or videos in a **photoPicker** page. This API uses a 
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
 async function example01() {
   try {  
     let PhotoSelectOptions = new picker.PhotoSelectOptions();
@@ -88,6 +84,7 @@ Selects one or more images or videos in a **photoPicker** page. This API uses an
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
 async function example02() {
   try {
     let PhotoSelectOptions = new picker.PhotoSelectOptions();
@@ -125,6 +122,7 @@ Selects one or more images or videos in a **photoPicker** page. This API uses an
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
 async function example03() {
   try {
     let photoPicker = new picker.PhotoViewPicker();
@@ -165,6 +163,7 @@ Saves one or more images or videos in a **photoPicker** page. This API uses a pr
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
 async function example04() {
   try {
     let PhotoSaveOptions = new picker.PhotoSaveOptions();
@@ -200,6 +199,7 @@ Saves one or more images or videos in a **photoPicker** page. This API uses an a
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
 async function example05() {
   try {
     let PhotoSaveOptions = new picker.PhotoSaveOptions();
@@ -236,6 +236,7 @@ Saves one or more images or videos in a **photoPicker** page. This API uses an a
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
 async function example06() {
   try {
     let photoPicker = new picker.PhotoViewPicker();
@@ -288,6 +289,7 @@ Selects one or more documents in a **documentPicker** page. This API uses a prom
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
 async function example07() {
   try {
     let DocumentSelectOptions = new picker.DocumentSelectOptions();
@@ -322,6 +324,7 @@ Selects one or more documents in a **documentPicker** page. This API uses an asy
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
 async function example08() {
   try {
     let DocumentSelectOptions = new picker.DocumentSelectOptions();
@@ -357,6 +360,7 @@ Selects one or more documents in a **documentPicker** page. This API uses an asy
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
 async function example09() {
   try {
     let documentPicker = new picker.DocumentViewPicker();
@@ -398,6 +402,7 @@ Saves one or more documents in a **documentPicker** page. This API uses a promis
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
 async function example10() {
   try {
     let DocumentSaveOptions = new picker.DocumentSaveOptions();
@@ -433,6 +438,7 @@ Saves one or more documents in a **documentPicker** page. This API uses an async
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
 async function example11() {
   try {
     let DocumentSaveOptions = new picker.DocumentSaveOptions();
@@ -469,6 +475,7 @@ Saves one or more documents in a **documentPicker** page. This API uses an async
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
 async function example12() {
   try {
     let documentPicker = new picker.DocumentViewPicker();
@@ -521,6 +528,7 @@ Selects one or more audio files in an **audioPicker** page (currently, a **docum
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
 async function example13() {
   try {
     let AudioSelectOptions = new picker.AudioSelectOptions();
@@ -555,6 +563,7 @@ Selects one or more audio files in an **audioPicker** page (currently, a **docum
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
 async function example14() {
   try {
     let AudioSelectOptions = new picker.AudioSelectOptions();
@@ -590,6 +599,7 @@ Selects one or more audio files in an **audioPicker** page (currently, a **docum
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
 async function example15() {
   try {
     let audioPicker = new picker.AudioViewPicker();
@@ -630,6 +640,7 @@ Saves one or more audio files in an **audioPicker** page (currently, a **documen
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
 async function example16() {
   try {
     let AudioSaveOptions = new picker.AudioSaveOptions();
@@ -665,6 +676,7 @@ Saves one or more audio files in an **audioPicker** page (currently, a **documen
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
 async function example17() {
   try {
     let AudioSaveOptions = new picker.AudioSaveOptions();
@@ -701,6 +713,7 @@ Saves one or more audio files in an **audioPicker** page (currently, a **documen
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
 async function example18() {
   try {
     let audioPicker = new picker.AudioViewPicker();
@@ -750,7 +763,7 @@ Defines information about the images or videos selected.
 | Name                   | Type               | Readable| Writable| Description                          |
 | ----------------------- | ------------------- | ---- | ---- | ------------------------------ |
 | photoUris        | Array&lt;string&gt;    | Yes  | Yes  | URIs of the media files selected.|
-| isOriginalPhoto        | boolean    | Yes  | Yes  | Whether the selected media file is the original image.| 
+| isOriginalPhoto        | boolean    | Yes  | Yes  | Whether the selected media file is the original image.|
 
 ## PhotoSaveOptions
 

@@ -8,7 +8,7 @@ The **FileHash** module implements hash processing on files.
 
 ## Modules to Import
 
-```js
+```ts
 import Hash from '@ohos.file.hash';
 ```
 
@@ -18,27 +18,28 @@ Before using the APIs provided by this module to perform operations on a file or
 
 Stage Model
 
- ```js
-import UIAbility from '@ohos.app.ability.UIAbility';
+  ```ts
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  import window from '@ohos.window';
 
-export default class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage) {
-        let context = this.context;
-        let pathDir = context.filesDir;
+  export default class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage: window.WindowStage) {
+      let context = this.context;
+      let pathDir = context.filesDir;
     }
-}
- ```
+  }
+  ```
 
 FA Model
 
- ```js
- import featureAbility from '@ohos.ability.featureAbility';
- 
- let context = featureAbility.getContext();
- context.getFilesDir().then((data) => {
-      let pathDir = data;
- })
- ```
+  ```js
+  import featureAbility from '@ohos.ability.featureAbility';
+  
+  let context = featureAbility.getContext();
+  context.getFilesDir().then((data) => {
+    let pathDir = data;
+  })
+  ```
 
 For details about how to obtain the FA model context, see [Context](js-apis-inner-app-context.md#context).
 
@@ -74,11 +75,11 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 **Example**
 
-  ```js
+  ```ts
   let filePath = pathDir + "/test.txt";
-  Hash.hash(filePath, "sha256").then((str) => {
+  Hash.hash(filePath, "sha256").then((str: string) => {
     console.info("calculate file hash succeed:" + str);
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.info("calculate file hash failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
@@ -110,9 +111,9 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 **Example**
 
-  ```js
+  ```ts
   let filePath = pathDir + "/test.txt";
-  Hash.hash(filePath, "sha256", (err, str) => {
+  Hash.hash(filePath, "sha256", (err: BusinessError, str: string) => {
     if (err) {
       console.info("calculate file hash failed with error message: " + err.message + ", error code: " + err.code);
     } else {
