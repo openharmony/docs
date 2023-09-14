@@ -48,7 +48,7 @@
 ```
 import { BreakpointSystem, BreakPointType } from 'common/BreakpointSystem'
 
-type TabBar = {
+interface TabBar = {
   name: string
   icon: Resource
   selectIcon: Resource
@@ -86,10 +86,10 @@ struct Home {
         .size({ width: 36, height: 36 })
       Text(tabBar.name)
         .fontColor(this.currentIndex === index ? '#FF1948' : '#999')
-        .margin(new BreakPointType({
+        .margin(new BreakPointType<(Length|Padding)>({
           sm: { top: 4 },
           md: { left: 8 },
-          lg: { top: 4 } }).getValue(this.currentBreakpoint))
+          lg: { top: 4 } }).getValue(this.currentBreakpoint)!)
         .fontSize(16)
     }
     .width('100%')
@@ -115,7 +115,7 @@ struct Home {
         lg: BarPosition.Start
       }).getValue(this.currentBreakpoint)
     }) {
-      ForEach(this.tabs, (item, index) => {
+      ForEach(this.tabs, (item:TabBar, index) => {
         TabContent() {
           Stack() {
             Text(item.name).fontSize(30)
@@ -123,9 +123,9 @@ struct Home {
         }.tabBar(this.TabBarBuilder(index, item))
       })
     }
-    .vertical(new BreakPointType({ sm: false, md: false, lg: true }).getValue(this.currentBreakpoint))
-    .barWidth(new BreakPointType({ sm: '100%', md: '100%', lg: '96vp' }).getValue(this.currentBreakpoint))
-    .barHeight(new BreakPointType({ sm: '72vp', md: '56vp', lg: '60%' }).getValue(this.currentBreakpoint))
+    .vertical(new BreakPointType({ sm: false, md: false, lg: true }).getValue(this.currentBreakpoint)!)
+    .barWidth(new BreakPointType({ sm: '100%', md: '100%', lg: '96vp' }).getValue(this.currentBreakpoint)!)
+    .barHeight(new BreakPointType({ sm: '72vp', md: '56vp', lg: '60%' }).getValue(this.currentBreakpoint)!)
     .animationDuration(0)
     .onChange((index: number) => {
       this.currentIndex = index
@@ -185,8 +185,8 @@ export default struct Banner {
           .padding(8)
       })
     }
-    .indicator(new BreakPointType({ sm: true, md: false, lg: false }).getValue(this.currentBreakpoint))
-    .displayCount(new BreakPointType({ sm: 1, md: 2, lg: 3 }).getValue(this.currentBreakpoint))
+    .indicator(new BreakPointType({ sm: true, md: false, lg: false }).getValue(this.currentBreakpoint)!)
+    .displayCount(new BreakPointType({ sm: 1, md: 2, lg: 3 }).getValue(this.currentBreakpoint)!)
   }
 }
 ```
@@ -217,7 +217,7 @@ export default struct Banner {
 ```
 import { BreakpointSystem, BreakPointType } from 'common/breakpointsystem'
 
-type GridItemInfo = {
+interface GridItemInfo {
   name: string
   image: Resource
 }
@@ -268,7 +268,7 @@ struct MultiLaneList {
       sm: '1fr 1fr',
       md: '1fr 1fr 1fr 1fr',
       lg: '1fr 1fr 1fr 1fr 1fr 1fr'
-    }).GetValue(this.currentBreakpoint))
+    }).getValue(this.currentBreakpoint)!)
   }
 }
 ```
@@ -279,7 +279,7 @@ struct MultiLaneList {
 ```
 import { BreakpointSystem, BreakPointType } from 'common/BreakpointSystem'
 
-type ListItemInfo = {
+interface ListItemInfo {
   name: string
   image: Resource
 }
@@ -325,7 +325,7 @@ struct MultiLaneList {
         }
       })
     }
-    .lanes(new BreakPointType({ sm: 2, md: 4, lg: 6 }).getValue(this.currentBreakpoint))
+    .lanes(new BreakPointType({ sm: 2, md: 4, lg: 6 }).getValue(this.currentBreakpoint)!)
     .width('100%')
   }
 }
@@ -759,9 +759,9 @@ struct CustomDialogSample {
 
 @CustomDialog
 struct CustomDialogA {
-  controller: CustomDialogController
-  cancel: () => void
-  confirm: () => void
+  controller?: CustomDialogController
+  cancel?: () => void
+  confirm?: () => void
 
   build() {
     Column() {
@@ -776,8 +776,10 @@ struct CustomDialogA {
           .layoutWeight(1)
           .textAlign(TextAlign.Center)
           .onClick(()=>{
-            this.controller.close()
-            this.cancel()
+            if(this.controller){
+                 this.controller.close()
+             }
+            this.cancel!()
           })
         Line().width(1).height(24).backgroundColor('#33000000').margin({left: 4, right: 4})
         Text('删除')
@@ -786,8 +788,10 @@ struct CustomDialogA {
           .layoutWeight(1)
           .textAlign(TextAlign.Center)
           .onClick(()=>{
-            this.controller.close()
-            this.confirm()
+             if(this.controller){
+                 this.controller.close()
+             }
+            this.confirm!()
           })
       }.height(40)
       .margin({left: 24, right: 24, bottom: 16})
@@ -797,9 +801,9 @@ struct CustomDialogA {
 
 @CustomDialog
 struct CustomDialogB {
-  controller: CustomDialogController
-  cancel: () => void
-  confirm: () => void
+  controller?: CustomDialogController
+  cancel?: () => void
+  confirm?: () => void
 
   build() {
     GridRow({columns: {sm: 4, md: 8, lg: 12}}) {
@@ -816,8 +820,10 @@ struct CustomDialogB {
               .layoutWeight(1)
               .textAlign(TextAlign.Center)
               .onClick(()=>{
-                this.controller.close()
-                this.cancel()
+                if(this.controller){
+                 this.controller.close()
+                }
+                this.cancel!()
               })
             Line().width(1).height(24).backgroundColor('#33000000').margin({left: 4, right: 4})
             Text('删除')
@@ -826,8 +832,10 @@ struct CustomDialogB {
               .layoutWeight(1)
               .textAlign(TextAlign.Center)
               .onClick(()=>{
-                this.controller.close()
-                this.confirm()
+                 if(this.controller){
+                 this.controller.close()
+                }
+                this.confirm!()
               })
           }.height(40)
           .margin({left: 24, right: 24, bottom: 16})
@@ -891,9 +899,9 @@ Scroll（内容超出宽度时可滚动） + Row（横向均分：justifyContent
 
 
 ```
-class OperationItem {
-  name?: string
-  icon: Resource=$r('app.media.self_fm')
+interface OperationItem {
+  name: string
+  icon: Resource
 }
 
 @Entry
