@@ -1,6 +1,6 @@
-# ArkUI子系统changelog
+# arkui子系统ChangeLog
 
-## navigation.d.ts NavPathStack类的三个方法push，pushName，popTo名称变更为pushPath，pushPathByName，popToName。
+## navigation.d.ts NavPathStack类中的三个方法push，pushName，popTo名称变更为pushPath，pushPathByName，popToName。
 
 **变更影响**
 
