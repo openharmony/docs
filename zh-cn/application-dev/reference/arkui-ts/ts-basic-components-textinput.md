@@ -316,4 +316,4 @@ struct TextInputExample {
 }
 ```
 
-![TextInputError](figures/TextInputError.PNG)
+![TextInputError](figures/TextInputError.png)
