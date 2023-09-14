@@ -468,10 +468,10 @@ createCameraInput(position: CameraPosition, type: CameraType): CameraInput
 ```ts
 import { BusinessError } from '@ohos.base';
 
-function createCameraInput(cameraDevice: camera.CameraDevice, cameraManager: camera.CameraManager): camera.CameraInput {
+function createCameraInput(cameraDevice: camera.CameraDevice, cameraManager: camera.CameraManager): camera.CameraInput | undefined {
   let position: camera.CameraPosition = cameraDevice.cameraPosition;
   let type: camera.CameraType = cameraDevice.cameraType;
-  let cameraInput: camera.CameraInput;
+  let cameraInput: camera.CameraInput | undefined = undefined;
   try {
     cameraInput = cameraManager.createCameraInput(position, type);
   } catch (error) {
@@ -517,9 +517,9 @@ createPreviewOutput(profile: Profile, surfaceId: string): PreviewOutput
 ```ts
 import { BusinessError } from '@ohos.base';
 
-function createPreviewOutput(cameraOutputCapability: camera.CameraOutputCapability, cameraManager: camera.CameraManager, surfaceId: string): camera.PreviewOutput {
+function createPreviewOutput(cameraOutputCapability: camera.CameraOutputCapability, cameraManager: camera.CameraManager, surfaceId: string): camera.PreviewOutput | undefined {
   let profile: camera.Profile = cameraOutputCapability.previewProfiles[0];
-  let previewOutput: camera.PreviewOutput;
+  let previewOutput: camera.PreviewOutput | undefined = undefined;
   try {
     previewOutput = cameraManager.createPreviewOutput(profile, surfaceId);
   } catch (error) {
@@ -565,9 +565,9 @@ createPhotoOutput(profile: Profile, surfaceId: string): PhotoOutput
 ```ts
 import { BusinessError } from '@ohos.base';
 
-function createPhotoOutput(cameraOutputCapability: camera.CameraOutputCapability, cameraManager: camera.CameraManager, surfaceId: string): camera.PhotoOutput {
+function createPhotoOutput(cameraOutputCapability: camera.CameraOutputCapability, cameraManager: camera.CameraManager, surfaceId: string): camera.PhotoOutput | undefined {
   let profile: camera.Profile = cameraOutputCapability.photoProfiles[0];
-  let photoOutput: camera.PhotoOutput;
+  let photoOutput: camera.PhotoOutput | undefined = undefined;
   try {
     photoOutput = cameraManager.createPhotoOutput(profile, surfaceId);
   } catch (error) {
@@ -613,9 +613,9 @@ createVideoOutput(profile: VideoProfile, surfaceId: string): VideoOutput
 ```ts
 import { BusinessError } from '@ohos.base';
 
-function createVideoOutput(cameraOutputCapability: camera.CameraOutputCapability, cameraManager: camera.CameraManager, surfaceId: string): camera.VideoOutput {
+function createVideoOutput(cameraOutputCapability: camera.CameraOutputCapability, cameraManager: camera.CameraManager, surfaceId: string): camera.VideoOutput | undefined {
   let profile: camera.VideoProfile = cameraOutputCapability.videoProfiles[0];
-  let videoOutput: camera.VideoOutput;
+  let videoOutput: camera.VideoOutput | undefined = undefined;
   try {
     videoOutput = cameraManager.createVideoOutput(profile, surfaceId);
   } catch (error) {
@@ -700,8 +700,8 @@ createCaptureSession(): CaptureSession
 ```ts
 import { BusinessError } from '@ohos.base';
 
-function createCaptureSession(cameraManager: camera.CameraManager): camera.CaptureSession {
-  let captureSession: camera.CaptureSession;
+function createCaptureSession(cameraManager: camera.CameraManager): camera.CaptureSession | undefined {
+  let captureSession: camera.CaptureSession | undefined = undefined;
   try {
     captureSession = cameraManager.createCaptureSession();
   } catch (error) {
