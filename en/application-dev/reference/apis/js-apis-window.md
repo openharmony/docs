@@ -3789,7 +3789,7 @@ When the screen brightness setting for the window takes effect, Control Panel ca
 
 | Name| Type| Mandatory| Description                                       |
 | ---------- | ------------------------- | -- |-------------------------------------------|
-| brightness | number                    | Yes| Brightness to set. The value is a floating point number in the range [0.0, 1.0] or -1.0, and the value **1.0** means the brightest, **-1.0** means the default brightest.|
+| brightness | number                    | Yes| Brightness to set. The value is a floating point number in the range [0.0, 1.0], and the value **1.0** means the brightest.|
 | callback   | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.                                    |
 
 **Error codes**
@@ -3832,7 +3832,7 @@ When the screen brightness setting for the window takes effect, Control Panel ca
 
 | Name| Type| Mandatory| Description                                    |
 | ---------- | ------ | -- |----------------------------------------|
-| brightness | number | Yes| Brightness to set. The value is a floating point number in the range [0.0, 1.0] or -1.0, and the value **1.0** means the brightest, **-1.0** means the default brightest.|
+| brightness | number | Yes| Brightness to set. The value is a floating point number in the range [0.0, 1.0], and the value **1.0** indicates the brightest.|
 
 **Return value**
 
@@ -6401,7 +6401,7 @@ When the screen brightness setting for the window takes effect, Control Panel ca
 
 | Name    | Type                     | Mandatory| Description                                   |
 | ---------- | ------------------------- | ---- |---------------------------------------|
-| brightness | number                    | Yes  | Brightness to set. The value is a floating point number in the range [0.0, 1.0] or -1.0, and the value **1.0** means the brightest, **-1.0** means the default brightest.|
+| brightness | number                    | Yes  | Brightness to set. The value is a floating point number in the range [0.0, 1.0], and the value **1.0** means the brightest.|
 | callback   | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.                                |
 
 **Example**
@@ -6435,7 +6435,7 @@ When the screen brightness setting for the window takes effect, Control Panel ca
 
 | Name    | Type  | Mandatory| Description                                      |
 | ---------- | ------ | ---- |------------------------------------------|
-| brightness | number | Yes  | Brightness to set. The value is a floating point number in the range [0.0, 1.0] or -1.0, and the value **1.0** means the brightest, **-1.0** means the default brightest.|
+| brightness | number | Yes  | Brightness to set. The value is a floating point number in the range [0.0, 1.0], and the value **1.0** means the brightest.|
 
 **Return value**
 
