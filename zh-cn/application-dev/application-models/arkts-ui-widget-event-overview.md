@@ -29,6 +29,7 @@ action参数说明：
 | "params" | Object | 当前action携带的额外参数，内容使用JSON格式的键值对形式。必填。 |
 
 >![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+>
 >"action"为"call"&nbsp;类型时，"params"需填入参数'method'，且类型需为string类型，用于触发UIAbility中对应的方法。
 
 `postCardAction()`接口示例代码：
