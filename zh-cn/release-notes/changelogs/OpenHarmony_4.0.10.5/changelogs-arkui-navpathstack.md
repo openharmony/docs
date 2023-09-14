@@ -1,0 +1,26 @@
+# ArkUI子系统changelog
+
+## NavPathStack navigation.d.ts内NavPathStack类提供的push，pushName，popTo三个方法的方法名称变更。
+
+**关键的接口/组件变更**
+
+方法名称从push，pushName，popTo变更为pushPath，pushPathByName，popToName
+
+**变更影响**
+
+更新4.0.10.x sdk之后，如果代码未变更方法名称，将出现编译报错。
+
+**适配指导**
+需更新应用代码
+
+```ts
+navPathStack = new NavPathStack();
+this.navPathStack.push(...)
+this.navPathStack.pushPath(...)
+
+this.navPathStack.pushPath('navidesnation_add',this.value)
+this.navPathStack.pushPathByName('navidesnation_add',this.value) 
+
+this.navPathStack.pop('navidesnation_add')
+this.navPathStack.popToName('navidesnation_add')
+```
