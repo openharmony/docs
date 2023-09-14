@@ -15,17 +15,17 @@
 下表给出了当前长时任务支持的类型，包含数据传输、音频播放、录音、定位导航、蓝牙相关、多设备互联、WLAN相关、音视频通话和计算任务。可以参考下表中的场景举例，选择合适的长时任务类型。
 
 **表1** 长时任务类型
-| 参数名 | 描述 | 场景举例 |
-| -------- | -------- | -------- |
-| DATA_TRANSFER | 数据传输 | 后台下载大文件，如浏览器后台下载等。 |
-| AUDIO_PLAYBACK | 音频播放 | 音乐类应用在后台播放音乐。 |
-| AUDIO_RECORDING | 录音 | 录音机在后台录音。 |
-| LOCATION | 定位导航 | 导航类应用后台导航。 |
-| BLUETOOTH_INTERACTION | 蓝牙相关 | 通过蓝牙传输分享的文件。 |
-| MULTI_DEVICE_CONNECTION | 多设备互联 | 分布式业务连接。 |
-| WIFI_INTERACTION | WLAN相关（仅对系统应用开放） | 通过WLAN传输分享的文件。 |
-| VOIP | 音视频通话（仅对系统应用开放） | 系统聊天类应用后台音频电话。 |
-| TASK_KEEPING | 计算任务（仅对特定设备开放） | 杀毒软件 |
+| 参数名 | 描述 | 配置项 | 场景举例 |
+| -------- | -------- | -------- | -------- |
+| DATA_TRANSFER | 数据传输 | dataTransfer | 后台下载大文件，如浏览器后台下载等。 |
+| AUDIO_PLAYBACK | 音频播放 | audioPlayback | 音乐类应用在后台播放音乐。 |
+| AUDIO_RECORDING | 录音 | audioRecording | 录音机在后台录音。 |
+| LOCATION | 定位导航 | location | 导航类应用后台导航。 |
+| BLUETOOTH_INTERACTION | 蓝牙相关 | bluetoothInteraction | 通过蓝牙传输分享的文件。 |
+| MULTI_DEVICE_CONNECTION | 多设备互联 | multiDeviceConnection | 分布式业务连接。 |
+| WIFI_INTERACTION | WLAN相关（仅对系统应用开放） | wifiInteraction  | 通过WLAN传输分享的文件。 |
+| VOIP | 音视频通话（仅对系统应用开放） | voip  | 系统聊天类应用后台音频电话。 |
+| TASK_KEEPING | 计算任务（仅对特定设备开放） | taskKeeping  | 杀毒软件 |
 
 
 - 申请了DATA_TRANSFER（数据传输）的长时任务，系统仅会提升应用进程的优先级，降低系统终止应用进程的概率，但仍然会挂起对应的应用进程。对于上传下载对应的功能，需要调用系统[上传下载代理接口](../reference/apis/js-apis-request.md)托管给系统执行。
@@ -65,7 +65,7 @@
    在module.json5配置文件中为需要使用长时任务的UIAbility声明相应的长时任务类型。
 
    
-   ```json
+  ```json
    "module": {
        "abilities": [
            {
@@ -76,15 +76,15 @@
        ],
        ...
    }
-   ```
+  ```
 
 3. 导入模块。
    
-   ```ts
+  ```ts
     import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';
     import wantAgent, { WantAgent } from '@ohos.app.ability.wantAgent';
     import { BusinessError } from '@ohos.base';
-   ```
+  ```
 
 4. 申请和取消长时任务。
 
@@ -94,7 +94,7 @@
 
    **设备本应用**申请长时任务示例代码如下：
 
-   ```ts
+  ```ts
    @Entry
    @Component
    struct Index {
@@ -180,11 +180,11 @@
        .height('100%')
      }
    }
-   ```
+  ```
 
    **跨设备或跨应用**申请长时任务示例代码如下：
    
-   ```ts
+  ```ts
   import UIAbility from '@ohos.app.ability.UIAbility';
   import window from '@ohos.window';
   import AbilityConstant from '@ohos.app.ability.AbilityConstant';
@@ -308,7 +308,7 @@
       console.info('[Demo] BgTaskAbility onBackground');
     }
   };
-   ```
+  ```
 
 
 ### FA模型
@@ -322,9 +322,8 @@
 2. 配置权限和声明后台模式类型。
 
    在config.json文件中配置长时任务权限ohos.permission.KEEP_BACKGROUND_RUNNING，配置方式请参见[配置文件声明](../security/accesstoken-guidelines.md#配置文件权限声明)。同时，为需要使用长时任务的ServiceAbility声明相应的长时任务类型。
-
    
-   ```json
+  ```json
    "module": {
        "package": "com.example.myapplication",
        "abilities": [
@@ -341,21 +340,21 @@
            }
        ]
    }
-   ```
+  ```
 
 3. 导入模块。
    
-   ```js
+  ```js
   import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';
   import featureAbility from '@ohos.ability.featureAbility';
   import wantAgent, { WantAgent } from '@ohos.app.ability.wantAgent';
   import rpc from "@ohos.rpc";
   import { BusinessError } from '@ohos.base';
-   ```
+  ```
 
 4. 申请和取消长时任务。在 ServiceAbility 中，调用 startBackgroundRunning() 接口和 startBackgroundRunning() 接口实现长时任务的申请和取消，通过js代码实现。
    
-   ```js
+  ```js
   function startContinuousTask() {
     let wantAgentInfo: wantAgent.WantAgentInfo = {
       // 点击通知后，将要执行的动作列表
@@ -450,7 +449,7 @@
   }
 
   export default new ServiceAbility();
-   ```
+  ```
 
 
 ## 相关实例
