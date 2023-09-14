@@ -120,7 +120,7 @@ struct Home {
           Stack() {
             Text(item.name).fontSize(30)
           }.width('100%').height('100%')
-        }.tabBar(this.TabBarBuilder(index, item))
+        }.tabBar(this.TabBarBuilder(index!, item))
       })
     }
     .vertical(new BreakPointType({ sm: false, md: false, lg: true }).getValue(this.currentBreakpoint)!)
