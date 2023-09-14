@@ -1,7 +1,7 @@
 # File Organization
 
 
-## Directory structure
+## Directory Structure
 
 The following figure shows the typical directory structure of the JavaScript module (**entry/src/main/js/module**) for an application with feature abilities (FA) using JavaScript APIs.
 
