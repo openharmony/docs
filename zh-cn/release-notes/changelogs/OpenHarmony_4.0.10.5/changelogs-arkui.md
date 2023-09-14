@@ -1,10 +1,6 @@
 # ArkUI子系统changelog
 
-## NavPathStack navigation.d.ts内NavPathStack类中非兼容性变更
-
-**关键的接口/组件变更**
-
-方法名称从push，pushName，popTo变更为pushPath，pushPathByName，popToName
+## navigation.d.ts NavPathStack类的三个方法push，pushName，popTo名称变更为pushPath，pushPathByName，popToName。
 
 **变更影响**
 
@@ -13,7 +9,7 @@ Property 'push' does not exist on type 'NavPathStack'.
 Property 'pushName' does not exist on type 'NavPathStack'.   
 Property 'pop' does not exist on type 'NavPathStack'.   
 
-**适配指导**
+**适配指导**   
 
 需更新应用代码
 
