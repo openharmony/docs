@@ -184,7 +184,7 @@
        console.error(`Failed to get RdbStore. Code:${err.code},message:${err.message}`);
        return;
      }
-     store.executeSql('CREATE TABLE IF NOT EXISTS EMPLOYEE (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT NOT NULL, AGE INTEGER, SALARY REAL, CODES BLOB)', , (err) => {
+     store.executeSql('CREATE TABLE IF NOT EXISTS EMPLOYEE (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT NOT NULL, AGE INTEGER, SALARY REAL, CODES BLOB)', (err) => {
      })
      console.info('Succeeded in getting RdbStore.');
    })
