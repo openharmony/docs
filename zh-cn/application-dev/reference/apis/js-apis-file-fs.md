@@ -2606,8 +2606,6 @@ createWatcher(path: string, events: number, listener: WatchEventListener): Watch
 
 创建Watcher对象，用来监听文件或目录变动。
 
-**系统接口**：此接口为系统接口。
-
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 **参数：**
@@ -2652,8 +2650,6 @@ createWatcher(path: string, events: number, listener: WatchEventListener): Watch
 
 事件监听类。
 
-**系统接口**：此接口为系统接口。
-
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 **参数：**
@@ -2665,8 +2661,6 @@ createWatcher(path: string, events: number, listener: WatchEventListener): Watch
 ## WatchEvent<sup>10+</sup>
 
 事件类
-
-**系统接口**：此接口为系统接口。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -3666,8 +3660,6 @@ start(): void
 
 开启监听。
 
-**系统接口**：此接口为系统接口。
-
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 **错误码：**
@@ -3688,8 +3680,6 @@ start(): void
 stop(): void
 
 停止监听。
-
-**系统接口**：此接口为系统接口。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
