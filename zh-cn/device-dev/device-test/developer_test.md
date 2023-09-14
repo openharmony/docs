@@ -590,6 +590,102 @@ OpenHarmony系统开发人员在新增或修改代码之后，希望可以快速
 		```
 		> **注意：** @tc.require的取值必须以AR/SR或issue开头，如：issueI56WJ7。
 
+**TDD测试（Rust）**
+
+- 用例源文件命名规范
+
+    测试用例源文件名称和测试套内容保持一致，测试套命名采用全小写rust_+下划线格式，以test结尾，具体格式为：rust_[功能]_[子功能]_test，子功能支持向下细分。
+
+
+- Rust用例示例及编写步骤，以rust_add_test.rs为例进行说明：
+    ```Rust
+    /*
+     * Copyright (c) 2023 XXXX Device Co., Ltd.
+     * Licensed under the Apache License, Version 2.0 (the "License");
+     * you may not use this file except in compliance with the License.
+     * You may obtain a copy of the License at
+     *
+     *     http://www.apache.org/licenses/LICENSE-2.0
+     *
+     * Unless required by applicable law or agreed to in writing, software
+     * distributed under the License is distributed on an "AS IS" BASIS,
+     * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     * See the License for the specific language governing permissions and
+     * limitations under the License.
+     */
+    
+    /// pub add
+    pub fn add(a: i32, b: i32) -> i32 {
+        a + b
+    }
+
+    #[allow(dead_code)]
+    pub fn bad_add(a: i32, b: i32) -> i32 {
+        a - b
+    }
+    
+    #[cfg(test)]
+    mod tests {
+        use super::*;
+        #[test]
+        fn test_add() {
+            assert_eq!(add(1, 2), 3);
+        }
+        #[test]
+        fn test_bad_add() {
+            assert_eq!(bad_add(1, 2), 3);
+        }
+    }
+    ```
+    详细内容介绍：
+    1. 添加测试用例文件头注释信息
+	    ```
+    	/*
+    	 * Copyright (c) 2023 XXXX Device Co., Ltd.
+    	 * Licensed under the Apache License, Version 2.0 (the "License");
+    	 * you may not use this file except in compliance with the License.
+    	 * You may obtain a copy of the License at
+    	 *
+    	 *     http://www.apache.org/licenses/LICENSE-2.0
+    	 *
+    	 * Unless required by applicable law or agreed to in writing, software
+    	 * distributed under the License is distributed on an "AS IS" BASIS,
+    	 * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    	 * See the License for the specific language governing permissions and
+    	 * limitations under the License.
+    	 */
+    	```
+    2. 定义测试类
+	    ```Rust
+        /// pub add
+        pub fn add(a: i32, b: i32) -> i32 {
+            a + b
+        }
+
+        #[allow(dead_code)]
+        pub fn bad_add(a: i32, b: i32) -> i32 {
+            a - b
+        }
+    	```
+    3. 测试用例实现
+	    ```Rust
+        #[cfg(test)]
+        mod tests {
+            use super::*;
+
+            #[test]
+            fn test_add() {
+                assert_eq!(add(1, 2), 3);
+            }
+
+            #[test]
+            fn test_bad_add() {
+                assert_eq!(bad_add(1, 2), 3);
+           }
+        }
+    	```
+        > **注意：** #[cfg(test)]属性将测试代码标记为测试模块，并使用#[test]属性标记测试函数，这样才能被Rust的测试框架识别为测试函数
+
 **Fuzzing安全测试**
 
 [Fuzzing安全测试用例编写规范](https://gitee.com/openharmony/testfwk_developer_test/blob/master/libs/fuzzlib/README_zh.md)
@@ -978,6 +1074,63 @@ OpenHarmony系统开发人员在新增或修改代码之后，希望可以快速
 		> **说明：** 
 		> 
 		> 进行条件分组的目的在于执行用例时可以选择性地执行某一种特定类型的用例。
+
+- **Rust用例编译配置示例**
+
+	```
+    #Copyright (C) 2023 XXXX Device Co., Ltd.
+
+    import("//build/ohos.gni")
+    import("//build/test.gni")
+
+    module_output_path = "developer_test/rust_add_test"
+    ohos_rust_unittest("rust_add_test") {
+        module_out_path = module_output_path
+        sources = [
+		    "main.rs",
+		    "rust_add_test.rs",
+             ...
+        }
+        deps = [ ":rust_st_add" ]
+    }
+
+    group("unittest") {
+        testonly = true
+        deps = [ ":rust_add_test" ]
+    }
+	```
+
+	详细内容如下：
+
+	1. 添加文件头注释信息
+
+        ```
+        #Copyright (C) 2023 XXXX Device Co., Ltd.
+        ```
+	2. 导入编译模板文件
+
+        ```
+        import("//build/ohos.gni")
+        import("//build/test.gni")
+        ```
+	3. 指定文件输出路径
+
+        ```
+        module_output_path = "developer_test/rust_add_test"
+        ```
+        > **说明：**
+        > 此处输出路径为部件/模块名。
+
+	4. 指定测试用例编译目标输出的文件名称
+
+        ```
+        ohos_rust_unittest("rust_add_test") {
+        }
+        ```
+        > **说明：**
+        > - 使用模板ohos_rust_unittest定义rust的unittest测试套，注意与C++用例区分。
+        > - 测试套名称必须以rust_开头。
+        > - 还可以使用模板ohos_rust_systemtest定义rust的systemtest测试套。
 
 **编译入口配置文件bundle.json**
 
