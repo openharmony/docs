@@ -121,7 +121,7 @@ struct MyComponent {
         .onClick(() => {
           this.data.pushData('item value: ' + this.data.totalCount())
         })
-      }, ((item:string):string => item))
+      }, (item:string):string => item)
     }
   }
 }

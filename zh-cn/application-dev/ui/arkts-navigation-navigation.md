@@ -86,7 +86,7 @@ Navigation组件通过mode属性设置页面的显示模式。
                   .title("NavDestinationTitle" + item)
                 }
               }
-            }, ((item:string):string => item))
+            }, (item:string):string => item)
           }
           .width("90%")
           .margin({ top: 12 })
