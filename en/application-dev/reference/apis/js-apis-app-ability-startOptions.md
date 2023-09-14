@@ -26,6 +26,8 @@ import StartOptions from '@ohos.app.ability.StartOptions';
 
   ```ts
   import missionManager from '@ohos.app.ability.missionManager';
+  import StartOptions from '@ohos.app.ability.StartOptions';
+  import { BusinessError } from '@ohos.base';
 
   try {
     missionManager.getMissionInfos('', 10, (error, missions) => {
@@ -37,7 +39,7 @@ import StartOptions from '@ohos.app.ability.StartOptions';
       console.log(`missions = ${JSON.stringify(missions)}`);
       let id = missions[0].missionId;
 
-      let startOptions = {
+      let startOptions: StartOptions = {
           windowMode : 101,
           displayId: 0
       };
@@ -46,6 +48,8 @@ import StartOptions from '@ohos.app.ability.StartOptions';
       });
     });
   } catch (paramError) {
-    console.error(`error: ${paramError.code}, ${paramError.message}`);
+    let code = (paramError as BusinessError).code;
+    let message = (paramError as BusinessError).message;
+    console.error(`error: ${code}, ${message}`);
   }
   ```

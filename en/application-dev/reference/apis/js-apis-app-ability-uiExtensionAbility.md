@@ -25,17 +25,17 @@ import UIExtensionAbility from '@ohos.app.ability.UIExtensionAbility';
 
 onCreate(): void
 
-Called to initialize the service logic when a UIExtensionAbility is created.
+Called to initialize the service logic when a UIExtensionAbility is being created.
 
-**System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 ## UIExtensionAbility.onSessionCreate
 
 onSessionCreate(want: Want, session: UIExtensionContentSession): void
 
-Called when a **UIExtensionContentSession** instance is created.
+Called when a **UIExtensionContentSession** instance is created for this UIExtensionAbility.
 
-**System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **Parameters**
 
@@ -48,9 +48,9 @@ Called when a **UIExtensionContentSession** instance is created.
 
 onSessionDestroy(session: UIExtensionContentSession): void
 
-Called when a **UIExtensionContentSession** instance is destroyed.
+Called when a **UIExtensionContentSession** instance is destroyed for this UIExtensionAbility.
 
-**System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **Parameters**
 
@@ -82,4 +82,4 @@ Called to clear resources when this UIExtensionAbility is destroyed.
 
 After the **onDestroy()** lifecycle callback is executed, the application may exit. Consequently, the asynchronous function (for example, asynchronously writing data to the database) in **onDestroy()** may fail to be executed. You can use the asynchronous lifecycle to ensure that the subsequent lifecycle continues only after the asynchronous function in **onDestroy()** finishes the execution.
 
-**System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core

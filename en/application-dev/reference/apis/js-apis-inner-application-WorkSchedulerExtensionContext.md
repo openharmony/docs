@@ -15,9 +15,10 @@ The context is obtained through a WorkSchedulerExtensionAbility child class inst
 
 ```ts
 import WorkSchedulerExtensionAbility from '@ohos.WorkSchedulerExtensionAbility';
+import workScheduler from '@ohos.resourceschedule.workScheduler';
 
 class MyWorkSchedulerExtensionAbility extends WorkSchedulerExtensionAbility {
-    onWorkStart(workInfo) {
+    onWorkStart(workInfo: workScheduler.WorkInfo) {
         let WorkSchedulerExtensionContext = this.context; // Obtain the WorkSchedulerExtensionContext.
     }
 }

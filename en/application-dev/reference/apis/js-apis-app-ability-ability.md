@@ -31,9 +31,10 @@ Called when the configuration of the environment where the ability is running is
   ```ts
 // You are not allowed to inherit from the top-level base class Ability. Therefore, the derived class UIAbility is used as an example.
 import UIAbility from '@ohos.app.ability.UIAbility';
+import { Configuration } from '@ohos.app.ability.Configuration';
 
 class MyUIAbility extends UIAbility {
-    onConfigurationUpdate(config) {
+    onConfigurationUpdate(config: Configuration) {
         console.log('onConfigurationUpdate, config: ${JSON.stringify(config)}');
     }
 }
@@ -58,9 +59,10 @@ Called when the system adjusts the memory level.
   ```ts
 // You are not allowed to inherit from the top-level base class Ability. Therefore, the derived class UIAbility is used as an example.
 import UIAbility from '@ohos.app.ability.UIAbility';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 
 class MyUIAbility extends UIAbility {
-    onMemoryLevel(level) {
+    onMemoryLevel(level: AbilityConstant.MemoryLevel) {
         console.log('onMemoryLevel, level: ${JSON.stringify(level)}');
     } 
 }

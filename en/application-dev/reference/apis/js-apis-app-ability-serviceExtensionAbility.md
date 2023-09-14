@@ -33,7 +33,7 @@ None.
 
 onCreate(want: Want): void;
 
-Called when a ServiceExtensionAbility is created to initialize the service logic.
+Called to initialize the service logic when a ServiceExtensionAbility is being created.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -48,8 +48,11 @@ Called when a ServiceExtensionAbility is created to initialize the service logic
 **Example**
 
   ```ts
+  import ServiceExtension from '@ohos.app.ability.ServiceExtensionAbility';
+  import Want from '@ohos.app.ability.Want';
+
   class ServiceExt extends ServiceExtension {
-    onCreate(want) {
+    onCreate(want: Want) {
       console.log('onCreate, want: ${want.abilityName}');
     }
   }
@@ -60,7 +63,7 @@ Called when a ServiceExtensionAbility is created to initialize the service logic
 
 onDestroy(): void;
 
-Called when this ServiceExtensionAbility is destroyed to clear resources.
+Called to clear resources when this ServiceExtensionAbility is being destroyed.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -69,6 +72,8 @@ Called when this ServiceExtensionAbility is destroyed to clear resources.
 **Example**
 
   ```ts
+  import ServiceExtension from '@ohos.app.ability.ServiceExtensionAbility';
+
   class ServiceExt extends ServiceExtension {
     onDestroy() {
       console.log('onDestroy');
@@ -81,7 +86,7 @@ Called when this ServiceExtensionAbility is destroyed to clear resources.
 
 onRequest(want: Want, startId: number): void;
 
-Called following **onCreate()** when a ServiceExtensionAbility is started by calling **startAbility()** or **startServiceExtensionAbility()**. The value of **startId** is incremented for each ability that is started.
+Called following **onCreate()** when a ServiceExtensionAbility is started by calling **startAbility()** or **startServiceExtensionAbility()**. The value of **startId** is incremented for each ServiceExtensionAbility that is started.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -92,13 +97,16 @@ Called following **onCreate()** when a ServiceExtensionAbility is started by cal
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | want |  [Want](js-apis-app-ability-want.md) | Yes| Want information related to this ServiceExtensionAbility, including the ability name and bundle name.|
-| startId | number | Yes| Number of ability start times. The initial value is **1**, and the value is automatically incremented for each ability started.|
+| startId | number | Yes| Number of ServiceExtensionAbility start times. The initial value is **1**, and the value is automatically incremented for each ServiceExtensionAbility started.|
 
 **Example**
 
   ```ts
+  import ServiceExtension from '@ohos.app.ability.ServiceExtensionAbility';
+  import Want from '@ohos.app.ability.Want';
+
   class ServiceExt extends ServiceExtension {
-    onRequest(want, startId) {
+    onRequest(want: Want, startId: number) {
       console.log('onRequest, want: ${want.abilityName}');
     }
   }
@@ -131,15 +139,18 @@ Called following **onCreate()** when a ServiceExtensionAbility is started by cal
 
   ```ts
   import rpc from '@ohos.rpc';
+  import ServiceExtension from '@ohos.app.ability.ServiceExtensionAbility';
+  import Want from '@ohos.app.ability.Want';
+
   class StubTest extends rpc.RemoteObject{
-      constructor(des) {
+      constructor(des: string) {
           super(des);
       }
-      onConnect(code, data, reply, option) {
+      onConnect(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption) {
       }
   }
   class ServiceExt extends ServiceExtension {
-    onConnect(want) {
+    onConnect(want: Want) {
       console.log('onConnect , want: ${want.abilityName}');
       return new StubTest('test');
     }
@@ -150,11 +161,14 @@ If the returned **RemoteObject** object depends on an asynchronous API, you can 
 
   ```ts
 import rpc from '@ohos.rpc';
+import ServiceExtension from '@ohos.app.ability.ServiceExtensionAbility';
+import Want from '@ohos.app.ability.Want';
+
 class StubTest extends rpc.RemoteObject{
-    constructor(des) {
+    constructor(des: string) {
         super(des);
     }
-    onConnect(code, data, reply, option) {
+    onConnect(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption) {
     }
 }
 async function getDescriptor() {
@@ -162,7 +176,7 @@ async function getDescriptor() {
     return "asyncTest"
 }
 class ServiceExt extends ServiceExtension {
-  async onConnect(want) {
+  async onConnect(want: Want) {
     console.log(`onConnect , want: ${want.abilityName}`);
     let descriptor = await getDescriptor();
     return new StubTest(descriptor);
@@ -189,18 +203,24 @@ Called when a client is disconnected from this ServiceExtensionAbility.
 **Example**
 
   ```ts
+  import ServiceExtension from '@ohos.app.ability.ServiceExtensionAbility';
+  import Want from '@ohos.app.ability.Want';
+
   class ServiceExt extends ServiceExtension {
-    onDisconnect(want) {
+    onDisconnect(want: Want) {
       console.log('onDisconnect, want: ${want.abilityName}');
     }
   }
   ```
 
-After the **onDisconnect** lifecycle callback is executed, the application may exit. As a result, the asynchronous function in **onDisconnect** may fail to be executed correctly, for example, asynchronously writing data to the database. The asynchronous lifecycle can be used to ensure that the subsequent lifecycle continues after the asynchronous **onDisconnect** is complete.
+After the **onDisconnect()** lifecycle callback is executed, the application may exit. Consequently, the asynchronous function (for example, asynchronously writing data to the database) in **onDisconnect()** may fail to be executed. The asynchronous lifecycle can be used to ensure that the subsequent lifecycle continues after the asynchronous **onDisconnect()** is complete.
 
   ```ts
+import ServiceExtension from '@ohos.app.ability.ServiceExtensionAbility';
+import Want from '@ohos.app.ability.Want';
+
 class ServiceExt extends ServiceExtension {
-  async onDisconnect(want) {
+  async onDisconnect(want: Want) {
     console.log('onDisconnect, want: ${want.abilityName}');
     // Call the asynchronous function.
   }
@@ -226,8 +246,11 @@ Called when a new client attempts to connect to this ServiceExtensionAbility aft
 **Example**
 
   ```ts
+  import ServiceExtension from '@ohos.app.ability.ServiceExtensionAbility';
+  import Want from '@ohos.app.ability.Want';
+
   class ServiceExt extends ServiceExtension {
-    onReconnect(want) {
+    onReconnect(want: Want) {
       console.log('onReconnect, want: ${want.abilityName}');
     }
   }
@@ -252,8 +275,11 @@ Called when the configuration of this ServiceExtensionAbility is updated.
 **Example**
     
   ```ts
+  import ServiceExtension from '@ohos.app.ability.ServiceExtensionAbility';
+  import { Configuration } from '@ohos.app.ability.Configuration';
+
   class ServiceExt extends ServiceExtension {
-      onConfigurationUpdate(config) {
+      onConfigurationUpdate(config: Configuration) {
           console.log('onConfigurationUpdate, config: ${JSON.stringify(config)}');
       }
   }
@@ -278,8 +304,10 @@ Dumps the client information.
 **Example**
     
   ```ts
+  import ServiceExtension from '@ohos.app.ability.ServiceExtensionAbility';
+
   class ServiceExt extends ServiceExtension {
-      onDump(params) {
+      onDump(params: Array<string>) {
           console.log('dump, params: ${JSON.stringify(params)}');
           return ['params'];
       }

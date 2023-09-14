@@ -19,7 +19,7 @@ sendData(data: { [key: string]: Object }): void
 
 Sends data to the UIExtensionComponent.
 
-**System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **System API**: This is a system API and cannot be called by third-party applications.
 
@@ -43,7 +43,7 @@ setReceiveDataCallback(callback: (data: { [key: string]: Object }) => void): voi
 
 Sets the callback used to receive data from the UIExtensionComponent.
 
-**System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **System API**: This is a system API and cannot be called by third-party applications.
 
@@ -63,18 +63,18 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 
 ## UIExtensionContentSession.loadContent
 
-loadContent(path: string, storage?: LocalStorage): Promise&lt;void&gt;
+loadContent(path: string, storage?: LocalStorage): void;
 
 Loads content from a page associated with a local storage to the window corresponding to the current UIExtensionComponent.
 
-**System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **Parameters**
 
 | Name | Type                                           | Mandatory| Description                                                        |
 | ------- | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
 | path    | string                                          | Yes  | Path of the page from which the content will be loaded.                                        |
-| storage | [LocalStorage](../../quick-start/arkts-localstorage.md) | No  | A storage unit, which provides storage for variable state properties and non-variable state properties of an application.|
+| storage | [LocalStorage](../../quick-start/arkts-localstorage.md) | No  | A storage unit, which provides storage for variable state properties and non-variable state properties of an application. This parameter is left blank by default.|
 
 **Error codes**
 
@@ -153,7 +153,7 @@ setWindowBackgroundColor(color: string): void
 
 Sets the background color for the loading page of the UIExtensionAbility. This API must be used after [loadContent()](#uiextensioncontentsessionloadcontent) takes effect.
 
-**System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **System API**: This is a system API and cannot be called by third-party applications.
 
@@ -179,7 +179,7 @@ Sets whether the window is in privacy mode. This API uses a promise to return th
 
 A window in privacy mode cannot be captured or recorded.
 
-**System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **Required permissions**: ohos.permission.PRIVACY_WINDOW
 
@@ -203,7 +203,7 @@ Sets whether the window is in privacy mode. This API uses an asynchronous callba
 
 A window in privacy mode cannot be captured or recorded.
 
-**System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **Required permissions**: ohos.permission.PRIVACY_WINDOW
 

@@ -29,7 +29,9 @@ Called when an ability is created.
 
 **Example**
 ```ts
-let abilityLifecycleCallback =  {
+import AbilityLifecycleCallback from '@ohos.app.ability.AbilityLifecycleCallback';
+
+let abilityLifecycleCallback: AbilityLifecycleCallback =  {
     onAbilityCreate(ability){
         console.log('AbilityLifecycleCallback onAbilityCreate.');  
     }
@@ -53,7 +55,9 @@ Called when the window stage of an ability is created.
 
 **Example**
 ```ts
-let abilityLifecycleCallback =  {
+import AbilityLifecycleCallback from '@ohos.app.ability.AbilityLifecycleCallback';
+
+let abilityLifecycleCallback: AbilityLifecycleCallback =  {
     onWindowStageCreate(ability, windowStage){
         console.log('AbilityLifecycleCallback onWindowStageCreate.');
     }
@@ -77,7 +81,9 @@ Called when the window stage of an ability gains focus.
 
 **Example**
 ```ts
-let abilityLifecycleCallback =  {
+import AbilityLifecycleCallback from '@ohos.app.ability.AbilityLifecycleCallback';
+
+let abilityLifecycleCallback: AbilityLifecycleCallback =  {
     onWindowStageActive(ability, windowStage){
         console.log('AbilityLifecycleCallback onWindowStageActive.');
     }
@@ -101,7 +107,9 @@ Called when the window stage of an ability loses focus.
 
 **Example**
 ```ts
-let abilityLifecycleCallback =  {
+import AbilityLifecycleCallback from '@ohos.app.ability.AbilityLifecycleCallback';
+
+let abilityLifecycleCallback: AbilityLifecycleCallback =  {
     onWindowStageInactive(ability, windowStage){
         console.log('AbilityLifecycleCallback onWindowStageInactive.');
     }
@@ -125,7 +133,9 @@ Called when the window stage of an ability is destroyed.
 
 **Example**
 ```ts
-let abilityLifecycleCallback =  {
+import AbilityLifecycleCallback from '@ohos.app.ability.AbilityLifecycleCallback';
+
+let abilityLifecycleCallback: AbilityLifecycleCallback =  {
     onWindowStageDestroy(ability, windowStage){
         console.log('AbilityLifecycleCallback onWindowStageDestroy.');
     }
@@ -148,7 +158,9 @@ Called when an ability is destroyed.
 
 **Example**
 ```ts
-let abilityLifecycleCallback =  {
+import AbilityLifecycleCallback from '@ohos.app.ability.AbilityLifecycleCallback';
+
+let abilityLifecycleCallback: AbilityLifecycleCallback =  {
     onAbilityDestroy(ability){
         console.log('AbilityLifecycleCallback onAbilityDestroy.');
     }
@@ -171,7 +183,9 @@ Called when an ability is switched from the background to the foreground.
 
 **Example**
 ```ts
-let abilityLifecycleCallback =  {
+import AbilityLifecycleCallback from '@ohos.app.ability.AbilityLifecycleCallback';
+
+let abilityLifecycleCallback: AbilityLifecycleCallback =  {
     onAbilityForeground(ability){
         console.log('AbilityLifecycleCallback onAbilityForeground.');
     }
@@ -194,7 +208,9 @@ Called when an ability is switched from the foreground to the background.
 
 **Example**
 ```ts
-let abilityLifecycleCallback =  {
+import AbilityLifecycleCallback from '@ohos.app.ability.AbilityLifecycleCallback';
+
+let abilityLifecycleCallback: AbilityLifecycleCallback =  {
     onAbilityBackground(ability){
         console.log('AbilityLifecycleCallback onAbilityBackground.');
     }
@@ -217,7 +233,9 @@ Called when an ability is continued on another device.
 
 **Example**
 ```ts
-let abilityLifecycleCallback =  {
+import AbilityLifecycleCallback from '@ohos.app.ability.AbilityLifecycleCallback';
+
+let abilityLifecycleCallback: AbilityLifecycleCallback =  {
     onAbilityContinue(ability){
         console.log('AbilityLifecycleCallback onAbilityContinue.');
     }
@@ -227,15 +245,40 @@ let abilityLifecycleCallback =  {
 ## Usage of AbilityLifecycleCallback
 
 **Example**
+GlobalContext.ts
+```ts
+// Construct a singleton object.
+export class GlobalContext {
+  private constructor() {}
+  private static instance: GlobalContext;
+  private _objects = new Map<string, Object>();
+
+  public static getContext(): GlobalContext {
+    if (!GlobalContext.instance) {
+      GlobalContext.instance = new GlobalContext();
+    }
+    return GlobalContext.instance;
+  }
+
+  getObject(value: string): Object | undefined {
+    return this._objects.get(value);
+  }
+
+  setObject(key: string, objectClass: Object): void {
+    this._objects.set(key, objectClass);
+  }
+}
+```
 
 MyFirstAbility.ts
 ```ts
 import AbilityLifecycleCallback from '@ohos.app.ability.AbilityLifecycleCallback';
 import AbilityStage from '@ohos.app.ability.AbilityStage';
 import UIAbility from '@ohos.app.ability.UIAbility';
+import { GlobalContext } from '../GlobalContext'
 
 // Declare the ability lifecycle callbacks. A listener can be registered in applicationContext only after all the callbacks are configured.
-let abilityLifecycleCallback = {
+let abilityLifecycleCallback: AbilityLifecycleCallback = {
     onAbilityCreate(ability){
         console.log('AbilityLifecycleCallback onAbilityCreate.');  
     },
@@ -272,7 +315,8 @@ export default class MyFirstAbility extends UIAbility {
         let applicationContext = this.context.getApplicationContext();
         // 2. Register the listener for the ability lifecycle changes through the applicationContext object.
         try {
-            globalThis.lifecycleId = applicationContext.on('abilityLifecycle', abilityLifecycleCallback);
+            let lifecycleId = applicationContext.on('abilityLifecycle', abilityLifecycleCallback);
+            GlobalContext.getContext().setObject("lifecycleId", lifecycleId);
             console.log('registerAbilityLifecycleCallback lifecycleId: ${globalThis.lifecycleId}');
         } catch (paramError) {
             console.error('error: ${paramError.code}, ${paramError.message}');
@@ -284,12 +328,14 @@ export default class MyFirstAbility extends UIAbility {
 MySecondAbility.ts
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import { GlobalContext } from '../GlobalContext'
 
 export default class MySecondAbility extends UIAbility {
     onDestroy() {
         let applicationContext = this.context.getApplicationContext();
+        let lifecycleId = GlobalContext.getContext().getObject("lifecycleId") as number;
         // 3. Deregister the listener for the ability lifecycle changes through the applicationContext object.
-        applicationContext.off('abilityLifecycle', globalThis.lifecycleId, (error) => {
+        applicationContext.off('abilityLifecycle', lifecycleId, (error) => {
             if (error && error.code !== 0) {
                 console.error('unregisterAbilityLifecycleCallback fail, error: ${JSON.stringify(error)}');
             } else {
