@@ -1,7 +1,7 @@
 # LocationButton
 
 
-安全组件的位置按钮，用户通过点击该位置按钮，可以临时获取精准定位权限，而不需要权限弹框授权确认。
+安全控件的位置控件，用户通过点击该位置按钮，可以临时获取精准定位权限，而不需要权限弹框授权确认。
 
 
 > **说明：**
@@ -69,7 +69,7 @@ LocationButton(option:{icon?: LocationIconStyle, text?: LocationDescription, but
 
 ## 属性
 
-不支持通用属性，仅继承[安全组件通用属性](ts-securitycomponent-attributes.md#属性)。
+不支持通用属性，仅继承[安全控件通用属性](ts-securitycomponent-attributes.md#属性)。
 
 
 ## 事件

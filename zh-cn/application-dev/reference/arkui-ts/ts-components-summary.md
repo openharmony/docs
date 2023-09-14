@@ -330,10 +330,10 @@
 
 - [LocationButton](ts-security-components-locationbutton.md)
 
-    安全组件的位置按钮，用户通过点击该位置按钮，可以临时获取精准定位权限，而不需要权限弹框授权确认。
+    安全控件的位置控件，用户通过点击该位置控件，可以临时获取精准定位权限，而不需要权限弹框授权确认。
 - [PasteButton](ts-security-components-pastebutton.md)
 
-    安全组件的粘贴按钮，用户通过点击该粘贴按钮，可以临时获取读取剪贴板权限，而不会触发toast提示。
+    安全控件的粘贴控件，用户通过点击该粘贴控件，可以临时获取读取剪贴板权限，而不会触发toast提示。
 - [SaveButton](ts-security-components-savebutton.md)
 
-    安全组件的保存按钮，用户通过点击该保存按钮，可以临时获取存储权限，而不需要权限弹框授权确认。
+    安全控件的保存控件，用户通过点击该保存控件，可以临时获取存储权限，而不需要权限弹框授权确认。
