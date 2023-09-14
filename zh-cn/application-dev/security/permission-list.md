@@ -2819,7 +2819,7 @@
 **起始版本**：11
 ## ohos.permission.ENABLE_DISTRIBUTED_HARDWARE
 
-允许分布式硬件框架调用分布式部件。
+允许系统服务使能分布式硬件资源。
 
 **权限级别**：system_basic
 
@@ -2830,7 +2830,7 @@
 **起始版本**：11
 ## ohos.permission.ACCESS_DISTRIBUTED_HARDWARE
 
-允许系统服务使用分布式硬件。
+允许系统服务或系统应用访问分布式硬件资源。
 
 **权限级别**：system_basic
 
