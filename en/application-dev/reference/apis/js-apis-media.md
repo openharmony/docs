@@ -366,8 +366,8 @@ For details about the audio and video playback demo, see [Audio Playback](../../
 | loop<sup>9+</sup>                                   | boolean                                                      | Yes  | Yes  | Whether to loop playback. The value **true** means to loop playback, and **false** (default) means the opposite. It is a dynamic attribute<br>and can be set only when the AVPlayer is in the prepared, playing, paused, or completed state.<br>This setting is not supported in live mode.|
 | videoScaleType<sup>9+</sup>                         | [VideoScaleType](#videoscaletype9)                           | Yes  | Yes  | Video scaling type. The default value is **VIDEO_SCALE_TYPE_FIT_CROP**. It is a dynamic attribute<br>and can be set only when the AVPlayer is in the prepared, playing, paused, or completed state.|
 | audioInterruptMode<sup>9+</sup>                     | [audio.InterruptMode](js-apis-audio.md#interruptmode9)       | Yes  | Yes  | Audio interruption mode. The default value is **SHARE_MODE**. It is a dynamic attribute<br>and can be set only when the AVPlayer is in the prepared, playing, paused, or completed state.|
-| audioRendererInfo<sup>10+</sup>                     | [audio.AudioRendererInfo](js-apis-audio.md#audiorendererinfo8) | Yes  | Yes  | Audio renderer information. The default value of **contentType** is **CONTENT_TYPE_MUSIC**, and the default value of **streamUsage** is **STREAM_USAGE_MEDIA**.<br>It can be set only when the AVPlayer is in the initialized state.|
-| audioEffectMode<sup>10+</sup>                       | [audio.AudioEffectMode](js-apis-audio.md#audioeffectmode10)  | Yes  | Yes  | Audio effect mode. The audio effect mode is a dynamic attribute and is restored to the default value **EFFECT_DEFAULT** when **contentType** and **streamUsage** of **audioRendererInfo** are changed. It can be set only when the AVPlayer is in the prepared, playing, paused, or completed state.|
+| audioRendererInfo<sup>10+</sup>                     | [audio.AudioRendererInfo](js-apis-audio.md#audiorendererinfo8) | Yes  | Yes  | Audio renderer information. The default values of **content**, **usage**, and **rendererFlags** are **CONTENT_TYPE_MUSIC**, **STREAM_USAGE_MEDIA**, and **0**, respectively.<br>It can be set only when the AVPlayer is in the initialized state.|
+| audioEffectMode<sup>10+</sup>                       | [audio.AudioEffectMode](js-apis-audio.md#audioeffectmode10)  | Yes  | Yes  | Audio effect mode. The audio effect mode is a dynamic attribute and is restored to the default value **EFFECT_DEFAULT** when **content** and **usage** of **audioRendererInfo** are changed. It can be set only when the AVPlayer is in the prepared, playing, paused, or completed state.|
 | state<sup>9+</sup>                                  | [AVPlayerState](#avplayerstate9)                             | Yes  | No  | AVPlayer state. It can be used as a query parameter when the AVPlayer is in any state.                  |
 | currentTime<sup>9+</sup>                            | number                                                       | Yes  | No  | Current video playback position, in ms. It can be used as a query parameter when the AVPlayer is in the prepared, playing, paused, or completed state.<br>The value **-1** indicates an invalid value.<br>In live mode, **-1** is returned by default.|
 | duration<sup>9+</sup><a name=avplayer_duration></a> | number                                                       | Yes  | No  | Video duration, in ms. It can be used as a query parameter when the AVPlayer is in the prepared, playing, paused, or completed state.<br>The value **-1** indicates an invalid value.<br>In live mode, **-1** is returned by default.|
@@ -1690,6 +1690,10 @@ Defines media information in key-value mode.
 
 **System capability**: SystemCapability.Multimedia.Media.Core
 
+| Name         | Type  | Mandatory| Description                                                        |
+| ------------- | ------ | ---- | ------------------------------------------------------------ |
+| [key: string] | Object | Yes  | For details about the key range supported and the object type and range of each key, see [MediaDescriptionKey](#mediadescriptionkey8).|
+
 **Example**
 
 ```js
@@ -1852,7 +1856,7 @@ let AVRecorderConfig = {
   audioSourceType : media.AudioSourceType.AUDIO_SOURCE_TYPE_MIC,
   videoSourceType : media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_YUV,
   profile : AVRecorderProfile,
-  url : 'fd://',  // Before passing in an FD to this parameter, the file must be created by the caller and granted with the read and write permissions. Example value: fd://45.
+  url : 'fd://', // Before passing in an FD to this parameter, the file must be created by the caller and granted with the read and write permissions. Example value: fd://45.
   rotation: 0, // The value can be 0, 90, 180, or 270. If any other value is used, prepare() reports an error.
   location : { latitude : 30, longitude : 130 }
 }
@@ -2539,16 +2543,16 @@ Describes the audio and video recording profile.
 
 | Name            | Type                                        | Mandatory| Description                                                        |
 | ---------------- | -------------------------------------------- | ---- | ------------------------------------------------------------ |
-| audioBitrate     | number                                       | No  | Audio encoding bit rate. This parameter is mandatory for audio recording.                        |
-| audioChannels    | number                                       | No  | Number of audio channels. This parameter is mandatory for audio recording.                        |
+| audioBitrate     | number                                       | No  | Audio encoding bit rate. This parameter is mandatory for audio recording. The value range is [8000 - 384000].                        |
+| audioChannels    | number                                       | No  | Number of audio channels. This parameter is mandatory for audio recording. The value range is [1 - 2].                        |
 | audioCodec       | [CodecMimeType](#codecmimetype8)             | No  | Audio encoding format. This parameter is mandatory for audio recording. Only **AUDIO_AAC** is supported.     |
-| audioSampleRate  | number                                       | No  | Audio sampling rate. This parameter is mandatory for audio recording.                            |
+| audioSampleRate  | number                                       | No  | Audio sampling rate. This parameter is mandatory for audio recording. The value range is [8000, 11025, 12000, 16000, 22050, 24000, 32000, 44100, 48000, 64000, 96000].                            |
 | fileFormat       | [ContainerFormatType](#containerformattype8) | Yes  | Container format of a file. This parameter is mandatory.                                  |
-| videoBitrate     | number                                       | No  | Video encoding bit rate. This parameter is mandatory for video recording.                        |
-| videoCodec       | [CodecMimeType](#codecmimetype8)             | No  | Video encoding format. This parameter is mandatory for video recording. You need to query the encoding capabilities (including the encoding format and resolution) supported by the device.|
-| videoFrameWidth  | number                                       | No  | Width of a video frame. This parameter is mandatory for video recording.                            |
-| videoFrameHeight | number                                       | No  | Height of a video frame. This parameter is mandatory for video recording.                            |
-| videoFrameRate   | number                                       | No  | Video frame rate. This parameter is mandatory for video recording.                              |
+| videoBitrate     | number                                       | No  | Video encoding bit rate. This parameter is mandatory for video recording. The value range is [1 - 3000000].                        |
+| videoCodec       | [CodecMimeType](#codecmimetype8)             | No  | Video encoding format. This parameter is mandatory for video recording. Only **VIDEO_MPEG4** is supported.|
+| videoFrameWidth  | number                                       | No  | Width of a video frame. This parameter is mandatory for video recording. The value range is [2 - 1920].                            |
+| videoFrameHeight | number                                       | No  | Height of a video frame. This parameter is mandatory for video recording. The value range is [2 - 1080].                            |
+| videoFrameRate   | number                                       | No  | Video frame rate. This parameter is mandatory for video recording. The value range is [1 - 30].                              |
 
 ## AudioSourceType<sup>9+</sup>
 
@@ -3355,7 +3359,7 @@ Enumerates the video recording states. You can obtain the state through the **st
 
 Describes the video recording parameters.
 
-The **audioSourceType** and **videoSourceType** parameters are used to distinguish video-only recording from audio and video recording. (For audio-only recording recording, use **[AVRecorder](#avrecorder9)** or **[AudioRecorder](#audiorecorderdeprecated)**.) For video-only recording, set only **videoSourceType**. For audio and video recording, set both **audioSourceType** and **videoSourceType**.
+The **audioSourceType** and **videoSourceType** parameters are used to distinguish video-only recording from audio and video recording. (For audio-only recording, use **[AVRecorder](#avrecorder9)** or **[AudioRecorder](#audiorecorderdeprecated)**.) For video-only recording, set only **videoSourceType**. For audio and video recording, set both **audioSourceType** and **videoSourceType**.
 
 **System capability**: SystemCapability.Multimedia.Media.VideoRecorder
 
