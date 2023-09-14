@@ -8,7 +8,7 @@ The **securityLabel** module provides APIs for managing data security levels of 
 
 ## Modules to Import
 
-```js
+```ts
 import securityLabel from '@ohos.file.securityLabel';
 ```
 
@@ -18,27 +18,28 @@ Before using the APIs provided by this module to perform operations on files or 
 
 **Stage Model**
 
- ```js
-import UIAbility from '@ohos.app.ability.UIAbility';
+  ```ts
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  import window from '@ohos.window';
 
-export default class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage) {
-        let context = this.context;
-        let pathDir = context.filesDir;
+  export default class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage: window.WindowStage) {
+      let context = this.context;
+      let pathDir = context.filesDir;
     }
-}
- ```
+  }
+  ```
 
 **FA Model**
 
- ```js
- import featureAbility from '@ohos.ability.featureAbility';
- 
- let context = featureAbility.getContext();
- context.getFilesDir().then((data) => {
-      let pathDir = data;
- })
- ```
+  ```js
+  import featureAbility from '@ohos.ability.featureAbility';
+  
+  let context = featureAbility.getContext();
+  context.getFilesDir().then((data) => {
+    let pathDir = data;
+  })
+  ```
 
 For details about how to obtain the FA model context, see [Context](js-apis-inner-app-context.md#context).
 
@@ -80,12 +81,13 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + '/test.txt';
   securityLabel.setSecurityLabel(filePath, "s0").then(() => {
-      console.info("setSecurityLabel successfully");
-  }).catch((err) => {
-      console.info("setSecurityLabel failed with error message: " + err.message + ", error code: " + err.code);
+    console.info("setSecurityLabel successfully");
+  }).catch((err: BusinessError) => {
+    console.info("setSecurityLabel failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -122,9 +124,10 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + '/test.txt';
-  securityLabel.setSecurityLabel(filePath, "s0", (err) => {
+  securityLabel.setSecurityLabel(filePath, "s0", (err: BusinessError) => {
     if (err) {
       console.info("setSecurityLabel failed with error message: " + err.message + ", error code: " + err.code);
     } else {
@@ -165,7 +168,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 **Example**
 
-```js
+```ts
 let filePath = pathDir + '/test.txt';
 securityLabel.setSecurityLabelSync(filePath, "s0");
 ```
@@ -207,12 +210,13 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + '/test.txt';
-  securityLabel.getSecurityLabel(filePath).then((type) => {
-      console.log("getSecurityLabel successfully, Label: " + type);
-  }).catch((err) => {
-      console.log("getSecurityLabel failed with error message: " + err.message + ", error code: " + err.code);
+  securityLabel.getSecurityLabel(filePath).then((type: string) => {
+    console.log("getSecurityLabel successfully, Label: " + type);
+  }).catch((err: BusinessError) => {
+    console.log("getSecurityLabel failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -248,9 +252,10 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + '/test.txt';
-  securityLabel.getSecurityLabel(filePath, (err, type) => {
+  securityLabel.getSecurityLabel(filePath, (err: BusinessError, type: string) => {
     if (err) {
       console.log("getSecurityLabel failed with error message: " + err.message + ", error code: " + err.code);
     } else {
@@ -296,7 +301,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 **Example**
 
-```js
+```ts
 let filePath = pathDir + '/test.txt';
 let type = securityLabel.getSecurityLabelSync(filePath);
 console.log("getSecurityLabel successfully, Label: " + type);
