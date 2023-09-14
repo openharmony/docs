@@ -48,7 +48,7 @@
 ```
 import { BreakpointSystem, BreakPointType } from 'common/BreakpointSystem'
 
-interface TabBar = {
+interface TabBar  {
   name: string
   icon: Resource
   selectIcon: Resource
@@ -178,7 +178,7 @@ export default struct Banner {
 
   build() {
     Swiper() {
-      ForEach(this.data, (item) => {
+      ForEach(this.data, (item:Resource) => {
         Image(item)
           .size({ width: '100%', height: 200 })
           .borderRadius(12)
