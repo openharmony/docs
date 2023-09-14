@@ -568,7 +568,7 @@ For details about the error codes, see [Location Error Codes](../errorcodes/erro
 
 on(type: 'cachedGnssLocationsChange', request: CachedGnssLocationsRequest, callback: Callback&lt;Array&lt;Location&gt;&gt;): void;
 
-Subscribes to cached GNSS location reports.
+Subscribes to cached GNSS location reports. This API is supported only by certain GNSS chip models. If the required chip model is not available, error code 801 (Capability not supported) will be reported.
 
 **Permission required**: ohos.permission.APPROXIMATELY_LOCATION
 
@@ -613,7 +613,7 @@ For details about the error codes, see [Location Error Codes](../errorcodes/erro
 
 off(type: 'cachedGnssLocationsChange', callback?: Callback&lt;Array&lt;Location&gt;&gt;): void;
 
-Unsubscribes from cached GNSS location reports.
+Unsubscribes from cached GNSS location reports. This API is supported only by certain GNSS chip models. If the required chip model is not available, error code 801 (Capability not supported) will be reported.
 
 **Permission required**: ohos.permission.APPROXIMATELY_LOCATION
 
@@ -834,7 +834,7 @@ For details about the error codes, see [Location Error Codes](../errorcodes/erro
 
 on(type: 'gnssFenceStatusChange', request: GeofenceRequest, want: WantAgent): void;
 
-Subscribes to status change events of the specified geofence.
+Subscribes to status change events of the specified geofence. This API is supported only by certain GNSS chip models. If the required chip model is not available, error code 801 (Capability not supported) will be reported.
 
 **Permission required**: ohos.permission.APPROXIMATELY_LOCATION
 
@@ -893,7 +893,7 @@ For details about the error codes, see [Location Error Codes](../errorcodes/erro
 
 off(type: 'gnssFenceStatusChange', request: GeofenceRequest, want: WantAgent): void;
 
-Unsubscribes from status change events of the specified geofence.
+Unsubscribes from status change events of the specified geofence. This API is supported only by certain GNSS chip models. If the required chip model is not available, error code 801 (Capability not supported) will be reported.
 
 **Permission required**: ohos.permission.APPROXIMATELY_LOCATION
 
@@ -1683,7 +1683,7 @@ For details about the error codes, see [Location Error Codes](../errorcodes/erro
 
 getCachedGnssLocationsSize(callback: AsyncCallback&lt;number&gt;): void;
 
-Obtains the number of cached GNSS locations. 
+Obtains the number of cached GNSS locations. This API is supported only by certain GNSS chip models. If the required chip model is not available, error code 801 (Capability not supported) will be reported.
 
 **Permission required**: ohos.permission.APPROXIMATELY_LOCATION
 
@@ -1728,7 +1728,7 @@ For details about the error codes, see [Location Error Codes](../errorcodes/erro
 
 getCachedGnssLocationsSize(): Promise&lt;number&gt;;
 
-Obtains the number of cached GNSS locations. 
+Obtains the number of cached GNSS locations. This API is supported only by certain GNSS chip models. If the required chip model is not available, error code 801 (Capability not supported) will be reported.
 
 **Permission required**: ohos.permission.APPROXIMATELY_LOCATION
 
@@ -1771,7 +1771,7 @@ For details about the error codes, see [Location Error Codes](../errorcodes/erro
 
 flushCachedGnssLocations(callback: AsyncCallback&lt;void&gt;): void;
 
-Obtains all cached GNSS locations and clears the GNSS cache queue. 
+Obtains all cached GNSS locations and clears the GNSS cache queue. This API is supported only by certain GNSS chip models. If the required chip model is not available, error code 801 (Capability not supported) will be reported.
 
 **Permission required**: ohos.permission.APPROXIMATELY_LOCATION
 
@@ -1814,7 +1814,7 @@ For details about the error codes, see [Location Error Codes](../errorcodes/erro
 
 flushCachedGnssLocations(): Promise&lt;void&gt;;
 
-Obtains all cached GNSS locations and clears the GNSS cache queue. 
+Obtains all cached GNSS locations and clears the GNSS cache queue. This API is supported only by certain GNSS chip models. If the required chip model is not available, error code 801 (Capability not supported) will be reported.
 
 **Permission required**: ohos.permission.APPROXIMATELY_LOCATION
 

@@ -74,7 +74,7 @@ Disables listening for combination key events.
 let leftAltKey = 2045;
 let tabKey = 2049;
 // Disable listening for a single callback.
-let callback = function (keyOptions) {
+let callback = (keyOptions: inputConsumer.KeyOptions) => {
   console.log(`keyOptions: ${JSON.stringify(keyOptions)}`);
 }
 let keyOption: inputConsumer.KeyOptions = {preKeys: [leftAltKey], finalKey: tabKey, isFinalKeyDown: true, finalKeyDownDuration: 0};
@@ -90,7 +90,7 @@ try {
 let leftAltKey = 2045;
 let tabKey = 2049;
 // Disable listening for all callbacks.
-let callback = function (keyOptions) {
+let callback = (keyOptions: inputConsumer.KeyOptions) => {
   console.log(`keyOptions: ${JSON.stringify(keyOptions)}`);
 }
 let keyOption: inputConsumer.KeyOptions = {preKeys: [leftAltKey], finalKey: tabKey, isFinalKeyDown: true, finalKeyDownDuration: 0};

@@ -10,7 +10,7 @@ The **hiAppEvent** module provides the application event logging functions, such
 
 ## Modules to Import
 
-```js
+```ts
 import hiAppEvent from '@ohos.hiAppEvent';
 ```
 
@@ -64,16 +64,21 @@ Writes event information to the event file of the current day. This API uses an 
 
 **Example**
 
-```js
-hiAppEvent.write("test_event", hiAppEvent.EventType.FAULT, {"int_data":100, "str_data":"strValue"}, (err, value) => {
-    if (err) {
-        // Event writing error: Write the event to the event file after the invalid parameters in the event are ignored, or stop writing the event if the event verification fails.
-        console.error(`failed to write event because ${err.code}`);
-        return;
-    }
+```ts
+import { BusinessError } from '@ohos.base'
 
-    // Event writing success
-    console.log(`success to write event: ${value}`);
+let eventParams: Record<string, number | string> = {
+  "int_data": 100,
+  "str_data": "strValue",
+};
+hiAppEvent.write("test_event", hiAppEvent.EventType.FAULT, eventParams, (err: BusinessError) => {
+  if (err) {
+    // Event writing error: Write the event to the event file after the invalid parameters in the event are ignored, or stop writing the event if the event verification fails.
+    console.error(`failed to write event, code=${err.code}`);
+    return;
+  }
+  // Event writing success
+  console.log(`success to write event`);
 });
 ```
 
@@ -102,15 +107,20 @@ Writes event information to the event file of the current day. This API uses a p
 
 **Example**
 
-```js
-hiAppEvent.write("test_event", hiAppEvent.EventType.FAULT, {"int_data":100, "str_data":"strValue"})
-    .then((value) => {
-        // Event writing success
-        console.log(`success to write event: ${value}`);
-    }).catch((err) => {
-        // Event writing error: Write the event to the event file after the invalid parameters in the event are ignored, or stop writing the event if the event verification fails.
-        console.error(`failed to write event because ${err.code}`);
-    });
+```ts
+import { BusinessError } from '@ohos.base'
+
+let eventParams: Record<string, number | string> = {
+  "int_data": 100,
+  "str_data": "strValue",
+};
+hiAppEvent.write("test_event", hiAppEvent.EventType.FAULT, eventParams).then(() => {
+  // Event writing success
+  console.log(`success to write event`);
+}).catch((err: BusinessError) => {
+  // Event writing error: Write the event to the event file after the invalid parameters in the event are ignored, or stop writing the event if the event verification fails.
+  console.error(`failed to write event, code=${err.code}`);
+});
 ```
 
 ## hiAppEvent.configure
@@ -135,16 +145,18 @@ Configures the application event logging function, such as setting the event log
 
 **Example**
 
-```js
+```ts
 // Set the application event logging switch.
-hiAppEvent.configure({
-    disable: true
-});
+let config1: hiAppEvent.ConfigOption = {
+  disable: true,
+};
+hiAppEvent.configure(config1);
 
 // Configure the maximum size of the directory that stores the event logging files.
-hiAppEvent.configure({
-    maxStorage: '100M'
-});
+let config2: hiAppEvent.ConfigOption = {
+  maxStorage: '100M',
+};
+hiAppEvent.configure(config2);
 ```
 
 ## ConfigOption

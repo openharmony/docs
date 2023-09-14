@@ -9,7 +9,7 @@ The **logLibrary** module provides APIs for obtaining various system maintenance
 
 ## Modules to Import
 
-```js
+```ts
 import logLibrary from '@ohos.logLibrary';
 ```
 
@@ -59,14 +59,14 @@ For details about error codes, see [Log Library Error Codes](../errorcodes/error
 
 **Example**
 
-```js
+```ts
 import logLibrary from '@ohos.logLibrary';
 
 try {
     let logObj = logLibrary.list('HILOG');
     // do something here.
 } catch (error) {
-    console.error(`error code: ${error.code}, error msg: ${error.message}`);
+    console.error(`error code: ${error?.code}, error msg: ${error?.message}`);
 }
 ```
 
@@ -107,8 +107,9 @@ For details about error codes, see [Log Library Error Codes](../errorcodes/error
 
 **Example**
 
-```js
+```ts
 import logLibrary from '@ohos.logLibrary';
+import { BusinessError } from '@ohos.base';
 
 try {
     logLibrary.copy('HILOG', 'hiapplogcat-1.zip', ''
@@ -117,12 +118,12 @@ try {
             // do something here.
         }
     ).catch(
-        (err) => {
+        (err: BusinessError) => {
             // do something here.
         }
     )
 } catch (error) {
-    console.error(`error code: ${error.code}, error msg: ${error.message}`);
+    console.error(`error code: ${error?.code}, error msg: ${error?.message}`);
 }
 ```
 
@@ -158,7 +159,7 @@ For details about error codes, see [Log Library Error Codes](../errorcodes/error
 
 **Example**
 
-```js
+```ts
 import logLibrary from '@ohos.logLibrary';
 
 try {
@@ -170,7 +171,7 @@ try {
         }
     });
 } catch (error) {
-    console.error(`error code: ${error.code}, error msg: ${error.message}`);
+    console.error(`error code: ${error?.code}, error msg: ${error?.message}`);
 }
 ```
 
@@ -211,8 +212,9 @@ For details about error codes, see [Log Library Error Codes](../errorcodes/error
 
 **Example**
 
-```js
+```ts
 import logLibrary from '@ohos.logLibrary';
+import { BusinessError } from '@ohos.base';
 
 try {
     logLibrary.move('FAULTLOG', 'fault_log_test.zip', ''
@@ -221,12 +223,12 @@ try {
             // do something here.
         }
     ).catch(
-        (err) => {
+        (err: BusinessError) => {
             // do something here.
         }
     )
 } catch (error) {
-    console.error(`error code: ${error.code}, error msg: ${error.message}`);
+    console.error(`error code: ${error?.code}, error msg: ${error?.message}`);
 }
 ```
 
@@ -262,7 +264,7 @@ For details about error codes, see [Log Library Error Codes](../errorcodes/error
 
 **Example**
 
-```js
+```ts
 import logLibrary from '@ohos.logLibrary';
 
 try {
@@ -274,7 +276,7 @@ try {
         }
     });
 } catch (error) {
-    console.error(`error code: ${error.code}, error msg: ${error.message}`);
+    console.error(`error code: ${error?.code}, error msg: ${error?.message}`);
 }
 ```
 
@@ -308,12 +310,12 @@ For details about error codes, see [Log Library Error Codes](../errorcodes/error
 
 **Example**
 
-```js
+```ts
 import logLibrary from '@ohos.logLibrary';
 
 try {
-    logLibrary.remove('FAULTLOG', 'fault_log_test.zip');
+  logLibrary.remove('FAULTLOG', 'fault_log_test.zip');
 } catch (error) {
-    console.error(`error code: ${error.code}, error msg: ${error.message}`);
+  console.error(`error code: ${error?.code}, error msg: ${error?.message}`);
 }
 ```

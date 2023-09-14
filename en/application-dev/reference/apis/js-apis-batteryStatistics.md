@@ -42,10 +42,10 @@ For details about the error codes, see [Thermal Manager Error Codes](../errorcod
 
 ```js
 batteryStats.getBatteryStats()
-.then(data => {
+.then((data: batteryStats.BatteryStatsInfo[]) => {
     console.info('battery statistics info: ' + data);
 })
-.catch(err => {
+.catch((err: { code: number, message: string }) => {
     console.error('get battery statistics failed, err: ' + err);
 });
 ```
@@ -77,7 +77,7 @@ For details about the error codes, see [Thermal Manager Error Codes](../errorcod
 **Example**
 
 ```js
-batteryStats.getBatteryStats((err, data) => {
+batteryStats.getBatteryStats((err: BusinessError<void>, data: batteryStats.BatteryStatsInfo[]) => {
     if (typeof err === 'undefined') {
         console.info('battery statistics info: ' + data);
     } else {
@@ -120,7 +120,7 @@ For details about the error codes, see [Thermal Manager Error Codes](../errorcod
 
 ```js
 try {
-    var value = batteryStats.getAppPowerValue(10021);
+    let value = batteryStats.getAppPowerValue(10021);
     console.info('battery statistics value of app is: ' + value);
 } catch(err) {
     console.error('get battery statistics value of app failed, err: ' + err);
@@ -161,7 +161,7 @@ For details about the error codes, see [Thermal Manager Error Codes](../errorcod
 
 ```js
 try {
-    var percent = batteryStats.getAppPowerPercent(10021);
+    let percent = batteryStats.getAppPowerPercent(10021);
     console.info('battery statistics percent of app is: ' + percent);
 } catch(err) {
     console.error('get battery statistics percent of app failed, err: ' + err);
@@ -202,7 +202,7 @@ For details about the error codes, see [Thermal Manager Error Codes](../errorcod
 
 ```js
 try {
-    var value = batteryStats.getHardwareUnitPowerValue(batteryStats.ConsumptionType.CONSUMPTION_TYPE_SCREEN);
+    let value = batteryStats.getHardwareUnitPowerValue(batteryStats.ConsumptionType.CONSUMPTION_TYPE_SCREEN);
     console.info('battery statistics value of hardware is: ' + value);
 } catch(err) {
     console.error('get battery statistics percent of hardware failed, err: ' + err);
@@ -243,7 +243,7 @@ For details about the error codes, see [Thermal Manager Error Codes](../errorcod
 
 ```js
 try {
-    var percent = batteryStats.getHardwareUnitPowerPercent(batteryStats.ConsumptionType.CONSUMPTION_TYPE_SCREEN);
+    let percent = batteryStats.getHardwareUnitPowerPercent(batteryStats.ConsumptionType.CONSUMPTION_TYPE_SCREEN);
     console.info('battery statistics percent of hardware is: ' + percent);
 } catch(err) {
     console.error('get battery statistics percent of hardware failed, err: ' + err);

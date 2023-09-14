@@ -135,7 +135,7 @@ try {
 
 setPointerSpeed(speed: number, callback: AsyncCallback&lt;void&gt;): void
 
-Sets the mouse movement speed. This API uses an asynchronous callback to return the result.
+Sets the mouse moving speed. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Pointer
 
@@ -145,14 +145,14 @@ Sets the mouse movement speed. This API uses an asynchronous callback to return 
 
 | Name      | Type                       | Mandatory  | Description                                   |
 | -------- | ------------------------- | ---- | ------------------------------------- |
-| speed    | number                    | Yes   | Mouse movement speed. The value ranges from **1** to **11**. The default value is **5**.  |
+| speed    | number                    | Yes   | Mouse moving speed. The value ranges from **1** to **11**. The default value is **5**.  |
 | callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result.|
 
 **Example**
 
 ```js
 try {
-  pointer.setPointerSpeed(5, (error: Error) => {
+  pointer.setPointerSpeed(5, (error) => {
     if (error) {
       console.log(`Set pointer speed failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
@@ -168,7 +168,7 @@ try {
 
 setPointerSpeed(speed: number): Promise&lt;void&gt;
 
-Sets the mouse movement speed. This API uses a promise to return the result.
+Sets the mouse moving speed. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Pointer
 
@@ -178,7 +178,7 @@ Sets the mouse movement speed. This API uses a promise to return the result.
 
 | Name   | Type    | Mandatory  | Description                                 |
 | ----- | ------ | ---- | ----------------------------------- |
-| speed | number | Yes   | Mouse movement speed. The value ranges from **1** to **11**. The default value is **5**.|
+| speed | number | Yes   | Mouse moving speed. The value ranges from **1** to **11**. The default value is **5**.|
 
 **Return value**
 
@@ -202,7 +202,7 @@ try {
 
 getPointerSpeed(callback: AsyncCallback&lt;number&gt;): void
 
-Obtains the mouse movement speed. This API uses an asynchronous callback to return the result.
+Obtains the mouse moving speed. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Pointer
 
@@ -218,7 +218,7 @@ Obtains the mouse movement speed. This API uses an asynchronous callback to retu
 
 ```js
 try {
-  pointer.getPointerSpeed((error: Error, speed：number) => {
+  pointer.getPointerSpeed((error, speed) => {
     if (error) {
       console.log(`Get pointer speed failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
@@ -234,7 +234,7 @@ try {
 
 getPointerSpeed(): Promise&lt;number&gt;
 
-Obtains the mouse movement speed. This API uses a promise to return the result.
+Obtains the mouse moving speed. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Pointer
 
@@ -250,7 +250,7 @@ Obtains the mouse movement speed. This API uses a promise to return the result.
 
 ```js
 try {
-  pointer.getPointerSpeed().then(speed: number => {
+  pointer.getPointerSpeed().then(speed => {
     console.log(`Get pointer speed success, speed: ${JSON.stringify(speed)}`);
   });
 } catch (error) {
@@ -345,7 +345,7 @@ Obtains the status of the mouse hover scroll switch. This API uses an asynchrono
 
 ```js
 try {
-  pointer.getHoverScrollState((error: Error, state: boolean) => {
+  pointer.getHoverScrollState((error, state) => {
     console.log(`Get the mouse hover scroll success, state: ${JSON.stringify(state)}`);
   });
 } catch (error) {
@@ -373,7 +373,7 @@ Obtains the status of the mouse hover scroll switch. This API uses a promise to 
 
 ```js
 try {
-  pointer.getHoverScrollState().then((state: Boolean) => {
+  pointer.getHoverScrollState().then((state) => {
     console.log(`Get the mouse hover scroll success, state: ${JSON.stringify(state)}`);
   });
 } catch (error) {
@@ -614,7 +614,7 @@ try {
 
 getMouseScrollRows(): Promise&lt;number&gt;
 
-Obtains the mouse movement speed. This API uses a promise to return the result.
+Obtains the mouse moving speed. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Pointer
 
@@ -657,6 +657,8 @@ Obtains the mouse pointer style. This API uses an asynchronous callback to retur
 
 ```js
 import { BusinessError }  from '@ohos.base';
+import window from '@ohos.window';
+
 let context = getContext(this);
 window.getLastWindow(context, (error: BusinessError, win: window.Window) => {
   if (error.code) {
@@ -701,7 +703,9 @@ Obtains the mouse pointer style. This API uses a promise to return the result.
 **Example**
 
 ```js
+import window from '@ohos.window';
 import { BusinessError }  from '@ohos.base';
+
 let context = getContext(this);
 window.getLastWindow(context, (error: BusinessError, win: window.Window) => {
   if (error.code) {
@@ -853,6 +857,8 @@ Enumerates mouse pointer styles.
 | HORIZONTAL_TEXT_CURSOR<sup>10+</sup> | 39 | Horizontal text cursor|![Horizontal_Text_Cursor.png](./figures/Horizontal_Text_Cursor.png)|
 | CURSOR_CROSS<sup>10+</sup> | 40 | Cross cursor|![Cursor_Cross.png](./figures/Cursor_Cross.png)|
 | CURSOR_CIRCLE<sup>10+</sup> | 41 | Circular cursor|![Cursor_Circle.png](./figures/Cursor_Circle.png)|
+| LOADING<sup>10+</sup> | 42 | Animation loading|![Loading.png](./figures/Loading.png)|
+| RUNNING<sup>10+</sup> | 43 | Animation running in the background|![Running.png](./figures/Running.png)|
 
 ## pointer.setTouchpadScrollSwitch<sup>10+</sup>
 
@@ -969,7 +975,7 @@ Obtains the scroll switch status of the touchpad. This API uses a promise to ret
 
 ```js
 try {
-  pointer.getTouchpadScrollSwitch().then((state: Boolean) => {
+  pointer.getTouchpadScrollSwitch().then((state) => {
     console.log(`getTouchpadScrollSwitch success, state: ${JSON.stringify(state)}`);
   });
 } catch (error) {
@@ -1064,7 +1070,7 @@ Obtains the scroll direction of the touchpad. This API uses an asynchronous call
 
 ```js
 try {
-  pointer.getTouchpadScrollSwitch ((error: Error, state: Boolean) => {
+  pointer.getTouchpadScrollSwitch ((error: Error, state: boolean) => {
     console.log(`getTouchpadScrollDirection success, state: ${JSON.stringify(state)}`);
   });
 } catch (error) {
@@ -1092,7 +1098,7 @@ Obtains the scroll direction of the touchpad. This API uses a promise to return 
 
 ```js
 try {
-  pointer.getTouchpadScrollDirection().then((state: Boolean) => {
+  pointer.getTouchpadScrollDirection().then((state) => {
     console.log(`getTouchpadScrollDirection success, state: ${JSON.stringify(state)}`);
   });
 } catch (error) {
@@ -1121,7 +1127,7 @@ Sets the tap switch of the touchpad. This API uses an asynchronous callback to r
 
 ```js
 try {
-  pointer.setTouchpadTapSwitch(true, (error: Error) => {
+  pointer.setTouchpadTapSwitch(true, (error) => {
     if (error) {
       console.log(`setTouchpadTapSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;

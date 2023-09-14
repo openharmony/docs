@@ -10,7 +10,7 @@ The **hiSysEvent** module provides the system event logging functions, such as c
 
 ## Modules to Import
 
-```js
+```ts
 import hiSysEvent from '@ohos.hiSysEvent';
 ```
 
@@ -73,26 +73,29 @@ For details about the error codes, see [HiSysEvent Error Codes](../errorcodes/er
 
 **Example**
 
-```js
+```ts
 import hiSysEvent from '@ohos.hiSysEvent';
+import { BusinessError } from '@ohos.base';
 
 try {
-    hiSysEvent.write({
-        domain: "RELIABILITY",
-        name: "STACK",
-        eventType: hiSysEvent.EventType.FAULT,
-        params: {
-            PID: 487,
-            UID: 103,
-            PACKAGE_NAME: "com.ohos.hisysevent.test",
-            PROCESS_NAME: "syseventservice",
-            MSG: "no msg."
-        }
-    }, (err, val) => {
-        // do something here.
-    })
-} catch (error) {
-    console.error(`error code: ${error.code}, error msg: ${error.message}`);
+  let customizedParams: Record<string, string | number> = {
+    'PID': 487,
+    'UID': 103,
+    'PACKAGE_NAME': "com.ohos.hisysevent.test",
+    'PROCESS_NAME': "syseventservice",
+    'MSG': "no msg."
+  };
+  let eventInfo: hiSysEvent.SysEventInfo = {
+    domain: "RELIABILITY",
+    name: "STACK",
+    eventType: hiSysEvent.EventType.FAULT,
+    params: customizedParams
+  };
+  hiSysEvent.write(eventInfo, (err: BusinessError, val: number) => {
+    // do something here.
+  });
+} catch (err) {
+  console.error(`error code: ${(err as BusinessError).code}, error msg: ${(err as BusinessError).message}`);
 }
 ```
 
@@ -134,32 +137,35 @@ For details about the error codes, see [HiSysEvent Error Codes](../errorcodes/er
 
 **Example**
 
-```js
+```ts
 import hiSysEvent from '@ohos.hiSysEvent';
+import { BusinessError } from '@ohos.base';
 
 try {
-    hiSysEvent.write({
-        domain: "RELIABILITY",
-        name: "STACK",
-        eventType: hiSysEvent.EventType.FAULT,
-        params: {
-            PID: 487,
-            UID: 103,
-            PACKAGE_NAME: "com.ohos.hisysevent.test",
-            PROCESS_NAME: "syseventservice",
-            MSG: "no msg."
-        }
-    }).then(
-        (val) => {
-            // do something here.
-        }
-    ).catch(
-        (err) => {
-            // do something here.
-        }
-    )
-} catch (error) {
-    console.error(`error code: ${error.code}, error msg: ${error.message}`);
+  let customizedParams: Record<string, string | number> = {
+    'PID': 487,
+    'UID': 103,
+    'PACKAGE_NAME': "com.ohos.hisysevent.test",
+    'PROCESS_NAME': "syseventservice",
+    'MSG': "no msg."
+  };
+  let eventInfo: hiSysEvent.SysEventInfo = {
+    domain: "RELIABILITY",
+    name: "STACK",
+    eventType: hiSysEvent.EventType.FAULT,
+    params: customizedParams
+  };
+  hiSysEvent.write(eventInfo).then(
+    (val: number) => {
+      // do something here.
+    }
+  ).catch(
+    (err: BusinessError) => {
+      console.error(`error code: ${err.code}, error msg: ${err.message}`);
+    }
+  );
+} catch (err) {
+  console.error(`error code: ${(err as BusinessError).code}, error msg: ${(err as BusinessError).message}`);
 }
 ```
 
@@ -227,27 +233,29 @@ For details about the error codes, see [HiSysEvent Error Codes](../errorcodes/er
 
 **Example**
 
-```js
+```ts
 import hiSysEvent from '@ohos.hiSysEvent';
+import { BusinessError } from '@ohos.base';
 
-let watcher = {
-    rules: [{
-        domain: "RELIABILITY",
-        name: "STACK",
-        tag: "STABILITY",
-        ruleType: hiSysEvent.RuleType.WHOLE_WORD,
-    }],
-    onEvent: (info) => {
-        // do something here.
-    },
-    onServiceDied: () => {
-        // do something here.
-    }
-}
+let watchRules: hiSysEvent.WatchRule[] = [{
+    domain: "RELIABILITY",
+    name: "STACK",
+    tag: "STABILITY",
+    ruleType: hiSysEvent.RuleType.WHOLE_WORD,
+  } as hiSysEvent.WatchRule];
+let watcher: hiSysEvent.Watcher = {
+  rules: watchRules,
+  onEvent: (info: hiSysEvent.SysEventInfo) => {
+    // do something here.
+  },
+  onServiceDied: () => {
+    // do something here.
+  }
+};
 try {
-    hiSysEvent.addWatcher(watcher)
-} catch (error) {
-    console.error(`error code: ${error.code}, error msg: ${error.message}`);
+  hiSysEvent.addWatcher(watcher);
+} catch (err) {
+  console.error(`error code: ${(err as BusinessError).code}, error msg: ${(err as BusinessError).message}`);
 }
 ```
 
@@ -277,28 +285,30 @@ For details about the error codes, see [HiSysEvent Error Codes](../errorcodes/er
 
 **Example**
 
-```js
+```ts
 import hiSysEvent from '@ohos.hiSysEvent';
+import { BusinessError } from '@ohos.base';
 
-let watcher = {
-    rules: [{
-        domain: "RELIABILITY",
-        name: "STACK",
-        tag: "STABILITY",
-        ruleType: hiSysEvent.RuleType.WHOLE_WORD,
-    }],
-    onEvent: (info) => {
-        // do something here.
-    },
-    onServiceDied: () => {
-        // do something here.
-    }
-}
+let watchRules: hiSysEvent.WatchRule[] = [{
+    domain: "RELIABILITY",
+    name: "STACK",
+    tag: "STABILITY",
+    ruleType: hiSysEvent.RuleType.WHOLE_WORD,
+  } as hiSysEvent.WatchRule ];
+let watcher: hiSysEvent.Watcher = {
+  rules: watchRules,
+  onEvent: (info: hiSysEvent.SysEventInfo) => {
+    // do something here.
+  },
+  onServiceDied: () => {
+    // do something here.
+  }
+};
 try {
-    hiSysEvent.addWatcher(watcher)
-    hiSysEvent.removeWatcher(watcher)
-} catch (error) {
-    console.error(`error code: ${error.code}, error msg: ${error.message}`);
+  hiSysEvent.addWatcher(watcher);
+  hiSysEvent.removeWatcher(watcher);
+} catch (err) {
+  console.error(`error code: ${(err as BusinessError).code}, error msg: ${(err as BusinessError).message}`);
 }
 ```
 
@@ -370,41 +380,48 @@ For details about the error codes, see [HiSysEvent Error Codes](../errorcodes/er
 
 **Example**
 
-```js
+```ts
 import hiSysEvent from '@ohos.hiSysEvent';
+import { BusinessError } from '@ohos.base';
 
 try {
-    hiSysEvent.write({
-        domain: "RELIABILITY",
-        name: "STACK",
-        eventType: hiSysEvent.EventType.FAULT,
-        params: {
-            PID: 487,
-            UID: 103,
-            PACKAGE_NAME: "com.ohos.hisysevent.test",
-            PROCESS_NAME: "syseventservice",
-            MSG: "no msg."
-        }
-    }, (err, val) => {
-        // do something here.
-    })
-    hiSysEvent.query({
-        beginTime: -1,
-        endTime: -1,
-        maxEvents: 5,
-    }, [{
-        domain: "RELIABILITY",
-        names: ["STACK"],
-    }], {
-        onQuery: function (infos) {
-            // do something here.
-        },
-        onComplete: function(reason, total) {
-            // do something here.
-        }
-    })
-} catch (error) {
-    console.error(`error code: ${error.code}, error msg: ${error.message}`);
+  let customizedParams: Record<string, string | number> = {
+    'PID': 487,
+    'UID': 103,
+    'PACKAGE_NAME': "com.ohos.hisysevent.test",
+    'PROCESS_NAME': "syseventservice",
+    'MSG': "no msg."
+  };
+  let eventInfo: hiSysEvent.SysEventInfo = {
+    domain: "RELIABILITY",
+    name: "STACK",
+    eventType: hiSysEvent.EventType.FAULT,
+    params: customizedParams
+  };
+  hiSysEvent.write(eventInfo, (err: BusinessError, val: number) => {
+    // do something here.
+  });
+
+  let queryArg: hiSysEvent.QueryArg = {
+    beginTime: -1,
+    endTime: -1,
+    maxEvents: 5,
+  };
+  let queryRules: hiSysEvent.QueryRule[] = [{
+    domain: "RELIABILITY",
+    names: ["STACK"],
+  } as hiSysEvent.QueryRule];
+  let querier: hiSysEvent.Querier = {
+    onQuery: (infos: hiSysEvent.SysEventInfo[]) => {
+      // do something here.
+    },
+    onComplete: (reason: number, total: number) => {
+      // do something here.
+    }
+  };
+  hiSysEvent.query(queryArg, queryRules, querier);
+} catch (err) {
+  console.error(`error code: ${(err as BusinessError).code}, error msg: ${(err as BusinessError).message}`);
 }
 ```
 
@@ -443,50 +460,55 @@ For details about the error codes, see [HiSysEvent Error Codes](../errorcodes/er
 
 **Example**
 
-```
+```ts
 import hiSysEvent from '@ohos.hiSysEvent';
 import fs from '@ohos.file.fs';
+import { BusinessError } from '@ohos.base';
 
 try {
-    hiSysEvent.write({
-        domain: "RELIABILITY",
-        name: "STACK",
-        eventType: hiSysEvent.EventType.FAULT,
-        params: {
-            PID: 487,
-            UID: 103,
-            PACKAGE_NAME: "com.ohos.hisysevent.test",
-            PROCESS_NAME: "syseventservice",
-            MSG: "no msg."
-        }
-    }, (err, val) => {
-        // do something here.
-    })
-    
-    let time = hiSysEvent.exportSysEvents({
-        beginTime: -1,
-        endTime: -1,
-        maxEvents: 1,
-    }, [{
-        domain: "RELIABILITY",
-        names: ["STACK"],
-    }])
-    console.log(`receive export task time is : ${time}`);
-    
-    // Postpone reading of exported events.
-    setTimeout(function() {
-    	let eventDir = '/data/storage/el2/base/cache/hiview/event';
-    	let filenames = fs.listFileSync(eventDir);
-    	for (let i = 0; i < filenames.length; i++) {
-    		if (filenames[i].indexOf(time.toString()) != -1) {
-    			let res = fs.readTextSync(eventDir + '/' + filenames[i]);
-    			let events = JSON.parse('[' + res.slice(0, res.length - 1) + ']');
-    			console.log("read file end, events is :" + JSON.stringify(events));
-    		}
-    	}
-    }, 10000)
-} catch (error) {
-    console.error(`error code: ${error.code}, error msg: ${error.message}`);
+  let customizedParams: Record<string, string | number> = {
+    'PID': 487,
+    'UID': 103,
+    'PACKAGE_NAME': "com.ohos.hisysevent.test",
+    'PROCESS_NAME': "syseventservice",
+    'MSG': "no msg."
+  };
+  let eventInfo: hiSysEvent.SysEventInfo = {
+    domain: "RELIABILITY",
+    name: "STACK",
+    eventType: hiSysEvent.EventType.FAULT,
+    params: customizedParams
+  };
+  hiSysEvent.write(eventInfo, (err: BusinessError, val: number) => {
+    // do something here.
+  });
+
+  let queryArg: hiSysEvent.QueryArg = {
+    beginTime: -1,
+    endTime: -1,
+    maxEvents: 1,
+  };
+  let queryRules: hiSysEvent.QueryRule[] = [{
+    domain: "RELIABILITY",
+    names: ["STACK"],
+  } as hiSysEvent.QueryRule];
+  let time = hiSysEvent.exportSysEvents(queryArg, queryRules);
+  console.log(`receive export task time is : ${time}`);
+
+  // Postpone reading of exported events.
+  setTimeout(() => {
+    let eventDir = '/data/storage/el2/base/cache/hiview/event';
+    let filenames = fs.listFileSync(eventDir);
+    for (let i = 0; i < filenames.length; i++) {
+      if (filenames[i].indexOf(time.toString()) != -1) {
+        let res = fs.readTextSync(eventDir + '/' + filenames[i]);
+        let events: string = JSON.parse('[' + res.slice(0, res.length - 1) + ']');
+        console.log("read file end, events is :" + JSON.stringify(events));
+      }
+    }
+  }, 10000);
+} catch catch (err) {
+  console.error(`error code: ${(err as BusinessError).code}, error msg: ${(err as BusinessError).message}`);
 }
 ```
 
@@ -523,45 +545,51 @@ For details about the error codes, see [HiSysEvent Error Codes](../errorcodes/er
 
 **Example**
 
-```
+```ts
 import hiSysEvent from '@ohos.hiSysEvent';
 import fs from '@ohos.file.fs';
+import { BusinessError } from '@ohos.base';
 
 try {
-    hiSysEvent.subscribe([{
-        domain: "RELIABILITY",
-        names: ["STACK"],
-    },{
-        domain: "BUNDLE_MANAGER",
-        names: ["BUNDLE_UNINSTALL"],
-      }])
-    hiSysEvent.write({
-        domain: "RELIABILITY",
-        name: "STACK",
-        eventType: hiSysEvent.EventType.FAULT,
-        params: {
-            PID: 487,
-            UID: 103,
-            PACKAGE_NAME: "com.ohos.hisysevent.test",
-            PROCESS_NAME: "syseventservice",
-            MSG: "no msg."
-        }
-    }, (err, val) => {
-        // do something here.
-    })
+  let rules: hiSysEvent.QueryRule[] = [{
+    domain: "RELIABILITY",
+    names: ["STACK"],
+  } as hiSysEvent.QueryRule,
+  {
+    domain: "BUNDLE_MANAGER",
+    names: ["BUNDLE_UNINSTALL"],
+  } as hiSysEvent.QueryRule];
+  hiSysEvent.subscribe(rules);
 
-    // Postpone reading of subscribed events.
-    setTimeout(function() {
-    	let eventDir = '/data/storage/el2/base/cache/hiview/event';
-    	let filenames = fs.listFileSync(eventDir);
-    	for (let i = 0; i < filenames.length; i++) {
-    		let res = fs.readTextSync(eventDir + '/' + filenames[i]);
-    		let events = JSON.parse('[' + res.slice(0, res.length - 1) + ']');
-    		console.log("read file end, events is :" + JSON.stringify(events));
-    	}
-    }, 10000)
-} catch (error) {
-    console.error(`error code: ${error.code}, error msg: ${error.message}`);
+  let customizedParams: Record<string, string | number> = {
+    'PID': 487,
+    'UID': 103,
+    'PACKAGE_NAME': "com.ohos.hisysevent.test",
+    'PROCESS_NAME': "syseventservice",
+    'MSG': "no msg."
+  };
+  let eventInfo: hiSysEvent.SysEventInfo = {
+    domain: "RELIABILITY",
+    name: "STACK",
+    eventType: hiSysEvent.EventType.FAULT,
+    params: customizedParams
+  };
+  hiSysEvent.write(eventInfo, (err: BusinessError, val: number) => {
+    // do something here.
+  });
+
+  // Postpone reading of subscribed events.
+  setTimeout(() => {
+    let eventDir = '/data/storage/el2/base/cache/hiview/event';
+    let filenames = fs.listFileSync(eventDir);
+    for (let i = 0; i < filenames.length; i++) {
+      let res = fs.readTextSync(eventDir + '/' + filenames[i]);
+      let events: string = JSON.parse('[' + res.slice(0, res.length - 1) + ']');
+      console.log("read file end, events is :" + JSON.stringify(events));
+    }
+  }, 10000);
+} catch catch (err) {
+  console.error(`error code: ${(err as BusinessError).code}, error msg: ${(err as BusinessError).message}`);
 }
 ```
 
@@ -585,19 +613,22 @@ For details about the error codes, see [HiSysEvent Error Codes](../errorcodes/er
 
 **Example**
 
-```
+```ts
 import hiSysEvent from '@ohos.hiSysEvent';
+import { BusinessError } from '@ohos.base';
 
 try {
-    hiSysEvent.subscribe([{
-        domain: "RELIABILITY",
-        names: ["STACK"],
-    },{
-        domain: "BUNDLE_MANAGER",
-        names: ["BUNDLE_UNINSTALL","BUNDLE_INSTALL"],
-      }])
-    hiSysEvent.unsubscribe();
-} catch (error) {
-    console.error(`error code: ${error.code}, error msg: ${error.message}`);
+  let rules: hiSysEvent.QueryRule[] = [{
+    domain: "RELIABILITY",
+    names: ["STACK"],
+  } as hiSysEvent.QueryRule,
+  {
+    domain: "BUNDLE_MANAGER",
+    names: ["BUNDLE_UNINSTALL"],
+  } as hiSysEvent.QueryRule];
+  hiSysEvent.subscribe(rules);
+  hiSysEvent.unsubscribe();
+} catch (err) {
+  console.error(`error code: ${(err as BusinessError).code}, error msg: ${(err as BusinessError).message}`);
 }
 ```

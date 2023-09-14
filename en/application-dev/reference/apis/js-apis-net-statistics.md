@@ -8,7 +8,7 @@ The **statistics** module provides APIs to query real-time or historical data tr
 ## Modules to Import
 
 ```js
-import statistics from '@ohos.net.statistics'
+import statistics from "@ohos.net.statistics";
 ```
 
 ## statistics.getIfaceRxBytes<sup>10+</sup>
@@ -21,32 +21,32 @@ Obtains the real-time downlink data traffic of the specified NIC. This API uses 
 
 **Parameters**
 
-| Name      | Type                         | Mandatory| Description                                                        |
-| ------------ | ----------------------------- | ---- | ------------------------------------------------------------ |
-| nic | string | Yes  | NIC name.                  |
-| callback | AsyncCallback\<number>         | Yes  | Callback used to return the result. If the operation is successful, **error** is **undefined** and **stats** is the real-time downlink data traffic of the NIC in bytes. Otherwise, **error** is an error object.|
+| Name  | Type                  | Mandatory| Description                                                                                                                   |
+| -------- | ---------------------- | ---- | ----------------------------------------------------------------------------------------------------------------------- |
+| nic      | string                 | Yes  | NIC name.                                                                                                     |
+| callback | AsyncCallback\<number> | Yes  | Callback used to return the result. If the operation is successful, **error** is **undefined** and **stats** is the real-time downlink data traffic of the NIC in bytes. Otherwise, **error** is an error object.|
 
 **Error codes**
 
 For details about the error codes, see [Traffic Management Error Codes](../errorcodes/errorcode-net-statistics.md).
 
-| ID| Error Message                       |
-| ------- | -----------------------------  |
-| 401     | Parameter error.             |
-| 2100002 | Operation failed. Cannot connect to service.             |
-| 2100003 | System internal error.         |
-| 2103005 | Failed to read map.             |
-| 2103011 | Failed to create map.             |
-| 2103012 | Get iface name failed.         |
-
+| ID| Error Message                                    |
+| --------- | -------------------------------------------- |
+| 401       | Parameter error.                             |
+| 2100002   | Operation failed. Cannot connect to service. |
+| 2100003   | System internal error.                       |
+| 2103005   | Failed to read map.                          |
+| 2103011   | Failed to create map.                        |
+| 2103012   | Get iface name failed.                       |
 
 **Example**
 
 ```js
-  statistics.getIfaceRxBytes("wlan0", (error, stats) => {
-    console.log(JSON.stringify(error))
-    console.log(JSON.stringify(stats))
-  })
+import { BusinessError } from '@ohos.base';
+statistics.getIfaceRxBytes("wlan0", (error: BusinessError, stats: number) => {
+  console.log(JSON.stringify(error));
+  console.log(JSON.stringify(stats));
+});
 ```
 
 ## statistics.getIfaceRxBytes<sup>10+</sup>
@@ -59,9 +59,9 @@ Obtains the real-time downlink data traffic of the specified NIC. This API uses 
 
 **Parameters**
 
-| Name      | Type                         | Mandatory| Description                                                        |
-| ------------ | ----------------------------- | ---- | ------------------------------------------------------------ |
-| nic | string | Yes  | NIC name.                  |
+| Name| Type  | Mandatory| Description              |
+| ------ | ------ | ---- | ------------------ |
+| nic    | string | Yes  | NIC name.|
 
 **Return value**
 | Type| Description|
@@ -72,21 +72,21 @@ Obtains the real-time downlink data traffic of the specified NIC. This API uses 
 
 For details about the error codes, see [Traffic Management Error Codes](../errorcodes/errorcode-net-statistics.md).
 
-| ID| Error Message                       |
-| ------- | -----------------------------  |
-| 401     | Parameter error.             |
-| 2100002 | Operation failed. Cannot connect to service.             |
-| 2100003 | System internal error.         |
-| 2103005 | Failed to read map.             |
-| 2103011 | Failed to create map.             |
-| 2103012 | Get iface name failed.         |
+| ID| Error Message                                    |
+| --------- | -------------------------------------------- |
+| 401       | Parameter error.                             |
+| 2100002   | Operation failed. Cannot connect to service. |
+| 2100003   | System internal error.                       |
+| 2103005   | Failed to read map.                          |
+| 2103011   | Failed to create map.                        |
+| 2103012   | Get iface name failed.                       |
 
 **Example**
 
 ```js
-  statistics.getIfaceRxBytes("wlan0").then(function (stats) {
-    console.log(JSON.stringify(stats))
-  })
+statistics.getIfaceRxBytes("wlan0").then((stats: number) => {
+  console.log(JSON.stringify(stats));
+});
 ```
 
 ## statistics.getIfaceTxBytes<sup>10+</sup>
@@ -99,31 +99,32 @@ Obtains the real-time uplink data traffic of the specified NIC. This API uses an
 
 **Parameters**
 
-| Name      | Type                         | Mandatory| Description                                                        |
-| ------------ | ----------------------------- | ---- | ------------------------------------------------------------ |
-| nic | string | Yes  | NIC name.                  |
-| callback | AsyncCallback\<number>         | Yes  | Callback used to return the result. If the operation is successful, **error** is **undefined** and **stats** is the real-time uplink data traffic of the NIC in bytes. Otherwise, **error** is an error object.|
+| Name  | Type                  | Mandatory| Description                                                                                                                   |
+| -------- | ---------------------- | ---- | ----------------------------------------------------------------------------------------------------------------------- |
+| nic      | string                 | Yes  | NIC name.                                                                                                     |
+| callback | AsyncCallback\<number> | Yes  | Callback used to return the result. If the operation is successful, **error** is **undefined** and **stats** is the real-time uplink data traffic of the NIC in bytes. Otherwise, **error** is an error object.|
 
 **Error codes**
 
 For details about the error codes, see [Traffic Management Error Codes](../errorcodes/errorcode-net-statistics.md).
 
-| ID| Error Message                       |
-| ------- | -----------------------------  |
-| 401     | Parameter error.             |
-| 2100002 | Operation failed. Cannot connect to service.             |
-| 2100003 | System internal error.         |
-| 2103005 | Failed to read map.             |
-| 2103011 | Failed to create map.             |
-| 2103012 | Get iface name failed.         |
+| ID| Error Message                                    |
+| --------- | -------------------------------------------- |
+| 401       | Parameter error.                             |
+| 2100002   | Operation failed. Cannot connect to service. |
+| 2100003   | System internal error.                       |
+| 2103005   | Failed to read map.                          |
+| 2103011   | Failed to create map.                        |
+| 2103012   | Get iface name failed.                       |
 
 **Example**
 
 ```js
-  statistics.getIfaceTxBytes("wlan0", (error, stats) => {
-    console.log(JSON.stringify(error))
-    console.log(JSON.stringify(stats))
-  })
+import { BusinessError } from '@ohos.base';
+statistics.getIfaceTxBytes("wlan0", (error: BusinessError, stats: number) => {
+  console.log(JSON.stringify(error));
+  console.log(JSON.stringify(stats));
+});
 ```
 
 ## statistics.getIfaceTxBytes<sup>10+</sup>
@@ -136,9 +137,9 @@ Obtains the real-time uplink data traffic of the specified NIC. This API uses a 
 
 **Parameters**
 
-| Name      | Type                         | Mandatory| Description                                                        |
-| ------------ | ----------------------------- | ---- | ------------------------------------------------------------ |
-| nic | string | Yes  | NIC name.                  |
+| Name| Type  | Mandatory| Description              |
+| ------ | ------ | ---- | ------------------ |
+| nic    | string | Yes  | NIC name.|
 
 **Return value**
 | Type| Description|
@@ -149,21 +150,21 @@ Obtains the real-time uplink data traffic of the specified NIC. This API uses a 
 
 For details about the error codes, see [Traffic Management Error Codes](../errorcodes/errorcode-net-statistics.md).
 
-| ID| Error Message                       |
-| ------- | -----------------------------  |
-| 401     | Parameter error.             |
-| 2100002 | Operation failed. Cannot connect to service.             |
-| 2100003 | System internal error.         |
-| 2103005 | Failed to read map.             |
-| 2103011 | Failed to create map.             |
-| 2103012 | Get iface name failed.         |
+| ID| Error Message                                    |
+| --------- | -------------------------------------------- |
+| 401       | Parameter error.                             |
+| 2100002   | Operation failed. Cannot connect to service. |
+| 2100003   | System internal error.                       |
+| 2103005   | Failed to read map.                          |
+| 2103011   | Failed to create map.                        |
+| 2103012   | Get iface name failed.                       |
 
 **Example**
 
 ```js
-  statistics.getIfaceTxBytes("wlan0").then(function (stats) {
-    console.log(JSON.stringify(stats))
-  })
+statistics.getIfaceTxBytes("wlan0").then((stats: number) => {
+  console.log(JSON.stringify(stats));
+});
 ```
 
 ## statistics.getCellularRxBytes<sup>10+</sup>
@@ -176,29 +177,30 @@ Obtains the real-time downlink data traffic of a cellular network. This API uses
 
 **Parameters**
 
-| Name      | Type                         | Mandatory| Description                                                        |
-| ------------ | ----------------------------- | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback\<number>         | Yes  | Callback used to return the result. If the operation is successful, **error** is **undefined** and **stats** is the real-time downlink data traffic of the cellular network in bytes. Otherwise, **error** is an error object.|
+| Name  | Type                  | Mandatory| Description                                                                                                                   |
+| -------- | ---------------------- | ---- | ----------------------------------------------------------------------------------------------------------------------- |
+| callback | AsyncCallback\<number> | Yes  | Callback used to return the result. If the operation is successful, **error** is **undefined** and **stats** is the real-time downlink data traffic of the cellular network in bytes. Otherwise, **error** is an error object.|
 
 **Error codes**
 
 For details about the error codes, see [Traffic Management Error Codes](../errorcodes/errorcode-net-statistics.md).
 
-| ID| Error Message                       |
-| ------- | -----------------------------  |
-| 2100002 | Operation failed. Cannot connect to service.             |
-| 2100003 | System internal error.         |
-| 2103005 | Failed to read map.             |
-| 2103011 | Failed to create map.             |
-| 2103012 | Get iface name failed.         |
+| ID| Error Message                                    |
+| --------- | -------------------------------------------- |
+| 2100002   | Operation failed. Cannot connect to service. |
+| 2100003   | System internal error.                       |
+| 2103005   | Failed to read map.                          |
+| 2103011   | Failed to create map.                        |
+| 2103012   | Get iface name failed.                       |
 
 **Example**
 
 ```js
-  statistics.getCellularRxBytes((error, stats) => {
-    console.log(JSON.stringify(error))
-    console.log(JSON.stringify(stats))
-  })
+import { BusinessError } from '@ohos.base';
+statistics.getCellularRxBytes((error: BusinessError, stats: number) => {
+  console.log(JSON.stringify(error));
+  console.log(JSON.stringify(stats));
+});
 ```
 
 ## statistics.getCellularRxBytes<sup>10+</sup>
@@ -218,20 +220,20 @@ Obtains the real-time downlink data traffic of a cellular network. This API uses
 
 For details about the error codes, see [Traffic Management Error Codes](../errorcodes/errorcode-net-statistics.md).
 
-| ID| Error Message                       |
-| ------- | -----------------------------  |
-| 2100002 | Operation failed. Cannot connect to service.             |
-| 2100003 | System internal error.         |
-| 2103005 | Failed to read map.             |
-| 2103011 | Failed to create map.             |
-| 2103012 | Get iface name failed.         |
+| ID| Error Message                                    |
+| --------- | -------------------------------------------- |
+| 2100002   | Operation failed. Cannot connect to service. |
+| 2100003   | System internal error.                       |
+| 2103005   | Failed to read map.                          |
+| 2103011   | Failed to create map.                        |
+| 2103012   | Get iface name failed.                       |
 
 **Example**
 
 ```js
-  statistics.getCellularRxBytes().then(function (stats) {
-    console.log(JSON.stringify(stats))
-  })
+statistics.getCellularRxBytes().then((stats: number) => {
+  console.log(JSON.stringify(stats));
+});
 ```
 
 ## statistics.getCellularTxBytes<sup>10+</sup>
@@ -244,29 +246,30 @@ Obtains the real-time uplink data traffic of a cellular network. This API uses a
 
 **Parameters**
 
-| Name      | Type                         | Mandatory| Description                                                        |
-| ------------ | ----------------------------- | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback\<number>         | Yes  | Callback used to return the result. If the operation is successful, **error** is **undefined** and **stats** is the real-time uplink data traffic of the cellular network in bytes. Otherwise, **error** is an error object.|
+| Name  | Type                  | Mandatory| Description                                                                                                                   |
+| -------- | ---------------------- | ---- | ----------------------------------------------------------------------------------------------------------------------- |
+| callback | AsyncCallback\<number> | Yes  | Callback used to return the result. If the operation is successful, **error** is **undefined** and **stats** is the real-time uplink data traffic of the cellular network in bytes. Otherwise, **error** is an error object.|
 
 **Error codes**
 
 For details about the error codes, see [Traffic Management Error Codes](../errorcodes/errorcode-net-statistics.md).
 
-| ID| Error Message                       |
-| ------- | -----------------------------  |
-| 2100002 | Operation failed. Cannot connect to service.             |
-| 2100003 | System internal error.         |
-| 2103005 | Failed to read map.             |
-| 2103011 | Failed to create map.             |
-| 2103012 | Get iface name failed.         |
+| ID| Error Message                                    |
+| --------- | -------------------------------------------- |
+| 2100002   | Operation failed. Cannot connect to service. |
+| 2100003   | System internal error.                       |
+| 2103005   | Failed to read map.                          |
+| 2103011   | Failed to create map.                        |
+| 2103012   | Get iface name failed.                       |
 
 **Example**
 
 ```js
-  statistics.getCellularTxBytes((error, stats) => {
-    console.log(JSON.stringify(error))
-    console.log(JSON.stringify(stats))
-  })
+import { BusinessError } from '@ohos.base';
+statistics.getCellularTxBytes((error: BusinessError, stats: number) => {
+  console.log(JSON.stringify(error));
+  console.log(JSON.stringify(stats));
+});
 ```
 
 ## statistics.getCellularTxBytes<sup>10+</sup>
@@ -286,20 +289,20 @@ Obtains the real-time uplink data traffic of a cellular network. This API uses a
 
 For details about the error codes, see [Traffic Management Error Codes](../errorcodes/errorcode-net-statistics.md).
 
-| ID| Error Message                       |
-| ------- | -----------------------------  |
-| 2100002 | Operation failed. Cannot connect to service.             |
-| 2100003 | System internal error.         |
-| 2103005 | Failed to read map.             |
-| 2103011 | Failed to create map.             |
-| 2103012 | Get iface name failed.         |
+| ID| Error Message                                    |
+| --------- | -------------------------------------------- |
+| 2100002   | Operation failed. Cannot connect to service. |
+| 2100003   | System internal error.                       |
+| 2103005   | Failed to read map.                          |
+| 2103011   | Failed to create map.                        |
+| 2103012   | Get iface name failed.                       |
 
 **Example**
 
 ```js
-  statistics.getCellularTxBytes().then(function (stats) {
-    console.log(JSON.stringify(stats))
-  })
+statistics.getCellularTxBytes().then((stats: number) => {
+  console.log(JSON.stringify(stats));
+});
 ```
 
 ## statistics.getAllRxBytes<sup>10+</sup>
@@ -312,28 +315,29 @@ Obtains the real-time downlink data traffic of all NICs. This API uses an asynch
 
 **Parameters**
 
-| Name      | Type                         | Mandatory| Description                                                        |
-| ------------ | ----------------------------- | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback\<number>         | Yes  | Callback used to return the result. If the operation is successful, **error** is **undefined** and **stats** is the real-time downlink data traffic of all NICs in bytes. Otherwise, **error** is an error object.|
+| Name  | Type                  | Mandatory| Description                                                                                                                         |
+| -------- | ---------------------- | ---- | ----------------------------------------------------------------------------------------------------------------------------- |
+| callback | AsyncCallback\<number> | Yes  | Callback used to return the result. If the operation is successful, **error** is **undefined** and **stats** is the real-time downlink data traffic of all NICs in bytes. Otherwise, **error** is an error object.|
 
 **Error codes**
 
 For details about the error codes, see [Traffic Management Error Codes](../errorcodes/errorcode-net-statistics.md).
 
-| ID| Error Message                       |
-| ------- | -----------------------------  |
-| 2100002 | Operation failed. Cannot connect to service.             |
-| 2100003 | System internal error.         |
-| 2103005 | Failed to read map.             |
-| 2103011 | Failed to create map.             |
+| ID| Error Message                                    |
+| --------- | -------------------------------------------- |
+| 2100002   | Operation failed. Cannot connect to service. |
+| 2100003   | System internal error.                       |
+| 2103005   | Failed to read map.                          |
+| 2103011   | Failed to create map.                        |
 
 **Example**
 
 ```js
-  statistics.getAllRxBytes((error, stats) => {
-    console.log(JSON.stringify(error))
-    console.log(JSON.stringify(stats))
-  })
+import { BusinessError } from '@ohos.base';
+statistics.getAllRxBytes((error: BusinessError, stats: number) => {
+  console.log(JSON.stringify(error));
+  console.log(JSON.stringify(stats));
+});
 ```
 
 ## statistics.getAllRxBytes<sup>10+</sup>
@@ -353,19 +357,19 @@ Obtains the real-time downlink data traffic of all NICs. This API uses a promise
 
 For details about the error codes, see [Traffic Management Error Codes](../errorcodes/errorcode-net-statistics.md).
 
-| ID| Error Message                       |
-| ------- | -----------------------------  |
-| 2100002 | Operation failed. Cannot connect to service.             |
-| 2100003 | System internal error.         |
-| 2103005 | Failed to read map.             |
-| 2103011 | Failed to create map.             |
+| ID| Error Message                                    |
+| --------- | -------------------------------------------- |
+| 2100002   | Operation failed. Cannot connect to service. |
+| 2100003   | System internal error.                       |
+| 2103005   | Failed to read map.                          |
+| 2103011   | Failed to create map.                        |
 
 **Example**
 
 ```js
-  statistics.getCellularRxBytes().then(function (stats) {
-    console.log(JSON.stringify(stats))
-  })
+statistics.getCellularRxBytes().then((stats: number) => {
+  console.log(JSON.stringify(stats));
+});
 ```
 
 ## statistics.getAllTxBytes<sup>10+</sup>
@@ -378,28 +382,29 @@ Obtains the real-time uplink data traffic of all NICs. This API uses an asynchro
 
 **Parameters**
 
-| Name      | Type                         | Mandatory| Description                                                        |
-| ------------ | ----------------------------- | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback\<number>         | Yes  | Callback used to return the result. If the operation is successful, **error** is **undefined** and **stats** is the real-time uplink data traffic of all NICs in bytes. Otherwise, **error** is an error object.|
+| Name  | Type                  | Mandatory| Description                                                                                                                         |
+| -------- | ---------------------- | ---- | ----------------------------------------------------------------------------------------------------------------------------- |
+| callback | AsyncCallback\<number> | Yes  | Callback used to return the result. If the operation is successful, **error** is **undefined** and **stats** is the real-time uplink data traffic of all NICs in bytes. Otherwise, **error** is an error object.|
 
 **Error codes**
 
 For details about the error codes, see [Traffic Management Error Codes](../errorcodes/errorcode-net-statistics.md).
 
-| ID| Error Message                       |
-| ------- | -----------------------------  |
-| 2100002 | Operation failed. Cannot connect to service.             |
-| 2100003 | System internal error.         |
-| 2103005 | Failed to read map.             |
-| 2103011 | Failed to create map.             |
+| ID| Error Message                                    |
+| --------- | -------------------------------------------- |
+| 2100002   | Operation failed. Cannot connect to service. |
+| 2100003   | System internal error.                       |
+| 2103005   | Failed to read map.                          |
+| 2103011   | Failed to create map.                        |
 
 **Example**
 
 ```js
-  statistics.getAllTxBytes((error, stats) => {
-    console.log(JSON.stringify(error))
-    console.log(JSON.stringify(stats))
-  })
+import { BusinessError } from '@ohos.base';
+statistics.getAllTxBytes((error: BusinessError, stats: number) => {
+  console.log(JSON.stringify(error));
+  console.log(JSON.stringify(stats));
+});
 ```
 
 ## statistics.getAllTxBytes<sup>10+</sup>
@@ -419,19 +424,19 @@ Obtains the real-time uplink data traffic of all NICs. This API uses a promise t
 
 For details about the error codes, see [Traffic Management Error Codes](../errorcodes/errorcode-net-statistics.md).
 
-| ID| Error Message                       |
-| ------- | -----------------------------  |
-| 2100002 | Operation failed. Cannot connect to service.             |
-| 2100003 | System internal error.         |
-| 2103005 | Failed to read map.             |
-| 2103011 | Failed to create map.             |
+| ID| Error Message                                    |
+| --------- | -------------------------------------------- |
+| 2100002   | Operation failed. Cannot connect to service. |
+| 2100003   | System internal error.                       |
+| 2103005   | Failed to read map.                          |
+| 2103011   | Failed to create map.                        |
 
 **Example**
 
 ```js
-  statistics.getAllTxBytes().then(function (stats) {
-    console.log(JSON.stringify(stats))
-  })
+statistics.getAllTxBytes().then((stats: number) => {
+  console.log(JSON.stringify(stats));
+});
 ```
 
 ## statistics.getUidRxBytes<sup>10+</sup>
@@ -444,30 +449,31 @@ Obtains the real-time downlink data traffic of the specified application. This A
 
 **Parameters**
 
-| Name      | Type                         | Mandatory| Description                                                        |
-| ------------ | ----------------------------- | ---- | ------------------------------------------------------------ |
-| uid | number | Yes  | Application UID.                  |
-| callback | AsyncCallback\<number>         | Yes  | Callback used to return the result. If the operation is successful, **error** is **undefined** and **stats** is the real-time downlink data traffic of the application in bytes. Otherwise, **error** is an error object.|
+| Name  | Type                  | Mandatory| Description                                                                                                                   |
+| -------- | ---------------------- | ---- | ----------------------------------------------------------------------------------------------------------------------- |
+| uid      | number                 | Yes  | Application UID.                                                                                                   |
+| callback | AsyncCallback\<number> | Yes  | Callback used to return the result. If the operation is successful, **error** is **undefined** and **stats** is the real-time downlink data traffic of the application in bytes. Otherwise, **error** is an error object.|
 
 **Error codes**
 
 For details about the error codes, see [Traffic Management Error Codes](../errorcodes/errorcode-net-statistics.md).
 
-| ID| Error Message                       |
-| ------- | -----------------------------  |
-| 401     | Parameter error.             |
-| 2100002 | Operation failed. Cannot connect to service.             |
-| 2100003 | System internal error.         |
-| 2103005 | Failed to read map.             |
-| 2103011 | Failed to create map.             |
+| ID| Error Message                                    |
+| --------- | -------------------------------------------- |
+| 401       | Parameter error.                             |
+| 2100002   | Operation failed. Cannot connect to service. |
+| 2100003   | System internal error.                       |
+| 2103005   | Failed to read map.                          |
+| 2103011   | Failed to create map.                        |
 
 **Example**
 
 ```js
-  statistics.getUidRxBytes(20010038, (error, stats) => {
-    console.log(JSON.stringify(error))
-    console.log(JSON.stringify(stats))
-  })
+import { BusinessError } from '@ohos.base';
+statistics.getUidRxBytes(20010038, (error: BusinessError, stats: number) => {
+  console.log(JSON.stringify(error));
+  console.log(JSON.stringify(stats));
+});
 ```
 
 ## statistics.getUidRxBytes<sup>10+</sup>
@@ -480,9 +486,9 @@ Obtains the real-time downlink data traffic of the specified application. This A
 
 **Parameters**
 
-| Name      | Type                         | Mandatory| Description                                                        |
-| ------------ | ----------------------------- | ---- | ------------------------------------------------------------ |
-| uid | number | Yes  | Application UID.                  |
+| Name| Type  | Mandatory| Description                |
+| ------ | ------ | ---- | -------------------- |
+| uid    | number | Yes  | Application UID.|
 
 **Return value**
 | Type| Description|
@@ -493,20 +499,20 @@ Obtains the real-time downlink data traffic of the specified application. This A
 
 For details about the error codes, see [Traffic Management Error Codes](../errorcodes/errorcode-net-statistics.md).
 
-| ID| Error Message                       |
-| ------- | -----------------------------  |
-| 401     | Parameter error.             |
-| 2100002 | Operation failed. Cannot connect to service.             |
-| 2100003 | System internal error.         |
-| 2103005 | Failed to read map.             |
-| 2103011 | Failed to create map.             |
+| ID| Error Message                                    |
+| --------- | -------------------------------------------- |
+| 401       | Parameter error.                             |
+| 2100002   | Operation failed. Cannot connect to service. |
+| 2100003   | System internal error.                       |
+| 2103005   | Failed to read map.                          |
+| 2103011   | Failed to create map.                        |
 
 **Example**
 
 ```js
-  statistics.getUidRxBytes(20010038).then(function (stats) {
-    console.log(JSON.stringify(stats))
-  })
+statistics.getUidRxBytes(20010038).then((stats: number) => {
+  console.log(JSON.stringify(stats));
+});
 ```
 
 ## statistics.getUidTxBytes<sup>10+</sup>
@@ -519,30 +525,31 @@ Obtains the real-time uplink data traffic of the specified application. This API
 
 **Parameters**
 
-| Name      | Type                         | Mandatory| Description                                                        |
-| ------------ | ----------------------------- | ---- | ------------------------------------------------------------ |
-| uid | number | Yes  | Application UID.                  |
-| callback | AsyncCallback\<number>         | Yes  | Callback used to return the result. If the operation is successful, **error** is **undefined** and **stats** is the real-time uplink data traffic of the application in bytes. Otherwise, **error** is an error object.|
+| Name  | Type                  | Mandatory| Description                                                                                                                   |
+| -------- | ---------------------- | ---- | ----------------------------------------------------------------------------------------------------------------------- |
+| uid      | number                 | Yes  | Application UID.                                                                                                   |
+| callback | AsyncCallback\<number> | Yes  | Callback used to return the result. If the operation is successful, **error** is **undefined** and **stats** is the real-time uplink data traffic of the application in bytes. Otherwise, **error** is an error object.|
 
 **Error codes**
 
 For details about the error codes, see [Traffic Management Error Codes](../errorcodes/errorcode-net-statistics.md).
 
-| ID| Error Message                       |
-| ------- | -----------------------------  |
-| 401     | Parameter error.             |
-| 2100002 | Operation failed. Cannot connect to service.             |
-| 2100003 | System internal error.         |
-| 2103005 | Failed to read map.             |
-| 2103011 | Failed to create map.             |
+| ID| Error Message                                    |
+| --------- | -------------------------------------------- |
+| 401       | Parameter error.                             |
+| 2100002   | Operation failed. Cannot connect to service. |
+| 2100003   | System internal error.                       |
+| 2103005   | Failed to read map.                          |
+| 2103011   | Failed to create map.                        |
 
 **Example**
 
 ```js
-  statistics.getUidTxBytes(20010038, (error, stats) => {
-    console.log(JSON.stringify(error))
-    console.log(JSON.stringify(stats))
-  })
+import { BusinessError } from '@ohos.base';
+statistics.getUidTxBytes(20010038, (error: BusinessError, stats: number) => {
+  console.log(JSON.stringify(error));
+  console.log(JSON.stringify(stats));
+});
 ```
 
 ## statistics.getUidTxBytes<sup>10+</sup>
@@ -555,9 +562,9 @@ Obtains the real-time uplink data traffic of the specified application. This API
 
 **Parameters**
 
-| Name      | Type                         | Mandatory| Description                                                        |
-| ------------ | ----------------------------- | ---- | ------------------------------------------------------------ |
-| uid | number | Yes  | Application UID.                  |
+| Name| Type  | Mandatory| Description                |
+| ------ | ------ | ---- | -------------------- |
+| uid    | number | Yes  | Application UID.|
 
 **Return value**
 | Type| Description|
@@ -568,20 +575,20 @@ Obtains the real-time uplink data traffic of the specified application. This API
 
 For details about the error codes, see [Traffic Management Error Codes](../errorcodes/errorcode-net-statistics.md).
 
-| ID| Error Message                       |
-| ------- | -----------------------------  |
-| 401     | Parameter error.             |
-| 2100002 | Operation failed. Cannot connect to service.             |
-| 2100003 | System internal error.         |
-| 2103005 | Failed to read map.             |
-| 2103011 | Failed to create map.             |
+| ID| Error Message                                    |
+| --------- | -------------------------------------------- |
+| 401       | Parameter error.                             |
+| 2100002   | Operation failed. Cannot connect to service. |
+| 2100003   | System internal error.                       |
+| 2103005   | Failed to read map.                          |
+| 2103011   | Failed to create map.                        |
 
 **Example**
 
 ```js
-  statistics.getUidTxBytes(20010038).then(function (stats) {
-    console.log(JSON.stringify(stats))
-  })
+statistics.getUidTxBytes(20010038).then((stats: number) => {
+  console.log(JSON.stringify(stats));
+});
 ```
 
 ## statistics.on('netStatsChange')<sup>10+</sup>
@@ -598,27 +605,31 @@ Subscribes to traffic change events.
 
 **Parameters**
 
-| Name  | Type                                   | Mandatory| Description      |
-| -------- | --------------------------------------- | ---- | ---------- |
-| type     | string                             | Yes  | Event type. This field has a fixed value of **netStatsChange**.|
+| Name  | Type                                       | Mandatory| Description                                                              |
+| -------- | ------------------------------------------- | ---- | ------------------------------------------------------------------ |
+| type     | string                                      | Yes  | Event type. This field has a fixed value of **netStatsChange**.                                |
 | callback | Callback\<{ iface: string, uid?: number }\> | Yes  | Callback invoked when the traffic changes.<br>**iface**: NIC name.<br>**uid**: application UID.|
 
 **Error codes**
 
 For details about the error codes, see [Traffic Management Error Codes](../errorcodes/errorcode-net-statistics.md).
 
-| ID| Error Message                                     |
-| ------- | -------------------------------------------- |
-| 201     | Permission denied.             |
-| 202     | Non-system applications use system APIs.             |
-| 401     | Parameter error.         |
-| 2100002 | Operation failed. Cannot connect to service.             |
-| 2100003 | System internal error.             |
+| ID| Error Message                                    |
+| --------- | -------------------------------------------- |
+| 201       | Permission denied.                           |
+| 202       | Non-system applications use system APIs.     |
+| 401       | Parameter error.                             |
+| 2100002   | Operation failed. Cannot connect to service. |
+| 2100003   | System internal error.                       |
 
 **Example**
 
 ```js
- statistics.on('netStatsChange', (data) => {
+ class IFace {
+    iFace: string = ""
+    uid?: number = 0
+  }
+ statistics.on('netStatsChange', (data:IFace) => {
   console.log('on netStatsChange' + JSON.stringify(data));
 });
 ```
@@ -637,27 +648,31 @@ Unsubscribes from traffic change events.
 
 **Parameters**
 
-| Name  | Type                                   | Mandatory| Description      |
-| -------- | --------------------------------------- | ---- | ---------- |
-| type   | string | Yes  | Event type. This field has a fixed value of **netStatsChange**.|
-| callback | Callback\<{ iface: string, uid?: number }\> | No  | Callback invoked when the traffic changes.<br>**iface**: NIC name.<br>uid: application UID.|
+| Name  | Type                                       | Mandatory| Description                                                              |
+| -------- | ------------------------------------------- | ---- | ------------------------------------------------------------------ |
+| type     | string                                      | Yes  | Event type. This field has a fixed value of **netStatsChange**.                            |
+| callback | Callback\<{ iface: string, uid?: number }\> | No  | Callback invoked when the traffic changes.<br>**iface**: NIC name.<br>**uid**: application UID.|
 
 **Error codes**
 
 For details about the error codes, see [Traffic Management Error Codes](../errorcodes/errorcode-net-statistics.md).
 
-| ID| Error Message                                     |
-| ------- | -------------------------------------------- |
-| 201     | Permission denied.             |
-| 202     | Non-system applications use system APIs.             |
-| 401     | Parameter error.         |
-| 2100002 | Operation failed. Cannot connect to service.             |
-| 2100003 | System internal error.             |
+| ID| Error Message                                    |
+| --------- | -------------------------------------------- |
+| 201       | Permission denied.                           |
+| 202       | Non-system applications use system APIs.     |
+| 401       | Parameter error.                             |
+| 2100002   | Operation failed. Cannot connect to service. |
+| 2100003   | System internal error.                       |
 
 **Example**
 
 ```js
-let callback = data => {
+ class IFace {
+    iFace: string = ""
+    uid?: number = 0
+  }
+let callback =( data:IFace) => {
     console.log("on netStatsChange, data:" + JSON.stringify(data));
 }
 statistics.on('netStatsChange', callback);
@@ -680,41 +695,55 @@ Obtains the historical data traffic of the specified NIC. This API uses an async
 
 **Parameters**
 
-| Name      | Type                         | Mandatory| Description                                                        |
-| ------------ | ----------------------------- | ---- | ------------------------------------------------------------ |
-| ifaceInfo | [IfaceInfo](#ifaceinfo10) | Yes  | NIC information. For details, see [IfaceInfo](#ifaceinfo10).                  |
-| callback | AsyncCallback\<[NetStatsInfo](#netstatsinfo10)>         | Yes  | Callback used to return the result. If the operation is successful, **error** is **undefined** and **statsInfo** is the historical data traffic of the NIC. Otherwise, **error** is an error object.|
+| Name   | Type                                           | Mandatory| Description                                                                                   |
+| --------- | ----------------------------------------------- | ---- | --------------------------------------------------------------------------------------- |
+| ifaceInfo | [IfaceInfo](#ifaceinfo10)                       | Yes  | NIC information. For details, see [IfaceInfo](#ifaceinfo10).                                    |
+| callback  | AsyncCallback\<[NetStatsInfo](#netstatsinfo10)> | Yes  | Callback used to return the result. If the operation is successful, **error** is **undefined** and **statsInfo** is the historical data traffic of the NIC. Otherwise, **error** is an error object.|
 
 **Error codes**
 
 For details about the error codes, see [Traffic Management Error Codes](../errorcodes/errorcode-net-statistics.md).
 
-| ID| Error Message                       |
-| ------- | -----------------------------  |
-| 201     | Permission denied.             |
-| 202     | Non-system applications use system APIs.             |
-| 401     | Parameter error.         |
-| 2100001 | Invalid parameter value.         |
-| 2100002 | Operation failed. Cannot connect to service.             |
-| 2100003 | System internal error.             |
-| 2103017 | Read data from database failed.             |
+| ID| Error Message                                    |
+| --------- | -------------------------------------------- |
+| 201       | Permission denied.                           |
+| 202       | Non-system applications use system APIs.     |
+| 401       | Parameter error.                             |
+| 2100001   | Invalid parameter value.                     |
+| 2100002   | Operation failed. Cannot connect to service. |
+| 2100003   | System internal error.                       |
+| 2103017   | Read data from database failed.              |
 
 **Example**
 
 ```js
-  let ifaceInfo = {
-    iface: "wlan0",
-    startTime: 1685948465,
-    endTime: 16859485670
-  }
+import { BusinessError } from '@ohos.base';
+class IFaceInfo {
+  iFace: string = "wlan0";
+  startTime: number = 1685948465;
+  endTime: number = 16859485670;
+}
+let iFaceInfo = new IFaceInfo();
 
-  statistics.getTrafficStatsByIface(ifaceInfo), (error, statsInfo) => {
-    console.log(JSON.stringify(error))
-    console.log("getTrafficStatsByIface bytes of received = " + JSON.stringify(statsInfo.rxBytes));
-    console.log("getTrafficStatsByIface bytes of sent = " + JSON.stringify(statsInfo.txBytes));
-    console.log("getTrafficStatsByIface packets of received = " + JSON.stringify(statsInfo.rxPackets));
-    console.log("getTrafficStatsByIface packets of sent = " + JSON.stringify(statsInfo.txPackets));
-  });
+statistics.getTrafficStatsByIface(iFaceInfo, (error: BusinessError, statsInfo: NetStatsInfo) => {
+  console.log(JSON.stringify(error));
+  console.log(
+    "getTrafficStatsByIface bytes of received = " +
+      JSON.stringify(statsInfo.rxBytes)
+  );
+  console.log(
+    "getTrafficStatsByIface bytes of sent = " +
+      JSON.stringify(statsInfo.txBytes)
+  );
+  console.log(
+    "getTrafficStatsByIface packets of received = " +
+      JSON.stringify(statsInfo.rxPackets)
+  );
+  console.log(
+    "getTrafficStatsByIface packets of sent = " +
+      JSON.stringify(statsInfo.txPackets)
+  );
+});
 ```
 
 ## statistics.getTrafficStatsByIface<sup>10+</sup>
@@ -729,9 +758,9 @@ Obtains the historical data traffic of the specified NIC. This API uses a promis
 
 **System capability**: SystemCapability.Communication.NetManager.Core
 
-| Name      | Type                         | Mandatory| Description                                                        |
-| ------------ | ----------------------------- | ---- | ------------------------------------------------------------ |
-| ifaceInfo | [IfaceInfo](#ifaceinfo10) | Yes  | NIC information. For details, see [IfaceInfo](#ifaceinfo10).                  |
+| Name   | Type                     | Mandatory| Description                                               |
+| --------- | ------------------------- | ---- | --------------------------------------------------- |
+| ifaceInfo | [IfaceInfo](#ifaceinfo10) | Yes  | NIC information. For details, see [IfaceInfo](#ifaceinfo10).|
 
 **Return value**
 | Type| Description|
@@ -742,31 +771,43 @@ Obtains the historical data traffic of the specified NIC. This API uses a promis
 
 For details about the error codes, see [Traffic Management Error Codes](../errorcodes/errorcode-net-statistics.md).
 
-| ID| Error Message                       |
-| ------- | -----------------------------  |
-| 201     | Permission denied.             |
-| 202     | Non-system applications use system APIs.             |
-| 401     | Parameter error.         |
-| 2100001 | Invalid parameter value.         |
-| 2100002 | Operation failed. Cannot connect to service.             |
-| 2100003 | System internal error.             |
-| 2103017 | Read data from database failed.             |
+| ID| Error Message                                    |
+| --------- | -------------------------------------------- |
+| 201       | Permission denied.                           |
+| 202       | Non-system applications use system APIs.     |
+| 401       | Parameter error.                             |
+| 2100001   | Invalid parameter value.                     |
+| 2100002   | Operation failed. Cannot connect to service. |
+| 2100003   | System internal error.                       |
+| 2103017   | Read data from database failed.              |
 
 **Example**
 
 ```js
-  let ifaceInfo = {
-    iface: "wlan0",
-    startTime: 1685948465,
-    endTime: 16859485670
-  }
-
-  statistics.getTrafficStatsByIface().then(function (statsInfo) {
-    console.log("getTrafficStatsByIface bytes of received = " + JSON.stringify(statsInfo.rxBytes));
-    console.log("getTrafficStatsByIface bytes of sent = " + JSON.stringify(statsInfo.txBytes));
-    console.log("getTrafficStatsByIface packets of received = " + JSON.stringify(statsInfo.rxPackets));
-    console.log("getTrafficStatsByIface packets of sent = " + JSON.stringify(statsInfo.txPackets));
-  })
+class IFaceInfo {
+  iFace: string = "wlan0";
+  startTime: number = 1685948465;
+  endTime: number = 16859485670;
+}
+let iFaceInfo = new IFaceInfo();
+statistics.getTrafficStatsByIface(ifaceInfo).then((statsInfo: NetStatsInfo) => {
+  console.log(
+    "getTrafficStatsByIface bytes of received = " +
+      JSON.stringify(statsInfo.rxBytes)
+  );
+  console.log(
+    "getTrafficStatsByIface bytes of sent = " +
+      JSON.stringify(statsInfo.txBytes)
+  );
+  console.log(
+    "getTrafficStatsByIface packets of received = " +
+      JSON.stringify(statsInfo.rxPackets)
+  );
+  console.log(
+    "getTrafficStatsByIface packets of sent = " +
+      JSON.stringify(statsInfo.txPackets)
+  );
+});
 ```
 
 ## statistics.getTrafficStatsByUid<sup>10+</sup>
@@ -783,44 +824,63 @@ Obtains the historical data traffic of the specified application. This API uses 
 
 **Parameters**
 
-| Name      | Type                         | Mandatory| Description                                                        |
-| ------------ | ----------------------------- | ---- | ------------------------------------------------------------ |
-| uidInfo | [UidInfo](#uidinfo10) | Yes  | Application information. For details, see [UidInfo](#uidinfo10).                  |
-| callback | AsyncCallback\<[NetStatsInfo](#netstatsinfo10)>         | Yes  | Callback used to return the result. If the operation is successful, **error** is **undefined** and **statsInfo** is the historical data traffic of the application. Otherwise, **error** is an error object.|
+| Name  | Type                                           | Mandatory| Description                                                                                   |
+| -------- | ----------------------------------------------- | ---- | --------------------------------------------------------------------------------------- |
+| uidInfo  | [UidInfo](#uidinfo10)                           | Yes  | Application information. For details, see [UidInfo](#uidinfo10).                                        |
+| callback | AsyncCallback\<[NetStatsInfo](#netstatsinfo10)> | Yes  | Callback used to return the result. If the operation is successful, **error** is **undefined** and **statsInfo** is the historical data traffic of the application. Otherwise, **error** is an error object.|
 
 **Error codes**
 
 For details about the error codes, see [Traffic Management Error Codes](../errorcodes/errorcode-net-statistics.md).
 
-| ID| Error Message                       |
-| ------- | -----------------------------  |
-| 201     | Permission denied.             |
-| 202     | Non-system applications use system APIs.             |
-| 401     | Parameter error.         |
-| 2100001 | Invalid parameter value.         |
-| 2100002 | Operation failed. Cannot connect to service.             |
-| 2100003 | System internal error.             |
-| 2103017 | Read data from database failed.             |
+| ID| Error Message                                    |
+| --------- | -------------------------------------------- |
+| 201       | Permission denied.                           |
+| 202       | Non-system applications use system APIs.     |
+| 401       | Parameter error.                             |
+| 2100001   | Invalid parameter value.                     |
+| 2100002   | Operation failed. Cannot connect to service. |
+| 2100003   | System internal error.                       |
+| 2103017   | Read data from database failed.              |
 
 **Example**
 
 ```js
-  let uidInfo = {
-    ifaceInfo: {
-      iface: "wlan0",
-      startTime: 1685948465,
-      endTime: 16859485670
-    },
-    uid: 20010037
-  }
+import { BusinessError } from '@ohos.base';
+class IFaceInfoClass {
+  iFace: string = "wlan0";
+  startTime: number = 1685948465;
+  endTime: number = 16859485670;
+}
 
-  statistics.getTrafficStatsByUid(uidInfo), (error, statsInfo) => {
-    console.log(JSON.stringify(error))
-    console.log("getTrafficStatsByUid bytes of received = " + JSON.stringify(statsInfo.rxBytes));
-    console.log("getTrafficStatsByUid bytes of sent = " + JSON.stringify(statsInfo.txBytes));
-    console.log("getTrafficStatsByUid packets of received = " + JSON.stringify(statsInfo.rxPackets));
-    console.log("getTrafficStatsByUid packets of sent = " + JSON.stringify(statsInfo.txPackets));
-  });
+class UidInfo {
+  iFaceInfo: object = new IFaceInfoClass();
+  uid: number = 20010037;
+}
+let uidInfo = new UidInfo();
+
+statistics.getTrafficStatsByUid(
+  uidInfo,
+  (error: BusinessError, statsInfo: NetStatsInfo) => {
+    console.log(JSON.stringify(error));
+    console.log(
+      "getTrafficStatsByUid bytes of received = " +
+        JSON.stringify(statsInfo.rxBytes)
+    );
+    console.log(
+      "getTrafficStatsByUid bytes of sent = " +
+        JSON.stringify(statsInfo.txBytes)
+    );
+    console.log(
+      "getTrafficStatsByUid packets of received = " +
+        JSON.stringify(statsInfo.rxPackets)
+    );
+    console.log(
+      "getTrafficStatsByUid packets of sent = " +
+        JSON.stringify(statsInfo.txPackets)
+    );
+  }
+);
 ```
 
 ## statistics.getTrafficStatsByUid<sup>10+</sup>
@@ -837,43 +897,46 @@ Obtains the historical data traffic of the specified application. This API uses 
 
 **Parameters**
 
-| Name      | Type                         | Mandatory| Description                                                        |
-| ------------ | ----------------------------- | ---- | ------------------------------------------------------------ |
-| uidInfo | [UidInfo](#uidinfo10) | Yes  | Application information. For details, see [UidInfo](#uidinfo10).                  |
+| Name | Type                 | Mandatory| Description                                           |
+| ------- | --------------------- | ---- | ----------------------------------------------- |
+| uidInfo | [UidInfo](#uidinfo10) | Yes  | Application information. For details, see [UidInfo](#uidinfo10).|
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
+| Type                                     | Description                                              |
+| ----------------------------------------- | -------------------------------------------------- |
 | Promise\<[NetStatsInfo](#netstatsinfo10)> | Promise used to return the result, which is the historical data traffic of the specified NIC.|
 
 **Error codes**
 
 For details about the error codes, see [Traffic Management Error Codes](../errorcodes/errorcode-net-statistics.md).
 
-| ID| Error Message                       |
-| ------- | -----------------------------  |
-| 201     | Permission denied.             |
-| 202     | Non-system applications use system APIs.             |
-| 401     | Parameter error.         |
-| 2100001 | Invalid parameter value.         |
-| 2100002 | Operation failed. Cannot connect to service.             |
-| 2100003 | System internal error.             |
-| 2103017 | Read data from database failed.             |
+| ID| Error Message                                    |
+| --------- | -------------------------------------------- |
+| 201       | Permission denied.                           |
+| 202       | Non-system applications use system APIs.     |
+| 401       | Parameter error.                             |
+| 2100001   | Invalid parameter value.                     |
+| 2100002   | Operation failed. Cannot connect to service. |
+| 2100003   | System internal error.                       |
+| 2103017   | Read data from database failed.              |
 
 **Example**
 
 ```js
-  let uidInfo = {
-    ifaceInfo: {
-      iface: "wlan0",
-      startTime: 1685948465,
-      endTime: 16859485670
-    },
-    uid: 20010037
+ class IFaceInfoClass {
+    iFace:string= "wlan0"
+    startTime:number =1685948465
+    endTime:number =16859485670
   }
 
-  statistics.getTrafficStatsByUid(uidInfo).then(function (statsInfo) {
+  class  UidInfo  {
+    iFaceInfo:object=new IFaceInfoClass()
+    uid:number=20010037
+  }
+  let  uidInfo=new UidInfo()
+
+  statistics.getTrafficStatsByUid(uidInfo).then((statsInfo:NetStatsInfo) => {
     console.log("getTrafficStatsByUid bytes of received = " + JSON.stringify(statsInfo.rxBytes));
     console.log("getTrafficStatsByUid bytes of sent = " + JSON.stringify(statsInfo.txBytes));
     console.log("getTrafficStatsByUid packets of received = " + JSON.stringify(statsInfo.rxPackets));
@@ -889,11 +952,11 @@ Defines the parameters for querying historical traffic of an NIC.
 
 **System capability**: SystemCapability.Communication.NetManager.Core
 
-| Name                 | Type                               | Mandatory| Description                    |
-| --------------------- | ---------------------------------- | --- | ------------------------ |
-| iface     | string    |  Yes|  NIC name.|
-| startTime | number    |  Yes|  Start time of the query, which is a timestamp in seconds.  |
-| endTime   | number    |  Yes|  End time of the query, which is a timestamp in seconds.  |
+| Name     | Type  | Mandatory| Description                             |
+| --------- | ------ | ---- | --------------------------------- |
+| iface     | string | Yes  | NIC name.                   |
+| startTime | number | Yes  | Start time of the query, which is a timestamp in seconds.|
+| endTime   | number | Yes  | End time of the query, which is a timestamp in seconds.|
 
 ## UidInfo<sup>10+</sup>
 
@@ -903,10 +966,10 @@ Defines the parameters for querying historical traffic of an application.
 
 **System capability**: SystemCapability.Communication.NetManager.Core
 
-| Name                 | Type                               | Mandatory| Description                    |
-| --------------------- | ---------------------------------- | --- | ------------------------ |
-| ifaceInfo   | IfaceInfo\<[IfaceInfo](#ifaceinfo10)> |  Yes|  NIC name and query time range.|
-| uid         | number           |  Yes|  Application UID.|
+| Name     | Type                                 | Mandatory| Description                      |
+| --------- | ------------------------------------- | ---- | -------------------------- |
+| ifaceInfo | IfaceInfo\<[IfaceInfo](#ifaceinfo10)> | Yes  | NIC name and query time range.|
+| uid       | number                                | Yes  | Application UID.          |
 
 ## NetStatsInfo<sup>10+</sup>
 
@@ -916,9 +979,9 @@ Defines the historical traffic information.
 
 **System capability**: SystemCapability.Communication.NetManager.Core
 
-| Name                 | Type                               | Mandatory| Description                    |
-| --------------------- | ---------------------------------- | --- | ------------------------ |
-| rxBytes   | number |  Yes|  Downlink traffic data, in bytes.|
-| txBytes   | number |  Yes|  Uplink traffic data, in bytes.|
-| rxPackets | number |  Yes|  Number of downlink packets.|
-| txPackets | number |  Yes|  Number of uplink packets.|
+| Name     | Type  | Mandatory| Description                   |
+| --------- | ------ | ---- | ----------------------- |
+| rxBytes   | number | Yes  | Downlink traffic data, in bytes.|
+| txBytes   | number | Yes  | Uplink traffic data, in bytes.|
+| rxPackets | number | Yes  | Number of downlink packets.         |
+| txPackets | number | Yes  | Number of uplink packets.         |

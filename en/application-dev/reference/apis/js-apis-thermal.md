@@ -1,6 +1,6 @@
 # @ohos.thermal (Thermal Management)
 
-This module provides thermal level-related callback and query APIs to obtain the information required for thermal control.
+The **thermal** module provides thermal level-related callback and query APIs to obtain the information required for thermal control.
 
 > **NOTE**
 >
@@ -38,7 +38,7 @@ For details about the error codes, see [Thermal Manager Error Codes](../errorcod
 
 ```js
 try {
-    thermal.registerThermalLevelCallback(level => {
+    thermal.registerThermalLevelCallback((level: thermal.ThermalLevel) => {
         console.info('thermal level is: ' + level);
     });
     console.info('register thermal level callback success.');
@@ -59,7 +59,7 @@ Unsubscribes from thermal level changes.
 
 | Name  | Type                | Mandatory| Description                                          |
 | -------- | -------------------- | ---- | ---------------------------------------------- |
-| callback | Callback&lt;void&gt; | No  | Callback that returns no value. If this parameter is not set, this API unsubscribes from all callbacks.|
+| callback | Callback&lt;void&gt; | No  | Callback that returns no value. If this parameter is not set, all callbacks will be unregistered.|
 
 **Error codes**
 
@@ -90,7 +90,7 @@ Obtains the current thermal level.
 
 **System capability:** SystemCapability.PowerManager.ThermalManager
 
-**Return value**:
+**Return value**
 
 | Type        | Description        |
 | ------------ | ------------ |
@@ -108,7 +108,7 @@ For details about the error codes, see [Thermal Manager Error Codes](../errorcod
 
 ```js
 try {
-    var level = thermal.getLevel();
+    let level = thermal.getLevel();
     console.info('thermal level is: ' + level);
 } catch(err) {
     console.error('get thermal level failed, err: ' + err);
@@ -129,12 +129,12 @@ Subscribes to thermal level changes.
 
 | Name  | Type                             | Mandatory| Description                                                        |
 | -------- | --------------------------------- | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback&lt;ThermalLevel&gt; | Yes  | Callback used to return the result. The return value contains only one parameter, that is, thermal level. If an alarm is generated, you can use `// @ts-ignore` to suppress the alarm.|
+| callback | AsyncCallback&lt;ThermalLevel&gt; | Yes  | Callback used to return the result. The return value contains only one parameter, that is, thermal level.|
 
 **Example**
 
 ```js
-thermal.subscribeThermalLevel((level) => {
+thermal.subscribeThermalLevel((err: BusinessError<void>, level: thermal.ThermalLevel) => {
     console.info('thermal level is: ' + level);
 });
 ```
@@ -153,7 +153,7 @@ Unsubscribes from thermal level changes.
 
 | Name  | Type                     | Mandatory| Description                                          |
 | -------- | ------------------------- | ---- | ---------------------------------------------- |
-| callback | AsyncCallback&lt;void&gt; | No  | Callback that returns no value. If this parameter is not set, this API unsubscribes from all callbacks.|
+| callback | AsyncCallback&lt;void&gt; | No  | Callback that returns no value. If this parameter is not set, all callbacks will be unregistered.|
 
 **Example**
 
@@ -173,16 +173,16 @@ Obtains the current thermal level.
 
 **System capability:** SystemCapability.PowerManager.ThermalManager
 
-**Return value**:
+**Return value**
 
 | Type          | Description    |
 | ------------ | ------ |
-| ThermalLevel | Thermal level obtained.|
+| ThermalLevel | Thermal level.|
 
 **Example**
 
 ```js
-var level = thermal.getThermalLevel();
+let level = thermal.getThermalLevel();
 console.info('thermal level is: ' + level);
 ```
 

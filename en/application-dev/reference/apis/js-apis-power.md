@@ -104,7 +104,7 @@ For details about the error codes, see [Power Manager Error Codes](../errorcodes
 
 ```js
 try {
-    var isActive = power.isActive();
+    let isActive = power.isActive();
     console.info('power is active: ' + isActive);
 } catch(err) {
     console.error('check active status failed, err: ' + err);
@@ -206,7 +206,7 @@ For details about the error codes, see [Power Manager Error Codes](../errorcodes
 
 ```js
 try {
-    var mode = power.getPowerMode();
+    let mode = power.getPowerMode();
     console.info('power mode: ' + mode);
 } catch(err) {
     console.error('get power mode failed, err: ' + err);
@@ -243,7 +243,7 @@ For details about the error codes, see [Power Manager Error Codes](../errorcodes
 **Example**
 
 ```js
-power.setPowerMode(power.DevicePowerMode.MODE_PERFORMANCE, err => {
+power.setPowerMode(power.DevicePowerMode.MODE_PERFORMANCE, (err: BusinessError<void>) => {
     if (typeof err === 'undefined') {
         console.info('set power mode to MODE_PERFORMANCE');
     } else {
@@ -322,7 +322,7 @@ For details about the error codes, see [Power Manager Error Codes](../errorcodes
 
 ```js
 try {
-    var isStandby = power.isStandby();
+    let isStandby = power.isStandby();
     console.info('device is in standby: ' + isStandby);
 } catch(err) {
     console.error('check isStandby failed, err: ' + err);
@@ -372,7 +372,7 @@ Checks the screen status of the current device. This API uses an asynchronous ca
 **Example**
 
 ```js
-power.isScreenOn((err, data) => {
+power.isScreenOn((err: BusinessError<void>, data: boolean) => {
     if (typeof err === 'undefined') {
         console.info('screen on status is ' + data);
     } else {
@@ -400,10 +400,10 @@ Checks the screen status of the current device. This API uses a promise to retur
 
 ```js
 power.isScreenOn()
-.then(data => {
+.then((data: boolean) => {
     console.info('screen on status is ' + data);
 })
-.catch(err => {
+.catch((err: { code: number, message: string }) => {
     console.error('check screen status failed, err: ' + err);
 })
 ```

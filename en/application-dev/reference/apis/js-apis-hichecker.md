@@ -9,7 +9,7 @@ The HiChecker module allows you to check issues that may be easily ignored durin
 
 ## Modules to Import
 
-```js
+```ts
 import hichecker from '@ohos.hichecker';
 ```
 
@@ -43,7 +43,9 @@ Adds one or more rules. HiChecker detects unexpected operations or gives feedbac
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 try {
     // Add a rule.
     hichecker.addCheckRule(hichecker.RULE_CAUTION_PRINT_LOG);
@@ -51,7 +53,7 @@ try {
     // hichecker.addCheckRule(
     //     hichecker.RULE_CAUTION_PRINT_LOG | hichecker.RULE_CAUTION_TRIGGER_CRASH);
 } catch (err) {
-    console.error(`code: ${err.code}, message: ${err.message}`);
+    console.error(`code: ${(err as BusinessError).code}, message: ${(err as BusinessError).message}`);
 }
 ```
 
@@ -71,7 +73,9 @@ Removes one or more rules. The removed rules will become ineffective.
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base'
+
 try {
     // Remove a rule.
     hichecker.removeCheckRule(hichecker.RULE_CAUTION_PRINT_LOG);
@@ -79,7 +83,7 @@ try {
     // hichecker.removeCheckRule(
     //     hichecker.RULE_CAUTION_PRINT_LOG | hichecker.RULE_CAUTION_TRIGGER_CRASH);
 } catch (err) {
-    console.error(`code: ${err.code}, message: ${err.message}`);
+    console.error(`code: ${(err as BusinessError).code}, message: ${(err as BusinessError).message}`);
 }
 ```
 
@@ -105,7 +109,9 @@ Checks whether the specified rule exists in the collection of added rules. If th
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base'
+
 try {
     // Add a rule.
     hichecker.addCheckRule(hichecker.RULE_THREAD_CHECK_SLOW_PROCESS);
@@ -114,7 +120,7 @@ try {
     hichecker.containsCheckRule(hichecker.RULE_THREAD_CHECK_SLOW_PROCESS); // return true;
     hichecker.containsCheckRule(hichecker.RULE_CAUTION_PRINT_LOG); // return false;
 } catch (err) {
-    console.error(`code: ${err.code}, message: ${err.message}`);
+    console.error(`code: ${(err as BusinessError).code}, message: ${(err as BusinessError).message}`);
 }
 ```
 
@@ -138,7 +144,7 @@ Adds one or more rules. HiChecker detects unexpected operations or gives feedbac
 
 **Example**
 
-```js
+```ts
 // Add a rule.
 hichecker.addRule(hichecker.RULE_CAUTION_PRINT_LOG);
 
@@ -167,7 +173,7 @@ Removes one or more rules. The removed rules will become ineffective.
 
 **Example**
 
-```js
+```ts
 // Remove a rule.
 hichecker.removeRule(hichecker.RULE_CAUTION_PRINT_LOG);
 
@@ -192,7 +198,7 @@ Obtains a collection of thread, process, and alarm rules that have been added.
 
 **Example**
 
-```js
+```ts
 // Add a rule.
 hichecker.addRule(hichecker.RULE_THREAD_CHECK_SLOW_PROCESS);
 
@@ -226,7 +232,7 @@ Checks whether the specified rule exists in the collection of added rules. If th
 
 **Example**
 
-```js
+```ts
 // Add a rule.
 hichecker.addRule(hichecker.RULE_THREAD_CHECK_SLOW_PROCESS);
 
