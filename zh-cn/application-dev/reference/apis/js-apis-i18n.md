@@ -1090,7 +1090,7 @@ isValidNumber(number: string): boolean
 **示例：** 
   ```js
   let phonenumberfmt = new I18n.PhoneNumberFormat("CN");
-  let isValidNumber = phonenumberfmt.isValidNumber("15812312312"); // isValidNumber = true
+  let isValidNumber = phonenumberfmt.isValidNumber("158****2312"); // isValidNumber = true
   ```
 
 
@@ -1114,10 +1114,10 @@ format(number: string): string
 | ------ | ---------- |
 | string | 格式化后的电话号码。 |
 
-**示例：** 
-  ```js
-  let phonenumberfmt = new I18n.PhoneNumberFormat("CN");
-  let formattedPhoneNumber = phonenumberfmt.format("15812312312"); // formattedPhoneNumber = "158 1231 2312"
+**示例：**
+  ```ts
+  let phonenumberfmt: I18n.PhoneNumberFormat = new I18n.PhoneNumberFormat("CN");
+  let formattedPhoneNumber: string = phonenumberfmt.format("158****2312"); // formattedPhoneNumber = "158 **** 2312"
   ```
 
 
@@ -1142,10 +1142,10 @@ getLocationName(number: string, locale: string): string
 | ------ | -------- |
 | string | 电话号码归属地。 |
 
-**示例：** 
-  ```js
-  let phonenumberfmt = new I18n.PhoneNumberFormat("CN");
-  let locationName = phonenumberfmt.getLocationName("15812312345", "zh-CN"); // locationName = "广东省湛江市"
+**示例：**
+  ```ts
+  let phonenumberfmt: I18n.PhoneNumberFormat = new I18n.PhoneNumberFormat("CN");
+  let locationName: string = phonenumberfmt.getLocationName("158****2345", "zh-CN"); // locationName = "广东省湛江市"
   ```
 
 
