@@ -665,10 +665,10 @@ try {
     store = null;
     kvManager.deleteKVStore('appId', 'storeId').then(() => {
       console.info('Succeeded in deleting KVStore');
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
       console.error(`Failed to delete KVStore.code is ${err.code},message is ${err.message}`);
     });
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to get KVStore.code is ${err.code},message is ${err.message}`);
   });
 } catch (e) {
