@@ -57,7 +57,7 @@
    ```js
    import relationalStore from '@ohos.data.relationalStore'; // 导入模块 
    import UIAbility from '@ohos.app.ability.UIAbility';
-   import { BusinessError } from '@ohos.base'；
+   import { BusinessError } from '@ohos.base';
    import window from '@ohos.window';
 
    class EntryAbility extends UIAbility {
