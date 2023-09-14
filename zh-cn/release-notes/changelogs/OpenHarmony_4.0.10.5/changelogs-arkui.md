@@ -2,7 +2,7 @@
 
 ## cl.arkui.1 NavPathStack类中的方法名称变更
 
-**关键接口/组件变更***
+**关键接口/组件变更**
 
 [NavPathStack](/zh-cn/application-dev/reference/arkui-ts/ts-basic-components-navigation.md#navpathstack10)
 
