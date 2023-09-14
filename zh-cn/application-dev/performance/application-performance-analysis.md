@@ -8,9 +8,13 @@
 
 ## 性能数据分析视图说明
 
-性能数据可以通过**DevEco Studio > Insight > Time > ArkTS Callstack**和**Chrome浏览器 > JavaScript Profiler**进行展示和分析。前者提供Callstack泳道图、Details图；后者提供时序火焰图（Chart）、比重图（Heavy）、树形图（Tree）。
+性能数据可以通过**DevEco Studio > Profiler > Time > ArkTS Callstack**和**Chrome浏览器 > JavaScript Profiler**进行展示和分析。前者提供Callstack泳道图、Details图；后者提供时序火焰图（Chart）、比重图（Heavy）、树形图（Tree）。
 
-### DevEco Studio Insight视图
+### DevEco Studio Profiler视图
+
+> **说明：**
+>
+> 该工具自DevEco Studio 4.0 beta2之后开始提供。请各位开发者将DevEco Studio更新至最新版本，以使用该工具。
 
 #### ArkTS Callstack泳道图
 
@@ -178,7 +182,7 @@ Chrome浏览器比重图（Heavy）的时间并不是实际时间，而是通过
 
 ### 各采集工具适用场景及支持情况
 
-| 采集方法       | [DevEco Studio Insight](#deveco-studio-insight工具采集) | [JavaScript Profiler](#chrome浏览器javascript-profiler工具采集) | [hdc shell](#hdc-shell命令采集) | [应用代码插桩](#应用代码插桩采集) |
+| 采集方法       | [DevEco Studio Profiler](#deveco-studio-profiler工具采集) | [JavaScript Profiler](#chrome浏览器javascript-profiler工具采集) | [hdc shell](#hdc-shell命令采集) | [应用代码插桩](#应用代码插桩采集) |
 | -------------- | ------------------------------------------------------- | --------------------------------------------------------------- | ------------------------------- | --------------------------------- |
 | debug应用      | 支持                                                    | 支持                                                            | 支持                            | 支持                              |
 | release应用    | 暂不支持                                                | 暂不支持                                                        | 支持                            | 支持                              |
@@ -187,15 +191,15 @@ Chrome浏览器比重图（Heavy）的时间并不是实际时间，而是通过
 | 采集启动后数据 | 支持                                                    | 支持                                                            | 支持                            | 支持                              |
 | 采集冷启动数据 | 暂不支持                                                | 不支持                                                          | 支持                            | 支持                              |
 
-### DevEco Studio Insight工具采集
+### DevEco Studio Profiler工具采集
 
 1. 启动应用，打开DevEco Studio并确保连接到设备（右上角显示设备SN）。
 
-2. 按照下图所示①-⑤的步骤打开 **Insight > Time** ，选择设备及应用，创建一个新的Time Session监视器。
+2. 按照下图所示①-⑤的步骤打开 **Profiler > Time** ，选择设备及应用，创建一个新的Time Session监视器。
 
-   图12 **DevEco Studio Insight采集指引**
+   图12 **DevEco Studio Prifiler采集指引**
 
-   ![DevEco Studio Insight采集指引](figures/deveco-studio-insight-catch-guide.png)
+   ![DevEco Studio Profiler采集指引](figures/deveco-studio-profiler-catch-guide.png)
 
 3. 点击开始录制按钮，箭头变成方块代表开始录制。
 
@@ -203,7 +207,7 @@ Chrome浏览器比重图（Heavy）的时间并不是实际时间，而是通过
 
 5. 再次点击录制按钮，方框变成灰色，结束录制。
 
-6. 选择ArkTS Callstack泳道，框选时间范围或者直接选择函数进行分析，具体可见[DevEco Studio Insight视图](#deveco-studio-insight视图)。
+6. 选择ArkTS Callstack泳道，框选时间范围或者直接选择函数进行分析，具体可见[DevEco Studio Profiler视图](#deveco-studio-profiler视图)。
 
 ### Chrome浏览器JavaScript Profiler工具采集
 
