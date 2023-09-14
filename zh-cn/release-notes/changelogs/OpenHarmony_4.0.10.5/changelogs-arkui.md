@@ -8,7 +8,7 @@
 
 **变更影响**
 
-更新4.0.10.x sdk之后，如果代码未变更方法名称，将出现编译报错。   
+更新4.0.10.x SDK之后，如果代码未变更方法名称，将出现编译报错。   
 Property 'push' does not exist on type 'NavPathStack'.   
 Property 'pushName' does not exist on type 'NavPathStack'.   
 Property 'pop' does not exist on type 'NavPathStack'.   
