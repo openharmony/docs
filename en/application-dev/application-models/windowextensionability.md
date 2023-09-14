@@ -37,10 +37,12 @@ To implement an embedded application, manually create a WindowExtensionAbility i
 3. Open the **WindowExtAbility.ts** file and import the dependency package of **WindowExtensionAbility**. Customize a class that inherits from **WindowExtensionAbility** and implement the **onWindowReady()**, **onConnect()**, and **onDisconnect()** lifecycle callbacks.
 
    ```ts
-   import Extension from '@ohos.application.WindowExtensionAbility'
+    import Extension from '@ohos.application.WindowExtensionAbility'
+    import Want from '@ohos.app.ability.Want';
+    import window from '@ohos.window';
 
     export default class WindowExtAbility extends Extension {
-        onWindowReady(window) {
+        onWindowReady(window: window.Window) {
             window.loadContent('WindowExtAbility/pages/index1').then(() => {
                 window.getProperties().then((pro) => {
                     console.info("WindowExtension " + JSON.stringify(pro));
@@ -49,11 +51,11 @@ To implement an embedded application, manually create a WindowExtensionAbility i
             })
         }
 
-        onConnect(want) {
+        onConnect(want: Want) {
             console.info('JSWindowExtension onConnect ' + want.abilityName);
         }
 
-        onDisconnect(want) {
+        onDisconnect(want: Want) {
             console.info('JSWindowExtension onDisconnect ' + want.abilityName);
         }
     }

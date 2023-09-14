@@ -20,7 +20,9 @@ This document describes the following operations:
 Call [UIAbilityContext.setMissionIcon()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextsetmissionicon) to set the icon of a mission snapshot. For details about how to obtain the context, see [Obtaining the Context of UIAbility](uiability-usage.md#obtaining-the-context-of-uiability). For details about how to obtain the PixelMap information in the example, see [Image Decoding](../media/image-decoding.md).
 
 ```ts
-let context = ...; // UIAbilityContext
+import common from '@ohos.app.ability.common';
+
+let context: common.UIAbilityContext = ...; // UIAbilityContext
 let pixelMap: PixelMap =...; // PixelMap information of the image.
 
 context.setMissionIcon(pixelMap, (err) => {
@@ -33,6 +35,7 @@ context.setMissionIcon(pixelMap, (err) => {
 The display effect is shown below.
 
 Figure 2 Mission snapshot icon
+
 ![](figures/mission-set-task-snapshot-icon.png)
 
 ## Setting a Mission Snapshot Name
@@ -40,11 +43,14 @@ Figure 2 Mission snapshot icon
 Call [UIAbilityContext.setMissionLabel()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextsetmissionlabel) to set the name of a mission snapshot.
 
 ```ts
-let context = ...; // UIAbilityContext
+import common from '@ohos.app.ability.common';
+import { BusinessError } from '@ohos.base';
+
+let context: common.UIAbilityContext = this.context; // UIAbilityContext
 
 context.setMissionLabel('test').then(() => {
   console.info('Succeeded in seting mission label.');
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to set mission label. Code is ${err.code}, message is ${err.message}`);
 });
 ```
@@ -52,4 +58,5 @@ context.setMissionLabel('test').then(() => {
 The display effect is shown below.
 
 Figure 3 Mission snapshot name
+
 ![](figures/mission-set-task-snapshot-label.png)

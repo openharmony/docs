@@ -18,12 +18,13 @@ AbilityStage is not automatically generated in the default project of DevEco Stu
    
    ```ts
    import AbilityStage from '@ohos.app.ability.AbilityStage';
+   import Want from '@ohos.app.ability.Want';
    
    export default class MyAbilityStage extends AbilityStage {
      onCreate() {
        // When the HAP of the application is loaded for the first time, initialize the module.
      }
-     onAcceptWant(want) {
+     onAcceptWant(want: Want) {
        // Triggered only for the UIAbility with the specified launch type.
        return "MyAbilityStage";
      }
@@ -58,9 +59,10 @@ When an application is switched to the background, it is cached in the backgroun
 
   ```ts
   import AbilityStage from '@ohos.app.ability.AbilityStage';
+  import AbilityConstant from '@ohos.app.ability.AbilityConstant';
   
   export default class MyAbilityStage extends AbilityStage {
-    onMemoryLevel(level) {
+    onMemoryLevel(level: AbilityConstant.MemoryLevel) {
       // Release unnecessary memory based on the change of available system memory.
     }
   }

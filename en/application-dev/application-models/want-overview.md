@@ -17,7 +17,9 @@
     Explicit Want is usually used to start a known target application component in the same application. The target application component is started by specifying **bundleName** of the application where the target application component is located and **abilityName** in the **Want** object. When there is an explicit object to process the request, explicit Want is a simple and effective way to start the target application component.
   
   ```ts
-  let wantInfo = {
+  import Want from '@ohos.app.ability.Want';
+
+  let wantInfo: Want = {
     deviceId: '', // An empty deviceId indicates the local device.
     bundleName: 'com.example.myapplication',
     abilityName: 'FuncAbility',
@@ -30,7 +32,9 @@
   
   
   ```ts
-  let wantInfo = {
+  import Want from '@ohos.app.ability.Want';
+
+  let wantInfo: Want = {
     // Uncomment the line below if you want to implicitly query data only in the specific bundle.
     // bundleName: 'com.example.myapplication',
     action: 'ohos.want.action.search',
