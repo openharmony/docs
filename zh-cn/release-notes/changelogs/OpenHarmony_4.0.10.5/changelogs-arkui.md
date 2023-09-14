@@ -4,7 +4,7 @@
 
 **关键接口/组件变更***
 
-[NavPathStack](#zh-cn/application-dev/reference/arkui-ts/ts-basic-components-navigation.md#navpathstack10)
+[NavPathStack](/zh-cn/application-dev/reference/arkui-ts/ts-basic-components-navigation.md#navpathstack10)
 
 **变更影响**
 
