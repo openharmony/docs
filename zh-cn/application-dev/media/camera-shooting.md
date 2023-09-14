@@ -126,7 +126,7 @@
        let err = error as BusinessError;
        console.error(`Failed to set the zoom ratio value. error: ${JSON.stringify(err)}`);
      }
-}
+   }
    ```
 
 5. 触发拍照。
