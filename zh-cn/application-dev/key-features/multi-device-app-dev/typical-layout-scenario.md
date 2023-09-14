@@ -435,7 +435,7 @@ struct SideBarSample {
 ```
 @Component
 struct Details {
-  private imageSrc: Resource
+  private imageSrc: Resource=$r('app.media.my_image_moon')
   build() {
     Column() {
       Image(this.imageSrc)
@@ -451,8 +451,8 @@ struct Details {
 
 @Component
 struct Item {
-  private imageSrc: Resource
-  private label: string
+  private imageSrc?: Resource
+  private label?: string
 
   build() {
     NavRouter() {
@@ -522,14 +522,15 @@ struct NavigationSample {
 // MainAbility.ts
 import window from '@ohos.window'
 import display from '@ohos.display'
+import Ability from '@ohos.app.ability.Ability'
 
 export default class MainAbility extends Ability {
-  private windowObj: window.Window
-  private curBp: string
-  private myWidth: number
-  ...
+  private windowObj?: window.Window
+  private curBp?: string
+  private myWidth?: number
+  // ...
   // 根据当前窗口尺寸更新断点
-  private updateBreakpoint(windowWidth) {
+  private updateBreakpoint(windowWidth:number) :void{
     // 将长度的单位由px换算为vp
     let windowWidthVp = windowWidth / (display.getDefaultDisplaySync().densityDPI / 160)
     let newBp: string = ''
@@ -557,7 +558,7 @@ export default class MainAbility extends Ability {
     }
   }
 
-  onWindowStageCreate(windowStage: window.WindowStage) {
+  onWindowStageCreate(windowStage: window.WindowStage) :void{
     windowStage.getMainWindow().then((windowObj) => {
       this.windowObj = windowObj
       // 获取应用启动时的窗口尺寸
@@ -567,23 +568,23 @@ export default class MainAbility extends Ability {
         this.updateBreakpoint(windowSize.width)
       })
     });
-    ...
+   // ...
   }
     
   // 窗口销毁时，取消窗口尺寸变化监听
-  onWindowStageDestroy() {
+  onWindowStageDestroy() :void {
     if (this.windowObj) {
       this.windowObj.off('windowSizeChange')
     }
   }
-  ...
+  //...
 }
 
 
 // tripleColumn.ets
 @Component
 struct Details {
-  private imageSrc: Resource
+  private imageSrc: Resource=$r('app.media.icon')
   build() {
     Column() {
       Image(this.imageSrc)
@@ -599,8 +600,8 @@ struct Details {
 
 @Component
 struct Item {
-  private imageSrc: Resource
-  private label: string
+  private imageSrc?: Resource
+  private label?: string
 
   build() {
     NavRouter() {
@@ -643,14 +644,14 @@ struct TripleColumnSample {
     SideBarContainer() {
       Column() {
         List() {
-          ForEach(this.arr, (item, index) => {
+          ForEach(this.arr, (item:number, index) => {
             ListItem() {
               Text('A'+item)
                 .width('100%').height("20%").fontSize(24)
                 .fontWeight(FontWeight.Bold)
                 .textAlign(TextAlign.Center).backgroundColor('#66000000')
             }
-          }, item => item)
+          }, ((item:number):number => item))
         }.divider({ strokeWidth: 5, color: '#F1F3F5' })
       }.width('100%')
       .height('100%')
@@ -890,9 +891,9 @@ Scroll（内容超出宽度时可滚动） + Row（横向均分：justifyContent
 
 
 ```
-type OperationItem = {
-  name: string
-  icon: Resource
+class OperationItem {
+  name?: string
+  icon: Resource=$r('app.media.self_fm')
 }
 
 @Entry
@@ -911,7 +912,7 @@ export default struct OperationEntries {
   build() {
     Scroll() {
       Row() {
-        ForEach(this.listData, item => {
+        ForEach(this.listData, (item:OperationItem) => {
           Column() {
             Image(item.icon)
               .width(48)
