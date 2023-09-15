@@ -40,7 +40,7 @@ For details about how to use attributes, see [Setting Attributes](../../ui/arkts
 | Name                            | Type                                               | Description                                                        |
 | -------------------------------- | ------------------------------------------------------- | ------------------------------------------------------------ |
 | alt                              | string \| [Resource](ts-types.md#resource)         | Placeholder image displayed during loading. Local images (in PNG, JPG, BMP, SVG, or GIF format) are supported. Online images are not supported.<br>Default value: **null**<br>Since API version 9, this API is supported in ArkTS widgets.|
-| objectFit                        | [ImageFit](ts-appendix-enums.md#imagefit)               | Image scale mode.<br>Default value: **ImageFit.Cover**<br>Since API version 9, this API is supported in ArkTS widgets.|
+| objectFit                        | [ImageFit](ts-appendix-enums.md#imagefit)               | How the image is resized to fit its container.<br>Default value: **ImageFit.Cover**<br>Since API version 9, this API is supported in ArkTS widgets.|
 | objectRepeat                     | [ImageRepeat](ts-appendix-enums.md#imagerepeat)         | How the image is repeated. When set to repeat, the image is repeated from the center to edges. The last image will be clipped if it does not fit in the component.<br>Default value: **ImageRepeat.NoRepeat**<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>This attribute is not applicable to SVG images.|
 | interpolation                    | [ImageInterpolation](#imageinterpolation)               | Interpolation effect of the image, which can alleviate aliasing that occurs when the image is zoomed.<br>Default value: **ImageInterpolation.None**<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>When the image is zoomed out, high quality interpolation is not applicable. You are advised to use medium or low quality interpolation instead.<br>This attribute is not applicable to SVG images.|
 | renderMode                       | [ImageRenderMode](#imagerendermode)                     | Rendering mode of the image, which can be **Original** or **Template** (monochrome).<br>Default value: **ImageRenderMode.Original**<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>This attribute is not applicable to SVG images.|
@@ -199,6 +199,11 @@ struct ImageExample2 {
 
 
 ```ts
+class tmp{
+  width: number = 0
+  height: number = 0
+}
+let msg:tmp = new tmp()
 @Entry
 @Component
 struct ImageExample3 {
@@ -223,9 +228,11 @@ struct ImageExample3 {
             .objectFit(ImageFit.Cover)
             .height(180).width(180)
             // Obtain the size of an image after the image loading is complete.
-            .onComplete((msg: { width: number,height: number }) => {
-              this.widthValue = msg.width
-              this.heightValue = msg.height
+            .onComplete(msg => {
+              if(msg){
+                this.widthValue = msg.width
+                this.heightValue = msg.height
+              }
             })
             .onError(() => {
               console.log('load image fail')

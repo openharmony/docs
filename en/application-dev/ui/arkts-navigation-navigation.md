@@ -15,6 +15,7 @@ The pages of the Navigation component include the home page and content page. Th
 The **\<Navigation>** component uses the **mode** attribute to set the page display mode.
 
 - Adaptive Mode
+
   By default, the **\<Navigation>** component is in adaptive mode. In this case, the **mode** attribute is **NavigationMode.Auto**. In adaptive mode, when the device width is greater than 520 vp, the **\<Navigation>** component uses the column mode. Otherwise, the **\<Navigation>** component uses the single-page mode.
 
 
@@ -53,6 +54,7 @@ The **\<Navigation>** component uses the **mode** attribute to set the page disp
 
 
   ```ts
+  let TooTmp:Record<string,string|Function> = {'value': "func", 'icon': "./image/ic_public_highlights.svg", 'action': ()=> {}}
   @Entry
   @Component
   struct NavigationExample {
@@ -67,7 +69,7 @@ The **\<Navigation>** component uses the **mode** attribute to set the page disp
             .backgroundColor('#FFFFFF')
   
           List({ space: 12 }) {
-            ForEach(this.arr, (item) => {
+            ForEach(this.arr, (item:string) => {
               ListItem() {
                 NavRouter() {
                   Text("NavRouter" + item)
@@ -84,7 +86,7 @@ The **\<Navigation>** component uses the **mode** attribute to set the page disp
                   .title("NavDestinationTitle" + item)
                 }
               }
-            }, item => item)
+            }, ((item:string):string => item))
           }
           .width("90%")
           .margin({ top: 12 })
@@ -99,9 +101,9 @@ The **\<Navigation>** component uses the **mode** attribute to set the page disp
           {value: "", icon: "./image/ic_public_add.svg", action: ()=> {}}
         ])
         .toolBar({items: [
-          {value: "func", icon: "./image/ic_public_highlights.svg", action: ()=> {}},
-          {value: "func", icon: "./image/ic_public_highlights.svg", action: ()=> {}},
-          {value: "func", icon: "./image/ic_public_highlights.svg", action: ()=> {}}
+          TooTmp,
+          TooTmp,
+          TooTmp
         ]})
       }
       .height('100%')
@@ -119,11 +121,10 @@ The **\<Navigation>** component uses the **mode** attribute to set the page disp
 The title bar is on the top of the page and is used to display the page name and operation entry. The **\<Navigation>** component uses the **titleMode** attribute to set the title bar mode.
 
 - Mini mode
-  
-Applicable when the title of a level-1 page does not need to be highlighted.
-  
-**Figure 3** Title bar in Mini mode 
-  
+  Applicable when the title of a level-1 page does not need to be highlighted.
+
+  **Figure 3** Title bar in Mini mode 
+
   ![mini](figures/mini.jpg)
 
 
@@ -136,11 +137,10 @@ Applicable when the title of a level-1 page does not need to be highlighted.
 
 
 - Full mode
-  
-Applicable when the title of a level-1 page needs to be highlighted.
-  
-  **Figure 4** Title bar in Full mode 
-  
+  Applicable when the title of a level-1 page needs to be highlighted.
+
+    **Figure 4** Title bar in Full mode 
+
   ![free1](figures/free1.jpg)
 
 
@@ -154,19 +154,20 @@ Applicable when the title of a level-1 page needs to be highlighted.
 
 ## Setting the Menu Bar
 
-The menu bar is in the upper right corner of the **\<Navigation>** component. You can set the menu bar through the **menus** attribute, which supports two parameter types: Array&lt;[NavigationMenuItem](../reference/arkui-ts/ts-basic-components-navigation.md#navigationmenuitem)&gt and CustomBuilder. When the Array\<NavigationMenuItem> type is used, a maximum of three icons can be displayed in portrait mode and a maximum of five icons can be displayed in landscape mode. Extra icons will be placed in the automatically generated More icons.
+The menu bar is in the upper right corner of the **\<Navigation>** component. You can set the menu bar through the **menus** attribute, which supports two parameter types: Array&lt;[NavigationMenuItem](../reference/arkui-ts/ts-basic-components-navigation.md#navigationmenuitem)&gt; and CustomBuilder. When the Array\<NavigationMenuItem> type is used, a maximum of three icons can be displayed in portrait mode and a maximum of five icons can be displayed in landscape mode. Extra icons will be placed in the automatically generated More icons.
 
 **Figure 5** Menu bar with three icons 
 
 ![menu-bar-2](figures/menu-bar-2.jpg)
 
 ```ts
+let TooTmp:Record<string,string|Function> = {'value': "", 'icon': "./image/ic_public_highlights.svg", 'action': ()=> {}}
 Navigation() {
   ...
 }
-.menus([{value: "", icon: "./image/ic_public_search.svg", action: ()=>{}},
-        {value: "", icon: "./image/ic_public_add.svg", action: ()=>{}},
-        {value: "", icon: "./image/ic_public_add.svg", action: ()=>{}}])
+.menus([TooTmp,
+  TooTmp,
+  TooTmp])
 ```
 
 **Figure 6** Menu bar with four icons 
@@ -174,13 +175,14 @@ Navigation() {
 ![menu-bar](figures/menu-bar.jpg)
 
 ```ts
+let TooTmp:Record<string,string|Function> = {'value': "", 'icon': "./image/ic_public_highlights.svg", 'action': ()=> {}}
 Navigation() {
   ...
 }
-.menus([{value: "", icon: "./image/ic_public_search.svg", action: ()=>{}},
-        {value: "", icon: "./image/ic_public_add.svg", action: ()=>{}},
-        {value: "", icon: "./image/ic_public_add.svg", action: ()=>{}},
-        {value: "", icon: "./image/ic_public_add.svg", action: ()=>{}}])
+.menus([TooTmp,
+  TooTmp,
+  TooTmp,
+  TooTmp])
 ```
 
 
@@ -194,11 +196,10 @@ The toolbar is located at the bottom of the **\<Navigation>** component. You can
 ![free3](figures/free3.jpg)
 
 ```ts
+let TooTmp:Record<string,string|Function> = {'value': "func", 'icon': "./image/ic_public_highlights.svg", 'action': ()=> {}}
+let TooBar:Record<string,object[]> = {'items':[TooTmp,TooTmp,TooTmp]}
 Navigation() {
   ...
 }
-.toolBar({items:[
-        {value: "func", icon: "./image/ic_public_highlights.svg", action: ()=>{}},
-        {value: "func", icon: "./image/ic_public_highlights.svg", action: ()=>{}},
-        {value: "func", icon: "./image/ic_public_highlights.svg", action: ()=>{}}]})
+.toolBar(TooBar)
 ```

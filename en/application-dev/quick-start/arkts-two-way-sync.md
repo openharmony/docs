@@ -15,7 +15,6 @@ What the internal state is depends on the component. For example, for the [bindP
 
   | Component                                                        | Supported Parameter/Attribute| Initial API Version|
   | ------------------------------------------------------------ | --------------- | ----------- |
-  | [bindPopup](../reference/arkui-ts/ts-universal-attributes-popup.md) | show            | 8           |
   | [Checkbox](../reference/arkui-ts/ts-basic-components-checkbox.md) | select          | 10          |
   | [CheckboxGroup](../reference/arkui-ts/ts-basic-components-checkboxgroup.md) | selectAll       | 10          |
   | [DatePicker](../reference/arkui-ts/ts-basic-components-datepicker.md) | selected        | 10          |
@@ -24,7 +23,6 @@ What the internal state is depends on the component. For example, for the [bindP
   | [Panel](../reference/arkui-ts/ts-container-panel.md)         | mode            | 10          |
   | [Radio](../reference/arkui-ts/ts-basic-components-radio.md)  | checked         | 10          |
   | [Rating](../reference/arkui-ts/ts-basic-components-rating.md) | rating          | 10          |
-  | [Refresh](../reference/arkui-ts/ts-container-refresh.md)     | refreshing      | 8           |
   | [Search](../reference/arkui-ts/ts-basic-components-search.md) | value           | 10          |
   | [SideBarContainer](../reference/arkui-ts/ts-container-sidebarcontainer.md) | showSideBar     | 10          |
   | [Slider](../reference/arkui-ts/ts-basic-components-slider.md) | value           | 10          |
@@ -39,36 +37,37 @@ What the internal state is depends on the component. For example, for the [bindP
   | [Select](../reference/arkui-ts/ts-basic-components-select.md) | selected, value| 10          |
   | [BindSheet](../reference/arkui-ts/ts-universal-attributes-sheet-transition.md) | isShow | 10          |
   | [BindContentCover](../reference/arkui-ts/ts-universal-attributes-modal-transition.md) | isShow | 10          |
+  | [bindPopup](../reference/arkui-ts/ts-universal-attributes-popup.md) | show | 8 |
+  | [Refresh](../reference/arkui-ts/ts-container-refresh.md) | refreshing | 8 |
 
 - When the variable bound to $$ changes, the UI is re-rendered synchronously.
 
 
 ## Example
 
-This example uses the **show** parameter of the [bindPopup](../reference/arkui-ts/ts-universal-attributes-popup.md) attribute method.
+This example uses the **text** parameter of the [\<TextInput>](../reference/arkui-ts/ts-basic-components-textinput.md) component.
 
 
 ```ts
 // xxx.ets
 @Entry
 @Component
-struct bindPopupPage {
-  @State customPopup: boolean = false;
+struct TextInputExample {
+  @State text: string = ''
+  controller: TextInputController = new TextInputController()
 
   build() {
-    Column() {
-      Button('Popup')
-        .margin(20)
-        .onClick(() => {
-          this.customPopup = !this.customPopup
-        })
-        .bindPopup($$this.customPopup, {
-          message: 'showPopup'
-        })
-    }
+    Column({ space: 20 }) {
+      Text(this.text)
+      TextInput({ text: $$this.text, placeholder: 'input your word...', controller: this.controller })
+        .placeholderColor(Color.Grey)
+        .placeholderFont({ size: 14, weight: 400 })
+        .caretColor(Color.Blue)
+        .width(300)
+    }.width('100%').height('100%').justifyContent(FlexAlign.Center)
   }
 }
 ```
 
 
-![popup](figures/popup.gif)
+![TextInputDouble](figures/TextInputDouble.gif)
