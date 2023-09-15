@@ -1,4 +1,4 @@
-# 应用性能最佳实践管理
+# 应用性能最佳实践
 
 - [应用性能最佳实践概述](performance-best-parctices-overview.md)
 
