@@ -4,7 +4,7 @@
 AppStorage是应用全局的UI状态存储，是和应用的进程绑定的，由UI框架在应用程序启动时创建，为应用程序UI状态属性提供中央存储。
 
 
-和LocalStorage不同的是，LocalStorage是页面级的，通常应用于页面内的数据共享。而对于AppStorage，是应用级的全局状态共享。AppStorage还相当于整个应用的“中枢”，[持久化数据PersistentStorage](arkts-persiststorage.md)和[环境变量Environment](arkts-environment.md)都是通过AppStorage中转，才可以和UI交互。
+和AppStorage不同的是，LocalStorage是页面级的，通常应用于页面内的数据共享。而AppStorage是应用级的全局状态共享，还相当于整个应用的“中枢”，[持久化数据PersistentStorage](arkts-persiststorage.md)和[环境变量Environment](arkts-environment.md)都是通过AppStorage中转，才可以和UI交互。
 
 
 本文仅介绍AppStorage使用场景和相关的装饰器：\@StorageProp和\@StorageLink。
