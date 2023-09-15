@@ -19,7 +19,7 @@
 
 | 名称 | 描述 |
 | -------- | -------- |
-| [native_image.h](native__image_8h.md) | 定义获取和使用NativeImage的相关函数<br/>引用文件：&lt;native_image/native_image.h&gt; |
+| [native_image.h](native__image_8h.md) | 定义获取和使用NativeImage的相关函数<br/>引用文件：&lt;native_image/native_image.h&gt;  <br/>库：libnative_image.so |
 
 
 ### 类型定义
