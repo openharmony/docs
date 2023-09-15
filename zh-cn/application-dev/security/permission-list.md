@@ -2806,6 +2806,18 @@
 
 **起始版本**：11
 
+## ohos.permission.AGENT_REQUIRE_FORM
+
+允许代理请求卡片。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
 ## ohos.permission.WAKEUP_VISION
 
 允许应用访问语音助手视觉组件。
