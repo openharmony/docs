@@ -2220,7 +2220,7 @@ Verify类不支持重复初始化，当业务方需要使用新密钥验签时�
 
 当被签名的消息较短时，可在init初始化后，（无需update）直接调用verify接口传入被签名的消息和签名(signatureData)进行验签。
 
-当被签名的消息较长时，可通过update接口分段传入被签名的消息，最后调用verify接口对消息全文进行验签。verify接口的data入参在API 10之前只支持DataBlob， API 10之后增加支持null。，业务方可在循环中调用update接口，循环结束后调用verify传入签名(signatureData)进行验签。
+当被签名的消息较长时，可通过update接口分段传入被签名的消息，最后调用verify接口对消息全文进行验签。verify接口的data入参在API 10之前只支持DataBlob， API 10之后增加支持null。业务方可在循环中调用update接口，循环结束后调用verify传入签名(signatureData)进行验签。
 
 ### 属性
 
