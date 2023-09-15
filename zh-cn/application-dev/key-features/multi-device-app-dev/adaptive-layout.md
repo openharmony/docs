@@ -209,7 +209,7 @@ struct EquipartitionCapabilitySample {
       Column() {
         // 均匀分配父容器主轴方向的剩余空间
         Flex({ justifyContent: FlexAlign.SpaceEvenly }) {
-          ForEach(this.list, (item) => {
+          ForEach(this.list, (item:number) => {
             Column() {
               Image($r("app.media.icon")).width(48).height(48).margin({ top: 8 })
               Text('App name')
@@ -225,7 +225,7 @@ struct EquipartitionCapabilitySample {
         }
         // 均匀分配父容器主轴方向的剩余空间
         Flex({ justifyContent: FlexAlign.SpaceEvenly }) {
-          ForEach(this.list, (item) => {
+          ForEach(this.list, (item:number) => {
             Column() {
               Image($r("app.media.icon")).width(48).height(48).margin({ top: 8 })
               Text('App name')
@@ -498,7 +498,7 @@ struct ExtensionCapabilitySample1 {
       Row({ space: 10 }) {
         // 通过List组件实现隐藏能力
         List({ space: 10 }) {
-          ForEach(this.appList, (item) => {
+          ForEach(this.appList, (item:number) => {
             ListItem() {
               Column() {
                 Image($r("app.media.icon")).width(48).height(48).margin({ top: 8 })
@@ -739,7 +739,7 @@ struct WrapCapabilitySample {
           justifyContent: FlexAlign.Center,
           wrap: FlexWrap.Wrap
         }) {
-          ForEach(this.imageList, (item) => {
+          ForEach(this.imageList, (item:Resource) => {
             Image(item).width(183).height(138).padding(10)
           })
         }
