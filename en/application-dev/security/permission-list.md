@@ -2648,6 +2648,8 @@ Allows an application to access the intelligent voice service interfaces.
 
 **Enable via ACL**: TRUE
 
+**Start version**: 10
+
 ## ohos.permission.INSTALL_ENTERPRISE_MDM_BUNDLE
 
 Allows an enterprise MDM bundle to be installed on enterprise devices.
