@@ -79,17 +79,26 @@
 3. 创建关系型数据库，设置将需要进行分布式同步的表。
      
    ```ts
-   const STORE_CONFIG: relationalStore.StoreConfig = {
-     name: 'RdbTest.db', // 数据库文件名
-     securityLevel: relationalStore.SecurityLevel.S1 // 数据库安全级别
-   };
-   relationalStore.getRdbStore(this.context, STORE_CONFIG, (err, store) => {
-     store.executeSql('CREATE TABLE IF NOT EXISTS EMPLOYEE (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT NOT NULL, AGE INTEGER, SALARY REAL, CODES BLOB)', (err) => {
-       // 设置分布式同步表。
-       store.setDistributedTables(['EMPLOYEE']);
-       // 进行数据的相关操作
-     })
-   })
+   import UIAbility from '@ohos.app.ability.UIAbility';
+   import window from '@ohos.window';
+   import { BusinessError } from "@ohos.base";
+
+   class EntryAbility extends UIAbility {
+     onWindowStageCreate(windowStage: window.WindowStage) {
+       const STORE_CONFIG: relationalStore.StoreConfig = {
+         name: "RdbTest.db",
+         securityLevel: relationalStore.SecurityLevel.S1
+       };
+          
+       relationalStore.getRdbStore(this.context, STORE_CONFIG, (err: BusinessError, store: relationalStore.RdbStore) => {
+         store.executeSql('CREATE TABLE IF NOT EXISTS EMPLOYEE (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT NOT NULL, AGE INTEGER, SALARY REAL, CODES BLOB)', (err) => {
+           // 设置分布式同步表。
+           store.setDistributedTables(['EMPLOYEE']);
+           // 进行数据的相关操作
+         })
+       })
+     }
+   }
    ```
 
 4. 分布式数据同步。使用SYNC_MODE_PUSH触发同步后，数据将从本设备向组网内的其它所有设备同步。
