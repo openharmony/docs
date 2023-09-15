@@ -48,7 +48,6 @@ class SetSlt{
     this.scaleToggle = !this.scaleToggle;
   }
 }
-let CurAn:Record<string,curves> = {'curve':curves.springMotion()}
 @Entry
 @Component
 struct AnimationToAnimationDemo {
