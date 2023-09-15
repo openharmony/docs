@@ -3,8 +3,9 @@
 The certificate algorithm library framework provides certificate-related APIs. For details about the APIs for implementing the basic algorithm capabilities based on the cryptographic (crypto) framework, see [Crypto Framework](js-apis-cryptoFramework.md).
 
 > **NOTE**
-> 
-> The initial APIs of this module are supported since API version 9.
+>
+> - The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> - The following code snippets apply only to JavaScript development.
 
 ## Modules to Import
 
@@ -255,7 +256,7 @@ cryptoCert.createX509Cert(encodingBlob, function (error, x509Cert) {
         console.log("createX509Cert failed, errCode: " + error.code + ", errMsg: " + error.message);
     } else {
         console.log("createX509Cert success");
-        // The service needs to call getPublicKey() of the upper-level X509Cert object to obtain the public key.
+        // Obtain the public key by using getPublicKey() of the upper-level X509Cert object.
 		let pubKey = null;
         x509Cert.verify(pubKey, function (error, data) {
             if (error != null) {
@@ -308,7 +309,7 @@ let encodingBlob = {
 };
 cryptoCert.createX509Cert(encodingBlob).then(x509Cert => {
     console.log("createX509Cert success");
-    // The service can call getPublicKey() of the upper-level X509Cert object to obtain the public key.
+    // Obtain the public key by using getPublicKey() of the upper-level X509Cert object.
 	let pubKey = null;
     x509Cert.verify(pubKey).then(result => {
         console.log("verify success");
@@ -1838,7 +1839,7 @@ cryptoCert.createX509Crl(encodingBlob, function (error, x509Crl) {
         console.log("createX509Crl failed, errCode: " + error.code + ", errMsg: " + error.message);
     } else {
         console.log("createX509Crl success");
-        // Generate the public key by AsyKeyGenerator.
+        // Generate the public key by using AsyKeyGenerator.
         let pubKey = null;
         x509Crl.verify(pubKey, function (error, data) {
            if (error != null) {
@@ -1892,7 +1893,7 @@ let encodingBlob = {
 };
 cryptoCert.createX509Crl(encodingBlob).then(x509Crl => {
     console.log("createX509Crl success");
-    // Generate the public key by AsyKeyGenerator.
+    // Generate the public key by using AsyKeyGenerator.
     let pubKey = null;
     x509Crl.verify(pubKey).then(result => {
         console.log("verify success");
@@ -2116,7 +2117,7 @@ cryptoCert.createX509Crl(encodingBlob, function (error, x509Crl) {
         console.log("createX509Crl failed, errCode: " + error.code + ", errMsg: " + error.message);
     } else {
         console.log("createX509Crl success");
-        // Set the serial number of the corresponding certificate.
+        // Set the serial number of the certificate.
         let serialNumber = 1000;
         try {
             let entry = x509Crl.getRevokedCert(serialNumber);
