@@ -15,7 +15,7 @@
    pixelMap.getImageInfo().then( info => {
      console.info('info.width = ' + info.size.width);
      console.info('info.height = ' + info.size.height);
-   }).catch((err) => {
+   }).catch((err: BusinessError) => {
      console.error("Failed to obtain the image pixel map information.And the error is: " + err);
    });
    ```
