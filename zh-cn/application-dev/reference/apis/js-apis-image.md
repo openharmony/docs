@@ -309,7 +309,7 @@ for (let i = 0; i < bufferArr.length; i++) {
     bufferArr[i] = i + 1;
 }
 pixelmap.writePixels(area, (error : BusinessError) => {
-    if (err != undefined) {
+    if (error != undefined) {
         console.info('Failed to write pixelmap into the specified area.');
     } else {
         console.info('Succeeded to write pixelmap into the specified area.');
@@ -378,7 +378,7 @@ for (let i = 0; i < bufferArr.length; i++) {
     bufferArr[i] = i + 1;
 }
 pixelmap.writeBufferToPixels(color, (err : BusinessError) => {
-    if (err) {
+    if (err != undefined) {
         console.error("Failed to write data from a buffer to a PixelMap.");
         return;
     } else {
@@ -756,7 +756,7 @@ rotate(angle: number, callback: AsyncCallback\<void>): void
 import {BusinessError} from '@ohos.base'
 let angle = 90.0;
 pixelmap.rotate(angle, (err : BusinessError) => {
-    if (err) {
+    if (err != undefined) {
         console.error("Failed to set rotation.");
         return;
     } else {
@@ -789,7 +789,7 @@ rotate(angle: number): Promise\<void>
 
 ```ts
 async function Demo() {
-	await pixelmap.rotate(90.0);
+    await pixelmap.rotate(90.0);
 }
 ```
 
@@ -813,7 +813,7 @@ flip(horizontal: boolean, vertical: boolean, callback: AsyncCallback\<void>): vo
 
 ```ts
 async function Demo() {
-	await pixelmap.flip(false, true);
+    await pixelmap.flip(false, true);
 }
 ```
 
@@ -842,7 +842,7 @@ flip(horizontal: boolean, vertical: boolean): Promise\<void>
 
 ```ts
 async function Demo() {
-	await pixelmap.flip(false, true);
+    await pixelmap.flip(false, true);
 }
 ```
 
@@ -865,7 +865,7 @@ crop(region: Region, callback: AsyncCallback\<void>): void
 
 ```ts
 async function Demo() {
-	await pixelmap.crop({ x: 0, y: 0, size: { height: 100, width: 100 } } as image.Region);
+    await pixelmap.crop({ x: 0, y: 0, size: { height: 100, width: 100 } } as image.Region);
 }
 ```
 
@@ -893,7 +893,7 @@ crop(region: Region): Promise\<void>
 
 ```ts
 async function Demo() {
-	await pixelmap.crop({ x: 0, y: 0, size: { height: 100, width: 100 } } as image.Region);
+    await pixelmap.crop({ x: 0, y: 0, size: { height: 100, width: 100 } } as image.Region);
 }
 ```
 
