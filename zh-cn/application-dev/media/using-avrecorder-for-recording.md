@@ -16,6 +16,10 @@
 详细的API说明请参考[AVRecorder API参考](../reference/apis/js-apis-media.md#avrecorder9)。
 
 1. 创建AVRecorder实例，实例创建完成进入idle状态。
+
+   > **说明：**
+   >
+   > 需要在avRecorder完成赋值（即“avRecorder = recorder; ”运行完成）后，再进行剩余操作。
      
    ```ts
    import media from '@ohos.multimedia.media';
