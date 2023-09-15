@@ -73,13 +73,15 @@ buffer数组。
 
 | 名称    | 类型                  | 可读 | 可写 | 说明                                                         |
 | ------- | --------------------- | ---- | ---- | ------------------------------------------------------------ |
-| iv      | [DataBlob](#datablob) | 是   | 是   | 指明加解密参数iv，长度为12字节。                             |
-| aad     | [DataBlob](#datablob) | 是   | 是   | 指明加解密参数aad，长度为8字节。                             |
+| iv      | [DataBlob](#datablob) | 是   | 是   | 指明加解密参数iv，长度为1~16字节，常用为12字节。                             |
+| aad     | [DataBlob](#datablob) | 是   | 是   | 指明加解密参数aad，长度为0~INT_MAX字节，常用为16字节。                             |
 | authTag | [DataBlob](#datablob) | 是   | 是   | 指明加解密参数authTag，长度为16字节。<br/>采用GCM模式加密时，需要获取[doFinal()](#dofinal-2)输出的[DataBlob](#datablob)，取出其末尾16字节作为解密时[init()](#init-2)方法的入参[GcmParamsSpec](#gcmparamsspec)中的的authTag。 |
 
 > **说明：**
 >
-> 传入[init()](#init-2)方法前需要指定其algName属性（来源于父类[ParamsSpec](#paramsspec)）。
+> 1. 传入[init()](#init-2)方法前需要指定其algName属性（来源于父类[ParamsSpec](#paramsspec)）。
+> 2. 对于在1~16字节长度范围内的iv，加解密算法库不作额外限制，但其结果取决于底层openssl是否支持。
+> 3. 用户不需要使用aad参数或aad长度为0时，可以指定aad的data属性为空的Uint8Array，来构造GcmParamsSpec，写法为aad: { data: new Uint8Array() }。
 
 ## CcmParamsSpec
 
