@@ -4,7 +4,12 @@
 
 **关键接口/组件变更**
 
-[NavPathStack](/zh-cn/application-dev/reference/arkui-ts/ts-basic-components-navigation.md#navpathstack10)
+[NavPathStack](/zh-cn/application-dev/reference/arkui-ts/ts-basic-components-navigation.md#navpathstack10)  
+|  变更前   | 变更后  |
+|  ----  | ----  |
+| push  | pushPath |
+| pushName  | pushNameByPath |
+| popTo| PopToName |
 
 **变更影响**
 
