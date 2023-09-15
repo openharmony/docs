@@ -52,7 +52,7 @@ sensor.subscribeAccelerometer({
 ```
 
 > **说明：**
-> 建议在页面销毁时，即onDestory回调中，取消数据订阅，避免不必要的性能开销。
+> 建议在页面销毁时，即onDestroy回调中，取消数据订阅，避免不必要的性能开销。
 
 ## sensor.unsubscribeAccelerometer
 
@@ -98,7 +98,7 @@ sensor.subscribeCompass({
 ```
 
 > **说明：**
-> 建议在页面销毁时，即onDestory回调中，取消数据订阅，避免不必要的性能开销。
+> 建议在页面销毁时，即onDestroy回调中，取消数据订阅，避免不必要的性能开销。
 
 ## sensor.unsubscribeCompass
 
@@ -143,7 +143,7 @@ sensor.subscribeProximity({
 ```
 
 > **说明：**
-> 建议在页面销毁时，即onDestory回调中，取消数据订阅，避免不必要的性能开销。
+> 建议在页面销毁时，即onDestroy回调中，取消数据订阅，避免不必要的性能开销。
 
 ## sensor.unsubscribeProximity
 
@@ -187,7 +187,7 @@ sensor.subscribeLight({
 ```
 
 > **说明：**
-> 建议在页面销毁时，即onDestory回调中，取消数据订阅，避免不必要的性能开销。
+> 建议在页面销毁时，即onDestroy回调中，取消数据订阅，避免不必要的性能开销。
 
 ## sensor.unsubscribeLight
 
@@ -233,7 +233,7 @@ sensor.subscribeStepCounter({
 ```
 
 > **说明：**
-> 建议在页面销毁时，即onDestory回调中，取消数据订阅，避免不必要的性能开销。
+> 建议在页面销毁时，即onDestroy回调中，取消数据订阅，避免不必要的性能开销。
 
 ## sensor.unsubscribeStepCounter
 
@@ -280,7 +280,7 @@ sensor.subscribeBarometer({
 ```
 
 > **说明：**
-> 建议在页面销毁时，即onDestory回调中，取消数据订阅，避免不必要的性能开销。
+> 建议在页面销毁时，即onDestroy回调中，取消数据订阅，避免不必要的性能开销。
 
 
 ## sensor.unsubscribeBarometer
@@ -328,7 +328,7 @@ sensor.subscribeHeartRate({
 ```
 
 > **说明：**
-> 建议在页面销毁时，即onDestory回调中，取消数据订阅，避免不必要的性能开销。
+> 建议在页面销毁时，即onDestroy回调中，取消数据订阅，避免不必要的性能开销。
 
 
 ## sensor.unsubscribeHeartRate
@@ -375,7 +375,7 @@ sensor.subscribeOnBodyState({
 ```
 
 > **说明：**
-> 建议在页面销毁时，即onDestory回调中，取消数据订阅，避免不必要的性能开销。
+> 建议在页面销毁时，即onDestroy回调中，取消数据订阅，避免不必要的性能开销。
 
 ## sensor.unsubscribeOnBodyState
 
@@ -451,7 +451,7 @@ sensor.subscribeDeviceOrientation({
 ```
 
 > **说明：**
-> 建议在页面销毁时，即onDestory回调中，取消数据订阅，避免不必要的性能开销。
+> 建议在页面销毁时，即onDestroy回调中，取消数据订阅，避免不必要的性能开销。
 
 ## sensor.unsubscribeDeviceOrientation<sup>6+</sup>
 
@@ -502,7 +502,7 @@ sensor.subscribeGyroscope({
 ```
 
 > **说明：**
-> 建议在页面销毁时，即onDestory回调中，取消数据订阅，避免不必要的性能开销。
+> 建议在页面销毁时，即onDestroy回调中，取消数据订阅，避免不必要的性能开销。
 
 ## sensor.unsubscribeGyroscope<sup>6+</sup>
 

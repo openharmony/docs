@@ -10,7 +10,7 @@
 
 ## 实现一个输入法应用
 
-[InputMethodExtensionAbility](../reference/apis/js-apis-inputmethod-extension-ability.md)提供了onCreate()和onDestory()生命周期回调，根据需要重写对应的回调方法。InputMethodExtensionAbility的生命周期如下：
+[InputMethodExtensionAbility](../reference/apis/js-apis-inputmethod-extension-ability.md)提供了onCreate()和onDestroy()生命周期回调，根据需要重写对应的回调方法。InputMethodExtensionAbility的生命周期如下：
 
 - **onCreate**
   服务被首次创建时触发该回调，开发者可以在此进行一些初始化的操作，例如注册公共事件监听等。
