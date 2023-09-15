@@ -117,6 +117,8 @@
    import relationalStore from '@ohos.data.relationalStore'; // 导入模块
    import featureAbility from '@ohos.ability.featureAbility';
    
+   let context = getContext(this);
+
    const STORE_CONFIG :relationalStore.StoreConfig = {
      name: 'RdbTest.db', // 数据库文件名
      securityLevel: relationalStore.SecurityLevel.S1 // 数据库安全级别
@@ -125,7 +127,7 @@
    // 假设当前数据库版本为3，表结构：EMPLOYEE (NAME, AGE, SALARY, CODES)
    const SQL_CREATE_TABLE = 'CREATE TABLE IF NOT EXISTS EMPLOYEE (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT NOT NULL, AGE INTEGER, SALARY REAL, CODES BLOB)'; // 建表Sql语句
 
-   relationalStore.getRdbStore(this.context, STORE_CONFIG, (err, store) => {
+   relationalStore.getRdbStore(context, STORE_CONFIG, (err, store) => {
      if (err) {
        console.error(`Failed to get RdbStore. Code:${err.code}, message:${err.message}`);
        return;
@@ -295,7 +297,7 @@
      
    ```ts
    import UIAbility from '@ohos.app.ability.UIAbility';
-   
+
    class EntryAbility extends UIAbility {
      onWindowStageCreate(windowStage: window.WindowStage) {
        relationalStore.deleteRdbStore(this.context, 'RdbTest.db', (err: BusinessError) => {
@@ -316,7 +318,9 @@
    ```ts
    import featureAbility from '@ohos.ability.featureAbility';
    
-   relationalStore.deleteRdbStore(this.context, 'RdbTest.db', (err: BusinessError) => {
+   let context = featureAbility.getContext();
+
+   relationalStore.deleteRdbStore(context, 'RdbTest.db', (err: BusinessError) => {
      if (err) {
        console.error(`Failed to delete RdbStore. Code:${err.code}, message:${err.message}`);
        return;
