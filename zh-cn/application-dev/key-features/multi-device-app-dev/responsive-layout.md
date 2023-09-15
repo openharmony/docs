@@ -154,7 +154,7 @@
 
 1.对通过媒体查询监听断点的功能做简单的封装，方便后续使用
 ```ts
-// common/BreakpointSystem.ets
+// common/breakpointsystem.ets
 import mediaQuery from '@ohos.mediaquery'
 
 declare interface BreakPointTypeOption<T> {
@@ -244,7 +244,7 @@ export class BreakpointSystem {
 2.在页面中，通过媒体查询，监听应用窗口宽度变化，获取当前应用所处的断点值
 ```
 // MediaQuerySample.ets
-import { BreakpointSystem, BreakPointType } from '../common/BreakpointSystem'
+import { BreakpointSystem, BreakPointType } from 'common/breakpointsystem'
 
 @Entry
 @Component
@@ -262,7 +262,7 @@ struct MediaQuerySample {
   }
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
-      Image(new BreakPointType({sm:$r('app.media.sm'), md:$r('app.media.md'), lg:$r('app.media.lg')}).GetValue(this.currentBreakpoint)!)
+      Image(new BreakPointType({sm:$r('app.media.sm'), md:$r('app.media.md'), lg:$r('app.media.lg')}).getValue(this.currentBreakpoint)!)
         .height(100)
         .width(100)
         .objectFit(ImageFit.Contain)
