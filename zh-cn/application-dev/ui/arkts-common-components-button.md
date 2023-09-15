@@ -163,29 +163,29 @@ Button('Ok', { type: ButtonType.Normal, stateEffect: true })
   ```ts
   // xxx.ets
   import router from '@ohos.router';
-  let furl:Record<string,string> = {'url':'pages/first_page'}
-  let surl:Record<string,string> = {'url':'pages/second_page'}
-  let turl:Record<string,string> = {'url':'pages/third_page'}
   @Entry
   @Component
   struct ButtonCase1 {
+    @State FurL:router.RouterOptions = {'url':'pages/first_page'}
+    @State SurL:router.RouterOptions = {'url':'pages/second_page'}
+    @State TurL:router.RouterOptions = {'url':'pages/third_page'}
     build() {
       List({ space: 4 }) {
         ListItem() {
           Button("First").onClick(() => {
-            router.pushUrl(furl)
+            router.pushUrl(this.FurL)
           })
             .width('100%')
         }
         ListItem() {
           Button("Second").onClick(() => {
-            router.pushUrl(surl)
+            router.pushUrl(this.SurL)
           })
             .width('100%')
         }
         ListItem() {
           Button("Third").onClick(() => {
-            router.pushUrl(turl)
+            router.pushUrl(this.TurL)
           })
             .width('100%')
         }
@@ -242,7 +242,7 @@ Button('Ok', { type: ButtonType.Normal, stateEffect: true })
                 .width('100%').height(100).fontSize(16)
                 .textAlign(TextAlign.Center).borderRadius(10).backgroundColor(0xFFFFFF)
             }
-          }, ((item:number):number => item))
+          }, (item:number) => item.toString())
         }.width('90%')
         Button() {
           Image($r('app.media.ic_public_add'))

@@ -493,7 +493,7 @@ struct GeometryTransitionDemo {
       .height(150)
       .margin(20)
       // 模态转场组件
-      .bindContentCover($$this.isPresent, this.MyBuilder, ModalTransition.NONE)
+      .bindContentCover(this.isPresent, this.MyBuilder, ModalTransition.NONE)
       // 这里配置了Row组件有共享元素效果，ID是share1
       .geometryTransition('share1')
       .onClick(() => {
@@ -589,8 +589,8 @@ struct AutoAchieveShareTransitionDemo {
             .onClick(() => {
               // 获取对应组件的位置、大小信息
               let strJson = getInspectorByKey(item);
-              let obj:string = JSON.parse(strJson);
-              let rectInfo:string = JSON.parse('[' + obj.$rect + ']');
+              let rect:string = JSON.parse(strJson);
+              let rectInfo:string = JSON.parse('[' + rect + ']');
               let rect_left:string = JSON.parse('[' + rectInfo[0] + ']')[0];
               let rect_top:string = JSON.parse('[' + rectInfo[0] + ']')[1];
               let rect_right:string = JSON.parse('[' + rectInfo[1] + ']')[0];
@@ -600,7 +600,7 @@ struct AutoAchieveShareTransitionDemo {
               };
 
               // 设置共享元素的位置、内容、状态
-              this.rect_top = rect_top;
+              this.rect_top = Number(rect_top);
               this.item = item;
               this.expand = true;
               this.count += 1;
@@ -608,7 +608,7 @@ struct AutoAchieveShareTransitionDemo {
               animateTo({ curve: curves.springMotion() }, () => {
                 this.layoutHeight = 2772 / 3.5;
                 this.layoutWidth = '100%';
-                this.layoutOffset = -((rect_top - 136) / 3.5);
+                this.layoutOffset = -((Number(rect_top) - 136) / 3.5);
               })
             })
           })

@@ -197,29 +197,38 @@ class butf{
     this.buttonText = val
   }
 }
-Button(this.isHovered ? 'Hovered!' : 'Not Hover')
-  .width(200)
-  .height(100)
-  .backgroundColor(this.isHovered ? Color.Green : Color.Gray)
-  .onHover((isHover?: boolean) => {
-    if(isHover){
-      let ishset = new ish()
-      ishset.set(isHover)
+@Entry
+@Component
+struct MouseExample {
+  @State isHovered:ish = new ish()
+  build(){
+    Column(){
+      Button(this.isHovered ? 'Hovered!' : 'Not Hover')
+        .width(200)
+        .height(100)
+        .backgroundColor(this.isHovered ? Color.Green : Color.Gray)
+        .onHover((isHover?: boolean) => {
+          if(isHover) {
+            let ishset = new ish()
+            ishset.set(isHover)
+          }
+        })
+        .onMouse((event?: MouseEvent) => {
+          if (event) {
+            if (event.stopPropagation) {
+              event.stopPropagation(); // 在Button的onMouse事件中设置阻止冒泡
+            }
+            let butset = new butf()
+            butset.set('Button onMouse:\n' + '' +
+              'button = ' + event.button + '\n' +
+              'action = ' + event.action + '\n' +
+              'x,y = (' + event.x + ',' + event.y + ')' + '\n' +
+              'windowXY=(' + event.windowX + ',' + event.windowY + ')');
+          }
+        })
     }
-  })
-  .onMouse((event?: MouseEvent) => {
-    if(event){
-      if(event.stopPropagation){
-        event.stopPropagation(); // 在Button的onMouse事件中设置阻止冒泡
-      }
-      let butset = new butf()
-      butset.set('Button onMouse:\n' + '' +
-        'button = ' + event.button + '\n' +
-        'action = ' + event.action + '\n' +
-        'x,y = (' + event.x + ',' + event.y + ')' + '\n' +
-        'windowXY=(' + event.windowX + ',' + event.windowY + ')');
-    }
-  })
+  }
+}
 ```
 
 
@@ -394,28 +403,38 @@ class butypef{
     return this.buttonType
   }
 }
-Button('onKeyEvent')
-  .width(140).height(70)
-  .onKeyEvent((event?: KeyEvent|object) => {
-    // 通过stopPropagation阻止事件冒泡
-    if(event){
-      event.stopPropagation();
-      if (event.type === KeyType.Down) {
-        let butset = new butypef()
-        butset.set('Down')
-      }
-      if (event.type === KeyType.Up) {
-        let butset = new butypef()
-        butset.set('Up')
-      }
-      let butfset = new butf()
-      let butset = new butypef()
-      butfset.set('Button: \n' +
-        'KeyType:' + butset.get() + '\n' +
-        'KeyCode:' + event.keyCode + '\n' +
-        'KeyText:' + event.keyText)
+@Entry
+@Component
+struct MouseExample {
+  build() {
+    Column() {
+      Button('onKeyEvent')
+        .width(140).height(70)
+        .onKeyEvent((event?: KeyEvent) => {
+          // 通过stopPropagation阻止事件冒泡
+          if(event){
+            if(event.stopPropagation) {
+              event.stopPropagation();
+            }
+            if (event.type === KeyType.Down) {
+              let butset = new butypef()
+              butset.set('Down')
+            }
+            if (event.type === KeyType.Up) {
+              let butset = new butypef()
+              butset.set('Up')
+            }
+            let butfset = new butypef()
+            let butset = new butypef()
+            butfset.set('Button: \n' +
+              'KeyType:' + butset.get() + '\n' +
+              'KeyCode:' + event.keyCode + '\n' +
+              'KeyText:' + event.keyText)
+          }
+        })
     }
-})
+  }
+}
 ```
 
 
