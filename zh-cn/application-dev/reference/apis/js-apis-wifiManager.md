@@ -30,6 +30,7 @@ enableWifi(): void
 | **错误码ID** | **错误信息** |
   | -------- | -------- |
 | 2501000  | Operation failed.|
+| 2501003  | Failed for wifi is closing.|
 
 **示例：**
 
@@ -62,6 +63,7 @@ disableWifi(): void
 | **错误码ID** | **错误信息** |
   | -------- | -------- |
 | 2501000  | Operation failed.|
+| 2501004  | Failed for wifi is opening.|
 
 **示例：**
 
@@ -1532,6 +1534,7 @@ getDeviceMacAddress(): string[]
 | **错误码ID** | **错误信息** |
   | -------- | -------- |
 | 2501000  | Operation failed.|
+| 2501001  | wifi is closed.|
 
 **示例：**
 ```ts
@@ -2043,7 +2046,7 @@ getDisconnectedReason(): DisconnectedReason
 
 | **错误码ID** | **错误信息** |
   | -------- | -------- |
-| 2601000  | Operation failed.|
+| 2501000  | Operation failed.|
 
 **返回值：**
 
@@ -2454,9 +2457,9 @@ getP2pLinkedInfo(callback: AsyncCallback&lt;WifiP2pLinkedInfo&gt;): void
   | callback | AsyncCallback&lt;[WifiP2pLinkedInfo](#wifip2plinkedinfo9)&gt; | 是 | 回调函数。当操作成功时，err为0，data表示P2P连接信息。如果error为非0，表示处理出现错误。 |
 
 
-## wifiManager.getCurrentP2pGroup<sup>9+</sup>
+## wifiManager.getCurrentGroup<sup>9+</sup>
 
-getCurrentP2pGroup(): Promise&lt;WifiP2pGroupInfo&gt;
+getCurrentGroup(): Promise&lt;WifiP2pGroupInfo&gt;
 
 获取P2P当前组信息，使用Promise异步回调。
 
@@ -2478,9 +2481,9 @@ getCurrentP2pGroup(): Promise&lt;WifiP2pGroupInfo&gt;
   | -------- | -------- |
 | 2801000  | Operation failed.|
 
-## wifiManager.getCurrentP2pGroup<sup>9+</sup>
+## wifiManager.getCurrentGroup<sup>9+</sup>
 
-getCurrentP2pGroup(callback: AsyncCallback&lt;WifiP2pGroupInfo&gt;): void
+getCurrentGroup(callback: AsyncCallback&lt;WifiP2pGroupInfo&gt;): void
 
 获取P2P当前组信息，使用callback异步回调。
 
@@ -2506,7 +2509,7 @@ getCurrentP2pGroup(callback: AsyncCallback&lt;WifiP2pGroupInfo&gt;): void
 ```ts
 	import wifiManager from '@ohos.wifiManager';
 
-	wifiManager.getCurrentP2pGroup((err, data) => {
+	wifiManager.getCurrentGroup((err, data) => {
     if (err) {
         console.error("get current P2P group error");
         return;
@@ -2514,7 +2517,7 @@ getCurrentP2pGroup(callback: AsyncCallback&lt;WifiP2pGroupInfo&gt;): void
 		console.info("get current P2P group: " + JSON.stringify(data));
 	});
 
-	wifiManager.getCurrentP2pGroup().then(data => {
+	wifiManager.getCurrentGroup().then(data => {
 		console.info("get current P2P group: " + JSON.stringify(data));
 	});
 ```
@@ -2853,7 +2856,7 @@ p2pConnect(config: WifiP2PConfig): void
   let recvP2pPersistentGroupChangeFunc = () => {
       console.info("p2p persistent group change receive event");
   
-      wifiManager.getCurrentP2pGroup((err, data) => {
+      wifiManager.getCurrentGroup((err, data) => {
           if (err) {
               console.error('failed to get current group: ' + JSON.stringify(err));
               return;
@@ -3443,6 +3446,14 @@ on(type: "streamChange", callback: Callback&lt;number&gt;): void
 | type | string | 是 | 固定填"streamChange"字符串。 |
 | callback | Callback&lt;number&gt; | 是 | 状态改变回调函数，返回0:无，1：向下，2：向上，3：双向。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **错误码ID** | **错误信息** |
+  | -------- | -------- |
+| 2501000  | Operation failed.|
+
 ## wifiManager.off('streamChange')<sup>9+</sup>
 
 off(type: "streamChange", callback?: Callback&lt;number&gt;): void
@@ -3461,6 +3472,14 @@ off(type: "streamChange", callback?: Callback&lt;number&gt;): void
 | -------- | -------- | -------- | -------- |
 | type | string | 是 | 固定填"streamChange"字符串。 |
 | callback | Callback&lt;number&gt; | 否 | 状态改变回调函数，返回0:无，1：向下，2：向上，3：双向。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **错误码ID** | **错误信息** |
+  | -------- | -------- |
+| 2501000  | Operation failed.|
 
 **示例：**
 ```ts
@@ -3494,13 +3513,21 @@ on(type: "deviceConfigChange", callback: Callback&lt;number&gt;): void
 | type | string | 是 | 固定填"streamChange"字符串。 |
 | callback | Callback&lt;number&gt; | 是 | 状态改变回调函数，返回0: 添加配置, 1: 更改配置, 2: 删除配置. |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **错误码ID** | **错误信息** |
+  | -------- | -------- |
+| 2501000  | Operation failed.|
+
 ## wifiManager.off('deviceConfigChange')<sup>9+</sup>
 
-off(type: "deviceConfigChange", callback: Callback&lt;number&gt;): void
+off(type: "deviceConfigChange", callback?: Callback&lt;number&gt;): void
 
 取消注册WIFI设备配置更改事件。
 
-**需要权限：** ohos.permission.MANAGE_WIFI_CONNECTION
+**需要权限：** ohos.permission.GET_WIFI_INFO
 
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
@@ -3510,6 +3537,14 @@ off(type: "deviceConfigChange", callback: Callback&lt;number&gt;): void
 | -------- | -------- | -------- | -------- |
 | type | string | 是 | 固定填"streamChange"字符串。 |
 | callback | Callback&lt;number&gt; | 是 | 状态改变回调函数，返回0: 添加配置, 1: 更改配置, 2: 删除配置.|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **错误码ID** | **错误信息** |
+  | -------- | -------- |
+| 2501000  | Operation failed.|
 
 **示例：**
 ```ts
@@ -3620,6 +3655,14 @@ on(type: "hotspotStaJoin", callback: Callback&lt;StationInfo&gt;): void
 | type | string | 是 | 固定填"hotspotStaJoin"字符串。 |
 | callback | Callback&lt;StationInfo&gt; | 是 | 状态改变回调函数。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **错误码ID** | **错误信息** |
+  | -------- | -------- |
+| 2501000  | Operation failed.|
+
 ## wifiManager.off('hotspotStaJoin')<sup>9+</sup>
 
 off(type: "hotspotStaJoin", callback?: Callback&lt;StationInfo&gt;): void
@@ -3638,6 +3681,14 @@ off(type: "hotspotStaJoin", callback?: Callback&lt;StationInfo&gt;): void
 | -------- | -------- | -------- | -------- |
 | type | string | 是 | 固定填"hotspotStaJoin"字符串。 |
 | callback | Callback&lt;StationInfo&gt; | 否 | 状态改变回调函数。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **错误码ID** | **错误信息** |
+  | -------- | -------- |
+| 2501000  | Operation failed.|
 
 **示例：**
 ```ts
@@ -3674,6 +3725,14 @@ on(type: "hotspotStaLeave", callback: Callback&lt;StationInfo&gt;): void
   | type | string | 是 | 固定填"hotspotStaLeave"字符串。 |
   | callback | Callback&lt;StationInf]&gt; | 是 | 状态改变回调函数。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **错误码ID** | **错误信息** |
+  | -------- | -------- |
+| 2501000  | Operation failed.|
+
 ## wifiManager.off('hotspotStaLeave')<sup>9+</sup>
 
 off(type: "hotspotStaLeave", callback?: Callback&lt;StationInfo&gt;): void
@@ -3692,6 +3751,14 @@ off(type: "hotspotStaLeave", callback?: Callback&lt;StationInfo&gt;): void
 | -------- | -------- | -------- | -------- |
 | type | string | 是 | 固定填"hotspotStaLeave"字符串。 |
 | callback | Callback&lt;StationInf]&gt; | 是 | 状态改变回调函数。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **错误码ID** | **错误信息** |
+  | -------- | -------- |
+| 2501000  | Operation failed.|
 
 **示例：**
 ```ts
