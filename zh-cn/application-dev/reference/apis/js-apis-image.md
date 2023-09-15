@@ -219,8 +219,12 @@ image.createPixelMap(color, opts, (err : BusinessError, pixelmap : image.PixelMa
             offset: 0,
             stride: 8,
             region: { size: { height: 1, width: 2 }, x: 0, y: 0 }};
-        pixelmap.readPixels(area, () => {
-            console.info('readPixels success');
+        pixelmap.readPixels(area, (err : BusinessError) => {
+            if (error != undefined) {
+		       console.info('Failed to read pixelmap from the specified area.');
+	        } else {
+		       console.info('Succeeded to read pixelmap from the specified area.');
+	        }
         })
     }
 })
@@ -752,7 +756,7 @@ rotate(angle: number, callback: AsyncCallback\<void>): void
 import {BusinessError} from '@ohos.base'
 let angle = 90.0;
 pixelmap.rotate(angle, (err : BusinessError) => {
-  if (err) {
+    if (err) {
         console.error("Failed to set rotation.");
         return;
     } else {
@@ -1169,8 +1173,13 @@ release(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-pixelmap.release(() => {
-    console.log('Succeeded in releasing pixelmap object.');
+import {BusinessError} from '@ohos.base'
+pixelmap.release((err : BusinessError) => {
+    if (error != undefined) {
+		console.log('Failed to release pixelmap object.');
+	} else {
+		console.log('Succeeded in releasing pixelmap object.');
+	}
 })
 ```
 
@@ -1455,7 +1464,8 @@ getImageInfo(callback: AsyncCallback\<ImageInfo>): void
 **示例：**
 
 ```ts
-imageSourceApi.getImageInfo((imageInfo : image.ImageInfo) => { 
+import {BusinessError} from '@ohos.base'
+imageSourceApi.getImageInfo((err : BusinessError, imageInfo : image.ImageInfo) => { 
     console.log('Succeeded in obtaining the image information.');
 })
 ```
@@ -1605,8 +1615,9 @@ modifyImageProperty(key: string, value: string): Promise\<void>
 
 ```ts
 imageSourceApi.modifyImageProperty("ImageWidth", "120").then(() => {
-    const w : string = imageSourceApi.getImageProperty("ImageWidth");
-    console.info('w', w);
+    imageSourceApi.getImageProperty("ImageWidth").then( (w : string) => {
+        console.info('w', w);
+    })
 })
 ```
 
@@ -1629,7 +1640,14 @@ modifyImageProperty(key: string, value: string, callback: AsyncCallback\<void>):
 **示例：**
 
 ```ts
-imageSourceApi.modifyImageProperty("ImageWidth", "120",() => {})
+import {BusinessError} from '@ohos.base'
+imageSourceApi.modifyImageProperty("ImageWidth", "120",(err : BusinessError) => {
+    if (error != undefined) {
+		console.info('modifyImageProperty Failed');
+	} else {
+		console.info('modifyImageProperty Succeeded');
+	}
+})
 ```
 
 ### updateData<sup>9+</sup>
@@ -1658,8 +1676,9 @@ updateData(buf: ArrayBuffer, isFinished: boolean, value: number, length: number)
 **示例：**
 
 ```ts
+import {BusinessError} from '@ohos.base'
 const array : ArrayBuffer = new ArrayBuffer(100);
-imageSourceApi.updateData(array, false, 0, 10).then(data => {
+imageSourceApi.updateData(array, false, 0, 10).then((data : Object) => {
     console.info('Succeeded in updating data.');
 })
 ```
@@ -1686,8 +1705,9 @@ updateData(buf: ArrayBuffer, isFinished: boolean, value: number, length: number,
 **示例：**
 
 ```ts
+import {BusinessError} from '@ohos.base'
 const array : ArrayBuffer = new ArrayBuffer(100);
-imageSourceApi.updateData(array, false, 0, 10,(error,data )=> {
+imageSourceApi.updateData(array, false, 0, 10,(error : BusinessError, data : Object)=> {
     if(data !== undefined){
         console.info('Succeeded in updating data.');     
     }
@@ -1766,6 +1786,7 @@ createPixelMap(options: DecodingOptions, callback: AsyncCallback\<PixelMap>): vo
 **示例：**
 
 ```ts
+import {BusinessError} from '@ohos.base'
 let decodingOptions : image.DecodingOptions = {
     sampleSize: 1,
     editable: true,
@@ -1775,7 +1796,7 @@ let decodingOptions : image.DecodingOptions = {
     desiredRegion: { size: { height: 1, width: 2 }, x: 0, y: 0 },
     index: 0
 };
-imageSourceApi.createPixelMap(decodingOptions, (pixelmap : image.PixelMap) => { 
+imageSourceApi.createPixelMap(decodingOptions, (err : BusinessError, pixelmap : image.PixelMap) => { 
     console.log('Succeeded in creating pixelmap object.');
 })
 ```
@@ -1823,7 +1844,7 @@ let decodeOpts : image.DecodingOptions = {
     desiredPixelFormat: 3,
     index: 0,
 };
-let pixelmaplist : Array<image.PixelMap> = imageSourceApi.createPixelMapList(decodeOpts);
+let pixelmaplist : Array<image.PixelMap> = await imageSourceApi.createPixelMapList(decodeOpts);
 ```
 
 ### createPixelMapList<sup>10+</sup>
@@ -1890,6 +1911,7 @@ createPixelMapList(options: DecodingOptions, callback: AsyncCallback<Array\<Pixe
 **示例：**
 
 ```ts
+import {BusinessError} from '@ohos.base'
 let decodeOpts : image.DecodingOptions = {
     sampleSize: 1,
     editable: true,
@@ -1898,7 +1920,7 @@ let decodeOpts : image.DecodingOptions = {
     desiredPixelFormat: 3,
     index: 0,
 };
-imageSourceApi.createPixelMapList(decodeOpts, (pixelmaplist : Array<image.PixelMap>) => { 
+imageSourceApi.createPixelMapList(decodeOpts, (err : BusinessError, pixelmaplist : Array<image.PixelMap>) => { 
     console.log('Succeeded in creating pixelmaplist object.');
 })
 ```
@@ -1934,7 +1956,8 @@ getDelayTimeList(callback: AsyncCallback<Array\<number>>): void;
 **示例：**
 
 ```ts
-imageSourceApi.getDelayTimeList( (delayTimes : Array<number>) => {
+import {BusinessError} from '@ohos.base'
+imageSourceApi.getDelayTimeList((err : BusinessError, delayTimes : Array<number>) => {
     console.log('Succeeded in getting delay time.');
 });
 ```
@@ -1970,7 +1993,7 @@ getDelayTimeList(): Promise<Array\<number>>;
 **示例：**
 
 ```ts
-let delayTimes : Array<number> = imageSourceApi.getDelayTimeList();
+let delayTimes : Array<number> = await imageSourceApi.getDelayTimeList();
 ```
 
 ### getFrameCount<sup>10+</sup>
@@ -2004,7 +2027,8 @@ getFrameCount(callback: AsyncCallback\<number>): void;
 **示例：**
 
 ```ts
-imageSourceApi.getFrameCount( (frameCount : number) => {
+import {BusinessError} from '@ohos.base'
+imageSourceApi.getFrameCount((err : BusinessError, frameCount : number) => {
     console.log('Succeeded in getting frame count.');
 });
 ```
@@ -2040,7 +2064,7 @@ getFrameCount(): Promise\<number>;
 **示例：**
 
 ```ts
-let frameCount : number = imageSourceApi.getFrameCount();
+let frameCount : number = aiait imageSourceApi.getFrameCount();
 ```
 
 ### release
@@ -2060,8 +2084,13 @@ release(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-imageSourceApi.release(() => { 
-    console.log('release succeeded.');
+import {BusinessError} from '@ohos.base'
+imageSourceApi.release((err : BusinessError) => { 
+    if (error != undefined) {
+        console.log('Failed to release the image source instance.');
+	} else {
+		console.log('Succeeded in releasing the image source instance.');
+	}
 })
 ```
 
@@ -2141,9 +2170,10 @@ packing(source: ImageSource, option: PackingOption, callback: AsyncCallback\<Arr
 **示例：**
 
 ```ts
+import {BusinessError} from '@ohos.base'
 const imageSourceApi : image.ImageSource = image.createImageSource(0);
 let packOpts : image.PackingOption = { format:"image/jpeg", quality:98 };
-imagePackerApi.packing(imageSourceApi, packOpts, (data : ArrayBuffer) => {})
+imagePackerApi.packing(imageSourceApi, packOpts, (err : BusinessError, data : ArrayBuffer) => {})
 ```
 
 ### packing
@@ -2200,12 +2230,13 @@ packing(source: PixelMap, option: PackingOption, callback: AsyncCallback\<ArrayB
 **示例：**
 
 ```ts
+import {BusinessError} from '@ohos.base'
 const color : ArrayBuffer = new ArrayBuffer(96);  //96为需要创建的像素buffer大小，取值为：height * width *4
 let bufferArr : Uint8Array = new Uint8Array(color);
 let opts : image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
 image.createPixelMap(color, opts).then((pixelmap : image.PixelMap) => {
     let packOpts : image.PackingOption = { format:"image/jpeg", quality:98 }
-    imagePackerApi.packing(pixelmap, packOpts, (data : ArrayBuffer) => { 
+    imagePackerApi.packing(pixelmap, packOpts, (err : BusinessError, data : ArrayBuffer) => { 
         console.log('Succeeded in packing the image.');
     })
 })
@@ -2267,8 +2298,13 @@ release(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-imagePackerApi.release(()=>{ 
-    console.log('Succeeded in releasing image packaging.');
+import {BusinessError} from '@ohos.base'
+imagePackerApi.release((err : BusinessError)=>{ 
+    if (error != undefined) {
+		console.log('Failed to release image packaging.'); 
+	} else {
+		console.log('Succeeded in releasing image packaging.');
+	}
 })
 ```
 
@@ -2536,7 +2572,8 @@ release(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-receiver.release(() => {})
+import {BusinessError} from '@ohos.base'
+receiver.release((err : BusinessError) => {})
 ```
 
 ### release<sup>9+</sup>
@@ -2906,8 +2943,13 @@ release(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-img.release(() =>{ 
-    console.log('release succeeded.');
+import {BusinessError} from '@ohos.base'
+img.release((err : BusinessError) =>{ 
+    if (error != undefined) {
+		console.log('Failed to release the image source instance.');
+	} else {
+		console.log('Succeeded in releasing the image source instance.');
+	}
 }) 
 ```
 
