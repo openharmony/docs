@@ -151,13 +151,13 @@ let deliveryCallback: AsyncCallback<sms.IDeliveryShortMessageCallback> = (err: B
     console.log(`deliveryCallback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`); 
 }
 let options: sms.SendMessageOptions = {
-    slotId = 0;
-    content = '短信内容';
-    destinationHost = '+861xxxxxxxxxx';
-    serviceCenter = '+861xxxxxxxxxx';
-    destinationPort = 1000;
-    sendCallback = sendCallback;
-    deliveryCallback = deliveryCallback;
+    slotId: 0,
+    content: '短信内容',
+    destinationHost: '+861xxxxxxxxxx',
+    serviceCenter: '+861xxxxxxxxxx',
+    destinationPort: 1000,
+    sendCallback: sendCallback,
+    deliveryCallback: deliveryCallback
 };
 sms.sendMessage(options);
 ```
@@ -206,13 +206,13 @@ let deliveryCallback: AsyncCallback<sms.IDeliveryShortMessageCallback> = (err: B
     console.log(`deliveryCallback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 }
 let options: sms.SendMessageOptions = {
-    slotId = 0;
-    content = '短信内容';
-    destinationHost = '+861xxxxxxxxxx';
-    serviceCenter = '+861xxxxxxxxxx';
-    destinationPort = 1000;
-    sendCallback = sendCallback;
-    deliveryCallback = deliveryCallback;
+    slotId: 0,
+    content: '短信内容',
+    destinationHost: '+861xxxxxxxxxx',
+    serviceCenter: '+861xxxxxxxxxx',
+    destinationPort: 1000,
+    sendCallback: sendCallback,
+    deliveryCallback: deliveryCallback
 };
 sms.sendShortMessage(options, (err: BusinessError) => {
     console.log(`callback: err->${JSON.stringify(err)}`);
@@ -268,13 +268,13 @@ let deliveryCallback: AsyncCallback<sms.IDeliveryShortMessageCallback> = (err: B
     console.log(`deliveryCallback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 }
 let options: sms.SendMessageOptions = {
-    slotId = 0;
-    content = '短信内容';
-    destinationHost = '+861xxxxxxxxxx';
-    serviceCenter = '+861xxxxxxxxxx';
-    destinationPort = 1000;
-    sendCallback = sendCallback;
-    deliveryCallback = deliveryCallback;
+    slotId: 0,
+    content: '短信内容',
+    destinationHost: '+861xxxxxxxxxx',
+    serviceCenter: '+861xxxxxxxxxx',
+    destinationPort: 1000,
+    sendCallback: sendCallback,
+    deliveryCallback: deliveryCallback
 };
 let promise = sms.sendShortMessage(options);
 promise.then(() => {
@@ -750,7 +750,7 @@ import { BusinessError } from '@ohos.base';
 
 let content: string = "long message";
 let promise = sms.splitMessage(content);
-promise.then((data: string) => {
+promise.then((data: string[]) => {
     console.log(`splitMessage success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
     console.error(`splitMessage failed, promise: err->${JSON.stringify(err)}`);
@@ -1698,7 +1698,7 @@ let mmsInformation: sms.MmsInformation = {
     messageType: sms.MessageType.TYPE_MMS_ACKNOWLEDGE_IND,
     mmsType: mmsAcknowledgeInd
 };
-sms.encodeMms(mmsInformation, (err: BusinessError, data: number) => {
+sms.encodeMms(mmsInformation, (err: BusinessError, data: number[]) => {
       console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -1754,7 +1754,7 @@ let mmsInformation: sms.MmsInformation = {
     messageType: sms.MessageType.TYPE_MMS_ACKNOWLEDGE_IND,
     mmsType: mmsAcknowledgeInd
 };
-sms.encodeMms(mmsInformation).then((data: number) => {
+sms.encodeMms(mmsInformation).then((data: number[]) => {
     console.log(`encodeMms success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
     console.error(`encodeMms failed, promise: err->${JSON.stringify(err)}`);
