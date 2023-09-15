@@ -58,6 +58,8 @@ Creates the context based on the bundle name.
 **Example**
 
 ```ts
+import common from '@ohos.app.ability.common';
+
 let bundleContext: common.Context;
 try {
     bundleContext = this.context.createBundleContext('com.example.test');
@@ -89,6 +91,8 @@ Creates the context based on the module name.
 **Example**
 
 ```ts
+import common from '@ohos.app.ability.common';
+
 let moduleContext: common.Context;
 try {
     moduleContext = this.context.createModuleContext('entry');
@@ -123,6 +127,8 @@ Creates the context based on the bundle name and module name.
 **Example**
 
 ```ts
+import common from '@ohos.app.ability.common';
+
 let moduleContext: common.Context;
 try {
     moduleContext = this.context.createModuleContext('com.example.test', 'entry');
@@ -148,6 +154,8 @@ Obtains the context of this application.
 **Example**
 
 ```ts
+import common from '@ohos.app.ability.common';
+
 let applicationContext: common.Context;
 try {
     applicationContext = this.context.getApplicationContext();
@@ -187,8 +195,10 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 **Example**
 
 ```ts
+import common from '@ohos.app.ability.common';
+
 let groupId = "1";
-let getGroupDirContext: common.Context;
+let getGroupDirContext: common.Context = this.context;
 try {
   getGroupDirContext.getGroupDir(groupId).then(data => {
     console.log("getGroupDir result:" + data);
@@ -200,7 +210,7 @@ try {
 
 ## Context.getGroupDir<sup>10+</sup>
 
-getGroupDir(dataGroupID: string, callback: AsyncCallback\<string>);
+getGroupDir(dataGroupID: string, callback: AsyncCallback\<string>): void;
 
 Obtains the shared directory based on a group ID. This API uses an asynchronous callback to return the result.
 
@@ -224,7 +234,9 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 **Example**
 
 ```ts
-let getGroupDirContext: common.Context;
+import common from '@ohos.app.ability.common';
+
+let getGroupDirContext: common.Context = this.context;
 
 getGroupDirContext.getGroupDir("1", (err, data) => {
   if (err) {
