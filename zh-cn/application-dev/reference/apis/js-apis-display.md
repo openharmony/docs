@@ -263,7 +263,7 @@ on(type: 'add'|'remove'|'change', callback: Callback&lt;number&gt;): void
 **示例：**
 
 ```ts
-let callback = (data) => {
+let callback: Callback<number> = (data) => {
   console.info('Listening enabled. Data: ' + JSON.stringify(data));
 };
 try {
@@ -318,7 +318,7 @@ on(type: 'privateModeChange', callback: Callback&lt;boolean&gt;): void
 **示例：**
 
 ```ts
-let callback = (data) => {
+let callback: Callback<boolean> = (data) => {
   console.info('Listening enabled. Data: ' + JSON.stringify(data));
 };
 try {
