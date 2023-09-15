@@ -29,6 +29,7 @@
 | setAVQueueTitle(title: string, callback: AsyncCallback&lt;void&gt;): void<sup>10+<sup> | 设置媒体播放列表名称。 |
 | dispatchSessionEvent(event: string, args: {[key: string]: Object}, callback: AsyncCallback&lt;void&gt;): void<sup>10+<sup> | 设置会话内自定义事件。 |
 | setExtras(extras: {[key: string]: Object}, callback: AsyncCallback&lt;void&gt;): void<sup>10+<sup> | 设置键值对形式的自定义媒体数据包。|
+| getOutputDeviceSync(): OutputDeviceInfo<sup>10+<sup> | 使用同步方法获取当前输出设备信息。 |
 
 ## 开发步骤
 
