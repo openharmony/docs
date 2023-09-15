@@ -346,6 +346,81 @@ class EntryAbility extends UIAbility {
 }
 ```
 
+## data_preferences.getPreferencesSync<sup>10+</sup>
+
+getPreferencesSync(context: Context, options: Options): Preferences
+
+获取Preferences实例，此为同步接口。
+
+**系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
+
+**参数：**
+
+| 参数名  | 类型                  | 必填 | 说明                                                         |
+| ------- | --------------------- | ---- | ------------------------------------------------------------ |
+| context | Context               | 是   | 应用上下文。<br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-inner-application-uiAbilityContext.md)。 |
+| options | [Options](#options10) | 是   | 与Preferences实例相关的配置选项。                            |
+
+**返回值：**
+
+| 类型                        | 说明                  |
+| --------------------------- | --------------------- |
+| [Preferences](#preferences) | 返回Preferences实例。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[用户首选项错误码](../errorcodes/errorcode-preferences.md)。
+
+| 错误码ID | 错误信息                        |
+| -------- | ------------------------------- |
+| 15501001 | Only supported in stage mode.   |
+| 15501002 | The data group id is not valid. |
+
+**示例：**
+
+FA模型示例：
+
+```ts
+// 获取context
+import featureAbility from '@ohos.ability.featureAbility';
+import { BusinessError } from '@ohos.base'
+
+let context = featureAbility.getContext();
+let preferences: data_preferences.Preferences | null = null;
+
+try {
+    let options: data_preferences.Options =  { name: 'myStore' };
+    preferences = data_preferences.getPreferencesSync(context, options);
+} catch (err) {
+    let code = (err as BusinessError).code;
+    let message = (err as BusinessError).message;
+    console.error("Failed to get preferences. code =" + code + ", message =" + message);
+}
+```
+
+Stage模型示例：
+
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+import { BusinessError } from '@ohos.base'
+import window from '@ohos.window';
+
+let preferences: data_preferences.Preferences | null = null;
+
+class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage: window.WindowStage) {
+        try {
+            let options: data_preferences.Options = { name: 'myStore', dataGroupId:'myId' };
+            preferences = data_preferences.getPreferencesSync(this.context, options);
+        } catch (err) {
+            let code = (err as BusinessError).code;
+            let message = (err as BusinessError).message;
+            console.error("Failed to get preferences. code =" + code + ", message =" + message);
+        }
+    }
+}
+```
+
 ## data_preferences.deletePreferences
 
 deletePreferences(context: Context, name: string, callback: AsyncCallback&lt;void&gt;): void
@@ -1029,6 +1104,72 @@ class EntryAbility extends UIAbility {
             }).catch((err: BusinessError) => {
                 console.error("Failed to remove preferences. code =" + err.code + ", message =" + err.message);
             })
+        } catch (err) {
+            let code = (err as BusinessError).code;
+            let message = (err as BusinessError).message;
+            console.error("Failed to remove preferences. code =" + code + ", message =" + message);
+        }
+    }
+}
+```
+
+## data_preferences.removePreferencesFromCacheSync<sup>10+</sup>
+
+removePreferencesFromCacheSync(context: Context, options: Options):void
+
+从缓存中移出指定的Preferences实例，此为同步接口。
+
+应用首次调用[getPreferences](#data_preferencesgetpreferences)接口获取某个Preferences实例后，该实例会被会被缓存起来，后续再次[getPreferences](#data_preferencesgetpreferences)时不会再次从持久化文件中读取，直接从缓存中获取Preferences实例。调用此接口移出缓存中的实例之后，再次getPreferences将会重新读取持久化文件，生成新的Preferences实例。
+
+调用该接口后，不建议再使用旧的Preferences实例进行数据操作，否则会出现数据一致性问题，应将Preferences实例置为null，系统将会统一回收。
+
+**系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
+
+**参数：**
+
+| 参数名  | 类型                  | 必填 | 说明                                                         |
+| ------- | --------------------- | ---- | ------------------------------------------------------------ |
+| context | Context               | 是   | 应用上下文。<br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-inner-application-uiAbilityContext.md)。 |
+| options | [Options](#options10) | 是   | 与Preferences实例相关的配置选项。                            |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[用户首选项错误码](../errorcodes/errorcode-preferences.md)。
+
+| 错误码ID | 错误信息                        |
+| -------- | ------------------------------- |
+| 15501001 | Only supported in stage mode.   |
+| 15501002 | The data group id is not valid. |
+
+**示例：**
+
+FA模型示例：
+
+```ts
+// 获取context
+import featureAbility from '@ohos.ability.featureAbility';
+let context = featureAbility.getContext();
+try {
+    let options: data_preferences.Options = { name: 'myStore' };
+    data_preferences.removePreferencesFromCacheSync(context, options);
+} catch (err) {
+    let code = (err as BusinessError).code;
+    let message = (err as BusinessError).message;
+    console.error("Failed to remove preferences. code =" + code + ", message =" + message);
+}
+```
+
+Stage模型示例：
+
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+import window from '@ohos.window';
+
+class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage: window.WindowStage) {
+        try {
+            let options: data_preferences.Options = { name: 'myStore', dataGroupId:'myId' };
+            data_preferences.removePreferencesFromCacheSync(this.context, options);
         } catch (err) {
             let code = (err as BusinessError).code;
             let message = (err as BusinessError).message;
