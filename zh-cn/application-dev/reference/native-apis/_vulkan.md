@@ -19,7 +19,7 @@
 
 | 名称 | 描述 |
 | -------- | -------- |
-| [vulkan_ohos.h](vulkan__ohos_8h.md) | 定义了OpenHarmony平台扩展的Vulkan接口。<br/>引用文件：&lt;vulkan/vulkan.h&gt;。 |
+| [vulkan_ohos.h](vulkan__ohos_8h.md) | 定义了OpenHarmony平台扩展的Vulkan接口。<br/>引用文件：&lt;vulkan/vulkan.h&gt; <br/>库：libvulkan.so |
 
 
 ### 结构体
