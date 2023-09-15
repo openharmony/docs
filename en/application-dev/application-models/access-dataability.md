@@ -32,10 +32,13 @@ The sample code for accessing a DataAbility is as follows:
 2. Construct RDB data.
    
    ```ts
-   let valuesBucket = {"name": "gaolu"}
+   import ohos_data_ability from '@ohos.data.dataAbility'
+   import rdb from '@ohos.data.rdb'
+
+   let valuesBucket: rdb.ValuesBucket = {"name": "gaolu"}
    let da = new ohos_data_ability.DataAbilityPredicates()
-   let valArray =new Array("value1");
-   let cars = new Array({"batchInsert1" : "value1",});
+   let valArray = new Array("value1");
+   let cars = new Array({"batchInsert1" : "value1",} as rdb.ValuesBucket);
    ```
 
    For details about DataAbilityPredicates, see [DataAbility Predicates](../reference/apis/js-apis-data-ability.md).
@@ -43,11 +46,13 @@ The sample code for accessing a DataAbility is as follows:
 3. Use **insert** to insert data to the DataAbility.
    
    ```ts
+   import { BusinessError } from '@ohos.base';
+
    // Callback mode:
    DAHelper.insert(
      urivar,
      valuesBucket,
-     (error, data) => {
+     (error: BusinessError, data: number) => {
        console.info("DAHelper insert result: " + data)
      }
    );
@@ -55,10 +60,15 @@ The sample code for accessing a DataAbility is as follows:
 
    
    ```ts
+   import featureAbility from '@ohos.ability.featureAbility'
+   import { BusinessError } from '@ohos.base';
+
+   let urivar = "dataability:///com.ix.DataAbility"
+   let DAHelper = featureAbility.acquireDataAbilityHelper(urivar);
    // Promise mode (await needs to be used in the asynchronous method):
    let datainsert = await DAHelper.insert(urivar, valuesBucket).then((data) => {
      console.info("insert success.");
-   }).catch((error) => {
+   }).catch((error: BusinessError) => {
      console.error("insert failed.");
    });
    ```
@@ -66,6 +76,10 @@ The sample code for accessing a DataAbility is as follows:
 4. Use **delete** to delete data from the DataAbility.
    
    ```ts
+   import featureAbility from '@ohos.ability.featureAbility'
+
+   let urivar = "dataability:///com.ix.DataAbility"
+   let DAHelper = featureAbility.acquireDataAbilityHelper(urivar);
    // Callback mode:
    DAHelper.delete(
      urivar,
@@ -78,6 +92,10 @@ The sample code for accessing a DataAbility is as follows:
 
    
    ```ts
+   import featureAbility from '@ohos.ability.featureAbility'
+
+   let urivar = "dataability:///com.ix.DataAbility"
+   let DAHelper = featureAbility.acquireDataAbilityHelper(urivar);
    // Promise mode (await needs to be used in the asynchronous method):
    let datadelete = await DAHelper.delete(
      urivar,
@@ -88,6 +106,10 @@ The sample code for accessing a DataAbility is as follows:
 5. Use **update** to update data in the DataAbility.
    
    ```ts
+   import featureAbility from '@ohos.ability.featureAbility'
+
+   let urivar = "dataability:///com.ix.DataAbility"
+   let DAHelper = featureAbility.acquireDataAbilityHelper(urivar);
    // Callback mode:
    DAHelper.update(
      urivar,
@@ -101,6 +123,10 @@ The sample code for accessing a DataAbility is as follows:
 
    
    ```ts
+   import featureAbility from '@ohos.ability.featureAbility'
+
+   let urivar = "dataability:///com.ix.DataAbility"
+   let DAHelper = featureAbility.acquireDataAbilityHelper(urivar);
    // Promise mode (await needs to be used in the asynchronous method):
    let dataupdate = await DAHelper.update(
      urivar,
@@ -112,6 +138,10 @@ The sample code for accessing a DataAbility is as follows:
 6. Use **query** to query data in the DataAbility.
    
    ```ts
+   import featureAbility from '@ohos.ability.featureAbility'
+
+   let urivar = "dataability:///com.ix.DataAbility"
+   let DAHelper = featureAbility.acquireDataAbilityHelper(urivar);
    // Callback mode:
    DAHelper.query(
      urivar,
@@ -125,6 +155,10 @@ The sample code for accessing a DataAbility is as follows:
 
    
    ```ts
+   import featureAbility from '@ohos.ability.featureAbility'
+
+   let urivar = "dataability:///com.ix.DataAbility"
+   let DAHelper = featureAbility.acquireDataAbilityHelper(urivar);
    // Promise mode (await needs to be used in the asynchronous method):
    let dataquery = await DAHelper.query(
      urivar,
@@ -136,6 +170,10 @@ The sample code for accessing a DataAbility is as follows:
 7. Use **batchInsert** to insert data in batches to the DataAbility.
    
    ```ts
+   import featureAbility from '@ohos.ability.featureAbility'
+
+   let urivar = "dataability:///com.ix.DataAbility"
+   let DAHelper = featureAbility.acquireDataAbilityHelper(urivar);
    // Callback mode:
    DAHelper.batchInsert(
      urivar,
@@ -148,6 +186,10 @@ The sample code for accessing a DataAbility is as follows:
 
    
    ```ts
+   import featureAbility from '@ohos.ability.featureAbility'
+
+   let urivar = "dataability:///com.ix.DataAbility"
+   let DAHelper = featureAbility.acquireDataAbilityHelper(urivar);
    // Promise mode (await needs to be used in the asynchronous method):
    let databatchInsert = await DAHelper.batchInsert(
      urivar,
@@ -158,6 +200,10 @@ The sample code for accessing a DataAbility is as follows:
 8. Use **executeBatch** to process data in batches in the DataAbility.
    
    ```ts
+   import featureAbility from '@ohos.ability.featureAbility'
+
+   let urivar = "dataability:///com.ix.DataAbility"
+   let DAHelper = featureAbility.acquireDataAbilityHelper(urivar);
    // Callback mode:
    DAHelper.executeBatch(
      urivar,
@@ -168,7 +214,7 @@ The sample code for accessing a DataAbility is as follows:
          valuesBucket: {"executeBatch" : "value1",},
          predicates: da,
          expectedCount:0,
-         predicatesBackReferences: null,
+         predicatesBackReferences: undefined,
          interrupted:true,
        }
      ],
@@ -180,6 +226,10 @@ The sample code for accessing a DataAbility is as follows:
 
    
    ```ts
+   import featureAbility from '@ohos.ability.featureAbility'
+
+   let urivar = "dataability:///com.ix.DataAbility"
+   let DAHelper = featureAbility.acquireDataAbilityHelper(urivar);
    // Promise mode (await needs to be used in the asynchronous method):
    let dataexecuteBatch = await DAHelper.executeBatch(
      urivar,
@@ -193,7 +243,7 @@ The sample code for accessing a DataAbility is as follows:
          },
          predicates: da,
          expectedCount:0,
-         predicatesBackReferences: null,
+         predicatesBackReferences: undefined,
          interrupted:true,
        }
      ]
