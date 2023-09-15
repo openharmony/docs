@@ -40,6 +40,6 @@ EXIF信息的读取与编辑相关API的详细介绍请参见[API参考](../refe
    imageSource.modifyImageProperty('ImageWidth', '120').then(() => {
      imageSource.getImageProperty("ImageWidth").then((width : string) => {
         console.info('The new imageWidth is ' + width);
-     });
+     })
    })
    ```
