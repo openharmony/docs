@@ -733,16 +733,16 @@ Badge({
    最后，构建列表布局和列表项：
 
    ```ts
-  export class ToDo {
-    key: string = util.generateRandomUUID(true);
-    name: string;
-    toDoData:ToDo[] = [];
+   export class ToDo {
+     key: string = util.generateRandomUUID(true);
+     name: string;
+     toDoData:ToDo[] = [];
 
-    constructor(name: string) {
-      this.name = name;
-    }
-  }
-  let todo:ToDo = new ToDo()
+     constructor(name: string) {
+       this.name = name;
+     }
+   }
+   let todo:ToDo = new ToDo()
    List({ space: 10 }) {
      ForEach(todo.toDoData, (toDoItem:ToDo) => {
        ListItem() {
