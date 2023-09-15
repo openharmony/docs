@@ -299,9 +299,11 @@ struct CustomLayout {
 
 | 参数          | 参数类型      | 描述                  |
 |-------------|-----------|---------------------|
-| borderWidth | [EdgeWidth](ts-types.md#edgewidths) | 父组件边框宽度。            |
-| margin      | [Margin](ts-types.md#margin)       | 父组件margin信息。        |
-| padding     | [Padding](ts-types.md#padding)   | 父组件padding信息。 |
+| borderWidth | [EdgeWidth](ts-types.md#edgewidths) | 父组件边框宽度。<br>单位：vp            |
+| margin      | [Margin](ts-types.md#margin)       | 父组件margin信息。 <br>单位：vp       |
+| padding     | [Padding](ts-types.md#padding)   | 父组件padding信息。<br>单位：vp |
+| width  | Number | 测量后的宽。<br>单位：vp<br> **说明：** <br>若值为空时，则返回组件的百分比宽。 |
+| height | Number | 测量后的高。<br>单位：vp<br> **说明：** <br>若值为空时，则返回组件的百分比高。 |
 
 
 ## Layoutable<sup>10+</sup>
@@ -312,7 +314,7 @@ struct CustomLayout {
 
 | 参数         | 参数类型                                                    | 描述                  |
 |------------|---------------------------------------------------------|---------------------|
-| measureResult| [MeasureResult](#measureresult10+)                                           | 子组件测量后的尺寸信息。        |
+| measureResult| [MeasureResult](#measureresult10+)      | 子组件测量后的尺寸信息。   <br>单位：vp     |
 | layout     | ([Position](ts-types.md#position))&nbsp;=&gt;&nbsp;void | 调用此方法对子组件的位置信息进行限制。 |
 
 ## Measurable<sup>10+</sup>
@@ -333,8 +335,8 @@ struct CustomLayout {
 
 | 参数     | 参数类型   | 描述    |
 |--------|--------|-------|
-| width  | Number | 测量后的宽。 |
-| height | Number | 测量后的高。 |
+| width  | Number | 测量后的宽。<br>单位：vp |
+| height | Number | 测量后的高。<br>单位：vp |
 
 
 ## SizeResult<sup>10+</sup>
@@ -345,15 +347,16 @@ struct CustomLayout {
 
 | 参数     | 参数类型   | 描述    |
 |--------|--------|-------|
-| width  | Number | 测量后的宽。 |
-| height | Number | 测量后的高。 |
+| width  | Number | 测量后的宽。<br>单位：vp |
+| height | Number | 测量后的高。<br>单位：vp |
 
 > **说明：**
 >
->- 自定义布局暂不支持LazyForEach写法
->- 使用builder形式的自定义布局创建，自定义组件的build()方法内只允许存在this.builder()，即示例的推荐用法
->- 子组件设置的位置信息和尺寸信息，优先级小于onMeasureSize设置的尺寸信息和onPlaceChildren设置的位置信息
->- onPlaceChildren和onMeasureSize使用自定义组件写法时，暂不支持尾随闭包式写法，建议使用示例内写法
+>- 自定义布局暂不支持LazyForEach写法。
+>- 使用builder形式的自定义布局创建，自定义组件的build()方法内只允许存在this.builder()，即示例的推荐用法。
+>- 子组件设置的位置信息和尺寸信息，优先级小于onMeasureSize设置的尺寸信息和onPlaceChildren设置的位置信息。
+>- 使用自定义布局方法时，如未调用子组件的measure和layout方法，将不显示布局。
+>- 调用onPlaceChildren后，影响子组件布局位置的部分通用属性将失效，如margin、align等。
 
 ```
 // xxx.ets
