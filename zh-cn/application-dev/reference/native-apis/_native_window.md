@@ -19,7 +19,7 @@
 
 | 名称 | 描述 |
 | -------- | -------- |
-| [external_window.h](external__window_8h.md) | 定义获取和使用NativeWindow的相关函数<br/>引用文件：&lt;native_window/external_window.h&gt; |
+| [external_window.h](external__window_8h.md) | 定义获取和使用NativeWindow的相关函数<br/>引用文件：&lt;native_window/external_window.h&gt; <br/>库：libnative_window.so |
 
 
 ### 结构体
