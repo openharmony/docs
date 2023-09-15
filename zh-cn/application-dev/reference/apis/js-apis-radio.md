@@ -3035,7 +3035,6 @@ radio.getNROptionMode(slotId, (err: BusinessError, data: radio.NROptionMode) => 
 });
 ```
 
-
 ## radio.getNROptionMode<sup>10+</sup>
 
 getNROptionMode\(slotId: number\): Promise\<NROptionMode\>
