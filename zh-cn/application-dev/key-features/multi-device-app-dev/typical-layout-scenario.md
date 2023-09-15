@@ -46,7 +46,7 @@
 
 
 ```
-import { BreakpointSystem, BreakPointType } from 'common/BreakpointSystem'
+import { BreakpointSystem, BreakPointType } from 'common/breakpointsystem'
 
 interface TabBar  {
   name: string
@@ -152,7 +152,7 @@ struct Home {
 
 
 ```
-import { BreakpointSystem, BreakPointType } from 'common/BreakpointSystem'
+import { BreakpointSystem, BreakPointType } from 'common/breakpointsystem'
 
 @Entry
 @Component
@@ -277,7 +277,7 @@ struct MultiLaneList {
 
 
 ```
-import { BreakpointSystem, BreakPointType } from 'common/BreakpointSystem'
+import { BreakpointSystem, BreakPointType } from 'common/breakpointsystem'
 
 interface ListItemInfo {
   name: string
