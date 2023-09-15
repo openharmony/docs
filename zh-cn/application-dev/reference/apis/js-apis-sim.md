@@ -1034,7 +1034,7 @@ getSimAccountInfo\(slotId: number\): Promise\<IccAccountInfo\>
 import { BusinessError } from '@ohos.base';
 import sim from '@ohos.telephony.sim';
 
-sim.getSimAccountInfo(0).then((data: IccAccountInfo) => {
+sim.getSimAccountInfo(0).then((data: sim.IccAccountInfo) => {
     console.log(`getSimAccountInfo success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
     console.log(`getSimAccountInfo failed, promise: err->${JSON.stringify(err)}`);
@@ -1079,7 +1079,7 @@ getActiveSimAccountInfoList\(callback: AsyncCallback\<Array\<IccAccountInfo\>\>\
 import { BusinessError } from '@ohos.base';
 import sim from '@ohos.telephony.sim';
 
-sim.getActiveSimAccountInfoList((err: BusinessError, data: Array<sim.IccAccountInfo) => {
+sim.getActiveSimAccountInfoList((err: BusinessError, data: Array<sim.IccAccountInfo>) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -1323,8 +1323,7 @@ import { BusinessError } from '@ohos.base';
 import sim from '@ohos.telephony.sim';
 
 let name: string = "ShowName";
-let promise: string = sim.setShowName(0, name);
-promise.then(() => {
+sim.setShowName(0, name).then(() => {
     console.log(`setShowName success.`);
 }).catch((err: BusinessError) => {
     console.log(`setShowName failed, promise: err->${JSON.stringify(err)}`);
@@ -4325,7 +4324,7 @@ import { BusinessError } from '@ohos.base';
 import sim from '@ohos.telephony.sim';
 
 try {
-    let data: string = sim.getOpKey(0);
+    let data: Promise<string> = sim.getOpKey(0);
     console.log(`getOpKey success, promise: data->${JSON.stringify(data)}`);
 } catch (error) {
     console.log(`getOpKey failed, promise: err->${JSON.stringify(error)}`);
@@ -4450,7 +4449,7 @@ import { BusinessError } from '@ohos.base';
 import sim from '@ohos.telephony.sim';
 
 try {
-    let data: string = sim.getOpName(0);
+    let data: Promise<string> = sim.getOpName(0);
     console.log(`getOpName success, promise: data->${JSON.stringify(data)}`);
 } catch (error) {
     console.log(`getOpName failed, promise: err->${JSON.stringify(error)}`);
