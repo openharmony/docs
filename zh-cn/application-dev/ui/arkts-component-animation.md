@@ -64,7 +64,9 @@ import curves from '@ohos.curves';
 import window from '@ohos.window';
 import display from '@ohos.display';
 import mediaquery from '@ohos.mediaquery';
-export class GlobalContext {
+import UIAbility from '@ohos.app.ability.UIAbility';
+
+export default class GlobalContext extends UIAbility{
   static mainWin: window.Window|undefined = undefined;
   static mainWindowSize:window.Size|undefined = undefined;
 }
@@ -75,11 +77,9 @@ export class WindowManager {
   private static instance: WindowManager|null = null;
   private displayInfo: display.Display|null = null;
   private orientationListener = mediaquery.matchMediaSync('(orientation: landscape)');
-  private portraitFunc: Function | null = null;
 
   constructor() {
-    this.portraitFunc = (mediaQueryResult: mediaquery.MediaQueryResult) => { this.onPortrait(mediaQueryResult) };
-    this.orientationListener.on('change', this.portraitFunc)
+    this.orientationListener.on('change', (mediaQueryResult: mediaquery.MediaQueryResult) => { this.onPortrait(mediaQueryResult) })
     this.loadDisplayInfo()
   }
 
@@ -106,7 +106,8 @@ export class WindowManager {
       AppStorage.SetOrCreate<number>('mainWinWidth', winWidth)
       let winHeight = this.getMainWindowHeight();
       AppStorage.SetOrCreate<number>('mainWinHeight', winHeight)
-      GlobalContext.context.eventHub.emit("windowSizeChange", winWidth, winHeight)
+      let context:UIAbility = new UIAbility()
+      context.context.eventHub.emit("windowSizeChange", winWidth, winHeight)
     })
   }
 
@@ -174,7 +175,7 @@ export class WindowManager {
    */
   release() {
     if (this.orientationListener) {
-      this.orientationListener.off('change', this.portraitFunc)
+      this.orientationListener.off('change', (mediaQueryResult: mediaquery.MediaQueryResult) => { this.onPortrait(mediaQueryResult)})
     }
     if (GlobalContext.mainWin != null) {
       GlobalContext.mainWin.off('windowSizeChange')
@@ -284,59 +285,60 @@ export struct TaskSwitchMainPage {
                 .animation({ curve: curves.springMotion() })
                 .zIndex((this.getProgress(index) >= 0.4 && this.getProgress(index) <= 0.6) ? 2 : 1)
             }
-          }, (item:TaskData) => item.toString())
+          }, (item:string):string => item)
         }
         .width((this.cardWidth + this.cardSpace) * (taskDataArr.length + 1))
         .height('100%')
       }
       .gesture(
-      GestureGroup(GestureMode.Parallel,
-      PanGesture({ direction: PanDirection.Horizontal, distance: 5 })
-        .onActionStart((event: GestureEvent|undefined) => {
-          if(event){
-            this.startTime = event.timestamp;
-          }
-        })
-        .onActionUpdate((event: GestureEvent|undefined) => {
-          if(event){
-            this.cardOffset = this.lastCardOffset + event.offsetX;
-          }
-        })
-        .onActionEnd((event: GestureEvent|undefined) => {
-          if(event){
-            if(this.startTime){
-              let time = event.timestamp - this.startTime;
-            }
-            let speed = event.offsetX / (time / 1000000000);
-            let moveX = Math.pow(speed, 2) / 7000 * (speed > 0 ? 1 : -1);
+        GestureGroup(GestureMode.Parallel,
+          PanGesture({ direction: PanDirection.Horizontal, distance: 5 })
+            .onActionStart((event: GestureEvent|undefined) => {
+              if(event){
+                this.startTime = event.timestamp;
+              }
+            })
+            .onActionUpdate((event: GestureEvent|undefined) => {
+              if(event){
+                this.cardOffset = this.lastCardOffset + event.offsetX;
+              }
+            })
+            .onActionEnd((event: GestureEvent|undefined) => {
+              if(event){
+                let time = 0
+                if(this.startTime){
+                  time = event.timestamp - this.startTime;
+                }
+                let speed = event.offsetX / (time / 1000000000);
+                let moveX = Math.pow(speed, 2) / 7000 * (speed > 0 ? 1 : -1);
 
-            this.cardOffset += moveX;
-            // 左滑大于最右侧位置
-            let cardOffsetMax = -(taskDataArr.length - 1) * (this.displayWidth / 2);
-            if (this.cardOffset < cardOffsetMax) {
-              this.cardOffset = cardOffsetMax;
-            }
-            // 右滑大于最左侧位置
-            if (this.cardOffset > this.displayWidth / 4) {
-              this.cardOffset = this.displayWidth / 4;
-            }
+                this.cardOffset += moveX;
+                // 左滑大于最右侧位置
+                let cardOffsetMax = -(taskDataArr.length - 1) * (this.displayWidth / 2);
+                if (this.cardOffset < cardOffsetMax) {
+                  this.cardOffset = cardOffsetMax;
+                }
+                // 右滑大于最左侧位置
+                if (this.cardOffset > this.displayWidth / 4) {
+                  this.cardOffset = this.displayWidth / 4;
+                }
 
-            // 左右滑动距离不满足/满足切换关系时，补位/退回
-            let remainMargin = this.cardOffset % (this.displayWidth / 2);
-            if (remainMargin < 0) {
-              remainMargin = this.cardOffset % (this.displayWidth / 2) + this.displayWidth / 2;
-            }
-            if (remainMargin <= this.displayWidth / 4) {
-              this.cardOffset += this.displayWidth / 4 - remainMargin;
-            } else {
-              this.cardOffset -= this.displayWidth / 4 - (this.displayWidth / 2 - remainMargin);
-            }
+                // 左右滑动距离不满足/满足切换关系时，补位/退回
+                let remainMargin = this.cardOffset % (this.displayWidth / 2);
+                if (remainMargin < 0) {
+                  remainMargin = this.cardOffset % (this.displayWidth / 2) + this.displayWidth / 2;
+                }
+                if (remainMargin <= this.displayWidth / 4) {
+                  this.cardOffset += this.displayWidth / 4 - remainMargin;
+                } else {
+                  this.cardOffset -= this.displayWidth / 4 - (this.displayWidth / 2 - remainMargin);
+                }
 
-            // 记录本次滑动偏移量
-            this.lastCardOffset = this.cardOffset;
-          }
-        })
-      ), GestureMask.IgnoreInternal)
+                // 记录本次滑动偏移量
+                this.lastCardOffset = this.cardOffset;
+              }
+            })
+        ), GestureMask.IgnoreInternal)
       .scrollable(ScrollDirection.Horizontal)
       .scrollBar(BarState.Off)
 
