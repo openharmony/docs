@@ -155,90 +155,88 @@
 1.对通过媒体查询监听断点的功能做简单的封装，方便后续使用
 ```ts
 // common/breakpointsystem.ets
-import mediaquery from '@ohos.mediaquery';
+import mediaQuery from '@ohos.mediaquery'
 
-export class BreakpointType<T> {
-  sm: T
-  md: T
-  lg: T
-  constructor(sm: T, md: T, lg: T) {
-    this.sm = sm
-    this.md = md
-    this.lg = lg
+declare interface BreakPointTypeOption<T> {
+  xs?: T
+  sm?: T
+  md?: T
+  lg?: T
+  xl?: T
+  xxl?: T
+}
+
+export class BreakPointType<T> {
+  options: BreakPointTypeOption<T>
+
+  constructor(option: BreakPointTypeOption<T>) {
+    this.options = option
   }
-  GetValue(currentBreakpoint: string):T | undefined{
-    if (currentBreakpoint === 'sm') {
-      return this.sm
+
+  getValue(currentBreakPoint: string) {
+    if (currentBreakPoint === 'xs') {
+      return this.options.xs
+    } else if (currentBreakPoint === 'sm') {
+      return this.options.sm
+    } else if (currentBreakPoint === 'md') {
+      return this.options.md
+    } else if (currentBreakPoint === 'lg') {
+      return this.options.lg
+    } else if (currentBreakPoint === 'xl') {
+      return this.options.xl
+    } else if (currentBreakPoint === 'xxl') {
+      return this.options.xxl
+    } else {
+      return undefined
     }
-    if (currentBreakpoint === 'md') {
-      return this.md
-    }
-    if (currentBreakpoint === 'lg') {
-      return this.lg
-    }
-    return undefined
   }
+}
+
+interface Breakpoint {
+  name: string
+  size: number
+  mediaQueryListener?: mediaQuery.MediaQueryListener
 }
 
 export class BreakpointSystem {
   private currentBreakpoint: string = 'md'
-  private smListener?: mediaquery.MediaQueryListener
-  private mdListener?: mediaquery.MediaQueryListener
-  private lgListener?: mediaquery.MediaQueryListener
+  private breakpoints: Breakpoint[] = [
+    { name: 'xs', size: 0 }, { name: 'sm', size: 320 },
+    { name: 'md', size: 600 }, { name: 'lg', size: 840 }
+  ]
 
-  private updateCurrentBreakpoint(breakpoint: string) :void{
+  private updateCurrentBreakpoint(breakpoint: string) {
     if (this.currentBreakpoint !== breakpoint) {
       this.currentBreakpoint = breakpoint
       AppStorage.Set<string>('currentBreakpoint', this.currentBreakpoint)
-    }
-  }
-  private isBreakpointSM = (mediaQueryResult:mediaquery.MediaQueryResult) :void=> {
-    if (mediaQueryResult.matches) {
-      this.updateCurrentBreakpoint('sm')
-    }
-  }
-  private isBreakpointMD = (mediaQueryResult:mediaquery.MediaQueryResult) :void=> {
-    if (mediaQueryResult.matches) {
-      this.updateCurrentBreakpoint('md')
-    }
-  }
-  private isBreakpointLG = (mediaQueryResult:mediaquery.MediaQueryResult):void => {
-    if (mediaQueryResult.matches) {
-      this.updateCurrentBreakpoint('lg')
+      console.log('on current breakpoint: ' + this.currentBreakpoint)
     }
   }
 
-  public register() :void{
-    this.smListener = mediaquery.matchMediaSync("(320vp<width<600vp)")
-    //初始化
-    if (this.smListener.matches){
-      this.updateCurrentBreakpoint('sm')
-    }
-    this.smListener.on("change", this.isBreakpointSM)
-    this.mdListener = mediaquery.matchMediaSync("(600vp<width<840vp)")
-    //初始化
-    if (this.mdListener.matches){
-      this.updateCurrentBreakpoint('md')
-    }
-    this.mdListener.on("change", this.isBreakpointMD)
-    this.lgListener = mediaquery.matchMediaSync("(840vp<width)")
-    //初始化
-    if (this.lgListener.matches){
-      this.updateCurrentBreakpoint('lg')
-    }
-    this.lgListener.on("change", this.isBreakpointLG)
+  public register() {
+    this.breakpoints.forEach((breakpoint: Breakpoint, index) => {
+      let condition:string
+      if (index === this.breakpoints.length - 1) {
+        condition = '(' + breakpoint.size + 'vp<=width' + ')'
+      } else {
+        condition = '(' + breakpoint.size + 'vp<=width<' + this.breakpoints[index + 1].size + 'vp)'
+      }
+      console.log(condition)
+      breakpoint.mediaQueryListener = mediaQuery.matchMediaSync(condition)
+      breakpoint.mediaQueryListener.on('change', (mediaQueryResult) => {
+        if (mediaQueryResult.matches) {
+          this.updateCurrentBreakpoint(breakpoint.name)
+        }
+      })
+    })
   }
 
-  public unregister() :void{
-    if(this.smListener){
-      this.smListener.off("change", this.isBreakpointSM)
-    }
-    if(this.mdListener){
-      this.mdListener.off("change", this.isBreakpointMD)
-    }
-    if(this.lgListener){
-      this.lgListener.off("change", this.isBreakpointLG)
-    }
+  public unregister() {
+    this.breakpoints.forEach((breakpoint: Breakpoint) => {
+      if(breakpoint.mediaQueryListener){
+        breakpoint.mediaQueryListener.off('change')
+      }
+    })
   }
 }
 
@@ -246,7 +244,7 @@ export class BreakpointSystem {
 2.在页面中，通过媒体查询，监听应用窗口宽度变化，获取当前应用所处的断点值
 ```
 // MediaQuerySample.ets
-import { BreakpointSystem, BreakpointType } from '../common/breakpointsystem'
+import { BreakpointSystem, BreakPointType } from 'common/breakpointsystem'
 
 @Entry
 @Component
@@ -264,7 +262,7 @@ struct MediaQuerySample {
   }
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
-      Image(new BreakpointType($r('app.media.sm'), $r('app.media.md'), $r('app.media.lg')).GetValue(this.currentBreakpoint))
+      Image(new BreakPointType({sm:$r('app.media.sm'), md:$r('app.media.md'), lg:$r('app.media.lg')}).getValue(this.currentBreakpoint)!)
         .height(100)
         .width(100)
         .objectFit(ImageFit.Contain)
