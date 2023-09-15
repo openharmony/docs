@@ -15,17 +15,17 @@
 下表给出了当前长时任务支持的类型，包含数据传输、音频播放、录音、定位导航、蓝牙相关、多设备互联、WLAN相关、音视频通话和计算任务。可以参考下表中的场景举例，选择合适的长时任务类型。
 
 **表1** 长时任务类型
-| 参数名 | 描述 | 场景举例 |
-| -------- | -------- | -------- |
-| DATA_TRANSFER | 数据传输 | 后台下载大文件，如浏览器后台下载等。 |
-| AUDIO_PLAYBACK | 音频播放 | 音乐类应用在后台播放音乐。 |
-| AUDIO_RECORDING | 录音 | 录音机在后台录音。 |
-| LOCATION | 定位导航 | 导航类应用后台导航。 |
-| BLUETOOTH_INTERACTION | 蓝牙相关 | 通过蓝牙传输分享的文件。 |
-| MULTI_DEVICE_CONNECTION | 多设备互联 | 分布式业务连接。 |
-| WIFI_INTERACTION | WLAN相关（仅对系统应用开放） | 通过WLAN传输分享的文件。 |
-| VOIP | 音视频通话（仅对系统应用开放） | 系统聊天类应用后台音频电话。 |
-| TASK_KEEPING | 计算任务（仅对特定设备开放） | 杀毒软件 |
+| 参数名 | 描述 | 配置项 | 场景举例 |
+| -------- | -------- | -------- | -------- |
+| DATA_TRANSFER | 数据传输 | dataTransfer | 后台下载大文件，如浏览器后台下载等。 |
+| AUDIO_PLAYBACK | 音频播放 | audioPlayback | 音乐类应用在后台播放音乐。 |
+| AUDIO_RECORDING | 录音 | audioRecording | 录音机在后台录音。 |
+| LOCATION | 定位导航 | location | 导航类应用后台导航。 |
+| BLUETOOTH_INTERACTION | 蓝牙相关 | bluetoothInteraction | 通过蓝牙传输分享的文件。 |
+| MULTI_DEVICE_CONNECTION | 多设备互联 | multiDeviceConnection | 分布式业务连接。 |
+| WIFI_INTERACTION | WLAN相关（仅对系统应用开放） | wifiInteraction  | 通过WLAN传输分享的文件。 |
+| VOIP | 音视频通话（仅对系统应用开放） | voip  | 系统聊天类应用后台音频电话。 |
+| TASK_KEEPING | 计算任务（仅对特定设备开放） | taskKeeping  | 杀毒软件 |
 
 
 - 申请了DATA_TRANSFER（数据传输）的长时任务，系统仅会提升应用进程的优先级，降低系统终止应用进程的概率，但仍然会挂起对应的应用进程。对于上传下载对应的功能，需要调用系统[上传下载代理接口](../reference/apis/js-apis-request.md)托管给系统执行。
