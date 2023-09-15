@@ -55,13 +55,14 @@ import featureAbility from '@ohos.ability.featureAbility';
 import { BusinessError } from "@ohos.base";
 
 let store: relationalStore.RdbStore | undefined = undefined;
+let context = getContext(this);
 
 const STORE_CONFIG: relationalStore.StoreConfig = {
   name: "RdbTest.db",
   securityLevel: relationalStore.SecurityLevel.S1
 };
 
-relationalStore.getRdbStore(this.context, STORE_CONFIG, (err: BusinessError, rdbStore: relationalStore.RdbStore) => {
+relationalStore.getRdbStore(context, STORE_CONFIG, (err: BusinessError, rdbStore: relationalStore.RdbStore) => {
   store = rdbStore;
   if (err) {
     console.error(`Get RdbStore failed, code is ${err.code},message is ${err.message}`);
@@ -138,13 +139,14 @@ FA模型示例：
 import featureAbility from '@ohos.ability.featureAbility';
 import { BusinessError } from "@ohos.base";
 
+let context = getContext(this);
+
 const STORE_CONFIG: relationalStore.StoreConfig = {
   name: "RdbTest.db",
   securityLevel: relationalStore.SecurityLevel.S1
 };
 
-let promise = relationalStore.getRdbStore(this.context, STORE_CONFIG);
-promise.then(async (rdbStore: relationalStore.RdbStore) => {
+relationalStore.getRdbStore(context, STORE_CONFIG).then(async (rdbStore: relationalStore.RdbStore) => {
   store = rdbStore;
   console.info(`Get RdbStore successfully.`)
 }).catch((err: BusinessError) => {
@@ -167,8 +169,7 @@ class EntryAbility extends UIAbility {
       securityLevel: relationalStore.SecurityLevel.S1
     };
 
-    let promise = relationalStore.getRdbStore(this.context, STORE_CONFIG);
-    promise.then(async (rdbStore: relationalStore.RdbStore) => {
+    relationalStore.getRdbStore(this.context, STORE_CONFIG).then(async (rdbStore: relationalStore.RdbStore) => {
       store = rdbStore;
       console.info(`Get RdbStore successfully.`)
     }).catch((err: BusinessError) => {
@@ -213,7 +214,9 @@ FA模型示例：
 import featureAbility from '@ohos.ability.featureAbility';
 import { BusinessError } from "@ohos.base";
 
-relationalStore.deleteRdbStore(this.context, "RdbTest.db", (err: BusinessError) => {
+let context = getContext(this);
+
+relationalStore.deleteRdbStore(context, "RdbTest.db", (err: BusinessError) => {
   if (err) {
     console.error(`Delete RdbStore failed, code is ${err.code},message is ${err.message}`);
     return;
@@ -284,8 +287,9 @@ FA模型示例：
 import featureAbility from '@ohos.ability.featureAbility';
 import { BusinessError } from "@ohos.base";
 
-let promise = relationalStore.deleteRdbStore(this.context, "RdbTest.db");
-promise.then(()=>{
+let context = getContext(this);
+
+relationalStore.deleteRdbStore(context, "RdbTest.db").then(()=>{
   store = undefined;
   console.info(`Delete RdbStore successfully.`);
 }).catch((err: BusinessError) => {
@@ -302,8 +306,7 @@ import { BusinessError } from "@ohos.base";
 
 class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage){
-    let promise = relationalStore.deleteRdbStore(this.context, "RdbTest.db");
-    promise.then(()=>{
+    relationalStore.deleteRdbStore(this.context, "RdbTest.db").then(()=>{
       store = undefined;
       console.info(`Delete RdbStore successfully.`);
     }).catch((err: BusinessError) => {
@@ -350,12 +353,14 @@ FA模型示例：
 import featureAbility from '@ohos.ability.featureAbility';
 import { BusinessError } from "@ohos.base";
 
+let context = getContext(this);
+
 const STORE_CONFIG: relationalStore.StoreConfig = {
   name: "RdbTest.db",
   securityLevel: relationalStore.SecurityLevel.S1
 };
 
-relationalStore.deleteRdbStore(this.context, STORE_CONFIG, (err: BusinessError) => {
+relationalStore.deleteRdbStore(context, STORE_CONFIG, (err: BusinessError) => {
   if (err) {
     console.error(`Delete RdbStore failed, code is ${err.code},message is ${err.message}`);
     return;
@@ -433,13 +438,14 @@ FA模型示例：
 import featureAbility from '@ohos.ability.featureAbility';
 import { BusinessError } from "@ohos.base";
 
+let context = getContext(this);
+
 const STORE_CONFIG: relationalStore.StoreConfig = {
   name: "RdbTest.db",
   securityLevel: relationalStore.SecurityLevel.S1
 };
 
-let promise = relationalStore.deleteRdbStore(this.context, STORE_CONFIG);
-promise.then(()=>{
+relationalStore.deleteRdbStore(context, STORE_CONFIG).then(()=>{
   store = undefined;
   console.info(`Delete RdbStore successfully.`);
 }).catch((err: BusinessError) => {
@@ -460,8 +466,7 @@ class EntryAbility extends UIAbility {
       name: "RdbTest.db",
       securityLevel: relationalStore.SecurityLevel.S1
     };
-    let promise = relationalStore.deleteRdbStore(this.context, STORE_CONFIG);
-    promise.then(()=>{
+    relationalStore.deleteRdbStore(this.context, STORE_CONFIG).then(()=>{
       store = undefined;
       console.info(`Delete RdbStore successfully.`);
     }).catch((err: BusinessError) => {
@@ -1804,8 +1809,7 @@ const valueBucket: ValuesBucket = {
   key4: value4,
 };
 if(store != undefined) {
-  let promise = (store as relationalStore.RdbStore).insert("EMPLOYEE", valueBucket);
-  promise.then((rowId: number) => {
+  (store as relationalStore.RdbStore).insert("EMPLOYEE", valueBucket).then((rowId: number) => {
     console.info(`Insert is successful, rowId = ${rowId}`);
   }).catch((err: BusinessError) => {
     console.error(`Insert is failed, code is ${err.code},message is ${err.message}`);
@@ -1865,8 +1869,7 @@ const valueBucket: ValuesBucket = {
   key4: value4,
 };
 if(store != undefined) {
-  let promise = (store as relationalStore.RdbStore).insert("EMPLOYEE", valueBucket, relationalStore.ConflictResolution.ON_CONFLICT_REPLACE);
-  promise.then((rowId: number) => {
+  (store as relationalStore.RdbStore).insert("EMPLOYEE", valueBucket, relationalStore.ConflictResolution.ON_CONFLICT_REPLACE).then((rowId: number) => {
     console.info(`Insert is successful, rowId = ${rowId}`);
   }).catch((err: BusinessError) => {
     console.error(`Insert is failed, code is ${err.code},message is ${err.message}`);
@@ -2024,8 +2027,7 @@ const valueBucket3: ValuesBucket = {
 
 let valueBuckets = new Array(valueBucket1, valueBucket2, valueBucket3);
 if(store != undefined) {
-  let promise = (store as relationalStore.RdbStore).batchInsert("EMPLOYEE", valueBuckets);
-  promise.then((insertNum: number) => {
+  (store as relationalStore.RdbStore).batchInsert("EMPLOYEE", valueBuckets).then((insertNum: number) => {
     console.info(`batchInsert is successful, the number of values that were inserted = ${insertNum}`);
   }).catch((err: BusinessError) => {
     console.error(`batchInsert is failed, code is ${err.code},message is ${err.message}`);
@@ -2201,8 +2203,7 @@ const valueBucket: ValuesBucket = {
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Lisa");
 if(store != undefined) {
-  let promise = (store as relationalStore.RdbStore).update(valueBucket, predicates);
-  promise.then(async (rows: Number) => {
+  (store as relationalStore.RdbStore).update(valueBucket, predicates).then(async (rows: Number) => {
     console.info(`Updated row count: ${rows}`);
   }).catch((err: BusinessError) => {
     console.error(`Updated failed, code is ${err.code},message is ${err.message}`);
@@ -2264,8 +2265,7 @@ const valueBucket: ValuesBucket = {
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Lisa");
 if(store != undefined) {
-  let promise = (store as relationalStore.RdbStore).update(valueBucket, predicates, relationalStore.ConflictResolution.ON_CONFLICT_REPLACE);
-  promise.then(async (rows: Number) => {
+  (store as relationalStore.RdbStore).update(valueBucket, predicates, relationalStore.ConflictResolution.ON_CONFLICT_REPLACE).then(async (rows: Number) => {
     console.info(`Updated row count: ${rows}`);
   }).catch((err: BusinessError) => {
     console.error(`Updated failed, code is ${err.code},message is ${err.message}`);
@@ -2395,8 +2395,7 @@ const valueBucket: ValuesBucket = {
 let predicates = new dataSharePredicates.DataSharePredicates();
 predicates.equalTo("NAME", "Lisa");
 if(store != undefined) {
-  let promise = (store as relationalStore.RdbStore).update("EMPLOYEE", valueBucket, predicates);
-  promise.then(async (rows: Number) => {
+  (store as relationalStore.RdbStore).update("EMPLOYEE", valueBucket, predicates).then(async (rows: Number) => {
     console.info(`Updated row count: ${rows}`);
   }).catch((err: BusinessError) => {
     console.error(`Updated failed, code is ${err.code},message is ${err.message}`);
@@ -2481,8 +2480,7 @@ import { BusinessError } from "@ohos.base";
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Lisa");
 if(store != undefined) {
-  let promise = (store as relationalStore.RdbStore).delete(predicates);
-  promise.then((rows: Number) => {
+  (store as relationalStore.RdbStore).delete(predicates).then((rows: Number) => {
     console.info(`Delete rows: ${rows}`);
   }).catch((err: BusinessError) => {
     console.error(`Delete failed, code is ${err.code},message is ${err.message}`);
@@ -2580,8 +2578,7 @@ import { BusinessError } from "@ohos.base";
 let predicates = new dataSharePredicates.DataSharePredicates();
 predicates.equalTo("NAME", "Lisa");
 if(store != undefined) {
-  let promise = (store as relationalStore.RdbStore).delete("EMPLOYEE", predicates);
-  promise.then((rows: Number) => {
+  (store as relationalStore.RdbStore).delete("EMPLOYEE", predicates).then((rows: Number) => {
     console.info(`Delete rows: ${rows}`);
   }).catch((err: BusinessError) => {
     console.error(`Delete failed, code is ${err.code},message is ${err.message}`);
@@ -2725,8 +2722,7 @@ import { BusinessError } from "@ohos.base";
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Rose");
 if(store != undefined) {
-  let promise = (store as relationalStore.RdbStore).query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]);
-  promise.then((resultSet: relationalStore.ResultSet) => {
+  (store as relationalStore.RdbStore).query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]).then((resultSet: relationalStore.ResultSet) => {
     console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
     // resultSet是一个数据集合的游标，默认指向第-1个记录，有效的数据从0开始。
     while (resultSet.goToNextRow()) {
@@ -2900,8 +2896,7 @@ import { BusinessError } from "@ohos.base";
 let predicates = new dataSharePredicates.DataSharePredicates();
 predicates.equalTo("NAME", "Rose");
 if(store != undefined) {
-  let promise = (store as relationalStore.RdbStore).query("EMPLOYEE", predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]);
-  promise.then((resultSet: relationalStore.ResultSet) => {
+  (store as relationalStore.RdbStore).query("EMPLOYEE", predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]).then((resultSet: relationalStore.ResultSet) => {
     console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
     // resultSet是一个数据集合的游标，默认指向第-1个记录，有效的数据从0开始。
     while (resultSet.goToNextRow()) {
@@ -2973,8 +2968,7 @@ try {
 let predicates = new relationalStore.RdbPredicates('EMPLOYEE');
 predicates.greaterThan("id", 0);
 if(store != undefined && deviceId != undefined) {
-  let promise = (store as relationalStore.RdbStore).remoteQuery(deviceId, "EMPLOYEE", predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]);
-  promise.then((resultSet: relationalStore.ResultSet) => {
+  (store as relationalStore.RdbStore).remoteQuery(deviceId, "EMPLOYEE", predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]).then((resultSet: relationalStore.ResultSet) => {
     console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
     // resultSet是一个数据集合的游标，默认指向第-1个记录，有效的数据从0开始。
     while (resultSet.goToNextRow()) {
@@ -3051,8 +3045,7 @@ try {
 let predicates = new relationalStore.RdbPredicates('EMPLOYEE');
 predicates.greaterThan("id", 0);
 if(store != undefined && deviceId != undefined) {
-  let promise = (store as relationalStore.RdbStore).remoteQuery(deviceId, "EMPLOYEE", predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]);
-  promise.then((resultSet: relationalStore.ResultSet) => {
+  (store as relationalStore.RdbStore).remoteQuery(deviceId, "EMPLOYEE", predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]).then((resultSet: relationalStore.ResultSet) => {
     console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
     // resultSet是一个数据集合的游标，默认指向第-1个记录，有效的数据从0开始。
     while (resultSet.goToNextRow()) {
@@ -3200,8 +3193,7 @@ querySql(sql: string, bindArgs?: Array&lt;ValueType&gt;):Promise&lt;ResultSet&gt
 import { BusinessError } from "@ohos.base";
 
 if(store != undefined) {
-  let promise = (store as relationalStore.RdbStore).querySql("SELECT * FROM EMPLOYEE CROSS JOIN BOOK WHERE BOOK.NAME = 'sanguo'");
-  promise.then((resultSet: relationalStore.ResultSet) => {
+  (store as relationalStore.RdbStore).querySql("SELECT * FROM EMPLOYEE CROSS JOIN BOOK WHERE BOOK.NAME = 'sanguo'").then((resultSet: relationalStore.ResultSet) => {
     console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
     // resultSet是一个数据集合的游标，默认指向第-1个记录，有效的数据从0开始。
     while (resultSet.goToNextRow()) {
@@ -3335,8 +3327,7 @@ import { BusinessError } from "@ohos.base";
 
 const SQL_DELETE_TABLE = "DELETE FROM test WHERE name = 'zhangsan'"
 if(store != undefined) {
-  let promise = (store as relationalStore.RdbStore).executeSql(SQL_DELETE_TABLE);
-  promise.then(() => {
+  (store as relationalStore.RdbStore).executeSql(SQL_DELETE_TABLE).then(() => {
     console.info(`Delete table done.`);
   }).catch((err: BusinessError) => {
     console.error(`ExecuteSql failed, code is ${err.code},message is ${err.message}`);
@@ -3454,6 +3445,8 @@ beginTransaction():void
 import featureAbility from '@ohos.ability.featureAbility'
 import { ValuesBucket } from '@ohos.data.ValuesBucket';
 
+let context = getContext(this);
+
 let key1 = "name";
 let key2 = "age";
 let key3 = "SALARY";
@@ -3466,7 +3459,7 @@ const STORE_CONFIG: relationalStore.StoreConfig = {
   name: "RdbTest.db",
   securityLevel: relationalStore.SecurityLevel.S1
 };
-relationalStore.getRdbStore(this.context, STORE_CONFIG, async (err, store) => {
+relationalStore.getRdbStore(context, STORE_CONFIG, async (err, store) => {
   if (err) {
     console.error(`GetRdbStore failed, code is ${err.code},message is ${err.message}`);
     return;
@@ -3494,8 +3487,9 @@ commit():void
 **示例：**
 
 ```ts
-import featureAbility from '@ohos.ability.featureAbility';
 import { ValuesBucket } from '@ohos.data.ValuesBucket';
+
+let context = getContext(this);
 
 let key1 = "name";
 let key2 = "age";
@@ -3509,7 +3503,7 @@ const STORE_CONFIG: relationalStore.StoreConfig = {
   name: "RdbTest.db",
   securityLevel: relationalStore.SecurityLevel.S1
 };
-relationalStore.getRdbStore(this.context, STORE_CONFIG, async (err, store) => {
+relationalStore.getRdbStore(context, STORE_CONFIG, async (err, store) => {
   if (err) {
     console.error(`GetRdbStore failed, code is ${err.code},message is ${err.message}`);
     return;
@@ -3537,8 +3531,9 @@ rollBack():void
 **示例：**
 
 ```ts
-import featureAbility from '@ohos.ability.featureAbility'
 import { ValuesBucket } from '@ohos.data.ValuesBucket';
+
+let context = getContext(this);
 
 let key1 = "name";
 let key2 = "age";
@@ -3552,7 +3547,7 @@ const STORE_CONFIG: relationalStore.StoreConfig = {
   name: "RdbTest.db",
   securityLevel: relationalStore.SecurityLevel.S1
 };
-relationalStore.getRdbStore(this.context, STORE_CONFIG, async (err, store) => {
+relationalStore.getRdbStore(context, STORE_CONFIG, async (err, store) => {
   if (err) {
     console.error(`GetRdbStore failed, code is ${err.code},message is ${err.message}`);
     return;
@@ -3811,8 +3806,7 @@ if(store != undefined) {
 import { BusinessError } from "@ohos.base";
 
 if(store != undefined) {
-  let promise = (store as relationalStore.RdbStore).setDistributedTables(["EMPLOYEE"]);
-  promise.then(() => {
+  (store as relationalStore.RdbStore).setDistributedTables(["EMPLOYEE"]).then(() => {
     console.info(`SetDistributedTables successfully.`);
   }).catch((err: BusinessError) => {
     console.error(`SetDistributedTables failed, code is ${err.code},message is ${err.message}`);
@@ -3946,10 +3940,9 @@ if(store != undefined) {
 import { BusinessError } from "@ohos.base";
 
 if(store != undefined) {
-  let promise = (store as relationalStore.RdbStore).setDistributedTables(["EMPLOYEE"], relationalStore.DistributedType.DISTRIBUTED_CLOUD, {
+  (store as relationalStore.RdbStore).setDistributedTables(["EMPLOYEE"], relationalStore.DistributedType.DISTRIBUTED_CLOUD, {
     autoSync: true
-  });
-  promise.then(() => {
+  }).then(() => {
     console.info(`SetDistributedTables successfully.`);
   }).catch((err: BusinessError) => {
     console.error(`SetDistributedTables failed, code is ${err.code},message is ${err.message}`);
@@ -4071,8 +4064,7 @@ try {
 }
 
 if(store != undefined && deviceId != undefined) {
-  let promise = (store as relationalStore.RdbStore).obtainDistributedTableName(deviceId, "EMPLOYEE");
-  promise.then((tableName: string) => {
+  (store as relationalStore.RdbStore).obtainDistributedTableName(deviceId, "EMPLOYEE").then((tableName: string) => {
     console.info(`ObtainDistributedTableName successfully, tableName= ${tableName}`);
   }).catch((err: BusinessError) => {
     console.error(`ObtainDistributedTableName failed, code is ${err.code},message is ${err.message}`);
@@ -4195,8 +4187,7 @@ try {
 let predicates = new relationalStore.RdbPredicates('EMPLOYEE');
 predicates.inDevices(deviceIds);
 if(store != undefined) {
-  let promise = (store as relationalStore.RdbStore).sync(relationalStore.SyncMode.SYNC_MODE_PUSH, predicates);
-  promise.then((result: Object[][]) => {
+  (store as relationalStore.RdbStore).sync(relationalStore.SyncMode.SYNC_MODE_PUSH, predicates).then((result: Object[][]) => {
     console.info(`Sync done.`);
     for (let i = 0; i < result.length; i++) {
       console.info(`device= ${result[i][0]}, status= ${result[i][1]}`);
@@ -4644,8 +4635,7 @@ let resultSet: relationalStore.ResultSet | undefined = undefined;
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("AGE", 18);
 if(store != undefined) {
-  let promise = (store as relationalStore.RdbStore).query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]);
-  promise.then((result: relationalStore.ResultSet) => {
+  (store as relationalStore.RdbStore).query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]).then((result: relationalStore.ResultSet) => {
     resultSet = result;
     console.info(`resultSet columnNames: ${resultSet.columnNames}`);
     console.info(`resultSet columnCount: ${resultSet.columnCount}`);
