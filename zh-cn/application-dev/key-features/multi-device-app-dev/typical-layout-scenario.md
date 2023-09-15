@@ -268,7 +268,7 @@ struct MultiLaneList {
       sm: '1fr 1fr',
       md: '1fr 1fr 1fr 1fr',
       lg: '1fr 1fr 1fr 1fr 1fr 1fr'
-    }).GetValue(this.currentBreakpoint)!)
+    }).getValue(this.currentBreakpoint)!)
   }
 }
 ```
@@ -520,7 +520,7 @@ struct NavigationSample {
 
 ```
 // TripleColumn.ets
-import { BreakpointSystem, BreakpointType } from '../common/breakpointsystem'
+import { BreakpointSystem, BreakPointType } from '../common/breakpointsystem'
 
 @Component
 struct Details {
@@ -600,7 +600,7 @@ struct TripleColumnSample {
                 .fontWeight(FontWeight.Bold)
                 .textAlign(TextAlign.Center).backgroundColor('#66000000')
             }
-          },((item:number):number => item))
+          })
         }.divider({ strokeWidth: 5, color: '#F1F3F5' })
       }.width('100%')
       .height('100%')
