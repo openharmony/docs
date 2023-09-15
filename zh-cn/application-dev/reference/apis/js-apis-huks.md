@@ -1706,7 +1706,7 @@ async function huksAbort() {
 | HUKS_ECC_KEY_SIZE_384              | 384  | 表示使用ECC算法的密钥长度为384bit。        |
 | HUKS_ECC_KEY_SIZE_521              | 521  | 表示使用ECC算法的密钥长度为521bit。        |
 | HUKS_AES_KEY_SIZE_128              | 128  | 表示使用AES算法的密钥长度为128bit。        |
-| HUKS_AES_KEY_SIZE_192              | 192  | 表示使用AES算法的密钥长度为196bit。        |
+| HUKS_AES_KEY_SIZE_192              | 192  | 表示使用AES算法的密钥长度为192bit。        |
 | HUKS_AES_KEY_SIZE_256              | 256  | 表示使用AES算法的密钥长度为256bit。        |
 | HUKS_AES_KEY_SIZE_512              | 512  | 表示使用AES算法的密钥长度为512bit。        |
 | HUKS_CURVE25519_KEY_SIZE_256       | 256  | 表示使用CURVE25519算法的密钥长度为256bit。 |
