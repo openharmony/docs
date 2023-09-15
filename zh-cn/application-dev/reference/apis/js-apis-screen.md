@@ -81,8 +81,8 @@ getAllScreens(): Promise&lt;Array&lt;Screen&gt;&gt;
 import { BusinessError } from '@ohos.base';
 
 let screenClass: screen.Screen | null = null;
-let promise = screen.getAllScreens();
-promise.then((data) => {
+let promise: Promise<Array<Screen>> = screen.getAllScreens();
+promise.then((data: Array<Screen>) => {
   screenClass = data[0];
   console.log('Succeeded in getting all screens. Data:' + JSON.stringify(data));
 }).catch((err: BusinessError) => {
@@ -109,7 +109,7 @@ on(eventType: 'connect' | 'disconnect' | 'change', callback: Callback&lt;number&
 
 ```ts
 try {
-  let callback = (data) => {
+  let callback: Callback<number> = (data: Callback<number>) => {
     console.info('Succeeded in registering the callback for screen changes. Data: ' + JSON.stringify(data))
   };
   screen.on('connect', callback);
@@ -137,7 +137,7 @@ off(eventType: 'connect' | 'disconnect' | 'change', callback?: Callback&lt;numbe
 
 ```ts
 try {
-  let callback = (data) => {
+  let callback: Callback<number> = (data: Callback<number>) => {
     console.info('Succeeded in unregistering the callback for screen changes. Data: ' + JSON.stringify(data))
   };
   screen.off('connect', callback);
@@ -176,11 +176,15 @@ import { BusinessError } from '@ohos.base';
 
 try {
   let groupId: number | null = null;
-  screen.makeExpand([{ screenId: 0, startX: 0, startY: 0 }, {
-    screenId: 1,
-    startX: 1080,
-    startY: 0
-  }], (err: BusinessError, data) => {
+  class ExpandOption {
+    screenId: number = 0;
+    startX: number = 0;
+    startY: number = 0;
+  }
+  let mainScreenOption: ExpandOption = { screenId: 0, startX: 0, startY: 0 };
+  let otherScreenOption: ExpandOption = { screenId: 1, startX: 1080, startY: 0 };
+  let expandOptionArray : ExpandOption[] = [ mainScreenOption, otherScreenOption ];
+  screen.makeExpand(expandOptionArray, (err: BusinessError, data: AsyncCallback<number>) => {
     const errCode: number = err.code;
     if (errCode) {
       console.error('Failed to expand the screen. Code:' + JSON.stringify(err));
@@ -228,7 +232,16 @@ makeExpand(options:Array&lt;ExpandOption&gt;): Promise&lt;number&gt;
 import { BusinessError } from '@ohos.base';
 
 try {
-  screen.makeExpand([{ screenId: 0, startX: 0, startY: 0 }, { screenId: 1, startX: 1080, startY: 0 }]).then((data) => {
+  class ExpandOption {
+    screenId: number = 0;
+    startX: number = 0;
+    startY: number = 0;
+  }
+  let mainScreenOption: ExpandOption = { screenId: 0, startX: 0, startY: 0 };
+  let otherScreenOption: ExpandOption = { screenId: 1, startX: 1080, startY: 0 };
+  let expandOptionArray : ExpandOption[] = [ mainScreenOption, otherScreenOption ];
+  screen.makeExpand(expandOptionArray).then((
+    data: Promise<number>) => {
     console.info('Succeeded in expanding the screen. Data: ' + JSON.stringify(data));
   }).catch((err: BusinessError) => {
     console.error('Failed to expand the screen. Code:' + JSON.stringify(err));
@@ -268,7 +281,7 @@ import { BusinessError } from '@ohos.base';
 
 try {
   let expandScreenIds: Array<number> = [1, 2, 3];
-  screen.stopExpand(expandScreenIds, (err) => {
+  screen.stopExpand(expandScreenIds, (err: BusinessError) => {
     const errCode: number = err.code;
     if (errCode) {
       console.error('Failed to stop expand screens. Code:' + JSON.stringify(err));
@@ -408,7 +421,7 @@ import { BusinessError } from '@ohos.base';
 let mainScreenId: number = 0;
 let mirrorScreenIds: Array<number> = [1, 2, 3];
 try {
-  screen.makeMirror(mainScreenId, mirrorScreenIds).then((data) => {
+  screen.makeMirror(mainScreenId, mirrorScreenIds).then((data: Promise<number>) => {
     console.info('Succeeded in setting screen mirroring. Data: ' + JSON.stringify(data));
   }).catch((err: BusinessError) => {
     console.error('Failed to set screen mirroring. Code: ' + JSON.stringify(err));
@@ -538,13 +551,22 @@ import { BusinessError } from '@ohos.base';
 
 let screenClass: screen.Screen | null = null;
 try {
-  screen.createVirtualScreen({
+  class VirtualScreenOption {
+    name : string = '';
+    width : number =  0;
+    height : number = 0;
+    density : number = 0;
+    surfaceId : string = '';
+  }
+
+  let option : VirtualScreenOption = { 
     name: 'screen01',
     width: 1080,
     height: 2340,
     density: 2,
     surfaceId: ''
-  }, (err: BusinessError, data) => {
+  };
+  screen.createVirtualScreen(option, (err: BusinessError, data: AsyncCallback<Screen>) => {
     const errCode: number = err.code;
     if (errCode) {
       console.error('Failed to create the virtual screen. Code: ' + JSON.stringify(err));
@@ -595,13 +617,23 @@ import { BusinessError } from '@ohos.base';
 
 let screenClass: screen.Screen | null = null;
 try {
-  screen.createVirtualScreen({
+  class VirtualScreenOption {
+    name : string = '';
+    width : number =  0;
+    height : number = 0;
+    density : number = 0;
+    surfaceId : string = '';
+  }
+
+  let option : VirtualScreenOption = { 
     name: 'screen01',
     width: 1080,
     height: 2340,
     density: 2,
     surfaceId: ''
-  }).then((data) => {
+  };
+
+  screen.createVirtualScreen(option).then((data: Promise<Screen>) => {
     screenClass = data;
     console.info('Succeeded in creating the virtual screen. Data: ' + JSON.stringify(data));
   }).catch((err: BusinessError) => {
@@ -815,7 +847,7 @@ isScreenRotationLocked(): Promise&lt;boolean&gt;
 ```ts
 import { BusinessError } from '@ohos.base';
 
-screen.isScreenRotationLocked().then((isLocked) => {
+screen.isScreenRotationLocked().then((isLocked: Promise<boolean>) => {
   console.info('Succeeded in getting the screen rotation lock status. isLocked:' + JSON.stringify(isLocked));
 }).catch((err: BusinessError) => {
   console.error('Failed to get the screen rotation lock status. Cause:' + JSON.stringify(err));
@@ -841,7 +873,7 @@ isScreenRotationLocked(callback: AsyncCallback&lt;boolean&gt;): void
 ```ts
 import { BusinessError } from '@ohos.base';
 
-screen.isScreenRotationLocked((err: BusinessError, isLocked) => {
+screen.isScreenRotationLocked((err: BusinessError, isLocked: AsyncCallback<boolean>) => {
   const errCode: number = err.code;
   if (errCode) {
     console.error('Failed to get the screen rotation lock status. Cause:' + JSON.stringify(err));
@@ -1040,7 +1072,7 @@ setOrientation(orientation: Orientation): Promise&lt;void&gt;
 import { BusinessError } from '@ohos.base';
 
 try {
-  let promise = screenClass.setOrientation(screen.Orientation.VERTICAL);
+  let promise: Promise<void> = screenClass.setOrientation(screen.Orientation.VERTICAL);
   promise.then(() => {
     console.info('Succeeded in setting the vertical orientation.');
   }).catch((err: BusinessError) => {
@@ -1125,7 +1157,7 @@ import { BusinessError } from '@ohos.base';
 
 let modeIndex: number = 0;
 try {
-  let promise = screenClass.setScreenActiveMode(modeIndex);
+  let promise: Promise<void> = screenClass.setScreenActiveMode(modeIndex);
   promise.then(() => {
     console.info('Succeeded in setting screen active mode 0.');
   }).catch((err: BusinessError) => {
@@ -1210,7 +1242,7 @@ import { BusinessError } from '@ohos.base';
 
 let densityDpi: number = 320;
 try {
-  let promise = screenClass.setDensityDpi(densityDpi);
+  let promise: Promise<void> = screenClass.setDensityDpi(densityDpi);
   promise.then(() => {
     console.info('Succeeded in setting the pixel density of the screen to 320.');
   }).catch((err: BusinessError) => {
