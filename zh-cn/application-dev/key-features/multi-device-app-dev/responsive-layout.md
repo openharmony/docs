@@ -154,7 +154,7 @@
 
 1.对通过媒体查询监听断点的功能做简单的封装，方便后续使用
 ```ts
-// common/Breakpointsystem.ets
+// common/breakpointsystem.ets
 import mediaQuery from '@ohos.mediaquery'
 
 declare interface BreakPointTypeOption<T> {
