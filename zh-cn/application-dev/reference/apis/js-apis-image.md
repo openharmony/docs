@@ -221,10 +221,10 @@ image.createPixelMap(color, opts, (err : BusinessError, pixelmap : image.PixelMa
             region: { size: { height: 1, width: 2 }, x: 0, y: 0 }};
         pixelmap.readPixels(area, (err : BusinessError) => {
             if (error != undefined) {
-		       console.info('Failed to read pixelmap from the specified area.');
-	        } else {
-		       console.info('Succeeded to read pixelmap from the specified area.');
-	        }
+		   console.info('Failed to read pixelmap from the specified area.');
+	    } else {
+		   console.info('Succeeded to read pixelmap from the specified area.');
+	    }
         })
     }
 })
@@ -310,10 +310,10 @@ for (let i = 0; i < bufferArr.length; i++) {
 }
 pixelmap.writePixels(area, (error : BusinessError) => {
     if (error != undefined) {
-		console.info('Failed to write pixelmap into the specified area.');
-	} else {
-		console.info('Succeeded to write pixelmap into the specified area.');
-	}
+        console.info('Failed to write pixelmap into the specified area.');
+    } else {
+        console.info('Succeeded to write pixelmap into the specified area.');
+    }
 })
 ```
 
@@ -1176,10 +1176,10 @@ release(callback: AsyncCallback\<void>): void
 import {BusinessError} from '@ohos.base'
 pixelmap.release((err : BusinessError) => {
     if (error != undefined) {
-		console.log('Failed to release pixelmap object.');
-	} else {
-		console.log('Succeeded in releasing pixelmap object.');
-	}
+        console.log('Failed to release pixelmap object.');
+    } else {
+        console.log('Succeeded in releasing pixelmap object.');
+    }
 })
 ```
 
@@ -1643,10 +1643,10 @@ modifyImageProperty(key: string, value: string, callback: AsyncCallback\<void>):
 import {BusinessError} from '@ohos.base'
 imageSourceApi.modifyImageProperty("ImageWidth", "120",(err : BusinessError) => {
     if (error != undefined) {
-		console.info('modifyImageProperty Failed');
-	} else {
-		console.info('modifyImageProperty Succeeded');
-	}
+        console.info('modifyImageProperty Failed');
+    } else {
+        console.info('modifyImageProperty Succeeded');
+    }
 })
 ```
 
@@ -2088,9 +2088,9 @@ import {BusinessError} from '@ohos.base'
 imageSourceApi.release((err : BusinessError) => { 
     if (error != undefined) {
         console.log('Failed to release the image source instance.');
-	} else {
-		console.log('Succeeded in releasing the image source instance.');
-	}
+    } else {
+        console.log('Succeeded in releasing the image source instance.');
+    }
 })
 ```
 
@@ -2301,10 +2301,10 @@ release(callback: AsyncCallback\<void>): void
 import {BusinessError} from '@ohos.base'
 imagePackerApi.release((err : BusinessError)=>{ 
     if (error != undefined) {
-		console.log('Failed to release image packaging.'); 
-	} else {
-		console.log('Succeeded in releasing image packaging.');
-	}
+        console.log('Failed to release image packaging.'); 
+    } else {
+        console.log('Succeeded in releasing image packaging.');
+    }
 })
 ```
 
@@ -2946,10 +2946,10 @@ release(callback: AsyncCallback\<void>): void
 import {BusinessError} from '@ohos.base'
 img.release((err : BusinessError) =>{ 
     if (error != undefined) {
-		console.log('Failed to release the image source instance.');
-	} else {
-		console.log('Succeeded in releasing the image source instance.');
-	}
+        console.log('Failed to release the image source instance.');
+    } else {
+        console.log('Succeeded in releasing the image source instance.');
+    }
 }) 
 ```
 
