@@ -18,13 +18,13 @@ import appManager from '@ohos.app.ability.appManager';
 
 **System API**: This is a system API and cannot be called by third-party applications.
 
-| Name                    |                      | Type    | Readable| Writable| Description                      |
-| ----------------------- | ---------| ---- | ---- | ------------------------- | ------------------------- |
-| onForegroundApplicationChanged         | [AppStateData](js-apis-inner-application-appStateData.md) | AsyncCallback\<void>   | Yes  | No  | Callback invoked when the foreground or background state of an application changes.                   |
-| onAbilityStateChanged  | [AbilityStateData](js-apis-inner-application-abilityStateData.md) | AsyncCallback\<void>   | Yes  | No | Callback invoked when the ability state changes.                 |
-| onProcessCreated        | [ProcessData](js-apis-inner-application-processData.md) | AsyncCallback\<void>   | Yes  | No  | Callback invoked when a process is created.                 |
-| onProcessDied         | [ProcessData](js-apis-inner-application-processData.md) | AsyncCallback\<void>   | Yes  | No  | Callback invoked when a process is destroyed.                 |
-| onProcessStateChanged<sup>9+</sup>         | [ProcessData](js-apis-inner-application-processData.md) | AsyncCallback\<void>   | Yes  | No  | Callback invoked when the process state is changed.                 |
+| Name                            | Type                   | Readable| Writable| Description  |
+| -------------------------------- | ---------------------- | ---- | ---- | ------------------ |
+| onForegroundApplicationChanged   | AsyncCallback\<void>   | Yes  | No  | Callback invoked when the foreground or background state of an application changes. The parameter type passed in is [AppStateData](js-apis-inner-application-appStateData.md).|
+| onAbilityStateChanged            | AsyncCallback\<void>   | Yes  | No | Callback invoked when the ability state changes. The parameter type passed in is [AppStateData](js-apis-inner-application-appStateData.md).  |
+| onProcessCreated                 | AsyncCallback\<void>   | Yes  | No  | Callback invoked when a process is created. The parameter type passed in is [ProcessData](js-apis-inner-application-processData.md).         |
+| onProcessDied                     | AsyncCallback\<void>   | Yes  | No  | Callback invoked when a process is destroyed. The parameter type passed in is [ProcessData](js-apis-inner-application-processData.md).         |
+| onProcessStateChanged<sup>9+</sup> | AsyncCallback\<void>   | Yes  | No  | Callback invoked when the process state is changed. The parameter type passed in is [ProcessData](js-apis-inner-application-processData.md).       |
 
 **Example**
 ```ts

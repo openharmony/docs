@@ -95,9 +95,9 @@ Enumerates the ability continuation results. You can use it together with [onCon
 
 | Name                         | Value  | Description                                                        |
 | ----------------------------- | ---- | ------------------------------------------------------------ |
-| AGREE           | 0    | Continuation agreed.|
-| REJECT           | 1    | Continuation denied.|
-| MISMATCH  | 2    | Mismatch.|
+| AGREE           | 0    | The ability continuation is accepted.|
+| REJECT           | 1    | The ability continuation is rejected. If the application is abnormal in **onContinue**, which results in abnormal display during data restoration, this error code is returned.|
+| MISMATCH  | 2    | The version does not match. The application on the initiator can obtain the version of the target application from **onContinue**. If the ability continuation cannot be performed due to version mismatch, this error code is returned.|
 
 **Example**
 

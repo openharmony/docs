@@ -31,7 +31,7 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 
 onCreate(want: Want, param: AbilityConstant.LaunchParam): void;
 
-Called to initialize the service logic when a UIAbility is created.
+Called to initialize the service logic when a UIAbility instance in the completely closed state is created. In other words, a UIAbility instance enters this lifecycle callback from a [cold start](../../application-models/uiability-intra-device-interaction.md#cold-starting-uiability).
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -228,7 +228,7 @@ Called to save data during the ability migration preparation process.
 
 onNewWant(want: Want, launchParams: AbilityConstant.LaunchParam): void;
 
-Called when a new Want is passed in and this UIAbility is started again.
+Called when a UIAbility instance that has undergone the following states is started again: started in the foreground, running in the foreground, and switched to the background In other words, a UIAbility instance enters this lifecycle callback from a [hot start](../../application-models/uiability-intra-device-interaction.md#hot-starting-uiability).
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -315,7 +315,7 @@ class MyUIAbility extends UIAbility {
 
 onShare(wantParam:{ [key: string]: Object }): void;
 
-Called by this UIAbility to set data to share. **ohos.extra.param.key.shareUrl** indicates the online address of the service.
+Called by this UIAbility to set data to share in the cross-device sharing scenario.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -323,7 +323,7 @@ Called by this UIAbility to set data to share. **ohos.extra.param.key.shareUrl**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| wantParam | {[key:&nbsp;string]:&nbsp;Object} | Yes| **want** parameter.|
+| wantParam | {[key:&nbsp;string]:&nbsp;Object} | Yes| Data to share.|
 
 **Example**
     

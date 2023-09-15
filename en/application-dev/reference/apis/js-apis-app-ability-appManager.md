@@ -1351,8 +1351,8 @@ Enumerates the process states. This enum can be used together with [ProcessData]
 
 | Name                | Value | Description                              |
 | -------------------- | --- | --------------------------------- |
-| STATE_CREATE    | 1   |      State indicating that the process is being created.      |
-| STATE_FOREGROUND          | 2   |            State indicating that the process is running in the foreground.     |
-| STATE_ACTIVE  | 3   |          State indicating that the process is active.  |
-| STATE_BACKGROUND        | 4   |       State indicating that the process is running in the background.          |
-| STATE_DESTROY        | 5   |         State indicating that the process is destroyed.        |
+| STATE_CREATE    | 0   |      State indicating that the process is being created.      |
+| STATE_FOREGROUND          | 1   |            State indicating that the process is running in the foreground.     |
+| STATE_ACTIVE  | 2   |          State indicating that the process is active.  |
+| STATE_BACKGROUND        | 3   |       State indicating that the process is running in the background.          |
+| STATE_DESTROY        | 4   |         State indicating that the process is destroyed.        |
