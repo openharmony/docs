@@ -2064,7 +2064,7 @@ getFrameCount(): Promise\<number>;
 **示例：**
 
 ```ts
-let frameCount : number = aiait imageSourceApi.getFrameCount();
+let frameCount : number = await imageSourceApi.getFrameCount();
 ```
 
 ### release
