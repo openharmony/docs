@@ -246,7 +246,7 @@ class ClassC extends ClassA {
 ```
 
 
-  以下组件层次结构呈现的是此数据结构。
+  以下组件层次结构呈现的是嵌套类对象的数据结构。
 
 ```ts
 @Component

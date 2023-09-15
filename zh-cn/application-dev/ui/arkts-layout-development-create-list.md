@@ -727,22 +727,22 @@ Badge({
 
    ```ts
    @State toDoData: ToDo[] = [];
-  export let availableThings: string[] = ['读书', '运动', '旅游', '听音乐', '看电影', '唱歌'];
+   export let availableThings: string[] = ['读书', '运动', '旅游', '听音乐', '看电影', '唱歌'];
    ```
 
    最后，构建列表布局和列表项：
 
    ```ts
-  export class ToDo {
-    key: string = util.generateRandomUUID(true);
-    name: string;
-    toDoData:ToDo[] = [];
+   export class ToDo {
+     key: string = util.generateRandomUUID(true);
+     name: string;
+     toDoData:ToDo[] = [];
 
-    constructor(name: string) {
-      this.name = name;
-    }
-  }
-  let todo:ToDo = new ToDo()
+     constructor(name: string) {
+       this.name = name;
+     }
+   }
+   let todo:ToDo = new ToDo()
    List({ space: 10 }) {
      ForEach(todo.toDoData, (toDoItem:ToDo) => {
        ListItem() {
