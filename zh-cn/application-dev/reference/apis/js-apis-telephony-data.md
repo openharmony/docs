@@ -625,7 +625,7 @@ import { BusinessError } from '@ohos.base';
 
 data.disableCellularData().then(() => {
     console.log(`disableCellularData success.`);
-}).catch((error: BusinessError) => {
+}).catch((err: BusinessError) => {
     console.error(`disableCellularData fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -718,7 +718,7 @@ enableCellularDataRoaming(slotId: number): Promise\<void\>
 import data from '@ohos.telephony.data';
 import { BusinessError } from '@ohos.base';
 
-data.enableCellularDataRoaming.then(() => {
+data.enableCellularDataRoaming(0).then(() => {
     console.log(`enableCellularDataRoaming success.`);
 }).catch((err: BusinessError) => {
     console.error(`enableCellularDataRoaming fail, promise: err->${JSON.stringify(err)}`);
