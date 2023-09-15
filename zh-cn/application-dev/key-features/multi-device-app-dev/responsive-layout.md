@@ -262,7 +262,7 @@ struct MediaQuerySample {
   }
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
-      Image(new BreakpointType({sm:$r('app.media.sm'), md:$r('app.media.md'), lg:$r('app.media.lg')}).GetValue(this.currentBreakpoint)!)
+      Image(new BreakPointType({sm:$r('app.media.sm'), md:$r('app.media.md'), lg:$r('app.media.lg')}).GetValue(this.currentBreakpoint)!)
         .height(100)
         .width(100)
         .objectFit(ImageFit.Contain)
