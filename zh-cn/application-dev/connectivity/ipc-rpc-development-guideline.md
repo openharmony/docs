@@ -13,7 +13,7 @@ IPC/RPC的主要工作是让运行在不同进程的Proxy和Stub互相通信，�
 | -------- | -------- | -------- |
 | [IRemoteBroker](../reference/apis/js-apis-rpc.md#iremotebroker) | sptr&lt;IRemoteObject&gt; AsObject() | 返回通信对象。Stub端返回RemoteObject对象本身，Proxy端返回代理对象。 |
 | IRemoteStub | virtual int OnRemoteRequest(uint32_t code, MessageParcel &amp;data, MessageParcel &amp;reply, MessageOption &amp;option) | 请求处理方法，派生类需要重写该方法用来处理Proxy的请求并返回结果。 |
-| IRemoteProxy |  | 业务的Pory类需要从IRemoteProxy类派生。 |
+| IRemoteProxy | Remote()->SendRequest(code, data, reply, option)             | 消息发送方法，业务的Proxy类需要从IRemoteProxy类派生，该方法用来向对端发送消息。 |
 
 
 ## 开发步骤
