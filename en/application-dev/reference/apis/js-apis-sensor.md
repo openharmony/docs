@@ -3677,16 +3677,16 @@ Describes the sensor information.
 
 | Name           | Type| Readable| Writable| Description                  |
 | --------------- | -------- | ---------------------- | ---------------------- | ---------------------- |
-| sensorName      | string   | Yes | Yes | Sensor name.          |
-| vendorName      | string   | Yes | Yes | Vendor of the sensor.        |
-| firmwareVersion | string   | Yes | Yes | Firmware version of the sensor.      |
-| hardwareVersion | string   | Yes | Yes | Hardware version of the sensor.      |
-| sensorId        | number   | Yes | Yes | Sensor type ID.        |
-| maxRange        | number   | Yes | Yes | Maximum measurement range of the sensor.|
-| minSamplePeriod | number   | Yes | Yes | Minimum sampling period.  |
-| maxSamplePeriod | number   | Yes | Yes | Maximum sampling period.  |
-| precision       | number   | Yes | Yes | Precision of the sensor.          |
-| power           | number   | Yes | Yes | Power of the sensor.          |
+| sensorName      | string   | Yes | No | Sensor name.          |
+| vendorName      | string   | Yes | No | Vendor of the sensor.        |
+| firmwareVersion | string   | Yes | No | Firmware version of the sensor.      |
+| hardwareVersion | string   | Yes | No | Hardware version of the sensor.      |
+| sensorId        | number   | Yes | No | Sensor type ID.        |
+| maxRange        | number   | Yes | No | Maximum measurement range of the sensor.|
+| minSamplePeriod | number   | Yes | No | Minimum sampling period.  |
+| maxSamplePeriod | number   | Yes | No | Maximum sampling period.  |
+| precision       | number   | Yes | No | Precision of the sensor.          |
+| power           | number   | Yes | No | Estimated sensor power, in mA.          |
 
 ## ColorResponse<sup>10+</sup>
 
@@ -4914,7 +4914,7 @@ This API is deprecated since API version 9. You are advised to use [sensor.once.
 | callback | Callback&lt;[PedometerResponse](#pedometerresponse)&gt; | Yes  | One-shot callback used to return the pedometer sensor data. The reported data type in the callback is **PedometerResponse**.|
 
 **Example**
-
+  
 ```ts
 sensor.once(sensor.SensorType.SENSOR_TYPE_ID_PEDOMETER, function (data) {
   console.info('Succeeded in invoking once. Steps: ' + data.steps);
@@ -6213,7 +6213,7 @@ promise.then((data) => {
 }).catch((reason) => {
   console.info("Succeeded in getting promise::catch", reason);
 })
- ```
+```
 
 ## sensor.createQuaternion<sup>(deprecated)</sup>
 
@@ -6412,4 +6412,4 @@ promise.then((data) => {
 }).catch((err) => {
   console.info(`Failed to get promise.`);
 })
-```
+ ```
