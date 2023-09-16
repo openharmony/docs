@@ -40,6 +40,8 @@ libnative_buffer.so
 
 1. Create an **OH_NativeBuffer** instance.
     ```c++
+    #include <iostream>
+
     OH_NativeBuffer_Config config {
         .width = 0x100,
         .height = 0x100,
@@ -58,19 +60,19 @@ libnative_buffer.so
     if (ret != 0) {
         std::cout << "OH_NativeBuffer_Map Failed" << std::endl;
     }
-    
-// Unmap the ION memory from the process address space when it is no longer needed.
+
+    // Unmap the ION memory from the process address space when it is no longer needed.
     ret = OH_NativeBuffer_Unmap(buffer);
     if (ret != 0) {
         std::cout << "OH_NativeBuffer_Unmap Failed" << std::endl;
     }
     ```
-    
+
 3. Obtain the memory properties.
     ```c++
     // Obtain the properties of the OH_NativeBuffer instance.
-    OH_NativeBuffer_Config config = {};
-    OH_NativeBuffer_GetConfig(buffer, &config);
+    OH_NativeBuffer_Config config2 = {};
+    OH_NativeBuffer_GetConfig(buffer, &config2);
     // Obtain the sequence number of the OH_NativeBuffer instance.
      uint32_t hwBufferID = OH_NativeBuffer_GetSeqNum(buffer);
     ```
