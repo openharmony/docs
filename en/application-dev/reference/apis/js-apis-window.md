@@ -895,7 +895,7 @@ Unsubscribes from the gesture navigation status change event.
 | Name  | Type                    | Mandatory| Description                                                       |
 | -------- | ----------------------- | -- | ------------------------------------------------------------ |
 | type     | string                  | Yes| Event type. The value is fixed at **'gestureNavigationEnabledChange'**, indicating the gesture navigation status change event.|
-| callback | Callback&lt;boolean&gt; | No| Callback function that has been used for registering the listener. If a value is passed in, the corresponding subscription is canceled. If no value is passed in, all subscriptions to the specified event are canceled.|
+| callback | Callback&lt;boolean&gt; | No| Callback function that has been used for the subscription. If a value is passed in, the corresponding subscription is canceled. If no value is passed in, all subscriptions to the specified event are canceled.|
 
 **Error codes**
 
@@ -2470,28 +2470,28 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 import UIAbility from '@ohos.app.ability.UIAbility';
 
 export default class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage) {
-        // Load content for the main window.
-        windowStage.loadContent("pages/page2", (err) => {
-            if (err.code) {
-                console.error('Failed to load the content. Cause:' + JSON.stringify(err));
-                return;
-            }
-            console.info('Succeeded in loading the content.');
-        });
-        // Obtain the main window.
-        let windowClass = null;
-        windowStage.getMainWindow((err, data) => {
-            if (err.code) {
-                console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(err));
-                return;
-            }
-            windowClass = data;
-            console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
-            // Obtain a UIContext instance.
-            globalThis.uiContext = windowClass.getUIContext();
-        })
-    }
+  onWindowStageCreate(windowStage) {
+    // Load content for the main window.
+    windowStage.loadContent("pages/page2", (err) => {
+      if (err.code) {
+        console.error('Failed to load the content. Cause:' + JSON.stringify(err));
+        return;
+      }
+      console.info('Succeeded in loading the content.');
+      // Obtain the main window.
+      let windowClass = null;
+      windowStage.getMainWindow((err, data) => {
+        if (err.code) {
+          console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(err));
+          return;
+        }
+        windowClass = data;
+        console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
+        // Obtain a UIContext instance.
+        globalThis.uiContext = windowClass.getUIContext();
+      })
+    });
+  }
 };
 ```
 
@@ -5476,7 +5476,7 @@ In non-full-screen mode, the status bar and navigation bar are displayed, and th
 
 > **NOTE**
 >
-> This API is supported since API version 6 and deprecated since API version 9. You are advised to use [setWindowSystemBarEnable()](#setwindowsystembarenable9) instead.
+> This API is supported since API version 6 and deprecated since API version 9. You are advised to use [setWindowSystemBarEnable()](#setwindowsystembarenable9) and [setWindowLayoutFullScreen()](#setwindowlayoutfullscreen9) to implement the full-screen mode.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -5507,11 +5507,12 @@ setFullScreen(isFullScreen: boolean): Promise&lt;void&gt;
 Sets whether the window is in full-screen mode. This API uses a promise to return the result.
 
 In full-screen mode, the window is displayed in full screen, and the status bar and navigation bar are not displayed.
+
 In non-full-screen mode, the status bar and navigation bar are displayed, and the window size does not overlap the positions of the status bar and navigation bar.
 
 > **NOTE**
 >
-> This API is supported since API version 6 and deprecated since API version 9. You are advised to use [setWindowSystemBarEnable()](#setwindowsystembarenable9-1) instead.
+> This API is supported since API version 6 and deprecated since API version 9. You are advised to use [setWindowSystemBarEnable()](#setwindowsystembarenable9-1) and [setWindowLayoutFullScreen()](#setwindowlayoutfullscreen9-1) to implement the full-screen mode.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -6476,7 +6477,9 @@ Sets whether the area outside the subwindow is touchable. This API uses an async
 
 > **NOTE**
 >
-> This API cannot be used. This API is supported since API version 7 and deprecated since API version 9.
+> This API is supported since API version 7 and deprecated since API version 9.
+> 
+> Since API version 9, the area outside the subwindow is touchable by default. This API is no longer supported and no substitute API is provided.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -6507,7 +6510,9 @@ Sets whether the area outside the subwindow is touchable. This API uses a promis
 
 > **NOTE**
 >
-> This API cannot be used. This API is supported since API version 7 and deprecated since API version 9.
+> This API is supported since API version 7 and deprecated since API version 9.
+> 
+> Since API version 9, the area outside the subwindow is touchable by default. This API is no longer supported and no substitute API is provided.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -6538,7 +6543,7 @@ promise.then(()=> {
 
 setPrivacyMode(isPrivacyMode: boolean, callback: AsyncCallback&lt;void&gt;): void
 
-Sets whether this window is in privacy mode. This API uses an asynchronous callback to return the result. When in privacy mode, the window content cannot be captured or recorded.
+Sets whether this window is in privacy mode. This API uses an asynchronous callback to return the result. A window in privacy mode cannot be captured or recorded.
 
 > **NOTE**
 >
@@ -6570,7 +6575,7 @@ windowClass.setPrivacyMode(isPrivacyMode, (err) => {
 
 setPrivacyMode(isPrivacyMode: boolean): Promise&lt;void&gt;
 
-Sets whether this window is in privacy mode. This API uses a promise to return the result. When in privacy mode, the window content cannot be captured or recorded.
+Sets whether this window is in privacy mode. This API uses a promise to return the result. A window in privacy mode cannot be captured or recorded.
 
 > **NOTE**
 >
