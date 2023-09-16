@@ -136,13 +136,14 @@ For details about the error codes, see [Bundle Error Codes](../errorcodes/errorc
 
 ```js
 import freeInstall from '@ohos.bundle.freeInstall';
+import { BusinessError } from '@ohos.base';
 let bundleName = 'com.example.myapplication';
 let moduleName = 'entry';
 let upgradeFlag = freeInstall.UpgradeFlag.SINGLE_UPGRADE;
 try {
     freeInstall.setHapModuleUpgradeFlag(bundleName, moduleName, upgradeFlag).then(() => {
         console.info('Operation succeed')
-    }).catch(err => {
+    }).catch((err: BusinessError) => {
         console.error('Operation failed:' + JSON.stringify(err));
     });
 } catch (err) {
@@ -236,12 +237,13 @@ For details about the error codes, see [Bundle Error Codes](../errorcodes/errorc
 
 ```js
 import freeInstall from '@ohos.bundle.freeInstall';
+import { BusinessError } from '@ohos.base';
 let bundleName = 'com.example.myapplication';
 let moduleName = 'entry';
 try {
     freeInstall.isHapModuleRemovable(bundleName, moduleName).then(data => {
         console.info('Operation succeed:' + JSON.stringify(data));
-    }).catch(err => {
+    }).catch((err: BusinessError) => {
         console.error('Operation failed:' + JSON.stringify(err));
     });
 } catch (err) {
@@ -299,7 +301,7 @@ try {
 
 getBundlePackInfo(bundleName: string, bundlePackFlag : BundlePackFlag): Promise\<BundlePackInfo>;
 
-Obtains **bundlePackInfo** based on **bundleName** and **BundlePackFlag**. This API uses a promise to return the result.
+Obtains **bundlePackInfo** based on **bundleName** and **bundlePackFlag**. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
@@ -332,12 +334,13 @@ For details about the error codes, see [Bundle Error Codes](../errorcodes/errorc
 
 ```js
 import freeInstall from '@ohos.bundle.freeInstall';
+import { BusinessError } from '@ohos.base';
 let bundleName = 'com.example.myapplication';
 let bundlePackFlag = freeInstall.BundlePackFlag.GET_PACK_INFO_ALL;
 try {
     freeInstall.getBundlePackInfo(bundleName, bundlePackFlag).then(data => {
         console.info('Operation succeed:' + JSON.stringify(data));
-    }).catch(err => {
+    }).catch((err: BusinessError) => {
         console.error('Operation failed:' + JSON.stringify(err));
     });
 } catch (err) {
@@ -402,10 +405,11 @@ Obtains the dispatch information. This API uses a promise to return the result.
 
 ```js
 import freeInstall from '@ohos.bundle.freeInstall';
+import { BusinessError } from '@ohos.base';
 try {
     freeInstall.getDispatchInfo().then(data => {
         console.info('Operation succeed:' + JSON.stringify(data));
-    }).catch(err => {
+    }).catch((err: BusinessError) => {
         console.error('Operation failed:' + JSON.stringify(err));
     });
 } catch (err) {
