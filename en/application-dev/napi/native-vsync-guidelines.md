@@ -33,6 +33,8 @@ libnative_vsync.so
 
 1. Prepare a VSync callback function.
     ```c++
+    #include <iostream>
+
     static bool flag = false;
     static void OnVSync(long long timestamp, void* data)
     {
@@ -49,6 +51,9 @@ libnative_vsync.so
 
 3. Set the VSync callback function through the **OH_NativeVSync** instance.
     ```c++
+    #include <unistd.h>
+    #include <iostream>
+
     OH_NativeVSync_RequestFrame(nativeVSync, callback, nullptr);
     while (!flag) { // Check the flag value. The while loop exits only after the VSync callback function is executed, indicating that a VSync signal is received.
         std::cout << "wait for vsync!\n";
