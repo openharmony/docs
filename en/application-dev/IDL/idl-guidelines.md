@@ -62,7 +62,7 @@ sequenceable a.b..C.D
 The preceding statement is parsed into the following code in the C++ header file:
 
 ```cpp
-#include  "a/b/d.h"
+#include "a/b/d.h"
 using C::D;
 ```
 
@@ -157,7 +157,7 @@ On DevEco Studio, choose **Tools > SDK Manager** to view the local installation 
 Go to the local installation path, choose **toolchains > 3.x.x.x** (the folder named after the version number), and check whether the executable file of IDL exists.
 
 > **NOTE**
->
+> 
 > Use the SDK of the latest version. The use of an earlier version may cause errors in some statements.
 
 If the executable file does not exist, download the SDK package from the mirror as instructed in the [Release Notes](../../release-notes). The following uses [3.2 Beta3](../../release-notes/OpenHarmony-v3.2-beta3.md) as an example.
@@ -347,11 +347,10 @@ export default {
 
 #### Calling Methods from the Client for IPC
 
-When the client calls **connectAbility()** to connect to a Service ability, the **onConnect** callback in **onAbilityConnectDone** of the client receives the **IRemoteObject** instance returned by the **onConnect()** method of the Service ability. The client and Service ability are in different applications. Therefore, the directory of the client application must contain a copy of the .idl file (the SDK automatically generates the proxy class). The **onConnect** callback then uses the **IRemoteObject** instance to create the **testProxy** instance of the **IdlTestServiceProxy** class and calls the related IPC method. The sample code is as follows:
+When the client calls **connectServiceExtensionAbility()** to connect to a Service ability, the **onConnect** callback in **onAbilityConnectDone** of the client receives the **IRemoteObject** instance returned by the **onConnect()** method of the Service ability. The client and Service ability are in different applications. Therefore, the directory of the client application must contain a copy of the .idl file (the SDK automatically generates the proxy class). The **onConnect** callback then uses the **IRemoteObject** instance to create the **testProxy** instance of the **IdlTestServiceProxy** class and calls the related IPC method. The sample code is as follows:
 
 ```ts
 import IdlTestServiceProxy from './idl_test_service_proxy'
-import featureAbility from '@ohos.ability.featureAbility';
 
 function callbackTestIntTransaction(result: number, ret: number): void {
   if (result == 0 && ret == 124) {
@@ -396,13 +395,13 @@ var onAbilityConnectDone = {
   }
 };
 
-function connectAbility: void {
+function connectAbility(): void {
     let want = {
         bundleName: 'com.example.myapplicationidl',
         abilityName: 'com.example.myapplicationidl.ServiceAbility'
     };
     let connectionId = -1;
-    connectionId = featureAbility.connectAbility(want, onAbilityConnectDone);
+    connectionId = this.context.connectServiceExtensionAbility(want, onAbilityConnectDone);
 }
 
 
