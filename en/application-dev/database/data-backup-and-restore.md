@@ -26,47 +26,56 @@ You can use **backup()** to back up a KV store, use **restore()** to restore a K
    (3) Create a **kvStore** instance.
 
      
-   ```js
+   ```ts
    import distributedKVStore from '@ohos.data.distributedKVStore';
+   import { BusinessError } from '@ohos.base';
    
-   let kvManager;
+   let kvManager: distributedKVStore.KVManager;
+   let kvStore: distributedKVStore.SingleKVStore | undefined = undefined;
    let context = getContext(this);
-   const kvManagerConfig = {
+   const kvManagerConfig: distributedKVStore.KVManagerConfig = {
      context: context,
      bundleName: 'com.example.datamanagertest'
    }
    try {
      kvManager = distributedKVStore.createKVManager(kvManagerConfig);
      console.info('Succeeded in creating KVManager.');
+     try {
+       const options: distributedKVStore.Options = {
+         createIfMissing: true,
+         encrypt: true,
+         backup: false,
+         autoSync: true,
+         kvStoreType: distributedKVStore.KVStoreType.SINGLE_VERSION,
+         securityLevel: distributedKVStore.SecurityLevel.S1
+       };
+       kvManager.getKVStore<distributedKVStore.SingleKVStore>('storeId', options, (err, store: distributedKVStore.SingleKVStore) => {
+         if (err) {
+           console.error(`Failed to get KVStore. Code:${err.code},message:${err.message}`);
+           return;
+         }
+         console.info('Succeeded in getting KVStore.');
+         kvStore = store;
+       });
+     } catch (e) {
+       let error = e as BusinessError;
+       console.error(`An unexpected error occurred. Code:${error.code},message:${error.message}`);
+     }
    } catch (e) {
-     console.error(`Failed to create KVManager. Code:${e.code},message:${e.message}`);
+     let error = e as BusinessError;
+     console.error(`Failed to create KVManager. Code:${error.code},message:${error.message}`);
    }
-   let kvStore;
-   try {
-     const options = {
-       createIfMissing: true,
-       encrypt: false,
-       backup: false,
-       autoSync: true,
-       kvStoreType: distributedKVStore.KVStoreType.SINGLE_VERSION,
-       securityLevel: distributedKVStore.SecurityLevel.S2
-     };
-     kvManager.getKVStore('storeId', options, (err, store) => {
-       if (err) {
-         console.error(`Fail to get KVStore. Code:${err.code},message:${err.message}`);
-         return;
-       }
-       console.info('Succeeded in getting KVStore.');
-       kvStore = store;
-     });
-   } catch (e) {
-     console.error(`An unexpected error occurred. Code:${e.code},message:${e.message}`);
+   
+   if (kvStore !== undefined) {
+     kvStore = kvStore as distributedKVStore.SingleKVStore;
+     // Perform subsequent operations.
+     //...
    }
    ```
 
 2. Use **put()** to insert data to the KV store.
      
-   ```js
+   ```ts
    const KEY_TEST_STRING_ELEMENT = 'key_test_string';
    const VALUE_TEST_STRING_ELEMENT = 'value_test_string';
    try {
@@ -78,13 +87,14 @@ You can use **backup()** to back up a KV store, use **restore()** to restore a K
        console.info('Succeeded in putting data.');
      });
    } catch (e) {
-     console.error(`An unexpected error occurred. Code:${e.code},message:${e.message}`);
+     let error = e as BusinessError;
+     console.error(`An unexpected error occurred. Code:${error.code},message:${error.message}`);
    }
    ```
 
 3. Use **backup()** to back up the KV store.
      
-   ```js
+   ```ts
    let file = 'BK001';
    try {
      kvStore.backup(file, (err) => {
@@ -95,13 +105,14 @@ You can use **backup()** to back up a KV store, use **restore()** to restore a K
        }
      });
    } catch (e) {
-     console.error(`An unexpected error occurred. Code:${e.code},message:${e.message}`);
+     let error = e as BusinessError;
+     console.error(`An unexpected error occurred. Code:${error.code},message:${error.message}`);
    }
    ```
 
 4. Use **delete()** to delete data to simulate unexpected deletion or data tampering.
      
-   ```js
+   ```ts
    try {
      kvStore.delete(KEY_TEST_STRING_ELEMENT, (err) => {
        if (err !== undefined) {
@@ -111,13 +122,14 @@ You can use **backup()** to back up a KV store, use **restore()** to restore a K
        console.info('Succeeded in deleting data.');
      });
    } catch (e) {
-     console.error(`An unexpected error occurred. Code:${e.code},message:${e.message}`);
+     let error = e as BusinessError;
+     console.error(`An unexpected error occurred. Code:${error.code},message:${error.message}`);
    }
    ```
 
 5. Use **restore()** to restore the KV store.
      
-   ```js
+   ```ts
    let file = 'BK001';
    try {
      kvStore.restore(file, (err) => {
@@ -128,23 +140,24 @@ You can use **backup()** to back up a KV store, use **restore()** to restore a K
        }
      });
    } catch (e) {
-     console.error(`An unexpected error occurred. Code:${e.code},message:${e.message}`);
+     let error = e as BusinessError;
+     console.error(`An unexpected error occurred. Code:${error.code},message:${error.message}`);
    }
    ```
 
 6. Use **deleteBackup()** to delete the backup file to release storage space.
      
-   ```js
-   let kvStore;
+   ```ts
    let files = ['BK001'];
    try {
      kvStore.deleteBackup(files).then((data) => {
        console.info(`Succeed in deleting Backup. Data:filename is ${data[0]},result is ${data[1]}.`);
-     }).catch((err) => {
+     }).catch((err: BusinessError) => {
        console.error(`Fail to delete Backup. Code:${err.code},message:${err.message}`);
      })
    } catch (e) {
-     console.error(`An unexpected error occurred. Code:${e.code},message:${e.message}`);
+     let error = e as BusinessError;
+     console.error(`An unexpected error occurred. Code:${error.code},message:${error.message}`);
    }
    ```
 
@@ -155,12 +168,15 @@ You can use **backup()** to back up an RDB store, and use **restore()** to resto
 
 1. Use **getRdbStore()** to create an RDB store.
      
-   ```js
+   ```ts
    import relationalStore from '@ohos.data.relationalStore';
+   import { BusinessError } from '@ohos.base';
    
-   let store;
+   let store: relationalStore.RdbStore | undefined = undefined;
+
    let context = getContext(this);
-   const STORE_CONFIG = {
+
+   const STORE_CONFIG: relationalStore.StoreConfig = {
      name: 'RdbTest.db',
      securityLevel: relationalStore.SecurityLevel.S1
    };
@@ -170,62 +186,80 @@ You can use **backup()** to back up an RDB store, and use **restore()** to resto
        console.error(`Failed to get RdbStore. Code:${err.code},message:${err.message}`);
        return;
      }
-     store.executeSql("CREATE TABLE IF NOT EXISTS EMPLOYEE (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, age INTEGER, salary INTEGER, codes Uint8Array);", null);
+     store.executeSql('CREATE TABLE IF NOT EXISTS EMPLOYEE (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT NOT NULL, AGE INTEGER, SALARY REAL, CODES BLOB)', (err) => {
+     })
      console.info('Succeeded in getting RdbStore.');
    })
    ```
 
 2. Use **insert()** to insert data to the RDB store.
      
-   ```js
-   const valueBucket = {
-     'NAME': 'Lisa',
-     'AGE': 18,
-     'SALARY': 100.5,
-     'CODES': new Uint8Array([1, 2, 3, 4, 5])
+   ```ts
+   import { ValuesBucket } from '@ohos.data.ValuesBucket';
+
+   let key1 = "NAME";
+   let key2 = "AGE";
+   let key3 = "SALARY";
+   let key4 = "CODES";
+   let value1 = "Rose";
+   let value2 = 22;
+   let value3 = 200.5;
+   let value4 = new Uint8Array([1, 2, 3, 4, 5]);
+   const valueBucket: ValuesBucket = {
+     key1: value1,
+     key2: value2,
+     key3: value3,
+     key4: value4,
    };
-   store.insert('EMPLOYEE', valueBucket, relationalStore.ConflictResolution.ON_CONFLICT_REPLACE, (err, rowId) => {
-     if (err) {
-       console.error(`Failed to insert data. Code:${err.code},message:${err.message}`);
-       return;
-     }
-     console.info(`Succeeded in inserting data. rowId:${rowId}`);
-   })
+   if(store != undefined) {
+     (store as relationalStore.RdbStore).insert('EMPLOYEE', valueBucket, relationalStore.ConflictResolution.ON_CONFLICT_REPLACE, (err, rowId) => {
+       if (err) {
+         console.error(`Failed to insert data. Code:${err.code},message:${err.message}`);
+         return;
+       }
+       console.info(`Succeeded in inserting data. rowId:${rowId}`);
+     })
+   }
    ```
 
 3. Use **backup()** to back up the RDB store.
      
-   ```js
-   store.backup('dbBackup.db', (err) => {
-     if (err) {
-       console.error(`Failed to backup data. Code:${err.code},message:${err.message}`);
-       return;
-     }
-     console.info(`Succeeded in backuping data.`);
-   })
+   ```ts
+   if(store != undefined) {
+     (store as relationalStore.RdbStore).backup('dbBackup.db', (err) => {
+       if (err) {
+         console.error(`Failed to backup data. Code:${err.code},message:${err.message}`);
+         return;
+       }
+       console.info(`Succeeded in backuping data.`);
+     })
+   }
    ```
 
 4. Use **delete()** to delete data to simulate unexpected deletion or data tampering.
      
-   ```js
+   ```ts
    let predicates = new relationalStore.RdbPredicates('EMPLOYEE');
    predicates.equalTo('NAME', 'Lisa');
-   let promise = store.delete(predicates);
-   promise.then((rows) => {
-     console.info(`Delete rows: ${rows}`);
-   }).catch((err) => {
-     console.error(`Failed to delete data. Code:${err.code},message:${err.message}`);
-   })
+   if(store != undefined) {
+     (store as relationalStore.RdbStore).delete(predicates).then((rows: number) => {
+       console.info(`Delete rows: ${rows}`);
+     }).catch((err: BusinessError) => {
+       console.error(`Failed to delete data. Code:${err.code},message:${err.message}`);
+     })
+   }
    ```
 
 5. Use **restore()** to restore the RDB store.
      
-   ```js
-   store.restore('dbBackup.db', (err) => {
-     if (err) {
-       console.error(`Failed to restore data. Code:${err.code},message:${err.message}`);
-       return;
-     }
-     console.info(`Succeeded in restoring data.`);
-   })
+   ```ts
+   if(store != undefined) {
+     (store as relationalStore.RdbStore).restore('dbBackup.db', (err) => {
+       if (err) {
+         console.error(`Failed to restore data. Code:${err.code},message:${err.message}`);
+         return;
+       }
+       console.info(`Succeeded in restoring data.`);
+     })
+   }
    ```
