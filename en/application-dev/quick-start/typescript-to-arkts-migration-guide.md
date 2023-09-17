@@ -537,33 +537,7 @@ let value_o2: Object = 42
 
 **See also**
 
-* Recipe: Use `Object[]` Instead of Tuples
 * Recipe: Strict Type Checking Is Enforced
-
-### Recipe: Use `Object[]` Instead of Tuples
-
-**Rule:** `arkts-no-tuples`
-
-**Severity: error**
-
-Currently, ArkTS does not support tuples. Use arrays of `Object`
-(`Object[]`) to emulate tuples.
-
-**TypeScript**
-
-```typescript
-var t: [number, string] = [3, "three"]
-var n = t[0]
-var s = t[1]
-```
-
-**ArkTS**
-
-```typescript
-let t: Object[] = [3, "three"]
-let n = t[0]
-let s = t[1]
-```
 
 ### Recipe: Use `class` Instead of a Type with a Call Signature
 
@@ -1196,7 +1170,7 @@ let regex: RegExp = /bc*d/
 **ArkTS**
 
 ```typescript
-let regex: RegExp = new RegExp("/bc*d/")
+let regex: RegExp = new RegExp('bc*d')
 ```
 
 ### Recipe: Object Literal Must Correspond to Some Explicitly Declared Class or Interface
@@ -2077,31 +2051,35 @@ for (let i = 0; i < a.length; ++i) {
 
 * Recipe: `for-of` Is Supported Only for Arrays and Strings
 
-### Recipe: `for-of` Is Supported Only for Arrays and Strings
+### Recipe: `for-of` is supported only for arrays, strings, sets, maps and classes derived from them
 
-**Rule `arkts-for-of-str-arr`**
+**Rule:** `arkts-for-of-str-arr`
 
 **Severity: error**
 
-ArkTS supports the iteration over arrays and strings by the `for .. of` loop,
-but does not support the iteration of objects content. All typed arrays from
-the standard library (for example, `Int32Array`) are also supported.
+ArkTS supports the iteration over arrays, strings, sets, maps and classes
+derived from them by the ``for .. of`` loop, but does not support the
+iteration of objects content. All typed arrays from the standard
+library (for example, ``Int32Array``) are also supported.
 
 **TypeScript**
 
 ```typescript
-let a: Set<number> = new Set([1, 2, 3])
-for (let s of a) {
-    console.log(s)
+class A {
+    prop1: number;
+    prop2: number;
+}
+let a = new A()
+for (let prop of a) {
+    console.log(prop)
 }
 ```
 
 **ArkTS**
 
 ```typescript
-let a: Set<number> = new Set([1, 2, 3])
-let numbers = Array.from(a.values())
-for (let n of numbers) {
+let a = new Set<number>([1, 2, 3])
+for (let n of a) {
     console.log(n)
 }
 ```
@@ -2141,10 +2119,6 @@ class CFlags {
 }
 ```
 
-**See also**
-
-* Recipe: `keyof` Operator Is Not Supported
-
 ### Recipe: `with` Statement Is Not Supported
 
 **Rule:** `arkts-no-with`
@@ -2172,7 +2146,7 @@ console.log("Area: ", Math.PI * r * r)
 
 ### Recipe: `throw` Statements Do Not Accept Values of Arbitrary Types
 
-**Rule: `arkts-limited-throw`
+**Rule:** `arkts-limited-throw`
 
 **Severity: error**
 
@@ -2498,70 +2472,17 @@ function main(): void {
 }
 ```
 
-### Recipe: `keyof` Operator Is Not Supported
-
-**Rule:** `arkts-no-keyof`
-
-**Severity: error**
-
-ArkTS does not support the `keyof` operator, because the object layout is defined
-at compile time and cannot be changed at runtime. Object fields can only be
-accessed directly.
-
-**TypeScript**
-
-```typescript
-class Point {
-    x: number = 1
-    y: number = 2
-}
-
-type PointKeys = keyof Point  // The type of PointKeys is "x" | "y".
-
-function getPropertyValue(obj: Point, key: PointKeys) {
-    return obj[key]
-}
-
-let obj = new Point()
-console.log(getPropertyValue(obj, "x"))  // Prints "1".
-console.log(getPropertyValue(obj, "y"))  // Prints "2".
-```
-
-**ArkTS**
-
-```typescript
-class Point {
-    x: number = 1
-    y: number = 2
-}
-
-function getPropertyValue(obj: Point, key: string): number {
-    if (key == "x") {
-        return obj.x
-    }
-    if (key == "y") {
-        return obj.y
-    }
-    throw new Error()  // No such property.
-}
-
-function main(): void {
-    let obj = new Point()
-    console.log(getPropertyValue(obj, "x"))  // Prints "1".
-    console.log(getPropertyValue(obj, "y"))  // Prints "2".
-}
-```
-
-### Recipe: It Is Possible to Spread Only Arrays into the Rest Parameter
+### Recipe: It is possible to spread only arrays or classes derived from arrays into the rest parameter or array literals
 
 **Rule:** `arkts-no-spread`
 
 **Severity: error**
 
-The only supported scenario for the spread operator is to spread an array into
-the rest parameter. Otherwise, manually "unpack" data from arrays and objects,
-where necessary. All typed arrays from the standard library (for example,
-`Int32Array`) are also supported.
+The only supported scenario for the spread operator is to spread an array or
+class derived from array into the rest parameter or array literal.
+Otherwise, manually "unpack" data from arrays and objects, where necessary.
+All typed arrays from the standard library (for example, ``Int32Array``)
+are also supported.
 
 **TypeScript**
 
@@ -2615,6 +2536,13 @@ class Point3D {
 
 let p3d = new Point3D({x: 1, y: 2} as Point2D, 3)
 console.log(p3d.x, p3d.y, p3d.z)
+
+class DerivedFromArray extends Uint16Array {};
+
+let arr1 = [1, 2, 3];
+let arr2 = new Uint16Array([4, 5, 6]);
+let arr3 = new DerivedFromArray([7, 8, 9])
+let arr4 = [...arr1, 10, ...arr2, 11, ...arr3]
 ```
 
 ### Recipe: Interface Cannot Extend Interfaces with the Same Method
@@ -2989,7 +2917,7 @@ enum Color {
 
 ### Recipe: Namespaces Cannot Be Used as Objects
 
-**Rule `arkts-no-ns-as-obj`**
+**Rule:** `arkts-no-ns-as-obj`
 
 **Severity: error**
 
@@ -3157,60 +3085,6 @@ import * as m from "mod"
 
 * Recipe: `export = ...` Is Not Supported
 
-### Recipe: Re-exporting Is Supported With Restrictions
-
-**Rule:** `arkts-limited-reexport`
-
-**Severity: error**
-
-ArkTS supports the re-exporting syntax that covers most common cases of re-export:
-re-exporting imported entities and re-exporting combined with renaming.
-Other syntax flavors like `export * as ...` are not supported.
-
-**TypeScript**
-
-```typescript
-// module1
-export class Class1 {
-    // ...
-}
-export class Class2 {
-    // ...
-}
-
-// module2
-export * as utilities from "module1"
-
-// consumer module
-import { utilities } from "module2"
-```
-
-**ArkTS**
-
-```typescript
-// module1
-export class Class1 {
-    // ...
-}
-export class C2 {
-    // ...
-}
-
-// module2
-export { Class1 } from "module1"
-export { C2 as Class2 } from "module1"
-
-// Re-exporting by wildcard is also supported.
-// Export * from "module1"
-
-// Consumer module
-import { Class1, Class2 } from "module2"
-```
-
-**See also**
-
-* Recipe: `export = ...` Is Not Supported
-
 ### Recipe: `export = ...` Is Not Supported
 
 **Rule:** `arkts-no-export-assignment`
@@ -3234,7 +3108,7 @@ class Point {
 // module2
 import Pt = require("module1")
 
-let p = Pt.origin
+let p = Pt.Point.origin
 ```
 
 **ArkTS**
@@ -3249,17 +3123,16 @@ export class Point {
 // module2
 import * as Pt from "module1"
 
-let p = Pt.origin
+let p = Pt.Point.origin
 ```
 
 **See also**
 
 * Recipe: `require` and `import` Assignment Are Not Supported
-* Recipe: Re-exporting Is Supported With Restrictions
 
 ### Recipe: Special `export type` Declarations Are Not Supported
 
-**Rule `arkts-no-special-exports`**
+**Rule:** `arkts-no-special-exports`
 
 **Severity: error**
 
@@ -3324,11 +3197,10 @@ import { normalize } from "someModule"
 **See also**
 
 * Recipe: Wildcards in Module Names Are Not Supported
-* Recipe: .js Extension Is Not Allowed in Module Identifiers
 
 ### Recipe: Wildcards in Module Names Are Not Supported
 
-**Rule `arkts-no-module-wildcards`**
+**Rule:** `arkts-no-module-wildcards`
 
 **Severity: error**
 
@@ -3366,7 +3238,6 @@ console.log("N.foo called: ", N.foo(42))
 
 * Recipe: Ambient Module Declaration Is Not Supported
 * Recipe: UMD Is Not Supported
-* Recipe: .js Extension Is Not Allowed in Module Identifiers
 
 ### Recipe: UMD Is Not Supported
 
@@ -3404,32 +3275,6 @@ mathLib.isPrime(2)
 
 **See also**
 
-* Recipe: Wildcards in Module Names Are Not Supported
-
-### Recipe: `.js` Extension Is Not Allowed in Module Identifiers
-
-**Rule:** `arkts-no-js-extension`
-
-**Severity: error**
-
-ArkTS does not support the `.js` extension in module identifiers, because
-it has its own mechanisms for interoperating with JavaScript.
-
-**TypeScript**
-
-```typescript
-import { something } from "module.js"
-```
-
-**ArkTS**
-
-```typescript
-import { something } from "module"
-```
-
-**See also**
-
-* Recipe: Ambient Module Declaration Is Not Supported
 * Recipe: Wildcards in Module Names Are Not Supported
 
 ### Recipe: `new.target` Is Not Supported
@@ -3508,40 +3353,6 @@ function initialize() : number {
 let x: number = initialize()
 
 console.log("x = " + x)
-```
-
-### Recipe: IIFEs as Namespace Declarations Are Not Supported
-
-**Rule:** `arkts-no-iife`
-
-**Severity: error**
-
-ArkTS does not support IIFEs as namespace declarations because anonymous
-functions in the language cannot serve as namespaces.
-Use regular syntax for namespaces instead.
-
-**TypeScript**
-
-```typescript
-const C = (function () {
-    class Cl {
-        static static_value = "static_value";
-        static any_value: any = "any_value";
-        string_field = "string_field";
-    }
-
-    return Cl;
-})();
-
-C.prop = 2;
-```
-
-**ArkTS**
-
-```typescript
-namespace C {
-    // ...
-}
 ```
 
 ### Recipe: Prototype Assignment Is Not Supported
@@ -3820,32 +3631,6 @@ console.log(person1.fullName())
 
 * Recipe: Using `this` Inside Stand-Alone Functions Is Not Supported
 
-### Recipe: `readonly T[]` Syntax Is Not Supported
-
-**Rule:** `arkts-no-readonly-params`
-
-**Severity: error**
-
-Currently, ArkTS supports `readonly` for properties, but not for parameters.
-
-**TypeScript**
-
-```typescript
-function foo(arr: readonly string[]) {
-    arr.slice()        // OK
-    arr.push("hello!") // Compile-time error
-}
-```
-
-**ArkTS**
-
-```typescript
-function foo(arr: string[]) {
-    arr.slice()        // OK
-    arr.push("hello!") // OK
-}
-```
-
 ### Recipe: `as const` Assertions Are Not Supported
 
 **Rule:** `arkts-no-as-const`
@@ -3934,16 +3719,16 @@ Properties and functions of the global object: `eval`,
 
 `Object`: `__proto__`, `__defineGetter__`, `__defineSetter__`,
 `__lookupGetter__`, `__lookupSetter__`, `assign`, `create`,
-`defineProperties`, `defineProperty`, `entries`, `freeze`,
+`defineProperties`, `defineProperty`, `freeze`,
 `fromEntries`, `getOwnPropertyDescriptor`, `getOwnPropertyDescriptors`,
-`getOwnPropertyNames`, `getOwnPropertySymbols`, `getPrototypeOf`,
-`hasOwn`, `hasOwnProperty`, `is`, `isExtensible`, `isFrozen`,
-`isPrototypeOf`, `isSealed`, `keys`, `preventExtensions`,
-`propertyIsEnumerable`, `seal`, `setPrototypeOf`, `values`
+`getOwnPropertySymbols`, `getPrototypeOf`,
+`hasOwnProperty`, `is`, `isExtensible`, `isFrozen`,
+`isPrototypeOf`, `isSealed`, `preventExtensions`,
+`propertyIsEnumerable`, `seal`, `setPrototypeOf`
 
 `Reflect`: `apply`, `construct`, `defineProperty`, `deleteProperty`,
-`get`, `getOwnPropertyDescriptor`, `getPrototypeOf`, `has`,
-`isExtensible`, `ownKeys`, `preventExtensions`, `set`,
+`getOwnPropertyDescriptor`, `getPrototypeOf`,
+`isExtensible`, `preventExtensions`,
 `setPrototypeOf`
 
 `Proxy`: `handler.apply()`, `handler.construct()`,
@@ -3951,8 +3736,6 @@ Properties and functions of the global object: `eval`,
 `handler.getOwnPropertyDescriptor()`, `handler.getPrototypeOf()`,
 `handler.has()`, `handler.isExtensible()`, `handler.ownKeys()`,
 `handler.preventExtensions()`, `handler.set()`, `handler.setPrototypeOf()`
-
-`Array`: `isArray`
 
 `ArrayBuffer`: `isView`
 
@@ -4095,7 +3878,7 @@ import { C } from "lib1"
 
 **Rule:** `arkts-no-decorators-except-arkui`
 
-**Severity: error**
+**Severity: warning**
 
 Currently, only ArkUI decorators are allowed in ArkTS.
 Any other decorator will cause a compile-time error.
