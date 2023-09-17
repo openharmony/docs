@@ -9,7 +9,7 @@ The **appAccount** module provides APIs for adding, deleting, modifying, and que
 
 ## Modules to Import
 
-```js
+```ts
 import account_appAccount from '@ohos.account.appAccount';
 ```
 
@@ -29,7 +29,7 @@ Creates an **AppAccountManager** object.
 | AppAccountManager | **AppAccountManager** object created.|
 
 **Example**
-  ```js
+  ```ts
   let appAccountManager = account_appAccount.createAppAccountManager();
   ```
 
@@ -63,7 +63,7 @@ Creates an app account. This API uses an asynchronous callback to return the res
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   try {
@@ -102,7 +102,7 @@ Creates an app account with custom data. This API uses an asynchronous callback 
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   let options:account_appAccount.CreateAccountOptions  = {
@@ -155,7 +155,7 @@ Creates an app account with custom data. This API uses a promise to return the r
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
 
   let options: account_appAccount.CreateAccountOptions = {
@@ -202,7 +202,7 @@ Creates an app account implicitly based on the specified account owner. This API
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   import Want from '@ohos.app.ability.Want';
   import common from '@ohos.app.ability.common';
@@ -267,7 +267,7 @@ Creates an app account implicitly based on the specified account owner and optio
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   import Want from '@ohos.app.ability.Want';
   import common from '@ohos.app.ability.common';
@@ -332,7 +332,7 @@ Removes an app account. This API uses an asynchronous callback to return the res
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   try {
@@ -378,7 +378,7 @@ Removes an app account. This API uses a promise to return the result.
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
 
   try {
@@ -420,7 +420,7 @@ Sets the access to the data of an account for an app. This API uses an asynchron
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   try {
@@ -469,7 +469,7 @@ Sets the access to the data of an account for an app. This API uses a promise to
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
 
   try {
@@ -509,7 +509,7 @@ Checks whether an app can access the data of an account. This API uses an asynch
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   try {
@@ -557,7 +557,7 @@ Checks whether an app can access the data of an account. This API uses a promise
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
 
   try {
@@ -599,7 +599,7 @@ Sets data synchronization for an app account. This API uses an asynchronous call
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   try {
@@ -644,7 +644,7 @@ Sets data synchronization for an app account. This API uses a promise to return 
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
 
   try {
@@ -685,7 +685,7 @@ Checks whether data synchronization is enabled for an app account. This API uses
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   try {
@@ -733,7 +733,7 @@ Checks whether data synchronization is enabled for an app account. This API uses
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
 
   try {
@@ -774,7 +774,7 @@ Sets a credential for an app account. This API uses an asynchronous callback to 
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   try {
@@ -822,7 +822,7 @@ Sets a credential for an app account. This API uses a promise to return the resu
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
 
   try {
@@ -863,7 +863,7 @@ Obtains the credential of an app account. This API uses an asynchronous callback
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   try {
@@ -911,7 +911,7 @@ Obtains the credential of an app account. This API uses a promise to return the 
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
 
   try {
@@ -953,7 +953,7 @@ Sets custom data for an app account. This API uses an asynchronous callback to r
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   try {
@@ -1002,7 +1002,7 @@ Sets custom data for an app account. This API uses a promise to return the resul
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
 
   try {
@@ -1043,7 +1043,7 @@ Obtains the custom data of an app account based on the specified key. This API u
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   try {
@@ -1091,7 +1091,7 @@ Obtains the custom data of an app account based on the specified key. This API u
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
 
   try {
@@ -1137,7 +1137,7 @@ Obtains the custom data of an app account based on the specified key. The API re
 
 **Example**
 
-  ```js
+  ```ts
   try {
       let value = appAccountManager.getCustomDataSync('ZhangSan', 'age');
       console.info('getCustomDataSync successfully, vaue: ' + value);
@@ -1168,7 +1168,7 @@ Obtains information about all accessible app accounts. This API uses an asynchro
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   try {
@@ -1206,7 +1206,7 @@ Obtains information about all accessible app accounts. This API uses a promise t
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
 
   try {
@@ -1245,7 +1245,7 @@ Obtains the app accounts that can be accessed by the invoker based on the app ac
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   try {
@@ -1292,7 +1292,7 @@ Obtains the app accounts that can be accessed by the invoker based on the app ac
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
 
   try {
@@ -1333,7 +1333,7 @@ Subscribes to account information changes of apps.
 
 **Example**
 
-  ```js
+  ```ts
   function changeOnCallback(data: account_appAccount.AppAccountInfo[]): void {
   	console.log('receive change data:' + JSON.stringify(data));
   }
@@ -1368,7 +1368,7 @@ Unsubscribes from account information changes.
 
 **Example**
 
-  ```js
+  ```ts
   function changeOnCallback(data: account_appAccount.AppAccountInfo[]): void {
   	console.log('receive change data:' + JSON.stringify(data));
   }
@@ -1415,7 +1415,7 @@ Authenticates an app account. This API uses an asynchronous callback to return t
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   import Want from '@ohos.app.ability.Want';
   import common from '@ohos.app.ability.common';
@@ -1482,7 +1482,7 @@ Authenticates an app account with customized options. This API uses an asynchron
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   import Want from '@ohos.app.ability.Want';
   import common from '@ohos.app.ability.common';
@@ -1509,7 +1509,7 @@ Authenticates an app account with customized options. This API uses an asynchron
   }
 
   let options: Record<string, Object> = {
-    password: 'xxxx',
+    'password': 'xxxx',
   };
   try {
     appAccountManager.auth('LiSi', 'com.example.accountjsdemo', 'getSocialData', options, {
@@ -1549,7 +1549,7 @@ Obtains the authorization token of the specified authentication type for an app 
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   try {
@@ -1599,7 +1599,7 @@ Obtains the authorization token of the specified authentication type for an app 
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   try {
@@ -1641,7 +1641,7 @@ Sets an authorization token of the specific authentication type for an app accou
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   try {
@@ -1690,7 +1690,7 @@ Sets an authorization token of the specific authentication type for an app accou
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   try {
@@ -1733,7 +1733,7 @@ Deletes the authorization token of the specified authentication type for an app 
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   try {
@@ -1784,7 +1784,7 @@ Deletes the authorization token of the specified authentication type for an app 
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   try {
@@ -1829,7 +1829,7 @@ Sets the visibility of an authorization token to an app. This API uses an asynch
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   try {
@@ -1882,7 +1882,7 @@ Sets the visibility of an authorization token to an app. This API uses a promise
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   try {
@@ -1924,7 +1924,7 @@ Checks the visibility of an authorization token of the specified authentication 
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   try {
@@ -1974,7 +1974,7 @@ Checks the visibility of an authorization token of the specified authentication 
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   try {
@@ -2015,7 +2015,7 @@ Obtains all tokens visible to the invoker for an app account. This API uses an a
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   try {
@@ -2063,7 +2063,7 @@ Obtains all tokens visible to the invoker for an app account. This API uses a pr
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   try {
@@ -2105,7 +2105,7 @@ Obtains the authorization list of the specified authentication type for an app a
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   try {
@@ -2153,7 +2153,7 @@ Obtains the authorization list of the specified authentication type for an app a
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   try {
@@ -2192,7 +2192,7 @@ Obtains the authenticator callback for an authentication session. This API uses 
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   import UIAbility from '@ohos.app.ability.UIAbility';
   import Want from '@ohos.app.ability.Want';
@@ -2256,7 +2256,7 @@ Obtains the authenticator callback for an authentication session. This API uses 
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   import UIAbility from '@ohos.app.ability.UIAbility';
   import Want from '@ohos.app.ability.Want';
@@ -2313,7 +2313,7 @@ Obtains the authenticator information of an app. This API uses an asynchronous c
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   try {
@@ -2360,7 +2360,7 @@ Obtains the authenticator information of an app. This API uses a promise to retu
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   try {
@@ -2405,7 +2405,7 @@ Checks whether an app account has specific labels. This API uses an asynchronous
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   let labels = ['student'];
@@ -2458,7 +2458,7 @@ Checks whether an app account has specific labels. This API uses a promise to re
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   let labels = ['student'];
@@ -2501,7 +2501,7 @@ Deletes the credential of the specified type from an app account. This API uses 
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   try {
@@ -2549,7 +2549,7 @@ Deletes the credential of the specified type from an app account. This API uses 
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   try {
@@ -2589,7 +2589,7 @@ Selects the accounts that can be accessed by the invoker based on the options. T
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   let options: account_appAccount.SelectAccountsOptions = {
@@ -2641,7 +2641,7 @@ Selects the accounts that can be accessed by the invoker based on the options. T
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   let options: account_appAccount.SelectAccountsOptions = {
@@ -2687,7 +2687,7 @@ Verifies the credential of an app account. This API uses an asynchronous callbac
 
 **Example**
 
-  ```js
+  ```ts
   import Want from '@ohos.app.ability.Want';
 
   try {
@@ -2735,7 +2735,7 @@ Verifies the user credential. This API uses an asynchronous callback to return t
 
 **Example**
 
-  ```js
+  ```ts
   import Want from '@ohos.app.ability.Want';
 
   let options: account_appAccount.VerifyCredentialOptions = {
@@ -2784,7 +2784,7 @@ Sets the authenticator attributes of an app. This API uses an asynchronous callb
 
 **Example**
 
-  ```js
+  ```ts
   import Want from '@ohos.app.ability.Want';
 
   try {
@@ -2830,7 +2830,7 @@ Set authenticator properties. This API uses an asynchronous callback to return t
 
 **Example**
 
-  ```js
+  ```ts
   import Want from '@ohos.app.ability.Want';
 
   let options: account_appAccount.SetPropertiesOptions = {
@@ -2874,7 +2874,7 @@ Adds an app account. This API uses an asynchronous callback to return the result
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   appAccountManager.addAccount('WangWu', (err: BusinessError) => { 
@@ -2903,7 +2903,7 @@ Adds an app account name and additional information. This API uses an asynchrono
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   appAccountManager.addAccount('LiSi', 'token101', (err: BusinessError) => { 
@@ -2937,7 +2937,7 @@ Adds an app account name and additional information. This API uses an asynchrono
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   appAccountManager.addAccount('LiSi', 'token101').then(()=> { 
@@ -2970,7 +2970,7 @@ Adds an app account implicitly based on the specified owner. This API uses an as
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   import Want from '@ohos.app.ability.Want';
   import common from '@ohos.app.ability.common';
@@ -3023,7 +3023,7 @@ Deletes an app account. This API uses an asynchronous callback to return the res
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   appAccountManager.deleteAccount('ZhaoLiu', (err: BusinessError) => { 
@@ -3057,7 +3057,7 @@ Deletes an app account. This API uses a promise to return the result.
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
 
   appAccountManager.deleteAccount('ZhaoLiu').then(() => { 
@@ -3088,7 +3088,7 @@ Disables an app account from accessing an app. This API uses an asynchronous cal
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
 
   appAccountManager.disableAppAccess('ZhangSan', 'com.example.accountjsdemo', (err: BusinessError) => { 
@@ -3123,7 +3123,7 @@ Disables an app account from accessing an app. This API uses a promise to return
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
 
   appAccountManager.disableAppAccess('ZhangSan', 'com.example.accountjsdemo').then(() => { 
@@ -3155,7 +3155,7 @@ Enables an app account to access an app. This API uses an asynchronous callback 
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   appAccountManager.enableAppAccess('ZhangSan', 'com.example.accountjsdemo', (err: BusinessError) => { 
@@ -3190,7 +3190,7 @@ Enables an app account to access an app. This API uses a promise to return the r
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   appAccountManager.enableAppAccess('ZhangSan', 'com.example.accountjsdemo').then(() => { 
@@ -3223,7 +3223,7 @@ Checks whether data synchronization is enabled for an app account. This API uses
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   appAccountManager.checkAppAccountSyncEnable('ZhangSan', (err: BusinessError, result: boolean) => { 
@@ -3260,7 +3260,7 @@ Checks whether data synchronization is enabled for an app account. This API uses
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   appAccountManager.checkAppAccountSyncEnable('ZhangSan').then((data: boolean) => { 
@@ -3293,7 +3293,7 @@ Set credentials for an app account. This API uses an asynchronous callback to re
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   appAccountManager.setAccountCredential('ZhangSan', 'credentialType001', 'credential001', (err: BusinessError) => { 
@@ -3329,7 +3329,7 @@ Set credentials for an app account. This API uses a promise to return the result
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   appAccountManager.setAccountCredential('ZhangSan', 'credentialType001', 'credential001').then(() => { 
@@ -3362,7 +3362,7 @@ Sets additional information for an app account. This API uses an asynchronous ca
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   appAccountManager.setAccountExtraInfo('ZhangSan', 'Tk002', (err: BusinessError) => { 
@@ -3398,7 +3398,7 @@ Sets additional information for an app account. This API uses a promise to retur
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   appAccountManager.setAccountExtraInfo('ZhangSan', 'Tk002').then(() => { 
@@ -3432,7 +3432,7 @@ Sets data synchronization for an app account. This API uses an asynchronous call
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   appAccountManager.setAppAccountSyncEnable('ZhangSan', true, (err: BusinessError) => { 
@@ -3469,7 +3469,7 @@ Sets data synchronization for an app account. This API uses a promise to return 
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   appAccountManager .setAppAccountSyncEnable('ZhangSan', true).then(() => { 
@@ -3503,7 +3503,7 @@ Sets data to be associated with an app account. This API uses an asynchronous ca
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   appAccountManager.setAssociatedData('ZhangSan', 'k001', 'v001', (err: BusinessError) => { 
@@ -3540,7 +3540,7 @@ Sets data to be associated with an app account. This API uses a promise to retur
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   appAccountManager.setAssociatedData('ZhangSan', 'k001', 'v001').then(() => { 
@@ -3572,7 +3572,7 @@ Obtains information about all accessible app accounts. This API uses an asynchro
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   appAccountManager.getAllAccessibleAccounts((err: BusinessError, data: account_appAccount.AppAccountInfo[])=>{
@@ -3603,7 +3603,7 @@ Obtains information about all accessible app accounts. This API uses a promise t
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   appAccountManager.getAllAccessibleAccounts().then((data: account_appAccount.AppAccountInfo[]) => { 
@@ -3636,7 +3636,7 @@ Obtains the app accounts that can be accessed by the invoker based on the app ac
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   const selfBundle = 'com.example.actsgetallaaccounts';
@@ -3674,7 +3674,7 @@ Obtains the app accounts that can be accessed by the invoker based on the app ac
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   const selfBundle = 'com.example.actsgetallaaccounts';
@@ -3707,7 +3707,7 @@ Obtains the credential of an app account. This API uses an asynchronous callback
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   appAccountManager.getAccountCredential('ZhangSan', 'credentialType001', (err: BusinessError, result: string) => { 
@@ -3743,7 +3743,7 @@ Obtains the credential of an app account. This API uses a promise to return the 
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   appAccountManager.getAccountCredential('ZhangSan', 'credentialType001').then((data: string) => { 
@@ -3774,7 +3774,7 @@ Obtains additional information of an app account. Additional information refers 
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   appAccountManager.getAccountExtraInfo('ZhangSan', (err: BusinessError, result: string) => { 
@@ -3809,7 +3809,7 @@ Obtains additional information of an app account. Additional information refers 
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   appAccountManager.getAccountExtraInfo('ZhangSan').then((data: string) => { 
@@ -3841,7 +3841,7 @@ Obtains data associated with an app account. This API uses an asynchronous callb
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   appAccountManager.getAssociatedData('ZhangSan', 'k001', (err: BusinessError, result: string) => { 
@@ -3877,7 +3877,7 @@ Obtains data associated with an app account. This API uses a promise to return t
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   appAccountManager.getAssociatedData('ZhangSan', 'k001').then((data: string) => { 
@@ -3909,7 +3909,7 @@ Subscribes to account information changes of apps.
 
 **Example**
 
-  ```js
+  ```ts
   function changeOnCallback(data: account_appAccount.AppAccountInfo[]): void {
   	console.debug('receive change data:' + JSON.stringify(data));
   }
@@ -3942,7 +3942,7 @@ Unsubscribes from account information changes.
 
 **Example**
 
-  ```js
+  ```ts
   function changeOnCallback(data: account_appAccount.AppAccountInfo[]): void {
   	console.debug('receive change data: ' + JSON.stringify(data));
   	appAccountManager.off('change', () => {
@@ -3981,7 +3981,7 @@ Authenticates an app account with customized options. This API uses an asynchron
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   import Want from '@ohos.app.ability.Want';
   import common from '@ohos.app.ability.common';
@@ -4036,7 +4036,7 @@ Obtains the authorization token of the specified authentication type for an app 
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   appAccountManager.getOAuthToken('LiSi', 'com.example.accountjsdemo', 'getSocialData',
@@ -4074,7 +4074,7 @@ Obtains the authorization token of the specified authentication type for an app 
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   appAccountManager.getOAuthToken('LiSi', 'com.example.accountjsdemo', 'getSocialData').then((data: string) => {
@@ -4107,7 +4107,7 @@ Sets an authorization token of the specific authentication type for an app accou
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   appAccountManager.setOAuthToken('LiSi', 'getSocialData', 'xxxx', (err: BusinessError) => {
@@ -4143,7 +4143,7 @@ Sets an authorization token of the specific authentication type for an app accou
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   appAccountManager.setOAuthToken('LiSi', 'getSocialData', 'xxxx').then(() => {
@@ -4177,7 +4177,7 @@ Deletes the authorization token of the specified authentication type for an app 
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   appAccountManager.deleteOAuthToken('LiSi', 'com.example.accountjsdemo', 'getSocialData', 'xxxxx',
@@ -4215,7 +4215,7 @@ Deletes the authorization token of the specified authentication type for an app 
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   appAccountManager.deleteOAuthToken('LiSi', 'com.example.accountjsdemo', 'getSocialData', 'xxxxx').then(() => {
@@ -4249,7 +4249,7 @@ Sets the visibility of an authorization token to an app. This API uses an asynch
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   appAccountManager.setOAuthTokenVisibility('LiSi', 'getSocialData', 'com.example.accountjsdemo', true,
@@ -4287,7 +4287,7 @@ Sets the visibility of an authorization token to an app. This API uses a promise
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   appAccountManager.setOAuthTokenVisibility('LiSi', 'getSocialData', 'com.example.accountjsdemo', true).then(() => {
@@ -4320,7 +4320,7 @@ Checks the visibility of an authorization token of the specified authentication 
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   appAccountManager.checkOAuthTokenVisibility('LiSi', 'getSocialData', 'com.example.accountjsdemo',
@@ -4358,7 +4358,7 @@ Checks the visibility of an authorization token of the specified authentication 
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   appAccountManager.checkOAuthTokenVisibility('LiSi', 'getSocialData', 'com.example.accountjsdemo').then((
@@ -4391,7 +4391,7 @@ Obtains all tokens visible to the invoker for an app account. This API uses an a
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   appAccountManager.getAllOAuthTokens('LiSi', 'com.example.accountjsdemo',
@@ -4428,7 +4428,7 @@ Obtains all tokens visible to the invoker for an app account. This API uses a pr
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   appAccountManager.getAllOAuthTokens('LiSi', 'com.example.accountjsdemo').then((
@@ -4461,7 +4461,7 @@ Obtains the authorization list of the specified authentication type for an app a
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   appAccountManager.getOAuthList('LiSi', 'getSocialData', (err: BusinessError, data: string[]) => {
@@ -4497,7 +4497,7 @@ Obtains the authorization list of the specified authentication type for an app a
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   appAccountManager.getOAuthList('LiSi', 'getSocialData').then((data: string[]) => {
@@ -4528,7 +4528,7 @@ Obtains the authenticator callback for an authentication session. This API uses 
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   import UIAbility from '@ohos.app.ability.UIAbility';
   import Want from '@ohos.app.ability.Want';
@@ -4580,7 +4580,7 @@ Obtains the authenticator callback for an authentication session. This API uses 
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   import UIAbility from '@ohos.app.ability.UIAbility';
   import Want from '@ohos.app.ability.Want';
@@ -4625,7 +4625,7 @@ Obtains the authenticator information of an app. This API uses an asynchronous c
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   appAccountManager.getAuthenticatorInfo('com.example.accountjsdemo',
@@ -4661,7 +4661,7 @@ Obtains the authenticator information of an app. This API uses a promise to retu
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   appAccountManager.getAuthenticatorInfo('com.example.accountjsdemo').then((
@@ -4870,7 +4870,7 @@ Called to return the result of an authentication request.
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   let appAccountManager = account_appAccount.createAppAccountManager();
@@ -4908,7 +4908,7 @@ Called to redirect a request.
 
 **Example**
 
-  ```js
+  ```ts
   class MyAuthenticator extends account_appAccount.Authenticator {
       createAccountImplicitly(
         options: account_appAccount.CreateAccountImplicitlyOptions, callback: account_appAccount.AuthCallback) {
@@ -4920,7 +4920,7 @@ Called to redirect a request.
       }
 
       auth(name: string, authType: string,
-        options: { [key: string]: Object }, callback: account_appAccount.AuthCallback) {
+        options: Record<string, Object>, callback: account_appAccount.AuthCallback) {
           let result: account_appAccount.AuthResult = {
             account: {
               name: 'Lisi',
@@ -4946,7 +4946,7 @@ Called to continue to process the request.
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   let appAccountManager = account_appAccount.createAppAccountManager();
@@ -4985,7 +4985,7 @@ Called to return the result of an authentication request.
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   let appAccountManager = account_appAccount.createAppAccountManager();
@@ -5018,10 +5018,10 @@ Called to redirect a request.
 
 **Example**
 
-  ```js
+  ```ts
   class MyAuthenticator extends account_appAccount.Authenticator {
       addAccountImplicitly(authType: string, callerBundleName: string,
-        options: { [key: string]: Object }, callback: account_appAccount.AuthenticatorCallback) {
+        options: Record<string, Object>, callback: account_appAccount.AuthenticatorCallback) {
           let want: Want = {
             bundleName: 'com.example.accountjsdemo',
             abilityName: 'com.example.accountjsdemo.LoginAbility',
@@ -5030,7 +5030,7 @@ Called to redirect a request.
       }
 
       authenticate(name: string, authType: string, callerBundleName: string,
-        options: { [key: string]: Object }, callback: account_appAccount.AuthenticatorCallback) {
+        options: Record<string, Object>, callback: account_appAccount.AuthenticatorCallback) {
           callback.onResult(account_appAccount.ResultCode.SUCCESS, {
             name: name,
             authType: authType,
@@ -5192,12 +5192,10 @@ Obtains the remote object of an authenticator. This API cannot be overloaded.
 
 **Example**
 
-  ```js
-  import rpc from '@ohos.rpc';
-
+  ```ts
   class MyAuthenticator extends account_appAccount.Authenticator {
     addAccountImplicitly(authType: string, callerBundleName: string,
-      options: { [key: string]: Object }, callback: account_appAccount.AuthenticatorCallback) {
+      options: Record<string, Object>, callback: account_appAccount.AuthenticatorCallback) {
         let want: Want = {
           bundleName: 'com.example.accountjsdemo',
           abilityName: 'com.example.accountjsdemo.LoginAbility',
@@ -5206,7 +5204,7 @@ Obtains the remote object of an authenticator. This API cannot be overloaded.
     }
 
     authenticate(name: string, authType: string, callerBundleName: string,
-      options: { [key: string]: Object }, callback: account_appAccount.AuthenticatorCallback) {
+      options: Record<string, Object>, callback: account_appAccount.AuthenticatorCallback) {
         callback.onResult(account_appAccount.ResultCode.SUCCESS, {
           name: name,
           authType: authType,
