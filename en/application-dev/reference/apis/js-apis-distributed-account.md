@@ -8,7 +8,7 @@ The **distributedAccount** module provides APIs for managing distributed account
 
 ## Modules to Import
 
-```js
+```ts
 import account_distributedAccount from '@ohos.account.distributedAccount';
 ```
 
@@ -27,7 +27,7 @@ Obtains a **DistributedAccountAbility** instance.
   | [DistributedAccountAbility](#distributedaccountability) | **DistributedAccountAbility** instance obtained. This instance provides APIs for querying and updating the login state of a distributed account.|
 
 **Example**
-  ```js
+  ```ts
   const accountAbility = account_distributedAccount.getDistributedAccountAbility();
   ```
 
@@ -58,7 +58,7 @@ Obtains distributed account information. This API uses an asynchronous callback 
 | 12300001 | System service exception. |
 
 **Example**
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
 
   const accountAbility = account_distributedAccount.getDistributedAccountAbility();
@@ -99,7 +99,7 @@ Obtains distributed account information. This API uses a promise to return the r
 | 12300001 | System service exception. |
 
 **Example**
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
 
   const accountAbility = account_distributedAccount.getDistributedAccountAbility();
@@ -141,7 +141,7 @@ Obtains distributed information about an OS account. This API uses an asynchrono
 | 12300003 | Account not found. |
 
 **Example**
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   const accountAbility = account_distributedAccount.getDistributedAccountAbility();
@@ -185,7 +185,7 @@ Obtains distributed information about an OS account. This API uses a promise to 
 | 12300003 | Account not found. |
 
 **Example**
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   const accountAbility = account_distributedAccount.getDistributedAccountAbility();
@@ -221,7 +221,7 @@ Obtains distributed account information. This API uses an asynchronous callback 
   | callback | AsyncCallback&lt;[DistributedInfo](#distributedinfo)&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **undefined** and **data** is the distributed account information obtained. Otherwise, **err** is an error object.|
 
 **Example**
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   const accountAbility = account_distributedAccount.getDistributedAccountAbility();
@@ -256,7 +256,7 @@ Obtains distributed account information. This API uses a promise to return the r
   | Promise&lt;[DistributedInfo](#distributedinfo)&gt; | Promise used to return the distributed account information obtained.|
 
 **Example**
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   const accountAbility = account_distributedAccount.getDistributedAccountAbility();
@@ -293,7 +293,7 @@ Sets the distributed account information. This API uses an asynchronous callback
 | 12300003 | Account not found. |
 
 **Example**
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   const accountAbility = account_distributedAccount.getDistributedAccountAbility();
@@ -343,7 +343,7 @@ Sets the distributed account information. This API uses a promise to return the 
 | 12300003 | Account not found. |
 
 **Example**
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   const accountAbility = account_distributedAccount.getDistributedAccountAbility();
@@ -389,7 +389,7 @@ Sets the distributed information for an OS account. This API uses an asynchronou
 | 12300008 | Restricted OS account. |
 
 **Example**
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   const accountAbility = account_distributedAccount.getDistributedAccountAbility();
@@ -443,7 +443,7 @@ Sets the distributed information for an OS account. This API uses a promise to r
 | 12300008 | Restricted OS account. |
 
 **Example**
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   const accountAbility = account_distributedAccount.getDistributedAccountAbility();
@@ -482,7 +482,7 @@ Updates the distributed account information. This API uses an asynchronous callb
   | callback | AsyncCallback&lt;void&gt; | Yes| Callback invoked to return the result. If the distributed account information is set successfully, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Example**
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   const accountAbility = account_distributedAccount.getDistributedAccountAbility();
@@ -522,7 +522,7 @@ Updates the distributed account information. This API uses a promise to return t
   | Promise&lt;void&gt; | Promise that returns no value.|
 
 **Example**
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   const accountAbility = account_distributedAccount.getDistributedAccountAbility();
