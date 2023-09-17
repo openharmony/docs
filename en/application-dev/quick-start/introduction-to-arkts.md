@@ -1106,11 +1106,9 @@ There are several visibility modifiers:
 
 - `private`,
 - `protected`,
-- `public`, and
-- `internal`.
+- `public`.
 
 The default visibility is `public`.
-The modifier `internal` allows you to limit visibility within the current package.
 
 ### Public Visibility
 
