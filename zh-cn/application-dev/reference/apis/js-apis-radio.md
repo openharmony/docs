@@ -412,6 +412,35 @@ radio.getISOCountryCodeForNetwork(slotId).then((data: string) => {
 });
 ```
 
+## radio.getISOCountryCodeForNetworkSync<sup>10+</sup>
+
+getISOCountryCodeForNetworkSync\(slotId: number\): string
+
+获取注册网络所在国家的ISO国家码。
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                   |
+| ------ | ------ | ---- | -------------------------------------- |
+| slotId | number | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+
+**返回值：**
+
+| 类型              | 说明                                                         |
+| ----------------- | ------------------------------------------------------------ |
+| string | 返回注册网络所在国家的ISO国家码，例如CN（中国）。 |
+
+**示例：**
+
+```js
+let slotId = 0;
+let countryISO = radio.getISOCountryCodeForNetworkSync(slotId);
+console.log(`the country ISO is:` + countryISO);
+```
+
+
 
 ## radio.getPrimarySlotId<sup>7+</sup>
 
@@ -568,6 +597,35 @@ radio.getSignalInformation(slotId).then((data: Array<radio.SignalInformation>) =
 }).catch((err: BusinessError) => {
     console.error(`getSignalInformation failed, promise: err->${JSON.stringify(err)}`);
 });
+```
+
+## radio.getSignalInformationSync<sup>10+</sup>
+
+getSignalInformationSync\(slotId: number\): Array\<SignalInformation\>
+
+获取指定SIM卡槽对应的注册网络信号强度信息列表。
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                   |
+| ------ | ------ | ---- | -------------------------------------- |
+| slotId | number | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+
+**返回值：**
+
+| 类型                                                        | 说明                                                         |
+| ----------------------------------------------------------- | ------------------------------------------------------------ |
+| Array\<[SignalInformation](#signalinformation)\>| 返回网络信号强度[SignalInformation](#signalinformation)对象的数组。 |
+
+
+**示例：**
+
+```js
+let slotId = 0;
+let signalInfo = radio.getSignalInformationSync(slotId);
+console.log(`signal information size is:` + signalInfo.size());
 ```
 
 ## radio.isNrSupported<sup>(deprecated)</sup>
@@ -892,6 +950,35 @@ radio.getOperatorName(slotId).then((data: string) => {
 }).catch((err: BusinessError) => {
     console.log(`getOperatorName failed, promise: err->${JSON.stringify(err)}`);
 });
+```
+
+## radio.getOperatorNameSync<sup>10+</sup>
+
+getOperatorNameSync\(slotId: number\): string
+
+获取运营商名称。
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                   |
+| ------ | ------ | ---- | -------------------------------------- |
+| slotId | number | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+
+**返回值：**
+
+| 类型              | 说明                                                         |
+| ----------------- | ------------------------------------------------------------ |
+| string | 返回运营商名称，例如：中国移动。                |
+
+
+**示例：**
+
+```js
+let slotId = 0;
+let operatorName = radio.getOperatorNameSync(slotId);
+console.log(`operator name is:` + operatorName);
 ```
 
 ## radio.setPrimarySlotId<sup>8+</sup>

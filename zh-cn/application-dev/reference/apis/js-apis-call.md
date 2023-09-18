@@ -414,6 +414,27 @@ call.hasCall().then(() => {
 });
 ```
 
+## call.hasCallSync<sup>10+</sup>
+
+hasCallSync\(\): boolean
+
+判断是否存在通话。
+
+**系统能力**：SystemCapability.Telephony.CallManager
+
+**返回值：**
+
+| 类型                   | 说明          |
+| ---------------------- |-------------|
+| boolean | 返回判断是否存在通话。 |
+
+**示例：**
+
+```js
+let hasCall = call.hasCallSync();
+console.log(`hasCallSync success, has call is ' + hasCall);
+```
+
 
 ## call.getCallState
 
@@ -464,6 +485,27 @@ call.getCallState().then((data: call.CallState) => {
 }).catch((err: BusinessError) => {
     console.error(`getCallState fail, promise: err->${JSON.stringify(err)}`);
 });
+```
+
+## call.getCallStateSync<sup>10+</sup>
+
+getCallStateSync\(\): CallState
+
+获取当前通话状态。
+
+**系统能力**：SystemCapability.Telephony.CallManager
+
+**返回值：**
+
+| 类型                                  | 说明          |
+| ------------------------------------- |-------------|
+| [CallState](#callstate) | 返回获取到的通话状态。 |
+
+**示例：**
+
+```js
+let callState = call.getCallStateSync();
+console.log(`the call state is:` + callState);
 ```
 
 ## call.hasVoiceCapability<sup>7+</sup>
