@@ -13,7 +13,7 @@ This module provides the following common window-related functions:
 
 ## Modules to Import
 
-```js
+```ts
 import window from '@ohos.window';
 ```
 
@@ -41,7 +41,7 @@ Enumerates the window types.
 | TYPE_VOICE_INTERACTION<sup>9+</sup> | 13      | Voice assistant.<br>**Model restriction**: This API can be used only in the stage model.<br>**System API**: This is a system API.|
 | TYPE_POINTER<sup>9+</sup> | 14      | Mouse.<br>**Model restriction**: This API can be used only in the stage model.<br>**System API**: This is a system API.|
 | TYPE_FLOAT_CAMERA<sup>9+</sup> | 15      | Floating camera window.<br>**Model restriction**: This API can be used only in the stage model.<br>**System API**: This is a system API.|
-| TYPE_DIALOG<sup>9+</sup>  | 16      | Modal window.<br>**Model restriction**: This API can be used only in the stage model.<br>**System API**: This is a system API.|
+| TYPE_DIALOG<sup>10+</sup>  | 16      | Modal window.<br>**Model restriction**: This API can be used only in the stage model.|
 | TYPE_SCREENSHOT<sup>9+</sup>  | 17      | Screenshot window.<br>**Model restriction**: This API can be used only in the stage model.<br>**System API**: This is a system API.|
 
 ## Configuration<sup>9+</sup>
@@ -337,21 +337,28 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 
 **Example**
 
-```js
-let windowClass = null;
-let config = {name: "alertWindow", windowType: window.WindowType.TYPE_SYSTEM_ALERT, ctx: this.context};
+```ts
+import { BusinessError } from '@ohos.base';
+
+let windowClass: window.Window | null = null;
+let config: window.Configuration = {
+  name: "alertWindow",
+  windowType: window.WindowType.TYPE_SYSTEM_ALERT,
+  ctx: this.context
+};
 try {
-    window.createWindow(config, (err, data) => {
-        if (err.code) {
-            console.error('Failed to create the window. Cause: ' + JSON.stringify(err));
-            return;
-        }
-        windowClass = data;
-        console.info('Succeeded in creating the window. Data: ' + JSON.stringify(data));
-        windowClass.resetSize(500, 1000);
-    });
+  window.createWindow(config, (err: BusinessError, data) => {
+    const errCode: number = err.code;
+    if (errCode) {
+      console.error('Failed to create the window. Cause: ' + JSON.stringify(err));
+      return;
+    }
+    windowClass = data;
+    console.info('Succeeded in creating the window. Data: ' + JSON.stringify(data));
+    windowClass.resetSize(500, 1000);
+  });
 } catch (exception) {
-    console.error('Failed to create the window. Cause: ' + JSON.stringify(exception));
+  console.error('Failed to create the window. Cause: ' + JSON.stringify(exception));
 }
 ```
 
@@ -388,19 +395,25 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 
 **Example**
 
-```js
-let windowClass = null;
-let config = {name: "alertWindow", windowType: window.WindowType.TYPE_SYSTEM_ALERT, ctx: this.context};
+```ts
+import { BusinessError } from '@ohos.base';
+
+let windowClass: window.Window | null = null;
+let config: window.Configuration = {
+  name: "alertWindow",
+  windowType: window.WindowType.TYPE_SYSTEM_ALERT,
+  ctx: this.context
+};
 try {
-    let promise = window.createWindow(config);
-    promise.then((data)=> {
-        windowClass = data;
-        console.info('Succeeded in creating the window. Data:' + JSON.stringify(data));
-    }).catch((err)=>{
-        console.error('Failed to create the Window. Cause:' + JSON.stringify(err));
-    });
+  let promise = window.createWindow(config);
+  promise.then((data) => {
+    windowClass = data;
+    console.info('Succeeded in creating the window. Data:' + JSON.stringify(data));
+  }).catch((err: BusinessError) => {
+    console.error('Failed to create the Window. Cause:' + JSON.stringify(err));
+  });
 } catch (exception) {
-    console.error('Failed to create the window. Cause: ' + JSON.stringify(exception));
+  console.error('Failed to create the window. Cause: ' + JSON.stringify(exception));
 }
 ```
 
@@ -434,12 +447,12 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 
 **Example**
 
-```js
-let windowClass = null;
+```ts
+let windowClass: window.Window | null = null;
 try {
-    windowClass = window.findWindow('alertWindow');
+  windowClass = window.findWindow('alertWindow');
 } catch (exception) {
-    console.error('Failed to find the Window. Cause: ' + JSON.stringify(exception));
+  console.error('Failed to find the Window. Cause: ' + JSON.stringify(exception));
 }
 ```
 
@@ -469,19 +482,22 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 
 **Example**
 
-```js
-let windowClass = null;
+```ts
+import { BusinessError } from '@ohos.base';
+
+let windowClass: window.Window | null = null;
 try {
-    window.getLastWindow(this.context, (err, data) => {
-        if (err.code) {
-            console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(err));
-            return;
-        }
-        windowClass = data;
-        console.info('Succeeded in obtaining the top window. Data: ' + JSON.stringify(data));
-    });
+  window.getLastWindow(this.context, (err: BusinessError, data) => {
+    const errCode: number = err.code;
+    if (errCode) {
+      console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(err));
+      return;
+    }
+    windowClass = data;
+    console.info('Succeeded in obtaining the top window. Data: ' + JSON.stringify(data));
+  });
 } catch (exception) {
-    console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(exception));
+  console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(exception));
 }
 ```
 
@@ -516,18 +532,20 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 
 **Example**
 
-```js
-let windowClass = null;
+```ts
+import { BusinessError } from '@ohos.base';
+
+let windowClass: window.Window | null = null;
 try {
-    let promise = window.getLastWindow(this.context);
-    promise.then((data)=> {
-        windowClass = data;
-        console.info('Succeeded in obtaining the top window. Data: ' + JSON.stringify(data));
-    }).catch((err)=>{
-        console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(err));
-    });
+  let promise = window.getLastWindow(this.context);
+  promise.then((data) => {
+    windowClass = data;
+    console.info('Succeeded in obtaining the top window. Data: ' + JSON.stringify(data));
+  }).catch((err: BusinessError) => {
+    console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(err));
+  });
 } catch (exception) {
-    console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(exception));
+  console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(exception));
 }
 ```
 
@@ -557,26 +575,28 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 
 **Example**
 
-```js
+```ts
 import display from '@ohos.display'
+import { BusinessError } from '@ohos.base';
 
-let displayClass = null;
+let displayClass: display.Display | null = null;
 try {
-    displayClass = display.getDefaultDisplaySync();
+  displayClass = display.getDefaultDisplaySync();
 
-    try {
-        window.minimizeAll(displayClass.id, (err) => {
-            if(err.code) {
-                console.error('Failed to minimize all windows. Cause: ' + JSON.stringify(err));
-                return;
-            }
-            console.info('Succeeded in minimizing all windows.');
-        });
-    } catch (exception) {
-        console.error('Failed to minimize all windows. Cause: ' + JSON.stringify(exception));
-    }
+  try {
+    window.minimizeAll(displayClass.id, (err: BusinessError) => {
+      const errCode: number = err.code;
+      if (errCode) {
+        console.error('Failed to minimize all windows. Cause: ' + JSON.stringify(err));
+        return;
+      }
+      console.info('Succeeded in minimizing all windows.');
+    });
+  } catch (exception) {
+    console.error('Failed to minimize all windows. Cause: ' + JSON.stringify(exception));
+  }
 } catch (exception) {
-    console.error('Failed to obtain the default display object. Code: ' + JSON.stringify(exception));
+  console.error('Failed to obtain the default display object. Code: ' + JSON.stringify(exception));
 }
 ```
 
@@ -611,25 +631,26 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 
 **Example**
 
-```js
+```ts
 import display from '@ohos.display'
+import { BusinessError } from '@ohos.base';
 
-let displayClass = null;
+let displayClass: display.Display | null = null;
 try {
-    displayClass = display.getDefaultDisplaySync();
+  displayClass = display.getDefaultDisplaySync();
 
-    try {
-        let promise = window.minimizeAll(displayClass.id);
-        promise.then(()=> {
-            console.info('Succeeded in minimizing all windows.');
-        }).catch((err)=>{
-            console.error('Failed to minimize all windows. Cause: ' + JSON.stringify(err));
-        });
-    } catch (exception) {
-        console.error('Failed to minimize all windows. Cause: ' + JSON.stringify(exception));
-    }
+  try {
+    let promise = window.minimizeAll(displayClass.id);
+    promise.then(() => {
+      console.info('Succeeded in minimizing all windows.');
+    }).catch((err: BusinessError) => {
+      console.error('Failed to minimize all windows. Cause: ' + JSON.stringify(err));
+    });
+  } catch (exception) {
+    console.error('Failed to minimize all windows. Cause: ' + JSON.stringify(exception));
+  }
 } catch (exception) {
-    console.error('Failed to obtain the default display object. Code: ' + JSON.stringify(exception));
+  console.error('Failed to obtain the default display object. Code: ' + JSON.stringify(exception));
 }
 ```
 
@@ -658,13 +679,16 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 
 **Example**
 
-```js
-window.toggleShownStateForAllAppWindows((err) => {
-    if (err.code) {
-        console.error('Failed to toggle shown state for all app windows. Cause: ' + JSON.stringify(err));
-        return;
-    }
-    console.info('Succeeded in toggling shown state for all app windows.');
+```ts
+import { BusinessError } from '@ohos.base';
+
+window.toggleShownStateForAllAppWindows((err: BusinessError) => {
+  const errCode: number = err.code;
+  if (errCode) {
+    console.error('Failed to toggle shown state for all app windows. Cause: ' + JSON.stringify(err));
+    return;
+  }
+  console.info('Succeeded in toggling shown state for all app windows.');
 });
 ```
 
@@ -693,12 +717,14 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 let promise = window.toggleShownStateForAllAppWindows();
-promise.then(()=> {
-    console.info('Succeeded in toggling shown state for all app windows.');
-}).catch((err)=>{
-    console.error('Failed to toggle shown state for all app windows. Cause: ' + JSON.stringify(err));
+promise.then(() => {
+  console.info('Succeeded in toggling shown state for all app windows.');
+}).catch((err: BusinessError) => {
+  console.error('Failed to toggle shown state for all app windows. Cause: ' + JSON.stringify(err));
 });
 ```
 
@@ -728,17 +754,20 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 try {
-    window.setWindowLayoutMode(window.WindowLayoutMode.WINDOW_LAYOUT_MODE_CASCADE, (err) => {
-        if(err.code) {
-            console.error('Failed to set window layout mode. Cause: ' + JSON.stringify(err));
-            return;
-        }
-        console.info('Succeeded in setting window layout mode.');
-    });
+  window.setWindowLayoutMode(window.WindowLayoutMode.WINDOW_LAYOUT_MODE_CASCADE, (err: BusinessError) => {
+    const errCode: number = err.code;
+    if (errCode) {
+      console.error('Failed to set window layout mode. Cause: ' + JSON.stringify(err));
+      return;
+    }
+    console.info('Succeeded in setting window layout mode.');
+  });
 } catch (exception) {
-    console.error('Failed to set window layout mode. Cause: ' + JSON.stringify(exception));
+  console.error('Failed to set window layout mode. Cause: ' + JSON.stringify(exception));
 }
 ```
 
@@ -773,16 +802,18 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 try {
-    let promise = window.setWindowLayoutMode(window.WindowLayoutMode.WINDOW_LAYOUT_MODE_CASCADE);
-    promise.then(()=> {
-        console.info('Succeeded in setting window layout mode.');
-    }).catch((err)=>{
-        console.error('Failed to set window layout mode. Cause: ' + JSON.stringify(err));
-    });
+  let promise = window.setWindowLayoutMode(window.WindowLayoutMode.WINDOW_LAYOUT_MODE_CASCADE);
+  promise.then(() => {
+    console.info('Succeeded in setting window layout mode.');
+  }).catch((err: BusinessError) => {
+    console.error('Failed to set window layout mode. Cause: ' + JSON.stringify(err));
+  });
 } catch (exception) {
-    console.error('Failed to set window layout mode. Cause: ' + JSON.stringify(exception));
+  console.error('Failed to set window layout mode. Cause: ' + JSON.stringify(exception));
 }
 ```
 
@@ -805,13 +836,13 @@ Subscribes to the property change event of the status bar and navigation bar.
 
 **Example**
 
-```js
+```ts
 try {
-    window.on('systemBarTintChange', (data) => {
-        console.info('Succeeded in enabling the listener for systemBarTint changes. Data: ' + JSON.stringify(data));
-    });
+  window.on('systemBarTintChange', (data) => {
+    console.info('Succeeded in enabling the listener for systemBarTint changes. Data: ' + JSON.stringify(data));
+  });
 } catch (exception) {
-    console.error('Failed to enable the listener for systemBarTint changes. Cause: ' + JSON.stringify(exception));
+  console.error('Failed to enable the listener for systemBarTint changes. Cause: ' + JSON.stringify(exception));
 }
 ```
 
@@ -834,11 +865,11 @@ Unsubscribes from the property change event of the status bar and navigation bar
 
 **Example**
 
-```js
+```ts
 try {
-    window.off('systemBarTintChange');
+  window.off('systemBarTintChange');
 } catch (exception) {
-    console.error('Failed to disable the listener for systemBarTint changes. Cause: ' + JSON.stringify(exception));
+  console.error('Failed to disable the listener for systemBarTint changes. Cause: ' + JSON.stringify(exception));
 }
 ```
 
@@ -870,13 +901,13 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 
 **Example**
 
-```js
+```ts
 try {
-    window.on('gestureNavigationEnabledChange', (data) => {
-        console.info('Succeeded in enabling the listener for gesture navigation status changes. Data: ' + JSON.stringify(data));
-    });
+  window.on('gestureNavigationEnabledChange', (data) => {
+    console.info('Succeeded in enabling the listener for gesture navigation status changes. Data: ' + JSON.stringify(data));
+  });
 } catch (exception) {
-    console.error('Failed to enable the listener for gesture navigation status changes. Cause: ' + JSON.stringify(exception));
+  console.error('Failed to enable the listener for gesture navigation status changes. Cause: ' + JSON.stringify(exception));
 }
 ```
 
@@ -908,11 +939,11 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 
 **Example**
 
-```js
+```ts
 try {
-    window.off('gestureNavigationEnabledChange');
+  window.off('gestureNavigationEnabledChange');
 } catch (exception) {
-    console.error('Failed to disable the listener for gesture navigation status changes. Cause: ' + JSON.stringify(exception));
+  console.error('Failed to disable the listener for gesture navigation status changes. Cause: ' + JSON.stringify(exception));
 }
 ```
 
@@ -943,7 +974,7 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 
 **Example**
 
-```js
+```ts
 try {
   window.on('waterMarkFlagChange', (data) => {
     console.info('Succeeded in enabling the listener for watermark flag changes. Data: ' + JSON.stringify(data));
@@ -980,7 +1011,7 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 
 **Example**
 
-```js
+```ts
 try {
   window.off('waterMarkFlagChange');
 } catch (exception) {
@@ -1015,17 +1046,20 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 try {
-    window.setGestureNavigationEnabled(true, (err) => {
-        if(err.code) {
-            console.error('Failed to set gesture navigation enabled. Cause: ' + JSON.stringify(err));
-            return;
-        }
-        console.info('Succeeded in setting gesture navigation enabled.');
-    });
+  window.setGestureNavigationEnabled(true, (err: BusinessError) => {
+    const errCode: number = err.code;
+    if (errCode) {
+      console.error('Failed to set gesture navigation enabled. Cause: ' + JSON.stringify(err));
+      return;
+    }
+    console.info('Succeeded in setting gesture navigation enabled.');
+  });
 } catch (exception) {
-    console.error('Failed to set gesture navigation enabled. Cause: ' + JSON.stringify(exception));
+  console.error('Failed to set gesture navigation enabled. Cause: ' + JSON.stringify(exception));
 }
 ```
 
@@ -1061,16 +1095,18 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 try {
-    let promise = window.setGestureNavigationEnabled(true);
-    promise.then(()=> {
-        console.info('Succeeded in setting gesture navigation enabled.');
-    }).catch((err)=>{
-        console.error('Failed to set gesture navigation enabled. Cause: ' + JSON.stringify(err));
-    });
+  let promise = window.setGestureNavigationEnabled(true);
+  promise.then(() => {
+    console.info('Succeeded in setting gesture navigation enabled.');
+  }).catch((err: BusinessError) => {
+    console.error('Failed to set gesture navigation enabled. Cause: ' + JSON.stringify(err));
+  });
 } catch (exception) {
-    console.error('Failed to set gesture navigation enabled. Cause: ' + JSON.stringify(exception));
+  console.error('Failed to set gesture navigation enabled. Cause: ' + JSON.stringify(exception));
 }
 ```
 
@@ -1101,22 +1137,24 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 
 **Example**
 
-```js
+```ts
 import image from '@ohos.multimedia.image';
+import { BusinessError } from '@ohos.base';
 
-let enable = true;
-let color = new ArrayBuffer(0);
-let initializationOptions = {
+let enable: boolean = true;
+let color: ArrayBuffer = new ArrayBuffer(0);
+let initializationOptions: image.InitializationOptions = {
   size: {
     height: 100,
     width: 100
   }
 };
-image.createPixelMap(color, initializationOptions).then((pixelMap) => {
+image.createPixelMap(color, initializationOptions).then((pixelMap: image.PixelMap) => {
   console.info('Succeeded in creating pixelmap.');
   try {
-    window.setWaterMarkImage(pixelMap, enable, (err) => {
-      if (err.code) {
+    window.setWaterMarkImage(pixelMap, enable, (err: BusinessError) => {
+      const errCode: number = err.code;
+      if (errCode) {
         console.error('Failed to show watermark image. Cause: ' + JSON.stringify(err));
         return;
       }
@@ -1125,7 +1163,7 @@ image.createPixelMap(color, initializationOptions).then((pixelMap) => {
   } catch (exception) {
     console.error('Failed to show watermark image. Cause: ' + JSON.stringify(exception));
   }
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error('Failed to create PixelMap. Cause: ' + JSON.stringify(err));
 });
 ```
@@ -1162,30 +1200,31 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 
 **Example**
 
-```js
+```ts
 import image from '@ohos.multimedia.image';
+import { BusinessError } from '@ohos.base';
 
-let enable = true;
-let color = new ArrayBuffer(0);
-let initializationOptions = {
+let enable: boolean = true;
+let color: ArrayBuffer = new ArrayBuffer(0);
+let initializationOptions: image.InitializationOptions = {
   size: {
     height: 100,
     width: 100
   }
 };
-image.createPixelMap(color, initializationOptions).then((pixelMap) => {
+image.createPixelMap(color, initializationOptions).then((pixelMap: image.PixelMap) => {
   console.info('Succeeded in creating pixelmap.');
   try {
     let promise = window.setWaterMarkImage(pixelMap, enable);
     promise.then(() => {
       console.info('Succeeded in showing watermark image.');
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
       console.error('Failed to show watermark image. Cause: ' + JSON.stringify(err));
     });
   } catch (exception) {
     console.error('Failed to show watermark image. Cause: ' + JSON.stringify(exception));
   }
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error('Failed to create PixelMap. Cause: ' + JSON.stringify(err));
 });
 ```
@@ -1214,15 +1253,18 @@ Creates a subwindow. This API uses an asynchronous callback to return the result
 
 **Example**
 
-```js
-let windowClass = null;
-window.create('first', window.WindowType.TYPE_APP,(err,data) => {
-    if(err.code){
-        console.error('Failed to create the subWindow. Cause: ' + JSON.stringify(err));
-        return;
-    }
-    windowClass = data;
-    console.info('Succeeded in creating the subWindow. Data: ' + JSON.stringify(data));
+```ts
+import { BusinessError } from '@ohos.base';
+
+let windowClass: window.Window | null = null;
+window.create('first', window.WindowType.TYPE_APP, (err: BusinessError, data) => {
+  const errCode: number = err.code;
+  if (errCode) {
+    console.error('Failed to create the subWindow. Cause: ' + JSON.stringify(err));
+    return;
+  }
+  windowClass = data;
+  console.info('Succeeded in creating the subWindow. Data: ' + JSON.stringify(data));
 });
 ```
 
@@ -1255,14 +1297,16 @@ Creates a subwindow. This API uses a promise to return the result.
 
 **Example**
 
-```js
-let windowClass = null;
+```ts
+import { BusinessError } from '@ohos.base';
+
+let windowClass: window.Window | null = null;
 let promise = window.create('first', window.WindowType.TYPE_APP);
-promise.then((data)=> {
-    windowClass = data;
-    console.info('Succeeded in creating the subWindow. Data: ' + JSON.stringify(data));
-}).catch((err)=>{
-    console.error('Failed to create the subWindow. Cause: ' + JSON.stringify(err));
+promise.then((data) => {
+  windowClass = data;
+  console.info('Succeeded in creating the subWindow. Data: ' + JSON.stringify(data));
+}).catch((err: BusinessError) => {
+  console.error('Failed to create the subWindow. Cause: ' + JSON.stringify(err));
 });
 ```
 
@@ -1289,16 +1333,19 @@ Creates a system window. This API uses an asynchronous callback to return the re
 
 **Example**
 
-```js
-let windowClass = null;
-window.create(this.context, 'alertWindow', window.WindowType.TYPE_SYSTEM_ALERT, (err, data) => {
-    if (err.code) {
-        console.error('Failed to create the window. Cause: ' + JSON.stringify(err));
-        return;
-    }
-    windowClass = data;
-    console.info('Succeeded in creating the window. Data: ' + JSON.stringify(data));
-    windowClass.resetSize(500, 1000);
+```ts
+import { BusinessError } from '@ohos.base';
+
+let windowClass: window.Window | null = null;
+window.create(this.context, 'alertWindow', window.WindowType.TYPE_SYSTEM_ALERT, (err: BusinessError, data) => {
+  const errCode: number = err.code;
+  if (errCode) {
+    console.error('Failed to create the window. Cause: ' + JSON.stringify(err));
+    return;
+  }
+  windowClass = data;
+  console.info('Succeeded in creating the window. Data: ' + JSON.stringify(data));
+  windowClass.resetSize(500, 1000);
 });
 ```
 
@@ -1330,14 +1377,16 @@ Creates a system window. This API uses a promise to return the result.
 
 **Example**
 
-```js
-let windowClass = null;
+```ts
+import { BusinessError } from '@ohos.base';
+
+let windowClass: window.Window | null = null;
 let promise = window.create(this.context, 'alertWindow', window.WindowType.TYPE_SYSTEM_ALERT);
-promise.then((data)=> {
-    windowClass = data;
-    console.info('Succeeded in creating the window. Data:' + JSON.stringify(data));
-}).catch((err)=>{
-    console.error('Failed to create the Window. Cause:' + JSON.stringify(err));
+promise.then((data) => {
+  windowClass = data;
+  console.info('Succeeded in creating the window. Data:' + JSON.stringify(data));
+}).catch((err: BusinessError) => {
+  console.error('Failed to create the Window. Cause:' + JSON.stringify(err));
 });
 ```
 
@@ -1362,15 +1411,18 @@ Finds a window based on the ID. This API uses an asynchronous callback to return
 
 **Example**
 
-```js
-let windowClass = null;
-window.find('alertWindow', (err, data) => {
-    if (err.code) {
-        console.error('Failed to find the Window. Cause: ' + JSON.stringify(err));
-        return;
-    }
-    windowClass = data;
-    console.info('Succeeded in finding the window. Data: ' + JSON.stringify(data));
+```ts
+import { BusinessError } from '@ohos.base';
+
+let windowClass: window.Window | null = null;
+window.find('alertWindow', (err: BusinessError, data) => {
+  const errCode: number = err.code;
+  if (errCode) {
+    console.error('Failed to find the Window. Cause: ' + JSON.stringify(err));
+    return;
+  }
+  windowClass = data;
+  console.info('Succeeded in finding the window. Data: ' + JSON.stringify(data));
 });
 ```
 
@@ -1400,14 +1452,16 @@ Finds a window based on the ID. This API uses a promise to return the result.
 
 **Example**
 
-```js
-let windowClass = null;
+```ts
+import { BusinessError } from '@ohos.base';
+
+let windowClass: window.Window | null = null;
 let promise = window.find('alertWindow');
-promise.then((data)=> {
-    windowClass = data;
-    console.info('Succeeded in finding the window. Data: ' + JSON.stringify(data));
-}).catch((err)=>{
-    console.error('Failed to find the Window. Cause: ' + JSON.stringify(err));
+promise.then((data) => {
+  windowClass = data;
+  console.info('Succeeded in finding the window. Data: ' + JSON.stringify(data));
+}).catch((err: BusinessError) => {
+  console.error('Failed to find the Window. Cause: ' + JSON.stringify(err));
 });
 ```
 
@@ -1433,15 +1487,18 @@ Obtains the top window of the current application. This API uses an asynchronous
 
 **Example**
 
-```js
-let windowClass = null;
-window.getTopWindow((err, data) => {
-    if (err.code) {
-        console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(err));
-        return;
-    }
-    windowClass = data;
-    console.info('Succeeded in obtaining the top window. Data: ' + JSON.stringify(data));
+```ts
+import { BusinessError } from '@ohos.base';
+
+let windowClass: window.Window | null = null;
+window.getTopWindow((err: BusinessError, data) => {
+  const errCode: number = err.code;
+  if (errCode) {
+    console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(err));
+    return;
+  }
+  windowClass = data;
+  console.info('Succeeded in obtaining the top window. Data: ' + JSON.stringify(data));
 });
 ```
 
@@ -1467,13 +1524,15 @@ Obtains the top window of the current application. This API uses a promise to re
 
 **Example**
 
-```js
-let windowClass = null;
+```ts
+import { BusinessError } from '@ohos.base';
+
+let windowClass: window.Window | null = null;
 let promise = window.getTopWindow();
 promise.then((data)=> {
     windowClass = data;
     console.info('Succeeded in obtaining the top window. Data: ' + JSON.stringify(data));
-}).catch((err)=>{
+}).catch((err: BusinessError)=>{
     console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(err));
 });
 ```
@@ -1499,15 +1558,16 @@ Obtains the top window of the current application. This API uses an asynchronous
 
 **Example**
 
-```js
-let windowClass = null;
-window.getTopWindow(this.context, (err, data) => {
-    if (err.code) {
-        console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(err));
-        return;
-    }
-    windowClass = data;
-    console.info('Succeeded in obtaining the top window. Data: ' + JSON.stringify(data));
+```ts
+import { BusinessError } from '@ohos.base';
+
+let windowClass: window.Window | null = null;
+let promise = window.getTopWindow();
+promise.then((data) => {
+  windowClass = data;
+  console.info('Succeeded in obtaining the top window. Data: ' + JSON.stringify(data));
+}).catch((err: BusinessError) => {
+  console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(err));
 });
 ```
 
@@ -1537,14 +1597,16 @@ Obtains the top window of the current application. This API uses a promise to re
 
 **Example**
 
-```js
-let windowClass = null;
+```ts
+import { BusinessError } from '@ohos.base';
+
+let windowClass: window.Window | null = null;
 let promise = window.getTopWindow(this.context);
-promise.then((data)=> {
- 	windowClass = data;
-    console.info('Succeeded in obtaining the top window. Data: ' + JSON.stringify(data));
-}).catch((err)=>{
-    console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(err));
+promise.then((data) => {
+  windowClass = data;
+  console.info('Succeeded in obtaining the top window. Data: ' + JSON.stringify(data));
+}).catch((err: BusinessError) => {
+  console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(err));
 });
 ```
 
@@ -1580,13 +1642,16 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 
 **Example**
 
-```js
-windowClass.hide((err) => {
-    if (err.code) {
-        console.error('Failed to hide the window. Cause: ' + JSON.stringify(err));
-        return;
-    }
-    console.info('Succeeded in hiding the window.');
+```ts
+import { BusinessError } from '@ohos.base';
+
+windowClass.hide((err: BusinessError) => {
+  const errCode: number = err.code;
+  if (errCode) {
+    console.error('Failed to hide the window. Cause: ' + JSON.stringify(err));
+    return;
+  }
+  console.info('Succeeded in hiding the window.');
 });
 ```
 
@@ -1616,12 +1681,14 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 let promise = windowClass.hide();
-promise.then(()=> {
-    console.info('Succeeded in hiding the window.');
-}).catch((err)=>{
-    console.error('Failed to hide the window. Cause: ' + JSON.stringify(err));
+promise.then(() => {
+  console.info('Succeeded in hiding the window.');
+}).catch((err: BusinessError) => {
+  console.error('Failed to hide the window. Cause: ' + JSON.stringify(err));
 });
 ```
 
@@ -1653,13 +1720,16 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 
 **Example**
 
-```js
-windowClass.hideWithAnimation((err) => {
-    if (err.code) {
-        console.error('Failed to hide the window with animation. Cause: ' + JSON.stringify(err));
-        return;
-    }
-    console.info('Succeeded in hiding the window with animation.');
+```ts
+import { BusinessError } from '@ohos.base';
+
+windowClass.hideWithAnimation((err: BusinessError) => {
+  const errCode: number = err.code;
+  if (errCode) {
+    console.error('Failed to hide the window with animation. Cause: ' + JSON.stringify(err));
+    return;
+  }
+  console.info('Succeeded in hiding the window with animation.');
 });
 ```
 
@@ -1691,12 +1761,14 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 let promise = windowClass.hideWithAnimation();
-promise.then(()=> {
-    console.info('Succeeded in hiding the window with animation.');
-}).catch((err)=>{
-    console.error('Failed to hide the window with animation. Cause: ' + JSON.stringify(err));
+promise.then(() => {
+  console.info('Succeeded in hiding the window with animation.');
+}).catch((err: BusinessError) => {
+  console.error('Failed to hide the window with animation. Cause: ' + JSON.stringify(err));
 });
 ```
 
@@ -1724,13 +1796,16 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 
 **Example**
 
-```js
-windowClass.showWindow((err) => {
-    if (err.code) {
-        console.error('Failed to show the window. Cause: ' + JSON.stringify(err));
-        return;
-    }
-    console.info('Succeeded in showing the window.');
+```ts
+import { BusinessError } from '@ohos.base';
+
+windowClass.showWindow((err: BusinessError) => {
+  const errCode: number = err.code;
+  if (errCode) {
+    console.error('Failed to show the window. Cause: ' + JSON.stringify(err));
+    return;
+  }
+  console.info('Succeeded in showing the window.');
 });
 ```
 
@@ -1758,12 +1833,14 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 let promise = windowClass.showWindow();
-promise.then(()=> {
-    console.info('Succeeded in showing the window.');
-}).catch((err)=>{
-    console.error('Failed to show the window. Cause: ' + JSON.stringify(err));
+promise.then(() => {
+  console.info('Succeeded in showing the window.');
+}).catch((err: BusinessError) => {
+  console.error('Failed to show the window. Cause: ' + JSON.stringify(err));
 });
 ```
 
@@ -1795,13 +1872,16 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 
 **Example**
 
-```js
-windowClass.showWithAnimation((err) => {
-    if (err.code) {
-        console.error('Failed to show the window with animation. Cause: ' + JSON.stringify(err));
-        return;
-    }
-    console.info('Succeeded in showing the window with animation.');
+```ts
+import { BusinessError } from '@ohos.base';
+
+windowClass.showWithAnimation((err: BusinessError) => {
+  const errCode: number = err.code;
+  if (errCode) {
+    console.error('Failed to show the window with animation. Cause: ' + JSON.stringify(err));
+    return;
+  }
+  console.info('Succeeded in showing the window with animation.');
 });
 ```
 
@@ -1833,12 +1913,14 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 let promise = windowClass.showWithAnimation();
-promise.then(()=> {
-    console.info('Succeeded in showing the window with animation.');
-}).catch((err)=>{
-    console.error('Failed to show the window with animation. Cause: ' + JSON.stringify(err));
+promise.then(() => {
+  console.info('Succeeded in showing the window with animation.');
+}).catch((err: BusinessError) => {
+  console.error('Failed to show the window with animation. Cause: ' + JSON.stringify(err));
 });
 ```
 
@@ -1867,13 +1949,16 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 windowClass.destroyWindow((err) => {
-    if (err.code) {
-        console.error('Failed to destroy the window. Cause:' + JSON.stringify(err));
-        return;
-    }
-    console.info('Succeeded in destroying the window.');
+  const errCode: number = err.code;
+  if (errCodee) {
+    console.error('Failed to destroy the window. Cause:' + JSON.stringify(err));
+    return;
+  }
+  console.info('Succeeded in destroying the window.');
 });
 ```
 
@@ -1902,12 +1987,14 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 let promise = windowClass.destroyWindow();
-promise.then(()=> {
-    console.info('Succeeded in destroying the window.');
-}).catch((err)=>{
-    console.error('Failed to destroy the window. Cause: ' + JSON.stringify(err));
+promise.then(() => {
+  console.info('Succeeded in destroying the window.');
+}).catch((err: BusinessError) => {
+  console.error('Failed to destroy the window. Cause: ' + JSON.stringify(err));
 });
 ```
 
@@ -1940,17 +2027,20 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 try {
-    windowClass.moveWindowTo(300, 300, (err)=>{
-        if (err.code) {
-            console.error('Failed to move the window. Cause:' + JSON.stringify(err));
-            return;
-        }
-        console.info('Succeeded in moving the window.');
-    });
+  windowClass.moveWindowTo(300, 300, (err: BusinessError) => {
+    const errCode: number = err.code;
+    if (errCode) {
+      console.error('Failed to move the window. Cause:' + JSON.stringify(err));
+      return;
+    }
+    console.info('Succeeded in moving the window.');
+  });
 } catch (exception) {
-    console.error('Failed to move the window. Cause:' + JSON.stringify(exception));
+  console.error('Failed to move the window. Cause:' + JSON.stringify(exception));
 }
 ```
 
@@ -1988,16 +2078,18 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 try {
-    let promise = windowClass.moveWindowTo(300, 300);
-    promise.then(()=> {
-        console.info('Succeeded in moving the window.');
-    }).catch((err)=>{
-        console.error('Failed to move the window. Cause: ' + JSON.stringify(err));
-    });
+  let promise = windowClass.moveWindowTo(300, 300);
+  promise.then(() => {
+    console.info('Succeeded in moving the window.');
+  }).catch((err: BusinessError) => {
+    console.error('Failed to move the window. Cause: ' + JSON.stringify(err));
+  });
 } catch (exception) {
-    console.error('Failed to move the window. Cause:' + JSON.stringify(exception));
+  console.error('Failed to move the window. Cause:' + JSON.stringify(exception));
 }
 ```
 
@@ -2036,17 +2128,20 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 try {
-    windowClass.resize(500, 1000, (err) => {
-        if (err.code) {
-            console.error('Failed to change the window size. Cause:' + JSON.stringify(err));
-            return;
-        }
-        console.info('Succeeded in changing the window size.');
-    });
+  windowClass.resize(500, 1000, (err: BusinessError) => {
+    const errCode: number = err.code;
+    if (errCode) {
+      console.error('Failed to change the window size. Cause:' + JSON.stringify(err));
+      return;
+    }
+    console.info('Succeeded in changing the window size.');
+  });
 } catch (exception) {
-    console.error('Failed to change the window size. Cause:' + JSON.stringify(exception));
+  console.error('Failed to change the window size. Cause:' + JSON.stringify(exception));
 }
 ```
 
@@ -2090,16 +2185,18 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 try {
-    let promise = windowClass.resize(500, 1000);
-    promise.then(()=> {
-        console.info('Succeeded in changing the window size.');
-    }).catch((err)=>{
-        console.error('Failed to change the window size. Cause: ' + JSON.stringify(err));
-    });
+  let promise = windowClass.resize(500, 1000);
+  promise.then(() => {
+    console.info('Succeeded in changing the window size.');
+  }).catch((err: BusinessError) => {
+    console.error('Failed to change the window size. Cause: ' + JSON.stringify(err));
+  });
 } catch (exception) {
-    console.error('Failed to change the window size. Cause: ' + JSON.stringify(exception));
+  console.error('Failed to change the window size. Cause: ' + JSON.stringify(exception));
 }
 ```
 
@@ -2131,18 +2228,21 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 let mode = window.WindowMode.FULLSCREEN;
 try {
-    windowClass.setWindowMode(mode, (err) => {
-    if (err.code) {
-        console.error('Failed to set the window mode. Cause: ' + JSON.stringify(err));
-        return;
+  windowClass.setWindowMode(mode, (err: BusinessError) => {
+    const errCode: number = err.code;
+    if (errCode) {
+      console.error('Failed to set the window mode. Cause: ' + JSON.stringify(err));
+      return;
     }
     console.info('Succeeded in setting the window mode.');
-    });
+  });
 } catch (exception) {
-    console.error('Failed to set the window mode. Cause: ' + JSON.stringify(exception));
+  console.error('Failed to set the window mode. Cause: ' + JSON.stringify(exception));
 }
 ```
 
@@ -2179,17 +2279,19 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 let mode = window.WindowMode.FULLSCREEN;
 try {
-    let promise = windowClass.setWindowMode(mode);
-    promise.then(()=> {
-        console.info('Succeeded in setting the window mode.');
-    }).catch((err)=>{
-        console.error('Failed to set the window mode. Cause: ' + JSON.stringify(err));
-    });
+  let promise = windowClass.setWindowMode(mode);
+  promise.then(() => {
+    console.info('Succeeded in setting the window mode.');
+  }).catch((err: BusinessError) => {
+    console.error('Failed to set the window mode. Cause: ' + JSON.stringify(err));
+  });
 } catch (exception) {
-    console.error('Failed to set the window mode. Cause: ' + JSON.stringify(exception));
+  console.error('Failed to set the window mode. Cause: ' + JSON.stringify(exception));
 }
 ```
 
@@ -2217,11 +2319,11 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 
 **Example**
 
-```js
+```ts
 try {
-    let properties = windowClass.getWindowProperties();
+  let properties = windowClass.getWindowProperties();
 } catch (exception) {
-    console.error('Failed to obtain the window properties. Cause: ' + JSON.stringify(exception));
+  console.error('Failed to obtain the window properties. Cause: ' + JSON.stringify(exception));
 }
 ```
 
@@ -2255,12 +2357,12 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 
 **Example**
 
-```js
+```ts
 let type = window.AvoidAreaType.TYPE_SYSTEM;
 try {
-    let avoidArea = windowClass.getWindowAvoidArea(type);
+  let avoidArea = windowClass.getWindowAvoidArea(type);
 } catch (exception) {
-    console.error('Failed to obtain the area. Cause:' + JSON.stringify(exception));
+  console.error('Failed to obtain the area. Cause:' + JSON.stringify(exception));
 }
 ```
 
@@ -2294,18 +2396,21 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 
 **Example**
 
-```js
-let isLayoutFullScreen= true;
+```ts
+import { BusinessError } from '@ohos.base';
+
+let isLayoutFullScreen = true;
 try {
-    windowClass.setWindowLayoutFullScreen(isLayoutFullScreen, (err) => {
-        if (err.code) {
-            console.error('Failed to set the window layout to full-screen mode. Cause:' + JSON.stringify(err));
-            return;
-        }
-        console.info('Succeeded in setting the window layout to full-screen mode.');
-    });
+  windowClass.setWindowLayoutFullScreen(isLayoutFullScreen, (err: BusinessError) => {
+    const errCode: number = err.code;
+    if (errCode) {
+      console.error('Failed to set the window layout to full-screen mode. Cause:' + JSON.stringify(err));
+      return;
+    }
+    console.info('Succeeded in setting the window layout to full-screen mode.');
+  });
 } catch (exception) {
-    console.error('Failed to set the window layout to full-screen mode. Cause:' + JSON.stringify(exception));
+  console.error('Failed to set the window layout to full-screen mode. Cause:' + JSON.stringify(exception));
 }
 ```
 
@@ -2344,17 +2449,19 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 let isLayoutFullScreen = true;
 try {
-    let promise = windowClass.setWindowLayoutFullScreen(isLayoutFullScreen);
-    promise.then(()=> {
-        console.info('Succeeded in setting the window layout to full-screen mode.');
-    }).catch((err)=>{
-        console.error('Failed to set the window layout to full-screen mode. Cause:' + JSON.stringify(err));
-    });
+  let promise = windowClass.setWindowLayoutFullScreen(isLayoutFullScreen);
+  promise.then(() => {
+    console.info('Succeeded in setting the window layout to full-screen mode.');
+  }).catch((err: BusinessError) => {
+    console.error('Failed to set the window layout to full-screen mode. Cause:' + JSON.stringify(err));
+  });
 } catch (exception) {
-    console.error('Failed to set the window layout to full-screen mode. Cause:' + JSON.stringify(exception));
+  console.error('Failed to set the window layout to full-screen mode. Cause:' + JSON.stringify(exception));
 }
 ```
 
@@ -2384,19 +2491,22 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 
 **Example**
 
-```js
+```ts
 // In this example, the status bar and navigation bar are not displayed.
-let names = [];
+import { BusinessError } from '@ohos.base';
+
+let names: Array<'status' | 'navigation'> = [];
 try {
-    windowClass.setWindowSystemBarEnable(names, (err) => {
-        if (err.code) {
-            console.error('Failed to set the system bar to be invisible. Cause:' + JSON.stringify(err));
-            return;
-        }
-        console.info('Succeeded in setting the system bar to be invisible.');
-    });
+  windowClass.setWindowSystemBarEnable(names, (err: BusinessError) => {
+    const errCode: number = err.code;
+    if (errCode) {
+      console.error('Failed to set the system bar to be invisible. Cause:' + JSON.stringify(err));
+      return;
+    }
+    console.info('Succeeded in setting the system bar to be invisible.');
+  });
 } catch (exception) {
-    console.error('Failed to set the system bar to be invisible. Cause:' + JSON.stringify(exception));
+  console.error('Failed to set the system bar to be invisible. Cause:' + JSON.stringify(exception));
 }
 ```
 
@@ -2431,18 +2541,20 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 
 **Example**
 
-```js
+```ts
 // In this example, the status bar and navigation bar are not displayed.
-let names = [];
+import { BusinessError } from '@ohos.base';
+
+let names: Array<'status' | 'navigation'> = [];
 try {
-    let promise = windowClass.setWindowSystemBarEnable(names);
-    promise.then(()=> {
-        console.info('Succeeded in setting the system bar to be invisible.');
-    }).catch((err)=>{
-        console.error('Failed to set the system bar to be invisible. Cause:' + JSON.stringify(err));
-    });
+  let promise = windowClass.setWindowSystemBarEnable(names);
+  promise.then(() => {
+    console.info('Succeeded in setting the system bar to be invisible.');
+  }).catch((err: BusinessError) => {
+    console.error('Failed to set the system bar to be invisible. Cause:' + JSON.stringify(err));
+  });
 } catch (exception) {
-    console.error('Failed to set the system bar to be invisible. Cause:' + JSON.stringify(exception));
+  console.error('Failed to set the system bar to be invisible. Cause:' + JSON.stringify(exception));
 }
 ```
 
@@ -2472,24 +2584,27 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 
 **Example**
 
-```js
-let SystemBarProperties = {
-    statusBarColor: '#ff00ff',
-    navigationBarColor: '#00ff00',
-    // The following properties are supported since API version 8.
-    statusBarContentColor:'#ffffff',
-    navigationBarContentColor:'#00ffff'
+```ts
+import { BusinessError } from '@ohos.base';
+
+let SystemBarProperties: window.SystemBarProperties = {
+  statusBarColor: '#ff00ff',
+  navigationBarColor: '#00ff00',
+  // The following properties are supported since API version 8.
+  statusBarContentColor: '#ffffff',
+  navigationBarContentColor: '#00ffff'
 };
 try {
-    windowClass.setWindowSystemBarProperties(SystemBarProperties, (err) => {
-        if (err.code) {
-            console.error('Failed to set the system bar properties. Cause: ' + JSON.stringify(err));
-            return;
-        }
-        console.info('Succeeded in setting the system bar properties.');
-    });
+  windowClass.setWindowSystemBarProperties(SystemBarProperties, (err: BusinessError) => {
+    const errCode: number = err.code;
+    if (errCode) {
+      console.error('Failed to set the system bar properties. Cause: ' + JSON.stringify(err));
+      return;
+    }
+    console.info('Succeeded in setting the system bar properties.');
+  });
 } catch (exception) {
-    console.error('Failed to set the system bar properties. Cause: ' + JSON.stringify(exception));
+  console.error('Failed to set the system bar properties. Cause: ' + JSON.stringify(exception));
 }
 ```
 
@@ -2524,23 +2639,25 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 
 **Example**
 
-```js
-let SystemBarProperties = {
-    statusBarColor: '#ff00ff',
-    navigationBarColor: '#00ff00',
-    // The following properties are supported since API version 8.
-    statusBarContentColor:'#ffffff',
-    navigationBarContentColor:'#00ffff'
+```ts
+import { BusinessError } from '@ohos.base';
+
+let SystemBarProperties: window.SystemBarProperties = {
+  statusBarColor: '#ff00ff',
+  navigationBarColor: '#00ff00',
+  // The following properties are supported since API version 8.
+  statusBarContentColor: '#ffffff',
+  navigationBarContentColor: '#00ffff'
 };
 try {
-    let promise = windowClass.setWindowSystemBarProperties(SystemBarProperties);
-    promise.then(()=> {
-        console.info('Succeeded in setting the system bar properties.');
-    }).catch((err)=>{
-        console.error('Failed to set the system bar properties. Cause: ' + JSON.stringify(err));
-    });
+  let promise = windowClass.setWindowSystemBarProperties(SystemBarProperties);
+  promise.then(() => {
+    console.info('Succeeded in setting the system bar properties.');
+  }).catch((err: BusinessError) => {
+    console.error('Failed to set the system bar properties. Cause: ' + JSON.stringify(err));
+  });
 } catch (exception) {
-    console.error('Failed to set the system bar properties. Cause: ' + JSON.stringify(exception));
+  console.error('Failed to set the system bar properties. Cause: ' + JSON.stringify(exception));
 }
 ```
 
@@ -2569,18 +2686,21 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 let orientation = window.Orientation.AUTO_ROTATION;
 try {
-    windowClass.setPreferredOrientation(orientation, (err) => {
-        if (err.code) {
-            console.error('Failed to set window orientation. Cause: ' + JSON.stringify(err));
-            return;
-        }
-        console.info('Succeeded in setting window orientation.');
-    });
+  windowClass.setPreferredOrientation(orientation, (err: BusinessError) => {
+    const errCode: number = err.code;
+    if (errCode) {
+      console.error('Failed to set window orientation. Cause: ' + JSON.stringify(err));
+      return;
+    }
+    console.info('Succeeded in setting window orientation.');
+  });
 } catch (exception) {
-    console.error('Failed to set window orientation. Cause: ' + JSON.stringify(exception));
+  console.error('Failed to set window orientation. Cause: ' + JSON.stringify(exception));
 }
 ```
 
@@ -2614,17 +2734,19 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 let orientation = window.Orientation.AUTO_ROTATION;
 try {
-    let promise = windowClass.setPreferredOrientation(orientation);
-    promise.then(()=> {
-        console.info('Succeeded in setting the window orientation.');
-    }).catch((err)=>{
-        console.error('Failed to set the window orientation. Cause: ' + JSON.stringify(err));
-    });
+  let promise = windowClass.setPreferredOrientation(orientation);
+  promise.then(() => {
+    console.info('Succeeded in setting the window orientation.');
+  }).catch((err: BusinessError) => {
+    console.error('Failed to set the window orientation. Cause: ' + JSON.stringify(err));
+  });
 } catch (exception) {
-    console.error('Failed to set window orientation. Cause: ' + JSON.stringify(exception));
+  console.error('Failed to set window orientation. Cause: ' + JSON.stringify(exception));
 }
 ```
 
@@ -2656,27 +2778,33 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import window from '@ohos.window';
+import { BusinessError } from '@ohos.base';
+import { UIContext } from '@ohos.arkui.UIContext';
 
 export default class EntryAbility extends UIAbility {
-  onWindowStageCreate(windowStage) {
+  onWindowStageCreate(windowStage: window.WindowStage) {
     // Load content for the main window.
-    windowStage.loadContent("pages/page2", (err) => {
-      if (err.code) {
+    windowStage.loadContent("pages/page2", (err: BusinessError) => {
+      let errCode: number = err.code;
+      if (errCode) {
         console.error('Failed to load the content. Cause:' + JSON.stringify(err));
         return;
       }
       console.info('Succeeded in loading the content.');
       // Obtain the main window.
-      let windowClass = null;
-      windowStage.getMainWindow((err, data) => {
-        if (err.code) {
+      let windowClass: window.Window | null = null;
+      windowStage.getMainWindow((err: BusinessError, data) => {
+        let errCode: number = err.code;
+        if (errCode) {
           console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(err));
           return;
         }
         windowClass = data;
         console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
         // Obtain a UIContext instance.
-        globalThis.uiContext = windowClass.getUIContext();
+        let uiContext: UIContext | null = null;
+        uiContext = windowClass.getUIContext();
       })
     });
   }
@@ -2709,17 +2837,20 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 try {
-    windowClass.setUIContent('pages/page2/page2', (err) => {
-    if (err.code) {
-            console.error('Failed to load the content. Cause:' + JSON.stringify(err));
-            return;
+  windowClass.setUIContent('pages/page2/page2', (err: BusinessError) => {
+    const errCode: number = err.code;
+    if (errCode) {
+      console.error('Failed to load the content. Cause:' + JSON.stringify(err));
+      return;
     }
     console.info('Succeeded in loading the content.');
-    });
+  });
 } catch (exception) {
-    console.error('Failed to load the content. Cause:' + JSON.stringify(exception));
+  console.error('Failed to load the content. Cause:' + JSON.stringify(exception));
 }
 ```
 
@@ -2754,16 +2885,18 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 try {
-    let promise = windowClass.setUIContent('pages/page2/page2');
-    promise.then(()=> {
-        console.info('Succeeded in loading the content.');
-    }).catch((err)=>{
-        console.error('Failed to load the content. Cause: ' + JSON.stringify(err));
-    });
+  let promise = windowClass.setUIContent('pages/page2/page2');
+  promise.then(() => {
+    console.info('Succeeded in loading the content.');
+  }).catch((err: BusinessError) => {
+    console.error('Failed to load the content. Cause: ' + JSON.stringify(err));
+  });
 } catch (exception) {
-    console.error('Failed to load the content. Cause: ' + JSON.stringify(exception));
+  console.error('Failed to load the content. Cause: ' + JSON.stringify(exception));
 }
 ```
 
@@ -2797,20 +2930,37 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-let storage = new LocalStorage();
-storage.setOrCreate('storageSimpleProp',121);
-console.log('onWindowStageCreate');
-try {
-    windowClass.loadContent('pages/page2', storage, (err) => {
-        if (err.code) {
+import UIAbility from '@ohos.app.ability.UIAbility';
+import window from '@ohos.window';
+import { BusinessError } from '@ohos.base';
+
+export default class EntryAbility extends UIAbility {
+  // ...
+
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    console.log('onWindowStageCreate');
+    let windowClass: window.Window | null = null;
+    let storage: LocalStorage = new LocalStorage();
+    storage.setOrCreate('storageSimpleProp', 121);
+    try {
+      if (!windowClass) {
+        console.info('Failed to load the content. Cause: windowClass is null');
+      }
+      else {
+        (windowClass as window.Window).loadContent('pages/page2', storage, (err: BusinessError) => {
+          const errCode: number = err.code;
+          if (errCode) {
             console.error('Failed to load the content. Cause:' + JSON.stringify(err));
             return;
-        }
-        console.info('Succeeded in loading the content.');
-    });
-} catch (exception) {
-    console.error('Failed to load the content. Cause:' + JSON.stringify(exception));
-}
+          }
+          console.info('Succeeded in loading the content.');
+        });
+      }
+    } catch (exception) {
+      console.error('Failed to load the content. Cause:' + JSON.stringify(exception));
+    }
+  }
+};
 ```
 
 ### loadContent<sup>9+</sup>
@@ -2848,19 +2998,35 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-let storage = new LocalStorage();
-storage.setOrCreate('storageSimpleProp',121);
-console.log('onWindowStageCreate');
-try {
-    let promise = windowClass.loadContent('pages/page2', storage);
-    promise.then(() => {
-        console.info('Succeeded in loading the content.');
-    }).catch((err) => {
-        console.error('Failed to load the content. Cause:' + JSON.stringify(err));
-    });
-} catch (exception) {
-    console.error('Failed to load the content. Cause:' + JSON.stringify(exception));
-}
+import UIAbility from '@ohos.app.ability.UIAbility';
+import window from '@ohos.window';
+import { BusinessError } from '@ohos.base';
+
+export default class EntryAbility extends UIAbility {
+  // ...
+
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    console.log('onWindowStageCreate');
+    let windowClass: window.Window | null = null;
+    let storage: LocalStorage = new LocalStorage();
+    storage.setOrCreate('storageSimpleProp', 121);
+    try {
+      if (!windowClass) {
+        console.info('Failed to load the content. Cause: windowClass is null');
+      }
+      else {
+        let promise = (windowClass as window.Window).loadContent('pages/page2', storage);
+        promise.then(() => {
+          console.info('Succeeded in loading the content.');
+        }).catch((err: BusinessError) => {
+          console.error('Failed to load the content. Cause:' + JSON.stringify(err));
+        });
+      }
+    } catch (exception) {
+      console.error('Failed to load the content. Cause:' + JSON.stringify(exception));
+    }
+  }
+};
 ```
 
 ### isWindowShowing<sup>9+</sup>
@@ -2887,12 +3053,12 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 
 **Example**
 
-```js
+```ts
 try {
-    let data = windowClass.isWindowShowing();
-    console.info('Succeeded in checking whether the window is showing. Data: ' + JSON.stringify(data));
+  let data = windowClass.isWindowShowing();
+  console.info('Succeeded in checking whether the window is showing. Data: ' + JSON.stringify(data));
 } catch (exception) {
-    console.error('Failed to check whether the window is showing. Cause: ' + JSON.stringify(exception));
+  console.error('Failed to check whether the window is showing. Cause: ' + JSON.stringify(exception));
 }
 ```
 
@@ -2913,13 +3079,13 @@ Subscribes to the window size change event.
 
 **Example**
 
-```js
+```ts
 try {
-    windowClass.on('windowSizeChange', (data) => {
-        console.info('Succeeded in enabling the listener for window size changes. Data: ' + JSON.stringify(data));
-    });
+  windowClass.on('windowSizeChange', (data) => {
+    console.info('Succeeded in enabling the listener for window size changes. Data: ' + JSON.stringify(data));
+  });
 } catch (exception) {
-    console.error('Failed to enable the listener for window size changes. Cause: ' + JSON.stringify(exception));
+  console.error('Failed to enable the listener for window size changes. Cause: ' + JSON.stringify(exception));
 }
 ```
 
@@ -2940,11 +3106,11 @@ Unsubscribes from the window size change event.
 
 **Example**
 
-```js
+```ts
 try {
-    windowClass.off('windowSizeChange');
+  windowClass.off('windowSizeChange');
 } catch (exception) {
-    console.error('Failed to disable the listener for window size changes. Cause: ' + JSON.stringify(exception));
+  console.error('Failed to disable the listener for window size changes. Cause: ' + JSON.stringify(exception));
 }
 ```
 
@@ -2965,14 +3131,14 @@ Subscribes to the event indicating changes to the area where the window cannot b
 
 **Example**
 
-```js
+```ts
 try {
-    windowClass.on('avoidAreaChange', (data) => {
-        console.info('Succeeded in enabling the listener for system avoid area changes. type:' +
-            JSON.stringify(data.type) + ', area: ' + JSON.stringify(data.area));
-    });
+  windowClass.on('avoidAreaChange', (data) => {
+    console.info('Succeeded in enabling the listener for system avoid area changes. type:' +
+    JSON.stringify(data.type) + ', area: ' + JSON.stringify(data.area));
+  });
 } catch (exception) {
-    console.error('Failed to enable the listener for system avoid area changes. Cause: ' + JSON.stringify(exception));
+  console.error('Failed to enable the listener for system avoid area changes. Cause: ' + JSON.stringify(exception));
 }
 ```
 
@@ -2993,11 +3159,11 @@ Unsubscribes from the event indicating changes to the area where the window cann
 
 **Example**
 
-```js
+```ts
 try {
-    windowClass.off('avoidAreaChange');
+  windowClass.off('avoidAreaChange');
 } catch (exception) {
-    console.error('Failed to disable the listener for system avoid area changes. Cause: ' + JSON.stringify(exception));
+  console.error('Failed to disable the listener for system avoid area changes. Cause: ' + JSON.stringify(exception));
 }
 ```
 
@@ -3018,13 +3184,13 @@ Subscribes to the event indicating soft keyboard height changes in the input met
 
 **Example**
 
-```js
+```ts
 try {
-    windowClass.on('keyboardHeightChange', (data) => {
-        console.info('Succeeded in enabling the listener for keyboard height changes. Data: ' + JSON.stringify(data));
-    });
+  windowClass.on('keyboardHeightChange', (data) => {
+    console.info('Succeeded in enabling the listener for keyboard height changes. Data: ' + JSON.stringify(data));
+  });
 } catch (exception) {
-    console.error('Failed to enable the listener for keyboard height changes. Cause: ' + JSON.stringify(exception));
+  console.error('Failed to enable the listener for keyboard height changes. Cause: ' + JSON.stringify(exception));
 }
 ```
 
@@ -3045,11 +3211,11 @@ Unsubscribes from the event indicating soft keyboard height changes in the input
 
 **Example**
 
-```js
+```ts
 try {
-    windowClass.off('keyboardHeightChange');
+  windowClass.off('keyboardHeightChange');
 } catch (exception) {
-    console.error('Failed to disable the listener for keyboard height changes. Cause: ' + JSON.stringify(exception));
+  console.error('Failed to disable the listener for keyboard height changes. Cause: ' + JSON.stringify(exception));
 }
 ```
 
@@ -3072,13 +3238,13 @@ Subscribes to the click event outside this window.
 
 **Example**
 
-```js
+```ts
 try {
-    windowClass.on('touchOutside', () => {
-        console.info('touch outside');
-    });
+  windowClass.on('touchOutside', () => {
+    console.info('touch outside');
+  });
 } catch (exception) {
-    console.error('Failed to register callback. Cause: ' + JSON.stringify(exception));
+  console.error('Failed to register callback. Cause: ' + JSON.stringify(exception));
 }
 ```
 
@@ -3101,11 +3267,11 @@ Unsubscribes from the click event outside this window.
 
 **Example**
 
-```js
+```ts
 try {
-    windowClass.off('touchOutside');
+  windowClass.off('touchOutside');
 } catch (exception) {
-    console.error('Failed to unregister callback. Cause: ' + JSON.stringify(exception));
+  console.error('Failed to unregister callback. Cause: ' + JSON.stringify(exception));
 }
 ```
 
@@ -3126,13 +3292,13 @@ Subscribes to the screenshot event.
 
 **Example**
 
-```js
+```ts
 try {
-    windowClass.on('screenshot', () => {
-        console.info('screenshot happened');
-    });
+  windowClass.on('screenshot', () => {
+    console.info('screenshot happened');
+  });
 } catch (exception) {
-    console.error('Failed to register callback. Cause: ' + JSON.stringify(exception));
+  console.error('Failed to register callback. Cause: ' + JSON.stringify(exception));
 }
 ```
 
@@ -3153,21 +3319,21 @@ Unsubscribes from the screenshot event.
 
 **Example**
 
-```js
+```ts
 let callback = () => {
-    console.info('screenshot happened');
+  console.info('screenshot happened');
 };
 try {
-    windowClass.on('screenshot', callback);
+  windowClass.on('screenshot', callback);
 } catch (exception) {
-    console.error('Failed to register callback. Cause: ' + JSON.stringify(exception));
+  console.error('Failed to register callback. Cause: ' + JSON.stringify(exception));
 }
 try {
-    windowClass.off('screenshot', callback);
-    // If multiple callbacks are enabled in on(), they will all be disabled.
-    windowClass.off('screenshot');
+  windowClass.off('screenshot', callback);
+  // If multiple callbacks are enabled in on(), they will all be disabled.
+  windowClass.off('screenshot');
 } catch (exception) {
-    console.error('Failed to unregister callback. Cause: ' + JSON.stringify(exception));
+  console.error('Failed to unregister callback. Cause: ' + JSON.stringify(exception));
 }
 ```
 
@@ -3188,13 +3354,13 @@ Subscribes to the click event of the target window in the modal window mode.
 
 **Example**
 
-```js
+```ts
 try {
-    windowClass.on('dialogTargetTouch', () => {
-        console.info('touch dialog target');
-    });
+  windowClass.on('dialogTargetTouch', () => {
+    console.info('touch dialog target');
+  });
 } catch (exception) {
-    console.error('Failed to register callback. Cause: ' + JSON.stringify(exception));
+  console.error('Failed to register callback. Cause: ' + JSON.stringify(exception));
 }
 ```
 
@@ -3215,11 +3381,11 @@ Unsubscribes from the click event of the target window in the modal window mode.
 
 **Example**
 
-```js
+```ts
 try {
-    windowClass.off('dialogTargetTouch');
+  windowClass.off('dialogTargetTouch');
 } catch (exception) {
-    console.error('Failed to unregister callback. Cause: ' + JSON.stringify(exception));
+  console.error('Failed to unregister callback. Cause: ' + JSON.stringify(exception));
 }
 ```
 
@@ -3240,13 +3406,13 @@ Subscribes to the window lifecycle change event.
 
 **Example**
 
-```js
+```ts
 try {
-    windowClass.on('windowEvent', (data) => {
-        console.info('Window event happened. Event:' + JSON.stringify(data));
-    });
+  windowClass.on('windowEvent', (data) => {
+    console.info('Window event happened. Event:' + JSON.stringify(data));
+  });
 } catch (exception) {
-    console.error('Failed to register callback. Cause: ' + JSON.stringify(exception));
+  console.error('Failed to register callback. Cause: ' + JSON.stringify(exception));
 }
 ```
 
@@ -3267,11 +3433,11 @@ Unsubscribes from the window lifecycle change event.
 
 **Example**
 
-```js
+```ts
 try {
-    windowClass.off('windowEvent');
+  windowClass.off('windowEvent');
 } catch (exception) {
-    console.error('Failed to unregister callback. Cause: ' + JSON.stringify(exception));
+  console.error('Failed to unregister callback. Cause: ' + JSON.stringify(exception));
 }
 ```
 
@@ -3304,51 +3470,58 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 
 **Example**
 
-```js
+```ts
 import rpc from '@ohos.rpc';
+import { BusinessError } from '@ohos.base';
 
 class MyDeathRecipient {
-    onRemoteDied() {
-        console.log('server died');
-    }
-}
-class TestRemoteObject extends rpc.RemoteObject {
-    constructor(descriptor) {
-        super(descriptor);
-    }
-    addDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
-        return true;
-    }
-    removeDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
-        return true;
-    }
-    isObjectDead(): boolean {
-        return false;
-    }
+  onRemoteDied() {
+    console.log('server died');
+  }
 }
 
-let token = new TestRemoteObject('testObject');
-let windowClass = null;
-let config = {name: "dialogWindow", windowType: window.WindowType.TYPE_DIALOG, ctx: this.context};
+class TestRemoteObject extends rpc.RemoteObject {
+  constructor(descriptor: string) {
+    super(descriptor);
+  }
+
+  addDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
+    return true;
+  }
+
+  removeDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
+    return true;
+  }
+
+  isObjectDead(): boolean {
+    return false;
+  }
+}
+
+let token: TestRemoteObject = new TestRemoteObject('testObject');
+let windowClass: window.Window | null = null;
+let config: window.Configuration = { name: "dialogWindow", windowType: window.WindowType.TYPE_DIALOG, ctx: this.context };
 try {
-    window.createWindow(config, (err, data) => {
-        if (err.code) {
-            console.error('Failed to create the window. Cause: ' + JSON.stringify(err));
-            return;
-        }
-        windowClass = data;
-    });
-    windowClass.bindDialogTarget(token, () => {
-        console.info('Dialog Window Need Destroy.');
-    }, (err) => {
-        if (err.code) {
-            console.error('Failed to bind dialog target. Cause:' + JSON.stringify(err));
-            return;
-        }
-        console.info('Succeeded in binding dialog target.');
-    });
+  window.createWindow(config, (err: BusinessError, data) => {
+    let errCode: number = err.code;
+    if (errCode) {
+      console.error('Failed to create the window. Cause: ' + JSON.stringify(err));
+      return;
+    }
+    windowClass = data;
+  });
+  windowClass.bindDialogTarget(token, () => {
+    console.info('Dialog Window Need Destroy.');
+  }, (err: BusinessError) => {
+    let errCode: number = err.code;
+    if (errCode) {
+      console.error('Failed to bind dialog target. Cause:' + JSON.stringify(err));
+      return;
+    }
+    console.info('Succeeded in binding dialog target.');
+  });
 } catch (exception) {
-    console.error('Failed to bind dialog target. Cause:' + JSON.stringify(exception));
+  console.error('Failed to bind dialog target. Cause:' + JSON.stringify(exception));
 }
 ```
 
@@ -3386,50 +3559,60 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 
 **Example**
 
-```js
+```ts
 import rpc from '@ohos.rpc';
+import { BusinessError } from '@ohos.base';
 
 class MyDeathRecipient {
-    onRemoteDied() {
-        console.log('server died');
-    }
-}
-class TestRemoteObject extends rpc.RemoteObject {
-    constructor(descriptor) {
-        super(descriptor);
-    }
-    addDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
-        return true;
-    }
-    removeDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
-        return true;
-    }
-    isObjectDead(): boolean {
-        return false;
-    }
+  onRemoteDied() {
+    console.log('server died');
+  }
 }
 
-let token = new TestRemoteObject('testObject');
-let windowClass = null;
-let config = {name: "dialogWindow", windowType: window.WindowType.TYPE_DIALOG, ctx: this.context};
+class TestRemoteObject extends rpc.RemoteObject {
+  constructor(descriptor: string) {
+    super(descriptor);
+  }
+
+  addDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
+    return true;
+  }
+
+  removeDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
+    return true;
+  }
+
+  isObjectDead(): boolean {
+    return false;
+  }
+}
+
+let token: TestRemoteObject = new TestRemoteObject('testObject');
+let windowClass: window.Window | null = null;
+let config: window.Configuration = {
+  name: "dialogWindow",
+  windowType: window.WindowType.TYPE_DIALOG,
+  ctx: this.context
+};
 try {
-    window.createWindow(config, (err, data) => {
-        if (err.code) {
-            console.error('Failed to create the window. Cause: ' + JSON.stringify(err));
-            return;
-        }
-        windowClass = data;
-    });
-    let promise = windowClass.bindDialogTarget(token, () => {
-        console.info('Dialog Window Need Destroy.');
-    });
-    promise.then(()=> {
-        console.info('Succeeded in binding dialog target.');
-    }).catch((err)=>{
-            console.error('Failed to bind dialog target. Cause:' + JSON.stringify(err));
-    });
+  window.createWindow(config, (err: BusinessError, data) => {
+    const errCode: number = err.code;
+    if (errCode) {
+      console.error('Failed to create the window. Cause: ' + JSON.stringify(err));
+      return;
+    }
+    windowClass = data;
+  });
+  let promise = windowClass.bindDialogTarget(token, () => {
+    console.info('Dialog Window Need Destroy.');
+  });
+  promise.then(() => {
+    console.info('Succeeded in binding dialog target.');
+  }).catch((err: BusinessError) => {
+    console.error('Failed to bind dialog target. Cause:' + JSON.stringify(err));
+  });
 } catch (exception) {
-    console.error('Failed to bind dialog target. Cause:' + JSON.stringify(exception));
+  console.error('Failed to bind dialog target. Cause:' + JSON.stringify(exception));
 }
 ```
 
@@ -3462,38 +3645,43 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 
 **Example**
 
-```js
+```ts
 import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
 import dialogRequest from '@ohos.app.ability.dialogRequest';
-import window from '@ohos.window';
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
 
 export default class ServiceExtAbility extends ServiceExtensionAbility {
-    onRequest(want, startId) {
-        console.info('onRequest');
-        let windowClass = null;
-        let config = {name: "dialogWindow", windowType: window.WindowType.TYPE_DIALOG, ctx: this.context};
-        try {
-            window.createWindow(config, (err, data) => {
-                if (err.code) {
-                    console.error('Failed to create the window. Cause: ' + JSON.stringify(err));
-                    return;
-                }
-                windowClass = data;
-            });
-            let requestInfo = dialogRequest.getRequestInfo(want)
-            windowClass.bindDialogTarget(requestInfo, () => {
-                console.info('Dialog Window Need Destroy.');
-            }, (err) => {
-                if (err.code) {
-                    console.error('Failed to bind dialog target. Cause:' + JSON.stringify(err));
-                    return;
-                }
-                console.info('Succeeded in binding dialog target.');
-            });
-        } catch(err) {
-            console.error('Failed to bind dialog target. Cause:' + JSON.stringify(err))
+  onRequest(want: Want, startId: number) {
+    console.info('onRequest');
+    let windowClass: window.Window | null = null;
+    let config: window.Configuration = {
+      name: "dialogWindow", windowType: window.WindowType.TYPE_DIALOG, ctx: this.context
+    };
+    try {
+      window.createWindow(config, (err: BusinessError, data) => {
+        let errCode: number = err.code;
+        if (errCode) {
+          console.error('Failed to create the window. Cause: ' + JSON.stringify(err));
+          return;
         }
+        windowClass = data;
+      });
+      let requestInfo = dialogRequest.getRequestInfo(want)
+      windowClass.bindDialogTarget(requestInfo, () => {
+        console.info('Dialog Window Need Destroy.');
+      }, (err: BusinessError) => {
+        let errCode: number = err.code;
+        if (errCode) {
+          console.error('Failed to bind dialog target. Cause:' + JSON.stringify(err));
+          return;
+        }
+        console.info('Succeeded in binding dialog target.');
+      });
+    } catch (err) {
+      console.error('Failed to bind dialog target. Cause:' + JSON.stringify(err))
     }
+  }
 }
 ```
 
@@ -3531,37 +3719,41 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 
 **Example**
 
-```js
+```ts
 import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
 import dialogRequest from '@ohos.app.ability.dialogRequest';
-import window from '@ohos.window';
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
 
 export default class ServiceExtAbility extends ServiceExtensionAbility {
-    onRequest(want, startId) {
-        console.info('onRequest');
-        let windowClass = null;
-        let config = {name: "dialogWindow", windowType: window.WindowType.TYPE_DIALOG, ctx: this.context};
-        try {
-            window.createWindow(config, (err, data) => {
-                if (err.code) {
-                    console.error('Failed to create the window. Cause: ' + JSON.stringify(err));
-                    return;
-                }
-                windowClass = data;
-            });
-            let requestInfo = dialogRequest.getRequestInfo(want)
-            let promise = windowClass.bindDialogTarget(requestInfo, () => {
-                console.info('Dialog Window Need Destroy.');
-            });
-            promise.then(()=> {
-                console.info('Succeeded in binding dialog target.');
-            }).catch((err)=>{
-                    console.error('Failed to bind dialog target. Cause:' + JSON.stringify(err));
-            });
-        } catch(err) {
-            console.error('Failed to bind dialog target. Cause:' + JSON.stringify(err))
+  onRequest(want: Want, startId: number) {
+    console.info('onRequest');
+    let windowClass: window.Window | null = null;
+    let config: window.Configuration = {
+      name: "dialogWindow", windowType: window.WindowType.TYPE_DIALOG, ctx: this.context
+    };
+    try {
+      window.createWindow(config, (err: BusinessError, data) => {
+        const errCode: number = err.code;
+        if (errCode) {
+          console.error('Failed to create the window. Cause: ' + JSON.stringify(err));
+          return;
         }
+        windowClass = data;
+      });
+      let requestInfo = dialogRequest.getRequestInfo(want)
+      let promise = windowClass.bindDialogTarget(requestInfo, () => {
+        console.info('Dialog Window Need Destroy.');
+      });
+      promise.then(() => {
+        console.info('Succeeded in binding dialog target.');
+      }).catch((err: BusinessError) => {
+        console.error('Failed to bind dialog target. Cause:' + JSON.stringify(err));
+      });
+    } catch (err) {
+      console.error('Failed to bind dialog target. Cause:' + JSON.stringify(err))
     }
+  }
 }
 ```
 
@@ -3589,13 +3781,16 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 
 **Example**
 
-```js
-windowClass.isWindowSupportWideGamut((err, data) => {
-    if (err.code) {
-        console.error('Failed to check whether the window support WideGamut. Cause:' + JSON.stringify(err));
-        return;
-    }
-    console.info('Succeeded in checking whether the window support WideGamut Data: ' + JSON.stringify(data));
+```ts
+import { BusinessError } from '@ohos.base';
+
+windowClass.isWindowSupportWideGamut((err: BusinessError, data) => {
+  const errCode: number = err.code;
+  if (errCode) {
+    console.error('Failed to check whether the window support WideGamut. Cause:' + JSON.stringify(err));
+    return;
+  }
+  console.info('Succeeded in checking whether the window support WideGamut Data: ' + JSON.stringify(data));
 });
 ```
 
@@ -3623,12 +3818,14 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 let promise = windowClass.isWindowSupportWideGamut();
-promise.then((data)=> {
-    console.info('Succeeded in checking whether the window support WideGamut. Data: ' + JSON.stringify(data));
-}).catch((err)=>{
-    console.error('Failed to check whether the window support WideGamut. Cause: ' + JSON.stringify(err));
+promise.then((data) => {
+  console.info('Succeeded in checking whether the window support WideGamut. Data: ' + JSON.stringify(data));
+}).catch((err: BusinessError) => {
+  console.error('Failed to check whether the window support WideGamut. Cause: ' + JSON.stringify(err));
 });
 ```
 
@@ -3657,17 +3854,20 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 try {
-    windowClass.setWindowColorSpace(window.ColorSpace.WIDE_GAMUT, (err) => {
-        if (err.code) {
-            console.error('Failed to set window colorspace. Cause:' + JSON.stringify(err));
-            return;
-        }
-        console.info('Succeeded in setting window colorspace.');
-    });
+  windowClass.setWindowColorSpace(window.ColorSpace.WIDE_GAMUT, (err: BusinessError) => {
+    const errCode: number = err.code;
+    if (errCode) {
+      console.error('Failed to set window colorspace. Cause:' + JSON.stringify(err));
+      return;
+    }
+    console.info('Succeeded in setting window colorspace.');
+  });
 } catch (exception) {
-    console.error('Failed to set window colorspace. Cause:' + JSON.stringify(exception));
+  console.error('Failed to set window colorspace. Cause:' + JSON.stringify(exception));
 }
 ```
 
@@ -3701,16 +3901,18 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 try {
-    let promise = windowClass.setWindowColorSpace(window.ColorSpace.WIDE_GAMUT);
-    promise.then(()=> {
-        console.info('Succeeded in setting window colorspace.');
-    }).catch((err)=>{
-        console.error('Failed to set window colorspace. Cause: ' + JSON.stringify(err));
-    });
+  let promise = windowClass.setWindowColorSpace(window.ColorSpace.WIDE_GAMUT);
+  promise.then(() => {
+    console.info('Succeeded in setting window colorspace.');
+  }).catch((err: BusinessError) => {
+    console.error('Failed to set window colorspace. Cause: ' + JSON.stringify(err));
+  });
 } catch (exception) {
-    console.error('Failed to set window colorspace. Cause:' + JSON.stringify(exception));
+  console.error('Failed to set window colorspace. Cause:' + JSON.stringify(exception));
 }
 ```
 
@@ -3738,7 +3940,7 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 
 **Example**
 
-```js
+```ts
 let colorSpace = windowClass.getWindowColorSpace();
 ```
 
@@ -3766,12 +3968,12 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 
 **Example**
 
-```js
-let color = '#00ff33';
+```ts
+let color: string = '#00ff33';
 try {
-    windowClass.setWindowBackgroundColor(color);
+  windowClass.setWindowBackgroundColor(color);
 } catch (exception) {
-    console.error('Failed to set the background color. Cause: ' + JSON.stringify(exception));
+  console.error('Failed to set the background color. Cause: ' + JSON.stringify(exception));
 }
 ```
 
@@ -3789,7 +3991,7 @@ When the screen brightness setting for the window takes effect, Control Panel ca
 
 | Name| Type| Mandatory| Description                                       |
 | ---------- | ------------------------- | -- |-------------------------------------------|
-| brightness | number                    | Yes| Brightness to set. The value is a floating point number in the range [0.0, 1.0], and the value **1.0** means the brightest.|
+| brightness | number                    | Yes| Brightness to set. The value is a floating point number in the range [0.0, 1.0] or **-1.0**. The value **1.0** means the brightest, and **-1.0** means the default brightness.|
 | callback   | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.                                    |
 
 **Error codes**
@@ -3803,18 +4005,21 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 
 **Example**
 
-```js
-let brightness = 1;
+```ts
+import { BusinessError } from '@ohos.base';
+
+let brightness: number = 1;
 try {
-    windowClass.setWindowBrightness(brightness, (err) => {
-        if (err.code) {
-            console.error('Failed to set the brightness. Cause: ' + JSON.stringify(err));
-            return;
-        }
-        console.info('Succeeded in setting the brightness.');
-    });
+  windowClass.setWindowBrightness(brightness, (err: BusinessError) => {
+    const errCode: number = err.code;
+    if (errCode) {
+      console.error('Failed to set the brightness. Cause: ' + JSON.stringify(err));
+      return;
+    }
+    console.info('Succeeded in setting the brightness.');
+  });
 } catch (exception) {
-    console.error('Failed to set the brightness. Cause: ' + JSON.stringify(exception));
+  console.error('Failed to set the brightness. Cause: ' + JSON.stringify(exception));
 }
 ```
 
@@ -3832,7 +4037,7 @@ When the screen brightness setting for the window takes effect, Control Panel ca
 
 | Name| Type| Mandatory| Description                                    |
 | ---------- | ------ | -- |----------------------------------------|
-| brightness | number | Yes| Brightness to set. The value is a floating point number in the range [0.0, 1.0], and the value **1.0** indicates the brightest.|
+| brightness | number | Yes| Brightness to set. The value is a floating point number in the range [0.0, 1.0] or **-1.0**. The value **1.0** means the brightest, and **-1.0** means the default brightness.|
 
 **Return value**
 
@@ -3851,17 +4056,19 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 
 **Example**
 
-```js
-let brightness = 1;
+```ts
+import { BusinessError } from '@ohos.base';
+
+let brightness: number = 1;
 try {
-    let promise = windowClass.setWindowBrightness(brightness);
-    promise.then(()=> {
-        console.info('Succeeded in setting the brightness.');
-    }).catch((err)=>{
-        console.error('Failed to set the brightness. Cause: ' + JSON.stringify(err));
-    });
+  let promise = windowClass.setWindowBrightness(brightness);
+  promise.then(() => {
+    console.info('Succeeded in setting the brightness.');
+  }).catch((err: BusinessError) => {
+    console.error('Failed to set the brightness. Cause: ' + JSON.stringify(err));
+  });
 } catch (exception) {
-    console.error('Failed to set the brightness. Cause: ' + JSON.stringify(exception));
+  console.error('Failed to set the brightness. Cause: ' + JSON.stringify(exception));
 }
 ```
 
@@ -3891,18 +4098,21 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 
 **Example**
 
-```js
-let isFocusable = true;
+```ts
+import { BusinessError } from '@ohos.base';
+
+let isFocusable: boolean = true;
 try {
-    windowClass.setWindowFocusable(isFocusable, (err) => {
-        if (err.code) {
-            console.error('Failed to set the window to be focusable. Cause:' + JSON.stringify(err));
-            return;
-        }
-        console.info('Succeeded in setting the window to be focusable.');
-    });
+  windowClass.setWindowFocusable(isFocusable, (err: BusinessError) => {
+    const errCode: number = err.code;
+    if (errCode) {
+      console.error('Failed to set the window to be focusable. Cause:' + JSON.stringify(err));
+      return;
+    }
+    console.info('Succeeded in setting the window to be focusable.');
+  });
 } catch (exception) {
-    console.error('Failed to set the window to be focusable. Cause:' + JSON.stringify(exception));
+  console.error('Failed to set the window to be focusable. Cause:' + JSON.stringify(exception));
 }
 ```
 
@@ -3937,17 +4147,19 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 
 **Example**
 
-```js
-let isFocusable = true;
+```ts
+import { BusinessError } from '@ohos.base';
+
+let isFocusable: boolean = true;
 try {
-    let promise = windowClass.setWindowFocusable(isFocusable);
-    promise.then(()=> {
-        console.info('Succeeded in setting the window to be focusable.');
-    }).catch((err)=>{
-        console.error('Failed to set the window to be focusable. Cause: ' + JSON.stringify(err));
-    });
+  let promise = windowClass.setWindowFocusable(isFocusable);
+  promise.then(() => {
+    console.info('Succeeded in setting the window to be focusable.');
+  }).catch((err: BusinessError) => {
+    console.error('Failed to set the window to be focusable. Cause: ' + JSON.stringify(err));
+  });
 } catch (exception) {
-    console.error('Failed to set the window to be focusable. Cause:' + JSON.stringify(exception));
+  console.error('Failed to set the window to be focusable. Cause:' + JSON.stringify(exception));
 }
 ```
 
@@ -3977,18 +4189,21 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 
 **Example**
 
-```js
-let isKeepScreenOn = true;
+```ts
+import { BusinessError } from '@ohos.base';
+
+let isKeepScreenOn: boolean = true;
 try {
-    windowClass.setWindowKeepScreenOn(isKeepScreenOn, (err) => {
-        if (err.code) {
-            console.error('Failed to set the screen to be always on. Cause: ' + JSON.stringify(err));
-            return;
-        }
-        console.info('Succeeded in setting the screen to be always on.');
-    });
+  windowClass.setWindowKeepScreenOn(isKeepScreenOn, (err: BusinessError) => {
+    const errCode: number = err.code;
+    if (errCode) {
+      console.error('Failed to set the screen to be always on. Cause: ' + JSON.stringify(err));
+      return;
+    }
+    console.info('Succeeded in setting the screen to be always on.');
+  });
 } catch (exception) {
-    console.error('Failed to set the screen to be always on. Cause: ' + JSON.stringify(exception));
+  console.error('Failed to set the screen to be always on. Cause: ' + JSON.stringify(exception));
 }
 ```
 
@@ -4023,17 +4238,19 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 
 **Example**
 
-```js
-let isKeepScreenOn = true;
+```ts
+import { BusinessError } from '@ohos.base';
+
+let isKeepScreenOn: boolean = true;
 try {
-    let promise = windowClass.setWindowKeepScreenOn(isKeepScreenOn);
-    promise.then(() => {
-        console.info('Succeeded in setting the screen to be always on.');
-    }).catch((err)=>{
-        console.info('Failed to set the screen to be always on. Cause:  ' + JSON.stringify(err));
-    });
+  let promise = windowClass.setWindowKeepScreenOn(isKeepScreenOn);
+  promise.then(() => {
+    console.info('Succeeded in setting the screen to be always on.');
+  }).catch((err: BusinessError) => {
+    console.info('Failed to set the screen to be always on. Cause:  ' + JSON.stringify(err));
+  });
 } catch (exception) {
-    console.error('Failed to set the screen to be always on. Cause: ' + JSON.stringify(exception));
+  console.error('Failed to set the screen to be always on. Cause: ' + JSON.stringify(exception));
 }
 ```
 
@@ -4064,12 +4281,12 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 
 **Example**
 
-```js
-let wakeUp = true;
+```ts
+let wakeUp: boolean = true;
 try {
-    windowClass.setWakeUpScreen(wakeUp);
+  windowClass.setWakeUpScreen(wakeUp);
 } catch (exception) {
-    console.error('Failed to wake up the screen. Cause: ' + JSON.stringify(exception));
+  console.error('Failed to wake up the screen. Cause: ' + JSON.stringify(exception));
 }
 ```
 
@@ -4102,18 +4319,21 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 
 **Example**
 
-```js
-let isPrivacyMode = true;
+```ts
+import { BusinessError } from '@ohos.base';
+
+let isPrivacyMode: boolean = true;
 try {
-    windowClass.setWindowPrivacyMode(isPrivacyMode, (err) => {
-        if (err.code) {
-            console.error('Failed to set the window to privacy mode. Cause:' + JSON.stringify(err));
-            return;
-        }
-        console.info('Succeeded in setting the window to privacy mode.');
-    });
+  windowClass.setWindowPrivacyMode(isPrivacyMode, (err: BusinessError) => {
+    const errCode: number = err.code;
+    if (errCode) {
+      console.error('Failed to set the window to privacy mode. Cause:' + JSON.stringify(err));
+      return;
+    }
+    console.info('Succeeded in setting the window to privacy mode.');
+  });
 } catch (exception) {
-    console.error('Failed to set the window to privacy mode. Cause:' + JSON.stringify(exception));
+  console.error('Failed to set the window to privacy mode. Cause:' + JSON.stringify(exception));
 }
 ```
 
@@ -4151,17 +4371,19 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 
 **Example**
 
-```js
-let isPrivacyMode = true;
+```ts
+import { BusinessError } from '@ohos.base';
+
+let isPrivacyMode: boolean = true;
 try {
-    let promise = windowClass.setWindowPrivacyMode(isPrivacyMode);
-    promise.then(()=> {
-        console.info('Succeeded in setting the window to privacy mode.');
-    }).catch((err)=>{
-        console.error('Failed to set the window to privacy mode. Cause: ' + JSON.stringify(err));
-    });
+  let promise = windowClass.setWindowPrivacyMode(isPrivacyMode);
+  promise.then(() => {
+    console.info('Succeeded in setting the window to privacy mode.');
+  }).catch((err: BusinessError) => {
+    console.error('Failed to set the window to privacy mode. Cause: ' + JSON.stringify(err));
+  });
 } catch (exception) {
-    console.error('Failed to set the window to privacy mode. Cause:' + JSON.stringify(exception));
+  console.error('Failed to set the window to privacy mode. Cause:' + JSON.stringify(exception));
 }
 ```
 
@@ -4188,13 +4410,14 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 | ------- | ------------------------------ |
 | 1300002 | This window state is abnormal. |
 
-```js
-let isSkip = true;
+```ts
+let windowClass: window.Window | null = null;
+let isSkip: boolean = true;
 try {
-    windowClass.setSnapshotSkip(isSkip);
+  windowClass.setSnapshotSkip(isSkip);
 } catch (exception) {
-    console.error('Failed to Skip. Cause: ' + JSON.stringify(exception));
-};
+  console.error('Failed to Skip. Cause: ' + JSON.stringify(exception));
+}
 ```
 
 ### setWindowTouchable<sup>9+</sup>
@@ -4223,18 +4446,21 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 let isTouchable = true;
 try {
-    windowClass.setWindowTouchable(isTouchable, (err) => {
-        if (err.code) {
-            console.error('Failed to set the window to be touchable. Cause:' + JSON.stringify(err));
-            return;
-        }
-        console.info('Succeeded in setting the window to be touchable.');
-    });
+  windowClass.setWindowTouchable(isTouchable, (err: BusinessError) => {
+    const errCode: number = err.code;
+    if (errCode) {
+      console.error('Failed to set the window to be touchable. Cause:' + JSON.stringify(err));
+      return;
+    }
+    console.info('Succeeded in setting the window to be touchable.');
+  });
 } catch (exception) {
-    console.error('Failed to set the window to be touchable. Cause:' + JSON.stringify(exception));
+  console.error('Failed to set the window to be touchable. Cause:' + JSON.stringify(exception));
 }
 ```
 
@@ -4269,17 +4495,19 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 
 **Example**
 
-```js
-let isTouchable = true;
+```ts
+import { BusinessError } from '@ohos.base';
+
+let isTouchable: boolean = true;
 try {
-    let promise = windowClass.setWindowTouchable(isTouchable);
-    promise.then(()=> {
-        console.info('Succeeded in setting the window to be touchable.');
-    }).catch((err)=>{
-        console.error('Failed to set the window to be touchable. Cause: ' + JSON.stringify(err));
-    });
+  let promise = windowClass.setWindowTouchable(isTouchable);
+  promise.then(() => {
+    console.info('Succeeded in setting the window to be touchable.');
+  }).catch((err: BusinessError) => {
+    console.error('Failed to set the window to be touchable. Cause: ' + JSON.stringify(err));
+  });
 } catch (exception) {
-    console.error('Failed to set the window to be touchable. Cause:' + JSON.stringify(exception));
+  console.error('Failed to set the window to be touchable. Cause:' + JSON.stringify(exception));
 }
 ```
 
@@ -4311,18 +4539,21 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 
 **Example**
 
-```js
-let isForbidSplitMove = true;
+```ts
+import { BusinessError } from '@ohos.base';
+
+let isForbidSplitMove: boolean = true;
 try {
-    windowClass.setForbidSplitMove(isForbidSplitMove, (err) => {
-        if (err.code) {
-            console.error('Failed to forbid window moving in split screen mode. Cause:' + JSON.stringify(err));
-            return;
-        }
-        console.info('Succeeded in forbidding window moving in split screen mode.');
-    });
+  windowClass.setForbidSplitMove(isForbidSplitMove, (err: BusinessError) => {
+    const errCode: number = err.code;
+    if (errCode) {
+      console.error('Failed to forbid window moving in split screen mode. Cause:' + JSON.stringify(err));
+      return;
+    }
+    console.info('Succeeded in forbidding window moving in split screen mode.');
+  });
 } catch (exception) {
-    console.error('Failed to forbid window moving in split screen mode. Cause:' + JSON.stringify(exception));
+  console.error('Failed to forbid window moving in split screen mode. Cause:' + JSON.stringify(exception));
 }
 ```
 
@@ -4359,17 +4590,19 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 
 **Example**
 
-```js
-let isForbidSplitMove = true;
+```ts
+import { BusinessError } from '@ohos.base';
+
+let isForbidSplitMove: boolean = true;
 try {
-    let promise = windowClass.setForbidSplitMove(isForbidSplitMove);
-    promise.then(()=> {
-        console.info('Succeeded in forbidding window moving in split screen mode.');
-    }).catch((err)=>{
-        console.error('Failed to forbid window moving in split screen mode. Cause: ' + JSON.stringify(err));
-    });
+  let promise = windowClass.setForbidSplitMove(isForbidSplitMove);
+  promise.then(() => {
+    console.info('Succeeded in forbidding window moving in split screen mode.');
+  }).catch((err: BusinessError) => {
+    console.error('Failed to forbid window moving in split screen mode. Cause: ' + JSON.stringify(err));
+  });
 } catch (exception) {
-    console.error('Failed to forbid window moving in split screen mode. Cause:' + JSON.stringify(exception));
+  console.error('Failed to forbid window moving in split screen mode. Cause:' + JSON.stringify(exception));
 }
 ```
 
@@ -4397,14 +4630,18 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 
 **Example**
 
-```js
-windowClass.snapshot((err, pixelMap) => {
-    if (err.code) {
-        console.error('Failed to snapshot window. Cause:' + JSON.stringify(err));
-        return;
-    }
-    console.info('Succeeded in snapshotting window. Pixel bytes number: ' + pixelMap.getPixelBytesNumber());
-    pixelMap.release(); // Release the memory in time after the PixelMap is used.
+```ts
+import { BusinessError } from '@ohos.base';
+import image from '@ohos.multimedia.image';
+
+windowClass.snapshot((err: BusinessError, pixelMap: image.PixelMap) => {
+  const errCode: number = err.code;
+  if (errCode) {
+    console.error('Failed to snapshot window. Cause:' + JSON.stringify(err));
+    return;
+  }
+  console.info('Succeeded in snapshotting window. Pixel bytes number: ' + pixelMap.getPixelBytesNumber());
+  pixelMap.release(); // Release the memory in time after the PixelMap is used.
 });
 ```
 
@@ -4432,13 +4669,16 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+import image from '@ohos.multimedia.image';
+
 let promise = windowClass.snapshot();
-promise.then((pixelMap)=> {
-    console.info('Succeeded in snapshotting window. Pixel bytes number: ' + pixelMap.getPixelBytesNumber());
-    pixelMap.release(); // Release the memory in time after the PixelMap is used.
-}).catch((err)=>{
-    console.error('Failed to snapshot window. Cause:' + JSON.stringify(err));
+promise.then((pixelMap: image.PixelMap) => {
+  console.info('Succeeded in snapshotting window. Pixel bytes number: ' + pixelMap.getPixelBytesNumber());
+  pixelMap.release(); // Release the memory in time after the PixelMap is used.
+}).catch((err: BusinessError) => {
+  console.error('Failed to snapshot window. Cause:' + JSON.stringify(err));
 });
 ```
 
@@ -4469,11 +4709,11 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 
 **Example**
 
-```js
+```ts
 try {
-    windowClass.opacity(0.5);
+  windowClass.opacity(0.5);
 } catch (exception) {
-    console.error('Failed to opacity. Cause: ' + JSON.stringify(exception));
+  console.error('Failed to opacity. Cause: ' + JSON.stringify(exception));
 }
 ```
 
@@ -4504,17 +4744,17 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 
 **Example**
 
-```js
-let obj : window.ScaleOptions = {
-  x : 2.0,
-  y : 1.0,
-  pivotX : 0.5,
-  pivotY : 0.5
+```ts
+let obj: window.ScaleOptions = {
+  x: 2.0,
+  y: 1.0,
+  pivotX: 0.5,
+  pivotY: 0.5
 };
 try {
-    windowClass.scale(obj);
+  windowClass.scale(obj);
 } catch (exception) {
-    console.error('Failed to scale. Cause: ' + JSON.stringify(exception));
+  console.error('Failed to scale. Cause: ' + JSON.stringify(exception));
 }
 ```
 
@@ -4545,18 +4785,18 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 
 **Example**
 
-```js
-let obj : window.RotateOptions = {
-  x : 1.0,
-  y : 1.0,
-  z : 45.0,
-  pivotX : 0.5,
-  pivotY : 0.5
+```ts
+let obj: window.RotateOptions = {
+  x: 1.0,
+  y: 1.0,
+  z: 45.0,
+  pivotX: 0.5,
+  pivotY: 0.5
 };
 try {
-    windowClass.rotate(obj);
+  windowClass.rotate(obj);
 } catch (exception) {
-    console.error('Failed to rotate. Cause: ' + JSON.stringify(exception));
+  console.error('Failed to rotate. Cause: ' + JSON.stringify(exception));
 }
 ```
 
@@ -4587,16 +4827,16 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 
 **Example**
 
-```js
-let obj : window.TranslateOptions = {
-  x : 100.0,
-  y : 0.0,
-  z : 0.0
+```ts
+let obj: window.TranslateOptions = {
+  x: 100.0,
+  y: 0.0,
+  z: 0.0
 };
 try {
-    windowClass.translate(obj);
+  windowClass.translate(obj);
 } catch (exception) {
-    console.error('Failed to translate. Cause: ' + JSON.stringify(exception));
+  console.error('Failed to translate. Cause: ' + JSON.stringify(exception));
 }
 ```
 
@@ -4627,38 +4867,41 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 let controller = windowClass.getTransitionController(); // Obtain the transition animation controller.
-controller.animationForHidden = (context : window.TransitionContext) => {
-	let toWindow = context.toWindow;
- 	animateTo({
-    	duration: 1000, // Animation duration.
-        tempo: 0.5, // Playback speed.
-        curve: Curve.EaseInOut, // Animation curve.
-        delay: 0, // Animation delay.
-        iterations: 1, // Number of playback times.
-        playMode: PlayMode.Normal // Animation playback mode.
-        onFinish: ()=> {
-            context.completeTransition(true)
-        }
-      }, () => {
-        let obj : window.TranslateOptions = {
-          x : 100.0,
-          y : 0.0,
-          z : 0.0
-        };
-        toWindow.translate(obj); // Set the transition animation.
-        console.info('toWindow translate end');
-      }
-    );
-    console.info('complete transition end');
-};
-windowClass.hideWithAnimation((err, data) => {
-    if (err.code) {
-        console.error('Failed to show the window with animation. Cause: ' + JSON.stringify(err));
-        return;
+controller.animationForHidden = (context: window.TransitionContext) => {
+  let toWindow = context.toWindow;
+  animateTo({
+    duration: 1000, // Animation duration.
+    tempo: 0.5, // Playback speed.
+    curve: Curve.EaseInOut, // Animation curve.
+    delay: 0, // Animation delay.
+    iterations: 1, // Number of playback times.
+    playMode: PlayMode.Normal // Animation playback mode.
+    onFinish: () => {
+      context.completeTransition(true)
     }
-    console.info('Succeeded in showing the window with animation. Data: ' + JSON.stringify(data));
+  }, () => {
+    let obj: window.TranslateOptions = {
+      x: 100.0,
+      y: 0.0,
+      z: 0.0
+    };
+    toWindow.translate(obj); // Set the transition animation.
+    console.info('toWindow translate end');
+  }
+  );
+  console.info('complete transition end');
+};
+windowClass.hideWithAnimation((err: BusinessError, data) => {
+  const errCode: number = err.code;
+  if (errCode) {
+    console.error('Failed to show the window with animation. Cause: ' + JSON.stringify(err));
+    return;
+  }
+  console.info('Succeeded in showing the window with animation. Data: ' + JSON.stringify(data));
 });
 ```
 
@@ -4689,11 +4932,11 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 
 **Example**
 
-```js
+```ts
 try {
-    windowClass.setBlur(4.0);
+  windowClass.setBlur(4.0);
 } catch (exception) {
-    console.error('Failed to set blur. Cause: ' + JSON.stringify(exception));
+  console.error('Failed to set blur. Cause: ' + JSON.stringify(exception));
 }
 ```
 
@@ -4724,11 +4967,11 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 
 **Example**
 
-```js
+```ts
 try {
-    windowClass.setBackdropBlur(4.0);
+  windowClass.setBackdropBlur(4.0);
 } catch (exception) {
-    console.error('Failed to set backdrop blur. Cause: ' + JSON.stringify(exception));
+  console.error('Failed to set backdrop blur. Cause: ' + JSON.stringify(exception));
 }
 ```
 
@@ -4759,11 +5002,11 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 
 **Example**
 
-```js
+```ts
 try {
-    windowClass.setBackdropBlurStyle(window.BlurStyle.THIN);
+  windowClass.setBackdropBlurStyle(window.BlurStyle.THIN);
 } catch (exception) {
-    console.error('Failed to set backdrop blur style. Cause: ' + JSON.stringify(exception));
+  console.error('Failed to set backdrop blur style. Cause: ' + JSON.stringify(exception));
 }
 ```
 
@@ -4797,11 +5040,11 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 
 **Example**
 
-```js
+```ts
 try {
-    windowClass.setShadow(4.0, '#FF00FF00', 2, 3);
+  windowClass.setShadow(4.0, '#FF00FF00', 2, 3);
 } catch (exception) {
-    console.error('Failed to set shadow. Cause: ' + JSON.stringify(exception));
+  console.error('Failed to set shadow. Cause: ' + JSON.stringify(exception));
 }
 ```
 
@@ -4832,11 +5075,11 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 
 **Example**
 
-```js
+```ts
 try {
-    windowClass.setCornerRadius(4.0);
+  windowClass.setCornerRadius(4.0);
 } catch (exception) {
-    console.error('Failed to set corner radius. Cause: ' + JSON.stringify(exception));
+  console.error('Failed to set corner radius. Cause: ' + JSON.stringify(exception));
 }
 ```
 
@@ -4869,13 +5112,16 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 
 **Example**
 
-```js
-windowClass.raiseToAppTop((err) => {
-    if (err.code) {
-        console.error('Failed to raise the window to app top. Cause: ' + JSON.stringify(err));
-        return;
-    }
-    console.info('Succeeded in raising the window to app top.');
+```ts
+import { BusinessError } from '@ohos.base';
+
+windowClass.raiseToAppTop((err: BusinessError) => {
+  const errCode: number = err.code;
+  if (errCode) {
+    console.error('Failed to raise the window to app top. Cause: ' + JSON.stringify(err));
+    return;
+  }
+  console.info('Succeeded in raising the window to app top.');
 });
 ```
 
@@ -4908,12 +5154,14 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 let promise = windowClass.raiseToAppTop();
-promise.then(()=> {
-    console.info('Succeeded in raising the window to app top.');
-}).catch((err)=>{
-    console.error('Failed to raise the window to app top. Cause: ' + JSON.stringify(err));
+promise.then(() => {
+  console.info('Succeeded in raising the window to app top.');
+}).catch((err: BusinessError) => {
+  console.error('Failed to raise the window to app top. Cause: ' + JSON.stringify(err));
 });
 ```
 ### setAspectRatio<sup>10+</sup>
@@ -4949,17 +5197,19 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 try {
-    let ratio = 1.0;
-    let promise = windowClass.setAspectRatio(ratio);
-    promise.then(()=> {
-        console.info('Succeeded in setting aspect ratio of window.');
-    }).catch((err)=>{
-        console.error('Failed to set the aspect ratio of window. Cause:' + JSON.stringify(err));
-    });
+  let ratio = 1.0;
+  let promise = windowClass.setAspectRatio(ratio);
+  promise.then(() => {
+    console.info('Succeeded in setting aspect ratio of window.');
+  }).catch((err: BusinessError) => {
+    console.error('Failed to set the aspect ratio of window. Cause:' + JSON.stringify(err));
+  });
 } catch (exception) {
-    console.error('Failed to set the aspect ratio of window. Cause: ' + JSON.stringify(exception));
+  console.error('Failed to set the aspect ratio of window. Cause: ' + JSON.stringify(exception));
 }
 ```
 
@@ -4991,18 +5241,21 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 try {
-    let ratio = 1.0;
-    windowClass.setAspectRatio(ratio, (err) => {
-        if (err.code) {
-            console.error('Failed to set the aspect ratio of window. Cause:' + JSON.stringify(err));
-            return;
-        }
-        console.info('Succeeded in setting the aspect ratio of window.');
-    });
+  let ratio = 1.0;
+  windowClass.setAspectRatio(ratio, (err: BusinessError) => {
+    const errCode: number = err.code;
+    if (errCode) {
+      console.error('Failed to set the aspect ratio of window. Cause:' + JSON.stringify(err));
+      return;
+    }
+    console.info('Succeeded in setting the aspect ratio of window.');
+  });
 } catch (exception) {
-    console.error('Failed to set the aspect ratio of window. Cause: ' + JSON.stringify(exception));
+  console.error('Failed to set the aspect ratio of window. Cause: ' + JSON.stringify(exception));
 }
 ```
 
@@ -5033,16 +5286,18 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 try {
-    let promise = windowClass.resetAspectRatio();
-    promise.then(()=> {
-        console.info('Succeeded in resetting aspect ratio of window.');
-    }).catch((err)=>{
-        console.error('Failed to reset the aspect ratio of window. Cause:' + JSON.stringify(err));
-    });
+  let promise = windowClass.resetAspectRatio();
+  promise.then(() => {
+    console.info('Succeeded in resetting aspect ratio of window.');
+  }).catch((err: BusinessError) => {
+    console.error('Failed to reset the aspect ratio of window. Cause:' + JSON.stringify(err));
+  });
 } catch (exception) {
-    console.error('Failed to reset the aspect ratio of window. Cause: ' + JSON.stringify(exception));
+  console.error('Failed to reset the aspect ratio of window. Cause: ' + JSON.stringify(exception));
 }
 ```
 
@@ -5073,10 +5328,13 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 try {
-    windowClass.resetAspectRatio((err) => {
-        if (err.code) {
+    windowClass.resetAspectRatio((err: BusinessError) => {
+        const errCode: number = err.code;
+        if (errCode) {
             console.error('Failed to reset the aspect ratio of window. Cause:' + JSON.stringify(err));
             return;
         }
@@ -5121,17 +5379,19 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 try {
-    let enable = true;
-    let promise = windowClass.setWaterMarkFlag(enable);
-    promise.then(()=> {
-        console.info('Succeeded in setting water mark flag of window.');
-    }).catch((err)=>{
-        console.error('Failed to set water mark flag of window. Cause:' + JSON.stringify(err));
-    });
+  let enable = true;
+  let promise = windowClass.setWaterMarkFlag(enable);
+  promise.then(() => {
+    console.info('Succeeded in setting water mark flag of window.');
+  }).catch((err: BusinessError) => {
+    console.error('Failed to set water mark flag of window. Cause:' + JSON.stringify(err));
+  });
 } catch (exception) {
-    console.error('Failed to set water mark flag of window. Cause: ' + JSON.stringify(exception));
+  console.error('Failed to set water mark flag of window. Cause: ' + JSON.stringify(exception));
 }
 ```
 
@@ -5164,21 +5424,462 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 try {
-    let enable = true;
-    windowClass.setWaterMarkFlag(enable, (err) => {
-        if (err.code) {
-            console.error('Failed to set water mark flag of window. Cause:' + JSON.stringify(err));
-            return;
-        }
-        console.info('Succeeded in setting water mark flag of window.');
-    });
+  let enable: boolean = true;
+  windowClass.setWaterMarkFlag(enable, (err: BusinessError) => {
+    const errCode: number = err.code;
+    if (errCode) {
+      console.error('Failed to set water mark flag of window. Cause:' + JSON.stringify(err));
+      return;
+    }
+    console.info('Succeeded in setting water mark flag of window.');
+  });
 } catch (exception) {
-    console.error('Failed to set water mark flag of window. Cause: ' + JSON.stringify(exception));
+  console.error('Failed to set water mark flag of window. Cause: ' + JSON.stringify(exception));
 }
 ```
+### raiseAboveTarget<sup>10+</sup>
 
+raiseAboveTarget(windowId: number, callback: AsyncCallback&lt;void&gt;): void
+
+Raises a subwindow above a target subwindow. This API uses an asynchronous callback to return the result.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Window.SessionManager
+
+**Parameters**
+
+| Name  | Type                     | Mandatory| Description      |
+| -------- | ------------------------- | ---- | ---------- |
+| windowId | number                    | Yes  | ID of the target subwindow, which is the value of **properties.id** in [properties](#windowproperties) obtained through [getWindowProperties](#getwindowproperties9).|
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Window Error Codes](../errorcodes/errorcode-window.md).
+
+| ID| Error Message|
+| ------- | ---------------------------------------------- |
+| 1300002 | This window state is abnormal. |
+| 1300003 | This window manager service works abnormally. |
+| 1300004 | Unauthorized operation. |
+| 1300009 | The parent window is invalid. |
+
+**Example**
+
+```js
+// Raise windowClass above targetWindow.
+let properties = targetWindow.getWindowProperties();
+let targetId = properties.id;
+windowClass.raiseAboveTarget(targetId, (err) => {
+    if (err.code) {
+        console.error('Failed to raise the subWindow to target subWindow top. Cause: ' + JSON.stringify(err));
+        return;
+    }
+    console.info('Succeeded in raising the subWindow to target subWindow top.');
+});
+```
+
+### raiseAboveTarget<sup>10+</sup>
+
+raiseAboveTarget(windowId: number): Promise&lt;void&gt;
+
+Raises a subwindow above a target subwindow. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Window.SessionManager
+
+**Parameters**
+
+| Name  | Type                     | Mandatory| Description      |
+| -------- | ------------------------- | ---- | ---------- |
+| windowId | number                    | Yes  | ID of the target subwindow, which is the value of **properties.id** in [properties](#windowproperties) obtained through [getWindowProperties](#getwindowproperties9).|
+
+**Return value**
+
+| Type               | Description                     |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Window Error Codes](../errorcodes/errorcode-window.md).
+
+| ID| Error Message|
+| ------- | ------------------------------ |
+| 1300002 | This window state is abnormal. |
+| 1300003 | This window manager service works abnormally. |
+| 1300004 | Unauthorized operation. |
+| 1300009 | The parent window is invalid. |
+
+**Example**
+
+```js
+// Raise windowClass above targetWindow.
+let properties = targetWindow.getWindowProperties();
+let targetId = properties.id;
+let promise = windowClass.raiseAboveTarget(targetId);
+promise.then(()=> {
+    console.info('Succeeded in raising the subWindow to target subWindow top.');
+}).catch((err)=>{
+    console.error('Failed to raise the subWindow to target subWindow top. Cause: ' + JSON.stringify(err));
+});
+```
+### setRaiseByClickEnabled<sup>10+</sup>
+
+setRaiseByClickEnabled(enable: boolean, callback: AsyncCallback&lt;void&gt;): void
+
+Sets whether to enable a subwindow to raise itself by click. This API uses an asynchronous callback to return the result.
+
+Generally, when a user clicks a subwindow, the subwindow is displayed on the top. If the **enable** parameter is set to **false**, the subwindow is not displayed on the top when being clicked.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Window.SessionManager
+
+**Parameters**
+
+| Name  | Type                     | Mandatory| Description      |
+| -------- | ------------------------- | ---- | ---------- |
+| enable   | boolean                   | Yes  | Whether to enable a subwindow to raise itself by click. The value **true** means to enable the subwindow to raise itself by click, and **false** means the opposite.|
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Window Error Codes](../errorcodes/errorcode-window.md).
+
+| ID| Error Message|
+| ------- | ------------------------------ |
+| 1300002 | This window state is abnormal. |
+| 1300003 | This window manager service works abnormally. |
+| 1300004 | Unauthorized operation. |
+| 1300009 | The parent window is invalid. |
+
+**Example**
+
+```js
+let enabled = false;
+windowClass.setRaiseByClickEnabled(enabled, (err) => {
+    if (err.code) {
+        console.error('Failed to disable the raise-by-click function. Cause: ' + JSON.stringify(err));
+        return;
+    }
+    console.info('Succeeded in disabling the raise-by-click function.');
+});
+```
+
+### setRaiseByClickEnabled<sup>10+</sup>
+
+setRaiseByClickEnabled(enable: boolean): Promise&lt;void&gt;
+
+Sets whether to enable a subwindow to raise itself by click. This API uses a promise to return the result.
+
+Generally, when a user clicks a subwindow, the subwindow is displayed on the top. If the **enable** parameter is set to **false**, the subwindow is not displayed on the top when being clicked.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Window.SessionManager
+
+**Parameters**
+
+| Name  | Type                     | Mandatory| Description      |
+| -------- | ------------------------- | ---- | ---------- |
+| enable   | boolean                   | Yes  | Whether to enable a subwindow to raise itself by click. The value **true** means to enable the subwindow to raise itself by click, and **false** means the opposite.|
+
+**Return value**
+
+| Type               | Description                     |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Window Error Codes](../errorcodes/errorcode-window.md).
+
+| ID| Error Message|
+| ------- | ------------------------------ |
+| 1300002 | This window state is abnormal. |
+| 1300003 | This window manager service works abnormally. |
+| 1300004 | Unauthorized operation. |
+| 1300009 | The parent window is invalid. |
+
+**Example**
+
+```js
+let enabled = false;
+let promise = windowClass.setRaiseByClickEnabled(enabled);
+promise.then(()=> {
+    console.info('Succeeded in disabling the raise-by-click function.');
+}).catch((err)=>{
+    console.error('Failed to disable the raise-by-click function. Cause: ' + JSON.stringify(err));
+});
+```
+### minimize<sup>10+</sup>
+
+minimize(callback: AsyncCallback&lt;void&gt;): void
+
+Minimizes the main window. This API uses an asynchronous callback to return the result.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Window.SessionManager
+
+**Parameters**
+
+| Name  | Type                     | Mandatory| Description      |
+| -------- | ------------------------- | ---- | ---------- |
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Window Error Codes](../errorcodes/errorcode-window.md).
+
+| ID| Error Message|
+| ------- | ------------------------------ |
+| 1300002 | This window state is abnormal. |
+| 1300003 | This window manager service works abnormally. |
+
+**Example**
+
+```js
+import UIAbility from '@ohos.app.ability.UIAbility';
+
+export default class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage) {
+        // Load content for the main window.
+        windowStage.loadContent("pages/page2", (err) => {
+            if (err.code) {
+                console.error('Failed to load the content. Cause:' + JSON.stringify(err));
+                return;
+            }
+            console.info('Succeeded in loading the content.');
+        });
+        // Obtain the main window.
+        let mainWindow = null;
+        
+        windowStage.getMainWindow((err, data) => {
+            if (err.code) {
+                console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(err));
+                return;
+            }
+            mainWindow = data;
+            console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
+            // Call minimize.
+            mainWindow.minimize((err) => {
+                if (err.code) {
+                    console.error('Failed to minimize the app main window. Cause: ' + JSON.stringify(err));
+                    return;
+                }
+                console.info('Successfully minimized app main window.');
+            });
+        })
+    }
+};
+```
+
+### minimize<sup>10+</sup>
+
+minimize(): Promise&lt;void&gt;
+
+Minimizes the main window. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Window.SessionManager
+
+**Return value**
+
+| Type               | Description                     |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Window Error Codes](../errorcodes/errorcode-window.md).
+
+| ID| Error Message|
+| ------- | ------------------------------ |
+| 1300002 | This window state is abnormal. |
+| 1300003 | This window manager service works abnormally. |
+
+**Example**
+
+```js
+import UIAbility from '@ohos.app.ability.UIAbility';
+
+export default class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage) {
+        // Load content for the main window.
+        windowStage.loadContent("pages/page2", (err) => {
+            if (err.code) {
+                console.error('Failed to load the content. Cause:' + JSON.stringify(err));
+                return;
+            }
+            console.info('Succeeded in loading the content.');
+        });
+        // Obtain the main window.
+        let mainWindow = null;
+        
+        windowStage.getMainWindow((err, data) => {
+            if (err.code) {
+                console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(err));
+                return;
+            }
+            mainWindow = data;
+            console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
+            // Promise object of the minimize API.
+            let promise = mainWindow.minimize();
+            promise.then(()=> {
+                console.info('Successfully minimized app main window.');
+            }).catch((err)=>{
+                console.error('Failed to minimize the app main window. Cause: ' + JSON.stringify(err));
+            });
+        })
+    }
+};
+```
+
+### setResizeByDragEnabled<sup>10+</sup>
+
+setResizeByDragEnabled(enable: boolean, callback: AsyncCallback&lt;void&gt;): void
+
+Sets whether to enable the main window to resize itself by dragging. This API uses an asynchronous callback to return the result.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Window.SessionManager
+
+**Parameters**
+
+| Name  | Type                     | Mandatory| Description      |
+| -------- | ------------------------- | ---- | ---------- |
+| enable   | boolean                   | Yes  | Whether to enable the main window to resize itself by dragging. The value **true** means to enable the main window to resize itself by dragging, and **false** means the opposite.|
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Window Error Codes](../errorcodes/errorcode-window.md).
+
+| ID| Error Message|
+| ------- | ------------------------------ |
+| 1300002 | This window state is abnormal. |
+| 1300003 | This window manager service works abnormally. |
+| 1300004 | Unauthorized operation. |
+
+**Example**
+
+```js
+import UIAbility from '@ohos.app.ability.UIAbility';
+
+export default class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage) {
+        // Load content for the main window.
+        windowStage.loadContent("pages/page2", (err) => {
+            if (err.code) {
+                console.error('Failed to load the content. Cause:' + JSON.stringify(err));
+                return;
+            }
+            console.info('Succeeded in loading the content.');
+        });
+        // Obtain the main window.
+        let mainWindow = null;
+        
+        windowStage.getMainWindow((err, data) => {
+            if (err.code) {
+                console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(err));
+                return;
+            }
+            mainWindow = data;
+            console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
+
+            let enabled = false;
+            // Call setResizeByDragEnabled.
+            mainWindow.setResizeByDragEnabled(enabled, (err) => {
+                if (err.code) {
+                    console.error('Failed to set the function of disabling the resize by dragg window. Cause: ' + JSON.stringify(err));
+                    return;
+                }
+                console.info('Succeeded in setting the function of disabling the resize by dragg window.');
+            });
+        })
+    }
+};
+```
+
+### setResizeByDragEnabled<sup>10+</sup>
+
+setResizeByDragEnabled(enable: boolean): Promise&lt;void&gt;
+
+Sets whether to enable the main window to resize itself by dragging. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Window.SessionManager
+
+**Parameters**
+
+| Name  | Type                     | Mandatory| Description      |
+| -------- | ------------------------- | ---- | ---------- |
+| enable   | boolean                   | Yes  | Whether to enable the main window to resize itself by dragging. The value **true** means to enable the main window to resize itself by dragging, and **false** means the opposite.|
+
+**Return value**
+
+| Type               | Description                     |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Window Error Codes](../errorcodes/errorcode-window.md).
+
+| ID| Error Message|
+| ------- | ------------------------------ |
+| 1300002 | This window state is abnormal. |
+| 1300003 | This window manager service works abnormally. |
+
+**Example**
+
+```js
+import UIAbility from '@ohos.app.ability.UIAbility';
+
+export default class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage) {
+        // Load content for the main window.
+        windowStage.loadContent("pages/page2", (err) => {
+            if (err.code) {
+                console.error('Failed to load the content. Cause:' + JSON.stringify(err));
+                return;
+            }
+            console.info('Succeeded in loading the content.');
+        });
+        // Obtain the main window.
+        let mainWindow = null;
+        
+        windowStage.getMainWindow((err, data) => {
+            if (err.code) {
+                console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(err));
+                return;
+            }
+            mainWindow = data;
+            console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
+
+            let enabled = false;
+            // Promise object of the setResizeByDragEnabled API.
+            let promise = mainWindow.setResizeByDragEnabled(enabled);
+            promise.then(()=> {
+                console.info('Succeeded in setting the function of disabling the resize by dragg window.');
+            }).catch((err)=>{
+                console.error('Failed to set the function of disabling the resize by dragg window. Cause: ' + JSON.stringify(err));
+            });
+        })
+    }
+};
+```
 ### show<sup>(deprecated)</sup>
 
 show(callback: AsyncCallback&lt;void&gt;): void
@@ -5199,13 +5900,16 @@ Shows this window. This API uses an asynchronous callback to return the result.
 
 **Example**
 
-```js
-windowClass.show((err) => {
-    if (err.code) {
-        console.error('Failed to show the window. Cause: ' + JSON.stringify(err));
-        return;
-    }
-    console.info('Succeeded in showing the window.');
+```ts
+import { BusinessError } from '@ohos.base';
+
+windowClass.show((err: BusinessError) => {
+  const errCode: number = err.code;
+  if (errCode) {
+    console.error('Failed to show the window. Cause: ' + JSON.stringify(err));
+    return;
+  }
+  console.info('Succeeded in showing the window.');
 });
 ```
 
@@ -5229,12 +5933,14 @@ Shows this window. This API uses a promise to return the result.
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 let promise = windowClass.show();
-promise.then(()=> {
-    console.info('Succeeded in showing the window.');
-}).catch((err)=>{
-    console.error('Failed to show the window. Cause: ' + JSON.stringify(err));
+promise.then(() => {
+  console.info('Succeeded in showing the window.');
+}).catch((err: BusinessError) => {
+  console.error('Failed to show the window. Cause: ' + JSON.stringify(err));
 });
 ```
 
@@ -5258,13 +5964,16 @@ Destroys this window. This API uses an asynchronous callback to return the resul
 
 **Example**
 
-```js
-windowClass.destroy((err) => {
-    if (err.code) {
-        console.error('Failed to destroy the window. Cause:' + JSON.stringify(err));
-        return;
-    }
-    console.info('Succeeded in destroying the window.');
+```ts
+import { BusinessError } from '@ohos.base';
+
+windowClass.destroy((err: BusinessError) => {
+  const errCode: number = err.code;
+  if (err.code) {
+    console.error('Failed to destroy the window. Cause:' + JSON.stringify(err));
+    return;
+  }
+  console.info('Succeeded in destroying the window.');
 });
 ```
 
@@ -5288,12 +5997,14 @@ Destroys this window. This API uses a promise to return the result.
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 let promise = windowClass.destroy();
-promise.then(()=> {
-    console.info('Succeeded in destroying the window.');
-}).catch((err)=>{
-    console.error('Failed to destroy the window. Cause: ' + JSON.stringify(err));
+promise.then(() => {
+  console.info('Succeeded in destroying the window.');
+}).catch((err: BusinessError) => {
+  console.error('Failed to destroy the window. Cause: ' + JSON.stringify(err));
 });
 ```
 
@@ -5321,13 +6032,16 @@ This operation is not supported in a window in full-screen mode.
 
 **Example**
 
-```js
-windowClass.moveTo(300, 300, (err)=>{
-    if (err.code) {
-        console.error('Failed to move the window. Cause:' + JSON.stringify(err));
-        return;
-    }
-    console.info('Succeeded in moving the window.');
+```ts
+import { BusinessError } from '@ohos.base';
+
+windowClass.moveTo(300, 300, (err: BusinessError) => {
+  const errCode: number = err.code;
+  if (errCode) {
+    console.error('Failed to move the window. Cause:' + JSON.stringify(err));
+    return;
+  }
+  console.info('Succeeded in moving the window.');
 });
 ```
 
@@ -5360,12 +6074,14 @@ This operation is not supported in a window in full-screen mode.
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 let promise = windowClass.moveTo(300, 300);
-promise.then(()=> {
-    console.info('Succeeded in moving the window.');
-}).catch((err)=>{
-    console.error('Failed to move the window. Cause: ' + JSON.stringify(err));
+promise.then(() => {
+  console.info('Succeeded in moving the window.');
+}).catch((err: BusinessError) => {
+  console.error('Failed to move the window. Cause: ' + JSON.stringify(err));
 });
 ```
 
@@ -5399,13 +6115,16 @@ This operation is not supported in a window in full-screen mode.
 
 **Example**
 
-```js
-windowClass.resetSize(500, 1000, (err) => {
-    if (err.code) {
-        console.error('Failed to change the window size. Cause:' + JSON.stringify(err));
-        return;
-    }
-    console.info('Succeeded in changing the window size.');
+```ts
+import { BusinessError } from '@ohos.base';
+
+windowClass.resetSize(500, 1000, (err: BusinessError) => {
+  const errCode: number = err.code;
+  if (errCode) {
+    console.error('Failed to change the window size. Cause:' + JSON.stringify(err));
+    return;
+  }
+  console.info('Succeeded in changing the window size.');
 });
 ```
 
@@ -5444,12 +6163,14 @@ This operation is not supported in a window in full-screen mode.
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 let promise = windowClass.resetSize(500, 1000);
-promise.then(()=> {
-    console.info('Succeeded in changing the window size.');
-}).catch((err)=>{
-    console.error('Failed to change the window size. Cause: ' + JSON.stringify(err));
+promise.then(() => {
+  console.info('Succeeded in changing the window size.');
+}).catch((err: BusinessError) => {
+  console.error('Failed to change the window size. Cause: ' + JSON.stringify(err));
 });
 ```
 
@@ -5476,12 +6197,15 @@ Sets the type of this window. This API uses an asynchronous callback to return t
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 let type = window.WindowType.TYPE_APP;
-windowClass.setWindowType(type, (err) => {
-  if (err.code) {
-      console.error('Failed to set the window type. Cause: ' + JSON.stringify(err));
-      return;
+windowClass.setWindowType(type, (err: BusinessError) => {
+  const errCode: number = err.code;
+  if (errCode) {
+    console.error('Failed to set the window type. Cause: ' + JSON.stringify(err));
+    return;
   }
   console.info('Succeeded in setting the window type.');
 });
@@ -5515,13 +6239,15 @@ Sets the type of this window. This API uses a promise to return the result.
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 let type = window.WindowType.TYPE_APP;
 let promise = windowClass.setWindowType(type);
-promise.then(()=> {
-    console.info('Succeeded in setting the window type.');
-}).catch((err)=>{
-    console.error('Failed to set the window type. Cause: ' + JSON.stringify(err));
+promise.then(() => {
+  console.info('Succeeded in setting the window type.');
+}).catch((err: BusinessError) => {
+  console.error('Failed to set the window type. Cause: ' + JSON.stringify(err));
 });
 ```
 
@@ -5545,13 +6271,16 @@ Obtains the properties of this window. This API uses an asynchronous callback to
 
 **Example**
 
-```js
-windowClass.getProperties((err, data) => {
-    if (err.code) {
-        console.error('Failed to obtain the window properties. Cause: ' + JSON.stringify(err));
-        return;
-    }
-    console.info('Succeeded in obtaining the window properties. Data: ' + JSON.stringify(data));
+```ts
+import { BusinessError } from '@ohos.base';
+
+windowClass.getProperties((err: BusinessError, data) => {
+  const errCode: number = err.code;
+  if (errCode) {
+    console.error('Failed to obtain the window properties. Cause: ' + JSON.stringify(err));
+    return;
+  }
+  console.info('Succeeded in obtaining the window properties. Data: ' + JSON.stringify(data));
 });
 ```
 
@@ -5575,12 +6304,14 @@ Obtains the properties of this window. This API uses a promise to return the res
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 let promise = windowClass.getProperties();
-promise.then((data)=> {
-    console.info('Succeeded in obtaining the window properties. Data: ' + JSON.stringify(data));
-}).catch((err)=>{
-    console.error('Failed to obtain the window properties. Cause: ' + JSON.stringify(err));
+promise.then((data) => {
+  console.info('Succeeded in obtaining the window properties. Data: ' + JSON.stringify(data));
+}).catch((err: BusinessError) => {
+  console.error('Failed to obtain the window properties. Cause: ' + JSON.stringify(err));
 });
 ```
 
@@ -5605,14 +6336,17 @@ Obtains the area where this window cannot be displayed, for example, the system 
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 let type = window.AvoidAreaType.TYPE_SYSTEM;
-windowClass.getAvoidArea(type, (err, data) => {
-    if (err.code) {
-        console.error('Failed to obtain the area. Cause:' + JSON.stringify(err));
-        return;
-    }
-    console.info('Succeeded in obtaining the area. Data:' + JSON.stringify(data));
+windowClass.getAvoidArea(type, (err: BusinessError, data) => {
+  const errCode: number = err.code;
+  if (errCode) {
+    console.error('Failed to obtain the area. Cause:' + JSON.stringify(err));
+    return;
+  }
+  console.info('Succeeded in obtaining the area. Data:' + JSON.stringify(data));
 });
 ```
 
@@ -5642,13 +6376,15 @@ Obtains the area where this window cannot be displayed, for example, the system 
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 let type = window.AvoidAreaType.TYPE_SYSTEM;
 let promise = windowClass.getAvoidArea(type);
-promise.then((data)=> {
-    console.info('Succeeded in obtaining the area. Data:' + JSON.stringify(data));
-}).catch((err)=>{
-    console.error('Failed to obtain the area. Cause:' + JSON.stringify(err));
+promise.then((data) => {
+  console.info('Succeeded in obtaining the area. Data:' + JSON.stringify(data));
+}).catch((err: BusinessError) => {
+  console.error('Failed to obtain the area. Cause:' + JSON.stringify(err));
 });
 ```
 
@@ -5677,14 +6413,17 @@ In non-full-screen mode, the status bar and navigation bar are displayed, and th
 
 **Example**
 
-```js
-let isFullScreen = true;
-windowClass.setFullScreen(isFullScreen, (err) => {
-    if (err.code) {
-        console.error('Failed to enable the full-screen mode. Cause: ' + JSON.stringify(err));
-        return;
-    }
-    console.info('Succeeded in enabling the full-screen mode.');
+```ts
+import { BusinessError } from '@ohos.base';
+
+let isFullScreen: boolean = true;
+windowClass.setFullScreen(isFullScreen, (err: BusinessError) => {
+  const errCode: number = err.code;
+  if (errCode) {
+    console.error('Failed to enable the full-screen mode. Cause: ' + JSON.stringify(err));
+    return;
+  }
+  console.info('Succeeded in enabling the full-screen mode.');
 });
 ```
 
@@ -5718,13 +6457,15 @@ In non-full-screen mode, the status bar and navigation bar are displayed, and th
 
 **Example**
 
-```js
-let isFullScreen = true;
+```ts
+import { BusinessError } from '@ohos.base';
+
+let isFullScreen: boolean = true;
 let promise = windowClass.setFullScreen(isFullScreen);
-promise.then(()=> {
-    console.info('Succeeded in enabling the full-screen mode.');
-}).catch((err)=>{
-    console.error('Failed to enable the full-screen mode. Cause: ' + JSON.stringify(err));
+promise.then(() => {
+  console.info('Succeeded in enabling the full-screen mode.');
+}).catch((err: BusinessError) => {
+  console.error('Failed to enable the full-screen mode. Cause: ' + JSON.stringify(err));
 });
 ```
 
@@ -5753,14 +6494,17 @@ A non-immersive layout means that the layout avoids the status bar and navigatio
 
 **Example**
 
-```js
-let isLayoutFullScreen= true;
-windowClass.setLayoutFullScreen(isLayoutFullScreen, (err) => {
-    if (err.code) {
-        console.error('Failed to set the window layout to full-screen mode. Cause:' + JSON.stringify(err));
-        return;
-    }
-    console.info('Succeeded in setting the window layout to full-screen mode.');
+```ts
+import { BusinessError } from '@ohos.base';
+
+let isLayoutFullScreen: boolean = true;
+windowClass.setLayoutFullScreen(isLayoutFullScreen, (err: BusinessError) => {
+  const errCode: number = err.code;
+  if (errCode) {
+    console.error('Failed to set the window layout to full-screen mode. Cause:' + JSON.stringify(err));
+    return;
+  }
+  console.info('Succeeded in setting the window layout to full-screen mode.');
 });
 ```
 
@@ -5794,13 +6538,15 @@ A non-immersive layout means that the layout avoids the status bar and navigatio
 
 **Example**
 
-```js
-let isLayoutFullScreen = true;
+```ts
+import { BusinessError } from '@ohos.base';
+
+let isLayoutFullScreen: boolean = true;
 let promise = windowClass.setLayoutFullScreen(isLayoutFullScreen);
-promise.then(()=> {
-    console.info('Succeeded in setting the window layout to full-screen mode.');
-}).catch((err)=>{
-    console.error('Failed to set the window layout to full-screen mode. Cause:' + JSON.stringify(err));
+promise.then(() => {
+  console.info('Succeeded in setting the window layout to full-screen mode.');
+}).catch((err: BusinessError) => {
+  console.error('Failed to set the window layout to full-screen mode. Cause:' + JSON.stringify(err));
 });
 ```
 
@@ -5825,15 +6571,18 @@ Sets whether to display the status bar and navigation bar when the window is in 
 
 **Example**
 
-```js
+```ts
 // In this example, the status bar and navigation bar are not displayed.
-let names = [];
-windowClass.setSystemBarEnable(names, (err) => {
-    if (err.code) {
-        console.error('Failed to set the system bar to be invisible. Cause:' + JSON.stringify(err));
-        return;
-    }
-    console.info('Succeeded in setting the system bar to be invisible.');
+import { BusinessError } from '@ohos.base';
+
+let names: Array<'status' | 'navigation'> = [];
+windowClass.setSystemBarEnable(names, (err: BusinessError) => {
+  const errCode: number = err.code;
+  if (errCode) {
+    console.error('Failed to set the system bar to be invisible. Cause:' + JSON.stringify(err));
+    return;
+  }
+  console.info('Succeeded in setting the system bar to be invisible.');
 });
 ```
 
@@ -5863,14 +6612,16 @@ Sets whether to display the status bar and navigation bar when the window is in 
 
 **Example**
 
-```js
+```ts
 // In this example, the status bar and navigation bar are not displayed.
-let names = [];
+import { BusinessError } from '@ohos.base';
+
+let names: Array<'status' | 'navigation'> = [];
 let promise = windowClass.setSystemBarEnable(names);
-promise.then(()=> {
-    console.info('Succeeded in setting the system bar to be invisible.');
-}).catch((err)=>{
-    console.error('Failed to set the system bar to be invisible. Cause:' + JSON.stringify(err));
+promise.then(() => {
+  console.info('Succeeded in setting the system bar to be invisible.');
+}).catch((err: BusinessError) => {
+  console.error('Failed to set the system bar to be invisible. Cause:' + JSON.stringify(err));
 });
 ```
 
@@ -5895,20 +6646,23 @@ Sets the properties of the status bar and navigation bar when the window is in f
 
 **Example**
 
-```js
-let SystemBarProperties={
-    statusBarColor: '#ff00ff',
-    navigationBarColor: '#00ff00',
-    // The following properties are supported since API version 8.
-    statusBarContentColor:'#ffffff',
-    navigationBarContentColor:'#00ffff'
+```ts
+import { BusinessError } from '@ohos.base';
+
+let SystemBarProperties: window.SystemBarProperties = {
+  statusBarColor: '#ff00ff',
+  navigationBarColor: '#00ff00',
+  // The following properties are supported since API version 8.
+  statusBarContentColor: '#ffffff',
+  navigationBarContentColor: '#00ffff'
 };
 windowClass.setSystemBarProperties(SystemBarProperties, (err) => {
-    if (err.code) {
-        console.error('Failed to set the system bar properties. Cause: ' + JSON.stringify(err));
-        return;
-    }
-    console.info('Succeeded in setting the system bar properties.');
+  const errCode: number = err.code;
+  if (errCode) {
+    console.error('Failed to set the system bar properties. Cause: ' + JSON.stringify(err));
+    return;
+  }
+  console.info('Succeeded in setting the system bar properties.');
 });
 ```
 
@@ -5938,19 +6692,21 @@ Sets the properties of the status bar and navigation bar when the window is in f
 
 **Example**
 
-```js
-let SystemBarProperties={
-    statusBarColor: '#ff00ff',
-    navigationBarColor: '#00ff00',
-    // The following properties are supported since API version 8.
-    statusBarContentColor:'#ffffff',
-    navigationBarContentColor:'#00ffff'
+```ts
+import { BusinessError } from '@ohos.base';
+
+let SystemBarProperties: window.SystemBarProperties = {
+  statusBarColor: '#ff00ff',
+  navigationBarColor: '#00ff00',
+  // The following properties are supported since API version 8.
+  statusBarContentColor: '#ffffff',
+  navigationBarContentColor: '#00ffff'
 };
 let promise = windowClass.setSystemBarProperties(SystemBarProperties);
-promise.then(()=> {
-    console.info('Succeeded in setting the system bar properties.');
-}).catch((err)=>{
-    console.error('Failed to set the system bar properties. Cause: ' + JSON.stringify(err));
+promise.then(() => {
+  console.info('Succeeded in setting the system bar properties.');
+}).catch((err: BusinessError) => {
+  console.error('Failed to set the system bar properties. Cause: ' + JSON.stringify(err));
 });
 ```
 
@@ -5975,12 +6731,15 @@ Loads content from a page to this window. This API uses an asynchronous callback
 
 **Example**
 
-```js
-windowClass.loadContent('pages/page2/page2', (err) => {
-   if (err.code) {
-         console.error('Failed to load the content. Cause:' + JSON.stringify(err));
-         return;
-   }
+```ts
+import { BusinessError } from '@ohos.base';
+
+windowClass.loadContent('pages/page2/page2', (err: BusinessError) => {
+  const errCode: number = err.code;
+  if (errCode) {
+    console.error('Failed to load the content. Cause:' + JSON.stringify(err));
+    return;
+  }
   console.info('Succeeded in loading the content.');
 });
 ```
@@ -6011,12 +6770,14 @@ Loads content from a page to this window. This API uses a promise to return the 
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 let promise = windowClass.loadContent('pages/page2/page2');
-promise.then(()=> {
-    console.info('Succeeded in loading the content.');
-}).catch((err)=>{
-    console.error('Failed to load the content. Cause: ' + JSON.stringify(err));
+promise.then(() => {
+  console.info('Succeeded in loading the content.');
+}).catch((err: BusinessError) => {
+  console.error('Failed to load the content. Cause: ' + JSON.stringify(err));
 });
 ```
 
@@ -6040,13 +6801,16 @@ Checks whether this window is displayed. This API uses an asynchronous callback 
 
 **Example**
 
-```js
-windowClass.isShowing((err, data) => {
-    if (err.code) {
-        console.error('Failed to check whether the window is showing. Cause:' + JSON.stringify(err));
-        return;
-    }
-    console.info('Succeeded in checking whether the window is showing. Data: ' + JSON.stringify(data));
+```ts
+import { BusinessError } from '@ohos.base';
+
+windowClass.isShowing((err: BusinessError, data) => {
+  const errCode: number = err.code;
+  if (errCode) {
+    console.error('Failed to check whether the window is showing. Cause:' + JSON.stringify(err));
+    return;
+  }
+  console.info('Succeeded in checking whether the window is showing. Data: ' + JSON.stringify(data));
 });
 ```
 
@@ -6070,12 +6834,14 @@ Checks whether this window is displayed. This API uses a promise to return the r
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 let promise = windowClass.isShowing();
-promise.then((data)=> {
-    console.info('Succeeded in checking whether the window is showing. Data: ' + JSON.stringify(data));
-}).catch((err)=>{
-    console.error('Failed to check whether the window is showing. Cause: ' + JSON.stringify(err));
+promise.then((data) => {
+  console.info('Succeeded in checking whether the window is showing. Data: ' + JSON.stringify(data));
+}).catch((err: BusinessError) => {
+  console.error('Failed to check whether the window is showing. Cause: ' + JSON.stringify(err));
 });
 ```
 
@@ -6100,9 +6866,9 @@ Subscribes to the event indicating changes to the area where the window cannot b
 
 **Example**
 
-```js
+```ts
 windowClass.on('systemAvoidAreaChange', (data) => {
-    console.info('Succeeded in enabling the listener for system avoid area changes. Data: ' + JSON.stringify(data));
+  console.info('Succeeded in enabling the listener for system avoid area changes. Data: ' + JSON.stringify(data));
 });
 ```
 
@@ -6127,7 +6893,7 @@ Unsubscribes from the event indicating changes to the area where the window cann
 
 **Example**
 
-```js
+```ts
 windowClass.off('systemAvoidAreaChange');
 ```
 
@@ -6151,13 +6917,16 @@ Checks whether this window supports the wide-gamut color space. This API uses an
 
 **Example**
 
-```js
-windowClass.isSupportWideGamut((err, data) => {
-    if (err.code) {
-        console.error('Failed to check whether the window support WideGamut. Cause:' + JSON.stringify(err));
-        return;
-    }
-    console.info('Succeeded in checking whether the window support WideGamut Data: ' + JSON.stringify(data));
+```ts
+import { BusinessError } from '@ohos.base';
+
+windowClass.isSupportWideGamut((err: BusinessError, data) => {
+  const errCode: number = err.code;
+  if (errCode) {
+    console.error('Failed to check whether the window support WideGamut. Cause:' + JSON.stringify(err));
+    return;
+  }
+  console.info('Succeeded in checking whether the window support WideGamut Data: ' + JSON.stringify(data));
 });
 ```
 
@@ -6181,12 +6950,14 @@ Checks whether this window supports the wide-gamut color space. This API uses a 
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 let promise = windowClass.isSupportWideGamut();
-promise.then((data)=> {
-    console.info('Succeeded in checking whether the window support WideGamut. Data: ' + JSON.stringify(data));
-}).catch((err)=>{
-    console.error('Failed to check whether the window support WideGamut. Cause: ' + JSON.stringify(err));
+promise.then((data) => {
+  console.info('Succeeded in checking whether the window support WideGamut. Data: ' + JSON.stringify(data));
+}).catch((err: BusinessError) => {
+  console.error('Failed to check whether the window support WideGamut. Cause: ' + JSON.stringify(err));
 });
 ```
 
@@ -6211,13 +6982,16 @@ Sets a color space for this window. This API uses an asynchronous callback to re
 
 **Example**
 
-```js
-windowClass.setColorSpace(window.ColorSpace.WIDE_GAMUT, (err) => {
-    if (err.code) {
-        console.error('Failed to set window colorspace. Cause:' + JSON.stringify(err));
-        return;
-    }
-    console.info('Succeeded in setting window colorspace.');
+```ts
+import { BusinessError } from '@ohos.base';
+
+windowClass.setColorSpace(window.ColorSpace.WIDE_GAMUT, (err: BusinessError) => {
+  const errCode: number = err.code;
+  if (errCode) {
+    console.error('Failed to set window colorspace. Cause:' + JSON.stringify(err));
+    return;
+  }
+  console.info('Succeeded in setting window colorspace.');
 });
 ```
 
@@ -6247,12 +7021,14 @@ Sets a color space for this window. This API uses a promise to return the result
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 let promise = windowClass.setColorSpace(window.ColorSpace.WIDE_GAMUT);
-promise.then(()=> {
-    console.info('Succeeded in setting window colorspace.');
-}).catch((err)=>{
-    console.error('Failed to set window colorspace. Cause: ' + JSON.stringify(err));
+promise.then(() => {
+  console.info('Succeeded in setting window colorspace.');
+}).catch((err: BusinessError) => {
+  console.error('Failed to set window colorspace. Cause: ' + JSON.stringify(err));
 });
 ```
 
@@ -6276,13 +7052,16 @@ Obtains the color space of this window. This API uses an asynchronous callback t
 
 **Example**
 
-```js
-windowClass.getColorSpace((err, data) => {
-    if (err.code) {
-        console.error('Failed to get window colorspace. Cause:' + JSON.stringify(err));
-        return;
-    }
-    console.info('Succeeded in getting window colorspace. Cause:' + JSON.stringify(data));
+```ts
+import { BusinessError } from '@ohos.base';
+
+windowClass.getColorSpace((err: BusinessError, data) => {
+  const errCode: number = err.code;
+  if (errCode) {
+    console.error('Failed to get window colorspace. Cause:' + JSON.stringify(err));
+    return;
+  }
+  console.info('Succeeded in getting window colorspace. Cause:' + JSON.stringify(data));
 });
 ```
 
@@ -6306,12 +7085,14 @@ Obtains the color space of this window. This API uses a promise to return the re
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 let promise = windowClass.getColorSpace();
-promise.then((data)=> {
-    console.info('Succeeded in getting window color space. Cause:' + JSON.stringify(data));
-}).catch((err)=>{
-    console.error('Failed to get window colorspace. Cause: ' + JSON.stringify(err));
+promise.then((data) => {
+  console.info('Succeeded in getting window color space. Cause:' + JSON.stringify(data));
+}).catch((err: BusinessError) => {
+  console.error('Failed to get window colorspace. Cause: ' + JSON.stringify(err));
 });
 ```
 
@@ -6336,14 +7117,17 @@ Sets the background color for this window. This API uses an asynchronous callbac
 
 **Example**
 
-```js
-let color = '#00ff33';
-windowClass.setBackgroundColor(color, (err) => {
-    if (err.code) {
-        console.error('Failed to set the background color. Cause: ' + JSON.stringify(err));
-        return;
-    }
-    console.info('Succeeded in setting the background color.');
+```ts
+import { BusinessError } from '@ohos.base';
+
+let color: string = '#00ff33';
+windowClass.setBackgroundColor(color, (err: BusinessError) => {
+  const errCode: number = err.code;
+  if (errCode) {
+    console.error('Failed to set the background color. Cause: ' + JSON.stringify(err));
+    return;
+  }
+  console.info('Succeeded in setting the background color.');
 });
 ```
 
@@ -6373,13 +7157,15 @@ Sets the background color for this window. This API uses a promise to return the
 
 **Example**
 
-```js
-let color = '#00ff33';
+```ts
+import { BusinessError } from '@ohos.base';
+
+let color: string = '#00ff33';
 let promise = windowClass.setBackgroundColor(color);
-promise.then(()=> {
-    console.info('Succeeded in setting the background color.');
-}).catch((err)=>{
-    console.error('Failed to set the background color. Cause: ' + JSON.stringify(err));
+promise.then(() => {
+  console.info('Succeeded in setting the background color.');
+}).catch((err: BusinessError) => {
+  console.error('Failed to set the background color. Cause: ' + JSON.stringify(err));
 });
 ```
 
@@ -6401,19 +7187,22 @@ When the screen brightness setting for the window takes effect, Control Panel ca
 
 | Name    | Type                     | Mandatory| Description                                   |
 | ---------- | ------------------------- | ---- |---------------------------------------|
-| brightness | number                    | Yes  | Brightness to set. The value is a floating point number in the range [0.0, 1.0], and the value **1.0** means the brightest.|
+| brightness | number                    | Yes  | Brightness to set. The value is a floating point number in the range [0.0, 1.0] or **-1.0**. The value **1.0** means the brightest, and **-1.0** means the default brightness.|
 | callback   | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.                                |
 
 **Example**
 
-```js
-let brightness = 1;
-windowClass.setBrightness(brightness, (err) => {
-    if (err.code) {
-        console.error('Failed to set the brightness. Cause: ' + JSON.stringify(err));
-        return;
-    }
-    console.info('Succeeded in setting the brightness.');
+```ts
+import { BusinessError } from '@ohos.base';
+
+let brightness: number = 1;
+windowClass.setBrightness(brightness, (err: BusinessError) => {
+  const errCode: number = err.code;
+  if (errCode) {
+    console.error('Failed to set the brightness. Cause: ' + JSON.stringify(err));
+    return;
+  }
+  console.info('Succeeded in setting the brightness.');
 });
 ```
 
@@ -6435,7 +7224,7 @@ When the screen brightness setting for the window takes effect, Control Panel ca
 
 | Name    | Type  | Mandatory| Description                                      |
 | ---------- | ------ | ---- |------------------------------------------|
-| brightness | number | Yes  | Brightness to set. The value is a floating point number in the range [0.0, 1.0], and the value **1.0** means the brightest.|
+| brightness | number | Yes  | Brightness to set. The value is a floating point number in the range [0.0, 1.0] or **-1.0**. The value **1.0** means the brightest, and **-1.0** means the default brightness.|
 
 **Return value**
 
@@ -6445,13 +7234,15 @@ When the screen brightness setting for the window takes effect, Control Panel ca
 
 **Example**
 
-```js
-let brightness = 1;
+```ts
+import { BusinessError } from '@ohos.base';
+
+let brightness: number = 1;
 let promise = windowClass.setBrightness(brightness);
-promise.then(()=> {
-    console.info('Succeeded in setting the brightness.');
-}).catch((err)=>{
-    console.error('Failed to set the brightness. Cause: ' + JSON.stringify(err));
+promise.then(() => {
+  console.info('Succeeded in setting the brightness.');
+}).catch((err: BusinessError) => {
+  console.error('Failed to set the brightness. Cause: ' + JSON.stringify(err));
 });
 ```
 
@@ -6476,13 +7267,16 @@ Sets the dimness of the window that is not on top. This API uses an asynchronous
 
 **Example**
 
-```js
-windowClass.setDimBehind(0.5, (err) => {
-    if (err.code) {
-        console.error('Failed to set the dimness. Cause: ' + JSON.stringify(err));
-        return;
-    }
-    console.info('Succeeded in setting the dimness.');
+```ts
+import { BusinessError } from '@ohos.base';
+
+windowClass.setDimBehind(0.5, (err: BusinessError) => {
+  const errCode: number = err.code;
+  if (errCode) {
+    console.error('Failed to set the dimness. Cause: ' + JSON.stringify(err));
+    return;
+  }
+  console.info('Succeeded in setting the dimness.');
 });
 ```
 
@@ -6512,12 +7306,14 @@ Sets the dimness of the window that is not on top. This API uses a promise to re
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 let promise = windowClass.setDimBehind(0.5);
-promise.then(()=> {
-    console.info('Succeeded in setting the dimness.');
-}).catch((err)=>{
-    console.error('Failed to set the dimness. Cause: ' + JSON.stringify(err));
+promise.then(() => {
+  console.info('Succeeded in setting the dimness.');
+}).catch((err: BusinessError) => {
+  console.error('Failed to set the dimness. Cause: ' + JSON.stringify(err));
 });
 ```
 
@@ -6542,14 +7338,17 @@ Sets whether this window can gain focus. This API uses an asynchronous callback 
 
 **Example**
 
-```js
-let isFocusable= true;
-windowClass.setFocusable(isFocusable, (err) => {
-    if (err.code) {
-        console.error('Failed to set the window to be focusable. Cause:' + JSON.stringify(err));
-        return;
-    }
-    console.info('Succeeded in setting the window to be focusable.');
+```ts
+import { BusinessError } from '@ohos.base';
+
+let isFocusable: boolean = true;
+windowClass.setFocusable(isFocusable, (err: BusinessError) => {
+  const errCode: number = err.code;
+  if (errCode) {
+    console.error('Failed to set the window to be focusable. Cause:' + JSON.stringify(err));
+    return;
+  }
+  console.info('Succeeded in setting the window to be focusable.');
 });
 ```
 
@@ -6579,13 +7378,15 @@ Sets whether this window can gain focus. This API uses a promise to return the r
 
 **Example**
 
-```js
-let isFocusable= true;
+```ts
+import { BusinessError } from '@ohos.base';
+
+let isFocusable: boolean = true;
 let promise = windowClass.setFocusable(isFocusable);
-promise.then(()=> {
-    console.info('Succeeded in setting the window to be focusable.');
-}).catch((err)=>{
-    console.error('Failed to set the window to be focusable. Cause: ' + JSON.stringify(err));
+promise.then(() => {
+  console.info('Succeeded in setting the window to be focusable.');
+}).catch((err: BusinessError) => {
+  console.error('Failed to set the window to be focusable. Cause: ' + JSON.stringify(err));
 });
 ```
 
@@ -6610,14 +7411,17 @@ Sets whether to keep the screen always on. This API uses an asynchronous callbac
 
 **Example**
 
-```js
-let isKeepScreenOn = true;
-windowClass.setKeepScreenOn(isKeepScreenOn, (err) => {
-    if (err.code) {
-        console.error('Failed to set the screen to be always on. Cause: ' + JSON.stringify(err));
-        return;
-    }
-    console.info('Succeeded in setting the screen to be always on.');
+```ts
+import { BusinessError } from '@ohos.base';
+
+let isKeepScreenOn: boolean = true;
+windowClass.setKeepScreenOn(isKeepScreenOn, (err: BusinessError) => {
+  const errCode: number = err.code;
+  if (errCode) {
+    console.error('Failed to set the screen to be always on. Cause: ' + JSON.stringify(err));
+    return;
+  }
+  console.info('Succeeded in setting the screen to be always on.');
 });
 ```
 
@@ -6647,13 +7451,15 @@ Sets whether to keep the screen always on. This API uses a promise to return the
 
 **Example**
 
-```js
-let isKeepScreenOn = true;
+```ts
+import { BusinessError } from '@ohos.base';
+
+let isKeepScreenOn: boolean = true;
 let promise = windowClass.setKeepScreenOn(isKeepScreenOn);
 promise.then(() => {
-    console.info('Succeeded in setting the screen to be always on.');
-}).catch((err)=>{
-    console.info('Failed to set the screen to be always on. Cause:  ' + JSON.stringify(err));
+  console.info('Succeeded in setting the screen to be always on.');
+}).catch((err: BusinessError) => {
+  console.info('Failed to set the screen to be always on. Cause:  ' + JSON.stringify(err));
 });
 ```
 
@@ -6665,7 +7471,9 @@ Sets whether the area outside the subwindow is touchable. This API uses an async
 
 > **NOTE**
 >
-> This API cannot be used. This API is supported since API version 7 and deprecated since API version 9.
+> This API is supported since API version 7 and deprecated since API version 9.
+> 
+> Since API version 9, the area outside the subwindow is touchable by default. This API is no longer supported and no substitute API is provided.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -6678,14 +7486,22 @@ Sets whether the area outside the subwindow is touchable. This API uses an async
 
 **Example**
 
-```js
-windowClass.setOutsideTouchable(true, (err) => {
-    if (err.code) {
-        console.error('Failed to set the area to be touchable. Cause: ' + JSON.stringify(err));
-        return;
+```ts
+import { BusinessError } from '@ohos.base';
+
+if (!windowClass) {
+  console.info('Failed to load the content. Cause: windowClass is null');
+}
+else {
+  (windowClass as window.Window).setOutsideTouchable(true, (err: BusinessError) => {
+    const errCode: number = err.code;
+    if (errCode) {
+      console.error('Failed to set the area to be touchable. Cause: ' + JSON.stringify(err));
+      return;
     }
     console.info('Succeeded in setting the area to be touchable.');
-});
+  });
+}
 ```
 
 ### setOutsideTouchable<sup>(deprecated)</sup>
@@ -6696,7 +7512,9 @@ Sets whether the area outside the subwindow is touchable. This API uses a promis
 
 > **NOTE**
 >
-> This API cannot be used. This API is supported since API version 7 and deprecated since API version 9.
+> This API is supported since API version 7 and deprecated since API version 9.
+> 
+> Since API version 9, the area outside the subwindow is touchable by default. This API is no longer supported and no substitute API is provided.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -6714,13 +7532,20 @@ Sets whether the area outside the subwindow is touchable. This API uses a promis
 
 **Example**
 
-```js
-let promise = windowClass.setOutsideTouchable(true);
-promise.then(()=> {
-    console.info('Succeeded in setting the area to be touchable.');
-}).catch((err)=>{
-    console.error('Failed to set the area to be touchable. Cause: ' + JSON.stringify(err));
+```ts
+import { BusinessError } from '@ohos.base';
+
+if (!windowClass) {
+  console.info('Failed to load the content. Cause: windowClass is null');
+}
+else {
+let promise = (windowClass as window.Window).setOutsideTouchable(true);
+promise.then(() => {
+  console.info('Succeeded in setting the area to be touchable.');
+}).catch((err: BusinessError) => {
+  console.error('Failed to set the area to be touchable. Cause: ' + JSON.stringify(err));
 });
+}
 ```
 
 ### setPrivacyMode<sup>(deprecated)</sup>
@@ -6746,14 +7571,17 @@ A window in privacy mode cannot be captured or recorded.
 
 **Example**
 
-```js
-let isPrivacyMode = true;
-windowClass.setPrivacyMode(isPrivacyMode, (err) => {
-    if (err.code) {
-        console.error('Failed to set the window to privacy mode. Cause:' + JSON.stringify(err));
-        return;
-    }
-    console.info('Succeeded in setting the window to privacy mode.');
+```ts
+import { BusinessError } from '@ohos.base';
+
+let isPrivacyMode: boolean = true;
+windowClass.setPrivacyMode(isPrivacyMode, (err: BusinessError) => {
+  const errCode: number = err.code;
+  if (errCode) {
+    console.error('Failed to set the window to privacy mode. Cause:' + JSON.stringify(err));
+    return;
+  }
+  console.info('Succeeded in setting the window to privacy mode.');
 });
 ```
 
@@ -6785,13 +7613,15 @@ A window in privacy mode cannot be captured or recorded.
 
 **Example**
 
-```js
-let isPrivacyMode = true;
+```ts
+import { BusinessError } from '@ohos.base';
+
+let isPrivacyMode: boolean = true;
 let promise = windowClass.setPrivacyMode(isPrivacyMode);
-promise.then(()=> {
-    console.info('Succeeded in setting the window to privacy mode.');
-}).catch((err)=>{
-    console.error('Failed to set the window to privacy mode. Cause: ' + JSON.stringify(err));
+promise.then(() => {
+  console.info('Succeeded in setting the window to privacy mode.');
+}).catch((err: BusinessError) => {
+  console.error('Failed to set the window to privacy mode. Cause: ' + JSON.stringify(err));
 });
 ```
 
@@ -6816,15 +7646,23 @@ Sets whether this window is touchable. This API uses an asynchronous callback to
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 let isTouchable = true;
-windowClass.setTouchable(isTouchable, (err) => {
-    if (err.code) {
-        console.error('Failed to set the window to be touchable. Cause:' + JSON.stringify(err));
-        return;
+if (!windowClass) {
+  console.info('Failed to load the content. Cause: windowClass is null');
+}
+else {
+  (windowClass as window.Window).setTouchable(isTouchable, (err: BusinessError) => {
+    const errCode: number = err.code;
+    if (errCode) {
+      console.error('Failed to set the window to be touchable. Cause:' + JSON.stringify(err));
+      return;
     }
     console.info('Succeeded in setting the window to be touchable.');
-});
+  });
+}
 ```
 
 ### setTouchable<sup>(deprecated)</sup>
@@ -6853,13 +7691,15 @@ Sets whether this window is touchable. This API uses a promise to return the res
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 let isTouchable = true;
 let promise = windowClass.setTouchable(isTouchable);
-promise.then(()=> {
-    console.info('Succeeded in setting the window to be touchable.');
-}).catch((err)=>{
-    console.error('Failed to set the window to be touchable. Cause: ' + JSON.stringify(err));
+promise.then(() => {
+  console.info('Succeeded in setting the window to be touchable.');
+}).catch((err: BusinessError) => {
+  console.error('Failed to set the window to be touchable. Cause: ' + JSON.stringify(err));
 });
 ```
 
@@ -6913,22 +7753,25 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import window from '@ohos.window';
+import { BusinessError } from '@ohos.base';
 
 export default class EntryAbility extends UIAbility {
-    // ...
+  // ...
 
-    onWindowStageCreate(windowStage) {
-        console.log('onWindowStageCreate');
-        let windowClass = null;
-        windowStage.getMainWindow((err, data) => {
-            if (err.code) {
-                console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(err));
-                return;
-            }
-            windowClass = data;
-            console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
-        });
-    }
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    console.log('onWindowStageCreate');
+    let windowClass: window.Window | null = null;
+    windowStage.getMainWindow((err: BusinessError, data) => {
+      const errCode: number = err.code;
+      if (errCode) {
+        console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(err));
+        return;
+      }
+      windowClass = data;
+      console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
+    });
+  }
 };
 ```
 
@@ -6961,21 +7804,23 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import window from '@ohos.window';
+import { BusinessError } from '@ohos.base';
 
 export default class EntryAbility extends UIAbility {
-    // ...
+  // ...
 
-    onWindowStageCreate(windowStage) {
-        console.log('onWindowStageCreate');
-        let windowClass = null;
-        let promise = windowStage.getMainWindow();
-        promise.then((data) => {
-        windowClass = data;
-            console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
-        }).catch((err) => {
-            console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(err));
-        });
-    }
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    console.log('onWindowStageCreate');
+    let windowClass: window.Window | null = null;
+    let promise = windowStage.getMainWindow();
+    promise.then((data) => {
+      windowClass = data;
+      console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
+    }).catch((err: BusinessError) => {
+      console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(err));
+    });
+  }
 };
 ```
 
@@ -7008,18 +7853,19 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import window from '@ohos.window';
 
 export default class EntryAbility extends UIAbility {
-    // ...
+  // ...
 
-    onWindowStageCreate(windowStage) {
-        console.log('onWindowStageCreate');
-        try {
-            let windowClass = windowStage.getMainWindowSync();
-        } catch (exception) {
-            console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(exception));
-        };
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    console.log('onWindowStageCreate');
+    try {
+      let windowClass = windowStage.getMainWindowSync();
+    } catch (exception) {
+      console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(exception));
     }
+  }
 };
 ```
 
@@ -7053,27 +7899,36 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import window from '@ohos.window';
+import { BusinessError } from '@ohos.base';
 
 export default class EntryAbility extends UIAbility {
-    // ...
+  // ...
 
-    onWindowStageCreate(windowStage) {
-        console.log('onWindowStageCreate');
-        let windowClass = null;
-        try {
-            windowStage.createSubWindow('mySubWindow', (err, data) => {
-                if (err.code) {
-                    console.error('Failed to create the subwindow. Cause: ' + JSON.stringify(err));
-                    return;
-                }
-                windowClass = data;
-                console.info('Succeeded in creating the subwindow. Data: ' + JSON.stringify(data));
-                windowClass.resetSize(500, 1000);
-            });
-        } catch (exception) {
-            console.error('Failed to create the subwindow. Cause: ' + JSON.stringify(exception));
-        };
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    console.log('onWindowStageCreate');
+    let windowClass: window.Window | null = null;
+    try {
+      windowStage.createSubWindow('mySubWindow', (err: BusinessError, data) => {
+        const errCode: number = err.code;
+        if (errCode) {
+          console.error('Failed to create the subwindow. Cause: ' + JSON.stringify(err));
+          return;
+        }
+        windowClass = data;
+        console.info('Succeeded in creating the subwindow. Data: ' + JSON.stringify(data));
+        if (!windowClass) {
+          console.info('Failed to load the content. Cause: windowClass is null');
+        }
+        else {
+          (windowClass as window.Window).resetSize(500, 1000);
+        }
+      });
+
+    } catch (exception) {
+      console.error('Failed to create the subwindow. Cause: ' + JSON.stringify(exception));
     }
+  }
 };
 ```
 ### createSubWindow<sup>9+</sup>
@@ -7111,25 +7966,27 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import window from '@ohos.window';
+import { BusinessError } from '@ohos.base';
 
 export default class EntryAbility extends UIAbility {
-    // ...
+  // ...
 
-    onWindowStageCreate(windowStage) {
-        console.log('onWindowStageCreate');
-        let windowClass = null;
-        try {
-            let promise = windowStage.createSubWindow('mySubWindow');
-            promise.then((data) => {
-                windowClass = data;
-                console.info('Succeeded in creating the subwindow. Data: ' + JSON.stringify(data));
-            }).catch((err) => {
-                console.error('Failed to create the subwindow. Cause: ' + JSON.stringify(err));
-            });
-        } catch (exception) {
-            console.error('Failed to create the subwindow. Cause: ' + JSON.stringify(exception));
-        };
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    console.log('onWindowStageCreate');
+    let windowClass: window.Window | null = null;
+    try {
+      let promise = windowStage.createSubWindow('mySubWindow');
+      promise.then((data) => {
+        windowClass = data;
+        console.info('Succeeded in creating the subwindow. Data: ' + JSON.stringify(data));
+      }).catch((err: BusinessError) => {
+        console.error('Failed to create the subwindow. Cause: ' + JSON.stringify(err));
+      });
+    } catch (exception) {
+      console.error('Failed to create the subwindow. Cause: ' + JSON.stringify(exception));
     }
+  }
 };
 ```
 
@@ -7161,22 +8018,25 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import window from '@ohos.window';
+import { BusinessError } from '@ohos.base';
 
 export default class EntryAbility extends UIAbility {
-    // ...
+  // ...
 
-    onWindowStageCreate(windowStage) {
-        console.log('onWindowStageCreate');
-        let windowClass = null;
-        windowStage.getSubWindow((err, data) => {
-            if (err.code) {
-                console.error('Failed to obtain the subwindow. Cause: ' + JSON.stringify(err));
-                return;
-            }
-            windowClass = data;
-            console.info('Succeeded in obtaining the subwindow. Data: ' + JSON.stringify(data));
-        });
-    }
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    console.log('onWindowStageCreate');
+    let windowClass: window.Window[] = [];
+    windowStage.getSubWindow((err: BusinessError, data) => {
+      const errCode: number = err.code;
+      if (errCode) {
+        console.error('Failed to obtain the subwindow. Cause: ' + JSON.stringify(err));
+        return;
+      }
+      windowClass = data;
+      console.info('Succeeded in obtaining the subwindow. Data: ' + JSON.stringify(data));
+    });
+  }
 };
 ```
 ### getSubWindow<sup>9+</sup>
@@ -7207,21 +8067,23 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import window from '@ohos.window';
+import { BusinessError } from '@ohos.base';
 
 export default class EntryAbility extends UIAbility {
-    // ...
+  // ...
 
-    onWindowStageCreate(windowStage) {
-        console.log('onWindowStageCreate');
-        let windowClass = null;
-        let promise = windowStage.getSubWindow();
-        promise.then((data) => {
-            windowClass = data;
-            console.info('Succeeded in obtaining the subwindow. Data: ' + JSON.stringify(data));
-        }).catch((err) => {
-            console.error('Failed to obtain the subwindow. Cause: ' + JSON.stringify(err));
-        })
-    }
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    console.log('onWindowStageCreate');
+    let windowClass: window.Window[] = [];
+    let promise = windowStage.getSubWindow();
+    promise.then((data) => {
+      windowClass = data;
+      console.info('Succeeded in obtaining the subwindow. Data: ' + JSON.stringify(data));
+    }).catch((err: BusinessError) => {
+      console.error('Failed to obtain the subwindow. Cause: ' + JSON.stringify(err));
+    })
+  }
 };
 ```
 ### loadContent<sup>9+</sup>
@@ -7255,27 +8117,30 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import window from '@ohos.window';
+import { BusinessError } from '@ohos.base';
 
 export default class EntryAbility extends UIAbility {
-    // ...
+  // ...
 
-    storage : LocalStorage
-    onWindowStageCreate(windowStage) {
-        this.storage = new LocalStorage();
-        this.storage.setOrCreate('storageSimpleProp',121);
-        console.log('onWindowStageCreate');
-        try {
-            windowStage.loadContent('pages/page2',this.storage,(err) => {
-                if (err.code) {
-                    console.error('Failed to load the content. Cause:' + JSON.stringify(err));
-                    return;
-                }
-                console.info('Succeeded in loading the content.');
-            });
-        } catch (exception) {
-            console.error('Failed to load the content. Cause:' + JSON.stringify(exception));
-        };
+  storage: LocalStorage = new LocalStorage();
+
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    this.storage.setOrCreate('storageSimpleProp', 121);
+    console.log('onWindowStageCreate');
+    try {
+      windowStage.loadContent('pages/page2', this.storage, (err: BusinessError) => {
+        const errCode: number = err.code;
+        if (errCode) {
+          console.error('Failed to load the content. Cause:' + JSON.stringify(err));
+          return;
+        }
+        console.info('Succeeded in loading the content.');
+      });
+    } catch (exception) {
+      console.error('Failed to load the content. Cause:' + JSON.stringify(exception));
     }
+  }
 };
 ```
 
@@ -7315,26 +8180,29 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import window from '@ohos.window';
+import { BusinessError } from '@ohos.base';
 
 export default class EntryAbility extends UIAbility {
-    // ...
+  // ...
 
-    storage : LocalStorage
-    onWindowStageCreate(windowStage) {
-        this.storage = new LocalStorage();
-        this.storage.setOrCreate('storageSimpleProp',121);
-        console.log('onWindowStageCreate');
-        try {
-            let promise = windowStage.loadContent('pages/page2',this.storage);
-            promise.then(() => {
-                console.info('Succeeded in loading the content.');
-            }).catch((err) => {
-                console.error('Failed to load the content. Cause:' + JSON.stringify(err));
-            });
-        } catch (exception) {
-            console.error('Failed to load the content. Cause:' + JSON.stringify(exception));
-        };
+  storage: LocalStorage = new LocalStorage();
+
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    this.storage.setOrCreate('storageSimpleProp', 121);
+    console.log('onWindowStageCreate');
+    try {
+      let promise = windowStage.loadContent('pages/page2', this.storage);
+      promise.then(() => {
+        console.info('Succeeded in loading the content.');
+      }).catch((err: BusinessError) => {
+        console.error('Failed to load the content. Cause:' + JSON.stringify(err));
+      });
+    } catch (exception) {
+      console.error('Failed to load the content. Cause:' + JSON.stringify(exception));
     }
+    ;
+  }
 };
 ```
 
@@ -7368,24 +8236,27 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import window from '@ohos.window';
+import { BusinessError } from '@ohos.base';
 
 export default class EntryAbility extends UIAbility {
-    // ...
+  // ...
 
-    onWindowStageCreate(windowStage) {
-        console.log('onWindowStageCreate');
-        try {
-            windowStage.loadContent('pages/page2', (err) => {
-                if (err.code) {
-                    console.error('Failed to load the content. Cause:' + JSON.stringify(err));
-                    return;
-                }
-                console.info('Succeeded in loading the content.');
-            });
-        } catch (exception) {
-            console.error('Failed to load the content. Cause:' + JSON.stringify(exception));
-        };
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    console.log('onWindowStageCreate');
+    try {
+      windowStage.loadContent('pages/page2', (err: BusinessError) => {
+        const errCode: number = err.code;
+        if (errCode) {
+          console.error('Failed to load the content. Cause:' + JSON.stringify(err));
+          return;
+        }
+        console.info('Succeeded in loading the content.');
+      });
+    } catch (exception) {
+      console.error('Failed to load the content. Cause:' + JSON.stringify(exception));
     }
+  }
 };
 ```
 
@@ -7419,22 +8290,23 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import window from '@ohos.window';
 
 export default class EntryAbility extends UIAbility {
-    // ...
+  // ...
 
-    onWindowStageCreate(windowStage) {
-        console.log('onWindowStageCreate');
-        try {
-            windowStage.on('windowStageEvent', (data) => {
-                console.info('Succeeded in enabling the listener for window stage event changes. Data: ' +
-                    JSON.stringify(data));
-            });
-        } catch (exception) {
-            console.error('Failed to enable the listener for window stage event changes. Cause:' +
-                JSON.stringify(exception));
-        };
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    console.log('onWindowStageCreate');
+    try {
+      windowStage.on('windowStageEvent', (data) => {
+        console.info('Succeeded in enabling the listener for window stage event changes. Data: ' +
+        JSON.stringify(data));
+      });
+    } catch (exception) {
+      console.error('Failed to enable the listener for window stage event changes. Cause:' +
+      JSON.stringify(exception));
     }
+  }
 };
 ```
 
@@ -7468,19 +8340,20 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import window from '@ohos.window';
 
 export default class EntryAbility extends UIAbility {
-    // ...
+  // ...
 
-    onWindowStageCreate(windowStage) {
-        console.log('onWindowStageCreate');
-        try {
-            windowStage.off('windowStageEvent');
-        } catch (exception) {
-            console.error('Failed to disable the listener for window stage event changes. Cause:' +
-                JSON.stringify(exception));
-        };
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    console.log('onWindowStageCreate');
+    try {
+      windowStage.off('windowStageEvent');
+    } catch (exception) {
+      console.error('Failed to disable the listener for window stage event changes. Cause:' +
+      JSON.stringify(exception));
     }
+  }
 };
 ```
 
@@ -7509,14 +8382,15 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import window from '@ohos.window';
 
 export default class EntryAbility extends UIAbility {
-    // ...
+  // ...
 
-    onWindowStageCreate(windowStage) {
-        console.log('disableWindowDecor');
-        windowStage.disableWindowDecor();
-    }
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    console.log('disableWindowDecor');
+    windowStage.disableWindowDecor();
+  }
 };
 ```
 
@@ -7551,18 +8425,19 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import window from '@ohos.window';
 
 export default class EntryAbility extends UIAbility {
-    // ...
+  // ...
 
-    onWindowStageCreate(windowStage) {
-        console.log('onWindowStageCreate');
-        try {
-            windowStage.setShowOnLockScreen(true);
-        } catch (exception) {
-            console.error('Failed to show on lockscreen. Cause:' + JSON.stringify(exception));
-        };
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    console.log('onWindowStageCreate');
+    try {
+      windowStage.setShowOnLockScreen(true);
+    } catch (exception) {
+      console.error('Failed to show on lockscreen. Cause:' + JSON.stringify(exception));
     }
+  }
 };
 ```
 ## TransitionContext<sup>9+</sup>
@@ -7597,33 +8472,35 @@ Completes the transition. This API can be called only after [animateTo()](../ark
 
 **Example**
 
-```js
-let controller = windowClass.getTransitionController();
-controller.animationForShown = (context : window.TransitionContext) => {
-	let toWindow = context.toWindow;
- 	animateTo({
-    	duration: 1000, // Animation duration.
-        tempo: 0.5, // Playback speed.
-        curve: Curve.EaseInOut, // Animation curve.
-        delay: 0, // Animation delay.
-        iterations: 1, // Number of playback times.
-        playMode: PlayMode.Normal // Animation playback mode.
-      }, () => {
-        let obj : window.TranslateOptions = {
-          x : 100.0,
-          y : 0.0,
-          z : 0.0
-        };
-        toWindow.translate(obj);
-        console.info('toWindow translate end');
-      }
-    );
-    try {
-        context.completeTransition(true)
-    } catch (exception) {
-        console.info('toWindow translate fail. Cause: ' + JSON.stringify(exception));
-    }
-    console.info('complete transition end');
+```ts
+let windowClass: window.Window | null = null;
+
+let controller: window.TransitionController = windowClass.getTransitionController();
+controller.animationForShown = (context: window.TransitionContext) => {
+  let toWindow: window.Window = context.toWindow;
+  animateTo({
+    duration: 1000, // Animation duration.
+    tempo: 0.5, // Playback speed.
+    curve: Curve.EaseInOut, // Animation curve.
+    delay: 0, // Animation delay.
+    iterations: 1, // Number of playback times.
+    playMode: PlayMode.Normal // Animation playback mode.
+  }, () => {
+    let obj: window.TranslateOptions = {
+      x: 100.0,
+      y: 0.0,
+      z: 0.0
+    };
+    toWindow.translate(obj);
+    console.info('toWindow translate end');
+  }
+  );
+  try {
+    context.completeTransition(true)
+  } catch (exception) {
+    console.info('toWindow translate fail. Cause: ' + JSON.stringify(exception));
+  }
+  console.info('complete transition end');
 };
 ```
 
@@ -7649,31 +8526,32 @@ Customizes the animation for the scenario when the window is shown.
 
 **Example**
 
-```js
-let controller = windowClass.getTransitionController();
+```ts
+let windowClass: window.Window | null = null;
+let controller: window.TransitionController = windowClass.getTransitionController();
 controller.animationForShown = (context : window.TransitionContext) => {
-	let toWindow = context.toWindow;
- 	animateTo({
-    	duration: 1000, // Animation duration.
-        tempo: 0.5, // Playback speed.
-        curve: Curve.EaseInOut, // Animation curve.
-        delay: 0, // Animation delay.
-        iterations: 1, // Number of playback times.
-        playMode: PlayMode.Normal // Animation playback mode.
-        onFinish: ()=> {
-            context.completeTransition(true)
-        }
-      }, () => {
-        let obj : window.TranslateOptions = {
-          x : 100.0,
-          y : 0.0,
-          z : 0.0
-        };
-        toWindow.translate(obj);
-        console.info('toWindow translate end');
-      }
-    );
-    console.info('complete transition end');
+  let toWindow: window.Window = context.toWindow;
+  animateTo({
+    duration: 1000, // Animation duration.
+    tempo: 0.5, // Playback speed.
+    curve: Curve.EaseInOut, // Animation curve.
+    delay: 0, // Animation delay.
+    iterations: 1, // Number of playback times.
+    playMode: PlayMode.Normal // Animation playback mode.
+    onFinish: ()=> {
+      context.completeTransition(true)
+    }
+  }, () => {
+    let obj : window.TranslateOptions = {
+      x : 100.0,
+      y : 0.0,
+      z : 0.0
+    };
+    toWindow.translate(obj);
+    console.info('toWindow translate end');
+  }
+  );
+  console.info('complete transition end');
 };
 ```
 
@@ -7695,30 +8573,31 @@ Customizes the animation for the scenario when the window is hidden.
 
 **Example**
 
-```js
-let controller = windowClass.getTransitionController();
-controller.animationForHidden = (context : window.TransitionContext) => {
-	let toWindow = context.toWindow;
- 	animateTo({
-    	duration: 1000, // Animation duration.
-        tempo: 0.5, // Playback speed.
-        curve: Curve.EaseInOut, // Animation curve.
-        delay: 0, // Animation delay.
-        iterations: 1, // Number of playback times.
-        playMode: PlayMode.Normal // Animation playback mode.
-        onFinish: ()=> {
-            context.completeTransition(true)
-        }
-      }, () => {
-        let obj : window.TranslateOptions = {
-          x : 100.0,
-          y : 0.0,
-          z : 0.0
-        };
-        toWindow.translate(obj);
-        console.info('toWindow translate end');
-      }
-    )
-    console.info('complete transition end');
+```ts
+let windowClass: window.Window | null = null;
+let controller: window.TransitionController = windowClass.getTransitionController();
+controller.animationForHidden = (context: window.TransitionContext) => {
+  let toWindow: window.Window = context.toWindow;
+  animateTo({
+    duration: 1000, // Animation duration.
+    tempo: 0.5, // Playback speed.
+    curve: Curve.EaseInOut, // Animation curve.
+    delay: 0, // Animation delay.
+    iterations: 1, // Number of playback times.
+    playMode: PlayMode.Normal // Animation playback mode.
+    onFinish: () => {
+      context.completeTransition(true)
+    }
+  }, () => {
+    let obj: window.TranslateOptions = {
+      x: 100.0,
+      y: 0.0,
+      z: 0.0
+    };
+    toWindow.translate(obj);
+    console.info('toWindow translate end');
+  }
+  )
+  console.info('complete transition end');
 };
 ```
