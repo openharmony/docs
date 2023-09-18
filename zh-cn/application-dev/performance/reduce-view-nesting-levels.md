@@ -6,16 +6,16 @@
 
 反例：使用了Grid来实现一个网格，但是在外层套了3层stack容器，导致组件刷新和渲染耗时长。
 
-```javascript
+```typescript
 @Entry
 @Component
-struct AspectRatioExample {
-  @State children: Number[] = Array.from(Array(900), (v, k) => k);
+struct AspectRatioExample12 {
+  @State children: Number[] = Array.from(Array<number>(900), (v, k) => k);
 
   build() {
     Scroll() {
       Grid() {
-        ForEach(this.children, (item) => {
+        ForEach(this.children, (item:Number[]) => {
           GridItem() {
             Stack() {
               Stack() {
@@ -25,7 +25,7 @@ struct AspectRatioExample {
               }
             }
           }
-        }, item => item)
+        }, (item:string) => item)
       }
       .columnsTemplate('1fr 1fr 1fr 1fr')
       .columnsGap(0)
@@ -38,21 +38,20 @@ struct AspectRatioExample {
 
 建议：通过减少冗余的Stack容器嵌套，每个GridItem的组件数比上面少了3个，缩短了组件刷新与渲染耗时。
 
-```javascript
-// xxx.ets
+```typescript
 @Entry
 @Component
-struct AspectRatioExample {
-  @State children: Number[] = Array.from(Array(900), (v, k) => k);
+struct AspectRatioExample11 {
+  @State children: Number[] = Array.from(Array<number>(900), (v, k) => k);
 
   build() {
     Scroll() {
       Grid() {
-        ForEach(this.children, (item) => {
+        ForEach(this.children, (item:Number[]) => {
           GridItem() {
             Text(item.toString())
           }
-        }, item => item)
+        }, (item:string) => item)
       }
       .columnsTemplate('1fr 1fr 1fr 1fr')
       .columnsGap(0)
