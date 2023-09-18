@@ -23,7 +23,70 @@ The **OH_NativeBuffer_Config** struct defines the **OH_NativeBuffer** attribute 
 
 | Name| Description|
 | -------- | -------- |
-| width | Width, in pixels.|
-| height | Height, in pixels.|
-| format | Pixel map format.|
-| usage | Description of the buffer usage.|
+| [width](#width) | Width, in pixels.|
+| [height](#height) | Height, in pixels.|
+| [format](#format) | Pixel map format.|
+| [usage](#usage) | Description of the buffer usage.|
+| [stride](#stride) | Stride of the local window buffer.|
+
+
+## Member Variable Description
+
+
+### format
+
+```
+int32_t OH_NativeBuffer_Config::format
+```
+
+**Description**
+
+Pixel map format.
+
+
+### height
+
+```
+int32_t OH_NativeBuffer_Config::height
+```
+
+**Description**
+
+Height, in pixels.
+
+
+### stride
+
+```
+int32_t OH_NativeBuffer_Config::stride
+```
+
+**Description**
+
+Stride of the local window buffer.
+
+**Since**
+
+10
+
+
+### usage
+
+```
+int32_t OH_NativeBuffer_Config::usage
+```
+
+**Description**
+
+Description of the buffer usage.
+
+
+### width
+
+```
+int32_t OH_NativeBuffer_Config::width
+```
+
+**Description**
+
+Width, in pixels.
