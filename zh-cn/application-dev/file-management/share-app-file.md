@@ -82,6 +82,8 @@
      // ...
    }
    ```
+**图1** 效果示意图：<br/>
+![share-app-file](figures/share-app-file.png)
 
 ## 使用其他应用分享的文件
 
