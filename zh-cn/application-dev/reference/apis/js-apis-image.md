@@ -1038,7 +1038,7 @@ async function Demo() {
 
 
      // 反序列化 rpc获取到data
-     let ret : MySequece = new MySequence(pixelMap);
+     let ret : MySequence = new MySequence(pixelMap);
      data.readParcelable(ret);
    }
 }
@@ -1125,7 +1125,7 @@ async function Demo() {
 
 
      // 反序列化 rpc获取到data
-     let ret : MySequece = new MySequence(pixelMap);
+     let ret : MySequence = new MySequence(pixelMap);
      data.readParcelable(ret);
    }
 }
