@@ -19,7 +19,7 @@
 
    ```ts
    async function getVideoSurfaceId(aVRecorderConfig: media.AVRecorderConfig): Promise<string | undefined> {  // aVRecorderConfig可参考下一章节
-     let avRecorder: media.AVRecorder | undefined;
+     let avRecorder: media.AVRecorder | undefined = undefined;
      try {
        avRecorder = await media.createAVRecorder();
      } catch (error) {
@@ -62,14 +62,14 @@
        videoFrameWidth : 640,  // 视频分辨率的宽
        videoFrameHeight : 480, // 视频分辨率的高
        videoFrameRate : 30 // 视频帧率
-     }
+     };
      // 创建视频录制的参数，预览流与录像输出流的分辨率的宽(videoFrameWidth)高(videoFrameHeight)比要保持一致
      let aVRecorderConfig: media.AVRecorderConfig = {
        videoSourceType: media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_YUV,
        profile: aVRecorderProfile,
        url: 'fd://35',
        rotation: 90 // 90°为默认竖屏显示角度，如果由于设备原因或应用期望以其他方式显示等原因，请根据实际情况调整该参数
-     }
+     };
      // 创建avRecorder
      let avRecorder: media.AVRecorder | undefined = undefined;
      try {
