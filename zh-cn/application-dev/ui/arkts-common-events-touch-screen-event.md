@@ -207,7 +207,7 @@ struct Index {
               .textAlign(TextAlign.Center)
               .backgroundColor(0xFFFFFF)
           }
-        }, ((item:string):string => item))
+        }, (item:string):string => item)
 
         ListItem() {
           Text('Across Window Drag This')

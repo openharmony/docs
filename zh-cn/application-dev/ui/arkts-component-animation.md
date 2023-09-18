@@ -285,7 +285,7 @@ export struct TaskSwitchMainPage {
                 .animation({ curve: curves.springMotion() })
                 .zIndex((this.getProgress(index) >= 0.4 && this.getProgress(index) <= 0.6) ? 2 : 1)
             }
-          }, (item:string):string => item)
+          }, (item:TaskData) => item.toString())
         }
         .width((this.cardWidth + this.cardSpace) * (taskDataArr.length + 1))
         .height('100%')

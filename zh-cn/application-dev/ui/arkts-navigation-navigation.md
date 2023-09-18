@@ -54,10 +54,10 @@ Navigation组件通过mode属性设置页面的显示模式。
 
 
   ```ts
-  let TooTmp:Record<string,string|Function> = {'value': "func", 'icon': "./image/ic_public_highlights.svg", 'action': ()=> {}}
   @Entry
   @Component
   struct NavigationExample {
+    @State TooTmp:Record<string,string|Function> = {'value': "func", 'icon': "./image/ic_public_highlights.svg", 'action': ()=> {}}
     private arr: number[] = [1, 2, 3];
   
     build() {
@@ -101,9 +101,9 @@ Navigation组件通过mode属性设置页面的显示模式。
           {value: "", icon: "./image/ic_public_add.svg", action: ()=> {}}
         ])
         .toolBar({items: [
-          TooTmp,
-          TooTmp,
-          TooTmp
+          this.TooTmp,
+          this.TooTmp,
+          this.TooTmp
         ]})
       }
       .height('100%')
