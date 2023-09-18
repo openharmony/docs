@@ -37,6 +37,10 @@ Column(value?:&nbsp;{space?: string&nbsp;|&nbsp;number})
 >
 >  Column布局时若子组件不设置flexShrink则默认不会压缩子组件，即所有子组件主轴大小累加可超过容器主轴。
 
+## 事件
+
+支持[通用事件](ts-universal-events-click.md)。
+
 ## 示例
 
 ```ts
