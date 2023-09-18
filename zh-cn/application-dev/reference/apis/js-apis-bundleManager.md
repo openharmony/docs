@@ -2883,6 +2883,8 @@ getProfileByAbility(moduleName: string, abilityName: string, metadataName: strin
 
 以异步方法根据给定的moduleName、abilityName和metadataName获取相应配置文件的json格式字符串，使用callback形式返回结果。
 
+>应用使用此接口获取的profile资源信息，**需注意**，对于如 $string:res_name 此种类型的引用资源，需要应用通过调用管理的接口，获取具体的资源。
+
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
 **参数：**
@@ -2935,6 +2937,8 @@ try {
 getProfileByAbility(moduleName: string, abilityName: string, metadataName?: string): Promise\<Array\<string\>\>;
 
 以异步方法根据给定的moduleName、abilityName和metadataName获取相应配置文件的json格式字符串，使用Promise形式返回结果。
+
+>应用使用此接口获取的profile资源信息，**需注意**，对于如 $string:res_name 此种类型的引用资源，需要应用通过调用管理的接口，获取具体的资源。
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
@@ -3010,6 +3014,8 @@ getProfileByAbilitySync(moduleName: string, abilityName: string, metadataName?: 
 
 以同步方法根据给定的moduleName、abilityName和metadataName获取相应配置文件的json格式字符串，返回对象为string数组。
 
+>应用使用此接口获取的profile资源信息，**需注意**，对于如 $string:res_name 此种类型的引用资源，需要应用通过调用管理的接口，获取具体的资源。
+
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
 **参数：**
@@ -3078,6 +3084,8 @@ getProfileByExtensionAbility(moduleName: string, extensionAbilityName: string, m
 
 以异步方法根据给定的moduleName、extensionAbilityName和metadataName获取相应配置文件的json格式字符串，使用callback形式返回结果。
 
+>应用使用此接口获取的profile资源信息，**需注意**，对于如 $string:res_name 此种类型的引用资源，需要应用通过调用管理的接口，获取具体的资源。
+
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
 **参数：**
@@ -3129,6 +3137,8 @@ try {
 getProfileByExtensionAbility(moduleName: string, extensionAbilityName: string, metadataName?: string): Promise\<Array\<string\>\>;
 
 以异步方法根据给定的moduleName、extensionAbilityName和metadataName获取相应配置文件的json格式字符串，使用Promise形式返回结果。
+
+>应用使用此接口获取的profile资源信息，**需注意**，对于如 $string:res_name 此种类型的引用资源，需要应用通过调用管理的接口，获取具体的资源。
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
@@ -3195,6 +3205,8 @@ try {
 getProfileByExtensionAbilitySync(moduleName: string, extensionAbilityName: string, metadataName?: string): Array\<string\>;
 
 以同步方法根据给定的moduleName、extensionAbilityName和metadataName获取相应配置文件的json格式字符串，返回对象为string数组。
+
+>应用使用此接口获取的profile资源信息，**需注意**，对于如 $string:res_name 此种类型的引用资源，需要应用通过调用管理的接口，获取具体的资源。
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
