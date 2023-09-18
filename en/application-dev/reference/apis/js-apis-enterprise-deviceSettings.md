@@ -4,15 +4,15 @@ The **deviceSettings** module provides APIs for setting enterprise devices, incl
 
 > **NOTE**
 >
-> The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> - The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
-> The APIs of this module can be used only in the stage model.
+> - The APIs of this module can be used only in the stage model.
 >
-> The APIs provided by this module can be called only by a [device administrator application](enterpriseDeviceManagement-overview.md#basic-concepts) that is [enabled](js-apis-enterprise-adminManager.md#adminmanagerenableadmin).
+> - The APIs provided by this module can be called only by a [device administrator application](enterpriseDeviceManagement-overview.md#basic-concepts) that is [enabled](js-apis-enterprise-adminManager.md#adminmanagerenableadmin).
 
 ## Modules to Import
 
-```js
+```ts
 import deviceSettings from '@ohos.enterprise.deviceSettings';
 ```
 
@@ -39,15 +39,16 @@ Obtains the device screen-off time through the specified device administrator ap
 
 For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
 
-| ID| Error Message                                                                      |          
+| ID| Error Message                                                                      |
 | ------- | ---------------------------------------------------------------------------- |
 | 9200001 | the application is not an administrator of the device.                        |
 | 9200002 | the administrator application does not have permission to manage the device. |
 
 **Example**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
@@ -89,22 +90,24 @@ Obtains the device screen-off time through the specified device administrator ap
 
 For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
 
-| ID| Error Message                                                                    |          
+| ID| Error Message                                                                    |
 | ------- | ---------------------------------------------------------------------------- |
 | 9200001 | the application is not an administrator of the device.                        |
 | 9200002 | the administrator application does not have permission to manage the device. |
 
 **Example**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
 
 deviceSettings.getScreenOffTime(wantTemp).then((result) => {
   console.info(`Succeeded in getting screen off time, result : ${result}`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to get screen off time. Code: ${err.code}, message: ${err.message}`);
 });
 ```
@@ -141,30 +144,28 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 **Example**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-var certFileArray: Uint8Array;
+let certFileArray: Uint8Array = new Uint8Array();
 // The variable context needs to be initialized in MainAbility's onCreate callback function
 // test.cer needs to be placed in the rawfile directory
-await globalThis.context.resourceManager.getRawFileContent("test.cer")
-  .then(value => {
-    certFileArray = value
-  })
-  .catch(error => {
-    console.error(`Failed to get row file content. message: ${error.message}`);
-    return
-  });
-new Promise((resolve, reject) => {
-  deviceSettings.installUserCertificate(wantTemp, {inData: certFileArray, alias: "cert_alias_xts"}, (err, result) => {
+getContext().resourceManager.getRawFileContent("test.cer").then((value) => {
+  certFileArray = value;
+  deviceSettings.installUserCertificate(wantTemp, { inData: certFileArray, alias: "cert_alias_xts" }, (err, result) => {
     if (err) {
       console.error(`Failed to install user certificate. Code: ${err.code}, message: ${err.message}`);
-    } else{
+    } else {
       console.info(`Succeeded in installing user certificate, result : ${JSON.stringify(result)}`);
     }
   });
+}).catch((error: BusinessError) => {
+  console.error(`Failed to get row file content. message: ${error.message}`);
+  return
 });
 ```
 
@@ -205,27 +206,28 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 **Example**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-var certFileArray: Uint8Array
+let certFileArray: Uint8Array = new Uint8Array();
 // The variable context needs to be initialized in MainAbility's onCreate callback function
 // test.cer needs to be placed in the rawfile directory
-await globalThis.context.resourceManager.getRawFileContent("test.cer")
-  .then(data => {
-    certFileArray = data
-  }).catch(error => {
-    console.log('getRawFileContent error' + error)
-    return
-  })
-deviceSettings.installUserCertificate(wantTemp, { inData: certFileArray, alias: "cert_alias_xts" })
-  .then((result) => {
-    console.info(`Succeeded in installing user certificate, result : ${JSON.stringify(result)}`);
-  }).catch(err => {
+getContext().resourceManager.getRawFileContent("test.cer").then((value) => {
+  certFileArray = value
+  deviceSettings.installUserCertificate(wantTemp, { inData: certFileArray, alias: "cert_alias_xts" })
+    .then((result) => {
+      console.info(`Succeeded in installing user certificate, result : ${JSON.stringify(result)}`);
+    }).catch((err: BusinessError) => {
     console.error(`Failed to install user certificate. Code: ${err.code}, message: ${err.message}`);
   })
+}).catch((error: BusinessError) => {
+  console.error(`Failed to get row file content. message: ${error.message}`);
+  return
+});
 ```
 
 ## CertBlob
@@ -273,8 +275,9 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 **Example**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
@@ -325,15 +328,17 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 **Example**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
 let aliasStr = "certName"
 deviceSettings.uninstallUserCertificate(wantTemp, aliasStr).then(() => {
   console.info(`Succeeded in uninstalling user certificate`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to uninstall user certificate. Code is ${err.code}, message is ${err.message}`);
 });
 ```
