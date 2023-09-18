@@ -83,7 +83,8 @@ Before sharing application files, you need to [obtain the application file path]
         // ...
       }
    ```
-
+**Figure 1** Examples:<br/>
+![share-app-file](figures/share-app-file.png)
 
 ## Using Shared Files
 
