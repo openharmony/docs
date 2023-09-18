@@ -8,7 +8,7 @@ The **Display** module provides APIs for managing displays, such as obtaining in
 
 ## Modules to Import
 
-```js
+```ts
 import display from '@ohos.display';
 ```
 
@@ -102,12 +102,12 @@ For details about the error codes, see [Display Error Codes](../errorcodes/error
 
 **Example**
 
-```js
-let displayClass = null;
+```ts
+let displayClass: display.Display | null = null;
 try {
-    displayClass = display.getDefaultDisplaySync();
+  displayClass = display.getDefaultDisplaySync();
 } catch (exception) {
-    console.error('Failed to obtain the default display object. Code: ' + JSON.stringify(exception));
+  console.error('Failed to obtain the default display object. Code: ' + JSON.stringify(exception));
 }
 ```
 
@@ -135,15 +135,18 @@ For details about the error codes, see [Display Error Codes](../errorcodes/error
 
 **Example**
 
-```js
-let displayClass = null;
-display.getAllDisplays((err, data) => {
-    displayClass = data;
-    if (err.code) {
-        console.error('Failed to obtain all the display objects. Code: ' + JSON.stringify(err));
-        return;
-    }
-    console.info('Succeeded in obtaining all the display objects. Data: ' + JSON.stringify(data));
+```ts
+import { BusinessError } from '@ohos.base';
+
+let displayClass: Array<display.Display> = [];
+display.getAllDisplays((err: BusinessError, data) => {
+  displayClass = data;
+  const errCode: number = err.code;
+  if (errCode) {
+    console.error('Failed to obtain all the display objects. Code: ' + JSON.stringify(err));
+    return;
+  }
+  console.info('Succeeded in obtaining all the display objects. Data: ' + JSON.stringify(data));
 });
 ```
 
@@ -171,14 +174,16 @@ For details about the error codes, see [Display Error Codes](../errorcodes/error
 
 **Example**
 
-```js
-let displayClass = null;
+```ts
+import { BusinessError } from '@ohos.base';
+
+let displayClass: Array<display.Display> =[];
 let promise = display.getAllDisplays();
 promise.then((data) => {
-    displayClass = data;
-    console.info('Succeeded in obtaining all the display objects. Data: ' + JSON.stringify(data));
-}).catch((err) => {
-    console.error('Failed to obtain all the display objects. Code: ' + JSON.stringify(err));
+  displayClass = data;
+  console.info('Succeeded in obtaining all the display objects. Data: ' + JSON.stringify(data));
+}).catch((err: BusinessError) => {
+  console.error('Failed to obtain all the display objects. Code: ' + JSON.stringify(err));
 });
 ```
 
@@ -202,7 +207,7 @@ Checks whether there is a visible privacy window on a display. The privacy windo
 
 | Type                            | Description                                                                   |
 | -------------------------------- |-----------------------------------------------------------------------|
-|boolean | Whether there is a visible privacy window on the display. The value **true** means that there is a visible privacy window on the display, and **false** means the opposite.|
+|boolean | Whether there is a visible privacy window on the display.<br>The value **true** means that there is a visible privacy window on the display, and **false** means the opposite.<br>|
 
 **Error codes**
 
@@ -214,27 +219,29 @@ For details about the error codes, see [Display Error Codes](../errorcodes/error
 
 **Example**
 
-```js
-let displayClass = null;
-try {
-    displayClass = display.getDefaultDisplaySync();
+```ts
+import { BusinessError } from '@ohos.base';
 
-    let ret = undefined;
-    try {
-        ret = display.hasPrivateWindow(displayClass.id);
-    } catch (exception) {
-        console.error('Failed to check has privateWindow or not. Code: ' + JSON.stringify(exception));
-    }
-    if (ret == undefined) {
-        console.log("Failed to check has privateWindow or not.");
-    }
-    if (ret) {
-        console.log("There has privateWindow.");
-    } else if (!ret) {
-        console.log("There has no privateWindow.");
-    }
+let displayClass: display.Display | null = null;
+try {
+  displayClass = display.getDefaultDisplaySync();
+
+  let ret: boolean = true;
+  try {
+    ret = display.hasPrivateWindow(displayClass.id);
+  } catch (exception) {
+    console.error('Failed to check has privateWindow or not. Code: ' + JSON.stringify(exception));
+  }
+  if (ret == undefined) {
+    console.log("Failed to check has privateWindow or not.");
+  }
+  if (ret) {
+    console.log("There has privateWindow.");
+  } else if (!ret) {
+    console.log("There has no privateWindow.");
+  }
 } catch (exception) {
-    console.error('Failed to obtain the default display object. Code: ' + JSON.stringify(exception));
+  console.error('Failed to obtain the default display object. Code: ' + JSON.stringify(exception));
 }
 ```
 
@@ -255,14 +262,14 @@ Subscribes to display changes.
 
 **Example**
 
-```js
+```ts
 let callback = (data) => {
-    console.info('Listening enabled. Data: ' + JSON.stringify(data));
+  console.info('Listening enabled. Data: ' + JSON.stringify(data));
 };
 try {
-    display.on("add", callback);
+  display.on("add", callback);
 } catch (exception) {
-    console.error('Failed to register callback. Code: ' + JSON.stringify(exception));
+  console.error('Failed to register callback. Code: ' + JSON.stringify(exception));
 }
 ```
 
@@ -283,11 +290,11 @@ Unsubscribes from display changes.
 
 **Example**
 
-```js
+```ts
 try {
-    display.off("remove");
+  display.off("remove");
 } catch (exception) {
-    console.error('Failed to unregister callback. Code: ' + JSON.stringify(exception));
+  console.error('Failed to unregister callback. Code: ' + JSON.stringify(exception));
 }
 ```
 
@@ -310,14 +317,14 @@ Subscribes to privacy mode changes of this display. When there is a privacy wind
 
 **Example**
 
-```js
+```ts
 let callback = (data) => {
-    console.info('Listening enabled. Data: ' + JSON.stringify(data));
+  console.info('Listening enabled. Data: ' + JSON.stringify(data));
 };
 try {
-    display.on("privateModeChange", callback);
+  display.on("privateModeChange", callback);
 } catch (exception) {
-    console.error('Failed to register callback. Code: ' + JSON.stringify(exception));
+  console.error('Failed to register callback. Code: ' + JSON.stringify(exception));
 }
 ```
 
@@ -335,16 +342,16 @@ Unsubscribes from privacy mode changes of this display. When there is a privacy 
 
 | Name  | Type                                      | Mandatory| Description                                                   |
 | -------- |------------------------------------------| ---- | ------------------------------------------------------- |
-| type     | string                                   | Yes  | Event type. The value is fixed at **'privateModeChange'**, indicating the event of display privacy mode changes.|
+| type     | string                                   | Yes  | Event type. The value is fixed at 'privateModeChange', indicating the event of display privacy mode changes.|
 | callback | Callback&lt;boolean&gt; | No  | Callback used to return whether the privacy mode of the display is changed. The value **true** means that the display changes to the privacy mode, and **false** means the opposite.|
 
 **Example**
 
-```js
+```ts
 try {
-    display.off("privateModeChange");
+  display.off("privateModeChange");
 } catch (exception) {
-    console.error('Failed to unregister callback. Code: ' + JSON.stringify(exception));
+  console.error('Failed to unregister callback. Code: ' + JSON.stringify(exception));
 }
 ```
 
@@ -368,15 +375,18 @@ Obtains the default display object. This API uses an asynchronous callback to re
 
 **Example**
 
-```js
-let displayClass = null;
-display.getDefaultDisplay((err, data) => {
-    if (err.code) {
-        console.error('Failed to obtain the default display object. Code:  ' + JSON.stringify(err));
-        return;
-    }
-    console.info('Succeeded in obtaining the default display object. Data:' + JSON.stringify(data));
-    displayClass = data;
+```ts
+import { BusinessError } from '@ohos.base';
+
+let displayClass: display.Display | null = null;
+display.getDefaultDisplay((err: BusinessError, data) => {
+  const errCode: number = err.code;
+  if (errCode) {
+    console.error('Failed to obtain the default display object. Code:  ' + JSON.stringify(err));
+    return;
+  }
+  console.info('Succeeded in obtaining the default display object. Data:' + JSON.stringify(data));
+  displayClass = data;
 });
 ```
 
@@ -400,14 +410,16 @@ Obtains the default display object. This API uses a promise to return the result
 
 **Example**
 
-```js
-let displayClass = null;
+```ts
+import { BusinessError } from '@ohos.base';
+
+let displayClass: display.Display | null = null;
 let promise = display.getDefaultDisplay();
 promise.then((data) => {
-    displayClass = data;
-    console.info('Succeeded in obtaining the default display object. Data:' + JSON.stringify(data));
-}).catch((err) => {
-    console.error('Failed to obtain the default display object. Code:  ' + JSON.stringify(err));
+  displayClass = data;
+  console.info('Succeeded in obtaining the default display object. Data:' + JSON.stringify(data));
+}).catch((err: BusinessError) => {
+  console.error('Failed to obtain the default display object. Code:  ' + JSON.stringify(err));
 });
 ```
 
@@ -431,13 +443,16 @@ Obtains all display objects. This API uses an asynchronous callback to return th
 
 **Example**
 
-```js
-display.getAllDisplay((err, data) => {
-    if (err.code) {
-        console.error('Failed to obtain all the display objects. Code: ' + JSON.stringify(err));
-        return;
-    }
-    console.info('Succeeded in obtaining all the display objects. Data: ' + JSON.stringify(data));
+```ts
+import { BusinessError } from '@ohos.base';
+
+display.getAllDisplay((err: BusinessError, data) => {
+  const errCode: number = err.code;
+  if (errCode) {
+    console.error('Failed to obtain all the display objects. Code: ' + JSON.stringify(err));
+    return;
+  }
+  console.info('Succeeded in obtaining all the display objects. Data: ' + JSON.stringify(data));
 });
 ```
 
@@ -461,12 +476,14 @@ Obtains all display objects. This API uses a promise to return the result.
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 let promise = display.getAllDisplay();
 promise.then((data) => {
-    console.info('Succeeded in obtaining all the display objects. Data: ' + JSON.stringify(data));
-}).catch((err) => {
-    console.error('Failed to obtain all the display objects. Code: ' + JSON.stringify(err));
+  console.info('Succeeded in obtaining all the display objects. Data: ' + JSON.stringify(data));
+}).catch((err: BusinessError) => {
+  console.error('Failed to obtain all the display objects. Code: ' + JSON.stringify(err));
 });
 ```
 
@@ -519,20 +536,23 @@ For details about the error codes, see [Display Error Codes](../errorcodes/error
 
 **Example**
 
-```js
-let displayClass = null;
-try {
-    displayClass = display.getDefaultDisplaySync();
+```ts
+import { BusinessError } from '@ohos.base';
 
-    displayClass.getCutoutInfo((err, data) => {
-        if (err.code) {
-            console.error('Failed to get cutoutInfo. Code: ' + JSON.stringify(err));
-            return;
-        }
-        console.info('Succeeded in getting cutoutInfo. data: ' + JSON.stringify(data));
-    });
+let displayClass: display.Display | null = null;
+try {
+  displayClass = display.getDefaultDisplaySync();
+
+  displayClass.getCutoutInfo((err: BusinessError, data) => {
+    const errCode: number = err.code;
+    if (errCode) {
+      console.error('Failed to get cutoutInfo. Code: ' + JSON.stringify(err));
+      return;
+    }
+    console.info('Succeeded in getting cutoutInfo. data: ' + JSON.stringify(data));
+  });
 } catch (exception) {
-    console.error('Failed to obtain the default display object. Code: ' + JSON.stringify(exception));
+  console.error('Failed to obtain the default display object. Code: ' + JSON.stringify(exception));
 }
 ```
 ### getCutoutInfo<sup>9+</sup>
@@ -558,18 +578,20 @@ For details about the error codes, see [Display Error Codes](../errorcodes/error
 
 **Example**
 
-```js
-let displayClass = null;
-try {
-    displayClass = display.getDefaultDisplaySync();
+```ts
+import { BusinessError } from '@ohos.base';
 
-    let promise = displayClass.getCutoutInfo();
-    promise.then((data) => {
-        console.info('Succeeded in getting cutoutInfo. Data: ' + JSON.stringify(data));
-    }).catch((err) => {
-        console.error('Failed to obtain all the display objects. Code: ' + JSON.stringify(err));
-    });
+let displayClass: display.Display | null = null;
+try {
+  displayClass = display.getDefaultDisplaySync();
+
+  let promise = displayClass.getCutoutInfo();
+  promise.then((data) => {
+    console.info('Succeeded in getting cutoutInfo. Data: ' + JSON.stringify(data));
+  }).catch((err: BusinessError) => {
+    console.error('Failed to obtain all the display objects. Code: ' + JSON.stringify(err));
+  });
 } catch (exception) {
-    console.error('Failed to obtain the default display object. Code: ' + JSON.stringify(exception));
+  console.error('Failed to obtain the default display object. Code: ' + JSON.stringify(exception));
 }
 ```
