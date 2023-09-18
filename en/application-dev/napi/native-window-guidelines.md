@@ -2,7 +2,7 @@
 
 ## When to Use
 
-**NativeWindow** is a local platform-based window of OpenHarmony that represents the producer of a graphics queue. It provides APIs for you to request and flush a buffer and configure buffer attributes.
+**NativeWindow** is a local platform-based window that represents the producer of a graphics queue. It provides APIs for you to request and flush a buffer and configure buffer attributes.
 
 The following scenarios are common for NativeWindow development:
 
@@ -11,11 +11,11 @@ The following scenarios are common for NativeWindow development:
 
 ## Available APIs
 
-| API| Description|
+| API| Description| 
 | -------- | -------- |
-| OH_NativeWindow_NativeWindowRequestBuffer (OHNativeWindow \*window, OHNativeWindowBuffer \*\*buffer, int \*fenceFd) | Requests an **OHNativeWindowBuffer** through an **OHNativeWindow** instance for content production.|
-| OH_NativeWindow_NativeWindowFlushBuffer (OHNativeWindow \*window, OHNativeWindowBuffer \*buffer, int fenceFd, Region region) | Flushes the **OHNativeWindowBuffer** filled with the content to the buffer queue through an **OHNativeWindow** instance for content consumption.|
-| OH_NativeWindow_NativeWindowHandleOpt (OHNativeWindow \*window, int code,...) | Sets or obtains the attributes of an **OHNativeWindow**, including the width, height, and content format.|
+| OH_NativeWindow_NativeWindowRequestBuffer (OHNativeWindow \*window, OHNativeWindowBuffer \*\*buffer, int \*fenceFd) | Requests an **OHNativeWindowBuffer** through an **OHNativeWindow** instance for content production.| 
+| OH_NativeWindow_NativeWindowFlushBuffer (OHNativeWindow \*window, OHNativeWindowBuffer \*buffer, int fenceFd, Region region) | Flushes the **OHNativeWindowBuffer** filled with the content to the buffer queue through an **OHNativeWindow** instance for content consumption.| 
+| OH_NativeWindow_NativeWindowHandleOpt (OHNativeWindow \*window, int code,...) | Sets or obtains the attributes of an **OHNativeWindow**, including the width, height, and content format.| 
 
 For details about the APIs, see [native_window](../reference/native-apis/_native_window.md).
 
@@ -37,7 +37,7 @@ libnative_window.so
 #include <native_window/external_window.h>
 ```
 
-1. Obtain an **OHNativeWindow** instance. 
+1. Obtain an **OHNativeWindow** instance.
 
     You can call the APIs provided by [OH_NativeXComponent_Callback](../reference/native-apis/_o_h___native_x_component___callback.md) to obtain an **OHNativeWindow** instance. An example code snippet is provided below. For details about how to use the **\<XComponent>**, see [XComponent](../reference/native-apis/_o_h___native_x_component.md).
     1. Add an **\<XComponent>** to the .ets file.
@@ -54,6 +54,10 @@ libnative_window.so
         OH_NativeXComponent *nativeXComponent = nullptr;
         // Use the napi_unwrap API to parse the NativeXComponent instance pointer.
         napi_unwrap(env, exportInstance, reinterpret_cast<void**>(&nativeXComponent));
+        // Obtain the XComponent ID.
+        char idStr[OH_XCOMPONENT_ID_LEN_MAX + 1] = {};
+        uint64_t idSize = OH_XCOMPONENT_ID_LEN_MAX + 1;
+        OH_NativeXComponent_GetXComponentId(nativeXComponent, idStr, &idSize);
         ```
     3. Define **OH_NativeXComponent_Callback**.
         ```c++
@@ -105,10 +109,6 @@ libnative_window.so
     int32_t height = 0x100;
     // The nativeWindow instance is obtained from the callback in the previous step.
     int32_t ret = OH_NativeWindow_NativeWindowHandleOpt(nativeWindow, code, width, height);
-    // Set the step of the OHNativeWindowBuffer.
-    code = SET_STRIDE;
-    int32_t stride = 0x8;
-    ret = OH_NativeWindow_NativeWindowHandleOpt(nativeWindow, code, stride);
     ```
 
 3. Request a **NativeWindowBuffer** from the graphics queue.
