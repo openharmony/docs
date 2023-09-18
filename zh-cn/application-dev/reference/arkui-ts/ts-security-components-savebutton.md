@@ -83,6 +83,9 @@ SaveButton(option:{icon?: SaveIconStyle, text?: SaveDescription, buttonType?: Bu
 
 ```
 // xxx.ets
+import photoAccessHelper from '@ohos.file.photoAccessHelper';
+import fs from '@ohos.file.fs';
+
 @Entry
 @Component
 struct Index {
@@ -90,7 +93,24 @@ struct Index {
     Row() {
       Column({space:10}) {
         // 默认参数下，图标、文字、背景都存在
-        SaveButton()
+        SaveButton().onClick(async (event:ClickEvent, result:SaveButtonOnClickResult) => {
+          if (result == SaveButtonOnClickResult.SUCCESS) {
+            try {
+              const context = getContext(this);
+              let helper = photoAccessHelper.getPhotoAccessHelper(context);
+              // onClick触发后5秒内通过createAsset接口创建图片文件，5秒后createAsset权限收回。
+              let uri = await helper.createAsset(photoAccessHelper.PhotoType.IMAGE, 'png');
+              // 使用uri打开文件，可以持续写入内容，写入过程不受时间限制
+              let file = await fs.open(uri, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+              // 写入文件
+              await fs.write(file.fd, "context");
+              // 关闭文件
+              await fs.close(file.fd);
+            } catch (error) {
+              console.error("error is "+ JSON.stringify(error));
+            }
+          }
+        })
         // 传入参数即表示元素存在，不传入的参数表示元素不存在，例如：只显示图标
         SaveButton({icon:SaveIconStyle.FULL_FILLED})
         // 只显示图标+背景
