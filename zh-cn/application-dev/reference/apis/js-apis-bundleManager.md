@@ -2883,6 +2883,8 @@ getProfileByAbility(moduleName: string, abilityName: string, metadataName: strin
 
 以异步方法根据给定的moduleName、abilityName和metadataName获取相应配置文件的json格式字符串，使用callback形式返回结果。
 
+>**特别说明**：系统内部调用此接口获取应用profile资源信息时，会自行解析如 $string:res_name 此种类型的引用资源。如果应用使用了此接口获取profile资源信息，**需注意**，对于如 $string:res_name 此种类型的引用资源，需要应用自行进行解析适配。
+
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
 **参数：**
@@ -2935,6 +2937,8 @@ try {
 getProfileByAbility(moduleName: string, abilityName: string, metadataName?: string): Promise\<Array\<string\>\>;
 
 以异步方法根据给定的moduleName、abilityName和metadataName获取相应配置文件的json格式字符串，使用Promise形式返回结果。
+
+>**特别说明**：系统内部调用此接口获取应用profile资源信息时，会自行解析如 $string:res_name 此种类型的引用资源。如果应用使用了此接口获取profile资源信息，**需注意**，对于如 $string:res_name 此种类型的引用资源，需要应用自行进行解析适配。
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
