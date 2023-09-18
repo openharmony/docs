@@ -16,7 +16,8 @@ There are two roles in **DataShare**:
 
 - Data consumer: accesses the data provided by the provider using [createDataShareHelper()](../reference/apis/js-apis-data-dataShare.md#datasharecreatedatasharehelper).
 
-**Figure 1** Data sharing mechanism 
+**Figure 1** Data sharing mechanism
+
 ![dataShare](figures/dataShare.jpg)
 
 - The **DataShareExtensionAbility** module, as the data provider, implements services related to data sharing between applications.
@@ -59,36 +60,34 @@ Before implementing a **DataShare** service, you need to create a **DataShareExt
 
 3. Import **@ohos.application.DataShareExtensionAbility** and other dependencies to the **DataShareExtAbility.ts** file, and override the service implementation as required. For example, if the data provider provides only the data insertion, deletion, and query services, you can override only these APIs.
 
-   ```js
+   ```ts
    import Extension from '@ohos.application.DataShareExtensionAbility';
-   import rdb from '@ohos.data.relationalStore';
    import dataSharePredicates from '@ohos.data.dataSharePredicates';
    import relationalStore from '@ohos.data.relationalStore';
    import Want from '@ohos.app.ability.Want';
+   import { BusinessError } from '@ohos.base'
    ```
    
 4. Implement the data provider services. For example, implement data storage of the data provider by using a database, reading and writing files, or accessing the network.
    
-   ```js
+   ```ts
    const DB_NAME = 'DB00.db';
    const TBL_NAME = 'TBL00';
    const DDL_TBL_CREATE = "CREATE TABLE IF NOT EXISTS "
-   + TBL_NAME
-   + ' (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, age INTEGER, isStudent BOOLEAN, Binary BINARY)';
-   
+     + TBL_NAME
+     + ' (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, age INTEGER, isStudent BOOLEAN, Binary BINARY)';
+
    let rdbStore: relationalStore.RdbStore;
    let result: string;
-   
+
    export default class DataShareExtAbility extends Extension {
-     private rdbStore_: relationalStore.RdbStore;
-   
      // Override onCreate().
      onCreate(want: Want, callback: Function) {
        result = this.context.cacheDir + '/datashare.txt';
        // Create an RDB store.
-       rdb.getRdbStore(this.context, {
+       relationalStore.getRdbStore(this.context, {
          name: DB_NAME,
-         securityLevel: rdb.SecurityLevel.S1
+         securityLevel: relationalStore.SecurityLevel.S1
        }, (err, data) => {
          rdbStore = data;
          rdbStore.executeSql(DDL_TBL_CREATE, [], (err) => {
@@ -99,7 +98,7 @@ Before implementing a **DataShare** service, you need to create a **DataShareExt
          }
        });
      }
-   
+
      // Override query().
      query(uri: string, predicates: dataSharePredicates.DataSharePredicates, columns: Array<string>, callback: Function) {
        if (predicates === null || predicates === undefined) {
@@ -115,7 +114,9 @@ Before implementing a **DataShare** service, you need to create a **DataShareExt
            }
          });
        } catch (err) {
-         console.error(`Failed to query. Code:${err.code},message:${err.message}`);
+         let code = (err as BusinessError).code;
+         let message = (err as BusinessError).message
+         console.error(`Failed to query. Code:${code},message:${message}`);
        }
      }
      // Override other APIs as required.
@@ -134,7 +135,7 @@ Before implementing a **DataShare** service, you need to create a **DataShareExt
    | exported | Whether it is visible to other applications. Data sharing is allowed only when the value is **true**.| Yes|
    | readPermission | Permission required for accessing data. If this parameter is not set, the read permission is not verified by default.| No|
    | writePermission | Permission required for modifying data. If this parameter is not set, write permission verification is not performed by default.| No|
-   | metadata   | Configuration for silent access, including the **name** and **resource** fields.<br> The **name** field identifies the configuration, which has a fixed value of **ohos.extension.dataShare**.<br> The **resource** field has a fixed value of **$profile:data_share_config**, which indicates that the profile name is **data_share_config.json**.| **metadata** is mandatory when the ability launch type is **singleton**. For details about the ability launch type, see **launchType** in the [Internal Structure of the abilities Attribute](../quick-start/module-structure.md#internal-structure-of-the-abilities-attribute).|
+   | metadata   | Configuration for silent access, including the **name** and **resource** fields.<br>The **name** field identifies the configuration, which has a fixed value of **ohos.extension.dataShare**.<br>The **resource** field has a fixed value of **$profile:data_share_config**, which indicates that the profile name is **data_share_config.json**. | **metadata** is mandatory when the ability launch type is **singleton**. For details about the ability launch type, see **launchType** in the [Internal Structure of the abilities Attribute](../quick-start/module-structure.md#internal-structure-of-the-abilities-attribute).|
 
    **module.json5 example**
    
@@ -158,7 +159,7 @@ Before implementing a **DataShare** service, you need to create a **DataShareExt
    | Field         | Description                                    | Mandatory  |
    | ------------- | ---------------------------------------- | ---- |
    | tableConfig   | Label configuration.                                   | Yes   |
-   | uri           | Range for which the configuration takes effect. The URI supports the following formats in descending order by priority:<br> - *****: indicates all databases and tables.<br> - **datashareproxy://{bundleName}/{moduleName}/{storeName}**: specifies a database.<br>- **datashareproxy://{bundleName}/{moduleName}/{storeName}/{tableName}**: specifies a table. | Yes   |
+   | uri           | Range for which the configuration takes effect. The URI supports the following formats in descending order by priority:<br>- *****: indicates all databases and tables.<br>- **datashareproxy://{bundleName}/{moduleName}/{storeName}**: specifies a database.<br>- **datashareproxy://{bundleName}/{moduleName}/{storeName}/{tableName}**: specifies a table. | Yes   |
    | crossUserMode | Whether data is shared by multiple users.<br>The value **1** means to share data between multiple users, and the value **2** means the opposite. | Yes   |
 
    **data_share_config.json Example**
@@ -185,7 +186,7 @@ Before implementing a **DataShare** service, you need to create a **DataShareExt
 
 1. Import the dependencies.
    
-   ```js
+   ```ts
    import UIAbility from '@ohos.app.ability.UIAbility';
    import dataShare from '@ohos.data.dataShare';
    import dataSharePredicates from '@ohos.data.dataSharePredicates';
@@ -195,17 +196,17 @@ Before implementing a **DataShare** service, you need to create a **DataShareExt
 
 2. Define the URI string for communicating with the data provider.
    
-   ```js
+   ```ts
    // Different from the URI defined in the module.json5 file, the URI passed in the parameter has an extra slash (/), because there is a DeviceID parameter between the second and the third slash (/).
    let dseUri = ('datashareproxy://com.samples.datasharetest.DataShare');
    ```
 
 3. Create a **DataShareHelper** instance.
    
-   ```js
-   let dsHelper: dataShare.DataShareHelper;
+   ```ts
+   let dsHelper: dataShare.DataShareHelper | undefined = undefined;
    let abilityContext: Context;
-   
+
    export default class EntryAbility extends UIAbility {
      onWindowStageCreate(windowStage: window.WindowStage) {
        abilityContext = this.context;
@@ -218,7 +219,7 @@ Before implementing a **DataShare** service, you need to create a **DataShareExt
 
 4. Use the APIs provided by **DataShareHelper** to access the services provided by the provider, for example, adding, deleting, modifying, and querying data.
    
-   ```js
+   ```ts
    // Construct a piece of data.
    let key1 = 'name';
    let key2 = 'age';
@@ -235,20 +236,22 @@ Before implementing a **DataShare** service, you need to create a **DataShareExt
    let updateBucket: ValuesBucket = { key1: valueName2, key2: valueAge2, key3: valueIsStudent2, key4: valueBinary };
    let predicates = new dataSharePredicates.DataSharePredicates();
    let valArray = ['*'];
-   // Insert a piece of data.
-   dsHelper.insert(dseUri, valuesBucket, (err, data) => {
-     console.info(`dsHelper insert result:${data}`);
-   });
-   // Update data.
-   dsHelper.update(dseUri, predicates, updateBucket, (err, data) => {
-     console.info(`dsHelper update result:${data}`);
-   });
-   // Query data.
-   dsHelper.query(dseUri, predicates, valArray, (err, data) => {
-     console.info(`dsHelper query result:${data}`);
-   });
-   // Delete data.
-   dsHelper.delete(dseUri, predicates, (err, data) => {
-     console.info(`dsHelper delete result:${data}`);
-   });
+   if (dsHelper != undefined) {
+     // Insert a piece of data.
+     (dsHelper as dataShare.DataShareHelper).insert(dseUri, valuesBucket, (err, data) => {
+       console.info(`dsHelper insert result:${data}`);
+     });
+     // Update data.
+     (dsHelper as dataShare.DataShareHelper).update(dseUri, predicates, updateBucket, (err, data) => {
+       console.info(`dsHelper update result:${data}`);
+     });
+     // Query data.
+     (dsHelper as dataShare.DataShareHelper).query(dseUri, predicates, valArray, (err, data) => {
+       console.info(`dsHelper query result:${data}`);
+     });
+     // Delete data.
+     (dsHelper as dataShare.DataShareHelper).delete(dseUri, predicates, (err, data) => {
+       console.info(`dsHelper delete result:${data}`);
+     });
+   }
    ```
