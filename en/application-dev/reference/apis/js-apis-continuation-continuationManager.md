@@ -30,20 +30,11 @@ Registers the continuation management service and obtains a token. This API does
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback\<number> | Yes| Callback used to return the token generated after the continuation management service is connected.|
 
-**Error codes**
-
-For details about the error codes, see [Distributed Scheduler Error Codes](../errorcodes/errorcode-DistributedSchedule.md).
-
-| ID| Error Message|
-| ------- | -------------------------------------------- |
-| 3 | Failed to flatten the object. |
-| 7 | The object is null. |
-| 29360207 | The number of registrations has reached the upper limit. |
-
 **Example**
 
   ```ts
-  let token = -1;
+  import continuationManager from '@ohos.continuation.continuationManager'
+  let token: number = -1;
   continuationManager.register((err, data) => {
     if (err.code != 0) {
       console.error('register failed, cause: ' + JSON.stringify(err));
@@ -71,31 +62,22 @@ Registers the continuation management service and obtains a token. This API uses
   | options | [ContinuationExtraParams](js-apis-continuation-continuationExtraParams.md) | Yes| Extra parameters used to filter the list of available devices.|
   | callback | AsyncCallback\<number> | Yes| Callback used to return the token generated after the continuation management service is connected.|
 
-**Error codes**
-
-For details about the error codes, see [Distributed Scheduler Error Codes](../errorcodes/errorcode-DistributedSchedule.md).
-
-| ID| Error Message|
-| ------- | -------------------------------------------- |
-| 3 | Failed to flatten the object. |
-| 7 | The object is null. |
-| 29360207 | The number of registrations has reached the upper limit. |
-| 29360216 | Invalid continuation mode. |
-
 **Example**
 
   ```ts
-  let token = -1;
-  let continuationExtraParams = {
-    deviceType: ["00E"]
-  };
-  continuationManager.register(continuationExtraParams, (err, data) => {
-    if (err.code != 0) {
-      console.error('register failed, cause: ' + JSON.stringify(err));
-      return;
-    }
-    console.info('register finished, ' + JSON.stringify(data));
-    token = data;
+  import continuationManager from '@ohos.continuation.continuationManager'
+  let token: number = -1;
+  continuationManager.register(
+    {
+      deviceType: ["00E"]
+    },
+    (err, data) => {
+      if (err.code != 0) {
+        console.error('register failed, cause: ' + JSON.stringify(err));
+        return;
+      }
+      console.info('register finished, ' + JSON.stringify(data));
+      token = data;
   });
   ```
 
@@ -121,32 +103,19 @@ Registers the continuation management service and obtains a token. This API uses
 | ------------------------- | ------------------ |
 | Promise\<number> | Promise used to return the token generated after the continuation management service is connected.|
 
-**Error codes**
-
-For details about the error codes, see [Distributed Scheduler Error Codes](../errorcodes/errorcode-DistributedSchedule.md).
-
-| ID| Error Message|
-| ------- | -------------------------------------------- |
-| 3 | Failed to flatten the object |
-| 7 | The object is null. |
-| 29360207 | The number of registrations has reached the upper limit. |
-| 29360216 | Invalid continuation mode. |
-
 **Example**
 
   ```ts
-  let token = -1;
-  let continuationExtraParams = {
-    deviceType: ["00E"]
-  };
-  continuationManager.register(continuationExtraParams)
-    .then((data) => {
+  import continuationManager from '@ohos.continuation.continuationManager'
+  import { BusinessError } from '@ohos.base';
+  let token: number = -1;
+  continuationManager.register(
+    { deviceType: ["00E"] }).then((data) => {
       console.info('register finished, ' + JSON.stringify(data));
       token = data;
-    })
-    .catch((err) => {
+    }).catch((err: BusinessError) => {
       console.error('register failed, cause: ' + JSON.stringify(err));
-    });
+  });
   ```
 
 ## continuationManager.registerContinuation<sup>9+</sup>
@@ -177,7 +146,8 @@ For details about the error codes, see [Distributed Scheduler Error Codes](../er
 **Example**
 
   ```ts
-  let token = -1;
+  import continuationManager from '@ohos.continuation.continuationManager'
+  let token: number = -1;
   try {
     continuationManager.registerContinuation((err, data) => {
       if (err.code != 0) {
@@ -221,18 +191,20 @@ For details about the error codes, see [Distributed Scheduler Error Codes](../er
 **Example**
 
   ```ts
-  let token = -1;
-  let continuationExtraParams = {
-    deviceType: ["00E"]
-  };
+  import continuationManager from '@ohos.continuation.continuationManager';
+  let token: number = -1;
   try {
-    continuationManager.registerContinuation(continuationExtraParams, (err, data) => {
-      if (err.code != 0) {
-        console.error('registerContinuation failed, cause: ' + JSON.stringify(err));
-        return;
-      }
-      console.info('registerContinuation finished, ' + JSON.stringify(data));
-      token = data;
+    continuationManager.registerContinuation(
+      {
+        deviceType: ["00E"]
+      },
+      (err, data) => {
+        if (err.code != 0) {
+          console.error('registerContinuation failed, cause: ' + JSON.stringify(err));
+          return;
+        }
+        console.info('registerContinuation finished, ' + JSON.stringify(data));
+        token = data;
     });
   } catch (err) {
     console.error('registerContinuation failed, cause: ' + JSON.stringify(err));
@@ -273,19 +245,19 @@ For details about the error codes, see [Distributed Scheduler Error Codes](../er
 **Example**
 
   ```ts
-  let token = -1;
-  let continuationExtraParams = {
-    deviceType: ["00E"]
-  };
+  import continuationManager from '@ohos.continuation.continuationManager';
+  import { BusinessError } from '@ohos.base';
+  let token: number = -1;
   try {
-    continuationManager.register(continuationExtraParams)
-      .then((data) => {
+    continuationManager.register(
+      {
+        deviceType: ["00E"]
+      }).then((data) => {
         console.info('registerContinuation finished, ' + JSON.stringify(data));
         token = data;
-      })
-      .catch((err) => {
+      }).catch((err: BusinessError) => {
         console.error('registerContinuation failed, cause: ' + JSON.stringify(err));
-      });
+    });
   } catch (err) {
     console.error('registerContinuation failed, cause: ' + JSON.stringify(err));
   }
@@ -309,21 +281,10 @@ Subscribes to device connection events. This API uses an asynchronous callback t
   | type | string | Yes| Event type. The value is fixed at **deviceConnect**.|
   | callback | Callback\<[ContinuationResult](js-apis-continuation-continuationResult.md)> | Yes| Callback invoked when a device is selected from the device list provided by the device selection module. This callback returns the device ID, type, and name.|
 
-**Error codes**
-
-For details about the error codes, see [Distributed Scheduler Error Codes](../errorcodes/errorcode-DistributedSchedule.md).
-
-| ID| Error Message|
-| ------- | -------------------------------------------- |
-| 3 | Failed to flatten the object |
-| 7 | The object is null | 7 |
-| 29360208 | The token is not registered. |
-| 29360209 | The callback has been registered. |
-| 29360214 | The type of callback is not supported. |
-
 **Example**
 
   ```ts
+  import continuationManager from '@ohos.continuation.continuationManager';
   continuationManager.on("deviceConnect", (data) => {
     console.info('onDeviceConnect deviceId: ' + JSON.stringify(data.id));
     console.info('onDeviceConnect deviceType: ' + JSON.stringify(data.type));
@@ -348,21 +309,10 @@ Subscribes to device disconnection events. This API uses an asynchronous callbac
   | type | string | Yes| Event type. The value is fixed at **deviceDisconnect**.|
   | callback | Callback\<string> | Yes| Callback invoked when a device is unselected from the device list provided by the device selection module. This callback returns the device ID.|
 
-**Error codes**
-
-For details about the error codes, see [Distributed Scheduler Error Codes](../errorcodes/errorcode-DistributedSchedule.md).
-
-| ID| Error Message|
-| ------- | -------------------------------------------- |
-| 3 | Failed to flatten the object. |
-| 7 | The object is null. |
-| 29360208 | The token is not registered. |
-| 29360209 | The callback has been registered. |
-| 29360214 | The type of callback is not supported. |
-
 **Example**
 
   ```ts
+  import continuationManager from '@ohos.continuation.continuationManager';
   continuationManager.on("deviceDisconnect", (data) => {
     console.info('onDeviceDisconnect deviceId: ' + JSON.stringify(data));
   });
@@ -385,21 +335,10 @@ Unsubscribes from device connection events. This API uses an asynchronous callba
   | type | string | Yes| Event type. The value is fixed at **deviceConnect**.|
   | callback | Callback\<[ContinuationResult](js-apis-continuation-continuationResult.md)> | No| Callback invoked when a device is selected from the device list provided by the device selection module. This callback returns the device ID, type, and name.|
 
-**Error codes**
-
-For details about the error codes, see [Distributed Scheduler Error Codes](../errorcodes/errorcode-DistributedSchedule.md).
-
-| ID| Error Message|
-| ------- | -------------------------------------------- |
-| 3 | Failed to flatten the object. |
-| 7 | The object is null. |
-| 29360208 | The token is not registered. |
-| 29360210 | The callback is not registered. |
-| 29360214 | The type of callback is not supported. |
-
 **Example**
 
   ```ts
+  import continuationManager from '@ohos.continuation.continuationManager';
   continuationManager.off("deviceConnect", (data) => {
     console.info('onDeviceConnect deviceId: ' + JSON.stringify(data.id));
     console.info('onDeviceConnect deviceType: ' + JSON.stringify(data.type));
@@ -422,23 +361,12 @@ Unsubscribes from device disconnection events. This API uses an asynchronous cal
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | type | string | Yes| Event type. The value is fixed at **deviceDisconnect**.|
-  | callback | Callback\<string> | No| Callback invoked when a device is selected from the device list provided by the device selection module. This callback returns the device ID.|
-
-**Error codes**
-
-For details about the error codes, see [Distributed Scheduler Error Codes](../errorcodes/errorcode-DistributedSchedule.md).
-
-| ID| Error Message|
-| ------- | -------------------------------------------- |
-| 3 | Failed to flatten the object. |
-| 7 | The object is null. |
-| 29360208 | The token is not registered. |
-| 29360210 | The callback is not registered. |
-| 29360214 | The type of callback is not supported. |
+  | callback | Callback\<string> | No| Callback invoked when a device is unselected from the device list provided by the device selection module. This callback returns the device ID.|
 
 **Example**
 
   ```ts
+  import continuationManager from '@ohos.continuation.continuationManager';
   continuationManager.off("deviceDisconnect", (data) => {
     console.info('onDeviceDisconnect deviceId: ' + JSON.stringify(data));
   });
@@ -475,7 +403,8 @@ For details about the error codes, see [Distributed Scheduler Error Codes](../er
 **Example**
 
   ```ts
-  let token = 1;
+  import continuationManager from '@ohos.continuation.continuationManager';
+  let token: number = 1;
   try {
     continuationManager.on("deviceSelected", token, (data) => {
       console.info('onDeviceSelected len: ' + data.length);
@@ -521,7 +450,8 @@ For details about the error codes, see [Distributed Scheduler Error Codes](../er
 **Example**
 
   ```ts
-  let token = 1;
+  import continuationManager from '@ohos.continuation.continuationManager';
+  let token: number = 1;
   try {
     continuationManager.on("deviceUnselected", token, (data) => {
       console.info('onDeviceUnselected len: ' + data.length);
@@ -567,7 +497,8 @@ For details about the error codes, see [Distributed Scheduler Error Codes](../er
 **Example**
 
   ```ts
-  let token = 1;
+  import continuationManager from '@ohos.continuation.continuationManager';
+  let token: number = 1;
   try {
     continuationManager.off("deviceSelected", token);
   } catch (err) {
@@ -605,7 +536,8 @@ For details about the error codes, see [Distributed Scheduler Error Codes](../er
 **Example**
 
   ```ts
-  let token = 1;
+  import continuationManager from '@ohos.continuation.continuationManager';
+  let token: number = 1;
   try {
     continuationManager.off("deviceUnselected", token);
   } catch (err) {
@@ -630,23 +562,11 @@ Starts the device selection module to show the list of available devices on the 
   | token | number | Yes| Token obtained after the registration of the continuation management service.|
   | callback | AsyncCallback\<void> | Yes| Callback used to return the result.|
 
-**Error codes**
-
-For details about the error codes, see [Distributed Scheduler Error Codes](../errorcodes/errorcode-DistributedSchedule.md).
-
-| ID| Error Message|
-| ------- | -------------------------------------------- |
-| 3 | Failed to flatten the object. |
-| 7 | The object is null. |
-| 29360208 | The token is not registered. |
-| 29360210 | The callback is not registered. |
-| 29360211 | Failed to connect to the ability. |
-| 29360216 | Invalid continuation mode. |
-
 **Example**
 
   ```ts
-  let token = 1;
+  import continuationManager from '@ohos.continuation.continuationManager';
+  let token: number = 1;
   continuationManager.startDeviceManager(token, (err, data) => {
     if (err.code != 0) {
       console.error('startDeviceManager failed, cause: ' + JSON.stringify(err));
@@ -674,32 +594,22 @@ Starts the device selection module to show the list of available devices on the 
   | options | [ContinuationExtraParams](js-apis-continuation-continuationExtraParams.md) | Yes| Extra parameters used to filter the list of available devices.|
   | callback | AsyncCallback\<void> | Yes| Callback used to return the result.|
 
-**Error codes**
-
-For details about the error codes, see [Distributed Scheduler Error Codes](../errorcodes/errorcode-DistributedSchedule.md).
-
-| ID| Error Message|
-| ------- | -------------------------------------------- |
-| 3 | Failed to flatten the object |
-| 7 | The object is null |
-| 29360208 | The token is not registered. |
-| 29360210 | The callback is not registered. |
-| 29360211 | Failed to connect to the ability. |
-| 29360216 | Invalid continuation mode. |
-
 **Example**
 
   ```ts
-  let token = 1;
-  let continuationExtraParams = {
-    deviceType: ["00E"]
-  };
-  continuationManager.startDeviceManager(token, continuationExtraParams, (err, data) => {
-    if (err.code != 0) {
-      console.error('startDeviceManager failed, cause: ' + JSON.stringify(err));
-      return;
-    }
-    console.info('startDeviceManager finished, ' + JSON.stringify(data));
+  import continuationManager from '@ohos.continuation.continuationManager';
+  let token: number = 1;
+  continuationManager.startDeviceManager(
+    token,
+    {
+      deviceType: ["00E"]
+    },
+    (err, data) => {
+      if (err.code != 0) {
+        console.error('startDeviceManager failed, cause: ' + JSON.stringify(err));
+        return;
+      }
+      console.info('startDeviceManager finished, ' + JSON.stringify(data));
   });
   ```
 
@@ -726,33 +636,21 @@ Starts the device selection module to show the list of available devices on the 
 | ------------------------- | ------------------ |
 | Promise\<void> | Promise used to return the result.|
 
-**Error codes**
-
-For details about the error codes, see [Distributed Scheduler Error Codes](../errorcodes/errorcode-DistributedSchedule.md).
-
-| ID| Error Message|
-| ------- | -------------------------------------------- |
-| 3 | Failed to flatten the object |
-| 7 | The object is null |
-| 29360208 | The token is not registered. |
-| 29360210 | The callback is not registered. |
-| 29360211 | Failed to connect to the ability. |
-| 29360216 | Invalid continuation mode. |
-
 **Example**
 
   ```ts
-  let token = 1;
-  let continuationExtraParams = {
-    deviceType: ["00E"]
-  };
-  continuationManager.startDeviceManager(token, continuationExtraParams)
-    .then((data) => {
+  import continuationManager from '@ohos.continuation.continuationManager';
+  import { BusinessError } from '@ohos.base';
+  let token: number = -1;
+  continuationManager.startDeviceManager(
+    token,
+    {
+      deviceType: ["00E"]
+    }).then((data) => {
       console.info('startDeviceManager finished, ' + JSON.stringify(data));
-    })
-    .catch((err) => {
+    }).catch((err: BusinessError) => {
       console.error('startDeviceManager failed, cause: ' + JSON.stringify(err));
-    });
+  });
   ```
 
 ## continuationManager.startContinuationDeviceManager<sup>9+</sup>
@@ -784,7 +682,8 @@ For details about the error codes, see [Distributed Scheduler Error Codes](../er
 **Example**
 
   ```ts
-  let token = 1;
+  import continuationManager from '@ohos.continuation.continuationManager';
+  let token: number = -1;
   try {
     continuationManager.startContinuationDeviceManager(token, (err, data) => {
       if (err.code != 0) {
@@ -828,17 +727,20 @@ For details about the error codes, see [Distributed Scheduler Error Codes](../er
 **Example**
 
   ```ts
-  let token = 1;
-  let continuationExtraParams = {
-    deviceType: ["00E"]
-  };
+  import continuationManager from '@ohos.continuation.continuationManager';
+  let token: number = -1;
   try {
-    continuationManager.startContinuationDeviceManager(token, continuationExtraParams, (err, data) => {
-      if (err.code != 0) {
-        console.error('startContinuationDeviceManager failed, cause: ' + JSON.stringify(err));
-        return;
-      }
-      console.info('startContinuationDeviceManager finished, ' + JSON.stringify(data));
+    continuationManager.startContinuationDeviceManager(
+      token,
+      {
+        deviceType: ["00E"]
+      },
+      (err, data) => {
+        if (err.code != 0) {
+          console.error('startContinuationDeviceManager failed, cause: ' + JSON.stringify(err));
+          return;
+        }
+        console.info('startContinuationDeviceManager finished, ' + JSON.stringify(data));
     });
   } catch (err) {
     console.error('startContinuationDeviceManager failed, cause: ' + JSON.stringify(err));
@@ -880,16 +782,17 @@ For details about the error codes, see [Distributed Scheduler Error Codes](../er
 **Example**
 
   ```ts
-  let token = 1;
-  let continuationExtraParams = {
-    deviceType: ["00E"]
-  };
+  import continuationManager from '@ohos.continuation.continuationManager';
+  import { BusinessError } from '@ohos.base';
+  let token: number = -1;
   try {
-    continuationManager.startContinuationDeviceManager(token, continuationExtraParams)
-      .then((data) => {
+    continuationManager.startContinuationDeviceManager(
+      token,
+      {
+        deviceType: ["00E"]
+      }).then((data) => {
         console.info('startContinuationDeviceManager finished, ' + JSON.stringify(data));
-      })
-      .catch((err) => {
+      }).catch((err: BusinessError) => {
         console.error('startContinuationDeviceManager failed, cause: ' + JSON.stringify(err));
       });
   } catch (err) {
@@ -916,23 +819,11 @@ Instructs the device selection module to update the device connection state. Thi
   | status | [DeviceConnectState](#deviceconnectstate) | Yes| Device connection state.|
   | callback | AsyncCallback\<void> | Yes| Callback used to return the result.|
 
-**Error codes**
-
-For details about the error codes, see [Distributed Scheduler Error Codes](../errorcodes/errorcode-DistributedSchedule.md).
-
-| ID| Error Message|
-| ------- | -------------------------------------------- |
-| 3 | Failed to flatten the object. |
-| 7 | The object is null. |
-| 29360208 | The token is not registered. |
-| 29360210 | The callback is not registered. |
-| 29360211 | Failed to connect to the ability. |
-| 29360215 | Invalid connection state. |
-
 **Example**
 
   ```ts
-  let token = 1;
+  import continuationManager from '@ohos.continuation.continuationManager';
+  let token: number = -1;
   let deviceId: string = "test deviceId";
   continuationManager.updateConnectStatus(token, deviceId, continuationManager.DeviceConnectState.CONNECTED, (err, data) => {
     if (err.code != 0) {
@@ -967,31 +858,20 @@ Instructs the device selection module to update the device connection state. Thi
 | ------------------------- | ------------------ |
 | Promise\<void> | Promise used to return the result.|
 
-**Error codes**
-
-For details about the error codes, see [Distributed Scheduler Error Codes](../errorcodes/errorcode-DistributedSchedule.md).
-
-| ID| Error Message|
-| ------- | -------------------------------------------- |
-| 3 | Failed to flatten the object. |
-| 7 | The object is null. |
-| 29360208 | The token is not registered. |
-| 29360210 | The callback is not registered. |
-| 29360211 | Failed to connect to the ability. |
-| 29360215 | Invalid connection state. |
-
 **Example**
 
   ```ts
-  let token = 1;
+  import continuationManager from '@ohos.continuation.continuationManager';
+  import { BusinessError } from '@ohos.base';
+  let token: number = 1;
   let deviceId: string = "test deviceId";
   continuationManager.updateConnectStatus(token, deviceId, continuationManager.DeviceConnectState.CONNECTED)
     .then((data) => {
       console.info('updateConnectStatus finished, ' + JSON.stringify(data));
     })
-    .catch((err) => {
+    .catch((err: BusinessError) => {
       console.error('updateConnectStatus failed, cause: ' + JSON.stringify(err));
-    });
+  });
   ```
 
 ## continuationManager.updateContinuationState<sup>9+</sup>
@@ -1025,7 +905,8 @@ For details about the error codes, see [Distributed Scheduler Error Codes](../er
 **Example**
 
   ```ts
-  let token = 1;
+  import continuationManager from '@ohos.continuation.continuationManager';
+  let token: number = 1;
   let deviceId: string = "test deviceId";
   try {
     continuationManager.updateContinuationState(token, deviceId, continuationManager.DeviceConnectState.CONNECTED, (err, data) => {
@@ -1076,14 +957,16 @@ For details about the error codes, see [Distributed Scheduler Error Codes](../er
 **Example**
 
   ```ts
-  let token = 1;
+  import continuationManager from '@ohos.continuation.continuationManager';
+  import { BusinessError } from '@ohos.base';
+  let token: number = 1;
   let deviceId: string = "test deviceId";
   try {
     continuationManager.updateContinuationState(token, deviceId, continuationManager.DeviceConnectState.CONNECTED)
       .then((data) => {
         console.info('updateContinuationState finished, ' + JSON.stringify(data));
       })
-      .catch((err) => {
+      .catch((err: BusinessError) => {
         console.error('updateContinuationState failed, cause: ' + JSON.stringify(err));
       });
   } catch (err) {
@@ -1109,20 +992,11 @@ Deregisters the continuation management service. This API uses an asynchronous c
   | token | number | Yes| Token obtained after the registration of the continuation management service.|
   | callback | AsyncCallback\<void> | Yes| Callback used to return the result.|
 
-**Error codes**
-
-For details about the error codes, see [Distributed Scheduler Error Codes](../errorcodes/errorcode-DistributedSchedule.md).
-
-| ID| Error Message|
-| ------- | -------------------------------------------- |
-| 3 | Failed to flatten the object. |
-| 7 | The object is null. |
-| 29360208 | The token is not registered. |
-
 **Example**
 
   ```ts
-  let token = 1;
+  import continuationManager from '@ohos.continuation.continuationManager';
+  let token: number = 1;
   continuationManager.unregister(token, (err, data) => {
     if (err.code != 0) {
       console.error('unregister failed, cause: ' + JSON.stringify(err));
@@ -1154,27 +1028,18 @@ Deregisters the continuation management service. This API uses a promise to retu
 | ------------------------- | ------------------ |
 | Promise\<void> | Promise used to return the result.|
 
-**Error codes**
-
-For details about the error codes, see [Distributed Scheduler Error Codes](../errorcodes/errorcode-DistributedSchedule.md).
-
-| ID| Error Message|
-| ------- | -------------------------------------------- |
-| 3 | Failed to flatten the object. |
-| 7 | The object is null. |
-| 29360208 | The token is not registered. |
-
 **Example**
 
   ```ts
-  let token = 1;
+  import continuationManager from '@ohos.continuation.continuationManager';
+  import { BusinessError } from '@ohos.base';
+  let token: number = 1;
   continuationManager.unregister(token)
     .then((data) => {
       console.info('unregister finished, ' + JSON.stringify(data));
-    })
-    .catch((err) => {
+    }).catch((err: BusinessError) => {
       console.error('unregister failed, cause: ' + JSON.stringify(err));
-    });
+  });
   ```
 
 ## continuationManager.unregisterContinuation<sup>9+</sup>
@@ -1206,7 +1071,9 @@ For details about the error codes, see [Distributed Scheduler Error Codes](../er
 **Example**
 
   ```ts
-  let token = 1;
+  import continuationManager from '@ohos.continuation.continuationManager';
+  import { BusinessError } from '@ohos.base';
+  let token: number = 1;
   try {
     continuationManager.unregisterContinuation(token, (err, data) => {
       if (err.code != 0) {
@@ -1254,15 +1121,15 @@ For details about the error codes, see [Distributed Scheduler Error Codes](../er
 **Example**
 
   ```ts
-  let token = 1;
+  import continuationManager from '@ohos.continuation.continuationManager';
+  import { BusinessError } from '@ohos.base';
+  let token: number = -1;
   try {
-    continuationManager.unregisterContinuation(token)
-      .then((data) => {
+    continuationManager.unregisterContinuation(token).then((data) => {
         console.info('unregisterContinuation finished, ' + JSON.stringify(data));
-      })
-      .catch((err) => {
+      }).catch((err: BusinessError) => {
         console.error('unregisterContinuation failed, cause: ' + JSON.stringify(err));
-      });
+    });
   } catch (err) {
     console.error('unregisterContinuation failed, cause: ' + JSON.stringify(err));
   }
