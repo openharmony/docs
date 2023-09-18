@@ -89,12 +89,10 @@ When collecting personal data, clearly and explicitly notify users of the data t
 
     ![](figures/privacy-notice.png)
 
-    
-
     **Figure 2** Example of a privacy statement
 
     ![](figures/privacy-statement.png)
-    
+
 - Personal data shall be collected for specified, explicit, and legitimate purposes and not further processed in a manner that is incompatible with those purposes. If the purposes are changed or a user withdraws their consent, you shall obtain user consent again before using the data. The figures below are examples of a privacy statement update and content withdrawal, respectively.
 
     **Figure 3** Example dialog showing a privacy notice or statement update
@@ -120,14 +118,10 @@ When collecting personal data, clearly and explicitly notify users of the data t
 Collect personal data only when they are adequate, relevant, and limited to what is necessary in relation to the purposes for which they are processed. Apply anonymization or pseudonymization to personal data if possible to reduce the risks to the data subjects concerned. Data shall only be collected and processed for a specified purpose, and no further unnecessary operations shall be conducted on them.
 
 - When applying for sensitive permissions, adhere to permission minimization and apply for only the permissions required for obtaining necessary information or resources. For example, if your application can implement its functions without access to the camera, then it shall not request the user for the camera permission.
-
 - Comply with data collection minimization, and do not collect data irrelevant to services provided by the product. For example, a product that provides location services shall not collect users' web browsing history.
-
 - The functions that use personal data shall be able to benefit users. The collected data shall not be used for functions irrelevant to users' normal use. No data shall be collected for any function irrelevant to user operations. For example, sensitive personal data, such as biometric features and health data, shall not be used for non-core service functions like service improvement, advertising, and marketing.
-
 - Printing sensitive personal data in logs is prohibited. If common personal data needs to be printed in logs, make sure the data is anonymized or pseudonymized.
-
-  Preferentially use identifiers that are resettable. For example, use the NetworkID and DVID as the device identifier in the distributed scenario; use the OAID in the advertising scenario; use the ODID and AAID in the application-based analysis scenario; and use the UUID in other scenarios where a unique identifier is required. Use permanent identifiers such as the sequence number and MAC address only when resettable identifiers cannot meet your service requirements.
+- Use settable identifiers preferentially. For example, use **NetworkID** and **DVID** to identify devices in distributed scenarios, and use the **UUID** interface to generate identifiers for other scenarios where unique identifiers are required. Use permanent identifiers, such as serial numbers and MAC addresses, only when settable identifiers cannot meet service requirements.
 
 **Data Processing Selection and Control**
 
