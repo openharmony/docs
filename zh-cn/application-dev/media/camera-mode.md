@@ -69,7 +69,7 @@ async function cameraModeCase(context: common.Context, surfaceId: string): Promi
   }
   cameraInput.on('error', cameraDevice, (error: BusinessError) => {
     console.info(`Camera input error code: ${error.code}`);
-  })
+  });
 
   // 打开相机
   await cameraInput.open();
@@ -106,7 +106,7 @@ async function cameraModeCase(context: common.Context, surfaceId: string): Promi
   // 监听预览输出错误信息
   previewOutput.on('error', (error: BusinessError) => {
     console.info(`Preview output error code: ${error.code}`);
-  })
+  });
   // 创建ImageReceiver对象，并设置照片参数：分辨率大小是根据前面 photoProfilesArray 获取的当前设备所支持的拍照分辨率大小去设置
   let imageReceiver: image.ImageReceiver = image.createImageReceiver(1920, 1080, 4, 8);
   // 获取照片显示SurfaceId
