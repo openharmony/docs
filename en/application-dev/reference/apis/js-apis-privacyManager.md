@@ -9,7 +9,7 @@ The **privacyManager** module provides APIs for privacy management, such as mana
 
 ## Modules to Import
 
-```js
+```ts
 import privacyManager from '@ohos.privacyManager';
 ```
 
@@ -54,14 +54,15 @@ For details about the error codes, see [Ability Access Control Error Codes](../e
 
 **Example**
 
-```js
+```ts
 import privacyManager from '@ohos.privacyManager';
+import { BusinessError } from '@ohos.base';
 
-let tokenID = 0; // You can use getApplicationInfo to obtain the access token ID.
+let tokenID: number = 0; // You can use getApplicationInfo to obtain accessTokenId.
 try {
     privacyManager.addPermissionUsedRecord(tokenID, 'ohos.permission.PERMISSION_USED_STATS', 1, 0).then(() => {
         console.log('addPermissionUsedRecord success');
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
         console.log(`addPermissionUsedRecord fail, err->${JSON.stringify(err)}`);
     });
 } catch(err) {
@@ -104,12 +105,13 @@ For details about the error codes, see [Ability Access Control Error Codes](../e
 
 **Example**
 
-```js
+```ts
 import privacyManager from '@ohos.privacyManager';
+import { BusinessError } from '@ohos.base';
 
-let tokenID = 0; // You can use getApplicationInfo to obtain the access token ID.
+let tokenID: number = 0; // You can use getApplicationInfo to obtain accessTokenId.
 try {
-    privacyManager.addPermissionUsedRecord(tokenID, 'ohos.permission.PERMISSION_USED_STATS', 1, 0, (err, data) => {
+    privacyManager.addPermissionUsedRecord(tokenID, 'ohos.permission.PERMISSION_USED_STATS', 1, 0, (err: BusinessError, data: void) => {
         if (err) {
             console.log(`addPermissionUsedRecord fail, err->${JSON.stringify(err)}`);
         } else {
@@ -157,10 +159,11 @@ For details about the error codes, see [Ability Access Control Error Codes](../e
 
 **Example**
 
-```js
+```ts
 import privacyManager from '@ohos.privacyManager';
+import { BusinessError } from '@ohos.base';
 
-let request = {
+let request: privacyManager.PermissionUsedRequest = {
     'tokenId': 1,
     'isRemote': false,
     'deviceId': 'device',
@@ -173,7 +176,7 @@ let request = {
 try {
     privacyManager.getPermissionUsedRecord(request).then((data) => {
         console.log(`getPermissionUsedRecord success, data->${JSON.stringify(data)}`);
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
         console.log(`getPermissionUsedRecord fail, err->${JSON.stringify(err)}`);
     });
 } catch(err) {
@@ -212,10 +215,11 @@ For details about the error codes, see [Ability Access Control Error Codes](../e
 
 **Example**
 
-```js
+```ts
 import privacyManager from '@ohos.privacyManager';
+import { BusinessError } from '@ohos.base';
 
-let request = {
+let request: privacyManager.PermissionUsedRequest = {
     'tokenId': 1,
     'isRemote': false,
     'deviceId': 'device',
@@ -226,7 +230,7 @@ let request = {
     'flag':privacyManager.PermissionUsageFlag.FLAG_PERMISSION_USAGE_DETAIL,
 };
 try {
-    privacyManager.getPermissionUsedRecord(request, (err, data) => {
+    privacyManager.getPermissionUsedRecord(request, (err: BusinessError, data: privacyManager.PermissionUsedResponse) => {
         if (err) {
             console.log(`getPermissionUsedRecord fail, err->${JSON.stringify(err)}`);
         } else {
@@ -276,14 +280,15 @@ For details about the error codes, see [Ability Access Control Error Codes](../e
 
 **Example**
 
-```js
+```ts
 import privacyManager from '@ohos.privacyManager';
+import { BusinessError } from '@ohos.base';
 
-let tokenID = 0; // You can use getApplicationInfo to obtain the access token ID.
+let tokenID: number = 0; // You can use getApplicationInfo to obtain accessTokenId.
 try {
     privacyManager.startUsingPermission(tokenID, 'ohos.permission.PERMISSION_USED_STATS').then(() => {
         console.log('startUsingPermission success');
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
         console.log(`startUsingPermission fail, err->${JSON.stringify(err)}`);
     });
 } catch(err) {
@@ -324,12 +329,13 @@ For details about the error codes, see [Ability Access Control Error Codes](../e
 
 **Example**
 
-```js
+```ts
 import privacyManager from '@ohos.privacyManager';
+import { BusinessError } from '@ohos.base';
 
-let tokenID = 0; // You can use getApplicationInfo to obtain the access token ID.
+let tokenID: number = 0; // You can use getApplicationInfo to obtain accessTokenId.
 try {
-    privacyManager.startUsingPermission(tokenID, 'ohos.permission.PERMISSION_USED_STATS', (err, data) => {
+    privacyManager.startUsingPermission(tokenID, 'ohos.permission.PERMISSION_USED_STATS', (err: BusinessError, data: void) => {
         if (err) {
             console.log(`startUsingPermission fail, err->${JSON.stringify(err)}`);
         } else {
@@ -379,14 +385,15 @@ For details about the error codes, see [Ability Access Control Error Codes](../e
 
 **Example**
 
-```js
+```ts
 import privacyManager from '@ohos.privacyManager';
+import { BusinessError } from '@ohos.base';
 
-let tokenID = 0; // You can use getApplicationInfo to obtain the access token ID.
+let tokenID: number = 0; // You can use getApplicationInfo to obtain accessTokenId.
 try {
     privacyManager.stopUsingPermission(tokenID, 'ohos.permission.PERMISSION_USED_STATS').then(() => {
         console.log('stopUsingPermission success');
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
         console.log(`stopUsingPermission fail, err->${JSON.stringify(err)}`);
     });
 } catch(err) {
@@ -427,12 +434,13 @@ For details about the error codes, see [Ability Access Control Error Codes](../e
 
 **Example**
 
-```js
+```ts
 import privacyManager from '@ohos.privacyManager';
+import { BusinessError } from '@ohos.base';
 
-let tokenID = 0; // You can use getApplicationInfo to obtain the access token ID.
+let tokenID: number = 0; // You can use getApplicationInfo to obtain accessTokenId.
 try {
-    privacyManager.stopUsingPermission(tokenID, 'ohos.permission.PERMISSION_USED_STATS', (err, data) => {
+    privacyManager.stopUsingPermission(tokenID, 'ohos.permission.PERMISSION_USED_STATS', (err: BusinessError, data: void) => {
         if (err) {
             console.log(`stopUsingPermission fail, err->${JSON.stringify(err)}`);
         } else {
@@ -449,6 +457,10 @@ try {
 on(type: 'activeStateChange', permissionList: Array&lt;Permissions&gt;, callback: Callback&lt;ActiveChangeResponse&gt;): void
 
 Subscribes to the permission usage status changes of the specified permissions.
+
+Multiple callbacks can be registered for the same **permissionList**.
+
+The same callback cannot be registered for the **permissionList**s with common values.
 
 **Required permissions**: ohos.permission.PERMISSION_USED_STATS (available only to system applications)
 
@@ -476,12 +488,13 @@ For details about the error codes, see [Ability Access Control Error Codes](../e
 
 **Example**
 
-```js
-import privacyManager from '@ohos.privacyManager';
+```ts
+import privacyManager, { Permissions } from '@ohos.privacyManager';
+import { BusinessError } from '@ohos.base';
 
-let permissionList = [];
+let permissionList: Array<Permissions> = [];
 try {
-    privacyManager.on('activeStateChange', permissionList, (data) => {
+    privacyManager.on('activeStateChange', permissionList, (data: privacyManager.ActiveChangeResponse) => {
         console.debug('receive permission state change, data:' + JSON.stringify(data));
     });
 } catch(err) {
@@ -494,6 +507,8 @@ try {
 off(type: 'activeStateChange', permissionList: Array&lt;Permissions&gt;, callback?: Callback&lt;ActiveChangeResponse&gt;): void;
 
 Unsubscribes from the permission usage status changes of the specified permissions.
+
+If no callback is passed in **privacyManager.off**, all callbacks of **permissionList** will be unregistered.
 
 **Required permissions**: ohos.permission.PERMISSION_USED_STATS (available only to system applications)
 
@@ -520,10 +535,10 @@ For details about the error codes, see [Ability Access Control Error Codes](../e
 
 **Example**
 
-```js
-import privacyManager from '@ohos.privacyManager';
+```ts
+import privacyManager, { Permissions } from '@ohos.privacyManager';
 
-let permissionList = [];
+let permissionList: Array<Permissions> = [];
 try {
     privacyManager.off('activeStateChange', permissionList);
 }catch(err) {
