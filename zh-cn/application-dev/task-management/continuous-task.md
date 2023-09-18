@@ -190,6 +190,7 @@
   import AbilityConstant from '@ohos.app.ability.AbilityConstant';
   import Want from '@ohos.app.ability.Want';
   import rpc from '@ohos.rpc';
+  import { BusinessError } from '@ohos.base';
 
   const MSG_SEND_METHOD: string = 'CallSendMsg'
 
