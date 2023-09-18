@@ -10,7 +10,7 @@ The **workScheduler** module provides the APIs for registering, canceling, and q
 
 ## Modules to Import
 
-```js
+```ts
 import workScheduler from '@ohos.resourceschedule.workScheduler';
 ```
 
@@ -42,8 +42,8 @@ For details about the error codes, see [workScheduler Error Codes](../errorcodes
 
 **Example**
 
-```js
-  let workInfo = {
+```ts
+  let workInfo: workScheduler.WorkInfo = {
       workId: 1,
       batteryStatus:workScheduler.BatteryStatus.BATTERY_STATUS_LOW,
       isRepeat: false,
@@ -61,7 +61,7 @@ For details about the error codes, see [workScheduler Error Codes](../errorcodes
     workScheduler.startWork(workInfo);
     console.info('workschedulerLog startWork success');
   } catch (error) {
-    console.error(`workschedulerLog startwork failed. code is ${error.code} message is ${error.message}`);
+    console.error(`workschedulerLog startwork failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
   }
 ```
 
@@ -93,8 +93,8 @@ For details about the error codes, see [workScheduler Error Codes](../errorcodes
 
 **Example**
 
-```js
-  let workInfo = {
+```ts
+  let workInfo: workScheduler.WorkInfo = {
       workId: 1,
       batteryStatus:workScheduler.BatteryStatus.BATTERY_STATUS_LOW,
       isRepeat: false,
@@ -112,7 +112,7 @@ For details about the error codes, see [workScheduler Error Codes](../errorcodes
     workScheduler.stopWork(workInfo, false);
     console.info('workschedulerLog stopWork success');
   } catch (error) {
-    console.error(`workschedulerLog stopWork failed. code is ${error.code} message is ${error.message}`);
+    console.error(`workschedulerLog stopWork failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
   }
 ```
 
@@ -144,20 +144,14 @@ For details about the error codes, see [workScheduler Error Codes](../errorcodes
 
 **Example**
 
-```js
-  try{
-    workScheduler.getWorkStatus(50, (error, res) => {
-      if (error) {
-        console.error(`workschedulerLog getWorkStatus failed. code is ${error.code} message is ${error.message}`);
-      } else {
-        for (let item in res) {
-          console.info(`workschedulerLog getWorkStatus success, ${item} is: ${res[item]}`);
-        }
-      }
-    });
-  } catch (error) {
-    console.error(`workschedulerLog getWorkStatus failed. code is ${error.code} message is ${error.message}`);
-  }
+```ts
+  workScheduler.getWorkStatus(50, (error: BusinessError, res: workScheduler.WorkInfo) => {
+    if (error) {
+      console.error(`workschedulerLog getWorkStatus failed. code is ${error.code} message is ${error.message}`);
+    } else {
+      console.info(`workschedulerLog getWorkStatus success, ${JSON.stringify(res)}`);
+    }
+  });
 ```
 
 ## workScheduler.getWorkStatus
@@ -193,18 +187,12 @@ For details about the error codes, see [workScheduler Error Codes](../errorcodes
 
 **Example**
 
-```js
-  try{
-    workScheduler.getWorkStatus(50).then((res) => {
-      for (let item in res) {
-        console.info(`workschedulerLog getWorkStatus success, ${item} is: ${res[item]}`);
-      }
-    }).catch((error) => {
-      console.error(`workschedulerLog getWorkStatus failed. code is ${error.code} message is ${error.message}`);
-    })
-  } catch (error) {
+```ts
+  workScheduler.getWorkStatus(50).then((res: workScheduler.WorkInfo) => {
+    console.info(`workschedulerLog getWorkStatus success, ${JSON.stringify(res)}`);
+  }).catch((error: BusinessError) => {
     console.error(`workschedulerLog getWorkStatus failed. code is ${error.code} message is ${error.message}`);
-  }
+  })
 ```
 
 ## workScheduler.obtainAllWorks
@@ -239,18 +227,14 @@ For details about the error codes, see [workScheduler Error Codes](../errorcodes
 
 **Example**
 
-```js
-  try{
-    workScheduler.obtainAllWorks((error, res) =>{
-      if (error) {
-        console.error(`workschedulerLog obtainAllWorks failed. code is ${error.code} message is ${error.message}`);
-      } else {
-        console.info(`workschedulerLog obtainAllWorks success, data is: ${JSON.stringify(res)}`);
-      }
-    });
-  } catch (error) {
-    console.error(`workschedulerLog obtainAllWorks failed. code is ${error.code} message is ${error.message}`);
-  }
+```ts
+  workScheduler.obtainAllWorks((error: BusinessError, res: Array<workScheduler.WorkInfo>) =>{
+    if (error) {
+      console.error(`workschedulerLog obtainAllWorks failed. code is ${error.code} message is ${error.message}`);
+    } else {
+      console.info(`workschedulerLog obtainAllWorks success, data is: ${JSON.stringify(res)}`);
+    }
+  });
 ```
 
 ## workScheduler.obtainAllWorks
@@ -279,16 +263,12 @@ For details about the error codes, see [workScheduler Error Codes](../errorcodes
 
 **Example**
 
-```js
-  try{
-    workScheduler.obtainAllWorks().then((res) => {
-      console.info(`workschedulerLog obtainAllWorks success, data is: ${JSON.stringify(res)}`);
-    }).catch((error) => {
-      console.error(`workschedulerLog obtainAllWorks failed. code is ${error.code} message is ${error.message}`);
-    })
-  } catch (error) {
+```ts
+  workScheduler.obtainAllWorks().then((res: Array<workScheduler.WorkInfo>) => {
+    console.info(`workschedulerLog obtainAllWorks success, data is: ${JSON.stringify(res)}`);
+  }).catch((error: BusinessError) => {
     console.error(`workschedulerLog obtainAllWorks failed. code is ${error.code} message is ${error.message}`);
-  }
+  })
 ```
 
 ## workScheduler.stopAndClearWorks
@@ -311,12 +291,12 @@ For details about the error codes, see [workScheduler Error Codes](../errorcodes
 
 **Example**
 
-```js
+```ts
   try{
     workScheduler.stopAndClearWorks();
     console.info(`workschedulerLog stopAndClearWorks success`);
   } catch (error) {
-    console.error(`workschedulerLog stopAndClearWorks failed. code is ${error.code} message is ${error.message}`);
+    console.error(`workschedulerLog stopAndClearWorks failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
   }
 ```
 
@@ -354,18 +334,14 @@ For details about the error codes, see [workScheduler Error Codes](../errorcodes
 
 **Example**
 
-```js
-  try{
-    workScheduler.isLastWorkTimeOut(500, (error, res) =>{
-      if (error) {
-        console.error(`workschedulerLog isLastWorkTimeOut failed. code is ${error.code} message is ${error.message}`);
-      } else {
-        console.info(`workschedulerLog isLastWorkTimeOut success, data is: ${res}`);
-      }
-    });
-  } catch (error) {
-    console.error(`workschedulerLog isLastWorkTimeOut failed. code is ${error.code} message is ${error.message}`);
-  }
+```ts
+  workScheduler.isLastWorkTimeOut(500, (error: BusinessError, res: boolean) =>{
+    if (error) {
+      console.error(`workschedulerLog isLastWorkTimeOut failed. code is ${error.code} message is ${error.message}`);
+    } else {
+      console.info(`workschedulerLog isLastWorkTimeOut success, data is: ${res}`);
+    }
+  });
 ```
 
 ## workScheduler.isLastWorkTimeOut
@@ -401,18 +377,14 @@ For details about the error codes, see [workScheduler Error Codes](../errorcodes
 
 **Example**
 
-```js
-  try{
-    workScheduler.isLastWorkTimeOut(500)
-      .then(res => {
-        console.info(`workschedulerLog isLastWorkTimeOut success, data is: ${res}`);
-      })
-      .catch(error =>  {
-        console.error(`workschedulerLog isLastWorkTimeOut failed. code is ${error.code} message is ${error.message}`);
-      });
-  } catch (error) {
-    console.error(`workschedulerLog isLastWorkTimeOut failed. code is ${error.code} message is ${error.message}`);
-  }
+```ts
+  workScheduler.isLastWorkTimeOut(500)
+    .then((res: boolean) => {
+      console.info(`workschedulerLog isLastWorkTimeOut success, data is: ${res}`);
+    })
+    .catch((error: BusinessError) =>  {
+      console.error(`workschedulerLog isLastWorkTimeOut failed. code is ${error.code} message is ${error.message}`);
+    });
 ```
 
 ## WorkInfo
@@ -433,11 +405,11 @@ Defines the information about the deferred task.
 | batteryStatus   | [BatteryStatus](#batterystatus)   | No   | Battery status.            |
 | storageRequest  | [StorageRequest](#storagerequest) | No   | Storage status.            |
 | isRepeat        | boolean                           | No   | Whether the task is repeated.<br>The value** true** means that the task is repeated, and **false** means the opposite.|
-| repeatCycleTime | number                            | No   | Repeat interval.            |
+| repeatCycleTime | number                            | No   | Repeat interval, in milliseconds.            |
 | repeatCount     | number                            | No   | Number of repeat times.            |
 | isPersisted     | boolean                           | No   | Whether to enable persistent storage for the task.<br>The value **true** means to enable persistent storage for the task, and **false** means the opposite.|
 | isDeepIdle      | boolean                           | No   | Whether the device needs to enter the idle state to trigger deferred task scheduling.<br>The value **true** means that the device needs to enter the idle state to trigger deferred task scheduling, and **false** means the opposite.  |
-| idleWaitTime    | number                            | No   | Time to wait in the idle state before triggering deferred task scheduling.          |
+| idleWaitTime    | number                            | No   | Time to wait in the idle state before triggering deferred task scheduling, in milliseconds.          |
 | parameters      | [key: string]: number \| string \| boolean  | No   | Carried parameters.|
 
 ## NetworkType

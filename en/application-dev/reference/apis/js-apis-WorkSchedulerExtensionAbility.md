@@ -11,7 +11,7 @@ The **WorkSchedulerExtensionAbility** module provides callbacks for deferred tas
 ## Modules to Import
 
 ```ts
-import WorkSchedulerExtensionAbility from '@ohos.WorkSchedulerExtensionAbility'
+import WorkSchedulerExtensionAbility from '@ohos.WorkSchedulerExtensionAbility';
 ```
 
 ## Attributes
@@ -39,11 +39,13 @@ Called when the system starts scheduling the deferred task.
 **Example**
 
   ```ts
-    export default class MyWorkSchedulerExtensionAbility extends WorkSchedulerExtensionAbility {
-        onWorkStart(workInfo) {
-            console.log('MyWorkSchedulerExtensionAbility onWorkStart' + JSON.stringify(workInfo));
-        }
+  import workScheduler from '@ohos.resourceschedule.workScheduler';
+
+  export default class MyWorkSchedulerExtensionAbility extends WorkSchedulerExtensionAbility {
+    onWorkStart(workInfo: workScheduler.WorkInfo) {
+        console.log('MyWorkSchedulerExtensionAbility onWorkStart' + JSON.stringify(workInfo));
     }
+  }
   ```
 
 ## WorkSchedulerExtensionAbility.onWorkStop
@@ -64,9 +66,11 @@ Called when the system stops scheduling the deferred task.
 **Example**
 
   ```ts
-    export default class MyWorkSchedulerExtensionAbility extends WorkSchedulerExtensionAbility {
-        onWorkStop(workInfo) {
-            console.log('MyWorkSchedulerExtensionAbility onWorkStop' + JSON.stringify(workInfo));
-        }
+  import workScheduler from '@ohos.resourceschedule.workScheduler';
+
+  export default class MyWorkSchedulerExtensionAbility extends WorkSchedulerExtensionAbility {
+    onWorkStop(workInfo: workScheduler.WorkInfo) {
+        console.log('MyWorkSchedulerExtensionAbility onWorkStop' + JSON.stringify(workInfo));
     }
+  }
   ```
