@@ -169,6 +169,7 @@ WorkInfo参数用于设置应用条件，参数设置时需遵循以下规则：
    
    ```ts
    import workScheduler from '@ohos.resourceschedule.workScheduler';
+   import { BusinessError } from '@ohos.base';
    ```
 
 2. 申请延迟任务。
