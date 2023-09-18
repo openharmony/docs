@@ -74,6 +74,33 @@ sim.isSimActive(0).then((data: boolean) => {
 });
 ```
 
+## sim.isSimActiveSync<sup>10+</sup>
+
+isSimActiveSync\(slotId: number\): boolean
+
+获取指定卡槽SIM卡是否激活。
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                   |
+| ------ | ------ | ---- | -------------------------------------- |
+| slotId | number | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+
+**返回值：**
+
+| 类型                  | 说明                               |
+| --------------------- | ---------------------------------- |
+| boolean | 返回指定卡槽是否激活，如果激活返回true。 |
+
+**示例：**
+
+```js
+let isSimActive = sim.isSimActiveSync(0);
+console.log(`the sim is active:` + isSimActive);
+```
+
 
 ## sim.getDefaultVoiceSlotId<sup>7+</sup>
 
@@ -297,6 +324,34 @@ sim.getISOCountryCodeForSim(0).then((data: string) => {
 });
 ```
 
+## sim.getISOCountryCodeForSimSync<sup>10+</sup>
+
+getISOCountryCodeForSimSync\(slotId: number\): string
+
+获取指定卡槽SIM卡的ISO国家码。
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                   |
+| ------ | ------ | ---- | -------------------------------------- |
+| slotId | number | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+
+**返回值：**
+
+| 类型              | 说明                                                         |
+| ----------------- | ------------------------------------------------------------ |
+| string | 返回获取指定卡槽SIM卡的ISO国家码，例如：CN（中国）。 |
+
+
+**示例：**
+
+```js
+let countryCode = sim.getISOCountryCodeForSimSync(0);
+console.log(`the country ISO is:` + countryCode);
+```
+
 
 ## sim.getSimOperatorNumeric
 
@@ -382,6 +437,34 @@ sim.getSimOperatorNumeric(0).then((data: string) => {
 }).catch((err: BusinessError) => {
     console.log(`getSimOperatorNumeric failed, promise: err->${JSON.stringify(err)}`);
 });
+```
+
+## sim.getSimOperatorNumericSync<sup>10+</sup>
+
+getSimOperatorNumericSync\(slotId: number\): string
+
+获取指定卡槽SIM卡的归属PLMN（Public Land Mobile Network）号。
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                   |
+| ------ | ------ | ---- | -------------------------------------- |
+| slotId | number | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+
+**返回值：**
+
+| 类型              | 说明                                             |
+| ----------------- | ------------------------------------------------ |
+| string | 返回获取指定卡槽SIM卡的归属PLMN号。 |
+
+
+**示例：**
+
+```js
+let numeric = sim.getSimOperatorNumericSync(0);
+console.log(`the sim operator numeric is:` + numeric);
 ```
 
 
@@ -471,6 +554,34 @@ sim.getSimSpn(0).then((data: string) => {
 });
 ```
 
+## sim.getSimSpnSync<sup>10+</sup>
+
+getSimSpnSync\(slotId: number\): string
+
+获取指定卡槽SIM卡的服务提供商名称（Service Provider Name，SPN）。
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                   |
+| ------ | ------ | ---- | -------------------------------------- |
+| slotId | number | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+
+**返回值：**
+
+| 类型              | 说明                                      |
+| ----------------- | ----------------------------------------- |
+| string | 返回获取指定卡槽SIM卡的SPN。 |
+
+
+**示例：**
+
+```js
+let spn = sim.getSimSpnSync(0);
+console.log(`the sim card spn is:` + spn);
+```
+
 
 ## sim.getSimState
 
@@ -554,6 +665,34 @@ sim.getSimState(0).then((data: sim.simstate) => {
 }).catch((err: BusinessError) => {
     console.log(`getSimState failed, promise: err->${JSON.stringify(err)}`);
 });
+```
+
+## sim.getSimStateSync<sup>10+</sup>
+
+getSimStateSync\(slotId: number\): SimState
+
+获取指定卡槽的SIM卡状态。
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                   |
+| ------ | ------ | ---- | -------------------------------------- |
+| slotId | number | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+
+**返回值：**
+
+| 类型                         | 说明                                       |
+| ---------------------------- | ------------------------------------------ |
+| [SimState](#simstate) | 返回获取指定卡槽的SIM卡状态。 |
+
+
+**示例：**
+
+```js
+let simState = sim.getSimStateSync(0);
+console.log(`The sim state is:` + simState);
 ```
 
 ## sim.getCardType<sup>7+</sup>
@@ -642,6 +781,34 @@ sim.getCardType(0).then((data: sim.CardType) => {
 });
 ```
 
+## sim.getCardTypeSync<sup>10+</sup>
+
+getCardTypeSync\(slotId: number\): CardType
+
+获取指定卡槽SIM卡的卡类型。
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                   |
+| ------ | ------ | ---- | -------------------------------------- |
+| slotId | number | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+
+**返回值：**
+
+| 类型              | 说明                                                         |
+| ----------------- | ------------------------------------------------------------ |
+| [CardType](#cardtype7) | 返回指定卡槽SIM卡的卡类型。 |
+
+
+**示例：**
+
+```js
+let cardType = sim.getCardTypeSync(0);
+console.log(`the card type is:` + cardType);
+```
+
 
 ## sim.hasSimCard<sup>7+</sup>
 
@@ -725,6 +892,33 @@ sim.hasSimCard(0).then((data: boolean) => {
 }).catch((err: BusinessError) => {
     console.log(`hasSimCard failed, promise: err->${JSON.stringify(err)}`);
 });
+```
+
+## sim.hasSimCardSync<sup>10+</sup>
+
+hasSimCardSync\(slotId: number\): boolean
+
+获取指定卡槽SIM卡是否插卡。
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                   |
+| ------ | ------ | ---- | -------------------------------------- |
+| slotId | number | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+
+**返回值：**
+
+| 类型                  | 说明                               |
+| --------------------- | ---------------------------------- |
+| boolean | 返回指定卡槽是否插卡，如果插卡返回true。 |
+
+**示例：**
+
+```js
+let hasSimCard = sim.hasSimCardSync(0);
+console.log(`has sim card: ` + hasSimCard);
 ```
 
 ## sim.getSimAccountInfo<sup>10+</sup>
@@ -4117,6 +4311,34 @@ try {
 }
 ```
 
+## sim.getOpKeySync<sup>10+</sup>
+
+getOpKeySync\(slotId: number\): string
+
+获取指定卡槽中SIM卡的opkey。
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                   |
+| ------ | ------ | ---- | -------------------------------------- |
+| slotId | number | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+
+**返回值：**
+
+| 类型             | 说明                                      |
+| ---------------- | ----------------------------------------- |
+| string | 返回指定卡槽中SIM卡的opkey。 |
+
+
+**示例：**
+
+```js
+let data = sim.getOpKeySync(0);
+console.log(`getOpKey success, promise: data->${JSON.stringify(data)}`);
+```
+
 ## sim.getOpName<sup>9+</sup>
 
 getOpName\(slotId: number, callback: AsyncCallback\<string\>\): void
@@ -4210,6 +4432,34 @@ try {
 } catch (error) {
     console.log(`getOpName failed, promise: err->${JSON.stringify(error)}`);
 }
+```
+
+## sim.getOpNameSync<sup>10+</sup>
+
+getOpNameSync\(slotId: number\): string
+
+获取指定卡槽中SIM卡的OpName。
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                   |
+| ------ | ------ | ---- | -------------------------------------- |
+| slotId | number | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+
+**返回值：**
+
+| 类型             | 说明                                       |
+| ---------------- | ------------------------------------------ |
+| string | 返回指定卡槽中SIM卡的OpName。 |
+
+
+**示例：**
+
+```js
+let data = sim.getOpNameSync(0);
+console.log(`getOpName success, promise: data->${JSON.stringify(data)}`);
 ```
 
 ## sim.getDefaultVoiceSimId<sup>10+</sup>
