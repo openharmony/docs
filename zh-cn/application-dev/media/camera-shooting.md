@@ -44,7 +44,7 @@
      if (!photoProfilesArray) {
        console.error("createOutput photoProfilesArray == null || undefined");
      }
-     let photoOutput: camera.PhotoOutput | undefined;
+     let photoOutput: camera.PhotoOutput | undefined = undefined;
      try {
        photoOutput = cameraManager.createPhotoOutput(photoProfilesArray[0], photoSurfaceId);
      } catch (error) {
