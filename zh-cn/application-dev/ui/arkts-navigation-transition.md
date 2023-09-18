@@ -108,7 +108,7 @@ struct NavigationDemo {
                 }
               }
               .width('100%')
-            }, ((item:string):string => item))
+            }, (item:string):string => item)
           }
           .listDirection(Axis.Vertical)
           .edgeEffect(EdgeEffect.Spring)
