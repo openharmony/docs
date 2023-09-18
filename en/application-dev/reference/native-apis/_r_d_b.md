@@ -148,10 +148,11 @@ The relational database (RDB) store manages data based on relational models. The
 | [OH_VBucket::destroy](#destroy-34) | Destroys an [OH_VBucket](_o_h___v_bucket.md) object and reclaims the memory occupied.|
 | [OH_Rdb_Config::selfSize](#selfsize) | Size of the struct.|
 | [OH_Rdb_Config::dataBaseDir](#databasedir) | Path of the database file.|
+| [OH_Rdb_Config::storeName](#storename) | Name of the RDB store.|
 | [OH_Rdb_Config::bundleName](#bundlename) | Bundle name.|
 | [OH_Rdb_Config::moduleName](#modulename) | Module name. |
 | [OH_Rdb_Config::isEncrypt](#isencrypt) | Whether to encrypt the RDB store.|
-| [OH_Rdb_Config::securityLevel](#securitylevel) | Sets the RDB store security level [OH_Rdb_SecurityLevel](#oh_rdb_securitylevel). |
+| [OH_Rdb_Config::securityLevel](#securitylevel) | Sets the RDB store security level [OH_Rdb_SecurityLevel](#oh_rdb_securitylevel).|
 | [OH_Rdb_Store::id](#id-44) | Unique identifier of the **OH_Rdb_Store** struct.|
 
 
@@ -732,7 +733,7 @@ Queries data in an RDB store based on specified conditions.
 | store | Pointer to the [OH_Rdb_Store](_o_h___rdb___store.md) instance.|
 | predicates | Pointer to the [OH_Predicates](_o_h___predicates.md) instance, which specifies the query conditions.|
 | columnNames | Pointer to the columns to query. If this parameter is not specified, data of columns will be queried.|
-| length | Length of the **columnNames** array.|
+| length | Length of the **columnNames** array. If <b>length</b> is greater than the length of <b>columnNames</b> array, out-of-bounds access occurs.|
 
 **Returns**
 
@@ -932,6 +933,15 @@ Returns the predicates created.
 
 [OH_Predicates](_o_h___predicates.md), [OH_VObject](_o_h___v_object.md).
 
+### storeName
+
+```
+const char* OH_Rdb_Config::storeName
+```
+
+**Description**
+
+Name of the RDB store.
 
 ### bundleName
 
