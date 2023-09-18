@@ -76,7 +76,7 @@
         - [Readme](release-notes/changelogs/v4.0-beta2/Readme-EN.md)
         - [ArkUI Framework Changelog](release-notes/changelogs/v4.0-beta2/changelogs-arkui.md)
         - [Bundle management subsystem Changelog](release-notes/changelogs/v4.0-beta2/changelogs-bundlemanager.md)
-        - [Ability Access Control Changelog](release-notes/changelogs/v4.0-beta2/changelogs-accesstoken.md)
+        - [Ability Access Control Changelog](release-notes/changelogs/v4.0-beta2/changelogs-accessToken.md)
         - [Distributed Data Management Changelog](release-notes/changelogs/v4.0-beta2/changelogs-distributeddatamgr.md)
         - [Ability - Widget Framework Changelog](release-notes/changelogs/v4.0-beta2/changelogs-formfwk.md)
         - [Input Method Framework Changelog](release-notes/changelogs/v4.0-beta2/changelogs-imf.md)
