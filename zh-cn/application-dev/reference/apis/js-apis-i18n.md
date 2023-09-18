@@ -1065,7 +1065,7 @@ add(field: string, amount: number): void
     let year: number = calendar.get("year"); // year = 2029
   } catch(error) {
     let err: BusinessError = error as BusinessError;
-    console.error(`call systemLocaleManager.getLanguageInfoArray failed, error code: ${err.code}, message: ${err.message}.`);
+    console.error(`call Calendar.add failed, error code: ${err.code}, message: ${err.message}.`);
   }
   ```
 
@@ -1123,7 +1123,7 @@ compareDays(date: Date): number
     let diff: number = calendar.compareDays(date); // diff = 1
   } catch(error) {
     let err: BusinessError = error as BusinessError;
-    console.error(`call systemLocaleManager.getLanguageInfoArray failed, error code: ${err.code}, message: ${err.message}.`);
+    console.error(`call Calendar.compareDays failed, error code: ${err.code}, message: ${err.message}.`);
   }
   ```
 
@@ -2309,7 +2309,7 @@ static getTimePeriodName(hour:number, locale?: string): string
     let name: string = I18n.I18NUtil.getTimePeriodName(2, "zh-CN");  // name = "凌晨"
   } catch(error) {
     let err: BusinessError = error as BusinessError;
-    console.error(`call systemLocaleManager.getLanguageInfoArray failed, error code: ${err.code}, message: ${err.message}.`);
+    console.error(`call I18NUtil.getTimePeriodName failed, error code: ${err.code}, message: ${err.message}.`);
   }
   ```
 
