@@ -592,6 +592,7 @@ struct ContactsList {
     Stack({ alignContent: Alignment.End }) {
       List({ scroller: this.listScroller }) {}
       .onScrollIndex((firstIndex: number) => {
+          this.selectedIndex = firstIndex
         // 根据列表滚动到的索引值，重新计算对应联系人索引栏的位置this.selectedIndex
       })
 
@@ -751,7 +752,7 @@ Badge({
    最后，构建列表布局和列表项：
 
    ```ts
-  export class ToDo {
+    export class ToDo {
     key: string = util.generateRandomUUID(true);
     name: string;
     toDoData:ToDo[] = [];
@@ -759,8 +760,8 @@ Badge({
     constructor(name: string) {
       this.name = name;
     }
-  }
-  let todo:ToDo = new ToDo()
+    }
+    let todo:ToDo = new ToDo()
    List({ space: 10 }) {
      ForEach(todo.toDoData, (toDoItem:ToDo) => {
        ListItem() {
@@ -824,7 +825,7 @@ Badge({
       })
     )
   )
-   ```
+  ```
 
 2. 需要响应用户的选择交互，记录要删除的列表项数据。
    在待办列表中，通过勾选框的勾选或取消勾选，响应用户勾选列表项变化，记录所有选择的列表项。
@@ -862,7 +863,7 @@ Badge({
         }
       })
   }
-   ```
+  ```
 
 3. 需要响应用户点击删除按钮事件，删除列表中对应的选项。
 
