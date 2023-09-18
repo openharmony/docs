@@ -77,7 +77,8 @@ Image支持加载存档图、多媒体像素图两种类型。
   1. 调用接口获取图库的照片url。
       ```ts
       import picker from '@ohos.file.picker';
-      
+      import { BusinessError } from '@ohos.base';
+
       @Entry
       @Component
       struct Index {
@@ -94,11 +95,13 @@ Image支持加载存档图、多媒体像素图两种类型。
               this.imgDatas = PhotoSelectResult.photoUris;
               console.info('PhotoViewPicker.select successfully, PhotoSelectResult uri: ' + JSON.stringify(PhotoSelectResult));
             }).catch((err:Error) => {
-              console.error(`PhotoViewPicker.select failed with. Code: ${err.code}, message: ${err.message}`);
+              let message = (err as BusinessError).message;
+              let code = (err as BusinessError).code;
+              console.error(`PhotoViewPicker.select failed with. Code: ${code}, message: ${message}`);
             });
           } catch (err) {
-            let message:BusinessError = (err as BusinessError).message;
-            let code:BusinessError = (err as BusinessError).code;
+            let message = (err as BusinessError).message;
+            let code = (err as BusinessError).code;
             console.error(`PhotoViewPicker failed with. Code: ${code}, message: ${message}`);    }
         }
       
@@ -115,7 +118,7 @@ Image支持加载存档图、多媒体像素图两种类型。
                   Image(item)
                     .width(200)
                 }
-              }, ((item:string):string => JSON.stringify(item)))
+              }, (item:string):string => JSON.stringify(item))
             }
           }.width('100%').height('100%')
         }
@@ -520,14 +523,6 @@ Image($r('app.media.icon'))
 
 
 ```ts
-class tmp{
-  width: number = 0
-  height: number = 0
-  componentWidth: number = 0
-  componentHeight: number = 0
-}
-
-let msg:tmp = new tmp()
 @Entry
 @Component
 struct MyComponent {

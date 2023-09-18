@@ -178,12 +178,11 @@ export struct share_transition_expand {
 ```ts
 // Index.ets
 import { share_transition_expand } from './utils';
-let Tmp:Record<string,boolean> = { 'isExpand': false }
 @Entry
 @Component
 struct ShareTransitionDemo {
   @State isExpand: boolean = false;
-
+  @State Tmp:Record<string,boolean> = { 'isExpand': false }
   build() {
     Column() {
       Text('兄弟节点出现消失')
@@ -192,7 +191,7 @@ struct ShareTransitionDemo {
         .fontColor(Color.Black)
         .margin(10)
 
-      share_transition_expand(Tmp)
+      share_transition_expand(this.Tmp)
 
     }
     .width('100%')
@@ -317,16 +316,13 @@ export struct share_zIndex_expand {
 ```ts
 // Index.ets
 import { share_zIndex_expand } from './utils'
-let isExpand: boolean = false;
-let curIndex: number = 0;
-let scroller: Scroller = new Scroller();
-let Sze:Record<string,boolean|number|Scroller> = { 'isExpand': isExpand, 'curIndex': curIndex, 'parentScroller': scroller }
 @Entry
 @Component
 struct ShareZIndexDemo {
   @State isExpand: boolean = false;
   @State curIndex: number = 0;
-  scroller: Scroller = new Scroller();
+  @State scroller: Scroller = new Scroller();
+  @State Sze:Record<string,boolean|number|Scroller> = { 'isExpand': this.isExpand, 'curIndex': this.curIndex, 'parentScroller': this.scroller }
 
   build() {
     Scroll(this.scroller) {
@@ -338,7 +334,7 @@ struct ShareZIndexDemo {
           .zIndex(0)
           .margin(10)
 
-        share_zIndex_expand(Sze)
+        share_zIndex_expand(this.Sze)
       }
       .width('100%')
       .height('100%')
