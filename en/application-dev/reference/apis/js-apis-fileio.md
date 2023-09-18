@@ -3,13 +3,12 @@
 The **fileio** module provides APIs for file storage and management, including basic file management, directory management, file information statistics, and stream read and write.
 
 > **NOTE**
-> 
 > - The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 > - The APIs provided by this module are deprecated since API version 9. You are advised to use [@ohos.file.fs](js-apis-file-fs.md).
 
 ## Modules to Import
 
-```js
+```ts
 import fileio from '@ohos.fileio';
 ```
 
@@ -20,29 +19,30 @@ Before using the APIs provided by this module to perform operations on a file or
 
 **Stage Model**
 
- ```js
-import UIAbility from '@ohos.app.ability.UIAbility';
+ ```ts
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  import window from '@ohos.window';
 
-export default class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage) {
-        let context = this.context;
-        let pathDir = context.filesDir;
+  export default class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage: window.WindowStage) {
+      let context = this.context;
+      let pathDir = context.filesDir;
     }
-}
- ```
+  }
+  ```
 
  For details about how to obtain the stage model context, see [UIAbilityContext](js-apis-inner-application-uiAbilityContext.md).
 
 **FA Model**
 
- ```js
- import featureAbility from '@ohos.ability.featureAbility';
- 
- let context = featureAbility.getContext();
- context.getFilesDir().then((data) => {
-      let pathDir = data;
- })
- ```
+  ```ts
+  import featureAbility from '@ohos.ability.featureAbility';
+  
+  let context = featureAbility.getContext();
+  context.getFilesDir().then((data) => {
+    let pathDir = data;
+  })
+  ```
 
  For details about how to obtain the FA model context, see [Context](js-apis-inner-app-context.md#context).
 
@@ -72,12 +72,13 @@ Obtains file information. This API uses a promise to return the result.
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "test.txt";
-  fileio.stat(filePath).then(function (stat) {
-      console.info("getFileInfo succeed, the size of file is " + stat.size);
-  }).catch(function (err) {
-      console.info("getFileInfo failed with error:" + err);
+  fileio.stat(filePath).then((stat: fileio.Stat) => {
+    console.info("getFileInfo succeed, the size of file is " + stat.size);
+  }).catch((err: BusinessError) => {
+    console.info("getFileInfo failed with error:" + err);
   });
   ```
 
@@ -103,9 +104,10 @@ Obtains file information. This API uses an asynchronous callback to return the r
 
 **Example**
 
-  ```js
-  fileio.stat(pathDir, function (err, stat) {
-      // Example code in Stat
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  fileio.stat(pathDir, (err: BusinessError, stat: fileio.Stat) => {
+    // Example code in Stat
   });
   ```
 
@@ -137,7 +139,7 @@ Synchronously obtains file information.
 
 **Example**
 
-  ```js
+  ```ts
   let stat = fileio.statSync(pathDir);
   // Example code in Stat
   ```
@@ -165,16 +167,17 @@ Opens a file directory. This API uses a promise to return the result.
 
   | Type                        | Description      |
   | -------------------------- | -------- |
-| Promise&lt;[Dir](#dir)&gt; | Promise used to return the **Dir** object.|
+| Promise&lt;[Dir](#dir)&gt; | Promise used to return the **Dir** object opened.|
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let dirPath = pathDir + "/testDir";
-  fileio.opendir(dirPath).then(function (dir) {
-      console.info("opendir succeed");
-  }).catch(function (err) {
-      console.info("opendir failed with error:" + err);
+  fileio.opendir(dirPath).then((dir: fileio.Dir) => {
+    console.info("opendir succeed");
+  }).catch((err: BusinessError) => {
+    console.info("opendir failed with error:" + err);
   });
   ```
 
@@ -200,10 +203,11 @@ Opens a file directory. This API uses an asynchronous callback to return the res
 
 **Example**
 
-  ```js
-  fileio.opendir(pathDir, function (err, dir) { 
-      // Example code in Dir struct
-      // Use read/readSync/close.
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  fileio.opendir(pathDir, (err: BusinessError, dir: fileio.Dir) => { 
+    // Example code in Dir struct
+    // Use read/readSync/close.
   });
   ```
 
@@ -234,7 +238,7 @@ Synchronously opens a directory.
 
 **Example**
 
-  ```js
+  ```ts
   let dir = fileio.opendirSync(pathDir);
   // Example code in Dir struct
   // Use read/readSync/close.
@@ -268,12 +272,13 @@ Checks whether the current process can access a file. This API uses a promise to
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
-  fileio.access(filePath).then(function () {
-      console.info("Access successful");
-  }).catch(function (err) {
-      console.info("access failed with error:" + err);
+  fileio.access(filePath).then(() => {
+    console.info("Access successful");
+  }).catch((err: BusinessError) => {
+    console.info("access failed with error:" + err);
   });
   ```
 
@@ -300,10 +305,11 @@ Checks whether the current process can access a file. This API uses an asynchron
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
-  fileio.access(filePath, function (err) {
-      // Do something.
+  fileio.access(filePath, (err: BusinessError) => {
+    // Do something.
   });
   ```
 
@@ -329,12 +335,13 @@ Synchronously checks whether the current process can access the specified file.
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
   try {
-      fileio.accessSync(filePath);
-  } catch(err) {
-      console.info("accessSync failed with error:" + err);
+    fileio.accessSync(filePath);
+  } catch(err: BusinessError) {
+    console.info("accessSync failed with error:" + err);
   }
   ```
 
@@ -365,13 +372,14 @@ Closes a file. This API uses a promise to return the result.
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
   let fd = fileio.openSync(filePath);
-  fileio.close(fd).then(function () {
-      console.info("File closed");
-  }).catch(function (err) {
-      console.info("close file failed with error:" + err);
+  fileio.close(fd).then(() => {
+    console.info("File closed");
+  }).catch((err: BusinessError) => {
+    console.info("close file failed with error:" + err);
   });
   ```
 
@@ -397,11 +405,12 @@ Closes a file. This API uses an asynchronous callback to return the result.
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
   let fd = fileio.openSync(filePath);
-  fileio.close(fd, function (err) {
-      // Do something.
+  fileio.close(fd, (err: BusinessError) => {
+    // Do something.
   });
   ```
 
@@ -426,7 +435,7 @@ Synchronously closes a file.
 
 **Example**
 
-  ```js
+  ```ts
   let filePath = pathDir + "/test.txt";
   let fd = fileio.openSync(filePath);
   fileio.closeSync(fd);
@@ -451,7 +460,7 @@ Copies a file. This API uses a promise to return the result.
   | ---- | -------------------------- | ---- | ---------------------------------------- |
   | src  | string\|number | Yes   | Path or file descriptor of the file to copy.                     |
   | dest | string\|number | Yes   | Path or file descriptor of the new file.                         |
-| mode | number                     | No   | Option for overwriting the file of the same name in the destination path. The default value is **0**, which is the only value supported.<br>**0**: Completely overwrite the file with the same name and truncate the part that is not overwritten. |
+  | mode | number                     | No   | Whether to overwrite the file with the same name in the destination directory. The default value is **0**, which is the only value supported.<br>**0**: overwrite the file with the same name and truncate the part that is not overwritten.|
 
 **Return value**
 
@@ -461,13 +470,14 @@ Copies a file. This API uses a promise to return the result.
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let srcPath = pathDir + "srcDir/test.txt";
   let dstPath = pathDir + "dstDir/test.txt";
-  fileio.copyFile(srcPath, dstPath).then(function () {
-      console.info("File copied");
-  }).catch(function (err) {
-      console.info("copyFile failed with error:" + err);
+  fileio.copyFile(srcPath, dstPath).then(() => {
+    console.info("File copied");
+  }).catch((err: BusinessError) => {
+    console.info("copyFile failed with error:" + err);
   });
   ```
 
@@ -490,16 +500,17 @@ Copies a file. This API uses an asynchronous callback to return the result.
   | -------- | -------------------------- | ---- | ---------------------------------------- |
   | src      | string\|number | Yes   | Path or file descriptor of the file to copy.                     |
   | dest     | string\|number | Yes   | Path or file descriptor of the new file.                         |
-| mode     | number                     | No   | Option for overwriting the file of the same name in the destination path. The default value is **0**, which is the only value supported.<br>**0**: Completely overwrite the file with the same name and truncate the part that is not overwritten.|
+  | mode     | number                     | No   | Whether to overwrite the file with the same name in the destination directory. The default value is **0**, which is the only value supported.<br>**0**: overwrite the file with the same name and truncate the part that is not overwritten.|
   | callback | AsyncCallback&lt;void&gt;  | Yes   | Callback invoked immediately after the file is copied.                            |
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let srcPath = pathDir + "srcDir/test.txt";
   let dstPath = pathDir + "dstDir/test.txt";
-  fileio.copyFile(srcPath, dstPath, function (err) {
-      // Do something.
+  fileio.copyFile(srcPath, dstPath, (err: BusinessError) => {
+    // Do something.
   });
   ```
 
@@ -522,11 +533,11 @@ Synchronously copies a file.
   | ---- | -------------------------- | ---- | ---------------------------------------- |
   | src  | string\|number | Yes   | Path or file descriptor of the file to copy.                     |
   | dest | string\|number | Yes   | Path or file descriptor of the new file.                         |
-| mode | number                     | No   | Option for overwriting the file of the same name in the destination path. The default value is **0**, which is the only value supported.<br>**0**: Completely overwrite the file with the same name and truncate the part that is not overwritten.|
+  | mode | number                     | No   | Whether to overwrite the file with the same name in the destination directory. The default value is **0**, which is the only value supported.<br>**0**: overwrite the file with the same name and truncate the part that is not overwritten.|
 
 **Example**
 
-  ```js
+  ```ts
   let srcPath = pathDir + "srcDir/test.txt";
   let dstPath = pathDir + "dstDir/test.txt";
   fileio.copyFileSync(srcPath, dstPath);
@@ -560,12 +571,13 @@ Creates a directory. This API uses a promise to return the result.
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let dirPath = pathDir + '/testDir';
-  fileio.mkdir(dirPath).then(function () {
-      console.info("Directory created");
-  }).catch(function (error) {
-      console.info("mkdir failed with error:" + error);
+  fileio.mkdir(dirPath).then(() => {
+    console.info("Directory created");
+  }).catch((error: BusinessError) => {
+    console.info("mkdir failed with error:" + error);
   });
   ```
 
@@ -592,9 +604,10 @@ Creates a directory. This API uses an asynchronous callback to return the result
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let dirPath = pathDir + '/testDir';
-  fileio.mkdir(dirPath, function (err) {
+  fileio.mkdir(dirPath, (err: BusinessError) => {
     console.info("Directory created");
   });
   ```
@@ -621,7 +634,7 @@ Synchronously creates a directory.
 
 **Example**
 
-  ```js
+  ```ts
   let dirPath = path + '/testDir';
   fileio.mkdirSync(dirPath);
   ```
@@ -655,12 +668,13 @@ Opens a file. This API uses a promise to return the result.
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
-  fileio.open(filePath, 0o1, 0o0200).then(function (number) {
-      console.info("File opened");
-  }).catch(function (err) {
-      console.info("open file failed with error:" + err);
+  fileio.open(filePath, 0o1, 0o0200).then((number: number) => {
+    console.info("File opened");
+  }).catch((err: BusinessError) => {
+    console.info("open file failed with error:" + err);
   });
   ```
 
@@ -688,10 +702,11 @@ Opens a file. This API uses an asynchronous callback to return the result.
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
-  fileio.open(filePath, 0, function (err, fd) {
-      // Do something.
+  fileio.open(filePath, 0, (err: BusinessError, fd: number) => {
+    // Do something.
   });
   ```
 
@@ -724,11 +739,11 @@ Synchronously opens a file.
 
 **Example**
 
-  ```js
+  ```ts
   let filePath = pathDir + "/test.txt";
   let fd = fileio.openSync(filePath, 0o102, 0o640);
   ```
-  ```js
+  ```ts
   let filePath = pathDir + "/test.txt";
   let fd = fileio.openSync(filePath, 0o102, 0o666);
   fileio.writeSync(fd, 'hello world');
@@ -757,7 +772,7 @@ Reads data from a file. This API uses a promise to return the result.
 | ------- | ----------- | ---- | ------------------------------------------------------------ |
 | fd      | number      | Yes  | File descriptor of the file to read.                                    |
 | buffer  | ArrayBuffer | Yes  | Buffer used to store the file data read.                          |
-| options | Object      | No  | The options are as follows:<br>- **offset** (number): position to store the data read in the buffer in reference to the start address of the buffer. The default value is **0**.<br>- **length** (number): length of the data to read. The default value is the buffer length minus the offset.<br>- **position** (number): position of the data to read in the file. By default, data is read from the current position.<br>Constraints: offset + length <= Buffer size|
+| options | Object      | No  | The options are as follows:<br>- **offset** (number): position to store the data read in the buffer in reference to the start address of the buffer. The default value is **0**.<br>- **length** (number): length of the data to read. The default value is the buffer length minus the offset.<br>- **position** (number): position of the data to read in the file. This parameter is optional. By default, data is read from the current position.<br>Constraints: offset + length <= Buffer size|
 
 **Return value**
 
@@ -767,15 +782,18 @@ Reads data from a file. This API uses a promise to return the result.
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  import buffer from '@ohos.buffer';
   let filePath = pathDir + "/test.txt";
   let fd = fileio.openSync(filePath, 0o2);
-  let buf = new ArrayBuffer(4096);
-  fileio.read(fd, buf).then(function (readOut) {
-      console.info("Read file data successfully");
-      console.log(String.fromCharCode.apply(null, new Uint8Array(readOut.buffer)));
-  }).catch(function (err) {
-      console.info("read file data failed with error:" + err);
+  let arrayBuffer = new ArrayBuffer(4096);
+  fileio.read(fd, arrayBuffer).then((readLen: number) => {
+    console.info("Read file data successfully");
+    let buf = buffer.from(arrayBuffer, 0, readLen);
+    console.log(`The content of file: ${buf.toString()}`);
+  }).catch((err: BusinessError) => {
+    console.info("read file data failed with error:" + err);
   });
   ```
 
@@ -798,20 +816,23 @@ Reads data from a file. This API uses an asynchronous callback to return the res
   | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
   | fd       | number                                   | Yes   | File descriptor of the file to read.                            |
   | buffer   | ArrayBuffer                              | Yes   | Buffer used to store the file data read.                       |
-  | options  | Object                                   | No   | The options are as follows:<br>- **offset** (number): position to store the data read in the buffer in reference to the start address of the buffer. The default value is **0**.<br>- **length** (number): length of the data to read. The default value is the buffer length minus the offset.<br>- **position** (number): position of the data to read in the file. By default, data is read from the current position.<br>Constraints: offset + length <= Buffer size |
+  | options  | Object                                   | No   | The options are as follows:<br>- **offset** (number): position to store the data read in the buffer in reference to the start address of the buffer. The default value is **0**.<br>- **length** (number): length of the data to read. The default value is the buffer length minus the offset.<br>- **position** (number): position of the data to read in the file. This parameter is optional. By default, data is read from the current position.<br>Constraints: offset + length <= Buffer size |
   | callback | AsyncCallback&lt;[ReadOut](#readout)&gt; | Yes   | Callback invoked when the data is read asynchronously.                            |
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  import buffer from '@ohos.buffer';
   let filePath = pathDir + "/test.txt";
   let fd = fileio.openSync(filePath, 0o2);
-  let buf = new ArrayBuffer(4096);
-  fileio.read(fd, buf, function (err, readOut) {
-      if (readOut) {
-          console.info("Read file data successfully");
-          console.log(String.fromCharCode.apply(null, new Uint8Array(readOut.buffer)));
-      }
+  let arrayBuffer = new ArrayBuffer(4096);
+  fileio.read(fd, arrayBuffer, (err: BusinessError, readLen: number) => {
+    if (readLen) {
+      console.info("Read file data successfully");
+      let buf = buffer.from(arrayBuffer, 0, readLen);
+      console.info(`The content of file: ${buf.toString()}`);
+    }
   });
   ```
 
@@ -834,7 +855,7 @@ Synchronously reads data from a file.
   | ------- | ----------- | ---- | ---------------------------------------- |
   | fd      | number      | Yes   | File descriptor of the file to read.                            |
   | buffer  | ArrayBuffer | Yes   | Buffer used to store the file data read.                       |
-  | options | Object      | No   | The options are as follows:<br>- **offset** (number): position to store the data read in the buffer in reference to the start address of the buffer. The default value is **0**.<br>- **length** (number): length of the data to read. The default value is the buffer length minus the offset.<br>- **position** (number): position of the data to read in the file. By default, data is read from the current position.<br>Constraints: offset + length <= Buffer size |
+  | options | Object      | No   | The options are as follows:<br>- **offset** (number): position to store the data read in the buffer in reference to the start address of the buffer. The default value is **0**.<br>- **length** (number): length of the data to read. The default value is the buffer length minus the offset.<br>- **position** (number): position of the data to read in the file. This parameter is optional. By default, data is read from the current position.<br>Constraints: offset + length <= Buffer size |
 
 **Return value**
 
@@ -844,7 +865,7 @@ Synchronously reads data from a file.
 
 **Example**
 
-  ```js
+  ```ts
   let filePath = pathDir + "/test.txt";
   let fd = fileio.openSync(filePath, 0o2);
   let buf = new ArrayBuffer(4096);
@@ -878,12 +899,13 @@ Deletes a directory. This API uses a promise to return the result.
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let dirPath = pathDir + '/testDir';
-  fileio.rmdir(dirPath).then(function () {
-      console.info("Directory deleted");
-  }).catch(function (err) {
-      console.info("rmdir failed with error:" + err);
+  fileio.rmdir(dirPath).then(() => {
+    console.info("Directory deleted");
+  }).catch((err: BusinessError) => {
+    console.info("rmdir failed with error:" + err);
   });
   ```
 
@@ -909,11 +931,12 @@ Deletes a directory. This API uses an asynchronous callback to return the result
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let dirPath = pathDir + '/testDir';
-  fileio.rmdir(dirPath, function (err) {
-      // Do something.
-      console.info("Directory deleted");
+  fileio.rmdir(dirPath, (err: BusinessError) => {
+    // Do something.
+    console.info("Directory deleted");
   });
   ```
 
@@ -938,7 +961,7 @@ Synchronously deletes a directory.
 
 **Example**
 
-  ```js
+  ```ts
   let dirPath = pathDir + '/testDir';
   fileio.rmdirSync(dirPath);
   ```
@@ -970,12 +993,13 @@ Deletes a file. This API uses a promise to return the result.
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
-  fileio.unlink(filePath).then(function () {
-      console.info("File deleted");
-  }).catch(function (error) {
-      console.info("remove file failed with error:" + error);
+  fileio.unlink(filePath).then(() => {
+    console.info("File deleted");
+  }).catch((error: BusinessError) => {
+    console.info("remove file failed with error:" + error);
   });
   ```
 
@@ -1001,10 +1025,11 @@ Deletes a file. This API uses an asynchronous callback to return the result.
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
-  fileio.unlink(filePath, function (err) {
-      console.info("File deleted");
+  fileio.unlink(filePath, (err: BusinessError) => {
+    console.info("File deleted");
   });
   ```
 
@@ -1029,7 +1054,7 @@ Synchronously deletes a file.
 
 **Example**
 
-  ```js
+  ```ts
   let filePath = pathDir + "/test.txt";
   fileio.unlinkSync(filePath);
   ```
@@ -1053,7 +1078,7 @@ Writes data into a file. This API uses a promise to return the result.
   | ------- | ------------------------------- | ---- | ---------------------------------------- |
   | fd      | number                          | Yes   | File descriptor of the file to write.                            |
   | buffer  | ArrayBuffer\|string | Yes   | Data to write. It can be a string or data from a buffer.                    |
-  | options | Object                          | No   | The options are as follows:<br>- **offset** (number): position of the data to write in reference to the start address of the data. The default value is **0**.<br>- **length** (number): length of the data to write. The default value is the buffer length minus the offset.<br>- **position** (number): start position to write the data in the file. By default, data is written from the current position.<br>- **encoding** (string): format of the data to be encoded when the data is a string. The default value is **utf-8**, which is the only value supported.<br>Constraints: offset + length <= Buffer size|
+  | options | Object                          | No   | The options are as follows:<br>- **offset** (number): position of the data to write in reference to the start address of the data. The default value is **0**.<br>- **length** (number): length of the data to write. The default value is the buffer length minus the offset.<br>- **position** (number): start position to write the data in the file. This parameter is optional. By default, data is written from the current position.<br>- **encoding** (string): format of the data to be encoded when the data is a string. The default value is **utf-8**, which is the only value supported.<br>Constraints: offset + length <= Buffer size|
 
 **Return value**
 
@@ -1063,13 +1088,14 @@ Writes data into a file. This API uses a promise to return the result.
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
   let fd = fileio.openSync(filePath, 0o100 | 0o2, 0o666);
-  fileio.write(fd, "hello, world").then(function (number) {
-       console.info("write data to file succeed and size is:" + number);
-  }).catch(function (err) {
-      console.info("write data to file failed with error:" + err);
+  fileio.write(fd, "hello, world").then((number: number) => {
+    console.info("write data to file succeed and size is:" + number);
+  }).catch((err: BusinessError) => {
+    console.info("write data to file failed with error:" + err);
   });
   ```
 
@@ -1092,18 +1118,19 @@ Writes data into a file. This API uses an asynchronous callback to return the re
   | -------- | ------------------------------- | ---- | ---------------------------------------- |
   | fd       | number                          | Yes   | File descriptor of the file to write.                            |
   | buffer   | ArrayBuffer\|string | Yes   | Data to write. It can be a string or data from a buffer.                    |
-  | options  | Object                          | No   | The options are as follows:<br>- **offset** (number): position of the data to write in reference to the start address of the data. The default value is **0**.<br>- **length** (number): length of the data to write. The default value is the buffer length minus the offset.<br>- **position** (number): start position to write the data in the file. By default, data is written from the current position.<br>- **encoding** (string): format of the data to be encoded when the data is a string. The default value is **utf-8**, which is the only value supported.<br>Constraints: offset + length <= Buffer size|
+  | options  | Object                          | No   | The options are as follows:<br>- **offset** (number): position of the data to write in reference to the start address of the data. The default value is **0**.<br>- **length** (number): length of the data to write. The default value is the buffer length minus the offset.<br>- **position** (number): start position to write the data in the file. This parameter is optional. By default, data is written from the current position.<br>- **encoding** (string): format of the data to be encoded when the data is a string. The default value is **utf-8**, which is the only value supported.<br>Constraints: offset + length <= Buffer size|
   | callback | AsyncCallback&lt;number&gt;     | Yes   | Callback invoked when the data is written asynchronously.                      |
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
   let fd = fileio.openSync(filePath, 0o100 | 0o2, 0o666);
-  fileio.write(fd, "hello, world", function (err, bytesWritten) {
-      if (bytesWritten) {
-         console.info("write data to file succeed and size is:" + bytesWritten);
-      }
+  fileio.write(fd, "hello, world", (err: BusinessError, bytesWritten: number) => {
+    if (bytesWritten) {
+      console.info("write data to file succeed and size is:" + bytesWritten);
+    }
   });
   ```
 
@@ -1126,7 +1153,7 @@ Synchronously writes data into a file.
   | ------- | ------------------------------- | ---- | ---------------------------------------- |
   | fd      | number                          | Yes   | File descriptor of the file to write.                            |
   | buffer  | ArrayBuffer\|string | Yes   | Data to write. It can be a string or data from a buffer.                    |
-  | options | Object                          | No   | The options are as follows:<br>- **offset** (number): position of the data to write in reference to the start address of the data. The default value is **0**.<br>- **length** (number): length of the data to write. The default value is the buffer length minus the offset.<br>- **position** (number): start position to write the data in the file. By default, data is written from the current position.<br>- **encoding** (string): format of the data to be encoded when the data is a string. The default value is **utf-8**, which is the only value supported.<br>Constraints: offset + length <= Buffer size|
+  | options | Object                          | No   | The options are as follows:<br>- **offset** (number): position of the data to write in reference to the start address of the data. The default value is **0**.<br>- **length** (number): length of the data to write. The default value is the buffer length minus the offset.<br>- **position** (number): start position to write the data in the file. This parameter is optional. By default, data is written from the current position.<br>- **encoding** (string): format of the data to be encoded when the data is a string. The default value is **utf-8**, which is the only value supported.<br>Constraints: offset + length <= Buffer size|
 
 **Return value**
 
@@ -1136,7 +1163,7 @@ Synchronously writes data into a file.
 
 **Example**
 
-  ```js
+  ```ts
   let filePath = pathDir + "/test.txt";
   let fd = fileio.openSync(filePath, 0o100 | 0o2, 0o666);
   let num = fileio.writeSync(fd, "hello, world");
@@ -1170,12 +1197,13 @@ Calculates the hash value of a file. This API uses a promise to return the resul
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
-  fileio.hash(filePath, "sha256").then(function (str) {
-      console.info("calculate file hash succeed:" + str);
-  }).catch(function (err) {
-      console.info("calculate file hash failed with error:" + err);
+  fileio.hash(filePath, "sha256").then((str: string) => {
+    console.info("calculate file hash succeed:" + str);
+  }).catch((err: BusinessError) => {
+    console.info("calculate file hash failed with error:" + err);
   });
   ```
 
@@ -1202,12 +1230,13 @@ Calculates the hash value of a file. This API uses an asynchronous callback to r
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
-  fileio.hash(filePath, "sha256", function (err, hashStr) {
-      if (hashStr) {
-          console.info("calculate file hash succeed:" + hashStr);
-      }
+  fileio.hash(filePath, "sha256", (err: BusinessError, hashStr: string) => {
+    if (hashStr) {
+      console.info("calculate file hash succeed:" + hashStr);
+    }
   });
   ```
 
@@ -1239,12 +1268,13 @@ Changes file permissions. This API uses a promise to return the result.
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
-  fileio.chmod(filePath, 0o700).then(function () {
-      console.info("File permissions changed");
-  }).catch(function (err) {
-      console.info("chmod failed with error:" + err);
+  fileio.chmod(filePath, 0o700).then(() => {
+    console.info("File permissions changed");
+  }).catch((err: BusinessError) => {
+    console.info("chmod failed with error:" + err);
   });
   ```
 
@@ -1271,10 +1301,11 @@ Changes file permissions. This API uses an asynchronous callback to return the r
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
-  fileio.chmod(filePath, 0o700, function (err) {
-      // Do something.
+  fileio.chmod(filePath, 0o700, (err: BusinessError) => {
+    // Do something.
   });
   ```
 
@@ -1300,7 +1331,7 @@ Synchronously changes file permissions.
 
 **Example**
 
-  ```js
+  ```ts
   let filePath = pathDir + "/test.txt";
   fileio.chmodSync(filePath, 0o700);
   ```
@@ -1332,13 +1363,14 @@ Obtains file information based on the file descriptor. This API uses a promise t
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
   let fd = fileio.openSync(filePath);
-  fileio.fstat(fd).then(function (stat) {
-      console.info("fstat succeed, the size of file is " + stat.size);
-  }).catch(function (err) {
-      console.info("fstat failed with error:" + err);
+  fileio.fstat(fd).then((stat: fileio.Stat) => {
+    console.info("fstat succeed, the size of file is " + stat.size);
+  }).catch((err: BusinessError) => {
+    console.info("fstat failed with error:" + err);
   });
   ```
 
@@ -1364,11 +1396,12 @@ Obtains file information based on the file descriptor. This API uses an asynchro
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
   let fd = fileio.openSync(filePath);
-  fileio.fstat(fd, function (err) {
-      // Do something.
+  fileio.fstat(fd, (err: BusinessError) => {
+    // Do something.
   });
   ```
 
@@ -1399,7 +1432,7 @@ Synchronously obtains file information based on the file descriptor.
 
 **Example**
 
-  ```js
+  ```ts
   let filePath = pathDir + "/test.txt";
   let fd = fileio.openSync(filePath);
   let stat = fileio.fstatSync(fd);
@@ -1433,13 +1466,14 @@ Truncates a file based on the file descriptor. This API uses a promise to return
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
   let fd = fileio.openSync(filePath);
-  fileio.ftruncate(fd, 5).then(function (err) {    
-      console.info("File truncated");
-  }).catch(function (err) {
-      console.info("truncate file failed with error:" + err);
+  fileio.ftruncate(fd, 5).then((err: BusinessError) => {    
+    console.info("File truncated");
+  }).catch((err: BusinessError) => {
+    console.info("truncate file failed with error:" + err);
   });
   ```
 
@@ -1466,12 +1500,13 @@ Truncates a file based on the file descriptor. This API uses an asynchronous cal
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
   let fd = fileio.openSync(filePath);
   let len = 5;
-  fileio.ftruncate(fd, 5, function (err) {
-      // Do something.
+  fileio.ftruncate(fd, 5, (err: BusinessError) => {
+    // Do something.
   });
   ```
 
@@ -1497,7 +1532,7 @@ Synchronously truncates a file based on the file descriptor.
 
 **Example**
 
-  ```js
+  ```ts
   let filePath = pathDir + "/test.txt";
   let fd = fileio.openSync(filePath);
   let len = 5;
@@ -1532,13 +1567,14 @@ Truncates a file based on the file path. This API uses a promise to return the r
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
   let len = 5;
-  fileio.truncate(filePath, len).then(function () {
-      console.info("File truncated");
-  }).catch(function (err) {
-      console.info("truncate file failed with error:" + err);
+  fileio.truncate(filePath, len).then(() => {
+    console.info("File truncated");
+  }).catch((err: BusinessError) => {
+    console.info("truncate file failed with error:" + err);
   });
   ```
 
@@ -1565,11 +1601,12 @@ Truncates a file based on the file path. This API uses an asynchronous callback 
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
   let len = 5;
-  fileio.truncate(filePath, len, function (err) {
-      // Do something.
+  fileio.truncate(filePath, len, (err: BusinessError) => {
+    // Do something.
   });
   ```
 
@@ -1595,7 +1632,7 @@ Synchronously truncates a file based on the file path.
 
 **Example**
 
-  ```js
+  ```ts
   let filePath = pathDir + "/test.txt";
   let len = 5;
   fileio.truncateSync(filePath, len);
@@ -1619,7 +1656,7 @@ Reads the text content of a file. This API uses a promise to return the result.
 | Name  | Type  | Mandatory| Description                                                        |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
 | filePath | string | Yes  | Application sandbox path of the file to read.                                  |
-| options  | Object | No  | The options are as follows:<br>- **position** (number): position of the data to read in the file. By default, data is read from the current position.<br>- **length** (number): length of the data to read. The default value is the buffer length minus the offset.<br>- **encoding** (string): format of the string to be encoded. The default value is **utf-8**, which is the only value supported.|
+| options  | Object | No  | The options are as follows:<br>- **position** (number): position of the data to read in the file. This parameter is optional. By default, data is read from the current position.<br>- **length** (number): length of the data to read. The default value is the buffer length minus the offset.<br>- **encoding** (string): format of the data (string) to be encoded. The default value is **utf-8**, which is the only value supported.|
 
 **Return value**
 
@@ -1629,12 +1666,13 @@ Reads the text content of a file. This API uses a promise to return the result.
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
-  fileio.readText(filePath).then(function (str) {
-      console.info("readText succeed:" + str);
-  }).catch(function (err) {
-      console.info("readText failed with error:" + err);
+  fileio.readText(filePath).then((str: string) => {
+    console.info("readText succeed:" + str);
+  }).catch((err: BusinessError) => {
+    console.info("readText failed with error:" + err);
   });
   ```
 
@@ -1656,15 +1694,16 @@ Reads the text content of a file. This API uses an asynchronous callback to retu
 | Name  | Type                       | Mandatory| Description                                                        |
 | -------- | --------------------------- | ---- | ------------------------------------------------------------ |
 | filePath | string                      | Yes  | Application sandbox path of the file to read.                                  |
-| options  | Object                      | No  | The options are as follows:<br>- **position** (number): position of the data to read in the file. By default, data is read from the current position.<br>- **length** (number): length of the data to read. The default value is the buffer length minus the offset.<br>- **encoding** (string): format of the string to be encoded. The default value is **utf-8**, which is the only value supported.|
+| options  | Object                      | No  | The options are as follows:<br>- **position** (number): position of the data to read in the file. This parameter is optional. By default, data is read from the current position.<br>- **length** (number): length of the data to read. The default value is the buffer length minus the offset.<br>- **encoding**: format of the data to be encoded. The default value is **utf-8**, which is the only value supported.|
 | callback | AsyncCallback&lt;string&gt; | Yes  | Callback invoked to return the content read.                        |
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
-  fileio.readText(filePath, { position: 1, encoding: 'UTF-8' }, function (err, str) {
-      // Do something.
+  fileio.readText(filePath, { position: 1, encoding: 'UTF-8' }, (err: BusinessError, str: string) => {
+    // Do something.
   });
   ```
 
@@ -1686,7 +1725,7 @@ Synchronously reads the text of a file.
 | Name  | Type  | Mandatory| Description                                                        |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
 | filePath | string | Yes  | Application sandbox path of the file to read.                                  |
-| options  | Object | No  | The options are as follows:<br>- **position** (number): position of the data to read in the file. By default, data is read from the current position.<br>- **length** (number): length of the data to read. The default value is the buffer length minus the offset.<br>- **encoding** (string): format of the string to be encoded. The default value is **utf-8**, which is the only value supported.|
+| options  | Object | No  | The options are as follows:<br>- **position** (number): position of the data to read in the file. This parameter is optional. By default, data is read from the current position.<br>- **length** (number): length of the data to read. The default value is the buffer length minus the offset.<br>- **encoding** (string): format of the data (string) to be encoded. The default value is **utf-8**, which is the only value supported.|
 
 **Return value**
 
@@ -1696,7 +1735,7 @@ Synchronously reads the text of a file.
 
 **Example**
 
-  ```js
+  ```ts
   let filePath = pathDir + "/test.txt";
   let str = fileio.readTextSync(filePath, {position: 1, length: 3});
   ```
@@ -1728,12 +1767,13 @@ Obtains link information. This API uses a promise to return the result.
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
-  fileio.lstat(filePath).then(function (stat) {
-      console.info("get link status succeed, the size of file is" + stat.size);
-  }).catch(function (err) {
-      console.info("get link status failed with error:" + err);
+  fileio.lstat(filePath).then((stat: fileio.Stat) => {
+    console.info("get link status succeed, the size of file is" + stat.size);
+  }).catch((err: BusinessError) => {
+    console.info("get link status failed with error:" + err);
   });
   ```
 
@@ -1759,10 +1799,11 @@ Obtains link information. This API uses an asynchronous callback to return the r
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
-  fileio.lstat(filePath, function (err, stat) {
-      // Do something.
+  fileio.lstat(filePath, (err: BusinessError, stat: fileio.Stat) => {
+    // Do something.
   });
   ```
 
@@ -1789,11 +1830,11 @@ Synchronously obtains the link information.
 
   | Type           | Description        |
   | ------------- | ---------- |
-| [Stat](#stat) | Link information obtained.|
+  | [Stat](#stat) | Link information obtained.|
 
 **Example**
 
-  ```js
+  ```ts
   let filePath = pathDir + "/test.txt";
   let stat = fileio.lstatSync(filePath);
   ```
@@ -1826,13 +1867,14 @@ Renames a file. This API uses a promise to return the result.
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let srcFile = pathDir + "/test.txt";
   let dstFile = pathDir + '/new.txt';
-  fileio.rename(srcFile, dstFile).then(function () {
-      console.info("File renamed");
-  }).catch(function (err) {
-      console.info("rename failed with error:" + err);
+  fileio.rename(srcFile, dstFile).then(() => {
+    console.info("File renamed");
+  }).catch((err: BusinessError) => {
+    console.info("rename failed with error:" + err);
   });
   ```
 
@@ -1859,10 +1901,11 @@ Renames a file. This API uses an asynchronous callback to return the result.
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let srcFile = pathDir + "/test.txt";
   let dstFile = pathDir + '/new.txt';
-  fileio.rename(srcFile, dstFile, function (err) {
+  fileio.rename(srcFile, dstFile, (err: BusinessError) => {
   });
   ```
 
@@ -1887,7 +1930,7 @@ Synchronously renames a file.
 
 **Example**
 
-  ```js
+  ```ts
   let srcFile = pathDir + "/test.txt";
   let dstFile = pathDir + '/new.txt';
   fileio.renameSync(srcFile, dstFile);
@@ -1920,13 +1963,14 @@ Flushes data of a file to disk. This API uses a promise to return the result.
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
   let fd = fileio.openSync(filePath);
-  fileio.fsync(fd).then(function () {
-      console.info("Data flushed");
-  }).catch(function (err) {
-      console.info("sync data failed with error:" + err);
+  fileio.fsync(fd).then(() => {
+    console.info("Data flushed");
+  }).catch((err: BusinessError) => {
+    console.info("sync data failed with error:" + err);
   });
   ```
 
@@ -1952,11 +1996,12 @@ Flushes data of a file to disk. This API uses an asynchronous callback to return
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
   let fd = fileio.openSync(filePath);
-  fileio.fsync(fd, function (err) {
-      // Do something.
+  fileio.fsync(fd, (err: BusinessError) => {
+    // Do something.
   });
   ```
 
@@ -1981,7 +2026,7 @@ Flushes data of a file to disk synchronously.
 
 **Example**
 
-  ```js
+  ```ts
   let filePath = pathDir + "/test.txt";
   let fd = fileio.openSync(filePath);
   fileio.fsyncSync(fd);
@@ -2014,13 +2059,14 @@ Flushes data of a file to disk. This API uses a promise to return the result. **
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
   let fd = fileio.openSync(filePath);
-  fileio.fdatasync(fd).then(function (err) {
-      console.info("Data flushed");
-  }).catch(function (err) {
-      console.info("sync data failed with error:" + err);
+  fileio.fdatasync(fd).then((err: BusinessError) => {
+    console.info("Data flushed");
+  }).catch((err: BusinessError) => {
+    console.info("sync data failed with error:" + err);
   });
   ```
 
@@ -2046,11 +2092,12 @@ Flushes data of a file to disk. This API uses an asynchronous callback to return
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
   let fd = fileio.openSync(filePath);
-  fileio.fdatasync (fd, function (err) {
-      // Do something.
+  fileio.fdatasync (fd, (err: BusinessError) => {
+    // Do something.
   });
   ```
 
@@ -2075,7 +2122,7 @@ Synchronizes data in a file synchronously.
 
 **Example**
 
-  ```js
+  ```ts
   let filePath = pathDir + "/test.txt";
   let fd = fileio.openSync(filePath);
   let stat = fileio.fdatasyncSync(fd);
@@ -2109,13 +2156,14 @@ Creates a symbolic link based on the file path. This API uses a promise to retur
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let srcFile = pathDir + "/test.txt";
   let dstFile = pathDir + '/test';
-  fileio.symlink(srcFile, dstFile).then(function () {
-      console.info("Symbolic link created");
-  }).catch(function (err) {
-      console.info("symlink failed with error:" + err);
+  fileio.symlink(srcFile, dstFile).then(() => {
+    console.info("Symbolic link created");
+  }).catch((err: BusinessError) => {
+    console.info("symlink failed with error:" + err);
   });
   ```
 
@@ -2142,11 +2190,12 @@ Creates a symbolic link based on the file path. This API uses an asynchronous ca
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let srcFile = pathDir + "/test.txt";
   let dstFile = pathDir + '/test';
-  fileio.symlink(srcFile, dstFile, function (err) {
-      // Do something.
+  fileio.symlink(srcFile, dstFile, (err: BusinessError) => {
+    // Do something.
   });
   ```
 
@@ -2155,7 +2204,7 @@ Creates a symbolic link based on the file path. This API uses an asynchronous ca
 
 symlinkSync(target: string, srcPath: string): void
 
-Synchronously creates a symbolic link based on a specified path.
+Synchronously creates a symbolic link based on a file path.
 
 > **NOTE**
 >
@@ -2172,7 +2221,7 @@ Synchronously creates a symbolic link based on a specified path.
 
 **Example**
 
-  ```js
+  ```ts
   let srcFile = pathDir + "/test.txt";
   let dstFile = pathDir + '/test';
   fileio.symlinkSync(srcFile, dstFile);
@@ -2207,13 +2256,14 @@ Changes the file owner based on the file path. This API uses a promise to return
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
   let stat = fileio.statSync(filePath);
-  fileio.chown(filePath, stat.uid, stat.gid).then(function () {
-      console.info("File owner changed");
-  }).catch(function (err) {
-      console.info("chown failed with error:" + err);
+  fileio.chown(filePath, stat.uid, stat.gid).then(() => {
+    console.info("File owner changed");
+  }).catch((err: BusinessError) => {
+    console.info("chown failed with error:" + err);
   });
   ```
 
@@ -2241,11 +2291,12 @@ Changes the file owner based on the file path. This API uses an asynchronous cal
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
   let stat = fileio.statSync(filePath)
-  fileio.chown(filePath, stat.uid, stat.gid, function (err) {
-      // Do something.
+  fileio.chown(filePath, stat.uid, stat.gid, (err: BusinessError) => {
+    // Do something.
   });
   ```
 
@@ -2271,7 +2322,7 @@ Synchronously changes the file owner based on its path.
 
 **Example**
 
-  ```js
+  ```ts
   let filePath = pathDir + "/test.txt";
   let stat = fileio.statSync(filePath)
   fileio.chownSync(filePath, stat.uid, stat.gid);
@@ -2304,11 +2355,12 @@ Creates a temporary directory. This API uses a promise to return the result.
 
 **Example**
 
-  ```js
-  fileio.mkdtemp(pathDir + "/XXXXXX").then(function (pathDir) {
-      console.info("mkdtemp succeed:" + pathDir);
-  }).catch(function (err) {
-      console.info("mkdtemp failed with error:" + err);
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  fileio.mkdtemp(pathDir + "/XXXXXX").then((pathDir: string) => {
+    console.info("mkdtemp succeed:" + pathDir);
+  }).catch((err: BusinessError) => {
+    console.info("mkdtemp failed with error:" + err);
   });
   ```
 
@@ -2334,9 +2386,10 @@ Creates a temporary directory. This API uses an asynchronous callback to return 
 
 **Example**
 
-  ```js
-  fileio.mkdtemp(pathDir + "/XXXXXX", function (err, res) {
-      // Do something.
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  fileio.mkdtemp(pathDir + "/XXXXXX", (err: BusinessError, res: string) {
+    // Do something.
   });
   ```
 
@@ -2367,7 +2420,7 @@ Synchronously creates a temporary directory.
 
 **Example**
 
-  ```js
+  ```ts
   let res = fileio.mkdtempSync(pathDir + "/XXXXXX");
   ```
 
@@ -2399,14 +2452,15 @@ Changes file permissions based on the file descriptor. This API uses a promise t
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
   let fd = fileio.openSync(filePath);
-  let mode = 0o700;
-  fileio.fchmod(fd, mode).then(function () {
-      console.info("File permissions changed");
-  }).catch(function (err) {
-      console.info("chmod failed with error:" + err);
+  let mode: number = 0o700;
+  fileio.fchmod(fd, mode).then(() => {
+    console.info("File permissions changed");
+  }).catch((err: BusinessError) => {
+    console.info("chmod failed with error:" + err);
   });
   ```
 
@@ -2433,12 +2487,13 @@ Changes file permissions based on the file descriptor. This API uses an asynchro
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
   let fd = fileio.openSync(filePath);
-  let mode = 0o700;
-  fileio.fchmod(fd, mode, function (err) {
-      // Do something.
+  let mode: number = 0o700;
+  fileio.fchmod(fd, mode, (err: BusinessError) => {
+    // Do something.
   });
   ```
 
@@ -2464,11 +2519,11 @@ Synchronously changes the file permissions based on the file descriptor.
 
 **Example**
 
-  ```js
+  ```ts
   let filePath = pathDir + "/test.txt";
   let fd = fileio.openSync(filePath);
-  let mode = 0o700;
-   fileio.fchmodSync(fd, mode);
+  let mode: number = 0o700;
+  fileio.fchmodSync(fd, mode);
   ```
 
 
@@ -2499,12 +2554,13 @@ Creates a stream based on the file path. This API uses a promise to return the r
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
-  fileio.createStream(filePath, "r+").then(function (stream) {
-      console.info("Stream created");
-  }).catch(function (err) {
-      console.info("createStream failed with error:" + err);
+  fileio.createStream(filePath, "r+").then((stream: fileio.Stream) => {
+    console.info("Stream created");
+  }).catch((err: BusinessError) => {
+    console.info("createStream failed with error:" + err);
   });
   ```
 
@@ -2531,10 +2587,11 @@ Creates a stream based on the file path. This API uses an asynchronous callback 
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
-  fileio.createStream(filePath, "r+", function (err, stream) {
-      // Do something.
+  fileio.createStream(filePath, "r+", (err: BusinessError, stream: fileio.Stream) {
+    // Do something.
   });
   ```
 
@@ -2566,7 +2623,7 @@ Synchronously creates a stream based on the file path.
 
 **Example**
 
-  ```js
+  ```ts
   let filePath = pathDir + "/test.txt";
   let ss = fileio.createStreamSync(filePath, "r+");
   ```
@@ -2599,13 +2656,14 @@ Opens a stream based on the file descriptor. This API uses a promise to return t
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
   let fd = fileio.openSync(filePath);
-  fileio.fdopenStream(fd, "r+").then(function (stream) {
-      console.info("Stream opened");
-  }).catch(function (err) {
-      console.info("openStream failed with error:" + err);
+  fileio.fdopenStream(fd, "r+").then((stream: fileio.Stream) => {
+    console.info("Stream opened");
+  }).catch((err: BusinessError) => {
+    console.info("openStream failed with error:" + err);
   });
   ```
 
@@ -2632,11 +2690,12 @@ Opens a stream based on the file descriptor. This API uses an asynchronous callb
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
   let fd = fileio.openSync(filePath);
-  fileio.fdopenStream(fd, "r+", function (err, stream) {
-      // Do something.
+  fileio.fdopenStream(fd, "r+", (err: BusinessError, stream: fileio.Stream) => {
+    // Do something.
   });
   ```
 
@@ -2668,7 +2727,7 @@ Synchronously opens a stream based on the file descriptor.
 
 **Example**
 
-  ```js
+  ```ts
   let filePath = pathDir + "/test.txt";
   let fd = fileio.openSync(filePath);
   let ss = fileio.fdopenStreamSync(fd, "r+");
@@ -2703,14 +2762,15 @@ Changes the file owner based on the file descriptor. This API uses a promise to 
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
   let fd = fileio.openSync(filePath);
   let stat = fileio.statSync(filePath);
-  fileio.fchown(fd, stat.uid, stat.gid).then(function () {
-      console.info("File owner changed");
-  }).catch(function (err) {
-      console.info("chown failed with error:" + err);
+  fileio.fchown(fd, stat.uid, stat.gid).then(() => {
+    console.info("File owner changed");
+  }).catch((err: BusinessError) => {
+    console.info("chown failed with error:" + err);
   });
   ```
 
@@ -2738,12 +2798,13 @@ Changes the file owner based on the file descriptor. This API uses an asynchrono
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
   let fd = fileio.openSync(filePath);
   let stat = fileio.statSync(filePath);
-  fileio.fchown(fd, stat.uid, stat.gid, function (err) {
-      // Do something.
+  fileio.fchown(fd, stat.uid, stat.gid, (err: BusinessError) => {
+    // Do something.
   });
   ```
 
@@ -2770,7 +2831,7 @@ Synchronously changes the file owner based on the file descriptor.
 
 **Example**
 
-  ```js
+  ```ts
   let filePath = pathDir + "/test.txt";
   let fd = fileio.openSync(filePath);
   let stat = fileio.statSync(filePath);
@@ -2806,13 +2867,14 @@ Changes the file owner (owner of the symbolic link, not the file referred to by 
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
   let stat = fileio.statSync(filePath);
-  fileio.lchown(filePath, stat.uid, stat.gid).then(function () {
-      console.info("File owner changed");
-  }).catch(function (err) {
-      console.info("chown failed with error:" + err);
+  fileio.lchown(filePath, stat.uid, stat.gid).then(() => {
+    console.info("File owner changed");
+  }).catch((err: BusinessError) => {
+    console.info("chown failed with error:" + err);
   });
   ```
 
@@ -2840,11 +2902,12 @@ Changes the file owner (owner of the symbolic link, not the file referred to by 
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
   let stat = fileio.statSync(filePath);
-  fileio.lchown(filePath, stat.uid, stat.gid, function (err) {
-      // Do something.
+  fileio.lchown(filePath, stat.uid, stat.gid, (err: BusinessError) => {
+    // Do something.
   });
   ```
 
@@ -2871,7 +2934,7 @@ Synchronously changes the file owner based on the file path and changes the owne
 
 **Example**
 
-  ```js
+  ```ts
   let filePath = pathDir + "/test.txt";
   let stat = fileio.statSync(filePath);
   fileio.lchownSync(filePath, stat.uid, stat.gid);
@@ -2902,10 +2965,10 @@ Listens for file or directory changes. This API uses an asynchronous callback to
 
 **Example**
 
-  ```js
+  ```ts
   let filePath = pathDir +"/test.txt";
-  fileio.createWatcher(filePath, 1, function (number) {
-     console.info("Monitoring times: " +number);
+  fileio.createWatcher(filePath, 1, (number: number) => {
+    console.info("Monitoring times: " + number);
   });
   
   ```
@@ -2976,7 +3039,7 @@ Checks whether this file is a block special file. A block special file supports 
 
 **Example**
 
-  ```js
+  ```ts
   let filePath = pathDir + "/test.txt";
   let isBLockDevice = fileio.statSync(filePath).isBlockDevice();
   ```
@@ -3002,7 +3065,7 @@ Checks whether this file is a character special file. A character special file s
 
 **Example**
 
-  ```js
+  ```ts
   let filePath = pathDir + "/test.txt";
   let isCharacterDevice = fileio.statSync(filePath).isCharacterDevice();
   ```
@@ -3028,7 +3091,7 @@ Checks whether this file is a directory.
 
 **Example**
 
-  ```js
+  ```ts
   let dirPath = pathDir + "/test";
   let isDirectory = fileio.statSync(dirPath).isDirectory(); 
   ```
@@ -3054,7 +3117,7 @@ Checks whether this file is a named pipe (or FIFO). Named pipes are used for int
 
 **Example**
 
-  ```js
+  ```ts
   let filePath = pathDir + "/test.txt";
   let isFIFO = fileio.statSync(filePath).isFIFO(); 
   ```
@@ -3080,7 +3143,7 @@ Checks whether this file is a regular file.
 
 **Example**
 
-  ```js
+  ```ts
   let filePath = pathDir + "/test.txt";
   let isFile = fileio.statSync(filePath).isFile();
   ```
@@ -3106,7 +3169,7 @@ Checks whether this file is a socket.
 
 **Example**
 
-  ```js
+  ```ts
   let filePath = pathDir + "/test.txt";
   let isSocket = fileio.statSync(filePath).isSocket(); 
   ```
@@ -3132,7 +3195,7 @@ Checks whether this file is a symbolic link.
 
 **Example**
 
-  ```js
+  ```ts
   let filePath = pathDir + "/test";
   let isSymbolicLink = fileio.statSync(filePath).isSymbolicLink(); 
   ```
@@ -3153,13 +3216,13 @@ Stops the **watcher** instance. This API uses a promise to return the result.
 
 **Example**
 
-  ```js
+  ```ts
   let filePath = path + "/test.txt";
-  let watcher = fileio.createWatcher(filePath, 1, function (number) {
-      console.info("Monitoring times: " +number);
+  let watcher = fileio.createWatcher(filePath, 1, (number: number) => {
+    console.info("Monitoring times: " + number);
   });
-  watcher.stop().then(function () {
-       console.info("Watcher stopped");
+  watcher.stop().then(() => {
+    console.info("Watcher stopped");
   });
   ```
 
@@ -3180,13 +3243,13 @@ Stops the **watcher** instance. This API uses an asynchronous callback to return
 
 **Example**
 
-  ```js
+  ```ts
   let filePath = path +"/test.txt";
-  let watcher = fileio.createWatcher(filePath, 1, function (number) {
-      console.info("Monitoring times: " +number);
+  let watcher = fileio.createWatcher(filePath, 1, (number: number) => {
+    console.info("Monitoring times: " + number);
   });
-  watcher.stop(function () {
-      console.info("Watcher stopped");
+  watcher.stop(() => {
+    console.info("Watcher stopped");
   })
   ```
 
@@ -3219,13 +3282,14 @@ Closes the stream. This API uses a promise to return the result.
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
-  let ss= fileio.createStreamSync(filePath, "r+");
-  ss.close().then(function () {
-      console.info("File stream closed");
-  }).catch(function (err) {
-      console.info("close fileStream  failed with error:" + err);
+  let ss = fileio.createStreamSync(filePath, "r+");
+  ss.close().then(() => {
+    console.info("File stream closed");
+  }).catch((err: BusinessError) => {
+    console.info("close fileStream  failed with error:" + err);
   });
   ```
 
@@ -3250,11 +3314,12 @@ Closes the stream. This API uses an asynchronous callback to return the result.
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
-  let ss= fileio.createStreamSync(filePath, "r+");
-  ss.close(function (err) {
-      // Do something.
+  let ss = fileio.createStreamSync(filePath, "r+");
+  ss.close((err: BusinessError) => {
+    // Do something.
   });
   ```
 
@@ -3273,9 +3338,9 @@ Synchronously closes the stream.
 
 **Example**
 
-  ```js
+  ```ts
   let filePath = pathDir + "/test.txt";
-  let ss= fileio.createStreamSync(filePath, "r+");
+  let ss = fileio.createStreamSync(filePath, "r+");
   ss.closeSync();
   ```
 
@@ -3300,13 +3365,14 @@ Flushes the stream. This API uses a promise to return the result.
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
-  let ss= fileio.createStreamSync(filePath, "r+");
-  ss.flush().then(function () {
-      console.info("Stream flushed");
-  }).catch(function (err) {
-      console.info("flush failed with error:" + err);
+  let ss = fileio.createStreamSync(filePath, "r+");
+  ss.flush().then(() => {
+    console.info("Stream flushed");
+  }).catch((err: BusinessError) => {
+    console.info("flush failed with error:" + err);
   });
   ```
 
@@ -3331,11 +3397,12 @@ Flushes the stream. This API uses an asynchronous callback to return the result.
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
-  let ss= fileio.createStreamSync(filePath, "r+");
-  ss.flush(function (err) {
-      // Do something.
+  let ss = fileio.createStreamSync(filePath, "r+");
+  ss.flush((err: BusinessError) => {
+    // Do something.
   });
   ```
 
@@ -3354,9 +3421,9 @@ Synchronously flushes the stream.
 
 **Example**
 
-  ```js
+  ```ts
   let filePath = pathDir + "/test.txt";
-  let ss= fileio.createStreamSync(filePath, "r+");
+  let ss = fileio.createStreamSync(filePath, "r+");
   ss.flushSync();
   ```
 
@@ -3378,7 +3445,7 @@ Writes data into the stream. This API uses a promise to return the result.
   | Name    | Type                             | Mandatory  | Description                                      |
   | ------- | ------------------------------- | ---- | ---------------------------------------- |
   | buffer  | ArrayBuffer\|string | Yes   | Data to write. It can be a string or data from a buffer.                    |
-  | options | Object                          | No   | The options are as follows:<br>- **offset** (number): position of the data to write in reference to the start address of the data. The default value is **0**.<br>- **length** (number): length of the data to write. The default value is the buffer length minus the offset.<br>- **position** (number): start position to write the data in the file. By default, data is written from the current position.<br>- **encoding** (string): format of the data to be encoded when the data is a string. The default value is **utf-8**, which is the only value supported.<br>Constraints: offset + length <= Buffer size |
+  | options | Object                          | No   | The options are as follows:<br>- **offset** (number): position of the data to write in reference to the start address of the data. This parameter is optional. The default value is **0**.<br>- **length** (number): length of the data to write. This parameter is optional. The default value is the buffer length minus the offset.<br>- **position** (number): start position to write the data in the file. This parameter is optional. By default, data is written from the current position.<br>- **encoding** (string): format of the data to be encoded when the data is a string. The default value is **utf-8**, which is the only value supported.<br>Constraints: offset + length <= Buffer size |
 
 **Return value**
 
@@ -3388,13 +3455,24 @@ Writes data into the stream. This API uses a promise to return the result.
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
-  let ss= fileio.createStreamSync(filePath, "r+");
-  ss.write("hello, world",{offset: 1,length: 5,position: 5,encoding :'utf-8'}).then(function (number) {
-      console.info("write succeed and size is:" + number);
-  }).catch(function (err) {
-      console.info("write failed with error:" + err);
+  let ss = fileio.createStreamSync(filePath, "r+");
+  class Option {
+    offset: number = 0;
+    length: number = 4096;
+    position: number = 0;
+    encoding: string = 'utf-8';
+  }
+  let option = new Option();
+  option.offset = 1;
+  option.length = 5;
+  option.position = 5;
+  ss.write("hello, world", option).then((number: number) => {
+    console.info("write succeed and size is:" + number);
+  }).catch((err: BusinessError) => {
+    console.info("write failed with error:" + err);
   });
   ```
 
@@ -3416,19 +3494,30 @@ Writes data into the stream. This API uses an asynchronous callback to return th
   | Name  | Type                           | Mandatory| Description                                                        |
   | -------- | ------------------------------- | ---- | ------------------------------------------------------------ |
   | buffer   | ArrayBuffer\|string | Yes  | Data to write. It can be a string or data from a buffer.                    |
-  | options  | Object                          | No  | The options are as follows:<br>- **offset** (number): position of the data to write in reference to the start address of the data. The default value is **0**.<br>- **length** (number): length of the data to write. The default value is the buffer length minus the offset.<br>- **position** (number): start position to write the data in the file. By default, data is written from the current position.<br>- **encoding** (string): format of the data to be encoded when the data is a string. The default value is **utf-8**, which is the only value supported.<br>Constraints: offset + length <= Buffer size|
+  | options  | Object                          | No  | The options are as follows:<br>- **offset** (number): position of the data to write in reference to the start address of the data. This parameter is optional. The default value is **0**.<br>- **length** (number): length of the data to write. This parameter is optional. The default value is the buffer length minus the offset.<br>- **position** (number): start position to write the data in the file. This parameter is optional. By default, data is written from the current position.<br>- **encoding** (string): format of the data to be encoded when the data is a string. The default value is **utf-8**, which is the only value supported.<br>Constraints: offset + length <= Buffer size|
   | callback | AsyncCallback&lt;number&gt;     | Yes  | Callback invoked when the data is written asynchronously.                              |
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
-  let ss= fileio.createStreamSync(filePath, "r+");
-  ss.write("hello, world", {offset: 1, length: 5, position: 5, encoding :'utf-8'}, function (err, bytesWritten) {
-      if (bytesWritten) {
-         // Do something.
-         console.info("write succeed and size is:" + bytesWritten);
-      }
+  let ss = fileio.createStreamSync(filePath, "r+");
+  class Option {
+    offset: number = 0;
+    length: number = 4096;
+    position: number = 0;
+    encoding: string = 'utf-8';
+  }
+  let option = new Option();
+  option.offset = 1;
+  option.length = 5;
+  option.position = 5;
+  ss.write("hello, world", option, (err: BusinessError, bytesWritten: number) => {
+    if (bytesWritten) {
+      // Do something.
+      console.info("write succeed and size is:" + bytesWritten);
+    }
   });
   ```
 
@@ -3450,7 +3539,7 @@ Synchronously writes data into the stream.
   | Name    | Type                             | Mandatory  | Description                                      |
   | ------- | ------------------------------- | ---- | ---------------------------------------- |
   | buffer  | ArrayBuffer\|string | Yes   | Data to write. It can be a string or data from a buffer.                    |
-  | options | Object                          | No   | The options are as follows:<br>- **offset** (number): position of the data to write in reference to the start address of the data. The default value is **0**.<br>- **length** (number): length of the data to write. The default value is the buffer length minus the offset.<br>- **position** (number): start position to write the data in the file. By default, data is written from the current position.<br>- **encoding** (string): format of the data to be encoded when the data is a string. The default value is **utf-8**, which is the only value supported.<br>Constraints: offset + length <= Buffer size |
+  | options | Object                          | No   | The options are as follows:<br>- **offset** (number): position of the data to write in reference to the start address of the data. This parameter is optional. The default value is **0**.<br>- **length** (number): length of the data to write. This parameter is optional. The default value is the buffer length minus the offset.<br>- **position** (number): start position to write the data in the file. This parameter is optional. By default, data is written from the current position.<br>- **encoding** (string): format of the data to be encoded when the data is a string. The default value is **utf-8**, which is the only value supported.<br>Constraints: offset + length <= Buffer size |
 
 **Return value**
 
@@ -3460,10 +3549,20 @@ Synchronously writes data into the stream.
 
 **Example**
 
-  ```js
+  ```ts
   let filePath = pathDir + "/test.txt";
-  let ss= fileio.createStreamSync(filePath,"r+");
-  let num = ss.writeSync("hello, world", {offset: 1, length: 5, position: 5, encoding :'utf-8'});
+  let ss = fileio.createStreamSync(filePath,"r+");
+  class Option {
+    offset: number = 0;
+    length: number = 4096;
+    position: number = 0;
+    encoding: string = 'utf-8';
+  }
+  let option = new Option();
+  option.offset = 1;
+  option.length = 5;
+  option.position = 5;
+  let num = ss.writeSync("hello, world", option);
   ```
 
 
@@ -3484,7 +3583,7 @@ Reads data from the stream. This API uses a promise to return the result.
   | Name    | Type         | Mandatory  | Description                                      |
   | ------- | ----------- | ---- | ---------------------------------------- |
   | buffer  | ArrayBuffer | Yes   | Buffer used to store the file read.                             |
-  | options | Object      | No   | The options are as follows:<br>- **offset** (number): position to store the data read in the buffer in reference to the start address of the buffer. The default value is **0**.<br>- **length** (number): length of the data to read. The default value is the buffer length minus the offset.<br>- **position** (number): position of the data to read in the file. By default, data is read from the current position.<br>Constraints: offset + length <= Buffer size |
+  | options | Object      | No   | The options are as follows:<br>- **offset** (number): position to store the data read in the buffer in reference to the start address of the buffer. This parameter is optional. The default value is **0**.<br>- **length** (number): length of the data to read. This parameter is optional. The default value is the buffer length minus the offset.<br>- **position** (number): position of the data to read in the file. This parameter is optional. By default, data is read from the current position.<br>Constraints: offset + length <= Buffer size |
 
 **Return value**
 
@@ -3494,14 +3593,27 @@ Reads data from the stream. This API uses a promise to return the result.
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  import buffer from '@ohos.buffer';
   let filePath = pathDir + "/test.txt";
   let ss = fileio.createStreamSync(filePath, "r+");
-  ss.read(new ArrayBuffer(4096), {offset: 1, length: 5, position: 5}).then(function (readOut) {
-      console.info("Read data successfully");
-      console.log(String.fromCharCode.apply(null, new Uint8Array(readOut.buffer)));
-  }).catch(function (err) {
-      console.info("read data failed with error:" + err);
+  let arrayBuffer = new ArrayBuffer(4096);
+  class Option {
+    offset: number = 0;
+    length: number = 4096;
+    position: number = 0;
+  }
+  let option = new Option();
+  option.offset = 1;
+  option.length = 5;
+  option.position = 5;
+  ss.read(arrayBuffer, option).then((readLen: number) => {
+    console.info("Read data successfully");
+    let buf = buffer.from(arrayBuffer, 0, readLen);
+    console.info(`The content of file: ${buf.toString()}`);
+  }).catch((err: BusinessError) => {
+    console.info("read data failed with error:" + err);
   });
   ```
 
@@ -3523,19 +3635,32 @@ Reads data from the stream. This API uses an asynchronous callback to return the
   | Name     | Type                                      | Mandatory  | Description                                      |
   | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
   | buffer   | ArrayBuffer                              | Yes   | Buffer used to store the file read.                             |
-  | options  | Object                                   | No   | The options are as follows:<br>- **offset** (number): position to store the data read in the buffer in reference to the start address of the buffer. The default value is **0**.<br>- **length** (number): length of the data to read. The default value is the buffer length minus the offset.<br>- **position** (number): position of the data to read in the file. By default, data is read from the current position.<br>Constraints: offset + length <= Buffer size |
+  | options  | Object                                   | No   | The options are as follows:<br>- **offset** (number): position to store the data read in the buffer in reference to the start address of the buffer. This parameter is optional. The default value is **0**.<br>- **length** (number): length of the data to read. This parameter is optional. The default value is the buffer length minus the offset.<br>- **position** (number): position of the data to read in the file. This parameter is optional. By default, data is read from the current position.<br>Constraints: offset + length <= Buffer size |
   | callback | AsyncCallback&lt;[ReadOut](#readout)&gt; | Yes   | Callback invoked when data is read asynchronously from the stream.                        |
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  import buffer from '@ohos.buffer';
   let filePath = pathDir + "/test.txt";
   let ss = fileio.createStreamSync(filePath, "r+");
-  ss.read(new ArrayBuffer(4096),{offset: 1, length: 5, position: 5},function (err, readOut) {
-      if (readOut) {
-          console.info("Read data successfully");
-          console.log(String.fromCharCode.apply(null, new Uint8Array(readOut.buffer)));
-      }
+  let arrayBuffer = new ArrayBuffer(4096);
+  class Option {
+    offset: number = 0;
+    length: number = 4096;
+    position: number = 0;
+  }
+  let option = new Option();
+  option.offset = 1;
+  option.length = 5;
+  option.position = 5;
+  ss.read(arrayBuffer, option, (err: BusinessError, readLen: number) => {
+    if (readLen) {
+      console.info("Read data successfully");
+      let buf = buffer.from(arrayBuffer, 0, readLen);
+      console.info(`The content of file: ${buf.toString()}`);
+    }
   });
   ```
 
@@ -3557,7 +3682,7 @@ Synchronously reads data from the stream.
   | Name    | Type         | Mandatory  | Description                                      |
   | ------- | ----------- | ---- | ---------------------------------------- |
   | buffer  | ArrayBuffer | Yes   | Buffer used to store the file read.                             |
-  | options | Object      | No   | The options are as follows:<br>- **offset** (number): position to store the data read in the buffer in reference to the start address of the buffer. The default value is **0**.<br>- **length** (number): length of the data to read. The default value is the buffer length minus the offset.<br>- **position** (number): position of the data to read in the file. By default, data is read from the current position.<br>Constraints: offset + length <= Buffer size |
+  | options | Object      | No   | The options are as follows:<br>- **offset** (number): position to store the data read in the buffer in reference to the start address of the buffer. This parameter is optional. The default value is **0**.<br>- **length** (number): length of the data to read. This parameter is optional. The default value is the buffer length minus the offset.<br>- **position** (number): position of the data to read in the file. This parameter is optional. By default, data is read from the current position.<br>Constraints: offset + length <= Buffer size |
 
 **Return value**
 
@@ -3567,10 +3692,19 @@ Synchronously reads data from the stream.
 
 **Example**
 
-  ```js
+  ```ts
   let filePath = pathDir + "/test.txt";
   let ss = fileio.createStreamSync(filePath, "r+");
-  let num = ss.readSync(new ArrayBuffer(4096), {offset: 1, length: 5, position: 5});
+  class Option {
+    offset: number = 0;
+    length: number = 4096;
+    position: number = 0;
+  }
+  let option = new Option();
+  option.offset = 1;
+  option.length = 5;
+  option.position = 5;
+  let num = ss.readSync(new ArrayBuffer(4096), option);
   ```
 
 
@@ -3602,11 +3736,12 @@ Reads the next directory entry. This API uses a promise to return the result.
 
 **Example**
 
-  ```js
-  dir.read().then(function (dirent) {
-      console.log("read succeed, the name of dirent is " + dirent.name);
-  }).catch(function (err) {
-      console.info("read failed with error:" + err);
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  dir.read().then((dirent: fileio.Dirent) => {
+    console.log("read succeed, the name of dirent is " + dirent.name);
+  }).catch((err: BusinessError) => {
+    console.info("read failed with error:" + err);
   });
   ```
 
@@ -3631,12 +3766,13 @@ Reads the next directory entry. This API uses an asynchronous callback to return
 
 **Example**
 
-  ```js
-  dir.read(function (err, dirent) {
-      if (dirent) {
-          // Do something.
-          console.log("read succeed, the name of file is " + dirent.name);
-      }
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  dir.read((err: BusinessError, dirent: fileio.Dirent) {
+    if (dirent) {
+      // Do something.
+      console.log("read succeed, the name of file is " + dirent.name);
+    }
   });
   ```
 
@@ -3661,7 +3797,7 @@ Synchronously reads the next directory entry.
 
 **Example**
 
-  ```js
+  ```ts
   let dirent = dir.readSync();
   ```
 
@@ -3680,9 +3816,10 @@ Closes a directory. This API uses a promise to return the result. After a direct
 
 **Example**
 
-  ```js
-  dir.close().then(function (err) {
-      console.info("close dir successfully");
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  dir.close().then((err: BusinessError) => {
+    console.info("close dir successfully");
   });
   ```
 
@@ -3701,9 +3838,10 @@ Closes a directory. This API uses an asynchronous callback to return the result.
 
 **Example**
 
-  ```js
-  dir.close(function (err) {
-      console.info("close dir successfully");
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  dir.close((err: BusinessError) => {
+    console.info("close dir successfully");
   });
   ```
 
@@ -3722,7 +3860,7 @@ Closes a directory. After a directory is closed, the file descriptor in Dir will
 
 **Example**
 
-  ```js
+  ```ts
   dir.closeSync();
   ```
 
@@ -3764,7 +3902,7 @@ Checks whether this directory entry is a block special file. A block special fil
 
 **Example**
 
-  ```js
+  ```ts
   let dir = fileio.opendirSync(pathDir);
   let isBLockDevice = dir.readSync().isBlockDevice();
   ```
@@ -3790,7 +3928,7 @@ Checks whether a directory entry is a character special file. A character specia
 
 **Example**
 
-  ```js
+  ```ts
   let dir = fileio.opendirSync(pathDir);
   let isCharacterDevice = dir.readSync().isCharacterDevice(); 
   ```
@@ -3816,7 +3954,7 @@ Checks whether a directory entry is a directory.
 
 **Example**
 
-  ```js
+  ```ts
   let dir = fileio.opendirSync(pathDir);
   let isDirectory = dir.readSync().isDirectory(); 
   ```
@@ -3842,7 +3980,7 @@ Checks whether this directory entry is a named pipe (or FIFO). Named pipes are u
 
 **Example**
 
-  ```js
+  ```ts
   let dir = fileio.opendirSync(pathDir);
   let isFIFO = dir.readSync().isFIFO(); 
   ```
@@ -3868,7 +4006,7 @@ Checks whether a directory entry is a regular file.
 
 **Example**
 
-  ```js
+  ```ts
   let dir = fileio.opendirSync(pathDir);
   let isFile = dir.readSync().isFile(); 
   ```
@@ -3894,7 +4032,7 @@ Checks whether a directory entry is a socket.
 
 **Example**
 
-  ```js
+  ```ts
   let dir = fileio.opendirSync(pathDir);
   let isSocket = dir.readSync().isSocket(); 
   ```
@@ -3920,7 +4058,7 @@ Checks whether a directory entry is a symbolic link.
 
 **Example**
 
-  ```js
+  ```ts
   let dir = fileio.opendirSync(pathDir);
   let isSymbolicLink = dir.readSync().isSymbolicLink();
   ```

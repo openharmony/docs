@@ -9,8 +9,8 @@ The **cloudSync** module provides the device-cloud synchronization capabilities 
 
 ## Modules to Import
 
-```js
-import cloudSync from '@ohos.file.cloudSync'
+```ts
+import cloudSync from '@ohos.file.cloudSync';
 ```
 
 ## SyncState
@@ -79,7 +79,7 @@ A constructor used to create a **GallerySync** instance.
 
 **Example**
 
-  ```js
+  ```ts
   let gallerySync = new cloudSync.GallerySync()
   ```
 
@@ -113,12 +113,54 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 
 **Example**
 
-  ```js
+  ```ts
   let gallerySync = new cloudSync.GallerySync();
 
   gallerySync.on('progress', (pg: cloudSync.SyncProgress) => {
     console.info("syncState: " + pg.state);
   });
+  ```
+
+### off
+
+off(evt: 'progress', callback: (pg: SyncProgress) => void): void
+
+Unsubscribes from the synchronization process event.
+
+**Required permissions**: ohos.permission.CLOUDFILE_SYNC
+
+**System capability**: SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
+
+**Parameters**
+
+| Name    | Type  | Mandatory| Description|
+| ---------- | ------ | ---- | ---- |
+| evt | string | Yes  | Type of the event to unsubscribe from. The value is **progress**, which indicates the synchronization process event.|
+| callback | (pg: SyncProgress) => void | Yes  | Callback for the synchronization process event. The input parameter is [SyncProgress](#syncprogress), and the return value is **void**.|
+
+**Error codes**
+
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+| ID                    | Error Message       |
+| ---------------------------- | ---------- |
+| 201 | Permission verification failed. |
+| 202 | The caller is not a system application. |
+| 401 | The input parameter is invalid. |
+| 13600001  | IPC error. |
+
+**Example**
+
+  ```ts
+  let gallerySync = new cloudSync.GallerySync();
+
+  let callback = (pg: cloudSync.SyncProgress) => {
+    console.info("gallery sync state: " + pg.state + "error type:" + pg.error);
+  }
+
+  gallerySync.on('progress', callback);
+
+  gallerySync.off('progress', callback);
   ```
 
 ### off
@@ -150,7 +192,7 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 
 **Example**
 
-  ```js
+  ```ts
   let gallerySync = new cloudSync.GallerySync();
 
   gallerySync.on('progress', (pg: cloudSync.SyncProgress) => {
@@ -191,16 +233,17 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let gallerySync = new cloudSync.GallerySync();
 
   gallerySync.on('progress', (pg: cloudSync.SyncProgress) => {
 	  console.info("syncState: " + pg.state);
   });
 
-  gallerySync.start().then(function() {
+  gallerySync.start().then(() => {
 	  console.info("start sync successfully");
-  }).catch(function(err) {
+  }).catch((err: BusinessError) => {
 	  console.info("start sync failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
@@ -236,10 +279,11 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let gallerySync = new cloudSync.GallerySync();
 
-  gallerySync.start((err) => {
+  gallerySync.start((err: BusinessError) => {
     if (err) {
       console.info("start sync failed with error message: " + err.message + ", error code: " + err.code);
     } else {
@@ -280,12 +324,13 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let gallerySync = new cloudSync.GallerySync();
 
-  gallerySync.stop().then(function() {
+  gallerySync.stop().then(() => {
 	  console.info("stop sync successfully");
-  }).catch(function(err) {
+  }).catch((err: BusinessError) => {
 	  console.info("stop sync failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
@@ -322,10 +367,11 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let gallerySync = new cloudSync.GallerySync();
 
-  gallerySync.stop((err) => {
+  gallerySync.stop((err: BusinessError) => {
     if (err) {
       console.info("stop sync failed with error message: " + err.message + ", error code: " + err.code);
     } else {
@@ -374,7 +420,7 @@ A constructor used to create a **Download** instance.
 
 **Example**
 
-  ```js
+  ```ts
   let download = new cloudSync.Download()
   ```
 
@@ -408,12 +454,54 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 
 **Example**
 
-  ```js
+  ```ts
   let download = new cloudSync.Download();
 
   download.on('progress', (pg: cloudSync.DownloadProgress) => {
     console.info("download state: " + pg.state);
   });
+  ```
+
+### off
+
+off(evt: 'progress', callback: (pg: DownloadProgress) => void): void
+
+Unsubscribes from the cloud file download event.
+
+**Required permissions**: ohos.permission.CLOUDFILE_SYNC
+
+**System capability**: SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
+
+**Parameters**
+
+| Name    | Type  | Mandatory| Description|
+| ---------- | ------ | ---- | ---- |
+| evt | string | Yes  | Type of the event to unsubscribe from. The value is **progress**, which indicates the synchronization process event.|
+| callback | (pg: DownloadProgress) => void | Yes  | Callback for the cloud file download event. The input parameter is [DownloadProgress](#downloadprogress), and the return value is **void**.|
+
+**Error codes**
+
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+| ID                    | Error Message       |
+| ---------------------------- | ---------- |
+| 201 | Permission verification failed. |
+| 202 | The caller is not a system application. |
+| 401 | The input parameter is invalid. |
+| 13600001  | IPC error. |
+
+**Example**
+
+  ```ts
+  let download = new cloudSync.Download();
+
+  let callback = (pg: cloudSync.DownloadProgress) => {
+    console.info("download state: " + pg.state + "error type:" + pg.error);
+  }
+
+  download.on('progress', callback);
+
+  download.off('progress', callback);
   ```
 
 ### off
@@ -445,7 +533,7 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 
 **Example**
 
-  ```js
+  ```ts
   let download = new cloudSync.Download();
 
   download.on('progress', (pg: cloudSync.DownloadProgress) => {
@@ -479,7 +567,8 @@ Starts to download a cloud file. This API uses a promise to return the result.
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let download = new cloudSync.Download();
   let uri: string = "file:///media/Photo/1";
 
@@ -487,9 +576,9 @@ Starts to download a cloud file. This API uses a promise to return the result.
 	  console.info("download state:" + pg.state);
   });
 
-  download.start(uri).then(function() {
+  download.start(uri).then(() => {
 	  console.info("start download successfully");
-  }).catch(function(err) {
+  }).catch((err: BusinessError) => {
 	  console.info("start download failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
@@ -537,11 +626,12 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let download = new cloudSync.Download();
   let uri: string = "file:///media/Photo/1";
 
-  download.start(uri, (err) => {
+  download.start(uri, (err: BusinessError) => {
     if (err) {
       console.info("start download failed with error message: " + err.message + ", error code: " + err.code);
     } else {
@@ -558,7 +648,7 @@ Stops downloading a cloud file. This API uses a promise to return the result.
 
 > **NOTE**
 >
-> Calling **stop** will terminate the download of the current file and clear the cached file. You can use [start](#start-3) to start the download again.
+> Calling **stop** will terminate the download of the current file and clear the cached file. You can use **start** to start the download again.
 
 **Required permissions**: ohos.permission.CLOUDFILE_SYNC
 
@@ -588,13 +678,14 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let download = new cloudSync.Download();
   let uri: string = "file:///media/Photo/1";
 
-  download.stop(uri).then(function() {
+  download.stop(uri).then(() => {
 	  console.info("stop download successfully");
-  }).catch(function(err) {
+  }).catch((err: BusinessError) => {
 	  console.info("stop download failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
@@ -607,7 +698,7 @@ Stops downloading a cloud file. This API uses an asynchronous callback to return
 
 > **NOTE**
 >
-> Calling **stop** will terminate the download of the current file and clear the cached file. You can use [start](#start-4) to start the download again.
+> Calling **stop** will terminate the download of the current file and clear the cached file. You can use **start** to start the download again.
 
 **Required permissions**: ohos.permission.CLOUDFILE_SYNC
 
@@ -632,11 +723,12 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let download = new cloudSync.Download();
   let uri: string = "file:///media/Photo/1";
 
-  download.stop(uri, (err) => {
+  download.stop(uri, (err: BusinessError) => {
     if (err) {
       console.info("stop download failed with error message: " + err.message + ", error code: " + err.code);
     } else {
