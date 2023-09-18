@@ -4811,7 +4811,7 @@ Sets whether to enable the full-screen mode for this window. This API uses an as
 
 > **NOTE**
 > 
-> This API is supported since API version 6 and deprecated since API version 9. You are advised to use [setWindowSystemBarEnable()](#setwindowsystembarenable9) instead.
+> This API is supported since API version 6 and deprecated since API version 9. You are advised to use [setWindowSystemBarEnable()](#setwindowsystembarenable9) and [setWindowLayoutFullScreen()](#setwindowlayoutfullscreen9) to implement the full-screen mode.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -4843,7 +4843,7 @@ Sets whether to enable the full-screen mode for this window. This API uses a pro
 
 > **NOTE**
 > 
-> This API is supported since API version 6 and deprecated since API version 9. You are advised to use [setWindowSystemBarEnable()](#setwindowsystembarenable9-1) instead.
+> This API is supported since API version 6 and deprecated since API version 9. You are advised to use [setWindowSystemBarEnable()](#setwindowsystembarenable9-1) and [setWindowLayoutFullScreen()](#setwindowlayoutfullscreen9-1) to implement the full-screen mode.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -5800,7 +5800,9 @@ Sets whether the area outside the subwindow is touchable. This API uses an async
 
 > **NOTE**
 > 
-> This API cannot be used. This API is supported since API version 7 and deprecated since API version 9.
+> This API is supported since API version 7 and deprecated since API version 9.
+> 
+> Since API version 9, the area outside the subwindow is touchable by default. This API is no longer supported and no substitute API is provided.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -5831,7 +5833,9 @@ Sets whether the area outside the subwindow is touchable. This API uses a promis
 
 > **NOTE**
 > 
-> This API cannot be used. This API is supported since API version 7 and deprecated since API version 9.
+> This API is supported since API version 7 and deprecated since API version 9.
+> 
+> Since API version 9, the area outside the subwindow is touchable by default. This API is no longer supported and no substitute API is provided.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 

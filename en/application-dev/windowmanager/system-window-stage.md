@@ -24,7 +24,7 @@ For details, see [Window](../reference/apis/js-apis-window.md).
 | Window static method   | createWindow(config: Configuration, callback: AsyncCallback\<Window>): void | Creates a subwindow or system window.<br>**config** specifies the parameters used for creating the window.    |
 | Window            | resize(width: number, height: number, callback: AsyncCallback&lt;void&gt;): void | Changes the window size.                                          |
 | Window            | moveWindowTo(x: number, y: number, callback: AsyncCallback&lt;void&gt;): void | Moves this window.                                          |
-| Window            | SetUIContent(path: string, callback: AsyncCallback&lt;void&gt;): void | Loads the page content to this window.                                    |
+| Window            | setUIContent(path: string, callback: AsyncCallback&lt;void&gt;): void | Loads the page content to this window.                                    |
 | Window            | showWindow(callback: AsyncCallback\<void>): void             | Shows this window.                                              |
 | Window            | on(type: 'touchOutside', callback: Callback&lt;void&gt;): void | Enables listening for click events outside this window.                          |
 | Window            | hide (callback: AsyncCallback\<void>): void                  | Hides this window. This is a system API.                            |
@@ -51,7 +51,7 @@ This section uses the volume bar as an example to describe how to develop a syst
 
 3. Load content for the system window and show it.
 
-   You can call **SetUIContent** and **showWindow** to load and display the content in the volume bar window.
+   You can call **setUIContent** and **showWindow** to load and display the content in the volume bar window.
 
 4. Hide or destroy the system window.
 

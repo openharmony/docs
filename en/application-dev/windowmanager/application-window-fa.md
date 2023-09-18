@@ -3,6 +3,7 @@
 ## Basic Concepts
 
 Immersive window: System windows such as the status bar and navigation bar are controlled in such a way that they are unobtrusive and natural looking in the entire screen, thereby engaging users more deeply with the content displayed.
+
 The immersive window feature is valid only when the main window of an application is displayed in full-screen mode. It does not apply to a main window in free window mode or a subwindow (for example, a dialog box or a floating window).
 
 ## When to Use
@@ -22,7 +23,7 @@ The table below lists the common APIs used for application window development. F
 | -------- | -------- | -------- |
 | Window static method| createWindow(config: Configuration, callback: AsyncCallback\<Window>): void | Creates a subwindow.<br>**config** specifies the parameters used for creating the window.|
 | Window static method| findWindow(name: string): Window | Finds a window based on the name.|
-| Window | SetUIContent(path: string, callback: AsyncCallback&lt;void&gt;): void | Loads the page content to this window.|
+| Window | setUIContent(path: string, callback: AsyncCallback&lt;void&gt;): void | Loads the page content to this window.|
 | Window | moveWindowTo(x: number, y: number, callback: AsyncCallback&lt;void&gt;): void | Moves this window.|
 | Window | setWindowBackgroundColor(color: string, callback: AsyncCallback&lt;void&gt;): void | Sets the background color for this window.|
 | Window | setWindowBrightness(brightness: number, callback: AsyncCallback&lt;void&gt;): void | Sets the brightness for this window.|
@@ -94,11 +95,11 @@ You can create a subwindow, such as a dialog box, and set its properties.
 
 3. Load content for the subwindow and show it.
 
-   Call **SetUIContent** and **showWindow** to load and display the content in the subwindow.
+   Call **setUIContent** and **showWindow** to load and display the content in the subwindow.
    
    ```js
    // Load the page content to the subwindow.
-   windowClass.SetUIContent("pages/page2", (err) => {
+   windowClass.setUIContent("pages/page2", (err) => {
        if (err.code) {
            console.error('Failed to load the content. Cause: ' + JSON.stringify(err));
            return;
@@ -205,11 +206,11 @@ To create a better video watching and gaming experience, you can use the immersi
 
 3. Load content for the immersive window and show it.
 
-   Call **SetUIContent** and **showWindow** to load and display the content in the immersive window.
+   Call **setUIContent** and **showWindow** to load and display the content in the immersive window.
    
    ```js
    // Load the page content to the immersive window.
-   mainWindowClass.SetUIContent("pages/page3", (err) => {
+   mainWindowClass.setUIContent("pages/page3", (err) => {
        if (err.code) {
            console.error('Failed to load the content. Cause: ' + JSON.stringify(err));
            return;
