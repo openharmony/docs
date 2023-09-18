@@ -1,15 +1,12 @@
 # @ohos.resourceschedule.workScheduler (Deferred Task Scheduling)
 
-The **workScheduler** module provides the APIs for registering, canceling, and querying deferred tasks.
-
-The system schedules and executes deferred tasks at an appropriate time, subject to the storage space, power consumption, temperature, and more.
+The **workScheduler** module provides the APIs for registering, canceling, and querying deferred tasks. You can use the APIs to register tasks that do not have high requirements on real-time performance as deferred tasks. The system schedules and executes the deferred tasks at an appropriate time, subject to the storage space, power consumption, and more.
 
 >  **NOTE**
 >
 >  - The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+>
 >  - The APIs of this module can be used only in the stage model.
->  - For details about the constraints on deferred task scheduling, see [Constraints](../../task-management/work-scheduler.md#constraints).
-
 
 ## Modules to Import
 
@@ -18,9 +15,10 @@ import workScheduler from '@ohos.resourceschedule.workScheduler';
 ```
 
 ## workScheduler.startWork
+
 startWork(work: WorkInfo): void
 
-Instructs the WorkSchedulerService to add a task to the execution queue.
+Starts a deferred task.
 
 **System capability**: SystemCapability.ResourceSchedule.WorkScheduler
 
@@ -28,7 +26,7 @@ Instructs the WorkSchedulerService to add a task to the execution queue.
 
 | Name | Type                   | Mandatory  | Description            |
 | ---- | --------------------- | ---- | -------------- |
-| work | [WorkInfo](#workinfo) | Yes   | Task to be added to the execution queue.|
+| work | [WorkInfo](#workinfo) | Yes   | Deferred task to start.|
 
 **Error codes**
 
@@ -41,7 +39,6 @@ For details about the error codes, see [workScheduler Error Codes](../errorcodes
 | 9700003 | System service operation failed. |
 | 9700004 | Check workInfo failed. |
 | 9700005 | StartWork failed. |
-
 
 **Example**
 
@@ -69,9 +66,10 @@ For details about the error codes, see [workScheduler Error Codes](../errorcodes
 ```
 
 ## workScheduler.stopWork
+
 stopWork(work: WorkInfo, needCancel?: boolean): void
 
-Instructs the WorkSchedulerService to stop a task.
+Stops a deferred task.
 
 **System capability**: SystemCapability.ResourceSchedule.WorkScheduler
 
@@ -79,8 +77,8 @@ Instructs the WorkSchedulerService to stop a task.
 
 | Name       | Type                   | Mandatory  | Description        |
 | ---------- | --------------------- | ---- | ---------- |
-| work       | [WorkInfo](#workinfo) | Yes   | Task to stop. |
-| needCancel | boolean               | No   | Whether to cancel the task. The default value is **false**.|
+| work       | [WorkInfo](#workinfo) | Yes   | Deferred task to stop.|
+| needCancel | boolean               | No   | Whether to clear the task while stopping it.<br>The value **true** means to clear the task while stopping it, and **false** means to stop the task only. The default value is **false**.|
 
 **Error codes**
 
@@ -119,9 +117,10 @@ For details about the error codes, see [workScheduler Error Codes](../errorcodes
 ```
 
 ## workScheduler.getWorkStatus
+
 getWorkStatus(workId: number, callback : AsyncCallback\<WorkInfo>): void
 
-Obtains the latest task status. This API uses an asynchronous callback to return the result.
+Obtains the information a deferred task. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.ResourceSchedule.WorkScheduler
 
@@ -129,8 +128,8 @@ Obtains the latest task status. This API uses an asynchronous callback to return
 
 | Name     | Type                                   | Mandatory  | Description                                      |
 | -------- | ------------------------------------- | ---- | ---------------------------------------- |
-| workId   | number                                | Yes   | Task ID.                                |
-| callback | AsyncCallback\<[WorkInfo](#workinfo)> | Yes   | Callback used to return the result. If the specified task ID is valid, the task status obtained from the WorkSchedulerService is returned. Otherwise, an exception is thrown.|
+| workId   | number                                | Yes   | ID of the deferred task.                                |
+| callback | AsyncCallback\<[WorkInfo](#workinfo)> | Yes   | Callback used to return the result. If **workId** is valid, the task information obtained from WorkSchedulerService is returned. Otherwise, an exception is thrown.|
 
 **Error codes**
 
@@ -162,9 +161,10 @@ For details about the error codes, see [workScheduler Error Codes](../errorcodes
 ```
 
 ## workScheduler.getWorkStatus
+
 getWorkStatus(workId: number): Promise\<WorkInfo>
 
-Obtains the latest task status. This API uses a promise to return the result.
+Obtains the information a deferred task. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.ResourceSchedule.WorkScheduler
 
@@ -172,13 +172,13 @@ Obtains the latest task status. This API uses a promise to return the result.
 
 | Name   | Type    | Mandatory  | Description      |
 | ------ | ------ | ---- | -------- |
-| workId | number | Yes   | Task ID.|
+| workId | number | Yes   | ID of the deferred task.|
 
 **Return value**
 
 | Type                             | Description                                      |
 | ------------------------------- | ---------------------------------------- |
-| Promise\<[WorkInfo](#workinfo)> | Promise used to return the result. If the specified task ID is valid, the task status obtained from the WorkSchedulerService is returned. Otherwise, an exception is thrown.|
+| Promise\<[WorkInfo](#workinfo)> | Promise used to return the result. If **workId** is valid, the task information obtained from WorkSchedulerService is returned.|
 
 **Error codes**
 
@@ -208,9 +208,10 @@ For details about the error codes, see [workScheduler Error Codes](../errorcodes
 ```
 
 ## workScheduler.obtainAllWorks
+
 obtainAllWorks(callback : AsyncCallback\<void>): Array\<WorkInfo>
 
-Obtains all tasks associated with the application. This API uses an asynchronous callback to return the result.
+Obtains all the deferred tasks. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.ResourceSchedule.WorkScheduler
 
@@ -218,13 +219,13 @@ Obtains all tasks associated with the application. This API uses an asynchronous
 
 | Name     | Type                  | Mandatory  | Description                             |
 | -------- | -------------------- | ---- | ------------------------------- |
-| callback | AsyncCallback\<void> | Yes   | Callback used to return the result.  |
+| callback | AsyncCallback\<void> | Yes   | Callback used to return the result. If all the deferred tasks are obtained, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Return value**
 
 | Type                           | Description             |
 | ----------------------------- | --------------- |
-| Array\<[WorkInfo](#workinfo)> | All tasks associated with the application.|
+| Array\<[WorkInfo](#workinfo)> | All the deferred tasks.|
 
 **Error codes**
 
@@ -253,9 +254,10 @@ For details about the error codes, see [workScheduler Error Codes](../errorcodes
 ```
 
 ## workScheduler.obtainAllWorks
+
 obtainAllWorks(): Promise\<Array\<WorkInfo>>
 
-Obtains all tasks associated with the application. This API uses a promise to return the result.
+Obtains all the deferred tasks. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.ResourceSchedule.WorkScheduler
 
@@ -263,7 +265,7 @@ Obtains all tasks associated with the application. This API uses a promise to re
 
 | Type                                    | Description                            |
 | -------------------------------------- | ------------------------------ |
-| Promise<Array\<[WorkInfo](#workinfo)>> | Promise used to return all tasks associated with the application.|
+| Promise<Array\<[WorkInfo](#workinfo)>> | Promise used to return all the deferred tasks.|
 
 **Error codes**
 
@@ -290,9 +292,10 @@ For details about the error codes, see [workScheduler Error Codes](../errorcodes
 ```
 
 ## workScheduler.stopAndClearWorks
+
 stopAndClearWorks(): void
 
-Stops and cancels all tasks associated with the application.
+Stops and clears all the deferred tasks.
 
 **System capability**: SystemCapability.ResourceSchedule.WorkScheduler
 
@@ -318,6 +321,7 @@ For details about the error codes, see [workScheduler Error Codes](../errorcodes
 ```
 
 ## workScheduler.isLastWorkTimeOut
+
 isLastWorkTimeOut(workId: number, callback : AsyncCallback\<void>): boolean
 
 Checks whether the last execution of a task timed out. This API uses an asynchronous callback to return the result.
@@ -328,14 +332,14 @@ Checks whether the last execution of a task timed out. This API uses an asynchro
 
 | Name     | Type                  | Mandatory  | Description                                      |
 | -------- | -------------------- | ---- | ---------------------------------------- |
-| workId   | number               | Yes   | Task ID.                                |
-| callback | AsyncCallback\<void> | Yes   | Callback used to return the result.  |
+| workId   | number               | Yes   | ID of the deferred task.                                |
+| callback | AsyncCallback\<void> | Yes   | Callback used to return the result.|
 
 **Return value**
 
 | Type     | Description                                      |
 | ------- | ---------------------------------------- |
-| boolean |  Returns **true** if the last execution of the task timed out; returns **false** otherwise.|
+| boolean | The value **true** means that the last execution of the specified task times out, and **false** means the opposite.|
 
 **Error codes**
 
@@ -365,6 +369,7 @@ For details about the error codes, see [workScheduler Error Codes](../errorcodes
 ```
 
 ## workScheduler.isLastWorkTimeOut
+
 isLastWorkTimeOut(workId: number): Promise\<boolean>
 
 Checks whether the last execution of a task timed out. This API uses a promise to return the result.
@@ -375,13 +380,13 @@ Checks whether the last execution of a task timed out. This API uses a promise t
 
 | Name   | Type    | Mandatory  | Description      |
 | ------ | ------ | ---- | -------- |
-| workId | number | Yes   | Task ID.|
+| workId | number | Yes   | ID of the deferred task.|
 
 **Return value**
 
 | Type               | Description                                      |
 | ----------------- | ---------------------------------------- |
-| Promise\<boolean> | Promise used to return the result. If the last execution of the task timed out, **true** is returned. Otherwise, **false** is returned.|
+| Promise\<boolean> | Promise used to return the result. The value **true** means that the last execution of the specified task times out, and **false** means the opposite.|
 
 **Error codes**
 
@@ -411,31 +416,33 @@ For details about the error codes, see [workScheduler Error Codes](../errorcodes
 ```
 
 ## WorkInfo
-Provides detailed information about the task. For details about the constraints on setting the **WorkInfo** parameter, see [Constraints](../../task-management/work-scheduler.md#constraints).
+
+Defines the information about the deferred task.
 
 **System capability**: SystemCapability.ResourceSchedule.WorkScheduler
 
 | Name            | Type                               | Mandatory  | Description              |
 | --------------- | --------------------------------- | ---- | ---------------- |
-| workId          | number                            | Yes   | Task ID.         |
+| workId          | number                            | Yes   | ID of the deferred task.         |
 | bundleName      | string                            | Yes   | Bundle name of the application that requests the task.          |
 | abilityName     | string                            | Yes   | Name of the component to be notified by a deferred task scheduling callback.|
 | networkType     | [NetworkType](#networktype)       | No   | Network type.            |
-| isCharging      | boolean                           | No   | Whether the device is charging.            |
+| isCharging      | boolean                           | No   | Whether the device needs to enter the charging state to trigger deferred task scheduling.<br>The value **true** means that the device needs to enter the charging state to trigger deferred task scheduling, and **false** means the opposite.|
 | chargerType     | [ChargingType](#chargingtype)     | No   | Charging type.            |
-| batteryLevel    | number                            | No   | Battery level.              |
+| batteryLevel    | number                            | No   | Battery level.             |
 | batteryStatus   | [BatteryStatus](#batterystatus)   | No   | Battery status.            |
 | storageRequest  | [StorageRequest](#storagerequest) | No   | Storage status.            |
-| isRepeat        | boolean                           | No   | Whether the task is repeated.          |
-| repeatCycleTime | number                            | No   | Repeat interval.            |
+| isRepeat        | boolean                           | No   | Whether the task is repeated.<br>The value** true** means that the task is repeated, and **false** means the opposite.|
+| repeatCycleTime | number                            | No   | Repeat interval, in milliseconds.            |
 | repeatCount     | number                            | No   | Number of repeat times.            |
-| isPersisted     | boolean                           | No   | Whether to enable persistent storage for the task.       |
-| isDeepIdle      | boolean                           | No   | Whether the device needs to enter the idle state.    |
-| idleWaitTime    | number                            | No   | Time to wait in the idle state.          |
-| parameters      | {[key: string]: number \| string \| boolean}              | No   | Carried parameters.          |
+| isPersisted     | boolean                           | No   | Whether to enable persistent storage for the task.<br>The value **true** means to enable persistent storage for the task, and **false** means the opposite.|
+| isDeepIdle      | boolean                           | No   | Whether the device needs to enter the idle state to trigger deferred task scheduling.<br>The value **true** means that the device needs to enter the idle state to trigger deferred task scheduling, and **false** means the opposite.  |
+| idleWaitTime    | number                            | No   | Time to wait in the idle state before triggering deferred task scheduling, in milliseconds.          |
+| parameters      | [key: string]: number \| string \| boolean  | No   | Carried parameters.|
 
 ## NetworkType
-Enumerates the network types that can trigger task scheduling.
+
+Enumerates the network types that can trigger deferred task scheduling.
 
 **System capability**: SystemCapability.ResourceSchedule.WorkScheduler
 
@@ -449,7 +456,8 @@ Enumerates the network types that can trigger task scheduling.
 | NETWORK_TYPE_ETHERNET  | 5    | Ethernet.       |
 
 ## ChargingType
-Enumerates the charging types that can trigger task scheduling.
+
+Enumerates the charging types that can trigger deferred task scheduling.
 
 **System capability**: SystemCapability.ResourceSchedule.WorkScheduler
 
@@ -461,7 +469,8 @@ Enumerates the charging types that can trigger task scheduling.
 | CHARGING_PLUGGED_WIRELESS | 3    | Wireless charging.   |
 
 ## BatteryStatus
-Enumerates the battery states that can trigger task scheduling.
+
+Enumerates the battery statuses that can trigger deferred task scheduling.
 
 **System capability**: SystemCapability.ResourceSchedule.WorkScheduler
 
@@ -472,7 +481,8 @@ Enumerates the battery states that can trigger task scheduling.
 | BATTERY_STATUS_LOW_OR_OKAY | 2    | The battery level is restored from low to normal, or a low battery alert is displayed.|
 
 ## StorageRequest
-Enumerates the storage states that can trigger task scheduling.
+
+Enumerates the storage statuses that can trigger deferred task scheduling.
 
 **System capability**: SystemCapability.ResourceSchedule.WorkScheduler
 
@@ -480,4 +490,4 @@ Enumerates the storage states that can trigger task scheduling.
 | ------------------------- | ---- | ------------------------------ |
 | STORAGE_LEVEL_LOW         | 0    | The storage space is insufficient.              |
 | STORAGE_LEVEL_OKAY        | 1    | The storage space is restored from insufficient to normal.        |
-| STORAGE_LEVEL_LOW_OR_OKAY | 2    | The storage space is restored from insufficient to normal, or the storage space is insufficient.|
+| STORAGE_LEVEL_LOW_OR_OKAY | 2    | The storage space is insufficient, or the storage space is restored from insufficient to normal.|
