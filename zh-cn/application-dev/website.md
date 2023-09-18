@@ -727,6 +727,23 @@
       - [USB DDK开发指导](napi/usb-ddk-guidelines.md)
     - 数据管理
       - [RelationalStore开发指导](napi/native-relational-store-guidelines.md)
+  - 性能
+    - ArkTS高性能编程
+      - [高性能编程规范](performance/high-performance-programming.md)
+      - [TaskPool和Worker多线程](arkts-utils/taskpool-vs-worker.md)
+      - [CPU密集型任务开发指导](arkts-utils/cpu-intensive-task-development.md)
+      - [I/O密集型任务开发指导](arkts-utils/io-intensive-task-development.md)
+    - 减少卡顿丢帧
+      - [LazyForEach：数据懒加载](quick-start/arkts-rendering-control-lazyforeach.md)
+      - [状态管理](quick-start/arkts-state-management-best-practices.md)
+      - [减少动画丢帧](performance/reduce-animation-frame-loss.md)
+    - 提升应用启动和响应速度
+      - [提升应用冷启动速度](performance/improve-application-cold-start-speed.md)
+      - [提升应用响应速度](performance/improve-application-response.md)
+      - [减少视图嵌套层次](performance/reduce-view-nesting-levels.md)
+      - [改善布局性能](ui/arkts-layout-development-performance-boost.md)
+    - 性能工具
+      - [性能分析工具CPU Profiler](performance/application-performance-analysis.md)
 - 工具
   - [DevEco Studio（OpenHarmony）使用指南](quick-start/deveco-studio-user-guide-for-openharmony.md)
   - 调试工具
