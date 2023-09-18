@@ -80,7 +80,7 @@ Instructs the WorkSchedulerService to stop a task.
 | Name       | Type                   | Mandatory  | Description        |
 | ---------- | --------------------- | ---- | ---------- |
 | work       | [WorkInfo](#workinfo) | Yes   | Task to stop. |
-| needCancel | boolean               | No   | Whether to cancel the task. |
+| needCancel | boolean               | No   | Whether to cancel the task.|
 
 **Error codes**
 
@@ -218,7 +218,7 @@ Obtains all tasks associated with the application. This API uses an asynchronous
 
 | Name     | Type                  | Mandatory  | Description                             |
 | -------- | -------------------- | ---- | ------------------------------- |
-| callback | AsyncCallback\<void> | Yes   | Callback used to return the result.  |
+| callback | AsyncCallback\<void> | Yes   | Callback used to return the result.|
 
 **Return value**
 
@@ -329,13 +329,13 @@ Checks whether the last execution of a task timed out. This API uses an asynchro
 | Name     | Type                  | Mandatory  | Description                                      |
 | -------- | -------------------- | ---- | ---------------------------------------- |
 | workId   | number               | Yes   | Task ID.                                |
-| callback | AsyncCallback\<void> | Yes   | Callback used to return the result.  |
+| callback | AsyncCallback\<void> | Yes   | Callback used to return the result.|
 
 **Return value**
 
 | Type     | Description                                      |
 | ------- | ---------------------------------------- |
-| boolean |  Returns **true** if the last execution of the task timed out; returns **false** otherwise.|
+| boolean | Returns **true** if the last execution of the task timed out; returns **false** otherwise.|
 
 **Error codes**
 
@@ -421,18 +421,18 @@ Provides detailed information about the task. For details about the constraints 
 | bundleName      | string                            | Yes   | Bundle name of the application that requests the task.          |
 | abilityName     | string                            | Yes   | Name of the component to be notified by a deferred task scheduling callback.|
 | networkType     | [NetworkType](#networktype)       | No   | Network type.            |
-| isCharging      | boolean                           | No   | Whether the device is charging.            |
+| isCharging      | boolean                           | No   | Whether the device needs to enter the charging state to trigger deferred task scheduling.            |
 | chargerType     | [ChargingType](#chargingtype)     | No   | Charging type.            |
 | batteryLevel    | number                            | No   | Battery level.              |
 | batteryStatus   | [BatteryStatus](#batterystatus)   | No   | Battery status.            |
 | storageRequest  | [StorageRequest](#storagerequest) | No   | Storage status.            |
 | isRepeat        | boolean                           | No   | Whether the task is repeated.          |
-| repeatCycleTime | number                            | No   | Repeat interval.            |
+| repeatCycleTime | number                            | No   | Repeat interval, in milliseconds.            |
 | repeatCount     | number                            | No   | Number of repeat times.            |
 | isPersisted     | boolean                           | No   | Whether to enable persistent storage for the task.       |
 | isDeepIdle      | boolean                           | No   | Whether the device needs to enter the idle state.    |
-| idleWaitTime    | number                            | No   | Time to wait in the idle state.          |
-| parameters      | {[key: string]: number \| string \| boolean}              | No   | Carried parameters.          |
+| idleWaitTime    | number                            | No   | Time to wait in the idle state before triggering deferred task scheduling, in milliseconds.          |
+| parameters      | [key: string]: number \| string \| boolean              | No   | Carried parameters.          |
 
 ## NetworkType
 Enumerates the network types that can trigger task scheduling.

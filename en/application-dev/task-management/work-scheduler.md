@@ -62,8 +62,8 @@ The table below lists the APIs used for developing deferred tasks. For details a
 | -------- | -------- |
 | startWork(work: WorkInfo): void; | Starts a deferred task.|
 | stopWork(work: WorkInfo, needCancel?: boolean): void; | Stops a deferred task.|
-| getWorkStatus(workId: number, callback: AsyncCallback&lt;WorkInfo&gt;): void; | Obtains the status of a deferred task. This API uses an asynchronous callback to return the result.|
-| getWorkStatus(workId: number): Promise&lt;WorkInfo&gt;; | Obtains the status of a deferred task. This API uses a promise to return the result.|
+| getWorkStatus(workId: number, callback: AsyncCallback&lt;WorkInfo&gt;): void; | Obtains the information about a deferred task. This API uses an asynchronous callback to return the result.|
+| getWorkStatus(workId: number): Promise&lt;WorkInfo&gt;; | Obtains the information about a deferred task. This API uses a promise to return the result.|
 | obtainAllWorks(callback: AsyncCallback&lt;void&gt;): Array&lt;WorkInfo&gt;; | Obtains all the deferred tasks. This API uses an asynchronous callback to return the result.|
 | obtainAllWorks(): Promise&lt;Array&lt;WorkInfo&gt;&gt;; | Obtains all the deferred tasks. This API uses a promise to return the result.|
 | stopAndClearWorks(): void; | Stops and clears all the deferred tasks.|
@@ -77,7 +77,7 @@ The table below lists the APIs used for developing deferred tasks. For details a
 | bundleName | string | Bundle name of the application that requests the deferred task.|
 | abilityName | string | Name of the ability to be notified by a deferred task scheduling callback. This parameter is mandatory.|
 | networkType | [NetworkType](../reference/apis/js-apis-resourceschedule-workScheduler.md#networktype) | Network type.|
-| isCharging | boolean | Whether the device is charging.|
+| isCharging | boolean | Whether the device needs to enter the charging state to trigger deferred task scheduling.|
 | chargerType | [ChargingType](../reference/apis/js-apis-resourceschedule-workScheduler.md#chargingtype) | Charging type.|
 | batteryLevel | number | Battery level.|
 | batteryStatus | [BatteryStatus](../reference/apis/js-apis-resourceschedule-workScheduler.md#batterystatus) | Battery status.|
@@ -155,7 +155,7 @@ The development of deferred task scheduling consists of two steps: implementing 
          "extensionAbilities": [
            {
              "name": "MyWorkSchedulerExtensionAbility",
-             "srcEntry": "./ets/WorkSchedulerExtension/WorkSchedulerExtension.ts",
+             "srcEntry": "./ets/WorkSchedulerExtension/WorkSchedulerExtension.ets",
              "label": "$string:WorkSchedulerExtensionAbility_label",
              "description": "$string:WorkSchedulerExtensionAbility_desc",
              "type": "workScheduler"
