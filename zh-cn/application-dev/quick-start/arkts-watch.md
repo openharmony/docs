@@ -60,7 +60,7 @@
 ```ts
 @Component
 struct TotalView {
-  @Prop @Watch('onCountUpdated') count: number;
+  @Prop @Watch('onCountUpdated') count: number = 0;
   @State total: number = 0;
   // @Watch cb
   onCountUpdated(propName: string): void {

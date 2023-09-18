@@ -33,15 +33,15 @@
 
 [各类Context的获取方式](../application-models/application-context-stage.md)
 
-```js
+```ts
 import camera from '@ohos.multimedia.camera';
 import featureAbility from '@ohos.ability.featureAbility';
 
-async function preview(context: featureAbility.Context, cameraInfo: camera.CameraDevice, previewProfile: camera.Profile, photoProfile: camera.Profile, surfaceId: string): Promise<void> {
+async function preview(context: featureAbility.Context, cameraInfo: camera.CameraDevice, previewProfile: camera.Profile, photoProfile: camera.Profile, photoSurfaceId: string, previewSurfaceId: string): Promise<void> {
   const cameraManager: camera.CameraManager = camera.getCameraManager(context);
   const cameraInput: camera.CameraInput = cameraManager.createCameraInput(cameraInfo);
-  const previewOutput: camera.PreviewOutput = await cameraManager.createDeferredPreviewOutput(previewProfile);
-  const photoOutput: camera.PhotoOutput = cameraManager.createPhotoOutput(photoProfile, surfaceId);
+  const previewOutput: camera.PreviewOutput = cameraManager.createDeferredPreviewOutput(previewProfile);
+  const photoOutput: camera.PhotoOutput = cameraManager.createPhotoOutput(photoProfile, photoSurfaceId);
   const session: camera.CaptureSession  = cameraManager.createCaptureSession();
   session.beginConfig();
   session.addInput(cameraInput);
@@ -49,7 +49,7 @@ async function preview(context: featureAbility.Context, cameraInfo: camera.Camer
   session.addOutput(photoOutput);
   await session.commitConfig();
   await session.start();
-  await previewOutput.addDeferredSurface(surfaceId);
+  await previewOutput.addDeferredSurface(previewSurfaceId);
 }
 ```
 
@@ -83,7 +83,7 @@ async function preview(context: featureAbility.Context, cameraInfo: camera.Camer
 ![](figures/quick-thumbnail-sequence-diagram.png)
 
 [各类Context的获取方式](../application-models/application-context-stage.md)
-```js
+```ts
 import camera from '@ohos.multimedia.camera';
 import { BusinessError } from '@ohos.base';
 import image from '@ohos.multimedia.image';
@@ -152,7 +152,7 @@ function showOrSavePicture(pixelMap: image.PixelMap): void {
 
 - **桌面应用**
 
-  ```js
+  ```ts
   import camera from '@ohos.multimedia.camera';
   import { BusinessError } from '@ohos.base';
   import featureAbility from '@ohos.ability.featureAbility';
@@ -174,20 +174,29 @@ function showOrSavePicture(pixelMap: image.PixelMap): void {
 
   具体申请方式及校验方式，请参考[访问控制授权申请指导](../security/accesstoken-guidelines.md)。
 
-  ```js
+  ```ts
   import camera from '@ohos.multimedia.camera';
   import { BusinessError } from '@ohos.base';
   import featureAbility from '@ohos.ability.featureAbility';
 
   function setPreLaunchConfig(context: featureAbility.Context): void {
     let cameraManager: camera.CameraManager = camera.getCameraManager(context);
-    let cameras: Array<camera.CameraDevice> = cameraManager.getSupportedCameras();
+    let cameras: Array<camera.CameraDevice> = [];
+    try {
+      cameras = cameraManager.getSupportedCameras()
+    } catch (error) {
+      let err = error as BusinessError;
+      console.error(`getSupportedCameras catch error: Code: ${err.code}, message: ${err.message}`);
+    }
+    if (cameras.length <= 0) {
+      return;
+    }
     if(cameraManager.isPrelaunchSupported(cameras[0])) {
       try {
         cameraManager.setPrelaunchConfig({cameraDevice: cameras[0]});
       } catch (error) {
         let err = error as BusinessError;
-        console.error(`catch error: Code: ${err.code}, message: ${err.message}`);
+        console.error(`setPrelaunchConfig catch error: Code: ${err.code}, message: ${err.message}`);
       }
     }
   }

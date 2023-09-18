@@ -39,6 +39,7 @@ export default class Handle {
 }
 ```
 
+
 业务使用TaskPool调用相关同步方法的代码。
 
 
@@ -52,8 +53,6 @@ import Handle from './Handle'; // 返回静态句柄
 function func(num: number): boolean {
   // 调用静态类对象中实现的同步等待调用
   Handle.syncSet(num);
-  // 或者调用单例对象中实现的同步等待调用
-  Handle.getInstance().syncGet();
   return true;
 }
 
@@ -95,75 +94,78 @@ struct Index {
 
 1. 在主线程中创建Worker对象，同时接收Worker线程发送回来的消息。
 
-   ```js
-   import worker from '@ohos.worker';
+    ```ts
+    import worker from '@ohos.worker';
+    
+    @Entry
+    @Component
+    struct Index {
+      @State message: string = 'Hello World';
+    
+      build() {
+        Row() {
+          Column() {
+            Text(this.message)
+              .fontSize(50)
+              .fontWeight(FontWeight.Bold)
+              .onClick(() => {
+                let w: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/MyWorker.ts');
+                w.onmessage = (): void => {
+                  // 接收Worker子线程的结果
+                }
+                w.onerror = (): void => {
+                  // 接收Worker子线程的错误信息
+                }
+                // 向Worker子线程发送Set消息
+                w.postMessage({'type': 0, 'data': 'data'})
+                // 向Worker子线程发送Get消息
+                w.postMessage({'type': 1})
+                // 销毁线程
+                w.terminate()
+              })
+          }
+          .width('100%')
+        }
+        .height('100%')
+      }
+    }
+    ```
 
-   @Entry
-   @Component
-   struct Index {
-     @State message: string = 'Hello World';
-
-     build() {
-       Row() {
-         Column() {
-           Text(this.message)
-             .fontSize(50)
-             .fontWeight(FontWeight.Bold)
-             .onClick(() => {
-               let w: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/MyWorker.ts');
-               w.onmessage = function (d) {
-                 // 接收Worker子线程的结果
-               }
-               w.onerror = function (d) {
-                 // 接收Worker子线程的错误信息
-               }
-               // 向Worker子线程发送Set消息
-               w.postMessage({'type': 0, 'data': 'data'})
-               // 向Worker子线程发送Get消息
-               w.postMessage({'type': 1})
-               // 销毁线程
-               w.terminate()
-             })
-         }
-         .width('100%')
-       }
-       .height('100%')
-     }
-   }
-   ```
 
 2. 在Worker线程中绑定Worker对象，同时处理同步任务逻辑。
 
-   ```js
-   // handle.ts代码
-   export default class Handle {
-     syncGet() {
-       return;
+    ```ts
+    // handle.ts代码
+    export default class Handle {
+      syncGet() {
+        return;
+      }
+    
+      syncSet(num: number) {
+        return;
+      }
+    }
+    ```
+    
+    ```ts
+    // Worker.ts代码
+    import worker, { ThreadWorkerGlobalScope, MessageEvents } from '@ohos.worker';
+    import Handle from './handle'  // 返回句柄
+    
+    let workerPort : ThreadWorkerGlobalScope = worker.workerPort;
+    
+    // 无法传输的句柄，所有操作依赖此句柄
+    let handler: Handle = new Handle()
+    
+    // Worker线程的onmessage逻辑
+    workerPort.onmessage = (e : MessageEvents): void => {
+     switch (e.data.type as number) {
+      case 0:
+       handler.syncSet(e.data.data);
+       workerPort.postMessage('success set');
+      case 1:
+       handler.syncGet();
+       workerPort.postMessage('success get');
      }
-
-     syncSet(num: number) {
-       return;
-     }
-   }
-
-   // Worker.ts代码
-   import worker, { ThreadWorkerGlobalScope, MessageEvents } from '@ohos.worker';
-   import Handle from './handle.ts'  // 返回句柄
-
-   var workerPort : ThreadWorkerGlobalScope = worker.workerPort;
-
-   // 无法传输的句柄，所有操作依赖此句柄
-   var handler = new Handle()
-
-   // Worker线程的onmessage逻辑
-   workerPort.onmessage = function(e : MessageEvents) {
-     switch (e.data.type) {
-       case 0:
-         handler.syncSet(e.data.data);
-         workerPort.postMessage('success set');
-       case 1:
-         handler.syncGet();
-         workerPort.postMessage('success get');
-     }
-   }
-   ```
+    }
+    ```

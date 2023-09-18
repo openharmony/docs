@@ -212,7 +212,7 @@ PlainArray进行增、删、改、查操作的常用API如下：
 此处列举常用的非线性容器HashMap、TreeMap、LightWeightMap、PlainArray的使用示例，包括导入模块、增加元素、访问元素及修改等操作，示例代码如下所示：
 
 
-```js
+```ts
 // HashMap
 import HashMap from '@ohos.util.HashMap'; // 导入HashMap模块
 

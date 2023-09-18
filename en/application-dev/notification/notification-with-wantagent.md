@@ -40,7 +40,7 @@ For details about the APIs, see [@ohos.app.ability.wantAgent](../reference/apis/
    Scenario 1: Create a [WantAgentInfo](../reference/apis/js-apis-inner-wantAgent-wantAgentInfo.md) object for starting a UIAbility component.
 
    ```typescript
-   let wantAgentObj:WantAgent = null; // Save the WantAgent object created. It will be used to complete the trigger operations.
+   let wantAgentObj:WantAgent; // Save the WantAgent object created. It will be used to complete the trigger operations.
    
    // Set the action type through operationType of WantAgentInfo.
    let wantAgentInfo:wantAgent.WantAgentInfo = {
@@ -64,7 +64,7 @@ For details about the APIs, see [@ohos.app.ability.wantAgent](../reference/apis/
    Scenario 2: Create a [WantAgentInfo](../reference/apis/js-apis-inner-wantAgent-wantAgentInfo.md) object for publishing a [common event](../application-models/common-event-overview.md).
 
    ```typescript
-   let wantAgentObj:WantAgent = null; // Save the WantAgent object created. It will be used to complete the trigger operations.
+   let wantAgentObj:WantAgent; // Save the WantAgent object created. It will be used to complete the trigger operations.
    
    // Set the action type through operationType of WantAgentInfo.
    let wantAgentInfo:wantAgent.WantAgentInfo = {

@@ -31,7 +31,7 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 
 onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void;
 
-UIAbility创建时回调，执行初始化业务逻辑操作。
+UIAbility实例处于完全关闭状态下被创建完成后进入该生命周期回调，执行初始化业务逻辑操作。即UIAbility实例[冷启动](../../application-models/uiability-intra-device-interaction.md#目标uiability冷启动)时进入该生命周期回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -250,7 +250,7 @@ onContinue(wantParam: { [key: string]: Object }): AbilityConstant.OnContinueResu
 
 onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam): void;
 
-当传入新的Want，ability再次被拉起时会回调执行该方法。
+UIAbility实例已经启动并在前台运行过，由于某些原因切换到后台，再次启动该UIAbility实例时会回调执行该方法。即UIAbility实例[热启动](../../application-models/uiability-intra-device-interaction.md#目标uiability热启动)时进入该生命周期回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -413,6 +413,32 @@ UIAbility生命周期回调，当系统预关闭开关打开后（配置系统�
         })
 
       return true; // 已定义预关闭操作后，返回true表示UIAbility取消关闭
+    }
+  }
+  ```
+
+## UIAbility.onBackPressed<sup>10+</sup>
+
+onBackPressed(): boolean;
+
+UIAbility生命周期回调，当UIAbility侧滑返回时触发。根据返回值决定是否销毁UIAbility，默认为销毁UIAbility。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
+
+**返回值：**
+
+| 类型 | 说明 |
+| -- | -- |
+| boolean | 返回true表示UIAbility将会被移到后台不销毁，返回false表示UIAbility将正常销毁。 |
+
+**示例：**
+
+  ```ts
+  import UIAbility from '@ohos.app.ability.UIAbility';
+
+  export default class EntryAbility extends UIAbility {
+    onBackPressed() {
+      return true;
     }
   }
   ```

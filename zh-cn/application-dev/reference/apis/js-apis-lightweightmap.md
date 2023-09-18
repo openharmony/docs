@@ -666,7 +666,7 @@ let lightWeightMap: LightWeightMap<string, number> = new LightWeightMap();
 lightWeightMap.set("squirrel", 123);
 lightWeightMap.set("sparrow", 356);
 let iter = lightWeightMap.keys();
-let temp = iter.next();
+let temp: IteratorResult<string, number> = iter.next();
 while(!temp.done) {
   console.log("value:" + temp.value);
   temp = iter.next();
@@ -703,7 +703,7 @@ let lightWeightMap: LightWeightMap<string, number> = new LightWeightMap();
 lightWeightMap.set("squirrel", 123);
 lightWeightMap.set("sparrow", 356);
 let iter = lightWeightMap.values();
-let temp = iter.next();
+let temp: IteratorResult<number> = iter.next();
 while(!temp.done) {
   console.log("value:" + temp.value);
   temp = iter.next();
@@ -747,7 +747,7 @@ callbackfn的参数说明：
 let lightWeightMap: LightWeightMap<string, number> = new LightWeightMap();
 lightWeightMap.set("sparrow", 123);
 lightWeightMap.set("gull", 357);
-lightWeightMap.forEach((value: number, key: string) => {
+lightWeightMap.forEach((value?: number, key?: string) => {
   console.log("value:" + value, "key:" + key);
 });
 ```
@@ -782,7 +782,7 @@ let lightWeightMap: LightWeightMap<string, number> = new LightWeightMap();
 lightWeightMap.set("squirrel", 123);
 lightWeightMap.set("sparrow", 356);
 let iter = lightWeightMap.entries();
-let temp = iter.next();
+let temp: IteratorResult<Object[]> = iter.next();
 while(!temp.done) {
   console.log("key:" + temp.value[0]);
   console.log("value:" + temp.value[1]);
@@ -863,7 +863,7 @@ for (let item2 of key) {
 
 // 使用方法二：
 let iter = lightWeightMap[Symbol.iterator]();
-let temp = iter.next();
+let temp: IteratorResult<Object[]> = iter.next();
 while(!temp.done) {
   console.log("key:" + temp.value[0]);
   console.log("value:" + temp.value[1]);

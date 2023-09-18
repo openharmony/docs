@@ -34,13 +34,13 @@ PersistentStorage和UIContext相关联，需要在[UIContext](../reference/apis/
 1. 初始化PersistentStorage：
 
    ```ts
-   PersistentStorage.PersistProp('aProp', 47);
+   PersistentStorage.persistProp('aProp', 47);
    ```
 
 2. 在AppStorage获取对应属性：
 
    ```ts
-   AppStorage.Get<number>('aProp'); // returns 47
+   AppStorage.get<number>('aProp'); // returns 47
    ```
 
    或在组件内部定义：
@@ -54,7 +54,7 @@ PersistentStorage和UIContext相关联，需要在[UIContext](../reference/apis/
 
 
 ```ts
-PersistentStorage.PersistProp('aProp', 47);
+PersistentStorage.persistProp('aProp', 47);
 
 @Entry
 @Component
@@ -78,7 +78,7 @@ struct Index {
 ```
 
 - 新应用安装后首次启动运行：
-  1. 调用PersistProp初始化PersistentStorage，首先查询在PersistentStorage本地文件中是否存在“aProp”，查询结果为不存在，因为应用是第一次安装。
+  1. 调用persistProp初始化PersistentStorage，首先查询在PersistentStorage本地文件中是否存在“aProp”，查询结果为不存在，因为应用是第一次安装。
   2. 接着查询属性“aProp”在AppStorage中是否存在，依旧不存在。
   3. 在AppStorge中创建名为“aProp”的number类型属性，属性初始值是定义的默认值47。
   4. PersistentStorage将属性“aProp”和值47写入磁盘，AppStorage中“aProp”对应的值和其后续的更改将被持久化。
@@ -95,21 +95,21 @@ struct Index {
   4. 因为“aProp”对应的属性已经被持久化，所以在AppStorage中“aProp”的改变会触发PersistentStorage，将新的改变写入本地磁盘。
 
 - 后续启动应用：
-  1. 执行PersistentStorage.PersistProp('aProp', 47)，在首先查询在PersistentStorage本地文件查询“aProp”属性，成功查询到。
+  1. 执行PersistentStorage.persistProp('aProp', 47)，在首先查询在PersistentStorage本地文件查询“aProp”属性，成功查询到。
   2. 将在PersistentStorage查询到的值写入AppStorage中。
   3. 在Index组件里，\@StorageLink绑定的“aProp”为PersistentStorage写入AppStorage中的值，即为上一次退出引用存入的值。
 
 
 ### 在PersistentStorage之前访问AppStorage中的属性
 
-该示例为反例。在调用PersistentStorage.PersistProp或者PersistProps之前使用接口访问AppStorage中的属性是错误的，因为这样的调用顺序会丢失上一次应用程序运行中的属性值：
+该示例为反例。在调用PersistentStorage.persistProp或者persistProps之前使用接口访问AppStorage中的属性是错误的，因为这样的调用顺序会丢失上一次应用程序运行中的属性值：
 
 
 ```ts
-let aProp = AppStorage.SetOrCreate('aProp', 47);
-PersistentStorage.PersistProp('aProp', 48);
+let aProp = AppStorage.setOrCreate('aProp', 47);
+PersistentStorage.persistProp('aProp', 48);
 ```
 
-应用在非首次运行时，先执行AppStorage.SetOrCreate('aProp', 47)：属性“aProp”在AppStorage中创建，其类型为number，其值设置为指定的默认值47。'aProp'是持久化的属性，所以会被写回PersistentStorage磁盘中，PersistentStorage存储的上次退出应用的值丢失。
+应用在非首次运行时，先执行AppStorage.setOrCreate('aProp', 47)：属性“aProp”在AppStorage中创建，其类型为number，其值设置为指定的默认值47。'aProp'是持久化的属性，所以会被写回PersistentStorage磁盘中，PersistentStorage存储的上次退出应用的值丢失。
 
-PersistentStorage.PersistProp('aProp', 48)：在PersistentStorage中查找到“aProp”，找到，值为47。
+PersistentStorage.persistProp('aProp', 48)：在PersistentStorage中查找到“aProp”，找到，值为47。

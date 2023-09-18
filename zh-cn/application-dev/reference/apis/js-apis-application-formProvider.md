@@ -10,7 +10,6 @@ FormProvider模块提供了卡片提供方相关接口的能力，开发者在�
 
 ```ts
 import formProvider from '@ohos.application.formProvider';
-import Base from '@ohos.base'
 ```
 
 ## setFormNextRefreshTime
@@ -32,6 +31,8 @@ setFormNextRefreshTime(formId: string, minute: number, callback: AsyncCallback&l
 **示例：**
 
   ```ts
+  import Base from '@ohos.base';
+
   let formId: string = '12400633174999288';
   formProvider.setFormNextRefreshTime(formId, 5, (error: Base.BusinessError) => {
     if (error.code) {
@@ -64,6 +65,8 @@ setFormNextRefreshTime(formId: string, minute: number): Promise&lt;void&gt;
 **示例：**
 
   ```ts
+  import Base from '@ohos.base';
+
   let formId: string = '12400633174999288';
   formProvider.setFormNextRefreshTime(formId, 5).then(() => {
     console.log('formProvider setFormNextRefreshTime success');
@@ -91,18 +94,15 @@ updateForm(formId: string, formBindingData: formBindingData.FormBindingData,call
 **示例：**
 
   ```ts
-  import formBindingData from '@ohos.app.form.formBindingData';
+  import Base from '@ohos.base';
+  import formBindingData from '@ohos.application.formBindingData';
 
-  let formId = '12400633174999288';
-  class createBindingDataType {
-    temperature: string
-    time: string
-  };
-  let createBindingDataParam: createBindingDataType = {
-    temperature:'22c',
-    time:'22:00'
-  };
-  let obj = formBindingData.createFormBindingData(createBindingDataParam);
+  let formId: string = '12400633174999288';
+  let param: Record<string, string> = {
+    'temperature': '22c',
+    'time': '22:00'
+  }
+  let obj: formBindingData.FormBindingData = formBindingData.createFormBindingData(param);
   formProvider.updateForm(formId, obj, (error: Base.BusinessError) => {
     if (error.code) {
       console.error(`formProvider updateForm, error: ${JSON.stringify(error)}`);
@@ -134,18 +134,15 @@ updateForm(formId: string, formBindingData: formBindingData.FormBindingData): Pr
 **示例：**
 
   ```ts
+  import Base from '@ohos.base';
   import formBindingData from '@ohos.application.formBindingData';
 
   let formId: string = '12400633174999288';
-  class createBindingDataType {
-    temperature: string
-    time: string
-  };
-  let createBindingDataParam: createBindingDataType = {
-    temperature:'22c',
-    time:'22:00'
-  };
-  let obj = formBindingData.createFormBindingData(createBindingDataParam);
+  let param: Record<string, string> = {
+    'temperature': '22c',
+    'time': '22:00'
+  }
+  let obj: formBindingData.FormBindingData = formBindingData.createFormBindingData(param);
   formProvider.updateForm(formId, obj).then(() => {
     console.log('formProvider updateForm success');
   }).catch((error: Base.BusinessError) => {

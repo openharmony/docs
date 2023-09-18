@@ -25,7 +25,7 @@ Shows a date picker dialog box.
 | selected | Date | No| Selected date.<br>Default value: current system date|
 | lunar | boolean | No| Whether to display the lunar calendar.<br>Default value: **false**|
 | showTime<sup>10+</sup> | boolean | No| Whether to display the time item.<br>Default value: **false**|
-| useMilitaryTime<sup>10+</sup> | boolean | No| Whether to display time in 24-hour format.<br>Default value: **false**|
+| useMilitaryTime<sup>10+</sup> | boolean | No| Whether to display time in 24-hour format.<br>Default value: **false**<br>**NOTE**<br>When in the 12-hour format, the AM/PM zone does not change depending on the hour portion.|
 | disappearTextStyle<sup>10+</sup> | [PickerTextStyle](ts-basic-components-datepicker.md#pickertextstyle10) | No| Font color, font size, and font width for the top and bottom items.<br>Default value:<br>{<br>color: '#ff182431',<br>font: {<br>size: '14fp', <br>weight: FontWeight.Regular<br>}<br>} |
 | textStyle<sup>10+</sup> | [PickerTextStyle](ts-basic-components-datepicker.md#pickertextstyle10) | No| Font color, font size, and font width of all items except the top, bottom, and selected items.<br>Default value:<br>{<br>color: '#ff182431',<br>font: {<br>size: '16fp', <br>weight: FontWeight.Regular<br>}<br>} |
 | selectedTextStyle<sup>10+</sup> | [PickerTextStyle](ts-basic-components-datepicker.md#pickertextstyle10) | No| Font color, font size, and font width of the selected item.<br>Default value:<br>{<br>color: '#ff007dff',<br>font: {<br>size: '20vp', <br>weight: FontWeight.Medium<br>}<br>} |

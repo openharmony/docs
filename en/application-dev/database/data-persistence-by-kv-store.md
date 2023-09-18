@@ -43,14 +43,16 @@ The following table lists the APIs used for KV data persistence. Most of the API
    import distributedKVStore from '@ohos.data.distributedKVStore';
    
    // Stage model
+   import window from '@ohos.window';
    import UIAbility from '@ohos.app.ability.UIAbility';
+   import { BusinessError } from '@ohos.base';
    
-   let kvManager;
+   let kvManager: distributedKVStore.KVManager | undefined = undefined;
    
    export default class EntryAbility extends UIAbility {
      onCreate() {
        let context = this.context;
-       const kvManagerConfig = {
+       const kvManagerConfig: distributedKVStore.KVManagerConfig = {
          context: context,
          bundleName: 'com.example.datamanagertest'
        };
@@ -60,9 +62,15 @@ The following table lists the APIs used for KV data persistence. Most of the API
          console.info('Succeeded in creating KVManager.');
          // Create and obtain the database.
        } catch (e) {
-         console.error(`Failed to create KVManager. Code:${e.code},message:${e.message}`);
+         let error = e as BusinessError;
+         console.error(`Failed to create KVManager. Code:${error.code},message:${error.message}`);
        }
      }
+   }
+   if (kvManager !== undefined) {
+      kvManager = kvManager as distributedKVStore.KVManager;
+     // Perform subsequent operations.
+     //...
    }
    ```
 
@@ -76,9 +84,9 @@ The following table lists the APIs used for KV data persistence. Most of the API
    // FA model
    import featureAbility from '@ohos.ability.featureAbility';
    
-   let kvManager;
+   let kvManager: distributedKVStore.KVManager | undefined = undefined;
    let context = featureAbility.getContext(); // Obtain the context.
-   const kvManagerConfig = {
+   const kvManagerConfig: distributedKVStore.KVManagerConfig = {
      context: context,
      bundleName: 'com.example.datamanagertest'
    };
@@ -87,34 +95,50 @@ The following table lists the APIs used for KV data persistence. Most of the API
      console.info('Succeeded in creating KVManager.');
      // Create and obtain the database.
    } catch (e) {
-     console.error(`Failed to create KVManager. Code:${e.code},message:${e.message}`);
+      let error = e as BusinessError;
+      console.error(`Failed to create KVManager. Code:${error.code},message:${error.message}`);
    }
+   if (kvManager !== undefined) {
+     kvManager = kvManager as distributedKVStore.KVManager;
+     // Perform subsequent operations.
+     //...
+   }
+
    ```
 
 2. Create and obtain a KV store. 
      
    Example:
    ```js
+   let kvStore: distributedKVStore.SingleKVStore | undefined = undefined;
    try {
-     const options = {
-       createIfMissing: true, // Whether to create a KV store when the database file does not exist. By default, a KV store is created.
-       encrypt: false, // Whether to encrypt the KV store. By default, KV stores are not encrypted.
-       backup: false, // Whether to back up database files. By default, the database files are backed up.
-       autoSync: true, // Whether to automatically synchronize database files. The value **true** means to automatically synchronize database files; the value **false** (default) means the opposite.
-       kvStoreType: distributedKVStore.KVStoreType.SINGLE_VERSION, // Type of the KV store to create. By default, a device KV store is created.
-       securityLevel: distributedKVStore.SecurityLevel.S2 // Security level of the KV store.
+     const options: distributedKVStore.Options = {
+       createIfMissing: true,
+       encrypt: false,
+       backup: false,
+       autoSync: false,
+       // If kvStoreType is left empty, a device KV store is created by default.
+       kvStoreType: distributedKVStore.KVStoreType.SINGLE_VERSION,
+       // Device KV store: kvStoreType: distributedKVStore.KVStoreType.DEVICE_COLLABORATION,
+       securityLevel: distributedKVStore.SecurityLevel.S1
      };
-     // storeId uniquely identifies a KV store.
-     kvManager.getKVStore('storeId', options, (err, kvStore) => {
+     kvManager.getKVStore<distributedKVStore.SingleKVStore>('storeId', options, (err, store: distributedKVStore.SingleKVStore) => {
        if (err) {
-         console.error(`Failed to get KVStore. Code:${err.code},message:${err.message}`);
+         console.error(`Failed to get KVStore: Code:${err.code},message:${err.message}`);
          return;
        }
        console.info('Succeeded in getting KVStore.');
-       // Perform related data operations.
+       kvStore = store;
+       // Before performing related data operations, obtain a KV store instance.
      });
    } catch (e) {
-     console.error(`An unexpected error occurred. Code:${e.code},message:${e.message}`);
+     let error = e as BusinessError;
+     console.error(`An unexpected error occurred. Code:${error.code},message:${error.message}`);
+   }
+   if (kvStore !== undefined) {
+     kvStore = kvStore as distributedKVStore.SingleKVStore;
+       // Perform subsequent operations.
+       //...
    }
    ```
 
@@ -133,7 +157,8 @@ The following table lists the APIs used for KV data persistence. Most of the API
        console.info('Succeeded in putting data.');
      });
    } catch (e) {
-     console.error(`An unexpected error occurred. Code:${e.code},message:${e.message}`);
+     let error = e as BusinessError;
+     console.error(`An unexpected error occurred. Code:${error.code},message:${error.message}`);
    }
    ```
 
@@ -154,16 +179,18 @@ The following table lists the APIs used for KV data persistence. Most of the API
          return;
        }
        console.info('Succeeded in putting data.');
+       kvStore = kvStore as distributedKVStore.SingleKVStore;
        kvStore.get(KEY_TEST_STRING_ELEMENT, (err, data) => {
-         if (err !== undefined) {
+         if (err != undefined) {
            console.error(`Failed to get data. Code:${err.code},message:${err.message}`);
            return;
          }
-         console.info(`Succeeded in getting data. data:${data}`);
+         console.info(`Succeeded in getting data. Data:${data}`);
        });
      });
    } catch (e) {
-     console.error(`Failed to get data. Code:${e.code},message:${e.message}`);
+     let error = e as BusinessError;
+     console.error(`Failed to get data. Code:${error.code},message:${error.message}`);
    }
    ```
 
@@ -180,6 +207,7 @@ The following table lists the APIs used for KV data persistence. Most of the API
          return;
        }
        console.info('Succeeded in putting data.');
+       kvStore = kvStore as distributedKVStore.SingleKVStore;
        kvStore.delete(KEY_TEST_STRING_ELEMENT, (err) => {
          if (err !== undefined) {
            console.error(`Failed to delete data. Code:${err.code},message:${err.message}`);
@@ -189,6 +217,7 @@ The following table lists the APIs used for KV data persistence. Most of the API
        });
      });
    } catch (e) {
-     console.error(`An unexpected error occurred. Code:${e.code},message:${e.message}`);
+     let error = e as BusinessError;
+     console.error(`An unexpected error occurred. Code:${error.code},message:${error.message}`);
    }
    ```

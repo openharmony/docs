@@ -33,6 +33,17 @@ Run the following command to push files:
 hdc file send ${Path of the local files to send} /data/app/el1/bundle/public/com.ohos.example/
 ```
 
+After the file is pushed, set **user_id** and **group_id** of the file to the **user_id** of the application. You can run the following command to query the **user_id** of the application. The value in the first column of the process is the **user_id** of the application.
+
+```
+ps -ef | grep com.ohos.example
+```
+
+Run the following command to set **user_id** and **group_id**:
+```
+chown ${user_id}:${user_id} ${file_path}
+```
+
 ## Switching to the Application View
 
 During the debugging process, if the required permission is unavailable or the file does not exist, you need to switch from the process view to the application view and further analyze permission and directory problems. To switch to the application view, run the following commands:

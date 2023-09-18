@@ -1433,37 +1433,35 @@ For details about the error codes, see [Universal Error Codes](../errorcodes/err
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
 
 async function example() {
-  console.info('getPhotoIndexDemo');
-  let predicatesForGetAsset = new dataSharePredicates.DataSharePredicates();
-  let fetchOp = {
-    fetchColumns: [],
-    predicates: predicatesForGetAsset
-  };
-  //Obtain the uri of the album
-  let albumFetchResult = await mgr.getAlbums(userFileManager.AlbumType.SYSTEM, userFileManager.AlbumSubtype.FAVORITE, fetchOp);
-  let album = await albumFetchResult.getFirstObject();
-
-  let predicates = new dataSharePredicates.DataSharePredicates();
-  predicates.orderByAsc("add_modified");
-  let fetchOptions = {
-    fetchColumns: [],
-    predicates: predicates
-  };
-  let photoFetchResult = await album.getPhotoAssets(fetchOptions);
-  let expectIndex = 1;
-  //Obtain the uri of the second file
-  let photoAsset = await photoFetchResult.getPositionObject(expectIndex);
-
-  mgr.getPhotoIndex(photoAsset.uri, album.albumUri, fetchOptions, (err, index) => {
-    try {
+  try {
+    console.info('getPhotoIndexDemo');
+    let predicatesForGetAsset = new dataSharePredicates.DataSharePredicates();
+    let fetchOp = {
+      fetchColumns: [],
+      predicates: predicatesForGetAsset
+    };
+    // Obtain the uri of the album
+    let albumFetchResult = await mgr.getAlbums(userFileManager.AlbumType.SYSTEM, userFileManager.AlbumSubType.FAVORITE, fetchOp);
+    let album = await albumFetchResult.getFirstObject();
+    let predicates = new dataSharePredicates.DataSharePredicates();
+    predicates.orderByAsc(userFileManager.ImageVideoKey.DATE_MODIFIED);
+    let fetchOptions = {
+      fetchColumns: [userFileManager.ImageVideoKey.DATE_MODIFIED],
+      predicates: predicates
+    };
+    let photoFetchResult = await album.getPhotoAssets(fetchOptions);
+    let expectIndex = 1;
+    // Obtain the uri of the second file
+    let photoAsset = await photoFetchResult.getPositionObject(expectIndex);
+    mgr.getPhotoIndex(photoAsset.uri, album.albumUri, fetchOptions, (err, index) => {
       if (err == undefined) {
         console.info(`getPhotoIndex successfully and index is : ${index}`);
       } else {
         console.info(`getPhotoIndex failed;`);
       }
-    } catch (error) {
-      console.info(`getPhotoIndex failed; error: ${error}`);
-    }
+    });
+  } catch (error) {
+    console.info(`getPhotoIndex failed; error: ${error}`);
   }
 }
 ```
@@ -1508,33 +1506,34 @@ For details about the error codes, see [Universal Error Codes](../errorcodes/err
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
 
 async function example() {
-  console.info('getPhotoIndexDemo');
-  let predicatesForGetAsset = new dataSharePredicates.DataSharePredicates();
-  let fetchOp = {
-    fetchColumns: [],
-    predicates: predicatesForGetAsset
-  };
-  //Obtain the uri of the album
-  let albumFetchResult = await mgr.getAlbums(userFileManager.AlbumType.SYSTEM, userFileManager.AlbumSubtype.FAVORITE, fetchOp);
-  let album = await albumFetchResult.getFirstObject();
-
-  let predicates = new dataSharePredicates.DataSharePredicates();
-  predicates.orderByAsc("add_modified");
-  let fetchOptions = {
-    fetchColumns: [],
-    predicates: predicates
-  };
-  let photoFetchResult = await album.getPhotoAssets(fetchOptions);
-  let expectIndex = 1;
-  //Obtain the uri of the second file
-  let photoAsset = await photoFetchResult.getPositionObject(expectIndex);
-
-  mgr.getPhotoIndex(photoAsset.uri, album.albumUri, fetchOptions)
-    .then((index) => {
-        console.info(`getPhotoIndex successfully and index is : ${index}`);
-      }).catch((err) => {
+  try {
+    console.info('getPhotoIndexDemo');
+    let predicatesForGetAsset = new dataSharePredicates.DataSharePredicates();
+    let fetchOp = {
+      fetchColumns: [],
+      predicates: predicatesForGetAsset
+    };
+    // Obtain the uri of the album
+    let albumFetchResult = await mgr.getAlbums(userFileManager.AlbumType.SYSTEM, userFileManager.AlbumSubType.FAVORITE, fetchOp);
+    let album = await albumFetchResult.getFirstObject();
+    let predicates = new dataSharePredicates.DataSharePredicates();
+    predicates.orderByAsc(userFileManager.ImageVideoKey.DATE_MODIFIED);
+    let fetchOptions = {
+      fetchColumns: [userFileManager.ImageVideoKey.DATE_MODIFIED],
+      predicates: predicates
+    };
+    let photoFetchResult = await album.getPhotoAssets(fetchOptions);
+    let expectIndex = 1;
+    // Obtain the uri of the second file
+    let photoAsset = await photoFetchResult.getPositionObject(expectIndex);
+    mgr.getPhotoIndex(photoAsset.uri, album.albumUri, fetchOptions).then((index) => {
+      console.info(`getPhotoIndex successfully and index is : ${index}`);
+    }).catch((err) => {
       console.info(`getPhotoIndex failed; error: ${err}`);
-    })
+    });
+  } catch (error) {
+    console.info(`getPhotoIndex failed; error: ${error}`);
+  }
 }
 ```
 
@@ -2565,15 +2564,18 @@ async function example() {
   try {
     console.info('getExifDemo');
     let predicates = new dataSharePredicates.DataSharePredicates();
+    predicates.isNotNull('all_exif') 
     let fetchOptions = {
-      fetchColumns: [ 'all_exif',  ImageVideoKey.USER_COMMENT],
+      fetchColumns: ['all_exif', userFileManager.ImageVideoKey.USER_COMMENT],
       predicates: predicates
     };
     let fetchResult = await mgr.getPhotoAssets(fetchOptions);
     let fileAsset = await fetchResult.getFirstObject();
+    console.info('getExifDemo fileAsset displayName: ' + JSON.stringify(fileAsset.displayName));
     let exifMessage = await fileAsset.getExif();
     let userCommentKey = 'UserComment';
     let userComment = JSON.stringify(JSON.parse(exifMessage), [userCommentKey]);
+    console.info('getExifDemo userComment: ' + JSON.stringify(userComment));
     fetchResult.close();
   } catch (err) {
     console.error('getExifDemoCallback failed with error: ' + err);
@@ -2651,16 +2653,19 @@ async function example() {
   try {
     console.info('getExifDemo');
     let predicates = new dataSharePredicates.DataSharePredicates();
+    predicates.isNotNull('all_exif')
     let fetchOptions = {
-      fetchColumns: [ 'all_exif',  ImageVideoKey.USER_COMMENT],
+      fetchColumns: ['all_exif', userFileManager.ImageVideoKey.USER_COMMENT],
       predicates: predicates
     };
     let fetchResult = await mgr.getPhotoAssets(fetchOptions);
     let fileAsset = await fetchResult.getFirstObject();
+    console.info('getExifDemo fileAsset displayName: ' + JSON.stringify(fileAsset.displayName));
     let userCommentKey = 'UserComment';
     fileAsset.getExif((err, exifMessage) => {
       if (exifMessage != undefined) {
         let userComment = JSON.stringify(JSON.parse(exifMessage), [userCommentKey]);
+        console.info('getExifDemo userComment: ' + JSON.stringify(userComment));
       } else {
         console.error('getExif failed, message = ', err);
       }

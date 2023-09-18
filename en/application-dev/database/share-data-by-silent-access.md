@@ -33,7 +33,7 @@ The DatamgrService can serve as a proxy to access the following types of data:
 | Persistent data| Sandbox of the data provider | Tables in the database   | Permanent storage        | RDB data applications, such as schedules and conferences.     |
 | Process data | DatamgrService sandbox| JSON or byte| Automatically deleted 10 days after no subscription| Applications featuring simple and time-sensitive data, such as step count, weather, and heart rate.|
 
-
+​
 
 **Figure 1** Silent access
 
@@ -42,11 +42,10 @@ The DatamgrService can serve as a proxy to access the following types of data:
 - In silent access, **DatamgrService** obtains the access rules configured by the data provider through directory mapping, performs preprocessing based on rules, and accesses the database.
 
 - To use silent access, the URIs must be in the following format:
-  
-datashareproxy://{bundleName}/{dataPath}
-  
-The **DatamgrService** obtains the data provider application based on **bundleName**, reads the configuration, verifies the permission, and accesses data.
-  
+  datashareproxy://{bundleName}/{dataPath}
+
+  The **DatamgrService** obtains the data provider application based on **bundleName**, reads the configuration, verifies the permission, and accesses data.
+
   **dataPath** identifies the data. It can be customized and must be unique in the same data provider application.
 
 
@@ -143,25 +142,29 @@ The following describes how to share an RDB store.
 
 1. Import dependencies.
 
-   ```js
+   ```ts
    import dataShare from '@ohos.data.dataShare';
    import dataSharePredicates from '@ohos.data.dataSharePredicates';
+   import UIAbility from '@ohos.app.ability.UIAbility';
+   import { ValuesBucket } from '@ohos.data.ValuesBucket';
+   import window from '@ohos.window';
+   import { BusinessError } from '@ohos.base';
    ```
 
 2. Define the URI string for communicating with the data provider.
 
-   ```js
+   ```ts
    let dseUri = ('datashareproxy://com.acts.ohos.data.datasharetest/test');
    ```
 
 3. Create a **DataShareHelper** instance.
 
-   ```js
-   let dsHelper;
-   let abilityContext;
+   ```ts
+   let dsHelper: dataShare.DataShareHelper | undefined = undefined;
+   let abilityContext: Context;
 
    export default class EntryAbility extends UIAbility {
-     onWindowStageCreate(windowStage) {
+     onWindowStageCreate(windowStage: window.WindowStage) {
        abilityContext = this.context;
        dataShare.createDataShareHelper(abilityContext, "", {
          isProxy: true
@@ -174,60 +177,78 @@ The following describes how to share an RDB store.
 
 4. Use the APIs provided by **DataShareHelper** to access the services provided by the provider, for example, adding, deleting, modifying, and querying data.
 
-   ```js
+   ```ts
    // Construct a piece of data.
-   let valuesBucket = {
-     'name': 'ZhangSan', 'age': 21, 'isStudent': false, 'Binary': new Uint8Array([1, 2, 3])
-   };
-   let updateBucket = {
-     'name': 'LiSi', 'age': 18, 'isStudent': true, 'Binary': new Uint8Array([1, 2, 3])
-   };
+   let key1 = 'name';
+   let key2 = 'age';
+   let key3 = 'isStudent';
+   let key4 = 'Binary';
+   let valueName1 = 'ZhangSan';
+   let valueName2 = 'LiSi';
+   let valueAge1 = 21;
+   let valueAge2 = 18;
+   let valueIsStudent1 = false;
+   let valueIsStudent2 = true;
+   let valueBinary = new Uint8Array([1, 2, 3]);
+   let valuesBucket: ValuesBucket = { key1: valueName1, key2: valueAge1, key3: valueIsStudent1, key4: valueBinary };
+   let updateBucket: ValuesBucket = { key1: valueName2, key2: valueAge2, key3: valueIsStudent2, key4: valueBinary };
    let predicates = new dataSharePredicates.DataSharePredicates();
    let valArray = ['*'];
-   // Insert a piece of data.
-   dsHelper.insert(dseUri, valuesBucket, (err, data) => {
-     console.info(`dsHelper insert result:${data}`);
-   });
-   // Update data.
-   dsHelper.update(dseUri, predicates, updateBucket, (err, data) => {
-     console.info(`dsHelper update result:${data}`);
-   });
-   // Query data.
-   dsHelper.query(dseUri, predicates, valArray, (err, data) => {
-     console.info(`dsHelper query result:${data}`);
-   });
-   // Delete data.
-   dsHelper.delete(dseUri, predicates, (err, data) => {
-     console.info(`dsHelper delete result:${data}`);
-   });
+   if (dsHelper != undefined) {
+     // Insert a piece of data.
+     (dsHelper as dataShare.DataShareHelper).insert(dseUri, valuesBucket, (err, data) => {
+       console.info(`dsHelper insert result:${data}`);
+     });
+     // Update data.
+     (dsHelper as dataShare.DataShareHelper).update(dseUri, predicates, updateBucket, (err, data) => {
+       console.info(`dsHelper update result:${data}`);
+     });
+     // Query data.
+     (dsHelper as dataShare.DataShareHelper).query(dseUri, predicates, valArray, (err, data) => {
+       console.info(`dsHelper query result:${data}`);
+     });
+     // Delete data.
+     (dsHelper as dataShare.DataShareHelper).delete(dseUri, predicates, (err, data) => {
+       console.info(`dsHelper delete result:${data}`);
+     });
+   }
    ```
 
 5. Subscribe to the specified data.
 
-   ```js
-   function onCallback(err, node: dataShare.RdbDataChangeNode) {
-       console.info("uri " + JSON.stringify(node.uri));
-       console.info("templateId " + JSON.stringify(node.templateId));
-       console.info("data length " + node.data.length);
-       for (let i = 0; i < node.data.length; i++) {
-           console.info("data " + node.data[i]);
-       }
+   ```ts
+   function onCallback(err: BusinessError, node: dataShare.RdbDataChangeNode) {
+     console.info("uri " + JSON.stringify(node.uri));
+     console.info("templateId " + JSON.stringify(node.templateId));
+     console.info("data length " + node.data.length);
+     for (let i = 0; i < node.data.length; i++) {
+       console.info("data " + node.data[i]);
+     }
    }
 
-   let template = {
-       predicates: {
-           "p1": "select * from TBL00",
-           "p2": "select name from TBL00",
-       },
-       scheduler: ""
+   let key21: string = "p1";
+   let value21: string = "select * from TBL00";
+   let key22: string = "p2";
+   let value22: string = "select name from TBL00";
+   let template: dataShare.Template = {
+     predicates: {
+       key21: value21,
+       key22: value22,
+     },
+     scheduler: ""
    }
-   dsProxyHelper.addTemplate(dseUri, "111", template);
+   if(dsHelper != undefined)
+   {
+     (dsHelper as dataShare.DataShareHelper).addTemplate(dseUri, "111", template);
+   }
    let templateId: dataShare.TemplateId = {
-       subscriberId: "111",
-       bundleNameOfOwner: "com.acts.ohos.data.datasharetestclient"
+     subscriberId: "111",
+     bundleNameOfOwner: "com.acts.ohos.data.datasharetestclient"
    }
-   // When the DatamgrService modifies data, onCallback is invoked to return the data queried based on the rules in the template.
-   let result: Array<dataShare.OperationResult> = dsProxyHelper.on("rdbDataChange", [dseUri], templateId, onCallback);
+   if(dsHelper != undefined) {
+     // When the DatamgrService modifies data, onCallback is invoked to return the data queried based on the rules in the template.
+     let result: Array<dataShare.OperationResult> = (dsHelper as dataShare.DataShareHelper).on("rdbDataChange", [dseUri], templateId, onCallback);
+   }
    ```
 
 ## Implementation of the Process Data
@@ -268,18 +289,21 @@ In the **module.json5** file of the data provider, set the process data ID, read
 
 1. Import dependencies.
 
-   ```js
+   ```ts
    import dataShare from '@ohos.data.dataShare';
+   import UIAbility from '@ohos.app.ability.UIAbility';
+   import window from '@ohos.window';
+   import { BusinessError } from '@ohos.base';
    ```
 
 2. Create a **DataShareHelper** instance.
 
-   ```js
-   let dsHelper;
-   let abilityContext;
+   ```ts
+   let dsHelper: dataShare.DataShareHelper | undefined = undefined;
+   let abilityContext: Context;
 
    export default class EntryAbility extends UIAbility {
-     onWindowStageCreate(windowStage) {
+     onWindowStageCreate(windowStage: window.WindowStage) {
        abilityContext = this.context;
        dataShare.createDataShareHelper(abilityContext, "", {isProxy : true}, (err, data) => {
          dsHelper = data;
@@ -290,23 +314,27 @@ In the **module.json5** file of the data provider, set the process data ID, read
 
 3. Use the APIs provided by **DataShareHelper** to access the services provided by the provider, for example, adding, deleting, modifying, and querying data.
 
-   ```js
+   ```ts
    // Construct two pieces of data. The first data is not configured with proxyDatas and cannot be accessed by other applications.
    let data : Array<dataShare.PublishedItem> = [
      {key:"city", subscriberId:"11", data:"xian"},
      {key:"datashareproxy://com.acts.ohos.data.datasharetest/weather", subscriberId:"11", data:JSON.stringify("Qing")}];
    // Publish data.
-    let result: Array<dataShare.OperationResult> = await dsProxyHelper.publish(data, "com.acts.ohos.data.datasharetestclient");
+   if (dsHelper != undefined) {
+     let result: Array<dataShare.OperationResult> = await (dsHelper as dataShare.DataShareHelper).publish(data, "com.acts.ohos.data.datasharetestclient");
+   }
    ```
 
 4. Subscribe to the specified data.
 
-   ```js
-   function onPublishCallback(err, node:dataShare.PublishedDataChangeNode) {
-       console.info("onPublishCallback");
+   ```ts
+   function onPublishCallback(err: BusinessError, node:dataShare.PublishedDataChangeNode) {
+     console.info("onPublishCallback");
    }
    let uris:Array<string> = ["city", "datashareproxy://com.acts.ohos.data.datasharetest/weather"];
-   let result: Array<dataShare.OperationResult> = dsProxyHelper.on("publishedDataChange", uris, "11", onPublishCallback);
+   if (dsHelper != undefined) {
+     let result: Array<dataShare.OperationResult> = (dsHelper as dataShare.DataShareHelper).on("publishedDataChange", uris, "11", onPublishCallback);
+   }
    ```
 
-   
+   ​

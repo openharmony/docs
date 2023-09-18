@@ -8,7 +8,7 @@
 
 ## 导入模块
 
-```js
+```ts
 import fileio from '@ohos.fileio';
 ```
 
@@ -19,29 +19,30 @@ import fileio from '@ohos.fileio';
 
 **Stage模型**
 
- ```js
-import UIAbility from '@ohos.app.ability.UIAbility';
+ ```ts
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  import window from '@ohos.window';
 
-export default class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage) {
-        let context = this.context;
-        let pathDir = context.filesDir;
+  export default class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage: window.WindowStage) {
+      let context = this.context;
+      let pathDir = context.filesDir;
     }
-}
- ```
+  }
+  ```
 
  Stage模型context的具体获取方法参见[Stage模型](js-apis-inner-application-uiAbilityContext.md)。
 
 **FA模型**
 
- ```js
- import featureAbility from '@ohos.ability.featureAbility';
- 
- let context = featureAbility.getContext();
- context.getFilesDir().then((data) => {
-      let pathDir = data;
- })
- ```
+  ```ts
+  import featureAbility from '@ohos.ability.featureAbility';
+  
+  let context = featureAbility.getContext();
+  context.getFilesDir().then((data) => {
+    let pathDir = data;
+  })
+  ```
 
  FA模型context的具体获取方法参见[FA模型](js-apis-inner-app-context.md#Context模块)。
 
@@ -71,12 +72,13 @@ stat(path: string): Promise&lt;Stat&gt;
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "test.txt";
-  fileio.stat(filePath).then(function (stat) {
-      console.info("getFileInfo succeed, the size of file is " + stat.size);
-  }).catch(function (err) {
-      console.info("getFileInfo failed with error:" + err);
+  fileio.stat(filePath).then((stat: fileio.Stat) => {
+    console.info("getFileInfo succeed, the size of file is " + stat.size);
+  }).catch((err: BusinessError) => {
+    console.info("getFileInfo failed with error:" + err);
   });
   ```
 
@@ -102,9 +104,10 @@ stat(path: string, callback: AsyncCallback&lt;Stat&gt;): void
 
 **示例：**
 
-  ```js
-  fileio.stat(pathDir, function (err, stat) {
-      // example code in Stat
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  fileio.stat(pathDir, (err: BusinessError, stat: fileio.Stat) => {
+    // example code in Stat
   });
   ```
 
@@ -136,7 +139,7 @@ statSync(path: string): Stat
 
 **示例：**
 
-  ```js
+  ```ts
   let stat = fileio.statSync(pathDir);
   // example code in Stat
   ```
@@ -168,12 +171,13 @@ opendir(path: string): Promise&lt;Dir&gt;
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let dirPath = pathDir + "/testDir";
-  fileio.opendir(dirPath).then(function (dir) {
-      console.info("opendir succeed");
-  }).catch(function (err) {
-      console.info("opendir failed with error:" + err);
+  fileio.opendir(dirPath).then((dir: fileio.Dir) => {
+    console.info("opendir succeed");
+  }).catch((err: BusinessError) => {
+    console.info("opendir failed with error:" + err);
   });
   ```
 
@@ -199,10 +203,11 @@ opendir(path: string, callback: AsyncCallback&lt;Dir&gt;): void
 
 **示例：**
 
-  ```js
-  fileio.opendir(pathDir, function (err, dir) { 
-      // example code in Dir struct
-      // use read/readSync/close
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  fileio.opendir(pathDir, (err: BusinessError, dir: fileio.Dir) => { 
+    // example code in Dir struct
+    // use read/readSync/close
   });
   ```
 
@@ -233,7 +238,7 @@ opendirSync(path: string): Dir
 
 **示例：**
 
-  ```js
+  ```ts
   let dir = fileio.opendirSync(pathDir);
   // example code in Dir struct
   // use read/readSync/close
@@ -267,12 +272,13 @@ access(path: string, mode?: number): Promise&lt;void&gt;
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
-  fileio.access(filePath).then(function () {
-      console.info("access succeed");
-  }).catch(function (err) {
-      console.info("access failed with error:" + err);
+  fileio.access(filePath).then(() => {
+    console.info("access succeed");
+  }).catch((err: BusinessError) => {
+    console.info("access failed with error:" + err);
   });
   ```
 
@@ -299,10 +305,11 @@ access(path: string, mode?: number, callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
-  fileio.access(filePath, function (err) {
-      // do something
+  fileio.access(filePath, (err: BusinessError) => {
+    // do something
   });
   ```
 
@@ -328,12 +335,13 @@ accessSync(path: string, mode?: number): void
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
   try {
-      fileio.accessSync(filePath);
-  } catch(err) {
-      console.info("accessSync failed with error:" + err);
+    fileio.accessSync(filePath);
+  } catch(err: BusinessError) {
+    console.info("accessSync failed with error:" + err);
   }
   ```
 
@@ -364,13 +372,14 @@ close(fd: number): Promise&lt;void&gt;
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
   let fd = fileio.openSync(filePath);
-  fileio.close(fd).then(function () {
-      console.info("close file succeed");
-  }).catch(function (err) {
-      console.info("close file failed with error:" + err);
+  fileio.close(fd).then(() => {
+    console.info("close file succeed");
+  }).catch((err: BusinessError) => {
+    console.info("close file failed with error:" + err);
   });
   ```
 
@@ -396,11 +405,12 @@ close(fd: number, callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
   let fd = fileio.openSync(filePath);
-  fileio.close(fd, function (err) {
-      // do something
+  fileio.close(fd, (err: BusinessError) => {
+    // do something
   });
   ```
 
@@ -425,7 +435,7 @@ closeSync(fd: number): void
 
 **示例：**
 
-  ```js
+  ```ts
   let filePath = pathDir + "/test.txt";
   let fd = fileio.openSync(filePath);
   fileio.closeSync(fd);
@@ -460,13 +470,14 @@ copyFile(src: string|number, dest: string|number, mode?: number): Promise&lt;voi
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let srcPath = pathDir + "srcDir/test.txt";
   let dstPath = pathDir + "dstDir/test.txt";
-  fileio.copyFile(srcPath, dstPath).then(function () {
-      console.info("copyFile succeed");
-  }).catch(function (err) {
-      console.info("copyFile failed with error:" + err);
+  fileio.copyFile(srcPath, dstPath).then(() => {
+    console.info("copyFile succeed");
+  }).catch((err: BusinessError) => {
+    console.info("copyFile failed with error:" + err);
   });
   ```
 
@@ -494,11 +505,12 @@ copyFile(src: string|number, dest: string|number, mode: number, callback: AsyncC
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let srcPath = pathDir + "srcDir/test.txt";
   let dstPath = pathDir + "dstDir/test.txt";
-  fileio.copyFile(srcPath, dstPath, function (err) {
-      // do something
+  fileio.copyFile(srcPath, dstPath, (err: BusinessError) => {
+    // do something
   });
   ```
 
@@ -525,7 +537,7 @@ copyFileSync(src: string|number, dest: string|number, mode?: number): void
 
 **示例：**
 
-  ```js
+  ```ts
   let srcPath = pathDir + "srcDir/test.txt";
   let dstPath = pathDir + "dstDir/test.txt";
   fileio.copyFileSync(srcPath, dstPath);
@@ -559,12 +571,13 @@ mkdir(path: string, mode?: number): Promise&lt;void&gt;
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let dirPath = pathDir + '/testDir';
-  fileio.mkdir(dirPath).then(function () {
-      console.info("mkdir succeed");
-  }).catch(function (error) {
-      console.info("mkdir failed with error:" + error);
+  fileio.mkdir(dirPath).then(() => {
+    console.info("mkdir succeed");
+  }).catch((error: BusinessError) => {
+    console.info("mkdir failed with error:" + error);
   });
   ```
 
@@ -591,9 +604,10 @@ mkdir(path: string, mode: number, callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let dirPath = pathDir + '/testDir';
-  fileio.mkdir(dirPath, function (err) {
+  fileio.mkdir(dirPath, (err: BusinessError) => {
     console.info("mkdir succeed");
   });
   ```
@@ -620,7 +634,7 @@ mkdirSync(path: string, mode?: number): void
 
 **示例：**
 
-  ```js
+  ```ts
   let dirPath = path + '/testDir';
   fileio.mkdirSync(dirPath);
   ```
@@ -654,12 +668,13 @@ open(path: string, flags?: number, mode?: number): Promise&lt;number&gt;
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
-  fileio.open(filePath, 0o1, 0o0200).then(function (number) {
-      console.info("open file succeed");
-  }).catch(function (err) {
-      console.info("open file failed with error:" + err);
+  fileio.open(filePath, 0o1, 0o0200).then((number: number) => {
+    console.info("open file succeed");
+  }).catch((err: BusinessError) => {
+    console.info("open file failed with error:" + err);
   });
   ```
 
@@ -687,10 +702,11 @@ open(path: string, flags: number, mode: number, callback: AsyncCallback&lt;numbe
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
-  fileio.open(filePath, 0, function (err, fd) {
-      // do something
+  fileio.open(filePath, 0, (err: BusinessError, fd: number) => {
+    // do something
   });
   ```
 
@@ -723,11 +739,11 @@ openSync(path: string, flags?: number, mode?: number): number
 
 **示例：**
 
-  ```js
+  ```ts
   let filePath = pathDir + "/test.txt";
   let fd = fileio.openSync(filePath, 0o102, 0o640);
   ```
-  ```js
+  ```ts
   let filePath = pathDir + "/test.txt";
   let fd = fileio.openSync(filePath, 0o102, 0o666);
   fileio.writeSync(fd, 'hello world');
@@ -766,15 +782,18 @@ read(fd: number, buffer: ArrayBuffer, options?: { offset?: number; length?: numb
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  import buffer from '@ohos.buffer';
   let filePath = pathDir + "/test.txt";
   let fd = fileio.openSync(filePath, 0o2);
-  let buf = new ArrayBuffer(4096);
-  fileio.read(fd, buf).then(function (readOut) {
-      console.info("read file data succeed");
-      console.log(String.fromCharCode.apply(null, new Uint8Array(readOut.buffer)));
-  }).catch(function (err) {
-      console.info("read file data failed with error:" + err);
+  let arrayBuffer = new ArrayBuffer(4096);
+  fileio.read(fd, arrayBuffer).then((readLen: number) => {
+    console.info("read file data succeed");
+    let buf = buffer.from(arrayBuffer, 0, readLen);
+    console.log(`The content of file: ${buf.toString()}`);
+  }).catch((err: BusinessError) => {
+    console.info("read file data failed with error:" + err);
   });
   ```
 
@@ -802,15 +821,18 @@ read(fd: number, buffer: ArrayBuffer, options: { offset?: number; length?: numbe
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  import buffer from '@ohos.buffer';
   let filePath = pathDir + "/test.txt";
   let fd = fileio.openSync(filePath, 0o2);
-  let buf = new ArrayBuffer(4096);
-  fileio.read(fd, buf, function (err, readOut) {
-      if (readOut) {
-          console.info("read file data succeed");
-          console.log(String.fromCharCode.apply(null, new Uint8Array(readOut.buffer)));
-      }
+  let arrayBuffer = new ArrayBuffer(4096);
+  fileio.read(fd, arrayBuffer, (err: BusinessError, readLen: number) => {
+    if (readLen) {
+      console.info("read file data succeed");
+      let buf = buffer.from(arrayBuffer, 0, readLen);
+      console.info(`The content of file: ${buf.toString()}`);
+    }
   });
   ```
 
@@ -843,7 +865,7 @@ readSync(fd: number, buffer: ArrayBuffer, options?: { offset?: number; length?: 
 
 **示例：**
 
-  ```js
+  ```ts
   let filePath = pathDir + "/test.txt";
   let fd = fileio.openSync(filePath, 0o2);
   let buf = new ArrayBuffer(4096);
@@ -877,12 +899,13 @@ rmdir(path: string): Promise&lt;void&gt;
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let dirPath = pathDir + '/testDir';
-  fileio.rmdir(dirPath).then(function () {
-      console.info("rmdir succeed");
-  }).catch(function (err) {
-      console.info("rmdir failed with error:" + err);
+  fileio.rmdir(dirPath).then(() => {
+    console.info("rmdir succeed");
+  }).catch((err: BusinessError) => {
+    console.info("rmdir failed with error:" + err);
   });
   ```
 
@@ -908,11 +931,12 @@ rmdir(path: string, callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let dirPath = pathDir + '/testDir';
-  fileio.rmdir(dirPath, function (err) {
-      // do something
-      console.info("rmdir succeed");
+  fileio.rmdir(dirPath, (err: BusinessError) => {
+    // do something
+    console.info("rmdir succeed");
   });
   ```
 
@@ -937,7 +961,7 @@ rmdirSync(path: string): void
 
 **示例：**
 
-  ```js
+  ```ts
   let dirPath = pathDir + '/testDir';
   fileio.rmdirSync(dirPath);
   ```
@@ -969,12 +993,13 @@ unlink(path: string): Promise&lt;void&gt;
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
-  fileio.unlink(filePath).then(function () {
-      console.info("remove file succeed");
-  }).catch(function (error) {
-      console.info("remove file failed with error:" + error);
+  fileio.unlink(filePath).then(() => {
+    console.info("remove file succeed");
+  }).catch((error: BusinessError) => {
+    console.info("remove file failed with error:" + error);
   });
   ```
 
@@ -1000,10 +1025,11 @@ unlink(path: string, callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
-  fileio.unlink(filePath, function (err) {
-      console.info("remove file succeed");
+  fileio.unlink(filePath, (err: BusinessError) => {
+    console.info("remove file succeed");
   });
   ```
 
@@ -1028,7 +1054,7 @@ unlinkSync(path: string): void
 
 **示例：**
 
-  ```js
+  ```ts
   let filePath = pathDir + "/test.txt";
   fileio.unlinkSync(filePath);
   ```
@@ -1062,13 +1088,14 @@ write(fd: number, buffer: ArrayBuffer|string, options?: { offset?: number; lengt
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
   let fd = fileio.openSync(filePath, 0o100 | 0o2, 0o666);
-  fileio.write(fd, "hello, world").then(function (number) {
-       console.info("write data to file succeed and size is:" + number);
-  }).catch(function (err) {
-      console.info("write data to file failed with error:" + err);
+  fileio.write(fd, "hello, world").then((number: number) => {
+    console.info("write data to file succeed and size is:" + number);
+  }).catch((err: BusinessError) => {
+    console.info("write data to file failed with error:" + err);
   });
   ```
 
@@ -1096,13 +1123,14 @@ write(fd: number, buffer: ArrayBuffer|string, options: { offset?: number; length
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
   let fd = fileio.openSync(filePath, 0o100 | 0o2, 0o666);
-  fileio.write(fd, "hello, world", function (err, bytesWritten) {
-      if (bytesWritten) {
-         console.info("write data to file succeed and size is:" + bytesWritten);
-      }
+  fileio.write(fd, "hello, world", (err: BusinessError, bytesWritten: number) => {
+    if (bytesWritten) {
+      console.info("write data to file succeed and size is:" + bytesWritten);
+    }
   });
   ```
 
@@ -1135,7 +1163,7 @@ writeSync(fd: number, buffer: ArrayBuffer|string, options?: { offset?: number; l
 
 **示例：**
 
-  ```js
+  ```ts
   let filePath = pathDir + "/test.txt";
   let fd = fileio.openSync(filePath, 0o100 | 0o2, 0o666);
   let num = fileio.writeSync(fd, "hello, world");
@@ -1169,12 +1197,13 @@ hash(path: string, algorithm: string): Promise&lt;string&gt;
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
-  fileio.hash(filePath, "sha256").then(function (str) {
-      console.info("calculate file hash succeed:" + str);
-  }).catch(function (err) {
-      console.info("calculate file hash failed with error:" + err);
+  fileio.hash(filePath, "sha256").then((str: string) => {
+    console.info("calculate file hash succeed:" + str);
+  }).catch((err: BusinessError) => {
+    console.info("calculate file hash failed with error:" + err);
   });
   ```
 
@@ -1201,12 +1230,13 @@ hash(path: string, algorithm: string, callback: AsyncCallback&lt;string&gt;): vo
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
-  fileio.hash(filePath, "sha256", function (err, hashStr) {
-      if (hashStr) {
-          console.info("calculate file hash succeed:" + hashStr);
-      }
+  fileio.hash(filePath, "sha256", (err: BusinessError, hashStr: string) => {
+    if (hashStr) {
+      console.info("calculate file hash succeed:" + hashStr);
+    }
   });
   ```
 
@@ -1238,12 +1268,13 @@ chmod(path: string, mode: number): Promise&lt;void&gt;
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
-  fileio.chmod(filePath, 0o700).then(function () {
-      console.info("chmod succeed");
-  }).catch(function (err) {
-      console.info("chmod failed with error:" + err);
+  fileio.chmod(filePath, 0o700).then(() => {
+    console.info("chmod succeed");
+  }).catch((err: BusinessError) => {
+    console.info("chmod failed with error:" + err);
   });
   ```
 
@@ -1270,10 +1301,11 @@ chmod(path: string, mode: number, callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
-  fileio.chmod(filePath, 0o700, function (err) {
-      // do something
+  fileio.chmod(filePath, 0o700, (err: BusinessError) => {
+    // do something
   });
   ```
 
@@ -1299,7 +1331,7 @@ chmodSync(path: string, mode: number): void
 
 **示例：**
 
-  ```js
+  ```ts
   let filePath = pathDir + "/test.txt";
   fileio.chmodSync(filePath, 0o700);
   ```
@@ -1331,13 +1363,14 @@ fstat(fd: number): Promise&lt;Stat&gt;
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
   let fd = fileio.openSync(filePath);
-  fileio.fstat(fd).then(function (stat) {
-      console.info("fstat succeed, the size of file is " + stat.size);
-  }).catch(function (err) {
-      console.info("fstat failed with error:" + err);
+  fileio.fstat(fd).then((stat: fileio.Stat) => {
+    console.info("fstat succeed, the size of file is " + stat.size);
+  }).catch((err: BusinessError) => {
+    console.info("fstat failed with error:" + err);
   });
   ```
 
@@ -1363,11 +1396,12 @@ fstat(fd: number, callback: AsyncCallback&lt;Stat&gt;): void
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
   let fd = fileio.openSync(filePath);
-  fileio.fstat(fd, function (err) {
-      // do something
+  fileio.fstat(fd, (err: BusinessError) => {
+    // do something
   });
   ```
 
@@ -1398,7 +1432,7 @@ fstatSync(fd: number): Stat
 
 **示例：**
 
-  ```js
+  ```ts
   let filePath = pathDir + "/test.txt";
   let fd = fileio.openSync(filePath);
   let stat = fileio.fstatSync(fd);
@@ -1432,13 +1466,14 @@ ftruncate(fd: number, len?: number): Promise&lt;void&gt;
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
   let fd = fileio.openSync(filePath);
-  fileio.ftruncate(fd, 5).then(function (err) {    
-      console.info("truncate file succeed");
-  }).catch(function (err) {
-      console.info("truncate file failed with error:" + err);
+  fileio.ftruncate(fd, 5).then((err: BusinessError) => {    
+    console.info("truncate file succeed");
+  }).catch((err: BusinessError) => {
+    console.info("truncate file failed with error:" + err);
   });
   ```
 
@@ -1465,12 +1500,13 @@ ftruncate(fd: number, len?: number, callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
   let fd = fileio.openSync(filePath);
   let len = 5;
-  fileio.ftruncate(fd, 5, function (err) {
-      // do something
+  fileio.ftruncate(fd, 5, (err: BusinessError) => {
+    // do something
   });
   ```
 
@@ -1496,7 +1532,7 @@ ftruncateSync(fd: number, len?: number): void
 
 **示例：**
 
-  ```js
+  ```ts
   let filePath = pathDir + "/test.txt";
   let fd = fileio.openSync(filePath);
   let len = 5;
@@ -1531,13 +1567,14 @@ truncate(path: string, len?: number): Promise&lt;void&gt;
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
   let len = 5;
-  fileio.truncate(filePath, len).then(function () {
-      console.info("truncate file succeed");
-  }).catch(function (err) {
-      console.info("truncate file failed with error:" + err);
+  fileio.truncate(filePath, len).then(() => {
+    console.info("truncate file succeed");
+  }).catch((err: BusinessError) => {
+    console.info("truncate file failed with error:" + err);
   });
   ```
 
@@ -1564,11 +1601,12 @@ truncate(path: string, len?: number, callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
   let len = 5;
-  fileio.truncate(filePath, len, function (err) {
-      // do something
+  fileio.truncate(filePath, len, (err: BusinessError) => {
+    // do something
   });
   ```
 
@@ -1594,7 +1632,7 @@ truncateSync(path: string, len?: number): void
 
 **示例：**
 
-  ```js
+  ```ts
   let filePath = pathDir + "/test.txt";
   let len = 5;
   fileio.truncateSync(filePath, len);
@@ -1628,12 +1666,13 @@ readText(filePath: string, options?: { position?: number; length?: number; encod
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
-  fileio.readText(filePath).then(function (str) {
-      console.info("readText succeed:" + str);
-  }).catch(function (err) {
-      console.info("readText failed with error:" + err);
+  fileio.readText(filePath).then((str: string) => {
+    console.info("readText succeed:" + str);
+  }).catch((err: BusinessError) => {
+    console.info("readText failed with error:" + err);
   });
   ```
 
@@ -1660,10 +1699,11 @@ readText(filePath: string, options: { position?: number; length?: number; encodi
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
-  fileio.readText(filePath, { position: 1, encoding: 'UTF-8' }, function (err, str) {
-      // do something
+  fileio.readText(filePath, { position: 1, encoding: 'UTF-8' }, (err: BusinessError, str: string) => {
+    // do something
   });
   ```
 
@@ -1695,7 +1735,7 @@ readTextSync(filePath: string, options?: { position?: number; length?: number; e
 
 **示例：**
 
-  ```js
+  ```ts
   let filePath = pathDir + "/test.txt";
   let str = fileio.readTextSync(filePath, {position: 1, length: 3});
   ```
@@ -1727,12 +1767,13 @@ lstat(path: string): Promise&lt;Stat&gt;
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
-  fileio.lstat(filePath).then(function (stat) {
-      console.info("get link status succeed, the size of file is" + stat.size);
-  }).catch(function (err) {
-      console.info("get link status failed with error:" + err);
+  fileio.lstat(filePath).then((stat: fileio.Stat) => {
+    console.info("get link status succeed, the size of file is" + stat.size);
+  }).catch((err: BusinessError) => {
+    console.info("get link status failed with error:" + err);
   });
   ```
 
@@ -1758,10 +1799,11 @@ lstat(path: string, callback: AsyncCallback&lt;Stat&gt;): void
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
-  fileio.lstat(filePath, function (err, stat) {
-      // do something
+  fileio.lstat(filePath, (err: BusinessError, stat: fileio.Stat) => {
+    // do something
   });
   ```
 
@@ -1792,7 +1834,7 @@ lstatSync(path: string): Stat
 
 **示例：**
 
-  ```js
+  ```ts
   let filePath = pathDir + "/test.txt";
   let stat = fileio.lstatSync(filePath);
   ```
@@ -1825,13 +1867,14 @@ rename(oldPath: string, newPath: string): Promise&lt;void&gt;
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let srcFile = pathDir + "/test.txt";
   let dstFile = pathDir + '/new.txt';
-  fileio.rename(srcFile, dstFile).then(function () {
-      console.info("rename succeed");
-  }).catch(function (err) {
-      console.info("rename failed with error:" + err);
+  fileio.rename(srcFile, dstFile).then(() => {
+    console.info("rename succeed");
+  }).catch((err: BusinessError) => {
+    console.info("rename failed with error:" + err);
   });
   ```
 
@@ -1858,10 +1901,11 @@ rename(oldPath: string, newPath: string, callback: AsyncCallback&lt;void&gt;): v
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let srcFile = pathDir + "/test.txt";
   let dstFile = pathDir + '/new.txt';
-  fileio.rename(srcFile, dstFile, function (err) {
+  fileio.rename(srcFile, dstFile, (err: BusinessError) => {
   });
   ```
 
@@ -1886,7 +1930,7 @@ renameSync(oldPath: string, newPath: string): void
 
 **示例：**
 
-  ```js
+  ```ts
   let srcFile = pathDir + "/test.txt";
   let dstFile = pathDir + '/new.txt';
   fileio.renameSync(srcFile, dstFile);
@@ -1919,13 +1963,14 @@ fsync(fd: number): Promise&lt;void&gt;
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
   let fd = fileio.openSync(filePath);
-  fileio.fsync(fd).then(function () {
-      console.info("sync data succeed");
-  }).catch(function (err) {
-      console.info("sync data failed with error:" + err);
+  fileio.fsync(fd).then(() => {
+    console.info("sync data succeed");
+  }).catch((err: BusinessError) => {
+    console.info("sync data failed with error:" + err);
   });
   ```
 
@@ -1951,11 +1996,12 @@ fsync(fd: number, callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
   let fd = fileio.openSync(filePath);
-  fileio.fsync(fd, function (err) {
-      // do something
+  fileio.fsync(fd, (err: BusinessError) => {
+    // do something
   });
   ```
 
@@ -1980,7 +2026,7 @@ fsyncSync(fd: number): void
 
 **示例：**
 
-  ```js
+  ```ts
   let filePath = pathDir + "/test.txt";
   let fd = fileio.openSync(filePath);
   fileio.fsyncSync(fd);
@@ -2013,13 +2059,14 @@ fdatasync(fd: number): Promise&lt;void&gt;
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
   let fd = fileio.openSync(filePath);
-  fileio.fdatasync(fd).then(function (err) {
-      console.info("sync data succeed");
-  }).catch(function (err) {
-      console.info("sync data failed with error:" + err);
+  fileio.fdatasync(fd).then((err: BusinessError) => {
+    console.info("sync data succeed");
+  }).catch((err: BusinessError) => {
+    console.info("sync data failed with error:" + err);
   });
   ```
 
@@ -2045,11 +2092,12 @@ fdatasync(fd: number, callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
   let fd = fileio.openSync(filePath);
-  fileio.fdatasync (fd, function (err) {
-      // do something
+  fileio.fdatasync (fd, (err: BusinessError) => {
+    // do something
   });
   ```
 
@@ -2074,7 +2122,7 @@ fdatasyncSync(fd: number): void
 
 **示例：**
 
-  ```js
+  ```ts
   let filePath = pathDir + "/test.txt";
   let fd = fileio.openSync(filePath);
   let stat = fileio.fdatasyncSync(fd);
@@ -2108,13 +2156,14 @@ symlink(target: string, srcPath: string): Promise&lt;void&gt;
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let srcFile = pathDir + "/test.txt";
   let dstFile = pathDir + '/test';
-  fileio.symlink(srcFile, dstFile).then(function () {
-      console.info("symlink succeed");
-  }).catch(function (err) {
-      console.info("symlink failed with error:" + err);
+  fileio.symlink(srcFile, dstFile).then(() => {
+    console.info("symlink succeed");
+  }).catch((err: BusinessError) => {
+    console.info("symlink failed with error:" + err);
   });
   ```
 
@@ -2141,11 +2190,12 @@ symlink(target: string, srcPath: string, callback: AsyncCallback&lt;void&gt;): v
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let srcFile = pathDir + "/test.txt";
   let dstFile = pathDir + '/test';
-  fileio.symlink(srcFile, dstFile, function (err) {
-      // do something
+  fileio.symlink(srcFile, dstFile, (err: BusinessError) => {
+    // do something
   });
   ```
 
@@ -2171,7 +2221,7 @@ symlinkSync(target: string, srcPath: string): void
 
 **示例：**
 
-  ```js
+  ```ts
   let srcFile = pathDir + "/test.txt";
   let dstFile = pathDir + '/test';
   fileio.symlinkSync(srcFile, dstFile);
@@ -2206,13 +2256,14 @@ chown(path: string, uid: number, gid: number): Promise&lt;void&gt;
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
   let stat = fileio.statSync(filePath);
-  fileio.chown(filePath, stat.uid, stat.gid).then(function () {
-      console.info("chown succeed");
-  }).catch(function (err) {
-      console.info("chown failed with error:" + err);
+  fileio.chown(filePath, stat.uid, stat.gid).then(() => {
+    console.info("chown succeed");
+  }).catch((err: BusinessError) => {
+    console.info("chown failed with error:" + err);
   });
   ```
 
@@ -2240,11 +2291,12 @@ chown(path: string, uid: number, gid: number, callback: AsyncCallback&lt;void&gt
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
   let stat = fileio.statSync(filePath)
-  fileio.chown(filePath, stat.uid, stat.gid, function (err) {
-      // do something
+  fileio.chown(filePath, stat.uid, stat.gid, (err: BusinessError) => {
+    // do something
   });
   ```
 
@@ -2270,7 +2322,7 @@ chownSync(path: string, uid: number, gid: number): void
 
 **示例：**
 
-  ```js
+  ```ts
   let filePath = pathDir + "/test.txt";
   let stat = fileio.statSync(filePath)
   fileio.chownSync(filePath, stat.uid, stat.gid);
@@ -2303,11 +2355,12 @@ mkdtemp(prefix: string): Promise&lt;string&gt;
 
 **示例：**
 
-  ```js
-  fileio.mkdtemp(pathDir + "/XXXXXX").then(function (pathDir) {
-      console.info("mkdtemp succeed:" + pathDir);
-  }).catch(function (err) {
-      console.info("mkdtemp failed with error:" + err);
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  fileio.mkdtemp(pathDir + "/XXXXXX").then((pathDir: string) => {
+    console.info("mkdtemp succeed:" + pathDir);
+  }).catch((err: BusinessError) => {
+    console.info("mkdtemp failed with error:" + err);
   });
   ```
 
@@ -2333,9 +2386,10 @@ mkdtemp(prefix: string, callback: AsyncCallback&lt;string&gt;): void
 
 **示例：**
 
-  ```js
-  fileio.mkdtemp(pathDir + "/XXXXXX", function (err, res) {
-      // do something
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  fileio.mkdtemp(pathDir + "/XXXXXX", (err: BusinessError, res: string) {
+    // do something
   });
   ```
 
@@ -2366,7 +2420,7 @@ mkdtempSync(prefix: string): string
 
 **示例：**
 
-  ```js
+  ```ts
   let res = fileio.mkdtempSync(pathDir + "/XXXXXX");
   ```
 
@@ -2398,14 +2452,15 @@ fchmod(fd: number, mode: number): Promise&lt;void&gt;
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
   let fd = fileio.openSync(filePath);
-  let mode = 0o700;
-  fileio.fchmod(fd, mode).then(function () {
-      console.info("chmod succeed");
-  }).catch(function (err) {
-      console.info("chmod failed with error:" + err);
+  let mode: number = 0o700;
+  fileio.fchmod(fd, mode).then(() => {
+    console.info("chmod succeed");
+  }).catch((err: BusinessError) => {
+    console.info("chmod failed with error:" + err);
   });
   ```
 
@@ -2432,12 +2487,13 @@ fchmod(fd: number, mode: number, callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
   let fd = fileio.openSync(filePath);
-  let mode = 0o700;
-  fileio.fchmod(fd, mode, function (err) {
-      // do something
+  let mode: number = 0o700;
+  fileio.fchmod(fd, mode, (err: BusinessError) => {
+    // do something
   });
   ```
 
@@ -2463,11 +2519,11 @@ fchmodSync(fd: number, mode: number): void
 
 **示例：**
 
-  ```js
+  ```ts
   let filePath = pathDir + "/test.txt";
   let fd = fileio.openSync(filePath);
-  let mode = 0o700;
-   fileio.fchmodSync(fd, mode);
+  let mode: number = 0o700;
+  fileio.fchmodSync(fd, mode);
   ```
 
 
@@ -2498,12 +2554,13 @@ createStream(path: string, mode: string): Promise&lt;Stream&gt;
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
-  fileio.createStream(filePath, "r+").then(function (stream) {
-      console.info("createStream succeed");
-  }).catch(function (err) {
-      console.info("createStream failed with error:" + err);
+  fileio.createStream(filePath, "r+").then((stream: fileio.Stream) => {
+    console.info("createStream succeed");
+  }).catch((err: BusinessError) => {
+    console.info("createStream failed with error:" + err);
   });
   ```
 
@@ -2530,10 +2587,11 @@ createStream(path: string, mode: string, callback: AsyncCallback&lt;Stream&gt;):
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
-  fileio.createStream(filePath, "r+", function (err, stream) {
-      // do something
+  fileio.createStream(filePath, "r+", (err: BusinessError, stream: fileio.Stream) {
+    // do something
   });
   ```
 
@@ -2565,7 +2623,7 @@ createStreamSync(path: string, mode: string): Stream
 
 **示例：**
 
-  ```js
+  ```ts
   let filePath = pathDir + "/test.txt";
   let ss = fileio.createStreamSync(filePath, "r+");
   ```
@@ -2598,13 +2656,14 @@ fdopenStream(fd: number, mode: string): Promise&lt;Stream&gt;
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
   let fd = fileio.openSync(filePath);
-  fileio.fdopenStream(fd, "r+").then(function (stream) {
-      console.info("openStream succeed");
-  }).catch(function (err) {
-      console.info("openStream failed with error:" + err);
+  fileio.fdopenStream(fd, "r+").then((stream: fileio.Stream) => {
+    console.info("openStream succeed");
+  }).catch((err: BusinessError) => {
+    console.info("openStream failed with error:" + err);
   });
   ```
 
@@ -2631,11 +2690,12 @@ fdopenStream(fd: number, mode: string, callback: AsyncCallback&lt;Stream&gt;): v
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
   let fd = fileio.openSync(filePath);
-  fileio.fdopenStream(fd, "r+", function (err, stream) {
-      // do something
+  fileio.fdopenStream(fd, "r+", (err: BusinessError, stream: fileio.Stream) => {
+    // do something
   });
   ```
 
@@ -2667,7 +2727,7 @@ fdopenStreamSync(fd: number, mode: string): Stream
 
 **示例：**
 
-  ```js
+  ```ts
   let filePath = pathDir + "/test.txt";
   let fd = fileio.openSync(filePath);
   let ss = fileio.fdopenStreamSync(fd, "r+");
@@ -2702,14 +2762,15 @@ fchown(fd: number, uid: number, gid: number): Promise&lt;void&gt;
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
   let fd = fileio.openSync(filePath);
   let stat = fileio.statSync(filePath);
-  fileio.fchown(fd, stat.uid, stat.gid).then(function () {
-      console.info("chown succeed");
-  }).catch(function (err) {
-      console.info("chown failed with error:" + err);
+  fileio.fchown(fd, stat.uid, stat.gid).then(() => {
+    console.info("chown succeed");
+  }).catch((err: BusinessError) => {
+    console.info("chown failed with error:" + err);
   });
   ```
 
@@ -2737,12 +2798,13 @@ fchown(fd: number, uid: number, gid: number, callback: AsyncCallback&lt;void&gt;
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
   let fd = fileio.openSync(filePath);
   let stat = fileio.statSync(filePath);
-  fileio.fchown(fd, stat.uid, stat.gid, function (err) {
-      // do something
+  fileio.fchown(fd, stat.uid, stat.gid, (err: BusinessError) => {
+    // do something
   });
   ```
 
@@ -2769,7 +2831,7 @@ fchownSync(fd: number, uid: number, gid: number): void
 
 **示例：**
 
-  ```js
+  ```ts
   let filePath = pathDir + "/test.txt";
   let fd = fileio.openSync(filePath);
   let stat = fileio.statSync(filePath);
@@ -2805,13 +2867,14 @@ lchown(path: string, uid: number, gid: number): Promise&lt;void&gt;
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
   let stat = fileio.statSync(filePath);
-  fileio.lchown(filePath, stat.uid, stat.gid).then(function () {
-      console.info("chown succeed");
-  }).catch(function (err) {
-      console.info("chown failed with error:" + err);
+  fileio.lchown(filePath, stat.uid, stat.gid).then(() => {
+    console.info("chown succeed");
+  }).catch((err: BusinessError) => {
+    console.info("chown failed with error:" + err);
   });
   ```
 
@@ -2839,11 +2902,12 @@ lchown(path: string, uid: number, gid: number, callback: AsyncCallback&lt;void&g
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
   let stat = fileio.statSync(filePath);
-  fileio.lchown(filePath, stat.uid, stat.gid, function (err) {
-      // do something
+  fileio.lchown(filePath, stat.uid, stat.gid, (err: BusinessError) => {
+    // do something
   });
   ```
 
@@ -2870,7 +2934,7 @@ lchownSync(path: string, uid: number, gid: number): void
 
 **示例：**
 
-  ```js
+  ```ts
   let filePath = pathDir + "/test.txt";
   let stat = fileio.statSync(filePath);
   fileio.lchownSync(filePath, stat.uid, stat.gid);
@@ -2901,10 +2965,10 @@ createWatcher(filename: string, events: number, callback: AsyncCallback&lt;numbe
 
 **示例：**
 
-  ```js
+  ```ts
   let filePath = pathDir +"/test.txt";
-  fileio.createWatcher(filePath, 1, function (number) {
-     console.info("Monitoring times: " +number);
+  fileio.createWatcher(filePath, 1, (number: number) => {
+    console.info("Monitoring times: " + number);
   });
   
   ```
@@ -2975,7 +3039,7 @@ isBlockDevice(): boolean
 
 **示例：**
 
-  ```js
+  ```ts
   let filePath = pathDir + "/test.txt";
   let isBLockDevice = fileio.statSync(filePath).isBlockDevice();
   ```
@@ -3001,7 +3065,7 @@ isCharacterDevice(): boolean
 
 **示例：**
 
-  ```js
+  ```ts
   let filePath = pathDir + "/test.txt";
   let isCharacterDevice = fileio.statSync(filePath).isCharacterDevice();
   ```
@@ -3027,7 +3091,7 @@ isDirectory(): boolean
 
 **示例：**
 
-  ```js
+  ```ts
   let dirPath = pathDir + "/test";
   let isDirectory = fileio.statSync(dirPath).isDirectory(); 
   ```
@@ -3053,7 +3117,7 @@ isFIFO(): boolean
 
 **示例：**
 
-  ```js
+  ```ts
   let filePath = pathDir + "/test.txt";
   let isFIFO = fileio.statSync(filePath).isFIFO(); 
   ```
@@ -3079,7 +3143,7 @@ isFile(): boolean
 
 **示例：**
 
-  ```js
+  ```ts
   let filePath = pathDir + "/test.txt";
   let isFile = fileio.statSync(filePath).isFile();
   ```
@@ -3105,7 +3169,7 @@ isSocket(): boolean
 
 **示例：**
 
-  ```js
+  ```ts
   let filePath = pathDir + "/test.txt";
   let isSocket = fileio.statSync(filePath).isSocket(); 
   ```
@@ -3131,7 +3195,7 @@ isSymbolicLink(): boolean
 
 **示例：**
 
-  ```js
+  ```ts
   let filePath = pathDir + "/test";
   let isSymbolicLink = fileio.statSync(filePath).isSymbolicLink(); 
   ```
@@ -3152,13 +3216,13 @@ stop(): Promise&lt;void&gt;
 
 **示例：**
 
-  ```js
+  ```ts
   let filePath = path + "/test.txt";
-  let watcher = fileio.createWatcher(filePath, 1, function (number) {
-      console.info("Monitoring times: " +number);
+  let watcher = fileio.createWatcher(filePath, 1, (number: number) => {
+    console.info("Monitoring times: " + number);
   });
-  watcher.stop().then(function () {
-       console.info("close watcher succeed");
+  watcher.stop().then(() => {
+    console.info("close watcher succeed");
   });
   ```
 
@@ -3179,13 +3243,13 @@ stop(callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
-  ```js
+  ```ts
   let filePath = path +"/test.txt";
-  let watcher = fileio.createWatcher(filePath, 1, function (number) {
-      console.info("Monitoring times: " +number);
+  let watcher = fileio.createWatcher(filePath, 1, (number: number) => {
+    console.info("Monitoring times: " + number);
   });
-  watcher.stop(function () {
-      console.info("close watcher succeed");
+  watcher.stop(() => {
+    console.info("close watcher succeed");
   })
   ```
 
@@ -3218,13 +3282,14 @@ close(): Promise&lt;void&gt;
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
-  let ss= fileio.createStreamSync(filePath, "r+");
-  ss.close().then(function () {
-      console.info("close fileStream succeed");
-  }).catch(function (err) {
-      console.info("close fileStream  failed with error:" + err);
+  let ss = fileio.createStreamSync(filePath, "r+");
+  ss.close().then(() => {
+    console.info("close fileStream succeed");
+  }).catch((err: BusinessError) => {
+    console.info("close fileStream  failed with error:" + err);
   });
   ```
 
@@ -3249,11 +3314,12 @@ close(callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
-  let ss= fileio.createStreamSync(filePath, "r+");
-  ss.close(function (err) {
-      // do something
+  let ss = fileio.createStreamSync(filePath, "r+");
+  ss.close((err: BusinessError) => {
+    // do something
   });
   ```
 
@@ -3272,9 +3338,9 @@ closeSync(): void
 
 **示例：**
 
-  ```js
+  ```ts
   let filePath = pathDir + "/test.txt";
-  let ss= fileio.createStreamSync(filePath, "r+");
+  let ss = fileio.createStreamSync(filePath, "r+");
   ss.closeSync();
   ```
 
@@ -3299,13 +3365,14 @@ flush(): Promise&lt;void&gt;
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
-  let ss= fileio.createStreamSync(filePath, "r+");
-  ss.flush().then(function () {
-      console.info("flush succeed");
-  }).catch(function (err) {
-      console.info("flush failed with error:" + err);
+  let ss = fileio.createStreamSync(filePath, "r+");
+  ss.flush().then(() => {
+    console.info("flush succeed");
+  }).catch((err: BusinessError) => {
+    console.info("flush failed with error:" + err);
   });
   ```
 
@@ -3330,11 +3397,12 @@ flush(callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
-  let ss= fileio.createStreamSync(filePath, "r+");
-  ss.flush(function (err) {
-      // do something
+  let ss = fileio.createStreamSync(filePath, "r+");
+  ss.flush((err: BusinessError) => {
+    // do something
   });
   ```
 
@@ -3353,9 +3421,9 @@ flushSync(): void
 
 **示例：**
 
-  ```js
+  ```ts
   let filePath = pathDir + "/test.txt";
-  let ss= fileio.createStreamSync(filePath, "r+");
+  let ss = fileio.createStreamSync(filePath, "r+");
   ss.flushSync();
   ```
 
@@ -3387,13 +3455,24 @@ write(buffer: ArrayBuffer|string, options?: { offset?: number; length?: number; 
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
-  let ss= fileio.createStreamSync(filePath, "r+");
-  ss.write("hello, world",{offset: 1,length: 5,position: 5,encoding :'utf-8'}).then(function (number) {
-      console.info("write succeed and size is:" + number);
-  }).catch(function (err) {
-      console.info("write failed with error:" + err);
+  let ss = fileio.createStreamSync(filePath, "r+");
+  class Option {
+    offset: number = 0;
+    length: number = 4096;
+    position: number = 0;
+    encoding: string = 'utf-8';
+  }
+  let option = new Option();
+  option.offset = 1;
+  option.length = 5;
+  option.position = 5;
+  ss.write("hello, world", option).then((number: number) => {
+    console.info("write succeed and size is:" + number);
+  }).catch((err: BusinessError) => {
+    console.info("write failed with error:" + err);
   });
   ```
 
@@ -3420,14 +3499,25 @@ write(buffer: ArrayBuffer|string, options: { offset?: number; length?: number; p
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
-  let ss= fileio.createStreamSync(filePath, "r+");
-  ss.write("hello, world", {offset: 1, length: 5, position: 5, encoding :'utf-8'}, function (err, bytesWritten) {
-      if (bytesWritten) {
-         // do something
-         console.info("write succeed and size is:" + bytesWritten);
-      }
+  let ss = fileio.createStreamSync(filePath, "r+");
+  class Option {
+    offset: number = 0;
+    length: number = 4096;
+    position: number = 0;
+    encoding: string = 'utf-8';
+  }
+  let option = new Option();
+  option.offset = 1;
+  option.length = 5;
+  option.position = 5;
+  ss.write("hello, world", option, (err: BusinessError, bytesWritten: number) => {
+    if (bytesWritten) {
+      // do something
+      console.info("write succeed and size is:" + bytesWritten);
+    }
   });
   ```
 
@@ -3459,10 +3549,20 @@ writeSync(buffer: ArrayBuffer|string, options?: { offset?: number; length?: numb
 
 **示例：**
 
-  ```js
+  ```ts
   let filePath = pathDir + "/test.txt";
-  let ss= fileio.createStreamSync(filePath,"r+");
-  let num = ss.writeSync("hello, world", {offset: 1, length: 5, position: 5, encoding :'utf-8'});
+  let ss = fileio.createStreamSync(filePath,"r+");
+  class Option {
+    offset: number = 0;
+    length: number = 4096;
+    position: number = 0;
+    encoding: string = 'utf-8';
+  }
+  let option = new Option();
+  option.offset = 1;
+  option.length = 5;
+  option.position = 5;
+  let num = ss.writeSync("hello, world", option);
   ```
 
 
@@ -3493,14 +3593,27 @@ read(buffer: ArrayBuffer, options?: { position?: number; offset?: number; length
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  import buffer from '@ohos.buffer';
   let filePath = pathDir + "/test.txt";
   let ss = fileio.createStreamSync(filePath, "r+");
-  ss.read(new ArrayBuffer(4096), {offset: 1, length: 5, position: 5}).then(function (readOut) {
-      console.info("read data succeed");
-      console.log(String.fromCharCode.apply(null, new Uint8Array(readOut.buffer)));
-  }).catch(function (err) {
-      console.info("read data failed with error:" + err);
+  let arrayBuffer = new ArrayBuffer(4096);
+  class Option {
+    offset: number = 0;
+    length: number = 4096;
+    position: number = 0;
+  }
+  let option = new Option();
+  option.offset = 1;
+  option.length = 5;
+  option.position = 5;
+  ss.read(arrayBuffer, option).then((readLen: number) => {
+    console.info("read data succeed");
+    let buf = buffer.from(arrayBuffer, 0, readLen);
+    console.info(`The content of file: ${buf.toString()}`);
+  }).catch((err: BusinessError) => {
+    console.info("read data failed with error:" + err);
   });
   ```
 
@@ -3527,14 +3640,27 @@ read(buffer: ArrayBuffer, options: { position?: number; offset?: number; length?
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  import buffer from '@ohos.buffer';
   let filePath = pathDir + "/test.txt";
   let ss = fileio.createStreamSync(filePath, "r+");
-  ss.read(new ArrayBuffer(4096),{offset: 1, length: 5, position: 5},function (err, readOut) {
-      if (readOut) {
-          console.info("read data succeed");
-          console.log(String.fromCharCode.apply(null, new Uint8Array(readOut.buffer)));
-      }
+  let arrayBuffer = new ArrayBuffer(4096);
+  class Option {
+    offset: number = 0;
+    length: number = 4096;
+    position: number = 0;
+  }
+  let option = new Option();
+  option.offset = 1;
+  option.length = 5;
+  option.position = 5;
+  ss.read(arrayBuffer, option, (err: BusinessError, readLen: number) => {
+    if (readLen) {
+      console.info("read data succeed");
+      let buf = buffer.from(arrayBuffer, 0, readLen);
+      console.info(`The content of file: ${buf.toString()}`);
+    }
   });
   ```
 
@@ -3566,10 +3692,19 @@ readSync(buffer: ArrayBuffer, options?: { position?: number; offset?: number; le
 
 **示例：**
 
-  ```js
+  ```ts
   let filePath = pathDir + "/test.txt";
   let ss = fileio.createStreamSync(filePath, "r+");
-  let num = ss.readSync(new ArrayBuffer(4096), {offset: 1, length: 5, position: 5});
+  class Option {
+    offset: number = 0;
+    length: number = 4096;
+    position: number = 0;
+  }
+  let option = new Option();
+  option.offset = 1;
+  option.length = 5;
+  option.position = 5;
+  let num = ss.readSync(new ArrayBuffer(4096), option);
   ```
 
 
@@ -3601,11 +3736,12 @@ read(): Promise&lt;Dirent&gt;
 
 **示例：**
 
-  ```js
-  dir.read().then(function (dirent) {
-      console.log("read succeed, the name of dirent is " + dirent.name);
-  }).catch(function (err) {
-      console.info("read failed with error:" + err);
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  dir.read().then((dirent: fileio.Dirent) => {
+    console.log("read succeed, the name of dirent is " + dirent.name);
+  }).catch((err: BusinessError) => {
+    console.info("read failed with error:" + err);
   });
   ```
 
@@ -3630,12 +3766,13 @@ read(callback: AsyncCallback&lt;Dirent&gt;): void
 
 **示例：**
 
-  ```js
-  dir.read(function (err, dirent) {
-      if (dirent) {
-          // do something
-          console.log("read succeed, the name of file is " + dirent.name);
-      }
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  dir.read((err: BusinessError, dirent: fileio.Dirent) {
+    if (dirent) {
+      // do something
+      console.log("read succeed, the name of file is " + dirent.name);
+    }
   });
   ```
 
@@ -3660,7 +3797,7 @@ readSync(): Dirent
 
 **示例：**
 
-  ```js
+  ```ts
   let dirent = dir.readSync();
   ```
 
@@ -3679,9 +3816,10 @@ close(): Promise&lt;void&gt;
 
 **示例：**
 
-  ```js
-  dir.close().then(function (err) {
-      console.info("close dir successfully");
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  dir.close().then((err: BusinessError) => {
+    console.info("close dir successfully");
   });
   ```
 
@@ -3700,9 +3838,10 @@ close(callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
-  ```js
-  dir.close(function (err) {
-      console.info("close dir successfully");
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  dir.close((err: BusinessError) => {
+    console.info("close dir successfully");
   });
   ```
 
@@ -3721,7 +3860,7 @@ closeSync(): void
 
 **示例：**
 
-  ```js
+  ```ts
   dir.closeSync();
   ```
 
@@ -3763,7 +3902,7 @@ isBlockDevice(): boolean
 
 **示例：**
 
-  ```js
+  ```ts
   let dir = fileio.opendirSync(pathDir);
   let isBLockDevice = dir.readSync().isBlockDevice();
   ```
@@ -3789,7 +3928,7 @@ isCharacterDevice(): boolean
 
 **示例：**
 
-  ```js
+  ```ts
   let dir = fileio.opendirSync(pathDir);
   let isCharacterDevice = dir.readSync().isCharacterDevice(); 
   ```
@@ -3815,7 +3954,7 @@ isDirectory(): boolean
 
 **示例：**
 
-  ```js
+  ```ts
   let dir = fileio.opendirSync(pathDir);
   let isDirectory = dir.readSync().isDirectory(); 
   ```
@@ -3841,7 +3980,7 @@ isFIFO(): boolean
 
 **示例：**
 
-  ```js
+  ```ts
   let dir = fileio.opendirSync(pathDir);
   let isFIFO = dir.readSync().isFIFO(); 
   ```
@@ -3867,7 +4006,7 @@ isFile(): boolean
 
 **示例：**
 
-  ```js
+  ```ts
   let dir = fileio.opendirSync(pathDir);
   let isFile = dir.readSync().isFile(); 
   ```
@@ -3893,7 +4032,7 @@ isSocket(): boolean
 
 **示例：**
 
-  ```js
+  ```ts
   let dir = fileio.opendirSync(pathDir);
   let isSocket = dir.readSync().isSocket(); 
   ```
@@ -3919,7 +4058,7 @@ isSymbolicLink(): boolean
 
 **示例：**
 
-  ```js
+  ```ts
   let dir = fileio.opendirSync(pathDir);
   let isSymbolicLink = dir.readSync().isSymbolicLink();
   ```

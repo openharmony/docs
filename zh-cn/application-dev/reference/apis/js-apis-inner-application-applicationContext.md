@@ -254,7 +254,7 @@ export default class MyAbility extends Ability {
 
 ## ApplicationContext.off(type: 'abilityLifecycleEvent', callbackId: number)<sup>10+</sup>
 
-off(type: 'abilityLifecycleEvent', callbackId: number): <void>;
+off(type: 'abilityLifecycleEvent', callbackId: number): \<void>;
 
 取消监听应用内生命周期
 
@@ -462,7 +462,7 @@ export default class MyAbility extends Ability {
 
 ## ApplicationContext.off(type: 'environmentEvent', callbackId: number)<sup>10+</sup>
 
-off(type: 'environmentEvent', callbackId: **number**,  callback: AsyncCallback<**void**>): **void**;
+off(type: 'environmentEvent', callbackId: **number**): **void**;
 
 取消对系统环境变化的监听。使用callback异步回调。
 

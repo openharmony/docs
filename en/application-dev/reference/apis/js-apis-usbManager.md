@@ -8,7 +8,7 @@ The **usbManager** module provides USB device management functions, including US
 
 ## Modules to Import
 
-```js
+```ts
 import usb from "@ohos.usbManager";
 ```
 
@@ -28,8 +28,9 @@ Obtains the list of USB devices connected to the host. If no device is connected
 
 **Example**
 
-```js
-let devicesList = usb.getDevices();
+```ts
+/*
+let devicesList: Array<USBDevice> = usb.getDevices();
 console.log(`devicesList = ${devicesList}`);
 // devicesList is a list of USB devices.
 // A simple example of devicesList is provided as follows:
@@ -81,6 +82,7 @@ console.log(`devicesList = ${devicesList}`);
     ],
   },
 ]
+*/
 ```
 
 ## usb.connectDevice
@@ -115,15 +117,15 @@ For details about the error codes, see [USB Error Codes](../errorcodes/errorcode
 
 **Example**
 
-```js
-let devicesList = usb.getDevices();
+```ts
+let devicesList: Array<USBDevice> = usb.getDevices();
 if (devicesList.length == 0) {
   console.log(`device list is empty`);
 }
 
-let device = devicesList[0];
+let device: USBDevice = devicesList[0];
 usb.requestRight(device.name);
-let devicepipe = usb.connectDevice(device);
+let devicepipe: USBDevicePipe = usb.connectDevice(device);
 console.log(`devicepipe = ${devicepipe}`);
 ```
 
@@ -151,10 +153,10 @@ Checks whether the user, for example, the application or system, has the device 
 
 **Example**
 
-```js
-let devicesName = "1-1";
-let bool = usb.hasRight(devicesName);
-console.log(`${bool}`);
+```ts
+let devicesName: string = "1-1";
+let right: boolean = usb.hasRight(devicesName);
+console.log(`${right}`);
 ```
 
 ## usb.requestRight
@@ -179,9 +181,9 @@ Requests the temporary device access permission for the application. This API us
 
 **Example**
 
-```js
-let devicesName = "1-1";
-usb.requestRight(devicesName).then((ret) => {
+```ts
+let devicesName: string = "1-1";
+usb.requestRight(devicesName:).then((ret: number) => {
   console.log(`requestRight = ${ret}`);
 });
 ```
@@ -208,8 +210,8 @@ Removes the device access permission for the application. System applications ar
 
 **Example**
 
-```js
-let devicesName = "1-1";
+```ts
+let devicesName: string = "1-1";
 if (usb.removeRight(devicesName)) {
   console.log(`Succeed in removing right`);
 }
@@ -242,9 +244,9 @@ Adds the device access permission for the application. System applications are g
 
 **Example**
 
-```js
-let devicesName = "1-1";
-let bundleName = "com.example.hello";
+```ts
+let devicesName: string = "1-1";
+let bundleName: string = "com.example.hello";
 if (usb.addRight(bundleName, devicesName)) {
   console.log(`Succeed in adding right`);
 }
@@ -276,17 +278,17 @@ Before you do this, call [usb.getDevices](#usbgetdevices) to obtain the USB devi
 
 **Example**
 
-```js
-let devicesList = usb.getDevices();
+```ts
+let devicesList: Array<USBDevice> = usb.getDevices();
 if (devicesList.length == 0) {
   console.log(`device list is empty`);
 }
 
-let device = devicesList[0];
+let device: USBDevice = devicesList[0];
 usb.requestRight(device.name);
-let devicepipe = usb.connectDevice(device);
-let interfaces = device.configs[0].interfaces[0];
-let ret = usb.claimInterface(devicepipe, interfaces);
+let devicepipe: USBDevicePipe = usb.connectDevice(device);
+let interfaces: USBInterface = device.configs[0].interfaces[0];
+let ret: number= usb.claimInterface(devicepipe, interfaces);
 console.log(`claimInterface = ${ret}`);
 ```
 
@@ -315,17 +317,17 @@ Before you do this, ensure that you have claimed the interface by calling [usb.c
 
 **Example**
 
-```js
-let devicesList = usb.getDevices();
+```ts
+let devicesList: Array<USBDevice> = usb.getDevices();
 if (devicesList.length == 0) {
   console.log(`device list is empty`);
 }
 
-let device = devicesList[0];
+let device: USBDevice = devicesList[0];
 usb.requestRight(device.name);
-let devicepipe = usb.connectDevice(device);
-let interfaces = device.configs[0].interfaces[0];
-let ret = usb.claimInterface(devicepipe, interfaces);
+let devicepipe: USBDevicePipe = usb.connectDevice(device);
+let interfaces: USBInterface = device.configs[0].interfaces[0];
+let ret: number = usb.claimInterface(devicepipe, interfaces);
 ret = usb.releaseInterface(devicepipe, interfaces);
 console.log(`releaseInterface = ${ret}`);
 ```
@@ -355,17 +357,17 @@ Before you do this, call [usb.getDevices](#usbgetdevices) to obtain the USB devi
 
 **Example**
 
-```js
-let devicesList = usb.getDevices();
+```ts
+let devicesList: Array<USBDevice> = usb.getDevices();
 if (devicesList.length == 0) {
   console.log(`device list is empty`);
 }
 
-let device = devicesList[0];
+let device: USBDevice = devicesList[0];
 usb.requestRight(device.name);
-let devicepipe = usb.connectDevice(device);
-let config = device.configs[0];
-let ret = usb.setConfiguration(devicepipe, config);
+let devicepipe: USBDevicePipe = usb.connectDevice(device);
+let config: USBConfiguration = device.configs[0];
+let ret: number= usb.setConfiguration(devicepipe, config);
 console.log(`setConfiguration = ${ret}`);
 ```
 
@@ -394,17 +396,17 @@ Before you do this, call [usb.getDevices](#usbgetdevices) to obtain the USB devi
 
 **Example**
 
-```js
-let devicesList = usb.getDevices();
+```ts
+let devicesList: Array<USBDevice> = usb.getDevices();
 if (devicesList.length == 0) {
   console.log(`device list is empty`);
 }
 
-let device = devicesList[0];
+let device: USBDevice = devicesList[0];
 usb.requestRight(device.name);
-let devicepipe = usb.connectDevice(device);
-let interfaces = device.configs[0].interfaces[0];
-let ret = usb.claimInterface(devicepipe, interfaces);
+let devicepipe: USBDevicePipe = usb.connectDevice(device);
+let interfaces: USBInterface = device.configs[0].interfaces[0];
+let ret: number = usb.claimInterface(devicepipe, interfaces);
 ret = usb.setInterface(devicepipe, interfaces);
 console.log(`setInterface = ${ret}`);
 ```
@@ -433,15 +435,15 @@ Before you do this, call [usb.getDevices](#usbgetdevices) to obtain the USB devi
 
 **Example**
 
-```js
-let devicesList = usb.getDevices();
+```ts
+let devicesList: Array<USBDevice> = usb.getDevices();
 if (devicesList.length == 0) {
   console.log(`device list is empty`);
 }
 
 usb.requestRight(devicesList[0].name);
-let devicepipe = usb.connectDevice(devicesList[0]);
-let ret = usb.getRawDescriptor(devicepipe);
+let devicepipe: USBDevicePipe = usb.connectDevice(devicesList[0]);
+let ret: number = usb.getRawDescriptor(devicepipe);
 ```
 
 ## usb.getFileDescriptor
@@ -468,15 +470,15 @@ Before you do this, call [usb.getDevices](#usbgetdevices) to obtain the USB devi
 
 **Example**
 
-```js
-let devicesList = usb.getDevices();
+```ts
+let devicesList: Array<USBDevice> = usb.getDevices();
 if (devicesList.length == 0) {
   console.log(`device list is empty`);
 }
 
 usb.requestRight(devicesList[0].name);
-let devicepipe = usb.connectDevice(devicesList[0]);
-let ret = usb.getFileDescriptor(devicepipe);
+let devicepipe: USBDevicePipe = usb.connectDevice(devicesList[0]);
+let ret: number = usb.getFileDescriptor(devicepipe);
 ```
 
 ## usb.controlTransfer
@@ -505,24 +507,33 @@ Before you do this, call [usb.getDevices](#usbgetdevices) to obtain the USB devi
 
 **Example**
 
-```js
-let param = {
+```ts
+class PARA {
+  request: number = 0
+  reqType: USBControlRequestType = 0
+  target: USBRequestTargetType = 0
+  value: number = 0
+  index: number = 0
+  data: Uint8Array = 0
+}
+
+let param: PARA = {
   request: 0,
   reqType: 0,
   target:0,
   value: 0,
   index: 0,
-  data: null
+  data: 0
 };
 
-let devicesList = usb.getDevices();
+let devicesList: Array<USBDevice> = usb.getDevices();
 if (devicesList.length == 0) {
   console.log(`device list is empty`);
 }
 
 usb.requestRight(devicesList[0].name);
-let devicepipe = usb.connectDevice(devicesList[0]);
-usb.controlTransfer(devicepipe, param).then((ret) => {
+let devicepipe: USBDevicePipe = usb.connectDevice(devicesList[0]);
+usb.controlTransfer(devicepipe, param).then((ret: number) => {
  console.log(`controlTransfer = ${ret}`);
 })
 ```
@@ -554,24 +565,24 @@ Before you do this, call [usb.getDevices](#usbgetdevices) to obtain the USB devi
 
 **Example**
 
-```js
+```ts
 // Call usb.getDevices to obtain a data set. Then, obtain a USB device and its access permission.
 // Pass the obtained USB device as a parameter to usb.connectDevice. Then, call usb.connectDevice to connect the USB device.
 // Call usb.claimInterface to claim the USB interface. After that, call usb.bulkTransfer to start bulk transfer.
-let devicesList = usb.getDevices();
+let devicesList: Array<USBDevice> = usb.getDevices();
 if (devicesList.length == 0) {
   console.log(`device list is empty`);
 }
 
-let device = devicesList[0];
+let device: USBDevice = devicesList[0];
 usb.requestRight(device.name);
 
-let devicepipe = usb.connectDevice(device);
-let interfaces = device.configs[0].interfaces[0];
-let endpoint = device.configs[0].interfaces[0].endpoints[0];
-let ret = usb.claimInterface(devicepipe, interfaces);
+let devicepipe: USBDevicePipe = usb.connectDevice(device);
+let interfaces: USBInterface = device.configs[0].interfaces[0];
+let endpoint: USBEndpoint = device.configs[0].interfaces[0].endpoints[0];
+let ret: number = usb.claimInterface(devicepipe, interfaces);
 let buffer =  new Uint8Array(128);
-usb.bulkTransfer(devicepipe, endpoint, buffer).then((ret) => {
+usb.bulkTransfer(devicepipe, endpoint, buffer).then((ret: number) => {
   console.log(`bulkTransfer = ${ret}`);
 });
 ```
@@ -600,15 +611,15 @@ Before you do this, call [usb.getDevices](#usbgetdevices) to obtain the USB devi
 
 **Example**
 
-```js
-let devicesList = usb.getDevices();
+```ts
+let devicesList: Array<USBDevice> = usb.getDevices();
 if (devicesList.length == 0) {
   console.log(`device list is empty`);
 }
 
 usb.requestRight(devicesList[0].name);
-let devicepipe = usb.connectDevice(devicesList[0]);
-let ret = usb.closePipe(devicepipe);
+let devicepipe: USBDevicePipe = usb.connectDevice(devicesList[0]);
+let ret: number = usb.closePipe(devicepipe);
 console.log(`closePipe = ${ret}`);
 ```
 
@@ -636,9 +647,9 @@ Converts the USB function list in the string format to a numeric mask in Device 
 
 **Example**
 
-```js
-let funcs = "acm";
-let ret = usb.usbFunctionsFromString(funcs);
+```ts
+let funcs: string = "acm";
+let ret: number = usb.usbFunctionsFromString(funcs);
 ```
 
 ## usb.usbFunctionsToString
@@ -665,9 +676,9 @@ Converts the USB function list in the numeric mask format to a string in Device 
 
 **Example**
 
-```js
-let funcs = usb.FunctionType.ACM | usb.FunctionType.ECM;
-let ret = usb.usbFunctionsToString(funcs);
+```ts
+let funcs: string = usb.FunctionType.ACM | usb.FunctionType.ECM;
+let ret: number = usb.usbFunctionsToString(funcs);
 ```
 
 ## usb.setCurrentFunctions
@@ -702,11 +713,12 @@ For details about the error codes, see [USB Error Codes](../errorcodes/errorcode
 
 **Example**
 
-```js
-let funcs = usb.FunctionType.HDC;
+```ts
+import {BusinessError} from '@ohos.base';
+let funcs: string = usb.FunctionType.HDC;
 usb.setCurrentFunctions(funcs).then(() => {
     console.info('usb setCurrentFunctions successfully.');
-}).catch(err => {
+}).catch(err: BusinessError => {
     console.error('usb setCurrentFunctions failed: ' + err.code + ' message: ' + err.message);
 });
 ```
@@ -729,8 +741,8 @@ Obtains the numeric mask combination for the USB function list in Device mode.
 
 **Example**
 
-```js
-let ret = usb.getCurrentFunctions();
+```ts
+let ret: number = usb.getCurrentFunctions();
 ```
 
 ## usb.getPorts
@@ -751,8 +763,8 @@ Obtains the list of all physical USB ports.
 
 **Example**
 
-```js
-let ret = usb.getPorts();
+```ts
+let ret: number = usb.getPorts();
 ```
 
 ## usb.getSupportedModes
@@ -779,8 +791,8 @@ Obtains the mask combination for the supported mode list of a given USB port.
 
 **Example**
 
-```js
-let ret = usb.getSupportedModes(0);
+```ts
+let ret: number = usb.getSupportedModes(0);
 ```
 
 ## usb.setPortRoles
@@ -809,11 +821,12 @@ Sets the role types supported by a specified port, which can be **powerRole** (f
 
 **Example**
 
-```js
-let portId = 1;
+```ts
+import {BusinessError} from '@ohos.base';
+let portId: number = 1;
 usb.setPortRoles(portId, usb.PowerRoleType.SOURCE, usb.DataRoleType.HOST).then(() => {
     console.info('usb setPortRoles successfully.');
-}).catch(err => {
+}).catch(err: BusinessError => {
     console.error('usb setPortRoles failed: ' + err.code + ' message: ' + err.message);
 });
 ```

@@ -4,10 +4,10 @@ Image encoding refers to the process of encoding a pixel map into an archived im
 
 ## How to Develop
 
-Read [Image](../reference/apis/js-apis-image.md#imagepacker) for APIs related to image encoding.
+Read [Image API Reference](../reference/apis/js-apis-image.md#imagepacker) for APIs related to image encoding.
 
 1. Create an **ImagePacker** object.
-   
+     
    ```ts
    // Import the required module.
    import image from '@ohos.multimedia.image';
@@ -20,7 +20,7 @@ Read [Image](../reference/apis/js-apis-image.md#imagepacker) for APIs related to
    **format** indicates the image encoding format, and **quality** indicates the image quality. The value ranges from 0 to 100, and the value 100 indicates the optimal quality.
 
    ```ts
-   let packOpts = { format:"image/jpeg", quality:98 };
+   let packOpts : image.PackingOption = { format:"image/jpeg", quality:98 };
    ```
 
 3. [Create a PixelMap object or an ImageSource object](image-decoding.md).
@@ -30,9 +30,10 @@ Read [Image](../reference/apis/js-apis-image.md#imagepacker) for APIs related to
    Method 1: Use the **PixelMap** object for encoding.
 
    ```ts
-   imagePackerApi.packing(pixelMap, packOpts).then( data => {
+   import {BusinessError} from '@ohos.base'
+   imagePackerApi.packing(pixelMap, packOpts).then( (data : ArrayBuffer) => {
      // data is the file stream obtained after packing. You can write the file and save it to obtain an image.
-   }).catch(error => { 
+   }).catch((error : BusinessError) => { 
      console.error('Failed to pack the image. And the error is: ' + error); 
    })
    ```
@@ -40,9 +41,10 @@ Read [Image](../reference/apis/js-apis-image.md#imagepacker) for APIs related to
    Method 2: Use the **ImageSource** object for encoding.
 
    ```ts
-   imagePackerApi.packing(imageSource, packOpts).then( data => {
+   import {BusinessError} from '@ohos.base'
+   imagePackerApi.packing(imageSource, packOpts).then( (data : ArrayBuffer) => {
        // data is the file stream obtained after packing. You can write the file and save it to obtain an image.
-   }).catch(error => { 
+   }).catch((error : BusinessError) => { 
      console.error('Failed to pack the image. And the error is: ' + error); 
    })
    ```

@@ -568,7 +568,7 @@ off(type: 'locationEnabledChange', callback?: Callback&lt;boolean&gt;): void;
 
 on(type: 'cachedGnssLocationsChange', request: CachedGnssLocationsRequest, callback: Callback&lt;Array&lt;Location&gt;&gt;): void;
 
-订阅缓存GNSS定位结果上报事件。
+订阅缓存GNSS定位结果上报事件。该接口功能由gnss定位芯片提供（仅部分型号支持），如果设备无此芯片或使用的芯片型号不支持该功能，则返回错误码801（Capability not supported）。
 
 **需要权限**：ohos.permission.APPROXIMATELY_LOCATION
 
@@ -613,7 +613,7 @@ on(type: 'cachedGnssLocationsChange', request: CachedGnssLocationsRequest, callb
 
 off(type: 'cachedGnssLocationsChange', callback?: Callback&lt;Array&lt;Location&gt;&gt;): void;
 
-取消订阅缓存GNSS定位结果上报事件。
+取消订阅缓存GNSS定位结果上报事件。该接口功能由gnss定位芯片提供（仅部分型号支持），如果设备无此芯片或使用的芯片型号不支持该功能，则返回错误码801（Capability not supported）。
 
 **需要权限**：ohos.permission.APPROXIMATELY_LOCATION
 
@@ -834,7 +834,7 @@ off(type: 'nmeaMessage', callback?: Callback&lt;string&gt;): void;
 
 on(type: 'gnssFenceStatusChange', request: GeofenceRequest, want: WantAgent): void;
 
-添加一个围栏，并订阅地理围栏事件。
+添加一个围栏，并订阅地理围栏事件。该接口功能由gnss定位芯片提供（仅部分型号支持），如果设备无此芯片或使用的芯片型号不支持该功能，则返回错误码801（Capability not supported）。
 
 **需要权限**：ohos.permission.APPROXIMATELY_LOCATION
 
@@ -893,7 +893,7 @@ on(type: 'gnssFenceStatusChange', request: GeofenceRequest, want: WantAgent): vo
 
 off(type: 'gnssFenceStatusChange', request: GeofenceRequest, want: WantAgent): void;
 
-删除一个围栏，并取消订阅该围栏事件。
+删除一个围栏，并取消订阅该围栏事件。该接口功能由gnss定位芯片提供（仅部分型号支持），如果设备无此芯片或使用的芯片型号不支持该功能，则返回错误码801（Capability not supported）。
 
 **需要权限**：ohos.permission.APPROXIMATELY_LOCATION
 
@@ -1683,7 +1683,7 @@ isGeocoderAvailable(): boolean;
 
 getCachedGnssLocationsSize(callback: AsyncCallback&lt;number&gt;): void;
 
-获取GNSS芯片缓存位置的个数。
+获取GNSS芯片缓存位置的个数。该接口功能由gnss定位芯片提供（仅部分型号支持），如果设备无此芯片或使用的芯片型号不支持该功能，则返回错误码801（Capability not supported）。
 
 **需要权限**：ohos.permission.APPROXIMATELY_LOCATION
 
@@ -1728,7 +1728,7 @@ getCachedGnssLocationsSize(callback: AsyncCallback&lt;number&gt;): void;
 
 getCachedGnssLocationsSize(): Promise&lt;number&gt;;
 
-获取GNSS芯片缓存位置的个数。
+获取GNSS芯片缓存位置的个数。该接口功能由gnss定位芯片提供（仅部分型号支持），如果设备无此芯片或使用的芯片型号不支持该功能，则返回错误码801（Capability not supported）。
 
 **需要权限**：ohos.permission.APPROXIMATELY_LOCATION
 
@@ -1771,7 +1771,7 @@ getCachedGnssLocationsSize(): Promise&lt;number&gt;;
 
 flushCachedGnssLocations(callback: AsyncCallback&lt;void&gt;): void;
 
-读取并清空GNSS芯片所有缓存位置。
+读取并清空GNSS芯片所有缓存位置。该接口功能由gnss定位芯片提供（仅部分型号支持），如果设备无此芯片或使用的芯片型号不支持该功能，则返回错误码801（Capability not supported）。
 
 **需要权限**：ohos.permission.APPROXIMATELY_LOCATION
 
@@ -1814,7 +1814,7 @@ flushCachedGnssLocations(callback: AsyncCallback&lt;void&gt;): void;
 
 flushCachedGnssLocations(): Promise&lt;void&gt;;
 
-读取并清空GNSS芯片所有缓存位置。
+读取并清空GNSS芯片所有缓存位置。该接口功能由gnss定位芯片提供（仅部分型号支持），如果设备无此芯片或使用的芯片型号不支持该功能，则返回错误码801（Capability not supported）。
 
 **需要权限**：ohos.permission.APPROXIMATELY_LOCATION
 

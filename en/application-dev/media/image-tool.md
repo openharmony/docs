@@ -19,8 +19,8 @@ Read [Image](../reference/apis/js-apis-image.md#getimageproperty7) for APIs used
    import image from '@ohos.multimedia.image';
    
    // Obtain the sandbox path and create an ImageSource object.
-   const fd =...; //Obtain the file descriptor of the image to be processed.
-   const imageSource = image.createImageSource(fd);
+   const fd : number = ...; // Obtain the file descriptor of the image to be processed.
+   const imageSource : image.ImageSource = image.createImageSource(fd);
    ```
 
 2. Read and edit EXIF data.
@@ -37,7 +37,7 @@ Read [Image](../reference/apis/js-apis-image.md#getimageproperty7) for APIs used
    
    // Edit the EXIF data.
    imageSource.modifyImageProperty('ImageWidth', '120').then(() => {
-     const width = imageSource.getImageProperty("ImageWidth");
+     const width : Promise<string> = imageSource.getImageProperty("ImageWidth");
      console.info('The new imageWidth is ' + width);
    })
    ```

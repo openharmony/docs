@@ -32,7 +32,7 @@ SideBarContainer( type?: SideBarContainerType )
 
 | Name| Description|
 | -------- | -------- |
-| Embed | The sidebar is embedded in the component and displayed side by side with the content area.|
+| Embed | The sidebar is embedded in the component and displayed side by side with the content area. This value takes effect when the screen size is greater than 600 vp. When the screen size is smaller than 600 vp, the sidebar is hidden by default. The user can bring out the sidebar in Overlay mode by clicking the control button.|
 | Overlay | The sidebar is displayed overlaid on the content area.|
 | AUTO | The sidebar is displayed in Embed mode when the component size is greater than or equal to the sum of **minSideBarWidth** and **minContentWidth**<br>and in Overlay mode otherwise.<br>If **minSideBarWidth** or **minContentWidth** is not set, the default value will be used for calculation. If the calculation result is less than 600 vp, 600 vp will be used as the breakpoint value for mode switching.|
 
@@ -51,7 +51,7 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 | autoHide<sup>9+</sup> | boolean | Whether to automatically hide the sidebar when it is dragged to be smaller than the minimum width.<br>Default value: **true**<br>**NOTE**<br>The value is subject to the **minSideBarWidth** attribute method. If it is not set in **minSideBarWidth**, the default value is used.<br>Whether the sidebar should be hidden is determined when it is being dragged. When its width is less than the minimum width, the damping effect is required to trigger hiding (a distance out of range).|
 | sideBarPosition<sup>9+</sup> | [SideBarPosition](#sidebarposition9) | Position of the sidebar.<br>Default value: **SideBarPosition.Start**|
 | divider<sup>10+</sup>        | [DividerStyle](#dividerstyle10) \| null | Divider style.<br>- **DividerStyle** (default): The divider is displayed.<br>- **null**: The divider is not displayed.|
-| minContentWidth<sup>10+</sup> | [Dimension](ts-types.md#dimension10) | Minimum width of the content area of the sidebar container.<br>Default value: **360vp**<br>Unit: vp<br>**NOTE**<br>If this attribute is set to a value less than 0, the default value is used. If this attribute is not set, the value **0vp** is used.<br>In Embed mode, when the component size is increased, only the content area is enlarged; when the component size is decreased, the content area is shrunk until its width reaches the value defined by **minContentWidth**, and then the sidebar is shrunk until its width reaches the value defined by **minSideBarWidth**; if the component size is further decreased, while respecting the minimum width of the sidebar, the content area is further shrunk, with the content clipped, until it is 0 vp large.<br>**minContentWidth**, whether it is specified or kept at the default value, takes precedence over **minSideBarWidth** and **sideBarWidth** of the sidebar. |
+| minContentWidth<sup>10+</sup> | [Dimension](ts-types.md#dimension10) | Minimum width of the content area of the sidebar container.<br>Default value: **360vp**<br>Unit: vp<br>**NOTE**<br>If this attribute is set to a value less than 0, the default value is used. If this attribute is not set, the value **0vp** is used.<br>In Embed mode, when the component size is increased, only the content area is enlarged; when the component size is decreased, the content area is shrunk until its width reaches the value defined by **minContentWidth**; if the component size is further decreased, while respecting the **minContentWidth** settings, the sidebar is shrunk until its width reaches the value defined by **minSideBarWidth**; if the component size is further decreased, then:<br>- If **autoHide** is set to **false**, while respecting the **minSideBarWidth** and **minContentWidth** settings, the content area has its content clipped.<br>- If **autoHide** is set to **true**, the sidebar is hidden first, and then the content area is shrunk. After its width reaches the value defined by **minContentWidth**, the content area has its content clipped.<br>**minContentWidth**, whether it is specified or kept at the default value, takes precedence over **minSideBarWidth** and **sideBarWidth** of the sidebar.|
 
 ## ButtonStyle
 
@@ -112,7 +112,7 @@ struct SideBarContainerExample {
   build() {
     SideBarContainer(SideBarContainerType.Embed) {
       Column() {
-        ForEach(this.arr, (item, index) => {
+        ForEach(this.arr, (item: number, index: number) => {
           Column({ space: 5 }) {
             Image(this.current === item ? this.selectedIcon : this.normalIcon).width(64).height(64)
             Text("Index0" + item)
@@ -123,10 +123,11 @@ struct SideBarContainerExample {
           .onClick(() => {
             this.current = item
           })
-        }, item => item)
+        }, (item: string) => item)
       }.width('100%')
       .justifyContent(FlexAlign.SpaceEvenly)
       .backgroundColor('#19000000')
+
       Column() {
         Text('SideBarContainer content text1').fontSize(25)
         Text('SideBarContainer content text2').fontSize(25)
@@ -143,10 +144,11 @@ struct SideBarContainerExample {
     .sideBarWidth(150)
     .minSideBarWidth(50)
     .maxSideBarWidth(300)
+    .minContentWidth(0)
     .onChange((value: boolean) => {
       console.info('status:' + value)
     })
-    .divider({strokeWidth: '1vp', color: Color.Gray, startMargin: '4vp', endMargin: '4vp'})
+    .divider({ strokeWidth: '1vp', color: Color.Gray, startMargin: '4vp', endMargin: '4vp' })
   }
 }
 ```

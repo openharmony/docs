@@ -24,7 +24,7 @@ setDisposedStatus(appId: string, disposedWant: Want): Promise\<void>
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.AppControl
 
-**系统API：**  此接口为系统接口。。
+**系统API：**  此接口为系统接口。
 
 **参数：**
 

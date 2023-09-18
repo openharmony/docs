@@ -965,9 +965,7 @@ performAction(actionName: string, parameters: object, callback: AsyncCallback\<v
 import { BusinessError } from '@ohos.base';
 
 let actionName = 'action';
-let parameters = {
-  'setText': 'test text'
-};
+let parameters: object = [];
 try {
   rootElement.performAction(actionName, parameters, (err: BusinessError<void>) => {
     if (err) {

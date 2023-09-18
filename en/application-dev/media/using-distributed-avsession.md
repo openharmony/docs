@@ -30,22 +30,29 @@ To enable a system application that accesses the AVSession service as the contro
 2. Use **castAudio** in the **AVSessionManager** class to project all sessions of the local device to another device.
      
    ```ts
-   // Cast the sessions to another device.
-   let audioManager = audio.getAudioManager();
-   let audioRoutingManager = audioManager.getRoutingManager();
-   let audioDevices;
-   await audioRoutingManager.getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG).then((data) => {
-      audioDevices = data;
-      console.info(`Promise returned to indicate that the device list is obtained.`);
-   }).catch((err) => {
-      console.error(`Failed to get devices. Code: ${err.code}, message: ${err.message}`);
-   });
-   
-   AVSessionManager.castAudio('all', audioDevices).then(() => {
-      console.info(`createController : SUCCESS`);
-   }).catch((err) => {
-      console.error(`Failed to cast audio. Code: ${err.code}, message: ${err.message}`);
-   });
+   import AVSessionManager from '@ohos.multimedia.avsession';
+   import audio from '@ohos.multimedia.audio';
+   import { BusinessError } from '@ohos.base';
+
+   async function castAudio() {
+     // Cast the sessions to another device.
+     let audioManager = audio.getAudioManager();
+     let audioRoutingManager = audioManager.getRoutingManager();
+     let audioDevices: audio.AudioDeviceDescriptors;
+     await audioRoutingManager.getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG).then((data) => {
+       audioDevices = data;
+       console.info(`Promise returned to indicate that the device list is obtained.`);
+     }).catch((err: BusinessError) => {
+       console.error(`Failed to get devices. Code: ${err.code}, message: ${err.message}`);
+     });
+
+     AVSessionManager.castAudio('all', audioDevices).then(() => {
+       console.info(`createController : SUCCESS`);
+     }).catch((err: BusinessError) => {
+       console.error(`Failed to cast audio. Code: ${err.code}, message: ${err.message}`);
+     });
+   }
+
    ```
 
    After the system application on the local service initiates projection to a remote device, the AVSession framework instructs the AVSession service of the remote device to create a remote AVSession. When the AVSession on the local device changes (for example, the media information or playback state changes), the AVSession framework automatically synchronizes the change to the remote device.

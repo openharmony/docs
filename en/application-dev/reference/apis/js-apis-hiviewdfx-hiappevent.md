@@ -9,7 +9,7 @@ The **hiAppEvent** module provides application event-related functions, includin
 
 ## Modules to Import
 
-```js
+```ts
 import hiAppEvent from '@ohos.hiviewdfx.hiAppEvent';
 ```
 
@@ -44,21 +44,24 @@ For details about the error codes, see [Application Event Logging Error Codes](.
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
+let eventParams: Record<string, number | string> = {
+  "int_data": 100,
+  "str_data": "strValue",
+};
 hiAppEvent.write({
-    domain: "test_domain",
-    name: "test_event",
-    eventType: hiAppEvent.EventType.FAULT,
-    params: {
-        int_data: 100,
-        str_data: "strValue"
-    }
-}, (err) => {
-    if (err) {
-        console.error(`code: ${err.code}, message: ${err.message}`);
-        return;
-    }
-    console.log(`success to write event`);
+  domain: "test_domain",
+  name: "test_event",
+  eventType: hiAppEvent.EventType.FAULT,
+  params: eventParams,
+}, (err: BusinessError) => {
+  if (err) {
+    console.error(`code: ${err.code}, message: ${err.message}`);
+    return;
+  }
+  console.log(`success to write event`);
 });
 ```
 
@@ -98,19 +101,22 @@ For details about the error codes, see [Application Event Logging Error Codes](.
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
+let eventParams: Record<string, number | string> = {
+  "int_data": 100,
+  "str_data": "strValue",
+};
 hiAppEvent.write({
-    domain: "test_domain",
-    name: "test_event",
-    eventType: hiAppEvent.EventType.FAULT,
-    params: {
-        int_data: 100,
-        str_data: "strValue"
-    }
+  domain: "test_domain",
+  name: "test_event",
+  eventType: hiAppEvent.EventType.FAULT,
+  params: eventParams,
 }).then(() => {
-    console.log(`success to write event`);
-}).catch((err) => {
-    console.error(`code: ${err.code}, message: ${err.message}`);
+  console.log(`success to write event`);
+}).catch((err: BusinessError) => {
+  console.error(`code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -122,7 +128,7 @@ Defines parameters for an **AppEventInfo** object.
 
 | Name     | Type                   | Mandatory| Description                                                        |
 | --------- | ----------------------- | ---- | ------------------------------------------------------------ |
-| domain    | string                  | Yes  | Event domain. The value is a string of up to 32 characters, including digits (0 to 9), letters (a to z), and underscores (\_). It must start with a lowercase letter and cannot end with an underscore (_).|
+| domain    | string                  | Yes  | Event domain. The value is a string of up to 16 characters, including digits (0 to 9), letters (a to z), and underscores (\_). It must start with a lowercase letter and cannot end with an underscore (_).|
 | name      | string                  | Yes  | Event name. The value is a string of up to 48 characters, including digits (0 to 9), letters (a to z), and underscores (\_). It must start with a lowercase letter or dollar sign ($) and cannot end with an underscore (_).|
 | eventType | [EventType](#eventtype) | Yes  | Event type.                                                  |
 | params    | object                  | Yes  | Event parameter object, which consists of a parameter name and a parameter value. The specifications are as follows:<br>- The parameter name is a string of up to 16 characters, including digits (0 to 9), letters (a to z), and underscores (\_). It must start with a lowercase letter or dollar sign ($) and cannot end with an underscore (_).<br>- The parameter value can be a string, number, boolean, or array. If the parameter value is a string, its maximum length is 8*1024 characters. If this limit is exceeded, excess characters will be discarded. If the parameter value is a number, the value must be within the range of **Number.MIN_SAFE_INTEGER** to **Number.MAX_SAFE_INTEGER**. Otherwise, uncertain values may be generated. If the parameter value is an array, the elements in the array must be of the same type, which can only be string, number, or boolean. In addition, the number of elements must be less than 100. If this limit is exceeded, excess elements will be discarded.<br>- The maximum number of parameters is 32. If this limit is exceeded, excess parameters will be discarded.|
@@ -151,16 +157,18 @@ For details about the error codes, see [Application Event Logging Error Codes](.
 
 **Example**
 
-```js
+```ts
 // Disable the event logging function.
-hiAppEvent.configure({
-    disable: true
-});
+let config1: hiAppEvent.ConfigOption = {
+  disable: true,
+};
+hiAppEvent.configure(config1);
 
 // Set the maximum size of the file storage directory to 100 MB.
-hiAppEvent.configure({
-    maxStorage: '100M'
-});
+let config2: hiAppEvent.ConfigOption = {
+  maxStorage: '100M',
+};
+hiAppEvent.configure(config2);
 ```
 
 ## ConfigOption
@@ -208,52 +216,53 @@ For details about the error codes, see [Application Event Logging Error Codes](.
 
 **Example**
 
-```js
+```ts
 // 1. If callback parameters are passed to the watcher, you can have subscription events processed in the callback that is automatically triggered.
 hiAppEvent.addWatcher({
-    name: "watcher1",
-    appEventFilters: [
-        {
-            domain: "test_domain",
-            eventTypes: [hiAppEvent.EventType.FAULT, hiAppEvent.EventType.BEHAVIOR]
-        }
-    ],
-    triggerCondition: {
-        row: 10,
-        size: 1000,
-        timeOut: 1
-    },
-    onTrigger: function (curRow, curSize, holder) {
-        if (holder == null) {
-            console.error("holder is null");
-            return;
-        }
-        let eventPkg = null;
-        while ((eventPkg = holder.takeNext()) != null) {
-            console.info(`eventPkg.packageId=${eventPkg.packageId}`);
-            console.info(`eventPkg.row=${eventPkg.row}`);
-            console.info(`eventPkg.size=${eventPkg.size}`);
-            for (const eventInfo of eventPkg.data) {
-                console.info(`eventPkg.data=${eventInfo}`);
-            }
-        }
+  name: "watcher1",
+  appEventFilters: [
+    {
+      domain: "test_domain",
+      eventTypes: [hiAppEvent.EventType.FAULT, hiAppEvent.EventType.BEHAVIOR]
     }
+  ],
+  triggerCondition: {
+    row: 10,
+    size: 1000,
+    timeOut: 1
+  },
+  onTrigger: (curRow: number, curSize: number, holder: hiAppEvent.AppEventPackageHolder) => {
+    if (holder == null) {
+      console.error("holder is null");
+      return;
+    }
+    console.info(`curRow=${curRow}, curSize=${curSize}`);
+    let eventPkg: hiAppEvent.AppEventPackage | null = null;
+    while ((eventPkg = holder.takeNext()) != null) {
+      console.info(`eventPkg.packageId=${eventPkg.packageId}`);
+      console.info(`eventPkg.row=${eventPkg.row}`);
+      console.info(`eventPkg.size=${eventPkg.size}`);
+      for (const eventInfo of eventPkg.data) {
+        console.info(`eventPkg.data=${eventInfo}`);
+      }
+    }
+  }
 });
 
 // 2. If no callback parameters are passed to the watcher, you can have subscription events processed manually through the subscription data holder.
 let holder = hiAppEvent.addWatcher({
-    name: "watcher2",
+  name: "watcher2",
 });
 if (holder != null) {
-    let eventPkg = null;
-    while ((eventPkg = holder.takeNext()) != null) {
-        console.info(`eventPkg.packageId=${eventPkg.packageId}`);
-        console.info(`eventPkg.row=${eventPkg.row}`);
-        console.info(`eventPkg.size=${eventPkg.size}`);
-        for (const eventInfo of eventPkg.data) {
-            console.info(`eventPkg.data=${eventInfo}`);
-        }
+  let eventPkg: hiAppEvent.AppEventPackage | null = null;
+  while ((eventPkg = holder.takeNext()) != null) {
+    console.info(`eventPkg.packageId=${eventPkg.packageId}`);
+    console.info(`eventPkg.row=${eventPkg.row}`);
+    console.info(`eventPkg.size=${eventPkg.size}`);
+    for (const eventInfo of eventPkg.data) {
+      console.info(`eventPkg.data=${eventInfo}`);
     }
+  }
 }
 ```
 
@@ -281,10 +290,10 @@ For details about the error codes, see [Application Event Logging Error Codes](.
 
 **Example**
 
-```js
+```ts
 // 1. Define a watcher for application events.
-let watcher = {
-    name: "watcher1",
+let watcher: hiAppEvent.Watcher = {
+  name: "watcher1",
 }
 
 // 2. Add the watcher to subscribe to application events.
@@ -352,9 +361,9 @@ Constructor of the **Watcher** class. When a watcher is added, the system automa
 
 **Example**
 
-```js
-let holder = hiAppEvent.addWatcher({
-    name: "watcher",
+```ts
+let holder1 = hiAppEvent.addWatcher({
+    name: "watcher1",
 });
 ```
 
@@ -382,11 +391,11 @@ For details about the error codes, see [Application Event Logging Error Codes](.
 
 **Example**
 
-```js
-let holder = hiAppEvent.addWatcher({
-    name: "watcher",
+```ts
+let holder2 = hiAppEvent.addWatcher({
+    name: "watcher2",
 });
-holder.setSize(1000);
+holder2.setSize(1000);
 ```
 
 ### takeNext
@@ -399,11 +408,11 @@ Extracts subscription event data based on the configured data size threshold. If
 
 **Example**
 
-```js
-let holder = hiAppEvent.addWatcher({
-    name: "watcher",
+```ts
+let holder3 = hiAppEvent.addWatcher({
+    name: "watcher3",
 });
-let eventPkg = holder.takeNext();
+let eventPkg = holder3.takeNext();
 ```
 
 ## AppEventPackage
@@ -429,14 +438,14 @@ Clears local application event logging data.
 
 **Example**
 
-```js
+```ts
 hiAppEvent.clearData();
 ```
 
 
 ## EventType
 
-Enumerates the event types.
+Enumerates event types.
 
 **System capability**: SystemCapability.HiviewDFX.HiAppEvent
 

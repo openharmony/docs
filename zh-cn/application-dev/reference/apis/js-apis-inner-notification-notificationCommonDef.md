@@ -13,5 +13,5 @@ BundleOption模块为指定应用的包信息。
 | 名称   | 类型   | 必填 | 说明   |
 | ------ | ------ | ------ |  ------ |
 | bundle | string | 是 | 应用的包信息。 |
-| uid    | number | 否 | 用户ID。 |
+| uid    | number | 否 | 用户ID，默认为0。 |
 

@@ -8,6 +8,8 @@
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
 
+## 属性
+
 | 名称             | 类型                    | 必填 | 说明                               |
 | ---------------- | ---------------------- | ---- | --------------------------------- |
 | soundEnabled     | [NotificationFlagStatus](#notificationflagstatus) | 否   | 是否启用声音提示。                  |

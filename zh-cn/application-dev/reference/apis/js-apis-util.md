@@ -9,7 +9,7 @@
 
 ## 导入模块
 
-```js
+```ts
 import util from '@ohos.util';
 ```
 
@@ -36,9 +36,9 @@ format(format: string,  ...args: Object[]): string
 
 **示例：**
 
-  ```js
-let res = util.format("%s", "hello world!");
-console.log(res);
+  ```ts
+  let res = util.format("%s", "hello world!");
+  console.log(res);
   ```
 
 ## util.errnoToString<sup>9+</sup>
@@ -63,10 +63,10 @@ errnoToString(errno: number): string
 
 **示例：**
 
-```js
-let errnum = -1; // -1 : a system error number
-let result = util.errnoToString(errnum);
-console.log("result = " + result);
+```ts
+  let errnum = -1; // -1 : a system error number
+  let result = util.errnoToString(errnum);
+  console.log("result = " + result);
 ```
 
 **部分错误码及信息示例：**
@@ -105,15 +105,15 @@ callbackWrapper(original: Function): (err: Object, value: Object )=&gt;void
 
 **示例：**
 
-  ```js
-async function fn() {
-   return 'hello world';
-}
-let cb = util.callbackWrapper(fn);
-cb(1, (err, ret) => {
-   if (err) throw err;
-   console.log(ret);
-});
+  ```ts
+  async function fn() {
+    return 'hello world';
+  }
+  let cb = util.callbackWrapper(fn);
+  cb(1, (err : Object, ret : string) => {
+    if (err) throw new Error;
+    console.log(ret);
+  });
   ```
 
 ## util.promisify<sup>9+</sup>
@@ -138,24 +138,24 @@ promisify(original: (err: Object, value: Object) =&gt; void): Function
 
 **示例：**
 
-  ```js
-function fun(num, callback) {
-   if (typeof num === 'number') {
-      callback(null, num + 3);
-   } else {
-      callback("type err");
-   }
-}
+  ```ts
+  function fun(num, callback) {
+    if (typeof num === 'number') {
+        callback(null, num + 3);
+    } else {
+        callback("type err");
+    }
+  }
 
-const addCall = util.promisify(fun);
-(async () => {
-   try {
-      let res = await addCall(2);
-      console.log(res);
-   } catch (err) {
-      console.log(err);
-   }
-})();
+  const addCall = util.promisify(fun);
+  (async () => {
+    try {
+        let res = await addCall(2);
+        console.log(res);
+    } catch (err) {
+        console.log(err);
+    }
+  })();
   ```
 
 ## util.generateRandomUUID<sup>9+</sup>
@@ -180,7 +180,7 @@ generateRandomUUID(entropyCache?: boolean): string
 
 **示例：**
 
-  ```js
+  ```ts
   let uuid = util.generateRandomUUID(true);
   console.log("RFC 4122 Version 4 UUID:" + uuid);
   // 输出：
@@ -209,7 +209,7 @@ generateRandomBinaryUUID(entropyCache?: boolean): Uint8Array
 
 **示例：**
 
-  ```js
+  ```ts
   let uuid = util.generateRandomBinaryUUID(true);
   console.log(JSON.stringify(uuid));
   // 输出：
@@ -238,7 +238,7 @@ parseUUID(uuid: string): Uint8Array
 
 **示例：**
 
-  ```js
+  ```ts
   let uuid = util.parseUUID("84bdf796-66cc-4655-9b89-d6218d100f9c");
   console.log(JSON.stringify(uuid));
   // 输出：
@@ -272,7 +272,7 @@ printf(format: string,  ...args: Object[]): string
 
 **示例：**
 
-  ```js
+  ```ts
   let res = util.printf("%s", "hello world!");
   console.log(res);
   ```
@@ -304,7 +304,7 @@ getErrorString(errno: number): string
 
 **示例：**
 
-  ```js
+  ```ts
   let errnum = -1; // -1 : a system error number
   let result = util.getErrorString(errnum);
   console.log("result = " + result);
@@ -381,9 +381,9 @@ create(encoding?: string,options?: { fatal?: boolean; ignoreBOM?: boolean }): Te
 
 **示例：**
 
-```js
-let result = util.TextDecoder.create('utf-8', { ignoreBOM : true })
-let retStr = result.encoding
+```ts
+  let result = util.TextDecoder.create('utf-8', { ignoreBOM : true })
+  let retStr = result.encoding
 ```
 
 ### decodeWithStream<sup>9+</sup>
@@ -415,7 +415,7 @@ decodeWithStream(input: Uint8Array, options?: { stream?: boolean }): string
 
 **示例：**
 
-  ```js
+  ```ts
   let textDecoder = new util.TextDecoder("utf-8",{ignoreBOM: true});
   let result = new Uint8Array(6);
   result[0] = 0xEF;
@@ -457,7 +457,7 @@ TextDecoder的构造函数。
 
 **示例：**
 
-  ```js
+  ```ts
   let textDecoder = new util.TextDecoder("utf-8",{ignoreBOM: true});
   ```
 
@@ -494,7 +494,7 @@ decode(input: Uint8Array, options?: { stream?: false }): string
 
 **示例：**
 
-  ```js
+  ```ts
   let textDecoder = new util.TextDecoder("utf-8",{ignoreBOM: true});
   let result = new Uint8Array(6);
   result[0] = 0xEF;
@@ -531,7 +531,7 @@ TextEncoder的构造函数。
 
 **示例：**
 
-  ```js
+  ```ts
   let textEncoder = new util.TextEncoder();
   ```
 
@@ -551,7 +551,7 @@ TextEncoder的构造函数。
 
 **示例：**
 
-  ```js
+  ```ts
   let textEncoder = new util.TextEncoder("utf-8");
   ```
 
@@ -577,11 +577,11 @@ encodeInto(input?: string): Uint8Array
 
 **示例：**
 
-  ```js
-let textEncoder = new util.TextEncoder();
-let buffer = new ArrayBuffer(20);
-let result = new Uint8Array(buffer);
-result = textEncoder.encodeInto("\uD800¥¥");
+  ```ts
+  let textEncoder = new util.TextEncoder();
+  let buffer = new ArrayBuffer(20);
+  let result = new Uint8Array(buffer);
+  result = textEncoder.encodeInto("\uD800¥¥");
   ```
 
 ### encodeIntoUint8Array<sup>9+</sup>
@@ -607,12 +607,12 @@ encodeIntoUint8Array(input: string, dest: Uint8Array): { read: number; written: 
 
 **示例：**
 
-  ```js
-let that = new util.TextEncoder()
-let buffer = new ArrayBuffer(4)
-let dest = new Uint8Array(buffer)
-let result = new Object()
-result = that.encodeIntoUint8Array('abcd', dest)
+  ```ts
+  let that = new util.TextEncoder()
+  let buffer = new ArrayBuffer(4)
+  let dest = new Uint8Array(buffer)
+  let result = new Object()
+  result = that.encodeIntoUint8Array('abcd', dest)
   ```
 
 ### encodeInto<sup>(deprecated)</sup>
@@ -641,7 +641,7 @@ encodeInto(input: string, dest: Uint8Array): { read: number; written: number }
 | Uint8Array | 返回编码后的文本。 |
 
 **示例：**
-  ```js
+  ```ts
   let that = new util.TextEncoder()
   let buffer = new ArrayBuffer(4)
   let dest = new Uint8Array(buffer)
@@ -674,7 +674,7 @@ encode(input?: string): Uint8Array
 | Uint8Array | 返回编码后的文本。 |
 
 **示例：**
-  ```js
+  ```ts
   let textEncoder = new util.TextEncoder();
   let buffer = new ArrayBuffer(20);
   let result = new Uint8Array(buffer);
@@ -695,8 +695,8 @@ RationalNumber的构造函数。
 
 **示例：**
 
-```js
-let rationalNumber = new util.RationalNumber();
+```ts
+  let rationalNumber = new util.RationalNumber();
 ```
 
 ### parseRationalNumber<sup>9+</sup>
@@ -716,8 +716,8 @@ parseRationalNumber(numerator: number,denominator: number): RationalNumber
 
 **示例：**
 
-```js
-let rationalNumber = util.RationalNumber.parseRationalNumber(1,2)
+```ts
+  let rationalNumber = util.RationalNumber.parseRationalNumber(1,2)
 ```
 
 ### createRationalFromString<sup>8+</sup>
@@ -742,9 +742,9 @@ static createRationalFromString​(rationalString: string): RationalNumber​
 
 **示例：**
 
-```js
-let rationalNumber = new util.RationalNumber(1,2);
-let rational = util.RationalNumber.createRationalFromString("3/4");
+```ts
+  let rationalNumber = new util.RationalNumber(1,2);
+  let rational = util.RationalNumber.createRationalFromString("3/4");
 ```
 
 ### compare<sup>9+</sup>
@@ -769,10 +769,10 @@ compare​(another: RationalNumber): number​
 
 **示例：**
 
-  ```js
-let rationalNumber = new util.RationalNumber(1,2);
-let rational = util.RationalNumber.createRationalFromString("3/4");
-let result = rationalNumber.compare(rational);
+  ```ts
+  let rationalNumber = new util.RationalNumber(1,2);
+  let rational = util.RationalNumber.createRationalFromString("3/4");
+  let result = rationalNumber.compare(rational);
   ```
 
 ### valueOf<sup>8+</sup>
@@ -791,9 +791,9 @@ valueOf(): number
 
 **示例：**
 
-```js
-let rationalNumber = new util.RationalNumber(1,2);
-let result = rationalNumber.valueOf();
+```ts
+  let rationalNumber = new util.RationalNumber(1,2);
+  let result = rationalNumber.valueOf();
 ```
 
 ### equals<sup>8+</sup>
@@ -818,10 +818,10 @@ equals​(obj: Object): boolean
 
 **示例：**
 
-```js
-let rationalNumber = new util.RationalNumber(1,2);
-let rational = util.RationalNumber.createRationalFromString("3/4");
-let result = rationalNumber.equals(rational);
+```ts
+  let rationalNumber = new util.RationalNumber(1,2);
+  let rational = util.RationalNumber.createRationalFromString("3/4");
+  let result = rationalNumber.equals(rational);
 ```
 
 ### getCommonFactor<sup>9+</sup>
@@ -847,7 +847,7 @@ getCommonFactor(number1: number,number2: number): number
 
 **示例：**
 
-```js
+```ts
 let rationalNumber = new util.RationalNumber(1,2);
 let result = util.RationalNumber.getCommonFactor(4,6);
 ```
@@ -868,9 +868,9 @@ getNumerator​(): number
 
 **示例：**
 
-```js
-let rationalNumber = new util.RationalNumber(1,2);
-let result = rationalNumber.getNumerator();
+```ts
+  let rationalNumber = new util.RationalNumber(1,2);
+  let result = rationalNumber.getNumerator();
 ```
 
 ### getDenominator<sup>8+</sup>
@@ -889,9 +889,9 @@ getDenominator​(): number
 
 **示例：**
 
-```js
-let rationalNumber = new util.RationalNumber(1,2);
-let result = rationalNumber.getDenominator();
+```ts
+  let rationalNumber = new util.RationalNumber(1,2);
+  let result = rationalNumber.getDenominator();
 ```
 
 ### isZero<sup>8+</sup>
@@ -910,9 +910,9 @@ isZero​():boolean
 
 **示例：**
 
-```js
-let rationalNumber = new util.RationalNumber(1,2);
-let result = rationalNumber.isZero();
+```ts
+  let rationalNumber = new util.RationalNumber(1,2);
+  let result = rationalNumber.isZero();
 ```
 
 ### isNaN<sup>8+</sup>
@@ -931,9 +931,9 @@ isNaN​(): boolean
 
 **示例：**
 
-```js
-let rationalNumber = new util.RationalNumber(1,2);
-let result = rationalNumber.isNaN();
+```ts
+  let rationalNumber = new util.RationalNumber(1,2);
+  let result = rationalNumber.isNaN();
 ```
 
 ### isFinite<sup>8+</sup>
@@ -952,9 +952,9 @@ isFinite​():boolean
 
 **示例：**
 
-```js
-let rationalNumber = new util.RationalNumber(1,2);
-let result = rationalNumber.isFinite();
+```ts
+  let rationalNumber = new util.RationalNumber(1,2);
+  let result = rationalNumber.isFinite();
 ```
 
 ### toString<sup>8+</sup>
@@ -973,9 +973,9 @@ toString​(): string
 
 **示例：**
 
-```js
-let rationalNumber = new util.RationalNumber(1,2);
-let result = rationalNumber.toString();
+```ts
+  let rationalNumber = new util.RationalNumber(1,2);
+  let result = rationalNumber.toString();
 ```
 
 ### constructor<sup>(deprecated)</sup>
@@ -999,8 +999,8 @@ RationalNumber的构造函数。
 
 **示例：**
 
-```js
-let rationalNumber = new util.RationalNumber(1,2);
+```ts
+  let rationalNumber = new util.RationalNumber(1,2);
 ```
 
 ### compareTo<sup>(deprecated)</sup>
@@ -1029,10 +1029,10 @@ compareTo​(another: RationalNumber): number​
 
 **示例：**
 
-```js
-let rationalNumber = new util.RationalNumber(1,2);
-let rational = util.RationalNumber.createRationalFromString("3/4");
-let result = rationalNumber.compareTo(rational);
+```ts
+  let rationalNumber = new util.RationalNumber(1,2);
+  let rational = util.RationalNumber.createRationalFromString("3/4");
+  let result = rationalNumber.compareTo(rational);
 ```
 
 ### getCommonDivisor<sup>(deprecated)</sup>
@@ -1062,9 +1062,9 @@ static getCommonDivisor​(number1: number,number2: number): number
 
 **示例：**
 
-```js
-let rationalNumber = new util.RationalNumber(1,2);
-let result = util.RationalNumber.getCommonDivisor(4,6);
+```ts
+  let rationalNumber = new util.RationalNumber(1,2);
+  let result = util.RationalNumber.getCommonDivisor(4,6);
 ```
 
 ## LRUCache<sup>9+</sup>
@@ -1081,11 +1081,11 @@ LRUCache用于在缓存空间不够的时候，将近期最少使用的数据替
 
 **示例：**
 
-```js
-let pro = new util.LRUCache();
-pro.put(2,10);
-pro.put(1,8);
-let result = pro.length;
+```ts 
+  let  pro : util.LRUCache<number, number> = new util.LRUCache();
+  pro.put(2,10);
+  pro.put(1,8);
+  let result = pro.length;
 ```
 
 ### constructor<sup>9+</sup>
@@ -1104,8 +1104,8 @@ constructor(capacity?: number)
 
 **示例：**
 
-```js
-let lrubuffer= new util.LRUCache();
+```ts
+  let lrubuffer : util.LRUCache<number, number> = new util.LRUCache();
 ```
 
 
@@ -1125,9 +1125,9 @@ updateCapacity(newCapacity: number): void
 
 **示例：**
 
-```js
-let pro = new util.LRUCache();
-pro.updateCapacity(100);
+```ts
+  let pro : util.LRUCache<number,number>= new util.LRUCache();
+  pro.updateCapacity(100);
 ```
 
 
@@ -1147,12 +1147,12 @@ toString(): string
 
 **示例：**
 
-```js
-let pro = new util.LRUCache();
-pro.put(2,10);
-pro.get(2);
-pro.remove(20);
-let result = pro.toString();
+```ts
+  let pro : util.LRUCache<number,number> = new util.LRUCache();
+  pro.put(2,10);
+  pro.get(2);
+  pro.remove(20);
+  let result = pro.toString();
 ```
 
 
@@ -1172,9 +1172,9 @@ getCapacity(): number
 
 **示例：**
 
-  ```js
-let pro = new util.LRUCache();
-let result = pro.getCapacity();
+  ```ts
+  let pro : util.LRUCache<number,number> = new util.LRUCache();
+  let result = pro.getCapacity();
   ```
 
 
@@ -1188,11 +1188,11 @@ clear(): void
 
 **示例：**
 
-  ```js
-let pro = new util.LRUCache();
-pro.put(2,10);
-let result = pro.length;
-pro.clear();
+  ```ts
+  let pro : util.LRUCache<number,number> = new util.LRUCache();
+  pro.put(2,10);
+  let result = pro.length;
+  pro.clear();
   ```
 
 
@@ -1212,10 +1212,10 @@ getCreateCount(): number
 
 **示例：**
 
-  ```js
-let pro = new util.LRUCache();
-pro.put(1,8);
-let result = pro.getCreateCount();
+  ```ts
+  let pro : util.LRUCache<number,number> = new util.LRUCache();
+  pro.put(1,8);
+  let result = pro.getCreateCount();
   ```
 
 
@@ -1235,11 +1235,11 @@ getMissCount(): number
 
 **示例：**
 
-  ```js
-let pro = new util.LRUCache();
-pro.put(2,10);
-pro.get(2);
-let result = pro.getMissCount();
+  ```ts
+  let pro : util.LRUCache<number,number> = new util.LRUCache();
+  pro.put(2,10);
+  pro.get(2);
+  let result = pro.getMissCount();
   ```
 
 
@@ -1259,12 +1259,12 @@ getRemovalCount(): number
 
 **示例：**
 
-  ```js
-let pro = new util.LRUCache();
-pro.put(2,10);
-pro.updateCapacity(2);
-pro.put(50,22);
-let result = pro.getRemovalCount();
+  ```ts
+  let pro : util.LRUCache<number,number> = new util.LRUCache();
+  pro.put(2,10);
+  pro.updateCapacity(2);
+  pro.put(50,22);
+  let result = pro.getRemovalCount();
   ```
 
 
@@ -1284,11 +1284,11 @@ getMatchCount(): number
 
 **示例：**
 
-  ```js
-let pro = new util.LRUCache();
-pro.put(2,10);
-pro.get(2);
-let result = pro.getMatchCount();
+  ```ts
+  let pro : util.LRUCache<number,number> = new util.LRUCache();
+  pro.put(2,10);
+  pro.get(2);
+  let result = pro.getMatchCount();
   ```
 
 
@@ -1308,10 +1308,10 @@ getPutCount(): number
 
 **示例：**
 
-  ```js
-let pro = new util.LRUCache();
-pro.put(2,10);
-let result = pro.getPutCount();
+  ```ts
+  let pro : util.LRUCache<number,number> = new util.LRUCache();
+  pro.put(2,10);
+  let result = pro.getPutCount();
   ```
 
 
@@ -1331,10 +1331,10 @@ isEmpty(): boolean
 
 **示例：**
 
-  ```js
-let pro = new util.LRUCache();
-pro.put(2,10);
-let result = pro.isEmpty();
+  ```ts
+  let pro : util.LRUCache<number,number> = new util.LRUCache();
+  pro.put(2,10);
+  let result = pro.isEmpty();
   ```
 
 
@@ -1360,10 +1360,10 @@ get(key: K): V | undefined
 
 **示例：**
 
-  ```js
-let pro = new util.LRUCache();
-pro.put(2,10);
-let result  = pro.get(2);
+  ```ts
+  let pro : util.LRUCache<number,number> = new util.LRUCache();
+  pro.put(2,10);
+  let result  = pro.get(2);
   ```
 
 
@@ -1390,9 +1390,9 @@ put(key: K,value: V): V
 
 **示例：**
 
-  ```js
-let pro = new util.LRUCache();
-let result = pro.put(2,10);
+  ```ts
+  let pro : util.LRUCache<number,number> = new util.LRUCache();
+  let result = pro.put(2,10);
   ```
 
 ### values<sup>9+</sup>
@@ -1411,12 +1411,12 @@ values(): V[]
 
 **示例：**
 
-  ```js
-let pro = new util.LRUCache();
-pro.put(2,10);
-pro.put(2,"anhu");
-pro.put("afaf","grfb");
-let result = pro.values();
+  ```ts
+  let pro : util.LRUCache<number|string,number|string> = new util.LRUCache();
+  pro.put(2,10);
+  pro.put(2,"anhu");
+  pro.put("afaf","grfb");
+  let result = pro.values();
   ```
 
 
@@ -1436,10 +1436,10 @@ keys(): K[]
 
 **示例：**
 
-  ```js
-let pro = new util.LRUCache();
-pro.put(2,10);
-let result = pro.keys();
+  ```ts
+  let pro : util.LRUCache<number,number>= new util.LRUCache();
+  pro.put(2,10);
+  let result = pro.keys();
   ```
 
 
@@ -1465,10 +1465,10 @@ remove(key: K): V | undefined
 
 **示例：**
 
-  ```js
-let pro = new util.LRUCache();
-pro.put(2,10);
-let result = pro.remove(20);
+  ```ts
+  let pro : util.LRUCache<number,number>= new util.LRUCache();
+  pro.put(2,10);
+  let result = pro.remove(20);
   ```
 
 
@@ -1491,24 +1491,22 @@ afterRemoval(isEvict: boolean,key: K,value: V,newValue: V): void
 
 **示例：**
 
-  ```js
-let arr = [];
-class ChildLruBuffer<K, V> extends util.LRUCache<K, V>
-{
-	constructor()
-	{
-		super();
-	}
-	afterRemoval(isEvict, key, value, newValue)
-	{
-		if (isEvict === false)
-		{
-			arr = [key, value, newValue];
-		}
-	}
-}
-let lru = new ChildLruBuffer();
-lru.afterRemoval(false,10,30,null);
+  ```ts
+  let arr : Object[] = [];
+  class ChildLruBuffer<K, V> extends util.LRUCache<K, V> {
+    constructor() {
+      super();
+    }
+
+    afterRemoval(isEvict: boolean, key: K, value: V, newValue: V) : void
+    {
+      if (isEvict === false) {
+        arr = [key, value, newValue];
+      }
+    }
+  }
+  let lru : ChildLruBuffer<number,number|null>= new ChildLruBuffer();
+  lru.afterRemoval(false,10,30,null);
   ```
 
 
@@ -1534,11 +1532,14 @@ contains(key: K): boolean
 
 **示例：**
 
-  ```js
-let pro = new util.LRUCache();
-pro.put(2,10);
-let obj = {1:"key"};
-let result = pro.contains(obj);
+  ```ts
+  let pro : util.LRUCache<number|object,number> = new util.LRUCache();
+  pro.put(2,10);
+  class Lru{
+  s : string = ""
+  }
+  let obj : Lru = {s : "key" }
+  let result = pro.contains(obj);
   ```
 
 
@@ -1564,9 +1565,9 @@ createDefault(key: K): V
 
 **示例：**
 
-  ```js
-let pro = new util.LRUCache();
-let result = pro.createDefault(50);
+  ```ts
+  let pro : util.LRUCache<number,number> = new util.LRUCache();
+  let result = pro.createDefault(50);
   ```
 
 
@@ -1586,10 +1587,10 @@ entries(): IterableIterator&lt;[K,V]&gt;
 
 **示例：**
 
-  ```js
-let pro = new util.LRUCache();
-pro.put(2,10);
-let result = pro.entries();
+  ```ts
+  let pro : util.LRUCache<number,number> = new util.LRUCache();
+  pro.put(2,10);
+  let result = pro.entries();
   ```
 
 ### [Symbol.iterator]<sup>9+</sup>
@@ -1608,10 +1609,10 @@ let result = pro.entries();
 
 **示例：**
 
-  ```js
-let pro = new util.LRUCache();
-pro.put(2,10);
-let result = pro[Symbol.iterator]();
+  ```ts
+  let pro : util.LRUCache<number,number> = new util.LRUCache();
+  pro.put(2,10);
+  let result = pro[Symbol.iterator]();
   ```
 
 ## ScopeComparable<sup>8+</sup>
@@ -1644,23 +1645,22 @@ compareTo(other: ScopeComparable): boolean;
 
 构造新类，实现compareTo方法。后续示例代码中，均以此Temperature类为例。
 
-```js
-class Temperature{
-    // 当使用ArkTS语言开发时，需要补充以下代码：
-    // private readonly _temp: Temperature;
-    constructor(value) {
-       this._temp = value;
+```ts
+  class Temperature{
+    private readonly _temp: number;
+    constructor(value : number) {
+      this._temp = value;
     }
-    compareTo(value) {
-       return this._temp >= value.getTemp();
+    compareTo(value : Temperature ) {
+      return this._temp >= value.getTemp();
     }
     getTemp() {
-       return this._temp;
+      return this._temp;
     }
-    toString() {
-       return this._temp.toString();
+    toString() : string {
+      return this._temp.toString();
     }
-}
+  }
 ```
 
 ## ScopeType<sup>8+</sup>
@@ -1695,10 +1695,25 @@ constructor(lowerObj: ScopeType, upperObj: ScopeType)
 
 **示例：**
 
-  ```js
-let tempLower = new Temperature(30);
-let tempUpper = new Temperature(40);
-let range = new util.ScopeHelper(tempLower, tempUpper);
+  ```ts
+  class Temperature{
+    private readonly _temp: number;
+    constructor(value : number) {
+      this._temp = value;
+    }
+    compareTo(value : Temperature ) {
+      return this._temp >= value.getTemp();
+    }
+    getTemp() {
+      return this._temp;
+    }
+    toString() : string {
+      return this._temp.toString();
+    }
+  }
+  let tempLower = new Temperature(30);
+  let tempUpper = new Temperature(40);
+  let range = new util.ScopeHelper(tempLower, tempUpper);
   ```
 
 
@@ -1718,11 +1733,27 @@ toString(): string
 
 **示例：**
 
-  ```js
-let tempLower = new Temperature(30);
-let tempUpper = new Temperature(40);
-let range = new util.ScopeHelper(tempLower, tempUpper);
-let result = range.toString();
+  ```ts
+  class Temperature{
+    private readonly _temp: number;
+    constructor(value : number) {
+      this._temp = value;
+    }
+    compareTo(value : Temperature ) {
+      return this._temp >= value.getTemp();
+    }
+    getTemp() {
+      return this._temp;
+    }
+    toString() : string {
+      return this._temp.toString();
+    }
+  }
+
+  let tempLower = new Temperature(30);
+  let tempUpper = new Temperature(40);
+  let range = new util.ScopeHelper(tempLower, tempUpper);
+  let result = range.toString();
   ```
 
 
@@ -1748,14 +1779,30 @@ intersect(range: ScopeHelper): ScopeHelper
 
 **示例：**
 
-  ```js
-let tempLower = new Temperature(30);
-let tempUpper = new Temperature(40);
-let range = new util.ScopeHelper(tempLower, tempUpper);
-let tempMiDF = new Temperature(35);
-let tempMidS = new Temperature(39);
-let rangeFir = new util.ScopeHelper(tempMiDF, tempMidS);
-range.intersect(rangeFir);
+  ```ts
+  class Temperature{
+    private readonly _temp: number;
+    constructor(value : number) {
+      this._temp = value;
+    }
+    compareTo(value : Temperature ) {
+      return this._temp >= value.getTemp();
+    }
+    getTemp() {
+      return this._temp;
+    }
+    toString() : string {
+      return this._temp.toString();
+    }
+  }
+
+  let tempLower = new Temperature(30);
+  let tempUpper = new Temperature(40);
+  let range = new util.ScopeHelper(tempLower, tempUpper);
+  let tempMiDF = new Temperature(35);
+  let tempMidS = new Temperature(39);
+  let rangeFir = new util.ScopeHelper(tempMiDF, tempMidS);
+  range.intersect(rangeFir);
   ```
 
 
@@ -1782,13 +1829,29 @@ intersect(lowerObj:ScopeType,upperObj:ScopeType):ScopeHelper
 
 **示例：**
 
-  ```js
-let tempLower = new Temperature(30);
-let tempUpper = new Temperature(40);
-let tempMiDF = new Temperature(35);
-let tempMidS = new Temperature(39);
-let range = new util.ScopeHelper(tempLower, tempUpper);
-let result = range.intersect(tempMiDF, tempMidS);
+  ```ts
+  class Temperature{
+    private readonly _temp: number;
+    constructor(value : number) {
+      this._temp = value;
+    }
+    compareTo(value : Temperature ) {
+      return this._temp >= value.getTemp();
+    }
+    getTemp() {
+      return this._temp;
+    }
+    toString() : string {
+      return this._temp.toString();
+    }
+  }
+
+  let tempLower = new Temperature(30);
+  let tempUpper = new Temperature(40);
+  let tempMiDF = new Temperature(35);
+  let tempMidS = new Temperature(39);
+  let range = new util.ScopeHelper(tempLower, tempUpper);
+  let result = range.intersect(tempMiDF, tempMidS);
   ```
 
 
@@ -1808,11 +1871,27 @@ getUpper(): ScopeType
 
 **示例：**
 
-  ```js
-let tempLower = new Temperature(30);
-let tempUpper = new Temperature(40);
-let range = new util.ScopeHelper(tempLower, tempUpper);
-let result = range.getUpper();
+  ```ts
+  class Temperature{
+    private readonly _temp: number;
+    constructor(value : number) {
+      this._temp = value;
+    }
+    compareTo(value : Temperature ) {
+      return this._temp >= value.getTemp();
+    }
+    getTemp() {
+      return this._temp;
+    }
+    toString() : string {
+      return this._temp.toString();
+    }
+  }
+
+  let tempLower = new Temperature(30);
+  let tempUpper = new Temperature(40);
+  let range = new util.ScopeHelper(tempLower, tempUpper);
+  let result = range.getUpper();
   ```
 
 
@@ -1832,11 +1911,27 @@ getLower(): ScopeType
 
 **示例：**
 
-  ```js
-let tempLower = new Temperature(30);
-let tempUpper = new Temperature(40);
-let range = new util.ScopeHelper(tempLower, tempUpper);
-let result = range.getLower();
+  ```ts
+  class Temperature{
+    private readonly _temp: number;
+    constructor(value : number) {
+      this._temp = value;
+    }
+    compareTo(value : Temperature ) {
+      return this._temp >= value.getTemp();
+    }
+    getTemp() {
+      return this._temp;
+    }
+    toString() : string {
+      return this._temp.toString();
+    }
+  }
+
+  let tempLower = new Temperature(30);
+  let tempUpper = new Temperature(40);
+  let range = new util.ScopeHelper(tempLower, tempUpper);
+  let result = range.getLower();
   ```
 
 
@@ -1863,13 +1958,29 @@ expand(lowerObj: ScopeType,upperObj: ScopeType): ScopeHelper
 
 **示例：**
 
-  ```js
-let tempLower = new Temperature(30);
-let tempUpper = new Temperature(40);
-let tempMiDF = new Temperature(35);
-let tempMidS = new Temperature(39);
-let range = new util.ScopeHelper(tempLower, tempUpper);
-let result = range.expand(tempMiDF, tempMidS);
+  ```ts
+  class Temperature{
+    private readonly _temp: number;
+    constructor(value : number) {
+      this._temp = value;
+    }
+    compareTo(value : Temperature ) {
+      return this._temp >= value.getTemp();
+    }
+    getTemp() {
+      return this._temp;
+    }
+    toString() : string {
+      return this._temp.toString();
+    }
+  }
+
+  let tempLower = new Temperature(30);
+  let tempUpper = new Temperature(40);
+  let tempMiDF = new Temperature(35);
+  let tempMidS = new Temperature(39);
+  let range = new util.ScopeHelper(tempLower, tempUpper);
+  let result = range.expand(tempMiDF, tempMidS);
   ```
 
 
@@ -1895,14 +2006,30 @@ expand(range: ScopeHelper): ScopeHelper
 
 **示例：**
 
-  ```js
-let tempLower = new Temperature(30);
-let tempUpper = new Temperature(40);
-let tempMiDF = new Temperature(35);
-let tempMidS = new Temperature(39);
-let range = new util.ScopeHelper(tempLower, tempUpper);
-let rangeFir = new util.ScopeHelper(tempMiDF, tempMidS);
-let result = range.expand(rangeFir);
+  ```ts
+  class Temperature{
+    private readonly _temp: number;
+    constructor(value : number) {
+      this._temp = value;
+    }
+    compareTo(value : Temperature ) {
+      return this._temp >= value.getTemp();
+    }
+    getTemp() {
+      return this._temp;
+    }
+    toString() : string {
+      return this._temp.toString();
+    }
+  }
+
+  let tempLower = new Temperature(30);
+  let tempUpper = new Temperature(40);
+  let tempMiDF = new Temperature(35);
+  let tempMidS = new Temperature(39);
+  let range = new util.ScopeHelper(tempLower, tempUpper);
+  let rangeFir = new util.ScopeHelper(tempMiDF, tempMidS);
+  let result = range.expand(rangeFir);
   ```
 
 
@@ -1928,12 +2055,28 @@ expand(value: ScopeType): ScopeHelper
 
 **示例：**
 
-  ```js
-let tempLower = new Temperature(30);
-let tempUpper = new Temperature(40);
-let tempMiDF = new Temperature(35);
-let range = new util.ScopeHelper(tempLower, tempUpper);
-let result = range.expand(tempMiDF);
+  ```ts
+  class Temperature{
+    private readonly _temp: number;
+    constructor(value : number) {
+      this._temp = value;
+    }
+    compareTo(value : Temperature ) {
+      return this._temp >= value.getTemp();
+    }
+    getTemp() {
+      return this._temp;
+    }
+    toString() : string {
+      return this._temp.toString();
+    }
+  }
+
+  let tempLower = new Temperature(30);
+  let tempUpper = new Temperature(40);
+  let tempMiDF = new Temperature(35);
+  let range = new util.ScopeHelper(tempLower, tempUpper);
+  let result = range.expand(tempMiDF);
   ```
 
 
@@ -1959,12 +2102,28 @@ contains(value: ScopeType): boolean
 
 **示例：**
 
-  ```js
-let tempLower = new Temperature(30);
-let tempUpper = new Temperature(40);
-let tempMiDF = new Temperature(35);
-let range = new util.ScopeHelper(tempLower, tempUpper);
-let result = range.contains(tempMiDF);
+  ```ts
+  class Temperature{
+    private readonly _temp: number;
+    constructor(value : number) {
+      this._temp = value;
+    }
+    compareTo(value : Temperature ) {
+      return this._temp >= value.getTemp();
+    }
+    getTemp() {
+      return this._temp;
+    }
+    toString() : string {
+      return this._temp.toString();
+    }
+  }
+
+  let tempLower = new Temperature(30);
+  let tempUpper = new Temperature(40);
+  let tempMiDF = new Temperature(35);
+  let range = new util.ScopeHelper(tempLower, tempUpper);
+  let result = range.contains(tempMiDF);
   ```
 
 
@@ -1990,14 +2149,30 @@ contains(range: ScopeHelper): boolean
 
 **示例：**
 
-  ```js
-let tempLower = new Temperature(30);
-let tempUpper = new Temperature(40);
-let range = new util.ScopeHelper(tempLower, tempUpper);
-let tempLess = new Temperature(20);
-let tempMore = new Temperature(45);
-let rangeSec = new util.ScopeHelper(tempLess, tempMore);
-let result = range.contains(rangeSec);
+  ```ts
+  class Temperature{
+    private readonly _temp: number;
+    constructor(value : number) {
+      this._temp = value;
+    }
+    compareTo(value : Temperature ) {
+      return this._temp >= value.getTemp();
+    }
+    getTemp() {
+      return this._temp;
+    }
+    toString() : string {
+      return this._temp.toString();
+    }
+  }
+
+  let tempLower = new Temperature(30);
+  let tempUpper = new Temperature(40);
+  let range = new util.ScopeHelper(tempLower, tempUpper);
+  let tempLess = new Temperature(20);
+  let tempMore = new Temperature(45);
+  let rangeSec = new util.ScopeHelper(tempLess, tempMore);
+  let result = range.contains(rangeSec);
   ```
 
 
@@ -2023,12 +2198,28 @@ clamp(value: ScopeType): ScopeType
 
 **示例：**
 
-  ```js
-let tempLower = new Temperature(30);
-let tempUpper = new Temperature(40);
-let tempMiDF = new Temperature(35);
-let range = new util.ScopeHelper(tempLower, tempUpper);
-let result = range.clamp(tempMiDF);
+  ```ts
+  class Temperature{
+    private readonly _temp: number;
+    constructor(value : number) {
+      this._temp = value;
+    }
+    compareTo(value : Temperature ) {
+      return this._temp >= value.getTemp();
+    }
+    getTemp() {
+      return this._temp;
+    }
+    toString() : string {
+      return this._temp.toString();
+    }
+  }
+
+  let tempLower = new Temperature(30);
+  let tempUpper = new Temperature(40);
+  let tempMiDF = new Temperature(35);
+  let range = new util.ScopeHelper(tempLower, tempUpper);
+  let result = range.clamp(tempMiDF);
   ```
 
 ## Base64Helper<sup>9+</sup>
@@ -2045,8 +2236,8 @@ Base64Helper的构造函数。
 
 **示例：**
 
-  ```js
-let base64 = new  util.Base64Helper();
+  ```ts 
+  let base64 = new  util.Base64Helper();
   ```
 
 ### encodeSync<sup>9+</sup>
@@ -2071,10 +2262,10 @@ encodeSync(src: Uint8Array): Uint8Array
 
 **示例：**
 
-  ```js
-let that = new util.Base64Helper();
-let array = new Uint8Array([115,49,51]);
-let result = that.encodeSync(array);
+  ```ts
+  let that = new util.Base64Helper();
+  let array = new Uint8Array([115,49,51]);
+  let result = that.encodeSync(array);
   ```
 
 
@@ -2101,10 +2292,10 @@ encodeToStringSync(src: Uint8Array, options?: Type): string
 
 **示例：**
 
-  ```js
-let that = new util.Base64Helper();
-let array = new Uint8Array([77,97,110,105,115,100,105,115,116,105,110,103,117,105,115,104,101,100,110,111,116,111,110,108,121,98,121,104,105,115,114,101,97,115,111,110,98,117,116,98,121,116,104,105,115,115,105,110,103,117,108,97,114,112,97,115,115,105,111,110,102,114,111,109,111,116,104,101,114,97,110,105,109,97,108,115,119,104,105,99,104,105,115,97,108,117,115,116,111,102,116,104,101,109,105,110,100,101,120,99,101,101,100,115,116,104,101,115,104,111,114,116,118,101,104,101,109,101,110,99,101,111,102,97,110,121,99,97,114,110,97,108,112,108,101,97,115,117,114,101]);
-let result = that.encodeToStringSync(array, util.Type.MIME);
+  ```ts
+  let that = new util.Base64Helper();
+  let array = new Uint8Array([77,97,110,105,115,100,105,115,116,105,110,103,117,105,115,104,101,100,110,111,116,111,110,108,121,98,121,104,105,115,114,101,97,115,111,110,98,117,116,98,121,116,104,105,115,115,105,110,103,117,108,97,114,112,97,115,115,105,111,110,102,114,111,109,111,116,104,101,114,97,110,105,109,97,108,115,119,104,105,99,104,105,115,97,108,117,115,116,111,102,116,104,101,109,105,110,100,101,120,99,101,101,100,115,116,104,101,115,104,111,114,116,118,101,104,101,109,101,110,99,101,111,102,97,110,121,99,97,114,110,97,108,112,108,101,97,115,117,114,101]);
+  let result = that.encodeToStringSync(array, util.Type.MIME);
   ```
 
 
@@ -2131,10 +2322,10 @@ decodeSync(src: Uint8Array | string, options?: Type): Uint8Array
 
 **示例：**
 
-  ```js
-let that = new util.Base64Helper();
-let buff = 'TWFuaXNkaXN0aW5ndWlzaGVkbm90b25seWJ5aGlzcmVhc29uYnV0Ynl0aGlzc2luZ3VsYXJwYXNz\r\naW9uZnJvbW90aGVyYW5pbWFsc3doaWNoaXNhbHVzdG9mdGhlbWluZGV4Y2VlZHN0aGVzaG9ydHZl\r\naGVtZW5jZW9mYW55Y2FybmFscGxlYXN1cmU=\r\n';
-let result = that.decodeSync(buff, util.Type.MIME);
+  ```ts
+  let that = new util.Base64Helper();
+  let buff = 'TWFuaXNkaXN0aW5ndWlzaGVkbm90b25seWJ5aGlzcmVhc29uYnV0Ynl0aGlzc2luZ3VsYXJwYXNz\r\naW9uZnJvbW90aGVyYW5pbWFsc3doaWNoaXNhbHVzdG9mdGhlbWluZGV4Y2VlZHN0aGVzaG9ydHZl\r\naGVtZW5jZW9mYW55Y2FybmFscGxlYXN1cmU=\r\n';
+  let result = that.decodeSync(buff, util.Type.MIME);
   ```
 
 
@@ -2160,15 +2351,15 @@ encode(src: Uint8Array): Promise&lt;Uint8Array&gt;
 
 **示例：**
 
-  ```js
-let that = new util.Base64Helper();
-let array = new Uint8Array([115,49,51]);
-let rarray = new Uint8Array([99,122,69,122]);
-that.encode(array).then(val=>{    
-    for (var i = 0; i < rarray.length; i++) {        
-        console.log(val[i].toString())
+  ```ts
+  let that = new util.Base64Helper();
+  let array = new Uint8Array([115,49,51]);
+  let rarray = new Uint8Array([99,122,69,122]);
+  that.encode(array).then(val=>{
+    for (let i = 0; i < rarray.length; i++) {
+      console.log(val[i].toString())
     }
-})
+  })
   ```
 
 
@@ -2195,12 +2386,12 @@ encodeToString(src: Uint8Array, options?: Type): Promise&lt;string&gt;
 
 **示例：**
 
-  ```js
-let that = new util.Base64Helper();
-let array = new Uint8Array([77,97,110,105,115,100,105,115,116,105,110,103,117,105,115,104,101,100,110,111,116,111,110,108,121,98,121,104,105,115,114,101,97,115,111,110,98,117,116,98,121,116,104,105,115,115,105,110,103,117,108,97,114,112,97,115,115,105,111,110,102,114,111,109,111,116,104,101,114,97,110,105,109,97,108,115,119,104,105,99,104,105,115,97,108,117,115,116,111,102,116,104,101,109,105,110,100,101,120,99,101,101,100,115,116,104,101,115,104,111,114,116,118,101,104,101,109,101,110,99,101,111,102,97,110,121,99,97,114,110,97,108,112,108,101,97,115,117,114,101]);
-that.encodeToString(array, util.Type.MIME).then(val=>{
-  // 根据开发者需求进行添加。
-})
+  ```ts
+  let that = new util.Base64Helper();
+  let array = new Uint8Array([77,97,110,105,115,100,105,115,116,105,110,103,117,105,115,104,101,100,110,111,116,111,110,108,121,98,121,104,105,115,114,101,97,115,111,110,98,117,116,98,121,116,104,105,115,115,105,110,103,117,108,97,114,112,97,115,115,105,111,110,102,114,111,109,111,116,104,101,114,97,110,105,109,97,108,115,119,104,105,99,104,105,115,97,108,117,115,116,111,102,116,104,101,109,105,110,100,101,120,99,101,101,100,115,116,104,101,115,104,111,114,116,118,101,104,101,109,101,110,99,101,111,102,97,110,121,99,97,114,110,97,108,112,108,101,97,115,117,114,101]);
+  that.encodeToString(array, util.Type.MIME).then(val=>{
+    // 根据开发者需求进行添加。
+  })
   ```
 
 
@@ -2227,12 +2418,12 @@ decode(src: Uint8Array | string, options?: Type): Promise&lt;Uint8Array&gt;
 
 **示例：**
 
-  ```js
-let that = new util.Base64Helper();
-let array = 'TWFuaXNkaXN0aW5ndWlzaGVkbm90b25seWJ5aGlzcmVhc29uYnV0Ynl0aGlzc2luZ3VsYXJwYXNz\r\naW9uZnJvbW90aGVyYW5pbWFsc3doaWNoaXNhbHVzdG9mdGhlbWluZGV4Y2VlZHN0aGVzaG9ydHZl\r\naGVtZW5jZW9mYW55Y2FybmFscGxlYXN1cmU=\r\n';
-that.decode(array, util.Type.MIME).then(val=>{
-  // 根据开发者需求进行添加。
-})
+  ```ts
+  let that = new util.Base64Helper();
+  let array = 'TWFuaXNkaXN0aW5ndWlzaGVkbm90b25seWJ5aGlzcmVhc29uYnV0Ynl0aGlzc2luZ3VsYXJwYXNz\r\naW9uZnJvbW90aGVyYW5pbWFsc3doaWNoaXNhbHVzdG9mdGhlbWluZGV4Y2VlZHN0aGVzaG9ydHZl\r\naGVtZW5jZW9mYW55Y2FybmFscGxlYXN1cmU=\r\n';
+  that.decode(array, util.Type.MIME).then(val=>{
+    // 根据开发者需求进行添加。
+  })
   ```
 
 
@@ -2262,7 +2453,7 @@ Types的构造函数。
 
 **示例：**
 
-  ```js
+  ```ts
   let type = new util.types();
   ```
 
@@ -2289,7 +2480,7 @@ isAnyArrayBuffer(value: Object): boolean
 
 **示例：**
 
-  ```js
+  ```ts
   let that = new util.types();
   let result = that.isAnyArrayBuffer(new ArrayBuffer(0));
   ```
@@ -2319,7 +2510,7 @@ ArrayBufferView辅助类型包括：Int8Array、Int16Array、Int32Array、Uint8A
 
 **示例：**
 
-  ```js
+  ```ts
   let that = new util.types();
   let result = that.isArrayBufferView(new Int8Array([]));
   ```
@@ -2347,10 +2538,10 @@ isArgumentsObject(value: Object): boolean
 
 **示例：**
 
-  ```js
+  ```ts
   let that = new util.types();
   function foo() {
-      var result = that.isArgumentsObject(arguments);
+      let result = that.isArgumentsObject(arguments);
   }
   let f = foo();
   ```
@@ -2378,7 +2569,7 @@ isArrayBuffer(value: Object): boolean
 
 **示例：**
 
-  ```js
+  ```ts
   let that = new util.types();
   let result = that.isArrayBuffer(new ArrayBuffer(0));
   ```
@@ -2406,9 +2597,9 @@ isAsyncFunction(value: Object): boolean
 
 **示例：**
 
-  ```js
+  ```ts
   let that = new util.types();
-  let result = that.isAsyncFunction(async function foo() {});
+  let result = that.isAsyncFunction(async () => {});
   ```
 
 
@@ -2434,7 +2625,7 @@ isBooleanObject(value: Object): boolean
 
 **示例：**
 
-  ```js
+  ```ts
   let that = new util.types();
   let result = that.isBooleanObject(new Boolean(true));
   ```
@@ -2462,7 +2653,7 @@ isBoxedPrimitive(value: Object): boolean
 
 **示例：**
 
-  ```js
+  ```ts
   let that = new util.types();
   let result = that.isBoxedPrimitive(new Boolean(false));
   ```
@@ -2490,7 +2681,7 @@ isDataView(value: Object): boolean
 
 **示例：**
 
-  ```js
+  ```ts
   let that = new util.types();
   const ab = new ArrayBuffer(20);
   let result = that.isDataView(new DataView(ab));
@@ -2519,7 +2710,7 @@ isDate(value: Object): boolean
 
 **示例：**
 
-  ```js
+  ```ts
   let that = new util.types();
   let result = that.isDate(new Date());
   ```
@@ -2547,7 +2738,7 @@ isExternal(value: Object): boolean
 
 **示例：**
 
-  ```js
+  ```ts
   let that = new util.types();
   let result = that.isExternal(true);
   ```
@@ -2575,7 +2766,7 @@ isFloat32Array(value: Object): boolean
 
 **示例：**
 
-  ```js
+  ```ts
   let that = new util.types();
   let result = that.isFloat32Array(new Float32Array());
   ```
@@ -2603,7 +2794,7 @@ isFloat64Array(value: Object): boolean
 
 **示例：**
 
-  ```js
+  ```ts
   let that = new util.types();
   let result = that.isFloat64Array(new Float64Array());
   ```
@@ -2631,7 +2822,7 @@ isGeneratorFunction(value: Object): boolean
 
 **示例：**
 
-  ```js
+  ```ts
   let that = new util.types();
   let result = that.isGeneratorFunction(function* foo() {});
   ```
@@ -2659,7 +2850,7 @@ isGeneratorObject(value: Object): boolean
 
 **示例：**
 
-  ```js
+  ```ts
   let that = new util.types();
   function* foo() {}
   const generator = foo();
@@ -2689,7 +2880,7 @@ isInt8Array(value: Object): boolean
 
 **示例：**
 
-  ```js
+  ```ts
   let that = new util.types();
   let result = that.isInt8Array(new Int8Array([]));
   ```
@@ -2717,7 +2908,7 @@ isInt16Array(value: Object): boolean
 
 **示例：**
 
-  ```js
+  ```ts
   let that = new util.types();
   let result = that.isInt16Array(new Int16Array([]));
   ```
@@ -2745,7 +2936,7 @@ isInt32Array(value: Object): boolean
 
 **示例：**
 
-  ```js
+  ```ts
   let that = new util.types();
   let result = that.isInt32Array(new Int32Array([]));
   ```
@@ -2773,7 +2964,7 @@ isMap(value: Object): boolean
 
 **示例：**
 
-  ```js
+  ```ts
   let that = new util.types();
   let result = that.isMap(new Map());
   ```
@@ -2802,9 +2993,9 @@ isMapIterator(value: Object): boolean
 
 **示例：**
 
-  ```js
+  ```ts
   let that = new util.types();
-  const map = new Map();
+  const map : Map<number,number> = new Map();
   let result = that.isMapIterator(map.keys());
   ```
 
@@ -2831,7 +3022,7 @@ isNativeError(value: Object): boolean
 
 **示例：**
 
-  ```js
+  ```ts
   let that = new util.types();
   let result = that.isNativeError(new TypeError());
   ```
@@ -2859,7 +3050,7 @@ isNumberObject(value: Object): boolean
 
 **示例：**
 
-  ```js
+  ```ts
   let that = new util.types();
   let result = that.isNumberObject(new Number(0));
   ```
@@ -2887,7 +3078,7 @@ isPromise(value: Object): boolean
 
 **示例：**
 
-  ```js
+  ```ts
   let that = new util.types();
   let result = that.isPromise(Promise.resolve(1));
   ```
@@ -2915,10 +3106,12 @@ isProxy(value: Object): boolean
 
 **示例：**
 
-  ```js
+  ```ts
+  class Target{
+  }
   let that = new util.types();
-  const target = {};
-  const proxy = new Proxy(target, {});
+  const target : Target = {};
+  const proxy = new Proxy(target, target);
   let result = that.isProxy(proxy);
   ```
 
@@ -2945,7 +3138,7 @@ isRegExp(value: Object): boolean
 
 **示例：**
 
-  ```js
+  ```ts
   let that = new util.types();
   let result = that.isRegExp(new RegExp('abc'));
   ```
@@ -2973,9 +3166,10 @@ isSet(value: Object): boolean
 
 **示例：**
 
-  ```js
+  ```ts
   let that = new util.types();
-  let result = that.isSet(new Set());
+  let set : Set<number> = new Set();
+  let result = that.isSet(set);
   ```
 
 
@@ -3001,9 +3195,9 @@ isSetIterator(value: Object): boolean
 
 **示例：**
 
-  ```js
+  ```ts
   let that = new util.types();
-  const set = new Set();
+  const set : Set<number> = new Set();
   let result = that.isSetIterator(set.keys());
   ```
 
@@ -3030,7 +3224,7 @@ isStringObject(value: Object): boolean
 
 **示例：**
 
-  ```js
+  ```ts
   let that = new util.types();
   let result = that.isStringObject(new String('foo'));
   ```
@@ -3058,7 +3252,7 @@ isSymbolObject(value: Object): boolean
 
 **示例：**
 
-  ```js
+  ```ts
   let that = new util.types();
   const symbols = Symbol('foo');
   let result = that.isSymbolObject(Object(symbols));
@@ -3089,7 +3283,7 @@ TypedArray类型的辅助类型，包括Int8Array、Int16Array、Int32Array、Ui
 
 **示例：**
 
-  ```js
+  ```ts
   let that = new util.types();
   let result = that.isTypedArray(new Float64Array([]));
   ```
@@ -3117,7 +3311,7 @@ isUint8Array(value: Object): boolean
 
 **示例：**
 
-  ```js
+  ```ts
   let that = new util.types();
   let result = that.isUint8Array(new Uint8Array([]));
   ```
@@ -3145,7 +3339,7 @@ isUint8ClampedArray(value: Object): boolean
 
 **示例：**
 
-  ```js
+  ```ts
   let that = new util.types();
   let result = that.isUint8ClampedArray(new Uint8ClampedArray([]));
   ```
@@ -3173,7 +3367,7 @@ isUint16Array(value: Object): boolean
 
 **示例：**
 
-  ```js
+  ```ts
   let that = new util.types();
   let result = that.isUint16Array(new Uint16Array([]));
   ```
@@ -3201,7 +3395,7 @@ isUint32Array(value: Object): boolean
 
 **示例：**
 
-  ```js
+  ```ts
   let that = new util.types();
   let result = that.isUint32Array(new Uint32Array([]));
   ```
@@ -3229,9 +3423,10 @@ isWeakMap(value: Object): boolean
 
 **示例：**
 
-  ```js
+  ```ts
   let that = new util.types();
-  let result = that.isWeakMap(new WeakMap());
+  let value : WeakMap<object,number> = new WeakMap();
+  let result = that.isWeakMap(value);
   ```
 
 
@@ -3257,7 +3452,7 @@ isWeakSet(value: Object): boolean
 
 **示例：**
 
-  ```js
+  ```ts
   let that = new util.types();
   let result = that.isWeakSet(new WeakSet());
   ```
@@ -3285,7 +3480,7 @@ isBigInt64Array(value: Object): boolean
 
 **示例：**
 
-  ```js
+  ```ts
   let that = new util.types();
   let result = that.isBigInt64Array(new BigInt64Array([]));
   ```
@@ -3313,7 +3508,7 @@ isBigUint64Array(value: Object): boolean
 
 **示例：**
 
-  ```js
+  ```ts
   let that = new util.types();
   let result = that.isBigUint64Array(new BigUint64Array([]));
   ```
@@ -3341,7 +3536,7 @@ isModuleNamespaceObject(value: Object): boolean
 
 **示例：**
 
-  ```js
+  ```ts
   import url from '@ohos.url'
   let that = new util.types();
   let result = that.isModuleNamespaceObject(url);
@@ -3370,7 +3565,7 @@ isSharedArrayBuffer(value: Object): boolean
 
 **示例：**
 
-  ```js
+  ```ts
   let that = new util.types();
   let result = that.isSharedArrayBuffer(new SharedArrayBuffer(0));
   ```
@@ -3391,8 +3586,8 @@ isSharedArrayBuffer(value: Object): boolean
 
 **示例：**
 
-  ```js
-  let pro = new util.LruBuffer();
+  ```ts
+  let pro : util.LruBuffer<number,number>= new util.LruBuffer();
   pro.put(2,10);
   pro.put(1,8);
   let result = pro.length;
@@ -3418,8 +3613,8 @@ constructor(capacity?: number)
 
 **示例：**
 
-  ```js
-  let lrubuffer= new util.LruBuffer();
+  ```ts
+  let lrubuffer : util.LruBuffer<number,number> = new util.LruBuffer();
   ```
 
 ### updateCapacity<sup>(deprecated)</sup>
@@ -3442,8 +3637,8 @@ updateCapacity(newCapacity: number): void
 
 **示例：**
 
-  ```js
-  let pro = new util.LruBuffer();
+  ```ts
+  let pro : util.LruBuffer<number,number> = new util.LruBuffer();
   let result = pro.updateCapacity(100);
   ```
 
@@ -3467,8 +3662,8 @@ toString(): string
 
 **示例：**
 
-  ```js
-  let pro = new util.LruBuffer();
+  ```ts
+  let pro : util.LruBuffer<number,number> = new util.LruBuffer();
   pro.put(2,10);
   pro.get(2);
   pro.remove(20);
@@ -3494,8 +3689,9 @@ getCapacity(): number
 | number | 返回当前缓冲区的容量。 |
 
 **示例：**
-  ```js
-  let pro = new util.LruBuffer();
+
+  ```ts
+  let pro : util.LruBuffer<number,number> = new util.LruBuffer();
   let result = pro.getCapacity();
   ```
 
@@ -3513,8 +3709,8 @@ clear(): void
 
 **示例：**
 
-  ```js
-  let pro = new util.LruBuffer();
+  ```ts
+  let pro : util.LruBuffer<number,number> = new util.LruBuffer();
   pro.put(2,10);
   let result = pro.length;
   pro.clear();
@@ -3540,8 +3736,8 @@ getCreateCount(): number
 
 **示例：**
 
-  ```js
-  let pro = new util.LruBuffer();
+  ```ts
+  let pro : util.LruBuffer<number,number> = new util.LruBuffer();
   pro.put(1,8);
   let result = pro.getCreateCount();
   ```
@@ -3566,8 +3762,8 @@ getMissCount(): number
 
 **示例：**
 
-  ```js
-  let pro = new util.LruBuffer();
+  ```ts
+  let pro : util.LruBuffer<number,number> = new util.LruBuffer();
   pro.put(2,10);
   pro.get(2);
   let result = pro.getMissCount();
@@ -3593,8 +3789,8 @@ getRemovalCount(): number
 
 **示例：**
 
-  ```js
-  let pro = new util.LruBuffer();
+  ```ts
+  let pro : util.LruBuffer<number,number> = new util.LruBuffer();
   pro.put(2,10);
   pro.updateCapacity(2);
   pro.put(50,22);
@@ -3621,8 +3817,8 @@ getMatchCount(): number
 
 **示例：**
 
-  ```js
-  let pro = new util.LruBuffer();
+  ```ts
+  let pro : util.LruBuffer<number,number> = new util.LruBuffer();
   pro.put(2,10);
   pro.get(2);
   let result = pro.getMatchCount();
@@ -3648,8 +3844,8 @@ getPutCount(): number
 
 **示例：**
 
-  ```js
-  let pro = new util.LruBuffer();
+  ```ts
+  let pro : util.LruBuffer<number,number> = new util.LruBuffer();
   pro.put(2,10);
   let result = pro.getPutCount();
   ```
@@ -3674,8 +3870,8 @@ isEmpty(): boolean
 
 **示例：**
 
-  ```js
-  let pro = new util.LruBuffer();
+  ```ts
+  let pro : util.LruBuffer<number,number> = new util.LruBuffer();
   pro.put(2,10);
   let result = pro.isEmpty();
   ```
@@ -3706,8 +3902,8 @@ get(key: K): V | undefined
 
 **示例：**
 
-  ```js
-  let pro = new util.LruBuffer();
+  ```ts
+  let pro : util.LruBuffer<number,number> = new util.LruBuffer();
   pro.put(2,10);
   let result  = pro.get(2);
   ```
@@ -3739,8 +3935,8 @@ put(key: K,value: V): V
 
 **示例：**
 
-  ```js
-  let pro = new util.LruBuffer();
+  ```ts
+  let pro : util.LruBuffer<number,number> = new util.LruBuffer();
   let result = pro.put(2,10);
   ```
 
@@ -3764,8 +3960,8 @@ values(): V[]
 
 **示例：**
 
-  ```js
-  let pro = new util.LruBuffer();
+  ```ts
+  let pro : util.LruBuffer<number|string,number|string> = new util.LruBuffer();
   pro.put(2,10);
   pro.put(2,"anhu");
   pro.put("afaf","grfb");
@@ -3792,8 +3988,8 @@ keys(): K[]
 
 **示例：**
 
-  ```js
-  let pro = new util.LruBuffer();
+  ```ts
+  let pro : util.LruBuffer<number,number> = new util.LruBuffer();
   pro.put(2,10);
   let result = pro.keys();
   ```
@@ -3823,8 +4019,9 @@ remove(key: K): V | undefined
 | V&nbsp;\|&nbsp;undefined | 返回一个包含已删除键值对的Optional对象；如果key不存在，则返回一个空的Optional对象，如果key为null，则抛出异常。 |
 
 **示例：**
-  ```js
-  let pro = new util.LruBuffer();
+
+  ```ts
+  let pro : util.LruBuffer<number,number> = new util.LruBuffer();
   pro.put(2,10);
   let result = pro.remove(20);
   ```
@@ -3852,15 +4049,15 @@ afterRemoval(isEvict: boolean,key: K,value: V,newValue: V): void
 
 **示例：**
 
-  ```js
-  let arr = [];
+  ```ts
+  let arr : object = [];
   class ChildLruBuffer<K, V> extends util.LruBuffer<K, V>
   {
   	constructor()
   	{
   		super();
   	}
-  	afterRemoval(isEvict, key, value, newValue)
+  	afterRemoval(isEvict : boolean, key : K, value : V, newValue : V)
   	{
   		if (isEvict === false)
   		{
@@ -3868,7 +4065,7 @@ afterRemoval(isEvict: boolean,key: K,value: V,newValue: V): void
   		}
   	}
   }
-  let lru = new ChildLruBuffer();
+  let lru : ChildLruBuffer<number,number|null> = new ChildLruBuffer();
   lru.afterRemoval(false,10,30,null);
   ```
 
@@ -3899,8 +4096,8 @@ contains(key: K): boolean
 
 **示例：**
 
-  ```js
-  let pro = new util.LruBuffer();
+  ```ts
+  let pro : util.LruBuffer<number,number> = new util.LruBuffer();
   pro.put(2,10);
   let result = pro.contains(20);
   ```
@@ -3931,8 +4128,8 @@ createDefault(key: K): V
 
 **示例：**
 
-  ```js
-  let pro = new util.LruBuffer();
+  ```ts
+  let pro : util.LruBuffer<number,number> = new util.LruBuffer();
   let result = pro.createDefault(50);
   ```
 
@@ -3956,8 +4153,8 @@ entries(): IterableIterator&lt;[K,V]&gt;
 
 **示例：**
 
-  ```js
-  let pro = new util.LruBuffer();
+  ```ts
+  let pro : util.LruBuffer<number,number> = new util.LruBuffer();
   pro.put(2,10);
   let result = pro.entries();
   ```
@@ -3982,8 +4179,8 @@ entries(): IterableIterator&lt;[K,V]&gt;
 
 **示例：**
 
-  ```js
-  let pro = new util.LruBuffer();
+  ```ts
+  let pro : util.LruBuffer<number,number> = new util.LruBuffer();
   pro.put(2,10);
   let result = pro[Symbol.iterator]();
   ```
@@ -4015,7 +4212,22 @@ constructor(lowerObj: ScopeType, upperObj: ScopeType)
 | upperObj | [ScopeType](#scopetype8) | 是 | 指定作用域实例的上限。 |
 
 **示例：**
-  ```js
+  ```ts
+  class Temperature{
+    private readonly _temp: number;
+    constructor(value : number) {
+      this._temp = value;
+    }
+    compareTo(value : Temperature ) {
+      return this._temp >= value.getTemp();
+    }
+    getTemp() {
+      return this._temp;
+    }
+    toString() : string {
+      return this._temp.toString();
+    }
+  }
   let tempLower = new Temperature(30);
   let tempUpper = new Temperature(40);
   let range = new util.Scope(tempLower, tempUpper);
@@ -4041,7 +4253,23 @@ toString(): string
 
 **示例：**
 
-  ```js
+  ```ts
+  class Temperature{
+    private readonly _temp: number;
+    constructor(value : number) {
+      this._temp = value;
+    }
+    compareTo(value : Temperature ) {
+      return this._temp >= value.getTemp();
+    }
+    getTemp() {
+      return this._temp;
+    }
+    toString() : string {
+      return this._temp.toString();
+    }
+  }
+
   let tempLower = new Temperature(30);
   let tempUpper = new Temperature(40);
   let range = new util.Scope(tempLower, tempUpper);
@@ -4074,14 +4302,30 @@ intersect(range: Scope): Scope
 
 **示例：**
 
-  ```js
+  ```ts
+  class Temperature{
+    private readonly _temp: number;
+    constructor(value : number) {
+      this._temp = value;
+    }
+    compareTo(value : Temperature ) {
+      return this._temp >= value.getTemp();
+    }
+    getTemp() {
+      return this._temp;
+    }
+    toString() : string {
+      return this._temp.toString();
+    }
+  }
+
   let tempLower = new Temperature(30);
   let tempUpper = new Temperature(40);
   let range = new util.Scope(tempLower, tempUpper);
   let tempMiDF = new Temperature(35);
   let tempMidS = new Temperature(39);
   let rangeFir = new util.Scope(tempMiDF, tempMidS);
-  range.intersect(rangeFir );
+  let result = range.intersect(rangeFir );
   ```
 
 ### intersect<sup>(deprecated)</sup>
@@ -4111,7 +4355,23 @@ intersect(lowerObj:ScopeType,upperObj:ScopeType):Scope
 
 **示例：**
 
-  ```js
+  ```ts
+  class Temperature{
+    private readonly _temp: number;
+    constructor(value : number) {
+      this._temp = value;
+    }
+    compareTo(value : Temperature ) {
+      return this._temp >= value.getTemp();
+    }
+    getTemp() {
+      return this._temp;
+    }
+    toString() : string {
+      return this._temp.toString();
+    }
+  }
+
   let tempLower = new Temperature(30);
   let tempUpper = new Temperature(40);
   let tempMiDF = new Temperature(35);
@@ -4140,7 +4400,23 @@ getUpper(): ScopeType
 
 **示例：**
 
-  ```js
+  ```ts
+  class Temperature{
+    private readonly _temp: number;
+    constructor(value : number) {
+      this._temp = value;
+    }
+    compareTo(value : Temperature ) {
+      return this._temp >= value.getTemp();
+    }
+    getTemp() {
+      return this._temp;
+    }
+    toString() : string {
+      return this._temp.toString();
+    }
+  }
+
   let tempLower = new Temperature(30);
   let tempUpper = new Temperature(40);
   let range = new util.Scope(tempLower, tempUpper);
@@ -4167,7 +4443,23 @@ getLower(): ScopeType
 
 **示例：**
 
-  ```js
+  ```ts
+  class Temperature{
+    private readonly _temp: number;
+    constructor(value : number) {
+      this._temp = value;
+    }
+    compareTo(value : Temperature ) {
+      return this._temp >= value.getTemp();
+    }
+    getTemp() {
+      return this._temp;
+    }
+    toString() : string {
+      return this._temp.toString();
+    }
+  }
+
   let tempLower = new Temperature(30);
   let tempUpper = new Temperature(40);
   let range = new util.Scope(tempLower, tempUpper);
@@ -4201,7 +4493,23 @@ expand(lowerObj: ScopeType,upperObj: ScopeType): Scope
 
 **示例：**
 
-  ```js
+  ```ts
+  class Temperature{
+    private readonly _temp: number;
+    constructor(value : number) {
+      this._temp = value;
+    }
+    compareTo(value : Temperature ) {
+      return this._temp >= value.getTemp();
+    }
+    getTemp() {
+      return this._temp;
+    }
+    toString() : string {
+      return this._temp.toString();
+    }
+  }
+
   let tempLower = new Temperature(30);
   let tempUpper = new Temperature(40);
   let tempMiDF = new Temperature(35);
@@ -4236,7 +4544,23 @@ expand(range: Scope): Scope
 
 **示例：**
 
-  ```js
+  ```ts
+  class Temperature{
+    private readonly _temp: number;
+    constructor(value : number) {
+      this._temp = value;
+    }
+    compareTo(value : Temperature ) {
+      return this._temp >= value.getTemp();
+    }
+    getTemp() {
+      return this._temp;
+    }
+    toString() : string {
+      return this._temp.toString();
+    }
+  }
+
   let tempLower = new Temperature(30);
   let tempUpper = new Temperature(40);
   let tempMiDF = new Temperature(35);
@@ -4272,7 +4596,23 @@ expand(value: ScopeType): Scope
 
 **示例：**
 
-  ```js
+  ```ts
+  class Temperature{
+    private readonly _temp: number;
+    constructor(value : number) {
+      this._temp = value;
+    }
+    compareTo(value : Temperature ) {
+      return this._temp >= value.getTemp();
+    }
+    getTemp() {
+      return this._temp;
+    }
+    toString() : string {
+      return this._temp.toString();
+    }
+  }
+
   let tempLower = new Temperature(30);
   let tempUpper = new Temperature(40);
   let tempMiDF = new Temperature(35);
@@ -4306,12 +4646,28 @@ contains(value: ScopeType): boolean
 
 **示例：**
 
-  ```js
+  ```ts
+  class Temperature{
+    private readonly _temp: number;
+    constructor(value : number) {
+      this._temp = value;
+    }
+    compareTo(value : Temperature ) {
+      return this._temp >= value.getTemp();
+    }
+    getTemp() {
+      return this._temp;
+    }
+    toString() : string {
+      return this._temp.toString();
+    }
+  }
+
   let tempLower = new Temperature(30);
   let tempUpper = new Temperature(40);
   let tempMiDF = new Temperature(35);
   let range = new util.Scope(tempLower, tempUpper);
-  range.contains(tempMiDF);
+  let result = range.contains(tempMiDF);
   ```
 
 ### contains<sup>(deprecated)</sup>
@@ -4340,7 +4696,23 @@ contains(range: Scope): boolean
 
 **示例：**
 
-  ```js
+  ```ts
+  class Temperature{
+    private readonly _temp: number;
+    constructor(value : number) {
+      this._temp = value;
+    }
+    compareTo(value : Temperature ) {
+      return this._temp >= value.getTemp();
+    }
+    getTemp() {
+      return this._temp;
+    }
+    toString() : string {
+      return this._temp.toString();
+    }
+  }
+
   let tempLower = new Temperature(30);
   let tempUpper = new Temperature(40);
   let range = new util.Scope(tempLower, tempUpper);
@@ -4377,7 +4749,23 @@ clamp(value: ScopeType): ScopeType
 
 **示例：**
 
-  ```js
+  ```ts
+  class Temperature{
+    private readonly _temp: number;
+    constructor(value : number) {
+      this._temp = value;
+    }
+    compareTo(value : Temperature ) {
+      return this._temp >= value.getTemp();
+    }
+    getTemp() {
+      return this._temp;
+    }
+    toString() : string {
+      return this._temp.toString();
+    }
+  }
+
   let tempLower = new Temperature(30);
   let tempUpper = new Temperature(40);
   let tempMiDF = new Temperature(35);
@@ -4406,7 +4794,7 @@ Base64的构造函数。
 
 **示例：**
 
-  ```js
+  ```ts
   let base64 = new  util.Base64();
   ```
 
@@ -4436,7 +4824,7 @@ encodeSync(src: Uint8Array): Uint8Array
 
 **示例：**
 
-  ```js
+  ```ts
   let that = new util.Base64();
   let array = new Uint8Array([115,49,51]);
   let result = that.encodeSync(array);
@@ -4468,7 +4856,7 @@ encodeToStringSync(src: Uint8Array): string
 
 **示例：**
 
-  ```js
+  ```ts
   let that = new util.Base64();
   let array = new Uint8Array([115,49,51]);
   let result = that.encodeToStringSync(array);
@@ -4500,7 +4888,7 @@ decodeSync(src: Uint8Array | string): Uint8Array
 
 **示例：**
 
-  ```js
+  ```ts
   let that = new util.Base64();
   let buff = 'czEz';
   let result = that.decodeSync(buff);
@@ -4532,12 +4920,12 @@ encode(src: Uint8Array): Promise&lt;Uint8Array&gt;
 
 **示例：**
 
-  ```js
+  ```ts
   let that = new util.Base64();
   let array = new Uint8Array([115,49,51]);
   let rarray = new Uint8Array([99,122,69,122]);
   that.encode(array).then(val=>{    
-      for (var i = 0; i < rarray.length; i++) {        
+      for (let i = 0; i < rarray.length; i++) {        
           console.log(val[i].toString())
       }
   })
@@ -4569,7 +4957,7 @@ encodeToString(src: Uint8Array): Promise&lt;string&gt;
 
 **示例：**
 
-  ```js
+  ```ts
   let that = new util.Base64();
   let array = new Uint8Array([115,49,51]);
   that.encodeToString(array).then(val=>{    
@@ -4604,12 +4992,12 @@ decode(src: Uint8Array | string): Promise&lt;Uint8Array&gt;
 
 **示例：**
 
-  ```js
+  ```ts
   let that = new util.Base64();
   let array = new Uint8Array([99,122,69,122]);
   let rarray = new Uint8Array([115,49,51]);
   that.decode(array).then(val=>{    
-      for (var i = 0; i < rarray.length; i++) {        
+      for (let i = 0; i < rarray.length; i++) {        
           console.log(val[i].toString())
       }
   })

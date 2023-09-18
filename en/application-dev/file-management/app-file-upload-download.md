@@ -19,6 +19,7 @@ The following example demonstrates how to upload a file in the **cache** directo
 import common from '@ohos.app.ability.common';
 import fs from '@ohos.file.fs';
 import request from '@ohos.request';
+import { BusinessError } from '@ohos.base';
 
 // Obtain the application file path.
 let context = getContext(this) as common.UIAbilityContext;
@@ -30,32 +31,36 @@ fs.writeSync(file.fd, 'upload file test');
 fs.closeSync(file);
 
 // Configure the upload task.
-let uploadConfig = {
+let header = new Map<Object, string>();
+header.set('key1', 'value1');
+header.set('key2', 'value2');
+let files: Array<request.File> = [
+  { filename: 'test.txt', name: 'test', uri: 'internal://cache/test.txt', type: 'txt' }
+]
+let data: Array<request.RequestData> = [{ name: 'name', value: 'value' }];
+let uploadConfig: request.UploadConfig = {
   url: 'https://xxx',
-  header: { key1: 'value1', key2: 'value2' },
+  header: header,
   method: 'POST',
-  files: [
-    { filename: 'test.txt', name: 'test', uri: 'internal://cache/test.txt', type: 'txt' }
-  ],
-  data: [
-    { name: 'name', value: 'value' }
-  ]
+  files: files,
+  data: data
 }
 
 // Upload the created application file to the network server.
 try {
   request.uploadFile(context, uploadConfig)
-    .then((uploadTask) => {
-      uploadTask.on('complete', (taskStates) => {
+    .then((uploadTask: request.UploadTask) => {
+      uploadTask.on('complete', (taskStates: Array<request.TaskState>) => {
         for (let i = 0; i < taskStates.length; i++) {
           console.info(`upload complete taskState: ${JSON.stringify(taskStates[i])}`);
         }
       });
     })
-    .catch((err) => {
+    .catch((err: BusinessError) => {
       console.error(`Invoke uploadFile failed, code is ${err.code}, message is ${err.message}`);
     })
-} catch (err) {
+} catch (error) {
+  let err: BusinessError = error as BusinessError;
   console.error(`Invoke uploadFile failed, code is ${err.code}, message is ${err.message}`);
 }
 ```
@@ -78,6 +83,8 @@ The following example demonstrates how to download a network resource file to a 
 import common from '@ohos.app.ability.common';
 import fs from '@ohos.file.fs';
 import request from '@ohos.request';
+import { BusinessError } from '@ohos.base';
+import buffer from '@ohos.buffer';
 
 // Obtain the application file path.
 let context = getContext(this) as common.UIAbilityContext;
@@ -87,19 +94,21 @@ try {
   request.downloadFile(context, {
     url: 'https://xxxx/xxxx.txt',
     filePath: filesDir + '/xxxx.txt'
-  }).then((downloadTask) => {
+  }).then((downloadTask: request.DownloadTask) => {
     downloadTask.on('complete', () => {
       console.info('download complete');
       let file = fs.openSync(filesDir + '/xxxx.txt', fs.OpenMode.READ_WRITE);
-      let buf = new ArrayBuffer(1024);
-      let readLen = fs.readSync(file.fd, buf);
-      console.info(`The content of file: ${String.fromCharCode.apply(null, new Uint8Array(buf.slice(0, readLen)))}`);
+      let arrayBuffer = new ArrayBuffer(1024);
+      let readLen = fs.readSync(file.fd, arrayBuffer);
+      let buf = buffer.from(arrayBuffer, 0, readLen);
+      console.info(`The content of file: ${buf.toString()}`);
       fs.closeSync(file);
     })
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.error(`Invoke downloadTask failed, code is ${err.code}, message is ${err.message}`);
   });
-} catch (err) {
+} catch (error) {
+  let err: BusinessError = error as BusinessError;
   console.error(`Invoke downloadFile failed, code is ${err.code}, message is ${err.message}`);
 }
 ```

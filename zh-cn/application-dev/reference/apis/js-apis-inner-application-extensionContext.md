@@ -37,10 +37,7 @@ ExtensionContext主要用于查询所属Extension的信息、Module的配置信�
 
 三个Module内都定义一个相同名称的ServiceExtension：
 ```ts
-import ServiceExtension from '@ohos.app.ability.ServiceExtensionAbility';
-import Want from '@ohos.app.ability.Want';
-import rpc from '@ohos.rpc';
-
+// 单例对象 GlobalContext.ts
 export class GlobalContext {
     private constructor() {}
     private static instance: GlobalContext;
@@ -61,6 +58,13 @@ export class GlobalContext {
         this._objects.set(key, objectClass);
     }
 }
+```
+
+```ts
+import ServiceExtension from '@ohos.app.ability.ServiceExtensionAbility';
+import Want from '@ohos.app.ability.Want';
+import rpc from '@ohos.rpc';
+import { GlobalContext } from '../GlobalContext'
 
 export default class TheServiceExtension extends ServiceExtension {
     onCreate(want: Want) {
@@ -109,7 +113,8 @@ export default class EntryAbility extends UIAbility {
 
 在entry内新建一个ServiceModule.ts，专用于执行业务逻辑
 ```ts
-import { GlobalContext } from '../TheServiceExtension'
+import common from '@ohos.app.ability.common';
+import { GlobalContext } from '../GlobalContext';
 
 export default class ServiceModel {
     moduleName: string = '';
@@ -122,7 +127,8 @@ export default class ServiceModel {
             return;
         }
 
-        this.moduleName = GlobalContext.getContext().getObject('ExtensionContext').currentHapModuleInfo.name;
+        let extensionContext = GlobalContext.getContext().getObject('ExtensionContext') as common.ServiceExtensionContext;
+        this.moduleName = extensionContext.currentHapModuleInfo.name;
         // 根据moduleName执行不同的业务逻辑，实现对不同性能设备的区分
         switch (this.moduleName) {
             case 'highPerformance':

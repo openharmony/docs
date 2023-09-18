@@ -13,7 +13,7 @@ IPC/RPC的主要工作是让运行在不同进程的Proxy和Stub互相通信，�
 | -------- | -------- | -------- |
 | [IRemoteBroker](../reference/apis/js-apis-rpc.md#iremotebroker) | sptr&lt;IRemoteObject&gt; AsObject() | 返回通信对象。Stub端返回RemoteObject对象本身，Proxy端返回代理对象。 |
 | IRemoteStub | virtual int OnRemoteRequest(uint32_t code, MessageParcel &amp;data, MessageParcel &amp;reply, MessageOption &amp;option) | 请求处理方法，派生类需要重写该方法用来处理Proxy的请求并返回结果。 |
-| IRemoteProxy |  | 业务的Pory类需要从IRemoteProxy类派生。 |
+| IRemoteProxy | Remote()->SendRequest(code, data, reply, option)             | 消息发送方法，业务的Proxy类需要从IRemoteProxy类派生，该方法用来向对端发送消息。 |
 
 
 ## 开发步骤
@@ -166,10 +166,10 @@ IPC/RPC的主要工作是让运行在不同进程的Proxy和Stub互相通信，�
    sptr<ISystemAbilityManager> samgr = SystemAbilityManagerClient::GetInstance().GetSystemAbilityManager();
    sptr<IRemoteObject> remoteObject = samgr->GetSystemAbility(saId);
    sptr<ITestAbility> testAbility = iface_cast<ITestAbility>(remoteObject); // 使用iface_cast宏转换成具体类型
-
+   
    // 获取其他设备注册的SA的proxy
    sptr<ISystemAbilityManager> samgr = SystemAbilityManagerClient::GetInstance().GetSystemAbilityManager();
-
+   
    // networkId是组网场景下对应设备的标识符，可以通过GetLocalNodeDeviceInfo获取
    sptr<IRemoteObject> remoteObject = samgr->GetSystemAbility(saId, networkId);
    sptr<TestAbilityProxy> proxy(new TestAbilityProxy(remoteObject)); // 直接构造具体Proxy
@@ -231,8 +231,10 @@ IPC/RPC的主要工作是让运行在不同进程的Proxy和Stub互相通信，�
    import Want from '@ohos.app.ability.Want';
    import common from '@ohos.app.ability.common';
    import deviceManager from '@ohos.distributedHardware.deviceManager';
+   import { BusinessError } from '@ohos.base';
 
-   let proxy: rpc.RemoteProxy;
+   let dmInstance: deviceManager.DeviceManager | undefined;
+   let proxy: rpc.IRemoteObject | undefined = undefined;
    let connectId: number;
 
    // 单个设备绑定Ability
@@ -242,7 +244,7 @@ IPC/RPC的主要工作是让运行在不同进程的Proxy和Stub互相通信，�
        abilityName: "ohos.rpc.test.server.ServiceAbility",
    };
    let connect: common.ConnectOptions = {
-       onConnect: (elementName, remote: rpc.RemoteProxy) => {
+       onConnect: (elementName, remote) => {
            proxy = remote;
        },
        onDisconnect: (elementName) => {
@@ -256,44 +258,47 @@ IPC/RPC的主要工作是让运行在不同进程的Proxy和Stub互相通信，�
 
    connectId = this.context.connectServiceExtensionAbility(want,connect);
 
-   // 跨设备绑定
-   // 第一个参数是本应用的包名，第二个参数是接收deviceManager的回调函数
-   deviceManager.createDeviceManager("ohos.rpc.test", (err: Error, data: deviceManager.DeviceManager) => {
-     if (err) {
+   // 跨设备绑定 
+   let deviceManagerCallback = (err: BusinessError, data: deviceManager.DeviceManager) => {
+       if (err) {
+           console.error("createDeviceManager errCode:" + err.code + ",errMessage:" + err.message);
+           return;
+       }
+       console.info("createDeviceManager success");
+       dmInstance = data;
+   }
+   try{
+       deviceManager.createDeviceManager("ohos.rpc.test", deviceManagerCallback);
+   } catch(error) {
+       let e: BusinessError = error as BusinessError;
        console.error("createDeviceManager errCode:" + err.code + ",errMessage:" + err.message);
-       return;
-     }
-     console.info("createDeviceManager success");
-     let dmInstance = data;
-   });
+   }
 
-  // 使用deviceManager获取目标设备NetworkId
-  let deviceList: Array<deviceManager.DeviceInfo> = dmInstance.getTrustedDeviceListSync();
-  let networkId: string = deviceList[0].networkId;
-  let want: Want = {
-    bundleName: "ohos.rpc.test.server",
-    abilityName: "ohos.rpc.test.service.ServiceAbility",
-    deviceId: networkId,
-    flags: 256
-  };
-  // 建立连接后返回的Id需要保存下来，在断开连接时需要作为参数传入
-  // FA模型使用此方法连接服务
-  // connectId = featureAbility.connectAbility(want, connect);
-
-  connectId = this.context.connectServiceExtensionAbility(want,connect);
+   // 使用deviceManager获取目标设备NetworkId
+   if (dmInstance != undefined) {
+       let deviceList: Array<deviceManager.DeviceInfo> = dmInstance.getTrustedDeviceListSync();
+       let networkId: string = deviceList[0].networkId;
+       let want: Want = {
+           bundleName: "ohos.rpc.test.server",
+           abilityName: "ohos.rpc.test.service.ServiceAbility",
+           deviceId: networkId,
+           flags: 256
+       };
+       // 建立连接后返回的Id需要保存下来，在断开连接时需要作为参数传入
+       // FA模型使用此方法连接服务
+       // connectId = featureAbility.connectAbility(want, connect);
+       
+       // 第一个参数是本应用的包名，第二个参数是接收deviceManager的回调函数
+       connectId = this.context.connectServiceExtensionAbility(want,connect);
+   }
    ```
-
 
 3. 服务端处理客户端请求
 
    服务端被绑定的Ability在onConnect方法里返回继承自rpc.RemoteObject的对象，该对象需要实现onRemoteMessageRequest方法，处理客户端的请求。
 
    ```ts
-   onConnect(want: Want) {
-       const robj: rpc.RemoteObject = new Stub("rpcTestAbility");
-       return robj;
-   }
-   class Stub extends rpc.RemoteObject {
+    class Stub extends rpc.RemoteObject {
        constructor(descriptor: string) {
            super(descriptor);
        }
@@ -301,7 +306,11 @@ IPC/RPC的主要工作是让运行在不同进程的Proxy和Stub互相通信，�
            // 根据code处理客户端的请求
            return true;
        }
-   }
+    }
+    onConnect(want: Want) {
+           const robj: rpc.RemoteObject = new Stub("rpcTestAbility");
+           return robj;
+    } 
    ```
 
 4. 客户端处理服务端响应
@@ -359,6 +368,7 @@ IPC/RPC的主要工作是让运行在不同进程的Proxy和Stub互相通信，�
    import rpc from "@ohos.rpc";
    // 仅FA模型需要导入@ohos.ability.featureAbility
    // import featureAbility from "@ohos.ability.featureAbility";
+
    function disconnectCallback() {
        console.info("disconnect ability done");
    }

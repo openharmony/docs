@@ -37,6 +37,17 @@ Obtains the value of the system parameter with the specified key.
 | -------- | -------- |
 | string | Value of the system parameter.<br> If the specified key exists, the set value is returned.<br> If the specified key does not exist and **def** is set to a valid value, the set value is returned. If the specified key does not exist and **def** is set to an invalid value (such as **undefined**) or is not set, an exception is thrown.|
 
+**Error codes**
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 14700101 | System parameter can not be found.                           |
+| 14700102 | System parameter value is invalid.                           |
+| 14700103 | System permission operation permission denied.               |
+| 14700104 | System internal error including out of memory, deadlock etc. |
+
+For details about the error codes, see [System Parameter Error Codes](../errorcodes/errorcode-system-parameterV9.md).
+
 **Example**
 
 ```ts
@@ -62,6 +73,17 @@ Obtains the value of the system parameter with the specified key.
 | -------- | -------- | -------- | -------- |
 | key | string | Yes| Key of the system parameter.|
 | callback | AsyncCallback&lt;string&gt; | Yes| Callback used to return the result.|
+
+**Error codes**
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 14700101 | System parameter can not be found.                           |
+| 14700102 | System parameter value is invalid.                           |
+| 14700103 | System permission operation permission denied.               |
+| 14700104 | System internal error including out of memory, deadlock etc. |
+
+For details about the error codes, see [System Parameter Error Codes](../errorcodes/errorcode-system-parameterV9.md).
 
 **Example**
 
@@ -95,6 +117,17 @@ Obtains the value of the system parameter with the specified key. This API uses 
 | key | string | Yes| Key of the system parameter.|
 | def | string | Yes| Default value.|
 | callback | AsyncCallback&lt;string&gt; | Yes| Callback used to return the result.|
+
+**Error codes**
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 14700101 | System parameter can not be found.                           |
+| 14700102 | System parameter value is invalid.                           |
+| 14700103 | System permission operation permission denied.               |
+| 14700104 | System internal error including out of memory, deadlock etc. |
+
+For details about the error codes, see [System Parameter Error Codes](../errorcodes/errorcode-system-parameterV9.md).
 
 **Example**
 
@@ -135,6 +168,17 @@ Obtains the value of the system parameter with the specified key. This API uses 
 | -------- | -------- |
 | Promise&lt;string&gt; | Promise used to return the execution result.|
 
+**Error codes**
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 14700101 | System parameter can not be found.                           |
+| 14700102 | System parameter value is invalid.                           |
+| 14700103 | System permission operation permission denied.               |
+| 14700104 | System internal error including out of memory, deadlock etc. |
+
+For details about the error codes, see [System Parameter Error Codes](../errorcodes/errorcode-system-parameterV9.md).
+
 **Example**
 
 ```ts
@@ -167,6 +211,16 @@ Sets a value for the system parameter with the specified key.
 | key | string | Yes| Key of the system parameter.|
 | value | string | Yes| Value of the system parameter to set.|
 
+**Error codes**
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 14700102 | System parameter value is invalid.                           |
+| 14700103 | System permission operation permission denied.               |
+| 14700104 | System internal error including out of memory, deadlock etc. |
+
+For details about the error codes, see [System Parameter Error Codes](../errorcodes/errorcode-system-parameterV9.md).
+
 **Example**
 
 ```ts
@@ -194,6 +248,16 @@ Sets a value for the system parameter with the specified key. This API uses an a
 | key | string | Yes| Key of the system parameter.|
 | value | string | Yes| Value of the system parameter to set.|
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
+
+**Error codes**
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 14700102 | System parameter value is invalid.                           |
+| 14700103 | System permission operation permission denied.               |
+| 14700104 | System internal error including out of memory, deadlock etc. |
+
+For details about the error codes, see [System Parameter Error Codes](../errorcodes/errorcode-system-parameterV9.md).
 
 **Example**
 
@@ -232,6 +296,16 @@ Sets a value for the system parameter with the specified key. This API uses a pr
 | Type| Description|
 | -------- | -------- |
 | Promise&lt;void&gt; | Promise used to return the execution result.|
+
+**Error codes**
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 14700102 | System parameter value is invalid.                           |
+| 14700103 | System permission operation permission denied.               |
+| 14700104 | System internal error including out of memory, deadlock etc. |
+
+For details about the error codes, see [System Parameter Error Codes](../errorcodes/errorcode-system-parameterV9.md).
 
 **Example**
 

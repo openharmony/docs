@@ -4,9 +4,9 @@ The **DataShareResultSet** module provides APIs for accessing the result set obt
 
 > **NOTE**
 >
-> The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> - The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
-> The APIs provided by this module are system APIs.
+> - The APIs provided by this module are system APIs.
 
 
 ## Modules to Import
@@ -22,8 +22,9 @@ You can call [query()](js-apis-data-dataShare.md#query) to obtain the **DataShar
 ```ts
 import dataShare from '@ohos.data.dataShare';
 import dataSharePredicates from '@ohos.data.dataSharePredicates'
+import { BusinessError } from '@ohos.base'
 
-let dataShareHelper;
+let dataShareHelper: dataShare.DataShareHelper;
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 await dataShare.createDataShareHelper(this.context, uri, (err, data) => {
 	if (err != undefined) {
@@ -36,12 +37,12 @@ await dataShare.createDataShareHelper(this.context, uri, (err, data) => {
 
 let columns = ["*"];
 let da = new dataSharePredicates.DataSharePredicates();
-let resultSet;
+let resultSet: DataShareResultSet;
 da.equalTo("name", "ZhangSan");
-dataShareHelper.query(uri, da, columns).then((data) => {
+dataShareHelper.query(uri, da, columns).then((data: DataShareResultSet) => {
     console.info("query end, data : " + data);
     resultSet = data;
-}).catch((err) => {
+}).catch((err: BusinessError) => {
 	console.error("query fail, error message : " + err);
 });
 ```

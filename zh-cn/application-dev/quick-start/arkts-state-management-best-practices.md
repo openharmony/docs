@@ -41,7 +41,7 @@ struct LinkChild {
 
 @Component
 struct PropChild2 {
-  @Prop testNum: ClassA;
+  @Prop testNum: ClassA = new ClassA(0);
 
   build() {
     Text(`PropChild2 testNum ${this.testNum.c}`)
@@ -53,7 +53,7 @@ struct PropChild2 {
 
 @Component
 struct PropChild3 {
-  @Prop testNum: ClassA;
+  @Prop testNum: ClassA = new ClassA(0);
 
   build() {
     Text(`PropChild3 testNum ${this.testNum.c}`)
@@ -460,10 +460,10 @@ struct ParentComp {
         CounterComp({ value: this.counter[2] })
         Divider().height(5)
         ForEach(this.counter,
-          item => {
+          (item: ParentCounter) => {
             CounterComp({ value: item })
           },
-          item => item.id.toString()
+          (item: ParentCounter) => item.id.toString()
         )
         Divider().height(5)
         // 第一个点击事件
@@ -507,8 +507,8 @@ incrSubCounter和setSubCounter都是同一个SubCounter的函数。在第一个�
 
 
 ```ts
-@ObjectLink value：ParentCounter;
-@ObjectLink subValue：SubCounter;
+@ObjectLink value：ParentCounter = new ParentCounter(0);
+@ObjectLink subValue：SubCounter = new SubCounter(0);
 ```
 
 该方法使得\@ObjectLink分别代理了ParentCounter和SubCounter的属性，这样对于这两个类的属性的变化都可以观察到，即都会对UI视图进行刷新。即使删除了上面所说的this.counter[0].incrCounter()，UI也会进行正确的刷新。
@@ -576,10 +576,10 @@ struct ParentComp {
         CounterComp({ value: this.counter[2], subValue: this.counter[2].subCounter })
         Divider().height(5)
         ForEach(this.counter,
-          item => {
+          (item: ParentCounter) => {
             CounterComp({ value: item, subValue: item.subCounter })
           },
-          item => item.id.toString()
+          (item: ParentCounter) => item.id.toString()
         )
         Divider().height(5)
         Text('Parent: reset entire counter')
@@ -673,10 +673,10 @@ struct ParentComp {
         CounterComp({ value: this.counter[2], subValue: this.counter[2].subCounter })
         Divider().height(5)
         ForEach(this.counter,
-          item => {
+          (item: ParentCounter) => {
             CounterComp({ value: item, subValue: item.subCounter })
           },
-          item => item.id.toString()
+          (item: ParentCounter) => item.id.toString()
         )
         Divider().height(5)
         Text('Parent: reset entire counter')
@@ -715,8 +715,8 @@ struct ParentComp {
 ```ts
 @Component
 struct CounterComp {
-  @Prop value: ParentCounter;
-  @Prop subValue: SubCounter;
+  @Prop value: ParentCounter = new ParentCounter(0);
+  @Prop subValue: SubCounter = new SubCounter(0);
   build() {
     Column({ space: 10 }) {
       Text(`this.subValue.counter: ${this.subValue.counter}`)
@@ -754,6 +754,37 @@ struct CounterComp {
 
   
 ```ts
+let nextId = 1;
+
+@Observed
+class SubCounter {
+  counter: number;
+  constructor(c: number) {
+    this.counter = c;
+  }
+}
+
+@Observed
+class ParentCounter {
+  id: number;
+  counter: number;
+  subCounter: SubCounter;
+  incrCounter() {
+    this.counter++;
+  }
+  incrSubCounter(c: number) {
+    this.subCounter.counter += c;
+  }
+  setSubCounter(c: number): void {
+    this.subCounter.counter = c;
+  }
+  constructor(c: number) {
+    this.id = nextId++;
+    this.counter = c;
+    this.subCounter = new SubCounter(c);
+  }
+}
+
 @Component
 struct SubCounterComp {
   @ObjectLink subValue: SubCounter;
@@ -767,7 +798,7 @@ struct SubCounterComp {
 }
 @Component
 struct CounterComp {
-  @Prop value: ParentCounter;
+  @ObjectLink value: ParentCounter;
   build() {
     Column({ space: 10 }) {
       Text(`this.value.incrCounter(): this.value.counter: ${this.value.counter}`)
@@ -798,10 +829,10 @@ struct ParentComp {
         CounterComp({ value: this.counter[2] })
         Divider().height(5)
         ForEach(this.counter,
-          item => {
+          (item: ParentCounter) => {
             CounterComp({ value: item })
           },
-          item => item.id.toString()
+          (item: ParentCounter) => item.id.toString()
         )
         Divider().height(5)
         Text('Parent: reset entire counter')
@@ -917,8 +948,8 @@ build函数中更改应用状态的行为可能会比上面的示例更加隐蔽
 
   
 ```ts
-@State arr : Array<..> = [ ... ];
-ForEach(this.arr.sort().filter(....), 
+@State arr : Array<...> = [ ... ];
+ForEach(this.arr.sort().filter(...), 
   item => { 
   ...
 })
@@ -928,7 +959,7 @@ ForEach(this.arr.sort().filter(....),
 
   
 ```ts
-ForEach(this.arr.filter(....).sort(), 
+ForEach(this.arr.filter(...).sort(), 
   item => { 
   ...
 })
@@ -949,15 +980,18 @@ struct CompA {
   realState1: Array<number> = [4, 1, 3, 2]; // 未使用状态变量装饰器
   realState2: Color = Color.Yellow;
 
-  updateUI(param: any): any {
+  updateUI1(param: Array<number>): Array<number> {
     const triggerAGet = this.needsUpdate;
     return param;
   }
-
+  updateUI2(param: Color): Color {
+    const triggerAGet = this.needsUpdate;
+    return param;
+  }
   build() {
     Column({ space: 20 }) {
-      ForEach(this.updateUI(this.realState1),
-        item => {
+      ForEach(this.updateUI1(this.realState1),
+        (item: Array<number>) => {
           Text(`${item}`)
         })
       Text("add item")
@@ -976,7 +1010,7 @@ struct CompA {
           // 触发UI视图更新
           this.needsUpdate = !this.needsUpdate;
         })
-    }.backgroundColor(this.updateUI(this.realState2))
+    }.backgroundColor(this.updateUI2(this.realState2))
     .width(200).height(500)
   }
 }
@@ -1005,7 +1039,7 @@ struct CompA {
   build() {
     Column({ space: 20 }) {
       ForEach(this.realState1,
-        item => {
+        (item: Array<number>) => {
           Text(`${item}`)
         })
       Text("add item")
@@ -1108,7 +1142,7 @@ struct Parent {
 
 @Component
 struct Child {
-  @Prop voteOne: ClassE
+  @ObjectLink voteOne: ClassE
   build() {
     Column() {
       Text(this.voteOne.name).fontSize(24).fontColor(Color.Red).margin(50)
@@ -1123,7 +1157,7 @@ struct Child {
 
 @Component
 struct ChildOne {
-  @Prop voteTwo: ClassD
+  @ObjectLink voteTwo: ClassD
   build() {
     Column() {
       Text(this.voteTwo.name).fontSize(24).fontColor(Color.Red).margin(50)
@@ -1138,7 +1172,7 @@ struct ChildOne {
 
 @Component
 struct ChildTwo {
-  @Prop voteThree: ClassC
+  @ObjectLink voteThree: ClassC
   build() {
     Column() {
       Text(this.voteThree.name).fontSize(24).fontColor(Color.Red).margin(50)
@@ -1153,7 +1187,7 @@ struct ChildTwo {
 
 @Component
 struct ChildThree {
-  @Prop voteFour: ClassB
+  @ObjectLink voteFour: ClassB
   build() {
     Column() {
       Text(this.voteFour.name).fontSize(24).fontColor(Color.Red).margin(50)
@@ -1168,7 +1202,7 @@ struct ChildThree {
 
 @Component
 struct ChildFour {
-  @Prop voteFive: ClassA
+  @ObjectLink voteFive: ClassA
   build() {
     Column() {
       Text(this.voteFive.title).fontSize(24).fontColor(Color.Red).margin(50)
@@ -1245,6 +1279,59 @@ class ClassE {
 以下组件层次结构呈现的是@Reusable组件复用场景的数据结构。
 
 ```ts
+// 以下是嵌套类对象的数据结构。
+@Observed
+class ClassA {
+  public title: string;
+
+  constructor(title: string) {
+    this.title = title;
+  }
+}
+
+@Observed
+class ClassB {
+  public name: string;
+  public a: ClassA;
+
+  constructor(name: string, a: ClassA) {
+    this.name = name;
+    this.a = a;
+  }
+}
+
+@Observed
+class ClassC {
+  public name: string;
+  public b: ClassB;
+
+  constructor(name: string, b: ClassB) {
+    this.name = name;
+    this.b = b;
+  }
+}
+
+@Observed
+class ClassD {
+  public name: string;
+  public c: ClassC;
+
+  constructor(name: string, c: ClassC) {
+    this.name = name;
+    this.c = c;
+  }
+}
+
+@Observed
+class ClassE {
+  public name: string;
+  public d: ClassD;
+
+  constructor(name: string, d: ClassD) {
+    this.name = name;
+    this.d = d;
+  }
+}
 @Entry
 @Component
 struct Parent {
@@ -1266,9 +1353,9 @@ struct Parent {
 @Component
 struct Child {
   @State voteOne: ClassE = new ClassE('voteOne', new ClassD('OpenHarmony', new ClassC('Hello', new ClassB('World', new ClassA('Peace')))))
-  aboutToReuse(params){
-    this.voteOne = params
 
+  aboutToReuse(params: ClassE) {
+    this.voteOne = params
   }
   build() {
     Column() {
@@ -1287,7 +1374,7 @@ struct Child {
 @Component
 struct ChildOne {
   @State voteTwo: ClassD = new ClassD('voteTwo', new ClassC('Hello', new ClassB('World', new ClassA('Peace'))))
-  aboutToReuse(params){
+  aboutToReuse(params: ClassD){
     this.voteTwo = params
   }
   build() {
@@ -1307,7 +1394,7 @@ struct ChildOne {
 @Component
 struct ChildTwo {
   @State voteThree: ClassC = new ClassC('voteThree', new ClassB('World', new ClassA('Peace')))
-  aboutToReuse(params){
+  aboutToReuse(params: ClassC){
     this.voteThree = params
 
   }
@@ -1328,7 +1415,7 @@ struct ChildTwo {
 @Component
 struct ChildThree {
   @State voteFour: ClassB = new ClassB('voteFour', new ClassA('Peace'))
-  aboutToReuse(params){
+  aboutToReuse(params: ClassB){
     this.voteFour = params
 
   }
@@ -1349,7 +1436,7 @@ struct ChildThree {
 @Component
 struct ChildFour {
   @State voteFive: ClassA = new ClassA('voteFive')
-  aboutToReuse(params){
+  aboutToReuse(params: ClassA){
     this.voteFive = params
 
   }

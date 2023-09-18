@@ -4,34 +4,33 @@
 
 ## 开发步骤
 
-
 **添加依赖**
 
 在进行应用开发之前，开发者需要打开native工程的src/main/cpp/CMakeLists.txt，在target_link_libraries依赖中添加image的libpixelmap_ndk.z.so以及日志依赖libhilog_ndk.z.so。
 
-    ```txt
-    target_link_libraries(entry PUBLIC libace_napi.z.so libhilog_ndk.z.so libpixelmap_ndk.z.so)
-    ```
+```txt
+target_link_libraries(entry PUBLIC libace_napi.z.so libhilog_ndk.z.so libpixelmap_ndk.z.so)
+```
 
 **添加接口映射**
 
 打开src/main/cpp/hello.cpp文件，在Init函数中添加接口映射如下：
 
-    ```c++
-    EXTERN_C_START
-    static napi_value Init(napi_env env, napi_value exports)
-    {
-        napi_property_descriptor desc[] = {
-            { "testGetImageInfo", nullptr, TestGetImageInfo, nullptr, nullptr, nullptr, napi_default, nullptr },
-            { "testAccessPixels", nullptr, TestAccessPixels, nullptr, nullptr, nullptr, napi_default, nullptr },
-            { "testUnAccessPixels", nullptr, TestUnAccessPixels, nullptr, nullptr, nullptr, napi_default, nullptr },
-        };
+```c++
+EXTERN_C_START
+static napi_value Init(napi_env env, napi_value exports)
+{
+    napi_property_descriptor desc[] = {
+        { "testGetImageInfo", nullptr, TestGetImageInfo, nullptr, nullptr, nullptr, napi_default, nullptr },
+        { "testAccessPixels", nullptr, TestAccessPixels, nullptr, nullptr, nullptr, napi_default, nullptr },
+        { "testUnAccessPixels", nullptr, TestUnAccessPixels, nullptr, nullptr, nullptr, napi_default, nullptr },
+    };
 
-        napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
-        return exports;
-    }
-    EXTERN_C_END
-    ```
+    napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
+    return exports;
+}
+EXTERN_C_END
+```
 
 
 **Native接口调用**
@@ -108,7 +107,7 @@
     @Component
     struct Index {
     @State message: string = 'IMAGE'
-    @State _PixelMap: image.PixelMap = undefined
+    @State _PixelMap : image.PixelMap | undefined = undefined;
 
     build() {
         Row() {
@@ -117,10 +116,10 @@
             .fontSize(50)
             .fontWeight(FontWeight.Bold)
             .onClick(() => {
-                const color = new ArrayBuffer(96);
-                let opts = { alphaType: 0, editable: true, pixelFormat: 4, scaleMode: 1, size: { height: 4, width: 6 } }
+                const color : ArrayBuffer = new ArrayBuffer(96);
+                let opts: image.InitializationOptions = { alphaType: 0, editable: true, pixelFormat: 4, scaleMode: 1, size: { height: 4, width: 6 } }
                 image.createPixelMap(color, opts)
-                .then( pixelmap => {
+                .then( (pixelmap : image.PixelMap) => {
                     this._PixelMap = pixelmap;
                 })
 

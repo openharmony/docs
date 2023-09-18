@@ -10,7 +10,7 @@
 
 ## 导入模块
 
-```js
+```ts
 import stationary from '@ohos.stationary'
 ```
 
@@ -79,8 +79,8 @@ on(activity: ActivityType, event: ActivityEvent, reportLatencyNs: number, callba
 
 **示例：**
 
-```js
-var reportLatencyNs = 100;
+```ts
+let reportLatencyNs = 100;
 stationary.on('still', stationary.ActivityEvent.ENTER, reportLatencyNs, (data) => {
     console.log('data='+ JSON.stringify(data));
 })
@@ -103,7 +103,7 @@ once(activity: ActivityType, callback: Callback&lt;ActivityResponse&gt;): void
 
 **示例：**
 
-```js
+```ts
 stationary.once('still', (data) => {
     console.log("data="+ JSON.stringify(data));
 })
@@ -127,6 +127,6 @@ off(activity: ActivityType, event: ActivityEvent, callback?: Callback&lt;Activit
 
 **示例：**
 
-```js
+```ts
 stationary.off('still', stationary.ActivityEvent.ENTER);
 ```

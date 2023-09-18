@@ -34,7 +34,7 @@ Obtains the IDs of all input devices. This API uses an asynchronous callback to 
 
 ```js
 try {
-  inputDevice.getDeviceList((error, ids) => {
+  inputDevice.getDeviceList((error: Error, ids: Array<number>) => {
     if (error) {
       console.log(`Failed to get device id list, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
@@ -64,7 +64,7 @@ Obtains the IDs of all input devices. This API uses a promise to return the resu
 
 ```js
 try {
-  inputDevice.getDeviceList().then((ids) => {
+  inputDevice.getDeviceList().then((ids: Array<number>) => {
     console.log(`Device id list: ${JSON.stringify(ids)}`);
   });
 } catch (error) {
@@ -129,7 +129,7 @@ Obtains information about an input device. This API uses a promise to return the
 ```js
 // Obtain the name of the device whose ID is 1.
 try {
-  inputDevice.getDeviceInfo(1).then((deviceData) => {
+  inputDevice.getDeviceInfo(1).then((deviceData: inputDevice.InputDeviceData) => {
     console.log(`Device info: ${JSON.stringify(deviceData)}`);
   });
 } catch (error) {
@@ -157,9 +157,9 @@ Enables listening for device hot swap events.
 ```js
 let isPhysicalKeyboardExist = true;
 try {
-  inputDevice.on("change", (data) => {
+  inputDevice.on("change", (data: inputDevice.DeviceListener) => {
     console.log(`Device event info: ${JSON.stringify(data)}`);
-    inputDevice.getKeyboardType(data.deviceId, (err, type) => {
+    inputDevice.getKeyboardType(data.deviceId, (err: Error, type: inputDevice.KeyboardType) => {
       console.log("The keyboard type is: " + type);
       if (type == inputDevice.KeyboardType.ALPHABETIC_KEYBOARD && data.type == 'add') {
         // The physical keyboard is connected.
@@ -194,7 +194,7 @@ Disables listening for device hot swap events. This API is called before the app
 **Example**
 
 ```js
-function callback(data) {
+function callback(data: inputDevice.DeviceListener) {
   console.log(`Report device event info: ${JSON.stringify(data, [`type`, `deviceId`])}`);
 };
 
@@ -238,7 +238,7 @@ This API is deprecated since API version 9. You are advised to use [inputDevice.
 **Example**
 
 ```js
-inputDevice.getDeviceIds((error, ids) => {
+inputDevice.getDeviceIds((error: Error, ids: Array<number>) => {
   if (error) {
     console.log(`Failed to get device id list, error: ${JSON.stringify(error, [`code`, `message`])}`);
     return;
@@ -266,7 +266,7 @@ This API is deprecated since API version 9. You are advised to use [inputDevice.
 **Example**
 
 ```js
-inputDevice.getDeviceIds().then((ids) => {
+inputDevice.getDeviceIds().then((ids: Array<number>) => {
   console.log(`Device id list: ${JSON.stringify(ids)}`);
 });
 ```
@@ -292,7 +292,7 @@ This API is deprecated since API version 9. You are advised to use [inputDevice.
 
 ```js
 // Obtain the name of the device whose ID is 1.
-inputDevice.getDevice(1, (error, deviceData) => {
+inputDevice.getDevice(1, (error: Error, deviceData: inputDevice.InputDeviceData) => {
   if (error) {
     console.log(`Failed to get device info, error: ${JSON.stringify(error, [`code`, `message`])}`);
     return;
@@ -327,7 +327,7 @@ This API is deprecated since API version 9. You are advised to use [inputDevice.
 
 ```js
 // Obtain the name of the device whose ID is 1.
-inputDevice.getDevice(1).then((deviceData) => {
+inputDevice.getDevice(1).then((deviceData: inputDevice.InputDeviceData) => {
   console.log(`Device info: ${JSON.stringify(deviceData)}`);
 });
 ```
@@ -353,7 +353,7 @@ Obtains the key codes supported by the input device. This API uses an asynchrono
 ```js
 // Check whether the input device whose ID is 1 supports key codes 17, 22, and 2055.
 try {
-  inputDevice.supportKeys(1, [17, 22, 2055], (error, supportResult) => {
+  inputDevice.supportKeys(1, [17, 22, 2055], (error: Error, supportResult: Array<boolean>) => {
     console.log(`Query result: ${JSON.stringify(supportResult)}`);
   });
 } catch (error) {
@@ -387,7 +387,7 @@ Obtains the key codes supported by the input device. This API uses a promise to 
 ```js
 // Check whether the input device whose ID is 1 supports key codes 17, 22, and 2055.
 try {
-  inputDevice.supportKeys(1, [17, 22, 2055]).then((supportResult) => {
+  inputDevice.supportKeys(1, [17, 22, 2055]).then((supportResult: Array<boolean>) => {
     console.log(`Query result: ${JSON.stringify(supportResult)}`);
   });
 } catch (error) {
@@ -415,7 +415,7 @@ Obtains the keyboard type of an input device. This API uses an asynchronous call
 ```js
 // Query the keyboard type of the input device whose ID is 1.
 try {
-  inputDevice.getKeyboardType(1, (error, type) => {
+  inputDevice.getKeyboardType(1, (error: Error, type: number) => {
     if (error) {
       console.log(`Failed to get keyboard type, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
@@ -452,7 +452,7 @@ Obtains the keyboard type of an input device. This API uses an asynchronous call
 ```js
 // Query the keyboard type of the input device whose ID is 1.
 try {
-  inputDevice.getKeyboardType(1).then((type) => {
+  inputDevice.getKeyboardType(1).then((type: number) => {
     console.log(`Keyboard type: ${JSON.stringify(type)}`);
   });
 } catch (error) {
@@ -481,7 +481,7 @@ Sets the keyboard repeat delay. This API uses an asynchronous callback to return
 
 ```js
 try {
-  inputDevice.setKeyboardRepeatDelay(350, (error) => {
+  inputDevice.setKeyboardRepeatDelay(350, (error: Error) => {
     if (error) {
       console.log(`Set keyboard repeat delay failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
@@ -547,7 +547,7 @@ Obtains the keyboard repeat delay. This API uses an asynchronous callback to ret
 
 ```js
 try {
-  inputDevice.getKeyboardRepeatDelay((error, delay) => {
+  inputDevice.getKeyboardRepeatDelay((error: Error, delay: number) => {
     if (error) {
       console.log(`Get keyboard repeat delay failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
@@ -579,7 +579,7 @@ Obtains the keyboard repeat delay. This API uses a promise to return the result.
 
 ```js
 try {
-  inputDevice.getKeyboardRepeatDelay().then(delay => {
+  inputDevice.getKeyboardRepeatDelay().then((delay: number) => {
     console.log(`Get keyboard repeat delay success`);
   });
 } catch (error) {
@@ -608,7 +608,7 @@ Sets the keyboard repeat rate. This API uses an asynchronous callback to return 
 
 ```js
 try {
-  inputDevice.setKeyboardRepeatRate(60, (error) => {
+  inputDevice.setKeyboardRepeatRate(60, (error: Error) => {
     if (error) {
       console.log(`Set keyboard repeat rate failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
@@ -674,7 +674,7 @@ Obtains the keyboard repeat rate. This API uses an asynchronous callback to retu
 
 ```js
 try {
-  inputDevice.getKeyboardRepeatRate((error, rate) => {
+  inputDevice.getKeyboardRepeatRate((error: Error, rate: number) => {
     if (error) {
       console.log(`Get keyboard repeat rate failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
@@ -706,7 +706,7 @@ Obtains the keyboard repeat rate. This API uses a promise to return the result.
 
 ```js
 try {
-  inputDevice.getKeyboardRepeatRate().then(rate => {
+  inputDevice.getKeyboardRepeatRate().then((rate: number) => {
     console.log(`Get keyboard repeat rate success`);
   });
 } catch (error) {

@@ -44,7 +44,7 @@ isSupported(type: RunningLockType): boolean;
 
 ```js
 try {
-    var isSupported = runningLock.isSupported(runningLock.RunningLockType.BACKGROUND);
+    let isSupported = runningLock.isSupported(runningLock.RunningLockType.BACKGROUND);
     console.info('BACKGROUND type supported: ' + isSupported);
 } catch(err) {
     console.error('check supported failed, err: ' + err);
@@ -72,7 +72,7 @@ create(name: string, type: RunningLockType, callback: AsyncCallback&lt;RunningLo
 **示例：**
 
 ```js
-runningLock.create('running_lock_test', runningLock.RunningLockType.BACKGROUND, (err, lock) => {
+runningLock.create('running_lock_test', runningLock.RunningLockType.BACKGROUND, (err: BusinessError<void>, lock: runningLock.RunningLock) => {
     if (typeof err === 'undefined') {
         console.info('created running lock: ' + lock);
     } else {
@@ -108,10 +108,10 @@ create(name: string, type: RunningLockType): Promise&lt;RunningLock&gt;
 
 ```js
 runningLock.create('running_lock_test', runningLock.RunningLockType.BACKGROUND)
-.then(lock => {
+.then((lock: runningLock.RunningLock) => {
     console.info('created running lock: ' + lock);
 })
-.catch(err => {
+.catch((err: { code: number, message: string }) => {
     console.error('create running lock failed, error: ' + err);
 });
 ```
@@ -136,7 +136,7 @@ isRunningLockTypeSupported(type: RunningLockType, callback: AsyncCallback&lt;boo
 **示例：**
 
 ```js
-runningLock.isRunningLockTypeSupported(runningLock.RunningLockType.BACKGROUND, (err, data) => {
+runningLock.isRunningLockTypeSupported(runningLock.RunningLockType.BACKGROUND, (err: BusinessError<void>, data: boolean) => {
     if (typeof err === 'undefined') {
         console.info('BACKGROUND lock support status: ' + data);
     } else {
@@ -171,10 +171,10 @@ isRunningLockTypeSupported(type: RunningLockType): Promise&lt;boolean>
 
 ```js
 runningLock.isRunningLockTypeSupported(runningLock.RunningLockType.BACKGROUND)
-.then(data => {
+.then((data: boolean) => {
     console.info('BACKGROUND lock support status: ' + data);
 })
-.catch(err => {
+.catch((err: { code: number, message: string }) => {
     console.log('check BACKGROUND lock support status failed, err: ' + err);
 });
 ```
@@ -202,7 +202,7 @@ createRunningLock(name: string, type: RunningLockType, callback: AsyncCallback&l
 **示例：**
 
 ```js
-runningLock.createRunningLock('running_lock_test', runningLock.RunningLockType.BACKGROUND, (err, lock) => {
+runningLock.createRunningLock('running_lock_test', runningLock.RunningLockType.BACKGROUND, (err: BusinessError<void>, lock: runningLock.RunningLock) => {
     if (typeof err === 'undefined') {
         console.info('created running lock: ' + lock);
     } else {
@@ -240,10 +240,10 @@ createRunningLock(name: string, type: RunningLockType): Promise&lt;RunningLock&g
 
 ```js
 runningLock.createRunningLock('running_lock_test', runningLock.RunningLockType.BACKGROUND)
-.then(lock => {
+.then((lock: runningLock.RunningLock) => {
     console.info('created running lock: ' + lock);
 })
-.catch(err => {
+.catch((err: { code: number, message: string }) => {
     console.log('create running lock failed, err: ' + err);
 });
 ```
@@ -280,7 +280,7 @@ hold(timeout: number): void
 
 ```js
 runningLock.create('running_lock_test', runningLock.RunningLockType.BACKGROUND)
-.then(lock => {
+.then((lock: runningLock.RunningLock) => {
     console.info('create running lock success');
     try {
         lock.hold(500);
@@ -289,7 +289,7 @@ runningLock.create('running_lock_test', runningLock.RunningLockType.BACKGROUND)
         console.error('hold running lock failed, err: ' + err);
     }
 })
-.catch(err => {
+.catch((err: { code: number, message: string }) => {
     console.error('create running lock failed, err: ' + err);
 });
 ```
@@ -316,7 +316,7 @@ unhold(): void
 
 ```js
 runningLock.create('running_lock_test', runningLock.RunningLockType.BACKGROUND)
-.then(lock => {
+.then((lock: runningLock.RunningLock) => {
     console.info('create running lock success');
     try {
         lock.unhold();
@@ -325,7 +325,7 @@ runningLock.create('running_lock_test', runningLock.RunningLockType.BACKGROUND)
         console.error('unhold running lock failed, err: ' + err);
     }
 })
-.catch(err => {
+.catch((err: { code: number, message: string }) => {
     console.error('create running lock failed, err: ' + err);
 });
 ```
@@ -356,16 +356,16 @@ isHolding(): boolean
 
 ```js
 runningLock.create('running_lock_test', runningLock.RunningLockType.BACKGROUND)
-.then(lock => {
+.then((lock: runningLock.RunningLock) => {
     console.info('create running lock success');
     try {
-        var isHolding = lock.isHolding();
+        let isHolding = lock.isHolding();
         console.info('check running lock holding status: ' + isHolding);
     } catch(err) {
         console.error('check running lock holding status failed, err: ' + err);
     }
 })
-.catch(err => {
+.catch((err: { code: number, message: string }) => {
     console.error('create running lock failed, err: ' + err);
 });
 ```
@@ -392,11 +392,11 @@ lock(timeout: number): void
 
 ```js
 runningLock.createRunningLock('running_lock_test', runningLock.RunningLockType.BACKGROUND)
-.then(lock => {
+.then((lock: runningLock.RunningLock) => {
     lock.lock(500);
     console.info('create running lock and lock success');
 })
-.catch(err => {
+.catch((err: { code: number, message: string }) => {
     console.error('create running lock failed, err: ' + err);
 });
 ```
@@ -417,11 +417,11 @@ unlock(): void
 
 ```js
 runningLock.createRunningLock('running_lock_test', runningLock.RunningLockType.BACKGROUND)
-.then(lock => {
+.then((lock: runningLock.RunningLock) => {
     lock.unlock();
     console.info('create running lock and unlock success');
 })
-.catch(err => {
+.catch((err: { code: number, message: string }) => {
     console.error('create running lock failed, err: ' + err);
 });
 ```
@@ -445,11 +445,11 @@ isUsed(): boolean
 
 ```js
 runningLock.createRunningLock('running_lock_test', runningLock.RunningLockType.BACKGROUND)
-.then(lock => {
-    var isUsed = lock.isUsed();
+.then((lock: runningLock.RunningLock) => {
+    let isUsed = lock.isUsed();
     console.info('check running lock used status: ' + isUsed);
 })
-.catch(err => {
+.catch((err: { code: number, message: string }) => {
     console.error('check running lock used status failed, err: ' + err);
 });
 ```

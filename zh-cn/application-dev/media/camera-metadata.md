@@ -17,9 +17,9 @@ Metadata主要是通过一个TAG（Key），去找对应的Data，用于传递�
 2. 调用CameraOutputCapability类中的supportedMetadataObjectTypes()方法，获取当前设备支持的元数据类型，并通过createMetadataOutput()方法创建元数据输出流。
      
    ```ts
-   function getMetadataOutput(cameraManager: camera.CameraManager, cameraOutputCapability: camera.CameraOutputCapability): camera.MetadataOutput {
+   function getMetadataOutput(cameraManager: camera.CameraManager, cameraOutputCapability: camera.CameraOutputCapability): camera.MetadataOutput | undefined {
      let metadataObjectTypes: Array<camera.MetadataObjectType> = cameraOutputCapability.supportedMetadataObjectTypes;
-     let metadataOutput: camera.MetadataOutput;
+     let metadataOutput: camera.MetadataOutput | undefined = undefined;
      try {
        metadataOutput = cameraManager.createMetadataOutput(metadataObjectTypes);
      } catch (error) {

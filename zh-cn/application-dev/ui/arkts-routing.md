@@ -35,12 +35,15 @@ Router模块提供了两种跳转模式，分别是[router.pushUrl()](../referen
 
 ```ts
 import router from '@ohos.router';
+import { BusinessError } from '@ohos.base';
+import promptAction from '@ohos.promptAction';
 ```
 
 - 场景一：有一个主页（Home）和一个详情页（Detail），希望从主页点击一个商品，跳转到详情页。同时，需要保留主页在页面栈中，以便返回时恢复状态。这种场景下，可以使用pushUrl()方法，并且使用Standard实例模式（或者省略）。
 
 
   ```ts
+  import router from '@ohos.router';
   // 在Home页面中
   function onJumpClick(): void {
     router.pushUrl({
@@ -63,6 +66,7 @@ import router from '@ohos.router';
 
 
   ```ts
+  import router from '@ohos.router';
   // 在Login页面中
   function onJumpClick(): void {
     router.replaceUrl({
@@ -85,6 +89,7 @@ import router from '@ohos.router';
 
 
   ```ts
+  import router from '@ohos.router';
   // 在Setting页面中
   function onJumpClick(): void {
     router.pushUrl({
@@ -103,6 +108,7 @@ import router from '@ohos.router';
 
 
   ```ts
+  import router from '@ohos.router';
   // 在SearchResult页面中
   function onJumpClick(): void {
     router.replaceUrl({
@@ -122,13 +128,14 @@ import router from '@ohos.router';
 
 
 ```ts
+import router from '@ohos.router';
 class DataModelInfo {
-  age: number;
+  age: number = 0;
 }
 
 class DataModel {
-  id: number;
-  info: DataModelInfo;
+  id: number = 0;
+  info: DataModelInfo|null = null;
 }
 
 function onJumpClick(): void {
@@ -157,9 +164,10 @@ function onJumpClick(): void {
 
 
 ```ts
-const params = router.getParams(); // 获取传递过来的参数对象
-const id = params['id']; // 获取id属性的值
-const age = params['info'].age; // 获取age属性的值
+import router from '@ohos.router';
+const params:Record<string,Object> = {'':router.getParams()}; // 获取传递过来的参数对象
+const id:Object = params['id']; // 获取id属性的值
+const age:Object = params['info'].age; // 获取age属性的值
 ```
 
 
@@ -184,6 +192,7 @@ import router from '@ohos.router';
 
 
   ```ts
+  import router from '@ohos.router';
   router.back();
   ```
 
@@ -193,6 +202,7 @@ import router from '@ohos.router';
 
 
   ```ts
+  import router from '@ohos.router';
   router.back({
     url: 'pages/Home'
   });
@@ -204,6 +214,7 @@ import router from '@ohos.router';
 
 
   ```ts
+  import router from '@ohos.router';
   router.back({
     url: 'pages/Home',
     params: {
@@ -218,9 +229,10 @@ import router from '@ohos.router';
 
 
 ```ts
+import router from '@ohos.router';
 onPageShow() {
-  const params = router.getParams(); // 获取传递过来的参数对象
-  const info = params['info']; // 获取info属性的值
+  const params:Record<string,Object> = {'':router.getParams()}; // 获取传递过来的参数对象
+  const info:Object = params['']; // 获取info属性的值
 }
 ```
 
@@ -257,6 +269,9 @@ import router from '@ohos.router';
 
 
 ```ts
+import router from '@ohos.router';
+import { BusinessError } from '@ohos.base';
+
 // 定义一个返回按钮的点击事件处理函数
 function onBackClick(): void {
   // 调用router.showAlertBeforeBackPage()方法，设置返回询问框的信息
@@ -265,7 +280,9 @@ function onBackClick(): void {
       message: '您还没有完成支付，确定要返回吗？' // 设置询问框的内容
     });
   } catch (err) {
-    console.error(`Invoke showAlertBeforeBackPage failed, code is ${err.code}, message is ${err.message}`);
+    let message = (err as BusinessError).message
+    let code = (err as BusinessError).code
+    console.error(`Invoke showAlertBeforeBackPage failed, code is ${code}, message is ${message}`);
   }
 
   // 调用router.back()方法，返回上一个页面
@@ -295,6 +312,10 @@ import router from '@ohos.router';
 
 
 ```ts
+import router from '@ohos.router';
+import promptAction from '@ohos.promptAction';
+import { BusinessError } from '@ohos.base';
+
 function onBackClick() {
   // 弹出自定义的询问框
   promptAction.showDialog({
@@ -309,7 +330,7 @@ function onBackClick() {
         color: '#0099FF'
       }
     ]
-  }).then((result) => {
+  }).then((result:promptAction.ShowDialogSuccessResponse) => {
     if (result.index === 0) {
       // 用户点击了“取消”按钮
       console.info('User canceled the operation.');
@@ -319,8 +340,10 @@ function onBackClick() {
       // 调用router.back()方法，返回上一个页面
       router.back();
     }
-  }).catch((err) => {
-    console.error(`Invoke showDialog failed, code is ${err.code}, message is ${err.message}`);
+  }).catch((err:Error) => {
+    let message = (err as BusinessError).message
+    let code = (err as BusinessError).code
+    console.error(`Invoke showDialog failed, code is ${code}, message is ${message}`);
   })
 }
 ```
@@ -354,8 +377,8 @@ struct MyComponent {
 ```ts
 // entry/src/main/ets/pages/Index.ets
 import router from '@ohos.router';
-import 'library/src/main/ets/pages/Index' // 引入共享包library中的命名路由页面
-
+import * as ns from 'library/src/main/ets/Index.ets' // 引入共享包library中的命名路由页面
+import { BusinessError } from '@ohos.base';
 @Entry
 @Component
 struct Index {
@@ -378,7 +401,9 @@ struct Index {
               }
             })
           } catch (err) {
-            console.error(`pushNamedRoute failed, code is ${err.code}, message is ${err.message}`);
+            let message = (err as BusinessError).message
+            let code = (err as BusinessError).code
+            console.error(`pushNamedRoute failed, code is ${code}, message is ${message}`);
           }
         })
     }

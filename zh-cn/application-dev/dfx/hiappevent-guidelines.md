@@ -47,53 +47,54 @@ HiAppEvent是在系统层面为应用开发者提供的一种事件打点机制�
 
 1. 新建一个ArkTS应用工程，编辑工程中的“entry > src > main > ets  > entryability > EntryAbility.ts” 文件，在onCreate函数中添加对用户点击按钮事件的订阅，完整示例代码如下：
 
-   ```js
+   ```ts
+   import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+   import hiAppEvent from '@ohos.hiviewdfx.hiAppEvent';
    import hilog from '@ohos.hilog';
    import UIAbility from '@ohos.app.ability.UIAbility';
-   import Window from '@ohos.window'
-   import hiAppEvent from '@ohos.hiviewdfx.hiAppEvent'
+   import Want from '@ohos.app.ability.Want';
+   import window from '@ohos.window';
    
    export default class EntryAbility extends UIAbility {
-       onCreate(want, launchParam) {
-           hilog.isLoggable(0x0000, 'testTag', hilog.LogLevel.INFO);
-           hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
-           hilog.info(0x0000, 'testTag', '%{public}s', 'want param:' + JSON.stringify(want) ?? '');
-           hilog.info(0x0000, 'testTag', '%{public}s', 'launchParam:' + JSON.stringify(launchParam) ?? '');
+     onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+       hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
    
-           hiAppEvent.addWatcher({
-               // 开发者可以自定义观察者名称，系统会使用名称来标识不同的观察者
-               name: "watcher1",
-               // 开发者可以订阅感兴趣的应用事件，此处是订阅了按钮事件
-               appEventFilters: [{ domain: "button" }],
-               // 开发者可以设置订阅回调触发的条件，此处是设置为事件打点数量满足1个
-               triggerCondition: { row: 1 },
-               // 开发者可以自行实现订阅回调函数，以便对订阅获取到的事件打点数据进行自定义处理
-               onTrigger: function (curRow, curSize, holder) {
-                   // 返回的holder对象为null，表示订阅过程发生异常，因此在记录错误日志后直接返回
-                   if (holder == null) {
-                       hilog.error(0x0000, 'testTag', "HiAppEvent holder is null")
-                       return
-                   }
-                   let eventPkg = null
-                   // 根据设置阈值大小（默认为512KB）去获取订阅事件包，直到将订阅数据全部取出
-                   // 返回的事件包对象为null，表示当前订阅数据已被全部取出，此次订阅回调触发结束
-                   while ((eventPkg = holder.takeNext()) != null) {
-                       // 开发者可以对事件包中的事件打点数据进行自定义处理，此处是将事件打点数据打印在日志中
-                       hilog.info(0x0000, 'testTag', `HiAppEvent eventPkg.packageId=%{public}d`, eventPkg.packageId)
-                       hilog.info(0x0000, 'testTag', `HiAppEvent eventPkg.row=%{public}d`, eventPkg.row)
-                       hilog.info(0x0000, 'testTag', `HiAppEvent eventPkg.size=%{public}d`, eventPkg.size)
-                       for (const eventInfo of eventPkg.data) {
-                           hilog.info(0x0000, 'testTag', `HiAppEvent eventPkg.info=%{public}s`, eventInfo)
-                       }
-                   }
-               }
-           })
-       }
+       hiAppEvent.addWatcher({
+         // 开发者可以自定义观察者名称，系统会使用名称来标识不同的观察者
+         name: "watcher1",
+         // 开发者可以订阅感兴趣的应用事件，此处是订阅了按钮事件
+         appEventFilters: [{ domain: "button" }],
+         // 开发者可以设置订阅回调触发的条件，此处是设置为事件打点数量满足1个
+         triggerCondition: { row: 1 },
+         // 开发者可以自行实现订阅回调函数，以便对订阅获取到的事件打点数据进行自定义处理
+         onTrigger: (curRow: number, curSize: number, holder: hiAppEvent.AppEventPackageHolder) => {
+           // 返回的holder对象为null，表示订阅过程发生异常，因此在记录错误日志后直接返回
+           if (holder == null) {
+             hilog.error(0x0000, 'testTag', "HiAppEvent holder is null");
+             return;
+           }
+           hilog.info(0x0000, 'testTag', `HiAppEvent onTrigger: curRow=%{public}d, curSize=%{public}d`, curRow, curSize);
+           let eventPkg: hiAppEvent.AppEventPackage | null = null;
+           // 根据设置阈值大小（默认为512KB）去获取订阅事件包，直到将订阅数据全部取出
+           // 返回的事件包对象为null，表示当前订阅数据已被全部取出，此次订阅回调触发结束
+           while ((eventPkg = holder.takeNext()) != null) {
+             // 开发者可以对事件包中的事件打点数据进行自定义处理，此处是将事件打点数据打印在日志中
+             hilog.info(0x0000, 'testTag', `HiAppEvent eventPkg.packageId=%{public}d`, eventPkg.packageId);
+             hilog.info(0x0000, 'testTag', `HiAppEvent eventPkg.row=%{public}d`, eventPkg.row);
+             hilog.info(0x0000, 'testTag', `HiAppEvent eventPkg.size=%{public}d`, eventPkg.size);
+             for (const eventInfo of eventPkg.data) {
+               hilog.info(0x0000, 'testTag', `HiAppEvent eventPkg.info=%{public}s`, eventInfo);
+             }
+           }
+         }
+       });
+     }
    }
 
 2. 编辑工程中的“entry > src > main > ets  > pages > Index.ets” 文件，添加一个按钮并在其onClick函数中进行事件打点，以记录按钮点击事件，完整示例代码如下：
 
-   ```js
+   ```ts
+   import { BusinessError } from '@ohos.base'
    import hiAppEvent from '@ohos.hiviewdfx.hiAppEvent'
    import hilog from '@ohos.hilog'
    
@@ -111,7 +112,8 @@ HiAppEvent是在系统层面为应用开发者提供的一种事件打点机制�
    
            Button("writeTest").onClick(()=>{
              // 在按钮点击函数中进行事件打点，以记录按钮点击事件
-             hiAppEvent.write({
+             let eventParams: Record<string, number> = { 'click_time': 100 };
+             let eventInfo: hiAppEvent.AppEventInfo = {
                // 事件领域定义
                domain: "button",
                // 事件名称定义
@@ -119,12 +121,13 @@ HiAppEvent是在系统层面为应用开发者提供的一种事件打点机制�
                // 事件类型定义
                eventType: hiAppEvent.EventType.BEHAVIOR,
                // 事件参数定义
-               params: { click_time: 100 }
-             }).then(() => {
+               params: eventParams,
+             };
+             hiAppEvent.write(eventInfo).then(() => {
                hilog.info(0x0000, 'testTag', `HiAppEvent success to write event`)
-             }).catch((err) => {
+             }).catch((err: BusinessError) => {
                hilog.error(0x0000, 'testTag', `HiAppEvent err.code: ${err.code}, err.message: ${err.message}`)
-             })
+             });
            })
          }
          .width('100%')
@@ -137,15 +140,11 @@ HiAppEvent是在系统层面为应用开发者提供的一种事件打点机制�
 3. 点击IDE界面中的运行按钮，运行应用工程，然后在应用界面中点击按钮“writeTest”，触发一次按钮点击事件打点。
 
 4. 最终，可以在Log窗口看到按钮点击事件打点成功的日志，以及触发订阅回调后对打点事件数据的处理日志：
-
-   ```js
-   HiAppEvent success to write event
-   
-   HiAppEvent eventPkg.packageId=0
-   HiAppEvent eventPkg.row=1
-   HiAppEvent eventPkg.size=124
-   HiAppEvent eventPkg.info={"domain_":"button","name_":"click","type_":4,"time_":1670268234523,"tz_":"+0800","pid_":3295,"tid_":3309,"click_time":100}
-   ```
+> HiAppEvent success to write event
+> HiAppEvent eventPkg.packageId=0
+> HiAppEvent eventPkg.row=1
+> HiAppEvent eventPkg.size=124
+> HiAppEvent eventPkg.info={"domain\_":"button","name\_":"click","type\_":4,"time\_":1670268234523,"tz\_":"+0800","pid\_":3295,"tid\_":3309,"click_time":100}
 
 ## 相关实例
 

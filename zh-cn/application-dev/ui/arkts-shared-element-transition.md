@@ -10,59 +10,74 @@
 
 1. 构建需要展开的页面，并通过状态变量构建好普通状态和展开状态的界面。
   
-   ```ts
-   // 通过状态变量的判断，在同一个组件内构建普通状态和展开状态的界面
-   @Component
-   export struct MyExtendView {
-     // 声明与父组件进行交互的是否展开状态变量
-     @Link isExpand: boolean;
-     @State cardList: Array<CardData> = xxxx;
-   
-     build() {
-       List() {
-         // 根据需要定制展开后的组件
-         if (this.isExpand) {
-           Text('expand')
-             .transition(TransitionEffect.translate(y:300).animation({ curve: curves.springMotion(0.6, 0.8) }))
-         }
-   
-         ForEach(this.cardList, (item: CradData) => {
-           MyCard({ cardData: item })
-         })
-       }
-       .width(this.isExpand ? 200 : 500) // 根据组要定义展开后的组件的属性
-       .animation({ curve: curves.springMotion() }) // 为组件属性绑定动画
-     }
-   }
-   ```
+  ```ts
+  class Tmp{
+    set(item:CradData):CradData{
+      return item
+    }
+  }
+  // 通过状态变量的判断，在同一个组件内构建普通状态和展开状态的界面
+  @Component
+  export struct MyExtendView {
+    // 声明与父组件进行交互的是否展开状态变量
+    @Link isExpand: boolean;
+    @State cardList: Array<CardData> = xxxx;
+  
+    build() {
+      List() {
+        // 根据需要定制展开后的组件
+        if (this.isExpand) {
+          Text('expand')
+            .transition(TransitionEffect.translate(y:300).animation({ curve: curves.springMotion(0.6, 0.8) }))
+        }
+  
+        ForEach(this.cardList, (item: CradData) => {
+          let Item:Tmp = new Tmp()
+          let Imp:Tmp = Item.set(item)
+          let Mc:Record<string,Tmp> = {'cardData':Imp}
+          MyCard(Mc)
+        })
+      }
+      .width(this.isExpand ? 200 : 500) // 根据组要定义展开后的组件的属性
+      .animation({ curve: curves.springMotion() }) // 为组件属性绑定动画
+    }
+  }
+  ```
 
 2. 将需要展开的页面展开，通过状态变量控制兄弟组件消失或出现，并通过绑定出现消失转场实现兄弟组件转场效果。
   
-   ```ts
-   @State isExpand: boolean = false
-   
-   ...
-   List() {
-     // 通过是否展开状态变量控制兄弟组件的出现或者消失，并配置出现消失转场动画
-     if (!this.isExpand) {
-       Text('收起时我出现')
-         .transition(TransitionEffect.translate(y:300).animation({ curve: curves.springMotion(0.6, 0.9) }))
-     }
-   
-     MyExtendView({ isExpand: $isExpand })
-       .onClick(() => {
-         this.isExpand = !this.isExpand;
-       })
-   
-     // 通过是否展开状态变量控制兄弟组件的出现或者消失，并配置出现消失转场动画
-     if (this.isExpand) {
-       Text('展开时我出现')
-         .transition(TransitionEffect.translate(y:300).animation({ curve: curves.springMotion() }))
-     }
-   }
-   
-   ...
-   ```
+  ```ts
+  class Tmp{
+    isExpand: boolean = false;
+    set(){
+      this.isExpand = !this.isExpand;
+    }
+  }
+  let Exp:Record<string,boolean> = {'isExpand': false}
+    @State isExpand: boolean = false
+    
+    ...
+    List() {
+      // 通过是否展开状态变量控制兄弟组件的出现或者消失，并配置出现消失转场动画
+      if (!this.isExpand) {
+        Text('收起时我出现')
+          .transition(TransitionEffect.translate(y:300).animation({ curve: curves.springMotion(0.6, 0.9) }))
+      }
+    
+      MyExtendView(Exp)
+        .onClick(() => {
+          let Epd:Tmp = new Tmp()
+          Epd.set()
+        })
+    
+      // 通过是否展开状态变量控制兄弟组件的出现或者消失，并配置出现消失转场动画
+      if (this.isExpand) {
+        Text('展开时我出现')
+          .transition(TransitionEffect.translate(y:300).animation({ curve: curves.springMotion() }))
+      }
+    }
+  ...
+  ```
 
 
 完整示例和效果如下。
@@ -86,7 +101,7 @@ export struct share_transition_expand {
   build() {
     Column() {
       List() {
-        ForEach(this.listArray, (item, index) => {
+        ForEach(this.listArray, (item:number, index?:number|undefined) => {
           // 根据需要定制展开后的组件
           if (!this.isExpand || this.curIndex == index) {
             ListItem() {
@@ -128,7 +143,9 @@ export struct share_transition_expand {
               .onClick(() => {
                 // 定义展开收起的动画参数
                 animateTo({ curve: curves.springMotion(0.6, 0.9) }, () => {
-                  this.curIndex = index;
+                  if(index){
+                    this.curIndex = index;
+                  }
                   this.isExpand = !this.isExpand;
                 })
               })
@@ -161,12 +178,11 @@ export struct share_transition_expand {
 ```ts
 // Index.ets
 import { share_transition_expand } from './utils';
-
 @Entry
 @Component
 struct ShareTransitionDemo {
   @State isExpand: boolean = false;
-
+  @State Tmp:Record<string,boolean> = { 'isExpand': false }
   build() {
     Column() {
       Text('兄弟节点出现消失')
@@ -175,7 +191,7 @@ struct ShareTransitionDemo {
         .fontColor(Color.Black)
         .margin(10)
 
-      share_transition_expand({ isExpand: $isExpand })
+      share_transition_expand(this.Tmp)
 
     }
     .width('100%')
@@ -216,12 +232,12 @@ export struct share_zIndex_expand {
   @Link isExpand: boolean;
   @Link curIndex: number;
   @State listArray: Array<number> = [1, 2, 3, 4, 5, 6];
-  private parentScroller: Scroller; // 上层滑动组件控制器
+  private parentScroller: Scroller = new Scroller(); // 上层滑动组件控制器
 
   build() {
     Column() {
       List() {
-        ForEach(this.listArray, (item, index) => {
+        ForEach(this.listArray, (item:number, index?:number|undefined) => {
           // 根据需要定制展开后的组件
           if (!this.isExpand || this.curIndex == index) {
             ListItem() {
@@ -271,13 +287,15 @@ export struct share_zIndex_expand {
             .onClick(() => {
               // 定义展开收起的动画参数
               animateTo({ curve: curves.springMotion(0.6, 0.9) }, () => {
-                this.curIndex = index;
+                if(index){
+                  this.curIndex = index;
+                }
                 this.isExpand = !this.isExpand;
               })
             })
             .zIndex(this.curIndex == index ? 1 : 0) // 当前ListItem被选中时，zIndex置1，会显示在其他zIndex为0的兄弟组件之上
             .translate({ // 根据卡片当前的位置，通过translate在展开的时候移到父容器的顶端
-              y: this.isExpand && this.curIndex == index ? -60 - this.parentScroller.currentOffset()['yOffset'] : 0
+                y: this.isExpand && this.curIndex == index ? -60 - this.parentScroller.currentOffset()['yOffset'] : 0
             })
           }
         })
@@ -298,13 +316,13 @@ export struct share_zIndex_expand {
 ```ts
 // Index.ets
 import { share_zIndex_expand } from './utils'
-
 @Entry
 @Component
 struct ShareZIndexDemo {
   @State isExpand: boolean = false;
   @State curIndex: number = 0;
-  scroller: Scroller = new Scroller();
+  @State scroller: Scroller = new Scroller();
+  @State Sze:Record<string,boolean|number|Scroller> = { 'isExpand': this.isExpand, 'curIndex': this.curIndex, 'parentScroller': this.scroller }
 
   build() {
     Scroll(this.scroller) {
@@ -316,7 +334,7 @@ struct ShareZIndexDemo {
           .zIndex(0)
           .margin(10)
 
-        share_zIndex_expand({ isExpand: $isExpand, curIndex: $curIndex, parentScroller: this.scroller })
+        share_zIndex_expand(this.Sze)
       }
       .width('100%')
       .height('100%')
@@ -471,7 +489,7 @@ struct GeometryTransitionDemo {
       .height(150)
       .margin(20)
       // 模态转场组件
-      .bindContentCover($$this.isPresent, this.MyBuilder, ModalTransition.NONE)
+      .bindContentCover(this.isPresent, this.MyBuilder, ModalTransition.NONE)
       // 这里配置了Row组件有共享元素效果，ID是share1
       .geometryTransition('share1')
       .onClick(() => {
@@ -540,7 +558,7 @@ struct AutoAchieveShareTransitionDemo {
     Stack() {
       Scroll() {
         Column({ space: 20 }) {
-          ForEach(this.items, (item, index) => {
+          ForEach(this.items, (item:string, index?:number|undefined) => {
             Row() {
               Column() {
                 Text('共享元素 ' + item)
@@ -567,18 +585,18 @@ struct AutoAchieveShareTransitionDemo {
             .onClick(() => {
               // 获取对应组件的位置、大小信息
               let strJson = getInspectorByKey(item);
-              let obj = JSON.parse(strJson);
-              let rectInfo = JSON.parse('[' + obj.$rect + ']');
-              let rect_left = JSON.parse('[' + rectInfo[0] + ']')[0];
-              let rect_top = JSON.parse('[' + rectInfo[0] + ']')[1];
-              let rect_right = JSON.parse('[' + rectInfo[1] + ']')[0];
-              let rect_bottom = JSON.parse('[' + rectInfo[1] + ']')[1];
-              let rect_value = {
+              let rect:string = JSON.parse(strJson);
+              let rectInfo:string = JSON.parse('[' + rect + ']');
+              let rect_left:string = JSON.parse('[' + rectInfo[0] + ']')[0];
+              let rect_top:string = JSON.parse('[' + rectInfo[0] + ']')[1];
+              let rect_right:string = JSON.parse('[' + rectInfo[1] + ']')[0];
+              let rect_bottom:string = JSON.parse('[' + rectInfo[1] + ']')[1];
+              let rect_value:Record<string,string> = {
                 "left": rect_left, "top": rect_top, "right": rect_right, "bottom": rect_bottom
               };
 
               // 设置共享元素的位置、内容、状态
-              this.rect_top = rect_top;
+              this.rect_top = Number(rect_top);
               this.item = item;
               this.expand = true;
               this.count += 1;
@@ -586,7 +604,7 @@ struct AutoAchieveShareTransitionDemo {
               animateTo({ curve: curves.springMotion() }, () => {
                 this.layoutHeight = 2772 / 3.5;
                 this.layoutWidth = '100%';
-                this.layoutOffset = -((rect_top - 136) / 3.5);
+                this.layoutOffset = -((Number(rect_top) - 136) / 3.5);
               })
             })
           })

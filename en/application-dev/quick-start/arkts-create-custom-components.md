@@ -42,15 +42,23 @@ Multiple **HelloComponent** instances can be created in the **build()** function
 
 
 ```ts
+class HelloComponentParam {
+  message: string = ""
+}
+
 @Entry
 @Component
 struct ParentComponent {
+  param: HelloComponentParam = {
+    message: 'Hello, World!'
+  }
+
   build() {
     Column() {
       Text('ArkUI message')
-      HelloComponent({ message: 'Hello, World!' });
+      HelloComponent(param);
       Divider()
-      HelloComponent ({ message: 'Hello!' });
+      HelloComponent(param);
     }
   }
 }
@@ -131,14 +139,14 @@ To fully understand the preceding example, a knowledge of the following concepts
   ```
 
 
-- \@Recycle: A custom component decorated with \@Recycle can be reused.
+- \@Reusable: Custom components decorated by \@Reusable can be reused.
 
   > **NOTE**
   >
   > Since API version 10, this decorator is supported in ArkTS widgets.
 
   ```ts
-  @Recycle
+  @Reusable
   @Component
   struct MyComponent {
   }

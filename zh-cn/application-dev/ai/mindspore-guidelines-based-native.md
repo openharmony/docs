@@ -2,7 +2,7 @@
 
 ## 使用场景
 
-开发者可使用MindSpore Lite提供的Native API来部署AI算法，并提供高层接口供UI层调用，进行AI模型推理。典型场景如：AI套件SDK开发。
+开发者可使用[MindSpore Lite提供的Native API](../reference/native-apis/_mind_spore.md)来部署AI算法，并提供高层接口供UI层调用，进行AI模型推理。典型场景如：AI套件SDK开发。
 
 ## 基本概念
 
@@ -60,6 +60,14 @@ void *ReadModelFile(NativeResourceManager *nativeResourceManager, const std::str
 (2). 创建上下文，设置线程数、设备类型等参数，并加载模型。
 
 ```c++
+void DestroyModelBuffer(void **buffer) {
+    if (buffer == nullptr) {
+        return;
+    }
+    free(*buffer);
+    *buffer = nullptr;
+}
+
 OH_AI_ModelHandle CreateMSLiteModel(void *modelBuffer, size_t modelSize) {
     // 创建上下文
     auto context = OH_AI_ContextCreate();
@@ -93,7 +101,25 @@ OH_AI_ModelHandle CreateMSLiteModel(void *modelBuffer, size_t modelSize) {
 
 (3). 设置模型输入数据，执行模型推理并获取输出数据。
 
-```js
+```c++
+constexpr int RANDOM_RANGE = 128;
+
+void FillTensorWithRandom(OH_AI_TensorHandle msTensor) {
+    auto size = OH_AI_TensorGetDataSize(msTensor);
+    char *data = (char *)OH_AI_TensorGetMutableData(msTensor);
+    for (size_t i = 0; i < size; i++) {
+        data[i] = (char)(rand() / RANDOM_RANGE);
+    }
+}
+
+// fill data to inputs tensor
+int FillInputTensors(OH_AI_TensorHandleArray &inputs) {
+    for (size_t i = 0; i < inputs.handle_num; i++) {
+        FillTensorWithRandom(inputs.handle_list[i]);
+    }
+    return OH_AI_STATUS_SUCCESS;
+}
+
 void RunMSLiteModel(OH_AI_ModelHandle model) {
     // 设置模型输入数据
     auto inputs = OH_AI_ModelGetInputs(model);
@@ -188,7 +214,7 @@ target_link_libraries(mslite_napi PUBLIC ace_napi.z)
 
 在 **entry/src/main/cpp/types/** 新建 **libmslite_api/** 子目录，并在子目录中创建 **index.d.ts**，内容如下：
 
-```js
+```ts
 export const runDemo: (a:String, b:Object) => number;
 ```
 
@@ -207,23 +233,40 @@ export const runDemo: (a:String, b:Object) => number;
 
 在 **entry/src/ets/MainAbility/pages/index.ets** 中，定义`onClick()`事件，并在事件回调中调用封装的`runDemo()`接口。
 
-```js
+```ts
+import hilog from '@ohos.hilog'
 import msliteNapi from 'libmslite_napi.so' // 导入msliteNapi模块。
+import resManager from '@ohos.resourceManager'
 
-...省略...
+const TAG = 'MSLiteNativeDemo'
 
-// 点击UI中的文本，触发此事件。
-.onClick(() => {
-  resManager.getResourceManager().then(mgr => {
-    hilog.info(0x0000, TAG, '*** Start MSLite Demo ***');
-    let ret = 0;
-    ret = msliteNapi.runDemo("", mgr); // 调用runDemo()，执行AI模型推理。
-    if (ret == -1) {
-      hilog.info(0x0000, TAG, 'Error when running MSLite Demo!');
+@Entry
+@Component
+struct Index {
+    @State message: string = 'MindSpore Lite Demo'
+    build() {
+        Row() {
+            Column() {
+                Text(this.message)
+                    .fontSize(30)
+                    .fontWeight(FontWeight.Bold)
+                    .onClick(() => {
+                        resManager.getResourceManager().then(mgr => {
+                            hilog.info(0x0000, TAG, '*** Start MSLite Demo ***');
+                            let ret: number = 0;
+                            ret = msliteNapi.runDemo("", mgr); // 调用runDemo()，执行AI模型推理。
+                            if (ret == -1) {
+                                hilog.info(0x0000, TAG, 'Error when running MSLite Demo!');
+                            }
+                            hilog.info(0x0000, TAG, '*** Finished MSLite Demo ***');
+                        })
+                    })
+            }
+            .width('100%')
+        }
+        .height('100%')
     }
-    hilog.info(0x0000, TAG, '*** Finished MSLite Demo ***');
-  })
-})
+}
 ```
 
 ## 调测验证

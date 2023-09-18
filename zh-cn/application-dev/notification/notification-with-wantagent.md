@@ -39,7 +39,7 @@
    场景一：创建拉起UIAbility的WantAgent的[WantAgentInfo](../reference/apis/js-apis-inner-wantAgent-wantAgentInfo.md)信息。
 
    ```typescript
-   let wantAgentObj:WantAgent = null; // 用于保存创建成功的wantAgent对象，后续使用其完成触发的动作。
+   let wantAgentObj:WantAgent; // 用于保存创建成功的wantAgent对象，后续使用其完成触发的动作。
    
    // 通过WantAgentInfo的operationType设置动作类型
    let wantAgentInfo:wantAgent.WantAgentInfo = {
@@ -63,7 +63,7 @@
    场景二：创建发布[公共事件](../application-models/common-event-overview.md)的WantAgent的[WantAgentInfo](../reference/apis/js-apis-inner-wantAgent-wantAgentInfo.md)信息。
 
    ```typescript
-   let wantAgentObj:WantAgent = null; // 用于保存创建成功的WantAgent对象，后续使用其完成触发的动作。
+   let wantAgentObj:WantAgent; // 用于保存创建成功的WantAgent对象，后续使用其完成触发的动作。
    
    // 通过WantAgentInfo的operationType设置动作类型
    let wantAgentInfo:wantAgent.WantAgentInfo = {

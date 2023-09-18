@@ -156,7 +156,9 @@ OpenHarmony IDL容器数据类型与Ts数据类型、C++数据类型的对应关
 
 进入对应路径后，查看toolchains->3.x.x.x（对应版本号命名文件夹）下是否存在idl工具的可执行文件。
 
-> **注意**：请保证使用最新版的SDK，版本老旧可能导致部分语句报错。
+> **注意**：
+> 
+> 请保证使用最新版的SDK，版本老旧可能导致部分语句报错。
 
 若不存在，可对应版本前往[docs仓版本目录](../../release-notes)下载SDK包，以[3.2Beta3版本](../../release-notes/OpenHarmony-v3.2-beta3.md)为例，可通过镜像站点获取。
 
@@ -309,33 +311,35 @@ class IdlTestImp extends IdlTestServiceStub {
 import Want from '@ohos.app.ability.Want';
 import rpc from "@ohos.rpc";
 
-export default class ServiceAbility {
-    onStart() {
-        console.info('ServiceAbility onStart');
-    };
-    onStop() {
-        console.info('ServiceAbility onStop');
-    };
-    onCommand(want: Want, startId: number) {
-        console.info('ServiceAbility onCommand');
-    };
-    onConnect(want: Want) {
-        console.info('ServiceAbility onConnect');
-        try {
-            console.log('ServiceAbility want:' + typeof(want));
-            console.log('ServiceAbility want:' + JSON.stringify(want));
-            console.log('ServiceAbility want name:' + want.bundleName)
-        } catch(err) {
-            console.log('ServiceAbility error:' + err)
-        }
-        console.info('ServiceAbility onConnect end');
-        return new IdlTestImp('connect') as rpc.RemoteObject;
-    };
-    onDisconnect(want: Want) {
-        console.info('ServiceAbility onDisconnect');
-        console.info('ServiceAbility want:' + JSON.stringify(want));
+class ServiceAbility {
+  onStart() {
+    console.info('ServiceAbility onStart');
+  }
+  onStop() {
+    console.info('ServiceAbility onStop');
+  }
+  onCommand(want: Want, startId: number) {
+    console.info('ServiceAbility onCommand');
+  }
+  onConnect(want: Want) {
+    console.info('ServiceAbility onConnect');
+    try {
+      console.log('ServiceAbility want:' + typeof(want));
+      console.log('ServiceAbility want:' + JSON.stringify(want));
+      console.log('ServiceAbility want name:' + want.bundleName)
+    } catch(err) {
+      console.log('ServiceAbility error:' + err)
     }
-};
+    console.info('ServiceAbility onConnect end');
+    return new IdlTestImp('connect') as rpc.RemoteObject;
+  }
+  onDisconnect(want: Want) {
+    console.info('ServiceAbility onDisconnect');
+    console.info('ServiceAbility want:' + JSON.stringify(want));
+  }
+}
+
+export default new ServiceAbility()
 ```
 
 #### 客户端调用IPC方法

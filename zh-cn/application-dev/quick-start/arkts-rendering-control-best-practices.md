@@ -22,10 +22,10 @@ struct Index {
   build() {
       Column() {
        ForEach(this.arr,
-         (item) => {
+         (item: void) => {
            Text(`Item ${item}`)
          },
-         item => item.toString())
+         (item: string) => item.toString())
        Text('Add arr element')
          .fontSize(20)
          .onClick(()=>{
@@ -61,7 +61,7 @@ ForEach数据源更新时，数组项ID与原数组项ID重复不会重新创建
 ```ts
 @Component
 struct Child {
-  @Prop value: number;
+  @Prop value: number = 0;
   build() {
     Text(`${this.value}`)
       .fontSize(50)
@@ -83,10 +83,10 @@ struct Index {
         Child({ value: this.arr[2] })
         Divider().height(5)
         ForEach(this.arr,
-          item => {
+          (item: number) => {
             Child({ value: item })
           },
-          item => item.toString()  // 键值，标识id
+          (item: string) => item.toString()  // 键值，标识id
         )
         Text('Parent: replace entire arr')
           .fontSize(50)

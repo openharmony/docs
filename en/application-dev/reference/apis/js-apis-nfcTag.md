@@ -525,7 +525,7 @@ import tag from '@ohos.nfc.tag';
 let elementName = null;
 let discTech = [tag.NFC_A, tag.NFC_B]; // replace with the tech(s) that is needed by foreground ability
 
-function foregroundCb(err, taginfo) {
+function foregroundCb(err, tagInfo) {
     if (!err) {
         console.log("foreground callback: tag found tagInfo = ", JSON.stringify(tagInfo));
     } else {

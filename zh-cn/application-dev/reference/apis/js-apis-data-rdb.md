@@ -16,7 +16,7 @@
 
 ## 导入模块
 
-```js
+```ts
 import data_rdb from '@ohos.data.rdb';
 ```
 ## data_rdb.getRdbStore
@@ -41,38 +41,30 @@ getRdbStore(context: Context, config: StoreConfig, version: number, callback: As
 FA模型示例：
 
 ```js
-// 获取context
-import featureAbility from '@ohos.ability.featureAbility'
-let context: Context;
+import featureAbility from '@ohos.ability.featureAbility';
+import relationalStore from '@ohos.data.relationalStore';
+import window from '@ohos.window';
+import { BusinessError } from '@ohos.base';
 
-// 获取context后调用getRdbStore
-const STORE_CONFIG = { name: "RdbTest.db"}
-data_rdb.getRdbStore(context, STORE_CONFIG, 1, (err, rdbStore) => {
-    if (err) {
-        console.info("Get RdbStore failed, err: " + err)
-        return
-    }
-    console.log("Get RdbStore successfully.")
+data_rdb.getRdbStore(this.context, "RdbTest.db", 1, (err, rdbStore) => {
+  if (err) {
+    console.info("Get RdbStore failed, err: " + err)
+    return
+  }
+  console.log("Get RdbStore successfully.")
 })
 ```
 
 Stage模型示例：
 
 ```ts
-// 获取context
 import UIAbility from '@ohos.app.ability.UIAbility';
 import { BusinessError } from "@ohos.base";
 import window from '@ohos.window';
 
-let context: Context;
-interface storeConfig {
-  name: string
-}
-
 class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage){
-    let STORE_CONFIG: storeConfig = { name: "RdbTest.db"};
-    data_rdb.getRdbStore(this.context, STORE_CONFIG, 1, (err: BusinessError, rdbStore: data_rdb.RdbStore) => {
+    data_rdb.getRdbStore(this.context, "RdbTest.db", 1, (err: BusinessError, rdbStore: data_rdb.RdbStore) => {
       if (err) {
         console.info("Get RdbStore failed, err: " + err)
         return
@@ -110,32 +102,23 @@ getRdbStore(context: Context, config: StoreConfig, version: number): Promise&lt;
 FA模型示例：
 
 ```js
-// 获取context
-import featureAbility from '@ohos.ability.featureAbility'
-let context: Context;
+import featureAbility from '@ohos.ability.featureAbility';
 
-// 获取context后调用getRdbStore
-const STORE_CONFIG = { name: "RdbTest.db" }
-let promise = data_rdb.getRdbStore(context, STORE_CONFIG, 1);
+let promise = data_rdb.getRdbStore(this.context, "RdbTest.db", 1);
 promise.then(async (rdbStore) => {
-    console.log("Get RdbStore successfully.")
-}).catch((err) => {
-    console.log("Get RdbStore failed, err: " + err)
+  console.log("Get RdbStore successfully.")
+}).catch((err: BusinessError) => {
+  console.log("Get RdbStore failed, err: " + err)
 })
 ```
 
 Stage模型示例：
 
 ```ts
-// 获取context
 import UIAbility from '@ohos.app.ability.UIAbility';
 import { BusinessError } from "@ohos.base";
 import window from '@ohos.window';
 
-let context: Context;
-interface storeConfig {
-  name: string
-}
 class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage){
     context = this.context
@@ -143,8 +126,7 @@ class EntryAbility extends UIAbility {
 }
 
 // 获取context后调用getRdbStore
-let STORE_CONFIG: storeConfig = { name: "RdbTest.db"};
-let promise = data_rdb.getRdbStore(context, STORE_CONFIG, 1);
+let promise = data_rdb.getRdbStore(this.context, "RdbTest.db", 1);
 promise.then(async (rdbStore: data_rdb.RdbStore) => {
   console.log("Get RdbStore successfully.")
 }).catch((err: BusinessError) => {
@@ -173,12 +155,9 @@ deleteRdbStore(context: Context, name: string, callback: AsyncCallback&lt;void&g
 FA模型示例：
 
 ```js
-// 获取context
-import featureAbility from '@ohos.ability.featureAbility'
-let context: Context;
+import featureAbility from '@ohos.ability.featureAbility';
 
-// 获取context后调用deleteRdbStore
-data_rdb.deleteRdbStore(context, "RdbTest.db", (err) => {
+data_rdb.deleteRdbStore(this.context, "RdbTest.db", (err) => {
   if (err) {
     console.info("Delete RdbStore failed, err: " + err)
     return
@@ -190,11 +169,9 @@ data_rdb.deleteRdbStore(context, "RdbTest.db", (err) => {
 Stage模型示例：
 
 ```ts
-// 获取context
 import UIAbility from '@ohos.app.ability.UIAbility';
 import window from '@ohos.window';
 
-let context: Context;
 class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage){
     context = this.context
@@ -202,7 +179,7 @@ class EntryAbility extends UIAbility {
 }
 
 // 获取context后调用deleteRdbStore
-data_rdb.deleteRdbStore(context, "RdbTest.db", (err) => {
+data_rdb.deleteRdbStore(this.context, "RdbTest.db", (err) => {
   if (err) {
     console.info("Delete RdbStore failed, err: " + err)
     return
@@ -237,28 +214,23 @@ deleteRdbStore(context: Context, name: string): Promise&lt;void&gt;
 FA模型示例：
 
 ```js
-// 获取context
-import featureAbility from '@ohos.ability.featureAbility'
-let context: Context;
+import featureAbility from '@ohos.ability.featureAbility';
 
-// 获取context后调用deleteRdbStore
-let promise = data_rdb.deleteRdbStore(context, "RdbTest.db")
+let promise = data_rdb.deleteRdbStore(this.context, "RdbTest.db")
 promise.then(() => {
-    console.log("Delete RdbStore successfully.")
-}).catch((err) => {
-    console.info("Delete RdbStore failed, err: " + err)
+  console.log("Delete RdbStore successfully.")
+}).catch((err: BusinessError) => {
+  console.info("Delete RdbStore failed, err: " + err)
 })
 ```
 
 Stage模型示例：
 
 ```ts
-// 获取context
 import UIAbility from '@ohos.app.ability.UIAbility';
 import { BusinessError } from "@ohos.base";
 import window from '@ohos.window';
 
-let context: Context;
 class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage){
     context = this.context
@@ -266,7 +238,7 @@ class EntryAbility extends UIAbility {
 }
 
 // 获取context后调用deleteRdbStore
-let promise = data_rdb.deleteRdbStore(context, "RdbTest.db")
+let promise = data_rdb.deleteRdbStore(this.context, "RdbTest.db")
 promise.then(()=>{
   console.log("Delete RdbStore successfully.")
 }).catch((err: BusinessError) => {
@@ -350,7 +322,7 @@ constructor(name: string)
 
 **示例：**
 
-```js
+```ts
 let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
 ```
 
@@ -380,22 +352,27 @@ inDevices(devices: Array&lt;string&gt;): RdbPredicates
 
 **示例：**
 
-```js
+```ts
 import deviceManager from '@ohos.distributedHardware.deviceManager';
-let dmInstance: deviceManager.DeviceManager = null;
-let deviceIds: Array<string> = [];
 
-deviceManager.createDeviceManager("com.example.appdatamgrverify", (err, manager) => {
-    if (err) {
-        console.log("create device manager failed, err=" + err);
-        return;
-    }
-    dmInstance = manager;
-    let devices = dmInstance.getTrustedDeviceListSync();
-    for (let i = 0; i < devices.length; i++) {
-        deviceIds[i] = devices[i].deviceId;
-    }
+let dmInstance: deviceManager.DeviceManager;
+let deviceIds: Array<string> = [];
+let devices: Array<string> = [];
+
+deviceManager.createDeviceManager("com.example.appdatamgrverify", (err: BusinessError, manager: void) => {
+  if (err) {
+    console.log("create device manager failed, err=" + err);
+    return;
+  }
+  dmInstance = manager;
+  devices = dmInstance.getTrustedDeviceListSync();
+  for (let i = 0; i < devices.length; i++) {
+    deviceIds[i] = devices[i].deviceId;
+  }
 })
+
+let predicates = new data_rdb.RdbPredicates("EMPLOYEE");
+predicates.inDevices(deviceIds);
                                   
 let predicates = new data_rdb.RdbPredicates("EMPLOYEE");
 predicates.inDevices(deviceIds);
@@ -417,7 +394,7 @@ inAllDevices(): RdbPredicates
 
 **示例：**
 
-```js
+```ts
 let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
 predicates.inAllDevices()
 ```
@@ -445,7 +422,7 @@ equalTo(field: string, value: ValueType): RdbPredicates
 
 **示例：**
 
-```js
+```ts
 let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
 predicates.equalTo("NAME", "lisi")
 ```
@@ -474,7 +451,7 @@ notEqualTo(field: string, value: ValueType): RdbPredicates
 
 **示例：**
 
-```js
+```ts
 let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
 predicates.notEqualTo("NAME", "lisi")
 ```
@@ -496,7 +473,7 @@ beginWrap(): RdbPredicates
 
 **示例：**
 
-```js
+```ts
 let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
 predicates.equalTo("NAME", "lisi")
     .beginWrap()
@@ -522,7 +499,7 @@ endWrap(): RdbPredicates
 
 **示例：**
 
-```js
+```ts
 let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
 predicates.equalTo("NAME", "lisi")
     .beginWrap()
@@ -548,7 +525,7 @@ or(): RdbPredicates
 
 **示例：**
 
-```js
+```ts
 let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
 predicates.equalTo("NAME", "Lisa")
     .or()
@@ -571,7 +548,7 @@ and(): RdbPredicates
 
 **示例：**
 
-```js
+```ts
 let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
 predicates.equalTo("NAME", "Lisa")
     .and()
@@ -601,7 +578,7 @@ contains(field: string, value: string): RdbPredicates
 
 **示例：**
 
-```js
+```ts
 let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
 predicates.contains("NAME", "os")
 ```
@@ -629,7 +606,7 @@ beginsWith(field: string, value: string): RdbPredicates
 
 **示例：**
 
-```js
+```ts
 let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
 predicates.beginsWith("NAME", "os")
 ```
@@ -657,7 +634,7 @@ endsWith(field: string, value: string): RdbPredicates
 
 **示例：**
 
-```js
+```ts
 let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
 predicates.endsWith("NAME", "se")
 ```
@@ -683,7 +660,7 @@ isNull(field: string): RdbPredicates
 | [RdbPredicates](#rdbpredicates) | 返回与指定字段匹配的谓词。 |
 
 **示例**：
-```js
+```ts
 let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
 predicates.isNull("NAME")
 ```
@@ -710,7 +687,7 @@ isNotNull(field: string): RdbPredicates
 
 **示例：**
 
-```js
+```ts
 let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
 predicates.isNotNull("NAME")
 ```
@@ -738,7 +715,7 @@ like(field: string, value: string): RdbPredicates
 
 **示例：**
 
-```js
+```ts
 let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
 predicates.like("NAME", "%os%")
 ```
@@ -766,7 +743,7 @@ glob(field: string, value: string): RdbPredicates
 
 **示例：**
 
-```js
+```ts
 let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
 predicates.glob("NAME", "?h*g")
 ```
@@ -795,7 +772,7 @@ between(field: string, low: ValueType, high: ValueType): RdbPredicates
 
 **示例：**
 
-```js
+```ts
 let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
 predicates.between("AGE", 10, 50)
 ```
@@ -824,7 +801,7 @@ notBetween(field: string, low: ValueType, high: ValueType): RdbPredicates
 
 **示例：**
 
-```js
+```ts
 let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
 predicates.notBetween("AGE", 10, 50)
 ```
@@ -852,7 +829,7 @@ greaterThan(field: string, value: ValueType): RdbPredicates
 
 **示例：**
 
-```js
+```ts
 let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
 predicates.greaterThan("AGE", 18)
 ```
@@ -880,7 +857,7 @@ lessThan(field: string, value: ValueType): RdbPredicates
 
 **示例：**
 
-```js
+```ts
 let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
 predicates.lessThan("AGE", 20)
 ```
@@ -908,7 +885,7 @@ greaterThanOrEqualTo(field: string, value: ValueType): RdbPredicates
 
 **示例：**
 
-```js
+```ts
 let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
 predicates.greaterThanOrEqualTo("AGE", 18)
 ```
@@ -936,7 +913,7 @@ lessThanOrEqualTo(field: string, value: ValueType): RdbPredicates
 
 **示例：**
 
-```js
+```ts
 let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
 predicates.lessThanOrEqualTo("AGE", 20)
 ```
@@ -963,7 +940,7 @@ orderByAsc(field: string): RdbPredicates
 
 **示例：**
 
-```js
+```ts
 let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
 predicates.orderByAsc("NAME")
 ```
@@ -990,7 +967,7 @@ orderByDesc(field: string): RdbPredicates
 
 **示例：**
 
-```js
+```ts
 let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
 predicates.orderByDesc("AGE")
 ```
@@ -1011,7 +988,7 @@ distinct(): RdbPredicates
 
 **示例：**
 
-```js
+```ts
 let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
 predicates.equalTo("NAME", "Rose").distinct()
 ```
@@ -1038,7 +1015,7 @@ limitAs(value: number): RdbPredicates
 
 **示例：**
 
-```js
+```ts
 let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
 predicates.equalTo("NAME", "Rose").limitAs(3)
 ```
@@ -1065,7 +1042,7 @@ offsetAs(rowOffset: number): RdbPredicates
 
 **示例：**
 
-```js
+```ts
 let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
 predicates.equalTo("NAME", "Rose").offsetAs(3)
 ```
@@ -1092,7 +1069,7 @@ groupBy(fields: Array&lt;string&gt;): RdbPredicates
 
 **示例：**
 
-```js
+```ts
 let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
 predicates.groupBy(["AGE", "NAME"])
 ```
@@ -1120,7 +1097,7 @@ indexedBy(field: string): RdbPredicates
 
 **示例：**
 
-```js
+```ts
 let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
 predicates.indexedBy("SALARY_INDEX")
 ```
@@ -1148,7 +1125,7 @@ in(field: string, value: Array&lt;ValueType&gt;): RdbPredicates
 
 **示例：**
 
-```js
+```ts
 let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
 predicates.in("AGE", [18, 20])
 ```
@@ -1176,7 +1153,7 @@ notIn(field: string, value: Array&lt;ValueType&gt;): RdbPredicates
 
 **示例：**
 
-```js
+```ts
 let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
 predicates.notIn("NAME", ["Lisa", "Rose"])
 ```
@@ -1205,19 +1182,30 @@ insert(table: string, values: ValuesBucket, callback: AsyncCallback&lt;number&gt
 
 **示例：**
 
-```js
-const valueBucket = {
-    "NAME": "Lisa",
-    "AGE": 18,
-    "SALARY": 100.5,
-    "CODES": new Uint8Array([1, 2, 3, 4, 5]),
-}
-rdbStore.insert("EMPLOYEE", valueBucket, function (status, rowId) {
-    if (status) {
-        console.log("Insert is failed");
-        return;
-    }
-    console.log("Insert is successful, rowId = " + rowId);
+```ts
+import { ValuesBucket } from '@ohos.data.ValuesBucket';
+
+let key1 = "NAME";
+let key2 = "AGE";
+let key3 = "SALARY";
+let key4 = "CODES";
+let value1 = "Lisi";
+let value2 = 18;
+let value3 = 100.5;
+let value4 = new Uint8Array([1, 2, 3, 4, 5]);
+const valueBucket: ValuesBucket = {
+  key1: value1,
+  key2: value2,
+  key3: value3,
+  key4: value4,
+};
+
+rdbStore.insert("EMPLOYEE", valueBucket, (status: number, rowId: number) => {
+  if (status) {
+    console.log("Insert is failed");
+    return;
+  }
+  console.log("Insert is successful, rowId = " + rowId);
 })
 ```
 
@@ -1244,18 +1232,29 @@ insert(table: string, values: ValuesBucket):Promise&lt;number&gt;
 
 **示例：**
 
-```js
-const valueBucket = {
-    "NAME": "Lisa",
-    "AGE": 18,
-    "SALARY": 100.5,
-    "CODES": new Uint8Array([1, 2, 3, 4, 5]),
-}
-let promise = rdbStore.insert("EMPLOYEE", valueBucket)
-promise.then((rowId) => {
-    console.log("Insert is successful, rowId = " + rowId);
-}).catch((status) => {
-    console.log("Insert is failed");
+```ts
+import { ValuesBucket } from '@ohos.data.ValuesBucket';
+
+let key1 = "NAME";
+let key2 = "AGE";
+let key3 = "SALARY";
+let key4 = "CODES";
+let value1 = "Lisi";
+let value2 = 18;
+let value3 = 100.5;
+let value4 = new Uint8Array([1, 2, 3, 4, 5]);
+const valueBucket: ValuesBucket = {
+  key1: value1,
+  key2: value2,
+  key3: value3,
+  key4: value4,
+};
+
+let promise: void = rdbStore.insert("EMPLOYEE", valueBucket)
+promise.then((rowId: BusinessError) => {
+  console.log("Insert is successful, rowId = " + rowId);
+}).catch((status: number) => {
+  console.log("Insert is failed");
 })
 ```
 
@@ -1277,33 +1276,51 @@ batchInsert(table: string, values: Array&lt;ValuesBucket&gt;, callback: AsyncCal
 
 **示例：**
 
-```js
-const valueBucket1 = {
-    "NAME": "Lisa",
-    "AGE": 18,
-    "SALARY": 100.5,
-    "CODES": new Uint8Array([1, 2, 3, 4, 5])
-}
-const valueBucket2 = {
-    "NAME": "Jack",
-    "AGE": 19,
-    "SALARY": 101.5,
-    "CODES": new Uint8Array([6, 7, 8, 9, 10])
-}
-const valueBucket3 = {
-    "NAME": "Tom",
-    "AGE": 20,
-    "SALARY": 102.5,
-    "CODES": new Uint8Array([11, 12, 13, 14, 15])
-}
+```ts
+import { ValuesBucket } from '@ohos.data.ValuesBucket';
+
+let key1 = "NAME";
+let key2 = "AGE";
+let key3 = "SALARY";
+let key4 = "CODES";
+let value1 = "Lisa";
+let value2 = 18;
+let value3 = 100.5;
+let value4 = new Uint8Array([1, 2, 3, 4, 5]);
+let value5 = "Jack";
+let value6 = 19;
+let value7 = 101.5;
+let value8 = new Uint8Array([6, 7, 8, 9, 10]);
+let value9 = "Tom";
+let value10 = 20;
+let value11 = 102.5;
+let value12 = new Uint8Array([11, 12, 13, 14, 15]);
+const valueBucket1: ValuesBucket = {
+  key1: value1,
+  key2: value2,
+  key3: value3,
+  key4: value4,
+};
+const valueBucket2: ValuesBucket = {
+  key1: value5,
+  key2: value6,
+  key3: value7,
+  key4: value8,
+};
+const valueBucket3: ValuesBucket = {
+  key1: value9,
+  key2: value10,
+  key3: value11,
+  key4: value12,
+};
 
 let valueBuckets = new Array(valueBucket1, valueBucket2, valueBucket3);
-rdbStore.batchInsert("EMPLOYEE", valueBuckets, function(status, insertNum) {
-    if (status) {
-        console.log("batchInsert is failed, status = " + status);
-        return;
-    }
-    console.log("batchInsert is successful, the number of values that were inserted = " + insertNum);
+rdbStore.batchInsert("EMPLOYEE", valueBuckets, (status: number, insertNum: number) => {
+  if (status) {
+    console.log("batchInsert is failed, status = " + status);
+    return;
+  }
+  console.log("batchInsert is successful, the number of values that were inserted = " + insertNum);
 })
 ```
 
@@ -1330,32 +1347,50 @@ batchInsert(table: string, values: Array&lt;ValuesBucket&gt;):Promise&lt;number&
 
 **示例：**
 
-```js
-const valueBucket1 = {
-    "NAME": "Lisa",
-    "AGE": 18,
-    "SALARY": 100.5,
-    "CODES": new Uint8Array([1, 2, 3, 4, 5])
-}
-const valueBucket2 = {
-    "NAME": "Jack",
-    "AGE": 19,
-    "SALARY": 101.5,
-    "CODES": new Uint8Array([6, 7, 8, 9, 10])
-}
-const valueBucket3 = {
-    "NAME": "Tom",
-    "AGE": 20,
-    "SALARY": 102.5,
-    "CODES": new Uint8Array([11, 12, 13, 14, 15])
-}
+```ts
+import { ValuesBucket } from '@ohos.data.ValuesBucket';
+
+let key1 = "NAME";
+let key2 = "AGE";
+let key3 = "SALARY";
+let key4 = "CODES";
+let value1 = "Lisa";
+let value2 = 18;
+let value3 = 100.5;
+let value4 = new Uint8Array([1, 2, 3, 4, 5]);
+let value5 = "Jack";
+let value6 = 19;
+let value7 = 101.5;
+let value8 = new Uint8Array([6, 7, 8, 9, 10]);
+let value9 = "Tom";
+let value10 = 20;
+let value11 = 102.5;
+let value12 = new Uint8Array([11, 12, 13, 14, 15]);
+const valueBucket1: ValuesBucket = {
+  key1: value1,
+  key2: value2,
+  key3: value3,
+  key4: value4,
+};
+const valueBucket2: ValuesBucket = {
+  key1: value5,
+  key2: value6,
+  key3: value7,
+  key4: value8,
+};
+const valueBucket3: ValuesBucket = {
+  key1: value9,
+  key2: value10,
+  key3: value11,
+  key4: value12,
+};
 
 let valueBuckets = new Array(valueBucket1, valueBucket2, valueBucket3);
-let promise = rdbStore.batchInsert("EMPLOYEE", valueBuckets);
-promise.then((insertNum) => {
-    console.log("batchInsert is successful, the number of values that were inserted = " + insertNum);
-}).catch((status) => {
-    console.log("batchInsert is failed, status = " + status);
+let promise: void = rdbStore.batchInsert("EMPLOYEE", valueBuckets);
+promise.then((insertNum: number) => {
+  console.log("batchInsert is successful, the number of values that were inserted = " + insertNum);
+}).catch((status: number) => {
+  console.log("batchInsert is failed, status = " + status);
 })
 ```
 
@@ -1377,21 +1412,32 @@ update(values: ValuesBucket, predicates: RdbPredicates, callback: AsyncCallback&
 
 **示例：**
 
-```js
-const valueBucket = {
-    "NAME": "Rose",
-    "AGE": 22,
-    "SALARY": 200.5,
-    "CODES": new Uint8Array([1, 2, 3, 4, 5]),
-}
+```ts
+import { ValuesBucket } from '@ohos.data.ValuesBucket';
+
+let key1 = "NAME";
+let key2 = "AGE";
+let key3 = "SALARY";
+let key4 = "CODES";
+let value1 = "Lisa";
+let value2 = 18;
+let value3 = 100.5;
+let value4 = new Uint8Array([1, 2, 3, 4, 5]);
+
+const valueBucket: ValuesBucket = {
+  key1: value1,
+  key2: value2,
+  key3: value3,
+  key4: value4,
+};
 let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
 predicates.equalTo("NAME", "Lisa")
-rdbStore.update(valueBucket, predicates, function (err, rows) {
-    if (err) {
-        console.info("Updated failed, err: " + err)
-        return
-    }
-    console.log("Updated row count: " + rows)
+rdbStore.update(valueBucket, predicates, (err: BusinessError, rows: number) => {
+  if (err) {
+    console.info("Updated failed, err: " + err)
+    return
+  }
+  console.log("Updated row count: " + rows)
 })
 ```
 
@@ -1418,20 +1464,31 @@ update(values: ValuesBucket, predicates: RdbPredicates):Promise&lt;number&gt;
 
 **示例：**
 
-```js
-const valueBucket = {
-    "NAME": "Rose",
-    "AGE": 22,
-    "SALARY": 200.5,
-    "CODES": new Uint8Array([1, 2, 3, 4, 5]),
-}
+```ts
+import { ValuesBucket } from '@ohos.data.ValuesBucket';
+
+let key1 = "NAME";
+let key2 = "AGE";
+let key3 = "SALARY";
+let key4 = "CODES";
+let value1 = "Lisa";
+let value2 = 18;
+let value3 = 100.5;
+let value4 = new Uint8Array([1, 2, 3, 4, 5]);
+
+const valueBucket: ValuesBucket = {
+  key1: value1,
+  key2: value2,
+  key3: value3,
+  key4: value4,
+};
 let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
 predicates.equalTo("NAME", "Lisa")
-let promise = rdbStore.update(valueBucket, predicates)
-promise.then(async (rows) => {
-    console.log("Updated row count: " + rows)
-}).catch((err) => {
-    console.info("Updated failed, err: " + err)
+let promise: void = rdbStore.update(valueBucket, predicates)
+promise.then(async (rows: number) => {
+  console.log("Updated row count: " + rows)
+}).catch((err: BusinessError) => {
+  console.info("Updated failed, err: " + err)
 })
 ```
 
@@ -1452,15 +1509,15 @@ delete(predicates: RdbPredicates, callback: AsyncCallback&lt;number&gt;):void
 
 **示例：**
 
-```js
+```ts
 let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
 predicates.equalTo("NAME", "Lisa")
-rdbStore.delete(predicates, function (err, rows) {
-    if (err) {
-        console.info("Delete failed, err: " + err)
-        return
-    }
-    console.log("Delete rows: " + rows)
+rdbStore.delete(predicates, (err: BusinessError, rows: number) => {
+  if (err) {
+    console.info("Delete failed, err: " + err)
+    return
+  }
+  console.log("Delete rows: " + rows)
 })
 ```
 
@@ -1486,14 +1543,14 @@ delete(predicates: RdbPredicates):Promise&lt;number&gt;
 
 **示例：**
 
-```js
+```ts
 let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
 predicates.equalTo("NAME", "Lisa")
-let promise = rdbStore.delete(predicates)
-promise.then((rows) => {
-    console.log("Delete rows: " + rows)
-}).catch((err) => {
-    console.info("Delete failed, err: " + err)
+let promise: void = rdbStore.delete(predicates)
+promise.then((rows: number) => {
+  console.log("Delete rows: " + rows)
+}).catch((err: BusinessError) => {
+  console.info("Delete failed, err: " + err)
 })
 ```
 
@@ -1515,16 +1572,16 @@ query(predicates: RdbPredicates, columns: Array&lt;string&gt;, callback: AsyncCa
 
 **示例：**
 
-```js
+```ts
 let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
 predicates.equalTo("NAME", "Rose")
-rdbStore.query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"], function (err, resultSet) {
-    if (err) {
-        console.info("Query failed, err: " + err)
-        return
-    }
-    console.log("ResultSet column names: " + resultSet.columnNames)
-    console.log("ResultSet column count: " + resultSet.columnCount)
+rdbStore.query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"], (err: BusinessError, resultSet: void) => {
+  if (err) {
+    console.info("Query failed, err: " + err)
+    return
+  }
+  console.log("ResultSet column names: " + resultSet.columnNames)
+  console.log("ResultSet column count: " + resultSet.columnCount)
 })
 ```
 
@@ -1551,17 +1608,17 @@ query(predicates: RdbPredicates, columns?: Array&lt;string&gt;):Promise&lt;Resul
 
 **示例：**
 
-  ```js
-  let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
-  predicates.equalTo("NAME", "Rose")
-  let promise = rdbStore.query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"])
-  promise.then((resultSet) => {
-      console.log("ResultSet column names: " + resultSet.columnNames)
-      console.log("ResultSet column count: " + resultSet.columnCount)
-  }).catch((err) => {
-      console.info("Query failed, err: " + err)
-  })
-  ```
+```ts
+let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
+predicates.equalTo("NAME", "Rose")
+let promise: void = rdbStore.query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"])
+promise.then((resultSet: void) => {
+  console.log("ResultSet column names: " + resultSet.columnNames)
+  console.log("ResultSet column count: " + resultSet.columnCount)
+}).catch((err: BusinessError) => {
+  console.info("Query failed, err: " + err)
+})
+```
 
 ### querySql<sup>8+</sup>
 
@@ -1581,14 +1638,14 @@ querySql(sql: string, bindArgs: Array&lt;ValueType&gt;, callback: AsyncCallback&
 
 **示例：**
 
-```js
-rdbStore.querySql("SELECT * FROM EMPLOYEE CROSS JOIN BOOK WHERE BOOK.NAME = ?", ['sanguo'], function (err, resultSet) {
-    if (err) {
-        console.info("Query failed, err: " + err)
-        return
-    }
-    console.log("ResultSet column names: " + resultSet.columnNames)
-    console.log("ResultSet column count: " + resultSet.columnCount)
+```ts
+rdbStore.querySql("SELECT * FROM EMPLOYEE CROSS JOIN BOOK WHERE BOOK.NAME = ?", ['sanguo'], (err: BusinessError, resultSet: void) => {
+  if (err) {
+    console.info("Query failed, err: " + err)
+    return
+  }
+  console.log("ResultSet column names: " + resultSet.columnNames)
+  console.log("ResultSet column count: " + resultSet.columnCount)
 })
 ```
 
@@ -1615,13 +1672,13 @@ querySql(sql: string, bindArgs?: Array&lt;ValueType&gt;):Promise&lt;ResultSet&gt
 
 **示例：**
 
-```js
-let promise = rdbStore.querySql("SELECT * FROM EMPLOYEE CROSS JOIN BOOK WHERE BOOK.NAME = 'sanguo'")
-promise.then((resultSet) => {
-    console.log("ResultSet column names: " + resultSet.columnNames)
-    console.log("ResultSet column count: " + resultSet.columnCount)
-}).catch((err) => {
-    console.info("Query failed, err: " + err)
+```ts
+let promise: void = rdbStore.querySql("SELECT * FROM EMPLOYEE CROSS JOIN BOOK WHERE BOOK.NAME = 'sanguo'")
+promise.then((resultSet: void) => {
+  console.log("ResultSet column names: " + resultSet.columnNames)
+  console.log("ResultSet column count: " + resultSet.columnCount)
+}).catch((err: BusinessError) => {
+  console.info("Query failed, err: " + err)
 })
 ```
 
@@ -1643,14 +1700,14 @@ executeSql(sql: string, bindArgs: Array&lt;ValueType&gt;, callback: AsyncCallbac
 
 **示例：**
 
-```js
+```ts
 const SQL_DELETE_TABLE = "DELETE FROM test WHERE name = ?"
-rdbStore.executeSql(SQL_DELETE_TABLE, ['zhangsan'], function(err) {
-    if (err) {
-        console.info("ExecuteSql failed, err: " + err)
-        return
-    }
-    console.info('Delete table done.')
+rdbStore.executeSql(SQL_DELETE_TABLE, ['zhangsan'], (err: BusinessError) => {
+  if (err) {
+    console.info("ExecuteSql failed, err: " + err)
+    return
+  }
+  console.info('Delete table done.')
 })
 ```
 
@@ -1677,13 +1734,13 @@ executeSql(sql: string, bindArgs?: Array&lt;ValueType&gt;):Promise&lt;void&gt;
 
 **示例：**
 
-```js
+```ts
 const SQL_DELETE_TABLE = "DELETE FROM test WHERE name = 'zhangsan'"
-let promise = rdbStore.executeSql(SQL_DELETE_TABLE)
+let promise: void = rdbStore.executeSql(SQL_DELETE_TABLE)
 promise.then(() => {
-    console.info('Delete table done.')
-}).catch((err) => {
-    console.info("ExecuteSql failed, err: " + err)
+  console.info('Delete table done.')
+}).catch((err: BusinessError) => {
+  console.info("ExecuteSql failed, err: " + err)
 })
 ```
 
@@ -1697,20 +1754,30 @@ beginTransaction():void
 
 **示例：**
 
-```js
-import featureAbility from '@ohos.ability.featureAbility'
-let context = featureAbility.getContext()
-const STORE_CONFIG = { name: "RdbTest.db"}
-data_rdb.getRdbStore(context, STORE_CONFIG, 1, async function (err, rdbStore) {
-    rdbStore.beginTransaction()
-	const valueBucket = {
-		"name": "lisi",
-		"age": 18,
-		"salary": 100.5,
-		"blobType": new Uint8Array([1, 2, 3]),
-	}
-	await rdbStore.insert("test", valueBucket)
-	rdbStore.commit()
+```ts
+import featureAbility from '@ohos.ability.featureAbility';
+import { ValuesBucket } from '@ohos.data.ValuesBucket';
+
+let key1 = "NAME";
+let key2 = "AGE";
+let key3 = "SALARY";
+let key4 = "blobType";
+let value1 = "Lisa";
+let value2 = 18;
+let value3 = 100.5;
+let value4 = new Uint8Array([1, 2, 3]);
+
+const valueBucket: ValuesBucket = {
+  key1: value1,
+  key2: value2,
+  key3: value3,
+  key4: value4,
+};
+
+data_rdb.getRdbStore(this.context, "RdbTest.db", 1, async (err: BusinessError, rdbStore) => {
+  rdbStore.beginTransaction()
+  await rdbStore.insert("test", valueBucket)
+  rdbStore.commit()
 })
 ```
 
@@ -1724,20 +1791,30 @@ commit():void
 
 **示例：**
 
-```js
-import featureAbility from '@ohos.ability.featureAbility'
-let context = featureAbility.getContext()
-const STORE_CONFIG = { name: "RdbTest.db"}
-data_rdb.getRdbStore(context, STORE_CONFIG, 1, async function (err, rdbStore) {
-    rdbStore.beginTransaction()
-	const valueBucket = {
-		"name": "lisi",
-		"age": 18,
-		"salary": 100.5,
-		"blobType": new Uint8Array([1, 2, 3]),
-	}
-	await rdbStore.insert("test", valueBucket)
-	rdbStore.commit()
+```ts
+import { ValuesBucket } from '@ohos.data.ValuesBucket';
+import featureAbility from '@ohos.ability.featureAbility';
+
+let key1 = "NAME";
+let key2 = "AGE";
+let key3 = "SALARY";
+let key4 = "blobType";
+let value1 = "Lisa";
+let value2 = 18;
+let value3 = 100.5;
+let value4 = new Uint8Array([1, 2, 3]);
+
+const valueBucket: ValuesBucket = {
+  key1: value1,
+  key2: value2,
+  key3: value3,
+  key4: value4,
+};
+
+data_rdb.getRdbStore(this.context, "RdbTest.db", 1, async (err: BusinessError, rdbStore) => {
+  rdbStore.beginTransaction()
+  await rdbStore.insert("test", valueBucket)
+  rdbStore.commit()
 })
 ```
 
@@ -1751,20 +1828,30 @@ rollBack():void
 
 **示例：**
 
-```js
-import featureAbility from '@ohos.ability.featureAbility'
-let context = featureAbility.getContext()
+```ts
+import { ValuesBucket } from '@ohos.data.ValuesBucket';
+import featureAbility from '@ohos.ability.featureAbility';
+
+let key1 = "NAME";
+let key2 = "AGE";
+let key3 = "SALARY";
+let key4 = "blobType";
+let value1 = "Lisa";
+let value2 = 18;
+let value3 = 100.5;
+let value4 = new Uint8Array([1, 2, 3]);
+
+const valueBucket: ValuesBucket = {
+  key1: value1,
+  key2: value2,
+  key3: value3,
+  key4: value4,
+};
+
 const STORE_CONFIG = { name: "RdbTest.db"}
-data_rdb.getRdbStore(context, STORE_CONFIG, 1, async function (err, rdbStore) {
+data_rdb.getRdbStore(this,context, "RdbTest.db", 1, async (err: BusinessError, rdbStore) => {
     try {
 		rdbStore.beginTransaction()
-		const valueBucket = {
-			"id": 1,
-			"name": "lisi",
-			"age": 18,
-			"salary": 100.5,
-			"blobType": new Uint8Array([1, 2, 3]),
-		}
 		await rdbStore.insert("test", valueBucket)
 		rdbStore.commit()
 	} catch (e) {
@@ -1792,13 +1879,13 @@ setDistributedTables(tables: Array&lt;string&gt;, callback: AsyncCallback&lt;voi
 
 **示例：**
 
-```js
-rdbStore.setDistributedTables(["EMPLOYEE"], function (err) {
-    if (err) {
-        console.info('SetDistributedTables failed, err: ' + err)
-        return
-    }
-    console.info('SetDistributedTables successfully.')
+```ts
+rdbStore.setDistributedTables(["EMPLOYEE"], (err: BusinessError) => {
+  if (err) {
+    console.info('SetDistributedTables failed, err: ' + err)
+    return
+  }
+  console.info('SetDistributedTables successfully.')
 })
 ```
 
@@ -1826,12 +1913,12 @@ rdbStore.setDistributedTables(["EMPLOYEE"], function (err) {
 
 **示例：**
 
-```js
-let promise = rdbStore.setDistributedTables(["EMPLOYEE"])
+```ts
+let promise: void = rdbStore.setDistributedTables(["EMPLOYEE"])
 promise.then(() => {
-    console.info("SetDistributedTables successfully.")
-}).catch((err) => {
-    console.info("SetDistributedTables failed, err: " + err)
+  console.info("SetDistributedTables successfully.")
+}).catch((err: BusinessError) => {
+  console.info("SetDistributedTables failed, err: " + err)
 })
 ```
 
@@ -1859,28 +1946,27 @@ obtainDistributedTableName(device: string, table: string, callback: AsyncCallbac
 
 **示例：**
 
-```js
+```ts
 import deviceManager from '@ohos.distributedHardware.deviceManager';
-let dmInstance = null;
-let deviceId = null;
 
-deviceManager.createDeviceManager("com.example.appdatamgrverify", (err, manager) => {
-    if (err) {
-        console.log("create device manager failed, err=" + err);
-        return;
-    }
-    dmInstance = manager;
-    let devices = dmInstance.getTrustedDeviceListSync();
-    deviceId = devices[0].deviceId;
+let dmInstance: Array<string>;
+
+deviceManager.createDeviceManager("com.example.appdatamgrverify", (err: BusinessError, manager: void) => {
+  if (err) {
+    console.log("create device manager failed, err=" + err);
+    return;
+  }
+  dmInstance = manager;
+  let devices: Array<string> = dmInstance.getTrustedDeviceListSync();
+  let deviceId: Array<string> = devices[0].deviceId;
 })
 
-
-rdbStore.obtainDistributedTableName(deviceId, "EMPLOYEE", function (err, tableName) {
-    if (err) {
-        console.info('ObtainDistributedTableName failed, err: ' + err)
-        return
-    }
-    console.info('ObtainDistributedTableName successfully, tableName=.' + tableName)
+rdbStore.obtainDistributedTableName(deviceId, "EMPLOYEE", (err: BusinessError, tableName: String) {
+  if (err) {
+    console.info('ObtainDistributedTableName failed, err: ' + err)
+    return
+  }
+  console.info('ObtainDistributedTableName successfully, tableName=.' + tableName)
 })
 ```
 
@@ -1913,26 +1999,26 @@ rdbStore.obtainDistributedTableName(deviceId, "EMPLOYEE", function (err, tableNa
 
 **示例：**
 
-```js
+```ts
 import deviceManager from '@ohos.distributedHardware.deviceManager';
-let dmInstance = null;
-let deviceId = null;
 
-deviceManager.createDeviceManager("com.example.appdatamgrverify", (err, manager) => {
-    if (err) {
-        console.log("create device manager failed, err=" + err);
-        return;
-    }
-    dmInstance = manager;
-    let devices = dmInstance.getTrustedDeviceListSync();
-    deviceId = devices[0].deviceId;
+let dmInstance: Array<string>;
+
+deviceManager.createDeviceManager("com.example.appdatamgrverify", (err: BusinessError, manager: void) => {
+  if (err) {
+    console.log("create device manager failed, err=" + err);
+    return;
+  }
+  dmInstance = manager;
+  let devices: Array<string> = dmInstance.getTrustedDeviceListSync();
+  let deviceId: Array<string> = devices[0].deviceId;
 })
 
-let promise = rdbStore.obtainDistributedTableName(deviceId, "EMPLOYEE")
-promise.then((tableName) => {
-    console.info('ObtainDistributedTableName successfully, tableName= ' + tableName)
-}).catch((err) => {
-    console.info('ObtainDistributedTableName failed, err: ' + err)
+let promise: void = rdbStore.obtainDistributedTableName(deviceId, "EMPLOYEE")
+promise.then((tableName: String) => {
+  console.info('ObtainDistributedTableName successfully, tableName= ' + tableName)
+}).catch((err: BusinessError) => {
+  console.info('ObtainDistributedTableName failed, err: ' + err)
 })
 ```
 
@@ -1956,34 +2042,34 @@ sync(mode: SyncMode, predicates: RdbPredicates, callback: AsyncCallback&lt;Array
 
 **示例：**
 
-```js
+```ts
 import deviceManager from '@ohos.distributedHardware.deviceManager';
-let dmInstance = null;
-let deviceIds = [];
 
-deviceManager.createDeviceManager("com.example.appdatamgrverify", (err, manager) => {
-    if (err) {
-        console.log("create device manager failed, err=" + err);
-        return;
-    }
-    dmInstance = manager;
-    let devices = dmInstance.getTrustedDeviceListSync();
-    for (var i = 0; i < devices.length; i++) {
-        deviceIds[i] = devices[i].deviceId;
-    }
+let dmInstance: Array<string>;
+
+deviceManager.createDeviceManager("com.example.appdatamgrverify", (err: BusinessError, manager: void) => {
+  if (err) {
+    console.log("create device manager failed, err=" + err);
+    return;
+  }
+  dmInstance = manager;
+  let devices: Array<string> = dmInstance.getTrustedDeviceListSync();
+  for (let i = 0; i < devices.length; i++) {
+    let deviceIds: Array<string> = devices[i].deviceId;
+  }
 })
 
 let predicates = new data_rdb.RdbPredicates('EMPLOYEE')
 predicates.inDevices(deviceIds)
-rdbStore.sync(data_rdb.SyncMode.SYNC_MODE_PUSH, predicates, function (err, result) {
-    if (err) {
-        console.log('Sync failed, err: ' + err)
-        return
-    }
-    console.log('Sync done.')
-    for (let i = 0; i < result.length; i++) {
-        console.log('device=' + result[i][0] + ' status=' + result[i][1])
-    }
+rdbStore.sync(data_rdb.SyncMode.SYNC_MODE_PUSH, predicates, (err: BusinessError, result: void) {
+  if (err) {
+    console.log('Sync failed, err: ' + err)
+    return
+  }
+  console.log('Sync done.')
+  for (let i = 0; i < result.length; i++) {
+    console.log('device=' + result[i][0] + ' status=' + result[i][1])
+  }
 })
 ```
 
@@ -2012,33 +2098,33 @@ rdbStore.sync(data_rdb.SyncMode.SYNC_MODE_PUSH, predicates, function (err, resul
 
 **示例：**
 
-```js
+```ts
 import deviceManager from '@ohos.distributedHardware.deviceManager';
-let dmInstance = null;
-let deviceIds = [];
 
-deviceManager.createDeviceManager("com.example.appdatamgrverify", (err, manager) => {
-    if (err) {
-        console.log("create device manager failed, err=" + err);
-        return;
-    }
-    dmInstance = manager;
-    let devices = dmInstance.getTrustedDeviceListSync();
-    for (var i = 0; i < devices.length; i++) {
-        deviceIds[i] = devices[i].deviceId;
-    }
+let dmInstance: Array<string>;
+
+deviceManager.createDeviceManager("com.example.appdatamgrverify", (err: BusinessError, manager: void) => {
+  if (err) {
+    console.log("create device manager failed, err=" + err);
+    return;
+  }
+  dmInstance = manager;
+  let devices: Array<string> = dmInstance.getTrustedDeviceListSync();
+  for (let i = 0; i < devices.length; i++) {
+    let deviceIds: Array<string> = devices[i].deviceId;
+  }
 })
 
 let predicates = new data_rdb.RdbPredicates('EMPLOYEE')
 predicates.inDevices(deviceIds)
-let promise = rdbStore.sync(data_rdb.SyncMode.SYNC_MODE_PUSH, predicates)
-promise.then((result) =>{
-    console.log('Sync done.')
-    for (let i = 0; i < result.length; i++) {
-        console.log('device=' + result[i][0] + ' status=' + result[i][1])
-    }
-}).catch((err) => {
-    console.log('Sync failed')
+let promise: void = rdbStore.sync(data_rdb.SyncMode.SYNC_MODE_PUSH, predicates)
+promise.then((result: void) =>{
+  console.log('Sync done.')
+  for (let i = 0; i < result.length; i++) {
+    console.log('device=' + result[i][0] + ' status=' + result[i][1])
+  }
+}).catch((err: BusinessError) => {
+  console.log('Sync failed')
 })
 ```
 
@@ -2060,16 +2146,17 @@ on(event: 'dataChange', type: SubscribeType, observer: Callback&lt;Array&lt;stri
 
 **示例：**
 
-```js
-function storeObserver(devices) {
-    for (let i = 0; i < devices.length; i++) {
-        console.log('device=' + devices[i] + ' data changed')
-    }
-}
+```ts
+let devices: Array<string>;
+
 try {
-    rdbStore.on('dataChange', data_rdb.SubscribeType.SUBSCRIBE_TYPE_REMOTE, storeObserver)
+  rdbStore.on('dataChange', data_rdb.SubscribeType.SUBSCRIBE_TYPE_REMOTE, (storeObserver: Array<string>) => {
+    for (let i = 0; i < devices.length; i++) {
+      console.log('device=' + devices[i] + ' data changed')
+    }
+  })
 } catch (err) {
-    console.log('Register observer failed')
+  console.log('Register observer failed')
 }
 ```
 
@@ -2091,15 +2178,16 @@ off(event:'dataChange', type: SubscribeType, observer: Callback&lt;Array&lt;stri
 
 **示例：**
 
-```js
-function storeObserver(devices) {
-    for (let i = 0; i < devices.length; i++) {
-        console.log('device=' + devices[i] + ' data changed')
-    }
-}
+```ts
+let devices: Array<string>;
+
 try {
-    rdbStore.off('dataChange', data_rdb.SubscribeType.SUBSCRIBE_TYPE_REMOTE, storeObserver)
+  rdbStore.off('dataChange', data_rdb.SubscribeType.SUBSCRIBE_TYPE_REMOTE, (storeObserver: Array<string>) => {
+    for (let i = 0; i < devices.length; i++) {
+      console.log('device=' + devices[i] + ' data changed')
+    }
+  })
 } catch (err) {
-    console.log('Unregister observer failed')
+  console.log('Unregister observer failed')
 }
 ```

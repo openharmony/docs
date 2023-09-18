@@ -99,20 +99,30 @@ List组件的lanes属性通常用于在不同尺寸的设备自适应构建不�
 
 
 ```ts
+class Tmp{
+  minLength:number = 200
+  maxLength:number = 300
+}
+let Mn:Tmp = new Tmp()
 List() {
   ...
 }
-.lanes(2)
+.lanes(Mn)
 ```
 
 当其取值为LengthConstrain类型时，表示会根据LengthConstrain与List组件的尺寸自适应决定行或列数。
 
 
 ```ts
+class Tmp{
+  minLength:number = 200
+  maxLength:number = 300
+}
+let mn:Tmp = new Tmp()
 List() {
   ...
 }
-.lanes({ minLength: 200, maxLength: 300 })
+.lanes(mn)
 ```
 
 例如，假设在垂直列表中设置了lanes的值为{ minLength: 200, maxLength: 300 }。此时，
@@ -229,10 +239,9 @@ class Contact {
 @Entry
 @Component
 struct SimpleContacts {
-  private contacts = [
+  private contacts:Array<object> = [
     new Contact('小明', $r("app.media.iconA")),
     new Contact('小红', $r("app.media.iconB")),
-    ...
   ]
 
   build() {
@@ -249,7 +258,7 @@ struct SimpleContacts {
           .width('100%')
           .justifyContent(FlexAlign.Start)
         }
-      }, item => item.key)
+      }, (item:Contact) => item.key.toString())
     }
     .width('100%')
   }
@@ -288,15 +297,16 @@ startMargin和endMargin属性分别用于设置分隔线距离列表侧边起始
 
 
 ```ts
+let opt = {
+  'strokeWidth': 1,
+  'startMargin': 60,
+  'endMargin': 10,
+  'color': '#ffe9f0f0'
+} as Record<string,number|string>
 List() {
   ...
 }
-.divider({
-  strokeWidth: 1,
-  startMargin: 60,
-  endMargin: 10,
-  color: '#ffe9f0f0'
-})
+.divider(opt)
 ```
 
 此示例表示从距离列表侧边起始端60vp开始到距离结束端10vp的位置，画一条粗细为1vp的分割线，可以实现图9设置列表分隔线的样式。
@@ -345,7 +355,6 @@ List() {
 ```ts
 @Component
 struct ContactsList {
-  ...
   
   @Builder itemHead(text: string) {
     // 列表分组的头部组件，对应联系人分组A、B等位置的组件
@@ -360,15 +369,11 @@ struct ContactsList {
     List() {
       ListItemGroup({ header: this.itemHead('A') }) {
         // 循环渲染分组A的ListItem
-        ...
       }
-      ...
 
       ListItemGroup({ header: this.itemHead('B') }) {
         // 循环渲染分组B的ListItem
-        ...
       }
-      ...
     }
   }
 }
@@ -378,7 +383,11 @@ struct ContactsList {
 
 
 ```ts
-contactsGroups: object[] = [
+class cgtmp{
+  title:string = ''
+  contacts:Array<object>|null = null
+}
+export let contactsGroups: object[] = [
   {
     title: 'A',
     contacts: [
@@ -386,15 +395,14 @@ contactsGroups: object[] = [
       new Contact('安安', $r('app.media.iconB')),
       new Contact('Angela', $r('app.media.iconC')),
     ],
-  },
+  } as cgtmp,
   {
     title: 'B',
     contacts: [
       new Contact('白叶', $r('app.media.iconD')),
       new Contact('伯明', $r('app.media.iconE')),
     ],
-  },
-  ...
+  } as cgtmp,
 ]
 ```
 
@@ -402,18 +410,30 @@ contactsGroups: object[] = [
 
 
 ```ts
+class cgtmpf{
+  title:string = ''
+  contacts:Array<object>|null = null
+  key:string = ''
+}
+class heF{
+  itemHead:Function = (text: string) => {}
+  foo(val:string){
+    this.itemHead(val)
+  }
+}
+let fff:heF = this.heF()
 List() {
   // 循环渲染ListItemGroup，contactsGroups为多个分组联系人contacts和标题title的数据集合
-  ForEach(this.contactsGroups, item => {
-    ListItemGroup({ header: this.itemHead(item.title) }) {
+  ForEach(contactsGroups, (item: cgtmpf) => {
+    ListItemGroup({ header: fff(item.title) }) {
       // 循环渲染ListItem
-      ForEach(item.contacts, (contact) => {
-        ListItem() {
-          ...
-        }
-      }, item => item.key)
+      if (item.contacts) {
+        ForEach(item.contacts, () => {
+          ListItem() {
+          }
+        }, (item: cgtmpf) => item.key.toString())
+      }
     }
-    ...
   })
 }
 ```
@@ -435,11 +455,44 @@ List组件的sticky属性配合ListItemGroup组件使用，用于设置ListItemG
 
 
 ```ts
+import util from '@ohos.util';
+class cgtmpf{
+  title:string = ''
+  contacts:Array<object>|null = null
+  key:string = ''
+}
+class Contact {
+  key: string = util.generateRandomUUID(true);
+  name: string;
+  icon: Resource;
+
+  constructor(name: string, icon: Resource) {
+    this.name = name;
+    this.icon = icon;
+  }
+}
+export let contactsGroups: object[] = [
+  {
+    title: 'A',
+    contacts: [
+      new Contact('艾佳', $r('app.media.iconA')),
+      new Contact('安安', $r('app.media.iconB')),
+      new Contact('Angela', $r('app.media.iconC')),
+    ],
+  } as cgtmpf,
+  {
+    title: 'B',
+    contacts: [
+      new Contact('白叶', $r('app.media.iconD')),
+      new Contact('伯明', $r('app.media.iconE')),
+    ],
+  } as cgtmpf,
+]
+@Entry
 @Component
 struct ContactsList {
   // 定义分组联系人数据集合contactsGroups数组
-  ...
- 
+
   @Builder itemHead(text: string) {
     // 列表分组的头部组件，对应联系人分组A、B等位置的组件
     Text(text)
@@ -452,16 +505,16 @@ struct ContactsList {
   build() {
     List() {
       // 循环渲染ListItemGroup，contactsGroups为多个分组联系人contacts和标题title的数据集合
-      ForEach(this.contactsGroups, item => {
+      ForEach(contactsGroups, (item:cgtmpf) => {
         ListItemGroup({ header: this.itemHead(item.title) }) {
           // 循环渲染ListItem
-          ForEach(item.contacts, (contact) => {
-            ListItem() {
-              ...
-            }
-          }, item => item.key)
+          if(item.contacts){
+            ForEach(item.contacts, () => {
+              ListItem() {
+              }
+            }, (item:cgtmpf) => item.key.toString())
+          }
         }
-        ...
       })
     }
     .sticky(StickyStyle.Header)  // 设置吸顶，实现粘性标题效果
@@ -484,14 +537,15 @@ List组件初始化时，可以通过scroller参数绑定一个[Scroller](../ref
 
 
 ```ts
-private listScroller: Scroller = new Scroller();
+export let listScroller: Scroller = new Scroller();
 ```
 
 然后，通过将listScroller用于初始化List组件的scroller参数，完成listScroller与列表的绑定。在需要跳转的位置指定scrollToIndex的参数为0，表示返回列表顶部。
 
 
 ```ts
-Stack({ alignContent: Alignment.BottomEnd }) {
+let sttmo:Record<string,Alignment> = { 'alignContent': Alignment.BottomEnd }
+Stack(sttmo) {
   // 将listScroller用于初始化List组件的scroller参数，完成listScroller与列表的绑定。
   List({ space: 20, scroller: this.listScroller }) {
     ...
@@ -503,7 +557,7 @@ Stack({ alignContent: Alignment.BottomEnd }) {
   }
   .onClick(() => {
     // 点击按钮时，指定跳转位置，返回列表顶部
-    this.listScroller.scrollToIndex(0)
+    listScroller.scrollToIndex(0)
   })
   ...
 }
@@ -526,32 +580,24 @@ Stack({ alignContent: Alignment.BottomEnd }) {
 
 
 ```ts
-...
 const alphabets = ['#', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K',
   'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
-
 @Entry
 @Component
 struct ContactsList {
   @State selectedIndex: number = 0;
   private listScroller: Scroller = new Scroller();
-  ...
 
   build() {
     Stack({ alignContent: Alignment.End }) {
-      List({ scroller: this.listScroller }) {
-        ...
-      }
+      List({ scroller: this.listScroller }) {}
       .onScrollIndex((firstIndex: number) => {
         // 根据列表滚动到的索引值，重新计算对应联系人索引栏的位置this.selectedIndex
-        ...
       })
-      ...
 
       // 字母表索引组件
       AlphabetIndexer({ arrayValue: alphabets, selected: 0 })
         .selected(this.selectedIndex)
-      ...
     }
   }
 }
@@ -576,12 +622,22 @@ ListItem的swipeAction属性可用于实现列表项的左右滑动功能。swip
 
 
 ```ts
+class swtmp{
+  temp:Record<string,object> = {}
+  itemEnd:Function|undefined = undefined
+  get(index:number){
+    if(this.itemEnd){
+      this.temp = {'end':this.itemEnd(this, index)}
+    }
+    return this.temp
+  }
+}
+let swipertmp:swtmp = new swtmp()
 @Entry
 @Component
 struct MessageList {
   @State messages: object[] = [
     // 初始化消息列表数据
-    ...
   ];
 
   @Builder itemEnd(index: number) {
@@ -594,20 +650,18 @@ struct MessageList {
     .onClick(() => {
       this.messages.splice(index, 1);
     })
-    ...
   }
 
   build() {
-    ...
       List() {
-        ForEach(this.messages, (item, index) => {
-          ListItem() {
-            ...
+        ForEach(this.messages, (item:MessageList, index:number|undefined) => {
+          if(index){
+            ListItem() {
+            }
+            .swipeAction(swipertmp.get(index)) // 设置侧滑属性.
           }
-          .swipeAction({ end: this.itemEnd.bind(this, index) }) // 设置侧滑属性
-        }, item => item.id.toString())
+        }, (item:MessageList) => item.id.toString())
       }
-    ...
   }
 }
 ```
@@ -691,18 +745,27 @@ Badge({
 
    ```ts
    @State toDoData: ToDo[] = [];
-   private availableThings: string[] = ['读书', '运动', '旅游', '听音乐', '看电影', '唱歌'];
+   export let availableThings: string[] = ['读书', '运动', '旅游', '听音乐', '看电影', '唱歌'];
    ```
 
    最后，构建列表布局和列表项：
 
    ```ts
+  export class ToDo {
+    key: string = util.generateRandomUUID(true);
+    name: string;
+    toDoData:ToDo[] = [];
+
+    constructor(name: string) {
+      this.name = name;
+    }
+  }
+  let todo:ToDo = new ToDo()
    List({ space: 10 }) {
-     ForEach(this.toDoData, (toDoItem) => {
+     ForEach(todo.toDoData, (toDoItem:ToDo) => {
        ListItem() {
-         ...
        }
-     }, toDoItem => toDoItem.key)
+     }, (toDoItem:ToDo) => toDoItem.key.toString())
    }
    ```
 
@@ -715,9 +778,9 @@ Badge({
    Text('+')
      .onClick(() => {
        TextPickerDialog.show({
-         range: this.availableThings,
+         range: availableThings,
          onAccept: (value: TextPickerResult) => {
-            this.toDoData.push(new ToDo(this.availableThings[value.index])); // 新增列表项数据toDoData
+            todo.toDoData.push(new ToDo(availableThings[value.index])); // 新增列表项数据toDoData
          },
        })
      })
@@ -737,64 +800,103 @@ Badge({
 1. 列表的删除功能一般进入编辑模式后才可使用，所以需要提供编辑模式的入口。
    以待办列表为例，通过监听列表项的长按事件，当用户长按列表项时，进入编辑模式。
 
-   ```ts
+  ```ts
+  class todoTmp{
+    isEditMode:boolean = false
+    selectedItems:Array<object> = []
+    toDoItem:ToDo[] = [];
+    toDoData:ToDo[] = [];
+  }
+  let todolist:todoTmp = new todoTmp()
    // ToDoListItem.ets
 
-   Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
-     ...
-   }
-   .gesture(
-   GestureGroup(GestureMode.Exclusive,
-     LongPressGesture()
-       .onAction(() => {
-         if (!this.isEditMode) {
-           this.isEditMode = true; //进入编辑模式
-           this.selectedItems.push(this.toDoItem); // 记录长按时选中的列表项
-         }
-       })
-     )
-   )
+  Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+    ...
+  }
+  .gesture(
+  GestureGroup(GestureMode.Exclusive,
+    LongPressGesture()
+      .onAction(() => {
+        if (!todolist.isEditMode) {
+          todolist.isEditMode = true; //进入编辑模式
+          todolist.selectedItems.push(todolist.toDoItem); // 记录长按时选中的列表项
+        }
+      })
+    )
+  )
    ```
 
 2. 需要响应用户的选择交互，记录要删除的列表项数据。
    在待办列表中，通过勾选框的勾选或取消勾选，响应用户勾选列表项变化，记录所有选择的列表项。
 
-   ```ts
+  ```ts
+  import util from '@ohos.util';
+  export class ToDo {
+    key: string = util.generateRandomUUID(true);
+    name: string;
+    toDoData:ToDo[] = [];
+
+    constructor(name: string) {
+      this.name = name;
+    }
+  }
+  class todoTmp{
+    isEditMode:boolean = false
+    selectedItems:Array<object> = []
+    toDoItem:ToDo[] = [];
+    toDoData:ToDo[] = [];
+  }
+  let todolist:todoTmp = new todoTmp()
    // ToDoListItem.ets
 
-   if (this.isEditMode) {
-     Checkbox()
-       .onChange((isSelected) => {
-         if (isSelected) {
-           this.selectedItems.push(this.toDoItem) // 勾选时，记录选中的列表项
-         } else {
-           let index = this.selectedItems.indexOf(this.toDoItem)
-           if (index !== -1) {
-             this.selectedItems.splice(index, 1) // 取消勾选时，则将此项从selectedItems中删除
-           }
-         }
-       })
-       ...
-   }
+  if (todolist.isEditMode) {
+    Checkbox()
+      .onChange((isSelected) => {
+        if (isSelected) {
+          todolist.selectedItems.push(todolist.toDoItem) // 勾选时，记录选中的列表项
+        } else {
+          let index = todolist.selectedItems.indexOf(todolist.toDoItem)
+          if (index !== -1) {
+            todolist.selectedItems.splice(index, 1) // 取消勾选时，则将此项从selectedItems中删除
+          }
+        }
+      })
+  }
    ```
 
 3. 需要响应用户点击删除按钮事件，删除列表中对应的选项。
 
-   ```ts
+  ```ts
+  import util from '@ohos.util';
+  export class ToDo {
+    key: string = util.generateRandomUUID(true);
+    name: string;
+    toDoData:ToDo[] = [];
+
+    constructor(name: string) {
+      this.name = name;
+    }
+  }
+  class todoTmp{
+    isEditMode:boolean = false
+    selectedItems:Array<object> = []
+    toDoItem:ToDo[] = [];
+    toDoData:ToDo[] = [];
+  }
+  let todolist:todoTmp = new todoTmp()
    // ToDoList.ets
 
-   Button('删除')
-     .onClick(() => {
-       // 删除选中的列表项对应的toDoData数据
-       let leftData = this.toDoData.filter((item) => {
-         return this.selectedItems.find((selectedItem) => selectedItem !== item);
-       })
+  Button('删除')
+    .onClick(() => {
+      // 删除选中的列表项对应的toDoData数据
+      let leftData = todolist.toDoData.filter((item) => {
+        return todolist.selectedItems.find((selectedItem) => selectedItem !== item);
+      })
 
-       this.toDoData = leftData;
-       this.isEditMode = false;
-     })
-     ...
-   ```
+      todolist.toDoData = leftData;
+      todolist.isEditMode = false;
+    })
+  ```
 
 
 ## 长列表的处理
@@ -807,12 +909,17 @@ Badge({
 
 
 ```ts
+class dataTmp{
+  dataSource:IDataSource|undefined = undefined
+}
+let ds:dataTmp = new dataTmp()
 List() {
-  LazyForEach(this.dataSource, item => {
-    ListItem() {
-      ...
-    }
-  })
+  if(ds.dataSource){
+    LazyForEach(ds.dataSource, () => {
+      ListItem() {
+      }
+    })
+  }
 }.cachedCount(3)
 ```
 

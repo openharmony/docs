@@ -21,7 +21,7 @@ TextInput(value?:{placeholder?: ResourceStr, text?: ResourceStr, controller?: Te
 | Name                    | Type                                    | Mandatory  | Description           |
 | ----------------------- | ---------------------------------------- | ---- | --------------- |
 | placeholder   | [ResourceStr](ts-types.md#resourcestr)       | No   | Text displayed when there is no input.     |
-| text          | [ResourceStr](ts-types.md#resourcestr)       | No   | Current text input.<br>If the component has [stateStyles](ts-universal-attributes-polymorphic-style.md) or any other attribute that may trigger updating configured, you are advised to bind the state variable to the text in real time through the **onChange** event, so as to prevent display errors when the component is updated.<br>Since API version 10, this parameter supports two-way binding through [$$](../../quick-start/arkts-two-way-sync.md).|
+| text          | [ResourceStr](ts-types.md#resourcestr)       | No   | Current text input.<br>If the component has [stateStyles](ts-universal-attributes-polymorphic-style.md) or any other attribute that may trigger updating configured, you are advised to bind the state variable to the text in real time through the **onChange** event, so as to prevent display errors when the component is updated.<br>Since API version 10, this parameter supports two-way binding through [$$](../../quick-start/arkts-two-way-sync.md). |
 | controller<sup>8+</sup> | [TextInputController](#textinputcontroller8) | No   | Text input controller.|
 
 
@@ -54,10 +54,11 @@ Among the [universal attributes](ts-universal-attributes-size.md) and [universal
 | barState<sup>10+</sup> | [BarState](ts-appendix-enums.md#BarState) | Scrollbar state when the inline input style is used.<br>Default value: **BarState.Auto**|
 | maxLines<sup>10+</sup> | number | Maximum number of lines that can be displayed when the inline input style is used.<br>Default value: **3**|
 | customKeyboard<sup>10+</sup> | [CustomBuilder](ts-types.md#custombuilder8) | Custom keyboard.<br>**NOTE**<br>When a custom keyboard is set, activating the text box opens the specified custom component, instead of the system input method, and the **enterKeyType** attribute setting for the system keyboard will not take effect.<br>The custom keyboard's height can be set through the **height** attribute of the custom component's root node, and its width is fixed at the default value.<br>The custom keyboard is displayed on top of the current page, without compressing or raising the page.<br>The custom keyboard cannot obtain the focus, but it blocks gesture events.<br>By default, the custom keyboard is closed when the input component loses the focus. You can also use the [TextInputController](#textinputcontroller8).[stopEditing](#stopediting10) API to close the keyboard.|
-
 >  **NOTE**
 >
->  The default value of the universal attribute [padding](ts-universal-attributes-size.md) is as follows: <br>{<br> top: 8 vp,<br> right: 16 vp,<br> bottom: 8 vp,<br> left: 16 vp<br> }
+>  The default value of the universal attribute [padding](ts-universal-attributes-size.md) is as follows: <br>{<br> top: 8 vp,<br> right: 16 vp,<br> bottom: 8 vp,<br> left: 16 vp<br> } 
+>
+>  Since API version 10, .**width('auto')** can be set for the **\<TextInput>** component. Under this setting, the component auto-adapts its width to the text width, while respecting the **constraintSize** configuration and the maximum and minimum width restrictions received by the parent container. For details, see [Size](ts-universal-attributes-size.md#attributes).     
 
 ## EnterKeyType
 
@@ -130,7 +131,7 @@ Sets the position of the caret.
 | value  | number   | Yes  | Length from the start of the string to the position where the caret is located.|
 ### setTextSelection<sup>10+</sup>
 
-setTextSelection(selectionStart: number, selectionStart: number): void
+setTextSelection(selectionStart: number, selectionEnd: number): void
 
 Sets the text selection area, which will be highlighted.
 
@@ -233,7 +234,7 @@ struct TextInputExample {
         .maxLength(9)
         .showPasswordIcon(true)
       // Inline-style text box.
-      TextInput({ placeholder: 'inline style' })
+      TextInput({ text: 'inline style' })
         .width(400)
         .height(50)
         .margin(20)
@@ -254,7 +255,7 @@ struct TextInputExample {
 struct TextInputExample {
   @State PassWordSrc1: Resource = $r('app.media.onIcon')
   @State PassWordSrc2: Resource = $r('app.media.offIcon')
-  @State TextError: string = undefined
+  @State TextError: string = ''
   @State Text: string = ''
   @State NameText: string = 'test'
 
@@ -293,7 +294,7 @@ struct TextInputExample {
         .width(380)
         .height(60)
         .showError('Error')
-        .showUnit(this.itemEnd.bind(this))
+        .showUnit(():void=>this.itemEnd())
 
       Text (`User name: ${this.Text}`)
         .width('95%')
@@ -306,7 +307,7 @@ struct TextInputExample {
         })
         .onSubmit(() => {// If the entered user name is incorrect, the text box will be cleared and the error message will be displayed.
           if (this.Text == this.NameText) {
-            this.TextError = undefined
+            this.TextError = ''
           } else {
             this.TextError ='Incorrect user name.'
             this.Text = ''
@@ -338,7 +339,7 @@ struct TextInputExample {
         this.controller.stopEditing()
       })
       Grid() {
-        ForEach([1, 2, 3, 4, 5, 6, 7, 8, 9, '*', 0, '#'], (item) => {
+        ForEach([1, 2, 3, 4, 5, 6, 7, 8, 9, '*', 0, '#'], (item:number|string) => {
           GridItem() {
             Button(item + "")
               .width(110).onClick(() => {

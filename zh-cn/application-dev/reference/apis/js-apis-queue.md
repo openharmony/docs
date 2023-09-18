@@ -206,7 +206,7 @@ queue.add(2);
 queue.add(4);
 queue.add(5);
 queue.add(4);
-queue.forEach((value : number, index : number) : void => {
+queue.forEach((value : number, index ?: number) : void => {
   console.log("value:" + value, "index:" + index);
 });
 ```
@@ -249,7 +249,7 @@ while(queue.length) {
 
 // 使用方法二：
 let iter = queue[Symbol.iterator]();
-let temp = iter.next().value;
+let temp: IteratorResult<number> = iter.next().value;
 while(temp != undefined) {
   console.log("value:" + temp);
   temp = iter.next().value;

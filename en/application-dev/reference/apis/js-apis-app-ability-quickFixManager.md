@@ -80,6 +80,8 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 **Example**
 
 ```ts
+import quickFixManager from '@ohos.app.ability.quickFixManager';
+
   try {
     let hapModuleQuickFixFiles = ['/data/storage/el2/base/entry.hqf'];
     quickFixManager.applyQuickFix(hapModuleQuickFixFiles, (error) => {
@@ -132,11 +134,14 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 **Example**
 
 ```ts
+import quickFixManager from '@ohos.app.ability.quickFixManager';
+import { BusinessError } from '@ohos.base';
+
   let hapModuleQuickFixFiles = ['/data/storage/el2/base/entry.hqf'];
   try {
     quickFixManager.applyQuickFix(hapModuleQuickFixFiles).then(() => {
       console.info('applyQuickFix success');
-    }).catch((error) => {
+    }).catch((error: BusinessError) => {
       console.error(`applyQuickFix err: ${error}`);
     });
   } catch (paramError) {
@@ -175,6 +180,8 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 **Example**
 
 ```ts
+import quickFixManager from '@ohos.app.ability.quickFixManager';
+
   try {
     let bundleName = 'bundleName';
     quickFixManager.getApplicationQuickFixInfo(bundleName, (error, data) => {
@@ -225,11 +232,14 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 **Example**
 
   ```ts
+import quickFixManager from '@ohos.app.ability.quickFixManager';
+import { BusinessError } from '@ohos.base';
+
   try {
     let bundleName = 'bundleName';
     quickFixManager.getApplicationQuickFixInfo(bundleName).then((data) => {
       console.info(`getApplicationQuickFixInfo success: ${data}`);
-    }).catch((error) => {
+    }).catch((error: BusinessError) => {
       console.error(`getApplicationQuickFixInfo err: ${error}`);
     });
   } catch (paramError) {
@@ -270,6 +280,8 @@ If an error occurs during patch installation, the error code and message are ret
 **Example**
 
 ```ts
+import quickFixManager from '@ohos.app.ability.quickFixManager';
+
   let bundleName = "com.example.myapplication";
   quickFixManager.revokeQuickFix(bundleName, (err) => {
     console.info("revokeQuickFix " + bundleName + " " + JSON.stringify(err));
@@ -311,19 +323,16 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 
 If an error occurs during patch installation, the error code and message are returned through the common event [COMMON_EVENT_QUICK_FIX_REVOKE_RESULT](./common_event/commonEvent-ability.md#common_event_quick_fix_revoke_result10). The table below lists the possible error codes and messages.
 
-| ID| Error Message|
-| ------- | -------- |
-| 18500004 | Switch hqf failed. |
-| 18500005 | Delete hqf failed. |
-| 18500007 | Unload patch failed. |
-
 **Example**
 
 ```ts
+import quickFixManager from '@ohos.app.ability.quickFixManager';
+import { BusinessError } from '@ohos.base';
+
   let bundleName = "com.example.myapplication";
   quickFixManager.revokeQuickFix(bundleName).then(() => {
     console.info("revokeQuickFix " + bundleName +" ok");
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.info("revokeQuickFix " + bundleName +" failed, error code is ", JSON.stringify((err)));
   });
 ```

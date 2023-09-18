@@ -27,11 +27,12 @@
 3. 读取并修改目标区域像素数据，写回原图。
      
    ```ts
+   import {BusinessError} from '@ohos.base'
    // 场景一：将读取的整张图像像素数据结果写入ArrayBuffer中
    const readBuffer = new ArrayBuffer(pixelBytesNumber);
    pixelMap.readPixelsToBuffer(readBuffer).then(() => {
      console.info('Succeeded in reading image pixel data.');
-   }).catch(error => {
+   }).catch((error : BusinessError) => {
      console.error('Failed to read image pixel data. And the error is: ' + error);
    })
    
@@ -44,7 +45,7 @@
    }
    pixelMap.readPixels(area).then(() => {
      console.info('Succeeded in reading the image data in the area.');
-   }).catch(error => {
+   }).catch((error : BusinessError) => {
      console.error('Failed to read the image data in the area. And the error is: ' + error);
    })
    

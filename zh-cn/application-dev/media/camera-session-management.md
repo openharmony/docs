@@ -25,8 +25,8 @@
 2. 调用cameraManager类中的createCaptureSession()方法创建一个会话。
      
    ```ts
-   function getCaptureSession(cameraManager: camera.CameraManager): camera.CaptureSession {
-     let captureSession: camera.CaptureSession;
+   function getCaptureSession(cameraManager: camera.CameraManager): camera.CaptureSession | undefined {
+     let captureSession: camera.CaptureSession | undefined = undefined;
      try {
        captureSession = cameraManager.createCaptureSession();
      } catch (error) {

@@ -51,8 +51,10 @@
       - [Navigation Transition](arkts-navigation-transition.md)
       - [Modal Transition](arkts-modal-transition.md)
       - [Shared Element Transition](arkts-shared-element-transition.md)
+      - [Page Transition Animation (Not Recommended)](arkts-page-transition-animation.md)
     - [Component Animation](arkts-component-animation.md)
     - Animation Curve
+      - [Animation Curve Overview](arkts-curve-overview.md)
       - [Traditional Curve](arkts-traditional-curve.md)
       - [Spring Curve](arkts-spring-curve.md)
     - [Animation Smoothing](arkts-animation-smoothing.md)

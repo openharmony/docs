@@ -81,7 +81,7 @@ struct NavRouterExample {
     Column() {
       Navigation() {
         List({ space: 12, initialIndex: 0 }) {
-          ForEach(this.arr, (item: number, index: number) => {
+          ForEach(this.arr, (item: number, index: number = 0) => {
             ListItem() {
               NavRouter() {
                 Row() {
@@ -110,7 +110,7 @@ struct NavRouterExample {
                 this.dex = index
               })
             }
-          }, item => item)
+          }, (item:number) => item.toString())
         }
         .height('100%')
         .margin({ top: 12, left: 12 })

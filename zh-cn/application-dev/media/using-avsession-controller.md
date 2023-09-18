@@ -48,6 +48,13 @@ OpenHarmony系统预置的播控中心，作为媒体会话控制方与音视频
 | getAVQueueTitle(callback: AsyncCallback&lt;string&gt;): void<sup>10+<sup> | 获取当前播放列表的名称。 |
 | skipToQueueItem(itemId: number, callback: AsyncCallback&lt;void&gt;): void<sup>10+<sup> | 设置指定播放列表单项的ID，发送给session端处理，session端可以选择对这个单项歌曲进行播放。 |
 | getExtras(callback: AsyncCallback&lt;{[key: string]: Object}&gt;): void<sup>10+<sup> | 获取媒体提供方设置的自定义媒体数据包。 |
+| getOutputDeviceSync(): OutputDeviceInfo<sup>10+<sup> | 使用同步方法获取当前输出设备信息 |
+| getAVPlaybackStateSync(): AVPlaybackState<sup>10+<sup> | 使用同步方法获取当前会话播放状态相关信息 |
+| getAVMetadataSync(): AVMetadata<sup>10+<sup> | 使用同步方法获取当前会话元数据信息 |
+| getAVQueueTitleSync(): string<sup>10+<sup> | 使用同步方法当前播放列表的名称 |
+| getAVQueueItemsSync(): Array&lt;AVQueueItem&gt;<sup>10+<sup> | 使用同步方法获取当前播放列表相关信息 |
+| isActiveSync(): boolean<sup>10+<sup> | 使用同步方法判断会话是否被激活 |
+| getValidCommandsSync(): Array&lt;AVControlCommandType&gt;<sup>10+<sup> | 使用同步方法获取会话支持的有效命令 |
 
 ## 开发步骤
 
@@ -191,13 +198,11 @@ OpenHarmony系统预置的播控中心，作为媒体会话控制方与音视频
    });
 
    // 注册元数据更新监听
-   let metaFilter = ['assetId', 'title', 'description'];
-   controller.on('metadataChange', metaFilter, (metadata: AVSessionManager.AVMetadata) => {
+   controller.on('metadataChange', ['assetId', 'title', 'description'], (metadata: AVSessionManager.AVMetadata) => {
      console.info(`on metadataChange assetId : ${metadata.assetId}`);
    });
    // 注册播放状态更新监听
-   let playbackFilter = ['state', 'speed', 'loopMode'];
-   controller.on('playbackStateChange', playbackFilter, (playbackState: AVSessionManager.AVPlaybackState) => {
+   controller.on('playbackStateChange', ['state', 'speed', 'loopMode'], (playbackState: AVSessionManager.AVPlaybackState) => {
      console.info(`on playbackStateChange state : ${playbackState.state}`);
    });
    // 注册会话支持的命令变更监听

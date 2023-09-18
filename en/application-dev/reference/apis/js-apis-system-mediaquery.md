@@ -98,7 +98,10 @@ Adds a listener for this **MediaQueryList** object. The listener must be added b
 **Example**
 
 ```ts
-function maxWidthMatch(e){
+import mediaquery, { MediaQueryEvent } from '@system.mediaquery';
+let mMediaQueryList = mediaquery.matchMedia('(max-width: 466)');
+
+function maxWidthMatch(e: MediaQueryEvent): void {
   if(e.matches){
     // do something
   }
@@ -124,7 +127,10 @@ Removes the listener for this **MediaQueryList** object.
 **Example**
 
 ```ts
-function maxWidthMatch(e){
+import mediaquery, { MediaQueryEvent } from '@system.mediaquery';
+let mMediaQueryList = mediaquery.matchMedia('(max-width: 466)');
+
+function maxWidthMatch(e: MediaQueryEvent): void {
   if(e.matches){
     // do something
   }

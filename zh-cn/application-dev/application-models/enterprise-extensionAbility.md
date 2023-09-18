@@ -76,6 +76,10 @@ export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbil
 通过@ohos.enterprise.adminManager模块中的subscribeManagedEvent接口进行企业设备管理事件的订阅，订阅应用安装、卸载事件。当订阅成功后，端侧应用安装和卸载事件通知MDM应用，MDM应用可以在回调函数中进行事件上报，通知企业管理员。并可以通过unsubscribeManagedEvent接口进行企业设备管理事件的去订阅。
 
 ```ts
+import adminManager from '@ohos.enterprise.adminManager';
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+
 async function subscribeManagedEventCallback() {
   let admin: Want = {
     bundleName: 'com.example.myapplication',

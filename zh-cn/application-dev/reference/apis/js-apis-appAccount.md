@@ -9,7 +9,7 @@
 
 ## 导入模块
 
-```js
+```ts
 import account_appAccount from '@ohos.account.appAccount';
 ```
 
@@ -29,7 +29,7 @@ createAppAccountManager(): AppAccountManager
 | AppAccountManager | 应用帐号管理器对象。 |
 
 **示例：**
-  ```js
+  ```ts
   let appAccountManager = account_appAccount.createAppAccountManager();
   ```
 
@@ -63,7 +63,7 @@ createAccount(name: string, callback: AsyncCallback&lt;void&gt;): void;
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   try {
@@ -102,7 +102,7 @@ createAccount(name: string, options: CreateAccountOptions, callback: AsyncCallba
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   let options:account_appAccount.CreateAccountOptions  = {
@@ -155,7 +155,7 @@ createAccount(name: string, options?: CreateAccountOptions): Promise&lt;void&gt;
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
 
   let options: account_appAccount.CreateAccountOptions = {
@@ -202,7 +202,7 @@ createAccountImplicitly(owner: string, callback: AuthCallback): void
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   import Want from '@ohos.app.ability.Want';
   import common from '@ohos.app.ability.common';
@@ -267,7 +267,7 @@ createAccountImplicitly(owner: string, options: CreateAccountImplicitlyOptions, 
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   import Want from '@ohos.app.ability.Want';
   import common from '@ohos.app.ability.common';
@@ -332,7 +332,7 @@ removeAccount(name: string, callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   try {
@@ -378,7 +378,7 @@ removeAccount(name: string): Promise&lt;void&gt;
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
 
   try {
@@ -420,7 +420,7 @@ setAppAccess(name: string, bundleName: string, isAccessible: boolean, callback: 
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   try {
@@ -469,7 +469,7 @@ setAppAccess(name: string, bundleName: string, isAccessible: boolean): Promise&l
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
 
   try {
@@ -509,7 +509,7 @@ checkAppAccess(name: string, bundleName: string, callback: AsyncCallback&lt;bool
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   try {
@@ -557,7 +557,7 @@ checkAppAccess(name: string, bundleName: string): Promise&lt;boolean&gt;
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
 
   try {
@@ -599,7 +599,7 @@ setDataSyncEnabled(name: string, isEnabled: boolean, callback: AsyncCallback&lt;
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   try {
@@ -644,7 +644,7 @@ setDataSyncEnabled(name: string, isEnabled: boolean): Promise&lt;void&gt;
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
 
   try {
@@ -685,7 +685,7 @@ checkDataSyncEnabled(name: string, callback: AsyncCallback&lt;boolean&gt;): void
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   try {
@@ -733,7 +733,7 @@ checkDataSyncEnabled(name: string): Promise&lt;boolean&gt;
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
 
   try {
@@ -774,7 +774,7 @@ setCredential(name: string, credentialType: string, credential: string,callback:
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   try {
@@ -822,7 +822,7 @@ setCredential(name: string, credentialType: string, credential: string): Promise
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
 
   try {
@@ -863,7 +863,7 @@ getCredential(name: string, credentialType: string, callback: AsyncCallback&lt;s
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   try {
@@ -911,7 +911,7 @@ getCredential(name: string, credentialType: string): Promise&lt;string&gt;
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
 
   try {
@@ -953,7 +953,7 @@ setCustomData(name: string, key: string, value: string, callback: AsyncCallback&
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   try {
@@ -1002,7 +1002,7 @@ setCustomData(name: string, key: string, value: string): Promise&lt;void&gt;
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
 
   try {
@@ -1043,7 +1043,7 @@ getCustomData(name: string, key: string, callback: AsyncCallback&lt;string&gt;):
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   try {
@@ -1091,7 +1091,7 @@ getCustomData(name: string, key: string): Promise&lt;string&gt;
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
 
   try {
@@ -1137,7 +1137,7 @@ getCustomDataSync(name: string, key: string): string;
 
 **示例：**
 
-  ```js
+  ```ts
   try {
       let value = appAccountManager.getCustomDataSync('ZhangSan', 'age');
       console.info('getCustomDataSync successfully, vaue: ' + value);
@@ -1168,7 +1168,7 @@ getAllAccounts(callback: AsyncCallback&lt;Array&lt;AppAccountInfo&gt;&gt;): void
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   try {
@@ -1206,7 +1206,7 @@ getAllAccounts(): Promise&lt;Array&lt;AppAccountInfo&gt;&gt;
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
 
   try {
@@ -1245,7 +1245,7 @@ getAccountsByOwner(owner: string, callback: AsyncCallback&lt;Array&lt;AppAccount
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   try {
@@ -1292,7 +1292,7 @@ getAccountsByOwner(owner: string): Promise&lt;Array&lt;AppAccountInfo&gt;&gt;
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
 
   try {
@@ -1333,7 +1333,7 @@ on(type: 'accountChange', owners: Array&lt;string&gt;, callback: Callback&lt;Arr
 
 **示例：**
 
-  ```js
+  ```ts
   function changeOnCallback(data: account_appAccount.AppAccountInfo[]): void {
   	console.log('receive change data:' + JSON.stringify(data));
   }
@@ -1368,7 +1368,7 @@ off(type: 'accountChange', callback?: Callback&lt;Array&lt;AppAccountInfo&gt;&gt
 
 **示例：**
 
-  ```js
+  ```ts
   function changeOnCallback(data: account_appAccount.AppAccountInfo[]): void {
   	console.log('receive change data:' + JSON.stringify(data));
   }
@@ -1415,7 +1415,7 @@ auth(name: string, owner: string, authType: string, callback: AuthCallback): voi
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   import Want from '@ohos.app.ability.Want';
   import common from '@ohos.app.ability.common';
@@ -1482,7 +1482,7 @@ auth(name: string, owner: string, authType: string, options: {[key: string]: Obj
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   import Want from '@ohos.app.ability.Want';
   import common from '@ohos.app.ability.common';
@@ -1549,7 +1549,7 @@ getAuthToken(name: string, owner: string, authType: string, callback: AsyncCallb
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   try {
@@ -1599,7 +1599,7 @@ getAuthToken(name: string, owner: string, authType: string): Promise&lt;string&g
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   try {
@@ -1641,7 +1641,7 @@ setAuthToken(name: string, authType: string, token: string, callback: AsyncCallb
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   try {
@@ -1690,7 +1690,7 @@ setAuthToken(name: string, authType: string, token: string): Promise&lt;void&gt;
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   try {
@@ -1733,7 +1733,7 @@ deleteAuthToken(name: string, owner: string, authType: string, token: string, ca
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   try {
@@ -1784,7 +1784,7 @@ deleteAuthToken(name: string, owner: string, authType: string, token: string): P
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   try {
@@ -1829,7 +1829,7 @@ setAuthTokenVisibility(name: string, authType: string, bundleName: string, isVis
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   try {
@@ -1882,7 +1882,7 @@ setAuthTokenVisibility(name: string, authType: string, bundleName: string, isVis
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   try {
@@ -1924,7 +1924,7 @@ checkAuthTokenVisibility(name: string, authType: string, bundleName: string, cal
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   try {
@@ -1974,7 +1974,7 @@ checkAuthTokenVisibility(name: string, authType: string, bundleName: string): Pr
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   try {
@@ -2015,7 +2015,7 @@ getAllAuthTokens(name: string, owner: string, callback: AsyncCallback&lt;Array&l
 
 **示例：** 
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   try {
@@ -2063,7 +2063,7 @@ getAllAuthTokens(name: string, owner: string): Promise&lt;Array&lt;AuthTokenInfo
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   try {
@@ -2105,7 +2105,7 @@ getAuthList(name: string, authType: string, callback: AsyncCallback&lt;Array&lt;
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   try {
@@ -2153,7 +2153,7 @@ getAuthList(name: string, authType: string): Promise&lt;Array&lt;string&gt;&gt;
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   try {
@@ -2192,7 +2192,7 @@ getAuthCallback(sessionId: string, callback: AsyncCallback&lt;AuthCallback&gt;):
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   import UIAbility from '@ohos.app.ability.UIAbility';
   import Want from '@ohos.app.ability.Want';
@@ -2256,7 +2256,7 @@ getAuthCallback(sessionId: string): Promise&lt;AuthCallback&gt;
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   import UIAbility from '@ohos.app.ability.UIAbility';
   import Want from '@ohos.app.ability.Want';
@@ -2313,7 +2313,7 @@ queryAuthenticatorInfo(owner: string, callback: AsyncCallback&lt;AuthenticatorIn
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   try {
@@ -2360,7 +2360,7 @@ queryAuthenticatorInfo(owner: string): Promise&lt;AuthenticatorInfo&gt;
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   try {
@@ -2405,7 +2405,7 @@ checkAccountLabels(name: string, owner: string, labels: Array&lt;string&gt;, cal
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   let labels = ['student'];
@@ -2458,7 +2458,7 @@ checkAccountLabels(name: string, owner: string, labels: Array&lt;string&gt;): Pr
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   let labels = ['student'];
@@ -2501,7 +2501,7 @@ deleteCredential(name: string, credentialType: string, callback: AsyncCallback&l
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   try {
@@ -2549,7 +2549,7 @@ deleteCredential(name: string, credentialType: string): Promise&lt;void&gt;
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   try {
@@ -2589,7 +2589,7 @@ selectAccountsByOptions(options: SelectAccountsOptions, callback: AsyncCallback&
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   let options: account_appAccount.SelectAccountsOptions = {
@@ -2641,7 +2641,7 @@ selectAccountsByOptions(options: SelectAccountsOptions): Promise&lt;Array&lt;App
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   let options: account_appAccount.SelectAccountsOptions = {
@@ -2687,7 +2687,7 @@ verifyCredential(name: string, owner: string, callback: AuthCallback): void;
 
 **示例：**
 
-  ```js
+  ```ts
   import Want from '@ohos.app.ability.Want';
 
   try {
@@ -2735,7 +2735,7 @@ verifyCredential(name: string, owner: string, options: VerifyCredentialOptions, 
 
 **示例：**
 
-  ```js
+  ```ts
   import Want from '@ohos.app.ability.Want';
 
   let options: account_appAccount.VerifyCredentialOptions = {
@@ -2784,7 +2784,7 @@ setAuthenticatorProperties(owner: string, callback: AuthCallback): void;
 
 **示例：**
 
-  ```js
+  ```ts
   import Want from '@ohos.app.ability.Want';
 
   try {
@@ -2830,7 +2830,7 @@ setAuthenticatorProperties(owner: string, options: SetPropertiesOptions, callbac
 
 **示例：**
 
-  ```js
+  ```ts
   import Want from '@ohos.app.ability.Want';
 
   let options: account_appAccount.SetPropertiesOptions = {
@@ -2874,7 +2874,7 @@ addAccount(name: string, callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   appAccountManager.addAccount('WangWu', (err: BusinessError) => { 
@@ -2903,7 +2903,7 @@ addAccount(name: string, extraInfo: string, callback: AsyncCallback&lt;void&gt;)
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   appAccountManager.addAccount('LiSi', 'token101', (err: BusinessError) => { 
@@ -2937,7 +2937,7 @@ addAccount(name: string, extraInfo?: string): Promise&lt;void&gt;
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   appAccountManager.addAccount('LiSi', 'token101').then(()=> { 
@@ -2970,7 +2970,7 @@ addAccountImplicitly(owner: string, authType: string, options: {[key: string]: a
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   import Want from '@ohos.app.ability.Want';
   import common from '@ohos.app.ability.common';
@@ -3023,7 +3023,7 @@ deleteAccount(name: string, callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   appAccountManager.deleteAccount('ZhaoLiu', (err: BusinessError) => { 
@@ -3057,7 +3057,7 @@ deleteAccount(name: string): Promise&lt;void&gt;
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
 
   appAccountManager.deleteAccount('ZhaoLiu').then(() => { 
@@ -3088,7 +3088,7 @@ disableAppAccess(name: string, bundleName: string, callback: AsyncCallback&lt;vo
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
 
   appAccountManager.disableAppAccess('ZhangSan', 'com.example.accountjsdemo', (err: BusinessError) => { 
@@ -3123,7 +3123,7 @@ disableAppAccess(name: string, bundleName: string): Promise&lt;void&gt;
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
 
   appAccountManager.disableAppAccess('ZhangSan', 'com.example.accountjsdemo').then(() => { 
@@ -3155,7 +3155,7 @@ enableAppAccess(name: string, bundleName: string, callback: AsyncCallback&lt;voi
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   appAccountManager.enableAppAccess('ZhangSan', 'com.example.accountjsdemo', (err: BusinessError) => { 
@@ -3190,7 +3190,7 @@ enableAppAccess(name: string, bundleName: string): Promise&lt;void&gt;
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   appAccountManager.enableAppAccess('ZhangSan', 'com.example.accountjsdemo').then(() => { 
@@ -3223,7 +3223,7 @@ checkAppAccountSyncEnable(name: string, callback: AsyncCallback&lt;boolean&gt;):
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   appAccountManager.checkAppAccountSyncEnable('ZhangSan', (err: BusinessError, result: boolean) => { 
@@ -3260,7 +3260,7 @@ checkAppAccountSyncEnable(name: string): Promise&lt;boolean&gt;
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   appAccountManager.checkAppAccountSyncEnable('ZhangSan').then((data: boolean) => { 
@@ -3293,7 +3293,7 @@ setAccountCredential(name: string, credentialType: string, credential: string,ca
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   appAccountManager.setAccountCredential('ZhangSan', 'credentialType001', 'credential001', (err: BusinessError) => { 
@@ -3329,7 +3329,7 @@ setAccountCredential(name: string, credentialType: string, credential: string): 
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   appAccountManager.setAccountCredential('ZhangSan', 'credentialType001', 'credential001').then(() => { 
@@ -3362,7 +3362,7 @@ setAccountExtraInfo(name: string, extraInfo: string, callback: AsyncCallback&lt;
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   appAccountManager.setAccountExtraInfo('ZhangSan', 'Tk002', (err: BusinessError) => { 
@@ -3398,7 +3398,7 @@ setAccountExtraInfo(name: string, extraInfo: string): Promise&lt;void&gt;
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   appAccountManager.setAccountExtraInfo('ZhangSan', 'Tk002').then(() => { 
@@ -3432,7 +3432,7 @@ setAppAccountSyncEnable(name: string, isEnable: boolean, callback: AsyncCallback
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   appAccountManager.setAppAccountSyncEnable('ZhangSan', true, (err: BusinessError) => { 
@@ -3469,7 +3469,7 @@ setAppAccountSyncEnable(name: string, isEnable: boolean): Promise&lt;void&gt;
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   appAccountManager .setAppAccountSyncEnable('ZhangSan', true).then(() => { 
@@ -3503,7 +3503,7 @@ setAssociatedData(name: string, key: string, value: string, callback: AsyncCallb
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   appAccountManager.setAssociatedData('ZhangSan', 'k001', 'v001', (err: BusinessError) => { 
@@ -3540,7 +3540,7 @@ setAssociatedData(name: string, key: string, value: string): Promise&lt;void&gt;
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   appAccountManager.setAssociatedData('ZhangSan', 'k001', 'v001').then(() => { 
@@ -3572,7 +3572,7 @@ getAllAccessibleAccounts(callback: AsyncCallback&lt;Array&lt;AppAccountInfo&gt;&
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   appAccountManager.getAllAccessibleAccounts((err: BusinessError, data: account_appAccount.AppAccountInfo[])=>{
@@ -3603,7 +3603,7 @@ getAllAccessibleAccounts(): Promise&lt;Array&lt;AppAccountInfo&gt;&gt;
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   appAccountManager.getAllAccessibleAccounts().then((data: account_appAccount.AppAccountInfo[]) => { 
@@ -3636,7 +3636,7 @@ getAllAccounts(owner: string, callback: AsyncCallback&lt;Array&lt;AppAccountInfo
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   const selfBundle = 'com.example.actsgetallaaccounts';
@@ -3674,7 +3674,7 @@ getAllAccounts(owner: string): Promise&lt;Array&lt;AppAccountInfo&gt;&gt;
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   const selfBundle = 'com.example.actsgetallaaccounts';
@@ -3707,7 +3707,7 @@ getAccountCredential(name: string, credentialType: string, callback: AsyncCallba
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   appAccountManager.getAccountCredential('ZhangSan', 'credentialType001', (err: BusinessError, result: string) => { 
@@ -3743,7 +3743,7 @@ getAccountCredential(name: string, credentialType: string): Promise&lt;string&gt
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   appAccountManager.getAccountCredential('ZhangSan', 'credentialType001').then((data: string) => { 
@@ -3774,7 +3774,7 @@ getAccountExtraInfo(name: string, callback: AsyncCallback&lt;string&gt;): void
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   appAccountManager.getAccountExtraInfo('ZhangSan', (err: BusinessError, result: string) => { 
@@ -3809,7 +3809,7 @@ getAccountExtraInfo(name: string): Promise&lt;string&gt;
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   appAccountManager.getAccountExtraInfo('ZhangSan').then((data: string) => { 
@@ -3841,7 +3841,7 @@ getAssociatedData(name: string, key: string, callback: AsyncCallback&lt;string&g
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   appAccountManager.getAssociatedData('ZhangSan', 'k001', (err: BusinessError, result: string) => { 
@@ -3877,7 +3877,7 @@ getAssociatedData(name: string, key: string): Promise&lt;string&gt;
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   appAccountManager.getAssociatedData('ZhangSan', 'k001').then((data: string) => { 
@@ -3909,7 +3909,7 @@ on(type: 'change', owners: Array&lt;string&gt;, callback: Callback&lt;Array&lt;A
 
 **示例：**
 
-  ```js
+  ```ts
   function changeOnCallback(data: account_appAccount.AppAccountInfo[]): void {
   	console.debug('receive change data:' + JSON.stringify(data));
   }
@@ -3942,7 +3942,7 @@ off(type: 'change', callback?: Callback&lt;Array&lt;AppAccountInfo&gt;&gt;): voi
 
 **示例：**
 
-  ```js
+  ```ts
   function changeOnCallback(data: account_appAccount.AppAccountInfo[]): void {
   	console.debug('receive change data: ' + JSON.stringify(data));
   	appAccountManager.off('change', () => {
@@ -3981,7 +3981,7 @@ authenticate(name: string, owner: string, authType: string, options: {[key: stri
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   import Want from '@ohos.app.ability.Want';
   import common from '@ohos.app.ability.common';
@@ -4036,7 +4036,7 @@ getOAuthToken(name: string, owner: string, authType: string, callback: AsyncCall
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   appAccountManager.getOAuthToken('LiSi', 'com.example.accountjsdemo', 'getSocialData',
@@ -4074,7 +4074,7 @@ getOAuthToken(name: string, owner: string, authType: string): Promise&lt;string&
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   appAccountManager.getOAuthToken('LiSi', 'com.example.accountjsdemo', 'getSocialData').then((data: string) => {
@@ -4107,7 +4107,7 @@ setOAuthToken(name: string, authType: string, token: string, callback: AsyncCall
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   appAccountManager.setOAuthToken('LiSi', 'getSocialData', 'xxxx', (err: BusinessError) => {
@@ -4143,7 +4143,7 @@ setOAuthToken(name: string, authType: string, token: string): Promise&lt;void&gt
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   appAccountManager.setOAuthToken('LiSi', 'getSocialData', 'xxxx').then(() => {
@@ -4177,7 +4177,7 @@ deleteOAuthToken(name: string, owner: string, authType: string, token: string, c
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   appAccountManager.deleteOAuthToken('LiSi', 'com.example.accountjsdemo', 'getSocialData', 'xxxxx',
@@ -4215,7 +4215,7 @@ deleteOAuthToken(name: string, owner: string, authType: string, token: string): 
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   appAccountManager.deleteOAuthToken('LiSi', 'com.example.accountjsdemo', 'getSocialData', 'xxxxx').then(() => {
@@ -4249,7 +4249,7 @@ setOAuthTokenVisibility(name: string, authType: string, bundleName: string, isVi
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   appAccountManager.setOAuthTokenVisibility('LiSi', 'getSocialData', 'com.example.accountjsdemo', true,
@@ -4287,7 +4287,7 @@ setOAuthTokenVisibility(name: string, authType: string, bundleName: string, isVi
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   appAccountManager.setOAuthTokenVisibility('LiSi', 'getSocialData', 'com.example.accountjsdemo', true).then(() => {
@@ -4320,7 +4320,7 @@ checkOAuthTokenVisibility(name: string, authType: string, bundleName: string, ca
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   appAccountManager.checkOAuthTokenVisibility('LiSi', 'getSocialData', 'com.example.accountjsdemo',
@@ -4358,7 +4358,7 @@ checkOAuthTokenVisibility(name: string, authType: string, bundleName: string): P
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   appAccountManager.checkOAuthTokenVisibility('LiSi', 'getSocialData', 'com.example.accountjsdemo').then((
@@ -4391,7 +4391,7 @@ getAllOAuthTokens(name: string, owner: string, callback: AsyncCallback&lt;Array&
 
 **示例：** 
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   appAccountManager.getAllOAuthTokens('LiSi', 'com.example.accountjsdemo',
@@ -4428,7 +4428,7 @@ getAllOAuthTokens(name: string, owner: string): Promise&lt;Array&lt;OAuthTokenIn
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   appAccountManager.getAllOAuthTokens('LiSi', 'com.example.accountjsdemo').then((
@@ -4461,7 +4461,7 @@ getOAuthList(name: string, authType: string, callback: AsyncCallback&lt;Array&lt
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   appAccountManager.getOAuthList('LiSi', 'getSocialData', (err: BusinessError, data: string[]) => {
@@ -4497,7 +4497,7 @@ getOAuthList(name: string, authType: string): Promise&lt;Array&lt;string&gt;&gt;
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   appAccountManager.getOAuthList('LiSi', 'getSocialData').then((data: string[]) => {
@@ -4528,7 +4528,7 @@ getAuthenticatorCallback(sessionId: string, callback: AsyncCallback&lt;Authentic
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   import UIAbility from '@ohos.app.ability.UIAbility';
   import Want from '@ohos.app.ability.Want';
@@ -4580,7 +4580,7 @@ getAuthenticatorCallback(sessionId: string): Promise&lt;AuthenticatorCallback&gt
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   import UIAbility from '@ohos.app.ability.UIAbility';
   import Want from '@ohos.app.ability.Want';
@@ -4625,7 +4625,7 @@ getAuthenticatorInfo(owner: string, callback: AsyncCallback&lt;AuthenticatorInfo
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   appAccountManager.getAuthenticatorInfo('com.example.accountjsdemo',
@@ -4661,7 +4661,7 @@ getAuthenticatorInfo(owner: string): Promise&lt;AuthenticatorInfo&gt;
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   appAccountManager.getAuthenticatorInfo('com.example.accountjsdemo').then((
@@ -4869,7 +4869,7 @@ onResult: (code: number, result?: AuthResult) =&gt; void
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   let appAccountManager = account_appAccount.createAppAccountManager();
@@ -4907,7 +4907,7 @@ onRequestRedirected: (request: Want) =&gt; void
 
 **示例：**
 
-  ```js
+  ```ts
   class MyAuthenticator extends account_appAccount.Authenticator {
       createAccountImplicitly(
         options: account_appAccount.CreateAccountImplicitlyOptions, callback: account_appAccount.AuthCallback) {
@@ -4945,7 +4945,7 @@ onRequestContinued?: () =&gt; void
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   let appAccountManager = account_appAccount.createAppAccountManager();
@@ -4984,7 +4984,7 @@ onResult: (code: number, result: {[key: string]: any}) =&gt; void
 
 **示例：**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   
   let appAccountManager = account_appAccount.createAppAccountManager();
@@ -5017,7 +5017,7 @@ onRequestRedirected: (request: Want) =&gt; void
 
 **示例：**
 
-  ```js
+  ```ts
   class MyAuthenticator extends account_appAccount.Authenticator {
       addAccountImplicitly(authType: string, callerBundleName: string,
         options: Record<string, Object>, callback: account_appAccount.AuthenticatorCallback) {
@@ -5191,7 +5191,7 @@ getRemoteObject(): rpc.RemoteObject;
 
 **示例：**
 
-  ```js
+  ```ts
   class MyAuthenticator extends account_appAccount.Authenticator {
     addAccountImplicitly(authType: string, callerBundleName: string,
       options: Record<string, Object>, callback: account_appAccount.AuthenticatorCallback) {

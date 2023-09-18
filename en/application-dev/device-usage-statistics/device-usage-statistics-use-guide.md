@@ -21,9 +21,12 @@ import usageStatistics from '@ohos.resourceschedule.usageStatistics';
 | function queryBundleStatsInfoByInterval(byInterval: IntervalType, begin: number, end: number, callback: AsyncCallback&lt;Array&lt;BundleStatsInfo&gt;&gt;): void | Queries the application usage duration statistics in the specified time frame at the specified interval (daily, weekly, monthly, or annually).|
 | function queryAppGroup(callback: AsyncCallback&lt;number&gt;): void | Queries the priority group of this application. This API uses an asynchronous callback to return the result.|
 | function queryAppGroup(): Promise&lt;number&gt;; | Queries the priority group of this application. This API uses a promise to return the result.|
+|function queryAppGroupSync(): number; | Queries the priority group of this application. This is a synchronous API.|
 | function queryAppGroup(bundleName : string, callback: AsyncCallback&lt;number&gt;): void | Queries the priority group of the application specified by **bundleName**. This API uses an asynchronous callback to return the result.|
 | function queryAppGroup(bundleName : string): Promise&lt;number&gt;; | Queries the priority group of the application specified by **bundleName**. If **bundleName** is not specified, the priority group of the current application is queried. This API uses a promise to return the result.|
+|function queryAppGroupSync(bundleName: string): number; |  Queries the priority group of the application specified by **bundleName**. If **bundleName** is not specified, the priority group of the current application is queried. This is a synchronous API.|
 | function isIdleState(bundleName: string, callback: AsyncCallback&lt;boolean&gt;): void | Checks whether the application specified by **bundleName** is in the idle state. |
+|function isIdleStateSync(bundleName: string): boolean; | Checks whether the application specified by **bundleName** is in the idle state. This is a synchronous API.|
 | function queryModuleUsageRecords(callback: AsyncCallback&lt;HapModuleInfo&gt;): void | Obtains a maximum of 1000 FA usage records.|
 | function queryModuleUsageRecords(maxNum: number, callback: AsyncCallback&lt;HapModuleInfo&gt;): void | Obtains the number of FA usage records specified by **maxNum**, which cannot exceed 1000.|
 | function queryNotificationEventStats(begin: number, end: number, callback: AsyncCallback&lt;Array&lt;DeviceEventStats&gt;&gt;): void | Queries the number of notifications from all applications based on the specified start time and end time.|
@@ -223,6 +226,14 @@ import usageStatistics from '@ohos.resourceschedule.usageStatistics';
     } catch (error) {
         console.log('BUNDLE_ACTIVE queryAppGroup throw error, code is: ' + error.code + ',message is: ' + error.message);
     }
+
+    // Synchronous API
+    try{
+        var priorityGroup = usageStatistics.queryAppGroupSync();
+    } catch (error) {
+        console.log('BUNDLE_ACTIVE queryAppGroup throw error, code is: ' + error.code + ',message is: ' + error.message);
+    }
+
     ```
 
 7. Check whether the application specified by **bundleName** is in the idle state. This requires the **ohos.permission.BUNDLE_ACTIVE_INFO** permission to be configured.
@@ -250,6 +261,13 @@ import usageStatistics from '@ohos.resourceschedule.usageStatistics';
                 console.log('BUNDLE_ACTIVE isIdleState callback succeeded, result: ' + JSON.stringify(res));
             }
         });
+    } catch(error) {
+        console.log('BUNDLE_ACTIVE isIdleState throw error, code is: ' + error.code + ',message is: ' + error.message);
+    }
+
+    // Synchronous API
+    try{
+        var isIdleState = usageStatistics.isIdleStateSync("com.ohos.camera");
     } catch(error) {
         console.log('BUNDLE_ACTIVE isIdleState throw error, code is: ' + error.code + ',message is: ' + error.message);
     }

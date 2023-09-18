@@ -15,7 +15,7 @@
 
 ## 导入模块
 
-```js
+```ts
 import mediaquery from '@ohos.mediaquery'
 ```
 
@@ -42,8 +42,9 @@ matchMediaSync(condition: string): MediaQueryListener
 
 **示例：** 
 
-```js
-let listener = mediaquery.matchMediaSync('(orientation: landscape)'); //监听横屏事件
+```ts
+import mediaquery from '@ohos.mediaquery'
+let listener:mediaquery.MediaQueryListener = mediaquery.matchMediaSync('(orientation: landscape)'); //监听横屏事件
 ```
 
 
@@ -98,7 +99,7 @@ off(type: 'change', callback?: Callback&lt;MediaQueryResult&gt;): void
 
 **示例：** 
 
-  ```js
+  ```ts
     import mediaquery from '@ohos.mediaquery'
     
     let listener = mediaquery.matchMediaSync('(orientation: landscape)'); //监听横屏事件

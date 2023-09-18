@@ -11,7 +11,7 @@
 
 ## 导入模块
 
-```js
+```ts
 import Intl from '@ohos.intl';
 ```
 
@@ -45,7 +45,7 @@ constructor()
 **系统能力**：SystemCapability.Global.I18n
 
 **示例：** 
-  ```js
+  ```ts
   // 默认构造函数使用系统当前locale创建Locale对象
   let locale = new Intl.Locale();
   // 返回系统当前localel
@@ -69,7 +69,7 @@ constructor(locale: string, options?: LocaleOptions)
 | options             | [LocaleOptions](#localeoptions6) | 否    | 用于创建区域对象的选项。 |
 
 **示例：** 
-  ```js
+  ```ts
   // 创建 "zh-CN" Locale对象
   let locale = new Intl.Locale("zh-CN");
   let localeID = locale.toString(); // localeID = "zh-CN"
@@ -91,7 +91,7 @@ toString(): string
 | string | 区域对象的字符串表示。 |
 
 **示例：** 
-  ```js
+  ```ts
   // 创建 "en-GB" Locale对象
   let locale = new Intl.Locale("en-GB");
   let localeID = locale.toString(); // localeID = "en-GB"
@@ -113,7 +113,7 @@ maximize(): Locale
 | [Locale](#locale) | 最大化后的区域对象。 |
 
 **示例：** 
-  ```js
+  ```ts
   // 创建 "zh" Locale对象
   let locale = new Intl.Locale("zh");
   // 补齐Locale对象的脚本和地区
@@ -143,7 +143,7 @@ minimize(): Locale
 | [Locale](#locale) | 最小化后的区域对象。 |
 
 **示例：** 
-  ```js
+  ```ts
   // 创建 "zh-Hans-CN" Locale对象
   let locale = new Intl.Locale("zh-Hans-CN");
   // 去除Locale对象的脚本和地区
@@ -187,7 +187,7 @@ constructor()
 **系统能力**：SystemCapability.Global.I18n
 
 **示例：** 
-  ```js
+  ```ts
   // 使用系统当前locale创建DateTimeFormat对象
   let datefmt= new Intl.DateTimeFormat();
   ```
@@ -209,14 +209,14 @@ constructor(locale: string | Array&lt;string&gt;, options?: DateTimeOptions)
 | options              | [DateTimeOptions](#datetimeoptions6) | 否    | 用于创建时间日期格式化的选项。若所有选项均未设置时，year、month、day三个属性的默认值为numeric。 |
 
 **示例：** 
-  ```js
+  ```ts
   // 使用 "zh-CN" locale创建DateTimeFormat对象，日期风格为full，时间风格为medium
   let datefmt= new Intl.DateTimeFormat("zh-CN", { dateStyle: 'full', timeStyle: 'medium' });
   ```
 
 
 **示例：** 
-  ```js
+  ```ts
   // 使用 ["ban", "zh"] locale列表创建DateTimeFormat对象，因为ban为非法LocaleID，因此使用zh Locale创建DateTimeFormat对象
   let datefmt= new Intl.DateTimeFormat(["ban", "zh"], { dateStyle: 'full', timeStyle: 'medium' });
   ```
@@ -243,7 +243,7 @@ format(date: Date): string
 | string | 格式化后的时间日期字符串 |
 
 **示例：** 
-  ```js
+  ```ts
   let date = new Date(2021, 11, 17, 3, 24, 0);
   // 使用 en-GB locale创建DateTimeFormat对象
   let datefmt = new Intl.DateTimeFormat("en-GB");
@@ -277,7 +277,7 @@ formatRange(startDate: Date, endDate: Date): string
 | string | 格式化后的时间日期段字符串。 |
 
 **示例：** 
-  ```js
+  ```ts
   let startDate = new Date(2021, 11, 17, 3, 24, 0);
   let endDate = new Date(2021, 11, 18, 3, 24, 0);
   // 使用 en-GB locale创建DateTimeFormat对象
@@ -301,7 +301,7 @@ resolvedOptions(): DateTimeOptions
 | [DateTimeOptions](#datetimeoptions6) | DateTimeFormat&nbsp;对象的格式化选项。 |
 
 **示例：** 
-  ```js
+  ```ts
   let datefmt = new Intl.DateTimeFormat("en-GB", { dateStyle: 'full', timeStyle: 'medium' });
   // 返回DateTimeFormat对象的配置项
   let options = datefmt.resolvedOptions();
@@ -352,7 +352,7 @@ constructor()
 **系统能力**：SystemCapability.Global.I18n
 
 **示例：** 
-  ```js
+  ```ts
   // 使用系统当前locale创建NumberFormat对象
   let numfmt = new Intl.NumberFormat();
   ```
@@ -374,7 +374,7 @@ constructor(locale: string | Array&lt;string&gt;, options?: NumberOptions)
 | options              | [NumberOptions](#numberoptions6) | 否    | 用于创建数字格式化的选项。                |
 
 **示例：** 
-  ```js
+  ```ts
   // 使用 en-GB locale创建NumberFormat对象，style设置为decimal，notation设置为scientific
   let numfmt = new Intl.NumberFormat("en-GB", {style:'decimal', notation:"scientific"});
   ```
@@ -402,7 +402,7 @@ format(number: number): string;
 
 
 **示例：** 
-  ```js
+  ```ts
   // 使用 ["en-GB", "zh"] locale列表创建NumberFormat对象，因为en-GB为合法LocaleID，因此使用en-GB创建NumberFormat对象
   let numfmt = new Intl.NumberFormat(["en-GB", "zh"], {style:'decimal', notation:"scientific"});
   let formattedNumber = numfmt.format(1223); // formattedNumber = 1.223E3
@@ -425,7 +425,7 @@ resolvedOptions(): NumberOptions
 
 
 **示例：** 
-  ```js
+  ```ts
   let numfmt = new Intl.NumberFormat(["en-GB", "zh"], {style:'decimal', notation:"scientific"});
   // 获取NumberFormat对象配置项
   let options = numfmt.resolvedOptions();
@@ -445,7 +445,7 @@ resolvedOptions(): NumberOptions
 | ------------------------ | ------- | ---- | ---- | ---------------------------------------- |
 | locale                   | string  | 是    | 否    | 区域参数，&nbsp;如："zh-Hans-CN"。locale属性默认值为系统Locale。               |
 | currency                 | string  | 是    | 是    | 货币单位，&nbsp;如："EUR"，"CNY"，"USD"等。         |
-| currencySign             | string  | 是    | 是    | 货币单位的符号显示，取值包括：&nbsp;"symbol"，"narrowSymbol"，"code"，"name"&nbsp;。currencySign属性默认值为standard。 |
+| currencySign             | string  | 是    | 是    | 货币单位的符号显示，取值包括：&nbsp;"standard"，"accounting"。currencySign属性默认值为standard。 |
 | currencyDisplay          | string  | 是    | 是    | 货币的显示方式，取值包括："symbol",&nbsp;"narrowSymbol",&nbsp;"code",&nbsp;"name"。currencyDisplay属性默认值为symbol。 |
 | unit                     | string  | 是    | 是    | 单位名称，如："meter"，"inch"，“hectare”等。        |
 | unitDisplay              | string  | 是    | 是    | 单位的显示格式，取值包括："long",&nbsp;"short",&nbsp;"narrow"。unitDisplay属性默认值为short。 |
@@ -476,7 +476,7 @@ constructor()
 **系统能力**：SystemCapability.Global.I18n
 
 **示例：** 
-  ```js
+  ```ts
   // 使用系统locale创建Collator对象
   let collator = new Intl.Collator();
   ```
@@ -498,7 +498,7 @@ constructor(locale: string | Array&lt;string&gt;, options?: CollatorOptions)
 | options              | [CollatorOptions](#collatoroptions8) | 否    | 用于创建排序对象的选项。       |
 
 **示例：** 
-  ```js
+  ```ts
   // 使用 zh-CN locale创建Collator对象，localeMatcher设置为lookup，usage设置为sort
   let collator = new Intl.Collator("zh-CN", {localeMatcher: "lookup", usage: "sort"});
   ```
@@ -526,7 +526,7 @@ compare(first: string, second: string): number
 | number | 比较结果。当number为负数，表示first排序在second之前；当number为0，表示first与second排序相同；当number为正数，表示first排序在second之后。 |
 
 **示例：** 
-  ```js
+  ```ts
   // 使用en-GB locale创建Collator对象
   let collator = new Intl.Collator("en-GB");
   // 比较 "first" 和 "second" 的先后顺序
@@ -549,7 +549,7 @@ resolvedOptions(): CollatorOptions
 | [CollatorOptions](#collatoroptions8) | 返回的Collator对象的属性。 |
 
 **示例：** 
-  ```js
+  ```ts
   let collator = new Intl.Collator("zh-Hans", { usage: 'sort', ignorePunctuation: true });
   // 获取Collator对象的配置项
   let options = collator.resolvedOptions();
@@ -588,7 +588,7 @@ constructor()
 **系统能力**：SystemCapability.Global.I18n
 
 **示例：** 
-  ```js
+  ```ts
   // 使用系统locale创建PluralRules对象
   let pluralRules = new Intl.PluralRules();
   ```
@@ -610,7 +610,7 @@ constructor(locale: string | Array&lt;string&gt;, options?: PluralRulesOptions)
 | options              | [PluralRulesOptions](#pluralrulesoptions8) | 否    | 用于创建单复数对象的选项。       |
 
 **示例：** 
-  ```js
+  ```ts
   // 使用 zh-CN locale创建PluralRules对象，localeMatcher设置为lookup，type设置为cardinal
   let pluralRules= new Intl.PluralRules("zh-CN", {"localeMatcher": "lookup", "type": "cardinal"});
   ```
@@ -637,7 +637,7 @@ select(n: number): string
 | string | 单复数类别，取值包括："zero"，"one"，"two",&nbsp;"few",&nbsp;"many",&nbsp;"others"。 |
 
 **示例：** 
-  ```js
+  ```ts
   // 使用 zh-Hans locale创建PluralRules对象
   let zhPluralRules = new Intl.PluralRules("zh-Hans");
   // 计算 zh-Hans locale中数字1对应的单复数类别
@@ -680,7 +680,7 @@ constructor()
 **系统能力**：SystemCapability.Global.I18n
 
 **示例：** 
-  ```js
+  ```ts
   // 使用系统locale创建RelativeTimeFormat对象
   let relativetimefmt = new Intl.RelativeTimeFormat();
   ```
@@ -702,7 +702,7 @@ constructor(locale: string | Array&lt;string&gt;, options?: RelativeTimeFormatIn
 | options              | [RelativeTimeFormatInputOptions](#relativetimeformatinputoptions8) | 否    | 用于创建相对时间格式化对象的选项。            |
 
 **示例：** 
-  ```js
+  ```ts
   // 使用 zh-CN locale创建RelativeTimeFormat对象，localeMatcher设置为lookup，numeric设置为always，style设置为long
   let relativeTimeFormat = new Intl.RelativeTimeFormat("zh-CN", {"localeMatcher": "lookup", "numeric": "always", "style": "long"});
   ```
@@ -730,7 +730,7 @@ format(value: number, unit: string): string
 | string | 格式化后的相对时间。 |
 
 **示例：** 
-  ```js
+  ```ts
   // 使用 zh-CN locale创建RelativeTimeFormat对象
   let relativetimefmt = new Intl.RelativeTimeFormat("zh-CN");
   // 计算 zh-CN locale中数字3，单位quarter的本地化表示
@@ -760,7 +760,7 @@ formatToParts(value: number, unit: string): Array&lt;object&gt;
 | Array&lt;object&gt; | 返回可用于自定义区域设置格式的相对时间格式的对象数组。 |
 
 **示例：** 
-  ```js
+  ```ts
   // 使用 en locale创建RelativeTimeFormat对象，numeric设置为auto
   let relativetimefmt = new Intl.RelativeTimeFormat("en", {"numeric": "auto"});
   let parts = relativetimefmt.formatToParts(10, "seconds"); // parts = [ {type: "literal", value: "in"}, {type: "integer", value: 10, unit: "second"}, {type: "literal", value: "seconds"} ]
@@ -782,7 +782,7 @@ resolvedOptions(): RelativeTimeFormatResolvedOptions
 | [RelativeTimeFormatResolvedOptions](#relativetimeformatresolvedoptions8) | RelativeTimeFormat&nbsp;对象的格式化选项。 |
 
 **示例：** 
-  ```js
+  ```ts
   // 使用 en-GB locale创建RelativeTimeFormat对象
   let relativetimefmt= new Intl.RelativeTimeFormat("en-GB", { style: "short" });
   // 获取RelativeTimeFormat对象配置项

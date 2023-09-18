@@ -19,7 +19,7 @@ This topic uses the following to identify the use of generics:
 ## Modules to Import
 
 ```ts
-import LinkedList from '@ohos.util.LinkedList';  
+import LinkedList from '@ohos.util.LinkedList';
 ```
 
 ## LinkedList
@@ -53,7 +53,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-let linkedList = new LinkedList();
+let linkedList: LinkedList<string | number | boolean | object> = new LinkedList();
 ```
 
 
@@ -88,12 +88,16 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-let linkedList = new LinkedList();
+let linkedList: LinkedList<string | number | boolean | object> = new LinkedList();
 let result = linkedList.add("a");
 let result1 = linkedList.add(1);
 let b = [1, 2, 3];
 let result2 = linkedList.add(b);
-let c = {name : "Dylon", age : "13"};
+class C {
+  name: string = ''
+  age: string = ''
+}
+let c: C = {name : "Dylon", age : "13"};
 let result3 = linkedList.add(c);
 let result4 = linkedList.add(false);
 ```
@@ -123,12 +127,16 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-let linkedList = new LinkedList();
+let linkedList: LinkedList<string | number | boolean | object> = new LinkedList();
 linkedList.addFirst("a");
 linkedList.addFirst(1);
 let b = [1, 2, 3];
 linkedList.addFirst(b);
-let c = {name : "Dylon", age : "13"};
+class C {
+  name: string = ''
+  age: string = ''
+}
+let c: C = {name : "Dylon", age : "13"};
 linkedList.addFirst(c);
 linkedList.addFirst(false);
 ```
@@ -160,7 +168,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-let linkedList = new LinkedList();
+let linkedList: LinkedList<string | number | boolean | object> = new LinkedList();
 linkedList.insert(0, "A");
 linkedList.insert(1, 0);
 linkedList.insert(2, true);
@@ -197,7 +205,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-let linkedList = new LinkedList();
+let linkedList: LinkedList<string> = new LinkedList();
 linkedList.add("squirrel");
 let result = linkedList.has("squirrel");
 ```
@@ -233,7 +241,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-let linkedList = new LinkedList();
+let linkedList: LinkedList<number> = new LinkedList();
 linkedList.add(2);
 linkedList.add(4);
 linkedList.add(5);
@@ -275,7 +283,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-let linkedList = new LinkedList();
+let linkedList: LinkedList<number> = new LinkedList();
 linkedList.add(2);
 linkedList.add(4);
 linkedList.add(5);
@@ -317,7 +325,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-let linkedList = new LinkedList();
+let linkedList: LinkedList<number> = new LinkedList();
 linkedList.add(2);
 linkedList.add(4);
 linkedList.add(5);
@@ -360,7 +368,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-let linkedList = new LinkedList();
+let linkedList: LinkedList<number> = new LinkedList();
 linkedList.add(2);
 linkedList.add(4);
 linkedList.add(5);
@@ -395,7 +403,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-let linkedList = new LinkedList();
+let linkedList: LinkedList<number> = new LinkedList();
 linkedList.add(2);
 linkedList.add(4);
 linkedList.add(5);
@@ -430,7 +438,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-let linkedList = new LinkedList();
+let linkedList: LinkedList<number> = new LinkedList();
 linkedList.add(2);
 linkedList.add(4);
 linkedList.add(5);
@@ -470,7 +478,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-let linkedList = new LinkedList();
+let linkedList: LinkedList<number> = new LinkedList();
 linkedList.add(2);
 linkedList.add(4);
 linkedList.add(5);
@@ -511,7 +519,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-let linkedList = new LinkedList();
+let linkedList: LinkedList<number> = new LinkedList();
 linkedList.add(2);
 linkedList.add(4);
 linkedList.add(5);
@@ -552,7 +560,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-let linkedList = new LinkedList();
+let linkedList: LinkedList<number> = new LinkedList();
 linkedList.add(2);
 linkedList.add(4);
 linkedList.add(5);
@@ -585,7 +593,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-let linkedList = new LinkedList();
+let linkedList: LinkedList<number> = new LinkedList();
 linkedList.add(2);
 linkedList.add(4);
 linkedList.add(5);
@@ -628,13 +636,13 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-let linkedList = new LinkedList();
+let linkedList: LinkedList<number> = new LinkedList();
 linkedList.add(2);
 linkedList.add(4);
 linkedList.add(5);
 linkedList.add(4);
-linkedList.forEach((value, index) => {
-    console.log("value:" + value, "index:" + index);
+linkedList.forEach((value: number, index?: number) => {
+  console.log("value:" + value, "index:" + index);
 });
 ```
 
@@ -657,7 +665,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-let linkedList = new LinkedList();
+let linkedList: LinkedList<number> = new LinkedList();
 linkedList.add(2);
 linkedList.add(4);
 linkedList.add(5);
@@ -698,7 +706,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-let linkedList = new LinkedList();
+let linkedList: LinkedList<number | string> = new LinkedList();
 linkedList.add(2);
 linkedList.add(4);
 linkedList.add(5);
@@ -730,7 +738,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 
 **Example**
 ```ts
-let linkedList = new LinkedList();
+let linkedList: LinkedList<number> = new LinkedList();
 linkedList.add(2);
 linkedList.add(4);
 linkedList.add(5);
@@ -763,7 +771,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-let linkedList = new LinkedList();
+let linkedList: LinkedList<number> = new LinkedList();
 linkedList.add(2);
 linkedList.add(4);
 linkedList.add(5);
@@ -796,7 +804,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-let linkedList = new LinkedList();
+let linkedList: LinkedList<number> = new LinkedList();
 linkedList.add(2);
 linkedList.add(4);
 linkedList.add(5);
@@ -829,22 +837,23 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-let linkedList = new LinkedList();
+let linkedList: LinkedList<number> = new LinkedList();
 linkedList.add(2);
 linkedList.add(4);
 linkedList.add(5);
 linkedList.add(4);
 
 // Method 1:
-for (let item of linkedList) { 
+let items = Array.from(linkedList)
+for (let item of items) { 
   console.log("value:" + item); 
 } 
 
 // Method 2:
 let iter = linkedList[Symbol.iterator]();
-let temp = iter.next().value;
-while(temp != undefined) {
-  console.log("value:" + temp);
-  temp = iter.next().value;
+let temp: IteratorResult<number> = iter.next();
+while(!temp.done) {
+  console.log("value:" + temp.value);
+  temp = iter.next();
 }
 ```

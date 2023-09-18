@@ -32,21 +32,22 @@ During application development, you are advised to use **on('stateChange')** to 
      
    ```ts
    import audio from '@ohos.multimedia.audio';
+   import { BusinessError } from '@ohos.base';
    
-   let audioStreamInfo = {
+   let audioStreamInfo: audio.AudioStreamInfo = {
      samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
      channels: audio.AudioChannel.CHANNEL_1,
      sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE,
      encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW
    };
    
-   let audioRendererInfo = {
+   let audioRendererInfo: audio.AudioRendererInfo = {
      content: audio.ContentType.CONTENT_TYPE_SPEECH,
      usage: audio.StreamUsage.STREAM_USAGE_VOICE_COMMUNICATION,
      rendererFlags: 0
    };
    
-   let audioRendererOptions = {
+   let audioRendererOptions: audio.AudioRendererOptions = {
      streamInfo: audioStreamInfo,
      rendererInfo: audioRendererInfo
    };
@@ -65,7 +66,7 @@ During application development, you are advised to use **on('stateChange')** to 
 2. Call **start()** to switch the AudioRenderer to the **running** state and start rendering.
      
    ```ts
-   audioRenderer.start((err) => {
+   audioRenderer.start((err: BusinessError) => {
      if (err) {
        console.error(`Renderer start failed, code is ${err.code}, message is ${err.message}`);
      } else {
@@ -77,12 +78,12 @@ During application development, you are advised to use **on('stateChange')** to 
 3. Specify the address of the file to render. Open the file and call **write()** to continuously write audio data to the buffer for rendering and playing. To implement personalized playback, process the audio data before writing it.
      
    ```ts
-   const bufferSize = await audioRenderer.getBufferSize();
-   let file = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
+   const bufferSize: number = await audioRenderer.getBufferSize();
+   let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
    let buf = new ArrayBuffer(bufferSize);
-   let readsize = await fs.read(file.fd, buf);
-   let writeSize = await new Promise((resolve, reject) => {
-     audioRenderer.write(buf, (err, writeSize) => {
+   let readsize: number = await fs.read(file.fd, buf);
+   let writeSize: number = await new Promise((resolve, reject) => {
+     audioRenderer.write(buf, (err: BusinessError, writeSize: number) => {
        if (err) {
          reject(err);
        } else {
@@ -95,7 +96,7 @@ During application development, you are advised to use **on('stateChange')** to 
 4. Call **stop()** to stop rendering.
      
    ```ts
-   audioRenderer.stop((err) => {
+   audioRenderer.stop((err: BusinessError) => {
      if (err) {
        console.error(`Renderer stop failed, code is ${err.code}, message is ${err.message}`);
      } else {
@@ -107,7 +108,7 @@ During application development, you are advised to use **on('stateChange')** to 
 5. Call **release()** to release the instance.
      
    ```ts
-   audioRenderer.release((err) => {
+   audioRenderer.release((err: BusinessError) => {
      if (err) {
        console.error(`Renderer release failed, code is ${err.code}, message is ${err.message}`);
      } else {
@@ -127,19 +128,19 @@ import fs from '@ohos.file.fs';
 const TAG = 'AudioRendererDemo';
 
 export default class AudioRendererDemo {
-  private renderModel = undefined;
-  private audioStreamInfo = {
+  private renderModel: audio.AudioRenderer = undefined;
+  private audioStreamInfo: audio.AudioStreamInfo = {
     samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_48000, // Sampling rate.
     channels: audio.AudioChannel.CHANNEL_2, // Channel.
     sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE, // Sampling format.
     encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW // Encoding format.
   }
-  private audioRendererInfo = {
+  private audioRendererInfo: audio.AudioRendererInfo = {
     content: audio.ContentType.CONTENT_TYPE_MUSIC, // Media type.
     usage: audio.StreamUsage.STREAM_USAGE_MEDIA, // Audio stream usage type.
     rendererFlags: 0 // AudioRenderer flag.
   }
-  private audioRendererOptions = {
+  private audioRendererOptions: audio.AudioRendererOptions = {
     streamInfo: this.audioStreamInfo,
     rendererInfo: this.audioRendererInfo
   }
@@ -150,12 +151,12 @@ export default class AudioRendererDemo {
       if (!err) {
         console.info(`${TAG}: creating AudioRenderer success`);
         this.renderModel = renderer;
-        this.renderModel.on('stateChange', (state) => { // Set the events to listen for. A callback is invoked when the AudioRenderer is switched to the specified state.
+        this.renderModel.on('stateChange', (state: audio.AudioState) => { // Set the events to listen for. A callback is invoked when the AudioRenderer is switched to the specified state.
           if (state == 2) {
             console.info('audio renderer state is: STATE_RUNNING');
           }
         });
-        this.renderModel.on('markReach', 1000, (position) => { // Subscribe to the markReach event. A callback is triggered when the number of rendered frames reaches 1000.
+        this.renderModel.on('markReach', 1000, (position: number) => { // Subscribe to the markReach event. A callback is triggered when the number of rendered frames reaches 1000.
           if (position == 1000) {
             console.info('ON Triggered successfully');
           }
@@ -169,7 +170,7 @@ export default class AudioRendererDemo {
   // Start audio rendering.
   async start() {
     let stateGroup = [audio.AudioState.STATE_PREPARED, audio.AudioState.STATE_PAUSED, audio.AudioState.STATE_STOPPED];
-    if (stateGroup.indexOf(this.renderModel.state) === -1) { // Rendering can be started only when the AudioRenderer is in the prepared, paused, or stopped state.
+    if (stateGroup.indexOf(this.renderModel.state.valueOf()) === -1) { Rendering can be started only when the AudioRenderer is in the prepared, paused, or stopped state.
       console.error(TAG + 'start failed');
       return;
     }
@@ -184,8 +185,12 @@ export default class AudioRendererDemo {
     let stat = await fs.stat(filePath);
     let buf = new ArrayBuffer(bufferSize);
     let len = stat.size % bufferSize === 0 ? Math.floor(stat.size / bufferSize) : Math.floor(stat.size / bufferSize + 1);
+    class Options {
+      offset: number
+      length: number
+    }
     for (let i = 0; i < len; i++) {
-      let options = {
+      let options: Options = {
         offset: i * bufferSize,
         length: bufferSize
       };
@@ -193,7 +198,7 @@ export default class AudioRendererDemo {
 
       // buf indicates the audio data to be written to the buffer. Before calling AudioRenderer.write(), you can preprocess the audio data for personalized playback. The AudioRenderer reads the audio data written to the buffer for rendering.
 
-      let writeSize = await new Promise((resolve, reject) => {
+      let writeSize: number = await new Promise((resolve, reject) => {
         this.renderModel.write(buf, (err, writeSize) => {
           if (err) {
             reject(err);
@@ -202,11 +207,11 @@ export default class AudioRendererDemo {
           }
         });
       });
-      if (this.renderModel.state === audio.AudioState.STATE_RELEASED) { // The rendering stops if the AudioRenderer is in the released state.
+      if (this.renderModel.state.valueOf() === audio.AudioState.STATE_RELEASED) { // The rendering stops if the AudioRenderer is in the released state.
         fs.close(file);
         await this.renderModel.stop();
       }
-      if (this.renderModel.state === audio.AudioState.STATE_RUNNING) {
+      if (this.renderModel.state.valueOf() === audio.AudioState.STATE_RUNNING) {
         if (i === len - 1) { // The rendering stops if the file finishes reading.
           fs.close(file);
           await this.renderModel.stop();
@@ -218,12 +223,12 @@ export default class AudioRendererDemo {
   // Pause the rendering.
   async pause() {
     // Rendering can be paused only when the AudioRenderer is in the running state.
-    if (this.renderModel.state !== audio.AudioState.STATE_RUNNING) {
+    if (this.renderModel.state.valueOf() !== audio.AudioState.STATE_RUNNING) {
       console.info('Renderer is not running');
       return;
     }
     await this.renderModel.pause(); // Pause rendering.
-    if (this.renderModel.state === audio.AudioState.STATE_PAUSED) {
+    if (this.renderModel.state.valueOf() === audio.AudioState.STATE_PAUSED) {
       console.info('Renderer is paused.');
     } else {
       console.error('Pausing renderer failed.');
@@ -233,12 +238,12 @@ export default class AudioRendererDemo {
   // Stop rendering.
   async stop() {
     // Rendering can be stopped only when the AudioRenderer is in the running or paused state.
-    if (this.renderModel.state !== audio.AudioState.STATE_RUNNING && this.renderModel.state !== audio.AudioState.STATE_PAUSED) {
+    if (this.renderModel.state.valueOf() !== audio.AudioState.STATE_RUNNING && this.renderModel.state.valueOf() !== audio.AudioState.STATE_PAUSED) {
       console.info('Renderer is not running or paused.');
       return;
     }
     await this.renderModel.stop(); // Stop rendering.
-    if (this.renderModel.state === audio.AudioState.STATE_STOPPED) {
+    if (this.renderModel.state.valueOf() === audio.AudioState.STATE_STOPPED) {
       console.info('Renderer stopped.');
     } else {
       console.error('Stopping renderer failed.');
@@ -248,12 +253,12 @@ export default class AudioRendererDemo {
   // Release the instance.
   async release() {
     // The AudioRenderer can be released only when it is not in the released state.
-    if (this.renderModel.state === audio.AudioState.STATE_RELEASED) {
+    if (this.renderModel.state.valueOf() === audio.AudioState.STATE_RELEASED) {
       console.info('Renderer already released');
       return;
     }
     await this.renderModel.release(); // Release the instance.
-    if (this.renderModel.state === audio.AudioState.STATE_RELEASED) {
+    if (this.renderModel.state.valueOf() === audio.AudioState.STATE_RELEASED) {
       console.info('Renderer released');
     } else {
       console.error('Renderer release failed.');

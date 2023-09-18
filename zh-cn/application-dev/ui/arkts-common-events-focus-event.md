@@ -75,6 +75,8 @@
 
 
 ```ts
+import List from '@ohos.util.List';
+import promptAction from '@ohos.promptAction';
 onFocus(event: () => void)
 ```
 
@@ -345,8 +347,10 @@ struct FocusableExample {
       Divider()
     }.width('100%').justifyContent(FlexAlign.Center)
     .onKeyEvent((e) => {    // 绑定onKeyEvent，在该Column组件获焦时，按下'F'键，可将第二个Text的focusable置反
-      if (e.keyCode === 2022 && e.type === KeyType.Down) {
-        this.textFocusable = !this.textFocusable;
+      if(e){
+        if (e.keyCode === 2022 && e.type === KeyType.Down) {
+          this.textFocusable = !this.textFocusable;
+        }
       }
     })
   }
@@ -397,11 +401,12 @@ defaultFocus(value: boolean)
 
 ```ts
 // xxx.ets
+// xxx.ets
 import promptAction from '@ohos.promptAction';
 
 class MyDataSource implements IDataSource {
   private list: number[] = [];
-  private listener: DataChangeListener;
+  private listener: DataChangeListener|undefined = undefined;
 
   constructor(list: number[]) {
     this.list = list;
@@ -411,7 +416,7 @@ class MyDataSource implements IDataSource {
     return this.list.length;
   }
 
-  getData(index: number): any {
+  getData(index: number): number {
     return this.list[index];
   }
 
@@ -423,16 +428,35 @@ class MyDataSource implements IDataSource {
   }
 }
 
+class swcf{
+  swiperController:SwiperController|undefined
+  fun(index:number){
+    if(this.swiperController){
+      if(index==0){
+        this.swiperController.showPrevious();
+      }else{
+        this.swiperController.showNext();
+      }
+    }
+  }
+}
+class TmpM{
+  left:number = 20
+  bottom:number = 20
+  right:number = 20
+}
+let MarginTmp:TmpM = new TmpM()
 @Entry
 @Component
 struct SwiperExample {
-  private swiperController: SwiperController = new SwiperController()
+  @State swiperController: SwiperController = new SwiperController()
+  @State tmp:promptAction.ShowToastOptions = {'message':'Button OK on clicked'}
   private data: MyDataSource = new MyDataSource([])
 
   aboutToAppear(): void {
-    let list = []
+    let list:number[] = []
     for (let i = 1; i <= 4; i++) {
-      list.push(i.toString());
+      list.push(i);
     }
     this.data = new MyDataSource(list);
   }
@@ -507,7 +531,7 @@ struct SwiperExample {
           .borderWidth(2)
           .borderColor(Color.Gray)
           .backgroundColor(Color.White)
-        }, item => item)
+        }, (item:string):string => item)
       }
       .cachedCount(2)
       .index(0)
@@ -521,7 +545,6 @@ struct SwiperExample {
         console.info(index.toString());
       })
       .margin({ left: 20, top: 20, right: 20 })
-
       Row({ space: 40 }) {
         Button('←')
           .fontSize(40)
@@ -529,7 +552,8 @@ struct SwiperExample {
           .fontColor(Color.Black)
           .backgroundColor(Color.Transparent)
           .onClick(() => {
-            this.swiperController.showPrevious();
+            let swf = new swcf()
+            swf.fun(0)
           })
         Button('→')
           .fontSize(40)
@@ -537,7 +561,8 @@ struct SwiperExample {
           .fontColor(Color.Black)
           .backgroundColor(Color.Transparent)
           .onClick(() => {
-            this.swiperController.showNext();
+            let swf = new swcf()
+            swf.fun(1)
           })
       }
       .width(480)
@@ -555,7 +580,7 @@ struct SwiperExample {
           .width(140)
           .height(50)
           .backgroundColor('#dadbd9')
-        
+
         Button('OK')
           .fontSize(30)
           .fontColor('#787878')
@@ -564,7 +589,7 @@ struct SwiperExample {
           .height(50)
           .backgroundColor('#dadbd9')
           .onClick(() => {
-            promptAction.showToast({ message: 'Button OK on clicked' });
+            promptAction.showToast(this.tmp);
           })
       }
       .width(480)
@@ -573,7 +598,7 @@ struct SwiperExample {
       .borderWidth(2)
       .borderColor(Color.Gray)
       .backgroundColor('#dff2e4')
-      .margin({ left: 20, bottom: 20, right: 20 })
+      .margin(MarginTmp)
     }.backgroundColor('#f2f2f2')
     .margin({ left: 50, top: 50, right: 20 })
   }
@@ -592,15 +617,26 @@ struct SwiperExample {
 
 
 ```ts
-Button('OK')
-  .defaultFocus(true)    // 设置Button-OK为defaultFocus
-  .fontSize(30)
-  .fontColor('#787878')
-  .type(ButtonType.Normal)
-  .width(140).height(50).backgroundColor('#dadbd9')
-  .onClick(() => {
-    promptAction.showToast({ message: 'Button OK on clicked' });
-  })
+import promptAction from '@ohos.promptAction';
+@Entry
+@Component
+struct MouseExample {
+  @State Tmp: promptAction.ShowToastOptions = {'message':'Button OK on clicked'}
+  build() {
+    Column() {
+      Button('OK')
+        .defaultFocus(true)    // 设置Button-OK为defaultFocus
+        .fontSize(30)
+        .fontColor('#787878')
+        .type(ButtonType.Normal)
+        .width(140).height(50).backgroundColor('#dadbd9')
+        .onClick(() => {
+          promptAction.showToast(this.Tmp);
+        })
+    }
+  }
+}
+
 ```
 
 
@@ -637,38 +673,73 @@ tabIndex用于设置自定义TAB键走焦顺序，默认值为0。使用“TAB/S
 
 
 ```ts
-  Button('1').width(200).height(200)
-    .fontSize(40)
-    .backgroundColor('#dadbd9')
-    .tabIndex(1)    // Button-1设置为第一个tabIndex节点
+@Entry
+@Component
+struct MouseExample {
+  build() {
+    Column() {
+      Button('1').width(200).height(200)
+        .fontSize(40)
+        .backgroundColor('#dadbd9')
+        .tabIndex(1)    // Button-1设置为第一个tabIndex节点
+    }
+  }
+}
 ```
 
 
 
 ```ts
-  Button('←')
-    .fontSize(40)
-    .fontWeight(FontWeight.Bold)
-    .fontColor(Color.Black)
-    .backgroundColor(Color.Transparent)
-    .onClick(() => {
+class swcf{
+  swiperController:SwiperController|undefined
+  fun(){
+    if(this.swiperController){
       this.swiperController.showPrevious();
-    })
-    .tabIndex(2)    // Button-左箭头设置为第二个tabIndex节点
+    }
+  }
+}
+@Entry
+@Component
+struct MouseExample {
+  build() {
+    Column() {
+      Button('←')
+        .fontSize(40)
+        .fontWeight(FontWeight.Bold)
+        .fontColor(Color.Black)
+        .backgroundColor(Color.Transparent)
+        .onClick(() => {
+          let swf = new swcf()
+          swf.fun()
+        })
+        .tabIndex(2)    // Button-左箭头设置为第二个tabIndex节点
+    }
+  }
+}
 ```
 
 
 
 ```ts
-Button('OK')
-  .fontSize(30)
-  .fontColor('#787878')
-  .type(ButtonType.Normal)
-  .width(140).height(50).backgroundColor('#dadbd9')
-  .onClick(() => {
-    promptAction.showToast({ message: 'Button OK on clicked' });
-  })
-  .tabIndex(3)    // Button-OK设置为第三个tabIndex节点
+import promptAction from '@ohos.promptAction';
+@Entry
+@Component
+struct MouseExample {
+  @State Tmp:promptAction.ShowToastOptions = {'message':'Button OK on clicked'}
+  build() {
+    Column() {
+    Button('OK')
+      .fontSize(30)
+      .fontColor('#787878')
+      .type(ButtonType.Normal)
+      .width(140).height(50).backgroundColor('#dadbd9')
+      .onClick(() => {
+        promptAction.showToast(this.Tmp);
+      })
+      .tabIndex(3)    // Button-OK设置为第三个tabIndex节点
+    }
+  }
+}
 ```
 
 
@@ -707,7 +778,7 @@ import promptAction from '@ohos.promptAction';
 
 class MyDataSource implements IDataSource {
   private list: number[] = [];
-  private listener: DataChangeListener;
+  private listener: DataChangeListener|undefined = undefined;
 
   constructor(list: number[]) {
     this.list = list;
@@ -717,7 +788,7 @@ class MyDataSource implements IDataSource {
     return this.list.length;
   }
 
-  getData(index: number): any {
+  getData(index: number): number {
     return this.list[index];
   }
 
@@ -734,11 +805,12 @@ class MyDataSource implements IDataSource {
 struct SwiperExample {
   private swiperController: SwiperController = new SwiperController()
   private data: MyDataSource = new MyDataSource([])
+  @State tmp:promptAction.ShowToastOptions = {'message':'Button OK on clicked'}
 
   aboutToAppear(): void {
-    let list = []
+    let list: number[] = []
     for (let i = 1; i <= 4; i++) {
-      list.push(i.toString());
+      list.push(i);
     }
     this.data = new MyDataSource(list);
   }
@@ -815,7 +887,7 @@ struct SwiperExample {
           .borderColor(Color.Gray)
           .backgroundColor(Color.White)
           .tabIndex(1)
-        }, item => item)
+        }, (item:string):string => item)
       }
       .cachedCount(2)
       .index(0)
@@ -875,7 +947,7 @@ struct SwiperExample {
           .backgroundColor('#dadbd9')
           .defaultFocus(true)
           .onClick(() => {
-            promptAction.showToast({ message: 'Button OK on clicked' });
+            promptAction.showToast(this.tmp);
           })
           .groupDefaultFocus(true)    // 设置Button-OK为第三个tabIndex节点的默认焦点
       }
@@ -1017,21 +1089,25 @@ struct RequestFocusExample {
       }
     }.width('100%').margin({ top:20 })
     .onKeyEvent((e) => {
-      if (e.keyCode >= 2017 && e.keyCode <= 2022) {
-        this.requestId = e.keyCode - 2017;
-      } else if (e.keyCode === 2030) {
-        this.requestId = 6;
-      } else {
-        return;
-      }
-      if (e.type !== KeyType.Down) {
-        return;
+      if(e){
+        if (e.keyCode >= 2017 && e.keyCode <= 2022) {
+          this.requestId = e.keyCode - 2017;
+        } else if (e.keyCode === 2030) {
+          this.requestId = 6;
+        } else {
+          return;
+        }
+        if (e.type !== KeyType.Down) {
+          return;
+        }
       }
       let res = focusControl.requestFocus(this.idList[this.requestId]);
+      let tmps:promptAction.ShowToastOptions = {'message':'Request success'}
+      let tmpf:promptAction.ShowToastOptions = {'message':'Request failed'}
       if (res) {
-        promptAction.showToast({message: 'Request success'});
+        promptAction.showToast(tmps);
       } else {
-        promptAction.showToast({message: 'Request failed'});
+        promptAction.showToast(tmpf);
       }
     })
   }

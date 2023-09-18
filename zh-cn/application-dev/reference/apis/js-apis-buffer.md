@@ -634,9 +634,9 @@ import buffer from '@ohos.buffer';
 
 let buf = buffer.from('buffer');
 let pair = buf.entries()
-let next = pair.next()
+let next: IteratorResult<Object[]> = pair.next()
 while (!next.done) {
-  console.info(next.value)
+  console.info("buffer: " + next.value)
   next = pair.next()
 }
 ```
@@ -1963,7 +1963,7 @@ import buffer from '@ohos.buffer';
 
 let buf1 = buffer.from('buffer');
 let pair = buf1.values()
-let next = pair.next()
+let next:IteratorResult<number> = pair.next()
 while (!next.done) {
   console.log(next.value.toString());
   next = pair.next()
@@ -2923,8 +2923,8 @@ import buffer from '@ohos.buffer';
 let blob: buffer.Blob  = new buffer.Blob(['a', 'b', 'c']);
 
 class option {
-  endings: string
-  type: string
+  endings: string = ""
+  type: string = ""
 }
 let o1: option = {endings:'native', type: 'MIME'}
 let blob1: buffer.Blob = new buffer.Blob(['a', 'b', 'c'], o1);

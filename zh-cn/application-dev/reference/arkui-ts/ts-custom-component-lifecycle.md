@@ -185,7 +185,7 @@ struct Index {
 @Reusable
 @Component
 struct Child {
-  aboutToReuse(params) {
+  aboutToReuse(params: Object) {
     console.info("Recycle Child")
   }
 
@@ -248,7 +248,7 @@ struct Index {
   build() {
     Column() {
       CustomLayout() {
-        ForEach([1, 2, 3], (index) => {
+        ForEach([1, 2, 3], (index: number) => {
           Text('Sub' + index)
             .fontSize(30)
             .borderWidth(2)
@@ -261,7 +261,11 @@ struct Index {
 
 @Component
 struct CustomLayout {
-  @BuilderParam builder: () => {};
+  @Builder
+  doNothingBuilder() {
+  };
+
+  @BuilderParam builder: () => void = this.doNothingBuilder;
 
   onLayout(children: Array<LayoutChild>, constraint: ConstraintSizeOptions) {
     let pos = 0;
@@ -365,7 +369,7 @@ struct Index {
 
 @Builder
 function ColumnChildren() {
-  ForEach([1, 2, 3], (index) => { //暂不支持lazyForEach的写法
+  ForEach([1, 2, 3], (index: number) => { //暂不支持lazyForEach的写法
     Text('S' + index)
       .fontSize(30)
       .width(100)
@@ -377,8 +381,16 @@ function ColumnChildren() {
 
 @Component
 struct CustomLayout {
-  @BuilderParam builder: () => void;
+  @Builder
+  doNothingBuilder() {
+  };
+
+  @BuilderParam builder: () => void = this.doNothingBuilder;
   @State startSize: number = 100;
+  result: SizeResult = {
+    width: 0,
+    height: 0
+  };
 
   onPlaceChildren(selfLayoutInfo: GeometryInfo, children: Array<Layoutable>, constraint: ConstraintSizeOptions) {
     let startPos = 400;
@@ -395,7 +407,9 @@ struct CustomLayout {
       size += result.width / 2
       ;
     })
-    return { width: 100, height: 400 };
+    this.result.width = 100;
+    this.result.height = 400;
+    return this.result;
   }
 
   build() {

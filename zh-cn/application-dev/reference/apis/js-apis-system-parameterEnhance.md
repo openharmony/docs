@@ -40,10 +40,9 @@ getSync(key: string, def?: string): string
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 14700101 | System parameter can not be found.                           |
-| 14700102 | System parameter value is invalid.                           |
-| 14700103 | System permission operation permission denied.               |
-| 14700104 | System internal error including out of memory, deadlock etc. |
+| 14700101 | if key is not found                                          |
+| 14700103 | if permission denied                                         |
+| 14700104 | if system internal error                                     |
 
 以上错误码详细介绍请参考[errorcode-system-parameterV9](../errorcodes/errorcode-system-parameterV9.md)。
 
@@ -77,10 +76,9 @@ get(key: string, callback: AsyncCallback&lt;string&gt;): void
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 14700101 | System parameter can not be found.                           |
-| 14700102 | System parameter value is invalid.                           |
-| 14700103 | System permission operation permission denied.               |
-| 14700104 | System internal error including out of memory, deadlock etc. |
+| 14700101 | if key is not found                                          |
+| 14700103 | if permission denied                                         |
+| 14700104 | if system internal error                                     |
 
 以上错误码详细介绍请参考[errorcode-system-parameterV9](../errorcodes/errorcode-system-parameterV9.md)。
 
@@ -121,10 +119,9 @@ get(key: string, def: string, callback: AsyncCallback&lt;string&gt;): void
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 14700101 | System parameter can not be found.                           |
-| 14700102 | System parameter value is invalid.                           |
-| 14700103 | System permission operation permission denied.               |
-| 14700104 | System internal error including out of memory, deadlock etc. |
+| 14700101 | if key is not found                                          |
+| 14700103 | if permission denied                                         |
+| 14700104 | if system internal error                                     |
 
 以上错误码详细介绍请参考[errorcode-system-parameterV9](../errorcodes/errorcode-system-parameterV9.md)。
 
@@ -171,10 +168,9 @@ get(key: string, def?: string): Promise&lt;string&gt;
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 14700101 | System parameter can not be found.                           |
-| 14700102 | System parameter value is invalid.                           |
-| 14700103 | System permission operation permission denied.               |
-| 14700104 | System internal error including out of memory, deadlock etc. |
+| 14700101 | if key is not found                                          |
+| 14700103 | if permission denied                                         |
+| 14700104 | if system internal error                                     |
 
 以上错误码详细介绍请参考[errorcode-system-parameterV9](../errorcodes/errorcode-system-parameterV9.md)。
 
@@ -214,9 +210,9 @@ setSync(key: string, value: string): void
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 14700102 | System parameter value is invalid.                           |
-| 14700103 | System permission operation permission denied.               |
-| 14700104 | System internal error including out of memory, deadlock etc. |
+| 14700102 | if value is invalid                                          |
+| 14700103 | if permission denied                                         |
+| 14700104 | if system internal error                                     |
 
 以上错误码详细介绍请参考[errorcode-system-parameterV9](../errorcodes/errorcode-system-parameterV9.md)。
 
@@ -252,9 +248,9 @@ set(key: string, value: string, callback: AsyncCallback&lt;void&gt;): void
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 14700102 | System parameter value is invalid.                           |
-| 14700103 | System permission operation permission denied.               |
-| 14700104 | System internal error including out of memory, deadlock etc. |
+| 14700102 | if value is invalid                                          |
+| 14700103 | if permission denied                                         |
+| 14700104 | if system internal error                                     |
 
 以上错误码详细介绍请参考[errorcode-system-parameterV9](../errorcodes/errorcode-system-parameterV9.md)。
 
@@ -300,9 +296,9 @@ set(key: string, value: string): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 14700102 | System parameter value is invalid.                           |
-| 14700103 | System permission operation permission denied.               |
-| 14700104 | System internal error including out of memory, deadlock etc. |
+| 14700102 | if value is invalid                                          |
+| 14700103 | if permission denied                                         |
+| 14700104 | if system internal error                                     |
 
 以上错误码详细介绍请参考[errorcode-system-parameterV9](../errorcodes/errorcode-system-parameterV9.md)。
 

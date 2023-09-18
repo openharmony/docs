@@ -688,7 +688,7 @@ taskpoolExecute();
 
 ```ts
 // b.ets
-export let c: number = 2000;
+export let c: string = "hello";
 ```
 ```ts
 // 引用import变量
@@ -696,13 +696,13 @@ export let c: number = 2000;
 import { c } from "./b";
 
 @Concurrent
-function printArgs(a: number): number {
+function printArgs(a: string): string {
     console.log(a);
     console.log(c);
     return a;
 }
 
-async function taskpoolExecute() {
+async function taskpoolExecute(): Promise<void> {
   // taskpool.execute(task)
   let task: taskpool.Task = new taskpool.Task(printArgs, "create task, then execute");
   console.log("taskpool.execute(task) result: " + await taskpool.execute(task));
@@ -719,14 +719,14 @@ taskpoolExecute();
 ```ts
 // 支持async函数
 @Concurrent
-async function delayExcute() {
-  let ret = await Promise.all([
-    new Promise(resolve => setTimeout(resolve, 1000, "resolved"))
+async function delayExcute(): Promise<Object> {
+  let ret = await Promise.all<Object>([
+    new Promise<Object>(resolve => setTimeout(resolve, 1000, "resolved"))
   ]);
   return ret;
 }
 
-async function taskpoolExecute() {
+async function taskpoolExecute(): Promise<void> {
   taskpool.execute(delayExcute).then((result: string) => {
     console.log("taskPoolTest task result: " + result);
   }).catch((err: string) => {
@@ -746,14 +746,14 @@ function strSort(inPutArr: Array<string>): Array<string> {
   let newArr = inPutArr.sort();
   return newArr;
 }
-export async function func1() {
+export async function func1(): Promise<void> {
   console.log("taskpoolTest start");
   let strArray: Array<string> = ['c test string', 'b test string', 'a test string'];
   let task: taskpool.Task = new taskpool.Task(strSort, strArray);
   console.log("func1 result:" + await taskpool.execute(task));
 }
 
-export async function func2() {
+export async function func2(): Promise<void> {
   console.log("taskpoolTest2 start");
   let strArray: Array<string> = ['c test string', 'b test string', 'a test string'];
   taskpool.execute(strSort, strArray).then((result: Array<string>) => {
@@ -766,7 +766,7 @@ export async function func2() {
 
 ```ts
 // a.ets(与c.ets在同一目录中)
-import { taskpoolTest1, taskpoolTest2 } from "./c";
+import { func1, func2 } from "./c";
 
 func1();
 func2();
@@ -943,16 +943,24 @@ let priority: number = 0;
 let taskId: number = 0;
 let state: number = 0;
 let duration: number = 0;
-for(let threadInfo of taskpoolInfo.threadInfos) {
+let threadIS = Array.from(taskpoolInfo.threadInfos)
+for(let threadInfo of threadIS) {
   tid = threadInfo.tid;
-  taskIds.length = threadInfo.taskIds.length;
-  priority = threadInfo.priority;
+  if (threadInfo.taskIds != undefined && threadInfo.priority != undefined )
+  {
+    taskIds.length = threadInfo.taskIds.length;
+    priority = threadInfo.priority;
+  }
   console.info("taskpool---tid is:" + tid + ", taskIds is:" + taskIds + ", priority is:" + priority);
 }
-for(let taskInfo of taskpoolInfo.taskInfos) {
+let taskIS = Array.from(taskpoolInfo.taskInfos)
+for(let taskInfo of taskIS) {
   taskId = taskInfo.taskId;
   state = taskInfo.state;
-  duration = taskInfo.duration;
+  if (taskInfo.duration != undefined )
+  {
+    duration = taskInfo.duration;
+  }
   console.info("taskpool---taskId is:" + taskId + ", state is:" + state + ", duration is:" + duration);
 }
 ```

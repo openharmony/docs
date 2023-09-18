@@ -62,6 +62,8 @@
   - Best Practices
     - [Camera Photographing Sample](camera-shooting-case.md)
     - [Camera Recording Sample](camera-recording-case.md)
+    - [Taking Photos in Portrait Mode](camera-mode.md)
+    - [Dual-Channel Preview](camera-dual-channel-preview.md)
     - [Using Performance Improvement Features (for System Applications Only)](camera-performance-improvement.md)
 - Image
   - [Image Overview](image-overview.md)

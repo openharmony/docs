@@ -18,7 +18,7 @@
 
 ## 导入模块
 
-```js
+```ts
 import deviceManager from '@ohos.distributedDeviceManager';
 ```
 
@@ -45,11 +45,15 @@ createDeviceManager(bundleName: string): DeviceManager;
 
 **示例：**
 
-  ```js
+  ```ts
+  import deviceManager from '@ohos.distributedDeviceManager'
+  import { BusinessError } from '@ohos.base'
+
   try {
     let dmInstance = deviceManager.createDeviceManager("ohos.samples.jshelloworld");
   } catch(err) {
-    console.error("createDeviceManager errCode:" + err.code + ",errMessage:" + err.message);
+    let e: BusinessError = err as BusinessError;
+    console.error("createDeviceManager errCode:" + e.code + ",errMessage:" + e.message);
   }
   ```
 
@@ -79,11 +83,14 @@ releaseDeviceManager(deviceManager: DeviceManager): void;
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base'
+
   try {
     deviceManager.releaseDeviceManager(dmInstance);
   } catch (err) {
-    console.error("release device manager errCode:" + err.code + ",errMessage:" + err.message);
+    let e: BusinessError = err as BusinessError;
+    console.error("release device manager errCode:" + e.code + ",errMessage:" + e.message);
   }
   ```
 
@@ -143,11 +150,15 @@ getAvailableDeviceListSync(): Array&lt;DeviceBasicInfo&gt;;
 
 **示例：**
 
-  ```js
+  ```ts
+  import deviceManager from '@ohos.distributedDeviceManager'
+  import { BusinessError } from '@ohos.base'
+
   try {
-    var deviceInfoList = dmInstance.getAvailableDeviceListSync();
+    let deviceInfoList: Array<deviceManager.eviceBasicInfo> = dmInstance.getAvailableDeviceListSync();
   } catch (err) {
-    console.error("getAvailableDeviceListSync errCode:" + err.code + ",errMessage:" + err.message);
+    let e: BusinessError = err as BusinessError;
+    console.error("getAvailableDeviceListSync errCode:" + e.code + ",errMessage:" + e.message);
   }
   ```
 
@@ -177,9 +188,12 @@ getAvailableDeviceList(callback:AsyncCallback&lt;Array&lt;DeviceBasicInfo&gt;&gt
 
 **示例：**
 
-  ```js
+  ```ts
+  import deviceManager from '@ohos.distributedDeviceManager'
+  import { BusinessError } from '@ohos.base'
+
   try {
-    dmInstance.getAvailableDeviceList((err, data) => {
+    dmInstance.getAvailableDeviceList((err: BusinessError, data: Array<deviceManager.DeviceBasicInfo>) => {
       if (err) {
         console.error("getAvailableDeviceList errCode:" + err.code + ",errMessage:" + err.message);
         return;
@@ -187,7 +201,8 @@ getAvailableDeviceList(callback:AsyncCallback&lt;Array&lt;DeviceBasicInfo&gt;&gt
       console.log('get available device info: ' + JSON.stringify(data));
     });
   } catch (err) {
-    console.error("getAvailableDeviceList errCode:" + err.code + ",errMessage:" + err.message);
+    let e: BusinessError = err as BusinessError;
+    console.error("getAvailableDeviceList errCode:" + e.code + ",errMessage:" + e.message);
   }
   ```
 
@@ -217,10 +232,13 @@ getAvailableDeviceList(): Promise&lt;Array&lt;DeviceBasicInfo&gt;&gt;;
 
 **示例：**
 
-  ```js
-  dmInstance.getAvailableDeviceList().then((data) => {
+  ```ts
+  import deviceManager from '@ohos.distributedDeviceManager'
+  import { BusinessError } from '@ohos.base'
+
+  dmInstance.getAvailableDeviceList().then((data: Array<deviceManager.DeviceBasicInfo>) => {
     console.log('get available device info: ' + JSON.stringify(data));
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
       console.error("getAvailableDeviceList errCode:" + err.code + ",errMessage:" + err.message);
   });
   ```
@@ -251,12 +269,15 @@ getLocalDeviceNetworkId(): string;
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base'
+
   try {
-    var deviceNetworkId = dmInstance.getLocalDeviceNetworkId();
+    let deviceNetworkId: string = dmInstance.getLocalDeviceNetworkId();
     console.log('local device networkId: ' + JSON.stringify(deviceNetworkId));
   } catch (err) {
-    console.error("getLocalDeviceNetworkId errCode:" + err.code + ",errMessage:" + err.message);
+    let e: BusinessError = err as BusinessError;
+    console.error("getLocalDeviceNetworkId errCode:" + e.code + ",errMessage:" + e.message);
   }
   ```
 
@@ -286,12 +307,15 @@ getLocalDeviceName(): string;
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base'
+
   try {
-    var deviceName = dmInstance.getLocalDeviceName();
+    let deviceName: string = dmInstance.getLocalDeviceName();
     console.log('local device name: ' + JSON.stringify(deviceName));
   } catch (err) {
-    console.error("getLocalDeviceName errCode:" + err.code + ",errMessage:" + err.message);
+    let e: BusinessError = err as BusinessError;
+    console.error("getLocalDeviceName errCode:" + e.code + ",errMessage:" + e.message);
   }
   ```
 
@@ -321,12 +345,15 @@ getLocalDeviceType(): number;
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base'
+
   try {
-    var deviceType = dmInstance.getLocalDeviceType();
+    let deviceType: number = dmInstance.getLocalDeviceType();
     console.log('local device type: ' + JSON.stringify(deviceType));
   } catch (err) {
-    console.error("getLocalDeviceType errCode:" + err.code + ",errMessage:" + err.message);
+    let e: BusinessError = err as BusinessError;
+    console.error("getLocalDeviceType errCode:" + e.code + ",errMessage:" + e.message);
   }
   ```
 
@@ -356,12 +383,15 @@ getLocalDeviceId(): string;
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base'
+
   try {
-    var deviceId = dmInstance.getLocalDeviceId();
+    let deviceId: string = dmInstance.getLocalDeviceId();
     console.log('local device id: ' + JSON.stringify(deviceId));
   } catch (err) {
-    console.error("getLocalDeviceId errCode:" + err.code + ",errMessage:" + err.message);
+    let e: BusinessError = err as BusinessError;
+    console.error("getLocalDeviceId errCode:" + e.code + ",errMessage:" + e.message);
   }
   ```
 
@@ -397,14 +427,17 @@ getDeviceName(networkId: string): string;
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base'
+
   try {
     // 设备网络标识，可以从可信设备列表中获取
     let networkId = "xxxxxxx"
-    var deviceName = dmInstance.getDeviceName(networkId);
+    let deviceName: string = dmInstance.getDeviceName(networkId);
     console.log('device name: ' + JSON.stringify(deviceName)); 
   } catch (err) {
-    console.error("getDeviceName errCode:" + err.code + ",errMessage:" + err.message);
+    let e: BusinessError = err as BusinessError;
+    console.error("getDeviceName errCode:" + e.code + ",errMessage:" + e.message);
   }
   ```
 
@@ -440,14 +473,17 @@ getDeviceType(networkId: string): number;
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base'
+
   try {
     // 设备网络标识，可以从可信设备列表中获取
     let networkId = "xxxxxxx"
-    var deviceType = dmInstance.getDeviceType(networkId);
+    let deviceType: number = dmInstance.getDeviceType(networkId);
     console.log('device type: ' + JSON.stringify(deviceType)); 
   } catch (err) {
-    console.error("getDeviceType errCode:" + err.code + ",errMessage:" + err.message);
+    let e: BusinessError = err as BusinessError;
+    console.error("getDeviceType errCode:" + e.code + ",errMessage:" + e.message);
   }
   ```
 
@@ -479,20 +515,36 @@ startDiscovering(discoverParam: {[key:&nbsp;string]:&nbsp;Object} , filterOption
 
 **示例：**
 
-  ```js
-  var discoverParam = {
-    'discoverTargetType': 1
+  ```ts
+  import { BusinessError } from '@ohos.base'
+
+  interface DiscoverParam {
+    discoverTargetType: number
+  }
+
+  interface FilterOptions {
+    availableStatus: number,
+    discoverDistance: number,
+    authenticationStatus: number,
+    authorizationType: number
+  }
+
+  let discoverParam: DiscoverParam = {
+    discoverTargetType: 1
   };
-  var filterOptions = {
-    'availableStatus': 1,
-    'discoverDistance': 50,
-    'authenticationStatus': 0,
-    'authorizationType': 0
+
+  let filterOptions: FilterOptions = {
+    availableStatus: 1,
+    discoverDistance: 50,
+    authenticationStatus: 0,
+    authorizationType: 0
   };
+
   try {
     dmInstance.startDiscovering(discoverParam, filterOptions); // 当有设备发现时，通过discoverSuccess回调通知给应用程序
   } catch (err) {
-    console.error("startDiscovering errCode:" + err.code + ",errMessage:" + err.message);
+    let e: BusinessError = err as BusinessError;
+    console.error("startDiscovering errCode:" + e.code + ",errMessage:" + e.message);
   }
   ```
 
@@ -517,11 +569,14 @@ stopDiscovering(): void;
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base'
+
   try {
     dmInstance.stopDiscovering();
   } catch (err) {
-    console.error("stopDiscovering errCode:" + err.code + ",errMessage:" + err.message);
+    let e: BusinessError = err as BusinessError;
+    console.error("stopDiscovering errCode:" + e.code + ",errMessage:" + e.message);
   }
   ```
 
@@ -554,18 +609,32 @@ bindTarget(deviceId: string, bindParam: {[key:&nbsp;string]:&nbsp;Object} , call
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base'
+
+  class Data {
+    deviceId: string = ""
+  }
+
+  interface BindParam {
+    bindType: number, // 认证类型： 1 - 无帐号PIN码认证
+    targetPkgName: string,
+    appName: string,
+    appOperation: string,
+    customDescription: string
+  }
+
   // 认证的设备信息，可以从发现的结果中获取
-  var deviceId ="XXXXXXXX";
-  let bindParam = {
-          'bindType': 1,// 认证类型： 1 - 无帐号PIN码认证
-          'targetPkgName': 'xxxx',
-          'appName': 'xxxx',
-          'appOperation': 'xxxx',
-          'customDescription': 'xxxx'
+  let deviceId = "XXXXXXXX";
+  let bindParam: BindParam = {
+    bindType: 1, // 认证类型： 1 - 无帐号PIN码认证
+    targetPkgName: 'xxxx',
+    appName: 'xxxx',
+    appOperation: 'xxxx',
+    customDescription: 'xxxx'
   }
   try {
-    dmInstance.bindTarget(deviceId, bindParam, (err, data) => {
+    dmInstance.bindTarget(deviceId, bindParam, (err: BusinessError, data: Data) => {
       if (err) {
           console.error("bindTarget errCode:" + err.code + ",errMessage:" + err.message);
           return;
@@ -573,7 +642,8 @@ bindTarget(deviceId: string, bindParam: {[key:&nbsp;string]:&nbsp;Object} , call
       console.info("bindTarget result:" + JSON.stringify(data));
     });
   } catch (err) {
-    console.error("bindTarget errCode:" + err.code + ",errMessage:" + err.message);
+    let e: BusinessError = err as BusinessError;
+    console.error("bindTarget errCode:" + e.code + ",errMessage:" + e.message);
   }
   ```
 
@@ -603,12 +673,15 @@ unbindTarget(deviceId: string): void;
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base'
+
   try {
-    var deviceId ="XXXXXXXX";
+    let deviceId = "XXXXXXXX";
     dmInstance.unbindTarget(deviceId);
   } catch (err) {
-    console.error("unbindTarget errCode:" + err.code + ",errMessage:" + err.message);
+    let e: BusinessError = err as BusinessError;
+    console.error("unbindTarget errCode:" + e.code + ",errMessage:" + e.message);
   }
   ```
 
@@ -633,7 +706,9 @@ replyUiAction(action: number, actionResult: string): void;
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base'
+
  try {
     /*
       action = 0 - 允许授权
@@ -646,7 +721,8 @@ replyUiAction(action: number, actionResult: string): void;
     let operation = 0;
     dmInstance.replyUiAction(operation, "extra")
     } catch (err) {
-      console.error("replyUiAction errCode:" + err.code + ",errMessage:" + err.message);
+      let e: BusinessError = err as BusinessError;
+      console.error("replyUiAction errCode:" + e.code + ",errMessage:" + e.message);
   }
   ```
 
@@ -671,16 +747,27 @@ on(type: 'replyResult', callback: Callback&lt;{ param: string}&gt;): void;
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base'
+
+  class Data {
+    param: string = ""
+  }
+
+  interface TmpStr {
+    verifyFailed: boolean
+  }
+
   try {
-    dmInstance.on('replyResult', (data) => {
+    dmInstance.on('replyResult', (data: Data) => {
     console.log("replyResult executed, dialog closed" + JSON.stringify(data))
-    var tmpStr = JSON.parse(data.param)
-    var isShow = tmpStr.verifyFailed
+    let tmpStr: TmpStr = JSON.parse(data.param)
+    let isShow = tmpStr.verifyFailed
     console.log("replyResult executed, dialog closed" + isShow)
   });
   } catch (err) {
-    console.error("replyResult errCode:" + err.code + ",errMessage:" + err.message);
+    let e: BusinessError = err as BusinessError;
+    console.error("replyResult errCode:" + e.code + ",errMessage:" + e.message);
   }
   ```
 
@@ -705,11 +792,14 @@ off(type: 'replyResult', callback?: Callback&lt;{ param: string}&gt;): void;
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base'
+
   try {
     dmInstance.off('replyResult');
   } catch (err) {
-    console.error("replyResult errCode:" + err.code + ",errMessage:" + err.message);
+    let e: BusinessError = err as BusinessError;
+    console.error("replyResult errCode:" + e.code + ",errMessage:" + e.message);
   }
   ```
 
@@ -732,13 +822,27 @@ on(type: 'deviceStateChange', callback: Callback&lt;{ action: DeviceStateChange,
 
 **示例：**
 
-  ```js
+  ```ts
+  import deviceManager from '@ohos.distributedDeviceManager'
+  import { BusinessError } from '@ohos.base'
+
+  class Data {
+    action: deviceManager.DeviceStateChange = 0
+    device: deviceManager.DeviceBasicInfo = {
+      deviceId: "",
+      deviceName: "",
+      deviceType: "",
+      networkId: "",
+    }
+  }
+
   try {
-    dmInstance.on('deviceStateChange', (data) => {
+    dmInstance.on('deviceStateChange', (data: Data) => {
       console.info("deviceStateChange on:" + JSON.stringify(data));
     });
   } catch (err) {
-    console.error("deviceStateChange errCode:" + err.code + ",errMessage:" + err.message);
+    let e: BusinessError = err as BusinessError;
+    console.error("deviceStateChange errCode:" + e.code + ",errMessage:" + e.message);
   }
   ```
 
@@ -761,13 +865,27 @@ off(type: 'deviceStateChange', callback?: Callback&lt;{ action: DeviceStateChang
 
 **示例：**
 
-  ```js
+  ```ts
+  import deviceManager from '@ohos.distributedDeviceManager'
+  import { BusinessError } from '@ohos.base'
+
+  class Data {
+    action: deviceManager.DeviceStateChange = 0
+    device: deviceManager.DeviceBasicInfo = {
+      deviceId: "",
+      deviceName: "",
+      deviceType: "",
+      networkId: "",
+    }
+  }
+
   try {
-    dmInstance.off('deviceStatusChange', (data) => {
+    dmInstance.off('deviceStatusChange', (data: Data) => {
       console.info('deviceStatusChange' + JSON.stringify(data));
     });
   } catch (err) {
-    console.error("deviceStatusChange errCode:" + err.code + ",errMessage:" + err.message);
+    let e: BusinessError = err as BusinessError;
+    console.error("deviceStatusChange errCode:" + e.code + ",errMessage:" + e.message);
   }
   ```
 
@@ -790,13 +908,26 @@ on(type: 'discoverSuccess', callback: Callback&lt;{ device: DeviceBasicInfo }&gt
 
 **示例：**
 
-  ```js
+  ```ts
+  import deviceManager from '@ohos.distributedDeviceManager'
+  import { BusinessError } from '@ohos.base'
+
+  class Data {
+    device: deviceManager.DeviceBasicInfo = {
+      deviceId: "",
+      deviceName: "",
+      deviceType: "",
+      networkId: "",
+    }
+  }
+  
   try {
-    dmInstance.on('discoverSuccess', (data) => {
+    dmInstance.on('discoverSuccess', (data: Data) => {
       console.info("discoverSuccess:" + JSON.stringify(data));
     });
   } catch (err) {
-    console.error("discoverSuccess errCode:" + err.code + ",errMessage:" + err.message);
+    let e: BusinessError = err as BusinessError;
+    console.error("discoverSuccess errCode:" + e.code + ",errMessage:" + e.message);
   }
   ```
 
@@ -819,13 +950,26 @@ off(type: 'discoverSuccess', callback?: Callback&lt;{ device: DeviceBasicInfo }&
 
 **示例：**
 
-  ```js
+  ```ts
+  import deviceManager from '@ohos.distributedDeviceManager'
+  import { BusinessError } from '@ohos.base'
+
+  class Data {
+    device: deviceManager.DeviceBasicInfo = {
+      deviceId: "",
+      deviceName: "",
+      deviceType: "",
+      networkId: "",
+    }
+  }
+
   try {
-    dmInstance.off('discoverSuccess', (data) => {
+    dmInstance.off('discoverSuccess', (data: Data) => {
       console.info('discoverSuccess' + JSON.stringify(data));
     });
   } catch (err) {
-    console.error("discoverSuccess errCode:" + err.code + ",errMessage:" + err.message);
+    let e: BusinessError = err as BusinessError;
+    console.error("discoverSuccess errCode:" + e.code + ",errMessage:" + e.message);
   }
   ```
 
@@ -848,13 +992,20 @@ on(type: 'deviceNameChange', callback: Callback&lt;{ deviceName: string }&gt;): 
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base'
+
+  class Data {
+    deviceName: string = ""
+  }
+
   try {
-    dmInstance.on('deviceNameChange', (data) => {
+    dmInstance.on('deviceNameChange', (data: Data) => {
         console.info("deviceNameChange on:" + JSON.stringify(data));
     });
   } catch (err) {
-    console.error("deviceNameChange errCode:" + err.code + ",errMessage:" + err.message);
+    let e: BusinessError = err as BusinessError;
+    console.error("deviceNameChange errCode:" + e.code + ",errMessage:" + e.message);
   }
   ```
 
@@ -877,13 +1028,20 @@ off(type: 'deviceNameChange', callback?: Callback&lt;{ deviceName: string }&gt;)
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base'
+
+  class Data {
+    deviceName: string = ""
+  }
+
   try {
-    dmInstance.off('deviceNameChange', (data) => {
+    dmInstance.off('deviceNameChange', (data: Data) => {
       console.info('deviceNameChange' + JSON.stringify(data));
     });
   } catch (err) {
-    console.error("deviceNameChange errCode:" + err.code + ",errMessage:" + err.message);
+    let e: BusinessError = err as BusinessError;
+    console.error("deviceNameChange errCode:" + e.code + ",errMessage:" + e.message);
   }
   ```
 
@@ -906,13 +1064,20 @@ on(type: 'discoverFailure', callback: Callback&lt;{ reason: number }&gt;): void;
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base'
+
+  class Data {
+    reason: number = 0
+  }
+
   try {
-    dmInstance.on('discoverFailure', (data) => {
+    dmInstance.on('discoverFailure', (data: Data) => {
         console.info("discoverFailure on:" + JSON.stringify(data));
     });
   } catch (err) {
-    console.error("discoverFailure errCode:" + err.code + ",errMessage:" + err.message);
+    let e: BusinessError = err as BusinessError;
+    console.error("discoverFailure errCode:" + e.code + ",errMessage:" + e.message);
   }
   ```
 
@@ -935,13 +1100,20 @@ off(type: 'discoverFailure', callback?: Callback&lt;{ reason: number }&gt;): voi
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base'
+
+  class Data {
+    reason: number = 0
+  }
+
   try {
-    dmInstance.off('discoverFailure', (data) => {
+    dmInstance.off('discoverFailure', (data: Data) => {
       console.info('discoverFailure' + JSON.stringify(data));
     });
   } catch (err) {
-    console.error("discoverFailure errCode:" + err.code + ",errMessage:" + err.message);
+    let e: BusinessError = err as BusinessError;
+    console.error("discoverFailure errCode:" + e.code + ",errMessage:" + e.message);
   }
   ```
 
@@ -964,13 +1136,16 @@ on(type: 'serviceDie', callback?: Callback&lt;{}&gt;): void;
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base'
+
   try {
     dmInstance.on("serviceDie", () => {
       console.info("serviceDie on");
     });
   } catch (err) {
-    console.error("serviceDie errCode:" + err.code + ",errMessage:" + err.message);
+    let e: BusinessError = err as BusinessError;
+    console.error("serviceDie errCode:" + e.code + ",errMessage:" + e.message);
   }
   ```
 
@@ -993,13 +1168,15 @@ off(type: 'serviceDie', callback?: Callback&lt;{}&gt;): void;
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base'
+
   try {
     dmInstance.off("serviceDie", () => {
       console.info("serviceDie off");
     });
   } catch (err) {
-    console.error("serviceDie errCode:" + err.code + ",errMessage:" + err.message);
+    let e: BusinessError = err as BusinessError;
+    console.error("serviceDie errCode:" + e.code + ",errMessage:" + e.message);
   }
   ```
-  
