@@ -1053,7 +1053,6 @@ add(field: string, amount: number): void
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
 | 890001 | param value not valid |
-| 401    | check param failed    |
 
 **示例：**
   ```ts
@@ -1112,14 +1111,6 @@ compareDays(date: Date): number
 | 类型      | 说明                                  |
 | ------- | ----------------------------------- |
 | number | 相差的天数，正数代表日历时间更早，负数代表日历时间更晚。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[ohos.i18n错误码](../errorcodes/errorcode-i18n.md)。
-
-| 错误码ID  | 错误信息                   |
-| ------ | ---------------------- |
-| 401    | check param failed    |
 
 **示例：**
   ```ts
@@ -2309,7 +2300,6 @@ static getTimePeriodName(hour:number, locale?: string): string
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
 | 890001 | param value not valid |
-| 401    | check param failed    |
 
 **示例：**
   ```ts
