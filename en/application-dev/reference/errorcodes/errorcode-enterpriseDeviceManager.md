@@ -135,10 +135,10 @@ This error code is reported when the enterprise device management ability is not
 
 **Possible Causes**
 
-1. The EnterpriseAdminAbility is not started.
-2. The RPC object for enterprise device management cannot be obtained.
-3. Other abilities, on which the EnterpriseAdminAbility depends, are not started, or the RPC object cannot be obtained.
-4. A system exception occurs during the running of EnterpriseAdminAbility.
+- The EnterpriseAdminAbility is not started.
+- The RPC object for enterprise device management cannot be obtained.
+- Other abilities, on which the EnterpriseAdminAbility depends, are not started, or the RPC object cannot be obtained.
+- A system exception occurs during the running of EnterpriseAdminAbility.
 
 **Solution**
 
@@ -179,6 +179,24 @@ The target application is not installed by the administrator.
 **Solution**
 
 Check that the target application has been installed by the administrator.
+
+## 9201001 Failed to Manage the Certificate
+
+**Error Message**
+
+manage certificate failed
+
+**Description**
+
+This error code is reported when the super device administrator application fails to install or uninstall a user certificate.
+
+**Possible Causes**
+
+The user certificate is incorrect.
+
+**Solution**
+
+Check that the user certificate is correct.
 
 ## 9201002 Failed to Install the Application
 
