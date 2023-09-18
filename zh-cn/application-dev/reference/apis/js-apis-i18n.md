@@ -93,7 +93,7 @@ static getDisplayLanguage(language: string, locale: string, sentenceCase?: boole
 **示例：**
   ```ts
   import { BusinessError } from '@ohos.base';
-  
+
   try {
     let displayLanguage: string = I18n.System.getDisplayLanguage("zh", "en-GB"); // displayLanguage = Chinese
   } catch(error) {
@@ -119,7 +119,7 @@ static getSystemLanguages(): Array&lt;string&gt;
 **示例：**
   ```ts
   import { BusinessError } from '@ohos.base';
-  
+
   try {
     let systemLanguages: Array<string> = I18n.System.getSystemLanguages(); // [ "en-Latn-US", "zh-Hans" ]
   } catch(error) {
@@ -159,7 +159,7 @@ static getSystemCountries(language: string): Array&lt;string&gt;
 **示例：**
   ```ts
   import { BusinessError } from '@ohos.base';
-  
+
   try {
     let systemCountries: Array<string> = I18n.System.getSystemCountries('zh'); // systemCountries = [ "ZW", "YT", "YE", ..., "ER", "CN", "DE" ]，共计240个国家或地区
   } catch(error) {
@@ -200,7 +200,7 @@ static isSuggested(language: string, region?: string): boolean
 **示例：**
   ```ts
   import { BusinessError } from '@ohos.base';
-  
+
   try {
     let res: boolean = I18n.System.isSuggested('zh', 'CN');  // res = true
   } catch(error) {
@@ -226,7 +226,7 @@ static getSystemLanguage(): string
 **示例：**
   ```ts
   import { BusinessError } from '@ohos.base';
-  
+
   try {
     let systemLanguage: string = I18n.System.getSystemLanguage();  // systemLanguage为当前系统语言
   } catch(error) {
@@ -264,7 +264,7 @@ static setSystemLanguage(language: string): void
 **示例：**
   ```ts
   import { BusinessError } from '@ohos.base';
-  
+
   try {
     I18n.System.setSystemLanguage('zh'); // 设置系统当前语言为 "zh"
   } catch(error) {
@@ -290,7 +290,7 @@ static getSystemRegion(): string
 **示例：**
   ```ts
   import { BusinessError } from '@ohos.base';
-  
+
   try {
     let systemRegion: string = I18n.System.getSystemRegion(); // 获取系统当前地区设置
   } catch(error) {
@@ -328,7 +328,7 @@ static setSystemRegion(region: string): void
 **示例：**
   ```ts
   import { BusinessError } from '@ohos.base';
-  
+
   try {
     I18n.System.setSystemRegion('CN');  // 设置系统当前地区为 "CN"
   } catch(error) {
@@ -354,7 +354,7 @@ static getSystemLocale(): string
 **示例：**
   ```ts
   import { BusinessError } from '@ohos.base';
-  
+
   try {
     let systemLocale: string = I18n.System.getSystemLocale();  // 获取系统当前Locale
   } catch(error) {
@@ -392,7 +392,7 @@ static setSystemLocale(locale: string): void
 **示例：**
   ```ts
   import { BusinessError } from '@ohos.base';
-  
+
   try {
     I18n.System.setSystemLocale('zh-CN');  // 设置系统当前Locale为 "zh-CN"
   } catch(error) {
@@ -418,7 +418,7 @@ static is24HourClock(): boolean
 **示例：**
   ```ts
   import { BusinessError } from '@ohos.base';
-  
+
   try {
     let is24HourClock: boolean = I18n.System.is24HourClock();  // 系统24小时开关是否开启
   } catch(error) {
@@ -456,7 +456,7 @@ static set24HourClock(option: boolean): void
 **示例：**
   ```ts
   import { BusinessError } from '@ohos.base';
-  
+
   // 将系统时间设置为24小时制
   try {
     I18n.System.set24HourClock(true);
@@ -496,7 +496,7 @@ static addPreferredLanguage(language: string, index?: number): void
 **示例：**
   ```ts
   import { BusinessError } from '@ohos.base';
-  
+
   // 将语言zh-CN添加到系统偏好语言列表中
   let language = 'zh-CN';
   let index = 0;
@@ -537,7 +537,7 @@ static removePreferredLanguage(index: number): void
 **示例：**
   ```ts
   import { BusinessError } from '@ohos.base';
-  
+
   // 删除系统偏好语言列表中的第一个偏好语言
   let index: number = 0;
   try {
@@ -565,7 +565,7 @@ static getPreferredLanguageList(): Array&lt;string&gt;
 **示例：**
   ```ts
   import { BusinessError } from '@ohos.base';
-  
+
   try {
     let preferredLanguageList: Array<string> = I18n.System.getPreferredLanguageList(); // 获取系统当前偏好语言列表
   } catch(error) {
@@ -591,7 +591,7 @@ static getFirstPreferredLanguage(): string
 **示例：**
   ```ts
   import { BusinessError } from '@ohos.base';
-  
+
   try {
     let firstPreferredLanguage: string = I18n.System.getFirstPreferredLanguage();  // 获取系统当前偏好语言列表中的第一个偏好语言
   } catch(error) {
@@ -617,7 +617,7 @@ static getAppPreferredLanguage(): string
 **示例：**
   ```ts
   import { BusinessError } from '@ohos.base';
-  
+
   try {
     let appPreferredLanguage: string = I18n.System.getAppPreferredLanguage(); // 获取应用偏好语言
   } catch(error) {
@@ -655,7 +655,7 @@ static setUsingLocalDigit(flag: boolean): void
 **示例：**
   ```ts
   import { BusinessError } from '@ohos.base';
-  
+
   try {
     I18n.System.setUsingLocalDigit(true); // 打开本地化数字开关
   } catch(error) {
@@ -681,7 +681,7 @@ static getUsingLocalDigit(): boolean
 **示例：**
   ```ts
   import { BusinessError } from '@ohos.base';
-  
+
   try {
     let status: boolean = I18n.System.getUsingLocalDigit();  // 判断本地化数字开关是否打开
   } catch(error) {
@@ -1046,12 +1046,28 @@ add(field: string, amount: number): void
 | field | string | 是    | 指定进行操作的日历字段，目前支持的field值有&nbsp;year,&nbsp;month,&nbsp;week_of_year,&nbsp;week_of_month,&nbsp;date,&nbsp;day_of_year,&nbsp;day_of_week,&nbsp;day_of_week_in_month,&nbsp;hour,&nbsp;hour_of_day,&nbsp;minute,&nbsp;second,&nbsp;millisecond。 |
 | amount | number | 是    | 进行加减操作的具体数值。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.i18n错误码](../errorcodes/errorcode-i18n.md)。
+
+| 错误码ID  | 错误信息                   |
+| ------ | ---------------------- |
+| 890001 | param value not valid |
+| 401    | check param failed    |
+
 **示例：**
   ```ts
-  let calendar: I18n.Calendar = I18n.getCalendar("zh-Hans");
-  calendar.set(2021, 11, 11, 8, 0, 0); // set time to 2021.11.11 08:00:00
-  calendar.add("year", 8); // 2021 + 8
-  let year: number = calendar.get("year"); // year = 2029
+  import { BusinessError } from '@ohos.base';
+
+  try {
+    let calendar: I18n.Calendar = I18n.getCalendar("zh-Hans");
+    calendar.set(2021, 11, 11, 8, 0, 0); // set time to 2021.11.11 08:00:00
+    calendar.add("year", 8); // 2021 + 8
+    let year: number = calendar.get("year"); // year = 2029
+  } catch(error) {
+    let err: BusinessError = error as BusinessError;
+    console.error(`call systemLocaleManager.getLanguageInfoArray failed, error code: ${err.code}, message: ${err.message}.`);
+  }
   ```
 
 
@@ -1097,12 +1113,27 @@ compareDays(date: Date): number
 | ------- | ----------------------------------- |
 | number | 相差的天数，正数代表日历时间更早，负数代表日历时间更晚。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.i18n错误码](../errorcodes/errorcode-i18n.md)。
+
+| 错误码ID  | 错误信息                   |
+| ------ | ---------------------- |
+| 401    | check param failed    |
+
 **示例：**
   ```ts
-  let calendar: I18n.Calendar = I18n.getCalendar("zh-Hans");
-  calendar.setTime(5000);
-  let date: Date = new Date(6000);
-  let diff: number = calendar.compareDays(date); // diff = 1
+  import { BusinessError } from '@ohos.base';
+
+  try {
+    let calendar: I18n.Calendar = I18n.getCalendar("zh-Hans");
+    calendar.setTime(5000);
+    let date: Date = new Date(6000);
+    let diff: number = calendar.compareDays(date); // diff = 1
+  } catch(error) {
+    let err: BusinessError = error as BusinessError;
+    console.error(`call systemLocaleManager.getLanguageInfoArray failed, error code: ${err.code}, message: ${err.message}.`);
+  }
   ```
 
 
@@ -2271,9 +2302,25 @@ static getTimePeriodName(hour:number, locale?: string): string
 | ------ | ------------------- |
 | string | 返回该区域指定时间的本地化表达。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.i18n错误码](../errorcodes/errorcode-i18n.md)。
+
+| 错误码ID  | 错误信息                   |
+| ------ | ---------------------- |
+| 890001 | param value not valid |
+| 401    | check param failed    |
+
 **示例：**
   ```ts
-  let name: string = I18n.I18NUtil.getTimePeriodName(2, "zh-CN");  // name = "凌晨"
+  import { BusinessError } from '@ohos.base';
+
+  try {
+    let name: string = I18n.I18NUtil.getTimePeriodName(2, "zh-CN");  // name = "凌晨"
+  } catch(error) {
+    let err: BusinessError = error as BusinessError;
+    console.error(`call systemLocaleManager.getLanguageInfoArray failed, error code: ${err.code}, message: ${err.message}.`);
+  }
   ```
 
 
@@ -2399,7 +2446,7 @@ getLanguageInfoArray(languages: Array&lt;string&gt;, options?: SortOptions): Arr
 **示例：**
   ```ts
   import { BusinessError } from '@ohos.base';
-  
+
   // 当系统语言为zh-Hans，系统地区为CN，系统Locale为zh-Hans-CN时
   let systemLocaleManager: I18n.SystemLocaleManager = new I18n.SystemLocaleManager();
   let languages: string[] = ["zh-Hans", "en-US", "pt", "ar"];
@@ -2448,7 +2495,7 @@ getRegionInfoArray(regions: Array&lt;string&gt;, options?: SortOptions): Array&l
 **示例：**
   ```ts
   import { BusinessError } from '@ohos.base';
-  
+
   // 当系统语言为zh-Hans，系统地区为CN，系统Locale为zh-Hans-CN时
   let systemLocaleManager: I18n.SystemLocaleManager = new I18n.SystemLocaleManager();
   let regions: string[] = ["CN", "US", "PT", "EG"];
@@ -2481,7 +2528,7 @@ static getTimeZoneCityItemArray(): Array&lt;TimeZoneCityItem&gt;
 **示例：**
   ```ts
   import { BusinessError } from '@ohos.base';
-  
+
   try {
     let timeZoneCityItemArray: Array<I18n.TimeZoneCityItem> = I18n.SystemLocaleManager.getTimeZoneCityItemArray();
     for (let i = 0; i < timeZoneCityItemArray.length; i++) {
