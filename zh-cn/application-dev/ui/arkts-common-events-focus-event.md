@@ -531,7 +531,7 @@ struct SwiperExample {
           .borderWidth(2)
           .borderColor(Color.Gray)
           .backgroundColor(Color.White)
-        }, ((item:string):string => item))
+        }, (item:string):string => item)
       }
       .cachedCount(2)
       .index(0)
@@ -805,6 +805,7 @@ class MyDataSource implements IDataSource {
 struct SwiperExample {
   private swiperController: SwiperController = new SwiperController()
   private data: MyDataSource = new MyDataSource([])
+  @State tmp:promptAction.ShowToastOptions = {'message':'Button OK on clicked'}
 
   aboutToAppear(): void {
     let list: number[] = []
@@ -937,7 +938,6 @@ struct SwiperExample {
           .height(50)
           .backgroundColor('#dadbd9')
 
-        let tmp:Record<string,string> = {'message':'Button OK on clicked'}
         Button('OK')
           .fontSize(30)
           .fontColor('#787878')
@@ -947,7 +947,7 @@ struct SwiperExample {
           .backgroundColor('#dadbd9')
           .defaultFocus(true)
           .onClick(() => {
-            promptAction.showToast(tmp);
+            promptAction.showToast(this.tmp);
           })
           .groupDefaultFocus(true)    // 设置Button-OK为第三个tabIndex节点的默认焦点
       }
