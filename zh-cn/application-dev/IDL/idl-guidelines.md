@@ -66,7 +66,7 @@ sequenceable a.b..C.D
 using C::D;
 ```
 
-TS声明放在文件的头部，以 “sequenceable namespace.typename;”的形式声明。具体而言，声明可以有如下形式：
+TS声明放在文件的头部，以 “sequenceable namespace.typename;”的形式声明。具体而言，声明可以有如下形式（idl为对应namespace，MySequenceable为对应typename）：
 
 ```ts
 sequenceable idl.MySequenceable
