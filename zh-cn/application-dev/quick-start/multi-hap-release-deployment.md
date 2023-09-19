@@ -14,7 +14,7 @@
 在调试前，需要先安装或更新HAP，以下介绍具体做法。
 * 使用DevEco Studio进行调试
 
-   使用指导可参考[应用程序包调试方法](https://developer.harmonyos.com/cn/docs/documentation/doc-guides/ohos-debugging-and-running-0000001263040487#section10491183521520)，其中包括了单HAP与多HAP通过DevEco Studio工具的安装调试方法。
+   使用指导可参考[应用程序包调试方法](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/ide_debug_device-0000001053822404-V3?catalogVersion=V3#section10491183521520)，其中包括了单HAP与多HAP通过DevEco Studio工具的安装调试方法。
 
 * 使用[hdc工具](../../device-dev/subsystems/subsys-toolchain-hdc-guide.md)(可通过OpenHarmony SDK获取，在SDK的toolchains目录下)进行调试
    
