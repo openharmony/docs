@@ -113,6 +113,52 @@ Replace **getDelayTime** with **getDelayTimeList** in your code.
 
 Applications that use the involved APIs may have compatibility issues.
 
+The deprecated APIs and their respective substitute APIs are as follows:
+
+- **OHOS::Media::OH_GetImageInfo** is replaced by **OH_PixelMap_GetImageInfo**.
+- **OHOS::Media::OH_AccessPixels** is replaced by **OH_PixelMap_AccessPixels**.
+- **OHOS::Media::OH_UnAccessPixels** is replaced by **OH_PixelMap_UnAccessPixels**.
+
+
+The following lists the APIs involved in the change:
+
+- OH_PixelMap_CreatePixelMap (napi_env env, OhosPixelMapCreateOps info, void *buf, size_t len, napi_value *res)
+
+- OH_PixelMap_CreateAlphaPixelMap (napi_env env, napi_value source, napi_value *alpha)
+
+- OH_PixelMap_InitNativePixelMap (napi_env env, napi_value source)
+
+- OH_PixelMap_GetBytesNumberPerRow (const NativePixelMap *native, int32_t *num)
+
+- OH_PixelMap_GetIsEditable (const NativePixelMap *native, int32_t *editable)
+
+- OH_PixelMap_IsSupportAlpha (const NativePixelMap *native, int32_t *alpha)
+
+- OH_PixelMap_SetAlphaAble (const NativePixelMap *native, int32_t alpha)
+
+- OH_PixelMap_GetDensity (const NativePixelMap *native, int32_t *density)
+
+- OH_PixelMap_SetDensity (const NativePixelMap *native, int32_t density)
+
+- OH_PixelMap_SetOpacity (const NativePixelMap *native, float opacity)
+
+- OH_PixelMap_Scale (const NativePixelMap *native, float x, float y)
+
+- OH_PixelMap_Translate (const NativePixelMap *native, float x, float y)
+
+- OH_PixelMap_Rotate (const NativePixelMap *native, float angle)
+
+- OH_PixelMap_Flip (const NativePixelMap *native, int32_t x, int32_t y)
+
+- OH_PixelMap_Crop (const NativePixelMap *native, int32_t x, int32_t y, int32_t width, int32_t height)
+
+- OH_PixelMap_GetImageInfo (const NativePixelMap *native, OhosPixelMapInfos *info)
+
+- OH_PixelMap_AccessPixels (const NativePixelMap *native, void **addr)
+
+- OH_PixelMap_UnAccessPixels (const NativePixelMap *native)
+
+
 **Adaptation Guide**
 
 1. Add the header file **image_pixel_map_mdk.h**.
