@@ -256,7 +256,7 @@ struct WaterflowDemo {
 
   build() {
     Column({ space: 2 }) {
-      WaterFlow({ footer: this.itemFoot, scroller: this.scroller }) {
+      WaterFlow({ footer: () => { this.itemFoot() }, scroller: this.scroller }) {
         LazyForEach(this.datasource, (item: number) => {
           FlowItem() {
             Column() {
