@@ -2629,8 +2629,6 @@ isHoliday(date?: Date): boolean;
 
 判断指定的日期是否是节假日。
 
-**系统接口**：此接口为系统接口。
-
 **系统能力**：SystemCapability.Global.I18n
 
 **参数：**
@@ -2664,8 +2662,6 @@ isHoliday(date?: Date): boolean;
 getHolidayInfoItemArray(year?: number): Array&lt;[HolidayInfoItem](#holidayinfoitem11)&gt;
 
 获取指定某年的节假日信息列表。
-
-**系统接口**：此接口为系统接口。
 
 **系统能力**：SystemCapability.Global.I18n
 
