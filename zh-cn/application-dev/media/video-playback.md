@@ -262,6 +262,6 @@ export class AVPlayerDemo {
 
 针对视频播放，有以下相关实例可供参考：
 
-- [视频播放（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Media/VideoPlay)
+- [视频播放（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-4.0-Release/code/BasicFeature/Media/VideoPlay)
 
 - [视频播放器（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/Media/VideoPlayer)

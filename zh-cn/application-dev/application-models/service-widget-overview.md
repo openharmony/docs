@@ -83,12 +83,12 @@ ArkTS卡片与JS卡片具备不同的实现原理及特征，在场景能力上�
 
 针对Stage模型卡片提供方的开发，有以下相关实例可供参考：
 
-- [ArkTS音乐卡片（ArkTS卡片）（Full SDK）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/Widget/ArkTSCard/MusicControl)
+- [ArkTS音乐卡片（ArkTS卡片）（Full SDK）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-4.0-Release/code/SuperFeature/Widget/ArkTSCard/MusicControl)
 
-- [Stage模型卡片（JS卡片）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/Widget/FormExtAbility)
+- [Stage模型卡片（JS卡片）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-4.0-Release/code/SuperFeature/Widget/FormExtAbility)
 
-- [Stage模型卡片JS与C++通信（JS卡片）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/Widget/FormGame)
+- [Stage模型卡片JS与C++通信（JS卡片）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-4.0-Release/code/SuperFeature/Widget/FormGame)
 
-- [ArkTS卡片Canvas小游戏（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/Widget/ArkTSCard/CanvasGame)
+- [ArkTS卡片Canvas小游戏（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-4.0-Release/code/SuperFeature/Widget/ArkTSCard/CanvasGame)
 
-- [ArkTS卡片计算器（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/Widget/ArkTSCard/Calculator)
+- [ArkTS卡片计算器（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-4.0-Release/code/SuperFeature/Widget/ArkTSCard/Calculator)

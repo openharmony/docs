@@ -83,4 +83,4 @@ BackupExtensionAbility，是[Stage模型](../../application-dev/application-mode
 
 针对应用接入数据的备份与恢复，有以下相关实例可供参考：
 
-- [应用接入数据备份恢复（ArkTS）（Full SDK）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/FileManagement/FileBackupExtension)
+- [应用接入数据备份恢复（ArkTS）（Full SDK）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-4.0-Release/code/BasicFeature/FileManagement/FileBackupExtension)

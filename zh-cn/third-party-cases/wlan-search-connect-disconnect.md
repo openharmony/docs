@@ -439,7 +439,7 @@
 
 ## 全部代码
 
-本例完整代码sample示例链接：[WLAN](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/Connectivity/Wlan)
+本例完整代码sample示例链接：[WLAN](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-4.0-Release/code/SystemFeature/Connectivity/Wlan)
 
 ## 参考
 
