@@ -144,8 +144,8 @@ export class VideoRecorderDemo {
 
   // Set AVRecorder callback functions.
   setAvRecorderCallback() {
-    // Callback function for state changes.
     if (this.avRecorder != undefined) {
+      // Callback function for state changes.
       this.avRecorder.on('stateChange', (state: media.AVRecorderState, reason: media.StateChangeReason) => {
         console.info(TAG + 'current state is: ' + state);
       })
@@ -197,7 +197,7 @@ export class VideoRecorderDemo {
 
   // Process of pausing recording.
   async pauseRecordingProcess() {
-    if (this.avRecorder != undefined && this.avRecorder.state ==='started') { // pause() can be called only when the AVRecorder is in the started state .
+    if (this.avRecorder != undefined && this.avRecorder.state === 'started') { // pause() can be called only when the AVRecorder is in the started state .
       await this.avRecorder.pause();
       await this.stopCameraOutput(); // Stop the camera stream output.
     }
@@ -215,7 +215,7 @@ export class VideoRecorderDemo {
     if (this.avRecorder != undefined) {
       // 1. Stop recording.
       if (this.avRecorder.state === 'started'
-        || this.avRecorder.state === 'paused') { // stop() can be called only when the AVRecorder is in the started or paused state.
+        || this.avRecorder.state ==='paused') { // stop() can be called only when the AVRecorder is in the started or paused state.
         await this.avRecorder.stop();
         await this.stopCameraOutput();
       }

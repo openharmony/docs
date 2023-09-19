@@ -29,6 +29,7 @@ For details, see [AVSession Management](../reference/apis/js-apis-avsession.md).
 | setAVQueueTitle(title: string, callback: AsyncCallback&lt;void&gt;): void<sup>10+<sup> | Sets a name for the playlist.|
 | dispatchSessionEvent(event: string, args: {[key: string]: Object}, callback: AsyncCallback&lt;void&gt;): void<sup>10+<sup> | Dispatches a custom session event.|
 | setExtras(extras: {[key: string]: Object}, callback: AsyncCallback&lt;void&gt;): void<sup>10+<sup> | Sets a custom media packet in the form of a key-value pair.|
+| getOutputDeviceSync(): OutputDeviceInfo<sup>10+<sup> | Obtains the output device information. This API is a synchronous API.|
 
 ## How to Develop
 
@@ -41,7 +42,7 @@ To enable an audio and video application to access the AVSession service as a pr
 
    // Start to create and activate an AVSession object.
    // Create an AVSession object.
-   let context: Context = this.context;
+   let context: Context = getContext(this);
    async function createSession() {
    let type: AVSessionManager.AVSessionType = 'audio';
    let session = await AVSessionManager.createAVSession(context, 'SESSION_NAME', type);
@@ -60,7 +61,7 @@ To enable an audio and video application to access the AVSession service as a pr
    import AVSessionManager from '@ohos.multimedia.avsession';
    import { BusinessError } from '@ohos.base';
 
-   let context: Context = this.context;
+   let context: Context = getContext(this);
    async function setSessionInfo() {
      // It is assumed that an AVSession object has been created. For details about how to create an AVSession object, see the node snippet in step 1.
      let session = await AVSessionManager.createAVSession(context, 'SESSION_NAME', 'audio');
@@ -140,7 +141,7 @@ To enable an audio and video application to access the AVSession service as a pr
    import AVSessionManager from '@ohos.multimedia.avsession';
    import wantAgent from '@ohos.app.ability.wantAgent';
 
-   let context: Context = this.context;
+   let context: Context = getContext(this);
    async function getWantAgent() {
      let type: AVSessionManager.AVSessionType = 'audio';
      // It is assumed that an AVSession object has been created. For details about how to create an AVSession object, see the node snippet in step 1.
@@ -172,7 +173,7 @@ To enable an audio and video application to access the AVSession service as a pr
    import AVSessionManager from '@ohos.multimedia.avsession';
    import { BusinessError } from '@ohos.base';
 
-   let context: Context = this.context;
+   let context: Context = getContext(this);
    async function dispatchSessionEvent() {
      // It is assumed that an AVSession object has been created. For details about how to create an AVSession object, see the node snippet in step 1.
      let type: AVSessionManager.AVSessionType = 'audio';
@@ -196,7 +197,7 @@ To enable an audio and video application to access the AVSession service as a pr
    import AVSessionManager from '@ohos.multimedia.avsession';
    import { BusinessError } from '@ohos.base';
 
-   let context: Context = this.context;
+   let context: Context = getContext(this);
    async function setExtras() {
      // It is assumed that an AVSession object has been created. For details about how to create an AVSession object, see the node snippet in step 1.
      let type: AVSessionManager.AVSessionType = 'audio';
@@ -224,7 +225,7 @@ To enable an audio and video application to access the AVSession service as a pr
    ```ts
    import AVSessionManager from '@ohos.multimedia.avsession';
 
-   let context: Context = this.context;
+   let context: Context = getContext(this);
    async function setListenerForMesFromController() {
      // It is assumed that an AVSession object has been created. For details about how to create an AVSession object, see the node snippet in step 1.
      let type: AVSessionManager.AVSessionType = 'audio';
@@ -291,7 +292,7 @@ To enable an audio and video application to access the AVSession service as a pr
    ```ts
    import AVSessionManager from '@ohos.multimedia.avsession';
 
-   let context: Context = this.context;
+   let context: Context = getContext(this);
    async function setListenerForMesFromController() {
      // It is assumed that an AVSession object has been created. For details about how to create an AVSession object, see the node snippet in step 1.
      let type: AVSessionManager.AVSessionType = 'audio';
@@ -322,7 +323,7 @@ To enable an audio and video application to access the AVSession service as a pr
    ```ts
    import AVSessionManager from '@ohos.multimedia.avsession';
 
-   let context: Context = this.context;
+   let context: Context = getContext(this);
    async function createControllerFromSession() {
      // It is assumed that an AVSession object has been created. For details about how to create an AVSession object, see the node snippet in step 1.
      let type: AVSessionManager.AVSessionType = 'audio';
@@ -351,7 +352,7 @@ To enable an audio and video application to access the AVSession service as a pr
    ```ts
    import AVSessionManager from '@ohos.multimedia.avsession';
 
-   let context: Context = this.context;
+   let context: Context = getContext(this);
    async function unregisterSessionListener() {
      // It is assumed that an AVSession object has been created. For details about how to create an AVSession object, see the node snippet in step 1.
      let type: AVSessionManager.AVSessionType = 'audio';
@@ -375,7 +376,7 @@ To enable an audio and video application to access the AVSession service as a pr
    ```ts
    import AVSessionManager from '@ohos.multimedia.avsession';
 
-   let context: Context = this.context;
+   let context: Context = getContext(this);
    async function destroySession() {
      // It is assumed that an AVSession object has been created. For details about how to create an AVSession object, see the node snippet in step 1.
      let type: AVSessionManager.AVSessionType = 'audio';
