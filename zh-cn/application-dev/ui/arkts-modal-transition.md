@@ -284,9 +284,8 @@ struct BindContextMenuDemo {
   @Builder MyMenu() {
     Row() {
       Column() {
-        ForEach(this.num, (item: number, index?: number|undefined) => {
-          if(index){
-            Row() {
+        ForEach(this.num, (item: number, index: number = 0) => {
+          Row() {
               Text(item.toString())
                 .fontSize(20)
                 .fontColor(Color.White)
@@ -295,7 +294,6 @@ struct BindContextMenuDemo {
             .width('100%')
             .aspectRatio(2)
             .justifyContent(FlexAlign.Center)
-          }
         })
       }
       .width('100%')
