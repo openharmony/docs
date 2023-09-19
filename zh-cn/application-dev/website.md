@@ -1226,6 +1226,7 @@
       - [@ohos.geolocation (位置服务)](reference/apis/js-apis-geolocation.md)
       - [@ohos.hiAppEvent (应用打点)](reference/apis/js-apis-hiappevent.md)
       - [@ohos.multimedia.medialibrary (媒体库管理)](reference/apis/js-apis-medialibrary.md)
+      - [@ohos.multimodalInput.inputDeviceCooperate (键鼠穿越)](reference/apis/js-apis-cooperate.md)
       - [@ohos.prompt (弹窗)](reference/apis/js-apis-prompt.md)
       - [@ohos.reminderAgent (后台代理提醒)](reference/apis/js-apis-reminderAgent.md)
       - [@ohos.statfs (statfs)](reference/apis/js-apis-statfs.md)
