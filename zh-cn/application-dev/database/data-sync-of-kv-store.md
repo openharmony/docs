@@ -302,18 +302,18 @@
 
 针对键值型数据库开发，有以下相关实例可供参考：
 
-- [分布式组网认证（ArkTS）（Full SDK）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/DistributedAppDev/DistributedAuthentication)
+- [分布式组网认证（ArkTS）（Full SDK）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/monthly_20230815/code/SuperFeature/DistributedAppDev/DistributedAuthentication)
 
-- [分布式数据管理（ArkTS）（Full SDK）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/DistributedAppDev/Kvstore)
+- [分布式数据管理（ArkTS）（Full SDK）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/monthly_20230815/code/SuperFeature/DistributedAppDev/Kvstore)
 
-- [分布式音乐播放（JS）（Full SDK）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/DistributedAppDev/JsDistributedMusicPlayer)
+- [分布式音乐播放（JS）（Full SDK）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/monthly_20230815/code/SuperFeature/DistributedAppDev/JsDistributedMusicPlayer)
 
-- [分布式音乐播放（ArkTS）（Full SDK）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/DistributedAppDev/ArkTSDistributedMusicPlayer)
+- [分布式音乐播放（ArkTS）（Full SDK）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/monthly_20230815/code/SuperFeature/DistributedAppDev/ArkTSDistributedMusicPlayer)
 
-- [分布式计算器（JS）（Full SDK）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/DistributedAppDev/DistributeCalc)
+- [分布式计算器（JS）（Full SDK）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/monthly_20230815/code/SuperFeature/DistributedAppDev/DistributeCalc)
 
-- [分布式计算器（ArkTS）（Full SDK）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/DistributedAppDev/ArkTSDistributedCalc)
+- [分布式计算器（ArkTS）（Full SDK）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/monthly_20230815/code/SuperFeature/DistributedAppDev/ArkTSDistributedCalc)
 
-- [分布式五子棋（ArkTS）（Full SDK）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/Solutions/Game/DistributedDataGobang)
+- [分布式五子棋（ArkTS）（Full SDK）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/monthly_20230815/code/Solutions/Game/DistributedDataGobang)
 
 - [分布式手写板（ArkTS）（Full SDK）（API10）](https://gitee.com/openharmony/codelabs/tree/master/Distributed/DistributeDraw)

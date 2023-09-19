@@ -150,6 +150,6 @@ HiAppEvent是在系统层面为应用开发者提供的一种事件打点机制�
 
 针对应用事件开发，有以下相关实例可供参考：
 
-- [测试打点（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/DFX/DotTest)
+- [测试打点（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/monthly_20230815/code/BasicFeature/DFX/DotTest)
 
-- [日志打印（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/DFX/Logger)
+- [日志打印（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/monthly_20230815/code/BasicFeature/DFX/Logger)

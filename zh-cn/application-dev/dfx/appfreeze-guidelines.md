@@ -198,4 +198,4 @@ APP_LIFECYCLE_TIMEOUT：
 
 针对故障日志获取，有以下相关实力可供参考：
 
-- [故障日志获取（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/DFX/FaultLogger)
+- [故障日志获取（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/monthly_20230815/code/BasicFeature/DFX/FaultLogger)

@@ -453,4 +453,4 @@ export default class MySequenceable {
 
 针对IDL的使用，有以下相关实例可供参考：
 
-- [Ability与ServiceExtensionAbility通信（ArkTS）(Full SDK)（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/IDL/AbilityConnectServiceExtension)
+- [Ability与ServiceExtensionAbility通信（ArkTS）(Full SDK)（API9）](https://gitee.com/openharmony/applications_app_samples/tree/monthly_20230815/code/BasicFeature/IDL/AbilityConnectServiceExtension)

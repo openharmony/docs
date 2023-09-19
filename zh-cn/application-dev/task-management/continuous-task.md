@@ -457,4 +457,4 @@
 
 针对长时任务开发，有以下相关实例可供参考：
 
-- [长时任务（ArkTS）（Full SDK）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/TaskManagement/ContinuousTask)
+- [长时任务（ArkTS）（Full SDK）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/monthly_20230815/code/BasicFeature/TaskManagement/ContinuousTask)

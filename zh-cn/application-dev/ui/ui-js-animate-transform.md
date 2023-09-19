@@ -585,9 +585,9 @@ transform可以设置多个值并且多个值可同时设置，下面案例中�
 
 针对transform样式动画开发，有以下相关实例可供参考：
 
-- [`JsComponentCollection`：组件集合（JS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/UI/JsComponentClollection/JsComponentCollection)
+- [`JsComponentCollection`：组件集合（JS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/monthly_20230815/code/UI/JsComponentCollection/JsComponentCollection)
 
-- [`JsClock`：时钟（JS）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/Solutions/Tools/JsClock)
+- [`JsClock`：时钟（JS）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/monthly_20230815/code/Solutions/Tools/JsClock)
 
 - [动画样式（JS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/JSUI/AnimationDemo)
 

@@ -282,4 +282,4 @@ export default {
 
 针对menu开发，有以下相关实例可供参考：
 
-- [`JsComponentCollection`：JS组件集合（JS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/UI/JsComponentClollection/JsComponentCollection)
+- [`JsComponentCollection`：JS组件集合（JS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/monthly_20230815/code/UI/JsComponentCollection/JsComponentCollection)

@@ -383,4 +383,4 @@
 
 针对资源管理Rawfile开发，有以下相关实例可供参考：
 
-- [获取Rawfile资源（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Native/NdkRawfile)
+- [获取Rawfile资源（API9）](https://gitee.com/openharmony/applications_app_samples/tree/monthly_20230815/code/BasicFeature/Native/NdkRawfile)
