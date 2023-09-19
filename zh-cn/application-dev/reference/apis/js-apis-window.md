@@ -5433,6 +5433,445 @@ try {
   console.error('Failed to set water mark flag of window. Cause: ' + JSON.stringify(exception));
 }
 ```
+### raiseAboveTarget<sup>10+</sup>
+
+raiseAboveTarget(windowId: number, callback: AsyncCallback&lt;void&gt;): void
+
+将同一个主窗口下的子窗口提升到目标子窗口之上。使用callback异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名   | 类型                      | 必填 | 说明       |
+| -------- | ------------------------- | ---- | ---------- |
+| windowId | number                    | 是   | 目标子窗口的id，通过[getWindowProperties](#getwindowproperties9)接口获取到[properties](#windowproperties)后，再通过properties.id获取 |
+| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ---------------------------------------------- |
+| 1300002 | This window state is abnormal. |
+| 1300003 | This window manager service works abnormally. |
+| 1300004 | Unauthorized operation. |
+| 1300009 | The parent window is invalid. |
+
+**示例：**
+
+```ts
+// 将windowClass调整到targetWindow之上
+let properties = targetWindow.getWindowProperties();
+let targetId = properties.id;
+windowClass.raiseAboveTarget(targetId, (err) => {
+    if (err.code) {
+        console.error('Failed to raise the subWindow to target subWindow top. Cause: ' + JSON.stringify(err));
+        return;
+    }
+    console.info('Succeeded in raising the subWindow to target subWindow top.');
+});
+```
+
+### raiseAboveTarget<sup>10+</sup>
+
+raiseAboveTarget(windowId: number): Promise&lt;void&gt;
+
+将同一个主窗下的子窗口提升到目标子窗口之上。使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名   | 类型                      | 必填 | 说明       |
+| -------- | ------------------------- | ---- | ---------- |
+| windowId | number                    | 是   | 目标子窗口的id，通过[getWindowProperties](#getwindowproperties9)接口获取到[properties](#windowproperties)后，再通过properties.id获取 |
+
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ------------------------------ |
+| 1300002 | This window state is abnormal. |
+| 1300003 | This window manager service works abnormally. |
+| 1300004 | Unauthorized operation. |
+| 1300009 | The parent window is invalid. |
+
+**示例：**
+
+```ts
+// 将windowClass调整到targetWindow之上
+let properties = targetWindow.getWindowProperties();
+let targetId = properties.id;
+let promise = windowClass.raiseAboveTarget(targetId);
+promise.then(()=> {
+    console.info('Succeeded in raising the subWindow to target subWindow top.');
+}).catch((err)=>{
+    console.error('Failed to raise the subWindow to target subWindow top. Cause: ' + JSON.stringify(err));
+});
+```
+### setRaiseByClickEnabled<sup>10+</sup>
+
+setRaiseByClickEnabled(enable: boolean, callback: AsyncCallback&lt;void&gt;): void
+
+禁止/使能子窗口点击抬升功能。使用callback异步回调。
+
+通常来说，点击一个子窗口，会将该子窗口显示到最上方，如果设置为false，那么点击子窗口的时候，不会将该子窗口显示到最上方，而是保持不变。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名   | 类型                      | 必填 | 说明       |
+| -------- | ------------------------- | ---- | ---------- |
+| enable   | boolean                   | 是   | 设置子窗口点击抬升功能是否使能，true表示使能，false表示禁止。 |
+| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ------------------------------ |
+| 1300002 | This window state is abnormal. |
+| 1300003 | This window manager service works abnormally. |
+| 1300004 | Unauthorized operation. |
+| 1300009 | The parent window is invalid. |
+
+**示例：**
+
+```ts
+let enabled = false;
+windowClass.setRaiseByClickEnabled(enabled, (err) => {
+    if (err.code) {
+        console.error('Failed to disable the raise-by-click function. Cause: ' + JSON.stringify(err));
+        return;
+    }
+    console.info('Succeeded in disabling the raise-by-click function.');
+});
+```
+
+### setRaiseByClickEnabled<sup>10+</sup>
+
+setRaiseByClickEnabled(enable: boolean): Promise&lt;void&gt;
+
+禁止/使能子窗点击抬升功能。使用Promise异步回调。
+
+通常来说，点击一个子窗口，会将该子窗口显示到最上方，如果设置为false，那么点击子窗口的时候，不会将该子窗口显示到最上方，而是保持不变。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名   | 类型                      | 必填 | 说明       |
+| -------- | ------------------------- | ---- | ---------- |
+| enable   | boolean                   | 是   | 设置子窗口点击抬升功能是否使能，true表示使能，false表示禁止。 |
+
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ------------------------------ |
+| 1300002 | This window state is abnormal. |
+| 1300003 | This window manager service works abnormally. |
+| 1300004 | Unauthorized operation. |
+| 1300009 | The parent window is invalid. |
+
+**示例：**
+
+```ts
+let enabled = false;
+let promise = windowClass.setRaiseByClickEnabled(enabled);
+promise.then(()=> {
+    console.info('Succeeded in disabling the raise-by-click function.');
+}).catch((err)=>{
+    console.error('Failed to disable the raise-by-click function. Cause: ' + JSON.stringify(err));
+});
+```
+### minimize<sup>10+</sup>
+
+minimize(callback: AsyncCallback&lt;void&gt;): void
+
+最小化主窗口。使用callback异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名   | 类型                      | 必填 | 说明       |
+| -------- | ------------------------- | ---- | ---------- |
+| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ------------------------------ |
+| 1300002 | This window state is abnormal. |
+| 1300003 | This window manager service works abnormally. |
+
+**示例：**
+
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+
+export default class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage) {
+        // 为主窗口加载对应的目标页面。
+        windowStage.loadContent("pages/page2", (err) => {
+            if (err.code) {
+                console.error('Failed to load the content. Cause:' + JSON.stringify(err));
+                return;
+            }
+            console.info('Succeeded in loading the content.');
+        });
+        // 获取应用主窗口。
+        let mainWindow = null;
+        
+        windowStage.getMainWindow((err, data) => {
+            if (err.code) {
+                console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(err));
+                return;
+            }
+            mainWindow = data;
+            console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
+            // 调用minimize接口。
+            mainWindow.minimize((err) => {
+                if (err.code) {
+                    console.error('Failed to minimize the app main window. Cause: ' + JSON.stringify(err));
+                    return;
+                }
+                console.info('Successfully minimized app main window.');
+            });
+        })
+    }
+};
+```
+
+### minimize<sup>10+</sup>
+
+minimize(): Promise&lt;void&gt;
+
+最小化主窗口。使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ------------------------------ |
+| 1300002 | This window state is abnormal. |
+| 1300003 | This window manager service works abnormally. |
+
+**示例：**
+
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+
+export default class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage) {
+        // 为主窗口加载对应的目标页面。
+        windowStage.loadContent("pages/page2", (err) => {
+            if (err.code) {
+                console.error('Failed to load the content. Cause:' + JSON.stringify(err));
+                return;
+            }
+            console.info('Succeeded in loading the content.');
+        });
+        // 获取应用主窗口。
+        let mainWindow = null;
+        
+        windowStage.getMainWindow((err, data) => {
+            if (err.code) {
+                console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(err));
+                return;
+            }
+            mainWindow = data;
+            console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
+            // 获取minimize接口的promise对象。
+            let promise = mainWindow.minimize();
+            promise.then(()=> {
+                console.info('Successfully minimized app main window.');
+            }).catch((err)=>{
+                console.error('Failed to minimize the app main window. Cause: ' + JSON.stringify(err));
+            });
+        })
+    }
+};
+```
+
+### setResizeByDragEnabled<sup>10+</sup>
+
+setResizeByDragEnabled(enable: boolean, callback: AsyncCallback&lt;void&gt;): void
+
+禁止/使能通过拖拽方式缩放主窗口的功能。使用callback异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名   | 类型                      | 必填 | 说明       |
+| -------- | ------------------------- | ---- | ---------- |
+| enable   | boolean                   | 是   | 设置窗口是否使能通过拖拽进行缩放，true表示使能，false表示禁止。 |
+| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ------------------------------ |
+| 1300002 | This window state is abnormal. |
+| 1300003 | This window manager service works abnormally. |
+| 1300004 | Unauthorized operation. |
+
+**示例：**
+
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+
+export default class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage) {
+        // 为主窗口加载对应的目标页面。
+        windowStage.loadContent("pages/page2", (err) => {
+            if (err.code) {
+                console.error('Failed to load the content. Cause:' + JSON.stringify(err));
+                return;
+            }
+            console.info('Succeeded in loading the content.');
+        });
+        // 获取应用主窗口。
+        let mainWindow = null;
+        
+        windowStage.getMainWindow((err, data) => {
+            if (err.code) {
+                console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(err));
+                return;
+            }
+            mainWindow = data;
+            console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
+
+            let enabled = false;
+            // 调用setResizeByDragEnabled接口。
+            mainWindow.setResizeByDragEnabled(enabled, (err) => {
+                if (err.code) {
+                    console.error('Failed to set the function of disabling the resize by dragg window. Cause: ' + JSON.stringify(err));
+                    return;
+                }
+                console.info('Succeeded in setting the function of disabling the resize by dragg window.');
+            });
+        })
+    }
+};
+```
+
+### setResizeByDragEnabled<sup>10+</sup>
+
+setResizeByDragEnabled(enable: boolean): Promise&lt;void&gt;
+
+禁止/使能通过拖拽方式缩放主窗口的功能。使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名   | 类型                      | 必填 | 说明       |
+| -------- | ------------------------- | ---- | ---------- |
+| enable   | boolean                   | 是   | 设置窗口是否使能通过拖拽进行缩放，true表示使能，false表示禁止。 |
+
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ------------------------------ |
+| 1300002 | This window state is abnormal. |
+| 1300003 | This window manager service works abnormally. |
+
+**示例：**
+
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+
+export default class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage) {
+        // 为主窗口加载对应的目标页面。
+        windowStage.loadContent("pages/page2", (err) => {
+            if (err.code) {
+                console.error('Failed to load the content. Cause:' + JSON.stringify(err));
+                return;
+            }
+            console.info('Succeeded in loading the content.');
+        });
+        // 获取应用主窗口。
+        let mainWindow = null;
+        
+        windowStage.getMainWindow((err, data) => {
+            if (err.code) {
+                console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(err));
+                return;
+            }
+            mainWindow = data;
+            console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
+
+            let enabled = false;
+            // 获取setResizeByDragEnabled接口的promise对象
+            let promise = mainWindow.setResizeByDragEnabled(enabled);
+            promise.then(()=> {
+                console.info('Succeeded in setting the function of disabling the resize by dragg window.');
+            }).catch((err)=>{
+                console.error('Failed to set the function of disabling the resize by dragg window. Cause: ' + JSON.stringify(err));
+            });
+        })
+    }
+};
+```
 
 ### show<sup>(deprecated)</sup>
 
