@@ -19,8 +19,7 @@ Read [Camera](../reference/apis/js-apis-camera.md) for the API reference.
    There are multiple [methods for obtaining the context](../application-models/application-context-stage.md).
    ```ts
    function getCameraManager(context: featureAbility.Context): camera.CameraManager {
-     let cameraManager: camera.CameraManager;
-     cameraManager = camera.getCameraManager(context);
+     let cameraManager: camera.CameraManager = camera.getCameraManager(context);
      return cameraManager;
    }
    ```
@@ -34,31 +33,35 @@ Read [Camera](../reference/apis/js-apis-camera.md) for the API reference.
    ```ts
    function getCameraDevices(cameraManager: camera.CameraManager): Array<camera.CameraDevice> {
      let cameraArray: Array<camera.CameraDevice> = cameraManager.getSupportedCameras();
-     if (cameraArray != undefined && cameraArray.length <= 0) {
+     if (cameraArray != undefined && cameraArray.length > 0) {
+       for (let index = 0; index < cameraArray.length; index++) {
+         console.info('cameraId : ' + cameraArray[index].cameraId);  // Obtain the camera ID.
+         console.info('cameraPosition : ' + cameraArray[index].cameraPosition);  // Obtain the camera position.
+         console.info('cameraType : ' + cameraArray[index].cameraType);  // Obtain the camera type.
+         console.info('connectionType : ' + cameraArray[index].connectionType);  // Obtain the camera connection type.
+       }
+       return cameraArray;
+     } else {
        console.error("cameraManager.getSupportedCameras error");
-       return null;
+       return [];
      }
-     for (let index = 0; index < cameraArray.length; index++) {
-       console.info('cameraId : ' + cameraArray[index].cameraId);  // Obtain the camera ID.
-       console.info('cameraPosition : ' + cameraArray[index].cameraPosition);  // Obtain the camera position.
-       console.info('cameraType : ' + cameraArray[index].cameraType);  // Obtain the camera type.
-       console.info('connectionType : ' + cameraArray[index].connectionType);  // Obtain the camera connection type.
-     }
-     return cameraArray;
    }
    ```
 
 4. Call **getSupportedOutputCapability()** to obtain all output streams supported by the current device, such as preview streams and photo streams. The output stream is in each **profile** field under **CameraOutputCapability**.
      
    ```ts
-   async function getSupportedOutputCapability(cameraDevice: camera.CameraDevice, cameraManager: camera.CameraManager): Promise<camera.CameraOutputCapability> {
+   async function getSupportedOutputCapability(cameraDevice: camera.CameraDevice, cameraManager: camera.CameraManager): Promise<camera.CameraOutputCapability | undefined> {
      // Create a camera input stream.
-     let cameraInput: camera.CameraInput;
+     let cameraInput: camera.CameraInput | undefined = undefined;
      try {
        cameraInput = cameraManager.createCameraInput(cameraDevice);
      } catch (error) {
        let err = error as BusinessError;
        console.error('Failed to createCameraInput errorCode = ' + err.code);
+     }
+     if (cameraInput === undefined) {
+       return undefined;
      }
      // Listen for CameraInput errors.
      cameraInput.on('error', cameraDevice, (error: BusinessError) => {
@@ -70,7 +73,7 @@ Read [Camera](../reference/apis/js-apis-camera.md) for the API reference.
      let cameraOutputCapability: camera.CameraOutputCapability = cameraManager.getSupportedOutputCapability(cameraDevice);
      if (!cameraOutputCapability) {
        console.error("cameraManager.getSupportedOutputCapability error");
-       return null;
+       return undefined;
      }
      console.info("outputCapability: " + JSON.stringify(cameraOutputCapability));
      return cameraOutputCapability;

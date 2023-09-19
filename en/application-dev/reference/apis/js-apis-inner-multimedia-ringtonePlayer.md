@@ -12,7 +12,7 @@ This module must work with [@ohos.multimedia.systemSoundManager](js-apis-systemS
 
 ## Modules to Import
 
-```js
+```ts
 import systemSoundManager from '@ohos.multimedia.systemSoundManager';
 ```
 
@@ -45,8 +45,9 @@ Provides APIs for setting and obtaining system ringtone parameters as well as pl
 
 **Example**
 
-```js
-let state = systemRingtonePlayer.state;
+```ts
+import media from '@ohos.multimedia.media';
+let state: media.AVPlayerState = systemRingtonePlayer.state;
 ```
 
 ### getTitle
@@ -67,8 +68,10 @@ Obtains the title of a system ringtone. This API uses an asynchronous callback t
 
 **Example**
 
-```js
-systemRingtonePlayer.getTitle((err, value) => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+systemRingtonePlayer.getTitle((err: BusinessError, value: string) => {
   if (err) {
     console.error(`Failed to get system ringtone title. ${err}`);
     return;
@@ -95,10 +98,12 @@ Obtains the title of a system ringtone. This API uses a promise to return the re
 
 **Example**
 
-```js
-systemRingtonePlayer.getTitle().then((value) => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+systemRingtonePlayer.getTitle().then((value: string) => {
   console.info(`Promise returned to indicate that the value of the system ringtone title is obtained ${value}.`);
-}).catch ((err) => {
+}).catch ((err: BusinessError) => {
   console.error(`Failed to get the system ringtone title ${err}`);
 });
 ```
@@ -121,12 +126,13 @@ Obtains the information about the audio renderer used by the ringtone. This API 
 
 **Example**
 
-```js
+```ts
 import audio from '@ohos.multimedia.audio';
+import { BusinessError } from '@ohos.base';
 
-let audioRendererInfo: audio.AudioRendererInfo = null;
+let audioRendererInfo: audio.AudioRendererInfo | undefined = undefined;
 
-systemRingtonePlayer.getAudioRendererInfo((err, value) => {
+systemRingtonePlayer.getAudioRendererInfo((err: BusinessError, value: audio.AudioRendererInfo) => {
   if (err) {
     console.error(`Failed to get ringtone AudioRendererInfo. ${err}`);
     return;
@@ -154,15 +160,16 @@ Obtains the information about the audio renderer used by the ringtone. This API 
 
 **Example**
 
-```js
+```ts
 import audio from '@ohos.multimedia.audio';
+import { BusinessError } from '@ohos.base';
 
-let audioRendererInfo: audio.AudioRendererInfo = null;
+let audioRendererInfo: audio.AudioRendererInfo | undefined = undefined;
 
-systemRingtonePlayer.getAudioRendererInfo().then((value) => {
+systemRingtonePlayer.getAudioRendererInfo().then((value: audio.AudioRendererInfo) => {
   console.info(`Promise returned to indicate that the value of the ringtone AudioRendererInfo is obtained ${value}.`);
   audioRendererInfo = value;
-}).catch ((err) => {
+}).catch ((err: BusinessError) => {
   console.error(`Failed to get the ringtone AudioRendererInfo ${err}`);
 });
 ```
@@ -186,10 +193,16 @@ Sets ringtone parameters. This API uses an asynchronous callback to return the r
 
 **Example**
 
-```js
-let ringtoneOptions = {volume: 0.5, loop: true};
+```ts
+import { BusinessError } from '@ohos.base';
 
-systemRingtonePlayer.configure(ringtoneOptions, (err) => {
+class RingtoneOptions {
+  volume: number = 0;
+  loop: boolean = false;
+}
+let ringtoneOptions: RingtoneOptions = {volume: 0.5, loop: true};
+
+systemRingtonePlayer.configure(ringtoneOptions, (err: BusinessError) => {
   if (err) {
     console.error(`Failed to configure ringtone options. ${err}`);
     return;
@@ -222,12 +235,18 @@ Sets ringtone parameters. This API uses a promise to return the result.
 
 **Example**
 
-```js
-let ringtoneOptions = {volume: 0.5, loop: true};
+```ts
+import { BusinessError } from '@ohos.base';
+
+class RingtoneOptions {
+  volume: number = 0;
+  loop: boolean = false;
+}
+let ringtoneOptions: RingtoneOptions = {volume: 0.5, loop: true};
 
 systemRingtonePlayer.configure(ringtoneOptions).then(() => {
   console.info(`Promise returned to indicate a successful setting of ringtone options.`);
-}).catch ((err) => {
+}).catch ((err: BusinessError) => {
   console.error(`Failed to configure ringtone options. ${err}`);
 });
 ```
@@ -250,8 +269,10 @@ Starts playing the ringtone. This API uses an asynchronous callback to return th
 
 **Example**
 
-```js
-systemRingtonePlayer.start((err) => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+systemRingtonePlayer.start((err: BusinessError) => {
   if (err) {
     console.error(`Failed to start playing ringtone. ${err}`);
     return;
@@ -278,10 +299,12 @@ Starts playing the ringtone. This API uses a promise to return the result.
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 systemRingtonePlayer.start().then(() => {
   console.info(`Promise returned to indicate a successful starting of ringtone.`);
-}).catch ((err) => {
+}).catch ((err: BusinessError) => {
   console.error(`Failed to start playing ringtone. ${err}`);
 });
 ```
@@ -304,8 +327,10 @@ Stops playing the ringtone. This API uses an asynchronous callback to return the
 
 **Example**
 
-```js
-systemRingtonePlayer.stop((err) => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+systemRingtonePlayer.stop((err: BusinessError) => {
   if (err) {
     console.error(`Failed to stop playing ringtone. ${err}`);
     return;
@@ -332,10 +357,12 @@ Stops playing the ringtone. This API uses a promise to return the result.
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 systemRingtonePlayer.stop().then(() => {
   console.info(`Promise returned to indicate a successful stopping of ringtone.`);
-}).catch ((err) => {
+}).catch ((err: BusinessError) => {
   console.error(`Failed to stop playing ringtone. ${err}`);
 });
 ```
@@ -358,8 +385,10 @@ Releases the ringtone player. This API uses an asynchronous callback to return t
 
 **Example**
 
-```js
-systemRingtonePlayer.release((err) => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+systemRingtonePlayer.release((err: BusinessError) => {
   if (err) {
     console.error(`Failed to release ringtone player. ${err}`);
     return;
@@ -386,10 +415,12 @@ Releases the ringtone player. This API uses a promise to return the result.
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 systemRingtonePlayer.release().then(() => {
   console.info(`Promise returned to indicate a successful releasing of ringtone player.`);
-}).catch ((err) => {
+}).catch ((err: BusinessError) => {
   console.error(`Failed to release ringtone player. ${err}`);
 });
 ```
@@ -422,50 +453,78 @@ For details about the error codes, see [Audio Error Codes](../errorcodes/errorco
 
 **Example**
 
-```js
+```ts
 import audio from '@ohos.multimedia.audio';
 
-let isPlaying; // An identifier specifying whether rendering is in progress.
-let isDucked; // An identifier specifying whether the audio volume is reduced.
+let isPlaying: boolean; // An identifier specifying whether rendering is in progress.
+let isDucked: boolean; // An identifier specifying whether the audio volume is reduced.
 
-systemRingtonePlayer.on('audioInterrupt', async(interruptEvent) => {
-if (interruptEvent.forceType == audio.InterruptForceType.INTERRUPT_FORCE) {
-  // The system forcibly interrupts audio rendering. The application must update the status and displayed content accordingly.
-  switch (interruptEvent.hintType) {
-    case audio.InterruptHint.INTERRUPT_HINT_PAUSE:
-      // The audio stream has been paused and temporarily loses the focus. It will receive the interruptEvent corresponding to resume when it is able to regain the focus.
-      console.info('Force paused. Update playing status and stop writing');
-      isPlaying = false; // A simplified processing indicating several operations for switching the application to the paused state.
-      break;
-    case audio.InterruptHint.INTERRUPT_HINT_STOP:
-      // The audio stream has been stopped and permanently loses the focus. The user must manually trigger the operation to resume rendering.
-      console.info('Force stopped. Update playing status and stop writing');
-      isPlaying = false; // A simplified processing indicating several operations for switching the application to the paused state.
-      break;
-    case audio.InterruptHint.INTERRUPT_HINT_DUCK:
-      // The audio stream is rendered at a reduced volume.
-      console.info('Force ducked. Update volume status');
-      isDucked = true; // A simplified processing indicating several operations for updating the volume status.
-      break;
-    case audio.InterruptHint.INTERRUPT_HINT_UNDUCK:
-      // The audio stream is rendered at the normal volume.
-      console.info('Force ducked. Update volume status');
-      isDucked = false; // A simplified processing indicating several operations for updating the volume status.
-      break;
-    default:
-      break;
+systemRingtonePlayer.on('audioInterrupt', async(interruptEvent: audio.InterruptEvent) => {
+  if (interruptEvent.forceType == audio.InterruptForceType.INTERRUPT_FORCE) {
+    // The system forcibly interrupts audio rendering. The application must update the status and displayed content accordingly.
+    switch (interruptEvent.hintType) {
+      case audio.InterruptHint.INTERRUPT_HINT_PAUSE:
+        // The audio stream has been paused and temporarily loses the focus. It will receive the interruptEvent corresponding to resume when it is able to regain the focus.
+        console.info('Force paused. Update playing status and stop writing');
+        isPlaying = false; // A simplified processing indicating several operations for switching the application to the paused state.
+        break;
+      case audio.InterruptHint.INTERRUPT_HINT_STOP:
+        // The audio stream has been stopped and permanently loses the focus. The user must manually trigger the operation to resume rendering.
+        console.info('Force stopped. Update playing status and stop writing');
+        isPlaying = false; // A simplified processing indicating several operations for switching the application to the paused state.
+        break;
+      case audio.InterruptHint.INTERRUPT_HINT_DUCK:
+        // The audio stream is rendered at a reduced volume.
+        console.info('Force ducked. Update volume status');
+        isDucked = true; // A simplified processing indicating several operations for updating the volume status.
+        break;
+      case audio.InterruptHint.INTERRUPT_HINT_UNDUCK:
+        // The audio stream is rendered at the normal volume.
+        console.info('Force ducked. Update volume status');
+        isDucked = false; // A simplified processing indicating several operations for updating the volume status.
+        break;
+      default:
+        break;
     }
-} else if (interruptEvent.forceType == audio.InterruptForceType.INTERRUPT_SHARE) {
-  // The application can choose to take action or ignore.
-  switch (interruptEvent.hintType) {
-    case audio.InterruptHint.INTERRUPT_HINT_RESUME:
-      // It is recommended that the application continue rendering. (The audio stream has been forcibly paused and temporarily lost the focus. It can resume rendering now.)
-      console.info('Resume force paused renderer or ignore');
-      // To continue rendering, the application must perform the required operations.
-      break;
-    default:
-      break;
+  } else if (interruptEvent.forceType == audio.InterruptForceType.INTERRUPT_SHARE) {
+    // The application can choose to take action or ignore.
+    switch (interruptEvent.hintType) {
+      case audio.InterruptHint.INTERRUPT_HINT_RESUME:
+        // It is recommended that the application continue rendering. (The audio stream has been forcibly paused and temporarily lost the focus. It can resume rendering now.)
+        console.info('Resume force paused renderer or ignore');
+        // To continue rendering, the application must perform the required operations.
+        break;
+      default:
+        break;
     }
-}
+  }
 });
+```
+### off('audioInterrupt') <sup>10+</sup>
+
+off(type: 'audioInterrupt'): void
+
+Unsubscribes from audio interruption events.
+
+**System capability**: SystemCapability.Multimedia.SystemSound.Core
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                                             |
+| :----- | :----- | :--- | :------------------------------------------------ |
+| type   | string | Yes  | Event type. The value is fixed at **'audioInterrupt'**.|
+
+**Error codes**
+
+For details about the error codes, see [Audio Error Codes](../errorcodes/errorcode-audio.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 401     | if input parameter type or number mismatch  |
+| 6800101 | if input parameter value error              |
+
+**Example**
+
+```ts
+systemRingtonePlayer.off('audioInterrupt');
 ```

@@ -14,7 +14,7 @@ This module provides the following typical features related to media sessions:
 
 ## Modules to Import
 
-```js
+```ts
 import avSession from '@ohos.multimedia.avsession';
 ```
 
@@ -50,20 +50,20 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 **Example**
 
-```js
-import featureAbility from '@ohos.ability.featureAbility';
+```ts
+import { BusinessError } from '@ohos.base';
 
-let currentAVSession;
+let currentAVSession: avSession.AVSession;
 let tag = "createNewSession";
-let context = featureAbility.getContext();
-let sessionId; // Used as an input parameter of subsequent functions.
+let context: Context = getContext(this);
+let sessionId: string;  // Used as an input parameter of subsequent functions.
 
-avSession.createAVSession(context, tag, "audio").then((data) => {
-    currentAVSession = data;
-    sessionId = currentAVSession.sessionId;
-    console.info(`CreateAVSession : SUCCESS : sessionId = ${sessionId}`);
-}).catch((err) => {
-    console.info(`CreateAVSession BusinessError: code: ${err.code}, message: ${err.message}`);
+avSession.createAVSession(context, tag, "audio").then((data: avSession.AVSession) => {
+  currentAVSession = data;
+  sessionId = currentAVSession.sessionId;
+  console.info(`CreateAVSession : SUCCESS : sessionId = ${sessionId}`);
+}).catch((err: BusinessError) => {
+  console.info(`CreateAVSession BusinessError: code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -94,22 +94,22 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 **Example**
 
-```js
-import featureAbility from '@ohos.ability.featureAbility';
+```ts
+import { BusinessError } from '@ohos.base';
 
-let currentAVSession;
+let currentAVSession: avSession.AVSession;
 let tag = "createNewSession";
-let context = featureAbility.getContext();
-let sessionId; // Used as an input parameter of subsequent functions.
+let context: Context = getContext(this);
+let sessionId: string;  // Used as an input parameter of subsequent functions.
 
-avSession.createAVSession(context, tag, "audio", function (err, data) {
-    if (err) {
-        console.info(`CreateAVSession BusinessError: code: ${err.code}, message: ${err.message}`);
-    } else {
-        currentAVSession = data;
-        sessionId = currentAVSession.sessionId;
-        console.info(`CreateAVSession : SUCCESS : sessionId = ${sessionId}`);
-    }
+avSession.createAVSession(context, tag, "audio", (err: BusinessError, data: avSession.AVSession) => {
+  if (err) {
+    console.info(`CreateAVSession BusinessError: code: ${err.code}, message: ${err.message}`);
+  } else {
+    currentAVSession = data;
+    sessionId = currentAVSession.sessionId;
+    console.info(`CreateAVSession : SUCCESS : sessionId = ${sessionId}`);
+  }
 });
 ```
 
@@ -141,16 +141,18 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 **Example**
 
-```js
-avSession.getAllSessionDescriptors().then((descriptors) => {
-    console.info(`getAllSessionDescriptors : SUCCESS : descriptors.length : ${descriptors.length}`);
-    if(descriptors.length > 0 ){
-        console.info(`getAllSessionDescriptors : SUCCESS : descriptors[0].isActive : ${descriptors[0].isActive}`);
-        console.info(`GetAllSessionDescriptors : SUCCESS : descriptors[0].type : ${descriptors[0].type}`);
-        console.info(`GetAllSessionDescriptors : SUCCESS : descriptors[0].sessionTag : ${descriptors[0].sessionTag}`);
-    }
-}).catch((err) => {
-    console.error(`GetAllSessionDescriptors BusinessError: code: ${err.code}, message: ${err.message}`);
+```ts
+import { BusinessError } from '@ohos.base';
+
+avSession.getAllSessionDescriptors().then((descriptors: avSession.AVSessionDescriptor) => {
+  console.info(`getAllSessionDescriptors : SUCCESS : descriptors.length : ${descriptors.length}`);
+  if(descriptors.length > 0 ){
+    console.info(`getAllSessionDescriptors : SUCCESS : descriptors[0].isActive : ${descriptors[0].isActive}`);
+    console.info(`GetAllSessionDescriptors : SUCCESS : descriptors[0].type : ${descriptors[0].type}`);
+    console.info(`GetAllSessionDescriptors : SUCCESS : descriptors[0].sessionTag : ${descriptors[0].sessionTag}`);
+  }
+}).catch((err: BusinessError) => {
+  console.error(`GetAllSessionDescriptors BusinessError: code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -182,18 +184,20 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 **Example**
 
-```js
-avSession.getAllSessionDescriptors(function (err, descriptors) {
-    if (err) {
-        console.error(`GetAllSessionDescriptors BusinessError: code: ${err.code}, message: ${err.message}`);
-    } else {
-        console.info(`GetAllSessionDescriptors : SUCCESS : descriptors.length : ${descriptors.length}`);
-        if(descriptors.length > 0 ){
-            console.info(`getAllSessionDescriptors : SUCCESS : descriptors[0].isActive : ${descriptors[0].isActive}`);
-            console.info(`getAllSessionDescriptors : SUCCESS : descriptors[0].type : ${descriptors[0].type}`);
-            console.info(`getAllSessionDescriptors : SUCCESS : descriptors[0].sessionTag : ${descriptors[0].sessionTag}`);
-        }
+```ts
+import { BusinessError } from '@ohos.base';
+
+avSession.getAllSessionDescriptors((err: BusinessError, descriptors: avSession.AVSessionDescriptor) => {
+  if (err) {
+    console.error(`GetAllSessionDescriptors BusinessError: code: ${err.code}, message: ${err.message}`);
+  } else {
+    console.info(`GetAllSessionDescriptors : SUCCESS : descriptors.length : ${descriptors.length}`);
+    if(descriptors.length > 0 ){
+        console.info(`getAllSessionDescriptors : SUCCESS : descriptors[0].isActive : ${descriptors[0].isActive}`);
+        console.info(`getAllSessionDescriptors : SUCCESS : descriptors[0].type : ${descriptors[0].type}`);
+        console.info(`getAllSessionDescriptors : SUCCESS : descriptors[0].sessionTag : ${descriptors[0].sessionTag}`);
     }
+  }
 });
 ```
 
@@ -231,18 +235,20 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 **Example**
 
-```js
-avSession.getHistoricalSessionDescriptors().then((descriptors) => {
-    console.info(`getHistoricalSessionDescriptors : SUCCESS : descriptors.length : ${descriptors.length}`);
-    if(descriptors.length > 0 ){
-        console.info(`getHistoricalSessionDescriptors : SUCCESS : descriptors[0].isActive : ${descriptors[0].isActive}`);
-        console.info(`getHistoricalSessionDescriptors : SUCCESS : descriptors[0].type : ${descriptors[0].type}`);
-        console.info(`getHistoricalSessionDescriptors : SUCCESS : descriptors[0].sessionTag : ${descriptors[0].sessionTag}`);
-        console.info(`getHistoricalSessionDescriptors : SUCCESS : descriptors[0].sessionId : ${descriptors[0].sessionId}`);
-        console.info(`getHistoricalSessionDescriptors : SUCCESS : descriptors[0].elementName.bundleName : ${descriptors[0].elementName.bundleName}`);
-    }
-}).catch((err) => {
-    console.error(`getHistoricalSessionDescriptors BusinessError: code: ${err.code}, message: ${err.message}`);
+```ts
+import { BusinessError } from '@ohos.base';
+
+avSession.getHistoricalSessionDescriptors().then((descriptors: avSession.AVSessionDescriptor) => {
+  console.info(`getHistoricalSessionDescriptors : SUCCESS : descriptors.length : ${descriptors.length}`);
+  if(descriptors.length > 0 ){
+    console.info(`getHistoricalSessionDescriptors : SUCCESS : descriptors[0].isActive : ${descriptors[0].isActive}`);
+    console.info(`getHistoricalSessionDescriptors : SUCCESS : descriptors[0].type : ${descriptors[0].type}`);
+    console.info(`getHistoricalSessionDescriptors : SUCCESS : descriptors[0].sessionTag : ${descriptors[0].sessionTag}`);
+    console.info(`getHistoricalSessionDescriptors : SUCCESS : descriptors[0].sessionId : ${descriptors[0].sessionId}`);
+    console.info(`getHistoricalSessionDescriptors : SUCCESS : descriptors[0].elementName.bundleName : ${descriptors[0].elementName.bundleName}`);
+  }
+}).catch((err: BusinessError) => {
+  console.error(`getHistoricalSessionDescriptors BusinessError: code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -275,20 +281,22 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 **Example**
 
-```js
-avSession.getHistoricalSessionDescriptors(1, function (err, descriptors) {
-    if (err) {
-        console.error(`getHistoricalSessionDescriptors BusinessError: code: ${err.code}, message: ${err.message}`);
-    } else {
-        console.info(`getHistoricalSessionDescriptors : SUCCESS : descriptors.length : ${descriptors.length}`);
-        if(descriptors.length > 0 ){
-            console.info(`getHistoricalSessionDescriptors : SUCCESS : descriptors[0].isActive : ${descriptors[0].isActive}`);
-            console.info(`getHistoricalSessionDescriptors : SUCCESS : descriptors[0].type : ${descriptors[0].type}`);
-            console.info(`getHistoricalSessionDescriptors : SUCCESS : descriptors[0].sessionTag : ${descriptors[0].sessionTag}`);
-            console.info(`getHistoricalSessionDescriptors : SUCCESS : descriptors[0].sessionId : ${descriptors[0].sessionId}`);
-            console.info(`getHistoricalSessionDescriptors : SUCCESS : descriptors[0].elementName.bundleName : ${descriptors[0].elementName.bundleName}`);
-        }
+```ts
+import { BusinessError } from '@ohos.base';
+
+avSession.getHistoricalSessionDescriptors(1, (err: BusinessError, descriptors: avSession.AVSessionDescriptor) => {
+  if (err) {
+    console.error(`getHistoricalSessionDescriptors BusinessError: code: ${err.code}, message: ${err.message}`);
+  } else {
+    console.info(`getHistoricalSessionDescriptors : SUCCESS : descriptors.length : ${descriptors.length}`);
+    if(descriptors.length > 0 ){
+        console.info(`getHistoricalSessionDescriptors : SUCCESS : descriptors[0].isActive : ${descriptors[0].isActive}`);
+        console.info(`getHistoricalSessionDescriptors : SUCCESS : descriptors[0].type : ${descriptors[0].type}`);
+        console.info(`getHistoricalSessionDescriptors : SUCCESS : descriptors[0].sessionTag : ${descriptors[0].sessionTag}`);
+        console.info(`getHistoricalSessionDescriptors : SUCCESS : descriptors[0].sessionId : ${descriptors[0].sessionId}`);
+        console.info(`getHistoricalSessionDescriptors : SUCCESS : descriptors[0].elementName.bundleName : ${descriptors[0].elementName.bundleName}`);
     }
+  }
 });
 ```
 
@@ -327,30 +335,32 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 **Example**
 
-```js
-import featureAbility from '@ohos.ability.featureAbility';
+```ts
+import { BusinessError } from '@ohos.base';
 
-let currentAVSession;
+let currentAVSession: avSession.AVSession | undefined = undefined;
 let tag = "createNewSession";
-let context = featureAbility.getContext();
-let sessionId; // Used as an input parameter of subsequent functions.
+let context: Context = getContext(this);
+let sessionId: string = "";  // Used as an input parameter of subsequent functions.
 
-avSession.createAVSession(context, tag, "audio", function (err, data) {
-    if (err) {
-        console.info(`CreateAVSession BusinessError: code: ${err.code}, message: ${err.message}`);
-    } else {
-        currentAVSession = data;
-        sessionId = currentAVSession.sessionId;
-        console.info(`CreateAVSession : SUCCESS : sessionId = ${sessionId}`);
+avSession.createAVSession(context, tag, "audio", (err: BusinessError, data: avSession.AVSession) => {
+  if (err) {
+    console.info(`CreateAVSession BusinessError: code: ${err.code}, message: ${err.message}`);
+  } else {
+    currentAVSession = data;
+    if (currentAVSession !== undefined) {
+      sessionId = currentAVSession.sessionId;
     }
+    console.info(`CreateAVSession : SUCCESS : sessionId = ${sessionId}`);
+  }
 });
 
-let currentAVcontroller;
-avSession.createController(sessionId).then((avcontroller) => {
-    currentAVcontroller = avcontroller;
-    console.info('CreateController : SUCCESS ');
-}).catch((err) => {
-    console.error(`CreateController BusinessError: code: ${err.code}, message: ${err.message}`);
+let currentAVcontroller: avSession.AVSessionController | undefined = undefined;
+avSession.createController(sessionId).then((avcontroller: avSession.AVSessionController) => {
+  currentAVcontroller = avcontroller;
+  console.info('CreateController : SUCCESS ');
+}).catch((err: BusinessError) => {
+  console.error(`CreateController BusinessError: code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -384,32 +394,34 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 **Example**
 
-```js
-import featureAbility from '@ohos.ability.featureAbility';
+```ts
+import { BusinessError } from '@ohos.base';
 
-let currentAVSession;
+let currentAVSession: avSession.AVSession | undefined = undefined;
 let tag = "createNewSession";
-let context = featureAbility.getContext();
-let sessionId; // Used as an input parameter of subsequent functions.
+let context: Context = getContext(this);
+let sessionId: string = "";  // Used as an input parameter of subsequent functions.
 
-avSession.createAVSession(context, tag, "audio", function (err, data) {
-    if (err) {
-        console.info(`CreateAVSession BusinessError: code: ${err.code}, message: ${err.message}`);
-    } else {
-        currentAVSession = data;
-        sessionId = currentAVSession.sessionId;
-        console.info(`CreateAVSession : SUCCESS : sessionId = ${sessionId}`);
+avSession.createAVSession(context, tag, "audio", (err: BusinessError, data: avSession.AVSession) => {
+  if (err) {
+    console.info(`CreateAVSession BusinessError: code: ${err.code}, message: ${err.message}`);
+  } else {
+    currentAVSession = data;
+    if (currentAVSession !== undefined) {
+      sessionId = currentAVSession.sessionId;
     }
+    console.info(`CreateAVSession : SUCCESS : sessionId = ${sessionId}`);
+  }
 });
 
-let currentAVcontroller;
-avSession.createController(sessionId, function (err, avcontroller) {
-    if (err) {
-        console.error(`CreateController BusinessError: code: ${err.code}, message: ${err.message}`);
-    } else {
-        currentAVcontroller = avcontroller;
-        console.info('CreateController : SUCCESS ');
-    }
+let currentAVcontroller: avSession.AVSessionController | undefined = undefined;
+avSession.createController(sessionId, (err: BusinessError, avcontroller: avSession.AVSessionController) => {
+  if (err) {
+    console.error(`CreateController BusinessError: code: ${err.code}, message: ${err.message}`);
+  } else {
+    currentAVcontroller = avcontroller;
+    console.info('CreateController : SUCCESS ');
+  }
 });
 ```
 
@@ -452,24 +464,27 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 **Example**
 
-```js
+```ts
 import audio from '@ohos.multimedia.audio';
+import { BusinessError } from '@ohos.base';
 
 let audioManager = audio.getAudioManager();
 let audioRoutingManager = audioManager.getRoutingManager();
-let audioDevices;
-await audioRoutingManager.getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG).then((data) => {
-    audioDevices = data;
-    console.info(`Promise returned to indicate that the device list is obtained.`);
-}).catch((err) => {
-    console.error(`GetDevices BusinessError: code: ${err.code}, message: ${err.message}`);
+let audioDevices: audio.AudioDeviceDescriptors | undefined = undefined;
+audioRoutingManager.getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG).then((data) => {
+  audioDevices = data;
+  console.info(`Promise returned to indicate that the device list is obtained.`);
+}).catch((err: BusinessError) => {
+  console.error(`GetDevices BusinessError: code: ${err.code}, message: ${err.message}`);
 });
 
-avSession.castAudio('all', audioDevices).then(() => {
+if (audioDevices !== undefined) {
+  avSession.castAudio('all', audioDevices as audio.AudioDeviceDescriptors).then(() => {
     console.info(`CreateController : SUCCESS`);
-}).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.error(`CreateController BusinessError: code: ${err.code}, message: ${err.message}`);
-});
+  });
+}
 ```
 
 ## avSession.castAudio
@@ -506,26 +521,29 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 **Example**
 
-```js
+```ts
 import audio from '@ohos.multimedia.audio';
+import { BusinessError } from '@ohos.base';
 
 let audioManager = audio.getAudioManager();
 let audioRoutingManager = audioManager.getRoutingManager();
-let audioDevices;
-await audioRoutingManager.getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG).then((data) => {
-    audioDevices = data;
-    console.info(`Promise returned to indicate that the device list is obtained.`);
-}).catch((err) => {
-    console.error(`GetDevices BusinessError: code: ${err.code}, message: ${err.message}`);
+let audioDevices: audio.AudioDeviceDescriptors | undefined = undefined;
+audioRoutingManager.getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG).then((data) => {
+  audioDevices = data;
+  console.info(`Promise returned to indicate that the device list is obtained.`);
+}).catch((err: BusinessError) => {
+  console.error(`GetDevices BusinessError: code: ${err.code}, message: ${err.message}`);
 });
 
-avSession.castAudio('all', audioDevices, function (err) {
+if (audioDevices !== undefined) {
+  avSession.castAudio('all', audioDevices as audio.AudioDeviceDescriptors, (err: BusinessError) => {
     if (err) {
-        console.error(`CastAudio BusinessError: code: ${err.code}, message: ${err.message}`);
+      console.error(`CastAudio BusinessError: code: ${err.code}, message: ${err.message}`);
     } else {
-        console.info(`CastAudio : SUCCESS `);
+      console.info(`CastAudio : SUCCESS `);
     }
-});
+  });
+}
 ```
 
 ## SessionToken
@@ -573,11 +591,11 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 **Example**
 
-```js
-avSession.on('sessionCreate', (descriptor) => {
-    console.info(`on sessionCreate : isActive : ${descriptor.isActive}`);
-    console.info(`on sessionCreate : type : ${descriptor.type}`);
-    console.info(`on sessionCreate : sessionTag : ${descriptor.sessionTag}`);
+```ts
+avSession.on('sessionCreate', (descriptor: avSession.AVSessionDescriptor) => {
+  console.info(`on sessionCreate : isActive : ${descriptor.isActive}`);
+  console.info(`on sessionCreate : type : ${descriptor.type}`);
+  console.info(`on sessionCreate : sessionTag : ${descriptor.sessionTag}`);
 });
 
 ```
@@ -611,11 +629,11 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 **Example**
 
-```js
-avSession.on('sessionDestroy', (descriptor) => {
-    console.info(`on sessionDestroy : isActive : ${descriptor.isActive}`);
-    console.info(`on sessionDestroy : type : ${descriptor.type}`);
-    console.info(`on sessionDestroy : sessionTag : ${descriptor.sessionTag}`);
+```ts
+avSession.on('sessionDestroy', (descriptor: avSession.AVSessionDescriptor) => {
+  console.info(`on sessionDestroy : isActive : ${descriptor.isActive}`);
+  console.info(`on sessionDestroy : type : ${descriptor.type}`);
+  console.info(`on sessionDestroy : sessionTag : ${descriptor.sessionTag}`);
 });
 ```
 
@@ -648,11 +666,11 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 **Example**
 
-```js
-avSession.on('topSessionChange', (descriptor) => {
-    console.info(`on topSessionChange : isActive : ${descriptor.isActive}`);
-    console.info(`on topSessionChange : type : ${descriptor.type}`);
-    console.info(`on topSessionChange : sessionTag : ${descriptor.sessionTag}`);
+```ts
+avSession.on('topSessionChange', (descriptor: avSession.AVSessionDescriptor) => {
+  console.info(`on topSessionChange : isActive : ${descriptor.isActive}`);
+  console.info(`on topSessionChange : type : ${descriptor.type}`);
+  console.info(`on topSessionChange : sessionTag : ${descriptor.sessionTag}`);
 });
 ```
 
@@ -685,7 +703,7 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 **Example**
 
-```js
+```ts
 avSession.off('sessionCreate');
 ```
 
@@ -718,7 +736,7 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 **Example**
 
-```js
+```ts
 avSession.off('sessionDestroy');
 ```
 
@@ -751,7 +769,7 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 **Example**
 
-```js
+```ts
 avSession.off('topSessionChange');
 ```
 
@@ -782,9 +800,9 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 **Example**
 
-```js
+```ts
 avSession.on('sessionServiceDie', () => {
-    console.info(`on sessionServiceDie  : session is  Died `);
+  console.info(`on sessionServiceDie  : session is  Died `);
 });
 ```
 
@@ -815,7 +833,7 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 **Example**
 
-```js
+```ts
 avSession.off('sessionServiceDie');
 ```
 
@@ -849,16 +867,19 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 **Example**
 
-```js
-let keyItem = {code:0x49, pressedTime:2, deviceId:0};
-let event = {id:1, deviceId:0, actionTime:1, screenId:1, windowId:1, action:2, key:keyItem, unicodeChar:0, keys:[keyItem], ctrlKey:false, altKey:false, shiftKey:false, logoKey:false, fnKey:false, capsLock:false, numLock:false, scrollLock:false}; 
+```ts
+import keyEvent from '@ohos.multimodalInput.keyEvent';
+import { BusinessError } from '@ohos.base';
 
-avSession.sendSystemAVKeyEvent(event, function (err) {
-    if (err) {
-        console.error(`SendSystemAVKeyEvent BusinessError: code: ${err.code}, message: ${err.message}`);
-    } else {
-        console.info(`SendSystemAVKeyEvent : SUCCESS `);
-    }
+let keyItem: keyEvent.Key = {code:0x49, pressedTime:2, deviceId:0};
+let event: keyEvent.KeyEvent = {id:1, deviceId:0, actionTime:1, screenId:1, windowId:1, action:2, key:keyItem, unicodeChar:0, keys:[keyItem], ctrlKey:false, altKey:false, shiftKey:false, logoKey:false, fnKey:false, capsLock:false, numLock:false, scrollLock:false};
+
+avSession.sendSystemAVKeyEvent(event, (err: BusinessError) => {
+  if (err) {
+    console.error(`SendSystemAVKeyEvent BusinessError: code: ${err.code}, message: ${err.message}`);
+  } else {
+    console.info(`SendSystemAVKeyEvent : SUCCESS `);
+  }
 });
 ```
 
@@ -897,15 +918,17 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 **Example**
 
-```js
+```ts
+import keyEvent from '@ohos.multimodalInput.keyEvent';
+import { BusinessError } from '@ohos.base';
 
-let keyItem = {code:0x49, pressedTime:2, deviceId:0};
-let event = {id:1, deviceId:0, actionTime:1, screenId:1, windowId:1, action:2, key:keyItem, unicodeChar:0, keys:[keyItem], ctrlKey:false, altKey:false, shiftKey:false, logoKey:false, fnKey:false, capsLock:false, numLock:false, scrollLock:false}; 
+let keyItem: keyEvent.Key = {code:0x49, pressedTime:2, deviceId:0};
+let event: keyEvent.KeyEvent = {id:1, deviceId:0, actionTime:1, screenId:1, windowId:1, action:2, key:keyItem, unicodeChar:0, keys:[keyItem], ctrlKey:false, altKey:false, shiftKey:false, logoKey:false, fnKey:false, capsLock:false, numLock:false, scrollLock:false};
 
 avSession.sendSystemAVKeyEvent(event).then(() => {
-    console.info(`SendSystemAVKeyEvent Successfully`);
-}).catch((err) => {
-    console.error(`SendSystemAVKeyEvent BusinessError: code: ${err.code}, message: ${err.message}`);
+  console.info(`SendSystemAVKeyEvent Successfully`);
+}).catch((err: BusinessError) => {
+  console.error(`SendSystemAVKeyEvent BusinessError: code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -940,7 +963,9 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 **Example**
 
-```js
+```ts
+import avSession from '@ohos.multimedia.avsession';
+
 let cmd : avSession.AVControlCommandType = 'play';
 // let cmd : avSession.AVControlCommandType = 'pause';
 // let cmd : avSession.AVControlCommandType = 'stop';
@@ -948,7 +973,7 @@ let cmd : avSession.AVControlCommandType = 'play';
 // let cmd : avSession.AVControlCommandType = 'playPrevious';
 // let cmd : avSession.AVControlCommandType = 'fastForward';
 // let cmd : avSession.AVControlCommandType = 'rewind';
-let avcommand = {command:cmd};
+let avcommand: avSession.AVControlCommand = {command:cmd};
 // let cmd : avSession.AVControlCommandType = 'seek';
 // let avcommand = {command:cmd, parameter:10};
 // let cmd : avSession.AVControlCommandType = 'setSpeed';
@@ -957,12 +982,12 @@ let avcommand = {command:cmd};
 // let avcommand = {command:cmd, parameter:avSession.LoopMode.LOOP_MODE_SINGLE};
 // let cmd : avSession.AVControlCommandType = 'toggleFavorite';
 // let avcommand = {command:cmd, parameter:"false"};
-avSession.sendSystemControlCommand(avcommand, function (err) {
-    if (err) {
-        console.error(`SendSystemControlCommand BusinessError: code: ${err.code}, message: ${err.message}`);
-    } else {
-        console.info(`sendSystemControlCommand successfully`);
-    }
+avSession.sendSystemControlCommand(avcommand, (err) => {
+  if (err) {
+    console.error(`SendSystemControlCommand BusinessError: code: ${err.code}, message: ${err.message}`);
+  } else {
+    console.info(`sendSystemControlCommand successfully`);
+  }
 });
 ```
 
@@ -1002,7 +1027,10 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 **Example**
 
-```js
+```ts
+import avSession from '@ohos.multimedia.avsession';
+import { BusinessError } from '@ohos.base';
+
 let cmd : avSession.AVControlCommandType = 'play';
 // let cmd : avSession.AVControlCommandType = 'pause';
 // let cmd : avSession.AVControlCommandType = 'stop';
@@ -1010,7 +1038,7 @@ let cmd : avSession.AVControlCommandType = 'play';
 // let cmd : avSession.AVControlCommandType = 'playPrevious';
 // let cmd : avSession.AVControlCommandType = 'fastForward';
 // let cmd : avSession.AVControlCommandType = 'rewind';
-let avcommand = {command:cmd};
+let avcommand: avSession.AVControlCommand = {command:cmd};
 // let cmd : avSession.AVControlCommandType = 'seek';
 // let avcommand = {command:cmd, parameter:10};
 // let cmd : avSession.AVControlCommandType = 'setSpeed';
@@ -1020,9 +1048,9 @@ let avcommand = {command:cmd};
 // let cmd : avSession.AVControlCommandType = 'toggleFavorite';
 // let avcommand = {command:cmd, parameter:"false"};
 avSession.sendSystemControlCommand(avcommand).then(() => {
-    console.info(`SendSystemControlCommand successfully`);
-}).catch((err) => {
-    console.error(`SendSystemControlCommand BusinessError: code: ${err.code}, message: ${err.message}`);
+  console.info(`SendSystemControlCommand successfully`);
+}).catch((err: BusinessError) => {
+  console.error(`SendSystemControlCommand BusinessError: code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -1059,13 +1087,15 @@ Starts cast-enabled device discovery. This API uses an asynchronous callback to 
 
 **Example**
 
-```js
-avSession.startCastDeviceDiscovery(function (err) {
-    if (err) {
-        console.error(`startCastDeviceDiscovery BusinessError: code: ${err.code}, message: ${err.message}`);
-    } else {
-        console.info(`startCastDeviceDiscovery successfully`);
-    }
+```ts
+import { BusinessError } from '@ohos.base';
+
+avSession.startCastDeviceDiscovery((err: BusinessError) => {
+  if (err) {
+    console.error(`startCastDeviceDiscovery BusinessError: code: ${err.code}, message: ${err.message}`);
+  } else {
+    console.info(`startCastDeviceDiscovery successfully`);
+  }
 });
 ```
 
@@ -1089,14 +1119,16 @@ Starts cast-enabled device discovery with filter criteria specified. This API us
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 let filter = 2;
-avSession.startCastDeviceDiscovery(filter, function (err) {
-    if (err) {
-        console.error(`startCastDeviceDiscovery BusinessError: code: ${err.code}, message: ${err.message}`);
-    } else {
-        console.info(`startCastDeviceDiscovery successfully`);
-    }
+avSession.startCastDeviceDiscovery(filter, (err: BusinessError) => {
+  if (err) {
+    console.error(`startCastDeviceDiscovery BusinessError: code: ${err.code}, message: ${err.message}`);
+  } else {
+    console.info(`startCastDeviceDiscovery successfully`);
+  }
 });
 ```
 
@@ -1117,18 +1149,21 @@ Starts cast-enabled device discovery. This API uses a promise to return the resu
 | filter | number | No| Filter criteria for device discovery. The value consists of **ProtocolType**s.|
 
 **Return value**
+
 | Type          | Description                         |
 | -------------- | ----------------------------- |
 | Promise\<void> | Promise used to return the result. If the command is sent and device discovery starts, no value is returned; otherwise, an error object is returned.|
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 let filter = 2;
 avSession.startCastDeviceDiscovery(filter).then(() => {
-    console.info(`startCastDeviceDiscovery successfully`);
-}).catch((err) => {
-    console.error(`startCastDeviceDiscovery BusinessError: code: ${err.code}, message: ${err.message}`);
+  console.info(`startCastDeviceDiscovery successfully`);
+}).catch((err: BusinessError) => {
+  console.error(`startCastDeviceDiscovery BusinessError: code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -1151,13 +1186,15 @@ Stops cast-enabled device discovery. This API uses an asynchronous callback to r
 
 **Example**
 
-```js
-avSession.stopCastDeviceDiscovery(function (err) {
-    if (err) {
-        console.error(`stopCastDeviceDiscovery BusinessError: code: ${err.code}, message: ${err.message}`);
-    } else {
-        console.info(`stopCastDeviceDiscovery successfully`);
-    }
+```ts
+import { BusinessError } from '@ohos.base';
+
+avSession.stopCastDeviceDiscovery((err: BusinessError) => {
+  if (err) {
+    console.error(`stopCastDeviceDiscovery BusinessError: code: ${err.code}, message: ${err.message}`);
+  } else {
+    console.info(`stopCastDeviceDiscovery successfully`);
+  }
 });
 ```
 
@@ -1179,11 +1216,13 @@ Stops cast-enabled device discovery. This API uses a promise to return the resul
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 avSession.stopCastDeviceDiscovery().then(() => {
-    console.info(`startCastDeviceDiscovery successfully`);
-}).catch((err) => {
-    console.error(`startCastDeviceDiscovery BusinessError: code: ${err.code}, message: ${err.message}`);
+  console.info(`startCastDeviceDiscovery successfully`);
+}).catch((err: BusinessError) => {
+  console.error(`startCastDeviceDiscovery BusinessError: code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -1207,13 +1246,15 @@ Sets whether to allow the device discoverable. A discoverable device can be used
 
 **Example**
 
-```js
-avSession.setDiscoverable(true, function (err) {
-    if (err) {
-        console.error(`setDiscoverable BusinessError: code: ${err.code}, message: ${err.message}`);
-    } else {
-        console.info(`setDiscoverable successfully`);
-    }
+```ts
+import { BusinessError } from '@ohos.base';
+
+avSession.setDiscoverable(true, (err: BusinessError) => {
+  if (err) {
+    console.error(`setDiscoverable BusinessError: code: ${err.code}, message: ${err.message}`);
+  } else {
+    console.info(`setDiscoverable successfully`);
+  }
 });
 ```
 
@@ -1241,11 +1282,13 @@ Sets whether to allow the device discoverable. A discoverable device can be used
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 avSession.setDiscoverable(true).then(() => {
-    console.info(`setDiscoverable successfully`);
-}).catch((err) => {
-    console.error(`setDiscoverable BusinessError: code: ${err.code}, message: ${err.message}`);
+  console.info(`setDiscoverable successfully`);
+}).catch((err: BusinessError) => {
+  console.error(`setDiscoverable BusinessError: code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -1266,21 +1309,15 @@ Subscribes to device discovery events.
 | type     | string               | Yes  | Event type. The event **'deviceAvailable'** is triggered when a device is discovered.|
 | callback | (device: OutputDeviceInfo) => void | Yes  | Callback used for subscription. If the subscription is successful, **err** is **undefined**; otherwise, **err** is an error object.                               |
 
-**Error codes**
-
-For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
-
-| ID| Error Message|
-| -------- | ---------------------------------------- |
-| 6600101  | Session service exception. |
-
 **Example**
 
-```js
-let castDevice;
-avSession.on('deviceAvailable', (device) => {
-    castDevice = device;
-    console.info(`on deviceAvailable  : ${device} `);
+```ts
+import avSession from '@ohos.multimedia.avsession';
+
+let castDevice: avSession.OutputDeviceInfo;
+avSession.on('deviceAvailable', (device: avSession.OutputDeviceInfo) => {
+  castDevice = device;
+  console.info(`on deviceAvailable  : ${device} `);
 });
 ```
 
@@ -1300,17 +1337,9 @@ Unsubscribes from device discovery events.
 | ------   | ---------------------- | ---- | ------------------------------------------------------- |
 | type     | string                 | Yes   | Event type. The event **'deviceAvailable'** is triggered when a device is discovered.|
 
-**Error codes**
-
-For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
-
-| ID| Error Message|
-| -------- | ---------------------------------------- |
-| 6600101  | Session service exception. |
-
 **Example**
 
-```js
+```ts
 avSession.off('deviceAvailable');
 ```
 
@@ -1344,32 +1373,34 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 **Example**
 
-```js
-import featureAbility from '@ohos.ability.featureAbility';
+```ts
+import { BusinessError } from '@ohos.base';
 
-let currentAVSession;
+let currentAVSession: avSession.AVSession | undefined = undefined;
 let tag = "createNewSession";
-let context = featureAbility.getContext();
-let sessionId; // Used as an input parameter of subsequent functions.
+let context: Context = getContext(this);
+let sessionId: string = "";  // Used as an input parameter of subsequent functions.
 
-avSession.createAVSession(context, tag, "audio", function (err, data) {
-    if (err) {
-        console.info(`CreateAVSession BusinessError: code: ${err.code}, message: ${err.message}`);
-    } else {
-        currentAVSession = data;
-        sessionId = currentAVSession.sessionId;
-        console.info(`CreateAVSession : SUCCESS : sessionId = ${sessionId}`);
+avSession.createAVSession(context, tag, "audio", (err: BusinessError, data: avSession.AVSession) => {
+  if (err) {
+    console.info(`CreateAVSession BusinessError: code: ${err.code}, message: ${err.message}`);
+  } else {
+    currentAVSession = data;
+    if (currentAVSession !== undefined) {
+      sessionId = currentAVSession.sessionId;
     }
+    console.info(`CreateAVSession : SUCCESS : sessionId = ${sessionId}`);
+  }
 });
 
-let aVCastController;
-avSession.getAVCastController(sessionId ,function (err, avcontroller) {
-    if (err) {
-        console.error(`getAVCastController BusinessError: code: ${err.code}, message: ${err.message}`);
-    } else {
-        aVCastController = avcontroller;
-        console.info('getAVCastController : SUCCESS ');
-    }
+let aVCastController: avSession.AVCastController;
+avSession.getAVCastController(sessionId , (err: BusinessError, avcontroller: avSession.AVCastController) => {
+  if (err) {
+    console.error(`getAVCastController BusinessError: code: ${err.code}, message: ${err.message}`);
+  } else {
+    aVCastController = avcontroller;
+    console.info('getAVCastController : SUCCESS ');
+  }
 });
 ```
 
@@ -1408,30 +1439,32 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 **Example**
 
-```js
-import featureAbility from '@ohos.ability.featureAbility';
+```ts
+import { BusinessError } from '@ohos.base';
 
-let currentAVSession;
+let currentAVSession: avSession.AVSession | undefined = undefined;
 let tag = "createNewSession";
-let context = featureAbility.getContext();
-let sessionId; // Used as an input parameter of subsequent functions.
+let context: Context = getContext(this);
+let sessionId: string = "";  // Used as an input parameter of subsequent functions.
 
-avSession.createAVSession(context, tag, "audio", function (err, data) {
-    if (err) {
-        console.info(`CreateAVSession BusinessError: code: ${err.code}, message: ${err.message}`);
-    } else {
-        currentAVSession = data;
-        sessionId = currentAVSession.sessionId;
-        console.info(`CreateAVSession : SUCCESS : sessionId = ${sessionId}`);
+avSession.createAVSession(context, tag, "audio", (err: BusinessError, data: avSession.AVSession) => {
+  if (err) {
+    console.info(`CreateAVSession BusinessError: code: ${err.code}, message: ${err.message}`);
+  } else {
+    currentAVSession = data;
+    if (currentAVSession !== undefined) {
+      sessionId = currentAVSession.sessionId;
     }
+    console.info(`CreateAVSession : SUCCESS : sessionId = ${sessionId}`);
+  }
 });
 
-let aVCastController;
-avSession.getAVCastController(sessionId).then((avcontroller) => {
-    aVCastController = avcontroller;
-    console.info('getAVCastController : SUCCESS');
-}).catch((err) => {
-    console.error(`getAVCastController BusinessError: code: ${err.code}, message: ${err.message}`);
+let aVCastController: avSession.AVCastController;
+avSession.getAVCastController(sessionId).then((avcontroller: avSession.AVCastController) => {
+  aVCastController = avcontroller;
+  console.info('getAVCastController : SUCCESS');
+}).catch((err: BusinessError) => {
+  console.error(`getAVCastController BusinessError: code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -1466,39 +1499,44 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 **Example**
 
-```js
-import featureAbility from '@ohos.ability.featureAbility';
+```ts
+import avSession from '@ohos.multimedia.avsession';
+import { BusinessError } from '@ohos.base';
 
-let currentAVSession;
+let currentAVSession: avSession.AVSession | undefined = undefined;
 let tag = "createNewSession";
-let context = featureAbility.getContext();
-let currSessionId; // Used as an input parameter of subsequent functions.
+let context: Context = getContext(this);
+let sessionId: string = "";  // Used as an input parameter of subsequent functions.
 
-avSession.createAVSession(context, tag, "audio", function (err, data) {
-    if (err) {
-        console.info(`CreateAVSession BusinessError: code: ${err.code}, message: ${err.message}`);
-    } else {
-        currentAVSession = data;
-        currSessionId = currentAVSession.sessionId;
-        console.info(`CreateAVSession : SUCCESS : sessionId = ${currSessionId}`);
+avSession.createAVSession(context, tag, "audio", (err: BusinessError, data: avSession.AVSession) => {
+  if (err) {
+    console.info(`CreateAVSession BusinessError: code: ${err.code}, message: ${err.message}`);
+  } else {
+    currentAVSession = data;
+    if (currentAVSession !== undefined) {
+      sessionId = currentAVSession.sessionId;
     }
+    console.info(`CreateAVSession : SUCCESS : sessionId = ${sessionId}`);
+  }
 });
 
-let myToken = {
-    sessionId: currSessionId,
+let myToken: avSession.SessionToken = {
+  sessionId: sessionId,
 }
-let castDevice;
-avSession.on('deviceAvailable', (device) => {
-    castDevice = device;
-    console.info(`on deviceAvailable  : ${device} `);
+let castDevice: avSession.OutputDeviceInfo | undefined = undefined;
+avSession.on('deviceAvailable', (device: avSession.OutputDeviceInfo) => {
+  castDevice = device;
+  console.info(`on deviceAvailable  : ${device} `);
 });
-avSession.startCasting(myToken, castDevice, function (err) {
+if (castDevice !== undefined) {
+  avSession.startCasting(myToken, castDevice, (err: BusinessError) => {
     if (err) {
-        console.error(`startCasting BusinessError: code: ${err.code}, message: ${err.message}`);
+      console.error(`startCasting BusinessError: code: ${err.code}, message: ${err.message}`);
     } else {
-        console.info(`startCasting successfully`);
+      console.info(`startCasting successfully`);
     }
-});
+  });
+}
 ```
 
 ## avSession.startCasting<sup>10+</sup>
@@ -1537,37 +1575,42 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 **Example**
 
-```js
-import featureAbility from '@ohos.ability.featureAbility';
+```ts
+import avSession from '@ohos.multimedia.avsession';
+import { BusinessError } from '@ohos.base';
 
-let currentAVSession;
+let currentAVSession: avSession.AVSession | undefined = undefined;
 let tag = "createNewSession";
-let context = featureAbility.getContext();
-let currSessionId; // Used as an input parameter of subsequent functions.
+let context: Context = getContext(this);
+let sessionId: string = "";  // Used as an input parameter of subsequent functions.
 
-avSession.createAVSession(context, tag, "audio", function (err, data) {
-    if (err) {
-        console.info(`CreateAVSession BusinessError: code: ${err.code}, message: ${err.message}`);
-    } else {
-        currentAVSession = data;
-        currSessionId = currentAVSession.sessionId;
-        console.info(`CreateAVSession : SUCCESS : sessionId = ${currSessionId}`);
+avSession.createAVSession(context, tag, "audio", (err: BusinessError, data: avSession.AVSession) => {
+  if (err) {
+    console.info(`CreateAVSession BusinessError: code: ${err.code}, message: ${err.message}`);
+  } else {
+    currentAVSession = data;
+    if (currentAVSession !== undefined) {
+      sessionId = currentAVSession.sessionId;
     }
+    console.info(`CreateAVSession : SUCCESS : sessionId = ${sessionId}`);
+  }
 });
 
-let myToken = {
-    sessionId: currSessionId,
+let myToken: avSession.SessionToken = {
+  sessionId: sessionId,
 }
-let castDevice;
-avSession.on('deviceAvailable', (device) => {
-    castDevice = device;
-    console.info(`on deviceAvailable  : ${device} `);
+let castDevice: avSession.OutputDeviceInfo | undefined = undefined;
+avSession.on('deviceAvailable', (device: avSession.OutputDeviceInfo) => {
+  castDevice = device;
+  console.info(`on deviceAvailable  : ${device} `);
 });
-avSession.startCasting(myToken, castDevice).then(() => {
+if (castDevice !== undefined) {
+  avSession.startCasting(myToken, castDevice).then(() => {
     console.info(`startCasting successfully`);
-}).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.error(`startCasting BusinessError: code: ${err.code}, message: ${err.message}`);
-});
+  });
+}
 ```
 
 ## avSession.stopCasting<sup>10+</sup>
@@ -1597,33 +1640,36 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 **Example**
 
-```js
-import featureAbility from '@ohos.ability.featureAbility';
+```ts
+import avSession from '@ohos.multimedia.avsession';
+import { BusinessError } from '@ohos.base';
 
-let currentAVSession;
+let currentAVSession: avSession.AVSession | undefined = undefined;
 let tag = "createNewSession";
-let context = featureAbility.getContext();
-let currSessionId; // Used as an input parameter of subsequent functions.
+let context: Context = getContext(this);
+let sessionId: string = "";  // Used as an input parameter of subsequent functions.
 
-avSession.createAVSession(context, tag, "audio", function (err, data) {
-    if (err) {
-        console.info(`CreateAVSession BusinessError: code: ${err.code}, message: ${err.message}`);
-    } else {
-        currentAVSession = data;
-        currSessionId = currentAVSession.sessionId;
-        console.info(`CreateAVSession : SUCCESS : sessionId = ${currSessionId}`);
+avSession.createAVSession(context, tag, "audio", (err: BusinessError, data: avSession.AVSession) => {
+  if (err) {
+    console.info(`CreateAVSession BusinessError: code: ${err.code}, message: ${err.message}`);
+  } else {
+    currentAVSession = data;
+    if (currentAVSession !== undefined) {
+      sessionId = currentAVSession.sessionId;
     }
+    console.info(`CreateAVSession : SUCCESS : sessionId = ${sessionId}`);
+  }
 });
 
-let myToken = {
-    sessionId: currSessionId,
+let myToken: avSession.SessionToken = {
+  sessionId: sessionId,
 }
-avSession.stopCasting(myToken, function (err) {
-    if (err) {
-        console.error(`stopCasting BusinessError: code: ${err.code}, message: ${err.message}`);
-    } else {
-        console.info(`stopCasting successfully`);
-    }
+avSession.stopCasting(myToken, (err: BusinessError) => {
+  if (err) {
+    console.error(`stopCasting BusinessError: code: ${err.code}, message: ${err.message}`);
+  } else {
+    console.info(`stopCasting successfully`);
+  }
 });
 ```
 
@@ -1659,32 +1705,37 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 **Example**
 
-```js
-import featureAbility from '@ohos.ability.featureAbility';
+```ts
+import avSession from '@ohos.multimedia.avsession';
+import { BusinessError } from '@ohos.base';
 
-let currentAVSession;
+let currentAVSession: avSession.AVSession | undefined = undefined;
 let tag = "createNewSession";
-let context = featureAbility.getContext();
-let currSessionId; // Used as an input parameter of subsequent functions.
+let context: Context = getContext(this);
+let sessionId: string = "";  // Used as an input parameter of subsequent functions.
 
-avSession.createAVSession(context, tag, "audio", function (err, data) {
-    if (err) {
-        console.info(`CreateAVSession BusinessError: code: ${err.code}, message: ${err.message}`);
-    } else {
-        currentAVSession = data;
-        currSessionId = currentAVSession.sessionId;
-        console.info(`CreateAVSession : SUCCESS : sessionId = ${currSessionId}`);
+avSession.createAVSession(context, tag, "audio", (err: BusinessError, data: avSession.AVSession) => {
+  if (err) {
+    console.info(`CreateAVSession BusinessError: code: ${err.code}, message: ${err.message}`);
+  } else {
+    currentAVSession = data;
+    if (currentAVSession !== undefined) {
+      sessionId = currentAVSession.sessionId;
     }
+    console.info(`CreateAVSession : SUCCESS : sessionId = ${sessionId}`);
+  }
 });
 
-let myToken = {
-    sessionId: currSessionId,
+let myToken: avSession.SessionToken = {
+  sessionId: sessionId,
 }
 avSession.stopCasting(myToken).then(() => {
-    console.info(`stopCasting successfully`);
-}).catch((err) => {
-    console.error(`stopCasting BusinessError: code: ${err.code}, message: ${err.message}`);
+  console.info(`stopCasting successfully`);
+}).catch((err: BusinessError) => {
+  console.error(`stopCasting BusinessError: code: ${err.code}, message: ${err.message}`);
 });
+
+
 ```
 
 ## AVSessionType<sup>10+<sup>
@@ -1712,9 +1763,12 @@ An **AVSession** object is created by calling [avSession.createAVSession](#avses
 
 
 **Example**
-```js
-let sessionId = currentAVSession.sessionId;
-let sessionType = currentAVSession.sessionType;
+
+```ts
+import avSession from '@ohos.multimedia.avsession';
+
+let sessionId: string = currentAVSession.sessionId;
+let sessionType: avSession.AVSessionType = currentAVSession.sessionType;
 ```
 
 ### setAVMetadata<sup>10+</sup>
@@ -1748,27 +1802,30 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 **Example**
 
-```js
-let metadata  = {
-    assetId: "121278",
-    title: "lose yourself",
-    artist: "Eminem",
-    author: "ST",
-    album: "Slim shady",
-    writer: "ST",
-    composer: "ST",
-    duration: 2222,
-    mediaImage: "https://www.example.com/example.jpg",
-    subtitle: "8 Mile",
-    description: "Rap",
-    lyric: "https://www.example.com/example.lrc",
-    previousAssetId: "121277",
-    nextAssetId: "121279",
+```ts
+import avSession from '@ohos.multimedia.avsession';
+import { BusinessError } from '@ohos.base';
+
+let metadata: avSession.AVMetadata = {
+  assetId: "121278",
+  title: "lose yourself",
+  artist: "Eminem",
+  author: "ST",
+  album: "Slim shady",
+  writer: "ST",
+  composer: "ST",
+  duration: 2222,
+  mediaImage: "https://www.example.com/example.jpg",
+  subtitle: "8 Mile",
+  description: "Rap",
+  lyric: "https://www.example.com/example.lrc",
+  previousAssetId: "121277",
+  nextAssetId: "121279",
 };
 currentAVSession.setAVMetadata(metadata).then(() => {
-    console.info(`SetAVMetadata successfully`);
-}).catch((err) => {
-    console.error(`SetAVMetadata BusinessError: code: ${err.code}, message: ${err.message}`);
+  console.info(`SetAVMetadata successfully`);
+}).catch((err: BusinessError) => {
+  console.error(`SetAVMetadata BusinessError: code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -1798,29 +1855,32 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 **Example**
 
-```js
-let metadata  = {
-    assetId: "121278",
-    title: "lose yourself",
-    artist: "Eminem",
-    author: "ST",
-    album: "Slim shady",
-    writer: "ST",
-    composer: "ST",
-    duration: 2222,
-    mediaImage: "https://www.example.com/example.jpg",
-    subtitle: "8 Mile",
-    description: "Rap",
-    lyric: "https://www.example.com/example.lrc",
-    previousAssetId: "121277",
-    nextAssetId: "121279",
+```ts
+import avSession from '@ohos.multimedia.avsession';
+import { BusinessError } from '@ohos.base';
+
+let metadata: avSession.AVMetadata = {
+  assetId: "121278",
+  title: "lose yourself",
+  artist: "Eminem",
+  author: "ST",
+  album: "Slim shady",
+  writer: "ST",
+  composer: "ST",
+  duration: 2222,
+  mediaImage: "https://www.example.com/example.jpg",
+  subtitle: "8 Mile",
+  description: "Rap",
+  lyric: "https://www.example.com/example.lrc",
+  previousAssetId: "121277",
+  nextAssetId: "121279",
 };
-currentAVSession.setAVMetadata(metadata, function (err) {
-    if (err) {
-        console.error(`SetAVMetadata BusinessError: code: ${err.code}, message: ${err.message}`);
-    } else {
-        console.info(`SetAVMetadata successfully`);
-    }
+currentAVSession.setAVMetadata(metadata, (err: BusinessError) => {
+  if (err) {
+    console.error(`SetAVMetadata BusinessError: code: ${err.code}, message: ${err.message}`);
+  } else {
+    console.info(`SetAVMetadata successfully`);
+  }
 });
 ```
 
@@ -1855,19 +1915,22 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 **Example**
 
-```js
-let playbackState = {
-    state:avSession.PlaybackState.PLAYBACK_STATE_PLAY,
-    speed: 1.0,
-    position:{elapsedTime:10, updateTime:(new Date()).getTime()},
-    bufferedTime:1000,
-    loopMode:avSession.LoopMode.LOOP_MODE_SINGLE,
-    isFavorite:true,
+```ts
+import avSession from '@ohos.multimedia.avsession';
+import { BusinessError } from '@ohos.base';
+
+let playbackState: avSession.AVPlaybackState = {
+  state:avSession.PlaybackState.PLAYBACK_STATE_PLAY,
+  speed: 1.0,
+  position:{elapsedTime:10, updateTime:(new Date()).getTime()},
+  bufferedTime:1000,
+  loopMode:avSession.LoopMode.LOOP_MODE_SINGLE,
+  isFavorite:true,
 };
 currentAVSession.setAVPlaybackState(playbackState).then(() => {
-    console.info(`SetAVPlaybackState successfully`);
-}).catch((err) => {
-    console.info(`SetAVPlaybackState BusinessError: code: ${err.code}, message: ${err.message}`);
+  console.info(`SetAVPlaybackState successfully`);
+}).catch((err: BusinessError) => {
+  console.info(`SetAVPlaybackState BusinessError: code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -1897,21 +1960,24 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 **Example**
 
-```js
-let PlaybackState = {
-    state:avSession.PlaybackState.PLAYBACK_STATE_PLAY,
-    speed: 1.0,
-    position:{elapsedTime:10, updateTime:(new Date()).getTime()},
-    bufferedTime:1000,
-    loopMode:avSession.LoopMode.LOOP_MODE_SINGLE,
-    isFavorite:true,
+```ts
+import avSession from '@ohos.multimedia.avsession';
+import { BusinessError } from '@ohos.base';
+
+let PlaybackState: avSession.AVPlaybackState = {
+  state:avSession.PlaybackState.PLAYBACK_STATE_PLAY,
+  speed: 1.0,
+  position:{elapsedTime:10, updateTime:(new Date()).getTime()},
+  bufferedTime:1000,
+  loopMode:avSession.LoopMode.LOOP_MODE_SINGLE,
+  isFavorite:true,
 };
-currentAVSession.setAVPlaybackState(PlaybackState, function (err) {
-    if (err) {
-        console.info(`SetAVPlaybackState BusinessError: code: ${err.code}, message: ${err.message}`);
-    } else {
-        console.info(`SetAVPlaybackState successfully`);
-    }
+currentAVSession.setAVPlaybackState(PlaybackState, (err: BusinessError) => {
+  if (err) {
+    console.info(`SetAVPlaybackState BusinessError: code: ${err.code}, message: ${err.message}`);
+  } else {
+    console.info(`SetAVPlaybackState successfully`);
+  }
 });
 ```
 
@@ -1946,43 +2012,44 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 **Example**
 
-```js
+```ts
 import wantAgent from '@ohos.app.ability.wantAgent';
+import { BusinessError } from '@ohos.base';
 
 // WantAgentInfo object
-let wantAgentInfo = {
-    wants: [
+let wantAgentInfo: wantAgent.WantAgentInfo = {
+  wants: [
+    {
+      deviceId: "deviceId",
+      bundleName: "com.example.myapplication",
+      abilityName: "EntryAbility",
+      action: "action1",
+      entities: ["entity1"],
+      type: "MIMETYPE",
+      uri: "key={true,true,false}",
+      parameters:
         {
-            deviceId: "deviceId",
-            bundleName: "com.example.myapplication",
-            abilityName: "EntryAbility",
-            action: "action1",
-            entities: ["entity1"],
-            type: "MIMETYPE",
-            uri: "key={true,true,false}",
-            parameters:
-                {
-                    mykey0: 2222,
-                    mykey1: [1, 2, 3],
-                    mykey2: "[1, 2, 3]",
-                    mykey3: "ssssssssssssssssssssssssss",
-                    mykey4: [false, true, false],
-                    mykey5: ["qqqqq", "wwwwww", "aaaaaaaaaaaaaaaaa"],
-                    mykey6: true,
-                }
+          mykey0: 2222,
+          mykey1: [1, 2, 3],
+          mykey2: "[1, 2, 3]",
+          mykey3: "ssssssssssssssssssssssssss",
+          mykey4: [false, true, false],
+          mykey5: ["qqqqq", "wwwwww", "aaaaaaaaaaaaaaaaa"],
+          mykey6: true,
         }
-    ],
-    operationType: wantAgent.OperationType.START_ABILITIES,
-    requestCode: 0,
-    wantAgentFlags:[wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
+    }
+  ],
+  operationType: wantAgent.OperationType.START_ABILITIES,
+  requestCode: 0,
+  wantAgentFlags:[wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 }
 
 wantAgent.getWantAgent(wantAgentInfo).then((agent) => {
-    currentAVSession.setLaunchAbility(agent).then(() => {
-        console.info(`SetLaunchAbility successfully`);
-    }).catch((err) => {
-        console.error(`SetLaunchAbility BusinessError: code: ${err.code}, message: ${err.message}`);
-    });
+  currentAVSession.setLaunchAbility(agent).then(() => {
+    console.info(`SetLaunchAbility successfully`);
+  }).catch((err: BusinessError) => {
+    console.error(`SetLaunchAbility BusinessError: code: ${err.code}, message: ${err.message}`);
+  });
 });
 ```
 
@@ -2012,45 +2079,46 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 **Example**
 
-```js
+```ts
 import wantAgent from '@ohos.app.ability.wantAgent';
+import { BusinessError } from '@ohos.base';
 
 // WantAgentInfo object
-let wantAgentInfo = {
-    wants: [
+let wantAgentInfo: wantAgent.WantAgentInfo = {
+  wants: [
+    {
+      deviceId: "deviceId",
+      bundleName: "com.example.myapplication",
+      abilityName: "EntryAbility",
+      action: "action1",
+      entities: ["entity1"],
+      type: "MIMETYPE",
+      uri: "key={true,true,false}",
+      parameters:
         {
-            deviceId: "deviceId",
-            bundleName: "com.example.myapplication",
-            abilityName: "EntryAbility",
-            action: "action1",
-            entities: ["entity1"],
-            type: "MIMETYPE",
-            uri: "key={true,true,false}",
-            parameters:
-                {
-                    mykey0: 2222,
-                    mykey1: [1, 2, 3],
-                    mykey2: "[1, 2, 3]",
-                    mykey3: "ssssssssssssssssssssssssss",
-                    mykey4: [false, true, false],
-                    mykey5: ["qqqqq", "wwwwww", "aaaaaaaaaaaaaaaaa"],
-                    mykey6: true,
-                }
+          mykey0: 2222,
+          mykey1: [1, 2, 3],
+          mykey2: "[1, 2, 3]",
+          mykey3: "ssssssssssssssssssssssssss",
+          mykey4: [false, true, false],
+          mykey5: ["qqqqq", "wwwwww", "aaaaaaaaaaaaaaaaa"],
+          mykey6: true,
         }
-    ],
-    operationType: wantAgent.OperationType.START_ABILITIES,
-    requestCode: 0,
-    wantAgentFlags:[wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
+    }
+  ],
+  operationType: wantAgent.OperationType.START_ABILITIES,
+  requestCode: 0,
+  wantAgentFlags:[wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 }
 
 wantAgent.getWantAgent(wantAgentInfo).then((agent) => {
-    currentAVSession.setLaunchAbility(agent, function (err) {
-        if (err) {
-            console.error(`SetLaunchAbility BusinessError: code: ${err.code}, message: ${err.message}`);
-        } else {
-            console.info(`SetLaunchAbility successfully`);
-        }
-    });
+  currentAVSession.setLaunchAbility(agent, (err: BusinessError) => {
+    if (err) {
+      console.error(`SetLaunchAbility BusinessError: code: ${err.code}, message: ${err.message}`);
+    } else {
+      console.info(`SetLaunchAbility successfully`);
+    }
+  });
 });
 ```
 
@@ -2090,14 +2158,29 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 **Example**
 
-```js
+```ts
+import avSession from '@ohos.multimedia.avsession';
+import { BusinessError } from '@ohos.base';
+
+let currentAVSession: avSession.AVSession | undefined = undefined;
+let tag = "createNewSession";
+let context: Context = getContext(this);
+
+avSession.createAVSession(context, tag, "audio", (err: BusinessError, data: avSession.AVSession) => {
+  if (err) {
+    console.info(`CreateAVSession BusinessError: code: ${err.code}, message: ${err.message}`);
+  } else {
+    currentAVSession = data;
+  }
+});
 let eventName = "dynamic_lyric";
-let args = {
-    lyric : "This is lyric"
-}
-currentAVSession.dispatchSessionEvent(eventName, args).catch((err) => {
+if (currentAVSession !== undefined) {
+  (currentAVSession as avSession.AVSession).dispatchSessionEvent(eventName, {lyric : "This is lyric"}).then(() => {
+    console.info(`dispatchSessionEvent successfully`);
+  }).catch((err: BusinessError) => {
     console.info(`dispatchSessionEvent BusinessError: code: ${err.code}, message: ${err.message}`);
-})
+  })
+}
 ```
 
 ### dispatchSessionEvent<sup>10+</sup>
@@ -2131,16 +2214,29 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 **Example**
 
-```js
-let eventName = "dynamic_lyric";
-let args = {
-    lyric : "This is lyric"
-}
-currentAVSession.dispatchSessionEvent(eventName, args, (err) => {
+```ts
+import avSession from '@ohos.multimedia.avsession';
+import { BusinessError } from '@ohos.base';
+
+let currentAVSession: avSession.AVSession | undefined = undefined;
+let tag = "createNewSession";
+let context: Context = getContext(this);
+
+avSession.createAVSession(context, tag, "audio", (err: BusinessError, data: avSession.AVSession) => {
+  if (err) {
+    console.info(`CreateAVSession BusinessError: code: ${err.code}, message: ${err.message}`);
+  } else {
+    currentAVSession = data;
+  }
+});
+let eventName: string = "dynamic_lyric";
+if (currentAVSession !== undefined) {
+  (currentAVSession as avSession.AVSession).dispatchSessionEvent(eventName, {lyric : "This is lyric"}, (err: BusinessError) => {
     if(err) {
-        console.error(`dispatchSessionEvent BusinessError: code: ${err.code}, message: ${err.message}`);
+      console.error(`dispatchSessionEvent BusinessError: code: ${err.code}, message: ${err.message}`);
     }
-})
+  })
+}
 ```
 
 ### setAVQueueItems<sup>10+</sup>
@@ -2174,44 +2270,58 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 **Example**
 
-```js
+```ts
 import image from '@ohos.multimedia.image';
 import resourceManager from '@ohos.resourceManager';
+import { BusinessError } from '@ohos.base';
+import avSession from '@ohos.multimedia.avsession';
 
-let value : Uint8Array = await resourceManager.getRawFileContent('IMAGE_URI');
-let imageSource : imageImageSource = image.createImageSource(value.buffer);
-let imagePixel : image.PixelMap = await imageSource.createPixelMap({desiredSize:{width: 150, height: 150}});
-let queueItemDescription_1 = {
-    mediaId: '001',
-    title: 'music_name',
-    subtitle: 'music_sub_name',
-    description: 'music_description',
-    icon : imagePixel,
-    iconUri: 'http://www.icon.uri.com',
-    extras: {'extras':'any'}
+let value: Uint8Array | undefined = undefined;
+let imageSource: image.ImageSource | undefined = undefined;
+resourceManager.getSystemResourceManager().getRawFileContent('IMAGE_URI').then((data) => {
+  value = data;
+});
+if (value !== undefined) {
+  imageSource = image.createImageSource((value as Uint8Array).buffer);
+}
+let imagePixel: image.PixelMap | undefined = undefined;
+if (imageSource !== undefined) {
+  (imageSource as image.ImageSource).createPixelMap({desiredSize:{width: 150, height: 150}}).then((data) => {
+    imagePixel = data;
+  }).catch((err: BusinessError) => {
+    console.error(`createPixelMap BusinessError: code: ${err.code}, message: ${err.message}`);
+  })
+}
+
+let queueItemDescription_1: avSession.AVMediaDescription = {
+  assetId: '001',
+  title: 'music_name',
+  subtitle: 'music_sub_name',
+  description: 'music_description',
+  mediaImage : imagePixel,
+  extras: {extras:'any'}
 };
-let queueItem_1 = {
-    itemId: 1,
-    description: queueItemDescription_1
+let queueItem_1: avSession.AVQueueItem = {
+  itemId: 1,
+  description: queueItemDescription_1
 };
-let queueItemDescription_2 = {
-    mediaId: '002',
-    title: 'music_name',
-    subtitle: 'music_sub_name',
-    description: 'music_description',
-    icon: imagePixel,
-    iconUri: 'http://www.xxx.com',
-    extras: {'extras':'any'}
+let queueItemDescription_2: avSession.AVMediaDescription = {
+  assetId: '002',
+  title: 'music_name',
+  subtitle: 'music_sub_name',
+  description: 'music_description',
+  mediaImage: imagePixel,
+  extras: {extras:'any'}
 };
-let queueItem_2 = {
-    itemId: 2,
-    description: queueItemDescription_2
+let queueItem_2: avSession.AVQueueItem = {
+  itemId: 2,
+  description: queueItemDescription_2
 };
-let queueItemsArray = [queueItem_1, queueItem_2];
+let queueItemsArray: avSession.AVQueueItem[] = [queueItem_1, queueItem_2];
 currentAVSession.setAVQueueItems(queueItemsArray).then(() => {
-    console.info(`SetAVQueueItems successfully`);
-}).catch((err) => {
-    console.error(`SetAVQueueItems BusinessError: code: ${err.code}, message: ${err.message}`);
+  console.info(`SetAVQueueItems successfully`);
+}).catch((err: BusinessError) => {
+  console.error(`SetAVQueueItems BusinessError: code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -2241,46 +2351,59 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 **Example**
 
-```js
+```ts
 import image from '@ohos.multimedia.image';
 import resourceManager from '@ohos.resourceManager';
+import { BusinessError } from '@ohos.base';
+import avSession from '@ohos.multimedia.avsession';
 
-let value : Uint8Array = await resourceManager.getRawFileContent('IMAGE_URI');
-let imageSource : imageImageSource = image.createImageSource(value.buffer);
-let imagePixel : image.PixelMap = await imageSource.createPixelMap({desiredSize:{width: 150, height: 150}});
-let queueItemDescription_1 = {
-    mediaId: '001',
-    title: 'music_name',
-    subtitle: 'music_sub_name',
-    description: 'music_description',
-    icon: imagePixel,
-    iconUri: 'http://www.icon.uri.com',
-    extras: {'extras':'any'}
+let value: Uint8Array | undefined = undefined;
+let imageSource: image.ImageSource | undefined = undefined;
+resourceManager.getSystemResourceManager().getRawFileContent('IMAGE_URI').then((data) => {
+  value = data;
+});
+if (value !== undefined) {
+  imageSource = image.createImageSource((value as Uint8Array).buffer);
+}
+let imagePixel: image.PixelMap | undefined = undefined;
+if (imageSource !== undefined) {
+  (imageSource as image.ImageSource).createPixelMap({desiredSize:{width: 150, height: 150}}).then((data) => {
+    imagePixel = data;
+  }).catch((err: BusinessError) => {
+    console.error(`createPixelMap BusinessError: code: ${err.code}, message: ${err.message}`);
+  })
+}
+let queueItemDescription_1: avSession.AVMediaDescription = {
+  assetId: '001',
+  title: 'music_name',
+  subtitle: 'music_sub_name',
+  description: 'music_description',
+  mediaImage : imagePixel,
+  extras: {extras:'any'}
 };
-let queueItem_1 = {
-    itemId: 1,
-    description: queueItemDescription_1
+let queueItem_1: avSession.AVQueueItem = {
+  itemId: 1,
+  description: queueItemDescription_1
 };
-let queueItemDescription_2 = {
-    mediaId: '002',
-    title: 'music_name',
-    subtitle: 'music_sub_name',
-    description: 'music_description',
-    icon: imagePixel,
-    iconUri: 'http://www.icon.uri.com',
-    extras: {'extras':'any'}
+let queueItemDescription_2: avSession.AVMediaDescription = {
+  assetId: '002',
+  title: 'music_name',
+  subtitle: 'music_sub_name',
+  description: 'music_description',
+  mediaImage: imagePixel,
+  extras: {extras:'any'}
 };
-let queueItem_2 = {
-    itemId: 2,
-    description: queueItemDescription_2
+let queueItem_2: avSession.AVQueueItem = {
+  itemId: 2,
+  description: queueItemDescription_2
 };
-let queueItemsArray = [queueItem_1, queueItem_2];
-currentAVSession.setAVQueueItems(queueItemsArray, function (err) {
-    if (err) {
-        console.error(`SetAVQueueItems BusinessError: code: ${err.code}, message: ${err.message}`);
-    } else {
-        console.info(`SetAVQueueItems successfully`);
-    }
+let queueItemsArray: avSession.AVQueueItem[] = [queueItem_1, queueItem_2];
+currentAVSession.setAVQueueItems(queueItemsArray, (err: BusinessError) => {
+  if (err) {
+    console.error(`SetAVQueueItems BusinessError: code: ${err.code}, message: ${err.message}`);
+  } else {
+    console.info(`SetAVQueueItems successfully`);
+  }
 });
 ```
 
@@ -2315,12 +2438,14 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 let queueTitle = 'QUEUE_TITLE';
 currentAVSession.setAVQueueTitle(queueTitle).then(() => {
-    console.info(`SetAVQueueTitle successfully`);
-}).catch((err) => {
-    console.error(`SetAVQueueTitle BusinessError: code: ${err.code}, message: ${err.message}`);
+  console.info(`SetAVQueueTitle successfully`);
+}).catch((err: BusinessError) => {
+  console.error(`SetAVQueueTitle BusinessError: code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -2350,14 +2475,16 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 let queueTitle = 'QUEUE_TITLE';
-currentAVSession.setAVQueueTitle(queueTitle, function (err) {
-    if (err) {
-        console.info(`SetAVQueueTitle BusinessError: code: ${err.code}, message: ${err.message}`);
-    } else {
-        console.error(`SetAVQueueTitle successfully`);
-    }
+currentAVSession.setAVQueueTitle(queueTitle, (err: BusinessError) => {
+  if (err) {
+    console.info(`SetAVQueueTitle BusinessError: code: ${err.code}, message: ${err.message}`);
+  } else {
+    console.error(`SetAVQueueTitle successfully`);
+  }
 });
 ```
 
@@ -2376,7 +2503,7 @@ Sets a custom media packet in the form of key-value pairs. This API uses a promi
 | extras | {[key: string]: Object} | Yes  | Key-value pairs of the custom media packet.|
 
 > **NOTE**
->
+
 > The **extras** parameter supports the following data types: string, number, Boolean, object, array, and file descriptor. For details, see [@ohos.app.ability.Want (Want)](./js-apis-app-ability-want.md).
 
 **Return value**
@@ -2396,13 +2523,28 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 **Example**
 
-```js
-let extras = {
-    extras : "This is custom media packet"
-}
-currentAVSession.setExtras(extras).catch((err) => {
+```ts
+import avSession from '@ohos.multimedia.avsession';
+import { BusinessError } from '@ohos.base';
+
+let currentAVSession: avSession.AVSession | undefined = undefined;
+let tag = "createNewSession";
+let context: Context = getContext(this);
+
+avSession.createAVSession(context, tag, "audio", (err: BusinessError, data: avSession.AVSession) => {
+  if (err) {
+    console.info(`CreateAVSession BusinessError: code: ${err.code}, message: ${err.message}`);
+  } else {
+    currentAVSession = data;
+  }
+});
+if (currentAVSession !== undefined) {
+  (currentAVSession as avSession.AVSession).setExtras({extras : "This is custom media packet"}).then(() => {
+    console.info(`setExtras successfully`);
+  }).catch((err: BusinessError) => {
     console.info(`setExtras BusinessError: code: ${err.code}, message: ${err.message}`);
-})
+  })
+}
 ```
 
 ### setExtras<sup>10+</sup>
@@ -2435,15 +2577,28 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 **Example**
 
-```js
-let extras = {
-    extras : "This is custom media packet"
-}
-currentAVSession.setExtras(extras, (err) => {
+```ts
+import avSession from '@ohos.multimedia.avsession';
+import { BusinessError } from '@ohos.base';
+
+let currentAVSession: avSession.AVSession | undefined = undefined;
+let tag = "createNewSession";
+let context: Context = getContext(this);
+
+avSession.createAVSession(context, tag, "audio", (err: BusinessError, data: avSession.AVSession) => {
+  if (err) {
+    console.info(`CreateAVSession BusinessError: code: ${err.code}, message: ${err.message}`);
+  } else {
+    currentAVSession = data;
+  }
+});
+if (currentAVSession !== undefined) {
+  (currentAVSession as avSession.AVSession).setExtras({extras : "This is custom media packet"}, (err: BusinessError) => {
     if(err) {
-        console.error(`setExtras BusinessError: code: ${err.code}, message: ${err.message}`);
+      console.error(`setExtras BusinessError: code: ${err.code}, message: ${err.message}`);
     }
-})
+  })
+}
 ```
 
 ### getController<sup>10+</sup>
@@ -2471,13 +2626,15 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 **Example**
 
-```js
-let avsessionController;
-currentAVSession.getController().then((avcontroller) => {
-    avsessionController = avcontroller;
-    console.info(`GetController : SUCCESS : sessionid : ${avsessionController.sessionId}`);
-}).catch((err) => {
-    console.error(`GetController BusinessError: code: ${err.code}, message: ${err.message}`);
+```ts
+import { BusinessError } from '@ohos.base';
+
+let avsessionController: avSession.AVSessionController;
+currentAVSession.getController().then((avcontroller: avSession.AVSessionController) => {
+  avsessionController = avcontroller;
+  console.info(`GetController : SUCCESS : sessionid : ${avsessionController.sessionId}`);
+}).catch((err: BusinessError) => {
+  console.error(`GetController BusinessError: code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -2506,15 +2663,17 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 **Example**
 
-```js
-let avsessionController;
-currentAVSession.getController(function (err, avcontroller) {
-    if (err) {
-        console.error(`GetController BusinessError: code: ${err.code}, message: ${err.message}`);
-    } else {
-        avsessionController = avcontroller;
-        console.info(`GetController : SUCCESS : sessionid : ${avsessionController.sessionId}`);
-    }
+```ts
+import { BusinessError } from '@ohos.base';
+
+let avsessionController: avSession.AVSessionController;
+currentAVSession.getController((err: BusinessError, avcontroller: avSession.AVSessionController) => {
+  if (err) {
+    console.error(`GetController BusinessError: code: ${err.code}, message: ${err.message}`);
+  } else {
+    avsessionController = avcontroller;
+    console.info(`GetController : SUCCESS : sessionid : ${avsessionController.sessionId}`);
+  }
 });
 ```
 
@@ -2536,20 +2695,22 @@ Obtains the cast controller when a casting connection is set up. This API uses a
 
 For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
 
-| ID| Error Message|
-| -------- | ---------------------------------------- |
-| 6600102  | The session does not exist. |
-| 6600110  | The remote connection is not established. |
+| ID| Error Message                                 |
+| -------- |---------------------------------------|
+| 6600102  | The session does not exist.           |
+| 6600110  | The remote connection does not exist. |
 
 **Example**
 
-```js
-let aVCastController;
-currentAVSession.getAVCastController().then((avcontroller) => {
-    aVCastController = avcontroller;
-    console.info(`getAVCastController : SUCCESS : sessionid : ${aVCastController.sessionId}`);
-}).catch((err) => {
-    console.error(`getAVCastController BusinessError: code: ${err.code}, message: ${err.message}`);
+```ts
+import { BusinessError } from '@ohos.base';
+
+let aVCastController: avSession.AVCastController;
+currentAVSession.getAVCastController().then((avcontroller: avSession.AVCastController) => {
+  aVCastController = avcontroller;
+  console.info(`getAVCastController : SUCCESS : sessionid : ${aVCastController.sessionId}`);
+}).catch((err: BusinessError) => {
+  console.error(`getAVCastController BusinessError: code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -2572,21 +2733,23 @@ Obtains the cast controller when a casting connection is set up. This API uses a
 For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
 
 | ID| Error Message|
-| -------- | ---------------------------------------- |
+| -------- | --------------------------------------- |
 | 6600102  | The session does not exist. |
-| 6600110  | The remote connection is not established. |
+| 6600110  | The remote connection does not exist. |
 
 **Example**
 
-```js
-let aVCastController;
-currentAVSession.getAVCastController(function (err, avcontroller) {
-    if (err) {
-        console.error(`getAVCastController BusinessError: code: ${err.code}, message: ${err.message}`);
-    } else {
-        aVCastController = avcontroller;
-        console.info(`getAVCastController : SUCCESS : sessionid : ${aVCastController.sessionId}`);
-    }
+```ts
+import { BusinessError } from '@ohos.base';
+
+let aVCastController: avSession.AVCastController;
+currentAVSession.getAVCastController((err: BusinessError, avcontroller: avSession.AVCastController) => {
+  if (err) {
+    console.error(`getAVCastController BusinessError: code: ${err.code}, message: ${err.message}`);
+  } else {
+    aVCastController = avcontroller;
+    console.info(`getAVCastController : SUCCESS : sessionid : ${aVCastController.sessionId}`);
+  }
 });
 ```
 
@@ -2615,12 +2778,14 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 **Example**
 
-```js
-currentAVSession.getOutputDevice().then((outputDeviceInfo) => {
-    console.info(`GetOutputDevice : SUCCESS : isRemote : ${outputDeviceInfo.isRemote}`);
-}).catch((err) => {
-    console.error(`GetOutputDevice BusinessError: code: ${err.code}, message: ${err.message}`);
-});
+```ts
+import { BusinessError } from '@ohos.base';
+
+currentAVSession.getOutputDevice().then((outputDeviceInfo: avSession.OutputDeviceInfo) => {
+  console.info(`GetOutputDevice : SUCCESS : isRemote : ${outputDeviceInfo.isRemote}`);
+}).catch((err: BusinessError) => {
+  console.error(`GetOutputDevice BusinessError: code: ${err.code}, message: ${err.message}`);
+})
 ```
 
 ### getOutputDevice<sup>10+</sup>
@@ -2648,13 +2813,15 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 **Example**
 
-```js
-currentAVSession.getOutputDevice(function (err, outputDeviceInfo) {
-    if (err) {
-        console.error(`GetOutputDevice BusinessError: code: ${err.code}, message: ${err.message}`);
-    } else {
-        console.info(`GetOutputDevice : SUCCESS : isRemote : ${outputDeviceInfo.isRemote}`);
-    }
+```ts
+import { BusinessError } from '@ohos.base';
+
+currentAVSession.getOutputDevice((err: BusinessError, outputDeviceInfo: avSession.OutputDeviceInfo) => {
+  if (err) {
+    console.error(`GetOutputDevice BusinessError: code: ${err.code}, message: ${err.message}`);
+  } else {
+    console.info(`GetOutputDevice : SUCCESS : isRemote : ${outputDeviceInfo.isRemote}`);
+  }
 });
 ```
 
@@ -2683,11 +2850,13 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 currentAVSession.activate().then(() => {
-    console.info(`Activate : SUCCESS `);
-}).catch((err) => {
-    console.error(`Activate BusinessError: code: ${err.code}, message: ${err.message}`);
+  console.info(`Activate : SUCCESS `);
+}).catch((err: BusinessError) => {
+  console.error(`Activate BusinessError: code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -2716,13 +2885,15 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 **Example**
 
-```js
-currentAVSession.activate(function (err) {
-    if (err) {
-        console.error(`Activate BusinessError: code: ${err.code}, message: ${err.message}`);
-    } else {
-        console.info(`Activate : SUCCESS `);
-    }
+```ts
+import { BusinessError } from '@ohos.base';
+
+currentAVSession.activate((err: BusinessError) => {
+  if (err) {
+    console.error(`Activate BusinessError: code: ${err.code}, message: ${err.message}`);
+  } else {
+    console.info(`Activate : SUCCESS `);
+  }
 });
 ```
 
@@ -2751,11 +2922,13 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 currentAVSession.deactivate().then(() => {
-    console.info(`Deactivate : SUCCESS `);
-}).catch((err) => {
-    console.error(`Deactivate BusinessError: code: ${err.code}, message: ${err.message}`);
+  console.info(`Deactivate : SUCCESS `);
+}).catch((err: BusinessError) => {
+  console.error(`Deactivate BusinessError: code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -2786,13 +2959,15 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 **Example**
 
-```js
-currentAVSession.deactivate(function (err) {
-    if (err) {
-        console.error(`Deactivate BusinessError: code: ${err.code}, message: ${err.message}`);
-    } else {
-        console.info(`Deactivate : SUCCESS `);
-    }
+```ts
+import { BusinessError } from '@ohos.base';
+
+currentAVSession.deactivate((err: BusinessError) => {
+  if (err) {
+    console.error(`Deactivate BusinessError: code: ${err.code}, message: ${err.message}`);
+  } else {
+    console.info(`Deactivate : SUCCESS `);
+  }
 });
 ```
 
@@ -2821,11 +2996,13 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 currentAVSession.destroy().then(() => {
-    console.info(`Destroy : SUCCESS `);
-}).catch((err) => {
-    console.error(`Destroy BusinessError: code: ${err.code}, message: ${err.message}`);
+  console.info(`Destroy : SUCCESS `);
+}).catch((err: BusinessError) => {
+  console.error(`Destroy BusinessError: code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -2854,13 +3031,15 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 **Example**
 
-```js
-currentAVSession.destroy(function (err) {
-    if (err) {
-        console.error(`Destroy BusinessError: code: ${err.code}, message: ${err.message}`);
-    } else {
-        console.info(`Destroy : SUCCESS `);
-    }
+```ts
+import { BusinessError } from '@ohos.base';
+
+currentAVSession.destroy((err: BusinessError) => {
+  if (err) {
+    console.error(`Destroy BusinessError: code: ${err.code}, message: ${err.message}`);
+  } else {
+    console.info(`Destroy : SUCCESS `);
+  }
 });
 ```
 
@@ -2890,9 +3069,9 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 **Example**
 
-```js
+```ts
 currentAVSession.on('play', () => {
-    console.info(`on play entry`);
+  console.info(`on play entry`);
 });
 ```
 
@@ -2922,9 +3101,9 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 **Example**
 
-```js
+```ts
 currentAVSession.on('pause', () => {
-    console.info(`on pause entry`);
+  console.info(`on pause entry`);
 });
 ```
 
@@ -2954,9 +3133,9 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 **Example**
 
-```js
+```ts
 currentAVSession.on('stop', () => {
-    console.info(`on stop entry`);
+  console.info(`on stop entry`);
 });
 ```
 
@@ -2986,9 +3165,9 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 **Example**
 
-```js
+```ts
 currentAVSession.on('playNext', () => {
-    console.info(`on playNext entry`);
+  console.info(`on playNext entry`);
 });
 ```
 
@@ -3018,9 +3197,9 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 **Example**
 
-```js
+```ts
 currentAVSession.on('playPrevious', () => {
-    console.info(`on playPrevious entry`);
+  console.info(`on playPrevious entry`);
 });
 ```
 
@@ -3050,9 +3229,9 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 **Example**
 
-```js
+```ts
 currentAVSession.on('fastForward', () => {
-    console.info(`on fastForward entry`);
+  console.info(`on fastForward entry`);
 });
 ```
 
@@ -3082,9 +3261,9 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 **Example**
 
-```js
+```ts
 currentAVSession.on('rewind', () => {
-    console.info(`on rewind entry`);
+  console.info(`on rewind entry`);
 });
 ```
 
@@ -3114,9 +3293,9 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 **Example**
 
-```js
-currentAVSession.on('seek', (time) => {
-    console.info(`on seek entry time : ${time}`);
+```ts
+currentAVSession.on('seek', (time: number) => {
+  console.info(`on seek entry time : ${time}`);
 });
 ```
 
@@ -3146,9 +3325,9 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 **Example**
 
-```js
-currentAVSession.on('setSpeed', (speed) => {
-    console.info(`on setSpeed speed : ${speed}`);
+```ts
+currentAVSession.on('setSpeed', (speed: number) => {
+  console.info(`on setSpeed speed : ${speed}`);
 });
 ```
 
@@ -3178,9 +3357,9 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 **Example**
 
-```js
-currentAVSession.on('setLoopMode', (mode) => {
-    console.info(`on setLoopMode mode : ${mode}`);
+```ts
+currentAVSession.on('setLoopMode', (mode: avSession.LoopMode) => {
+  console.info(`on setLoopMode mode : ${mode}`);
 });
 ```
 
@@ -3210,9 +3389,9 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 **Example**
 
-```js
-currentAVSession.on('toggleFavorite', (assetId) => {
-    console.info(`on toggleFavorite mode : ${assetId}`);
+```ts
+currentAVSession.on('toggleFavorite', (assetId: string) => {
+  console.info(`on toggleFavorite mode : ${assetId}`);
 });
 ```
 
@@ -3242,9 +3421,9 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 **Example**
 
-```js
-currentAVSession.on('skipToQueueItem', (itemId) => {
-    console.info(`on skipToQueueItem id : ${itemId}`);
+```ts
+currentAVSession.on('skipToQueueItem', (itemId: number) => {
+  console.info(`on skipToQueueItem id : ${itemId}`);
 });
 ```
 
@@ -3274,10 +3453,13 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 **Example**
 
-```js
-currentAVSession.on('handleKeyEvent', (event) => {
-    console.info(`on handleKeyEvent event : ${event}`);
+```ts
+import keyEvent from '@ohos.multimodalInput.keyEvent';
+
+currentAVSession.on('handleKeyEvent', (event: keyEvent.KeyEvent) => {
+  console.info(`on handleKeyEvent event : ${event}`);
 });
+
 ```
 
 ### on('outputDeviceChange')<sup>10+</sup>
@@ -3296,6 +3478,7 @@ Subscribes to output device change events.
 | callback | (state: [ConnectionState](#connectionstate10), device: [OutputDeviceInfo](#outputdeviceinfo10)) => void | Yes  | Callback used for subscription. The **device** parameter in the callback indicates the output device information.<br>The **callback** parameter is optional. If it is not specified, all the subscriptions to the specified event are canceled for this session.                        |
 
 **Error codes**
+
 For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
 
 | ID| Error Message|
@@ -3305,9 +3488,9 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 **Example**
 
-```js
-currentAVSession.on('outputDeviceChange', (state, device) => {
-    console.info(`on outputDeviceChange device : ${device}`);
+```ts
+currentAVSession.on('outputDeviceChange', (state: avSession.ConnectionState, device: avSession.OutputDeviceInfo) => {
+  console.info(`on outputDeviceChange device : ${device}`);
 });
 ```
 
@@ -3337,10 +3520,25 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 **Example**
 
-```js
-currentAVSession.on('commonCommand', (commonCommand, args) => {
-    console.info(`OnCommonCommand, the command is ${commonCommand}, args: ${JSON.stringify(args)}`);
+```ts
+import { BusinessError } from '@ohos.base';
+import avSession from '@ohos.multimedia.avsession';
+let currentAVSession: avSession.AVSession | undefined = undefined;
+let tag = "createNewSession";
+let context: Context = getContext(this);
+
+avSession.createAVSession(context, tag, "audio", (err: BusinessError, data: avSession.AVSession) => {
+  if (err) {
+    console.info(`CreateAVSession BusinessError: code: ${err.code}, message: ${err.message}`);
+  } else {
+    currentAVSession = data;
+  }
 });
+if (currentAVSession !== undefined) {
+  (currentAVSession as avSession.AVSession).on('commonCommand', (commonCommand, args) => {
+    console.info(`OnCommonCommand, the command is ${commonCommand}, args: ${JSON.stringify(args)}`);
+  });
+}
 ```
 
 ### off('play')<sup>10+</sup>
@@ -3359,6 +3557,7 @@ Unsubscribes from playback started events.
 | callback | callback: () => void | No  | Callback used for unsubscription. If the unsubscription is successful, **err** is **undefined**; otherwise, **err** is an error object.<br>The **callback** parameter is optional. If it is not specified, all the subscriptions to the specified event are canceled for this session.                           |
 
 **Error codes**
+
 For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
 
 | ID| Error Message|
@@ -3368,7 +3567,7 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 **Example**
 
-```js
+```ts
 currentAVSession.off('play');
 ```
 
@@ -3398,7 +3597,7 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 **Example**
 
-```js
+```ts
 currentAVSession.off('pause');
 ```
 
@@ -3428,7 +3627,7 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 **Example**
 
-```js
+```ts
 currentAVSession.off('stop');
 ```
 
@@ -3458,7 +3657,7 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 **Example**
 
-```js
+```ts
 currentAVSession.off('playNext');
 ```
 
@@ -3488,7 +3687,7 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 **Example**
 
-```js
+```ts
 currentAVSession.off('playPrevious');
 ```
 
@@ -3518,7 +3717,7 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 **Example**
 
-```js
+```ts
 currentAVSession.off('fastForward');
 ```
 
@@ -3548,7 +3747,7 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 **Example**
 
-```js
+```ts
 currentAVSession.off('rewind');
 ```
 
@@ -3578,7 +3777,7 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 **Example**
 
-```js
+```ts
 currentAVSession.off('seek');
 ```
 
@@ -3608,7 +3807,7 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 **Example**
 
-```js
+```ts
 currentAVSession.off('setSpeed');
 ```
 
@@ -3638,7 +3837,7 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 **Example**
 
-```js
+```ts
 currentAVSession.off('setLoopMode');
 ```
 
@@ -3668,7 +3867,7 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 **Example**
 
-```js
+```ts
 currentAVSession.off('toggleFavorite');
 ```
 
@@ -3698,7 +3897,7 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 **Example**
 
-```js
+```ts
 currentAVSession.off('skipToQueueItem');
 ```
 
@@ -3728,7 +3927,7 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 **Example**
 
-```js
+```ts
 currentAVSession.off('handleKeyEvent');
 ```
 
@@ -3758,7 +3957,7 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 **Example**
 
-```js
+```ts
 currentAVSession.off('outputDeviceChange');
 ```
 
@@ -3789,7 +3988,7 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 **Example**
 
-```js
+```ts
 currentAVSession.off('commonCommand');
 ```
 
@@ -3817,13 +4016,15 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 **Example**
 
-```js
-currentAVSession.stopCasting(function (err) {
-    if (err) {
-        console.info(`stopCasting BusinessError: code: ${err.code}, message: ${err.message}`);
-    } else {
-        console.info(`stopCasting successfully`);
-    }
+```ts
+import { BusinessError } from '@ohos.base';
+
+currentAVSession.stopCasting((err: BusinessError) => {
+  if (err) {
+    console.info(`stopCasting BusinessError: code: ${err.code}, message: ${err.message}`);
+  } else {
+    console.info(`stopCasting successfully`);
+  }
 });
 ```
 
@@ -3851,11 +4052,13 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 currentAVSession.stopCasting().then(() => {
-    console.info(`stopCasting successfully`);
-}).catch((err) => {
-    console.info(`stopCasting BusinessError: code: ${err.code}, message: ${err.message}`);
+  console.info(`stopCasting successfully`);
+}).catch((err: BusinessError) => {
+  console.info(`stopCasting BusinessError: code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -3920,9 +4123,10 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 | 6600109  | The remote connection is not established. |
 
 **Example**
-```js
+
+```ts
 aVCastController.setDisplaySurface().then(() => {
-    console.info(`setDisplaySurface : SUCCESS :`);
+  console.info(`setDisplaySurface : SUCCESS`);
 });
 ```
 
@@ -3951,13 +4155,16 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 | 6600109  | The remote connection is not established. |
 
 **Example**
-```js
-aVCastController.setDisplaySurface(function (err, value) {
-    if (err) {
-        console.info(`setDisplaySurface BusinessError: code: ${err.code}, message: ${err.message}`);
-    } else {
-        console.info(`setDisplaySurface : SUCCESS : state : ${value}`);
-    }
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+aVCastController.setDisplaySurface((err: BusinessError) => {
+  if (err) {
+    console.info(`setDisplaySurface BusinessError: code: ${err.code}, message: ${err.message}`);
+  } else {
+    console.info(`setDisplaySurface : SUCCESS`);
+  }
 });
 ```
 
@@ -3985,13 +4192,15 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 **Example**
 
-```js
-aVCastController.getAVPlaybackState(function (err, state) {
-    if (err) {
-        console.error(`getAVPlaybackState BusinessError: code: ${err.code}, message: ${err.message}`);
-    } else {
-        console.info(`getAVPlaybackState : SUCCESS`);
-    }
+```ts
+import { BusinessError } from '@ohos.base';
+
+aVCastController.getAVPlaybackState((err: BusinessError, state: avSession.AVPlaybackState) => {
+  if (err) {
+    console.error(`getAVPlaybackState BusinessError: code: ${err.code}, message: ${err.message}`);
+  } else {
+    console.info(`getAVPlaybackState : SUCCESS`);
+  }
 });
 ```
 
@@ -4019,11 +4228,13 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 **Example**
 
-```js
-aVCastController.getAVPlaybackState().then((state) => {
-    console.info(`getAVPlaybackState : SUCCESS :`);
-}).catch((err) => {
-    console.error(`getAVPlaybackState BusinessError: code: ${err.code}, message: ${err.message}`);
+```ts
+import { BusinessError } from '@ohos.base';
+
+aVCastController.getAVPlaybackState().then((state: avSession.AVPlaybackState) => {
+  console.info(`getAVPlaybackState : SUCCESS`);
+}).catch((err: BusinessError) => {
+  console.error(`getAVPlaybackState BusinessError: code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -4060,8 +4271,11 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 **Example**
 
-```js
-let avCommand = {command:'play'};
+```ts
+import avSession from '@ohos.multimedia.avsession';
+import { BusinessError } from '@ohos.base';
+
+let avCommand: avSession.AVCastControlCommand = {command:'play'};
 // let avCommand = {command:'pause'};
 // let avCommand = {command:'stop'};
 // let avCommand = {command:'playNext'};
@@ -4070,9 +4284,9 @@ let avCommand = {command:'play'};
 // let avCommand = {command:'rewind'};
 // let avCommand = {command:'seek', parameter:10};
 aVCastController.sendControlCommand(avCommand).then(() => {
-    console.info(`SendControlCommand successfully`);
-}).catch((err) => {
-    console.error(`SendControlCommand BusinessError: code: ${err.code}, message: ${err.message}`);
+  console.info(`SendControlCommand successfully`);
+}).catch((err: BusinessError) => {
+  console.error(`SendControlCommand BusinessError: code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -4104,8 +4318,11 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 **Example**
 
-```js
-let avCommand = {command:'play'};
+```ts
+import avSession from '@ohos.multimedia.avsession';
+import { BusinessError } from '@ohos.base';
+
+let avCommand: avSession.AVCastControlCommand = {command:'play'};
 // let avCommand = {command:'pause'};
 // let avCommand = {command:'stop'};
 // let avCommand = {command:'playNext'};
@@ -4113,12 +4330,12 @@ let avCommand = {command:'play'};
 // let avCommand = {command:'fastForward'};
 // let avCommand = {command:'rewind'};
 // let avCommand = {command:'seek', parameter:10};
-aVCastController.sendControlCommand(avCommand, function (err) {
-    if (err) {
-        console.error(`SendControlCommand BusinessError: code: ${err.code}, message: ${err.message}`);
-    } else {
-        console.info(`SendControlCommand successfully`);
-    }
+aVCastController.sendControlCommand(avCommand, (err: BusinessError) => {
+  if (err) {
+    console.error(`SendControlCommand BusinessError: code: ${err.code}, message: ${err.message}`);
+  } else {
+    console.info(`SendControlCommand successfully`);
+  }
 });
 ```
 
@@ -4135,7 +4352,7 @@ Prepares for the playback of a media asset. This API uses an asynchronous callba
 | Name   | Type                                 | Mandatory| Description                          |
 | ------- | ------------------------------------- | ---- | ------------------------------ |
 | item | [AVQueueItem](#avqueueitem10) | Yes  | Attributes of an item in the playlist.|
-| callback | AsyncCallback\<void>                  | Yes  | Callback used to return the result. If the command is sent, **err** is **undefined**; otherwise, **err** is an error object.   
+| callback | AsyncCallback\<void>                  | Yes  | Callback used to return the result. If the command is sent, **err** is **undefined**; otherwise, **err** is an error object.|   
 
 **Error codes**
 
@@ -4144,16 +4361,19 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 6600101  | Session service exception. |
+| 6600109  | The remote connection is not established. |
 
 **Example**
 
-```js
+```ts
+import avSession from '@ohos.multimedia.avsession';
+import { BusinessError } from '@ohos.base';
+
 // Set playback parameters.
-var playItem = {
-    itemId: 0,
-    description: {
-    mediaId: '12345',
-    mediaName: 'song1',
+let playItem: avSession.AVQueueItem = {
+  itemId: 0,
+  description: {
+    assetId: '12345',
     mediaType: 'AUDIO',
     mediaUri: 'http://resource1_address',
     mediaSize: 12345,
@@ -4163,13 +4383,16 @@ var playItem = {
     albumTitle: 'song1_title',
     albumCoverUri: "http://resource1_album_address",
     lyricUri: "http://resource1_lyric_address",
-    iconUri: "http://resource1_icon_address",
     appName: 'MyMusic'
-    }
+  }
 };
 // Prepare for playback. This operation triggers loading and buffering, but not the actual playback.
-aVCastController.prepare(playItem, () => {
-  console.info('prepare done');
+aVCastController.prepare(playItem, (err: BusinessError) => {
+  if (err) {
+    console.error(`prepare BusinessError: code: ${err.code}, message: ${err.message}`);
+  } else {
+    console.info(`prepare successfully`);
+  }
 });
 ```
 
@@ -4202,33 +4425,37 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 6600101  | Session service exception. |
+| 6600109  | The remote connection is not established. |
 
 
 **Example**
 
-```js
+```ts
+import avSession from '@ohos.multimedia.avsession';
+import { BusinessError } from '@ohos.base';
+
 // Set playback parameters.
-var playItem = {
-    itemId: 0,
-    description: {
-        mediaId: '12345',
-        mediaName: 'song1',
-        mediaType: 'AUDIO',
-        mediaUri: 'http://resource1_address',
-        mediaSize: 12345,
-        startPosition: 0,
-        duration: 0,
-        artist: 'mysong',
-        albumTitle: 'song1_title',
-        albumCoverUri: "http://resource1_album_address",
-        lyricUri: "http://resource1_lyric_address",
-        iconUri: "http://resource1_icon_address",
-        appName: 'MyMusic'
-    }
+let playItem: avSession.AVQueueItem = {
+  itemId: 0,
+  description: {
+    assetId: '12345',
+    mediaType: 'AUDIO',
+    mediaUri: 'http://resource1_address',
+    mediaSize: 12345,
+    startPosition: 0,
+    duration: 0,
+    artist: 'mysong',
+    albumTitle: 'song1_title',
+    albumCoverUri: "http://resource1_album_address",
+    lyricUri: "http://resource1_lyric_address",
+    appName: 'MyMusic'
+  }
 };
 // Prepare for playback. This operation triggers loading and buffering, but not the actual playback.
-aVCastController.prepare(playItem, () => {
-    console.info('prepare done');
+aVCastController.prepare(playItem).then(() => {
+  console.info(`prepare successfully`);
+}).catch((err: BusinessError) => {
+  console.error(`prepare BusinessError: code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -4245,7 +4472,7 @@ Prepares for the playback of a media asset. This API uses an asynchronous callba
 | Name   | Type                                 | Mandatory| Description                          |
 | ------- | ------------------------------------- | ---- | ------------------------------ |
 | item | [AVQueueItem](#avqueueitem10) | Yes  | Attributes of an item in the playlist.|
-| callback | AsyncCallback\<void>                  | Yes  | Callback used to return the result. If the command is sent, **err** is **undefined**; otherwise, **err** is an error object.   
+| callback | AsyncCallback\<void>                  | Yes  | Callback used to return the result. If the command is sent, **err** is **undefined**; otherwise, **err** is an error object.|   
 
 **Error codes**
 
@@ -4254,33 +4481,39 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 6600101  | Session service exception. |
+| 6600109  | The remote connection is not established. |
 
 **Example**
 
-```js
+```ts
+import avSession from '@ohos.multimedia.avsession';
+import { BusinessError } from '@ohos.base';
+
 // Set playback parameters.
-var playItem = {
-itemId: 0,
-description: {
-  mediaId: '12345',
-  mediaName: 'song1',
-  mediaType: 'AUDIO',
-  mediaUri: 'http://resource1_address',
-  mediaSize: 12345,
-  startPosition: 0,
-  duration: 0,
-  artist: 'mysong',
-  albumTitle: 'song1_title',
-  albumCoverUri: "http://resource1_album_address",
-  lyricUri: "http://resource1_lyric_address",
-  iconUri: "http://resource1_icon_address",
-  appName: 'MyMusic'
-}
+let playItem: avSession.AVQueueItem = {
+  itemId: 0,
+  description: {
+    assetId: '12345',
+    mediaType: 'AUDIO',
+    mediaUri: 'http://resource1_address',
+    mediaSize: 12345,
+    startPosition: 0,
+    duration: 0,
+    artist: 'mysong',
+    albumTitle: 'song1_title',
+    albumCoverUri: "http://resource1_album_address",
+    lyricUri: "http://resource1_lyric_address",
+    appName: 'MyMusic'
+  }
 };
 
 // Start playback.
-aVCastController.start(playItem, () => {
-  console.info('play done');
+aVCastController.start(playItem, (err: BusinessError) => {
+  if (err) {
+    console.error(`start BusinessError: code: ${err.code}, message: ${err.message}`);
+  } else {
+    console.info(`start successfully`);
+  }
 });
 ```
 
@@ -4312,17 +4545,20 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 6600101  | Session service exception. |
+| 6600109  | The remote connection is not established. |
 
 
 **Example**
 
-```js
+```ts
+import avSession from '@ohos.multimedia.avsession';
+import { BusinessError } from '@ohos.base';
+
 // Set playback parameters.
-var playItem = {
-itemId: 0,
-description: {
-    mediaId: '12345',
-    mediaName: 'song1',
+let playItem: avSession.AVQueueItem = {
+  itemId: 0,
+  description: {
+    assetId: '12345',
     mediaType: 'AUDIO',
     mediaUri: 'http://resource1_address',
     mediaSize: 12345,
@@ -4332,15 +4568,14 @@ description: {
     albumTitle: 'song1_title',
     albumCoverUri: "http://resource1_album_address",
     lyricUri: "http://resource1_lyric_address",
-    iconUri: "http://resource1_icon_address",
     appName: 'MyMusic'
-}
+  }
 };
 // Start playback.
 aVCastController.start(playItem).then(() => {
-    console.info(`start successfully`);
-}).catch((err) => {
-    console.info(`start BusinessError: code: ${err.code}, message: ${err.message}`);
+  console.info(`start successfully`);
+}).catch((err: BusinessError) => {
+  console.info(`start BusinessError: code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -4368,13 +4603,15 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 **Example**
 
-```js
-aVCastController.getCurrentItem(function (err, value) {
-    if (err) {
-        console.error(`getCurrentItem BusinessError: code: ${err.code}, message: ${err.message}`);
-    } else {
-        console.info(`getCurrentItem successfully`);
-    }
+```ts
+import { BusinessError } from '@ohos.base';
+
+aVCastController.getCurrentItem((err: BusinessError, value: avSession.AVQueueItem) => {
+  if (err) {
+    console.error(`getCurrentItem BusinessError: code: ${err.code}, message: ${err.message}`);
+  } else {
+    console.info(`getCurrentItem successfully`);
+  }
 });
 ```
 
@@ -4402,12 +4639,15 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 **Example**
 
-```js
-aVCastController.getCurrentItem().then((AVQueueItem) => {
-    console.info(`getCurrentItem successfully`);
-}).catch((err) => {
-    console.error(`getCurrentItem BusinessError: code: ${err.code}, message: ${err.message}`);
+```ts
+import { BusinessError } from '@ohos.base';
+
+aVCastController.getCurrentItem().then((value: avSession.AVQueueItem) => {
+  console.info(`getCurrentItem successfully`);
+}).catch((err: BusinessError) => {
+  console.error(`getCurrentItem BusinessError: code: ${err.code}, message: ${err.message}`);
 });
+
 ```
 
 ### on('playbackStateChange')<sup>10+</sup>
@@ -4436,14 +4676,14 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 **Example**
 
-```js
-aVCastController.on('playbackStateChange', 'all', (playbackState) => {
-    console.info(`on playbackStateChange state : ${playbackState.state}`);
+```ts
+aVCastController.on('playbackStateChange', 'all', (playbackState: avSession.AVPlaybackState) => {
+  console.info(`on playbackStateChange state : ${playbackState.state}`);
 });
 
 let playbackFilter = ['state', 'speed', 'loopMode'];
-aVCastController.on('playbackStateChange', playbackFilter, (playbackState) => {
-    console.info(`on playbackStateChange state : ${playbackState.state}`);
+aVCastController.on('playbackStateChange', playbackFilter, (playbackState: avSession.AVPlaybackState) => {
+  console.info(`on playbackStateChange state : ${playbackState.state}`);
 });
 ```
 
@@ -4472,7 +4712,7 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 **Example**
 
-```js
+```ts
 aVCastController.off('playbackStateChange');
 ```
 
@@ -4501,9 +4741,9 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 **Example**
 
-```js
-aVCastController.on('mediaItemChange', (item) => {
-    console.info(`on mediaItemChange state : ${item.itemId}`);
+```ts
+aVCastController.on('mediaItemChange', (item: avSession.AVQueueItem) => {
+  console.info(`on mediaItemChange state : ${item.itemId}`);
 });
 ```
 
@@ -4531,7 +4771,7 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 **Example**
 
-```js
+```ts
 aVCastController.off('mediaItemChange');
 ```
 
@@ -4560,9 +4800,9 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 **Example**
 
-```js
+```ts
 aVCastController.on('playNext', () => {
-    console.info(`on playNext`);
+  console.info(`on playNext`);
 });
 ```
 
@@ -4590,7 +4830,7 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 **Example**
 
-```js
+```ts
 aVCastController.off('playNext');
 ```
 
@@ -4619,9 +4859,9 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 **Example**
 
-```js
+```ts
 aVCastController.on('playPrevious', () => {
-    console.info(`on playPrevious`);
+  console.info(`on playPrevious`);
 });
 ```
 
@@ -4629,7 +4869,7 @@ aVCastController.on('playPrevious', () => {
 
 off(type: 'playPrevious'): void
 
-Unsubscribes from the playPrevious command event.
+Unsubscribes from playPrevious command events.
 
 **System capability**: SystemCapability.Multimedia.AVSession.AVCast
 
@@ -4649,7 +4889,7 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 **Example**
 
-```js
+```ts
 aVCastController.off('playPrevious');
 ```
 
@@ -4678,9 +4918,9 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 **Example**
 
-```js
-aVCastController.on('seekDone', (pos) => {
-    console.info(`on seekDone pos: ${pos} `);
+```ts
+aVCastController.on('seekDone', (pos: number) => {
+  console.info(`on seekDone pos: ${pos} `);
 });
 ```
 
@@ -4708,7 +4948,7 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 **Example**
 
-```js
+```ts
 aVCastController.off('seekDone');
 ```
 
@@ -4724,16 +4964,25 @@ Subscribes to video size change events.
 
 **Parameters**
 
-| Parameter | Type | Mandatory | Description |
-| type | string | Yes  | Event type. The event **'videoSizeChange'** is triggered when the video size changes. |
-| callback | (width:number, height:number) => void | Yes |  Callback used to return the video width and height. |
+| Name  | Type        | Mandatory| Description                                                        |
+| -------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------- |
+| type     | string      | Yes  | Event type. The event **'videoSizeChange'** is triggered when the video size changes.|
+| callback | (width:number, height:number) => void    | Yes  | Callback used to return the video width and height.    |
+
+**Error codes**
+
+For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
+
+| ID| Error Message|
+| -------- | ---------------- |
+| 6600101  | Session service exception. |
 
 **Example**
 
-```js
-aVCastController.on('videoSizeChange', (width, height) => {
-    console.info(`width : ${width} `);
-    console.info(`height: ${height} `);
+```ts
+aVCastController.on('videoSizeChange', (width: number, height: number) => {
+  console.info(`width : ${width} `);
+  console.info(`height: ${height} `);
 });
 ```
 
@@ -4749,12 +4998,21 @@ Unsubscribes from video size changes.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
-| type | string | Yes | Event type, which is **'videoSizeChange'** in this case.    |
+| Name  | Type    | Mandatory| Description     |
+| -------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------- |
+| type     | string  | Yes  | Event type, which is **'videoSizeChange'** in this case.   |
+
+**Error codes**
+
+For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
+
+| ID| Error Message|
+| -------- | ---------------- |
+| 6600101  | Session service exception. |
 
 **Example**
 
-```js
+```ts
 aVCastController.off('videoSizeChange');
 ```
 
@@ -4785,11 +5043,14 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 | 5400104  | Time out.      |
 | 5400105  | Service died.         |
 | 5400106  | Unsupport format.     |
+| 6600101  | Session service exception.     |
 
 **Example**
 
-```js
-aVCastController.on('error', (error) => {
+```ts
+import { BusinessError } from '@ohos.base'
+
+aVCastController.on('error', (error: BusinessError) => {
   console.error('error happened,and error message is :' + error.message)
   console.error('error happened,and error code is :' + error.code)
 })
@@ -4821,10 +5082,11 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 | 5400104  | Time out.      |
 | 5400105  | Service died.         |
 | 5400106  | Unsupport format.     |
+| 6600101  | Session service exception.     |
 
 **Example**
 
-```js
+```ts
 aVCastController.off('error')
 ```
 
@@ -4872,12 +5134,11 @@ Describes the attributes related to the media metadata in the playlist.
 
 | Name        | Type                   | Mandatory | Description                    |
 | ------------ | ----------------------- | ---- | ----------------------- |
-| mediaId      | string                  | Yes  | Media ID in the playlist.         |
+| assetId      | string                  | Yes  | Media ID in the playlist.         |
 | title        | string                  | No  | Name of the media asset in the playlist.       |
 | subtitle     | string                  | No  | Subname of the media asset in the playlist.     |
 | description  | string                  | No  | Description of the media asset in the playlist.  |
-| icon         | image.PixelMap          | No  | Pixel map of the image of the media asset in the playlist.|
-| iconUri      | string                  | No  | Path of the image of the media asset in the playlist.|
+| mediaImage | image.PixelMap          | No  | Pixel map of the image of the media asset in the playlist.|
 | extras       | {[key: string]: any}    | No  | Additional fields of the media asset in the playlist.    |
 | mediaUri     | string                  | No  | URI of the media asset in the playlist.        |
 | mediaType     | string                  | No  | Type of the media asset in the playlist.        |
@@ -5046,12 +5307,15 @@ An AV session controller is created by calling [avSession.createController](#avs
 
 
 **Example**
-```js
-let AVSessionController;
-avSession.createController(currentAVSession.sessionId).then((controller) => {
-    AVSessionController = controller;
-}).catch((err) => {
-    console.error(`CreateController BusinessError: code: ${err.code}, message: ${err.message}`);
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+let AVSessionController: avSession.AVSessionController;
+avSession.createController(currentAVSession.sessionId).then((controller: avSession.AVSessionController) => {
+  AVSessionController = controller;
+}).catch((err: BusinessError) => {
+  console.error(`CreateController BusinessError: code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -5081,13 +5345,15 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 **Example**
 
-```js
-avsessionController.getAVPlaybackState(function (err, state) {
-    if (err) {
-        console.error(`getAVPlaybackState BusinessError: code: ${err.code}, message: ${err.message}`);
-    } else {
-        console.info(`getAVPlaybackState : SUCCESS`);
-    }
+```ts
+import { BusinessError } from '@ohos.base';
+
+avsessionController.getAVPlaybackState((err: BusinessError, state: avSession.AVPlaybackState) => {
+  if (err) {
+    console.error(`getAVPlaybackState BusinessError: code: ${err.code}, message: ${err.message}`);
+  } else {
+    console.info(`getAVPlaybackState : SUCCESS`);
+  }
 });
 ```
 
@@ -5117,11 +5383,13 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 **Example**
 
-```js
-avsessionController.getAVPlaybackState().then((state) => {
-    console.info(`getAVPlaybackState : SUCCESS :`);
-}).catch((err) => {
-    console.error(`getAVPlaybackState BusinessError: code: ${err.code}, message: ${err.message}`);
+```ts
+import { BusinessError } from '@ohos.base';
+
+avsessionController.getAVPlaybackState().then((state: avSession.AVPlaybackState) => {
+  console.info(`getAVPlaybackState : SUCCESS`);
+}).catch((err: BusinessError) => {
+  console.error(`getAVPlaybackState BusinessError: code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -5150,11 +5418,14 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 | 6600103  | The session controller does not exist. |
 
 **Example**
-```js
-avsessionController.getAVMetadata().then((metadata) => {
-    console.info(`GetAVMetadata : SUCCESS : assetId : ${metadata.assetId}`);
-}).catch((err) => {
-    console.error(`GetAVMetadata BusinessError: code: ${err.code}, message: ${err.message}`);
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+avsessionController.getAVMetadata().then((metadata: avSession.AVMetadata) => {
+  console.info(`GetAVMetadata : SUCCESS : assetId : ${metadata.assetId}`);
+}).catch((err: BusinessError) => {
+  console.error(`GetAVMetadata BusinessError: code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -5183,13 +5454,16 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 | 6600103  | The session controller does not exist. |
 
 **Example**
-```js
-avsessionController.getAVMetadata(function (err, metadata) {
-    if (err) {
-        console.error(`GetAVMetadata BusinessError: code: ${err.code}, message: ${err.message}`);
-    } else {
-        console.info(`GetAVMetadata : SUCCESS : assetId : ${metadata.assetId}`);
-    }
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+avsessionController.getAVMetadata((err: BusinessError, metadata: avSession.AVMetadata) => {
+  if (err) {
+    console.error(`GetAVMetadata BusinessError: code: ${err.code}, message: ${err.message}`);
+  } else {
+    console.info(`GetAVMetadata : SUCCESS : assetId : ${metadata.assetId}`);
+  }
 });
 ```
 
@@ -5219,11 +5493,13 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 **Example**
 
-```js
-avsessionController.getAVQueueTitle().then((title) => {
-    console.info(`GetAVQueueTitle : SUCCESS : title : ${title}`);
-}).catch((err) => {
-    console.error(`GetAVQueueTitle BusinessError: code: ${err.code}, message: ${err.message}`);
+```ts
+import { BusinessError } from '@ohos.base';
+
+avsessionController.getAVQueueTitle().then((title: string) => {
+  console.info(`GetAVQueueTitle : SUCCESS : title : ${title}`);
+}).catch((err: BusinessError) => {
+  console.error(`GetAVQueueTitle BusinessError: code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -5252,13 +5528,16 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 | 6600103  | The session controller does not exist. |
 
 **Example**
-```js
-avsessionController.getAVQueueTitle(function (err, title) {
-    if (err) {
-        console.error(`GetAVQueueTitle BusinessError: code: ${err.code}, message: ${err.message}`);
-    } else {
-        console.info(`GetAVQueueTitle : SUCCESS : title : ${title}`);
-    }
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+avsessionController.getAVQueueTitle((err: BusinessError, title: string) => {
+  if (err) {
+    console.error(`GetAVQueueTitle BusinessError: code: ${err.code}, message: ${err.message}`);
+  } else {
+    console.info(`GetAVQueueTitle : SUCCESS : title : ${title}`);
+  }
 });
 ```
 
@@ -5288,11 +5567,13 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 **Example**
 
-```js
-avsessionController.getAVQueueItems().then((items) => {
-    console.info(`GetAVQueueItems : SUCCESS : length : ${items.length}`);
-}).catch((err) => {
-    console.error(`GetAVQueueItems BusinessError: code: ${err.code}, message: ${err.message}`);
+```ts
+import { BusinessError } from '@ohos.base';
+
+avsessionController.getAVQueueItems().then((items: avSession.AVQueueItem[]) => {
+  console.info(`GetAVQueueItems : SUCCESS : length : ${items.length}`);
+}).catch((err: BusinessError) => {
+  console.error(`GetAVQueueItems BusinessError: code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -5322,13 +5603,15 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 **Example**
 
-```js
-avsessionController.getAVQueueItems(function (err, items) {
-    if (err) {
-        console.error(`GetAVQueueItems BusinessError: code: ${err.code}, message: ${err.message}`);
-    } else {
-        console.info(`GetAVQueueItems : SUCCESS : length : ${items.length}`);
-    }
+```ts
+import { BusinessError } from '@ohos.base';
+
+avsessionController.getAVQueueItems((err: BusinessError, items: avSession.AVQueueItem[]) => {
+  if (err) {
+    console.error(`GetAVQueueItems BusinessError: code: ${err.code}, message: ${err.message}`);
+  } else {
+    console.info(`GetAVQueueItems : SUCCESS : length : ${items.length}`);
+  }
 });
 ```
 
@@ -5364,12 +5647,14 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 let queueItemId = 0;
 avsessionController.skipToQueueItem(queueItemId).then(() => {
-    console.info(`SkipToQueueItem successfully`);
-}).catch((err) => {
-    console.error(`SkipToQueueItem BusinessError: code: ${err.code}, message: ${err.message}`);
+  console.info(`SkipToQueueItem successfully`);
+}).catch((err: BusinessError) => {
+  console.error(`SkipToQueueItem BusinessError: code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -5400,14 +5685,16 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 let queueItemId = 0;
-avsessionController.skipToQueueItem(queueItemId, function (err) {
-    if (err) {
-        console.error(`SkipToQueueItem BusinessError: code: ${err.code}, message: ${err.message}`);
-    } else {
-        console.info(`SkipToQueueItem successfully`);
-    }
+avsessionController.skipToQueueItem(queueItemId, (err: BusinessError) => {
+  if (err) {
+    console.error(`SkipToQueueItem BusinessError: code: ${err.code}, message: ${err.message}`);
+  } else {
+    console.info(`SkipToQueueItem successfully`);
+  }
 });
 ```
 
@@ -5435,11 +5722,14 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 | 600103  | The session controller does not exist. |
 
 **Example**
-```js
-avsessionController.getOutputDevice().then((deviceInfo) => {
-    console.info(`GetOutputDevice : SUCCESS : isRemote : ${deviceInfo.isRemote}`);
-}).catch((err) => {
-    console.error(`GetOutputDevice BusinessError: code: ${err.code}, message: ${err.message}`);
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+avsessionController.getOutputDevice().then((deviceInfo: avSession.OutputDeviceInfo) => {
+  console.info(`GetOutputDevice : SUCCESS`);
+}).catch((err: BusinessError) => {
+  console.error(`GetOutputDevice BusinessError: code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -5468,13 +5758,15 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 **Example**
 
-```js
-avsessionController.getOutputDevice(function (err, deviceInfo) {
-    if (err) {
-        console.error(`GetOutputDevice BusinessError: code: ${err.code}, message: ${err.message}`);
-    } else {
-        console.info(`GetOutputDevice : SUCCESS : isRemote : ${deviceInfo.isRemote}`);
-    }
+```ts
+import { BusinessError } from '@ohos.base';
+
+avsessionController.getOutputDevice((err: BusinessError, deviceInfo: avSession.OutputDeviceInfo) => {
+  if (err) {
+    console.error(`GetOutputDevice BusinessError: code: ${err.code}, message: ${err.message}`);
+  } else {
+    console.info(`GetOutputDevice : SUCCESS`);
+  }
 });
 ```
 
@@ -5512,14 +5804,17 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 **Example**
 
-```js
-let keyItem = {code:0x49, pressedTime:2, deviceId:0};
-let event = {action:2, key:keyItem, keys:[keyItem]};
+```ts
+import keyEvent from '@ohos.multimodalInput.keyEvent';
+import { BusinessError } from '@ohos.base';
+
+let keyItem: keyEvent.Key = {code:0x49, pressedTime:2, deviceId:0};
+let event: keyEvent.KeyEvent = {id:1, deviceId:0, actionTime:1, screenId:1, windowId:1, action:2, key:keyItem, unicodeChar:0, keys:[keyItem], ctrlKey:false, altKey:false, shiftKey:false, logoKey:false, fnKey:false, capsLock:false, numLock:false, scrollLock:false};
 
 avsessionController.sendAVKeyEvent(event).then(() => {
-    console.info(`SendAVKeyEvent Successfully`);
-}).catch((err) => {
-    console.error(`SendAVKeyEvent BusinessError: code: ${err.code}, message: ${err.message}`);
+  console.info(`SendAVKeyEvent Successfully`);
+}).catch((err: BusinessError) => {
+  console.error(`SendAVKeyEvent BusinessError: code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -5552,16 +5847,19 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 **Example**
 
-```js
-let keyItem = {code:0x49, pressedTime:2, deviceId:0};
-let event = {action:2, key:keyItem, keys:[keyItem]};
+```ts
+import keyEvent from '@ohos.multimodalInput.keyEvent';
+import { BusinessError } from '@ohos.base';
 
-avsessionController.sendAVKeyEvent(event, function (err) {
-    if (err) {
-        console.error(`SendAVKeyEvent BusinessError: code: ${err.code}, message: ${err.message}`);
-    } else {
-        console.info(`SendAVKeyEvent Successfully`);
-    }
+let keyItem: keyEvent.Key = {code:0x49, pressedTime:2, deviceId:0};
+let event: keyEvent.KeyEvent = {id:1, deviceId:0, actionTime:1, screenId:1, windowId:1, action:2, key:keyItem, unicodeChar:0, keys:[keyItem], ctrlKey:false, altKey:false, shiftKey:false, logoKey:false, fnKey:false, capsLock:false, numLock:false, scrollLock:false};
+
+avsessionController.sendAVKeyEvent(event, (err: BusinessError) => {
+  if (err) {
+    console.error(`SendAVKeyEvent BusinessError: code: ${err.code}, message: ${err.message}`);
+  } else {
+    console.info(`SendAVKeyEvent Successfully`);
+  }
 });
 ```
 
@@ -5591,11 +5889,13 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 **Example**
 
-```js
-avsessionController.getLaunchAbility().then((agent) => {
-    console.info(`GetLaunchAbility : SUCCESS : wantAgent : ${agent}`);
-}).catch((err) => {
-    console.error(`GetLaunchAbility BusinessError: code: ${err.code}, message: ${err.message}`);
+```ts
+import { BusinessError } from '@ohos.base';
+
+avsessionController.getLaunchAbility().then((agent: object) => {
+  console.info(`GetLaunchAbility : SUCCESS : wantAgent : ${agent}`);
+}).catch((err: BusinessError) => {
+  console.error(`GetLaunchAbility BusinessError: code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -5625,13 +5925,15 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 **Example**
 
-```js
-avsessionController.getLaunchAbility(function (err, agent) {
-    if (err) {
-        console.error(`GetLaunchAbility BusinessError: code: ${err.code}, message: ${err.message}`);
-    } else {
-        console.info(`GetLaunchAbility : SUCCESS : wantAgent : ${agent}`);
-    }
+```ts
+import { BusinessError } from '@ohos.base';
+
+avsessionController.getLaunchAbility((err: BusinessError, agent: object) => {
+  if (err) {
+    console.error(`GetLaunchAbility BusinessError: code: ${err.code}, message: ${err.message}`);
+  } else {
+    console.info(`GetLaunchAbility : SUCCESS : wantAgent : ${agent}`);
+  }
 });
 ```
 
@@ -5660,8 +5962,8 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 **Example**
 
-```js
-let time = avsessionController.getRealPlaybackPositionSync();
+```ts
+let time: number = avsessionController.getRealPlaybackPositionSync();
 ```
 
 ### isActive<sup>10+</sup>
@@ -5690,11 +5992,13 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 **Example**
 
-```js
-avsessionController.isActive().then((isActive) => {
-    console.info(`IsActive : SUCCESS : isactive : ${isActive}`);
-}).catch((err) => {
-    console.error(`IsActive BusinessError: code: ${err.code}, message: ${err.message}`);
+```ts
+import { BusinessError } from '@ohos.base';
+
+avsessionController.isActive().then((isActive: boolean) => {
+  console.info(`IsActive : SUCCESS : isactive : ${isActive}`);
+}).catch((err: BusinessError) => {
+  console.error(`IsActive BusinessError: code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -5724,13 +6028,15 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 **Example**
 
-```js
-avsessionController.isActive(function (err, isActive) {
-    if (err) {
-        console.error(`IsActive BusinessError: code: ${err.code}, message: ${err.message}`);
-    } else {
-        console.info(`IsActive : SUCCESS : isactive : ${isActive}`);
-    }
+```ts
+import { BusinessError } from '@ohos.base';
+
+avsessionController.isActive((err: BusinessError, isActive: boolean) => {
+  if (err) {
+    console.error(`IsActive BusinessError: code: ${err.code}, message: ${err.message}`);
+  } else {
+    console.info(`IsActive : SUCCESS : isactive : ${isActive}`);
+  }
 });
 ```
 
@@ -5759,11 +6065,13 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 avsessionController.destroy().then(() => {
-    console.info(`Destroy : SUCCESS `);
-}).catch((err) => {
-    console.error(`Destroy BusinessError: code: ${err.code}, message: ${err.message}`);
+  console.info(`Destroy : SUCCESS `);
+}).catch((err: BusinessError) => {
+  console.error(`Destroy BusinessError: code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -5792,13 +6100,15 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 **Example**
 
-```js
-avsessionController.destroy(function (err) {
-    if (err) {
-        console.error(`Destroy BusinessError: code: ${err.code}, message: ${err.message}`);
-    } else {
-        console.info(`Destroy : SUCCESS `);
-    }
+```ts
+import { BusinessError } from '@ohos.base';
+
+avsessionController.destroy((err: BusinessError) => {
+  if (err) {
+    console.error(`Destroy BusinessError: code: ${err.code}, message: ${err.message}`);
+  } else {
+    console.info(`Destroy : SUCCESS `);
+  }
 });
 ```
 
@@ -5828,11 +6138,13 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 **Example**
 
-```js
-avsessionController.getValidCommands.then((validCommands) => {
-    console.info(`GetValidCommands : SUCCESS : size : ${validCommands.length}`);
-}).catch((err) => {
-    console.error(`GetValidCommands BusinessError: code: ${err.code}, message: ${err.message}`);
+```ts
+import { BusinessError } from '@ohos.base';
+
+avsessionController.getValidCommands.then((validCommands: avSession.AVControlCommandType[]) => {
+  console.info(`GetValidCommands : SUCCESS : size : ${validCommands.length}`);
+}).catch((err: BusinessError) => {
+  console.error(`GetValidCommands BusinessError: code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -5862,13 +6174,15 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 **Example**
 
-```js
-avsessionController.getValidCommands(function (err, validCommands) {
-    if (err) {
-        console.error(`GetValidCommands BusinessError: code: ${err.code}, message: ${err.message}`);
-    } else {
-        console.info(`GetValidCommands : SUCCESS : size : ${validCommands.length}`);
-    }
+```ts
+import { BusinessError } from '@ohos.base';
+
+avsessionController.getValidCommands((err: BusinessError, validCommands: avSession.AVControlCommandType[]) => {
+  if (err) {
+    console.error(`GetValidCommands BusinessError: code: ${err.code}, message: ${err.message}`);
+  } else {
+    console.info(`GetValidCommands : SUCCESS : size : ${validCommands.length}`);
+  }
 });
 ```
 
@@ -5911,8 +6225,11 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 **Example**
 
-```js
-let avCommand = {command:'play'};
+```ts
+import avSession from '@ohos.multimedia.avsession';
+import { BusinessError } from '@ohos.base';
+
+let avCommand: avSession.AVControlCommand = {command:'play'};
 // let avCommand = {command:'pause'};
 // let avCommand = {command:'stop'};
 // let avCommand = {command:'playNext'};
@@ -5924,9 +6241,9 @@ let avCommand = {command:'play'};
 // let avCommand = {command:'setLoopMode', parameter:avSession.LoopMode.LOOP_MODE_SINGLE};
 // let avCommand = {command:'toggleFavorite', parameter:"false"};
 avsessionController.sendControlCommand(avCommand).then(() => {
-    console.info(`SendControlCommand successfully`);
-}).catch((err) => {
-    console.error(`SendControlCommand BusinessError: code: ${err.code}, message: ${err.message}`);
+  console.info(`SendControlCommand successfully`);
+}).catch((err: BusinessError) => {
+  console.error(`SendControlCommand BusinessError: code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -5964,8 +6281,11 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 **Example**
 
-```js
-let avCommand = {command:'play'};
+```ts
+import avSession from '@ohos.multimedia.avsession';
+import { BusinessError } from '@ohos.base';
+
+let avCommand: avSession.AVControlCommand = {command:'play'};
 // let avCommand = {command:'pause'};
 // let avCommand = {command:'stop'};
 // let avCommand = {command:'playNext'};
@@ -5976,12 +6296,12 @@ let avCommand = {command:'play'};
 // let avCommand = {command:'setSpeed', parameter:2.6};
 // let avCommand = {command:'setLoopMode', parameter:avSession.LoopMode.LOOP_MODE_SINGLE};
 // let avCommand = {command:'toggleFavorite', parameter:"false"};
-avsessionController.sendControlCommand(avCommand, function (err) {
-    if (err) {
-        console.info(`SendControlCommand BusinessError: code: ${err.code}, message: ${err.message}`);
-    } else {
-        console.error(`SendControlCommand successfully`);
-    }
+avsessionController.sendControlCommand(avCommand, (err: BusinessError) => {
+  if (err) {
+    console.info(`SendControlCommand BusinessError: code: ${err.code}, message: ${err.message}`);
+  } else {
+    console.error(`SendControlCommand successfully`);
+  }
 });
 ```
 
@@ -6001,6 +6321,7 @@ Sends a custom control command to the session through the controller. This API u
 | args | {[key: string]: any} | Yes  | Parameters in key-value pair format carried in the custom control command.|
 
 > **NOTE**
+>
 > The **args** parameter supports the following data types: string, number, Boolean, object, array, and file descriptor. For details, see [@ohos.app.ability.Want (Want)](./js-apis-app-ability-want.md).
 
 **Return value**
@@ -6024,14 +6345,39 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 **Example**
 
-```js
-let commandName = "my_command";
-let args = {
-    command : "This is my command"
+```ts
+import avSession from '@ohos.multimedia.avsession';
+import { BusinessError } from '@ohos.base';
+
+let avSessionController: avSession.AVSessionController | undefined = undefined;
+let currentAVSession: avSession.AVSession | undefined = undefined;
+let tag = "createNewSession";
+let context: Context = getContext(this);
+let sessionId: string = "";
+avSession.createAVSession(context, tag, "audio", (err: BusinessError, data: avSession.AVSession) => {
+  if (err) {
+    console.info(`CreateAVSession BusinessError: code: ${err.code}, message: ${err.message}`);
+  } else {
+    currentAVSession = data;
+  }
+});
+if (currentAVSession !== undefined) {
+  sessionId = (currentAVSession as avSession.AVSession).sessionId;
+  avSession.createController(sessionId).then((controller: avSession.AVSessionController) => {
+    avSessionController = controller;
+  }).catch((err: BusinessError) => {
+    console.error(`CreateController BusinessError: code: ${err.code}, message: ${err.message}`);
+  });
 }
-avsessionController.sendCommonCommand(commandName, args).catch((err) => {
+
+let commandName = "my_command";
+if (avSessionController !== undefined) {
+  (avSessionController as avSession.AVSessionController).sendCommonCommand(commandName, {command : "This is my command"}).then(() => {
+    console.info(`SendCommonCommand successfully`);
+  }).catch((err: BusinessError) => {
     console.info(`SendCommonCommand BusinessError: code: ${err.code}, message: ${err.message}`);
-})
+  })
+}
 ```
 
 ### sendCommonCommand<sup>10+</sup>
@@ -6068,16 +6414,37 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 **Example**
 
-```js
-let commandName = "my_command";
-let args = {
-    command : "This is my command"
+```ts
+import avSession from '@ohos.multimedia.avsession';
+import { BusinessError } from '@ohos.base';
+let avSessionController: avSession.AVSessionController | undefined = undefined;
+let currentAVSession: avSession.AVSession | undefined = undefined;
+let tag = "createNewSession";
+let context: Context = getContext(this);
+
+avSession.createAVSession(context, tag, "audio", (err: BusinessError, data: avSession.AVSession) => {
+  if (err) {
+    console.info(`CreateAVSession BusinessError: code: ${err.code}, message: ${err.message}`);
+  } else {
+    currentAVSession = data;
+  }
+});
+if (currentAVSession !== undefined) {
+  avSession.createController((currentAVSession as avSession.AVSession).sessionId).then((controller: avSession.AVSessionController) => {
+    avSessionController = controller;
+  }).catch((err: BusinessError) => {
+    console.error(`CreateController BusinessError: code: ${err.code}, message: ${err.message}`);
+  });
 }
-avsessionController.sendCommonCommand(commandName, args, (err) => {
+
+let commandName = "my_command";
+if (avSessionController !== undefined) {
+  (avSessionController as avSession.AVSessionController).sendCommonCommand(commandName, {command : "This is my command"}, (err: BusinessError) => {
     if(err) {
         console.info(`SendCommonCommand BusinessError: code: ${err.code}, message: ${err.message}`);
     }
-})
+  })
+}
 ```
 
 ### getExtras<sup>10+</sup>
@@ -6107,10 +6474,38 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 | 6600107  | Too many commands or events. |
 
 **Example**
-```js
-let extras = await avsessionController.getExtras().catch((err) => {
-    console.info(`getExtras BusinessError: code: ${err.code}, message: ${err.message}`);
+
+```ts
+import avSession from '@ohos.multimedia.avsession';
+import { BusinessError } from '@ohos.base';
+
+let avSessionController: avSession.AVSessionController | undefined = undefined;
+let currentAVSession: avSession.AVSession | undefined = undefined;
+let tag = "createNewSession";
+let context: Context = getContext(this);
+
+avSession.createAVSession(context, tag, "audio", (err: BusinessError, data: avSession.AVSession) => {
+  if (err) {
+    console.info(`CreateAVSession BusinessError: code: ${err.code}, message: ${err.message}`);
+  } else {
+    currentAVSession = data;
+  }
 });
+if (currentAVSession !== undefined) {
+  avSession.createController((currentAVSession as avSession.AVSession).sessionId).then((controller: avSession.AVSessionController) => {
+    avSessionController = controller;
+  }).catch((err: BusinessError) => {
+    console.error(`CreateController BusinessError: code: ${err.code}, message: ${err.message}`);
+  });
+}
+
+if (avSessionController !== undefined) {
+  (avSessionController as avSession.AVSessionController).getExtras().then((extras) => {
+    console.info(`getExtras : SUCCESS : ${extras}`);
+  }).catch((err: BusinessError) => {
+    console.info(`getExtras BusinessError: code: ${err.code}, message: ${err.message}`);
+  });
+}
 ```
 
 ### getExtras<sup>10+</sup>
@@ -6140,14 +6535,40 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 | 6600107  | Too many commands or events. |
 
 **Example**
-```js
-avsessionController.getExtras(function (err, extras) {
-    if (err) {
-        console.error(`getExtras BusinessError: code: ${err.code}, message: ${err.message}`);
-    } else {
-        console.info(`getExtras : SUCCESS : assetId : ${extras}`);
-    }
+
+```ts
+import avSession from '@ohos.multimedia.avsession';
+import { BusinessError } from '@ohos.base';
+
+let avSessionController: avSession.AVSessionController | undefined = undefined;
+let currentAVSession: avSession.AVSession | undefined = undefined;
+let tag = "createNewSession";
+let context: Context = getContext(this);
+
+avSession.createAVSession(context, tag, "audio", (err: BusinessError, data: avSession.AVSession) => {
+  if (err) {
+    console.info(`CreateAVSession BusinessError: code: ${err.code}, message: ${err.message}`);
+  } else {
+    currentAVSession = data;
+  }
 });
+if (currentAVSession !== undefined) {
+  avSession.createController((currentAVSession as avSession.AVSession).sessionId).then((controller: avSession.AVSessionController) => {
+    avSessionController = controller;
+  }).catch((err: BusinessError) => {
+    console.error(`CreateController BusinessError: code: ${err.code}, message: ${err.message}`);
+  });
+}
+
+if (avSessionController !== undefined) {
+  (avSessionController as avSession.AVSessionController).getExtras((err, extras) => {
+    if (err) {
+      console.error(`getExtras BusinessError: code: ${err.code}, message: ${err.message}`);
+    } else {
+      console.info(`getExtras : SUCCESS : ${extras}`);
+    }
+  });
+}
 ```
 
 ### on('metadataChange')<sup>10+</sup>
@@ -6177,15 +6598,15 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 **Example**
 
-```js
-avsessionController.on('metadataChange', 'all', (metadata) => {
-    console.info(`on metadataChange assetId : ${metadata.assetId}`);
+```ts
+avsessionController.on('metadataChange', 'all', (metadata: avSession.AVMetadata) => {
+  console.info(`on metadataChange assetId : ${metadata.assetId}`);
 });
 
-let metaFilter = ['assetId', 'title', 'description'];
-avsessionController.on('metadataChange', metaFilter, (metadata) => {
-    console.info(`on metadataChange assetId : ${metadata.assetId}`);
+avsessionController.on('metadataChange', ['assetId', 'title', 'description'], (metadata: avSession.AVMetadata) => {
+  console.info(`on metadataChange assetId : ${metadata.assetId}`);
 });
+
 ```
 
 ### off('metadataChange')<sup>10+</sup>
@@ -6214,7 +6635,7 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 **Example**
 
-```js
+```ts
 avsessionController.off('metadataChange');
 ```
 
@@ -6245,14 +6666,13 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 **Example**
 
-```js
-avsessionController.on('playbackStateChange', 'all', (playbackState) => {
-    console.info(`on playbackStateChange state : ${playbackState.state}`);
+```ts
+avsessionController.on('playbackStateChange', 'all', (playbackState: avSession.AVPlaybackState) => {
+  console.info(`on playbackStateChange state : ${playbackState.state}`);
 });
 
-let playbackFilter = ['state', 'speed', 'loopMode'];
-avsessionController.on('playbackStateChange', playbackFilter, (playbackState) => {
-    console.info(`on playbackStateChange state : ${playbackState.state}`);
+avsessionController.on('playbackStateChange', ['state', 'speed', 'loopMode'], (playbackState: avSession.AVPlaybackState) => {
+  console.info(`on playbackStateChange state : ${playbackState.state}`);
 });
 ```
 
@@ -6282,7 +6702,7 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 **Example**
 
-```js
+```ts
 avsessionController.off('playbackStateChange');
 ```
 
@@ -6312,9 +6732,9 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 **Example**
 
-```js
+```ts
 avsessionController.on('sessionDestroy', () => {
-    console.info(`on sessionDestroy : SUCCESS `);
+  console.info(`on sessionDestroy : SUCCESS `);
 });
 ```
 
@@ -6344,7 +6764,7 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 **Example**
 
-```js
+```ts
 avsessionController.off('sessionDestroy');
 ```
 
@@ -6374,9 +6794,9 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 **Example**
 
-```js
-avsessionController.on('activeStateChange', (isActive) => {
-    console.info(`on activeStateChange : SUCCESS : isActive ${isActive}`);
+```ts
+avsessionController.on('activeStateChange', (isActive: boolean) => {
+  console.info(`on activeStateChange : SUCCESS : isActive ${isActive}`);
 });
 ```
 
@@ -6406,7 +6826,7 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 **Example**
 
-```js
+```ts
 avsessionController.off('activeStateChange');
 ```
 
@@ -6436,10 +6856,10 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 **Example**
 
-```js
-avsessionController.on('validCommandChange', (validCommands) => {
-    console.info(`validCommandChange : SUCCESS : size : ${validCommands.size}`);
-    console.info(`validCommandChange : SUCCESS : validCommands : ${validCommands.values()}`);
+```ts
+avsessionController.on('validCommandChange', (validCommands: avSession.AVControlCommandType[]) => {
+  console.info(`validCommandChange : SUCCESS : size : ${validCommands.length}`);
+  console.info(`validCommandChange : SUCCESS : validCommands : ${validCommands.values()}`);
 });
 ```
 
@@ -6469,7 +6889,7 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 **Example**
 
-```js
+```ts
 avsessionController.off('validCommandChange');
 ```
 
@@ -6499,9 +6919,9 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 **Example**
 
-```js
-avsessionController.on('outputDeviceChange', (state, device) => {
-    console.info(`on outputDeviceChange state: ${state}, device : ${device}`);
+```ts
+avsessionController.on('outputDeviceChange', (state: avSession.ConnectionState, device: avSession.OutputDeviceInfo) => {
+  console.info(`on outputDeviceChange state: ${state}, device : ${device}`);
 });
 ```
 
@@ -6531,7 +6951,7 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 **Example**
 
-```js
+```ts
 avsessionController.off('outputDeviceChange');
 ```
 
@@ -6561,10 +6981,35 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 **Example**
 
-```js
-avsessionController.on('sessionEvent', (sessionEvent, args) => {
-    console.info(`OnSessionEvent, sessionEvent is ${sessionEvent}, args: ${JSON.stringify(args)}`);
+```ts
+import avSession from '@ohos.multimedia.avsession';
+import { BusinessError } from '@ohos.base';
+
+let avSessionController: avSession.AVSessionController | undefined = undefined;
+let currentAVSession: avSession.AVSession | undefined = undefined;
+let tag = "createNewSession";
+let context: Context = getContext(this);
+
+avSession.createAVSession(context, tag, "audio", (err: BusinessError, data: avSession.AVSession) => {
+  if (err) {
+    console.info(`CreateAVSession BusinessError: code: ${err.code}, message: ${err.message}`);
+  } else {
+    currentAVSession = data;
+  }
 });
+if (currentAVSession !== undefined) {
+  avSession.createController((currentAVSession as avSession.AVSession).sessionId).then((controller: avSession.AVSessionController) => {
+    avSessionController = controller;
+  }).catch((err: BusinessError) => {
+    console.error(`CreateController BusinessError: code: ${err.code}, message: ${err.message}`);
+  });
+}
+
+if (avSessionController !== undefined) {
+  (avSessionController as avSession.AVSessionController).on('sessionEvent', (sessionEvent, args) => {
+    console.info(`OnSessionEvent, sessionEvent is ${sessionEvent}, args: ${JSON.stringify(args)}`);
+  });
+}
 ```
 
 ### off('sessionEvent')<sup>10+</sup>
@@ -6593,7 +7038,7 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 **Example**
 
-```js
+```ts
 avsessionController.off('sessionEvent');
 ```
 
@@ -6623,9 +7068,9 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 **Example**
 
-```js
-avsessionController.on('queueItemsChange', (items) => {
-    console.info(`OnQueueItemsChange, items length is ${items.length}`);
+```ts
+avsessionController.on('queueItemsChange', (items: avSession.AVQueueItem[]) => {
+  console.info(`OnQueueItemsChange, items length is ${items.length}`);
 });
 ```
 
@@ -6655,7 +7100,7 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 **Example**
 
-```js
+```ts
 avsessionController.off('queueItemsChange');
 ```
 
@@ -6685,9 +7130,9 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 **Example**
 
-```js
-avsessionController.on('queueTitleChange', (title) => {
-    console.info(`queueTitleChange, title is ${title}`);
+```ts
+avsessionController.on('queueTitleChange', (title: string) => {
+  console.info(`queueTitleChange, title is ${title}`);
 });
 ```
 
@@ -6717,7 +7162,7 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 **Example**
 
-```js
+```ts
 avsessionController.off('queueTitleChange');
 ```
 
@@ -6747,10 +7192,35 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 **Example**
 
-```js
-avsessionController.on('extrasChange', (extras) => {
-    console.info(`Caught extrasChange event,the new extra is: ${JSON.stringify(extras)}`);
+```ts
+import avSession from '@ohos.multimedia.avsession';
+import { BusinessError } from '@ohos.base';
+
+let avSessionController: avSession.AVSessionController | undefined = undefined;
+let currentAVSession: avSession.AVSession | undefined = undefined;
+let tag = "createNewSession";
+let context: Context = getContext(this);
+
+avSession.createAVSession(context, tag, "audio", (err: BusinessError, data: avSession.AVSession) => {
+  if (err) {
+    console.info(`CreateAVSession BusinessError: code: ${err.code}, message: ${err.message}`);
+  } else {
+    currentAVSession = data;
+  }
 });
+if (currentAVSession !== undefined) {
+  avSession.createController((currentAVSession as avSession.AVSession).sessionId).then((controller: avSession.AVSessionController) => {
+    avSessionController = controller;
+  }).catch((err: BusinessError) => {
+    console.error(`CreateController BusinessError: code: ${err.code}, message: ${err.message}`);
+  });
+}
+
+if (avSessionController !== undefined) {
+  (avSessionController as avSession.AVSessionController).on('extrasChange', (extras) => {
+    console.info(`Caught extrasChange event,the new extra is: ${JSON.stringify(extras)}`);
+  });
+}
 ```
 
 ### off('extrasChange')<sup>10+</sup>
@@ -6779,7 +7249,7 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 **Example**
 
-```js
+```ts
 avsessionController.off('extrasChange');
 ```
 
