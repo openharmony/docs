@@ -22,7 +22,7 @@ Before authentication, you must specify the [authentication type](../reference/a
 | on(type: 'result', callback: IAuthCallback): void | Subscribes to the user authentication result.|
 | off(type: 'result', callback?: IAuthCallback): void | Unsubscribes from the user authentication result.|
 | start(): void | Starts user authentication.       |
-| cancel(): void | Cancel this user authentication.   |
+| cancel(): void | Cancels this user authentication.  |
 
 **Table 2** Authentication trust levels
 
