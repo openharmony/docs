@@ -1,7 +1,6 @@
 # User Authentication Development
 
 > **NOTE**
->
 > This guide applies to the SDK for API version 10.
 
 ## When to Use
@@ -25,6 +24,21 @@ Before authentication, you must specify the [authentication type](../reference/a
 | start(): void | Starts user authentication.       |
 | cancel(): void | Cancel this user authentication.   |
 
+**Table 2** Authentication trust levels
+
+| Authentication Trust Level| Metrics                     | Description and Example                                                   | Typical Service Scenario                                |
+| -------------------------- | --------------------------------- | ------------------------------------------------------------ | ---------------------------------------------------- |
+| ATL4                       | When FRR = 10%, FAR ≤ 0.003%, SAR ≤ 3%   | The authentication can accurately identify individual users and provides powerful liveness detection capabilities. For example, PIN authentication with a secure keyboard and fingerprint and 3D facial authentication with special security enhancement. | Small-amount payment                                            |
+| ATL3                       | When FRR = 10%, FAR ≤ 0.002%, SAR ≤ 7%    | The authentication can accurately identify individual users and provides strong liveness detection capabilities. For example, 2D facial authentication with special security enhancement. | Device unlocking                                            |
+| ATL2                       | When FRR = 10%, FAR ≤ 0.002%, 7% < SAR ≤ 20%| The authentication can accurately identify individual users and provides regular liveness detection capabilities. For example, using a watch based on common ranging as a trusted holder to unlock a device. | Logins to apps and keeping a device unlocked    |
+| ATL1                       | When FRR = 10%, FAR ≤ 1%, 7% < SAR ≤ 20%    | The authentication can identify individual users and provides limited liveness detection capabilities. For example, voiceprint authentication.          | Service risk control, query of general personal data, targeted recommendations, and personalized services|
+
+> **NOTE**
+>
+> - FRR: False Reject Rate
+> - FAR: False Acceptance Rate
+> - SAR: Spoof Acceptance Rate
+
 ## Checking Authentication Capabilities Supported by a Device
 
 ### How to Develop
@@ -39,9 +53,9 @@ Before authentication, you must specify the [authentication type](../reference/a
     // Check whether the authentication capabilities are supported.
     try {
         userIAM_userAuth.getAvailableStatus(userIAM_userAuth.UserAuthType.FACE, userIAM_userAuth.AuthTrustLevel.ATL1);
-        console.info("current auth trust level is supported");
+        console.info('current auth trust level is supported');
     } catch (error) {
-        console.info("current auth trust level is not supported, error = " + error);
+        console.info('current auth trust level is not supported, error = ' + error);
     }
     ```
 
@@ -62,43 +76,37 @@ Before authentication, you must specify the [authentication type](../reference/a
     ```js
     import userIAM_userAuth from '@ohos.userIAM.userAuth';
     
-    const authParam = {
-        challenge: new Uint8Array([49, 49, 49, 49, 49, 49]),
-        authType: [userAuth.UserAuthType.PIN],
-        authTrustLevel: 10000,
+    const authParam : userIAM_userAuth.AuthParam = {
+      challenge: new Uint8Array([49, 49, 49, 49, 49, 49]),
+      authType: [userIAM_userAuth.UserAuthType.PIN],
+      authTrustLevel: userIAM_userAuth.AuthTrustLevel.ATL1,
     };
-    const widgetParam = {
-    	title:'Enter password',
-    	navigationButtonText: 'Back',
-        windowMode: userAuth.WindowModeType.DIALOG_BOX,
+    const widgetParam : userIAM_userAuth.WidgetParam = {
+      title:'Enter password',
+      navigationButtonText: 'Back',
     };
-    let userAuthInstance;
     try {
-        // Obtain an authentication object.
-        userAuthInstance = userIAM_userAuth.getUserAuthInstance(authParam, widgetParam);
-        console.log('get userAuth instance success');
-        // Subscribe to the authentication result.
-        userAuthInstance.on('result', {
-            onResult (result) {
-                console.log('userAuthInstance callback result = ' + JSON.stringify(result));
-            }
-        });
-        console.log('auth on success');
-        userAuthInstance.start();
-        console.log('auth start success');
+      // Obtain an authentication object.
+      let userAuthInstance = userIAM_userAuth.getUserAuthInstance(authParam, widgetParam);
+      console.log('get userAuth instance success');
+      // Subscribe to the authentication result.
+      userAuthInstance.on('result', {
+        onResult (result) {
+          console.log('userAuthInstance callback result = ' + JSON.stringify(result));
+        }
+      });
+      console.log('auth on success');
+      userAuthInstance.start();
+      console.log('auth start success');
+      // Unsubscribe from the authentication result.
+      userAuthInstance.off('result', {
+        onResult (result) {
+          console.log('auth off result: ' + JSON.stringify(result));
+        }
+      });
+      console.log('auth off success');
     } catch (error) {
-        console.log('auth on catch error: ' + JSON.stringify(error));
-    }
-    // Unsubscribe from the authentication result.
-    try {
-    	userAuthInstance.off('result', {
-            onResult (result) {
-                console.log('auth off result: ' + JSON.stringify(result));
-            }
-        });
-        console.log('auth off success');
-    } catch (error) {
-        console.log('auth catch error: ' + JSON.stringify(error));
+      console.log('auth catch error: ' + JSON.stringify(error));
     }
     ```
 
@@ -117,33 +125,26 @@ Before authentication, you must specify the [authentication type](../reference/a
     ```js
     import userIAM_userAuth from '@ohos.userIAM.userAuth';
     
-    const authParam = {
-        challenge: new Uint8Array([49, 49, 49, 49, 49, 49]),
-        authType: [userAuth.UserAuthType.PIN],
-        authTrustLevel: 10000,
+    const authParam : userIAM_userAuth.AuthParam = {
+      challenge: new Uint8Array([49, 49, 49, 49, 49, 49]),
+      authType: [userIAM_userAuth.UserAuthType.PIN],
+      authTrustLevel: userIAM_userAuth.AuthTrustLevel.ATL1,
     };
-    const widgetParam = {
-    	title:'Enter password',
-    	navigationButtonText: 'Back',
-        windowMode: userAuth.WindowModeType.DIALOG_BOX,
+    const widgetParam : userIAM_userAuth.WidgetParam = {
+      title:'Enter password',
+      navigationButtonText: 'Back',
     };
-    let userAuthInstance;
     try {
-        // Obtain an authentication object.
-        userAuthInstance = userIAM_userAuth.getUserAuthInstance(authParam, widgetParam);
-        console.log('get userAuth instance success');
-        // Start user authentication.
-        userAuthInstance.start();
-        console.log('auth start success');
+      // Obtain an authentication object.
+      let userAuthInstance = userIAM_userAuth.getUserAuthInstance(authParam, widgetParam);
+      console.log('get userAuth instance success');
+      // Start user authentication.
+      userAuthInstance.start();
+      console.log('auth start success');
+      // Cancel the authentication.
+      userAuthInstance.cancel();
+      console.log('auth cancel success');
     } catch (error) {
-        console.log('auth catch error: ' + JSON.stringify(error));
-    }
-    
-    // Cancel the authentication.
-    try {
-        userAuthInstance.cancel();
-        console.log('auth cancel success');
-    } catch (error) {
-        console.log('auth catch error: ' + JSON.stringify(error));
+      console.log('auth catch error: ' + JSON.stringify(error));
     }
     ```
