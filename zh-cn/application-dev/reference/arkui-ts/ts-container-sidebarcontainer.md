@@ -74,7 +74,7 @@ SideBarContainer( type?: SideBarContainerType )
 
 | 名称        | 参数类型      | 必填 | 描述                                     |
 | ----------- | ------------- | ---- | ---------------------------------------- |
-| strokeWidth | [Length](ts-types.md#length)        | 是   | 分割线的线宽。<br/>默认值：1vp<br/>单位：vp |
+| strokeWidth | [Length](ts-types.md#length)        | 是   | 分割线的线宽。 |
 | color       | [ResourceColor](ts-types.md#resourcecolor) | 否   | 分割线的颜色。<br/>默认值：#000000，3%   |
 | startMargin | [Length](ts-types.md#length)        | 否   | 分割线与侧边栏顶端的距离。<br/>默认值：0 |
 | endMargin   | [Length](ts-types.md#length)        | 否   | 分割线与侧边栏底端的距离。<br/>默认值：0 |
