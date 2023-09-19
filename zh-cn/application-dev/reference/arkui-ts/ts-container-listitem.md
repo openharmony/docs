@@ -171,7 +171,7 @@ struct ListItemExample2 {
           .transition({ type: TransitionType.Delete, opacity: 0 })
           .swipeAction({
             end: {
-              builder: this.itemEnd,
+              builder: () => { this.itemEnd(item) },
               onAction: () => {
                 animateTo({ duration: 1000 }, () => {
                   let index = this.arr.indexOf(item)
