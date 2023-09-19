@@ -25,6 +25,8 @@ add(uri: string): void
 
 **需要权限**：ohos.permission.FILE_ACCESS_MANAGER
 
+**系统接口：** 此接口为系统接口
+
 **参数：**
 
 | 参数名 | 类型   | 必填 | 说明                       |
@@ -54,6 +56,8 @@ remove(uri: string): void
 
 **需要权限**：ohos.permission.FILE_ACCESS_MANAGER
 
+**系统接口：** 此接口为系统接口
+
 **参数：**
 
 | 参数名 | 类型   | 必填 | 说明                       |
@@ -82,6 +86,8 @@ listFile(): Array\<FileInfo>
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
 **需要权限**：ohos.permission.FILE_ACCESS_MANAGER
+
+**系统接口：** 此接口为系统接口
 
 **返回值：**
 
