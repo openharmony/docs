@@ -91,4 +91,4 @@
 
 针对background-position样式动画开发，有以下相关实例可供参考：
 
-- [`JsComponentCollection`：组件集合（JS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-4.0-Release/code/UI/JsComponentClollection/JsComponentCollection)
+- [`JsComponentCollection`：组件集合（JS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-4.0-Release/code/UI/JsComponentCollection/JsComponentCollection)
