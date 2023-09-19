@@ -2598,11 +2598,9 @@ SystemLocaleManager对语言或国家地区列表的排序结果信息项。
 
 ### constructor<sup>11+</sup>
 
-constructor(icsPath: string)
+constructor(icsPath: String)
 
 创建HolidayManager对象。
-
-**系统接口**：此接口为系统接口。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -2610,21 +2608,26 @@ constructor(icsPath: string)
 
 |   参数名  |      类型      | 必填 |     说明      |
 | --------- | ------------- | ---- | ------------- |
-| icsPath   | string | 是   | 在设备上有应用读取权限的iCalendar格式的ics文件路径  |
+| icsPath   | String | 是   | 在设备上有应用读取权限的iCalendar格式的ics文件路径。  |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.i18n错误码](../errorcodes/errorcode-i18n.md)。
+
+| 错误码ID  | 错误信息                   |
+| ------ | ---------------------- |
+| 890001 | param value not valid  |
 
 **示例：**
   ```ts
   let holidayManager= new I18n.HolidayManager("/system/lib/US.ics");
   ```
 
-
 ### isHoliday<sup>11+</sup>
 
 isHoliday(date?: Date): boolean;
 
 判断指定的日期是否是节假日。
-
-**系统接口**：此接口为系统接口。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -2639,14 +2642,6 @@ isHoliday(date?: Date): boolean;
 |       类型        |         说明          |
 | ----------------- | ----------------------|
 | boolean           | 返回true是节假日，返回false不是节假日。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[ohos.i18n错误码](../errorcodes/errorcode-i18n.md)。
-
-| 错误码ID  | 错误信息                   |
-| ------    | ---------------------------|
-| 401       | check param failed         |
 
 **示例：**
   ```ts
@@ -2667,8 +2662,6 @@ isHoliday(date?: Date): boolean;
 getHolidayInfoItemArray(year?: number): Array&lt;[HolidayInfoItem](#holidayinfoitem11)&gt;
 
 获取指定某年的节假日信息列表。
-
-**系统接口**：此接口为系统接口。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -2709,8 +2702,6 @@ getHolidayInfoItemArray(year?: number): Array&lt;[HolidayInfoItem](#holidayinfoi
 
 节假日信息。
 
-**系统接口**：此接口为系统接口。
-
 **系统能力**：SystemCapability.Global.I18n
 
 | 名称            | 类型             |  必填   |  说明                                   |
@@ -2724,8 +2715,6 @@ getHolidayInfoItemArray(year?: number): Array&lt;[HolidayInfoItem](#holidayinfoi
 ## HolidayLocalName<sup>11+</sup>
 
 节假日本地名称。
-
-**系统接口**：此接口为系统接口。
 
 **系统能力**：SystemCapability.Global.I18n
 
