@@ -133,9 +133,11 @@ struct ToggleExample {
           .margin({left: 200, right: 10})
           .onChange((isOn: boolean) => {
             if(isOn) {
-              promptAction.showToast({ message: 'Bluetooth is on.' })
+              let st:Record<string,string> = {'message': 'Bluetooth is on.'}
+              promptAction.showToast(st)
             } else {
-              promptAction.showToast({ message: 'Bluetooth is off.' })
+              let st:Record<string,string> = {'message': 'Bluetooth is off.'}
+              promptAction.showToast(st)
             }
           })
       }
