@@ -406,7 +406,7 @@
 
 ## 全部代码
 
-本例完整代码sample示例链接：[分布式对象](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/DistributedAppDev/DistributedNote)
+本例完整代码sample示例链接：[分布式对象](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-4.0-Release/code/SuperFeature/DistributedAppDev/DistributedNote)
 
 ## 参考
 

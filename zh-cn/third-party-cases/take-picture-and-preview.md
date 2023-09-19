@@ -246,7 +246,7 @@
 
 ## 全部代码
 
-本例完整代码sample示例链接：[相机](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/Media/Camera)
+本例完整代码sample示例链接：[相机](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-4.0-Release/code/SystemFeature/Media/Camera)
 
 ## 参考
 

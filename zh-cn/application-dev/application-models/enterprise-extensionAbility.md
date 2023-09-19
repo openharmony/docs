@@ -115,4 +115,4 @@ async function unsubscribeManagedEventPromise() {
 
 针对EnterpriseAdminExtensionAbility开发，有以下相关示例可供参考：
 
-- [企业设备管理扩展（ArkTS）（Full SDK）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/ApplicationModels/EnterpriseAdminExtensionAbility)
+- [企业设备管理扩展（ArkTS）（Full SDK）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-4.0-Release/code/SystemFeature/ApplicationModels/EnterpriseAdminExtensionAbility)

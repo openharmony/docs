@@ -22,8 +22,8 @@
 
 针对媒体开发，有以下相关实例可供参考：
 
-- [媒体管理合集（ArkTS）（Full SDK）(API9)](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/FileManagement/MediaCollections)
+- [媒体管理合集（ArkTS）（Full SDK）(API9)](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-4.0-Release/code/BasicFeature/FileManagement/MediaCollections)
 
-- [相机和媒体库（ArkTS）（Full SDK）(API9)](https://gitee.com/openharmony/applications_app_samples/tree/master/code/Solutions/Media/MultiMedia)
+- [相机和媒体库（ArkTS）（Full SDK）(API9)](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-4.0-Release/code/Solutions/Media/MultiMedia)
 
-- [二维码扫描（ArkTS）（Full SDK）(API9)](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Media/QRCodeScan)
+- [二维码扫描（ArkTS）（Full SDK）(API9)](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-4.0-Release/code/BasicFeature/Media/QRCodeScan)

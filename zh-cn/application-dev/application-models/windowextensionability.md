@@ -118,4 +118,4 @@ struct Index {
 
 针对WindowExtensionAbility开发，有以下相关实例可供参考：
 
-- [窗口扩展应用（ArkTS）（API9）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/WindowManagement/WindowExtAbility)
+- [窗口扩展应用（ArkTS）（API9）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-4.0-Release/code/SystemFeature/WindowManagement/WindowExtAbility)

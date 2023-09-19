@@ -420,6 +420,6 @@ user_grant权限可以通过预授权方式请求权限。预授权方式需要�
 
 针对访问控制，有以下相关实例可供参考：
 
-- [访问权限控制（ArkTS）（Full SDK）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/Security/AbilityAccessCtrl)
+- [访问权限控制（ArkTS）（Full SDK）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-4.0-Release/code/SystemFeature/Security/AbilityAccessCtrl)
 
 - [为应用添加运行时权限（ArkTS）（Full SDK）（API9）](https://gitee.com/openharmony/codelabs/tree/master/Security/AccessPermission)

@@ -2530,10 +2530,10 @@ function doRandBySync() {
 
 针对加解密算法开发，有以下相关实例可供参考：
 
-- [支付（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Security/PaySecurely)
+- [支付（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-4.0-Release/code/BasicFeature/Security/PaySecurely)
 
-- [通用密钥库系统（cryptoFramework）（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Security/CryptoFramework)
+- [通用密钥库系统（cryptoFramework）（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-4.0-Release/code/BasicFeature/Security/CryptoFramework)
 
-- [加解密（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Security/Cipher)
+- [加解密（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-4.0-Release/code/BasicFeature/Security/Cipher)
 
 - [字符串加解密（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/Security/StringCipherArkTS)
