@@ -13,65 +13,48 @@ LazyForEach(
     itemGenerator: (item: Object) => void,  // 需要进行数据迭代的数据源
     keyGenerator?: (item: Object): string => string // 需要进行数据迭代的数据源
 ): void
-interface IDataSource {
-    totalCount(): number;                                             // 获得数据总数
-    getData(index: number): any;                                      // 获取索引值对应的数据
-    registerDataChangeListener(listener: DataChangeListener): void;   // 注册数据改变的监听器
-    unregisterDataChangeListener(listener: DataChangeListener): void; // 注销数据改变的监听器
-}
-interface DataChangeListener {
-    onDataReloaded(): void;                      // 重新加载数据时调用
-    onDataAdd(index: number): void;            // 添加数据时调用
-    onDataMove(from: number, to: number): void; // 数据移动起始位置与数据移动目标位置交换时调用
-    onDataDelete(index: number): void;          // 删除数据时调用
-    onDataChange(index: number): void;          // 改变数据时调用
-}
 ```
 
 **参数：**
 
 
-| 参数名           | 参数类型                                    | 必填   | 参数描述                                     |
-| ------------- | --------------------------------------- | ---- | ---------------------------------------- |
-| dataSource    | IDataSource                             | 是    | LazyForEach数据源，需要开发者实现相关接口。              |
-| itemGenerator | (item:&nbsp;any)&nbsp;=&gt;&nbsp;void   | 是    | 子组件生成函数，为数组中的每一个数据项创建一个子组件。<br/>**说明：**<br/>itemGenerator的函数体必须使用大括号{...}。itemGenerator每次迭代只能并且必须生成一个子组件。itemGenerator中可以使用if语句，但是必须保证if语句每个分支都会创建一个相同类型的子组件。itemGenerator中不允许使用ForEach和LazyForEach语句。 |
-| keyGenerator  | (item:&nbsp;any)&nbsp;=&gt;&nbsp;string | 否    | 键值生成函数，用于给数据源中的每一个数据项生成唯一且固定的键值。当数据项在数组中的位置更改时，其键值不得更改，当数组中的数据项被新项替换时，被替换项的键值和新项的键值必须不同。键值生成器的功能是可选的，但是，为了使开发框架能够更好地识别数组更改，提高性能，建议提供。如将数组反向时，如果没有提供键值生成器，则LazyForEach中的所有节点都将重建。<br/>**说明：**<br/>数据源中的每一个数据项生成的键值不能重复。 |
-
+| 参数名        | 参数类型                                | 必填 | 参数描述                                                     |
+| ------------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
+| dataSource    | [IDataSource](#idatasource类型说明)     | 是   | LazyForEach数据源，需要开发者实现相关接口。                  |
+| itemGenerator | (item:&nbsp;any)&nbsp;=&gt;&nbsp;void   | 是   | 子组件生成函数，为数组中的每一个数据项创建一个子组件。<br/>**说明：**<br/>itemGenerator的函数体必须使用大括号{...}。itemGenerator每次迭代只能并且必须生成一个子组件。itemGenerator中可以使用if语句，但是必须保证if语句每个分支都会创建一个相同类型的子组件。itemGenerator中不允许使用ForEach和LazyForEach语句。 |
+| keyGenerator  | (item:&nbsp;any)&nbsp;=&gt;&nbsp;string | 否   | 键值生成函数，用于给数据源中的每一个数据项生成唯一且固定的键值。当数据项在数组中的位置更改时，其键值不得更改，当数组中的数据项被新项替换时，被替换项的键值和新项的键值必须不同。键值生成器的功能是可选的，但是，为了使开发框架能够更好地识别数组更改，提高性能，建议提供。如将数组反向时，如果没有提供键值生成器，则LazyForEach中的所有节点都将重建。<br/>**说明：**<br/>数据源中的每一个数据项生成的键值不能重复。 |
 
 ## IDataSource类型说明
 
-
 ```ts
 interface IDataSource {
-    totalCount(): number;
-    getData(index: number): Object;
-    registerDataChangeListener(listener: DataChangeListener): void;
-    unregisterDataChangeListener(listener: DataChangeListener): void;
+    totalCount(): number; // 获得数据总数
+    getData(index: number): Object; // 获取索引值对应的数据
+    registerDataChangeListener(listener: DataChangeListener): void; // 注册数据改变的监听器
+    unregisterDataChangeListener(listener: DataChangeListener): void; // 注销数据改变的监听器
 }
 ```
 
-| 接口声明                                     | 参数类型               | 说明                                    |
-| ---------------------------------------- | ------------------ | ------------------------------------- |
-| totalCount():&nbsp;number                | -                  | 获得数据总数。                               |
-| getData(index:&nbsp;number):&nbsp;any    | number             | 获取索引值index对应的数据。<br/>index：获取数据对应的索引值 |
-| registerDataChangeListener(listener:DataChangeListener):&nbsp;void | DataChangeListener | 注册数据改变的监听器。<br/>listener：数据变化监听器      |
-| unregisterDataChangeListener(listener:DataChangeListener):&nbsp;void | DataChangeListener | 注销数据改变的监听器。<br/>listener：数据变化监听器      |
-
+| 接口声明                                                     | 参数类型                                          | 说明                                                        |
+| ------------------------------------------------------------ | ------------------------------------------------- | ----------------------------------------------------------- |
+| totalCount():&nbsp;number                                    | -                                                 | 获得数据总数。                                              |
+| getData(index:&nbsp;number):&nbsp;any                        | number                                            | 获取索引值index对应的数据。<br/>index：获取数据对应的索引值 |
+| registerDataChangeListener(listener:[DataChangeListener](#datachangelistener类型说明)):&nbsp;void | [DataChangeListener](#datachangelistener类型说明) | 注册数据改变的监听器。<br/>listener：数据变化监听器         |
+| unregisterDataChangeListener(listener:[DataChangeListener](#datachangelistener类型说明)):&nbsp;void | [DataChangeListener](#datachangelistener类型说明) | 注销数据改变的监听器。<br/>listener：数据变化监听器         |
 
 ## DataChangeListener类型说明
 
-
 ```ts
 interface DataChangeListener {
-    onDataReloaded(): void;
-    onDataAdded(index: number): void;
-    onDataMoved(from: number, to: number): void;
-    onDataDeleted(index: number): void;
-    onDataChanged(index: number): void;
-    onDataAdd(index: number): void;
-    onDataMove(from: number, to: number): void;
-    onDataDelete(index: number): void;
-    onDataChange(index: number): void;
+    onDataReloaded(): void; // 重新加载数据时调用
+    onDataAdded(index: number): void; // 添加数据时调用
+    onDataMoved(from: number, to: number): void; // 数据移动起始位置与数据移动目标位置交换时调用
+    onDataDeleted(index: number): void; // 删除数据时调用
+    onDataChanged(index: number): void; // 改变数据时调用
+    onDataAdd(index: number): void; // 添加数据时调用
+    onDataMove(from: number, to: number): void; // 数据移动起始位置与数据移动目标位置交换时调用
+    onDataDelete(index: number): void; // 删除数据时调用
+    onDataChange(index: number): void; // 改变数据时调用
 }
 ```
 
@@ -90,7 +73,7 @@ interface DataChangeListener {
 
 ## 使用限制
 
-- LazyForEach必须在容器组件内使用，仅有[List](../reference/arkui-ts/ts-container-list.md)、[Grid](../reference/arkui-ts/ts-container-grid.md)以及[Swiper](../reference/arkui-ts/ts-container-swiper.md)组件支持数据懒加载（可配置cachedCount属性，即只加载可视部分以及其前后少量数据用于缓冲），其他组件仍然是一次性加载所有的数据。
+- LazyForEach必须在容器组件内使用，仅有[List](../reference/arkui-ts/ts-container-list.md)、[Grid](../reference/arkui-ts/ts-container-grid.md)、[Swiper](../reference/arkui-ts/ts-container-swiper.md)以及[WaterFlow](../reference/arkui-ts/ts-container-waterflow.md)组件支持数据懒加载（可配置cachedCount属性，即只加载可视部分以及其前后少量数据用于缓冲），其他组件仍然是一次性加载所有的数据。
 
 - LazyForEach在每次迭代中，必须创建且只允许创建一个子组件。
 
