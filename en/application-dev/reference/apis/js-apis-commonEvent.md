@@ -12,8 +12,6 @@ The **CommonEvent** module provides common event capabilities, including the cap
 
 ```ts
 import CommonEvent from '@ohos.commonEvent';
-import CommonEventManager from '@ohos.commonEventManager';
-import Base from '@ohos.base';
 ```
 
 ## Support
@@ -44,6 +42,8 @@ Publishes a common event. This API uses an asynchronous callback to return the r
 **Example**
 
 ```ts
+import Base from '@ohos.base';
+
 // Callback for common event publication
 function publishCB(err:Base.BusinessError) {
 	if (err.code) {
@@ -81,10 +81,13 @@ Publishes a common event with given attributes. This API uses an asynchronous ca
 
 
 ```ts
+import Base from '@ohos.base';
+import CommonEventManager from '@ohos.commonEventManager';
+
 // Attributes of a common event.
 let options:CommonEventManager.CommonEventPublishData = {
 	code: 0,			 // Result code of the common event.
-	data: "initial data",// Result data of the common event.
+	data: "initial data";// Result data of the common event.
 	isOrdered: true	 // The common event is an ordered one.
 }
 
@@ -126,6 +129,8 @@ Publishes a common event to a specific user. This API uses an asynchronous callb
 **Example**
 
 ```ts
+import Base from '@ohos.base';
+
 // Callback for common event publication
 function publishCB(err:Base.BusinessError) {
 	if (err.code) {
@@ -169,6 +174,9 @@ Publishes a common event with given attributes to a specific user. This API uses
 
 
 ```ts
+import Base from '@ohos.base';
+import CommonEventManager from '@ohos.commonEventManager';
+
 // Attributes of a common event.
 let options:CommonEventManager.CommonEventPublishData = {
 	code: 0,			 // Result code of the common event.
@@ -177,7 +185,7 @@ let options:CommonEventManager.CommonEventPublishData = {
 
 // Callback for common event publication
 function publishCB(err:Base.BusinessError) {
-	if (err.code) {
+    if (err.code) {
         console.error(`publishAsUser failed, code is ${err.code}`);
     } else {
         console.info("publishAsUser");
@@ -214,6 +222,9 @@ Creates a subscriber. This API uses an asynchronous callback to return the resul
 
 
 ```ts
+import Base from '@ohos.base';
+import CommonEventManager from '@ohos.commonEventManager';
+
 let subscriber:CommonEventManager.CommonEventSubscriber; // Used to save the created subscriber object for subsequent subscription and unsubscription.
 
 // Subscriber information.
@@ -243,7 +254,7 @@ Creates a subscriber. This API uses a promise to return the result.
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [commonEventManager.createSubscriber](js-apis-commonEventManager.md#commoneventmanagercreatesubscriber-1) instead.
+>This API is supported since API version 7 and deprecated since API version 9. You are advised to use [commonEventManager.createSubscriber](js-apis-commonEventManager.md#commoneventmanagercreatesubscriber-1) instead.
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
@@ -261,11 +272,14 @@ Creates a subscriber. This API uses a promise to return the result.
 **Example**
 
 ```ts
+import Base from '@ohos.base';
+import CommonEventManager from '@ohos.commonEventManager';
+
 let subscriber:CommonEventManager.CommonEventSubscriber; // Used to save the created subscriber object for subsequent subscription and unsubscription.
 
 // Subscriber information.
 let subscribeInfo:CommonEventManager.CommonEventSubscribeInfo = {
-	events: ["event"]
+    events: ["event"]
 };
 
 // Create a subscriber.
@@ -299,7 +313,10 @@ Subscribes to common events. This API uses an asynchronous callback to return th
 **Example**
 
 ```ts
-let subscriber:CommonEventManager.CommonEventSubscriber; // Used to save the created subscriber object for subsequent subscription and unsubscription.
+import Base from '@ohos.base';
+import CommonEventManager from '@ohos.commonEventManager';
+
+let subscriber:CommonEventManager.CommonEventSubscriber;// Used to save the created subscriber object for subsequent subscription and unsubscription.
 
 // Subscriber information.
 let subscribeInfo:CommonEventManager.CommonEventSubscribeInfo = {
@@ -353,11 +370,14 @@ Unsubscribes from common events. This API uses an asynchronous callback to retur
 **Example**
 
 ```ts
+import Base from '@ohos.base';
+import CommonEventManager from '@ohos.commonEventManager';
+
 let subscriber:CommonEventManager.CommonEventSubscriber;	// Used to save the created subscriber object for subsequent subscription and unsubscription.
 
 // Subscriber information.
 let subscribeInfo:CommonEventManager.CommonEventSubscribeInfo = {
-	events: ["event"]
+    events: ["event"]
 };
 
 // Callback for common event subscription.
@@ -383,7 +403,7 @@ function createCB(err:Base.BusinessError, commonEventSubscriber:CommonEventManag
 
 // Callback for common event unsubscription.
 function unsubscribeCB(err:Base.BusinessError) {
-	if (err.code) {
+    if (err.code) {
         console.error(`unsubscribe failed, code is ${err.code}`);
     } else {
         console.info("unsubscribe");
