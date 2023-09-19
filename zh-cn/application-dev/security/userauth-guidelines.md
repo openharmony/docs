@@ -66,8 +66,6 @@ userIAM_userAuth模块提供了用户认证的相关方法，包括查询认证�
 
 4. 调用[start](../reference/apis/js-apis-useriam-userauth.md#start10)接口发起认证，通过[callback](../reference/apis/js-apis-useriam-userauth.md#callback10)回调返回认证结果。
 
-5. 调用[off](../reference/apis/js-apis-useriam-userauth.md#off10)接口取消订阅认证结果。
-
     ```js
     import userIAM_userAuth from '@ohos.userIAM.userAuth';
     
@@ -78,7 +76,6 @@ userIAM_userAuth模块提供了用户认证的相关方法，包括查询认证�
     };
     const widgetParam : userIAM_userAuth.WidgetParam = {
       title: '请输入密码',
-      navigationButtonText: '返回',
     };
     try {
       //获取认证对象
@@ -93,17 +90,39 @@ userIAM_userAuth模块提供了用户认证的相关方法，包括查询认证�
       console.log('auth on success');
       userAuthInstance.start();
       console.log('auth start success');
-      //取消订阅认证结果
-      userAuthInstance.off('result', {
-        onResult (result) {
-          console.log('auth off result: ' + JSON.stringify(result));
-        }
-      });
-      console.log('auth off success');
     } catch (error) {
       console.log('auth catch error: ' + JSON.stringify(error));
     }
     ```
+
+5. 如果业务需要取消订阅认证结果，可以使用已经成功订阅事件的[UserAuthInstance](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-useriam-userauth.md#userauthinstance10)对象调用[off](../reference/apis/js-apis-useriam-userauth.md#off10)接口进行取消订阅。
+
+   ```js
+   import userIAM_userAuth from '@ohos.userIAM.userAuth';
+   
+   const authParam : userIAM_userAuth.AuthParam = {
+     challenge: new Uint8Array([49, 49, 49, 49, 49, 49]),
+     authType: [userIAM_userAuth.UserAuthType.PIN],
+     authTrustLevel: userIAM_userAuth.AuthTrustLevel.ATL1,
+   };
+   const widgetParam : userIAM_userAuth.WidgetParam = {
+     title: '请输入密码',
+   };
+   try {
+     //获取认证对象
+     let userAuthInstance = userIAM_userAuth.getUserAuthInstance(authParam, widgetParam);
+     console.log('get userAuth instance success');
+     //取消订阅认证结果
+     userAuthInstance.off('result', {
+       onResult (result) {
+         console.log('auth off result: ' + JSON.stringify(result));
+       }
+     });
+     console.log('auth off success');
+   } catch (error) {
+     console.log('auth catch error: ' + JSON.stringify(error));
+   }
+   ```
 
 ## 认证过程中取消认证
 
@@ -115,7 +134,7 @@ userIAM_userAuth模块提供了用户认证的相关方法，包括查询认证�
 
 3. 调用[start](../reference/apis/js-apis-useriam-userauth.md#start10)接口发起认证。
 
-4. 通过调用[cancel](../reference/apis/js-apis-useriam-userauth.md#cancel10)接口取消本次认证。
+4. 通过使用已经成功发起认证的调用[UserAuthInstance](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-useriam-userauth.md#userauthinstance10)对象调用[cancel](../reference/apis/js-apis-useriam-userauth.md#cancel10)接口取消本次认证。
 
     ```js
     import userIAM_userAuth from '@ohos.userIAM.userAuth';
@@ -127,7 +146,6 @@ userIAM_userAuth模块提供了用户认证的相关方法，包括查询认证�
     };
     const widgetParam : userIAM_userAuth.WidgetParam = {
       title: '请输入密码',
-      navigationButtonText: '返回',
     };
     try {
       //获取认证对象
