@@ -66,4 +66,4 @@ ArkTS提供了TaskPool和Worker两种并发能力供开发者选择，其具体�
 
 针对多线程开发，有以下相关实例可供参考：
 
-- [多线程任务（ArkTS）(API9)](https://gitee.com/openharmony/applications_app_samples/tree/master/code/LaunguageBaseClassLibrary/ConcurrentModule)
+- [多线程任务（ArkTS）(API9)](https://gitee.com/openharmony/applications_app_samples/tree/monthly_20230815/code/LaunguageBaseClassLibrary/ConcurrentModule)

@@ -402,7 +402,7 @@
 
 ## 完整代码
 
-本例完整代码sample示例链接：[蓝牙Sample](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/Connectivity/Bluetooth)
+本例完整代码sample示例链接：[蓝牙Sample](https://gitee.com/openharmony/applications_app_samples/tree/monthly_20230815/code/SystemFeature/Connectivity/Bluetooth)
 
 
 

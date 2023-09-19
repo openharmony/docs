@@ -138,4 +138,4 @@ onAccessibilityEvent(accessibilityEvent: AccessibilityEvent) {
 
 针对AccessibilityExtensionAbility开发，有以下相关实例可供参考：
 
-- [无障碍扩展（ArkTS）（Full SDK）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/ApplicationModels/AccessibilityExtAbility)
+- [无障碍扩展（ArkTS）（Full SDK）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/monthly_20230815/code/SystemFeature/ApplicationModels/AccessibilityExtAbility)

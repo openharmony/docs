@@ -46,4 +46,4 @@
 
 针对Stage模型开发，有以下相关实例可供参考：
 
-- [Stage模型（ArkTS）（Full SDK）(API10)](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/ApplicationModels/StageModel)
+- [Stage模型（ArkTS）（Full SDK）(API10)](https://gitee.com/openharmony/applications_app_samples/tree/monthly_20230815/code/BasicFeature/ApplicationModels/StageModel)

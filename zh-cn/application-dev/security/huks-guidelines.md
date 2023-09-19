@@ -2973,4 +2973,4 @@ async function AttestKeyTest() {
 
 针对通用密钥库开发，有以下相关实例可供参考：
 
-- [`Huks`：通用密钥库系统（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Security/Huks)
+- [`Huks`：通用密钥库系统（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/monthly_20230815/code/BasicFeature/Security/Huks)

@@ -68,6 +68,6 @@ media模块下的接口支持的音视频格式将在[AVPlayer和AVRecorder](avp
 
 针对音视频开发，有以下相关实例可供参考：
 
-- [音视频录制（ArkTS）（Full SDK）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Media/AVRecorder)
+- [音视频录制（ArkTS）（Full SDK）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/monthly_20230815/code/BasicFeature/Media/AVRecorder)
 
-- [音频管理（ArkTS）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Media/Audio)
+- [音频管理（ArkTS）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/monthly_20230815/code/BasicFeature/Media/Audio)
