@@ -1130,6 +1130,34 @@ audioManager.getAudioScene().then((value: audio.AudioScene) => {
 });
 ```
 
+### getAudioSceneSync<sup>10+</sup>
+
+getAudioSceneSync\(\): AudioScene
+
+获取音频场景模式，同步返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Communication
+
+**返回值：**
+
+| 类型                                          | 说明                         |
+| :-------------------------------------------- | :--------------------------- |
+| <a href="#audioscene">AudioScene</a> | 返回音频场景模式。 |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+try {
+  let value: audio.AudioScene = audioManager.getAudioSceneSync();
+  console.info(`indicate that the audio scene mode is obtained ${value}.`);
+} catch (err) {
+  let error = err as BusinessError;
+  console.error(`Failed to obtain the audio scene mode ${error}`);
+}
+```
+
 ### getVolumeManager<sup>9+</sup>
 
 getVolumeManager(): AudioVolumeManager
@@ -2310,6 +2338,50 @@ async function getVolumeGroupInfos(){
 }
 ```
 
+### getVolumeGroupInfosSync<sup>10+</sup>
+
+getVolumeGroupInfosSync(networkId: string\): VolumeGroupInfos
+
+获取音量组信息列表，同步返回结果。
+
+**系统接口：** 该接口为系统接口
+
+**系统能力：** SystemCapability.Multimedia.Audio.Volume
+
+**参数：**
+
+| 参数名     | 类型               | 必填 | 说明                 |
+| ---------- | ------------------| ---- | -------------------- |
+| networkId | string             | 是   | 设备的网络id。本地设备audio.LOCAL_NETWORK_ID。   |
+
+**返回值：**
+
+| 类型                | 说明                          |
+| ------------------- | ----------------------------- |
+| [VolumeGroupInfos](#volumegroupinfos9) | 音量组信息列表。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[音频错误码](../errorcodes/errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 6800101 | invalid parameter error              |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+try {
+  let volumegroupinfos: audio.VolumeGroupInfos = audioVolumeManager.getVolumeGroupInfosSync(audio.LOCAL_NETWORK_ID);
+  console.info(`Indicate that the volumeGroup list is obtained. ${JSON.stringify(volumegroupinfos)}`);
+} catch (err) {
+  let error = err as BusinessError;
+  console.error(`Failed to obtain the volumeGroup list ${error}`);
+}
+```
+
 ### getVolumeGroupManager<sup>9+</sup>
 
 getVolumeGroupManager(groupId: number, callback: AsyncCallback<AudioVolumeGroupManager\>\): void
@@ -2369,6 +2441,48 @@ let audioVolumeGroupManager: audio.AudioVolumeGroupManager | undefined = undefin
 async function getVolumeGroupManager(){
   audioVolumeGroupManager = await audioVolumeManager.getVolumeGroupManager(groupid);
   console.info('Callback invoked to indicate that the volume group infos list is obtained.');
+}
+```
+
+### getVolumeGroupManagerSync<sup>10+</sup>
+
+getVolumeGroupManagerSync(groupId: number\): AudioVolumeGroupManager
+
+获取音频组管理器，同步返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Volume
+
+**参数：**
+
+| 参数名     | 类型                                      | 必填 | 说明              |
+| ---------- | ---------------------------------------- | ---- | ---------------- |
+| groupId    | number                                   | 是   | 音量组id。     |
+
+**返回值：**
+
+| 类型                | 说明                          |
+| ------------------- | ----------------------------- |
+| [AudioVolumeGroupManager](#audiovolumegroupmanager9) | 音量组实例。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[音频错误码](../errorcodes/errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 6800101 | invalid parameter error              |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+try {
+  let audioVolumeGroupManager: audio.AudioVolumeGroupManager = audioVolumeManager.getVolumeGroupManagerSync(audio.DEFAULT_VOLUME_GROUP_ID);
+  console.info(`Get audioVolumeGroupManager success.`);
+} catch (err) {
+  let error = err as BusinessError;
+  console.error(`Failed to get audioVolumeGroupManager, error: ${error}`);
 }
 ```
 
@@ -2535,6 +2649,48 @@ audioVolumeGroupManager.getVolume(audio.AudioVolumeType.MEDIA).then((value: numb
 });
 ```
 
+### getVolumeSync<sup>10+</sup>
+
+getVolumeSync(volumeType: AudioVolumeType): number;
+
+获取指定流的音量，同步返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Volume
+
+**参数：**
+
+| 参数名     | 类型                                | 必填 | 说明         |
+| ---------- | ----------------------------------- | ---- | ------------ |
+| volumeType | [AudioVolumeType](#audiovolumetype) | 是   | 音量流类型。 |
+
+**返回值：**
+
+| 类型                  | 说明                      |
+| --------------------- | ------------------------- |
+| number | 返回音量大小。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[音频错误码](../errorcodes/errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 6800101 | invalid parameter error              |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+try {
+  let value: number = audioVolumeGroupManager.getVolumeSync(audio.AudioVolumeType.MEDIA);
+  console.info(`Indicate that the volume is obtained ${value}.`);
+} catch (err) {
+  let error = err as BusinessError;
+  console.info(`Failed to obtain the volume, error ${error}.`);
+}
+```
+
 ### getMinVolume<sup>9+</sup>
 
 getMinVolume(volumeType: AudioVolumeType, callback: AsyncCallback&lt;number&gt;): void
@@ -2591,6 +2747,48 @@ audioVolumeGroupManager.getMinVolume(audio.AudioVolumeType.MEDIA).then((value: n
 });
 ```
 
+### getMinVolumeSync<sup>10+</sup>
+
+getMinVolumeSync(volumeType: AudioVolumeType): number;
+
+获取指定流的最小音量，同步返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Volume
+
+**参数：**
+
+| 参数名     | 类型                                | 必填 | 说明         |
+| ---------- | ----------------------------------- | ---- | ------------ |
+| volumeType | [AudioVolumeType](#audiovolumetype) | 是   | 音量流类型。 |
+
+**返回值：**
+
+| 类型                  | 说明                      |
+| --------------------- | ------------------------- |
+| number | 返回最小音量。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[音频错误码](../errorcodes/errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 6800101 | invalid parameter error              |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+try {
+  let value: number = audioVolumeGroupManager.getMinVolumeSync(audio.AudioVolumeType.MEDIA);
+  console.info(`Indicate that the minimum volume is obtained ${value}.`);
+} catch (err) {
+  let error = err as BusinessError;
+  console.error(`Failed to obtain the minimum volume, error ${error}.`);
+}
+```
+
 ### getMaxVolume<sup>9+</sup>
 
 getMaxVolume(volumeType: AudioVolumeType, callback: AsyncCallback&lt;number&gt;): void
@@ -2645,6 +2843,48 @@ getMaxVolume(volumeType: AudioVolumeType): Promise&lt;number&gt;
 audioVolumeGroupManager.getMaxVolume(audio.AudioVolumeType.MEDIA).then((data: number) => {
   console.info('Promised returned to indicate that the maximum volume is obtained.');
 });
+```
+
+### getMaxVolumeSync<sup>10+</sup>
+
+getMaxVolumeSync(volumeType: AudioVolumeType): number;
+
+获取指定流的最大音量，同步返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Volume
+
+**参数：**
+
+| 参数名     | 类型                                | 必填 | 说明         |
+| ---------- | ----------------------------------- | ---- | ------------ |
+| volumeType | [AudioVolumeType](#audiovolumetype) | 是   | 音量流类型。 |
+
+**返回值：**
+
+| 类型                  | 说明                          |
+| --------------------- | ----------------------------- |
+| number | 返回最大音量大小。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[音频错误码](../errorcodes/errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 6800101 | invalid parameter error              |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+try {
+  let value: number = audioVolumeGroupManager.getMaxVolumeSync(audio.AudioVolumeType.MEDIA);
+  console.info(`Indicate that the maximum volume is obtained. ${value}`);
+} catch (err) {
+  let error = err as BusinessError;
+  console.error(`Failed to obtain the maximum volume, error ${error}.`);
+}
 ```
 
 ### mute<sup>9+</sup>
@@ -2773,6 +3013,48 @@ audioVolumeGroupManager.isMute(audio.AudioVolumeType.MEDIA).then((value: boolean
 });
 ```
 
+### isMuteSync<sup>10+</sup>
+
+isMuteSync(volumeType: AudioVolumeType): boolean
+
+获取指定音量流是否被静音，同步返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Volume
+
+**参数：**
+
+| 参数名     | 类型                                | 必填 | 说明         |
+| ---------- | ----------------------------------- | ---- | ------------ |
+| volumeType | [AudioVolumeType](#audiovolumetype) | 是   | 音量流类型。 |
+
+**返回值：**
+
+| 类型                   | 说明                                                   |
+| ---------------------- | ------------------------------------------------------ |
+| boolean | 返回流静音状态，true为静音，false为非静音。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[音频错误码](../errorcodes/errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 6800101 | invalid parameter error              |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+try {
+  let value: boolean = audioVolumeGroupManager.isMuteSync(audio.AudioVolumeType.MEDIA);
+  console.info(`Indicate that the mute status of the stream is obtained ${value}.`);
+} catch (err) {
+  let error = err as BusinessError;
+  console.error(`Failed to obtain the mute status of the stream, error ${error}.`);
+}
+```
+
 ### setRingerMode<sup>9+</sup>
 
 setRingerMode(mode: AudioRingMode, callback: AsyncCallback&lt;void&gt;): void
@@ -2888,6 +3170,34 @@ getRingerMode(): Promise&lt;AudioRingMode&gt;
 audioVolumeGroupManager.getRingerMode().then((value: audio.AudioRingMode) => {
   console.info(`Promise returned to indicate that the ringer mode is obtained ${value}.`);
 });
+```
+
+### getRingerModeSync<sup>10+</sup>
+
+getRingerModeSync(): AudioRingMode
+
+获取铃声模式，同步返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Volume
+
+**返回值：**
+
+| 类型                                           | 说明                            |
+| ---------------------------------------------- | ------------------------------- |
+| [AudioRingMode](#audioringmode) | 返回系统的铃声模式。 |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+try {
+  let value: audio.AudioRingMode = audioVolumeGroupManager.getRingerModeSync();
+  console.info(`Indicate that the ringer mode is obtained ${value}.`);
+} catch (err) {
+  let error = err as BusinessError;
+  console.error(`Failed to obtain the ringer mode, error ${error}.`);
+}
 ```
 
 ### on('ringerModeChange')<sup>9+</sup>
@@ -3027,6 +3337,34 @@ isMicrophoneMute(): Promise&lt;boolean&gt;
 audioVolumeGroupManager.isMicrophoneMute().then((value: boolean) => {
   console.info(`Promise returned to indicate that the mute status of the microphone is obtained ${value}.`);
 });
+```
+
+### isMicrophoneMuteSync<sup>10+</sup>
+
+isMicrophoneMuteSync(): boolean
+
+获取麦克风静音状态，同步返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Volume
+
+**返回值：**
+
+| 类型                   | 说明                                                         |
+| ---------------------- | ------------------------------------------------------------ |
+| boolean | 返回系统麦克风静音状态，true为静音，false为非静音。 |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+try {
+  let value: boolean = audioVolumeGroupManager.isMicrophoneMuteSync();
+  console.info(`Indicate that the mute status of the microphone is obtained ${value}.`);
+} catch (err) {
+  let error = err as BusinessError;
+  console.error(`Failed to obtain the mute status of the microphone, error ${error}.`);
+}
 ```
 
 ### on('micStateChange')<sup>9+</sup>
@@ -3342,6 +3680,50 @@ audioVolumeGroupManager.getSystemVolumeInDb(audio.AudioVolumeType.MEDIA, 3, audi
 });
 ```
 
+### getSystemVolumeInDbSync<sup>10+</sup>
+
+getSystemVolumeInDbSync(volumeType: AudioVolumeType, volumeLevel: number, device: DeviceType): number
+
+获取音量增益dB值，同步返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Volume
+
+**参数：**
+
+| 参数名     | 类型                                | 必填 | 说明                                                     |
+| ---------- | ----------------------------------- | ---- | -------------------------------------------------------- |
+| volumeType | [AudioVolumeType](#audiovolumetype) | 是   | 音量流类型。                                             |
+| volumeLevel | number                              | 是   | 音量等级。                                             |
+| device     | [DeviceType](#devicetype)           | 是   | 设备类型。                                               |
+
+**返回值：**
+
+| 类型                  | 说明                               |
+| --------------------- | ---------------------------------- |
+| number | 返回对应的音量增益dB值。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[音频错误码](../errorcodes/errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 6800101 | invalid parameter error                     |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+try {
+  let value: number = audioVolumeGroupManager.getSystemVolumeInDbSync(audio.AudioVolumeType.MEDIA, 3, audio.DeviceType.SPEAKER);
+  console.info(`Success to get the volume DB. ${value}`);
+} catch (err) {
+  let error = err as BusinessError;
+  console.error(`Fail to adjust the system volume by step. ${error}`);
+}
+```
+
 ## AudioStreamManager<sup>9+</sup>
 
 管理音频流。在使用AudioStreamManager的API前，需要使用[getStreamManager](#getstreammanager9)获取AudioStreamManager实例。
@@ -3384,9 +3766,9 @@ audioStreamManager.getCurrentAudioRendererInfoArray(async (err: BusinessError, A
           console.info(`Role: ${i} : ${AudioRendererChangeInfo.deviceDescriptors[j].deviceRole}`);
           console.info(`Name: ${i} : ${AudioRendererChangeInfo.deviceDescriptors[j].name}`);
           console.info(`Address: ${i} : ${AudioRendererChangeInfo.deviceDescriptors[j].address}`);
-          console.info(`SampleRates: ${i} : ${AudioRendererChangeInfo.deviceDescriptors[j].sampleRates[0]}`);
-          console.info(`ChannelCount ${i} : ${AudioRendererChangeInfo.deviceDescriptors[j].channelCounts[0]}`);
-          console.info(`ChannelMask: ${i} : ${AudioRendererChangeInfo.deviceDescriptors[j].channelMasks}`);
+          console.info(`SampleRate: ${i} : ${AudioRendererChangeInfo.deviceDescriptors[j].sampleRates[0]}`);
+          console.info(`ChannelCount: ${i} : ${AudioRendererChangeInfo.deviceDescriptors[j].channelCounts[0]}`);
+          console.info(`ChannelMask: ${i} : ${AudioRendererChangeInfo.deviceDescriptors[j].channelMasks[0]}`);
         }
       }
     }
@@ -3430,15 +3812,63 @@ async function getCurrentAudioRendererInfoArray(){
           console.info(`Role: ${i} : ${AudioRendererChangeInfo.deviceDescriptors[j].deviceRole}`);
           console.info(`Name: ${i} : ${AudioRendererChangeInfo.deviceDescriptors[j].name}`);
           console.info(`Address: ${i} : ${AudioRendererChangeInfo.deviceDescriptors[j].address}`);
-          console.info(`SampleRates: ${i} : ${AudioRendererChangeInfo.deviceDescriptors[j].sampleRates[0]}`);
-          console.info(`ChannelCount ${i} : ${AudioRendererChangeInfo.deviceDescriptors[j].channelCounts[0]}`);
-          console.info(`ChannelMask: ${i} : ${AudioRendererChangeInfo.deviceDescriptors[j].channelMasks}`);
+          console.info(`SampleRate: ${i} : ${AudioRendererChangeInfo.deviceDescriptors[j].sampleRates[0]}`);
+          console.info(`ChannelCount: ${i} : ${AudioRendererChangeInfo.deviceDescriptors[j].channelCounts[0]}`);
+          console.info(`ChannelMask: ${i} : ${AudioRendererChangeInfo.deviceDescriptors[j].channelMasks[0]}`);
         }
       }
     }
   }).catch((err: BusinessError) => {
     console.error(`getCurrentAudioRendererInfoArray :ERROR: ${err}`);
   });
+}
+```
+### getCurrentAudioRendererInfoArraySync<sup>10+</sup>
+
+getCurrentAudioRendererInfoArraySync(): AudioRendererChangeInfoArray
+
+获取当前音频渲染器的信息，同步返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Renderer
+
+**返回值：**
+
+| 类型                                                                              | 说明                                    |
+| ---------------------------------------------------------------------------------| --------------------------------------- |
+| [AudioRendererChangeInfoArray](#audiorendererchangeinfoarray9)          | 返回当前音频渲染器信息。      |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+try {
+  let audioRendererChangeInfoArray: audio.AudioRendererChangeInfoArray = audioStreamManager.getCurrentAudioRendererInfoArraySync();
+  console.info(`getCurrentAudioRendererInfoArraySync success.`);
+  if (audioRendererChangeInfoArray != null) {
+    for (let i = 0; i < audioRendererChangeInfoArray.length; i++) {
+      let AudioRendererChangeInfo: audio.AudioRendererChangeInfo = audioRendererChangeInfoArray[i];
+      console.info(`StreamId for ${i} is: ${AudioRendererChangeInfo.streamId}`);
+      console.info(`ClientUid for ${i} is: ${AudioRendererChangeInfo.clientUid}`);
+      console.info(`Content ${i} is: ${AudioRendererChangeInfo.rendererInfo.content}`);
+      console.info(`Stream ${i} is: ${AudioRendererChangeInfo.rendererInfo.usage}`);
+      console.info(`Flag ${i} is: ${AudioRendererChangeInfo.rendererInfo.rendererFlags}`);
+      console.info(`State for ${i} is: ${AudioRendererChangeInfo.rendererState}`);
+      for (let j = 0;j < AudioRendererChangeInfo.deviceDescriptors.length; j++) {
+        console.info(`Id: ${i} : ${AudioRendererChangeInfo.deviceDescriptors[j].id}`);
+        console.info(`Type: ${i} : ${AudioRendererChangeInfo.deviceDescriptors[j].deviceType}`);
+        console.info(`Role: ${i} : ${AudioRendererChangeInfo.deviceDescriptors[j].deviceRole}`);
+        console.info(`Name: ${i} : ${AudioRendererChangeInfo.deviceDescriptors[j].name}`);
+        console.info(`Address: ${i} : ${AudioRendererChangeInfo.deviceDescriptors[j].address}`);
+        console.info(`SampleRate: ${i} : ${AudioRendererChangeInfo.deviceDescriptors[j].sampleRates[0]}`);
+        console.info(`ChannelCount: ${i} : ${AudioRendererChangeInfo.deviceDescriptors[j].channelCounts[0]}`);
+        console.info(`ChannelMask: ${i} : ${AudioRendererChangeInfo.deviceDescriptors[j].channelMasks[0]}`);
+      }
+    }
+  }
+} catch (err) {
+  let error = err as BusinessError;
+  console.error(`getCurrentAudioRendererInfoArraySync :ERROR: ${error}`);
 }
 ```
 
@@ -3478,9 +3908,9 @@ audioStreamManager.getCurrentAudioCapturerInfoArray(async (err: BusinessError, A
           console.info(`Role: ${i} : ${AudioCapturerChangeInfoArray[i].deviceDescriptors[j].deviceRole}`);
           console.info(`Name: ${i} : ${AudioCapturerChangeInfoArray[i].deviceDescriptors[j].name}`);
           console.info(`Address: ${i} : ${AudioCapturerChangeInfoArray[i].deviceDescriptors[j].address}`);
-          console.info(`SampleRates: ${i} : ${AudioCapturerChangeInfoArray[i].deviceDescriptors[j].sampleRates[0]}`);
-          console.info(`ChannelCounts ${i} : ${AudioCapturerChangeInfoArray[i].deviceDescriptors[j].channelCounts[0]}`);
-          console.info(`ChannelMask: ${i} : ${AudioCapturerChangeInfoArray[i].deviceDescriptors[j].channelMasks}`);
+          console.info(`SampleRate: ${i} : ${AudioCapturerChangeInfoArray[i].deviceDescriptors[j].sampleRates[0]}`);
+          console.info(`ChannelCount: ${i} : ${AudioCapturerChangeInfoArray[i].deviceDescriptors[j].channelCounts[0]}`);
+          console.info(`ChannelMask: ${i} : ${AudioCapturerChangeInfoArray[i].deviceDescriptors[j].channelMasks[0]}`);
         }
       }
     }
@@ -3522,15 +3952,61 @@ async function getCurrentAudioCapturerInfoArray(){
           console.info(`Role: ${i} : ${AudioCapturerChangeInfoArray[i].deviceDescriptors[j].deviceRole}`);
           console.info(`Name: ${i} : ${AudioCapturerChangeInfoArray[i].deviceDescriptors[j].name}`);
           console.info(`Address: ${i} : ${AudioCapturerChangeInfoArray[i].deviceDescriptors[j].address}`);
-          console.info(`SampleRates: ${i} : ${AudioCapturerChangeInfoArray[i].deviceDescriptors[j].sampleRates[0]}`);
-          console.info(`ChannelCounts ${i} : ${AudioCapturerChangeInfoArray[i].deviceDescriptors[j].channelCounts[0]}`);
-          console.info(`ChannelMask: ${i} : ${AudioCapturerChangeInfoArray[i].deviceDescriptors[j].channelMasks}`);
+          console.info(`SampleRate: ${i} : ${AudioCapturerChangeInfoArray[i].deviceDescriptors[j].sampleRates[0]}`);
+          console.info(`ChannelCount: ${i} : ${AudioCapturerChangeInfoArray[i].deviceDescriptors[j].channelCounts[0]}`);
+          console.info(`ChannelMask: ${i} : ${AudioCapturerChangeInfoArray[i].deviceDescriptors[j].channelMasks[0]}`);
         }
       }
     }
   }).catch((err: BusinessError) => {
     console.error(`getCurrentAudioCapturerInfoArray :ERROR: ${err}`);
   });
+}
+```
+### getCurrentAudioCapturerInfoArraySync<sup>10+</sup>
+
+getCurrentAudioCapturerInfoArraySync(): AudioCapturerChangeInfoArray
+
+获取当前音频采集器的信息，同步返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Capturer
+
+**返回值：**
+
+| 类型                                                                         | 说明                                 |
+| -----------------------------------------------------------------------------| ----------------------------------- |
+| [AudioCapturerChangeInfoArray](#audiocapturerchangeinfoarray9)      | 返回当前音频渲染器信息。  |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+try {
+  let audioCapturerChangeInfoArray: audio.AudioCapturerChangeInfoArray = audioStreamManager.getCurrentAudioCapturerInfoArraySync();
+  console.info('getCurrentAudioCapturerInfoArraySync success.');
+  if (audioCapturerChangeInfoArray != null) {
+    for (let i = 0; i < audioCapturerChangeInfoArray.length; i++) {
+      console.info(`StreamId for ${i} is: ${audioCapturerChangeInfoArray[i].streamId}`);
+      console.info(`ClientUid for ${i} is: ${audioCapturerChangeInfoArray[i].clientUid}`);
+      console.info(`Source for ${i} is: ${audioCapturerChangeInfoArray[i].capturerInfo.source}`);
+      console.info(`Flag  ${i} is: ${audioCapturerChangeInfoArray[i].capturerInfo.capturerFlags}`);
+      console.info(`State for ${i} is: ${audioCapturerChangeInfoArray[i].capturerState}`);
+      for (let j = 0; j < audioCapturerChangeInfoArray[i].deviceDescriptors.length; j++) {
+        console.info(`Id: ${i} : ${audioCapturerChangeInfoArray[i].deviceDescriptors[j].id}`);
+        console.info(`Type: ${i} : ${audioCapturerChangeInfoArray[i].deviceDescriptors[j].deviceType}`);
+        console.info(`Role: ${i} : ${audioCapturerChangeInfoArray[i].deviceDescriptors[j].deviceRole}`);
+        console.info(`Name: ${i} : ${audioCapturerChangeInfoArray[i].deviceDescriptors[j].name}`);
+        console.info(`Address: ${i} : ${audioCapturerChangeInfoArray[i].deviceDescriptors[j].address}`);
+        console.info(`SampleRate: ${i} : ${audioCapturerChangeInfoArray[i].deviceDescriptors[j].sampleRates[0]}`);
+        console.info(`ChannelCount: ${i} : ${audioCapturerChangeInfoArray[i].deviceDescriptors[j].channelCounts[0]}`);
+        console.info(`ChannelMask: ${i} : ${audioCapturerChangeInfoArray[i].deviceDescriptors[j].channelMasks[0]}`);
+      }
+    }
+  }
+} catch (err) {
+  let error = err as BusinessError;
+  console.error(`getCurrentAudioCapturerInfoArraySync ERROR: ${error}`);
 }
 ```
 
@@ -3576,9 +4052,9 @@ audioStreamManager.on('audioRendererChange',  (AudioRendererChangeInfoArray: aud
       console.info(`Role: ${i} : ${AudioRendererChangeInfo.deviceDescriptors[j].deviceRole}`);
       console.info(`Name: ${i} : ${AudioRendererChangeInfo.deviceDescriptors[j].name}`);
       console.info(`Address: ${i} : ${AudioRendererChangeInfo.deviceDescriptors[j].address}`);
-      console.info(`SampleRates: ${i} : ${AudioRendererChangeInfo.deviceDescriptors[j].sampleRates[0]}`);
-      console.info(`ChannelCount ${i} : ${AudioRendererChangeInfo.deviceDescriptors[j].channelCounts[0]}`);
-      console.info(`ChannelMask: ${i} : ${AudioRendererChangeInfo.deviceDescriptors[j].channelMasks}`);
+      console.info(`SampleRate: ${i} : ${AudioRendererChangeInfo.deviceDescriptors[j].sampleRates[0]}`);
+      console.info(`ChannelCount: ${i} : ${AudioRendererChangeInfo.deviceDescriptors[j].channelCounts[0]}`);
+      console.info(`ChannelMask: ${i} : ${AudioRendererChangeInfo.deviceDescriptors[j].channelMasks[0]}`);
     }
   }
 });
@@ -3654,9 +4130,9 @@ audioStreamManager.on('audioCapturerChange', (AudioCapturerChangeInfoArray: audi
       console.info(`Role: ${i} : ${AudioCapturerChangeInfoArray[i].deviceDescriptors[j].deviceRole}`);
       console.info(`Name: ${i} : ${AudioCapturerChangeInfoArray[i].deviceDescriptors[j].name}`);
       console.info(`Address: ${i} : ${AudioCapturerChangeInfoArray[i].deviceDescriptors[j].address}`);
-      console.info(`SampleRates: ${i} : ${AudioCapturerChangeInfoArray[i].deviceDescriptors[j].sampleRates[0]}`);
-      console.info(`ChannelCounts ${i} : ${AudioCapturerChangeInfoArray[i].deviceDescriptors[j].channelCounts[0]}`);
-      console.info(`ChannelMask: ${i} : ${AudioCapturerChangeInfoArray[i].deviceDescriptors[j].channelMasks}`);
+      console.info(`SampleRate: ${i} : ${AudioCapturerChangeInfoArray[i].deviceDescriptors[j].sampleRates[0]}`);
+      console.info(`ChannelCount: ${i} : ${AudioCapturerChangeInfoArray[i].deviceDescriptors[j].channelCounts[0]}`);
+      console.info(`ChannelMask: ${i} : ${AudioCapturerChangeInfoArray[i].deviceDescriptors[j].channelMasks[0]}`);
     }
   }
 });
@@ -3748,6 +4224,48 @@ audioStreamManager.isActive(audio.AudioVolumeType.MEDIA).then((value: boolean) =
 });
 ```
 
+### isActiveSync<sup>10+</sup>
+
+isActiveSync(volumeType: AudioVolumeType): boolean
+
+获取指定音频流是否为活跃状态，同步返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Renderer
+
+**参数：**
+
+| 参数名     | 类型                                | 必填 | 说明         |
+| ---------- | ----------------------------------- | ---- | ------------ |
+| volumeType | [AudioVolumeType](#audiovolumetype) | 是   | 音频流类型。 |
+
+**返回值：**
+
+| 类型                   | 说明                                                     |
+| ---------------------- | -------------------------------------------------------- |
+| boolean | 返回流的活跃状态，true为活跃，false为不活跃。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[音频错误码](../errorcodes/errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 6800101 | invalid parameter error              |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+try {
+  let value: boolean = audioStreamManager.isActiveSync(audio.AudioVolumeType.MEDIA);
+  console.info(`Indicate that the active status of the stream is obtained ${value}.`);
+} catch (err) {
+  let error = err as BusinessError;
+  console.error(`Failed to obtain the active status of the stream ${error}.`);
+}
+```
+
 ### getAudioEffectInfoArray<sup>10+</sup>
 
 getAudioEffectInfoArray(usage: StreamUsage, callback: AsyncCallback&lt;AudioEffectInfoArray&gt;): void
@@ -3826,6 +4344,48 @@ audioStreamManager.getAudioEffectInfoArray(audio.StreamUsage.STREAM_USAGE_MEDIA)
 });
 ```
 
+### getAudioEffectInfoArraySync<sup>10+</sup>
+
+getAudioEffectInfoArraySync(usage: StreamUsage): AudioEffectInfoArray
+
+获取当前音效模式的信息，同步返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Renderer
+
+**参数：**
+
+| 参数名    | 类型                                | 必填     | 说明                         |
+| -------- | ----------------------------------- | -------- | --------------------------- |
+| usage    | [StreamUsage](#streamusage)         | 是     |  音频流使用类型。               |
+
+**返回值：**
+
+| 类型                                                                      | 说明                                    |
+| --------------------------------------------------------------------------| --------------------------------------- |
+| [AudioEffectInfoArray](#audioeffectinfoarray10)                  | 返回当前音效模式的信息。      |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[音频错误码](../errorcodes/errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 6800101 | invalid parameter error |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+try {
+  let audioEffectInfoArray: audio.AudioEffectInfoArray = audioStreamManager.getAudioEffectInfoArraySync(audio.StreamUsage.STREAM_USAGE_MEDIA);
+  console.info(`The effect modes are: ${audioEffectInfoArray}`);
+} catch (err) {
+  let error = err as BusinessError;
+  console.error(`getAudioEffectInfoArraySync ERROR: ${error}`);
+}
+```
+
 ## AudioRoutingManager<sup>9+</sup>
 
 音频路由管理。在使用AudioRoutingManager的接口前，需要使用[getRoutingManager](#getroutingmanager9)获取AudioRoutingManager实例。
@@ -3884,6 +4444,48 @@ getDevices(deviceFlag: DeviceFlag): Promise&lt;AudioDeviceDescriptors&gt;
 audioRoutingManager.getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG).then((data: audio.AudioDeviceDescriptors) => {
   console.info('Promise returned to indicate that the device list is obtained.');
 });
+```
+
+### getDevicesSync<sup>10+</sup>
+
+getDevicesSync(deviceFlag: DeviceFlag): AudioDeviceDescriptors
+
+获取音频设备列表，同步返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Device
+
+**参数：**
+
+| 参数名     | 类型                      | 必填 | 说明             |
+| ---------- | ------------------------- | ---- | ---------------- |
+| deviceFlag | [DeviceFlag](#deviceflag) | 是   | 设备类型的flag。 |
+
+**返回值：**
+
+| 类型                                                         | 说明                      |
+| ------------------------------------------------------------ | ------------------------- |
+| [AudioDeviceDescriptors](#audiodevicedescriptors) | 返回设备列表。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[音频错误码](../errorcodes/errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 6800101 | invalid parameter error              |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+try {
+  let data: audio.AudioDeviceDescriptors = audioRoutingManager.getDevicesSync(audio.DeviceFlag.OUTPUT_DEVICES_FLAG);
+  console.info(`Indicate that the device list is obtained ${data}`);
+} catch (err) {
+  let error = err as BusinessError;
+  console.error(`Failed to obtain the device list. ${error}`);
+}
 ```
 
 ### on('deviceChange')<sup>9+</sup>
@@ -4162,6 +4764,48 @@ audioRoutingManager.isCommunicationDeviceActive(audio.CommunicationDeviceType.SP
 });
 ```
 
+### isCommunicationDeviceActiveSync<sup>10+</sup>
+
+isCommunicationDeviceActiveSync(deviceType: CommunicationDeviceType): boolean
+
+获取指定通信设备的激活状态，同步返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Communication
+
+**参数：**
+
+| 参数名     | 类型                                                  | 必填 | 说明               |
+| ---------- | ---------------------------------------------------- | ---- | ------------------ |
+| deviceType | [CommunicationDeviceType](#communicationdevicetype9) | 是   | 活跃音频设备类型。 |
+
+**返回值：**
+
+| Type                   | Description                     |
+| ---------------------- | ------------------------------- |
+| boolean | 返回设备的激活状态。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[音频错误码](../errorcodes/errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 6800101 | invalid parameter error              |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+try {
+  let value: boolean = audioRoutingManager.isCommunicationDeviceActiveSync(audio.CommunicationDeviceType.SPEAKER);
+  console.info(`Indicate that the active status of the device is obtained ${value}.`);
+} catch (err) {
+  let error = err as BusinessError;
+  console.error(`Failed to obtain the active status of the device ${error}.`);
+}
+```
+
 ### selectOutputDevice<sup>9+</sup>
 
 selectOutputDevice(outputAudioDevices: AudioDeviceDescriptors, callback: AsyncCallback&lt;void&gt;): void
@@ -4407,8 +5051,7 @@ getPreferOutputDeviceForRendererInfo(rendererInfo: AudioRendererInfo, callback: 
 import audio from '@ohos.multimedia.audio';
 import { BusinessError } from '@ohos.base';
 let rendererInfo: audio.AudioRendererInfo = {
-  content : audio.ContentType.CONTENT_TYPE_MUSIC,
-  usage : audio.StreamUsage.STREAM_USAGE_MEDIA,
+  usage : audio.StreamUsage.STREAM_USAGE_MUSIC,
   rendererFlags : 0
 }
 
@@ -4457,8 +5100,7 @@ getPreferOutputDeviceForRendererInfo(rendererInfo: AudioRendererInfo): Promise&l
 import audio from '@ohos.multimedia.audio';
 import { BusinessError } from '@ohos.base';
 let rendererInfo: audio.AudioRendererInfo = {
-  content : audio.ContentType.CONTENT_TYPE_MUSIC,
-  usage : audio.StreamUsage.STREAM_USAGE_MEDIA,
+  usage : audio.StreamUsage.STREAM_USAGE_MUSIC,
   rendererFlags : 0
 }
 
@@ -4468,6 +5110,52 @@ async function getPreferOutputDevice() {
   }).catch((err: BusinessError) => {
     console.error(`Result ERROR: ${err}`);
   })
+}
+```
+### getPreferredOutputDeviceForRendererInfoSync<sup>10+</sup>
+getPreferredOutputDeviceForRendererInfoSync(rendererInfo: AudioRendererInfo): AudioDeviceDescriptors
+
+根据音频信息，返回优先级最高的输出设备，同步返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Device
+
+**参数：**
+
+| 参数名                 | 类型                                                         | 必填 | 说明                      |
+| ----------------------| ------------------------------------------------------------ | ---- | ------------------------- |
+| rendererInfo          | [AudioRendererInfo](#audiorendererinfo8)                     | 是   | 表示渲染器信息。            |
+
+**返回值：**
+
+| 类型                  | 说明                         |
+| --------------------- | --------------------------- |
+| [AudioDeviceDescriptors](#audiodevicedescriptors)   | 返回优先级最高的输出设备信息。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[音频错误码](../errorcodes/errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 6800101 | invalid parameter error.   |
+
+**示例：**
+
+```ts
+import audio from '@ohos.multimedia.audio';
+import { BusinessError } from '@ohos.base';
+
+let rendererInfo: audio.AudioRendererInfo = {
+  usage : audio.StreamUsage.STREAM_USAGE_MUSIC,
+  rendererFlags : 0
+}
+
+try {
+  let desc: audio.AudioDeviceDescriptors = audioRoutingManager.getPreferredOutputDeviceForRendererInfoSync(rendererInfo);
+  console.info(`device descriptor: ${desc}`);
+} catch (err) {
+  let error = err as BusinessError;
+  console.error(`Result ERROR: ${error}`);
 }
 ```
 
@@ -4500,8 +5188,7 @@ on(type: 'preferOutputDeviceChangeForRendererInfo', rendererInfo: AudioRendererI
 ```ts
 import audio from '@ohos.multimedia.audio';
 let rendererInfo: audio.AudioRendererInfo = {
-  content : audio.ContentType.CONTENT_TYPE_MUSIC,
-  usage : audio.StreamUsage.STREAM_USAGE_MEDIA,
+  usage : audio.StreamUsage.STREAM_USAGE_MUSIC,
   rendererFlags : 0
 }
 
@@ -4537,6 +5224,209 @@ off(type: 'preferOutputDeviceChangeForRendererInfo', callback?: Callback<AudioDe
 
 ```ts
 audioRoutingManager.off('preferOutputDeviceChangeForRendererInfo');
+```
+
+### getPreferredInputDeviceForCapturerInfo<sup>10+</sup>
+
+getPreferredInputDeviceForCapturerInfo(capturerInfo: AudioCapturerInfo, callback: AsyncCallback&lt;AudioDeviceDescriptors&gt;): void
+
+根据音频信息，返回优先级最高的输入设备，使用callback方式异步返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Device
+
+**参数：**
+
+| 参数名                       | 类型                                                         | 必填 | 说明                      |
+| --------------------------- | ------------------------------------------------------------ | ---- | ------------------------- |
+| capturerInfo                | [AudioCapturerInfo](#audiocapturerinfo8)                     | 是   | 表示采集器信息。             |
+| callback                    | AsyncCallback&lt;[AudioDeviceDescriptors](#audiodevicedescriptors)&gt;  | 是   | 回调，返回优先级最高的输入设备信息。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[音频错误码](../errorcodes/errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 6800101 | Invalid parameter error. Return by callback.|
+| 6800301 | System error. Return by callback.           |
+
+**示例：**
+```ts
+import audio from '@ohos.multimedia.audio';
+import { BusinessError } from '@ohos.base';
+let capturerInfo: audio.AudioCapturerInfo = {
+  source: audio.SourceType.SOURCE_TYPE_MIC,
+  capturerFlags: 0
+}
+
+audioRoutingManager.getPreferredInputDeviceForCapturerInfo(capturerInfo, (err: BusinessError, desc: audio.AudioDeviceDescriptors) => {
+  if (err) {
+    console.error(`Result ERROR: ${err}`);
+  } else {
+    console.info(`device descriptor: ${desc}`);
+  }
+});
+```
+
+### getPreferredInputDeviceForCapturerInfo<sup>10+</sup>
+
+getPreferredInputDeviceForCapturerInfo(capturerInfo: AudioCapturerInfo): Promise&lt;AudioDeviceDescriptors&gt;
+
+根据音频信息，返回优先级最高的输入设备，使用promise方式异步返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Device
+
+**参数：**
+
+| 参数名                 | 类型                                                         | 必填 | 说明                      |
+| ----------------------| ------------------------------------------------------------ | ---- | ------------------------- |
+| capturerInfo          | [AudioCapturerInfo](#audiocapturerinfo8)                     | 是   | 表示采集器信息。            |
+
+**返回值：**
+
+| 类型                  | 说明                         |
+| --------------------- | --------------------------- |
+| Promise&lt;[AudioDeviceDescriptors](#audiodevicedescriptors)&gt;   | Promise返回优先级最高的输入设备信息。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[音频错误码](../errorcodes/errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 6800101 | Invalid parameter error. Return by promise. |
+| 6800301 | System error. Return by promise.            |
+
+**示例：**
+
+```ts
+import audio from '@ohos.multimedia.audio';
+import { BusinessError } from '@ohos.base';
+let capturerInfo: audio.AudioCapturerInfo = {
+  source: audio.SourceType.SOURCE_TYPE_MIC,
+  capturerFlags: 0
+}
+
+audioRoutingManager.getPreferredInputDeviceForCapturerInfo(capturerInfo).then((desc: audio.AudioDeviceDescriptors) => {
+  console.info(`device descriptor: ${desc}`);
+}).catch((err: BusinessError) => {
+  console.error(`Result ERROR: ${err}`);
+});
+```
+
+### getPreferredInputDeviceForCapturerInfoSync<sup>10+</sup>
+
+getPreferredInputDeviceForCapturerInfoSync(capturerInfo: AudioCapturerInfo): AudioDeviceDescriptors
+
+根据音频信息，返回优先级最高的输入设备，同步返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Device
+
+**参数：**
+
+| 参数名                 | 类型                                                         | 必填 | 说明                      |
+| ----------------------| ------------------------------------------------------------ | ---- | ------------------------- |
+| capturerInfo          | [AudioCapturerInfo](#audiocapturerinfo8)                     | 是   | 表示采集器信息。            |
+
+**返回值：**
+
+| 类型                  | 说明                         |
+| --------------------- | --------------------------- |
+| [AudioDeviceDescriptors](#audiodevicedescriptors)   | 返回优先级最高的输入设备信息。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[音频错误码](../errorcodes/errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 6800101 | invalid parameter error               |
+
+**示例：**
+
+```ts
+import audio from '@ohos.multimedia.audio';
+import { BusinessError } from '@ohos.base';
+
+let capturerInfo: audio.AudioCapturerInfo = {
+  source: audio.SourceType.SOURCE_TYPE_MIC,
+  capturerFlags: 0
+}
+
+try {
+  let desc: audio.AudioDeviceDescriptors = audioRoutingManager.getPreferredInputDeviceForCapturerInfoSync(capturerInfo);
+  console.info(`device descriptor: ${desc}`);
+} catch (err) {
+  let error = err as BusinessError;
+  console.error(`Result ERROR: ${error}`);
+}
+```
+
+### on('preferredInputDeviceChangeForCapturerInfo')<sup>10+</sup>
+
+on(type: 'preferredInputDeviceChangeForCapturerInfo', capturerInfo: AudioCapturerInfo, callback: Callback<AudioDeviceDescriptors\>): void
+
+订阅最高优先级输入设备变化事件，使用callback获取最高优先级输入设备。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Device
+
+**参数：**
+
+| 参数名   | 类型                                                 | 必填 | 说明                                       |
+| :------- | :--------------------------------------------------- | :--- | :----------------------------------------- |
+| type     | string                                               | 是   | 订阅的事件的类型。支持事件：'preferredInputDeviceChangeForCapturerInfo' |
+| capturerInfo  | [AudioCapturerInfo](#audiocapturerinfo8)        | 是   | 表示采集器信息。              |
+| callback | Callback<[AudioDeviceDescriptors](#audiodevicedescriptors)\> | 是   | 获取优先级最高的输入设备信息。                         |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[音频错误码](../errorcodes/errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 6800101 | if input parameter value error              |
+
+**示例：**
+
+```ts
+import audio from '@ohos.multimedia.audio';
+let capturerInfo: audio.AudioCapturerInfo = {
+  source: audio.SourceType.SOURCE_TYPE_MIC,
+  capturerFlags: 0
+}
+
+audioRoutingManager.on('preferredInputDeviceChangeForCapturerInfo', capturerInfo, (desc: audio.AudioDeviceDescriptors) => {
+  console.info(`device descriptor: ${desc}`);
+});
+```
+
+### off('preferredInputDeviceChangeForCapturerInfo')<sup>10+</sup>
+
+off(type: 'preferredInputDeviceChangeForCapturerInfo', callback?: Callback<AudioDeviceDescriptors\>): void
+
+取消订阅最高优先级输入音频设备变化事件。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Device
+
+**参数：**
+
+| 参数名   | 类型                                                | 必填 | 说明                                       |
+| -------- | --------------------------------------------------- | ---- | ------------------------------------------ |
+| type     | string                                              | 是   | 订阅的事件的类型。支持事件：'preferredInputDeviceChangeForCapturerInfo' |
+| callback | Callback<[AudioDeviceDescriptors](#audiodevicedescriptors)> | 否   | 监听方法的回调函数。                         |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[音频错误码](../errorcodes/errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 6800101 | if input parameter value error              |
+
+**示例：**
+
+```ts
+audioRoutingManager.off('preferredInputDeviceChangeForCapturerInfo');
 ```
 
 ## AudioRendererChangeInfoArray<sup>9+</sup>
@@ -4586,7 +5476,7 @@ audioStreamManager.on('audioRendererChange',  (AudioRendererChangeInfoArray) => 
       console.info(`Addr: ${i} : ${AudioRendererChangeInfoArray[i].deviceDescriptors[j].address}`);
       console.info(`SR: ${i} : ${AudioRendererChangeInfoArray[i].deviceDescriptors[j].sampleRates[0]}`);
       console.info(`C ${i} : ${AudioRendererChangeInfoArray[i].deviceDescriptors[j].channelCounts[0]}`);
-      console.info(`CM: ${i} : ${AudioRendererChangeInfoArray[i].deviceDescriptors[j].channelMasks}`);
+      console.info(`CM: ${i} : ${AudioRendererChangeInfoArray[i].deviceDescriptors[j].channelMasks[0]}`);
     }
     if (AudioRendererChangeInfoArray[i].rendererState == 1 && devDescriptor != null) {
       resultFlag = true;
@@ -4643,7 +5533,7 @@ audioStreamManager.on('audioCapturerChange', (AudioCapturerChangeInfoArray) =>  
       console.info(`Addr: ${i} : ${AudioCapturerChangeInfoArray[i].deviceDescriptors[j].address}`);
       console.info(`SR: ${i} : ${AudioCapturerChangeInfoArray[i].deviceDescriptors[j].sampleRates[0]}`);
       console.info(`C ${i} : ${AudioCapturerChangeInfoArray[i].deviceDescriptors[j].channelCounts[0]}`);
-      console.info(`CM ${i} : ${AudioCapturerChangeInfoArray[i].deviceDescriptors[j].channelMasks}`);
+      console.info(`CM ${i} : ${AudioCapturerChangeInfoArray[i].deviceDescriptors[j].channelMasks[0]}`);
     }
     if (AudioCapturerChangeInfoArray[i].capturerState == 1 && devDescriptor != null) {
       resultFlag = true;
@@ -4805,6 +5695,36 @@ audioRenderer.getRendererInfo().then((rendererInfo: audio.AudioRendererInfo) => 
 });
 ```
 
+### getRendererInfoSync<sup>10+</sup>
+
+getRendererInfoSync(): AudioRendererInfo
+
+获取当前被创建的音频渲染器的信息，同步返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Renderer
+
+**返回值：**
+
+| 类型                                               | 说明                            |
+| -------------------------------------------------- | ------------------------------- |
+| [AudioRendererInfo](#audiorendererinfo8) | 返回音频渲染器信息。 |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+try {
+  let rendererInfo: audio.AudioRendererInfo = audioRenderer.getRendererInfoSync();
+  console.info(`Renderer content: ${rendererInfo.content}`);
+  console.info(`Renderer usage: ${rendererInfo.usage}`);
+  console.info(`Renderer flags: ${rendererInfo.rendererFlags}`)
+} catch (err) {
+  let error = err as BusinessError;
+  console.error(`AudioFrameworkRenderLog: RendererInfo :ERROR: ${error}`);
+}
+```
+
 ### getStreamInfo<sup>8+</sup>
 
 getStreamInfo(callback: AsyncCallback<AudioStreamInfo\>): void
@@ -4861,6 +5781,37 @@ audioRenderer.getStreamInfo().then((streamInfo: audio.AudioStreamInfo) => {
 });
 ```
 
+### getStreamInfoSync<sup>10+</sup>
+
+getStreamInfoSync(): AudioStreamInfo
+
+获取音频流信息，同步返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Renderer
+
+**返回值：**
+
+| 类型                                           | 说明                   |
+| :--------------------------------------------- | :--------------------- |
+| [AudioStreamInfo](#audiostreaminfo8) | 返回音频流信息. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+try {
+  let streamInfo: audio.AudioStreamInfo = audioRenderer.getStreamInfoSync();
+  console.info(`Renderer sampling rate: ${streamInfo.samplingRate}`);
+  console.info(`Renderer channel: ${streamInfo.channels}`);
+  console.info(`Renderer format: ${streamInfo.sampleFormat}`);
+  console.info(`Renderer encoding type: ${streamInfo.encodingType}`);
+} catch (err) {
+  let error = err as BusinessError;
+  console.error(`ERROR: ${error}`);
+}
+```
+
 ### getAudioStreamId<sup>9+</sup>
 
 getAudioStreamId(callback: AsyncCallback<number\>): void
@@ -4907,6 +5858,34 @@ audioRenderer.getAudioStreamId().then((streamid: number) => {
 }).catch((err: BusinessError) => {
   console.error(`ERROR: ${err}`);
 });
+```
+
+### getAudioStreamIdSync<sup>10+</sup>
+
+getAudioStreamIdSync(): number
+
+获取音频流id，同步返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Renderer
+
+**返回值：**
+
+| 类型                                           | 说明                   |
+| :--------------------------------------------- | :--------------------- |
+| number | 返回音频流id。 |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+try {
+  let streamid: number = audioRenderer.getAudioStreamIdSync();
+  console.info(`Renderer getAudioStreamIdSync: ${streamid}`);
+} catch (err) {
+  let error = err as BusinessError;
+  console.error(`ERROR: ${error}`);
+}
 ```
 
 ### setAudioEffectMode<sup>10+</sup>
@@ -5454,6 +6433,34 @@ audioRenderer.getAudioTime().then((timestamp: number) => {
 });
 ```
 
+### getAudioTimeSync<sup>10+</sup>
+
+getAudioTimeSync(): number
+
+获取时间戳（从 1970 年 1 月 1 日开始），同步返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Renderer
+
+**返回值：**
+
+| 类型             | 描述                    |
+| ---------------- | ----------------------- |
+| number | 返回时间戳。 |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+try {
+  let timestamp: number = audioRenderer.getAudioTimeSync();
+  console.info(`Current timestamp: ${timestamp}`);
+} catch (err) {
+  let error = err as BusinessError;
+  console.error(`ERROR: ${error}`);
+}
+```
+
 ### getBufferSize<sup>8+</sup>
 
 getBufferSize(callback: AsyncCallback\<number>): void
@@ -5508,6 +6515,35 @@ audioRenderer.getBufferSize().then((data: number) => {
 }).catch((err: BusinessError) => {
   console.error(`AudioFrameworkRenderLog: getBufferSize: ERROR: ${err}`);
 });
+```
+
+### getBufferSizeSync<sup>10+</sup>
+
+getBufferSizeSync(): number
+
+获取音频渲染器的最小缓冲区大小，同步返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Renderer
+
+**返回值：**
+
+| 类型             | 说明                        |
+| ---------------- | --------------------------- |
+| number | 返回缓冲区大小。 |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+let bufferSize: number = 0;
+try {
+  bufferSize = audioRenderer.getBufferSizeSync();
+  console.info(`AudioFrameworkRenderLog: getBufferSize: SUCCESS ${bufferSize}`);
+} catch (err) {
+  let error = err as BusinessError;
+  console.error(`AudioFrameworkRenderLog: getBufferSize: ERROR: ${error}`);
+}
 ```
 
 ### setRenderRate<sup>8+</sup>
@@ -5616,6 +6652,35 @@ audioRenderer.getRenderRate().then((renderRate: audio.AudioRendererRate) => {
   console.error(`ERROR: ${err}`);
 });
 ```
+
+### getRenderRateSync<sup>10+</sup>
+
+getRenderRateSync(): AudioRendererRate
+
+获取当前渲染速率，同步返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Renderer
+
+**返回值：**
+
+| 类型                                              | 说明                      |
+| ------------------------------------------------- | ------------------------- |
+| [AudioRendererRate](#audiorendererrate8) | 返回渲染速率。 |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+try {
+  let renderRate: audio.AudioRendererRate = audioRenderer.getRenderRateSync();
+  console.info(`getRenderRate: ${renderRate}`);
+} catch (err) {
+  let error = err as BusinessError;
+  console.error(`ERROR: ${error}`);
+}
+```
+
 ### setInterruptMode<sup>9+</sup>
 
 setInterruptMode(mode: InterruptMode): Promise&lt;void&gt;
@@ -5673,6 +6738,42 @@ audioRenderer.setInterruptMode(mode, (err: BusinessError) => {
   }
   console.info('setInterruptMode Success!');
 });
+```
+
+### setInterruptModeSync<sup>10+</sup>
+
+setInterruptModeSync(mode: InterruptMode): void
+
+设置应用的焦点模型，同步设置。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Interrupt
+
+**参数：**
+
+| 参数名     | 类型                                | 必填   | 说明        |
+| ---------- | ---------------------------------- | ------ | ---------- |
+| mode       | [InterruptMode](#interruptmode9)    | 是     | 焦点模型。  |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[音频错误码](../errorcodes/errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 6800101 | invalid parameter error              |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+try {
+  audioRenderer.setInterruptModeSync(0);
+  console.info('setInterruptMode Success!');
+} catch (err) {
+  let error = err as BusinessError;
+  console.error(`setInterruptMode Fail: ${error}`);
+}
 ```
 
 ### setVolume<sup>9+</sup>
@@ -5783,6 +6884,34 @@ audioRenderer.getMinStreamVolume().then((value: number) => {
 });
 ```
 
+### getMinStreamVolumeSync<sup>10+</sup>
+
+getMinStreamVolumeSync(): number
+
+获取应用基于音频流的最小音量，同步返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Renderer
+
+**返回值：**
+
+| 类型                | 说明                          |
+| ------------------- | ----------------------------- |
+| number| 返回音频流最小音量（音量范围0-1）。|
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+try {
+  let value: number = audioRenderer.getMinStreamVolumeSync();
+  console.info(`Get min stream volume Success! ${value}`);
+} catch (err) {
+  let error = err as BusinessError;
+  console.error(`Get min stream volume Fail: ${error}`);
+}
+```
+
 ### getMaxStreamVolume<sup>10+</sup>
 
 getMaxStreamVolume(callback: AsyncCallback&lt;number&gt;): void
@@ -5832,6 +6961,34 @@ audioRenderer.getMaxStreamVolume().then((value: number) => {
 }).catch((err: BusinessError) => {
   console.error(`Get max stream volume Fail: ${err}`);
 });
+```
+
+### getMaxStreamVolumeSync<sup>10+</sup>
+
+getMaxStreamVolumeSync(): number
+
+获取应用基于音频流的最大音量，同步返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Renderer
+
+**返回值：**
+
+| 类型                | 说明                          |
+| ------------------- | ----------------------------- |
+| number| 返回音频流最大音量（音量范围0-1）。|
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+try {
+  let value: number = audioRenderer.getMaxStreamVolumeSync();
+  console.info(`Get max stream volume Success! ${value}`);
+} catch (err) {
+  let error = err as BusinessError;
+  console.error(`Get max stream volume Fail: ${error}`);
+}
 ```
 
 ### getUnderflowCount<sup>10+</sup>
@@ -5885,6 +7042,34 @@ audioRenderer.getUnderflowCount().then((value: number) => {
 });
 ```
 
+### getUnderflowCountSync<sup>10+</sup>
+
+getUnderflowCountSync(): number
+
+获取当前播放音频流的欠载音频帧数量，同步返回数据。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Renderer
+
+**返回值：**
+
+| 类型                | 说明                          |
+| ------------------- | ----------------------------- |
+| number| 返回音频流的欠载音频帧数量。|
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+try {
+  let value: number = audioRenderer.getUnderflowCountSync();
+  console.info(`Get underflow count Success! ${value}`);
+} catch (err) {
+  let error = err as BusinessError;
+  console.error(`Get underflow count Fail: ${error}`);
+}
+```
+
 ### getCurrentOutputDevices<sup>10+</sup>
 
 getCurrentOutputDevices(callback: AsyncCallback&lt;AudioDeviceDescriptors&gt;): void
@@ -5907,14 +7092,16 @@ audioRenderer.getCurrentOutputDevices((err: BusinessError, deviceInfo: audio.Aud
   if (err) {
     console.error(`getCurrentOutputDevices Fail: ${err}`);
   } else {
-    console.info(`DeviceInfo id: ${deviceInfo[0].id}`);
-    console.info(`DeviceInfo type: ${deviceInfo[0].deviceType}`);
-    console.info(`DeviceInfo role: ${deviceInfo[0].deviceRole}`);
-    console.info(`DeviceInfo name: ${deviceInfo[0].name}`);
-    console.info(`DeviceInfo address: ${deviceInfo[0].address}`);
-    console.info(`DeviceInfo samplerates: ${deviceInfo[0].sampleRates[0]}`);
-    console.info(`DeviceInfo channelcounts: ${deviceInfo[0].channelCounts[0]}`);
-    console.info(`DeviceInfo channelmask: ${deviceInfo[0].channelMasks}`);
+    for (let i = 0; i < deviceInfo.length; i++) {
+      console.info(`DeviceInfo id: ${deviceInfo[i].id}`);
+      console.info(`DeviceInfo type: ${deviceInfo[i].deviceType}`);
+      console.info(`DeviceInfo role: ${deviceInfo[i].deviceRole}`);
+      console.info(`DeviceInfo name: ${deviceInfo[i].name}`);
+      console.info(`DeviceInfo address: ${deviceInfo[i].address}`);
+      console.info(`DeviceInfo samplerate: ${deviceInfo[i].sampleRates[0]}`);
+      console.info(`DeviceInfo channelcount: ${deviceInfo[i].channelCounts[0]}`);
+      console.info(`DeviceInfo channelmask: ${deviceInfo[i].channelMasks[0]}`);
+    }
   }
 });
 ```
@@ -5937,17 +7124,56 @@ getCurrentOutputDevices(): Promise&lt;AudioDeviceDescriptors&gt;
 ```ts
 import { BusinessError } from '@ohos.base';
 audioRenderer.getCurrentOutputDevices().then((deviceInfo: audio.AudioDeviceDescriptors) => {
-  console.info(`DeviceInfo id: ${deviceInfo[0].id}`);
-  console.info(`DeviceInfo type: ${deviceInfo[0].deviceType}`);
-  console.info(`DeviceInfo role: ${deviceInfo[0].deviceRole}`);
-  console.info(`DeviceInfo name: ${deviceInfo[0].name}`);
-  console.info(`DeviceInfo address: ${deviceInfo[0].address}`);
-  console.info(`DeviceInfo samplerates: ${deviceInfo[0].sampleRates[0]}`);
-  console.info(`DeviceInfo channelcounts: ${deviceInfo[0].channelCounts[0]}`);
-  console.info(`DeviceInfo channelmask: ${deviceInfo[0].channelMasks}`);
+  for (let i = 0; i < deviceInfo.length; i++) {
+    console.info(`DeviceInfo id: ${deviceInfo[i].id}`);
+    console.info(`DeviceInfo type: ${deviceInfo[i].deviceType}`);
+    console.info(`DeviceInfo role: ${deviceInfo[i].deviceRole}`);
+    console.info(`DeviceInfo name: ${deviceInfo[i].name}`);
+    console.info(`DeviceInfo address: ${deviceInfo[i].address}`);
+    console.info(`DeviceInfo samplerate: ${deviceInfo[i].sampleRates[0]}`);
+    console.info(`DeviceInfo channelcount: ${deviceInfo[i].channelCounts[0]}`);
+    console.info(`DeviceInfo channelmask: ${deviceInfo[i].channelMasks[0]}`);
+  }
 }).catch((err: BusinessError) => {
   console.error(`Get current output devices Fail: ${err}`);
 });
+```
+
+### getCurrentOutputDevicesSync<sup>10+</sup>
+
+getCurrentOutputDevicesSync(): AudioDeviceDescriptors
+
+获取音频流输出设备描述符，同步返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Device
+
+**返回值：**
+
+| 类型                | 说明                          |
+| ------------------- | ----------------------------- |
+| AudioDeviceDescriptors | 返回音频流的输出设备描述信息 |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+try {
+  let deviceInfo: audio.AudioDeviceDescriptors = audioRenderer.getCurrentOutputDevicesSync();
+  for (let i = 0; i < deviceInfo.length; i++) {
+    console.info(`DeviceInfo id: ${deviceInfo[i].id}`);
+    console.info(`DeviceInfo type: ${deviceInfo[i].deviceType}`);
+    console.info(`DeviceInfo role: ${deviceInfo[i].deviceRole}`);
+    console.info(`DeviceInfo name: ${deviceInfo[i].name}`);
+    console.info(`DeviceInfo address: ${deviceInfo[i].address}`);
+    console.info(`DeviceInfo samplerate: ${deviceInfo[i].sampleRates[0]}`);
+    console.info(`DeviceInfo channelcount: ${deviceInfo[i].channelCounts[0]}`);
+    console.info(`DeviceInfo channelmask: ${deviceInfo[i].channelMasks[0]}`);
+  }
+} catch (err) {
+  let error = err as BusinessError;
+  console.error(`Get current output devices Fail: ${error}`);
+}
 ```
 
 ### on('audioInterrupt')<sup>9+</sup>
@@ -6312,6 +7538,35 @@ audioCapturer.getCapturerInfo().then((audioParamsGet: audio.AudioCapturerInfo) =
 })
 ```
 
+### getCapturerInfoSync<sup>10+</sup>
+
+getCapturerInfoSync(): AudioCapturerInfo
+
+获取采集器信息，同步返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Capturer
+
+**返回值：**
+
+| 类型                                              | 说明                                |
+| :------------------------------------------------ | :---------------------------------- |
+| [AudioCapturerInfo](#audiocapturerinfo) | 返回采集器信息。 |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+try {
+  let audioParamsGet: audio.AudioCapturerInfo = audioCapturer.getCapturerInfoSync();
+  console.info(`AudioFrameworkRecLog: Capturer SourceType: ${audioParamsGet.source}`);
+  console.info(`AudioFrameworkRecLog: Capturer capturerFlags: ${audioParamsGet.capturerFlags}`);
+} catch (err) {
+  let error = err as BusinessError;
+  console.error(`AudioFrameworkRecLog: CapturerInfo :ERROR: ${error}`);
+}
+```
+
 ### getStreamInfo<sup>8+</sup>
 
 getStreamInfo(callback: AsyncCallback<AudioStreamInfo\>): void
@@ -6372,6 +7627,37 @@ audioCapturer.getStreamInfo().then((audioParamsGet: audio.AudioStreamInfo) => {
 });
 ```
 
+### getStreamInfoSync<sup>10+</sup>
+
+getStreamInfoSync(): AudioStreamInfo
+
+获取采集器流信息，同步返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Capturer
+
+**返回值：**
+
+| 类型                                           | 说明                            |
+| :--------------------------------------------- | :------------------------------ |
+| [AudioStreamInfo](#audiostreaminfo8) | 返回流信息。 |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+try {
+  let audioParamsGet: audio.AudioStreamInfo = audioCapturer.getStreamInfoSync();
+  console.info(`sampleFormat: ${audioParamsGet.sampleFormat}`);
+  console.info(`samplingRate: ${audioParamsGet.samplingRate}`);
+  console.info(`channels: ${audioParamsGet.channels}`);
+  console.info(`encodingType: ${audioParamsGet.encodingType}`);
+} catch (err) {
+  let error = err as BusinessError;
+  console.error(`getStreamInfo :ERROR: ${error}`);
+}
+```
+
 ### getAudioStreamId<sup>9+</sup>
 
 getAudioStreamId(callback: AsyncCallback<number\>): void
@@ -6418,6 +7704,34 @@ audioCapturer.getAudioStreamId().then((streamid: number) => {
 }).catch((err: BusinessError) => {
   console.error(`ERROR: ${err}`);
 });
+```
+
+### getAudioStreamIdSync<sup>10+</sup>
+
+getAudioStreamIdSync(): number
+
+获取音频流id，同步返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Capturer
+
+**返回值：**
+
+| 类型             | 说明                   |
+| :----------------| :--------------------- |
+| number | 返回音频流id。 |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+try {
+  let streamid: number = audioCapturer.getAudioStreamIdSync();
+  console.info(`audioCapturer getAudioStreamIdSync: ${streamid}`);
+} catch (err) {
+  let error = err as BusinessError;
+  console.error(`ERROR: ${error}`);
+}
 ```
 
 ### start<sup>8+</sup>
@@ -6713,6 +8027,34 @@ audioCapturer.getAudioTime().then((audioTime: number) => {
 });
 ```
 
+### getAudioTimeSync<sup>10+</sup>
+
+getAudioTimeSync(): number
+
+获取时间戳（从1970年1月1日开始），单位为纳秒，同步返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Capturer
+
+**返回值：**
+
+| 类型             | 说明                          |
+| :--------------- | :---------------------------- |
+| number | 返回时间戳。 |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+try {
+  let audioTime: number = audioCapturer.getAudioTimeSync();
+  console.info(`AudioFrameworkRecLog: AudioCapturer getAudioTimeSync : Success ${audioTime}`);
+} catch (err) {
+  let error = err as BusinessError;
+  console.info(`AudioFrameworkRecLog: AudioCapturer getAudioTimeSync : ERROR : ${error}`);
+}
+```
+
 ### getBufferSize<sup>8+</sup>
 
 getBufferSize(callback: AsyncCallback<number\>): void
@@ -6768,6 +8110,35 @@ audioCapturer.getBufferSize().then((data: number) => {
 }).catch((err: BusinessError) => {
   console.info(`AudioFrameworkRecLog: getBufferSize :ERROR : ${err}`);
 });
+```
+
+### getBufferSizeSync<sup>10+</sup>
+
+getBufferSizeSync(): number
+
+获取采集器合理的最小缓冲区大小，同步返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Capturer
+
+**返回值：**
+
+| 类型             | 说明                                |
+| :--------------- | :---------------------------------- |
+| number | 返回缓冲区大小。 |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+let bufferSize: number = 0;
+try {
+  bufferSize = audioCapturer.getBufferSizeSync();
+  console.info(`AudioFrameworkRecLog: getBufferSizeSync :SUCCESS ${bufferSize}`);
+} catch (err) {
+  let error = err as BusinessError;
+  console.info(`AudioFrameworkRecLog: getBufferSizeSync :ERROR : ${error}`);
+}
 ```
 
 ### on('audioInterrupt')<sup>10+</sup>
