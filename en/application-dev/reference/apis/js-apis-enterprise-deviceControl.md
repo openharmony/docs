@@ -12,8 +12,8 @@ The **deviceControl** module provides APIs for device control.
 
 ## Modules to Import
 
-```js
-import deviceControl from '@ohos.enterprise.deviceControl'
+```ts
+import deviceControl from '@ohos.enterprise.deviceControl';
 ```
 
 ## deviceControl.resetFactory
@@ -46,8 +46,9 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 **Example**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
   bundleName: 'bundleName',
   abilityName: 'abilityName',
 };
@@ -96,14 +97,16 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 **Example**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+let wantTemp: Want = {
   bundleName: 'bundleName',
   abilityName: 'abilityName',
 };
 
 deviceControl.resetFactory(wantTemp).then(() => {
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to reset factory. Code is ${err.code}, message is ${err.message}`);
 })
 ```

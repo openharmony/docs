@@ -12,8 +12,8 @@ The **dateTimeManager** module provides APIs for system time management.
 
 ## Modules to Import
 
-```js
-import dateTimeManager from '@ohos.enterprise.dateTimeManager'
+```ts
+import dateTimeManager from '@ohos.enterprise.dateTimeManager';
 ```
 
 ## dateTimeManager.setDateTime
@@ -47,8 +47,9 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 **Example**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
   bundleName: 'bundleName',
   abilityName: 'abilityName',
 };
@@ -98,15 +99,17 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 **Example**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+let wantTemp: Want = {
   bundleName: 'bundleName',
   abilityName: 'abilityName',
 };
 
 dateTimeManager.setDateTime(wantTemp, 1526003846000).then(() => {
   console.info('Succeeded in setting date time');
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to set date time. Code is ${err.code}, message is ${err.message}`);
 })
 ```
@@ -142,8 +145,9 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 **Example**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
   bundleName: 'bundleName',
   abilityName: 'abilityName',
 };
@@ -193,15 +197,17 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 **Example**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+let wantTemp: Want = {
   bundleName: 'bundleName',
   abilityName: 'abilityName',
 };
 
 dateTimeManager.disallowModifyDateTime(wantTemp, true).then(() => {
   console.info('Succeeded in disallowing modify date time');
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to disallow modify date time. Code is ${err.code}, message is ${err.message}`);
 })
 ```
@@ -236,8 +242,9 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 **Example**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
   bundleName: 'bundleName',
   abilityName: 'abilityName',
 };
@@ -286,15 +293,17 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 **Example**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+let wantTemp: Want = {
   bundleName: 'bundleName',
   abilityName: 'abilityName',
 };
 
 dateTimeManager.isModifyDateTimeDisallowed(wantTemp).then((result) => {
   console.info(`Succeeded in querying modify date time is disallowed : ${result}`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to query modify date time is disallowed or not. Code is ${err.code}, message is ${err.message}`);
 })
 ```
