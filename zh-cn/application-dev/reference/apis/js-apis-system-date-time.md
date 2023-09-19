@@ -12,6 +12,17 @@
 import systemDateTime from '@ohos.systemDateTime';
 ```
 
+## TimeType<sup>10+</sup>
+
+定义获取时间的枚举类型。
+
+**系统能力**: SystemCapability.MiscServices.Time
+
+| 名称    | 值   | 说明                                             |
+| ------- | ---- | ------------------------------------------------ |
+| STARTUP | 0    | 自系统启动以来经过的毫秒数，包括深度睡眠时间。   |
+| ACTIVE  | 1    | 自系统启动以来经过的毫秒数，不包括深度睡眠时间。 |
+
 ## systemDateTime.setTime
 
 setTime(time : number, callback : AsyncCallback&lt;void&gt;) : void
@@ -407,11 +418,80 @@ try {
 }
 ```
 
-## systemDateTime.setDate
+## systemDateTime.getTime<sup>10+</sup>
+
+getTime(isNanoseconds?: boolean): number
+
+ 使用同步方式获取自Unix纪元以来经过的时间。
+
+**系统能力：** SystemCapability.MiscServices.Time
+
+**参数：**
+
+| 参数名        | 类型    | 必填 | 说明                                                         |
+| ------------- | ------- | ---- | ------------------------------------------------------------ |
+| isNanoseconds | boolean | 否   | 返回结果是否为纳秒数。<br>- true：表示返回结果为纳秒数（ns）。 <br>- false：表示返回结果为毫秒数（ms）。<br>默认值为false。 |
+
+**返回值**：
+
+| 类型   | 说明                       |
+| ------ | -------------------------- |
+| number | 自Unix纪元以来经过的时间。 |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+try {
+  let time = systemDateTime.getTime(true)
+} catch(e) {
+  let error = e as BusinessError;
+  console.info(`Failed to get time. message: ${error.message}, code: ${error.code}`);
+}
+```
+
+## systemDateTime.getUptime<sup>10+</sup>
+
+getUptime(timeType: TimeType, isNanoseconds?: boolean): number
+
+ 使用同步方式获取自系统启动以来经过的时间。
+
+**系统能力：** SystemCapability.MiscServices.Time
+
+**参数：**
+
+| 参数名        | 类型                    | 必填 | 说明                                                         |
+| ------------- | ----------------------- | ---- | ------------------------------------------------------------ |
+| timeType      | [TimeType](#timetype10) | 是   | 获取时间的类型。                                             |
+| isNanoseconds | boolean                 | 否   | 返回结果是否为纳秒数。<br/>- true：表示返回结果为纳秒数（ns）。 <br/>- false：表示返回结果为毫秒数（ms）。<br>默认值为false。 |
+
+**返回值：**
+
+| 类型   | 说明                       |
+| ------ | -------------------------- |
+| number | 自系统启动以来经过的时间。 |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+try {
+  let time = systemDateTime.getUptime(systemDateTime.TimeType.ACTIVE, false);
+} catch(e) {
+  let error = e as BusinessError;
+  console.info(`Failed to get uptime. message: ${error.message}, code: ${error.code}`);
+}
+```
+
+## systemDateTime.setDate<sup>(deprecated)</sup>
 
 setDate(date: Date, callback: AsyncCallback&lt;void&gt;): void
 
 设置系统日期，使用callback异步回调。
+
+> **说明：** 从API version 9开始支持，从API 10开始废弃。建议使用[systemDateTime.setTime](#systemdatetimesettime)替代。
 
 **系统接口：** 此接口为系统接口
 
@@ -446,11 +526,13 @@ try {
 }
 ```
 
-## systemDateTime.setDate
+## systemDateTime.setDate<sup>(deprecated)</sup>
 
 setDate(date: Date): Promise&lt;void&gt;
 
 设置系统日期，使用Promise异步回调。
+
+> **说明：** 从API version 9开始支持，从API 10开始废弃。建议使用[systemDateTime.setTime](#systemdatetimesettime)替代。
 
 **系统接口：** 此接口为系统接口
 
@@ -488,11 +570,13 @@ try {
 }
 ```
 
-## systemDateTime.getDate
+## systemDateTime.getDate<sup>(deprecated)</sup>
 
 getDate(callback: AsyncCallback&lt;Date&gt;): void
 
 获取当前系统日期，使用callback异步回调。
+
+> **说明：** 从API version 9开始支持，从API 10开始废弃。建议使用new Date()替代，new Date()返回Date实例对象。
 
 **系统能力：** SystemCapability.MiscServices.Time
 
@@ -521,11 +605,13 @@ try {
 }
 ```
 
-## systemDateTime.getDate
+## systemDateTime.getDate<sup>(deprecated)</sup>
 
 getDate(): Promise&lt;Date&gt;
 
 获取当前系统日期，使用Promise异步回调。
+
+> **说明：** 从API version 9开始支持，从API 10开始废弃。建议使用new Date()替代，new Date()返回Date实例对象。
 
 **系统能力：** SystemCapability.MiscServices.Time
 
@@ -689,6 +775,33 @@ try {
   }).catch((error: BusinessError) => {
     console.info(`Failed to get timezone. message: ${error.message}, code: ${error.code}`);
   });
+} catch(e) {
+  let error = e as BusinessError;
+  console.info(`Failed to get timezone. message: ${error.message}, code: ${error.code}`);
+}
+```
+
+## systemDateTime.getTimezoneSync<sup>10+</sup>
+
+getTimezoneSync(): string
+
+获取系统时区，使用同步方式。
+
+**系统能力：** SystemCapability.MiscServices.Time
+
+**返回值：**
+
+| 类型   | 说明                                                       |
+| ------ | ---------------------------------------------------------- |
+| string | 返回系统时区。具体可见[支持的系统时区](#支持的系统时区) 。 |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+try {
+  let timezone = systemDateTime.getTimezoneSync();
 } catch(e) {
   let error = e as BusinessError;
   console.info(`Failed to get timezone. message: ${error.message}, code: ${error.code}`);
