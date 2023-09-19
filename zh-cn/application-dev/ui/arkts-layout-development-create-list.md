@@ -543,6 +543,7 @@ struct ContactsList {
         ...
       }
       .onScrollIndex((firstIndex: number) => {
+          this.selectedIndex = firstIndex
         // 根据列表滚动到的索引值，重新计算对应联系人索引栏的位置this.selectedIndex
         ...
       })
