@@ -40,14 +40,14 @@ Among the [universal attributes](ts-universal-attributes-size.md) and [universal
 | inputFilter<sup>8+</sup> | {<br>value: [ResourceStr](ts-types.md#resourcestr),<br>error?: (value: string) =&gt; void<br>} | Regular expression for input filtering. Only inputs that comply with the regular expression can be displayed. Other inputs are filtered out. The regular expression can match single characters, but not strings.<br>- **value**: regular expression to set.<br>- **error**: filtered-out content to return when regular expression matching fails.|
 | copyOption<sup>9+</sup>  | [CopyOptions](ts-appendix-enums.md#copyoptions9) | Whether copy and paste is allowed.<br>Default value: **CopyOptions.LocalDevice**<br>If this attribute is set to **CopyOptions.None**, the paste operation is allowed, but not the copy or cut operation.|
 | showPasswordIcon<sup>9+</sup> | boolean | Whether to display the password icon at the end of the password text box.<br>Default value: **true**|
-| style<sup>9+</sup> | [TextInputStyle](#textinputstyle9) \| [TextContentStyle](ts-appendix-enums.md#textcontentstyle10) | Text input style.<br>Default value: **TextInputStyle.Default**|
+| style<sup>9+</sup> | [TextInputStyle](#textinputstyle9) \| [TextContentStyle](ts-appendix-enums.md#textcontentstyle10) | Text input style. For the inline input style, only **InputType.Normal** is supported.<br>Default value: **TextInputStyle.Default**|
 | textAlign<sup>9+</sup>   | [TextAlign](ts-appendix-enums.md#textalign) | Horizontal alignment of the text.<br>Default value: **TextAlign.Start**<br>**NOTE**<br>Available options are **TextAlign.Start**, **TextAlign.Center**, and **TextAlign.End**.<br>To set vertical alignment for the text, use the [align](ts-universal-attributes-location.md) attribute. The **align** attribute alone does not control the horizontal position of the text. In other words, **Alignment.TopStart**, **Alignment.Top**, and **Alignment.TopEnd** produce the same effect, top-aligning the text; **Alignment.Start**, **Alignment.Center**, and **Alignment.End** produce the same effect, centered-aligning the text vertically; **Alignment.BottomStart**, **Alignment.Bottom**, and **Alignment.BottomEnd** produce the same effect, bottom-aligning the text. |
 | selectedBackgroundColor<sup>10+</sup> | [ResourceColor](ts-types.md#resourcecolor) | Background color of the selected text.<br>If the opacity is not set, the color is opaque. For example, **0x80000000** indicates black with 50% opacity.|
-| caretStyle<sup>10+</sup> | {<br>width: [Length](ts-types.md#length)<br>} | Caret style.                                       |
+| caretStyle<sup>10+</sup> | {<br>width: [Length](ts-types.md#length)<br>} | Caret style. It cannot be set in percentage.                                       |
 | caretPosition<sup>10+</sup> | number | Caret position.|
 | showUnit<sup>10+</sup>                | [CustomBuilder](ts-types.md#CustomBuilder8)         | Unit for content in the component.<br>By default, there is no unit.|
 | showError<sup>10+</sup> | string \| undefined | Error message displayed when an error occurs.<br>By default, no error message is displayed.<br>**NOTE**<br>If the parameter type is string and the input content does not comply with specifications, the error message is displayed. If the parameter type is undefined, no error message is displayed. See [Example 2](#example-2).|
-| showUnderline<sup>10+</sup> | boolean | Whether to show an underline.<br>Default value: **false**|
+| showUnderline<sup>10+</sup> | boolean | Whether to show an underline. By default, the underline comes in the color of **'#33182431'**, thickness of 1 px, and input box size of 48 vp. The underline supports only the **InputType.Normal** type.<br>Default value: **false**|
 | passwordIcon<sup>10+</sup> | [PasswordIcon](#passwordicon10) | Password icon to display at the end of the password text box.<br>By default, the system-provided icon is used.|
 | enableKeyboardOnFocus<sup>10+</sup> | boolean | Whether to enable the input method when the component obtains focus.<br>Default value: **true**  |
 | selectionMenuHidden<sup>10+</sup> | boolean | Whether to display the text selection menu when the text box is long-pressed or right-clicked.<br>Default value: **false**|
@@ -58,7 +58,7 @@ Among the [universal attributes](ts-universal-attributes-size.md) and [universal
 >
 >  The default value of the universal attribute [padding](ts-universal-attributes-size.md) is as follows: <br>{<br> top: 8 vp,<br> right: 16 vp,<br> bottom: 8 vp,<br> left: 16 vp<br> } 
 >
->  Since API version 10, .**width('auto')** can be set for the **\<TextInput>** component. Under this setting, the component auto-adapts its width to the text width, while respecting the **constraintSize** configuration and the maximum and minimum width restrictions received by the parent container. For details, see [Size](ts-universal-attributes-size.md#attributes).     
+>  Since API version 10, **.width('auto')** can be set for the **\<TextInput>** component. Under this setting, the component auto-adapts its width to the text width, while respecting the **constraintSize** configuration and the maximum and minimum width restrictions received by the parent container. For details, see [Size](ts-universal-attributes-size.md#attributes).
 
 ## EnterKeyType
 
