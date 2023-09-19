@@ -49,7 +49,7 @@ async function preview(context: featureAbility.Context, cameraInfo: camera.Camer
   session.addOutput(photoOutput);
   await session.commitConfig();
   await session.start();
-  await previewOutput.addDeferredSurface(previewSurfaceId);
+  previewOutput.addDeferredSurface(previewSurfaceId);
 }
 ```
 
