@@ -421,7 +421,7 @@ MySequenceable类的代码示例如下：
 
 ```ts
 import rpc from '@ohos.rpc';
-export default class MySequenceable {
+export default class MySequenceable implements rpc.Sequenceable {
     constructor(num: number, str: string) {
         this.num = num;
         this.str = str;
@@ -432,12 +432,12 @@ export default class MySequenceable {
     getString() : string {
         return this.str;
     }
-    marshalling(messageParcel: rpc.MessageSequence) {
+    marshalling(messageParcel: rpc.MessageParcel) {
         messageParcel.writeInt(this.num);
         messageParcel.writeString(this.str);
         return true;
     }
-    unmarshalling(messageParcel: rpc.MessageSequence) {
+    unmarshalling(messageParcel: rpc.MessageParcel) {
         this.num = messageParcel.readInt();
         this.str = messageParcel.readString();
         return true;
