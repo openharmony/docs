@@ -225,9 +225,6 @@
   - [@ohos.screen (Screen)](js-apis-screen.md)
   - [@ohos.screenshot (Screenshot)](js-apis-screenshot.md)
   - [@ohos.window (Window)](js-apis-window.md)
-  - webgl
-    - [WebGL](js-apis-webgl.md)
-    - [WebGL2](js-apis-webgl2.md)
 
 - Multimedia
   - [@ohos.app.ability.MediaControlExtensionAbility (ExtensionAbility for Media Playback Control)](js-apis-app-ability-MediaControlExtensionAbility.md)

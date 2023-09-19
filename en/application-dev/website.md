@@ -73,11 +73,14 @@
           - [Overview of Other State Management Features](quick-start/arkts-other-state-mgmt-functions-overview.md)
           - [\@Watch Decorator: Getting Notified of State Variable Changes](quick-start/arkts-watch.md)
           - [$$ Syntax: Two-Way Synchronization of Built-in Components](quick-start/arkts-two-way-sync.md)
+        - [MVVM](quick-start/arkts-mvvm.md)
+        - [Best Practices for State Management](quick-start/arkts-state-management-best-practices.md)
       - Rendering Control
         - [Overview of Rendering Control](quick-start/arkts-rendering-control-overview.md)
         - [if/else: Conditional Rendering](quick-start/arkts-rendering-control-ifelse.md)
         - [ForEach: Rendering of Repeated Content](quick-start/arkts-rendering-control-foreach.md)
         - [LazyForEach: Lazy Data Loading](quick-start/arkts-rendering-control-lazyforeach.md)
+        - [Best Practices for Rendering Control](quick-start/arkts-rendering-control-best-practices.md)
 - Development
   - Application Models
     - Application Model Overview
@@ -935,9 +938,6 @@
       - [@ohos.screen (Screen)](reference/apis/js-apis-screen.md)
       - [@ohos.screenshot (Screenshot)](reference/apis/js-apis-screenshot.md)
       - [@ohos.window (Window)](reference/apis/js-apis-window.md)
-      - webgl
-        - [WebGL](reference/apis/js-apis-webgl.md)
-        - [WebGL2](reference/apis/js-apis-webgl2.md)
     - Multimedia
       - [@ohos.app.ability.MediaControlExtensionAbility (ExtensionAbility for Media Playback Control)](reference/apis/js-apis-app-ability-MediaControlExtensionAbility.md)
       - [@ohos.multimedia.audio (Audio Management)](reference/apis/js-apis-audio.md)
