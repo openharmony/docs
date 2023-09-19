@@ -1221,6 +1221,45 @@ getOsAccountLocalIdForUid(uid: number): Promise&lt;number&gt;
   }
   ```
 
+### getOsAccountLocalIdForUidSync<sup>10+</sup>
+
+getOsAccountLocalIdForUidSync(uid: number): number
+
+根据uid查询对应的系统帐号ID。使用同步方式返回结果。
+
+**系统能力：** SystemCapability.Account.OsAccount
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明      |
+| ------ | ------ | ---- | --------- |
+| uid    | number | 是   | 进程uid。 |
+
+**返回值：**
+
+| 类型                  | 说明                                     |
+| --------------------- | --------------------------------------- |
+| number | 返回指定uid对应的系统帐号ID。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息       |
+| -------- | ------------- |
+| 12300002 | Invalid uid. |
+
+**示例：** 查询值为12345678的uid所属的系统帐号ID
+
+  ```ts
+  let accountManager = account_osAccount.getAccountManager();
+  let uid: number = 12345678;
+  try {
+    let localId : number = accountManager.getOsAccountLocalIdForUidSync(uid);
+    console.log('getOsAccountLocalIdForUidSync successfully, localId: ' + localId);
+  } catch (err) {
+    console.log('getOsAccountLocalIdForUidSync exception: ' + JSON.stringify(err));
+  }
+  ```
+
 ### getOsAccountLocalIdForDomain<sup>9+</sup>
 
 getOsAccountLocalIdForDomain(domainInfo: DomainAccountInfo, callback: AsyncCallback&lt;number&gt;): void
@@ -2592,7 +2631,7 @@ off(type: 'activate' | 'activating', name: string, callback?: Callback&lt;number
 
 ### getBundleIdForUid<sup>9+</sup>
 
-getBundleIdForUid(uid: number, callback: AsyncCallback&lt;number&gt;): void;
+getBundleIdForUid(uid: number, callback: AsyncCallback&lt;number&gt;): void
 
 通过uid查询对应的bundleId，使用callback异步回调。
 
@@ -2629,9 +2668,10 @@ getBundleIdForUid(uid: number, callback: AsyncCallback&lt;number&gt;): void;
     console.info('getBundleIdForUid exception: ' + JSON.stringify(e));
   }
   ```
+
 ### getBundleIdForUid<sup>9+</sup>
 
-getBundleIdForUid(uid: number): Promise&lt;number&gt;;
+getBundleIdForUid(uid: number): Promise&lt;number&gt;
 
 通过uid查询对应的bundleId，使用Promise异步回调。
 
@@ -2672,6 +2712,47 @@ getBundleIdForUid(uid: number): Promise&lt;number&gt;;
     });
   } catch (e) {
     console.info('getBundleIdForUid exception: ' + JSON.stringify(e));
+  }
+  ```
+
+### getBundleIdForUidSync<sup>10+</sup>
+
+getBundleIdForUidSync(uid: number): number
+
+通过uid查询对应的bundleId。使用同步方式返回结果。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Account.OsAccount
+
+**参数：**
+
+| 参数名  | 类型   | 必填 | 说明         |
+| ------- | ------ | ---- | ------------ |
+| uid     | number | 是   |  进程uid。 |
+
+**返回值：**
+
+| 类型   | 说明                     |
+| ------ | ------------------------ |
+| number | 表示与进程uid对应的bundleId。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息       |
+| -------- | ------------- |
+| 12300002 | Invalid uid. |
+
+**示例：**
+
+  ```ts
+  let accountManager = account_osAccount.getAccountManager();
+  let testUid: number = 1000000;
+  try {
+    let bundleId : number = accountManager.getBundleIdForUidSync(testUid);
+    console.info('getBundleIdForUidSync bundleId:' + bundleId);
+  } catch (e) {
+    console.info('getBundleIdForUidSync exception: ' + JSON.stringify(e));
   }
   ```
 
@@ -5319,6 +5400,7 @@ hasAccount(domainAccountInfo: DomainAccountInfo, callback: AsyncCallback&lt;bool
 | 12300001 | System service exception. |
 | 12300002 | Invalid domainAccountInfo. |
 | 12300013 | Network exception. |
+| 12300111 | Operation timeout. |
 
 **示例：**
   ```ts
@@ -5371,6 +5453,7 @@ hasAccount(domainAccountInfo: DomainAccountInfo): Promise&lt;boolean&gt;
 | 12300001 | System service exception. |
 | 12300002 | Invalid domainAccountInfo. |
 | 12300013 | Network exception. |
+| 12300111 | Operation timeout. |
 
 **示例：**
   ```ts
@@ -5490,6 +5573,107 @@ updateAccountToken(domainAccountInfo: DomainAccountInfo, token: Uint8Array): Pro
     });
   } catch (err) {
     console.log('updateAccountToken exception = ' + JSON.stringify(err));
+  }
+  ```
+
+### getAccountInfo<sup>10+</sup>
+
+getAccountInfo(options: GetDomainAccountInfoOptions, callback: AsyncCallback&lt;DomainAccountInfo&gt;): void
+
+查询指定的域帐号信息，callback方式。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Account.OsAccount
+
+**需要权限：** ohos.permission.GET_DOMAIN_ACCOUNTS
+
+**参数：**
+
+| 参数名      | 类型                                    | 必填 | 说明             |
+| ---------- | --------------------------------------- | ---- | --------------- |
+| options   | [GetDomainAccountInfoOptions](#getdomainaccountinfooptions10)  | 是   | 指示域帐号信息。|
+| callback   | AsyncCallback&lt;DomainAccountInfo&gt;  | 是   | 指示查询结果回调。|
+
+**错误码：**
+
+| 错误码ID | 错误信息                     |
+| -------- | --------------------------- |
+| 12300001 | System service exception. |
+| 12300003 | Account not found. |
+| 12300013 | Network exception. |
+| 12300111 | Operation timeout. |
+
+**示例：**
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  let domainAccountInfo: account_osAccount.GetDomainAccountInfoOptions = {
+    domain: 'CHINA',
+    accountName: 'zhangsan'
+  }
+  try {
+    account_osAccount.DomainAccountManager.getAccountInfo(domainAccountInfo,
+      (err: BusinessError, result: account_osAccount.DomainAccountInfo) => {
+      if (err) {
+        console.log('call getAccountInfo failed, error: ' + JSON.stringify(err));
+      } else {
+        console.log('getAccountInfo result: ' + result);
+      }
+    });
+  } catch (err) {
+    console.log('getAccountInfo exception = ' + JSON.stringify(err));
+  }
+  ```
+
+### getAccountInfo<sup>10+</sup>
+
+getAccountInfo(options: GetDomainAccountInfoOptions): Promise&lt;DomainAccountInfo&gt;
+
+查询指定的域帐号信息，promise方式。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Account.OsAccount
+
+**需要权限：** ohos.permission.GET_DOMAIN_ACCOUNTS
+
+**参数：**
+
+| 参数名      | 类型                                    | 必填 | 说明             |
+| ---------- | --------------------------------------- | ---- | --------------- |
+| options   | [GetDomainAccountInfoOptions](#getdomainaccountinfooptions10)  | 是   | 指示域帐号信息。|
+
+**返回值：**
+
+| 类型                      | 说明                     |
+| :------------------------ | ----------------------- |
+| Promise&lt;DomainAccountInfo&gt; | Promise对象，返回指定的域帐号信息。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                     |
+| -------- | --------------------------- |
+| 12300001 | System service exception. |
+| 12300003 | Account not found. |
+| 12300013 | Network exception. |
+| 12300111 | Operation timeout. |
+
+**示例：**
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  let domainAccountInfo: account_osAccount.GetDomainAccountInfoOptions = {
+    domain: 'CHINA',
+    accountName: 'zhangsan'
+  }
+  try {
+    account_osAccount.DomainAccountManager.getAccountInfo(domainAccountInfo)
+      .then((result: account_osAccount.DomainAccountInfo) => {
+      console.log('getAccountInfo result: ' + result);
+    }).catch((err: BusinessError) => {
+      console.log('call getAccountInfo failed, error: ' + JSON.stringify(err));
+    });
+  } catch (err) {
+    console.log('getAccountInfo exception = ' + JSON.stringify(err));
   }
   ```
 
